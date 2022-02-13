@@ -1,0 +1,1652 @@
+/*
+*
+* TABLE OF CONTENTS:
+* 1. Fonts
+* 2. General Styling
+* 3. Announcements
+* 4. Agent groups
+* 5. User Settings
+* 6. Messages
+* 7. Payouts
+* 8. Rules
+* 9. Media Queries
+*
+*/
+
+/* 1. Fonts */
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Roboto'), local('Roboto-Regular'), url(../../../includes/assets/fonts/Roboto/KFOmCnqEu92Fr1Mu72xKOzY.woff2) format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Roboto'), local('Roboto-Regular'), url(../../../includes/assets/fonts/Roboto/KFOmCnqEu92Fr1Mu5mxKOzY.woff2) format('woff2');
+  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* greek-ext */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Roboto'), local('Roboto-Regular'), url(../../../includes/assets/fonts/Roboto/KFOmCnqEu92Fr1Mu7mxKOzY.woff2) format('woff2');
+  unicode-range: U+1F00-1FFF;
+}
+/* greek */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Roboto'), local('Roboto-Regular'), url(../../../includes/assets/fonts/Roboto/KFOmCnqEu92Fr1Mu4WxKOzY.woff2) format('woff2');
+  unicode-range: U+0370-03FF;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Roboto'), local('Roboto-Regular'), url(../../../includes/assets/fonts/Roboto/KFOmCnqEu92Fr1Mu7WxKOzY.woff2) format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Roboto'), local('Roboto-Regular'), url(../../../includes/assets/fonts/Roboto/KFOmCnqEu92Fr1Mu7GxKOzY.woff2) format('woff2');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Roboto'), local('Roboto-Regular'), url(../../../includes/assets/fonts/Roboto/KFOmCnqEu92Fr1Mu4mxK.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* 2. General Styling */
+/* SalesKing icon */
+#toplevel_page_salesking .wp-menu-image img{
+    position: relative;
+    bottom: 3px;
+    width: 16px !important;
+}
+#toplevel_page_salesking img{
+	position: relative;
+	bottom: 2px;
+}
+.salesking_spacer_10{
+    width: 10px;
+    display: inline-block;
+}
+.salesking_page_salesking_dashboard #wpcontent{
+    padding-left:0px!important;
+}
+.notice-salesking {
+  box-shadow: none;
+  border-color: #f15d30;
+  background-color: #fff8e5; 
+}
+.notice-salesking p:before {
+    content: "\f153";
+    display: inline-block;
+    width: 25px;
+    height: 20px;
+    background-size: 20px; 
+}
+.notice-salesking p a {
+    display: inline-block;
+    color: #f15d30;
+    font-weight: 600;
+    margin-left: 5px; 
+}
+.notice-salesking p a:hover {
+    opacity: 0.8; 
+}
+.salesking_small_input_size{
+    max-width: 320px;
+}
+.salesking_page_salesking_teams{
+    background-color:#202224;
+}
+div#salesking_admin_customers_table_container {
+    margin: 50px;
+    padding: 20px;
+    font-size: 14px;
+    background: #fff;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.17);
+    border-radius: 5px;
+}
+div#salesking_admin_customers_table_container td {
+    padding: 11px 13px;
+}
+div#salesking_admin_customers_table_container th {
+    text-align: left;
+}
+table#salesking_admin_customers_table {
+    padding-top: 10px;
+    border-top: ;
+    width: 100%;
+}
+/* 3.Announcements */
+#salesking_announcement_visibility_metabox, .post-type-salesking_announce #submitdiv{
+    border-radius: 5px;
+    border-color: #e9ebec;
+    box-shadow: 0 3px 6px rgba(0,0,0,.07);
+}
+
+.post-type-salesking_announce #titlewrap input{
+    border-radius: 5px;
+    border-color: #dedede;
+}
+
+.post-type-salesking_announce #post-status-info{
+    border-radius: 0px 0px 5px 5px;
+    border-color: #e9ebec;
+    box-shadow: 0 3px 6px rgb(0 0 0 / 7%);
+}
+.post-type-salesking_announce #wp-content-editor-container{
+    border-color: #e9ebec;
+}
+
+.salesking_group_visibility_container {
+    border-radius: 5px;
+    background: #ffffff;
+    max-width: 1040px;
+    border-color: #e9ebec;
+    box-shadow: 0 3px 6px rgba(0,0,0,.07);
+    padding-bottom: 12px;
+    margin-bottom: 15px;
+    margin-top: 15px;
+}
+.salesking_group_visibility_container_top {
+    background: #7D7D7D;
+    border-radius: 5px 5px 0px 0px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+    font-family: "Roboto Medium", Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 13.5px;
+    line-height: 21px;
+    color: #FFFFFF;
+}
+.salesking_group_visibility_container_content {
+    padding: 13px;
+}
+.salesking_group_visibility_container_content_title {
+    font-family: "Roboto Medium", Roboto;
+    position: relative;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    margin-top: 12px;
+    margin-bottom: 17px;
+    line-height: 21px;
+    padding-left: 38px;
+    color: #6B6B6B;
+}
+.salesking_group_visibility_container_content_title_icon{
+    position: absolute;
+    width: 26px;
+    left: 1px;
+    top: -13px;
+}
+.salesking_group_visibility_container_content_checkbox {
+    background: #ECECEC;
+    border-radius: 3px;
+    margin-top: 12px;
+    justify-content: space-between;
+    display: flex;
+    align-items: center;
+    padding: 0px 15px;
+    min-height: 40px;
+}
+.salesking_group_visibility_container_content_checkbox_name {
+    font-family: "Roboto Medium", Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 21px;
+    color: #252525;
+}
+input.salesking_group_visibility_container_content_checkbox_input {
+    background: #C4C4C4;
+    border-radius: 3px;
+    border: none;
+    top: 2px;
+    box-shadow: none;
+    position: relative;
+}
+input.salesking_group_visibility_container_content_checkbox_input:focus{
+    box-shadow: none;
+}
+.salesking_user_visibility_container_content_title_icon{
+    position: absolute;
+    width: 29px;
+    left: 1px;
+    top: -4px;
+}
+textarea#salesking_category_users_textarea {
+    width: 100%;
+    background: #ececec;
+    border: none;
+    resize: vertical;
+    margin-bottom: 15px;
+}
+select#salesking_all_users_dropdown {
+    background-color: #ececec;
+    border: none;
+    font-family: "Roboto Medium", Roboto;
+    font-style: normal;
+    font-weight: 500;
+    min-height: 36px;
+    font-size: 14px;
+    line-height: 21px;
+    color: #252525;
+    width: 75.5%;
+    max-width: 1000px;
+}
+button#salesking_category_add_user {
+    background: #7d7d7d;
+    color: #ffffff;
+    min-height: 36px;
+    width: 24.5%;
+    min-width: 80px;
+    border: none;
+    margin-left: 3px;
+}
+.salesking_category_users_textarea_buttons_container {
+    display: flex;
+}
+
+/* 4.Agent Groups */
+.salesking_agent_settings_customer{
+    display:none;
+}
+.salesking_inline_header{
+    display: inline-block;
+}
+.salesking_switch-field {
+    display: inline-flex;
+    margin-left:15px;
+    margin-bottom: 36px;
+    overflow: hidden;
+}
+
+.salesking_switch-field input {
+    position: absolute !important;
+    clip: rect(0, 0, 0, 0);
+    height: 1px;
+    width: 1px;
+    border: 0;
+    overflow: hidden;
+}
+
+input#salesking_enable_teams_levels_setting {
+    max-width: 100px;
+}
+
+.salesking_switch-field label {
+    background-color: #e4e4e4;
+    color: rgba(0, 0, 0, 0.6);
+    font-size: 14px;
+    line-height: 1;
+    text-align: center;
+    padding: 8px 16px;
+    margin-right: -1px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px rgba(255, 255, 255, 0.1);
+    transition: all 0.1s ease-in-out;
+}
+
+.salesking_switch-field label:hover {
+    cursor: pointer;
+}
+
+.salesking_switch-field input#salesking_radio-two:checked + label {
+    background-color: #7446cd;
+    color: #fff;
+    box-shadow: none;
+}
+.salesking_switch-field input#salesking_radio-one:checked + label {
+    background-color: #7d7d7d;
+    color: #fff;
+    box-shadow: none;
+}
+.salesking_switch-field label:first-of-type {
+    border-radius: 4px 0 0 4px;
+}
+
+.salesking_switch-field label:last-of-type {
+    border-radius: 0 4px 4px 0;
+}
+
+#salesking_group_users_metabox, #salesking_group_assigned_agent_metabox, #salesking_group_settings_metabox, .post-type-salesking_group #submitdiv{
+    border-radius: 5px;
+    border-color: #e9ebec;
+    box-shadow: 0 3px 6px rgba(0,0,0,.07);
+}
+.post-type-salesking_group #titlewrap input{
+    border-radius: 5px;
+    border-color: #dedede;
+}
+.salesking_group_payment_shipping_methods_container {
+    margin: 20px 0px 10px 10px;
+    display: flex;
+}
+.salesking_user_payment_shipping_methods_container{
+    margin: 20px 0px 45px 10px;
+    display: flex;
+}
+.salesking_group_payment_shipping_methods_container_element {
+    width: 50%;
+}
+.salesking_group_payment_shipping_methods_container_element_title {
+    font-family: "Roboto Medium", Roboto;
+    position: relative;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    margin-top: 5px;
+    margin-bottom: 17px;
+    line-height: 21px;
+    padding-left: 38px;
+    color: #6B6B6B;
+}
+svg.salesking_group_payment_shipping_methods_container_element_title_icon_shipping {
+    position: absolute;
+    width: 28px;
+    left: 0px;
+    top: -2px;
+}
+svg.salesking_group_payment_shipping_methods_container_element_title_icon_payment {
+    position: absolute;
+    width: 27px;
+    left: 0px;
+    top: -4px;
+}
+.salesking_group_payment_shipping_methods_container_element_method {
+    background: #ECECEC;
+    border-radius: 3px;
+    margin-top: 12px;
+    justify-content: space-between;
+    display: flex;
+    margin-right: 30px;
+    align-items: center;
+    padding: 0px 15px;
+    min-height: 40px;
+}
+.salesking_group_payment_shipping_methods_container_element_method_name {
+    font-family: "Roboto Medium", Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 21px;
+    color: #252525;
+}
+input.salesking_group_payment_shipping_methods_container_element_method_checkbox {
+    background: #C4C4C4;
+    border-radius: 3px;
+    border: none;
+    top: 2px;
+    box-shadow: none;
+    position: relative;
+}
+input.salesking_group_payment_shipping_methods_container_element_method_checkbox:focus{
+    box-shadow:none;
+}
+.salesking_custom_field_settings_metabox_bottom_user_choices_title, .salesking_custom_field_settings_metabox_bottom_field_label_title,.salesking_custom_field_settings_metabox_bottom_field_placeholder_title, .salesking_custom_field_settings_metabox_bottom_field_type_title, .salesking_custom_field_settings_metabox_top_column_status_title, .salesking_custom_field_settings_metabox_top_column_registration_role_title,.salesking_custom_field_settings_metabox_top_column_required_title, .salesking_custom_field_settings_metabox_top_column_sort_title, .salesking_custom_field_settings_metabox_top_column_editable_title {
+    font-family: "Roboto Medium", Roboto;
+    position: relative;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    margin-top: 5px;
+    margin-bottom: 13px;
+    line-height: 21px;
+    padding-left: 38px;
+    color: #6B6B6B;
+}
+input.salesking_custom_field_settings_metabox_top_column_sort_text {
+    background: #ECECEC;
+    border-radius: 3px;
+    margin-top: 12px;
+    justify-content: space-between;
+    display: flex;
+    margin-right: 30px;
+    width: 100%;
+    border: none;
+    align-items: center;
+    padding: 0px 15px;
+    min-height: 40px;
+    font-family: "Roboto Medium", Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 21px;
+    color: #252525;
+}
+svg.salesking_custom_field_settings_metabox_top_column_required_title_icon {
+    position: absolute;
+    width: 26px;
+    left: 0px;
+    top: -7px;
+}
+svg.salesking_custom_field_settings_metabox_top_column_sort_title_icon {
+    position: absolute;
+    width: 25px;
+    left: 0px;
+    top: -8px;
+}
+svg.salesking_custom_field_settings_metabox_top_column_editable_title_icon {
+    position: absolute;
+    width: 28px;
+    left: 0px;
+    top: -8px;
+}
+input.salesking_custom_field_settings_metabox_top_column_sort_text::placeholder{
+    color: #A8A8A8;
+}
+input.salesking_custom_field_settings_metabox_top_column_sort_text:focus{
+    box-shadow: none;
+    outline: none;
+}
+input.salesking_custom_field_settings_metabox_top_column_sort_text::-webkit-outer-spin-button, input.salesking_custom_field_settings_metabox_top_column_sort_text::-webkit-inner-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+.salesking_975{
+    width: 97.5% !important;
+}
+
+/* Semantic Tooltip */
+
+*/.ui.popup{display:none;position:absolute;top:0;right:0;min-width:-webkit-min-content;min-width:-moz-min-content;min-width:min-content;z-index:1900;border:1px solid #d4d4d5;line-height:1.4285em;max-width:250px;font-size:12px;background:#fff;padding:.833em 1em;font-weight:400;font-style:normal;color:rgba(0,0,0,.87);border-radius:.28571429rem;-webkit-box-shadow:0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.15);box-shadow:0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.15)}.ui.popup>.header{padding:0;font-family:Lato,'Helvetica Neue',Arial,Helvetica,sans-serif;font-size:1.14285714em;line-height:1.2;font-weight:700}.ui.popup>.header+.content{padding-top:.5em}.ui.popup:before{position:absolute;content:'';width:.71428571em;height:.71428571em;background:#fff;-webkit-transform:rotate(45deg);transform:rotate(45deg);z-index:2;-webkit-box-shadow:1px 1px 0 0 #bababc;box-shadow:1px 1px 0 0 #bababc}[data-tooltip]{position:relative}[data-tooltip]:before{pointer-events:none;position:absolute;content:'';font-size:12px;width:.71428571em;height:.71428571em;background:#fff;-webkit-transform:rotate(45deg);transform:rotate(45deg);z-index:2;-webkit-box-shadow:1px 1px 0 0 #bababc;box-shadow:1px 1px 0 0 #bababc}[data-tooltip]:after{pointer-events:none;content:attr(data-tooltip);position:absolute;text-transform:none;text-align:left;white-space:nowrap;font-size:12px;border:1px solid #d4d4d5;line-height:1.4285em;max-width:none;background:#fff;padding:.833em 1em;font-weight:400;font-style:normal;color:rgba(0,0,0,.87);border-radius:.28571429rem;-webkit-box-shadow:0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.15);box-shadow:0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.15);z-index:1}[data-tooltip]:not([data-position]):before{top:auto;right:auto;bottom:100%;left:50%;background:#fff;margin-left:-.07142857rem;margin-bottom:.14285714rem}[data-tooltip]:not([data-position]):after{left:50%;-webkit-transform:translateX(-50%);transform:translateX(-50%);bottom:100%;margin-bottom:.5em}[data-tooltip]:after,[data-tooltip]:before{pointer-events:none;visibility:hidden}[data-tooltip]:before{opacity:0;-webkit-transform:rotate(45deg) scale(0)!important;transform:rotate(45deg) scale(0)!important;-webkit-transform-origin:center top;transform-origin:center top;-webkit-transition:all .1s ease;transition:all .1s ease}[data-tooltip]:after{opacity:1;-webkit-transform-origin:center bottom;transform-origin:center bottom;-webkit-transition:all .1s ease;transition:all .1s ease}[data-tooltip]:hover:after,[data-tooltip]:hover:before{visibility:visible;pointer-events:auto}[data-tooltip]:hover:before{-webkit-transform:rotate(45deg) scale(1)!important;transform:rotate(45deg) scale(1)!important;opacity:1}[data-tooltip]:after,[data-tooltip][data-position="bottom center"]:after,[data-tooltip][data-position="top center"]:after{-webkit-transform:translateX(-50%) scale(0)!important;transform:translateX(-50%) scale(0)!important}[data-tooltip]:hover:after,[data-tooltip][data-position="bottom center"]:hover:after{-webkit-transform:translateX(-50%) scale(1)!important;transform:translateX(-50%) scale(1)!important}[data-tooltip][data-position="left center"]:after,[data-tooltip][data-position="right center"]:after{-webkit-transform:translateY(-50%) scale(0)!important;transform:translateY(-50%) scale(0)!important}[data-tooltip][data-position="left center"]:hover:after,[data-tooltip][data-position="right center"]:hover:after{-webkit-transform:translateY(-50%) scale(1)!important;transform:translateY(-50%) scale(1)!important}[data-tooltip][data-position="bottom left"]:after,[data-tooltip][data-position="bottom right"]:after,[data-tooltip][data-position="top left"]:after,[data-tooltip][data-position="top right"]:after{-webkit-transform:scale(0)!important;transform:scale(0)!important}[data-tooltip][data-position="bottom left"]:hover:after,[data-tooltip][data-position="bottom right"]:hover:after,[data-tooltip][data-position="top left"]:hover:after,[data-tooltip][data-position="top right"]:hover:after{-webkit-transform:scale(1)!important;transform:scale(1)!important}[data-tooltip][data-inverted]:before{-webkit-box-shadow:none!important;box-shadow:none!important}[data-tooltip][data-inverted]:before{background:#1b1c1d}[data-tooltip][data-inverted]:after{background:#1b1c1d;color:#fff;border:none;-webkit-box-shadow:none;box-shadow:none}[data-tooltip][data-inverted]:after .header{background-color:none;color:#fff}[data-position="top center"][data-tooltip]:after{top:auto;right:auto;left:50%;bottom:100%;-webkit-transform:translateX(-50%);transform:translateX(-50%);margin-bottom:.5em}[data-position="top center"][data-tooltip]:before{top:auto;right:auto;bottom:100%;left:50%;background:#fff;margin-left:-.07142857rem;margin-bottom:.14285714rem}[data-position="top left"][data-tooltip]:after{top:auto;right:auto;left:0;bottom:100%;margin-bottom:.5em}[data-position="top left"][data-tooltip]:before{top:auto;right:auto;bottom:100%;left:1em;margin-left:-.07142857rem;margin-bottom:.14285714rem}[data-position="top right"][data-tooltip]:after{top:auto;left:auto;right:0;bottom:100%;margin-bottom:.5em}[data-position="top right"][data-tooltip]:before{top:auto;left:auto;bottom:100%;right:1em;margin-left:-.07142857rem;margin-bottom:.14285714rem}[data-position="bottom center"][data-tooltip]:after{bottom:auto;right:auto;left:50%;top:100%;-webkit-transform:translateX(-50%);transform:translateX(-50%);margin-top:.5em}[data-position="bottom center"][data-tooltip]:before{bottom:auto;right:auto;top:100%;left:50%;margin-left:-.07142857rem;margin-top:.14285714rem}[data-position="bottom left"][data-tooltip]:after{left:0;top:100%;margin-top:.5em}[data-position="bottom left"][data-tooltip]:before{bottom:auto;right:auto;top:100%;left:1em;margin-left:-.07142857rem;margin-top:.14285714rem}[data-position="bottom right"][data-tooltip]:after{right:0;top:100%;margin-top:.5em}[data-position="bottom right"][data-tooltip]:before{bottom:auto;left:auto;top:100%;right:1em;margin-left:-.14285714rem;margin-top:.07142857rem}[data-position="left center"][data-tooltip]:after{right:100%;top:50%;margin-right:.5em;-webkit-transform:translateY(-50%);transform:translateY(-50%)}[data-position="left center"][data-tooltip]:before{right:100%;top:50%;margin-top:-.14285714rem;margin-right:-.07142857rem}[data-position="right center"][data-tooltip]:after{left:100%;top:50%;margin-left:.5em;-webkit-transform:translateY(-50%);transform:translateY(-50%)}[data-position="right center"][data-tooltip]:before{left:100%;top:50%;margin-top:-.07142857rem;margin-left:.14285714rem}[data-position~=bottom][data-tooltip]:before{background:#fff;-webkit-box-shadow:-1px -1px 0 0 #bababc;box-shadow:-1px -1px 0 0 #bababc}[data-position="left center"][data-tooltip]:before{background:#fff;-webkit-box-shadow:1px -1px 0 0 #bababc;box-shadow:1px -1px 0 0 #bababc}[data-position="right center"][data-tooltip]:before{background:#fff;-webkit-box-shadow:-1px 1px 0 0 #bababc;box-shadow:-1px 1px 0 0 #bababc}[data-position~=top][data-tooltip]:before{background:#fff}[data-inverted][data-position~=bottom][data-tooltip]:before{background:#1b1c1d;-webkit-box-shadow:-1px -1px 0 0 #bababc;box-shadow:-1px -1px 0 0 #bababc}[data-inverted][data-position="left center"][data-tooltip]:before{background:#1b1c1d;-webkit-box-shadow:1px -1px 0 0 #bababc;box-shadow:1px -1px 0 0 #bababc}[data-inverted][data-position="right center"][data-tooltip]:before{background:#1b1c1d;-webkit-box-shadow:-1px 1px 0 0 #bababc;box-shadow:-1px 1px 0 0 #bababc}[data-inverted][data-position~=top][data-tooltip]:before{background:#1b1c1d}[data-position~=bottom][data-tooltip]:before{-webkit-transform-origin:center bottom;transform-origin:center bottom}[data-position~=bottom][data-tooltip]:after{-webkit-transform-origin:center top;transform-origin:center top}[data-position="left center"][data-tooltip]:before{-webkit-transform-origin:top center;transform-origin:top center}[data-position="left center"][data-tooltip]:after{-webkit-transform-origin:right center;transform-origin:right center}[data-position="right center"][data-tooltip]:before{-webkit-transform-origin:right center;transform-origin:right center}[data-position="right center"][data-tooltip]:after{-webkit-transform-origin:left center;transform-origin:left center}.ui.popup{margin:0}.ui.top.popup{margin:0 0 .71428571em}.ui.top.left.popup{-webkit-transform-origin:left bottom;transform-origin:left bottom}.ui.top.center.popup{-webkit-transform-origin:center bottom;transform-origin:center bottom}.ui.top.right.popup{-webkit-transform-origin:right bottom;transform-origin:right bottom}.ui.left.center.popup{margin:0 .71428571em 0 0;-webkit-transform-origin:right 50%;transform-origin:right 50%}.ui.right.center.popup{margin:0 0 0 .71428571em;-webkit-transform-origin:left 50%;transform-origin:left 50%}.ui.bottom.popup{margin:.71428571em 0 0}.ui.bottom.left.popup{-webkit-transform-origin:left top;transform-origin:left top}.ui.bottom.center.popup{-webkit-transform-origin:center top;transform-origin:center top}.ui.bottom.right.popup{-webkit-transform-origin:right top;transform-origin:right top}.ui.bottom.center.popup:before{margin-left:-.30714286em;top:-.30714286em;left:50%;right:auto;bottom:auto;-webkit-box-shadow:-1px -1px 0 0 #bababc;box-shadow:-1px -1px 0 0 #bababc}.ui.bottom.left.popup{margin-left:0}.ui.bottom.left.popup:before{top:-.30714286em;left:1em;right:auto;bottom:auto;margin-left:0;-webkit-box-shadow:-1px -1px 0 0 #bababc;box-shadow:-1px -1px 0 0 #bababc}.ui.bottom.right.popup{margin-right:0}.ui.bottom.right.popup:before{top:-.30714286em;right:1em;bottom:auto;left:auto;margin-left:0;-webkit-box-shadow:-1px -1px 0 0 #bababc;box-shadow:-1px -1px 0 0 #bababc}.ui.top.center.popup:before{top:auto;right:auto;bottom:-.30714286em;left:50%;margin-left:-.30714286em}.ui.top.left.popup{margin-left:0}.ui.top.left.popup:before{bottom:-.30714286em;left:1em;top:auto;right:auto;margin-left:0}.ui.top.right.popup{margin-right:0}.ui.top.right.popup:before{bottom:-.30714286em;right:1em;top:auto;left:auto;margin-left:0}.ui.left.center.popup:before{top:50%;right:-.30714286em;bottom:auto;left:auto;margin-top:-.30714286em;-webkit-box-shadow:1px -1px 0 0 #bababc;box-shadow:1px -1px 0 0 #bababc}.ui.right.center.popup:before{top:50%;left:-.30714286em;bottom:auto;right:auto;margin-top:-.30714286em;-webkit-box-shadow:-1px 1px 0 0 #bababc;box-shadow:-1px 1px 0 0 #bababc}.ui.bottom.popup:before{background:#fff}.ui.left.center.popup:before,.ui.right.center.popup:before{background:#fff}.ui.top.popup:before{background:#fff}.ui.inverted.bottom.popup:before{background:#1b1c1d}.ui.inverted.left.center.popup:before,.ui.inverted.right.center.popup:before{background:#1b1c1d}.ui.inverted.top.popup:before{background:#1b1c1d}.ui.popup>.ui.grid:not(.padded){width:calc(100% + 1.75rem);margin:-.7rem -.875rem}.ui.loading.popup{display:block;visibility:hidden;z-index:-1}.ui.animating.popup,.ui.visible.popup{display:block}.ui.visible.popup{-webkit-transform:translateZ(0);transform:translateZ(0);-webkit-backface-visibility:hidden;backface-visibility:hidden}.ui.basic.popup:before{display:none}.ui.wide.popup{max-width:350px}.ui[class*="very wide"].popup{max-width:550px}@media only screen and (max-width:767px){.ui.wide.popup,.ui[class*="very wide"].popup{max-width:250px}}.ui.fluid.popup{width:100%;max-width:none}.ui.inverted.popup{background:#1b1c1d;color:#fff;border:none;-webkit-box-shadow:none;box-shadow:none}.ui.inverted.popup .header{background-color:none;color:#fff}.ui.inverted.popup:before{background-color:#1b1c1d;-webkit-box-shadow:none!important;box-shadow:none!important}.ui.flowing.popup{max-width:none}.ui.mini.popup{font-size:.78571429rem}.ui.tiny.popup{font-size:.85714286rem}.ui.small.popup{font-size:.92857143rem}.ui.popup{font-size:12px}.ui.large.popup{font-size:1.14285714rem}.ui.huge.popup{font-size:1.42857143rem}/*!
+* 
+
+/* 5. User Settings */
+.salesking_user_settings_container {
+    margin: 20px 20px 20px 20px;
+    display: flex;
+}
+.salesking_user_settings_container_column {
+    width: 100%;
+}
+.salesking_user_settings_container_column_title {
+    font-family: "Roboto Medium", Roboto;
+    position: relative;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    margin-top: 5px;
+    margin-bottom: 17px;
+    line-height: 21px;
+    padding-left: 38px;
+    color: #6B6B6B;
+}
+
+.salesking_user_settings_container_column_title_subaccounts {
+    font-family: "Roboto Medium", Roboto;
+    position: relative;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    margin-top: 5px;
+    margin-bottom: 17px;
+    line-height: 21px;
+    color: #6B6B6B;
+}
+.salesking_user_settings_container_column_title_role {
+    font-family: "Roboto Medium", Roboto;
+    position: relative;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    margin-top: 5px;
+    margin-bottom: 13px;
+    line-height: 21px;
+    padding-left: 38px;
+    color: #6B6B6B;
+}
+svg.salesking_user_settings_container_column_title_icon {
+    position: absolute;
+    width: 26px;
+    left: 1px;
+    top: -6px;
+}
+svg.salesking_user_settings_container_column_title_icon_right {
+    position: absolute;
+    width: 26px;
+    left: 1px;
+    top: -13px;
+}
+select.salesking_user_settings_select_admin{
+    background-color: #ECECEC;
+    border-radius: 3px;
+    height: 40px;
+    border: none;
+    padding: 0px 15px;
+    width: 100%;
+    max-width: 100%;
+    font-family: "Roboto Medium", Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 21px;
+    color: #252525;
+}
+select.salesking_user_settings_select_admin:focus{
+    box-shadow: none;
+    color:#252525;
+}
+select.salesking_user_settings_select{
+    background-color: #ECECEC;
+    border-radius: 3px;
+    height: 40px;
+    border: none;
+    padding: 0px 15px;
+    width: 97.5%;
+    max-width: 100%;
+    font-family: "Roboto Medium", Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 21px;
+    color: #252525;
+}
+select.salesking_user_settings_select:focus{
+    box-shadow: none;
+    color:#252525;
+}
+.salesking_user_settings_information_box{
+    background: #E0F3FE;
+    border-radius: 2px;
+    min-height: 53px;
+    margin-left: 20px;
+    font-family: "Roboto Medium", Roboto;
+    margin-right: 43px;
+    font-style: normal;
+    font-weight: 500;
+    display: flex;
+    font-size: 14px;
+    padding-left: 50px;
+    line-height: 21px;
+    color: #579DC3;
+    align-items: center;
+    margin-bottom: 10px;
+    position: relative;
+}
+
+.salesking_discount_options_information_box{
+    background: #E0F3FE;
+    border-radius: 2px;
+    min-height: 53px;
+    font-family: "Roboto Medium", Roboto;
+    margin-right: 30px;
+    font-style: normal;
+    font-weight: 500;
+    display: none;
+    font-size: 14px;
+    margin-top: 12px;
+    padding-left: 50px;
+    line-height: 21px;
+    color: #579DC3;
+    align-items: center;
+    margin-bottom: 10px;
+    position: relative;
+}
+.salesking_information_box_link{
+    text-decoration: none;
+}
+.salesking_rule_conditions_information_box{
+    background: #E0F3FE;
+    border-radius: 2px;
+    min-height: 53px;
+    font-family: "Roboto Medium", Roboto;
+    margin-right: 30px;
+    font-style: normal;
+    font-weight: 500;
+    display: flex;
+    font-size: 14px;
+    margin-top: 2px;
+    padding-left: 50px;
+    line-height: 21px;
+    color: #579DC3;
+    align-items: center;
+    margin-bottom: 10px;
+    position: relative;
+}
+.salesking_user_shipping_payment_methods_container {
+    border-radius: 5px;
+    background: #ffffff;
+    max-width: 1040px;
+    border-color: #e9ebec;
+    box-shadow: 0 3px 6px rgba(0,0,0,.07);
+    padding-bottom: 12px;
+}
+.salesking_user_shipping_payment_methods_container_top {
+    background: #7D7D7D;
+    border-radius: 5px 5px 0px 0px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+    font-family: "Roboto Medium", Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 13.5px;
+    line-height: 21px;
+    color: #FFFFFF;
+}
+.salesking_user_shipping_payment_methods_container_content_override {
+    margin: 12px 30px 30px 10px;
+}
+
+select.salesking_user_shipping_payment_methods_container_content_override_select {
+    background-color: #ECECEC;
+    border-radius: 3px;
+    height: 40px;
+    border: none;
+    padding: 0px 15px;
+    width: 100%;
+    max-width: 100%;
+    font-family: "Roboto Medium", Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 21px;
+    color: #252525;
+}
+#salesking_user_shipping_payment_methods_override:focus{
+    color: #252525;
+    box-shadow: none;
+}
+select.salesking_user_shipping_payment_methods_container_content_override_select option{
+    min-height: 40px;
+    padding: 10px;
+}
+svg.salesking_user_shipping_payment_methods_container_content_override_title_icon {
+    position: absolute;
+    width: 28px;
+    left: 0px;
+}
+.salesking_user_shipping_payment_methods_container_content_override_title {
+    font-family: "Roboto Medium", Roboto;
+    position: relative;
+    font-style: normal;
+    display: flex;
+    font-weight: 500;
+    align-items: center;
+    font-size: 16px;
+    height: 45px;
+    line-height: 21px;
+    padding-left: 38px;
+    color: #6B6B6B;
+}
+.salesking_user_shipping_payment_methods_container_content {
+    padding: 0 12px;
+}
+.salesking_group_payment_shipping_information_box{
+    background: #E0F3FE;
+    border-radius: 2px;
+    min-height: 53px;
+    margin-left: 10px;
+    font-family: "Roboto Medium", Roboto;
+    margin-right: 30px;
+    font-style: normal;
+    font-weight: 500;
+    display: flex;
+    font-size: 14px;
+    padding-left: 50px;
+    line-height: 21px;
+    color: #579DC3;
+    align-items: center;
+    margin-bottom: 10px;
+    position: relative;
+}
+.salesking_group_payment_shipping_information_box_icon{
+    position: absolute;
+    top: 8px;
+    width: 28px;
+    left: 11px;
+    background: #579DC300;
+}
+#salesking_metabox_product_categories_wrapper_content{
+    width: 100%;
+    padding: 5px 10px 10px 5px;
+}
+#salesking_metabox_product_categories_wrapper_content_headline{
+    font-family: "Roboto Medium", Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    color: #5C5C5C;
+    padding-top: 7px;
+    padding-bottom: 9px;
+}
+.salesking_metabox_product_categories_wrapper_content_category {
+    min-width: 100px;
+    height: 25px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin: 5px 5px;
+    padding: 2px 10px;
+    background: #aaaaaa;
+    box-shadow: inset 0px 1px 0px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    font-family: "Roboto Medium", Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 21px;
+    color: #ffffff;
+    text-decoration: none;
+}
+.salesking_metabox_product_categories_wrapper_content_category:hover{
+    background: #6c6c6c;
+    cursor:pointer;
+}
+.salesking_metabox_product_categories_wrapper_content_category:focus{
+    box-shadow: none;
+    outline: none;
+    border: none;
+}
+
+.salesking_metabox_product_categories_wrapper_content_category_user {
+    min-width: 100px;
+    height: 25px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin: 5px 5px;
+    padding: 2px 10px;
+    background: #f6f6f6;
+    box-shadow: inset 0px 1px 0px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    font-family: "Roboto Medium", Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 21px;
+    color: #555555;
+    text-decoration: none;
+}
+.salesking_metabox_product_categories_wrapper_content_category_user:hover{
+    background: #dbdbdb;
+}
+.salesking_metabox_product_categories_wrapper_content_category_user:focus{
+    box-shadow: none;
+    outline: none;
+    border: none;
+}
+.salesking_metabox_product_categories_wrapper_content_category_user_link{
+    text-decoration: none;
+}
+.salesking_metabox_product_categories_wrapper_content_line_start{
+    width: 55px;
+    min-height: 25px;
+    display: inline-block;
+}
+.salesking_metabox_product_categories_wrapper_content_line{
+    min-height: 35px;
+    display: block;
+    font-family: "Roboto Medium", Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 13px;
+    line-height: 15px;
+    color: #4F4F4F;
+    align-items: center;
+    margin: 5px 0px;
+}
+
+/* 6. Messages */
+#salesking_message_details_metabox, #salesking_message_messaging_metabox, .post-type-salesking_message #submitdiv{
+    border-radius: 5px;
+    border-color: #e9ebec;
+    box-shadow: 0 3px 6px rgba(0,0,0,.07);
+}
+
+.post-type-salesking_message #titlewrap input{
+    border-radius: 5px;
+    border-color: #dedede;
+}
+
+#salesking_message_start_message{
+    width: 100%;
+    resize: vertical;
+    border: 1px solid #eeeeee;
+    background: #fcfcfc;
+    margin-top: 10px;
+    padding: 10px;
+    min-height: 125px;
+}
+#salesking_message_admin_new_message{
+    width: 97%;
+    resize: vertical;
+    min-height: 125px;
+    margin: 10px;
+    border: 1px solid #eeeeee;
+    background: #fcfcfc;
+    padding: 15px;
+}
+#salesking_message_messages_container{
+    max-height: 500px;
+    overflow-y: scroll;
+}
+.salesking_message_message{
+    background: #eeeeee;
+    margin: 10px;
+    padding: 15px;
+    padding-right: 10%;
+    border-radius: 8px;
+    width: 70%;
+    position: relative;
+}
+.salesking_message_message_self{
+    margin-left: auto;
+    background: #e9f1f8;
+}
+.salesking_message_message_time{
+    position: absolute;
+    right: 10px;
+    color: #888f92;
+    font-weight: bold;
+    bottom: 10px;
+}
+#salesking_message_details_wrapper{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+#salesking_message_user_container{
+    display: inline-flex;
+    align-items: center;
+    font-size: 20px;
+}
+#salesking_message_user_status_container{
+    display: inline-flex;
+    font-weight: 500;
+    align-items: center;
+    font-size: 17px;
+}
+#salesking_message_status_select{
+    width: 130px;
+    margin-left: 10px;
+    background-color: #4fa7df;
+    border: none;
+    box-shadow: 0 2px 0px rgba(0, 0, 0, 0.08);
+    color: #ffffff;
+    font-weight: bold;
+}
+#salesking_message_status_select option{
+    background-color: #ffffff;
+    color: #222;
+}
+#salesking_message_user_input{
+    font-size: 18px;
+    margin-left: 10px;
+    font-weight: 500;
+    border: 1px solid #e6e6e6;
+}
+/* 7. Payouts */
+div#salesking_admin_payouts_table_container , div#salesking_admin_earnings_table_container {
+    margin: 50px;
+    padding: 20px;
+    font-size: 14px;
+    background: #fff;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.17);
+    border-radius: 5px;
+}
+div#salesking_admin_payouts_table_container td , div#salesking_admin_earnings_table_container td {
+    padding: 11px 13px;
+}
+div#salesking_admin_payouts_table_container th , div#salesking_admin_earnings_table_container th {
+    text-align: left;
+}
+table#salesking_admin_payouts_table , table#salesking_admin_earnings_table {
+    padding-top: 10px;
+    border-top: ;
+    width: 100%;
+}
+.salesking_page_salesking_payouts{
+    background-color:#202224;
+}
+.salesking_manage_payouts_button, .salesking_manage_earnings_button{
+    background-color: #2185d0;
+    color: #fff;
+    text-shadow: none;
+    background-image: none;
+    font-size: 13px;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    padding: 12px;
+    cursor: pointer;
+    display: inline-block;
+    min-height: 1em;
+    outline: 0;
+    vertical-align: baseline;
+    font-family: Lato,'Helvetica Neue',Arial,Helvetica,sans-serif;
+    margin: 0 .25em 0 0;
+    text-transform: none;
+    line-height: 1em;
+    font-style: normal;
+    text-align: center;
+    text-decoration: none;
+}
+.salesking_manage_payouts_button:hover, .salesking_manage_earnings_button:hover{
+    background-color: #1576be;
+}
+#salesking_custom_method_title{
+    width: 50%;
+    margin: 10px 0px;
+}
+textarea#salesking_custom_method_description {
+    width: 50%;
+    height: 50px;
+}
+.admin_page_salesking_view_payouts, .admin_page_salesking_view_earnings{
+    background-color:#202224;
+}
+input#salesking_bonus_payment {
+    background: #C4C4C4;
+    border-radius: 3px;
+    border: none;
+    top: 2px;
+    box-shadow: none;
+    transform: scale(1.3);
+    position: relative;
+    margin: 4px;
+}
+.salesking_user_payouts_container{
+    margin: 25px 20px 1px 20px;
+}
+.salesking_above_top_title_button {
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    width: 100%;
+    top: -50px;
+    align-items: center;
+}
+.salesking_above_top_title_button_left {
+    font-family: "Roboto Medium", Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 25px;
+    line-height: 45px;
+    color: #ffffff;
+}
+button.salesking_above_top_title_button_right_button {
+    line-height: 15px;
+    width: 130px;
+    background: #9E9E9E;
+    text-align: end;
+    height: 35px;
+    color: #FFFFFF;
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.12);
+    border-radius: 3px;
+    position: relative;
+    outline: none;
+    border: none;
+    font-family: "Roboto";
+    font-weight: 500;
+    font-size: 15.5px;
+    padding: 5px 16px;
+    text-transform: none;
+    min-height: 0;
+}
+button.salesking_above_top_title_button_right_button:hover{
+    background-color: #6c6c6c;
+    cursor: pointer;
+}
+.salesking_user_shipping_payment_methods_container_top {
+    background: #7D7D7D;
+    border-radius: 5px 5px 0px 0px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+    font-family: "Roboto Medium", Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 13.5px;
+    line-height: 21px;
+    color: #FFFFFF;
+}
+.salesking_user_shipping_payment_methods_container {
+    border-radius: 5px;
+    background: #ffffff;
+    max-width: 1040px;
+    border-color: #e9ebec;
+    box-shadow: 0 3px 6px rgba(0,0,0,.07);
+    padding-bottom: 12px;
+}
+.salesking_special_group_container {
+    margin: 100px 75px 10px 75px;
+    position: relative;
+}
+.salesking_user_registration_user_data_container {
+    margin: 25px 20px 1px 20px;
+}
+.salesking_user_registration_user_data_container_title {
+    font-family: "Roboto Medium", Roboto;
+    position: relative;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    margin-top: 5px;
+    margin-bottom: 17px;
+    line-height: 21px;
+    padding-left: 38px;
+    color: #6B6B6B;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #dedede;
+}
+svg.salesking_user_registration_user_data_container_title_icon {
+    position: absolute;
+    width: 27px;
+    left: 0px;
+    top: -8px;
+}
+.salesking_user_registration_user_data_container_element_label {
+    font-family: "Roboto Medium", Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 13.5px;
+    line-height: 21px;
+    color: #818181;
+}
+input.salesking_user_registration_user_data_container_element_text {
+    background: #ECECEC;
+    border-radius: 3px;
+    margin-top: 4px;
+    justify-content: space-between;
+    display: flex;
+    margin-right: 30px;
+    align-items: center;
+    padding: 0px 15px;
+    min-height: 40px;
+    border: none;
+    width: 100%;
+    font-weight: 500;
+    line-height: 21px;
+    color: #252525;
+}
+input.salesking_user_registration_user_data_container_element_text:focus, textarea.salesking_user_registration_user_data_container_element_textarea:focus{
+    box-shadow: none;
+    color:#252525;
+}
+textarea.salesking_user_registration_user_data_container_element_textarea {
+    background: #ECECEC;
+    border-radius: 3px;
+    justify-content: space-between;
+    display: flex;
+    margin-right: 30px;
+    align-items: center;
+    padding: 15px 15px;
+    min-height: 125px;
+    resize: vertical;
+    border: none;
+    width: 100%;
+    font-weight: 500;
+    line-height: 21px;
+    color: #252525;
+}
+.salesking_user_registration_user_data_container_element {
+    margin-bottom: 16px;
+}
+button.salesking_user_registration_user_data_container_element_download {
+    background: #6FB8E1;
+    border-radius: 3px;
+    width: 100%;
+    min-height: 40px;
+    text-align: left;
+    padding-left: 55px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    font-family: "Roboto Medium", Roboto;
+    font-style: normal;
+    font-size: 13.5px;
+    border: none;
+    margin-top: 2px;
+    line-height: 21px;
+    color: #FFFFFF;
+}
+button.salesking_user_registration_user_data_container_element_download:hover{
+    background: #358bbc;
+    cursor: pointer;
+}
+button.salesking_user_registration_user_data_container_element_download:focus{
+    box-shadow: none;
+    outline: none;
+}
+svg.salesking_user_registration_user_data_container_element_download_icon {
+    position: absolute;
+    width: 30px;
+    left: 15px;
+}
+.salesking_user_registration_user_data_container_element_approval {
+    background: #F6F6F6;
+    border: 1px solid #F2F2F2;
+    box-sizing: border-box;
+    border-radius: 3px;
+    padding: 10px;
+    margin-top: 4px;
+}
+select.salesking_user_registration_user_data_container_element_select_group {
+    background-color: #E7e7e7;
+    border-radius: 3px;
+    display: inline-block;
+    margin-right: 30px;
+    width: 100%;
+    border: none;
+    max-width: 100%;
+    margin-bottom: 10px;
+    align-items: center;
+    padding: 0px 15px;
+    min-height: 40px;
+    font-family: "Roboto Medium", Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 21px;
+    color: #252525;
+}
+select.salesking_user_registration_user_data_container_element_select_group:focus{
+    box-shadow: none;
+    color: #252525;
+}
+button.salesking_user_registration_user_data_container_element_approval_button_approve {
+    background: #A5CD05;
+    border-radius: 2px;
+    width: 75%;
+    border: none;
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    font-family: "Roboto Medium", Roboto;
+    font-style: normal;
+    padding-left: 55px;
+    font-weight: 400;
+    font-size: 14px;
+    min-height: 40px;
+    line-height: 23px;
+    color: #FFFFFF;
+}
+svg.salesking_user_registration_user_data_container_element_approval_button_approve_icon, svg.salesking_user_registration_user_data_container_element_approval_button_reject_icon, svg.salesking_user_registration_user_data_container_element_approval_button_deactivate {
+    position: absolute;
+    width: 22px;
+    left: 15px;
+}
+.salesking_user_registration_user_data_container_element_approval_buttons_container {
+    display: flex;
+    justify-content: space-between;
+}
+button.salesking_user_registration_user_data_container_element_approval_button_reject, button.salesking_user_registration_user_data_container_element_approval_button_deactivate {
+    background: #797979;
+    border-radius: 2px;
+    width: 24%;
+    border: none;
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    font-family: "Roboto Medium", Roboto;
+    font-style: normal;
+    padding-left: 55px;
+    font-weight: 400;
+    font-size: 14px;
+    min-height: 40px;
+    line-height: 23px;
+    color: #FFFFFF;
+}
+
+button.salesking_user_registration_user_data_container_element_approval_button_deactivate {
+    width: 100%;
+}
+.salesking_user_registration_user_data_container_element_approval_button_approve, .salesking_user_registration_user_data_container_element_approval_button_reject, .salesking_user_registration_user_data_container_element_approval_button_deactivate{
+    cursor: pointer;
+}
+.salesking_user_registration_user_data_container_element_approval_button_approve:hover{
+    background: #90b400;
+}
+.salesking_user_registration_user_data_container_element_approval_button_approve:focus, .salesking_user_registration_user_data_container_element_approval_button_reject:focus, .salesking_user_registration_user_data_container_element_approval_button_deactivate:focus{
+    box-shadow: none;
+    outline: none;
+}
+.salesking_user_registration_user_data_container_element_approval_button_reject:hover, .salesking_user_registration_user_data_container_element_approval_button_deactivate:hover{
+    background: #414141;
+}
+#salesking_order_commission_metabox tr {
+    display: block;
+    padding: 8px 0px;
+}
+#salesking_order_commission_metabox .total {
+    font-weight:bold;
+    width: 17em;
+}
+#salesking_order_commission_metabox .label {
+    width: 8em;
+}
+.salesking_edit_icon, .salesking_main_edit_icon{
+    font-size:14px;
+    color: #999999;
+}
+.salesking_edit_icon:hover, .salesking_main_edit_icon:hover{
+
+    color:#333;
+    cursor:pointer;
+}
+.salesking_page_salesking_earnings{
+    background-color:#202224;
+}
+/* 8. Rules */
+#salesking_select_multiple_product_categories_selector li.select2-selection__choice, #salesking_select_multiple_users_selector li.select2-selection__choice, #salesking_select_multiple_agents_selector li.select2-selection__choice{
+    font-size:14px;
+    background-color:#ffffff;
+    font-family: "Roboto Medium", Roboto;
+}
+
+.post-type-salesking_rule #postcustom{
+display:none;
+}
+
+.salesking_commission_rule_metabox_content_container .selection .select2-selection, .salesking_offer_line_number .selection .select2-selection{
+    background-color: #f4f4f4;
+    border: none;
+    box-shadow: inset 0px 1px 0px rgba(0, 0, 0, 0.1);
+    color: #3b3b3b;
+    min-height: 35px;
+    margin-top: 1px;
+    font-size: 13.5px;
+    font-family: "Roboto Medium", Roboto;
+    font-style: normal;
+    display: flex;
+    align-items: center;
+}
+.salesking_commission_rule_metabox_content_container .select2-search__field{
+    background-color: #f4f4f4;
+}
+.salesking_commission_rule_metabox_content_container .selection .select2-selection:hover .select2-search__field, .salesking_offer_line_number .selection .select2-selection:hover .select2-search__field{
+    background-color: #eaeaea;
+}
+.salesking_commission_rule_metabox_content_container .selection .select2-selection .select2-selection__arrow, .salesking_offer_line_number .selection .select2-selection .select2-selection__arrow{
+    top:inherit;
+}
+.salesking_commission_rule_metabox_content_container .selection .select2-selection:focus, .salesking_offer_line_number .selection .select2-selection:focus{
+    border: none;
+    background-color: #eaeaea;
+    color: #3b3b3b;
+    box-shadow: inset 0px 1px 0px rgba(0, 0, 0, 0.1);
+    outline: none;
+}
+.salesking_commission_rule_metabox_content_container .selection .select2-selection:hover, .salesking_offer_line_number .selection .select2-selection:hover{
+    border: none;
+    background-color: #eaeaea;
+    color: #3b3b3b;
+    box-shadow: inset 0px 1px 0px rgba(0, 0, 0, 0.1);
+}
+.salesking_rule_select_container{
+    max-width: 20%;
+    margin-right: 15px;
+    display: inline-block;
+    font-weight: 500;
+    color: #666666;
+    vertical-align: top;
+}
+#salesking_rule_select_container_tags{
+    width: 100%;
+    max-width: 100%;
+}
+#salesking_rule_select_tags{
+    width: 100%;
+}
+
+.salesking_rule_select_container select{
+    background-color: #f4f4f4;
+    border: none;
+    box-shadow: inset 0px 1px 0px rgba(0, 0, 0, 0.1);
+    color: #3b3b3b;
+    height: 35px;
+    margin-top: 1px;
+    font-size: 13.5px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+}
+.salesking_rule_select_container select:focus{
+    border: none;
+    background-color: #eaeaea;
+    color: #3b3b3b;
+    box-shadow: inset 0px 1px 0px rgba(0, 0, 0, 0.1);
+}
+.salesking_rule_select_container select:hover{
+    border: none;
+    background-color: #eaeaea;
+    color: #3b3b3b;
+    box-shadow: inset 0px 1px 0px rgba(0, 0, 0, 0.1);
+}
+#salesking_rule_select_applies, #salesking_rule_select_who{
+    font-weight: 500;
+}
+.salesking_rule_select_container select option, .salesking_rule_select_container select optgroup{
+    background-color:#FFFFFF;
+}
+.post-type-salesking_conversation #submitdiv, #salesking_product_visibility_metabox, #salesking_product_commission_rules_metabox, #salesking_custom_field_billing_connection_metabox, #salesking_rule_details_metabox, #salesking_custom_field_settings_metabox, #salesking_custom_role_settings_metabox, #salesking_offer_details_metabox, #salesking_offer_customtext_metabox, #salesking_offer_access_metabox, #salesking_conversation_messaging_metabox, #salesking_credit_limit_metabox, #salesking_conversation_details_metabox, #salesking_group_users_metabox, #salesking_group_rules_metabox, #salesking_group_offers_metabox, #salesking_group_payment_shipping_metabox{
+    border-radius: 5px;
+    border-color: #e9ebec;
+    box-shadow: 0 3px 6px rgba(0,0,0,.07);
+}
+.salesking_offers_metabox_padding {
+    padding: 5px;
+}
+svg.salesking_offers_metabox_icon {
+    position: absolute;
+    width: 29px;
+    left: 1px;
+    top: -12px;
+}
+textarea#salesking_offer_customtext_textarea {
+    width: 100%;
+    background: #ececec;
+    border: none;
+    resize: vertical;
+    margin-bottom: 15px;
+    min-height: 120px;
+}
+div#salesking_rule_select_applies_replaced_container {
+    margin-bottom: 20px;
+}
+input#salesking_rule_select_applies_replaced {
+    width: 100%;
+}
+#salesking_rule_select_howmuch, #salesking_rule_select_x, input.salesking_commission_rule_condition_number, #salesking_rule_select_tags, #salesking_rule_select_applies_replaced, #salesking_container_tax_shipping_rate input{
+    background-color: #f4f4f4;
+    border: none;
+    box-shadow: inset 0px 1px 0px rgba(0, 0, 0, 0.1);
+    color: #252525;
+    height: 35px;
+    font-weight: bold;
+    margin-top: 1px;
+
+}
+
+#salesking_rule_select_howmuch,#salesking_rule_select_x, #salesking_rule_select_quantity_value{
+    width: 150px;
+}
+#salesking_rule_select_conditions{
+    display: none;
+}
+#salesking_rule_select_conditions_container{
+    width: 100%;
+    max-width: 100%;
+}
+#salesking_rule_select_conditions{
+    width: 100%;
+    height: 50px;
+}
+#salesking_container_taxname, #salesking_container_discountname, #salesking_container_currency{
+    display: none;
+}
+input#salesking_rule_select_taxname, input#salesking_rule_select_discountname {
+    width: 140px;
+    background-color: #f4f4f4;
+    border: none;
+    box-shadow: inset 0px 1px 0px rgba(0, 0, 0, 0.1);
+    color: #252525;
+    font-weight: bold;
+    margin-top: 1px;
+    height: 35px;
+}
+div#salesking_container_tax_shipping {
+    margin-top: 15px;
+}
+div#salesking_container_tax_shipping_rate {
+    margin-top: 15px;
+}
+
+.salesking_commission_rule_column_text_bogo_discount, .salesking_commission_rule_column_text_discount_amount, .salesking_commission_rule_column_text_discount_percentage{
+    font-weight: bold;
+    color:#ff2539;
+}
+.salesking_commission_rule_column_text_free_shipping{
+    font-weight: bold;
+    color:#0c7fff;
+}
+.salesking_commission_rule_column_text_fixed_price{
+    font-weight: bold;
+    color:#51db07;
+}
+.salesking_commission_rule_column_text_hidden_price{
+    font-weight: bold;
+    color:#3f3f3f;
+}
+.salesking_commission_rule_column_text_minimum_order, .salesking_commission_rule_column_text_maximum_order{
+    font-weight: bold;
+    color:#c50aff;
+}
+.salesking_commission_rule_column_text_required_multiple{
+    font-weight: bold;
+    color:#ffc47c;
+}
+.salesking_commission_rule_column_text_payment_method_discount, .salesking_commission_rule_column_text_rename_purchase_order, .salesking_commission_rule_column_text_payment_method_minmax_order, .salesking_commission_rule_column_text_tax_exemption_user, .salesking_commission_rule_column_text_tax_exemption, .salesking_commission_rule_column_text_add_tax_percentage, .salesking_commission_rule_column_text_add_tax_amount, .salesking_commission_rule_column_text_replace_prices_quote, .salesking_commission_rule_column_text_set_currency_symbol {
+    color: #0000cb;
+    font-weight: bold;
+}
+
+#salesking_rule_select_conditions_container .salesking_rule_condition_container .salesking_commission_rule_condition_name, #salesking_rule_select_conditions_container .salesking_rule_condition_container .salesking_commission_rule_condition_operator, #salesking_rule_select_conditions_container .salesking_rule_condition_container .salesking_commission_rule_condition_number {
+    font-family: "Roboto Medium", Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 13.5px;
+    line-height: 21px;
+    color: #6A6A6A;
+    box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.09);
+}
+.salesking_commission_rule_condition_add_button {
+    background: #61ACD6;
+    border-radius: 3px;
+    color: #ffffff;
+    border: none;
+    padding: 0px 18px;
+    font-family: "Roboto Medium", Roboto;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 13.5px;
+    margin-right: 5%;
+    min-width: 121px;
+}
+.salesking_commission_rule_condition_delete_button{
+    background: #7d7d7d;
+    border-radius: 3px;
+    color: #ffffff;
+    border: none;
+    padding: 0px 18px;
+    font-family: "Roboto Medium", Roboto;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 13.5px;
+    margin-right: 5%;
+    min-width: 121px;
+}
+
+.salesking_rule_condition_container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+.salesking_commission_rule_condition_name{
+    width: 33%;
+}
+.salesking_commission_rule_condition_operator{
+    width: 11%;
+}
+.salesking_commission_rule_condition_number{
+    width: 33%;
+}
+.salesking_commission_rule_metabox_content_container {
+    padding-top: 10px;
+}
+.salesking_rule_label {
+    margin-bottom: 4px;
+    color: #6c6c6c;
+    font-size: 13.5px;
+    font-family: "Roboto Medium", Roboto;
+    font-style: normal;
+    font-weight: 500;
+}
+.salesking_rule_label_discount {
+    margin-bottom: 4px;
+    color: #6c6c6c;
+    font-size: 13.5px;
+    font-family: "Roboto Medium", Roboto;
+    font-style: normal;
+    font-weight: 500;
+    display:none;
+}
+/* commission rule tax exemption*/
+select#salesking_rule_select_requires, select#salesking_rule_select_showtax {
+    width: 100px;
+}
+select#salesking_rule_select_countries {
+    height: 200px;
+}
+/* commission rule discount checkbox */
+.salesking_commission_rule_discount_show_everywhere_checkbox_container {
+    background: #f4f4f4;
+    border-radius: 3px;
+    justify-content: space-between;
+    display: none;
+    box-shadow: inset 0px 1px 0px rgba(0, 0, 0, 0.1);
+    margin-right: 30px;
+    align-items: center;
+    padding: 0px 15px;
+    min-height: 35px;
+}
+.salesking_commission_rule_discount_show_everywhere_checkbox_name {
+    font-family: "Roboto Medium", Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 21px;
+    color: #6A6A6A;
+}
+input#salesking_commission_rule_discount_show_everywhere_checkbox_input {
+    background: #C4C4C4;
+    border-radius: 3px;
+    border: none;
+    top: 2px;
+    box-shadow: none;
+    position: relative;
+}
+/* 9. Media Queries */
+@media screen and (max-width: 780px) { 
+    .salesking_group_visibility_container_content_checkbox_input, input.salesking_custom_role_settings_metabox_container_element_checkbox {
+        transform: none; 
+    }
+    input.salesking_VAT_container_VIES_validation_checkbox_input, input.salesking_group_payment_shipping_methods_container_element_method_checkbox, input.salesking_custom_field_settings_metabox_top_column_status_checkbox_input, input.salesking_custom_field_settings_metabox_top_column_required_checkbox_input, input.salesking_custom_field_settings_metabox_top_column_editable_checkbox_input, input.salesking_add_to_billing_container_element_checkbox_input{
+        transform: none;
+    }
+    .salesking_rule_select_container{
+        max-width: 100%;
+        width: 100%;
+    }
+    .salesking_dynamic_rule_metabox_content_container .selection .select2-selection{
+        margin-bottom: 10px;
+    }
+    .salesking_rule_select_container select, #salesking_rule_select_howmuch,#salesking_rule_select_x, #salesking_rule_select_quantity_value, input#salesking_rule_select_taxname, input#salesking_rule_select_discountname, select#salesking_rule_select_requires, select#salesking_rule_select_showtax {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+    #salesking_rule_select_conditions_container .salesking_rule_condition_container .salesking_dynamic_rule_condition_name, #salesking_rule_select_conditions_container .salesking_rule_condition_container .salesking_dynamic_rule_condition_operator, #salesking_rule_select_conditions_container .salesking_rule_condition_container .salesking_dynamic_rule_condition_number{
+        width: 100%;
+    }
+    div.salesking_add_to_billing_container{
+        display: block;
+    }
+    .salesking_add_to_billing_container_element{
+        width: 100%;
+    }
+    .salesking_add_to_billing_container_element_checkbox_container{
+        margin-bottom: 20px;
+    }
+    div.salesking_custom_field_settings_metabox_top_column {
+        width: 100%;
+        margin-top: 30px;
+    }
+    div.salesking_custom_field_settings_metabox_top {
+        display: block;
+    }
+    div.salesking_custom_field_settings_metabox_top_column_status_checkbox_container, div.salesking_custom_field_settings_metabox_top_column_registration_role{
+        margin-right: 0;
+    }
+} 
+@media screen and (min-width: 781px) { 
+    .salesking_group_visibility_container_content_checkbox_input {
+        transform: scale(1.3); 
+    } 
+    input.salesking_group_payment_shipping_methods_container_element_method_checkbox{
+        transform: scale(1.3);
+    }
+    div.salesking_add_to_billing_container{
+        display: flex;
+        flex-wrap: wrap;
+    }
+    input#salesking_dynamic_rule_discount_show_everywhere_checkbox_input{
+        transform:scale(1.3);
+    } 
+} 
+@media screen and (min-width: 1290px) { 
+    .salesking_admin_groups_main_container_main_row{
+        display: flex;
+    }
+    .salesking_admin_groups_main_container_main_row_right{
+        margin-top: 0px;
+    }
+    .salesking_admin_groups_main_container_main_row_right_box{
+        margin-right: 45px;
+        width: 38%;
+    }
+} 
+@media screen and (max-width: 1290px) { 
+    .salesking_admin_groups_main_container_main_row{
+        display: block;
+    }
+    .salesking_product_wrap{
+        width:80%;
+    }
+    .salesking_admin_groups_main_container_main_row_right{
+        margin-top: 30px;
+    }
+    .salesking_admin_groups_main_container_main_row_right_box{
+        margin-right: 5px;
+        width: 45%;
+    }
+    .salesking_admin_groups_main_container_main_row_right_boxes{
+        display: flex;
+        justify-content: space-between;
+    }
+} 

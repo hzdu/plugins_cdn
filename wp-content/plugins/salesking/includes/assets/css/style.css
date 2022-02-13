@@ -1,0 +1,75 @@
+/**
+*
+* TABLE OF CONTENTS:
+* 
+* 1. Fonts
+* 2. Agent CSS
+*
+*/
+
+
+/* 1. FONTS */
+
+@font-face { font-family: 'DM Sans'; src: url("../../../public/dashboard/assets/fonts/DMSans-Bold.eot"); src: local("DM Sans Bold"), local("DMSans-Bold"), url("../../../public/dashboard/assets/fonts/DMSans-Bold.eot#iefix") format("embedded-opentype"), url("../../../public/dashboard/assets/fonts/DMSans-Bold.woff2") format("woff2"), url("../../../public/dashboard/assets/fonts/DMSans-Bold.woff") format("woff"), url("../../../public/dashboard/assets/fonts/DMSans-Bold.ttf") format("truetype"); font-weight: bold; font-style: normal; }
+
+@font-face { font-family: 'DM Sans'; src: url("../../../public/dashboard/assets/fonts/DMSans-Medium.eot"); src: local("DM Sans Medium"), local("DMSans-Medium"), url("../../../public/dashboard/assets/fonts/DMSans-Medium.eot#iefix") format("embedded-opentype"), url("../../../public/dashboard/assets/fonts/DMSans-Medium.woff2") format("woff2"), url("../../../public/dashboard/assets/fonts/DMSans-Medium.woff") format("woff"), url("../../../public/dashboard/assets/fonts/DMSans-Medium.ttf") format("truetype"); font-weight: 500; font-style: normal; }
+
+@font-face { font-family: 'DM Sans'; src: url("../../../public/dashboard/assets/fonts/DMSans-Regular.eot"); src: local("DM Sans Regular"), local("DMSans-Regular"), url("../../../public/dashboard/assets/fonts/DMSans-Regular.eot#iefix") format("embedded-opentype"), url("../../../public/dashboard/assets/fonts/DMSans-Regular.woff2") format("woff2"), url("../../../public/dashboard/assets/fonts/DMSans-Regular.woff") format("woff"), url("../../../public/dashboard/assets/fonts/DMSans-Regular.ttf") format("truetype"); font-weight: normal; font-style: normal; }
+
+@font-face { font-family: "Nioicon"; src: url("../../../public/dashboard/assets/fonts/Nioicon.eot"); src: url("../../../public/dashboard/assets/fonts/Nioicon.eot#iefix") format("embedded-opentype"), url("../../../public/dashboard/assets/fonts/Nioicon.ttf") format("truetype"), url("../../../public/dashboard/assets/fonts/Nioicon.woff") format("woff"), url("../../../public/dashboard/assets/fonts/Nioicon.svg#Nioicon") format("svg"); font-weight: normal; font-style: normal; font-display: block; }
+
+.salesking_ni { /* use !important to prevent issues with browser extensions that change fonts */ font-family: "Nioicon" !important; speak: never; font-style: normal; font-weight: normal; font-variant: normal; text-transform: none; line-height: 1; /* Better Font Rendering =========== */ -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-size: 1.3em; line-height: inherit;}
+
+.salesking_ni-swap:before { content: ""; }
+
+/* 2. AGENT CSS */
+#salesking_agent_switched_bar{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 99999;
+    padding: 10px;
+    background-color: #131314;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #717171;
+    box-shadow: 0px 1px 3px 0px rgb(54 74 99 / 5%);
+}
+
+.salesking_bar_element {
+    font-size: 15px;
+    margin-left:5px;
+}
+
+#salesking_return_agent{
+    display: flex;
+    font-family: "DM Sans", sans-serif;
+    font-weight: 700;
+    text-align: center;
+    vertical-align: middle;
+    user-select: none;
+    border: 1px solid transparent;
+    padding: 0.4375rem 1.125rem;
+    font-size: 0.8125rem;
+    line-height: 1.25rem;
+    border-radius: 4px;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    color: #fff;
+    background-color: #854fff;
+    border-color: #854fff;
+}
+
+#salesking_return_agent:hover{
+    color: #fff;
+    background-color: #6a29ff;
+    border-color: #621cff;
+}
+#salesking_return_agent:focus{
+    box-shadow: 0 0 0 0.2rem rgb(151 105 255 / 50%);
+    outline: none;
+
+}
+
