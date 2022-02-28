@@ -1,0 +1,909 @@
+# Copyright (C) 2021 Pimwick, LLC
+# This file is distributed under the same license as the PW WooCommerce Bulk Edit Pro plugin.
+msgid ""
+msgstr ""
+"Project-Id-Version: PW WooCommerce Bulk Edit Pro 2.298\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/pw-bulk-edit\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2021-12-23T21:15:16+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.5.0\n"
+"X-Domain: pw-bulk-edit\n"
+
+#. Plugin Name of the plugin
+msgid "PW WooCommerce Bulk Edit Pro"
+msgstr ""
+
+#. Plugin URI of the plugin
+msgid "https://www.pimwick.com/pw-bulk-edit/"
+msgstr ""
+
+#. Description of the plugin
+msgid "A powerful way to update your WooCommerce product catalog. Finally, no more tedious clicking through countless pages making the same change to all products!"
+msgstr ""
+
+#. Author of the plugin
+msgid "Pimwick, LLC"
+msgstr ""
+
+#. Author URI of the plugin
+msgid "https://www.pimwick.com"
+msgstr ""
+
+#: includes/class-wc-settings-pw-bulk-edit.php:19
+msgid "General"
+msgstr ""
+
+#: includes/columns.php:209
+msgid "%s attributes"
+msgstr ""
+
+#: includes/columns.php:222
+msgid "Variation %s"
+msgstr ""
+
+#: includes/columns.php:235
+msgid "Default %s"
+msgstr ""
+
+#: includes/columns.php:248
+msgid "%s visibility"
+msgstr ""
+
+#: includes/columns.php:509
+msgid "Download #%s Name"
+msgstr ""
+
+#: includes/columns.php:520
+msgid "Download #%s File URL"
+msgstr ""
+
+#: includes/filters.php:64
+msgid " (Custom Attribute)"
+msgstr ""
+
+#: includes/filters.php:82
+msgid "Vendor"
+msgstr ""
+
+#: includes/plugins/sitepress-multilingual-cms.php:25
+msgid "WPML Language"
+msgstr ""
+
+#: includes/plugins/woocommerce-min-max-quantities.php:57
+msgid "(Variable Products Only)"
+msgstr ""
+
+#: includes/save-products.php:365
+msgid "Unable to set attribute values %s for post_id %s. Does this product have the attribute?"
+msgstr ""
+
+#: includes/select-options.php:174
+msgid "Delete (CAUTION! This is permanent.)"
+msgstr ""
+
+#: includes/settings.php:14
+#: pw-bulk-edit.php:496
+#: pw-bulk-edit.php:507
+#: pw-bulk-edit.php:519
+#: pw-bulk-edit.php:520
+#: pw-bulk-edit.php:538
+#: pw-bulk-edit.php:539
+msgid "PW Bulk Edit"
+msgstr ""
+
+#: includes/settings.php:20
+msgid "Row Border"
+msgstr ""
+
+#: includes/settings.php:21
+msgid "Show a border around the row that is currently being edited. Default: Checked"
+msgstr ""
+
+#: includes/settings.php:28
+msgid "Row Limit"
+msgstr ""
+
+#: includes/settings.php:29
+msgid "The maximum number of rows to return. A higher limit requires more resources. Default: 1000"
+msgstr ""
+
+#: includes/settings.php:36
+msgid "Save Batch Size"
+msgstr ""
+
+#: includes/settings.php:37
+msgid "The maximum number of changes to save in a single batch. A higher limit requires more resources. Default: 25"
+msgstr ""
+
+#: includes/settings.php:44
+msgid "Linked Products"
+msgstr ""
+
+#: includes/settings.php:45
+msgid "Show the Cross Sells and Up-Sells so you can bulk edit by entering the ID of the corresponding products. Default: Unchecked"
+msgstr ""
+
+#: includes/settings.php:52
+msgid "Print Mode"
+msgstr ""
+
+#: includes/settings.php:53
+msgid "When printing the results, hide everything except for the results grid. Default: Checked"
+msgstr ""
+
+#: pw-bulk-edit.php:173
+msgid "PW Bulk Edit Filters"
+msgstr ""
+
+#: pw-bulk-edit.php:174
+msgid "PW Bulk Edit Filter"
+msgstr ""
+
+#: pw-bulk-edit.php:426
+msgid "Error while saving products: %s"
+msgstr ""
+
+#: pw-bulk-edit.php:497
+#: pw-bulk-edit.php:508
+#: pw-bulk-edit.php:529
+msgid "Pimwick Plugins"
+msgstr ""
+
+#: pw-bulk-edit.php:530
+msgid "Our Plugins"
+msgstr ""
+
+#: pw-bulk-edit.php:583
+msgid "contains"
+msgstr ""
+
+#: pw-bulk-edit.php:584
+msgid "does not contain"
+msgstr ""
+
+#: pw-bulk-edit.php:585
+#: pw-bulk-edit.php:599
+msgid "is"
+msgstr ""
+
+#: pw-bulk-edit.php:586
+#: pw-bulk-edit.php:600
+msgid "is not"
+msgstr ""
+
+#: pw-bulk-edit.php:587
+msgid "begins with"
+msgstr ""
+
+#: pw-bulk-edit.php:588
+msgid "ends with"
+msgstr ""
+
+#: pw-bulk-edit.php:589
+#: pw-bulk-edit.php:604
+#: pw-bulk-edit.php:612
+#: pw-bulk-edit.php:619
+msgid "is empty"
+msgstr ""
+
+#: pw-bulk-edit.php:590
+#: pw-bulk-edit.php:605
+#: pw-bulk-edit.php:613
+#: pw-bulk-edit.php:620
+msgid "is not empty"
+msgstr ""
+
+#: pw-bulk-edit.php:594
+msgid "is checked"
+msgstr ""
+
+#: pw-bulk-edit.php:595
+msgid "is not checked"
+msgstr ""
+
+#: pw-bulk-edit.php:601
+msgid "is greater than"
+msgstr ""
+
+#: pw-bulk-edit.php:602
+msgid "is less than"
+msgstr ""
+
+#: pw-bulk-edit.php:603
+msgid "is in the range"
+msgstr ""
+
+#: pw-bulk-edit.php:609
+#: pw-bulk-edit.php:617
+#: pw-bulk-edit.php:624
+msgid "is any of"
+msgstr ""
+
+#: pw-bulk-edit.php:610
+#: pw-bulk-edit.php:618
+#: pw-bulk-edit.php:625
+msgid "is none of"
+msgstr ""
+
+#: pw-bulk-edit.php:611
+msgid "is all of"
+msgstr ""
+
+#: pw-bulk-edit.php:629
+msgid "is set"
+msgstr ""
+
+#: pw-bulk-edit.php:630
+msgid "is not set"
+msgstr ""
+
+#: pw-bulk-edit.php:649
+msgid "Unsaved changes will be lost."
+msgstr ""
+
+#: pw-bulk-edit.php:650
+msgid "Searching"
+msgstr ""
+
+#: pw-bulk-edit.php:651
+msgid "Discard your changes?"
+msgstr ""
+
+#: pw-bulk-edit.php:668
+msgid "Select image"
+msgstr ""
+
+#: pw-bulk-edit.php:669
+msgid "Remove image"
+msgstr ""
+
+#: pw-bulk-edit.php:670
+msgid "Name your custom view, for example \"My View\""
+msgstr ""
+
+#: pw-bulk-edit.php:671
+msgid "A view with this name already exists. Do you want to overwrite it?"
+msgstr ""
+
+#: pw-bulk-edit.php:672
+msgid "Edit All Checked Products"
+msgstr ""
+
+#: pw-bulk-edit.php:673
+msgid "Sort Ascending"
+msgstr ""
+
+#: pw-bulk-edit.php:674
+msgid "Sort Descending"
+msgstr ""
+
+#: pw-bulk-edit.php:675
+msgid "Hide Column"
+msgstr ""
+
+#: pw-bulk-edit.php:676
+msgid "Accept Changes"
+msgstr ""
+
+#: pw-bulk-edit.php:677
+msgid "Cancel Changes"
+msgstr ""
+
+#: pw-bulk-edit.php:678
+msgid "Revert to the original value for this field"
+msgstr ""
+
+#: pw-bulk-edit.php:679
+msgid "Select"
+msgstr ""
+
+#: pw-bulk-edit.php:680
+msgid "Saving"
+msgstr ""
+
+#: pw-bulk-edit.php:681
+msgid "Are you sure you want to delete this view?"
+msgstr ""
+
+#: pw-bulk-edit.php:682
+msgid "Discard all unsaved changes? This can't be undone."
+msgstr ""
+
+#: ui/activation.php:13
+msgid "Thank you for your purchase!"
+msgstr ""
+
+#: ui/activation.php:14
+msgid "Enter the license key that was sent to your email address."
+msgstr ""
+
+#: ui/activation.php:15
+msgid "If you need assistance email %s."
+msgstr ""
+
+#: ui/activation.php:19
+msgid "License Key"
+msgstr ""
+
+#: ui/bulk_editors/checkbox.php:12
+msgid "Yes"
+msgstr ""
+
+#: ui/bulk_editors/currency.php:11
+msgid "Set to specific amount"
+msgstr ""
+
+#: ui/bulk_editors/currency.php:12
+msgid "Increase by specific amount"
+msgstr ""
+
+#: ui/bulk_editors/currency.php:13
+msgid "Decrease by specific amount"
+msgstr ""
+
+#: ui/bulk_editors/currency.php:14
+msgid "Increase by percentage"
+msgstr ""
+
+#: ui/bulk_editors/currency.php:15
+msgid "Decrease by percentage"
+msgstr ""
+
+#: ui/bulk_editors/currency.php:16
+#: ui/bulk_editors/text.php:11
+msgid "Search and replace"
+msgstr ""
+
+#: ui/bulk_editors/currency.php:17
+#: ui/bulk_editors/date.php:14
+#: ui/bulk_editors/number.php:14
+msgid "Clear value (set to n/a)"
+msgstr ""
+
+#: ui/bulk_editors/currency.php:22
+msgid "Set %s to the following amount:"
+msgstr ""
+
+#: ui/bulk_editors/currency.php:27
+msgid "Increase %s by the following amount:"
+msgstr ""
+
+#: ui/bulk_editors/currency.php:32
+msgid "Decrease %s by the following amount:"
+msgstr ""
+
+#: ui/bulk_editors/currency.php:37
+msgid "Increase %s by the following percentage:"
+msgstr ""
+
+#: ui/bulk_editors/currency.php:42
+msgid "Decrease %s by the following percentage:"
+msgstr ""
+
+#: ui/bulk_editors/currency.php:47
+#: ui/bulk_editors/text.php:21
+msgid "Search for this text anywhere in %s:"
+msgstr ""
+
+#: ui/bulk_editors/currency.php:48
+#: ui/bulk_editors/text.php:22
+msgid "Leave blank to replace the entire value."
+msgstr ""
+
+#: ui/bulk_editors/currency.php:50
+#: ui/bulk_editors/text.php:24
+msgid "Replace it with this text:"
+msgstr ""
+
+#: ui/bulk_editors/currency.php:55
+#: ui/bulk_editors/date.php:34
+#: ui/bulk_editors/number.php:35
+msgid "Clear the value of %s and set it to empty (n/a)."
+msgstr ""
+
+#: ui/bulk_editors/currency.php:59
+msgid "Allow amounts to be less than zero."
+msgstr ""
+
+#: ui/bulk_editors/currency.php:63
+msgid "Use Regular Price for adjustment."
+msgstr ""
+
+#: ui/bulk_editors/currency.php:67
+msgid "Rounding precision"
+msgstr ""
+
+#: ui/bulk_editors/date.php:11
+msgid "Set to fixed date"
+msgstr ""
+
+#: ui/bulk_editors/date.php:12
+msgid "Add days"
+msgstr ""
+
+#: ui/bulk_editors/date.php:13
+msgid "Remove days"
+msgstr ""
+
+#: ui/bulk_editors/date.php:19
+msgid "Set %s to the following date:"
+msgstr ""
+
+#: ui/bulk_editors/date.php:24
+msgid "Add one or more days to "
+msgstr ""
+
+#: ui/bulk_editors/date.php:29
+msgid "Remove one or more days from "
+msgstr ""
+
+#: ui/bulk_editors/image.php:11
+#: ui/bulk_editors/image.php:19
+msgid "Select an image"
+msgstr ""
+
+#: ui/bulk_editors/image.php:12
+msgid "Clear the image"
+msgstr ""
+
+#: ui/bulk_editors/image.php:17
+msgid "Set %s to the following image:"
+msgstr ""
+
+#: ui/bulk_editors/image.php:23
+msgid "Clear the %s value."
+msgstr ""
+
+#: ui/bulk_editors/multiselect.php:11
+msgid "Add to "
+msgstr ""
+
+#: ui/bulk_editors/multiselect.php:12
+msgid "Remove from "
+msgstr ""
+
+#: ui/bulk_editors/multiselect.php:13
+msgid "Clear %s (remove all)"
+msgstr ""
+
+#: ui/bulk_editors/multiselect.php:20
+msgid "Select all"
+msgstr ""
+
+#: ui/bulk_editors/multiselect.php:21
+msgid "Select none"
+msgstr ""
+
+#: ui/bulk_editors/multiselect.php:68
+#: ui/bulk_editors/multiselect.php:72
+msgid "Select "
+msgstr ""
+
+#: ui/bulk_editors/number.php:11
+msgid "Set to fixed value"
+msgstr ""
+
+#: ui/bulk_editors/number.php:12
+msgid "Increase"
+msgstr ""
+
+#: ui/bulk_editors/number.php:13
+msgid "Decrease"
+msgstr ""
+
+#: ui/bulk_editors/number.php:19
+msgid "Set %s to the following value:"
+msgstr ""
+
+#: ui/bulk_editors/number.php:24
+msgid "Increase %s by the following value:"
+msgstr ""
+
+#: ui/bulk_editors/number.php:29
+msgid "Decrease %s by the following value:"
+msgstr ""
+
+#: ui/bulk_editors/number.php:31
+msgid "Allow values to be less than zero."
+msgstr ""
+
+#: ui/bulk_editors/text.php:12
+msgid "Add to the beginning"
+msgstr ""
+
+#: ui/bulk_editors/text.php:13
+msgid "Add to the end"
+msgstr ""
+
+#: ui/bulk_editors/text.php:14
+msgid "ALL UPPERCASE"
+msgstr ""
+
+#: ui/bulk_editors/text.php:15
+msgid "all lowercase"
+msgstr ""
+
+#: ui/bulk_editors/text.php:16
+msgid "Proper Case Words"
+msgstr ""
+
+#: ui/bulk_editors/text.php:26
+msgid "Case Sensitive"
+msgstr ""
+
+#: ui/bulk_editors/text.php:27
+msgid "Use Regular Expressions"
+msgstr ""
+
+#: ui/bulk_editors/text.php:30
+msgid "Prepend this text to the beginning of %s:"
+msgstr ""
+
+#: ui/bulk_editors/text.php:34
+msgid "Append this text to the end of %s:"
+msgstr ""
+
+#: ui/bulk_editors/text.php:38
+msgid "All words will be changed to uppercase."
+msgstr ""
+
+#: ui/bulk_editors/text.php:39
+msgid "Mary had a little LAMB &rarr; MARY HAD A LITTLE LAMB"
+msgstr ""
+
+#: ui/bulk_editors/text.php:42
+msgid "All words will be changed to lowercase."
+msgstr ""
+
+#: ui/bulk_editors/text.php:43
+msgid "Mary had a little LAMB &rarr; mary had a little lamb"
+msgstr ""
+
+#: ui/bulk_editors/text.php:46
+msgid "The first letter of every word will be capitalized."
+msgstr ""
+
+#: ui/bulk_editors/text.php:47
+msgid "Mary had a little LAMB &rarr; Mary Had A Little Lamb"
+msgstr ""
+
+#: ui/filters.php:13
+msgid "Settings"
+msgstr ""
+
+#: ui/filters.php:14
+msgid "Help"
+msgstr ""
+
+#: ui/filters.php:17
+msgid "Create a new filter"
+msgstr ""
+
+#: ui/filters.php:18
+msgid "Save this filter"
+msgstr ""
+
+#: ui/filters.php:19
+msgid "Open a saved filter"
+msgstr ""
+
+#: ui/filters.php:23
+msgid "Hide Filters"
+msgstr ""
+
+#: ui/filters.php:24
+msgid "Show Filters"
+msgstr ""
+
+#: ui/filters.php:32
+msgid "Find products that match"
+msgstr ""
+
+#: ui/filters.php:34
+#: ui/filters.php:62
+msgid "all"
+msgstr ""
+
+#: ui/filters.php:35
+#: ui/filters.php:63
+msgid "any"
+msgstr ""
+
+#: ui/filters.php:37
+msgid "of the following rules:"
+msgstr ""
+
+#: ui/filters.php:45
+msgid "Show all Variations for Variable Products"
+msgstr ""
+
+#: ui/filters.php:48
+msgid "Search"
+msgstr ""
+
+#: ui/filters.php:64
+msgid "of the following are true"
+msgstr ""
+
+#: ui/filters.php:69
+#: ui/filters.php:76
+#: ui/filters.php:104
+#: ui/filters.php:111
+msgid "Remove"
+msgstr ""
+
+#: ui/filters.php:70
+#: ui/filters.php:74
+#: ui/filters.php:105
+#: ui/filters.php:109
+msgid "Add a filter"
+msgstr ""
+
+#: ui/filters.php:75
+#: ui/filters.php:110
+msgid "Add a group of filters"
+msgstr ""
+
+#: ui/filters.php:75
+msgid "Add a Group of Filters"
+msgstr ""
+
+#: ui/filters.php:100
+msgid "required"
+msgstr ""
+
+#: ui/filters.php:173
+msgid "Filter Manager"
+msgstr ""
+
+#: ui/filters.php:181
+msgid "Close"
+msgstr ""
+
+#: ui/filters_help.php:12
+msgid "Tips"
+msgstr ""
+
+#: ui/filters_help.php:19
+msgid "Click any header to bulk edit."
+msgstr ""
+
+#: ui/filters_help.php:20
+msgid "Use a percent sign as a wildcard in text filters."
+msgstr ""
+
+#: ui/filters_help.php:21
+msgid "Click the link icon to view a product in WooCommerce."
+msgstr ""
+
+#: ui/filters_help.php:22
+msgid "Use the Tab or Enter keys while editing to move around without clicking. Shift goes backwards."
+msgstr ""
+
+#: ui/filters_help.php:23
+msgid "Hold the Shift key while clicking a checkbox to select a range of products."
+msgstr ""
+
+#: ui/filters_help.php:24
+msgid "Love the plugin?"
+msgstr ""
+
+#: ui/filters_help.php:24
+msgid "Leave a review!"
+msgstr ""
+
+#: ui/filter_manager/open.php:10
+#: ui/filter_manager/open.php:127
+#: ui/view_manager/edit.php:10
+msgid "Loading..."
+msgstr ""
+
+#: ui/filter_manager/open.php:20
+msgid "You have no saved filters."
+msgstr ""
+
+#: ui/filter_manager/open.php:34
+msgid "Open filter"
+msgstr ""
+
+#: ui/filter_manager/open.php:37
+#: ui/view_manager/edit.php:13
+msgid "Rename"
+msgstr ""
+
+#: ui/filter_manager/open.php:40
+msgid "Delete"
+msgstr ""
+
+#: ui/filter_manager/open.php:61
+msgid "Filter name"
+msgstr ""
+
+#: ui/filter_manager/open.php:79
+msgid "Are you sure you want to delete this filter?"
+msgstr ""
+
+#: ui/index.php:13
+msgid "Spread the word!"
+msgstr ""
+
+#: ui/index.php:15
+msgid "Share on Facebook"
+msgstr ""
+
+#: ui/index.php:16
+msgid "Share on Twitter"
+msgstr ""
+
+#: ui/index.php:17
+msgid "Share on Google+"
+msgstr ""
+
+#: ui/index.php:18
+msgid "Share on Reddit"
+msgstr ""
+
+#: ui/index.php:19
+msgid "Share on Tumblr"
+msgstr ""
+
+#: ui/index.php:20
+msgid "Share on Pinterest"
+msgstr ""
+
+#: ui/processing.php:11
+msgid "Processing..."
+msgstr ""
+
+#: ui/renew.php:13
+msgid "Your license has expired."
+msgstr ""
+
+#: ui/renew.php:14
+msgid "You may continue using the plugin with all features enabled, however you will no longer receive new updates and features."
+msgstr ""
+
+#: ui/renew.php:16
+msgid "Renew your license"
+msgstr ""
+
+#: ui/renew.php:17
+msgid "Hide this notice"
+msgstr ""
+
+#: ui/results.php:55
+msgid "Save Products"
+msgstr ""
+
+#: ui/results.php:55
+msgid "Save Changes"
+msgstr ""
+
+#: ui/results.php:57
+msgid "Undo"
+msgstr ""
+
+#: ui/results.php:58
+msgid "Redo"
+msgstr ""
+
+#: ui/results.php:59
+msgid "Discard All Changes"
+msgstr ""
+
+#: ui/results.php:62
+msgid "View"
+msgstr ""
+
+#: ui/results.php:70
+msgid "All Columns"
+msgstr ""
+
+#: ui/results.php:72
+msgid "Standard Columns"
+msgstr ""
+
+#: ui/results.php:80
+msgid "Copy View"
+msgstr ""
+
+#: ui/results.php:81
+#: ui/results.php:426
+msgid "Edit View"
+msgstr ""
+
+#: ui/results.php:82
+msgid "Delete View"
+msgstr ""
+
+#: ui/results.php:86
+msgid "Automatically create Variations from Attributes added to Variable Products."
+msgstr ""
+
+#: ui/results.php:86
+msgid "When adding Attributes to Variable products, check this box to automatically create the appropriate Variations. This checkbox will have no effect if the product is not a Variable product or if you are removing Attributes."
+msgstr ""
+
+#: ui/results.php:342
+msgid "View Product in WooCommerce"
+msgstr ""
+
+#: ui/results.php:374
+msgid "Maximum %s records found"
+msgstr ""
+
+#: ui/results.php:374
+msgid "Go to the Settings page if you would like to increase this limit. NOTE: this limit is in place due to browser limitations. Increasing this value may cause unexpected behavior! Instead, we suggest adding additional filters to lower the number of products found."
+msgstr ""
+
+#: ui/results.php:378
+msgid "%s records found"
+msgstr ""
+
+#: ui/results.php:388
+msgid "Bulk Edit"
+msgstr ""
+
+#: ui/results.php:392
+msgid "The Bulk Editor will make changes to all checked items in the grid."
+msgstr ""
+
+#: ui/results.php:405
+msgid "Apply"
+msgstr ""
+
+#: ui/results.php:406
+msgid "Cancel"
+msgstr ""
+
+#: ui/results.php:413
+msgid "No products found matching the filter criteria."
+msgstr ""
+
+#: ui/results.php:418
+msgid "There was an error while filtering. Please send an email to %s with the following information:"
+msgstr ""
+
+#: ui/results.php:617
+msgid "Variable product"
+msgstr ""
+
+#: ui/results.php:627
+msgid "Variation of %s"
+msgstr ""
+
+#: ui/results.php:629
+#: ui/results.php:633
+msgid "Variation"
+msgstr ""
+
+#: ui/results.php:635
+msgid "Same as parent"
+msgstr ""
+
+#: ui/results.php:645
+msgid "Variation field"
+msgstr ""
+
+#: ui/view_manager/edit.php:15
+msgid "Hidden Columns"
+msgstr ""
+
+#: ui/view_manager/edit.php:16
+#: ui/view_manager/edit.php:82
+msgid "Click to show the column again."
+msgstr ""
+
+#: ui/view_manager/edit.php:25
+msgid "New Name"
+msgstr ""
+
+#: ui/view_manager/edit.php:84
+#: ui/view_manager/edit.php:104
+msgid "All columns are visible."
+msgstr ""
