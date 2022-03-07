@@ -1,0 +1,672 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Flexible Shipping PRO\n"
+"POT-Creation-Date: 2021-03-31 12:45+0200\n"
+"PO-Revision-Date: 2021-03-31 12:46+0200\n"
+"Last-Translator: Sebastian Pisula <sebastian.pisula@gmail.com>\n"
+"Language-Team: Maciej Swoboda <maciej.swoboda@gmail.com>\n"
+"Language: pl_PL\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.4.2\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-WPHeader: flexible-shipping-pro.php\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
+"|| n%100>=20) ? 1 : 2);\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
+"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.js\n"
+"X-Poedit-SearchPathExcluded-1: vendor\n"
+"X-Poedit-SearchPathExcluded-2: vendor_prefixed\n"
+
+#: classes/flexible-shipping-hooks.php:58
+msgid "Cart Calculation"
+msgstr "Kalkulacja w koszyku"
+
+#: classes/flexible-shipping-hooks.php:62
+msgid ""
+"Choose Package value to exclude virtual products from rules calculation."
+msgstr ""
+"Aby wykluczyć produkty wirtualne z kalkulacji reguł wybierz opcję Wartość "
+"paczki."
+
+#: classes/flexible-shipping-hooks.php:68
+msgid "Free Shipping Requires"
+msgstr "Darmowa wysyłka wymaga"
+
+#: classes/flexible-shipping-hooks.php:72
+msgid "Condition for free shipping"
+msgstr "Warunek do zastosowania darmowej wysyłki"
+
+#: classes/flexible-shipping-hooks.php:80
+msgid "Coupons discounts"
+msgstr "Kupony"
+
+#: classes/flexible-shipping-hooks.php:81
+msgid "Apply minimum order rule before coupon discount"
+msgstr "Zastosuj regułę minimalnej wartości zamówienia przed kuponem"
+
+#: classes/flexible-shipping-hooks.php:84
+msgid ""
+"If checked, free shipping would be available based on pre-discount order "
+"amount."
+msgstr ""
+"Zaznacz, aby zastosować regułę minimalnej wartości zamówienia przed "
+"zastosowaniem kuponu."
+
+#: classes/flexible-shipping-hooks.php:90
+msgid "Maximum Cost"
+msgstr "Maksymalny koszt"
+
+#: classes/flexible-shipping-hooks.php:93
+msgid ""
+"Set a maximum cost of shipping. This will override the costs configured "
+"below."
+msgstr ""
+"Ustaw maksymalny koszt wysyłki. To nadpisze koszty ustawione w regułach."
+
+#: classes/flexible-shipping-hooks.php:106
+msgid "WooCommerce"
+msgstr ""
+
+#: classes/flexible-shipping-hooks.php:144
+msgid "Export selected"
+msgstr "Eksportuj zaznaczone"
+
+#: classes/flexible-shipping-pro-plugin.php:183
+msgid "Settings"
+msgstr "Ustawienia"
+
+#: classes/flexible-shipping-pro-plugin.php:184
+msgid "Docs"
+msgstr "Docs"
+
+#: classes/flexible-shipping-pro-plugin.php:185
+msgid "Support"
+msgstr "Wsparcie"
+
+#: classes/woocommerce-form-field.php:39
+msgid "required"
+msgstr "wymagane"
+
+#: classes/woocommerce-form-field.php:92
+msgid "Choose an option"
+msgstr "Wybierz opcje"
+
+#: src/WPDesk/FSPro/TableRate/CalculationMethodOptions.php:20
+msgid "Sum"
+msgstr "Suma"
+
+#: src/WPDesk/FSPro/TableRate/CalculationMethodOptions.php:21
+msgid "Lowest cost"
+msgstr "Najniższy koszt"
+
+#: src/WPDesk/FSPro/TableRate/CalculationMethodOptions.php:22
+msgid "Highest cost"
+msgstr "Najwyższy koszt"
+
+#: src/WPDesk/FSPro/TableRate/CartCalculationOptions.php:22
+msgid "Cart value"
+msgstr "Wartość koszyka"
+
+#: src/WPDesk/FSPro/TableRate/CartCalculationOptions.php:23
+msgid "Package value"
+msgstr "Wartość paczki"
+
+#: src/WPDesk/FSPro/TableRate/FreeShipping/FreeShippingRequiresOptions.php:27
+msgid "Minimum order amount"
+msgstr "Minimalnej wartości zamówienia"
+
+#: src/WPDesk/FSPro/TableRate/FreeShipping/FreeShippingRequiresOptions.php:28
+msgid "Free shipping coupon"
+msgstr "Kuponu umożliwiającego darmową wysyłkę"
+
+#: src/WPDesk/FSPro/TableRate/FreeShipping/FreeShippingRequiresOptions.php:29
+msgid "Free shipping coupon or minimum order amount"
+msgstr "Minimalnej wartości zamówienia lub kuponu"
+
+#: src/WPDesk/FSPro/TableRate/FreeShipping/FreeShippingRequiresOptions.php:30
+msgid "Free shipping coupon and minimum order amount"
+msgstr "Minimalnej wartości zamówienia i kuponu"
+
+#: src/WPDesk/FSPro/TableRate/ImportExport/Conditions/ProductImportData.php:54
+#, php-format
+msgid "Product with ID #%1$s does not exist."
+msgstr "Produkt o ID #%1$s nie istnieje."
+
+#: src/WPDesk/FSPro/TableRate/ImportExport/Conditions/ShippingClassImportData.php:111
+#, php-format
+msgid "Error while creating shipping class: %1$s, %2$s"
+msgstr "Błąd tworzenia klasy wysyłkowej: %1$s, %2$s"
+
+#: src/WPDesk/FSPro/TableRate/Rule/Condition/CartLineItem.php:29
+msgid "Cart line item"
+msgstr "Pozycja w koszyku"
+
+#: src/WPDesk/FSPro/TableRate/Rule/Condition/CartLineItem.php:69
+msgid "cart lines is from"
+msgstr "od liczby pozycji koszyka"
+
+#: src/WPDesk/FSPro/TableRate/Rule/Condition/CartLineItem.php:70
+#: src/WPDesk/FSPro/TableRate/Rule/Condition/Item.php:72
+#: src/WPDesk/FSPro/TableRate/Rule/Condition/TotalOverallDimensions.php:80
+#: src/WPDesk/FSPro/TableRate/Rule/Condition/Volume.php:104
+msgid "min"
+msgstr "min"
+
+#: src/WPDesk/FSPro/TableRate/Rule/Condition/CartLineItem.php:71
+#: src/WPDesk/FSPro/TableRate/Rule/Condition/Item.php:73
+#: src/WPDesk/FSPro/TableRate/Rule/Condition/MaxDimension.php:82
+#: src/WPDesk/FSPro/TableRate/Rule/Condition/MaxDimension.php:83
+#: src/WPDesk/FSPro/TableRate/Rule/Condition/TotalOverallDimensions.php:81
+#: src/WPDesk/FSPro/TableRate/Rule/Condition/Volume.php:105
+msgid "is from"
+msgstr "jest od"
+
+#: src/WPDesk/FSPro/TableRate/Rule/Condition/CartLineItem.php:72
+#: src/WPDesk/FSPro/TableRate/Rule/Condition/CartLineItem.php:81
+msgid "lines"
+msgstr "poz"
+
+#: src/WPDesk/FSPro/TableRate/Rule/Condition/CartLineItem.php:78
+msgid "lines to"
+msgstr "pozycji do"
+
+#: src/WPDesk/FSPro/TableRate/Rule/Condition/CartLineItem.php:79
+#: src/WPDesk/FSPro/TableRate/Rule/Condition/Item.php:81
+#: src/WPDesk/FSPro/TableRate/Rule/Condition/TotalOverallDimensions.php:87
+#: src/WPDesk/FSPro/TableRate/Rule/Condition/Volume.php:112
+msgid "max"
+msgstr "max"
+
+#: src/WPDesk/FSPro/TableRate/Rule/Condition/CartLineItem.php:80
+#: src/WPDesk/FSPro/TableRate/Rule/Condition/Item.php:82
+#: src/WPDesk/FSPro/TableRate/Rule/Condition/MaxDimension.php:90
+#: src/WPDesk/FSPro/TableRate/Rule/Condition/MaxDimension.php:91
+#: src/WPDesk/FSPro/TableRate/Rule/Condition/TimeOfTheDay.php:104
+#: src/WPDesk/FSPro/TableRate/Rule/Condition/TotalOverallDimensions.php:88
+#: src/WPDesk/FSPro/TableRate/Rule/Condition/Volume.php:113
+msgid "to"
+msgstr "do"
+
+#: src/WPDesk/FSPro/TableRate/Rule/Condition/DayOfTheWeek.php:30
+msgid "Day of the week"
+msgstr "Dzień tygodnia"
+
+#: src/WPDesk/FSPro/TableRate/Rule/Condition/DayOfTheWeek.php:71
+msgid "Select the days"
+msgstr "Wybierz dni"
+
+#: src/WPDesk/FSPro/TableRate/Rule/Condition/DayOfTheWeek.php:72
+#: src/WPDesk/FSPro/TableRate/Rule/Condition/Product.php:85
+#: src/WPDesk/FSPro/TableRate/Rule/Condition/ProductCategory.php:179
+#: src/WPDesk/FSPro/TableRate/Rule/Condition/ProductTag.php:86
+msgid "is one of"
+msgstr "jest jednym z"
+
+#: src/WPDesk/FSPro/TableRate/Rule/Condition/DayOfTheWeek.php:85
+#: src/WPDesk/FSPro/TableRate/Rule/Condition/Product.php:119
+#: src/WPDesk/FSPro/TableRate/Rule/Condition/ProductCategory.php:144
+#: src/WPDesk/FSPro/TableRate/Rule/Condition/ProductTag.php:120
+#: src/WPDesk/FSPro/TableRate/Rule/Condition/ShippingClass.php:117
+#: src/WPDesk/FSPro/TableRate/Rule/Condition/TimeOfTheDay.php:101
+#, php-format
+msgid "Condition: %1$s;"
+msgstr "Warunek: %1$s;"
+
+#: src/WPDesk/FSPro/TableRate/Rule/Condition/DayOfTheWeek.php:96
+#, php-format
+msgid " days: %1$s;"
+msgstr " dni: %1$s;"
+
+#: src/WPDesk/FSPro/TableRate/Rule/Condition/DayOfTheWeek.php:98
+#: src/WPDesk/FSPro/TableRate/Rule/Condition/Product.php:133
+#: src/WPDesk/FSPro/TableRate/Rule/Condition/ProductCategory.php:162
+#: src/WPDesk/FSPro/TableRate/Rule/Condition/ProductTag.php:133
+#: src/WPDesk/FSPro/TableRate/Rule/Condition/ShippingClass.php:137
+#: src/WPDesk/FSPro/TableRate/Rule/Condition/TimeOfTheDay.php:107
+#, php-format
+msgid " input data: %1$s;"
+msgstr " dane wejściowe: %1$s;"
+
+#: src/WPDesk/FSPro/TableRate/Rule/Condition/DayOfTheWeek.php:100
+#: src/WPDesk/FSPro/TableRate/Rule/Condition/Product.php:135
+#: src/WPDesk/FSPro/TableRate/Rule/Condition/ProductCategory.php:164
+#: src/WPDesk/FSPro/TableRate/Rule/Condition/ProductTag.php:135
+#: src/WPDesk/FSPro/TableRate/Rule/Condition/ShippingClass.php:139
+#: src/WPDesk/FSPro/TableRate/Rule/Condition/TimeOfTheDay.php:109
+#, php-format
+msgid " matched: %1$s"
+msgstr " zgodna: %1$s"
+
+#: src/WPDesk/FSPro/TableRate/Rule/Condition/DayOfTheWeek.php:100
+#: src/WPDesk/FSPro/TableRate/Rule/Condition/Product.php:135
+#: src/WPDesk/FSPro/TableRate/Rule/Condition/ProductCategory.php:164
+#: src/WPDesk/FSPro/TableRate/Rule/Condition/ProductTag.php:135
+#: src/WPDesk/FSPro/TableRate/Rule/Condition/ShippingClass.php:139
+#: src/WPDesk/FSPro/TableRate/Rule/Condition/TimeOfTheDay.php:109
+msgid "yes"
+msgstr "tak"
+
+#: src/WPDesk/FSPro/TableRate/Rule/Condition/DayOfTheWeek.php:100
+#: src/WPDesk/FSPro/TableRate/Rule/Condition/Product.php:135
+#: src/WPDesk/FSPro/TableRate/Rule/Condition/ProductCategory.php:164
+#: src/WPDesk/FSPro/TableRate/Rule/Condition/ProductTag.php:135
+#: src/WPDesk/FSPro/TableRate/Rule/Condition/ShippingClass.php:139
+#: src/WPDesk/FSPro/TableRate/Rule/Condition/TimeOfTheDay.php:109
+msgid "no"
+msgstr "nie"
+
+#: src/WPDesk/FSPro/TableRate/Rule/Condition/DayOfTheWeek.php:123
+msgid "Monday"
+msgstr "Poniedziałek"
+
+#: src/WPDesk/FSPro/TableRate/Rule/Condition/DayOfTheWeek.php:124
+msgid "Tuesday"
+msgstr "Wtorek"
+
+#: src/WPDesk/FSPro/TableRate/Rule/Condition/DayOfTheWeek.php:125
+msgid "Wednesday"
+msgstr "Środa"
+
+#: src/WPDesk/FSPro/TableRate/Rule/Condition/DayOfTheWeek.php:126
+msgid "Thursday"
+msgstr "Czwartek"
+
+#: src/WPDesk/FSPro/TableRate/Rule/Condition/DayOfTheWeek.php:127
+msgid "Friday"
+msgstr "Piątek"
+
+#: src/WPDesk/FSPro/TableRate/Rule/Condition/DayOfTheWeek.php:128
+msgid "Saturday"
+msgstr "Sobota"
+
+#: src/WPDesk/FSPro/TableRate/Rule/Condition/DayOfTheWeek.php:129
+msgid "Sunday"
+msgstr "Niedziela"
+
+#: src/WPDesk/FSPro/TableRate/Rule/Condition/Item.php:30
+msgid "Item"
+msgstr "Sztuka"
+
+#: src/WPDesk/FSPro/TableRate/Rule/Condition/Item.php:71
+msgid "items is from"
+msgstr "sztuk od"
+
+#: src/WPDesk/FSPro/TableRate/Rule/Condition/Item.php:74
+#: src/WPDesk/FSPro/TableRate/Rule/Condition/Item.php:83
+msgid "qty"
+msgstr "szt"
+
+#: src/WPDesk/FSPro/TableRate/Rule/Condition/Item.php:80
+msgid "items to"
+msgstr "sztuk do"
+
+#: src/WPDesk/FSPro/TableRate/Rule/Condition/MaxDimension.php:34
+msgid "Max dimension"
+msgstr "Maksymalny wymiar"
+
+#: src/WPDesk/FSPro/TableRate/Rule/Condition/Product.php:29
+msgid "Product"
+msgstr "Produkt"
+
+#: src/WPDesk/FSPro/TableRate/Rule/Condition/Product.php:84
+msgid "search product"
+msgstr "szukaj produktu"
+
+#: src/WPDesk/FSPro/TableRate/Rule/Condition/Product.php:131
+#, php-format
+msgid " products: %1$s;"
+msgstr " produkty: %1$s;"
+
+#: src/WPDesk/FSPro/TableRate/Rule/Condition/ProductCategory.php:45
+msgid "Product category"
+msgstr "Kategoria produktu"
+
+#: src/WPDesk/FSPro/TableRate/Rule/Condition/ProductCategory.php:115
+msgid "None (category not set)"
+msgstr "Brak (produkt bez kategorii)"
+
+#: src/WPDesk/FSPro/TableRate/Rule/Condition/ProductCategory.php:160
+#, php-format
+msgid " product categories: %1$s;"
+msgstr " kategorie produktów: %1$s;"
+
+#: src/WPDesk/FSPro/TableRate/Rule/Condition/ProductCategory.php:178
+msgid "search product category"
+msgstr "szukaj kategorii produktu"
+
+#: src/WPDesk/FSPro/TableRate/Rule/Condition/ProductTag.php:30
+msgid "Product tag"
+msgstr "Tag produktu"
+
+#: src/WPDesk/FSPro/TableRate/Rule/Condition/ProductTag.php:85
+msgid "search tags"
+msgstr "szukaj tagów"
+
+#: src/WPDesk/FSPro/TableRate/Rule/Condition/ProductTag.php:131
+#, php-format
+msgid " tags: %1$s;"
+msgstr " tagi: %1$s;"
+
+#: src/WPDesk/FSPro/TableRate/Rule/Condition/ShippingClass.php:45
+msgid "Shipping Class"
+msgstr "Klasa wysyłkowa"
+
+#: src/WPDesk/FSPro/TableRate/Rule/Condition/ShippingClass.php:90
+#: src/WPDesk/FSPro/TableRate/Rule/Condition/ShippingClass.php:168
+#: src/WPDesk/FSPro/TableRate/ShippingClassSettings.php:24
+msgid "None"
+msgstr "Brak"
+
+#: src/WPDesk/FSPro/TableRate/Rule/Condition/ShippingClass.php:135
+#, php-format
+msgid " shipping classes: %1$s;"
+msgstr " klasy wysyłkowe: %1$s;"
+
+#: src/WPDesk/FSPro/TableRate/Rule/Condition/ShippingClass.php:155
+msgid "search shipping class"
+msgstr "wyszukaj klasę wysyłkową"
+
+#: src/WPDesk/FSPro/TableRate/Rule/Condition/ShippingClass.php:156
+msgid "cart contains"
+msgstr "koszyk zawiera"
+
+#: src/WPDesk/FSPro/TableRate/Rule/Condition/ShippingClass.php:166
+#: src/WPDesk/FSPro/TableRate/ShippingClassSettings.php:22
+msgid "All products"
+msgstr "Wszystkie produkty"
+
+#: src/WPDesk/FSPro/TableRate/Rule/Condition/ShippingClass.php:167
+#: src/WPDesk/FSPro/TableRate/ShippingClassSettings.php:23
+msgid "Any class (must be set)"
+msgstr "Dowolna klasa (musi być ustawiona)"
+
+#: src/WPDesk/FSPro/TableRate/Rule/Condition/TimeOfTheDay.php:34
+msgid "Time of the Day"
+msgstr "Pora dnia"
+
+#: src/WPDesk/FSPro/TableRate/Rule/Condition/TimeOfTheDay.php:103
+msgid "from"
+msgstr "od"
+
+#: src/WPDesk/FSPro/TableRate/Rule/Condition/TimeOfTheDay.php:125
+msgid "is between"
+msgstr "jest pomiędzy"
+
+#: src/WPDesk/FSPro/TableRate/Rule/Condition/TimeOfTheDay.php:132
+msgid "and"
+msgstr "a"
+
+#: src/WPDesk/FSPro/TableRate/Rule/Condition/TimeOfTheDay.php:168
+msgid "12:00 AM"
+msgstr "00:00"
+
+#: src/WPDesk/FSPro/TableRate/Rule/Condition/TimeOfTheDay.php:172
+msgid "1:00 AM"
+msgstr "01:00"
+
+#: src/WPDesk/FSPro/TableRate/Rule/Condition/TimeOfTheDay.php:176
+msgid "2:00 AM"
+msgstr "02:00"
+
+#: src/WPDesk/FSPro/TableRate/Rule/Condition/TimeOfTheDay.php:180
+msgid "3:00 AM"
+msgstr "03:00"
+
+#: src/WPDesk/FSPro/TableRate/Rule/Condition/TimeOfTheDay.php:184
+msgid "4:00 AM"
+msgstr "04:00"
+
+#: src/WPDesk/FSPro/TableRate/Rule/Condition/TimeOfTheDay.php:188
+msgid "5:00 AM"
+msgstr "05:00"
+
+#: src/WPDesk/FSPro/TableRate/Rule/Condition/TimeOfTheDay.php:192
+msgid "6:00 AM"
+msgstr "06:00"
+
+#: src/WPDesk/FSPro/TableRate/Rule/Condition/TimeOfTheDay.php:196
+msgid "7:00 AM"
+msgstr "07:00"
+
+#: src/WPDesk/FSPro/TableRate/Rule/Condition/TimeOfTheDay.php:200
+msgid "8:00 AM"
+msgstr "08:00"
+
+#: src/WPDesk/FSPro/TableRate/Rule/Condition/TimeOfTheDay.php:204
+msgid "9:00 AM"
+msgstr "09:00"
+
+#: src/WPDesk/FSPro/TableRate/Rule/Condition/TimeOfTheDay.php:208
+msgid "10:00 AM"
+msgstr "10:00"
+
+#: src/WPDesk/FSPro/TableRate/Rule/Condition/TimeOfTheDay.php:212
+msgid "11:00 AM"
+msgstr "11:00"
+
+#: src/WPDesk/FSPro/TableRate/Rule/Condition/TimeOfTheDay.php:216
+msgid "12:00 PM"
+msgstr "12:00"
+
+#: src/WPDesk/FSPro/TableRate/Rule/Condition/TimeOfTheDay.php:220
+msgid "1:00 PM"
+msgstr "13:00"
+
+#: src/WPDesk/FSPro/TableRate/Rule/Condition/TimeOfTheDay.php:224
+msgid "2:00 PM"
+msgstr "14:00"
+
+#: src/WPDesk/FSPro/TableRate/Rule/Condition/TimeOfTheDay.php:228
+msgid "3:00 PM"
+msgstr "15:00"
+
+#: src/WPDesk/FSPro/TableRate/Rule/Condition/TimeOfTheDay.php:232
+msgid "4:00 PM"
+msgstr "16:00"
+
+#: src/WPDesk/FSPro/TableRate/Rule/Condition/TimeOfTheDay.php:236
+msgid "5:00 PM"
+msgstr "17:00"
+
+#: src/WPDesk/FSPro/TableRate/Rule/Condition/TimeOfTheDay.php:240
+msgid "6:00 PM"
+msgstr "18:00"
+
+#: src/WPDesk/FSPro/TableRate/Rule/Condition/TimeOfTheDay.php:244
+msgid "7:00 PM"
+msgstr "19:00"
+
+#: src/WPDesk/FSPro/TableRate/Rule/Condition/TimeOfTheDay.php:248
+msgid "8:00 PM"
+msgstr "20:00"
+
+#: src/WPDesk/FSPro/TableRate/Rule/Condition/TimeOfTheDay.php:252
+msgid "9:00 PM"
+msgstr "21:00"
+
+#: src/WPDesk/FSPro/TableRate/Rule/Condition/TimeOfTheDay.php:256
+msgid "10:00 PM"
+msgstr "22:00"
+
+#: src/WPDesk/FSPro/TableRate/Rule/Condition/TimeOfTheDay.php:260
+msgid "11:00 PM"
+msgstr "23:00"
+
+#: src/WPDesk/FSPro/TableRate/Rule/Condition/TotalOverallDimensions.php:34
+msgid "Single product total overall dimensions"
+msgstr "Suma wymiarów pojedynczego produktu"
+
+#: src/WPDesk/FSPro/TableRate/Rule/Condition/Volume.php:31
+msgid "Volume"
+msgstr "Objętość"
+
+#: src/WPDesk/FSPro/TableRate/Rule/PreconfiguredScenarios/PreconfiguredScenariosPro.php:45
+msgid "Price"
+msgstr "Cena"
+
+#: src/WPDesk/FSPro/TableRate/Rule/PreconfiguredScenarios/PreconfiguredScenariosPro.php:46
+msgid "Shipping cost as a percentage of order’s value"
+msgstr "Procentowy koszt wysyłki od wartości koszyka"
+
+#: src/WPDesk/FSPro/TableRate/Rule/PreconfiguredScenarios/PreconfiguredScenariosPro.php:47
+#, fuzzy, php-format
+msgid "Shipping cost always equals 15% of cart total price."
+msgstr "Koszt wysyłki zawsze równy 15% ceny produktów w koszyku."
+
+#: src/WPDesk/FSPro/TableRate/Rule/SpecialAction/Cancel.php:21
+msgid "Cancel"
+msgstr "Anuluj"
+
+#: src/WPDesk/FSPro/TableRate/Rule/SpecialAction/Stop.php:21
+msgid "Stop"
+msgstr "Zatrzymaj"
+
+#: src/WPDesk/FSPro/TableRate/RuleCost/Cost/BasedOnCartLineItem.php:24
+msgid "Line item (pos)"
+msgstr "Pozycja w koszyku"
+
+#: src/WPDesk/FSPro/TableRate/RuleCost/Cost/BasedOnItem.php:24
+msgid "Item (qty)"
+msgstr "Produkt (szt)"
+
+#: src/WPDesk/FSPro/TableRate/RuleCost/Cost/BasedOnValue.php:33
+#, php-format
+msgid "Price (%1$s)"
+msgstr "Cena (%1$s)"
+
+#: src/WPDesk/FSPro/TableRate/RuleCost/Cost/BasedOnWeight.php:24
+#, php-format
+msgid "Weight (%1$s)"
+msgstr "Waga (%1$s)"
+
+#: src/WPDesk/FSPro/TableRate/RuleCost/Value.php:15
+msgid "Value"
+msgstr "Wartość"
+
+#: src/WPDesk/FSPro/TableRate/RuleCost/Value.php:19
+msgid "Value for additional cost."
+msgstr "Wartość dodatkowego kosztu."
+
+#: src/WPDesk/FSPro/TableRate/Settings/ProMethodSettingsImplementation.php:128
+#, php-format
+msgid ""
+"Method settings:%1$s Enabled: %2$s Method Title: %3$s Method Description: "
+"%4$s Tax status: %5$s Free Shipping requires: %6$s Free Shipping: %7$s "
+"Coupons discounts (Apply minimum order rule before coupon discount): %8$s "
+"Free Shipping Label: %9$s 'Left to free shipping' notice: %10$s Maximum "
+"Cost: %11$s Rules Calculation: %12$s Cart calculation: %13$s Visibility "
+"(Show only for logged in users): %14$s Default: %15$s Debug mode: %16$s"
+msgstr ""
+"Ustawienia metody wysyłki: %1$s Włączona: %2$s Tytuł metody: %3$s Opis: %4$s "
+"Status podatku: %5$s Darmowa wysyłka wymaga: %6$s Darmowa wysyłka: %7$s "
+"Kupony (Zastosuj regułę minimalnej wartości zamówienia przed kuponem): %8$s "
+"Etykieta darmowej wysyłki: %9$s Do darmowej wysyłki brakuje: %10$s "
+"Maksymalny koszt: %11$s Metoda obliczania: %12$s Kalkulacja w koszyku: %13$s "
+"Wyświetlanie (Pokaż tylko dla zalogowanych użytkowników): %14$s Domyślnie: "
+"%15$s Tryb debugowania FS: %16$s"
+
+#. Plugin Name of the plugin/theme
+msgid "Flexible Shipping PRO"
+msgstr ""
+
+#. Plugin URI of the plugin/theme
+msgid "https://flexibleshipping.com/table-rate/"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid ""
+"Extends the free version of Flexible Shipping by adding advanced pro "
+"features."
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "WP Desk"
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "https://www.wpdesk.net/"
+msgstr ""
+
+#~ msgid "Any category (must be set)"
+#~ msgstr "Dowolna klasa (musi być ustawiona)"
+
+#~ msgid "is"
+#~ msgstr "jest"
+
+#~ msgid "1 AM"
+#~ msgstr "1"
+
+#~ msgid "2 AM"
+#~ msgstr "2"
+
+#~ msgid "3 AM"
+#~ msgstr "3"
+
+#~ msgid "4 AM"
+#~ msgstr "4"
+
+#~ msgid "5 AM"
+#~ msgstr "5"
+
+#~ msgid "6 AM"
+#~ msgstr "6"
+
+#~ msgid "7 AM"
+#~ msgstr "7"
+
+#~ msgid "8 AM"
+#~ msgstr "8"
+
+#~ msgid "9 AM"
+#~ msgstr "9"
+
+#~ msgid "11 AM"
+#~ msgstr "11"
+
+#~ msgid "12 PM"
+#~ msgstr "12"
+
+#~ msgid "1 PM"
+#~ msgstr "13"
+
+#~ msgid "2 PM"
+#~ msgstr "14"
+
+#~ msgid "3 PM"
+#~ msgstr "15"
+
+#~ msgid "4 PM"
+#~ msgstr "16"
+
+#~ msgid "5 PM"
+#~ msgstr "17"
+
+#~ msgid "6 PM"
+#~ msgstr "18"
+
+#~ msgid "7 PM"
+#~ msgstr "19"
+
+#~ msgid "8 PM"
+#~ msgstr "20"
+
+#~ msgid "9 PM"
+#~ msgstr "21"
+
+#~ msgid "11 PM"
+#~ msgstr "23"
+
+#~ msgid "Volumetric Weight"
+#~ msgstr "Objętość"
+
+#~ msgid "day of the week"
+#~ msgstr "dzień tygodnia"
+
+#~ msgid "Sum of Dimensions"
+#~ msgstr "Suma wymiarów"
