@@ -1,0 +1,103 @@
+form.vi-woocommerce-orders-tracking-form-search {
+    max-width: 900px;
+    margin: 15px auto;
+}
+
+.vi-woocommerce-orders-tracking-form-search .vi-woocommerce-orders-tracking-form-row .vi-woocommerce-orders-tracking-form-search-tracking-number-btnclick:before {
+    font-size: 1.2em;
+}
+
+.vi-woocommerce-orders-tracking-form-search .vi-woocommerce-orders-tracking-form-row .vi-woocommerce-orders-tracking-form-search-tracking-number-btnclick {
+    margin: 0;
+    padding: 0 20px;
+    min-width: 150px;
+    text-align: center;
+    border: none;
+    text-transform: initial;
+}
+
+.vi-woocommerce-orders-tracking-form-search .vi-woocommerce-orders-tracking-form-row .vi-woocommerce-orders-tracking-form-search-tracking-number,
+.vi-woocommerce-orders-tracking-form-search .vi-woocommerce-orders-tracking-form-order-email .vi-woocommerce-orders-tracking-form-order-email-input,
+.vi-woocommerce-orders-tracking-form-search .vi-woocommerce-orders-tracking-form-order-id .vi-woocommerce-orders-tracking-form-order-id-input {
+    margin: 0;
+    height: 46px;
+    padding: 0 10px;
+    width: 100%;
+    border: none;
+}
+
+.vi-woocommerce-orders-tracking-form-search .vi-woocommerce-orders-tracking-form-row {
+    display: flex;
+    flex-direction: row;
+    border: 1px solid rgba(1, 1, 1, 0.3);
+    margin: 10px 0;
+}
+
+.vi-woocommerce-orders-tracking-form-search .vi-woocommerce-orders-tracking-form-inputs {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.vi-woocommerce-orders-tracking-form-search .vi-woocommerce-orders-tracking-form-order-email,
+.vi-woocommerce-orders-tracking-form-search .vi-woocommerce-orders-tracking-form-order-id {
+    border: 1px solid rgba(1, 1, 1, 0.3);
+    margin: 10px 0;
+}
+
+.vi-woocommerce-orders-tracking-form-search .vi-woocommerce-orders-tracking-recaptcha {
+    display: inline-block;
+}
+
+.vi-woocommerce-orders-tracking-form-search .vi-woocommerce-orders-tracking-form-error {
+    border: 1px solid red !important;
+}
+
+.vi-woocommerce-orders-tracking-form-search .vi-woocommerce-orders-tracking-form-inputs.vi-woocommerce-orders-tracking-form-inputs-1 .vi-woocommerce-orders-tracking-form-row,
+.vi-woocommerce-orders-tracking-form-search .vi-woocommerce-orders-tracking-form-inputs.vi-woocommerce-orders-tracking-form-inputs-3 .vi-woocommerce-orders-tracking-form-row {
+    width: 100%;
+}
+
+.vi-woocommerce-orders-tracking-form-search .vi-woocommerce-orders-tracking-form-inputs.vi-woocommerce-orders-tracking-form-inputs-3 .vi-woocommerce-orders-tracking-form-order-email,
+.vi-woocommerce-orders-tracking-form-search .vi-woocommerce-orders-tracking-form-inputs.vi-woocommerce-orders-tracking-form-inputs-3 .vi-woocommerce-orders-tracking-form-order-id {
+    width: 48%;
+}
+
+.vi-woocommerce-orders-tracking-form-search .vi-woocommerce-orders-tracking-form-inputs.vi-woocommerce-orders-tracking-form-inputs-2 .vi-woocommerce-orders-tracking-form-row,
+.vi-woocommerce-orders-tracking-form-search .vi-woocommerce-orders-tracking-form-inputs.vi-woocommerce-orders-tracking-form-inputs-2 .vi-woocommerce-orders-tracking-form-order-email,
+.vi-woocommerce-orders-tracking-form-search .vi-woocommerce-orders-tracking-form-inputs.vi-woocommerce-orders-tracking-form-inputs-2 .vi-woocommerce-orders-tracking-form-order-id {
+    width: 48%;
+}
+
+.vi-woocommerce-orders-tracking-hidden {
+    display: none;
+}
+
+@media screen and (max-width: 480px ) {
+    .vi-woocommerce-orders-tracking-form-search .vi-woocommerce-orders-tracking-recaptcha-field {
+        display: flex;
+        justify-content: center;
+    }
+
+    .vi-woocommerce-orders-tracking-form-search .vi-woocommerce-orders-tracking-form-inputs.vi-woocommerce-orders-tracking-form-inputs-2 .vi-woocommerce-orders-tracking-form-row,
+    .vi-woocommerce-orders-tracking-form-search .vi-woocommerce-orders-tracking-form-inputs.vi-woocommerce-orders-tracking-form-inputs-2 .vi-woocommerce-orders-tracking-form-order-email,
+    .vi-woocommerce-orders-tracking-form-search .vi-woocommerce-orders-tracking-form-inputs.vi-woocommerce-orders-tracking-form-inputs-2 .vi-woocommerce-orders-tracking-form-order-id {
+        width: 100%;
+    }
+
+    .vi-woocommerce-orders-tracking-form-search .vi-woocommerce-orders-tracking-form-row {
+        flex-wrap: wrap;
+        border: none !important;
+    }
+
+    .vi-woocommerce-orders-tracking-form-search .vi-woocommerce-orders-tracking-form-row .vi-woocommerce-orders-tracking-form-search-tracking-number {
+        border: 1px solid rgba(1, 1, 1, 0.3) !important;
+    }
+
+    .vi-woocommerce-orders-tracking-form-search .vi-woocommerce-orders-tracking-form-row .vi-woocommerce-orders-tracking-form-search-tracking-number-btnclick {
+        width: 100%;
+        height: 46px;
+        margin-top: 15px;
+    }
+}
