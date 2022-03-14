@@ -1,0 +1,243 @@
+/*#afpv_custom{ display: none; }
+#afpv_metacafe, #afpv_vimeo, #afpv_dailymotion, #afpv_facebook, #afpv_youtube{ display: none; }
+
+.related .woocommerce-product-gallery{ width: auto !important; }
+.woocommerce-product-gallery{ float: left !important }
+
+
+
+embed, iframe, object, video{ margin: 0 auto 1.2em !important; }
+
+.feat_image{ margin-bottom: 20px; }
+
+
+.flatvideos { padding-bottom: 10px; }
+
+.vertical-thumbnails{ overflow-y: auto !important; }
+
+.Addify_Product_Videos-thumbnails{
+	display: flex;
+	flex-wrap: wrap;
+}
+.Addify_Product_Videos-thumbnails a{
+	padding: 0.5em;
+	max-width: 4em;
+}
+
+
+
+*/
+
+#html5-watermark { 
+	display: none !important; 
+}
+
+.Addify_Product_Videos-thumbnails img{
+	width: 100%;
+	height: auto;
+}
+
+#html5-lightbox-box{
+	max-width: 800px !important;
+}
+
+.html5-elem-wrap{
+	width: auto !important;
+}
+
+
+/*========= Custom Woo Template CSS =======*/
+
+
+.slick-slide:focus{
+	outline: 0 !important;
+}
+
+.slick-slider{
+	margin: 0px !important;
+}
+
+.video-thumbnail{
+	position: relative;
+}
+
+.gl-slider-item{
+	background-color: transparent;
+	height: 100%;
+	min-height: 325px;
+}
+
+.afpv-product-video-play-icon,
+.afpv-rule-video-play-icon-on-iframe{
+	position: relative;
+	height: 300px;
+}
+
+.afpv-rule-video-play-icon-on-iframe img {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	cursor: pointer;
+	width: 100px;
+	height: 100px;
+	z-index: 9999;
+}
+
+.afpv-product-video-play-icon,
+.afpv-rule-video-play-icon {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	cursor: pointer;
+	width: 100px;
+	height: 100px;
+	z-index: 9999;
+}
+
+.slick-lightbox .slick-prev{
+	z-index: 9999;
+}
+
+.slick-lightbox .slick-next{
+	right: 35px !important;
+	z-index: 9999;
+}
+
+
+.gl-product-slider-bottom .slick-prev,
+.gl-product-slider-top .slick-prev{
+	left: 0px !important;
+	z-index: 9999;
+}
+
+.gl-product-slider-bottom .slick-next,
+.gl-product-slider-top .slick-next{
+	right: 0px !important;
+	z-index: 9999;
+}
+
+.slick-dots{
+	margin:0;
+}
+
+.slick-prev:before,
+.slick-next:before{
+	padding: 5px 5px;
+	text-align: center;
+	background-color: #4f94d4;
+	font-size: 14px !important;
+	opacity: 1 !important;
+	border: 4px;
+}
+
+
+
+/*=== Left Position Gallery ===*/
+
+.gl-product-slider-left{
+	box-sizing: border-box;
+	margin-right:0px !important;
+	padding-left: 65px !important;
+	margin-top:45px !important;
+}
+
+.gl-product-slider-left-nav{
+	position: absolute !important;
+	left: 0px;
+	top: 0;
+	box-sizing: border-box !important;
+	width: 100%;
+	max-width: 65px;
+	height: auto;
+}
+
+.gl-product-slider-right-nav .item-slick img,
+.gl-product-slider-left-nav .item-slick img{
+	width:60px !important;
+	height:60px !important;
+}
+ 
+
+/*=== Right Position Gallery ===*/
+
+.gl-product-slider-right{
+	box-sizing: border-box;
+	margin-top:45px !important;
+	padding-right: 65px !important;
+	margin-right: 0px !important;
+}
+
+.gl-product-slider-right-nav{
+	position: absolute !important;
+	right: -5px;
+	top: 0;
+	box-sizing: border-box !important;
+	width: 100%;
+	max-width: 65px;
+	height: auto;
+	margin-bottom:0px !important;
+}
+
+.gl-product-slider-right .slick-prev,
+.gl-product-slider-left .slick-prev{
+	top: -30px;
+	left: 22px;
+	transform: rotate(90deg);
+}
+
+.gl-product-slider-right .slick-next,
+.gl-product-slider-left .slick-next{
+	top: 100%;
+	right: 22px;
+	transform: rotate(90deg);
+}
+
+.gl-product-slider-left .slick-dots,
+.gl-product-slider-right .slick-dots{
+	bottom: -75px !important;
+	left: -10px;
+}
+
+.gl-product-slider-left .slick-dots li,
+.gl-product-slider-right .slick-dots li{
+	width: 0px !important;
+}
+
+/*=== Top Position Gallery ===*/
+
+.gl-product-slider-top{
+	box-sizing: border-box;
+	margin-top:100px !important;
+}
+
+.gl-product-slider-top-nav{
+	position: absolute !important;
+	top: -100px;
+	box-sizing: border-box !important;
+	margin-bottom:0px !important;
+	width: 100%;
+}
+
+.gl-product-slider-top-nav .slick-dots {
+	bottom: -17px;
+}
+
+.gl-product-slider-bottom-nav .item-slick img,
+.gl-product-slider-top-nav .item-slick img{
+	width:75px !important;
+	height:75px !important;
+	margin: 10px auto !important;
+}
+
+.storefront-product-pagination{
+	display: none !important;
+}
+
+@media all and (max-width: 480px){
+	.gl-product-slider-right,
+	.gl-product-slider-left{
+		margin-bottom: 120px !important;
+	}
+}

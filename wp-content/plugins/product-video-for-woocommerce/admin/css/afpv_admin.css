@@ -1,0 +1,166 @@
+.login_title { width: 200px; }
+
+.meta_field_full{ width: 100%; margin-top:15px; }
+
+.meta_field_full label{ width: 100%; font-weight: bold; float: left;  }
+
+.meta_field_full .afpv_field_text{ width: 50%; margin-top: 5px; padding: 10px; }
+
+.meta_field_full .afpv_field_select{ width: 20%; margin-top: 5px; padding: 5px 10px; }
+
+#facebook, #dailymotion, #vimeo, #metacafe, #vevo, #veoh, #custom { display: none; }
+
+#afpv_product_video .select2-container{ width: 100% !important; }
+
+.meta_field_full label{ padding-bottom: 10px; }
+
+
+/*========= Custom Woo Template CSS =======*/
+
+.pv-select-fld{
+	width: 100%;
+	height: 38px;
+}
+
+.afpv-input-text{
+	width: 38%;
+	height: 38px;
+}
+
+/* The switch - the box around the slider */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 55px;
+  height: 25px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+  height: 22px;
+  width: 50px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 15px;
+  width: 15px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #4f94d4;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #4f94d4;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+[type='color'] {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+  padding: 0;
+  height: 15px;
+  border: none;
+}
+
+[type='color']::-webkit-color-swatch-wrapper {
+  padding: 0;
+}
+
+[type='color']::-webkit-color-swatch {
+  border: none;
+}
+
+.afpv-gallery-images img{
+  width: 385px;
+  display: block;
+  margin:20px 0;
+}
+
+.afpv-play-icon-box{
+  list-style: none;
+  padding:0;
+  margin:0;
+}
+
+.afpv-play-icon-box li{
+  display: inline-block;
+  vertical-align: top;
+  margin: 5px 10px;
+  text-align: center;
+}
+
+.afpv-play-icon-box li img{
+  width: 50px;
+  height: 50px;
+  display: block;
+  margin: 10px auto;
+}
+
+.display-none{
+  display: none;
+}
+
+#afpv_video_url{
+  display: block;
+  border: 0;
+  padding: 0;
+  width: 100%;
+	  font-size: 13px;
+	font-weight: 600;
+	padding: 15px 0px;
+	line-height: 22px;
+	background: transparent;
+}
+
+
+.pv_featured_tp_video_width_shop_page{
+  position: relative;
+}
+
+.pv_featured_tp_video_width_shop_page::after{
+  position: absolute;
+  content: '%';
+  right: 0;
+  top: 0;
+  width: 20px;
+  height: 20px;
+}
