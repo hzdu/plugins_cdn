@@ -1,0 +1,99 @@
+== Advanced Shipment Tracking Pro ==
+
+August 23, 2021 - version 1.4
+* Enhancement - Improve the UI of Tracking Per Item display in order status emails
+* Enhancement - Add Tracking Per Item details in admin order details page line item
+* Enhancement - Remove preview order option from tracking info and order status email customizer and set default dummy data
+* Dev - Added Dianxiaomi Integration
+* Dev - Added Printify Integration
+* Dev - Added CartRover Integration
+* Dev - Added Picqer Integration
+* Dev - Added Ali2Woo Integration
+* Dev - Improve Autodetector and added support for Shipa
+* Dev - Added ‘woocommerce_email_order_meta’ hook in custom order status and completed order status email templates
+* Dev - Added hook for Downloadable products in AST PRO Completed template
+* Dev - Optimize CSS
+* Fix - When the Completed email is removed in the display still tracking widget is showing on the Completed email
+
+July 30, 2021 - version 1.3.2
+* Dev - Removed the 'manage_woocommerce' capability when add tracking to orders
+* Dev - Order is already marked shipped and there's existing tracking, and adding new tracking - that new tracking automatically send to TrackShip
+* Dev - Added hook in completed and shipped order status email for downloadable products
+* Fix - fixed Shipped Date date picker issue on add tracking info lightbox in order details page
+
+July 23, 2021 - version 1.3.1
+* Dev - Improve code security
+
+July 22, 2021 - version 1.3
+* Fix - Fixed CSV Import issue with a large number of data in CSV
+* Fix - Fix email content line break issue in Completed, Shipped, and Partially Shipped Email
+* Enhancement - Add Preview: Track Shipments link in Add Tracking Info Lightbox
+* Enhancement - Added an option to default check Mark Order as Shipped(Completed) When Add Tracking to orders
+
+July 14, 2021 - version 1.2
+* Enhancement - Updated design og Integration settings page
+* Dev - Added integration with Ordoro
+* Dev - Added integration with Dear Systems
+* Dev - Improved the code security
+* Dev - Updated translations file and added new languages
+* Enhancement - Added Time to Fulfill value in Fulfillment dashboard
+* Dev - Exclude Local Pickup orders from Fulfillment dashboard
+
+June 28, 2021 - version 1.1.4
+* Fix - Fixed issue with Tracking Per Item display on order details page when variation product in order
+
+June 28, 2021 - version 1.1.3
+* Fix - Fixed issue with CSV Import
+
+June 28, 2021 - version 1.1.2
+* Fix - Fixed add tracking not working on edit order page
+* Fix - Fixed search shipping providers not working
+* Fix - Fixed issue with ReadyToShip Integration
+
+June 26, 2021 - version 1.1.1
+* Fix - Fixed issue with fulfillment dashboard with Time to Fulfill widget
+
+June 25, 2021 - version 1.1
+* Dev – Standalone PRO version – the pro version will deactivate the free version, you do not need both plugins anymore.
+* Enhancement – Add “Hide the shipping date” option to the tracking info widget customizer
+* Enhancement – Improved UI/UX in the tracking info widget display in customizer (one column, font size, image alignment)
+* Enhancement – Custom Completed Order Status Email Template with email Customizer
+* Enhancement – Updated design of settings page
+* Enhancement - Added fulfillment dashboard
+* Enhancement - Added PayPal Tracking functionality
+
+April 30, 2021 - version 1.0.6
+* Dev - Added REST API endpoint
+* Dev - Optimized the shipping provider autodetaction functionality
+* Dev - Updated text domain in fluid tracking info template
+* Fix - Fixed fluid tracking info template issue on shipment status customizer
+
+April 20, 2021 - version 1.0.5
+* Enhancement - Updated design of TPI display under order meta display in order details page
+* Enhancement - Optimized the shipping provider autodetaction functionality
+* Fix - Fixed fluid tracking info display for 1 column layout
+
+April 14, 2021 - version 1.0.4
+* Enhancement - Added option for Enable/Disable Auto deaction of Shipping Provider
+* Enhancement - Added option for Reassign Shipped order status on plugin deactivate
+* Dev - Tested with WooCommerce 5.2.0
+* Fix - Fixed issue with Shipping items Heading not working in custom order status email customizer
+
+April 1, 2021 - version 1.0.3
+* Enhancement - Make tracking info widget compatible in outlook
+* Fix - On My Account order details page do not open tracking lighbox if not connected to TrackShip
+
+March 25, 2021 - version 1.0.2
+* Enhancement - Added integrations with UPS Shipping Plugin (PluginHive), QuickBooks Commerce (formerly TradeGecko), Ali2Woo, WooCommerce Twilio SMS Notifications and WC – APG SMS Notifications
+* Fix - Fixed Shipped order status email sent twice
+* Fix - Fixed Variation product issue when add tracking info with TPI through CSV/API
+
+March 23, 2021 - version 1.0.1
+* Enhancement - Added option to display shipping provider image in Tracking info display customizer
+* Enhancement - By default enable Integration option if relavant plugn is install
+* Fix - Fixed issue with Custom shipped order status is not change when add tracking information mark as shipped
+* Fix - Fixed issue with Custom shipped status, disabled shipped status if Rename the “Completed” Order status label to “Shipped” is enable
+* Fix - Added tracking widget header in fluid tracking info display
+
+March 16, 2021 - version 1.0.0
+* Launch it!
