@@ -4,8 +4,8 @@ Donate link: https://perfmatters.io
 Tags: perfmatters
 Requires at least: 4.7
 Requires PHP: 7.0
-Tested up to: 5.8.2
-Stable tag: 1.8.5
+Tested up to: 5.9.2
+Stable tag: 1.8.7
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -34,7 +34,36 @@ Check out our [documentation](https://perfmatters.io/docs/) for more information
 
 == Changelog ==
 
-= 1.8.5 - 01.19.2021 =
+= 1.8.7 - 03.14.2022 =
+* Added new Used CSS Method option to choose whether to load used CSS from a file or inline.
+* Added new perfmatters_cache_path filter.
+* Updated metabox functions to restrict metabox display to administrators only.
+* Made some adjustments to custom login URL function to better support 3rd party tools using WP CLI.
+* Added Fusion Builder query string parameters to excluded page builders array.
+* Adjusted Unused CSS regex to be more consistent when stylesheets are placed in between other link tags.
+* Changes to instances where ABSPATH was used to determine a directory location for better compatibility with certain hosts.
+* Fixed an issue with Remove Global Styles option where duotone SVGs were not being removed on WordPress 5.9.2.
+* Fixed an issue where WooCommerce block stylesheets were not getting correctly dequeued when Disable Scripts option was set.
+* Fixed an issue that was causing the CSS Parser library not to get included correctly in certain cases.
+* Translation updates.
+
+= 1.8.6 - 02.10.2022 =
+* Added new option to Remove Global Styles related to duotone filters.
+* Added new perfmatters_script_manager_locale filter.
+* Added new perfmatters_disable_woocommerce_scripts filter.
+* Added new perfmatters_page_builders filter.
+* Added new perfmatters_delay_js_behavior filter.
+* Fixed an issue with the unused CSS parser that was incorrectly rewriting relative URLs if there was no query string present on the original stylesheet src.
+* Added additional parameter to page builders array for compatibility.
+* Fixed an issue that was causing the login URL disabled 404 behavior to result in an error if a 404 template was not found.
+* Added some additional checks before creating cache directories for local fonts and used CSS.
+* Fixed an issue that was causing the fade-in effect to conflict with child images inside a lazy loaded container.
+* Fixed an undefined index warning coming from unused CSS settings update function.
+* Added a default delay JS exclusion for admin only inline customize-support script.
+* Refactored entire meta.php code to be more efficient (38% smaller) and in line with current structure.
+* Translation updates.
+
+= 1.8.5 - 01.19.2022 =
 * Added new feature to Remove Unused CSS (BETA).
 * Added new perfmatters_remove_unused_css filter.
 * Adjusted CDN Rewrite buffer priority for better compatibility with other features.

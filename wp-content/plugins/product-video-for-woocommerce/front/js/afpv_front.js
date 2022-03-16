@@ -1,4 +1,7 @@
+
+
 jQuery(document).ready(function($){
+
 
 	var dot_option_selected = true;
 	if ( 'yes' == (afpv_gallery_thumb_setting.afpv_dots_gallery_controller) ) {
@@ -167,10 +170,9 @@ jQuery(document).ready(function($){
 
 	/*=========== Zoom Script =============*/
 
-	jQuery('#gl-proucts .gl-product-thumbnail-zoom').zoom();
+	//jQuery('#gl-proucts .gl-product-thumbnail-zoom').zoom();
 
 
 
 });
-
 
