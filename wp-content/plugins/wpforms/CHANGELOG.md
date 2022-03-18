@@ -1,6 +1,67 @@
 # Changelog
 All notable changes to this project will be documented in this file and formatted via [this recommendation](https://keepachangelog.com/en/1.0.0/).
 
+## [1.7.3] - 2022-03-16
+### IMPORTANT
+- Support for PHP 5.5 has been discontinued. If you are running PHP 5.5, you MUST upgrade PHP before installing WPForms 1.7.3. Failure to do that will disable WPForms core functionality.
+- Support for WordPress 5.1 has been discontinued. If you are running WordPress 5.1, you MUST upgrade WordPress before installing WPForms 1.7.3. Failure to do that will disable WPForms core functionality.
+
+### Added
+- Forms now can be moved to Trash and restored on the Forms Overview page.
+- Forms now support Revisions with new UI and ability to switch between them.
+- Exported entries (.csv and .xlsx) now have an Entry Status column that indicates completed, abandoned, or partial entry.
+- Export Entries and Form Template Export selection on the Tools > Export page now support search.
+
+### Changed
+- Improved support for WordPress Core UI colors and admin themes in the admin notifications panel.
+- Improved submitted email field value validation (take into account real-world usage and RFC information).
+- Improved `wpforms_get_ip()` IP detection quality by taking care of proxies (e.g. when the site is behind Cloudflare).
+- Improved Time selector display with a limited number of choices.
+- Updated Action Scheduler library to 3.4.0.
+- Improved the manual addon installation message if automatic installation fails, added links to the downloads page and a manual installation guide.
+- Hide Sub-Labels option should be hidden for some formats in the Name and Date / Time fields.
+- Improved performance of Action Scheduler tasks.
+- Drop jQuery matchHeight library in favor of a CSS solution.
+- Abandoned and partial entries are now displayed in search results on the Entries page.
+- Unified and improved modals across all plugin pages and the Form Builder.
+- Forms now can be deleted when the user who created them is deleted.
+
+### Fixed
+- Confusing alignment of Print Preview options on small screens.
+- Long field titles didn't wrap within the field container.
+- Stuck on loading the Form Builder when switching to a new form template with unsaved changes and dismissing the native browser prompt.
+- Buttons had no spacing when the Embed button is not available for a user without the capability to edit pages and/or posts.
+- Fly-out menu was not auto-hiding on the Entries page with Survey Results enabled.
+- Incorrect position of the notification counter in the admin bar when a notification was dismissed.
+- Misaligned buttons in the Entries navigation block on the single Entry admin page.
+- Make the form Submit button disabled all the time after the submit action when AJAX form submission or confirmation redirect are enabled.
+- Toggle control labels did not have a hand cursor.
+- The `iframe` element in the HTML field was not displaying after meeting a conditional logic in the Twenty Twenty theme.
+- The dropdown list was shown partially when located at the end of the form in the Twenty Twenty theme.
+- Country flag from the Phone field was overlapped in the Enfold theme.
+- Multiple selected options in the Classic Dropdown field didn't have a visual active state.
+- CSV export filesystem issue on WordPress VIP platform.
+- Deprecation notice when processing smart tags.
+- False JavaScript issue error when WP Rocket's Delay JavaScript execution option is on.
+- PHP notice generated when email notifications were sent.
+- "Did You Know" block now always spaned across all columns.
+- Validation error if an email was not required and left empty.
+- Email field validation failed with long and invalid emails.
+- Import from other plugins.
+- Compatibility with PHP 8.1.
+
+## [1.7.2.2] - 2022-02-03
+### Fixed
+- Compatibility with current versions of the User Journey and Form Locker addons.
+
+## [1.7.2.1] - 2022-02-03
+### Fixed
+- Compatibility with PHP 8.0 and PHP 8.1.
+- Compatibility with WordPress 5.9, including its new Full Site Editing feature.
+- Broken cache directory path if `WP_CONTENT_DIR` is set in the `wp-config.php` without trailing slash.
+- PHP Notice when using the `wpforms_log()` function in certain conditions.
+- Type mismatch breaks a list of scheduled actions in Action Scheduler if typed arguments are passed.
+
 ## [1.7.2] - 2022-01-04
 ### Added
 - Search by form name and description is available on the Forms Overview page.
