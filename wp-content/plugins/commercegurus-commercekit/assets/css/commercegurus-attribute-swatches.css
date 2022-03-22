@@ -1,0 +1,231 @@
+/* CSS Document */
+.cgkit-as-wrap .cgkit-attribute-swatches {
+	padding: 0px;
+	margin: 0px;
+}
+.cgkit-as-wrap .cgkit-attribute-swatches .cgkit-attribute-swatch {
+	list-style: none;
+	display: inline-block;
+	padding: 0;
+	margin: 0;
+	vertical-align: top;
+	line-height: 0;
+	margin:  0 5px 5px 0;
+}
+.cgkit-as-wrap .cgkit-attribute-swatches .cgkit-attribute-swatch.ckit-button {
+	margin: 0 4px 4px 0;
+}
+.cgkit-as-wrap .cgkit-attribute-swatches .cgkit-attribute-swatch > button {
+	vertical-align: top;
+    display: block;
+    position: relative;
+	text-decoration: none;
+    font-weight: 400;
+	outline: none;
+}
+.cgkit-as-wrap .cgkit-attribute-swatches .cgkit-attribute-swatch > button span.cross {
+	display: none;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	background: linear-gradient(to top left, rgba(0,0,0,0) 0%, rgba(0,0,0,0) calc(50% - 0.4px), rgba(0,0,0,0.5) 50%, rgba(0,0,0,0) calc(50% + 0.4px), rgba(0,0,0,0) 100%)
+}
+.cgkit-as-wrap .cgkit-attribute-swatches .cgkit-attribute-swatch.cgkit-color > button.cgkit-disabled span.cross {
+	display: block;
+	width: 28px;
+	height: 28px;
+	position: absolute;
+	top: 6px;
+	left: 6px;
+	background: linear-gradient(to top left, rgba(0,0,0,0) 0%, rgba(0,0,0,0) calc(50% - 0.4px), rgba(0,0,0,1) 50%, rgba(0,0,0,0) calc(50% + 0.4px), rgba(0,0,0,0) 100%)
+}
+.cgkit-as-wrap .cgkit-attribute-swatches .cgkit-attribute-swatch > button.cgkit-disabled {
+	opacity: 0.3;
+	cursor: not-allowed;
+}
+.cgkit-as-wrap .cgkit-attribute-swatches .cgkit-attribute-swatch > button.cgkit-disabled:active {
+	pointer-events: none;
+}
+.cgkit-as-wrap .cgkit-attribute-swatches .cgkit-attribute-swatch > button.cgkit-disabled span.cross {
+	display: block;
+}
+.variations .cgkit-chosen-attribute {
+	font-weight: normal;
+	font-size: 14px;
+	letter-spacing: 0;
+	text-transform: none;
+	padding-left: 3px;
+}
+.variations .cgkit-chosen-attribute span {
+	display: none;
+}
+.cgkit-as-wrap .cgkit-attribute-swatches .cgkit-attribute-swatch.cgkit-color > button:before {
+	content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border: 1px solid #ccc;
+    margin: 0;
+	border-radius: 50%;
+}
+.cgkit-as-wrap .cgkit-attribute-swatches .cgkit-attribute-swatch.cgkit-color > button:hover:before {
+	border-color: #353c4e;
+}
+.cgkit-as-wrap .cgkit-attribute-swatches .cgkit-attribute-swatch.cgkit-color > button.cgkit-disabled:hover:before {
+	border-color: #ccc;
+}
+.cgkit-as-wrap .cgkit-attribute-swatches .cgkit-attribute-swatch.cgkit-color > button.cgkit-swatch-selected:before {
+	border: 1px solid #353c4e;
+}
+.cgkit-as-wrap .cgkit-attribute-swatches .cgkit-attribute-swatch.cgkit-color span.color-div {
+    display: block;
+	border-radius: 50%;
+	white-space: nowrap;
+    margin: 0px;
+    padding: 0px;
+}
+.cgkit-as-wrap .cgkit-attribute-swatches .cgkit-attribute-swatch.cgkit-image button {
+	width: 100%;
+	height: 100%;
+	position: relative;
+	overflow: hidden;
+}
+.cgkit-as-wrap .cgkit-attribute-swatches .cgkit-attribute-swatch.cgkit-image > button:before {
+	content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border: 1px solid #ccc;
+    margin: 0;
+    z-index: 1;
+}
+.cgkit-as-wrap .cgkit-attribute-swatches .cgkit-attribute-swatch.cgkit-image > button:not(.cgkit-disabled):hover:before {
+	border-color: #353c4e;
+}
+.cgkit-as-wrap .cgkit-attribute-swatches .cgkit-attribute-swatch.cgkit-image > button.cgkit-swatch-selected:before {
+	border: 1px solid #353c4e;
+}
+.cgkit-as-wrap .cgkit-attribute-swatches .cgkit-attribute-swatch.cgkit-image > button span.cross {
+	width: 60px;
+	height: 60px;
+	z-index: 2;
+	display: none;
+}
+.cgkit-as-wrap .cgkit-attribute-swatches .cgkit-attribute-swatch.cgkit-image > a.cgkit-swatch-selected:before {
+	border: 1px solid #353c4e;
+}
+.cgkit-as-wrap .cgkit-attribute-swatches .cgkit-attribute-swatch.cgkit-image img {
+    white-space: nowrap;
+    display: block;
+    margin: 0px;
+    padding: 0px;
+}
+.cgkit-as-wrap .cgkit-attribute-swatches .cgkit-attribute-swatch.cgkit-button {
+	position: relative;
+	margin: 0px 5px 5px 0px;
+}
+.cgkit-as-wrap .cgkit-attribute-swatches .cgkit-attribute-swatch.cgkit-button button {
+	border: 1px solid #333;
+    display: inline-block;
+    padding: 0 9px;
+    border-radius: 2px;
+    background: #fff;
+    font-size: 13px;
+    line-height: 1;
+    color: #333;
+    white-space: nowrap;
+    position: relative;
+    min-width: 47px;
+    min-height: 45px;
+    line-height: 45px;
+    text-align: center;
+    transition: background 0.2s;
+}
+.cgkit-as-wrap .cgkit-attribute-swatches .cgkit-attribute-swatch.cgkit-button button.button-fluid {
+	padding: 11px 15px;
+	min-width: auto;
+    min-height: auto;
+    line-height: 1;
+}
+.cgkit-as-wrap .cgkit-attribute-swatches .cgkit-attribute-swatch.cgkit-button button:not(.cgkit-disabled):not(.cgkit-swatch-selected):hover {
+	background-color: #eee;
+}
+.cgkit-as-wrap .cgkit-swatch-title {
+	display: none;
+}
+.cgkit-as-wrap .cgkit-attribute-swatches .cgkit-attribute-swatch.cgkit-button > button span.cross {
+	width: 100%;
+	height: 100%;
+}
+.cgkit-as-wrap .cgkit-attribute-swatches .cgkit-attribute-swatch.cgkit-button button.cgkit-swatch-selected {
+	background: #111;
+	border-color: #111;
+	color: #fff;
+}
+.cgkit-as-wrap .cgkit-chosen-attribute.no-selection {
+	opacity: 0.5;
+	font-weight: normal;
+	padding-left: 3px;
+}
+.cgkit-as-wrap .cgkit-attribute-swatches {
+	margin: 0;
+}
+.cgkit-as-wrap .cgkit-attribute-swatches .cgkit-attribute-swatch.cgkit-image button {
+	width: 60px;
+	height: 60px;
+	border-radius: 0;
+	border: 1px solid transparent;
+	transition: border 0.2s;
+	box-sizing: border-box;
+	background: unset;
+	padding: 0px;
+}
+.cgkit-as-wrap .cgkit-attribute-swatches .cgkit-attribute-swatch > button {
+	width: 100%;
+	display: block;
+}
+.cgkit-as-wrap .cgkit-attribute-swatches .cgkit-attribute-swatch.cgkit-color > button {
+	width: 30px;
+	height: 30px;
+	margin: 0 auto;
+	padding: 2px;
+}
+.cgkit-as-wrap .cgkit-attribute-swatches .cgkit-attribute-swatch.cgkit-color span.color-div {
+	width: 26px;
+	height: 26px;
+}
+.summary .variations label {
+	font-size: 12px;
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+.woocommerce-tabs table.woocommerce-product-attributes .no-selection,
+.woocommerce-tabs table.woocommerce-product-attributes .ckit-chosen-attribute_semicolon {
+	display: none;
+}
+/* PDP swatch sizes */
+.summary .cgkit-attribute-swatches .cgkit-attribute-swatch {
+	margin: 0px 8px 8px 0px;
+}
+.summary .cgkit-attribute-swatches .cgkit-attribute-swatch.cgkit-color > button {
+	width: auto;
+}
+.summary .cgkit-attribute-swatches .cgkit-attribute-swatch.cgkit-color > button {
+    height: 40px;
+    width: 40px;
+    padding: 4px;
+	background: unset;
+	position: relative;
+}
+.summary .cgkit-attribute-swatches .cgkit-attribute-swatch.cgkit-color > button.cgkit-swatch-selected:before {
+	border-width: 2px;
+}
+.summary .cgkit-attribute-swatches .cgkit-attribute-swatch.cgkit-color span.color-div {
+	width: 32px;
+	height: 32px;
+}

@@ -1,0 +1,177 @@
+/* CSS Document */
+#cgkit-video-dialog .cgkit-formgroup {
+	min-width: 400px;
+}
+#cgkit-video-dialog #cgkit-video-dialog-input {
+	min-width: 360px;
+    border: 1px solid #ccc;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    padding: 8px;
+    border-radius: 4px;
+}
+#cgkit-video-dialog #browse-media-library {
+	float: right;
+    font-size: 12px;
+	padding: 6px 10px;
+	cursor: pointer;
+    border: 1px solid #aaa;
+    border-radius: 4px;
+    transition: 0.2s all;
+}
+#cgkit-video-dialog #browse-media-library:hover {
+    border-color: #999;
+}
+.ui-dialog .ui-dialog-titlebar-close {
+	overflow: hidden !important;
+	text-indent: -100px;
+}
+.ui-dialog .ui-dialog-buttonpane button {
+	padding: 5px;
+}
+#product_images_container ul.product_images > li .cgkit-addvideos,
+#product_images_container ul.product_images > li .cgkit-editvideos {
+    background: #fff;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    margin: 3px;
+}
+#product_images_container ul.product_images > li .cgkit-addvideos {
+    position: absolute!important;
+    opacity: 0;
+}
+#product_images_container ul.product_images > li:hover .cgkit-addvideos {
+    position: absolute !important;
+    left: 0;
+    -webkit-transition: opacity 0.2s ease-in;
+    -moz-transition: opacity 0.2s ease-in;
+    -o-transition: opacity 0.2s ease-in;
+    opacity: 0.8;
+    z-index: 10;
+    top: 0px;
+    left: 0px;
+    display: inline;
+    cursor: pointer !important;
+}
+#product_images_container ul.product_images > li .cgkit-editvideos {
+    position: absolute !important;
+    left: 0;
+    opacity: 0.8;
+    z-index: 10;
+    top: 0px;
+    left: 0px;
+    display: inline;
+    cursor: pointer !important;
+}
+#product_images_container ul.product_images > li:hover .cgkit-addvideos:before,
+#product_images_container ul.product_images > li .cgkit-editvideos:before {
+    display: block;
+    width: 18px;
+    height: 18px;
+    background-color: #333;
+    margin-left: 0px;
+    content: "";
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg class='play' style='display: none;' viewBox='0 0 48 48' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h48v48H0z' fill='none'%3E%3C/path%3E%3Cpath d='m20 33 12-9-12-9v18zm4-29C12.95 4 4 12.95 4 24s8.95 20 20 20 20-8.95 20-20S35.05 4 24 4zm0 36c-8.82 0-16-7.18-16-16S15.18 8 24 8s16 7.18 16 16-7.18 16-16 16z' fill='%23ffffff' class='fill-000000'%3E%3C/path%3E%3C/svg%3E");
+    -webkit-mask-position: center;
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-size: contain;
+}
+#product_images_container ul.product_images > li .cgkit-editvideos:before {
+    background-color: #ed1f24;
+}
+#cgkit-video-dialog .cgkit-video-dialog-autoplay {
+	float: left;
+	margin-top: 7px;
+}
+/* Video modal */
+div.ui-widget,
+div.ui-widget button,
+.ui-widget #cgkit-video-dialog,
+.ui-widget #cgkit-video-dialog input,
+.ui-widget #cgkit-video-dialog select,
+.ui-widget #cgkit-video-dialog textarea,
+.ui-widget #cgkit-video-dialog button {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+}
+div.ui-widget-header {
+    background: #eee;
+    border-color: #eee;
+}
+.cgkit-video-dialog {
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+.cgkit-video-dialog.ui-dialog .ui-dialog-titlebar {
+    padding: 0.2em 0.5em
+}
+.cgkit-video-dialog.ui-dialog .ui-dialog-title {
+    font-size: 16px;
+}
+.cgkit-video-dialog div.ui-widget-content {
+    border: none;
+    background: #fff;
+    border-radius: 0.5rem;
+}
+.cgkit-dialog.ui-widget-content,
+.cgkit-video-dialog.ui-widget-content {
+    border: none;
+    padding: 10px;
+}
+.cgkit-dialog .ui-widget-content {
+    border: none;
+}
+.cgkit-video-dialog.ui-dialog .ui-dialog-buttonpane .ui-dialog-buttonset,
+.cgkit-dialog.ui-dialog .ui-dialog-buttonpane .ui-dialog-buttonset {
+    float: none;
+    display: flex;
+}
+div.ui-dialog .ui-dialog-buttonpane button {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-right: 0;
+    margin-left: 0.5em;
+    border:  1px solid #ccc;
+    border-radius: 4px;
+    padding: 8px 12px;
+    box-shadow: 0 1px 2px 0 rgb(0 0 0 / 5%);
+    background: #fff;
+    color: #222;
+    font-size: 13px;
+    transition: 0.2s all;
+    height: auto;
+}
+div.ui-dialog .ui-dialog-buttonpane button:last-child {
+    background-color: #2271b1;
+    border-color: #2271b1;
+    color: #fff;
+    margin-left: auto;
+    font-weight: bold;
+}
+div.ui-dialog .ui-dialog-buttonpane button:not(:last-child):hover {
+    border-color: #999;
+}
+.ui-dialog .ui-dialog-titlebar-close {
+    border: none;
+}
+.ui-widget-header .ui-icon.ui-icon-closethick {
+    background: none;
+    border: none;
+}
+.ui-widget-header .ui-icon.ui-icon-closethick:before,
+.ui-widget-header .ui-icon.ui-icon-closethick::after {
+    position: absolute;
+    margin-left: 0;
+    top: 0px;
+    left: 7px;
+    width: 2px;
+    height: 15px;
+    background-color: #333;
+    content: "";
+}
+.ui-widget-header .ui-icon.ui-icon-closethick:before {
+    transform: rotate(45deg);
+}
+.ui-widget-header .ui-icon.ui-icon-closethick:after {
+    transform: rotate(-45deg);
+}
