@@ -1,0 +1,68 @@
+body, button, input, textarea {
+	-webkit-font-smoothing: antialiased;
+	position: relative;
+}
+
+.editor-styles-wrapper p {
+	line-height: 1.5;
+}
+
+body .editor-styles-wrapper figcaption {
+	color: #999;
+	font-size: 14px;
+}
+
+.edit-post-visual-editor.editor-styles-wrapper p.wp-block-cover-text  {
+	color: #fff;
+	font-size: 2em;
+	line-height: 1.25;
+}
+
+body .block-library-list .editor-rich-text__tinymce {
+	padding-left: 0;
+}
+
+.block-library-list ul li {
+	position: relative;
+	margin-bottom: 3px;
+}
+
+body .wp-block-quote:not(.is-large):not(.is-style-large) {
+	padding-left: 0;
+	border: none;
+}
+
+body .wp-block-pullquote {
+	border: none;
+}
+
+.wp-block-quote {
+	position: relative;
+	margin: 2.5em 40px;
+}
+
+.wp-block-pullquote {
+	position: relative;
+	margin: 2.5em 40px 0 40px;
+	text-align: left;
+}
+
+.wp-block-quote:before,
+.wp-block-pullquote:before {
+	position: absolute;
+	top: -10px;
+	left: -40px;
+	margin: 0;
+	color: #ccc;
+	font-family: Georgia,serif;
+	font-size: 50px;
+	content: "\201c";
+}
+
+.wp-block-pullquote__citation,
+.wp-block-pullquote cite,
+.wp-block-pullquote footer,
+.wp-block-quote__citation {
+	font-size: 16px;
+	text-transform: none;
+}

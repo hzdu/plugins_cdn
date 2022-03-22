@@ -1,0 +1,217 @@
+/* Shoptimizer YITH Wishlist Styling */
+
+@media (max-width: 992px) {
+	ul.products li.product .yith-wcwl-add-button a,
+	ul.products li.product .yith-wcwl-wishlistaddedbrowse a,
+	ul.products li.product .yith-wcwl-wishlistexistsbrowse a {
+		opacity: 1;
+	}
+}
+
+
+ul.products li.product .yith-wcwl-add-button a {
+	opacity: 0;
+}
+
+ul.products li.product .yith-wcwl-add-button a,
+ul.products li.product .yith-wcwl-wishlistaddedbrowse a,
+ul.products li.product .yith-wcwl-wishlistexistsbrowse a {
+	display: block;
+	position: absolute;
+	top: 10px;
+	right: 25px;
+	width: 30px;
+	height: 30px;
+	padding: 0;
+	border-radius: 50%;
+	background-color: #fff;
+	font-size: 0;
+	transition: 0.2s all;
+}
+
+@media (max-width: 992px) {
+
+	.sub-menu .woocommerce-image__wrapper {
+		margin-bottom: 0.8em;
+	}
+
+	.sub-menu ul.products li.product .yith-wcwl-add-button a,
+	.sub-menu ul.products li.product .yith-wcwl-wishlistaddedbrowse a,
+	.sub-menu ul.products li.product .yith-wcwl-wishlistexistsbrowse a {
+		right: 15px;
+	}
+
+}
+
+@media (min-width: 993px) {
+
+	.sub-menu ul.products li.product .yith-wcwl-add-button a,
+	.sub-menu ul.products li.product .yith-wcwl-wishlistaddedbrowse a,
+	.sub-menu ul.products li.product .yith-wcwl-wishlistexistsbrowse a {
+		right: 10px;
+	}
+
+	.site .main-navigation ul.products li.product .yith-wcwl-add-button a,
+	.site .main-navigation ul.products li.product .yith-wcwl-wishlistaddedbrowse a,
+	.site .main-navigation ul.products li.product .yith-wcwl-wishlistexistsbrowse a {
+		transition: all 0.1s;
+	}
+
+	body .main-navigation ul.menu li.menu-item-has-children.full-width > .sub-menu-wrapper li .yith-wcwl-add-to-wishlist a {
+		padding: 0;
+		font-size: 0;
+	}
+
+}
+
+ul.products li.product .yith-wcwl-wishlistaddedbrowse a,
+ul.products li.product .yith-wcwl-wishlistexistsbrowse a,
+ul.products li.product:hover .yith-wcwl-add-button a,
+ul.products li.product:hover .yith-wcwl-wishlistaddedbrowse a,
+ul.products li.product:hover .yith-wcwl-wishlistexistsbrowse a {
+	opacity: 1;
+}
+
+ul.products li.product .yith-wcwl-add-button a::before,
+ul.products li.product .yith-wcwl-wishlistaddedbrowse a::before,
+ul.products li.product .yith-wcwl-wishlistexistsbrowse a::before,
+.summary .yith-wcwl-add-to-wishlist a:before {
+	position: absolute;
+	content: "";
+	display: block;
+	width: 16px;
+	height: 16px;
+	background: #333;
+	-webkit-mask-position: center;
+	-webkit-mask-repeat: no-repeat;
+	-webkit-mask-size: contain;
+}
+
+ul.products li.product .yith-wcwl-add-button a::before,
+ul.products li.product .yith-wcwl-wishlistaddedbrowse a::before,
+ul.products li.product .yith-wcwl-wishlistexistsbrowse a::before {
+	left: 50%;
+	top: 50%;
+ 	transform: translate(-50%, -50%);
+}
+
+.summary .yith-wcwl-add-to-wishlist a:before {
+	margin-top: 4px;
+}
+
+ul.products li.product .yith-wcwl-add-button a::before,
+.summary .yith-wcwl-add-to-wishlist a:before {
+	-webkit-mask-image: url("data:image/svg+xml;charset=utf8,%3Csvg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M4.31802 6.31802C2.56066 8.07538 2.56066 10.9246 4.31802 12.682L12.0001 20.364L19.682 12.682C21.4393 10.9246 21.4393 8.07538 19.682 6.31802C17.9246 4.56066 15.0754 4.56066 13.318 6.31802L12.0001 7.63609L10.682 6.31802C8.92462 4.56066 6.07538 4.56066 4.31802 6.31802Z' stroke='%234A5568' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+	mask-image: url("data:image/svg+xml;charset=utf8,%3Csvg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M4.31802 6.31802C2.56066 8.07538 2.56066 10.9246 4.31802 12.682L12.0001 20.364L19.682 12.682C21.4393 10.9246 21.4393 8.07538 19.682 6.31802C17.9246 4.56066 15.0754 4.56066 13.318 6.31802L12.0001 7.63609L10.682 6.31802C8.92462 4.56066 6.07538 4.56066 4.31802 6.31802Z' stroke='%234A5568' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+}
+
+ul.products li.product .yith-wcwl-wishlistaddedbrowse a::before,
+ul.products li.product .yith-wcwl-wishlistexistsbrowse a::before {
+	-webkit-mask-image: url("data:image/svg+xml;charset=utf8,%3Csvg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M5 13L9 17L19 7' stroke='%234A5568' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+	mask-image: url("data:image/svg+xml;charset=utf8,%3Csvg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M5 13L9 17L19 7' stroke='%234A5568' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+}
+
+ul.products li.product span.feedback {
+	display: none !important;
+}
+
+ul.products li.product .ajax-loading {
+	position: absolute;
+	top: 20px;
+	right: 20px;
+}
+
+li.product:hover .yith-wcwl-add-button a,
+li.product:hover .yith-wcwl-wishlistexistsbrowse a {
+	transform: scale(0.9);
+	z-index: 1;
+}
+
+#yith-wcwtl-output {
+	padding: 1.7em;
+	border: 1px solid #eee;
+	background: #fff;
+}
+
+#yith-wcwtl-output p.yith-wcwtl-msg {
+	color: #111;
+	font-size: 19px;
+}
+
+#yith-wcwtl-output input#yith-wcwtl-email,
+#yith-wcwtl-output label {
+	display: block;
+	width: 100%;
+	margin-top: 10px;
+	font-size: 15px;
+}
+
+#yith-wcwtl-output .button {
+	border-radius: 2px;
+	font-size: 15px;
+}
+
+.woocommerce table.wishlist_table thead th {
+	font-size: 15px;
+}
+
+.woocommerce table.wishlist_table tbody td {
+	font-weight: 400;
+	text-align: left;
+}
+
+body table.cart.wishlist_table tfoot td {
+	border: 0;
+}
+
+.woocommerce-wishlist .yith-wcwl-share h4.yith-wcwl-share-title {
+	margin: 20px 0;
+}
+
+.woocommerce table.wishlist_table td.product-add-to-cart {
+	width: 200px;
+}
+
+.woocommerce table.wishlist_table td.product-add-to-cart a {
+	padding: 13px 0;
+	border: 0;
+	font-size: 15px;
+}
+
+.woocommerce-wishlist.woocommerce #content table.wishlist_table.cart a.remove:hover {
+	background: 0 0;
+}
+
+.woocommerce table.wishlist_table tbody td del {
+	margin-right: 8px;
+	opacity: 0.5;
+	font-size: 14px;
+}
+
+.yith-wcwl-add-to-wishlist {
+	z-index: 2;
+}
+
+/* YITH Wishlist within the Single Product Summary */
+
+.summary .yith-wcwl-add-to-wishlist {
+	margin: -10px 0 15px 0;
+}
+
+.summary .yith-wcwl-add-to-wishlist a {
+	position: relative;
+	padding-left: 22px;
+	color: #444;
+	font-size: 13px;
+	font-weight: 600;
+	transition: all 0.2s;
+}
+
+.summary .yith-wcwl-add-to-wishlist a:hover {
+	color: #000;
+	border-color: #999
+}
+
+.summary .yith-wcwl-add-to-wishlist span.feedback {
+	display: none;
+}

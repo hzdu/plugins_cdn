@@ -1,0 +1,606 @@
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 300;
+    letter-spacing: 0.02em;
+    line-height: 1.5em;
+}
+
+.ccfw-help.container {
+    margin-left: 15px;
+    margin-right: 15px;
+}
+
+/* -- Button -- */
+
+.ccfw-tab-content .button-primary {
+    font-size: 18px;
+    line-height: 50px;
+    height: 50px;
+    padding: 0px 24px;
+    text-shadow: none;
+    text-shadow: none;
+    display: inline-block;
+}
+
+h1.ccfw-help-title {
+    font-size: 40px;
+    margin-top: 30px;
+    margin-bottom: 0px;
+    font-weight: bold;
+    letter-spacing: -0.1px;
+}
+
+h2.ccfw-help-desc {
+    color: #868B97;
+    margin-top: 5px;
+    margin-bottom: 30px;
+    font-size: 22px;
+}
+
+.ccfw-nav-tabs {
+    margin-bottom: 0;
+}
+.ccfw-nav-tabs:after {
+    clear: both;
+    display: table;
+    content: " ";
+}
+.ccfw-nav-tabs > li {
+    float: left;
+    margin-bottom: -1px;
+    display: block;
+}
+.ccfw-nav-tabs > li > a {
+    border: 1px solid transparent;
+    border-radius: 4px 4px 0 0;
+    display: block;
+    padding: 28px 32px;
+    text-decoration: none;
+    font-size: 20px;
+    box-shadow: none;
+}
+
+.ccfw-nav-tabs > li > a:focus {
+    box-shadow: none;
+}
+.ccfw-nav-tabs > li.active > a, .ccfw-nav-tabs > li.active > a:focus, .ccfw-nav-tabs > li.active > a:hover {
+    color: #555;
+    background-color: #fff;
+    border-bottom-color: transparent;
+}
+.ccfw-nav-tabs > li.ccfw-w-red-tab > a {
+    color: red;
+    font-weight: bold;
+}
+.ccfw-tab-content hr {
+    margin: 50px 0;
+    border-color: #eee;
+}
+.ccfw-tab-content {
+    background-color: #fff;
+    width: 100%;
+    float: left;
+}
+.ccfw-tab-content h2 {
+    font-size: 20px;
+}
+.ccfw-tab-content p {
+    font-size: 16px;
+}
+.ccfw-tab-content ul {
+    list-style: disc;
+    font-size: 16px;
+    margin: 0px 0px 40px 18px;
+}
+.ccfw-tab-content ul li {
+    margin-bottom: 8px;
+}
+.ccfw-tab-content > .tab-pane {
+    display: none;
+}
+.ccfw-tab-content > .active {
+    display: block;
+}
+
+.ccfw-tab-pane {
+    padding: 45px;
+}
+.ccfw-tab-pane {
+    display: none;
+}
+.ccfw-tab-pane.active {
+    display: block;
+}
+
+#ccfw-theme-version {
+    font-size: 50%;
+    padding: 10px;
+    background: #ccc;
+}
+#ccfw-w-screenshot {
+    border: 1px solid #ccc;
+    margin-top: 30px;
+}
+.ccfw-w-activated {
+    cursor:not-allowed !important;
+}
+.ccfw-tab-pane-half {
+    width: 45%;
+    float:left;
+    border-left: 1px solid #ccc;
+    padding-left: 20px;
+    margin-top: 15px;
+    padding-right: 20px;
+    margin-bottom: 15px;
+}
+.ccfw-tab-content img {
+    max-width: 100%;
+}
+.ccfw-tab-pane-first-half {
+    border-left: none;
+}
+.ccfw-tab-pane-center {
+    margin-bottom: 30px;
+}
+.ccfw-welcome-title {
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-size: 38px;
+    font-weight: bold;
+}
+
+#freepro .ccfw-welcome-title {
+    margin-bottom: 30px;
+}
+
+.ccfw-tab-content #freepro h2 {
+    font-size: 22px;
+    opacity: 0.6;
+}
+
+.ccfw-tab-content h2.larger {
+    font-size: 26px;
+}
+
+.ccfw-clear {
+    clear: both;
+}
+.ccfw-child-theme-container {
+    position: relative;
+}
+.ccfw-child-theme-description {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    overflow: auto;
+    box-sizing: border-box;
+    padding: 0;
+    max-width: 100%;
+    height: 100%;
+    background-color: #000000;
+    color: #ffffff;
+    -webkit-transition: all 300ms ease-out;
+    -moz-transition: all 300ms ease-out;
+    -ms-transition: all 300ms ease-out;
+    -o-transition: all 300ms ease-out;
+    transition: all 300ms ease-out;
+    -webkit-transition-delay: 500ms;
+    -moz-transition-delay: 500ms;
+    -ms-transition-delay: 500ms;
+    -o-transition-delay: 500ms;
+    transition-delay: 500ms;
+}
+
+.ccfw-child-theme-image-container {
+    position: relative;
+    overflow: hidden;
+}
+.ccfw-child-theme-image-container img {
+    max-width: 100%;
+}
+.ccfw-child-theme-details .theme-details {
+    padding: 10px;
+    background: none repeat scroll 0 0 #F1F1F1;
+    font-size: 18px;
+}
+
+.ccfw-child-theme-details .theme-details.active {
+    background: none repeat scroll 0 0 #2B5F87;
+    color: #fff;
+}
+
+.ccfw-child-theme-details .theme-details .theme-name {
+    float:left;
+}
+
+.ccfw-child-theme-details .theme-details .preview {
+    margin-right: 2px;
+}
+
+.ccfw-actions-count {
+    padding: 0 6px;
+    display: inline-block;
+    background-color: #d54e21;
+    color: #fff;
+    font-size: 9px;
+    line-height: 17px;
+    font-weight: 600;
+    margin: 1px 0 0 2px;
+    vertical-align: top;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    z-index: 26;
+}
+.ccfw-action-required-box {
+    position: relative;
+}
+.ccfw-dismiss-required-action {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    cursor: pointer;
+    background-color: #D24A4A;
+    border-radius: 50%;
+    color: #fff;
+    font-size: 14px;
+    line-height: 20px;
+}
+.ccfw-dismiss-required-action:hover {
+    background-color: #CC8C8C;
+}
+
+#github.ccfw-tab-pane {
+  text-align: center;
+}
+
+#github.ccfw-tab-pane .ccfw-tab-pane-half {
+  min-height: 160px;
+}
+
+#github.ccfw-tab-pane .translate-button, #github .github-button {
+  margin-top: 20px;
+}
+
+#github.ccfw-tab-pane .dashicons {
+  color: #0073aa;
+  font-size: 12px;
+  width: auto;
+}
+
+#github.ccfw-tab-pane h4 {
+  margin:10px;;
+}
+
+#github.ccfw-tab-pane p.review-link {
+  margin:0;
+}
+
+#github.ccfw-tab-pane .ccfw-tab-pane-half hr {
+  display: none;
+}
+
+/* -- Left/Right Grid -- */
+
+.primary-left {
+    width: 60%;
+    float: left;
+}
+
+.primary-right {
+    width: 35%;
+    float: right;
+}
+
+/* -- Intro Tab: Theme Club -- */
+
+.theme-club-intro {
+    background: #1d2432;
+    margin-bottom: 35px;
+    border-radius: 3px;
+}
+
+.theme-club-copy {
+    padding: 0.5% 7% 7% 7%;
+    color: #fff;
+}
+
+.theme-club-copy p {
+    margin-bottom: 1.6em;
+    font-weight: 300;
+    line-height: 1.65em;
+    font-size: 18px;
+}
+
+.theme-club-copy h2 {
+    line-height: 1.5em;
+    font-size: 24px;
+    margin-bottom: -0.3em;
+    color: #fff;
+    font-weight: 500;
+}
+
+.theme-club-copy .button-primary, .ccfw-review .button-primary {
+    font-size: 18px;
+    line-height: 50px;
+    height: 50px;
+    padding: 0px 24px;
+}
+
+.theme-club-copy .discount p {
+    padding: 5% 5% 5% 5%;
+    border: 1px dashed rgba(255, 255, 255, 0.4);
+    margin-bottom: 30px;
+    color: #fff;
+    font-size: 110%;
+    margin-top: -0.3em;
+}
+
+/* -- Intro Tab -- */
+
+.ccfw-tab-content  #intro .primary-left h2 {
+    margin-bottom: 0.7em;
+    line-height: 1.5em;
+}
+
+.ccfw-tab-content  #intro .primary-left h2.larger {
+    font-weight: bold;
+}
+
+#intro .ccfw-welcome-title {
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+#intro .primary-left p {
+    font-weight: 300;
+    font-size: 18px;
+    margin-bottom: 1.8em;
+}
+
+#intro .primary-left ul {
+    margin: 4% 0 5% 0;
+    background: #F8F8F8;
+    padding: 5% 5% 5% 7%;
+    list-style-type: square;
+    font-size: 17px;
+    line-height: 1.8;
+    font-weight: 300;
+}
+
+#intro .primary-left ul li {
+    border-bottom: dotted 1px #ddd;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+}
+
+#intro .primary-left ul li:last-child {
+    border: none;
+    margin-bottom: 0px;
+    padding-bottom: 0px;
+}
+
+/* -- Intro Tab: Review -- */
+
+.ccfw-review {
+    display: inline-block;
+    position: relative;
+    width: 100%;
+    background-color: #fff;
+    margin: 0 auto 24px;
+    border-radius: 3px;
+    border: 1px solid #e5e5e5;
+    box-shadow: 0 1px 1px rgba(0,0,0,.04);
+    box-sizing: border-box;
+    overflow: hidden;
+    padding: 2.5% 7% 7% 7%;
+}
+
+.ccfw-review i {
+    position: absolute;
+    bottom: -30px;
+    right: -26px;
+    width: auto;
+    height: auto;
+    font-size: 120px;
+    opacity: .07;
+    z-index: 1;
+}
+
+.ccfw-review h2 {
+    margin-bottom: -0.1em;
+    font-size: 26px;
+    line-height: 1.45em;
+    font-weight: bold;
+}
+
+.ccfw-review p {
+    margin-bottom: 1.6em;
+    font-weight: 300;
+    line-height: 1.6em;
+    font-size: 17px;
+}
+
+.ccfw-review .button-primary {
+    display: inline-block;
+    float: left;
+}
+
+.ccfw-review em {
+    display: inline-block;
+    font-size: 88%;
+    margin-left: 20px;
+    margin-top: 10px;
+}
+
+
+/* -- Useful Plugins -- */
+
+.useful-table {
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+.useful-table td {
+    border-top: 1px solid #e2e2e2;
+    padding: 35px 0 35px;
+    vertical-align: middle;
+}
+
+.useful-table td.image {
+    width: 140px;
+}
+
+.useful-table th {
+    font-size: 18px;
+    font-weight: 400;
+    padding-bottom: 15px;
+}
+
+.useful-table h3 {
+    margin: 0;
+    font-size: 22px;
+    margin-top: -10px;
+    margin-bottom: 5px;
+    font-weight: 500;
+}
+
+.useful-table p {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 300;
+    opacity: 0.75;
+    margin-bottom: -8px;
+}
+
+.useful-table .link {
+    text-align: right;
+    width: 15%;
+    padding-left: 50px;
+}
+
+/* -- Theme Club Tab -- */
+
+.ccfw-theme-discount {
+    padding: 0.6% 2.2%;
+    margin-bottom: 20px;
+    background: #ffffcc;
+    border: 1px solid #fff1cc;
+    overflow: hidden;
+}
+
+.ccfw-theme-discount p {
+    width: 70%;
+    float: left;
+}
+
+.ccfw-theme-discount .button-primary {
+    float: right;
+    margin-top: 25px;
+}
+
+.ccfw-tab-content .ccfw-theme-discount p {
+    font-size: 20px;
+    line-height: 1.5em;
+    font-weight: 300;
+    letter-spacing: 0.04px;
+}
+
+/* -- Themes Grid -- */
+
+.ccfw-grid-wrapper {
+    margin: 0px -25px;
+}
+
+.grid-item {
+    width: 33.3333%;
+    float: left;
+    margin-bottom: 10px;
+    padding: 25px;
+}
+
+.grid-item a:focus {
+    outline: none;
+}
+
+.grid-item:nth-child(3n+1) {
+  clear: both;
+}
+
+.grid-inner a {
+    display: block;
+    transition: all 0.25s ease 0s;
+}
+
+.grid-item img {
+    border: 1px solid #eee;
+    padding: 5px;
+    margin-bottom: 20px;
+    transition: all 0.25s ease 0s;
+}
+
+.grid-inner a:hover img {
+    border-color: #ccc;
+    opacity: 0.85;
+}
+
+.grid-item .title, .grid-item .excerpt {
+    display: block;
+    line-height: 1.5em;
+}
+
+.grid-item .title {
+    font-size: 24px;
+    font-weight: 300;
+    margin-bottom: 6px;
+    letter-spacing: 0.5px;
+}
+
+.grid-item .title a {
+    text-decoration: none;
+}
+
+.grid-item .title a:hover {
+    color: #111;
+}
+
+.grid-item .excerpt {
+    font-size: 16px;
+    font-weight: 300;
+}
+
+.ccfw-tab-content img {
+    height: inherit;
+}
+
+/*Breakpoints*/
+
+@media (max-width: 1200px) {
+  .ccfw-tab-content {
+    width: 98%;
+  }
+  .ccfw-tab-pane-half {
+    width: 43%;
+  }
+}
+@media (max-width: 782px) {
+  #github.ccfw-tab-pane .ccfw-tab-pane-half hr {
+    display:block;
+  }
+
+  .ccfw-tab-pane-half {
+    width: auto;
+    float: none;
+    border-left: none;
+  }
+  .ccfw-welcome-title, .ccfw-tab-content h1 {
+    line-height: 30px;
+  }
+  .ccfw-fre-pro table td {
+    padding: 30px 10px;
+  }
+}

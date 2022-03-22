@@ -1,0 +1,49 @@
+/* Shoptimizer WooCommerce Quick View Styling: https://woocommerce.com/products/woocommerce-quick-view */
+
+body .main-navigation ul.menu li.menu-item-has-children.full-width > .sub-menu-wrapper li a.button.quick-view-button, 
+body ul.products li.product .button.quick-view-button {
+	bottom: 40px;
+	background-color: transparent;
+	color: #111;
+	font-size: 12px;
+}
+
+.quick-view-button span {
+	top: 3px;
+}
+
+ul.products li.product:not(.product-category) {
+	padding-bottom: 60px;
+}
+
+@media (min-width: 993px) {
+	body .main-navigation ul.products li.product {
+		padding-bottom: 60px;
+	}
+	body .main-navigation ul.products li.product .button.quick-view-button:hover {
+		color: #111 !important;
+	}
+}
+
+.quick-view.single-product .call-back-feature,
+.quick-view.single-product .modal {
+	display: none;
+}
+
+.quick-view .product-details-wrapper {
+	max-width: 100%;
+	padding: 0;
+}
+
+.single-product div.product .images.quick-view-detail-button {
+	width: auto;
+	font-size: 16px;
+}
+
+.quick-view div.product .summary {
+	position: inherit;
+}
+
+.quick-view .shoptimizer-product-prevnext {
+	display: none;
+}
