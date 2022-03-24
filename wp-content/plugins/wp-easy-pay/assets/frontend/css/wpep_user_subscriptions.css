@@ -1,0 +1,457 @@
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+.table-responsive {
+  overflow-x: auto;
+}
+
+.tablestyle table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+  box-shadow: 0px 0px 15px -10px #000;
+  -webkit-box-shadow: 0px 0px 15px -10px #000;
+  -moz-box-shadow: 0px 0px 15px -10px #000;
+  -o-box-shadow: 0px 0px 15px -10px #000;
+  -ms-box-shadow: 0px 0px 15px -10px #000;
+  border: none;
+  color: rgba(0, 0, 0, 0.87);
+}
+
+.tablestyle th {
+  text-align: left;
+  padding: 10px 22px;
+  font-size: 12px;
+  height: 50px;
+  font-weight: 500;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.tablestyle tr {
+  transition: all 0.5s ease-out;
+}
+
+.tablestyle tr:hover {
+  background: #fdfdfd;
+}
+
+.tablestyle td {
+  text-align: left;
+  padding: 10px 22px;
+  font-size: 14px;
+  vertical-align: middle;
+  height: 90px;
+  border-top: 1px solid rgba(0, 0, 0, 0.12);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.tablestyle .wpep_subscription_action.wpep-btn-start {
+  background-color: transparent;
+  border: 0;
+  color: #33be52;
+  font-size: 12px;
+  font-weight: 400;
+  padding: 5px 15px;
+  text-decoration: underline;
+}
+
+.tablestyle .wpep_subscription_action.wpep-btn-start:hover, .tablestyle .wpep_subscription_action.wpep-btn-start:focus, .tablestyle .wpep_subscription_action.wpep-btn-start:active {
+  background-color: transparent;
+  border: 0;
+  color: #33be52;
+}
+
+.tablestyle .wpep_subscription_action.wpep-btn-pending {
+  background-color: transparent;
+  border: 0;
+  color: #ff4200;
+  font-size: 12px;
+  font-weight: 400;
+  padding: 5px 15px;
+  text-decoration: underline;
+  box-shadow: none;
+  outline: none;
+}
+
+.tablestyle .wpep_subscription_action.wpep-btn-pending:hover, .tablestyle .wpep_subscription_action.wpep-btn-pending:focus, .tablestyle .wpep_subscription_action.wpep-btn-pending:active {
+  background-color: transparent;
+  border: 0;
+  color: #ff4200;
+}
+
+.subscription {
+  color: #fff;
+  background: #5d78ff;
+  padding: 0px 15px;
+  height: 20px;
+  line-height: 20px;
+  margin: 0;
+  border-radius: 50px;
+  font-size: 11px;
+  display: inline-block;
+  text-transform: capitalize;
+}
+
+.donation_recurring {
+  color: #fff;
+  background: #a254f9;
+  padding: 3px 15px;
+  height: auto;
+  line-height: normal;
+  margin: 0;
+  border-radius: 50px;
+  font-size: 11px;
+  display: inline-block;
+  text-transform: capitalize;
+  vertical-align: middle;
+  text-align: center;
+}
+
+.simple {
+  color: #fff;
+  background: #ff4200;
+  padding: 0px 15px;
+  height: 20px;
+  line-height: 20px;
+  margin: 0;
+  border-radius: 50px;
+  font-size: 11px;
+  display: inline-block;
+  text-transform: capitalize;
+  vertical-align: middle;
+}
+
+.donation {
+  color: #fff;
+  background: #fd397a;
+  padding: 0px 15px;
+  height: 20px;
+  line-height: 20px;
+  margin: 0;
+  border-radius: 50px;
+  font-size: 11px;
+  display: inline-block;
+  text-transform: capitalize;
+  vertical-align: middle;
+}
+
+.Completed, .COMPLETED {
+  color: #fff;
+  background: #33be52;
+  padding: 0px 15px;
+  height: 20px;
+  line-height: 20px;
+  margin: 0;
+  border-radius: 50px;
+  font-size: 11px;
+  display: inline-block;
+  text-transform: uppercase;
+  vertical-align: middle;
+}
+.Failed {
+  color: #fff;
+  background: #ff4200;
+  padding: 0px 15px;
+  height: 20px;
+  line-height: 20px;
+  margin: 0;
+  border-radius: 50px;
+  font-size: 11px;
+  display: inline-block;
+  text-transform: uppercase;
+  vertical-align: middle;
+}
+
+.Paused {
+  color: #fff;
+  background: #ff4200;
+  padding: 0px 15px;
+  height: 20px;
+  line-height: 20px;
+  margin: 0;
+  border-radius: 50px;
+  font-size: 11px;
+  display: inline-block;
+  text-transform: uppercase;
+  vertical-align: middle;
+}
+
+.Cancelled {
+  color: #fff;
+  background: #ff4200;
+  padding: 0px 15px;
+  height: 20px;
+  line-height: 20px;
+  margin: 0;
+  border-radius: 50px;
+  font-size: 11px;
+  display: inline-block;
+  text-transform: uppercase;
+  vertical-align: middle;
+}
+
+.Active {
+  color: #fff;
+  background: #6ec1e4;
+  padding: 0px 15px;
+  height: 20px;
+  line-height: 20px;
+  margin: 0;
+  border-radius: 50px;
+  font-size: 11px;
+  display: inline-block;
+  text-transform: uppercase;
+  vertical-align: middle;
+}
+
+.text-center {
+  text-align: center !important;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #dadada;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+.wpep-subscription-tabs {
+  margin: 0;
+  padding: 0;
+  width: 200px;
+  background-color: #fff;
+  position: absolute;
+  height: 412px;
+  overflow: auto;
+  border: 1px solid #e0e0e0;
+  box-shadow: 0px 0px 15px -10px #000;
+  -webkit-box-shadow: 0px 0px 15px -10px #000;
+  -moz-box-shadow: 0px 0px 15px -10px #000;
+  -o-box-shadow: 0px 0px 15px -10px #000;
+  -ms-box-shadow: 0px 0px 15px -10px #000;
+}
+
+.wpep-subscription-tabs a {
+  display: block;
+  color: #333;
+  padding: 16px;
+  text-decoration: none!important;
+  border-bottom: 1px solid #e0e0e0;
+}
+.wpep-subscription-tabs a:last-child {
+  /* border-bottom: 0; */
+}
+
+a.sub_details:hover, a.sub_details:focus, a.sub_details:active {
+  outline: none!important;
+}
+ 
+.wpep-subscription-tabs a.wpep-tab-active {
+  background-color: #f8f8f8;
+  color: #333;
+}
+
+.wpep-subscription-tabs a:hover:not(.wpep-tab-active) {
+  background-color: #333;
+  color: #fff;
+  cursor: pointer;
+}
+
+div.wpep-subscriptions-content {
+  margin-left: 200px;
+  padding: 1px 16px;
+  height: 412px;
+  display:none;
+  min-height: 233px;
+}
+div.wpep-subs-active.wpep-subscriptions-content{
+  display: block;
+}
+@media screen and (max-width: 1099px) {
+  .wpep-subscription-tabs {
+    width: 100%;
+    height: auto;
+    position: relative;
+    margin-bottom: 15px;
+  }
+  .wpep-subscription-tabs a {float: left;}
+  div.wpep-subscriptions-content {
+    margin-left: 0;
+    padding: 0;
+  }
+}
+#TB_ajaxContent {
+  padding: 15px!important;
+  width:100%!important;
+}
+#wpep_thickbox_trigger {
+  position: fixed;
+  z-index: -1;
+  left: 0;
+  font-size: 0;
+}
+#TB_title {
+  height: 50px;
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  position: relative;
+}
+#TB_ajaxWindowTitle {
+  padding: 0;
+}
+#TB_closeWindowButton {
+  top: 0;
+  margin: auto;
+  bottom: 0;
+}
+#TB_closeWindowButton:hover, #TB_closeWindowButton:focus, #TB_closeWindowButton:active,
+.tb-close-icon:hover, .tb-close-icon:focus, .tb-close-icon:active {
+  outline: none!important;
+}
+.wpep-btn-wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+}
+
+.wpep-btn-wrap .wpep-btn-success {
+  border: 1px solid #33be52;
+  background: #33be52;
+  color: #fff;
+}
+
+.subscription_actions .wpep-btn-success {
+  border: none;
+  background: transparent;
+  color: #33be52;
+}
+
+.wpep-btn-wrap .wpep-btn-warning {
+  background: #ff4200;
+  border: 1px solid #ff4200;
+  color: #fff;
+}
+
+.subscription_actions .wpep-btn-warning {
+  background: transparent;
+  border: 0px;
+  color: #ff4200;
+}
+.wpep_overlay_bg {
+  display: none;
+  color: #fff;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 99999;
+  background: rgba(0,0,0, 0.7);
+  
+}
+@media screen and (max-width: 400px) {
+  .wpep-subscription-tabs a {
+    text-align: center;
+    float: none;
+  }
+}
+.credit-card {
+  border: 1px solid #e0e0e0;
+  margin-bottom: 20px;
+  border-radius: 7px;
+  width: 100%;
+  position: relative;
+  transition: all 0.4s ease;
+  box-shadow: 0 2px 4px 0 #cfd7df;
+  min-height: 50px;
+  padding: 18px 25px;
+  color: #333;
+  max-width: 550px;
+  background-color: #fff;
+  display: flex;
+  justify-content: flex-start;
+  line-height: 1.8;
+}
+.credit-card > .card_brand, .credit-card > .card_num, .credit-card > .card_exp {
+  display: flex;
+  flex-direction: column;
+}
+.credit-card > .card_brand {
+  flex: 0 0 25%;
+  -webkit-flex: 0 0 25%;
+}
+.credit-card > .card_num {
+  flex: 0 0 45%;
+  -webkit-flex: 0 0 45%;
+}
+.credit-card > .card_exp {
+  flex: 0 0 30%;
+  -webkit-flex: 0 0 30%;
+}
+.credit-card span.title {
+  font-weight: 600;
+}
+.credit-card .wpep_card_delete {
+  text-decoration: none!important;
+  margin-left: 25px;
+  color: #5d97ff;
+  margin-top: -20px;
+  display: inline-flex;
+  transition: all 0.1s ease 0s;
+  -webkit-transition: all 0.1s ease 0s;
+  -moz-transition: all 0.1s ease 0s;
+  -ms-transition: all 0.1s ease 0s;
+  -o-transition: all 0.1s ease 0s;
+}
+.credit-card .wpep_card_delete:hover {
+  color: #ff4200;
+}
+.credit-card .wpep_card_delete .dashicons {
+  font-size: 2rem;
+}
+#wpep_card_add {
+  text-decoration: none;
+  border: 1px solid #5d97ff;
+  padding: 8px 16px;
+  min-width: 110px;
+  display: inline-block;
+  text-align: center;
+  border-radius: 4px;
+  color: #5d97ff;
+  transition: all 0.3s ease 0s;
+  -webkit-transition: all 0.3s ease 0s;
+  -moz-transition: all 0.3s ease 0s;
+  -ms-transition: all 0.3s ease 0s;
+  -o-transition: all 0.3s ease 0s;
+}
+#wpep_card_add:hover {
+  background: #5d97ff;
+  color: #FFF;
+}  

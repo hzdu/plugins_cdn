@@ -1,0 +1,114 @@
+.multi-select-container {
+    display: inline-block;
+    position: relative;
+    width: 100%;
+    
+}
+
+.multi-select-menu {
+    position: absolute;
+    left: 0;
+    top: 52px;
+    z-index: 1;
+    float: left;
+    min-width: 100%;
+    background: #fff;
+    margin: 0;
+    border: 1px solid #e2e5ec;
+    display: none;
+}
+
+.multi-select-menuitem {
+    display: block!important;
+    font-size: 13px!important;
+    padding: 1rem 2rem;
+    white-space: nowrap!important;
+    border-bottom: 1px solid #e2e5ec;
+    margin: 0!important;
+}
+
+.multi-select-menuitem--titled:before {
+    display: block;
+    font-weight: bold;
+    content: attr(data-group-title);
+    margin: 0 0 0.25em -20px;
+}
+
+.multi-select-menuitem--titledsr:before {
+    display: block;
+    font-weight: bold;
+    content: attr(data-group-title);
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+}
+
+.multi-select-presets {
+    border-bottom: 1px solid #ddd;
+}
+
+.multi-select-menuitem input {
+    position: absolute;
+    margin-top: 0.10em;
+    margin-left: -23px;
+}
+
+.multi-select-button {
+    display: inline-block;
+    width: -webkit-fill-available;
+    border-radius: 0;
+    height: 50px;
+    padding: 0 15px;
+    font-size: 14px;
+    line-height: 50px;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #e2e5ec;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    vertical-align: -0.5em;
+    cursor: default;
+    outline: none!important;
+}
+
+.multi-select-button:after {
+    content: "";
+    display: inline-block;
+    width: 0px;
+    height: 0;
+    border-style: solid;
+    border-width: 0.4em 0.4em 0 0.4em;
+    border-color: #999 transparent transparent transparent;
+    margin: auto;
+    vertical-align: 0.1em;
+    right: 15px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+}
+
+.multi-select-container--open .multi-select-menu {
+    display: block;
+}
+
+.multi-select-container--open .multi-select-button:after {
+    border-width: 0 0.4em 0.4em 0.4em;
+    border-color: transparent transparent #999 transparent;
+}
+
+.multi-select-container--positioned .multi-select-menu {
+    /* Avoid border/padding on menu messing with JavaScript width calculation */
+    box-sizing: border-box;
+}
+
+.multi-select-container--positioned .multi-select-menu label {
+    /* Allow labels to line wrap when menu is artificially narrowed */
+    white-space: normal;
+}

@@ -1,0 +1,309 @@
+*,
+*:after,
+*:before {
+  box-sizing: border-box;
+}
+
+@font-face {
+  font-family: "icomoon";
+  src: url("../fonts/icomoon.eot?rvheu5");
+  src: url("../fonts/icomoon.eot?rvheu5#iefix") format("embedded-opentype"), url("../fonts/icomoon.ttf?rvheu5") format("truetype"), url("../fonts/icomoon.woff?rvheu5") format("woff"), url("../fonts/icomoon.svg?rvheu5#icomoon") format("svg");
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+.icomoonLib [class^="icon-"],
+.icomoonLib [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: "icomoon" !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-pay:before {
+  content: "\c007";
+  font-family: "icomoon" !important;
+}
+
+.wpep-popup .wpep-content::-webkit-scrollbar {
+  width: 5px;
+}
+
+.wpep-popup .wpep-content::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px white;
+}
+
+.wpep-box {
+  width: 40%;
+  margin: 0 auto;
+  background: rgba(255, 255, 255, 0.2);
+  padding: 35px;
+  border: 2px solid #fff;
+  border-radius: 20px/50px;
+  background-clip: padding-box;
+  text-align: center;
+}
+
+.wpep-popup h2 {
+  margin-top: 0;
+  color: #333;
+}
+
+.wpep-popup .wpep-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  transition: all 0.2s;
+  font-size: 30px;
+  text-decoration: none;
+  color: #333;
+  width: 20px;
+  height: 20px;
+  z-index: 9;
+}
+
+.wpep-popup .wpep-close > span {
+  width: 100%;
+  height: 1px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  background: #000;
+}
+
+.wpep-popup .wpep-close > span:nth-child(1) {
+  top: 15px;
+  transform: rotate(-45deg);
+}
+
+.wpep-popup .wpep-close > span:nth-child(2) {
+  top: 15px;
+  transform: rotate(45deg);
+}
+
+.wpep-popup .wpep-content {
+  height: 100%;
+  overflow-y: scroll;
+  padding: 25px;
+}
+
+.wpep-overlay:target:before {
+  display: none;
+}
+
+.wpep-overlay:before {
+  content: "";
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: block;
+  background: rgba(0, 0, 0, 0.85);
+  position: fixed;
+  z-index: 9999;
+}
+
+.wpep-overlay {
+  overflow: visible;
+  display: none;
+  position: relative;
+  z-index: 99999;
+}
+
+.wpep-overlay .wpep-popup {
+  background: #fff;
+  border-radius: 5px;
+  width: 90%;
+  max-width: 650px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding: 0;
+  margin: 85px auto;
+  z-index: 9999;
+  /* overflow: hidden; */
+  height: 80%;
+  /* bottom: 0; */
+  right: 0;
+}
+
+.wpep-popup-logo {
+  position: absolute;
+  margin: 0 auto;
+  display: block;
+  left: 0;
+  right: 0;
+  top: -50px;
+  z-index: 10000;
+  border-radius: 100%;
+  display: block;
+  width: 90px;
+  height: 90px;
+  overflow: hidden;
+  background: #f2f2f2;
+  text-align: center;
+}
+
+.wpep-popup-logo img {
+  max-width: 100%;
+  height: 100%;
+  width: 100%;
+}
+
+.wpep-overlay:target .wpep-popup {
+  top: -100%;
+  left: -100%;
+}
+
+body .wpep-popup .multipage .wizard-fieldset {
+  margin-top: 60px;
+}
+
+.form-wizard-header-logo {
+  margin-top: 40px;
+}
+
+@media screen and (max-width: 768px) {
+  .wpep-overlay .wpep-popup.completed {
+	height: auto !important;
+  }
+  .wpep-overlay .wpep-popup {
+	height: 80%;
+  }
+}
+
+.wpep-btn {
+  padding: 0px 40px;
+  line-height: 40px;
+  outline: none;
+  font-size: 16px;
+  text-align: center;
+  border: none;
+  background: transparent;
+  color: #000;
+  cursor: pointer;
+  display: inline-block;
+  text-decoration: none;
+  outline: none;
+}
+
+.wpep-btn:hover,
+.wpep-btn:focus,
+.wpep-btn:active {
+  outline: none;
+}
+
+.wpep-btn-primary {
+  color: #fff;
+  opacity: 1;
+  transition: opacity 0.25s ease-in-out;
+  -moz-transition: opacity 0.25s ease-in-out;
+  -webkit-transition: opacity 0.25s ease-in-out;
+}
+
+.wpep-btn-primary:hover,
+.wpep-btn-primary:focus,
+.wpep-btn-primary:active {
+  opacity: 0.8;
+}
+
+.wpep-btn-primary {
+  background: var(--wpep-theme-color);
+  border: 1px solid var(--wpep-theme-color);
+  box-shadow: 0px 0px 20px -8px var(--wpep-theme-color);
+}
+
+.wpep-popup .wpep-content::-webkit-scrollbar-thumb {
+  background-color: var(--wpep-theme-color);
+  outline: 1px solid var(--wpep-theme-color);
+  border-radius: 4px;
+}
+
+.wpep-popup .wpep-close:hover {
+  color: var(--wpep-theme-color);
+}
+
+.wpep-button {
+  font-size: 1em;
+  padding: 10px;
+  color: #fff;
+  border: 2px solid var(--wpep-theme-color);
+  border-radius: 20px/50px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s ease-out;
+}
+
+.wpep-button:hover {
+  background: var(--wpep-theme-color);
+}
+
+.overlay-close {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 9999;
+}
+
+span.fieldReq {
+  font-size: 10px;
+  vertical-align: top;
+  color: red;
+}
+span.donationGoalProgressBar {
+  width: 100%;
+  display: inline-flex;
+  height: 12px;
+  background: #EEEEEE;
+  border-radius: 10px;
+}
+span.donationGoalProgressBar > span {    
+  border-radius: 10px;
+  background-color: var(--wpep-theme-color);
+}
+.donationGoalDetails {
+    display: block;
+    text-align: right;
+    font-weight: bold;
+}
+.donationGoalDetails small {
+  font-weight: normal;
+}
+p.doantionGoalAchieved {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    background: rgba(255,255,255, 0.75);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    font-weight: bold;
+}

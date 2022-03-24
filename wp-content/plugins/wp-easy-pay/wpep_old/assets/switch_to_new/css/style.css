@@ -1,0 +1,125 @@
+/* Define how SqPaymentForm iframes should look */
+.wpep-input {
+    border: 1px solid #bbb;
+    border-radius: 3px;
+    outline-offset: -2px;
+    margin-bottom: 5px;
+    display: inline-block;
+    min-height: 35px;
+}
+
+/* Define how SqPaymentForm iframes should look when they have focus */
+.wpep-input--focus {
+    outline: 5px auto rgb(59, 153, 252);
+}
+
+/* Define how SqPaymentForm iframes should look when they contain invalid values */
+.wpep-input--error {
+    outline: 5px auto rgb(255, 97, 97);
+}
+.payment_success_ok{
+    background: url(../img/success.png) no-repeat;
+    background-size: cover;
+    height: 100px;
+    width: 100px;
+    margin: 0 auto;
+    margin-bottom: 15px;
+}
+.wpep-field.date, 
+.wpep-field.cvv {
+    float: left;
+    width: 49%;
+}
+
+.wpep-field.date {
+    margin-right: 2%;
+}
+
+.wpep-error,
+.wpep-success {
+    color: #f00;
+    display: block;
+    font-size: 1em;
+    font-weight: normal;
+}
+
+.wpep-success {
+	color: #000;
+    font-size: 20px;
+    font-weight: 600;
+    padding: 10px;
+    text-align: center;
+}
+
+#form-container {
+    position: relative;
+    width: 380px;
+    margin: 0 auto;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.third {
+    float: left;
+    width: calc((100% - 32px) / 3);
+    padding: 0;
+    margin: 0 16px 16px 0;
+}
+
+.third:last-of-type {
+    margin-right: 0;
+}
+
+/* Define how SqPaymentForm iframes should look */
+.sq-input {
+    height: 56px;
+    box-sizing: border-box;
+    border: 1px solid #E0E2E3;
+    background-color: white;
+    border-radius: 6px;
+    display: inline-block;
+    -webkit-transition: border-color .2s ease-in-out;
+    -moz-transition: border-color .2s ease-in-out;
+    -ms-transition: border-color .2s ease-in-out;
+    transition: border-color .2s ease-in-out;
+}
+
+/* Define how SqPaymentForm iframes should look when they have focus */
+.sq-input--focus {
+    border: 1px solid #6E4EEC;
+}
+
+/* Define how SqPaymentForm iframes should look when they contain invalid values */
+.sq-input--error {
+    border: 1px solid #E02F2F;
+}
+
+#sq-card-number {
+    margin-bottom: 16px;
+}
+
+/* Customize the "Pay with Credit Card" button */
+.button-credit-card {
+    border-radius: 50px;
+    box-shadow:
+            0px 2px 8px rgba(0, 0, 0, 0.08),
+            0px 1px 3px rgba(0, 0, 0, 0.04);
+    height: auto;
+    font-size: 16px;
+    letter-spacing: 0.5px;
+    line-height: 24px;
+    margin-top: 16px;
+    padding: 16px;
+    position: relative;
+    text-transform: uppercase;
+    width: 100%;
+    z-index: 1;
+    background: linear-gradient(180deg,#8E72FF -57.14%,#6E4EEC 125%);
+    border: none;
+    color: #fff;
+}
+
+.button-credit-card:hover {
+    background: linear-gradient(180deg,#a791ff -57.14%,#856aef 125%);
+    color: #fff;
+}
