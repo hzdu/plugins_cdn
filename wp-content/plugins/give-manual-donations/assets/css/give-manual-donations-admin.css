@@ -1,0 +1,194 @@
+/*!
+ * Give Manual Donations Admin CSS
+ *
+ * @description: The Main CSS file for ADMIN styles
+ * @package:     Give_Manual_Donations
+ * @copyright:   Copyright (c) 2016, GiveWP
+ * @license:     http://opensource.org/licenses/gpl-2.0.php GNU Public License
+*/
+
+p.description,
+label.description,
+.form-table td p.description,
+.form-table td label.description {
+	color: #aaa;
+	font-style: italic;
+	margin: 0;
+	padding-top: .5em;
+	font-size: 13px;
+	display: block;
+	clear: both;
+}
+
+.give-manual-from-user div.give-select-chosen {
+	min-width: 400px!important;
+}
+
+#give-md-donor-details .chosen-container {
+	width: 300px !important;
+}
+
+.give-md-email .customer-info {
+	float: left;
+	margin: 0 10px 0 0;
+}
+
+.give-md-email .create-new-donor {
+	float: left;
+}
+
+tr.new-donor {
+	background: #e4e4e4;
+}
+
+tr.new-donor > th {
+	padding-left: 15px;
+}
+
+/* Field Touch Ups */
+
+input[type='text'], input[type='email'] {
+	font-size: 14px;
+	padding: 5px;
+}
+
+.form-field.new-donor label > span {
+    color: red;
+    padding: 5px;
+}
+
+.give_note,
+.give_donor_comment {
+	max-width: 600px;
+	height: 150px;
+}
+
+.give-donor-comment-row,
+.give-donor-anonymous-donation-row {
+	display: none;
+}
+
+#give_md_create_payment p.submit {
+	clear: both;
+	background: #f5f5f5;
+	border-color: #dfdfdf;
+	overflow: auto;
+	margin: 8px 0;
+	padding: 12px;
+	border-width: 1px;
+	border-style: solid;
+	font-size: 13px;
+	line-height: 2.1em;
+}
+
+/* Billing Address Fieldset */
+
+#give-md-billing-address {
+	margin: 0 -15px;
+	padding: 0;
+}
+
+#give-md-billing-address > p {
+	float: left;
+	width: 40%;
+	margin: 0 15px 10px;
+	padding: 0;
+}
+
+#give-md-billing-address label {
+	display: block;
+	line-height: 1.4em;
+	margin: 0.25em 0 0.5em;
+}
+
+#give-md-billing-address input, #give-md-billing-address select {
+	width: 100%;
+}
+
+.chosen-container {
+	max-width: 420px;
+}
+
+/* FFM Fields Section */
+.ffm-fields-row {
+	display: none;
+}
+
+#give-ffm-section {
+	max-width: 650px;
+}
+
+#give-ffm-section label {
+	display: block;
+}
+
+#give-ffm-section .form-row {
+	margin: 0 0 15px;
+}
+
+#ffm_section-wrap {
+	display: none;
+}
+
+table.give-repeater-table tbody td {
+	padding-left:0;
+}
+
+/* Donor Prefix Titles */
+#give_title_prefixes + .chosen-container {
+	width: 30% !important;
+}
+
+/* Donor Company */
+.give-donor-company-row {
+	display: none;
+}
+
+#give-company-name {
+	width: 100%;
+	max-width: 300px;
+}
+
+/* Manual Donation Submit */
+#give_md_create_payment .manual-donation-submit {
+	width: 100%;
+	background: #f5f5f5;
+	border-color: #dfdfdf;
+	margin: 8px 0;
+	padding: 12px;
+	border-width: 1px;
+	border-style: solid;
+	font-size: 13px;
+	line-height: 2.1em;
+	display: inline-block;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	position: relative;
+}
+
+#give_md_create_payment .manual-donation-submit p.submit {
+	margin: 0;
+	display: inline-block;
+	padding: 0;
+	float: left;
+}
+
+#give_md_create_payment .manual-donation-submit p.submit .button {
+	margin-bottom: 0;
+}
+
+#give_md_create_payment .manual-donation-submit .spinner {
+	float: none;
+	position: absolute;
+	left: 155px;
+	top: 50%;
+	margin: -10px 0 0 0;
+}
+
+#give_md_create_payment .manual-donation-submit p.submit .button.active:hover,
+#give_md_create_payment .manual-donation-submit p.submit .button.active:focus,
+#give_md_create_payment .manual-donation-submit p.submit .button.active,
+#give_md_create_payment .manual-donation-submit p.submit .button:active {
+	transform: none;
+}
