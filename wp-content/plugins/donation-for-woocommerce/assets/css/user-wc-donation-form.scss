@@ -1,0 +1,26 @@
+.wc-donation-in-action {
+    label[for="donation-price"] {
+        display: block;
+    }
+
+    .in-action-elements {
+        display: flex;
+        margin: 0 -5px;
+        height: 60px;
+
+        >* {
+            height: 100%;
+            line-height: 100%;
+            margin: 0 5px;
+        }
+
+        span {
+            display: flex;
+            align-items: center;
+        }
+
+        #wc-donation-f-donation-value {
+            flex-grow: 1;
+        }
+    }
+}

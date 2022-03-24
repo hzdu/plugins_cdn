@@ -1,0 +1,94 @@
+.wc-donation-form {
+    margin: 30px 0;
+
+    .button-primary {
+        display: inline-flex;
+        align-items: center;
+        text-transform: capitalize;
+    }
+
+    #wc-danation-stored-values-compaign,
+    #wc-donation-section-form-donation {
+        margin-top: 10px;
+        padding-top: 10px;
+        border-top: 1px solid #ccc;
+        width: 100%;
+        max-width: 480px;
+
+        &+.select-wrapper {
+            margin-top: 30px;
+        }
+    }
+
+    .fa-plus {
+        display: inline-flex;
+        align-items: center;
+        margin-right: 5px;
+
+        &:before {
+            content: "\f132";
+            font-family: dashicons;
+            font-weight: 400;
+            font-style: normal;
+            speak: none;
+            text-decoration: inherit;
+            text-transform: none;
+            text-rendering: auto;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            width: 20px;
+            height: 20px;
+            font-size: 20px;
+            text-align: center;
+            transition: color .1s ease-in;
+            line-height: normal;
+        }
+    }
+
+    label[for="wc-domain-compaign-enable"] {
+        display: flex;
+        align-items: center;
+    }
+
+    .wc-donation-row-compaign,
+    .wc-donation-row-donation {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid #ccc;
+        justify-content: space-between;
+
+        span {
+            margin-right: 15px;
+            font-weight: bold;
+        }
+    }
+
+    #wc-donation-form-compaign,
+    #wc-donation-form-donation {
+        margin-top: 10px;
+        max-width: 480px;
+
+        input {
+            height: 28px;
+            width: calc(100% - 59px);
+            margin-right: 5px;
+        }
+    }
+
+    .select-wrapper {
+        max-width: 480px;
+        margin-bottom: 30px;
+
+        label {
+            font-weight: bold;
+        }
+
+        select {
+            display: block;
+            margin-top: 10px;
+            width: 100% !important;
+        }
+    }
+}

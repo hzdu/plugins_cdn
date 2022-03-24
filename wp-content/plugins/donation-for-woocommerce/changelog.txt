@@ -1,0 +1,135 @@
+*** Donation For WooCommerce ***
+
+2022-03-22- version 3.2.1
+* IMPROVEMENT - Coupon will not applied on donation products. If you want to apply coupon use filter ( 'wc_donation_coupon_valid_for_campaign', true ).
+* IMPROVEMENT - Removed donation price from shop page
+* IMPROVEMENT - Make Donation goal amount format as WC price format.
+* IMPROVEMENT - Make Donation amount format as WC price format in Reports for frontend.
+* FIXED - DOMPDF conflict with PDF Invoices for Woocommerce plugin.
+* FIXED - '--Please select--' string is translable.
+* FIXED - jQueri UI Smoothness load to relevant pages only.
+
+
+2022-01-18- version 3.2
+* IMPROVED - Query optimization for donation count.
+* ADDED - button to synchronize redundant data.
+* FIXED - Memory leak on new order creation.
+* IMPROVED - If reports.csv missing, it will create a new file on server.
+
+2021-12-09- version 3.1
+* FIXED - CSS issue for donation amount fixed on order page.
+* FIXED - Optimized query for donation counts on all campaigns.
+* FIXED - Month Filter hide from all other post types.
+* FIXED - place_order on checkout button query is conflict with my account page is fixed now.
+
+2021-11-04- version 3.0
+* ADDED - Compatible with Multisite.
+* ADDED - Gift Aid.
+* ADDED - Tributes.
+* ADDED - WC Donation Reports.
+* ADDED - WC Donation Reports Exports via CSV & PDF.
+* ADDED - Send Donation Receipt as Email on each donation.
+* ADDED - User can see their donation on frontend and export the donation via CSV & PDF By using shortcode [donation_reports].
+* FIXED - Translation for interval, period, length for recurring donation (WOOC-444).
+* FIXED - Donation Goal field change to number type and frontend will show with proper number format.
+* FIXED - Empty Goal amount field shows warning on frontend.
+
+2021-09-01- version 2.4
+* FIXED - Donation causes not showing on custom value donation type.
+* IMPROVED - Donation causes dropdown style.
+* FIXED - SelectWoo error in JS
+
+2021-06-21- version 2.3
+* ADDED - Donation causes.
+* ADDED - Credit card processing fees.
+* ADDED - User Defined recurring donation
+* ADDED - Custom text for recurring on frontend.
+* ADDED - Donation Summary on product page.
+* IMPROVED - Total donations count on cancelled and refunded orders.
+* IMPROVED - On skip round off donation popup closed.
+
+2021-04-09- version 2.2.1
+* FIXED - Some string translation issues with loco translation.
+* FIXED - parameter issue in "woocommerce_loop_add_to_cart_link".
+* FIXED - "Sorry, that product cannot be purchased" Issue fixed.
+
+2021-03-09- version 2.2
+* FIXED - Round Off popup limited to checkout page only.
+* FIXED - "Never expire" option in Subscription length for recurring donation.
+* IMPROVEMENT - Hide meta values for donation product from cart and order and email.
+* ADDED - Introduct new filter to show meta values on cart page 'wc_donation_before_display_meta_on_cart' taking two parameters $item_data, $cart_item.
+* ADDED - Introduct new filter to show meta values on order admin page 'wc_donation_hidden_order_itemmeta' taking one parameter $item_meta.
+* ADDED - Introduct new filter to show meta values on order frontend 'wc_donation_hidden_order_frontend_itemmeta' taking one parameter $temp_metas, $formatted_meta.
+
+2021-01-05- version 2.1
+* ADDED - Edit placeholder text of other input field by using filter - "wc_donation_other_amount_placeholder", $placeholder, $min_amount, $max_amount 
+* ADDED - Donation Goals Feature
+* ADDED - Added donation post id in parameters of action "wc_donation_before_single_add_donation" & "wc_donation_after_single_add_donation"
+* IMPROVEMENT - Donation label can be empty if user donot want to show.
+* FIXED - Donation single page layout fixed.
+* FIXED - Donation Order Ajax issue.
+* FIXED - Gutenberg Block added for campaign shortcode.
+
+2020-12-28- version 2.0.2
+* FIXED - Place same campaign in widget & shortcode in same page.
+
+2020-12-08- version 2.0.1
+* IMPROVEMENT - Remove WC Donation slug from donation product title.
+* IMPROVEMENT - Show error on amount field min amount & max amount.
+* IMPROVEMENT - UI Fix for other amount field.
+* FIXED - Donation amount on minicart.
+* ADDED - Shipping Charge will not Apply on donation products.
+
+2020-12-01- version 2.0.0
+* IMPROVEMENT - New UI for admin setting.
+* ADDED - Create donation campaign with individual settings.
+* ADDED - Each campaign has their own shortcode.
+* ADDED - No need to create individual product for campaign.
+* ADDED - Compatible with previous version.
+* ADDED - Show total donations of each campaign.
+* ADDED - Show No. of donations of each campaign.
+* ADDED - Show donation as a product on shop page.
+* ADDED - Show donation single page.
+* ADDED - Recurring Donation compatible with Woocommerce Subscription.
+* ADDED - Compatible with WC Currency Switcher
+
+2020-08-13- version 1.2.2
+* IMPROVEMENT - css for donation on cart page.
+* FIXED - WMPL Compatible issue for cart and checkout donation.
+* FIXED - Roundoff issue.
+
+2020-08-11- version 1.2.1
+* ADDED - WPML compatible.
+
+2020-07-01- version 1.2
+* FIXED - jQuery confliction.
+* ADDED - enable/disable option for donation to show on cart page.
+* ADDED - Option added to show both custom value and predefined value for donation.
+* ADDED - Option to set multiplier for round off donation before checking out.
+* ADDED - Total donation value on order page wp admin.
+* ADDED - Option to define product as donation product.
+* ADDED - make compatible with WC Currency Switcher 1.0.0.
+* ADDED - decimal and comma in user defined amount.
+* ADDED - predefined campaign will be show as readonly to get user know on which campaign they are donating.
+* ADDED - translation support.
+
+2020-06-01- version 1.0.3
+* FIXED - shortcode issue with gutenberg editor fixed.
+
+2020-04-27- version 1.0.2
+* ADDED - Add skip button in roundoff popup to skip roundoff donation.
+
+2020-04-25 - version 1.0.1
+* ADDED - BG color for button.
+* ADDED - Text color for button.
+* ADDED - Text label for button.
+* ADDED - Label for donation field.
+* ADDED - Donation Widget.
+* ADDED - Add different layouts for amount.
+* ADDED - shortcode "[wc_woo_donation]"for Donation Product.
+* ADDED - Round Off donation on Checkout Total With Popup Style.
+* IMPROVEMENT - Design and css.
+
+2020-03-17 - version 1.0.0
+* Initial release.
+
