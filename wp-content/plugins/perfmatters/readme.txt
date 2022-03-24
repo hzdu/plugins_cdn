@@ -5,7 +5,7 @@ Tags: perfmatters
 Requires at least: 4.7
 Requires PHP: 7.0
 Tested up to: 5.9.2
-Stable tag: 1.8.7
+Stable tag: 1.8.8
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -33,6 +33,15 @@ Perfmatters is a lightweight performance plugin developed to speed up your WordP
 Check out our [documentation](https://perfmatters.io/docs/) for more information on how to use Perfmatters.
 
 == Changelog ==
+
+= 1.8.8 - 03.23.2022 =
+* Changed default setting for Used CSS Method from file to inline, as we think this will be the more compatible solution for most users going forward. If you were previously using the file method, you may need to save that option again.
+* Added width and height parameters to placeholder SVGs to prevent warnings for a ratio mismatch that would happen for some images.
+* Fixed an issue where the noscript tags were getting malformed for some images inside picture tags after lazy loading.
+* Removed placeholder SVGs on source tags since the image tag will already have one.
+* Changed settings export file name date format to be easier to organize when managing multiples.
+* Updated tooltip for Blank Favicon option to be more clear.
+
 
 = 1.8.7 - 03.14.2022 =
 * Added new Used CSS Method option to choose whether to load used CSS from a file or inline.
