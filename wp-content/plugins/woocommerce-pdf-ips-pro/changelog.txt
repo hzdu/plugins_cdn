@@ -1,0 +1,463 @@
+2.12.0 (2022-03-17)
+* New: Setting to change the labels for the document number & date
+* New: hook to prevent uploading files to the cloud (wpo_wcpdf_custom_cloud_service_allow_upload)
+* UI: Fill in the document icon sheet with white
+
+2.11.2 (2022-03-07)
+* Tweak: improved styling for static file uploads
+* Translations: Updated Spanish, Dutch & template (POT)
+* Updated updater to 2.1.2
+* Marked tested up to WooCommerce 6.3
+
+2.11.1 (2022-02-17)
+* Fix: duplicate invoice numbers being generated when the setting "Create automatically for" was overlapping with attachments for order status emails
+* Templates: New action hook before the document label (`wpo_wcpdf_before_document_label`)
+* Development: several layout & integration tweaks for upcoming PDF preview functionality
+* Marked tested up to WooCommerce 6.2
+
+2.11.0 (2022-01-31)
+* New: Setting to auto-generate document for selected order status(es)
+* New: "Disable for" setting for the packing slip document
+* New: more detailed error logging during bulk export
+* Fix: More reliable check for custom templates missing Proforma and Credit Notes
+* Fix: Allow non-historical text settings when using WPML
+* Fix: Support for child order documents other than Credit Note
+* Fix: Added a missing document init hook in Pro document abstract
+* Templates: Updated Proforma & Credit Note template with new hooks & functions (Simple)
+* Tested up to (and compatible with) WooCommerce 6.1 & WordPress 5.9
+
+2.10.1 (2021-12-08)
+* New: Root folder setting for FTP upload
+* Fix: Various improvements/fixes to the FTP/SFTP upload & connection test
+* Fix: Remove unused tightenco/collect package 
+* Translations: Updated French
+* Updated bundled updater to 2.1.1
+
+2.10.0 (2021-10-27)
+* New: Allow license activation directly via bundled updater (optional)
+* New: SFTP/FTP upload option for cloud synchronization
+* Fix: Notices on legacy WPML/Polylang document settings translations
+* Fix: Dropbox connection on staging sites using LocalWP
+* Fix: Select refunds by refund date instead of order date when bulk exporting Credit Notes
+* Fix: Settings scripts not loading on sites with branded or translated plugin name for "WooCommerce"
+* Tweak: Reduce database calls for Keep PDF feature
+* Tweak: Delete temporary file after cloud upload
+* Translations: Improved internationalization of the plugin
+* Translations: Updated Spanish, Portuguese & French
+* Tested up to (and compatible with) WooCommerce 5.9
+
+2.9.2 (2021-08-05)
+* New: Show warning if filename is not unique
+* Fix: don't add cloud bulk actions if not enabled
+
+2.9.1 (2021-07-29)
+* Fix: Fallback for servers without the PHP intl extension
+* Tweak: Add the prefix 'item-' to the default PDF order items class
+
+2.9.0 (2021-07-26)
+* New: Support for refresh tokens for Dropbox (long lived access tokens will be deprecated from September 30, 2021)
+* New: filter to increase bulk export chunk size
+* New: Add cloud service bulk actions for all documents
+* Tweak: Use document date instead of upload date for Dropbox folder structure
+* Fix: prevent notice for incorrectly registered languages
+* Fix: remove deprecated jQuery
+
+2.8.0 (2021-05-25)
+* New: Option to configure document language for non-multilingual setups
+* New: Filter for custom date type in bulk export (wpo_wcpdf_export_bulk_date_type_options)
+* Fix: export ordering when using date type other than order date
+* Translations: Added Spanish, Brazilian Portuguese & French
+* Translations: Updated translation template and bundled translations
+* Tested up to (and compatible with) WooCommerce 5.4
+
+2.7.4 (2021-04-13)
+* Fix: From date option missing in bulk export (ZIP)
+* Fix: jQuery deprecation notices
+* Hooks: allow overriding credit note button visibility (wpo_wcpdf_show_credit_note_button)
+* Hooks: programmatically trigger cloud upload (wpo_wcpdf_cloud_storage_upload_document)
+* Translations: Added Portuguese
+
+2.7.3 (2021-02-05)
+* New: WPML & Polylang support for Custom Blocks (Premium Templates)
+* Fix: Dropbox error on PHP 7.2.5 or lower
+* Fix: Errors on bulk export page when ZipArchive library is not installed
+* Fix: Error in invoice number column for orders with multiple refunds but no credit note for all of them
+* Fix: Keep PDF on server for orders with multiple refunds but no credit note for all of them
+* Fix: Width of totals in Proforma Invoice and Credit Note when using the Simple template
+* Tested up to (and compatible with) WooCommerce 5.0
+
+2.7.2 (2020-12-23)
+* Fix: Failsafe for sites using PHP5.6 
+* Tweak: Allow dismissing the Cloud Storage notice for incompatible PHP versions
+
+2.7.1 (2020-12-21)
+* Fix: Plugin conflicts when different versions of Guzzle are used by other plugins (Mollie, WooCommerce Bookings)
+* Fix: WPML shipping method title language changed when generating PDF in a language different from the order language
+
+2.7.0 (2020-11-23)
+* New: Added user interface messages for bulk export errors
+* New: Order refunded trigger for Order Notification email
+* New: Refactored Dropbox integration
+* New: Setting to enable/disable customer notes on Proforma Invoice
+* New: Redesigned document icons
+* Fix: Fatal error when using "Empty body" setting on Order Notication email in combination with WP5.5
+* Fix: Update third party libraries such as Guzzle
+* Fix: prevent errors during mass plugin updates (when WooCommerce is temporarily unavailable)
+* Tweak: Moved Dropbox authentication notices inside settings tab for better visibility
+* Translations: Added Formal Dutch
+* Tested up to (and compatible with) WooCommerce 4.8 & WordPress 5.6
+
+2.6.6 (2020-09-07)
+* Fix: Positive prices setting for credit notes with WooCommerce 4.4
+* Fix: Namespace declaration errors
+* Tweak: Don't show 'Download Zip' button if PHP ZipArchive not found (showing inline error)
+* Translations: Updated German
+* Tested up to (and compatible with) WooCommerce 4.5
+
+2.6.5 (2020-08-18)
+* Feature: WPML & Polylang language setting extended to specific languages
+* Fix: WPML loading country name in incorrect language when overriding order language
+* Fix: WPML translated settings always in order language (when overriding order language)
+* Fix: WPML language getting 'stuck' on bulk export
+* Fix: duplicate order notification sending on specific email configurations
+* Fix: Product deprecation notices
+* Tested up to (and compatible with) WooCommerce 4.4 & WordPress 5.5
+
+2.6.4 (2020-07-15)
+* Fix: Updated vendor libraries for Dropbox integration
+* Fix: 'remove empty lines' in custom address formatting when placeholder only contains whitespace
+* Fix: Spanish translation for template notice
+* Tested up to (and compatible with) WooCommerce 4.3
+
+2.6.3 (2020-06-23)
+* New: Setting to show packing slip in My Account
+* Fix: WPML & Polylang force translations reloading when user language is not site default
+* Fix: Polylang Product names translation
+* Translations: Updated POT & Dutch
+
+2.6.2 (2020-06-02)
+* New: Setting to send Order Notification with empty email body (for emailing PDF to printers)
+* New: Hook to add custom triggers for Order Notification email
+* Tweak: Bulk export "Only existing documents" option enabled by default
+* Tweak: Sanitize custom filename overrides for archived PDF files
+* Changed: Archived document regeneration now works with buttons from free base plugin
+* Compatibility: Order Notification email sending for WooCommerce Order Proposal statuses
+* Tested up to (and compatible with) WooCommerce 4.2
+
+2.6.1 (2020-04-27)
+* Fix: Compatibility with Subscription renewal orders for Order Notification email
+* Fix: Reset per-order settings when regenerating stored PDF file
+* Fix: Translation for static text column in Polylang
+* Changed: shorter my account button text ("Credit Note" instead of "Download Credit Note (PDF)")
+* Changed: wpo_wcpdf_filename_archived_pdf filter arguments
+* Tweak: Reduced plugin filesize, removing unnecessary font files
+* Translations: Updated Dutch
+
+2.6.0 (2020-04-14)
+* Feature: Option to keep PDF files on the server instead of on-the-fly generation
+* Dev: Filter for WPML & Polylang to allow force reloading translations
+
+2.5.1 (2020-03-23)
+* Fix: Syntax error on older PHP versions
+
+2.5.0 (2020-03-23)
+* Feature: Option to hide virtual and downloadable products on packing slip
+* Fix: Customizer label translations in Polylang
+* Improved: WPML & Polylang compatibility for custom textdomains
+* Tested with WP5.4 and WooCommerce 4.0
+
+2.4.1 (2020-01-21)
+* Fix: WPSearch compatibility - prevent fetching number on bulk document
+* Fix: WooCommerce German Market compatibility (Credit Note totals)
+* Fix: Disable credit note functionality for unreadable orders
+* Translations: Updated POT file
+* Tested up to (and compatible with) WooCommerce 3.9
+
+2.4.0 (2019-12-02)
+* Feature: Setting to use order date for Proforma & Credit Note dates
+* Fix: only apply wpo_wcpdf_custom_attachment_condition filter for order emails in static file attachment
+* Translations: Updated Spanish (Nota de Abono is now Factura Rectificativa by default)
+
+2.3.0 (2019-10-31)
+* Feature: Option to bulk export by document date (instead of order date)
+* Feature: Use original order details for fully refunded orders with incomplete refund data
+* Fix: Set Premium Templates defaults for credit note & proforma during first installation
+* Fix: Properly log errors when server doesn't allow ZIP creation (for bulk export)
+* Fix: WooCommerce Email Control compatibility
+* Dev: Filter for number store of Pro Documents
+* Tested with WP5.3 and WooCommerce 3.8
+
+2.2.20 (2019-10-10)
+* Feature: Added setting to disable proforma for specific order statuses
+* Dev: Allow overriding recipient address of Order Notification via filter
+
+2.2.19 (2019-09-23)
+* Fix: Packing Slip numbers errors
+* Fix: WPML issue when deactivating/activating plugin
+* Tweak: Show notices when Dropbox activation fails
+* Dev: Allow hooking into bulk zip download process
+
+2.2.18 (2019-08-26)
+* Fix: Invoice attachments for refund emails
+
+2.2.17 (2019-08-20)
+* Fix: Credit note attachment to refunded email for WooCommerce 3.7
+* Fix: Bulk download without allowing popup
+* Fix: Automatically convert slashes in folder names for Dropbox
+
+2.2.16 (2019-08-12)
+* Fix: Credit note filenames when not using credit notes numbering
+* Feature: Filter for credit note order IDs
+
+2.2.15 (2019-06-24)
+* Feature: single refund email attachments for WooCommerce 3.7
+* Feature: WPML Media Translation for static file attachments
+* Feature: {{document_date}} placeholder for filenames
+* Feature: {{date_completed}} and {{date_paid}} placeholders for custom blocks
+
+2.2.14 (2019-04-29)
+* Fix: Bulk export Credit Notes with "only existing" option enabled
+* Dev: Filter for packing slip number store
+* Dev: Added woocommerce_email_enabled_ filters to emails
+* Marked tested up to WooCommerce 3.6
+
+2.2.13 (2019-03-25)
+* Fix: Load correct translations when admin user profile language is set to different locale
+* Fix: Static attachment for partially refunded order email
+* Feature: Enable WPML media translation for header logo
+
+2.2.12 (2019-03-11)
+* Fix: Billing or shipping address showing 'view' when empty in some instances
+* Fix: Prevent crash when trying to show non-existing original invoice number in credit note
+* Fix: Updated email action hooks
+
+2.2.11 (2019-01-23)
+* Feature: Improved facilities for third party plugins to hook into bulk actions
+* Fix: Notices when Polylang is installed but not fully setup yet
+* Tweak: Only autoload dropbox when enabled
+
+2.2.10 (2018-12-04)
+* Fix: Prevent polylang errors when languages have not been setup yet
+* Fix: Document exist check with version 2.2.5 of free core plugin
+* Translations: Added Slovak
+
+2.2.9 (2018-10-18)
+* Feature: Option to always use the latest settings for Proforma Invoices & Credit Notes
+* Fix: prevent direct loading of template files
+
+2.2.8 (2018-10-10)
+* Feature: Document settings are now saved per order - changing settings after a PDF has been created will no longer affect the output
+* Feature: Button to remove documents
+* Fix: WPML & Polylang theme translations reloading
+* Fix: Polylang error when no locale found for order
+* Fix: Error handling for ZIP downloads
+* Fix: Base plugin check for Dropbox
+* Tweak: remove unit tests from vendor libraries
+
+2.2.7 (2018-09-10)
+* Fix: PHP 5.6 compatibility
+
+2.2.6 (2018-09-10)
+* Feature: 3rd party documents in dropbox upload by status list
+* Fix: packing slip date when changing to attaching status via order details page
+* Dev: Added actions and filters to make bulk export more flexible
+* Updated vendor libraries for Dropbox (guzzle/symfony/tightenco)
+
+2.2.5 (2018-07-23)
+* Fix: Broken my account buttons when using `wpo_wcpdf_process_order_ids` filter to remove documents
+* Updated spanish translations
+
+2.2.4 (2018-04-22)
+* Feature: Template action hooks before & after addresses
+* Fix: Improve thickbox unloading for dropbox queue
+* Tested up to WooCommerce 3.4
+
+2.2.3 (2018-04-11)
+* Feature: bulk export option to export only existing documents and/or skip free orders
+* Fix: WPML date localization
+* Fix: Polylang user profile language override
+* Fix: Only show credit note button when there's also an invoice
+* Tweak: improved filters for dropbox upload paths
+
+2.2.2 (2018-02-27)
+* Feature: Added placeholders for usage in filename settings: {{order_status}}, {{order_date}}, {{order_time}}, {{order_total}}
+* Translations: Updated German (Important: Gutschrift is now Rechnungskorrektur by default!)
+* Tweak: Address customization now also uses double accolades instead of square brackes for placeholders (old settings still work too)
+* Fix: Add classmap to autoloader
+* Fix: Use absolute paths for plugin class includes
+* Fix: Remove stray '>' in hour edit field
+* Fix: improved file headers for zip downloading
+
+2.2.1 (2018-01-31)
+* Fix: issue when packing slip date was not initiated/read correctly
+
+2.2.0 (2018-01-29)
+* Feature: Setting to change document names & filenames
+* Feature: Packing slip numbers & dates
+* Feature: Bulk export to ZIP
+* Feature: WPML setting to switch between site language and customer language for PDF (sitewide)
+* Feature: My Account settings for Proforma
+* Fix: WPML refund tax label registration
+* Fix: Textdomain for some Pro strings
+* Fix: PHP7.1 notice for Dropbox extension
+* Templates: Use title getter instead of string
+
+2.1.1 (2017-11-21)
+* Fix: Only show Dropbox bulk actions if Dropbox is enabled
+* Fix: Check for credit note existence (fixes deleted refunds issues)
+* Fix: Prevent accessing order properties as meta
+* Fix: WPML tax labels for credit notes
+* Fix: Only save document numbers & dates when edited
+
+2.1.0 (2017-09-18)
+* Feature: Upload your PDF invoices automatically to Dropbox! THe full functionality of the former Dropbox extension has been merged into the Professional extension.
+
+2.0.3 (2017-09-05)
+* Fix: Order notification email header & subject
+* Fix: Backend error reading/changing proforma & credit note dates
+* Fix: WC2.6 Compatibility for tax strings in Simple Credit Note
+* Fix: Correct dutch translation for Credit Note = Creditnota
+* Fix: Attachment of Credit Note to Partial refund email
+* Tweak: Auto enable Credit Notes upon install
+
+2.0.2 (2017-07-25)
+* Fix: only attach credit note when there is an invoice for the order
+* Fix: prevent save actions on refund that has just been deleted
+* Fix: apply custom proforma & credit note number filters
+* UI: better number & date editing interface
+
+2.0.1 (2017-07-18)
+* **Big compatibility update for 2.0 of main plugin**
+* Document settings are now split over separate pages
+* Improved document number reliability
+* Improved WPML & Polylang integration
+* Fix: Taxes for Credit Notes in Simple template
+
+1.5.2 (2017-04-12)
+* Fix: Refund parent order date (credit note number parameters)
+* Updated compatibility classes
+* Translations: Updated Italian
+
+1.5.1 (2017-03-29)
+* Fix: Emails enabled in Email settings
+
+1.5.0 (2017-03-28)
+* WooCommerce 3.0 compatible
+* **Requires PHP version 5.3 or higher**
+* Fix: global plugin object loading in wrapped cron methods
+* Fix: WPML - remove deprecated lang URL parameter
+
+1.4.7 (2017-02-08)
+* Feature: new template action hooks wpo_wcpdf_before_document & wpo_wcpdf_after_document
+* Fix: Improved Polylang & WPML compatibility
+* Fix: IE/Edge hour pattern for proforma & credit note date
+* Translations: Added Slovenian
+
+1.4.6 (2016-10-10)
+* Fix: Credit Note & Proforma time pattern
+* Fix: Polylang credit note email translations
+* Fix: positive credit notes setting (WC 2.6)
+* Allow partially refunded attachment (same email with two different ids)
+* Translations: Added Norwegian
+
+1.4.5 (2016-07-05)
+* Feature: Polylang integration
+* Feature: Allow line breaks in custom fields (setting)
+* Fix: WC2.6 Packing Slip quantities for refunded orders
+* Translations: Added formal German
+
+1.4.4 (2016-04-12)
+* Fix: WPML Credit note language (using original order language setting now)
+* Translations: Updated French & POT
+
+1.4.3 (2016-02-25)
+* Feature: Allow order language filtering - wpo_wcpdf_wpml_language (WPML)
+* Fix: Credit note numbers when using main invoice numbering
+* Fix: WPML language on thank you page (when sending invoice directly)
+* Translations: Updated German
+* Translations: define text domain in plugin headers
+
+1.4.2 (2015-11-11)
+* Feature: Option to show original invoice number on credit note
+
+1.4.1 (2015-10-20)
+* Fix: Warning when free version is not activated
+
+1.4.0 (2015-10-19)
+* WPML Compatibility: Settings strings translations can/should now be entered directly in the regular plugin settings
+* Fix: Several WPML related issues
+* Feature: option to send order notification to customer
+
+1.3.9 (2015-08-27)
+* Feature: Setting to disable proforma invoices entirely
+* Fix: Proforma & invoice date functions fixed for credit notes
+* Fix: Workaround for bug in WPML
+* Tweak: Formatted proforma & credit note numbers are now also stored
+* Tweak: Filter to control static file attachment (wpo_wcpdf_custom_attachment_condition)
+* Translations: updated German
+
+1.3.8 (2015-07-09)
+* Fix: Line breaks for WPML string translation
+* Fix: php notice for missing proforma hour & minute from date
+* Tweak: WPML compatibility filter
+* Translations: Added swedish
+
+1.3.7 (2015-05-28)
+* Feature: Setting to use positive prices on Credit Notes - recommended for all German users!
+* Feature: Edit proforma numbers & dates
+* Templates: Better address checks
+* Tweak: php filenames changed (fixes fatal errors in specific php/server configurations)
+* Tweak: checks to show proforma numbers in credit notes (only for custom templates)
+* Translations: Updated POT & Dutch
+* Translations: Added Italian
+
+1.3.6 (2015-03-31)
+* Feature: Before & after item meta actions in Simple template
+* Tweak: added sku & weight classes to Simple template 
+
+1.3.5 (2015-03-23)
+* Feature: Updated simple template to work with new template settings for alternative address, email & phone
+* Feature: several new template actions
+* Feature: update proof alternative translations (place them in wp-content/languages/plugins/)
+* Feature: Credit note number shown in order list (in the invoice number column)
+* Feature: Option to automatically send credit note email when status is set to refunded
+* Tweak: Better address replacements + automatically remove empty lines (setting)
+* Translations: updated POT and Dutch
+* Fix: WooCommerce version variable
+
+1.3.4 (2015-02-12)
+* Fix: Initialize default settings after install
+
+1.3.3 (2015-02-12)
+* Fix: order notification emails for 'Order processing' trigger
+
+1.3.2 (2015-02-02)
+* Fix: German translation error
+* Fix: line breaks between static file upload fields
+
+1.3.1 (2015-01-29)
+* Feature: Catch email result and add custom action `wpo_wcpdf_pro_email_sent`
+
+1.3.0 (2015-01-27)
+* Feature: Separate order notification email (with or without PDF documents) can now be send to emails you specify at a specific order status
+* Feature: Attach up to 3 static files
+* Feature: Option to subtract refunded quantities from packing slip (requires version 1.5.3 of main plugin)
+* Translations: Updated POT & Dutch (user contributed translations are very welcome!)
+
+1.2.1 (2015-01-15)
+* Feature: WPML language parameter in URLs
+* Fix: Reset text domain for pro translations (for WPML)
+* Translations: Added German
+
+1.2.0 (2014-11-24)
+* Fix: WPML language switcher
+* Fix: static file attachments
+* Feature: Added credit note email type (customize to your needs by copying to your (child) theme, look at your theme's invoice email for inspiration)
+* My Account buttons for Proforma Invoices & Credit Notes
+* Extended the attachment options to include credit notes
+
+1.1.0 (2014-11-07)
+* Disable credit note functions for WC2.1 and older (to avoid crashes)
+* Add credit note button in order list for refunded orders
+* Sync Simple template updates
+* Option to hide WP Overnight Sidekick notice
