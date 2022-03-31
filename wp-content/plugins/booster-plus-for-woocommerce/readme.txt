@@ -2,8 +2,8 @@
 Contributors: anbinder, karzin, pluggabl
 Tags: woocommerce, booster for woocommerce, woocommerce jetpack
 Requires at least: 4.4
-Tested up to: 5.9.1
-Stable tag: 5.5.5
+Tested up to: 5.9.2
+Stable tag: 5.5.6
 License: GNU General Public License v3.0
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -203,6 +203,18 @@ You can see the differences between versions in this [table](https://booster.io/
 8. Booster for WooCommerce - Emails & Misc.
 
 == Changelog ==
+
+= 5.5.6 30/03/2022 =
+* Fix - PRODUCTS - Product Addons - Fixed add-on issue with add-on by variation feature.
+* Fix - PRICES & CURRENCIES - Prices and Currencies by Country - Fixed IP detection issue with Booster method.
+* Fix - PRICES & CURRENCIES - Currency - Fixed the input field addition on saving the changes.
+* Fix - CART & CHECKOUT - Checkout Custom Fields - Fixed edit issue of custom field with text-area.
+* Fix - PRODUCTS - Related Products - Changed the query for manually related products.
+* Fix - PRODUCTS- Product Tabs - Added WPML compatibility in product tabs Module.
+* Fix - PDF INVOICING & PACKING SLIPS - Removed cron schedule for fonts when module not activated.
+* Feature - PDF INVOICING & PACKING SLIPS - Added Shortcode to show custom message for 0 VAT order [wcj_order_vat_func vat_exempt_text='add Custom Text Here'].
+* WooCommerce 6.3.1 tested
+* WordPress 5.9.2 tested
 
 = 5.5.5 08/03/2022 =
 * Fix - Added improvement for site key validation process.

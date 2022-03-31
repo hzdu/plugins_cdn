@@ -408,6 +408,7 @@
         });
 
         $(document).on('change', '#rtwwdpd_rule_on', function() {
+           
             var val = $(this).val();
             if (val == 'rtwwdpd_products') {
                 // $(this).closest('tr').next('tr').show();
@@ -486,7 +487,7 @@
         var select = '<select id="rtwproduct' + row_no + '" class="wc-product-search rtwwdpd_prod_tbl_class"  name="product_id[]" data-placeholder="Search for a product" data-action="woocommerce_json_search_products_and_variations" data-multiple="false" ></select>';
         var quant = '<input type="number" min="0" name="combi_quant[]" value=""  />';
         var remove = '<a class="button insert remove" name="deletebtn" >Remove</a>';
-        $('#product_list_body').append('<tr><td>' + row_no + '</td><td>' + select + '</td><td>' + quant + '</td><td>' + quant2 + '</td><td>' + remove + '</td></tr>');
+        $('#product_list_body').append('<tr><td>' + row_no + '</td><td>' + select + '</td><td>' + quant + '</td><td>' + remove + '</td></tr>');
         jQuery('#rtwproduct' + row_no).trigger('wc-enhanced-select-init');
     });
 
@@ -670,7 +671,9 @@
     $(document).on('click', '#rtwmsg_set', function() {
         rtwwdpd_select(this, '#rtwmsg_set_tab');
     });
-
+    $(document).on('click', '#rtwtimer_set', function() {
+        rtwwdpd_select(this, '#rtwtimer_set_tab');
+    });
 
     $(document).on('click', '#rtwtier_rule', function() {
         rtwwdpd_select(this, '#rtwwdpd_tiered_rule_tab');

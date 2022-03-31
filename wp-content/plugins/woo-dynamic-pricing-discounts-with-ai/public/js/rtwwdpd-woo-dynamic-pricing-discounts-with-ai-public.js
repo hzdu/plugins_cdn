@@ -6,6 +6,76 @@
             $('body').trigger('update_checkout');
         });
 
+  ///// set timer for sale
+     /////////////  Satrt cod  For Timer //////////////////////
+     function makeTimer() 
+     {
+         if(rtwwdpd_ajax.rtwwdpd_without_ajax)
+         {
+             var end_date=rtwwdpd_ajax.rtwwdpd_without_ajax['end_date'];
+             var cur_date=rtwwdpd_ajax.rtwwdpd_without_ajax['curnt_date'];
+             var end_time=rtwwdpd_ajax.rtwwdpd_without_ajax['end_time'];
+             var msg=rtwwdpd_ajax.rtwwdpd_without_ajax['msg'];
+             var e_time=$.now(end_time);
+             var tim = $.now();
+             var today = new Date();
+             
+             var time = today.getHours() + ":" + today.getMinutes();
+             var seconds = Date.parse(end_date+' '+end_time)-tim;
+             var  totalSeconds = parseInt(Math.floor(seconds / 1000));
+             var  totalMinutes = parseInt(Math.floor(totalSeconds / 60));
+             var  totalHours = parseInt(Math.floor(totalMinutes / 60));
+             var  days = parseInt(Math.floor(totalHours / 24));
+             seconds = parseInt(totalSeconds % 60);
+             var  minutes = parseInt(totalMinutes % 60);
+             var  hours = parseInt(totalHours % 24);
+            if(cur_date > end_date)
+            {  
+                $(document).find("#test1").remove();
+                $(document).find("#days").remove();
+                $(document).find("#hours").remove();
+                $(document).find("#minutes").remove();
+                $(document).find("#second").remove();
+                // $(document).find(".rtweo_sale_message").remove();
+                return false; 
+            }
+            else
+            {
+                $(document).find(".rtweo_sale_message").css("display","block");
+                
+                 if( cur_date == end_date )
+                 {   
+                     if(time >= end_time)
+                     { 
+                         $(document).find("#test1").remove();
+                         $(document).find("#days").remove();
+                         $(document).find("#hours").remove();
+                         $(document).find("#minutes").remove();
+                         $(document).find("#second").remove();
+                         $(document).find(".rtweo_sale_message").remove();
+
+                         return false;
+                     }
+                 }
+                  
+                    $(document).find("#test1").html(msg);
+                    $(document).find("#days").html( days);
+                    $(document).find("#hours").html(hours);
+                    $(document).find("#minutes").html( minutes);
+                    $(document).find("#second").html( seconds);
+            }
+         }
+         else
+         {
+             $(document).find("#test1").remove();
+                 return false; 
+         }
+     }
+     setInterval(function() { makeTimer(); }, 1000);
+     /////////////  End cod  For Timer //////////////////////
+    
+        /////////////////////////
+
         // jQuery('div.woocommerce').on('change', '.qty', function(){
         // 	jQuery("[name='update_cart']").prop("disabled", false);
         // 	jQuery("[name='update_cart']").trigger("click"); 
