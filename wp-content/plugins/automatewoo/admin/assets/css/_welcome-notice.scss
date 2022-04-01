@@ -1,0 +1,40 @@
+.automatewoo-welcome-notice {
+	padding: 25px 305px 20px 36px !important;
+	border-left-width: 1px;
+	position: relative;
+
+	@media ( max-width: 800px ) {
+		padding: 20px !important;
+	}
+
+	&__image {
+		position: absolute;
+		width: 266px;
+		height: 138px;
+		top: 7px;
+		right: 40px;
+		background-image: url('../img/presets.svg');
+		background-size: 266px 138px;
+		background-repeat: no-repeat;
+
+		@media ( max-width: 800px ) {
+			display: none;
+		}
+	}
+
+	&__heading {
+		color: $color-g2-dark-grey;
+		margin: 0 0 0.25rem 2px;
+	}
+
+	&__text p {
+		font-size: 14px;
+		line-height: 1.65;
+		margin: 0.5em 0 0;
+		color: $color-brand-paragraph-grey;
+	}
+
+	&__text p a {
+		color: $color-brand-light-purple;
+	}
+}

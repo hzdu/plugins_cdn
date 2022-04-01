@@ -1,0 +1,26 @@
+.automatewoo-manual-runner-found-items {
+	border: 1px solid #e2e4e7;
+	margin: 20px 0;
+
+	&__results {
+		max-height: 320px;
+		overflow-y: scroll;
+
+		&:empty {
+			display: none;
+		}
+	}
+
+	&__result {
+		padding: 12px 15px;
+
+		&:nth-child(2n + 1) {
+			background-color: #f9f9f9;
+		}
+	}
+
+	&__summary {
+		border-top: 1px solid #e2e4e7;
+		padding: 12px 15px;
+	}
+}
