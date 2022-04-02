@@ -153,6 +153,8 @@ jQuery( document ).ready(function($) {
         });
     });
 
+
+
     function updatePostEventFields() {
         if($("#pys_event_trigger_type").val() == "post_type") {
             $(".event-delay").css("visibility","visible");
