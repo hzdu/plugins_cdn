@@ -1,0 +1,475 @@
+<?php
+
+namespace WPFunnelsPro\Frontend\Modules\Analytics;
+
+
+use WPFunnels\Traits\SingletonTrait;
+use WPFunnels\Wpfnl_functions;
+
+class Analytics {
+
+    use SingletonTrait;
+
+
+    public function __construct() {
+        if ( ! ( is_user_logged_in() && current_user_can( 'administrator' ) ) ) {
+            add_action( 'template_redirect', array( $this, 'save_analytics_data' ) );
+            add_action( 'wpfunnels/offer_accepted', array( $this, 'save_offer_data' ), 20, 2 );
+        }
+    }
+
+
+    public function save_analytics_data() {
+        if ( Wpfnl_functions::is_funnel_step_page() ) {
+            global $post;
+            $funnel_id          = Wpfnl_functions::get_funnel_id();
+            $step_id            = $post->ID;
+            $this->save_visit_info( $funnel_id, $step_id);
+            if ( ! $funnel_id ) {
+                return;
+            }
+        }
+    }
+
+    /**
+     * Save Visitor information data, after getting specific specific data from template direct.
+     *
+     * @param $funnel_id
+     * @param $step_id
+     * @since 1.0.0
+     */
+	private function save_visit_info( $funnel_id, $step_id ) {
+		
+		$step_type = $this->get_post_meta_value($step_id, '_step_type');
+		
+        $user_type 		= $this->get_user_type($step_type);
+		
+        $user_info 		= $this->get_user_info();
+		
+        $user_status 	= $this->get_user_status($step_type);
+		
+		$check_user 	= $this->check_user_by_step($step_id, $user_info);
+		
+        $analytics_data = $this->process_analytics_data($funnel_id, $step_id, $user_type, $user_status, $user_info);
+        $meta_data = $this->process_analytics_meta_data($step_type);
+		
+		if($check_user == false) {
+			if($step_type == 'landing') {
+				$set_user_ip = $this->set_user_cookie ('user_ip', $user_info['user_ip'], 43200);
+				$set_referrer_url = $this->set_user_cookie ('referer_url', $user_info['referer_url'], 43200);
+			} else {
+				$user_info_data = $this->get_user_info_data();
+				$result = $this->insert_analytics_data( $funnel_id, $step_id, $user_type, $user_status, $user_info_data, $analytics_data);
+				$meta_result = $this->insert_analytics_meta_data( $funnel_id, $step_id, $meta_data);
+			}
+		} else {
+			$result = $this->update_analytics_data($step_id, $user_type, $user_status, $user_info, $analytics_data);
+		}
+    }
+
+
+	/**
+	 * Save user activity event data in meta table
+	 *
+     * @param $step_id
+     * @param $offer_product array
+     * @since 1.0.0
+	*/
+    public function save_offer_data( $step_id, $offer_product ) {
+		 $meta_data = array();
+		 foreach ($offer_product as $key => $value) {
+			 $meta_data[$key] = $value;
+		 }
+		$this->insert_analytics_meta_data($offer_product['funnel_id'], $step_id, $meta_data);
+       
+    }
+    /**
+     * Save activity data.
+     *
+     * @param $analytics_id
+     * @param $funnel_id
+     * @param $step_id
+     * @param $meta_data array
+     * @since 1.0.0
+     */
+    public function insert_analytics_meta_data($funnel_id, $step_id, $meta_data) {
+        global $wpdb;
+        $table_name = $wpdb->prefix . "wpfnl_analytics_meta";
+		 $analytics_id 	= $this->get_analytics_id();
+        if(!empty($meta_data)) {
+
+            foreach ($meta_data as $key => $value) {
+                $wpdb->insert($table_name, array(
+                    'analytics_id'      => $analytics_id,
+                    'funnel_id'         => $funnel_id,
+                    'step_id'           => $step_id,
+                    'meta_key'          => $key,
+                    'meta_value'        => $value
+                ));
+            }
+        }
+
+        return true;
+    }
+	
+    /**
+     * Save activity data.
+     *
+     * @param $funnel_id
+     * @param $step_id
+     * @param $user_type
+     * @param $user_status
+     * @param $user_info array
+     * @param $analytics_data array
+     * @return ID|int|mixed
+     * @since 1.0.0
+     */
+	public function insert_analytics_data($funnel_id, $step_id, $user_type, $user_status, $user_info, $analytics_data) {
+
+        global $wpdb;
+        $table_name = $wpdb->prefix . "wpfnl_analytics";
+        $wpdb->insert($table_name, array(
+            'funnel_id'          => $funnel_id,
+            'step_id'           => $step_id,
+            'user_id'           => $user_info['user_id'],
+            'user_type'         => $user_type,
+            'visitor_type'      => $user_info['visitor_type'],
+            'user_ip'           => $user_info['user_ip'],
+            'referrer_url'      => $user_info['referrer_url'],
+            'analytics_data'    => json_encode($analytics_data),
+            'date_created'      => current_time( 'timestamp' ),
+            'date_created_gmt'  => current_time( 'timestamp', 1 ),
+            'date_modified'     => current_time( 'timestamp' ),
+            'date_modified_gmt' => current_time( 'timestamp', 1 ),
+            'status' => $user_status
+        ));
+
+        $id = $wpdb->insert_id;
+        $this->set_user_cookie ('analytics_id', $id, 1800);
+        return $id;
+    }
+	
+    /**
+     * Update activity data.
+     *
+     * @param $step_id
+     * @param $user_type
+     * @param $user_status
+     * @param $user_info array
+     * @param $analytics_data array
+     * @since 1.0.0
+     */
+    public function update_analytics_data($step_id, $user_type, $user_status, $user_info, $analytics_data) {
+        global $wpdb;
+        $table_name = $wpdb->prefix . "wpfnl_analytics";
+		
+		$wpdb->update($table_name,
+			array(
+				'user_id'           => $user_info['user_id'],
+				'user_type'         => $user_type,
+				'visitor_type'      => $user_info['visitor_type'],
+				'user_ip'           => $user_info['user_ip'],
+				'referrer_url'      => $user_info['referrer_url'],
+				'analytics_data'    => json_encode($analytics_data),
+				'date_modified'     => current_time( 'timestamp' ),
+				'date_modified_gmt' => current_time( 'timestamp', 1 ),
+				'status' => $user_status
+			),
+			array(
+				'step_id'  => $step_id
+			)
+		);
+    }
+    /**
+     * Process activity data for api.
+     *
+     * @param $funnel_id
+     * @param $step_id
+     * @param $user_type
+     * @param $user_status
+     * @param $user_info array
+     * @return array
+     * @since 1.0.0
+     */
+    public function process_analytics_data($funnel_id, $step_id, $user_type, $user_status, $user_info) {
+        $analytics_data = [
+            "v" => 1,
+            "visitor" => [
+                "id" => $user_info['user_id'],
+                "type" => $user_info['visitor_type'],
+                "user_type" => $user_type,
+                "ip" => $user_info['user_ip'],
+                "referrer" => $user_info['referer_url'],
+                "status" => $user_status,
+            ],
+            "funnel" => [
+                "id" => $funnel_id,
+                "meta" => [],
+            ],
+            "steps" => [],
+        ];
+
+        return $analytics_data;
+    }
+    /**
+     * Process activity event data for api.
+     *
+     * @param $step_type
+     * @return array
+     * @since 1.0.0
+     */	
+	public function process_analytics_meta_data($step_type) {
+		$meta_data = array();
+		if($step_type != 'landing') {
+			$meta_data['conversion'] = 'yes';
+		}
+		
+		$meta_data['step_type'] = $step_type;
+		
+		return $meta_data;
+	}
+	
+    /**
+     * Check user exist in current step
+     *
+     * @param $step_id
+     * @param $user_info
+     * @return boolean
+     * @since 1.0.0
+     */
+	 
+	public function check_user_by_step($step_id, $user_info) {
+		$step_id_exist = $this->get_user_cookie ('step_id', 1800);
+		$user_ip_exist = $this->get_user_cookie ('user_ip', 432000);
+		
+		if($step_id_exist == false || $user_ip_exist == false ) { 
+			return false;
+		} elseif( $step_id_exist == $step_id && $user_ip_exist == $user_info['user_ip']) {
+			return true;			
+		} else {
+			return false;
+		}
+		
+	}
+    /**
+     * Set user cookie for user
+     *
+     * @param $key
+     * @param $value
+     * @param $time
+     * @return boolean
+     * @since 1.0.0
+     */	
+	 
+    public function set_user_cookie ($key, $value, $time) {
+        setcookie( $key, $value , time() + $time, COOKIEPATH, COOKIE_DOMAIN );
+        $value = isset( $_COOKIE[$key] ) ? $_COOKIE[$key] : '';
+        if($value == '') {
+            return false;
+        }
+        return true;
+    }
+	
+    /**
+     * Get user cookie
+     *
+     * @param $key
+     * @param $time
+     * @return $value|boolean|mixed
+     * @since 1.0.0
+     */	
+	 
+    public function get_user_cookie ($key, $time) {
+		
+        $value = isset( $_COOKIE[$key] ) ? $_COOKIE[$key] : '';
+        if($value != '') {
+            setcookie( $key, '', time() - $time, COOKIEPATH, COOKIE_DOMAIN );
+            setcookie( $key, $value , time() + $time, COOKIEPATH, COOKIE_DOMAIN );
+            return $value;
+        }
+        return false;
+    }
+	
+    /**
+     * Get Analytics ID from user cookie
+     *
+     * @param null
+     * @return ID|int|mixed
+     * @since 1.0.0
+     */	
+    public function get_analytics_id() {
+        $analytics_id = isset( $_COOKIE['analytics_id'] ) ? $_COOKIE['analytics_id'] : '';
+        if($analytics_id != '') {
+            setcookie( 'analytics_id', '', time() - 1800, COOKIEPATH, COOKIE_DOMAIN );
+            setcookie( 'analytics_id', $analytics_id , time() + 1800, COOKIEPATH, COOKIE_DOMAIN );
+            $id = $analytics_id;
+        } else {
+            $id = 0;
+        }
+        return $id;
+    }
+	
+    /**
+     * Get User information from cookie and system
+     *
+     * @param null
+     * @return array
+     * @since 1.0.0
+     */	
+    public function get_user_info_data() {
+        $user_id = get_current_user_id();
+        $user_ip = $this->get_user_cookie ('user_ip', 43200);
+        $referer_url = $this->get_user_cookie ('referer_url', 43200);
+		
+        $visitor_type = $this->get_visitor_type($user_ip);
+
+        $user_info = [
+            "user_id"       => $user_id,
+            "referer_url"   => $referer_url,
+            "user_ip"       => $user_ip,
+            "visitor_type"  => $visitor_type,
+        ];
+
+        return $user_info;
+    }
+	
+    /**
+     * Get User information from browser
+     *
+     * @param null
+     * @return array
+     * @since 1.0.0
+     */	
+    public function get_user_info() {
+        $user_id = get_current_user_id();
+        $referer_url = '';
+        $user_ip = $this->get_user_ip();
+        $referer = wp_get_referer();
+        $site_url = site_url();
+        if (  strpos($referer , $site_url) === false ) {
+            $referer_url = $referer;
+        }
+        $visitor_type = $this->get_visitor_type($user_ip);
+
+        $user_info = [
+            "user_id"       => $user_id,
+            "referer_url"   => $referer_url,
+            "user_ip"       => $user_ip,
+            "visitor_type"  => $visitor_type,
+        ];
+
+        return $user_info;
+    }
+	
+    /**
+     * Get User IP Address
+     *
+     * @param null
+     * @return string
+     * @since 1.0.0
+     */	
+    public function get_user_ip() {
+        if (isset($_SERVER["HTTP_CF_CONNECTING_IP"])) {
+            $_SERVER['REMOTE_ADDR'] = $_SERVER["HTTP_CF_CONNECTING_IP"];
+            $_SERVER['HTTP_CLIENT_IP'] = $_SERVER["HTTP_CF_CONNECTING_IP"];
+        }
+        $client  = @$_SERVER['HTTP_CLIENT_IP'];
+        $forward = @$_SERVER['HTTP_X_FORWARDED_FOR'];
+        $remote  = $_SERVER['REMOTE_ADDR'];
+
+        if(filter_var($client, FILTER_VALIDATE_IP))
+        {
+            $ip = $client;
+        }
+        elseif(filter_var($forward, FILTER_VALIDATE_IP))
+        {
+            $ip = $forward;
+        }
+        else
+        {
+            $ip = $remote;
+        }
+        return $ip;
+    }
+	
+    /**
+     * Get post meta value for postmeta table
+     *
+     * @param null
+     * @return string
+     * @since 1.0.0
+     */		
+	public function get_post_meta_value($id, $key) {
+		$value = get_post_meta($id, $key, true);
+		return $value;
+	}
+	
+    /**
+     * Get User Type
+     *
+     * @param $step_type
+     * @param $step_order
+     * @return string
+     * @since 1.0.0
+     */
+	public function get_user_type($step_type, $step_order = false) {
+		$user_type_fixed = 'visitor';
+		$user_id = get_current_user_id();
+		if($user_id != 0) {
+			if($step_type != 'landing') {
+				$user_type = 'optin';
+			} elseif($step_type == 'thankyou') {
+				$user_type = 'purchase';
+			} else {
+				$user_type = $user_type_fixed;
+			}
+		} else {
+			if($step_type == 'thankyou') {
+				$user_type = 'guest';
+			}
+			else {
+				$user_type = $user_type_fixed;
+			}
+		}
+		return $user_type;
+	}
+	
+    /**
+     * Get User Status
+     *
+     * @param $step_type
+     * @param $step_order
+     * @return string
+     * @since 1.0.0
+     */
+	
+	public function get_user_status($step_type, $step_order = false) {
+		$user_status = 'exit';
+		if($step_type != 'landing') {
+			$user_status = 'clickthrough';
+		}
+		return $user_status;
+	}
+	
+    /**
+     * Get Visitor Type
+     *
+     * @param $user_ip
+     * @return string
+     * @since 1.0.0
+     */
+	 
+    public function get_visitor_type($user_ip) {
+        $visitor_type = 'new';
+        $user_ip_cookie = isset( $_COOKIE['user_ip'] ) ? $_COOKIE['user_ip'] : '';
+        if($user_ip_cookie != '') {
+            setcookie( 'user_ip', '', time() - 432000, COOKIEPATH, COOKIE_DOMAIN );
+            $visitor_type = 'returning';
+        }
+
+        setcookie( 'user_ip', $user_ip , time() + 432000, COOKIEPATH, COOKIE_DOMAIN );
+
+        return $visitor_type;
+    }
+
+}
