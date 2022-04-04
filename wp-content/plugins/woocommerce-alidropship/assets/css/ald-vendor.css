@@ -1,0 +1,44 @@
+.woocommerce-alidropship-vendor .vi-wad-pagination-form {
+    top: 0 !important;
+}
+
+.woocommerce-alidropship-vendor .wrap {
+    margin: 10px;
+}
+
+.woocommerce-alidropship-vendor-overlay:before {
+    content: url('../images/loading.gif');
+    font-size: 15px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    opacity: 1;
+    transform: translate(-50%, -50%) scale3d(.5, .5, .5);
+    margin: 0;
+    padding: 0;
+}
+
+.woocommerce-alidropship-vendor-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, .5);
+    z-index: 999;
+}
+
+.woocommerce-alidropship-vendor .vi-wad-button-import-all {
+    display: none !important;
+}
+
+table.vi-ui.celled.table.vi-wad-format-price-rules-table th,
+table.vi-ui.celled.table.vi-wad-format-price-rules-table td,
+table.vi-ui.celled.table.vi-wad-format-price-rules-table label,
+table.vi-ui.celled.table.vi-wad-format-price-rules-table input {
+    padding: 4px;
+}
+
+input.vi-wad-format-price-rules-from {
+    min-width: 50px !important;
+}

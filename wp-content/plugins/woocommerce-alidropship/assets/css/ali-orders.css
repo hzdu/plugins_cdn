@@ -1,0 +1,688 @@
+* {
+    box-sizing: border-box;
+}
+
+.select2-container {
+    width: auto !important;
+}
+
+.select2-container--default .select2-selection--single {
+    height: 34px;
+    border: 1px solid rgba(34, 36, 38, .15);
+}
+
+.select2-container--default .select2-selection--multiple .select2-selection__rendered li {
+    margin: 0;
+}
+
+.select2-container--default .select2-selection--multiple .select2-selection__rendered li .select2-search__field {
+    width: 100% !important;
+    border: 0;
+    padding: 0;
+    margin: 10px 0;
+}
+
+.select2-container--default .select2-selection--multiple {
+    border: 1px solid rgba(34, 36, 38, .15);
+}
+
+.select2-container--default .select2-selection--single .select2-selection__rendered {
+    line-height: 34px;
+}
+
+input[type="number"] {
+    height: auto;
+}
+
+.vi-ui.attached.segment {
+    max-height: 500px;
+    overflow: auto;
+    min-height: 250px;
+}
+
+.vi-ui .vi-ui.table th,
+.vi-ui .vi-ui.table td {
+    text-align: center;
+}
+
+.vi-ui .vi-ui.table th input[type="checkbox"],
+.vi-ui .vi-ui.table td input[type="checkbox"] {
+    margin: 3px;
+}
+
+.vi-wad-order-status,
+.vi-wad-order-name,
+.vi-wad-order-date,
+.vi-wad-order-shipping-address,
+.vi-wad-order-table-column[data-column_name="name"],
+.vi-wad-order-table-column[data-column_name="shipping"],
+.vi-wad-order-table-column[data-column_name="ali_order"] {
+    text-align: left !important;
+}
+
+.vi-wad-order-table-column .vi-ui.message {
+    padding: 2px 5px;
+}
+
+.vi-wad-order-status,
+.vi-wad-order-date,
+.vi-wad-order-shipping-address {
+    font-weight: 400;
+}
+
+.vi-wad-order-table-column-head[data-column_name="ali_order"] {
+    min-width: 200px;
+}
+
+.wp-editor-wrap iframe {
+    min-height: 330px;
+}
+
+.vi-wad-button-bulk-place-order-container {
+    text-align: center;
+    float: left;
+}
+
+/*html no scroll*/
+html.vi_wad-noscroll {
+    position: fixed;
+    overflow-y: scroll;
+    width: 100%;
+}
+
+.vi-wad-hidden {
+    display: none !important;
+}
+
+.vi-wad-overflow-visible {
+    overflow: visible !important;
+}
+
+.vi-wad-invisible {
+    visibility: hidden;
+}
+
+.vi-wad-order-container {
+    margin: 30px 0;
+    position: relative;
+}
+
+.vi-wad-order-container .vi-wad-order-overlay {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, .5);
+    z-index: 1;
+}
+
+.vi-wad-order-container .vi-wad-order-overlay:before {
+    content: url('../images/loading.gif');
+    font-size: 15px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    opacity: 1;
+    transform: translate(-50%, -50%) scale3d(.5, .5, .5);
+    margin: 0;
+    padding: 0;
+}
+
+.vi-ui.accordion .accordion .active.content, .vi-ui.accordion .active.content {
+    padding-top: 0;
+}
+
+.vi-ui.dropdown .menu > .item,
+.vi-ui.form,
+.vi-ui.form input:not([type]), .vi-ui.form input[type=date], .vi-ui.form input[type=datetime-local], .vi-ui.form input[type=email], .vi-ui.form input[type=number], .vi-ui.form input[type=password], .vi-ui.form input[type=search], .vi-ui.form input[type=tel], .vi-ui.form input[type=time], .vi-ui.form input[type=text], .vi-ui.form input[type=url] {
+    font-size: 13px;
+}
+
+.vi-wad-order-container .vi-ui.table th {
+    padding: 8px;
+    vertical-align: middle;
+}
+
+.vi-wad-confirm-orders-container .vi-ui.table td,
+.vi-wad-order-container .vi-ui.table td {
+    padding: 2px 8px;
+}
+
+.vi-ui.styled.accordion .title {
+    position: relative;
+}
+
+.vi-ui.accordion .vi-ui.attached.tabular.menu {
+    padding-top: 0;
+}
+
+form p.search-box input.text.short {
+    width: calc(100% - 130px);
+    max-width: 300px;
+}
+
+.tablenav .tablenav-pages {
+    margin: 0;
+}
+
+form p.search-box {
+    margin: 0;
+    width: calc(100% - 450px);
+    position: relative;
+    padding: 0 10px;
+    text-align: right;
+}
+
+@media screen and (max-width: 782px) {
+    .vi-ui.styled.accordion .title .vi-wad-button-view-and-edit {
+        transform: unset;
+        position: relative;
+        right: unset;
+        top: unset;
+    }
+
+    form p.search-box {
+        width: 100%;
+    }
+
+    form p.search-box input.text.short {
+        max-width: 100%;
+    }
+
+    .vi-wad-button-bulk-place-order-container {
+        width: 100%;
+    }
+
+    .tablenav {
+        height: 140px !important;
+    }
+
+    .tablenav.top > * {
+        padding: 5px;
+    }
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th, td {
+    padding: 8px 16px;
+}
+
+th {
+    background: #eee;
+}
+
+.vi-wad-item-ali-order-container {
+    padding-left: 15px;
+}
+
+.vi-wad-order-actions {
+    text-align: left;
+}
+
+.vi-wad-item-actions-save,
+.vi-wad-item-actions-cancel,
+.vi-wad-item-actions-edit {
+    cursor: pointer;
+}
+
+.vi-wad-item-actions-save:hover,
+.vi-wad-item-actions-cancel:hover,
+.vi-wad-item-actions-edit:hover {
+    background: rgba(1, 1, 1, .1);
+}
+
+.vi-wad-order-item-image {
+    width: 38px;
+    height: 38px;
+    border: 2px solid #e8e8e8;
+    background: #f8f8f8;
+    color: #ccc;
+    position: relative;
+    font-size: 21px;
+    display: block;
+    text-align: center;
+    box-sizing: unset;
+}
+
+.vi-wad-order-item-image img {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    position: relative;
+}
+
+.vi-wad-order-item-image:before {
+    font-family: Dashicons;
+    speak: none;
+    font-weight: 400;
+    text-transform: none;
+    -webkit-font-smoothing: antialiased;
+    text-indent: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    text-align: center;
+    content: "";
+    width: 38px;
+    line-height: 38px;
+    display: block;
+    font-variant: normal;
+    margin: 0;
+}
+
+.vi-wad-order-item-name {
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    max-width: 400px;
+    min-width: 200px;
+}
+
+.vi-wad-confirm-orders-col-order-item img {
+    width: 36px;
+    height: auto;
+}
+
+.vi-wad-item-ali-order-label {
+    width: 100px;
+}
+
+.vi-wad-item-ali-order-value {
+    display: flex;
+    width: calc(100% - 105px);
+    min-width: 210px;
+    min-height: 42px;
+}
+
+.vi-wad-order-income-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.vi-wad-item-actions {
+    display: inline-grid;
+}
+
+.vi-wad-item-actions a {
+    text-decoration: none;
+}
+
+.vi-wad-item-ali-order-details {
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.vi-wad-item-ali-order-details.vi-wad-item-ali-order-id .vi-wad-item-ali-order-value-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, .5);
+}
+
+.vi-wad-item-ali-order-details.vi-wad-item-ali-order-id .vi-wad-item-ali-order-value-overlay:before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-image: url(../images/loading.gif);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 20px 20px;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+}
+
+.vi-wad-item-ali-order-details.vi-wad-item-tracking-number .vi-wad-item-ali-order-value .vi-wad-ali-tracking-number,
+.vi-wad-item-ali-order-details.vi-wad-item-ali-order-id .vi-wad-item-ali-order-value .vi-wad-ali-order-id {
+    text-decoration: none;
+    width: 100%;
+}
+
+.vi-wad-item-ali-order-details.vi-wad-item-tracking-number .vi-wad-item-ali-order-value .vi-wad-ali-tracking-number-input[readonly],
+.vi-wad-item-ali-order-details.vi-wad-item-ali-order-id .vi-wad-item-ali-order-value .vi-wad-ali-order-id-input[readonly] {
+    cursor: inherit;
+}
+
+/*Select shipping*/
+/*.vi-wad-shipping-info-company.vi-ui.dropdown > .text,*/
+/*.vi-wad-shipping-info-country.vi-ui.dropdown > .text {*/
+/*white-space: nowrap;*/
+/*overflow: hidden;*/
+/*text-overflow: ellipsis;*/
+/*max-width: 125px;*/
+/*}*/
+
+/*.vi-wad-confirm-orders-shipping.vi-ui.dropdown > .text,*/
+/*.vi-wad-confirm-orders-shipping.vi-ui.dropdown > .text {*/
+/*white-space: nowrap;*/
+/*overflow: hidden;*/
+/*text-overflow: ellipsis;*/
+/*max-width: 150px;*/
+/*}*/
+
+td.vi-wad-order-table-column[data-column_name="shipping"] {
+    min-width: 185px;
+}
+
+.vi-wad-confirm-orders-shipping-info-company-wrap,
+.vi-wad-shipping-info-company-wrap {
+    position: relative;
+}
+
+.vi-wad-confirm-orders-shipping-info-company-wrap .vi-wad-confirm-orders-shipping,
+.vi-wad-shipping-info-company-wrap .vi-wad-shipping-info-company {
+    visibility: hidden;
+}
+
+.vi-wad-confirm-orders-shipping-info-company-wrap .vi-wad-confirm-orders-shipping-company,
+.vi-wad-shipping-info-company-wrap .vi-wad-shipping-info-company-name {
+    position: absolute;
+    top: 0;
+    padding: .78571429em 2.1em .78571429em 1em;
+    border: 1px solid rgba(34, 36, 38, .15);
+    border-radius: .28571429rem;
+    outline: 0;
+    line-height: 1em;
+    white-space: normal;
+    width: 100%;
+}
+
+/*.vi-wad-shipping-info-company-wrap .vi-wad-shipping-info-company-name span {*/
+/*max-width: 125px;*/
+/*overflow: hidden;*/
+/*white-space: nowrap;*/
+/*text-overflow: ellipsis;*/
+/*display: inline-block;*/
+/*}*/
+
+.vi-wad-confirm-orders-shipping-info-company-wrap .vi-wad-confirm-orders-shipping-company span {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    display: inline-block;
+    max-width: 100%;
+}
+
+.vi-wad-order-item-shipping:hover .vi-wad-shipping-info-company {
+    visibility: visible;
+}
+
+.vi-wad-order-item-shipping:hover .vi-wad-shipping-info-company-name {
+    display: none;
+}
+
+.vi-wad-confirm-orders-shipping-info-company-wrap:hover .vi-wad-confirm-orders-shipping {
+    visibility: visible;
+}
+
+.vi-wad-confirm-orders-shipping-info-company-wrap:hover .vi-wad-confirm-orders-shipping-company {
+    display: none;
+}
+
+.vi-wad-confirm-orders-container.vi-wad-confirm-orders-loaded .vi-wad-confirm-orders-shipping,
+.vi-wad-confirm-orders-container.vi-wad-confirm-orders-loading .vi-wad-confirm-orders-shipping,
+.vi-wad-order-item.vi-wad-order-item-can-not-be-ordered .vi-wad-shipping-info-company {
+    visibility: hidden !important;
+}
+
+.vi-wad-confirm-orders-container.vi-wad-confirm-orders-loaded .vi-wad-confirm-orders-shipping-company,
+.vi-wad-confirm-orders-container.vi-wad-confirm-orders-loading .vi-wad-confirm-orders-shipping-company,
+.vi-wad-order-item.vi-wad-order-item-can-not-be-ordered .vi-wad-shipping-info-company-name {
+    display: block !important;
+}
+
+.vi-wad-order-item.vi-wad-order-item-can-not-be-ordered .vi-wad-order-table-column[data-column_name="shipping"],
+.vi-wad-order-item.vi-wad-order-item-can-not-be-ordered .vi-wad-order-table-column[data-column_name="name"] > *:not(.message),
+.vi-wad-order-item.vi-wad-order-item-can-not-be-ordered .vi-wad-order-table-column[data-column_name="image"] {
+    opacity: 0.7;
+}
+
+/*confirm orders*/
+.vi-wad-confirm-orders-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 99999;
+}
+
+.vi-wad-confirm-orders-container .vi-wad-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(1, 1, 1, 0.3);
+}
+
+.vi-wad-confirm-orders-container .vi-wad-saving-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.6);
+    z-index: 100;
+    cursor: progress;
+    display: none;
+}
+
+.vi-wad-confirm-orders-container .vi-wad-confirm-orders-content {
+    position: relative;
+    z-index: 99;
+    width: 100%;
+    max-height: 90%;
+    overflow: hidden;
+    background: white;
+    display: flex;
+    flex-direction: column;
+    max-width: 90%;
+    border-radius: 10px;
+}
+
+.vi-wad-confirm-orders-container .vi-wad-confirm-orders-content .vi-wad-confirm-orders-content-header {
+    display: flex;
+    padding: 10px 20px;
+    justify-content: center;
+    position: relative;
+}
+
+.vi-wad-confirm-orders-container .vi-wad-confirm-orders-content .vi-wad-confirm-orders-content-header .vi-wad-confirm-orders-close {
+    height: 30px;
+    line-height: 30px;
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+}
+
+.vi-wad-confirm-orders-container .vi-wad-confirm-orders-content .vi-wad-confirm-orders-content-header .vi-wad-confirm-orders-close:before {
+    font-family: Dashicons;
+    content: "\f335";
+    font-size: 30px;
+    margin: 0;
+    padding: 0;
+}
+
+.vi-wad-confirm-orders-container .vi-wad-confirm-orders-content .vi-wad-confirm-orders-content-body {
+    overflow: auto;
+}
+
+.vi-wad-confirm-orders-container .vi-wad-confirm-orders-content .vi-wad-confirm-orders-content-body table {
+    border-top: none;
+    border-bottom: none;
+}
+
+.vi-wad-confirm-orders-container .vi-wad-confirm-orders-content .vi-wad-confirm-orders-content-body table thead th {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    border-top: 1px solid rgba(34, 36, 38, .15);
+    white-space: nowrap;
+    text-align: center;
+}
+
+.vi-wad-confirm-orders-container .vi-wad-confirm-orders-content .vi-wad-confirm-orders-content-body table tbody td {
+    text-align: center;
+}
+
+.vi-wad-confirm-orders-result:not(.vi-wad-loading),
+.vi-wad-confirm-orders-container .vi-wad-confirm-orders-content .vi-wad-confirm-orders-content-body table tbody td.vi-wad-confirm-orders-col-order-item[data-column_name="shipping_company"] {
+    text-align: left;
+}
+
+.vi-wad-confirm-orders-result {
+    min-width: 120px;
+}
+
+.vi-wad-confirm-orders-container .vi-wad-confirm-orders-content .vi-wad-confirm-orders-content-body table tfoot th {
+    position: sticky;
+    bottom: 0;
+    z-index: 1;
+    border-bottom: 1px solid rgba(34, 36, 38, .15);
+    text-align: center;
+}
+
+.vi-wad-confirm-orders-container .vi-wad-confirm-orders-content .vi-wad-confirm-orders-content-footer {
+    display: flex;
+    padding: 20px;
+    justify-content: flex-end;
+}
+
+.vi-wad-confirm-orders-container .vi-wad-confirm-orders-content .vi-wad-confirm-orders-content-footer .button {
+    margin: 0 5px;
+}
+
+.vi-wad-confirm-orders-container .vi-wad-confirm-orders-result-success {
+    text-align: center;
+}
+
+.vi-wad-confirm-orders-container:not(.vi-wad-confirm-orders-success) .vi-wad-confirm-orders-view-awaiting-payment-orders {
+    display: none;
+}
+
+.vi-wad-confirm-orders-loaded .vi-wad-confirm-orders-button-place,
+.vi-wad-confirm-orders-loading .vi-wad-confirm-orders-button-cancel,
+.vi-wad-confirm-orders-loaded .vi-wad-confirm-orders-button-cancel,
+.vi-wad-confirm-orders-container:not(.vi-wad-confirm-orders-loaded) .vi-wad-confirm-orders-button-ok {
+    display: none;
+}
+
+.vi-wad-confirm-orders-container .vi-wad-confirm-orders-col-head-status {
+    min-width: 150px;
+}
+
+.vi-wad-loading:before {
+    background-image: url(../images/loading.gif);
+    background-size: 20px 20px;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    content: "";
+}
+
+.vi-ui.message.vi-wad-product-notice-message .vi-wad-product-notice-time {
+    color: #2185d0;
+}
+
+a.vi-wad-view-item-on-imported-page {
+    text-decoration: none;
+}
+
+/*Order status*/
+.vi-wad-order-container table thead .fields {
+    line-height: 2em;
+}
+
+.vi-wad-order-status .vi-wad-order-status-text {
+    cursor: unset !important;
+}
+
+.vi-wad-order-status.vi-wad-order-status-completed .vi-wad-order-status-text {
+    background: #c8d7e1;
+    color: #2e4453;
+}
+
+.vi-wad-order-status.vi-wad-order-status-processing .vi-wad-order-status-text {
+    background: #c6e1c6;
+    color: #5b841b;
+}
+
+.vi-wad-order-status.vi-wad-order-status-on-hold .vi-wad-order-status-text {
+    background: #f8dda7;
+    color: #94660c;
+}
+
+/*sticky pagination form*/
+.vi-wad-orders-container {
+    margin-top: 0 !important;
+    border-top: 0 !important;
+    border-radius: 0 0 4px 4px !important;
+}
+
+.vi-wad-pagination-form {
+    position: sticky !important;
+    top: 32px !important;
+    z-index: 999 !important;
+    margin-bottom: 0 !important;
+    border-bottom: none !important;
+    border-radius: 4px 4px 0 0 !important;
+    box-shadow: 0 6px 8px 0 #2224264d !important;
+}
+
+.vi-wad-confirm-orders-result-error {
+    color: red;
+}
+
+.vi-wad-orders-container .vi-wad-ignore-border-first-child {
+    border-left: 1px solid rgba(34, 36, 38, .1) !important;
+}
+
+.vi-ui.button.vi-wad-aliexpress-sync {
+    vertical-align: bottom !important;
+    margin: 0 10px !important;
+}
+
+@media screen and (max-width: 1266px) {
+    .vi-wad-order-container .vi-ui.form {
+        overflow: auto;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .vi-wad-pagination-form .tablenav-pages {
+        margin: 0 auto !important;
+    }
+
+    .vi-wad-pagination-form .tablenav-pages .tablenav-paging-text {
+        float: none !important;
+    }
+
+    .vi-wad-pagination-form {
+        top: 0 !important;
+        padding-left: 0;
+        padding-right: 0;
+    }
+}
