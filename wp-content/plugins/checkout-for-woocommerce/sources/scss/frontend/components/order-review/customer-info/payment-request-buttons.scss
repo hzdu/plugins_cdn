@@ -29,10 +29,6 @@
     > div, button, > #checkout_paypal_message, > #wc-stripe-payment-request-wrapper, > #wcpay-payment-request-wrapper {
         @include cfw-payment-request-button();
     }
-
-    > div:empty {
-        display: none;
-    }
 }
 
 .apple-pay-button-checkout-separator {

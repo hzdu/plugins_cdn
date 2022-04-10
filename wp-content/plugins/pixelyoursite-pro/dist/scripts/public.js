@@ -3010,8 +3010,20 @@ if (!String.prototype.trim) {
                 Utils.loadGoogleTag(options.google_ads.conversion_ids[0]);
 
                 // configure conversion ids
-                options.google_ads.conversion_ids.forEach(function (conversion_id) {
-                    gtag('config', conversion_id);
+                options.google_ads.conversion_ids.forEach(function (conversion_id,index) {
+
+
+                    if(options.google_ads.enhanced_conversion.includes("index_"+index)
+                            && Object.keys(options.google_ads.user_data).length > 0
+                    ) {
+                        gtag('config', conversion_id,{ 'allow_enhanced_conversions':true });
+                        gtag('set', 'user_data', options.google_ads.user_data);
+                        console.log("allow_enhanced_conversions",conversion_id,options.google_ads.user_data)
+                    } else {
+                        console.log("NOT allow_enhanced_conversions",conversion_id)
+                        gtag('config', conversion_id);
+                    }
+
                 });
 
                 initialized = true;

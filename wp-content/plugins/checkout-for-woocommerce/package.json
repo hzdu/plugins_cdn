@@ -1,6 +1,6 @@
 {
     "name": "checkout-for-woocommerce",
-    "version": "7.1.4",
+    "version": "7.1.6",
     "description": "### Development installation instructions",
     "scripts": {
         "build_dev": "./build/build-dev.sh",
@@ -12,7 +12,8 @@
         "test": "node tests/e2e-tests/cypress-runner.js",
         "composer_install": "composer install --no-dev",
         "composer_install_dev": "composer install",
-        "min_php_version_test": "./vendor/bin/phpcs -p . --standard=PHPCompatibility --runtime-set testVersion 7.1 --extensions=php,inc,lib --ignore=node_modules/*,dist/*,vendor/kint-php/*,vendor/squizlabs/php_codesniffer/*,vendor/phpcompatibility/*,vendor/sebastian/*,vendor/phpdocumentor/*,vendor/phpunit/*,tests/*",
+        "min_php_version_test": "./vendor/bin/phpcs -p . --standard=PHPCompatibility --runtime-set testVersion 7.1 --extensions=php,inc,lib --ignore=node_modules/*,dist/*,vendor/kint-php/*,vendor/squizlabs/php_codesniffer/*,vendor/phpcompatibility/*,vendor/sebastian/*,vendor/phpdocumentor/*,vendor/phpunit/*,vendor/nikic/php-parser/*,tests/*",
+        "max_php_version_test": "./vendor/bin/phpcs -p . --standard=PHPCompatibility --runtime-set testVersion 8.1 --extensions=php,inc,lib --ignore=node_modules/*,dist/*,vendor/kint-php/*,vendor/squizlabs/php_codesniffer/*,vendor/phpcompatibility/*,vendor/sebastian/*,vendor/phpdocumentor/*,vendor/phpunit/*,vendor/nikic/php-parser/*,tests/*",
         "phpunit": "./vendor/bin/phpunit -c phpunit.xml --testdox",
         "tailwind": "npx tailwind --output './sources/scss/admin/tailwind.css' --watch"
     },

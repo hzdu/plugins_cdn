@@ -7,7 +7,7 @@ jQuery(document).ready(function()
 		var main_element = wcsts_versionCompare(wcsts_var, "3.0.0") < 0 ? jQuery(this).find('td.order-actions') : jQuery(this).find('td.woocommerce-orders-table__cell.woocommerce-orders-table__cell-order-actions');
 		
 		//new
-		order_num = wcsts_versionCompare(wcsts_var, "3.0.0") < 0 ? jQuery(this).find('td.order-number a').data("wcst-id") : jQuery(this).find('td.woocommerce-orders-table__cell-order-number a').data("wcst-id");
+		var order_num = wcsts_versionCompare(wcsts_var, "3.0.0") < 0 ? jQuery(this).find('td.order-number a').data("wcst-id") : jQuery(this).find('td.woocommerce-orders-table__cell-order-number a').data("wcst-id");
 		if(!isNaN(order_num))
 		{
 			var order_url = wcsts.view_order_url.replace('wcsts_order_id_place_holder',order_num)

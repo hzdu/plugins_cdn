@@ -191,7 +191,8 @@ jQuery( document ).ready(function($) {
         }
     }
     function updateGAFields() {
-        if($("#pys_event_ga_pixel_id").val().indexOf('G') === 0) {
+        if($("#pys_event_ga_pixel_id").val()
+            && $("#pys_event_ga_pixel_id").val().indexOf('G') === 0) {
             $('.col.g4').css('display','block');
             $('.col.old_g').css('display','none');
             $('.action_old').attr('name','')
@@ -322,7 +323,31 @@ jQuery( document ).ready(function($) {
     $("#pys_event_tiktok_enabled").on('click',function(){updateTikTokPanelVisibility()})
 
 
+    $("select.pys_hidden_content").each(function (el) {
+        hideShowHiddenData($(this))
+    })
 
+    $("select.pys_hidden_content").on("change",function () {
+        hideShowHiddenData($(this))
+    })
+
+    function hideShowHiddenData($elSwitch) {
+        var point = $elSwitch.data("hidden");
+        var value = $elSwitch.val();
+
+        $(point).each(function(){
+            if($(this).data("hide_value") === value) {
+                $(this).show();
+                console.log("show",$(this))
+            } else {
+                $(this).hide()
+                console.log("hide",$(this))
+            }
+        })
+
+
+
+    }
 
 
 });
