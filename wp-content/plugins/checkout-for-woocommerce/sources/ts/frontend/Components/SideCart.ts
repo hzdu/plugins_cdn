@@ -17,13 +17,7 @@ class SideCart {
         jQuery( document.body ).on( 'click', '.cfw-side-cart-open-trigger, .added_to_cart', this.openCart.bind( this ) );
         jQuery( document.body ).on( 'click', '.menu-item a:has(.cfw-side-cart-open-trigger)', this.openCart.bind( this ) );
         jQuery( document.body ).on( 'click', '.cfw-side-cart-close-trigger, .cfw-side-cart-close-btn, #cfw-side-cart-overlay', this.closeCart.bind( this ) );
-        jQuery( document.body ).on( 'added_to_cart', () => {
-            if ( DataService.getSetting( 'disable_side_cart_auto_open' ) ) {
-                return;
-            }
-
-            this.openCart();
-        } );
+        jQuery( document.body ).on( 'added_to_cart', this.openCart.bind( this ) );
         jQuery( document.body ).on( 'click', `a.wc-forward:contains(${DataService.getMessage( 'view_cart' )})`, this.openCart.bind( this ) );
         jQuery( document.body ).on( 'wc_fragments_loaded', this.initializeCart );
         jQuery( document.body ).on( 'click', '.cfw-remove-item-button', this.removeItem.bind( this ) );
@@ -38,13 +32,7 @@ class SideCart {
         } );
 
         jQuery( window ).on( 'load', () => {
-            if (
-                window.location.hash === '#cfw-cart'
-                || (
-                    DataService.getRuntimeParameter( 'openCart' )
-                    && !DataService.getSetting( 'disable_side_cart_auto_open' )
-                )
-            ) {
+            if ( window.location.hash === '#cfw-cart' || DataService.getRuntimeParameter( 'openCart' ) ) {
                 this.openCart();
             }
         } );

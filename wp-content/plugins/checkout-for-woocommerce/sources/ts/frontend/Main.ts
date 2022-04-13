@@ -62,7 +62,6 @@ import TooltipService                        from './Services/TooltipService';
 import UpdateCheckoutService                 from './Services/UpdateCheckoutService';
 import ValidationService                     from './Services/ValidationService';
 import ZipAutocompleteService                from './Services/ZipAutocompleteService';
-import BraintreeForWooCommerce from "./Compatibility/Gateways/BraintreeForWooCommerce";
 
 /**
  * The main class of the front end checkout system
@@ -258,7 +257,6 @@ class Main {
             new AmazonPayLegacy(),
             new AmazonPayV1(),
             new Braintree(),
-            new BraintreeForWooCommerce(),
             new CO2OK(),
             new EUVatNumber(),
             new KlarnaCheckout(),

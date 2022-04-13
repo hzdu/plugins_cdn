@@ -44,7 +44,7 @@
     }
 
     .cfw-radio-reveal-title-wrap {
-        padding: 0 0.5em;
+        padding: 1em 0.5em;
         background: #fff;
         font-size: 1em;
         box-sizing: border-box;
@@ -55,11 +55,6 @@
         justify-content: space-between;
         margin: 0;
         cursor: pointer;
-
-        & > input[type="radio"] {
-            margin-top: 1em !important;
-            margin-bottom: 1em !important;
-        }
     }
 
     .cfw-radio-reveal-label {
@@ -67,8 +62,6 @@
         display: flex !important;
         align-items: center;
         flex-grow: 1;
-        padding: 1em 0;
-        cursor: pointer;
 
         > div {
             display: flex !important;
@@ -76,6 +69,12 @@
             flex-grow: 1;
             box-sizing: border-box;
             font-size: 1em;
+            cursor: pointer;
+
+            input[type="radio"] {
+                position: relative !important;
+                top: -1px !important;
+            }
         }
     }
 

@@ -50,7 +50,7 @@ class AccountExistsAction extends Action {
         if ( registerUserCheckbox && registerUserCheckbox.is( ':checkbox' ) ) {
             registerContainer.css( 'display', resp.account_exists ? 'none' : 'flex' );
             registerUserCheckbox.prop( 'disabled', resp.account_exists );
-            registerUserCheckbox.prop( 'checked', !resp.account_exists && DataService.getSetting( 'check_create_account_by_default' ) );
+            registerUserCheckbox.prop( 'checked', !resp.account_exists || ( resp.account_exists && DataService.getSetting( 'check_create_account_by_default' ) ) );
         }
     }
 }
