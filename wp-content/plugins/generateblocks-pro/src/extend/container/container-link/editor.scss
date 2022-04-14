@@ -1,0 +1,35 @@
+.gb-container-link {
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	z-index: 10;
+}
+
+.is-selected,
+.has-child-selected {
+	& > .gb-container > .gb-inside-container > .gb-container-link {
+		pointer-events: none;
+	}
+
+	& > a.gb-container {
+		cursor: auto;
+	}
+}
+
+.gblocks-container-link-dropdown {
+	.components-base-control:not(:last-child) {
+		margin-bottom: 24px;
+	}
+
+	.gblocks-container-link input[type="text"] {
+		max-width: 100%;
+		border: 1px solid #ddd;
+		border-radius: 2px;
+	}
+}
+
+.gblocks-container-link-wrapper .components-base-control__field {
+    margin-bottom: 0;
+}
