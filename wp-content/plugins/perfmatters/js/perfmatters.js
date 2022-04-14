@@ -1,4 +1,3 @@
-//Perfmatters Admin JS
 jQuery(document).ready(function($) {
 
 	//tab-content display
@@ -6,31 +5,24 @@ jQuery(document).ready(function($) {
 
 		e.preventDefault();
 					
-		//get displaying tab content jQuery selector
+		//deactivate current tab + hide content
 		var active_tab = $('.perfmatters-subnav > a.active');		
-					
-		//find actived navigation and remove 'active' css
 		active_tab.removeClass('active');
+		$(active_tab.attr('href')).removeClass('active');
 					
 		//add 'active' css into clicked navigation
 		$(this).addClass('active');
+		$($(this).attr('href')).addClass('active');
 
-		//var selected_tab_id = $(this).attr('rel');
 		$('#perfmatters-options-form').attr('action', "options.php" + "#" + $(this).attr('rel'));
-					
-		//hide displaying tab content
-		$(active_tab.attr('href')).removeClass('active').addClass('hide');
-					
-		//show target tab content
-		$($(this).attr('href')).removeClass('hide').addClass('active');
-
+		
 		$('#perfmatters-admin .CodeMirror').each(function(i, el) {
 		    el.CodeMirror.refresh();
 		});
 	});
 
     //tooltip display
-	$(".perfmatters-tooltip").hover(function(){
+	$(".perfmatters-tooltip").hover(function() {
 	    $(this).closest("tr").find(".perfmatters-tooltip-text").fadeIn(100);
 	},function(){
 	    $(this).closest("tr").find(".perfmatters-tooltip-text").fadeOut(100);

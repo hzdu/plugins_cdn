@@ -4,8 +4,8 @@ Donate link: https://perfmatters.io
 Tags: perfmatters
 Requires at least: 4.7
 Requires PHP: 7.0
-Tested up to: 5.9.2
-Stable tag: 1.8.8
+Tested up to: 5.9.3
+Stable tag: 1.8.9
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -13,14 +13,15 @@ Perfmatters is a lightweight performance plugin developed to speed up your WordP
 
 == Description ==
 
-[Perfmatters](https://perfmatters.io/) is a lightweight web performance plugin designed to help increase Google Core Web Vitals scores and fine-tune how assets load on your site. 
+[Perfmatters](https://perfmatters.io/) is a lightweight web performance plugin designed to help increase Google Core Web Vitals scores and fine-tune how assets load on your site.
 
 = Features =
 
 * Easy quick toggle options to turn off resources that shouldn't be loading. 
-* Defer and delay JavaScript, including third-party scripts.
 * Disable scripts and plugins on a per post/page or sitewide basis with the Script Manager. 
-* Preload resources and prefetch links for quicker load times.
+* Defer and delay JavaScript, including third-party scripts.
+* Automatically remove unused CSS.
+* Preload resources, critical images, and prefetch links for quicker load times.
 * Lazy load images and enable click-to-play thumbnails on videos.
 * Host Google Analytics and Google Fonts locally.
 * Change your WordPress login URL. 
@@ -33,6 +34,18 @@ Perfmatters is a lightweight performance plugin developed to speed up your WordP
 Check out our [documentation](https://perfmatters.io/docs/) for more information on how to use Perfmatters.
 
 == Changelog ==
+
+= 1.8.9 - 04.13.2022 =
+* Updated plugin settings UI.
+* Added new post meta option to Clear Used CSS for an individual page or post type.
+* Added new perfmatters_rucss_excluded_selectors filter.
+* Fixed a lazy loading issue that was preventing some images from loading properly in Safari.
+* Migrated Delay JS Timeout dropdown to a simpler on/off toggle that will default to 10 seconds. Our filter is also still available to set a custom timeout value.
+* Fixed an issue with MU plugin that was interfering with rewrite rules in some instances.
+* Added additional excluded page builder parameter for Flatsome UX.
+* Moved restore default functionality to a separate option on the tools page.
+* Code refactoring.
+* Translation updates.
 
 = 1.8.8 - 03.23.2022 =
 * Changed default setting for Used CSS Method from file to inline, as we think this will be the more compatible solution for most users going forward. If you were previously using the file method, you may need to save that option again.
