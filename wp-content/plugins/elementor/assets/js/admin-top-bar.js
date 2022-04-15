@@ -1,4 +1,4 @@
-/*! elementor - v3.5.6 - 28-02-2022 */
+/*! elementor - v3.6.3 - 12-04-2022 */
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
@@ -436,7 +436,7 @@ var _usePageTitle = __webpack_require__(/*! ./hooks/use-page-title/use-page-titl
 
 var _environment = _interopRequireDefault(__webpack_require__(/*! elementor-common/utils/environment */ "../core/common/assets/js/utils/environment.js"));
 
-function AdminTopBar(props) {
+function AdminTopBar() {
   var actionButtonsRef = (0, _react.useRef)(); // Handle Top Bar visibility on initiation: Indicate that the admin top bar is visible and the page content needs to push down below the admin top bar for visibility.
 
   (0, _react.useEffect)(function () {

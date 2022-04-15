@@ -1,4 +1,4 @@
-/*! elementor - v3.5.6 - 28-02-2022 */
+/*! elementor - v3.6.3 - 12-04-2022 */
 (self["webpackChunkelementor"] = self["webpackChunkelementor"] || []).push([["preloaded-modules"],{
 
 /***/ "../node_modules/@babel/runtime/helpers/defineProperty.js":
@@ -252,7 +252,7 @@ class baseTabs extends elementorModules.frontend.handlers.Base {
       'aria-selected': 'true',
       'aria-expanded': 'true'
     });
-    $requestedContent[settings.showTabFn](animationDuration, () => elementorFrontend.elements.$window.trigger('resize'));
+    $requestedContent[settings.showTabFn](animationDuration, () => elementorFrontend.elements.$window.trigger('elementor-pro/motion-fx/recalc'));
     $requestedContent.removeAttr('hidden');
   }
 
@@ -482,6 +482,13 @@ class ImageCarousel extends elementorModules.frontend.handlers.SwiperBase {
         el: '.swiper-pagination',
         type: 'bullets',
         clickable: true
+      };
+    }
+
+    if ('yes' === elementSettings.lazyload) {
+      swiperOptions.lazy = {
+        loadPrevNext: true,
+        loadPrevNextAmount: 1
       };
     }
 
@@ -797,7 +804,8 @@ class Video extends elementorModules.frontend.handlers.Base {
       selectors: {
         imageOverlay: '.elementor-custom-embed-image-overlay',
         video: '.elementor-video',
-        videoIframe: '.elementor-video-iframe'
+        videoIframe: '.elementor-video-iframe',
+        playIcon: '.elementor-custom-embed-play'
       }
     };
   }
@@ -807,7 +815,8 @@ class Video extends elementorModules.frontend.handlers.Base {
     return {
       $imageOverlay: this.$element.find(selectors.imageOverlay),
       $video: this.$element.find(selectors.video),
-      $videoIframe: this.$element.find(selectors.videoIframe)
+      $videoIframe: this.$element.find(selectors.videoIframe),
+      $playIcon: this.$element.find(selectors.playIcon)
     };
   }
 
@@ -905,6 +914,15 @@ class Video extends elementorModules.frontend.handlers.Base {
 
   bindEvents() {
     this.elements.$imageOverlay.on('click', this.handleVideo.bind(this));
+    this.elements.$playIcon.on('keydown', event => {
+      const playKeys = [13, // Enter key.
+      32 // Space bar key.
+      ];
+
+      if (playKeys.includes(event.keyCode)) {
+        this.handleVideo();
+      }
+    });
   }
 
   onInit() {
