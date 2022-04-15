@@ -1,0 +1,1 @@
+!function(e,n){"use strict";var t=function(e,n){var t=e.find(".bdt-vertical-menu"),o=t.data("settings");t.length&&n("#"+o.id).metisMenu()};jQuery(window).on("elementor/frontend/init",(function(){elementorFrontend.hooks.addAction("frontend/element_ready/bdt-vertical-menu.default",t)}))}(jQuery,window.elementorFrontend);
