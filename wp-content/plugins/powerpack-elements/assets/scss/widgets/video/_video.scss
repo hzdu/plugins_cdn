@@ -1,0 +1,41 @@
+.pp-video-player {
+    > img,
+    iframe,
+	video {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+    }
+    > img {
+        border: none;
+        bottom: 0;
+        cursor: pointer;
+        display: block;
+        margin: auto;
+        max-width: 100%;
+        height: auto;
+        right: 0;
+        margin: 0;
+        -webkit-transition: .25s all;
+        transition: .25s all;
+    }
+    iframe {
+        height: 100%;
+        z-index: 1;
+    }
+}
+.pp-video {
+    position: relative;
+    .pp-video-player > img {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+    }
+    &-item {
+        position: relative;
+    }
+}
+.pp-video-gallery-overlay {
+	z-index: 1;
+}

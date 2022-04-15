@@ -1,0 +1,68 @@
+.pp-tabbed-carousel-item-image {
+	overflow: hidden;
+	img {
+		@include transition();
+	}
+}
+.pp-carousel-side-blur {
+	.pp-tabbed-carousel-slide {
+		filter: blur(1px);
+		transition: opacity .3s, filter .3s;
+		opacity: .3;
+		&.swiper-slide-visible {
+			filter: none;
+			opacity: 1;
+		}
+	}
+}
+.pp-swiper-center-mode {
+	.pp-tabbed-carousel-slide {
+		overflow: visible;
+	}
+}
+.pp-tabbed-carousel-filters {
+	display: flex;
+	flex-wrap: wrap;
+	margin: 0 0 30px;
+	.pp-gallery-filter {
+		--space-between: 10px;
+		margin: 0;
+		margin-right: var(--space-between);
+	}
+}
+.pp-tabbed-carousel-item {
+	position: relative;
+}
+.pp-tabbed-gallery-thumbnail-wrap {
+	overflow: hidden;
+	position: relative;
+	@include transition($target: all, $time: 0.25s, $timing-function: linear);
+}
+.pp-tabbed-gallery-thumbnail {
+	img {
+		@include transition($target: all, $time: 0.25s, $timing-function: linear);
+		margin-left: auto;
+		margin-right: auto;
+		vertical-align: middle;
+	}
+}
+.pp-filter-icon-block {
+	.pp-gallery-filter-label {
+		display: block;
+	}
+}
+.pp-swiper-equal-height {
+	.pp-tabbed-carousel-item {
+		width: 100%;
+	}
+	.pp-tabbed-gallery-thumbnail-wrap {
+		height: 300px;
+	}
+	.pp-tabbed-gallery-thumbnail {
+		height: 100%;
+	}
+	.pp-tabbed-gallery-thumbnail {
+		background-repeat: no-repeat;
+		background-size: cover;
+	}
+}

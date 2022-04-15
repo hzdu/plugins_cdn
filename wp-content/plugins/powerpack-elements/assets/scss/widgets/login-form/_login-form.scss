@@ -1,0 +1,176 @@
+.pp-social-login-wrap {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    user-select: none;
+    &.pp-social-login--layout-stacked {
+        flex-direction: column;
+        .pp-social-login-button {
+            margin-right: 0;
+            margin-bottom: 8px;
+            width: 100%;
+            &:last-of-type {
+                margin-bottom: 0;
+            }
+        }
+        span.pp-social-login-label {
+            text-align: center;
+        }
+    }
+}
+.pp-login-form-wrap {
+    .pp-lf-error {
+        color: red;
+    }
+    .pp-login-form > .pp-lf-error {
+        display: block;
+        margin-top: 15px;
+    }
+    &.pp-event-disabled {
+        .pp-login-form {
+            pointer-events: none;
+            opacity: 0.2;
+        }
+        &:before {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            content: " ";
+            display: block;
+            width: 50px;
+            height: 50px;
+            margin: -25px 0 0 -25px;
+            border-radius: 50%;
+            border: 5px solid #fff;
+            border-color: #000 transparent #000 transparent;
+            animation: pp-loader-dual-ring 1.2s linear infinite;
+        }
+    }
+}
+.pp-login-form {
+    .pp-field-type-recaptcha .pp-grecaptcha {
+        display: inline-block;
+    }
+    .pp-social-login-button {
+        cursor: pointer;
+        display: flex;
+        margin-right: 10px;
+        color: #fff;
+        transition: all 0.2s;
+        &:last-of-type {
+            margin-right: 0;
+        }
+        span {
+            display: inline-block;
+            svg {
+                height: 24px;
+                width: 24px;
+                vertical-align: top;
+                path {
+                    transition: all 0.2s;
+                }
+            }
+            &.pp-social-login-icon {
+                display: flex;
+                flex: 0 0 auto;
+                padding: 10px;
+            }
+            &.pp-social-login-label {
+                overflow: hidden;
+                text-align: left;
+                text-overflow: clip;
+                white-space: nowrap;
+                flex: 1 1 auto;
+                margin: 0 20px 0 10px;
+                padding: 10px 0;
+                font-family: Helvetica, Arial, sans-serif;
+                font-size: 16px;
+                line-height: 24px;
+                letter-spacing: .25px;
+                font-weight: bold;
+                -webkit-font-smoothing: antialiased;
+                -moz-osx-font-smoothing: grayscale;
+            }
+        }
+        &.pp-fb-login-button {
+            background-color: #4267b2;
+            svg {
+                path {
+                    fill: #fff;
+                }
+            }
+        }
+        &.pp-google-login-button {
+            background-color: #4285f4;
+            .pp-social-login-icon {
+                background: #fff;
+                margin: 1px;
+                padding: 9px 10px;
+            }
+        }
+    }
+    .pp-social-login--transparent {
+        .pp-social-login-button {
+            border: 1px solid;
+            &.pp-fb-login-button {
+                color: #4267b2;
+                background-color: transparent;
+                &:hover {
+                    background-color: rgba(66, 103, 178, 0.1);
+                }
+                svg path {
+                    fill: #4267b2;
+                }
+            }
+            &.pp-google-login-button {
+                color: #4285f4;
+                background-color: transparent;
+                &:hover {
+                    background-color: rgba(66, 133, 244, 0.1);
+                }
+                .pp-social-login-icon {
+                    background-color: transparent;
+                    border: none;
+                }
+            }
+        }
+    }
+    .pp-login-form-sep {
+        margin-top: 20px;
+        text-align: center;
+    }
+    .pp-login-form-sep-text {
+        display: inline-block;
+        position: relative;
+        font-weight: bold;
+        padding-left: 10px;
+        padding-right: 10px;
+        &:before,
+        &:after {
+            content: "";
+            display: block;
+            position: absolute;
+            top: 50%;
+            border-width: 0;
+            border-style: solid;
+            border-bottom-width: 1px;
+            width: 5px;
+        }
+        &:before {
+            right: 100%;
+        }
+        &:after {
+            left: 100%;
+        }
+    }
+}
+.pp-login-form-links {
+    a {
+        position: relative;
+        &:not(:last-child):after {
+            content: "|";
+            margin: 0 0.3em;
+        }
+    }
+}

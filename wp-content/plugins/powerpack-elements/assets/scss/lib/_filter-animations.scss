@@ -1,0 +1,419 @@
+.pp-gallery-filter:not(:hover):not(:focus):not(.pp-active):not(.highlighted):after,
+.pp-gallery-filter:not(:hover):not(:focus):not(.pp-active):not(.highlighted):before {
+	opacity: 0;
+}
+.pp-gallery-filter:after,
+.pp-gallery-filter:before {
+    display: block;
+    position: absolute;
+    transition: .3s;
+    transition-timing-function: cubic-bezier(.58,.3,.005,1);
+}
+.pp-gallery-filters:not(.pp-pointer-framed) .pp-gallery-filter:after {
+	background-color: #55595c;
+}
+.pp-pointer-line .pp-gallery-filter:before,
+.pp-pointer-line .pp-gallery-filter:after {
+	height: 3px;
+	width: 100%;
+	left: 0;
+	background-color: #55595c;
+	z-index: 2;
+}
+  
+.pp-pointer-line.pp-animation-grow .pp-gallery-filter:not(:hover):not(:focus):not(.pp-active):not(.highlighted):before,
+.pp-pointer-line.pp-animation-grow .pp-gallery-filter:not(:hover):not(:focus):not(.pp-active):not(.highlighted):after {
+	height: 0;
+	width: 0;
+	left: 50%;
+}
+  
+  .pp-pointer-line.pp-animation-drop-out .pp-gallery-filter:not(:hover):not(:focus):not(.pp-active):not(.highlighted):before {
+	top: 10px; }
+  
+  .pp-pointer-line.pp-animation-drop-out .pp-gallery-filter:not(:hover):not(:focus):not(.pp-active):not(.highlighted):after {
+	bottom: 10px; }
+  
+  .pp-pointer-line.pp-animation-drop-in .pp-gallery-filter:not(:hover):not(:focus):not(.pp-active):not(.highlighted):before {
+	top: -10px; }
+  
+  .pp-pointer-line.pp-animation-drop-in .pp-gallery-filter:not(:hover):not(:focus):not(.pp-active):not(.highlighted):after {
+	bottom: -10px; }
+  
+.pp-pointer-line.pp-animation-none,
+.pp-pointer-line.pp-animation-none .pp-gallery-filter,
+.pp-pointer-line.pp-animation-none:before,
+.pp-pointer-line.pp-animation-none:after,
+.pp-pointer-line.pp-animation-none:hover,
+.pp-pointer-line.pp-animation-none:focus,
+.pp-pointer-line.pp-animation-none .pp-gallery-filter:before,
+.pp-pointer-line.pp-animation-none .pp-gallery-filter:after,
+.pp-pointer-line.pp-animation-none .pp-gallery-filter:hover,
+.pp-pointer-line.pp-animation-none .pp-gallery-filter:focus {
+	transition-duration: 0s;
+}
+  
+  .pp-pointer-double-line .pp-gallery-filter:before, .pp-pointer-overline .pp-gallery-filter:before {
+	content: '';
+	top: 0; }
+  
+  .pp-pointer-double-line.pp-animation-slide .pp-gallery-filter:not(:hover):not(:focus):not(.pp-active):not(.highlighted):before,
+  .pp-pointer-overline.pp-animation-slide .pp-gallery-filter:not(:hover):not(:focus):not(.pp-active):not(.highlighted):before {
+	width: 10px;
+	left: -20px; }
+  
+  .pp-pointer-double-line .pp-gallery-filter:after, .pp-pointer-underline .pp-gallery-filter:after {
+	content: '';
+	bottom: 0; }
+  
+  .pp-pointer-double-line.pp-animation-slide .pp-gallery-filter:not(:hover):not(:focus):not(.pp-active):not(.highlighted):after,
+  .pp-pointer-underline.pp-animation-slide .pp-gallery-filter:not(:hover):not(:focus):not(.pp-active):not(.highlighted):after {
+	width: 10px;
+	left: calc( 100% + 20px); }
+  
+  .pp-pointer-framed .pp-gallery-filter:before, .pp-pointer-framed .pp-gallery-filter:after {
+	background: transparent;
+	left: 0;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	border: 3px solid #55595c; }
+  
+  .pp-pointer-framed .pp-gallery-filter:before {
+	content: ''; }
+  
+.pp-pointer-framed.pp-animation-grow .pp-gallery-filter:not(:hover):not(:focus):not(.pp-active):not(.highlighted):before {
+	transform: scale(0.75);
+}
+  
+.pp-pointer-framed.pp-animation-shrink .pp-gallery-filter:not(:hover):not(:focus):not(.pp-active):not(.highlighted):before {
+	transform: scale(1.25);
+}
+  
+.pp-pointer-framed.pp-animation-grow .pp-gallery-filter:before, .pp-pointer-framed.pp-animation-shrink .pp-gallery-filter:before {
+	transition: opacity 0.2s, transform 0.4s;
+}
+  
+.pp-pointer-framed.pp-animation-draw .pp-gallery-filter:before, .pp-pointer-framed.pp-animation-draw .pp-gallery-filter:after {
+	width: 3px;
+	height: 3px;
+}
+  
+.pp-pointer-framed.pp-animation-draw .pp-gallery-filter:before {
+	border-width: 0 0 3px 3px;
+	transition: width 0.1s 0.2s, height 0.1s 0.3s, opacity 0.12s 0.22s;
+}
+  
+.pp-pointer-framed.pp-animation-draw .pp-gallery-filter:after {
+	content: '';
+	top: initial;
+	bottom: 0;
+	left: initial;
+	right: 0;
+	border-width: 3px 3px 0 0;
+	transition: width 0.1s, height 0.1s 0.1s, opacity 0.02s 0.18s;
+}
+
+.pp-pointer-framed.pp-animation-draw .pp-gallery-filter:hover:before,
+.pp-pointer-framed.pp-animation-draw .pp-gallery-filter:hover:after,
+.pp-pointer-framed.pp-animation-draw .pp-gallery-filter:focus:before,
+.pp-pointer-framed.pp-animation-draw .pp-gallery-filter:focus:after,
+.pp-pointer-framed.pp-animation-draw .pp-gallery-filter.highlighted:before,
+.pp-pointer-framed.pp-animation-draw .pp-gallery-filter.highlighted:after,
+.pp-pointer-framed.pp-animation-draw .pp-active:before,
+.pp-pointer-framed.pp-animation-draw .pp-active:after {
+	width: 100%;
+	height: 100%;
+}
+  
+.pp-pointer-framed.pp-animation-draw .pp-gallery-filter:hover:before,
+.pp-pointer-framed.pp-animation-draw .pp-gallery-filter:focus:before,
+.pp-pointer-framed.pp-animation-draw .pp-gallery-filter.highlighted:before,
+.pp-pointer-framed.pp-animation-draw .pp-active:before {
+	transition: opacity 0.02s, height 0.1s, width 0.1s 0.1s;
+}
+  
+.pp-pointer-framed.pp-animation-draw .pp-gallery-filter:hover:after,
+.pp-pointer-framed.pp-animation-draw .pp-gallery-filter:focus:after,
+.pp-pointer-framed.pp-animation-draw .pp-gallery-filter.highlighted:after,
+.pp-pointer-framed.pp-animation-draw .pp-active:after {
+	transition: opacity 0.02s 0.2s, height 0.1s 0.2s, width 0.1s 0.3s;
+}
+  
+.pp-pointer-framed.pp-animation-corners .pp-gallery-filter:before,
+.pp-pointer-framed.pp-animation-corners .pp-gallery-filter:after {
+	width: 3px;
+	height: 3px;
+}
+  
+.pp-pointer-framed.pp-animation-corners .pp-gallery-filter:before {
+	border-width: 3px 0 0 3px;
+}
+  
+.pp-pointer-framed.pp-animation-corners .pp-gallery-filter:after {
+	content: '';
+	top: initial;
+	bottom: 0;
+	left: initial;
+	right: 0;
+	border-width: 0 3px 3px 0;
+}
+  
+.pp-pointer-framed.pp-animation-corners .pp-gallery-filter:hover:before,
+.pp-pointer-framed.pp-animation-corners .pp-gallery-filter:hover:after,
+.pp-pointer-framed.pp-animation-corners .pp-gallery-filter:focus:before,
+.pp-pointer-framed.pp-animation-corners .pp-gallery-filter:focus:after,
+.pp-pointer-framed.pp-animation-corners .pp-gallery-filter.highlighted:before,
+.pp-pointer-framed.pp-animation-corners .pp-gallery-filter.highlighted:after,
+.pp-pointer-framed.pp-animation-corners .pp-active:before,
+.pp-pointer-framed.pp-animation-corners .pp-active:after {
+	width: 100%;
+	height: 100%;
+	transition: opacity 0.002s, width 0.4s, height 0.4s;
+}
+  
+.pp-pointer-framed.pp-animation-none,
+.pp-pointer-framed.pp-animation-none .pp-gallery-filter,
+.pp-pointer-framed.pp-animation-none:before,
+.pp-pointer-framed.pp-animation-none:after,
+.pp-pointer-framed.pp-animation-none:hover,
+.pp-pointer-framed.pp-animation-none:focus,
+.pp-pointer-framed.pp-animation-none .pp-gallery-filter:before,
+.pp-pointer-framed.pp-animation-none .pp-gallery-filter:after,
+.pp-pointer-framed.pp-animation-none .pp-gallery-filter:hover,
+.pp-pointer-framed.pp-animation-none .pp-gallery-filter:focus {
+	transition-duration: 0s;
+}
+  
+.pp-pointer-background .pp-gallery-filter:before,
+.pp-pointer-background .pp-gallery-filter:after {
+	content: '';
+	transition: 0.3s;
+}
+  
+.pp-pointer-background .pp-gallery-filter:before {
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: #55595c;
+	z-index: -1;
+}
+
+.pp-pointer-background .pp-gallery-filter:hover,
+.pp-pointer-background .pp-gallery-filter:focus,
+.pp-pointer-background .pp-gallery-filter.highlighted,
+.pp-pointer-background .pp-active {
+	color: #fff;
+}
+  
+.pp-pointer-background.pp-animation-grow .pp-gallery-filter:before {
+	transform: scale(0.5);
+}
+
+.pp-pointer-background.pp-animation-grow .pp-gallery-filter:hover:before,
+.pp-pointer-background.pp-animation-grow .pp-gallery-filter:focus:before,
+.pp-pointer-background.pp-animation-grow .pp-gallery-filter.highlighted:before,
+.pp-pointer-background.pp-animation-grow .pp-active:before {
+	transform: scale(1);
+	opacity: 1;
+}
+  
+.pp-pointer-background.pp-animation-shrink .pp-gallery-filter:not(:hover):not(:focus):not(.pp-active):not(.highlighted):before {
+	transform: scale(1.2);
+	transition: 0.3s;
+}
+  
+.pp-pointer-background.pp-animation-shrink .pp-gallery-filter:hover:before,
+.pp-pointer-background.pp-animation-shrink .pp-gallery-filter:focus:before,
+.pp-pointer-background.pp-animation-shrink .pp-gallery-filter.highlighted:before,
+.pp-pointer-background.pp-animation-shrink .pp-active:before {
+	transition: opacity 0.15s, transform 0.4s;
+}
+  
+.pp-pointer-background.pp-animation-sweep-left .pp-gallery-filter:not(:hover):not(:focus):not(.pp-active):not(.highlighted):before {
+	left: 100%;
+}
+  
+.pp-pointer-background.pp-animation-sweep-right .pp-gallery-filter:not(:hover):not(:focus):not(.pp-active):not(.highlighted):before {
+	right: 100%;
+}
+  
+.pp-pointer-background.pp-animation-sweep-up .pp-gallery-filter:not(:hover):not(:focus):not(.pp-active):not(.highlighted):before {
+	top: 100%;
+}
+  
+.pp-pointer-background.pp-animation-sweep-down .pp-gallery-filter:not(:hover):not(:focus):not(.pp-active):not(.highlighted):before {
+	bottom: 100%;
+}
+  
+.pp-pointer-background.pp-animation-shutter-out-vertical .pp-gallery-filter:not(:hover):not(:focus):not(.pp-active):not(.highlighted):before {
+	bottom: 50%;
+	top: 50%;
+}
+  
+.pp-pointer-background.pp-animation-shutter-out-horizontal .pp-gallery-filter:not(:hover):not(:focus):not(.pp-active):not(.highlighted):before {
+	right: 50%;
+	left: 50%;
+}
+  
+.pp-pointer-background.pp-animation-shutter-in-vertical .pp-gallery-filter:after,
+.pp-pointer-background.pp-animation-shutter-in-horizontal .pp-gallery-filter:after {
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: #55595c;
+	z-index: -1;
+}
+  
+.pp-pointer-background.pp-animation-shutter-in-vertical .pp-gallery-filter:before {
+	top: 0;
+	bottom: 100%;
+}
+  
+.pp-pointer-background.pp-animation-shutter-in-vertical .pp-gallery-filter:after {
+	top: 100%;
+	bottom: 0;
+}
+  
+.pp-pointer-background.pp-animation-shutter-in-vertical .pp-gallery-filter:hover:before,
+.pp-pointer-background.pp-animation-shutter-in-vertical .pp-gallery-filter:focus:before,
+.pp-pointer-background.pp-animation-shutter-in-vertical .pp-gallery-filter.highlighted:before,
+.pp-pointer-background.pp-animation-shutter-in-vertical .pp-active:before {
+	bottom: 50%;
+}
+  
+.pp-pointer-background.pp-animation-shutter-in-vertical .pp-gallery-filter:hover:after,
+.pp-pointer-background.pp-animation-shutter-in-vertical .pp-gallery-filter:focus:after,
+.pp-pointer-background.pp-animation-shutter-in-vertical .pp-gallery-filter.highlighted:after,
+.pp-pointer-background.pp-animation-shutter-in-vertical .pp-active:after {
+	top: 50%;
+}
+  
+.pp-pointer-background.pp-animation-shutter-in-horizontal .pp-gallery-filter:before {
+	right: 0;
+	left: 100%;
+}
+  
+.pp-pointer-background.pp-animation-shutter-in-horizontal .pp-gallery-filter:after {
+	right: 100%;
+	left: 0;
+}
+    
+.pp-pointer-background.pp-animation-shutter-in-horizontal .pp-gallery-filter:hover:before,
+.pp-pointer-background.pp-animation-shutter-in-horizontal .pp-gallery-filter:focus:before,
+.pp-pointer-background.pp-animation-shutter-in-horizontal .pp-gallery-filter.highlighted:before,
+.pp-pointer-background.pp-animation-shutter-in-horizontal .pp-active:before {
+	left: 50%;
+}
+  
+.pp-pointer-background.pp-animation-shutter-in-horizontal .pp-gallery-filter:hover:after,
+.pp-pointer-background.pp-animation-shutter-in-horizontal .pp-gallery-filter:focus:after,
+.pp-pointer-background.pp-animation-shutter-in-horizontal .pp-gallery-filter.highlighted:after,
+.pp-pointer-background.pp-animation-shutter-in-horizontal .pp-active:after {
+	right: 50%;
+}
+  
+.pp-pointer-background.pp-animation-none,
+.pp-pointer-background.pp-animation-none .pp-gallery-filter,
+.pp-pointer-background.pp-animation-none:before,
+.pp-pointer-background.pp-animation-none:after,
+.pp-pointer-background.pp-animation-none:hover,
+.pp-pointer-background.pp-animation-none:focus,
+.pp-pointer-background.pp-animation-none .pp-gallery-filter:before,
+.pp-pointer-background.pp-animation-none .pp-gallery-filter:after,
+.pp-pointer-background.pp-animation-none .pp-gallery-filter:hover,
+.pp-pointer-background.pp-animation-none .pp-gallery-filter:focus {
+	transition-duration: 0s;
+}
+  
+.pp-pointer-text.pp-animation-skew .pp-gallery-filter:hover,
+.pp-pointer-text.pp-animation-skew .pp-gallery-filter:focus {
+	transform: skew(-8deg);
+}
+  
+.pp-pointer-text.pp-animation-grow .pp-gallery-filter:hover,
+.pp-pointer-text.pp-animation-grow .pp-gallery-filter:focus {
+	transform: scale(1.2);
+}
+  
+.pp-pointer-text.pp-animation-shrink .pp-gallery-filter:hover,
+.pp-pointer-text.pp-animation-shrink .pp-gallery-filter:focus {
+	transform: scale(0.8);
+}
+  
+.pp-pointer-text.pp-animation-float .pp-gallery-filter:hover,
+.pp-pointer-text.pp-animation-float .pp-gallery-filter:focus {
+	transform: translateY(-8px);
+}
+  
+.pp-pointer-text.pp-animation-sink .pp-gallery-filter:hover,
+.pp-pointer-text.pp-animation-sink .pp-gallery-filter:focus {
+	transform: translateY(8px);
+}
+  
+.pp-pointer-text.pp-animation-rotate .pp-gallery-filter:hover,
+.pp-pointer-text.pp-animation-rotate .pp-gallery-filter:focus {
+	transform: rotate(6deg);
+}
+  
+.pp-pointer-text.pp-animation-none,
+.pp-pointer-text.pp-animation-none .pp-gallery-filter,
+.pp-pointer-text.pp-animation-none:before,
+.pp-pointer-text.pp-animation-none:after,
+.pp-pointer-text.pp-animation-none:hover,
+.pp-pointer-text.pp-animation-none:focus,
+.pp-pointer-text.pp-animation-none .pp-gallery-filter:before,
+.pp-pointer-text.pp-animation-none .pp-gallery-filter:after,
+.pp-pointer-text.pp-animation-none .pp-gallery-filter:hover,
+.pp-pointer-text.pp-animation-none .pp-gallery-filter:focus {
+	transition-duration: 0s;
+}
+
+.pp-gallery-filters:not(.pp-pointer-framed) .pp-gallery-filter:before,
+.pp-gallery-filters:not(.pp-pointer-framed) .pp-gallery-filter:after {
+	background-color: var(--filters-pointer-bg-color-hover);
+}
+
+.pp-gallery-filters:not(.pp-pointer-framed) .pp-gallery-filter.pp-active:before,
+.pp-gallery-filters:not(.pp-pointer-framed) .pp-gallery-filter.pp-active:after {
+	background-color: var(--filters-pointer-bg-color-active);
+}
+
+.pp-gallery-filters.pp-pointer-framed .pp-gallery-filter:before {
+	border-color: var(--filters-pointer-bg-color-hover);
+	border-width: var(--filters-pointer-border-width);
+}
+
+.pp-gallery-filters.pp-pointer-framed .pp-gallery-filter:after {
+	border-color: var(--filters-pointer-bg-color-hover);
+}
+
+.pp-gallery-filters.pp-pointer-framed .pp-gallery-filter.pp-active:before,
+.pp-gallery-filters.pp-pointer-framed .pp-gallery-filter.pp-active:after {
+	border-color: var(--filters-pointer-bg-color-active);
+}
+
+.pp-gallery-filters.pp-pointer-framed.e--animation-draw .pp-gallery-filter:before {
+	border-width: 0 0 var(--filters-pointer-border-width) var(--filters-pointer-border-width);
+}
+
+.pp-gallery-filters.pp-pointer-framed.e--animation-draw .pp-gallery-filter:after {
+	border-width: var(--filters-pointer-border-width) var(--filters-pointer-border-width) 0 0;
+}
+
+.pp-gallery-filters.pp-pointer-framed.e--animation-corners .pp-gallery-filter:before {
+	border-width: var(--filters-pointer-border-width) 0 0 var(--filters-pointer-border-width);
+}
+
+.pp-gallery-filters.pp-pointer-framed.e--animation-corners .pp-gallery-filter:after {
+	border-width: 0 var(--filters-pointer-border-width) var(--filters-pointer-border-width) 0;
+}
+
+.pp-gallery-filters .pp-pointer-underline .pp-gallery-filter:after,
+.pp-gallery-filters .pp-pointer-overline .pp-gallery-filter:before,
+.pp-gallery-filters .pp-pointer-double-line .pp-gallery-filter:before,
+.pp-gallery-filters .pp-pointer-double-line .pp-gallery-filter:after {
+	height: var(--filters-pointer-border-width);
+}

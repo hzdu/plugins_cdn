@@ -1,0 +1,426 @@
+.pp-advanced-tabs {
+	display: flex;
+	flex-wrap: wrap;
+	.pp-icon-img {
+		img {
+			width: 30px;
+		}
+	}
+    .pp-advanced-tabs-content {
+        > .elementor {
+            max-width: 100%;
+            width: 100%;
+        }
+    }
+	&.pp-style-1 {
+		.pp-advanced-tabs-wrapper {
+			&.at-horizontal {
+				.pp-advanced-tabs-title {
+					overflow: hidden;
+					&:after {
+						content: "";
+						position: absolute;
+						left: 0;
+						right: 0;
+						bottom: -28px;
+						display: block;
+						border: solid 15px transparent;
+						width: 0px;
+						margin: 0 auto;
+						border-top-color: transparent;
+						transition: all 0.5s ease-in-out;
+					}
+					&.pp-tab-active {
+						overflow: visible;
+						position: relative;
+						transition: all 0.5s ease-in-out;
+						&:after {
+							bottom: -30px;
+							border: solid 15px #fb0f0f00;
+							border-top-color: #808080;
+						}
+					}
+				}
+			}
+			&.at-vertical {
+				.pp-advanced-tabs-title {
+					overflow: hidden;
+					&:after {
+						content: "";
+						position: absolute;
+						top: 0;
+						bottom: 0;
+						right: -28px;
+						left: auto;
+						display: block;
+						border: solid 15px transparent;
+						width: 0px;
+						margin: auto 0;
+						border-left-color: transparent;
+						height: 0;
+						transition: all 0.5s ease-in-out;
+					}
+					&.pp-tab-active {
+						overflow: visible;
+						position: relative;
+						transition: all 0.5s ease-in-out;
+						&:after {
+							right: -30px;
+							border: solid 15px #00000000;
+							border-left-color: #dbdbdb;
+						}
+					}
+				}
+			}
+		}
+	}
+	&.pp-style-2 {
+		.pp-advanced-tabs-wrapper{
+			.pp-advanced-tabs-title {
+				&:before {
+					content: '';
+					height: 6px;
+					width: calc(100% + 2px);
+					position: absolute;
+					top: -5px;
+					left: -1px;
+					right: 0;	
+				}
+				&.pp-tab-active {
+					border: none;
+					&:before {
+						background: #000;
+						top: -1px;
+						transition: all 0.5s ease-in-out;
+					}
+				}
+			}
+		}
+	}
+	&.pp-style-3 {
+		.pp-advanced-tabs-wrapper{
+			.pp-advanced-tabs-title {
+				&:before {
+					content: '';
+					height: 6px;
+					width: calc(100% + 2px);
+					position: absolute;
+					top: 100%;
+					left: -1px;
+					right: 0;	
+				}
+				&.pp-tab-active {
+					border: none;
+					&:before {
+						background: #000;
+						top: calc(100% - 6px);
+						transition: all 0.5s ease-in-out;
+					}
+				}
+			}
+		}
+	}
+	&.pp-style-4 {
+		.pp-advanced-tabs-wrapper {
+			.pp-advanced-tabs-title {
+				position: relative;
+				overflow: hidden;
+				&.pp-tab-active {
+					transition: all 0.8s ease-in-out;
+					border: 1px solid;
+					&:after,
+					&:before {
+						right: 0%;
+						transform: translate3d(0px, 100%, 0px) translate3d(0px, -3px, 0px);
+						background: transparent;
+						transition: all 0.5s ease-in-out;
+					}
+					&:after {
+						top: 0%;
+						left: 100%;					
+					}
+					&:before {
+						top: -200%;
+						left: -100%;
+					}
+				}
+				&:before,
+				&:after {
+					position: absolute;
+					right: 0%;
+					z-index: 0;
+					width: 100%;
+					height: 100%;
+					content: "";
+				}
+				&:before {
+					top: -2%;
+					left: 100%;
+				}
+				&:after {
+					top: -190%;
+					left: -100%;
+				}
+			}
+		}
+	}
+	&.pp-style-5 {
+		.pp-advanced-tabs-wrapper {
+			.pp-advanced-tabs-title {
+				position: relative;
+				overflow: hidden;
+				&.pp-tab-active {
+					transition: all 0.8s ease-in-out;
+					border: 1px solid;
+					&:after,
+					&:before {
+						transform: translate3d(0px, 100%, 0px) translate3d(0px, -3px, 0px);
+						background: transparent;
+						transition: all 0.5s ease-in-out;
+					}
+					&:after {
+						top: 10%;
+					}
+					&:before {
+						top: -200%;
+					}
+				}
+				&:before,
+				&:after {
+					position: absolute;
+					left: 0%;
+					right: 0%;
+					z-index: 0;
+					width: 100%;
+					height: 100%;
+					content: "";
+				}
+				&:before {
+					top: -10%;
+				}
+				&:after {
+					top: -200%;
+				}
+			}
+		}
+	}
+	&.pp-style-6 {
+		.pp-advanced-tabs-wrapper {
+			.pp-advanced-tabs-title {
+				border: none;
+				position: relative;
+				overflow: hidden;
+				background-color: transparent;
+				&.pp-tab-active {
+					background-color: transparent !important;
+					transform: translate3d(0,0,0);
+					&:after {
+						z-index: -1;
+						transform: translate3d(0,0,0);
+					}
+				}
+				&:after {
+					position: absolute;
+					top: 0px;
+					left: 0%;
+					right: 0%;
+					z-index: 0;
+					width: 100%;
+					height: 100%;
+					content: "";
+					transform: translate3d(0px, 100%, 0px) translate3d(0px, -3px, 0px);
+					background: #58bdf4;
+					transition: background-color 0.5s ease, transform 0.5s cubic-bezier(0.7, 0, 0.3, 1);
+				}
+			}
+		}
+	}
+	&.pp-style-7 {
+		.pp-advanced-tabs-wrapper {
+			.pp-advanced-tabs-title {
+				border: none;
+				position: relative;
+				overflow: hidden;
+				.active-slider-span {
+					height: 5px;
+					background: #000;
+					position: absolute;
+					top: 0;
+					left: 0;
+					right: 100%;
+					transition: all 0.5s ease-in-out;
+				}
+				&.pp-tab-active {
+					.active-slider-span {
+						right: 0;
+					}
+				}
+			}
+		}
+	}
+	&.pp-style-8 {
+		.pp-advanced-tabs-wrapper {
+			.pp-advanced-tabs-title {
+				border: none;
+				position: relative;
+				overflow: hidden;
+				.active-slider-span {
+					height: 5px;
+					background: #000;
+					position: absolute;
+					top: calc(100% - 5px);
+					left: 0;
+					right: 100%;
+					transition: all 0.5s ease-in-out;
+				}
+				&.pp-tab-active {
+					.active-slider-span {
+						right: 0;
+					}
+				}
+			}
+		}
+	}
+	.pp-advanced-tabs-icon-top {
+		display: block;
+		padding-bottom: 5px;
+	}
+	.pp-advanced-tabs-icon-left {
+		padding-right: 5px;
+	}
+	.pp-advanced-tabs-icon-right {
+		padding-left: 5px;
+	}
+	.pp-advanced-tabs-icon-bottom {
+		display: block;
+		padding-top: 5px;
+	}
+	.pp-icon i {
+		display: inline-block;
+	}
+}
+.pp-advanced-tabs-wrapper {
+	display: flex;
+	justify-content: space-between;
+	position: relative;
+	.pp-advanced-tabs-title {
+		cursor: pointer;
+		border-width: 1px;
+		border-style: solid;
+		border-color: transparent;
+		margin: 0;
+		padding: 5px 15px;
+		text-align: center;
+		position: relative;
+		overflow: hidden;
+		&.pp-tab-active,
+		span {
+			transition: all 0.5s ease-in-out;
+		}
+		> span {
+			vertical-align: middle;
+		}
+	}
+	&.at-horizontal {
+		width: 100%;
+		flex-flow: wrap;
+		bottom: 1px;
+		.pp-advanced-tabs-title {
+			&.pp-tab-active {
+				border-bottom: none;
+			}
+		}
+	}
+	&.at-vertical {
+		flex-flow: column;
+		float: left;
+		width: 30%;
+		text-align: center;
+		height: auto;
+		right: 1px;
+		.pp-advanced-tabs-title {
+			&.pp-tab-active {
+				border-right: none;
+			}
+		}
+	}
+}
+.pp-advanced-tabs-content-wrapper {
+	&.at-horizontal-content {
+		margin-top: -1px;
+		width: 100%;
+	}
+	&.at-vertical-content {
+		width: 70%;
+		margin-left: -1px; 
+	}
+	.pp-advanced-tabs-content {
+		border-width: 1px;
+		border-style: solid;
+		border-color: transparent;
+		justify-content: center;
+		display: none;
+		&.pp-tab-active {
+			display: block !important;
+		}
+	}
+	.pp-advanced-tabs-title {
+		&.pp-tab-responsive {
+			display: none;
+			cursor: pointer;
+			margin: 0;
+		}
+	}
+	.pp-tab-responsive {
+		.pp-advanced-tabs-title-inner {
+			.pp-toggle-icon {
+				float: right;
+			}
+		}
+	}
+}
+
+@mixin tabs--tablet() {
+	.pp-advanced-tabs.pp-tabs-responsive-tablet {
+		.pp-advanced-tabs-wrapper {
+			&.at-horizontal {
+				display: none;
+			}
+			&.at-vertical {
+				display: none;
+			}
+		}
+		.pp-advanced-tabs-content-wrapper {
+			&.at-vertical-content {
+				width: 100%;
+			}
+			.pp-advanced-tabs-title {
+				&.pp-tab-responsive {
+					display: flex;
+				}
+			}
+		}
+	}
+}
+@mixin tabs--mobile() {
+	.pp-advanced-tabs.pp-tabs-responsive-mobile {
+		.pp-advanced-tabs-wrapper {
+			&.at-horizontal {
+				display: none;
+			}
+			&.at-vertical {
+				display: none;
+			}
+		}
+		.pp-advanced-tabs-content-wrapper {
+			&.at-vertical-content {
+				width: 100%;
+			}
+			.pp-advanced-tabs-title {
+				&.pp-tab-responsive {
+					display: flex;
+				}
+			}
+		}
+	}
+}

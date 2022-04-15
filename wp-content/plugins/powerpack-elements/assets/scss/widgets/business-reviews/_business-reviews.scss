@@ -1,0 +1,341 @@
+.pp-review-content-arrow-wrap {
+	top: 100%;
+	position: absolute;
+	left: 20px;
+}
+.pp-review-image-enable-yes {
+	.pp-review-content-arrow-wrap {
+		left: 55px;
+	}
+}
+.pp-review-arrow-border {
+	border-width: 16px;
+	border-style: solid;
+	border-right-color: transparent;
+	border-bottom-color: transparent;
+	border-left-color: transparent;
+	border-top-color: #111;
+	left: 0;
+	top: 0;
+	position: absolute;
+}
+.pp-review-arrow {
+	border-width: 17px;
+	border-style: solid;
+	border-right-color: transparent;
+	border-bottom-color: transparent;
+	border-left-color: transparent;
+	border-top-color: #ccc;
+	left: -1px;
+	top: 0;
+	position: absolute;
+}
+.pp-review-header {
+	display: flex;
+}
+.pp-review--has-separator .pp-reviews-classic .pp-review-header {
+    border-bottom: 1px solid #e1e8ed;
+}
+.pp-review--has-separator .pp-reviews-card .pp-review-header {
+    border-top: 1px solid #e1e8ed;
+	padding-top: 7px;
+}
+.pp-review-image-all_left {
+	.pp-review {
+		display: flex;
+	}
+	.pp-review-image {
+		margin-right: 20px;
+		flex-shrink: 0;
+	}
+}
+.pp-reviews-wrapper {
+	display: flex;
+	flex-wrap: wrap;
+}
+.pp-review {
+	text-align: left;
+	width: 100%;
+	.pp-review-stars {
+		float: none;
+	}
+	.pp-rating-star {
+		font-size: 15px;
+		&:not(:last-of-type) {
+			margin-right: 2px;
+		}
+	}
+	.pp-star-full.pp-star-default {
+		color: #e37400;
+	}
+	.pp-star-full.pp-star-custom {
+		color: #ffab40;
+	}
+	.pp-star-rating {
+		color: #ccd6df;
+		display: inline-block;
+	}
+}
+.pp-review-details {
+	width: 100%;
+	.elementor-star-rating__wrapper {
+		margin-bottom: 0;
+	}
+	.pp-review-time {
+		margin-bottom: 0;
+	}
+}
+.pp-reviews-grid__column-1 {
+	.pp-reviews-wrapper {
+		.pp-review-wrap {
+			width: 100%;
+			&:nth-child(n+1) {
+				clear: left;
+			}
+			&:nth-child(n) {
+				clear: right;
+			}
+		}
+	}
+}
+.pp-reviewer-name {
+	font-weight: 600;
+	word-break: break-word;
+	display: inline-block;
+}
+.pp-review-icon-wrap {
+	i.fa.fa-yelp {
+		color: #af0606;
+		border-color: #af0606;
+		font-size: 18px;
+	}
+	img {
+		width: 20px;
+		height: 20px;
+	}
+}
+.elementor-element[data-widget_type="pp-business-reviews.classic"] {
+	.pp-review-icon-wrap {
+		i.fa-yelp {
+			margin-left: 5px;
+		}
+		svg {
+			margin-left: 5px;
+		}
+	}
+	.pp-review-header {
+		margin-bottom: 7px;
+	}
+	.pp-reviewer-name {
+		margin-bottom: 0;
+	}
+	.pp-review-time {
+		margin-bottom: 5px;
+	}
+}
+.elementor-element[data-widget_type="pp-business-reviews.card"] {
+	.pp-review-icon-wrap {
+		align-self: center;
+	}
+	.pp-review-header {
+		margin-top: 7px;
+	}
+}
+.pp-review-image-left {
+	.pp-review-details {
+		align-self: center;
+	}
+	.pp-review-image {
+		margin-right: 20px;
+		flex-shrink: 0;
+	}
+}
+.pp-review-content {
+	position: relative;
+}
+.pp-review-image {
+	height: 70px;
+	width: 70px;
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center;
+	overflow: hidden;
+}
+.pp-reviews-align-center {
+	.pp-review {
+		text-align: center;
+	}
+	.elementor-star-rating__wrapper {
+		justify-content: center;
+	}
+}
+.pp-reviews-align-right {
+	.pp-review {
+		text-align: right;
+	}
+	.elementor-star-rating__wrapper {
+		justify-content: flex-end;
+	}
+}
+.pp-review-time {
+	font-size: 14px;
+	line-height: 1.6em;
+	display: block;
+}
+.pp-review-image-top {
+	.pp-review-header {
+		display: block;
+	}
+	.pp-review-image {
+		display: inline-block;
+	}
+}
+.pp-reviews-notice-message {
+	display: block;
+	margin-bottom: 15px;
+}
+.pp-reviews-error-message {
+	color: #be2626;
+}
+.pp-review-type-yelp {
+	.pp-review-image {
+		border-radius: 100%;
+	}
+}
+.pp-review-wrap:not(.swiper-slide) {
+	padding-right: -webkit-calc(20px/2);
+	padding-right: calc(20px/2);
+	padding-left: -webkit-calc(20px/2);
+	padding-left: calc(20px/2);
+	margin-bottom: 20px;
+}
+.pp-reviews-equal-height-yes {
+	.pp-review {
+		height: 100%;
+	}
+}
+.pp-reviews-read-more {
+	display: block;
+	font-size: 14px;
+	margin-top: 10px;
+}
+.pp-star-rating {
+	svg {
+		margin-top: 5px;
+	}
+}
+.pp-business-reviews-footer {
+	margin-top: 30px;
+}
+.pp-yelp-rating-svg-1 {
+	.pp-yelp-rating-1 {
+		fill: #FFD8A0;
+	}
+}
+.pp-yelp-rating-svg-2 {
+	.pp-yelp-rating-1 {
+		fill: #FEC011;
+	}
+	.pp-yelp-rating-2 {
+		fill: #FEC011;
+	}
+}
+.pp-yelp-rating-svg-3 {
+	.pp-yelp-rating-1 {
+		fill: #FF9242;
+	}
+	.pp-yelp-rating-2 {
+		fill: #FF9242;
+	}
+	.pp-yelp-rating-3 {
+		fill: #FF9242;
+	}
+}
+.pp-yelp-rating-svg-4 {
+	.pp-yelp-rating-1 {
+		fill: #F15C4F;
+	}
+	.pp-yelp-rating-2 {
+		fill: #F15C4F;
+	}
+	.pp-yelp-rating-3 {
+		fill: #F15C4F;
+	}
+	.pp-yelp-rating-4 {
+		fill: #F15C4F;
+	}
+}
+.pp-yelp-rating-svg-5 {
+	.pp-yelp-rating-1 {
+		fill: #D32323;
+	}
+	.pp-yelp-rating-2 {
+		fill: #D32323;
+	}
+	.pp-yelp-rating-3 {
+		fill: #D32323;
+	}
+	.pp-yelp-rating-4 {
+		fill: #D32323;
+	}
+	.pp-yelp-rating-5 {
+		fill: #D32323;
+	}
+}
+.pp-reviews-grid__column-2 {
+	.pp-reviews-wrapper {
+		.pp-review-wrap {
+			width: 50%;
+			&:nth-child(2n+1) {
+				clear: left;
+			}
+			&:nth-child(2n) {
+				clear: right;
+			}
+		}
+	}
+}
+.pp-reviews-grid__column-3 {
+	.pp-reviews-wrapper {
+		.pp-review-wrap {
+			width: 33.33%;
+			&:nth-child(3n+1) {
+				clear: left;
+			}
+			&:nth-child(3n) {
+				clear: right;
+			}
+		}
+	}
+}
+.pp-reviews-grid__column-4 {
+	.pp-reviews-wrapper {
+		.pp-review-wrap {
+			width: 25%;
+			&:nth-child(4n+1) {
+				clear: left;
+			}
+			&:nth-child(4n) {
+				clear: right;
+			}
+		}
+	}
+}
+.pp-reviews-grid__column-5 {
+	.pp-reviews-wrapper {
+		.pp-review-wrap {
+			width: 20%;
+			&:nth-child(5n+1) {
+				clear: left;
+			}
+			&:nth-child(5n) {
+				clear: right;
+			}
+		}
+	}
+}
+.pp-reviews-wrapper[data-equal-height=yes] {
+	.swiper-slide {
+		height: 100%;
+	}
+}

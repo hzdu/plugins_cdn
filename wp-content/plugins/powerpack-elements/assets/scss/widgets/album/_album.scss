@@ -1,0 +1,85 @@
+.pp-album {
+	position: relative;
+}
+.pp-album-cover-wrap {
+	height: 300px;
+}
+.pp-album-cover {
+	overflow: hidden;
+	img {
+		object-fit: cover;
+		height: 100%;
+		width: 100%;
+		@include transition();
+	}
+}
+.pp-album-content-wrap {
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    @include transition();
+}
+.pp-album-cover-caption {
+    @include transition();
+}
+.pp-album-cover-button-position-inline {
+	.pp-album-content {
+		display: flex;
+		justify-content: space-between;
+		align-items: flex-end;
+	}
+}
+.pp-album-trigger-button {
+	cursor: pointer;
+}
+.pp-album-button-content {
+	display: flex;
+}
+.pp-album-trigger-icon-before .pp-album-button-content {
+	flex-direction: row-reverse;
+}
+.pp-fancybox-thumbs-x {
+	&.fancybox-show-thumbs .fancybox-inner {
+		right: 0;
+		bottom: 95px;
+	}
+	.fancybox-thumbs {
+		top: auto;
+		width: auto;
+		bottom: 0;
+		left: 0;
+		right : 0;
+		height: 95px;
+		padding: 10px 10px 5px 10px;
+		box-sizing: border-box;
+		background: rgba(0, 0, 0, 0.3);
+	}
+}
+@mixin album--tablet() {
+	.pp-album-cover-button-tablet-position-inline {
+		.pp-album-content {
+			display: flex;
+			justify-content: space-between;
+			align-items: flex-end;
+		}
+	}
+	.pp-album-cover-button-tablet-position-bottom {
+		.pp-album-content {
+			display: block;
+		}
+	}
+}
+@mixin album--mobile() {
+	.pp-album-cover-button-mobile-position-inline {
+		.pp-album-content {
+			display: flex;
+			justify-content: space-between;
+			align-items: flex-end;
+		}
+	}
+	.pp-album-cover-button-mobile-position-bottom {
+		.pp-album-content {
+			display: block;
+		}
+	}
+}
