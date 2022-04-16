@@ -167,6 +167,12 @@ class UpdateCheckoutAction extends Action {
         }
 
         alerts.forEach( ( alert ) => { AlertService.queueAlert( alert ); } );
+
+        // Fire finishing events
+        jQuery( document.body ).trigger( 'cfw_pre_updated_checkout', [ resp ] );
+        LoggingService.logEvent( 'Fired cfw_pre_updated_checkout event.' );
+
+        UpdateCheckoutService.triggerUpdatedCheckout( resp );
     }
 
     /**
@@ -184,14 +190,10 @@ class UpdateCheckoutAction extends Action {
     }
 
     public complete( xhr: any, textStatus: string ): void {
-        this.unblockUI();
-
-        const resp = typeof xhr.responseJSON === 'object' ? xhr.responseJSON : null;
-
-        jQuery( document.body ).trigger( 'cfw_pre_updated_checkout', [ resp ] );
-        LoggingService.logEvent( 'Fired cfw_pre_updated_checkout event.' );
-
-        UpdateCheckoutService.triggerUpdatedCheckout( resp );
+        // We are treating an aborted request as one that will always have a subsequent request
+        if ( textStatus !== 'abort' ) {
+            this.unblockUI();
+        }
     }
 
     /**

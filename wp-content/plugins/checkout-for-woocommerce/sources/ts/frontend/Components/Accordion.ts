@@ -24,11 +24,6 @@ class Accordion {
                 this.showContent( jQuery( element ).find( ' .cfw-radio-reveal-title-wrap :radio:checked' ).first() );
             } );
         } );
-
-        jQuery( document.body ).on( 'click', '.cfw-radio-reveal-title-wrap', function () {
-            // Check the radio
-            jQuery( this ).children( 'input[type="radio"]' ).prop( 'checked', true ).trigger( 'change' );
-        } );
     }
 
     showContent( target ) {

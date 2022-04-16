@@ -76,6 +76,11 @@ class ParsleyService implements FieldValidationRefresher {
                         },
                         dataType: 'json',
                         cache: false,
+                        statusCode: {
+                            202() {
+                                LoggingService.log( 'CheckoutWC: Invalid postcode validation request. Must include postcode and country.' );
+                            },
+                        },
                     };
 
                     const requestFingerprint = jQuery.param( ajaxOptions );

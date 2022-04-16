@@ -9,7 +9,7 @@ class FieldPersistenceService {
         const excludes = DataService.getSetting( 'field_persistence_excludes' );
 
         form.garlic( {
-            events: [ 'textInput', 'input', 'change', 'click', 'keypress', 'paste', 'focus', 'cfw_garlic_store' ],
+            events: [ 'input', 'change', 'click', 'paste', 'focus', 'cfw_garlic_store' ],
             destroy: false,
             excluded: excludes instanceof Array ? excludes.join( ', ' ) : '',
             onRetrieve: this.onRetrieve.bind( this ),

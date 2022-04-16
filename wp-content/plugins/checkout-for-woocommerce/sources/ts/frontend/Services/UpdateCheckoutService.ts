@@ -36,7 +36,7 @@ class UpdateCheckoutService {
         jQuery( document.body ).on( 'update update_checkout', ( e, args ) => this.maybeUpdateCheckout( args ) );
 
         const { checkoutForm } = DataService;
-        const boundMaybeUpdate = this.maybeUpdateCheckout.bind( this );
+
         const selectors = [
             '[name="bill_to_different_address"]',
             '.update_totals_on_change select',
@@ -49,14 +49,14 @@ class UpdateCheckoutService {
             'input.update_totals_on_change',
         ];
 
-        checkoutForm.on( 'change', selectors.join( ', ' ), boundMaybeUpdate );
+        checkoutForm.on( 'change', selectors.join( ', ' ), this.maybeUpdateCheckout.bind( this ) );
 
         checkoutForm.on( 'change', 'select.shipping_method, input[name^="shipping_method"]', () => {
             jQuery( document.body ).trigger( 'cfw-shipping-method-changed' );
             LoggingService.logEvent( 'Fired cfw-shipping-method-changed event.' );
             this.maybeUpdateCheckout();
         } );
-        
+
         checkoutForm.on( 'change', '#billing_email', () => {
             if ( DataService.getSetting( 'enable_one_page_checkout' ) ) {
                 return;
@@ -69,7 +69,7 @@ class UpdateCheckoutService {
         // But aren't using it because it's overly aggressive and causes errors that pull the customer out of context for slow typists
         // checkoutForm.on( 'keydown', '.address-field input.input-text, .update_totals_on_change input.input-text', this.queueUpdateCheckout.bind( this ) );
 
-        jQuery( document.body ).on( 'init_checkout', boundMaybeUpdate );
+        jQuery( document.body ).on( 'init_checkout', this.maybeUpdateCheckout.bind( this ) );
 
         /**
          * Special Case: Order Review tab

@@ -63,42 +63,20 @@
   font-weight: bold;
 }
 
-@media all and (max-width: 1240px) {
-  #perfmatters-admin-header #perfmatters-admin-header-notice {
-    display: none;
-  }
-}
 
-@media all and (max-width: 600px) {
-  #perfmatters-admin-header #perfmatters-admin-header-logo, #perfmatters-admin-header #perfmatters-admin-header-buttons {
-    width: 100%;
-  }  
-  #perfmatters-admin-header #perfmatters-admin-header-buttons {
-    align-items: start;
-    justify-content: center;
-    height: 50px;
-    line-height: 50px;
-  }
-  #perfmatters-admin-header #perfmatters-admin-header-buttons a:first-child {
-    margin-left: 0px;
-  }
-}
 
 #perfmatters-admin {
   margin-top: 0px;
 }
 
 /* Navigation */
-#perfmatters-admin .nav-tab-wrapper {
-  padding-top: 0px;
-  margin-top: 15px;
-}
 #perfmatters-admin .perfmatters-subnav {
   display: flex;
   background: #fff;
   margin-bottom: 10px;
   border-radius: 3px;
   overflow: hidden;
+  border: 1px solid #e2e4e7;
 }
 #perfmatters-admin .perfmatters-subnav a {
   display: inline-flex;
@@ -455,4 +433,31 @@ a.perfmatters-add-input-row {
 
 #perfmatters-admin ::placeholder {
   color: #ccc;
+}
+
+@media all and (max-width: 1240px) {
+  #perfmatters-admin-header #perfmatters-admin-header-notice {
+    display: none;
+  }
+}
+
+@media all and (max-width: 782px) {
+  #perfmatters-admin-header #perfmatters-admin-header-buttons a:first-child {
+    margin-left: 0px;
+  }
+  #perfmatters-admin .perfmatters-subnav {
+    flex-direction: column;
+  }
+  .perfmatters-mobile-hide {
+    display: none !important;
+  }
+  #perfmatters-admin .form-table td {
+    padding: 0px;
+  }
+  #perfmatters-admin .perfmatters-tooltip-text {
+    display: none !important;
+  }
+  #perfmatters-admin textarea {
+    min-width:  0px;
+  }
 }

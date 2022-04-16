@@ -31,7 +31,7 @@ const prodConfig = {
             onBuildEnd: {
                 scripts: [
                     // eslint-disable-next-line max-len
-                    `npx cpy --parents '.' '!./dist' '!./tests' '!./cypress' '!./**/node_modules' '!./cypress.env.json' '!./cypress.overrides.json' ${outPath} && cd ${productionDir} && zip --recurse-paths ${zipName} ./checkout-for-woocommerce`,
+                    `npx cpy --parents '.' '!./dist' '!./tests' '!./cypress' '!./build' '!./**/node_modules' '!./**/phpunit' '!./cypress.env.json' '!./cypress.overrides.json' ${outPath} && cd ${productionDir} && zip --recurse-paths ${zipName} ./checkout-for-woocommerce`,
                 ],
             },
         } ),

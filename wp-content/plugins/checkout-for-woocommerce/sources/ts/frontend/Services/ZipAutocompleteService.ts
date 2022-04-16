@@ -14,7 +14,7 @@ class ZipAutocompleteService {
      */
     setZipAutocompleteHandlers(): void {
         if ( DataService.getSetting( 'enable_zip_autocomplete' ) === true ) {
-            jQuery( document.body ).on( 'textInput input change keypress paste', '#shipping_postcode, #billing_postcode', this.autoCompleteCityState.bind( this ) );
+            jQuery( document.body ).on( 'input change paste', '#shipping_postcode, #billing_postcode', this.autoCompleteCityState.bind( this ) );
         }
     }
 

@@ -30,6 +30,8 @@
         @include cfw-payment-request-button();
     }
 
+    // Don't add this to the mixin because it needs
+    // to be a direct descendant rule and limited to divs for now
     > div:empty {
         display: none;
     }
