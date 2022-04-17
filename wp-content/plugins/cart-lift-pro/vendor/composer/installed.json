@@ -1,0 +1,105 @@
+{
+    "packages": [
+        {
+            "name": "kasparsd/mini-sheets-php",
+            "version": "0.1.0",
+            "version_normalized": "0.1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/kasparsd/mini-sheets-php.git",
+                "reference": "16e283906e7d38184025e88f1b42d6b7d7433baa"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/kasparsd/mini-sheets-php/zipball/16e283906e7d38184025e88f1b42d6b7d7433baa",
+                "reference": "16e283906e7d38184025e88f1b42d6b7d7433baa",
+                "shasum": ""
+            },
+            "require-dev": {
+                "wp-coding-standards/wpcs": "^2.1"
+            },
+            "suggest": {
+                "ext-zip": "For generating XLSX files which are actually ZIP files."
+            },
+            "time": "2019-06-06T07:54:57+00:00",
+            "type": "library",
+            "installation-source": "dist",
+            "autoload": {
+                "psr-4": {
+                    "kasparsd\\MiniSheets\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Kaspars Dambis",
+                    "email": "hi@kaspars.net"
+                }
+            ],
+            "description": "Library for creating the most basic Office Open XML and Excel XLSX files.",
+            "install-path": "../kasparsd/mini-sheets-php"
+        },
+        {
+            "name": "twilio/sdk",
+            "version": "6.24.1",
+            "version_normalized": "6.24.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/twilio/twilio-php.git",
+                "reference": "3438bcdb42a8fabcfaa081670d5924b868016148"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/twilio/twilio-php/zipball/3438bcdb42a8fabcfaa081670d5924b868016148",
+                "reference": "3438bcdb42a8fabcfaa081670d5924b868016148",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1.0"
+            },
+            "require-dev": {
+                "guzzlehttp/guzzle": "^6.3 || ^7.0",
+                "phpunit/phpunit": ">=4.5",
+                "theseer/phpdox": "^0.12.0"
+            },
+            "suggest": {
+                "guzzlehttp/guzzle": "An HTTP client to execute the API requests"
+            },
+            "time": "2021-06-02T20:26:58+00:00",
+            "type": "library",
+            "installation-source": "dist",
+            "autoload": {
+                "psr-4": {
+                    "Twilio\\": "src/Twilio/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Twilio API Team",
+                    "email": "api@twilio.com"
+                }
+            ],
+            "description": "A PHP wrapper for Twilio's API",
+            "homepage": "http://github.com/twilio/twilio-php",
+            "keywords": [
+                "api",
+                "sms",
+                "twilio"
+            ],
+            "support": {
+                "issues": "https://github.com/twilio/twilio-php/issues",
+                "source": "https://github.com/twilio/twilio-php/tree/6.24.1"
+            },
+            "install-path": "../twilio/sdk"
+        }
+    ],
+    "dev": true,
+    "dev-package-names": []
+}

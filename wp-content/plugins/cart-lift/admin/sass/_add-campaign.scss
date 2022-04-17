@@ -1,0 +1,443 @@
+.cl-add-campaign-form {
+    .form-header {
+        margin-bottom: 30px;
+
+        h3 {
+            font-size: 24px;
+            color: #363b4e;
+            font-weight: 500;
+        }
+    }
+    .campaign-form {
+        border-radius: 15px;
+        background-color: #ffffff;
+        padding: 30px 100px;
+
+        .backto-campaign {
+            border-radius: 5px;
+            font-size: 15px;
+            height: 44px;
+            line-height: 44px;
+            padding: 0px 15px;
+            background-color: #f0ecfb;
+            border: 1px solid #6e42d3;
+            color: #6e42d3;
+            margin-bottom: 20px;
+        }
+
+        .campaign-notice {
+            border-left: 8px solid #6e42d3;
+            border-radius: 10px;
+            background-color: rgba(110,66,211,0.05);
+            padding: 20px 30px 20px 25px;
+            margin-bottom: 20px;
+
+            p {
+                font-size: 14px;
+                line-height: 26px;
+                color: #363b4e;
+                font-weight: 400;
+            }
+        }
+    }
+
+    .form-table {
+        th {
+            padding: 9px 10px 7px 0;
+        }
+        td {
+            padding: 6px 10px;
+        }
+
+        th label {
+            font-size: 14px;
+            color: #363b4e;
+            font-weight: 500;
+            text-transform: capitalize;
+        }
+
+        .cl-switcher {
+            margin-bottom: 4px;
+            display: inline-block;
+        }
+
+        .template-subject,
+        .template-name {
+            td {
+                display: flex;
+                flex-flow: row;
+                align-items: center;
+            }
+        }
+
+        .tinymce-editor {
+            .add_media {
+                font-size: 14px;
+                color: #6e42d3;
+                font-weight: 500;
+                height: 34px;
+                padding: 0 10px;
+                border-radius: 5px;
+                background-color: #f0ecfb;
+                border: 1px solid #6e42d3;
+                margin-right: 0;
+                margin-bottom: 0;
+
+                &:focus {
+                    box-shadow: none;
+                    outline: none;
+                    border-color: #6e42d3;
+                }
+                &:active {
+                    margin-top: 0;
+                    top: 0;
+                }
+            }
+
+            .wp-switch-editor {
+                height: 30px;
+                border-radius: 5px;
+                background-color: #f0ecfb;
+                font-size: 14px;
+                color: #6e42d3;
+                font-weight: 500;
+                width: 60px;
+                margin: 0 0 0 10px;
+                box-sizing: border-box;
+                border: none;
+
+                &:focus {
+                    box-shadow: none;
+                    outline: none;
+                }
+
+                &:before {
+                    content: "";
+                    position: absolute;
+                    left: 50%;
+                    bottom: -4px;
+                    transform: translateX(-50%) rotate(45deg);
+                    width: 10px;
+                    height: 10px;
+                    background: #f0ecfb;
+                    opacity: 0;
+                    visibility: hidden;
+                }
+            }
+
+            .html-active .switch-html,
+            .tmce-active .switch-tmce {
+                background-color: #6e42d3;
+                color: #fff;
+
+                &:before {
+                    background: #6e42d3;
+                    opacity: 1;
+                    visibility: visible;
+                }
+            }
+
+            .wp-editor-container {
+                margin-top: 10px;
+                border-radius: 8px;
+                border: 1px solid #e5e8f3;
+                box-shadow: none;
+            }
+
+            div.mce-toolbar-grp {
+                border-bottom: 1px solid #e5e8f3;
+                background: #f6f6f8;
+                padding: 0;
+                position: relative;
+                box-shadow: none;
+                border-radius: 5px 5px 0 0;
+
+                & > div {
+                    padding: 6px 8px;
+                }
+            }
+
+            .mce-top-part::before {
+                display: none;
+            }
+
+            .mce-btn.mce-listbox {
+                border: none;
+                box-shadow: none;
+                padding: 4px;
+                border-radius: 4px;
+            }
+            #mceu_13 {
+                border: none;
+                box-shadow: none;
+            }
+            #mceu_13-open {
+                padding: 5px 5px;
+                background: #fff;
+                border-radius: 4px;
+            }
+
+            .quicktags-toolbar {
+                padding: 8px 8px;
+                background: #f6f6f8;
+                min-height: 50px;
+                box-shadow: none;
+            }
+            textarea.wp-editor-area {
+                box-shadow: none;
+                border-radius: 0 0 5px 5px;
+                border: none;
+            }
+
+            .mce-statusbar {
+                border-top: none;
+                background: transparent;
+            }
+        }
+
+        .coupon-fields {
+            input {
+                max-width: 400px;
+            }
+
+            .discount-pro {
+                .pro-tag {
+                    right: -40px;
+                }
+                label {
+                    opacity: 0.5;
+                    cursor: not-allowed;
+                }
+            }
+        }
+
+        .coupon-expire {
+            display: flex;
+            flex-flow: row;
+            align-items: center;
+
+            input,
+            select {
+                width: 192px;
+            }
+            select {
+                margin-left: 15px;
+            }
+        }
+
+        .wp-picker-container {
+            position: relative;
+            margin: 5px 0px;
+
+            .wp-color-result.button {
+                margin: 0;
+                font-size: 15px;
+                padding: 0 0 0 40px;
+                height: 40px;
+                border: 1px solid #e5e8f3;
+
+                &:focus {
+                    box-shadow: none;
+                    outline: none;
+                }
+
+                .wp-color-result-text {
+                    padding: 3px 12px;
+                    height: 44px;
+                    display: none;
+                }
+
+            }
+
+            .iris-picker .iris-square-value {
+                transition: none;
+            }
+            
+            #cl-campaign-email-header-color {
+                margin: 0 10px;
+                padding: 8px 12px;
+                width: 92px;
+                font-size: 15px;
+                height: 40px;
+            }
+            
+            .wp-picker-clear {
+                height: 40px;
+                font-size: 14px;
+                padding: 0 24px;
+                border: 1px solid #e5e8f3;
+                color: #6e42d3;
+            }
+            .iris-border .iris-palette-container {
+                display: none;
+            }
+            .iris-picker {
+                width: 220px!important;
+                height: 162.125px!important;
+                padding-bottom: 10.2209px!important;
+
+                .iris-square {
+                    margin-right: 5%;
+                    height: 152.125px!important;
+                    width: 160.125px!important;
+                }
+                .iris-strip {
+                    height: 151.346px!important;
+                }
+            }
+
+            .wp-picker-holder {
+                position: absolute;
+                top: 46px;
+                left: 0;
+            }
+        }
+
+        #cl_email_body_ifr {
+            height: 340px!important;
+        }
+
+        .send-email-time {
+            display: flex;
+            flex-flow: row;
+            align-items: center;
+
+            input {
+                width: 120px;
+                margin-right: 15px;
+            }
+            select {
+                width: 160px;
+            }
+            .hints {
+                font-size: 14px;
+                color: #a8a7be;
+                font-weight: 400;
+            }
+        }
+        .send-email {
+            display: flex;
+            flex-flow: row;
+            align-items: center;
+
+            input[type="button"] {
+                height: 50px;
+                border-radius: 5px;
+                background-color: #f0ecfb;
+                border: 1px solid #6e42d3;
+                font-size: 14px;
+                color: #6e42d3;
+                font-weight: 500;
+                padding: 0 20px;
+                margin-left: 20px;
+
+                &:focus {
+                    box-shadow: none;
+                    outline: none;
+                }
+            }
+        }
+
+        #test_mail_response_msg {
+            display: none;
+        }
+
+        .cl-coupon-conditional-fields-wrapper {
+            display: flex;
+            flex-flow: row;
+            align-items: flex-start;
+
+            input[type=number] {
+                width: 150px;
+            }
+            .select2.select2-container {
+                width: calc(100% - 160px)!important;
+                margin-right: 15px;
+            }
+            .select2-container--default .select2-selection--multiple {
+                border: 1px solid #e5e8f3;
+                min-height: 46px;
+            }
+            .select2-container .select2-search--inline .select2-search__field {
+                margin-top: 0;
+                min-height: 25px;
+                width: 140px!important;
+            }
+        }
+
+        .coupon-field-switcher {
+            display: flex;
+            margin-bottom: 10px;
+
+            .tooltip {
+                margin-left: 3px;
+
+                .icon {
+                    padding: 2px 10px;
+                    top: 0px;
+                }
+            }
+
+            &.switcher-pro {
+                .tooltip {
+                    margin-left: 40px;
+
+                    .icon {
+                        padding: 2px 10px;
+                        top: 1px;
+                    }
+                }
+            }
+        }
+
+        
+    }
+}
+
+.cl-email-templates .campaign-save-btn {
+    height: 50px;
+    border-radius: 5px;
+    padding: 0 20px;
+    
+    &:focus {
+        box-shadow: none;
+        background-color: #6e41d3;
+    }
+}
+
+
+//------------responsive style--------
+@media only screen and (max-width: 1500px) {
+    .cl-add-campaign-form .campaign-form {
+        padding: 30px 30px 5px;
+    }
+
+} //---max width 1500px;
+
+@media only screen and (max-width: 1400px) {
+    .cl-email-templates .cl-widefat {
+        max-width: 450px;
+    }
+
+} //---max width 1400px;
+
+@media only screen and (max-width: 1199px) {
+    .cl-add-campaign-form .campaign-form .campaign-notice {
+        padding: 10px 20px 10px 15px;
+    }
+
+    .cl-add-campaign-form .campaign-form .tooltip p {
+        top: -67px;
+        right: 0;
+        left: initial;
+        transform: translateY(0);
+    }
+    .cl-add-campaign-form .campaign-form p:before {
+        left: initial;
+        top: initial;
+        bottom: -4px;
+        right: 15px;
+        transform: translateY(0) rotate(45deg);
+    }
+
+} //---max width 1199px;

@@ -1,0 +1,261 @@
+.cl-license-wrapper {
+    background: #fff;
+    padding: 70px 70px;
+    border-radius: 8px;
+    
+    .cl-license-filed {
+        display: flex;
+        flex-flow: row;
+        align-items: center;
+
+        .field-area {
+            max-width: 930px;
+            width: 100%;
+            border-right: 1px solid #eee;
+        }
+
+        .promo-text-area {
+            display: flex;
+            margin-left: -50px;
+
+            .single-area {
+                margin-left: 50px;
+                max-width: 350px;
+                position: relative;
+                padding-left: 60px;
+
+                .icon {
+                    background-color: #f0f1f3;
+                    width: 40px;
+                    height: 40px;
+                    display: flex;
+                    flex-flow: column;
+                    align-items: center;
+                    justify-content: center;
+                    border-radius: 100%;
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                }
+
+                h4 {
+                    font-size: 20px;
+                    margin-bottom: 12px;
+                }
+                P {
+                    font-size: 16px;
+                    color: #A8A7BE;
+                }
+            }
+        }
+
+        .input-field-area {
+            display: flex;
+            flex-flow: row;
+            align-items: center;
+            margin-top: 70px;
+            max-width: 735px;
+            width: 100%;
+
+            .input-field {
+                padding-right: 10px;
+                width: calc(100% - 162px);
+            }
+
+            .btn-area {
+                position: relative;
+
+                .cl-btn {
+                    border-radius: 5px;
+                    padding: 0 22px;
+                    height: 46px;
+                    min-width: 162px;
+                }
+                .lnc-notice {
+                    color: green;
+                    font-size: 15px;
+                    text-transform: capitalize;
+                    margin-left: 8px;
+                    position: absolute;
+                    bottom: -24px;
+                    left: -4px;
+                }
+            }
+        }
+
+        .logo-area {
+            width: calc(100% - 930px);
+            text-align: center;
+
+            .cl-logo {
+                width: 120px;
+                margin: 0 auto 23px;
+            }
+
+            .manage-license {
+                border-radius: 5px;
+                font-size: 15px;
+                height: 46px;
+                line-height: 46px;
+                padding: 0 24px;
+                background-color: #f0ecfb;
+                border: 1px solid #6e42d3;
+                color: #6e42d3;
+            }
+        }
+    }
+
+    p.submit {
+        padding-top: 0;
+
+        .button {
+            border-radius: 5px;
+            padding: 0 22px;
+            height: 46px;
+            font-size: 14px;
+            color: #ffffff;
+            font-weight: 500;
+            cursor: pointer;
+            border: none;
+            display: inline-block;
+            text-transform: capitalize;
+            background-color: #6e41d3;
+            transition: all 0.3s ease;
+
+            &:hover {
+                background-color: #ee8134;
+            }
+        }
+    }
+}
+
+
+.cl-doc-row {
+    display: flex;
+    margin-top: 20px;
+
+    .single-col {
+        background: #fff;
+        padding: 30px;
+        margin-right: 20px;
+        width: calc(100% / 3);
+        border-radius: 8px;
+        display: flex;
+        flex-flow: column;
+        align-items: flex-start;
+        position: relative;
+
+        &:last-child {
+            margin-right: 0;
+        }
+
+        .icon {
+            background-color: #f0f1f3;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            flex-flow: column;
+            align-items: center;
+            justify-content: center;
+            border-radius: 100%;
+            position: absolute;
+            top: 28px;
+            left: 30px;
+        }
+
+        h4 {
+            font-size: 20px;
+            margin-bottom: 22px;
+            font-weight: 500;
+            margin-left: 53px;
+            margin-top: 9px;
+        }
+        p {
+            font-size: 16px;
+            color: #A8A7BE;
+            margin-bottom: 20px;
+        }
+        .cl-btn {
+            margin-top: auto;
+        }
+    }
+}
+
+
+// ----------responsive style------------
+@media only screen and (max-width: 1599px) {
+    .cl-license-wrapper {
+        padding: 50px 50px;
+    }
+    .cl-license-wrapper .cl-license-filed .field-area {
+        max-width: 800px;
+    }
+    .cl-license-wrapper .cl-license-filed .logo-area {
+        width: calc(100% - 800px);
+    }
+}
+
+@media only screen and (max-width: 1399px) {
+    .cl-license-wrapper {
+        padding: 30px;
+    }
+    .cl-license-wrapper .cl-license-filed .field-area {
+        max-width: 640px;
+        border-right: none;
+    }
+    .cl-license-wrapper .cl-license-filed .logo-area {
+        width: calc(100% - 640px);
+    }
+    .cl-license-wrapper .cl-license-filed .logo-area .cl-logo {
+        width: 92px;
+    }
+}
+
+@media only screen and (max-width: 1199px) {
+    .cl-license-wrapper .cl-license-filed .field-area {
+        max-width: 510px;
+    }
+    .cl-license-wrapper .cl-license-filed .logo-area {
+        width: calc(100% - 510px);
+        padding-top: 53px;
+    }
+    .cl-license-wrapper .cl-license-filed .logo-area .cl-logo {
+        width: 70px;
+    }
+    .cl-license-wrapper .cl-license-filed .promo-text-area {
+        margin-left: -30px;
+    }
+    .cl-license-wrapper .cl-license-filed .promo-text-area .single-area {
+        margin-left: 30px;
+        padding-left: 0;
+    }
+    .cl-license-wrapper .cl-license-filed .promo-text-area .single-area .icon {
+        position: relative;
+        top: inherit;
+        left: inherit;
+        margin-bottom: 12px;
+    }
+    .cl-license-wrapper .cl-license-filed .input-field-area {
+        margin-top: 40px;
+    }
+
+    .cl-doc-row .single-col {
+        padding: 20px;
+    }
+    .cl-doc-row .single-col .icon {
+        top: 18px;
+        left: 20px;
+    }
+
+}
+
+
+@media only screen and (max-width: 991px) {
+    .cl-license-wrapper {
+        padding: 20px;
+    }
+    .cl-license-wrapper .cl-license-filed .logo-area .manage-license {
+        padding: 0 16px;
+    }
+
+}

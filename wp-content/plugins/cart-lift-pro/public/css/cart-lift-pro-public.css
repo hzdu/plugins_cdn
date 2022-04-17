@@ -1,0 +1,145 @@
+/**
+ * All of the CSS for your public-facing functionality should be
+ * included in this file.
+ */
+
+/* -------cl-add2cart-modal------ */
+.cl-add2cart-modal {
+    position: fixed;
+    top: 0;
+    right: 0;
+    background: rgba(15, 14, 13, 0.4);
+    width: 100%;
+    height: 100%;
+    z-index: 99999;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+.cl-add2cart-modal.show {
+    opacity: 1;
+    visibility: visible;
+}
+.cl-add2cart-modal .modal-wrapper {
+    width: 100%;
+    max-width: 530px;
+    border-radius: 10px;
+    background-color: #f6f6f8;
+    transition: all 0.3s ease;
+    padding: 40px 25px;
+    position: relative;
+}
+.cl-add2cart-modal .modal-wrapper .cl-alert-close {
+    width: 34px;
+    height: 34px;
+    border-radius: 100%;
+    background-color: #f6f6f8;
+    border: 1px solid #e5e8f3;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    position: absolute;
+    right: 8px;
+    top: 8px;
+}
+.cl-add2cart-modal .modal-wrapper .modal-body {
+    text-align: center;
+}
+.cl-add2cart-modal .modal-wrapper .modal-body .plugin-logo {
+    width: 60px;
+    margin: 0 auto 20px;
+}
+.cl-add2cart-modal .modal-wrapper .modal-body input[type="email"] {
+    display: block;
+    padding: 10px 15px;
+    width: 100%;
+    border-radius: 5px;
+    background-color: #fff;
+    border: 1px solid #e5e8f3;
+    height: 50px;
+    font-size: 14px;
+    color: #363b4e;
+    font-weight: 400;
+    transition: all 0.3s ease;
+    margin-bottom: 30px;
+}
+.cl-add2cart-modal .modal-wrapper .modal-body input[type="email"]:focus {
+    box-shadow: none;
+    outline: none;
+    border-color: #6e41d3;
+}
+.cl-add2cart-modal .modal-wrapper .modal-body h4 {
+    font-size: 22px;
+    font-weight: 500;
+    color: #333;
+    margin-bottom: 16px;
+    margin-top: 0;
+    line-height: 1.4;
+}
+.cl-add2cart-modal .modal-wrapper .modal-body p {
+    font-size: 16px;
+    color: #777;
+    margin-bottom: 14px;
+}
+.cl-add2cart-modal .modal-wrapper .modal-body .cl-btn {
+    height: 50px;
+    line-height: 50px;
+    border-radius: 5px;
+    display: block;
+    margin: 0 auto 8px;
+    padding: 0 42px;
+    font-size: 14px;
+    color: #ffffff;
+    font-weight: 500;
+    cursor: pointer;
+    border: none;
+    text-decoration: none;
+    display: inline-block;
+    text-transform: capitalize;
+    background-color: #6e41d3;
+    transition: all 0.3s ease;
+}
+.cl-add2cart-modal .modal-wrapper .modal-body .cl-btn:hover {
+    background-color: #ee8134;
+}
+.cl-add2cart-modal .modal-wrapper .modal-body .cl-btn:focus {
+    outline: none;
+    box-shadow: none;
+}
+.cl-add2cart-modal .modal-wrapper .modal-body .cl-alert-cancel {
+    color: #a09f9f;
+    font-size: 14px;
+    line-height: 1;
+    display: block;
+    width: 100px;
+    margin: 0 auto;
+}
+.cl-add2cart-modal .modal-wrapper .modal-body .cl-alert-cancel:hover {
+    text-decoration: underline;
+}
+
+
+@media only screen and (max-width: 991px) {
+    .cl-add2cart-modal {
+        width: 100%;
+    }
+
+}
+/* ---max width 991px------ */
+
+@media only screen and (max-width: 575px) {
+    .cl-add2cart-modal .modal-wrapper {
+        max-width: 290px;
+    }
+    .cl-add2cart-modal .modal-wrapper .modal-body p {
+        font-size: 15px;
+    }
+
+}
+/* ---max width 575px------ */

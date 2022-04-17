@@ -1,0 +1,29 @@
+{
+  "name": "kasparsd/mini-sheets-php",
+  "description": "Library for creating the most basic Office Open XML and Excel XLSX files.",
+  "type": "library",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Kaspars Dambis",
+      "email": "hi@kaspars.net"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "kasparsd\\MiniSheets\\": "src/"
+    }
+  },
+  "require": {},
+  "require-dev": {
+    "wp-coding-standards/wpcs": "^2.1"
+  },
+  "suggest": {
+    "ext-zip": "For generating XLSX files which are actually ZIP files."
+  },
+  "scripts": {
+    "lint": [
+      "phpcs ."
+    ]
+  }
+}

@@ -1,0 +1,111 @@
+.cl-compare {
+    width: 100%;
+    max-width: 1150px;
+    margin: 0 auto;
+    padding-top: 23px;
+
+    .compare-tbl-wrapper {
+        filter: drop-shadow(0px 2px 2px rgba(222, 222, 234, 0.86));
+        background: #fff;
+        border-radius: 5px;
+        padding: 20px;
+    }
+
+    .compare-header {
+        display: flex;
+        flex-flow: row;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 30px;
+
+        .tbl-header {
+            font-size: 24px;
+            line-height: 40px;
+            color: #363b4e;
+            font-weight: 500;
+        }
+    }
+
+    .get-pro {
+        height: 50px;
+        line-height: 50px;
+        border-radius: 8px;
+        padding: 0 27px;
+        position: relative;
+    }
+    
+    .single-feature {
+        display: flex;
+        flex-flow: row wrap;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 15px;
+
+        li {
+            display: block;
+            font-size: 15px;
+            font-family: Roboto, sans-serif;
+            color: #787878;
+            line-height: 1.4;
+            padding: 10px 0;
+        }
+
+        .feature {
+            width: 78%;
+            padding-right: 20px;
+        }
+        .free {
+            width: 10%;
+            text-align: center;
+        }
+        .pro {
+            width: 10%;
+            text-align: center;
+        }
+    }
+    .list-header {
+        background-color: #6e42d3;
+        border-radius: 5px 5px 0 0;
+
+        li {
+            color: #fff;
+            text-transform: uppercase;
+            font-weight: 600;
+            padding: 14px 0;
+        }
+    }
+    .feature-list {
+        &:nth-child(odd) {
+            background: rgba(110, 66, 211, 0.06);
+        }
+
+        .icon {            
+            width: 25px;
+            height: 25px;
+            display: flex;
+            flex-flow: column;
+            align-items: center;
+            justify-content: center;
+            border-radius: 100%;
+            margin: 0 auto;
+
+            svg {
+                width: 13px;
+                height: 11px;
+            }
+
+            &.yes {
+                background-color: #c5f1d0;
+            }
+            &.no {
+                background-color: #f8d7da;
+            }
+        }
+    }
+
+    .footer-btn {
+        text-align: center;
+        padding-top: 20px;
+        border-top: 1px solid #eee;
+    }
+}
