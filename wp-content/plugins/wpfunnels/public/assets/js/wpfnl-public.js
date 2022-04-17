@@ -482,7 +482,7 @@
 			});
 		})
 		$(document).on("change", ".wpfnl-order-bump-cb", function (e) {
-			
+
 			e.preventDefault();
 			console.log(this);
 			$(this).parents('.wpfnl-reset').find('.oderbump-loader').css('display', 'flex');
@@ -507,7 +507,7 @@
 				$( '[name=_wpfunnels_order_bump_product]' ).val('');
 			}
 
-			
+
 			jQuery.ajax({
 				type: "POST",
 				url: ajaxurl,
@@ -532,7 +532,7 @@
 						if( (isReplace == 'yes') && ( (qty != quantity ) || product != $(this).val() ) ){
 							$(this).prop("checked", false);
 						}
-						
+
 					});
 					// $(this).parents('.wpfnl-reset').find('.oderbump-loader').css('display', 'none');
 				}
@@ -566,11 +566,20 @@
 		 */
 		$('.wpfnl-elementor-optin-form-wrapper form').on('submit', function (e) {
 			e.preventDefault();
+			var thisParents = $(this).parents('.wpfnl-elementor-optin-form-wrapper');
+
+			var thisEmail 		= thisParents.find('#wpfnl-email');
+			var thisFirstName 	= thisParents.find('#wpfnl-first-name');
+			var thisLastName 	= thisParents.find('#wpfnl-last-name');
+			var thisAcceptance 	= thisParents.find('#wpfnl-acceptance_checkbox');
+			var thisPhone 	= thisParents.find('#wpfnl-phone');
+
+
 			$('.wpfnl-elementor-optin-form-wrapper .response').css('display','none');
-			if( ( $('#wpfnl-email').val() == '' && $('#wpfnl-email').prop('required') ) || ($('#wpfnl-last-name').val() == '' && $('#wpfnl-last-name').prop('required') ) || ( $('#wpfnl-first-name').val() == '' && $('#wpfnl-first-name').prop('required')) || ( $('#wpfnl-acceptance_checkbox').val() == '' && $('#wpfnl-acceptance_checkbox').prop('required')) || ( $('#wpfnl-phone').val() == '' && $('#wpfnl-phone').prop('required') ) ){
-				$('.wpfnl-elementor-optin-form-wrapper .response').css('color', 'red');
-				$('.wpfnl-elementor-optin-form-wrapper .response').text('Please fill all the required fields');
-				$('.wpfnl-elementor-optin-form-wrapper .response').css('display','flex');
+			if( ( thisEmail.val() == '' && thisEmail.prop('required') ) || ( thisLastName.val() == '' && thisLastName.prop('required') ) || ( thisFirstName.val() == '' && thisFirstName.prop('required')) || ( thisAcceptance.val() == '' && thisAcceptance.prop('required')) || ( thisPhone.val() == '' && thisPhone.prop('required') ) ){
+				thisParents.find('.response').css('color', 'red');
+				thisParents.find('.response').text('Please fill all the required fields');
+				thisParents.find('.response').css('display','flex');
 				return false;
 			}
 
@@ -595,9 +604,9 @@
 				success	: function (response) {
 					if(response.success) {
 						form.hide();
-						$('.wpfnl-elementor-optin-form-wrapper .response').fadeIn('fast');
-						$('.wpfnl-elementor-optin-form-wrapper .response').css('color', 'green');
-						$('.wpfnl-elementor-optin-form-wrapper .response').text(response.notification_text);
+						thisParents.find('.response').fadeIn('fast');
+						thisParents.find('.response').css('color', 'green');
+						thisParents.find('.response').text(response.notification_text);
 						if( response.redirect ) {
 							setTimeout(function() {
 								window.location.href = response.redirect_url;
@@ -614,32 +623,38 @@
 		 */
 		 $('.wpfnl-shortcode-optin-form-wrapper form').on('submit', function (e) {
 			e.preventDefault();
-			optinSubmit();
+			 var thisParents = $(this).parents('.wpfnl-shortcode-optin-form-wrapper');
+			optinSubmit(thisParents);
 		})
 
 		/**
 		 * Divi optin form submission ajax
 		 */
-		 $('#wpfunnels_optin-button').on('click', function (e) {
+		 $('.wpfnl-shortcode-optin-form-wrapper form #wpfunnels_optin-button').on('click', function (e) {
 			e.preventDefault();
-			optinSubmit();
+			 var thisParents = $(this).parents('.wpfnl-shortcode-optin-form-wrapper');
+			optinSubmit(thisParents);
 		})
 
 		/**
 		 * Optin form submission for Shortcode and Divi
 		 */
-		function optinSubmit(){
-			$('.wpfnl-shortcode-optin-form-wrapper .response').css('display','none');
-			if( ( $('#wpfnl-email').val() == '' ) || ($('#wpfnl-last-name').val() == '' && $('#wpfnl-last-name').prop('required') ) || ( $('#wpfnl-first-name').val() == '' && $('#wpfnl-first-name').prop('required')) || ( $('#wpfnl-acceptance_checkbox').val() == '' && $('#wpfnl-acceptance_checkbox').prop('required')) || ( $('#wpfnl-phone').val() == '' && $('#wpfnl-phone').prop('required') ) ){
+		function optinSubmit(thisParents){
+			var thisEmail 		= thisParents.find('#wpfnl-email');
+			var thisFirstName 	= thisParents.find('#wpfnl-first-name');
+			var thisLastName 	= thisParents.find('#wpfnl-last-name');
+			var thisAcceptance 	= thisParents.find('#wpfnl-acceptance_checkbox');
+			var thisPhone 		= thisParents.find('#wpfnl-phone');
 
-				$('.wpfnl-shortcode-optin-form-wrapper .response').css('color', 'red');
-				if( $('#wpfnl-email').val() == '' ){
-					$('.wpfnl-shortcode-optin-form-wrapper .response').text('Email field is required');
+			thisParents.find('response').css('display','none');
+			if( ( thisEmail.val() == '' && thisEmail.prop('required') ) || ( thisLastName.val() == '' && thisLastName.prop('required') ) || ( thisFirstName.val() == '' && thisFirstName.prop('required')) || ( thisAcceptance.val() == '' && thisAcceptance.prop('required')) || ( thisPhone.val() == '' && thisPhone.prop('required') ) ){
+				thisParents.find('.response').css('color', 'red');
+				if( thisEmail.val() == '' ){
+					thisParents.find('.response').text('Email field is required');
 				}else{
-					$('.wpfnl-shortcode-optin-form-wrapper .response').text('Please fill all the required fields');
+					thisParents.find('.response').text('Please fill all the required fields');
 				}
-
-				$('.wpfnl-shortcode-optin-form-wrapper .response').css('display','flex');
+				thisParents.find('.response').css('display','flex');
 				return false;
 			}
 
@@ -651,10 +666,10 @@
 					action 		: 'wpfnl_shortcode_optin_submission',
 					security 	: security,
 					step_id 	: step_id,
-					postData 	: $('.wpfnl-shortcode-optin-form-wrapper form').serialize()
+					postData 	: thisParents.find('form').serialize()
 				},
 				postData = data.postData.split('&'),
-				form 		= $('.wpfnl-shortcode-optin-form-wrapper form')
+				form 		= thisParents.find('form')
 			form.find('.wpfnl-loader').css('display','inline-block');
 			$.ajax({
 				type	: "POST",
@@ -664,9 +679,9 @@
 				success	: function (response) {
 					if(response.success) {
 						form.hide();
-						$('.wpfnl-shortcode-optin-form-wrapper .response').fadeIn('fast');
-						$('.wpfnl-shortcode-optin-form-wrapper .response').css('color', 'green');
-						$('.wpfnl-shortcode-optin-form-wrapper .response').text(response.notification_text);
+						thisParents.find('.response').fadeIn('fast');
+						thisParents.find('.response').css('color', 'green');
+						thisParents.find('.response').text(response.notification_text);
 						if( response.redirect ) {
 							setTimeout(function() {
 								window.location.href = response.redirect_url;
@@ -683,11 +698,18 @@
 		 */
 		 $('.wpfnl-gutenberg-optin-form-wrapper form').on('submit', function (e) {
 			e.preventDefault();
-			$('.wpfnl-gutenberg-optin-form-wrapper .response').css('display','none');
-			if( ($('#wpfnl-email').val() == '' && $('#wpfnl-email').prop('required') ) || ($('#wpfnl-last-name').val() == '' && $('#wpfnl-last-name').prop('required') ) || ( $('#wpfnl-first-name').val() == '' && $('#wpfnl-first-name').prop('required')) || ( $('#wpfnl-acceptance_checkbox').val() == '' && $('#wpfnl-acceptance_checkbox').prop('required')) || ( $('#wpfnl-phone').val() == '' && $('#wpfnl-phone').prop('required') ) ){
-				$('.wpfnl-gutenberg-optin-form-wrapper .response').css('color', 'red');
-				$('.wpfnl-gutenberg-optin-form-wrapper .response').text('Please fill all the required fields');
-				$('.wpfnl-gutenberg-optin-form-wrapper .response').css('display','flex');
+			 var thisParents = $(this).parents('.wpfnl-gutenberg-optin-form-wrapper');
+			 var thisEmail 		= thisParents.find('#wpfnl-email');
+			 var thisFirstName 	= thisParents.find('#wpfnl-first-name');
+			 var thisLastName 	= thisParents.find('#wpfnl-last-name');
+			 var thisAcceptance 	= thisParents.find('#wpfnl-acceptance_checkbox');
+			 var thisPhone 		= thisParents.find('#wpfnl-phone');
+
+			 thisParents.find('.response').css('display','none');
+			 if( ( thisEmail.val() == '' && thisEmail.prop('required') ) || ( thisLastName.val() == '' && thisLastName.prop('required') ) || ( thisFirstName.val() == '' && thisFirstName.prop('required')) || ( thisAcceptance.val() == '' && thisAcceptance.prop('required')) || ( thisPhone.val() == '' && thisPhone.prop('required') ) ){
+				 thisParents.find('.response').css('color', 'red');
+				 thisParents.find('.response').text('Please fill all the required fields');
+				 thisParents.find('.response').css('display','flex');
 				// setTimeout(function() {
 				// 	$('.wpfnl-gutenberg-optin-form-wrapper .response').css('display','none');
 				//  }, 2000);
@@ -718,9 +740,9 @@
 						form.hide();
 						let post_action = response.post_action;
 						$('.wpfnl-optin-form .wpfnl-optin-form-group .btn-default').removeClass('show-loader');
-						$('.wpfnl-gutenberg-optin-form-wrapper .response').fadeIn('fast');
-						$('.wpfnl-gutenberg-optin-form-wrapper .response').css('color', 'green');
-						$('.wpfnl-gutenberg-optin-form-wrapper .response').text(response.notification_text);
+						thisParents.find('.response').fadeIn('fast');
+						thisParents.find('.response').css('color', 'green');
+						thisParents.find('.response').text(response.notification_text);
 						if( 'notification' !== post_action ) {
 							setTimeout(function() {
 								window.location.href = response.redirect_url;

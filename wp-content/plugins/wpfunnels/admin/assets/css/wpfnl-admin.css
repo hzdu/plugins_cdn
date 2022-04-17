@@ -9306,6 +9306,10 @@ ul.wpfnl-dropdown li a:hover path {
   margin: 10px 0;
   font-size: 16px;
 }
+.wpfnl-automation-window .automation-single-list.no-data-list.not-enabled {
+  margin-left: 20px;
+  margin-right: 20px;
+}
 .wpfnl-automation-window .automation-single-list .title {
   font-size: 15px;
   line-height: 1.2;
@@ -9907,6 +9911,15 @@ ul.wpfnl-dropdown li a:hover path {
   .wpfnl-automation-window .automation-darwer .single-trigger .trigger-then {
     padding: 15px 8px;
   }
+}
+.wpfnl-automation-window {
+  background: #f6f5fa;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 99;
 }
 .wpfnl-automation-window .automation-content {
   position: relative;

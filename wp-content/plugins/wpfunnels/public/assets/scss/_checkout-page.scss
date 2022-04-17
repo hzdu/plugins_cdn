@@ -33,7 +33,7 @@
 			background: #F7F7FA;
 			border-radius: 10px;
 			padding: 15px 20px;
-			margin-bottom: 0;
+			margin-bottom: 0!important;
 			border: 1px solid #E5E8F3;
 
 			&::before {
@@ -60,6 +60,7 @@
 		background: #fff;
 		border-radius: 0 0 10px 10px;
 		width: 100%;
+		max-width: 100%;
 
 		& > p {
 			font-size: 16px;
@@ -78,6 +79,11 @@
 			border-radius: 4px;
 			color: #fff;
 		}
+	}
+
+	.woocommerce-billing-fields {
+		margin-top: 0;
+		margin-bottom: 0;
 	}
 
 	.woocommerce-checkout-review-order #order_review_heading,
@@ -725,6 +731,15 @@
 .wpfnl-checkout .woocommerce .woocommerce-checkout-review-order {
 	width: 50%;
 	padding-left: 10px;
+
+	.wd-table-wrapper {
+		overflow-x: inherit;
+		margin-bottom: 0;
+		padding: 0;
+		background-color: transparent;
+		box-shadow: none;
+	}
+
 }
 //--------2 column style end--------
 
@@ -733,8 +748,12 @@
 .wpfnl-checkout .wpfnl-checkout-form-one-column .woocommerce .col2-set,
 .wpfnl-checkout.wpfnl-col-1 .woocommerce .col2-set,
 .woocommerce-page .wpfnl-checkout.wpfnl-col-1 .col2-set {
-	width: 100%;
-	padding-right: 0;
+	float: none;
+    width: 100%;
+    margin: 0;
+    max-width: 100%;
+    padding: 0;
+    flex: inherit;
 }
 .wpfnl-checkout .wpfnl-checkout-form-one-column .woocommerce .woocommerce-checkout-review-order,
 .wpfnl-checkout.wpfnl-col-1 .woocommerce .woocommerce-checkout-review-order {
@@ -746,14 +765,20 @@
 .wpfnl-checkout .woocommerce .col2-set .col-1,
 .woocommerce-page .wpfnl-checkout .col2-set .col-1 {
 	float: none;
-	width: 100%;
-	margin-bottom: 0;
+    width: 100%;
+    margin-bottom: 0;
+    max-width: 100%;
+    padding: 0;
+    flex: inherit;
 }
 
 .wpfnl-checkout .woocommerce .col2-set .col-2,
 .woocommerce-page .wpfnl-checkout .col2-set .col-2 {
 	float: none;
-	width: 100%;
+    width: 100%;
+    flex: inherit;
+    padding: 0;
+    max-width: 100%;
 }
 
 .wpfnl-checkout .woocommerce form .form-row-first,

@@ -638,7 +638,7 @@
   background: #F7F7FA;
   border-radius: 10px;
   padding: 15px 20px;
-  margin-bottom: 0;
+  margin-bottom: 0 !important;
   border: 1px solid #E5E8F3;
 }
 .wpfnl-checkout .woocommerce-form-login-toggle .woocommerce-info::before,
@@ -661,6 +661,7 @@
   background: #fff;
   border-radius: 0 0 10px 10px;
   width: 100%;
+  max-width: 100%;
 }
 .wpfnl-checkout .woocommerce-form-login.login > p,
 .wpfnl-checkout .checkout_coupon.woocommerce-form-coupon > p {
@@ -679,6 +680,10 @@
   font-weight: 400;
   border-radius: 4px;
   color: #fff;
+}
+.wpfnl-checkout .woocommerce-billing-fields {
+  margin-top: 0;
+  margin-bottom: 0;
 }
 .wpfnl-checkout .woocommerce-checkout-review-order #order_review_heading,
 .wpfnl-checkout .woocommerce-billing-fields > h3,
@@ -1239,12 +1244,23 @@
   width: 50%;
   padding-left: 10px;
 }
+.wpfnl-checkout .woocommerce .woocommerce-checkout-review-order .wd-table-wrapper {
+  overflow-x: inherit;
+  margin-bottom: 0;
+  padding: 0;
+  background-color: transparent;
+  box-shadow: none;
+}
 
 .wpfnl-checkout .wpfnl-checkout-form-one-column .woocommerce .col2-set,
 .wpfnl-checkout.wpfnl-col-1 .woocommerce .col2-set,
 .woocommerce-page .wpfnl-checkout.wpfnl-col-1 .col2-set {
+  float: none;
   width: 100%;
-  padding-right: 0;
+  margin: 0;
+  max-width: 100%;
+  padding: 0;
+  flex: inherit;
 }
 
 .wpfnl-checkout .wpfnl-checkout-form-one-column .woocommerce .woocommerce-checkout-review-order,
@@ -1258,12 +1274,18 @@
   float: none;
   width: 100%;
   margin-bottom: 0;
+  max-width: 100%;
+  padding: 0;
+  flex: inherit;
 }
 
 .wpfnl-checkout .woocommerce .col2-set .col-2,
 .woocommerce-page .wpfnl-checkout .col2-set .col-2 {
   float: none;
   width: 100%;
+  flex: inherit;
+  padding: 0;
+  max-width: 100%;
 }
 
 .wpfnl-checkout .woocommerce form .form-row-first,
@@ -2558,8 +2580,8 @@
   flex-flow: row wrap;
   position: relative;
   margin-bottom: 40px;
-  list-style: none;
-  padding: 0;
+  list-style: none !important;
+  padding: 0 !important;
 }
 .wpfnl-checkout-form-wpfnl-multistep .wpfnl-multistep-wizard:before,
 .wpfnl-multistep .wpfnl-multistep-wizard:before {
@@ -2697,8 +2719,9 @@
 .wpfnl-multistep .woocommerce #customer_details.col2-set {
   width: 100% !important;
   padding-right: 0;
-  margin-right: 0 !important;
+  margin: 0 !important;
   float: none !important;
+  display: block;
 }
 
 .woocommerce-page.woocommerce-checkout .wpfnl-checkout-form-wpfnl-multistep form #order_review,
@@ -3561,12 +3584,6 @@
 .theme-twentytwentytwo .woocommerce-page .wpfnl-checkout.wpfnl-multistep .col2-set:not(#customer_details) {
   padding-left: 0;
   width: 100%;
-}
-
-.wpfunnel_steps-template .ct-section-inner-wrap,
-.wpfunnel_steps-template .oxy-header-container {
-	margin-left: auto;
-	margin-right: auto;
 }
 
 /*# sourceMappingURL=wpfnl-public.css.map */
