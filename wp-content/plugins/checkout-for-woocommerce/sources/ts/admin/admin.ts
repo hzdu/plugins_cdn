@@ -34,7 +34,7 @@ cfwDomReady( () => {
 
     window.addEventListener( 'beforeunload', beforeUnloadHandler );
 
-    jQuery( document.body ).on( 'click', '#cfw_admin_page_submit, #submit', () => {
+    jQuery( document.body ).on( 'click', '#cfw_admin_page_submit, #submit, #publish', () => {
         window.removeEventListener( 'beforeunload', beforeUnloadHandler );
     } );
 
@@ -106,7 +106,9 @@ cfwDomReady( () => {
         + '#side_cart_icon_width, '
         + '#side_cart_icon_color, '
         + '[name="_cfw__setting[side_cart_icon][string]"], '
-        + '#cfw_checkbox_enable_promo_codes_on_side_cart',
+        + '#cfw_checkbox_enable_promo_codes_on_side_cart, '
+        + '#cfw_checkbox_enable_side_cart_continue_shopping_button, '
+        + '#cfw_checkbox_show_side_cart_item_discount',
     );
 
     new FieldToggler(

@@ -114,7 +114,7 @@ class ValidationService {
             }
 
             tabsToValidate.forEach( ( tab ) => {
-                promises.push( checkoutForm.parsley().whenValidate( { group: tab } ), ...this.getValidatorPromisesForTab( tab ) );
+                promises.push( ...this.getValidatorPromisesForTab( tab ) );
             } );
 
             const currentTab = jQuery( '#cfw-payment-method' );

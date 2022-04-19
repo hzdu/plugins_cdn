@@ -87,6 +87,7 @@ body.admin-bar {
     @import "components/cart-summary/cart-item-quantity-control";
     @import "components/order-bump";
     @import "compatibility/woocommerce-subscriptions";
+    @import "compatibility/woocommerce-product-bundles";
 
     // No redundant quantity info!
     .cfw-cart-item-quantity-bubble {
@@ -135,11 +136,6 @@ body.admin-bar {
     .cfw-side-cart-contents-footer {
         margin-left: 1.5em;
         margin-right: 1.5em;
-    }
-
-    .cfw-side-cart-contents > * {
-        padding-left: 1.5em;
-        padding-right: 1.5em;
     }
 
     .cfw-side-cart-contents-header {
