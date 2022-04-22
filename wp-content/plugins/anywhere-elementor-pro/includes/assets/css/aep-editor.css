@@ -1,0 +1,172 @@
+.elementor-control-sg_layout .elementor-control-input-wrapper,
+.elementor-control-grid_sg_layout .elementor-control-input-wrapper,
+.elementor-control-smart_grid_sg_layout .elementor-control-input-wrapper {
+	display: flex;
+}
+.elementor-control-sg_layout
+	.elementor-control-input-wrapper
+	.elementor-choices,
+.elementor-control-grid_sg_layout
+	.elementor-control-input-wrapper
+	.elementor-choices,
+.elementor-control-smart_grid_sg_layout
+	.elementor-control-input-wrapper
+	.elementor-choices {
+	display: flex;
+	height: auto;
+	flex-wrap: wrap;
+	align-items: stretch;
+	background: #fff;
+}
+
+.elementor-control-sg_layout .elementor-control-input-wrapper,
+.elementor-control-grid_sg_layout .elementor-control-input-wrapper,
+.elementor-control-smart_grid_sg_layout .elementor-control-input-wrapper {
+	border: 1px solid #a4afb7;
+}
+.elementor-control-sg_layout
+	.elementor-control-input-wrapper
+	.elementor-choices,
+.elementor-control-grid_sg_layout
+	.elementor-control-input-wrapper
+	.elementor-choices,
+.elementor-control-smart_grid_sg_layout
+	.elementor-control-input-wrapper
+	.elementor-choices {
+	margin-bottom: -1px;
+}
+
+.elementor-control-sg_layout
+	.elementor-control-input-wrapper
+	.elementor-choices
+	label,
+.elementor-control-grid_sg_layout
+	.elementor-control-input-wrapper
+	.elementor-choices
+	label,
+.elementor-control-smart_grid_sg_layout
+	.elementor-control-input-wrapper
+	.elementor-choices
+	label {
+	width: 50%;
+	border-right: 1px solid #a4afb7;
+	border-bottom: 1px solid #a4afb7;
+	padding: 5px;
+}
+.elementor-control-sg_layout
+	.elementor-control-input-wrapper
+	.elementor-choices
+	label:nth-of-type(2n),
+.elementor-control-grid_sg_layout
+	.elementor-control-input-wrapper
+	.elementor-choices
+	label:nth-of-type(2n),
+.elementor-control-smart_grid_sg_layout
+	.elementor-control-input-wrapper
+	.elementor-choices
+	label:nth-of-type(2n) {
+	border-right: none;
+}
+
+.elementor-control-sg_layout
+	.elementor-control-input-wrapper
+	.elementor-choices
+	input:checked
+	+ .elementor-choices-label,
+.elementor-control-grid_sg_layout
+	.elementor-control-input-wrapper
+	.elementor-choices
+	input:checked
+	+ .elementor-choices-label,
+.elementor-control-smart_grid_sg_layout
+	.elementor-control-input-wrapper
+	.elementor-choices
+	input:checked
+	+ .elementor-choices-label {
+	background: #a6afb6;
+}
+
+.elementor-choices input:checked + .elementor-choices-label .aep::before {
+	color: #fff;
+}
+
+.elementor-choices .aep {
+	font-size: 48px;
+}
+
+.ae-editor-note {
+	font-style: italic;
+	font-size: 11px;
+	color: #a4afb7;
+}
+
+.elementor-panel .elementor-tab-control-tab_ae_pro a:before {
+	display: block;
+	-webkit-mask: url(../images/ae-logo.svg);
+	-webkit-mask-size: contain;
+	-webkit-mask-repeat: no-repeat;
+	-webkit-mask-position: center center;
+	width: 16px;
+	height: 16px;
+	background-color: #6d7882;
+	margin: auto;
+	content: "/";
+	color: #6d7882;
+}
+
+#elementor-preview .ae-post-collection.masonry {
+	height: 100% !important;
+}
+
+.elementor-widget-ae-post-blocks-adv
+	.elementor-widget-container
+	.ae-pagination-wrapper {
+	clear: both;
+}
+
+.ae-alert.ae-alert-warning {
+	color: #8a6d3b;
+	background-color: #fcf8e3;
+	border-color: #f9f0c3;
+}
+
+.ae-alert.ae-alert-success {
+	color: #3c763d;
+	background-color: #dff0d8;
+	border-color: #cae6be;
+}
+.ae-alert {
+	padding: 10px;
+	border-left: 5px solid transparent;
+	position: relative;
+	text-align: left;
+	font-size: 14px;
+	line-height: 1.2;
+}
+
+.ae-dynamic-rules-notice {
+	font-style: italic;
+	font-size: 11px;
+	line-height: 1.4;
+	color: #a4afb7;
+}
+
+.ae-widget button.dialog-buttons-action {
+	display: none;
+}
+.ae-widget .dialog-buttons-action.ae-pro-dialog-buttons-action {
+	display: unset;
+}
+
+.elementor-control-ae_widget_id .ae-trigger-id {
+	display: flex;
+	align-items: baseline;
+	justify-content: space-between;
+}
+.ae-widget-dynamic-map .elementor-choices-label {
+    font-size: 20px;
+}
+.ae-widget-dynamic-map .elementor-choices-label[data-tooltip="Horizontal"] {
+    font-size: 26px;
+    line-height: 29px;
+}
