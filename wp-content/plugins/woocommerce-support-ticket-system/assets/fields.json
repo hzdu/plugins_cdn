@@ -506,7 +506,7 @@
             },
             {
                 "key": "field_57cd9e3e6709d",
-                "label": "Message maximum lenght",
+                "label": "Message maximum length",
                 "name": "wcsts_message_lenght",
                 "type": "number",
                 "instructions": "Ticket message lenght.",
@@ -527,7 +527,7 @@
             },
             {
                 "key": "field_62037f4b3d6f0",
-                "label": "Message minimum lenght",
+                "label": "Message minimum length",
                 "name": "wcsts_message_min_lenght",
                 "type": "number",
                 "instructions": "Ticket minimum message lenght. Leave 0 for no limit.",
@@ -1771,7 +1771,7 @@
                 "label": "User - New ticket email subject (Order ticket type)",
                 "name": "wcsts_user_new_ticket_subject_text",
                 "type": "text",
-                "instructions": "This is the subject used for the notification email sent to the user after he has placed a new ticket. You can use the special <strong>{ticket_id}<\/strong> to display the ticket id.",
+                "instructions": "This is the subject used for the notification email sent to the user after he has placed a new ticket. You can use the special <strong>{ticket_id}<\/strong> to display the ticket id, <strong>{subject}<\/strong> to display the ticket subject.",
                 "required": 1,
                 "conditional_logic": 0,
                 "wrapper": {
@@ -1790,7 +1790,7 @@
                 "label": "User - New ticket email body (Order ticket type)",
                 "name": "wcsts_user_new_ticket_email_body_message",
                 "type": "wysiwyg",
-                "instructions": "This is the email body used for the notification email sent to the user after he has placed a new ticket. You can use the special <strong>{order_page_url}<\/strong>, <strong>{ticket_id}<\/strong>, <strong>{subject}<\/strong> and <strong>{message}<\/strong> shotcodes in the message body to embed the ticket details page link, display the ticket id, ticket subject and the message replied by the admin.",
+                "instructions": "This is the email body used for the notification email sent to the user after he has placed a new ticket. You can use the special <strong>{order_page_url}<\/strong>, <strong>{ticket_id}<\/strong>, <strong>{subject}<\/strong> and <strong>{message}<\/strong> shotcodes in the message body to embed the ticket details page link, display the ticket id, the ticket subject and the message replied by the admin. You can also use the special shortcode listed <a href=\"?wcsts_shortcode_page=ok\" target=\"_blank\">here<\/a>.",
                 "required": 1,
                 "conditional_logic": 0,
                 "wrapper": {
@@ -1809,7 +1809,7 @@
                 "label": "User - New reply by admin email subject (Order ticket type)",
                 "name": "wcsts_user_new_reply_by_admin_email_subject_text",
                 "type": "text",
-                "instructions": "This is the subject used for the notification email sent to the user after an admin has replyed to his ticket. You can use the special <strong>{ticket_id}<\/strong> to display the ticket id.",
+                "instructions": "This is the subject used for the notification email sent to the user after an admin has replyed to his ticket. You can use the special <strong>{ticket_id}<\/strong> to display the ticket id, <strong>{subject}<\/strong> to display the ticket subject..",
                 "required": 1,
                 "conditional_logic": 0,
                 "wrapper": {
@@ -1828,7 +1828,7 @@
                 "label": "User - New reply by admin email body (Order ticket type)",
                 "name": "wcsts_user_new_reply_by_admin_email_body",
                 "type": "wysiwyg",
-                "instructions": "This is the email body used for the notification email sent to the user after an admin has replied to his ticket.  You can use the special <strong>{order_page_url}<\/strong>, <strong>{ticket_id}<\/strong>, <strong>{subject}<\/strong> and <strong>{message}<\/strong> shotcodes  in the message body to embed the ticket details page link, display the ticket id and the message replied by the admin.",
+                "instructions": "This is the email body used for the notification email sent to the user after an admin has replied to his ticket.  You can use the special <strong>{order_page_url}<\/strong>, <strong>{ticket_id}<\/strong>, <strong>{subject}<\/strong> and <strong>{message}<\/strong> shotcodes  in the message body to embed the ticket details page link, display the ticket id, the ticket subject and the message replied by the admin. You can also use the special shortcode listed <a href=\"?wcsts_shortcode_page=ok\" target=\"_blank\">here<\/a>.",
                 "required": 1,
                 "conditional_logic": 0,
                 "wrapper": {
@@ -1847,7 +1847,7 @@
                 "label": "User - New ticket email subject (User ticket type)",
                 "name": "wcsts_user_new_ticket_subject_text_user_type",
                 "type": "text",
-                "instructions": "This is the subject used for the notification email sent to the user after he has placed a new ticket. You can use the special <strong>{ticket_id}<\/strong> to display the ticket id.",
+                "instructions": "This is the subject used for the notification email sent to the user after he has placed a new ticket. You can use the special <strong>{ticket_id}<\/strong> to display the ticket id, <strong>{subject}<\/strong> to display the ticket subject.",
                 "required": 1,
                 "conditional_logic": 0,
                 "wrapper": {
@@ -1866,7 +1866,7 @@
                 "label": "User - New ticket email body (User ticket type)",
                 "name": "wcsts_user_new_ticket_email_body_message_user_type",
                 "type": "wysiwyg",
-                "instructions": "This is the email body used for the notification email sent to the user after he has placed a new ticket. You can use the special, <strong>{ticket_page_url}<\/strong> (My Account -> User ticket area page), <strong>{ticket_id}<\/strong>, <strong>{subject}<\/strong> and <strong>{message}<\/strong> shotcodes in the message body to embed the ticket details page link, display the ticket id, ticket subject and the message replied by the admin.",
+                "instructions": "This is the email body used for the notification email sent to the user after he has placed a new ticket. You can use the special, <strong>{ticket_page_url}<\/strong> (My Account -> User ticket area page), <strong>{ticket_id}<\/strong>, <strong>{subject}<\/strong> and <strong>{message}<\/strong> shotcodes in the message body to embed the ticket details page link, display the ticket id, the ticket subject and the message replied by the admin. You can also use the special shortcode listed <a href=\"?wcsts_shortcode_page=ok\" target=\"_blank\">here<\/a>.",
                 "required": 1,
                 "conditional_logic": 0,
                 "wrapper": {
@@ -1885,7 +1885,7 @@
                 "label": "User - New reply by admin email subject (User ticket type)",
                 "name": "wcsts_user_new_reply_by_admin_email_subject_text_user_type",
                 "type": "text",
-                "instructions": "This is the subject used for the notification email sent to the user after an admin has replyed to his ticket. You can use the special <strong>{ticket_id}<\/strong>to display the ticket id.",
+                "instructions": "This is the subject used for the notification email sent to the user after an admin has replyed to his ticket. You can use the special <strong>{ticket_id}<\/strong>to display the ticket id, <strong>{subject}<\/strong> to display the ticket subject.",
                 "required": 1,
                 "conditional_logic": 0,
                 "wrapper": {
@@ -1904,7 +1904,7 @@
                 "label": "User - New reply by admin email body (User ticket type)",
                 "name": "wcsts_user_new_reply_by_admin_email_body_user_type",
                 "type": "wysiwyg",
-                "instructions": "This is the email body used for the notification email sent to the user after an admin has replied to his ticket.  You can use the special <strong>{ticket_page_url}<\/strong> (My Account -> User ticket area page), <strong>{ticket_id}<\/strong>, <strong>{subject}<\/strong> and <strong>{message}<\/strong> shotcodes  in the message body to embed the ticket details page link, display the ticket id and the message replied by the admin.",
+                "instructions": "This is the email body used for the notification email sent to the user after an admin has replied to his ticket.  You can use the special <strong>{ticket_page_url}<\/strong> (My Account -> User ticket area page), <strong>{ticket_id}<\/strong>, <strong>{subject}<\/strong> and <strong>{message}<\/strong> shotcodes  in the message body to embed the ticket details page link, display the ticket id, the ticket subject and the message replied by the admin. You can also use the special shortcode listed <a href=\"?wcsts_shortcode_page=ok\" target=\"_blank\">here<\/a>.",
                 "required": 1,
                 "conditional_logic": 0,
                 "wrapper": {
@@ -1936,7 +1936,7 @@
         "hide_on_screen": "",
         "active": true,
         "description": "",
-        "show_in_rest": false
+        "show_in_rest": 0
     },
     {
         "key": "group_59008adf19314",
@@ -2042,7 +2042,7 @@
                 "label": "Admin - New ticket submitted by user email subject",
                 "name": "wcsts_admin_new_ticket_subject_text",
                 "type": "text",
-                "instructions": "This is the subject used for the notification email sent to the admin after an user has submitted a ticket. You can use the special {ticket_id} to display the ticket id.",
+                "instructions": "This is the subject used for the notification email sent to the admin after an user has submitted a ticket. You can use the special {ticket_id} to display the ticket id, <strong>{subject}<\/strong> to display the ticket subject.",
                 "required": 1,
                 "conditional_logic": 0,
                 "wrapper": {
@@ -2051,17 +2051,17 @@
                     "id": ""
                 },
                 "default_value": "New ticket #{ticket_id} submitted",
-                "maxlength": "",
                 "placeholder": "",
                 "prepend": "",
-                "append": ""
+                "append": "",
+                "maxlength": ""
             },
             {
                 "key": "field_57d2b2550e888",
                 "label": "Admin - New ticket submitted bu user email body",
                 "name": "wcsts_admin_new_ticket_email_body_message",
                 "type": "wysiwyg",
-                "instructions": "This is the email body used for the notification email sent to the user after an admin has replied to his ticket.  You can use the special <strong>{admin_ticket_page}<\/strong>, <strong>{ticket_id}<\/strong>, <strong>{subject}<\/strong> and <strong>{message}<\/strong> shotcodes in the message body to embed the ticket details page link, display the ticket id and the message replied by the admin.",
+                "instructions": "This is the email body used for the notification email sent to the user after an admin has replied to his ticket.  You can use the special <strong>{admin_ticket_page}<\/strong>, <strong>{ticket_id}<\/strong>, <strong>{subject}<\/strong> and <strong>{message}<\/strong> shotcodes in the message body to embed the ticket details page link, display the ticket id, the ticket subject and the message replied by the admin.",
                 "required": 1,
                 "conditional_logic": 0,
                 "wrapper": {
@@ -2080,7 +2080,7 @@
                 "label": "Admin - New reply by user email subject",
                 "name": "wcsts_admin_new_reply_by_user_email_subject_text",
                 "type": "text",
-                "instructions": "This is the subject used for the notification email sent to the admin after an user has replied to a ticket. You can use the special {ticket_id} to display the ticket id.",
+                "instructions": "This is the subject used for the notification email sent to the admin after an user has replied to a ticket. You can use the special {ticket_id} to display the ticket id, <strong>{subject}<\/strong> to display the ticket subject.",
                 "required": 1,
                 "conditional_logic": 0,
                 "wrapper": {
@@ -2089,17 +2089,17 @@
                     "id": ""
                 },
                 "default_value": "New reply from user to ticket #{ticket_id}",
-                "maxlength": "",
                 "placeholder": "",
                 "prepend": "",
-                "append": ""
+                "append": "",
+                "maxlength": ""
             },
             {
                 "key": "field_57d2b3150e88a",
                 "label": "Admin - New reply by user email body",
                 "name": "wcsts_admin_new_reply_by_user_email_body",
                 "type": "wysiwyg",
-                "instructions": "This is the email body used for the notification email sent to the user after an admin has replied to his ticket.  You can use the special <strong>{admin_ticket_page}<\/strong>, <strong>{ticket_id}<\/strong>, <strong>{subject}<\/strong> and <strong>{message}<\/strong> shotcodes in the message body to embed the ticket details page link, display the ticket id and the message replied by the admin.",
+                "instructions": "This is the email body used for the notification email sent to the user after an admin has replied to his ticket.  You can use the special <strong>{admin_ticket_page}<\/strong>, <strong>{ticket_id}<\/strong>, <strong>{subject}<\/strong> and <strong>{message}<\/strong> shotcodes in the message body to embed the ticket details page link, display the ticket id, the ticket subject and the message replied by the admin.",
                 "required": 1,
                 "conditional_logic": 0,
                 "wrapper": {
@@ -2118,7 +2118,7 @@
                 "label": "Admin - New ticket assigned email subject",
                 "name": "wcsts_admin_new_ticket_assigned_email_subject_text",
                 "type": "text",
-                "instructions": "This is the subject used for the notification email sent to the user to whom has been assigned the ticket. You can use the special {ticket_id} to display the ticket id.",
+                "instructions": "This is the subject used for the notification email sent to the user to whom has been assigned the ticket. You can use the special {ticket_id} to display the ticket id, <strong>{subject}<\/strong> to display the ticket subject.",
                 "required": 0,
                 "conditional_logic": 0,
                 "wrapper": {
@@ -2127,10 +2127,10 @@
                     "id": ""
                 },
                 "default_value": "Following tickets have been assigned: {ticket_id}",
-                "maxlength": "",
                 "placeholder": "",
                 "prepend": "",
-                "append": ""
+                "append": "",
+                "maxlength": ""
             },
             {
                 "key": "field_5889ababef425",
@@ -2169,6 +2169,6 @@
         "hide_on_screen": "",
         "active": true,
         "description": "",
-        "show_in_rest": false
+        "show_in_rest": 0
     }
 ]

@@ -769,6 +769,18 @@ jQuery(document).ready(function ($) {
     /**
      * End get download key
      */
+    $('.vi-wad-get-access-token-shortcut').on('click', function (e) {
+        let $get_access_token = $('.vi-wad-get-access-token');
+        if ($get_access_token.length > 0) {
+            setTimeout(function () {
+                let scrollTop = parseInt($('.vi-ui.tab[data-tab="update"]').offset().top);
+                window.scrollTo({top: scrollTop, behavior: 'smooth'});
+            }, 100);
+            setTimeout(function () {
+                $get_access_token.click()
+            }, 300);
+        }
+    });
     $('.vi-wad-get-access-token').on('click', function (e) {
         let $button = $(this);
         let $success_message = $('.vi-wad-get-access-token-message');
@@ -777,14 +789,20 @@ jQuery(document).ready(function ($) {
         if (!auto_update_key) {
             alert('Auto update key is required');
         } else {
-            $button.addClass('loading').unbind('click');
+            $button.addClass('loading');
             $success_message.addClass('vi-wad-hidden');
             let data = $button.data();
             let app_url = `https://oauth.aliexpress.com/authorize?response_type=code&client_id=${vi_wad_admin_settings_params.client_id}&view=web&sp=ae&redirect_uri=https://villatheme.com/aliexpress&state=${auto_update_key}`;
             let main_domain = window.location.hostname;
             main_domain = main_domain.toLowerCase();
             e.preventDefault();
-            window.open(app_url, "myWindow", "width=868,height=686");
+            let access_token_window = window.open(app_url, "myWindow", "width=868,height=686");
+            let timer = setInterval(function () {
+                if (access_token_window.closed) {
+                    $button.removeClass('loading');
+                    clearInterval(timer)
+                }
+            }, 1000);
             window.addEventListener('message', function (event) {
                 /*Callback when data send from child popup*/
                 let obj = $.parseJSON(event.data);
@@ -806,6 +824,7 @@ jQuery(document).ready(function ($) {
                                     $success_message.removeClass('vi-wad-hidden');
                                     $('.vi-wad-update-product-message').remove();
                                     $('.vi-wad-update-order-message').remove();
+                                    $button.unbind('click');
                                 } else {
                                     alert(response.message);
                                 }
