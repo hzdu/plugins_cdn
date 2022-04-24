@@ -1,0 +1,18 @@
+# Custom Netlify Headers
+# https://www.netlify.com/docs/headers-and-basic-auth/
+
+/wp-content/plugins/*.woff
+  Access-Control-Allow-Origin: *
+  Content-Type: application/font-woff
+  
+/wp-content/plugins/*.ttf
+  Access-Control-Allow-Origin: *
+  Content-Type: application/font-woff
+  
+/wp-content/themes/*.woff
+  Access-Control-Allow-Origin: *
+  Content-Type: application/font-woff
+
+/wp-content/themes/*.ttf
+  Access-Control-Allow-Origin: *
+  Content-Type: application/font-ttf
