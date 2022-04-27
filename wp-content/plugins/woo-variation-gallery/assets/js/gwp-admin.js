@@ -1,8 +1,8 @@
 /*!
- * Additional Variation Images Gallery for WooCommerce v1.2.9 
+ * Additional Variation Images Gallery for WooCommerce v1.2.3 
  * 
  * Author: Emran Ahmed ( emran.bd.08@gmail.com ) 
- * Date: 12/9/2021, 5:02:20 PM
+ * Date: 2/23/2021, 4:06:57 PM
  * Released under the GPLv3 license.
  */
 /******/ (function(modules) { // webpackBootstrap
@@ -67,26 +67,26 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 11);
+/******/ 	return __webpack_require__(__webpack_require__.s = 12);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 11:
+/***/ 12:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(12);
+module.exports = __webpack_require__(13);
 
 
 /***/ }),
 
-/***/ 12:
+/***/ 13:
 /***/ (function(module, exports, __webpack_require__) {
 
 (function ($) {
 
     Promise.resolve().then(function () {
-        return __webpack_require__(13);
+        return __webpack_require__(14);
     }).then(function (_ref) {
         var GWPAdminHelper = _ref.GWPAdminHelper;
 
@@ -103,7 +103,7 @@ module.exports = __webpack_require__(12);
 
 /***/ }),
 
-/***/ 13:
+/***/ 14:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

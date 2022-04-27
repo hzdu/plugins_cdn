@@ -1,8 +1,8 @@
 /*!
- * Additional Variation Images Gallery for WooCommerce - Pro v1.2.1 
+ * Additional Variation Images Gallery for WooCommerce - Pro v1.2.3 
  * 
  * Author: Emran Ahmed ( emran.bd.08@gmail.com ) 
- * Date: 2/8/2021, 5:03:23 PM
+ * Date: 2/23/2021, 4:07:12 PM
  * Released under the GPLv3 license.
  */
 /******/ (function(modules) { // webpackBootstrap

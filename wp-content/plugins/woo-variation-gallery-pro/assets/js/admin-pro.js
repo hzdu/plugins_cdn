@@ -1,8 +1,8 @@
 /*!
- * Additional Variation Images Gallery for WooCommerce - Pro v1.2.1 
+ * Additional Variation Images Gallery for WooCommerce - Pro v1.2.3 
  * 
  * Author: Emran Ahmed ( emran.bd.08@gmail.com ) 
- * Date: 2/8/2021, 5:03:23 PM
+ * Date: 2/23/2021, 4:07:12 PM
  * Released under the GPLv3 license.
  */
 /******/ (function(modules) { // webpackBootstrap
@@ -100,6 +100,14 @@ jQuery(function ($) {
             WooVariationGalleryAdminPro.ImageUploader();
             WooVariationGalleryAdminPro.Sortable();
         });
+
+        // Dokan Pro Support
+        $('.dokan-product-variation-wrapper').on('dokan_variations_loaded dokan_variations_added', function () {
+            WooVariationGalleryAdminPro.ImageUploader();
+            WooVariationGalleryAdminPro.Sortable();
+        });
+
+        $(document).trigger('woo_variation_gallery_pro_admin_loaded');
     });
 }); // end of jquery main wrapper
 
@@ -132,7 +140,12 @@ var WooVariationGalleryAdminPro = function ($) {
             key: 'ImageUploader',
             value: function ImageUploader() {
                 $(document).off('click', '.add-woo-variation-gallery-image');
+                $(document).off('click', '.woo-variation-gallery-images > li.image');
+                $(document).off('click', '.woo_variation_gallery_media_video_popup_link');
+                $(document).off('click', '.remove-woo-variation-gallery-image');
+
                 $(document).on('click', '.add-woo-variation-gallery-image', this.AddImage);
+                $(document).on('click', '.woo-variation-gallery-images > li.image', this.ChangeImage);
                 $(document).on('click', '.remove-woo-variation-gallery-image', this.RemoveImage);
                 $(document).on('click', '.woo_variation_gallery_media_video_popup_link', this.AttachmentVideoPopup);
 
@@ -141,17 +154,119 @@ var WooVariationGalleryAdminPro = function ($) {
                     var galleryWrapper = $(this).find('.woo-variation-gallery-wrapper');
                     galleryWrapper.insertBefore(optionsWrapper);
                 });
+
+                $(document).trigger('woo_variation_gallery_admin_pro_image_uploader_attached', this);
             }
         }, {
-            key: 'AddImage',
-            value: function AddImage(event) {
+            key: 'ChangeImage',
+            value: function ChangeImage(event) {
                 var _this = this;
 
                 event.preventDefault();
                 event.stopPropagation();
 
+                // console.log($(this))
+                // console.log($(this).index())
+
                 var frame = void 0;
-                var product_variation_id = $(this).data('product_variation_id');
+                var product_variation_id = $(this).closest('.woo-variation-gallery-wrapper').data('product_variation_id');
+                var selected = $(this).find('input.wvg_variation_id_input').val();
+                var index = $(this).index();
+
+                // console.log(product_variation_id)
+
+                if (typeof wp !== 'undefined' && wp.media && wp.media.editor) {
+
+                    // If the media frame already exists, reopen it.
+                    if (frame) {
+                        frame.open();
+                        return;
+                    }
+
+                    // Create the media frame.
+                    frame = wp.media({
+                        title: woo_variation_gallery_admin.choose_image,
+                        button: {
+                            text: woo_variation_gallery_admin.update_image
+                        },
+                        /*states : [
+                            new wp.media.controller.Library({
+                                title      : woo_variation_gallery_admin.choose_image,
+                                filterable : 'all',
+                                multiple   : 'add'
+                            })
+                        ],*/
+                        library: {
+                            type: ['image'] // [ 'video', 'image' ]
+                        }
+                        // multiple : true
+                        // multiple : 'add'
+                    });
+
+                    // When an image is selected, run a callback.
+                    frame.on('select', function () {
+
+                        var images = frame.state().get('selection').toJSON();
+
+                        var html = images.map(function (image) {
+                            if (image.type === 'image') {
+                                var id = image.id,
+                                    woo_variation_gallery_video = image.woo_variation_gallery_video,
+                                    _image$sizes = image.sizes;
+                                _image$sizes = _image$sizes === undefined ? {} : _image$sizes;
+                                var thumbnail = _image$sizes.thumbnail,
+                                    full = _image$sizes.full;
+
+
+                                var url = thumbnail ? thumbnail.url : full.url;
+                                var template = wp.template('woo-variation-gallery-image');
+                                return template({ id: id, url: url, product_variation_id: product_variation_id, woo_variation_gallery_video: woo_variation_gallery_video });
+                            }
+                        }).join('');
+
+                        // $(this).remove();
+                        //$(this).closest('.woo-variation-gallery-wrapper').find('.woo-variation-gallery-images').append(html);
+                        //$(this).closest('.woo-variation-gallery-wrapper').find('.woo-variation-gallery-images > li.image').eq(index).replaceWith(html);
+
+                        // $(this).closest('.woo-variation-gallery-wrapper').find('.woo-variation-gallery-images > li.image').eq(index).after(html);
+                        $(_this).after(html);
+
+                        _.delay(function () {
+                            $(_this).remove();
+                        }, 1);
+
+                        // Variation Changed
+                        WooVariationGalleryAdminPro.Sortable();
+                        WooVariationGalleryAdminPro.VariationChanged(_this);
+                    });
+
+                    frame.on('open', function () {
+                        var selection = frame.state().get('selection');
+
+                        if (selected > 0) {
+                            var attachment = wp.media.attachment(selected);
+                            attachment.fetch();
+                            selection.add(attachment ? [attachment] : []);
+                        }
+                    });
+
+                    // Finally, open the modal.
+                    frame.open();
+                }
+            }
+        }, {
+            key: 'AddImage',
+            value: function AddImage(event) {
+                var _this2 = this;
+
+                event.preventDefault();
+                event.stopPropagation();
+
+                var frame = void 0;
+                var product_variation_id = $(this).closest('.woo-variation-gallery-wrapper').data('product_variation_id');
+                var selected = $(this).find('input.wvg_variation_id_input').val();
+
+                // console.log(product_variation_id)
 
                 if (typeof wp !== 'undefined' && wp.media && wp.media.editor) {
 
@@ -190,10 +305,10 @@ var WooVariationGalleryAdminPro = function ($) {
                             if (image.type === 'image') {
                                 var id = image.id,
                                     woo_variation_gallery_video = image.woo_variation_gallery_video,
-                                    _image$sizes = image.sizes;
-                                _image$sizes = _image$sizes === undefined ? {} : _image$sizes;
-                                var thumbnail = _image$sizes.thumbnail,
-                                    full = _image$sizes.full;
+                                    _image$sizes2 = image.sizes;
+                                _image$sizes2 = _image$sizes2 === undefined ? {} : _image$sizes2;
+                                var thumbnail = _image$sizes2.thumbnail,
+                                    full = _image$sizes2.full;
 
 
                                 var url = thumbnail ? thumbnail.url : full.url;
@@ -202,12 +317,29 @@ var WooVariationGalleryAdminPro = function ($) {
                             }
                         }).join('');
 
-                        $(_this).parent().prev().find('.woo-variation-gallery-images').append(html);
+                        $(_this2).closest('.woo-variation-gallery-wrapper').find('.woo-variation-gallery-images').append(html);
+
+                        _.delay(function () {
+                            if ($(_this2).is('li.image')) {
+                                $(_this2).remove();
+                            }
+                        }, 1);
 
                         // Variation Changed
                         WooVariationGalleryAdminPro.Sortable();
-                        WooVariationGalleryAdminPro.VariationChanged(_this);
+                        WooVariationGalleryAdminPro.VariationChanged(_this2);
                     });
+
+                    /*
+                                    frame.on('open', () => {
+                                        let selection = frame.state().get('selection');
+                                         if (selected > 0) {
+                                            let attachment = wp.media.attachment(selected);
+                                            attachment.fetch();
+                                            selection.add(attachment ? [attachment] : []);
+                                        }
+                                    });
+                    */
 
                     // Finally, open the modal.
                     frame.open();
@@ -219,11 +351,17 @@ var WooVariationGalleryAdminPro = function ($) {
                 $($el).closest('.woocommerce_variation').addClass('variation-needs-update');
                 $('button.cancel-variation-changes, button.save-variation-changes').removeAttr('disabled');
                 $('#variable_product_options').trigger('woocommerce_variations_input_changed');
+
+                // Dokan Support
+                $($el).closest('.dokan-product-variation-itmes').addClass('variation-needs-update');
+                $('.dokan-product-variation-wrapper').trigger('dokan_variations_input_changed');
+
+                $(document).trigger('woo_variation_gallery_admin_variation_changed', this);
             }
         }, {
             key: 'RemoveImage',
             value: function RemoveImage(event) {
-                var _this2 = this;
+                var _this3 = this;
 
                 event.preventDefault();
                 event.stopPropagation();
@@ -232,7 +370,7 @@ var WooVariationGalleryAdminPro = function ($) {
                 WooVariationGalleryAdminPro.VariationChanged(this);
 
                 _.delay(function () {
-                    $(_this2).parent().remove();
+                    $(_this3).parent().remove();
                 }, 1);
             }
         }, {
@@ -248,7 +386,7 @@ var WooVariationGalleryAdminPro = function ($) {
                     opacity: 0.65,
                     placeholder: 'woo-variation-gallery-sortable-placeholder',
                     start: function start(event, ui) {
-                        ui.item.css('background-color', '#f6f6f6');
+                        ui.item.css('background-color', '#F6F6F6');
                     },
                     stop: function stop(event, ui) {
                         ui.item.removeAttr('style');
@@ -262,7 +400,7 @@ var WooVariationGalleryAdminPro = function ($) {
         }, {
             key: 'AttachmentVideoPopup',
             value: function AttachmentVideoPopup(event) {
-                var _this3 = this;
+                var _this4 = this;
 
                 event.preventDefault();
                 event.stopPropagation();
@@ -301,7 +439,7 @@ var WooVariationGalleryAdminPro = function ($) {
                         var video = frame.state().get('selection').first().toJSON();
 
                         if (video.type === 'video') {
-                            $(_this3).closest('.compat-attachment-fields').find('.compat-field-woo_variation_gallery_media_video input').val(video.url).change();
+                            $(_this4).closest('.compat-attachment-fields').find('.compat-field-woo_variation_gallery_media_video input').val(video.url).change();
                         }
                     });
 
