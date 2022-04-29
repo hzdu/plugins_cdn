@@ -1,0 +1,29 @@
+.jet-reviews-button {
+	font-size: 14px;
+	color: #bec0c1;
+	padding: 2px;
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	cursor: pointer;
+
+	&.jet-reviews-button--primary {
+		color: #6EC1E4;
+	}
+
+	&__icon {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		margin-right: 5px;
+
+		.rtl & {
+			margin-right: 0;
+			margin-left: 5px;
+		}
+	}
+
+	&:focus {
+		text-decoration: underline;
+	}
+}

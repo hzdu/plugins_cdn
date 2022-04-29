@@ -1,0 +1,45 @@
+.jet-reviews-widget-pagination {
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+
+	&__items {
+		display: flex;
+		justify-content: flex-start;
+		align-items: center;
+	}
+
+	&__item {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		min-width: 20px;
+		min-height: 20px;
+		width: 20px;
+		height: 20px;
+		margin-right: 5px;
+		position: relative;
+		text-decoration: none;
+		text-shadow: none;
+		font-size: 14px;
+		line-height: normal;
+		color: #a1a2a4;
+		background: transparent;
+		cursor: pointer;
+		transition: all .3s ease-in-out;
+
+		&--active {
+			pointer-events: none;
+		}
+
+		&--disabled {
+			pointer-events: none;
+			opacity: .5;
+		}
+
+		svg {
+			fill: currentColor;
+			height: auto;
+		}
+	}
+}
