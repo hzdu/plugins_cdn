@@ -1,0 +1,235 @@
+:root {
+    --large-gap: 40px;
+    --main-gap: 24px;
+}
+.hidden {
+    display: none !important;
+}
+
+.analytics_page_pwf-filters #wpcontent, .analytics_page_pwf-filters #wpbody-content {
+    padding: 0;
+    overflow-x: hidden !important;
+    min-height: calc(100vh - 32px);
+}
+.analytics_page_pwf-filters .wrap {
+	margin: 0;
+}
+.pwf-layout {
+    margin: 0;
+    padding: 0;
+}
+.pwf-layout__header {
+    background: #fff;
+    box-sizing: border-box;
+    padding: 0;
+    min-height: 60px;
+    position: fixed;
+    width: 100%;
+    top: 32px;
+    z-index: 1001;
+}
+.pwf-layout__header .pwf-layout__header-heading {
+    display: flex;
+    align-items: center;
+    padding: 0 0 0 40px;
+    padding: 0 0 0 var(--large-gap);
+    flex: 1 auto;
+    height: 60px;
+    line-height: 60px;
+    background: #fff;
+    font-weight: 600;
+    font-size: 14px;
+    text-transform: capitalize;
+}
+
+.pwf-layout-primary {
+    margin: 100px var(--large-gap) 100px var(--large-gap);
+}
+
+.pwf-component-filters {
+    display: block;
+    margin-bottom: 60px;
+}
+    .pwf-filters-filter {
+        display: inline-block;
+        min-width: 100px;
+        padding: 0 4px;
+    }
+    .pwf-component-filters .pwf-field-filter-date-range {
+        min-width: 300px;
+    }
+    .pwf-filters-filter:first-child {
+        padding-left: 0;
+    }
+    .pwf-filters-filter:last-child {
+        padding-right: 0;
+    }
+    .pwf-filter-label {
+        margin: 7px 0;
+        display: block;
+    }
+    .pwf-filter-content select {
+        display: inline-block;
+        width: 100%;
+    }
+    .pwf-filter-content {
+        position: relative;
+    }
+
+.pwf-wrap-dashboards {
+    position: relative;
+    width: 100%;
+    font-family: 'Open Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+}
+.pwf-wrap-dashboards .pwf-general-dash {
+    margin-bottom: 60px;
+}
+
+.pwf-dashboards {
+    display: -ms-grid;
+    display: grid;
+    width: 100%;
+
+    box-sizing: border-box;
+    grid-template-columns: repeat(2, 1fr);
+    grid-column-gap: 30px;
+    row-gap: 24px;
+}
+    @media screen and (max-width: 1200px) {
+        .pwf-dashboards {
+            grid-template-columns: repeat(1, 1fr);
+            grid-column-gap: 0;
+        }
+    }
+.pwf-dashboard {
+    
+}
+   
+    .pwf-dashboard-inner {
+        background: rgb(255, 255, 255);
+        box-sizing: border-box;
+        border-radius: 3px;
+        border: 1px solid rgb(226, 228, 231);
+        box-shadow: 0 1px 1px 0 rgb(0 0 0 / 9%);
+    }
+    .pwf-dashboard .field-header {
+        padding: 16px 24px;
+        display: flex;
+        width: 100%;
+        -webkit-box-align: center;
+        align-items: center;
+        -webkit-box-pack: justify;
+        justify-content: space-between;
+        border-bottom: 1px solid rgb(226, 228, 231);
+        border-top-left-radius: 3px;
+        border-top-right-radius: 3px;
+        box-sizing: border-box;
+    }
+    .pwf-dashboard .field-header .header-text {
+        box-sizing: border-box;
+        margin: 0px;
+        font-weight: 700;
+        font-size: 20px;
+        line-height: 28px;
+    }
+    .pwf-dashboard .field-content {
+        position: relative;
+        box-sizing: border-box;
+        padding: 24px 0;
+        max-width: 95%;
+        max-height: 550px;
+        margin: auto;
+    }
+    .pwf-dashboard .field-content .pwf-chart {
+        margin-top: 0;
+        margin-bottom: 0;
+        border: 0;
+        background: #fff;
+        box-sizing: border-box;
+    }
+
+.apexcharts-legend-text {
+    line-height: 12px !important;
+    vertical-align: unset !important;
+    text-transform: capitalize;
+    letter-spacing: 0.5px;
+    font-size: 14px !important;
+	font-family: 'Open Sans, Helvetica, Arial' !important;
+    font-weight: 600 !important;
+    color: #3a4045 !important;
+}
+.apexcharts-legend-marker {
+    margin-right: 5px !important;
+    top: 1.1px !important;
+}
+
+.pwf-field-filter-date-range .pwf-btn-range-date {
+    font-size: 14px;
+    line-height: 2;
+    color: #2c3338;
+    border: 1px solid #8c8f94;
+    box-shadow: none;
+    border-radius: 3px;
+    padding: 0 24px 0 8px;
+    min-height: 30px;
+    width: 100%;
+    background-color: #FFF;
+    background-size: 16px 16px;
+    cursor: pointer;
+    vertical-align: middle;
+
+    box-sizing: border-box;
+    z-index: 9999999999;
+    background: #fff url(data:image/svg+xml;charset=US-ASCII,%3Csvg%20width%3D%2220%22%20height%3D%2220%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M5%206l5%205%205-5%202%201-7%207-7-7%202-1z%22%20fill%3D%22%23555%22%2F%3E%3C%2Fsvg%3E) no-repeat right 5px top 55%;
+}
+
+.pwf-field-filter-date-range .pwf-date-range-popover {
+    display: none;
+    position: absolute;
+    background-color: #FFF;
+    width: 320px;  
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    max-width: 300px;
+    top: 40px;
+}
+.pwf-field-filter-date-range .pwf-date-range-popover.show {
+    display:block;
+}
+.pwf-range-date-lable,
+.pwf-range-date-lable .label-text {
+    z-index: 0;
+}
+.pwf-date-range-popover .popover-inner {
+    padding: 12px;
+}
+.pwf-input-date-range {
+    
+    position: relative;
+    display: flex;
+    flex-wrap: nowrap;
+}
+    .pwf-input-date-range input {
+        font-size: 13px;
+        display: inline-block;
+        width: 49%;
+        height: 36px;
+        line-height: 36px;
+        border: solid 1px #dcdfe6;
+        background-color: transparent;
+        background-image: none;
+        box-shadow: none;
+        margin: 0 2% 0 0;
+        padding: 0 0 0 12px;
+    }
+    .date-range-filter-button {
+        margin-top: 12px;
+    }
+    .date-range-filter-button input {
+        margin: 0;
+        width: 100%;
+    }
+
+.pwf-field-filter-button .button {
+    vertical-align: middle;
+}
