@@ -2,6 +2,46 @@
 
 All notable changes to this project will be documented in this file.
 
+## [3.4.0] - 2022-04-26
+### Added:
+- New transactional mailer: SendLayer integration.
+- Support for changing From Email address in Outlook mailer (Send As, Shared Mailboxes, and Groups).
+- Support for bigger attachments in Outlook mailer.
+
+### Changed:
+- Improved Mailgun API error message extraction.
+- Standardized error messages format and improved WP remote request errors extraction.
+
+### Fixed:
+- Lite plugin uninstall actions clearing plugin options while Pro version is active.
+- Amazon SES identities verification data retrieval for more than 100 identities.
+- Hiding unrelated network admin notices on WP Mail SMTP pages.
+
+## [3.3.0] - 2022-02-15
+### IMPORTANT
+- Support for WordPress versions 5.1.x or lower has been discontinued. If you are using one of those versions, you MUST upgrade WordPress before installing or upgrading to WP Mail SMTP v3.3. Failure to do that will disable WP Mail SMTP functionality.
+
+### Added:
+- Email Log: sent status verification AS tasks for Postmark and SparkPost.
+- New Amazon AWS SES region: Osaka.
+- PHP 8.1 compatibility.
+
+### Changed:
+- Email Log: improved sent status verification accuracy with webhooks for: SMTP.com, Sendiblue, Mailgun, Postmark and SparkPost. 
+- Updated the list of conflicting plugins (added FluentSMTP and WP HTML Mail).
+- Domain verification process for AWS SES mailer (now using DKIM verification instead of the simple TXT record verification).
+- Improved debug error message for the Other SMTP mailer in Debug Events.
+- Updated Action Scheduler library to 3.4.0.
+- Improved Action Scheduler performance.
+
+### Fixed:
+- PHP deprecated notices in Sendinblue library (PHP 7.4+).
+- Email Log: resend issue with incorrectly stored headers.
+- Non-network admin was allowed to change the Debug Event setting, if network-wide setting was enabled.
+- DB tables row in Site Health Info section is now private.
+- Debug Events' screen options visible on general Tools page.
+- Screen Options right alignment.
+
 ## [3.2.1] - 2021-11-17
 ### Fixed:
 - PHP 8 compatibility when existing Gmail mailer connection is revoked. 
