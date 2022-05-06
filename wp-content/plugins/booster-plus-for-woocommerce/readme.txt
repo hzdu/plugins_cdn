@@ -2,8 +2,8 @@
 Contributors: anbinder, karzin, pluggabl
 Tags: woocommerce, booster for woocommerce, woocommerce jetpack
 Requires at least: 4.4
-Tested up to: 5.9.2
-Stable tag: 5.5.6
+Tested up to: 5.9.3
+Stable tag: 5.5.7
 License: GNU General Public License v3.0
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -204,7 +204,19 @@ You can see the differences between versions in this [table](https://booster.io/
 
 == Changelog ==
 
+= 5.5.7 27/04/2022 =
+
+* NEW FEATURE - PDF INVOICING & PACKING SLIPS - PDF Invoicing - Added new shortcode to show 0 VAT message. [wcj_order_vat_func vat_exempt_text=' ']
+* FIXED - PDF INVOICING & PACKING SLIPS - PDF Invoicing - Bulk and auto-generate number sequence issue has been fixed.
+* FIXED - PRICES & CURRENCIES- Prices and Currencies by Country - Added Compatibility of B2B King wholesale prices.
+* FIXED - PRODUCT- Product Tabs - WPML issue with global product tabs.
+* FIXED - PAYMENT GATEWAYS - Gateways Fees and Discounts - Updated the payment fee calculation
+* WooCommerce 6.4.1 tested
+* WordPress 5.9.3 tested
+
+
 = 5.5.6 30/03/2022 =
+
 * Fix - PRODUCTS - Product Addons - Fixed add-on issue with add-on by variation feature.
 * Fix - PRICES & CURRENCIES - Prices and Currencies by Country - Fixed IP detection issue with Booster method.
 * Fix - PRICES & CURRENCIES - Currency - Fixed the input field addition on saving the changes.
