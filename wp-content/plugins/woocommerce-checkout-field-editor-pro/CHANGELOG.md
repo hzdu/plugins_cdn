@@ -1,4 +1,11 @@
-#### 3.1.8 (16-03-2022)
+#### 3.2.0 (27-04-2022)
+IMPROVED: Conditional Rules.
+IMPROVED: Jquery Datepicker mindate and maxdate if server and user are in different time zone.
+IMPROVED: Added WooCommerce 6.4.1 compatibility.
+NEW FEATURE: Added address autofill feature on the checkout page and my account page.
+NEW FEATURE: Added option to disable select2 property specifically for each select and multi-select field.
+
+#### 3.1.9 (16-03-2022)
 FIX: Fixed the issue of not displaying fields in the admin emails.
 IMPROVED: Retain the options while changing the field type.
 IMPROVED: Added WooCommerce 6.3.1 compatibility.
