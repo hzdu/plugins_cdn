@@ -438,15 +438,36 @@ if (!String.prototype.trim) {
                         video_id: videoId,
                         video_title: data.title,
                     };
+                    // Signal deprecated
+                    if(options.signal_watch_video_enabled
+                        && options.dynamicEvents.hasOwnProperty("signal_watch_video")
+                    ) {
+                        var pixels = Object.keys(options.dynamicEvents.signal_watch_video);
 
-                    var pixels = Object.keys(options.dynamicEvents.signal_watch_video);
+                        for (var i = 0; i < pixels.length; i++) {
+                            var event = Utils.clone(options.dynamicEvents.signal_watch_video[pixels[i]]);
+                            event.params.event_action += key
+                            Utils.copyProperties(params, event.params)
+                            Utils.copyProperties(Utils.getRequestParams(), event.params);
+                            getPixelBySlag(pixels[i]).onWatchVideo(event);
+                        }
+                    }
 
-                    for(var i = 0;i<pixels.length;i++) {
-                        var event = Utils.clone( options.dynamicEvents.signal_watch_video[pixels[i]]);
-                        event.params.event_action += key
-                        Utils.copyProperties(params,event.params)
-                        Utils.copyProperties(Utils.getRequestParams(), event.params);
-                        getPixelBySlag(pixels[i]).onWatchVideo(event);
+
+                    // Auto
+                    if(options.automatic.enable_video
+                        && options.automatic.enable_youtube
+                        && options.dynamicEvents.hasOwnProperty("automatic_event_video")
+                    ) {
+                        var pixels = Object.keys(options.dynamicEvents.automatic_event_video);
+
+                        for (var i = 0; i < pixels.length; i++) {
+                            var event = Utils.clone(options.dynamicEvents.automatic_event_video[pixels[i]]);
+                            event.params["progress"] = key
+                            Utils.copyProperties(params, event.params)
+                            Utils.copyProperties(Utils.getRequestParams(), event.params);
+                            getPixelBySlag(pixels[i]).onWatchVideo(event);
+                        }
                     }
 
                     if(key == "play") {
@@ -552,13 +573,35 @@ if (!String.prototype.trim) {
                             video_title: player.pysVideoTitle,
                         };
 
-                        var pixels = Object.keys(options.dynamicEvents.signal_watch_video);
-                        for(var i = 0;i<pixels.length;i++) {
-                            var event = Utils.clone(options.dynamicEvents.signal_watch_video[pixels[i]]);
-                            event.params.event_action += key
-                            Utils.copyProperties( params,event.params,);
-                            Utils.copyProperties(Utils.getRequestParams(), event.params);
-                            getPixelBySlag(pixels[i]).onWatchVideo(event);
+                        // Signal deprecated
+                        if(options.signal_watch_video_enabled
+                            && options.dynamicEvents.hasOwnProperty("signal_watch_video")
+                        ) {
+                            var pixels = Object.keys(options.dynamicEvents.signal_watch_video);
+                            for (var i = 0; i < pixels.length; i++) {
+                                var event = Utils.clone(options.dynamicEvents.signal_watch_video[pixels[i]]);
+                                event.params.event_action += key
+                                Utils.copyProperties(params, event.params,);
+                                Utils.copyProperties(Utils.getRequestParams(), event.params);
+                                getPixelBySlag(pixels[i]).onWatchVideo(event);
+                            }
+                        }
+
+                        // Auto
+
+                        if(options.automatic.enable_video
+                            && options.automatic.enable_vimeo
+                            && options.dynamicEvents.hasOwnProperty("automatic_event_video")
+                        ) {
+                            var pixels = Object.keys(options.dynamicEvents.automatic_event_video);
+
+                            for (var i = 0; i < pixels.length; i++) {
+                                var event = Utils.clone(options.dynamicEvents.automatic_event_video[pixels[i]]);
+                                event.params["progress"] = key
+                                Utils.copyProperties(params, event.params,);
+                                Utils.copyProperties(Utils.getRequestParams(), event.params);
+                                getPixelBySlag(pixels[i]).onWatchVideo(event);
+                            }
                         }
 
                         if(key == "play") {
@@ -840,7 +883,6 @@ if (!String.prototype.trim) {
              * @link: https://developers.google.com/youtube/iframe_api_reference
              */
             initYouTubeAPI: function () {
-                if(!options.signal_watch_video_enabled) return;
 
                 // maybe load YouTube JS API
                 if (typeof window.YT === 'undefined') {
@@ -908,7 +950,7 @@ if (!String.prototype.trim) {
              * @link: https://github.com/vimeo/player.js
              */
             initVimeoAPI: function () {
-                if(!options.signal_watch_video_enabled) return;
+
               
                 $(document).ready(function () {
 
@@ -1091,9 +1133,12 @@ if (!String.prototype.trim) {
 
                     var url  = $(this).attr('href');
                     $.each(options.triggerEventTypes.url_click, function (eventId, triggers) {
-                        if(Utils.compareUrl(url,triggers.value,triggers.rule)) {
-                            Utils.fireTriggerEvent(eventId);
-                        }
+                        triggers.forEach(function (trigger) {
+                            if(Utils.compareUrl(url,trigger.value,trigger.rule)) {
+                                Utils.fireTriggerEvent(eventId);
+                            }
+                        })
+
                     });
                 });
 
@@ -1835,6 +1880,10 @@ if (!String.prototype.trim) {
                 return true;
             },
 
+            onClickEvent: function (event) {
+                this.fireEvent(event.name, event);
+            },
+
             onWooAddToCartOnSingleEvent: function (product_id, qty, product_type, is_external, $form) {
 
                 window.pysWooProductData = window.pysWooProductData || [];
@@ -2002,7 +2051,10 @@ if (!String.prototype.trim) {
                             json['edd_order'] = event.edd_order;
                         }
 
-                        if(event.e_id == "signal_click") {
+                        if(event.e_id === "signal_click"
+                            || event.e_id === "automatic_event_internal_link"
+                            || event.e_id === "automatic_event_outbound_link"
+                        ) {
                             setTimeout(function(){
                                 jQuery.ajax( {
                                     type: 'POST',
@@ -2029,7 +2081,7 @@ if (!String.prototype.trim) {
 
                     }
 
-                    if( name == "CompleteRegistration" && options.facebook.wooCRSendFromServer ) {
+                    if( event.e_id !== "automatic_event_signup" && name == "CompleteRegistration" && options.facebook.wooCRSendFromServer ) {
                         return;
                     }
                 }
@@ -2458,6 +2510,11 @@ if (!String.prototype.trim) {
         }
 
         function mapParamsTov4(tag,name,param) {
+            //GA4 automatically collects a number of parameters for all events
+            delete param.page_title;
+            delete param.event_url;
+            delete param.landing_page;
+            // end
             if(isv4(tag)) {
                 delete param.traffic_source;
                 delete param.event_category;
@@ -2474,117 +2531,187 @@ if (!String.prototype.trim) {
                     delete param.dynx_totalvalue;
                 }
             } else {
-                //delete standard params
-                delete param.page_title;
-                delete param.post_type;
-                delete param.post_id;
-                delete param.plugin;
-                delete param.page_title;
-                delete param.event_url;
-                delete param.user_role;
-                delete param.cartlows;
-                delete param.cartflows_flow;
-                delete param.cartflows_step;
 
-                if(name === 'Signal') {
-                    switch (param.event_action) {
-                        case 'External Click':
-                        case 'Internal Click':
-                        case 'Tel':
-                        case 'Email': {
-                            let params = {
-                                event_category: name,
-                                event_action: param.event_action,
-                                non_interaction: param.non_interaction,
-                            }
-                            if(options.trackTrafficSource) {
-                                params['traffic_source'] = param.traffic_source
-                            }
-                            return params;
-                        }break;
-                        case 'Video': {
-                            let params = {
-                                event_category: name,
-                                event_action: param.event_action,
-                                event_label: param.video_title,
-                                non_interaction: param.non_interaction,
-                            }
-                            if(options.trackTrafficSource) {
-                                params['traffic_source'] = param.traffic_source
-                            }
-                            return params;
-                        }break;
-                        case 'Comment': {
-                            let params = {
-                                event_category: name,
-                                event_action: param.event_action,
-                                event_label: document.location.href,
-                                non_interaction: param.non_interaction,
-                            }
-                            if(options.trackTrafficSource) {
-                                params['traffic_source'] = param.traffic_source
-                            }
-                            return params;
-                        }break;
-                        case 'Form': {
-                            var params = {
-                                event_category: name,
-                                event_action: param.event_action,
-                                non_interaction: param.non_interaction,
-                            };
-                            if(options.trackTrafficSource) {
-                                params['traffic_source'] = param.traffic_source
-                            }
-                            var formClass = (typeof param.form_class != 'undefined') ? 'class: ' + param.form_class : '';
-                            if(formClass != "") {
-                                params["event_label"] = formClass;
-                            }
-                            return params;
-                        }break;
-                        case 'Download': {
-                            return {
-                                event_category: name,
-                                event_action: param.event_action,
-                                event_label: param.download_name,
-                                non_interaction: param.non_interaction,
-                            }
-                        }break;
-                    }
-                    if(param.event_action.indexOf('Scroll') === 0){
-                        var scroll_percent = param.event_action.substring(
-                            param.event_action.indexOf(' ')+1,
-                            param.event_action.indexOf('%')
-                        );
-                        let params =  {
-                            event_category: name,
-                            event_action: param.event_action,
-                            event_label: scroll_percent,
-                            non_interaction: param.non_interaction,
+                switch (name) {
+                    case 'OutboundClick':
+                    case 'InternalClick': {
+                        let params = {
+                            event_category: "Key Actions",
+                            event_action: name,
+                            //  non_interaction: param.non_interaction,
+                        }
+                        if(param.hasOwnProperty("target_url")) {
+                            params['event_label'] = param.target_url
                         }
                         if(options.trackTrafficSource) {
                             params['traffic_source'] = param.traffic_source
                         }
                         return params;
                     }
-                    if(param.event_action.indexOf('Time on page') === 0) {
-                        let time_on_page = param.event_action.substring(
-                            14,
-                            param.event_action.indexOf(' seconds')
-                        );
-                        let params = {
-                            event_category: name,
-                            event_action: param.event_action,
-                            event_label: time_on_page,
-                            non_interaction: param.non_interaction,
 
-                        };
-                        if(options.trackTrafficSource) {
-                            params['traffic_source'] = param.traffic_source
+                    case 'AdSense' :
+                    case 'Comment' :
+                    case 'login' :
+                    case 'sign_up' :
+                    case 'EmailClick' :
+                    case 'TelClick' : {
+                        let params = {
+                            event_category: "Key Actions",
+                            event_action: name,
+                            //  non_interaction: param.non_interaction,
                         }
-                        return params
+                        return params;
+                    }
+                    case 'Form' : {
+                        let params = {
+                            event_category: "Key Actions",
+                            event_action: name,
+                            //  non_interaction: param.non_interaction,
+                        }
+                        var formClass = (typeof param.form_class != 'undefined') ? 'class: ' + param.form_class : '';
+                        if(formClass != "") {
+                            params["event_label"] = formClass;
+                        }
+                        return params;
+                    }
+                    case 'Download' : {
+                        let params = {
+                            event_category: "Key Actions",
+                            event_action: name,
+                            event_label: param.download_name,
+                            //  non_interaction: param.non_interaction,
+                        }
+                        return params;
+                    }
+                    case 'TimeOnPage' :
+                    case 'PageScroll' : {
+                        let params = {
+                            event_category: "Key Actions",
+                            event_action: name,
+                            event_label: document.title,
+                            //  non_interaction: param.non_interaction,
+                        }
+                        return params;
+                    }
+                    case 'search' : {
+                        let params = {
+                            event_category: "Key Actions",
+                            event_action: name,
+                            event_label: param.search_term,
+                            //  non_interaction: param.non_interaction,
+                        }
+                        return params;
+                    }
+
+                    case 'Signal': {
+                        switch (param.event_action) {
+                            case 'External Click':
+                            case 'Internal Click':
+                            case 'Tel':
+                            case 'Email': {
+                                let params = {
+                                    event_category: name,
+                                    event_action: param.event_action,
+                                    non_interaction: param.non_interaction,
+                                }
+                                if(options.trackTrafficSource) {
+                                    params['traffic_source'] = param.traffic_source
+                                }
+                                return params;
+                            }break;
+                            case 'Video': {
+                                let params = {
+                                    event_category: name,
+                                    event_action: param.event_action,
+                                    event_label: param.video_title,
+                                    non_interaction: param.non_interaction,
+                                }
+                                if(options.trackTrafficSource) {
+                                    params['traffic_source'] = param.traffic_source
+                                }
+                                return params;
+                            }break;
+                            case 'Comment': {
+                                let params = {
+                                    event_category: name,
+                                    event_action: param.event_action,
+                                    event_label: document.location.href,
+                                    non_interaction: param.non_interaction,
+                                }
+                                if(options.trackTrafficSource) {
+                                    params['traffic_source'] = param.traffic_source
+                                }
+                                return params;
+                            }break;
+                            case 'Form': {
+                                var params = {
+                                    event_category: name,
+                                    event_action: param.event_action,
+                                    non_interaction: param.non_interaction,
+                                };
+                                if(options.trackTrafficSource) {
+                                    params['traffic_source'] = param.traffic_source
+                                }
+                                var formClass = (typeof param.form_class != 'undefined') ? 'class: ' + param.form_class : '';
+                                if(formClass != "") {
+                                    params["event_label"] = formClass;
+                                }
+                                return params;
+                            }break;
+                            case 'Download': {
+                                return {
+                                    event_category: name,
+                                    event_action: param.event_action,
+                                    event_label: param.download_name,
+                                    non_interaction: param.non_interaction,
+                                }
+                            }break;
+                        }
+                        if(param.event_action.indexOf('Scroll') === 0){
+                            var scroll_percent = param.event_action.substring(
+                                param.event_action.indexOf(' ')+1,
+                                param.event_action.indexOf('%')
+                            );
+                            let params =  {
+                                event_category: name,
+                                event_action: param.event_action,
+                                event_label: scroll_percent,
+                                non_interaction: param.non_interaction,
+                            }
+                            if(options.trackTrafficSource) {
+                                params['traffic_source'] = param.traffic_source
+                            }
+                            return params;
+                        }
+                        if(param.event_action.indexOf('Time on page') === 0) {
+                            let time_on_page = param.event_action.substring(
+                                14,
+                                param.event_action.indexOf(' seconds')
+                            );
+                            let params = {
+                                event_category: name,
+                                event_action: param.event_action,
+                                event_label: time_on_page,
+                                non_interaction: param.non_interaction,
+
+                            };
+                            if(options.trackTrafficSource) {
+                                params['traffic_source'] = param.traffic_source
+                            }
+                            return params
+                        }
                     }
                 }
 
+                //delete standard params
+
+                delete param.post_type;
+                delete param.post_id;
+                delete param.plugin;
+                delete param.user_role;
+                delete param.cartlows;
+                delete param.cartflows_flow;
+                delete param.cartflows_step;
             }
             return param;
         }
@@ -2714,8 +2841,11 @@ if (!String.prototype.trim) {
             },
 
             onWatchVideo: function (event) {
-                this.fireEvent(event.name, event);
-
+                if(!event.hasOwnProperty("youtube_disabled")
+                    || !event.youtube_disabled
+                    || event.params.video_type !== "youtube") {
+                    this.fireEvent(event.name, event);
+                }
             },
 
             onCommentEvent: function (event) {
@@ -3018,9 +3148,7 @@ if (!String.prototype.trim) {
                     ) {
                         gtag('config', conversion_id,{ 'allow_enhanced_conversions':true });
                         gtag('set', 'user_data', options.google_ads.user_data);
-                        console.log("allow_enhanced_conversions",conversion_id,options.google_ads.user_data)
                     } else {
-                        console.log("NOT allow_enhanced_conversions",conversion_id)
                         gtag('config', conversion_id);
                     }
 
@@ -3284,7 +3412,13 @@ if (!String.prototype.trim) {
         Utils.setupGdprCallbacks();
 
         // setup Click Event
-        if (options.dynamicEvents.hasOwnProperty("signal_click") ||
+        if (
+            options.dynamicEvents.hasOwnProperty("automatic_event_internal_link") ||
+            options.dynamicEvents.hasOwnProperty("automatic_event_outbound_link") ||
+            options.dynamicEvents.hasOwnProperty("automatic_event_tel_link") ||
+            options.dynamicEvents.hasOwnProperty("automatic_event_email_link") ||
+            options.dynamicEvents.hasOwnProperty("automatic_event_download") ||
+            options.dynamicEvents.hasOwnProperty("signal_click") ||
             options.dynamicEvents.hasOwnProperty("signal_email") ||
             options.dynamicEvents.hasOwnProperty("signal_tel") ||
             options.dynamicEvents.hasOwnProperty("signal_download")) {
@@ -3295,7 +3429,10 @@ if (!String.prototype.trim) {
 
 
                 // Download
-                if(options.dynamicEvents.hasOwnProperty("signal_download")) {
+                if(
+                    options.dynamicEvents.hasOwnProperty("signal_download")
+                    || options.dynamicEvents.hasOwnProperty("automatic_event_download")
+                ) {
                     var isFired = false;
                     if ($elem.is('a')) {
                         var href = $elem.attr('href');
@@ -3307,20 +3444,45 @@ if (!String.prototype.trim) {
                         var track_download = false;
 
                         if (extension.length > 0) {
-                            var pixels = Object.keys(options.dynamicEvents.signal_download);
-                            for(var i = 0;i<pixels.length;i++) {
-                                var event = Utils.clone(options.dynamicEvents.signal_download[pixels[i]]);
-                                var extensions = event.extensions;
-                                if(extensions.includes(extension)) {
-                                    if(options.enable_remove_download_url_param) {
-                                        href = href.split('?')[0];
-                                    }
-                                    event.params.download_url = href;
-                                    event.params.download_type = extension;
-                                    event.params.download_name = Utils.getLinkFilename(href);
+                            if(options.dynamicEvents.hasOwnProperty("signal_download") ) {
+                                var pixels = Object.keys(options.dynamicEvents.signal_download);
+                                for (var i = 0; i < pixels.length; i++) {
+                                    var event = Utils.clone(options.dynamicEvents.signal_download[pixels[i]]);
+                                    var extensions = event.extensions;
+                                    if (extensions.includes(extension)) {
+                                        if (options.enable_remove_download_url_param) {
+                                            href = href.split('?')[0];
+                                        }
+                                        event.params.download_url = href;
+                                        event.params.download_type = extension;
+                                        event.params.download_name = Utils.getLinkFilename(href);
 
-                                    getPixelBySlag(pixels[i]).onDownloadEvent(event);
-                                    isFired = true;
+                                        getPixelBySlag(pixels[i]).onDownloadEvent(event);
+                                        isFired = true;
+                                    }
+                                }
+                            }
+                            if(options.dynamicEvents.hasOwnProperty("automatic_event_download") ) {
+                                var pixels = Object.keys(options.dynamicEvents.automatic_event_download);
+                                for (var i = 0; i < pixels.length; i++) {
+                                    var event = Utils.clone(options.dynamicEvents.automatic_event_download[pixels[i]]);
+                                    var extensions = event.extensions;
+                                    if (extensions.includes(extension)) {
+
+                                        if(pixels[i] == "tiktok") {
+                                            getPixelBySlag(pixels[i]).fireEvent(event.name, event);
+                                        } else {
+                                            if (options.enable_remove_download_url_param) {
+                                                href = href.split('?')[0];
+                                            }
+                                            event.params.download_url = href;
+                                            event.params.download_type = extension;
+                                            event.params.download_name = Utils.getLinkFilename(href);
+                                            getPixelBySlag(pixels[i]).onDownloadEvent(event);
+                                        }
+
+                                        isFired = true;
+                                    }
                                 }
                             }
                         }
@@ -3377,7 +3539,12 @@ if (!String.prototype.trim) {
                     href = href.trim();
 
                     text = $elem.text();
-                    target_url = href.split('?')[0];
+                    if(options.enable_remove_target_url_param) {
+                        target_url = href.split('?')[0];
+                    } else {
+                        target_url = href
+                    }
+
 
                     //Email Event
                     if (href.startsWith('mailto:')) {
@@ -3390,8 +3557,18 @@ if (!String.prototype.trim) {
                             }
                         }
 
+                        if(options.dynamicEvents.hasOwnProperty("automatic_event_email_link")) {
+                            var pixels = Object.keys(options.dynamicEvents.automatic_event_email_link);
+                            for(var i = 0;i<pixels.length;i++) {
+                                var event = Utils.clone(options.dynamicEvents.automatic_event_email_link[pixels[i]]);
+                                Utils.copyProperties(Utils.getRequestParams(), event.params);
+                                getPixelBySlag(pixels[i]).fireEvent(event.name, event);
+                            }
+                        }
+
                         return; // not fire next
                     }
+
                     // Phone
                     if (href.startsWith('tel:')) {
                         if(options.dynamicEvents.hasOwnProperty("signal_tel")) {
@@ -3400,6 +3577,14 @@ if (!String.prototype.trim) {
                                 var event = Utils.clone(options.dynamicEvents.signal_tel[pixels[i]]);
                                 Utils.copyProperties(Utils.getRequestParams(), event.params);
                                 getPixelBySlag(pixels[i]).onClickEvent(event);
+                            }
+                        }
+                        if(options.dynamicEvents.hasOwnProperty("automatic_event_tel_link")) {
+                            var pixels = Object.keys(options.dynamicEvents.automatic_event_tel_link);
+                            for(var i = 0;i<pixels.length;i++) {
+                                var event = Utils.clone(options.dynamicEvents.automatic_event_tel_link[pixels[i]]);
+                                Utils.copyProperties(Utils.getRequestParams(), event.params);
+                                getPixelBySlag(pixels[i]).fireEvent(event.name, event);
                             }
                         }
                         return; // not fire next
@@ -3444,13 +3629,56 @@ if (!String.prototype.trim) {
                         var event = Utils.clone(options.dynamicEvents.signal_click[pixels[i]]);
                         event.params["event_action"] = linkType;
                         event.params["text"] = text;
-                        if(target_url && !options.enable_remove_target_url_param){
+                        if(target_url){
                             event.params["target_url"] = target_url;
                         }
                         Utils.copyProperties(Utils.getRequestParams(), event.params);
                         getPixelBySlag(pixels[i]).onClickEvent(event);
                     }
                 }
+                if( linkType === "Internal Click"
+                    && options.dynamicEvents.hasOwnProperty("automatic_event_internal_link")
+                ) {
+                    var pixels = Object.keys(options.dynamicEvents.automatic_event_internal_link);
+
+                    for(var i = 0;i<pixels.length;i++) {
+                        var event = Utils.clone(options.dynamicEvents.automatic_event_internal_link[pixels[i]]);
+
+                        if(pixels[i] !== "tiktok") { // TT doesn't support custom parameters
+                            event.params["text"] = text;
+                            if(target_url){
+                                event.params["target_url"] = target_url;
+                            }
+                            Utils.copyProperties(Utils.getRequestParams(), event.params);
+                        }
+
+
+                        getPixelBySlag(pixels[i]).fireEvent(event.name, event);
+                    }
+                }
+
+                if( linkType === "External Click"
+                    && options.dynamicEvents.hasOwnProperty("automatic_event_outbound_link")
+                ) {
+                    var pixels = Object.keys(options.dynamicEvents.automatic_event_outbound_link);
+
+                    for(var i = 0;i<pixels.length;i++) {
+                        var event = Utils.clone(options.dynamicEvents.automatic_event_outbound_link[pixels[i]]);
+
+                        if(pixels[i] !== "tiktok") { // TT doesn't support custom parameters
+                            event.params["text"] = text;
+                            if(target_url){
+                                event.params["target_url"] = target_url;
+                            }
+                            Utils.copyProperties(Utils.getRequestParams(), event.params);
+                        }
+
+
+                        getPixelBySlag(pixels[i]).fireEvent(event.name, event);
+                    }
+                }
+
+
 
 
             });
@@ -3458,7 +3686,8 @@ if (!String.prototype.trim) {
         }
 
         // setup AdSense Event
-        if (options.dynamicEvents.hasOwnProperty("signal_adsense")) {
+        if (options.dynamicEvents.hasOwnProperty("signal_adsense")
+        || options.dynamicEvents.hasOwnProperty("automatic_event_adsense")) {
 
             var isOverGoogleAd = false;
 
@@ -3473,11 +3702,22 @@ if (!String.prototype.trim) {
             $(window)
                 .on( "blur",function () {
                     if (isOverGoogleAd) {
-                        var pixels = Object.keys(options.dynamicEvents.signal_adsense);
-                        for(var i = 0;i<pixels.length;i++) {
-                            var event = Utils.clone(options.dynamicEvents.signal_adsense[pixels[i]]);
-                            Utils.copyProperties(Utils.getRequestParams(), event.params);
-                            getPixelBySlag(pixels[i]).onAdSenseEvent(event);
+                        if(options.dynamicEvents.hasOwnProperty("signal_adsense")) {
+                            var pixels = Object.keys(options.dynamicEvents.signal_adsense);
+                            for (var i = 0; i < pixels.length; i++) {
+                                var event = Utils.clone(options.dynamicEvents.signal_adsense[pixels[i]]);
+                                Utils.copyProperties(Utils.getRequestParams(), event.params);
+                                getPixelBySlag(pixels[i]).onAdSenseEvent(event);
+                            }
+                        }
+
+                        if(options.dynamicEvents.hasOwnProperty("automatic_event_adsense")) {
+                            var pixels = Object.keys(options.dynamicEvents.automatic_event_adsense);
+                            for (var i = 0; i < pixels.length; i++) {
+                                var event = Utils.clone(options.dynamicEvents.automatic_event_adsense[pixels[i]]);
+                                Utils.copyProperties(Utils.getRequestParams(), event.params);
+                                getPixelBySlag(pixels[i]).onAdSenseEvent(event);
+                            }
                         }
 
                         $.each(options.triggerEventTypes, function (triggerType, events) {
@@ -3535,23 +3775,39 @@ if (!String.prototype.trim) {
 
 
         // page scroll event
-        if (options.dynamicEvents.hasOwnProperty("signal_page_scroll")) {
+        if (options.dynamicEvents.hasOwnProperty("signal_page_scroll")
+            || options.dynamicEvents.hasOwnProperty("automatic_event_scroll")
+        ) {
 
             var singlePageScroll = function () {
 
 
                 var docHeight = $(document).height() - $(window).height();
                 var isFired = false;
-                var pixels = Object.keys(options.dynamicEvents.signal_page_scroll);
+                if (options.dynamicEvents.hasOwnProperty("signal_page_scroll")) {
+                    var pixels = Object.keys(options.dynamicEvents.signal_page_scroll);
+                    for(var i = 0;i<pixels.length;i++) {
+                        var event = Utils.clone(options.dynamicEvents.signal_page_scroll[pixels[i]]);
+                        var scroll = Math.round(docHeight * event.scroll_percent / 100)// convert % to absolute positions
 
-                for(var i = 0;i<pixels.length;i++) {
-                    var event = Utils.clone(options.dynamicEvents.signal_page_scroll[pixels[i]]);
-                    var scroll = Math.round(docHeight * event.scroll_percent / 100)// convert % to absolute positions
+                        if(scroll < $(window).scrollTop()) {
+                            Utils.copyProperties(Utils.getRequestParams(), event.params);
+                            getPixelBySlag(pixels[i]).onPageScroll(event);
+                            isFired = true
+                        }
+                    }
+                }
+                if (options.dynamicEvents.hasOwnProperty("automatic_event_scroll")) {
+                    var pixels = Object.keys(options.dynamicEvents.automatic_event_scroll);
+                    for(var i = 0;i<pixels.length;i++) {
+                        var event = Utils.clone(options.dynamicEvents.automatic_event_scroll[pixels[i]]);
+                        var scroll = Math.round(docHeight * event.scroll_percent / 100)// convert % to absolute positions
 
-                    if(scroll < $(window).scrollTop()) {
-                        Utils.copyProperties(Utils.getRequestParams(), event.params);
-                        getPixelBySlag(pixels[i]).onPageScroll(event);
-                        isFired = true
+                        if(scroll < $(window).scrollTop()) {
+                            Utils.copyProperties(Utils.getRequestParams(), event.params);
+                            getPixelBySlag(pixels[i]).onPageScroll(event);
+                            isFired = true
+                        }
                     }
                 }
                 if(isFired) {
@@ -3567,6 +3823,18 @@ if (!String.prototype.trim) {
             setTimeout(function(){
                 for(var i = 0;i<pixels.length;i++) {
                     var event = Utils.clone(options.dynamicEvents.signal_time_on_page[pixels[i]]);
+                    Utils.copyProperties(Utils.getRequestParams(), event.params);
+                    getPixelBySlag(pixels[i]).onTime(event);
+                }
+            },time*1000);
+        }
+
+        if (options.dynamicEvents.hasOwnProperty("automatic_event_time_on_page")) {
+            var pixels = Object.keys(options.dynamicEvents.automatic_event_time_on_page);
+            var time = options.dynamicEvents.automatic_event_time_on_page[pixels[0]].time_on_page; // the same for all pixel
+            setTimeout(function(){
+                for(var i = 0;i<pixels.length;i++) {
+                    var event = Utils.clone(options.dynamicEvents.automatic_event_time_on_page[pixels[i]]);
                     Utils.copyProperties(Utils.getRequestParams(), event.params);
                     getPixelBySlag(pixels[i]).onTime(event);
                 }
@@ -3974,22 +4242,34 @@ if (!String.prototype.trim) {
         Utils.setupURLClickEvents();
 
         // setup Comment Event
-        if (options.dynamicEvents.hasOwnProperty("signal_comment")) {
+        if (options.dynamicEvents.hasOwnProperty("signal_comment")
+        || options.dynamicEvents.hasOwnProperty("automatic_event_comment")
+        ) {
 
             $('form.comment-form').on("submit",function () {
-
-                var pixels = Object.keys(options.dynamicEvents.signal_comment);
-                for(var i = 0;i<pixels.length;i++) {
-                    var event = Utils.clone(options.dynamicEvents.signal_comment[pixels[i]]);
-                    Utils.copyProperties(Utils.getRequestParams(), event.params);
-                    getPixelBySlag(pixels[i]).onCommentEvent(event);
+                if (options.dynamicEvents.hasOwnProperty("signal_comment")) {
+                    var pixels = Object.keys(options.dynamicEvents.signal_comment);
+                    for (var i = 0; i < pixels.length; i++) {
+                        var event = Utils.clone(options.dynamicEvents.signal_comment[pixels[i]]);
+                        Utils.copyProperties(Utils.getRequestParams(), event.params);
+                        getPixelBySlag(pixels[i]).onCommentEvent(event);
+                    }
+                }
+                if (options.dynamicEvents.hasOwnProperty("automatic_event_comment")) {
+                    var pixels = Object.keys(options.dynamicEvents.automatic_event_comment);
+                    for (var i = 0; i < pixels.length; i++) {
+                        var event = Utils.clone(options.dynamicEvents.automatic_event_comment[pixels[i]]);
+                        Utils.copyProperties(Utils.getRequestParams(), event.params);
+                        getPixelBySlag(pixels[i]).onCommentEvent(event);
+                    }
                 }
             });
 
         }
 
         // setup Form Event
-        if ( options.dynamicEvents.hasOwnProperty("signal_form")) {
+        if ( options.dynamicEvents.hasOwnProperty("signal_form")
+        || options.dynamicEvents.hasOwnProperty("automatic_event_form")) {
 
             $(document).onFirst('submit', 'form', function (e) {
 
@@ -4017,12 +4297,29 @@ if (!String.prototype.trim) {
                     text: $form.find('[type="submit"]').is('input') ?
                         $form.find('[type="submit"]').val() : $form.find('[type="submit"]').text()
                 };
-                var pixels = Object.keys(options.dynamicEvents.signal_form);
-                for(var i = 0;i<pixels.length;i++) {
-                    var event = Utils.clone(options.dynamicEvents.signal_form[pixels[i]]);
-                    Utils.copyProperties(params,event.params,)
-                    Utils.copyProperties(Utils.getRequestParams(), event.params);
-                    getPixelBySlag(pixels[i]).onFormEvent(event);
+                if(options.dynamicEvents.hasOwnProperty("signal_form") ) {
+                    var pixels = Object.keys(options.dynamicEvents.signal_form);
+                    for (var i = 0; i < pixels.length; i++) {
+                        var event = Utils.clone(options.dynamicEvents.signal_form[pixels[i]]);
+                        Utils.copyProperties(params, event.params,)
+                        Utils.copyProperties(Utils.getRequestParams(), event.params);
+                        getPixelBySlag(pixels[i]).onFormEvent(event);
+
+                    }
+                }
+                if(options.dynamicEvents.hasOwnProperty("automatic_event_form") ) {
+                    var pixels = Object.keys(options.dynamicEvents.automatic_event_form);
+                    for (var i = 0; i < pixels.length; i++) {
+                        var event = Utils.clone(options.dynamicEvents.automatic_event_form[pixels[i]]);
+
+                        if(pixels[i] === "tiktok") {
+                            getPixelBySlag(pixels[i]).fireEvent(event.name, event);
+                        } else {
+                            Utils.copyProperties(params, event.params,)
+                            Utils.copyProperties(Utils.getRequestParams(), event.params);
+                            getPixelBySlag(pixels[i]).onFormEvent(event);
+                        }
+                    }
                 }
             });
 
@@ -4032,13 +4329,23 @@ if (!String.prototype.trim) {
                     form_id: $(formData.target).find('input[name="form_id"]').val(),
                     text: $(formData.target).find('.forminator-button-submit').text()
                 };
-
-                var pixels = Object.keys(options.dynamicEvents.signal_form);
-                for(var i = 0;i<pixels.length;i++) {
-                    var event = Utils.clone(options.dynamicEvents.signal_form[pixels[i]]);
-                    Utils.copyProperties(params,event.params)
-                    Utils.copyProperties(Utils.getRequestParams(), event.params);
-                    getPixelBySlag(pixels[i]).onFormEvent(event);
+                if(options.dynamicEvents.hasOwnProperty("signal_form") ) {
+                    var pixels = Object.keys(options.dynamicEvents.signal_form);
+                    for (var i = 0; i < pixels.length; i++) {
+                        var event = Utils.clone(options.dynamicEvents.signal_form[pixels[i]]);
+                        Utils.copyProperties(params, event.params)
+                        Utils.copyProperties(Utils.getRequestParams(), event.params);
+                        getPixelBySlag(pixels[i]).onFormEvent(event);
+                    }
+                }
+                if(options.dynamicEvents.hasOwnProperty("automatic_event_form") ) {
+                    var pixels = Object.keys(options.dynamicEvents.automatic_event_form);
+                    for (var i = 0; i < pixels.length; i++) {
+                        var event = Utils.clone(options.dynamicEvents.automatic_event_form[pixels[i]]);
+                        Utils.copyProperties(params, event.params)
+                        Utils.copyProperties(Utils.getRequestParams(), event.params);
+                        getPixelBySlag(pixels[i]).onFormEvent(event);
+                    }
                 }
             });
 
@@ -4049,13 +4356,23 @@ if (!String.prototype.trim) {
                     form_id: data.response.data.form_id,
                     text: data.response.data.settings.title
                 };
-
-                var pixels = Object.keys(options.dynamicEvents.signal_form);
-                for(var i = 0;i<pixels.length;i++) {
-                    var event = options.dynamicEvents.signal_form[pixels[i]];
-                    Utils.copyProperties(params,event.params)
-                    Utils.copyProperties(Utils.getRequestParams(), event.params);
-                    getPixelBySlag(pixels[i]).onFormEvent(event);
+                if(options.dynamicEvents.hasOwnProperty("signal_form") ) {
+                    var pixels = Object.keys(options.dynamicEvents.signal_form);
+                    for(var i = 0;i<pixels.length;i++) {
+                        var event = options.dynamicEvents.signal_form[pixels[i]];
+                        Utils.copyProperties(params,event.params)
+                        Utils.copyProperties(Utils.getRequestParams(), event.params);
+                        getPixelBySlag(pixels[i]).onFormEvent(event);
+                    }
+                }
+                if(options.dynamicEvents.hasOwnProperty("automatic_event_form") ) {
+                    var pixels = Object.keys(options.dynamicEvents.automatic_event_form);
+                    for(var i = 0;i<pixels.length;i++) {
+                        var event = options.dynamicEvents.automatic_event_form[pixels[i]];
+                        Utils.copyProperties(params,event.params)
+                        Utils.copyProperties(Utils.getRequestParams(), event.params);
+                        getPixelBySlag(pixels[i]).onFormEvent(event);
+                    }
                 }
 
             });
@@ -4071,18 +4388,36 @@ if (!String.prototype.trim) {
         }
     });
 
-    // load WatchVideo event APIs
-    if (options.dynamicEvents.hasOwnProperty('signal_watch_video')) {
+
+    // load WatchVideo event APIs for Auto
+    if (options.automatic.enable_video
+        || options.signal_watch_video_enabled
+    ) {
         /**
          * Real Cookie Banner.
          */
         var consentApi = window.consentApi;
         if (consentApi && options.gdpr.real_cookie_banner_integration_enabled) {
-            window.consentApi.consent("http", "CONSENT", ".youtube.com").then(Utils.initYouTubeAPI);
-            window.consentApi.consent("http", "player", ".vimeo.com").then(Utils.initVimeoAPI);
+            if (options.automatic.enable_youtube
+                || options.signal_watch_video_enabled
+            ) {
+                window.consentApi.consent("http", "CONSENT", ".youtube.com").then(Utils.initYouTubeAPI);
+            }
+            if (options.automatic.enable_vimeo
+                || options.signal_watch_video_enabled
+            ) {
+                window.consentApi.consent("http", "player", ".vimeo.com").then(Utils.initVimeoAPI);
+            }
         }else{
-            Utils.initYouTubeAPI();
-            Utils.initVimeoAPI();
+            if (options.automatic.enable_youtube
+                || options.signal_watch_video_enabled
+            ) {
+                Utils.initYouTubeAPI();
+            }
+            if (options.automatic.enable_vimeo
+                || options.signal_watch_video_enabled) {
+                Utils.initVimeoAPI();
+            }
         }
     }
 
