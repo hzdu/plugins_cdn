@@ -553,4 +553,11 @@ jQuery(document).ready(function ($) {
         // reminder_email_content_html = reminder_email_content_html.replace(/followup_email_loop_email_content_get_html/gm, 'followup_email_loop_email_content_'+now);
         $('.wcpr-reminder_email_content-container tbody').append(reminder_email_content_html);
     });
+    jQuery('input[type="checkbox"]').unbind().on('change', function () {
+        if (jQuery(this).prop('checked')) {
+            jQuery(this).parent().find('input[type="hidden"]').val('1');
+        } else {
+            jQuery(this).parent().find('input[type="hidden"]').val('');
+        }
+    });
 });

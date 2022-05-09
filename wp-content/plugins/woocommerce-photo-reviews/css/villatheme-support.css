@@ -6,6 +6,11 @@
     max-width: 100%;
 }
 
+.villatheme-dashboard p {
+    display: inline-block;
+    width: 100%;
+}
+
 /*Admin notice*/
 .villatheme-dashboard .button {
     padding: 4px 16px;
@@ -103,7 +108,8 @@
 .villatheme-item-title, .villatheme-item-description, .villatheme-item-rating, .villatheme-item-controls {
     padding: 7px 0;
 }
-.villatheme-item-title a{
+
+.villatheme-item-title a {
     text-decoration: none;
     color: #212121;
 }
@@ -147,6 +153,7 @@
 .villatheme-item-controls .button {
     padding: 4px 16px;
 }
+
 /*Toolbar*/
 #wpadminbar > #wp-toolbar > #wp-admin-bar-root-default .villatheme-toolbar .ab-icon {
     font-size: 16px;
@@ -197,6 +204,16 @@
     animation: villatheme-rotating 1s ease;
     animation-delay: 2s;
 }
+
+#wp-admin-bar-villatheme .dashicons,
+#wp-admin-bar-villatheme .dashicons-before:before {
+    font-family: 'dashicons';
+}
+
+#wp-admin-bar-villatheme .villatheme-hide-toolbar-button-title {
+    padding: 0 5px;
+}
+
 @media screen and (max-width: 480px) {
     .villatheme-content {
         padding-right: 0 !important;
