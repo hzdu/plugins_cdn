@@ -8,8 +8,8 @@ jQuery(document).ready(function ($) {
 
     /*Init JS input*/
     jQuery('.vi-ui.checkbox').checkbox();
-    jQuery('select.vi-ui.dropdown').not('.vi-wmc-checkout-by-payment-method').dropdown();
-    jQuery('.vi-wmc-checkout-by-payment-method').dropdown({placeholder: ''});
+    jQuery('select.vi-ui.dropdown').not('.vi-wmc-checkout-by-payment-method,.vi-wmc-bot-currency').dropdown();
+    jQuery('.vi-wmc-checkout-by-payment-method,.vi-wmc-bot-currency').dropdown({placeholder: ''});
     jQuery('.select2').select2();
     /*Select all and Remove all countries in Currency by country*/
     jQuery('.wmc-select-all-countries').on('click', function () {
@@ -34,6 +34,53 @@ jQuery(document).ready(function ($) {
 
     /*Save Submit button*/
     jQuery('.woocommerce-multi-currency form').on('submit', function () {
+        let $currencies = jQuery('.wmc-currency-options .wmc-currency-data'), hidden = 0, currencies = [],
+            duplicated = [],
+            custom_symbols = [],
+            duplicated_symbol = [];
+        $currencies.map(function () {
+            if (jQuery(this).find('select[name="woo_multi_currency_params[currency_hidden][]"]').val() === '1') {
+                hidden++;
+            }
+        });
+        if (hidden === $currencies.length) {
+            alert('You cannot set all currencies as hidden');
+            return false;
+        }
+        jQuery('.wmc-currency-option-select').map(function () {
+            let currency = jQuery(this).val();
+            if (currency) {
+                if (currencies.indexOf(currency) > -1) {
+                    if (duplicated.indexOf(currency) < 0) {
+                        duplicated.push(currency);
+                    }
+                } else {
+                    currencies.push(currency);
+                }
+            }
+        });
+        if (duplicated.length > 0) {
+            alert('You have duplicated currencies: ' + duplicated.join(', '));
+            return false;
+        }
+        jQuery('.wmc-currency-custom-symbol').map(function () {
+            let custom_symbol = jQuery(this).val();
+            if (custom_symbol) {
+                if (custom_symbols.indexOf(custom_symbol) > -1) {
+                    if (duplicated_symbol.indexOf(custom_symbol) < 0) {
+                        duplicated_symbol.push(custom_symbol);
+                    }
+                } else {
+                    custom_symbols.push(custom_symbol);
+                }
+            }
+        });
+
+        if (duplicated_symbol.length > 0) {
+            if (!confirm(`Some currencies have the same custom symbol(${duplicated_symbol.join(', ')}), do you want to continue?`)) {
+                return false;
+            }
+        }
         jQuery(this).find('.wmc-save-settings-container .button').addClass('loading');
     });
     jQuery('.select2-multiple').select2({
@@ -413,6 +460,14 @@ jQuery(document).ready(function ($) {
             $('.wmc-switch-currency-by-js-dependency').fadeIn(200);
         } else {
             $('.wmc-switch-currency-by-js-dependency').fadeOut(200);
+        }
+    }).trigger('change');
+    $('select[name="woo_multi_currency_params[billing_shipping_currency]"]').on('change', function () {
+        let $sync_currency = $('input[name="woo_multi_currency_params[sync_checkout_currency]"]').closest('tr');
+        if ($(this).val()==='0') {
+            $sync_currency.fadeOut(200);
+        } else {
+            $sync_currency.fadeIn(200);
         }
     }).trigger('change');
     if ($('.vi-wmc-orders-missing-currency-info-message').length > 0) {

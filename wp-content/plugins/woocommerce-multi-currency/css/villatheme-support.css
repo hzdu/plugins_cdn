@@ -6,6 +6,11 @@
     max-width: 100%;
 }
 
+.villatheme-dashboard p {
+    display: inline-block;
+    width: 100%;
+}
+
 /*Admin notice*/
 .villatheme-dashboard .button {
     padding: 4px 16px;
@@ -103,7 +108,8 @@
 .villatheme-item-title, .villatheme-item-description, .villatheme-item-rating, .villatheme-item-controls {
     padding: 7px 0;
 }
-.villatheme-item-title a{
+
+.villatheme-item-title a {
     text-decoration: none;
     color: #212121;
 }
@@ -146,6 +152,66 @@
 
 .villatheme-item-controls .button {
     padding: 4px 16px;
+}
+
+/*Toolbar*/
+#wpadminbar > #wp-toolbar > #wp-admin-bar-root-default .villatheme-toolbar .ab-icon {
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+#wpadminbar > #wp-toolbar > #wp-admin-bar-root-default .villatheme-toolbar .ab-icon::before {
+    color: #4E9F3D;
+}
+
+
+@-webkit-keyframes villatheme-rotating /* Safari and Chrome */
+{
+    from {
+        -webkit-transform: rotate(0deg);
+        -o-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    to {
+        -webkit-transform: rotate(360deg);
+        -o-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes villatheme-rotating {
+    from {
+        -ms-transform: rotate(0deg);
+        -moz-transform: rotate(0deg);
+        -webkit-transform: rotate(0deg);
+        -o-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    to {
+        -ms-transform: rotate(360deg);
+        -moz-transform: rotate(360deg);
+        -webkit-transform: rotate(360deg);
+        -o-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+
+.villatheme-rotating {
+    -webkit-animation: villatheme-rotating 1s ease;
+    -moz-animation: villatheme-rotating 1s ease;
+    -ms-animation: villatheme-rotating 1s ease;
+    -o-animation: villatheme-rotating 1s ease;
+    animation: villatheme-rotating 1s ease;
+    animation-delay: 2s;
+}
+
+#wp-admin-bar-villatheme .dashicons,
+#wp-admin-bar-villatheme .dashicons-before:before {
+    font-family: 'dashicons';
+}
+
+#wp-admin-bar-villatheme .villatheme-hide-toolbar-button-title {
+    padding: 0 5px;
 }
 
 @media screen and (max-width: 480px) {
