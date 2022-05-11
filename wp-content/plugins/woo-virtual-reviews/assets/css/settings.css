@@ -1,0 +1,351 @@
+/*!*Css*!*/
+@font-face {
+    font-family: 'virtual-review';
+    src: url('../fonts/virtual-review.eot?o6jttq');
+    src: url('../fonts/virtual-review.eot?o6jttq#iefix') format('embedded-opentype'),
+    url('../fonts/virtual-review.ttf?o6jttq') format('truetype'),
+    url('../fonts/virtual-review.woff?o6jttq') format('woff'),
+    url('../fonts/virtual-review.svg?o6jttq#virtual-review') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+[class^="wvr-icon-"], [class*=" wvr-icon-"] {
+    /* use !important to prevent issues with browser extensions that change fonts */
+    font-family: 'virtual-review' !important;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    font-size: 32px;
+
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.wvr-icon-shopping-bag:before {
+    content: "\e900";
+}
+
+.wvr-icon-no-icon:before {
+    content: "\e901";
+    color: #666;
+}
+
+.wvr-icon-cart-arrow-down:before {
+    content: "\e902";
+}
+
+.wvr-icon-credit-card:before {
+    content: "\e93f";
+}
+
+.wvr-icon-currency-dollar:before {
+    content: "\e903";
+}
+
+.wvr-icon-location-shopping:before {
+    content: "\e904";
+}
+
+.wvr-icon-bin:before {
+    content: "\e9ad";
+}
+
+.wvr-icon-cross:before {
+    content: "\ea0f";
+}
+
+body ::-webkit-scrollbar {
+    -webkit-appearance: none;
+    width: 10px;
+    height: 10px;
+}
+
+body ::-webkit-scrollbar-thumb {
+    cursor: pointer;
+    border-radius: 5px;
+    background: rgba(0, 0, 0, .25);
+    -webkit-transition: color .2s ease;
+    transition: color .2s ease;
+}
+
+body ::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, .1);
+    border-radius: 0;
+}
+
+html, body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif !important;
+}
+
+.vil-w3-row-padding {
+    margin-bottom: 2em;
+}
+
+.wvr-container, .wvr-processing {
+    font-family: sans-serif;
+    width: 98% !important;
+}
+
+.wvr-processing-block {
+    display: none;
+    width: 98% !important;
+}
+
+.wvr-number-of-generate {
+    min-width: 310px !important;
+    max-width: 320px !important;
+    height: 38px !important;
+}
+
+.wvr-add-virtual-reviews-control-table {
+    width: 100%;
+}
+
+.wvr-add-virtual-reviews-control-table tr td div {
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 5px;
+}
+
+
+.wvr-btn {
+    height: 40px !important;
+}
+
+.vi-ui.form textarea:not([rows]) {
+    height: 8em !important;
+}
+
+.vi-ui.tab {
+    box-sizing: border-box;
+}
+
+.wvr-cb-show-canned {
+    margin: 0px !important;
+    padding: 0px !important;
+}
+
+.wvr-btn-add-multi-reviews {
+    height: 30px !important;
+}
+
+.wvr-scroll {
+    border: solid 1px #e2e2e2;
+}
+
+.wvr-hidden {
+    display: none;
+}
+
+.select2-search__field {
+    width: 100% !important;
+    border: none !important;
+}
+
+.select2-container--default {
+    border-radius: 3px;
+}
+
+.wvr-border-end {
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 1rem !important;
+}
+
+.select2-container--open {
+    border: none;
+}
+
+.select2-selection--single {
+    height: 2.8em !important;
+    border: 1px solid rgba(34, 36, 38, .15) !important;
+}
+
+.select2-container .select2-container--default .select2-container--open, .select2-container--default {
+    border: none !important;
+}
+
+li {
+    margin: unset
+}
+
+.select2-container--default .select2-selection--single .select2-selection__arrow {
+    top: 20% !important;
+}
+
+.select2-selection__rendered {
+    vertical-align: middle;
+    padding: 7px;
+}
+
+.vil-w3-tooltip-content {
+    position: absolute;
+    left: 1%;
+    top: -40%;
+    padding: 0.5em;
+    border-radius: 3px;
+    border: 1px solid rgba(34, 36, 38, .15);
+    background-color: white;
+    box-shadow: 0 1px 2px 0 rgba(34, 36, 38, .15);
+    z-index: 10;
+}
+
+.wvr-manual-note {
+    margin-top: 1%;
+}
+
+.slide-button {
+    width: 80px;
+    padding: 0.5em;
+    border-radius: 20px;
+    text-align: center;
+    margin-right: 10px;
+    border: 1px solid rgba(34, 36, 38, .15)
+}
+
+.dropdown-button {
+    width: fit-content;
+    padding: 0.5em;
+    border-radius: 3px;
+    text-align: center;
+    border: 1px solid rgba(34, 36, 38, .15)
+}
+
+.wvr-select-purchased-icon-block {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+}
+
+.wvr-select-purchased-icon-block input[type=radio] {
+    opacity: 0;
+}
+
+.wvr-select-purchased-icon-block label {
+    position: absolute;
+    left: 0;
+    top: 0;
+    padding: 5px;
+}
+
+.wvr-select-purchased-icon-block label:hover {
+    background-color: #ddd;
+}
+
+.checked {
+    border-bottom: 5px solid #2185d0;
+}
+
+input.wp-color-picker {
+    padding: 3px !important;
+    width: 100px !important;
+}
+
+.wp-picker-holder {
+    position: absolute;
+    z-index: 99;
+}
+
+.wvr-note-label {
+    font-size: 13px;
+    color: #888888;
+}
+
+.wvr-generate-processing-result-group {
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.wvr-generate-processing-result-table {
+    width: 100%;
+    font-size: 0.9rem;
+}
+
+.wvr-processing-bar-group {
+    display: none;
+}
+
+.wvr-processing-bar-group .wvr-processing-bar-inside {
+    height: 20px;
+    width: 0;
+    background-color: #00c200;
+}
+
+.wvr-processing-bar-outside {
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    margin: 0 3px;
+}
+
+div[data-tab='wvr-second'] {
+    margin-bottom: 15px !important;
+}
+
+.wvr-generate-processing-result td {
+    padding: 5px 3px;
+}
+
+.wvr-generate-processing-result td.wvr-right {
+    text-align: right;
+    position: relative;
+}
+
+.wvr-explain {
+    display: none;
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: black;
+    border-radius: 3px;
+    color: white;
+    z-index: 99;
+    padding: 0 5px;
+    white-space: nowrap;
+}
+
+.wvr-right:hover .wvr-explain {
+    display: block;
+}
+
+.radio-element {
+    position: relative;
+    display: inline-block;
+    margin-right: 20px;
+}
+
+.radio-element input.has-icon {
+    position: absolute;
+    border: none;
+    box-shadow: none;
+    right: 0;
+    background-color: transparent;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.radio-element input.has-icon:checked::before {
+    content: '\2714';
+    border: none;
+    box-shadow: none;
+    background-color: transparent;
+    border-radius: unset;
+    color: #0ab12f;
+    width: 100%;
+    font-size: 20px;
+    margin-left: 20px;
+    margin-top: -5px;
+}
+
+.wvr_params-description {
+    font-style: italic;
+    padding-left: 5px;
+    color: #999;
+}
