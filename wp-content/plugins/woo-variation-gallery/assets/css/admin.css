@@ -1,8 +1,8 @@
 /*!
- * Additional Variation Images Gallery for WooCommerce v1.2.3 
+ * Additional Variation Images Gallery for WooCommerce v1.2.7 
  * 
  * Author: Emran Ahmed ( emran.bd.08@gmail.com ) 
- * Date: 2/23/2021, 4:06:57 PM
+ * Date: 9/4/2021, 1:28:30 AM
  * Released under the GPLv3 license.
  */
 @charset "UTF-8";
@@ -214,7 +214,7 @@
 #gwp-variation-gallery-tutorials-wrapper .tutorial-image-wrapper .ribbon span {
   font-size: 10px;
   font-weight: bold;
-  color: #FFFFFF;
+  color: #fff;
   text-transform: uppercase;
   text-align: center;
   line-height: 20px;
@@ -222,7 +222,7 @@
           transform: rotate(-45deg);
   width: 100px;
   display: block;
-  background: #BC0808;
+  background: #bc0808;
   box-shadow: 0 3px 10px -5px black;
   position: absolute;
   top: 19px;
@@ -232,25 +232,23 @@
 #gwp-variation-gallery-tutorials-wrapper .tutorial-image-wrapper .ribbon span::before {
   content: "";
   position: absolute;
-  left: 0px;
+  left: 0;
   top: 100%;
   z-index: -1;
-  border-left: 3px solid #8F0808;
-  border-right: 3px solid transparent;
-  border-bottom: 3px solid transparent;
-  border-top: 3px solid #8F0808;
+  border-width: 3px;
+  border-style: solid;
+  border-color: #8f0808 transparent transparent #8f0808;
 }
 
 #gwp-variation-gallery-tutorials-wrapper .tutorial-image-wrapper .ribbon span::after {
   content: "";
   position: absolute;
-  right: 0px;
+  right: 0;
   top: 100%;
   z-index: -1;
-  border-left: 3px solid transparent;
-  border-right: 3px solid #8F0808;
-  border-bottom: 3px solid transparent;
-  border-top: 3px solid #8F0808;
+  border-width: 3px;
+  border-style: solid;
+  border-color: #8f0808 #8f0808 transparent transparent;
 }
 
 .woo-variation-gallery-form-table .description {

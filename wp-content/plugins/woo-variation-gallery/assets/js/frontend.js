@@ -1,8 +1,8 @@
 /*!
- * Additional Variation Images Gallery for WooCommerce v1.2.3 
+ * Additional Variation Images Gallery for WooCommerce v1.2.7 
  * 
  * Author: Emran Ahmed ( emran.bd.08@gmail.com ) 
- * Date: 2/23/2021, 4:06:57 PM
+ * Date: 9/4/2021, 1:28:30 AM
  * Released under the GPLv3 license.
  */
 /******/ (function(modules) { // webpackBootstrap
@@ -79,8 +79,7 @@ __webpack_require__(3);
 __webpack_require__(4);
 __webpack_require__(5);
 __webpack_require__(6);
-__webpack_require__(7);
-module.exports = __webpack_require__(8);
+module.exports = __webpack_require__(7);
 
 
 /***/ }),
@@ -147,8 +146,10 @@ var WooVariationGallery = function ($) {
             this._element = $(element);
             this._config = $.extend({}, Default, config);
 
-            this.$product = this._element.closest('.product');
-            this.$variations_form = this.$product.find('.variations_form');
+            //this.$product             = this._element.closest('.product');
+            // let wrapper               = woo_variation_gallery_options.wrapper || '.product';
+            this.$wrapper = this._element.closest('.product');
+            this.$variations_form = this.$wrapper.find('.variations_form');
             this.$attributeFields = this.$variations_form.find('.variations select');
             this.$target = this._element.parent();
             this.$slider = $('.woo-variation-gallery-slider', this._element);
@@ -747,6 +748,7 @@ var WooVariationGallery = function ($) {
                 // this.$variations_form.off('found_variation.wvg');
 
                 // Show Gallery
+                // console.log(this.$variations_form)
                 this.$variations_form.on('show_variation.wvg', function (event, variation) {
                     _this9.showVariationImage(variation);
                 });
@@ -976,12 +978,6 @@ var WooVariationGallery = function ($) {
 
 /***/ }),
 /* 7 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 8 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
