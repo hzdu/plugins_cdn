@@ -1,0 +1,476 @@
+/*--------------------------------------------------------------------------------------
+
+   ************Super Product Variation Swatches for WooCommerce CSS********************
+
+   ************Version: 1.8  Author: Joe Iz********************************************
+
+---------------------------------------------------------------------------------------*/
+/*
+
+Update : Tooltips for mobile view fixed - 28/12/2020
+
+*/
+.sps_error_validation {
+  color: #D8000C;
+  border-top: 2px #D8000C solid;
+  background-color: #fbeaea;
+  padding: 10px !important;
+  position: relative;
+  display: inline-block !important;
+  margin-top: 10px;
+}
+.hidden {
+  display: none !important;
+  visibility: hidden !important;
+}
+.sps-swatches {
+  /*overflow: hidden;*/
+  padding: 5px;
+  padding-left: -0px;
+  margin-left: -5px;
+}
+.sps-swatches .swatch {
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  transition: all 0.3s;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  margin: 3px 5px;
+  cursor: pointer;
+  border: 2px solid transparent;
+  position: relative;
+  opacity: 1;
+}
+.sps-swatches .swatch-label-square {
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  transition: all 0.3s;
+  -webkit-border-radius: 0px;
+  -moz-border-radius: 0px;
+  border-radius: 0px;
+  display: inline-block;
+  line-height: 30px;
+  text-align: center;
+  margin: 3px 5px;
+  padding: 0px 10px;
+  cursor: pointer;
+  border: 1px solid transparent;
+  position: relative;
+  opacity: 1;
+}
+.sps-swatches .swatch-label-circle {
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  transition: all 0.3s;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  border-radius: 20px;
+  display: inline-block;
+  line-height: 30px;
+  text-align: center;
+  margin: 3px 5px;
+  padding: 0px 10px;
+  cursor: pointer;
+  border: 1px solid transparent;
+  position: relative;
+  opacity: 1;
+}
+/* Disabled */
+.sps-swatches > .superSwatch.disabled {
+  position: relative;
+  overflow: inherit;
+  cursor: default;
+}
+.sps-swatches > .superSwatch.disabled .st0 {
+  fill: #d8d8d8;
+}
+.sps-swatches > .superSwatch.disabled .st1 {
+  fill: none;
+}
+.sps-swatches > .superSwatch.disabled:before {
+  content: '';
+  height: 100%;
+  position: absolute;
+  transform: translate(-50%, -50%) rotate(45deg);
+  left: 50%;
+  z-index: 11;
+  width: 2px;
+  top: 50%;
+  background-color: #d84d4d;
+}
+.sps-swatches > .superSwatch.disabled:after {
+  content: '';
+  height: 100%;
+  position: absolute;
+  transform: translate(-50%, -50%) rotate(-45deg);
+  left: 50%;
+  z-index: 11;
+  width: 2px;
+  top: 50%;
+  background-color: #d84d4d;
+}
+.sps-swatches > .superSwatch.disabled .spsTooltip {}
+.sps-swatches > .superSwatch.disabled .spsTooltip .innerText {}
+.sps-swatches > .superSwatch.disabled .spsTooltip .innerText:after {
+  display: block;
+}
+.sps-swatches .swatch.selected, .sps-swatches .swatch-label-square.selected, .sps-swatches .swatch-label-circle.selected {
+  border: 2px solid #ccc;
+  opacity: 1;
+}
+.sps-swatches .swatch.disabled, .sps-swatches .superSwatch.disabled {
+  opacity: 0.6;
+  pointer-events: none;
+}
+.sps-swatches .swatch-color {
+  text-indent: -9999px;
+  border: 2px solid #ccc;
+  width: 26px;
+  height: 26px;
+  overflow: hidden;
+  display: inline-block;
+  background-position: center center;
+  vertical-align: middle;
+  border-radius: 50%;
+  padding: 2px;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  transition: border 0.4s;
+}
+.sps-swatches .swatch-color.selected {
+  border-color: #333;
+}
+.sps-swatches .swatch-color.selected:before {
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  transform: rotate(45deg);
+  content: "";
+  width: 6px;
+  height: 10px;
+  display: block;
+  border: solid #eee;
+  border-width: 0 2px 2px 0;
+  position: absolute;
+  top: 8px;
+  left: 11px;
+}
+.sps-swatches .swatch-label {
+  background-color: #f1f1f1;
+}
+.sps-swatches .swatch-image {
+  overflow: hidden;
+  border-radius: 50%;
+  border: 2px solid rgba(0, 0, 0, 0.1);
+  padding: 2px;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  transition: border 0.4s;
+}
+.sps-swatches .swatch-image img {
+  border-radius: inherit;
+}
+form .selector-wrapper {
+  display: block !important;
+}
+.sps-swatches {
+  display: inline-block;
+}
+.sps-swatches * {
+  -webkit-box-sizing: content-box !important;
+  -moz-box-sizing: content-box !important;
+  box-sizing: content-box !important;
+  line-height: 1;
+}
+.sps-swatches > .swatchColor, .sps-swatches > .swatchColor > div {
+  margin: 0px;
+  padding: 0px;
+  box-shadow: none;
+  border-radius: 0px;
+  border: 0px;
+  width: 26px;
+  height: 26px;
+  overflow: hidden;
+  display: inline-block;
+  background-position: center center;
+  vertical-align: middle;
+}
+.sps-swatches > .swatchColor {
+  cursor: pointer;
+  margin: 3px 5px;
+  border: 2px solid #ffffff;
+  border-radius: 50%;
+  -moz-box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.3);
+  -webkit-box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.3);
+  box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.3);
+  transition: box-shadow 0.4s;
+}
+.sps-swatches > .swatchColor > div {
+  border-radius: inherit;
+}
+.sps-swatches > .swatchColor.selected {
+  -moz-box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.6);
+  -webkit-box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.6);
+  box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.6);
+}
+/* Tooltips settings */
+.sps-swatches > .swatchColor > .spsTooltip {
+  display: block;
+  position: absolute;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.4s, margin-top 0.4s;
+  width: 200px;
+  margin-left: -87px;
+  margin-top: -10px;
+  text-align: center;
+  z-index: 100;
+}
+.sps-swatches > .swatchColor:hover > .spsTooltip {
+  opacity: 0.8;
+  margin-top: 10px;
+}
+.sps-swatches > .swatchColor > .spsTooltip > span:first-child {
+  top: -5px;
+  left: 50%;
+  margin-left: -5px;
+  position: absolute;
+  display: block;
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-bottom: 5px solid black;
+}
+.sps-swatches > .swatchColor > .spsTooltip > .innerText {
+  background: #000000;
+  border-radius: 3px;
+  padding: 3px 5px;
+  color: #ffffff;
+  display: inline-block;
+  text-align: center;
+  line-height: 18px;
+}
+.sps-swatches > .swatch > .spsTooltip {
+  display: block;
+  position: absolute;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.4s, margin-top 0.4s;
+  width: 200px;
+  margin-left: -87px;
+  margin-top: -10px;
+  text-align: center;
+  z-index: 100;
+}
+.sps-swatches > .swatch:hover > .spsTooltip {
+  opacity: 0.8;
+  margin-top: 10px;
+}
+.sps-swatches > .swatch > .spsTooltip > span:first-child {
+  top: -5px;
+  left: 50%;
+  margin-left: -5px;
+  position: absolute;
+  display: block;
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-bottom: 5px solid black;
+}
+.sps-swatches > .swatch > .spsTooltip > .innerText {
+  background: #000000;
+  border-radius: 3px;
+  padding: 3px 5px;
+  color: #ffffff;
+  display: inline-block;
+  text-align: center;
+}
+/* swatch tooltip */
+.sps-swatches > .swatch-label-square > .spsTooltip {
+  display: block;
+  position: absolute;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.4s, margin-top 0.4s;
+  width: 200px;
+  margin-left: -87px;
+  /* -100 + 13 */
+  margin-top: -10px;
+  text-align: center;
+  z-index: 100;
+}
+.sps-swatches > .swatch-label-square:hover > .spsTooltip {
+  opacity: 0.8;
+  margin-top: 10px;
+}
+.sps-swatches > .swatch-label-square > .spsTooltip > span:first-child {
+  top: -5px;
+  left: 50%;
+  margin-left: -5px;
+  position: absolute;
+  display: block;
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-bottom: 5px solid black;
+}
+.sps-swatches > .swatch-label-square > .spsTooltip > .innerText {
+  background: #000000;
+  border-radius: 3px;
+  padding: 3px 5px;
+  color: #ffffff;
+  display: inline-block;
+  text-align: center;
+}
+.sps-swatches > .swatch-label-circle > .spsTooltip {
+  display: block;
+  position: absolute;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.4s, margin-top 0.4s;
+  width: 200px;
+  margin-left: -87px;
+  /* -100 + 13 */
+  margin-top: -10px;
+  text-align: center;
+  z-index: 100;
+}
+.sps-swatches > .swatch-label-circle:hover > .spsTooltip {
+  opacity: 0.8;
+  margin-top: 10px;
+}
+.sps-swatches > .swatch-label-circle > .spsTooltip > span:first-child {
+  top: -5px;
+  left: 50%;
+  margin-left: -5px;
+  position: absolute;
+  display: block;
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-bottom: 5px solid black;
+}
+.sps-swatches > .swatch-label-circle > .spsTooltip > .innerText {
+  background: #000000;
+  border-radius: 3px;
+  padding: 3px 5px;
+  color: #ffffff;
+  display: inline-block;
+  text-align: center;
+}
+/* swatch tooltip */
+.sps-swatches > .swatchColor.swatchType_two_colors > div {
+  transform: rotate(0deg);
+}
+.sps-swatches > .swatchColor.swatchType_two_colors > div > div:first-child {
+  transform-origin: 100% 50%;
+}
+.sps-swatches > .swatchColor.swatchType_two_colors > div > div:last-child {
+  transform-origin: 0% 50%;
+}
+.sps-swatches > .swatchColor.swatchType_two_colors > div > div {
+  width: 13px;
+  transform: rotate(90deg);
+  height: 26px;
+  display: inline-block;
+}
+.sps-swatches + .selecter-selected {
+  display: none;
+}
+.selecter {
+  outline: none;
+  z-index: initial;
+}
+.product-form__item .single-option-selector__label {
+  position: static;
+}
+.swatch_options {
+  display: none;
+}
+.form-options > .form-field-select-wrapper > .sps-swatches {
+  margin-top: 40px;
+}
+.form-options > .form-field-select-wrapper > .sps-swatches + label + svg, .product-variant.selector-wrapper > .regular-select-cover > .sps-swatches + .regular-select-inner, .product-variant.selector-wrapper > .regular-select-cover > .sps-swatches + .regular-select-inner + svg, .product-variant.selector-wrapper > .regular-select-cover > label[for="product-color"] + .regular-select-cover > .regular-select-inner, .product-variant.selector-wrapper > .regular-select-cover > label[for="product-color"] + .regular-select-cover > svg {
+  display: none !important;
+}
+.sps-swatches > .swatchColor {
+  border-radius: 50%;
+  border: 2px solid rgba(0, 0, 0, 0.1);
+  padding: 2px;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  transition: border 0.4s;
+}
+.sps-swatches > .swatchColor.selected {
+  border: 2px solid rgba(0, 0, 0, 0.4);
+  box-shadow: none;
+}
+.textImage {
+  width: 26px;
+  height: 26px;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+}
+/* PRODUCT LISTING */
+ul.products li.product table.variations .label, ul.products li.product table.variations .value {
+  display: list-item;
+  padding: 0;
+  list-style: none;
+  background-color: transparent;
+}
+ul.products li.product table.variations .value {
+  margin-bottom: 1em;
+}
+
+
+@media screen and (max-width: 580px) {
+  /* Tooltips settings for mobile devices */
+  .sps-swatches > .swatchColor > .spsTooltip, 
+    .sps-swatches > .swatch-label > .spsTooltip,
+    .sps-swatches > .swatch-label-circle > .spsTooltip {
+    position: absolute;
+    width: auto;
+    text-align: inherit;
+    max-width: 200px;
+  }
+  .sps-swatches > .swatchColor > .spsTooltip > .innerText, 
+    .sps-swatches > .swatch-label > .spsTooltip > .innerText,
+    .sps-swatches > .swatch-label-circle > .spsTooltip > .innerText {
+    text-align: inherit;
+    min-width: 18px;
+  }
+  .sps-swatches > .swatch-label > .spsTooltip {
+    margin-left: 0px;
+  }
+  .sps-swatches > .swatch-label-circle > .spsTooltip,
+    .sps-swatches > .swatch-label-square > .spsTooltip {
+    margin-left: -10px;
+  }
+  .sps-swatches > .swatchColor > .spsTooltip {
+    margin-left: -3px;
+  }
+  .sps-swatches > .swatchColor > .spsTooltip > span:first-child, 
+    .sps-swatches > .swatch-label > .spsTooltip > span:first-child,
+    .sps-swatches > .swatch-label-circle > .spsTooltip > span:first-child{
+    left: 13px;
+  }
+  .sps-swatches > .swatchColor, .sps-swatches > .swatchColor > div {
+    overflow: visible;
+  }
+}
+
+
+

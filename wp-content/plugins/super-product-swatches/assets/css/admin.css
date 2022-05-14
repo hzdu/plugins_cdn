@@ -1,0 +1,171 @@
+/*--------------------------------------------------------------------------------------
+   ************Super Product Variation Swatches for WooCommerce Admin CSS**************
+   ************Version: 1.0  Author: Joe Iz********************************************
+---------------------------------------------------------------------------------------*/
+
+.sps-modal {
+	transform: translate(-50%, -50%);
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	width: 360px;
+	max-width: 90%;
+	z-index: 159990;
+	background-color: #fcfcfc;
+}
+
+.sps-modal-container {
+	position: relative;
+	display: none;
+}
+
+
+.sps-modal input.error {
+	border-color: #DD3939;
+}
+
+.sps-modal-header,
+.sps-modal-content,
+.sps-modal-footer {
+	padding: 20px;
+}
+
+.sps-modal-header {
+	padding-top: 0;
+	padding-bottom: 0;
+}
+
+.sps-modal-content {
+	border-top: 1px solid #dddddd;
+	border-bottom: 1px solid #dddddd;
+	background-color: #ffffff;
+}
+
+.sps-modal-close{
+	text-decoration: none !important;	
+}
+
+.swatch-preview {
+	width: 34px;
+	height: 34px;
+	line-height: 34px;
+	text-align: center;
+	font-weight: 700;
+	border-radius: 23%;
+}
+
+.sps-modal-footer {
+	text-align: right;
+}
+
+.sps-modal-footer .message,
+.sps-modal-footer .spinner {
+	float: left;
+}
+
+.sps-modal-footer .message.error {
+	color: #DD3939;
+}
+
+.sps-modal-footer .message.success {
+	color: #46b450;
+}
+
+.sps-form-table {
+    margin-top: 15px;
+    background: #fff;
+    border-radius: 2px;
+    box-shadow: 0 0 0 1px rgba(0,0,0,.07), 0 1px 1px rgba(0,0,0,.04);
+}
+
+.sps-form-table, .sps-form-table td, .sps-form-table td p, .sps-form-table th {
+    font-size: 14px;
+}
+
+.sps-form-table {
+    border-collapse: collapse;
+    margin-top: .5em;
+    width: 100%;
+    clear: both;
+}
+
+.sps-form-table tr {
+    border-bottom: 1px solid #eee;
+    display: block;
+}
+
+.sps-form-table th {
+    padding: 20px 10px 20px 20px;
+}
+
+.sps-form-table th {
+    vertical-align: top;
+    text-align: left;
+    padding: 20px 10px 20px 20px;
+    width: 200px;
+    line-height: 1.3;
+    font-weight: 600;
+}
+
+.sps-form-table th, .sps-form-wrap label {
+    color: #23282d;
+    font-weight: 600;
+    text-shadow: none;
+    vertical-align: baseline;
+}
+
+.sps-form-table td {
+    margin-bottom: 9px;
+    padding: 15px 10px;
+    line-height: 1.3;
+    vertical-align: middle;
+}
+
+.sps-form-table td img {
+
+    vertical-align: middle;
+}
+
+.sps-form-table td label, .sps-form-table td fieldset li, .sps-form-table td fieldset p {
+    line-height: 1.4em;
+}
+
+.sps-form-table td label {
+    margin: .25em 0 .5em!important;
+    display: inline-block;
+	  vertical-align: middle;
+	  padding-left:20px;
+	  color: #9c9a9a;
+	  font-style: italic;
+}
+
+.sps-term-image-thumbnail{
+	float:left;
+	margin-right:10px;
+}
+
+.sps-add-remove-image {
+	line-height:60px;
+}
+
+.sps-img{
+	width:60px;
+	height: 60px;
+}
+
+.sps-option-buttons {
+	display:inline-block;
+}
+
+
+.sps-modal-backdrop {
+	position:fixed;
+	top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    min-height: 360px;
+    background: #000;
+    opacity: .7;
+    z-index: 159900;
+}
