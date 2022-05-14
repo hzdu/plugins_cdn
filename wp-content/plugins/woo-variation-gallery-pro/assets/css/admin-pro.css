@@ -1,8 +1,8 @@
 /*!
- * Additional Variation Images Gallery for WooCommerce - Pro v1.2.3 
+ * Additional Variation Images Gallery for WooCommerce - Pro v1.2.7 
  * 
  * Author: Emran Ahmed ( emran.bd.08@gmail.com ) 
- * Date: 2/23/2021, 4:07:12 PM
+ * Date: 9/4/2021, 1:28:34 AM
  * Released under the GPLv3 license.
  */
 .woo-variation-gallery-wrapper .woo-variation-gallery-images {
@@ -14,17 +14,27 @@
   cursor: pointer !important;
 }
 
+.woo-variation-gallery-wrapper .woo-variation-gallery-images li.video {
+  position: relative;
+  display: flex;
+  /* flex-direction: row; */
+  justify-content: center;
+  align-items: center;
+}
+
 .woo-variation-gallery-wrapper .woo-variation-gallery-images li.video::after {
-  content: "\F236";
+  /*content: "\F236";*/
+  content: "\F148";
+  -webkit-transform: scaleX(-1);
+          transform: scaleX(-1);
   position: absolute;
   font-family: dashicons;
+  background-color: transparent;
   font-size: 30px;
-  top: 30px;
-  left: 23px;
-  color: #FFFFFF;
+  color: #ffffff;
   margin: 0;
   padding: 0;
-  line-height: 30px;
+  line-height: 1;
 }
 
 .woo-variation-gallery-wrapper .woo-variation-gallery-images li.video::before {
@@ -59,4 +69,120 @@
 
 .media-frame-content.wvg-media-frame-modify > .attachments-browser .media-sidebar > .compat-item {
   display: none;
+}
+
+.wvg-admin-video-preview #set-post-thumbnail {
+  position: relative;
+  display: flex;
+  /* flex-direction: row; */
+  justify-content: center;
+  align-items: center;
+}
+
+.wvg-admin-video-preview #set-post-thumbnail::after {
+  /*content: "\F236";*/
+  content: "\F148";
+  -webkit-transform: scaleX(-1);
+          transform: scaleX(-1);
+  position: absolute;
+  font-family: dashicons;
+  background-color: transparent;
+  font-size: 50px;
+  color: #ffffff;
+  margin: 0;
+  padding: 0;
+  line-height: 1;
+}
+
+.wvg-admin-video-preview #set-post-thumbnail::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  opacity: 0.2;
+  margin: 0;
+  padding: 0;
+}
+
+#product_images_container .product_images .video {
+  position: relative;
+  display: flex;
+  /* flex-direction: row; */
+  justify-content: center;
+  align-items: center;
+}
+
+#product_images_container .product_images .video::after {
+  /*content: "\F236";*/
+  content: "\F148";
+  -webkit-transform: scaleX(-1);
+          transform: scaleX(-1);
+  position: absolute;
+  font-family: dashicons;
+  background-color: transparent;
+  font-size: 30px;
+  color: #ffffff;
+  margin: 0;
+  padding: 0;
+  line-height: 1;
+}
+
+#product_images_container .product_images .video::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  opacity: 0.2;
+  margin: 0;
+  padding: 0;
+}
+
+.wvg-attachment-preview.wvg-video .wvg-thumbnail-container {
+  display: flex;
+  /* flex-direction: row; */
+  justify-content: center;
+  align-items: center;
+}
+
+.wvg-attachment-preview.wvg-video .wvg-thumbnail-container::after {
+  /*content: "\F236";*/
+  content: "\F148";
+  -webkit-transform: scaleX(-1);
+          transform: scaleX(-1);
+  position: absolute;
+  font-family: dashicons;
+  background-color: transparent;
+  font-size: 30px;
+  color: #ffffff;
+  margin: 0;
+  padding: 0;
+  line-height: 1;
+}
+
+.wvg-attachment-preview.wvg-video .wvg-thumbnail-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  opacity: 0.2;
+  margin: 0;
+  padding: 0;
+}
+
+.wvg-attachment-preview.wvg-video .wvg-thumbnail-container::after {
+  z-index: 1;
+  top: calc(50% - 15px);
+}
+
+.wvg-attachment-preview.wvg-video .wvg-thumbnail-container::before {
+  z-index: 1;
 }
