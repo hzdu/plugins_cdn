@@ -1,0 +1,2893 @@
+# Translation of YITH WooCommerce Dynamic Pricing and Discounts in French (France)
+# This file is distributed under the same license as the YITH WooCommerce Dynamic Pricing and Discounts package.
+msgid ""
+msgstr ""
+"Project-Id-Version: YITH WooCommerce Dynamic Pricing and Discounts\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/ywdpd\n"
+"POT-Creation-Date: 2022-04-05T08:12:00+00:00\n"
+"PO-Revision-Date: 2022-03-25 11:22:31+0000\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: GlotPress/3.0.0-alpha.2\n"
+
+#. Plugin Name of the plugin
+msgid "YITH WooCommerce Dynamic Pricing and Discounts Premium"
+msgstr "YITH WooCommerce Dynamic Pricing and Discounts Premium"
+
+#. Plugin URI of the plugin
+msgid ""
+"https://yithemes.com/themes/plugins/yith-woocommerce-dynamic-pricing-and-"
+"discounts/"
+msgstr ""
+"https://yithemes.com/themes/plugins/yith-woocommerce-dynamic-pricing-and-"
+"discounts/"
+
+#. Description of the plugin
+msgid ""
+"<code><strong>YITH WooCommerce Dynamic Pricing and Discounts</code></strong> "
+"allows editing prices and enabling dynamic discounts in a simple, quick and "
+"intuitive way. Keeping a store without this features would be a serious "
+"mistake! <a href=\"https://yithemes.com/\" target=\"_blank\">Get more "
+"plugins for your e-commerce shop on <strong>YITH</strong></a>."
+msgstr ""
+"<code><strong>YITH WooCommerce Dynamic Pricing and Discounts</code></strong> "
+"permet de modifier les prix et d'activer les remises dynamiques de manière "
+"simple, rapide et intuitive. Garder un magasin sans ces fonctionnalités "
+"serait une grave erreur ! <a href=\"https://yithemes.com/\" target=\"_blank"
+"\">Obtenez plus de plugins pour votre boutique e-commerce sur <strong>YITH</"
+"strong></a>. "
+
+#. Author of the plugin
+msgid "YITH"
+msgstr "YITH"
+
+#. Author URI of the plugin
+msgid "https://yithemes.com/"
+msgstr "https://yithemes.com/"
+
+#: includes/abstracts/abstract-ywdpd-rule.php:296
+msgid "Invalid rule."
+msgstr "Règle invalide."
+
+#: includes/admin/class-yith-wc-dynamic-pricing-admin.php:133
+msgid "No rule to duplicate has been supplied!"
+msgstr "Aucune règle à dupliquer n'a été fournie !"
+
+#: includes/admin/class-yith-wc-dynamic-pricing-admin.php:155
+msgid "(Copy)"
+msgstr "(Copier)"
+
+#: includes/admin/class-yith-wc-dynamic-pricing-admin.php:374
+#: plugin-options/metabox/ywdpd_cart_discount.php:563
+#: plugin-options/metabox/ywdpd_pricing_discount.php:1193
+msgid "Settings"
+msgstr "Réglages"
+
+#: includes/admin/class-yith-wc-dynamic-pricing-admin.php:378
+msgid "Premium Version"
+msgstr "Version Premium "
+
+#: includes/admin/class-yith-wc-dynamic-pricing-admin.php:380
+msgid "Dynamic rules"
+msgstr "Règles dynamiques"
+
+#: includes/admin/class-yith-wc-dynamic-pricing-admin.php:381
+msgid "Quantity table"
+msgstr "Tableau des quantités"
+
+#: includes/admin/class-yith-wc-dynamic-pricing-admin.php:382
+msgid "Exclusion list"
+msgstr "Liste d'exclusion"
+
+#: includes/admin/class-yith-wc-dynamic-pricing-admin.php:389
+msgctxt "Plugin name, do not translate"
+msgid "YITH WooCommerce Dynamic Pricing and Discounts Premium"
+msgstr "YITH WooCommerce Dynamic Pricing and Discounts Premium "
+
+#: includes/admin/class-yith-wc-dynamic-pricing-admin.php:400
+msgctxt "[HELP TAB] Video title"
+msgid "Check this video to learn how to <b>create dynamic rules</b>"
+msgstr ""
+"Regardez cette vidéo pour savoir comment <b>créer des règles dynamiques</b>"
+
+#: includes/admin/class-yith-wc-dynamic-pricing-admin.php:580
+#: includes/admin/class-yith-wc-dynamic-pricing-admin.php:581
+#: includes/admin/class-yith-wc-dynamic-pricing-admin.php:583
+#: includes/admin/class-yith-wc-dynamic-pricing-admin.php:585
+msgid "Dynamic rule updated."
+msgstr "Règle dynamique mise à jour."
+
+#: includes/admin/class-yith-wc-dynamic-pricing-admin.php:582
+msgid "Dynamic rule deleted."
+msgstr "Règle dynamique supprimée."
+
+#: includes/admin/class-yith-wc-dynamic-pricing-admin.php:584
+msgid "Dynamic rule restored."
+msgstr "Règle dynamique restaurée."
+
+#: includes/admin/class-yith-wc-dynamic-pricing-admin.php:586
+msgid "Dynamic rule saved."
+msgstr "Règle dynamique enregistrée."
+
+#: includes/admin/class-yith-wc-dynamic-pricing-admin.php:587
+msgid "Dynamic rule submitted."
+msgstr "Règle dynamique soumise."
+
+#: includes/admin/class-yith-wc-dynamic-pricing-admin.php:591
+msgid "M j, Y @ G:i"
+msgstr "M j, Y @ G:i"
+
+#: includes/admin/class-yith-wc-dynamic-pricing-admin.php:593
+msgid "Dynamic rule draft updated."
+msgstr "Brouillon de règle dynamique mis à jour."
+
+#: includes/admin/class-yith-wc-dynamic-pricing-admin.php:594
+msgid "Dynamic rule updated and sent."
+msgstr "Règle dynamique mise à jour et envoyée."
+
+#. translators: %s:  dynamic rule count
+#: includes/admin/class-yith-wc-dynamic-pricing-admin.php:613
+msgid "%s dynamic rule updated."
+msgid_plural "%s dynamic rules updated."
+msgstr[0] "La règle dynamique %s a été mise à jour."
+msgstr[1] "Les règles dynamiques %s ont été mises à jour."
+
+#. translators: %s:  dynamic rule count
+#: includes/admin/class-yith-wc-dynamic-pricing-admin.php:615
+msgid "%s dynamic rule not updated, somebody is editing it."
+msgid_plural "%s dynamic rules not updated, somebody is editing them."
+msgstr[0] ""
+"La règle dynamique %s n'est pas mise à jour, quelqu'un est en train de la "
+"modifier."
+msgstr[1] ""
+"Les règles dynamiques %s ne sont pas mises à jour, quelqu'un est en train de "
+"les modifier."
+
+#. translators: %s:  dynamic rule count
+#: includes/admin/class-yith-wc-dynamic-pricing-admin.php:617
+msgid "%s dynamic rule permanently deleted."
+msgid_plural "%s dynamic rules permanently deleted."
+msgstr[0] "Règle dynamique %s a été définitivement supprimée."
+msgstr[1] "Règles dynamiques %s ont été définitivement supprimées."
+
+#. translators: %s: dynamic rule count
+#: includes/admin/class-yith-wc-dynamic-pricing-admin.php:619
+msgid "%s dynamic rule moved to the Trash."
+msgid_plural "%s dynamic rules moved to the Trash."
+msgstr[0] "La règle dynamique %s a été placée dans la corbeille."
+msgstr[1] "Les règles dynamiques %s ont été déplacées vers la corbeille."
+
+#. translators: %s:  dynamic rule count
+#: includes/admin/class-yith-wc-dynamic-pricing-admin.php:621
+msgid "%s dynamic rule restored from the Trash."
+msgid_plural "%s dynamic rules restored from the Trash."
+msgstr[0] "Règle dynamique %s restaurée depuis la corbeille."
+msgstr[1] "Règles dynamiques %s restaurées à partir de la corbeille."
+
+#: includes/admin/class-yith-wc-dynamic-pricing-admin.php:727
+msgid "Simple user condition"
+msgstr "Condition d'utilisation simple"
+
+#: includes/admin/class-yith-wc-dynamic-pricing-admin.php:736
+msgid "Simple total condition"
+msgstr "Condition totale simple"
+
+#: includes/admin/class-yith-wc-dynamic-pricing-admin.php:951
+#: includes/class-ywdpd-frontend.php:955
+msgid "Offer applied:"
+msgstr "Offre appliquée :"
+
+#: includes/admin/class-yith-wc-dynamic-pricing-admin.php:996
+msgctxt "placeholder for new rule title"
+msgid "Add name"
+msgstr "Ajouter un nom "
+
+#: includes/admin/class-ywdpd-exclusions-list-table.php:58
+#: includes/admin/class-ywdpd-exclusions-list-table.php:221
+#: includes/admin/class-ywdpd-rules-table.php:65
+#: templates/admin/metaboxes/types/save_rule.php:36
+#: templates/admin/metaboxes/types/save_rule.php:37
+msgid "Delete"
+msgstr "Supprimer"
+
+#: includes/admin/class-ywdpd-exclusions-list-table.php:77
+msgid "Filter"
+msgstr "Filtre"
+
+#: includes/admin/class-ywdpd-exclusions-list-table.php:97
+msgid "All types"
+msgstr "Tous les types"
+
+#: includes/admin/class-ywdpd-exclusions-list-table.php:98
+#: plugin-options/metabox/ywdpd_cart_discount.php:41
+msgid "Products"
+msgstr "Des produits"
+
+#: includes/admin/class-ywdpd-exclusions-list-table.php:99
+msgid "Categories"
+msgstr "Catégories"
+
+#: includes/admin/class-ywdpd-exclusions-list-table.php:100
+msgid "Tags"
+msgstr "Étiquettes"
+
+#: includes/admin/class-ywdpd-exclusions-list-table.php:143
+msgid "Confirm delete"
+msgstr "Confirmation de la suppression"
+
+#: includes/admin/class-ywdpd-exclusions-list-table.php:144
+msgid "Are you sure to delete this exclusion rule ?"
+msgstr "Voulez-vous vraiment supprimer cette règle d'exclusion ?"
+
+#: includes/admin/class-ywdpd-exclusions-list-table.php:145
+msgid "No"
+msgstr "Non"
+
+#: includes/admin/class-ywdpd-exclusions-list-table.php:146
+msgid "Yes delete it"
+msgstr "Oui supprime le"
+
+#: includes/admin/class-ywdpd-exclusions-list-table.php:235
+msgid "Name"
+msgstr "Nom"
+
+#: includes/admin/class-ywdpd-exclusions-list-table.php:236
+msgid "Type"
+msgstr "Taper"
+
+#: includes/admin/class-ywdpd-exclusions-list-table.php:400
+#: views/panel/custom-tabs/ywdpd-exclusions-popup.php:26
+msgid "Product"
+msgstr "Produit"
+
+#: includes/admin/class-ywdpd-exclusions-list-table.php:401
+#: views/panel/custom-tabs/ywdpd-exclusions-popup.php:27
+msgid "Category"
+msgstr "Catégorie"
+
+#: includes/admin/class-ywdpd-exclusions-list-table.php:402
+#: views/panel/custom-tabs/ywdpd-exclusions-popup.php:28
+msgid "Tag"
+msgstr "Étiqueter"
+
+#: includes/admin/class-ywdpd-rules-table.php:43
+msgid "Rule name"
+msgstr "Nom de la règle "
+
+#: includes/admin/class-ywdpd-rules-table.php:44
+msgid "Discount mode"
+msgstr "Mode remise"
+
+#: includes/admin/class-ywdpd-rules-table.php:45
+#: includes/admin/class-ywdpd-rules-table.php:63
+msgid "Enable"
+msgstr "Activer"
+
+#: includes/admin/class-ywdpd-rules-table.php:46
+#: plugin-options/metabox/ywdpd_cart_discount.php:584
+#: plugin-options/metabox/ywdpd_pricing_discount.php:76
+msgid "Priority"
+msgstr "Priorité"
+
+#: includes/admin/class-ywdpd-rules-table.php:47
+msgid "Actions"
+msgstr "Actions"
+
+#: includes/admin/class-ywdpd-rules-table.php:64
+msgid "Disable"
+msgstr "Désactiver"
+
+#: includes/admin/class-ywdpd-rules-table.php:166
+msgid "Cart Rule"
+msgstr "Règles du panier"
+
+#: includes/admin/class-ywdpd-rules-table.php:208
+msgctxt "Arrange the discount rule priority"
+msgid "Arrange order"
+msgstr "Organiser la commande"
+
+#: includes/admin/class-ywdpd-rules-table.php:270
+msgid "Back to rules"
+msgstr "Retour aux règles"
+
+#: includes/admin/class-ywdpd-rules-table.php:284
+msgid "Filter by discount mode..."
+msgstr "Filtrer par mode de réduction..."
+
+#: includes/admin/class-ywdpd-rules-table.php:287
+msgid "Cart rule"
+msgstr "Règle du panier"
+
+#: includes/admin/class-ywdpd-rules-table.php:408
+msgid "Create now your first dynamic rule to make your customers happy!"
+msgstr ""
+"Créez dès maintenant votre premier panier de réduction pour faire plaisir à "
+"vos clients!"
+
+#: includes/admin/class-ywdpd-rules-table.php:412
+msgid "You have no dynamic rule yet."
+msgstr "Vous n'avez pas encore de règle dynamique."
+
+#: includes/admin/class-ywdpd-rules-table.php:414
+msgid "Create rule"
+msgstr "Créer une règle"
+
+#: includes/admin/class-ywdpd-rules-table.php:445
+#: plugin-options/metabox/ywdpd_pricing_discount.php:54
+msgid "Exclude items from rules"
+msgstr "Exclure des éléments des règles"
+
+#. translators: name of product
+#: includes/class-yith-wc-dynamic-pricing-gift-product.php:158
+#: includes/class-yith-wc-dynamic-pricing-gift-product.php:179
+msgid "Gift %s removed properly"
+msgstr "Cadeau %s ajouté correctement"
+
+#: includes/class-yith-wc-dynamic-pricing-gift-product.php:225
+#: plugin-options/metabox/ywdpd_pricing_discount.php:1104
+msgid "You can add {{total_to_add}} product(s) for free!"
+msgstr "Vous pouvez ajouter {{total_to_add}} produit(s) gratuitement !"
+
+#: includes/class-yith-wc-dynamic-pricing-options.php:130
+#: plugin-options/quantity-table-options.php:102
+msgid "Discount per quantity"
+msgstr "Remise par quantité"
+
+#: includes/class-yith-wc-dynamic-pricing-options.php:147
+#: plugin-options/quantity-table-options.php:130
+#: plugin-options/quantity-table-options.php:132
+msgid "Quantity"
+msgstr "Quantité"
+
+#: includes/class-yith-wc-dynamic-pricing-options.php:148
+#: plugin-options/quantity-table-options.php:136
+#: plugin-options/quantity-table-options.php:138
+msgid "Price"
+msgstr "Prix"
+
+#: includes/class-yith-wc-dynamic-pricing-options.php:149
+#: includes/class-ywdpd-shortcodes.php:73 includes/class-ywdpd-utils.php:59
+#: includes/class-ywdpd-utils.php:68
+#: plugin-options/quantity-table-options.php:144
+msgid "% Discount"
+msgstr "% Remise"
+
+#: includes/class-yith-wc-dynamic-pricing-options.php:292
+#: plugin-options/general-options.php:165
+msgid ""
+"Please note: you've saved %total_discount_percentage% on this order today"
+msgstr ""
+"Remarque : vous avez économisé %total_discount_percentage% sur cette "
+"commande aujourd'hui"
+
+#. translators: name of product
+#: includes/class-ywdpd-ajax.php:145
+msgid "Gift %s added properly"
+msgstr "Cadeau %s ajouté correctement"
+
+#: includes/class-ywdpd-assets.php:78 templates/yith_ywdpd_popup_items.php:82
+msgid "Qty in cart"
+msgstr "Quantité dans le panier"
+
+#: includes/class-ywdpd-assets.php:146
+msgid "Do you really want to delete this rule?"
+msgstr "Voulez-vous vraiment supprimer cette règle ?"
+
+#: includes/class-ywdpd-assets.php:152
+#: plugin-options/metabox/ywdpd_pricing_discount.php:183
+msgid "Create a quantity rule for the purchase of:"
+msgstr "Créez une règle de quantité pour l'achat de :"
+
+#: includes/class-ywdpd-assets.php:153 includes/class-ywdpd-assets.php:182
+#: plugin-options/metabox/ywdpd_pricing_discount.php:508
+msgid "Quantity rule will check"
+msgstr "La règle de quantité vérifiera"
+
+#: includes/class-ywdpd-assets.php:154 includes/class-ywdpd-assets.php:194
+#: includes/class-ywdpd-assets.php:204
+#: plugin-options/metabox/ywdpd_pricing_discount.php:548
+#: plugin-options/metabox/ywdpd_pricing_discount.php:854
+msgid "Apply discount to"
+msgstr "Appliquer la remise à"
+
+#: includes/class-ywdpd-assets.php:155
+msgid "Schedule discount"
+msgstr "Planifier une remise"
+
+#: includes/class-ywdpd-assets.php:157
+#: plugin-options/metabox/ywdpd_pricing_discount.php:1119
+msgid "Add a custom message in product with quantity rule"
+msgstr "Ajouter un message personnalisé dans le produit avec règle de quantité"
+
+#: includes/class-ywdpd-assets.php:160 includes/class-ywdpd-assets.php:173
+#: includes/class-ywdpd-assets.php:199 includes/class-ywdpd-assets.php:209
+#: plugin-options/metabox/ywdpd_cart_discount.php:135
+#: plugin-options/metabox/ywdpd_pricing_discount.php:907
+msgid "Exclude users from this discount"
+msgstr "Exclure les utilisateurs de cette remise"
+
+#: includes/class-ywdpd-assets.php:161 includes/class-ywdpd-assets.php:174
+#: includes/class-ywdpd-assets.php:200 includes/class-ywdpd-assets.php:210
+#: plugin-options/metabox/ywdpd_pricing_discount.php:908
+msgid "Enable if you want to exclude specific users from this discount"
+msgstr ""
+"Activez si vous souhaitez exclure des utilisateurs spécifiques de cette "
+"remise"
+
+#: includes/class-ywdpd-assets.php:165
+msgid "Create a special offer rule for the purchase of:"
+msgstr "Créez une règle d'offre spéciale pour l'achat de :"
+
+#: includes/class-ywdpd-assets.php:166
+msgid "Set offer based on"
+msgstr "Définir l'offre en fonction de"
+
+#: includes/class-ywdpd-assets.php:167
+msgid "Apply special offer to"
+msgstr "Appliquer l'offre spéciale à"
+
+#: includes/class-ywdpd-assets.php:168
+#: plugin-options/metabox/ywdpd_cart_discount.php:591
+msgid "Schedule offer"
+msgstr "Offre planifiée"
+
+#: includes/class-ywdpd-assets.php:170
+msgid "Add a custom message in product with special offer"
+msgstr "Ajouter un message personnalisé dans le produit avec offre spéciale"
+
+#: includes/class-ywdpd-assets.php:177
+#: plugin-options/metabox/ywdpd_pricing_discount.php:494
+msgid ""
+"Enable this option to repeat the rule. For example, if you offer a 50% "
+"discount when purchasing a second product, when the user purchases four "
+"products, the rule is applied twice and the user gets a 50% discount on two "
+"of the four purchased products."
+msgstr ""
+"Activez cette option pour répéter la règle. Par exemple, si vous offrez une "
+"remise de 50 % lors de l'achat d'un deuxième produit, lorsque l'utilisateur "
+"achète quatre produits, la règle est appliquée deux fois et l'utilisateur "
+"bénéficie d'une remise de 50 % sur deux des quatre produits achetés."
+
+#: includes/class-ywdpd-assets.php:181
+msgid "Offer gifts if user buy"
+msgstr "Offrir des cadeaux si l'utilisateur achète"
+
+#: includes/class-ywdpd-assets.php:183
+msgid "Offer gift products to"
+msgstr "Offrir des produits cadeaux à"
+
+#: includes/class-ywdpd-assets.php:184
+#: plugin-options/metabox/ywdpd_pricing_discount.php:1011
+msgid "Schedule rule"
+msgstr "Règle de planification"
+
+#: includes/class-ywdpd-assets.php:186
+msgid "Add a custom message in products where the rule is applied"
+msgstr ""
+"Ajouter un message personnalisé dans les produits où la règle est appliquée"
+
+#: includes/class-ywdpd-assets.php:189
+msgid "Exclude users from this rule"
+msgstr "Exclure les utilisateurs de cette règle"
+
+#: includes/class-ywdpd-assets.php:190
+msgid "Enable if you want to exclude specific users from this rule"
+msgstr "Enable if you want to exclude specific users from this rule"
+
+#: includes/class-ywdpd-assets.php:196 includes/class-ywdpd-assets.php:206
+msgid "Add a custom message in products with discount applied"
+msgstr ""
+"Ajouter un message personnalisé dans les produits avec remise appliquée"
+
+#: includes/class-ywdpd-assets.php:214
+msgid "Create a BOGO rule for the purchase of:"
+msgstr "Créez une règle BOGO pour l'achat de :"
+
+#: includes/class-ywdpd-assets.php:215
+msgid "Apply BOGO rule to"
+msgstr "Appliquer la règle BOGO à"
+
+#: includes/class-ywdpd-assets.php:217
+msgid "Add a custom message in products with the BOGO offer"
+msgstr "Ajoutez un message personnalisé dans les produits avec l'offre BOGO"
+
+#: includes/class-ywdpd-assets.php:223
+msgid "This is a deprecated rule"
+msgstr "C'est une règle obsolète"
+
+#: includes/class-ywdpd-assets.php:224
+msgid ""
+"From version 2.0 we removed the “Exclude” rule and added in all discount "
+"rules an option to exclude products/categories/tags. For example if you "
+"create a rule for a discount directly in the rule you can exclude products. "
+"We suggest you to replace this deprecated rule using the “Exclude” option in "
+"the other rules"
+msgstr ""
+"À partir de la version 2.0, nous avons supprimé la règle « Exclure » et "
+"ajouté dans toutes les règles de remise une option pour exclure les produits/"
+"catégories/tags. Par exemple, si vous créez une règle pour une remise "
+"directement dans la règle, vous pouvez exclure des produits. Nous vous "
+"suggérons de remplacer cette règle obsolète en utilisant l'option "
+"« Exclure » dans les autres règles"
+
+#: includes/class-ywdpd-assets.php:244
+msgid "Add an exclusion to the list"
+msgstr "Ajouter une exclusion à la liste"
+
+#: includes/class-ywdpd-frontend.php:1005
+#: plugin-options/quantity-table-options.php:142
+msgid "Discount"
+msgstr "Remise"
+
+#: includes/class-ywdpd-post-type.php:34
+msgctxt "Post Type General Name"
+msgid "Cart Rules"
+msgstr "Règles du panier"
+
+#: includes/class-ywdpd-post-type.php:34
+msgctxt "Post Type General Name"
+msgid "Discounts & Price Rules"
+msgstr "Remises et règles de prix"
+
+#: includes/class-ywdpd-post-type.php:35
+msgctxt "Post Type General Name"
+msgid "Cart Rule"
+msgstr "Règle du panier"
+
+#: includes/class-ywdpd-post-type.php:35
+msgctxt "Post Type General Name"
+msgid "Discounts & Price Rule"
+msgstr "Remises et règle de prix"
+
+#: includes/class-ywdpd-post-type.php:41
+msgid "Parent Item:"
+msgstr "Élément parent :"
+
+#: includes/class-ywdpd-post-type.php:42
+msgid "All Discount Rules"
+msgstr "Toutes les règles de remise"
+
+#: includes/class-ywdpd-post-type.php:43
+msgid "View Discount Rules"
+msgstr "Mettre à jour la règle de remise"
+
+#: includes/class-ywdpd-post-type.php:44 includes/class-ywdpd-post-type.php:45
+msgid "+ Add Rule"
+msgstr "+ Ajouter une règle"
+
+#: includes/class-ywdpd-post-type.php:47
+msgid "Update Discount Rule"
+msgstr "Mettre à jour la règle de remise"
+
+#: includes/class-ywdpd-post-type.php:48
+msgid "Search Discount Rule"
+msgstr "Rechercher une règle de remise"
+
+#: includes/class-ywdpd-post-type.php:49
+msgid "Not found"
+msgstr "Pas trouvé"
+
+#: includes/class-ywdpd-post-type.php:50
+msgid "Not found in Trash"
+msgstr "Introuvable dans la corbeille"
+
+#: includes/class-ywdpd-post-type.php:53
+msgid "ywdpd_discount"
+msgstr "ywdpd_discount"
+
+#: includes/class-ywdpd-shortcodes.php:77
+msgid "Offer ends: %s"
+msgstr "Fin de l'offre : %s"
+
+#. translators: %s is the quantity
+#: includes/class-ywdpd-utils.php:81
+msgctxt "Up to 5"
+msgid "Up to %s"
+msgstr "Jusqu'à %s"
+
+#: includes/functions.yith-wc-dynamic-pricing.php:395
+msgid "Guest"
+msgstr "Invité"
+
+#: includes/functions.yith-wc-dynamic-pricing.php:436
+#: plugin-options/metabox/ywdpd_cart_discount.php:57
+#: plugin-options/metabox/ywdpd_cart_discount.php:90
+msgid "Search for a customer"
+msgstr "Rechercher un client"
+
+#: includes/functions.yith-wc-dynamic-pricing.php:442
+msgid "Choose to which users apply this discount"
+msgstr "Choisissez à quels utilisateurs appliquez cette remise"
+
+#: includes/functions.yith-wc-dynamic-pricing.php:453
+#: plugin-options/metabox/ywdpd_cart_discount.php:71
+#: plugin-options/metabox/ywdpd_cart_discount.php:104
+msgid "Search for a role"
+msgstr "Rechercher un rôle"
+
+#. translators: %s is the string
+#: includes/functions.yith-wc-dynamic-pricing.php:482
+msgctxt "[Part of] of 10 item(s)"
+msgid "of"
+msgstr "de"
+
+#: includes/functions.yith-wc-dynamic-pricing.php:496
+msgctxt "[Part of] of 10 item(s)"
+msgid "item(s)"
+msgstr "élément(s)"
+
+#: includes/functions.yith-wc-dynamic-pricing.php:498
+msgctxt "[Part of] of 10 order(s)"
+msgid "order(s)"
+msgstr "commande(s)"
+
+#: includes/functions.yith-wc-dynamic-pricing.php:513
+#: plugin-options/metabox/ywdpd_cart_discount.php:285
+#: plugin-options/metabox/ywdpd_cart_discount.php:396
+#: plugin-options/metabox/ywdpd_cart_discount.php:479
+msgid "Search for products"
+msgstr "Rechercher des produits"
+
+#: includes/functions.yith-wc-dynamic-pricing.php:530
+#: plugin-options/metabox/ywdpd_pricing_discount.php:228
+#: plugin-options/metabox/ywdpd_pricing_discount.php:345
+#: plugin-options/metabox/ywdpd_pricing_discount.php:600
+#: plugin-options/metabox/ywdpd_pricing_discount.php:748
+#: views/panel/custom-tabs/ywdpd-exclusions-popup.php:64
+msgid "Search for a category"
+msgstr "Rechercher une catégorie"
+
+#: includes/functions.yith-wc-dynamic-pricing.php:546
+#: plugin-options/metabox/ywdpd_pricing_discount.php:251
+#: plugin-options/metabox/ywdpd_pricing_discount.php:373
+#: plugin-options/metabox/ywdpd_pricing_discount.php:627
+#: plugin-options/metabox/ywdpd_pricing_discount.php:784
+#: views/panel/custom-tabs/ywdpd-exclusions-popup.php:86
+msgid "Search for a tag"
+msgstr "Rechercher une balise"
+
+#: includes/integrations/class-yith-ywdpd-brands-addon-integration.php:251
+msgid "Require specific brands in cart"
+msgstr "Exiger des marques spécifiques dans le panier"
+
+#: includes/integrations/class-yith-ywdpd-brands-addon-integration.php:252
+msgid ""
+"Enable to require products of specific brands in cart to apply the discount"
+msgstr ""
+"Permet d'exiger des produits de marques spécifiques dans le panier pour "
+"appliquer la remise"
+
+#: includes/integrations/class-yith-ywdpd-brands-addon-integration.php:260
+msgid "Include a list of brands"
+msgstr "Inclure une liste de marques"
+
+#: includes/integrations/class-yith-ywdpd-brands-addon-integration.php:261
+msgid "Choose which brands are required in cart to apply the discount"
+msgstr ""
+"Choisissez les marques requises dans le panier pour appliquer la réduction"
+
+#: includes/integrations/class-yith-ywdpd-brands-addon-integration.php:266
+#: includes/integrations/class-yith-ywdpd-brands-addon-integration.php:305
+#: includes/integrations/class-yith-ywdpd-brands-addon-integration.php:331
+msgid "Search for brand"
+msgstr "Recherche de marque"
+
+#: includes/integrations/class-yith-ywdpd-brands-addon-integration.php:273
+#: plugin-options/metabox/ywdpd_cart_discount.php:294
+#: plugin-options/metabox/ywdpd_cart_discount.php:329
+#: plugin-options/metabox/ywdpd_cart_discount.php:364
+msgid "Apply the discount if:"
+msgstr "Appliquer la remise si :"
+
+#: includes/integrations/class-yith-ywdpd-brands-addon-integration.php:274
+msgid ""
+"Choose whether to apply the discount when at least one of the specified "
+"product brand is in the cart or only when all products are in the cart"
+msgstr ""
+"Choisissez si vous souhaitez appliquer la remise lorsqu'au moins une des "
+"marques de produits spécifiées est dans le panier ou uniquement lorsque tous "
+"les produits sont dans le panier"
+
+#: includes/integrations/class-yith-ywdpd-brands-addon-integration.php:277
+msgid "At least one selected brand is in cart"
+msgstr "Au moins une marque sélectionnée est dans le panier"
+
+#: includes/integrations/class-yith-ywdpd-brands-addon-integration.php:278
+msgid "All selected brands are in cart"
+msgstr "Toutes les marques sélectionnées sont dans le panier"
+
+#: includes/integrations/class-yith-ywdpd-brands-addon-integration.php:290
+msgid "Exclude specific brands from discount validation"
+msgstr "Exclure des marques spécifiques de la validation de la remise"
+
+#: includes/integrations/class-yith-ywdpd-brands-addon-integration.php:291
+msgid ""
+"Enable if you want to exclude specific brands to this cart discount "
+"validation"
+msgstr ""
+"Activez si vous souhaitez exclure des marques spécifiques à cette validation "
+"de remise de panier"
+
+#: includes/integrations/class-yith-ywdpd-brands-addon-integration.php:299
+msgid "Exclude a list of brands"
+msgstr "Exclure une liste de marques"
+
+#: includes/integrations/class-yith-ywdpd-brands-addon-integration.php:300
+msgid "Choose which brands to exclude from this cart discount validation"
+msgstr "Choisissez les marques à exclure de ce panier validation de remise"
+
+#: includes/integrations/class-yith-ywdpd-brands-addon-integration.php:316
+msgid "Disable discount when specific brands are in cart"
+msgstr ""
+"Désactiver la remise lorsque des marques spécifiques sont dans le panier"
+
+#: includes/integrations/class-yith-ywdpd-brands-addon-integration.php:317
+msgid ""
+"Enable to disable the discount if users have specific brands in their cart"
+msgstr ""
+"Activer pour désactiver la remise si les utilisateurs ont des marques "
+"spécifiques dans leur panier"
+
+#: includes/integrations/class-yith-ywdpd-brands-addon-integration.php:325
+msgid "Select a list of brands"
+msgstr "Sélectionnez une liste de marques"
+
+#: includes/integrations/class-yith-ywdpd-brands-addon-integration.php:326
+msgid "Choose which brands will disable the discount"
+msgstr "Choisissez les marques qui désactiveront la remise"
+
+#: includes/integrations/class-yith-ywdpd-brands-addon-integration.php:429
+#: includes/integrations/class-yith-ywdpd-brands-addon-integration.php:434
+msgid "Specific product brands"
+msgstr "Marques de produits spécifiques"
+
+#: includes/integrations/class-yith-ywdpd-brands-addon-integration.php:455
+#: includes/integrations/class-yith-ywdpd-brands-addon-integration.php:478
+#: includes/integrations/class-yith-ywdpd-brands-addon-integration.php:506
+#: includes/integrations/class-yith-ywdpd-brands-addon-integration.php:533
+#: includes/integrations/class-yith-ywdpd-brands-addon-integration.php:585
+#: includes/integrations/class-yith-ywdpd-brands-addon-integration.php:588
+#: includes/integrations/class-yith-ywdpd-brands-addon-integration.php:595
+#: includes/integrations/class-yith-ywdpd-brands-addon-integration.php:612
+#: includes/integrations/class-yith-ywdpd-brands-addon-integration.php:615
+#: includes/integrations/class-yith-ywdpd-brands-addon-integration.php:622
+msgid "Search for a brand"
+msgstr "Search for a brand"
+
+#: includes/integrations/class-yith-ywdpd-brands-addon-integration.php:469
+#: includes/integrations/class-yith-ywdpd-multi-vendor-integration.php:234
+#: plugin-options/metabox/ywdpd_pricing_discount.php:200
+#: plugin-options/metabox/ywdpd_pricing_discount.php:224
+#: plugin-options/metabox/ywdpd_pricing_discount.php:247
+msgid "Apply rule to:"
+msgstr "Appliquer la règle à :"
+
+#: includes/integrations/class-yith-ywdpd-brands-addon-integration.php:470
+msgid "Search the brand(s) to include in the rule"
+msgstr "Rechercher la ou les marques à inclure dans la règle"
+
+#: includes/integrations/class-yith-ywdpd-brands-addon-integration.php:497
+#: includes/integrations/class-yith-ywdpd-brands-addon-integration.php:560
+msgid "Choose which brand(s) to exclude"
+msgstr "Choisissez la ou les marques à exclure"
+
+#: includes/integrations/class-yith-ywdpd-brands-addon-integration.php:498
+msgid "Search the brand(s) to exclude from the rule"
+msgstr "Rechercher la ou les marques à exclure de la règle"
+
+#: includes/integrations/class-yith-ywdpd-brands-addon-integration.php:524
+msgid "Choose which brand(s) to include"
+msgstr "Choisissez la ou les marques à inclure"
+
+#: includes/integrations/class-yith-ywdpd-brands-addon-integration.php:525
+msgid "Search the brand(s) to include in this discount"
+msgstr "Recherchez la ou les marques à inclure dans cette remise"
+
+#: includes/integrations/class-yith-ywdpd-brands-addon-integration.php:561
+msgid "Search the brand(s) to exclude from this discount"
+msgstr "Recherchez la ou les marques à exclure de cette remise"
+
+#: includes/integrations/class-yith-ywdpd-brands-addon-integration.php:598
+#: includes/integrations/class-yith-ywdpd-brands-addon-integration.php:625
+msgid "Search for a branch"
+msgstr "Rechercher une succursale"
+
+#: includes/integrations/class-yith-ywdpd-multi-vendor-integration.php:195
+#: includes/integrations/class-yith-ywdpd-multi-vendor-integration.php:200
+msgid "Specific vendors"
+msgstr "Fournisseurs spécifiques"
+
+#: includes/integrations/class-yith-ywdpd-multi-vendor-integration.php:220
+#: includes/integrations/class-yith-ywdpd-multi-vendor-integration.php:243
+#: includes/integrations/class-yith-ywdpd-multi-vendor-integration.php:271
+#: includes/integrations/class-yith-ywdpd-multi-vendor-integration.php:298
+#: includes/integrations/class-yith-ywdpd-multi-vendor-integration.php:326
+msgid "Search for a vendor"
+msgstr "Rechercher un fournisseur"
+
+#: includes/integrations/class-yith-ywdpd-multi-vendor-integration.php:235
+msgid "Search the vendor(s) to include in the rule"
+msgstr "Rechercher le(s) fournisseur(s) à inclure dans la règle"
+
+#: includes/integrations/class-yith-ywdpd-multi-vendor-integration.php:262
+#: includes/integrations/class-yith-ywdpd-multi-vendor-integration.php:325
+msgid "Choose which vendor(s) to exclude"
+msgstr "Choisissez le(s) fournisseur(s) à exclure"
+
+#: includes/integrations/class-yith-ywdpd-multi-vendor-integration.php:263
+msgid "Search the vendor(s) to exclude from the rule"
+msgstr "Rechercher le(s) fournisseur(s) à exclure de la règle"
+
+#: includes/integrations/class-yith-ywdpd-multi-vendor-integration.php:289
+msgid "Choose which vendor(s) to include"
+msgstr "Choisissez le(s) fournisseur(s) à inclure"
+
+#: includes/integrations/class-yith-ywdpd-multi-vendor-integration.php:290
+msgid "Search the vendor(s) to include in this discount"
+msgstr "Recherchez le(s) fournisseur(s) à inclure dans cette remise"
+
+#: includes/integrations/class-yith-ywdpd-multi-vendor-integration.php:327
+msgid "Search the vendor(s) to exclude from this discount"
+msgstr "Recherchez le(s) fournisseur(s) à exclure de cette remise"
+
+#: includes/integrations/class-yith-ywdpd-multi-vendor-integration.php:350
+msgid "Require specific vendors in cart"
+msgstr "Exiger des fournisseurs spécifiques dans le panier"
+
+#: includes/integrations/class-yith-ywdpd-multi-vendor-integration.php:351
+msgid ""
+"Enable to require products of specific vendors in cart to apply the discount"
+msgstr ""
+"Activer pour exiger des produits de fournisseurs spécifiques dans le panier "
+"pour appliquer la remise"
+
+#: includes/integrations/class-yith-ywdpd-multi-vendor-integration.php:359
+msgid "Include a list of vendors"
+msgstr "Include a list of vendors"
+
+#: includes/integrations/class-yith-ywdpd-multi-vendor-integration.php:360
+msgid "Choose which vendors are required in cart to apply the discount"
+msgstr ""
+"Choisissez les fournisseurs requis dans le panier pour appliquer la remise"
+
+#: includes/integrations/class-yith-ywdpd-multi-vendor-integration.php:365
+#: includes/integrations/class-yith-ywdpd-multi-vendor-integration.php:391
+msgid "Search for vendor"
+msgstr "Rechercher un fournisseur"
+
+#: includes/integrations/class-yith-ywdpd-multi-vendor-integration.php:376
+msgid "Exclude specific vendors from discount validation"
+msgstr "Exclure des fournisseurs spécifiques de la validation de la remise"
+
+#: includes/integrations/class-yith-ywdpd-multi-vendor-integration.php:377
+msgid ""
+"Enable if you want to exclude specific vendors to this cart discount "
+"validation"
+msgstr ""
+"Activez si vous souhaitez exclure des fournisseurs spécifiques à cette "
+"validation de remise de panier"
+
+#: includes/integrations/class-yith-ywdpd-multi-vendor-integration.php:385
+msgid "Exclude a list of vendors"
+msgstr "Exclure une liste de fournisseurs"
+
+#: includes/integrations/class-yith-ywdpd-multi-vendor-integration.php:386
+msgid "Choose which product vendors to exclude from this cart validation"
+msgstr ""
+"Choisissez les fournisseurs de produits à exclure de cette validation de "
+"panier"
+
+#: includes/integrations/elementor/class.yith-wc-dynamic-price-table.php:41
+msgid "YITH WooCommerce Dynamic Price Table"
+msgstr "YITH WooCommerce Tableau de prix dynamique"
+
+#: includes/integrations/elementor/class.yith-wc-dynamic-price-table.php:78
+msgid "YITH Dynamic Price Table"
+msgstr "YITH Tableau de prix dynamique"
+
+#: includes/integrations/elementor/class.yith-wc-dynamic-price-table.php:85
+#: includes/integrations/elementor/class.yith-wc-dynamic-product-note.php:84
+msgid "Product ID"
+msgstr "Identifiant du produit"
+
+#: includes/integrations/elementor/class.yith-wc-dynamic-price-table.php:91
+#: includes/integrations/elementor/class.yith-wc-dynamic-product-note.php:90
+msgid "Leave empty for single product page"
+msgstr "Laisser vide pour une seule page de produit"
+
+#: includes/integrations/elementor/class.yith-wc-dynamic-product-note.php:41
+msgid "YITH WooCommerce Dynamic Product Notes"
+msgstr "Notes de produit dynamiques YITH WooCommerce"
+
+#: includes/integrations/elementor/class.yith-wc-dynamic-product-note.php:78
+msgid "YITH Dynamic Product Notes"
+msgstr "Notes de produit dynamiques YITH"
+
+#: includes/integrations/plugins-list.php:14
+msgid "Allow to create rules by product brands"
+msgstr "Autoriser la création de règles par marques de produits"
+
+#: includes/integrations/plugins-list.php:26
+#: includes/integrations/plugins-list.php:38
+#: includes/integrations/plugins-list.php:58
+msgid "Allow to create rules by vendors"
+msgstr "Autoriser la création de règles par les fournisseurs"
+
+#: includes/integrations/plugins-list.php:50
+msgid "Extend the rules in the translated content"
+msgstr "Étendre les règles dans le contenu traduit"
+
+#: init.php:112
+msgid ""
+"YITH WooCommerce Dynamic Pricing and Discounts Premium is enabled but not "
+"effective. It requires WooCommerce in order to work."
+msgstr ""
+"YITH WooCommerce Dynamic Pricing and Discounts Premium est activé mais pas "
+"efficace. Il nécessite WooCommerce pour fonctionner."
+
+#: plugin-options/general-options.php:17
+msgid "General Settings"
+msgstr "Réglages généraux"
+
+#: plugin-options/general-options.php:22
+msgid "Allow Shop Manager to manage dynamic pricing and discount"
+msgstr "Autoriser Shop Manager à gérer les prix et les remises dynamiques"
+
+#: plugin-options/general-options.php:23
+msgid "If enabled, the shop manager can edit the plugin options"
+msgstr ""
+"Si activé, le responsable de la boutique peut modifier les options du plugin"
+
+#: plugin-options/general-options.php:30
+msgid "Price format"
+msgstr "Format de prix"
+
+#: plugin-options/general-options.php:33
+msgid ""
+"Enter the price format to show the original price, the percentual discount "
+"or discounted price."
+msgstr ""
+"Entrez le format de prix pour afficher le prix d'origine, le pourcentage de "
+"remise ou le prix réduit."
+
+#: plugin-options/general-options.php:34
+msgid "Placeholder available:"
+msgstr "Texte indicatif disponible :"
+
+#: plugin-options/general-options.php:44
+msgid "Show Price rule details in customer emails"
+msgstr "Afficher les détails de la règle de prix dans les e-mails des clients"
+
+#: plugin-options/general-options.php:45
+msgid ""
+"Enable to add the info about the rule applied in the email sent to customers"
+msgstr ""
+"Activer pour ajouter les informations sur la règle appliquée dans l'e-mail "
+"envoyé aux clients"
+
+#: plugin-options/general-options.php:54
+msgid "Product page settings"
+msgstr "Paramètres de la page du produit"
+
+#: plugin-options/general-options.php:59
+msgid "Show the discount custom messages"
+msgstr "Afficher les messages personnalisés de remise"
+
+#: plugin-options/general-options.php:60
+msgid ""
+"For each rule, you can enter a custom message. You can use this option to "
+"show or hide all the custom messages on product pages."
+msgstr ""
+"Pour chaque règle, vous pouvez saisir un message personnalisé. Vous pouvez "
+"utiliser cette option pour afficher ou masquer tous les messages "
+"personnalisés sur les pages de produits."
+
+#: plugin-options/general-options.php:67
+msgid "Message position"
+msgstr "Emplacement des messages"
+
+#: plugin-options/general-options.php:68
+msgid "Choose where to show the discount rules messages"
+msgstr "Choisissez où afficher les messages des règles de remise"
+
+#: plugin-options/general-options.php:73
+#: plugin-options/quantity-table-options.php:68
+msgid "Before \"Add to cart\" button"
+msgstr "Avant le bouton \"Ajouter au panier\""
+
+#: plugin-options/general-options.php:74
+#: plugin-options/quantity-table-options.php:69
+msgid "After \"Add to cart\" button"
+msgstr "Après le bouton \"Ajouter au panier\""
+
+#: plugin-options/general-options.php:75
+#: plugin-options/quantity-table-options.php:70
+msgid "Before excerpt"
+msgstr "Avant extrait"
+
+#: plugin-options/general-options.php:76
+#: plugin-options/quantity-table-options.php:71
+msgid "After excerpt"
+msgstr "Après extrait"
+
+#: plugin-options/general-options.php:77
+#: plugin-options/quantity-table-options.php:72
+msgid "After product meta"
+msgstr "Après méta produit"
+
+#: plugin-options/general-options.php:92
+msgid "Cart settings"
+msgstr "Paramètres du panier"
+
+#: plugin-options/general-options.php:96
+msgid "In the cart page show"
+msgstr "Dans la page du panier afficher"
+
+#: plugin-options/general-options.php:100
+msgid "A single label to identify all of the cart rules applied"
+msgstr "Un seul libellé pour identifier toutes les règles de panier appliquées"
+
+#: plugin-options/general-options.php:101
+msgid "The list of all of the cart rules applied"
+msgstr "La liste de toutes les règles de panier appliquées"
+
+#: plugin-options/general-options.php:104
+msgid "Choose how to show the coupon label in the cart"
+msgstr "Choisissez comment afficher le libellé du coupon dans le panier"
+
+#: plugin-options/general-options.php:108
+msgid "Coupon Label"
+msgstr "Étiquette de coupon"
+
+#: plugin-options/general-options.php:109
+msgid "Enter a text to identify the coupon in cart, when a discount is applied"
+msgstr ""
+"Saisissez un texte pour identifier le coupon dans le panier, lorsqu'une "
+"remise est appliquée"
+
+#: plugin-options/general-options.php:112
+msgctxt "Dynamic coupon label"
+msgid "DISCOUNT"
+msgstr "REMISE"
+
+#: plugin-options/general-options.php:121
+msgid "Calculate cart discount starting from"
+msgstr "Calculer la remise sur le panier à partir de"
+
+#: plugin-options/general-options.php:122
+msgid ""
+"Choose to calculate the cart discount including or excluding tax on the "
+"subtotal"
+msgstr "Choisir de calculer la remise panier TTC ou HT sur le sous-total"
+
+#: plugin-options/general-options.php:127
+msgid "Subtotal - tax excluded"
+msgstr "Sous-total - hors taxes"
+
+#: plugin-options/general-options.php:128
+msgid "Subtotal - tax included"
+msgstr "Sous-total - taxes incluses"
+
+#: plugin-options/general-options.php:134
+msgid "Show special offers in cart by adapting"
+msgstr "Afficher les offres spéciales dans le panier en adaptant"
+
+#: plugin-options/general-options.php:135
+msgid "Choose how to show the discounts or special prices in cart"
+msgstr ""
+"Choisissez comment afficher les remises ou les prix spéciaux dans le panier"
+
+#. translators: %s is the field description
+#: plugin-options/general-options.php:140
+msgid "The unit price"
+msgstr "Le prix unitaire"
+
+#. translators: %s is the field description
+#: plugin-options/general-options.php:140
+msgid "Product price will be adapted based on the offer applied"
+msgstr "Le prix du produit sera adapté en fonction de l'offre appliquée"
+
+#. translators: %s is the field description
+#: plugin-options/general-options.php:142
+msgid "The subtitle"
+msgstr "Le sous-titre"
+
+#. translators: %s is the field description
+#: plugin-options/general-options.php:142
+msgid ""
+"The product price will not be adapted, but the price rule will be applied "
+"and shown to the subtotal only"
+msgstr ""
+"Le prix du produit ne sera pas adapté, mais la règle de prix sera appliquée "
+"et affichée uniquement au sous-total"
+
+#: plugin-options/general-options.php:148
+msgid "Show amount discount info on cart"
+msgstr "Afficher les informations sur le montant de la remise sur le panier"
+
+#: plugin-options/general-options.php:149
+msgid "Select if you want to show a notice when a discount rule is applied"
+msgstr ""
+"Sélectionnez si vous souhaitez afficher une notification lorsqu'une règle de "
+"remise est appliquée"
+
+#: plugin-options/general-options.php:156
+msgid "Add a custom message in the cart totals"
+msgstr "Ajouter un message personnalisé dans les totaux du panier"
+
+#: plugin-options/general-options.php:157
+msgid ""
+"Enter a custom text to show the total discount for the customer on the cart. "
+"Please, note, this applies only to \"Cart discount rules\". You can use the "
+"placeholder %total_discount_percentage% to show the discount in percentage, "
+"%total_discount_price% to show the discount value"
+msgstr ""
+"Saisissez un texte personnalisé pour afficher la remise totale pour le "
+"client sur le panier. Veuillez noter que cela ne s'applique qu'aux \"Règles "
+"de réduction du panier\". Vous pouvez utiliser l'espace réservé "
+"%total_discount_percentage% pour afficher la remise en pourcentage, "
+"%total_discount_price% pour afficher la valeur de la remise"
+
+#: plugin-options/general-options.php:177
+msgid "WPML settings"
+msgstr "Réglages WPML"
+
+#: plugin-options/general-options.php:181
+msgid "Extend the rules to translated contents"
+msgstr "Étendre les règles aux contenus traduits"
+
+#: plugin-options/general-options.php:182
+msgid "If enabled the rules will be applied also to translated products"
+msgstr ""
+"Si activé, les règles seront également appliquées aux produits traduits"
+
+#: plugin-options/metabox/ywdpd_cart_discount.php:15
+msgid "WooCommerce Documentation"
+msgstr "Documentation WooCommerce"
+
+#: plugin-options/metabox/ywdpd_cart_discount.php:21
+#: plugin-options/metabox/ywdpd_pricing_discount.php:45
+msgid ""
+"If you want show this text in a different language, please, type your text "
+"inside a tag like this: <code>[en]text here[/en]</code> for English, "
+"<code>[it]text here[/it]</code> for Italian and so on."
+msgstr ""
+"Si vous souhaitez afficher ce texte dans une autre langue, veuillez saisir "
+"votre texte dans une étiquette comme celle-ci : <code>[en]text here[/en]</"
+"code> pour l'anglais, <code>[it]text here[ /it]</code> pour l'italien et "
+"ainsi de suite."
+
+#: plugin-options/metabox/ywdpd_cart_discount.php:28
+msgid "Condition name"
+msgstr "Condition name"
+
+#: plugin-options/metabox/ywdpd_cart_discount.php:29
+msgid "Set a name for this cart rule condition"
+msgstr "Définir un nom pour cette condition de règle de panier"
+
+#: plugin-options/metabox/ywdpd_cart_discount.php:33
+msgid "Create a condition based on:"
+msgstr "Créer une condition basée sur :"
+
+#: plugin-options/metabox/ywdpd_cart_discount.php:38
+msgid "Users"
+msgstr "Utilisateurs"
+
+#: plugin-options/metabox/ywdpd_cart_discount.php:39
+msgid "Number of orders"
+msgstr "Nombre de commandes"
+
+#: plugin-options/metabox/ywdpd_cart_discount.php:40
+msgid "Total amount spent"
+msgstr "Montant total dépensé"
+
+#: plugin-options/metabox/ywdpd_cart_discount.php:42
+msgid "Cart items"
+msgstr "Articles du panier"
+
+#: plugin-options/metabox/ywdpd_cart_discount.php:43
+msgid "Cart subtotal"
+msgstr "Sous-total du panier"
+
+#: plugin-options/metabox/ywdpd_cart_discount.php:46
+msgid "Choose the condition type"
+msgstr "Choisissez le type de condition"
+
+#: plugin-options/metabox/ywdpd_cart_discount.php:54
+msgid "Apply discount to these users"
+msgstr "Appliquer une remise à ces utilisateurs"
+
+#: plugin-options/metabox/ywdpd_cart_discount.php:61
+msgid "Select for which users to apply this discount"
+msgstr "Sélectionnez pour quels utilisateurs appliquer cette remise"
+
+#: plugin-options/metabox/ywdpd_cart_discount.php:67
+msgid "Apply discount to these user roles"
+msgstr "Appliquer une remise à ces rôles d'utilisateur"
+
+#: plugin-options/metabox/ywdpd_cart_discount.php:76
+msgid "Select for which user roles to apply this discount"
+msgstr "Sélectionnez pour quels rôles d'utilisateur appliquer cette remise"
+
+#: plugin-options/metabox/ywdpd_cart_discount.php:87
+msgid "Users excluded"
+msgstr "Utilisateurs exclus"
+
+#: plugin-options/metabox/ywdpd_cart_discount.php:94
+msgid "Choose which users to exclude from this discount"
+msgstr "Choisissez les utilisateurs à exclure de cette remise"
+
+#: plugin-options/metabox/ywdpd_cart_discount.php:100
+msgid "Users roles excluded"
+msgstr "Rôles d'utilisateurs exclus"
+
+#: plugin-options/metabox/ywdpd_cart_discount.php:109
+msgid "Choose which user roles to exclude from this discount"
+msgstr "Choisissez les rôles d'utilisateur à exclure de cette remise"
+
+#: plugin-options/metabox/ywdpd_cart_discount.php:119
+msgid "Apply discount to:"
+msgstr "Appliquer la remise à :"
+
+#: plugin-options/metabox/ywdpd_cart_discount.php:123
+#: plugin-options/metabox/ywdpd_pricing_discount.php:860
+msgid "All users"
+msgstr "Tous les utilisateurs"
+
+#: plugin-options/metabox/ywdpd_cart_discount.php:124
+msgid "Specific users or user roles"
+msgstr "Utilisateurs ou rôles d'utilisateur spécifiques"
+
+#: plugin-options/metabox/ywdpd_cart_discount.php:127
+msgid ""
+"Choose to apply the discount to all user ( you can exclude users later ) or "
+"only to specific users/user roles"
+msgstr ""
+"Choisissez d'appliquer la remise à tous les utilisateurs (vous pouvez "
+"exclure des utilisateurs plus tard) ou uniquement à des utilisateurs/rôles "
+"d'utilisateurs spécifiques"
+
+#: plugin-options/metabox/ywdpd_cart_discount.php:137
+msgid ""
+"Choose whether to exclude specific users or user roles from this discount"
+msgstr ""
+"Choisissez d'exclure ou non des utilisateurs ou des rôles d'utilisateurs "
+"spécifiques de cette remise"
+
+#: plugin-options/metabox/ywdpd_cart_discount.php:149
+msgid "Minimum number of orders"
+msgstr "Nombre minimum de commandes"
+
+#: plugin-options/metabox/ywdpd_cart_discount.php:151
+msgid "Set the minimum number of orders required to apply this discount"
+msgstr ""
+"Définir le nombre minimum de commandes nécessaires pour appliquer cette "
+"remise"
+
+#: plugin-options/metabox/ywdpd_cart_discount.php:159
+msgid "Maximum number of orders"
+msgstr "Nombre maximum de commandes"
+
+#: plugin-options/metabox/ywdpd_cart_discount.php:161
+msgid "Set the maximum number of orders allowed to apply this discount"
+msgstr ""
+"Définir le nombre maximum de commandes autorisées pour appliquer cette remise"
+
+#. translators: %s is the woocommerce currency symbol
+#: plugin-options/metabox/ywdpd_cart_discount.php:171
+msgctxt "Minimum past expense ($)"
+msgid "Minimum past expense (%s)"
+msgstr "Dépenses passées minimales (%s)"
+
+#: plugin-options/metabox/ywdpd_cart_discount.php:173
+msgid "Set the minimum expense required to apply this discount"
+msgstr "Définissez la dépense minimale requise pour appliquer cette réduction"
+
+#. translators: %s is the woocommerce currency symbol
+#: plugin-options/metabox/ywdpd_cart_discount.php:182
+msgctxt "Maximum past expense ($)"
+msgid "Maximum past expense (%s)"
+msgstr "Dépenses passées maximales (%s)"
+
+#: plugin-options/metabox/ywdpd_cart_discount.php:184
+msgid "Set the maximum expense allowed to apply this discount"
+msgstr "Définir la dépense maximale autorisée pour appliquer cette réduction"
+
+#: plugin-options/metabox/ywdpd_cart_discount.php:195
+msgid "Product items - unit of same product in the cart"
+msgstr "Articles du produit - unité du même produit dans le panier"
+
+#: plugin-options/metabox/ywdpd_cart_discount.php:196
+msgid "Cart items - total of products in the cart"
+msgstr "Articles du panier - total des produits dans le panier"
+
+#: plugin-options/metabox/ywdpd_cart_discount.php:201
+msgid "Check quantity of"
+msgstr "Vérifier la quantité de"
+
+#: plugin-options/metabox/ywdpd_cart_discount.php:202
+msgid ""
+"Choose to link the condition to the number of product or total items in the "
+"cart"
+msgstr ""
+"Choisissez de lier la condition au nombre de produits ou au total d'articles "
+"dans le panier"
+
+#: plugin-options/metabox/ywdpd_cart_discount.php:207
+msgid "Minimum quantity of product items"
+msgstr "Quantité minimale d'articles du produit"
+
+#: plugin-options/metabox/ywdpd_cart_discount.php:208
+msgid ""
+"Set the minimum quantity of a same product in cart required to apply the "
+"discount"
+msgstr ""
+"Définir la quantité minimale d'un même produit dans le panier requise pour "
+"appliquer la remise"
+
+#: plugin-options/metabox/ywdpd_cart_discount.php:217
+msgid "Maximum quantity of product items"
+msgstr "Quantité maximale d'articles de produit"
+
+#: plugin-options/metabox/ywdpd_cart_discount.php:218
+msgid ""
+"Set the maximum quantity of a same product in cart allowed to apply the "
+"discount"
+msgstr ""
+"Définir la quantité maximale d'un même produit dans le panier autorisée à "
+"appliquer la remise"
+
+#: plugin-options/metabox/ywdpd_cart_discount.php:226
+msgid "Minimum quantity of items in cart"
+msgstr "Quantité minimale d'articles dans le panier"
+
+#: plugin-options/metabox/ywdpd_cart_discount.php:227
+msgid ""
+"Set the minimum quantity of items in cart required to apply the discount"
+msgstr ""
+"Définir la quantité minimale d'articles dans le panier requise pour "
+"appliquer la réduction"
+
+#: plugin-options/metabox/ywdpd_cart_discount.php:236
+msgid "Maximum quantity of items in cart"
+msgstr "Quantité maximale d'articles dans le panier"
+
+#: plugin-options/metabox/ywdpd_cart_discount.php:237
+msgid "Set the maximum quantity of items in cart allowed to apply the discount"
+msgstr ""
+"Définir la quantité maximale d'articles dans le panier autorisée à appliquer "
+"la remise"
+
+#. translators: %s is the woocommerce currency symbol
+#: plugin-options/metabox/ywdpd_cart_discount.php:248
+msgctxt "Minimum cart subtotal (€)"
+msgid "Minimum cart subtotal (%s)"
+msgstr "Sous-total minimum du panier (%s)"
+
+#: plugin-options/metabox/ywdpd_cart_discount.php:249
+msgid "Set the minimum cart subtotal required to apply the discount"
+msgstr ""
+"Définissez le sous-total minimum du panier requis pour appliquer la remise"
+
+#. translators: %s is the woocommerce currency symbol
+#: plugin-options/metabox/ywdpd_cart_discount.php:259
+msgctxt "Maximum cart subtotal (€)"
+msgid "Maximum cart subtotal (%s)"
+msgstr "Sous-total maximum du panier (%s)"
+
+#: plugin-options/metabox/ywdpd_cart_discount.php:260
+msgid "Set the maximum cart subtotal allowed to apply the discount"
+msgstr ""
+"Définir le sous-total maximum du panier autorisé pour appliquer la remise"
+
+#: plugin-options/metabox/ywdpd_cart_discount.php:271
+msgid "Require specific products in the cart"
+msgstr ""
+"Activer pour exiger des produits spécifiques dans le panier pour appliquer "
+"la remise"
+
+#: plugin-options/metabox/ywdpd_cart_discount.php:272
+msgid "Enable to require specific products in cart to apply the discount"
+msgstr ""
+"Activer pour exiger des produits spécifiques dans le panier pour appliquer "
+"la remise"
+
+#: plugin-options/metabox/ywdpd_cart_discount.php:280
+#: plugin-options/metabox/ywdpd_cart_discount.php:391
+#: plugin-options/metabox/ywdpd_cart_discount.php:474
+msgid "Select product"
+msgstr "Sélectionner un produit"
+
+#: plugin-options/metabox/ywdpd_cart_discount.php:281
+msgid "Choose which products are required in the cart to apply the discount"
+msgstr ""
+"Choisissez les produits requis dans le panier pour appliquer la réduction"
+
+#: plugin-options/metabox/ywdpd_cart_discount.php:295
+msgid ""
+"Choose to apply the discount when at least one of the specified product is "
+"in the cart or only when all products are in the cart"
+msgstr ""
+"Choisissez d'appliquer la remise lorsqu'au moins un des produits spécifiés "
+"est dans le panier ou uniquement lorsque tous les produits sont dans le "
+"panier"
+
+#: plugin-options/metabox/ywdpd_cart_discount.php:298
+msgid "At least one selected product is in the cart"
+msgstr "Au moins un produit sélectionné est dans le panier"
+
+#: plugin-options/metabox/ywdpd_cart_discount.php:299
+msgid "All selected products are in the cart"
+msgstr "Tous les produits sélectionnés sont dans le panier"
+
+#: plugin-options/metabox/ywdpd_cart_discount.php:307
+msgid "Require specific product categories in cart"
+msgstr "Exiger des catégories de produits spécifiques dans le panier"
+
+#: plugin-options/metabox/ywdpd_cart_discount.php:308
+msgid ""
+"Enable to require products of specific categories in cart to apply the "
+"discount"
+msgstr ""
+"Permet d'exiger des produits de catégories spécifiques dans le panier pour "
+"appliquer la remise"
+
+#: plugin-options/metabox/ywdpd_cart_discount.php:316
+#: plugin-options/metabox/ywdpd_cart_discount.php:423
+#: plugin-options/metabox/ywdpd_cart_discount.php:497
+msgid "Select product category"
+msgstr "Sélectionnez la catégorie de produit"
+
+#: plugin-options/metabox/ywdpd_cart_discount.php:317
+msgid ""
+"Choose which product categories are required in the cart to apply the "
+"discount"
+msgstr ""
+"Choisissez les catégories de produits requises dans le panier pour appliquer "
+"la réduction"
+
+#: plugin-options/metabox/ywdpd_cart_discount.php:322
+#: plugin-options/metabox/ywdpd_cart_discount.php:429
+#: plugin-options/metabox/ywdpd_cart_discount.php:503
+msgid "Search for product category"
+msgstr "Rechercher une catégorie de produit"
+
+#: plugin-options/metabox/ywdpd_cart_discount.php:330
+msgid ""
+"Choose to apply the discount when at least one of the specified product "
+"category is in the cart or only when all products are in the cart"
+msgstr ""
+"Choisissez d'appliquer la remise lorsqu'au moins l'une des catégories de "
+"produits spécifiées est dans le panier ou uniquement lorsque tous les "
+"produits sont dans le panier"
+
+#: plugin-options/metabox/ywdpd_cart_discount.php:333
+msgid "At least one of the selected product categories is in the cart"
+msgstr ""
+"Au moins une des catégories de produits sélectionnées est dans le panier"
+
+#: plugin-options/metabox/ywdpd_cart_discount.php:334
+msgid "All selected product categories are in the cart"
+msgstr "Toutes les catégories de produits sélectionnées sont dans le panier"
+
+#: plugin-options/metabox/ywdpd_cart_discount.php:342
+msgid "Require specific product tags in the cart"
+msgstr "Exiger des étiquettes de produits spécifiques dans le panier"
+
+#: plugin-options/metabox/ywdpd_cart_discount.php:343
+msgid ""
+"Enable to require products of a specific tag in the cart to apply the "
+"discount"
+msgstr ""
+"Activer pour exiger les produits d'une étiquette spécifique dans le panier "
+"pour appliquer la remise"
+
+#: plugin-options/metabox/ywdpd_cart_discount.php:351
+#: plugin-options/metabox/ywdpd_cart_discount.php:445
+#: plugin-options/metabox/ywdpd_cart_discount.php:519
+msgid "Select product tag"
+msgstr "Sélectionnez l'étiquette du produit"
+
+#: plugin-options/metabox/ywdpd_cart_discount.php:352
+msgid "Choose which product tag is required"
+msgstr "Choisissez quelle étiquette de produit est requise"
+
+#: plugin-options/metabox/ywdpd_cart_discount.php:357
+#: plugin-options/metabox/ywdpd_cart_discount.php:451
+#: plugin-options/metabox/ywdpd_cart_discount.php:525
+msgid "Search for product tag"
+msgstr "Rechercher une étiquette de produit"
+
+#: plugin-options/metabox/ywdpd_cart_discount.php:365
+msgid ""
+"Choose to apply the discount when at least one of the specified product tag "
+"is added to the cart or only when all products are in the cart"
+msgstr ""
+"Choisissez d'appliquer la remise lorsqu'au moins une des étiquettes de "
+"produit spécifiées est ajoutée au panier ou uniquement lorsque tous les "
+"produits sont dans le panier"
+
+#: plugin-options/metabox/ywdpd_cart_discount.php:368
+msgid "At least one selected product tag is in cart"
+msgstr "Au moins une étiquette de produit sélectionnée est dans le panier"
+
+#: plugin-options/metabox/ywdpd_cart_discount.php:369
+msgid "All selected product tags are in cart"
+msgstr "Toutes les étiquettes de produits sélectionnées sont dans le panier"
+
+#: plugin-options/metabox/ywdpd_cart_discount.php:382
+msgid "Exclude specific products in cart"
+msgstr "Exclure des produits spécifiques dans le panier"
+
+#: plugin-options/metabox/ywdpd_cart_discount.php:383
+msgid "Enable to exclude specific products from discount conditions"
+msgstr "Activer pour exclure des produits spécifiques des conditions de remise"
+
+#: plugin-options/metabox/ywdpd_cart_discount.php:392
+msgid "Choose which products to exclude from this cart condition validation"
+msgstr ""
+"Choisissez les produits à exclure de cette validation de condition de panier"
+
+#: plugin-options/metabox/ywdpd_cart_discount.php:405
+msgid "Exclude 'on-sale products'"
+msgstr "Exclure les « produits en solde »"
+
+#: plugin-options/metabox/ywdpd_cart_discount.php:406
+msgid ""
+"Enable if you want to exclude 'on-sale products' from discount conditions"
+msgstr ""
+"Activez si vous souhaitez exclure les « produits en solde » des conditions "
+"de remise"
+
+#: plugin-options/metabox/ywdpd_cart_discount.php:414
+msgid "Exclude specific product categories from discount validation"
+msgstr ""
+"Exclure des catégories de produits spécifiques de la validation de la remise"
+
+#: plugin-options/metabox/ywdpd_cart_discount.php:415
+msgid ""
+"Enable if you want to exclude products of specific categories from discount "
+"validation"
+msgstr ""
+"Activez si vous souhaitez exclure les produits de catégories spécifiques de "
+"la validation de la remise"
+
+#: plugin-options/metabox/ywdpd_cart_discount.php:424
+msgid "Choose which product categories exclude from condition validation"
+msgstr ""
+"Choisissez les catégories de produits à exclure de la validation des "
+"conditions"
+
+#: plugin-options/metabox/ywdpd_cart_discount.php:436
+msgid "Exclude specific product tag from discount validation"
+msgstr ""
+"Exclure une étiquette de produit spécifique de la validation de la remise"
+
+#: plugin-options/metabox/ywdpd_cart_discount.php:437
+msgid ""
+"Enable if you want to exclude products of specific tags from discount "
+"validation"
+msgstr ""
+"Activez si vous souhaitez exclure les produits de balises spécifiques de la "
+"validation de la remise"
+
+#: plugin-options/metabox/ywdpd_cart_discount.php:446
+msgid "Choose which product tags exclude from condition validation"
+msgstr ""
+"Choisissez les balises de produit à exclure de la validation des conditions"
+
+#: plugin-options/metabox/ywdpd_cart_discount.php:465
+msgid "Disable discount when specific products are in cart"
+msgstr ""
+"Désactiver la remise lorsque des produits spécifiques sont dans le panier"
+
+#: plugin-options/metabox/ywdpd_cart_discount.php:466
+msgid ""
+"Enable to disable the discount if users has specific products in his cart"
+msgstr ""
+"Activer pour désactiver la remise si l'utilisateur a des produits "
+"spécifiques dans son panier"
+
+#: plugin-options/metabox/ywdpd_cart_discount.php:475
+msgid "Choose which products will disable the discount"
+msgstr "Choisissez les produits qui désactiveront la remise"
+
+#: plugin-options/metabox/ywdpd_cart_discount.php:488
+msgid "Disable discount when product(s) of specific categories are in the cart"
+msgstr ""
+"Désactiver la remise lorsque le ou les produits de catégories spécifiques "
+"sont dans le panier"
+
+#: plugin-options/metabox/ywdpd_cart_discount.php:489
+msgid ""
+"Enable to disable the discount if user has products of specific categories "
+"in his cart"
+msgstr ""
+"Activer pour désactiver la remise si l'utilisateur a des produits de "
+"catégories spécifiques dans son panier"
+
+#: plugin-options/metabox/ywdpd_cart_discount.php:498
+msgid "Choose which product categories will disable the discount"
+msgstr "Choisissez les catégories de produits qui désactiveront la remise"
+
+#: plugin-options/metabox/ywdpd_cart_discount.php:510
+msgid "Disable discount when product(s) with specific tag are in the cart"
+msgstr ""
+"Désactiver la remise lorsque le ou les produits avec une étiquette "
+"spécifique sont dans le panier"
+
+#: plugin-options/metabox/ywdpd_cart_discount.php:511
+msgid ""
+"Enable to disable the discount if the user has products of specific tags in "
+"his cart"
+msgstr ""
+"Activer pour désactiver la remise si l'utilisateur a des produits de balises "
+"spécifiques dans son panier"
+
+#: plugin-options/metabox/ywdpd_cart_discount.php:520
+msgid "Choose which product tags will disable the discount"
+msgstr "Choisissez les balises de produit qui désactiveront la remise"
+
+#: plugin-options/metabox/ywdpd_cart_discount.php:537
+msgid "Condition type"
+msgstr "Type de condition"
+
+#: plugin-options/metabox/ywdpd_cart_discount.php:540
+msgid "Require specific products in cart to apply the discount."
+msgstr ""
+"Exiger des produits spécifiques dans le panier pour appliquer la remise."
+
+#: plugin-options/metabox/ywdpd_cart_discount.php:540
+msgid ""
+"Discount will be applied only if the user has the specified product(s) in "
+"his cart"
+msgstr ""
+"La remise ne sera appliquée que si l'utilisateur a le(s) produit(s) "
+"spécifié(s) dans son panier"
+
+#: plugin-options/metabox/ywdpd_cart_discount.php:541
+msgid "Exclude specific products from cart condition validation."
+msgstr "Exclure des produits spécifiques de la validation de l'état du panier."
+
+#: plugin-options/metabox/ywdpd_cart_discount.php:541
+msgid "Excluded products will not be considered for achieving the conditions"
+msgstr ""
+"Les produits exclus ne seront pas pris en compte pour la réalisation des "
+"conditions"
+
+#: plugin-options/metabox/ywdpd_cart_discount.php:542
+msgid "Disable discount when there is a specific  product in cart."
+msgstr ""
+"Désactiver la réduction lorsqu'il y a un produit spécifique dans le panier."
+
+#: plugin-options/metabox/ywdpd_cart_discount.php:542
+msgid ""
+"Discount will be not applied if the user has specified product(s) in his cart"
+msgstr ""
+"La remise ne sera pas appliquée si l'utilisateur a spécifié le(s) produit(s) "
+"dans son panier"
+
+#: plugin-options/metabox/ywdpd_cart_discount.php:544
+msgid "Choose which kind of condition to create based on products"
+msgstr "Choisissez le type de condition à créer en fonction des produits"
+
+#: plugin-options/metabox/ywdpd_cart_discount.php:556
+#: plugin-options/metabox/ywdpd_pricing_discount.php:1186
+msgid "Pricing Discount Settings"
+msgstr "Réglages de remise des prix"
+
+#: plugin-options/metabox/ywdpd_cart_discount.php:578
+msgid "Active"
+msgstr "Actif"
+
+#: plugin-options/metabox/ywdpd_cart_discount.php:579
+msgid "Select to enable or disable this rule"
+msgstr "Sélectionnez pour activer ou désactiver cette règle"
+
+#: plugin-options/metabox/ywdpd_cart_discount.php:585
+#: plugin-options/metabox/ywdpd_pricing_discount.php:77
+msgid ""
+"Set the priority to assign to this rule. Priority is important to overwrite "
+"rules. 1 is the highest priority"
+msgstr ""
+"Définissez la priorité à attribuer à cette règle. La priorité est importante "
+"pour écraser les règles. 1 est la priorité la plus élevée"
+
+#: plugin-options/metabox/ywdpd_cart_discount.php:593
+msgid "Choose to schedule a start and end time for this rule or enable it now"
+msgstr ""
+"Choisissez de planifier une heure de début et de fin pour cette règle ou "
+"activez-la maintenant"
+
+#: plugin-options/metabox/ywdpd_cart_discount.php:597
+#: plugin-options/metabox/ywdpd_pricing_discount.php:1039
+msgid "Disable when a coupon has been applied"
+msgstr "Désactiver lorsqu'un coupon a été appliqué"
+
+#: plugin-options/metabox/ywdpd_cart_discount.php:598
+#: plugin-options/metabox/ywdpd_pricing_discount.php:1040
+msgid ""
+"Enable if you want to disable this rule if the user has applied a coupon code"
+msgstr ""
+"Activez si vous souhaitez désactiver cette règle si l'utilisateur a appliqué "
+"un code promo"
+
+#: plugin-options/metabox/ywdpd_cart_discount.php:603
+msgid "Allow free shipping"
+msgstr "Autoriser la livraison gratuite"
+
+#. translators: %s is an admin url
+#: plugin-options/metabox/ywdpd_cart_discount.php:607
+msgid ""
+"Enable to offer 'free shipping' when this rule applies. For this to work, "
+"make sure you have set up a free-shipping method in WooCommerce > Settings > "
+"Shipping . After creating a shipping method, set 'Free shipping requires...' "
+"to 'A valid free shipping coupon'. For more information on setting up free "
+"shipping check the %s"
+msgstr ""
+"Activez pour offrir la 'livraison gratuite' lorsque cette règle s'applique. "
+"Pour que cela fonctionne, assurez-vous d'avoir configuré une méthode de "
+"livraison gratuite dans WooCommerce > Paramètres > Livraison. Après avoir "
+"créé un mode de livraison, définissez 'La livraison gratuite nécessite...' "
+"sur 'Un coupon de livraison gratuite valide'. Pour plus d'informations sur "
+"la configuration de la livraison gratuite, consultez le %s"
+
+#: plugin-options/metabox/ywdpd_cart_discount.php:613
+msgid "Discount conditions"
+msgstr "Conditions de remise"
+
+#: plugin-options/metabox/ywdpd_cart_discount.php:615
+msgid "Add condition"
+msgstr "Ajouter une condition"
+
+#: plugin-options/metabox/ywdpd_cart_discount.php:621
+msgid "Save condition"
+msgstr "Enregistrer la condition"
+
+#: plugin-options/metabox/ywdpd_cart_discount.php:625
+msgid "Delete condition"
+msgstr "Supprimer la condition"
+
+#: plugin-options/metabox/ywdpd_cart_discount.php:629
+msgid "When conditions are met apply"
+msgstr "Lorsque les conditions sont remplies s'appliquent"
+
+#: plugin-options/metabox/ywdpd_cart_discount.php:631
+msgid "Set the discount to apply when all conditions are met"
+msgstr ""
+"Définir la remise à appliquer lorsque toutes les conditions sont remplies"
+
+#: plugin-options/metabox/ywdpd_cart_discount.php:634
+msgid "Show a notice in the cart"
+msgstr "Afficher une notification dans le panier"
+
+#: plugin-options/metabox/ywdpd_cart_discount.php:637
+msgid "Enable to show a notice above the cart"
+msgstr "Activer pour afficher une notification au-dessus du panier"
+
+#: plugin-options/metabox/ywdpd_cart_discount.php:640
+msgid "Cart notice"
+msgstr "Notification panier"
+
+#: plugin-options/metabox/ywdpd_cart_discount.php:643
+msgid ""
+"Set the text to show above the cart. Use <code> %remaining_amount%</code> to "
+"show the remaining amount and <code>%amount_discount%</code> to show the "
+"discount."
+msgstr ""
+"Définissez le texte à afficher au-dessus du panier. Utilisez "
+"<code> %remaining_amount%</code> pour afficher le montant restant et <code>"
+"%amount_discount%</code> pour afficher la remise."
+
+#: plugin-options/metabox/ywdpd_cart_discount.php:644
+msgid ""
+"<p>Spend another %remaining_amount% to get a <strong>%amount_discount% "
+"discount</strong> on this order</p>"
+msgstr ""
+"<p>Dépensez encore %remaining_amount% pour obtenir une réduction de <strong>"
+"%amount_discount%</strong> sur cette commande</p>"
+
+#: plugin-options/metabox/ywdpd_cart_discount.php:651
+msgid "Cart notice background color"
+msgstr "Couleur de fond de la notification de panier"
+
+#: plugin-options/metabox/ywdpd_cart_discount.php:654
+msgid "Set background color of the notice"
+msgstr "Définir la couleur de fond de la notification"
+
+#: plugin-options/metabox/ywdpd_pricing_discount.php:34
+msgid "Rule type"
+msgstr "Type de règle"
+
+#: plugin-options/metabox/ywdpd_pricing_discount.php:35
+msgid "Choose which type of discount to create"
+msgstr "Choisissez le type de remise à créer"
+
+#: plugin-options/metabox/ywdpd_pricing_discount.php:70
+msgid "Active rule"
+msgstr "Règle active"
+
+#: plugin-options/metabox/ywdpd_pricing_discount.php:71
+msgid "Select to enable or disable this discount or pricing rule"
+msgstr ""
+"Sélectionnez pour activer ou désactiver cette remise ou règle de tarification"
+
+#: plugin-options/metabox/ywdpd_pricing_discount.php:85
+msgid "Choose which products to offer as a gift"
+msgstr "Choisissez les produits à offrir en cadeau"
+
+#: plugin-options/metabox/ywdpd_pricing_discount.php:87
+msgid "Select the products to offer as gift"
+msgstr "Sélectionnez les produits à offrir en cadeau"
+
+#: plugin-options/metabox/ywdpd_pricing_discount.php:104
+msgid "How many gift products the user can select?"
+msgstr "How many gift products the user can select?"
+
+#: plugin-options/metabox/ywdpd_pricing_discount.php:109
+msgid "Choose how many gift products can be selected as gift by the user"
+msgstr ""
+"Choisissez combien de produits cadeaux peuvent être sélectionnés comme "
+"cadeau par l'utilisateur"
+
+#: plugin-options/metabox/ywdpd_pricing_discount.php:124
+msgid "Discount to apply to entire shop"
+msgstr "Remise à appliquer sur toute la boutique"
+
+#: plugin-options/metabox/ywdpd_pricing_discount.php:126
+msgid "Set the discount to apply to products from this rule"
+msgstr "Définir la remise à appliquer aux produits de cette règle"
+
+#: plugin-options/metabox/ywdpd_pricing_discount.php:130
+msgctxt "Apply a %discount of 20% on all products"
+msgid "Apply"
+msgstr "Appliquer"
+
+#: plugin-options/metabox/ywdpd_pricing_discount.php:136
+#: templates/admin/metaboxes/types/cart_discount_type.php:31
+#: templates/admin/metaboxes/types/quantity_category_discount.php:49
+#: templates/admin/metaboxes/types/quantity_category_discount.php:116
+#: templates/admin/metaboxes/types/quantity_discount.php:70
+#: templates/admin/metaboxes/types/quantity_discount.php:160
+#: templates/admin/metaboxes/types/special_offer_discount.php:55
+msgid "a % discount of"
+msgstr "un % de remise de"
+
+#: plugin-options/metabox/ywdpd_pricing_discount.php:137
+#: templates/admin/metaboxes/types/cart_discount_type.php:32
+#: templates/admin/metaboxes/types/quantity_category_discount.php:50
+#: templates/admin/metaboxes/types/quantity_category_discount.php:117
+#: templates/admin/metaboxes/types/quantity_discount.php:71
+#: templates/admin/metaboxes/types/quantity_discount.php:161
+#: templates/admin/metaboxes/types/special_offer_discount.php:56
+msgid "a price discount of"
+msgstr "une remise de prix de"
+
+#: plugin-options/metabox/ywdpd_pricing_discount.php:138
+#: templates/admin/metaboxes/types/cart_discount_type.php:33
+#: templates/admin/metaboxes/types/quantity_category_discount.php:51
+#: templates/admin/metaboxes/types/quantity_category_discount.php:118
+#: templates/admin/metaboxes/types/quantity_discount.php:72
+#: templates/admin/metaboxes/types/quantity_discount.php:162
+#: templates/admin/metaboxes/types/special_offer_discount.php:57
+msgid "a fixed price of"
+msgstr "un prix fixe de"
+
+#: plugin-options/metabox/ywdpd_pricing_discount.php:151
+msgctxt "Apply a %discount of 20% on all products"
+msgid " on all products"
+msgstr "sur tous les produits"
+
+#: plugin-options/metabox/ywdpd_pricing_discount.php:166
+msgid "Set a category discount"
+msgstr "Définir une remise de catégorie"
+
+#: plugin-options/metabox/ywdpd_pricing_discount.php:168
+msgid "Set the discount to apply to product categories from this rule"
+msgstr ""
+"Définir la remise à appliquer aux catégories de produits à partir de cette "
+"règle"
+
+#: plugin-options/metabox/ywdpd_pricing_discount.php:184
+msgid ""
+"Choose if you want to create this rule for all products or for all products "
+"of specifics categories/tags"
+msgstr ""
+"Choisissez si vous souhaitez créer cette règle pour tous les produits ou "
+"pour tous les produits de catégories/tags spécifiques"
+
+#: plugin-options/metabox/ywdpd_pricing_discount.php:202
+msgid "Search the product(s) to include in the rule"
+msgstr "Rechercher le(s) produit(s) à inclure dans la règle"
+
+#: plugin-options/metabox/ywdpd_pricing_discount.php:243
+msgid "Search the product categories to include in the rule"
+msgstr "Rechercher les catégories de produits à inclure dans la règle"
+
+#: plugin-options/metabox/ywdpd_pricing_discount.php:265
+msgid "Search the product tags to include in the rule"
+msgstr "Rechercher les balises de produit à inclure dans la règle"
+
+#: plugin-options/metabox/ywdpd_pricing_discount.php:273
+msgid "Exclude products from this rule"
+msgstr "Exclure les produits de cette règle"
+
+#: plugin-options/metabox/ywdpd_pricing_discount.php:274
+msgid "Enable if you want to exclude specific products from this rule"
+msgstr ""
+"Activez si vous souhaitez exclure des produits spécifiques de cette règle"
+
+#: plugin-options/metabox/ywdpd_pricing_discount.php:290
+#: plugin-options/metabox/ywdpd_pricing_discount.php:678
+#: plugin-options/metabox/ywdpd_pricing_discount.php:924
+msgid "Exclude"
+msgstr "Exclure"
+
+#: plugin-options/metabox/ywdpd_pricing_discount.php:291
+#: plugin-options/metabox/ywdpd_pricing_discount.php:679
+msgid ""
+"Choose if you want to exclude some specific products or categories/tags from "
+"this rule"
+msgstr ""
+"Choisissez si vous souhaitez exclure certains produits ou catégories/tags "
+"spécifiques de cette règle"
+
+#: plugin-options/metabox/ywdpd_pricing_discount.php:312
+#: plugin-options/metabox/ywdpd_pricing_discount.php:708
+msgid "Choose which product(s) to exclude"
+msgstr "Choisissez le(s) produit(s) à exclure"
+
+#: plugin-options/metabox/ywdpd_pricing_discount.php:314
+msgid "Search the product(s) to exclude from this rule"
+msgstr "Rechercher le(s) produit(s) à exclure de cette règle"
+
+#: plugin-options/metabox/ywdpd_pricing_discount.php:341
+#: plugin-options/metabox/ywdpd_pricing_discount.php:744
+msgid "Choose the product categories to exclude"
+msgstr "Choisissez les catégories de produits à exclure"
+
+#: plugin-options/metabox/ywdpd_pricing_discount.php:365
+msgid "Search the product categories to exclude from this rule"
+msgstr "Rechercher les catégories de produits à exclure de cette règle"
+
+#: plugin-options/metabox/ywdpd_pricing_discount.php:369
+#: plugin-options/metabox/ywdpd_pricing_discount.php:780
+msgid "Choose which product tags to exclude"
+msgstr "Choisissez les balises de produit à exclure"
+
+#: plugin-options/metabox/ywdpd_pricing_discount.php:392
+msgid "Search the product tags to exclude from this rule"
+msgstr "Rechercher les tags de produit à exclure de cette règle"
+
+#: plugin-options/metabox/ywdpd_pricing_discount.php:399
+msgid "Offer gift if"
+msgstr "Offrir un cadeau si"
+
+#: plugin-options/metabox/ywdpd_pricing_discount.php:402
+msgid "In cart there is a minimum number of items"
+msgstr "Dans le panier il y a un nombre minimum d'articles"
+
+#: plugin-options/metabox/ywdpd_pricing_discount.php:403
+msgid "In cart there are items for a minimum subtotal"
+msgstr "Dans le panier, il y a des articles pour un sous-total minimum"
+
+#: plugin-options/metabox/ywdpd_pricing_discount.php:406
+msgid ""
+"Choose if you want to offer a gift when the cart has a minimum number of "
+"items or a minimum subtotal amount"
+msgstr ""
+"Choisissez si vous souhaitez offrir un cadeau lorsque le panier a un nombre "
+"minimum d'articles ou un montant minimum de sous-total"
+
+#: plugin-options/metabox/ywdpd_pricing_discount.php:419
+msgid "Offer gifts if total items in cart:"
+msgstr "Offrir des cadeaux si total des articles dans le panier :"
+
+#: plugin-options/metabox/ywdpd_pricing_discount.php:421
+msgid ""
+"Set how many items the user has to have in the cart in order to see the gift "
+"products"
+msgstr ""
+"Définissez le nombre d'articles que l'utilisateur doit avoir dans le panier "
+"pour voir les produits cadeaux"
+
+#. translators: %s is the WooCommerce currency symbol
+#: plugin-options/metabox/ywdpd_pricing_discount.php:439
+msgctxt "Offer gifts if subtotal is higher then $"
+msgid "Offer gifts if subtotal is higher then (%s)"
+msgstr "Offrez des cadeaux si le sous-total est supérieur à (%s)"
+
+#: plugin-options/metabox/ywdpd_pricing_discount.php:443
+msgid "Set the minimum subtotal required to offer this gift in cart"
+msgstr ""
+"Définir le sous-total minimum requis pour offrir ce cadeau dans le panier"
+
+#: plugin-options/metabox/ywdpd_pricing_discount.php:460
+msgid "Discount Rules"
+msgstr "Règles de remise"
+
+#: plugin-options/metabox/ywdpd_pricing_discount.php:476
+msgid "Set offer rules"
+msgstr "Définir les règles de l'offre"
+
+#: plugin-options/metabox/ywdpd_pricing_discount.php:477
+msgid "Create the special offer rule for the products you selected"
+msgstr ""
+"Créez la règle d'offre spéciale pour les produits que vous avez sélectionnés"
+
+#: plugin-options/metabox/ywdpd_pricing_discount.php:492
+msgid "Repeat"
+msgstr "Repeat"
+
+#: plugin-options/metabox/ywdpd_pricing_discount.php:509
+msgid "Set which parameter to check to apply the quantity rule."
+msgstr ""
+"Définissez le paramètre à vérifier pour appliquer la règle de quantité."
+
+#: plugin-options/metabox/ywdpd_pricing_discount.php:512
+#: plugin-options/pricing-rules-options.php:27
+msgid "Item quantity in cart line"
+msgstr "Quantité d'articles dans la ligne du panier"
+
+#: plugin-options/metabox/ywdpd_pricing_discount.php:513
+msgctxt ""
+"Single product quantity in cart - Variations of same product ARE NOT counted "
+"in this quantity"
+msgid "Single product quantity in cart - variations NOT counted"
+msgstr "Quantité de produit unique dans le panier - variations NON comptées"
+
+#: plugin-options/metabox/ywdpd_pricing_discount.php:513
+msgctxt ""
+"Single product quantity in cart - Variations of same product ARE NOT counted "
+"in this quantity"
+msgid "Variations of same product ARE NOT counted in this quantity"
+msgstr ""
+"Les variations du même produit NE SONT PAS comptées dans cette quantité"
+
+#: plugin-options/metabox/ywdpd_pricing_discount.php:514
+msgctxt ""
+"Single product quantity in cart - Variations of same product ARE counted in "
+"this quantity"
+msgid "Single product quantity in cart - variations counted"
+msgstr "Quantité de produit unique dans le panier - variations comptées"
+
+#: plugin-options/metabox/ywdpd_pricing_discount.php:514
+msgctxt ""
+"Single product quantity in cart - Variations of same product ARE counted in "
+"this quantity"
+msgid "Variations of same product ARE counted in this quantity"
+msgstr "Les variations d'un même produit SONT comptées dans cette quantité"
+
+#: plugin-options/metabox/ywdpd_pricing_discount.php:515
+msgid "Total number of products in cart"
+msgstr "Nombre total de produits dans le panier"
+
+#: plugin-options/metabox/ywdpd_pricing_discount.php:532
+msgid "Apply discount to a different product or category"
+msgstr "Appliquer une remise à un autre produit ou à une autre catégorie"
+
+#: plugin-options/metabox/ywdpd_pricing_discount.php:533
+msgid ""
+"Enable if you want to apply a discount for other products rather than for "
+"the products selected for this quantity rule. For example: if a customer "
+"purchases 100 business cards (product A), they can get a 10% discount on "
+"flyers. (product B)"
+msgstr ""
+"Activez si vous souhaitez appliquer une remise pour d'autres produits plutôt "
+"que pour les produits sélectionnés pour cette règle de quantité. Par "
+"exemple : si un client achète 100 cartes de visite (produit A), il peut "
+"bénéficier d'une remise de 10 % sur les circulaires. (produit B)"
+
+#: plugin-options/metabox/ywdpd_pricing_discount.php:549
+msgid ""
+"Choose whether to apply the discounts on all products or specific products/"
+"product categories/tags"
+msgstr ""
+"Choisissez d'appliquer les remises sur tous les produits ou sur des produits/"
+"catégories de produits/tags spécifiques"
+
+#: plugin-options/metabox/ywdpd_pricing_discount.php:569
+msgid "Choose which product(s) to include"
+msgstr "Choisissez le(s) produit(s) à inclure"
+
+#: plugin-options/metabox/ywdpd_pricing_discount.php:571
+msgid "Search the product(s) to include in this discount"
+msgstr "Recherchez le(s) produit(s) à inclure dans cette remise"
+
+#: plugin-options/metabox/ywdpd_pricing_discount.php:596
+msgid "Choose which product categories to include"
+msgstr "Choisissez les catégories de produits à inclure"
+
+#: plugin-options/metabox/ywdpd_pricing_discount.php:619
+msgid "Search the product categories to include in the discount"
+msgstr "Rechercher les catégories de produits à inclure dans la remise"
+
+#: plugin-options/metabox/ywdpd_pricing_discount.php:623
+msgid "Choose which product tags to include"
+msgstr "Choisissez les étiquettes de produits à inclure"
+
+#: plugin-options/metabox/ywdpd_pricing_discount.php:645
+msgid "Search the product tags to include in the discount"
+msgstr "Recherchez les étiquettes de produits à inclure dans la remise"
+
+#: plugin-options/metabox/ywdpd_pricing_discount.php:652
+msgid "Exclude products from this discount"
+msgstr "Exclure les produits de cette remise"
+
+#: plugin-options/metabox/ywdpd_pricing_discount.php:653
+msgid "Enable if you want to exclude specific products from this discount"
+msgstr ""
+"Activez si vous souhaitez exclure des produits spécifiques de cette remise"
+
+#: plugin-options/metabox/ywdpd_pricing_discount.php:710
+msgid "Search the product(s) to exclude"
+msgstr "Rechercher le(s) produit(s) à exclure"
+
+#: plugin-options/metabox/ywdpd_pricing_discount.php:776
+msgid "Search the product categories to exclude"
+msgstr "Rechercher les catégories de produits à exclure"
+
+#: plugin-options/metabox/ywdpd_pricing_discount.php:811
+msgid "Search the product tags to exclude"
+msgstr "Rechercher les balises de produit à exclure"
+
+#: plugin-options/metabox/ywdpd_pricing_discount.php:821
+msgid "Show quantity & prices in a table"
+msgstr "Afficher la quantité et les prix dans un tableau"
+
+#: plugin-options/metabox/ywdpd_pricing_discount.php:822
+msgid ""
+"Enable if you want to show the quantity and the prices in a table in the "
+"product pages."
+msgstr ""
+"Activez si vous souhaitez afficher la quantité et les prix dans un tableau "
+"dans les pages produits."
+
+#: plugin-options/metabox/ywdpd_pricing_discount.php:837
+msgid "Show discount in loop"
+msgstr "Afficher la remise en boucle"
+
+#: plugin-options/metabox/ywdpd_pricing_discount.php:838
+msgid "Enable if you want to show the discounted price in the loop"
+msgstr "Activez si vous souhaitez afficher le prix réduit dans la boucle"
+
+#: plugin-options/metabox/ywdpd_pricing_discount.php:855
+msgid "Choose to apply the rule to all users or only specific user roles"
+msgstr ""
+"Choisissez d'appliquer la règle à tous les utilisateurs ou uniquement à des "
+"rôles d'utilisateur spécifiques"
+
+#: plugin-options/metabox/ywdpd_pricing_discount.php:861
+msgid "Only to specific users"
+msgstr "Uniquement à des utilisateurs spécifiques"
+
+#: plugin-options/metabox/ywdpd_pricing_discount.php:862
+msgid "Only to specific user roles"
+msgstr "Uniquement à des rôles d'utilisateur spécifiques"
+
+#: plugin-options/metabox/ywdpd_pricing_discount.php:868
+msgid "User roles included"
+msgstr "Rôles d'utilisateur inclus"
+
+#: plugin-options/metabox/ywdpd_pricing_discount.php:869
+msgid "Search the user roles you want to include in this rule"
+msgstr ""
+"Recherchez les rôles d'utilisateur que vous souhaitez inclure dans cette "
+"règle"
+
+#: plugin-options/metabox/ywdpd_pricing_discount.php:876
+#: plugin-options/metabox/ywdpd_pricing_discount.php:954
+msgid "Select user roles"
+msgstr "Sélectionnez les rôles d'utilisateur"
+
+#: plugin-options/metabox/ywdpd_pricing_discount.php:889
+msgid "Users included"
+msgstr "Utilisateurs inclus"
+
+#: plugin-options/metabox/ywdpd_pricing_discount.php:891
+msgid "Search the users you want to include in the rule"
+msgstr "Recherchez les utilisateurs que vous souhaitez inclure dans la règle"
+
+#: plugin-options/metabox/ywdpd_pricing_discount.php:892
+msgid "Select users"
+msgstr "Sélectionner des utilisateurs"
+
+#: plugin-options/metabox/ywdpd_pricing_discount.php:925
+msgid ""
+"Choose if you want to exclude from this rule certain users or users with a "
+"specific role."
+msgstr ""
+"Choisissez si vous souhaitez exclure de cette règle certains utilisateurs ou "
+"utilisateurs ayant un rôle spécifique."
+
+#: plugin-options/metabox/ywdpd_pricing_discount.php:930
+msgid "Specific users"
+msgstr "Utilisateurs spécifiques"
+
+#: plugin-options/metabox/ywdpd_pricing_discount.php:931
+msgid "Specific user roles"
+msgstr "Rôles d'utilisateurs spécifiques"
+
+#: plugin-options/metabox/ywdpd_pricing_discount.php:952
+msgid "Choose which user role(s) to exclude"
+msgstr "Choisissez le ou les rôles d'utilisateur à exclure"
+
+#: plugin-options/metabox/ywdpd_pricing_discount.php:953
+msgid "Search the user roles you want to exclude from this rule"
+msgstr ""
+"Recherchez les rôles d'utilisateur que vous souhaitez exclure de cette règle"
+
+#: plugin-options/metabox/ywdpd_pricing_discount.php:982
+msgid "Choose which user(s) to exclude"
+msgstr "Choisissez le ou les utilisateurs à exclure"
+
+#: plugin-options/metabox/ywdpd_pricing_discount.php:984
+msgid "Search the users you want to excluded the rule"
+msgstr "Recherchez les utilisateurs que vous souhaitez exclure de la règle"
+
+#: plugin-options/metabox/ywdpd_pricing_discount.php:985
+msgid "Select user"
+msgstr "Sélectionnez l'utilisateur"
+
+#: plugin-options/metabox/ywdpd_pricing_discount.php:1013
+msgid "Choose whether to schedule a start and end time for this rule"
+msgstr ""
+"Choisissez si vous souhaitez planifier une heure de début et de fin pour "
+"cette règle"
+
+#: plugin-options/metabox/ywdpd_pricing_discount.php:1017
+msgid "Disable this rule for 'on-sale products'"
+msgstr "Désactiver cette règle pour les « produits en promotion »"
+
+#: plugin-options/metabox/ywdpd_pricing_discount.php:1018
+msgid "Enable if you want to disable this discount for  'on-sale products'"
+msgstr ""
+"Activez si vous souhaitez désactiver cette remise pour les « produits en "
+"solde »"
+
+#: plugin-options/metabox/ywdpd_pricing_discount.php:1033
+msgid "Disable other rules with lower priority"
+msgstr "Désactiver les autres règles avec une priorité inférieure"
+
+#: plugin-options/metabox/ywdpd_pricing_discount.php:1034
+msgid ""
+"Enable if you want to disable other rules with lower priority applied to "
+"same products"
+msgstr ""
+"Activez si vous souhaitez désactiver d'autres règles avec une priorité "
+"inférieure appliquée aux mêmes produits"
+
+#: plugin-options/metabox/ywdpd_pricing_discount.php:1055
+msgid "Promote offer in modal window"
+msgstr "Promouvoir l'offre dans la fenêtre modale"
+
+#: plugin-options/metabox/ywdpd_pricing_discount.php:1058
+msgid ""
+"Enable to show a modal window after the user adds the product to the cart "
+"(from product page only). The modal window will display the other products "
+"linked to the offer and will only appear if there's at least one special "
+"offer set up for the current product."
+msgstr ""
+"Activer pour afficher une fenêtre modale une fois que l'utilisateur a ajouté "
+"le produit au panier (à partir de la page du produit uniquement). La fenêtre "
+"modale affichera les autres produits liés à l'offre et n'apparaîtra que s'il "
+"y a au moins une offre spéciale configurée pour le produit en cours."
+
+#: plugin-options/metabox/ywdpd_pricing_discount.php:1075
+#: plugin-options/metabox/ywdpd_pricing_discount.php:1100
+msgid "Text to show in modal window"
+msgstr "Texte à afficher dans la fenêtre modale"
+
+#. translators: %s is the placeholder to use, to display the amount of product that is possible add with this discount
+#: plugin-options/metabox/ywdpd_pricing_discount.php:1077
+#: plugin-options/metabox/ywdpd_pricing_discount.php:1102
+msgid ""
+"Enter a custom text that will be shown in the modal window to describe this "
+"offer. Use %s to show the number of products dynamically."
+msgstr ""
+"Saisissez un texte personnalisé qui s'affichera dans la fenêtre modale pour "
+"décrire cette offre. Utilisez %s pour afficher le nombre de produits de "
+"manière dynamique. "
+
+#: plugin-options/metabox/ywdpd_pricing_discount.php:1079
+msgid ""
+"Get a special discount if you add {{total_to_add}} product(s) to your order."
+msgstr ""
+"Obtenez une remise spéciale si vous ajoutez {{total_to_add}} produit(s) à "
+"votre commande."
+
+#: plugin-options/metabox/ywdpd_pricing_discount.php:1120
+msgid ""
+"Enter a custom text to show in the product page where this rule is applied. "
+"Use the placeholder <code>%items_with_rule_applied%</code> to show products, "
+"categories, or tags to which the discount rule is applied."
+msgstr ""
+"Entrez un texte personnalisé à afficher dans la page du produit où cette "
+"règle est appliquée. Utilisez le texte indicatif <code>"
+"%items_with_rule_applied%</code> pour afficher les produits, catégories ou "
+"étiquettes auxquels la règle de remise est appliquée."
+
+#: plugin-options/metabox/ywdpd_pricing_discount.php:1125
+msgid "Add a custom message in products where the discount is applied"
+msgstr ""
+"Ajouter un message personnalisé dans les produits où la remise est appliquée"
+
+#: plugin-options/metabox/ywdpd_pricing_discount.php:1127
+msgid ""
+"Enter a custom text to show in the product page where the discount is "
+"applied. Use the placeholder <code>%required_items%</code> to show products, "
+"categories, or tags that users must add to the cart to apply the discount "
+"rule to the product for which it has been created"
+msgstr ""
+"Entrez un texte personnalisé à afficher sur la page du produit où la "
+"réduction est appliquée. Utilisez le texte indicatif <code>%required_items%</"
+"code> pour afficher les produits, catégories ou étiquettes que les "
+"utilisateurs doivent ajouter au panier pour appliquer la règle de remise au "
+"produit pour lequel il a été créé"
+
+#: plugin-options/metabox/ywdpd_pricing_discount.php:1146
+msgid "Add extra notices in quantity table"
+msgstr "Ajouter des avis supplémentaires dans le tableau des quantités"
+
+#: plugin-options/metabox/ywdpd_pricing_discount.php:1147
+msgid "Enter a custom text to show under the quantity table"
+msgstr ""
+"Saisissez un texte personnalisé à afficher sous le tableau des quantités"
+
+#: plugin-options/metabox/ywdpd_pricing_discount.php:1162
+msgid "Add a custom message in products offered as gift"
+msgstr "Ajouter un message personnalisé dans les produits offerts en cadeau"
+
+#: plugin-options/metabox/ywdpd_pricing_discount.php:1164
+msgid ""
+"Enter a custom text to show in the products offered as gift. Use the "
+"placeholder <code>%required_items%</code> to show products, categories, or "
+"tags that users must add to the cart to apply the gift rule on the product "
+"for which it has been created."
+msgstr ""
+"Entrez un texte personnalisé à afficher dans les produits offerts en cadeau. "
+"Utilisez le texte indicatif <code>%required_items%</code> pour afficher les "
+"produits, catégories ou étiquettes que les utilisateurs doivent ajouter au "
+"panier pour appliquer la règle de cadeau sur le produit pour lequel il a été "
+"créé."
+
+#: plugin-options/pricing-rules-options.php:19
+msgid "Quantity Discount"
+msgstr "Rabais de quantité"
+
+#: plugin-options/pricing-rules-options.php:20
+msgid "Special Offer (3x2, 2x1, etc.)"
+msgstr "Offre spéciale (3x2, 2x1, etc.)"
+
+#: plugin-options/pricing-rules-options.php:21
+msgid "Buy 1 Get 1"
+msgstr "Acheter 1 obtenez 1"
+
+#: plugin-options/pricing-rules-options.php:22
+msgid "Gift Products"
+msgstr "Produits cadeaux"
+
+#: plugin-options/pricing-rules-options.php:23
+msgid "Discount on entire shop"
+msgstr "Remise sur toute la boutique"
+
+#: plugin-options/pricing-rules-options.php:24
+msgid "Category Discount"
+msgstr "Remise de catégorie"
+
+#: plugin-options/pricing-rules-options.php:28
+msgid "Single product"
+msgstr "Produit unique"
+
+#: plugin-options/pricing-rules-options.php:29
+msgid "Single product variation"
+msgstr "Variante de produit unique"
+
+#: plugin-options/pricing-rules-options.php:30
+msgid "Sum of all products in list or category list"
+msgstr "Somme de tous les produits de la liste ou de la liste de catégories"
+
+#: plugin-options/pricing-rules-options.php:33
+#: plugin-options/pricing-rules-options.php:44
+#: plugin-options/pricing-rules-options.php:55
+#: plugin-options/pricing-rules-options.php:65
+msgid "All products"
+msgstr "Tous les produits"
+
+#: plugin-options/pricing-rules-options.php:34
+#: plugin-options/pricing-rules-options.php:39
+#: plugin-options/pricing-rules-options.php:45
+#: plugin-options/pricing-rules-options.php:50
+msgid "Specific products"
+msgstr "Produits spécifiques"
+
+#: plugin-options/pricing-rules-options.php:35
+#: plugin-options/pricing-rules-options.php:40
+#: plugin-options/pricing-rules-options.php:46
+#: plugin-options/pricing-rules-options.php:51
+msgid "Specific product categories"
+msgstr "Catégories de produits spécifiques"
+
+#: plugin-options/pricing-rules-options.php:36
+#: plugin-options/pricing-rules-options.php:41
+#: plugin-options/pricing-rules-options.php:47
+#: plugin-options/pricing-rules-options.php:52
+msgid "Specific product tags"
+msgstr "Etiquettes de produits spécifiques"
+
+#: plugin-options/pricing-rules-options.php:56
+#: plugin-options/pricing-rules-options.php:66
+msgid "Include a list of products"
+msgstr "Inclure une liste de produits"
+
+#: plugin-options/pricing-rules-options.php:57
+#: plugin-options/pricing-rules-options.php:67
+msgid "Exclude a list of products"
+msgstr "Exclude a list of products"
+
+#: plugin-options/pricing-rules-options.php:58
+#: plugin-options/pricing-rules-options.php:68
+msgid "Include a list of categories"
+msgstr "Inclure une liste de catégories"
+
+#: plugin-options/pricing-rules-options.php:59
+#: plugin-options/pricing-rules-options.php:69
+msgid "Exclude a list of categories"
+msgstr "Exclure une liste de catégories"
+
+#: plugin-options/pricing-rules-options.php:60
+#: plugin-options/pricing-rules-options.php:70
+msgid "Include a list of tags"
+msgstr "Inclure une liste de balises"
+
+#: plugin-options/pricing-rules-options.php:61
+#: plugin-options/pricing-rules-options.php:71
+msgid "Exclude a list of tags"
+msgstr "Exclure une liste de balises"
+
+#: plugin-options/pricing-rules-options.php:64
+msgid "Same product"
+msgstr "Même produit"
+
+#: plugin-options/pricing-rules-options.php:74
+msgid "% discount"
+msgstr "% remise"
+
+#: plugin-options/pricing-rules-options.php:75
+msgid "Price discount"
+msgstr "Remise de prix"
+
+#: plugin-options/pricing-rules-options.php:76
+msgid "Fixed price"
+msgstr "Prix fixe"
+
+#: plugin-options/pricing-rules-options.php:79
+msgid "Everyone"
+msgstr "Toutes les personnes"
+
+#: plugin-options/pricing-rules-options.php:80
+msgid "Include a list of roles"
+msgstr "Inclure une liste de rôles"
+
+#: plugin-options/pricing-rules-options.php:81
+msgid "Exclude a list of roles"
+msgstr "Exclure une liste de rôles"
+
+#: plugin-options/pricing-rules-options.php:82
+msgid "Include a list of customers"
+msgstr "Inclure une liste de clients"
+
+#: plugin-options/pricing-rules-options.php:83
+msgid "Exclude a list of customers"
+msgstr "Exclure une liste de clients"
+
+#: plugin-options/quantity-table-options.php:14
+msgid "Quantity table options"
+msgstr "Options du tableau des quantités"
+
+#: plugin-options/quantity-table-options.php:19
+msgid "Show quantity tables"
+msgstr "Afficher les tableaux de quantités"
+
+#: plugin-options/quantity-table-options.php:20
+msgid ""
+"Enable to show a quantity table in all products with a quantity discount "
+"rule. Disable to hide all tables."
+msgstr ""
+"Activer pour afficher un tableau de quantité dans tous les produits avec une "
+"règle de remise sur quantité. Désactiver pour masquer toutes les tables."
+
+#: plugin-options/quantity-table-options.php:27
+msgid "Table layout in desktop"
+msgstr "Disposition des tableaux sur le bureau d'ordinateur"
+
+#: plugin-options/quantity-table-options.php:28
+msgid "Choose the layout for quantity table"
+msgstr "Choisissez la disposition pour le tableau de quantité"
+
+#: plugin-options/quantity-table-options.php:32
+#: plugin-options/quantity-table-options.php:49
+msgid "Vertical"
+msgstr "Vertical"
+
+#: plugin-options/quantity-table-options.php:33
+#: plugin-options/quantity-table-options.php:50
+msgid "Horizontal"
+msgstr "Horizontal"
+
+#: plugin-options/quantity-table-options.php:44
+msgid "Table layout in mobile"
+msgstr "Disposition des tableaux sur mobile"
+
+#: plugin-options/quantity-table-options.php:45
+msgid "Choose the layout of the quantity table in mobile devices"
+msgstr ""
+"Choisissez la mise en page du tableau des quantités sur les appareils mobiles"
+
+#: plugin-options/quantity-table-options.php:61
+msgid "Table position"
+msgstr "Emplacement du tableau"
+
+#: plugin-options/quantity-table-options.php:62
+msgid "Choose where to show the quantity table on product pages"
+msgstr ""
+"Choisissez où afficher le tableau des quantités sur les pages de produits"
+
+#: plugin-options/quantity-table-options.php:67
+msgid "Use shortcode"
+msgstr "Utiliser le code court"
+
+#: plugin-options/quantity-table-options.php:83
+msgid "Table shortcode"
+msgstr "Code court du tableau"
+
+#: plugin-options/quantity-table-options.php:87
+msgid "Copy the shortcode and use it somewhere in the product pages"
+msgstr ""
+"Copiez le code court et utilisez-le quelque part dans les pages de produits"
+
+#: plugin-options/quantity-table-options.php:98
+msgid "Table heading"
+msgstr "Titre du tableau"
+
+#: plugin-options/quantity-table-options.php:99
+msgid "Enter a text to identify the quantity table title"
+msgstr "Saisissez un texte pour identifier le titre du tableau des quantités"
+
+#: plugin-options/quantity-table-options.php:111
+msgid "Show a discount column in tables"
+msgstr "Afficher une colonne de remise dans les tableaux"
+
+#: plugin-options/quantity-table-options.php:112
+msgid "Enable to show the discount column in all tables"
+msgstr "Activer pour afficher la colonne de remise dans tous les tableaux"
+
+#: plugin-options/quantity-table-options.php:124
+msgid "Table labels"
+msgstr "Étiquettes de tableau"
+
+#: plugin-options/quantity-table-options.php:125
+msgid "Enter the labels for the Quantity and Price table."
+msgstr "Entrez les étiquettes pour le tableau Quantité et Prix. "
+
+#: plugin-options/quantity-table-options.php:157
+msgid "In quantity heading show"
+msgstr "Dans la rubrique quantité afficher"
+
+#: plugin-options/quantity-table-options.php:161
+msgid "The quantity ranges used in the discount rules (e.g.: 1-5)"
+msgstr ""
+"Les tranches de quantité utilisées dans les règles de remise (ex : 1-5)"
+
+#: plugin-options/quantity-table-options.php:162
+msgid "Only the minimum quantity of the range (e.g.: 1)"
+msgstr "Uniquement la quantité minimum de la gamme (ex : 1)"
+
+#: plugin-options/quantity-table-options.php:163
+msgid "Only the maximum quantity of the range (e.g.: 5)"
+msgstr "Uniquement la quantité maximale de la gamme (ex : 5)"
+
+#: plugin-options/quantity-table-options.php:166
+msgid "Choose the style of the quantity heading in the tables"
+msgstr "Choisissez le style de l'intitulé de la quantité dans les tableaux"
+
+#: plugin-options/quantity-table-options.php:175
+msgid "Show the end date of discount in quantity table"
+msgstr "Afficher la date de fin de la remise dans le tableau des quantités"
+
+#: plugin-options/quantity-table-options.php:176
+msgid "Enable to show when the discount ends in quantity table"
+msgstr ""
+"Activer pour afficher quand la remise se termine dans le tableau des "
+"quantités"
+
+#: plugin-options/quantity-table-options.php:188
+msgid "Show as default"
+msgstr "Afficher par défaut"
+
+#: plugin-options/quantity-table-options.php:192
+msgid "The first discount rule (usually the minimum discount)"
+msgstr "La première règle de remise (généralement la remise minimale)"
+
+#: plugin-options/quantity-table-options.php:193
+msgid "The last discount rule (usually the maximum discount)"
+msgstr "La dernière règle de remise (généralement la remise maximale)"
+
+#: plugin-options/quantity-table-options.php:196
+msgid ""
+"Choose whether to show the minimum or the maximum discount available as "
+"default price in product page and loop"
+msgstr ""
+"Choisissez d'afficher la remise minimale ou maximale disponible comme prix "
+"par défaut dans la page du produit et la boucle"
+
+#: plugin-options/quantity-table-options.php:205
+msgid "Select default quantity in the table"
+msgstr "Sélectionnez la quantité par défaut dans le tableau"
+
+#: plugin-options/quantity-table-options.php:206
+msgid "Enable to automatically select the first quantity rule in the table"
+msgstr ""
+"Activer pour sélectionner automatiquement la première règle de quantité dans "
+"le tableau"
+
+#: plugin-options/quantity-table-options.php:218
+msgid "Change product price when user changes quantity"
+msgstr "Modifier le prix du produit lorsque l'utilisateur modifie la quantité"
+
+#: plugin-options/quantity-table-options.php:219
+msgid "Enable to show an updated price when the user changes the quantity"
+msgstr ""
+"Activer pour afficher un prix mis à jour lorsque l'utilisateur modifie la "
+"quantité"
+
+#: templates/admin/dynamic-rules-popup.php:17
+msgctxt "Is a special offer type"
+msgid "3x2"
+msgstr "3x2"
+
+#: templates/admin/dynamic-rules-popup.php:21
+msgctxt "Is a special offer type"
+msgid "Buy 1 Get 1"
+msgstr "Acheter 1 obtenez 1"
+
+#: templates/admin/dynamic-rules-popup.php:26
+msgctxt "Is a special offer type"
+msgid "2x1"
+msgstr "2x1"
+
+#: templates/admin/dynamic-rules-popup.php:33
+msgctxt "Is a special offer type"
+msgid "2dn unit discount"
+msgstr "Remise unité 2dn"
+
+#: templates/admin/dynamic-rules-popup.php:38
+msgctxt "Is a whole discount type"
+msgid "Black Friday discount"
+msgstr "Remise Black Friday"
+
+#: templates/admin/dynamic-rules-popup.php:44
+msgid "Quantity & prices table"
+msgstr "Tableau des quantités et des prix"
+
+#: templates/admin/dynamic-rules-popup.php:51
+msgctxt "Is a whole discount type"
+msgid "Discount for user role"
+msgstr "Remise pour le rôle d'utilisateur"
+
+#: templates/admin/dynamic-rules-popup.php:56
+msgctxt "Is a special offer type"
+msgid "Buy X and get Y for free"
+msgstr "Achetez X et obtenez Y gratuitement"
+
+#: templates/admin/dynamic-rules-popup.php:61
+msgid "Offer a gift product at cart"
+msgstr "Offrir un produit cadeau au panier"
+
+#: templates/admin/dynamic-rules-popup.php:68
+msgid "Cart Discount"
+msgstr "Remise sur le panier"
+
+#: templates/admin/dynamic-rules-popup.php:73
+msgid "Free shipping for orders over 100$"
+msgstr "Livraison gratuite pour les commandes de plus de 100$"
+
+#: templates/admin/dynamic-rules-popup.php:78
+msgid "Set a quantity discount >"
+msgstr "Définir une remise sur quantité >"
+
+#: templates/admin/dynamic-rules-popup.php:79
+msgid "Create a special offer >"
+msgstr "Créer une offre spéciale >"
+
+#: templates/admin/dynamic-rules-popup.php:80
+msgid "Gift products >"
+msgstr "Produits cadeaux >"
+
+#: templates/admin/dynamic-rules-popup.php:81
+msgid "Set a discount on whole shop >"
+msgstr "Définir une remise sur toute la boutique >"
+
+#: templates/admin/dynamic-rules-popup.php:82
+msgid "Set a category discount >"
+msgstr "Définir une remise de catégorie >"
+
+#: templates/admin/dynamic-rules-popup.php:83
+msgid "Set a cart discount >"
+msgstr "Définir une remise sur le panier >"
+
+#: templates/admin/dynamic-rules-popup.php:89
+msgid "Start from a template"
+msgstr "Partir d'un modèle"
+
+#: templates/admin/dynamic-rules-popup.php:118
+msgid "Or start from scratch"
+msgstr "Ou repartir de zéro"
+
+#: templates/admin/metaboxes/types/gift_items_in_cart.php:36
+msgid "is greater than"
+msgstr "est supérieur à"
+
+#: templates/admin/metaboxes/types/gift_items_in_cart.php:37
+msgid "is less than"
+msgstr "est inférieur à"
+
+#: templates/admin/metaboxes/types/gift_items_in_cart.php:38
+msgid "is equal to"
+msgstr "est égal à"
+
+#: templates/admin/metaboxes/types/gift_items_in_cart.php:39
+msgid "is not equal to "
+msgstr "n'est pas égal à"
+
+#. translators:  %1$s is the type of the discount ( percentage, amount discount , fixed price )  %2$s is the value of the discount %3$s is the symbol of the discount % or currency ( € ) %4$s is a product category field
+#. translators: %1$s is the type of the discount ( percentage, amount discount , fixed price ) %2$s is the value of the discount %3$s is the symbol of the discount % or currency ( € ) %4$s is a product category field
+#: templates/admin/metaboxes/types/quantity_category_discount.php:83
+#: templates/admin/metaboxes/types/quantity_category_discount.php:147
+msgid "Apply %1$s %2$s %3$s on all products of %4$s"
+msgstr "Appliquer %1$s %2$s %3$s sur tous les produits de %4$s"
+
+#: templates/admin/metaboxes/types/quantity_category_discount.php:99
+#: templates/admin/metaboxes/types/quantity_discount.php:127
+msgid "+ Add rule"
+msgstr "+ Ajouter une règle"
+
+#. translators:	%1$s is the numeric input field of the minimum quantity; %2$s is the numeric input field of the maximum quantity; %3$s is the type of the discount ( percentage, amount discount , fixed price ); %4$s is the value of the discount; %5$s is the symbol of the discount % or currency ( € )
+#. translators: %1$s is the numeric input field of the minimum quantity;%2$s is the numeric input field of the maximum quantity;%3$s is the type of the discount ( percentage, amount discount , fixed price );%4$s is the value of the discount;%5$s is the symbol of the discount % or currency ( € )
+#: templates/admin/metaboxes/types/quantity_discount.php:114
+#: templates/admin/metaboxes/types/quantity_discount.php:195
+msgid "- From %1$s to %2$s apply %3$s %4$s %5$s"
+msgstr "- De %1$s à %2$s s'appliquent %3$s %4$s %5$s"
+
+#: templates/admin/metaboxes/types/quantity_discount.php:132
+msgid ""
+"Create the quantity rules for the product you selected. Leave \"to\" field "
+"empty, to not put a max amount in this rule"
+msgstr ""
+"Créez les règles de quantité pour le produit que vous avez sélectionné. "
+"Laisser le champ \"à\" vide, pour ne pas mettre de montant max dans cette "
+"règle"
+
+#: templates/admin/metaboxes/types/save_rule.php:45
+msgid "Save Rule"
+msgstr "Enregistrer la règle"
+
+#: templates/admin/metaboxes/types/schedule_rules.php:27
+msgid "Enable the rule now and end it manually"
+msgstr "Activer la règle maintenant et y mettre fin manuellement"
+
+#: templates/admin/metaboxes/types/schedule_rules.php:28
+msgid "Schedule a start and end time"
+msgstr "Planifier une heure de début et de fin"
+
+#: templates/admin/metaboxes/types/schedule_rules.php:44
+msgid "From"
+msgstr "De"
+
+#: templates/admin/metaboxes/types/schedule_rules.php:50
+msgid "To"
+msgstr "À"
+
+#. translators:	 %1$s is the numeric input field of the minimum quantity; %2$s is the numeric input field of the maximum quantity; %3$s is the type of the discount ( percentage, amount discount , fixed price ); %4$s is the value of the discount; %5$s is the symbol of the discount % or currency ( € )
+#: templates/admin/metaboxes/types/special_offer_discount.php:77
+msgctxt "If user purchases 3 item(s) gets 2 item(s) with a discount of 30%"
+msgid "If user purchases %1$s item(s) gets %2$s item(s) with %3$s %4$s %5$s"
+msgstr ""
+"Si l'utilisateur achète %1$s article(s) obtient %2$s article(s) avec %3$s "
+"%4$s %5$s"
+
+#: templates/woocommerce/single-product/ywdpd-involved-items.php:44
+msgid "Free"
+msgstr "Gratuit"
+
+#: templates/yith_ywdpd_popup.php:40
+msgid "Confirm and close window"
+msgstr "Confirmer et fermer la fenêtre"
+
+#: templates/yith_ywdpd_popup.php:45
+msgid "No, thanks"
+msgstr "Non merci"
+
+#: templates/yith_ywdpd_popup_items.php:123
+msgid "Browse the products "
+msgstr "Parcourir les produits"
+
+#: templates/yith_ywdpd_popup_single_product.php:24
+msgid "Select a variation"
+msgstr "Sélectionnez une variante"
+
+#: templates/yith_ywdpd_popup_single_product.php:98
+msgid "Save options"
+msgstr "Sauvegarder les options"
+
+#: views/panel/custom-tabs/ywdpd-exclusions-popup.php:23
+msgid "Exclusion type"
+msgstr "Type d'exclusion"
+
+#: views/panel/custom-tabs/ywdpd-exclusions-popup.php:30
+msgid "Choose if you want to add a product, a category or a tag."
+msgstr ""
+"Choisissez si vous souhaitez ajouter un produit, une catégorie ou une "
+"étiquette."
+
+#: views/panel/custom-tabs/ywdpd-exclusions-popup.php:34
+msgid "Choose products to add"
+msgstr "Choisissez les produits à ajouter"
+
+#: views/panel/custom-tabs/ywdpd-exclusions-popup.php:51
+msgid "Choose the products to add to the exclusion list"
+msgstr "Choisissez les produits à ajouter à la liste d'exclusion"
+
+#: views/panel/custom-tabs/ywdpd-exclusions-popup.php:55
+msgid "Choose categories to add"
+msgstr "Choisissez les catégories à ajouter"
+
+#: views/panel/custom-tabs/ywdpd-exclusions-popup.php:73
+msgid "Choose the categories to add to the exclusion list"
+msgstr "Choisissez les catégories à ajouter à la liste d'exclusion"
+
+#: views/panel/custom-tabs/ywdpd-exclusions-popup.php:77
+msgid "Choose tags to add"
+msgstr "Choisissez les étiquettes à ajouter"
+
+#: views/panel/custom-tabs/ywdpd-exclusions-popup.php:95
+msgid "Choose the tags to add to the exclusion list"
+msgstr "Choisissez les étiquettes à ajouter à la liste d'exclusion"
+
+#: views/panel/custom-tabs/ywdpd-exclusions-popup.php:99
+msgid "Add the exclusion to the list"
+msgstr "Ajouter l'exclusion à la liste"
+
+#: views/panel/custom-tabs/ywdpd-exclusions-table.php:47
+msgid "Exclusion List"
+msgstr "Liste d'exclusion"
+
+#: views/panel/custom-tabs/ywdpd-exclusions-table.php:52
+#: views/panel/custom-tabs/ywdpd-exclusions-table.php:79
+msgid "Add exclusion"
+msgstr "Ajouter une exclusion"
+
+#: views/panel/custom-tabs/ywdpd-exclusions-table.php:61
+msgid ""
+"Items added to the Exclusion List will be automatically excluded from all "
+"the rules"
+msgstr ""
+"Les éléments ajoutés à la liste d'exclusion seront automatiquement exclus de "
+"toutes les règles"
+
+#: views/panel/custom-tabs/ywdpd-exclusions-table.php:74
+msgctxt "Text showed when the list of quotes is empty."
+msgid "You don't have any excluded items yet."
+msgstr "Vous n'avez pas encore d'éléments exclus."
+
+#: views/panel/custom-tabs/ywdpd-exclusions-table.php:76
+msgctxt "Text showed when the list of quotes is empty."
+msgid ""
+"Click on the \"Add exclusion\" button to exclude a product, a category or a "
+"tag!"
+msgstr ""
+"Cliquez sur le bouton \"Ajouter une exclusion\" pour exclure un produit, une "
+"catégorie ou un tag !"

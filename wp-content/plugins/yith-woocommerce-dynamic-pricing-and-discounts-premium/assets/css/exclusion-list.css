@@ -1,0 +1,120 @@
+.ywdpd-admin-wrap-content {
+	background: white;
+	padding: 20px;
+}
+
+.wrap-title {
+	display: flex;
+	align-items: center;
+}
+
+.ywdpd-admin-no-posts {
+	text-align: center;
+	padding: 50px;
+}
+
+.ywdpd-admin-wrap-content h2 {
+	border: 0;
+	padding: 0;
+}
+
+.ywdpd-exclusion-list-tab .ywdpd-admin-no-posts-logo img {
+	width: 50px
+}
+
+.ywdpd-add-exclusions {
+	margin: 0 5px 0 20px;
+}
+
+.ywdpd-excl-name-wrapper {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+}
+
+.ywdpd-excl-name-wrapper img {
+	width: 50px;
+	height: auto;
+}
+.ywdpd-admin-no-posts-text{
+	margin-top:13px;
+}
+table.wp-list-table.exclusions {
+	border: 2px solid #f1f1f1;
+}
+
+.exclusions th#name.column-primary {
+	width: 50%;
+}
+
+table.wp-list-table.exclusions.striped > tbody > :nth-child(odd) {
+	background-color: #f1f1f1;
+}
+
+table.wp-list-table.widefat.fixed.striped.table-view-list.exclusions td,
+table.wp-list-table.widefat.fixed.striped.table-view-list.exclusions th {
+	vertical-align: middle;
+	height: 50px;
+	border: 0;
+}
+
+table.wp-list-table.widefat.fixed.striped.table-view-list.exclusions tr:hover {
+	background-color: #e7f0f6;
+	transition: all 0.3s linear;
+}
+
+/**
+POPUP
+ */
+.select2-container {
+	z-index: 999999 !important;
+}
+
+.ywdpd-exclusion-list-popup .label {
+	text-align: left;
+	min-width: 110px;
+	padding: 10px 0;
+}
+
+.yith-exclusion-list__form_row .ywdpd-field {
+	margin-bottom: 30px;
+}
+
+.yith-exclusion-list__form_row .ywdpd-field {
+	display: flex;
+	align-items: start;
+}
+
+.yith-exclusion-list__form_row .ywdpd-field label {
+	width: 100px;
+	padding-right: 20px;
+	font-size: 13px;
+}
+
+.yith-exclusion-list__form_row .ywdpd-field .description {
+	display: block;
+	font-size: 11px;
+}
+
+.ywdpd-field-input .yith-plugin-fw-field-wrapper, .ywdpd-field-input .select2, .ywdpd-field-input .yith-plugin-fw-select2-wrapper {
+	width: 300px !important;
+}
+
+form.yith-exclusion-list__form_row {
+	padding: 15px 10px 0;
+}
+
+
+.wc-wp-version-gte-53 .select2-container .select2-search--inline .select2-search__field {
+	width: 100% !important;
+}
+
+div#yith-exclusion-list__delete_row p {
+	padding: 0 10px;
+}
+
+.ywdpd-field.ywdpd-save-button {
+	text-align: right;
+	display: block;
+	margin-top:40px;
+}
