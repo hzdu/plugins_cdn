@@ -7,10 +7,14 @@
 
     // Cart item table rows
     .cart-item-row {
+        border: none !important;
+
         > th, td {
             text-align: left;
             font-weight: normal;
             padding: 1em 0 1em 0;
+            border-left: none;
+            border-right: none;
         }
 
         // Product Thumb
@@ -21,6 +25,7 @@
             .cfw-cart-item-image-wrap {
                 position: relative;
                 height: auto;
+                display: inline-block;
             }
 
             img {

@@ -18,6 +18,16 @@ class FormField {
 
         // Disable highlighted countries separator
         jQuery( '.country_select' ).find( 'option:contains(---)' ).attr( 'disabled', 'disabled' );
+
+        jQuery( document.body ).on( 'click', '.cfw-password-toggle', function () {
+            jQuery( this ).toggleClass( 'cfw-password-eye-open' );
+
+            if ( jQuery( this ).hasClass( 'cfw-password-eye-open' ) ) {
+                jQuery( this ).next( 'input' ).attr( 'type', 'password' );
+            } else {
+                jQuery( this ).next( 'input' ).attr( 'type', 'text' );
+            }
+        } );
     }
 
     maybeAddFloatClass( element: any ): void {

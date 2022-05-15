@@ -89,11 +89,6 @@ body.admin-bar {
     @import "compatibility/woocommerce-subscriptions";
     @import "compatibility/woocommerce-product-bundles";
 
-    // No redundant quantity info!
-    .cfw-cart-item-quantity-bubble {
-        display: none;
-    }
-
     #cfw_order_bumps_below_cart_items {
         display: block !important;
     }
@@ -216,6 +211,7 @@ body.admin-bar {
 
     .cfw-side-cart-totals {
         table {
+            border-spacing: 0 1em;
             th, td {
                 padding: 0;
                 text-align: left;

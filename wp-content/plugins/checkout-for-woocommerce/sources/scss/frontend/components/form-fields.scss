@@ -340,3 +340,39 @@ fieldset {
         margin-right: 0.2em;
     }
 }
+
+.cfw-password-toggle {
+    position: absolute;
+    top: 0.7em;
+    right: 1em;
+    color: #999999 !important;
+
+    svg {
+        width: 1.5em;
+    }
+
+    .cfw-eye-open {
+        display: none;
+    }
+
+    .cfw-eye-shut {
+        display: block;
+    }
+
+    &.cfw-password-eye-open {
+        .cfw-eye-open {
+            display: block;
+        }
+        .cfw-eye-shut {
+            display: none;
+        }
+    }
+
+    &:hover {
+        color: darken( #999, 20% ) !important;
+    }
+}
+
+.cfw-label-style-normal .cfw-password-toggle {
+    top: 2.8em;
+}

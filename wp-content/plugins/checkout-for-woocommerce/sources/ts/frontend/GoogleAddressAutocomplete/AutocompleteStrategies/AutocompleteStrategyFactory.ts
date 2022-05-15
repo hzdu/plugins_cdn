@@ -5,6 +5,7 @@ import GermanyAutocompleteStrategy     from './GermanyAutocompleteStrategy';
 import NetherlandsAutocompleteStrategy from './NetherlandsAutocompleteStrategy';
 import NewZealandAutocompleteStrategy  from './NewZealandAutocompleteStrategy';
 import SpainAutocompleteStrategy       from './SpainAutocompleteStrategy';
+import SwedenAutocompleteStrategy      from './SwedenAutocompleteStrategy';
 
 export default class AutocompleteStrategyFactory {
     public static get( components: google.maps.GeocoderAddressComponent[], formattedAddress: string ): AutocompleteStrategy {
@@ -28,6 +29,10 @@ export default class AutocompleteStrategyFactory {
 
         if ( country === 'DE' ) {
             return new GermanyAutocompleteStrategy( components, formattedAddress );
+        }
+
+        if ( country === 'SE' ) {
+            return new SwedenAutocompleteStrategy( components, formattedAddress );
         }
 
         return new AutocompleteStrategy( components, formattedAddress );

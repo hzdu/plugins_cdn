@@ -1,7 +1,7 @@
 class AddableFields {
     constructor() {
         jQuery( document.body ).on( 'click', '.cfw-add-field', function () {
-            jQuery( this ).siblings( '[id$=_field]' ).slideDown( 300, function () {
+            jQuery( this ).next( '[id$=_field]' ).slideDown( 300, function () {
                 jQuery( this ).removeClass( 'cfw-hidden' );
             } );
             jQuery( this ).slideUp( 300 );

@@ -213,8 +213,7 @@ class ParsleyService implements FieldValidationRefresher {
 
                     if ( stateField.is( 'select' ) ) {
                         stateWrapper.addClass( 'cfw-select-input' );
-                        stateField.addClass( 'garlic-auto-save' )
-                            .trigger( 'cfw-after-field-country-to-state-changed' );
+                        stateField.trigger( 'cfw-after-field-country-to-state-changed' );
                         LoggingService.logEvent( 'Fired cfw-after-field-country-to-state-changed event.' );
 
                         stateWrapper.addClass( 'cfw-state-input cfw-label-is-floated' ).removeClass( 'cfw-hidden-input cfw-text-input' );
@@ -227,7 +226,7 @@ class ParsleyService implements FieldValidationRefresher {
 
                         stateElement.dataset.placeholder = stateFieldLabel;
 
-                        stateField.addClass( 'garlic-auto-save input-text' )
+                        stateField.addClass( 'input-text' )
                             .trigger( 'cfw-after-field-country-to-state-changed' );
                         LoggingService.logEvent( 'Fired cfw-after-field-country-to-state-changed event.' );
 
@@ -241,7 +240,7 @@ class ParsleyService implements FieldValidationRefresher {
                     // Handle required toggle
                     // We have to add the parsley attributes here because the field is
                     // recreated and thus loses anything that was previously there.
-                    const group = stateField.attr( 'id' ).split( '_' )[ 0 ];
+                    const group = stateField.parents( '.cfw-panel.active' ).attr( 'id' );
 
                     stateField.attr( {
                         'data-parsley-trigger': stateFieldRequired ? 'keyup change focusout' : null,

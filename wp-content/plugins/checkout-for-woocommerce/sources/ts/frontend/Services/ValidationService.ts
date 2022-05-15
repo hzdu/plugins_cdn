@@ -15,6 +15,11 @@ class ValidationService {
         this.validateOnFormSubmit();
 
         jQuery( window ).on( 'load', () => { this.validatePreviousTabs(); } );
+
+        Main.instance.tabService.tabContainer.bind( 'easytabs:after', () => {
+            // Clean up the state so that the next validation runs fresh
+            jQuery( '.cfw-validation-passed' ).removeClass( 'cfw-validation-passed' );
+        } );
     }
 
     addValidatorFactory( tab: string, validator: validatorFactory ): void {
@@ -46,10 +51,6 @@ class ValidationService {
             event.stopImmediatePropagation();
             return false;
         } );
-
-        // Clean up the state so that the next validation runs fresh
-        const after = () => { Main.instance.tabService.getCurrentTab().removeClass( 'cfw-validation-passed' ); };
-        Main.instance.tabService.tabContainer.bind( 'easytabs:after', after );
     }
 
     validateTab( tab: string, destinationTab: string ): void {

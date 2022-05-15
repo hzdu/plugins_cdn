@@ -6,6 +6,10 @@ import LoggingService from './LoggingService';
 
 class FieldPersistenceService {
     constructor( form: JQuery ) {
+        if ( DataService.getSetting( 'enable_field_persistence' ) !== true ) {
+            return;
+        }
+
         const excludes = DataService.getSetting( 'field_persistence_excludes' );
 
         form.garlic( {

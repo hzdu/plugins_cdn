@@ -110,7 +110,9 @@ class LoginForm {
         } );
 
         jQuery( document.body ).on( 'cfw_account_not_exists', () => {
-            LoginForm.showCreatePasswordField();
+            if ( DataService.getSetting( 'check_create_account_by_default' ) ) {
+                LoginForm.showCreatePasswordField();
+            }
         } );
 
         jQuery( document.body ).on( 'click', '#cfw_login_modal_close', ( e ) => {

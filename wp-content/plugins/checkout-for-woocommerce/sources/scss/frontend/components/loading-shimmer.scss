@@ -48,13 +48,16 @@
     }
 
     .cfw-cart-item-image-wrap,
-    .cfw-cart-item-title,
     .cfw-edit-item-quantity-control-wrap,
     .cfw-cart-item-subtotal span,
     .cfw-cart-item-data,
     .cfw-items-summary-item-discount,
     .cfw-promo-row > div > * {
         @include cfw-shimmer-content();
+    }
+
+    .cfw-cart-item-title {
+        @include cfw-shimmer-content( -2px );
     }
 
     #cfw-totals-list {

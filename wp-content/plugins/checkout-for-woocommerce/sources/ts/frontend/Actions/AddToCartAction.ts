@@ -1,5 +1,3 @@
-import DataService             from '../Services/DataService';
-import LoggingService          from '../Services/LoggingService';
 import Action                  from './Action';
 
 class AddToCartAction extends Action {
