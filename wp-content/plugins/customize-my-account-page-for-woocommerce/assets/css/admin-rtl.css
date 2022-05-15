@@ -1,0 +1,430 @@
+/**
+ * Import
+ **/
+/**
+ * This file contains all Sass variables.
+ **/
+/**
+ * Color Variables
+ **/
+/**
+ * Buttons
+ */
+.tgwc-button {
+  display: inline-block;
+  color: #343a40;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  user-select: none;
+  background-color: transparent;
+  border: 1px solid transparent;
+  padding: 8px 12px;
+  font-size: 14px;
+  line-height: 1.5;
+  border-radius: 4px;
+}
+.tgwc-button:hover {
+  color: #343a40;
+}
+.tgwc-button.tgwc-button--small {
+  font-size: 13px;
+  padding: 4px 8px;
+  line-height: 1.4;
+}
+.tgwc-button.tgwc-button--primary {
+  background-color: #3869fa;
+  color: #fff;
+  border-color: #3869fa;
+}
+.tgwc-button.tgwc-button--primary:hover {
+  background-color: #0644f9;
+  color: #fff;
+  border-color: #0644f9;
+}
+.tgwc-button.tgwc-button--warning {
+  background: #ffc107;
+  color: #343a40;
+  border-color: #ffc107;
+}
+.tgwc-button.tgwc-button--warning:hover {
+  background: #edb100;
+  border-color: #ffc107;
+}
+.tgwc-button.tgwc-button--danger {
+  background: #f34c4c;
+  color: #fff;
+  border-color: #f34c4c;
+}
+.tgwc-button.tgwc-button--danger:hover {
+  background: #f01c1c;
+  border-color: #f34c4c;
+}
+.tgwc-button.tgwc-button--link {
+  background: transparent;
+  border-color: transparent;
+}
+
+.toplevel_page_tgwc-customize-my-account-page .tgwc-tooltip {
+  background: #212529;
+  font-size: 12px;
+  color: #fff;
+  font-weight: 400;
+  font-family: inherit;
+  line-height: 1.5;
+  text-transform: inherit;
+  max-width: 200px;
+  box-shadow: 0 0 4px rgba(33, 37, 41, 0.25);
+  border-radius: 2px;
+}
+.toplevel_page_tgwc-customize-my-account-page .tgwc-tooltip .ui-tooltip-content {
+  padding: 8px;
+}
+.toplevel_page_tgwc-customize-my-account-page .tgwc-tooltip .ui-tooltip-content::after {
+  content: "";
+  height: 12px;
+  width: 12px;
+  background: #212529;
+  display: inline-block;
+  position: absolute;
+  right: 0;
+  left: 0;
+  bottom: -4px;
+  margin: 0 auto;
+  transform: rotate(-45deg);
+}
+
+/**
+ * Modal Popup
+ **/
+.toplevel_page_tgwc-customize-my-account-page .ui-widget.ui-widget-content {
+  border: none;
+  padding: 0;
+  border-radius: 8px;
+}
+.toplevel_page_tgwc-customize-my-account-page .ui-widget.ui-widget-content .ui-widget-header {
+  background: #fff;
+  border-top: none;
+  border-right: none;
+  border-bottom: 1px solid #ced4da;
+  border-left: none;
+  padding: 12px 16px;
+  border-radius: 8px 8px 0 0;
+}
+.toplevel_page_tgwc-customize-my-account-page .ui-widget.ui-widget-content .ui-widget-header .ui-dialog-title {
+  font-size: 20px;
+  display: block;
+  line-height: 1.25;
+  font-weight: 500;
+}
+.toplevel_page_tgwc-customize-my-account-page .ui-widget.ui-widget-content .ui-widget-header .ui-button.ui-button-icon-only.ui-dialog-titlebar-close {
+  height: 24px;
+  width: 24px;
+  margin: 0;
+  top: 0;
+  left: 0;
+  background: none;
+  border: none;
+}
+.toplevel_page_tgwc-customize-my-account-page .ui-widget.ui-widget-content .ui-widget-header .ui-button.ui-button-icon-only.ui-dialog-titlebar-close .ui-icon-closethick {
+  background: none;
+}
+.toplevel_page_tgwc-customize-my-account-page .ui-widget.ui-widget-content .ui-widget-header .ui-button.ui-button-icon-only.ui-dialog-titlebar-close .ui-icon-closethick::before, .toplevel_page_tgwc-customize-my-account-page .ui-widget.ui-widget-content .ui-widget-header .ui-button.ui-button-icon-only.ui-dialog-titlebar-close .ui-icon-closethick::after {
+  content: "";
+  display: inline-block;
+  position: absolute;
+  height: 2px;
+  width: 16px;
+  right: 0;
+  left: 0;
+  top: 50%;
+  margin: 0 auto;
+  background: #adb5bd;
+  border-radius: 1px;
+}
+.toplevel_page_tgwc-customize-my-account-page .ui-widget.ui-widget-content .ui-widget-header .ui-button.ui-button-icon-only.ui-dialog-titlebar-close .ui-icon-closethick::before {
+  transform: translatey(-50%) rotate(-45deg);
+}
+.toplevel_page_tgwc-customize-my-account-page .ui-widget.ui-widget-content .ui-widget-header .ui-button.ui-button-icon-only.ui-dialog-titlebar-close .ui-icon-closethick::after {
+  transform: translatey(-50%) rotate(-135deg);
+}
+.toplevel_page_tgwc-customize-my-account-page .ui-widget.ui-widget-content .ui-widget-header .ui-button.ui-button-icon-only.ui-dialog-titlebar-close:hover {
+  background: #f34c4c;
+}
+.toplevel_page_tgwc-customize-my-account-page .ui-widget.ui-widget-content .ui-widget-header .ui-button.ui-button-icon-only.ui-dialog-titlebar-close:hover .ui-icon-closethick::before, .toplevel_page_tgwc-customize-my-account-page .ui-widget.ui-widget-content .ui-widget-header .ui-button.ui-button-icon-only.ui-dialog-titlebar-close:hover .ui-icon-closethick::after {
+  background: #fff;
+}
+.toplevel_page_tgwc-customize-my-account-page .ui-widget.ui-widget-content .ui-dialog-content {
+  padding: 16px;
+}
+.toplevel_page_tgwc-customize-my-account-page .ui-widget.ui-widget-content .ui-dialog-content form label {
+  display: inline-block;
+  margin-bottom: 4px;
+}
+.toplevel_page_tgwc-customize-my-account-page .ui-widget.ui-widget-content .ui-dialog-content form input[type=text] {
+  display: block;
+  width: 100%;
+}
+.toplevel_page_tgwc-customize-my-account-page .ui-widget.ui-widget-content .ui-dialog-content form .tgwc-error-message {
+  margin-top: 4px;
+  color: #f34c4c;
+}
+.toplevel_page_tgwc-customize-my-account-page .ui-widget.ui-widget-content .ui-dialog-buttonpane {
+  margin-top: 0;
+  border-radius: 0 0 8px 8px;
+}
+.toplevel_page_tgwc-customize-my-account-page .ui-widget.ui-widget-content .ui-dialog-buttonpane .tgwc-button {
+  height: unset;
+  border: 0;
+}
+.toplevel_page_tgwc-customize-my-account-page .ui-widget.ui-widget-content .ui-dialog-buttonpane .tgwc-button:hover {
+  color: #fff;
+}
+.toplevel_page_tgwc-customize-my-account-page .ui-widget.ui-widget-content .ui-dialog-buttonpane .tgwc-button--link {
+  color: #343a40;
+}
+.toplevel_page_tgwc-customize-my-account-page .ui-widget.ui-widget-content .ui-dialog-buttonpane .tgwc-button--link:hover {
+  background: transparent;
+  color: #343a40;
+}
+.toplevel_page_tgwc-customize-my-account-page .ui-widget.ui-widget-content .ui-dialog-buttonpane .tgwc-button--danger:hover, .toplevel_page_tgwc-customize-my-account-page .ui-widget.ui-widget-content .ui-dialog-buttonpane .tgwc-button--danger:focus {
+  background: #f01c1c;
+  color: #fff;
+}
+.toplevel_page_tgwc-customize-my-account-page .ui-widget.ui-widget-content .tgwc-dialog-content {
+  display: flex;
+}
+.toplevel_page_tgwc-customize-my-account-page .ui-widget.ui-widget-content .tgwc-dialog-content .ui-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  text-indent: inherit;
+  flex: 0 0 48px;
+  margin-top: 0;
+  margin-left: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.toplevel_page_tgwc-customize-my-account-page .ui-widget.ui-widget-content .tgwc-dialog-content .ui-icon.ui-icon-alert {
+  background: rgba(243, 76, 76, 0.15) none;
+  color: #f34c4c;
+}
+.toplevel_page_tgwc-customize-my-account-page .ui-widget.ui-widget-content .tgwc-dialog-content p {
+  font-size: 1.25em;
+  margin-top: 0;
+}
+.toplevel_page_tgwc-customize-my-account-page .ui-widget.ui-widget-content .tgwc-dialog-notice .notice {
+  margin: 12px 0 0 0;
+}
+.toplevel_page_tgwc-customize-my-account-page .ui-widget-overlay {
+  background: #212529;
+  opacity: 0.6;
+}
+
+.tgwc-brand {
+  display: flex;
+  align-items: center;
+  column-gap: 5px;
+}
+.tgwc-brand .tgwc-version {
+  background-color: #fff;
+  padding: 4px;
+  border-radius: 2px;
+  color: #50575e;
+  font-weight: 600;
+}
+
+/**
+ * Tooltip
+ **/
+.ui-tooltip,
+.arrow:after {
+  background: #212529;
+  border: 2px solid #fff;
+}
+
+.ui-tooltip {
+  padding: 10px 20px;
+  color: #fff;
+  border-radius: 20px;
+  font: bold 14px "Helvetica Neue", Sans-Serif;
+  text-transform: uppercase;
+  box-shadow: 0 0 7px #212529;
+}
+
+.arrow {
+  width: 70px;
+  height: 16px;
+  overflow: hidden;
+  position: absolute;
+  right: 50%;
+  margin-right: -35px;
+  bottom: -16px;
+}
+.arrow.top {
+  top: -16px;
+  bottom: auto;
+}
+.arrow.top::after {
+  bottom: -20px;
+  top: auto;
+}
+.arrow.left {
+  right: 20%;
+}
+.arrow::after {
+  content: "";
+  position: absolute;
+  right: 20px;
+  top: -20px;
+  width: 25px;
+  height: 25px;
+  box-shadow: -6px 5px 9px -9px #212529;
+  transform: rotate(-45deg);
+}
+
+/**
+ * Endpoints Setting
+ **/
+.tgwc-endpoints-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.tgwc-endpoints-header h3 {
+  flex: 1;
+}
+.tgwc-endpoints-header .actions {
+  margin-right: auto;
+}
+
+.tgwc-card {
+  background: #fff;
+  padding: 16px;
+  border-radius: 4px;
+  border: 1px solid #ced4da;
+  box-shadow: 0 2px 8px rgba(33, 37, 41, 0.15);
+}
+
+.toplevel_page_tgwc-customize-my-account-page .tgwc-tabs-with-sidenav {
+  background: #fff;
+  border-radius: 4px;
+  width: 100%;
+  display: table;
+  clear: both;
+  box-sizing: border-box;
+  border: 1px solid #ced4da;
+  box-shadow: 0 2px 8px rgba(33, 37, 41, 0.15);
+}
+.toplevel_page_tgwc-customize-my-account-page .tgwc-tabs-with-sidenav .tgwc-sidenav {
+  background: #f8f9fa;
+  border-left: 1px solid #ced4da;
+  display: table-cell !important;
+  width: 240px !important;
+  float: none !important;
+}
+.toplevel_page_tgwc-customize-my-account-page .tgwc-tabs-with-sidenav .tgwc-tabs-panel {
+  padding: 0 20px;
+}
+.toplevel_page_tgwc-customize-my-account-page .tgwc-tabs-with-sidenav .tgwc-tabs-panel .tgwc-tabs-panel-header {
+  border-bottom: 1px solid #ced4da;
+  padding-bottom: 16px;
+}
+.toplevel_page_tgwc-customize-my-account-page .tgwc-tabs-with-sidenav .tgwc-tabs-panel .tgwc-tabs-panel-header i {
+  margin-left: 8px;
+}
+.toplevel_page_tgwc-customize-my-account-page .dd-item {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  border-bottom: 1px solid #ced4da;
+}
+.toplevel_page_tgwc-customize-my-account-page .dd-item .dd-list {
+  width: 100%;
+  padding-right: 20px;
+  border-top: 1px solid #ced4da;
+}
+.toplevel_page_tgwc-customize-my-account-page .dd-item .dd-list li {
+  border-width: 1px 1px 0 0;
+  border-style: solid;
+  border-color: #ced4da;
+}
+.toplevel_page_tgwc-customize-my-account-page .dd-item .dd-list li:first-of-type {
+  border-top: none;
+}
+.toplevel_page_tgwc-customize-my-account-page .dd-item .tgwc-sidenav-tab-anchor {
+  background: transparent;
+  border: none;
+  color: #212529;
+  flex: 1;
+  margin: 0;
+  border-radius: 0;
+  padding: 12px 0 12px 16px;
+  height: auto;
+  font-weight: 500;
+  text-decoration: none;
+  word-break: break-all;
+}
+.toplevel_page_tgwc-customize-my-account-page .dd-item .tgwc-sidenav-tab-anchor:focus {
+  box-shadow: none;
+}
+.toplevel_page_tgwc-customize-my-account-page .dd-item .tgwc-sidenav-tab-anchor span:nth-child(2) {
+  display: none;
+}
+.toplevel_page_tgwc-customize-my-account-page .dd-item .dd-handle {
+  cursor: move;
+  position: relative;
+  border: none;
+  background: transparent;
+}
+.toplevel_page_tgwc-customize-my-account-page .dd-item .dd-handle::before {
+  color: #212529;
+}
+.toplevel_page_tgwc-customize-my-account-page .dd-item.active {
+  background: #fff;
+}
+.toplevel_page_tgwc-customize-my-account-page .dd-item.active::after {
+  content: "";
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  background: #fff;
+  border: 1px solid #ced4da;
+  border-right: transparent;
+  border-bottom: transparent;
+  position: absolute;
+  top: 50%;
+  left: -5px;
+  transform: translatey(-50%) rotate(-45deg);
+}
+.toplevel_page_tgwc-customize-my-account-page .dd-item[data-disabled] .tgwc-sidenav-tab-anchor span:nth-child(2) {
+  display: inline;
+}
+.toplevel_page_tgwc-customize-my-account-page .dd-list.dd-dragel .dd-item {
+  background: #fff;
+  border-color: #fff;
+  box-shadow: 0 2px 10px 0 rgba(33, 37, 41, 0.25);
+}
+.toplevel_page_tgwc-customize-my-account-page .dd-list.dd-dragel .dd-item .dd-handle {
+  cursor: move;
+  box-shadow: none;
+}
+.toplevel_page_tgwc-customize-my-account-page .select2-container .select2-search {
+  margin-bottom: 0;
+}
+.toplevel_page_tgwc-customize-my-account-page .select2-container .select2-search .select2-search__field {
+  margin: 0;
+}
+.toplevel_page_tgwc-customize-my-account-page .select2-container .select2-selection__choice {
+  padding: 2px 5px;
+  margin-bottom: 0;
+}
+
+.tgwc-icon {
+  width: 1em;
+  height: 1em;
+  vertical-align: -0.125em;
+  display: inline-block;
+  font-size: inherit;
+},.tgwc-button{display:inline-block;color:#343a40;text-align:center;vertical-align:middle;cursor:pointer;user-select:none;background-color:transparent;border:1px solid transparent;padding:8px 12px;font-size:14px;line-height:1.5;border-radius:4px}.tgwc-button:hover{color:#343a40}.tgwc-button.tgwc-button--small{font-size:13px;padding:4px 8px;line-height:1.4}.tgwc-button.tgwc-button--primary{background-color:#3869fa;color:#fff;border-color:#3869fa}.tgwc-button.tgwc-button--primary:hover{background-color:#0644f9;color:#fff;border-color:#0644f9}.tgwc-button.tgwc-button--warning{background:#ffc107;color:#343a40;border-color:#ffc107}.tgwc-button.tgwc-button--warning:hover{background:#edb100;border-color:#ffc107}.tgwc-button.tgwc-button--danger{background:#f34c4c;color:#fff;border-color:#f34c4c}.tgwc-button.tgwc-button--danger:hover{background:#f01c1c;border-color:#f34c4c}.tgwc-button.tgwc-button--link{background:100% 0;border-color:transparent}.toplevel_page_tgwc-customize-my-account-page .tgwc-tooltip{background:#212529;font-size:12px;color:#fff;font-weight:400;font-family:inherit;line-height:1.5;text-transform:inherit;max-width:200px;box-shadow:0 0 4px rgba(33,37,41,.25);border-radius:2px}.toplevel_page_tgwc-customize-my-account-page .tgwc-tooltip .ui-tooltip-content{padding:8px}.toplevel_page_tgwc-customize-my-account-page .tgwc-tooltip .ui-tooltip-content::after{content:"";height:12px;width:12px;background:#212529;display:inline-block;position:absolute;right:0;left:0;bottom:-4px;margin:0 auto;transform:rotate(-45deg)}.toplevel_page_tgwc-customize-my-account-page .ui-widget.ui-widget-content{border:none;padding:0;border-radius:8px}.toplevel_page_tgwc-customize-my-account-page .ui-widget.ui-widget-content .ui-widget-header{background:#fff;border-top:none;border-right:none;border-bottom:1px solid #ced4da;border-left:none;padding:12px 16px;border-radius:8px 8px 0 0}.toplevel_page_tgwc-customize-my-account-page .ui-widget.ui-widget-content .ui-widget-header .ui-dialog-title{font-size:20px;display:block;line-height:1.25;font-weight:500}.toplevel_page_tgwc-customize-my-account-page .ui-widget.ui-widget-content .ui-widget-header .ui-button.ui-button-icon-only.ui-dialog-titlebar-close{height:24px;width:24px;margin:0;top:0;left:0;background:100% 0;border:none}.toplevel_page_tgwc-customize-my-account-page .ui-widget.ui-widget-content .ui-widget-header .ui-button.ui-button-icon-only.ui-dialog-titlebar-close .ui-icon-closethick{background:100% 0}.toplevel_page_tgwc-customize-my-account-page .ui-widget.ui-widget-content .ui-widget-header .ui-button.ui-button-icon-only.ui-dialog-titlebar-close .ui-icon-closethick::after,.toplevel_page_tgwc-customize-my-account-page .ui-widget.ui-widget-content .ui-widget-header .ui-button.ui-button-icon-only.ui-dialog-titlebar-close .ui-icon-closethick::before{content:"";display:inline-block;position:absolute;height:2px;width:16px;right:0;left:0;top:50%;margin:0 auto;background:#adb5bd;border-radius:1px}.toplevel_page_tgwc-customize-my-account-page .ui-widget.ui-widget-content .ui-widget-header .ui-button.ui-button-icon-only.ui-dialog-titlebar-close .ui-icon-closethick::before{transform:translatey(-50%) rotate(-45deg)}.toplevel_page_tgwc-customize-my-account-page .ui-widget.ui-widget-content .ui-widget-header .ui-button.ui-button-icon-only.ui-dialog-titlebar-close .ui-icon-closethick::after{transform:translatey(-50%) rotate(-135deg)}.toplevel_page_tgwc-customize-my-account-page .ui-widget.ui-widget-content .ui-widget-header .ui-button.ui-button-icon-only.ui-dialog-titlebar-close:hover{background:#f34c4c}.toplevel_page_tgwc-customize-my-account-page .ui-widget.ui-widget-content .ui-widget-header .ui-button.ui-button-icon-only.ui-dialog-titlebar-close:hover .ui-icon-closethick::after,.toplevel_page_tgwc-customize-my-account-page .ui-widget.ui-widget-content .ui-widget-header .ui-button.ui-button-icon-only.ui-dialog-titlebar-close:hover .ui-icon-closethick::before{background:#fff}.toplevel_page_tgwc-customize-my-account-page .ui-widget.ui-widget-content .ui-dialog-content{padding:16px}.toplevel_page_tgwc-customize-my-account-page .ui-widget.ui-widget-content .ui-dialog-content form label{display:inline-block;margin-bottom:4px}.toplevel_page_tgwc-customize-my-account-page .ui-widget.ui-widget-content .ui-dialog-content form input[type=text]{display:block;width:100%}.toplevel_page_tgwc-customize-my-account-page .ui-widget.ui-widget-content .ui-dialog-content form .tgwc-error-message{margin-top:4px;color:#f34c4c}.toplevel_page_tgwc-customize-my-account-page .ui-widget.ui-widget-content .ui-dialog-buttonpane{margin-top:0;border-radius:0 0 8px 8px}.toplevel_page_tgwc-customize-my-account-page .ui-widget.ui-widget-content .ui-dialog-buttonpane .tgwc-button{height:unset;border:0}.toplevel_page_tgwc-customize-my-account-page .ui-widget.ui-widget-content .ui-dialog-buttonpane .tgwc-button:hover{color:#fff}.toplevel_page_tgwc-customize-my-account-page .ui-widget.ui-widget-content .ui-dialog-buttonpane .tgwc-button--link{color:#343a40}.toplevel_page_tgwc-customize-my-account-page .ui-widget.ui-widget-content .ui-dialog-buttonpane .tgwc-button--link:hover{background:100% 0;color:#343a40}.toplevel_page_tgwc-customize-my-account-page .ui-widget.ui-widget-content .ui-dialog-buttonpane .tgwc-button--danger:focus,.toplevel_page_tgwc-customize-my-account-page .ui-widget.ui-widget-content .ui-dialog-buttonpane .tgwc-button--danger:hover{background:#f01c1c;color:#fff}.toplevel_page_tgwc-customize-my-account-page .ui-widget.ui-widget-content .tgwc-dialog-content{display:flex}.toplevel_page_tgwc-customize-my-account-page .ui-widget.ui-widget-content .tgwc-dialog-content .ui-icon{width:48px;height:48px;border-radius:50%;text-indent:inherit;flex:0 0 48px;margin-top:0;margin-left:15px;display:flex;align-items:center;justify-content:center}.toplevel_page_tgwc-customize-my-account-page .ui-widget.ui-widget-content .tgwc-dialog-content .ui-icon.ui-icon-alert{background:rgba(243,76,76,.15) none;color:#f34c4c}.toplevel_page_tgwc-customize-my-account-page .ui-widget.ui-widget-content .tgwc-dialog-content p{font-size:1.25em;margin-top:0}.toplevel_page_tgwc-customize-my-account-page .ui-widget.ui-widget-content .tgwc-dialog-notice .notice{margin:12px 0 0 0}.toplevel_page_tgwc-customize-my-account-page .ui-widget-overlay{background:#212529;opacity:.6}.tgwc-brand{display:flex;align-items:center;column-gap:5px}.tgwc-brand .tgwc-version{background-color:#fff;padding:4px;border-radius:2px;color:#50575e;font-weight:600}.arrow:after,.ui-tooltip{background:#212529;border:2px solid #fff}.ui-tooltip{padding:10px 20px;color:#fff;border-radius:20px;font:bold 14px "Helvetica Neue",Sans-Serif;text-transform:uppercase;box-shadow:0 0 7px #212529}.arrow{width:70px;height:16px;overflow:hidden;position:absolute;right:50%;margin-right:-35px;bottom:-16px}.arrow.top{top:-16px;bottom:auto}.arrow.top::after{bottom:-20px;top:auto}.arrow.left{right:20%}.arrow::after{content:"";position:absolute;right:20px;top:-20px;width:25px;height:25px;box-shadow:-6px 5px 9px -9px #212529;transform:rotate(-45deg)}.tgwc-endpoints-header{display:flex;flex-wrap:wrap;align-items:center}.tgwc-endpoints-header h3{flex:1}.tgwc-endpoints-header .actions{margin-right:auto}.tgwc-card{background:#fff;padding:16px;border-radius:4px;border:1px solid #ced4da;box-shadow:0 2px 8px rgba(33,37,41,.15)}.toplevel_page_tgwc-customize-my-account-page .tgwc-tabs-with-sidenav{background:#fff;border-radius:4px;width:100%;display:table;clear:both;box-sizing:border-box;border:1px solid #ced4da;box-shadow:0 2px 8px rgba(33,37,41,.15)}.toplevel_page_tgwc-customize-my-account-page .tgwc-tabs-with-sidenav .tgwc-sidenav{background:#f8f9fa;border-left:1px solid #ced4da;display:table-cell!important;width:240px!important;float:none!important}.toplevel_page_tgwc-customize-my-account-page .tgwc-tabs-with-sidenav .tgwc-tabs-panel{padding:0 20px}.toplevel_page_tgwc-customize-my-account-page .tgwc-tabs-with-sidenav .tgwc-tabs-panel .tgwc-tabs-panel-header{border-bottom:1px solid #ced4da;padding-bottom:16px}.toplevel_page_tgwc-customize-my-account-page .tgwc-tabs-with-sidenav .tgwc-tabs-panel .tgwc-tabs-panel-header i{margin-left:8px}.toplevel_page_tgwc-customize-my-account-page .dd-item{display:flex;flex-wrap:wrap;align-items:center;border-bottom:1px solid #ced4da}.toplevel_page_tgwc-customize-my-account-page .dd-item .dd-list{width:100%;padding-right:20px;border-top:1px solid #ced4da}.toplevel_page_tgwc-customize-my-account-page .dd-item .dd-list li{border-width:1px 1px 0 0;border-style:solid;border-color:#ced4da}.toplevel_page_tgwc-customize-my-account-page .dd-item .dd-list li:first-of-type{border-top:none}.toplevel_page_tgwc-customize-my-account-page .dd-item .tgwc-sidenav-tab-anchor{background:100% 0;border:none;color:#212529;flex:1;margin:0;border-radius:0;padding:12px 0 12px 16px;height:auto;font-weight:500;text-decoration:none;word-break:break-all}.toplevel_page_tgwc-customize-my-account-page .dd-item .tgwc-sidenav-tab-anchor:focus{box-shadow:none}.toplevel_page_tgwc-customize-my-account-page .dd-item .tgwc-sidenav-tab-anchor span:nth-child(2){display:none}.toplevel_page_tgwc-customize-my-account-page .dd-item .dd-handle{cursor:move;position:relative;border:none;background:100% 0}.toplevel_page_tgwc-customize-my-account-page .dd-item .dd-handle::before{color:#212529}.toplevel_page_tgwc-customize-my-account-page .dd-item.active{background:#fff}.toplevel_page_tgwc-customize-my-account-page .dd-item.active::after{content:"";display:inline-block;width:8px;height:8px;background:#fff;border:1px solid #ced4da;border-right:transparent;border-bottom:transparent;position:absolute;top:50%;left:-5px;transform:translatey(-50%) rotate(-45deg)}.toplevel_page_tgwc-customize-my-account-page .dd-item[data-disabled] .tgwc-sidenav-tab-anchor span:nth-child(2){display:inline}.toplevel_page_tgwc-customize-my-account-page .dd-list.dd-dragel .dd-item{background:#fff;border-color:#fff;box-shadow:0 2px 10px 0 rgba(33,37,41,.25)}.toplevel_page_tgwc-customize-my-account-page .dd-list.dd-dragel .dd-item .dd-handle{cursor:move;box-shadow:none}.toplevel_page_tgwc-customize-my-account-page .select2-container .select2-search{margin-bottom:0}.toplevel_page_tgwc-customize-my-account-page .select2-container .select2-search .select2-search__field{margin:0}.toplevel_page_tgwc-customize-my-account-page .select2-container .select2-selection__choice{padding:2px 5px;margin-bottom:0}.tgwc-icon{width:1em;height:1em;vertical-align:-.125em;display:inline-block;font-size:inherit}
