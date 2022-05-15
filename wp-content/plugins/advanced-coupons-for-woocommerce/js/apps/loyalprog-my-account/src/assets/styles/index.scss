@@ -1,0 +1,98 @@
+#acfw-loyalty-programs-myaccount {
+    position: relative;
+
+    .acfw-overlay {
+        display: none;
+        position: absolute;
+        left: 0;
+        top: 0;
+        z-index: 10000;
+        width: 100%;
+        height: 100%;
+        background: #fff center center no-repeat fixed;
+        opacity: 0.7;
+    }
+
+    .redeem-points-form:after {
+        content: '';
+        display: table;
+        clear: both;
+    }
+
+    .user-points {
+
+        .expiry-note {
+            font-style: italic;
+            opacity: 0.7;
+        }
+    }
+
+    .instruction {
+        display: block;
+        margin-top: 15px;
+    }
+
+    #redeem_points_field {
+        margin-right: 10px;
+
+        .woocommerce-input-wrapper {
+            display: block;
+            float: left;
+            width: calc( 50% - 10px );
+        }
+
+        .equals {
+            display: block;
+            float: left;
+            width: 20px;
+            margin-top: 10px;
+            text-align: center;
+        }
+
+        .amount-preview-field {
+            position: relative;
+
+            .currency {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 25px;
+                padding: 6px 0;
+                background: #fff;
+                border: 1px solid #e4e4e4;
+                font-size: 20px;
+                text-align: center;
+            }
+
+            input {
+                padding-left: 30px;
+            }
+        }
+    }
+    #redeem_submit_field {
+        float: left;
+    }
+    #redeem_submit_field label {
+        visibility: hidden;
+    }
+    .user-redeemed-coupons {
+        table {
+    
+            tr {
+    
+                td {
+                    -webkit-transition: background-color 300ms linear;
+                    -ms-transition: background-color 300ms linear;
+                    transition: background-color 300ms linear;
+                }
+    
+                &.new {
+    
+                    td {
+                        background-color: #f1f5c6;
+                    }
+                }
+            }
+        }
+    }
+}

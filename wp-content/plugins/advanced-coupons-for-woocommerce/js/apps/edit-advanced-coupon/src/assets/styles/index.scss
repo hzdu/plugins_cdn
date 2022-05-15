@@ -1,0 +1,84 @@
+#acfw_add_products {
+    padding-bottom: 51px;
+
+    .add-before-cart-condition-check-field {
+        display: inline-block;
+        margin-left: 10px;
+
+        label {
+            float: none;
+            margin: 0;
+            width: auto;
+            font-size: 12px;
+
+            input {
+                margin-top: -2px;
+            }
+            
+            span {
+                display: inline-block;
+                margin-left: 5px;
+            }
+        }
+    }
+}
+
+.woocommerce_options_panel {
+
+    .date-time-field {
+        float: left;
+        display: flex;
+        width: 50%;
+        align-items: top;
+        height: 30px;
+
+        input[type=text].date-field {
+            width: calc(100% - 135px);
+            margin-right: 5px;
+        }
+
+        span {
+            margin-right: 5px;
+        }
+
+        input.date-hour {
+            width: 60px;
+            margin-right: 5px;
+        }
+
+        input.date-minute {
+            width: 60px;
+        }
+
+    }
+
+    .clear-scheduler-fields {
+        position: relative;
+        top: 2px;
+        display: inline-block;
+        color: #dc3232;
+        text-decoration: none;
+        box-shadow: none !important;
+    }
+
+    .acfw-sort-coupon-priority-field {
+        select {
+            width: 25%;
+            margin-right: 5px;
+        }
+        input[type=number] {
+            width: calc(25% - 10px);
+        }
+    }
+}
+
+#acfw_bogo_deals {
+
+    .bogo-auto-add-products-field {
+        display: none;
+
+        &.show {
+            display: block;
+        }
+    }
+}
