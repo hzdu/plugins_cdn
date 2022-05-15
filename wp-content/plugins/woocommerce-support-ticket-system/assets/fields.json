@@ -679,6 +679,48 @@
                 "step": 1
             },
             {
+                "key": "field_627e20e0ace86",
+                "label": "New ticket opening - Time interval before a new ticket can be opened (seconds)",
+                "name": "wcsts_new_ticket_post_time_interval",
+                "type": "number",
+                "instructions": "By default, the user can open new tickets without time limitations. Via this option, you can restrict the user to open a new ticket only after X seconds had passed before the last ticket was opened.",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "50",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": 0,
+                "placeholder": "Default value: 0",
+                "prepend": "",
+                "append": "",
+                "min": 0,
+                "max": "",
+                "step": 1
+            },
+            {
+                "key": "field_627e2167ace87",
+                "label": "New message post - Time interval between new posts (seconds)",
+                "name": "wcsts_new_ticket_message_post_time_interval",
+                "type": "number",
+                "instructions": "By default, the user can open new ticket messages without time limitations. Via this option, you can restrict the user to post new messages only after X seconds had passed before the last message.",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "50",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": 0,
+                "placeholder": "Default value: 0",
+                "prepend": "",
+                "append": "",
+                "min": 0,
+                "max": "",
+                "step": 1
+            },
+            {
                 "key": "field_5854f7a01dcb2",
                 "label": "User ticket - Display user ticket area in My account page",
                 "name": "wcsts_display_user_ticket_area_in_my_account_page",

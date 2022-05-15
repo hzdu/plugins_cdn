@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: WooCommerce Support Ticket System\n"
-"POT-Creation-Date: 2022-04-22 10:00+0200\n"
-"PO-Revision-Date: 2022-04-22 10:00+0200\n"
+"POT-Creation-Date: 2022-05-13 11:24+0200\n"
+"PO-Revision-Date: 2022-05-13 11:24+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: nl_NL\n"
@@ -251,7 +251,7 @@ msgid "Save"
 msgstr "Opslaan"
 
 #: classes/admin/WCSTS_ManageTicketVisibilityPage.php:29
-#: classes/admin/WCSTS_TicketPage.php:465 classes/com/WCSTS_Ticket.php:787
+#: classes/admin/WCSTS_TicketPage.php:465 classes/com/WCSTS_Ticket.php:883
 msgid "N/A"
 msgstr ""
 
@@ -260,7 +260,7 @@ msgid "Login"
 msgstr ""
 
 #: classes/admin/WCSTS_ManageTicketVisibilityPage.php:46
-#: classes/com/WCSTS_HtmlHelper.php:524 classes/com/WCSTS_HtmlHelper.php:525
+#: classes/com/WCSTS_HtmlHelper.php:537 classes/com/WCSTS_HtmlHelper.php:538
 msgid "Name"
 msgstr "Naam"
 
@@ -294,13 +294,13 @@ msgstr ""
 
 #: classes/admin/WCSTS_PriorityPage.php:29
 #: classes/admin/WCSTS_PriorityPage.php:70
-#: classes/admin/WCSTS_PriorityPage.php:92 classes/com/WCSTS_HtmlHelper.php:528
+#: classes/admin/WCSTS_PriorityPage.php:92 classes/com/WCSTS_HtmlHelper.php:541
 msgid "Background color"
 msgstr "Achtergrond kleur"
 
 #: classes/admin/WCSTS_PriorityPage.php:30
 #: classes/admin/WCSTS_PriorityPage.php:77
-#: classes/admin/WCSTS_PriorityPage.php:98 classes/com/WCSTS_HtmlHelper.php:533
+#: classes/admin/WCSTS_PriorityPage.php:98 classes/com/WCSTS_HtmlHelper.php:546
 msgid "Text color"
 msgstr "Kleur tekst"
 
@@ -422,14 +422,14 @@ msgid "Attachments"
 msgstr "Bijlagen"
 
 #: classes/admin/WCSTS_TicketPage.php:249 classes/com/WCSTS_HtmlHelper.php:371
-#: classes/com/WCSTS_HtmlHelper.php:469
+#: classes/com/WCSTS_HtmlHelper.php:476
 msgid "Upload"
 msgstr ""
 
 #: classes/admin/WCSTS_TicketPage.php:253
 #: classes/admin/WCSTS_TicketTablePage.php:317
 #: classes/admin/WCSTS_UserPage.php:67 classes/com/WCSTS_HtmlHelper.php:378
-#: classes/com/WCSTS_HtmlHelper.php:476 classes/com/WCSTS_HtmlHelper.php:579
+#: classes/com/WCSTS_HtmlHelper.php:483 classes/com/WCSTS_HtmlHelper.php:592
 msgid "Delete"
 msgstr "Verwijder"
 
@@ -663,7 +663,7 @@ msgid "Total messages"
 msgstr "Totaal aantal berichten"
 
 #: classes/admin/WCSTS_TicketTablePage.php:263
-#: classes/com/WCSTS_HtmlHelper.php:414
+#: classes/com/WCSTS_HtmlHelper.php:421
 msgid "Subject"
 msgstr "Onderwerp"
 
@@ -950,23 +950,23 @@ msgstr "op"
 msgid "New message"
 msgstr "Nieuw bericht"
 
-#: classes/com/WCSTS_HtmlHelper.php:341 classes/com/WCSTS_HtmlHelper.php:414
-#: classes/com/WCSTS_HtmlHelper.php:441
+#: classes/com/WCSTS_HtmlHelper.php:341 classes/com/WCSTS_HtmlHelper.php:421
+#: classes/com/WCSTS_HtmlHelper.php:448
 #, fuzzy
 #| msgid "Character Limit"
 msgid "Characters left:"
 msgstr "Tekenlimiet"
 
-#: classes/com/WCSTS_HtmlHelper.php:341 classes/com/WCSTS_HtmlHelper.php:441
+#: classes/com/WCSTS_HtmlHelper.php:341 classes/com/WCSTS_HtmlHelper.php:448
 #, php-format
 msgid ", Min characters:  %s"
 msgstr ""
 
-#: classes/com/WCSTS_HtmlHelper.php:345 classes/com/WCSTS_HtmlHelper.php:445
+#: classes/com/WCSTS_HtmlHelper.php:345 classes/com/WCSTS_HtmlHelper.php:452
 msgid "Attachment(s)"
 msgstr "Bijlage(s)"
 
-#: classes/com/WCSTS_HtmlHelper.php:345 classes/com/WCSTS_HtmlHelper.php:445
+#: classes/com/WCSTS_HtmlHelper.php:345 classes/com/WCSTS_HtmlHelper.php:452
 #, php-format
 msgid "(Max size: %s)"
 msgstr "(Maximaal: %s)"
@@ -975,32 +975,37 @@ msgstr "(Maximaal: %s)"
 msgid "Submit new message"
 msgstr "Nieuw bericht toevoegen"
 
-#: classes/com/WCSTS_HtmlHelper.php:393
+#: classes/com/WCSTS_HtmlHelper.php:395 classes/com/WCSTS_HtmlHelper.php:496
+#, php-format
+msgid "Ticket can be opened every %d seconds"
+msgstr ""
+
+#: classes/com/WCSTS_HtmlHelper.php:400
 msgid "Add new message"
 msgstr "Voeg een nieuw bericht toe"
 
-#: classes/com/WCSTS_HtmlHelper.php:408
+#: classes/com/WCSTS_HtmlHelper.php:415
 msgid "Submit a new ticket"
 msgstr "Nieuw Ticket aanmaken"
 
-#: classes/com/WCSTS_HtmlHelper.php:431
+#: classes/com/WCSTS_HtmlHelper.php:438
 msgid "Priority"
 msgstr "Prioriteit"
 
-#: classes/com/WCSTS_HtmlHelper.php:441
+#: classes/com/WCSTS_HtmlHelper.php:448
 msgid "Message"
 msgstr "Bericht"
 
-#: classes/com/WCSTS_HtmlHelper.php:488
+#: classes/com/WCSTS_HtmlHelper.php:501
 msgid "Open new ticket"
 msgstr "Ticket verzenden"
 
-#: classes/com/WCSTS_HtmlHelper.php:538
+#: classes/com/WCSTS_HtmlHelper.php:551
 msgid "Automatic switch to selected status in case of reply"
 msgstr ""
 "Automatische overschakeling naar geselecteerde status in geval van antwoord"
 
-#: classes/com/WCSTS_HtmlHelper.php:539
+#: classes/com/WCSTS_HtmlHelper.php:552
 msgid ""
 "If enabled, when the user posts a reply, the current ticket status will be "
 "switched to the selected one."
@@ -1008,11 +1013,11 @@ msgstr ""
 "Indien ingeschakeld, zal de huidige ticketstatus, wanneer de gebruiker een "
 "antwoord plaatst, worden omgeschakeld naar de geselecteerde."
 
-#: classes/com/WCSTS_HtmlHelper.php:541
+#: classes/com/WCSTS_HtmlHelper.php:554
 msgid "Note: "
 msgstr "Notitie:"
 
-#: classes/com/WCSTS_HtmlHelper.php:541
+#: classes/com/WCSTS_HtmlHelper.php:554
 msgid ""
 "If a ticket is marked as closed, the user will not be able to reply. To allow "
 "that, enable the special option in the <strong>Ticket System Options</strong> "
@@ -1022,15 +1027,15 @@ msgstr ""
 "Om dat toe te staan, schakelt u de speciale optie in het menu <strong> "
 "Ticketsysteemopties </strong> in."
 
-#: classes/com/WCSTS_HtmlHelper.php:546
+#: classes/com/WCSTS_HtmlHelper.php:559
 msgid "Disabled"
 msgstr "Uitschakelen"
 
-#: classes/com/WCSTS_HtmlHelper.php:560
+#: classes/com/WCSTS_HtmlHelper.php:573
 msgid "WPML"
 msgstr ""
 
-#: classes/com/WCSTS_HtmlHelper.php:571
+#: classes/com/WCSTS_HtmlHelper.php:584
 #, php-format
 msgid "Name for %s language"
 msgstr "Naam voor %s taal"
@@ -1201,7 +1206,7 @@ msgstr "Nieuwe status toevoegen"
 msgid "New Status Name"
 msgstr "Nieuwe statusnaam"
 
-#: classes/com/WCSTS_Ticket.php:138 woocommerce-support-ticket-system.php:238
+#: classes/com/WCSTS_Ticket.php:138 woocommerce-support-ticket-system.php:243
 msgid "Statuses"
 msgstr "Statussen"
 
@@ -1254,19 +1259,19 @@ msgstr "Bestelling"
 msgid "User"
 msgstr "Gebruiker"
 
-#: classes/com/WCSTS_Ticket.php:472 classes/com/WCSTS_Ticket.php:529
+#: classes/com/WCSTS_Ticket.php:546 classes/com/WCSTS_Ticket.php:625
 msgid "Error"
 msgstr "Foutmelding"
 
-#: classes/com/WCSTS_Ticket.php:906
+#: classes/com/WCSTS_Ticket.php:1002
 msgid "Open"
 msgstr ""
 
-#: classes/com/WCSTS_Ticket.php:907
+#: classes/com/WCSTS_Ticket.php:1003
 msgid "In Progress"
 msgstr "In behandeling"
 
-#: classes/com/WCSTS_Ticket.php:908
+#: classes/com/WCSTS_Ticket.php:1004
 msgid "Closed"
 msgstr "Gesloten"
 
@@ -1435,7 +1440,7 @@ msgstr ""
 "% s </span> te voltooien, moet u uw aankooplicentie verifiëren. Klik <a href="
 "\"%s\"> hier </a> om het te verifiëren."
 
-#: woocommerce-support-ticket-system.php:239
+#: woocommerce-support-ticket-system.php:244
 msgid "Assign ticket"
 msgstr "Tickets toewijzen"
 
