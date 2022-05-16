@@ -880,7 +880,7 @@ tcfLanguageLoaded.then(()=>{
 	 */
 	function cmplzGetTCString() {
 		let user_policy_id = cmplz_tcf_get_cookie('policy_id');
-		if ( !user_policy_id || complianz.current_policy_id !== user_policy_id  ) {
+		if ( !user_policy_id || (typeof complianz!=='undefined' && complianz.current_policy_id !== user_policy_id)  ) {
 			if (localStorage.cmplz_tcf_consent) localStorage.removeItem('cmplz_tcf_consent');
 		}
 		return window.localStorage.getItem('cmplz_tcf_consent');
@@ -893,13 +893,12 @@ tcfLanguageLoaded.then(()=>{
 	 */
 	function cmplzSetTCString( tcModel, uiVisible ) {
 		let encodedTCString = null;
-		tcModel.created = cmplzRemoveTime(tcModel.lastUpdated);
-		tcModel.lastUpdated = cmplzRemoveTime(tcModel.lastUpdated);
 		if ( tcModel ) {
+			tcModel.created = cmplzRemoveTime(tcModel.lastUpdated);
+			tcModel.lastUpdated = cmplzRemoveTime(tcModel.lastUpdated);
 			encodedTCString = TCString.encode(tcModel);
-			cmpApi.update(encodedTCString, uiVisible);
 		}
-
+		cmpApi.update(encodedTCString, uiVisible);
 		window.localStorage.setItem('cmplz_tcf_consent', encodedTCString);
 	}
 
