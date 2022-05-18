@@ -5,7 +5,7 @@ License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl.html
 Tags: SEO, XML sitemap, Content analysis, Readability, Schema
 Tested up to: 5.9
-Stable tag: 18.6
+Stable tag: 18.9
 Requires PHP: 5.6.20
 
 Improve your WordPress SEO: Write better content and have a fully optimized WordPress site using the Yoast SEO plugin.
@@ -236,53 +236,37 @@ Your question has most likely been answered on our help center: [yoast.com/help/
 
 == Changelog ==
 
-= 18.6 =
-Release Date: April 19th, 2022
+= 18.9 =
+Release Date: May 17th, 2022
 
-Meet Yoast SEO 18.6: a small Yoast SEO update, fixing a number of bugs, including several bugs related to the Wincher integration. With the Wincher integration, you can track the rankings of your articles in the search results. If you haven’t checked that feature out, please do so! Read more about what's new in Yoast SEO 18.6 in [our release post in English](https://yoa.st/release-19-4-22) or [our release post in Spanish](https://yoa.st/release-19-4-22-spanish)!
-
-Bugfixes:
-
-* Fixes a bug where a version mismatch caused broken styling in WooCommerce select fields when linking products.
-* Fixes a bug where keyphrases could show up multiple times in Wincher table.
-* Fixes a bug where the Wincher connection flow would fail on certain installations.
-* Fixes a bug where the Wincher integration could throw a fatal error on PHP 8.0+.
-
-Other:
-
-* Adds a disabled Wincher integration toggle to the Network admin/Multisite `Integrations` tab.
-
-= 18.5.1 =
-Release Date: April 5th, 2022
-
-Bugfixes:
-
-* Fixes a bug where a fatal error would occur on the site health page if WordFence was installed and active.
-* Fixes a bug where a fatal error would occur on PHP 5.6.
-
-= 18.5 =
-Release Date: April 5th, 2022
-
-Say hi to Yoast SEO 18.5! You'll find a number of fixes and enhancements. We've also included more improvements to the rebuild of the AIOSEO importer we introduced a few weeks ago. Happy updating! Read more about what's new in Yoast SEO 18.5 in [our release post in English](https://yoa.st/release-5-4-22) or [our release post in Spanish](https://yoa.st/release-5-4-22-spanish)!
+Yoast SEO 18.9 is out now! In this release, we have improved the first experience users have with the plugin. The first-time configuration takes users by the hand and guides them in properly setting everything up so that search engines understand their site. Make sure to run that first-time configuration to see if you’ve filled everything in correctly! Read more about what's new in Yoast SEO 18.9 in [our release post in English](https://yoa.st/release-17-5-22) or [our release post in Spanish](https://yoa.st/release-17-5-22-spanish)!
 
 Enhancements:
 
-* Adds a preliminary validation of All-in-One SEO data before importing it into Yoast SEO.
+* Adds an `installation successful` page to welcome first-time users.
+* Introduces the First-time configuration, replacing and improving the Configuration Workout.
+* Renames the main admin menu item to `Yoast SEO` instead of `SEO`.
 
 Bugfixes:
 
-* Fixes a bug where the URL preview inside the snippet editor would not consistently reflect the permalink in the Block editor.
-* Fixes a bug where the Customize URL would be incorrectly escaped in our health checks. Props to [BronsonQuick](https://github.com/BronsonQuick).
-* Fixes a bug where in certain edge cases a database error would show during clean-up of All-in-One SEO data.
-* Fixes a bug where reusable block content would not be updated in our analysis when changed in the editor.
-* Fixes a bug where an error about incorrect values in the indexables table would be displayed on certain database setups. Props to [junaidbhura](https://github.com/junaidbhura).
-* Fixes a bug where a fatal error would be displayed in the Search Appearance options when using WordPress version 5.8.3 and below with themes without title-tag support.
-* Fixes a bug where sitemap locations would change once the number of entries exceeded that of the first page.
-* Fixes a bug where Yoast modals would close after opening after editing content in Elementor.
+* Fixes a bug that would lead to race conditions when using persistent object caching.
+* Fixes a bug where a 403 error page would be thrown when a user tried to access the old configuration wizard.
+* Fixes a bug where our How To and FAQ blocks would not handle focus correctly when using WordPress 6.0.
+* Fixes a bug where the global var $post is sometimes modified unexpectedly. Props to [grantalltodavid](https://github.com/grantalltodavid).
 
 Other:
 
-* Sets the minimum required WordPress version to 5.8.
+* Adds a `Premium` badge to the Workouts menu item.
+* Updates the look of the Accounts tab in the Social page.
+
+= 18.8 =
+Release Date: May 6th, 2022
+
+Did you catch the latest update from Google? Today they made some small changes to how they read XML sitemaps. But you don’t have to worry about that - today's Yoast SEO 18.8 update already applies the latest standards. Read more about what's new in Yoast SEO 18.8 in [our release post in English](https://yoa.st/release-6-5-22) or [our release post in Spanish](https://yoa.st/release-6-5-22-spanish)!
+
+Enhancements:
+
+* Removes XML sitemap image properties `title` and `caption` following deprecation by Google.
 
 = Earlier versions =
 For the changelog of earlier versions, please refer to [the changelog on yoast.com](https://yoa.st/yoast-seo-changelog).
