@@ -1,5 +1,51 @@
 # Changelog
-All notable changes to this project will be documented in this file and formatted via [this recommendation](https://keepachangelog.com/en/1.0.0/).
+All notable changes to this project will be documented in this file and formatted via [this recommendation](https://keepachangelog.com/).
+
+## [1.7.4.2] - 2022-05-19
+### Changed
+- DOMPurify library updated to 2.3.8.
+
+### Fixed
+- PHP notices avoided in Lite Connect if decrypted entry data didn't contain required keys.
+- Lite Connect: entries counting and import-complete notice improved.
+- WordPress 6.0 compatibility: WPForms block styling fixed inside the Full Site Editor.
+
+## [1.7.4.1] - 2022-05-05
+### Fixed
+- LiteConnect auth key request didn't work with plain permalinks and with subdirectory install.
+- Do not display the import entries notice if the license key is not valid.
+- Improved Form Locations compatibility with the Full Site Editor template parts.
+
+## [1.7.4] - 2022-04-26
+### Added
+- Form Locations! On the Forms Overview page easily check all places where each form is currently embedded.
+- Back up form submissions into the cloud and restore them to your database as Entries after upgrading to a paid plan.
+- New `{entry_details_url}` smart tag.
+
+### Changed
+- Improved text wrapping of field labels and descriptions.
+- Each smart tag inserted by a user in the Form Builder will now be placed as the last one in relevant inputs.
+- Show error message during Entry Export if some error occurs.
+- Admin dashboard widget can now change the color scheme and graph style.
+- The input field in the Form Embed wizard popup in the Form Builder is now focused by default.
+- Updated DOMPurify lib to 2.3.6.
+
+### Fixed
+- Adding Entry Preview field after visiting the Revisions panel.
+- Search result was not reset when the user clicked "x" sign in the search field on the Addons page.
+- Strength validation was failing when the Password field was empty and not required.
+- Entry Preview field didn't show fields with an input value of `0`.
+- Some fields' `0` value was shown as empty on Edit Entry and Print pages.
+- Form's Entries page unread/read and starred/unstarred notices were behaving incorrectly.
+- Entry values weren't exported (.xlsx) if form fields had the same label.
+- Entry export didn't work for non-admins with 'View Entries' access.
+- Error occurred when the user clicked on the Export Entries download link.
+- Configurations on the Payments tab in the Form Builder were not previewed when a user was previewing form revisions.
+- Dynamic choices were not prefilling values for the Multiple Choice field on the Edit Entry page.
+- Plugin data should not be deleted when Lite was deleted, and Pro is still active.
+- The form could be saved while still adding a field, but it should not.
+- Improved compatibility with Elementor popups.
+- Cleaned up deprecation notice for `_register_controls()` with recent Elementor versions.
 
 ## [1.7.3] - 2022-03-16
 ### IMPORTANT
