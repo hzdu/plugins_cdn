@@ -1,5 +1,5 @@
 /*!
- * Filter Everything 1.6.4
+ * Filter Everything 1.6.5
  */
 body .wpc-hidden{
     display: none;
@@ -27,6 +27,7 @@ body .wpc-hidden{
 .wpc-query-on-the-page .wpc-filters-widget-controls-container .wpc-filter-layout-submit-button{
     display: none;
 }
+#top .wpc-filters-widget-main-wrapper ul.children,
 #content .wpc-filters-widget-main-wrapper ul.children,
 #primary .wpc-filters-widget-main-wrapper ul.children,
 #secondary .wpc-filters-widget-main-wrapper ul.children,
@@ -73,6 +74,9 @@ body .wpc-filters-widget-main-wrapper li.wpc-term-item,
 li.wpc-term-item > .wpc-term-item-content-wrapper+ul.children,
 li.wpc-term-item ul.children{
     display: none;
+    margin-top: 14px;
+}
+#top li.wpc-term-item > .wpc-term-item-content-wrapper+ul.children{
     margin-top: 14px;
 }
 li.wpc-term-item.wpc-opened > ul.children{

@@ -1,5 +1,5 @@
 /*!
- * Filter Everything seo rules admin 1.6.4
+ * Filter Everything seo rules admin 1.6.5
  */
 (function($) {
     "use strict";
@@ -68,6 +68,15 @@
 
         $(document).on('widget-added widget-updated', function (){
             wpcMakeSortItemsSortable();
+
+            $('.wpc-help-tip').tipTip({
+                'attribute': 'data-tip',
+                'fadeIn':    50,
+                'fadeOut':   50,
+                'delay':     200,
+                'keepAlive': true,
+                'maxWidth': "220px",
+            });
         });
 
         $(document).on('focus', '.wpc-sorting-item-label', function (){
