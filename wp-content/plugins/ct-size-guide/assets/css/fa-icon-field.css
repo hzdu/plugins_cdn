@@ -1,0 +1,109 @@
+#wc_size_guide_button_icon {
+    display: none;
+}
+
+.open-popup-link {
+    display: table;
+    line-height: normal;
+}
+
+.open-popup-link:hover .fa {
+    color: inherit;
+}
+
+.open-popup-link .fa {
+    color: inherit;
+    display: table-cell;
+    font-size: 13px;
+    line-height: normal;
+    padding: 0 10px 0 0;
+    vertical-align: middle;
+}
+
+[data-value*=fa-blank] {
+    box-sizing: border-box;
+    height: 38px;
+    line-height: normal;
+    width: 39px;
+}
+
+.sg-fw-option-type-icon .sg-option-type-icon-list {
+    margin-top: 1em;
+    padding-left: 1px;
+    padding-bottom: 1px;
+    overflow: auto;
+    max-height: 10.1em;
+}
+
+.sg-fw-option-type-icon .sg-option-type-icon-list:first-child {
+    margin-top: 0;
+}
+
+.sg-fw-option-type-icon .sg-option-type-icon-list:after {
+    content: '';
+    display: block;
+    clear: both;
+}
+
+.sg-fw-option-type-icon .sg-option-type-icon-list i {
+    float: left;
+    border: 1px solid #e1e1e1;
+    margin: 0 0 -1px -1px;
+    padding: 0.5em 0;
+    background-color: #ffffff;
+    text-align: center;
+    min-width: 2em;
+}
+
+body.rtl .sg-fw-option-type-icon .sg-option-type-icon-list i {
+    float: right;
+}
+
+.sg-fw-option-type-icon .sg-option-type-icon-list i:before {
+    display: inline-block;
+}
+
+.sg-fw-option-type-icon .sg-option-type-icon-list i:hover {
+    background: #0074a2;
+    color: #fff;
+    cursor: pointer;
+}
+.sg-fw-option-type-icon .sg-option-type-icon-list i.active:hover,
+.sg-fw-option-type-icon .sg-option-type-icon-list i.active{
+    background: #64bd1f;
+    color: #fff;
+}
+
+.sg-fw-option-type-icon .sg-fw-backend-option {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.sg-fw-option-type-icon .fw-options-tabs-wrapper .fw-options-tabs-contents {
+    margin-top: 0 !important;
+}
+
+
+/* Let's get this party started */
+
+.sg-fw-option-type-icon .sg-option-type-icon-list::-webkit-scrollbar {
+    width: 5px;
+}
+
+
+/* Handle */
+
+.sg-fw-option-type-icon .sg-option-type-icon-list::-webkit-scrollbar-thumb {
+    -webkit-border-radius: 2px;
+    border-radius: 2px;
+    background: rgba(92,92,92,0.8);
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
+}
+
+.sg-fw-option-type-icon .sg-option-type-icon-list::-webkit-scrollbar-thumb:window-inactive {
+    background: rgba(92,92,92,0.4);
+}
+
+.button_sg .fa {
+    font-family: FontAwesome !important;
+}
