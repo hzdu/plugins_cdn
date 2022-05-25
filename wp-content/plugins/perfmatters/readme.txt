@@ -5,7 +5,7 @@ Tags: perfmatters
 Requires at least: 4.7
 Requires PHP: 7.0
 Tested up to: 5.9.3
-Stable tag: 1.9.0
+Stable tag: 1.9.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -35,8 +35,24 @@ Check out our [documentation](https://perfmatters.io/docs/) for more information
 
 == Changelog ==
 
+= 1.9.1 - 05.23.2022 =
+* Added new option to lazy load CSS Background Images.
+* Added new option for Dual Tracking when using gtag.js in local analytics.
+* Added new perfmatters_rest_api_exceptions filter.
+* Fixed an issue where individually delayed local scripts would not get correctly rewritten to load from the CDN.
+* Fixed an issue where lazy loading would run into an error if no px or % was specified with the threshold value.
+* Fixed an issue with buffer validation that was conflicting with certain caching setups.
+* Fixed an issue where existing font preconnect and prefetch tags were not being being detected properly when using Local Fonts.
+* Fixed an error related to cookie constants when running MU Mode in certain environments.
+* Fixed multiple AMP validation errors and added additional checks to prevent certain functions from running on AMP URLs.
+* Minor adjustment to CDN rewrite regex pattern to work with encoded quotation characters.
+* Changed toggle CSS selectors to be more specific to prevent conflicts.
+* Moved plugin settings header output to in_admin_header action hook for compatibility.
+* Moved JS optimization functions to new class structure to be more inline with current codebase.
+* Improvements to critical image preloading allowed for a move to a singular output buffer.
+
 = 1.9.0 - 04.15.2022 =
-* Fixed an issue that was causing excluded selectors to not be recongnized properly after Used CSS was cleared.
+* Fixed an issue that was causing excluded selectors to not be recognized properly after Used CSS was cleared.
 * Minor adjustments to the new plugin UI.
 
 = 1.8.9 - 04.13.2022 =
