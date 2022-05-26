@@ -2,8 +2,8 @@
 Contributors: anbinder, karzin, pluggabl
 Tags: woocommerce, booster for woocommerce, woocommerce jetpack
 Requires at least: 4.4
-Tested up to: 5.9.3
-Stable tag: 5.5.7
+Tested up to: 6.0
+Stable tag: 5.5.8
 License: GNU General Public License v3.0
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -203,6 +203,18 @@ You can see the differences between versions in this [table](https://booster.io/
 8. Booster for WooCommerce - Emails & Misc.
 
 == Changelog ==
+
+= 5.5.8 25/05/2022 =
+
+* NEW FEATURE - PRODUCTS - User Products- Send an email to the product owner when a product has been sold.
+* NEW FEATURE - PAYMENT GATEWAYS - Gateways Fees and Discounts - Added a new Feature to apply Payment Gateways Fees by User role.
+* FIXED - PRICES & CURRENCIES - Prices and Currencies by Country - Added compatibility with Webtofee subscription Plugin.
+* FIXED - PRICES & CURRENCIES - Wholesale Price - Exclude/Include product issues that have been fixed in the Wholesale Price Module.
+* FIXED - PRODUCTS - Add to Cart - Fixed an issue with default variations add to the cart module.
+* FIXED - CART & CHECKOUT - One Page Checkout - Fixed payment gateways compatibility issue.
+* FIXED - CART & CHECKOUT - One Page Checkout - Fixed add to cart template ajax loader issue.
+* WooCommerce 6.5.1 tested
+* WordPress 6.0 tested
 
 = 5.5.7 27/04/2022 =
 

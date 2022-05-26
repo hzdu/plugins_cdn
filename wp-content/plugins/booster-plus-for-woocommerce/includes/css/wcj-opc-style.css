@@ -1,7 +1,7 @@
 /*
  * wcj-opc-style.
  *
- * @version 5.5.7
+ * @version 5.5.8
  * @since   5.4.2
  */
 
@@ -33,9 +33,24 @@
     text-align: left !important;
 }
 
-.booster-opc {
-    clear: both;
-    padding: 20px 0px;
+.wcj_opc_loader {
+  position: relative;
+}
+.wcj_opc_loader.loading {
+  opacity: 0.5;
+}
+.wcj_opc_loader.loading span::after {
+  content: url("../../assets/images/ajax_spinner.gif");
+  height: 20px;
+  width: 20px;
+  line-height: 20px;
+  font-size: 20px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-left: -10px;
+  margin-top: -10px;
+  display: block;
 }
 
 .prd_check {

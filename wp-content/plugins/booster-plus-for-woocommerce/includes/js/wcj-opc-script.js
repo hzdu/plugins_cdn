@@ -1,7 +1,7 @@
 /**
  * wcj-opc-script.
  *
- * @version 5.4.2
+ * @version 5.5.8
  * @since   5.4.2
  */
 
@@ -10,6 +10,8 @@ jQuery(document).ready(function ($) {
 	var opc_response_messages = '';
 
 	$('.wcj_opc_add_to_cart_btn').on('click', function (e) {
+			var thisobj = $(this);
+		$(thisobj).addClass('loading');
 		var product_id = $(this).val();
 		var product_title = $(this).data('product_title');
 		var data = {
@@ -22,10 +24,14 @@ jQuery(document).ready(function ($) {
 			data: data,
 			dataType: 'json',
 			success: function (response) {
+				  $(thisobj).removeClass('loading');
 				opc_response_messages = response.messages;
 				$('#wcj_opc_notices .woocommerce-error, #wcj_opc_notices .woocommerce-message, #wcj_opc_notices .woocommerce-info').remove();
 				$('body').trigger('update_checkout');
-			}
+			},
+			complete: function() {
+                $(thisobj).removeClass('loading');
+            }
 		});
 	});
 
