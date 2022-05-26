@@ -1,0 +1,1 @@
+jQuery(document).ready(function(a){if(wpdiscuzAjaxObj.wmuLazyLoadImages){function t(){for(var t=a("#wpdcom img"),r=0;r<t.length;r++){var u=a(t[r]),c=u.attr("wmu-data-src");c&&u.attr("src",c)}}t(),wpdiscuzAjaxObj.wmuImagesInit=t}});

@@ -1,0 +1,25 @@
+.wpdiscuz-option-smile{ height: 40px; margin: 3px;  cursor: pointer; -webkit-filter: none; -moz-filter: none; -ms-filter: none; filter: none;}
+.wpdiscuz-option-smile.disabled{
+    filter: url("data:image/svg+xml;utf8,<svg xmlns='https://www.w3.org/2000/svg'><filter id='grayscale'><feColorMatrix type='matrix' values='0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0'/></filter></svg>#grayscale"); /* Firefox 10+, Firefox on Android */    
+    -webkit-filter: grayscale(100%);
+    -moz-filter: grayscale(100%);
+    -ms-filter: grayscale(100%);
+    filter: grayscale(100%);
+    filter: gray; /* IE 6-9 */
+}
+#wpdiscuz-addons-options .custom-smile{ padding:5px 0px 10px 0px; border-bottom:1px dotted #cdcdcd; margin-bottom:5px;}
+#wpdiscuz-addons-options .custom-smile img{ width: 24px; height: 24px; padding:0px; margin:0px 10px; }
+#wpdiscuz-addons-options .custom-smile code{ font-size:14px; padding:4px; display:inline-block; }
+#wpdiscuz-addons-options .custom-smile .delete-custom-smile{ color:#DF1F22; }
+#wpdiscuz-addons-options label{font-size: 14px; line-height: 1.3em; }
+#wpdiscuz-addons-options .wpddir{ color:#DB6618; font-size:12px;}
+#wpdiscuz-addons-options .add-custom-smile{ margin-top:15px; }
+#wpdiscuz-addons-options .add-custom-smile table{ margin:1px; padding:0px; }
+#wpdiscuz-addons-options .add-custom-smile table td{ margin:0px; padding:0px; }
+#wpdiscuz-addons-options .add-custom-smile .sprefix{width:18px; text-align:center; background:#FFE2C5; font-size:16px; padding-top:6px; line-height:14px; font-weight:bold;}
+.custom-smile-instruction{color:#888888;}
+.show-smile-instruction,.hide-smile-instruction{color: blue;text-decoration: underline;cursor: pointer;}
+#wpdiscuz-smile-container-metabox .wpdiscuz-dialog-smile{
+    padding: 5px;
+    cursor: pointer;
+}

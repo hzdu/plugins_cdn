@@ -1,0 +1,38 @@
+/*.wpdiscuz-mu input[type="text"],.wpdiscuz-mu input[type="number"]{padding:3px;margin:0;}
+.wpdiscuz-mu input.wmu-phrase{width:100%;}
+.wpdiscuz-mu input.wmu-number{width:70px;}
+.wpdiscuz-mu label span{display:inline-block;line-height:25px;vertical-align:middle;padding:3px;}
+.wpdiscuz-mu div > label{line-height:25px;vertical-align:bottom;margin-left:5px;}
+.wpdiscuz-mu .wmu-desc {font-size:13px; color:#999999; width:98%; padding-left:0px; margin-left:0px;}*/
+.wc-form .wmu-hide {display:none;}
+
+#the-comment-list .wmu-attachment audio{vertical-align:bottom;}
+#the-comment-list .wmu-attached-videos {border-top: 1px dotted #dfdfdf;}
+#the-comment-list .wmu-attached-videos .wmu-attachment{margin:10px 2px 5px 2px; display:inline-block; margin-right:10px; font-size:13px; line-height:20px; width: 180px;}
+#the-comment-list .wmu-attached-video-link{display: inline-block;}
+#the-comment-list .wmu-attached-videos .wmu-attachment-name{display:inline-block; font-size:13px; line-height:20px;}
+#the-comment-list .wmu-attached-videos .wmu-attachment-delete{display:inline-block; width:20px; font-size:13px; line-height:20px; }
+#the-comment-list .wmu-attached-videos .wmu-audio .wmu-attachment-delete{width:30px; line-height:24px; }
+#the-comment-list .wmu-attached-videos .wmu-video .wmu-attachment-delete{width:30px; line-height:24px; }
+#the-comment-list .wmu-attached-videos .wmu-separator{display:none;}
+
+#the-comment-list .wmu-attached-files {border-top: 1px dotted #dfdfdf;}
+#the-comment-list .wmu-attached-files .wmu-attachment{margin:10px 2px 5px 2px; display:inline-block; margin-right:10px; font-size:13px; line-height:20px;}
+#the-comment-list .wmu-attached-file-link{display: inline-block;}
+#the-comment-list .wmu-attached-files .wmu-attachment-name{display:inline-block; font-size:13px; line-height:20px;}
+#the-comment-list .wmu-attached-files .wmu-attachment-delete{display:inline-block; width:20px; font-size:13px; line-height:20px; }
+#the-comment-list .wmu-attached-files .wmu-separator{display:none;}
+
+@media screen and (max-width:655px){
+    #the-comment-list .wmu-attached-videos .wmu-attachment audio{width:70%!important;}
+    #the-comment-list .wmu-attached-videos .wmu-attachment video{width:70%!important;}    
+}
+
+@media screen and (max-width:500px) {
+    #the-comment-list .wc-comment-text iframe{width:98%;}
+}
+
+@media screen and (max-width:420px){
+    #the-comment-list .wmu-attached-videos .wmu-attachment audio{width:100%!important;}
+    #the-comment-list .wmu-attached-videos .wmu-attachment video{width:100%!important;}
+}
