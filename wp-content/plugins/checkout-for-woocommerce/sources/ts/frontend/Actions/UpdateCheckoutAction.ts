@@ -209,9 +209,10 @@ class UpdateCheckoutAction extends Action {
 
         return value.replace( /checked='checked' data-order_button_text/g, 'data-order_button_text' )
             .replace( /reveal-content" style="display:none;">/g, 'reveal-content">' )
-            .replace( /cfw-radio-reveal-li cfw-active">/g, 'cfw-radio-reveal-li">' )
+            .replace( /cfw-radio-reveal-li cfw-active/g, 'cfw-radio-reveal-li' )
             .replace( /cfw-radio-reveal-li ">/g, 'cfw-radio-reveal-li">' )
-            .replace( /cfw-radio-reveal-content" >/g, 'cfw-radio-reveal-content">' );
+            .replace( /cfw-radio-reveal-content" >/g, 'cfw-radio-reveal-content">' )
+            .replace( / /g, '' );
     }
 
     /**
