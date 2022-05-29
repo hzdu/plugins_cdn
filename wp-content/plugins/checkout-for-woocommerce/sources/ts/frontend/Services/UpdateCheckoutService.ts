@@ -2,6 +2,7 @@ import UpdateCheckoutAction from '../Actions/UpdateCheckoutAction';
 import Main                 from '../Main';
 import DataService          from './DataService';
 import LoggingService       from './LoggingService';
+import TabService           from './TabService';
 
 class UpdateCheckoutService {
     private _updateCheckoutTimer: any;
@@ -79,10 +80,23 @@ class UpdateCheckoutService {
         jQuery( document.body ).on( 'cfw-after-tab-change', () => {
             const currentTab = Main.instance.tabService.getCurrentTab();
 
-            if ( currentTab.attr( 'id' ) === 'cfw-order-review' ) {
+            if ( currentTab.attr( 'id' ) === TabService.orderReviewTabId ) {
                 this.queueUpdateCheckout();
             }
         } );
+
+        /**
+         * Special case: User logged in and we need to make sure the name updates
+         */
+        if ( DataService.getSetting( 'user_logged_in' ) ) {
+            jQuery( document.body ).on( 'cfw-after-tab-change', () => {
+                const currentTab = Main.instance.tabService.getCurrentTab();
+
+                if ( currentTab.attr( 'id' ) === TabService.shippingMethodTabId ) {
+                    this.queueUpdateCheckout();
+                }
+            } );
+        }
     }
 
     /**
@@ -140,7 +154,7 @@ class UpdateCheckoutService {
         /* eslint-disable camelcase */
         const { checkoutForm } = DataService;
         const billToDifferentAddress = jQuery( '[name="bill_to_different_address"]:checked' ).val() as string;
-        const requiredInputs         = checkoutForm.find( '.address-field.validate-required:visible' );
+        const requiredShippingAddressFieldInputs         = checkoutForm.find( '.woocommerce-shipping-fields .address-field.validate-required:visible' );
         let has_full_address  = true;
 
         const billing_email = jQuery( '#billing_email' ).val();
@@ -169,9 +183,9 @@ class UpdateCheckoutService {
             address_2 = jQuery( ':input#billing_address_2' ).val();
         }
 
-        if ( requiredInputs.length ) {
+        if ( requiredShippingAddressFieldInputs.length ) {
             // eslint-disable-next-line func-names
-            requiredInputs.each( function () {
+            requiredShippingAddressFieldInputs.each( function () {
                 if ( jQuery( this ).find( ':input' ).val() === '' ) {
                     has_full_address = false;
                 }
