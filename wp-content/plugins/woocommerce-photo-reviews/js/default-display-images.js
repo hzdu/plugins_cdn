@@ -17,9 +17,15 @@ jQuery(document).ready(function ($) {
                 $n = $(this).parent().find('.reviews-images-item').length;
                 $(this).parent().find('.reviews-images-item').removeClass('active-image');
                 $(this).addClass('active-image');
-                parent.find('.big-review-images-content').html('');
-                // $big_review_images.hide();
-                $big_review_images.find('.big-review-images-content').append('<img class="big-review-images-content-img" style="float:left;display: block;border-radius: 3px;" src="' + $(this).data('image_src') + '">');
+                let temp='';
+                if ($(this).find('.reviews-iframe').length){
+                    temp = `<iframe class="reviews-images reviews-iframe" src="` + $(this).data('image_src') + `" frameborder="0" style="float:left;display: block;border-radius: 3px;" allowfullscreen></iframe>`;
+                }else if ($(this).find('.review-videos').length){
+                    temp = `<video class="reviews-images reviews-videos" width="100%" src="` + $(this).data('image_src') + `" controls></video>`;
+                }else {
+                    temp = '<img class="big-review-images-content-img" style="float:left;display: block;border-radius: 3px;" src="' + $(this).data('image_src') + '">';
+                }
+                parent.find('.big-review-images-content').html(temp);
                 $big_review_images.css({'display': 'table'});
                 parent.find('.wcpr-review-image-caption').html($(this).data('image_caption'));
             }
@@ -74,7 +80,15 @@ jQuery(document).ready(function ($) {
         parent.find('.big-review-images-content').html('');
         let $big_review_images = parent.find('.big-review-images');
         // $big_review_images.hide();
-        $big_review_images.find('.big-review-images-content').append('<img class="big-review-images-content-img" style="float:left;display: block;border-radius: 3px;" src="' + parent.find('.reviews-images-item').eq($cur).data('image_src') + '">')
+        let temp='';
+        if ( parent.find('.active-image .reviews-iframe').length){
+            temp = `<iframe class="reviews-images reviews-iframe" src="` +  parent.find('.reviews-images-item').eq($cur).data('image_src') + `" frameborder="0" style="float:left;display: block;border-radius: 3px;" allowfullscreen></iframe>`;
+        }else if (parent.find('.active-image .review-videos').length){
+            temp = `<video class="reviews-images reviews-videos" width="100%" src="` +  parent.find('.reviews-images-item').eq($cur).data('image_src') + `" controls></video>`;
+        }else {
+            temp = '<img class="big-review-images-content-img" style="float:left;display: block;border-radius: 3px;" src="' + parent.find('.reviews-images-item').eq($cur).data('image_src') + '">';
+        }
+        $big_review_images.find('.big-review-images-content').append(temp);
         $big_review_images.css({'display': 'table'});
         parent.find('.wcpr-review-image-caption').html(parent.find('.reviews-images-item').eq($cur).data('image_caption'));
         if (currentRotate) {
@@ -100,7 +114,15 @@ jQuery(document).ready(function ($) {
         parent.find('.big-review-images-content').html('');
         let $big_review_images = parent.find('.big-review-images');
         // $big_review_images.hide();
-        $big_review_images.find('.big-review-images-content').append('<img class="big-review-images-content-img" style="float:left;display: block;border-radius: 4px;" src="' + parent.find('.reviews-images-item').eq($cur).data('image_src') + '">')
+        let temp='';
+        if ( parent.find('.active-image .reviews-iframe').length){
+            temp = `<iframe class="reviews-images reviews-iframe" src="` +  parent.find('.reviews-images-item').eq($cur).data('image_src') + `" frameborder="0" style="float:left;display: block;border-radius: 3px;" allowfullscreen></iframe>`;
+        }else if (parent.find('.active-image .review-videos').length){
+            temp = `<video class="reviews-images reviews-videos" width="100%" src="` +  parent.find('.reviews-images-item').eq($cur).data('image_src') + `" controls></video>`;
+        }else {
+            temp = '<img class="big-review-images-content-img" style="float:left;display: block;border-radius: 3px;" src="' + parent.find('.reviews-images-item').eq($cur).data('image_src') + '">';
+        }
+        $big_review_images.find('.big-review-images-content').append(temp)
         $big_review_images.css({'display': 'table'});
         parent.find('.wcpr-review-image-caption').html(parent.find('.reviews-images-item').eq($cur).data('image_caption'));
         if (currentRotate) {

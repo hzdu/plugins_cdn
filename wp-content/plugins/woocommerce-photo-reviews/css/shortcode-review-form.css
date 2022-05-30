@@ -25,7 +25,17 @@
         src: url("../fonts/star.svg") format("svg");
     }
 }
-
+.wcpr-hidden {
+    display: none !important;
+}
+.wcpr-comment-form-error{
+    color: red;
+    display: inline-grid;
+    white-space: break-spaces !important;
+}
+.wcpr_image_upload_button, .wcpr_image_upload_button.button{
+    text-transform: inherit;
+}
 .woocommerce-photo-reviews-form-container .woocommerce-photo-reviews-form-main .woocommerce-photo-reviews-form-main-inner {
     background: white;
     max-width: 100%;
@@ -135,7 +145,10 @@
     display: flex;
     align-items: center;
 }
-
+.wcpr-comment-form-images.wcpr-comment-form-images-with-caption .wcpr-selected-image video.wcpr-selected-image-preview {
+    width: auto;
+    max-width: 100px;
+}
 .wcpr-comment-form-images.wcpr-comment-form-images-with-caption .wcpr-selected-image img.wcpr-selected-image-preview {
     width: 25%;
     max-width: 64px;

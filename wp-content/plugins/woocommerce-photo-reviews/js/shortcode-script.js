@@ -70,7 +70,18 @@ jQuery(window).on('elementor/frontend/init', () => {
                 }
                 jQuery('#shortcode-reviews-content-left-modal').find('.shortcode-reviews-images').parent().on('click', function () {
                     swipeBoxIndex = jQuery(this).data('image_index');
-                    jQuery('#shortcode-reviews-content-left-main').find('.shortcode-reviews-images').attr('src', jQuery(this).attr('href'));
+                    let temp ='',current_image_src = jQuery(this).attr('href'),$left_main = jQuery('#shortcode-reviews-content-left-main').find('.shortcode-reviews-images');
+                    if (jQuery(this).hasClass('reviews-iframe') || jQuery(this).find('.reviews-iframe').length){
+                        temp = jQuery(`<iframe class="shortcode-reviews-images reviews-iframe" data-original_src="${current_image_src}" src="${current_image_src}" frameborder="0" allowfullscreen></iframe>`);
+                    } else if (jQuery(this).hasClass('reviews-videos') || jQuery(this).find('.reviews-videos').length){
+                        temp = jQuery(`<video class="shortcode-reviews-images reviews-videos" data-original_src="${current_image_src}" src="${current_image_src}" controls></video>`);
+                    }else {
+                        temp = jQuery(`<img class="shortcode-reviews-images" data-original_src="${current_image_src}" src="${current_image_src}">`);
+                        temp.attr('title',$left_main.attr('title'));
+                    }
+                    temp.attr({width:$left_main.attr('width'),height:$left_main.attr('width') });
+                    $left_main.replaceWith(temp);
+                    // jQuery('#shortcode-reviews-content-left-main').find('.shortcode-reviews-images').attr('src', jQuery(this).attr('href'));
                     jQuery('#shortcode-reviews-content-left-main').find('.shortcode-wcpr-review-image-caption').html(jQuery(this).data('image_caption'));
                     return false;
                 });
@@ -253,7 +264,17 @@ jQuery(document).ready(function ($) {
             });
             $left_modal.find('.shortcode-reviews-images').parent().on('click', function () {
                 swipeBoxIndex = $(this).data('image_index');
-                $left_main.find('.shortcode-reviews-images').attr('src', $(this).attr('href'));
+                let temp ='',current_image_src = jQuery(this).attr('href');
+                if (jQuery(this).hasClass('reviews-iframe') || jQuery(this).find('.reviews-iframe').length){
+                    temp = jQuery(`<iframe class="shortcode-reviews-images reviews-iframe" data-original_src="${current_image_src}" src="${current_image_src}" frameborder="0" allowfullscreen></iframe>`);
+                } else if (jQuery(this).hasClass('reviews-videos') || jQuery(this).find('.reviews-videos').length){
+                    temp = jQuery(`<video class="shortcode-reviews-images reviews-videos" data-original_src="${current_image_src}" src="${current_image_src}" controls></video>`);
+                }else {
+                    temp = jQuery(`<img class="shortcode-reviews-images" data-original_src="${current_image_src}" src="${current_image_src}">`);
+                    temp.attr('title',$left_main.find('.shortcode-reviews-images').attr('title'));
+                }
+                temp.attr({width:$left_main.find('.shortcode-reviews-images').attr('width'),height:$left_main.find('.shortcode-reviews-images').attr('width') });
+                $left_main.find('.shortcode-reviews-images').replaceWith(temp);
                 $left_main.find('.shortcode-wcpr-review-image-caption').html($(this).data('image_caption'));
                 return false;
             });
@@ -590,6 +611,10 @@ jQuery(document).ready(function ($) {
                 }
                 // wcpr_helpful_button();
                 fixBoxShadow();
+                if ($container.hasClass('woocommerce-photo-reviews-slide-init')){
+                    $container.removeClass('woocommerce-photo-reviews-slide woocommerce-photo-reviews-slide-init woocommerce-photo-reviews-slide-none');
+                    viwcpr_flexslider();
+                }
                 jQuery(document.body).trigger('woocommerce_photo_reviews_shortcode_ajax_get_reviews');
                 ajax_pagination_running = false;
                 $container.removeClass('woocommerce-photo-reviews-shortcode-loading');

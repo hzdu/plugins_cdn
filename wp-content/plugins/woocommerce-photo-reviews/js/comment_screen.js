@@ -45,6 +45,20 @@ jQuery(document).ready(function ($) {
             let attachment_url;
             if (attachment.length > 0) {
                 for (let i = 0; i < attachment.length; i++) {
+                    if (attachment[i].type && attachment[i].type === 'video'){
+                        // Send the attachment[i] URL to our custom image input field.
+                        if (wcpr_admin_comment_params.image_caption_enable == 1) {
+                            imgContainer.append('<div class="wcpr-review-image-container"><div class="wcpr-review-image-wrap">' +
+                                '<div class="wcpr-review-image-caption">' + attachment[i].caption + '</div>' +
+                                '<video style="border: 1px solid;" class="review-images review-videos" data-image_id="' + attachment[i].id + '" src="' + attachment[i].url + '"controls></video><input class="photo-reviews-id" name="photo-reviews-id[]" type="hidden" value="' + attachment[i].id + '"/></div>' +
+                                '<a href="#" class="wcpr-remove-image">Remove</a></div>');
+                        } else {
+                            imgContainer.append('<div class="wcpr-review-image-container"><div class="wcpr-review-image-wrap">' +
+                                '<video style="border: 1px solid;" class="review-images review-videos" data-image_id="' + attachment[i].id + '" src="' + attachment[i].url + '" controls></video><input class="photo-reviews-id" name="photo-reviews-id[]" type="hidden" value="' + attachment[i].id + '"/></div>' +
+                                '<a href="#" class="wcpr-remove-image">Remove</a></div>');
+                        }
+                        continue;
+                    }
                     if (attachment[i].sizes.thumbnail) {
                         attachment_url = attachment[i].sizes.thumbnail.url;
                     } else if (attachment[i].sizes.medium) {

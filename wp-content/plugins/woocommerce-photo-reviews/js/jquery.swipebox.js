@@ -738,6 +738,10 @@
                     if ( src.toLowerCase().indexOf( 'swipeboxvideo=1' ) >= 0 ) {
                         return true;
                     }
+                    src= src.toLowerCase().split('.');
+                    if ( ['mp4','webm'].indexOf( src[src.length - 1]) > -1 ) {
+                        return true;
+                    }
                 }
             },
 
@@ -806,7 +810,8 @@
                     iframe = '<iframe width="560" height="315"  src="//player.vimeo.com/video/' + vimeoUrl[1] + '?' + qs + '" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>';
 
                 } else {
-                    iframe = '<iframe width="560" height="315" src="' + url + '" frameborder="0" allowfullscreen></iframe>';
+                    iframe = '<video src="' + url + '" width="100%" controls></video>';
+                    // iframe = '<iframe width="560" height="315" src="' + url + '" frameborder="0" allowfullscreen></iframe>';
                 }
 
                 return '<div class="wcpr-swipebox-video-container" style="max-width:' + plugin.settings.videoMaxWidth + 'px"><div class="wcpr-swipebox-video">' + iframe + '</div></div>';

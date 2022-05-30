@@ -110,6 +110,11 @@ jQuery(document).ready(function ($) {
             let attachment_url;
             if(attachment.length>0){
                 for(let i=0;i<attachment.length;i++){
+                    if (attachment[i].type && attachment[i].type === 'video'){
+                        // Send the attachment URL to our custom image input field.
+                        imgContainer.append('<div class="wcpr-review-image-container"><video style="border: 1px solid;" class="review-images review-videos" src="' + attachment[i].url + '" controls></video><input class="photo-reviews-id" name="vi_wcpr_add_review_images[]" type="hidden" value="' + attachment[i].id + '"/><span class="wcpr-remove-image">Remove</span></div>');
+                        continue;
+                    }
                     if (attachment[i].sizes.thumbnail) {
                         attachment_url = attachment[i].sizes.thumbnail.url;
                     } else if (attachment[i].sizes.medium) {

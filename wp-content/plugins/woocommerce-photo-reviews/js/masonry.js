@@ -18,8 +18,8 @@ jQuery(document).ready(function ($) {
             //     slides = $('.wcpr-grid-item .reviews-images-container');
             //     i = slides.index($(this).find('.reviews-images-container'));
             // }else{
-                slides = $('.wcpr-grid-item');
-                i = slides.index($(this));
+            slides = $('.wcpr-grid-item');
+            i = slides.index($(this));
             // }
             if (i >= 0) {
                 showReview(i);
@@ -59,11 +59,11 @@ jQuery(document).ready(function ($) {
             current = slides.length - 1
         }
         let $left_modal = $('#reviews-content-left-modal');
-        let $left_main = $('#reviews-content-left-main'),$wrap_current;
+        let $left_main = $('#reviews-content-left-main'), $wrap_current;
         // if (woocommerce_photo_reviews_params.masonry_popup ==='image'){
         //     $wrap_current = slides.eq(current).closest('.wcpr-grid-item');
         // }else{
-            $wrap_current = slides.eq(current);
+        $wrap_current = slides.eq(current);
         // }
         $left_modal.html('');
         $left_main.html('');
@@ -85,8 +85,18 @@ jQuery(document).ready(function ($) {
             $left_modal.find('.reviews-images').closest('a').on('click', function () {
                 swipeBoxIndex = $(this).data('image_index');
                 let current_image_src = $(this).attr('href');
+                let temp ='';
+                if (jQuery(this).hasClass('reviews-iframe') || jQuery(this).find('.reviews-iframe').length){
+                    temp = jQuery(`<iframe class="reviews-images reviews-iframe" data-original_src="${current_image_src}" src="${current_image_src}" frameborder="0" allowfullscreen></iframe>`);
+                } else if (jQuery(this).hasClass('reviews-videos') || jQuery(this).find('.reviews-videos').length){
+                    temp = jQuery(`<video class="reviews-images reviews-videos" data-original_src="${current_image_src}" src="${current_image_src}" controls></video>`);
+                }else {
+                    temp = jQuery(`<img class="reviews-images" data-original_src="${current_image_src}" src="${current_image_src}">`);
+                    temp.attr('title',$left_main.find('.reviews-images').attr('title'));
+                }
+                temp.attr({width:$left_main.find('.reviews-images').attr('width'),height:$left_main.find('.reviews-images').attr('width') });
+                $left_main.find('.reviews-images').replaceWith(temp);
                 $left_main.find('source').attr('srcset', current_image_src);
-                $left_main.find('.reviews-images').attr('src', current_image_src);
                 $left_main.find('.wcpr-review-image-caption').html($(this).data('image_caption'));
                 return false;
             });
@@ -97,11 +107,7 @@ jQuery(document).ready(function ($) {
 
     switch (woocommerce_photo_reviews_params.masonry_popup) {
         case 'review':
-            // if (woocommerce_photo_reviews_params.masonry_popup ==='image'){
-            //     slides = $('.wcpr-grid-item .reviews-images-container');
-            // }else{
-                slides = $('.wcpr-grid-item');
-            // }
+            slides = $('.wcpr-grid-item');
             $('.wcpr-close').on('click', function () {
                 wcpr_enable_scroll();
                 $('.wcpr-modal-light-box').fadeOut(200);
@@ -207,7 +213,13 @@ jQuery(document).ready(function ($) {
     jQuery(document.body).on('wcpr_ajax_load_more_reviews_end wcpr_ajax_pagination_end', function () {
         setTimeout(function () {
             wcpr_resize_masonry_items();
-        },100);
+        }, 100);
+    });
+    $(document).on('skeleton-loaded', function () {
+        wcpr_resize_masonry_items(true);
+    });
+    $(document).on('tabactivate', function (e, ui) {
+        wcpr_resize_masonry_items(true);
     });
     jQuery(document.body).on('click', '.wcpr-read-more', function (e) {
         e.stopPropagation();
@@ -223,30 +235,36 @@ jQuery(document).ready(function ($) {
     });
     return false;
 });
-jQuery(window).on('load',function () {
+jQuery(window).on('load', function () {
     wcpr_resize_masonry_items();
 }).on('resize', function () {
     wcpr_resize_masonry_items();
 });
 
-function wcpr_resize_masonry_items() {
-    jQuery('.wcpr-grid-loadmore .wcpr-grid-item:not(.wcpr-grid-item-init)').each(function () {
-        wcpr_resize_masonry_item(jQuery(this));
-    });
+function wcpr_resize_masonry_items(force_resize = false) {
+    if (force_resize) {
+        jQuery('.wcpr-grid-loadmore .wcpr-grid-item').each(function () {
+            wcpr_resize_masonry_item(jQuery(this));
+        });
+    } else {
+        jQuery('.wcpr-grid-loadmore .wcpr-grid-item:not(.wcpr-grid-item-init)').each(function () {
+            wcpr_resize_masonry_item(jQuery(this));
+        });
+    }
 }
 
 function wcpr_resize_masonry_item(item) {
     item = jQuery(item);
-    let item_img, img_height = 0, item_width, colums= parseInt(jQuery('.wcpr-grid').data('wcpr_columns') || 3);
+    let item_img, img_height = 0, item_width, colums = parseInt(jQuery('.wcpr-grid').data('wcpr_columns') || 3);
     if (item.find('.reviews-images-wrap-right .reviews-images').length) {
         item_img = item.find('.reviews-images-wrap-right .reviews-images');
         img_height = item_img.outerHeight();
         if (img_height === 0) {
-            item_width = item.find('.wcpr-content').outerWidth() ;
-                let img_width = parseFloat(item_img.attr('width') || 0),
+            item_width = item.find('.wcpr-content').outerWidth();
+            let img_width = parseFloat(item_img.attr('width') || 0),
                 img_height_t = parseFloat(item_img.attr('height') || 0);
-            if (item_width===0){
-                item_width= ((jQuery('.wcpr-grid').outerWidth() ?jQuery('.wcpr-grid').outerWidth():(jQuery('#reviews').outerWidth()?jQuery('#reviews').outerWidth(): (jQuery('.woocommerce-Tabs-panel').outerWidth()?jQuery('.woocommerce-Tabs-panel').outerWidth(): 200)) )- ((colums - 1)*20) )/colums;
+            if (item_width === 0) {
+                item_width = ((jQuery('.wcpr-grid').outerWidth() ? jQuery('.wcpr-grid').outerWidth() : (jQuery('#reviews').outerWidth() ? jQuery('#reviews').outerWidth() : (jQuery('.woocommerce-Tabs-panel').outerWidth() ? jQuery('.woocommerce-Tabs-panel').outerWidth() : 200))) - ((colums - 1) * 20)) / colums;
             }
             img_height = img_height_t !== 0 ? Math.round((item_width / img_width) * img_height_t) : item_width;
         }
@@ -255,14 +273,14 @@ function wcpr_resize_masonry_item(item) {
         row_gap = 20;//parseInt(jQuery('.wcpr-grid').css('grid-row-gap'));
     let item_height = item.find('.wcpr-content').outerHeight(),
         item_content_height = item.find('.review-content-container').outerHeight();
-    if (item_content_height ===0 ){
-        if (!item_width){
-            item_width = item.find('.wcpr-content').outerWidth() ;
-            if (item_width===0){
-                item_width= ((jQuery('.wcpr-grid').outerWidth() ?jQuery('.wcpr-grid').outerWidth():(jQuery('#reviews').outerWidth()?jQuery('#reviews').outerWidth(): (jQuery('.woocommerce-Tabs-panel').outerWidth()?jQuery('.woocommerce-Tabs-panel').outerWidth(): 200)) )- ((colums - 1)*20) )/colums;
+    if (item_content_height === 0) {
+        if (!item_width) {
+            item_width = item.find('.wcpr-content').outerWidth();
+            if (item_width === 0) {
+                item_width = ((jQuery('.wcpr-grid').outerWidth() ? jQuery('.wcpr-grid').outerWidth() : (jQuery('#reviews').outerWidth() ? jQuery('#reviews').outerWidth() : (jQuery('.woocommerce-Tabs-panel').outerWidth() ? jQuery('.woocommerce-Tabs-panel').outerWidth() : 200))) - ((colums - 1) * 20)) / colums;
             }
         }
-       jQuery('body').append('<div class="review-content-container-temp" style="width: '+item_width+'px; visibility: hidden; ">'+item.find('.review-content-container').html()+'</div>');
+        jQuery('body').append('<div class="review-content-container-temp" style="width: ' + item_width + 'px; visibility: hidden; ">' + item.find('.review-content-container').html() + '</div>');
         let temp = jQuery('.review-content-container-temp');
         temp.find('.wcpr-review-content-full').remove();
         item_content_height = temp.outerHeight();

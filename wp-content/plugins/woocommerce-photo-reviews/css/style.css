@@ -20,7 +20,17 @@
     padding-left: 0;
     padding-right: 20px;
 }
-
+.wcpr_image_upload_button, .wcpr_image_upload_button.button{
+    text-transform: inherit;
+}
+.wcpr-hidden {
+    display: none !important;
+}
+.wcpr-comment-form-error{
+    color: red;
+    display: inline-grid;
+    white-space: break-spaces !important;
+}
 .wcpr-stars-count {
     padding-left: 20px;
     font-size: 10px;
@@ -106,6 +116,11 @@
     border-radius: 3px;
 }
 
+.rtl .rate-percent-bg .rate-percent {
+    left: unset;
+    right: 0;
+}
+
 .rate-percent-bg {
     position: relative;
     height: 6px;
@@ -162,9 +177,19 @@
     margin: 10px 1px;
 }
 
+.wcpr-overall-rating-left .wcpr-overall-rating-left-average {
+    white-space: nowrap;
+}
+
 .wcpr-overall-rating-right {
     padding-left: 10px;
     text-align: left;
+}
+
+.rtl .wcpr-overall-rating-right {
+    padding-left: unset;
+    text-align: right;
+    padding-right: 10px;
 }
 
 .wcpr-overall-rating-main .wcpr-overall-rating-right .wcpr-overall-rating-right-total {
@@ -259,18 +284,20 @@
 .wcpr-filter-button.wcpr-filter-button-images:before {
     font-family: "woocommerce-photo-reviews";
     content: "\f109";
-
 }
 
 .wcpr-filter-button.wcpr-filter-button-verified:before {
     font-family: "woocommerce-photo-reviews";
     content: "\f10a";
-
 }
 
 .wcpr-filter-button:before {
     margin: 0 5px 0 0 !important;
     font-size: inherit !important;
+}
+
+.rtl .wcpr-filter-button:before {
+    margin: 0 0 0 5px !important;
 }
 
 .wcpr-filter-container ul.wcpr-filter-button-ul {
@@ -301,6 +328,14 @@ li.wcpr-filter-button-li {
 .wcpr-filter-container li.wcpr-filter-button-li a {
     margin: 0 !important;
     width: 125px !important;
+}
+
+.rtl .wcpr-filter-button[data-filter_type="verified"],
+.rtl .wcpr-filter-button.wcpr-filter-button-images,
+.rtl .wcpr-filter-button .wcpr-filter-rating-placeholder,
+.rtl .wcpr-filter-container li.wcpr-filter-button-li a {
+    display: flex;
+    justify-content: center;
 }
 
 @media screen and (max-width: 680px) {
@@ -405,6 +440,10 @@ li.wcpr-filter-button-li {
 .wcpr-comment-form-images.wcpr-comment-form-images-with-caption .wcpr-selected-image img.wcpr-selected-image-preview {
     width: 25%;
     max-width: 64px;
+}
+.wcpr-comment-form-images.wcpr-comment-form-images-with-caption .wcpr-selected-image video.wcpr-selected-image-preview {
+    width: auto;
+    max-width: 100px;
 }
 
 .wcpr-input-file-container .wcpr-input-file-wrap .wcpr-selected-image input {

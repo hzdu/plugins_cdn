@@ -45,6 +45,8 @@ jQuery(document).ready(function ($) {
     let wcpr_index = woocommerce_photo_reviews_import_params.wcpr_index;
     let search_id_by_sku = woocommerce_photo_reviews_import_params.search_id_by_sku;
     let search_id_by_slug = woocommerce_photo_reviews_import_params.search_id_by_slug;
+    let import_csv_download_images = woocommerce_photo_reviews_import_params.import_csv_download_images;
+    let import_csv_download_videos = woocommerce_photo_reviews_import_params.import_csv_download_videos;
     let import_from_loox = woocommerce_photo_reviews_import_params.import_from_loox;
     let import_csv_date_format = woocommerce_photo_reviews_import_params.import_csv_date_format;
 
@@ -63,6 +65,8 @@ jQuery(document).ready(function ($) {
                 reviews_per_request: reviews_per_request,
                 search_id_by_sku: search_id_by_sku,
                 search_id_by_slug: search_id_by_slug,
+                import_csv_download_images: import_csv_download_images,
+                import_csv_download_videos: import_csv_download_videos,
                 import_csv_date_format: import_csv_date_format,
             },
             success: function (response) {
@@ -108,6 +112,8 @@ jQuery(document).ready(function ($) {
                 reviews_per_request: reviews_per_request,
                 search_id_by_sku: search_id_by_sku,
                 search_id_by_slug: search_id_by_slug,
+                import_csv_download_images: import_csv_download_images,
+                import_csv_download_videos: import_csv_download_videos,
                 import_from_loox: import_from_loox,
                 import_csv_date_format: import_csv_date_format,
                 wcpr_index: wcpr_index,
