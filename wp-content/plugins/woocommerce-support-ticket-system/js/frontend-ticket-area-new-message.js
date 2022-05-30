@@ -47,7 +47,8 @@ function wcsts_send_new_message(event)
 	formData.append('type', jQuery('#wcsts_type').val());
 	formData.append('list_all_ppt_tickets_of_the_current_user', jQuery('#list_all_ppt_tickets_of_the_current_user').val());
 	formData.append('action', 'wcsts_submit_new_message'); 	
-	formData.append('wcsts_wpml_language', wcsts.wpml_language); 
+	formData.append('wcsts_wpml_language', wcsts.wpml_language);
+	formData.append('security', wcsts.security); 	
 	
 	
 	//new file method

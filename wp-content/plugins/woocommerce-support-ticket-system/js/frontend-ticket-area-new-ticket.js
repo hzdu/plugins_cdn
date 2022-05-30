@@ -47,6 +47,7 @@ function wcsts_open_new_ticket(event)
 	formData.append('type_id', jQuery('#wcsts_type_id').val()); 
 	formData.append('type', jQuery('#wcsts_type').val());
 	formData.append('wcsts_wpml_language', wcsts.wpml_language); 
+	formData.append('security', wcsts.security); 
 	//File(s) 
 	//new file method
 	jQuery('.wcsts_file_metadata').each(function(index,elem)
