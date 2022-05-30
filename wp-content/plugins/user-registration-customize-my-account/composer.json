@@ -1,0 +1,44 @@
+{
+	"name": "wpeverest/user-registration-customize-my-account",
+	"description": "Customize My Account addon for user registration plugin.",
+	"homepage": "https://wpeverest.com/plugins/user-registration-customize-my-account/",
+	"type": "wordpress-plugin",
+	"license": "GPL-3.0-or-later",
+	"require": {
+	  "composer/installers": "1.9.0"
+	},
+	"require-dev": {
+	  "wp-cli/i18n-command": "2.2.9",
+	  "wpeverest/wpeverest-sniffs": "0.1.0"	},
+	"scripts": {
+	  "phpcs": [
+		"phpcs -s -p"
+	  ],
+	  "phpcs-pre-commit": [
+		"phpcs -s -p -n"
+	  ],
+	  "phpcbf": [
+		"phpcbf -p"
+	  ],
+	  "makepot-audit": [
+		"wp --allow-root i18n make-pot . --exclude=\".github,.wordpress-org,bin,node_modules,vendor\" --headers='{\"Report-Msgid-Bugs-To\":\"help@wpeverest.com\"}' --slug=user-registration-customize-my-account"
+	  ],
+	  "makepot": [
+		"@makepot-audit --skip-audit"
+	  ]
+	},
+	"extra": {
+	  "scripts-description": {
+		"phpcs": "Analyze code against the WordPress coding standard with PHP_CodeSniffer",
+		"phpcbf": "Fix coding standards warnings/errors automatically with PHP Code Beautifier",
+		"makepot-audit": "Generate langauges/user-registration-customize-my-account.pot file and run audit",
+		"makepot": "Generate langauges/user-registration-customize-my-account.pot file"
+	  }
+	},
+	"config": {
+		"allow-plugins": {
+			"composer/installers": true,
+			"dealerdirect/phpcodesniffer-composer-installer": true
+		}
+	}
+}

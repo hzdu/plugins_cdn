@@ -1,0 +1,40 @@
+{
+  "name": "user-registration-woocommerce",
+  "title": "User Registration Woocommerce",
+  "version": "1.2.7",
+  "homepage": "https://wpeverest.com/plugins/user-registration-woocommerce/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wpeverest/user-registration-woocommerce.git"
+  },
+  "license": "GPL-3.0+",
+  "main": "Gruntfile.js",
+  "scripts": {
+    "build": "grunt && npm run makepot",
+    "makepot": "composer run-script makepot"
+  },
+  "devDependencies": {
+    "autoprefixer": "~9.5.0",
+    "grunt": "^1.0.4",
+    "grunt-contrib-compress": "~1.4.3",
+    "grunt-contrib-concat": "~1.0.1",
+    "grunt-contrib-cssmin": "~3.0.0",
+    "grunt-contrib-jshint": "~1.1.0",
+    "grunt-contrib-uglify": "~4.0.0",
+    "grunt-contrib-watch": "~1.0.0",
+    "grunt-phpcbf": "^0.1.1",
+    "grunt-phpcs": "~0.4.0",
+    "grunt-postcss": "~0.9.0",
+    "grunt-rtlcss": "~2.0.1",
+    "grunt-sass": "~3.0.0",
+    "grunt-stylelint": "~0.8.0",
+    "node-sass": "^4.14.1"
+  },
+  "engines": {
+    "node": ">=0.8.0",
+    "npm": ">=1.1.0"
+  },
+  "dependencies": {
+    "grunt-cli": "^1.4.3"
+  }
+}

@@ -1,0 +1,125 @@
+/**
+ * Import
+ **/
+@import '../../../user-registration/assets/css/variables/variables';
+
+/**
+ * Styles
+ **/
+.urcma-general-settings-container{
+	margin-top: 24px;
+}
+.urcma-account-management-box {
+	border-radius: 4px;
+	border: 1px solid $border_color;
+
+	input {
+		border-color: $border_color;
+	}
+
+	.urcma-account-management-header {
+		background: $white;
+		display: flex;
+		align-items: center;
+		padding: 0 16px;
+		margin-bottom: 0;
+		position: relative;
+		border-radius: 4px 4px 0 0;
+		border-bottom: 1px solid $border_color;
+
+		.ur-button-container {
+			margin-left: auto;
+		}
+
+		&::after {
+			content: '';
+			display: flex;
+			position: absolute;
+			left: 0;
+			bottom: 0;
+			right: 0;
+			height: 10px;
+			z-index: 1;
+			box-shadow: 0px 4px 8px transparentize($gray_base, 0.92);
+		}
+	}
+
+	.urcma-endpoints-container {
+		display: flex;
+		background-color: $white;
+
+		.ur-sidebar {
+			width: 412px;
+			border-right: 1px solid $border_color;
+
+			.ur-sidebar-nav-wrapper {
+				padding: 16px;
+
+				.ur-sidebar-nav-tab {
+					cursor: pointer;
+					padding: 10px 15px;
+					color: $gray_base;
+					display: flex;
+					align-items: center;
+					background: $color_gray_four;
+					margin-bottom: 10px;
+					border-radius: 4px;
+
+					svg {
+						cursor: grab;
+						fill: $color_gray_two;
+						margin-left: auto;
+						transform: rotate(90deg);
+					}
+
+					&.active {
+						background: $primary_color;
+						color: $white;
+
+						svg {
+							fill: currentColor;
+						}
+					}
+
+					&.ui-sortable-helper {
+						box-shadow: 2px 2px 6px 0px transparentize($gray_base, 0.75);
+					}
+
+					&.ui-sortable-placeholder {
+						background: $color_gray_four;
+						visibility: visible !important;
+					}
+				}
+			}
+		}
+
+		.ur-content-wrap {
+			position: relative;
+			flex: 1;
+			padding: 0 20px;
+			background: lighten($color_gray_five, 3%);
+			overflow-y: auto;
+			overflow-x: hidden;
+		}
+
+		.urcma-endpoint-header {
+			display: flex;
+			align-items: center;
+			border-bottom: 1px solid $border_color;
+
+			.urcma-endpoint-header-option {
+				display: inline-flex;
+				margin-left: auto;
+
+				.remove-trigger {
+					margin-left: 16px;
+				}
+			}
+		}
+	}
+}
+.swal2-popup{
+	.swal2-title{
+		flex-direction: column;
+	}
+}
