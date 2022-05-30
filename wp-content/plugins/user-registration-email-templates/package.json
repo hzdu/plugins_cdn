@@ -1,0 +1,45 @@
+{
+  "name": "user-registration-email-templates",
+  "title": "User Registration Email Templates",
+  "version": "1.0.4",
+  "homepage": "https://wpeverest.com/plugins/user-registration-email-templates/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://gitlab.com/wpeverest/user-registration-email-templates.git"
+  },
+  "license": "GPL-3.0+",
+  "main": "Gruntfile.js",
+  "devDependencies": {
+    "autoprefixer": "~9.5.0",
+    "grunt": "~1.4.1",
+    "grunt-contrib-compress": "~2.0.0",
+    "grunt-contrib-concat": "~2.0.0",
+    "grunt-contrib-cssmin": "~4.0.0",
+    "grunt-contrib-jshint": "~3.1.1",
+    "grunt-contrib-uglify": "~5.0.1",
+    "grunt-contrib-watch": "~1.1.0",
+    "grunt-postcss": "~0.9.0",
+    "grunt-rtlcss": "~2.0.2",
+    "grunt-sass": "~3.1.0",
+    "grunt-stylelint": "~0.17.0",
+    "node-sass": "~6.0.1",
+    "stylelint": "~14.1.0",
+    "webpack": "^3.1.0"
+  },
+  "engines": {
+    "node": ">=8.9.3",
+    "npm": ">=5.5.1"
+  },
+  "description": "=== User Registration Email Templates ===\r Contributors: WPEverest\r Tags: user registration, addon, email templates,\r Requires at least: 4.0\r Tested up to: 5.4\r Stable tag: 1.0.0\r License: GPLv3\r License URI: http://www.gnu.org/licenses/gpl-3.0.html",
+  "bugs": {
+    "url": "https://gitlab.com/wpeverest/user-registration-email-templates/issues"
+  },
+  "scripts": {
+    "build": "grunt && npm run makepot",
+    "makepot": "composer run-script makepot"
+  },
+  "author": "",
+  "dependencies": {
+    "grunt-cli": "~1.4.3"
+  }
+}

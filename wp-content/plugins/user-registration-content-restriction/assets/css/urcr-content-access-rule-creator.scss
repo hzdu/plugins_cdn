@@ -1,0 +1,131 @@
+@import '../../../user-registration/assets/css/variables/variables';
+// Abstract: For label and checkbox paired field.
+
+.user-registration-content-restriction {
+	*,
+	::before,
+	::after {
+		box-sizing: border-box;
+	}
+}
+
+.urcr-label-checkbox-pair {
+	display: flex;
+	align-items: center;
+	padding: 5px 0;
+
+	.urcr-label {
+		padding-bottom: 3px;
+	}
+	.urcr-input {
+		margin-right: 8px;
+	}
+}
+
+// Abstract: Half or 50% width.
+.urcr-hw {
+	width: 50%;
+}
+
+// Fix CSS: For WP widget UI used for URCR settings.
+.urcr-settings-widget {
+	border-style: dashed;
+	margin-bottom: 10px;
+
+	.urcr-settings-widget-header {
+		cursor: pointer;
+
+		.handlediv {
+			height: auto;
+			width: auto;
+		}
+	}
+
+	.inside {
+		margin: 0;
+	}
+}
+
+// Fix CSS: For the rule creator tabs.
+.urcr-tab {
+	&.nav-tab {
+		border-width: 0px;
+		padding: 3px 16px;
+		font-size: 13px;
+		border-top-left-radius: 3px;
+		border-top-right-radius: 3px;
+
+		&.nav-tab-active {
+			border-width: 1px;
+			border-bottom-width: 0px
+		}
+		&:focus {
+			box-shadow: none;
+		}
+	}
+}
+
+// Individual: The 'Enable time limit' option.
+#urcr-enable-time-limit {
+	margin-top: 15px;
+}
+
+// Fix: Tooltip.
+#tiptip_holder {
+	top: -35px !important;
+}
+
+.urcr-add-new-conditional-logic-field {
+	width: 105px;
+	font-size: 12px;
+	margin-right: 3px;
+	-webkit-appearance: none !important;
+	-moz-appearance: none !important;
+	text-indent: 1px !important;
+	text-overflow: '' !important;
+	background: none !important;
+
+	&::-ms-expand {
+		display: none !important;
+	}
+}
+
+.urcrra-redirect-input-container {
+	.urcr-input {
+		width: 100%;
+		margin-bottom: 10px;
+	}
+}
+
+.urcrra-shortcode-args {
+	margin-top: 5px;
+}
+
+.urcr-notice {
+	background: #fff;
+    border: 1px solid #ccd0d4;
+	border-left-color: rgb(204, 208, 212);
+    border-left-width: 4px;
+    box-shadow: 0 1px 1px rgba(0,0,0,.04);
+	padding: 1px 12px;
+
+	&.urcr-notice-warning {
+		border-left-color: #ffb900;
+	}
+}
+
+.urcr-puncher {
+	flex-grow: 1;
+}
+
+.urcr-enable-access-rule-container {
+	margin-bottom: 25px;
+	user-select: none;
+
+	.urcr-enable-access-rule-switch {
+		margin-right: 10px;
+	}
+	.urcr-enable-access-rule-label {
+		font-weight: bold;
+	}
+}
