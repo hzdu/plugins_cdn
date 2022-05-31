@@ -18,7 +18,6 @@ module.exports = {
         'checkoutwc-vendor': [
             require.resolve( 'dom4/build/dom4.max.js' ),
             require.resolve( 'jquery-first-event/dist/index.js' ),
-            require.resolve( 'jquery-visible/jquery.visible.js' ),
             require.resolve( 'modaal/dist/js/modaal.min' ),
             require.resolve( 'EasyTabs/lib/jquery.easytabs.min' ),
             require.resolve( 'garlicjs/dist/garlic.min.js' ),

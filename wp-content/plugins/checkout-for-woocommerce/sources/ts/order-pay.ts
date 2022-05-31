@@ -27,6 +27,7 @@ class OrderPay {
             const alertContainer = DataService.getElement( 'alertContainerId' );
 
             if ( alertContainer ) {
+                AlertService.preserveAlerts = true;
                 new AlertService( alertContainer );
             }
 

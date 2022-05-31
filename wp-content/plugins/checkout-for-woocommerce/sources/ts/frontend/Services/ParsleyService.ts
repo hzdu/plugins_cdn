@@ -1,4 +1,3 @@
-import $                        from 'jquery';
 import FieldValidationRefresher from '../Interfaces/FieldValidationRefresher';
 import Main                     from '../Main';
 import DataService              from './DataService';
@@ -154,7 +153,7 @@ class ParsleyService implements FieldValidationRefresher {
                     onActiveTab = true;
                 }
 
-                const fieldIsHiddenAndOnActiveTab = ( onActiveTab && !fieldInstance.$element.visible() );
+                const fieldIsHiddenAndOnActiveTab = ( onActiveTab && fieldInstance.$element.is( ':hidden' ) );
                 const fieldContainerIsHidden = fieldInstance.$element.parents( '.form-row' ).hasClass( 'hidden' );
                 const fieldIsAHiddenIconicDeliverySlotsField = fieldInstance.$element.parents( '#jckwds-fields' ).css( 'display' ) === 'none';
 

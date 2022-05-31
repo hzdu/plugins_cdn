@@ -20,6 +20,10 @@ class Square extends Compatibility {
             setTimeout( this.enforcePostalCodeValue, 3000 );
             setTimeout( this.enforcePostalCodeValue, 6000 );
         } );
+
+        jQuery( document.body ).on( 'cfw-after-tab-change', () => {
+            ( <any>window ).wc_square_credit_card_payment_form_handler.payment_form.recalculateSize();
+        } );
     }
 
     enforcePostalCodeValue(): void {
