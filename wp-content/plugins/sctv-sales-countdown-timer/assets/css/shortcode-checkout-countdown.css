@@ -1,0 +1,71 @@
+.woo-sctr-checkout-countdown-wrap-wrap {
+    max-width: 100%;
+    min-width: 50%;
+    display: inline-flex;
+    height: auto;
+    background: transparent;
+    z-index: 99999999;
+    transition: all 1s ease-in-out;
+}
+
+.woo-sctr-checkout-countdown-sticky-top {
+    position: fixed !important;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+
+.woo-sctr-checkout-countdown-sticky-bottom {
+    position: fixed !important;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.woo-sctr-checkout-countdown-sticky-top .woo-sctr-checkout-countdown-shortcode,
+.woo-sctr-checkout-countdown-sticky-bottom .woo-sctr-checkout-countdown-shortcode,
+.woo-sctr-checkout-countdown-sticky-top .woo-sctr-shortcode-countdown-timer-wrap,
+.woo-sctr-checkout-countdown-sticky-bottom .woo-sctr-shortcode-countdown-timer-wrap {
+    padding: 0;
+}
+
+.woo-sctr-checkout-countdown-shortcode {
+    margin: auto;
+    padding: 15px 0;
+    display: inline-flex;
+    max-width: 100%;
+    width: 100%;
+}
+
+.woo-sctr-checkout-countdown-popup-wrap {
+    top: -100%;
+    transition: top 1s ease-in-out;
+}
+
+.woo-sctr-checkout-countdown-popup-show {
+    top: 0 !important;
+}
+
+.woo-sctr-checkout-countdown-wrap-wrap .woo-sctr-checkout-button {
+    margin: auto 10px;
+    text-decoration: none;
+    display: inline-block;
+    padding: 10px 30px;
+}
+
+.woo-sctr-checkout-countdown-wrap-wrap .woo-sctr-checkout-button:hover {
+    opacity: .85;
+}
+
+.woo-sctr-checkout-countdown-wrap-wrap .woo-sctr-countdown-timer-layout-same-line .woo-sctr-checkout-button {
+    padding: 4px 15px;
+}
+
+.woo-sctr-checkout-countdown-wrap-wrap .woo-sctr-discount-amount {
+    font-weight: 600;
+}
+
+.woo-sctr-checkout-countdown-hidden {
+    display: none !important;
+    visibility: hidden !important;
+}
