@@ -1,0 +1,181 @@
+a.bya_link{
+    text-decoration: none !important;
+}
+
+.bya_myaccount_buy_again_wrapper,
+.bya_product_table_container, 
+.bya_product_search_container {
+    float: left;
+    width:100%;
+    margin-top: 15px;
+}
+
+.bya_product_search_container .bya_product_search_btn {
+    margin-left: 10px !important;
+}
+
+.bya_product_table_container .bya_buy_again_product_table {
+    width: 100%;
+    border: 1px solid #999;
+}
+
+.bya_product_table_container .bya_buy_again_product_table thead {
+    background: #fff;
+}
+
+.bya_product_table_container .bya_buy_again_product_table thead th {
+    padding: 10px;
+    color: #000;
+    background: #fff;
+    border-bottom: 1px solid #999;
+    text-transform: capitalize;
+}
+
+.bya_product_table_container .bya_buy_again_product_table tbody td {
+    padding: 10px;
+    color: #222;
+    border-bottom:0;
+    vertical-align: top;
+}
+
+.bya_product_table_container .bya_buy_again_product_table tbody tr:nth-child(even) {
+    background: #f1f1f1;
+}
+
+.bya_product_table_container .bya_buy_again_product_table tbody tr td:last-child {
+    border-right: none;
+}
+
+.bya_product_table_container .bya_buy_again_product_table tbody td img {
+    width: 75px;
+    height: auto;
+}
+
+.bya_product_table_container .bya_buy_again_product_table tbody td a.bya_link {
+    text-decoration:none !important;
+}
+
+.bya_product_table_container .bya_buy_again_product_table tbody td a.bya_product_title{
+    font-size: 1rem;
+    font-weight: 400;
+    color: #333;
+}
+
+.bya_product_table_container .bya_buy_again_product_table tbody td span {
+    color: #f00;
+    font-size: 14px;
+}
+
+.bya_product_table_container .bya_buy_again_product_table tbody td .bya_out_of_stock {
+    color: #f00;
+    font-weight: 700;
+    font-size: 14px;
+}
+
+.bya_product_table_container .bya_buy_again_product_table tbody td button,
+.order_details .bya_order_item_fields .bya_add_to_cart_container .button,
+.order_details .bya_order_item_fields .bya_buy_again_container .button {
+    margin-right: 10px;
+    margin-bottom: 10px;
+    padding: 7px 15px;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    box-shadow: none;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.bya_product_table_container .bya_buy_again_product_table tbody td .bya-add-to-cart,
+.order_details .bya_order_item_fields .bya_add_to_cart_container .bya-add-to-cart {
+    background: #29b58f;
+    color: #fff;
+}
+
+.bya_product_table_container .bya_buy_again_product_table tbody td .bya-buy-again, 
+.order_details .bya_order_item_fields .bya_buy_again_container .bya-buy-again {
+    background: #0d3993;
+    color: #fff;
+}
+
+.bya_product_table_container .bya_buy_again_product_table tfoot tr td .page-numbers {
+    cursor: pointer;
+}
+
+.bya_quantity {
+    float: left;
+    position: relative;
+}
+
+.bya_dialog_box {
+    position: absolute;
+    background: #333;
+    display: block;
+    float:left;
+    color: #fdfdfd;
+    line-height: 30px;
+    padding: 5px;
+    top:60px;
+    z-index: 1;
+    border-radius: 5px;
+    width: max-content;
+}
+
+.bya_dialog_box p{
+    text-align: center;
+    margin: 0;
+}
+
+.bya-quantity .bya_qty_field {
+    width: 75px;
+    position: relative;
+    height:40px !important;
+}
+.bya_dialog_box:after,
+.bya_dialog_box:before {
+    top: -45%;
+    left: 20px;
+    border: solid transparent;
+    content: "";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+}
+
+.bya_dialog_box:after {
+    border-bottom-color: #333;
+    border-width: 14px;
+    margin-left: 0px;
+}
+
+@media screen and (max-width: 768px) {
+
+    .bya_product_table_container .bya_buy_again_product_table tbody tr {
+        display: block;
+    }
+
+    .bya_product_table_container .bya_buy_again_product_table thead {
+        display: none;
+    }
+
+    .bya_product_table_container .bya_buy_again_product_table tr td::before {
+        content: attr(data-title) ": ";
+        font-weight: 700;
+        float: left;
+    }
+
+    .bya_product_table_container .bya_buy_again_product_table tr td {
+        display: block;
+        border-right: 0; 
+        text-align: right !important;
+
+    }
+
+    .bya_product_table_container .bya_buy_again_product_table tbody td button {
+        float: none;
+        margin-right: 0;
+    }
+
+}
+
