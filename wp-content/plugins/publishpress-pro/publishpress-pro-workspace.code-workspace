@@ -1,0 +1,25 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../../3rdparty/wordpress"
+		}
+	],
+	"settings": {
+		"sync-rsync.sites": [
+			{
+				"localPath": "/home/anderson/projects/repos-git/publishpress/publishpress-pro/",
+				"remotePath": "/home/anderson/DevKinsta/public/plugindev/wp-content/plugins/publishpress-pro/"
+			}
+		],
+		"sync-rsync.exclude":[
+			"/home/anderson/projects/repos-git/publishpress/publishpress-pro/node_modules/",
+			".git"
+		],
+		"sync-rsync.onSaveIndividual": true,
+		"sync-rsync.delete": true,
+		"sync-rsync.showProgress": true,
+	}
+}

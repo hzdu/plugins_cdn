@@ -135,6 +135,290 @@ function AdvColorControl(props) {
 
 /***/ }),
 
+/***/ "./src/assets/blocks/0-adv-components/fonts.jsx":
+/*!******************************************************!*\
+  !*** ./src/assets/blocks/0-adv-components/fonts.jsx ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.AdvFontControl = AdvFontControl;
+function AdvFontControl(props) {
+    var _wp$components = wp.components,
+        PanelBody = _wp$components.PanelBody,
+        SelectControl = _wp$components.SelectControl;
+    var Fragment = wp.element.Fragment;
+    var __ = wp.i18n.__;
+    var familyValue = props.familyValue,
+        familyOnChange = props.familyOnChange,
+        variationValue = props.variationValue,
+        variationOnChange = props.variationOnChange,
+        transformValue = props.transformValue,
+        transformOnChange = props.transformOnChange;
+
+
+    var TEXT_TRANSFORM = [{ label: 'Default', value: '' }, { label: 'Capitalize', value: 'capitalize' }, { label: 'Uppercase', value: 'uppercase' }, { label: 'Lowercase', value: 'lowercase' }];
+
+    var DEFAULT_FONT = [{ label: 'Default', value: '' }];
+
+    var GOOGLE_FONTS = typeof advgbFonts !== 'undefined' && advgbFonts.google_fonts_names ? advgbFonts.google_fonts_names.map(function (name) {
+        return { label: name, value: name };
+    }) : {};
+
+    var ALL_FONTS = DEFAULT_FONT.concat(GOOGLE_FONTS);
+
+    return React.createElement(
+        Fragment,
+        null,
+        React.createElement(SelectControl, {
+            label: __('Font Family', 'advanced-gutenberg'),
+            value: familyValue,
+            options: ALL_FONTS,
+            onChange: familyOnChange
+        }),
+        React.createElement(SelectControl, {
+            label: __('Font Weight + Style', 'advanced-gutenberg'),
+            value: variationValue,
+            options: advgb_googleFontVariationsList(familyValue),
+            onChange: variationOnChange
+        }),
+        typeof transformValue !== 'undefined' && React.createElement(SelectControl, {
+            label: __('Text Transform', 'advanced-gutenberg'),
+            value: transformValue,
+            options: TEXT_TRANSFORM,
+            onChange: transformOnChange
+        })
+    );
+}
+
+function advgb_googleFontVariationsList(fontFamily) {
+    if (typeof fontFamily !== 'undefined' && fontFamily.length > 0 && typeof advgbFonts !== 'undefined' && advgbFonts.google_fonts) {
+        var DEFAULT_OPTION = [{ label: 'Default', value: '' }];
+
+        var obj = advgbFonts.google_fonts.find(function (value) {
+            return value.f === fontFamily;
+        });
+        var VARIATIONS = obj !== 'undefined' && obj.v.length > 0 ? obj.v.map(function (name) {
+            return { label: advgb_formatFontVariation(name), value: name };
+        }) : {};
+
+        return DEFAULT_OPTION.concat(VARIATIONS);
+    }
+}
+
+// Return fontVariation formatted. e.g. 600italic -> 600 (italic)
+function advgb_formatFontVariation(fontVariation) {
+    if (fontVariation.length > 6 && fontVariation.indexOf('italic') !== -1) {
+        return fontVariation.split('italic', 1)[0] + ' + italic';
+    } else {
+        return '' + fontVariation;
+    }
+}
+
+function advgb_buildGoogleFontId(fontFamily, fontVariation) {
+    return 'advgb_google_font_' + fontFamily.replace(/\s/g, '_').toLowerCase() + (fontVariation.length > 0 ? '_' + fontVariation : '');
+}
+
+function advgb_buildGoogleFontUrl(fontFamily, fontVariation) {
+    var GOOGLE_FONT_BASE = 'https://fonts.googleapis.com/css2?family=';
+
+    if (fontVariation.length > 0) {
+        var GOOGLE_FONT_VARIATION = void 0;
+        // Extract font-weight and font-style from variation. e.g. 400italic -> 400
+        if (fontVariation.indexOf('italic') !== -1) {
+            var v = fontVariation.split('italic', 1);
+            if (v[0] !== 'undefined' && v[0].length > 0) {
+                GOOGLE_FONT_VARIATION = ':ital,wght@1,' + v[0];
+            } else {
+                GOOGLE_FONT_VARIATION = ':ital@1';
+            }
+        } else {
+            GOOGLE_FONT_VARIATION = ':wght@' + fontVariation;
+        }
+        return GOOGLE_FONT_BASE + fontFamily.replace(/\s/g, '+') + GOOGLE_FONT_VARIATION;
+    }
+    return GOOGLE_FONT_BASE + fontFamily.replace(/\s/g, '+');
+}
+
+function advgb_createLinkTag(fontFamily, fontVariation) {
+    if (typeof fontFamily !== 'undefined' && fontFamily.length > 0 && !document.getElementById(advgb_buildGoogleFontId(fontFamily, fontVariation))) {
+        var link_tag = document.createElement('link');
+        link_tag.media = 'all';
+        link_tag.rel = 'stylesheet';
+        link_tag.id = advgb_buildGoogleFontId(fontFamily, fontVariation);
+        link_tag.href = advgb_buildGoogleFontUrl(fontFamily, fontVariation);
+        document.head.appendChild(link_tag);
+    }
+}
+
+// Load Google stylesheet based on selected fontFamily
+function AdvLoadGoogleStylesheet(_ref) {
+    var fontFamily = _ref.fontFamily,
+        fontVariation = _ref.fontVariation;
+
+    var fontVariation_ = typeof fontVariation !== 'undefined' && fontVariation.length > 0 ? fontVariation : '';
+    return [advgb_createLinkTag(fontFamily, fontVariation_), null];
+}
+
+// Define font-family, font-weight, font-style and text-transform properties
+function AdvSetGoogleFontStyle(_ref2) {
+    var fontFamily = _ref2.fontFamily,
+        fontVariation = _ref2.fontVariation,
+        textTransform = _ref2.textTransform,
+        cssSelector = _ref2.cssSelector;
+
+    var STYLE = '';
+
+    // font-family
+    if (typeof fontFamily !== 'undefined' && fontFamily.length > 0) {
+        STYLE += 'font-family: "' + fontFamily + '" !important;';
+    }
+
+    // font-weight and font-style
+    if (typeof fontVariation !== 'undefined' && fontVariation.length > 0) {
+        if (fontVariation.indexOf('italic') !== -1 && fontVariation.length > 6) {
+            STYLE += 'font-weight:' + fontVariation.split('italic', 1)[0] + '; font-style:italic;';
+        } else {
+            STYLE += 'font-weight:' + fontVariation + ';';
+        }
+    }
+
+    // text-transform
+    if (typeof textTransform !== 'undefined' && textTransform.length > 0) {
+        STYLE += 'text-transform:' + textTransform + ';';
+    }
+
+    if (typeof STYLE !== 'undefined' && STYLE.length > 0) {
+        return cssSelector + ' {\n            ' + STYLE + '\n        }';
+    } else {
+        return null;
+    }
+}
+
+exports.AdvLoadGoogleStylesheet = AdvLoadGoogleStylesheet;
+exports.AdvSetGoogleFontStyle = AdvSetGoogleFontStyle;
+
+/***/ }),
+
+/***/ "./src/assets/blocks/advbutton/pro.jsx":
+/*!*********************************************!*\
+  !*** ./src/assets/blocks/advbutton/pro.jsx ***!
+  \*********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _fonts = __webpack_require__(/*! ../0-adv-components/fonts.jsx */ "./src/assets/blocks/0-adv-components/fonts.jsx");
+
+(function (wpI18n, wpHooks, wpBlockEditor, wpComponents, wpElement) {
+    wpBlockEditor = wp.blockEditor || wp.editor;
+    var addFilter = wpHooks.addFilter;
+    var __ = wpI18n.__;
+    var _wpBlockEditor = wpBlockEditor,
+        InspectorControls = _wpBlockEditor.InspectorControls;
+    var PanelBody = wpComponents.PanelBody,
+        SelectControl = wpComponents.SelectControl,
+        ToggleControl = wpComponents.ToggleControl;
+    var Fragment = wpElement.Fragment;
+
+    // Set attributes
+
+    addFilter('blocks.registerBlockType', 'advgb/registerAdvButtonProClass', function (settings) {
+        if (settings.name === 'advgb/button') {
+            settings.attributes = _extends(settings.attributes, {
+                fontFamily: {
+                    type: 'string'
+                },
+                fontVariation: {
+                    type: 'string'
+                }
+            });
+        }
+
+        return settings;
+    });
+
+    // Add fields to sidebar
+    addFilter('editor.BlockEdit', 'advgb/advButtonPro', function (BlockEdit) {
+        return function (props) {
+            return React.createElement(
+                Fragment,
+                null,
+                React.createElement(BlockEdit, props),
+                props.isSelected && props.name === 'advgb/button' && React.createElement(
+                    Fragment,
+                    null,
+                    React.createElement(
+                        InspectorControls,
+                        null,
+                        React.createElement(
+                            PanelBody,
+                            { title: __('Font', 'advanced-gutenberg'), initialOpen: false, className: 'advgb-pro-icon' },
+                            React.createElement(_fonts.AdvFontControl, {
+                                familyValue: props.attributes.fontFamily,
+                                familyOnChange: function familyOnChange(value) {
+                                    return props.setAttributes({ fontFamily: value, fontVariation: '' });
+                                },
+                                variationValue: props.attributes.fontVariation,
+                                variationOnChange: function variationOnChange(value) {
+                                    return props.setAttributes({ fontVariation: value });
+                                }
+                            })
+                        ),
+                        React.createElement(
+                            PanelBody,
+                            { title: __('Link rel', 'advanced-gutenberg'), initialOpen: false, className: 'advgb-pro-icon' },
+                            React.createElement(ToggleControl, {
+                                label: 'noreferrer',
+                                checked: props.attributes.noreferrer,
+                                onChange: function onChange() {
+                                    return props.setAttributes({ noreferrer: !props.attributes.noreferrer });
+                                }
+                            }),
+                            React.createElement(ToggleControl, {
+                                label: 'nofollow',
+                                checked: props.attributes.nofollow,
+                                onChange: function onChange() {
+                                    return props.setAttributes({ nofollow: !props.attributes.nofollow });
+                                }
+                            })
+                        )
+                    )
+                ),
+                props.name === 'advgb/button' && props.attributes.id && React.createElement(
+                    'div',
+                    null,
+                    React.createElement(
+                        'style',
+                        null,
+                        React.createElement(_fonts.AdvSetGoogleFontStyle, {
+                            fontFamily: props.attributes.fontFamily,
+                            fontVariation: props.attributes.fontVariation,
+                            cssSelector: '.' + props.attributes.id + ' span'
+                        })
+                    ),
+                    React.createElement(_fonts.AdvLoadGoogleStylesheet, {
+                        fontFamily: props.attributes.fontFamily,
+                        fontVariation: props.attributes.fontVariation
+                    })
+                )
+            );
+        };
+    });
+})(wp.i18n, wp.hooks, wp.blockEditor, wp.components, wp.element);
+
+/***/ }),
+
 /***/ "./src/assets/blocks/advimage/pro.jsx":
 /*!********************************************!*\
   !*** ./src/assets/blocks/advimage/pro.jsx ***!
@@ -263,13 +547,95 @@ var _components = __webpack_require__(/*! ../../../../../PublishPress-Blocks/src
                         )
                     )
                 ),
-                props.attributes.id && React.createElement(
+                props.name === 'advgb/list' && props.attributes.id && React.createElement(
                     'div',
                     null,
                     props.attributes.textColor && React.createElement(
                         'style',
                         null,
                         '.' + props.attributes.id + ' li {\n                                        color: ' + props.attributes.textColor + ';\n                                    }'
+                    )
+                )
+            );
+        };
+    });
+})(wp.i18n, wp.hooks, wp.blockEditor, wp.components, wp.element);
+
+/***/ }),
+
+/***/ "./src/assets/blocks/advtabs/pro.jsx":
+/*!*******************************************!*\
+  !*** ./src/assets/blocks/advtabs/pro.jsx ***!
+  \*******************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+(function (wpI18n, wpHooks, wpBlockEditor, wpComponents, wpElement) {
+    wpBlockEditor = wp.blockEditor || wp.editor;
+    var addFilter = wpHooks.addFilter;
+    var __ = wpI18n.__;
+    var _wpBlockEditor = wpBlockEditor,
+        InspectorControls = _wpBlockEditor.InspectorControls;
+    var PanelBody = wpComponents.PanelBody,
+        RangeControl = wpComponents.RangeControl;
+    var Fragment = wpElement.Fragment;
+
+    // Set attributes
+
+    addFilter('blocks.registerBlockType', 'advgb/registerAdvTabsProClass', function (settings) {
+        if (settings.name === 'advgb/adv-tabs') {
+            settings.attributes = _extends(settings.attributes, {
+                fontSize: {
+                    type: 'number'
+                }
+            });
+        }
+
+        return settings;
+    });
+
+    // Add fields to sidebar
+    addFilter('editor.BlockEdit', 'advgb/advTabsPro', function (BlockEdit) {
+        return function (props) {
+            return React.createElement(
+                Fragment,
+                null,
+                React.createElement(BlockEdit, props),
+                props.isSelected && props.name === 'advgb/adv-tabs' && React.createElement(
+                    Fragment,
+                    null,
+                    React.createElement(
+                        InspectorControls,
+                        null,
+                        React.createElement(
+                            PanelBody,
+                            { title: __('Tab Settings', 'advanced-gutenberg'), className: 'advgb-pro-icon' },
+                            React.createElement(RangeControl, {
+                                label: __('Font Size', 'advanced-gutenberg'),
+                                value: props.attributes.fontSize || '',
+                                onChange: function onChange(value) {
+                                    return props.setAttributes({ fontSize: value });
+                                },
+                                min: 10,
+                                max: 100,
+                                beforeIcon: 'editor-textcolor',
+                                allowReset: true
+                            })
+                        )
+                    )
+                ),
+                props.name === 'advgb/adv-tabs' && props.attributes.pid && React.createElement(
+                    'div',
+                    null,
+                    React.createElement(
+                        'style',
+                        null,
+                        '#block-' + props.clientId + ' ul.advgb-tabs-panel li.advgb-tab:not(.advgb-add-tab) {\n                                font-size: ' + props.attributes.fontSize + 'px;\n                            }'
                     )
                 )
             );
@@ -375,7 +741,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
                         )
                     )
                 ),
-                props.attributes.id && React.createElement(
+                props.name === 'advgb/count-up' && props.attributes.id && React.createElement(
                     'div',
                     null,
                     React.createElement(
@@ -2268,6 +2634,10 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 "use strict";
 
 
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _fonts = __webpack_require__(/*! ../0-adv-components/fonts.jsx */ "./src/assets/blocks/0-adv-components/fonts.jsx");
+
 (function (wpI18n, wpHooks, wpBlockEditor, wpComponents, wpElement) {
     wpBlockEditor = wp.blockEditor || wp.editor;
     var addFilter = wpHooks.addFilter;
@@ -2282,6 +2652,28 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 
     var htmlTags = [{ label: 'h1', value: 'h1' }, { label: 'h2', value: 'h2' }, { label: 'h3', value: 'h3' }, { label: 'h4', value: 'h4' }, { label: 'h5', value: 'h5' }, { label: 'h6', value: 'h6' }, { label: 'p', value: 'p' }, { label: 'div', value: 'div' }];
+
+    // Set attributes
+    addFilter('blocks.registerBlockType', 'advgb/registerImagesSliderProClass', function (settings) {
+        if (settings.name === 'advgb/images-slider') {
+            settings.attributes = _extends(settings.attributes, {
+                titleFontFamily: {
+                    type: 'string'
+                },
+                titleFontVariation: {
+                    type: 'string'
+                },
+                textFontFamily: {
+                    type: 'string'
+                },
+                textFontVariation: {
+                    type: 'string'
+                }
+            });
+        }
+
+        return settings;
+    });
 
     // Add fields to sidebar
     addFilter('editor.BlockEdit', 'advgb/imagesSliderPro', function (BlockEdit) {
@@ -2298,7 +2690,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
                         null,
                         React.createElement(
                             PanelBody,
-                            { title: __('Autoplay & Content Tags', 'advanced-gutenberg'), initialOpen: true, className: 'advgb-pro-icon' },
+                            { title: __('Autoplay', 'advanced-gutenberg'), initialOpen: true, className: 'advgb-pro-icon' },
                             React.createElement(ToggleControl, {
                                 label: __('Autoplay', 'advanced-gutenberg'),
                                 checked: props.attributes.autoplay,
@@ -2315,25 +2707,91 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
                                 onChange: function onChange(value) {
                                     return props.setAttributes({ autoplaySpeed: value });
                                 }
-                            }),
-                            React.createElement(SelectControl, {
-                                label: __('Title tag', 'advanced-gutenberg'),
-                                value: props.attributes.titleTag,
-                                options: htmlTags,
-                                onChange: function onChange(value) {
-                                    return props.setAttributes({ titleTag: value });
+                            })
+                        ),
+                        React.createElement(
+                            PanelBody,
+                            { title: __('Title', 'advanced-gutenberg'), initialOpen: false, className: 'advgb-pro-icon' },
+                            props.attributes.titleShow && React.createElement(
+                                Fragment,
+                                null,
+                                React.createElement(SelectControl, {
+                                    label: __('Tag', 'advanced-gutenberg'),
+                                    value: props.attributes.titleTag,
+                                    options: htmlTags,
+                                    onChange: function onChange(value) {
+                                        return props.setAttributes({ titleTag: value });
+                                    }
+                                }),
+                                React.createElement(_fonts.AdvFontControl, {
+                                    familyValue: props.attributes.titleFontFamily,
+                                    familyOnChange: function familyOnChange(value) {
+                                        return props.setAttributes({ titleFontFamily: value, titleFontVariation: '' });
+                                    },
+                                    variationValue: props.attributes.titleFontVariation,
+                                    variationOnChange: function variationOnChange(value) {
+                                        return props.setAttributes({ titleFontVariation: value });
+                                    }
+                                })
+                            ),
+                            React.createElement(ToggleControl, {
+                                label: __('Display', 'advanced-gutenberg'),
+                                help: __('Disable this if you want to include the Title as alt attribute without displaying the title over the image.', 'advanced-gutenberg'),
+                                checked: props.attributes.titleShow,
+                                onChange: function onChange() {
+                                    return props.setAttributes({ titleShow: !props.attributes.titleShow });
                                 }
-                            }),
+                            })
+                        ),
+                        React.createElement(
+                            PanelBody,
+                            { title: __('Text', 'advanced-gutenberg'), initialOpen: false, className: 'advgb-pro-icon' },
                             React.createElement(SelectControl, {
-                                label: __('Text tag', 'advanced-gutenberg'),
+                                label: __('Tag', 'advanced-gutenberg'),
                                 value: props.attributes.textTag,
                                 options: htmlTags,
                                 onChange: function onChange(value) {
                                     return props.setAttributes({ textTag: value });
                                 }
+                            }),
+                            React.createElement(_fonts.AdvFontControl, {
+                                familyValue: props.attributes.textFontFamily,
+                                familyOnChange: function familyOnChange(value) {
+                                    return props.setAttributes({ textFontFamily: value, textFontVariation: '' });
+                                },
+                                variationValue: props.attributes.textFontVariation,
+                                variationOnChange: function variationOnChange(value) {
+                                    return props.setAttributes({ textFontVariation: value });
+                                }
                             })
                         )
                     )
+                ),
+                props.name === 'advgb/images-slider' && props.attributes.id && React.createElement(
+                    'div',
+                    null,
+                    React.createElement(
+                        'style',
+                        null,
+                        /* Title CSS */React.createElement(_fonts.AdvSetGoogleFontStyle, {
+                            fontFamily: props.attributes.titleFontFamily,
+                            fontVariation: props.attributes.titleFontVariation,
+                            cssSelector: '.' + props.attributes.id + ' .advgb-image-slider-item .advgb-image-slider-item-info .advgb-image-slider-title'
+                        }),
+                        /* Text CSS */React.createElement(_fonts.AdvSetGoogleFontStyle, {
+                            fontFamily: props.attributes.textFontFamily,
+                            fontVariation: props.attributes.textFontVariation,
+                            cssSelector: '.' + props.attributes.id + ' .advgb-image-slider-item .advgb-image-slider-item-info .advgb-image-slider-text'
+                        })
+                    ),
+                    React.createElement(_fonts.AdvLoadGoogleStylesheet, {
+                        fontFamily: props.attributes.titleFontFamily,
+                        fontVariation: props.attributes.titleFontVariation
+                    }),
+                    React.createElement(_fonts.AdvLoadGoogleStylesheet, {
+                        fontFamily: props.attributes.textFontFamily,
+                        fontVariation: props.attributes.textFontVariation
+                    })
                 )
             );
         };
@@ -3070,11 +3528,15 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 "use strict";
 
 
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 var _components = __webpack_require__(/*! ../../../../../PublishPress-Blocks/src/assets/blocks/0-adv-components/components.jsx */ "../PublishPress-Blocks/src/assets/blocks/0-adv-components/components.jsx");
 
-(function (wpI18n, wpHooks, wpBlockEditor, wpComponents, wpElement) {
+var _fonts = __webpack_require__(/*! ../0-adv-components/fonts.jsx */ "./src/assets/blocks/0-adv-components/fonts.jsx");
+
+(function (wpI18n, wpHooks, wpBlockEditor, wpComponents, wpElement, wpCompose) {
     wpBlockEditor = wp.blockEditor || wp.editor;
     var addFilter = wpHooks.addFilter;
     var __ = wpI18n.__;
@@ -3087,6 +3549,7 @@ var _components = __webpack_require__(/*! ../../../../../PublishPress-Blocks/src
         RadioControl = wpComponents.RadioControl,
         CheckboxControl = wpComponents.CheckboxControl;
     var Fragment = wpElement.Fragment;
+    var createHigherOrderComponent = wpCompose.createHigherOrderComponent;
 
 
     var DECORATION_STYLES = [{ label: __('Default', 'advanced-gutenberg'), value: 'default' }, { label: __('None', 'advanced-gutenberg'), value: 'none' }, { label: __('Underline', 'advanced-gutenberg'), value: 'underline' }];
@@ -3097,6 +3560,16 @@ var _components = __webpack_require__(/*! ../../../../../PublishPress-Blocks/src
     addFilter('blocks.registerBlockType', 'advgb/registerRecentPostsProClass', function (settings) {
         if (settings.name === 'advgb/recent-posts') {
             settings.attributes = _extends(settings.attributes, {
+                readMoreFontFamily: {
+                    type: 'string'
+                },
+                readMoreFontVariation: {
+                    type: 'string'
+                },
+                readMoreTextTransform: {
+                    type: 'string',
+                    default: ''
+                },
                 readMoreTextDecoration: {
                     type: 'string',
                     default: 'default'
@@ -3174,6 +3647,76 @@ var _components = __webpack_require__(/*! ../../../../../PublishPress-Blocks/src
                 imageHeightAuto: {
                     type: 'boolean',
                     default: true
+                },
+                titleFontFamily: {
+                    type: 'string'
+                },
+                titleFontVariation: {
+                    type: 'string'
+                },
+                titleTextTransform: {
+                    type: 'string',
+                    default: ''
+                },
+                infoFontFamily: {
+                    type: 'string'
+                },
+                infoFontVariation: {
+                    type: 'string'
+                },
+                infoTextTransform: {
+                    type: 'string',
+                    default: ''
+                },
+                taxonomyFontFamily: {
+                    type: 'string'
+                },
+                taxonomyFontVariation: {
+                    type: 'string'
+                },
+                taxonomyTextTransform: {
+                    type: 'string',
+                    default: ''
+                },
+                contentFontFamily: {
+                    type: 'string'
+                },
+                contentFontVariation: {
+                    type: 'string'
+                },
+                contentTextTransform: {
+                    type: 'string',
+                    default: ''
+                },
+                titleHideD: {
+                    type: 'boolean',
+                    default: false
+                },
+                titleSizeD: {
+                    type: 'number'
+                },
+                titleHideT: {
+                    type: 'boolean',
+                    default: false
+                },
+                titleSizeT: {
+                    type: 'number'
+                },
+                titleHideM: {
+                    type: 'boolean',
+                    default: false
+                },
+                titleSizeM: {
+                    type: 'number'
+                },
+                titleColor: {
+                    type: 'string'
+                },
+                titleColorH: {
+                    type: 'string'
+                },
+                contentColor: {
+                    type: 'string'
                 }
             });
         }
@@ -3181,8 +3724,115 @@ var _components = __webpack_require__(/*! ../../../../../PublishPress-Blocks/src
         return settings;
     });
 
+    function RecentPostsEditTitle(props) {
+        var RangeControl = wp.components.RangeControl;
+        var _wp$element = wp.element,
+            Fragment = _wp$element.Fragment,
+            useState = _wp$element.useState;
+
+        var _useState = useState('desktop'),
+            _useState2 = _slicedToArray(_useState, 2),
+            tabSelected = _useState2[0],
+            newTabSelected = _useState2[1];
+
+        var hideD = props.hideD,
+            hideDOnChange = props.hideDOnChange,
+            sizeD = props.sizeD,
+            sizeDOnChange = props.sizeDOnChange,
+            hideT = props.hideT,
+            hideTOnChange = props.hideTOnChange,
+            sizeT = props.sizeT,
+            sizeTOnChange = props.sizeTOnChange,
+            hideM = props.hideM,
+            hideMOnChange = props.hideMOnChange,
+            sizeM = props.sizeM,
+            sizeMOnChange = props.sizeMOnChange;
+
+
+        return React.createElement(
+            Fragment,
+            null,
+            React.createElement(
+                "div",
+                { className: "advgb-recent-posts-responsive-items" },
+                ['desktop', 'tablet', 'mobile'].map(function (device, index) {
+                    var itemClasses = ["advgb-recent-posts-responsive-item", tabSelected === device && 'is-selected'].filter(Boolean).join(' ');
+
+                    return React.createElement(
+                        "div",
+                        { className: itemClasses,
+                            key: index,
+                            onClick: function onClick() {
+                                return newTabSelected(device);
+                            }
+                        },
+                        device
+                    );
+                })
+            ),
+            React.createElement(
+                "div",
+                { className: "advgb-recent-posts-select-layout on-inspector" },
+                tabSelected === 'desktop' && React.createElement(
+                    Fragment,
+                    null,
+                    !hideD && React.createElement(RangeControl, {
+                        label: __('Font Size', 'advanced-gutenberg'),
+                        value: sizeD || '',
+                        onChange: sizeDOnChange,
+                        min: 10,
+                        max: 100,
+                        beforeIcon: "editor-textcolor",
+                        allowReset: true
+                    }),
+                    React.createElement(ToggleControl, {
+                        label: __('Hide', 'advanced-gutenberg'),
+                        checked: hideD,
+                        onChange: hideDOnChange
+                    })
+                ),
+                tabSelected === 'tablet' && React.createElement(
+                    Fragment,
+                    null,
+                    !hideT && React.createElement(RangeControl, {
+                        label: __('Font Size', 'advanced-gutenberg'),
+                        value: sizeT || '',
+                        onChange: sizeTOnChange,
+                        min: 10,
+                        max: 100,
+                        beforeIcon: "editor-textcolor",
+                        allowReset: true
+                    }),
+                    React.createElement(ToggleControl, {
+                        label: __('Hide', 'advanced-gutenberg'),
+                        checked: hideT,
+                        onChange: hideTOnChange
+                    })
+                ),
+                tabSelected === 'mobile' && React.createElement(
+                    Fragment,
+                    null,
+                    !hideM && React.createElement(RangeControl, {
+                        label: __('Font Size', 'advanced-gutenberg'),
+                        value: sizeM || '',
+                        onChange: sizeMOnChange,
+                        min: 10,
+                        max: 100,
+                        beforeIcon: "editor-textcolor",
+                        allowReset: true
+                    }),
+                    React.createElement(ToggleControl, {
+                        label: __('Hide', 'advanced-gutenberg'),
+                        checked: hideM,
+                        onChange: hideMOnChange
+                    })
+                )
+            )
+        );
+    }
+
     // Add fields to sidebar
-    addFilter('editor.BlockEdit', 'advgb/recentPostsPro', function (BlockEdit) {
+    var recentPostsProSidebar = createHigherOrderComponent(function (BlockEdit) {
         return function (props) {
             return React.createElement(
                 Fragment,
@@ -3194,9 +3844,85 @@ var _components = __webpack_require__(/*! ../../../../../PublishPress-Blocks/src
                     React.createElement(
                         InspectorControls,
                         null,
+                        props.attributes.postView === 'slider' && props.attributes.sliderAutoplay && React.createElement(
+                            PanelBody,
+                            { title: __('Slider View Autoplay', 'advanced-gutenberg'), initialOpen: false, className: "advgb-pro-icon" },
+                            React.createElement(RangeControl, {
+                                label: __('Autoplay Speed', 'advanced-gutenberg'),
+                                help: __('Change interval between slides in miliseconds.', 'advanced-gutenberg'),
+                                min: 1000,
+                                max: 20000,
+                                value: props.attributes.sliderAutoplaySpeed,
+                                onChange: function onChange(value) {
+                                    return props.setAttributes({ sliderAutoplaySpeed: value });
+                                }
+                            })
+                        ),
+                        React.createElement(
+                            PanelBody,
+                            { title: __('Title', 'advanced-gutenberg'), initialOpen: false, className: "advgb-pro-icon" },
+                            (!props.attributes.titleHideD || !props.attributes.titleHideT || !props.attributes.titleHideM) && React.createElement(
+                                Fragment,
+                                null,
+                                React.createElement(_fonts.AdvFontControl, {
+                                    familyValue: props.attributes.titleFontFamily,
+                                    familyOnChange: function familyOnChange(value) {
+                                        return props.setAttributes({ titleFontFamily: value, titleFontVariation: '' });
+                                    },
+                                    variationValue: props.attributes.titleFontVariation,
+                                    variationOnChange: function variationOnChange(value) {
+                                        return props.setAttributes({ titleFontVariation: value });
+                                    },
+                                    transformValue: props.attributes.titleTextTransform,
+                                    transformOnChange: function transformOnChange(value) {
+                                        return props.setAttributes({ titleTextTransform: value });
+                                    }
+                                }),
+                                React.createElement(_components.AdvColorControl, {
+                                    label: __('Color', 'advanced-gutenberg'),
+                                    value: props.attributes.titleColor,
+                                    onChange: function onChange(value) {
+                                        return props.setAttributes({ titleColor: value });
+                                    }
+                                }),
+                                React.createElement(_components.AdvColorControl, {
+                                    label: __('Color (hover)', 'advanced-gutenberg'),
+                                    value: props.attributes.titleColorH,
+                                    onChange: function onChange(value) {
+                                        return props.setAttributes({ titleColorH: value });
+                                    }
+                                })
+                            ),
+                            React.createElement(RecentPostsEditTitle, {
+                                hideD: props.attributes.titleHideD,
+                                hideDOnChange: function hideDOnChange() {
+                                    return props.setAttributes({ titleHideD: !props.attributes.titleHideD });
+                                },
+                                sizeD: props.attributes.titleSizeD,
+                                sizeDOnChange: function sizeDOnChange(value) {
+                                    return props.setAttributes({ titleSizeD: value });
+                                },
+                                hideT: props.attributes.titleHideT,
+                                hideTOnChange: function hideTOnChange() {
+                                    return props.setAttributes({ titleHideT: !props.attributes.titleHideT });
+                                },
+                                sizeT: props.attributes.titleSizeT,
+                                sizeTOnChange: function sizeTOnChange(value) {
+                                    return props.setAttributes({ titleSizeT: value });
+                                },
+                                hideM: props.attributes.titleHideM,
+                                hideMOnChange: function hideMOnChange() {
+                                    return props.setAttributes({ titleHideM: !props.attributes.titleHideM });
+                                },
+                                sizeM: props.attributes.titleSizeM,
+                                sizeMOnChange: function sizeMOnChange(value) {
+                                    return props.setAttributes({ titleSizeM: value });
+                                }
+                            })
+                        ),
                         props.attributes.displayFeaturedImage && React.createElement(
                             PanelBody,
-                            { title: __('Featured Image', 'advanced-gutenberg'), initialOpen: false, className: 'advgb-pro-icon' },
+                            { title: __('Featured Image', 'advanced-gutenberg'), initialOpen: false, className: "advgb-pro-icon" },
                             React.createElement(ToggleControl, {
                                 label: __('Custom image size', 'advanced-gutenberg'),
                                 checked: props.attributes.imageSizeEnabled,
@@ -3213,7 +3939,7 @@ var _components = __webpack_require__(/*! ../../../../../PublishPress-Blocks/src
                                     onChange: function onChange(checked) {
                                         return props.setAttributes({ imageWidthAuto: !props.attributes.imageWidthAuto });
                                     },
-                                    className: 'advgb-single-checkbox'
+                                    className: "advgb-single-checkbox"
                                 }),
                                 React.createElement(RangeControl, {
                                     label: __('Image width (px)', 'advanced-gutenberg'),
@@ -3232,7 +3958,7 @@ var _components = __webpack_require__(/*! ../../../../../PublishPress-Blocks/src
                                     onChange: function onChange() {
                                         return props.setAttributes({ imageHeightAuto: !props.attributes.imageHeightAuto });
                                     },
-                                    className: 'advgb-single-checkbox'
+                                    className: "advgb-single-checkbox"
                                 }),
                                 React.createElement(RangeControl, {
                                     label: __('Image height (px)', 'advanced-gutenberg'),
@@ -3247,12 +3973,90 @@ var _components = __webpack_require__(/*! ../../../../../PublishPress-Blocks/src
                                 })
                             )
                         ),
+                        (props.attributes.displayAuthor || props.attributes.postDate !== 'hide' || (props.attributes.postType === 'post' || !props.attributes.postType) && props.attributes.displayCommentCount) && React.createElement(
+                            PanelBody,
+                            { title: __('Info', 'advanced-gutenberg'), initialOpen: false, className: "advgb-pro-icon" },
+                            React.createElement(_fonts.AdvFontControl, {
+                                familyValue: props.attributes.infoFontFamily,
+                                familyOnChange: function familyOnChange(value) {
+                                    return props.setAttributes({ infoFontFamily: value, infoFontVariation: '' });
+                                },
+                                variationValue: props.attributes.infoFontVariation,
+                                variationOnChange: function variationOnChange(value) {
+                                    return props.setAttributes({ infoFontVariation: value });
+                                },
+                                transformValue: props.attributes.infoTextTransform,
+                                transformOnChange: function transformOnChange(value) {
+                                    return props.setAttributes({ infoTextTransform: value });
+                                }
+                            })
+                        ),
+                        (props.attributes.showCategories !== 'hide' || props.attributes.showTags !== 'hide' || typeof props.attributes.showCustomTaxList !== 'undefined' && props.attributes.showCustomTaxList.length > 0) && React.createElement(
+                            PanelBody,
+                            {
+                                title: props.attributes.postType === 'post' ? __('Tags and Categories', 'advanced-gutenberg') : __('Taxonomies', 'advanced-gutenberg'),
+                                initialOpen: false,
+                                className: "advgb-pro-icon" },
+                            React.createElement(_fonts.AdvFontControl, {
+                                familyValue: props.attributes.taxonomyFontFamily,
+                                familyOnChange: function familyOnChange(value) {
+                                    return props.setAttributes({ taxonomyFontFamily: value, taxonomyFontVariation: '' });
+                                },
+                                variationValue: props.attributes.taxonomyFontVariation,
+                                variationOnChange: function variationOnChange(value) {
+                                    return props.setAttributes({ taxonomyFontVariation: value });
+                                },
+                                transformValue: props.attributes.taxonomyTextTransform,
+                                transformOnChange: function transformOnChange(value) {
+                                    return props.setAttributes({ taxonomyTextTransform: value });
+                                }
+                            })
+                        ),
+                        props.attributes.displayExcerpt && React.createElement(
+                            PanelBody,
+                            { title: __('Content', 'advanced-gutenberg'), initialOpen: false, className: "advgb-pro-icon" },
+                            React.createElement(_fonts.AdvFontControl, {
+                                familyValue: props.attributes.contentFontFamily,
+                                familyOnChange: function familyOnChange(value) {
+                                    return props.setAttributes({ contentFontFamily: value, contentFontVariation: '' });
+                                },
+                                variationValue: props.attributes.contentFontVariation,
+                                variationOnChange: function variationOnChange(value) {
+                                    return props.setAttributes({ contentFontVariation: value });
+                                },
+                                transformValue: props.attributes.contentTextTransform,
+                                transformOnChange: function transformOnChange(value) {
+                                    return props.setAttributes({ contentTextTransform: value });
+                                }
+                            }),
+                            React.createElement(_components.AdvColorControl, {
+                                label: __('Color', 'advanced-gutenberg'),
+                                value: props.attributes.contentColor,
+                                onChange: function onChange(value) {
+                                    return props.setAttributes({ contentColor: value });
+                                }
+                            })
+                        ),
                         props.attributes.displayReadMore && React.createElement(
                             Fragment,
                             null,
                             React.createElement(
                                 PanelBody,
-                                { title: __('Read more link', 'advanced-gutenberg'), initialOpen: false, className: 'advgb-pro-icon' },
+                                { title: __('Read more link', 'advanced-gutenberg'), initialOpen: false, className: "advgb-pro-icon" },
+                                React.createElement(_fonts.AdvFontControl, {
+                                    familyValue: props.attributes.readMoreFontFamily,
+                                    familyOnChange: function familyOnChange(value) {
+                                        return props.setAttributes({ readMoreFontFamily: value, readMoreFontVariation: '' });
+                                    },
+                                    variationValue: props.attributes.readMoreFontVariation,
+                                    variationOnChange: function variationOnChange(value) {
+                                        return props.setAttributes({ readMoreFontVariation: value });
+                                    },
+                                    transformValue: props.attributes.readMoreTextTransform,
+                                    transformOnChange: function transformOnChange(value) {
+                                        return props.setAttributes({ readMoreTextTransform: value });
+                                    }
+                                }),
                                 React.createElement(SelectControl, {
                                     label: __('Text Decoration', 'advanced-gutenberg'),
                                     value: props.attributes.readMoreTextDecoration,
@@ -3392,20 +4196,77 @@ var _components = __webpack_require__(/*! ../../../../../PublishPress-Blocks/src
                         )
                     )
                 ),
-                props.attributes.id && React.createElement(
-                    'div',
+                props.name === 'advgb/recent-posts' && props.attributes.id && React.createElement(
+                    "div",
                     null,
                     React.createElement(
-                        'style',
+                        "style",
                         null,
-                        '.' + props.attributes.id + ' .advgb-post-readmore a {\n                                ' + (props.attributes.readMoreTextColor ? 'color:' + props.attributes.readMoreTextColor + ';' : '') + '\n                                ' + (props.attributes.readMoreBgColor ? 'background:' + props.attributes.readMoreBgColor + ';' : '') + ';\n                                ' + (props.attributes.readMoreBorderRadius ? 'border-radius:' + props.attributes.readMoreBorderRadius + 'px;' : '') + '\n                                ' + (props.attributes.readMoreTextDecoration !== 'default' ? 'text-decoration:' + props.attributes.readMoreTextDecoration + ';' : '') + '\n                                ' + (props.attributes.readMorePaddingEnabled ? 'padding:' + props.attributes.readMorePaddingTop + 'px ' + props.attributes.readMorePaddingRight + 'px ' + props.attributes.readMorePaddingBottom + 'px ' + props.attributes.readMorePaddingLeft + 'px;' : '') + '\n                                ' + (props.attributes.readMoreBorderStyle !== 'none' ? 'border:' + props.attributes.readMoreBorderWidth + 'px ' + props.attributes.readMoreBorderStyle + ' ' + props.attributes.readMoreBorderColor + ';' : '') + '\n                            }\n                            .' + props.attributes.id + ' .advgb-post-readmore a:hover,\n                            .' + props.attributes.id + ' .advgb-post-readmore a:focus,\n                            .' + props.attributes.id + ' .advgb-post-readmore a:active {\n                                ' + (props.attributes.readMoreTextColorH ? 'color:' + props.attributes.readMoreTextColorH + ';' : '') + '\n                                ' + (props.attributes.readMoreBgColorH ? 'background:' + props.attributes.readMoreBgColorH + ';' : '') + '\n                                ' + (props.attributes.readMoreTextDecorationH !== 'default' ? 'text-decoration:' + props.attributes.readMoreTextDecorationH + ';' : '') + '\n                                ' + (props.attributes.readMoreBorderStyle !== 'none' ? 'border-color:' + props.attributes.readMoreBorderColorH + ';' : '') + '\n                            }',
-                        props.attributes.imageSizeEnabled && '.' + props.attributes.id + '.advgb-recent-posts-block .advgb-recent-posts .advgb-recent-post .advgb-post-thumbnail img {\n                                    height: ' + (props.attributes.imageHeightAuto ? 'auto' : props.attributes.imageHeight + 'px') + ';\n                                    width: ' + (props.attributes.imageWidthAuto ? 'auto' : props.attributes.imageWidth + 'px') + ';\n                                }'
-                    )
+                        "." + props.attributes.id + " .advgb-post-readmore a {\n                                " + (props.attributes.readMoreTextColor ? 'color:' + props.attributes.readMoreTextColor + ';' : '') + "\n                                " + (props.attributes.readMoreBgColor ? 'background:' + props.attributes.readMoreBgColor + ';' : '') + ";\n                                " + (props.attributes.readMoreBorderRadius ? 'border-radius:' + props.attributes.readMoreBorderRadius + 'px;' : '') + "\n                                " + (props.attributes.readMoreTextDecoration !== 'default' ? 'text-decoration:' + props.attributes.readMoreTextDecoration + ';' : '') + "\n                                " + (props.attributes.readMorePaddingEnabled ? 'padding:' + props.attributes.readMorePaddingTop + 'px ' + props.attributes.readMorePaddingRight + 'px ' + props.attributes.readMorePaddingBottom + 'px ' + props.attributes.readMorePaddingLeft + 'px;' : '') + "\n                                " + (props.attributes.readMoreBorderStyle !== 'none' ? 'border:' + props.attributes.readMoreBorderWidth + 'px ' + props.attributes.readMoreBorderStyle + ' ' + props.attributes.readMoreBorderColor + ';' : '') + "\n                            }\n                            ." + props.attributes.id + " .advgb-post-readmore a:hover,\n                            ." + props.attributes.id + " .advgb-post-readmore a:focus,\n                            ." + props.attributes.id + " .advgb-post-readmore a:active {\n                                " + (props.attributes.readMoreTextColorH ? 'color:' + props.attributes.readMoreTextColorH + ';' : '') + "\n                                " + (props.attributes.readMoreBgColorH ? 'background:' + props.attributes.readMoreBgColorH + ';' : '') + "\n                                " + (props.attributes.readMoreTextDecorationH !== 'default' ? 'text-decoration:' + props.attributes.readMoreTextDecorationH + ';' : '') + "\n                                " + (props.attributes.readMoreBorderStyle !== 'none' ? 'border-color:' + props.attributes.readMoreBorderColorH + ';' : '') + "\n                            }",
+                        props.attributes.imageSizeEnabled && "." + props.attributes.id + ".advgb-recent-posts-block .advgb-recent-posts .advgb-recent-post .advgb-post-thumbnail img {\n                                    height: " + (props.attributes.imageHeightAuto ? 'auto' : props.attributes.imageHeight + 'px') + ";\n                                    width: " + (props.attributes.imageWidthAuto ? 'auto' : props.attributes.imageWidth + 'px') + ";\n                                }",
+                        React.createElement(_fonts.AdvSetGoogleFontStyle, {
+                            fontFamily: props.attributes.titleFontFamily,
+                            fontVariation: props.attributes.titleFontVariation,
+                            textTransform: props.attributes.titleTextTransform,
+                            cssSelector: "." + props.attributes.id + ".advgb-recent-posts-block .advgb-recent-posts .advgb-recent-post .advgb-post-title"
+                        }),
+                        props.attributes.titleColor && "." + props.attributes.id + ".advgb-recent-posts-block .advgb-recent-posts .advgb-recent-post .advgb-post-title > a{\n                                    color: " + props.attributes.titleColor + "\n                                }",
+                        props.attributes.titleColorH && "." + props.attributes.id + ".advgb-recent-posts-block .advgb-recent-posts .advgb-recent-post .advgb-post-title > a:hover,\n                                ." + props.attributes.id + ".advgb-recent-posts-block .advgb-recent-posts .advgb-recent-post .advgb-post-title > a:focus,\n                                ." + props.attributes.id + ".advgb-recent-posts-block .advgb-recent-posts .advgb-recent-post .advgb-post-title > a:active {\n                                    color: " + props.attributes.titleColorH + "\n                                }",
+                        (props.attributes.titleSizeD || props.attributes.titleHideD) && "@media (min-width:781px) {\n                                    ." + props.attributes.id + ".advgb-recent-posts-block .advgb-recent-posts .advgb-recent-post .advgb-post-title{\n                                        " + (props.attributes.titleSizeD ? 'font-size:' + props.attributes.titleSizeD + 'px;' : '') + "\n                                        " + (props.attributes.titleHideD ? 'display:none;' : '') + "\n                                    }\n                                }",
+                        (props.attributes.titleSizeT || props.attributes.titleHideT) && "@media (min-width:361px) and (max-width:780px) {\n                                    ." + props.attributes.id + ".advgb-recent-posts-block .advgb-recent-posts .advgb-recent-post .advgb-post-title{\n                                        " + (props.attributes.titleSizeT ? 'font-size:' + props.attributes.titleSizeT + 'px;' : '') + "\n                                        " + (props.attributes.titleHideT ? 'display:none;' : '') + "\n                                    }\n                                }",
+                        (props.attributes.titleSizeM || props.attributes.titleHideM) && "@media (max-width:360px) {\n                                    ." + props.attributes.id + ".advgb-recent-posts-block .advgb-recent-posts .advgb-recent-post .advgb-post-title{\n                                        " + (props.attributes.titleSizeM ? 'font-size:' + props.attributes.titleSizeM + 'px;' : '') + "\n                                        " + (props.attributes.titleHideM ? 'display:none;' : '') + "\n                                    }\n                                }",
+                        /* Info CSS */React.createElement(_fonts.AdvSetGoogleFontStyle, {
+                            fontFamily: props.attributes.infoFontFamily,
+                            fontVariation: props.attributes.infoFontVariation,
+                            textTransform: props.attributes.infoTextTransform,
+                            cssSelector: "." + props.attributes.id + ".advgb-recent-posts-block .advgb-recent-posts .advgb-recent-post .advgb-post-info"
+                        }),
+                        /* Tags and Categories CSS */React.createElement(_fonts.AdvSetGoogleFontStyle, {
+                            fontFamily: props.attributes.taxonomyFontFamily,
+                            fontVariation: props.attributes.taxonomyFontVariation,
+                            textTransform: props.attributes.taxonomyTextTransform,
+                            cssSelector: "." + props.attributes.id + ".advgb-recent-posts-block .advgb-recent-posts .advgb-recent-post .advgb-post-tax-info a,\n                                    ." + props.attributes.id + ".advgb-recent-posts-block .advgb-recent-posts .advgb-recent-post .advgb-post-tax-info span"
+                        }),
+                        React.createElement(_fonts.AdvSetGoogleFontStyle, {
+                            fontFamily: props.attributes.contentFontFamily,
+                            fontVariation: props.attributes.contentFontVariation,
+                            textTransform: props.attributes.contentTextTransform,
+                            cssSelector: "." + props.attributes.id + ".advgb-recent-posts-block .advgb-recent-posts .advgb-recent-post .advgb-post-content .advgb-post-excerpt"
+                        }),
+                        props.attributes.contentColor && "." + props.attributes.id + ".advgb-recent-posts-block .advgb-recent-posts .advgb-recent-post .advgb-post-content .advgb-post-excerpt {\n                                    color: " + props.attributes.contentColor + "\n                                }",
+                        /* Read more CSS */React.createElement(_fonts.AdvSetGoogleFontStyle, {
+                            fontFamily: props.attributes.readMoreFontFamily,
+                            fontVariation: props.attributes.readMoreFontVariation,
+                            textTransform: props.attributes.readMoreTextTransform,
+                            cssSelector: "." + props.attributes.id + ".advgb-recent-posts-block .advgb-recent-posts .advgb-recent-post .advgb-post-readmore a"
+                        })
+                    ),
+                    React.createElement(_fonts.AdvLoadGoogleStylesheet, {
+                        fontFamily: props.attributes.titleFontFamily,
+                        fontVariation: props.attributes.titleFontVariation
+                    }),
+                    React.createElement(_fonts.AdvLoadGoogleStylesheet, {
+                        fontFamily: props.attributes.infoFontFamily,
+                        fontVariation: props.attributes.infoFontVariation
+                    }),
+                    React.createElement(_fonts.AdvLoadGoogleStylesheet, {
+                        fontFamily: props.attributes.taxonomyFontFamily,
+                        fontVariation: props.attributes.taxonomyFontVariation
+                    }),
+                    React.createElement(_fonts.AdvLoadGoogleStylesheet, {
+                        fontFamily: props.attributes.contentFontFamily,
+                        fontVariation: props.attributes.contentFontVariation
+                    }),
+                    React.createElement(_fonts.AdvLoadGoogleStylesheet, {
+                        fontFamily: props.attributes.readMoreFontFamily,
+                        fontVariation: props.attributes.readMoreFontVariation
+                    })
                 )
             );
         };
-    });
-})(wp.i18n, wp.hooks, wp.blockEditor, wp.components, wp.element);
+    }, 'recentPostsProSidebar');
+    addFilter('editor.BlockEdit', 'advgb/recentPostsPro', recentPostsProSidebar);
+})(wp.i18n, wp.hooks, wp.blockEditor, wp.components, wp.element, wp.compose);
 
 /***/ }),
 
@@ -3519,7 +4380,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
                         )
                     )
                 ),
-                props.attributes.pid && React.createElement(
+                props.name === 'advgb/testimonial' && props.attributes.pid && React.createElement(
                     'div',
                     null,
                     React.createElement(
@@ -3539,14 +4400,17 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 /***/ }),
 
 /***/ 0:
-/*!**********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** multi ./src/assets/blocks/advimage/pro.jsx ./src/assets/blocks/advlist/pro.jsx ./src/assets/blocks/count-up/pro.jsx ./src/assets/blocks/countdown/block.jsx ./src/assets/blocks/feature-list/block.jsx ./src/assets/blocks/feature-list/feature.jsx ./src/assets/blocks/images-slider/pro.jsx ./src/assets/blocks/pricing-table/block.jsx ./src/assets/blocks/recent-posts/pro.jsx ./src/assets/blocks/testimonial/pro.jsx ***!
-  \**********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*!***********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** multi ./src/assets/blocks/0-adv-components/fonts.jsx ./src/assets/blocks/advbutton/pro.jsx ./src/assets/blocks/advimage/pro.jsx ./src/assets/blocks/advlist/pro.jsx ./src/assets/blocks/advtabs/pro.jsx ./src/assets/blocks/count-up/pro.jsx ./src/assets/blocks/countdown/block.jsx ./src/assets/blocks/feature-list/block.jsx ./src/assets/blocks/feature-list/feature.jsx ./src/assets/blocks/images-slider/pro.jsx ./src/assets/blocks/pricing-table/block.jsx ./src/assets/blocks/recent-posts/pro.jsx ./src/assets/blocks/testimonial/pro.jsx ***!
+  \***********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
+__webpack_require__(/*! ./src/assets/blocks/0-adv-components/fonts.jsx */"./src/assets/blocks/0-adv-components/fonts.jsx");
+__webpack_require__(/*! ./src/assets/blocks/advbutton/pro.jsx */"./src/assets/blocks/advbutton/pro.jsx");
 __webpack_require__(/*! ./src/assets/blocks/advimage/pro.jsx */"./src/assets/blocks/advimage/pro.jsx");
 __webpack_require__(/*! ./src/assets/blocks/advlist/pro.jsx */"./src/assets/blocks/advlist/pro.jsx");
+__webpack_require__(/*! ./src/assets/blocks/advtabs/pro.jsx */"./src/assets/blocks/advtabs/pro.jsx");
 __webpack_require__(/*! ./src/assets/blocks/count-up/pro.jsx */"./src/assets/blocks/count-up/pro.jsx");
 __webpack_require__(/*! ./src/assets/blocks/countdown/block.jsx */"./src/assets/blocks/countdown/block.jsx");
 __webpack_require__(/*! ./src/assets/blocks/feature-list/block.jsx */"./src/assets/blocks/feature-list/block.jsx");

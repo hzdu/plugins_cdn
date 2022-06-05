@@ -1,0 +1,83 @@
+.woocommerce.single .entry-summary ul.nv-vswatches-wrapper {
+  padding: 0;
+  margin: 0; }
+
+.woocommerce .product form.cart .variations .nv-variation-container select {
+  display: none; }
+
+.nv_swatches_ajax.added {
+  display: none !important; }
+
+.nv-vswatches-wrapper .nv-vswatch-item {
+  display: inline-block;
+  cursor: pointer;
+  border: 1px solid #dadada;
+  margin-right: 16px;
+  position: relative;
+  vertical-align: top; }
+  .nv-vswatches-wrapper .nv-vswatch-item:last-child {
+    margin-right: 0; }
+  .nv-vswatches-wrapper .nv-vswatch-item.color, .nv-vswatches-wrapper .nv-vswatch-item.image {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    overflow: hidden; }
+  .nv-vswatches-wrapper .nv-vswatch-item:not(.enabled) {
+    opacity: 0.4;
+    cursor: not-allowed; }
+    .nv-vswatches-wrapper .nv-vswatch-item:not(.enabled) label, .nv-vswatches-wrapper .nv-vswatch-item:not(.enabled) span {
+      cursor: not-allowed; }
+  .nv-vswatches-wrapper .nv-vswatch-item.label {
+    border-radius: 5px;
+    border-width: 2px;
+    text-transform: uppercase;
+    margin-right: 9px; }
+  .nv-vswatches-wrapper .nv-vswatch-item.nv-vswatch-active:not(.color) {
+    border-color: var(--nv-primary-accent);
+    color: var(--nv-primary-accent); }
+  .nv-vswatches-wrapper .nv-vswatch-item.nv-vswatch-active .nv-vswatch-color {
+    border: 3px solid rgba(0, 0, 0, 0.19);
+    border-radius: 50%; }
+  .nv-vswatches-wrapper .nv-vswatch-item.nv-vswatch-active .nv-vswatch-overlay {
+    background-color: rgba(0, 0, 0, 0.1);
+    display: block;
+    position: absolute;
+    background-image: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTMiIGhlaWdodD0iMTAiIHZpZXdCb3g9IjAgMCAxMyAxMCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxwYXRoIGQ9Ik0xMS41MDQyIDAuMTUxMzA2TDQuNzA0MTUgNi45NTEzMUwxLjkwNDE1IDQuMTUxMzFMMC41MDQxNSA1LjU1MTMxTDQuNzA0MTUgOS43NTEzMUwxMi45MDQyIDEuNTUxMzEiIGZpbGw9IndoaXRlIi8+Cjwvc3ZnPgo=");
+    background-size: 13px;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 100%;
+    height: 100%; }
+  .nv-vswatches-wrapper .nv-vswatch-item .nv-vswatch-color {
+    width: 100%;
+    height: 100%;
+    display: block; }
+  .nv-vswatches-wrapper .nv-vswatch-item .nv-vswatch-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    margin: 0; }
+  .nv-vswatches-wrapper .nv-vswatch-item .nv-vswatch-label {
+    margin: 0;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-weight: bold; }
+  .nv-vswatches-wrapper .nv-vswatch-item.nv-vswatch-empty.image {
+    background-image: url("data:image/svg+xml;base64,PHN2ZyByb2xlPSJpbWciIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgdmlld0JveD0iMCAwIDUxMiA1MTIiIHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCI+CiAgICA8cGF0aCBmaWxsPSIjZGFkYWRhIiBkPSJNNDY0IDY0SDQ4QzIxLjQ5IDY0IDAgODUuNDkgMCAxMTJ2Mjg4YzAgMjYuNTEgMjEuNDkgNDggNDggNDhoNDE2YzI2LjUxIDAgNDgtMjEuNDkgNDgtNDhWMTEyYzAtMjYuNTEtMjEuNDktNDgtNDgtNDh6bS02IDMzNkg1NGE2IDYgMCAwIDEtNi02VjExOGE2IDYgMCAwIDEgNi02aDQwNGE2IDYgMCAwIDEgNiA2djI3NmE2IDYgMCAwIDEtNiA2ek0xMjggMTUyYy0yMi4wOTEgMC00MCAxNy45MDktNDAgNDBzMTcuOTA5IDQwIDQwIDQwIDQwLTE3LjkwOSA0MC00MC0xNy45MDktNDAtNDAtNDB6TTk2IDM1MmgzMjB2LTgwbC04Ny41MTUtODcuNTE1Yy00LjY4Ni00LjY4Ni0xMi4yODQtNC42ODYtMTYuOTcxIDBMMTkyIDMwNGwtMzkuNTE1LTM5LjUxNWMtNC42ODYtNC42ODYtMTIuMjg0LTQuNjg2LTE2Ljk3MSAwTDk2IDMwNHY0OHoiPjwvcGF0aD4KPC9zdmc+Cg==");
+    background-repeat: no-repeat;
+    background-position: center; }
+  .nv-vswatches-wrapper .nv-vswatch-item.nv-vswatch-empty.color {
+    border: none;
+    background: repeating-linear-gradient(45deg, #dadada, #dadada 3px, #ffffff 3px, #ffffff 10px); }
+
+.nv-catalog-variation {
+  margin-top: 1em; }
+  .nv-catalog-variation .variations {
+    margin-bottom: 0 !important; }
+  .nv-catalog-variation .nv-vswatch-item.color, .nv-catalog-variation .nv-vswatch-item.image {
+    width: 40px;
+    height: 40px; }
+  .nv-catalog-variation .nv-vswatch-item:not(:last-child) > select {
+    margin-bottom: 1em; }
+  .nv-catalog-variation .nv-vswatch-label, .nv-catalog-variation select {
+    font-size: .75em; }

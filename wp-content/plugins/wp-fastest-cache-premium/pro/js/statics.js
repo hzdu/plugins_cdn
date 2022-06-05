@@ -22,7 +22,7 @@ var WpFcStatics = {
 	set_click_event_buy_image_credit: function(){
 		var self = this;
 
-		jQuery("#buy-image-credit").click(function(){
+		jQuery("#buy-image-credit-link").click(function(){
 
 			var shop = jQuery('<div id="wpfc-shop-modal" style="width: 500px;height: 100px;"></div>');
 			jQuery("body").append(shop);
@@ -291,7 +291,7 @@ var WpFcStatics = {
 					   	"nae": [
 							   {"key": "dc", "time":0,"flag":"us","location":"New York","color":"red", "url":"https://dc.wpfastestcache.com"},
 					   		   {"key": "chic", "time":0,"flag":"us","location":"Chicago","color":"red", "url":"https://chicago.wpfastestcache.com"},
-							   {"key": "stlo", "time":0,"flag":"us","location":"St. Louis","color":"red", "url":"https://api.wpfastestcache.in"},
+							   {"key": "stlo", "time":0,"flag":"us","location":"St. Louis","color":"red", "url":"https://stlouis.wpfastestcache.com"},
 					   		 ],
 
 					   "euw": [
@@ -305,6 +305,7 @@ var WpFcStatics = {
 
 					   	"eue": [
 							   {"key": "bg", "time":0,"flag":"bg","location":"Bulgaria","color":"red", "url":"https://bulgaria.wpfastestcache.com"},
+							   {"key": "pl", "time":0,"flag":"de","location":"Poland","color":"red", "url":"https://pl.wpfastestcache.com"},
 							   {"key": "ru", "time":0,"flag":"de","location":"Russia","color":"red", "url":"https://russia.wpfastestcache.com"},
 							   {"key": "se", "time":0,"flag":"de","location":"Sweden","color":"red", "url":"https://sweden.wpfastestcache.com"},
 					   		 ],
@@ -321,7 +322,7 @@ var WpFcStatics = {
 		var asia = "AF, AM, AZ, BH, BD, BT, BN, KH, CN, GE, HK, IN, ID, IR, IQ, JP, JO, KW, KG, LA, LB, MO, MY, MV, MN, MM, NP, KP, OM, PK, PH, QA, SA, SG, KR, LK, SY, TW, TJ, TH, TM, AE, UZ, VN, YE";
 			
 		var w_europe = "AD, AT, BE, DK, FO, FR, DE, GI, IS, IE, IM, IT, LI, LU, MT, MC, NL, PT, SM, ES, CH, GB, VA";
-		var e_europe = "AL, BY, BA, BG, HR, CY, CZ, EE, FI, GR, HU, XK, LV, LT, MK, MD, ME, NO, PL, RO, RU, RS, SK, SI, SE, TR, UA";
+		var e_europe = "AL, BY, BA, BG, HR, CY, CZ, EE, FI, GR, HU, IL, XK, LV, LT, MK, MD, ME, NO, PL, RO, RU, RS, SK, SI, SE, TR, UA";
 
 		var africa = "DZ, AO, BJ, BW, BF, BI, CM, CV, CF, KM, CD, DJ, EG, GQ, ER, ET, GA, GM, GH, GN, GW, CI, KE, LS, LR, LY, MG, MW, ML, MR, MU, MA, MZ, NA, NE, NG, CG, RE, RW, SH, ST, SN, SC, SL, SO, ZA, SS, SD, SZ, TZ, TG, TN, UG, EH, ZM, ZW";
 		var time_out = 4000;
