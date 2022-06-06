@@ -1,0 +1,118 @@
+<div class="tva-flex tva-flex-row tva-space-between">
+	<h1 class="tva-main-heading">
+		<span class="tva-product-subheading"><#= model.get( 'name' ) #></span>
+		<?php echo __( 'Access restriction rules', TVA_Const::T ) ?>
+</div>
+<div class="tva-product-heading-buttons mb-45">
+	<a class="tva-back" href="#products"><?php echo esc_attr__( 'Back to dashboard', TVA_Const::T ) ?></a>
+	<#= this.getBackLink() #>
+</div>
+<p class="tva-p-text-main mt-0 mb-30"><?php echo __( 'Decide what should happen if a user tries to access your product without the necessary permissions.', TVA_Const::T ); ?></p>
+
+<h3 class="tva-second-heading"><?php echo __( 'Standard contexts', TVA_Const::T ) ?></h3>
+
+<div class="tva-restriction-card tva-flex">
+	<div class="tva-restriction-icon">
+		<?php tva_get_svg_icon( 'not_logged' ); ?>
+	</div>
+	<span class="tva-restriction-title" data-scope="not_logged">
+		<span class="tva-flex"><?php echo __( 'User not logged in', TVA_Const::T ) ?></span>
+		<a href="javascript:void(0)" class="click" data-scope="not_logged" data-fn="openRuleModal">
+			<?php echo __( '1 condition', TVA_Const::T ) ?>
+		</a>
+	</span>
+	<span class="tva-open-modal">
+		<?php tva_get_svg_icon( "<#= model.get('access_restrictions').not_logged.option #>" ); ?>
+		<a href="javascript:void(0)" class="click product-restriction-summary" data-fn="openRestrictionsModal" data-scope="not_logged">
+			<#=this.model.getRestrictionSummary('not_logged')#>
+		</a>
+	</span>
+</div>
+
+<div class="tva-restriction-card tva-flex">
+	<div class="tva-restriction-icon">
+		<?php tva_get_svg_icon( 'locked' ); ?>
+	</div>
+	<span class="tva-restriction-title" data-scope="locked">
+		<span class="tva-flex"><?php echo __( 'Content is locked (drip feed protected)', TVA_Const::T ) ?></span>
+		<a href="javascript:void(0)" class="click" data-scope="locked" data-fn="openRuleModal">
+			<?php echo __( '1 condition', TVA_Const::T ) ?>
+		</a>
+	</span>
+	<span class="tva-open-modal">
+		<?php tva_get_svg_icon( "<#= model.get('access_restrictions').locked.option #>" ); ?>
+		<a href="javascript:void(0)" class="click product-restriction-summary" data-fn="openRestrictionsModal" data-scope="locked">
+			<#=this.model.getRestrictionSummary('locked')#>
+		</a>
+	</span>
+</div>
+
+
+<h3 class="tva-second-heading mt-50"><?php echo __( 'Purchase protection', TVA_Const::T ) ?></h3>
+<div class="tva-flex tva-space-between">
+	<p class="tva-p-text-main mt-5 mb-10">
+		<?php echo __( 'Use this section to create tailored messages for when users try to access your product without having purchased it', TVA_Const::T ); ?>
+		<br>
+		<a href="https://help.thrivethemes.com/en/articles/5727603-access-restriction-rules-at-product-level#h_e765c3bc52" rel="noopener" target="_blank"><?php echo __( 'Learn how to use this effectively', TVA_Const::T ) ?></a>
+	</p>
+	<a href="javascript:void(0);" class="click tva-btn tva-btn-blue float-right mb-10 tva-add-rule-btn" data-fn="addRule">
+		<?php tva_get_svg_icon( 'add-btn' ); ?>
+		<?php echo __( 'Add rule', TVA_Const::T ); ?>
+	</a>
+</div>
+
+<div id="tva-restriction-wrapper">
+	<# model.get( 'access_restrictions' ).custom.each( ( rule ) => { #>
+
+	<div class="tva-restriction-card tva-flex" data-id="<#= rule.get('custom_id') #>">
+		<div class="tva-restriction-icon tva-icon-bg-gray tva-drag-handle">
+			<?php tva_get_svg_icon( 'dnd' ); ?>
+		</div>
+		<span class="tva-restriction-title" data-scope="custom">
+		<span class="tva-flex"><#= rule.get('title') #></span>
+
+		<a href="javascript:void(0)" class="click" data-scope="custom" data-fn="openRuleModal" data-id="<#= rule.get('custom_id') #>">
+			<#= rule.getConditionCount() #>
+			<# if( rule.getConditionCount() === 1 ) { #>
+			<?php echo __( 'condition', TVA_Const::T ) ?>
+			<# } else { #>
+			<?php echo __( 'conditions', TVA_Const::T ) ?>
+			<# } #>
+		</a>
+
+		</span>
+		<span class="tva-open-modal">
+			<?php tva_get_svg_icon( "<#= rule.get('option') #>" ); ?>
+			<a href="javascript:void(0)" class="click product-restriction-summary" data-fn="openRestrictionsModal" data-scope="custom" data-id="<#= rule.get('custom_id') #>">
+				<#= this.getCustomRestrictionSummary( rule.get( 'option' ) ) #>
+			</a>
+		</span>
+
+		<div class="tva-delete-rule tva-flex tva-align-center tva-flex-end">
+			<a href="javascript:void(0)" class="tva-delete-icon click tva-link-btn" data-fn="deleteAccessRule" data-id="<#= rule.get('custom_id') #>">
+				<?php tva_get_svg_icon( 'trash-1' );
+				echo __( 'Delete', TVA_Const::T ) ?>
+			</a>
+		</div>
+	</div>
+
+	<# } ) #>
+</div>
+
+<div class="tva-restriction-card tva-flex">
+	<div class="tva-restriction-icon">
+		<?php tva_get_svg_icon( 'not_purchased' ); ?>
+	</div>
+	<span class="tva-restriction-title" data-scope="not_purchased">
+		<span class="tva-flex"><?php echo __( 'Not yet purchased (default)', TVA_Const::T ) ?></span>
+		<a href="javascript:void(0)" class="click" data-scope="not_purchased" data-fn="openRuleModal">
+			<?php echo __( '1 condition', TVA_Const::T ) ?>
+		</a>
+	</span>
+	<span class="tva-open-modal">
+		<?php tva_get_svg_icon( "<#= model.get('access_restrictions').not_purchased.option #>" ); ?>
+		<a href="javascript:void(0)" class="click product-restriction-summary" data-fn="openRestrictionsModal" data-scope="not_purchased">
+			<#=this.model.getRestrictionSummary('not_purchased')#>
+		</a>
+	</span>
+</div>

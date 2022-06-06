@@ -1,0 +1,56 @@
+<?php
+/**
+ * Thrive Themes - https://thrivethemes.com
+ *
+ * @package thrive-apprentice
+ */
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Silence is golden!
+}
+?>
+<div class="tva-flex tva-flex-row">
+	<div class="tva-et-card">
+		<div class="mb-30">
+			<label for="tva-email-subject"><?php echo esc_html__( 'Subject', TVA_Const::T ); ?></label>
+			<input data-field="subject" type="text" class="input" data-fn="changeField" id="tva-email-subject" value="<#- model.get('subject') #>">
+		</div>
+		<div class="mb-30">
+			<label for="tva-email-from_name"><?php echo esc_html__( 'From name', TVA_Const::T ); ?></label>
+			<input data-field="from_name" type="text" class="input" data-fn="changeField" id="tva-email-from_name" value="<#- model.get('from_name') #>">
+		</div>
+		<div class="tva-et-textarea mb-30">
+			<label><?php echo esc_html__( 'Message', TVA_Const::T ); ?></label>
+			<textarea data-field="body" id="tva-email-body" cols="30" rows="10"><#- model.get('body') #></textarea>
+		</div>
+		<div class="tva-flex tva-align-center mb-30 tva-space-between">
+			<label class="mb-0"><?php echo esc_html__( 'Add shortcode', TVA_Const::T ); ?></label>
+			<div class="w-select">
+				<select id="tva-email-shortcodes">
+					<option value=""><?php echo esc_html__( 'Select shortcode', TVA_Const::T ); ?></option>
+				</select>
+			</div>
+			<div>
+				<button class="tva-empty-btn tva-empty-btn-blue click" data-fn="insertShortcode">
+					<?php echo esc_html__( 'Insert shortcode', TVA_Const::T ); ?>
+				</button>
+			</div>
+		</div>
+		<div>
+			<label class="mb-10"><?php echo esc_html__( 'Email triggers', TVA_Const::T ); ?></label>
+		</div>
+		<div class="tva-flex tva-flex-row">
+			<ul id="tva-email-triggers-wrapper" class="mt-0 mb-0"></ul>
+		</div>
+		<div class="tva-flex tva-flex-row tva-flex-end">
+			<button class="tva-save-btn click tva-email-template-save" data-fn="save"><?php echo esc_html__( 'Save template', TVA_Const::T ); ?></button>
+		</div>
+	</div>
+	<div class="tva-et-info">
+		<h3><?php echo esc_html__( 'Email details', TVA_Const::T ); ?></h3>
+		<p><?php echo esc_html__( 'This email is sent to new customers that have either purchased a course or signed up for a free course.', TVA_Const::T ); ?></p>
+		<p><?php echo esc_html__( 'The email typically includes login details that customers can use to access their account.', TVA_Const::T ); ?></p>
+		<p><?php echo esc_html__( 'This email is only triggered when the account is created.  Repeat purchases through the same user account will not trigger the email.', TVA_Const::T ); ?></p>
+		<p><?php echo esc_html__( 'Login Button and Login Link shortcodes will link to the page set under Apprentice &rarr; Settings &rarr; Login & access restriction &rarr; Login & registration page.', TVA_Const::T ); ?></p>
+	</div>
+</div>

@@ -1,0 +1,26 @@
+<div class="tqb-feedback-settings">
+
+	<p class="tqb-mpbt tqb-feedback-text">
+		<# if(	model.get( 'highlight_and_show_feedback' ) == 1) { #>
+		<?php echo __( 'How long should the highlight and feedback be displayed for?', Thrive_Quiz_Builder::T ) ?>
+		<# }else{ #>
+		<?php echo __( 'How long should the highlight be displayed for?', Thrive_Quiz_Builder::T ) ?>
+		<# } #>
+	</p>
+
+	<div class="tqb-options">
+		<input class="tqb-display-feedback tqb-radio-option" id="tqb-checkbox-seconds" type="radio" data-attr="display_feedback"
+		<#= model.get( 'display_feedback' ) === 1 ? 'checked' : '' #> />
+		<label for="tqb-checkbox-seconds"></label>
+
+		<input type="text" id="tqb-feedback-time" value="<#= model.get( 'display_feedback_time' ) #>" data-bind="display_feedback_time">
+		<label for="tqb-checkbox-seconds" class="tqb-mr35 tqb-feedback-seconds"><?php echo __( ' seconds', Thrive_Graph_Editor::T ) ?></label>
+
+		<input class="tqb-press-next tqb-radio-option" id="tqb-checkbox-press-next" type="radio" data-attr="press_next"
+		<#= model.get( 'press_next' ) === 1 ? 'checked' : '' #> />
+		<label class="tqb-mr60" for="tqb-checkbox-press-next">
+			<?php echo __( 'Until the user presses the Next button', Thrive_Graph_Editor::T ) ?>
+		</label>
+	</div>
+
+</div>

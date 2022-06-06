@@ -28,7 +28,6 @@ jQuery(document).ready(function ($) {
     }
     $('.recount-user-votes-step').val(0);
     $(document).on('click', '.recount-user-votes', function (e) {
-        console.log("clicked");
         e.preventDefault();
         if ($('.recount-user-votes-start-id').val() >= 0) {
             var btn = $(this);

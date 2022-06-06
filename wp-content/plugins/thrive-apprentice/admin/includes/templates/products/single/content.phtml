@@ -1,0 +1,28 @@
+<div class="tva-product-header mb-20">
+	<div>
+		<div class="tva-product-edit">
+			<?php tva_get_svg_icon( 'drip-products-membership' ); ?>
+			<div>
+				<h2><?php echo esc_attr__( 'Editing Product:', TVA_Const::T ) ?></h2>
+				<h1 class="tva-product-heading">
+					<div class="tva-product-name"><div><span><#= model.get( 'name' ) #></span></div></div>
+					<span class="click" data-fn="renameProduct"><?php tva_get_svg_icon( 'pen_light' ); ?></span>
+				</h1>
+			</div>
+		</div>
+		<# if(!TVA.visualEditingEnabled) { #>
+		<?php include dirname( __FILE__ ) . '/legacy-design-warning.php'; ?>
+		<# } #>
+		<div class="tva-product-heading-buttons mt-10">
+			<a class="tva-back" href="#products"><?php echo esc_attr__( 'Back to products dashboard', TVA_Const::T ) ?></a>
+			<#= this.getBackLink() #>
+		</div>
+	</div>
+</div>
+
+<div class="tva-product-details-wrapper">
+	<div class="tva-product-details-info">
+		<?php echo esc_attr__( 'Purchasing this product or meeting its access restriction rules will unlock the following content:', TVA_Const::T ) ?>
+	</div>
+	<div class="tva-product-details"></div>
+</div>

@@ -1,0 +1,25 @@
+<div class="notice notice-warning is-dismissible">
+	<p>
+		<?php
+		echo sprintf(
+			__( 'Your %s license has expired! ', TVE_DASH_TRANSLATE_DOMAIN ),
+			$membership_name
+		);
+		echo sprintf(
+			sprintf(
+				__( 'Please %s to get the latest plugin and security updates. ', TVE_DASH_TRANSLATE_DOMAIN ),
+				sprintf(
+					'<a href="%s" target="_blank">%s</a>',
+					TD_TTW_Update_Manager::SUITE_URL,
+					__( 'renew your license', TVE_DASH_TRANSLATE_DOMAIN )
+				)
+			)
+		);
+		echo sprintf(
+			'<a href="%s" target="_blank">%s</a>',
+			TD_TTW_User_Licenses::get_instance()->get_recheck_url(),
+			__( 'Check license again', TVE_DASH_TRANSLATE_DOMAIN )
+		);
+		?>
+	</p>
+</div>

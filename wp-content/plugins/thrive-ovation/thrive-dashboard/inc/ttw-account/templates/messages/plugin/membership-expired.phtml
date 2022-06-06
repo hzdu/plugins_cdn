@@ -1,0 +1,92 @@
+<?php
+
+/** @var array $plugin_data */
+/** @var stdClass $state */
+
+/** @var string $slug plugin slug */
+$slug = $state->update->slug;
+
+/** @var string $version plugin version */
+$version = $state->update->version;
+
+?>
+<p class="thrv-msg thrv-deny-updates">
+	<?php
+	echo sprintf(
+		__( 'Membership expired - there is a new version of %s available but your license must be renewed to update. ', TVE_DASH_TRANSLATE_DOMAIN ),
+		$plugin_data['Name']
+	);
+	echo sprintf(
+		'<a class="thickbox open-plugin-details-modal" href="%s">%s</a>',
+		self_admin_url( 'plugin-install.php?tab=plugin-information&plugin=' . $slug . '&section=changelog&TB_iframe=true&width=772&height=877' ),
+		sprintf(
+			__( 'View version %s details', TVE_DASH_TRANSLATE_DOMAIN ),
+			$version
+		)
+	);
+	?>
+	&nbsp;&nbsp;&nbsp;&nbsp;
+	<a class="ttw-rnw" href="https://thrivethemes.com/membership-pricing" target="_blank" rel="noopener">
+		<?php echo __( 'Renew', TVE_DASH_TRANSLATE_DOMAIN ) ?>
+	</a>
+	&nbsp;&nbsp;&nbsp;&nbsp;
+	<?php
+	echo sprintf(
+		'<a class="ttw-cla" href="%s">%s</a>',
+		TD_TTW_User_Licenses::get_instance()->get_recheck_url(),
+		__( 'Check license again', TVE_DASH_TRANSLATE_DOMAIN )
+	);
+	?>
+</p>
+<style>
+    #<?php echo $slug ?>-update p:last-child {
+        display: none;
+    }
+
+    #<?php echo $slug ?>-update .thrv-msg:before {
+        transform: translateY(-5px);
+        content: "\f160";
+        color: #1e5496;
+    }
+
+    .ttw-rnw, .ttw-cla {
+        color: #fff !important;
+        background-color: #1e5496;
+        text-decoration: none !important;
+        padding: 0 15px;
+        border-radius: 3px;
+        display: inline-block;
+        line-height: 28px;
+    }
+
+    .ttw-cla {
+        background-color: #eeeeee;
+        color: #32373c !important;
+        border: 1px solid #dfddd7;
+    }
+</style>
+<script>
+	jQuery( '#<?php echo $slug ?>-update .update-message p' )
+		.filter( function ( index, item ) {
+			return ! jQuery( item ).hasClass( 'thrv-msg' )
+		} ).remove();
+
+	jQuery( 'body' ).on( 'thickbox:iframe:loaded', function () {
+		var iframe = jQuery( '#TB_iframeContent' ).contents();
+		var updateUrl = iframe.find( '#plugin_update_from_iframe' );
+
+		if ( updateUrl.data( 'slug' ) === "<?php echo $slug ?>" ) {
+			iframe
+				.find( '#plugin-information-footer' )
+				.empty()
+				.html(
+					'<a class="button button-primary right" id="thrv-upgrade-url" href="javascript:void(0)">Renew</a>'
+				);
+
+			jQuery( iframe.find( 'body #thrv-upgrade-url' ) ).on( 'click', function ( e ) {
+				e.preventDefault();
+				window.location.href = '<?php echo TD_TTW_Update_Manager::SUITE_URL;?>>'
+			} );
+		}
+	} );
+</script>

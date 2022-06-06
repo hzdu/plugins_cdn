@@ -1,0 +1,35 @@
+<?php
+/**
+ * Thrive Themes - https://thrivethemes.com
+ *
+ * @package thrive-apprentice
+ */
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Silence is golden!
+}
+?>
+<a class="ttd-tooltip-row ttd-template-preview-url" target="_blank" href="javascript:void(0)">
+	<?php echo __( 'Preview', TVA_Const::T ); ?>
+</a>
+
+<button class="ttd-tooltip-row click" data-fn="makeDefault">
+	<?php echo __( 'Set as default', TVA_Const::T ); ?>
+	<?php Thrive_Views::svg_icon( 'check_light' ); ?>
+</button>
+
+<button class="ttd-tooltip-row click" data-fn="editTitle">
+	<?php echo __( 'Rename', TVA_Const::T ); ?>
+</button>
+
+<button class="ttd-tooltip-row click" data-fn="delete">
+	<?php echo __( 'Delete', TVA_Const::T ); ?>
+</button>
+
+<button class="ttd-tooltip-row click" data-fn="duplicate">
+	<?php echo __( 'Duplicate', TVA_Const::T ); ?>
+</button>
+
+<button class="ttd-tooltip-row click" data-fn="reset">
+	<?php echo __( 'Reset', TVA_Const::T ); ?>
+</button>

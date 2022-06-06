@@ -1,0 +1,16 @@
+<div class="tva-customers-top tva-flex tva-flex-row tva-space-between">
+	<h1 class="tva-main-heading"><?php echo __( 'Customers', TVA_Const::T ) ?></h1>
+	<div>
+		<a href="javascript:void(0);" class="click tva-btn tva-btn-blue mr-10" data-fn="addCustomer">
+			<?php tva_get_svg_icon( 'add-btn' ); ?>
+			<?php echo __( 'Add customer', TVA_Const::T ) ?>
+		</a>
+		<a href="javascript:void(0);" class="click tva-btn tva-btn-blue" data-fn="importCustomer">
+			<?php tva_get_svg_icon( 'import-customer' ); ?>
+			<?php echo __( 'Import customer', TVA_Const::T ) ?>
+		</a>
+	</div>
+</div>
+<div id="tva-filters-wrapper" class="mb-10"></div>
+<div id="tva-customers"></div>
+<div class="tva-pagination tva-flex"></div>

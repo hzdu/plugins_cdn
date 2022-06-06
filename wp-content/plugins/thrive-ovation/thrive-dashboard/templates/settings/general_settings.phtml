@@ -1,0 +1,77 @@
+<?php require_once( TVE_DASH_PATH . '/templates/header.phtml' ); ?>
+<div class="tvd-row tvd-success-message">
+	<p>ID saved successfully</p>
+</div>
+
+<style>
+    .tvd-success-message {
+        display: none;
+    }
+
+    #aff-invalid {
+        display: none;
+    }
+</style>
+
+<div class="tvd-container">
+
+	<?php if ( ! empty( $affiliate_links ) ) : ?>
+		<div class="tvd-classless">
+			<h3 class="tvd-section-title tvd-thrive-links">
+				<?php echo __( "Thrive Links", TVE_DASH_TRANSLATE_DOMAIN ) ?>
+				<a class='tvd-add-affiliate-url tvd-icon-pencil' href="#aff_modal"></a>
+			</h3>
+		</div>
+		<div id="tve_affiliate_links">
+			<?php foreach ( $affiliate_links as $affiliate_link ): ?>
+				<div class="tvd-classless">
+					<label class="affiliate-link-container">
+						<span class="tve-affilaite-link"><?php echo $affiliate_link['label'] ?></span>
+						<input type="checkbox" <?php echo $affiliate_link['checked'] == true ? 'checked' : ''; ?> class="tve-checked"
+							   data-product="<?php echo $affiliate_link['tag'] ?>">
+						<span class="checkmark"></span>
+					</label>
+				</div>
+			<?php endforeach; ?>
+		</div>
+	<?php endif; ?>
+
+	<h3 class="tvd-section-title"><?php echo __( "General Settings", TVE_DASH_TRANSLATE_DOMAIN ) ?></h3>
+
+	<div id="tve_dash_general_settings">
+		<?php foreach ( $settings as $setting ): ?>
+			<?php if ( ! in_array( $setting['type'], $accepted_settings ) ): continue; endif; ?>
+
+			<div class="tvd-row-settings" data-setting-name="<?php echo $setting['name']; ?>" data-setting-type="<?php echo $setting['type']; ?>">
+				<?php if ( $setting['type'] === 'text' ) : ?>
+
+					<?php if ( $setting['multiple'] && is_array( $setting['value'] ) ): ?>
+						<?php foreach ( $setting['value'] as $key => $value ): ?>
+							<?php include dirname( __FILE__ ) . '/text_setting_row.phtml'; ?>
+						<?php endforeach; ?>
+					<?php else: ?>
+						<?php $value = $setting['value']; ?>
+						<?php include dirname( __FILE__ ) . '/text_setting_row.phtml'; ?>
+					<?php endif; ?>
+
+				<?php elseif ( $setting['type'] === 'checkbox' ): ?>
+					<div class="tvd-checkbox-setting">
+						<input type="checkbox" id="<?php echo $setting['id'] ?>" <?php echo( ! empty( $setting['value'] ) ? ' checked' : '' ); ?> value="1" class="noUi-target noUi-ltr noUi-horizontal noUi-background tvd-save-option">
+						<label for="<?php echo $setting['id'] ?>"><?php echo $setting['description'] ?></label>
+						<?php if ( ! empty( $setting['link'] ) ): ?>
+							<a href="<?php echo $setting['link'] ?>" class="tvd-learn-more" target="_blank"><?php echo __( 'Learn more', TVE_DASH_TRANSLATE_DOMAIN ); ?></a>
+						<?php endif; ?>
+					</div>
+				<?php endif; ?>
+			</div>
+			<hr>
+		<?php endforeach; ?>
+	</div>
+</div>
+
+<div class="tvd-col tvd-m6">
+	<a href="<?php echo admin_url( 'admin.php?page=tve_dash_section' ); ?>" class="tvd-waves-effect tvd-waves-light tvd-btn-small tvd-btn-gray">
+		<?php echo __( "Back To Dashboard", TVE_DASH_TRANSLATE_DOMAIN ); ?>
+	</a>
+</div>
+<?php include TVE_DASH_PATH . '/templates/affiliate-modal.phtml'; ?>

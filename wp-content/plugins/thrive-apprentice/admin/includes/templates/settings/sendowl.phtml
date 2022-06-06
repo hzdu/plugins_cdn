@@ -1,0 +1,56 @@
+<?php
+/**
+ * Thrive Themes - https://thrivethemes.com
+ *
+ * @package thrive-apprentice
+ */
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Silence is golden!
+}
+
+$cards = array(
+	array(
+		'icon'        => 'map-signs_light',
+		'title'       => esc_html__( 'Start Here', TVA_Const::T ),
+		'description' => esc_html__( 'Not sure where to begin? Follow our quick start guide and sell your first product within an hour', TVA_Const::T ),
+		'btn_text'    => esc_html__( 'Quick Start Guide', TVA_Const::T ),
+		'btn_link'    => 'quick-start',
+	),
+	array(
+		'icon'        => 'shopping-cart_light',
+		'title'       => esc_html__( 'Checkout Settings', TVA_Const::T ),
+		'description' => esc_html__( 'Set up the checkout page your customers will see when purchasing', TVA_Const::T ),
+		'btn_text'    => esc_html__( 'Checkout Settings', TVA_Const::T ),
+		'btn_link'    => 'checkout',
+	),
+	array(
+		'icon'        => 'puzzle-piece_light',
+		'title'       => esc_html__( 'Integration Settings', TVA_Const::T ),
+		'description' => esc_html__( 'Set up the SendOwl Listener', TVA_Const::T ),
+		'btn_text'    => esc_html__( 'Integrate with SendOwl', TVA_Const::T ),
+		'btn_link'    => 'integration',
+	),
+	array(
+		'icon'        => 'link_light',
+		'title'       => esc_html__( 'Purchase Links', TVA_Const::T ),
+		'description' => esc_html__( 'Get Purchase links for each of your SendOwl products', TVA_Const::T ),
+		'btn_text'    => esc_html__( 'Get Purchase Links', TVA_Const::T ),
+		'btn_link'    => 'links',
+	),
+);
+?>
+<div class="tva-flex tva-flex-row mb-30">
+	<h1 class="tva-main-heading"><?php echo esc_html__( 'SendOwl settings', TVA_Const::T ); ?></h1>
+</div>
+
+<div class="tva-flex tva-sendowl-cards">
+	<?php foreach ( $cards as $card ) : ?>
+		<div class="tva-card tva-sendowl-card">
+			<?php tva_get_svg_icon( $card['icon'] ); ?>
+			<h3><?php echo $card['title']; ?></h3>
+			<p><?php echo $card['description']; ?></p>
+			<button data-route="#settings/sendowl/<?php echo $card['btn_link']; ?>" class="tva-btn tva-btn-blue click" data-fn="changeSendOwlView"><?php echo $card['btn_text']; ?></button>
+		</div>
+	<?php endforeach; ?>
+</div>

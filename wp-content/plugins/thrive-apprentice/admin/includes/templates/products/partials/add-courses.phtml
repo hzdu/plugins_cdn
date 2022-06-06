@@ -1,0 +1,23 @@
+<div class="tva-top-filters tva-flex tva-align-center">
+	<div class="tva-top-filters-title"><?php esc_html_e( 'Courses', TVA_Const::T ); ?></div>
+	<div class="tvd-content-set-rule-step">
+		<select class="tva-filter-type ml-20" data-bind="filter_type">
+			<option value="title"><?php esc_html_e( 'Select manually', TVA_Const::T ); ?></option>
+			<option value="topic"><?php esc_html_e( 'Topic', TVA_Const::T ); ?></option>
+			<option value="label"><?php esc_html_e( 'Label', TVA_Const::T ); ?></option>
+			<option value="difficulty"><?php esc_html_e( 'Difficulty level', TVA_Const::T ); ?></option>
+			<option value="author"><?php esc_html_e( 'Author', TVA_Const::T ); ?></option>
+		</select>
+	</div>
+	<div class="tvd-content-set-rule-step tva-filter-search ml-50">
+		<input type="text" placeholder="<?php esc_attr_e( 'Quick search', TVA_Const::T ); ?>" class="input tva-form-search-input" data-bind="search" data-fn="onFilterInput">
+		<div class="tva-search-icon">
+			<?php tva_get_svg_icon( 'search-1' ); ?>
+		</div>
+	</div>
+</div>
+<div class="tva-item-list mt-10">
+	<label for="select-all-items" class="tva-select-all"><input type="checkbox" class="select-all change" data-fn="toggleSelectAll" id="select-all-items"><?php esc_html_e( 'Select all', TVA_Const::T ); ?></label>
+	<div class="tva-scroll-block" id="tva-form-item-list"></div>
+</div>
+<button href="javascript:void(0)" class="click tva-close-product-form" data-fn="closeForm"><?php tva_get_svg_icon( 'times_light' ); ?></button>

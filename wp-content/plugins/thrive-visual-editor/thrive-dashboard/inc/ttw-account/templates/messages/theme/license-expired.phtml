@@ -1,0 +1,22 @@
+<p>
+	<strong>
+		<?php
+		echo sprintf(
+			__( 'License expired - there is a new version of %s available but your license must be %s to update. %s', TVE_DASH_TRANSLATE_DOMAIN ),
+			$name,
+			sprintf(
+				'<a target="_blank" href="%s">%s</a>',
+				'https://thrivethemes.com/themebuilder/',
+				__( 'renewed', TVE_DASH_TRANSLATE_DOMAIN )
+			),
+			sprintf(
+				'<a class="%s" aria-label="%s" href="%s">' . __( 'View version %s details', TVE_DASH_TRANSLATE_DOMAIN ) . '</a>.',
+				'thickbox open-plugin-details-modal',
+				$name,
+				$details_url,
+				$version
+			)
+		)
+		?>
+	</strong>
+</p>

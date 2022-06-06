@@ -1,0 +1,13 @@
+<div class="thrive-colors-palette-config" style="display: none !important"><#=colorConfig#></div>
+<div class="thrive-shortcode-config" style="display:none"><#=shortcode.getHTML(config)#></div>
+<div class="thrive-shortcode-html tve-custom-menu-type thrive-shortcode-html-editable tve_clearfix">
+	<a class="tve-m-trigger" href="#">
+		<div class="thrv_wrapper thrv_icon tcb-icon-open" data-not-changeable="true"><#=trigger_icon.open#></div>
+		<div class="thrv_wrapper thrv_icon tcb-icon-close" data-not-changeable="true"><#=trigger_icon.close#></div>
+	</a>
+	<ul id="<#=config.uuid#>" class="tve_w_menu <#= dir #>">
+		<#_.each(items, function( item ) {#>
+		<#=item_template( {item:item,config:config,item_template:item_template,dropdown_icon:dropdown_icon,level:0,type:type,menuDescriptions:menuDescriptions} )#>
+		<#} ) #>
+	</ul>
+</div>

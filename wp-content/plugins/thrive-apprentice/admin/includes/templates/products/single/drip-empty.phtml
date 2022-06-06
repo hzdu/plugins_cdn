@@ -1,0 +1,19 @@
+<div>
+	<?php tva_get_svg_icon( 'drip-courses-empty' ); ?>
+	<h4><?php echo esc_html__( 'No courses found in product', TVA_Const::T ) ?></h4>
+	<p><?php echo esc_html__( 'You don\'t currently have any courses included in this product.', TVA_Const::T ) ?></p>
+	<hr>
+	<div class="drip-inner">
+		<span><?php echo esc_html__( 'To get started with this feature:', TVA_Const::T ) ?></span>
+		<ol>
+			<li>
+				<?php echo sprintf( esc_html__( 'Add a course in the %s tab', TVA_Const::T ),
+					'<a href="#products/<#=product.get(\'id\')#>/content">' . esc_html__( 'Product content', TVA_Const::T ) . '</a>' ); ?>
+			</li>
+			<li>
+				<?php echo esc_html__( 'Edit the course and create a drip schedule ', TVA_Const::T ); ?>
+			</li>
+			<li><?php echo esc_html__( 'Return to this screen and attach it to the product', TVA_Const::T ) ?></li>
+		</ol>
+	</div>
+</div>

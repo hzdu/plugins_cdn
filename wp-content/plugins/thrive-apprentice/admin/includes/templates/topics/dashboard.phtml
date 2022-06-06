@@ -1,0 +1,54 @@
+<div class="tva-flex tva-align-center mb-45 tva-space-between">
+	<h1 class="tva-main-heading"><?php esc_html_e( 'Course topics', TVA_Const::T ) ?></h1>
+	<a href="javascript:void(0)" class="tva-btn tva-btn-blue click" data-fn="add">
+		<?php tva_get_svg_icon( 'add-btn' ); ?>
+		<?php esc_html_e( 'Add topic', TVA_Const::T ); ?></a>
+</div>
+
+<div class="tva-topics-box tva-list tva-white-bg">
+	<div class="tva-flex tva-list-header">
+		<div class="tva-col-fixed tva-col-title"><?php esc_html_e( 'Topic name', TVA_Const::T ); ?></div>
+		<div class="tva-col-color"><?php esc_html_e( 'Topic color', TVA_Const::T ) ?></div>
+
+		<div class="tva-col-fixed tva-col-symbol">
+			<?php esc_html_e( 'Displayed symbol', TVA_Const::T ) ?>
+			<i class="tva-info-icon tvd-tooltipped" data-position="top" data-tooltip="<?php esc_attr_e( 'The recommended size is 32 x 32 px', TVA_Const::T ); ?>">
+				<?php tva_get_svg_icon( 'info-circle_strong' ); ?>
+			</i>
+		</div>
+
+		<div class="tva-col-fixed tva-col-color-overview">
+			<?php esc_html_e( 'Symbol color', TVA_Const::T ) ?>
+			<br>
+			<?php esc_html_e( 'Course overview', TVA_Const::T ) ?>
+			<i class="tva-info-big">
+				<?php tva_get_svg_icon( 'info-circle_strong' ); ?>
+				<div class="tva-info-tooltip">
+					<hr>
+					<p><?php echo sprintf( esc_html__( "You can pick what color will have the symbol in course overview header. Please note that %s to assign %s to your topic and not an icon.", TVA_Const::T ), '<span>' . esc_html__( 'this option is not available if you have chosen', TVA_Const::T ) . '</span>', '<span>' . esc_html__( 'an image', TVA_Const::T ) . '</span>' ); ?></p>
+					<div class="tva-info-btm">
+						<?php tva_get_svg_icon( 'desktop-alt_light' ); ?>
+						<p><?php esc_html_e( 'In preview mode you can see what it will look like', TVA_Const::T ) ?></p>
+					</div>
+				</div>
+			</i>
+		</div>
+
+		<div class="tva-col-fixed tva-col-color-layout">
+			<?php esc_html_e( 'Symbol color', TVA_Const::T ) ?>
+			<br>
+			<?php esc_html_e( 'Course layout', TVA_Const::T ) ?>
+			<i class="tva-info-big tva-info-left">
+				<?php tva_get_svg_icon( 'info-circle_strong' ); ?>
+				<div class="tva-info-tooltip">
+					<p><?php echo sprintf( esc_html__( "You can pick what color will have the symbol on course card. Please note that %s to assign %s to your topic and not an icon.", TVA_Const::T ), '<span>' . esc_html__( 'this option is not available if you have chosen', TVA_Const::T ) . '</span>', '<span>' . esc_html__( 'an image', TVA_Const::T ) . '</span>' ); ?></p>
+					<div class="tva-info-btm">
+						<?php tva_get_svg_icon( 'desktop-alt_light' ); ?>
+						<p><?php esc_html_e( 'In preview mode you can see what it will look like', TVA_Const::T ) ?></p>
+					</div>
+				</div>
+			</i>
+		</div>
+	</div>
+	<div class="tva-topics-list"></div>
+</div>

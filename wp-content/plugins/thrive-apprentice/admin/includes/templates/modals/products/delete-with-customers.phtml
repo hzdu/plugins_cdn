@@ -1,0 +1,40 @@
+<?php
+/**
+ * Thrive Themes - https://thrivethemes.com
+ *
+ * @package thrive-apprentice
+ */
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Silence is golden!
+}
+?>
+<div class="tvd-modal-content">
+	<h3 class="tvd-modal-title"><?php echo esc_html__( 'Are you sure you want to delete this product?', TVA_Const::T ); ?></h3>
+	<p>
+		<span><#= model.get("customers_count") #>
+		<# if(parseInt(model.get("customers_count")) > 1){ #>
+			<?php echo esc_html__( 'customers', TVA_Const::T ); ?></span>
+		<# }else{ #>
+			<?php echo esc_html__( 'customer', TVA_Const::T ); ?></span>
+		<# } #>
+		<?php echo esc_html__( ' currently have access to this product.', TVA_Const::T ); ?></span>
+	</p>
+	<p>
+		<span><?php echo esc_html__( 'If you delete this product then '); ?><#= model.get("customers_count") #>
+		<# if(parseInt(model.get("customers_count")) > 1){ #>
+			<?php echo esc_html__( 'customers', TVA_Const::T ); ?></span>
+		<# }else{ #>
+		<?php echo esc_html__( 'customer', TVA_Const::T ); ?></span>
+		<# } #>
+		<?php echo esc_html__( ' will no longer be able to access the content and courses that it protects.', TVA_Const::T ); ?></span>
+	</p>
+	<p>
+		<span class="tva-icb"><?php tva_get_svg_icon( 'info-circle' ); ?>&nbsp;<?php echo esc_html__( 'Important: deleting a product cannot be undone!', TVA_Const::T ); ?></span>
+	</p>
+	<div class="tva-flex tva-flex-row tva-space-between mt-30">
+		<button type="button" class="tva-modal-btn tva-modal-btn-fw tvd-modal-close"><?php echo esc_html__( 'No, cancel', TVA_Const::T ); ?></button>
+		<button type="button" class="click tva-modal-btn tva-modal-btn-fw tva-modal-btn-fill-red" data-fn="confirm"><?php echo esc_html__( 'Yes, delete', TVA_Const::T ); ?></button>
+	</div>
+</div>
+

@@ -1,0 +1,29 @@
+<div class="tva-course-product-outer tva-boxed-container">
+	<div class="tva-course-product">
+		<div class="tva-flex mb-40 tva-space-between">
+			<div class="tva-course-product-title m-0"><?php echo esc_html__( 'Access to this course is restricted', TVA_Const::T ); ?></div>
+			<# 	if ( TVA.visualEditingEnabled ) { #>
+			<div class="tva-flex">
+				<span class="tva-course-product-title mb-0 mr-20"><?php echo esc_html__( 'Protect course overview page', TVA_Const::T ); ?></span>
+				<div class="tvd-switch tva-restricted-switch">
+					<label>
+						<input class="click" data-fn="toggleCourseOverview" type="checkbox" <#= parseInt(model.get('protect_overview')) ? 'checked="checked"' : '' #>>
+						<span class="tvd-lever"></span>
+					</label>
+				</div>
+			</div>
+			<# } #>
+		</div>
+		<div class="tva-flex tva-space-between tva-align-center mb-15">
+			<div class="tva-course-product-text"><?php echo __( 'Users need to gain access to any of the following products in order to view this course:', TVA_Const::T ); ?></div>
+			<div>
+				<a class="tva-btn tva-btn-dark-blue" href="#products"><?php echo __( 'Go to Products Dashboard', TVA_Const::T ); ?></a>
+				<a class="tva-btn tva-btn-blue ml-15 click" href="javascript:void(0);" data-screen="course" data-fn="addNewProduct">
+					<?php tva_get_svg_icon( 'add-btn' ); ?>
+					<?php echo __( 'Add new', TVA_Const::T ); ?>
+				</a>
+			</div>
+		</div>
+		<div class="tva-products-wrapper"></div>
+	</div>
+</div>

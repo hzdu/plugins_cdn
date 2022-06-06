@@ -1,0 +1,53 @@
+<?php /* an extra optional step for the initial "courses page" setting */ ?>
+
+<div class="tva-modal-step" data-step="0">
+	<div class="tvd-modal-content">
+		<h3 class="tvd-modal-title"><?php echo __( 'Welcome to Thrive Apprentice!', TVA_Const::T ); ?></h3>
+		<p><?php echo __( 'Thrive Apprentice gives you complete control over the visual design of your online teaching platform. 
+		Use our designer-made templates to get started in minutes, knowing that you can customize every pixel of your course area 
+		whenever you please.', TVA_Const::T ); ?></p>
+		<p><?php echo __( 'In order to create your online teaching platform, we need to set up a few things really quickly.', TVA_Const::T ); ?></p>
+
+		<div class="tva-flex tva-flex-row tva-flex-end mt-30">
+			<button type="button" class="click tva-modal-btn tva-modal-btn-fill-green" data-fn="jumpToStep" data-step="1"><?php echo __( 'Get Started', TVA_Const::T ); ?></button>
+		</div>
+	</div>
+</div>
+
+<div class="tva-modal-step" data-step="1">
+	<div class="tvd-modal-content">
+		<h4 class="tvd-modal-subtitle"><?php echo __( 'Set your course listing page', TVA_Const::T ); ?></h4>
+		<p><?php echo __( 'Choose a page where all your courses will reside. You can always edit the course page by going to ', TVA_Const::T ); ?><b><?php echo __( 'Settings &rarr; General Settings', TVA_Const::T ) ?></b></p>
+		<div class="tva-course-states-container"></div>
+		<div class="tva-flex tva-flex-row tva-space-between mt-30">
+			<a href="javascript:void(0)" class="click tva-flex-mid tva-modal-btn tva-modal-btn-back" data-fn="jumpToStep" data-step="0"><?php echo __( 'Back', TVA_Const::T ); ?></a>
+			<button type="button" class="click tva-modal-btn tva-modal-btn-fill-green" data-fn="jumpToStep" data-step="2"><?php echo __( 'Continue', TVA_Const::T ); ?></button>
+		</div>
+	</div>
+</div>
+<div class="tva-modal-step" data-step="2">
+	<div class="tvd-modal-content">
+
+		<h3 class="tvd-modal-title"><?php echo __( 'Name your new design', TVA_Const::T ); ?></h3>
+		<div class="tva-flex mb-20">
+			<label for="tva-add-skin-name">
+				<?php echo __( 'You can add and customize as many designs as you want. Each design contains an active course homepage, overview, module, lesson and restricted access templates. Only one design can be active on your website.', TVA_Const::T ); ?>
+			</label>
+		</div>
+		<div class="tva-flex mb-20">
+			<input type="text" id="tva-add-skin-name" placeholder="<?php echo __( 'Apprentice Design', TVA_Const::T ); ?>"/>
+		</div>
+		<div class="tva-flex tva-space-between">
+			<div>
+				<# if ( this.show_first_step ) { #>
+				<a href="javascript:void(0)" class="click tva-flex-mid tva-modal-btn tva-modal-btn-back" data-fn="jumpToStep" data-step="1"><?php echo __( 'Back', TVA_Const::T ); ?></a>
+				<# } #>
+			</div>
+			<div>
+				<button class="tva-modal-btn tva-modal-btn-fill-blue click" data-fn="createSkin">
+					<?php echo __( 'Create new design', TVA_Const::T ); ?>
+				</button>
+			</div>
+		</div>
+	</div>
+</div>

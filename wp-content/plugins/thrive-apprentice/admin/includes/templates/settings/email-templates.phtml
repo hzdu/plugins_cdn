@@ -1,0 +1,34 @@
+<?php
+/**
+ * Thrive Themes - https://thrivethemes.com
+ *
+ * @package thrive-apprentice
+ */
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Silence is golden!
+}
+?>
+<div class="tva-flex tva-flex-row tva-space-between">
+	<div class="tva-label-section-title tva-email-template-section-title">
+		<?php esc_html_e( 'Email delivery service', 'thrive-apprentice' ); ?>
+		<div class="tva-info-icon tva-relative tva-tooltip-parent tva-mega-tooltip">
+			<?php tva_get_svg_icon( 'info-solid' ); ?>
+			<div class="tva-custom-tooltip p-15 mt-50">
+				<p class="mb-0 mt-0"><?php esc_html_e( 'You can optionally choose to integrate with an email delivery service such as PostMark or SendGrid for increased deliverability. Otherwise emails will be sent directly from your server.', TVA_Const::T ); ?></p>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="tva-flex tva-flex-row mt-20 tva-email-template-section-sel">
+	<select id="tva-email-apis" class="change" data-fn="selectApiConnection"></select>
+</div>
+<div class="tva-flex tva-flex-row tva-space-between mt-20">
+	<h1 class="tva-main-heading"><?php echo __( 'Email templates', 'thrive-apprentice' ); ?></h1>
+</div>
+<div class="tva-email-templates-filter tva-flex tva-flex-row tva-space-between mt-20">
+	<select id="email-template" class="change" data-fn="renderEmailTemplate">
+		<option value=""><?php echo esc_html__( 'Select email template', 'thrive-apprentice' ); ?></option>
+	</select>
+</div>
+<div class="mt-10" id="tva-email-template-form-wrapper"></div>

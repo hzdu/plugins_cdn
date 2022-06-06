@@ -1,0 +1,110 @@
+<div class="tva-home-container">
+	<div class="tva-home-welcome">
+		<h1 class="tva-home-main-heading"><?php echo sprintf( esc_html__( 'Thrive %s', TVA_Const::T ), '<span>' . esc_html__( 'Apprentice', TVA_Const::T ) . '</span>' ); ?></h1>
+		<h1 class="tva-home-name-heading"><?php echo __( 'Hello, ' . wp_get_current_user()->display_name . '!', TVA_Const::T ) ?></h1>
+	</div>
+	<div class="tva-home-container-left">
+		<div class="tva-courses-card tva-homepage-card tva-flex tva-flex-row">
+			<# if ( TVA.courses.length === 0 ) { #>
+			<div class="tva-homepage-no-courses">
+				<div class="tva-svg-icon"><?php tva_get_svg_icon( 'courses' ); ?></div>
+				<div class="tva-card-content">
+					<h1 class="tva-main-heading"><?php echo __( 'Courses', TVA_Const::T ) ?></h1>
+					<span class="tva-card-text"><?php echo __( 'You don’t have any courses yet', TVA_Const::T ) ?></span><br>
+					<a href="#courses/add-new-course" class="tva-home-button"><?php echo __( 'Create your first course', TVA_Const::T ) ?></a>
+				</div>
+			</div>
+			<# } else { #>
+			<div class="<#= (TVA.courses.length > 2 && TVA.courses.length < 6 ) ? 'tva-homepage-some-courses' : 'tva-homepage-w-courses' #>">
+				<div class="tva-svg-icon">
+					<?php tva_get_svg_icon( 'courses-secondary' ); ?>
+					<?php tva_get_svg_icon( 'courses' ); ?>
+				</div>
+				<div class="tva-card-content">
+					<h1 class="tva-main-heading"><?php echo __( 'Courses', TVA_Const::T ) ?></h1>
+					<span class="tva-card-text"><?php echo __( 'Start sharing your knowledge', TVA_Const::T ) ?></span>
+				</div>
+				<a href="#courses/add-new-course" class="tva-home-button"><?php echo __( 'Add New Course', TVA_Const::T ) ?></a>
+			</div>
+			<div class="tva-courses-list">
+				<# this.courseArray.forEach ( course => { #>
+				<a href="#courses/<#- course.get('id') #>" class="tva-courses-list-item">
+							<span class="tva-home-course-status tva-tooltip-parent unpublished">
+								<span class="tva-custom-tooltip"></span>
+							</span>
+					<span class="tva-course-topic">
+								<#= this.icon[ course.get( 'topic' ) ] #>
+							</span>
+					<span class="tva-course-title"><#= course.get('name') #></span>
+					<?php tva_get_svg_icon( 'arrow-circle-right' ) ?>
+				</a>
+				<# }); #>
+			</div>
+			<div class="tva-homepage-extra">
+				<# if ( TVA.courses.length > 7 ) { #>
+				<a href="#courses">
+					<span class="tva-more-courses">+<#= TVA.courses.length - 7 #><?php echo __( ' more courses', TVA_Const::T ) ?></span>
+				</a>
+				<# } #>
+				<a href="#courses" id="tva-all-courses">
+					<?php echo __( 'View all courses', TVA_Const::T ) ?>
+				</a>
+			</div>
+			<# } #>
+		</div>
+
+		<# if ( TVA.courses.length <= 2 ) { #>
+		<a href="#products" class="mt-20 tva-products-card tva-homepage-card tva-flex tva-flex-row">
+			<div class="tva-svg-icon"><?php tva_get_svg_icon( 'products' ); ?></div>
+			<div class="tva-card-content">
+				<h1 class="tva-main-heading"><?php echo __( 'Products and Membership', TVA_Const::T ) ?></h1>
+				<span class="tva-card-text"><?php echo __( 'Specify any combination of content on the site, protect it and sell it as a single product', TVA_Const::T ) ?></span>
+				<?php tva_get_svg_icon( 'arrow-circle-right' ) ?>
+			</div>
+		</a>
+		<# } #>
+	</div>
+
+	<div class="tva-home-container-right">
+		<# if ( TVA.courses.length > 2 ) { #>
+		<a href="#products" class="mb-20 tva-products-card tva-homepage-card tva-flex tva-flex-row">
+			<div class="tva-svg-icon"><?php tva_get_svg_icon( 'products' ); ?></div>
+			<div class="tva-card-content">
+				<h1 class="tva-main-heading"><?php echo __( 'Products and Membership', TVA_Const::T ) ?></h1>
+				<span class="tva-card-text"><?php echo __( 'Specify any combination of content on the site, protect it and sell it as a single product', TVA_Const::T ) ?></span>
+				<?php tva_get_svg_icon( 'arrow-circle-right' ) ?>
+			</div>
+		</a>
+		<# } #>
+		<a href="#design" class="mb-20 tva-design-card tva-homepage-card tva-flex tva-flex-row">
+			<div class="tva-svg-icon"><?php tva_get_svg_icon( 'design' ); ?></div>
+			<div class="tva-card-content">
+				<h1 class="tva-main-heading"><?php echo __( 'Design', TVA_Const::T ) ?></h1>
+				<span class="tva-card-text"><?php echo __( 'Customize your skin, templates, brand color and all general typography ', TVA_Const::T ) ?></span>
+				<?php tva_get_svg_icon( 'arrow-circle-right' ) ?>
+			</div>
+		</a>
+		<a href="#customers" class="mb-20 tva-customers-card tva-homepage-card tva-flex tva-flex-row">
+			<div class="tva-svg-icon"><?php tva_get_svg_icon( 'customer' ); ?></div>
+			<div class="tva-card-content">
+				<h1 class="tva-main-heading"><?php echo __( 'Customers', TVA_Const::T ) ?></h1>
+				<span class="tva-card-text"><?php echo __( 'View more about the students enrolled in your courses', TVA_Const::T ) ?></span>
+				<?php tva_get_svg_icon( 'arrow-circle-right' ) ?>
+			</div>
+		</a>
+		<div class="tva-flex tva-flex-row">
+			<a href="#settings" class="mr-20 tva-home-settings-card tva-homepage-card">
+				<div class="tva-svg-icon"><?php tva_get_svg_icon( 'settings' ); ?></div>
+				<h1 class="tva-main-heading"><?php echo __( 'Settings', TVA_Const::T ) ?></h1>
+				<span class="tva-card-text"><?php echo __( 'General settings, Email settings, API and more ', TVA_Const::T ) ?></span>
+				<?php tva_get_svg_icon( 'arrow-circle-right' ) ?>
+			</a>
+			<a href="javascript:void(0)" class="tva-help-card tva-homepage-card click" data-fn="helpModal">
+				<div class="tva-svg-icon"><?php tva_get_svg_icon( 'help' ); ?></div>
+				<h1 class="tva-main-heading"><?php echo __( 'Help Corner', TVA_Const::T ) ?></h1>
+				<span class="tva-card-text"><?php echo __( 'Build a better course', TVA_Const::T ) ?></span>
+				<?php tva_get_svg_icon( 'arrow-circle-right' ) ?>
+			</a>
+		</div>
+	</div>
+</div>

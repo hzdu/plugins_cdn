@@ -1,0 +1,16 @@
+<?php
+/**
+ * Thrive Themes - https://thrivethemes.com
+ *
+ * @package thrive-apprentice
+ */
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Silence is golden!
+}
+?>
+<div class="tva-no-courses tva-flex tva-flex-column">
+	<?php tva_get_svg_icon( 'no-courses' ); ?>
+	<span><?php echo esc_html__( 'No courses found', TVA_Const::T ); ?></span>
+	<a href="javascript:void(0)" class="click" data-fn="addCourse"><?php tva_get_svg_icon( 'plus-circle_light' ); ?> <?php echo __( 'Add new course', TVA_Const::T ); ?></a>
+</div>

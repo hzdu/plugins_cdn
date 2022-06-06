@@ -1,0 +1,26 @@
+<div class="tqb-question-container">
+	<div class="tqb-question-media"></div>
+
+	<div class="tqb-question-text">
+		<#= item.get('text') #>
+	</div>
+
+	<# if (item.get('description') ) { #>
+	<div class="tqb-question-description">
+		<#= item.get('description') #>
+	</div>
+	<# } #>
+
+	<# if ( 'text' === display_type && item.get('image') ) { #>
+	<div class="tqb-question-image-container">
+		<img src="<#= item.get_image() #>" alt="question-image">
+	</div>
+	<# } #>
+
+</div>
+<div class="tqb-answers-container"></div>
+<div class="tqb-button-holder tqb-hide">
+	<a href="javascript:void(0)" class="tqb-next-button">
+		<?php tqb_get_svg_icon( 'next-q' ); ?>
+	</a>
+</div>

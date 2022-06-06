@@ -1,0 +1,9 @@
+<div class="tqb-answer-action tqb-open-ended-wrapper">
+	<div class="tqb-answer-open-type">
+		<textarea name="" id="tqb-open-type-answer" rows="<#= settings.get('form_size') #>" placeholder="<#= question.get('settings').get('placeholder')#>"></textarea>
+		<p class="tqb-answer-status tqb-gray-text"><?php echo __( 'Characters', Thrive_Quiz_Builder::T ) ?>: <#= settings.get_max_value() #></p>
+	</div>
+	<button class="tqb-open-type-button">
+		<?php tqb_get_svg_icon( 'next-q' ); ?>
+	</button>
+</div>

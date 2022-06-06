@@ -1,0 +1,81 @@
+<?php
+/**
+ * Thrive Themes - https://thrivethemes.com
+ *
+ * @package thrive-apprentice
+ */
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Silence is golden!
+}
+$breadcrumbs_config = array(
+	array(
+		'title' => __( 'Quick Start Guide', TVA_Const::T ),
+		'route' => 'sendowl/quick-start',
+	),
+	array(
+		'title' => __( 'Integration Settings', TVA_Const::T ),
+	),
+);
+?>
+
+<div class="tva-flex tva-flex-row mb-30">
+	<h1 class="tva-main-heading"><?php echo __( 'Integration Settings', TVA_Const::T ); ?></h1>
+</div>
+
+<?php include 'breadcrumbs.phtml'; ?>
+
+<div class="tva-card tva-keys-card mt-30">
+	<div class="tva-flex tva-flex-row">
+		<h3><?php echo __( 'API Account Keys', TVA_Const::T ); ?></h3>
+	</div>
+	<div class="tva-flex tva-flex-row">
+		<p>
+			<?php echo __( 'Copy and paste the account signing key and secret from your SendOwl account. You can find them at the top of the ', TVA_Const::T ); ?>
+			<a href="https://www.sendowl.com/settings/api_credentials" rel=noopener target="_blank"><?php echo __( 'Settings / API list', TVA_Const::T ); ?></a>
+		</p>
+	</div>
+	<div class="tva-flex tva-keys-inputs">
+		<div>
+			<label for="tva-account-key"><?php echo __( 'Account Signing Key', TVA_Const::T ); ?></label>
+			<input type="text" id="tva-account-key" class="input" data-fn="input" placeholder="<?php echo __( 'Account Signing Key:', TVA_Const::T ); ?>" data-field="key" value="<#= model.get('key') #>"/>
+		</div>
+		<div>
+			<label for="tva-account-secret"><?php echo __( 'Account Secret', TVA_Const::T ) ?></label>
+			<input type="text" id="tva-account-secret" class="input" data-fn="input" placeholder="<?php echo __( 'Account Secret', TVA_Const::T ); ?>" data-field="secret" value="<#= model.get('secret') #>"/>
+		</div>
+		<div>
+			<button class="tva-btn tva-btn-blue click" data-fn="save"><?php echo __( 'Save Keys', TVA_Const::T ) ?></button>
+		</div>
+	</div>
+	<div class="tva-flex tva-flex-row">
+		<h3><?php echo __( 'Webhooks', TVA_Const::T ); ?></h3>
+	</div>
+	<div class="tva-flex tva-flex-row">
+		<p>
+			<?php echo __( 'In your SendOwl account go to  ', TVA_Const::T ); ?>
+			<a href="https://www.sendowl.com/settings/web_hooks" target="_blank"><?php echo __( 'Settings / Advanced / Webhooks', TVA_Const::T ); ?></a>
+			<?php echo __( ' and create a new webhook.', TVA_Const::T ); ?>
+			<?php echo __( 'You’ll need to set up 5 different webhooks (Order Completed, Failed, Purchase, Refund and Free Order) so Thrive Apprentice will know exactly what’s going on.', TVA_Const::T ); ?>
+			<?php echo __( 'For each webhook you set up, copy the ', TVA_Const::T ); ?>
+			<strong><?php echo __( 'Listener URL ', TVA_Const::T ); ?></strong>
+			<?php echo __( 'below and paste it in the URL field.', TVA_Const::T ); ?>
+			<a href="//fast.wistia.net/embed/iframe/hf8g22k0ux?popover=true" class="wistia-popover[height=450,playerColor=2bb914,width=800]">
+				<?php echo __( 'Click here ', TVA_Const::T ); ?>
+			</a>
+			<?php echo __( 'for full video instructions.', TVA_Const::T ); ?>
+		</p>
+	</div>
+	<div class="tva-flex tva-keys-listener">
+		<label for="tva-listener-url"><?php echo __( 'Listener URL', TVA_Const::T ); ?></label>
+		<input type="text" id="tva-listener-url" value="<?php echo TVA_Const::plugin_url( 'x.php' ); ?>" readonly/>
+		<button class="tva-zclip">&nbsp;
+			<span class="tva-custom-tooltip"><?php echo esc_attr__( 'Copy', TVA_Const::T ); ?></span>
+		</button>
+	</div>
+	<div class="tva-flex tva-keys-linfo">
+		<a target="_blank" href="https://thrivethemes.com/tkb_item/how-to-set-up-the-sendowl-listener/#listener">
+			<?php echo __( 'How to set up the SendOwl Listener', TVA_Const::T ); ?>
+		</a>
+	</div>
+</div>

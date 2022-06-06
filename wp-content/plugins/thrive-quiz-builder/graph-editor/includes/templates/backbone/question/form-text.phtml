@@ -1,0 +1,41 @@
+<div class="tge-question tvd-white clearfix">
+	<div id="tge-qf-image-loader" class="tvd-center-align"></div>
+
+	<div class="tge-question-prop">
+		<div class="clearfix">
+			<div class="clearfix">
+				<div class="tvd-input-field">
+					<input id="tge-question-text" data-bind="text" type="text" class="tvd-validate" value="<#= _.escape(item.get('text')) #>">
+					<label for="tge-question-text" class=""><?php echo __( 'Question text', Thrive_Graph_Editor::T ) ?></label>
+				</div>
+			</div>
+		</div>
+		<div class="tvd-no-margin tge-question-description-holder">
+			<div class="clearfix tge-question-description-field">
+				<div class="tvd-input-field">
+					<input type="text" data-bind="description" id="tge-question-description" value="<#= _.escape(item.get('description'))#>">
+					<label for="tge-question-description"><?php echo __( 'Add Description', Thrive_Graph_Editor::T ) ?></label>
+				</div>
+			</div>
+			<div class="clearfix tvd-gray tge-swither-holder tvd-right">
+				<div class="tvd-no-margin tge-gray-layer">
+					<div class="clearfix">
+						<div id="tge-points-switcher">&nbsp;</div>
+					</div>
+					<div class="clearfix">
+						<div id="tge-tags-switcher">&nbsp;</div>
+					</div>
+					<div class="clearfix">
+						<div id="tge-feedback-switcher">&nbsp;</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div id="tge-question-settings"></div>
+
+<div id="tge-answers-wrapper"></div>
+
+<a id="tge-qf-add-answer" class="tvd-btn tvd-full-btn tge-purple-text" href="javascript:void(0)"><?php echo __( 'New Answer', Thrive_Graph_Editor::T ) ?></a>

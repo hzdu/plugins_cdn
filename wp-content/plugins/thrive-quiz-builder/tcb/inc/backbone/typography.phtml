@@ -1,0 +1,65 @@
+<div id="tcb-typography" style="padding: 1px">
+	<div class="tve_editable thrv-typography tcb-el-group" data-element-name="All Elements" data-selector-key="all">
+
+		<?php /* All Headings */ ?>
+		<div class="tve_editable thrv-typography tcb-el-group" data-element-name="All Headings" data-selector-key="headings">
+			<?php for ( $i = 1; $i <= 6; $i ++ ) : ?>
+				<div class="tve_editable thrv-typography" data-element-name="Heading <?php echo $i ?>" data-selector-key="h<?php echo $i ?>">
+					<h<?php echo $i; ?>>H<?php echo $i; ?> Heading Example, <strong>Bold</strong> and <em>Italic</em></h<?php echo $i; ?>>
+				</div>
+				<div class="typography-spacer"></div>
+			<?php endfor; ?>
+		</div>
+
+		<div class="typography-spacer"></div>
+
+		<?php /* All Texts */ ?>
+		<div class="tve_editable thrv-typography tcb-el-group" data-element-name="All Texts" data-selector-key="texts">
+			<div class="tve_editable thrv-typography" data-element-name="Text/Paragraph" data-selector-key="p">
+				<p>An example paragraph text including some <strong>bold text</strong> and some <em>italic</em> text.</p>
+				<p>This is a longer paragraph so you can see what happens when the text spans across multiple lines. This is helpful when judging things like line spacing and margin settings.</p>
+			</div>
+
+			<div class="typography-spacer"></div>
+
+			<div class="tve_editable thrv-typography" data-element-name="List" data-selector-key="ul">
+				<ul>
+					<?php foreach ( range( 0, 2 ) as $i ) : ?>
+						<li class="tve_editable thrv-typography" data-element-name="List Item" data-selector-key="li">
+							<?php if ( $i === 1 ) : ?>
+								A list item that spans across multiple lines. Helpful when trying to identify the correct line heights and line spacing. Use the line spacing control to set an appropriate distance between bullet points.
+							<?php else : ?>
+								A list item example with some <strong>bold text</strong> and some <em>italic</em> text.
+							<?php endif ?>
+						</li>
+					<?php endforeach ?>
+				</ul>
+			</div>
+
+			<div class="typography-spacer"></div>
+
+			<p style="margin: 0;padding: 0;" class="thrv_text_element breadcrumbs-hidden"><a class="tcb-selector-mouseover tve_editable" data-selector-key="link" href="https://thrivethemes.com" target="_blank" data-element-name="<?php echo esc_attr__( 'Landing Page Link', 'thrive-cb' ); ?>">This is a hyperlink.</a></p>
+
+			<div class="typography-spacer"></div>
+
+			<div class="typography-spacer"></div>
+
+			<div class="thrv-typography tve_editable" data-selector-key="blockquote" data-element-name="Blockquote">
+				<blockquote>This is an example of a blockquote.</blockquote>
+			</div>
+
+			<div class="typography-spacer"></div>
+			<div class="tve_editable thrv-typography" data-element-name="Plain Text" data-selector-key="plaintext">
+				<div class="tcb-plain-text">
+					This is a &quot;Plain Text&quot;. This text type is the default fallback font for any element that is not included in this &quot;Typography&quot; list.<br>
+					&quot;Plain Texts&quot; are simple texts that do not inherit styling from the theme. Here are a few examples where the &quot;Plain Text&quot; type is used: text inputs, drop-down elements, buttons (used in places like a search bar, a contact form, a Lead Generation element) etc.
+				</div>
+			</div>
+			<div class="typography-spacer"></div>
+		</div>
+		<div class="typography-spacer"></div>
+	</div>
+	<div class="thrv-typography tve_editable" data-selector-key="pre" data-element-name="Preformatted text">
+		<pre>This is an example of preformatted text.</pre>
+	</div>
+</div>

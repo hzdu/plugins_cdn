@@ -1,0 +1,19 @@
+<div class="tva-card tva-customer-card tva-card-small mb-10">
+	<div class="tva-customer-avatar mr-10" style="background-image: url(<#= customer.get('avatar_url') #>)"></div>
+	<div class="tva-customer-name mr-10"><#= customer.get('display_name') #></div>
+	<div class="tva-customer-email mr-10"><#= customer.get('user_email') #></div>
+	<div class="tva-customer-buttons">
+		<a href="javascript:void(0)" class="tva-link-btn mr-45 click" data-nonce="<?php echo wp_create_nonce( 'wp_rest' ); ?>" data-id="<#= customer.get('ID') #>" data-fn="loginAsCustomer">
+			<?php tva_get_svg_icon( 'right-arrow' ); ?>
+			<?php echo esc_html__( 'Log in as this user', TVA_Const::T ); ?>
+		</a>
+		<a href="javascript:void(0)" class="tva-link-btn mr-45 click" data-id="<#= customer.get('ID') #>" data-fn="editCustomer">
+			<?php tva_get_svg_icon( 'lock-alt' ); ?>
+			<?php echo esc_html__( 'Edit access rights', TVA_Const::T ); ?>
+		</a>
+		<a href="<#= customer.get('edit_url') #>" class="tva-link-btn" target="_blank">
+			<?php tva_get_svg_icon( 'user-1' ); ?>
+			<?php echo esc_html__( 'View WordPress user', TVA_Const::T ); ?>
+		</a>
+	</div>
+</div>

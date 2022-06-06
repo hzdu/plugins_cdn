@@ -1,0 +1,30 @@
+<div class="tva-hide-for-no-products">
+	<div class="tva-products-info">
+		<?php tva_get_svg_icon( 'drip-products-membership' ); ?>
+		<div>
+			<div class="tva-products-title"><?php echo __( 'Products & Membership', TVA_Const::T ); ?></div>
+			<div class="tva-products-text"><?php echo __( 'Quickly build products out of your courses and website content. Control how your members get access to them.', TVA_Const::T ); ?></div>
+		</div>
+	</div>
+	<div class="tva-flex tva-align-center mb-20">
+		<div id="tva-products-filters-wrapper"></div>
+		<div class="tva-products-sep ml-50 mr-25"></div>
+		<div>
+			<button class="tva-btn tva-btn-blue click" data-screen="list" data-fn="addNewProduct">
+				<?php tva_get_svg_icon( 'add-btn' ); ?>
+				<?php echo __( 'Add new', TVA_Const::T ) ?>
+			</button>
+		</div>
+	</div>
+	<div class="tva-flex mt-5">
+		<div>
+			<span id="tva-products-counter"><?php echo __( 'Loading...', TVA_Const::T ) ?></span>
+		</div>
+	</div>
+</div>
+<div class="tva-products-wrapper"></div>
+<div class="tva-loading-notice tva-flex tva-space-center">
+	<div>
+		<?php echo __( 'Loading more products', TVA_Const::T ) ?>
+	</div>
+</div>

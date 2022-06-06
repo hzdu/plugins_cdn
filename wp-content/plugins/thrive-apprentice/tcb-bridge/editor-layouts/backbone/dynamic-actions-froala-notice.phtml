@@ -1,0 +1,17 @@
+<?php
+/**
+ * Thrive Themes - https://thrivethemes.com
+ *
+ * @package thrive-apprentice
+ */
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Silence is golden!
+}
+$url = admin_url( 'admin.php?page=thrive_apprentice#settings/translations/course-navigation' );
+?>
+<div class="tcb-ta-custom-tooltip mb-10 text-green">
+	<?php tcb_icon( 'info' ); ?>
+	<?php echo sprintf( __( 'Button text is set in %s', \TVA_Const::T ),
+		'<a target="_blank" style="text-decoration: underline;" href="' . $url . '">' . __( 'labels & translations', \TVA_Const::T ) . '</a>' ); ?>
+</div>
