@@ -1,0 +1,303 @@
+.fulfillment_page_heading{
+    font-size: 18px;
+    color: #555;
+    padding: 0 20px;
+    margin: auto 0;
+}
+.zorem-layout__sub-header{
+	height: 45px;
+	display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    box-sizing: border-box;          
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.flexcontainer {
+	background: #fff;
+	border: 1px solid #e0e0e0;
+	border-radius: 6px;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	flex-flow: row wrap;
+	align-content: flex-end;
+}
+.flexcolumn{
+	flex: 1 0 0;
+	padding: 15px;    
+}
+.right_border{
+	border-right: 1px solid #e0e0e0;
+}
+.ast_fulfillment_dashboard .fullfillment_date {    
+	height: 40px;
+    background: #fafafa;
+    border: 1px solid #e0e0e0;
+	border-radius: 6px;
+    padding: 0 10px;
+	cursor: pointer;
+}
+.fullfillment_date .date_placeholder {
+    line-height: 40px;
+	font-size: 14px;
+}
+.fullfillment_date .dashicons{
+	line-height: 40px;
+    height: 40px;	
+	color: #cccccc;
+	float: right;
+}
+.daterangepicker .ranges li.active {
+    background-color: #005B9A;    
+}
+.fullfillment_counter strong{
+	font-size: 18px;	
+	display: block;
+}
+.fullfillment_counter span{
+	font-size: 14px;
+	display: block;
+    margin-bottom: 5px;
+}
+
+table.dataTable.fullfilments_table thead th, table.dataTable.fullfilments_table thead td{
+	padding: 10px;
+	background: #fafafa;
+	border-bottom: 1px solid #e0e0e0;
+	font-weight: normal;
+}
+table.dataTable.fullfilments_table.no-footer{	
+    border: 1px solid #e0e0e0;
+	border-bottom: 0;
+}
+table.dataTable.fullfilments_table tbody td{
+	border-bottom: 1px solid #e0e0e0;
+	padding: 8px 10px;
+	vertical-align: middle;
+}
+table.dataTable.fullfilments_table thead th.text-right,table.dataTable.fullfilments_table tbody td.text-right{
+	text-align: right;
+}
+table.dataTable.fullfilments_table tbody td .dashicons.dashicons-ellipsis {
+    transform: rotate(90deg);
+    margin: 7px 3px;
+    cursor: pointer;
+	vertical-align: middle;
+}
+table.dataTable.fullfilments_table tbody td .ast_fulfillment_actions_list{
+	display: none;
+	position: relative;
+	text-align: left;
+	padding: 0;
+    border: 1px solid #e0e0e0;
+    margin: 0;
+    position: absolute;
+    z-index: 999;
+    background: #fff;
+    box-shadow: 0px 5px 5px 0px #e0e0e0;
+}
+table.dataTable.fullfilments_table tbody td .ast_fulfillment_actions_list li{
+	padding: 5px 10px;
+	margin: 0;
+	border-bottom: 1px solid #e0e0e0;
+}
+.dataTables_info{
+	padding: 10px 0;
+}
+.datatable_footer{
+	display: flex;
+	flex-direction: row;
+    flex-wrap: wrap;
+    flex-flow: row wrap;
+    align-content: center;
+    justify-content: center;
+	margin: 20px 0 0;
+}
+.dataTables_wrapper .datatable_footer .dataTables_paginate{
+	float: none;
+    text-align: left;    
+    display: inline-block;
+	padding-top: 0;
+	margin: 0 15px;
+}
+.dataTables_wrapper .datatable_footer .dataTables_length{
+	float: none;
+    text-align: left;    
+    display: inline-block;
+	margin: 0 15px;
+}
+.dataTables_wrapper .datatable_footer .dataTables_length label{
+	color: #757575;
+}
+.datatable_footer .dataTables_length select{
+	height: 30px;
+	width: 50px;
+    line-height: 14px;
+    padding: 0 5px;
+	margin: 0 5px;
+	color: #757575;
+}
+.datatable_footer .dataTables_paginate .paginate_button{
+    background: #f5f5f5 !important;
+    border: 1px solid #bdbdbd !important;    
+    width: 30px;
+	height: 30px;
+    margin-left: 0;    
+    font-size: 0;    
+} 
+.datatable_footer .dataTables_paginate .paginate_button.next::after{
+	font-family: Dashicons;
+    content: "\f345";
+    font-size: 20px;
+    line-height: 29px;
+	color: #444444;
+}
+.datatable_footer .dataTables_paginate .paginate_button.next.disabled::after{
+	color: #bdbdbd;
+}
+.datatable_footer .dataTables_paginate .paginate_button.previous::after{
+	font-family: Dashicons;      
+	content: "\f341";
+    font-size: 20px;
+    line-height: 29px;
+	color: #444444;
+}
+.datatable_footer .dataTables_paginate .paginate_button.previous.disabled::after{
+	color: #bdbdbd;
+}
+.dataTables_wrapper .wc-action-button{
+	display: block;
+    text-indent: 9999px;
+    position: relative;
+    height: 1em;
+    width: 1em;
+    display: inline-block;
+    margin: 0 0 0 5px;
+    padding: 0!important;
+    height: 2em!important;
+	min-height: 2em;
+    width: 2em;
+    overflow: hidden;
+    vertical-align: middle;
+	border-color: #e0e0e0;
+}
+.dataTables_wrapper .wc-action-button::after {
+    font-family: Dashicons;
+    speak: never;
+    font-weight: 400;
+    font-variant: normal;
+    text-transform: none;
+    margin: 2px 0 0;
+    text-indent: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    line-height: 1.7;
+}
+.dataTables_wrapper .wc-action-img-button{
+    display: inline-block;
+    margin: 0 0 0 5px;
+    padding: 0px 4px;
+    height: 2em!important;
+    min-height: 2em;
+    width: 2em;
+    border-color: #e0e0e0;
+}
+.dataTables_wrapper .wc-action-img-button img{
+	margin-top: 4px;
+}
+.dataTables_wrapper .wc-action-button.add_inline_tracking::after,.dataTables_wrapper .wc-action-button.add_inline_tracking_vendor::after {
+    content: "\f230";
+}
+.dataTables_wrapper .wc-action-button.delivered_icon::after {
+    font-family: woocommerce;
+	content: "\e01a";
+}
+.wp-core-ui select.fulfillment_filter_select {
+    height: 40px;
+    background-color: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 3px;    
+    cursor: pointer;
+	margin-right: 10px;
+	width: 220px;
+}
+.fulfillment_search_box {
+    display: inline-block;
+	vertical-align: middle;
+	margin: 0 10px 0 0;	
+}
+#fulfillment_search_input{
+	height:40px;
+	border: 1px solid #e0e0e0;
+	vertical-align: middle;
+	background: #fff;
+}
+.wp-core-ui .button.fulfillment_search_submit{
+	height:40px;
+	border: 1px solid #e0e0e0;
+	background: #fff;
+	color: #005b9a;
+	font-size: 14px;
+    font-weight: 600;
+    padding: 0 12px;
+	vertical-align: middle;
+}
+.wp-core-ui .button.fulfillment_search_submit span{
+	vertical-align:middle;
+}
+.wp-core-ui .button.fulfillment_search_submit span.dashicons{
+	margin-right: 5px;
+    width: 19px;
+    height: 19px;
+    font-size: 19px;
+}
+.fulfilled_order_items_popup .trackingpopup_row{
+	max-width: 400px;
+}
+.fulfilled_order_items_popup .trackingpopup_row .popup_body{
+	padding: 0;
+}
+.fulfilled_order_items_popup .ast-product-table tr th{
+	padding: 8px 30px;
+	border-bottom: 1px solid #e0e0e0;
+}
+.fulfilled_order_items_popup .ast-product-table tr td{
+	padding: 8px 30px;	
+	border-bottom: 1px solid #eee;
+}
+.fulfilled_order_items_popup .ast-product-table tr:last-child td{
+	border-bottom: 0;
+}
+.fulfillment-order-preview{
+    float: right;
+    width: 16px;
+    padding: 20px 4px 4px 4px;
+    height: 0;
+    overflow: hidden;
+    position: relative;
+    border: 2px solid transparent;
+    border-radius: 4px;
+}
+.fulfillment-order-preview:before{
+	font-family: WooCommerce;
+    font-weight: 400;
+    text-transform: none;
+    text-indent: 0px;
+    position: absolute;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    content: "";
+    line-height: 20px;
+    font-size: 14px;
+    vertical-align: middle;
+    top: 4px;
+    font-variant: normal;
+    margin: 0px;
+}

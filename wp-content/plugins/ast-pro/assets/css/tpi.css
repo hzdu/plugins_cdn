@@ -1,0 +1,132 @@
+#poststuff .product-table-header{
+    background: #f9f9f9;
+    border: 1px solid #e0e0e0;
+    margin: 10px 0 0;
+    padding: 15px 5px;
+    font-size: 14px;
+    font-weight: 400;
+}
+.ASTProduct_sku{
+	font-size: 12px;
+}
+
+.product-table-header{
+	background: #f9f9f9;			
+	border-bottom: 1px solid #e0e0e0;
+	margin: 0;
+	padding: 15px;
+	font-size: 14px;
+	font-weight: 400;
+}
+table.widefat.ast-product-table{
+	border: 0;
+	margin-bottom: 0;
+	margin-top: 0;
+}
+.add_tracking_number_form input[type=checkbox].enable_tracking_per_item{
+	margin: 0px 8px 0 0px;
+	vertical-align: bottom;
+}
+.add_tracking_number_form .ast-product-table input[type=checkbox]{
+	margin: 0px 4px 0 4px;
+}
+.ast-product-table tr.ASTProduct_row td{
+	border-bottom: 1px solid #e0e0e0;
+}		
+.ast_tracking_item_div .ast-product-table tr.ASTProduct_row td:first-child{			
+	padding-left: 30px;	
+}
+.shipment_tracking_admin_settings .ast_tracking_item_div .ast-product-table tr.ASTProduct_row td{
+	vertical-align: middle;
+	width: 12ch;
+}
+.ast_tracking_item_div .ast-product-table tr.ASTProduct_row td:last-child{			
+	padding-right: 30px;
+	text-align: right;
+}
+.ast-product-table tr.ASTProduct_row.disable_row{
+	background-color: #efefef;
+	opacity: 0.7;
+	cursor: not-allowed !important;
+}
+.ast-product-table tr.ASTProduct_row.disable_row td{			
+	cursor: not-allowed !important;
+}
+.post-type-shop_order .ast-product-table tr.ASTProduct_row td{
+	padding: 5px;
+	line-height: 20px;
+}
+.qty_validation{
+	display:none;
+	color: red;
+	margin-bottom: 5px;			
+}
+.ast-product-table .value-button {
+	display: inline-block;
+	border: 1px solid #ccd0d4;
+	margin: 0px;
+	width: 20px;
+	height: 28px;
+	line-height: 28px;			
+	text-align: center;
+	vertical-align: top;
+	padding: 0px 0;
+	background: #eee;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+	
+.ast-product-table .value-button:hover {
+	cursor: pointer;
+}
+.ast-product-table tr.ASTProduct_row.disable_row .value-button:hover{
+	cursor: not-allowed;
+}	
+.ast-product-table #decrease {
+	margin-right: -3px;			
+}
+	
+.ast-product-table #increase {
+	margin-left: -4px;			
+	margin-right: 5px;
+}
+	
+.ast-product-table #input-wrap {
+	margin: 0px;
+	padding: 0px;
+}
+.ast-product-table input.ast_product_number {
+	text-align: center;
+	border: none;
+	border-top: 1px solid #ccd0d4;
+	border-bottom: 1px solid #ccd0d4;
+	margin: 0px;
+	width: 30px;
+	padding: 0;
+	border-radius: 0;			
+}
+.ast-product-table input.ast_product_number:focus {			
+	outline: none;
+	box-shadow: none;
+}
+.ast-product-table input.ast_product_number[readonly]{
+	background-color: #fff;
+}
+.ast-product-table tr.ASTProduct_row.disable_row input.ast_product_number[readonly]{
+	cursor: not-allowed;
+}
+.ast-product-table input[type=number]::-webkit-inner-spin-button,
+.ast-product-table input[type=number]::-webkit-outer-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
+}
+.ast_tracking_item_div {
+	margin: -10px -30px 10px;
+}
+.add_tracking_popup .send_shipment_details_to_customer_field {
+    padding: 10px 0;
+}
