@@ -1,0 +1,22 @@
+<p>
+	<strong>
+		<?php
+		echo sprintf(
+			__( 'Connection lost - there is a new version of %s available but your thrivethemes.com account must be %s in order to update. %s', TVE_DASH_TRANSLATE_DOMAIN ),
+			$name,
+			sprintf(
+				'<a href="%s">%s</a>',
+				'admin.php?page=tve_dash_ttw_account',
+				__( 'connected', TVE_DASH_TRANSLATE_DOMAIN )
+			),
+			sprintf(
+				'<a class="%s" aria-label="%s" href="%s">' . __( 'View version %s details', TVE_DASH_TRANSLATE_DOMAIN ) . '</a>.',
+				'thickbox open-plugin-details-modal',
+				$name,
+				$details_url,
+				$version
+			)
+		)
+		?>
+	</strong>
+</p>

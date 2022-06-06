@@ -1,0 +1,6 @@
+<#if(input.type == 'checkbox'){#>
+	<label class="tcb-checkbox  <#= input.info? '': 'fr-input-line' #>">
+		<input type="checkbox" name="<#= key #>" class="fr-custom-input" <#= selectedValue? 'checked="checked"' : '' #> value="1">
+		<span><#= input.label #></span>
+	</label>
+<#}#>
