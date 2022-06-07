@@ -1,0 +1,392 @@
+@font-face {
+    font-family: 'Glyphicons Halflings';
+
+    src: url('../fonts/glyphicons-halflings-regular.eot');
+    src: url('../fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('../fonts/glyphicons-halflings-regular.woff2') format('woff2'), url('../fonts/glyphicons-halflings-regular.woff') format('woff'), url('../fonts/glyphicons-halflings-regular.ttf') format('truetype'), url('../fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
+}
+
+.iaa_selectedDom {
+    -moz-box-shadow: 0px 0px 40px 0px #1abc9c;
+    -webkit-box-shadow: 0px 0px 40px 0px #1abc9c;
+    -o-box-shadow: 0px 0px 40px 0px #1abc9c;
+    box-shadow: 0px 0px 40px 0px #1abc9c;
+    -webkit-animation: glow 1500ms infinite;
+    -moz-animation: glow 1500ms infinite;
+    -o-animation: glow 1500ms infinite;
+    animation: glow 1500ms infinite;
+}
+
+@-o-keyframes glow {
+    0% {
+        -o-box-shadow: 0px 0px 10px 0px #1abc9c;
+    }
+    50% {
+        -o-box-shadow: 0px 0px 40px 0px #1abc9c;
+    }
+    100% {
+        -o-box-shadow: 0px 0px 10px 0px #1abc9c;
+    }
+}
+
+@-moz-keyframes glow {
+    0% {
+        -moz-box-shadow: 0px 0px 10px 0px #1abc9c;
+    }
+    50% {
+        -moz-box-shadow: 0px 0px 40px 0px #1abc9c;
+    }
+    100% {
+        -moz-box-shadow: 0px 0px 10px 0px #1abc9c;
+    }
+}
+
+@-webkit-keyframes glow {
+    0% {
+        -webkit-box-shadow: 0px 0px 10px 0px #1abc9c;
+    }
+    50% {
+        -webkit-box-shadow: 0px 0px 40px 0px #1abc9c;
+    }
+    100% {
+        -webkit-box-shadow: 0px 0px 10px 0px #1abc9c;
+    }
+}
+
+@keyframes glow {
+    0% {
+        box-shadow: 0px 0px 10px 0px #1abc9c;
+    }
+    50% {
+        box-shadow: 0px 0px 40px 0px #1abc9c;
+    }
+    100% {
+        box-shadow: 0px 0px 10px 0px #1abc9c;
+    }
+}
+
+/* Avatar */
+#iaa_avatarPreviewContainer.iaa_avatarContainer {
+    width: 128px;
+    height: 146px;
+    position: fixed;
+    bottom: 0px;
+    left: 40px;
+    margin-left: -64px;
+    z-index: 99999;
+}
+ 
+#iaa_avatarPreviewContainer.iaa_avatarContainer:not(.iaa_right) {
+    margin-left: 0px;
+}
+
+#iaa_avatarPreviewContainer.iaa_avatarContainer.iaa_customAvatar *[data-num]{
+    display: none !important;
+}
+#iaa_avatarPreviewContainer.iaa_avatarContainer.iaa_customAvatar div.iaa_avatar_mouth {
+    display: none !important;    
+}
+#iaa_avatarPreviewContainer.iaa_avatarContainer.iaa_right {
+    right: 22px;
+    left: auto;
+}
+
+#iaa_avatarPreviewContainer.iaa_avatarContainer.iaa_positionRight {
+    left: auto;
+    right: 40px;
+}
+
+#iaa_avatarPreviewContainer.iaa_avatarContainer .iaa_avatar_corpse {
+    position: absolute;
+    width: 128px;
+    height: 146px;
+    top: 0px;
+    left: 0px;
+}
+
+#iaa_avatarPreviewContainer.iaa_avatarContainer .iaa_avatar_hair {
+    position: absolute;
+    width: 128px;
+    height: 146px;
+    top: 0px;
+    left: 0px;
+    z-index: 3;
+}
+
+#iaa_avatarPreviewContainer.iaa_avatarContainer .iaa_avatar_head {
+    position: absolute;
+    width: 128px;
+    height: 146px;
+    top: 0px;
+    left: 0px;
+}
+
+#iaa_avatarPreviewContainer.iaa_avatarContainer .iaa_avatar_eyes {
+    position: absolute;
+    width: 128px;
+    height: 146px;
+    top: 0px;
+    left: 0px;
+}
+
+#iaa_avatarPreviewContainer.iaa_avatarContainer .iaa_avatar_mouth {
+    position: absolute;
+    width: 30px;
+    height: 13px;
+    top: 87px;
+    left: 50px;
+    z-index: 99;
+    -webkit-transition: opacity 0.2s;
+    transition: opacity 0.2s;
+}
+#iaa_avatarPreviewContainer.iaa_avatarContainer.iaa_genderF .iaa_avatar_mouth {
+    top: 89px;    
+}
+#iaa_avatarPreviewContainer.iaa_avatarContainer.iaa_customAvatar div.iaa_avatar_mouth {
+    display: none !important;
+}
+#iaa_avatarPreviewContainer.iaa_avatarContainer img.iaa_avatar_mouth:not(.iaa_talk){
+    opacity: 0;
+}
+#iaa_avatarPreviewContainer.iaa_avatarContainer img.iaa_avatar_mouth.iaa_talk {
+    opacity: 1;
+}
+#iaa_avatarPreviewContainer.iaa_avatarContainer img.iaa_avatar_mouth{
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    max-height: 100%;
+}
+
+/* eof Avatar */
+
+/* Bubble */
+#iaa_avatarPreviewContainer #iaa_talkBubble {
+    border-radius: 5px;
+    background-color: #ECF0F1;
+    box-shadow: 0 -1px 5px rgba(0,0,0,0.1);
+    position: absolute;
+    width: 210px;
+    padding: 18px;
+    padding-top: 10px;
+    left: 50%;
+    margin-left: -24px;
+    bottom: 110px;
+    z-index: 90;
+    max-width: 300px;
+    min-width: 100px;
+    min-height: 24px;
+    display: none;
+    color: #7f8c8d;
+    font-size: 12px;
+    text-align: left;
+    font-family: Verdana, Arial;
+    -webkit-transition: width, height 0.2s;
+    -moz-transition: width, height 0.2s;
+    transition: width, height 0.2s;
+    line-height: 20px;
+
+}
+#iaa_avatarPreviewContainer #iaa_talkBubble strong {
+    font-weight: bold;
+}
+
+#iaa_avatarPreviewContainer.iaa_right #iaa_talkBubble {
+    left: auto;
+    right: 50%;
+    margin-right: -24px;
+}
+
+#iaa_avatarPreviewContainer.iaa_right #iaa_talkBubble:after {
+    right: 14px;
+    left: auto;
+}
+
+#iaa_avatarPreviewContainer #iaa_talkBubble p {
+    margin: 0px;
+}
+
+#iaa_avatarPreviewContainer #iaa_talkBubble .iaa_talkText {
+    margin-bottom: 0px;
+}
+
+#iaa_avatarPreviewContainer #iaa_talkBubble .iaa_bubbleCloseBtn {
+    float: right;
+    margin-right: -12px;
+    color: #bdc3c7;
+    position: relative;
+    z-index: 999999;
+    top: -6px;
+}
+
+#iaa_avatarPreviewContainer #iaa_talkBubble .iaa_bubbleCloseBtn:hover {
+    opacity: 0.7;
+}
+
+.iaa_avatarContainer.iaa_positionRight #iaa_talkBubble {
+    left: auto;
+    right: 50%;
+    margin-right: -24px;
+}
+
+#iaa_talkBubble, #iaa_talkBubble * {
+    font-size: 14px;
+}
+#iaa_avatarPreviewContainer #iaa_talkBubble select option {
+    color: #95a5a6;
+}
+
+.iaa_avatarContainer #iaa_talkBubble #iaa_bubbleContent {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    overflow-y: auto;
+    top: -13px;
+    overflow-x: hidden;
+}
+
+#iaa_talkBubble:after {
+    content: ' ';
+    border-style: solid;
+    border-width: 10px 10px 0 10px;
+    border-color: #ECF0F1 transparent transparent transparent;
+    height: 0;
+    position: absolute;
+    left: 14px;
+    bottom: -10px;
+    width: 0;
+    /* display: none;
+     -webkit-transform: rotate(360deg);*/
+}
+#iaa_avatarPreviewContainer.iaa_cbbActive #iaa_talkBubble:after {
+    left: 50%;
+    right: auto;
+    margin-left: -5px;
+}
+
+.iaa_avatarContainer.iaa_positionRight #iaa_talkBubble:after {
+    left: auto;
+    right: 14px;
+}
+
+#iaa_avatarPreviewContainer #iaa_talkBubble .iaa_talkInteraction .iaa_field * {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+#iaa_avatarPreviewContainer #iaa_talkBubble .iaa_talkInteraction .iaa_field input,
+#iaa_avatarPreviewContainer #iaa_talkBubble .iaa_talkInteraction .iaa_field select,
+#iaa_avatarPreviewContainer #iaa_talkBubble .iaa_talkInteraction .iaa_field textarea,
+#iaa_avatarPreviewContainer #iaa_talkBubble .iaa_talkInteraction .iaa_field input:focus,
+#iaa_avatarPreviewContainer #iaa_talkBubble .iaa_talkInteraction .iaa_field select:focus,
+#iaa_avatarPreviewContainer #iaa_talkBubble .iaa_talkInteraction .iaa_field textarea:focus{
+    background: #f7f7f7;
+    background: -moz-linear-gradient(top, #f7f7f7 0%, #ffffff 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #f7f7f7), color-stop(100%, #ffffff));
+    background: -webkit-linear-gradient(top, #f7f7f7 0%, #ffffff 100%);
+    background: -o-linear-gradient(top, #f7f7f7 0%, #ffffff 100%);
+    background: -ms-linear-gradient(top, #f7f7f7 0%, #ffffff 100%);
+    background: linear-gradient(to bottom, #f7f7f7 0%, #ffffff 100%);
+    padding: 4px;
+    border-radius: 4px;
+    border: 1px solid #DDD;
+    color: #7f8c8d;
+    font-size: 12px;
+    text-align: left;
+    font-family: Verdana, Arial;
+    line-height: 20px;
+    outline: none;
+    margin: 0px;
+
+}
+#iaa_avatarPreviewContainer #iaa_talkBubble .iaa_talkInteraction .iaa_field input:focus,
+#iaa_avatarPreviewContainer #iaa_talkBubble .iaa_talkInteraction .iaa_field select:focus,
+#iaa_avatarPreviewContainer #iaa_talkBubble .iaa_talkInteraction .iaa_field textarea:focus{
+    border-color: #16a085;
+}
+
+#iaa_avatarPreviewContainer #iaa_talkBubble .iaa_talkInteraction .iaa_field.iaa_error input,
+#iaa_avatarPreviewContainer #iaa_talkBubble .iaa_talkInteraction .iaa_field.iaa_error select
+#iaa_avatarPreviewContainer #iaa_talkBubble .iaa_talkInteraction .iaa_field.iaa_error textarea {
+    border-color: #c0392b;
+    color: #c0392b;
+}
+
+#iaa_avatarPreviewContainer #iaa_talkBubble .iaa_talkInteraction .iaa_field label {
+    display: block;
+    margin-right: 8px;
+    margin-bottom: 0px;
+    margin-top: 6px;
+    width: 100%;
+}
+
+#iaa_avatarPreviewContainer .iaa_btn, #iaa_avatarPreviewContainer .iaa_btn:hover, #iaa_avatarPreviewContainer .iaa_btn:active {
+    padding: 10px 15px;
+    font-size: 12px;
+    font-weight: normal;
+    line-height: 1.4;
+    border: none;
+    border-radius: 4px;
+    color: #fff;
+    background-color: #1abc9c;
+    display: inline-block;
+    margin: 5px;
+    margin-right: 0px;
+    margin-left: 10px;
+    outline: none;
+    box-sizing: border-box;
+    text-decoration: none;
+}
+
+#iaa_avatarPreviewContainer .iaa_btn:hover {
+    opacity: 0.7;
+}
+
+#iaa_avatarPreviewContainer #iaa_talkBubble p.iaa_btns {
+    text-align: right;
+    margin-bottom: 0px;
+    margin-top: 6px !important;
+}
+
+/* eof bubble */
+
+/* Icons*/
+#iaa_avatarPreviewContainer #iaa_avatarPreviewContainer [class^="fui-"], #iaa_avatarPreviewContainer [class*="fui-"] {
+    font-family: 'Flat-UI-Pro-Icons';
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    speak: none;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+#iaa_avatarPreviewContainer .glyphicon-remove {
+    position: relative;
+    top: 1px;
+    display: inline-block;
+    font-family: 'Glyphicons Halflings';
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+#iaa_avatarPreviewContainer .glyphicon-remove:before {
+    content: "\e014";
+
+}
+body.rtl #iaa_avatarPreviewContainer, body.rtl #iaa_avatarPreviewContainer * {text-align: right !important; direction: rtl; }
+@media(max-width:480px) {
+    #iaa_avatarPreviewContainer:not(.iaa_customAvatar)   #iaa_talkBubble {
+        left: auto;
+        right: 50%;
+        margin-right: -44px !important;
+        max-width: 250px !important;
+    }
+    #iaa_avatarPreviewContainer.iaa_avatarContainer {
+        left: auto;
+        right: 40px;
+    }
+}

@@ -1,0 +1,113 @@
+/* Let's default this puppy out
+-------------------------------------------------------------------------------*/
+
+#iaa_bootstraped.iaa_bootstraped  div,#iaa_bootstraped.iaa_bootstraped   span,#iaa_bootstraped.iaa_bootstraped   object,#iaa_bootstraped.iaa_bootstraped   iframe,#iaa_bootstraped.iaa_bootstraped   h1,#iaa_bootstraped.iaa_bootstraped   h2,#iaa_bootstraped.iaa_bootstraped   h3,#iaa_bootstraped.iaa_bootstraped   h4,#iaa_bootstraped.iaa_bootstraped   h5,#iaa_bootstraped.iaa_bootstraped   h6,#iaa_bootstraped.iaa_bootstraped   p,#iaa_bootstraped.iaa_bootstraped   blockquote,#iaa_bootstraped.iaa_bootstraped   pre,#iaa_bootstraped.iaa_bootstraped   abbr,#iaa_bootstraped.iaa_bootstraped   address,#iaa_bootstraped.iaa_bootstraped   cite,#iaa_bootstraped.iaa_bootstraped   code,#iaa_bootstraped.iaa_bootstraped   del,#iaa_bootstraped.iaa_bootstraped   dfn,#iaa_bootstraped.iaa_bootstraped   em,#iaa_bootstraped.iaa_bootstraped   img,#iaa_bootstraped.iaa_bootstraped   ins,#iaa_bootstraped.iaa_bootstraped   kbd,#iaa_bootstraped.iaa_bootstraped   q,#iaa_bootstraped.iaa_bootstraped   samp,#iaa_bootstraped.iaa_bootstraped   small,#iaa_bootstraped.iaa_bootstraped   strong,#iaa_bootstraped.iaa_bootstraped   sub,#iaa_bootstraped.iaa_bootstraped   sup,#iaa_bootstraped.iaa_bootstraped   var,#iaa_bootstraped.iaa_bootstraped   b,#iaa_bootstraped.iaa_bootstraped   i,#iaa_bootstraped.iaa_bootstraped   dl,#iaa_bootstraped.iaa_bootstraped   dt,#iaa_bootstraped.iaa_bootstraped   dd,#iaa_bootstraped.iaa_bootstraped   ol,#iaa_bootstraped.iaa_bootstraped   ul,#iaa_bootstraped.iaa_bootstraped   li,#iaa_bootstraped.iaa_bootstraped   fieldset,#iaa_bootstraped.iaa_bootstraped   form,#iaa_bootstraped.iaa_bootstraped   label,#iaa_bootstraped.iaa_bootstraped   legend,#iaa_bootstraped.iaa_bootstraped   table,#iaa_bootstraped.iaa_bootstraped   caption,#iaa_bootstraped.iaa_bootstraped   tbody,#iaa_bootstraped.iaa_bootstraped   tfoot,#iaa_bootstraped.iaa_bootstraped   thead,#iaa_bootstraped.iaa_bootstraped   tr,#iaa_bootstraped.iaa_bootstraped   th,#iaa_bootstraped.iaa_bootstraped   td,#iaa_bootstraped.iaa_bootstraped   article,#iaa_bootstraped.iaa_bootstraped   aside,#iaa_bootstraped.iaa_bootstraped   figure,#iaa_bootstraped.iaa_bootstraped   footer,#iaa_bootstraped.iaa_bootstraped   header,#iaa_bootstraped.iaa_bootstraped   menu,#iaa_bootstraped.iaa_bootstraped   nav,#iaa_bootstraped.iaa_bootstraped   section,#iaa_bootstraped.iaa_bootstraped   time,#iaa_bootstraped.iaa_bootstraped   mark,#iaa_bootstraped.iaa_bootstraped   audio,#iaa_bootstraped.iaa_bootstraped   video,#iaa_bootstraped.iaa_bootstraped   details,#iaa_bootstraped.iaa_bootstraped   summary {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font-weight: normal;
+	vertical-align: baseline;
+	background: transparent;
+}
+
+#iaa_bootstraped.iaa_bootstraped  article,#iaa_bootstraped.iaa_bootstraped   aside,#iaa_bootstraped.iaa_bootstraped   figure,#iaa_bootstraped.iaa_bootstraped   footer,#iaa_bootstraped.iaa_bootstraped   header,#iaa_bootstraped.iaa_bootstraped   nav,#iaa_bootstraped.iaa_bootstraped   section,#iaa_bootstraped.iaa_bootstraped   details,#iaa_bootstraped.iaa_bootstraped   summary {display: block;}
+
+/* consider resetting the default cursor: https://gist.github.com/murtaugh/5247154 */
+
+/* Apply a natural box layout model to all elements: http://paulirish.com/2012/box-sizing-border-box-ftw/ */
+#iaa_bootstraped.iaa_bootstraped  *,#iaa_bootstraped.iaa_bootstraped   *:before,#iaa_bootstraped.iaa_bootstraped   *:after {box-sizing: border-box; }
+
+/* Responsive images and other embedded objects
+   Note: keeping IMG here will cause problems if you're using foreground images as sprites.
+   If this default setting for images is causing issues,#iaa_bootstraped.iaa_bootstraped   you might want to replace it with a .responsive class instead. */
+#iaa_bootstraped.iaa_bootstraped  img,#iaa_bootstraped.iaa_bootstraped 
+object,#iaa_bootstraped.iaa_bootstraped  
+embed {max-width: 100%;}
+
+/* force a vertical scrollbar to prevent a jumpy page */
+#iaa_bootstraped.iaa_bootstraped  html {overflow-y: scroll;}
+
+/* we use a lot of ULs that aren't bulleted. 
+	don't forget to restore the bullets within content. */
+#iaa_bootstraped.iaa_bootstraped  ul {list-style: none;}
+
+#iaa_bootstraped.iaa_bootstraped  blockquote,#iaa_bootstraped.iaa_bootstraped   q {quotes: none;}
+
+#iaa_bootstraped.iaa_bootstraped  blockquote:before,#iaa_bootstraped.iaa_bootstraped 
+blockquote:after,#iaa_bootstraped.iaa_bootstraped 
+q:before,#iaa_bootstraped.iaa_bootstraped   
+q:after {content: ''; content: none;}
+
+#iaa_bootstraped.iaa_bootstraped  a {margin: 0; padding: 0; font-size: 100%; vertical-align: baseline; background: transparent;}
+
+#iaa_bootstraped.iaa_bootstraped  del {text-decoration: line-through;}
+
+#iaa_bootstraped.iaa_bootstraped  abbr[title],#iaa_bootstraped.iaa_bootstraped   dfn[title] {border-bottom: 1px dotted #000; cursor: help;}
+
+/* tables still need cellspacing="0" in the markup */
+#iaa_bootstraped.iaa_bootstraped  table {border-collapse: collapse; border-spacing: 0;}
+#iaa_bootstraped.iaa_bootstraped  th {font-weight: bold; vertical-align: bottom;}
+#iaa_bootstraped.iaa_bootstraped  td {font-weight: normal; vertical-align: top;}
+
+#iaa_bootstraped.iaa_bootstraped  hr {display: block; height: 1px; border: 0; border-top: 1px solid #ccc; margin: 1em 0; padding: 0;}
+
+#iaa_bootstraped.iaa_bootstraped  input,#iaa_bootstraped.iaa_bootstraped   select {vertical-align: middle;}
+
+#iaa_bootstraped.iaa_bootstraped  pre {
+    white-space: pre; /* CSS2 */
+    white-space: pre-wrap; /* CSS 2.1 */
+    white-space: pre-line; /* CSS 3 (and 2.1 as well,#iaa_bootstraped.iaa_bootstraped   actually) */
+    word-wrap: break-word; /* IE */
+}
+
+#iaa_bootstraped.iaa_bootstraped  input[type="radio"] {vertical-align: text-bottom;}
+#iaa_bootstraped.iaa_bootstraped  input[type="checkbox"] {vertical-align: bottom;}
+#iaa_bootstraped.iaa_bootstraped  .ie7 input[type="checkbox"] {vertical-align: baseline;}
+#iaa_bootstraped.iaa_bootstraped  .ie6 input {vertical-align: text-bottom;}
+
+#iaa_bootstraped.iaa_bootstraped  select,#iaa_bootstraped.iaa_bootstraped   input,#iaa_bootstraped.iaa_bootstraped   textarea {font: 99% sans-serif;}
+
+#iaa_bootstraped.iaa_bootstraped  table {font-size: inherit; font: 100%;}
+
+#iaa_bootstraped.iaa_bootstraped  small {font-size: 85%;}
+
+#iaa_bootstraped.iaa_bootstraped  strong {font-weight: bold;}
+
+#iaa_bootstraped.iaa_bootstraped  td,#iaa_bootstraped.iaa_bootstraped   td img {vertical-align: top;}
+
+/* Make sure sup and sub don't mess with your line-heights http://gist.github.com/413930 */
+#iaa_bootstraped.iaa_bootstraped  sub,#iaa_bootstraped.iaa_bootstraped   sup {font-size: 75%; line-height: 0; position: relative;}
+#iaa_bootstraped.iaa_bootstraped  sup {top: -0.5em;}
+#iaa_bootstraped.iaa_bootstraped  sub {bottom: -0.25em;}
+
+/* standardize any monospaced elements */
+#iaa_bootstraped.iaa_bootstraped  pre,#iaa_bootstraped.iaa_bootstraped   code,#iaa_bootstraped.iaa_bootstraped   kbd,#iaa_bootstraped.iaa_bootstraped   samp {font-family: monospace, sans-serif;}
+
+/* hand cursor on clickable elements */
+#iaa_bootstraped.iaa_bootstraped  .clickable,#iaa_bootstraped.iaa_bootstraped 
+label,#iaa_bootstraped.iaa_bootstraped   
+input[type=button],#iaa_bootstraped.iaa_bootstraped   
+input[type=submit],#iaa_bootstraped.iaa_bootstraped   
+input[type=file],#iaa_bootstraped.iaa_bootstraped   
+button {cursor: pointer;}
+
+/* Webkit browsers add a 2px margin outside the chrome of form elements */
+#iaa_bootstraped.iaa_bootstraped  button,#iaa_bootstraped.iaa_bootstraped   input,#iaa_bootstraped.iaa_bootstraped   select,#iaa_bootstraped.iaa_bootstraped   textarea {margin: 0;}
+
+/* make buttons play nice in IE */
+#iaa_bootstraped.iaa_bootstraped  button,#iaa_bootstraped.iaa_bootstraped 
+input[type=button] {width: auto; overflow: visible;}
+ 
+/* scale images in IE7 more attractively */
+#iaa_bootstraped.iaa_bootstraped  .ie7 img {-ms-interpolation-mode: bicubic;}
+
+/* prevent BG image flicker upon hover 
+   (commented out as usage is rare,#iaa_bootstraped.iaa_bootstraped   and the filter syntax messes with some pre-processors)
+.ie6 html {filter: expression(document.execCommand("BackgroundImageCache",#iaa_bootstraped.iaa_bootstraped   false,#iaa_bootstraped.iaa_bootstraped   true));}
+*/
+
+/* let's clear some floats */
+#iaa_bootstraped.iaa_bootstraped  .clearfix:before,#iaa_bootstraped.iaa_bootstraped   .clearfix:after { content: "\0020"; display: block; height: 0; overflow: hidden; }
+#iaa_bootstraped.iaa_bootstraped  .clearfix:after { clear: both; }
+#iaa_bootstraped.iaa_bootstraped  .clearfix { zoom: 1; }
