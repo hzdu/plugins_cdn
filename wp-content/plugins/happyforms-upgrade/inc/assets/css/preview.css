@@ -1,0 +1,35 @@
+/**
+ *
+ * Multi step
+ *
+ */
+.happyforms-part--page_break hr {
+  display: block;
+  width: 100%;
+  height: 1px;
+  border-top: 2px dashed #dbdbdb;
+  border-color: var(--happyforms-color-part-border);
+  background: transparent;
+}
+
+/**
+ *
+ * reCAPTCHA
+ *
+ */
+.grecaptcha-badge {
+  display: none !important;
+}
+
+.happyforms-save-session {
+  display: none !important;
+}
+
+[data-happyforms-resumable] .happyforms-save-session {
+  display: inline-block !important;
+}
+
+.happyforms--signature-area--container,
+.happyforms--signature-area--container .happyforms-button {
+  cursor: auto !important;
+}

@@ -1,0 +1,64 @@
+/**
+ *
+ * Common styles
+ *
+ */
+.happyforms-modal {
+  width: 312px;
+}
+
+.happyforms-modal picture > img {
+  display: block;
+  max-width: 100%;
+  -o-object-fit: cover;
+  object-fit: cover;
+}
+
+.happyforms-modal p:last-child {
+  margin-bottom: 0;
+}
+
+.happyforms-modal .components-radio-control__option:not(:last-child) {
+  margin-bottom: 13px;
+}
+
+.happyforms-modal__footer {
+  margin-top: 24px;
+}
+
+.happyforms-modal__footer-button-group {
+  display: flex;
+}
+
+.happyforms-modal__footer-button-group .components-button {
+  flex: 1 0 auto;
+  justify-content: center;
+}
+
+.happyforms-modal__footer-button-group .components-button + .components-button {
+  margin-left: 10px;
+}
+
+.components-modal__frame.components-guide.happyforms-modal {
+  height: auto;
+  max-height: 90vh;
+}
+
+
+/**
+ *
+ * Deactivation modal
+ *
+ */
+.happyforms-modal.happyforms-modal--deactivate label {
+  display: block;
+  margin: 0 0 3px;
+}
+
+.happyforms-modal.happyforms-modal--deactivate label:not(:last-child) {
+  margin: 0 0 5px;
+}
+
+.happyforms-modal.happyforms-modal--deactivate .components-modal__content {
+  padding-bottom: 32px;
+}

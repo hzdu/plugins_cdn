@@ -1,0 +1,44 @@
+.happyforms-part--rank_order .happyforms-part-option label.option-label {
+	display: inline-block;
+	overflow-wrap: anywhere;
+}
+.happyforms-part--rank_order .happyforms-part-option .happyforms-custom-select {
+	display: inline-block;
+	min-width: 110px;
+	max-width: 110px;
+}
+
+.happyforms-part--rank_order .happyforms-part-option .happyforms-custom-select .happyforms-part__select-wrap {
+	height: auto;
+}
+
+.happyforms-part--rank_order ul.happyforms-custom-select-dropdown li.rank-choice-disable {
+	color: #a7a6a6d6 !important;
+	cursor: not-allowed;
+}
+.happyforms-dropdown-item.happyforms-custom-select-dropdown__item.happyforms-rank-clear-button {
+	border-top: 1px solid #e0e0e0;
+}
+
+.happyforms-rank-clear-button.hide-clear-button {
+	display: none !important;
+}
+
+
+.happyforms-part.happyforms-part--rank_order .happyforms-part-option .option-label {
+	cursor: default;
+	margin-bottom: 0px;
+	padding-bottom: 0px;
+}
+
+.happyforms-part.happyforms-part--rank_order .happyforms-part-option {
+	margin-bottom: 20px;
+	display: flex;
+	align-items: center;
+} 
+
+.happyforms-part.happyforms-part--rank_order.happyforms-part--label-below .happyforms-part-option {
+    align-items: center;
+    flex-flow: row-reverse;
+    align-self: flex-start;
+}

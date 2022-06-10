@@ -1,0 +1,114 @@
+.happyforms-payments__payment-method-choice {
+  margin-bottom: 0;
+}
+.happyforms-styles .happyforms-form__part.happyforms-payments__price {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+.happyforms-styles .happyforms-payments__price .label {
+  font-size: 16px;
+  font-size: var(--happyforms-part-title-font-size);
+}
+.happyforms-form--part-inner-padding-narrow .happyforms-payments__price .label {
+  margin-bottom: 5px;
+}
+.happyforms-part--payments .happyforms-part {
+  padding-left: 0;
+  padding-right: 0;
+  margin-bottom: 0;
+}
+.happyforms-part--payments .happyforms-part[data-subpart=payment_method] {
+  margin-bottom: 0;
+}
+.happyforms-payments__price .price {
+  display: block;
+  font-weight: bold;
+  font-size: 16px;
+  font-size: var(--happyforms-part-value-font-size);
+}
+.happyforms-payments-service--stripe {
+  margin-top: 5px;
+  flex-flow: row wrap;
+  justify-content: space-between;
+}
+.happyforms-form--part-outer-padding-narrow .happyforms-payments-service--stripe {
+  margin-bottom: 0;
+}
+.happyforms-payments-service .happyforms-part-wrap p {
+  margin-bottom: 0;
+  font-size: 14px;
+  font-size: var(--happyforms-part-description-font-size);
+}
+.happyforms-part--payments .happyforms-part-error-notice {
+  margin-top: 5px;
+}
+.happyforms-part--payments:not(.happyforms-part__validation-failed) .happyforms-part-error-notice {
+  display: none;
+}
+.happyforms-payments-service {
+  display: none;
+}
+.happyforms-payments-service.show {
+  display: block;
+}
+.happyforms-payments-service--stripe.show {
+  display: flex;
+}
+.happyforms-part--payments .stripe-element {
+  border-width: 1px;
+  border-style: solid;
+  border-color: #000;
+}
+.happyforms-styles .happyforms-part--payments .stripe-element {
+  padding: 13px 10px;
+  border-radius: 6px !important;
+  border-color: var(--happyforms-color-part-border) !important;
+  background-color: #fff !important;
+  background-color: var(--happyforms-color-part-background) !important;
+  transition-property: none;
+  transition-duration: 0.1s;
+  transition-duration: var(--happyforms-transition-duration);
+  transition-timing-function: ease-in;
+}
+.happyforms-styles .happyforms-part--payments .stripe-element + .happyforms-message-notices {
+  margin-top: 5px;
+}
+.happyforms-styles .happyforms-part--payments .stripe-element.StripeElement--focus {
+  border-color: #407fff !important;
+  border-color: var(--happyforms-color-part-border-focus) !important;
+  color: #000;
+  color: var(--happyforms-color-part-value);
+  background-color: #fff !important;
+  background-color: var(--happyforms-color-part-background-focus) !important;
+  box-shadow: inset 0 0 0 1px #407fff;
+  box-shadow: inset 0 0 0 1px var(--happyforms-color-part-border-focus);
+}
+.happyforms-styles.happyforms-form--part-borders-bottom-only .happyforms-part--payments .stripe-element {
+  border-top-color: transparent !important;
+  border-left-color: transparent !important;
+  border-right-color: transparent !important;
+  box-shadow: none !important;
+}
+.happyforms-styles.happyforms-form--part-border-radius-square .happyforms-part--payments .stripe-element {
+  border-radius: 0 !important;
+}
+.happyforms-styles.happyforms-form--part-border-radius-pill .happyforms-part--payments .stripe-element {
+  border-radius: 25px !important;
+}
+.happyforms-form--part-inner-padding-narrow .happyforms-part--payments .stripe-element {
+  padding: 5px;
+}
+.happyforms-form--part-inner-padding-wide .happyforms-part--payments .stripe-element {
+  padding: 15px;
+}
+.happyforms-payments__card {
+  width: 102%;
+  margin-bottom: 0;
+}
+
+.happyforms-part--payments .happyforms-part__description {
+  margin: 0;
+}
+.happyforms-styles .happyforms-part--payments input:checked+.checkmark .happyforms-radio-circle {
+  display: block;
+}

@@ -1,0 +1,119 @@
+/**
+ *
+ * Subscribe modal
+ *
+ */
+.happyforms-modal--subscribe {
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
+
+.happyforms-modal--subscribe .components-guide__page {
+  justify-content: flex-start;
+}
+
+.happyforms-modal--subscribe .happyforms-modal__header,
+.happyforms-modal--subscribe .happyforms-modal__body {
+  padding: 24px 32px 0;
+}
+
+.happyforms-modal--subscribe .happyforms-modal__body {
+  display: flex;
+  flex-flow: column;
+  justify-content: flex-start;
+}
+
+.happyforms-modal--subscribe img {
+  display: block;
+}
+
+.happyforms-modal--subscribe h1 {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+  font-size: 24px;
+  line-height: 1.4;
+  margin: 0 0 8px 0;
+}
+
+.happyforms-modal--subscribe label {
+  margin-bottom: 4px;
+}
+
+.happyforms-modal--subscribe .components-guide__footer {
+  display: none;
+}
+
+.happyforms-modal--subscribe .happyforms-modal__footer {
+  padding: 0 32px 32px;
+}
+
+.happyforms-modal--subscribe .components-notice {
+  margin: 0;
+}
+
+.happyforms-modal--subscribe .hf-pwd {
+  margin: 0 !important;
+}
+
+.happyforms-modal--subscribe .happyforms-credentials-input {
+  width: 100%;
+}
+
+/**
+ *
+ * Hide password control
+ *
+ */
+.happyforms-modal--subscribe .hf-pwd input.happyforms-credentials-input {
+  font-family: Consolas,Monaco,monospace;
+  padding-right: 2.5rem;
+}
+
+.happyforms-modal--subscribe .hf-pwd {
+  position: relative;
+  margin: 0 0 1em;
+}
+
+.happyforms-modal--subscribe .hf-pwd:last-of-type {
+  margin: 0;
+}
+
+.happyforms-modal--subscribe .hf-pwd:last-child {
+  margin: 0 0 1em;
+}
+
+.happyforms-modal--subscribe .hf-pwd input.happyforms-credentials-input {
+  padding-right: 2.5rem;
+}
+
+.happyforms-modal--subscribe .hf-pwd > button.hf-hide-pw {
+  position: absolute;
+  right: 0;
+  top: 1px;
+  display: flex;
+  align-items: center;
+  border: 1px solid transparent !important;
+  width: 2.1rem;
+  min-width: 25px;
+  min-height: auto;
+  height: calc(100% - 2px);
+  margin: 0;
+  padding: 5px 9px 5px 7px;
+  font-size: 14px;
+  line-height: 2;
+  box-shadow: none;
+  background: transparent !important;
+  vertical-align: middle;
+}
+
+.happyforms-modal--subscribe button.hf-hide-pw:focus {
+  background: transparent !important;
+  border-color: #3582c4;
+  box-shadow: 0 0 0 1px #3582c4 !important;
+  outline: 2px solid transparent !important;
+}
+
+.happyforms-modal--subscribe button.hf-hide-pw .dashicons {
+  width: 1.25rem;
+  height: 1.25rem;
+  font-size: 18px;
+}
