@@ -115,7 +115,7 @@ const calculateProgressPercentage = ( progressData ) => {
 	if ( complete === 0 || total === 0 ) {
 		return 0;
 	}
-	const progress = Math.round( ( complete / total ) * 100 );
+	const progress = Math.floor( ( complete / total ) * 100 );
 	return progress > 100 ? 100 : progress;
 };
 

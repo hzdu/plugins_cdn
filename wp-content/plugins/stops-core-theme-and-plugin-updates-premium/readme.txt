@@ -4,8 +4,8 @@ Tags: updates manager, easy updates manager, disable updates manager, disable up
 Requires at least: 5.1
 Requires PHP: 5.6
 Donate link: https://easyupdatesmanager.com
-Tested up to: 5.8
-Stable tag: 9.0.12
+Tested up to: 6.0
+Stable tag: 9.0.13
 License: GPLv2 or later
 
 Manage all your WordPress updates, including individual updates, automatic updates, logs, and loads more. This also works very well with WordPress Multisite.
@@ -125,6 +125,25 @@ Since third-party providers use custom update mechanisms, we cannot always guara
 For additional information and FAQs for Easy Updates Manager <a href="https://easyupdatesmanager.com">check out our website</a>.
 
 == Changelog ==
+
+= 9.0.13 - 2022-06-07 =
+
+* TWEAK: Update logs are sent separately causing a huge number of emails being sent to the user (Premium)
+* TWEAK: Override potential constants and filters that might be used by other plugins for disabling WordPress automatic updater
+* TWEAK: Prevent other plugins from overriding the 'auto_update_core' filter when 'Manually update' or 'Auto update all minor versions' core setting is selected
+* FIX: The logs option/setting got stuck in 'off' value when upgrading from old versions (prior to 8.1.0) to the recent versions
+* FIX: When plugin notification emails setting is disabled but core notification setting is enabled, the user would still receive a notification email regarding plugin updates
+* FIX: Redundant emails were sent when core notification setting is enabled
+* TWEAK: Improve the notification settings by adding two new options for enabling/disabling theme and translation notification emails
+* FIX: In any update operation (manual or automatic), translation update was automatically triggered when 'Manually update' or 'Disable auto updates' is chosen
+* TWEAK: Remove 'Disable auto updates' setting as it's the same as 'Manually update'
+* FIX: '0.00' version numbers were logged when upgrading plugins and/or theme, at the same time the information about core update wasn't presented in the logs table, some warnings and WordPress database errors were logged in the PHP error log file too
+* FIX: Users with very limited access were recorded in the logs table
+* FIX: Failure status was recorded in the log entry and the 'From' and 'To' versions are in the same version number, though the update process was successful
+* FIX: Unneeded and misleading log entry when upgrading to minor versions
+* FIX: Incorrect WordPress version number was logged after upgrading to a minor version
+* TWEAK: Refactor Log classes to improve how log reporting is handled during updates
+* TWEAK: Update seasonal notices
 
 = 9.0.12 - 2021-12-17 =
 
@@ -366,4 +385,4 @@ For past changelogs, <a href="https://easyupdatesmanager.com/blog/">please visit
 
 == Upgrade Notice ==
 
-* 9.0.12 : Semantic versioning feature that when enabled it will allow only patch/security release updates for plugins and/or themes. The log table didn't get updated when upgrading from the very old table versions (1.0.0 and 1.1.3) to the current latest (1.1.5); a recommended update for all.
+* 9.0.13: Various tweaks and fixes. Better log mechanism, effective and efficient use of auto-updates notification emails. See changelog for full details. A recommended update for all.

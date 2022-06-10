@@ -1,7 +1,7 @@
 
 $mobile-bp: 900px;
 
-.automatewoo-birthday-section {
+.woocommerce .automatewoo-birthday-section {
 	&.form-row {
 		margin: 0 0 1.41575em;
 	}
@@ -14,7 +14,7 @@ $mobile-bp: 900px;
 			float: left;
 			width: auto;
 			margin: 0 0 0 2%;
-			height: 2.2em;
+			min-height: 2.2em;
 
 			&:first-child {
 				margin: 0;
@@ -47,5 +47,6 @@ $mobile-bp: 900px;
 	&__description,
 	&__already-set-text {
 		font-style: italic;
+		display: inline-block;
 	}
 }
