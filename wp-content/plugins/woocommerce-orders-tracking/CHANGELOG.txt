@@ -1,3 +1,15 @@
+/**v1.0.14 - 2022.06.08**/
+- Fixed: Change order status feature not working properly for webhooks when an order has more than 1 item that share the same tracking number
+- Fixed: Dynamically create carrier search field in the plugin settings to avoid Chrome browser's false autofill
+- Updated: 17Track API v2
+- Updated: 17Track carriers package
+- Updated: Do not use Cainiao as the fallback service for other tracking services anymore
+- Added: Support of Schedule Update for 17Track
+- Added: Ability to set slug when adding a custom carrier
+- Added: Ability choose active carriers to use
+- Added: Option to send SMS when AliExpress orders synced by our ALD plugin
+- Added: Support PayPal for WooCommerce by AngellEYE
+
 /**v1.0.13 - 2022.03.29**/
 - Improved: No more using the_content filter for implementing tracking timeline to avoid conflict with page builder
 - Updated: VillaTheme support

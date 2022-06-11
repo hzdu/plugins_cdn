@@ -1,5 +1,5 @@
-'use strict';
 jQuery(document).ready(function ($) {
+    'use strict';
     $('.vi-ui.accordion').vi_accordion('refresh');
 
     $('.ui-sortable').sortable({

@@ -98,16 +98,21 @@ input[type="number"] {
 
 .woo-orders-tracking-setting-shipping-carriers-filter-wrap {
     display: flex;
-    min-width: 60%;
+    /*min-width: 60%;*/
     max-width: 65%;
     flex-wrap: wrap;
+}
+
+.vi-ui.segment.woo-orders-tracking-setting-shipping-carriers-toggle-active-wrap {
+    margin: 0 5px;
+    padding: 6px;
 }
 
 .woo-orders-tracking-setting-shipping-carriers-filter-wrap .woo-orders-tracking-setting-shipping-carriers-filter-type-wrap,
 .woo-orders-tracking-setting-shipping-carriers-filter-wrap .woo-orders-tracking-setting-shipping-carriers-filter-action-wrap,
 .woo-orders-tracking-setting-shipping-carriers-filter-wrap .woo-orders-tracking-setting-shipping-carriers-filter-country-wrap {
-    min-width: 30%;
-    max-width: 35%;
+    /*min-width: 30%;*/
+    /*max-width: 35%;*/
     margin-right: 15px;
 }
 
@@ -125,6 +130,19 @@ input[type="number"] {
     grid-template-columns: repeat(5, 19%);
     grid-gap: 20px 10px;
     grid-auto-rows: minmax(100px, auto);
+}
+
+.woo-orders-tracking-setting-shipping-carriers-list-wrap > .woo-orders-tracking-setting-shipping-carriers-wrap:nth-child(1) {
+    background-color: #ffebcd;
+}
+
+.woo-orders-tracking-setting-shipping-carriers-list-wrap > .woo-orders-tracking-setting-shipping-carriers-wrap:nth-child(1) .woo-orders-tracking-setting-custom-shipping-carrier-action-default,
+.woo-orders-tracking-setting-shipping-carriers-list-wrap > .woo-orders-tracking-setting-shipping-carriers-wrap:nth-child(1) .woo-orders-tracking-setting-custom-shipping-carrier-action-delete {
+    display: none;
+}
+
+.woo-orders-tracking-setting-shipping-carriers-wrap .woo-orders-tracking-setting-shipping-carrier-action-active-wrap {
+    text-align: center;
 }
 
 .woo-orders-tracking-setting-shipping-carriers-wrap {
@@ -180,7 +198,8 @@ input[type="number"] {
 }
 
 .woo-orders-tracking-setting-shipping-carriers-wrap .woo-orders-tracking-setting-custom-shipping-carrier-action i {
-    font-size: 14px;
+    font-size: 16px;
+    line-height: 1;
     font-weight: 400;
     margin: 0;
     cursor: pointer;
@@ -263,11 +282,18 @@ edit custom carrier css
     padding-left: 20px;
     padding-right: 20px;
     justify-content: space-between;
+    flex-wrap: wrap;
 }
 
 .add-new-shipping-carrier-html-content .add-new-shipping-carrier-html-content-body .add-new-shipping-carrier-html-content-body-row .add-new-shipping-carrier-html-content-body-carrier-display-name-wrap,
 .add-new-shipping-carrier-html-content .add-new-shipping-carrier-html-content-body .add-new-shipping-carrier-html-content-body-row .add-new-shipping-carrier-html-content-body-carrier-name-wrap,
-.add-new-shipping-carrier-html-content .add-new-shipping-carrier-html-content-body .add-new-shipping-carrier-html-content-body-row .add-new-shipping-carrier-html-content-body-country-wrap,
+.add-new-shipping-carrier-html-content .add-new-shipping-carrier-html-content-body .add-new-shipping-carrier-html-content-body-row .add-new-shipping-carrier-html-content-body-carrier-slug-wrap,
+.add-new-shipping-carrier-html-content .add-new-shipping-carrier-html-content-body .add-new-shipping-carrier-html-content-body-row .add-new-shipping-carrier-html-content-body-country-wrap {
+    width: 45%;
+    display: flex;
+    flex-direction: column;
+}
+
 .edit-shipping-carrier-html-content .edit-shipping-carrier-html-content-body .edit-shipping-carrier-html-content-body-row .edit-shipping-carrier-html-content-body-carrier-display-name-wrap,
 .edit-shipping-carrier-html-content .edit-shipping-carrier-html-content-body .edit-shipping-carrier-html-content-body-row .edit-shipping-carrier-html-content-body-carrier-name-wrap,
 .edit-shipping-carrier-html-content .edit-shipping-carrier-html-content-body .edit-shipping-carrier-html-content-body-row .edit-shipping-carrier-html-content-body-country-wrap {
@@ -343,9 +369,10 @@ email settings css
 .woo-orders-tracking-footer-container .woo-orders-tracking-footer-content {
     position: relative;
     z-index: 99;
-    width: 50%;
+    width: 700px;
     max-height: 90%;
     overflow: auto;
+    max-width: 100%;
 }
 
 .woo-orders-tracking-footer-container {
@@ -515,10 +542,15 @@ table.woo-orders-tracking-default-track-info-table.vi-ui.table tr .vi-ui.label {
     white-space: nowrap;
 }
 
-.table.woo-orders-tracking-default-track-info-table.vi-ui.table tr .woo-orders-tracking-ft-message-time-td .woo-orders-tracking-ft-message-time-day{
+.table.woo-orders-tracking-default-track-info-table.vi-ui.table tr .woo-orders-tracking-ft-message-time-td .woo-orders-tracking-ft-message-time-day {
     min-width: 56px;
 }
-.table.woo-orders-tracking-default-track-info-table.vi-ui.table tr .woo-orders-tracking-ft-message-time-td .woo-orders-tracking-ft-message-time-hour ,
+
+.table.woo-orders-tracking-default-track-info-table.vi-ui.table tr .woo-orders-tracking-ft-message-time-td .woo-orders-tracking-ft-message-time-hour,
 .table.woo-orders-tracking-default-track-info-table.vi-ui.table tr .woo-orders-tracking-ft-message-time-td .woo-orders-tracking-ft-message-time-minute {
     min-width: 50px;
+}
+
+.wot-input-shortcode-field {
+    width: auto !important;
 }

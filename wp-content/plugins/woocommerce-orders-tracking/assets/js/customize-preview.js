@@ -1,6 +1,5 @@
-'use strict';
 jQuery(document).ready(function ($) {
-    console.log(vi_wot_customize_params)
+    'use strict';
     let service_carrier_type = vi_wot_customize_params.service_carrier_type;
     let delivered_icons = vi_wot_customize_params.delivered_icons;
     let pickup_icons = vi_wot_customize_params.pickup_icons;

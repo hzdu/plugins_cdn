@@ -1,8 +1,9 @@
-'use strict';
 jQuery(document).ready(function ($) {
-    let custom_carriers_list = $.parseJSON(vi_wot_edit_order.custom_carriers_list);
+    'use strict';
+    let custom_carriers_list = $.parseJSON(vi_wot_edit_order.custom_carriers_list),
+        active_carriers = vi_wot_edit_order.active_carriers;
     let global_tracking_number = '';
-    wotv_get_shipping_carriers_html();
+    wotv_get_shipping_carriers_html(active_carriers);
     $('.woo-orders-tracking-edit-tracking-other-carrier-country').select2({
         placeholder: "Please fill in your shipping country name",
         theme: "wotv-select2-custom-country"
@@ -65,6 +66,7 @@ jQuery(document).ready(function ($) {
         });
     });
     $(document).on('click', '.woo-orders-tracking-button-edit', function () {
+        console.log(active_carriers)
         $(this).addClass('woo-orders-tracking-button-editing');
         $('.woo-orders-tracking-edit-tracking-button-save').addClass('woo-orders-tracking-edit-tracking-save-only-one-item');
         vi_wotg_edit_tracking_show();
@@ -74,8 +76,14 @@ jQuery(document).ready(function ($) {
         if (data['tracking_url']) {
             $('.woo-orders-tracking-edit-tracking-carrier').val('shipping-carriers').trigger('change');
             if (data['carrier_id']) {
+                if (active_carriers.length > 0 && active_carriers.indexOf(data['carrier_id']) < 0) {
+                    let temp_active_carriers = active_carriers.slice();
+                    temp_active_carriers.push(data['carrier_id']);
+                    wotv_get_shipping_carriers_html(temp_active_carriers, true);
+                }
                 $('.woo-orders-tracking-edit-tracking-shipping-carrier').val(data['carrier_id']).trigger('change');
             } else {
+                wotv_get_shipping_carriers_html(active_carriers, true);
                 if (vi_wot_edit_order.shipping_carrier_default && data['tracking_url'].indexOf(data['tracking_code']) !== -1) {
                     let pattern = vi_wot_edit_order.shipping_carrier_default_url_check,
                         pattern_url_check = data['tracking_url'].split(data['tracking_code'], 1)[0];
@@ -97,9 +105,17 @@ jQuery(document).ready(function ($) {
             if (data['tracking_code']) {
                 $('.woo-orders-tracking-edit-tracking-carrier').val('shipping-carriers').trigger('change');
                 if (data['carrier_id']) {
+                    if (active_carriers.length > 0 && active_carriers.indexOf(data['carrier_id']) < 0) {
+                        let temp_active_carriers = active_carriers.slice();
+                        temp_active_carriers.push(data['carrier_id']);
+                        wotv_get_shipping_carriers_html(temp_active_carriers, true);
+                    }
                     $('.woo-orders-tracking-edit-tracking-shipping-carrier').val(data['carrier_id']).trigger('change');
+                } else {
+                    wotv_get_shipping_carriers_html(active_carriers, true);
                 }
             } else {
+                wotv_get_shipping_carriers_html(active_carriers, true);
                 $('.woo-orders-tracking-edit-tracking-carrier').val('shipping-carriers').trigger('change');
                 if (vi_wot_edit_order.shipping_carrier_default) {
                     $('.woo-orders-tracking-edit-tracking-shipping-carrier').val(vi_wot_edit_order.shipping_carrier_default).trigger('change');
@@ -121,6 +137,7 @@ jQuery(document).ready(function ($) {
         }
     });
     $(document).on('click', '.woo-orders-tracking-button-edit-all-tracking-number', function () {
+        wotv_get_shipping_carriers_html(active_carriers, true);
         if ($('.woo-orders-tracking-button-edit').length === 1) {
             $('.woo-orders-tracking-button-edit').click();
         } else {
@@ -513,7 +530,7 @@ jQuery(document).ready(function ($) {
         return found_carrier;
     }
 
-    function wotv_get_shipping_carriers_html() {
+    function wotv_get_shipping_carriers_html(active_carriers = []) {
         let shipping_carriers_define_list,
             carriers,
             html = '',
@@ -524,13 +541,20 @@ jQuery(document).ready(function ($) {
             return false;
         }
         carriers = wot_sort_carriers(carriers);
-        for (let i = 0; i < carriers.length; i++) {
-            html += '<option value="' + carriers[i].slug + '">' + carriers[i].name + '</option>';
+        if (active_carriers.length > 0) {
+            for (let i = 0; i < carriers.length; i++) {
+                if (active_carriers.indexOf(carriers[i].slug) > -1) {
+                    html += '<option value="' + carriers[i].slug + '">' + carriers[i].name + '</option>';
+                }
+            }
+        } else {
+            for (let i = 0; i < carriers.length; i++) {
+                html += '<option value="' + carriers[i].slug + '">' + carriers[i].name + '</option>';
+            }
         }
 
         $('.woo-orders-tracking-edit-tracking-shipping-carrier').html(html);
         $('.woo-orders-tracking-edit-tracking-shipping-carrier').val(shipping_carrier_default).trigger('change');
-
         $('.woo-orders-tracking-edit-tracking-shipping-carrier').select2({
             placeholder: "Please fill in your shipping carrier name",
             theme: "wotv-select2-custom-carrier",

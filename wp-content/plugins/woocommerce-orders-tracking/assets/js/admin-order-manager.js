@@ -1,5 +1,5 @@
-'use strict';
 jQuery(document).ready(function ($) {
+    'use strict';
     $(document).on('click', '.woo-orders-tracking-tracking-service-copy', function () {
         let $temp = $('<input>');
         $('body').append($temp);

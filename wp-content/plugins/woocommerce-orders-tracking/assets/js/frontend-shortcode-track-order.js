@@ -1,5 +1,5 @@
-'use strict';
 jQuery(document).ready(function ($) {
+    'use strict';
     $(document).on('click', '.woo-orders-tracking-multiple-carriers-select-link', function () {
         let $button = $(this);
         let $container = $button.closest('.woo-orders-tracking-shortcode-timeline-container');

@@ -1,5 +1,5 @@
-'use strict';
 jQuery(document).ready(function ($) {
+    'use strict';
     window.addEventListener('load', function () {
         if (vi_wot_frontend_form_search.recaptcha_check) {
             if (vi_wot_frontend_form_search.recaptcha_version == 2) {

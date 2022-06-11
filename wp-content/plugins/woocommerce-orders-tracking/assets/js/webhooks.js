@@ -1,5 +1,5 @@
-'use strict';
 jQuery(document).ready(function ($) {
+    'use strict';
     $('.vi-ui.dropdown').dropdown({placeholder: ''});
     $('.vi-ui.checkbox').checkbox();
     $(document).on('click', '.woo-orders-tracking-webhooks-url-copy', function () {

@@ -1,6 +1,5 @@
 jQuery(document).ready(function ($) {
     'use strict';
-
     let $couriers = $('#couriers'), $couriers_select = $('#couriers_select'),
         couriers_mapping = woo_orders_tracking_dianxiaomi.dianxiaomi_courier_mapping,
         courier_mapping_rows = '', dianxiaomi_couriers = woo_orders_tracking_dianxiaomi.dianxiaomi_couriers,
