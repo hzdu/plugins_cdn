@@ -1,0 +1,53 @@
+.pdf-catalog-preview-frame-container {
+    position: fixed;
+    width: 500px;
+    margin-left: -250px;
+    height: 600px;
+    top: 5%;
+    left: 50%;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 12px 58px -7px rgba(69,77,89,.22);
+    display: none;
+    z-index: 100;
+}
+
+.pdf-catalog-preview-frame-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  width: 100%;
+  height: 100%;
+  display: none;
+  z-index: 90;
+}
+
+.pdf-catalog-preview-frame-header {
+    background: #607D8B;
+    padding: 20px;
+    color: #FFF;
+}
+
+[id='24_section_group_li'] {
+  background-color: #F44336;
+}
+
+[id='24_section_group_li'] a {
+  background-color: #F44336 !important;
+  color: #FFF !important;
+  opacity: 1 !important;
+}
+
+.pdf-catalog-preview-spinner {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    font-size: 40px;
+    margin-left: -40px;
+    display: none;
+}
+
+.widefat .column-wc_actions a.download-invoice::after {
+  content: "\f497";
+}
