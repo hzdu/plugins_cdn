@@ -5,12 +5,11 @@
 ==================================================
 
 Huge Thanks To:
-➡ @bobsmith For Untouched File
-➡ @bobsmith For Nulled File
-➡ @bobsmith For Nulled Method
+➡ @Babak For Untouched File
+➡ @Babak & @bobsmith For Nulled File
+➡ @Babak & @bobsmith For Nulled Method
 
 [Credited By Babiato Forum]
 
-***THIS PACKAGE MIGHT BE DOWNLOADED FROM BABIATO FORUM OR BABIATO STORAGE***
+***THIS PACKAGE MIGHT BE DOWNLOADED FROM BABIATO FORUM***
 Forum URL: https://babiato.co
-Storage URL: https://babiato.weshareit.space
