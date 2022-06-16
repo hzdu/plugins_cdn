@@ -5,9 +5,9 @@
 ==================================================
 
 Huge Thanks To:
-➡ @Babak For Untouched File
-➡ @Babak & @bobsmith For Nulled File
-➡ @Babak & @bobsmith For Nulled Method
+➡ @bobsmith For Untouched File
+➡ @bobsmith For Nulled File
+➡ @bobsmith For Nulled Method
 
 [Credited By Babiato Forum]
 
