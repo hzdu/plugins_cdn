@@ -86,22 +86,37 @@ jQuery(document).ready(function($) {
 			var skipFlag = true;
 			var forceHide = false;
 			var forceShow = false;
+			var optionSelected = false;
 
 			if($(this).hasClass('perfmatters-input-controller')) {
-				nestedControllers.push($(this).find('input').attr('id'));
+				nestedControllers.push($(this).find('input, select').attr('id'));
 			}
 
 			var currentInputContainer = this;
 
 			$.each(nestedControllers, function(index, value) {
+				var currentController = $('#' + value);
 
-				var controlChecked = $('#' + value).is(':checked');
-				var controlReverse = $('#' + value).closest('.perfmatters-input-controller').hasClass('perfmatters-input-controller-reverse');
+				if(currentController.is('input')) {
 
-	  			if($(currentInputContainer).hasClass(value) && (controlChecked == controlReverse)) {
-	  				skipFlag = false;
-	  				return false;
-	  			}
+					var controlChecked = $('#' + value).is(':checked');
+					var controlReverse = $('#' + value).closest('.perfmatters-input-controller').hasClass('perfmatters-input-controller-reverse');
+
+		  			if($(currentInputContainer).hasClass(value) && (controlChecked == controlReverse)) {
+		  				skipFlag = false;
+		  				return false;
+		  			}
+		  		}
+		  		else if(currentController.is('select')) {
+		  			var classNames = currentInputContainer.className.match(/perfmatters-select-control-([^\s]*)/g);
+
+		  			if(classNames) {
+						var foundClass = ($.inArray('perfmatters-select-control-' + $('#' + value).val(), classNames)) >= 0;
+						if(!foundClass) {
+							forceHide = true;
+						}
+					}
+		  		}
 			});
 
 			if(controller.is('select')) {

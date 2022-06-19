@@ -4,8 +4,8 @@ Donate link: https://perfmatters.io
 Tags: perfmatters
 Requires at least: 4.7
 Requires PHP: 7.0
-Tested up to: 5.9.3
-Stable tag: 1.9.1
+Tested up to: 6.0
+Stable tag: 1.9.3
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -35,6 +35,27 @@ Check out our [documentation](https://perfmatters.io/docs/) for more information
 
 == Changelog ==
 
+= 1.9.3 - 06.17.2022 =
+* Remove Used CSS filter adjustment to fix an issue where certain WordPress post functions wouldn't be available when trying to selectively disable the feature.
+* Rolled back minor plugin UI JavaScript addition, as it was interfering with entering data on multiple lines in certain input fields.
+
+= 1.9.2 - 06.16.2022 =
+* Added new perfmatters_used_css filter.
+* Added new perfmatters_allow_buffer filter.
+* Added a notice in the Script Manager when Testing Mode is enabled.
+* Improved reliability of CSS Background Image function when child elements with additional background images are present.
+* Script Manager style compatibility fixes.
+* Fixed an issue where some post specific meta options were not being respected when determining if a feature should run.
+* Fixed an issue where pressing enter on the main plugin settings page would trigger a specific form action instead of save settings.
+* Changed CSS class initialization hook to be in the correct order with other output buffer functions.
+* Made an adjustment to how we generate the local used stylesheet URL for better compatibility.
+* Fixed an issue where loading attribute was still getting applied to images that were excluded from lazy loading.
+* Fixed an issue where images inside an excluded picture element were not also getting excluded.
+* Fixed an issue in the Script Manager where archives were not being grouped together with their respective post type.
+* Additions to plugin UI JavaScript to allow for disabled sections to be hidden even when nested controllers are present.
+* Moved background process library to composer autoloader.
+* Removed BETA tag from Remove Unused CSS option.
+
 = 1.9.1 - 05.23.2022 =
 * Added new option to lazy load CSS Background Images.
 * Added new option for Dual Tracking when using gtag.js in local analytics.
@@ -42,7 +63,7 @@ Check out our [documentation](https://perfmatters.io/docs/) for more information
 * Fixed an issue where individually delayed local scripts would not get correctly rewritten to load from the CDN.
 * Fixed an issue where lazy loading would run into an error if no px or % was specified with the threshold value.
 * Fixed an issue with buffer validation that was conflicting with certain caching setups.
-* Fixed an issue where existing font preconnect and prefetch tags were not being being detected properly when using Local Fonts.
+* Fixed an issue where existing font preconnect and prefetch tags were not being detected properly when using Local Fonts.
 * Fixed an error related to cookie constants when running MU Mode in certain environments.
 * Fixed multiple AMP validation errors and added additional checks to prevent certain functions from running on AMP URLs.
 * Minor adjustment to CDN rewrite regex pattern to work with encoded quotation characters.
