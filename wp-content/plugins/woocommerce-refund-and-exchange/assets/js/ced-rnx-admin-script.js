@@ -586,7 +586,7 @@ jQuery(document).ready(function(){
 	{
 		jQuery(document).find('.ced_rnx_products').select2();
 	}
-	jQuery('.wc-order-data-row').show();
+	// jQuery('.wc-order-data-row').show();
 	jQuery( document ).on( 'click', '.mwb_sidebar_hide,.mwb_sidebar_heading', function(){
         if( jQuery( document ).find( '.mwb_sidebar_hidden' ).length > 0 )
         {
