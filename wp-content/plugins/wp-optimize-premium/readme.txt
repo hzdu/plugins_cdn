@@ -5,7 +5,7 @@ Tags: cache, minify, database, image optimize, performance, clean, spam, speed, 
 Requires PHP: 5.6
 Requires at least: 4.5
 Tested up to: 6.0
-Stable tag: 3.2.5
+Stable tag: 3.2.6
 License: GPLv2+
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -364,20 +364,19 @@ If none of the above works, disable processing of JavaScript files in the minify
 
 == Changelog ==
 
-* TWEAK: Added functionality for exclude caching based on conditional tags
-* TWEAK: Update last optimized time for scheduled optimizations
-* TWEAK: Cache - Prevent already header sent warnings while importing posts
-* FEATURE: Create a cron job to delete expired cache files
-* TWEAK: Improved UI for `actionscheduler_` tables
-* FIX: Problem with Redirect – Trailing Slash on URLs
-* FIX: Unused images issue with ACF `repeater` and nested fields
-* TWEAK: Add filter to allow/disallow `gz` file generation
-* FIX: Incorrect record count after importing
-* FEATURE: WebP image format can be used to serve images
-* FIX: Image smushing issues
-* FIX: Growing smush log because of old semaphore lock option present in db
-* TWEAK: Modify WP Smush plugin compatibility notice
 
+
+
+* FIX: The unused images CSV downloads have a few redundant images listed
+
+
+= 3.2.6 - 15/Jun/2022 =
+
+* FIX: Incorrect static method calling causes parse Error in PHP 5.6.36
+* FIX: WebP - Trailing slash file creation issue in PHP 8 
+* FIX: PHP warning in cache rules file
+* FIX: Asynchronous google fonts loaded twice
+* TWEAK: Conditional Tags anchor tag fix
 
 = 3.2.5 - 03/Jun/2022 =
 
@@ -1265,4 +1264,4 @@ If none of the above works, disable processing of JavaScript files in the minify
 * Fix Interface
 
 == Upgrade Notice ==
-* 3.2.5: WebP image format can now be used to serve images, added a cron job to delete expired cache files. Many various tweaks and fixes; a recommended update for all.
+* 3.2.6: WebP - Trailing slash file creation issue in PHP 8 and incorrect static method calling causes parse Error in PHP 5.6.36; a recommended update for all.
