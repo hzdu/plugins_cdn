@@ -13,7 +13,7 @@
 
             $("curObject").remove();//娓呮搴曢儴鍐呭
             var htmladd = "";
-            htmladd += '<div style=" height:auto ;max-height: 300px;overflow-y: auto;background: white;display: none;border: 1px solid darkgray;position: fixed">';
+            htmladd += '<div style=" height:auto ;max-height: 300px;overflow-y: auto;background: white;display: none;border: 1px solid darkgray;position: fixed;z-index:999999px;">';
             if (data != '' || a != undefined) {
                 for (i = 0; i < data.length; i++) {
                     htmladd += '<div class="x-l-1" style="text-indent: 0.5em">' + data[i] + '</div>';
