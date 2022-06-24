@@ -5,7 +5,7 @@ Tags: perfmatters
 Requires at least: 4.7
 Requires PHP: 7.0
 Tested up to: 6.0
-Stable tag: 1.9.3
+Stable tag: 1.9.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -34,6 +34,10 @@ Perfmatters is a lightweight performance plugin developed to speed up your WordP
 Check out our [documentation](https://perfmatters.io/docs/) for more information on how to use Perfmatters.
 
 == Changelog ==
+
+= 1.9.4 - 06.21.2022 =
+* Updated EDD plugin updater class to version 1.9.2.
+* Added default exclusion to REST API option for compatibility.
 
 = 1.9.3 - 06.17.2022 =
 * Remove Used CSS filter adjustment to fix an issue where certain WordPress post functions wouldn't be available when trying to selectively disable the feature.
