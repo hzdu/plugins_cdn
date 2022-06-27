@@ -2,7 +2,7 @@
  * Variation Swatches for WooCommerce - PRO 
  * 
  * Author: Emran Ahmed ( emran.bd.08@gmail.com ) 
- * Date: 6/23/2022, 8:34:41 PM
+ * Date: 6/26/2022, 5:23:57 PM
  * Released under the GPLv3 license.
  */
 /******/ (function(modules) { // webpackBootstrap
@@ -226,7 +226,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         this.$element.addClass('wvs-pro-loaded'); // Events
 
         this.$element.on('click.wc-variation-form', '.wvs_archive_reset_variations > a', this.onReset);
-        this.$element.on('change.wc-variation-form', '.variations select', this.onChange);
+        this.$element.on('change.wc-variation-form', '.variations select', this.onChange); // Start
+
         this.$element.on('check_variations.wc-variation-form', this.onCheckVariations);
         this.$element.on('update_variation_values.wc-variation-form', this.onUpdateAttributes);
         this.$element.on('found_variation.wc-variation-form', this.onFoundVariation);
@@ -254,9 +255,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
           // Init after gallery.
           setTimeout(function () {
-            _this2.$element.trigger('check_variations');
+            _this2.$element.trigger('check_variations'); // @TODO: Issue if "wc_variation_form" triggers
 
-            _this2.$element.trigger('wc_variation_form', _this2);
+
+            _this2.$element.trigger('wc_variation_form_pro', _this2);
 
             _this2.swatchInit();
           }, 100);
@@ -842,7 +844,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
             if (woo_variation_swatches_pro_options.clear_on_reselect) {
               // Non Selected Item Should Select
-              $(element).on('click.wvs', 'li.variable-item:not(.selected):not(.radio-variable-item)', function (event) {
+              $(element).on('click.wc-variation-form', 'li.variable-item:not(.selected):not(.radio-variable-item)', function (event) {
                 event.preventDefault();
                 event.stopPropagation();
                 var value = $(this).data('value');
@@ -856,7 +858,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 $(this).trigger('wvs-selected-item', [value, select, self.$element]); // Custom Event for li
               }); // Selected Item Should un Select
 
-              $(element).on('click.wvs', 'li.variable-item.selected:not(.radio-variable-item)', function (event) {
+              $(element).on('click.wc-variation-form', 'li.variable-item.selected:not(.radio-variable-item)', function (event) {
                 event.preventDefault();
                 event.stopPropagation();
                 var value = $(this).val();
@@ -871,13 +873,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
               }); // RADIO
               // On Click trigger change event on Radio button
 
-              $(element).on('click.wvs', 'input.variable-item-radio-input:radio', function (event) {
+              $(element).on('click.wc-variation-form', 'input.variable-item-radio-input:radio', function (event) {
                 event.stopPropagation();
-                $(this).trigger('change.wvs', {
+                $(this).trigger('change.wc-variation-form', {
                   radioChange: true
                 });
               });
-              $(element).on('change.wvs', 'input.variable-item-radio-input:radio', function (event, params) {
+              $(element).on('change.wc-variation-form', 'input.variable-item-radio-input:radio', function (event, params) {
                 event.preventDefault();
                 event.stopPropagation();
 
@@ -900,7 +902,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 }
               });
             } else {
-              $(element).on('click.wvs', 'li.variable-item:not(.radio-variable-item)', function (event) {
+              $(element).on('click.wc-variation-form', 'li.variable-item:not(.radio-variable-item)', function (event) {
                 event.preventDefault();
                 event.stopPropagation();
                 var value = $(this).data('value');
@@ -914,7 +916,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 $(this).trigger('wvs-selected-item', [value, select, self._element]); // Custom Event for li
               }); // Radio
 
-              $(element).on('change.wvs', 'input.variable-item-radio-input:radio', function (event) {
+              $(element).on('change.wc-variation-form', 'input.variable-item-radio-input:radio', function (event) {
                 event.preventDefault();
                 event.stopPropagation();
                 var value = $(this).val();
@@ -1004,7 +1006,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         value: function reAttachCatalogModeHover() {
           if (!woo_variation_swatches_pro_options.is_mobile && this.threshold_max < this.total_children && woo_variation_swatches_pro_options.enable_catalog_mode && 'hover' === woo_variation_swatches_pro_options.catalog_mode_trigger) {
             this.$element.find('ul.variable-items-wrapper').each(function (i, element) {
-              $(element).one('mouseenter.wvs', 'li.variable-item:not(.radio-variable-item):not(.selected)', function () {
+              $(element).one('mouseenter.wc-variation-form', 'li.variable-item:not(.radio-variable-item):not(.selected)', function () {
                 $(this).trigger('click');
               });
             });
@@ -1233,7 +1235,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 jQuery(function ($) {
   try {
-    $(document.body).on('woo_variation_swatches_pro_init', function () {
+    $(document).on('woo_variation_swatches_pro_init', function () {
       $('.wvs-archive-variations-wrapper:not(.wvs-pro-loaded)').WooVariationSwatchesPro();
     }).trigger('woo_variation_swatches_pro_init');
   } catch (err) {
@@ -1243,15 +1245,15 @@ jQuery(function ($) {
 
 
   $(document).on('jet-filter-content-rendered.wvs', function () {
-    $(document.body).trigger('woo_variation_swatches_pro_init');
+    $(document).trigger('woo_variation_swatches_pro_init');
   }); // Support for Yith Infinite Scroll
 
   $(document).on('yith_infs_added_elem.wvs', function () {
-    $(document.body).trigger('woo_variation_swatches_pro_init');
+    $(document).trigger('woo_variation_swatches_pro_init');
   }); // Yith Composite Product
 
   $(document).on('wc_variation_form.wvs', '.ywcp_inner_selected_container:not(.wvs-loaded)', function (event) {
-    $(document.body).trigger('woo_variation_swatches_pro_init');
+    $(document).trigger('woo_variation_swatches_pro_init');
   }); // Try to cover all ajax data complete
 
   $(document).ajaxComplete(function (event, request, settings) {
@@ -1260,19 +1262,19 @@ jQuery(function ($) {
   }); // Support for Jetpack's Infinite Scroll,
 
   $(document.body).on('post-load.wvs', function () {
-    $(document.body).trigger('woo_variation_swatches_pro_init');
+    $(document).trigger('woo_variation_swatches_pro_init');
   }); // Support for Yith Ajax Filter
 
   $(document).on('yith-wcan-ajax-filtered.wvs', function () {
-    $(document.body).trigger('woo_variation_swatches_pro_init');
+    $(document).trigger('woo_variation_swatches_pro_init');
   }); // Support for beRocket ajax filters
 
   $(document).on('berocket_ajax_products_loaded.wvs berocket_ajax_products_infinite_loaded.wvs', function () {
-    $(document.body).trigger('woo_variation_swatches_pro_init');
+    $(document).trigger('woo_variation_swatches_pro_init');
   }); // Flatsome Infinite Scroll Support
 
   $('.shop-container .products, .infinite-scroll-wrap').on('append.infiniteScroll', function (event, response, path) {
-    $(document.body).trigger('woo_variation_swatches_pro_init');
+    $(document).trigger('woo_variation_swatches_pro_init');
   }); // FacetWP Load More
 
   $(document).on('facetwp-loaded.wvs', function () {
@@ -1280,12 +1282,12 @@ jQuery(function ($) {
   }); // Savoy Load More
 
   $(document).on('nm_infload_after.wvs nm_ajax_shop_update_content.wvs', function () {
-    $(document.body).trigger('woo_variation_swatches_pro_init');
+    $(document).trigger('woo_variation_swatches_pro_init');
   }); // WooCommerce Filter Nav
 
   $('body').on('aln_reloaded.wvs', function () {
     _.delay(function () {
-      $(document.body).trigger('woo_variation_swatches_pro_init');
+      $(document).trigger('woo_variation_swatches_pro_init');
     }, 100);
   });
 });

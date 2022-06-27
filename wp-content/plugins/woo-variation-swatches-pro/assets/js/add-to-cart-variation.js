@@ -2,7 +2,7 @@
  * Variation Swatches for WooCommerce - PRO 
  * 
  * Author: Emran Ahmed ( emran.bd.08@gmail.com ) 
- * Date: 6/23/2022, 8:34:41 PM
+ * Date: 6/26/2022, 5:23:57 PM
  * Released under the GPLv3 license.
  */
 /******/ (function(modules) { // webpackBootstrap
@@ -182,7 +182,7 @@
     $form.on('woo_variation_swatches_add-to-cart-variation_init.wc-variation-form', {
       variationForm: self
     }, self.init);
-    $form.trigger('woo_variation_swatches_add-to-cart-variation_init', self);
+    $form.trigger('woo_variation_swatches_add-to-cart-variation_init', self); // this.init2();
   };
 
   VariationForm.prototype.start = function (event) {
