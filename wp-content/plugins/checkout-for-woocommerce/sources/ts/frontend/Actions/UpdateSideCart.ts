@@ -44,6 +44,7 @@ class UpdateSideCart extends Action {
 
         if ( resp.result ) {
             jQuery( document.body ).trigger( 'wc_fragment_refresh' );
+            jQuery( document.body ).trigger( 'updated_cart_totals' );
         }
 
         this.blockedElements.unblock();

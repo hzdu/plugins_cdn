@@ -22,10 +22,6 @@ class AddToCartAction extends Action {
             resp = JSON.parse( resp );
         }
 
-        if ( !resp.result ) {
-            window.location.reload();
-        }
-
         if ( resp.redirect ) {
             window.location.href = resp.redirect;
             return;
@@ -33,6 +29,7 @@ class AddToCartAction extends Action {
 
         jQuery( document.body ).trigger( 'wc_fragment_refresh' );
         jQuery( document.body ).trigger( 'added_to_cart', [ resp.fragments, resp.cart_hash, this.button ] );
+        jQuery( document.body ).trigger( 'updated_cart_totals' );
     }
 
     public complete(): void {

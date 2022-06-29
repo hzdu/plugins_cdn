@@ -121,6 +121,10 @@ cfwDomReady( () => {
         '#side_cart_free_shipping_threshold, #side_cart_amount_remaining_message, #side_cart_free_shipping_message, #side_cart_free_shipping_progress_indicator_color, #side_cart_free_shipping_progress_bg_color',
     );
 
+    new FieldToggler( '#pickup_methods_other', '#pickup_shipping_method_other_label, #cfw_checkbox_enable_pickup_shipping_method_other_regex' );
+    new FieldToggler( '#cfw_checkbox_enable_pickup', '#pickup_option_label, [name="_cfw__setting[pickup_methods][string][]"], #pickup_shipping_method_other_label, #cfw_checkbox_enable_pickup_shipping_method_other_regex' );
+    new FieldToggler( '#cfw_checkbox_enable_highlighted_countries', '[name="_cfw__setting[highlighted_countries][string][]"]' );
+
     /**
      * Image Pickers
      */

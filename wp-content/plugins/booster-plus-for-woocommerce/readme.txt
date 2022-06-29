@@ -3,7 +3,7 @@ Contributors: anbinder, karzin, pluggabl
 Tags: woocommerce, booster for woocommerce, woocommerce jetpack
 Requires at least: 4.4
 Tested up to: 6.0
-Stable tag: 5.5.8
+Stable tag: 5.5.9
 License: GNU General Public License v3.0
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -203,6 +203,14 @@ You can see the differences between versions in this [table](https://booster.io/
 8. Booster for WooCommerce - Emails & Misc.
 
 == Changelog ==
+
+= 5.5.9 29/06/2022 =
+
+* FIXED - PRICES & CURRENCIES - Wholesale Price - Fixed debug.log warning.
+* FIXED - PAYMENT GATEWAYS - Gateways Fees and Discounts - Updated the payment fee calculation.
+* FIXED - PRODUCTS - User Products - Fixed conflict with product owner notification.
+* WooCommerce 6.6.1 tested
+* WordPress 6.0 tested
 
 = 5.5.8 25/05/2022 =
 

@@ -24,6 +24,17 @@
 				</a>
 			</div>
 		</div>
+
+		<div class="tva-product-info-tooltip tva-ar-tooltip">
+			<h3><?php echo esc_html__( 'Success!', TVA_Const::T ); ?></h3>
+			<p><?php echo esc_html__( 'Your course is now part of a product.', TVA_Const::T ); ?></p>
+
+			<p><?php echo sprintf( esc_html__( "To control how users get access to the product, go to the Product's %s screen.", TVA_Const::T ), '<a href="javascript:void(0)" class="click" data-fn="linkToRules">' . esc_html__( 'Access requirements', TVA_Const::T ) . '</a>' ); ?></p>
+
+			<button class="tva-tooltip-dismiss click" data-fn="hideTooltip" type="button"><?php echo esc_html__( 'Got it', TVA_Const::T ); ?></button>
+			<div class="ui-tt-arrow bottom right-side"></div>
+		</div>
+
 		<div class="tva-products-wrapper"></div>
 	</div>
 </div>

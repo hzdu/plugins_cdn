@@ -163,8 +163,10 @@ class ParsleyService implements FieldValidationRefresher {
                     LoggingService.log( `Reason fieldContainerIsHidden: ${fieldContainerIsHidden ? 'true' : 'false'}` );
                     LoggingService.log( `Reason fieldIsAHiddenIconicDeliverySlotsField: ${fieldIsAHiddenIconicDeliverySlotsField ? 'true' : 'false'}` );
 
-                    // hide the message wrapper
-                    fieldInstance._ui.$errorsWrapper.css( 'display', 'none' );
+                    // hide the message wrapper if the field itself is specifically display none
+                    if ( fieldInstance.$element.css( 'display' ) === 'none' ) {
+                        fieldInstance._ui.$errorsWrapper.css( 'display', 'none' );
+                    }
 
                     // change the validation result to true
                     fieldInstance.validationResult = true;
@@ -244,7 +246,7 @@ class ParsleyService implements FieldValidationRefresher {
                     stateField.attr( {
                         'data-parsley-trigger': stateFieldRequired ? 'keyup change focusout' : null,
                         'data-parsley-group': stateFieldRequired ? group : null,
-                        'data-parsley-required': stateFieldRequired.toString(),
+                        'data-parsley-required': stateFieldRequired?.toString() ?? 'false',
                     } );
                 } );
 

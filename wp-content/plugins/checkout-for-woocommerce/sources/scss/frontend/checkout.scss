@@ -53,6 +53,7 @@
 @import "components/fetchify-address-autocomplete";
 @import "components/login-modal";
 @import "components/modaal-styles";
+@import "components/delivery-method";
 
 // Compatibility Classes
 @import "compatibility/elementor-pro";
@@ -134,9 +135,9 @@
 }
 
 .cfw-hide-shipping {
-    #cfw-breadcrumb li.shipping-tab,
+    #cfw-breadcrumb li.cfw-shipping-method,
     #cfw-shipping-method,
-    #cfw-payment-method-address-review li.shipping-method,
+    .cfw-review-pane li.shipping-method,
     .cfw-continue-to-shipping-btn,
     .cfw-return-to-shipping-btn {
         display: none !important;

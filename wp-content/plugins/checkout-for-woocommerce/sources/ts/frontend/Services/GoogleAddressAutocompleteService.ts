@@ -38,7 +38,7 @@ class GoogleAddressAutocompleteService {
 
         const options = {
             fields: [ 'address_component' ],
-            types: [ DataService.getSetting( 'google_address_autocomplete_type' ) ],
+            types: DataService.getSetting( 'google_address_autocomplete_type' ).split( '|' ),
         };
 
         const autocomplete =  new google.maps.places.Autocomplete( field, options );

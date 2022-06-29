@@ -3260,6 +3260,9 @@ ThriveUlt.views = ThriveUlt.views || {};
 			},
 			changeEvents: function ( e ) {
 				this.model.get( 'trigger_options' ).event = e.target.value;
+				if( e.target.value!=='move' && this.model.get( 'trigger_options' ).end_id ){
+					this.model.get( 'trigger_options' ).end_id_old=this.model.get( 'trigger_options' ).end_id;
+				}
 				this.renderTriggers();
 				this.renderEvents();
 				this.renderSummary();

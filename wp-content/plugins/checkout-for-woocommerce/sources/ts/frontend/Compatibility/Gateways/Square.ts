@@ -22,7 +22,7 @@ class Square extends Compatibility {
         } );
 
         jQuery( document.body ).on( 'cfw-after-tab-change', () => {
-            ( <any>window ).wc_square_credit_card_payment_form_handler.payment_form.recalculateSize();
+            ( <any>window )?.wc_square_credit_card_payment_form_handler?.payment_form?.recalculateSize();
         } );
     }
 

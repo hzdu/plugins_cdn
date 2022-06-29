@@ -1166,7 +1166,7 @@ TL_Front.open_ribbon = function ( $target ) {
 
 		var $header = ThriveGlobal.$j( 'body' ).find( '.thrv_header.tve-scroll-sticky' );
 
-		if ( $header.length ) {
+		if ( $header.length && position === 'top' ) {
 			var extraOffset = parseFloat( $header.css( '--tcb-header-extra-offset' ) ) || 0;
 
 			$header.css( '--tcb-header-extra-offset', extraOffset + initial_height + 'px' );

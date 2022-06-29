@@ -3,6 +3,7 @@ import AccountValidation                     from './AccountValidation';
 import AmazonPayLegacy                       from './Compatibility/Gateways/AmazonPayLegacy';
 import AmazonPayV1                           from './Compatibility/Gateways/AmazonPayV1';
 import AmazonPay                             from './Compatibility/Gateways/AmazonPay';
+import BraintreeForWooCommerce               from './Compatibility/Gateways/BraintreeForWooCommerce';
 import Braintree                             from './Compatibility/Gateways/Braintree';
 import KlarnaCheckout                        from './Compatibility/Gateways/KlarnaCheckout';
 import KlarnaPayments                        from './Compatibility/Gateways/KlarnaPayments';
@@ -42,6 +43,7 @@ import LostPasswordModal                     from './Components/LostPasswordModa
 import OrderBump                             from './Components/OrderBump';
 import PaymentRequestButtons                 from './Components/PaymentRequestButtons';
 import TermsAndConditions                    from './Components/TermsAndConditions';
+import Pickup                                from './Features/Pickup';
 import AddressInternationalizationService    from './Services/AddressInternationalizationService';
 import AlertService                          from './Services/AlertService';
 import BillingAddressSyncService             from './Services/BillingAddressSyncService';
@@ -62,7 +64,6 @@ import TooltipService                        from './Services/TooltipService';
 import UpdateCheckoutService                 from './Services/UpdateCheckoutService';
 import ValidationService                     from './Services/ValidationService';
 import ZipAutocompleteService                from './Services/ZipAutocompleteService';
-import BraintreeForWooCommerce from "./Compatibility/Gateways/BraintreeForWooCommerce";
 
 /**
  * The main class of the front end checkout system
@@ -209,6 +210,11 @@ class Main {
         new OrderBump();
         new AddableFields();
         new FullName();
+
+        /**
+         * Features
+         */
+        new Pickup();
 
         if ( hasDiscreetAddress1Fields ) {
             new DiscreetAddressLine1Fields().setupListeners();

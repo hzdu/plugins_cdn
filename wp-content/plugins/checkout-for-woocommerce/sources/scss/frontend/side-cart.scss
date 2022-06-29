@@ -64,6 +64,7 @@ body.admin-bar {
     -moz-osx-font-smoothing: grayscale;
     word-break: normal;
     line-height: 1;
+    visibility: hidden;
 
     .slick-dots button {
         font-size: 8px;
@@ -189,6 +190,7 @@ body.admin-bar {
     table {
         width: 100%;
         border: none;
+        table-layout: auto;
 
         td, th {
             text-transform: none;
@@ -241,6 +243,12 @@ body.admin-bar {
 
     tr:hover .cfw-remove-item-button {
         opacity: 1;
+    }
+
+    @include media-breakpoint-down(lg) {
+        .cfw-remove-item-button {
+            opacity: 1;
+        }
     }
 
     .cfw-primary-btn {
@@ -414,6 +422,7 @@ body.cfw-side-cart-open {
         animation-duration: 0.4s;
         animation-iteration-count: 1;
         animation-timing-function: ease;
+        animation-fill-mode: both;
     }
 }
 
@@ -433,6 +442,7 @@ body.cfw-side-cart-close {
         animation-duration: 0.4s;
         animation-iteration-count: 1;
         animation-timing-function: ease;
+        animation-fill-mode: both;
     }
 }
 
@@ -454,9 +464,11 @@ html[dir="rtl"] .cfw-side-cart-close-btn svg {
 
 @keyframes cfw-side-cart-slide-in {
     0% {
+        visibility: visible;
         right: -480px;
     }
     100% {
+        visibility: visible;
         right: 0;
     }
 }
@@ -473,9 +485,11 @@ html[dir="rtl"] .cfw-side-cart-close-btn svg {
 
 @keyframes cfw-side-cart-slide-out {
     0% {
+        visibility: visible;
         right: 0;
     }
     100% {
+        visibility: hidden;
         right: -480px;
     }
 }

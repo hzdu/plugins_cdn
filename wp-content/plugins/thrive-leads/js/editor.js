@@ -77,7 +77,7 @@ var TL_Editor_Page = {};
 		$replace.empty().unwrap().replaceWith( $new_content );
 
 		TVE.Editor_Page.initEditorActions( true ); // make sure old rules are added to the end of the desktop media query
-		$new_content.find( '[data-css]' ).each( function () {
+		$new_content.find( '[data-css]:not(.thrv_symbol  *)' ).each( function () {
 			$(this).head_css_clone();
 		} );
 	};

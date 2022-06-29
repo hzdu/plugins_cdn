@@ -67,6 +67,7 @@ class SideCart {
         }
 
         jQuery( 'body' ).addClass( 'cfw-side-cart-open' ).removeClass( 'cfw-side-cart-close' );
+        jQuery( '.cfw-side-cart-floating-button' ).attr( 'aria-expanded', 'true' );
     }
 
     closeCart( e?: Event ): void {
@@ -74,6 +75,7 @@ class SideCart {
             e.preventDefault();
         }
         jQuery( 'body' ).removeClass( 'cfw-side-cart-open' ).addClass( 'cfw-side-cart-close' );
+        jQuery( '.cfw-side-cart-floating-button' ).attr( 'aria-expanded', 'false' );
     }
 
     removeItem( event: Event ): void {

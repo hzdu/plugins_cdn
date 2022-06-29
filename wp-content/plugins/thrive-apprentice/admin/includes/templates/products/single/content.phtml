@@ -1,5 +1,5 @@
 <div class="tva-product-header mb-20">
-	<div>
+	<div class="tva-product-header-inner">
 		<div class="tva-product-edit">
 			<?php tva_get_svg_icon( 'drip-products-membership' ); ?>
 			<div>
@@ -17,6 +17,12 @@
 			<a class="tva-back" href="#products"><?php echo esc_attr__( 'Back to products dashboard', TVA_Const::T ) ?></a>
 			<#= this.getBackLink() #>
 		</div>
+	</div>
+	<div class="tva-product-info-tooltip tva-product-tooltip">
+		<h3><?php echo esc_html__( 'More Product Settings', TVA_Const::T ); ?></h3>
+		<p><?php echo esc_html__( 'You can control how your product is accessed by your website visitors by using the options in this menu.', TVA_Const::T ); ?></p>
+		<button class="tva-tooltip-dismiss click" data-fn="hideTooltip" type="button"><?php echo esc_html__( 'Got it', TVA_Const::T ); ?></button>
+		<div class="ui-tt-arrow left"></div>
 	</div>
 </div>
 

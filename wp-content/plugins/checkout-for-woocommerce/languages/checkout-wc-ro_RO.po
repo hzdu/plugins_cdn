@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Checkout for WooCommerce\n"
-"POT-Creation-Date: 2022-02-25 16:24-0500\n"
-"PO-Revision-Date: 2022-02-25 16:49-0500\n"
+"POT-Creation-Date: 2022-06-28 10:55-0400\n"
+"PO-Revision-Date: 2022-06-28 11:10-0400\n"
 "Last-Translator: \n"
 "Language-Team: support@checkoutwc.com\n"
 "Language: ro\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n==0 || (n!=1 && n%100>=1 && n"
 "%100<=19) ? 1 : 2);\n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Poedit 3.1\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-Flags-xgettext: --add-comments=translators:\n"
 "X-Poedit-WPHeader: checkout-for-woocommerce.php\n"
@@ -40,34 +40,26 @@ msgstr "Adresa de e-mail conține un nume de domeniu invalid."
 msgid "Please enter a valid %s."
 msgstr "Vă rugăm să introduceți un %s valid."
 
-#: includes/AddressFieldsAugmenter.php:102
+#: includes/AddressFieldsAugmenter.php:114
 msgid "Full name"
 msgstr "Nume complet"
 
-#: includes/AddressFieldsAugmenter.php:155
+#: includes/AddressFieldsAugmenter.php:167
 msgid "House number"
 msgstr "Numărul casei"
 
-#: includes/AddressFieldsAugmenter.php:167
+#: includes/AddressFieldsAugmenter.php:179
 msgid "Street name"
 msgstr "Numele străzii"
 
-#: includes/AddressFieldsAugmenter.php:193
-msgid "Add Address Line 2"
-msgstr "Adăugați linia de adresă 2"
-
-#: includes/AddressFieldsAugmenter.php:208
-msgid "Add Company"
-msgstr "Adăugați Compania"
-
-#: includes/Compatibility/Gateways/PayPalForWooCommerce.php:120
-#: sources/php/template-functions.php:692
-#: sources/php/template-functions.php:1323
-#: sources/php/template-functions.php:2041
+#: includes/Compatibility/Gateways/PayPalForWooCommerce.php:153
+#: sources/php/template-functions.php:705
+#: sources/php/template-functions.php:1297
+#: sources/php/template-functions.php:2005
 msgid "Billing address"
 msgstr "Adresă de facturare"
 
-#: includes/Compatibility/Gateways/PayPalForWooCommerce.php:283
+#: includes/Compatibility/Gateways/PayPalForWooCommerce.php:319
 msgid "Logged in with PayPal. Please continue your order below."
 msgstr "Logat cu PayPal. Vă rugăm să continuați comanda de mai jos."
 
@@ -76,41 +68,81 @@ msgstr "Logat cu PayPal. Vă rugăm să continuați comanda de mai jos."
 msgid "CheckoutWC"
 msgstr "CheckoutWC"
 
-#: includes/Features/SideCart.php:200 sources/php/template-functions.php:1546
+#: includes/Features/HideOptionalAddressFields.php:37
+msgid "Add Address Line 2"
+msgstr "Adăugați linia de adresă 2"
+
+#: includes/Features/HideOptionalAddressFields.php:44
+msgid "Add Company"
+msgstr "Adăugați Compania"
+
+#: includes/Features/Pickup.php:50
+msgid "Pick up"
+msgstr "Ridicare"
+
+#: includes/Features/Pickup.php:54
+msgid "Delivery method"
+msgstr "Metoda de livrare"
+
+#: includes/Features/Pickup.php:66
+msgid "Ship"
+msgstr "Navă"
+
+#: includes/Features/Pickup.php:113
+msgid "Pickup locations"
+msgstr "Locații de preluare"
+
+#: includes/Features/Pickup.php:322
+msgid "Pick up in store"
+msgstr "Ridicați în magazin"
+
+#: includes/Features/Pickup.php:342 includes/Managers/AssetManager.php:511
+msgid "Pickup"
+msgstr "Pickup"
+
+#: includes/Features/Pickup.php:377
+msgid "Pickup instructions"
+msgstr "Instrucțiuni de preluare"
+
+#: includes/Features/SideCart.php:174
+msgid "Close Cart"
+msgstr "Închide coș"
+
+#: includes/Features/SideCart.php:209 sources/php/template-functions.php:1503
 msgid "Apply"
 msgstr "Aplică"
 
-#: includes/Features/SideCart.php:214 sources/php/template-functions.php:1575
+#: includes/Features/SideCart.php:223 sources/php/template-functions.php:1532
 msgid "Have a promo code? Click here."
 msgstr "Ai un cod promoțional? Click aici."
 
-#: includes/Features/SideCart.php:235 sources/php/template-functions.php:1596
+#: includes/Features/SideCart.php:244 sources/php/template-functions.php:1553
 msgid "Promo Code"
 msgstr "Cod promoțional"
 
-#: includes/Features/SideCart.php:243 sources/php/template-functions.php:1604
+#: includes/Features/SideCart.php:252 sources/php/template-functions.php:1561
 msgid "Enter Promo Code"
 msgstr "Introduceți codul promoțional"
 
-#: includes/Features/SideCart.php:429
+#: includes/Features/SideCart.php:484
 msgid "Congrats! You get free standard shipping."
 msgstr "Felicitări! Aveți transport standard gratuit."
 
 #. translators: %s is the amount remaining for free shipping
-#: includes/Features/SideCart.php:434
+#: includes/Features/SideCart.php:497
 #, php-format
 msgid "You're %s away from free shipping!"
 msgstr "Sunteți la %s distanță de transportul gratuit!"
 
-#: includes/Features/SmartyStreets.php:69
+#: includes/Features/SmartyStreets.php:72
 msgid "Use This Address"
 msgstr "Utilizați această adresă"
 
-#: includes/Features/SmartyStreets.php:73
+#: includes/Features/SmartyStreets.php:76
 msgid "Address Verification"
 msgstr "Verificare"
 
-#: includes/Features/SmartyStreets.php:76
+#: includes/Features/SmartyStreets.php:79
 msgid ""
 "The shipping address you provided does not match the suggested address from "
 "our verification service. Please verify your address."
@@ -118,33 +150,33 @@ msgstr ""
 "Adresa de expediere pe care ați furnizat-o nu se potrivește cu adresa "
 "sugerată de serviciul nostru de verificare. Vă rugăm să vă verificați adresa."
 
-#: includes/Features/SmartyStreets.php:84
+#: includes/Features/SmartyStreets.php:87
 msgid "You Entered"
 msgstr "Ați intrat"
 
-#: includes/Features/SmartyStreets.php:98
+#: includes/Features/SmartyStreets.php:101
 msgid "We Suggest"
 msgstr "Vă sugerăm"
 
-#: includes/Managers/AssetManager.php:435
+#: includes/Managers/AssetManager.php:500
 msgid "Please enter a valid phone number."
 msgstr "Te rugăm să introduci un număr de telefon valid."
 
-#: includes/Managers/AssetManager.php:436
+#: includes/Managers/AssetManager.php:501
 msgid "Please enter your first and last name."
 msgstr "Vă rugăm să introduceți numele și prenumele dumneavoastră."
 
-#: includes/Managers/AssetManager.php:437
-#: sources/php/template-functions.php:702
-#: sources/php/template-functions.php:2025
+#: includes/Managers/AssetManager.php:502
+#: sources/php/template-functions.php:715
+#: sources/php/template-functions.php:1989
 msgid "Shipping address"
 msgstr "Adresă de livrare"
 
-#: includes/Managers/AssetManager.php:438
+#: includes/Managers/AssetManager.php:503
 msgid "Please enter a new quantity:"
 msgstr "Introduceți o cantitate nouă:"
 
-#: includes/Managers/AssetManager.php:439
+#: includes/Managers/AssetManager.php:504
 msgid ""
 "3-digit security code usually found on the back of your card. American "
 "Express cards have a 4-digit code located on the front."
@@ -152,81 +184,90 @@ msgstr ""
 "Codul de securitate din 3 cifre, de obicei, se găsește pe partea din spate a "
 "cardului. Cardurile American Express au un cod de 4 cifre situat în față."
 
-#: includes/Managers/AssetManager.php:440
+#: includes/Managers/AssetManager.php:505
 msgid "Are you sure you want to remove this item from your cart?"
 msgstr "Sigur doriți să eliminați acest produs din coș?"
 
-#: includes/Managers/AssetManager.php:445
+#: includes/Managers/AssetManager.php:510
 msgid "Please enter a valid postcode / ZIP."
 msgstr "Te rog introdu un cod poștal valid."
 
-#: sources/php/functions.php:930
+#: sources/php/functions.php:188
+msgid "Ship to"
+msgstr "Livrare către"
+
+#: sources/php/functions.php:1127
 msgid "No shipping methods available"
 msgstr "Nu există metode de expediere disponibile"
 
-#: sources/php/functions.php:1101
+#: sources/php/functions.php:1298
 msgid "Complete Order"
 msgstr "Comandă finalizată"
 
-#: sources/php/functions.php:1161 sources/php/template-functions.php:1107
-#: sources/php/template-functions.php:2006
-#: sources/php/template-functions.php:2310
+#: sources/php/functions.php:1358 sources/php/template-functions.php:1067
+#: sources/php/template-functions.php:1970
+#: sources/php/template-functions.php:2274
 msgid "Payment"
 msgstr "Plată"
 
-#: sources/php/functions.php:1186
+#: sources/php/functions.php:1383
 msgid "All transactions are secure and encrypted."
 msgstr "Toate tranzacțiile sunt sigure și criptate."
 
-#: sources/php/functions.php:1207
+#: sources/php/functions.php:1404
 msgid "Your order is free. No payment is required."
 msgstr "Comanda ta e gratuită. Nu este necesară plata."
 
-#: sources/php/functions.php:1252
+#: sources/php/functions.php:1449
 msgid "Same as shipping address"
 msgstr "La fel ca adresa de livrare"
 
-#: sources/php/functions.php:1272
+#: sources/php/functions.php:1469
 msgid "Use a different billing address"
 msgstr "Utilizați o adresa de facturare diferită"
 
-#: sources/php/functions.php:1444
+#: sources/php/functions.php:1641
 msgid "Return to cart"
 msgstr "Revenire la coș"
 
-#: sources/php/functions.php:1481
+#: sources/php/functions.php:1678
 msgid "Continue to shipping"
 msgstr "Continuați către livrare"
 
-#: sources/php/functions.php:1518
+#: sources/php/functions.php:1700
 msgid "Continue to payment"
 msgstr "Continuați spre plata"
 
-#: sources/php/functions.php:1538
+#: sources/php/functions.php:1736
 msgid "Review order"
 msgstr "Revizuire"
 
-#: sources/php/functions.php:1558
+#: sources/php/functions.php:1756
 msgid "Return to information"
 msgstr "Revenire la informații"
 
-#: sources/php/functions.php:1578
+#: sources/php/functions.php:1776
 msgid "Return to shipping"
 msgstr "Revenirea la livrare"
 
-#: sources/php/functions.php:1598
+#: sources/php/functions.php:1796
 msgid "Return to payment"
 msgstr "Revenirea la plată"
 
-#: sources/php/functions.php:2093
+#: sources/php/functions.php:2293
 msgid "Or"
 msgstr "Sau"
 
-#: sources/php/functions.php:2259
+#: sources/php/functions.php:2372
+#, php-format
+msgid "You can only have 1 %s in your cart."
+msgstr "Puteti avea in Listă doar 1 %s."
+
+#: sources/php/functions.php:2463
 msgid "Decrement"
 msgstr "Scădere"
 
-#: sources/php/functions.php:2265
+#: sources/php/functions.php:2469
 msgid "Increment"
 msgstr "Crestere"
 
@@ -243,8 +284,8 @@ msgid "Express checkout"
 msgstr "Comandă rapida"
 
 #: sources/php/template-functions.php:295
-#: sources/php/template-functions.php:1988
-#: sources/php/template-functions.php:2281
+#: sources/php/template-functions.php:1952
+#: sources/php/template-functions.php:2245
 msgid "Information"
 msgstr "Informații"
 
@@ -252,39 +293,39 @@ msgstr "Informații"
 msgid "Order review"
 msgstr "Revizuirea comenzii"
 
-#: sources/php/template-functions.php:382
+#: sources/php/template-functions.php:386
 msgid "Already have an account with us?"
 msgstr "Ai deja un cont la noi?"
 
-#: sources/php/template-functions.php:394
+#: sources/php/template-functions.php:398
 msgid "Log in for a faster checkout experience."
 msgstr "Conectați-vă pentru o comandă mai rapidă."
 
 #. translators: %s: site name
-#: sources/php/template-functions.php:500
+#: sources/php/template-functions.php:505
 #, php-format
 msgid "Create %s shopping account."
 msgstr "Creează %s cont de cumpărături."
 
-#: sources/php/template-functions.php:512
+#: sources/php/template-functions.php:517
 msgid "If you do not have an account, we will create one for you."
 msgstr "Dacă nu aveți un cont, vom crea unul pentru dvs."
 
 #. translators: %1 is the customer's name, %2 is their email address
-#: sources/php/template-functions.php:544
+#: sources/php/template-functions.php:549
 #, php-format
 msgid "Welcome back, %1$s (%2$s)."
 msgstr "Bine ai revenit, %1$s (%2$s)."
 
-#: sources/php/template-functions.php:554
+#: sources/php/template-functions.php:567
 msgid "Log out."
-msgstr "Deconectare"
+msgstr "Deconectare."
 
-#: sources/php/template-functions.php:572
+#: sources/php/template-functions.php:585
 msgid "Welcome back"
 msgstr "Bine ai revenit"
 
-#: sources/php/template-functions.php:576
+#: sources/php/template-functions.php:589
 msgid ""
 "It looks like you already have an account. Please enter your login details "
 "below."
@@ -292,105 +333,99 @@ msgstr ""
 "Se pare că aveți deja un cont. Vă rugăm să introduceți detaliile de "
 "conectare de mai jos."
 
-#: sources/php/template-functions.php:579
+#: sources/php/template-functions.php:592
 msgid ""
 "If you have shopped with us before, please enter your login details below."
 msgstr ""
 "Dacă ați mai făcut cumpărături la noi, vă rugăm să introduceți datele de "
 "conectare de mai jos."
 
-#: sources/php/template-functions.php:632
+#: sources/php/template-functions.php:645
 msgid "Or continue as guest"
 msgstr "Sau continuați ca invitat"
 
-#: sources/php/template-functions.php:682
-#: sources/php/template-functions.php:2018
+#: sources/php/template-functions.php:695
+#: sources/php/template-functions.php:1982
 msgid "Billing and Shipping address"
 msgstr "Adresă de facturare și livrare"
 
-#: sources/php/template-functions.php:903
+#: sources/php/template-functions.php:921
 #: sources/php/template-functions.php:963
-#: sources/php/template-functions.php:1036
-msgid "Ship to"
-msgstr "Livrare către"
-
-#: sources/php/template-functions.php:926
-#: sources/php/template-functions.php:986
-#: sources/php/template-functions.php:1059
+#: sources/php/template-functions.php:1019
 msgid "Contact"
 msgstr "Contact"
 
-#: sources/php/template-functions.php:934
-#: sources/php/template-functions.php:950
-#: sources/php/template-functions.php:994
-#: sources/php/template-functions.php:1010
-#: sources/php/template-functions.php:1025
-#: sources/php/template-functions.php:1067
-#: sources/php/template-functions.php:1083
-#: sources/php/template-functions.php:1098
-#: sources/php/template-functions.php:1114
+#: sources/php/template-functions.php:929
+#: sources/php/template-functions.php:945
+#: sources/php/template-functions.php:971
+#: sources/php/template-functions.php:987
+#: sources/php/template-functions.php:1002
+#: sources/php/template-functions.php:1027
+#: sources/php/template-functions.php:1043
+#: sources/php/template-functions.php:1058
+#: sources/php/template-functions.php:1074
 msgid "Change"
 msgstr "Schimbă"
 
-#: sources/php/template-functions.php:1017
-#: sources/php/template-functions.php:1090
+#: sources/php/template-functions.php:994
+#: sources/php/template-functions.php:1050
 msgid "Method"
 msgstr "Metodă"
 
-#: sources/php/template-functions.php:1246
+#: sources/php/template-functions.php:1206
 msgid "Shipping method"
 msgstr "Metodă de livrare"
 
-#: sources/php/template-functions.php:1344
+#: sources/php/template-functions.php:1318
 msgid "Select the address that matches your card or payment method."
 msgstr "Selectați adresa care se potrivește cu cardul sau cu metoda de plată."
 
-#: sources/php/template-functions.php:1559
+#: sources/php/template-functions.php:1516
 msgid "Promo code"
 msgstr "Cod promoțional"
 
 #. translators: %s is the order number
-#: sources/php/template-functions.php:1762
+#: sources/php/template-functions.php:1719
 #, php-format
 msgid "Order %s"
 msgstr "Comanda # %s"
 
 #. translators: %s is the billing first name
-#: sources/php/template-functions.php:1775
+#: sources/php/template-functions.php:1732
 #, php-format
 msgid "Thank you %s!"
 msgstr "Vă mulțumesc %s!"
 
-#: sources/php/template-functions.php:1879
+#: sources/php/template-functions.php:1836
 msgid "Order status"
 msgstr "Status comandă"
 
-#: sources/php/template-functions.php:1910
+#: sources/php/template-functions.php:1867
 msgid "Order updates"
 msgstr "Actualizari comanda"
 
-#: sources/php/template-functions.php:1919
+#: sources/php/template-functions.php:1876
 msgid "You’ll get shipping and delivery updates by email."
 msgstr "Veți primi actualizări privind expedierea și livrarea prin e-mail."
 
-#: sources/php/template-functions.php:2002
+#: sources/php/template-functions.php:1966
 msgid "Contact information"
 msgstr "Date de contact"
 
-#: sources/php/template-functions.php:2054
-#: sources/php/template-functions.php:2296
+#: sources/php/template-functions.php:2018
+#: sources/php/template-functions.php:2260
 msgid "Shipping"
 msgstr "Transport"
 
-#: sources/php/template-functions.php:2154
+#: sources/php/template-functions.php:2118
 msgid "Login"
 msgstr "Autentificare"
 
-#: sources/php/template-functions.php:2382
+#: sources/php/template-functions.php:2346
 msgid "Review"
 msgstr "Recenzie"
 
-#: sources/php/template-functions.php:2441
+#: sources/php/template-functions.php:2405
 msgid "Your Cart is Empty"
 msgstr "Coșul este gol"
 

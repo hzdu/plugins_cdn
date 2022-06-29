@@ -15,6 +15,14 @@ declare let cfwEventData: any;
     };
 }( jQuery ) );
 
+( function ( $ ) {
+    // @ts-ignore
+    $.fn.select2 = function ( options ) {
+        LoggingService.logNotice( 'jQuery.selectWoo is not currently supported by CheckoutWC.' );
+        return this;
+    };
+}( jQuery ) );
+
 cfwDomReady( () => {
     const data = cfwEventData;
     const formEl = jQuery( data.elements.checkoutFormSelector );

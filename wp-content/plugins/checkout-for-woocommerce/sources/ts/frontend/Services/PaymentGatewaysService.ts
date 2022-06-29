@@ -83,8 +83,11 @@ class PaymentGatewaysService {
         const currentSelectedPaymentMethod = selectedPaymentMethod.attr( 'id' );
 
         if ( currentSelectedPaymentMethod !== this._selectedGateway ) {
-            jQuery( document.body ).trigger( 'payment_method_selected' );
-            LoggingService.logEvent( 'Fired payment_method_selected event.' );
+            // Give the accordion time to open in case this is helpful
+            setTimeout( () => {
+                jQuery( document.body ).trigger( 'payment_method_selected' );
+                LoggingService.logEvent( `Fired payment_method_selected event. Gateway: ${currentSelectedPaymentMethod}` );
+            }, 400 );
         }
 
         this._selectedGateway = currentSelectedPaymentMethod;

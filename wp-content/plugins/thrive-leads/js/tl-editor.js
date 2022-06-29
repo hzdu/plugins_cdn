@@ -367,6 +367,13 @@ TL_Editor.views.ModalTemplates = TVE.modal.base.extend( {
 			   }
 			   TL_Editor.state.insertResponse( response );
 
+			   /**
+			    * Fix form identifiers on template insert so we dont use the ones from cloud templates
+			    */
+			   TVE.Editor_Page.editor.find( TVE.identifier( 'lead_generation' ) ).each( function () {
+				   TVE.Components.lead_generation.regenerateFormIdentifier( TVE.inner_$( this ) );
+			   } )
+
 			   try {
 				   /**
 				    * Store the id of the variation to be available in TL Dashboard

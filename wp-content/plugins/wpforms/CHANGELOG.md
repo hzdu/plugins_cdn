@@ -1,13 +1,61 @@
 # Changelog
 All notable changes to this project will be documented in this file and formatted via [this recommendation](https://keepachangelog.com/).
 
+## [1.7.5] - 2022-06-28
+### Added
+- Form Tags: add tags to forms with an ability to filter by them; bulk add/edit/delete tags for multiple forms.
+- Payment details stored in entries are now searchable.
+- Display the status of the Lite Connect setting and the date-time when it was enabled (Tools > System Info).
+- New `{unique_value}` smart tag.
+
+### Changed
+- The sodium library is now included in WordPress core, so we removed it from the plugin.
+- Action Scheduler library was updated to 3.4.2 to fix deprecation notices with PHP 8.1.
+- The jquery.validate library updated to 1.19.4.
+- Conditional logic can now be applied to custom fields.
+- Do not allow not completed Challenge to appear in the regular Form Builder.
+
+### Fixed
+- For some fields, their default values were not always previewed in the Form Builder.
+- Regularly clean up additional information we store for each task we run within the plugin.
+- No fatal error anymore in Allow/Deny email lists with very long or international emails.
+- Correctly handle additional CSS classes for each WPForms block on the same page (Block Editor).
+- Properly process survey field values when they were updated to become empty.
+- Modals order was incorrect when the Lite Connect feature was enabled or disabled on mobile.
+- Notification for the last step of the WPForms Challenge was not displayed on the Posts Page with the Gutenberg plugin.
+- Some Form Templates could be empty upon fresh installation.
+- Several minor issues in the Challenge flow are now fixed.
+- Total value for items with a cost lower than 1 dollar was calculated incorrectly.
+- Color Palette was not shown in the Form Builder for duplicated fields.
+- Do not register Gutenberg block styles on the front end when no form is present on a page.
+- Access Controls: Entries list showed all forms with the 'View Others Forms' capability.
+- Form Builder exited automatically when a user with allowed permissions created a form.
+- Limit the number of attempts to get the site key in Lite Connect.
+- Multiple Items (Radio) choice showed "Empty" on a single entry page if a selected choice value is undefined/empty.
+- Search results didn't show old abandoned and partial entries after the latest addon update.
+- Entries Search on the Entries Table page was not fully cleared when a user cleared the search.
+- Several issues were fixed with the ability to move certain fields (Page Break and Entry Preview).
+- Elementor popup was not processing conditional logic on the initial load.
+- Added focus state indication for admin tabs.
+- Duplicated column name appeared in the columns configs on the Entries Table page when a user tried to change settings.
+- Edit Entry: the Date field with a custom format was shown improperly.
+- GDPR sub-settings remained enabled if GDPR is disabled and sub-setting was left enabled.
+- Duplicate/Trash form actions did not work after sorting forms by Name, Author, or Created Date.
+- Improved styling of the warning/loading message for the Modern File Upload field.
+- Notices appeared in the debug.log when the user created a Custom Template and used it in the Form Builder.
+- Entries Overview: search attributes were removed when searching for an empty HTML tag.
+- Empty license was shown improperly in some cases inside the Site Health.
+- Fatal error on PHP 8 after a PayPal payment.
+- hCaptcha pointer had a weird thick dark border since WordPress 6.0.
+- Check GDPR settings before trying to use a cookie.
+
 ## [1.7.4.2] - 2022-05-19
 ### Changed
 - DOMPurify library updated to 2.3.8.
 
 ### Fixed
 - PHP notices avoided in Lite Connect if decrypted entry data didn't contain required keys.
-- Lite Connect: entries counting and import-complete notice improved.
+- Lite Connect: submitted form entries counting and import-complete notice improved.
 - WordPress 6.0 compatibility: WPForms block styling fixed inside the Full Site Editor.
 
 ## [1.7.4.1] - 2022-05-05
