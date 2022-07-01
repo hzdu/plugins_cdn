@@ -181,6 +181,11 @@ class CompleteOrderAction extends Action {
         LoggingService.logError( `CheckoutWC XHR status: ${xhr.status}` );
         LoggingService.logError( `CheckoutWC XHR errorThrown: ${errorThrown}` );
 
+        if ( DataService.getCheckoutParam( 'cfw_debug_mode' ) ) {
+            // Add response text to message
+            message += `<br/>Response text:<pre>${xhr.responseText}</pre>`;
+        }
+
         const alert: Alert = new Alert( 'error', message, 'cfw-alert-error' );
         AlertService.queueAlert( alert );
 

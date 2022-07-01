@@ -268,11 +268,13 @@ span.members-only {
 
 #customize-control-abandoned_resume_send_alert_email,
 #customize-control-owner_attach_pdf,
-#customize-control-attach_pdf {
+#customize-control-attach_pdf,
+#customize-control-alert_email_reply_to {
   display: none;
 }
 
 .happyforms-email-view.has-email.allow-abandoned-resume #customize-control-abandoned_resume_send_alert_email,
+.has-email #customize-control-alert_email_reply_to,
 #customize-control-receive_email_alerts.checked ~ #customize-control-owner_attach_pdf,
 .has-email #customize-control-send_confirmation_email.checked ~ #customize-control-attach_pdf {
   display: block;
@@ -372,7 +374,8 @@ p.happyforms-step-progress-counter {
   z-index: 1;
 }
 
-.happyforms-widget-title h3 {
+.happyforms-widget-title h3,
+.happyforms-part-widget .options .happyforms-choice-item-widget h3 {
   margin: 0;
   padding: 15px;
   font-size: 1em !important;
@@ -479,7 +482,6 @@ a.happyforms-form-part-logic {
 
 a.happyforms-form-part-advanced-settings:before,
 a.happyforms-form-part-logic:before,
-a.advanced-option:before,
 a.advanced-column:before {
   position: relative;
   top: 2px;
@@ -490,13 +492,13 @@ a.advanced-column:before {
 
 a.happyforms-form-part-advanced-settings.opened:before,
 a.happyforms-form-part-logic.opened:before,
-a.advanced-option.opened:before,
 a.advanced-column.opened:before {
   content: "\f342";
 }
 
 a.happyforms-form-remove,
-a.happyforms-form-part-remove {
+a.happyforms-form-part-remove,
+a.happyforms-delete-item {
   color: #d63638;
 }
 
@@ -754,12 +756,18 @@ body.adding-happyforms-parts #customize-preview iframe {
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
 }
 
-.happyforms-part-widget-title-action {
+.happyforms-part-widget-title-action,
+.happyforms-part-item-advanced-option {
   float: right;
   cursor: pointer;
 }
 
-.happyforms-widget-action {
+.customize-control .option-list .happyforms-part-item-advanced input[type=checkbox] {
+  margin-right: 5px;
+}
+
+.happyforms-widget-action,
+.happyforms-advanced-option-action {
   display: inline-block;
   padding: 10px;
   margin: 0;
@@ -777,7 +785,8 @@ body.adding-happyforms-parts #customize-preview iframe {
   line-height: 1;
 }
 
-.happyforms-widget-action .toggle-indicator:before {
+.happyforms-widget-action .toggle-indicator:before,
+.happyforms-part-item-advanced-option .toggle-indicator:before {
   display: block;
   content: '\f140';
   font: normal 20px/1 dashicons;
@@ -792,7 +801,8 @@ body.adding-happyforms-parts #customize-preview iframe {
   content: '\f142';
 }
 
-.happyforms-widget-action:focus .toggle-indicator:before {
+.happyforms-widget-action:focus .toggle-indicator:before,
+.happyforms-part-item-advanced-option:focus .toggle-indicator:before {
   box-shadow: 0 0 0 1px #5b9dd9, 0 0 2px 1px rgba(30, 140, 190, .8);
 }
 
@@ -850,8 +860,6 @@ body.adding-happyforms-parts #customize-preview iframe {
 
 .happyforms-part-widget .options,
 .happyforms-part-widget .options-import {
-  border: 1px solid #ddd;
-  padding: 10px;
   background-color: #fdfdfd;
 }
 
@@ -861,7 +869,6 @@ body.adding-happyforms-parts #customize-preview iframe {
   margin: 0;
 }
 
-.happyforms-part-widget .option-list li,
 .happyforms-part-widget .column-list li,
 .happyforms-part-widget .row-list li {
   margin: 0;
@@ -869,7 +876,6 @@ body.adding-happyforms-parts #customize-preview iframe {
   border-bottom: 1px solid #ddd;
 }
 
-.happyforms-part-widget .option-list li:last-child,
 .happyforms-part-widget .column-list li:last-child,
 .happyforms-part-widget .row-list li:last-child {
   border-bottom: none;
@@ -895,18 +901,6 @@ body.adding-happyforms-parts #customize-preview iframe {
 .happyforms-part-widget .happyforms-part-item-body {
   position: relative;
   padding: 0px 5px 0 20px;
-}
-
-.happyforms-part-widget .happyforms-part-item-handle {
-  position: absolute;
-  left: 0;
-  width: 12px;
-  height: 100%;
-  opacity: 0.2;
-  cursor: move;
-  background-image: url(../svg/draggable-handle.svg);
-  background-size: 6px auto;
-  background-repeat: round;
 }
 
 .happyforms-part-widget .happyforms-part-item-advanced {
@@ -946,8 +940,9 @@ textarea.option-import-area {
 }
 
 .happyforms-part-widget .option-actions {
-  margin-top: 5px;
   text-align: right;
+  margin-top: 5px;
+  margin-bottom: 14px;
 }
 
 .happyforms-part-widget .options .delete-option,
@@ -1189,10 +1184,6 @@ ul.happyforms-parts-list li[data-part-type="date_dummy"] .happyforms-parts-list-
   background-image: url(../svg/icons/date-time.svg);
 }
 
-ul.happyforms-parts-list li[data-part-type="address_dummy"] .happyforms-parts-list-item-title:before {
-  background-image: url(../svg/icons/address.svg);
-}
-
 ul.happyforms-parts-list li[data-part-type="phone_dummy"] .happyforms-parts-list-item-title:before {
   background-image: url(../svg/icons/phone.svg);
 }
@@ -1259,6 +1250,10 @@ ul.happyforms-parts-list li[data-part-type="media_dummy"] .happyforms-parts-list
 
 ul.happyforms-parts-list li[data-part-type="scrollable_terms_dummy"] .happyforms-parts-list-item-title:before {
   background-image: url(../svg/icons/scrollable-terms.svg);
+}
+
+ul.happyforms-parts-list li[data-part-type="toggletip_dummy"] .happyforms-parts-list-item-title:before {
+  background-image: url(../svg/icons/toggletip.svg);
 }
 
 
@@ -1811,4 +1806,83 @@ ul.happyforms-parts-list li[data-part-type="rank_order"] {
 
 .happyforms-widget-content textarea[data-option-attribute=description] {
   margin-bottom: 5px;
+}
+
+
+/* New Choice Interface */
+
+.happyforms-choice-item-widget {
+  cursor: move;
+}
+
+.happyforms-part-widget .options .happyforms-choice-item-widget h3 {
+  display: block;
+}
+
+.happyforms-choice-item-widget .happyforms-part-item-body {
+  padding: 0 10px;
+  margin-top: -13px;
+  padding-top: 12px;
+  z-index: 9;
+  position: relative;
+}
+
+.happyforms-choice-item-widget.happyforms-widget-choice-expanded .happyforms-part-item-body {
+  border: 1px solid #ccd0d4;
+  border-top: 0;
+}
+
+.happyforms-widget-expanded .happyforms-choice-item-widget .happyforms-advanced-option-action .toggle-indicator:before {
+  content: '\f140';
+}
+
+.happyforms-widget-expanded .happyforms-choice-item-widget .happyforms-advanced-option-action  .toggle-indicator.opened:before {
+  content: '\f142';
+}
+
+.happyforms-choice-item-widget {
+  background: #fff;
+  color: #23282d;
+  line-height: 1.4em;
+  -webkit-transition: opacity 0.5s;
+  transition: opacity 0.5s;
+  z-index: 1;
+}
+
+.happyforms-choice-item-widget .happyforms-part-item-handle {
+  border: 1px solid #ccd0d4;
+  overflow: hidden;
+  position: relative;
+  z-index: 99;
+}
+
+.happyforms-choice-item-widget .happyforms-part-item-handle:hover {
+  border-color: #999;
+  -webkit-box-shadow: 0 1px 2px rgb(0 0 0 / 10%);
+  box-shadow: 0 1px 2px rgb(0 0 0 / 10%);
+}
+
+.happyforms-part-widget .happyforms-choice-item-widget .option-actions {
+  text-align: left;
+}
+
+.happyforms-part-widget .links .button {
+  float: right;
+  margin: 0;
+}
+
+.happyforms-part-widget .links .button {
+  float: right;
+  margin-right: 5px;
+}
+
+.happyforms-part-widget .links {
+    text-align: right;
+    display: block;
+    clear: both;
+    padding: 0px 0 30px 0px;
+}
+
+.happyforms-item-choice-widget-title .choice-in-widget-title {
+  color: #646970;
 }

@@ -17,6 +17,7 @@
 			happyForms.classes.views.Part.prototype.initialize.apply( this, arguments );
 
 			this.listenTo( this.model, 'change:label', this.onLabelChange );
+			this.listenTo( this.model, 'change:level', this.onHeadingLevel );
 		},
 
 		onLabelChange: function( model, value ) {
@@ -26,7 +27,17 @@
 			};
 
 			happyForms.previewSend( 'happyforms-part-dom-update', data );
+		},
+
+		onHeadingLevel: function( model, value ) {
+			var data = {
+				id: this.model.id,
+				callback: 'onHeadingLevelChange',
+			};
+
+			happyForms.previewSend( 'happyforms-part-dom-update', data );
 		}
+
 	} );
 
 	var Previewer = happyForms.previewer;
@@ -39,6 +50,22 @@
 
 			$label.text( part.get( 'label' ) );
 		},
+
+		onHeadingLevelChange: function( id, html ) {
+			var part = happyForms.form.get( 'parts' ).get( id );
+			var $part = this.$( html );
+			var $headinglevel = part.get( 'level' );
+			var $label = this.$( '.happyforms-layout-title', $part );
+
+			$label.replaceWith( function() {
+				return $( '<' + $headinglevel + '/>', {
+						html: this.innerHTML,
+						class: $( this ).attr( 'class' )
+			    } );
+			} );
+
+		},
+
 	} );
 
 } ) ( jQuery, _, Backbone, wp.customize, _happyFormsSettings );

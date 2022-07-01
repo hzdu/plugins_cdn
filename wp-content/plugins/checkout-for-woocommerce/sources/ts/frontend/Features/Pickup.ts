@@ -40,6 +40,7 @@ class Pickup {
             jQuery( '#cfw-shipping-same-billing .cfw-radio-reveal-group' ).css( 'border', 'none' );
             jQuery( '#cfw-shipping-same-billing .cfw-radio-reveal-group .cfw-radio-reveal-li' ).css( 'border', 'none' );
             jQuery( '#cfw-shipping-same-billing .cfw-radio-reveal-title-wrap' ).hide();
+            jQuery( '.cfw-shipping-methods-heading' ).hide();
             jQuery( '#cfw-billing-fields-container' )
                 .css( 'padding', '0' )
                 .css( 'border', 'none' )
@@ -60,6 +61,7 @@ class Pickup {
             jQuery( '#cfw-shipping-same-billing .cfw-radio-reveal-group' ).css( 'border', '' );
             jQuery( '#cfw-shipping-same-billing .cfw-radio-reveal-group .cfw-radio-reveal-li' ).css( 'border', '' );
             jQuery( '#cfw-shipping-same-billing .cfw-radio-reveal-title-wrap' ).show();
+            jQuery( '.cfw-shipping-methods-heading' ).show();
             jQuery( '#cfw-billing-fields-container' )
                 .css( 'padding', '' )
                 .css( 'border', '' )

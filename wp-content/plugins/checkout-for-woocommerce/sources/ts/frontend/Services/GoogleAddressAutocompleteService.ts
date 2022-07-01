@@ -57,6 +57,8 @@ class GoogleAddressAutocompleteService {
             return;
         }
 
+        LoggingService.logNotice( 'Google Address Autocomplete Components', components );
+
         const strategy = AutocompleteStrategyFactory.get( components, formattedAddress );
 
         this.queueStateUpdate( prefix, strategy.getState() );

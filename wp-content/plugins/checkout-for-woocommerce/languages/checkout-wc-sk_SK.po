@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Checkout for WooCommerce\n"
-"POT-Creation-Date: 2022-06-28 10:55-0400\n"
-"PO-Revision-Date: 2022-06-28 11:51-0400\n"
+"POT-Creation-Date: 2022-06-29 10:08-0400\n"
+"PO-Revision-Date: 2022-06-29 10:12-0400\n"
 "Last-Translator: Clifton Griffin <clif@checkoutwc.com>\n"
 "Language-Team: support@checkoutwc.com\n"
 "Language: sk_SK\n"
@@ -93,17 +93,41 @@ msgstr "Poslať"
 msgid "Pickup locations"
 msgstr "Miesta vyzdvihnutia"
 
-#: includes/Features/Pickup.php:322
+#: includes/Features/Pickup.php:325
 msgid "Pick up in store"
 msgstr "Vyzdvihnutie v predajni"
 
-#: includes/Features/Pickup.php:342 includes/Managers/AssetManager.php:511
+#: includes/Features/Pickup.php:345 includes/Managers/AssetManager.php:511
 msgid "Pickup"
 msgstr "Vyzvednutie"
 
-#: includes/Features/Pickup.php:377
+#: includes/Features/Pickup.php:380
 msgid "Pickup instructions"
 msgstr "Pokyny na vyzdvihnutie"
+
+#: includes/Features/Pickup.php:483
+msgid "Usually ready in 1 hour."
+msgstr "Zvyčajne je hotová za 1 hodinu."
+
+#: includes/Features/Pickup.php:484
+msgid "Usually ready in 2 hours."
+msgstr "Zvyčajne je hotová do 2 hodín."
+
+#: includes/Features/Pickup.php:485
+msgid "Usually ready in 4 hours."
+msgstr "Zvyčajne je hotová do 4 hodín."
+
+#: includes/Features/Pickup.php:486
+msgid "Usually ready in 24 hours."
+msgstr "Zvyčajne do 24 hodín."
+
+#: includes/Features/Pickup.php:487
+msgid "Usually ready in 2-4 days."
+msgstr "Zvyčajne je hotová do 2-4 dní."
+
+#: includes/Features/Pickup.php:488
+msgid "Usually ready in 5+ days."
+msgstr "Zvyčajne je hotová za viac ako 5 dní."
 
 #: includes/Features/SideCart.php:174
 msgid "Close Cart"
@@ -227,48 +251,43 @@ msgstr "Rovnaké ako dodacia adresa"
 msgid "Use a different billing address"
 msgstr "Odoslať na inú adresu"
 
-#: sources/php/functions.php:1641
+#: sources/php/functions.php:1643
 msgid "Return to cart"
 msgstr "Vrátiť sa do košíka"
 
-#: sources/php/functions.php:1678
+#: sources/php/functions.php:1680
 msgid "Continue to shipping"
 msgstr "Pokračujte v dodávke"
 
-#: sources/php/functions.php:1700
+#: sources/php/functions.php:1702
 msgid "Continue to payment"
 msgstr "Pokračujte v platbe"
 
-#: sources/php/functions.php:1736
+#: sources/php/functions.php:1738
 msgid "Review order"
 msgstr "Skontrolovať objednávku"
 
-#: sources/php/functions.php:1756
+#: sources/php/functions.php:1758
 msgid "Return to information"
 msgstr "Návrat k informáciám"
 
-#: sources/php/functions.php:1776
+#: sources/php/functions.php:1778
 msgid "Return to shipping"
 msgstr "Návrat na prepravu"
 
-#: sources/php/functions.php:1796
+#: sources/php/functions.php:1798
 msgid "Return to payment"
 msgstr "Návrat k platbe"
 
-#: sources/php/functions.php:2293
+#: sources/php/functions.php:2295
 msgid "Or"
 msgstr "Alebo"
 
-#: sources/php/functions.php:2372
-#, php-format
-msgid "You can only have 1 %s in your cart."
-msgstr "Môžete mať len 1 %s vo vašom košíku."
-
-#: sources/php/functions.php:2463
+#: sources/php/functions.php:2465
 msgid "Decrement"
 msgstr "Zníženie"
 
-#: sources/php/functions.php:2469
+#: sources/php/functions.php:2471
 msgid "Increment"
 msgstr "Prírastok"
 
@@ -446,6 +465,10 @@ msgstr "Objectiv"
 #. Author URI of the plugin/theme
 msgid "https://objectiv.co"
 msgstr "https://objectiv.co"
+
+#, php-format
+#~ msgid "You can only have 1 %s in your cart."
+#~ msgstr "Môžete mať len 1 %s vo vašom košíku."
 
 #~ msgid "Select a country"
 #~ msgstr "Vyberte krajinu"

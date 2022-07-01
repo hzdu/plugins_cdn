@@ -1677,16 +1677,18 @@
 
 			var partsWithLimitedOptions = happyForms.form.get( 'parts' ).filter( function( part ) {
 				var hasOptions = [ 'radio', 'checkbox', 'select' ].includes( part.get( 'type' ) );
+				
 				if ( ! hasOptions ) {
 					return false;
 				}
-				var hasLimitedOptions = part.get( 'options' ).findWhere( {
-					show_submissions_amount: "1"
+				
+				var hasLimitedOptions = part.get( 'options' ).find( function( option ) {
+					var limitSubmissionAmount = option.get( 'limit_submissions_amount' );
+					
+					return typeof limitSubmissionAmount !== 'undefined' && limitSubmissionAmount != '';
 				} );
-				if ( hasLimitedOptions ) {
-					return hasLimitedOptions;
-				}
-				return false;
+				
+				return hasLimitedOptions;
 			} );
 
 			if ( partsWithLimitedOptions.length ) {
@@ -2070,7 +2072,6 @@
 			'keyup [data-attribute]': 'onInputChange',
 			'keyup [data-attribute="optional_part_label"]': 'onOptionalPartLabelChange',
 			'keyup [data-attribute="required_field_label"]': 'onRequiredPartLabelChange',
-			'keyup [data-attribute="submissions_left_label"]': 'onSubmissionsLeftLabelChange',
 			'keyup [data-attribute="submit_button_label"]': 'onSubmitButtonLabelChange',
 			'keyup [data-attribute="words_label_min"]': 'onCharLimitMinWordsChange',
 			'keyup [data-attribute="words_label_max"]': 'onCharLimitMaxWordsChange',
@@ -2098,6 +2099,10 @@
 
 		initialize: function() {
 			classes.views.Base.prototype.initialize.apply( this, arguments );
+
+			this.listenTo( this.model, 'change:submissions_left_label', _.debounce( function( model, value ) {
+				this.onSubmissionsLeftLabelChange( model, value );
+			}, 800 ) );
 		},
 
 		render: function() {
@@ -2249,7 +2254,6 @@
 				self.$el.addClass( 'is-show-success-msg' );
 			}
 
-
 			var hasLimitedMinChoices = happyForms.form.get( 'parts' ).find( function( part ) {
 				if ( part.get( 'limit_choices' ) == 1 && part.get( 'limit_choices_min' ) > 1 ) {
 					return true;
@@ -2259,6 +2263,7 @@
 			if ( hasLimitedMinChoices ) {
 				self.$el.addClass( 'has-min-limit-choices' );
 			}
+
 			var hasLimitedMaxChoices = happyForms.form.get( 'parts' ).find( function( part ) {
 				if ( part.get( 'limit_choices' ) == 1 && part.get( 'limit_choices_max' ) > 0 ) {
 					return true;
@@ -2405,12 +2410,36 @@
 			happyForms.previewSend( 'happyforms-form-dom-update', data );
 		},
 
-		onSubmissionsLeftLabelChange: function( e ) {
+		onSubmissionsLeftLabelChange: function( model, value ) {
 			var data = {
 				callback: 'onSubmissionsLeftLabelChangeCallback',
 			};
 
 			happyForms.previewSend( 'happyforms-form-dom-update', data );
+
+			var dropdowns = happyForms.form.get( 'parts' ).filter( function( part ) {
+				if ( 'select' != part.get( 'type' ) ) {
+					return false;
+				}
+
+				var hasLimitedOptions = part.get( 'options' ).find( function( option ) {
+					var limitSubmissionAmount = option.get( 'limit_submissions_amount' );
+					return typeof limitSubmissionAmount !== 'undefined' && limitSubmissionAmount != '';
+				} );
+
+				return hasLimitedOptions;
+			} );
+
+			dropdowns.forEach( function( dropdown ) {
+				dropdown.fetchHtml( function( response ) {
+					var data = {
+						id: dropdown.get( 'id' ),
+						html: response,
+					};
+
+					happyForms.previewSend( 'happyforms-form-part-refresh', data );
+				} );
+			} );
 		},
 
 		onCharLimitMinWordsChange: function ( e ) {

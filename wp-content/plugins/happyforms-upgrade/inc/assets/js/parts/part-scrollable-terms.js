@@ -32,6 +32,9 @@
 					toolbar1: 'bold,italic,strikethrough,link,bullist,numlist',
 					setup: this.onEditorInit.bind( this )
 				},
+				quicktags: {
+					buttons: {}
+				},
 				mediaButtons: false
 			};
 

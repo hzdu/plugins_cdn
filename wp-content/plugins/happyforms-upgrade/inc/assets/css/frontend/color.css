@@ -131,7 +131,7 @@
 .happyforms-styles .happyforms-part input[type=tel],
 .happyforms-styles .happyforms-part input[type=number],
 .happyforms-styles .happyforms-part input[type=range],
-.happyforms-select .happyforms-part select.happyforms-select {
+.happyforms-styles .happyforms-part select.happyforms-select {
   height: auto !important;
 }
 
@@ -1554,4 +1554,27 @@
 .happyforms-part--address-has-geolocation .happyforms-input-group__suffix--button .happyforms-address-geolocate,
 .happyforms-part--address-has-geolocation .happyforms-input-group__suffix--button .happyforms-address-geolocate:not(hover){
   background-color: transparent;
+}
+
+.happyforms-styles .happyforms-part--toggletip details.happyforms-toggletip-details summary.happyforms-toggletip-summary {
+  font-weight: normal;
+  font-style: normal;
+  font-size: 16px;
+  font-size: var(--happyforms-part-title-font-size);
+  color: #000;
+  color: var(--happyforms-color-part-title);
+  background-color: transparent;
+}
+
+.happyforms-styles .happyforms-part--toggletip .happyforms-toggletip-text {
+  font-size: 16px;
+  font-size: var(--happyforms-part-value-font-size);
+  color: #000;
+  overflow-wrap: anywhere;
+}
+
+.happyforms-styles .happyforms-layout-title {
+  font-weight: normal;
+  color: #000;
+  color: var(--happyforms-color-primary);
 }

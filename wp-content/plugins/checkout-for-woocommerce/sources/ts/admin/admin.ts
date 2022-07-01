@@ -122,7 +122,7 @@ cfwDomReady( () => {
     );
 
     new FieldToggler( '#pickup_methods_other', '#pickup_shipping_method_other_label, #cfw_checkbox_enable_pickup_shipping_method_other_regex' );
-    new FieldToggler( '#cfw_checkbox_enable_pickup', '#pickup_option_label, [name="_cfw__setting[pickup_methods][string][]"], #pickup_shipping_method_other_label, #cfw_checkbox_enable_pickup_shipping_method_other_regex' );
+    new FieldToggler( '#cfw_checkbox_enable_pickup', '#pickup_option_label, [name="_cfw__setting[pickup_methods][string][]"], #pickup_ship_option_label, #pickup_shipping_method_other_label, #cfw_checkbox_enable_pickup_shipping_method_other_regex, #cfw_checkbox_enable_pickup_method_step' );
     new FieldToggler( '#cfw_checkbox_enable_highlighted_countries', '[name="_cfw__setting[highlighted_countries][string][]"]' );
 
     /**

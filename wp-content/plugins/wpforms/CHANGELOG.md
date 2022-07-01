@@ -1,6 +1,11 @@
 # Changelog
 All notable changes to this project will be documented in this file and formatted via [this recommendation](https://keepachangelog.com/).
 
+## [1.7.5.1] - 2022-06-30
+### Fixed
+- v1.7.5 migration did not complete when a database prefix other than `wp_` was used.
+- Form Tags: incorrect links to filter by tags were generated right after saving tags.
+
 ## [1.7.5] - 2022-06-28
 ### Added
 - Form Tags: add tags to forms with an ability to filter by them; bulk add/edit/delete tags for multiple forms.

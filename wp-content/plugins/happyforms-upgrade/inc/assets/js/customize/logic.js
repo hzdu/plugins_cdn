@@ -1163,7 +1163,10 @@
 			FormBuild.prototype.onPartModelRemove.apply( this, arguments );
 
 			var matchingThens = happyForms.form.get( 'conditions' ).filter( function( model ) {
-				return model.get( 'then' ).get( 'key' ) === partModel.id;
+				var matchesField = model.get( 'then' ).get( 'key' ) === partModel.id;
+				var matchesFieldSetting = model.get( 'then' ).get( 'key' ).startsWith( `${partModel.id}:` );
+				
+				return matchesField || matchesFieldSetting;
 			} );
 
 			happyForms.form.get( 'conditions' ).remove( matchingThens, { mode: 'then' } );

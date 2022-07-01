@@ -451,7 +451,7 @@ h3.happyforms-form__title {
 
 .happyforms-part-option__description {
   display: block;
-  width: 100%;
+  width: auto;
   max-width: 400px;
   margin-top: 0px;
   margin-left: 31px;
@@ -740,8 +740,10 @@ h3.happyforms-form__title {
   margin-top: 0;
 }
 
-.happyforms-part--placeholder p:last-of-type {
+.happyforms-part--placeholder p:last-of-type,
+.happyforms-part--toggletip .happyforms-toggletip-text p:last-of-type {
   margin-bottom: 0;
+  padding-bottom: 0;
 }
 
 /* parts - select */
@@ -2647,4 +2649,22 @@ a.happyforms-plain-button {
   border: 1px solid;
   max-width: 100%;
   resize: vertical;
+}
+
+.happyforms-styles .happyforms-part--toggletip details summary.happyforms-toggletip-summary {
+  cursor: pointer;
+  word-break: break-word;
+  line-height: 1;
+}
+
+.happyforms-styles .happyforms-part--toggletip details summary.happyforms-toggletip-summary:hover u{
+  text-decoration-thickness: 2px;
+}
+
+.happyforms-styles .happyforms-part--toggletip details[open] summary.happyforms-toggletip-summary {
+  margin-bottom: 10px;
+}
+
+.happyforms-styles .happyforms-layout-title {
+  overflow-wrap: break-word;
 }

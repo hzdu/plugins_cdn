@@ -82,6 +82,7 @@
 			var $input = $( e.target );
 
 			this.setPaymentMethod( $input.val() );
+			$( '.happyforms-part-error-notice', this.$el ).hide();
 		},
 
 		setPaymentMethod: function( paymentMethod ) {

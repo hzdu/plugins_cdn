@@ -413,21 +413,25 @@
 		} );
 	}
 
-	ActivityRowActions.prototype.updateCounters = function( counters ) {
-		$( 'li.all span.count' ).text( `(${counters.total})` );
-		$( 'li.unread span.count' ).text( `(${counters.unread})` );
-		$( 'li.read span.count' ).text( `(${counters.read})` );
-		$( 'li.spam span.count' ).text( `(${counters.spam})` );
-		$( 'li.trash span.count' ).text( `(${counters.trash})` );
+	ActivityRowActions.prototype.updateCounters = function( data ) {
+		$( 'li.all span.count' ).text( `(${ data.counters.total })` );
+		$( 'li.unread span.count' ).text( `(${ data.counters.unread })` );
+		$( 'li.read span.count' ).text( `(${ data.counters.read })` );
+		$( 'li.spam span.count' ).text( `(${ data.counters.spam })` );
+		$( 'li.trash span.count' ).text( `(${ data.counters.trash })` );
 
 		var $unreadBadge = $( '.happyforms-pending-count' );
 		
 		$unreadBadge.hide();
 
-		if ( counters.unread > 0 ) {
-			$( '.pending-count', $unreadBadge ).text( counters.unread );
+		if ( data.counters.unread > 0 ) {
+			$( '.pending-count', $unreadBadge ).text( data.counters.unread );
 			$unreadBadge.show();
 		}
+
+		document.title = data.pageTitle;
+
+		$( `.happyforms-responses-count-wrapper[data-form-id="${ data.formID }"]` ).replaceWith( data.badge );
 	}
 
 	var FormTable = function() {
