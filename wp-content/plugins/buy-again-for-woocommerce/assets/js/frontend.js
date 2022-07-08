@@ -5,15 +5,85 @@ jQuery(function ($) {
 
     var BYA_Frontend = {
         init: function () {
+            this.trigger_on_page_load();
+
+            $(document).on('click', '.bya_filter_button', this.toggle_bya_table_filter)
             $(document).on('change', '.bya_qty_field', this.change_qty_field_value);
             $(document).on('click', '.bya_add_to_cart_btn', this.add_to_cart);
             $(document).on('click', '.buy_again_btn', this.buy_again);
             $(document).on('click', '.bya_pagination', this.buy_again_pagination);
-            $(document).on('click', '.bya_product_search_btn', this.buy_again_product_search);
             $(document).on('change', '.bya_sort_action_selector', this.buy_again_product_sort)
+            $(document).on('change', '.bya_time_filter', this.change_time_filter_actions);
+            $(document).on('change', '.bya_start_date, .bya_end_date', this.change_start_end_datepicker);
             $(window).click(function () {
                 $('div.bya_dialog_box').hide();
             });
+        },
+
+        trigger_on_page_load: function (event) {
+            $('bya_product_search_inp').val();
+            BYA_Frontend.time_filter_actions('.bya_time_filter');
+        },
+
+        change_start_end_datepicker: function (event) {
+            event.preventDefault();
+            var $time_filter = $('.bya_time_filter').val();
+
+            if ('6' !== $time_filter) {
+                $('.bya_time_filter').val('6');
+            }
+        },
+
+        change_time_filter_actions: function (event) {
+            event.preventDefault();
+            var $this = $(event.currentTarget);
+            BYA_Frontend.time_filter_actions($this);
+        }, time_filter_actions($this) {
+            var today = new Date();
+                var from_date = '';
+                var $start_date = $('.bya_start_date');
+                var $end_date = $('.bya_end_date');
+
+            if ($.inArray($($this).val(), ['', '6']) !== -1) {
+                if( '6' === $($this).val()){
+                    $('.bya_time_filter_field').closest('div').show();
+
+                } else {
+                    $('.bya_time_filter_field').closest('div').hide();
+                    $start_date.val('');
+                    $start_date.next('.bya_alter_datepicker_value').val('');
+                    
+                    $end_date.val('');
+                    $end_date.next('.bya_alter_datepicker_value').val('');
+                }
+            } else {
+                $('.bya_time_filter_field').closest('div').show();
+                
+                if ('2' === $($this).val()) {
+                    var from_date = new Date(new Date().setDate(today.getDate() - 30));
+                } else if ('3' === $($this).val()) {
+                    var from_date = new Date(new Date().setDate(today.getDate() - 60));
+                } else if ('4' === $($this).val()) {
+                    var from_date = new Date(new Date().setDate(today.getDate() - 90));
+                } else if ('5' === $($this).val()) {
+                    var from_date = new Date(new Date().setDate(today.getDate() - 180));
+                }
+
+                
+                from_date = moment(from_date, 'YYYY-MM-DD').format("YYYY-MM-DD");
+                $start_date.val(from_date);
+                $start_date.next('.bya_alter_datepicker_value').val(from_date);
+
+                var to_date = moment(today, 'YYYY-MM-DD').format("YYYY-MM-DD");
+                $end_date.val(to_date);
+                $end_date.next('.bya_alter_datepicker_value').val(to_date);
+            }
+        },
+
+        toggle_bya_table_filter: function (event) {
+            event.preventDefault();
+            var $this = $(event.currentTarget);
+            $('.bya_table_filter_wrap').fadeToggle();
         },
 
         change_qty_field_value: function (event) {
@@ -274,5 +344,6 @@ jQuery(function ($) {
             $(id).unblock();
         },
     };
+
     BYA_Frontend.init();
 });

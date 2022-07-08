@@ -68,12 +68,18 @@ jQuery(function ($) {
                 });
 
                 $('.bya_datepicker').each(function () {
-                    $(this).datepicker({
+                    var datepicker_args = {
                         altField: $(this).next(".bya_alter_datepicker_value"),
                         altFormat: 'yy-mm-dd',
                         changeMonth: true,
-                        changeYear: true
-                    });
+                        changeYear: true,
+                    };
+    
+                    if ($(this).hasClass("bya_time_filter_field")) {
+                        datepicker_args["dateFormat"] = 'yy-mm-dd';
+                    }
+                    
+                    $(this).datepicker(datepicker_args);
                 });
             }
 

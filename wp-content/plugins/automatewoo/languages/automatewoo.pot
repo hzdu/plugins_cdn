@@ -2,14 +2,14 @@
 # This file is distributed under the GPLv3.
 msgid ""
 msgstr ""
-"Project-Id-Version: AutomateWoo 5.5.16\n"
+"Project-Id-Version: AutomateWoo 5.5.17\n"
 "Report-Msgid-Bugs-To: https://woocommerce.com/my-account/create-a-ticket/\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2022-06-21 10:5:20+00:00\n"
+"POT-Creation-Date: 2022-07-05 13:57:28+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.4.0\n"
 "X-Domain: automatewoo\n"
@@ -2594,24 +2594,45 @@ msgstr ""
 msgid "New Currency"
 msgstr ""
 
-#: includes/Actions/Subscriptions/UpdateNextPaymentDate.php:19
+#: includes/Actions/Subscriptions/UpdateEndDate.php:29
+msgid "Update End Date"
+msgstr ""
+
+#: includes/Actions/Subscriptions/UpdateEndDate.php:30
+msgid "Change a subscription's end date."
+msgstr ""
+
+#: includes/Actions/Subscriptions/UpdateEndDate.php:40
+msgid "New End Date"
+msgstr ""
+
+#: includes/Actions/Subscriptions/UpdateEndDate.php:45
+msgid "New End Time"
+msgstr ""
+
+#. translators: %1$s: workflow name, %2$s: new end date, %3$s: workflow ID
+#: includes/Actions/Subscriptions/UpdateEndDate.php:59
+msgid "%1$s workflow run: updated end date to %2$s.  (Workflow ID: %3$d)"
+msgstr ""
+
+#: includes/Actions/Subscriptions/UpdateNextPaymentDate.php:29
 msgid "Update Next Payment Date"
 msgstr ""
 
-#: includes/Actions/Subscriptions/UpdateNextPaymentDate.php:20
+#: includes/Actions/Subscriptions/UpdateNextPaymentDate.php:30
 msgid "Change a subscription's next payment date."
 msgstr ""
 
-#: includes/Actions/Subscriptions/UpdateNextPaymentDate.php:63
+#: includes/Actions/Subscriptions/UpdateNextPaymentDate.php:40
 msgid "New Payment Date"
 msgstr ""
 
-#: includes/Actions/Subscriptions/UpdateNextPaymentDate.php:68
+#: includes/Actions/Subscriptions/UpdateNextPaymentDate.php:45
 msgid "New Payment Time"
 msgstr ""
 
 #. translators: %1$s: workflow name, %2$s: new next payment date, %3$s: workflow ID
-#: includes/Actions/Subscriptions/UpdateNextPaymentDate.php:82
+#: includes/Actions/Subscriptions/UpdateNextPaymentDate.php:59
 msgid "%1$s workflow run: updated next payment date to %2$s.  (Workflow ID: %3$d)"
 msgstr ""
 
@@ -2620,7 +2641,7 @@ msgid "Update Product"
 msgstr ""
 
 #: includes/Actions/Subscriptions/UpdateProduct.php:55
-msgid "Update an existing product line item on a subscription. Only the data set on the action will be updated. This action can be used for bulk editing subscriptions, like changing price or product name"
+msgid "Update an existing product line item on a subscription. Only the data set on the action will be updated. This action can be used for bulk editing subscriptions, like changing price or product name. Please note that any coupons applied in the subscription will be reapplied for all line items."
 msgstr ""
 
 #: includes/Actions/Subscriptions/UpdateProduct.php:130
@@ -2683,6 +2704,27 @@ msgstr ""
 msgid "%1$s workflow run: updated shipping on subscription. (Shipping Method ID: %2$d; Workflow ID: %3$d)"
 msgstr ""
 
+#: includes/Actions/Subscriptions/UpdateTrialEndDate.php:29
+msgid "Update Trial End Date"
+msgstr ""
+
+#: includes/Actions/Subscriptions/UpdateTrialEndDate.php:30
+msgid "Change a subscription's trial end date."
+msgstr ""
+
+#: includes/Actions/Subscriptions/UpdateTrialEndDate.php:40
+msgid "New Trial End Date"
+msgstr ""
+
+#: includes/Actions/Subscriptions/UpdateTrialEndDate.php:45
+msgid "New Trial End Time"
+msgstr ""
+
+#. translators: %1$s: workflow name, %2$s: new trial end date, %3$s: workflow ID
+#: includes/Actions/Subscriptions/UpdateTrialEndDate.php:59
+msgid "%1$s workflow run: updated trial end date to %2$s.  (Workflow ID: %3$d)"
+msgstr ""
+
 #: includes/Actions/Subscription_Add_Coupon.php:23
 msgid "Add Coupon"
 msgstr ""
@@ -2700,7 +2742,7 @@ msgid "Add Product"
 msgstr ""
 
 #: includes/Actions/Subscription_Add_Product.php:49
-msgid "Add a product as a new line item on a subscription. The item will be added using the price set on the product. This action can be used for bulk editing subscriptions, or to change the products provided to a subscriber at different stages of their subscription's lifecycle."
+msgid "Add a product as a new line item on a subscription. The item will be added using the price set on the product. This action can be used for bulk editing subscriptions, or to change the products provided to a subscriber at different stages of their subscription's lifecycle. Please note that any coupons applied in the subscription will be reapplied for all line items."
 msgstr ""
 
 #: includes/Actions/Subscription_Add_Product.php:96
@@ -2748,7 +2790,7 @@ msgid "Remove Product"
 msgstr ""
 
 #: includes/Actions/Subscription_Remove_Product.php:33
-msgid "Remove a product line item or items from a subscription, if any line items match the chosen product. This is useful for bulk editing subscriptions, or to change the products provided to a subscriber at different stages of their subscription's lifecycle. Please note: all line items that match the chosen product will be removed. Choosing a variable product will also remove any variations of that product. Choose a variation to remove only specific variations."
+msgid "Remove a product line item or items from a subscription, if any line items match the chosen product. This is useful for bulk editing subscriptions, or to change the products provided to a subscriber at different stages of their subscription's lifecycle. Please note: all line items that match the chosen product will be removed. Choosing a variable product will also remove any variations of that product. Choose a variation to remove only specific variations. Also note that any coupons applied in the subscription will be reapplied for all remaining line items."
 msgstr ""
 
 #: includes/Actions/Subscription_Remove_Product.php:81
@@ -2764,7 +2806,7 @@ msgid "Email the invoice to the subscription customer."
 msgstr ""
 
 #: includes/Actions/Subscription_Update_Meta.php:20
-msgid "This action can add or update a subscription's custom field."
+msgid "This action can add or update a subscription's custom field. Please note that it should not be used to update internal fields like the subscription schedule."
 msgstr ""
 
 #: includes/ActivityPanelInbox/SubscriptionsAddonDeactivatedNote.php:55
@@ -6082,7 +6124,7 @@ msgstr ""
 msgid "Displays a link to the wishlist."
 msgstr ""
 
-#: includes/WooCommerce_Blocks_Integration.php:69
+#: includes/WooCommerce_Blocks_Integration.php:71
 msgid "Subscribe to marketing opt-in."
 msgstr ""
 

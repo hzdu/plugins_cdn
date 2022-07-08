@@ -89,7 +89,7 @@ class ParsleyService implements FieldValidationRefresher {
                         const message = template
                             .replace( '%s', placeholder.toLowerCase() );
 
-                        ( <any>window ).Parsley.addMessage( 'en', 'postcode', message );
+                        ( <any>window ).Parsley.addMessage( DataService.getSetting( 'parsley_locale' ), 'postcode', message );
                     } );
 
                     ParsleyService.xhrCache[ requestFingerprint ] = xhr;
@@ -130,7 +130,7 @@ class ParsleyService implements FieldValidationRefresher {
                     const requestFingerprint = jQuery.param( ajaxOptions );
 
                     const xhr = ParsleyService.xhrCache[ requestFingerprint ] ||  jQuery.ajax( ajaxOptions ).fail( ( jqueryXHR ) => {
-                        ( <any>window ).Parsley.addMessage( 'en', 'emailDomain', jqueryXHR.responseJSON.message );
+                        ( <any>window ).Parsley.addMessage( DataService.getSetting( 'parsley_locale' ), 'emailDomain', jqueryXHR.responseJSON.message );
                     } );
 
                     ParsleyService.xhrCache[ requestFingerprint ] = xhr;

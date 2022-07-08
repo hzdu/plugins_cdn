@@ -9,10 +9,10 @@ jQuery(function ($) {
             //Advanced Settings
             $(document).on('change', '#bya_advanced_allow_products', this.toggle_allow_products);
             $(document).on('change', '#bya_advanced_allow_users', this.toggle_allow_users);
+            $(document).on('change', '#bya_advanced_allow_filter_btn', this.toggle_show_filter_button);
             //General Settings
             $(document).on('change', '#bya_general_show_buy_again_notice', this.toggle_buy_again_notice);
             // Localization Settings
-            $(document).on('change', '#bya_localization_allow_search_box', this.toggle_allow_search_box);
             $(document).on('change', '#bya_localization_allow_product_image_col', this.toggle_allow_product_image_col);
             $(document).on('change', '#bya_localization_allow_product_name_col', this.toggle_allow_product_name_col);
             $(document).on('change', '#bya_localization_allow_product_price_col', this.toggle_allow_product_price_col);
@@ -26,14 +26,30 @@ jQuery(function ($) {
             this.allow_users('#bya_advanced_allow_users');
             this.buy_again_notice('#bya_general_show_buy_again_notice');
             this.allow_add_to_cart_col('#bya_localization_allow_add_to_cart_col');
-            this.allow_search_box('#bya_localization_allow_search_box');
             this.allow_product_image_col('#bya_localization_allow_product_image_col');
             this.allow_product_name_col('#bya_localization_allow_product_name_col');
             this.allow_product_price_col('#bya_localization_allow_product_price_col');
             this.allow_product_quantity_col('#bya_localization_allow_product_quantity_col');
             this.allow_action_col('#bya_localization_allow_action_col');
             this.image_disp_type('#bya_advanced_buy_again_table_product_img_disp');
-        }, toggle_allow_products: function (event) {
+            this.show_filter_button_opt('#bya_advanced_allow_filter_btn');
+        }, 
+
+        toggle_show_filter_button: function(event){
+            event.preventDefault();
+            var $this = $(event.currentTarget);
+            BYA_Admin.show_filter_button_opt($this);
+        },show_filter_button_opt: function($this){
+            if( true === $($this).prop('checked')){
+                $('#bya_localization_allow_search_box').closest('tr').show();
+                $('#bya_advanced_allow_filter_by').closest('tr').show();
+            } else {
+                $('#bya_localization_allow_search_box').closest('tr').hide();
+                $('#bya_advanced_allow_filter_by').closest('tr').hide();
+            }
+        },
+        
+        toggle_allow_products: function (event) {
             event.preventDefault();
             var $this = $(event.currentTarget);
             BYA_Admin.allow_products($this);
@@ -45,11 +61,9 @@ jQuery(function ($) {
             event.preventDefault();
             var $this = $(event.currentTarget);
             BYA_Admin.buy_again_notice($this);
-        }, toggle_allow_search_box: function (event) {
-            event.preventDefault();
-            var $this = $(event.currentTarget);
-            BYA_Admin.allow_search_box($this);
-        }, toggle_allow_product_image_col: function (event) {
+        }, 
+        
+        toggle_allow_product_image_col: function (event) {
             event.preventDefault();
             var $this = $(event.currentTarget);
             BYA_Admin.allow_product_image_col($this);
@@ -107,13 +121,9 @@ jQuery(function ($) {
                 $('#bya_general_buy_again_message').closest('tr').hide();
                 $('#bya_general_order_detail_link_caption').closest('tr').hide();
             }
-        }, allow_search_box: function ($this) {
-            if (true == $($this).prop("checked")) {
-                $('#bya_localization_search_label').closest('tr').show();
-            } else {
-                $('#bya_localization_search_label').closest('tr').hide();
-            }
-        }, allow_product_image_col: function ($this) {
+        }, 
+
+        allow_product_image_col: function ($this) {
             if (true == $($this).prop("checked")) {
                 $('#bya_localization_product_image_label').closest('tr').show();
             } else {

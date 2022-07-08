@@ -1,13 +1,16 @@
-a.bya_link{
+.bya_hide {
+    display: none;
+}
+
+a.bya_link {
     text-decoration: none !important;
 }
 
 .bya_myaccount_buy_again_wrapper,
-.bya_product_table_container, 
+.bya_product_table_container,
 .bya_product_search_container {
     float: left;
-    width:100%;
-    margin-top: 15px;
+    width: 100%;
 }
 
 .bya_product_search_container .bya_product_search_btn {
@@ -16,34 +19,27 @@ a.bya_link{
 
 .bya_product_table_container .bya_buy_again_product_table {
     width: 100%;
-    border: 1px solid #999;
 }
 
 .bya_product_table_container .bya_buy_again_product_table thead {
-    background: #fff;
+    background: #f1f1f1;
 }
 
 .bya_product_table_container .bya_buy_again_product_table thead th {
-    padding: 10px;
+    padding: 15px 10px;
     color: #000;
-    background: #fff;
-    border-bottom: 1px solid #999;
     text-transform: capitalize;
 }
 
 .bya_product_table_container .bya_buy_again_product_table tbody td {
     padding: 10px;
     color: #222;
-    border-bottom:0;
+    border-bottom: 0;
     vertical-align: top;
 }
 
 .bya_product_table_container .bya_buy_again_product_table tbody tr:nth-child(even) {
     background: #f1f1f1;
-}
-
-.bya_product_table_container .bya_buy_again_product_table tbody tr td:last-child {
-    border-right: none;
 }
 
 .bya_product_table_container .bya_buy_again_product_table tbody td img {
@@ -52,10 +48,10 @@ a.bya_link{
 }
 
 .bya_product_table_container .bya_buy_again_product_table tbody td a.bya_link {
-    text-decoration:none !important;
+    text-decoration: none !important;
 }
 
-.bya_product_table_container .bya_buy_again_product_table tbody td a.bya_product_title{
+.bya_product_table_container .bya_buy_again_product_table tbody td a.bya_product_title {
     font-size: 1rem;
     font-weight: 400;
     color: #333;
@@ -92,7 +88,7 @@ a.bya_link{
     color: #fff;
 }
 
-.bya_product_table_container .bya_buy_again_product_table tbody td .bya-buy-again, 
+.bya_product_table_container .bya_buy_again_product_table tbody td .bya-buy-again,
 .order_details .bya_order_item_fields .bya_buy_again_container .bya-buy-again {
     background: #0d3993;
     color: #fff;
@@ -111,17 +107,17 @@ a.bya_link{
     position: absolute;
     background: #333;
     display: block;
-    float:left;
+    float: left;
     color: #fdfdfd;
     line-height: 30px;
     padding: 5px;
-    top:60px;
+    top: 60px;
     z-index: 1;
     border-radius: 5px;
     width: max-content;
 }
 
-.bya_dialog_box p{
+.bya_dialog_box p {
     text-align: center;
     margin: 0;
 }
@@ -129,8 +125,9 @@ a.bya_link{
 .bya-quantity .bya_qty_field {
     width: 75px;
     position: relative;
-    height:40px !important;
+    height: 40px !important;
 }
+
 .bya_dialog_box:after,
 .bya_dialog_box:before {
     top: -45%;
@@ -147,6 +144,134 @@ a.bya_link{
     border-bottom-color: #333;
     border-width: 14px;
     margin-left: 0px;
+}
+
+.bya_myaccount_buy_again_wrapper .bya_table_filter_controls_wrap select,
+.bya_myaccount_buy_again_wrapper .bya_table_filter_wrap select,
+.bya_myaccount_buy_again_wrapper .bya_table_filter_wrap input[type='text'] {
+    width: 170px;
+    height: 40px;
+    border-radius: 5px;
+    background: #fdfdfd;
+    border: 1px solid #f1f1f1;
+}
+
+.bya_myaccount_buy_again_wrapper .bya_table_filter_wrap input[type='search'] {
+    padding: 0.6180469716em;
+    width: 100%;
+    background-color: #ededed;
+    color: #43454b;
+    box-sizing: border-box;
+    font-weight: normal;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.125);
+    border-radius: 5px;
+}
+
+
+.bya_table_filter_controls_wrap {
+    background-color: #ffffff;
+    padding: 20px;
+    box-shadow: 1px 1px 20px 0px #E9E9E9;
+    display: inline-block;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.bya_table_filter_controls_wrap .bya_product_count,
+.bya_table_filter_controls_wrap .bya_product_sort_container {
+    width: 50%;
+    float: left;
+}
+
+.bya_table_filter_controls_wrap .bya_product_sort_container {
+    text-align: right;
+}
+
+.bya_table_filter_controls_wrap .bya_filter_button_container {
+    width: 100%;
+    float: left;
+}
+
+.bya_table_filter_wrap,
+.bya_product_table_container {
+    background: #ffffff;
+    margin-top: 32px;
+    padding: 32px 20px 20px 20px;
+    box-shadow: 1px 1px 20px 0px #E9E9E9;
+    position: relative;
+    float: left;
+    width: 100%
+}
+
+.bya_table_filter_controls_wrap p {
+    margin: 15px 0;
+}
+
+.bya_table_filter_controls_wrap .bya_filter_button,
+.bya_table_filter_wrap .bya-apply-filter .bya_product_search_btn {
+    padding: 0.3em 1.41575em;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    font-weight: 600;
+    text-shadow: none;
+    display: inline-block;
+}
+
+.bya_table_filter_controls_wrap .bya_filter_button,
+.bya_table_filter_wrap .bya-apply-filter .bya_product_search_btn {
+    color: #ffffff;
+    background: #000066;
+    border: 1px solid #000066;
+}
+
+.bya_table_filter_controls_wrap .bya_filter_button:hover,
+.bya_table_filter_wrap .bya-apply-filter .bya_product_search_btn:hover {
+    box-shadow: 0 0 3px #000;
+    background: #000;
+    color: #fff;
+    border: 1px solid #000;
+}
+
+
+.bya_product_search_inp {
+    width: 100%;
+    padding: 10px 20px;
+    border-radius: 3px;
+    border: 1px solid #cccccc;
+}
+
+.bya_product_time_filter_container {
+    display: inline-block;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.bya_product_time_filter_container .bya_time_filter_wrap,
+.bya_product_time_filter_container .bya_start_date_wrap,
+.bya_product_time_filter_container .bya_end_date_wrap {
+    width: 33%;
+    float: left;
+}
+
+.bya_product_time_filter_container .bya_time_filter_wrap {
+    text-align: left;
+}
+
+.bya_product_time_filter_container .bya_start_date_wrap {
+    text-align: center;
+}
+
+.bya_product_time_filter_container .bya_end_date_wrap {
+    text-align: right;
+}
+
+.bya-apply-filter {
+    width: 100%;
+    display: inline-block;
+    text-align: right;
+    margin-top: 10px;
 }
 
 @media screen and (max-width: 768px) {
@@ -167,7 +292,7 @@ a.bya_link{
 
     .bya_product_table_container .bya_buy_again_product_table tr td {
         display: block;
-        border-right: 0; 
+        border-right: 0;
         text-align: right !important;
 
     }
@@ -177,5 +302,20 @@ a.bya_link{
         margin-right: 0;
     }
 
-}
+    .bya_product_time_filter_container,
+    .bya_table_filter_controls_wrap {
+        display: inline-block;
+        margin-top: 15px;
+    }
 
+    .bya_product_time_filter_container .bya_time_filter_wrap,
+    .bya_product_time_filter_container .bya_start_date_wrap,
+    .bya_product_time_filter_container .bya_end_date_wrap,
+    .bya_table_filter_controls_wrap div {
+        width: 100%;
+        display: block;
+        float: left;
+        margin: 5px 0;
+    }
+
+}
