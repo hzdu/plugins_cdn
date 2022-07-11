@@ -2,7 +2,7 @@
  * Variation Swatches for WooCommerce - PRO 
  * 
  * Author: Emran Ahmed ( emran.bd.08@gmail.com ) 
- * Date: 6/26/2022, 5:23:57 PM
+ * Date: 7/8/2022, 11:04:58 PM
  * Released under the GPLv3 license.
  */
 /******/ (function(modules) { // webpackBootstrap
@@ -110,13 +110,17 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+// ================================================================
+// WooCommerce Variation Swatches - Pro
+// ================================================================
+
 /*global _, wp, wc_add_to_cart_variation_params, woo_variation_swatches_pro_params, woo_variation_swatches_pro_options */
 (function (window) {
   'use strict';
 
   var Plugin = function ($) {
     return /*#__PURE__*/function () {
-      function _class2(element, options) {
+      function _class2(element, options, name) {
         var _this = this;
 
         _classCallCheck(this, _class2);
@@ -191,8 +195,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           _this.foundVariation(variation, is_ajax);
         });
 
-        // Properties
-        this._element = element;
+        // Assign
+        this.name = name;
+        this.element = element;
         this.$element = $(element);
         this.settings = $.extend(true, {}, this.defaults, options);
         this.product_variations = this.$element.data('product_variations') || [];
@@ -209,16 +214,19 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         this.$image = this.$wrapper.find(woo_variation_swatches_pro_options.archive_image_selector);
         this.$cart_button = this.$wrapper.find(woo_variation_swatches_pro_options.archive_cart_button_selector);
         this.$price = this.$wrapper.find('.price');
-        this.$firstUL = this.$element.find('.variations ul:first');
-        this.$cart_button_html = this.$cart_button.clone().html();
+        this.$firstUL = this.$element.find('.variations ul:first'); // If loop_add_to_cart button available
+
+        this.is_cart_button_available = this.$cart_button.length > 0; // this.$cart_button_html = this.$cart_button.clone().html();
+
         this.$price_html = this.$price.clone().html();
         this.$attributeFields = this.$element.find('.variations select');
         this.$resetVariations = this.$element.find('.wvs_archive_reset_variations');
         var single_variation_preview_selector = false;
 
         if (woo_variation_swatches_pro_options.enable_single_variation_preview && woo_variation_swatches_pro_options.enable_single_variation_preview_archive) {
-          var name = this.$firstUL.data('preview_attribute_name') ? this.$firstUL.data('preview_attribute_name') : this.$attributeFields.first().data('attribute_name');
-          single_variation_preview_selector = ".variations select[data-attribute_name='".concat(name, "']");
+          var _name = this.$firstUL.data('preview_attribute_name') ? this.$firstUL.data('preview_attribute_name') : this.$attributeFields.first().data('attribute_name');
+
+          single_variation_preview_selector = ".variations select[data-attribute_name='".concat(_name, "']");
         } // Initial state.
 
 
@@ -233,7 +241,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         this.$element.on('found_variation.wc-variation-form', this.onFoundVariation);
         this.$element.on('reset_data.wc-variation-form', this.onResetDisplayedVariation);
         this.$element.on('woocommerce_variation_has_changed.wc-variation-form', this.onVariationChanged);
-        this.$cart_button.on('click.wc-variation-form', this.onAjaxAddToCart);
+
+        if (this.is_cart_button_available) {
+          this.$cart_button.on('click.wc-variation-form', this.onAjaxAddToCart);
+        }
 
         if (!woo_variation_swatches_pro_options.enable_catalog_mode && woo_variation_swatches_pro_options.enable_single_variation_preview && woo_variation_swatches_pro_options.enable_single_variation_preview_archive) {
           this.$element.on('click.wc-variation-form', '.wvs_archive_reset_variations > a', this.onResetDisplayedVariation);
@@ -258,7 +269,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             _this2.$element.trigger('check_variations'); // @TODO: Issue if "wc_variation_form" triggers
 
 
-            _this2.$element.trigger('wc_variation_form_pro', _this2);
+            _this2.$element.trigger('woo_variation_swatches_pro', _this2);
 
             _this2.swatchInit();
           }, 100);
@@ -359,13 +370,16 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
               this.xhr.abort();
             }
 
-            this.$element.block({
-              message: null,
-              overlayCSS: {
-                background: '#FFFFFF',
-                opacity: 0.6
-              }
-            });
+            if (woo_variation_swatches_pro_options.enable_archive_preloader) {
+              this.$element.block({
+                message: null,
+                overlayCSS: {
+                  background: '#FFFFFF',
+                  opacity: 0.6
+                }
+              });
+            }
+
             this.xhr = $.ajax({
               global: false,
               url: woo_variation_swatches_pro_params.wc_ajax_url.toString().replace('%%endpoint%%', 'woo_get_variations'),
@@ -376,7 +390,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
               }
             });
             this.xhr.fail(function (jqXHR, textStatus) {
-              console.error("product variations not available on: ".concat(_this3.product_id, "."), textStatus);
+              console.error("product archive variations not available on: ".concat(_this3.product_id, "."), textStatus);
             });
             this.xhr.done(function (variations) {
               if (variations) {
@@ -389,7 +403,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
               }
             });
             this.xhr.always(function () {
-              _this3.$element.unblock();
+              if (woo_variation_swatches_pro_options.enable_archive_preloader) {
+                _this3.$element.unblock();
+              }
             });
           } else {
             this.start();
@@ -1015,7 +1031,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }, {
         key: "updateCartButton",
         value: function updateCartButton(variation) {
-          // console.log(JSON.stringify(variation.attributes))
+          if (!this.is_cart_button_available) {
+            return;
+          } // console.log(JSON.stringify(variation.attributes))
+
+
           this.$cart_button.removeClass('added');
           this.$wrapper.find('.added_to_cart').remove();
 
@@ -1036,6 +1056,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }, {
         key: "resetCartButton",
         value: function resetCartButton() {
+          if (!this.is_cart_button_available) {
+            return;
+          }
+
           this.$cart_button.data('variation_id', '');
           this.$cart_button.data('variations', '');
           this.$cart_button.html(this.$cart_button.attr('data-o_html'));
@@ -1111,6 +1135,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }, {
         key: "defaultCartButton",
         value: function defaultCartButton() {
+          if (!this.is_cart_button_available) {
+            return;
+          }
+
           this.$cart_button.attr('data-o_html', this.$cart_button.html()); // this.$cart_button.attr('data-o_product_id', this.$cart_button.attr('data-product_id'))
 
           if (this.$cart_button.attr('href')) {
@@ -1164,6 +1192,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             this.$image.attr('sizes', this.$image.attr('data-o_sizes'));
           }
         }
+      }, {
+        key: "destroy",
+        value: function destroy() {
+          this.$element.off('.wc-variation-form');
+          this.$element.removeClass('wvs-pro-loaded');
+          this.$element.removeData(this.name);
+        }
       }]);
 
       return _class2;
@@ -1185,7 +1220,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           var data = $element.data(PluginName);
 
           if (!data) {
-            data = new ClassName($element, $.extend({}, options));
+            data = new ClassName($element, $.extend({}, options), PluginName);
             $element.data(PluginName, data);
           }
 
@@ -1250,14 +1285,10 @@ jQuery(function ($) {
 
   $(document).on('yith_infs_added_elem.wvs', function () {
     $(document).trigger('woo_variation_swatches_pro_init');
-  }); // Yith Composite Product
-
-  $(document).on('wc_variation_form.wvs', '.ywcp_inner_selected_container:not(.wvs-loaded)', function (event) {
-    $(document).trigger('woo_variation_swatches_pro_init');
   }); // Try to cover all ajax data complete
 
   $(document).ajaxComplete(function (event, request, settings) {
-    _.delay(function () {// $(document.body).trigger('woo_variation_swatches_pro_init')
+    _.delay(function () {//  $(document).trigger('woo_variation_swatches_pro_init')
     }, 100);
   }); // Support for Jetpack's Infinite Scroll,
 
@@ -1271,7 +1302,7 @@ jQuery(function ($) {
 
   $(document).on('berocket_ajax_products_loaded.wvs berocket_ajax_products_infinite_loaded.wvs', function () {
     $(document).trigger('woo_variation_swatches_pro_init');
-  }); // Flatsome Infinite Scroll Support
+  }); // FlatSome Infinite Scroll Support
 
   $('.shop-container .products, .infinite-scroll-wrap').on('append.infiniteScroll', function (event, response, path) {
     $(document).trigger('woo_variation_swatches_pro_init');

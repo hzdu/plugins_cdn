@@ -2,7 +2,7 @@
  * Variation Swatches for WooCommerce - PRO 
  * 
  * Author: Emran Ahmed ( emran.bd.08@gmail.com ) 
- * Date: 6/26/2022, 5:23:57 PM
+ * Date: 7/8/2022, 11:04:58 PM
  * Released under the GPLv3 license.
  */
 /******/ (function(modules) { // webpackBootstrap
@@ -117,7 +117,11 @@
     self.previewXhr = false;
     self.loading = true;
     self.product_id = parseInt($form.data('product_id'), 10);
-    self.currentURL = new URL(window.location.href);
+
+    if (woo_variation_swatches_pro_options.enable_linkable_url) {
+      self.currentURL = new URL(window.location.href);
+    }
+
     self.$firstUL = $form.find('.variations ul:first');
     var single_variation_preview_selector = false;
 
@@ -223,13 +227,16 @@
         form.xhr.abort();
       }
 
-      form.$form.block({
-        message: null,
-        overlayCSS: {
-          background: '#FFFFFF',
-          opacity: 0.6
-        }
-      });
+      if (woo_variation_swatches_pro_options.enable_single_preloader) {
+        form.$form.block({
+          message: null,
+          overlayCSS: {
+            background: '#FFFFFF',
+            opacity: 0.6
+          }
+        });
+      }
+
       form.xhr = $.ajax({
         global: false,
         url: wc_add_to_cart_variation_params.wc_ajax_url.toString().replace('%%endpoint%%', 'woo_get_all_variations'),
@@ -240,7 +247,7 @@
         }
       });
       form.xhr.fail(function (jqXHR, textStatus) {
-        console.error("product variations ajax failed: ".concat(product_id, "."), textStatus);
+        console.error("single product variations ajax failed: ".concat(product_id, "."), textStatus);
       });
       form.xhr.done(function (variations) {
         if (variations) {
@@ -249,11 +256,13 @@
           form.useAjax = false;
           form.start(event);
         } else {
-          console.error("product variations not available on: ".concat(product_id, "."));
+          console.error("single product variations not available on: ".concat(product_id, "."));
         }
       });
       form.xhr.always(function () {
-        form.$form.unblock();
+        if (woo_variation_swatches_pro_options.enable_single_preloader) {
+          form.$form.unblock();
+        }
       });
     } else {
       // Init after gallery load.
