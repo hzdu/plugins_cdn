@@ -2,67 +2,99 @@
  * Social icons
  */
 .social-facebook {
-  --hex: #3b5998; }
+  --bgsocial: #3b5998;
+  --iconsizesocial: 20px;
+  --iconpaddingsocial: 15px; }
 
 .social-twitter {
-  --hex: #1da1f2; }
+  --bgsocial: #1da1f2;
+  --iconsizesocial: 20px;
+  --iconpaddingsocial: 15px; }
 
 .social-pinterest {
-  --hex: #bd081c; }
+  --bgsocial: #bd081c;
+  --iconsizesocial: 20px;
+  --iconpaddingsocial: 15px; }
 
 .social-linkedin {
-  --hex: #0077b5; }
+  --bgsocial: #0077b5;
+  --iconsizesocial: 20px;
+  --iconpaddingsocial: 15px; }
 
 .social-tumblr {
-  --hex: #35465c; }
+  --bgsocial: #35465c;
+  --iconsizesocial: 20px;
+  --iconpaddingsocial: 15px; }
 
 .social-reddit {
-  --hex: #ff4500; }
+  --bgsocial: #ff4500;
+  --iconsizesocial: 20px;
+  --iconpaddingsocial: 15px; }
 
 .social-email {
-  --hex: #58a9de; }
+  --bgsocial: #58a9de;
+  --iconsizesocial: 20px;
+  --iconpaddingsocial: 15px; }
 
 .social-whatsapp {
-  --hex: #20b038; }
+  --bgsocial: #20b038;
+  --iconsizesocial: 20px;
+  --iconpaddingsocial: 15px; }
 
 .social-sms {
-  --hex: #20b038; }
+  --bgsocial: #20b038;
+  --iconsizesocial: 20px;
+  --iconpaddingsocial: 15px; }
 
 .social-vk {
-  --hex: #45668e; }
+  --bgsocial: #45668e;
+  --iconsizesocial: 20px;
+  --iconpaddingsocial: 15px; }
 
-.nv-post-share ul {
-  max-width: 100%;
-  grid-template-columns: repeat(auto-fill, 30px);
-  display: grid;
-  grid-gap: 10px; }
-
-.nv-post-share a {
-  max-width: 50px;
-  max-height: 50px;
-  line-height: 50px;
+.nv-post-share {
   display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
   align-items: center;
-  justify-content: center; }
+  justify-content: var(--iconalignsocial, left); }
+  .nv-post-share.above .nv-social-icons-label, .nv-post-share.below .nv-social-icons-label {
+    display: flex;
+    flex-basis: 100%;
+    justify-content: var(--iconalignsocial, left); }
+  .nv-post-share span {
+    display: flex; }
+  .nv-post-share ul {
+    max-width: 100%;
+    display: flex;
+    grid-gap: var(--icongapsocial, 10px); }
+    .nv-post-share ul li {
+      display: flex; }
+  .nv-post-share.round-style a {
+    width: calc( var(--iconsizesocial, 20px) + ( 2 * var(--iconpaddingsocial, 15px) )); }
+  .nv-post-share.round-style svg {
+    width: calc( 100% + var(--iconpaddingsocial, 15px)); }
+  .nv-post-share.round-style .nv-social-icon {
+    --hex:#fff; }
+  .nv-post-share a {
+    width: var(--iconsizesocial, 20px);
+    display: flex;
+    align-items: center;
+    justify-content: center; }
+  .nv-post-share svg {
+    width: 100%;
+    height: auto;
+    fill: var(--hex); }
+  .nv-post-share.round-style a {
+    background: var(--bgsocial);
+    padding: var(--iconpaddingsocial, 15px);
+    border-radius: 100%; }
+  .nv-post-share.round-style svg {
+    fill: var(--hex); }
+  .nv-post-share .hide-mobile {
+    display: none; }
 
-.nv-post-share svg {
-  max-width: 20px;
-  max-height: 20px;
-  fill: var(--hex); }
-
-.nv-post-share.round-style ul {
-  grid-template-columns: repeat(auto-fill, 50px); }
-
-.nv-post-share.round-style a {
-  background: var(--hex);
-  padding: 15px;
-  border-radius: 100%; }
-
-.nv-post-share.round-style svg {
-  fill: #fff; }
-
-.nv-post-share .hide-mobile {
-  display: none; }
+.nv-social-icons-label {
+  margin: 0; }
 
 @media (min-width: 960px) {
   .nv-post-share .hide-desktop {
@@ -107,6 +139,9 @@
   grid-gap: 30px;
   margin: 0 !important; }
 
+.nv-related-posts .read-more-wrapper a {
+  display: inline-block; }
+
 #toggle-comment-area {
   margin: 40px auto 20px;
   display: block; }
@@ -135,15 +170,33 @@ article.layout-grid .article-content-col {
   overflow: hidden;
   border-radius: var(--borderradius);
   padding: var(--padding);
-  background: var(--bgcolor);
-  color: var(--color);
-  box-shadow: var(--boxshadow); }
+  background: var(--cardbgcolor);
+  color: var(--cardcolor);
+  box-shadow: var(--cardboxshadow); }
 
 article.layout-grid a {
-  color: var(--color, var(--nv-secondary-accent)); }
+  color: var(--cardcolor, var(--nv-secondary-accent)); }
 
 article.layout-grid .entry-title a {
-  color: var(--color, var(--nv-text-color)); }
+  color: var(--cardcolor, var(--nv-text-color)); }
+
+article.nv-non-grid-article .article-content-col .content {
+  background: var(--cardbgcolor);
+  box-shadow: var(--cardboxshadow);
+  color: var(--cardcolor);
+  margin-bottom: 20px;
+  overflow: hidden;
+  padding-bottom: 0px; }
+
+article.nv-non-grid-article a {
+  color: var(--cardcolor, var(--nv-secondary-accent)); }
+
+article.nv-non-grid-article .entry-title a {
+  color: var(--cardcolor, var(--nv-text-color)); }
+
+article.nv-non-grid-article.layout-alternative:nth-child(even) .nv-post-thumbnail-wrap {
+  display: flex;
+  justify-content: end; }
 
 .nv-ft-post {
   min-height: var(--fpminheight); }

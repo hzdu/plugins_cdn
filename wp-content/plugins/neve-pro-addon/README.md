@@ -15,6 +15,48 @@ The code is licensed under GPLv3.
 
 ## Changelog ##
 
+##### [Version 2.3.2](https://github.com/Codeinwp/neve-pro-addon/compare/v2.3.1...v2.3.2) (2022-07-11)
+
+- [Fix] Notice behavior in the dashboard 
+- [Fix] Possible error with Neve Pro and Otter Pro
+
+
+
+
+##### [Version 2.3.1](https://github.com/Codeinwp/neve-pro-addon/compare/v2.3.0...v2.3.1) (2022-07-11)
+
+- [Fix] ACF field value not displayed in Meta
+- [Fix] Related posts read more button is trimmed in some cases
+- Improve the development process
+- Move the WooCommerce Booster module to Sparks for the WooCommerce plugin
+
+
+
+
+#### [Version 2.3.0](https://github.com/Codeinwp/neve-pro-addon/compare/v2.2.5...v2.3.0) (2022-06-23)
+
+- [Feat] Custom Sidebars using custom layout
+- [Feat] Enhance sharing icons section both on single posts and on custom post types
+- [Feat] New Global custom layout option
+- [Feat] Custom meta integration with ACF, Toolset, and Metabox
+- [Feat] Adds support for saving local fonts to the server for any plugin which enqueues fonts
+- [Feat] Card Style for the Blog List Layout
+- [Feat] Add a way to translate the logo with Polylang
+- [Feat] Add Architecture Studio starter site - [Gutenberg](https://demosites.io/architecture-studio-gb/)
+- [Feat] Add Recipe Blog starter site - [Gutenberg](https://demosites.io/recipes-blog-gb/) | [Elementor](https://demosites.io/recipes-blog/)
+- [Feat] Add Real Estate Agency starter site - [Gutenberg](https://demosites.io/real-estate-agency-gb/)
+- [Feat] Add NFT Illustrator starter site - [Gutenberg](https://demosites.io/nft-illustrator-gb/)
+- [Feat] Add Medicare starter site - [Gutenberg](https://demosites.io/medicare-gb/) | [Elementor](https://demosites.io/medicare/)
+- [Fix] Control out of the accordion
+- [Fix] Add a check for Custom Layouts when using the custom editor
+- [Fix] Post items order controls affect shop items order
+- [Fix] Console error when the transparent header and sticky are turned on
+- [FIx] Related post's colors are overwritten by card style colors from blog
+- We have started to add a new generation of starter sites called Expert Sites, which are more complex and cover a more variety of sections and integrations for each niche. Furthermore, we have started to review and convert some of the older ones to Expert Sites and you will see them available soon. To support this change, you will see a lighter starter site collection than we had in the past as we want to focus on a smaller but more powerful collection of ready-to-use sites which we can constantly update. You will still be able to access the legacy starter sites by [following this doc](https://docs.themeisle.com/article/1613-where-do-i-find-the-legacy-the-starter-sites), but keep in mind that those will no longer receive updates or be tested with the latest versions.
+
+
+
+
 ##### [Version 2.2.5](https://github.com/Codeinwp/neve-pro-addon/compare/v2.2.4...v2.2.5) (2022-05-25)
 
 - [Fix] Multiple inside layouts not displaying
