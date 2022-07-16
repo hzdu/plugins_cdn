@@ -2,7 +2,28 @@
 
 All notable changes to this project will be documented in this file.
 
-## [3.4.0] - 2022-04-26
+## [3.5.0] - 2022-07-12
+### Added:
+- Alerts for failed emails (Email, Slack, SMS, and Webhook notifications).
+- Check if `wp_mail` function is overwritten.
+- DB table (`wpmailsmtp_tasks_meta`) cleanup after scheduled actions execution. Keeps DB size small.
+
+### Changed:
+- Updated the list of conflicting plugins (added Branda and MailPoet).
+- Improved WP Site Health license check.
+- Improved Outlook mailer authorization flow error handling.
+- Updated Action Scheduler library to 3.4.2.
+- Improved Amazon SES (added support for V2 client).
+
+### Fixed:
+- SMTP.com mailer email content-encoding.
+- Amazon SES long Return-Path header encoding.
+- Dashboard widget graph when there is no email logs data.
+- Email Log retention period cleanup task DB table check.
+- Missing Sendinblue email body WP filter.
+- Chart.js library conflicts with other plugins.
+
+## [3.4.0] - 2022-04-27
 ### Added:
 - New transactional mailer: SendLayer integration.
 - Support for changing From Email address in Outlook mailer (Send As, Shared Mailboxes, and Groups).
