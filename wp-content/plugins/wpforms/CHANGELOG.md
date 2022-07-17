@@ -1,6 +1,11 @@
 # Changelog
 All notable changes to this project will be documented in this file and formatted via [this recommendation](https://keepachangelog.com/).
 
+## [1.7.5.2] - 2022-07-15
+### Fixed
+- Increase chances for the templates inside the Form Builder to load properly, so occasional empty form creation from a template should be gone.
+- PHP fatal error was generated in some cases when Lite Connect attempted to generate site key too many times.
+
 ## [1.7.5.1] - 2022-06-30
 ### Fixed
 - v1.7.5 migration did not complete when a database prefix other than `wp_` was used.
