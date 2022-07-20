@@ -80,7 +80,7 @@ class ValidationService {
             } )
             .catch( ( reason ) => {
                 if ( reason ) {
-                    LoggingService.logError( `CheckoutWC Validation Promise Failed: ${reason}` );
+                    LoggingService.logError( `CheckoutWC Tab Validation Promise Failed: ${reason}` );
                 }
             } );
     }

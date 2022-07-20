@@ -1,3 +1,4 @@
+import AlertService                               from './AlertService';
 import DataService                                from './DataService';
 import TabService                                 from './TabService';
 
@@ -12,6 +13,8 @@ class OrderReviewStepService {
     }
 
     static goToPaymentTabOnError(): void {
+        AlertService.preserveAlerts = true;
+
         const termsCheckbox = jQuery( '#terms' );
 
         if ( termsCheckbox.length && !termsCheckbox.is( ':checked' ) ) {
