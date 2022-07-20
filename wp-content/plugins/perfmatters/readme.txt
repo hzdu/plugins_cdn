@@ -4,8 +4,8 @@ Donate link: https://perfmatters.io
 Tags: perfmatters
 Requires at least: 4.7
 Requires PHP: 7.0
-Tested up to: 6.0
-Stable tag: 1.9.4
+Tested up to: 6.0.1
+Stable tag: 1.9.5
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -34,6 +34,16 @@ Perfmatters is a lightweight performance plugin developed to speed up your WordP
 Check out our [documentation](https://perfmatters.io/docs/) for more information on how to use Perfmatters.
 
 == Changelog ==
+
+= 1.9.5 - 07.17.2022 =
+* Added additional logic to Delay JS script to make sure the initial interaction is processed.
+* Added additional styles to CSS Background Image feature to work with background images set on ::before selectors.
+* Added additional logic on custom login URL admin_url filter to fix certain scenarios where login URL was not being replaced correctly.
+* Added additional default tags to various dropdowns in plugin settings for better clarification.
+* Added default arrays for stylesheet and selector exclusions that are always needed.
+* Adjusted perfmatters_cdn filter location for compatibility.
+* Made some adjustments to CDN Rewrite Regex to fix some issues where unwanted strings were getting picked up as URLs in some cases.
+* Translation updates.
 
 = 1.9.4 - 06.21.2022 =
 * Updated EDD plugin updater class to version 1.9.2.
