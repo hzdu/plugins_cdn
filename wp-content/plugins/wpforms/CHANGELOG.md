@@ -1,6 +1,25 @@
 # Changelog
 All notable changes to this project will be documented in this file and formatted via [this recommendation](https://keepachangelog.com/).
 
+## [1.7.5.4] - 2022-07-22
+### Fixed
+- Some users were not able to use templates when creating a form.
+
+## [1.7.5.3] - 2022-07-19
+### Added
+- New filter to modify CSS classes of the form submit button on the frontend.
+
+### Changed
+- The PayPal Standard transaction URL now uses a new format on the Entry details page.
+- Improve cached templates handling in the Form Builder.
+
+### Fixed
+- Retrieving a current URL should not strip a custom port.
+- "JavaScript file not found" error when the "Load Assets Globally" option was enabled in Settings > General.
+- WordPress database error when upgrading from WPForms Lite to WPForms Pro.
+- Do not cache an incorrect or empty response from the Templates API.
+- PHP warning raised in certain notifications configuration when PayPal payment status is changed to Completed.
+
 ## [1.7.5.2] - 2022-07-15
 ### Fixed
 - Increase chances for the templates inside the Form Builder to load properly, so occasional empty form creation from a template should be gone.

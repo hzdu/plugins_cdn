@@ -68,6 +68,7 @@ var WPFormsBuilderPayments = window.WPFormsBuilderPayments || ( function( docume
 				.on( 'input', '.wpforms-panel-content-section-payment-plan-name input', app.renamePlan )
 				.on( 'focusout', '.wpforms-panel-content-section-payment-plan-name input', app.checkPlanName )
 				.on( 'click', '.wpforms-panel-content-section-payment-plan-head-buttons-delete', app.deletePlan )
+				.on( 'click', '.wpforms-panel-content-section-payment-toggle-recurring input', app.addEmptyPlan )
 				.on( 'click', '.wpforms-panel-content-section-payment-toggle-one-time input', function() {
 
 					app.noteOneTimePaymentsDisabled( $( this ) );
@@ -179,6 +180,22 @@ var WPFormsBuilderPayments = window.WPFormsBuilderPayments || ( function( docume
 		},
 
 		/**
+		 * Add empty plan.
+		 *
+		 * @since 1.7.5.3
+		 */
+		addEmptyPlan: function() {
+
+			var $wrapper = app.getProviderSection( $( this ) );
+
+			if ( ! $( this ).prop( 'checked' ) || $wrapper.find( '.wpforms-panel-content-section-payment-plan' ).length ) {
+				return;
+			}
+
+			app.createNewPlan( '', $wrapper );
+		},
+
+		/**
 		 * Toggle a plan content.
 		 *
 		 * @since 1.7.5
@@ -276,12 +293,13 @@ var WPFormsBuilderPayments = window.WPFormsBuilderPayments || ( function( docume
 						keys: [ 'enter' ],
 						action: function() {
 
-							$plan.fadeOut( 'fast', function() {
-
-								$( this ).remove();
-							} );
+							$plan.remove();
 
 							$paymentsPanel.trigger( 'wpformsPaymentsPlanDeleted', $plan, $wrapper.data( 'provider' ) );
+
+							if ( ! $wrapper.find( '.wpforms-panel-content-section-payment-plan' ).length ) {
+								$wrapper.find( '.wpforms-panel-content-section-payment-toggle-recurring input' ).click();
+							}
 						},
 					},
 					cancel: {
@@ -328,7 +346,7 @@ var WPFormsBuilderPayments = window.WPFormsBuilderPayments || ( function( docume
 				$conditionalGroups = $recurringBody.find( '.wpforms-conditional-groups' );
 
 			if ( ! $plans.length ) {
-				return true;
+				return false;
 			}
 
 			if ( $plans.length !== $conditionalGroups.length ) {
@@ -353,22 +371,31 @@ var WPFormsBuilderPayments = window.WPFormsBuilderPayments || ( function( docume
 
 			$plans.find( '.wpforms-conditional-block' ).each( function() {
 
-				var $this = $( this ),
-					$row = $this.find( '.wpforms-conditional-row' ),
-					$valueInput = $row.find( '.wpforms-conditional-value' );
+				var $this = $( this );
 
-				if (
-					! $this.find( '.wpforms-conditionals-enable-toggle input' ).prop( 'checked' ) ||
-					! $row.find( '.wpforms-conditional-field' ).val() ||
-					(
-						! $valueInput.prop( 'disabled' ) &&
-						! $valueInput.val()
-					)
-				) {
+				if ( ! $this.find( '.wpforms-conditionals-enable-toggle input' ).prop( 'checked' ) ) {
 					hasInvalidConditional = true;
 
 					return false;
 				}
+
+				$this.find( '.wpforms-conditional-row' ).each( function() {
+
+					var $row = $( this ),
+						$valueInput = $row.find( '.wpforms-conditional-value' );
+
+					if (
+						! $row.find( '.wpforms-conditional-field' ).val() ||
+						(
+							! $valueInput.prop( 'disabled' ) &&
+							! $valueInput.val()
+						)
+					) {
+						hasInvalidConditional = true;
+
+						return false;
+					}
+				} );
 			} );
 
 			return ! hasInvalidConditional;

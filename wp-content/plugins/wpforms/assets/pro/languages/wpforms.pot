@@ -1,13 +1,13 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: WPForms 1.7.5.2\n"
+"Project-Id-Version: WPForms 1.7.5.4\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wpforms\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2022-07-15T14:37:42+03:00\n"
+"POT-Creation-Date: 2022-07-22T11:17:37+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.6.0\n"
 "X-Domain: wpforms\n"
@@ -16,7 +16,6 @@ msgstr ""
 #. Author of the plugin
 #: src/Pro/Access/Integrations.php:101
 #: src/Pro/Access/Integrations.php:158
-#: src/Pro/Admin/DashboardWidget.php:205
 #: src/Pro/Admin/SiteHealth.php:37
 msgid "WPForms"
 msgstr ""
@@ -114,7 +113,6 @@ msgstr ""
 #: pro/includes/admin/class-license.php:448
 #: pro/templates/education/admin/did-you-know.php:31
 #: src/Pro/Admin/Builder/LicenseAlert.php:146
-#: src/Pro/Admin/DashboardWidget.php:272
 #: src/Pro/Admin/DashboardWidget.php:583
 msgid "Learn More"
 msgstr ""
@@ -1648,39 +1646,39 @@ msgstr ""
 msgid "Credit Card"
 msgstr ""
 
-#: pro/includes/fields/class-payment-credit-card.php:75
-#: pro/includes/fields/class-payment-credit-card.php:367
+#: pro/includes/fields/class-payment-credit-card.php:101
+#: pro/includes/fields/class-payment-credit-card.php:393
 msgid "Card Number"
 msgstr ""
 
-#: pro/includes/fields/class-payment-credit-card.php:98
-#: pro/includes/fields/class-payment-credit-card.php:372
+#: pro/includes/fields/class-payment-credit-card.php:124
+#: pro/includes/fields/class-payment-credit-card.php:398
 msgid "Security Code"
 msgstr ""
 
-#: pro/includes/fields/class-payment-credit-card.php:119
-#: pro/includes/fields/class-payment-credit-card.php:379
+#: pro/includes/fields/class-payment-credit-card.php:145
+#: pro/includes/fields/class-payment-credit-card.php:405
 msgid "Name on Card"
 msgstr ""
 
-#: pro/includes/fields/class-payment-credit-card.php:133
-#: pro/includes/fields/class-payment-credit-card.php:384
+#: pro/includes/fields/class-payment-credit-card.php:159
+#: pro/includes/fields/class-payment-credit-card.php:410
 msgid "Expiration"
 msgstr ""
 
-#: pro/includes/fields/class-payment-credit-card.php:284
+#: pro/includes/fields/class-payment-credit-card.php:310
 msgid "Card Number Placeholder Text"
 msgstr ""
 
-#: pro/includes/fields/class-payment-credit-card.php:301
+#: pro/includes/fields/class-payment-credit-card.php:327
 msgid "Security Code Placeholder Text"
 msgstr ""
 
-#: pro/includes/fields/class-payment-credit-card.php:318
+#: pro/includes/fields/class-payment-credit-card.php:344
 msgid "Name on Card Placeholder Text"
 msgstr ""
 
-#: pro/includes/fields/class-payment-credit-card.php:427
+#: pro/includes/fields/class-payment-credit-card.php:453
 msgid "This page is insecure. Credit Card field should be used for testing purposes only."
 msgstr ""
 
@@ -1913,31 +1911,31 @@ msgstr ""
 msgid "You must provide a plan name."
 msgstr ""
 
-#: pro/includes/payments/class-payment.php:300
+#: pro/includes/payments/class-payment.php:301
 msgid "One-Time Payments"
 msgstr ""
 
-#: pro/includes/payments/class-payment.php:308
+#: pro/includes/payments/class-payment.php:309
 msgid "Enable one-time payments"
 msgstr ""
 
-#: pro/includes/payments/class-payment.php:312
+#: pro/includes/payments/class-payment.php:313
 msgid "Allow your customers to one-time pay via the form."
 msgstr ""
 
-#: pro/includes/payments/class-payment.php:334
+#: pro/includes/payments/class-payment.php:335
 msgid "Recurring Payments"
 msgstr ""
 
-#: pro/includes/payments/class-payment.php:337
+#: pro/includes/payments/class-payment.php:338
 msgid "Add New Plan"
 msgstr ""
 
-#: pro/includes/payments/class-payment.php:345
+#: pro/includes/payments/class-payment.php:346
 msgid "Enable recurring subscription payments"
 msgstr ""
 
-#: pro/includes/payments/class-payment.php:349
+#: pro/includes/payments/class-payment.php:350
 msgid "Allow your customer to recurring pay via the form."
 msgstr ""
 
@@ -2219,7 +2217,6 @@ msgid "Payments"
 msgstr ""
 
 #: pro/wpforms-pro.php:331
-#: src/Pro/Admin/Settings/Access.php:197
 msgid "Save Settings"
 msgstr ""
 
@@ -2511,7 +2508,6 @@ msgid "Addon auto-updates controlled by WPForms"
 msgstr ""
 
 #: src/Pro/Access/Capabilities.php:70
-#: src/Pro/Admin/Settings/Access.php:92
 msgid "Create Forms"
 msgstr ""
 
@@ -2603,28 +2599,8 @@ msgstr ""
 msgid "Form Entries"
 msgstr ""
 
-#: src/Pro/Admin/DashboardWidget.php:261
-msgid "Sullie the WPForms mascot"
-msgstr ""
-
-#: src/Pro/Admin/DashboardWidget.php:262
-msgid "Create Your First Form to Start Collecting Leads"
-msgstr ""
-
-#: src/Pro/Admin/DashboardWidget.php:263
-msgid "You can use WPForms to build contact forms, surveys, payment forms, and more with just a few clicks."
-msgstr ""
-
-#: src/Pro/Admin/DashboardWidget.php:267
-msgid "Create Your Form"
-msgstr ""
-
 #: src/Pro/Admin/DashboardWidget.php:310
 msgid "Reset chart to display all forms"
-msgstr ""
-
-#: src/Pro/Admin/DashboardWidget.php:385
-msgid "No entries for selected period."
 msgstr ""
 
 #: src/Pro/Admin/DashboardWidget.php:501
@@ -2649,14 +2625,6 @@ msgstr ""
 
 #: src/Pro/Admin/DashboardWidget.php:586
 msgid "Dismiss recommended plugin"
-msgstr ""
-
-#: src/Pro/Admin/DashboardWidget.php:605
-msgid "No entries for selected period"
-msgstr ""
-
-#: src/Pro/Admin/DashboardWidget.php:606
-msgid "Please select a different period or check back later."
 msgstr ""
 
 #: src/Pro/Admin/Education/Admin/DidYouKnow.php:93
@@ -3228,127 +3196,6 @@ msgstr ""
 msgid "Not Installed"
 msgstr ""
 
-#. translators: %1$s - capability being granted; %2$s - capability(s) required for a capability being granted; %3$s - role a capability is granted to.
-#: src/Pro/Admin/Settings/Access.php:75
-msgid "In order to give %1$s access, %2$s access is also required."
-msgstr ""
-
-#. translators: %1$s - capability being granted; %2$s - capability(s) required for a capability being granted; %3$s - role a capability is granted to.
-#: src/Pro/Admin/Settings/Access.php:75
-msgid "Would you like to also grant %2$s access to %3$s?"
-msgstr ""
-
-#. translators: %1$s - capability being granted; %2$s - capability(s) required for a capability being granted; %3$s - role a capability is granted to.
-#: src/Pro/Admin/Settings/Access.php:77
-msgid "In order to remove %1$s access, %2$s access is also required to be removed."
-msgstr ""
-
-#. translators: %1$s - capability being granted; %2$s - capability(s) required for a capability being granted; %3$s - role a capability is granted to.
-#: src/Pro/Admin/Settings/Access.php:77
-msgid "Would you like to also remove %2$s access from %3$s?"
-msgstr ""
-
-#: src/Pro/Admin/Settings/Access.php:101
-msgid "View Forms"
-msgstr ""
-
-#: src/Pro/Admin/Settings/Access.php:104
-#: src/Pro/Admin/Settings/Access.php:117
-#: src/Pro/Admin/Settings/Access.php:130
-#: src/Pro/Admin/Settings/Access.php:144
-#: src/Pro/Admin/Settings/Access.php:157
-#: src/Pro/Admin/Settings/Access.php:170
-msgid "Own"
-msgstr ""
-
-#: src/Pro/Admin/Settings/Access.php:105
-msgid "Can view forms created by themselves."
-msgstr ""
-
-#: src/Pro/Admin/Settings/Access.php:108
-#: src/Pro/Admin/Settings/Access.php:121
-#: src/Pro/Admin/Settings/Access.php:134
-#: src/Pro/Admin/Settings/Access.php:148
-#: src/Pro/Admin/Settings/Access.php:161
-#: src/Pro/Admin/Settings/Access.php:174
-msgid "Others"
-msgstr ""
-
-#: src/Pro/Admin/Settings/Access.php:109
-msgid "Can view forms created by others."
-msgstr ""
-
-#: src/Pro/Admin/Settings/Access.php:114
-msgid "Edit Forms"
-msgstr ""
-
-#: src/Pro/Admin/Settings/Access.php:118
-msgid "Can edit forms created by themselves."
-msgstr ""
-
-#: src/Pro/Admin/Settings/Access.php:122
-msgid "Can edit forms created by others."
-msgstr ""
-
-#: src/Pro/Admin/Settings/Access.php:127
-msgid "Delete Forms"
-msgstr ""
-
-#: src/Pro/Admin/Settings/Access.php:131
-msgid "Can delete forms created by themselves."
-msgstr ""
-
-#: src/Pro/Admin/Settings/Access.php:135
-msgid "Can delete forms created by others."
-msgstr ""
-
-#: src/Pro/Admin/Settings/Access.php:141
-#: src/Pro/Integrations/LiteConnect/Admin.php:259
-msgid "View Entries"
-msgstr ""
-
-#: src/Pro/Admin/Settings/Access.php:145
-msgid "Can view entries of forms created by themselves."
-msgstr ""
-
-#: src/Pro/Admin/Settings/Access.php:149
-msgid "Can view entries of forms created by others."
-msgstr ""
-
-#: src/Pro/Admin/Settings/Access.php:154
-msgid "Edit Entries"
-msgstr ""
-
-#: src/Pro/Admin/Settings/Access.php:158
-msgid "Can edit entries of forms created by themselves."
-msgstr ""
-
-#: src/Pro/Admin/Settings/Access.php:162
-msgid "Can edit entries of forms created by others."
-msgstr ""
-
-#: src/Pro/Admin/Settings/Access.php:167
-msgid "Delete Entries"
-msgstr ""
-
-#: src/Pro/Admin/Settings/Access.php:171
-msgid "Can delete entries of forms created by themselves."
-msgstr ""
-
-#: src/Pro/Admin/Settings/Access.php:175
-msgid "Can delete entries of forms created by others."
-msgstr ""
-
-#: src/Pro/Admin/Settings/Access.php:195
-#: src/Pro/Admin/Settings/Access.php:217
-msgid "Access"
-msgstr ""
-
-#. translators: %s - WPForms.com access control link.
-#: src/Pro/Admin/Settings/Access.php:219
-msgid "Select the user roles that are allowed to manage different aspects of WPForms. By default, all permissions are provided only to administrator users. Please see our %1$sAccess Controls documentation%2$s for full details."
-msgstr ""
-
 #: src/Pro/Admin/SiteHealth.php:54
 msgid "not detected"
 msgstr ""
@@ -3429,6 +3276,10 @@ msgstr ""
 
 #: src/Pro/Integrations/LiteConnect/Admin.php:257
 msgid "Entry Restore Complete"
+msgstr ""
+
+#: src/Pro/Integrations/LiteConnect/Admin.php:259
+msgid "View Entries"
 msgstr ""
 
 #. translators: %d - number of imported entries.
