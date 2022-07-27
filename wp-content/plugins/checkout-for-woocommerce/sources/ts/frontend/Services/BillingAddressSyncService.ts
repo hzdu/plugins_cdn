@@ -13,7 +13,7 @@ class BillingAddressSyncService {
     }
 
     listenForShippingChanges(): void {
-        jQuery( '.woocommerce-shipping-fields [name^="shipping_"]' ).on( 'change', ( event ) => {
+        jQuery( '.woocommerce-shipping-fields [name^="shipping_"]' ).not( '#shipping_email' ).on( 'change', ( event ) => {
             const sameAsShipping = jQuery( 'input[name="bill_to_different_address"]:checked' ).val();
             const shippingField  = jQuery( event.target );
             const billingField   = jQuery( `[name="${shippingField.attr( 'name' ).replace( 'shipping_', 'billing_' )}"]` );
@@ -59,7 +59,7 @@ class BillingAddressSyncService {
             return;
         }
 
-        jQuery( '.woocommerce-shipping-fields [name^="shipping_"]' ).each( ( i, element ) => {
+        jQuery( '.woocommerce-shipping-fields [name^="shipping_"]' ).not( '#shipping_email' ).each( ( i, element ) => {
             const shippingField  = jQuery( element );
             const billingField   = jQuery( `[name="${shippingField.attr( 'name' ).replace( 'shipping_', 'billing_' )}"]` );
 

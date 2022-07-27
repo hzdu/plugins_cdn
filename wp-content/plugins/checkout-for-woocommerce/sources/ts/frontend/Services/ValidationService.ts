@@ -81,6 +81,8 @@ class ValidationService {
             .catch( ( reason ) => {
                 if ( reason ) {
                     LoggingService.logError( `CheckoutWC Tab Validation Promise Failed: ${reason}` );
+                    // eslint-disable-next-line no-console
+                    console.log( reason );
                 }
             } );
     }
@@ -133,6 +135,8 @@ class ValidationService {
                 .catch( ( reason ) => {
                     if ( reason ) {
                         LoggingService.logError( `CheckoutWC Validation Promise Failed: ${reason}` );
+                        // eslint-disable-next-line no-console
+                        console.log( reason );
                     }
                 } );
         } );
