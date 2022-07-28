@@ -2,11 +2,11 @@
  * Thrive Headline Optimizer Models and Collections
  */
 
-var ThriveOvation = ThriveOvation || {};
+window.ThriveOvation = window.ThriveOvation || {};
 ThriveOvation.models = ThriveOvation.models || {};
 ThriveOvation.collections = ThriveOvation.collections || {};
 
-(function ( $ ) {
+( function ( $ ) {
 
 	Backbone.emulateHTTP = true;
 
@@ -78,10 +78,8 @@ ThriveOvation.collections = ThriveOvation.collections || {};
 		}
 	} );
 
-
 	ThriveOvation.models.Settings = ThriveOvation.models.Base.extend( {
 		url: ThriveOvation.routes.settings
-
 	} );
 
 	ThriveOvation.models.PostMeta = ThriveOvation.models.Base.extend( {
@@ -147,7 +145,7 @@ ThriveOvation.collections = ThriveOvation.collections || {};
 			sent_emails: 0
 		},
 		url: function () {
-			return ThriveOvation.routes.testimonials +'/copy';
+			return ThriveOvation.routes.testimonials + '/copy';
 		}
 	} );
 
@@ -178,7 +176,7 @@ ThriveOvation.collections = ThriveOvation.collections || {};
 	} );
 
 	ThriveOvation.models.Shortcode = ThriveOvation.models.Base.extend( {
-defaults: {
+		defaults: {
 			name: '',
 			content: '',
 			type: '',
@@ -206,14 +204,14 @@ defaults: {
 				if ( item.config.template && ( item.config.template.length > 1 ) ) {
 					var type;
 					if ( item.config.type == 'display' ) {
-						type = item.config.template.split( '/', 1 )[0];
+						type = item.config.template.split( '/', 1 )[ 0 ];
 					} else if ( item.config.type == 'capture' ) {
 						type = 'capture';
 					}
 
-					shortcodes[index].thumbnail = ThriveOvation.admin_url + 'img/shortcode_' + type + '.jpg';
+					shortcodes[ index ].thumbnail = ThriveOvation.admin_url + 'img/shortcode_' + type + '.jpg';
 				} else {
-					shortcodes[index].thumbnail = '';
+					shortcodes[ index ].thumbnail = '';
 				}
 			} );
 			return shortcodes;
@@ -229,7 +227,7 @@ defaults: {
 
 	ThriveOvation.collections.LandingCombo = ThriveOvation.collections.Base.extend( {
 		model: ThriveOvation.models.LandingCombo
-	});
+	} );
 
 	ThriveOvation.collections.ActivityLog = ThriveOvation.collections.Base.extend( {
 		model: ThriveOvation.models.ActivityLogEntry,
@@ -295,7 +293,6 @@ defaults: {
 	} );
 
 
-
 	ThriveOvation.models.EmailConfig = ThriveOvation.models.Base.extend( {
 		defaults: {
 			subject: '',
@@ -319,4 +316,4 @@ defaults: {
 
 	} );
 
-})( jQuery );
+} )( jQuery );

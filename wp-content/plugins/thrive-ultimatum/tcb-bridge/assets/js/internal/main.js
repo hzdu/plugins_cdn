@@ -24,15 +24,15 @@ var TVE_Ult_Int = window.TVE_Ult_Int = TVE_Ult_Int || {},
 		TVE_Ult_Int.DesignSave = require( './modals/design-save' );
 		TVE_Ult_Int.AddEditState = require( './modals/add-edit-state' );
 
-		var _states = require( './states' );
+		const _states = require( './states' );
 		TVE_Ult_Int.States = new _states( {
 			el: jQuery( '#tu-form-states' )[ 0 ]
 		} );
 
-		TVE_Ult_Int.savePreview = function ( designName = tve_ult_page_data.design_id ) {
-			var saveCallback = function ( imgData ) {
+		TVE_Ult_Int.savePreview = function ( designName = tve_ult_page_data.design_id, savePreviewCallback = null ) {
+			const saveCallback = function ( imgData ) {
 
-				var form = new FormData();
+				const form = new FormData();
 				if ( imgData ) {
 					form.append( 'preview_file', imgData, designName + '.png' );
 				}
@@ -50,6 +50,10 @@ var TVE_Ult_Int = window.TVE_Ult_Int = TVE_Ult_Int || {},
 					data: form,
 					processData: false,
 					contentType: false,
+				} ).done( data => {
+					if ( typeof savePreviewCallback === 'function' ) {
+						savePreviewCallback( JSON.parse( data ) );
+					}
 				} );
 			}
 			TVE.Editor_Page.blur();
@@ -71,12 +75,6 @@ var TVE_Ult_Int = window.TVE_Ult_Int = TVE_Ult_Int || {},
 		}
 
 		TVE.add_filter( 'editor_loaded_callback', function () {
-
-			var $ultDesign = TVE.Editor_Page.editor.find( `[tvu-tpl-id*="ultimatum_${tve_ult_page_data.design_type}"]` );
-
-			if ( $ultDesign.length ) {
-			}
-
 			$( TVE.main ).on( 'tcb.open_templates_picker', function ( event ) {
 				event.preventDefault();
 				open_templates_modal();

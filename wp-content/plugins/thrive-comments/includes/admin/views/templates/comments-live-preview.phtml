@@ -38,25 +38,25 @@
 					<div class="tcm-left">
 
 						<#if ( collection.get( 'tcm_vote_type' ).get('value') != 'no_vote' ){#>
-							<div class="tcm-voting-container">
+						<div class="tcm-voting-container">
 		                <span>
 		                    <#= ThriveComments.util.render_label('vote') #>
 		                </span>
-								<div class="tcm-voting-input tcm-upvote " data-type="upvote">
-									<span class="tcm-icon-thumb_up"></span>
-									<span class="tcm-votes-count"><#= 2 #></span>
-								</div>
-								<# if ( collection.get( 'tcm_vote_type' ).get('value') != 'up_only' ){#>
-								<div class="tcm-voting-input tcm-downvote " data-type="downvote">
-									<span class="tcm-icon-thumb_down"></span>
-									<span class="tcm-votes-count"><#= 1 #> </span>
-								</div>
-								<# } #>
+							<div class="tcm-voting-input tcm-upvote " data-type="upvote">
+								<span class="tcm-icon-thumb_up"></span>
+								<span class="tcm-votes-count"><#= 2 #></span>
+							</div>
+							<# if ( collection.get( 'tcm_vote_type' ).get('value') != 'up_only' ){#>
+							<div class="tcm-voting-input tcm-downvote " data-type="downvote">
+								<span class="tcm-icon-thumb_down"></span>
+								<span class="tcm-votes-count"><#= 1 #> </span>
 							</div>
 							<# } #>
+						</div>
+						<# } #>
 
-							<# if ( collection.get('share_individual_comments').get('value')) { #>
-							<div class="tcm-dropdown tcm-share-dropdown">
+						<# if ( collection.get('share_individual_comments').get('value')) { #>
+						<div class="tcm-dropdown tcm-share-dropdown">
 						<span class="tcm-toggle-button">
 
 						<#= ThriveComments.util.render_label('share') #>
@@ -64,8 +64,8 @@
 							<?php tcah()->tcm_icon( 'bulk-action-arrow', 'bulk-action-arrow-svg' ); ?>
 						</span>
 						</span>
-							</div>
-							<# } #>
+						</div>
+						<# } #>
 					</div>
 
 					<div class="tcm-reply-container">
@@ -120,32 +120,32 @@
 
 						<div class="tcm-left">
 							<#if ( collection.get( 'tcm_vote_type' ).get('value') != 'no_vote' ){#>
-								<div class="tcm-voting-container">
+							<div class="tcm-voting-container">
 								 <span>
 								 <#= ThriveComments.util.render_label('vote') #>
 								</span>
-									<div class="tcm-voting-input tcm-upvote " data-type="upvote">
-										<span class="tcm-icon-thumb_up"></span>
-										<span class="tcm-votes-count"><#= 2 #></span>
-									</div>
-									<# if ( collection.get( 'tcm_vote_type' ).get('value') != 'up_only' ){#>
-									<div class="tcm-voting-input tcm-downvote " data-type="downvote">
-										<span class="tcm-icon-thumb_down"></span>
-										<span class="tcm-votes-count"><#= 1 #> </span>
-									</div>
-									<# } #>
+								<div class="tcm-voting-input tcm-upvote " data-type="upvote">
+									<span class="tcm-icon-thumb_up"></span>
+									<span class="tcm-votes-count"><#= 2 #></span>
+								</div>
+								<# if ( collection.get( 'tcm_vote_type' ).get('value') != 'up_only' ){#>
+								<div class="tcm-voting-input tcm-downvote " data-type="downvote">
+									<span class="tcm-icon-thumb_down"></span>
+									<span class="tcm-votes-count"><#= 1 #> </span>
 								</div>
 								<# } #>
-								<# if ( collection.get('share_individual_comments').get('value')) { #>
-								<div class="tcm-dropdown tcm-share-dropdown">
+							</div>
+							<# } #>
+							<# if ( collection.get('share_individual_comments').get('value')) { #>
+							<div class="tcm-dropdown tcm-share-dropdown">
 							<span class="tcm-toggle-button">
 								<#= ThriveComments.util.render_label('share') #>
 								<span class="svg-arrow-down">
 									<?php tcah()->tcm_icon( 'bulk-action-arrow', 'bulk-action-arrow-svg' ); ?>
 								</span>
 							</span>
-								</div>
-								<# } #>
+							</div>
+							<# } #>
 						</div>
 
 						<div class="tcm-reply-container">
@@ -200,33 +200,33 @@
 					<div class="tcm-left">
 
 						<#if ( collection.get( 'tcm_vote_type' ).get('value') != 'no_vote' ){#>
-							<div class="tcm-voting-container">
+						<div class="tcm-voting-container">
 		                <span>
 		                    <#= ThriveComments.util.render_label('vote') #>
 		                </span>
-								<div class="tcm-voting-input tcm-upvote " data-type="upvote">
-									<span class="tcm-icon-thumb_up"></span>
-									<span class="tcm-votes-count"><#= 2 #></span>
-								</div>
-								<# if ( collection.get( 'tcm_vote_type' ).get('value') != 'up_only' ){#>
-								<div class="tcm-voting-input tcm-downvote " data-type="downvote">
-									<span class="tcm-icon-thumb_down"></span>
-									<span class="tcm-votes-count"><#= 1 #> </span>
-								</div>
-								<# } #>
+							<div class="tcm-voting-input tcm-upvote " data-type="upvote">
+								<span class="tcm-icon-thumb_up"></span>
+								<span class="tcm-votes-count"><#= 2 #></span>
+							</div>
+							<# if ( collection.get( 'tcm_vote_type' ).get('value') != 'up_only' ){#>
+							<div class="tcm-voting-input tcm-downvote " data-type="downvote">
+								<span class="tcm-icon-thumb_down"></span>
+								<span class="tcm-votes-count"><#= 1 #> </span>
 							</div>
 							<# } #>
+						</div>
+						<# } #>
 
-							<# if ( collection.get('share_individual_comments').get('value')) { #>
-							<div class="tcm-dropdown tcm-share-dropdown">
+						<# if ( collection.get('share_individual_comments').get('value')) { #>
+						<div class="tcm-dropdown tcm-share-dropdown">
 								<span class="tcm-toggle-button">
 									<#= ThriveComments.util.render_label('share') #>
 									<span class="svg-arrow-down">
 										<?php tcah()->tcm_icon( 'bulk-action-arrow', 'bulk-action-arrow-svg' ); ?>
 									</span>
 								</span>
-							</div>
-							<# } #>
+						</div>
+						<# } #>
 					</div>
 
 					<div class="tcm-reply-container">

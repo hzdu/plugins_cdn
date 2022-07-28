@@ -2,7 +2,7 @@
 	<div class="tvd-col tvd-s12">
 		<p class="tvd-inline-block tvd-no-margin">
 			<strong
-				class="tvd-margin-right-small"><?php echo __( 'Testimonial status:', TVO_TRANSLATE_DOMAIN ); ?></strong>
+				class="tvd-margin-right-small"><?php echo __( 'Testimonial status:', 'thrive-ovation' ); ?></strong>
 		</p>
 		<div class="tvd-input-field tvd-inline-block tvd-no-margin">
 			<select id="tvo-testimonial-status-change" data-id="<#= testimonial.get('id') #>"
@@ -11,23 +11,23 @@
 				<option value="<?php echo TVO_STATUS_READY_FOR_DISPLAY; ?>"
 				<# if(testimonial.get('status') == ThriveOvation.const.status.ready_for_display){ #>
 					selected="selected"
-					<# }#> ><?php echo __( 'Ready for Display', TVO_TRANSLATE_DOMAIN ); ?></option>
+					<# }#> ><?php echo __( 'Ready for Display', 'thrive-ovation' ); ?></option>
 
 						<option value="<?php echo TVO_STATUS_AWAITING_APPROVAL; ?>"
 						<# if(testimonial.get('status') == ThriveOvation.const.status.awaiting_approval){ #>
 							selected="selected"
 							<# }#>
-								><?php echo __( 'Awaiting Approval', TVO_TRANSLATE_DOMAIN ); ?></option>
+								><?php echo __( 'Awaiting Approval', 'thrive-ovation' ); ?></option>
 								<option value="<?php echo TVO_STATUS_AWAITING_REVIEW; ?>"
 								<# if(testimonial.get('status') == ThriveOvation.const.status.awaiting_review){ #>
 									selected="selected"
 									<# }#>
-										><?php echo __( 'Awaiting Review', TVO_TRANSLATE_DOMAIN ); ?></option>
+										><?php echo __( 'Awaiting Review', 'thrive-ovation' ); ?></option>
 										<option value="<?php echo TVO_STATUS_REJECTED; ?>"
 										<# if(testimonial.get('status') == ThriveOvation.const.status.rejected){ #>
 											selected="selected"
 											<# }#>
-												><?php echo __( 'Rejected', TVO_TRANSLATE_DOMAIN ); ?></option>
+												><?php echo __( 'Rejected', 'thrive-ovation' ); ?></option>
 			</select>
 		</div>
 	</div>
@@ -49,12 +49,12 @@
 						   class="<#= (! testimonial.get('email') || (<?php echo $is_valid ? 0 : 1 ?>) ) ? '':'tvo-send-approval-email ' #>
 						<?php echo $is_valid ? '<#= ThriveOvation.util.validateEmail(testimonial.get("email"))? "":"tvo-no-email tvd-tooltipped tvo-disabled-btn" #>' : 'tvo-no-settings tvd-tooltipped tvo-disabled-btn' ?>"
 						   data-tooltip="<# if ( ! ThriveOvation.util.validateEmail(testimonial.get('email')) )
-							{ #><?php echo __( 'We can’t send an email to this customer because we don’t have a valid email address to send to', TVO_TRANSLATE_DOMAIN ) ?><#
+							{ #><?php echo __( 'We can’t send an email to this customer because we don’t have a valid email address to send to', 'thrive-ovation' ) ?><#
 							}else if( <?php echo( $is_valid ? 0 : 1 ) ?> ) {
-							#><?php echo __( 'We can’t send an email to this customer because you haven’t set up your email settings', TVO_TRANSLATE_DOMAIN ) ?><#
+							#><?php echo __( 'We can’t send an email to this customer because you haven’t set up your email settings', 'thrive-ovation' ) ?><#
 							} #>" data-position="top">
 							<i class="tvo-icon-check-square"></i>
-							<?php echo __( 'Send approval email', TVO_TRANSLATE_DOMAIN ); ?>
+							<?php echo __( 'Send approval email', 'thrive-ovation' ); ?>
 						</a>
 					</li>
 				</ul>
@@ -74,12 +74,12 @@
 						<br>
 						<a id="tvo-upload-testimonial-image" href="javascript:void(0)" class="tvo-upload-testimonial-image tvd-small-text"
 						<#= testimonial.get("picture_url") == ThriveOvation.testimonial_image_placeholder? '':'style="display:none;"' #>>
-							<?php echo __( 'Change profile picture', TVO_TRANSLATE_DOMAIN ); ?></a>
+							<?php echo __( 'Change profile picture', 'thrive-ovation' ); ?></a>
 							<div class="tvo-image-uploaded"
 							<#= testimonial.get("picture_url") == ThriveOvation.testimonial_image_placeholder ? 'style="display:none;"':'' #>>
-								<p class="tvo-change-picture-expl"><?php echo __( 'Click the picture to update', TVO_TRANSLATE_DOMAIN ); ?></p>
+								<p class="tvo-change-picture-expl"><?php echo __( 'Click the picture to update', 'thrive-ovation' ); ?></p>
 								<a href="javascript:void(0)" class="tvd-small-text" data-default="<#= ThriveOvation.testimonial_image_placeholder #>"
-								   id="tvo-remove-testimonial-image"><?php echo __( 'Remove picture', TVO_TRANSLATE_DOMAIN ); ?></a>
+								   id="tvo-remove-testimonial-image"><?php echo __( 'Remove picture', 'thrive-ovation' ); ?></a>
 					</div>
 				</div>
 				<div class="tvo-testimonial-data tvd-col tvd-l10 tvd-m8"
@@ -91,7 +91,7 @@
 								<input type="text" id="tvo-title" class="tvo-testimonial-input tvd-validate" data-key="title" value="<#- testimonial.get('title') #>"/>
 								<label class="<#= testimonial.get('title')? 'tvd-active':'' #>"
 								       for="tvo-title"
-								       data-error="<?php echo __( 'Please fill in the title field', TVO_TRANSLATE_DOMAIN ); ?>"><?php echo __( 'Title', TVO_TRANSLATE_DOMAIN ); ?></label>
+								       data-error="<?php echo __( 'Please fill in the title field', 'thrive-ovation' ); ?>"><?php echo __( 'Title', 'thrive-ovation' ); ?></label>
 							</div>
 						</div>
 					</div>
@@ -101,7 +101,7 @@
 								<input type="text" id="tvo-author-name" class="tvo-testimonial-input tvd-validate " data-key="name" value="<#- testimonial.get('name') #>"/>
 								<label class="<#=  testimonial.get('name')? 'tvd-active':'' #>"
 								       for="tvo-author-name"
-								       data-error="<?php echo __( 'Please fill in the name field', TVO_TRANSLATE_DOMAIN ); ?>"><?php echo __( 'Full Name', TVO_TRANSLATE_DOMAIN ); ?></label>
+								       data-error="<?php echo __( 'Please fill in the name field', 'thrive-ovation' ); ?>"><?php echo __( 'Full Name', 'thrive-ovation' ); ?></label>
 							</div>
 
 						</div>
@@ -112,15 +112,15 @@
 									for="tvo-author-email"
 									class="<#=  testimonial.get('email')? 'tvd-active':'' #>"
 									data-error="<#= (testimonial.get('media_source')=='twitter')?
-										'<?php echo __( 'Please fill in a Twitter handle', TVO_TRANSLATE_DOMAIN ); ?>'
-										:'<?php echo __( 'Please fill in a valid email address', TVO_TRANSLATE_DOMAIN ); ?>' #>">
+										'<?php echo __( 'Please fill in a Twitter handle', 'thrive-ovation' ); ?>'
+										:'<?php echo __( 'Please fill in a valid email address', 'thrive-ovation' ); ?>' #>">
 									<#  var social_label_contact = '';
-										if(testimonial.get('media_source')=='twitter'){social_label_contact = '<?php echo __( 'Twitter handle', TVO_TRANSLATE_DOMAIN ); ?>'}else{if(testimonial.get('media_source')=='facebook'){social_label_contact = '<?php echo __( 'Facebook ID', TVO_TRANSLATE_DOMAIN ); ?>'}else{social_label_contact = '<?php echo __( 'Email Address', TVO_TRANSLATE_DOMAIN ); ?>'}} #>
+										if(testimonial.get('media_source')=='twitter'){social_label_contact = '<?php echo __( 'Twitter handle', 'thrive-ovation' ); ?>'}else{if(testimonial.get('media_source')=='facebook'){social_label_contact = '<?php echo __( 'Facebook ID', 'thrive-ovation' ); ?>'}else{social_label_contact = '<?php echo __( 'Email Address', 'thrive-ovation' ); ?>'}} #>
 										<#= social_label_contact #>
 								</label>
 								<# if (testimonial.get('media_source')!='twitter'){ #>
 									<a href="javascript:void(0)" class="tvo-open-testimonial-email">
-										<i class="tvo-icon-email tvd-tooltipped" data-position="top" data-tooltip="<?php echo __( 'Email', TVO_TRANSLATE_DOMAIN ); ?>"></i>
+										<i class="tvo-icon-email tvd-tooltipped" data-position="top" data-tooltip="<?php echo __( 'Email', 'thrive-ovation' ); ?>"></i>
 									</a>
 									<# } #>
 							</div>
@@ -132,7 +132,7 @@
 								<input type="text" id="tvo-author-role" class="tvo-testimonial-input tvd-validate" data-key="role" value="<#- testimonial.get('role') #>"/>
 								<label class="<#=  testimonial.get('role')? 'tvd-active':'' #>"
 								       for="tvo-author-role"
-								       data-error="<?php echo __( 'Please fill in the occupation field', TVO_TRANSLATE_DOMAIN ); ?>"><?php echo __( 'Role/Occupation', TVO_TRANSLATE_DOMAIN ); ?></label>
+								       data-error="<?php echo __( 'Please fill in the occupation field', 'thrive-ovation' ); ?>"><?php echo __( 'Role/Occupation', 'thrive-ovation' ); ?></label>
 							</div>
 						</div>
 						<div class="tvd-col tvd-l6 tvd-m12">
@@ -141,16 +141,16 @@
 								<label
 									class="<#=  testimonial.get('website_url')? 'tvd-active':'' #>"
 									for="tvo-author-website"
-									data-error="<?php echo __( 'Please fill in a valid website URL', TVO_TRANSLATE_DOMAIN ); ?>"><?php echo __( 'Website URL', TVO_TRANSLATE_DOMAIN ); ?></label>
+									data-error="<?php echo __( 'Please fill in a valid website URL', 'thrive-ovation' ); ?>"><?php echo __( 'Website URL', 'thrive-ovation' ); ?></label>
 								<a href="javascript:void(0)" class="tvo-open-testimonial-webpage">
-									<i class="tvo-icon-link tvd-tooltipped" data-position="top" data-tooltip="<?php echo __( 'Website', TVO_TRANSLATE_DOMAIN ); ?>"></i>
+									<i class="tvo-icon-link tvd-tooltipped" data-position="top" data-tooltip="<?php echo __( 'Website', 'thrive-ovation' ); ?>"></i>
 								</a>
 							</div>
 						</div>
 					</div>
 					<div class="tvo-testimonial-tags tvd-row">
 						<div class="tvd-col tvd-s12">
-							<p><?php echo __( 'Tags', TVO_TRANSLATE_DOMAIN ); ?></p>
+							<p><?php echo __( 'Tags', 'thrive-ovation' ); ?></p>
 							<div
 								class="tvo-testimonial-add-tags tvo-edit-testimonial-tags tvo-edit-testimonial-tags-container">
 								<select id="tvo-author-new-tag-<#= testimonial.get('id') #>"
@@ -167,7 +167,7 @@
 	<div class="tvd-v-spacer"></div>
 	<div class="tvd-row">
 		<div class="tvo-testimonial-content-box">
-			<h3><?php echo __( 'Testimonial', TVO_TRANSLATE_DOMAIN ); ?></h3>
+			<h3><?php echo __( 'Testimonial', 'thrive-ovation' ); ?></h3>
 			<div class="tvo-testimonial-content">
 				<?php wp_editor( "<#= testimonial.get('content') #>", 'tvo-testimonial-content-tinymce', array(
 					'quicktags'     => false,
@@ -180,9 +180,9 @@
 	<div class="tvd-row">
 		<div class="tvd-col tvd-s12">
 			<a class="tvd-waves-effect tvd-waves-light tvd-btn tvd-btn-gray tvd-left"
-			   href="#testimonials"><?php echo __( 'Back to Dashboard', TVO_TRANSLATE_DOMAIN ); ?></a>
+			   href="#testimonials"><?php echo __( 'Back to Dashboard', 'thrive-ovation' ); ?></a>
 			<a class="tvd-waves-effect tvd-waves-light tvd-btn tvd-btn-green tvo-update-testimonial tvd-right"
-			   href="javascript:void(0);"><?php echo __( 'Update testimonial', TVO_TRANSLATE_DOMAIN ); ?></a>
+			   href="javascript:void(0);"><?php echo __( 'Update testimonial', 'thrive-ovation' ); ?></a>
 		</div>
 	</div>
 </div>

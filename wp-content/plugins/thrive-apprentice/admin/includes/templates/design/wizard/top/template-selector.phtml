@@ -9,7 +9,7 @@
 	<# if ( this.model.isStepCompleted() && ! this.model.hasStepChanges() ) { #>
 	<a href="javascript:void(0)" class="selector-btn step-selected">
 		<?php Thrive_Views::svg_icon( 'check_medium' ); ?>
-		<?php echo esc_html__( 'Selected', TVA_Const::T ); ?>
+		<?php echo esc_html__( 'Selected', 'thrive-apprentice' ); ?>
 	</a>
 	<# } else { #>
 	<a href="javascript:void(0)" class="selector-btn click<#=this.model.canContinue() ? '' : ' disabled' #>" data-fn="clickSaveTemplate">

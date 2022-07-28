@@ -34,7 +34,17 @@ module.exports = TVE.modal.base.extend( {
 							tve_ult_page_data.saved_tpls = response.saved_tpls;
 						}
 
-						TVE_Ult_Int.savePreview( _name );
+						TVE_Ult_Int.savePreview( _name, data => {
+								const tplIndex = tve_ult_page_data.saved_tpls.findIndex( tpl => tpl.name === _name );
+								/**
+								 * set the thumb
+								 */
+								if ( tplIndex !== - 1 ) {
+									tve_ult_page_data.saved_tpls[ tplIndex ].thumb = data.thumb;
+									tve_ult_page_data.saved_tpls[ tplIndex ].thumb_size = data.thumb_size;
+								}
+							}
+						);
 						self.close();
 						TVE.main.overlay( 'close' );
 					} );

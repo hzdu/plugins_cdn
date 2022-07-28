@@ -1,6 +1,6 @@
 <div class="tvo-col tvo-s2">
 	<span class="tvo-q-label">
-		<?php echo __( 'Question', TVO_TRANSLATE_DOMAIN ); ?> <#= index + 1 #>
+		<?php echo __( 'Question', 'thrive-ovation' ); ?> <#= index + 1 #>
 	</span>
 	<a href="javascript:void(0)" class="tvo-remove-question tvo-right tvo-f-icon tvo-red-text">
 		<span class="tvo-f-icon-trash"></span>
@@ -10,7 +10,7 @@
 <div class="tvo-col tvo-s9">
 	<input class="tve_lightbox_input tvo-question-input" value="<#= question #>">
 	<a href="javascript:void(0)" class="tvo-show-placeholder" <#= config.placeholders[index] !=''? 'style="display: none"' : '' #>>
-	+ <?php echo __( 'Add placeholder text', TVO_TRANSLATE_DOMAIN ); ?>
+	+ <?php echo __( 'Add placeholder text', 'thrive-ovation' ); ?>
 	</a>
 </div>
 
@@ -25,7 +25,7 @@
 
 <div class="tvo-col tvo-s2">
 			<span class="tvo-p-label">
-				<?php echo __( 'Placeholder', TVO_TRANSLATE_DOMAIN ); ?> <#= index + 1 #>
+				<?php echo __( 'Placeholder', 'thrive-ovation' ); ?> <#= index + 1 #>
 			</span>
 	<a href="javascript:void(0)" class="tvo-remove-placeholder tvo-right tvo-f-icon tvo-red-text">
 		<span class="tvo-f-icon-trash"></span>
@@ -35,7 +35,7 @@
 	<span class="tvo-placeholder-connect">L</span>
 	<input class="tve_lightbox_input tvo-placeholder-input"
 		<#= config.placeholders[index]=='' ?
-				'placeholder="<?php echo __( 'Enter your placeholder text here', TVO_TRANSLATE_DOMAIN ); ?>"' :
+				'placeholder="<?php echo __( 'Enter your placeholder text here', 'thrive-ovation' ); ?>"' :
 				'value="'+config.placeholders[index]+'"'
 				#>">
 </div>

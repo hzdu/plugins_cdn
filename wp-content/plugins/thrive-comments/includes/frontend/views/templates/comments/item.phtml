@@ -3,7 +3,7 @@
 	 data-comment-id="<#= comment.get('comment_ID') #>">
 	<div id="tcm-moderate-front" class="tcm-moderate-front"></div>
 
-	<#  if ( comment.isPostAuthor() ) { #>
+	<# if ( comment.isPostAuthor() ) { #>
 	<?php tcah()->tcm_icon( 'author-icon', 'author-icon-svg' ); ?>
 	<# } #>
 	<div class="tcm-comment-header">
@@ -22,17 +22,17 @@
 					<# if(badges_object != undefined && badges_object.length === undefined && ThriveComments.settings.tcm_badges_option == '1'){#>
 					<div class="tcm-author-badges">
 						<# _.each(badges_object,function(badge,key){
-								if(badge.image_url.indexOf('all_badges.svg') !== -1){#>
-														<span class="tcm-badge svg-badge">
+						if(badge.image_url.indexOf('all_badges.svg') !== -1){#>
+						<span class="tcm-badge svg-badge">
 															<span class="text"><#= badge.name #></span>
 															<svg><use xlink:href="<#= badge.image_url #>"/></svg>
 														</span>
-														<#}else{#>
-														<span class="tcm-badge" style="background-image: url('<#= badge.image_url #>')">
+						<#}else{#>
+						<span class="tcm-badge" style="background-image: url('<#= badge.image_url #>')">
 															<span class="text"><#= badge.name #></span>
 														</span>
-														<#}#>
-														<# });#>
+						<#}#>
+						<# });#>
 					</div>
 					<# } #>
 					<# } #>
@@ -66,11 +66,11 @@
 
 	<div class="clearfix" style="position: relative;">
 		<div class="tcm-left">
-			<#  var can_vote = true;
-					if(ThriveComments.current_user.display_name == undefined && ThriveComments.settings.tcm_voting_only_register == 1){
-					can_vote = false;
-					}
-					if(ThriveComments.settings.tcm_vote_type != 'no_vote' && (comment.get('comment_approved') == 1) && can_vote){#>
+			<# var can_vote = true;
+			if(ThriveComments.current_user.display_name == undefined && ThriveComments.settings.tcm_voting_only_register == 1){
+			can_vote = false;
+			}
+			if(ThriveComments.settings.tcm_vote_type != 'no_vote' && (comment.get('comment_approved') == 1) && can_vote){#>
 			<div class="tcm-voting-container">
                 <span>
                     <#= ThriveComments.util.render_label('vote') #>
@@ -124,18 +124,18 @@
 			<# } #>
 		</div>
 		<# if ( ! close_comments ) { #>
-			<# if ( comment.get('comment_approved') == 1 || ( ThriveComments.current_user.is_moderator && comment.get('comment_approved') !== 1 ) ) { #>
-			<div class="tcm-reply-container">
-				<button class='tcm-reply-btn tcm-right tcm-truncate tcm-border-color-ac' data-id="<#= comment.get('comment_ID') #>"
-						data-level="<#= comment.get('level') #>" type="submit"><span class="reply-icon-container">
+		<# if ( comment.get('comment_approved') == 1 || ( ThriveComments.current_user.is_moderator && comment.get('comment_approved') !== 1 ) ) { #>
+		<div class="tcm-reply-container">
+			<button class='tcm-reply-btn tcm-right tcm-truncate tcm-border-color-ac' data-id="<#= comment.get('comment_ID') #>"
+					data-level="<#= comment.get('level') #>" type="submit"><span class="reply-icon-container">
 						<?php tcmh()->tcm_icon( 'reply', 'tcm-svg-fill-ac' ); ?>
 					</span>
-					<#= ThriveComments.util.render_label('reply_to_user', comment.get('comment_author')) #>
-				</button>
-				<div class="clear"></div>
-				<div class="tcm-create-comment-fields"></div>
-			</div>
-			<# } #>
+				<#= ThriveComments.util.render_label('reply_to_user', comment.get('comment_author')) #>
+			</button>
+			<div class="clear"></div>
+			<div class="tcm-create-comment-fields"></div>
+		</div>
+		<# } #>
 		<# } #>
 	</div>
 

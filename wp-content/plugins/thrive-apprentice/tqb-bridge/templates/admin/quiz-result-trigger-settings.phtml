@@ -10,14 +10,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 ?>
 <div class="tva-flex tva-flex-column">
-	<label for="tva-tqb-cond" class="mb-5"><?php echo __( 'Quiz to be completed', TVA_Const::T ) ?> </label>
+	<label for="tva-tqb-cond" class="mb-5"><?php echo __( 'Quiz to be completed', 'thrive-apprentice' ) ?> </label>
 	<select class="change" id="tva-tqb-cond" data-bind="quiz_id"></select>
 </div>
 <div class="tva-flex tva-flex-column mt-20">
-	<label for="tva-tqb-cond-when" class="mb-5"><?php echo __( 'Unlock when', TVA_Const::T ) ?> </label>
+	<label for="tva-tqb-cond-when" class="mb-5"><?php echo __( 'Unlock when', 'thrive-apprentice' ) ?> </label>
 	<select class="change" data-fn="changeWhen" id="tva-tqb-cond-when" data-bind="when"></select>
 </div>
 <div class="info-text orange mt-10" style="display: none;">
-	<span><?php echo esc_html__( 'Your quiz has been modified. Please confirm your quiz requirements for the content to be completed.', \TVA_Const::T ); ?></span>
+	<span><?php echo esc_html__( 'Your quiz has been modified. Please confirm your quiz requirements for the content to be completed.', 'thrive-apprentice' ); ?></span>
 </div>
 <div class="tva-flex tva-flex-column mt-20 tva-tqb-extra-controls"></div>

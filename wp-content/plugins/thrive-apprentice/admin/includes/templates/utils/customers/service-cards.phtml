@@ -16,15 +16,15 @@ $cards = TVA_Customer_Manager::get_services();
 
 ?>
 
-<p class="tvd-modal-subtitle-text mb-10"><?php echo esc_html__( 'Give users access to the following:', TVA_Const::T ); ?></p>
+<p class="tvd-modal-subtitle-text mb-10"><?php echo esc_html__( 'Give users access to the following:', 'thrive-apprentice' ); ?></p>
 
 <div class="tvd-modal-gray-box">
 	<?php foreach ( $cards as $key => $card ): ?>
 		<div class="tva-option-card tva-card tva-card-small <?php echo ( $card['is_available'] ) ? '' : 'disabled' ?>"
 			 data-option="<?php echo $key; ?>"
 			 data-option-label="<?php echo esc_html( $card['text'] ); ?>"
-			 data-have-options-action-label="<?php echo esc_html( __( 'Manage', TVA_Const::T ) ); ?>"
-			 data-no-options-action-label="<?php echo esc_html( __( 'Add access', TVA_Const::T ) ); ?>"
+			 data-have-options-action-label="<?php echo esc_html( __( 'Manage', 'thrive-apprentice' ) ); ?>"
+			 data-no-options-action-label="<?php echo esc_html( __( 'Add access', 'thrive-apprentice' ) ); ?>"
 		>
 			<div data-option="<?php echo $key; ?>" class="tva-flex tva-flex-row tva-option-visible <?php echo ( $card['is_available'] ) ? 'click' : '' ?>"
 				<?php if ( $card['is_available'] ) : ?>
@@ -40,19 +40,19 @@ $cards = TVA_Customer_Manager::get_services();
 				</div>
 				<div class="tva-option-counter">
 					<?php if ( ! $card['is_available'] ) : ?>
-						<span class="no-products tvd-tooltipped" data-position="top" data-tooltip="<?php echo esc_attr( __( 'You don\'t have any products defined yet for this service.', TVA_Const::T ) ); ?>"><?php echo __( 'No products defined yet', TVA_Const::T ); ?>&nbsp;<?php tva_get_svg_icon( 'info_solid' ); ?></span>
+						<span class="no-products tvd-tooltipped" data-position="top" data-tooltip="<?php echo esc_attr( __( 'You don\'t have any products defined yet for this service.', 'thrive-apprentice' ) ); ?>"><?php echo __( 'No products defined yet', 'thrive-apprentice' ); ?>&nbsp;<?php tva_get_svg_icon( 'info_solid' ); ?></span>
 					<?php else : ?>
 						<span class="tva-product-counter"></span>
 					<?php endif; ?>
 				</div>
 				<?php if ( ! $card['is_available'] ) : ?>
 					<div class="tva-option-toggle-greyed" data-option="<?php echo $key; ?>">
-						<span><?php echo __( 'Add access', TVA_Const::T ); ?></span>
+						<span><?php echo __( 'Add access', 'thrive-apprentice' ); ?></span>
 						<i><?php tva_get_svg_icon( 'angle-right' ); ?></i>
 					</div>
 				<?php else : ?>
 					<div class="tva-option-toggle" data-option="<?php echo $key; ?>">
-						<span><?php echo __( 'Manage', TVA_Const::T ); ?></span>
+						<span><?php echo __( 'Manage', 'thrive-apprentice' ); ?></span>
 						<i><?php tva_get_svg_icon( 'angle-right' ); ?></i>
 					</div>
 				<?php endif; ?>

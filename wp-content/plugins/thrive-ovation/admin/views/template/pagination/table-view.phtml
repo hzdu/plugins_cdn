@@ -1,20 +1,20 @@
 <div class="tvd-row">
 	<div class="tvd-col tvd-s6">
 		<div class="tve-total-new-leads">
-			<?php echo __( 'Showing', TVO_TRANSLATE_DOMAIN ) ?>
+			<?php echo __( 'Showing', 'thrive-ovation' ) ?>
 			<strong><#= (currentPage-1)*itemsPerPage #></strong>
-			<?php echo __( 'to', TVO_TRANSLATE_DOMAIN ) ?>
+			<?php echo __( 'to', 'thrive-ovation' ) ?>
 			<strong><#= currentPage * itemsPerPage > total_items ? total_items : currentPage * itemsPerPage #></strong>
-			<?php echo __( 'from a total of', TVO_TRANSLATE_DOMAIN ) ?>
+			<?php echo __( 'from a total of', 'thrive-ovation' ) ?>
 			<strong><#= total_items #></strong>
-			<?php echo __( 'records', TVO_TRANSLATE_DOMAIN ) ?>
+			<?php echo __( 'records', 'thrive-ovation' ) ?>
 		</div>
 	</div>
 	<div class="tvd-col tvd-s6">
 		<ul class="tvd-pagination tvd-right" id="pages">
 			<# if( pageCount > 1) { #>
 				<li class="tvd-waves-effect">
-					<a <# if(currentPage > 1) { #> href="#" class="page" value="1" <# } #>>&laquo; <?php echo __( 'First Page', TVO_TRANSLATE_DOMAIN ); ?></a>
+					<a <# if(currentPage > 1) { #> href="#" class="page" value="1" <# } #>>&laquo; <?php echo __( 'First Page', 'thrive-ovation' ); ?></a>
 				</li>
 				<li class="tvd-waves-effect"><a <# if(currentPage > 1) { #> href="#" class="page" value="<#= currentPage - 1 #>" <# } #>>&lsaquo;</a></li>
 
@@ -28,7 +28,7 @@
 					<# } #>
 				<# } #>
 				<li class="tvd-waves-effect"><a <# if(currentPage < pageCount) { #> href="#" class="page" value="<#= (currentPage + 1) #>" <# } #>>&rsaquo;</a></li>
-				<li class="tvd-waves-effect"><a <# if(currentPage < pageCount) { #> href="#" class="page" value="<#= pageCount #>" <# } #>><?php echo __( 'Last Page', TVO_TRANSLATE_DOMAIN ); ?> &raquo;</a></li>
+				<li class="tvd-waves-effect"><a <# if(currentPage < pageCount) { #> href="#" class="page" value="<#= pageCount #>" <# } #>><?php echo __( 'Last Page', 'thrive-ovation' ); ?> &raquo;</a></li>
 			<# } #>
 		</ul>
 	</div>

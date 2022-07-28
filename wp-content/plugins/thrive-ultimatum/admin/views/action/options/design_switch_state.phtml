@@ -1,7 +1,7 @@
 <p><?php echo $action['description'] ?></p>
 
 <?php if ( empty( $designs ) ) : ?>
-	<p class="tvd-text-red"><?php echo __( "You cannot choose this action because you have not set any design yet", TVE_Ult_Const::T ) ?></p>
+	<p class="tvd-text-red"><?php echo __( "You cannot choose this action because you have not set any design yet", 'thrive-ult') ?></p>
 	<?php return; ?>
 <?php endif; ?>
 
@@ -11,21 +11,21 @@
 	<div class="tvd-col tvd-s6">
 		<div class="tvd-input-field">
 			<select name="design" id="tvu-design">
-				<option disabled selected value="0"><?php echo __( "Choose design to show", TVE_Ult_Const::T ) ?></option>
+				<option disabled selected value="0"><?php echo __( "Choose design to show", 'thrive-ult') ?></option>
 				<?php foreach ( $designs as $d ) : ?>
 					<?php $selected = ( ! empty( $action['design'] && $d['id'] == $action['design'] ) ? 'selected="selected"' : '' ); ?>
 					<option <?php echo $selected ?> value="<?php echo $d['id'] ?>"><?php echo $d['post_title'] ?></option>
 				<?php endforeach; ?>
 			</select>
-			<label for="tvu-design"><?php echo __( "Choose design to show", TVE_Ult_Const::T ) ?></label>
+			<label for="tvu-design"><?php echo __( "Choose design to show", 'thrive-ult') ?></label>
 		</div>
 	</div>
 	<div id="tvu-states-wrapper" class="tvd-col tvd-s6">
 		<div class="tvd-input-field">
 			<select id="tvu-state" name="state">
-				<option value="0"><?php echo __( "Choose design sate", TVE_Ult_Const::T ) ?></option>
+				<option value="0"><?php echo __( "Choose design sate", 'thrive-ult') ?></option>
 			</select>
-			<label for="tvu-state"><?php echo __( "Choose design sate", TVE_Ult_Const::T ) ?></label>
+			<label for="tvu-state"><?php echo __( "Choose design sate", 'thrive-ult') ?></label>
 		</div>
 	</div>
 </div>

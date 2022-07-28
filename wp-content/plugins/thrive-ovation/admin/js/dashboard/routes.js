@@ -2,10 +2,10 @@
  * Thrive Ovation Routers
  */
 
-var ThriveOvation = ThriveOvation || {};
+window.ThriveOvation = window.ThriveOvation || {};
 ThriveOvation.objects = ThriveOvation.objects || {};
 
-(function ( $ ) {
+( function ( $ ) {
 	var Router = Backbone.Router.extend( {
 		view: null,
 		$el: $( "#tvo-dashboard-wrapper" ),
@@ -28,7 +28,7 @@ ThriveOvation.objects = ThriveOvation.objects || {};
 		route: function ( route, name, callback ) {
 			var router = this;
 			if ( ! callback ) {
-				callback = this[name];
+				callback = this[ name ];
 			}
 			var f = function () {
 				ThriveOvation.util.clearMCEEditor();
@@ -133,4 +133,4 @@ ThriveOvation.objects = ThriveOvation.objects || {};
 			ThriveOvation.router.navigate( '#testimonials', {trigger: true} );
 		}
 	} );
-})( jQuery );
+} )( jQuery );

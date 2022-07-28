@@ -17,10 +17,10 @@
 <div class="tva-col-fixed tva-col-icon tva-flex tva-align-center">
 	<div class="tva-topic-types tva-flex tva-align-stretch">
 		<span data-fn="openIconPicker" class="tva-flex tva-align-center click<#=this.model.get('icon_type')==='svg_icon' ? ' tva-active' : '' #>">
-			<?php esc_html_e( 'Icon', TVA_Const::T ) ?>
+			<?php esc_html_e( 'Icon', 'thrive-apprentice' ) ?>
 		</span>
 		<span data-fn="openImagePicker" class="tva-flex tva-align-center click<#=this.model.get('icon_type')==='icon' ? ' tva-active' : '' #>">
-			<?php esc_html_e( 'Image', TVA_Const::T ) ?>
+			<?php esc_html_e( 'Image', 'thrive-apprentice' ) ?>
 		</span>
 	</div>
 	<div class="tva-topic-icon-preview click" data-fn="<#= this.model.get('icon_type') === 'svg_icon' ? 'openIconPicker' : 'openImagePicker' #>"><#= this.model.getPreviewImage() #></div>
@@ -28,8 +28,8 @@
 
 <div class="tva-col-fixed tva-flex tva-align-center<#=( this.model.get( 'icon_type' ) !== 'svg_icon' ) ? ' tva-not-available' : '' #>">
 	<# if ( this.model.get( 'icon_type' ) !== 'svg_icon' ) { #>
-	<span class="tva-n-available"><?php esc_html_e( 'not available', TVA_Const::T ) ?>
-	<i class="tva-info-icon tvd-tooltipped" data-position="top" data-tooltip="<?php esc_attr_e( 'Topic images cannot be colored', TVA_Const::T ); ?>">
+	<span class="tva-n-available"><?php esc_html_e( 'not available', 'thrive-apprentice' ) ?>
+	<i class="tva-info-icon tvd-tooltipped" data-position="top" data-tooltip="<?php esc_attr_e( 'Topic images cannot be colored', 'thrive-apprentice' ); ?>">
 		<?php tva_get_svg_icon( 'info-circle_strong' ); ?>
 	</i></span>
 	<# } else { #>
@@ -42,8 +42,8 @@
 
 <div class="tva-col-fixed tva-flex tva-align-center<#=( this.model.get( 'icon_type' ) !== 'svg_icon' ) ? ' tva-not-available' : '' #>">
 	<# if ( this.model.get( 'icon_type' ) !== 'svg_icon' ) { #>
-	<span class="tva-n-available"><?php esc_html_e( 'not available', TVA_Const::T ) ?>
-	<i class="tva-info-icon tvd-tooltipped" data-position="top" data-tooltip="<?php esc_attr_e( 'Topic images cannot be colored', TVA_Const::T ); ?>">
+	<span class="tva-n-available"><?php esc_html_e( 'not available', 'thrive-apprentice' ) ?>
+	<i class="tva-info-icon tvd-tooltipped" data-position="top" data-tooltip="<?php esc_attr_e( 'Topic images cannot be colored', 'thrive-apprentice' ); ?>">
 		<?php tva_get_svg_icon( 'info-circle_strong' ); ?>
 	</i></span>
 	<# } else { #>

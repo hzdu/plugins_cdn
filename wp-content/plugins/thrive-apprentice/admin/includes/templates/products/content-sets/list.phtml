@@ -10,21 +10,21 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 ?>
 <div>
-	<h3><?php _e( 'Content sets', TVA_Const::T ); ?></h3>
+	<h3><?php _e( 'Content sets', 'thrive-apprentice' ); ?></h3>
 </div>
 
 <div class="tva-flex tva-align-center tva-space-between mb-20">
-	<input type="text" class="tva-filter-sets input" data-fn="filterSets" placeholder="<?php esc_html_e( 'Filter content sets', TVA_Const::T ); ?>"/>
+	<input type="text" class="tva-filter-sets input" data-fn="filterSets" placeholder="<?php esc_html_e( 'Filter content sets', 'thrive-apprentice' ); ?>"/>
 	<a href="javascript:void(0)" class="click tvd-tss-add-new-field tva-btn tva-btn-blue" data-fn="addSet">
 		<?php tva_get_svg_icon( 'add-btn' ); ?>
-		<span><?php _e( 'Create new', TVA_Const::T ); ?></span>
+		<span><?php _e( 'Create new', 'thrive-apprentice' ); ?></span>
 	</a>
 </div>
-<p class="col-dark mt-30 mb-5"><?php _e( 'Select content sets that you want to add to your product', TVA_Const::T ); ?></p>
+<p class="col-dark mt-30 mb-5"><?php _e( 'Select content sets that you want to add to your product', 'thrive-apprentice' ); ?></p>
 <div class="tvd-content-sets-list"></div>
 <div class="tvd-content-sets-list-pagination"></div>
 <div class="tvd-content-sets-footer tva-flex tva-align-center tva-space-between">
 	<button class="click" data-fn="saveAndClose">
-		<?php echo __( 'Save and close', TVA_Const::T ); ?>
+		<?php echo __( 'Save and close', 'thrive-apprentice' ); ?>
 	</button>
 </div>

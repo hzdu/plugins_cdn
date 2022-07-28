@@ -125,28 +125,28 @@
 
 				<?php echo __( 'Insert commenter name: {commenter_name}', Thrive_Comments_Constants::T ); ?>
 			</div>
-            <div>
-                <label for="featured_images_first"><?php echo __( 'Show featured images with related posts', Thrive_Comments_Constants::T ); ?></label>
-                <div class="tvd-switch">
-                    <label>
-                        <?php echo __( 'Off', Thrive_Comments_Constants::T ); ?>
-                        <input id="featured_images_first" name="featured_images_first"  data-conversion-setting="first_time" data-card="related_posts" class="tcm-checkbox filled-in" data-type="checkbox" data-setting="featured_images" type="checkbox" <# if ( conversionSettings.tcm_related_posts.first_time.show_featured_image ) { #> checked <# } #> >
-                                <span class="tvd-lever"></span>
-                                <?php echo __( 'On', Thrive_Comments_Constants::T ); ?>
-                    </label>
-                </div>
-            </div>
-        </div>
-        <div id="tab-4" class="tcm-message-box clear-this <# if ( conversionSettings.first_time.active === ThriveComments.const.tcm_redirect ) { #> current <# } #>">
-            <div>
-                <?php echo __( 'Redirect URL', Thrive_Comments_Constants::T ); ?>
-            </div>
-            <div>
-                <input class="redirect_url tcm-autocomplete ui-autocomplete-loading small-text" id="redirect_url" placeholder="http://" type="text" />
-                <select id="approve_post_id" class="tvo_user_approves_tvo_existing_content tvd-browser-default" style="display: none;"></select>
-                <div id="redirect-error" class="tcm-red" hidden>
-                    <?php echo __( 'If the URL field is empty or invalid, your visitors can\'t be redirected to the page.', Thrive_Comments_Constants::T ); ?>
-                </div>
+			<div>
+				<label for="featured_images_first"><?php echo __( 'Show featured images with related posts', Thrive_Comments_Constants::T ); ?></label>
+				<div class="tvd-switch">
+					<label>
+						<?php echo __( 'Off', Thrive_Comments_Constants::T ); ?>
+						<input id="featured_images_first" name="featured_images_first" data-conversion-setting="first_time" data-card="related_posts" class="tcm-checkbox filled-in" data-type="checkbox" data-setting="featured_images" type="checkbox" <# if ( conversionSettings.tcm_related_posts.first_time.show_featured_image ) { #> checked <# } #> >
+						<span class="tvd-lever"></span>
+						<?php echo __( 'On', Thrive_Comments_Constants::T ); ?>
+					</label>
+				</div>
+			</div>
+		</div>
+		<div id="tab-4" class="tcm-message-box clear-this <# if ( conversionSettings.first_time.active === ThriveComments.const.tcm_redirect ) { #> current <# } #>">
+			<div>
+				<?php echo __( 'Redirect URL', Thrive_Comments_Constants::T ); ?>
+			</div>
+			<div>
+				<input class="redirect_url tcm-autocomplete ui-autocomplete-loading small-text" id="redirect_url" placeholder="http://" type="text"/>
+				<select id="approve_post_id" class="tvo_user_approves_tvo_existing_content tvd-browser-default" style="display: none;"></select>
+				<div id="redirect-error" class="tcm-red" hidden>
+					<?php echo __( 'If the URL field is empty or invalid, your visitors can\'t be redirected to the page.', Thrive_Comments_Constants::T ); ?>
+				</div>
 			</div>
 		</div>
 		<div id="tab-5" class="tcm-message-box clear-this <# if ( conversionSettings.first_time.active === ThriveComments.const.tcm_thrivebox ) { #> current <# } #>">
@@ -156,25 +156,26 @@
 			</div>
 			<div>
 				<select id="thrive-boxes-first-time" class="tcm-select-thrivebox tvd-select2 form-control tvd-browser-default" tabindex="-1" data-conversion-setting="first_time" data-card="<#= ThriveComments.const.tcm_thrivebox #>">
-                    <option selected="selected" value="0" > <?php echo __( 'No selection', Thrive_Comments_Constants::T ); ?> </option>
-                    <# ThriveComments.thrive_boxes.forEach( function ( value ) { #>
+					<option selected="selected" value="0"> <?php echo __( 'No selection', Thrive_Comments_Constants::T ); ?> </option>
+					<# ThriveComments.thrive_boxes.forEach( function ( value ) { #>
 					<option
 					<# if ( conversionSettings.tcm_thrivebox.first_time.thrivebox_id == value.ID ) { #> selected="selected" <# } #> value="<#= value.ID #>">
 					<#= value.post_title #></option>
 					<# } ) #>
 				</select>
-                <div id="thrivebox-first-no-selection" class="tcm-red" <# if ( conversionSettings.tcm_thrivebox.first_time.thrivebox_id !== 0 ) { #> hidden  <# } #> >
-					<?php echo __( 'Until you select a ThriveBox, the Thank you message will be displayed instead.', Thrive_Comments_Constants::T ); ?>
-                </div>
-				<span class="tcm-thrivebox"><a href="https://thrivethemes.com/tkb_item/how-to-create-and-use-a-thrivebox/" target="_blank"><?php echo __( 'How to add a new ThriveBox', Thrive_Comments_Constants::T ); ?></a></span>
+				<div id="thrivebox-first-no-selection" class="tcm-red"
+				<# if ( conversionSettings.tcm_thrivebox.first_time.thrivebox_id !== 0 ) { #> hidden <# } #> >
+				<?php echo __( 'Until you select a ThriveBox, the Thank you message will be displayed instead.', Thrive_Comments_Constants::T ); ?>
 			</div>
-			<# } else { #>
-			<div class="tcm-l-text">
-				<span class="tcm-thrivebox tcm-l-text"><?php echo __( 'You have not created any ThriveBoxes yet.', Thrive_Comments_Constants::T ); ?>&nbsp;<a href="admin.php?page=thrive_leads_dashboard" target="_blank"><?php echo __( 'Click here to create one in Thrive Leads', Thrive_Comments_Constants::T ); ?></a>.</span>
-			</div>
-			<# } #>
+			<span class="tcm-thrivebox"><a href="https://thrivethemes.com/tkb_item/how-to-create-and-use-a-thrivebox/" target="_blank"><?php echo __( 'How to add a new ThriveBox', Thrive_Comments_Constants::T ); ?></a></span>
 		</div>
+		<# } else { #>
+		<div class="tcm-l-text">
+			<span class="tcm-thrivebox tcm-l-text"><?php echo __( 'You have not created any ThriveBoxes yet.', Thrive_Comments_Constants::T ); ?>&nbsp;<a href="admin.php?page=thrive_leads_dashboard" target="_blank"><?php echo __( 'Click here to create one in Thrive Leads', Thrive_Comments_Constants::T ); ?></a>.</span>
+		</div>
+		<# } #>
 	</div>
+</div>
 </div>
 
 <hr class="tcm-separator"/>
@@ -306,17 +307,17 @@
 
 				<?php echo __( 'Insert commenter name: {commenter_name}', Thrive_Comments_Constants::T ); ?>
 			</div>
-            <div>
-                <label for="featured_images_second"><?php echo __( 'Show featured images with related posts', Thrive_Comments_Constants::T ); ?></label>
-                <div class="tvd-switch">
-                    <label>
-                        <?php echo __( 'Off', Thrive_Comments_Constants::T ); ?>
-                        <input id="featured_images_second" name="featured_images"  data-conversion-setting="second_time" data-card="related_posts" class="tcm-checkbox filled-in" data-type="checkbox" data-setting="featured_images" type="checkbox" <# if ( conversionSettings.tcm_related_posts.second_time.show_featured_image ) { #> checked <# } #> >
-                                <span class="tvd-lever"></span>
-                                <?php echo __( 'On', Thrive_Comments_Constants::T ); ?>
-                    </label>
-                </div>
-            </div>
+			<div>
+				<label for="featured_images_second"><?php echo __( 'Show featured images with related posts', Thrive_Comments_Constants::T ); ?></label>
+				<div class="tvd-switch">
+					<label>
+						<?php echo __( 'Off', Thrive_Comments_Constants::T ); ?>
+						<input id="featured_images_second" name="featured_images" data-conversion-setting="second_time" data-card="related_posts" class="tcm-checkbox filled-in" data-type="checkbox" data-setting="featured_images" type="checkbox" <# if ( conversionSettings.tcm_related_posts.second_time.show_featured_image ) { #> checked <# } #> >
+						<span class="tvd-lever"></span>
+						<?php echo __( 'On', Thrive_Comments_Constants::T ); ?>
+					</label>
+				</div>
+			</div>
 
 		</div>
 		<div id="tab-4" class="tcm-message-box clear-this <# if ( conversionSettings.second_time.active === ThriveComments.const.tcm_redirect ) { #> current <# } #>">
@@ -339,26 +340,27 @@
 			</div>
 			<div>
 				<select id="thrive-boxes-second-time" class="tcm-select-thrivebox tvd-select2 form-control tvd-browser-default" tabindex="-1" data-conversion-setting="second_time" data-card="<#= ThriveComments.const.tcm_thrivebox #>">
-                    <option selected="selected" value="0" > <?php echo __( 'No selection', Thrive_Comments_Constants::T ); ?> </option>
-                    <# ThriveComments.thrive_boxes.forEach( function ( value) { #>
+					<option selected="selected" value="0"> <?php echo __( 'No selection', Thrive_Comments_Constants::T ); ?> </option>
+					<# ThriveComments.thrive_boxes.forEach( function ( value) { #>
 					<option
 					<# if ( conversionSettings.tcm_thrivebox.second_time.thrivebox_id == value.ID ) { #> selected="selected" <# } #> value="<#= value.ID #>">
 					<#= value.post_title #>
 					</option >
 					<# } ) #>
 				</select>
-                <div id="thrivebox-second-no-selection" class="tcm-red" <# if ( conversionSettings.tcm_thrivebox.second_time.thrivebox_id !== 0 ) { #> hidden  <# } #> >
-					<?php echo __( 'Until you select a ThriveBox, the Thank you message will be displayed instead.', Thrive_Comments_Constants::T ); ?>
-                </div>
-				<span class="tcm-thrivebox"><a href="https://thrivethemes.com/tkb_item/how-to-create-and-use-a-thrivebox/" target="_blank"><?php echo __( 'How to add a new ThriveBox', Thrive_Comments_Constants::T ); ?></a></span>
+				<div id="thrivebox-second-no-selection" class="tcm-red"
+				<# if ( conversionSettings.tcm_thrivebox.second_time.thrivebox_id !== 0 ) { #> hidden <# } #> >
+				<?php echo __( 'Until you select a ThriveBox, the Thank you message will be displayed instead.', Thrive_Comments_Constants::T ); ?>
 			</div>
-			<# } else { #>
-			<div class="tcm-thrivebox-only">
-				<span class="tcm-thrivebox"><?php echo __( 'You have not created any ThriveBoxes yet. ', Thrive_Comments_Constants::T ); ?><a href="admin.php?page=thrive_leads_dashboard" target="_blank"><?php echo __( 'Click here to create one in Thrive Leads', Thrive_Comments_Constants::T ); ?></a></span>
-			</div>
-			<# } #>
+			<span class="tcm-thrivebox"><a href="https://thrivethemes.com/tkb_item/how-to-create-and-use-a-thrivebox/" target="_blank"><?php echo __( 'How to add a new ThriveBox', Thrive_Comments_Constants::T ); ?></a></span>
 		</div>
+		<# } else { #>
+		<div class="tcm-thrivebox-only">
+			<span class="tcm-thrivebox"><?php echo __( 'You have not created any ThriveBoxes yet. ', Thrive_Comments_Constants::T ); ?><a href="admin.php?page=thrive_leads_dashboard" target="_blank"><?php echo __( 'Click here to create one in Thrive Leads', Thrive_Comments_Constants::T ); ?></a></span>
+		</div>
+		<# } #>
 	</div>
+</div>
 </div>
 
 

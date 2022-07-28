@@ -10,53 +10,53 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 $breadcrumbs_config = array(
 	array(
-		'title' => __( 'Quick Start Guide', TVA_Const::T ),
+		'title' => __( 'Quick Start Guide', 'thrive-apprentice' ),
 		'route' => 'sendowl/quick-start',
 	),
 	array(
-		'title' => __( 'Purchase Links', TVA_Const::T ),
+		'title' => __( 'Purchase Links', 'thrive-apprentice' ),
 	),
 );
 
 $options = array(
 	'products' => array(
-		'title'                 => __( 'Product', TVA_Const::T ),
+		'title'                 => __( 'Product', 'thrive-apprentice' ),
 		'icon'                  => 'so-products',
-		'option_button_label'   => __( 'Refresh Products List', TVA_Const::T ),
-		'discount_button_label' => __( 'Refresh Discount List', TVA_Const::T ),
+		'option_button_label'   => __( 'Refresh Products List', 'thrive-apprentice' ),
+		'discount_button_label' => __( 'Refresh Discount List', 'thrive-apprentice' ),
 		'query_string'          => 'pid',
 	),
 	'bundles'  => array(
-		'title'                 => __( 'Bundle', TVA_Const::T ),
+		'title'                 => __( 'Bundle', 'thrive-apprentice' ),
 		'icon'                  => 'so-bundle',
-		'option_button_label'   => __( 'Refresh Bundles List', TVA_Const::T ),
-		'discount_button_label' => __( 'Refresh Discount List', TVA_Const::T ),
+		'option_button_label'   => __( 'Refresh Bundles List', 'thrive-apprentice' ),
+		'discount_button_label' => __( 'Refresh Discount List', 'thrive-apprentice' ),
 		'query_string'          => 'bid',
 	),
 );
 
 ?>
 <div class="tva-flex tva-flex-row mb-30">
-	<h1 class="tva-main-heading"><?php echo __( 'Purchase Links', TVA_Const::T ); ?></h1>
+	<h1 class="tva-main-heading"><?php echo __( 'Purchase Links', 'thrive-apprentice' ); ?></h1>
 </div>
 <?php include 'breadcrumbs.phtml'; ?>
 <div class="tva-flex tva-flex-column mt-30">
 	<# if ( !! TVA.settings.checkout_page.value === false ) { #>
 	<p>
-		<?php echo __( 'You haven\'t set up your checkout page yet! In order to get your correct Purchase Links you need to set up your Checkout Page', TVA_Const::T ); ?>
-		<a href="#settings/sendowl/checkout"><?php echo __( 'Here', TVA_Const::T ) ?></a>.
+		<?php echo __( 'You haven\'t set up your checkout page yet! In order to get your correct Purchase Links you need to set up your Checkout Page', 'thrive-apprentice' ); ?>
+		<a href="#settings/sendowl/checkout"><?php echo __( 'Here', 'thrive-apprentice' ) ?></a>.
 	</p>
 	<# } #>
-	<p class="sendowl-p"><?php echo __( 'Use the link generator below to get purchase links for any of your SendOwl products or bundles. ', TVA_Const::T ) ?>
+	<p class="sendowl-p"><?php echo __( 'Use the link generator below to get purchase links for any of your SendOwl products or bundles. ', 'thrive-apprentice' ) ?>
 		<a href="//fast.wistia.net/embed/iframe/nvx732gvvb?popover=true" class="wistia-popover[height=450,playerColor=2bb914,width=800]">
-			<?php echo __( 'Click here to see video instructions on how to use these links.', TVA_Const::T ); ?>
+			<?php echo __( 'Click here to see video instructions on how to use these links.', 'thrive-apprentice' ); ?>
 		</a>
 	</p>
 </div>
 <div class="tva-flex tva-purchase-top mb-20">
 	<div>
 		<div class="tva-card tva-purchase-card">
-			<p><?php echo __( 'Would you like to generate a purchase link for a product or a bundle?', TVA_Const::T ); ?></p>
+			<p><?php echo __( 'Would you like to generate a purchase link for a product or a bundle?', 'thrive-apprentice' ); ?></p>
 
 			<?php foreach ( $options as $key => $option ) : ?>
 				<div class="click tva-colored-card tva-so-options" data-fn="selectOption"

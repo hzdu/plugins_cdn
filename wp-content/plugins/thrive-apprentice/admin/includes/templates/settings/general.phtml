@@ -10,8 +10,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 ?>
 <div>
-	<h1 class="tva-main-heading"><?php echo __( 'General settings', TVA_Const::T ); ?></h1>
-	<p class="settings-p-main mt-20 mb-10"><?php echo __( 'These settings apply to the page where your courses are displayed', TVA_Const::T ); ?></p>
+	<h1 class="tva-main-heading"><?php echo __( 'General settings', 'thrive-apprentice' ); ?></h1>
+	<p class="settings-p-main mt-20 mb-10"><?php echo __( 'These settings apply to the page where your courses are displayed', 'thrive-apprentice' ); ?></p>
 </div>
 
 <div class="tva-general-settings-card mb-20">
@@ -20,7 +20,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	<div class="tva-flex mt-20">
 		<div class="tvd-switch">
 			<label class="tva-slide-checkbox">
-				<span class="settings-checkbox-label"><?php echo esc_html__( 'Skip courses homepage when only one course is published', TVA_Const::T ); ?></span>
+				<span class="settings-checkbox-label"><?php echo esc_html__( 'Skip courses homepage when only one course is published', 'thrive-apprentice' ); ?></span>
 				<input type="checkbox" class="click" data-fn="changeSettingCheckbox" data-field="skip_homepage_redirect" data-val-checked="0" data-val-not-checked="1" <#= parseInt( model.get('skip_homepage_redirect').value ) === 1 ? '' : 'checked' #>>
 				<span class="lever"></span>
 			</label>
@@ -30,13 +30,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 <div class="tva-general-settings-card">
 	<div class="tva-flex tva-space-between<#=visualEditingEnabled ? ' tva-hide' : ' mb-20'#>">
-		<label for="tva-per-page"><?php echo __( 'Courses per page', TVA_Const::T ) ?></label>
+		<label for="tva-per-page"><?php echo __( 'Courses per page', 'thrive-apprentice' ) ?></label>
 		<input id="tva-per-page" class="input" data-fn="input" type="number" value="<#= model.get('per_page').value #>" data-field="per_page">
 	</div>
 	<div class="mb-20<#=visualEditingEnabled ? ' tva-hide' : ''#>">
 		<div class="tvd-switch">
 			<label class="tva-slide-checkbox">
-				<span class="settings-checkbox-label"><?php echo esc_html__( 'Load themes and plugins scripts and styles?', TVA_Const::T ); ?></span>
+				<span class="settings-checkbox-label"><?php echo esc_html__( 'Load themes and plugins scripts and styles?', 'thrive-apprentice' ); ?></span>
 				<input type="checkbox" class="click" data-fn="changeSettingCheckbox" data-field="load_scripts" <#= model.get('load_scripts').value ? 'checked' : '' #>>
 				<span class="lever"></span>
 			</label>
@@ -46,7 +46,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	<div class="tva-flex mb-20">
 		<div class="tvd-switch">
 			<label class="tva-slide-checkbox">
-				<span class="settings-checkbox-label"><?php echo esc_html__( 'Perform auto-login when creating a WordPress account?', TVA_Const::T ); ?></span>
+				<span class="settings-checkbox-label"><?php echo esc_html__( 'Perform auto-login when creating a WordPress account?', 'thrive-apprentice' ); ?></span>
 				<input type="checkbox" class="click" data-fn="changeSettingCheckbox" data-field="auto_login" <#= model.get('auto_login').value ? 'checked' : '' #>>
 				<span class="lever"></span>
 			</label>
@@ -56,7 +56,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	<div class="mb-20<#=visualEditingEnabled ? ' tva-hide' : ''#>">
 		<div class="tvd-switch">
 			<label class="tva-slide-checkbox">
-				<span class="settings-checkbox-label"><?php echo esc_html__( 'Display "Powered by Thrive Apprentice"', TVA_Const::T ); ?></span>
+				<span class="settings-checkbox-label"><?php echo esc_html__( 'Display "Powered by Thrive Apprentice"', 'thrive-apprentice' ); ?></span>
 				<input type="checkbox" class="click" data-fn="changeSettingCheckbox" data-field="apprentice_label" <#= model.get('apprentice_label').value ? 'checked' : '' #>>
 				<span class="lever"></span>
 			</label>
@@ -66,7 +66,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	<div class="tva-flex">
 		<div class="tvd-switch">
 			<label class="tva-slide-checkbox">
-				<span class="settings-checkbox-label"><?php echo esc_html__( 'Enable comments for courses', TVA_Const::T ); ?></span>
+				<span class="settings-checkbox-label"><?php echo esc_html__( 'Enable comments for courses', 'thrive-apprentice' ); ?></span>
 				<input type="checkbox" class="click" data-fn="changeSettingCheckbox" data-field="comment_status" data-val-checked="open" data-val-not-checked="closed" <#= model.get('comment_status').value === 'open' ? 'checked' : '' #>>
 				<span class="lever"></span>
 			</label>

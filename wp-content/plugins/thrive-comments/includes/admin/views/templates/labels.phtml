@@ -13,18 +13,18 @@
 		<div class="tcm-modal-body">
 			<div class="tcm-modal" id="tcm-submit-labels">
 				<# _.each( labels, function( value, key ) { #>
-					<div class="tvd-row">
-						<div class="tvd-col tvd-s6">
-							<label class="tcm-modal-label" for="tcm-label">
-								<#= value['default'] #>
-							</label>
-						</div>
-						<div class="tvd-col tvd-m6">
-							<input type="text" class="tcm-label tcm-input-label" name='tcm_label' placeholder="<#= value['text'] #>" value="<#= value['text'] #>" data-key="<#= key #>" data-default="<#= value['default'] #>"/>
-						</div>
+				<div class="tvd-row">
+					<div class="tvd-col tvd-s6">
+						<label class="tcm-modal-label" for="tcm-label">
+							<#= value['default'] #>
+						</label>
 					</div>
+					<div class="tvd-col tvd-m6">
+						<input type="text" class="tcm-label tcm-input-label" name='tcm_label' placeholder="<#= value['text'] #>" value="<#= value['text'] #>" data-key="<#= key #>" data-default="<#= value['default'] #>"/>
+					</div>
+				</div>
 				<# } ) #>
-					<div class="tcm-m50"></div>
+				<div class="tcm-m50"></div>
 
 			</div>
 		</div>

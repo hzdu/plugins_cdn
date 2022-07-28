@@ -1,15 +1,13 @@
 /**
  * Created by Ovidiu on 4/14/2016.
  */
-var ThriveOvation = ThriveOvation || {};
+window.ThriveOvation = window.ThriveOvation || {};
 ThriveOvation.util = ThriveOvation.util || {};
 
 _.templateSettings = {
-	evaluate: /<#([\s\S]+?)#>/g,
-	interpolate: /<#=([\s\S]+?)#>/g,
-	escape: /<#-([\s\S]+?)#>/g
+	evaluate: /<#([\s\S]+?)#>/g, interpolate: /<#=([\s\S]+?)#>/g, escape: /<#-([\s\S]+?)#>/g
 };
-(function ( $ ) {
+( function ( $ ) {
 
 	window.addEventListener( 'message', function ( e ) {
 		if ( e.data.event && e.data.event == 'tvo_testimonials_template_update' ) {
@@ -38,8 +36,7 @@ _.templateSettings = {
 	};
 
 	ThriveOvation.util.validateInput = function ( $input, message, with_toast ) {
-		var _value = ($input instanceof jQuery) ? $input.val() : $input,
-			_response = true;
+		var _value = ( $input instanceof jQuery ) ? $input.val() : $input, _response = true;
 		if ( _value == '' ) {
 			if ( ! message ) {
 				message = ThriveOvation.translations.isRequired;
@@ -60,7 +57,7 @@ _.templateSettings = {
 	ThriveOvation.util.containsObject = function ( obj, list ) {
 		var i;
 		for ( i = 0; i < list.length; i ++ ) {
-			if ( list[i].id == obj.id ) {
+			if ( list[ i ].id == obj.id ) {
 				return true;
 			}
 		}
@@ -75,22 +72,21 @@ _.templateSettings = {
 			return false;
 		}
 
-		mce[_id] = $.extend( true, {}, defaults.mce );
-		qt[_id] = $.extend( true, {}, defaults.qt );
+		mce[ _id ] = $.extend( true, {}, defaults.mce );
+		qt[ _id ] = $.extend( true, {}, defaults.qt );
 
-		qt[_id].id = _id;
+		qt[ _id ].id = _id;
 
-		mce[_id].selector = '#' + _id;
-		mce[_id].body_class = mce[_id].body_class.replace( 'tvo-tinymce-tpl', _id );
+		mce[ _id ].selector = '#' + _id;
+		mce[ _id ].body_class = mce[ _id ].body_class.replace( 'tvo-tinymce-tpl', _id );
 
 		return {
-			'mce_init': mce,
-			'qt_init': qt
+			'mce_init': mce, 'qt_init': qt
 		};
 	};
 
 	ThriveOvation.util.clearMCEEditor = function ( ignore ) {
-		var _current_ids = ['tvo-testimonial-content-tinymce', 'tvo-email-template'];
+		var _current_ids = [ 'tvo-testimonial-content-tinymce', 'tvo-email-template' ];
 		_current_ids.forEach( function ( element ) {
 			if ( ignore != element ) {
 				if ( typeof tinymce !== 'undefined' ) {
@@ -121,13 +117,12 @@ _.templateSettings = {
 	 * @returns {*}
 	 */
 	ThriveOvation.util.hasTinymce = function () {
-		return ! ! (window.tinymce);
+		return !! ( window.tinymce );
 	};
 
 	ThriveOvation.util.validateURL = function ( $input ) {
 
-		var _value = ($input instanceof jQuery) ? $input.val() : $input,
-			pattern = new RegExp( '^(?!mailto:)(?:(?:http|https|ftp)://)(?:\\S+(?::\\S*)?@)?(?:(?:(?:[1-9]\\d?|1\\d\\d|2[01]\\d|22[0-3])(?:\\.(?:1?\\d{1,2}|2[0-4]\\d|25[0-5])){2}(?:\\.(?:[0-9]\\d?|1\\d\\d|2[0-4]\\d|25[0-4]))|(?:(?:[a-z\\u00a1-\\uffff0-9]+-?)*[a-z\\u00a1-\\uffff0-9]+)(?:\\.(?:[a-z\\u00a1-\\uffff0-9]+-?)*[a-z\\u00a1-\\uffff0-9]+)*(?:\\.(?:[a-z\\u00a1-\\uffff]{2,})))|localhost)(?::\\d{2,5})?(?:(/|\\?|#)[^\\s]*)?$' );
+		var _value = ( $input instanceof jQuery ) ? $input.val() : $input, pattern = new RegExp( '^(?!mailto:)(?:(?:http|https|ftp)://)(?:\\S+(?::\\S*)?@)?(?:(?:(?:[1-9]\\d?|1\\d\\d|2[01]\\d|22[0-3])(?:\\.(?:1?\\d{1,2}|2[0-4]\\d|25[0-5])){2}(?:\\.(?:[0-9]\\d?|1\\d\\d|2[0-4]\\d|25[0-4]))|(?:(?:[a-z\\u00a1-\\uffff0-9]+-?)*[a-z\\u00a1-\\uffff0-9]+)(?:\\.(?:[a-z\\u00a1-\\uffff0-9]+-?)*[a-z\\u00a1-\\uffff0-9]+)*(?:\\.(?:[a-z\\u00a1-\\uffff]{2,})))|localhost)(?::\\d{2,5})?(?:(/|\\?|#)[^\\s]*)?$' );
 		if ( ! pattern.test( _value ) ) {
 			$input.removeClass( "tvd-valid" );
 			$input.addClass( "tvd-invalid" );
@@ -138,8 +133,7 @@ _.templateSettings = {
 
 	ThriveOvation.util.validateEmail = function ( $input ) {
 
-		var _value = ($input instanceof jQuery) ? $input.val() : $input,
-			pattern = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+		var _value = ( $input instanceof jQuery ) ? $input.val() : $input, pattern = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
 		if ( ! pattern.test( _value ) ) {
 			if ( $input instanceof jQuery ) {
@@ -259,15 +253,12 @@ _.templateSettings = {
 					e.stopPropagation();
 				} );
 				$element.zclip( {
-					path: ThriveOvation.const.wp_content + 'plugins/thrive-ovation/admin/js/libs/jquery.zclip.1.1.1/ZeroClipboard.swf',
-					copy: function () {
+					path: ThriveOvation.const.wp_content + 'plugins/thrive-ovation/admin/js/libs/jquery.zclip.1.1.1/ZeroClipboard.swf', copy: function () {
 						return jQuery( this ).parents( '.tvo-copy-input-content' ).find( 'input.tvo-copy' ).val();
-					},
-					afterCopy: function () {
+					}, afterCopy: function () {
 						var $link = jQuery( this );
 						$link.prev().select();
-						var text = $link.html(),
-							color_class;
+						var text = $link.html(), color_class;
 						if ( $link.hasClass( 'tvd-btn-blue' ) ) {
 							color_class = 'tvd-btn-blue';
 							$link.removeClass( 'tvd-btn-blue' ).addClass( 'tvd-btn-green' )
@@ -310,10 +301,8 @@ _.templateSettings = {
 	 * @param elem
 	 */
 	ThriveOvation.util.setModelWithKeyValue = function ( elem, model ) {
-		var data_key = elem.attr( 'data-key' ),
-			data_value = elem.val(),
-			obj = {};
-		obj[data_key] = data_value;
+		var data_key = elem.attr( 'data-key' ), data_value = elem.val(), obj = {};
+		obj[ data_key ] = data_value;
 		model.set( obj );
 	};
 
@@ -324,22 +313,21 @@ _.templateSettings = {
 	 * @param self
 	 */
 	ThriveOvation.util.addNewTagInTheSystem = function ( tag, self ) {
-		tag['name'] = tag['text'];
+		tag[ 'name' ] = tag[ 'text' ];
 
-		if ( tag['text'] == tag['id'] ) {
+		if ( tag[ 'text' ] == tag[ 'id' ] ) {
 			var tagModel = new ThriveOvation.models.Tag( tag );
 			tagModel.set( 'post_id', 0 );
 			TVE_Dash.showLoader();
 
 			tagModel.save( null, {
 				success: function ( model, response ) {
-					self.$el.find( 'option[value="' + tag['id'] + '"]' ).remove();
+					self.$el.find( 'option[value="' + tag[ 'id' ] + '"]' ).remove();
 					self.$el.find( '.tvo-add-tag-autocomplete' ).append( '<option value="' + response.tag.term_id + '" selected>' + response.tag.text + '</option>' ).trigger( 'change' );
 					var obj = {id: response.tag.term_id, text: response.tag.text};
 					ThriveOvation.availableTags.push( obj );
 					TVE_Dash.hideLoader();
-				},
-				error: function ( model, response ) {
+				}, error: function ( model, response ) {
 					TVE_Dash.err( ThriveOvation.translations.testimonial_tag_added_fail_toast );
 					TVE_Dash.hideLoader();
 				}
@@ -353,22 +341,21 @@ _.templateSettings = {
 	 * @param tag
 	 */
 	ThriveOvation.util.addNewTagInTheSystemFromComments = function ( tag ) {
-		tag['name'] = tag['text'];
+		tag[ 'name' ] = tag[ 'text' ];
 
-		if ( tag['text'] == tag['id'] ) {
+		if ( tag[ 'text' ] == tag[ 'id' ] ) {
 			var tagModel = new ThriveOvation.models.Tag( tag );
 			tagModel.set( 'post_id', 0 );
 			TVE_Dash.showLoader();
 
 			tagModel.save( null, {
 				success: function ( model, response ) {
-					jQuery( 'option[value="' + tag['id'] + '"]' ).remove();
+					jQuery( 'option[value="' + tag[ 'id' ] + '"]' ).remove();
 					jQuery( '.tvo-add-tag-autocomplete' ).append( '<option value="' + response.tag.term_id + '" selected>' + response.tag.text + '</option>' ).trigger( 'change' );
 					var obj = {id: response.tag.term_id, text: response.tag.text};
 					ThriveOvation.availableTags.push( obj );
 					TVE_Dash.hideLoader();
-				},
-				error: function ( model, response ) {
+				}, error: function ( model, response ) {
 					TVE_Dash.err( ThriveOvation.translations.testimonial_tag_added_fail_toast );
 					TVE_Dash.hideLoader();
 				}
@@ -388,19 +375,18 @@ _.templateSettings = {
 		for ( var i in $base ) {
 
 			var $current = {
-				title: $base[i].title,
-				url: $base[i].url
+				title: $base[ i ].title, url: $base[ i ].url
 			}, $links = [];
 
 			/* If the current route is the one we are looking for, we return it in an array */
-			if ( $base[i].key == $route ) {
+			if ( $base[ i ].key == $route ) {
 				$current.url += typeof $id === 'undefined' ? '' : '/' + $id
 
-				return [$current];
+				return [ $current ];
 			}
 
 			/* Search the route in the descendants  */
-			$links = ThriveOvation.util.Breadcrumbs( $base[i].kids, $route, $id );
+			$links = ThriveOvation.util.Breadcrumbs( $base[ i ].kids, $route, $id );
 
 			/* If something was return, it means that one of the kids has the route => this title is also part of the breadcrumb */
 			if ( $links.length > 0 ) {
@@ -442,4 +428,4 @@ _.templateSettings = {
 		}
 	};
 
-})( jQuery );
+} )( jQuery );

@@ -18,22 +18,22 @@
 	<div class="tva-course-hidden">
 		<span class="tva-course-handle">
 			<?php tva_get_svg_icon( 'arrows-1' ); ?>
-			<span class="tva-custom-tooltip"><?php echo esc_attr( __( 'Drag and drop to reorder', TVA_Const::T ) ); ?></span>
+			<span class="tva-custom-tooltip"><?php echo esc_attr( __( 'Drag and drop to reorder', 'thrive-apprentice' ) ); ?></span>
 		</span>
 
 		<span class="click" data-fn="duplicateCourse" data-id="<#= course.get('id') #>">
 			<span class="tva-course-duplicate"></span>
-			<span class="tva-custom-tooltip"><?php echo esc_attr__( 'Duplicate course', TVA_Const::T ); ?></span>
+			<span class="tva-custom-tooltip"><?php echo esc_attr__( 'Duplicate course', 'thrive-apprentice' ); ?></span>
 		</span>
 
 		<span class="click" data-fn="deleteCourse" data-id="<#= course.get('id') #>">
 			<?php tva_get_svg_icon( 'trash-1' ); ?>
-			<span class="tva-custom-tooltip"><?php echo esc_attr( __( 'Delete course', TVA_Const::T ) ); ?></span>
+			<span class="tva-custom-tooltip"><?php echo esc_attr( __( 'Delete course', 'thrive-apprentice' ) ); ?></span>
 		</span>
 
 		<a class="click" href="<#= course.get('preview_url') #>" target="_blank" data-fn="previewCourse">
 			<?php tva_get_svg_icon( 'eye-1' ); ?>
-			<span class="tva-custom-tooltip"><?php echo esc_attr( __( 'Preview course', TVA_Const::T ) ); ?></span>
+			<span class="tva-custom-tooltip"><?php echo esc_attr( __( 'Preview course', 'thrive-apprentice' ) ); ?></span>
 		</a>
 	</div>
 	<div class="tva-course-header" style="background-color: <#= topic.get('color') #>">

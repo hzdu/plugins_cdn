@@ -23,7 +23,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	<button class="template-edit-button">
 		<a target="_blank" href="<#= model.get('edit_url') #>">
 			<?php Thrive_Views::svg_icon( 'pen-light' ); ?>
-			<span><?php echo __( 'Edit', TVA_Const::T ); ?></span>
+			<span><?php echo __( 'Edit', 'thrive-apprentice' ); ?></span>
 		</a>
 	</button>
 </div>
@@ -38,7 +38,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	<div class="template-meta">
 		<ul>
 			<li>
-				<span class="template-label"><?php echo __( 'Content Type', TVA_Const::T ); ?></span>
+				<span class="template-label"><?php echo __( 'Content Type', 'thrive-apprentice' ); ?></span>
 				<span class="template-meta-val"><#= model.getContentType() #></span>
 			</li>
 		</ul>

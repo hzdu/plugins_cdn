@@ -1,5 +1,5 @@
 <div class="tvd-right">
-	<span class="tvd-inline-block"><strong><?php echo __( 'Rows per page:', TVO_TRANSLATE_DOMAIN ); ?></strong></span>
+	<span class="tvd-inline-block"><strong><?php echo __( 'Rows per page:', 'thrive-ovation' ); ?></strong></span>
 	<div class="tvd-input-field tvd-input-field-small tvd-inline-block tvo-pagination-select">
 		<select class="tvo-items-per-page">
 			<option value="10"
@@ -21,7 +21,7 @@
 		<strong>
 			<#= (currentPage-1)*itemsPerPage #> -
 				<#= currentPage * itemsPerPage > total_items ? total_items : currentPage * itemsPerPage #>
-					<?php echo __( 'of', TVO_TRANSLATE_DOMAIN ) ?>
+					<?php echo __( 'of', 'thrive-ovation' ) ?>
 					<#= total_items #>
 		</strong>
 	</div>

@@ -3,9 +3,9 @@
 	<div class="deleted-text">
 		<#= text #>
 		<# if ( comment.get('undo-action') ) { #>
-			<a href="#" data-key="z" class="undo-action"><?php echo __( 'Undo', Thrive_Comments_Constants::T ); ?></a>
+		<a href="#" data-key="z" class="undo-action"><?php echo __( 'Undo', Thrive_Comments_Constants::T ); ?></a>
 		<# } else { #>
-			<a href="#" data-key="x" class="expand-action"><?php echo __( 'Expand', Thrive_Comments_Constants::T ) . '.'; ?></a>
+		<a href="#" data-key="x" class="expand-action"><?php echo __( 'Expand', Thrive_Comments_Constants::T ) . '.'; ?></a>
 		<# } #>
 	</div>
 

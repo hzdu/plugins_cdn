@@ -31,7 +31,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 			<input id="tva-lesson-slug" class="tva-course-item-slug" data-bind="post_name" type="text" value="<#= model.get('post_name') #>">
 			<input type="hidden" value="<?php echo get_site_url() . '/course/'; ?><#- model.get('post_name') #>"/>
 			<button class="tva-zclip">&nbsp;
-				<span class="tva-custom-tooltip"><?php echo esc_attr( __( 'Copy', TVA_Const::T ) ); ?></span>
+				<span class="tva-custom-tooltip"><?php echo esc_attr( __( 'Copy', 'thrive-apprentice' ) ); ?></span>
 			</button>
 		</div>
 	</div>
@@ -68,8 +68,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 				<div class="tva-info-icon tva-relative tva-tooltip-parent">
 					<?php tva_get_svg_icon( 'info-solid' ); ?>
 					<div class="tva-custom-tooltip tva-tooltip-modal">
-						<p><?php esc_html_e( "Access restrictions are inherited from the parent product.  However, you can override these access restrictions and give users free access to your course content.", TVA_Const::T ); ?></p>
-						<p><?php esc_html_e( 'This can be useful, for example, if you have a premium course but want to offer some lessons or modules for free as a teaser.  You’d set the access restrictions for the product, but make specific content free.', TVA_Const::T ); ?></p>
+						<p><?php esc_html_e( "Access restrictions are inherited from the parent product.  However, you can override these access restrictions and give users free access to your course content.", 'thrive-apprentice' ); ?></p>
+						<p><?php esc_html_e( 'This can be useful, for example, if you have a premium course but want to offer some lessons or modules for free as a teaser.  You’d set the access restrictions for the product, but make specific content free.', 'thrive-apprentice' ); ?></p>
 					</div>
 				</div>
 			</span>

@@ -9,7 +9,7 @@
 				 data-tooltip=""
 				 data-position="top">&nbsp;
 			</div>
-			<div class="tva-cm-number"><?php echo __( 'Module', TVA_Const::T ); ?> <#= this.numberInList #></div>
+			<div class="tva-cm-number"><?php echo __( 'Module', 'thrive-apprentice' ); ?> <#= this.numberInList #></div>
 			<div class="tva-cm-number tva-item-count ml-5"><#= model.getCountSummary() #></div>
 			<div class="tva-cm-number tva-freemium-type tva-bull"><#= this.getFreemiumLabel() #></div>
 		</div>
@@ -28,8 +28,8 @@
 		<a class="tva_module-main mr-40 click" data-fn="editWithTar" href="<#= model.get('tcb_edit_url') #>" target="_blank">
 			<?php tva_get_svg_icon( 'tar-icon' ); ?>
 			<#= model.get('has_tcb_content') || model.get('post_excerpt') ?
-			'<?php echo __( 'Edit Content', TVA_Const::T ); ?>' :
-			'<?php echo __( 'Add Content', TVA_Const::T ); ?>' #>
+			'<?php echo __( 'Edit Content', 'thrive-apprentice' ); ?>' :
+			'<?php echo __( 'Add Content', 'thrive-apprentice' ); ?>' #>
 		</a>
 		<a class="click" data-fn="deleteItem" data-id="<#= model.get('id') #>" href="javascript:void(0)"><?php echo esc_html__( 'Delete Module', 'thrive-apprentice' ) ?></a>
 	</div>

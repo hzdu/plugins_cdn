@@ -1,10 +1,10 @@
 <?php if ( $all_used ) : ?>
-	<p class="tvd-text-red"><?php echo __( 'All designs are already used', TVE_Ult_Const::T ) ?></p>
+	<p class="tvd-text-red"><?php echo __( 'All designs are already used', 'thrive-ult') ?></p>
 	<?php return; ?>
 <?php endif; ?>
 
 <?php if ( empty( $designs ) ) : ?>
-	<p class="tvd-text-red"><?php echo __( 'No design available', TVE_Ult_Const::T ) ?></p>
+	<p class="tvd-text-red"><?php echo __( 'No design available', 'thrive-ult') ?></p>
 	<?php return; ?>
 <?php endif; ?>
 
@@ -14,7 +14,7 @@
 			<div class="tvd-col tvd-s5">
 				<div class="tvd-input-field tvd-no-margin">
 					<select name="design" id="tvu-design" data-name="" data-field="design">
-						<option disabled selected value="0"><?php echo __( 'Choose design to show', TVE_Ult_Const::T ) ?></option>
+						<option disabled selected value="0"><?php echo __( 'Choose design to show', 'thrive-ult') ?></option>
 						<?php foreach ( $designs as $d ) : ?>
 							<?php $selected = ( ! empty( $action['design'] ) && $d['id'] == $action['design'] ? 'selected="selected"' : '' ); ?>
 							<option <?php echo $selected ?>
@@ -30,7 +30,7 @@
 			<div id="tvu-states-wrapper" class="tvd-col tvd-s5" style="display: none;">
 				<div class="tvd-input-field tvd-no-margin">
 					<select id="tvu-state" name="state" data-name="" data-field="state">
-						<option disabled selected value="0"><?php echo __( 'Choose design state', TVE_Ult_Const::T ) ?></option>
+						<option disabled selected value="0"><?php echo __( 'Choose design state', 'thrive-ult') ?></option>
 					</select>
 					<label for="tvu-state">&nbsp;</label>
 				</div>

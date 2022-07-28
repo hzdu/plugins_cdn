@@ -5,7 +5,7 @@
 		<input id="tva-course-slug" type="text" value="<#= model.get('slug') #>" <#= ! model.get('id') ? 'disabled="disabled"' : '' #>>
 		<input type="hidden" value="<?php echo get_site_url() . '/' . tva_get_slug_for_courses() . '/'; ?><#- model.get('slug') #>"/>
 		<button class="tva-zclip">&nbsp;
-			<span class="tva-custom-tooltip"><?php echo esc_attr( __( 'Copy', TVA_Const::T ) ); ?></span>
+			<span class="tva-custom-tooltip"><?php echo esc_attr( __( 'Copy', 'thrive-apprentice' ) ); ?></span>
 		</button>
 	</div>
 </div>

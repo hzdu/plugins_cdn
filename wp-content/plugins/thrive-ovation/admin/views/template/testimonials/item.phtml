@@ -44,7 +44,7 @@
             <div class="tvd-col tvd-s12">
                 <a href="javascript:void(0);"
                    class="tvd-waves-effect tvd-waves-light tvd-btn-flat tvd-btn-green tvd-btn-small tvo-add-new-tag-action tvd-margin-top">
-					<?php echo __( 'Save', TVO_TRANSLATE_DOMAIN ); ?>
+					<?php echo __( 'Save', 'thrive-ovation' ); ?>
                 </a>
             </div>
         </div>
@@ -73,7 +73,7 @@
         </div>
         <a href="javascript:void(0);" class="tvd-waves-effect tvd-waves-light tvd-btn-flat tvd-btn-flat-blue tvd-btn-small tvo-add-new-tag">
             <span class="tvd-icon-plus tvd-icon-xsmall"></span>
-			<?php echo __( 'ADD TAG', TVO_TRANSLATE_DOMAIN ); ?>
+			<?php echo __( 'ADD TAG', 'thrive-ovation' ); ?>
         </a>
     </div>
 </div>
@@ -83,16 +83,16 @@
                 data-id="<#= testimonial.get('id') #>" data-value="<#= testimonial.get('status') #>">
             <option value="<?php echo TVO_STATUS_READY_FOR_DISPLAY; ?>"
             <# if(testimonial.get('status') == ThriveOvation.const.status.ready_for_display){ #> selected="selected"
-                <# }#> ><?php echo __( 'Ready for Display', TVO_TRANSLATE_DOMAIN ); ?></option>
+                <# }#> ><?php echo __( 'Ready for Display', 'thrive-ovation' ); ?></option>
                     <option value="<?php echo TVO_STATUS_AWAITING_APPROVAL; ?>"
                     <# if(testimonial.get('status') == ThriveOvation.const.status.awaiting_approval){ #> selected="selected"
-                        <# }#> ><?php echo __( 'Awaiting Approval', TVO_TRANSLATE_DOMAIN ); ?></option>
+                        <# }#> ><?php echo __( 'Awaiting Approval', 'thrive-ovation' ); ?></option>
                             <option value="<?php echo TVO_STATUS_AWAITING_REVIEW; ?>"
                             <# if(testimonial.get('status') == ThriveOvation.const.status.awaiting_review){ #> selected="selected"
-                                <# }#>><?php echo __( 'Awaiting Review', TVO_TRANSLATE_DOMAIN ); ?></option>
+                                <# }#>><?php echo __( 'Awaiting Review', 'thrive-ovation' ); ?></option>
                                     <option value="<?php echo TVO_STATUS_REJECTED; ?>"
                                     <# if(testimonial.get('status') == ThriveOvation.const.status.rejected){ #> selected="selected"
-                                        <# }#>><?php echo __( 'Rejected', TVO_TRANSLATE_DOMAIN ); ?></option>
+                                        <# }#>><?php echo __( 'Rejected', 'thrive-ovation' ); ?></option>
         </select>
     </div>
 </div>
@@ -101,19 +101,19 @@
         <a href="javascript:void(0)" data-id="<#= testimonial.get('id') #>"
            class="tvd-tooltipped tvo-testimonial-duplicate tvd-btn-icon-only tvd-btn-icon-only-blue tvd-margin-right-small"
            data-position="top"
-           data-tooltip="<?php echo __( 'Duplicate', TVO_TRANSLATE_DOMAIN ); ?>">
+           data-tooltip="<?php echo __( 'Duplicate', 'thrive-ovation' ); ?>">
             <span class="tvd-icon-copy"></span>
         </a>
         <a href="#testimonials/<#= testimonial.get('id') #>" data-id="<#= testimonial.get('id') #>"
            class="tvd-tooltipped tvo-testimonial-edit tvd-btn-icon-only tvd-btn-icon-only-blue tvd-margin-right-small"
            data-position="top"
-           data-tooltip="<?php echo __( 'Edit', TVO_TRANSLATE_DOMAIN ); ?>">
+           data-tooltip="<?php echo __( 'Edit', 'thrive-ovation' ); ?>">
             <span class="tvd-icon-pencil"></span>
         </a>
         <a href="javascript:void(0)" data-title="<#- testimonial.get('name') #>" data-id="<#= testimonial.get('id') #>"
            class="tvd-tooltipped tvd-btn-icon-only tvd-btn-icon-only-red tvo-delete-testimonial-modal"
            data-position="top"
-           data-tooltip="<?php echo __( 'Delete', TVO_TRANSLATE_DOMAIN ); ?>">
+           data-tooltip="<?php echo __( 'Delete', 'thrive-ovation' ); ?>">
             <span class="tvd-icon-trash-o"></span>
         </a>
     </div>

@@ -10,12 +10,12 @@
 </div>
 
 <div class="tvd-col tvd-s4" <#= item.get('trigger_options').event == '' ? 'style="display: none"' : '' #>>
-	<div class="tvd-card tvd-white tvd-small tvd-valign-wrapper">
-		<div class="tvd-card-content tvd-center-align tvd-valign">
-			<span class="tvu-action-icon <#= item.get('trigger_options').trigger == ThriveUlt.util.trigger_type.conversion ? 'tvu-icon-signout' : 'tvu-icon-move' #>"></span>
-			<p>
-				<#= item.get('trigger_options').event == ThriveUlt.util.conversion_event.end ? 'End Campaign' : 'Move to another <br/> campaign' #>
-			</p>
-		</div>
+<div class="tvd-card tvd-white tvd-small tvd-valign-wrapper">
+	<div class="tvd-card-content tvd-center-align tvd-valign">
+		<span class="tvu-action-icon <#= item.get('trigger_options').trigger == ThriveUlt.util.trigger_type.conversion ? 'tvu-icon-signout' : 'tvu-icon-move' #>"></span>
+		<p>
+			<#= item.get('trigger_options').event == ThriveUlt.util.conversion_event.end ? 'End Campaign' : 'Move to another <br/> campaign' #>
+		</p>
 	</div>
+</div>
 </div>

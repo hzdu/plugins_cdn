@@ -10,29 +10,29 @@
 	</p>
 
 	<# _.each( ThriveComments.email_services, function( connection ) { #>
-		<div class="tcm-notification-card">
+	<div class="tcm-notification-card">
 
-			<span class="connection-img"><img class="tve-asset-connection-img" src="<#= connection.image #>"></span>
-			<span class="connection-title"><#= connection.title #></span>
+		<span class="connection-img"><img class="tve-asset-connection-img" src="<#= connection.image #>"></span>
+		<span class="connection-title"><#= connection.title #></span>
 
-			<div class="tcm-config-field">
-				<div class="tvd-switch">
-					<label>
-						<?php echo __( 'Off', Thrive_Comments_Constants::T ); ?>
-						<input type="checkbox" id="email_service" class="tcm-email-checkbox" data-type="checkbox" data-setting="<#= connection.key #>"
-						<# if ( connection.active ) { #> checked
-							<# } #> >
-								<span class="tvd-lever"></span>
-							<?php echo __( 'On', Thrive_Comments_Constants::T ); ?>
-					</label>
-				</div>
-				<p class="<# if ( connection.active ) { #> active <# } #> tcm-service-label"> <?php echo __( 'Connected - Active', Thrive_Comments_Constants::T ) ?></p>
-				<p class="tcm-inactive-service-label"> <?php echo __( 'Connected - Inactive', Thrive_Comments_Constants::T ) ?></p>
+		<div class="tcm-config-field">
+			<div class="tvd-switch">
+				<label>
+					<?php echo __( 'Off', Thrive_Comments_Constants::T ); ?>
+					<input type="checkbox" id="email_service" class="tcm-email-checkbox" data-type="checkbox" data-setting="<#= connection.key #>"
+					<# if ( connection.active ) { #> checked
+					<# } #> >
+					<span class="tvd-lever"></span>
+					<?php echo __( 'On', Thrive_Comments_Constants::T ); ?>
+				</label>
 			</div>
-
-			<a class="button-link icon-pen tcm-icon-pencil" target="_blank" href="<?php echo admin_url( 'admin.php?page=tve_dash_api_connect#tve_new_api' ); ?>">  </a>
-
+			<p class="<# if ( connection.active ) { #> active <# } #> tcm-service-label"> <?php echo __( 'Connected - Active', Thrive_Comments_Constants::T ) ?></p>
+			<p class="tcm-inactive-service-label"> <?php echo __( 'Connected - Inactive', Thrive_Comments_Constants::T ) ?></p>
 		</div>
+
+		<a class="button-link icon-pen tcm-icon-pencil" target="_blank" href="<?php echo admin_url( 'admin.php?page=tve_dash_api_connect#tve_new_api' ); ?>"> </a>
+
+	</div>
 
 	<# } ) #>
 

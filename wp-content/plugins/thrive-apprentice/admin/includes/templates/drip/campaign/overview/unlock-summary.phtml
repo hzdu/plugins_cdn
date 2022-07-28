@@ -4,9 +4,9 @@
 	<div class="tva-drip-inherited tva-tooltip-parent">
 		<div class="drip-summary-item click" data-fn="editUnlockSettings" data-content-id="<#- contentId #>">
 			<div class="drip-summary-icon tva-tooltip-parent"><?php tva_get_svg_icon( 'drip-icon-inherited' ); ?>
-				<div class="tva-custom-tooltip tva-tooltip-inherited"><?php esc_html_e( 'Unlocked lesson will be locked until the parent module conditions are met', TVA_Const::T ); ?></div>
+				<div class="tva-custom-tooltip tva-tooltip-inherited"><?php esc_html_e( 'Unlocked lesson will be locked until the parent module conditions are met', 'thrive-apprentice' ); ?></div>
 			</div>
-			<div class="drip-summary-text"><?php esc_html_e( 'Inherited', TVA_Const::T ); ?></div>
+			<div class="drip-summary-text"><?php esc_html_e( 'Inherited', 'thrive-apprentice' ); ?></div>
 		</div>
 	</div>
 	<# } #>
@@ -18,12 +18,12 @@
 			<# if ( state.items.length > 1 && !state.inherited ) { #>
 			<div class="drip-conditions-bubble">
 				<span class="drip-conditions-bubble-text"><#= state.items.length - 1 #></span>
-				<div class="tva-custom-tooltip tva-tooltip-inherited"><?php esc_html_e( 'Click here to see and edit all of your drip rules for this piece of content.', TVA_Const::T ); ?></div>
+				<div class="tva-custom-tooltip tva-tooltip-inherited"><?php esc_html_e( 'Click here to see and edit all of your drip rules for this piece of content.', 'thrive-apprentice' ); ?></div>
 			</div>
 			<# } else if ( state.inherited ) { #>
 			<div class="drip-conditions-bubble">
 				<span class="drip-conditions-bubble-text"><#= state.items.length #></span>
-				<div class="tva-custom-tooltip tva-tooltip-inherited"><?php esc_html_e( 'Click here to see and edit all of your drip rules for this piece of content.', TVA_Const::T ); ?></div>
+				<div class="tva-custom-tooltip tva-tooltip-inherited"><?php esc_html_e( 'Click here to see and edit all of your drip rules for this piece of content.', 'thrive-apprentice' ); ?></div>
 			</div>
 			<# } else { #>
 			<div class="tva-custom-tooltip"><#- state.items[0].tooltip #></div>

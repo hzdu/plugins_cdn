@@ -45,12 +45,12 @@
 					</div>
 
 					<div class="assigned<# if ( comment.get('tcm_needs_reply') == 0 ) { #> and-replied<# } #>">
-					<div class="assigned-to">
-						<# if ( comment.get('tcm_delegate_author') !== 'Unassigned' ) { #>
+						<div class="assigned-to">
+							<# if ( comment.get('tcm_delegate_author') !== 'Unassigned' ) { #>
 							<?php echo __( 'Assigned to ', Thrive_Comments_Constants::T ) ?>
 							<# } #>
-					<#-comment.get('tcm_delegate_author')#> -
-					</div>
+							<#-comment.get('tcm_delegate_author')#> -
+						</div>
 						<a href="#" class="no-reply-needed">
 							<# if ( comment.get('tcm_needs_reply') == 0 ) { #>
 							<?php echo __( 'Replied', Thrive_Comments_Constants::T ) ?>

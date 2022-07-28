@@ -259,7 +259,7 @@
 		}
 
 		function processClone( original, clone ) {
-			if ( ! ( clone instanceof Element ) ) {
+			if ( [ 'Text', 'Comment' ].includes( clone.constructor.name ) ) {
 				return clone;
 			}
 
@@ -565,6 +565,10 @@
 			}
 
 			return new Promise( function ( resolve ) {
+				if ( TVE.fetchedExternalLinks[ url ] ) {
+					resolve( TVE.fetchedExternalLinks[ url ] );
+				}
+
 
 				var placeholder;
 				if ( domtoimage.impl.options.imagePlaceholder ) {
@@ -592,7 +596,7 @@
 				if ( domtoimage.impl.options.useCredentials ) {
 					request.withCredentials = true;
 				}
-				if ( ! url.includes( window.location.hostname ) && ! url.includes( 'gravatar' ) ) {
+				if ( ! url.includes( window.location.hostname ) && ! url.includes( 'gravatar' ) && ! url.includes( 'fonts.gstatic' ) ) {
 					url = '//cors-anywhere.herokuapp.com/' + url;
 				}
 
@@ -618,6 +622,9 @@
 					var encoder = new FileReader();
 					encoder.onloadend = function () {
 						var content = encoder.result.split( /,/ )[ 1 ];
+						if ( TVE.fetchedExternalLinks ) {
+							TVE.fetchedExternalLinks[ url ] = content;
+						}
 						resolve( content );
 					};
 					encoder.readAsDataURL( request.response );
@@ -798,11 +805,13 @@
 			function getCssRules( styleSheets ) {
 				var cssRules = [];
 				styleSheets.forEach( function ( sheet ) {
-					if ( sheet.hasOwnProperty( "cssRules" ) ) {
+					if ( Object.getPrototypeOf( sheet ).hasOwnProperty( 'cssRules' ) ) {
 						try {
 							util.asArray( sheet.cssRules || [] ).forEach( cssRules.push.bind( cssRules ) );
 						} catch ( e ) {
-							console.log( 'Error while reading CSS rules from ' + sheet.href, e.toString() );
+							if ( ! sheet.href.includes( 'google' ) ) {
+								console.log( 'Error while reading CSS rules from ' + sheet.href, e.toString() );
+							}
 						}
 					}
 				} );

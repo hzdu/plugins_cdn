@@ -1,5 +1,5 @@
 <# if ( this.model.get('index') > 0 ) { #>
-<span class="tva-and"><?php echo __( 'and', TVA_Const::T ) ?></span>
+<span class="tva-and"><?php echo __( 'and', 'thrive-apprentice' ) ?></span>
 <# } #>
 <div class="tva-rule-condition">
 	<# if ( ! this.defaults.includes( this.model.get('scope') ) ) { #>
@@ -11,7 +11,7 @@
 	<# if ( this.model.get('scope') !== 'custom' ) { #>
 	<option value="<#= this.model.get('scope') #>"><#= TVA.t.access_rule_select_labels[ this.model.get('scope') ] #></option>
 	<# } else { #>
-	<option value="" disabled="disabled"><?php esc_html_e( 'Select set of conditions', TVA_Const::T ); ?></option>
+	<option value="" disabled="disabled"><?php esc_html_e( 'Select set of conditions', 'thrive-apprentice' ); ?></option>
 	<# Object.entries( TVA.t.access_rule_select_labels[ this.model.get('scope') ]).forEach(( element ) => { #>
 	<option value="<#= element[0] #>"><#= element[1] #></option>
 	<# } ) #>

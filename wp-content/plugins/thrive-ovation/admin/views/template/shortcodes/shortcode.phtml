@@ -3,12 +3,12 @@
 		<# if (shortcode.get('thumbnail') != '') { #>
 			<img src="<#= shortcode.get('thumbnail') #>" alt="">
 			<a target="_blank" href="<#= shortcode.get('url') #>" class="tvo-hover-shortcode-text">
-				<?php echo __( 'PREVIEW & EDIT', TVO_TRANSLATE_DOMAIN ) ?>
+				<?php echo __( 'PREVIEW & EDIT', 'thrive-ovation' ) ?>
 			</a>
 			<# } else { #>
 				<div class="tvo-choose-shortcode">
 					<a target="_blank" href="<#= shortcode.get('url') #>">
-						<?php echo __( 'CHOOSE TEMPLATE', TVO_TRANSLATE_DOMAIN ) ?>
+						<?php echo __( 'CHOOSE TEMPLATE', 'thrive-ovation' ) ?>
 					</a>
 				</div>
 				<# } #>
@@ -28,13 +28,13 @@
 					<li>
 						<a href="javascript:void(0)" class="tvo-edit-shortcode-title tvd-normalize">
 							<i class="tvd-icon-pencil"></i>
-							<?php echo __( 'Edit title', TVO_TRANSLATE_DOMAIN ) ?>
+							<?php echo __( 'Edit title', 'thrive-ovation' ) ?>
 						</a>
 					</li>
 					<li>
 						<a class="delete tvo-shortcode-icon-delete tvd-normalize" href="javascript:void(0)">
 							<i class="tvd-icon-trash-o"></i>
-							<?php echo __( 'Delete Shortcode', TVO_TRANSLATE_DOMAIN ) ?>
+							<?php echo __( 'Delete Shortcode', 'thrive-ovation' ) ?>
 						</a>
 					</li>
 				</ul>
@@ -51,14 +51,14 @@
 				<div class="tvd-col tvd-s4">
 					<span class="tvo-copy-container">
 						<a class="tve-copy-to-clipboard tvd-waves-effect tvd-waves-light tvd-btn tvd-btn-green tvd-btn-small tvd-right" href="javascript:void(0)">
-		                    <span class="tvo-copy-text"><?php echo __( 'Copy', TVO_TRANSLATE_DOMAIN ) ?></span>
+		                    <span class="tvo-copy-text"><?php echo __( 'Copy', 'thrive-ovation' ) ?></span>
 						</a>
 					</span>
 				</div>
 				<# } else { #>
 					<div class="tvd-col tvd-s12 tvd-center-align">
 						<a target="_blank" class="tvd-waves-effect tvd-waves-light tvd-btn tvd-btn-blue tvd-btn-small" href="<#= shortcode.get('url') #>">
-							<span class="tvo-copy-text"><?php echo __( 'Edit', TVO_TRANSLATE_DOMAIN ) ?></span>
+							<span class="tvo-copy-text"><?php echo __( 'Edit', 'thrive-ovation' ) ?></span>
 						</a>
 					</div>
 					<# } #>

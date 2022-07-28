@@ -11,7 +11,7 @@
 			<# } #>
 		</div>
 		<a href="javascript:void(0)" class="tva-resource-remove click tva-hide-collapsed" data-fn="removeClicked" data-index="<#=this.model.$$index#>">
-			<?php tva_get_svg_icon( 'trash-1' ); ?><?php esc_html_e( 'Delete resource', TVA_Const::T ); ?>
+			<?php tva_get_svg_icon( 'trash-1' ); ?><?php esc_html_e( 'Delete resource', 'thrive-apprentice' ); ?>
 		</a>
 		<a href="javascript:void(0)" class="click tva-collapse-icon" data-fn="toggleExpanded"><?php tva_get_svg_icon( 'caret-down_solid' ); ?></a>
 	</div>
@@ -25,11 +25,11 @@
 				<div class="tva-resource-type">
 					<select class="model-field" data-field="type">
 						<option
-						<#=this.model.get('type') === 'url' ? 'selected ' : ''#>value="url"><?php esc_html_e( 'Link to file / URL', TVA_Const::T ); ?></option>
+						<#=this.model.get('type') === 'url' ? 'selected ' : ''#>value="url"><?php esc_html_e( 'Link to file / URL', 'thrive-apprentice' ); ?></option>
 						<option
-						<#=this.model.get('type') === 'file' ? 'selected ' : ''#>value="file"><?php esc_html_e( 'Upload file', TVA_Const::T ); ?></option>
+						<#=this.model.get('type') === 'file' ? 'selected ' : ''#>value="file"><?php esc_html_e( 'Upload file', 'thrive-apprentice' ); ?></option>
 						<option
-						<#=this.model.get('type') === 'content' ? 'selected ' : ''#>value="content"><?php esc_html_e( 'Site content', TVA_Const::T ); ?></option>
+						<#=this.model.get('type') === 'content' ? 'selected ' : ''#>value="content"><?php esc_html_e( 'Site content', 'thrive-apprentice' ); ?></option>
 					</select>
 				</div>
 				<div class="tva-res-type-settings">
@@ -42,7 +42,7 @@
 						<a href="javascript:;" class="click ml-10 tva-resource-file-remove" data-fn="clearConfig"><?php tva_get_svg_icon( 'cross' ); ?></a>
 					</div>
 					<# } else { #>
-					<button class="tva-upload-file click" data-fn="openFilePicker" data-field="config.attachment"><?php esc_html_e( 'Select file or upload new', TVA_Const::T ); ?></button>
+					<button class="tva-upload-file click" data-fn="openFilePicker" data-field="config.attachment"><?php esc_html_e( 'Select file or upload new', 'thrive-apprentice' ); ?></button>
 					<# } #>
 					<# } else { #>
 
@@ -52,7 +52,7 @@
 						<a href="javascript:;" class="click ml-10 tva-resource-file-remove" data-fn="clearConfig"><?php tva_get_svg_icon( 'cross' ); ?></a>
 					</div>
 					<# } else { #>
-					<input type="text" class="tva-resource-autocomplete" data-field="config.post" placeholder="<?php esc_attr_e( 'Search for a post or page on this site', TVA_Const::T ); ?>">
+					<input type="text" class="tva-resource-autocomplete" data-field="config.post" placeholder="<?php esc_attr_e( 'Search for a post or page on this site', 'thrive-apprentice' ); ?>">
 					<# } #>
 
 					<# } #>
@@ -60,18 +60,18 @@
 			</div>
 		</div>
 		<div class="tva-resource-description tva-hide-collapsed">
-			<textarea class="model-field" rows="1" data-field="content" data-silent="1" placeholder="<?php esc_attr_e( 'Description of resource (optional)...', TVA_Const::T ); ?>"><#-this.model.get('content')#></textarea>
+			<textarea class="model-field" rows="1" data-field="content" data-silent="1" placeholder="<?php esc_attr_e( 'Description of resource (optional)...', 'thrive-apprentice' ); ?>"><#-this.model.get('content')#></textarea>
 		</div>
 	</div>
 </div>
 <# if ( this.model.get('delete_confirmation') ) { #>
 <div class="tva-res-delete-confirmation tva-flex-mid">
 	<div class="tva-res-delete-message tva-text-center">
-		<p class="mt-0 mb-20"><?php echo sprintf( esc_html__( 'Are you sure you want to delete %s?', TVA_Const::T ), '<strong><#=this.model.get("title")#></strong>' ); ?></p>
+		<p class="mt-0 mb-20"><?php echo sprintf( esc_html__( 'Are you sure you want to delete %s?', 'thrive-apprentice' ), '<strong><#=this.model.get("title")#></strong>' ); ?></p>
 		<p class="mt-0 mb-0">
-			<a href="javascript:;" class="click" data-fn="cancelDelete"><?php esc_html_e( 'No, cancel', TVA_Const::T ); ?></a>
+			<a href="javascript:;" class="click" data-fn="cancelDelete"><?php esc_html_e( 'No, cancel', 'thrive-apprentice' ); ?></a>
 			&nbsp;&nbsp;|&nbsp;&nbsp;
-			<a href="javascript:;" class="click delete-final" data-fn="removeClicked" data-index="<#=this.model.$$index#>"><?php esc_html_e( 'Yes, delete', TVA_Const::T ); ?></a>
+			<a href="javascript:;" class="click delete-final" data-fn="removeClicked" data-index="<#=this.model.$$index#>"><?php esc_html_e( 'Yes, delete', 'thrive-apprentice' ); ?></a>
 		</p>
 	</div>
 </div>

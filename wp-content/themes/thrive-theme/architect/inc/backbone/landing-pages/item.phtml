@@ -11,7 +11,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 $spinner_gif = tve_editor_css( 'images/loading-spinner.gif' );
 ?>
 
-<div class="lp-template-item modal-item <#- active ? 'selected': ''#>" data-key="<#- key #>" data-cloud="<#- cloud #>" data-uid="<#= uid || ''#>">
+<div class="lp-template-item modal-item <#- active ? 'selected': ''#>" data-key="<#- key #>" data-cloud="<#- cloud #>" data-uid="<#= uid || ''#>" data-id="<#= id || '' #>">
 	<div class="tcb-relative">
 		<div class="lp-template-title mb-10">
 			<span class="lp-set-title"><#= name #></span>
@@ -28,6 +28,9 @@ $spinner_gif = tve_editor_css( 'images/loading-spinner.gif' );
 			</span>
 		</div>
 		<div class="lp-template-wrapper click" data-fn="<#- fn #>">
+			<# if ( is_from_pack ) { #>
+			<div class="design-pack-label"><?php echo esc_html__( 'Design Pack', 'thrive-cb' ); ?></div>
+			<# } #>
 			<# if(locked) { #>
 			<a href="https://thrivethemes.com/architect/upgrade/?utm_campaign=tarc-upgrade&utm_medium=tarc-lite&utm_source=ttb-ui&utm_content=tarc-element&utm_term=ttb-customer" title="Thrive Architect" target="_blank">
 				<div class="template-locked-text">

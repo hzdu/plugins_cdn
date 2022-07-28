@@ -11,13 +11,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 <div id="tcm-header">
 	<nav id="tcm-nav">
-            <a href="#dashboard">
+		<a href="#dashboard">
 			<span class="tcm-nav-svg">
 				<?php echo tcah()->tcm_icon( 'logo-dashboard', 'tc-logo-dashboard' ); ?>
 			</span>
 			<strong><?php echo __( 'Thrive', Thrive_Comments_Constants::T ); ?></strong>
 			<?php echo __( 'Comments', Thrive_Comments_Constants::T ); ?>
-            </a>
+		</a>
 		<a class="tvd-right tcm-gt-moderation" href="<?php echo tcm()->tcm_moderation_url() ?>"><?php echo __( 'Go to Comments Moderation', Thrive_Comments_Constants::T ); ?></a>
 		<a class="tvd-right tcm-gt-reporting" href="#reports"><i class="tvd-icon-line-graph "></i><?php echo __( 'Reports', Thrive_Comments_Constants::T ) ?></a>
 	</nav>
@@ -144,7 +144,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 							<label>
 								<?php echo __( 'Off', Thrive_Comments_Constants::T ); ?>
 								<input id="share_individual_comments" class="tcm-checkbox" type="checkbox" name="share-comments" data-type="checkbox"
-								       data-setting="share_individual_comments"
+									   data-setting="share_individual_comments"
 								<# if ( collection.get('share_individual_comments').get('value')) { #> checked
 								<# } #> >
 								<span class="tvd-lever"></span>
@@ -152,12 +152,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 							</label>
 						</div>
 						<input id="share_individual_comments" class="tcm-checkbox" type="checkbox" data-type="checkbox" name="share_individual_comments"
-						       data-setting="share_individual_comments"
+							   data-setting="share_individual_comments"
 						<# if ( collection.get('share_individual_comments').get('value')) { #> checked
 						<# } #> >
 					</div>
 
-					<div class="tcm-config-field" >
+					<div class="tcm-config-field">
 						<input id="remember_me" class="tcm-checkbox filled-in" data-type="checkbox" type="checkbox" name="remember_me" data-setting="remember_me"
 						<# if ( collection.get('remember_me').get('value')) { #> checked
 						<# } #> >
@@ -166,20 +166,20 @@ if ( ! defined( 'ABSPATH' ) ) {
 						</label>
 					</div>
 
-					<div class="tcm-config-field" >
+					<div class="tcm-config-field">
 						<input id="storing_consent" class="tcm-checkbox filled-in" data-type="checkbox" type="checkbox" name="storing_consent" data-setting="storing_consent"
 						<# if ( collection.get('storing_consent').get('value')) { #> checked
 						<# } #> >
 						<label for="storing_consent">
-                            <?php echo __( 'Enable GDPR Consent', Thrive_Comments_Constants::T ); ?>
-                        </label>
-                    </div>
+							<?php echo __( 'Enable GDPR Consent', Thrive_Comments_Constants::T ); ?>
+						</label>
+					</div>
 
-                </div>
-            </li>
+				</div>
+			</li>
 
-<li class="tcm-conversion-menu">
-<div class="tvd-collapsible-header">
+			<li class="tcm-conversion-menu">
+				<div class="tvd-collapsible-header">
 <span class="tc-options-svg ">
 						<?php tcah()->tcm_icon( 'comment-conversion', 'comment-conversion-icon' ); ?>
 					</span>
@@ -498,247 +498,247 @@ if ( ! defined( 'ABSPATH' ) ) {
 				<div class="badges-container"></div>
 			</li>
 
-            <li>
-                <div class="tvd-collapsible-header">
+			<li>
+				<div class="tvd-collapsible-header">
 					<span class="tc-options-svg">
 						<?php tcah()->tcm_icon( 'notifications' ); ?>
 					</span>
-                    <h2>
+					<h2>
 						<?php echo __( 'Notifications', Thrive_Comments_Constants::T ); ?>
-                    </h2>
-                    <span class="tcm-icon-keyboard_arrow_down"></span>
-                </div>
+					</h2>
+					<span class="tcm-icon-keyboard_arrow_down"></span>
+				</div>
 
-                <div class="tvd-collapsible-body tcm-notifications">
+				<div class="tvd-collapsible-body tcm-notifications">
 
-                </div>
+				</div>
 
-            </li>
+			</li>
 
 
-            <li>
-                <div class="tvd-collapsible-header">
+			<li>
+				<div class="tvd-collapsible-header">
 					<span class="tc-options-svg">
 						<?php tcah()->tcm_icon( 'moderation' ); ?>
 					</span>
-                    <h2>
+					<h2>
 						<?php echo __( 'Comment Moderation', Thrive_Comments_Constants::T ); ?>
-                    </h2>
-                    <span class="tcm-icon-keyboard_arrow_down"></span>
-                </div>
+					</h2>
+					<span class="tcm-icon-keyboard_arrow_down"></span>
+				</div>
 
-                <div class="tvd-collapsible-body">
-                    <div class="tcm-config-field">
-                        <p class="tcm-title-line">
+				<div class="tvd-collapsible-body">
+					<div class="tcm-config-field">
+						<p class="tcm-title-line">
 							<?php echo __( 'User roles that can moderate comments', Thrive_Comments_Constants::T ); ?>:
-                        </p>
-                        <div class="tcm-mt tcm-comment-moderation">
-                            <# if( typeof roles !== 'undefined' ) { #>
-                            <# for( var role in roles ) { #>
-                            <# if( role !== 'tcm_mod_subscriber' ) { #>
-                            <input id="<#= role #>" class="role-checkbox filled-in" data-type="checkbox" type="checkbox" name="<#= role #>" data-setting="<#= role #>" <# if ( roles[role] == 1 ) { #> checked <# } #> >
-                            <label for="<#= role #>">
-                                <# role = role.slice(8) #>
-                                <# role = role.charAt(0).toUpperCase() + role.slice(1)#>
-                                <#= role #>
-                            </label>
-                            <# } #>
-                            <# } #>
-                            <# } #>
+						</p>
+						<div class="tcm-mt tcm-comment-moderation">
+							<# if( typeof roles !== 'undefined' ) { #>
+							<# for( var role in roles ) { #>
+							<# if( role !== 'tcm_mod_subscriber' ) { #>
+							<input id="<#= role #>" class="role-checkbox filled-in" data-type="checkbox" type="checkbox" name="<#= role #>" data-setting="<#= role #>" <# if ( roles[role] == 1 ) { #> checked <# } #> >
+							<label for="<#= role #>">
+								<# role = role.slice(8) #>
+								<# role = role.charAt(0).toUpperCase() + role.slice(1)#>
+								<#= role #>
+							</label>
+							<# } #>
+							<# } #>
+							<# } #>
 
-                        </div>
-                    </div>
-                    <div class="tcm-config-field">
-                        <label for="tcm_exclude_moderators">
+						</div>
+					</div>
+					<div class="tcm-config-field">
+						<label for="tcm_exclude_moderators">
 							<?php echo __( 'Exclude comments from moderators in the moderation dashboard', Thrive_Comments_Constants::T ); ?>
-                        </label>
-                        <div class="tvd-switch">
-                            <label>
+						</label>
+						<div class="tvd-switch">
+							<label>
 								<?php echo __( 'Off', Thrive_Comments_Constants::T ); ?>
-                                <input id="tcm_exclude_moderators" class="tcm-checkbox tcm-gravatar-switch" type="checkbox" name="tcm_exclude_moderators" data-type="checkbox" data-setting="tcm_exclude_moderators"
-                                <# if ( collection.get('tcm_exclude_moderators').get('value')) { #> checked
-                                <# } #> >
-                                <span class="tvd-lever"></span>
+								<input id="tcm_exclude_moderators" class="tcm-checkbox tcm-gravatar-switch" type="checkbox" name="tcm_exclude_moderators" data-type="checkbox" data-setting="tcm_exclude_moderators"
+								<# if ( collection.get('tcm_exclude_moderators').get('value')) { #> checked
+								<# } #> >
+								<span class="tvd-lever"></span>
 								<?php echo __( 'On', Thrive_Comments_Constants::T ); ?>
-                            </label>
-                        </div>
-                    </div>
+							</label>
+						</div>
+					</div>
 
-                    <p class="tcm-title-line">
-	                    <?php echo __( 'Before a comment appears:', Thrive_Comments_Constants::T ); ?>
-                    </p>
-                    <div class="tcm-config-field">
-                        <input id="comment_moderation" class="tcm-checkbox filled-in" data-type="checkbox" type="checkbox" name="comment_moderation"
-                               data-setting="comment_moderation"
-                        <# if ( collection.get('comment_moderation').get('value')) { #> checked
-                        <# } #> >
-                        <label for="comment_moderation">
-			                <?php echo __( 'Comment must be manually approved', Thrive_Comments_Constants::T ); ?>
-                        </label>
-                    </div>
-                    <div class="tcm-config-field">
-                        <input id="comment_whitelist" class="tcm-checkbox filled-in" data-type="checkbox" type="checkbox" name="comment_whitelist"
-                               data-setting="comment_whitelist"
+					<p class="tcm-title-line">
+						<?php echo __( 'Before a comment appears:', Thrive_Comments_Constants::T ); ?>
+					</p>
+					<div class="tcm-config-field">
+						<input id="comment_moderation" class="tcm-checkbox filled-in" data-type="checkbox" type="checkbox" name="comment_moderation"
+							   data-setting="comment_moderation"
+						<# if ( collection.get('comment_moderation').get('value')) { #> checked
+						<# } #> >
+						<label for="comment_moderation">
+							<?php echo __( 'Comment must be manually approved', Thrive_Comments_Constants::T ); ?>
+						</label>
+					</div>
+					<div class="tcm-config-field">
+						<input id="comment_whitelist" class="tcm-checkbox filled-in" data-type="checkbox" type="checkbox" name="comment_whitelist"
+							   data-setting="comment_whitelist"
 						<# let whitelist = collection.get( 'comment_whitelist' ) ? collection.get( 'comment_whitelist' ) : collection.get( 'comment_previously_approved' ); #>
-                        <# if ( whitelist.get('value')) { #> checked <# } #> >
-                        <label for="comment_whitelist">
-			                <?php echo __( 'Comment author must have a previously approved comment', Thrive_Comments_Constants::T ); ?>
-                        </label>
-                    </div>
-                    <div class="tcm-config-field">
-	                    <p><?php echo __( 'Hold a comment in the queue if it contains', Thrive_Comments_Constants::T ); ?>
-                        <input id="comment_max_links" class="tcm-input small-text" type="text" data-type="number" name="comment_max_links"
-                               data-setting="comment_max_links" value=<#= collection.get('comment_max_links').get('value')#> >
+						<# if ( whitelist.get('value')) { #> checked <# } #> >
+						<label for="comment_whitelist">
+							<?php echo __( 'Comment author must have a previously approved comment', Thrive_Comments_Constants::T ); ?>
+						</label>
+					</div>
+					<div class="tcm-config-field">
+						<p><?php echo __( 'Hold a comment in the queue if it contains', Thrive_Comments_Constants::T ); ?>
+							<input id="comment_max_links" class="tcm-input small-text" type="text" data-type="number" name="comment_max_links"
+								   data-setting="comment_max_links" value=<#= collection.get('comment_max_links').get('value')#> >
 							<?php echo __( 'or more links. (A common characteristic of comment spam is a large number of hyperlinks)', Thrive_Comments_Constants::T ); ?></p>
-                    </div>
-                    <div class="tcm-config-field">
-		                <?php echo __( 'When a comment contains any of these words in its content, name, URL, email, or IP address, <strong>it will be held in the moderation queue</strong>. One word or IP address per line. It will match inside words, so "press" will match "WordPress".', Thrive_Comments_Constants::T ); ?>
-                        <textarea name="moderation_keys" id="moderation_keys" class="tcm-input" data-type="textarea" data-setting="moderation_keys"><#= collection.get('moderation_keys').get('value') #></textarea>
-                    </div>
-                    <div class="tcm-config-field">
-		                <?php echo __( 'When a comment contains any of these words in its content, name, URL, email, or IP address, <strong>it will be put in the trash</strong>. One word or IP address per line. It will match inside words, so "press" will match "WordPress".', Thrive_Comments_Constants::T ); ?>
-	                    <# let blacklist = collection.get( 'blacklist_keys' ) ? collection.get( 'blacklist_keys' ) : collection.get( 'disallowed_keys' ); #>
-                        <textarea name="blacklist_keys" id="blacklist_keys" class="tcm-input" data-type="textarea" data-setting="blacklist_keys"><#- blacklist.get('value')#></textarea>
-                    </div>
-                </div>
-            </li>
+					</div>
+					<div class="tcm-config-field">
+						<?php echo __( 'When a comment contains any of these words in its content, name, URL, email, or IP address, <strong>it will be held in the moderation queue</strong>. One word or IP address per line. It will match inside words, so "press" will match "WordPress".', Thrive_Comments_Constants::T ); ?>
+						<textarea name="moderation_keys" id="moderation_keys" class="tcm-input" data-type="textarea" data-setting="moderation_keys"><#= collection.get('moderation_keys').get('value') #></textarea>
+					</div>
+					<div class="tcm-config-field">
+						<?php echo __( 'When a comment contains any of these words in its content, name, URL, email, or IP address, <strong>it will be put in the trash</strong>. One word or IP address per line. It will match inside words, so "press" will match "WordPress".', Thrive_Comments_Constants::T ); ?>
+						<# let blacklist = collection.get( 'blacklist_keys' ) ? collection.get( 'blacklist_keys' ) : collection.get( 'disallowed_keys' ); #>
+						<textarea name="blacklist_keys" id="blacklist_keys" class="tcm-input" data-type="textarea" data-setting="blacklist_keys"><#- blacklist.get('value')#></textarea>
+					</div>
+				</div>
+			</li>
 
-            <li>
-                <div class="tvd-collapsible-header">
+			<li>
+				<div class="tvd-collapsible-header">
 					<span class="tc-options-svg">
 						<?php tcah()->tcm_icon( 'advanced-settings' ); ?>
 					</span>
-                    <h2>
+					<h2>
 						<?php echo __( 'Advanced Settings', Thrive_Comments_Constants::T ); ?>
-                    </h2>
-                    <span class="tcm-icon-keyboard_arrow_down"></span>
-                </div>
+					</h2>
+					<span class="tcm-icon-keyboard_arrow_down"></span>
+				</div>
 
-                <div class="tvd-collapsible-body">
+				<div class="tvd-collapsible-body">
 
-                    <div class="tcm-config-field">
-                        <p class="tcm-title-line">
+					<div class="tcm-config-field">
+						<p class="tcm-title-line">
 							<?php echo __( 'Automatically link keywords in moderator replies', Thrive_Comments_Constants::T ); ?>
-                        </p>
-                        <div class="tcm-mt">
-                            <div class="keywords-container"></div>
-                        </div>
+						</p>
+						<div class="tcm-mt">
+							<div class="keywords-container"></div>
+						</div>
 
-                    </div>
+					</div>
 
-	                <div class="tcm-config-field">
-		                <div class="tcm-mt tcm-lazy-load">
-			                <label for="tcm_meta_tags">
-				                <?php echo __( 'Use Thrive Comments generated meta-tags for social sharing', Thrive_Comments_Constants::T ); ?>
-			                </label>
-			                <div class="tvd-switch">
-				                <label>
-					                <?php echo __( 'Off', Thrive_Comments_Constants::T ); ?>
-					                <input type="checkbox" id="tcm_meta_tags" class="tcm-checkbox" data-type="checkbox" data-setting="tcm_meta_tags"
-					                <# if ( collection.get('tcm_meta_tags').get('value')) { #> checked
-					                <# } #> >
-					                <span class="tvd-lever"></span>
-					                <?php echo __( 'On', Thrive_Comments_Constants::T ); ?>
-				                </label>
-			                </div>
-			                <input id="tcm_meta_tags" class="tcm-checkbox filled-in" type="checkbox" data-type="checkbox" data-setting="tcm_meta_tags"
-			                <# if ( collection.get('tcm_meta_tags').get('value')) { #> checked
-			                <# } #> >
-		                </div>
-	                </div>
+					<div class="tcm-config-field">
+						<div class="tcm-mt tcm-lazy-load">
+							<label for="tcm_meta_tags">
+								<?php echo __( 'Use Thrive Comments generated meta-tags for social sharing', Thrive_Comments_Constants::T ); ?>
+							</label>
+							<div class="tvd-switch">
+								<label>
+									<?php echo __( 'Off', Thrive_Comments_Constants::T ); ?>
+									<input type="checkbox" id="tcm_meta_tags" class="tcm-checkbox" data-type="checkbox" data-setting="tcm_meta_tags"
+									<# if ( collection.get('tcm_meta_tags').get('value')) { #> checked
+									<# } #> >
+									<span class="tvd-lever"></span>
+									<?php echo __( 'On', Thrive_Comments_Constants::T ); ?>
+								</label>
+							</div>
+							<input id="tcm_meta_tags" class="tcm-checkbox filled-in" type="checkbox" data-type="checkbox" data-setting="tcm_meta_tags"
+							<# if ( collection.get('tcm_meta_tags').get('value')) { #> checked
+							<# } #> >
+						</div>
+					</div>
 
 
-	                <div class="tcm-config-field">
-		                <div class="tcm-mt tcm-lazy-load">
-			                <label for="tcm_live_update">
-				                <?php echo __( 'Load new comments in real time', Thrive_Comments_Constants::T ); ?>
-			                </label>
-			                <div class="tvd-switch">
-				                <label>
-					                <?php echo __( 'Off', Thrive_Comments_Constants::T ); ?>
-					                <input type="checkbox" id="tcm_live_update" class="tcm-checkbox" data-type="checkbox" data-setting="tcm_live_update"
-					                <# if ( collection.get('tcm_live_update').get('value')) { #> checked
-					                <# } #> >
-					                <span class="tvd-lever"></span>
-					                <?php echo __( 'On', Thrive_Comments_Constants::T ); ?>
-				                </label>
-			                </div>
-			                <input id="tcm_live_update" class="tcm-checkbox filled-in" type="checkbox" data-type="checkbox" data-setting="tcm_live_update"
-			                <# if ( collection.get('tcm_live_update').get('value')) { #> checked
-			                <# } #> >
-		                </div>
-	                </div>
+					<div class="tcm-config-field">
+						<div class="tcm-mt tcm-lazy-load">
+							<label for="tcm_live_update">
+								<?php echo __( 'Load new comments in real time', Thrive_Comments_Constants::T ); ?>
+							</label>
+							<div class="tvd-switch">
+								<label>
+									<?php echo __( 'Off', Thrive_Comments_Constants::T ); ?>
+									<input type="checkbox" id="tcm_live_update" class="tcm-checkbox" data-type="checkbox" data-setting="tcm_live_update"
+									<# if ( collection.get('tcm_live_update').get('value')) { #> checked
+									<# } #> >
+									<span class="tvd-lever"></span>
+									<?php echo __( 'On', Thrive_Comments_Constants::T ); ?>
+								</label>
+							</div>
+							<input id="tcm_live_update" class="tcm-checkbox filled-in" type="checkbox" data-type="checkbox" data-setting="tcm_live_update"
+							<# if ( collection.get('tcm_live_update').get('value')) { #> checked
+							<# } #> >
+						</div>
+					</div>
 
-                    <div class="tcm-config-field tcm_live_update_refresh_rate <# if ( ! collection.get('tcm_live_update').get('value') ) { #>tcm-hide<# } #>">
-                        <label for="tcm_live_update_refresh_rate">
+					<div class="tcm-config-field tcm_live_update_refresh_rate <# if ( ! collection.get('tcm_live_update').get('value') ) { #>tcm-hide<# } #>">
+						<label for="tcm_live_update_refresh_rate">
 							<?php echo __( 'Time interval for refreshing the list of comments', Thrive_Comments_Constants::T ); ?>
-                        </label>
-                        <input id="tcm_live_update_refresh_rate" class="tcm-input small-text" type="text" data-type="number" name="tcm_live_update_refresh_rate"
-                               data-setting="tcm_live_update_refresh_rate" value=<#= collection.get('tcm_live_update_refresh_rate').get('value')#> >
-                        <label for="tcm_live_update_refresh_rate">
+						</label>
+						<input id="tcm_live_update_refresh_rate" class="tcm-input small-text" type="text" data-type="number" name="tcm_live_update_refresh_rate"
+							   data-setting="tcm_live_update_refresh_rate" value=<#= collection.get('tcm_live_update_refresh_rate').get('value')#> >
+						<label for="tcm_live_update_refresh_rate">
 							<?php echo __( 'seconds', Thrive_Comments_Constants::T ); ?>
-                        </label>
-                        <div class="cache-error extra-cache-class">
-                            <p><?php echo __( 'The lower the interval, the more resources are required from your server and your website might load slower.', Thrive_Comments_Constants::T ); ?></p>
-                        </div>
-                    </div>
+						</label>
+						<div class="cache-error extra-cache-class">
+							<p><?php echo __( 'The lower the interval, the more resources are required from your server and your website might load slower.', Thrive_Comments_Constants::T ); ?></p>
+						</div>
+					</div>
 
-                    <hr style="margin: 40px -35px 30px;" class="tcm-separator"/>
+					<hr style="margin: 40px -35px 30px;" class="tcm-separator"/>
 
-                    <div class="tcm-config-field">
-                        <p class="tcm-title-line">
+					<div class="tcm-config-field">
+						<p class="tcm-title-line">
 							<?php echo __( 'Customize & translate labels', Thrive_Comments_Constants::T ); ?>
-                        </p>
-                        <button type="button" data-dismissible="false" class="tvd-waves-effect tvd-waves-light tvd-btn tvd-modal-trigger tvd-btn-green tcm-mt"
-                                data-setting="<?php echo Thrive_Comments_Constants::TCM_LABELS_KEY ?>" id="tcm-customize-labels" href="#tvd-modal1">
+						</p>
+						<button type="button" data-dismissible="false" class="tvd-waves-effect tvd-waves-light tvd-btn tvd-modal-trigger tvd-btn-green tcm-mt"
+								data-setting="<?php echo Thrive_Comments_Constants::TCM_LABELS_KEY ?>" id="tcm-customize-labels" href="#tvd-modal1">
 							<?php echo __( 'Customize', Thrive_Comments_Constants::T ); ?>
-                        </button>
-                        <!-- Labels Container-->
-                        <div class="labels-container"></div>
-                    </div>
+						</button>
+						<!-- Labels Container-->
+						<div class="labels-container"></div>
+					</div>
 
-                    <hr style="margin: 40px -35px 30px;" class="tcm-separator"/>
+					<hr style="margin: 40px -35px 30px;" class="tcm-separator"/>
 
-                    <div class="tcm-config-field">
-                        <p class="tcm-title-line">
+					<div class="tcm-config-field">
+						<p class="tcm-title-line">
 							<?php echo __( 'Page speed optimization', Thrive_Comments_Constants::T ); ?>
-                        </p>
+						</p>
 
-                        <div class="tcm-mt tcm-lazy-load">
-                            <div class="tcm-config-field">
-                                <input id="lazy_load" class="tcm-checkbox" data-type="checkbox" type="checkbox" data-setting="lazy_load"
-                                <# if ( collection.get('lazy_load').get('value')) { #> checked
-                                <# } #> >
-                                <label for="lazy_load">
+						<div class="tcm-mt tcm-lazy-load">
+							<div class="tcm-config-field">
+								<input id="lazy_load" class="tcm-checkbox" data-type="checkbox" type="checkbox" data-setting="lazy_load"
+								<# if ( collection.get('lazy_load').get('value')) { #> checked
+								<# } #> >
+								<label for="lazy_load">
 									<?php echo __( 'Load comments section only when the visitor scrolls to the end of the post', Thrive_Comments_Constants::T ); ?>
-                                </label>
-                            </div>
-                        </div>
+								</label>
+							</div>
+						</div>
 
-                        <div class="tcm-mt tcm-lazy-load">
-                            <div class="tcm-config-field">
-                                <input id="is_dynamic" class="tcm-checkbox" data-type="checkbox" type="checkbox" data-setting="is_dynamic"
-                                <# if ( collection.get('is_dynamic').get('value')) { #> checked
-                                <# } #> >
-                                <label for="is_dynamic">
+						<div class="tcm-mt tcm-lazy-load">
+							<div class="tcm-config-field">
+								<input id="is_dynamic" class="tcm-checkbox" data-type="checkbox" type="checkbox" data-setting="is_dynamic"
+								<# if ( collection.get('is_dynamic').get('value')) { #> checked
+								<# } #> >
+								<label for="is_dynamic">
 									<?php echo __( 'Load the next page of comments only when the user clicks on Load more comments button', Thrive_Comments_Constants::T ); ?>
-                                </label>
-                            </div>
-                        </div>
+								</label>
+							</div>
+						</div>
 
-                        <div class="tcm-mt tcm-lazy-load">
-                            <div class="tcm-config-field">
-                                <input id="lazy_load_avatar" class="tcm-checkbox" data-type="checkbox" type="checkbox" data-setting="lazy_load_avatar"
-                                <# if ( collection.get('lazy_load_avatar').get('value')) { #> checked
-                                <# } #> >
-                                <label for="lazy_load_avatar">
+						<div class="tcm-mt tcm-lazy-load">
+							<div class="tcm-config-field">
+								<input id="lazy_load_avatar" class="tcm-checkbox" data-type="checkbox" type="checkbox" data-setting="lazy_load_avatar"
+								<# if ( collection.get('lazy_load_avatar').get('value')) { #> checked
+								<# } #> >
+								<label for="lazy_load_avatar">
 									<?php echo __( 'Load avatar images when comment enters viewport', Thrive_Comments_Constants::T ); ?>
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </li>
+								</label>
+							</div>
+						</div>
+					</div>
+				</div>
+			</li>
 
 		</ul>
 	</form>

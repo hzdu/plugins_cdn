@@ -22,6 +22,7 @@
 
 		/**
 		 * Every input placed here will be processed when saving the comment
+		 *
 		 * @see prepare_comment_for_database
 		 * @see tcm_comments_fields ( filter )
 		 */
@@ -149,11 +150,7 @@
 						</a>
 						<# } #>
 						<# if( ThriveComments.settings.tcm_api_status.google === 1 && ThriveComments.settings.tcm_api_status.google_api === 1 ){#>
-						<a href="javascript:void(0)" id="tcm-gp-logo" class="tcm-social-share-logo">
-						                                            <span class="tcm-share-info">
-							                                            <#= ThriveComments.util.render_label( 'signin_google' ) #>
-						                                            </span>
-						</a>
+						<div id="tcm-google-sign-in-<#= id #>"></div>
 						<# } #>
 					</div>
 					<# } #>
