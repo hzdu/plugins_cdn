@@ -2,8 +2,8 @@
 Contributors: anbinder, karzin, pluggabl
 Tags: woocommerce, booster for woocommerce, woocommerce jetpack
 Requires at least: 4.4
-Tested up to: 6.0
-Stable tag: 5.5.9
+Tested up to: 6.0.1
+Stable tag: 5.6.0
 License: GNU General Public License v3.0
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -203,6 +203,17 @@ You can see the differences between versions in this [table](https://booster.io/
 8. Booster for WooCommerce - Emails & Misc.
 
 == Changelog ==
+
+= 5.6.0 27/07/2022 =
+
+* NEW FEATURE - PDF INVOICING & PACKING SLIPS - PDF Invoicing - Added a new shortcode attribute to exclude tax from the refund total amount. [wcj_order_shipping_price excl_tax="yes" ]
+* FIXED - SHIPPING & ORDERS - Maximum Products per User - Remove Max product per user meta from the product while duplicating the Product.
+* FIXED - EMAILS & MISC. - Export - Escape the HTML content from the "Additional Export Orders Fields" value.
+* FIXED - EMAILS & MISC. - Export - Array to string conversion for the "Additional Export Products Fields" value.
+* FIXED - PHP Warning: Undefined index in the tab" in /includes/admin/class-wc-settings-jetpack.php ...
+* FIXED - PHP Warning: Undefined array key "path" in /includes/functions/wcj-functions-booster-core.php ...
+* WooCommerce 6.7.0 tested
+* WordPress 6.0.1 tested
 
 = 5.5.9 29/06/2022 =
 
