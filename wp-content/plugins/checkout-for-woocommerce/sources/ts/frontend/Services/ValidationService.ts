@@ -68,23 +68,29 @@ class ValidationService {
 
         const promises = this.getValidatorPromisesForTab( tab );
 
+        const finished = () => {
+            currentTab.removeClass( 'cfw-validation-pending' );
+            currentTabButton.removeClass( 'cfw-button-loading' );
+        };
+
         Promise
             .all( promises )
-            .then( () => {
-                currentTab.addClass( 'cfw-validation-passed' );
-                TabService.go( destinationTab );
-            } )
-            .finally( () => {
-                currentTab.removeClass( 'cfw-validation-pending' );
-                currentTabButton.removeClass( 'cfw-button-loading' );
-            } )
-            .catch( ( reason ) => {
-                if ( reason ) {
-                    LoggingService.logError( `CheckoutWC Tab Validation Promise Failed: ${reason}` );
-                    // eslint-disable-next-line no-console
-                    console.log( reason );
-                }
-            } );
+            .then(
+                () => {
+                    currentTab.addClass( 'cfw-validation-passed' );
+                    TabService.go( destinationTab );
+                    finished();
+                },
+                // Faster than a catch block
+                ( reason ) => {
+                    if ( reason ) {
+                        LoggingService.logError( `CheckoutWC Tab Validation Promise Failed: ${reason}` );
+                        // eslint-disable-next-line no-console
+                        console.log( reason );
+                    }
+                    finished();
+                },
+            );
     }
 
     validateOnFormSubmit(): void {
@@ -112,6 +118,8 @@ class ValidationService {
                 jQuery( '.cfw-panel' ).each( ( index, tab ) => {
                     tabsToValidate.push( tab.id );
                 } );
+            } else if ( DataService.getSetting( 'order_review_step_enabled' ) ) {
+                tabsToValidate.push( 'cfw-order-review' );
             } else {
                 tabsToValidate.push( 'cfw-payment-method' );
             }
@@ -124,21 +132,27 @@ class ValidationService {
             const currentTabButton = currentTab.find( '.cfw-bottom-controls .cfw-primary-btn ' );
             currentTabButton.addClass( 'cfw-button-loading' );
 
+            const finished = () => {
+                currentTabButton.removeClass( 'cfw-button-loading' );
+            };
+
             Promise
                 .all( promises )
-                .then( () => {
-                    checkoutForm.trigger( 'submit', [ true ] );
-                } )
-                .finally( () => {
-                    currentTabButton.removeClass( 'cfw-button-loading' );
-                } )
-                .catch( ( reason ) => {
-                    if ( reason ) {
-                        LoggingService.logError( `CheckoutWC Validation Promise Failed: ${reason}` );
-                        // eslint-disable-next-line no-console
-                        console.log( reason );
-                    }
-                } );
+                .then(
+                    () => {
+                        checkoutForm.trigger( 'submit', [ true ] );
+                        finished();
+                    },
+                    // Faster than a catch block
+                    ( reason ) => {
+                        if ( reason ) {
+                            LoggingService.logError( `CheckoutWC Validation Promise Failed: ${reason}` );
+                            // eslint-disable-next-line no-console
+                            console.log( reason );
+                        }
+                        finished();
+                    },
+                );
         } );
     }
 
@@ -147,9 +161,11 @@ class ValidationService {
         const previousTabs = currentTab.prevAll( '.cfw-panel' );
 
         previousTabs.each( ( index, tab ) => {
-            Promise.all( this.getValidatorPromisesForTab( tab.id ) ).catch( () => {
-                TabService.go( tab.id );
-            } );
+            Promise
+                .all( this.getValidatorPromisesForTab( tab.id ) )
+                .catch( () => {
+                    TabService.go( tab.id );
+                } );
         } );
     }
 

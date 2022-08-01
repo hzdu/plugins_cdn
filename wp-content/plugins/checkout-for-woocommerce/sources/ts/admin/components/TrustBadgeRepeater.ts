@@ -8,12 +8,16 @@ class TrustBadgeRepeater {
         jQuery( '.cfw-admin-add-trust-badge-row-button' ).on( 'click', ( e ) => {
             e.preventDefault();
 
-            const newRow = templateRow.clone();
             const lastRow = jQuery( '.cfw-admin-trust-badge-row' ).last();
 
-            newRow.removeClass( '.cfw-admin-trust-badge-template-row' );
-            newRow.insertAfter( lastRow );
+            const newRow = templateRow.clone()
+                .removeClass( 'cfw-admin-trust-badge-template-row' )
+                .insertAfter( lastRow );
+
+            // Enable the inputs in the new row
             newRow.find( ':input' ).prop( 'disabled', false );
+
+            const rowsCount = jQuery( 'tr.cfw-admin-trust-badge-row' ).not( '.cfw-admin-trust-badge-template-row' ).length.toString();
 
             newRow.find( ':input' ).each( ( index, element ) => {
                 let name = jQuery( element ).attr( 'name' );
@@ -23,8 +27,6 @@ class TrustBadgeRepeater {
                 }
 
                 name = name.toString();
-
-                const rowsCount = jQuery( '.cfw-admin-trust-badge-row' ).not( '.cfw-admin-trust-badge-template-row' ).length.toString();
 
                 name = name.replace( 'placeholder', rowsCount );
                 jQuery( element ).attr( 'name', name );

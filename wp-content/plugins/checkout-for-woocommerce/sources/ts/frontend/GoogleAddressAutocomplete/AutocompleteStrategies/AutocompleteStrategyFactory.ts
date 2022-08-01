@@ -2,6 +2,7 @@ import Utilities                       from '../Utilities';
 import AutocompleteStrategy            from './AutocompleteStrategy';
 import CanadaAutocompleteStrategy      from './CanadaAutocompleteStrategy';
 import GermanyAutocompleteStrategy     from './GermanyAutocompleteStrategy';
+import ItalyAutocompleteStrategy       from './ItalyAutocompleteStrategy';
 import MalaysiaAutocompleteStrategy    from './MalaysiaAutocompleteStrategy';
 import NetherlandsAutocompleteStrategy from './NetherlandsAutocompleteStrategy';
 import NewZealandAutocompleteStrategy  from './NewZealandAutocompleteStrategy';
@@ -38,6 +39,10 @@ export default class AutocompleteStrategyFactory {
 
         if ( country === 'MY' ) {
             return new MalaysiaAutocompleteStrategy( components, formattedAddress );
+        }
+
+        if ( country === 'IT' ) {
+            return new ItalyAutocompleteStrategy( components, formattedAddress );
         }
 
         return new AutocompleteStrategy( components, formattedAddress );

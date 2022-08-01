@@ -45,7 +45,7 @@ abstract class Action {
                     return response;
                 }
                 // Attempt to fix the malformed JSON
-                const maybeValidJSON = response.match( /{"result.*}/ );
+                const maybeValidJSON = response.match( /{".*}/ );
 
                 if ( maybeValidJSON === null ) {
                     LoggingService.logError( 'Unable to fix malformed JSON' );

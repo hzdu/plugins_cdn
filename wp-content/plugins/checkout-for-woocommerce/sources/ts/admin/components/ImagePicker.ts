@@ -17,15 +17,16 @@ class ImagePicker {
 
             event.preventDefault();
 
-            // If the media frame already exists, reopen it.
-            if ( this.fileFrame ) {
-                // Set the post ID to what we want
-                this.fileFrame.uploader.uploader.param( 'post_id', setToPostId );
-                // Open frame
-                this.fileFrame.open();
-
-                return;
-            }
+            // Commented out because this causes issues with repeaters and trust badges which end up sharing the same fileFrame
+            // // If the media frame already exists, reopen it.
+            // if ( this.fileFrame ) {
+            //     // Set the post ID to what we want
+            //     this.fileFrame.uploader.uploader.param( 'post_id', setToPostId );
+            //     // Open frame
+            //     this.fileFrame.open();
+            //
+            //     return;
+            // }
             // Set the wp.media post id so the uploader grabs the ID we want when initialised
             wp.media.model.settings.post.id = setToPostId;
 

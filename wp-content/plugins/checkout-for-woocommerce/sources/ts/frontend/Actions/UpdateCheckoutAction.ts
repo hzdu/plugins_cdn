@@ -34,6 +34,36 @@ class UpdateCheckoutAction extends Action {
         const n = currentTime.getTime();
         const url = DataService.getCheckoutParam( 'wc_ajax_url' ).toString().replace( '%%endpoint%%', this.id );
 
+        // ajaxSetup is global, but we use it to ensure JSON is valid once returned.
+        jQuery.ajaxSetup( {
+            dataFilter( rawResponse, dataType ) {
+                let response = rawResponse;
+
+                // We only want to work with JSON
+                if ( dataType !== 'json' ) {
+                    return rawResponse;
+                }
+
+                if ( Action.isValidJSON( response ) ) {
+                    return response;
+                }
+                // Attempt to fix the malformed JSON
+                const maybeValidJSON = response.match( /{".*}/ );
+
+                if ( maybeValidJSON === null ) {
+                    LoggingService.logError( 'Unable to fix malformed JSON' );
+                } else if ( Action.isValidJSON( maybeValidJSON[ 0 ] ) ) {
+                    LoggingService.logNotice( 'Fixed malformed JSON. Original:', response );
+                    // eslint-disable-next-line prefer-destructuring
+                    response = maybeValidJSON[ 0 ];
+                } else {
+                    LoggingService.logError( 'Unable to fix malformed JSON' );
+                }
+
+                return response;
+            },
+        } );
+
         UpdateCheckoutAction.underlyingRequest = jQuery.ajax( {
             type: 'POST',
             url: `${url}&nocache=${n}`,

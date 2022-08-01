@@ -29,7 +29,7 @@ class Square extends Compatibility {
     enforcePostalCodeValue(): void {
         // The hidden class lets us know that the postal code field is loaded because
         // Square doesn't add this class until after the payment form is loaded
-        if ( typeof ( <any>window ).wc_square_credit_card_payment_form_handler !== 'undefined' && jQuery( '.wc-square-credit-card-card-postal-code-parent' ).hasClass( 'hidden' ) ) {
+        if ( ( <any>window )?.wc_square_credit_card_payment_form_handler?.payment_form?.attached ) {
             const sameAsShipping = jQuery( 'input[name="bill_to_different_address"]:checked' ).val();
 
             if ( sameAsShipping === 'same_as_shipping' ) {
