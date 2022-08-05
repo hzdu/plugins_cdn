@@ -2,7 +2,7 @@
  * Variation Swatches for WooCommerce - PRO
  *
  * Author: Emran Ahmed ( emran.bd.08@gmail.com )
- * Date: 7/21/2022, 11:41:44 AM
+ * Date: 7/31/2022, 4:22:12 PM
  * Released under the GPLv3 license.
  */
 /******/ (function() { // webpackBootstrap
@@ -69,7 +69,7 @@ var __webpack_exports__ = {};
     $form.on('reset_data.wc-variation-form', {
       variationForm: self
     }, self.onResetDisplayedVariation);
-    $form.on('reset_image', {
+    $form.on('reset_image.wc-variation-form', {
       variationForm: self
     }, self.onResetImage);
     $form.on('change.wc-variation-form', '.variations select', {
@@ -208,6 +208,17 @@ var __webpack_exports__ = {};
     if (value && attributes.count && attributes.count > attributes.chosenCount) {
       currentAttributes['product_id'] = form.product_id;
       currentAttributes[attribute_name] = value;
+
+      if ($('.woocommerce-product-gallery').length > 0) {
+        $('.woocommerce-product-gallery').block({
+          message: null,
+          overlayCSS: {
+            background: '#FFFFFF',
+            opacity: 0.6
+          }
+        });
+      }
+
       form.previewXhr = $.ajax({
         global: false,
         url: woo_variation_swatches_pro_params.wc_ajax_url.toString().replace('%%endpoint%%', 'woo_get_preview_variation'),
@@ -219,12 +230,23 @@ var __webpack_exports__ = {};
       });
       form.previewXhr.done(function (variation) {
         // reset off
-        form.$form.off('reset_data.wc-variation-form');
-        form.$form.wc_variations_image_update(variation); //form.$form.trigger('wvs_pro_single_preview_found_variation', [form, variation])
-        //form.$form.trigger('wvs_single_attribute_chosen', [variation, form])
+        // @TODO: Issue clear on reselect with Variation Image Preview
+        //form.$form.off('reset_data.wc-variation-form');
+        form.$form.off('reset_image.wc-variation-form'); // woocommerce-product-gallery
 
-        form.$form.trigger('show_variation', [variation, false]); //form.$form.trigger('update_preview_variation');
+        form.$form.wc_variations_image_update(variation);
+        form.$form.trigger('show_variation', [variation, false]);
+
+        if ($('.woocommerce-product-gallery').length > 0) {
+          $('.woocommerce-product-gallery').unblock();
+        }
       });
+    }
+
+    if (!value && woo_variation_swatches_pro_options.clear_on_reselect) {
+      form.$form.on('reset_image.wc-variation-form', {
+        variationForm: form
+      }, form.onResetImage).trigger('reset_image');
     }
   };
   /**

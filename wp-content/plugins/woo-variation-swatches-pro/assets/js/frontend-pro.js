@@ -2,7 +2,7 @@
  * Variation Swatches for WooCommerce - PRO
  *
  * Author: Emran Ahmed ( emran.bd.08@gmail.com )
- * Date: 7/21/2022, 11:41:44 AM
+ * Date: 7/31/2022, 4:22:12 PM
  * Released under the GPLv3 license.
  */
 /******/ (function() { // webpackBootstrap
@@ -514,8 +514,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                                 $option_element.addClass('out-of-stock');
                               } // 1 attribute except catalog mode
 
+                              /*if (!woo_variation_swatches_pro_options.enable_catalog_mode && attributes.count === 1 && variation_out_of_stock) {
+                                  $option_element.addClass('out-of-stock')
+                              }*/
 
-                              if (!woo_variation_swatches_pro_options.enable_catalog_mode && attributes.count === 1 && variation_out_of_stock) {
+
+                              if (!woo_variation_swatches_pro_options.enable_clickable_out_of_stock_archive && attributes.count === 1 && variation_out_of_stock) {
                                 $option_element.addClass('out-of-stock');
                               }
 
