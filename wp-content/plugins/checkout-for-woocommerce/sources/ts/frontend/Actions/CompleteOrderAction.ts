@@ -46,11 +46,6 @@ class CompleteOrderAction extends Action {
                 return;
             }
 
-            // Trigger update in case we need a fresh nonce
-            if ( resp.refresh === true ) {
-                jQuery( document.body ).trigger( 'update_checkout' );
-            }
-
             if ( typeof resp.messages === 'string' && resp.messages.length ) {
                 // Wrapping the response in a <div /> is required for correct parsing
                 const messages = jQuery( jQuery.parseHTML( `<div>${resp.messages}</div>` ) );
@@ -102,7 +97,7 @@ class CompleteOrderAction extends Action {
 
             // Trigger update in case we need a fresh nonce
             if ( resp.refresh === true ) {
-                UpdateCheckoutService.triggerUpdatedCheckout();
+                jQuery( document.body ).trigger( 'update_checkout' );
             }
 
             this.submitError();

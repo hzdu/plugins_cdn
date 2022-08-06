@@ -27,6 +27,12 @@ class Pickup {
     showContent( target ): void {
         const radioButton = jQuery( target );
 
+        if ( radioButton.val() === 'pickup' && DataService.getSetting( 'hide_pickup_methods' ) ) {
+            jQuery( document.body ).addClass( 'cfw-hide-pickup-methods' );
+        } else {
+            jQuery( document.body ).removeClass( 'cfw-hide-pickup-methods' );
+        }
+
         if ( radioButton.val() === 'pickup' ) {
             // Shipping address
             jQuery( '#cfw-customer-info-address.shipping' ).hide();

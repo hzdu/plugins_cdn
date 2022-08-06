@@ -50,6 +50,11 @@ class AlertService {
     }
 
     public static showAlerts( queue = 'default', container: string = null ): void {
+        // If we don't have any alerts to show, let's bail here
+        if ( !AlertService.queues[ queue ] || AlertService.queues[ queue ].length === 0 ) {
+            return;
+        }
+
         // Unless alerts should be preserved, let's hide them here
         // Then only new or duplicated alerts will be shown
         if ( !AlertService.preserveAlerts ) {
@@ -57,11 +62,6 @@ class AlertService {
         }
 
         AlertService.removeTemporaryAlerts( container );
-
-        // If we don't have any alerts to show, let's bail here
-        if ( !AlertService.queues[ queue ] || AlertService.queues[ queue ].length === 0 ) {
-            return;
-        }
 
         const containerElement = container ? jQuery( container ) : AlertService.alertContainer;
 

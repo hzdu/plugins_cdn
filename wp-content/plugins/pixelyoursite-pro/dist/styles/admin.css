@@ -105,6 +105,10 @@
     padding: 20px 30px;
     margin: 1px;
     border-radius: 4px;
+
+}
+#pys .pys_stats_filters .filter a {
+    color:black;
 }
 .pys_stat {
     background-color: white;
@@ -130,8 +134,8 @@
 #pys .stat_data .loading{
     display: none;
 }
-#pys .stat_data.step_2.loaded .single_data,
-#pys .stat_data.step_1.loaded .global_data{
+#pys .stat_data.loaded .single_data,
+#pys .stat_data.loaded .global_data{
     display: block;
 }
 
@@ -198,7 +202,8 @@
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
     -ms-flex-direction: column;
-    flex-direction: column;
+    flex-
+    direction: column;
     -webkit-box-pack: center;
     -ms-flex-pack: center;
     justify-content: center;
@@ -207,15 +212,17 @@
     background-color: #007bff;
     transition: width .6s ease;
 }
-
-#pys .utm_template {
+#pys .bg-gray {
+    background-color: #f6f6f6;
+}
+#pys .copy_text {
     padding: 15px 20px 15px 15px;
     background: #f6f6f6;
     line-break: anywhere;
     position: relative;
     cursor: pointer;
 }
-#pys .utm_template:after {
+#pys .copy_text:after {
     content: "";
     background-image: url(images/ic_copy.png);
     opacity: 0.5;
@@ -228,3 +235,33 @@
     top: 5px;
     right: 5px;
 }
+
+#pys .single_data .total,
+#pys .global_data .total{
+    display: flex;
+    font-weight: bold;
+    justify-content: center;
+    margin-top: 20px;
+    flex-wrap: wrap;
+}
+#pys .single_data .total li,
+#pys .global_data .total li {
+    margin-left: 15px;
+}
+
+
+#pys table th.active,
+#pys table td.active
+{
+    background-color: #f8f8f8;
+}
+#pys .reload_table,
+#pys .global_data  th.sortable{
+    cursor:pointer;
+}
+
+#pys .pys_utm_builder > div {
+    padding: 5px;
+    margin-bottom:15px;
+}
+

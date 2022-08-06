@@ -600,8 +600,8 @@ if (!String.prototype.trim) {
          * COOKIES UTILS
          */
 
-        var utmTerms = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content'];
-
+        var utmTerms = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content' ,'utm_term'];
+        var utmId = ['fbadid', 'gadid', 'padid', 'bingid'];
         var requestParams = [];
 
         function validateEmail(email) {
@@ -620,11 +620,11 @@ if (!String.prototype.trim) {
         }
 
         function checkSession() {
-
+            let duration = options.last_visit_duration * 60000
             if( Cookies.get('pys_start_session') === undefined ||
                 Cookies.get('pys_session_limit') === undefined) {
                 var now = new Date();
-                now.setTime(now.getTime() + 1 * 3600 * 1000);
+                now.setTime(now.getTime() + duration);
                 Cookies.set('pys_session_limit', true,{ expires: now })
                 Cookies.set('pys_start_session', true)
                 return true
@@ -720,6 +720,24 @@ if (!String.prototype.trim) {
             }
         }
 
+        function getUTMId(useLast = false) {
+            try {
+                let cookiePrefix = 'pys_'
+                let terms = [];
+                if (useLast) {
+                    cookiePrefix = 'last_pys_'
+                }
+                $.each(utmId, function (index, name) {
+                    if (Cookies.get(cookiePrefix + name)) {
+                        terms[name] = Cookies.get(cookiePrefix + name)
+                    }
+                });
+                return terms;
+            } catch (e) {
+                console.error(e);
+                return [];
+            }
+        }
         /**
          * Return UTM terms from request query variables or from cookies.
          */
@@ -730,23 +748,12 @@ if (!String.prototype.trim) {
                 if(useLast) {
                     cookiePrefix = 'last_pys_'
                 }
-                var terms = [];
-                var queryVars = getQueryVars();
-
+                let terms = [];
                 $.each(utmTerms, function (index, name) {
-
-                    var value;
-
                     if (Cookies.get(cookiePrefix + name)) {
-                        value = Cookies.get(cookiePrefix + name);
-                        // do not allow email in request params (Issue #70)
-                        terms[name] = filterEmails(value);
-                    } else if (queryVars.hasOwnProperty(name)) {
-                        value = queryVars[name];
-                        // do not allow email in request params (Issue #70)
-                        terms[name] = filterEmails(value);
+                        let value = Cookies.get(cookiePrefix + name);
+                        terms[name] = filterEmails(value); // do not allow email in request params (Issue #70)
                     }
-
                 });
 
                 return terms;
@@ -985,6 +992,7 @@ if (!String.prototype.trim) {
                     if(Cookies.get('pys_first_visit') === undefined) {
                         Cookies.set('pys_first_visit', true, { expires: expires });
                         Cookies.set('pysTrafficSource', getTrafficSource(), { expires: expires });
+                        Cookies.set('pys_landing_page',landing,{ expires: expires });
                         $.each(utmTerms, function (index, name) {
                             if (queryVars.hasOwnProperty(name)) {
                                 Cookies.set('pys_' + name, queryVars[name], { expires: expires });
@@ -992,7 +1000,13 @@ if (!String.prototype.trim) {
                                 Cookies.remove('pys_' + name)
                             }
                         });
-                        Cookies.set('pys_landing_page',landing,{ expires: expires });
+                        $.each(utmId,function(index,name) {
+                            if (queryVars.hasOwnProperty(name)) {
+                                Cookies.set('pys_' + name, queryVars[name], { expires: expires });
+                            } else {
+                                Cookies.remove('pys_' + name)
+                            }
+                        })
                     }
 
                     // save data for last visit if it new session
@@ -1005,6 +1019,13 @@ if (!String.prototype.trim) {
                                 Cookies.remove('last_pys_' + name)
                             }
                         });
+                        $.each(utmId,function(index,name) {
+                            if (queryVars.hasOwnProperty(name)) {
+                                Cookies.set('last_pys_' + name, queryVars[name], { expires: expires });
+                            } else {
+                                Cookies.remove('last_pys_' + name)
+                            }
+                        })
                         Cookies.set('last_pys_landing_page',landing,{ expires: expires });
                     }
                 } catch (e) {
@@ -1774,6 +1795,22 @@ if (!String.prototype.trim) {
                     }
                     utm+=name+":"+utms[name];
                 });
+                var utmIdList = "";
+                var utmsIds = getUTMId()
+                $.each(utmId, function (index, name) {
+                    if(index > 0) {
+                        utmIdList+="|";
+                    }
+                    utmIdList+=name+":"+utmsIds[name];
+                });
+                var utmIdListLast = "";
+                var utmsIdsLast = getUTMId(true)
+                $.each(utmId, function (index, name) {
+                    if(index > 0) {
+                        utmIdListLast+="|";
+                    }
+                    utmIdListLast+=name+":"+utmsIdsLast[name];
+                });
 
 
                 var utmLast = "";
@@ -1798,6 +1835,7 @@ if (!String.prototype.trim) {
                     $form = $("#edd_purchase_form");
                 }
                 var inputs = {'pys_utm':utm,
+                    'pys_utm_id':utmIdList,
                     'pys_browser_time':dateTime.join("|"),
                     'pys_landing':landing,
                     'pys_source':trafic,
@@ -1806,6 +1844,7 @@ if (!String.prototype.trim) {
                     'last_pys_landing':lastLanding,
                     'last_pys_source':lastTrafic,
                     'last_pys_utm':utmLast,
+                    'last_pys_utm_id':utmIdListLast,
                 }
 
                 Object.keys(inputs).forEach(function(key,index) {
