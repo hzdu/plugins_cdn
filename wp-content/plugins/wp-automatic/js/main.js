@@ -616,7 +616,7 @@ jQuery(document).ready(function()
     	    beforeSend: function () {
 	    	    	
 	    	    	jQuery('#campaign_run').addClass('run_load').removeClass('run');
-	    	    	jQuery('#welcome-panel').slideUp('slow');
+	    	    	jQuery('#wp-automatic-welcome-panel').slideUp('slow');
     	    }
     	    
     	    ,error: function(one, two , three){

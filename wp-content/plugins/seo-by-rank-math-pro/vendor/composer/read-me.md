@@ -5,7 +5,7 @@
 ==================================================
 
 Huge Thanks To:
-➡ @Simbaa For Untouched File
+➡ @bobsmith For Untouched File
 ➡ @bobsmith For Nulled File
 ➡ @bobsmith For Nulled Method
 
