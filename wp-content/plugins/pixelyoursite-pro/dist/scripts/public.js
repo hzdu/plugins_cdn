@@ -2182,7 +2182,7 @@ if (!String.prototype.trim) {
 
             updateEventId:function(key) {
                 var cooData = Cookies.get("pys_fb_event_id")
-                if(data === undefined) {
+                if(cooData === undefined) {
                     this.initEventIdCookies(key);
                 } else {
                     var data = JSON.parse(cooData);
