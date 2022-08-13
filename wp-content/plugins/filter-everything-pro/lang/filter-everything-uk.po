@@ -3,9 +3,9 @@ msgstr ""
 "Project-Id-Version: Filter Everything PRO\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-02-23 21:45+0000\n"
-"PO-Revision-Date: 2022-05-22 13:38+0000\n"
+"PO-Revision-Date: 2022-08-08 12:18+0000\n"
 "Last-Translator: Administrator\n"
-"Language-Team: Ukrainian\n"
+"Language-Team: Українська\n"
 "Language: uk\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10 >= 2 && "
 "n%10<=4 &&(n%100<10||n%100 >= 20)? 1 : 2);\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Loco https://localise.biz/\n"
-"X-Loco-Version: 2.6.1; wp-5.9.3\n"
+"X-Loco-Version: 2.6.1; wp-6.0.1\n"
 "X-Domain: filter-everything"
 
 msgid ""
@@ -194,6 +194,9 @@ msgstr "дозволені символи a-z, 0-9, \"_\" та \"-\""
 
 msgid "About PRO"
 msgstr "Деталі PRO"
+
+msgid "Activate License"
+msgstr "Активувати ліцензію"
 
 #: views/admin/filters-set.php:55
 msgid "Add Filter"
@@ -531,6 +534,9 @@ msgstr "Кастомізація"
 msgid "Dark Overlay (on desktop only)"
 msgstr "Темний фон (лише для десктопів)"
 
+msgid "Deactivate License"
+msgstr "Видалити ліцензію"
+
 msgid ""
 "Debug messages are visible for logged in administrators only. You can "
 "disable them in Filters -> <a href=\"%s\">Settings</a> -> Debug mode."
@@ -829,9 +835,21 @@ msgstr ""
 "Помилка: така назва URL змінної не дозволяється, оскільки вона співпадає з "
 "тегом, категорією чи іншим термом таксономії."
 
+msgid ""
+"Error: you can not update settings because Filter Everything Pro plugin is "
+"locked. Please, enter your <a href=\"%1$s\" target=\"_blank\">license key</a>"
+" to unlock it."
+msgstr ""
+"Помилка: ви не можете оновити налаштування тому що плагін Filter Everything "
+"Pro заблокований. Будь ласка, введіть ваш <a href=\"%1$s\" target=\"_blank\">"
+"ліцензійний ключ</a> щоб зняти блокування."
+
 #: src/Admin/FilterFields.php:1267
 msgid "Error: you must enter Meta Key"
 msgstr "Помилка: ви повинні вказати Ключ мета поля."
+
+msgid "Everything is fine, you have activated license."
+msgstr "Все добре, ваша ліцензія активована."
 
 msgid "exclude"
 msgstr "вилучити"
@@ -1056,6 +1074,9 @@ msgstr "Основні"
 msgid "Get PRO"
 msgstr "Отримати PRO"
 
+msgid "Get your License Key"
+msgstr "Отримати Ліцензійний ключ"
+
 #: src/Settings/Tabs/PermalinksTab.php:56
 msgid "Global filter prefixes and order"
 msgstr "Глобальні префікси та їх порядок"
@@ -1189,6 +1210,31 @@ msgstr "Список лейблів"
 #: src/Admin/FilterSet.php:224
 msgid "Less options"
 msgstr "Менше налаштувань"
+
+msgid "License"
+msgstr "Ліцензія"
+
+msgid "License Information"
+msgstr "Деталі ліцензії"
+
+msgid "License Key"
+msgstr "Ліцензійний ключ"
+
+msgid "License was successfully activated."
+msgstr "Ліцензія успішно активована."
+
+msgid "License was successfully deactivated."
+msgstr "Ліцензія видалена."
+
+msgid "Locked"
+msgstr "Заблокований"
+
+msgid ""
+"Locked status means that you can not update Filter Set and SEO Rule settings."
+" All other plugin features works as usual."
+msgstr ""
+"Статус Заблокований означає, що ви не можете змінювати налаштування Набору "
+"фільтрів та SEO правил. Всі інші функції плагіну працюють як і належить."
 
 msgid "Main Query."
 msgstr "Main Query."
@@ -1495,6 +1541,9 @@ msgstr "Числовий діапазон"
 msgid "Read more"
 msgstr "Дізнатися більше"
 
+msgid "Registered"
+msgstr "Зареєстрований"
+
 #: views/frontend/chips.php:4
 #, php-format
 msgid "Remove %s from results"
@@ -1543,6 +1592,9 @@ msgstr "Шукати SEO правило"
 #, php-format
 msgid "Select %s"
 msgstr "Оберіть %s"
+
+msgid "Select %s first"
+msgstr "Спочатку оберіть %s"
 
 msgid "Select or enter hooks"
 msgstr "Виберіть або впишіть"
@@ -1885,6 +1937,35 @@ msgstr "Ця назва буде відображатися у віджеті ф
 msgid "Title will be created automatically"
 msgstr "Заголовок буде створено автоматично"
 
+msgid ""
+"To allow the plugin to update automatically and avoid blocking some of its "
+"features, please enter your license key on the <a href=\"%1$s\">License "
+"page</a>."
+msgstr ""
+"Будь ласка, введіть ваш Ліцензійний ключ <a href=\"%1$s\">на цій сторінці</a>"
+", щоб увімкнути автоматичні оновлення плагіну та запобігти блокуванню роботи "
+"деяких його функцій."
+
+msgid ""
+"To enable automatic plugin updates, please enter your license key below. If "
+"you purchased the plugin, please click the “Get your License Key” button.<br "
+"/>If you didn't do it yet, please <a href=\"%1$s\" target=\"_blank\">"
+"purchase it here</a>."
+msgstr ""
+"Будь ласка, введіть ваш Ліцензійний ключ нижче для отримання автоматичних "
+"оновлень плагіну. Якщо ви вже купували плагін, натисніть кнопку «Отримати "
+"Ліцензійний ключ».<br />Якщо ви ще не робили цього, будь ласка <a "
+"href=\"%1$s\" target=\"_blank\">придбайте його тут</a>."
+
+msgid ""
+"To enable updates, please enter your license key on the <a href=\"%1$s\">"
+"License</a> page. If you don't have a licence key, please <a href=\"%2$s\" "
+"target=\"_blank\">purchase it here</a>."
+msgstr ""
+"Щоб увімкнути автоматичні оновлення, будь ласка введіть ваш ліцензійний ключ "
+"на сторінці <a href=\"%1$s\">Ліцензії</a>. Якщо ви не маєте ліцензійного "
+"ключа, будь ласка <a href=\"%2$s\" target=\"_blank\">придбайте його тут</a>."
+
 msgid "To hide or not a Filter terms that do not contain posts"
 msgstr "Приховувати чи показувати терми, які не містять дописів"
 
@@ -1903,6 +1984,9 @@ msgstr "Спробуйте показати вибрані терми (чіпс�
 msgid "Try to use AJAX"
 msgstr "Спробувати активувати AJAX"
 
+msgid "Unknown error."
+msgstr "Невідома помилка."
+
 msgid ""
 "Unlike most widgets, the Filters widget does not always show filters. It is "
 "rather a canvas where filters can be displayed if there is a Filter Set "
@@ -1913,6 +1997,9 @@ msgstr ""
 "фільтри. Він швидше є основою, на якій фільтри можуть відображатися, якщо "
 "для сторінки існує зареєстрований Набір фільтрів. Ви можете вказати цю "
 "сторінку або сторінки в полі \"Де фільтрувати?\" Набору фільтрів."
+
+msgid "Unregistered"
+msgstr "Незареєстрований"
 
 #: views/admin/filters-set.php:33
 msgid "URL Prefix"
@@ -2052,6 +2139,23 @@ msgstr ""
 msgid "Yes"
 msgstr "Так"
 
+msgid ""
+"You have been using the plugin for more than two months without license key "
+"and now it is locked."
+msgstr ""
+"Ви використовували плагін без ліцензійного ключа більше двох місяців і тепер "
+"він заблокований."
+
+#| msgid ""
+#| "You have been using the plugin for more than two months without license "
+#| "key and now it is locked <a href=\"%1$s\">License page</a>."
+msgid ""
+"You have been using the plugin for more than two months without license key "
+"and now it is locked. Read more on the <a href=\"%1$s\">License page</a>."
+msgstr ""
+"Ви використовували плагін без ліцензійного ключа більше двох місяців і тепер "
+"він заблокований. Деталі на <a href=\"%1$s\">сторінці Ліцензії</a>."
+
 #: pro/Admin/SeoRules.php:257
 #, php-format
 msgid ""
@@ -2063,6 +2167,12 @@ msgstr ""
 
 msgid "You must specify Posts Container, otherwise AJAX will not work properly"
 msgstr "Потрібно вказати контейнер з дописами, інакше AJAX не працюватиме"
+
+msgid ""
+"You will need to log into your Envato account to generate the License Key."
+msgstr ""
+"Вам потрібно буде залогінитися у ваш аккаунт Envato щоб згенерувати "
+"Ліцензійний ключ."
 
 msgid "«Apply Button» mode"
 msgstr "Кнопка «Застосувати»"

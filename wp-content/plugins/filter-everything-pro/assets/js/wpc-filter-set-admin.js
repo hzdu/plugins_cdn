@@ -1,5 +1,5 @@
 /*!
- * Filter Everything set admin 1.6.5
+ * Filter Everything set admin 1.6.8
  */
 (function($) {
     "use strict";
@@ -664,8 +664,6 @@
             wpcGetApplyLocationTerms( $(this).val() );
         });
 
-        makeNoticesDismissible();
-
         $('body').on('change', '#wpc_set_fields-post_name', function (e){
             let filterPagelink = $('option:selected', this).data('link');
 
@@ -1147,24 +1145,6 @@
                 // }
             });
 
-    }
-
-    function makeNoticesDismissible() {
-        $( '.wpc-error.is-dismissible' ).each( function() {
-            var $el = $( this ),
-                $button = $el.find('.notice-dismiss');
-            // Ensure plain text.
-            $button.on( 'click', function( event ) {
-                event.preventDefault();
-                $el.fadeTo( 100, 0, function() {
-                    $el.slideUp( 100, function() {
-                        $el.remove();
-                    });
-                });
-            });
-
-            $el.append( $button );
-        });
     }
 
     function wpcSerialize( $el ){

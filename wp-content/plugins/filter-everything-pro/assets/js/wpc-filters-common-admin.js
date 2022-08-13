@@ -1,5 +1,5 @@
 /*!
- * Filter Everything common admin 1.6.5
+ * Filter Everything common admin 1.6.8
  */
 (function($) {
     "use strict";
@@ -62,7 +62,39 @@
             tags: true
         });
 
+        $('body').on('click', '.wpc-notice-dismiss', function (e){
+            e.preventDefault();
+
+            let requestParams      = {};
+            requestParams._wpnonce = $(this).data('nonce');
+
+            wp.ajax.post( 'wpc_dismiss_license_notice', requestParams )
+                .always( function( response ) {
+                    // $spinner.removeClass( 'is-active' );
+                    var $el = $( '.license-notice' );
+                    $el.fadeTo( 100, 0, function() {
+                        $el.slideUp( 100, function() {
+                            $el.remove();
+                        });
+                    });
+                })
+        });
+
     }); // End $(document).ready();
+
+    $(document).on('click', '.wpc-error.is-dismissible > .notice-dismiss', function (e){
+            e.preventDefault();
+
+            let $button = $( this );
+            let $el = $button.parent('.wpc-error');
+
+            $el.fadeTo( 100, 0, function() {
+                $el.slideUp( 100, function() {
+                    $el.remove();
+                });
+            });
+            $el.append( $button );
+    });
 
     function renderTableOrder()
     {

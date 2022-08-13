@@ -1,5 +1,5 @@
 /*!
- * Filter Everything seo rules admin 1.6.5
+ * Filter Everything seo rules admin 1.6.8
  */
 (function($) {
     "use strict";
@@ -40,7 +40,6 @@
                     }
 
                     addNotice( notices );
-                    makeNoticesDismissible();
                 }
             });
 
@@ -217,28 +216,7 @@
                     }
                 });
         });
-
-        makeNoticesDismissible();
-
     });
-
-    function makeNoticesDismissible() {
-        $( '.wpc-error.is-dismissible' ).each( function() {
-            var $el = $( this ),
-                $button = $el.find('.notice-dismiss');
-            // Ensure plain text.
-            $button.on( 'click', function( event ) {
-                event.preventDefault();
-                $el.fadeTo( 100, 0, function() {
-                    $el.slideUp( 100, function() {
-                        $el.remove();
-                    });
-                });
-            });
-
-            $el.append( $button );
-        });
-    }
 
     function wpcSerialize( $el ){
 

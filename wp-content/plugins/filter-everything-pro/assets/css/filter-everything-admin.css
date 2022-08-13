@@ -1,5 +1,5 @@
 /*!
- * Filter Everything admin 1.6.5
+ * Filter Everything admin 1.6.8
  */
 #filters-seo-rules .inside,
 #filters-set-items .inside{
@@ -60,7 +60,6 @@
     padding-bottom: 0 !important;
     display: flex;
     align-items: center;
-    /*border-right: 1px solid #ccd0d4;*/
     justify-content: center;
 }
 li.wpc-filter-label,
@@ -96,7 +95,7 @@ li.wpc-filter-slug{
     background: #ffffff;
 }
 .wpc-title-action .wpc-action .toggle-indicator{
-    color: #787c82;
+    color: #787c82 !important;
 }
 .wpc-sorting-widget-shortcode{
     background: #f1f1f1;
@@ -148,7 +147,6 @@ li.wpc-filter-slug{
     display: block;
 }
 #wpc-filter-id-apply-button .wpc-filter-head{
-    /*border: 1px solid transparent;*/
     background: #ffffff;
 }
 #wpc-filter-id-apply-button li.wpc-filter-label{
@@ -366,7 +364,6 @@ label[for="wpc_seo_rules-wp_entity"],
 .wpc-additional-fields-selector{
     text-align: right;
     padding-right: 12px;
-    /*margin-top: 20px;*/
     position: relative;
     top: 20px;
 }
@@ -472,6 +469,7 @@ label[for="wpc_seo_rules-wp_entity"],
 .post-type-filter-seo-rule #titlediv #title[readonly="readonly"]{
     background-color: #eee;
 }
+.license-notice,
 .wpc-error {
     background: #fff;
     border: 1px solid #ccd0d4;
@@ -481,6 +479,14 @@ label[for="wpc_seo_rules-wp_entity"],
     padding: 1px 12px;
     border-left-color: #dc3232;
     position: relative;
+}
+.license-notice{
+    border-left-color: #dba617;
+    display: flex;
+    justify-content: left;
+}
+.license-notice.license-locked{
+    border-left-color: #dc3232;
 }
 .wpc-error p {
     margin: 0.5em 0;
@@ -742,6 +748,10 @@ input[disabled="disabled"]+.wpc-checkbox-placeholder{
     background: #fff;
     border-bottom: 1px solid #ccd0d4;
 }
+.license-notice h2{
+    min-width: 165px;
+}
+.license-notice h2,
 .wpc-admin-toolbar h2 {
     font-size: 14px;
     line-height: 2.57143;
@@ -749,10 +759,41 @@ input[disabled="disabled"]+.wpc-checkbox-placeholder{
     padding: 5px 0;
     margin: 0 10px 0 0;
 }
+.wpc-license-status{
+    color: #919191;
+    font-size: 13px;
+}
+.wpc-license-status a{
+    font-weight: 700;
+}
+.wpc-plugin-status{
+    text-transform: uppercase;
+    text-decoration: none;
+}
+.wpc-registered{
+    color: green;
+}
+.wpc-unregistered{
+    color: #cc0000;
+}
+.license-notice h2{
+    line-height: 2;
+}
+.woocommerce-page #wpcontent .license-notice,
+.woocommerce-page.woocommerce_page_wc-admin #wpbody-content .license-notice{
+    margin-left: 20px;
+}
+.license-notice p{
+    margin: 9px 20px 9px 0;
+}
+.license-notice a{
+    text-decoration: none;
+}
 .wpc-admin-toolbar .wpc-tab-divider,
 .wpc-admin-toolbar .wpc-tab {
     display: inline-block;
-    line-height: 2.57143;
+    /*line-height: 3.57143;*/
+    line-height: 3;
     margin: 0 5px;
     text-decoration: none;
 }
@@ -769,9 +810,13 @@ input[disabled="disabled"]+.wpc-checkbox-placeholder{
     border-bottom: #0071a4 solid 3px;
     padding-bottom: 2px;
 }
+.license-notice h2 img,
 .wpc-admin-toolbar h2 img{
     float: left;
     margin: 8px 7px 0 0;
+}
+.license-notice h2 img{
+    margin-top: 4px;
 }
 .wpc-admin-right{
     float: right;
@@ -980,6 +1025,25 @@ a.wpc-location-preview span{
     width: 14px;
     height: 14px;
     font-size: 14px;
+}
+#license_key{
+    width: 75%;
+}
+a#wpc-get-license-key{
+    margin-left: 5px;
+}
+a#wpc-get-license-key::after {
+    content: url("data:image/svg+xml,%3C%3Fxml version='1.0' encoding='utf-8'%3F%3E%3C!-- Svg Vector Icons : http://www.onlinewebfonts.com/icon --%3E%3C!DOCTYPE svg PUBLIC '-//W3C//DTD SVG 1.1//EN' 'http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd'%3E%3Csvg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' x='0px' y='0px' viewBox='0 0 1000 1000' enable-background='new 0 0 1000 1000' xml:space='preserve'%3E%3Cmetadata%3E Svg Vector Icons : http://www.onlinewebfonts.com/icon %3C/metadata%3E%3Cg%3E%3Cpath d='M10,10L10,10L10,10z'/%3E%3Cpath d='M663.3,75.3L794,206L336.7,663.3l65.3,65.3l457.3-457.3L990,402V75.3H663.3z M728.7,859.3H206V336.7h261.3L598,206H75.3v784h784V467.3L728.7,598V859.3z' fill='%232271b1'/%3E%3C/g%3E%3C/svg%3E");
+    margin: 0 3px 0 5px;
+    width: 11px;
+    display: inline-block;
+}
+a#wpc-get-license-key:hover::after {
+    content: url("data:image/svg+xml,%3C%3Fxml version='1.0' encoding='utf-8'%3F%3E%3C!-- Svg Vector Icons : http://www.onlinewebfonts.com/icon --%3E%3C!DOCTYPE svg PUBLIC '-//W3C//DTD SVG 1.1//EN' 'http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd'%3E%3Csvg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' x='0px' y='0px' viewBox='0 0 1000 1000' enable-background='new 0 0 1000 1000' xml:space='preserve'%3E%3Cmetadata%3E Svg Vector Icons : http://www.onlinewebfonts.com/icon %3C/metadata%3E%3Cg%3E%3Cpath d='M10,10L10,10L10,10z'/%3E%3Cpath d='M663.3,75.3L794,206L336.7,663.3l65.3,65.3l457.3-457.3L990,402V75.3H663.3z M728.7,859.3H206V336.7h261.3L598,206H75.3v784h784V467.3L728.7,598V859.3z' fill='%230a4b78'/%3E%3C/g%3E%3C/svg%3E");
+}
+.td-activate-license .wpc-help-tip{
+    position: relative;
+    top: 5px;
 }
 @media screen and (max-width: 1200px) {
     #wpc-intersections-table .wpc-filter-field-td{
