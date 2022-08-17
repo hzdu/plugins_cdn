@@ -2,7 +2,7 @@
  * Variation Swatches for WooCommerce - PRO
  *
  * Author: Emran Ahmed ( emran.bd.08@gmail.com )
- * Date: 7/31/2022, 4:22:12 PM
+ * Date: 8/14/2022, 5:25:29 PM
  * Released under the GPLv3 license.
  */
 /******/ (function() { // webpackBootstrap
@@ -295,6 +295,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
             this.xhr = $.ajax({
               global: false,
+              cache: true,
+              // We want to cache it on browser
               url: woo_variation_swatches_pro_params.wc_ajax_url.toString().replace('%%endpoint%%', 'woo_get_variations'),
               method: 'POST',
               data: {
@@ -1072,11 +1074,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           if (variation && variation.image && variation.image.src && variation.image.src.length > 1) {
             this.$image.attr('src', variation.image.src);
 
-            if (variation.image.srcset.length > 1) {
+            if (variation.image.srcset && variation.image.srcset.length > 1) {
               this.$image.attr('srcset', variation.image.srcset);
             }
 
-            if (variation.image.sizes.length > 1) {
+            if (variation.image.sizes && variation.image.sizes.length > 1) {
               this.$image.attr('sizes', variation.image.sizes);
             }
           }
@@ -1087,11 +1089,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           if (variation && variation.image && variation.image.thumb_src && variation.image.thumb_src.length > 1) {
             this.$image.attr('src', variation.image.thumb_src);
 
-            if (variation.image.srcset.length > 1) {
+            if (variation.image.srcset && variation.image.srcset.length > 1) {
               this.$image.attr('srcset', variation.image.srcset);
             }
 
-            if (variation.image.sizes.length > 1) {
+            if (variation.image.sizes && variation.image.sizes.length > 1) {
               this.$image.attr('sizes', variation.image.sizes);
             }
           }

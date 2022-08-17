@@ -2,7 +2,7 @@
  * Variation Swatches for WooCommerce - PRO
  *
  * Author: Emran Ahmed ( emran.bd.08@gmail.com )
- * Date: 7/31/2022, 4:22:12 PM
+ * Date: 8/14/2022, 5:25:29 PM
  * Released under the GPLv3 license.
  */
 /******/ (function() { // webpackBootstrap
@@ -150,6 +150,8 @@ var __webpack_exports__ = {};
 
       form.xhr = $.ajax({
         global: false,
+        cache: true,
+        // We want to cache it on browser
         url: wc_add_to_cart_variation_params.wc_ajax_url.toString().replace('%%endpoint%%', 'woo_get_all_variations'),
         method: 'POST',
         data: {
