@@ -113,6 +113,43 @@
 	}
 
 	/**
+	 * Is a field loading?
+	 *
+	 * @since 1.7.6
+	 *
+	 * @param {object} dz Dropzone object.
+	 *
+	 * @returns {boolean} true if the field is loading.
+	 */
+	function uploadInProgress( dz ) {
+
+		return dz.loading > 0 || dz.getFilesWithStatus( 'error' ).length > 0;
+	}
+
+	/**
+	 * Is at least one field loading?
+	 *
+	 * @since 1.7.6
+	 *
+	 * @returns {boolean} true if at least one field is loading.
+	 */
+	function anyUploadsInProgress() {
+
+		var anyUploadsInProgress = false;
+
+		window.wpforms.dropzones.some( function( dz ) {
+
+			if ( uploadInProgress( dz ) ) {
+				anyUploadsInProgress = true;
+
+				return true;
+			}
+		} );
+
+		return anyUploadsInProgress;
+	}
+
+	/**
 	 * Disable submit button when we are sending files to the server.
 	 *
 	 * @since 1.5.6
@@ -121,17 +158,14 @@
 	 */
 	function toggleSubmit( dz ) {
 
-		// Force dz.loading to be zero if it's below it, to make sure we
-		// don't decrement it below zero.
-		if ( dz.loading < 0 ) {
-			dz.loading = 0;
-		}
-
 		var $form    = jQuery( dz.element ).closest( 'form' ),
 			$btn     = $form.find( '.wpforms-submit' ),
-			errors   = dz.getFilesWithStatus( 'error' ),
 			handler  = toggleLoadingMessage( $form ),
-			disabled = dz.loading > 0 || errors.length > 0;
+			disabled = uploadInProgress( dz );
+
+		if ( disabled === Boolean( $btn.prop( 'disabled' ) ) ) {
+			return;
+		}
 
 		if ( disabled ) {
 			$btn.prop( 'disabled', true );
@@ -142,14 +176,20 @@
 				$form.find( '.wpforms-submit-overlay' ).css( 'height', $btn.parent().outerHeight() + 'px' );
 				$form.find( '.wpforms-submit-overlay' ).on( 'click', handler );
 			}
-		} else {
-			$btn.prop( 'disabled', false );
-			$form.find( '.wpforms-submit-overlay' ).off( 'click', handler );
-			$form.find( '.wpforms-submit-overlay' ).remove();
-			$btn.parent().removeClass( 'wpforms-submit-overlay-container' );
-			if ( $form.find( '.wpforms-uploading-in-progress-alert' ).length ) {
-				$form.find( '.wpforms-uploading-in-progress-alert' ).remove();
-			}
+
+			return;
+		}
+
+		if ( anyUploadsInProgress() ) {
+			return;
+		}
+
+		$btn.prop( 'disabled', false );
+		$form.find( '.wpforms-submit-overlay' ).off( 'click', handler );
+		$form.find( '.wpforms-submit-overlay' ).remove();
+		$btn.parent().removeClass( 'wpforms-submit-overlay-container' );
+		if ( $form.find( '.wpforms-uploading-in-progress-alert' ).length ) {
+			$form.find( '.wpforms-uploading-in-progress-alert' ).remove();
 		}
 	}
 
@@ -369,6 +409,7 @@
 		return function() {
 			dz.loading = dz.loading || 0;
 			dz.loading--;
+			dz.loading = Math.max( dz.loading - 1, 0 );
 			toggleSubmit( dz );
 			updateInputValue( dz );
 		};
@@ -469,6 +510,7 @@
 				file.chunkResponse = JSON.stringify( { data: response } );
 				dz.loading = dz.loading || 0;
 				dz.loading--;
+				dz.loading = Math.max( dz.loading, 0 );
 
 				toggleSubmit( dz );
 				updateInputValue( dz );
@@ -670,6 +712,8 @@
 
 			dz.loading = dz.loading || 0;
 			dz.loading--;
+			dz.loading = Math.max( dz.loading, 0 );
+
 			toggleSubmit( dz );
 		};
 	}

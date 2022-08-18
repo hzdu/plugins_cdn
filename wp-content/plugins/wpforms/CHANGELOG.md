@@ -1,6 +1,83 @@
 # Changelog
 All notable changes to this project will be documented in this file and formatted via [this recommendation](https://keepachangelog.com/).
 
+## [1.7.6] - 2022-08-16
+### Added
+- Entries can now be checked against the Akismet API to prevent spam submissions.
+- When exporting entries on the Tools > Export page all items can be selected or deselected easily with a single click in Form Fields and Additional Information sections.
+
+### Changed
+- Only 3 uploaded files are now displayed in the table on the Entries list page.
+- Paragraph and multiline long values are properly truncated to improve readability on the Entries list page.
+- Display fields available according to license level as active in the Form Builder, even if the required addon is not installed or activated.
+- Single Item field placeholder option is now displayed only when a User Defined type is selected.
+- The Date/Time field displays options from `01` to `12` instead of from `00` to `11` when the format is set to `12 H`.
+- Address field' country name is now displayed instead of the country code throughout the plugin admin area.
+- Empty post titles and term names in Dynamic Choices are now treated the way WordPress does.
+- Modern Dropdown field fuzzy search sensitivity is adjusted to display only exact matches.
+- Allow typing choices in the modern Dropdown field with the Multiple Options Selection option enabled.
+- WPForms Challenge experience is improved for new users.
+- Lite Connect is now disabled in non-production environments.
+- Lite Connect functionality improves handling of staging and cloned sites, and changed domain names.
+- Unnecessary PHP packages are no longer shipped in WPForms Lite.
+- Stylesheets loaded in the Form Builder and on certain plugin pages are better optimized and shrank to improve performance.
+- WPForms now better integrates with the WP Mail SMTP plugin to enable overriding From Name and From Email values in existing forms.
+- Form Notifications now have better validation of From Email settings.
+- Displaying and counting the total number of entries is improved across the admin area of the plugin.
+- Start using new `elementor/widgets/register` hook introduced in Elementor 3.5.0.
+- The intl-tel-input library has been updated to v17.0.17 to support more regions and area codes.
+- Updated DOMPurify library to 2.3.10.
+- Updated jquery.validate library to 1.19.5.
+
+### Fixed
+- Improved compatibility with Twenty Twenty-Two theme.
+- No more missing form ID in the date dropdown `id` HTML attribute.
+- Added meaningful `alt` text to form submission spinner image to stop being flagged by certain SEO scanners.
+- Address field's Country value on the Entries list page was truncated with the International scheme set.
+- Lite Connect import admin notice on the Tools > Scheduled Actions page was positioned incorrectly.
+- Page break titles overlapped on certain screen sizes when using the Connector progress indicator.
+- Single Item field Placeholder value was not updating correctly in the Form Builder preview.
+- Constant Contact Authorization Code and Account Nickname fields are now required on the Settings > Integrations page.
+- Constant Contact connection can now be added even if the Authorization Code is invalid.
+- Error occurred upon form submission when Time in Date/Time field was set to 00AM.
+- Fields that required unique answers did not work with page breaks.
+- A form with a smart Phone field that requires a unique value didn't get submitted if the phone field value was invalid, even if the phone field was hidden by conditional logic.
+- Form cannot be submitted now until all uploads in separate modern File Upload fields are finished.
+- Conditional Logic was not working when the value was updated on paste from the clipboard.
+- Modern File Upload field was not fully cleared when hidden and shown again with Conditional Logic applied.
+- Validation of required fields on Marketing or Payment sections in the Form Builder was triggered even if the field is hidden.
+- Action Scheduler was triggering a PHP fatal error on the Tools > Scheduled Actions page on PHP 5.6.
+- Images breaking out of containers on smaller screens if Multiple Choice and Checkboxes fields were set to use image choices.
+- `query_var` smart tag was not working in Confirmations and Notifications.
+- Incorrect results were displayed when search by term was combined with a date filter.
+- Plugin and addons could not be updated via WP CLI.
+- Custom templates had an incorrect badge, "Addon" instead of "Custom".
+- The Confirmation Message label overlapped the editor when WYSIWYG mode was disabled.
+- A list of IP addresses forwarded by Cloudflare or some other proxies could not be parsed if it contained spaces.
+- Default form title was not changed when switching form templates.
+- Both `page_title` and `page_id` smart tags were returning incorrect values on non-singular pages if the form was used outside the Loop.
+- WPForms Block preview (on block hover) was rendered incorrectly in Site Editor.
+- Users with roles other than Administrator could not see all export options even if they had sufficient permissions.
+- Display only those sections that the user has permissions to view and interact with on the WPForms > Tools page.
+- Rich Text field label was misplaced if positioned below the Single Line Text field with the Address Autocomplete option enabled.
+- Sorting entries by Total column worked incorrectly when combined with pagination.
+- User-uploaded files remained in the /uploads/wpforms/ directory when an Entry was deleted.
+- Partially uploaded user files were not deleted when the upload was interrupted or canceled.
+- Files with extensions containing an underscore or a hyphen were not supported by the File Upload field.
+- Custom validation errors were not displayed with hCaptcha enabled upon AJAX form submission.
+- Validation errors were not shown when the field with an input mask was not fully filled.
+- Duplicated entries were created in the database when an entry of the form with more than 30 fields was edited.
+- Smart Tags could be added to Sender Email and Sender Name if the fields were managed by the WP Mail SMTP plugin.
+- The Confirmation message block had incorrect margins in the Twenty Twenty-Two theme.
+- Occasional errors during migration were fixed when upgrading from some older versions of WPForms.
+- The Confirmation Redirect URL can no longer be saved with an empty value.
+- Default choices were displayed on the frontend if a Dynamic Choices source had no objects (Dropdown, Multiple Choice, and Checkboxes fields were affected).
+
+## [1.7.5.5] - 2022-07-28
+### Fixed
+- Migrations logic was broken in certain cases when addons have their own migrations.
+- Security-related improvements around email generation for notifications.
+
 ## [1.7.5.4] - 2022-07-22
 ### Fixed
 - Some users were not able to use templates when creating a form.

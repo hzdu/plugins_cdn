@@ -120,6 +120,35 @@ var WPFormsEntriesExport = window.WPFormsEntriesExport || ( function( document, 
 				}
 			} );
 
+			// Toggle all checkboxes on or off.
+			$( document ).on( 'change', '#wpforms-tools-entries-export-options .wpforms-toggle-all', function() {
+
+				const $this  = $( this ),
+					$toggle  = $this.find( 'input' ),
+					$options = $this.siblings().find( 'input' );
+
+				$options.prop( 'checked', $toggle.prop( 'checked' ) );
+			} );
+
+			// Update toggle all state when changing individual checkbox.
+			$( document ).on( 'change', '#wpforms-tools-entries-export-options-fields-checkboxes label, #wpforms-tools-entries-export-options-additional-info label', function() {
+
+				const $this = $( this );
+
+				if ( $this.hasClass( 'wpforms-toggle-all' ) ) {
+					return;
+				}
+
+				const $options = $this.parent().find( 'label' ).not( '.wpforms-toggle-all' ).find( 'input' );
+				const $checked = $options.filter( function( _index ) {
+
+					return $( this ).is( ':checked' );
+				} );
+				const $toggle  = $this.siblings( '.wpforms-toggle-all' ).find( 'input' );
+
+				$toggle.prop( 'checked', $checked.length === $options.length );
+			} );
+
 			// Display file download error.
 			$( document ).on( 'csv_file_error', function( e, msg ) {
 				app.displaySubmitMsg( msg, 'error' );
@@ -351,6 +380,8 @@ var WPFormsEntriesExport = window.WPFormsEntriesExport || ( function( document, 
 				el.$dateSection.addClass( 'hidden' );
 				el.$searchSection.addClass( 'hidden' );
 			} else {
+
+				html.checkboxes += '<label class="wpforms-toggle-all"><input type="checkbox" checked> ' + i18n.label_select_all + '</label>';
 
 				fieldsKeys.forEach( function( key, i ) {
 					var ch = '<label><input type="checkbox" name="fields[{i}]" value="{id}" checked> {label}</label>',

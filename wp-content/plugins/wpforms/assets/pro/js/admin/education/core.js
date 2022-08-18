@@ -1,4 +1,4 @@
-/* global wpforms_education, WPFormsAdmin, wpforms_admin */
+/* global wpforms_education, WPFormsAdmin, wpforms_admin, wpforms_builder */
 /**
  * WPForms Education core for Pro.
  *
@@ -59,7 +59,7 @@ WPFormsEducation.proCore = window.WPFormsEducation.proCore || ( function( docume
 		openModalButtonClick: function() {
 
 			$( document ).on(
-				'click',
+				'mousedown',
 				'.education-modal',
 				function( event ) {
 
@@ -83,7 +83,11 @@ WPFormsEducation.proCore = window.WPFormsEducation.proCore || ( function( docume
 							);
 							break;
 						case 'license':
-							app.licenseModal();
+							app.licenseModal(
+								$this.data( 'name' ),
+								$this.data( 'field-name' ),
+								$this.data( 'utm-content' )
+							);
 							break;
 					}
 				}
@@ -217,22 +221,108 @@ WPFormsEducation.proCore = window.WPFormsEducation.proCore || ( function( docume
 		 * License modal.
 		 *
 		 * @since 1.6.6
+		 *
+		 * @param {string} feature    Feature name.
+		 * @param {string} fieldName  Field name.
+		 * @param {string} utmContent UTM content.
 		 */
-		licenseModal: function() {
+		licenseModal: function( feature, fieldName, utmContent ) {
+
+			var name = fieldName || feature,
+				content = wpforms_education.license.prompt,
+				button = wpforms_education.license.button,
+				isActivateModal = wpforms_education.license.is_empty && typeof WPFormsBuilder !== 'undefined';
+
+			if ( isActivateModal ) {
+				content = `
+					<p>${wpforms_education.activate_license.prompt_part1}</p>
+					<p>${wpforms_education.activate_license.prompt_part2}</p>
+					<input type="password" id="wpforms-edu-modal-license-key" value="" placeholder="${wpforms_education.activate_license.placeholder}">
+				`;
+				button = wpforms_education.activate_license.button;
+			}
 
 			$.alert( {
-				title  : false,
-				content: wpforms_education.license_prompt,
+				title  : wpforms_education.license.title,
+				content: content.replace( /%name%/g, `<strong>${name}</strong>` ).replace( /~utm-content~/g, utmContent ),
 				icon   : 'fa fa-exclamation-circle',
 				type   : 'orange',
 				buttons: {
 					confirm: {
-						text    : wpforms_education.close,
+						text    : button,
 						btnClass: 'btn-confirm',
 						keys    : [ 'enter' ],
+						action  : function() {
+
+							if ( isActivateModal ) {
+
+								this.$$confirm
+									.prop( 'disabled', true )
+									.html( WPFormsEducation.core.getSpinner() + wpforms_education.activating );
+
+								app.activateLicense( this );
+
+								return false;
+							}
+
+							window.open(
+								wpforms_education.license.url.replace( /~utm-content~/g, utmContent ),
+								'_blank'
+							);
+						},
+					},
+					cancel : {
+						text: wpforms_education.cancel,
 					},
 				},
 			} );
+		},
+
+		/**
+		 * Activate license via AJAX.
+		 *
+		 * @since 1.7.6
+		 *
+		 * @param {object} previousModal Previous modal instance.
+		 */
+		activateLicense: function( previousModal ) {
+
+			var key = $( '#wpforms-edu-modal-license-key' ).val();
+
+			if ( key.length === 0 ) {
+				previousModal.close();
+				WPFormsEducation.core.errorModal( false, wpforms_education.activate_license.enter_key );
+
+				return;
+			}
+
+			$.post(
+				wpforms_education.ajax_url,
+				{
+					action: 'wpforms_verify_license',
+					nonce : typeof wpforms_builder !== 'undefined' ? wpforms_builder.admin_nonce : wpforms_admin.nonce,
+					license: key,
+				},
+				function( res ) {
+
+					previousModal.close();
+
+					if ( res.success ) {
+						WPFormsEducation.core.saveModal(
+							wpforms_education.activate_license.success_title,
+							`
+								<p>${wpforms_education.activate_license.success_part1}</p>
+								<p>${wpforms_education.activate_license.success_part2}</p>
+							`
+						);
+
+						return;
+					}
+
+					// In the case of error.
+					WPFormsEducation.core.errorModal( false, res.data );
+				}
+			);
 		},
 	};
 

@@ -177,6 +177,9 @@ var WPFormsBuilderPayments = window.WPFormsBuilderPayments || ( function( docume
 			$( document ).trigger( 'wpformsFieldUpdate', wpf.getFields() );
 
 			$paymentsPanel.trigger( 'wpformsPaymentsPlanCreated', $newPlan, $wrapper.data( 'provider' ) );
+
+			// Re-init tooltips
+			wpf.initTooltips();
 		},
 
 		/**

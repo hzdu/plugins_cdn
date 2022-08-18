@@ -86,7 +86,7 @@
 				WPFormsConditionals.processConditionals( $( '.elementor-popup-modal .wpforms-form' ), true );
 			} );
 
-			$( document ).on( 'input', '.wpforms-conditional-trigger input[type=text], .wpforms-conditional-trigger input[type=email], .wpforms-conditional-trigger input[type=url], .wpforms-conditional-trigger input[type=number], .wpforms-conditional-trigger textarea', function() {
+			$( document ).on( 'input paste', '.wpforms-conditional-trigger input[type=text], .wpforms-conditional-trigger input[type=email], .wpforms-conditional-trigger input[type=url], .wpforms-conditional-trigger input[type=number], .wpforms-conditional-trigger textarea', function() {
 				WPFormsConditionals.processConditionals( $( this ), true );
 			} );
 
@@ -111,6 +111,7 @@
 		 * Reset any form elements that are inside hidden conditional fields.
 		 *
 		 * @since 1.0.0
+		 * @since 1.7.6 Handle reset for Smart Phone field.
 		 *
 		 * @param {object} el The form.
 		 */
@@ -154,6 +155,18 @@
 					case 'select':
 						WPFormsConditionals.resetHiddenSelectField.init( $field );
 						break;
+					case 'tel':
+						$field.val( '' ).trigger( 'input' );
+
+						// eslint-disable-next-line no-case-declarations
+						const fieldId = $field.closest( '.wpforms-field' ).data( 'field-id' ),
+							$smartPhoneHiddenField = $field.siblings( '[name="wpforms[fields][' + fieldId + ']"]' ).first();
+
+						// Reset smart phone hidden field.
+						if ( fieldId && $field.data( 'ruleSmartPhoneField' ) && $smartPhoneHiddenField.length > 0 ) {
+							$smartPhoneHiddenField.val( '' );
+						}
+						break;
 					default:
 						if ( $field.val() !== '' ) {
 							if ( $field.hasClass( 'dropzone-input' ) && $( '[data-name="' + $field[0].name + '"]', $form )[0] ) {
@@ -175,6 +188,17 @@
 				}
 
 				editor.setContent( '' );
+			} );
+
+			$form.find( '.wpforms-field-file-upload.wpforms-conditional-hide' ).each( function() {
+
+				var fileUploaderInput = $( this ).find( 'div.wpforms-uploader.dz-clickable' );
+
+				if ( typeof window.Dropzone !== 'function' || ! fileUploaderInput.length ) {
+					return '';
+				}
+
+				fileUploaderInput.get( 0 ).dropzone.removeAllFiles( true );
 			} );
 		},
 
