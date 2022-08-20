@@ -1,3 +1,27 @@
+##### [Version 2.3.5](https://github.com/Codeinwp/neve-pro-addon/compare/v2.3.4...v2.3.5) (2022-08-18)
+
+- [Feat] Introduce two new conditions for Custom Layouts: page parent and page ancestor
+- [Fix] Custom Layout Sidebar not working on page
+
+##### [Version 2.3.4](https://github.com/Codeinwp/neve-pro-addon/compare/v2.3.3...v2.3.4) (2022-07-26)
+
+- [Feat] Add support for hiding archive titles for custom post types
+- [Fix] Product gallery style
+- [Fix] Sharing icons not appearing without background and color
+
+##### [Version 2.3.3](https://github.com/Codeinwp/neve-pro-addon/compare/v2.3.2...v2.3.3) (2022-07-20)
+
+- [Feat] Enhanced controls for related posts
+- [Feat] Add settings for Polylang inside the language switcher component
+- [Feat] Add support for discovering late-registered custom post types in the Post type enhancements module
+- [Fix] Meta on custom post types not displaying anything until the control in the customizer is changed
+- [Fix] Shop and product pages if elementor template is installed
+- [Fix] Hide doc section when Whitelabel is active
+- [Fix] Broken install link for sparks in dashboard
+- [Fix] Post type enhancements header layout does not inherit post header layout
+- [Fix] Product header affected by the post type enhancements module
+- [Fix] PHP notice on payment icons if Sparks is not activated
+
 ##### [Version 2.3.2](https://github.com/Codeinwp/neve-pro-addon/compare/v2.3.1...v2.3.2) (2022-07-11)
 
 - [Fix] Notice behavior in the dashboard 
