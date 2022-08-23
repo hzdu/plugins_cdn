@@ -5,7 +5,7 @@ Tags: cache, minify, database, image optimize, performance, clean, spam, speed, 
 Requires PHP: 5.6
 Requires at least: 4.5
 Tested up to: 6.0
-Stable tag: 3.2.6
+Stable tag: 3.2.8
 License: GPLv2+
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -364,11 +364,41 @@ If none of the above works, disable processing of JavaScript files in the minify
 
 == Changelog ==
 
-
-
-
+* TWEAK: Recognize WooCommerce scheduled sales and cache accordingly
 * FIX: The unused images CSV downloads have a few redundant images listed
+* FEATURE: A CLI command for generating list of unused images as csv file
+* TWEAK: Prevent PHP warnings when using `json_decode` result
+* FIX: ACF block field images are listed as unused images
+* TWEAK: Create cache config file if not present because of site migration
+* FIX: Correctly recognize `inherit` in google fonts async loading
+* FIX: Cache - Do not purge when `wp_update_nav_menu` is removed from `wpo_purge_cache_hooks` array
+* TWEAK: Prevent duplicate `wp-optimize` entry in tables optimization list
+* TWEAK: Test htaccess capability only when needed by webp feature
+* TWEAK: Increase compatibility with Aelia plugins
+* TWEAK: Performance boost for unused images export CSV feature
+* TWEAK: Cache config file: Handle uppercase and title case host names
 
+
+
+= 3.2.8 - 23/Aug/2022 =
+
+* FIX: Build system error led to a missing file in 3.2.7 which could cause an error when using related functions
+* FIX: Fix incorrect function name in admin class
+
+= 3.2.7 - 15/Aug/2022 =
+
+* FEATURE: A CLI command for generating lists of unused images as a CSV file (Premium)
+* FIX: The unused images CSV downloads have a few redundant images listed
+* FIX: ACF block field images are listed as unused images
+* FIX: Correctly recognize `inherit` in google fonts async loading
+* FIX: Cache - Do not purge when `wp_update_nav_menu` is removed from `wpo_purge_cache_hooks` array
+* TWEAK: Prevent PHP warnings when using `json_decode` result
+* TWEAK: Create cache config file if not present because of site migration
+* TWEAK: Update notice class
+* TWEAK: Recognize WooCommerce scheduled sales and cache accordingly
+* TWEAK: Prevent duplicate `wp-optimize` entry in tables optimization list
+* TWEAK: Test htaccess capability only when needed by webp feature
+* TWEAK: Increase compatibility with Aelia plugins
 
 = 3.2.6 - 15/Jun/2022 =
 
@@ -1264,4 +1294,4 @@ If none of the above works, disable processing of JavaScript files in the minify
 * Fix Interface
 
 == Upgrade Notice ==
-* 3.2.6: WebP - Trailing slash file creation issue in PHP 8 and incorrect static method calling causes parse Error in PHP 5.6.36; a recommended update for all.
+* 3.2.8: Fixes a couple of regressions in 3.2.7 - a recommended update for all

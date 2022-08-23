@@ -299,7 +299,7 @@ var WP_Optimize_Cache = function () {
 				// show purge button
 				$('.purge-cache').show();
 				// enable preload button
-				$('#wp_optimize_run_cache_preload').removeProp('disabled');
+				$('#wp_optimize_run_cache_preload').prop('disabled', false);
 				// disable minify preload
 				$('#wp_optimize_run_minify_preload').prop('disabled', true);
 				$('#minify-preload').show();
