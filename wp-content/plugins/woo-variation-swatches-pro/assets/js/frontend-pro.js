@@ -2,7 +2,7 @@
  * Variation Swatches for WooCommerce - PRO
  *
  * Author: Emran Ahmed ( emran.bd.08@gmail.com )
- * Date: 8/14/2022, 5:25:29 PM
+ * Date: 8/21/2022, 5:53:45 PM
  * Released under the GPLv3 license.
  */
 /******/ (function() { // webpackBootstrap
@@ -119,6 +119,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         this.threshold_min = parseInt(this.$element.data('threshold_min'), 10);
         this.threshold_max = parseInt(this.$element.data('threshold_max'), 10);
         this.total_children = parseInt(this.$element.data('total_children'), 10);
+        this.total_attribute = parseInt(this.$element.data('total_attribute'), 10);
         this.xhr = false;
         this.previewXhr = false;
         this.loading = true;
@@ -932,6 +933,18 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             this.updateCartButton(variation);
           } else {
             this.resetCartButton();
+          } // Only One attribute in this product
+
+
+          if (this.total_attribute === 1 && woo_variation_swatches_pro_options.enable_catalog_mode && woo_variation_swatches_pro_options.disable_catalog_mode_on_single_attribute) {
+            this.updateAvailabilityInfo(variation);
+            this.updatePrice(variation);
+
+            if (purchasable) {
+              this.updateCartButton(variation);
+            } else {
+              this.resetCartButton();
+            }
           }
 
           this.$element.trigger('show_variation', [variation, purchasable]);
@@ -1200,6 +1213,10 @@ jQuery(function ($) {
   }); // Support for Yith Infinite Scroll
 
   $(document).on('yith_infs_added_elem.wvs', function () {
+    $(document).trigger('woo_variation_swatches_pro_init');
+  }); // Support for Astra Theme Infinite Scroll
+
+  $(document).on('astraInfinitePaginationLoaded.wvs', function () {
     $(document).trigger('woo_variation_swatches_pro_init');
   }); // Try to cover all ajax data complete
 

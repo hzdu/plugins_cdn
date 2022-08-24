@@ -3,7 +3,7 @@ Contributors: Backup with UpdraftPlus, DavidAnderson, DNutbourne, aporter, snigh
 Tags: backup, restore, database backup, wordpress backup, cloud backup, s3, dropbox, google drive, onedrive, ftp, backups
 Requires at least: 3.2
 Tested up to: 6.0
-Stable tag: 1.22.14
+Stable tag: 1.22.16
 Author URI: https://updraftplus.com
 Donate link: https://david.dw-perspective.org.uk/donate
 License: GPLv3 or later
@@ -168,7 +168,53 @@ The <a href="https://updraftplus.com/news/">UpdraftPlus backup blog</a> is the b
 
 N.B. Paid versions of UpdraftPlus Backup / Restore have a version number which is 1 higher in the first digit, and has an extra component on the end, but the changelog below still applies. i.e. changes listed for 1.16.32.x of the free version correspond to changes made in 2.16.32.x of the paid version.
 
+* FIX: Database views don't get restored or are not restored correctly when in atomic mode
+* TWEAK: Improve the Handlebars template of the Microsoft Azure remote storage by taking PHP code out of it (Premium)
+* FIX: After sending email reports, other emails that follow used the same From address/name taken from the previous email
+* TWEAK: Add log information as to why DB stored routines couldn't be included in the backup
+* FIX: Database views don't get included in the backup
+* TWEAK: Update WebDAV library used for WebDAV remote storage (Premium) - N.B. This now requires PHP 5.5+.
+* TWEAK: Improve the Handlebars template of the Google Cloud remote storage by taking PHP code out of it (Premium)
+* TWEAK: Improve the Handlebars template of the Microsoft OneDrive remote storage by taking PHP code out of it (Premium)
+* TWEAK: Detect and break absurdly-future locks
+* TWEAK: Restrict the CSS scope for our jQuery to prevent conflicts
+* TWEAK: Improve the Handlebars template of the WebDAV remote storage by taking PHP code out of it (Premium)
+* TWEAK: Avoid using 'phpmailer_init' action when setting up sender name and sender email address, as some SMTP plugins override the 'wp_mail()' function and they don't bother to call the 'phpmailer_init' action
+* TWEAK: Improve the Handlebars template of the SFTP/SCP remote storage by taking PHP code out of it (Premium)
+* TWEAK: Allow charset to be set during a WP_CLI restore
+* TWEAK: Prevent increments being added to backups from other sites
+* TWEAK: Use similar charset if one is not set and not supported during a WL_CLI restore
+* FIX: Selective table restore
+* TWEAK: Work around consequences of a backup history save failure
+* TWEAK: Add a twice-daily cron to clear temporary files so that they are cleared even in the absence of new backups beginning and prior backup completion failure
+* TWEAK: Declare some class variables to avoid warnings in PHP 8.2
 
+
+= 1.22.16 - 23/Aug/2022 =
+
+* TWEAK: Temporarily revert "upload immediately after create" feature from 1.22.15
+
+= 1.22.15 - 22/Aug/2022 =
+
+* FEATURE: Each archive created will now be uploaded immediately directly after creation, to save disk space (prior behaviour was to first create all archives)
+* FIX: Improve parsing of HTTP response code header with generic S3 providers to avoid incorrectly interpreting status code
+* FIX: When an S3 service returns a RequestTimeTooSkewed error, make sure this is passed up to the user and not lost
+* FIX: Do not prematurely trigger upload_complete message when performing immediate file upload during clone operation
+* FIX: Database views don't get restored or are not restored correctly when in atomic mode
+* FIX: After sending email reports, other emails that follow used the same From address/name taken from the previous email
+* FIX: Database views don't get included in the backup
+* TWEAK: Improve the Handlebars template of the Microsoft Azure remote storage by taking PHP code out of it (Premium)
+* TWEAK: Update WebDAV library used for WebDAV remote storage (Premium) - N.B. This now requires PHP 5.5+.
+* TWEAK: Improve the Handlebars template of the Google Cloud remote storage by taking PHP code out of it (Premium)
+* TWEAK: Improve the Handlebars template of the Microsoft OneDrive remote storage by taking PHP code out of it (Premium)
+* TWEAK: Detect and break absurdly-future locks
+* TWEAK: Restrict the CSS scope for our jQuery to prevent conflicts
+* TWEAK: Work around consequences of a backup history save failure
+* TWEAK: Add a twice-daily cron to clear temporary files so that they are cleared even in the absence of new backups beginning and prior backup completion failure
+* TWEAK: Tweak UpdraftCentral abstraction classes
+* TWEAK: Separate custom font rules when retrieving styles from remote sites
+* TWEAK: Prevent PHP deprecation notice when using Google libraries on PHP 8.1+
+* TWEAK: Simplify Dropbox SDK by removing unused "response format" code
 
 = 1.22.14 - 07/Jul/2022 =
 
@@ -1551,4 +1597,4 @@ Reliance upon any non-English translation is at your own risk; UpdraftPlus can g
 We recognise and thank those mentioned at https://updraftplus.com/acknowledgements/ for code and/or libraries used and/or modified under the terms of their open source licences.
 
 == Upgrade Notice ==
-* 1.22.14: Various tweaks and fixes, the ability to select a charset when restoring via WP-CLI. See changelog for full details. A recommended update for all.
+* 1.22.16: Various tweaks and fixes (including revert for upload-after-create enabling in 1.22.15). See changelog for full details. A recommended update for all.
