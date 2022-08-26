@@ -8,7 +8,7 @@
 			<div class="tve-chart-overlay" style="display: none">
 				<div class="tvd-card tvd-small tvd-white tvd-valign-wrapper">
 					<div class="tvd-card-content tvd-valign tvd-center-align">
-						<h3><?php echo __( 'No Data (Yet)', Thrive_Quiz_Builder::T ); ?></h3>
+						<h3><?php echo __( 'No Data (Yet)', 'thrive-quiz-builder' ); ?></h3>
 					</div>
 				</div>
 			</div>
@@ -20,30 +20,30 @@
 						<li class="tvd-collection-header">
 							<div class="tvd-row">
 								<div class="tvd-col tvd-s1">
-									<div class="tvd-truncate-on-small" data-popup="<?php echo __( 'Color', Thrive_Quiz_Builder::T ); ?>">
+									<div class="tvd-truncate-on-small" data-popup="<?php echo __( 'Color', 'thrive-quiz-builder' ); ?>">
 										<h5 class="tvd-truncate-on-small-el">
-											<?php echo __( 'Color', Thrive_Quiz_Builder::T ); ?>
+											<?php echo __( 'Color', 'thrive-quiz-builder' ); ?>
 										</h5>
 									</div>
 								</div>
 								<div class="tvd-col tvd-s5">
-									<div class="tvd-truncate-on-small" data-popup="<?php echo __( 'Answer', Thrive_Quiz_Builder::T ); ?>">
+									<div class="tvd-truncate-on-small" data-popup="<?php echo __( 'Answer', 'thrive-quiz-builder' ); ?>">
 										<h5 class="tvd-truncate-on-small-el">
-											<?php echo __( 'Answer', Thrive_Quiz_Builder::T ); ?>
+											<?php echo __( 'Answer', 'thrive-quiz-builder' ); ?>
 										</h5>
 									</div>
 								</div>
 								<div class="tvd-col tvd-s3">
-									<div class="tvd-truncate-on-small" data-popup="<?php echo __( 'Count', Thrive_Quiz_Builder::T ); ?>">
+									<div class="tvd-truncate-on-small" data-popup="<?php echo __( 'Count', 'thrive-quiz-builder' ); ?>">
 										<h5 class="tvd-truncate-on-small-el" >
-											<?php echo __( 'Count', Thrive_Quiz_Builder::T ); ?>
+											<?php echo __( 'Count', 'thrive-quiz-builder' ); ?>
 										</h5>
 									</div>
 								</div>
 								<div class="tvd-col tvd-s3">
-									<div class="tvd-truncate-on-small" data-popup="<?php echo __( 'Percent', Thrive_Quiz_Builder::T ); ?>">
+									<div class="tvd-truncate-on-small" data-popup="<?php echo __( 'Percent', 'thrive-quiz-builder' ); ?>">
 										<h5 class="tvd-truncate-on-small-el" >
-											<?php echo __( 'Percent', Thrive_Quiz_Builder::T ); ?>
+											<?php echo __( 'Percent', 'thrive-quiz-builder' ); ?>
 										</h5>
 									</div>
 								</div>
@@ -59,23 +59,23 @@
 							<li class="tvd-collection-item">
 								<div class="tvd-row">
 									<div class="tvd-col tvd-s4">
-                                        <div class="tvd-truncate-on-small" id="tqb-reporting-visitors" data-popup="<?php echo __( 'Visitors', Thrive_Quiz_Builder::T ); ?>">
+                                        <div class="tvd-truncate-on-small" id="tqb-reporting-visitors" data-popup="<?php echo __( 'Visitors', 'thrive-quiz-builder' ); ?>">
 											<h5 class="tvd-truncate-on-small-el">
-												<#= item.get('views') #> <?php echo __( 'Visitors', Thrive_Quiz_Builder::T ); ?>
+												<#= item.get('views') #> <?php echo __( 'Visitors', 'thrive-quiz-builder' ); ?>
 											</h5>
 										</div>
 									</div>
 									<div class="tvd-col tvd-s4">
-                                        <div class="tvd-truncate-on-small" id="tqb-reporting-answers" data-popup="<?php echo __( 'Answers', Thrive_Quiz_Builder::T ); ?>">
+                                        <div class="tvd-truncate-on-small" id="tqb-reporting-answers" data-popup="<?php echo __( 'Answers', 'thrive-quiz-builder' ); ?>">
 											<h5 class="tvd-truncate-on-small-el">
-												<#= item.get('total') #> <?php echo __( 'Answers', Thrive_Quiz_Builder::T ); ?>
+												<#= item.get('total') #> <?php echo __( 'Answers', 'thrive-quiz-builder' ); ?>
 											</h5>
 										</div>
 									</div>
 									<div class="tvd-col tvd-s4">
-                                        <div class="tvd-truncate-on-small" id="tqb-reporting-drop-off" data-popup="<?php echo __( 'Drop Offs', Thrive_Quiz_Builder::T ); ?>">
+                                        <div class="tvd-truncate-on-small" id="tqb-reporting-drop-off" data-popup="<?php echo __( 'Drop Offs', 'thrive-quiz-builder' ); ?>">
 											<h5 class="tvd-truncate-on-small-el">
-												<#= item.get('views')-item.get('total') #> <?php echo __( 'Drop Offs', Thrive_Quiz_Builder::T ); ?> ( <#= item.get('views')==0? 0:((item.get('views')-item.get('total'))*100/item.get('views')).toFixed(2) #> % )
+												<#= item.get('views')-item.get('total') #> <?php echo __( 'Drop Offs', 'thrive-quiz-builder' ); ?> ( <#= item.get('views')==0? 0:((item.get('views')-item.get('total'))*100/item.get('views')).toFixed(2) #> % )
 											</h5>
 										</div>
 									</div>

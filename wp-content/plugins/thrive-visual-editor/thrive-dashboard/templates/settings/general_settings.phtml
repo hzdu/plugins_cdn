@@ -18,7 +18,7 @@
 	<?php if ( ! empty( $affiliate_links ) ) : ?>
 		<div class="tvd-classless">
 			<h3 class="tvd-section-title tvd-thrive-links">
-				<?php echo __( "Thrive Links", TVE_DASH_TRANSLATE_DOMAIN ) ?>
+				<?php echo __( "Thrive Links", 'thrive-dash' ) ?>
 				<a class='tvd-add-affiliate-url tvd-icon-pencil' href="#aff_modal"></a>
 			</h3>
 		</div>
@@ -36,7 +36,7 @@
 		</div>
 	<?php endif; ?>
 
-	<h3 class="tvd-section-title"><?php echo __( "General Settings", TVE_DASH_TRANSLATE_DOMAIN ) ?></h3>
+	<h3 class="tvd-section-title"><?php echo __( "General Settings", 'thrive-dash' ) ?></h3>
 
 	<div id="tve_dash_general_settings">
 		<?php foreach ( $settings as $setting ): ?>
@@ -59,7 +59,7 @@
 						<input type="checkbox" id="<?php echo $setting['id'] ?>" <?php echo( ! empty( $setting['value'] ) ? ' checked' : '' ); ?> value="1" class="noUi-target noUi-ltr noUi-horizontal noUi-background tvd-save-option">
 						<label for="<?php echo $setting['id'] ?>"><?php echo $setting['description'] ?></label>
 						<?php if ( ! empty( $setting['link'] ) ): ?>
-							<a href="<?php echo $setting['link'] ?>" class="tvd-learn-more" target="_blank"><?php echo __( 'Learn more', TVE_DASH_TRANSLATE_DOMAIN ); ?></a>
+							<a href="<?php echo $setting['link'] ?>" class="tvd-learn-more" target="_blank"><?php echo __( 'Learn more', 'thrive-dash' ); ?></a>
 						<?php endif; ?>
 					</div>
 				<?php endif; ?>
@@ -71,7 +71,7 @@
 
 <div class="tvd-col tvd-m6">
 	<a href="<?php echo admin_url( 'admin.php?page=tve_dash_section' ); ?>" class="tvd-waves-effect tvd-waves-light tvd-btn-small tvd-btn-gray">
-		<?php echo __( "Back To Dashboard", TVE_DASH_TRANSLATE_DOMAIN ); ?>
+		<?php echo __( "Back To Dashboard", 'thrive-dash' ); ?>
 	</a>
 </div>
 <?php include TVE_DASH_PATH . '/templates/affiliate-modal.phtml'; ?>

@@ -2,20 +2,20 @@
 	<p>
 		<?php
 		echo sprintf(
-			__( 'Your %s license has expired! ', TVE_DASH_TRANSLATE_DOMAIN ),
+			__( 'Your %s license has expired! ', 'thrive-dash' ),
 			$membership_name
 		);
 		echo sprintf(
-			__( 'Please %s and %s to continue receiving product updates ', TVE_DASH_TRANSLATE_DOMAIN ),
+			__( 'Please %s and %s to continue receiving product updates ', 'thrive-dash' ),
 			sprintf(
 				'<a href="%s" target="_blank">%s</a>',
 				TD_TTW_Update_Manager::SUITE_URL,
-				__( 'renew your license', TVE_DASH_TRANSLATE_DOMAIN )
+				__( 'renew your license', 'thrive-dash' )
 			),
 			sprintf(
 				'<a href="%s" target="_blank">%s</a>',
 				TD_TTW_Connection::get_instance()->get_login_url(),
-				__( 'connect your account', TVE_DASH_TRANSLATE_DOMAIN )
+				__( 'connect your account', 'thrive-dash' )
 			)
 		);
 		?>

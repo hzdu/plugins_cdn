@@ -2,11 +2,11 @@
 
 <div class="td-license-cnt">
 	<h2 class="products-h2">
-		<?php echo __( 'License Details', TVE_DASH_TRANSLATE_DOMAIN ) ?>
+		<?php echo __( 'License Details', 'thrive-dash' ) ?>
 	</h2>
 	<div class="td-refresh-license">
 		<a href="<?php echo $this->get_recheck_url() ?>">
-			<?php echo __( 'Refresh', TVE_DASH_TRANSLATE_DOMAIN ) ?>
+			<?php echo __( 'Refresh', 'thrive-dash' ) ?>
 		</a>
 	</div>
 	<?php foreach ( $this->get_licenses_details() as $license_data ) : ?>
@@ -20,16 +20,16 @@
 
 			<div class="td-rcnt">
 				<?php if ( ! $license->is_refunded() && ! empty( $license->get_expiration() ) ) : ?>
-					<span><?php echo __( 'Renewal date - ', TVE_DASH_TRANSLATE_DOMAIN ) . $license->get_expiration(); ?></span>
+					<span><?php echo __( 'Renewal date - ', 'thrive-dash' ) . $license->get_expiration(); ?></span>
 				<?php elseif ( ! empty( $license->get_refunded_date() ) ) : ?>
-					<span><?php echo __( 'Refund date - ', TVE_DASH_TRANSLATE_DOMAIN ) . $license->get_refunded_date(); ?></span>
+					<span><?php echo __( 'Refund date - ', 'thrive-dash' ) . $license->get_refunded_date(); ?></span>
 				<?php endif; ?>
 			</div>
 
 			<?php if ( ! $license->is_active() ) : ?>
 				<div class="td-renew-license">
 					<a href="<?php echo TD_TTW_Update_Manager::SUITE_URL ?>">
-						<?php echo __( 'Renew license', TVE_DASH_TRANSLATE_DOMAIN ) ?>
+						<?php echo __( 'Renew license', 'thrive-dash' ) ?>
 					</a>
 				</div>
 			<?php endif; ?>

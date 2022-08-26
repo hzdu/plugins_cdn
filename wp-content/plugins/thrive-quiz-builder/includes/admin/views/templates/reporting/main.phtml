@@ -14,12 +14,12 @@ $answers_csv_url = add_query_arg(
 				<div class="tvd-col tvd-s6 tvd-m2">
 					<div class="tvd-input-field">
 						<select name="report_type" id="tqb-report-type">
-							<option value="completions"><?php echo __( 'Quiz Completions', Thrive_Quiz_Builder::T ); ?></option>
-							<option value="flow"><?php echo __( 'Flow', Thrive_Quiz_Builder::T ); ?></option>
-							<option value="questions"><?php echo __( 'Questions', Thrive_Quiz_Builder::T ); ?></option>
-							<option value="users"><?php echo __( 'Users', Thrive_Quiz_Builder::T ); ?></option>
+							<option value="completions"><?php echo __( 'Quiz Completions', 'thrive-quiz-builder' ); ?></option>
+							<option value="flow"><?php echo __( 'Flow', 'thrive-quiz-builder' ); ?></option>
+							<option value="questions"><?php echo __( 'Questions', 'thrive-quiz-builder' ); ?></option>
+							<option value="users"><?php echo __( 'Users', 'thrive-quiz-builder' ); ?></option>
 						</select>
-						<label for="tqb-report-type"><?php echo __( 'Show report', Thrive_Quiz_Builder::T ); ?></label>
+						<label for="tqb-report-type"><?php echo __( 'Show report', 'thrive-quiz-builder' ); ?></label>
 					</div>
 				</div>
 				<div class="tvd-col tvd-s6 tvd-m2">
@@ -38,24 +38,24 @@ $answers_csv_url = add_query_arg(
 							<div class="tvd-input-field">
 								<select autocomplete="off" id="tqb-chart-date-select" name="tqb-date-interval">
 									<option selected
-											value="<?php echo Thrive_Quiz_Builder::TQB_LAST_7_DAYS; ?>"><?php echo __( 'Last 7 days', Thrive_Quiz_Builder::T ); ?></option>
+											value="<?php echo Thrive_Quiz_Builder::TQB_LAST_7_DAYS; ?>"><?php echo __( 'Last 7 days', 'thrive-quiz-builder' ); ?></option>
 									<option
-											value="<?php echo Thrive_Quiz_Builder::TQB_LAST_30_DAYS; ?>"><?php echo __( 'Last 30 days', Thrive_Quiz_Builder::T ); ?></option>
+											value="<?php echo Thrive_Quiz_Builder::TQB_LAST_30_DAYS; ?>"><?php echo __( 'Last 30 days', 'thrive-quiz-builder' ); ?></option>
 									<option
-											value="<?php echo Thrive_Quiz_Builder::TQB_THIS_MONTH; ?>"><?php echo __( 'This month', Thrive_Quiz_Builder::T ); ?></option>
+											value="<?php echo Thrive_Quiz_Builder::TQB_THIS_MONTH; ?>"><?php echo __( 'This month', 'thrive-quiz-builder' ); ?></option>
 									<option
-											value="<?php echo Thrive_Quiz_Builder::TQB_LAST_MONTH; ?>"><?php echo __( 'Last month', Thrive_Quiz_Builder::T ); ?></option>
+											value="<?php echo Thrive_Quiz_Builder::TQB_LAST_MONTH; ?>"><?php echo __( 'Last month', 'thrive-quiz-builder' ); ?></option>
 									<option
-											value="<?php echo Thrive_Quiz_Builder::TQB_THIS_YEAR; ?>"><?php echo __( 'This year', Thrive_Quiz_Builder::T ); ?></option>
+											value="<?php echo Thrive_Quiz_Builder::TQB_THIS_YEAR; ?>"><?php echo __( 'This year', 'thrive-quiz-builder' ); ?></option>
 									<option
-											value="<?php echo Thrive_Quiz_Builder::TQB_LAST_YEAR; ?>"><?php echo __( 'Last year', Thrive_Quiz_Builder::T ); ?></option>
+											value="<?php echo Thrive_Quiz_Builder::TQB_LAST_YEAR; ?>"><?php echo __( 'Last year', 'thrive-quiz-builder' ); ?></option>
 									<option
-											value="<?php echo Thrive_Quiz_Builder::TQB_LAST_12_MONTHS; ?>"><?php echo __( 'Last 12 months', Thrive_Quiz_Builder::T ); ?></option>
+											value="<?php echo Thrive_Quiz_Builder::TQB_LAST_12_MONTHS; ?>"><?php echo __( 'Last 12 months', 'thrive-quiz-builder' ); ?></option>
 									<option
-											value="<?php echo Thrive_Quiz_Builder::TQB_CUSTOM_DATE_RANGE; ?>"><?php echo __( 'Custom date range', Thrive_Quiz_Builder::T ); ?></option>
+											value="<?php echo Thrive_Quiz_Builder::TQB_CUSTOM_DATE_RANGE; ?>"><?php echo __( 'Custom date range', 'thrive-quiz-builder' ); ?></option>
 
 								</select>
-								<label for="tqb-chart-date-select"><?php echo __( 'Date interval', Thrive_Quiz_Builder::T ); ?>:</label>
+								<label for="tqb-chart-date-select"><?php echo __( 'Date interval', 'thrive-quiz-builder' ); ?>:</label>
 							</div>
 						</div>
 					</div>
@@ -64,7 +64,7 @@ $answers_csv_url = add_query_arg(
 							<div class="tvd-col tvd-s5">
 								<div class="tvd-input-field">
 									<input type="text" name="tve-report-start-date" id="tqb-report-start-date" class=""/>
-									<label for="tve-report-start-date"><?php echo __( 'Start date', Thrive_Quiz_Builder::T ); ?></label>
+									<label for="tve-report-start-date"><?php echo __( 'Start date', 'thrive-quiz-builder' ); ?></label>
 								</div>
 							</div>
 							<div class="tvd-col tvd-s1 tvd-center-align">
@@ -73,7 +73,7 @@ $answers_csv_url = add_query_arg(
 							<div class="tvd-col tvd-s5">
 								<div class="tvd-input-field">
 									<input type="text" name="tve-report-end-date" id="tqb-report-end-date" class=""/>
-									<label for="tve-report-end-date"><?php echo __( 'End date', Thrive_Quiz_Builder::T ); ?></label>
+									<label for="tve-report-end-date"><?php echo __( 'End date', 'thrive-quiz-builder' ); ?></label>
 								</div>
 							</div>
 							<div class="tvd-col tvd-s1 tvd-center-align">
@@ -85,22 +85,22 @@ $answers_csv_url = add_query_arg(
 						<div class="tve-chart-interval">
 							<div class="tvd-input-field">
 								<select autocomplete="off" id="tqb-chart-interval-select" name="tqb-chart-interval">
-									<option selected value="day"><?php echo __( 'Daily', Thrive_Quiz_Builder::T ); ?></option>
-									<option value="week"><?php echo __( 'Weekly', Thrive_Quiz_Builder::T ); ?></option>
-									<option value="month"><?php echo __( 'Monthly', Thrive_Quiz_Builder::T ); ?></option>
+									<option selected value="day"><?php echo __( 'Daily', 'thrive-quiz-builder' ); ?></option>
+									<option value="week"><?php echo __( 'Weekly', 'thrive-quiz-builder' ); ?></option>
+									<option value="month"><?php echo __( 'Monthly', 'thrive-quiz-builder' ); ?></option>
 								</select>
-								<label for="tve-chart-interval-select"><?php echo __( 'Graph interval', Thrive_Quiz_Builder::T ); ?>:</label>
+								<label for="tve-chart-interval-select"><?php echo __( 'Graph interval', 'thrive-quiz-builder' ); ?>:</label>
 							</div>
 						</div>
 					</div>
 				</div>
 				<div class="tvd-col">
 					<a id="tqb-reset-quiz-stats" class="tvd-right"
-					   href="javascript:void(0)"><?php echo __( 'Reset results', Thrive_Quiz_Builder::T ) ?></a>
+					   href="javascript:void(0)"><?php echo __( 'Reset results', 'thrive-quiz-builder' ) ?></a>
 					<a id="tqb-download-csv-report" class="tvd-right tqb-answers-csv"
-					   href="<?php echo $answers_csv_url; ?>"><?php echo __( 'Export results', Thrive_Quiz_Builder::T ) ?></a>
+					   href="<?php echo $answers_csv_url; ?>"><?php echo __( 'Export results', 'thrive-quiz-builder' ) ?></a>
 					<a id="tqb-anonymize-quiz-results" class="tvd-right tvd-hide"
-					   href="javascript:void(0)"><?php echo __( 'Anonymize results', Thrive_Quiz_Builder::T ) ?></a>
+					   href="javascript:void(0)"><?php echo __( 'Anonymize results', 'thrive-quiz-builder' ) ?></a>
 				</div>
 
 			</div>
@@ -111,8 +111,8 @@ $answers_csv_url = add_query_arg(
 	<div class="tvd-row">
 		<div class="tvd-col tvd-s12 tvd-m6">
 			<a class="tvd-btn-flat tvd-btn-flat-primary tvd-btn-flat-dark tvd-waves-effect"
-			   href="#dashboard" title="<?php echo __( 'Back to Quiz Dashboard', Thrive_Quiz_Builder::T ) ?>"
-			   id="tve-asset-group-dashboard">&laquo;<?php echo __( 'Back to Quiz Dashboard', Thrive_Quiz_Builder::T ) ?>
+			   href="#dashboard" title="<?php echo __( 'Back to Quiz Dashboard', 'thrive-quiz-builder' ) ?>"
+			   id="tve-asset-group-dashboard">&laquo;<?php echo __( 'Back to Quiz Dashboard', 'thrive-quiz-builder' ) ?>
 			</a>
 		</div>
 	</div>

@@ -5,35 +5,35 @@
 #>
 <div class="tqb-flow-section-title tvd-col tvd-l2 tvd-m2">
 	<# if(item.get('type')=='splash') { #>
-		<p><?php echo __( 'Splash Page', Thrive_Quiz_Builder::T ) ?></p>
+		<p><?php echo __( 'Splash Page', 'thrive-quiz-builder' ) ?></p>
 	<# } #>
 	<# if(item.get('type')=='qna') { #>
-		<p><?php echo __( 'Quiz Questions', Thrive_Quiz_Builder::T ) ?></p>
+		<p><?php echo __( 'Quiz Questions', 'thrive-quiz-builder' ) ?></p>
 	<# } #>
 	<# if(item.get('type')=='optin') { #>
-		<p><?php echo __( 'Opt-In-Gate', Thrive_Quiz_Builder::T ) ?></p>
+		<p><?php echo __( 'Opt-In-Gate', 'thrive-quiz-builder' ) ?></p>
 		<# if(item.get('subscribers')) { #>
 			<p class="tqb-subscribers-info">
-				<#= item.get('subscribers') #> <?php echo __( 'Subscribers', Thrive_Quiz_Builder::T ) ?>
+				<#= item.get('subscribers') #> <?php echo __( 'Subscribers', 'thrive-quiz-builder' ) ?>
 			</p>
 		<# } #>
 	<# } #>
 	<# if(item.get('type')=='results') { #>
 		<# if( item.get( 'results_page' ).get('type') === 'url' ) { #>
-			<p><?php echo __( 'Redirect', Thrive_Quiz_Builder::T ) ?></p>
+			<p><?php echo __( 'Redirect', 'thrive-quiz-builder' ) ?></p>
 		<# } else { #>
-			<p><?php echo __( 'Results Page', Thrive_Quiz_Builder::T ) ?></p>
+			<p><?php echo __( 'Results Page', 'thrive-quiz-builder' ) ?></p>
 		<# } #>
 		<div style="display: <#= item.get( 'results_page' ).get( 'type' ) === 'url' ? 'none' : 'block' #>">
 			<# if(item.get('subscribers')) { #>
 				<span class="tqb-subscribers-info">
-					<#= item.get('subscribers') #> <?php echo __( 'Subscribers', Thrive_Quiz_Builder::T ) ?>
+					<#= item.get('subscribers') #> <?php echo __( 'Subscribers', 'thrive-quiz-builder' ) ?>
 				</span>
 			<# } #>
 
 			<# if(item.get('social_shares')) { #>
 				<span class="tqb-social-shares">
-					<#= item.get('social_shares') #> <?php echo __( 'Shares', Thrive_Quiz_Builder::T ) ?>
+					<#= item.get('social_shares') #> <?php echo __( 'Shares', 'thrive-quiz-builder' ) ?>
 				</span>
 			<# } #>
 		</div>
@@ -61,7 +61,7 @@
 	</div>
 	<p class="tqb-flow-section-info" id="tqb-total-number">
 		<#= impressions #>
-		<span><?php echo __( 'visitors', Thrive_Quiz_Builder::T ) ?></span>
+		<span><?php echo __( 'visitors', 'thrive-quiz-builder' ) ?></span>
 	</p>
 
 </div>
@@ -76,11 +76,11 @@
 		</span>
 
 		<span>
-			<?php echo __( 'Dropped Off', Thrive_Quiz_Builder::T ) ?>
+			<?php echo __( 'Dropped Off', 'thrive-quiz-builder' ) ?>
 		</span>
 		<# if(item.get('type')=='optin') { #>
 			<p class="tqb-dropped-off-visitors">
-				<#= skip_optin #></#> <?php echo __( 'skipped this step', Thrive_Quiz_Builder::T ) ?>
+				<#= skip_optin #></#> <?php echo __( 'skipped this step', 'thrive-quiz-builder' ) ?>
 			</p>
 		<# } #>
 	</div>
@@ -88,6 +88,6 @@
 </div>
 <# } else { #>
 	<div class="tvd-col tvd-l10 tvd-m12 tqb-no-data-reports">
-		<p><?php echo __( 'No data', Thrive_Quiz_Builder::T ) ?></p>
+		<p><?php echo __( 'No data', 'thrive-quiz-builder' ) ?></p>
 	</div>
 <# } #>

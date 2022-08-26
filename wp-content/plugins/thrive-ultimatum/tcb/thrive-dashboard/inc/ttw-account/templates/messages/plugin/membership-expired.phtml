@@ -13,28 +13,28 @@ $version = $state->update->version;
 <p class="thrv-msg thrv-deny-updates">
 	<?php
 	echo sprintf(
-		__( 'Membership expired - there is a new version of %s available but your license must be renewed to update. ', TVE_DASH_TRANSLATE_DOMAIN ),
+		__( 'Membership expired - there is a new version of %s available but your license must be renewed to update. ', 'thrive-dash' ),
 		$plugin_data['Name']
 	);
 	echo sprintf(
 		'<a class="thickbox open-plugin-details-modal" href="%s">%s</a>',
 		self_admin_url( 'plugin-install.php?tab=plugin-information&plugin=' . $slug . '&section=changelog&TB_iframe=true&width=772&height=877' ),
 		sprintf(
-			__( 'View version %s details', TVE_DASH_TRANSLATE_DOMAIN ),
+			__( 'View version %s details', 'thrive-dash' ),
 			$version
 		)
 	);
 	?>
 	&nbsp;&nbsp;&nbsp;&nbsp;
 	<a class="ttw-rnw" href="https://thrivethemes.com/membership-pricing" target="_blank" rel="noopener">
-		<?php echo __( 'Renew', TVE_DASH_TRANSLATE_DOMAIN ) ?>
+		<?php echo __( 'Renew', 'thrive-dash' ) ?>
 	</a>
 	&nbsp;&nbsp;&nbsp;&nbsp;
 	<?php
 	echo sprintf(
 		'<a class="ttw-cla" href="%s">%s</a>',
 		TD_TTW_User_Licenses::get_instance()->get_recheck_url(),
-		__( 'Check license again', TVE_DASH_TRANSLATE_DOMAIN )
+		__( 'Check license again', 'thrive-dash' )
 	);
 	?>
 </p>

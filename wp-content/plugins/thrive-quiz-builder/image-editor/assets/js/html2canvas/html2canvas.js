@@ -611,6 +611,20 @@ function renderWindow(node, container, options, windowWidth, windowHeight) {
     var bounds = getBounds(node);
     var width = options.type === "view" ? windowWidth : documentWidth(clonedWindow.document);
     var height = options.type === "view" ? windowHeight : documentHeight(clonedWindow.document);
+
+	/**
+	 * Fixed safari IOS (mobile) issue:
+	 *
+	 * Canvas area exceeds the maximum limit (width * height > 16777216).
+	 *
+	 * https://pqina.nl/blog/canvas-area-exceeds-the-maximum-limit/
+	 */
+	if ( typeof TCB_Front !== 'undefined' && TCB_Front.browser && TCB_Front.browser.ios && TCB_Front.browser.safari ) {
+		log( 'IOS-Safari: renderWindow: modified width x height to 640 x 26167' );
+		width = 640;
+		height = 26167;
+	}
+
     var renderer = new options.renderer(width, height, imageLoader, options, document);
     var parser = new NodeParser(node, renderer, support, imageLoader, options);
     return parser.ready.then(function() {

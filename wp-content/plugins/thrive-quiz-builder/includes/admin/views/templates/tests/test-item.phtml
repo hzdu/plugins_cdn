@@ -19,7 +19,7 @@
 
 <# if (item.get('is_control') == 1) { #>
 	<td colspan="2" class="tvd-center-align">
-		<div class="inline-message"><?php echo __( 'This is the control', Thrive_Quiz_Builder::T ) ?></div>
+		<div class="inline-message"><?php echo __( 'This is the control', 'thrive-quiz-builder' ) ?></div>
 	</td>
 <# } else { #>
 	<td>
@@ -38,14 +38,14 @@
 			<# if (item.get('show_graph')) { #>
 				<td>
 					<a class="tvd-btn-icon tvd-btn-icon-green" target="_blank" href="<#= item.get('tcb_editor_url') #>""
-					title="<?php echo __( 'View Form', Thrive_Quiz_Builder::T ) ?>">
-					<span class="tvd-icon-view"></span><?php echo __( 'View Form', Thrive_Quiz_Builder::T ) ?>
+					title="<?php echo __( 'View Form', 'thrive-quiz-builder' ) ?>">
+					<span class="tvd-icon-view"></span><?php echo __( 'View Form', 'thrive-quiz-builder' ) ?>
 					</a>
 
 					<# if (item.get('is_control') != 1 && item.get('parent_test_running')) { #>
 						<a href="javascript:void(0)" class="tvd-btn-icon tvd-btn-icon-red tqb-stop-test-variation-modal"
-						   title="<?php echo __( 'Stop variation', Thrive_Quiz_Builder::T ) ?>" data-title="<#= item.get('name') #>">
-							<i class="tvd-icon-stop"></i><?php echo __( 'Stop variation', Thrive_Quiz_Builder::T ) ?>
+						   title="<?php echo __( 'Stop variation', 'thrive-quiz-builder' ) ?>" data-title="<#= item.get('name') #>">
+							<i class="tvd-icon-stop"></i><?php echo __( 'Stop variation', 'thrive-quiz-builder' ) ?>
 						</a>
 						<# } #>
 				</td>
@@ -53,9 +53,9 @@
 					<td>
 						<a class="tvd-waves-effect tvd-waves-light tvd-btn tvd-btn-blue tvd-btn-small tqb-test-item-winner"
 						   href="#form-type/<#= item.get('id') #>" data-test-item-id="<#= item.get('id') #>"
-						   title="<?php echo __( 'Set as Winner', Thrive_Quiz_Builder::T ) ?>">
+						   title="<?php echo __( 'Set as Winner', 'thrive-quiz-builder' ) ?>">
 							<i class="tvd-icon-trophy"></i>
-							<span class="tvd-on-large-and-down"><?php echo __( 'Set as Winner', Thrive_Quiz_Builder::T ) ?></span>
+							<span class="tvd-on-large-and-down"><?php echo __( 'Set as Winner', 'thrive-quiz-builder' ) ?></span>
 						</a>
 					</td>
 					<# } #>

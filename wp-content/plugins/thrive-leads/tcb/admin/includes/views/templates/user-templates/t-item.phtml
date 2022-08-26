@@ -14,7 +14,7 @@
 		</a>
 	</div>
 	<div class="tcb-admin-image-overlay-wrapper">
-		<img src="<#= model.get('thumb') ? model.get('thumb').url : model.get('image_url') #>" />
+		<img src="<#= model.get('thumb') && model.get('thumb').url ? model.get('thumb').url : model.get('image_url') #>" class="sym-image" data-height="<#= model.get('thumb').h || 120 #>" data-width="<#= model.get('thumb').w || 250 #>"/>
 		<a class="tcb-admin-preview-text" href="#template/<#= model.get('id') #>"><?php echo __( 'Preview', 'thrive-cb' ); ?></a>
 	</div>
 </div>

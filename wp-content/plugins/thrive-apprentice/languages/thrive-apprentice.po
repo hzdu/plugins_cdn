@@ -21,7 +21,7 @@ msgstr ""
 msgid "Apprentice"
 msgstr ""
 
-#: ../admin/includes/templates/home.phtml:12, ../admin/includes/templates/home.phtml:24, ../admin/includes/templates/home.phtml:12, ../admin/includes/templates/home.phtml:24, ../admin/includes/templates/courses/list.phtml:2, ../admin/includes/templates/courses/list.phtml:2, ../admin/includes/templates/products/partials/add-courses.phtml:2, ../admin/includes/templates/products/partials/add-courses.phtml:2
+#: ../admin/includes/templates/home.phtml:12, ../admin/includes/templates/home.phtml:24, ../admin/includes/templates/home.phtml:12, ../admin/includes/templates/home.phtml:24, ../admin/includes/templates/courses/list.phtml:2, ../admin/includes/templates/courses/list.phtml:2, ../admin/includes/templates/products/partials/add-courses.phtml:2, ../admin/includes/templates/products/partials/add-courses.phtml:2, ../inc/classes/reporting/event-fields/class-course-id.php:23
 msgid "Courses"
 msgstr ""
 
@@ -293,7 +293,7 @@ msgstr ""
 msgid "Restriction label"
 msgstr ""
 
-#: ../admin/includes/templates/courses/access-tab.phtml:48, ../admin/includes/templates/courses/access-tab.phtml:48, ../admin/includes/templates/customers/no-course.phtml:7, ../admin/includes/templates/customers/no-course.phtml:7
+#: ../admin/includes/templates/courses/access-tab.phtml:48, ../admin/includes/templates/courses/access-tab.phtml:48, ../admin/includes/templates/customers/no-course.phtml:7, ../admin/includes/templates/customers/no-course.phtml:7, ../inc/classes/reporting/event-fields/class-product-id.php:24
 msgid "Products"
 msgstr ""
 
@@ -2156,7 +2156,7 @@ msgstr ""
 msgid "Content to unlock"
 msgstr ""
 
-#: ../admin/includes/templates/drip/campaign/form-general.phtml:63, ../admin/includes/templates/drip/campaign/form-general.phtml:63, ../i18n.php:9, ../inc/classes/class-tva-dynamic-labels.php:178
+#: ../admin/includes/templates/drip/campaign/form-general.phtml:63, ../admin/includes/templates/drip/campaign/form-general.phtml:63, ../i18n.php:9, ../inc/classes/class-tva-dynamic-labels.php:178, ../inc/classes/reporting/event-fields/class-lesson-id.php:23
 msgid "Lessons"
 msgstr ""
 
@@ -2511,7 +2511,7 @@ msgstr ""
 msgid "Choose Content Type"
 msgstr ""
 
-#: ../admin/includes/templates/modals/skins/template.phtml:32, ../admin/includes/templates/modals/skins/template.phtml:32, ../i18n.php:6, ../inc/classes/class-tva-dynamic-labels.php:177, ../tcb-bridge/editor-elements/course/sub-elements/lesson/class-lesson.php:30
+#: ../admin/includes/templates/modals/skins/template.phtml:32, ../admin/includes/templates/modals/skins/template.phtml:32, ../i18n.php:6, ../inc/classes/class-tva-dynamic-labels.php:177, ../inc/classes/reporting/event-fields/class-lesson-id.php:23, ../tcb-bridge/editor-elements/course/sub-elements/lesson/class-lesson.php:30
 msgid "Lesson"
 msgstr ""
 
@@ -3067,7 +3067,7 @@ msgstr ""
 msgid "Button"
 msgstr ""
 
-#: ../admin/includes/templates/settings/sendowl/links.phtml:23, ../admin/includes/templates/settings/sendowl/links.phtml:23
+#: ../admin/includes/templates/settings/sendowl/links.phtml:23, ../admin/includes/templates/settings/sendowl/links.phtml:23, ../inc/classes/reporting/event-fields/class-product-id.php:24, ../inc/classes/reporting/event-fields/class-product-id.php:32
 msgid "Product"
 msgstr ""
 
@@ -4017,7 +4017,7 @@ msgstr ""
 msgid "All Bundles"
 msgstr ""
 
-#: ../i18n.php:238, ../i18n.php:392
+#: ../i18n.php:238, ../i18n.php:392, ../inc/classes/reporting/report-apps/class-drip.php:14
 msgid "Drip"
 msgstr ""
 
@@ -5374,7 +5374,7 @@ msgid "WordPress Role"
 msgstr ""
 
 #: ../inc/classes/integrations/class-tva-integrations-manager.php:87, ../inc/classes/integrations/class-tva-integrations-manager.php:89
-msgid "WishList Membership"
+msgid "WishList Member"
 msgstr ""
 
 #: ../inc/classes/integrations/class-tva-integrations-manager.php:99
@@ -5413,7 +5413,7 @@ msgstr ""
 msgid "Course Bundle"
 msgstr ""
 
-#: ../inc/classes/integrations/class-tva-woocommerce-integration.php:287
+#: ../inc/classes/integrations/class-tva-woocommerce-integration.php:290
 msgid "No item found"
 msgstr ""
 
@@ -5500,6 +5500,94 @@ msgstr ""
 
 #: ../inc/classes/widgets/class-tva-recent-comments.php:19
 msgid "Recent comments widget"
+msgstr ""
+
+#: ../inc/classes/reporting/event-fields/class-campaign-id.php:23
+msgid "Campaign"
+msgstr ""
+
+#: ../inc/classes/reporting/event-fields/class-campaign-id.php:23
+msgid "Campaigns"
+msgstr ""
+
+#: ../inc/classes/reporting/event-fields/class-course-id.php:23, ../inc/classes/reporting/event-fields/class-course-id.php:31
+msgid "Course"
+msgstr ""
+
+#: ../inc/classes/reporting/event-fields/class-lesson-unlocked.php:14, ../inc/classes/reporting/event-fields/class-lesson-unlocked.php:18
+msgid "Lesson unlocked"
+msgstr ""
+
+#: ../inc/classes/reporting/event-fields/class-order-gateway.php:18, ../inc/classes/reporting/event-fields/class-order-gateway.php:22
+msgid "Order gateway"
+msgstr ""
+
+#: ../inc/classes/reporting/event-fields/class-order-item-price.php:18, ../inc/classes/reporting/event-fields/class-order-item-price.php:22
+msgid "Order item price"
+msgstr ""
+
+#: ../inc/classes/reporting/event-fields/class-order-type.php:18, ../inc/classes/reporting/event-fields/class-order-type.php:22
+msgid "Order type"
+msgstr ""
+
+#: ../inc/classes/reporting/events/class-all-free-lessons-completed.php:16
+msgid "All free lessons completed"
+msgstr ""
+
+#: ../inc/classes/reporting/events/class-course-finish.php:24
+msgid "Course finish"
+msgstr ""
+
+#: ../inc/classes/reporting/events/class-course-start.php:29
+msgid "Course start"
+msgstr ""
+
+#: ../inc/classes/reporting/events/class-drip-unlocked-for-user.php:21
+msgid "Drip unlocked for user"
+msgstr ""
+
+#: ../inc/classes/reporting/events/class-free-lesson-completed.php:18
+msgid "Free lessons completed"
+msgstr ""
+
+#: ../inc/classes/reporting/events/class-lesson-complete.php:34
+msgid "Lesson Completed"
+msgstr ""
+
+#: ../inc/classes/reporting/events/class-lesson-start.php:20
+msgid "Lesson started"
+msgstr ""
+
+#: ../inc/classes/reporting/events/class-lesson-unlocked-by-quiz.php:18
+msgid "Lesson unlocked by quiz"
+msgstr ""
+
+#: ../inc/classes/reporting/events/class-module-finish.php:12
+msgid "Modules finished"
+msgstr ""
+
+#: ../inc/classes/reporting/events/class-module-start.php:20
+msgid "Modules started"
+msgstr ""
+
+#: ../inc/classes/reporting/events/class-product-purchase.php:19
+msgid "Product purchased"
+msgstr ""
+
+#: ../inc/classes/reporting/report-apps/class-course.php:20, ../tcb-bridge/classes/conditional-display/entities/class-course.php:23
+msgid "Apprentice Course"
+msgstr ""
+
+#: ../inc/classes/reporting/report-apps/class-lesson.php:23, ../tcb-bridge/classes/conditional-display/entities/class-lesson.php:23
+msgid "Apprentice Lesson"
+msgstr ""
+
+#: ../inc/classes/reporting/report-apps/class-module.php:15, ../tcb-bridge/classes/conditional-display/entities/class-module.php:23
+msgid "Apprentice Module"
+msgstr ""
+
+#: ../inc/classes/reporting/report-apps/class-product.php:15
+msgid "Apprentice Product"
 msgstr ""
 
 #: ../tcb-bridge/tcb-hooks.php:272
@@ -6280,18 +6368,6 @@ msgstr ""
 
 #: ../tcb-bridge/editor-layouts/modals/course-list-query.php:76
 msgid "Save and Close"
-msgstr ""
-
-#: ../tcb-bridge/classes/conditional-display/entities/class-course.php:23
-msgid "Apprentice Course"
-msgstr ""
-
-#: ../tcb-bridge/classes/conditional-display/entities/class-lesson.php:23
-msgid "Apprentice Lesson"
-msgstr ""
-
-#: ../tcb-bridge/classes/conditional-display/entities/class-module.php:23
-msgid "Apprentice Module"
 msgstr ""
 
 #: ../tcb-bridge/classes/conditional-display/fields/class-course-author-name.php:30

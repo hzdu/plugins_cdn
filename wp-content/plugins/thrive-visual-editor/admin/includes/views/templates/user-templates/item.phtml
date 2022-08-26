@@ -7,7 +7,7 @@
 </div>
 <div class="tvd-row">
 	<div class="tvd-col tvd-s12 tcb-admin-template-preview">
-		<img src="<#= model.get('thumb').url #>" alt="Template Image">
+		<img src="<#= model.get('thumb') ? model.get('thumb').url : model.get('image_url') #>" alt="Template Image">
 	</div>
 </div>
 <div class="tvd-row">

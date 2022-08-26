@@ -356,7 +356,14 @@ module.exports = ( $, TCB_Front ) => {
 				}
 
 				this.frontendMarkupChanges();
-				TCB_Front.progressBar.init();
+
+				if ( TCB_Front.progressBar ) {
+					/**
+					 * The progress bar module should be called only if there exists the resource for it.
+					 * TCB_Front.progressBar can be NULL if the course list has no progress bar element inside it
+					 */
+					TCB_Front.progressBar.init();
+				}
 			}
 
 			this.$element.toggleClass( 'tva-empty-list', parseInt( ajaxResponse.count ) === 0 );

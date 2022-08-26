@@ -2,9 +2,9 @@
 
 	<p class="tqb-mpbt tqb-feedback-text">
 		<# if(	model.get( 'highlight_and_show_feedback' ) == 1) { #>
-		<?php echo __( 'How long should the highlight and feedback be displayed for?', Thrive_Quiz_Builder::T ) ?>
+		<?php echo __( 'How long should the highlight and feedback be displayed for?', 'thrive-quiz-builder' ) ?>
 		<# }else{ #>
-		<?php echo __( 'How long should the highlight be displayed for?', Thrive_Quiz_Builder::T ) ?>
+		<?php echo __( 'How long should the highlight be displayed for?', 'thrive-quiz-builder' ) ?>
 		<# } #>
 	</p>
 
@@ -14,12 +14,12 @@
 		<label for="tqb-checkbox-seconds"></label>
 
 		<input type="text" id="tqb-feedback-time" value="<#= model.get( 'display_feedback_time' ) #>" data-bind="display_feedback_time">
-		<label for="tqb-checkbox-seconds" class="tqb-mr35 tqb-feedback-seconds"><?php echo __( ' seconds', Thrive_Graph_Editor::T ) ?></label>
+		<label for="tqb-checkbox-seconds" class="tqb-mr35 tqb-feedback-seconds"><?php echo __( ' seconds', 'thrive-quiz-builder' ) ?></label>
 
 		<input class="tqb-press-next tqb-radio-option" id="tqb-checkbox-press-next" type="radio" data-attr="press_next"
 		<#= model.get( 'press_next' ) === 1 ? 'checked' : '' #> />
 		<label class="tqb-mr60" for="tqb-checkbox-press-next">
-			<?php echo __( 'Until the user presses the Next button', Thrive_Graph_Editor::T ) ?>
+			<?php echo __( 'Until the user presses the Next button', 'thrive-quiz-builder' ) ?>
 		</label>
 	</div>
 
