@@ -75,7 +75,9 @@
     color: #fff;
     text-decoration: none;
     text-shadow: none;
-    display: inline-block;
+    justify-content: center;
+    align-items: center;
+    display: inline-grid;
 
     font-weight: normal;
     font-size: 17px;
@@ -103,7 +105,7 @@
  */
 
 #trp_ald_x_button_and_textarea{
-
+    text-decoration: none;
     display: flex;
     vertical-align: middle;
     align-items: center;
@@ -134,6 +136,7 @@
 }
 
 #trp_ald_modal_popup #trp_ald_x_button{
+    display: inline-table;
     width: 0;
     background: 0 0;
     padding: 0;
@@ -142,6 +145,7 @@
     color: transparent;
     -webkit-backface-visibility: hidden;
     outline:none;
+    z-index: 1;
 }
 
 #trp_ald_modal_popup #trp_ald_x_button::before {
@@ -216,6 +220,7 @@
     z-index: 1000000000000000;
 }
 
+
 .trp_ald_ls_container .trp-ls-shortcode-current-language:hover{
     cursor: pointer;
 }
@@ -277,6 +282,10 @@
     font-size: 18px;
     overflow: hidden;
 
+}
+
+#trp_ald_popup_select_container .trp-ls-shortcode-language{
+    display: none;
 }
 
 /*
@@ -466,7 +475,6 @@
     color: #0085ba;
     font-size: 15px;
     margin-top: 15px;
-    margin-left: 20px;
 }
 
 #trp_ald_no_text_popup_x_button{
@@ -548,13 +556,21 @@
         max-width: 100%;
         margin-top: 32px;
     }
+
+    #trp_ald_no_text_popup_select_container{
+        display: none;
+    }
+
     .trp_ald_change_language_div{
         width: 100%;
         margin-top: 14px;
+        min-width: 30px;
     }
 
     #trp_ald_no_text_popup_change_language{
         margin-left: 0;
+        height: unset;
+        white-space: pre-wrap;
     }
 
     #trp_ald_no_text_popup_x_button_and_textarea{
