@@ -3,7 +3,7 @@ Contributors: anbinder, karzin, pluggabl
 Tags: woocommerce, booster for woocommerce, woocommerce jetpack
 Requires at least: 4.4
 Tested up to: 6.0.1
-Stable tag: 5.6.0
+Stable tag: 5.6.1
 License: GNU General Public License v3.0
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -203,6 +203,17 @@ You can see the differences between versions in this [table](https://booster.io/
 8. Booster for WooCommerce - Emails & Misc.
 
 == Changelog ==
+
+= 5.6.1 31/08/2022 =
+
+* NEW FEATURE - PDF INVOICING & PACKING SLIPS - PDF Invoicing - Added a new shortcode for refund total with inc./ex. tax. [wcj_order_item_total_refunded excl_tax="yes" ]
+* NEW FEATURE - PRODUCTS - User Products - Added a new feature to add an image gallery in the user product form.
+* FIXED - EMAILS & MISC. - Modules By User Roles - Fixed Enable/disable modules by user roles.
+* FIXED - EMAILS & MISC. - My Account - Added restriction for Cross browser scripting.
+* FIXED - PHP Warning: Undefined Variable "$exclude_item_subtotal" in /includes/shortcodes/class-wcj-shortcodes-orders.php ...
+* FIXED - PHP Warning: Undefined array key "PR" and Undefined variable "$_SESSION" in /includes/shortcodes/class-wcj-shortcodes-general.php...
+* WooCommerce 6.8.2 tested
+* WordPress 6.0.1 Tested
 
 = 5.6.0 27/07/2022 =
 

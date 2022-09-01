@@ -2,10 +2,10 @@
 Contributors:
 Donate link: https://perfmatters.io
 Tags: perfmatters
-Requires at least: 4.7
+Requires at least: 5.5
 Requires PHP: 7.0
-Tested up to: 6.0.1
-Stable tag: 1.9.5
+Tested up to: 6.0.2
+Stable tag: 1.9.7
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -34,6 +34,23 @@ Perfmatters is a lightweight performance plugin developed to speed up your WordP
 Check out our [documentation](https://perfmatters.io/docs/) for more information on how to use Perfmatters.
 
 == Changelog ==
+
+= 1.9.7 - 08.30.2022 =
+* Made an adjustment to how inline background images are prepped to work with some changes in the latest version of our lazy loading library.
+
+= 1.9.6 - 08.30.2022 =
+* Added new perfmatters_delay_js_delay_click filter.
+* Added new perfmatters_local_stylesheet_url filter.
+* Made some performance improvements to the way the lazy loading script and inline code are loaded.
+* Added additional compatibility for Elementor animations when using Delay JS.
+* Added additional details in the Script Manager global view for individual stored settings.
+* Added the ability to identify and clear outdated post IDs set in the Script Manager options from the global view.
+* Script Manager global view organization and style improvements.
+* Updated lazy loading library to version 17.8.
+* Updated instant.page library to version 5.1.1.
+* Added Bricks query string parameter to excluded page builders array.
+* Fixed an issue that was causing the cache directory to not create unique subsite paths for specific multisite setups.
+* Fixed an issue where delayed stylesheets were not being loaded if Delay JS was toggled off in the post meta options.
 
 = 1.9.5 - 07.17.2022 =
 * Added additional logic to Delay JS script to make sure the initial interaction is processed.
