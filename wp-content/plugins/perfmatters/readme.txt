@@ -5,7 +5,7 @@ Tags: perfmatters
 Requires at least: 5.5
 Requires PHP: 7.0
 Tested up to: 6.0.2
-Stable tag: 1.9.7
+Stable tag: 1.9.8
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -34,6 +34,12 @@ Perfmatters is a lightweight performance plugin developed to speed up your WordP
 Check out our [documentation](https://perfmatters.io/docs/) for more information on how to use Perfmatters.
 
 == Changelog ==
+
+= 1.9.8 - 08.31.2022 =
+* Made adjustment to the CSS Background Image styles to work with some changes in the latest version of our lazy loading library.
+* Fixed an issue that was preventing quotations from being stripped from background image URLs when prepping an inline background image for lazy loading.
+* Fixed an issue where delayed CSS was not loading properly when using individual JS delay.
+* Fixed an error that was being logged in some cases when checking for an active plugin in the JS class.
 
 = 1.9.7 - 08.30.2022 =
 * Made an adjustment to how inline background images are prepped to work with some changes in the latest version of our lazy loading library.
