@@ -289,7 +289,7 @@
             pysStatGlobal.type = type
             pysStatGlobal.perPage = parseInt($(".pys_stat .per_page_selector").val())
             pysStatGlobal.updateStartEndDate()
-            singleTable.initGlobalTable(function () {
+            singleTable.initGlobalTable(pysStatGlobal.type,function () {
                 pysStatGlobal.loadGlobalData(1)
             })
             tableNavigation.init($("#pys .global_data .pagination"),function (page) {
@@ -418,8 +418,7 @@
             let startDate = util.toFormat(pysStatGlobal.startDate,util.dateFormat)
             let endDate = util.toFormat(pysStatGlobal.endDate,util.dateFormat)
             let data = {
-                action:"pys_stat_data",
-                type:pysStatGlobal.type,
+                action: "pys_"+pysStatGlobal.type+"_stat_data",
                 filter_type:$(".pys_stats_filters .active").data("type"),
                 start_date:startDate,
                 end_date:endDate,
@@ -447,13 +446,11 @@
                         if(page == 1) {
                             tableNavigation.initPages(msg.data.max, pysStatGlobal.perPage)
                         }
-
-                        $(".global_data .total_sale span").text(msg.data.total.total_sale)
-                        $(".global_data .net_sale span").text(msg.data.total.net_sale)
-                        $(".global_data .gross_sale span").text(msg.data.total.gross_sale)
-                        $(".global_data .orders span").text(msg.data.total.count)
-                        $(".global_data .name .title").text($(".pys_stats_filters .active").text().trim()+": ")
-                        $(".global_data .name .count").text(msg.data.max)
+                        let total = "<li><span class=\"title\">"+$(".pys_stats_filters .active").text().trim()+": </span> <span class=\"count\">"+msg.data.max+"</span></li>"
+                        msg.data.total.forEach(function (el) {
+                            total += "<li>"+el.name+el.value+"</li>";
+                        })
+                        $(".global_data .total").html(total)
                     } else {
                         navigation.loadingError("Error load data")
                     }
@@ -484,7 +481,7 @@
             pysStatSingle.filterId = filterId
             pysStatSingle.perPage = parseInt($(".pys_stat .per_page_selector").val())
             pysStatSingle.updateStartEndDate()
-            singleTable.initDatesTable(function (){
+            singleTable.initDatesTable(pysStatSingle.type,function (){
                 pysStatSingle.loadData()
             })
             tableNavigation.init($(".pys_stat_single_info_pagination"),function (page) {
@@ -505,7 +502,7 @@
                 $(".single_data .report_form input[name='filter_type']").val(pysStatSingle.filterType)
                 $(".single_data .report_form input[name='filter_id']").val(pysStatSingle.filterId)
                 $(".single_data .report_form input[name='single_table_type']").val(singleTable.tableType)
-                $(".single_data .report_form input[name='model']").val($(".pys_visit_model").val())
+                $(".single_data .report_form input[name='model']").val(pysStatSingle.model)
 
                 $(".single_data .report_form").submit()
             })
@@ -564,7 +561,7 @@
                     active.addClass("btn-secondary")
                 $(this).removeClass("btn-secondary")
                 $(this).addClass("btn-primary")
-                singleTable.initTable($(this).data("slug"))
+                singleTable.initTable($(this).data("slug"),pysStatSingle.type)
 
                 pysStatSingle.loadData()
             })
@@ -594,8 +591,7 @@
             let filterId = pysStatSingle.filterId
 
             let model = pysStatSingle.model
-            let data = {action:"pys_stat_single_data",
-                type:type,
+            let data = {action:"pys_"+type+"_stat_single_data",
                 filter_type:filter,
                 filter_id:filterId,
                 start_date:dateStart,
@@ -651,7 +647,6 @@
                 let endTime = jQuery( ".single_data .pys_stat_time_custom .datepicker_end").val()
                 pysStatSingle.endDate = util.getDatepickerDate( endTime )
                 pysStatSingle.startDate = util.getDatepickerDate(startTime)
-                console.log("startTime ",startTime,endTime," pysStatSingle.startDate ",pysStatSingle.startDate,pysStatSingle.endDate )
             }
         },
 
@@ -661,10 +656,11 @@
 
 
     let statImport = {
-
+        type:"",
         maxPage: 1,
 
         start:  function () {
+            statImport.type  = $(".stat_progress").data("type")
             statImport.maxPage = $(".stat_progress").data("max_page")
             let page = $(".stat_progress").data("page")
             statImport.importNewPage(page)
@@ -674,7 +670,7 @@
             jQuery.ajax({
                 method: "POST",
                 url:ajaxurl,
-                data:{action:"pys_stat_sync",page:page},
+                data:{action:"pys_"+statImport.type+"_stat_sync",page:page},
                 success: function(msg){
                     if(msg.success) {
                         statImport.updateProgress(page)
@@ -704,17 +700,19 @@
         orderBy : "",
         sort : "desc",
         selectedColl : "",
+        type:"",
+        initTable: function (typeTable,typeData) {
 
-        initTable: function (type) {
-            switch (type) {
-                case "global": singleTable.initGlobalTable(); break;
-                case "dates": singleTable.initDatesTable(); break;
-                case "orders": singleTable.initOrdersTable(); break;
-                case "products": singleTable.initProductsTable(); break;
+            switch (typeTable) {
+                case "global": singleTable.initGlobalTable(typeData); break;
+                case "dates": singleTable.initDatesTable(typeData); break;
+                case "orders": singleTable.initOrdersTable(typeData); break;
+                case "products": singleTable.initProductsTable(typeData); break;
             }
         },
 
-        initGlobalTable:function (onSort) {
+        initGlobalTable:function (typeData,onSort) {
+            singleTable.type = typeData
             singleTable.parent = $(".pys_stat_info")
             singleTable.tableType = "global"
             singleTable.onSort = onSort
@@ -752,7 +750,8 @@
             ]
             this.fillHead()
         },
-        initDatesTable:function (onSort) {
+        initDatesTable:function (dataType,onSort) {
+            singleTable.type = dataType
             singleTable.parent = $(".pys_stat_single_info")
             singleTable.tableType = "dates"
             singleTable.onSort = onSort
@@ -786,7 +785,8 @@
             this.fillHead()
         },
 
-        initOrdersTable:function () {
+        initOrdersTable:function (dataType) {
+            singleTable.type = dataType
             singleTable.parent = $(".pys_stat_single_info")
             singleTable.tableType = "orders"
             singleTable.head = [
@@ -814,7 +814,8 @@
             this.fillHead()
         },
 
-        initProductsTable:function () {
+        initProductsTable:function (dataType) {
+            singleTable.type = dataType
             singleTable.parent = $(".pys_stat_single_info")
             singleTable.tableType = "products";
             singleTable.head = [
@@ -905,7 +906,7 @@
                         let gross = parseFloat(el.gross).toFixed(2)
                         let total = parseFloat(el.total).toFixed(2)
                         rows += "<tr class='data'>" +
-                            "<td><a href='?page=pixelyoursite_woo_reports&filter_id="+el.id+"' data-id='"+el.id+"' >"+ el.name+"</a></td>" +
+                            "<td><a href='?page=pixelyoursite_"+singleTable.type+"_reports&filter_id="+el.id+"' data-id='"+el.id+"' >"+ el.name+"</a></td>" +
                             "<td "+(activeIndex == 1 ? "class='active'" : "")+">"+el.count+"</td>" +
                             "<td "+(activeIndex == 2 ? "class='active'" : "")+">"+gross+"</td>" +
                             "<td "+(activeIndex == 3 ? "class='active'" : "")+">"+net+"</td>" +
@@ -927,8 +928,15 @@
                 } break;
                 case "orders": {
                     items.forEach(function (item) {
+                        let url = "";
+                        if(singleTable.type == "woo") {
+                            url = "post.php?post="+item.order_id+"&action=edit"
+                        } else {
+                            url = "edit.php?post_type=download&page=edd-payment-history&view=view-order-details&id="+item.order_id
+                        }
+
                         rows += "<tr class='data'>" +
-                            "<td><a href='post.php?post="+item.order_id+"&action=edit' target='_blank'>"+ item.order_id+"</a></td>" +
+                            "<td><a href='"+url+"' target='_blank'>"+ item.order_id+"</a></td>" +
                             "<td "+(activeIndex == 2 ? "class='active'" : "")+">"+parseFloat(item.gross).toFixed(2)+"</td>" +
                             "<td "+(activeIndex == 3 ? "class='active'" : "")+">"+parseFloat(item.net).toFixed(2)+"</td>" +
                             "<td "+(activeIndex == 4 ? "class='active'" : "")+">"+parseFloat(item.total).toFixed(2)+"</td>" +
@@ -990,12 +998,12 @@
             statImport.start()
         } else {
             if($("#pys .single_data").length>0) {
-                pysStatSingle.init("woo",$("#pys .single_data").data("model"),$("#pys .single_data").data("filter"),$("#pys .single_data").data("filter_id"))
+                pysStatSingle.init($("#pys .single_data").data("type"),$("#pys .single_data").data("model"),$("#pys .single_data").data("filter"),$("#pys .single_data").data("filter_id"))
                 pysStatSingle.loadData()
             }
 
             if($("#pys .global_data").length>0) {
-                pysStatGlobal.init("woo")
+                pysStatGlobal.init(($("#pys .global_data").data("type")) )
                 pysStatGlobal.loadGlobalData(1)
             }
 
@@ -1008,7 +1016,21 @@
             jQuery.ajax({
                 method: "POST",
                 url:ajaxurl,
-                data:{action:"pys_stat_change_orders_status",orders:$("#woo_stat_order_statuses").val()},
+                data:{action:"pys_woo_stat_change_orders_status",orders:$("#woo_stat_order_statuses").val()},
+                success: function(msg){
+                    if(msg.success) {
+                        window.location.reload();
+                    }
+                },
+            })
+        })
+
+        $(".btn-save-edd-stat").on("click",function () {
+
+            jQuery.ajax({
+                method: "POST",
+                url:ajaxurl,
+                data:{action:"pys_edd_stat_change_orders_status",orders:$("#edd_stat_order_statuses").val()},
                 success: function(msg){
                     if(msg.success) {
                         window.location.reload();

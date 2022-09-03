@@ -3596,7 +3596,7 @@ if (!String.prototype.trim) {
             var isOverGoogleAd = false;
 
             $(document)
-                .on('mouseover', 'ins > ins > iframe', function () {
+                .on('mouseover', 'ins iframe', function () { //class adsbygoogle adsbygoogle-noablate ??
                     isOverGoogleAd = true;
                 })
                 .on('mouseout', 'iframe', function () {
