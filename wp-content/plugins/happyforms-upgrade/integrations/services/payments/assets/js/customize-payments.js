@@ -144,6 +144,12 @@
 			$( '.happyforms-part--payments [data-subpart="payment_method"] > label span.label', $form ).text( label );
 		},
 
+		onPaymentsRedirectHintLabelChangeCallback: function( $form ) {
+			var label = happyForms.form.get( 'paypal_redirect_hint' );
+
+			$( '.happyforms-part--payments .happyforms-payments-service--paypal > .happyforms-part-wrap p', $form ).text( label );
+		},
+
 		onPayPalOptionLabelChangeCallback: function ( $form ) {
 			var label = happyForms.form.get( 'paypal_option_label' );
 
@@ -247,6 +253,7 @@
 		events: _.extend( {}, FormMessages.prototype.events, {
 			'keyup [data-attribute]': 'onInputChange',
 			'keyup [data-attribute="payment_method_choice_label"]': 'onPaymentsMethodChoiceLabelChange',
+			'keyup [data-attribute="paypal_redirect_hint"]': 'onPaymentsRedirectHintLabelChange',
 			'keyup [data-attribute="paypal_option_label"]' : 'onPayPalOptionLabelChange',
 			'keyup [data-attribute="stripe_option_label"]' : 'onStripeOptionLabelChange',
 			'keyup [data-attribute="user_price_label"]' : 'onUserPriceLabelChange',
@@ -269,6 +276,14 @@
 		onPaymentsMethodChoiceLabelChange: function( e ) {
 			var data = {
 				callback: 'onPaymentsMethodChoiceLabelChangeCallback',
+			};
+
+			happyForms.previewSend( 'happyforms-form-dom-update', data );
+		},
+
+		onPaymentsRedirectHintLabelChange: function( e ) {
+			var data = {
+				callback: 'onPaymentsRedirectHintLabelChangeCallback',
 			};
 
 			happyForms.previewSend( 'happyforms-form-dom-update', data );

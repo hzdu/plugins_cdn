@@ -32,6 +32,8 @@
 
 			// set attribute so we know next time that Stripe init already happend here
 			this.$el.attr( 'data-stripe-enabled', '' );
+			
+			$( '.credit-card-filled', this.$paymentsPart ).val( '' );
 
 			this.createCheckoutData();
 			this.initStripeElements();
@@ -108,7 +110,7 @@
 		 * @param {string} message Message as returned by Stripe API.
 		 */
 		HappyFormsStripe.prototype.setError = function( message ) {
-			$error = $( '.happyforms-part-error-notice', this.$paymentsPart );
+			$error = $( '.happyforms-part-error-notice__realtime', this.$paymentsPart );
 			$( '.credit-card-filled', this.$paymentsPart ).val( 0 );
 
 			$( 'span', $error ).text( message );
@@ -119,7 +121,7 @@
 		 * Hides error from Stripe element.
 		 */
 		HappyFormsStripe.prototype.hideError = function() {
-			$error = $( '.happyforms-part-error-notice', this.$paymentsPart );
+			$error = $( '.happyforms-part-error-notice__realtime', this.$paymentsPart );
 			$( 'span', $error ).text( '' );
 			$error.hide();
 		},

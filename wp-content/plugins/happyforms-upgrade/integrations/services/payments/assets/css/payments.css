@@ -5,6 +5,10 @@
   padding-top: 0;
   padding-bottom: 0;
 }
+.happyforms-styles .happyforms-form__part.happyforms-payments__price .happyforms-part__el {
+  display: flex;
+  gap: 5px;
+}
 .happyforms-styles .happyforms-payments__price .label {
   font-size: 16px;
   font-size: var(--happyforms-part-title-font-size);
@@ -20,7 +24,8 @@
 .happyforms-part--payments .happyforms-part[data-subpart=payment_method] {
   margin-bottom: 0;
 }
-.happyforms-payments__price .price {
+.happyforms-payments__price .price,
+.happyforms-payments__price .discounted-price.coupons {
   display: block;
   font-weight: bold;
   font-size: 16px;
@@ -39,10 +44,16 @@
   font-size: 14px;
   font-size: var(--happyforms-part-description-font-size);
 }
+.happyforms-form--part-value-text-align-right .happyforms-payments-service .happyforms-part-wrap p {
+  text-align: right;
+}
+.happyforms-form--part-value-text-align-center .happyforms-payments-service .happyforms-part-wrap p{
+    text-align: center;
+}
 .happyforms-part--payments .happyforms-part-error-notice {
   margin-top: 5px;
 }
-.happyforms-part--payments:not(.happyforms-part__validation-failed) .happyforms-part-error-notice {
+.happyforms-part-error-notice__realtime {
   display: none;
 }
 .happyforms-payments-service {
@@ -111,4 +122,67 @@
 }
 .happyforms-styles .happyforms-part--payments input:checked+.checkmark .happyforms-radio-circle {
   display: block;
+}
+
+.happyforms-form--part-inner-padding-narrow .happyforms-payments__coupon .happyforms-input .happyforms-button {
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.happyforms-payments__coupon .happyforms-input {
+  display: flex;
+  gap: 5px;
+}
+
+.happyforms-payments__coupon .happyforms-input > * {
+  flex-basis: auto;
+}
+
+.happyforms-payments__coupon .happyforms-input > #happyforms_coupon_apply {
+  flex-shrink: 0;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.happyforms-styles.happyforms-form--part-inner-padding-narrow .happyforms-payments__coupon #happyforms_coupon_apply {
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.happyforms-payments__coupon .happyforms-coupon-notice {
+  display: none;
+}
+.happyforms-payments__coupon .happyforms-coupon-notice {
+  margin: 10px 0 0;
+  font-size: 16px;
+  font-size: var(--happyforms-part-value-font-size);
+  color: #f23000;
+  color: var(--happyforms-color-error);
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  line-height: 1.2;
+}
+
+.happyforms-payments__price .price.strikethrough {
+  text-decoration: line-through;
+}
+
+.happyforms-styles .happyforms-payments-service--paypal p {
+  font-size: 16px;
+  font-size: var(--happyforms-part-value-font-size);
+  overflow-wrap: anywhere;
+  color: #000;
+  color: var(--happyforms-color-part-value);
+}
+
+.happyforms-coupon-notice.error span svg {
+  content: '';
+  display: inline-block;
+  width: 17px;
+  height: 17px;
+  margin: 0 8px 0 0;
+  color: #f23000;
+  color: var(--happyforms-color-error);
 }

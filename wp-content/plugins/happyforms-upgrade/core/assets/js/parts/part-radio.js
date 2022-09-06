@@ -23,12 +23,14 @@
 		},
 	} );
 
-	var OptionModel = Backbone.Model.extend( {
-		defaults: {
-			is_default: false,
-			label: '',
-			description: '',
-			is_heading: false,
+	var OptionModel = happyForms.classes.models.Option.extend( {
+		defaults: function() {
+			return _.extend( {
+				is_default: false,
+				label: '',
+				description: '',
+				is_heading: false,
+			}, _.result( happyForms.classes.models.Option.prototype, 'defaults' ) );
 		},
 	} );
 
@@ -36,11 +38,11 @@
 		model: OptionModel,
 	} );
 
-	var OptionItemView = happyForms.classes.views.OptionItem.extend( {
+	happyForms.classes.views.radioOptionItem = happyForms.classes.views.OptionItem.extend( {
 		template: '#customize-happyforms-radio-item-template',
 	} );
 
-	var OptionHeadingView = happyForms.classes.views.OptionHeading.extend( {
+	happyForms.classes.views.radioOptionHeading = happyForms.classes.views.OptionHeading.extend( {
 		template: '#customize-happyforms-radio-item-heading-template',
 	} );
 
@@ -52,7 +54,7 @@
 		} ),
 
 		getOptionItemView: function( optionModel, options ) {
-			var view = new OptionItemView( _.extend( {
+			var view = new happyForms.classes.views.radioOptionItem( _.extend( {
 				model: optionModel,
 				part: this.model,
 			}, options ) );
@@ -61,7 +63,7 @@
 		},
 
 		getOptionHeadingView: function( optionModel, options ) {
-			var view = new OptionHeadingView( _.extend( {
+			var view = new happyForms.classes.views.radioOptionHeading( _.extend( {
 				model: optionModel,
 				part: this.model,
 			}, options ) );

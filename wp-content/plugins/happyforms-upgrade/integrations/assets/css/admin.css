@@ -201,18 +201,8 @@
     display: block;
 }
 
-#happyforms-service-aweber .components-external-link__icon {
-  margin-bottom: -2px;
-}
-
 #happyforms-service-aweber a {
   color: #2271b1;
-}
-
-
-#happyforms-service-aweber svg {
-  color: #2271b1;
-  fill: #2271b1;
 }
 
 #happyforms-service-aweber a:hover,
@@ -265,3 +255,49 @@
         width:  100%;
     }
 }
+
+#add-happyforms-coupon .spinner {
+    float: none;
+    vertical-align: top;
+}
+
+#edit-happyforms-coupon {
+    max-width: 800px;
+}
+
+label.labels-dicount_type-percentage {
+    display: none;
+}
+
+.wp-list-table.table-view-list.coupons .inline-edit-wrapper span.title {
+    width: 130px;
+}
+
+.wp-list-table.table-view-list.coupons .column-redemptions {
+    width: 120px;
+}
+
+.wp-list-table.table-view-list.coupons [name="discount_amount"] {
+    width: 100%;
+}
+
+.wp-list-table.table-view-list.coupons .inline-edit-wrapper span.input-text-wrap {
+    margin-left: 130px;
+}
+
+.wp-list-table.table-view-list.coupons .inline-edit-wrapper .happyforms-buttongroup {
+    padding-left: 2px;
+}
+
+.coupons .inline-edit-row span.title.title-discount_percentage {
+    display: none;
+}
+
+.coupons .inline-edit-row input[type="radio"]:checked::before {
+    content: none !important;
+}
+
+.coupons .inline-edit-row .happyforms-buttongroup label {
+    display: inline-flex !important;
+}
+

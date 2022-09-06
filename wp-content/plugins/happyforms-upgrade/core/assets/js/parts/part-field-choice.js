@@ -1,5 +1,11 @@
 ( function( $, _, Backbone, api, settings ) {
 
+	happyForms.classes.models.Option = Backbone.Model.extend( {
+		defaults: {
+			type: 'option',
+		}
+	} );
+
 	happyForms.classes.views.Option = Backbone.View.extend( {
 		events: {
 			'click .happyforms-delete-item': 'onDeleteClick',
@@ -38,6 +44,8 @@
 				var $toggleIndicator = $openWidgets.find( '.toggle-indicator' );
 				$toggleIndicator.removeClass( 'opened' );
 			} );
+
+			this.$el.trigger( 'close-bulk-options', this.model );
 		},
 
 		onAddOpenWidget: function( e ) {
@@ -96,7 +104,7 @@
 		onLabelChange: function( e ) {
 			var label = $( e.target ).val();
 			this.model.set( 'label', label );
-			this.part.trigger( 'change' );
+			this.part.trigger( 'change', this.part, {} );
 			$('.happyforms-item-choice-widget-title h3 .choice-in-widget-title span', this.$el ).text( label );
 
 			var data = {
@@ -134,7 +142,7 @@
 		onItemLabelChange: function( e ) {
 			var label = $( e.target ).val();
 			this.model.set( 'label', label );
-			this.part.trigger( 'change' );
+			this.part.trigger( 'change', this.part, {} );
 			$('.happyforms-item-choice-widget-title h3 .choice-in-widget-title span', this.$el ).text( label );
 
 			var data = {
@@ -231,7 +239,13 @@
 		events: _.extend( {}, happyForms.classes.views.Part.prototype.events, {
 			'click .add-option': 'onAddOptionClick',
 			'click .add-heading': 'onAddHeadingClick',
+			'click .bulk-options': 'onAddBulkChoiceClick',
+			'click .add-import-options': 'onAddBulkChoices',
+			'keyup .option-import-area': 'onBulkTextChange',
+			'input .option-import-area': 'onBulkTextChange',
+			'click .cancel-import-options': 'closeBulkOpions',
 			'item-duplicate': 'onOptionDuplicate',
+			'close-bulk-options': 'closeBulkOpions',
 			'change [data-bind=display_type]': 'onDisplayTypeChange',
 		} ),
 
@@ -297,6 +311,77 @@
 			this.model.get( 'options' ).findWhere( { id: itemID } ).trigger( 'open-widget' );
 		},
 
+		onAddBulkChoiceClick: function( e ) {
+			e.preventDefault();
+
+			this.closeAllItemWidget();
+
+			if ( 0 == this.model.get( 'options' ).length ) {
+				$( '.options', this.$el ).hide();
+			}
+
+			$( '.options-import', this.$el ).show();
+			$( '.links.mode-manual', this.$el ).hide();
+			$( '.links.mode-import', this.$el ).show();
+			$( '.option-import-area', this.$el ).trigger( 'focus' );
+			$( '.add-import-options', this.$el ).attr( 'disabled', 'disabled' );
+		},
+
+		onAddBulkChoices: function( e ) {
+			e.preventDefault();
+
+			var $textarea = $( '.option-import-area', this.$el );
+			var list = $textarea.val();
+			var self = this;
+
+			var models = list
+				.split( /[\r\n]+/g )
+				.map( function( s ) {
+					return s.trim();
+				} )
+				.filter( function( s ) {
+					return s;
+				} )
+				.forEach( function( label, i, list ) {
+					_.delay( function() {
+						var itemID = self.getOptionModelID();
+						var modelClass = self.model.get( 'options' ).model;
+						var item = new modelClass( {
+							id: itemID,
+							label: label
+						} );
+
+						self.model.get( 'options' ).add( item, { refresh: ( list.length - 1 === i ) } );
+					}, i );
+				} );
+
+			$textarea.val( '' );
+			$( '.cancel-import-options', this.$el ).trigger( 'click' );
+		},
+
+		onBulkTextChange: function( e ) {
+			var val = $( e.target ).val();
+			var $addBulkButton = $( '.add-import-options', this.$el );
+
+			var disabled = '' === val;
+
+			if ( disabled ) {
+				$addBulkButton.attr( 'disabled', 'disabled' );
+			} else {
+				$addBulkButton.removeAttr('disabled')
+			}
+		},
+
+		closeBulkOpions: function( e ) {
+			e.preventDefault();
+
+			$( '.options', this.$el ).show();
+			$( '.options-import', this.$el ).hide();
+			$( '.links.mode-import', this.$el ).hide();
+			$( '.links.mode-manual', this.$el ).show();
+			$( '.option-import-area', this.$el ).val( '' );
+		},
+
 		onOptionDuplicate: function( e, fieldChoice ) {
 			e.preventDefault();
 			
@@ -306,7 +391,10 @@
 			attrs.id = this.getOptionModelID();
 			var modelClass = this.model.get( 'options' ).model;
 			var clonedModel = new modelClass( attrs );
-			this.model.get( 'options' ).add( clonedModel, { at: index } );
+			this.model.get( 'options' ).add( clonedModel, { 
+				at: index,
+				duplicateOf: fieldChoice,
+			} );
 			this.model.get( 'options' ).findWhere( { id: attrs.id } ).trigger( 'open-widget' );
 		},
 
@@ -326,7 +414,7 @@
 		},
 
 		onOptionModelAdd: function( optionModel, optionsCollection, options ) {
-			this.model.trigger( 'change' );
+			this.model.trigger( 'change', this.model, {} );
 			this.addOptionItemView( optionModel, options );
 
 			var model = this.model;
@@ -336,6 +424,7 @@
 					var data = {
 						id: model.get( 'id' ),
 						html: response,
+						callback: 'onOptionAddCallback',
 					};
 
 					happyForms.previewSend( 'happyforms-form-part-refresh', data );
@@ -344,11 +433,11 @@
 		},
 
 		onOptionModelChange: function( optionModel ) {
-			this.model.trigger( 'change' );
+			this.model.trigger( 'change', this.model, {} );
 		},
 
 		onOptionModelRemove: function( optionModel ) {
-			this.model.trigger( 'change' );
+			this.model.trigger( 'change', this.model, {} );
 
 			var optionViewModel = this.optionViews.find( function( viewModel ) {
 				return viewModel.get( 'view' ).model.id === optionModel.id;
@@ -494,9 +583,23 @@
 			happyForms.previewSend( 'happyforms-part-dom-update', data );
 		},
 
+		closeAllItemWidget: function() {
+			var $openWidgets = $( '.happyforms-choice-item-widget', this.$el );
+
+			$openWidgets.removeClass( 'happyforms-widget-choice-expanded' );
+			$openWidgets.find( '.happyforms-part-item-advanced' ).slideUp( 200, function() {
+				var $toggleIndicator = $openWidgets.find( '.toggle-indicator' );
+				$toggleIndicator.removeClass( 'opened' );
+			} );
+		},
+
 	} );
 
 	happyForms.previewer = _.extend( happyForms.previewer, {
+		onOptionAddCallback: function() {
+			// noop
+		},
+
 		onOptionDeleteCallback: function( id, html, options ) {
 			var part = this.getPartModel( id );
 			var $part = this.getPartElement( html );

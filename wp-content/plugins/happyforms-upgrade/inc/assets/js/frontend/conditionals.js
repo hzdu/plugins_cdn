@@ -15,6 +15,16 @@
 		}
 	};
 
+	Conditionals.prototype.reset = function() {
+		if ( ! this.conditions ) {
+			return;
+		}
+
+		for ( var formID in this.conditions ) {
+			this.resetConditions( formID );
+		}
+	};
+
 	Conditionals.prototype.reduceClauses = function( clauses ) {
 		clauses = clauses.map( this.reduceClause.bind( this ) );
 
@@ -93,11 +103,54 @@
 
 		var conditions = this.conditions[formID];
 
+		$( '[data-happyforms-type="select"]', $form ).each( function() {
+			var $select = $( 'select', $( this ) );
+
+			if ( ! $( this ).data( 'originalHTML' ) ) {
+				$( this ).data( 'originalHTML', $select.html() );
+			}
+
+			$( this ).data( 'originalValue', $select.val() );
+			$select.html( $( this ).data( 'originalHTML' ) );
+		} );
+
+		// Run the whole condition stack 
+		// multiple times. Could be optimized,
+		// but ensures that any decently-sized chain of logic is correctly resolved.
+		for ( var l = 0; l < settings.chainLength; l ++ ) {
+			$( '[' + this.visitedAttribute + ']', $form ).removeAttr( this.visitedAttribute );
+
+			conditions.forEach( function( condition ) {
+				var result = this.evaluateIf( condition, formID );
+				this.applyThen( result, condition.then, formID );
+
+				$( '[data-happyforms-type="select"]', $form ).each( function() {
+					$( 'select', $( this ) ).val( $( this ).data( 'originalValue' ) );
+				} );
+			}.bind( this ) );
+		}
+
+		$( '[data-happyforms-type="select"]', $form ).each( function() {
+			var $select = $( 'select', $( this ) );
+
+			$( '[data-hidden]', $select ).remove();
+			$select.val( $( this ).data( 'originalValue' ) );
+		} );
+	};
+
+	Conditionals.prototype.resetConditions = function( formID ) {
+		var $form = $( '[name="happyforms_form_id"][value="' + formID + '"]' ).parents( '.happyforms-form' );
+
+		if ( ! this.conditions[formID] ) {
+			return;
+		}
+
+		var conditions = this.conditions[formID];
+
 		$( '[' + this.visitedAttribute + ']', $form ).removeAttr( this.visitedAttribute );
 
 		conditions.forEach( function( condition ) {
-			var result = this.evaluateIf( condition, formID );
-			this.applyThen( result, condition.then, formID );
+			this.resetThen( condition.then, formID );
 		}.bind( this ) );
 	};
 
@@ -139,17 +192,52 @@
 		return $part;
 	}
 
-	Conditionals.prototype.applyThen = function( result, then, formID ) {
-		var $part = this.getPartByID( then.key, formID );
-		var callback = this.callbacks[then.cb];
+	Conditionals.prototype.getOptionByID = function( optionID, formID ) {
+		var $form = $( `#happyforms-${formID}` );
+		var $option = $( `#${optionID}`, $form );
 
+		return $option;
+	}
+
+	Conditionals.prototype.applyThen = function( result, then, formID ) {
+		var callback = this.callbacks[then.cb];
+		
 		if ( ! callback ) {
 			return;
 		}
 
-		callback.call( this, $part, result, then );
+		if ( 'show' === then.cb || 'hide' === then.cb || 'set' === then.cb ) {
+			var $part = this.getPartByID( then.key, formID );
+			
+			callback.call( this, $part, result, then );
+			$part.attr( this.visitedAttribute, true );
+		} else if ( 'show_option' === then.cb || 'hide_option' === then.cb ) {
+			var $option = this.getOptionByID( then.key, formID );
+			
+			callback.call( this, $option, result, then );
+			$option.attr( this.visitedAttribute, true );
+		}
+	};
 
-		$part.attr( this.visitedAttribute, true );
+	Conditionals.prototype.resetThen = function( then, formID ) {
+		var callback = this.callbacks[then.cb];
+		
+		if ( ! callback ) {
+			return;
+		}
+
+		if ( 'show' === then.cb || 'hide' === then.cb ) {
+			var $part = this.getPartByID( then.key, formID );
+			$part.show();
+		} else if ( 'show_option' === then.cb || 'hide_option' === then.cb ) {
+			var $option = this.getOptionByID( then.key, formID );
+			
+			if ( ! $option.is( 'option' ) && ! $option.is( 'optgroup' ) ) {
+				$option.show();	
+			} else {
+				$option.removeAttr( 'data-hidden' );
+			}
+		}
 	};
 
 	Conditionals.prototype.getPartValue = function( part ) {
@@ -204,22 +292,52 @@
 	};
 
 	Conditionals.prototype.callbacks.show = function( $part, result, then ) {
-		if ( ! $part.attr( this.visitedAttribute ) ) {
-			$part.hide();
-		}
+		if ( ! $part.is( '[data-happyforms-type="select"]' ) ) {
+			var $previouslyChecked = $( 'input[type="radio"]:checked, input[type="checkbox"]:checked', $part );
 
-		if ( result ) {
-			$part.show();
+			if ( ! $part.attr( this.visitedAttribute ) ) {
+				$previouslyChecked.prop( 'checked', false );
+				$part.hide();
+			}
+
+			if ( result ) {
+				$previouslyChecked.prop( 'checked', true );
+				$part.show();
+			}
+		} else {
+			var previousValue = $( ':selected', $part ).val();
+
+			if ( ! $part.attr( this.visitedAttribute ) ) {
+				$part.data( 'originalValue', '' );
+				$part.hide();
+			}
+
+			if ( result ) {
+				$part.data( 'originalValue', previousValue );
+				$part.show();
+			}
 		}
 	};
 
 	Conditionals.prototype.callbacks.hide = function( $part, result, then ) {
-		if ( ! $part.attr( this.visitedAttribute ) ) {
-			$part.show();
-		}
+		if ( ! $part.is( '[data-happyforms-type="select"]' ) ) {
+			if ( ! $part.attr( this.visitedAttribute ) ) {
+				$part.show();
+			}
 
-		if ( result ) {
-			$part.hide();
+			if ( result ) {
+				$( 'input[type="radio"]:checked, input[type="checkbox"]:checked', $part ).prop( 'checked', false );
+				$part.hide();
+			}
+		} else {
+			if ( ! $part.attr( this.visitedAttribute ) ) {
+				$part.show();
+			}
+
+			if ( result ) {
+				$part.data( 'originalValue', '' );
+				$part.hide();
+			}
 		}
 	};
 
@@ -232,6 +350,68 @@
 
 		if ( ! $part.attr( this.visitedAttribute ) || result ) {
 			$part.trigger( 'condition-update', data );
+		}
+	};
+
+	Conditionals.prototype.callbacks.show_option = function( $option, result, then ) {
+		if ( ! $option.is( 'option' ) && ! $option.is( 'optgroup' ) ) {
+			var $previouslyChecked = $( 'input[type="radio"]:checked, input[type="checkbox"]:checked', $option );
+
+			if ( ! $option.attr( this.visitedAttribute ) ) {
+				$previouslyChecked.prop( 'checked', false );
+				$option.hide();
+			}
+
+			if ( result ) {
+				$previouslyChecked.prop( 'checked', true );
+				$option.show();
+			}
+		} else {
+			var previouslySelected = $option.is( ':selected' );
+
+			if ( ! $option.attr( this.visitedAttribute ) ) {
+				if ( previouslySelected ) {
+					$option.parents( '[data-happyforms-type="select"]' ).data( 'originalValue', '' );
+				}
+
+				$option.attr( 'data-hidden', true );
+			}
+
+			if ( result ) {
+				if ( previouslySelected ) {
+					$option.parents( '[data-happyforms-type="select"]' ).data( 'originalValue', $option.val() );
+				}
+
+				$option.removeAttr( 'data-hidden' );
+			}
+		}
+	};
+
+	Conditionals.prototype.callbacks.hide_option = function( $option, result, then ) {
+		if ( ! $option.is( 'option' ) && ! $option.is( 'optgroup' ) ) {
+			if ( ! $option.attr( this.visitedAttribute ) ) {
+				$option.show();
+			}
+
+			if ( result ) {
+				$( 'input[type="radio"], input[type="checkbox"]', $option ).prop( 'checked', false );
+				
+				$option.hide();
+			}
+		} else {
+			var previouslySelected = $option.is( ':selected' );
+
+			if ( ! $option.attr( this.visitedAttribute ) ) {
+				$option.removeAttr( 'data-hidden' );
+			}
+
+			if ( result ) {
+				if ( previouslySelected ) {
+					$option.parents( '[data-happyforms-type="select"]' ).data( 'originalValue', '' );
+				}
+				
+				$option.attr( 'data-hidden', true );
+			}
 		}
 	};
 

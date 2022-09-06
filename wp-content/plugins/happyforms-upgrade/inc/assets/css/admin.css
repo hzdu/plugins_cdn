@@ -34,6 +34,14 @@
     padding: 8px 0 7px;
 }
 
+.fixed th.column-messages {
+    padding: 0;
+}
+
+.fixed th.column-messages a{
+    padding: 8px 0;
+}
+
 .fixed .column-messages .dashicons {
     position: relative;
     top: -1px;
@@ -616,6 +624,10 @@ body.post-type-happyforms-message #post-body .misc-pub-comment-status:before {
     display: none;
 }
 
+.post-type-happyforms-message #misc-publishing-actions .misc-pub-curtime.happyforms-submission-timestamp {
+    display: block;
+}
+
 .post-type-happyforms-message #minor-publishing-actions {
     padding-left: 0;
     text-align: left;
@@ -979,4 +991,10 @@ fieldset.happyforms-activity-settings-pagination input[type="number"] {
 
 .tablenav.top input#delete_all_spam {
     margin-left: -8px;
+}
+
+.payment-details-link svg {
+    color: #2271b1;
+    fill: #2271b1;
+    margin-bottom: -2px;
 }

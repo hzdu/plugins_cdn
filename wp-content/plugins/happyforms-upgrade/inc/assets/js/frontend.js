@@ -149,6 +149,8 @@
 				HappyForms.wrapPart( $part, $form );
 			} );
 
+			$( '[name="client_referer"]', this.$form ).val( window.location.href );
+
 			this.$el.trigger( 'happyforms-change' );
 			this.$el.trigger( 'happyforms-init' );
 
@@ -161,6 +163,9 @@
 			this.$submit.on( 'click', this.buttonSubmit.bind( this ) );
 			this.$submitLinks.on( 'click', this.linkSubmit.bind( this ) );
 			this.$el.on( 'happyforms-scrolltop', this.onScrollTop.bind( this ) );
+			this.$el.on( 'click', '.happyforms-fill-out-again', this.fillAgain.bind( this ) );
+			this.$el.on( 'click', '.happyforms-print-submission', this.printSubmission.bind( this ) );
+			this.$el.on( 'click', '.happyforms-redirect-to-page', this.redirectNow.bind( this ) );
 		},
 
 		detach: function() {
@@ -172,12 +177,14 @@
 
 		serialize: function( submitEl ) {
 			var action = $( '[name=action]', this.$form ).val();
+			var clientReferer = $( '[name="client_referer"]', this.$form ).val();
 			var form_id = $( '[name=happyforms_form_id]', this.$form ).val();
 			var step = this.$step.val();
 			var randomSeed = $( '[name=happyforms_random_seed]', this.$form ).val();
 
 			var formData = [
 				{ name: 'action', value: action },
+				{ name: 'happyforms_client_referer', value: clientReferer },
 				{ name: 'happyforms_form_id', value: form_id },
 				{ name: 'happyforms_step', value: step },
 				{ name: 'happyforms_random_seed', value: randomSeed },
@@ -269,15 +276,6 @@
 				return false;
 			}
 
-			if ( true === response.success && response.data.redirect ) {
-				if ( ! response.data.redirect_to_blank ) {
-					window.location.replace( response.data.redirect );
-					return false;
-				} else {
-					window.open( response.data.redirect, '_blank' );
-				}
-			}
-
 			if ( response.data.html ) {
 				var $el = $( response.data.html );
 				var $parts = $( '[data-happyforms-type]', this.$form );
@@ -315,6 +313,25 @@
 
 					this.$el.trigger( 'happyforms-scrolltop', elTopOffset );
 				}
+
+				if ( response.data.printable_data && $( '.happyforms-print-submission', this.$el ).length > 0 ) {
+
+					var $submissionLinks = $( '.happyforms-form-links', this.$el );
+					$('<iframe>', {
+						srcdoc: response.data.printable_data,
+					    class: 'happyforms-printable-submission-frame',
+					    css: {
+					        display: 'none',
+					    }
+					} ).appendTo( $submissionLinks );
+				}
+			}
+
+			if ( true === response.success && response.data.redirect ) {
+				setTimeout(function(){
+		            window.location.href = response.data.redirect;
+					return false;
+	         	}, ( response.data.redirect_after * 1000 ) );
 			}
 		},
 
@@ -326,7 +343,32 @@
 			$( 'html, body' ).animate( {
 				scrollTop: offset + 'px'
 			}, 500 );
-		}
+		},
+
+		printSubmission: function( e ) {
+			e.preventDefault();
+
+			$('.happyforms-printable-submission-frame', this.$el ).get(0).contentWindow.print();
+		},
+
+		fillAgain: function( e ) {
+			e.preventDefault();
+
+			var path = window.location.pathname;
+			path = path.substring(0, path.length - 1);
+
+			var url = window.location.origin + path;
+			url += '#' + this.$form.attr( 'id' );
+
+			window.history.pushState( null, null, url );
+ 			window.location.reload();
+		},
+
+		redirectNow: function( e ) {
+			e.preventDefault();
+
+			window.location.href = $( e.target ).data( 'url' );
+		},
 	}
 
 	HappyForms.Part = function( el ) {

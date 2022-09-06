@@ -853,6 +853,7 @@
   font-weight: normal !important;
   text-decoration: underline;
   display: inline-block;
+  cursor: pointer;
 }
 
 .happyforms-styles button.happyforms-text-button.happyforms-clear-session {
@@ -896,13 +897,19 @@
   color: var(--happyforms-color-error-notice-text) !important;
 }
 
-.happyforms-styles .happyforms-message-notices h2 {
+.happyforms-styles .happyforms-message-notices h2,
+.happyforms-styles .happyforms-redirect-notice {
   margin-top: 0 !important;
   margin-bottom: 0 !important;
   padding-top: 0 !important;
   padding-bottom: 0 !important;
   font-weight: normal !important;
   font-size: 16px !important
+}
+
+.happyforms-styles .happyforms-redirect-notice {
+  color: #000;
+  color: var(--happyforms-color-part-title);
 }
 
 .happyforms-styles .happyforms-message-notices h2:before {

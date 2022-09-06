@@ -733,6 +733,14 @@
 			var attrs = part.toJSON();
 			delete attrs.id;
 
+			if ( [ 'radio', 'checkbox', 'select' ].includes( part.get( 'type' ) ) ) {
+				var duplicatePartId = happyForms.utils.uniqueId( part.get( 'type' ) + '_', part.collection );
+
+				for ( var o = 0; o < attrs.options.length; o ++ ) {
+					attrs.options[o].id = attrs.options[o].id.replace( `${part.id}_`, `${duplicatePartId}_` );
+				}
+			}
+
 			var duplicate = PartFactory.model(
 				attrs,
 				{ collection: this.model.get( 'parts' ) },
@@ -1603,7 +1611,6 @@
 			'keyup [data-attribute]': 'onInputChange',
 			'change [data-attribute]': 'onInputChange',
 			'change input[type=number]': 'onNumberChange',
-			'keyup input[data-attribute="abandoned_resume_save_button_label"]': 'onAbandonedResumeSaveButtonLabelChange',
 			'click .insert-media': 'onAddMediaClick',
 		} ),
 
@@ -1619,7 +1626,7 @@
 		initialize: function() {
 			classes.views.Base.prototype.initialize.apply( this, arguments );
 
-			this.listenTo( this.model, 'change:allow_abandoned_resume', this.onAbandonedResumeToggle );
+			this.listenTo( this.model, 'change:abandoned_resume_response_expire', this.onAbandonedResumeToggle );
 			this.listenTo( happyForms, 'logic-group-added', this.onLogicGroupAdd );
 		},
 
@@ -1677,17 +1684,17 @@
 
 			var partsWithLimitedOptions = happyForms.form.get( 'parts' ).filter( function( part ) {
 				var hasOptions = [ 'radio', 'checkbox', 'select' ].includes( part.get( 'type' ) );
-				
+
 				if ( ! hasOptions ) {
 					return false;
 				}
-				
+
 				var hasLimitedOptions = part.get( 'options' ).find( function( option ) {
 					var limitSubmissionAmount = option.get( 'limit_submissions_amount' );
-					
+
 					return typeof limitSubmissionAmount !== 'undefined' && limitSubmissionAmount != '';
 				} );
-				
+
 				return hasLimitedOptions;
 			} );
 
@@ -1973,14 +1980,6 @@
 			happyForms.previewSend( 'happyforms-form-dom-update', data );
 		},
 
-		onAbandonedResumeSaveButtonLabelChange: function( e ) {
-			var data = {
-				callback: 'onAbandonedResumeSaveButtonLabelChangeCallback',
-			};
-
-			happyForms.previewSend( 'happyforms-form-dom-update', data );
-		},
-
 		onNumberChange: function( e ) {
 			var $input = $( e.target );
 			var value = parseInt( $input.val(), 10 );
@@ -2057,8 +2056,8 @@
 		render: function() {
 			classes.views.FormSetup.prototype.render.apply( this, arguments );
 
-			if ( this.model.get( 'allow_abandoned_resume' ) ) {
-				this.$el.addClass( 'allow-abandoned-resume' );
+			if ( '' !== this.model.get( 'abandoned_resume_response_expire' ) ) {
+				this.$el.addClass( 'allow-resume' );
 			}
 
 			return this;
@@ -2073,6 +2072,7 @@
 			'keyup [data-attribute="optional_part_label"]': 'onOptionalPartLabelChange',
 			'keyup [data-attribute="required_field_label"]': 'onRequiredPartLabelChange',
 			'keyup [data-attribute="submit_button_label"]': 'onSubmitButtonLabelChange',
+			'keyup input[data-attribute="abandoned_resume_save_button_label"]': 'onAbandonedResumeSaveButtonLabelChange',
 			'keyup [data-attribute="words_label_min"]': 'onCharLimitMinWordsChange',
 			'keyup [data-attribute="words_label_max"]': 'onCharLimitMaxWordsChange',
 			'keyup [data-attribute="characters_label_min"]': 'onCharLimitMinCharsChange',
@@ -2232,7 +2232,7 @@
 				self.$el.addClass( 'is-scheduled' );
 			}
 
-			if ( happyForms.form.get( 'allow_abandoned_resume' ) == 1 ) {
+			if ( '' !== this.model.get( 'abandoned_resume_response_expire' ) ) {
 				self.$el.addClass( 'allow-resume' );
 			}
 
@@ -2380,6 +2380,19 @@
 			if ( hasPhoneInternational ) {
 				self.$el.addClass( 'has-phone-international' );
 			}
+
+			var rankOrder = this.model.get( 'parts' ).findWhere( {
+				type: 'rank_order',
+			} );
+
+			var googleAutocomplete = this.model.get( 'parts' ).findWhere( {
+				has_autocomplete: 1,
+			} );
+
+			if ( rankOrder || googleAutocomplete ) {
+				self.$el.addClass( 'has-search-not-found' );
+			}
+
 		},
 
 		triggerKeyUp: function( e ) {
@@ -2567,6 +2580,14 @@
 			};
 
 			happyForms.previewSend( 'happyforms-form-dom-update', data )
+		},
+
+		onAbandonedResumeSaveButtonLabelChange: function( e ) {
+			var data = {
+				callback: 'onAbandonedResumeSaveButtonLabelChangeCallback',
+			};
+
+			happyForms.previewSend( 'happyforms-form-dom-update', data );
 		},
 
 	} );
@@ -3013,7 +3034,7 @@
 
 		onSubmitButtonLabelChangeCallback: function ( $form ) {
 			var submitLabel = happyForms.form.get( 'submit_button_label' );
-			$( '.happyforms-button--submit', $form ).attr( 'value', submitLabel );
+			$( '.happyforms-button--submit', $form ).html( submitLabel );
 		},
 
 		onCharLimitMinWordsChangeCallback: function( $form ) {
@@ -3044,7 +3065,7 @@
 
 		onAbandonedResumeSaveButtonLabelChangeCallback: function( $form ) {
 			var label = happyForms.form.get( 'abandoned_resume_save_button_label' );
-			$( '.happyforms-save-session', $form ).text( label );
+			$( '.happyforms-save-session', $form ).html( label );
 		},
 
 		onPollShowResultsLabelChangeCallback:  function( $form ) {
@@ -3064,12 +3085,12 @@
 
 		onFilesBrowseLabelChangeCallback: function ( $form ) {
 			var label = happyForms.form.get( 'file_upload_browse_label' );
-			$( '.happyforms-attachment .happyforms-input-group__suffix--button a.happyforms-plain-button', $form ).text( label );
+			$( '.happyforms-attachment .happyforms-input-group__suffix--button button.happyforms-plain-button', $form ).html( label );
 		},
 
 		onFilesDeleteLabelChangeCallback: function ( $form ) {
 			var label = happyForms.form.get( 'file_upload_delete_label' );
-			$( '.happyforms-attachment-link.happyforms-delete-attachment', $form ).text( label );
+			$( '.happyforms-attachment-link.happyforms-delete-attachment', $form ).html( label );
 		},
 
 		onSignatureStartDrawingButtonLabelChangeCallback: function( $form ) {
@@ -3093,9 +3114,9 @@
 		},
 
 		onAbandonedResumeToggleCallback: function( $form ) {
-			var value = happyForms.form.get( 'allow_abandoned_resume' );
+			var value = happyForms.form.get( 'abandoned_resume_response_expire' );
 
-			if ( 1 == value ) {
+			if ( '' !== value ) {
 				$form.attr( 'data-happyforms-resumable', '' );
 			} else {
 				$form.removeAttr( 'data-happyforms-resumable' );

@@ -66,6 +66,16 @@
 		$refreshedPart.prepend( $( $pencil ) );
 		HappyForms.wrapPart( $refreshedPart, $form );
 		$refreshedPart.trigger( 'happyforms.attach' );
+
+		if ( e.callback ) {
+			var context = parent.happyForms.previewer;
+			var callback = context[e.callback];
+			var options = e.options || {}
+
+			if ( callback ) {
+				callback.call( context, $form, options, $ );
+			}
+		}
 	}
 
 	handlers.formPartsRefresh = function( e ) {

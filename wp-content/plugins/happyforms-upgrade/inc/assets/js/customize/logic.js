@@ -24,10 +24,6 @@
 
 				return json;
 			},
-
-			onConditionsChange: function() {
-				happyForms.form.trigger( 'change' );
-			}
 		} ),
 
 		If: Backbone.Model.extend( {
@@ -54,13 +50,25 @@
 
 	var ConditionHelpers = {
 		isChoicePart: function( partModel ) {
-			var choicePartTypes = [ 'radio', 'checkbox', 'select' ];
-
-			if ( -1 !== choicePartTypes.indexOf( partModel.get( 'type' ) ) ) {
+			if ( [ 'radio', 'checkbox', 'select', 'option' ].includes( partModel.get( 'type' ) ) ) {
 				return true;
 			}
 
 			return false;
+		},
+
+		getAllChoiceParts: function( formItemId ) {
+			var parts = happyForms.form.get( 'parts' );
+			var types = [ 'radio', 'checkbox', 'select' ];
+			var choiceParts = parts.filter( function( model ) {
+				return (
+					types.includes( model.get( 'type' ) ) &&
+					model.id !== formItemId &&
+					! model.get( 'options' ).pluck( 'id' ).includes( formItemId )
+				);
+			} );
+
+			return choiceParts;
 		},
 	};
 
@@ -131,6 +139,104 @@
 					self.settingsLogicViews.push( logicView );
 				} );
 			}
+		} );
+	} );
+
+	/**
+	 * Extend choice-based fields to support conditional logic.
+	 */
+	[
+		'radio',
+		'checkbox',
+		'select',
+	].forEach( function( fieldView ) {
+		var FieldView = happyForms.classes.views.parts[fieldView];
+
+		happyForms.classes.views.parts[fieldView] = FieldView.extend( {
+			
+			addOptionItemView: function( optionModel, options ) {
+				options = options || {};
+				
+				if ( options.duplicateOf ) {
+					this.duplicateChoiceLogic( options.duplicateOf, optionModel );
+				}
+
+				FieldView.prototype.addOptionItemView.apply( this, arguments );
+			},
+
+			duplicateChoiceLogic: function( option, newOption ) {
+				var optionConditions = happyForms.form.get( 'conditions' ).filter( function( model ) {
+					return model.get( 'then' ).get( 'key' ) === option.id;
+				} );
+
+				if ( 0 === optionConditions.length ) {
+					return;
+				}
+
+				optionConditions.forEach( function( model ) {
+					var newModel = new ConditionModels.Condition( model.toJSON() );
+
+					newModel.get( 'then' ).set( 'key', newOption.id );
+					happyForms.form.get( 'conditions' ).add( newModel );
+				} );
+			},
+
+		} );
+	} );
+
+	/**
+	 * Extend choice views in all choice-based fields to support conditional logic.
+	 */
+	[
+		'radioOptionItem',
+		'radioOptionHeading',
+		'checkboxOptionItem',
+		'checkboxOptionHeading',
+		'selectOptionItem',
+		'selectOptionHeading',
+	].forEach( function( optionView ) {
+		var OptionView = happyForms.classes.views[optionView];
+
+		happyForms.classes.views[optionView] = OptionView.extend( {
+			events: _.extend( {}, OptionView.prototype.events, {
+				'click .happyforms-item-logic': 'onItemLogicButtonClick',
+			} ),
+
+			logicView: null,
+
+			onReady: function() {
+				OptionView.prototype.onReady.apply( this, arguments );
+
+				this.addLogicView();
+			},
+
+			onItemLogicButtonClick: function( e ) {
+				e.preventDefault();
+				e.stopPropagation();
+
+				$( '.happyforms-part-choice-logic-wrap', this.$el ).slideToggle( 300, function() {
+					$( e.target ).toggleClass( 'opened' );
+				} );
+			},
+
+			addLogicView: function() {
+				var self = this;
+				
+				this.logicView = new LogicView( {
+					el: $( '.happyforms-logic-view', self.$el ),
+					options: {
+						autoAdd: true,
+						logicGroupSettings: {
+							type: 'option',
+							subtype: this.model.get( 'is_heading' ) ? 'heading' : 'item'
+						},
+						formItem: self.model
+					}
+				} );
+
+				this.logicView.trigger( 'ready' );
+			},
+
 		} );
 	} );
 
@@ -209,20 +315,6 @@
 			this.optionsQueue[control] = data;
 		},
 
-		getAllChoiceParts: function() {
-			var formItemId = this.formItem.id;
-			var parts = happyForms.form.get( 'parts' );
-			var choiceParts = parts.filter( function( model ) {
-				return (
-					model.get( 'type' ) === 'radio' ||
-					model.get( 'type' ) === 'checkbox' ||
-					model.get( 'type' ) === 'select'
-				) && model.id !== formItemId;
-			} );
-
-			return choiceParts;
-		},
-
 		/**
 		 * Goes through all conditions and adds them to the current view. That means all conditions for the form part
 		 * that this Logic View is for, or for control in Setup / Email step.
@@ -248,7 +340,7 @@
 			}
 
 			if ( this.autoAdd ) {
-				if ( this.getAllChoiceParts().length ) {
+				if ( ConditionHelpers.getAllChoiceParts( this.formItem.id ).length ) {
 					this.addNewLogicGroup();
 				} else {
 					this.showPlaceholder();
@@ -279,7 +371,7 @@
 				return;
 			}
 
-			if ( ! this.getAllChoiceParts().length ) {
+			if ( ! ConditionHelpers.getAllChoiceParts( this.formItem.id ).length ) {
 				this.showPlaceholder();
 				$( 'button', this.$el ).hide();
 
@@ -395,7 +487,7 @@
 		 * in case `autoAdd` is set to true. Otherwise, show placeholder text.
 		 */
 		onPartAdd: function() {
-			var parts = this.getAllChoiceParts();
+			var parts = ConditionHelpers.getAllChoiceParts( this.formItem.id );
 
 			if ( parts.length ) {
 				if ( this.autoAdd && ! this.logicGroups.length ) {
@@ -412,7 +504,7 @@
 		 * When part is removed, check if
 		 */
 		onPartRemove: function() {
-			var parts = this.getAllChoiceParts();
+			var parts = ConditionHelpers.getAllChoiceParts( this.formItem.id );
 
 			if ( ! parts.length ) {
 				if ( this.autoAdd ) {
@@ -543,7 +635,7 @@
 		},
 
 		onReady: function() {
-			if ( 'part' === this.getType() ) {
+			if ( 'part' === this.getType() || 'option' === this.getType() ) {
 				this.$actionDropdown = $( '.happyforms-conditional__action', this.$el );
 			}
 
@@ -588,7 +680,7 @@
 		 * to choose from the dropdown anymore.
 		 */
 		updateAllValues: function() {
-			if ( this.conditionModel.get( 'then' ).get( 'cb' ) && 'part' === this.getType() ) {
+			if ( this.conditionModel.get( 'then' ).get( 'cb' ) && ( 'part' === this.getType() || 'option' === this.getType() ) ) {
 				this.$actionDropdown.val( this.conditionModel.get( 'then' ).get( 'cb' ) ).trigger( 'change' );
 			}
 
@@ -824,7 +916,7 @@
 			this.formItemId = attrs.options.formItemId;
 			this.type = attrs.options.type;
 
-			this.listenTo( happyForms.form.get( 'parts' ), 'change', _.debounce( function( model ) {
+			this.listenTo( happyForms.form.get( 'parts' ), 'change add remove', _.debounce( function( model ) {
 				this.onPartsChange( model );
 			}, 1000 ) );
 
@@ -853,20 +945,6 @@
 			if ( 'set' === this.type || 'select' === this.type || 'template' === this.type ) {
 				this.$partDropdown.prop( 'disabled', false );
 			}
-		},
-
-		getAllChoiceParts: function() {
-			var partId = this.formItemId;
-			var parts = happyForms.form.get( 'parts' ).filter( function( partModel ) {
-				return (
-					'radio' === partModel.get( 'type' ) ||
-					'checkbox' === partModel.get( 'type' ) ||
-					'select' === partModel.get( 'type' ) &&
-					partModel.id !== partId
-				);
-			} );
-
-			return parts;
 		},
 
 		updateAllValues: function() {
@@ -899,7 +977,8 @@
 		 */
 		updateParts: function() {
 			var self = this;
-			var parts = this.getAllChoiceParts();
+			var parts = ConditionHelpers.getAllChoiceParts( this.formItemId );
+
 			var currentPart = this.$partDropdown.val();
 
 			if ( ! parts.length ) {
@@ -973,7 +1052,9 @@
 
 			if ( partOptions.length ) {
 				partOptions.each( function( optionModel ) {
-					self.addValue( optionModel );
+					if ( ! optionModel.get( 'is_heading' ) ) {
+						self.addValue( optionModel );
+					}
 				} );
 
 				this.$optionDropdown.prop( 'disabled', false );
@@ -1191,6 +1272,7 @@
 		},
 
 		duplicatePartLogic: function( part, newPart ) {
+			// Part logic
 			var itemConditions = happyForms.form.get( 'conditions' ).filter( function( model ) {
 				return model.get( 'then' ).get( 'key' ) === part.id;
 			} );
@@ -1201,6 +1283,28 @@
 				newModel.get( 'then' ).set( 'key', newPart.id );
 				happyForms.form.get( 'conditions' ).add( newModel );
 			} );
+
+			// Choice logic
+			if ( [ 'radio', 'checkbox', 'select' ].includes( part.get( 'type' ) ) ) {
+				part.get( 'options' ).each( function( option, o ) {
+					var optionConditions = happyForms.form.get( 'conditions' ).filter( function( model ) {
+						return model.get( 'then' ).get( 'key' ) === option.id;
+					} );
+
+					if ( 0 === optionConditions.length ) {
+						return;
+					}
+
+					var newOption = newPart.get( 'options' ).at( o );
+
+					optionConditions.forEach( function( model ) {
+						var newModel = new ConditionModels.Condition( model.toJSON() );
+
+						newModel.get( 'then' ).set( 'key', newOption.id );
+						happyForms.form.get( 'conditions' ).add( newModel );
+					} );
+				} );
+			}
 		},
 	} );
 
@@ -1264,10 +1368,17 @@
 	} );
 
 	var onPartDuplicateCallback = happyForms.previewer.onPartDuplicateCallback;
+	var onOptionAddCallback = happyForms.previewer.onOptionAddCallback;
 
 	happyForms.previewer = _.extend( happyForms.previewer, {
 		onPartDuplicateCallback: function( $form ) {
 			onPartDuplicateCallback.apply( this, arguments );
+
+			this.applyConditionalLogic( $form );
+		},
+
+		onOptionAddCallback: function( $form ) {
+			onOptionAddCallback.apply( this, arguments );
 
 			this.applyConditionalLogic( $form );
 		},
@@ -1277,7 +1388,8 @@
 		},
 
 		applyConditionalLogic: function( $form ) {
-			var preview = $form.get(0).ownerDocument.defaultView;
+			var form = $form.get(0);
+			var preview = form.ownerDocument.defaultView;
 
 			if ( ! preview.HappyForms || ! preview.HappyForms.conditionals ) {
 				return;
@@ -1286,8 +1398,18 @@
 			var conditions = {};
 			conditions[happyForms.form.id] = happyForms.form.attributes.conditions.toJSON();
 
+			preview.HappyForms.conditionals.reset();
 			preview.HappyForms.conditionals.setConditions( conditions );
 			preview.HappyForms.conditionals.applyConditions( happyForms.form.id );
+
+			var $document = $( form.ownerDocument );
+			var $conditionalStyles = $( '#happyforms-conditional-styles', $document );
+
+			// Remove first-render conditional styles,
+			// so that changes to conditional logic
+			// structures is immediately reflected in preview
+			// only through preview.HappyForms.conditionals[] calls.
+			$conditionalStyles.remove();
 		}, 
 	} );
 } ) ( jQuery, _, Backbone, wp.customize, _happyFormsConditionSettings, _happyFormsSettings );

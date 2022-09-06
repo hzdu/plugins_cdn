@@ -1,3 +1,9 @@
+##### [Version 2.3.6](https://github.com/Codeinwp/neve-pro-addon/compare/v2.3.5...v2.3.6) (2022-08-31)
+
+- [Fix] Compatibility issue between Sparks Variation Swatches & Neve Pro infinite products mechanism
+- [Fix] Regression-related compatibility to Sparks Comparison Table Sticky Bar & Neve Pro Sticky Add to Cart
+- [Fix] Admin notice related to Woo Booster
+
 ##### [Version 2.3.5](https://github.com/Codeinwp/neve-pro-addon/compare/v2.3.4...v2.3.5) (2022-08-18)
 
 - [Feat] Introduce two new conditions for Custom Layouts: page parent and page ancestor

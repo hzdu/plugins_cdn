@@ -13,23 +13,18 @@
 }
 
 #customize-control-active_email_service,
-#customize-control-alert_email_reply_to,
-#customize-control-multistep_info_bg_color,
-#customize-control-multistep_info_text_color {
+#customize-control-alert_email_reply_to {
   display: none;
 }
 
-
-#customize-control-redirect_on_complete.checked ~ .happyforms-nested-settings[data-trigger=redirect_on_complete],
 #customize-control-receive_email_alerts.checked ~ #customize-control-owner_attach_pdf.checked ~ .happyforms-nested-settings[data-trigger=owner_attach_pdf],
 #customize-control-send_confirmation_email.checked ~ #customize-control-attach_pdf.checked ~ .happyforms-nested-settings[data-trigger=attach_pdf],
 .has-recaptcha-integration #customize-control-captcha.checked ~ .happyforms-nested-settings[data-trigger=captcha],
 #customize-control-password_protect.checked ~ .happyforms-nested-settings[data-trigger=password_protect],
 #customize-control-unique_id.checked ~ .happyforms-nested-settings[data-trigger=unique_id],
 #customize-control-save_abandoned_responses.checked ~ .happyforms-nested-settings[data-trigger=save_abandoned_responses],
-.happyforms-email-view.allow-abandoned-resume #customize-control-abandoned_resume_send_alert_email.checked ~ .happyforms-nested-settings[data-trigger=abandoned_resume_send_alert_email],
+.happyforms-email-view.abandoned-resume-response-expire #customize-control-abandoned_resume_send_alert_email.checked ~ .happyforms-nested-settings[data-trigger=abandoned_resume_send_alert_email],
 #customize-control-preview_before_submit.checked ~ .happyforms-nested-settings[data-trigger=preview_before_submit],
-#customize-control-allow_abandoned_resume.checked ~ .happyforms-nested-settings[data-trigger=allow_abandoned_resume],
 #customize-control-schedule_visibility.checked ~ .happyforms-nested-settings[data-trigger=schedule_visibility],
 #customize-control-block_emails.checked ~ .happyforms-nested-settings[data-trigger=block_emails],
 #customize-control-block_language.checked ~ .happyforms-nested-settings[data-trigger=block_language],
@@ -45,20 +40,72 @@
 .has-email #customize-control-active_email_service[data-value=sendfox] ~ .happyforms-nested-settings[data-trigger=sendfox],
 .has-email #customize-control-active_email_service[data-value=sendgrid] ~ .happyforms-nested-settings[data-trigger=sendgrid],
 .has-email #customize-control-active_email_service[data-value=sendinblue] ~ .happyforms-nested-settings[data-trigger=sendinblue],
-.has-email #customize-control-sendinblue_double_opt_in.checked ~ .happyforms-nested-settings[data-trigger=sendinblue_double_opt_in],
+.has-email #customize-control-sendinblue_subscribe_status[data-value=""] ~ #customize-control-sendinblue_double_opt_in.checked ~ .happyforms-nested-settings[data-trigger=sendinblue_double_opt_in],
 .has-email #customize-control-alert_email_reply_to,
 .has-page-break #customize-control-multi_step_current_page_label,
 .has-page-break #customize-control-multi_step_back_label,
 .has-page_break #customize-control-color_multistep_info_bg_color,
 .has-page_break #customize-control-color_multistep_info_text_color,
 .has-page_break #customize-control-color_multistep_back_link,
-.has-page_break #customize-control-color_multistep_back_link_hover {
+.has-page_break #customize-control-color_multistep_back_link_hover,
+#customize-control-submission_redirect_notice,
+#customize-control-fill_out_again_link,
+#customize-control-redirect_now_link,
+#customize-control-print_submission_link {
   display: block;
 }
 
+#customize-control-mailerlite_subscribe_status ~ div.customize-control,
+#customize-control-sendfox_subscribe_status ~ div.customize-control,
+#customize-control-mailpoet_subscribe_status ~ div.customize-control,
+#customize-control-convertkit_subscribe_status ~ div.customize-control,
+#customize-control-constant_contact_subscribe_status ~ div.customize-control,
+#customize-control-aweber_subscribe_status ~ div.customize-control,
+#customize-control-active_campaign_subscribe_status ~ div.customize-control,
+#customize-control-mailchimp_subscribe_status ~ div.customize-control,
+#customize-control-sendgrid_subscribe_status ~ div.customize-control,
+#customize-control-sendinblue_subscribe_status ~ div.customize-control,
+#customize-control-sendinblue_list,
+#customize-control-sendinblue_list_unsubscribe {
+  display: none;
+}
 
+#customize-control-sendinblue_subscribe_status[data-value=""] ~ #customize-control-sendinblue_list,
+#customize-control-sendinblue_subscribe_status[data-value=""] ~ #customize-control-sendinblue_double_opt_in,
+#customize-control-sendinblue_subscribe_status[data-value="unsubscribe"] ~ #customize-control-sendinblue_list_unsubscribe,
+#customize-control-mailerlite_subscribe_status[data-value=""] ~ #customize-control-mailerlite_group,
+#customize-control-mailerlite_subscribe_status[data-value="unsubscribe"] ~ #customize-control-mailerlite_group_unsubscribe,
+#customize-control-sendfox_subscribe_status[data-value=""] ~ #customize-control-sendfox_list,
+#customize-control-sendfox_subscribe_status[data-value="unsubscribe"] ~ #customize-control-sendfox_list_unsubscribe,
+#customize-control-mailpoet_subscribe_status[data-value=""] ~ #customize-control-mailpoet_list,
+#customize-control-mailpoet_subscribe_status[data-value=""] ~ #customize-control-mailpoet_send_confirmation_email,
+#customize-control-mailpoet_subscribe_status[data-value="unsubscribe"] ~ #customize-control-mailpoet_list_unsubscribe,
+#customize-control-convertkit_subscribe_status[data-value=""] ~ #customize-control-convertkit_form,
+#customize-control-convertkit_subscribe_status[data-value=""] ~ #customize-control-convertkit_tags,
+#customize-control-convertkit_subscribe_status[data-value="unsubscribe"] ~ #customize-control-convertkit_tags_unsubscribe,
+#customize-control-constant_contact_subscribe_status[data-value=""] ~ #customize-control-constant_contact_list,
+#customize-control-constant_contact_subscribe_status[data-value="unsubscribe"] ~ #customize-control-constant_contact_list_unsubscribe,
+#customize-control-aweber_subscribe_status[data-value=""] ~ #customize-control-aweber_list,
+#customize-control-aweber_subscribe_status[data-value=""] ~ #customize-control-aweber_tags,
+#customize-control-aweber_subscribe_status[data-value="unsubscribe"] ~ #customize-control-aweber_list_unsubscribe,
+#customize-control-aweber_subscribe_status[data-value="unsubscribe"] ~ #customize-control-aweber_tags_unsubscribe,
+#customize-control-active_campaign_subscribe_status[data-value=""] ~ #customize-control-active_campaign_list,
+#customize-control-active_campaign_subscribe_status[data-value=""] ~ #customize-control-active_campaign_tags,
+#customize-control-active_campaign_subscribe_status[data-value="unsubscribe"] ~ #customize-control-active_campaign_list_unsubscribe,
+#customize-control-active_campaign_subscribe_status[data-value="unsubscribe"] ~ #customize-control-active_campaign_tags_unsubscribe,
+#customize-control-mailchimp_subscribe_status[data-value=""] ~ #customize-control-mailchimp_list,
+#customize-control-mailchimp_subscribe_status[data-value=""] ~ #customize-control-mailchimp_groups,
+#customize-control-mailchimp_subscribe_status[data-value=""] ~ #customize-control-mailchimp_tags,
+#customize-control-mailchimp_subscribe_status[data-value=""] ~ #customize-control-mailchimp_double_opt_in,
+#customize-control-mailchimp_subscribe_status[data-value="unsubscribe"] ~ #customize-control-mailchimp_list_unsubscribe,
+#customize-control-mailchimp_subscribe_status[data-value="unsubscribe"] ~ #customize-control-mailchimp_groups_unsubscribe,
+#customize-control-mailchimp_subscribe_status[data-value="unsubscribe"] ~ #customize-control-mailchimp_tags_unsubscribe,
+#customize-control-sendgrid_subscribe_status[data-value=""] ~ #customize-control-sendgrid_list,
+#customize-control-sendgrid_subscribe_status[data-value="unsubscribe"] ~ #customize-control-sendgrid_list_unsubscribe {
+  display: block;
+}
 
-#customize-control-alert_email_include_user_data {
+#customize-control-alert_email_include_user_data, {
   display: none;
 }
 
@@ -205,15 +252,6 @@ ul.happyforms-parts-list li[data-part-type="rank_order"] .happyforms-parts-list-
 
 /**
  *
- * Likert Scale part
- *
- */
- ul.happyforms-parts-list li[data-part-type="likert_scale"] .happyforms-parts-list-item-title:before {
-  background-image: url(../../../core/assets/svg/icons/scale.svg);
-}
-
-/**
- *
  * Phone part
  *
  */
@@ -254,6 +292,15 @@ ul.happyforms-parts-list li[data-part-type="rich_text"] {
  *
  */
 ul.happyforms-parts-list li[data-part-type="legal"] {
+  display: none;
+}
+
+/**
+ *
+ * Scale part
+ *
+ */
+ul.happyforms-parts-list li[data-part-type="likert_scale"] {
   display: none;
 }
 
@@ -454,8 +501,7 @@ ul.happyforms-parts-list li[data-part-type="media"] .happyforms-parts-list-item-
   * Progress Bar
   *
   */
-  #customize-control-progress_bar,
-  #customize-control-multistep {
+  #customize-control-progress_bar {
    display: none;
  }
 
@@ -482,11 +528,7 @@ ul.happyforms-parts-list li[data-part-type="media"] .happyforms-parts-list-item-
   * Poll
   *
   */
- ul.happyforms-parts-list li[data-part-type="poll"] .happyforms-parts-list-item-title:before {
-   background-image: url(../../../core/assets/svg/icons/poll.svg);
- }
-
-  #customize-control-poll {
+ .happyforms-style-view #customize-control-poll {
    display: none;
  }
 
@@ -554,11 +596,13 @@ ul.happyforms-parts-list li[data-part-type="media"] .happyforms-parts-list-item-
   padding: 0;
 }
 
-a.happyforms-form-part-logic {
+a.happyforms-form-part-logic,
+a.happyforms-item-logic {
   float: right;
 }
 
-a.happyforms-form-part-logic:before {
+a.happyforms-form-part-logic:before,
+a.happyforms-item-logic:before {
   position: relative;
   top: 2px;
   display: inline-block;
@@ -566,7 +610,8 @@ a.happyforms-form-part-logic:before {
   font-family: dashicons;
 }
 
-a.happyforms-form-part-logic.opened:before {
+a.happyforms-form-part-logic.opened:before,
+a.happyforms-item-logic.opened:before {
   content: "\f342";
 }
 
@@ -578,13 +623,15 @@ a.happyforms-form-part-logic.opened:before {
 .happyforms-setup-logic-wrap select,
 .happyforms-setup-logic-wrap input[type=text],
 .happyforms-part-settings-logic-view select,
-.happyforms-part-settings-logic-view input[type=text] {
+.happyforms-part-settings-logic-view input[type=text],
+.happyforms-part-choice-logic-wrap select {
   margin-bottom: 5px;
 }
 
 .happyforms-part-logic-wrap button,
 .happyforms-setup-logic-wrap button,
-.happyforms-part-settings-logic-view button {
+.happyforms-part-settings-logic-view button,
+.happyforms-part-choice-logic-wrap button {
   width: 100%;
   margin-top: 10px !important;
   margin-bottom: 10px !important;
@@ -696,20 +743,6 @@ button.happyforms-conditional__add {
   border-color: #e5e5e5;
 }
 
-#customize-control-redirect_url,
-#customize-control-redirect_blank {
-  display: none;
-}
-
-#customize-control-confirm_submission[data-value="redirect"] ~ .customize-control-group #customize-control-redirect_url,
-#customize-control-confirm_submission[data-value="redirect"] ~ .customize-control-group #customize-control-redirect_blank {
-  display: block;
-}
-
-#customize-control-redirect_blank {
-  margin-bottom: 0;
-}
-
 .happyforms-media__confirmation_email_content .attachment-details .edit-attachment,
 .happyforms-media__confirmation_email_content .attachment-details [data-setting=title],
 .happyforms-media__confirmation_email_content .attachment-details [data-setting=caption],
@@ -742,15 +775,6 @@ button.happyforms-conditional__add {
   display: none;
 }
 
-#customize-control-alert_email_attachment_links {
-  display: none;
-}
-
-.has-attachment #customize-control-alert_email_attachment_links,
-.has-signature.has-drawn-signature #customize-control-alert_email_attachment_links {
-  display: block;
-}
-
 .happyforms-payments-control {
   display: none;
 }
@@ -764,7 +788,8 @@ button.happyforms-conditional__add {
   display: block;
 }
 
-#customize-control-restrict_user_entries {
+#customize-control-restrict_user_entries,
+#customize-control-no_results_label {
   display: none;
 }
 
@@ -829,6 +854,9 @@ button.happyforms-conditional__add {
 .has-paypal-integration.has-payments #customize-control-paypal_redirect_hint,
 .has-stripe-integration.has-payments #customize-control-stripe_processing_hint,
 .has-stripe-integration.has-payments #customize-control-card_number_label,
+.has-payments.accept-coupons #customize-control-coupon_label,
+.has-payments.accept-coupons #customize-control-coupon_apply_label,
+.has-payments.accept-coupons #customize-control-coupon_not_allowed,
 .has-paypal-integration.has-stripe-integration.has-payments #customize-control-paypal_option_label,
 .has-paypal-integration.has-stripe-integration.has-payments #customize-control-stripe_option_label,
 .has-pay-what-you-want #customize-control-amount_too_low,
@@ -836,8 +864,7 @@ button.happyforms-conditional__add {
 .has-payments #customize-control-payment_completed,
 .has-payments #customize-control-payment_failed,
 .has-payments #customize-control-payment_cancelled,
-.has-date #customize-control-no_results_label,
-.has-rank_order #customize-control-no_results_label,
+.has-search-not-found #customize-control-no_results_label,
 .has-show-submissions-left #customize-control-submissions_left_label,
 .has-disallowed-validation #messages-view-errors,
 .has-disallowed-validation #customize-control-some_words_blocked,
