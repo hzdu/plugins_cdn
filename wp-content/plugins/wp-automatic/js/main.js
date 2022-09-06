@@ -127,7 +127,11 @@ jQuery(document).ready(function()
         {
 			// if visible slideup
 			jQuery(slide ).slideUp();
-			jQuery('#field111').val('*');
+			
+			//reset keywords box keyword to *
+			if(slide == '#field111-container'){
+				jQuery('#field111').val('*'); 
+			}
         }
         else
         {
