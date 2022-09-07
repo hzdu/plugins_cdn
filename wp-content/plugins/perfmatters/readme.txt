@@ -5,7 +5,7 @@ Tags: perfmatters
 Requires at least: 5.5
 Requires PHP: 7.0
 Tested up to: 6.0.2
-Stable tag: 1.9.8
+Stable tag: 1.9.9
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -35,8 +35,15 @@ Check out our [documentation](https://perfmatters.io/docs/) for more information
 
 == Changelog ==
 
+= 1.9.9 - 09.05.2022 =
+* Added additional autosave interval options.
+* Added WPBakery query string parameter to excluded page builders array.
+* Changed certain lazy loading classes to be more specific to prevent conflicts.
+* Adjusted lazy loading image attribute filter to not run unless images specifically are meant to be lazy loaded by Perfmatters.
+* Added an additional function_exists check in the JS class to prevent an error from being thrown in some cases.
+
 = 1.9.8 - 08.31.2022 =
-* Made adjustment to the CSS Background Image styles to work with some changes in the latest version of our lazy loading library.
+* Made adjustments to the CSS Background Image styles to work with some changes in the latest version of our lazy loading library.
 * Fixed an issue that was preventing quotations from being stripped from background image URLs when prepping an inline background image for lazy loading.
 * Fixed an issue where delayed CSS was not loading properly when using individual JS delay.
 * Fixed an error that was being logged in some cases when checking for an active plugin in the JS class.
