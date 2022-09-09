@@ -3,7 +3,7 @@ Contributors: Backup with UpdraftPlus, DavidAnderson, DNutbourne, aporter, snigh
 Tags: backup, restore, database backup, wordpress backup, cloud backup, s3, dropbox, google drive, onedrive, ftp, backups
 Requires at least: 3.2
 Tested up to: 6.0
-Stable tag: 1.22.19
+Stable tag: 1.22.20
 Author URI: https://updraftplus.com
 Donate link: https://david.dw-perspective.org.uk/donate
 License: GPLv3 or later
@@ -169,6 +169,12 @@ The <a href="https://updraftplus.com/news/">UpdraftPlus backup blog</a> is the b
 N.B. Paid versions of UpdraftPlus Backup / Restore have a version number which is 1 higher in the first digit, and has an extra component on the end, but the changelog below still applies. i.e. changes listed for 1.16.32.x of the free version correspond to changes made in 2.16.32.x of the paid version.
 
 
+= 1.22.20 - 05/Sep/2022 =
+
+* FEATURE: Restore the "upload immediately after creation" feature that was turned off whilst misbehaviour was investigated; fixes have been applied.
+* FIX: Prevent premature removal of zip manifest files
+* TWEAK: Improve the Handlebars template of the OpenStack (Swift) remote storage by taking PHP code out of it
+* TWEAK: Do not run out-of-place "SET @@GLOBAL.GTID_PURGED" statements upon restore
 
 = 1.22.19 - 29/Aug/2022 =
 
@@ -1591,4 +1597,4 @@ Reliance upon any non-English translation is at your own risk; UpdraftPlus can g
 We recognise and thank those mentioned at https://updraftplus.com/acknowledgements/ for code and/or libraries used and/or modified under the terms of their open source licences.
 
 == Upgrade Notice ==
-* 1.22.19: Deactivate new "immediate upload" feature whilst incorrect behaviour investigated. A couple of other minor tweaks. See changelog for full details. A recommended update for all.
+* 1.22.20: Reactivate new "immediate upload" feature whilst incorrect behaviour investigated and fixes applied. Other tweaks and fixes. See changelog for full details. A recommended update for all.
