@@ -38,6 +38,10 @@
     {
       "type": "vcs",
       "url": "https://github.com/publishpress/PublishPress.git"
+    },
+    {
+      "type": "git",
+      "url": "https://github.com/publishpress/publishpress-instance-protection"
     }
   ],
   "minimum-stability": "stable",
@@ -47,9 +51,10 @@
     "pimple/pimple": "3.2.3.*",
     "symfony/polyfill-ctype": "1.19.*",
     "alledia/wordpress-edd-license-integration": "^2.3",
-    "publishpress/publishpress": "3.7.1",
+    "publishpress/publishpress": "3.8.3",
     "composer/installers": "~1.0",
-    "psr/container": "1.0.0"
+    "psr/container": "1.0.0",
+    "publishpress/publishpress-instance-protection": "^1.0"
   },
   "require-dev": {
     "publishpress/publishpress-plugin-builder": "^1.2",
@@ -72,5 +77,9 @@
       "composer/installers": true,
       "dealerdirect/phpcodesniffer-composer-installer": true
     }
+  },
+  "scripts": {
+    "build": "vendor/bin/robo build --ansi",
+    "build-unpacked": "vendor/bin/robo build:unpacked --ansi"
   }
 }

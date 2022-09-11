@@ -3634,6 +3634,10 @@ var _fonts = __webpack_require__(/*! ../0-adv-components/fonts.jsx */ "./src/ass
                     type: 'boolean',
                     default: false
                 },
+                imageWidthUnit: {
+                    type: 'string',
+                    default: 'px'
+                },
                 imageWidth: {
                     type: 'number'
                 },
@@ -3648,6 +3652,10 @@ var _fonts = __webpack_require__(/*! ../0-adv-components/fonts.jsx */ "./src/ass
                     type: 'boolean',
                     default: true
                 },
+                imageSizeForce: {
+                    type: 'boolean',
+                    default: false
+                },
                 titleFontFamily: {
                     type: 'string'
                 },
@@ -3657,6 +3665,9 @@ var _fonts = __webpack_require__(/*! ../0-adv-components/fonts.jsx */ "./src/ass
                 titleTextTransform: {
                     type: 'string',
                     default: ''
+                },
+                titleLineHeight: {
+                    type: 'number'
                 },
                 infoFontFamily: {
                     type: 'string'
@@ -3668,6 +3679,15 @@ var _fonts = __webpack_require__(/*! ../0-adv-components/fonts.jsx */ "./src/ass
                     type: 'string',
                     default: ''
                 },
+                infoColor: {
+                    type: 'string'
+                },
+                infoLinkColor: {
+                    type: 'string'
+                },
+                infoLinkColorH: {
+                    type: 'string'
+                },
                 taxonomyFontFamily: {
                     type: 'string'
                 },
@@ -3677,6 +3697,12 @@ var _fonts = __webpack_require__(/*! ../0-adv-components/fonts.jsx */ "./src/ass
                 taxonomyTextTransform: {
                     type: 'string',
                     default: ''
+                },
+                taxonomyColor: {
+                    type: 'string'
+                },
+                taxonomyColorH: {
+                    type: 'string'
                 },
                 contentFontFamily: {
                     type: 'string'
@@ -3878,6 +3904,15 @@ var _fonts = __webpack_require__(/*! ../0-adv-components/fonts.jsx */ "./src/ass
                                         return props.setAttributes({ titleTextTransform: value });
                                     }
                                 }),
+                                React.createElement(RangeControl, {
+                                    label: __('Line height (em)', 'advanced-gutenberg'),
+                                    step: 0.1,
+                                    value: props.attributes.titleLineHeight,
+                                    onChange: function onChange(value) {
+                                        return props.setAttributes({ titleLineHeight: value });
+                                    },
+                                    allowReset: true
+                                }),
                                 React.createElement(_components.AdvColorControl, {
                                     label: __('Color', 'advanced-gutenberg'),
                                     value: props.attributes.titleColor,
@@ -3941,13 +3976,38 @@ var _fonts = __webpack_require__(/*! ../0-adv-components/fonts.jsx */ "./src/ass
                                     },
                                     className: "advgb-single-checkbox"
                                 }),
+                                React.createElement(
+                                    "div",
+                                    { className: "advgb-controls-title" },
+                                    React.createElement(
+                                        "span",
+                                        null,
+                                        __('Image width', 'advanced-gutenberg')
+                                    ),
+                                    !props.attributes.imageWidthAuto && React.createElement(
+                                        "div",
+                                        { className: "advgb-unit-wrapper", key: "unit" },
+                                        ['px', '%'].map(function (unit, uIdx) {
+                                            return React.createElement(
+                                                "span",
+                                                {
+                                                    className: "advgb-unit " + (props.attributes.imageWidthUnit === unit ? 'selected' : ''),
+                                                    key: uIdx,
+                                                    onClick: function onClick() {
+                                                        return props.setAttributes({ imageWidthUnit: unit });
+                                                    }
+                                                },
+                                                unit
+                                            );
+                                        })
+                                    )
+                                ),
                                 React.createElement(RangeControl, {
-                                    label: __('Image width (px)', 'advanced-gutenberg'),
                                     value: props.attributes.imageWidth || '',
                                     onChange: function onChange(value) {
                                         return props.setAttributes({ imageWidth: value });
                                     },
-                                    min: 100,
+                                    min: 0,
                                     max: 2000,
                                     disabled: props.attributes.imageWidthAuto,
                                     help: props.attributes.imageWidthAuto ? __('Uncheck "auto" to set a custom width', 'advanced-gutenberg') : ''
@@ -3960,8 +4020,21 @@ var _fonts = __webpack_require__(/*! ../0-adv-components/fonts.jsx */ "./src/ass
                                     },
                                     className: "advgb-single-checkbox"
                                 }),
+                                React.createElement(
+                                    "div",
+                                    { className: "advgb-controls-title" },
+                                    React.createElement(
+                                        "span",
+                                        null,
+                                        __('Image height', 'advanced-gutenberg')
+                                    ),
+                                    !props.attributes.imageHeightAuto && React.createElement(
+                                        "div",
+                                        { className: "advgb-unit-wrapper", key: "unit" },
+                                        "px"
+                                    )
+                                ),
                                 React.createElement(RangeControl, {
-                                    label: __('Image height (px)', 'advanced-gutenberg'),
                                     value: props.attributes.imageHeight || '',
                                     onChange: function onChange(value) {
                                         return props.setAttributes({ imageHeight: value });
@@ -3970,6 +4043,14 @@ var _fonts = __webpack_require__(/*! ../0-adv-components/fonts.jsx */ "./src/ass
                                     max: 2000,
                                     disabled: props.attributes.imageHeightAuto,
                                     help: props.attributes.imageHeightAuto ? __('Uncheck "auto" to set a custom height', 'advanced-gutenberg') : ''
+                                }),
+                                React.createElement(ToggleControl, {
+                                    label: __('Force custom size', 'advanced-gutenberg'),
+                                    help: __('This adds !important to CSS in frontend to avoid custom size being overridden. Disable if breaks the layout.', 'advanced-gutenberg'),
+                                    checked: props.attributes.imageSizeForce,
+                                    onChange: function onChange() {
+                                        return props.setAttributes({ imageSizeForce: !props.attributes.imageSizeForce });
+                                    }
                                 })
                             )
                         ),
@@ -3989,12 +4070,37 @@ var _fonts = __webpack_require__(/*! ../0-adv-components/fonts.jsx */ "./src/ass
                                 transformOnChange: function transformOnChange(value) {
                                     return props.setAttributes({ infoTextTransform: value });
                                 }
-                            })
+                            }),
+                            React.createElement(_components.AdvColorControl, {
+                                label: __('Color', 'advanced-gutenberg'),
+                                value: props.attributes.infoColor,
+                                onChange: function onChange(value) {
+                                    return props.setAttributes({ infoColor: value });
+                                }
+                            }),
+                            props.attributes.displayAuthor && React.createElement(
+                                Fragment,
+                                null,
+                                React.createElement(_components.AdvColorControl, {
+                                    label: __('Color for links', 'advanced-gutenberg'),
+                                    value: props.attributes.infoLinkColor,
+                                    onChange: function onChange(value) {
+                                        return props.setAttributes({ infoLinkColor: value });
+                                    }
+                                }),
+                                React.createElement(_components.AdvColorControl, {
+                                    label: __('Color for links (hover)', 'advanced-gutenberg'),
+                                    value: props.attributes.infoLinkColorH,
+                                    onChange: function onChange(value) {
+                                        return props.setAttributes({ infoLinkColorH: value });
+                                    }
+                                })
+                            )
                         ),
                         (props.attributes.showCategories !== 'hide' || props.attributes.showTags !== 'hide' || typeof props.attributes.showCustomTaxList !== 'undefined' && props.attributes.showCustomTaxList.length > 0) && React.createElement(
                             PanelBody,
                             {
-                                title: props.attributes.postType === 'post' ? __('Tags and Categories', 'advanced-gutenberg') : __('Taxonomies', 'advanced-gutenberg'),
+                                title: !props.attributes.postType || props.attributes.postType === 'post' ? __('Tags and Categories', 'advanced-gutenberg') : __('Taxonomies', 'advanced-gutenberg'),
                                 initialOpen: false,
                                 className: "advgb-pro-icon" },
                             React.createElement(_fonts.AdvFontControl, {
@@ -4009,6 +4115,20 @@ var _fonts = __webpack_require__(/*! ../0-adv-components/fonts.jsx */ "./src/ass
                                 transformValue: props.attributes.taxonomyTextTransform,
                                 transformOnChange: function transformOnChange(value) {
                                     return props.setAttributes({ taxonomyTextTransform: value });
+                                }
+                            }),
+                            React.createElement(_components.AdvColorControl, {
+                                label: __('Color', 'advanced-gutenberg'),
+                                value: props.attributes.taxonomyColor,
+                                onChange: function onChange(value) {
+                                    return props.setAttributes({ taxonomyColor: value });
+                                }
+                            }),
+                            (props.attributes.showCategories === 'link' || props.attributes.showTags === 'link' || props.attributes.linkCustomTax) && React.createElement(_components.AdvColorControl, {
+                                label: __('Color (hover)', 'advanced-gutenberg'),
+                                value: props.attributes.taxonomyColorH,
+                                onChange: function onChange(value) {
+                                    return props.setAttributes({ taxonomyColorH: value });
                                 }
                             })
                         ),
@@ -4202,16 +4322,17 @@ var _fonts = __webpack_require__(/*! ../0-adv-components/fonts.jsx */ "./src/ass
                     React.createElement(
                         "style",
                         null,
-                        "." + props.attributes.id + " .advgb-post-readmore a {\n                                " + (props.attributes.readMoreTextColor ? 'color:' + props.attributes.readMoreTextColor + ';' : '') + "\n                                " + (props.attributes.readMoreBgColor ? 'background:' + props.attributes.readMoreBgColor + ';' : '') + ";\n                                " + (props.attributes.readMoreBorderRadius ? 'border-radius:' + props.attributes.readMoreBorderRadius + 'px;' : '') + "\n                                " + (props.attributes.readMoreTextDecoration !== 'default' ? 'text-decoration:' + props.attributes.readMoreTextDecoration + ';' : '') + "\n                                " + (props.attributes.readMorePaddingEnabled ? 'padding:' + props.attributes.readMorePaddingTop + 'px ' + props.attributes.readMorePaddingRight + 'px ' + props.attributes.readMorePaddingBottom + 'px ' + props.attributes.readMorePaddingLeft + 'px;' : '') + "\n                                " + (props.attributes.readMoreBorderStyle !== 'none' ? 'border:' + props.attributes.readMoreBorderWidth + 'px ' + props.attributes.readMoreBorderStyle + ' ' + props.attributes.readMoreBorderColor + ';' : '') + "\n                            }\n                            ." + props.attributes.id + " .advgb-post-readmore a:hover,\n                            ." + props.attributes.id + " .advgb-post-readmore a:focus,\n                            ." + props.attributes.id + " .advgb-post-readmore a:active {\n                                " + (props.attributes.readMoreTextColorH ? 'color:' + props.attributes.readMoreTextColorH + ';' : '') + "\n                                " + (props.attributes.readMoreBgColorH ? 'background:' + props.attributes.readMoreBgColorH + ';' : '') + "\n                                " + (props.attributes.readMoreTextDecorationH !== 'default' ? 'text-decoration:' + props.attributes.readMoreTextDecorationH + ';' : '') + "\n                                " + (props.attributes.readMoreBorderStyle !== 'none' ? 'border-color:' + props.attributes.readMoreBorderColorH + ';' : '') + "\n                            }",
-                        props.attributes.imageSizeEnabled && "." + props.attributes.id + ".advgb-recent-posts-block .advgb-recent-posts .advgb-recent-post .advgb-post-thumbnail img {\n                                    height: " + (props.attributes.imageHeightAuto ? 'auto' : props.attributes.imageHeight + 'px') + ";\n                                    width: " + (props.attributes.imageWidthAuto ? 'auto' : props.attributes.imageWidth + 'px') + ";\n                                }",
+                        "." + props.attributes.id + " .advgb-post-readmore a {\n                                " + (props.attributes.readMoreTextColor ? 'color:' + props.attributes.readMoreTextColor + ' !important;' : '') + "\n                                " + (props.attributes.readMoreBgColor ? 'background:' + props.attributes.readMoreBgColor + ';' : '') + ";\n                                " + (props.attributes.readMoreBorderRadius ? 'border-radius:' + props.attributes.readMoreBorderRadius + 'px;' : '') + "\n                                " + (props.attributes.readMoreTextDecoration !== 'default' ? 'text-decoration:' + props.attributes.readMoreTextDecoration + ';' : '') + "\n                                " + (props.attributes.readMorePaddingEnabled ? 'padding:' + props.attributes.readMorePaddingTop + 'px ' + props.attributes.readMorePaddingRight + 'px ' + props.attributes.readMorePaddingBottom + 'px ' + props.attributes.readMorePaddingLeft + 'px;' : '') + "\n                                " + (props.attributes.readMoreBorderStyle !== 'none' ? 'border:' + props.attributes.readMoreBorderWidth + 'px ' + props.attributes.readMoreBorderStyle + ' ' + props.attributes.readMoreBorderColor + ';' : '') + "\n                            }\n                            ." + props.attributes.id + " .advgb-post-readmore a:hover,\n                            ." + props.attributes.id + " .advgb-post-readmore a:focus,\n                            ." + props.attributes.id + " .advgb-post-readmore a:active {\n                                " + (props.attributes.readMoreTextColorH ? 'color:' + props.attributes.readMoreTextColorH + ' !important;' : '') + "\n                                " + (props.attributes.readMoreBgColorH ? 'background:' + props.attributes.readMoreBgColorH + ';' : '') + "\n                                " + (props.attributes.readMoreTextDecorationH !== 'default' ? 'text-decoration:' + props.attributes.readMoreTextDecorationH + ';' : '') + "\n                                " + (props.attributes.readMoreBorderStyle !== 'none' ? 'border-color:' + props.attributes.readMoreBorderColorH + ';' : '') + "\n                            }",
+                        props.attributes.imageSizeEnabled && "." + props.attributes.id + ".advgb-recent-posts-block .advgb-recent-posts .advgb-recent-post .advgb-post-thumbnail img {\n                                    height: " + ((props.attributes.imageHeightAuto ? 'auto' : props.attributes.imageHeight + 'px') + (props.attributes.imageSizeForce ? ' !important' : '')) + ";\n                                    width: " + ((props.attributes.imageWidthAuto ? 'auto' : props.attributes.imageWidth + props.attributes.imageWidthUnit) + (props.attributes.imageSizeForce ? ' !important' : '')) + ";\n                                }",
                         React.createElement(_fonts.AdvSetGoogleFontStyle, {
                             fontFamily: props.attributes.titleFontFamily,
                             fontVariation: props.attributes.titleFontVariation,
                             textTransform: props.attributes.titleTextTransform,
                             cssSelector: "." + props.attributes.id + ".advgb-recent-posts-block .advgb-recent-posts .advgb-recent-post .advgb-post-title"
                         }),
-                        props.attributes.titleColor && "." + props.attributes.id + ".advgb-recent-posts-block .advgb-recent-posts .advgb-recent-post .advgb-post-title > a{\n                                    color: " + props.attributes.titleColor + "\n                                }",
-                        props.attributes.titleColorH && "." + props.attributes.id + ".advgb-recent-posts-block .advgb-recent-posts .advgb-recent-post .advgb-post-title > a:hover,\n                                ." + props.attributes.id + ".advgb-recent-posts-block .advgb-recent-posts .advgb-recent-post .advgb-post-title > a:focus,\n                                ." + props.attributes.id + ".advgb-recent-posts-block .advgb-recent-posts .advgb-recent-post .advgb-post-title > a:active {\n                                    color: " + props.attributes.titleColorH + "\n                                }",
+                        props.attributes.titleLineHeight && "." + props.attributes.id + ".advgb-recent-posts-block .advgb-recent-posts .advgb-recent-post .advgb-post-title {\n                                    line-height: " + props.attributes.titleLineHeight + "em;\n                                }",
+                        props.attributes.titleColor && "." + props.attributes.id + ".advgb-recent-posts-block .advgb-recent-posts .advgb-recent-post .advgb-post-title > a{\n                                    color: " + props.attributes.titleColor + " !important;\n                                }",
+                        props.attributes.titleColorH && "." + props.attributes.id + ".advgb-recent-posts-block .advgb-recent-posts .advgb-recent-post .advgb-post-title > a:hover,\n                                ." + props.attributes.id + ".advgb-recent-posts-block .advgb-recent-posts .advgb-recent-post .advgb-post-title > a:focus,\n                                ." + props.attributes.id + ".advgb-recent-posts-block .advgb-recent-posts .advgb-recent-post .advgb-post-title > a:active {\n                                    color: " + props.attributes.titleColorH + " !important;\n                                }",
                         (props.attributes.titleSizeD || props.attributes.titleHideD) && "@media (min-width:781px) {\n                                    ." + props.attributes.id + ".advgb-recent-posts-block .advgb-recent-posts .advgb-recent-post .advgb-post-title{\n                                        " + (props.attributes.titleSizeD ? 'font-size:' + props.attributes.titleSizeD + 'px;' : '') + "\n                                        " + (props.attributes.titleHideD ? 'display:none;' : '') + "\n                                    }\n                                }",
                         (props.attributes.titleSizeT || props.attributes.titleHideT) && "@media (min-width:361px) and (max-width:780px) {\n                                    ." + props.attributes.id + ".advgb-recent-posts-block .advgb-recent-posts .advgb-recent-post .advgb-post-title{\n                                        " + (props.attributes.titleSizeT ? 'font-size:' + props.attributes.titleSizeT + 'px;' : '') + "\n                                        " + (props.attributes.titleHideT ? 'display:none;' : '') + "\n                                    }\n                                }",
                         (props.attributes.titleSizeM || props.attributes.titleHideM) && "@media (max-width:360px) {\n                                    ." + props.attributes.id + ".advgb-recent-posts-block .advgb-recent-posts .advgb-recent-post .advgb-post-title{\n                                        " + (props.attributes.titleSizeM ? 'font-size:' + props.attributes.titleSizeM + 'px;' : '') + "\n                                        " + (props.attributes.titleHideM ? 'display:none;' : '') + "\n                                    }\n                                }",
@@ -4221,19 +4342,24 @@ var _fonts = __webpack_require__(/*! ../0-adv-components/fonts.jsx */ "./src/ass
                             textTransform: props.attributes.infoTextTransform,
                             cssSelector: "." + props.attributes.id + ".advgb-recent-posts-block .advgb-recent-posts .advgb-recent-post .advgb-post-info"
                         }),
+                        props.attributes.infoColor && "." + props.attributes.id + ".advgb-recent-posts-block .advgb-recent-posts .advgb-recent-post .advgb-post-info * {\n                                    color: " + props.attributes.infoColor + " !important;\n                                }",
+                        props.attributes.infoLinkColor && "." + props.attributes.id + ".advgb-recent-posts-block .advgb-recent-posts .advgb-recent-post .advgb-post-info > a {\n                                    color: " + props.attributes.infoLinkColor + " !important;\n                                }",
+                        props.attributes.infoLinkColorH && "." + props.attributes.id + ".advgb-recent-posts-block .advgb-recent-posts .advgb-recent-post .advgb-post-info > a:hover,\n                                ." + props.attributes.id + ".advgb-recent-posts-block .advgb-recent-posts .advgb-recent-post .advgb-post-info > a:focus,\n                                ." + props.attributes.id + ".advgb-recent-posts-block .advgb-recent-posts .advgb-recent-post .advgb-post-info > a:active {\n                                    color: " + props.attributes.infoLinkColorH + " !important;\n                                }",
                         /* Tags and Categories CSS */React.createElement(_fonts.AdvSetGoogleFontStyle, {
                             fontFamily: props.attributes.taxonomyFontFamily,
                             fontVariation: props.attributes.taxonomyFontVariation,
                             textTransform: props.attributes.taxonomyTextTransform,
                             cssSelector: "." + props.attributes.id + ".advgb-recent-posts-block .advgb-recent-posts .advgb-recent-post .advgb-post-tax-info a,\n                                    ." + props.attributes.id + ".advgb-recent-posts-block .advgb-recent-posts .advgb-recent-post .advgb-post-tax-info span"
                         }),
+                        props.attributes.taxonomyColor && "." + props.attributes.id + ".advgb-recent-posts-block .advgb-recent-posts .advgb-recent-post .advgb-post-tax-info a,\n                                ." + props.attributes.id + ".advgb-recent-posts-block .advgb-recent-posts .advgb-recent-post .advgb-post-tax-info span {\n                                    color: " + props.attributes.taxonomyColor + " !important;\n                                }",
+                        props.attributes.taxonomyColorH && "." + props.attributes.id + ".advgb-recent-posts-block .advgb-recent-posts .advgb-recent-post .advgb-post-tax-info a:hover,\n                                ." + props.attributes.id + ".advgb-recent-posts-block .advgb-recent-posts .advgb-recent-post .advgb-post-tax-info a:focus,\n                                ." + props.attributes.id + ".advgb-recent-posts-block .advgb-recent-posts .advgb-recent-post .advgb-post-tax-info a:active {\n                                    color: " + props.attributes.taxonomyColorH + " !important;\n                                }",
                         React.createElement(_fonts.AdvSetGoogleFontStyle, {
                             fontFamily: props.attributes.contentFontFamily,
                             fontVariation: props.attributes.contentFontVariation,
                             textTransform: props.attributes.contentTextTransform,
                             cssSelector: "." + props.attributes.id + ".advgb-recent-posts-block .advgb-recent-posts .advgb-recent-post .advgb-post-content .advgb-post-excerpt"
                         }),
-                        props.attributes.contentColor && "." + props.attributes.id + ".advgb-recent-posts-block .advgb-recent-posts .advgb-recent-post .advgb-post-content .advgb-post-excerpt {\n                                    color: " + props.attributes.contentColor + "\n                                }",
+                        props.attributes.contentColor && "." + props.attributes.id + ".advgb-recent-posts-block .advgb-recent-posts .advgb-recent-post .advgb-post-content .advgb-post-excerpt {\n                                    color: " + props.attributes.contentColor + " !important;\n                                }",
                         /* Read more CSS */React.createElement(_fonts.AdvSetGoogleFontStyle, {
                             fontFamily: props.attributes.readMoreFontFamily,
                             fontVariation: props.attributes.readMoreFontVariation,
