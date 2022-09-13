@@ -746,6 +746,8 @@ function viwcpr_flexslider() {
             }
         });
     });
+    jQuery('.wcpr-grid .wcpr-grid-item').last().css('display','inline-block');
+    jQuery('.shortcode-wcpr-grid .shortcode-wcpr-grid-item').last().css('display','inline-block');
 }
 function wcpr_helpful_button() {
     'use strict';

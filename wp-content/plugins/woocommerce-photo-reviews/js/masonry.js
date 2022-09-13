@@ -215,6 +215,16 @@ jQuery(document).ready(function ($) {
             wcpr_resize_masonry_items();
         }, 100);
     });
+    $(document).on('scroll', function (e) {
+        setTimeout(function () {
+            wcpr_resize_masonry_items();
+        },100);
+    });
+    $(document).on('click','a', function (e) {
+        setTimeout(function () {
+            wcpr_resize_masonry_items();
+        },100);
+    });
     $(document).on('skeleton-loaded', function () {
         wcpr_resize_masonry_items(true);
     });
@@ -231,26 +241,34 @@ jQuery(document).ready(function ($) {
             $comment_content.html(comment_content_full);
         }
         $comment_content.closest('.wcpr-grid-item').removeClass('wcpr-grid-item-init');
-        wcpr_resize_masonry_items();
+        wcpr_resize_masonry_items(true);
     });
     return false;
 });
 jQuery(window).on('load', function () {
-    wcpr_resize_masonry_items();
+    'use strict';
+    setTimeout(function () {
+        wcpr_resize_masonry_items();
+    },100);
 }).on('resize', function () {
-    wcpr_resize_masonry_items();
+    'use strict';
+    wcpr_resize_masonry_items(true);
 });
 
 function wcpr_resize_masonry_items(force_resize = false) {
     if (force_resize) {
-        jQuery('.wcpr-grid-loadmore .wcpr-grid-item').each(function () {
-            wcpr_resize_masonry_item(jQuery(this));
-        });
-    } else {
-        jQuery('.wcpr-grid-loadmore .wcpr-grid-item:not(.wcpr-grid-item-init)').each(function () {
-            wcpr_resize_masonry_item(jQuery(this));
-        });
+        jQuery('.wcpr-grid-item.wcpr-grid-item-init').removeClass('wcpr-grid-item-init');
+    }else if (jQuery('.wcpr-grid-item .reviews-videos').length){
+        setTimeout(function () {
+            wcpr_resize_masonry_items(true);
+        },150);
     }
+    jQuery('.wcpr-grid-loadmore .wcpr-grid-item:not(.wcpr-grid-item-init)').each(function () {
+        if (!jQuery(this).is(':visible')){
+            return false;
+        }
+        wcpr_resize_masonry_item(jQuery(this));
+    });
 }
 
 function wcpr_resize_masonry_item(item) {

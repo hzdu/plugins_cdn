@@ -94,6 +94,10 @@
     margin-top: 5px;
 }
 
+.wcpr-grid:not(.wcpr-grid-loadmore) .wcpr-grid-item :first-child {
+    margin-top: 0;
+}
+
 .wcpr-grid-item {
     -webkit-column-break-inside: avoid; /* Chrome, Safari */
     page-break-inside: avoid; /* Theoretically FF 20+ */
@@ -276,6 +280,10 @@
     margin: 0 auto;
     padding: 0 15px 0 15px;
     display: block;
+}
+
+.reviews-videos {
+    height: auto !important;
 }
 
 .reviews-images {

@@ -8,6 +8,7 @@
     font-weight: normal;
     font-style: normal;
 }
+
 @font-face {
     font-family: 'star';
     src: url('../fonts/star.eot');
@@ -25,17 +26,21 @@
         src: url("../fonts/star.svg") format("svg");
     }
 }
+
 .wcpr-hidden {
     display: none !important;
 }
-.wcpr-comment-form-error{
+
+.wcpr-comment-form-error {
     color: red;
     display: inline-grid;
     white-space: break-spaces !important;
 }
-.wcpr_image_upload_button, .wcpr_image_upload_button.button{
+
+.wcpr_image_upload_button, .wcpr_image_upload_button.button {
     text-transform: inherit;
 }
+
 .woocommerce-photo-reviews-form-container .woocommerce-photo-reviews-form-main .woocommerce-photo-reviews-form-main-inner {
     background: white;
     max-width: 100%;
@@ -43,6 +48,7 @@
     -moz-border-radius: 5px;
     border-radius: 5px;
     overflow: hidden;
+    padding: 10px;
 }
 
 .woocommerce-photo-reviews-form-container .woocommerce-photo-reviews-form-main .woocommerce-photo-reviews-form-main-top .woocommerce-photo-reviews-form-main-close {
@@ -108,12 +114,14 @@
     line-height: 1em;
     margin: 5px 0;
 }
-.woocommerce-photo-reviews-form .comment-form > div{
+
+.woocommerce-photo-reviews-form .comment-form > div {
     width: 100%;
 }
-.woocommerce-photo-reviews-form  .comment-form .comment-form-images,
+
+.woocommerce-photo-reviews-form .comment-form .comment-form-images,
 .woocommerce-photo-reviews-form .comment-form .comment-form-rating,
-.woocommerce-photo-reviews-form .comment-form p{
+.woocommerce-photo-reviews-form .comment-form p {
     padding-left: 0;
     padding-right: 0;
     padding: 0;
@@ -121,12 +129,13 @@
 
 /*Input file*/
 
-.wcpr-input-file-container .wcpr-input-file-wrap .wcpr-selected-image-container{
+.wcpr-input-file-container .wcpr-input-file-wrap .wcpr-selected-image-container {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
     align-items: flex-end;
 }
+
 .wcpr-input-file-container .wcpr-input-file-wrap {
     margin-top: 10px;
     margin-bottom: 10px;
@@ -145,10 +154,12 @@
     display: flex;
     align-items: center;
 }
+
 .wcpr-comment-form-images.wcpr-comment-form-images-with-caption .wcpr-selected-image video.wcpr-selected-image-preview {
     width: auto;
     max-width: 100px;
 }
+
 .wcpr-comment-form-images.wcpr-comment-form-images-with-caption .wcpr-selected-image img.wcpr-selected-image-preview {
     width: 25%;
     max-width: 64px;
@@ -171,6 +182,7 @@
 .wcpr-comment-form-images .wcpr-selected-image-caption {
     width: 100%;
 }
+
 .wcpr-comment-form-images .wcpr-selected-image-name {
     width: 100%;
     overflow: hidden;
@@ -178,10 +190,12 @@
     font-size: .8em;
     white-space: nowrap;
 }
+
 .wcpr-comment-form-images .wcpr_image_upload {
     width: 100%;
     margin-bottom: 10px;
 }
+
 /*custom fields*/
 .wcpr-custom-field {
     margin: 8px 0;
@@ -351,6 +365,7 @@ span.wcpr-review-custom-field-name {
     margin: 0;
     max-width: 100%;
 }
+
 .wcpr-comment-form .wcpr-comment-form-title input {
     margin: 0;
     width: 100%;

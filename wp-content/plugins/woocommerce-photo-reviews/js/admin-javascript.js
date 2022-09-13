@@ -7,7 +7,7 @@ jQuery(document).ready(function ($) {
             historyType: 'hash'
         });
         $('.vi-ui.accordion:not(.viwcpr-rule-wrap)').vi_accordion('refresh');
-        $('.tab:not(.viwcpr-coupon-tab)').find('.dropdown').addClass('viwcpr-dropdown-init').dropdown();
+        $('.tab:not(.viwcpr-coupon-tab)').find('.dropdown').addClass('viwcpr-dropdown-init').dropdown({placeholder: ''});
         $('.tab:not(.viwcpr-coupon-tab), .viwcpr-coupon-tab1').find('.checkbox').addClass('viwcpr-checkbox-init').checkbox();
         /*Color picker*/
         $('.verified-color').iris({

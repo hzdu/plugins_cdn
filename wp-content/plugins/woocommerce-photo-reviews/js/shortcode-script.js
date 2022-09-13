@@ -149,10 +149,10 @@ jQuery(window).on('elementor/frontend/init', () => {
                 }
                 // $comment_content.closest('.shortcode-wcpr-grid').find('.shortcode-wcpr-grid-item').removeClass('wcpr-grid-item-init');
                 $comment_content.closest('.shortcode-wcpr-grid-item').removeClass('wcpr-grid-item-init');
-                shortcode_wcpr_resize_masonry_items();
+                shortcode_wcpr_resize_masonry_items(true);
             })
         }
-        shortcode_wcpr_resize_masonry_items();
+        shortcode_wcpr_resize_masonry_items(true);
     });
 });
 jQuery(document).ready(function ($) {
@@ -167,6 +167,7 @@ jQuery(document).ready(function ($) {
         if (!isSafari) {
             $('.shortcode-wcpr-enable-box-shadow').addClass('shortcode-wcpr-fix-box-shadow');
         }
+        shortcode_wcpr_resize_masonry_items();
     }
 
     /*Masonry*/
@@ -347,7 +348,7 @@ jQuery(document).ready(function ($) {
             }
             // $comment_content.closest('.shortcode-wcpr-grid').find('.shortcode-wcpr-grid-item').removeClass('wcpr-grid-item-init');
             $comment_content.closest('.shortcode-wcpr-grid-item').removeClass('wcpr-grid-item-init');
-            shortcode_wcpr_resize_masonry_items();
+            shortcode_wcpr_resize_masonry_items(true);
         });
         $(document).on('click', '.shortcode-wcpr-grid-item .shortcode-reviews-images', function (e) {
             let this_image = $(this);
@@ -399,11 +400,6 @@ jQuery(document).ready(function ($) {
     //         }
     //     });
     // }
-    jQuery(document.body).on('woocommerce_photo_reviews_shortcode_ajax_get_reviews', function () {
-        setTimeout(function () {
-            shortcode_wcpr_resize_masonry_items();
-        },100);
-    });
     /*Ajax pagination*/
     let ajax_pagination_running = false;
     let wcpr_image = '', wcpr_verified = '', wcpr_rating = '';
@@ -637,27 +633,45 @@ jQuery(document).ready(function ($) {
             $(document.body).trigger('wc_price_based_country_ajax_geolocation');
         })
     }
+    $(document).on('scroll', function (e) {
+        setTimeout(function () {
+            shortcode_wcpr_resize_masonry_items();
+        },100);
+    });
+    $(document).on('click','a', function (e) {
+        setTimeout(function () {
+            shortcode_wcpr_resize_masonry_items();
+        },100);
+    });
 });
 jQuery(window).on('load',function () {
     'use strict';
-    shortcode_wcpr_resize_masonry_items();
+    setTimeout(function () {
+        shortcode_wcpr_resize_masonry_items();
+    },100);
 }).on('resize', function () {
     'use strict';
-    jQuery('.shortcode-wcpr-grid-item.wcpr-grid-item-init').removeClass('wcpr-grid-item-init');
-    shortcode_wcpr_resize_masonry_items();
+    shortcode_wcpr_resize_masonry_items(true);
 });
-function shortcode_wcpr_resize_masonry_items(){
-    let row_height = 1,
-        reviews_shortcode = jQuery('.woocommerce-photo-reviews-shortcode').data('reviews_shortcode');
-    let row_gap =reviews_shortcode ?  parseInt(reviews_shortcode.cols_gap||0) :0;
-    if (!row_gap) {
-        row_gap = 20;
+function shortcode_wcpr_resize_masonry_items(force_resize = false){
+    if (force_resize) {
+        jQuery('.shortcode-wcpr-grid-item.wcpr-grid-item-init').removeClass('wcpr-grid-item-init');
+    }else if (jQuery('.shortcode-wcpr-grid-item .reviews-videos').length){
+        setTimeout(function () {
+            shortcode_wcpr_resize_masonry_items(true);
+        },150);
     }
+    let row_height = 1,row_gap = 20, reviews_shortcode ;
     jQuery('.wcpr-grid-loadmore .shortcode-wcpr-grid-item:not(.wcpr-grid-item-init)').each(function () {
+        if (!jQuery(this).is(':visible')){
+            return false;
+        }
+        reviews_shortcode = jQuery(this).closest('.woocommerce-photo-reviews-shortcode').data('reviews_shortcode');
+        row_gap = reviews_shortcode ?  parseInt(reviews_shortcode.cols_gap||row_gap) : row_gap;
         shortcode_wcpr_resize_masonry_item(jQuery(this),row_height, row_gap );
     });
 }
-function shortcode_wcpr_resize_masonry_item(item,row_height, row_gap ) {
+function shortcode_wcpr_resize_masonry_item(item,row_height, row_gap) {
     item = jQuery(item);
     let item_img, img_height = 0;
     if (item.find('.shortcode-reviews-images-wrap-right .shortcode-reviews-images').length) {

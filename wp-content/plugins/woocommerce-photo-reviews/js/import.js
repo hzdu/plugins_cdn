@@ -80,7 +80,7 @@ jQuery(document).ready(function ($) {
                             $progress.progress('set label', 'Importing...');
                         } else {
                             $progress.progress('set error');
-                            $progress.progress('set label', 'Error: The Start line must be smaller than ' + total + ' for this file');
+                            $progress.progress('set label', 'Error: The Start at row must be smaller than ' + total + ' for this file');
                         }
                     } else {
                         $progress.progress('set error');

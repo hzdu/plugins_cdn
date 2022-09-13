@@ -325,6 +325,7 @@ ul.shortcode-wcpr-filter-button-ul {
     font-size: 14px;
     margin: 10px 0;
     font-weight: 400;
+    cursor: pointer;
 }
 
 .wcpr-load-more-reviews-button-container {
@@ -715,4 +716,9 @@ span.wcpr-comment-helpful-button-down-vote {
 
 .woocommerce-photo-reviews-shortcode.woocommerce-photo-reviews-shortcode-loading .wcpr-shortcode-overlay {
     display: block;
+}
+.shortcode-wcpr-review-before .wcpr-review-country i,
+.shortcode-wcpr-comment-author-with-country .shortcode-wcpr-review-country i{
+    transform: scale(0.4);
+    margin: -12px -18px;
 }
