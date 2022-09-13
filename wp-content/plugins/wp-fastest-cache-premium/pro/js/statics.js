@@ -308,6 +308,7 @@ var WpFcStatics = {
 							   {"key": "pl", "time":0,"flag":"de","location":"Poland","color":"red", "url":"https://pl.wpfastestcache.com"},
 							   {"key": "ru", "time":0,"flag":"de","location":"Russia","color":"red", "url":"https://russia.wpfastestcache.com"},
 							   {"key": "se", "time":0,"flag":"de","location":"Sweden","color":"red", "url":"https://sweden.wpfastestcache.com"},
+							   {"key": "tr", "time":0,"flag":"de","location":"Turkey","color":"red", "url":"https://tr.wpfastestcache.com"},
 					   		 ],
 
 					   "as": [

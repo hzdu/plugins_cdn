@@ -3,7 +3,7 @@ Contributors: anbinder, karzin, pluggabl
 Tags: woocommerce, booster for woocommerce, woocommerce jetpack
 Requires at least: 4.4
 Tested up to: 6.0.2
-Stable tag: 5.6.2
+Stable tag: 5.6.3
 License: GNU General Public License v3.0
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -203,6 +203,11 @@ You can see the differences between versions in this [table](https://booster.io/
 8. Booster for WooCommerce - Emails & Misc.
 
 == Changelog ==
+
+= 5.6.3 12/09/2022 =
+
+* FIXED - Fatal Error: Cannot redeclare _load_plugin_class()
+* FIXED - Fatal Error: Uncaught TypeError: implode(): Argument #1 ($pieces)....tracking/class-plugin-usage-tracker.php:413
 
 = 5.6.2 05/09/2022 =
 
