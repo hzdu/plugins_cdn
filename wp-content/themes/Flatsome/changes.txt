@@ -1,3 +1,93 @@
+--- 3.16.0 ---
+NEW: WooCommerce 6.9 compatibility.
+NEW: Product additional variation images.
+NEW: Product gallery grid layouts (stacked).
+NEW: UX Builder: Resize handle for banner height.
+NEW: UX Builder: Copy as shortcode element context menu item.
+NEW: UX Builder: Show all registered image sizes.
+NEW: UX Builder: Responsive max width for column.
+NEW: Google Fonts served locally instead of CDN. (location: wp-content/fonts/)
+NEW: Option to serve Google Fonts from CDN.
+NEW: Option to enable or disable sale bubble.
+NEW: Option to show product review count in catalog.
+NEW: Option to disable single blog post category.
+NEW: Option to disable single blog post title.
+NEW: Status panel (environment, template overrides, ...).
+NEW: Status overview widget.
+NEW: Fade-in hover style in element text options.
+NEW: Backup and Import: Delete options backup button.
+NEW: Swatches: Display value on swatch hover on single product page.
+NEW: Swatches: Option to make out-of-stock items inactive.
+NEW: Include/exclude out of stock products in Product Flip element.
+NEW: Blog posts: filter by multiple post tags.
+NEW: Products: filter by multiple product tags.
+NEW: Products flipbook: tag filtering.
+NEW: Products element order by price.
+NEW: Image: Title attribute option.
+NEW: Vertical menu opener color option.
+NEW: Vertical menu fly-out width option.
+NEW: Vertical menu fly-out nav divider option.
+NEW: Vertical menu fly-out nav height option.
+NEW: Vertical menu fly-out nav color option.
+NEW: Vertical menu fly-out nav color:hover option.
+NEW: Vertical menu fly-out nav bg color:hover option.
+NEW: All in One SEO breadcrumb integration.
+NEW: SEOPress PRO breadcrumb integration.
+
+ENHANCEMENT: Reduced CSS by 20%.
+ENHANCEMENT: UX Builder: Scrub inputs vertically.
+ENHANCEMENT: UX Builder: Improved paste values in inputs.
+ENHANCEMENT: UX Builder: Improved responsiveness of scrub inputs.
+ENHANCEMENT: UX Builder: Improved resizing of text boxes.
+ENHANCEMENT: UX Builder: Reduced navigation animations.
+ENHANCEMENT: UX Builder: Removed some interaction appending to browser history.
+ENHANCEMENT: Disable some animations when "Reduced motion" is enabled for better accessibility.
+ENHANCEMENT: Render open accordion on the server.
+ENHANCEMENT: Disabled sticky add to cart on stacked layouts.
+ENHANCEMENT: Swatches: Catalog picture tag support.
+ENHANCEMENT: Swatches: Ensure variation image on inactive variations.
+ENHANCEMENT: Swatches: Disable initially out of stock.
+ENHANCEMENT: Improved scrolling performance.
+ENHANCEMENT: Improved cache busting compatibility on chunk files.
+ENHANCEMENT: Improved tabs accessibility.
+ENHANCEMENT: Improved button accessibility.
+ENHANCEMENT: Improved accordions accessibility.
+ENHANCEMENT: Removed active filter title on the filter button.
+ENHANCEMENT: Outline the focused element when pressing the tab key.
+ENHANCEMENT: Improved keyboard usage with the main menu.
+ENHANCEMENT: Improved WPML configuration.
+ENHANCEMENT: Various CSS improvements.
+
+FIXED: PHP Error: must be of type array, string given in ux_instagram_feed.php in some cases.
+FIXED: Incorrect google CDN link in combination with 'default Browser Font-Family'.
+FIXED: Synchronous DOM mutation listener to a 'DOMNodeInserted' event violation.
+FIXED: UX Builder: Re-play animations after moving element to another container.
+FIXED: UX Builder: Don't server-side render element after moving to another container.
+FIXED: UX Builder: Plugin compatibility issues when editing draft posts.
+FIXED: UX Builder: Keep scrubbing when the pointer enters the canvas.
+FIXED: UX Builder: Prevent native drag on anchor HTML elements.
+FIXED: Resume autoplaying slider on touch devices when touching outside.
+FIXED: Exiting full-screen mp4 video navigated the browser back on iOS.
+FIXED: PHP notice: undefined offset on menu items class in some cases.
+FIXED: Catalog swatches with non ASCII (f.ex: Arabic) attribute slugs.
+FIXED: Backslash in Advanced → Custom CSS fields should now be kept.
+FIXED: WooCommerce One Page Checkout quantity compatibility.
+FIXED: Sticky column when inner height dynamically changed.
+FIXED: Italic font variant style did not apply italic.
+FIXED: Improved bfcache support on Chrome and Firefox.
+FIXED: Backup option double description.
+
+DEV: Updated FB graph API to v14.0.
+DEV: Updated devbridgeAutocomplete to 1.4.11.
+DEV: Added flatsome_loop_review_count_html filter.
+DEV: Added flatsome_icon filter.
+DEV: Added flatsome_single_product_thumbnails_classes filter.
+DEV: Added flatsome_single_product_thumbnails_render_without_attachments filter.
+
+Note: add_action( 'wp_head', 'flatsome_prefetch_scripts', 5 ); changed to add_filter( 'wp_resource_hints', 'flatsome_prefetch_scripts', 10, 2 );
+Note: UX Builder: To scrub and input value (margin, padding, ...) press the mouse key down upon an input, then move the mouse.
+Note: Dropping support for IE (new features are no longer tested and are not guaranteed to function optimally for this browser)
+
 --- 3.15.7 ---
 FIXED: Slider dragging & scrolling on iOS 15+.
 FIXED: Lazy load not working properly in some cases on Safari.

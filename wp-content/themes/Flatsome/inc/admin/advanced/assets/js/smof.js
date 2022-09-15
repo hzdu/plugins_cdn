@@ -312,6 +312,39 @@ jQuery(document).ready(function($){
 
 	});
 
+  // Delete backup button.
+  $ofContainer.on('click', '#of_delete_backup_button', function () {
+    var answer = confirm("'Warning: Your options backup will be deleted! Proceed?")
+
+    if (answer){
+      var nonce = $('#security').val();
+      var data = {
+        action: 'of_ajax_post_action',
+        type: 'delete_backup_options',
+        security: nonce
+      };
+
+      $.post(ajaxurl, data, function(response) {
+        //check nonce
+        if(response==-1){ //failed
+          var fail_popup = $('#of-popup-fail');
+          fail_popup.fadeIn();
+          window.setTimeout(function(){
+            fail_popup.fadeOut();
+          }, 2000);
+        } else {
+          var success_popup = $('#of-popup-save');
+          success_popup.fadeIn();
+          window.setTimeout(function(){
+            location.reload();
+          }, 1000);
+        }
+      });
+    }
+
+    return false;
+  });
+
 	/**	Ajax Transfer (Import/Export) Option */
   $ofContainer.on('click', '#of_import_button', function () {
 

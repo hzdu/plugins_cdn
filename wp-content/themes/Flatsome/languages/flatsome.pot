@@ -1,25 +1,26 @@
 # Copyright (C) 2022 UX-Themes
-# This file is distributed under the http://themeforest.net/licenses.
+# This file is distributed under the https://themeforest.net/licenses.
 msgid ""
 msgstr ""
-"Project-Id-Version: Flatsome 3.15.7\n"
+"Project-Id-Version: Flatsome 3.16.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/theme/flatsome\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2022-07-14T19:23:09+00:00\n"
+"POT-Creation-Date: 2022-09-14T09:23:57+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.6.0\n"
 "X-Domain: flatsome\n"
 
 #. Theme Name of the theme
+#: inc/admin/admin-notice.php:77
 msgid "Flatsome"
 msgstr ""
 
 #. Theme URI of the theme
-msgid "http://flatsome.uxthemes.com/"
+msgid "http://flatsome.uxthemes.com"
 msgstr ""
 
 #. Description of the theme
@@ -31,14 +32,14 @@ msgid "UX-Themes"
 msgstr ""
 
 #. Author URI of the theme
-msgid "http://www.uxthemes.com/"
+msgid "https://uxthemes.com"
 msgstr ""
 
-#: 404.php:24
+#: 404.php:23
 msgid "Oops! That page can&rsquo;t be found."
 msgstr ""
 
-#: 404.php:27
+#: 404.php:26
 msgid "It looks like nothing was found at this location. Maybe try one of the links below or a search?"
 msgstr ""
 
@@ -65,62 +66,83 @@ msgstr ""
 msgid "Comments are closed."
 msgstr ""
 
-#: header.php:18
+#: header.php:26
 msgid "Skip to content"
 msgstr ""
 
-#: image.php:26
+#: image.php:27
 msgid "Published <span class=\"entry-date\"><time class=\"entry-date\" datetime=\"%1$s\">%2$s</time></span> at <a href=\"%3$s\" title=\"Link to full-size image\">%4$s &times; %5$s</a> in <a href=\"%6$s\" title=\"Return to %7$s\" rel=\"gallery\">%8$s</a>"
 msgstr ""
 
-#: image.php:38
-#: image.php:108
+#: image.php:39
+#: image.php:109
 #: inc/structure/structure-posts.php:168
 #: inc/structure/structure-posts.php:197
 msgid "Edit"
 msgstr ""
 
-#: image.php:100
+#: image.php:101
 msgid "<a class=\"comment-link\" href=\"#respond\" title=\"Post a comment\">Post a comment</a> or leave a trackback: <a class=\"trackback-link\" href=\"%s\" title=\"Trackback URL for your post\" rel=\"trackback\">Trackback URL</a>."
 msgstr ""
 
-#: image.php:102
+#: image.php:103
 msgid "Comments are closed, but you can leave a trackback: <a class=\"trackback-link\" href=\"%s\" title=\"Trackback URL for your post\" rel=\"trackback\">Trackback URL</a>."
 msgstr ""
 
-#: image.php:104
+#: image.php:105
 msgid "Trackbacks are closed, but you can <a class=\"comment-link\" href=\"#respond\" title=\"Post a comment\">post a comment</a>."
 msgstr ""
 
-#: image.php:106
+#: image.php:107
 msgid "Both comments and trackbacks are currently closed."
 msgstr ""
 
-#: image.php:113
+#: image.php:114
 msgid "<span class=\"meta-nav\">&larr;</span> Previous"
 msgstr ""
 
-#: image.php:114
+#: image.php:115
 msgid "Next <span class=\"meta-nav\">&rarr;</span>"
 msgstr ""
 
-#: inc/admin/admin-notice.php:20
+#: inc/admin/admin-notice.php:21
 msgid "<a href=\"%s\">Please enter your purchase code</a> to activate Flatsome and get one-click updates."
 msgstr ""
 
-#: inc/admin/admin-notice.php:31
+#: inc/admin/admin-notice.php:32
 msgid "Flatsome issues"
 msgstr ""
 
-#: inc/admin/admin-notice.php:37
+#: inc/admin/admin-notice.php:38
 #: inc/functions/function-site-health.php:74
 msgid "Manage registration"
 msgstr ""
 
-#: inc/admin/admin-notice.php:42
+#: inc/admin/admin-notice.php:43
 #: inc/functions/function-site-health.php:79
-#: template-parts/admin/envato/register-form.php:97
+#: template-parts/admin/envato/register-form.php:105
 msgid "Manage your licenses"
+msgstr ""
+
+#. translators: %1$s theme name. %2$s the URL to the status page.
+#: inc/admin/admin-notice.php:81
+msgid "<strong>Your theme (%1$s) contains outdated copies of some Flatsome template files.</strong> These files may need updating to ensure they are compatible with the current version of Flatsome. Suggestions:"
+msgstr ""
+
+#: inc/admin/admin-notice.php:84
+msgid "If you copied over a template file to change something, then you will need to copy the new version of the template and apply your changes again."
+msgstr ""
+
+#: inc/admin/admin-notice.php:85
+msgid "If you are unfamiliar with code/templates and resolving potential conflicts, reach out to a developer for assistance."
+msgstr ""
+
+#: inc/admin/admin-notice.php:88
+msgid "Learn more about templates"
+msgstr ""
+
+#: inc/admin/admin-notice.php:91
+msgid "View affected templates"
 msgstr ""
 
 #: inc/admin/advanced/functions/functions.facebook.php:138
@@ -179,6 +201,7 @@ msgstr ""
 #: inc/admin/backend/menu/class-menu.php:110
 #: inc/admin/backend/menu/class-menu.php:161
 #: inc/admin/options/header/options-header-nav-vertical.php:55
+#: inc/admin/options/header/options-header-nav-vertical.php:146
 msgid "Width"
 msgstr ""
 
@@ -245,6 +268,279 @@ msgstr ""
 msgid "Remove"
 msgstr ""
 
+#: inc/admin/classes/class-status.php:548
+#: inc/admin/classes/class-status.php:576
+msgid "Theme"
+msgstr ""
+
+#: inc/admin/classes/class-status.php:549
+#: inc/admin/classes/class-status.php:689
+msgid "WordPress environment"
+msgstr ""
+
+#: inc/admin/classes/class-status.php:550
+#: inc/admin/classes/class-status.php:801
+msgid "Server environment"
+msgstr ""
+
+#: inc/admin/classes/class-status.php:551
+#: inc/admin/classes/class-status.php:883
+#: inc/functions/function-site-health.php:31
+#: inc/functions/function-site-health.php:52
+msgid "Security"
+msgstr ""
+
+#: inc/admin/classes/class-status.php:552
+#: inc/admin/classes/class-status.php:939
+msgid "Database"
+msgstr ""
+
+#: inc/admin/classes/class-status.php:553
+#: inc/admin/classes/class-status.php:977
+msgid "Templates"
+msgstr ""
+
+#: inc/admin/classes/class-status.php:557
+msgid "More details"
+msgstr ""
+
+#: inc/admin/classes/class-status.php:582
+msgid "Name"
+msgstr ""
+
+#: inc/admin/classes/class-status.php:584
+msgid "The name of the current active theme."
+msgstr ""
+
+#: inc/admin/classes/class-status.php:589
+msgid "Version"
+msgstr ""
+
+#: inc/admin/classes/class-status.php:591
+msgid "The version of the current active theme."
+msgstr ""
+
+#: inc/admin/classes/class-status.php:596
+msgid "Author URL"
+msgstr ""
+
+#: inc/admin/classes/class-status.php:598
+msgid "The theme developers URL."
+msgstr ""
+
+#: inc/admin/classes/class-status.php:603
+msgid "Registered"
+msgstr ""
+
+#: inc/admin/classes/class-status.php:605
+msgid "Displays whether or not the theme is registered."
+msgstr ""
+
+#: inc/admin/classes/class-status.php:612
+#: inc/functions/function-site-health.php:28
+msgid "You should register Flatsome with a purchase code"
+msgstr ""
+
+#: inc/admin/classes/class-status.php:618
+msgid "Child theme"
+msgstr ""
+
+#: inc/admin/classes/class-status.php:620
+msgid "Displays whether or not the current active theme is a child theme."
+msgstr ""
+
+#. translators: %s docs link.
+#: inc/admin/classes/class-status.php:628
+msgid "If you are modifying Flatsome on the parent theme we recommend using a child theme. See: <a href=\"%s\" target=\"_blank\" rel=\"noopener noreferrer\">How to create a child theme</a>"
+msgstr ""
+
+#: inc/admin/classes/class-status.php:634
+msgid "Release channel"
+msgstr ""
+
+#: inc/admin/classes/class-status.php:636
+msgid "Which updates to receive on this site."
+msgstr ""
+
+#: inc/admin/classes/class-status.php:650
+msgid "Parent theme name"
+msgstr ""
+
+#: inc/admin/classes/class-status.php:652
+msgid "The name of the parent theme."
+msgstr ""
+
+#: inc/admin/classes/class-status.php:657
+msgid "Parent theme version"
+msgstr ""
+
+#: inc/admin/classes/class-status.php:659
+msgid "The installed version of the parent theme."
+msgstr ""
+
+#: inc/admin/classes/class-status.php:664
+msgid "Parent theme author URL"
+msgstr ""
+
+#: inc/admin/classes/class-status.php:666
+msgid "The parent theme developers URL."
+msgstr ""
+
+#: inc/admin/classes/class-status.php:695
+msgid "WordPress version"
+msgstr ""
+
+#: inc/admin/classes/class-status.php:697
+msgid "The installed WordPress version (indicates the fulfillment of the minimum required version)."
+msgstr ""
+
+#. translators: The minimum required WP version number.
+#: inc/admin/classes/class-status.php:706
+msgid "The theme requires WordPress version %s or above."
+msgstr ""
+
+#: inc/admin/classes/class-status.php:718
+msgid "WooCommerce version"
+msgstr ""
+
+#: inc/admin/classes/class-status.php:720
+msgid "The installed WooCommerce version (indicates the fulfillment of the minimum required version)."
+msgstr ""
+
+#. translators: The minimum required WC version number.
+#: inc/admin/classes/class-status.php:729
+msgid "The theme requires WooCommerce version %s or above."
+msgstr ""
+
+#: inc/admin/classes/class-status.php:741
+msgid "WordPress memory limit"
+msgstr ""
+
+#: inc/admin/classes/class-status.php:743
+msgid "The maximum amount of memory (RAM) that your site can use at one time."
+msgstr ""
+
+#. translators: %1$s: Memory limit, %2$s: Docs link.
+#: inc/admin/classes/class-status.php:750
+msgid "%1$s - We recommend setting memory to at least 256MB. See: %2$s"
+msgstr ""
+
+#. translators: %1$s: Memory limit, %2$s: Docs link.
+#: inc/admin/classes/class-status.php:750
+msgid "Increasing memory allocated to PHP"
+msgstr ""
+
+#: inc/admin/classes/class-status.php:757
+msgid "WordPress image sizes"
+msgstr ""
+
+#: inc/admin/classes/class-status.php:759
+msgid "The image sizes that are registered on this site."
+msgstr ""
+
+#: inc/admin/classes/class-status.php:807
+msgid "Server info"
+msgstr ""
+
+#: inc/admin/classes/class-status.php:808
+msgid "Information about the web server that is currently hosting your site."
+msgstr ""
+
+#: inc/admin/classes/class-status.php:812
+msgid "PHP version"
+msgstr ""
+
+#: inc/admin/classes/class-status.php:814
+msgid "The version of PHP installed on your hosting server."
+msgstr ""
+
+#. translators: The recommended PHP version number.
+#: inc/admin/classes/class-status.php:826
+msgid "We recommend using PHP version %s or above for greater performance and security."
+msgstr ""
+
+#: inc/admin/classes/class-status.php:837
+msgid "PHP post max size"
+msgstr ""
+
+#: inc/admin/classes/class-status.php:839
+msgid "The largest filesize that can be contained in one post."
+msgstr ""
+
+#: inc/admin/classes/class-status.php:844
+msgid "PHP time limit"
+msgstr ""
+
+#: inc/admin/classes/class-status.php:846
+msgid "The amount of time (in seconds) that your site will spend on a single operation before timing out (to avoid server lockups)."
+msgstr ""
+
+#: inc/admin/classes/class-status.php:851
+msgid "PHP max input variables"
+msgstr ""
+
+#: inc/admin/classes/class-status.php:853
+msgid "The maximum number of variables your server can use for a single function to avoid overloads."
+msgstr ""
+
+#: inc/admin/classes/class-status.php:859
+msgid "Max upload size"
+msgstr ""
+
+#: inc/admin/classes/class-status.php:861
+msgid "The largest filesize that can be uploaded to your WordPress installation."
+msgstr ""
+
+#: inc/admin/classes/class-status.php:889
+msgid "Secure connection (HTTPS)"
+msgstr ""
+
+#: inc/admin/classes/class-status.php:891
+msgid "Is the connection to your site secure?"
+msgstr ""
+
+#. translators: %s: docs link.
+#: inc/admin/classes/class-status.php:900
+msgid "Your site is not using HTTPS. <a href=\"%s\" target=\"_blank\" rel=\"noopener noreferrer\">Learn more about HTTPS and SSL Certificates</a>."
+msgstr ""
+
+#: inc/admin/classes/class-status.php:907
+msgid "Hide errors from visitors"
+msgstr ""
+
+#: inc/admin/classes/class-status.php:909
+msgid "Error messages can contain sensitive information about your site environment. These should be hidden from untrusted visitors."
+msgstr ""
+
+#: inc/admin/classes/class-status.php:916
+msgid "Error messages should not be shown to visitors."
+msgstr ""
+
+#: inc/admin/classes/class-status.php:945
+msgid "Flatsome database version"
+msgstr ""
+
+#: inc/admin/classes/class-status.php:947
+msgid "The database version for Flatsome. This should be the same as the parent theme version."
+msgstr ""
+
+#: inc/admin/classes/class-status.php:954
+msgid "This should be the same as the parent theme version."
+msgstr ""
+
+#: inc/admin/classes/class-status.php:983
+msgid "Overrides"
+msgstr ""
+
+#: inc/admin/classes/class-status.php:984
+msgid "This section shows any files that are overriding the default Flatsome templates."
+msgstr ""
+
+#. translators: %1$s: Template name, %2$s: Template version, %3$s: Core version.
+#: inc/admin/classes/class-status.php:997
+msgid "%1$s version %2$s is out of date. The core version is %3$s"
+msgstr ""
+
 #: inc/admin/envato_setup/envato_setup.php:2010
 msgid "Register Theme"
 msgstr ""
@@ -263,6 +559,30 @@ msgstr ""
 
 #: inc/admin/gutenberg/class-gutenberg.php:109
 msgid "Edit with UX Builder"
+msgstr ""
+
+#: inc/admin/options/blog/options-blog-single.php:85
+msgid "Featured image"
+msgstr ""
+
+#: inc/admin/options/blog/options-blog-single.php:101
+msgid "Share icons"
+msgstr ""
+
+#: inc/admin/options/blog/options-blog-single.php:109
+msgid "Meta"
+msgstr ""
+
+#: inc/admin/options/blog/options-blog-single.php:117
+msgid "Blog author box"
+msgstr ""
+
+#: inc/admin/options/blog/options-blog-single.php:125
+msgid "Next/Prev navigation"
+msgstr ""
+
+#: inc/admin/options/blog/options-blog-single.php:133
+msgid "HTML after blog posts"
 msgstr ""
 
 #: inc/admin/options/header/options-header-logo.php:106
@@ -363,21 +683,45 @@ msgid "Text"
 msgstr ""
 
 #: inc/admin/options/header/options-header-nav-vertical.php:87
-#: inc/admin/options/header/options-header-nav-vertical.php:136
-msgid "Text color"
+#: inc/admin/options/header/options-header-nav-vertical.php:201
+msgid "Text base color"
 msgstr ""
 
 #: inc/admin/options/header/options-header-nav-vertical.php:101
-#: inc/admin/options/header/options-header-nav-vertical.php:150
+msgid "Color"
+msgstr ""
+
+#: inc/admin/options/header/options-header-nav-vertical.php:111
+#: inc/admin/options/header/options-header-nav-vertical.php:161
 msgid "Background color"
 msgstr ""
 
-#: inc/admin/options/header/options-header-nav-vertical.php:118
+#: inc/admin/options/header/options-header-nav-vertical.php:128
 msgid "Keep open on front page"
 msgstr ""
 
-#: inc/admin/options/header/options-header-nav-vertical.php:127
+#: inc/admin/options/header/options-header-nav-vertical.php:137
 msgid "Add shadow"
+msgstr ""
+
+#: inc/admin/options/header/options-header-nav-vertical.php:178
+msgid "Divider"
+msgstr ""
+
+#: inc/admin/options/header/options-header-nav-vertical.php:187
+msgid "Nav height"
+msgstr ""
+
+#: inc/admin/options/header/options-header-nav-vertical.php:215
+msgid "Nav color"
+msgstr ""
+
+#: inc/admin/options/header/options-header-nav-vertical.php:225
+msgid "Nav color :hover"
+msgstr ""
+
+#: inc/admin/options/header/options-header-nav-vertical.php:235
+msgid "Nav background color :hover"
 msgstr ""
 
 #: inc/admin/options/notifications/options-notifications.php:98
@@ -397,8 +741,8 @@ msgstr ""
 msgid "Show shipping estimate destination"
 msgstr ""
 
-#: inc/admin/options/shop/options-shop-category.php:682
-#: inc/admin/options/shop/options-shop-product-page.php:359
+#: inc/admin/options/shop/options-shop-category.php:719
+#: inc/admin/options/shop/options-shop-product-page.php:390
 msgid "Color :selected"
 msgstr ""
 
@@ -408,24 +752,36 @@ msgstr ""
 msgid "Custom product layout"
 msgstr ""
 
-#: inc/admin/options/shop/options-shop-product-page.php:337
+#: inc/admin/options/shop/options-shop-product-page.php:359
 msgid "Layout"
 msgstr ""
 
-#: inc/admin/options/shop/options-shop-product-page.php:349
+#: inc/admin/options/shop/options-shop-product-page.php:371
 msgid "Tooltip"
 msgstr ""
 
-#: inc/admin/options/shop/options-shop-product-page.php:350
+#: inc/admin/options/shop/options-shop-product-page.php:372
 msgid "Show a tooltip with the term or term description."
+msgstr ""
+
+#: inc/admin/options/shop/options-shop-product-page.php:380
+msgid "Inactive out of stock"
+msgstr ""
+
+#: inc/admin/options/shop/options-shop-product-page.php:381
+msgid "Show out of stock items as inactive."
 msgstr ""
 
 #: inc/admin/panel/panel.php:31
 msgid "Sorry, an error occurred while accessing the API."
 msgstr ""
 
-#: inc/admin/panel/sections/tab-activate.php:9
+#: inc/admin/panel/sections/tab-activate.php:12
 msgid "Theme registration"
+msgstr ""
+
+#: inc/admin/panel/sections/tab-activate.php:17
+msgid "Status"
 msgstr ""
 
 #: inc/classes/class-flatsome-base-registration.php:49
@@ -684,21 +1040,21 @@ msgstr ""
 msgid "Quick View"
 msgstr ""
 
-#: inc/functions/function-custom-css.php:675
-#: inc/woocommerce/structure-wc-global.php:307
+#: inc/functions/function-custom-css.php:735
+#: inc/woocommerce/structure-wc-global.php:326
 #: inc/woocommerce/structure-wc-product-box.php:29
 msgid "New"
 msgstr ""
 
-#: inc/functions/function-custom-css.php:676
+#: inc/functions/function-custom-css.php:736
 msgid "Hot"
 msgstr ""
 
-#: inc/functions/function-custom-css.php:677
+#: inc/functions/function-custom-css.php:737
 msgid "Sale"
 msgstr ""
 
-#: inc/functions/function-custom-css.php:678
+#: inc/functions/function-custom-css.php:738
 msgid "Popular"
 msgstr ""
 
@@ -736,8 +1092,8 @@ msgid "Footer 2"
 msgstr ""
 
 #: inc/functions/function-setup.php:187
-#: inc/shortcodes/accordion.php:54
-#: woocommerce/single-product/tabs/accordian.php:29
+#: inc/shortcodes/accordion.php:90
+#: woocommerce/single-product/tabs/accordian.php:33
 msgid "Toggle"
 msgstr ""
 
@@ -745,17 +1101,8 @@ msgstr ""
 msgid "Flatsome registration"
 msgstr ""
 
-#: inc/functions/function-site-health.php:28
-msgid "You should register Flatsome with a purchase code"
-msgstr ""
-
-#: inc/functions/function-site-health.php:31
-#: inc/functions/function-site-health.php:52
-msgid "Security"
-msgstr ""
-
 #: inc/functions/function-site-health.php:36
-#: template-parts/admin/envato/register-form.php:30
+#: template-parts/admin/envato/register-form.php:38
 msgid "Your copy of Flatsome is registered with a personal Envato token. Please register Flatsome with a purchase code instead to ensure your site receives updates in the future."
 msgstr ""
 
@@ -789,14 +1136,14 @@ msgid "Wishlist"
 msgstr ""
 
 #. translators: %s: comment count
-#: inc/shortcodes/blog_posts.php:286
+#: inc/shortcodes/blog_posts.php:288
 msgid "%s Comment"
 msgid_plural "%s Comments"
 msgstr[0] ""
 msgstr[1] ""
 
 #: inc/shortcodes/portfolio.php:146
-#: woocommerce/product-searchform.php:38
+#: woocommerce/product-searchform.php:39
 msgid "All"
 msgstr ""
 
@@ -982,14 +1329,14 @@ msgid "Recent Posts"
 msgstr ""
 
 #: inc/widgets/widget-recent-posts.php:86
-#: template-parts/posts/partials/entry-footer-single.php:24
-#: template-parts/posts/partials/entry-footer.php:24
+#: template-parts/posts/partials/entry-footer-single.php:33
+#: template-parts/posts/partials/entry-footer.php:33
 msgid "<strong>1</strong> Comment"
 msgstr ""
 
 #: inc/widgets/widget-recent-posts.php:86
-#: template-parts/posts/partials/entry-footer-single.php:24
-#: template-parts/posts/partials/entry-footer.php:24
+#: template-parts/posts/partials/entry-footer-single.php:33
+#: template-parts/posts/partials/entry-footer.php:33
 msgid "<strong>%</strong> Comments"
 msgstr ""
 
@@ -1181,67 +1528,67 @@ msgstr ""
 msgid "Page - Full Width - Transparent Header"
 msgstr ""
 
-#: searchform.php:17
-#: woocommerce/product-searchform.php:64
+#: searchform.php:18
+#: woocommerce/product-searchform.php:65
 msgid "Submit"
 msgstr ""
 
 #. translators: 1. Template
-#: template-parts/admin/envato/directory-warning.php:5
+#: template-parts/admin/envato/directory-warning.php:13
 msgid "An unusual theme directory name was detected: <em>%s</em>. The Flatsome parent theme should be installed in a directory named <em>flatsome</em> to ensure updates are handled correctly."
 msgstr ""
 
-#: template-parts/admin/envato/register-form.php:17
+#: template-parts/admin/envato/register-form.php:25
 msgid "Your site is <strong>registered</strong>. Thank you! Enjoy Flatsome and one-click updates."
 msgstr ""
 
-#: template-parts/admin/envato/register-form.php:31
+#: template-parts/admin/envato/register-form.php:39
 msgid "The selector below will show available purchase codes you can register with."
 msgstr ""
 
-#: template-parts/admin/envato/register-form.php:34
+#: template-parts/admin/envato/register-form.php:42
 msgid "Select a purchase code:"
 msgstr ""
 
-#: template-parts/admin/envato/register-form.php:52
+#: template-parts/admin/envato/register-form.php:60
 msgid "Registered domain:"
 msgstr ""
 
-#: template-parts/admin/envato/register-form.php:113
+#: template-parts/admin/envato/register-form.php:121
 msgid "Are you sure you want to unregister Flatsome?"
 msgstr ""
 
 #. translators: 1: Version.
-#: template-parts/admin/envato/version-info-iframe.php:7
+#: template-parts/admin/envato/version-info-iframe.php:15
 msgid "Version %s"
 msgstr ""
 
-#: template-parts/admin/envato/version-info-iframe.php:10
+#: template-parts/admin/envato/version-info-iframe.php:18
 msgid "Read change log here"
 msgstr ""
 
-#: template-parts/footer/back-to-top.php:15
+#: template-parts/footer/back-to-top.php:22
 msgid "Go to top"
 msgstr ""
 
-#: template-parts/header/partials/element-contact-mobile.php:29
-#: template-parts/header/partials/element-contact.php:24
+#: template-parts/header/partials/element-contact-mobile.php:38
+#: template-parts/header/partials/element-contact.php:33
 msgid "Location"
 msgstr ""
 
-#: template-parts/header/partials/element-contact-mobile.php:38
-#: template-parts/header/partials/element-contact.php:43
+#: template-parts/header/partials/element-contact-mobile.php:47
+#: template-parts/header/partials/element-contact.php:52
 msgid "Contact"
 msgstr ""
 
-#: template-parts/header/partials/element-menu-icon.php:4
-#: template-parts/header/partials/element-menu-icon.php:8
-#: template-parts/overlays/overlay-menu.php:44
+#: template-parts/header/partials/element-menu-icon.php:13
+#: template-parts/header/partials/element-menu-icon.php:17
+#: template-parts/overlays/overlay-menu.php:45
 msgid "Menu"
 msgstr ""
 
-#: template-parts/header/partials/element-nav-vertical.php:32
-#: template-parts/overlays/overlay-menu.php:49
+#: template-parts/header/partials/element-nav-vertical.php:33
+#: template-parts/overlays/overlay-menu.php:50
 msgid "Categories"
 msgstr ""
 
@@ -1262,130 +1609,131 @@ msgid "It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps searc
 msgstr ""
 
 #. translators: used between list items, there is a space after the comma
-#: template-parts/posts/content-single.php:22
-#: template-parts/posts/content-single.php:25
-#: template-parts/posts/partials/entry-footer-single.php:5
-#: template-parts/posts/partials/entry-footer-single.php:13
-#: template-parts/posts/partials/entry-footer.php:5
-#: template-parts/posts/partials/entry-footer.php:13
-#: template-parts/posts/partials/entry-title.php:2
+#: template-parts/posts/content-single.php:31
+#: template-parts/posts/content-single.php:34
+#: template-parts/posts/partials/entry-footer-single.php:14
+#: template-parts/posts/partials/entry-footer-single.php:22
+#: template-parts/posts/partials/entry-footer.php:14
+#: template-parts/posts/partials/entry-footer.php:22
+#: template-parts/posts/partials/entry-title.php:12
+#: template-parts/posts/partials/entry-title.php:17
 msgid ", "
 msgstr ""
 
-#: template-parts/posts/content-single.php:30
+#: template-parts/posts/content-single.php:39
 msgid "This entry was posted in %1$s and tagged %2$s."
 msgstr ""
 
-#: template-parts/posts/content-single.php:32
+#: template-parts/posts/content-single.php:41
 msgid "This entry was posted in %1$s. Bookmark the <a href=\"%3$s\" title=\"Permalink to %4$s\" rel=\"bookmark\">permalink</a>."
 msgstr ""
 
-#: template-parts/posts/content.php:6
-#: template-parts/posts/content.php:10
-#: template-parts/posts/featured-posts.php:23
+#: template-parts/posts/content.php:15
+#: template-parts/posts/content.php:19
+#: template-parts/posts/featured-posts.php:29
 msgid "Continue reading <span class=\"meta-nav\">&rarr;</span>"
 msgstr ""
 
-#: template-parts/posts/loop/post-simple.php:23
+#: template-parts/posts/loop/post-simple.php:32
 msgid "%1$s Comment"
 msgid_plural "%1$s Comments"
 msgstr[0] ""
 msgstr[1] ""
 
-#: template-parts/posts/partials/archive-title.php:8
+#: template-parts/posts/partials/archive-title.php:17
 msgid "Category Archives: %s"
 msgstr ""
 
-#: template-parts/posts/partials/archive-title.php:11
+#: template-parts/posts/partials/archive-title.php:20
 msgid "Tag Archives: %s"
 msgstr ""
 
-#: template-parts/posts/partials/archive-title.php:14
+#: template-parts/posts/partials/archive-title.php:23
 msgid "Search Results for: %s"
 msgstr ""
 
-#: template-parts/posts/partials/archive-title.php:21
+#: template-parts/posts/partials/archive-title.php:30
 msgid "Author Archives: %s"
 msgstr ""
 
-#: template-parts/posts/partials/archive-title.php:29
+#: template-parts/posts/partials/archive-title.php:38
 msgid "Daily Archives: %s"
 msgstr ""
 
-#: template-parts/posts/partials/archive-title.php:32
+#: template-parts/posts/partials/archive-title.php:41
 msgid "Monthly Archives: %s"
 msgstr ""
 
-#: template-parts/posts/partials/archive-title.php:35
+#: template-parts/posts/partials/archive-title.php:44
 msgid "Yearly Archives: %s"
 msgstr ""
 
-#: template-parts/posts/partials/archive-title.php:38
+#: template-parts/posts/partials/archive-title.php:47
 msgid "Asides"
 msgstr ""
 
-#: template-parts/posts/partials/archive-title.php:41
+#: template-parts/posts/partials/archive-title.php:50
 msgid "Images"
 msgstr ""
 
-#: template-parts/posts/partials/archive-title.php:44
+#: template-parts/posts/partials/archive-title.php:53
 msgid "Videos"
 msgstr ""
 
-#: template-parts/posts/partials/archive-title.php:47
+#: template-parts/posts/partials/archive-title.php:56
 msgid "Quotes"
 msgstr ""
 
-#: template-parts/posts/partials/archive-title.php:50
+#: template-parts/posts/partials/archive-title.php:59
 msgid "Links"
 msgstr ""
 
-#: template-parts/posts/partials/entry-footer-single.php:8
-#: template-parts/posts/partials/entry-footer.php:8
+#: template-parts/posts/partials/entry-footer-single.php:17
+#: template-parts/posts/partials/entry-footer.php:17
 msgid "Posted in %1$s"
 msgstr ""
 
-#: template-parts/posts/partials/entry-footer-single.php:18
-#: template-parts/posts/partials/entry-footer.php:18
+#: template-parts/posts/partials/entry-footer-single.php:27
+#: template-parts/posts/partials/entry-footer.php:27
 msgid "Tagged %1$s"
 msgstr ""
 
-#: template-parts/posts/partials/entry-footer-single.php:24
-#: template-parts/posts/partials/entry-footer.php:24
+#: template-parts/posts/partials/entry-footer-single.php:33
+#: template-parts/posts/partials/entry-footer.php:33
 msgid "Leave a comment"
 msgstr ""
 
-#: woocommerce/checkout/header-small.php:22
-#: woocommerce/checkout/header.php:22
+#: woocommerce/checkout/header-small.php:36
+#: woocommerce/checkout/header.php:38
 msgid "Shopping Cart"
 msgstr ""
 
-#: woocommerce/checkout/header-small.php:27
-#: woocommerce/checkout/header.php:27
+#: woocommerce/checkout/header-small.php:41
+#: woocommerce/checkout/header.php:43
 msgid "Checkout details"
 msgstr ""
 
-#: woocommerce/checkout/header-small.php:32
-#: woocommerce/checkout/header.php:32
+#: woocommerce/checkout/header-small.php:46
+#: woocommerce/checkout/header.php:48
 msgid "Order Complete"
 msgstr ""
 
-#: woocommerce/checkout/social-login.php:8
-#: woocommerce/myaccount/header.php:64
+#: woocommerce/checkout/social-login.php:17
+#: woocommerce/myaccount/header.php:71
 msgid "Login with <strong>Facebook</strong>"
 msgstr ""
 
-#: woocommerce/checkout/social-login.php:19
-#: woocommerce/myaccount/header.php:74
+#: woocommerce/checkout/social-login.php:28
+#: woocommerce/myaccount/header.php:81
 msgid "Login with <strong>Google</strong>"
-msgstr ""
-
-#: woocommerce/myaccount/form-login-lightbox-left-panel.php:77
-#: woocommerce/myaccount/form-login-lightbox-right-panel.php:119
-msgid "Don't have an account? Register one!"
 msgstr ""
 
 #: woocommerce/myaccount/form-login-lightbox-left-panel.php:78
 #: woocommerce/myaccount/form-login-lightbox-right-panel.php:120
+msgid "Don't have an account? Register one!"
+msgstr ""
+
+#: woocommerce/myaccount/form-login-lightbox-left-panel.php:79
+#: woocommerce/myaccount/form-login-lightbox-right-panel.php:121
 msgid "Register an Account"
 msgstr ""

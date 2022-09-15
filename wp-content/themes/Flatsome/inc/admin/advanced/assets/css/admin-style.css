@@ -5,8 +5,8 @@
 	display:none!important
 } /* disable the admin notices */
 
-.flatsome-instagram-accounts .theme .theme-screenshot::after {
-	padding-top: 100%;
+.flatsome-instagram-accounts .widefat td {
+	vertical-align: middle;
 }
 
 .flatsome-instagram-connect {
@@ -244,9 +244,16 @@ html[data-iframe] #of_container .of-save-popup div{padding-top: 15px;}
 	margin: 10px 0;
 }
 
-#of_backup_button {
+#of_backup_button,
+#of_restore_button {
 	margin-right: 5px;
 }
+
+#of_delete_backup_button {
+	color: #d63638;
+	border-color: #d63638;
+}
+
 #of_import_button {
 	margin-top: 10px;
 }
