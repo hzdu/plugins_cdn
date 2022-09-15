@@ -14,17 +14,57 @@
                 @change="onChange($event)"
             >
                 <option
-                    v-for="option in options"
+                    v-for="(option,index) in options"
+                    :key="index"
                     :value="option.value"
                     :selected="option.value == 'sales'"
                 >{{ option.name }}
                 </option>
             </select>
 
-            <div class="wpfnl-field-wrapper">
+            <div class="wpfnl-field-wrapper" v-if="isLmsInstalled">
                 <div class="wpfnl-fields">
                     <span class="wpfnl-checkbox no-title">
-                        <input type="checkbox" name="install-cartlift" v-model="isIstallCartLift" id="install-cartlift" @change="isPermitted"/>
+                        <input type="checkbox" name="install-lms" v-model="isIstallLms" id="install-lms" @change="isPermitted"/>
+                        <label for="install-lms"></label>
+                    </span>
+                    <label>
+                        Activate Learndash
+                        <span class="wpfnl-tooltip">
+                            <p>Enable to activate Learndash</p>
+                        </span>
+                    </label>
+                </div>
+                
+                <!-- <p class="hints">
+                    Recommended If you want to set abandoned cart recovery campaigns for sales funnels, and WooCommerce store.
+                </p> -->
+            </div>
+            
+            <div class="wpfnl-field-wrapper" v-show="'sales' === selected">
+                <div class="wpfnl-fields">
+                    <span class="wpfnl-checkbox no-title">
+                        <input type="checkbox" name="install-wc" v-model="isIstallWc" id="install-wc" @change="isPermitted"/>
+                        <label for="install-wc"></label>
+                    </span>
+                    <label>
+                        Install WooCommerce
+                        <span class="wpfnl-tooltip">
+                            
+                            <p>Enable to install WooCommerce</p>
+                        </span>
+                    </label>
+                </div>
+                
+                <!-- <p class="hints">
+                    Recommended If you want to set abandoned cart recovery campaigns for sales funnels, and WooCommerce store.
+                </p> -->
+            </div>
+
+            <div class="wpfnl-field-wrapper" v-show="'sales' === selected">
+                <div class="wpfnl-fields">
+                    <span class="wpfnl-checkbox no-title">
+                        <input type="checkbox" name="install-cartlift" :disabled="!isIstallWc" v-model="isIstallCartLift" id="install-cartlift" @change="isPermitted"/>
                         <label for="install-cartlift"></label>
                     </span>
                     <label>
@@ -42,7 +82,7 @@
             </div>
             
             <span class="hints">
-                The following plugins will be installed for you: <a href="https://wordpress.org/plugins/woocommerce/" target="_blank">WooCommerce</a> <span v-if="isIstallCartLift">& <a href="https://wordpress.org/plugins/cart-lift/" target="_blank">CartLift</a></span>
+                The following plugins will be installed for you: <span v-if="isIstallLms"><a href="#" target="_blank">Learndash</a></span><span v-if="isIstallLms && isIstallWc">, </span><span v-if="isIstallWc"><a href="https://wordpress.org/plugins/woocommerce/" target="_blank">WooCommerce</a></span> <span v-if="isIstallCartLift && isIstallWc">& <a href="https://wordpress.org/plugins/cart-lift/" target="_blank">CartLift</a></span>
             </span>
         </div>
 
@@ -71,21 +111,28 @@
         props: {
             // eslint-disable-next-line vue/require-default-prop
             wizardSlug: String,
-            showLoader: Boolean
+            showLoader: Boolean,
+            isLmsInstalled: Boolean,
         },
         data: function () {
             return {
                 options: [
-                    { name: 'Sales Funnel', value: 'sales' },
-                    // { name: 'Lead Funnel', value: 'leads' },
+                    { name: 'Sales', value: 'sales' },
+                    { name: 'Lead Gen', value: 'lead' },
                     // { name: 'Both (Sales + Lead)', value: 'both' }
                 ],
+                isIstallWc: true,
+                isIstallLms: false,
                 selected: 'sales',
-                isIstallCartLift: true
+                isIstallCartLift: true,
+                
             }
         },
         mounted () {
-            this.$emit('setPluginSlug', 'woocommerce',this.isIstallCartLift)
+
+            if(this.isIstallWc){
+                this.$emit('setPluginSlug', 'woocommerce',this.isIstallCartLift)
+            }
             this.$emit('changeSetUpType', 'plugin')
         },
         methods: {
@@ -93,16 +140,37 @@
                 e.preventDefault();
                 this.$emit('processSettings')
             },
+
             isPermitted: function (e) {
                 e.preventDefault();
-                this.$emit('setPluginSlug', 'woocommerce',this.isIstallCartLift)
-            },
-            onChange (event) {
-                if (event.target.value === 'sales') {
+
+                if( this.isLmsInstalled && this.isIstallLms){
+                    this.$emit('setPluginSlug', 'learndash',this.isIstallLms)
+                }
+
+                if(this.isIstallWc){
                     this.$emit('setPluginSlug', 'woocommerce',this.isIstallCartLift)
-                } else if (event.target.value === 'lead') {
-                    this.$emit('setPluginSlug', 'fluentform')
-                } else if (event.target.value === 'both') {
+                }else if(!this.isIstallWc){
+                    this.isIstallCartLift = false
+                    this.$emit('setPluginSlug', false , this.isIstallCartLift)
+                }
+            },
+            
+            onChange (event) {
+                if ('sales' === event.target.value ) {
+                    if(this.isIstallWc){
+                        this.$emit('setPluginSlug', 'woocommerce',this.isIstallCartLift)
+                    }else{
+                        this.$emit('setPluginSlug', false,this.isIstallCartLift)
+                    }
+
+                    
+                } else if ('lead' === event.target.value ) {
+                    this.isIstallWc = false;
+                    this.isIstallCartLift = false
+                    this.$emit('setPluginSlug', false , this.isIstallCartLift)
+                    // this.$emit('setPluginSlug', 'fluentform')
+                } else if ( 'both' === event.target.value ) {
                     this.$emit('setPluginSlug', 'both')
                 }
             },

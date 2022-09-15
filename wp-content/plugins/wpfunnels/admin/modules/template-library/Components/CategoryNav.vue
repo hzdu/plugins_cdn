@@ -17,7 +17,8 @@ export default {
     name: 'CategoryNav',
     props: {
         categories: Array,
-        activeCategory: String
+        activeCategory: String,
+        
     },
     mounted: function() {
         var vm = this;
@@ -45,6 +46,7 @@ export default {
     },
     methods: {
         doCatFilter: function (e) {
+            
             this.$emit('doCatFilter', e)
         }
     }

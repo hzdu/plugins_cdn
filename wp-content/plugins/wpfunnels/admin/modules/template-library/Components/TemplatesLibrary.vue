@@ -57,10 +57,13 @@
                             <ReturnIcon/>
                         </span>
 
-                        <CategoryNav v-if="!showStepsPreview" :categories="categories" :active-category="activeCategory"
-                                     @doCatFilter="doCatFilter"/>
+                        <ul class="template-type-filter" v-if="tempalateTypes.length > 0">
+                            <li data-filter="woocommerce" v-for="(tempalateType, index) in template_type"  :key="index" :class="tempalateType.name == type ? 'active' : '' " @click="doTemplateCatFilter(tempalateType)"  >{{tempalateType.label}}</li>
+                        </ul>
+                        
+                        <CategoryNav v-if="tempalateTypes.length > 0 && !showStepsPreview" :categories="categories" :activeCategory="activeCategory"  @doCatFilter="doCatFilter"/>
 
-                        <ul class="pro-free__filter" v-if="showProFilter" v-show="!showStepsPreview">
+                        <ul class="pro-free__filter" v-if="tempalateTypes.length > 0 && showProFilter" v-show="!showStepsPreview">
                             <li data-filter="all" :class="templatesType == 'all' ? 'active' : '' "
                                 @click="doFreeProFilter('all')">all
                             </li>
@@ -80,12 +83,10 @@
                         </ul>
 
                         <div class="import-funnel-name" v-show="showStepsPreview" v-if="!isAddNewFunnelButtonDisabled">
-                            <input type="text" name="import-funnel-name"
-                                   :value="this.activeTemplate ? this.activeTemplate.title : '' "
-                                   placeholder="Write Funnel Name">
+                            <input type="text" name="import-funnel-name" :value="this.activeTemplate ? this.activeTemplate.title : '' " placeholder="Write Funnel Name">
                         </div>
 
-                        <div class="funnel-global-import" v-show="showStepsPreview" v-if="">
+                        <div class="funnel-global-import" v-show="showStepsPreview">
                             <a
 								href="#"
 								class="btn-default"
@@ -124,7 +125,7 @@
 
                     <div class="wpfnl-create-funnel__templates">
                         <div v-show="loader" class="wpfnl-create-funnel__loader">
-                            <!-- <span class="wpfnl-loader">{{ message }}</span> -->
+                            <span class="wpfnl-loader" v-show="templateCatFilterLoader"></span>
                         </div>
 
                         <div class="create-funnel__single-template create__from-scratch"
@@ -159,6 +160,7 @@
                                 :data="data"
                                 :active-category="activeCategory"
                                 :isPro="data.is_pro"
+                                :type="type"
                                 :key="index"
                                 :isAddNewFunnelButtonDisabled="isAddNewFunnelButtonDisabled"
                                 @toggleStepsPreview="toggleStepsPreview"
@@ -298,6 +300,7 @@ import StepImporter from './StepImporter.vue'
 import SingleStepPreview from './SingleStepPreview.vue'
 import ReturnIcon from '../../../src/components/icons/ReturnIcon.vue'
 import apiFetch from '@wordpress/api-fetch'
+import {addQueryArgs} from "@wordpress/url";
 
 var j = jQuery.noConflict()
 const nonce = window.template_library_object.nonce
@@ -325,6 +328,7 @@ export default {
             allSteps: [],
             totalTemplates: 0,
             loader: true,
+            templateCatFilterLoader: false,
             message: '',
 			isProTemplateSelected: false,
             loaderMessage: 'Import',
@@ -332,6 +336,7 @@ export default {
             activeStepCategory: 'all',
             activeStep: 'landing',
             templatesType: 'all',
+            templatesCatType: 'woocommerce',
             stepTemplateType: 'all',
             showProFilter: true,
             showStepsPreview: false,
@@ -346,13 +351,21 @@ export default {
             dependencyPlugins: window.WPFunnelVars.dependencyPlugins,
             isAnyPluginMissing: window.WPFunnelVars.isAnyPluginMissing,
 			isProActivated: window.WPFunnelVars.isProActivated,
+			isWcActivated: window.WPFunnelVars.is_wc_installed,
+			isLmsActivated: window.WPFunnelVars.isLmsActivated,
             builder: window.WPFunnelVars.builder,
             pluginInstallLoader: false,
             pluginInstallationErrorMessage: '',
-			isRemoteFunnel: true
+			isRemoteFunnel: false,
+            funnelType: window.WPFunnelVars.global_funnel_type,
+			type: 'lead' == window.WPFunnelVars.global_funnel_type ? 'lead' : window.WPFunnelVars.is_wc_installed === 'yes' ? 'wc' : 'lms',
+			selectedType: 'lead' == window.WPFunnelVars.global_funnel_type ? 81 : window.WPFunnelVars.is_wc_installed === 'yes' ? 74 : 73,
+            tempalateTypes : [],
+            template_type : window.template_library_object.template_type
         }
 
     },
+    
     computed: {
         isAddNewFunnelButtonDisabled: function () {
             if (!this.isProActivated) {
@@ -364,6 +377,7 @@ export default {
         }
     },
     mounted() {
+        console.log(window.WPFunnelVars.global_funnel_type)
         j(document).on(
             'wp-plugin-install-success',
             this.pluginInstalledSuccess
@@ -373,39 +387,52 @@ export default {
             'wp-plugin-install-error',
             this.pluginInstalledError
         );
-
-
+        
         if(!this.$store.isRemoteFunnel) {
-			apiFetch({
-				path: window.template_library_object.rest_api_url + 'wpfunnels/v1/templates/get_templates',
-				method: 'GET'
-			}).then(response => {
-				if (response.success) {
-					this.templates = response.templates
-					this.allTemplates = response.templates
-					this.templatesType = 'all'
-					this.categories = response.categories
-					this.stepCategories = response.categories
-					this.steps = response.steps
-					this.allSteps = response.steps
-					if (response.templates) {
-						this.totalTemplates = this.isAnyPluginMissing === 'yes' ? 0 : response.templates.length
-					}
-
-					this.loader = false
-				}
-			})
+            this.getTemplate();
 		} else {
 			this.loader = false
 		}
+       
     },
+
     methods: {
+        
+        getTemplate: function (){
+            if( this.selectedType ){
+                apiFetch({
+                    path: addQueryArgs( `${window.template_library_object.rest_api_url}wpfunnels/v1/templates/get_templates`, {
+                        type: this.selectedType
+                    } ),
+                    method: 'GET'
+                }).then(response => {
+                    if (response.success) {
+                        this.templates = response.templates
+                        this.allTemplates = response.templates
+                        this.tempalateTypes = response.templateType
+                        this.templatesType = 'all'
+                        this.categories = response.categories
+                        this.stepCategories = response.categories
+                        this.steps = response.steps
+                        this.allSteps = response.steps
+                        if (response.templates) {
+                            this.totalTemplates = this.isAnyPluginMissing === 'yes' ? 0 : response.templates.length
+                        }
+                        this.loader = false
+                        this.templateCatFilterLoader = false;
+                    }
+                    
+                })
+            }
+            
+        },
         createFunnel: function (e) {
             e.preventDefault();
             this.disabled = true;
             this.createFunnelTitle = "Creating Funnel..."
             var payload = {
-                funnelName: this.funnelName
+                funnelName: this.funnelName,
+                type      : this.type,
             };
             wpAjaxHelperRequest("create-funnel", payload)
                 .success(function (response) {
@@ -550,6 +577,16 @@ export default {
                 });
             }
             this.totalTemplates = this.templates.length
+        },
+        doTemplateCatFilter: function (value) {
+            this.loader = true;
+            this.templateCatFilterLoader = true;
+            
+            this.selectedType = value.id
+            this.type = value.name
+            this.activeCategory = 'all'
+            this.doCatFilter('')
+            this.getTemplate();
         },
         toggleLoader: function (e) {
             this.loader = !this.loader

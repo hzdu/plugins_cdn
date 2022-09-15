@@ -131,6 +131,64 @@
 			}
 		}
 	}
+	
+	
+	.woocommerce-bacs-bank-details {
+		.wc-bacs-bank-details-heading {
+			color: #363B4E;
+			box-sizing: border-box;
+			margin: 0 0 13px;
+			font-size: 22px;
+			line-height: 1.3;
+			font-weight: 500;
+		}
+
+		.wc-bacs-bank-details-account-name {
+			background: #F7F7FA;
+			color: #363B4E;
+			box-sizing: border-box;
+			border-radius: 10px 10px 0px 0px;
+			margin: 0;
+			font-size: 22px;
+			line-height: 1.3;
+			font-weight: 500;
+			padding: 15px 20px;
+			border: 1px solid #E5E8F3;
+			border-bottom: none;
+			float: none !important;
+			display: block;
+		}
+
+		.wc-bacs-bank-details {
+			display: flex;
+			flex-flow: row wrap;
+			background: #FFFFFF;
+			border: 1px solid #E5E8F3;
+			border-radius: 0 0 10px 10px;
+			margin-bottom: 20px;
+
+			li {
+				margin: 0;
+				list-style: none;
+				border-right: 1px solid #E5E8F3;
+				line-height: normal;
+				padding: 14px 20px;
+				font-size: 14px;
+				float: none;
+				color: #363B4E;
+				flex: 1;
+
+				strong {
+					display: block;
+					margin-top: 6px;
+					color: #363B4E;
+					font-weight: 500;
+					font-size: 16px;
+				}
+			}
+		}
+	}
+
 }
 
 
@@ -188,15 +246,20 @@
 
 //---------responsive style---------
 @media only screen and (max-width: 991px) {
+	.wpfnl-thankyou-wrapper .woocommerce-bacs-bank-details .wc-bacs-bank-details li,
 	.wpfnl-thankyou-wrapper ul.woocommerce-thankyou-order-details li {
 		flex: inherit;
 	}
+
+	.wpfnl-thankyou-wrapper .woocommerce-bacs-bank-details .wc-bacs-bank-details li,
 	.wpfnl-thankyou-wrapper ul.woocommerce-thankyou-order-details li {
 		flex: inherit;
 		width: calc(100% / 3);
 		border-right: 1px solid #E5E8F3;
 		border-bottom: 1px solid #E5E8F3;
 	}
+
+	.wpfnl-thankyou-wrapper .woocommerce-bacs-bank-details .wc-bacs-bank-details li:last-child,
 	.wpfnl-thankyou-wrapper ul.woocommerce-thankyou-order-details li:last-child {
 		border-right: 1px solid #E5E8F3;
 	}
@@ -204,10 +267,13 @@
 
 
 @media only screen and (max-width: 575px) {
+	.wpfnl-thankyou-wrapper .woocommerce-bacs-bank-details .wc-bacs-bank-details li,
 	.wpfnl-thankyou-wrapper ul.woocommerce-thankyou-order-details li {
 		width: calc(100% / 1);
 		padding: 12px 14px;
 	}
+
+	.wpfnl-thankyou-wrapper .woocommerce-bacs-bank-details .wc-bacs-bank-details li strong,
 	.wpfnl-thankyou-wrapper ul.woocommerce-thankyou-order-details li strong {
 		word-break: break-all;
 		line-height: 1;

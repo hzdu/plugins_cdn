@@ -1,0 +1,230 @@
+.wpfnl-lms-checkout {
+    .lms-checkout-header {
+        background: #F7F7FA;
+        border: 1px solid #F2F3F8;
+        border-radius: 10px 10px 0px 0px;
+        padding: 18px 30px 19px;
+
+        h4 {
+            font-weight: 600;
+            font-size: 18px;
+            line-height: 1.2;
+            color: #000000;
+        }
+    }
+
+    .lms-checkout-body {
+        background: #FFFFFF;
+        border: 1px solid #F2F3F8;
+        border-radius: 0px 0px 10px 10px;
+        padding: 26px 30px 30px;
+        margin: -1px 0 0 0;
+        display: flex;
+        flex-flow: row wrap;
+
+        .course-image {
+            width: 21%;
+            min-height: 190px;
+
+            img {
+                border-radius: 15px;
+                height: 100%;
+                width: 100%;
+                object-fit: cover;
+            }
+        }
+        .course-content {
+            width: 79%;
+            padding-left: 5.5%;
+        }
+
+        .course-title {
+            font-weight: 700;
+            font-size: 18px;
+            line-height: 1.3;
+            color: #373B4C;
+            margin-bottom: 13px;
+
+            .no-of-lesson {
+                position: relative;
+                display: block;
+                font-weight: 400;
+                font-size: 14px;
+                line-height: 1.2;
+                color: #656976;
+            }
+        }
+
+        .lms-single-block {
+            margin-bottom: 17px;
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+
+            .lms-block-title {
+                font-weight: 600;
+                font-size: 16px;
+                line-height: 1.25;
+                color: #373B4C;
+                margin-bottom: 3px;
+            }
+            .course-description {
+                font-weight: 400;
+                font-size: 14px;
+                line-height: 1.5;
+                color: #656976;
+                display: -webkit-box;
+                -webkit-line-clamp: 2;
+                -webkit-box-orient: vertical;  
+                overflow: hidden;
+
+            }
+
+            .course-plan {
+                font-weight: 500;
+                font-size: 16px;
+                line-height: 1.4;
+                color: #656976;
+
+                .primary-color {
+                    color: $primary-color;
+                }
+
+                small {
+                    font-weight: 400;
+                }
+            }
+        }
+    }
+
+    .lms-checkout-footer {
+        display: flex;
+        flex-flow: row wrap;
+        align-items: center;
+        justify-content: flex-end;
+        padding: 15px 0;
+
+        .footer-title {
+            font-weight: 600;
+            font-size: 16px;
+            line-height: 1.3;
+            color: #373B4C;
+            margin: 0;
+            padding: 0;
+        }
+
+        .footer-price {
+            color: $primary-color;
+            margin-left: 40px;
+            display: inline-block;
+        }
+        .learndash_checkout_buttons {
+            margin: 0;
+        }
+
+        .btn-default,
+        .ld-login-button,
+        #btn-join,
+        .btn-join {
+            border-radius: 5px;
+            background-color: $primary-color;
+            color: #FFFFFF;
+            font-size: 16px;
+            line-height: 1.3;
+            padding: 15px 47px;
+            margin-left: 50px;
+            font-weight: 600;
+            outline: none;
+            box-shadow: none;
+            width: auto;
+        }
+
+        .wpfnl-lms-access-course-message {
+            width: 100%;
+            text-align: right;
+            font-size: 16px;
+            line-height: 1.3;
+            font-weight: 600;
+            margin-top: 8px;
+            color: #373B4C;
+        }
+    }
+    
+
+}
+
+.jq-dropdown.jq-dropdown-tip {
+    margin-top: 37px;
+}
+.jq-dropdown .jq-dropdown-menu {
+    padding: 6px;
+    border-radius: 6px;
+}
+
+
+@media only screen and (max-width: 991px){
+    .wpfnl-lms-checkout .lms-checkout-body .course-image {
+        width: 30%;
+    }
+    .wpfnl-lms-checkout .lms-checkout-body .course-content {
+        width: 70%;
+        padding-left: 24px;
+    }
+}
+
+@media only screen and (max-width: 767px){
+    .wpfnl-lms-checkout .lms-checkout-header {
+        padding: 14px 15px 13px;
+    }
+    .wpfnl-lms-checkout .lms-checkout-body {
+        display: block;
+        padding: 15px;
+    }
+    .wpfnl-lms-checkout .lms-checkout-body .course-image img {
+        border-radius: 10px;
+        height: inherit;
+        width: auto;
+        object-fit: inherit;
+    }
+    .wpfnl-lms-checkout .lms-checkout-body .course-image {
+        width: 100%;
+    }
+    .wpfnl-lms-checkout .lms-checkout-body .course-content {
+        width: 100%;
+        padding-left: 0;
+        margin-top: 16px;
+    }
+
+    .wpfnl-lms-checkout .lms-checkout-footer .footer-price {
+        margin-left: 23px;
+    }
+    .wpfnl-lms-checkout .lms-checkout-footer .btn-default,
+    .wpfnl-lms-checkout .lms-checkout-footer .ld-login-button,
+    .wpfnl-lms-checkout .lms-checkout-footer .btn-join {
+        padding: 11px 25px;
+        margin-left: 20px;
+    }
+
+}
+
+@media only screen and (max-width: 575px){
+    .wpfnl-lms-checkout .lms-checkout-body .lms-single-block .course-plan {
+        font-size: 14px;
+        line-height: 1.3;
+    }
+
+}
+
+@media only screen and (max-width: 450px){
+    .wpfnl-lms-checkout .lms-checkout-footer {
+        display: block;
+    }
+    .wpfnl-lms-checkout .lms-checkout-footer .btn-default,
+    .wpfnl-lms-checkout .lms-checkout-footer .ld-login-button,
+    .wpfnl-lms-checkout .lms-checkout-footer .btn-join {
+        margin-left: 0;
+        margin-top: 7px;
+    }
+
+}

@@ -33,13 +33,10 @@
     max-width: 460px;
 
     .wpfnl-product-variation-title {
-        //background: #FDF4ED;
-        //border-radius: 10px;
         font-weight: 700;
         font-size: 20px;
         line-height: 1.1;
         color: #363B4C;
-        //padding: 15px 27px;
         margin: 0 0 13px 0;
         border: none;
         box-shadow: none;
@@ -87,6 +84,7 @@
 
             select {
                 width: 100%;
+                height: auto;
                 -webkit-appearance: auto;
                 appearance: auto;
                 padding: 10px 14px;
@@ -133,40 +131,40 @@
         }
     }
 
-    .wpfnl-offerbtn-and-price-wrapper {
-        .wpfnl-offer-product-price {
-            display: inline-flex;
-            align-items: center;
-            flex-flow: row-reverse;
+    .variations select {
+        height: auto!important;
+    }
 
-            bdi {
-                color: #000000;
-                font-weight: 700;
-                font-size: 32px;
-                line-height: 1.18;
-                text-decoration: none;
-            }
-    
-            del {
-                margin-left: 6px!important;
-                margin-right: 8px;
+    .wpfnl-offer-product-price {
+        display: inline-flex;
+        align-items: center;
+        flex-flow: row-reverse;
 
-                bdi {
-                    font-weight: 500;
-                    font-size: 20px;
-                    line-height: 1.1;
-                    color: rgba(54, 59, 76, 0.8);
-                    
-                }
-            }
-    
-            ins {
-                text-decoration: none;
-            }
-
+        bdi {
+            color: #000000;
+            font-weight: 700;
+            font-size: 32px;
+            line-height: 1.18;
+            text-decoration: none;
         }
 
-        
+        del {
+            margin-left: 6px!important;
+            margin-right: 8px;
+
+            bdi {
+                font-weight: 500;
+                font-size: 20px;
+                line-height: 1.1;
+                color: rgba(54, 59, 76, 0.8);
+                
+            }
+        }
+
+        ins {
+            text-decoration: none;
+        }
+
     }
 
     .offer-btn-loader {

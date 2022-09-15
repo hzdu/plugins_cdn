@@ -287,6 +287,7 @@
         let ajaxurl = window.WPFunnelsOfferVars.ajaxUrl,
             step_id = window.WPFunnelsOfferVars.step_id,
             funnel_id = window.WPFunnelsOfferVars.funnel_id,
+            is_lms = window.WPFunnelsOfferVars.is_lms,
             order_id = window.WPFunnelsOfferVars.order_id,
             order_key = window.WPFunnelsOfferVars.order_key,
             product_id = window.WPFunnelsOfferVars.product_id,
@@ -357,7 +358,7 @@
 
         $('.wpfunnels-offer-loader').show();
 
-        if ( undefined !== order_id && undefined !== order_key ) {
+        if ( is_lms === 'yes' || (undefined !== order_id && undefined !== order_key) ) {
 
             var ajax_data = {
                 action              : action,
@@ -689,63 +690,54 @@
                 }
             });
         });
-        
-    
-
-        $('.variations_form').on('change', function(){
-
-            $( '.variations_form' ).trigger( "found_variation");
-            $( '.variations_form' ).trigger( "woocommerce_variation_select_change");
-            $( '.variations_form' ).trigger( "woocommerce_variation_has_changed");
-            $( '.variations_form' ).trigger( "check_variations");
-            $( '.variations_form' ).trigger( "woocommerce_update_variation_values");
-        })
+       
            
-
-
-      
-
-        $(document).on("click", ".wpfnl-cart-update", function (e) {
+        $(document).on("change", ".wpfnl-variation", function (e) {
             e.preventDefault();
-            var ajaxurl = window.wpfnl_obj.ajaxurl;
-            var step_id = window.wpfnl_obj.step_id;
-            var product_id = $(this).data('id');
-            var attrs = [];
-            var quantity = $(this).parents('.wpfnl-quantity-tr').find('.wpfnl-varition-qty').val();
-            var title = '';
-            var i = 0;
-            $('.' + product_id + '-product-table .wpfnl-variable-attribute').each(function(){  
-                
+            let ajaxurl = window.wpfnl_obj.ajaxurl,
+                step_id = window.wpfnl_obj.step_id,
+                attrs = [],
+                quantity = $(this).parents('.offer-variation-wrapper').find('.wpfnl-varition-qty').val(),
+                product_id = $(this).parents('.offer-variation-wrapper').find('.wpfnl-product-id').val(),
+                load_ajax = true;
+
+            $(this).parents('.offer-variation-wrapper').find('.wpfnl-variable-attribute-offer').each(function(){  
                 var title = $(this).attr('id');
                 var value = $(this).val();
-                attrs.push({[title]: value});
+                if( value ){
+                    attrs.push({[title]: value});
+                }else{
+                    load_ajax = false;
+                } 
             });  
-           
-            jQuery.ajax({
-                type: "POST",
-                url: ajaxurl,
-                data: {
-                    action: "wpfnl_update_variable_ajax",
-                    quantity: quantity,
-                    step_id: step_id,
-                    product_id: product_id,
-                    attrs: attrs,
-                },
-                success: function (response) {
-                    if (response.success) {
-                        if(response.data.status == 'success'){
-                            $('body').trigger('update_checkout');
-                        }else{
+
+            if( load_ajax ){
+                jQuery.ajax({
+                    type: "POST",
+                    url: ajaxurl,
+                    data: {
+                        action: "wpfnl_update_variable_ajax",
+                        quantity: quantity,
+                        step_id: step_id,
+                        product_id: product_id,
+                        attrs: attrs,
+                    },
+                    success: function (response) {
+                        if (response.success) {
+                            if(response.data.status == 'success'){
+                                $('body').trigger('update_checkout');
+                            }
+                        } else {
                             console.log(response);
                         }
-                    } else {
-                        console.log(response);
                     }
-                }
-            });
+                });
+            }
+
             
+
         });
-        
+          
         $(document).on("keyup change", ".wpfnl-quantity-setect", function (e) {
             e.preventDefault();
             var ajaxurl = window.wpfnl_obj.ajaxurl;
@@ -821,7 +813,7 @@
     }
 
     $(document).ready(function () {
-        window.onbeforeunload = doAjaxBeforeUnload;
+        // window.onbeforeunload = doAjaxBeforeUnload;
         $(window).unload(doAjaxBeforeUnload);
     });
 

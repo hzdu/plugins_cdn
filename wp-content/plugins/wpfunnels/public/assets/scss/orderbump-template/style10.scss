@@ -1,0 +1,114 @@
+.wpfnl-order-bump__template-style10 {
+    border-radius: 10px;
+    position: relative;
+    margin: 20px 0;
+    background-color: #f7f7f7;
+    border: 1px solid #E5E8F3;
+
+    .template-preview-wrapper {
+        padding: 20px 15px;
+
+        .template-title-area {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            margin: 0 0 15px 0;
+        }
+
+        .template-title {
+            font-weight: 700;
+            font-size: 14px;
+            line-height: 16px;
+            color: #363B4E;
+            margin: 0;
+            width: calc(100% - 60px);
+            padding-right: 15px;
+
+            .nav-arrow {
+                line-height: 1;
+                position: relative;
+                top: -1px;
+                margin-right: 7px;
+            }
+
+            .product-price {
+                display: inline-block;
+                color: #EE8134;
+                margin-left: auto;
+    
+                span {
+                    color: #EE8134;
+                    font-weight: 700;
+                }
+    
+                ins {
+                    text-decoration: none;
+                    background: transparent;
+                }
+    
+            }
+        }
+       
+        .description li,
+        .description span,
+        .description p,
+        .description {
+            font-size: 13px;
+            line-height: 20px;
+            color: #7A8B9A;
+            margin: 0;
+        }
+
+    }
+
+    .offer-checkbox {
+        display: block;
+        width: 60px;
+        text-align: right;
+
+        .wpfnl-checkbox {
+            line-height: 1;
+            display: block;
+        }
+        .wpfnl-checkbox label {
+            font-weight: 700;
+            color: $primary-color;
+            font-size: 16px;
+            line-height: 14px;
+            margin: 0;
+            padding: 0;
+        }
+        .wpfnl-checkbox label:after,
+        .wpfnl-checkbox label:before {
+            display: none;
+        }
+        
+    }
+}
+
+
+
+//------responsive style-------
+@media only screen and (max-width: 460px) {
+    .wpfnl-order-bump__template-style10 .template-preview-wrapper {
+        padding: 15px;
+        display: block;
+    }
+    .wpfnl-order-bump__template-style10 .template-preview-wrapper .template-img {
+        width: auto;
+        height: auto;
+        background-image: none!important;
+    }
+    .wpfnl-order-bump__template-style10 .template-preview-wrapper .for-mobile {
+        display: block;
+        border-radius: 10px;
+        margin-bottom: 16px;
+    }
+    .wpfnl-order-bump__template-style10 .template-preview-wrapper .template-content {
+        width: 100%;
+        padding-left: 0;
+    }
+    .wpfnl-order-bump__template-style10 .offer-checkbox {
+        padding: 9px 15px 13px;
+    }
+}

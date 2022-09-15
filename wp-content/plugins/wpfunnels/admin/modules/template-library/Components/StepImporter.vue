@@ -40,8 +40,8 @@
 
             <ul class="wpfnl-create-step__filter-nav" id="wpfnl-create-step__filter-nav">
                 <li :class="{ active : activeItem == 'landing' }" id="create-step-landing" data-filter="landing" @click="doStepFilter">Landing</li>
-                <li :class="{ active : activeItem == 'checkout' }" id="create-step-checkout" data-filter="checkout" @click="doStepFilter">Checkout</li>
-                <li :class="{ active : activeItem == 'thankyou' }" id="create-step-thankyou" data-filter="thankyou" @click="doStepFilter">Thankyou</li>
+                <li :class="{ active : activeItem == 'checkout' }" id="create-step-checkout" data-filter="checkout" @click="doStepFilter" :disabled="'lead'==this.funnelType">Checkout</li>
+                <li :class="{ active : activeItem == 'thankyou' }" id="create-step-thankyou" data-filter="thankyou" @click="doStepFilter" >Thankyou</li>
 
                 <!-- for upsell check if pro activated or not -->
                 <li v-if="!isPro" class="disabled">
@@ -50,7 +50,7 @@
                         <span class="pro-tag">coming soon</span>
                     </a>
                 </li>
-                <li v-else :class="{ active : activeItem == 'upsell' }" data-filter="upsell" :id="isPro ? 'create-step-upsell' : ''" @click="doStepFilter" >Upsell</li>
+                <li v-else :class="{ active : activeItem == 'upsell' }" data-filter="upsell" :id="isPro ? 'create-step-upsell' : ''" @click="doStepFilter" :disabled="'lead'==this.funnelType">Upsell</li>
 
                 <!-- for downsell check if pro activated or not -->
                 <li v-if="!isPro" class="disabled">
@@ -59,7 +59,7 @@
                         <span class="pro-tag">coming soon</span>
                     </a>
                 </li>
-                <li v-else data-filter="downsell" :class="{ active : activeItem == 'downsell' }" :id="isPro ? 'create-step-downsell' : ''" @click="doStepFilter" >Downsell </li>
+                <li v-else data-filter="downsell" :class="{ active : activeItem == 'downsell' }" :id="isPro ? 'create-step-downsell' : ''" @click="doStepFilter" :disabled="'lead'==this.funnelType">Downsell </li>
             </ul>
 
             <div class="wpfnl-step__templates-wrapper-before">
@@ -115,7 +115,8 @@
                 isPro       : window.template_library_object.is_pro,
                 proUrl      : window.template_library_object.pro_url,
                 funnelID    : window.template_library_object.funnel_id,
-                activeItem   : 'landing',
+                funnelType  : window.WPFunnelVars.individual_funnel_type,
+                activeItem  : 'landing',
                 disabled: false,
             }
         },

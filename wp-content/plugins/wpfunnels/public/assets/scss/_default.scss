@@ -364,6 +364,57 @@ $body-color: #7A8B9A;
 
 }
 
+//--------divi builder input default style----------
+.et-db #et-boc .et-l .et_pb_module {
+    input[type="text"], 
+    input[type="email"], 
+    input[type="url"], 
+    input[type="password"], 
+    input[type="search"], 
+    input[type="number"], 
+    input[type="tel"], 
+    input[type="range"], 
+    input[type="date"], 
+    input[type="month"], 
+    input[type="week"], 
+    input[type="time"], 
+    input[type="datetime"], 
+    input[type="datetime-local"], 
+    input[type="color"], 
+    select,
+    textarea {
+        border: 1px solid #E5E8F3!important;
+        outline: none!important;
+        padding: 11px 14px!important;
+        outline-offset: 0;
+        border-radius: 5px;
+        font-size: 16px;
+        background: #FFFFFF;
+        color: rgba(54, 59, 78, 0.8);
+        box-shadow: none!important;
+        width: 100%!important;
+
+        &:focus {
+            border-color: #E5E8F3!important;
+            outline: none!important;
+            outline-offset:0;
+            box-shadow: none!important;
+        }
+    }
+
+    select {
+        padding: 8px 14px;
+    }
+
+    textarea {
+        height: auto;
+    }
+
+}
+.et_fixed_nav.et_show_nav #page-container {
+    padding-top: 0px !important;
+}
+
 
 //----------select2 style-------
 .wpfnl-checkout {

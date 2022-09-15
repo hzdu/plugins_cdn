@@ -1,0 +1,155 @@
+.lms-order-details {
+    .order-details-title {
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 1.3;
+        color: #656976;
+        margin-bottom: 18px;
+
+        span {
+            color: #000000;
+            font-size: 18px;
+        }
+    }
+
+    .order-details-table {
+        background: #ffffff;
+        border: 1px solid #F2F3F8;
+        border-radius: 10px;
+
+        .order-item {
+            padding: 18px 30px;
+            display: flex;
+            flex-flow: row wrap;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid #F2F3F8;
+
+            &:last-child {
+                border-bottom: 0;
+            }
+
+            & > span {
+                font-weight: 500;
+                font-size: 16px;
+                line-height: 1.25;
+                color: #656976;
+                text-transform: capitalize;
+            }
+
+            .course-name {
+                width: calc(100% - 130px);
+                padding-right: 20px;
+            }
+
+            .price-total {
+                width: 130px;
+            }
+        }
+        
+        .order-tbl-header {
+            background: #F7F7FA;
+            padding: 18px 30px;
+            border-radius: 10px 10px 0 0;
+
+            & > span {
+                font-weight: 500;
+                font-size: 18px;
+                line-height: 1.3;
+                color: #363B4E;
+            }
+        }
+
+        .course-info {
+            & > span {
+                font-weight: 600;
+                font-size: 18px;
+                line-height: 1.3;
+                color: #363B4E;
+
+                span {
+                    display: block;
+                }
+
+                a {
+                    font-weight: 600;
+                    font-size: 14px;
+                    line-height: 1.4;
+                    text-decoration-line: underline;
+                    color: $primary-color;
+
+                    &:hover {
+                        text-decoration: none;
+                    }
+                }
+            }
+        }
+
+
+    }
+
+    .order-details-table-footer {
+        .footer-list {
+            display: flex;
+            flex-flow: row wrap;
+            align-items: center;
+            justify-content: flex-end;
+            padding: 18px 30px;
+
+            span {
+                font-weight: 600;
+                font-size: 14px;
+                line-height: 1.5;
+                color: #000000;
+            }
+
+            .total-title {
+                width: 210px;
+                display: block;
+                padding-right: 20px;
+            }
+
+            .total-price {
+                width: 130px;
+            }
+        }
+    }
+
+}
+
+@media only screen and (max-width: 575px){
+    .lms-order-details .order-details-table .order-tbl-header {
+        padding: 12px 15px;
+    }
+    .lms-order-details .order-details-table .order-tbl-header span {
+        font-size: 16px;
+    }
+    .lms-order-details .order-details-table .order-item {
+        padding: 12px 15px;
+    }
+    .lms-order-details .order-details-table .order-item .price-total {
+        width: 100px;
+    }
+    .lms-order-details .order-details-table .order-item .course-name {
+        width: calc(100% - 100px);
+        padding-right: 15px;
+    }
+    .lms-order-details .order-details-table .course-info > span {
+        font-size: 16px;
+    }
+    .lms-order-details .order-details-table .course-info > span span {
+        margin-right: 4px;
+    }
+
+    .lms-order-details .order-details-table-footer .footer-list{
+        padding: 12px 15px;
+    }
+    .lms-order-details .order-details-table-footer .footer-list .total-title {
+        width: 180px;
+        padding-right: 15px;
+    }
+    .lms-order-details .order-details-table-footer .footer-list .total-price {
+        width: 100px;
+    }
+
+}

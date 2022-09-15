@@ -2,7 +2,7 @@
     <div class="wpfnl wpfnl-setup-wizard">
         <div class="wpfnl-setup-wizard__wrapper">
             <ul class="wpfnl-setup-wizard__nav">
-                <li v-for="step in steps" :class="[{ active: step.isActive, completed: step.completed }, step.slug] ">
+                <li v-for="(step,index) in steps" :key="index" :class="[{ active: step.isActive, completed: step.completed }, step.slug] ">
                     <span class="step-icon">
                         <img alt="Step Icon" v-if="!step.isActive && !step.completed" :src="step.icon" />
                         <img alt="Step Icon" v-if="step.isActive" :src="step.iconActive" />
@@ -17,6 +17,7 @@
                 :wizard-slug="wizardSlug"
                 :setUpType="setUpType"
                 :showLoader="showLoader"
+                :isLmsInstalled="isLmsInstalled"
                 @setPluginSlug="setPluginSlug"
                 @changeSetUpType="changeSetUpType"
                 @processSettings="processSettings"
@@ -85,6 +86,7 @@
                 isFFInstalled:  window.setup_wizard_obj.is_ff_installed,
                 isCLInstalled:  window.setup_wizard_obj.is_cl_installed,
                 isQBInstalled:  window.setup_wizard_obj.is_qb_installed,
+                isLmsInstalled: window.setup_wizard_obj.is_lms_installed === 'yes' ? true :false,
                 isWCActive:     window.setup_wizard_obj.is_woo_active,
                 isElmActive:    window.setup_wizard_obj.is_elementor_active,
                 isFFActive:     window.setup_wizard_obj.is_ff_active,
@@ -93,7 +95,8 @@
                 dashboardUrl:   window.setup_wizard_obj.dashboard_url,
                 setUpType:      'plugin',
                 showLoader:      false,
-                isPermitted:     false
+                isPermitted:     false,
+                isLmsPermitted:  false,
             }
         },
         mounted () {
@@ -105,8 +108,14 @@
         },
         methods: {
             setPluginSlug: function (slug, isPermitted) {
-                this.pluginSlug = slug
-                this.isPermitted = isPermitted
+
+                if( 'learndash' === slug ){
+                    this.isLmsPermitted = isPermitted
+                }else{
+                    this.pluginSlug = slug
+                    this.isPermitted = isPermitted
+                }
+              
             },
             changeSetUpType: function (type) {
                 this.setUpType = type
@@ -114,16 +123,19 @@
             processSettings: function (e) {
                 this.showLoader = true;
 
-                if (this.pluginSlug === 'woocommerce') {
-                    if (this.isWCInstalled === 'yes') {
-                        this.activateWCPlugins(this.isPermitted)
+                if ( this.pluginSlug === 'woocommerce' ) {
+                    if( this.pluginSlug === 'woocommerce' ){
+                        if (this.isWCInstalled === 'yes') {
+                            this.activateWCPlugins( 'yes', this.isPermitted, this.isLmsPermitted )
+                        }
+                        if (this.isWCInstalled === 'no') {
+                            this.installPlugin('woocommerce')
+                        }
+                        if (this.isCLInstalled === 'no' && this.isPermitted === true) {
+                            this.installPlugin('cart-lift')
+                        }
                     }
-                    if (this.isWCInstalled === 'no') {
-                        this.installPlugin('woocommerce')
-                    }
-                    if (this.isCLInstalled === 'no' && this.isPermitted === true) {
-                        this.installPlugin('cart-lift')
-                    }
+
                 } else if (this.pluginSlug === 'elementor') {
                     if (this.isElmInstalled === 'yes') {
                         this.saveFunnelBuilder()
@@ -141,15 +153,23 @@
                         window.location.href = this.nextStepLink
                     }
                 } else {
-					this.saveFunnelBuilder();
+                    if( this.isLmsPermitted ){
+                        this.activateWCPlugins( 'no', false, this.isLmsPermitted )
+                    }else{
+                        window.location.href = this.nextStepLink
+                    }
+                    
+                   
 				}
             },
-            activateWCPlugins: function(permission) {
+            activateWCPlugins: function(isWc,permission,islms) {
                 apiFetch({
                     path: `${window.setup_wizard_obj.rest_api_url}wpfunnels/v1/settings/activate_wc_plugins`,
                     method: 'POST',
                     data: {
+						'isWc' : isWc,
 						'permission' : permission,
+						'islms' : islms,
 					},
                 }).then(response => {
                     if(response.success) {
@@ -179,7 +199,7 @@
                 event.preventDefault()
                 let plugin_slug = args.slug
                 if (plugin_slug === 'woocommerce' || plugin_slug === 'cart-lift') {
-                    this.activateWCPlugins(this.isPermitted)
+                    this.activateWCPlugins( 'yes', this.isPermitted, this.isLmsPermitted)
                 } else if ( plugin_slug === 'elementor' ) {
                     this.saveFunnelBuilder()
                 } else if (plugin_slug === 'qubely') {

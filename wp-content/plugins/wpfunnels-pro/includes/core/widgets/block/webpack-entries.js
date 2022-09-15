@@ -13,6 +13,7 @@ const glob = require( 'glob' );
 // property.
 const blocks = {
     'offer-button': {},
+    'lms-offer-button': {},
     'offer-title': {},
     'offer-price': {},
     'offer-product': {},

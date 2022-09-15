@@ -1,0 +1,442 @@
+.wpfnl-addons {
+    background: #f6f5fa;
+    min-height: 650px;
+    margin-top: 20px;
+    margin-right: 20px;
+
+    .wpfnl-dashboard {
+        display: flex;
+        flex-flow: row wrap;
+        min-height: calc(100vh - 120px);
+    }
+    
+    //---dashboard nav-----
+    .wpfnl-dashboard__nav {
+        width: 120px;
+        background: #fff;
+        box-shadow: 0 2px 4px 0 rgba(223,223,249,0.25);
+        position: relative;
+    
+        .wpfnl-dashboard__nav-li {
+            display: block;
+            position: relative;
+    
+            a {
+                display: block;
+                text-align: center;
+                font-weight: 500;
+                font-size: 13px;
+                line-height: 15px;
+                color: #7A8B9A;
+                text-transform: capitalize;
+                padding: 27px 10px;
+    
+                svg {
+                    display: block;
+                    margin: 0 auto 8px;
+                }
+            }
+    
+            &.active {
+                &:after {
+                    content: "";
+                    position: absolute;
+                    right: 0px;
+                    top: 50%;
+                    height: 60px;
+                    width: 2px;
+                    background: $primary-color;
+                    transform: translateY(-50%);
+                }
+                
+                a {
+                    color: $primary-color;
+                }
+    
+            }
+            
+            &.overview.active a {
+                color: $primary-color;
+    
+                svg {
+                    stroke:$primary-color;
+                }
+            }
+    
+            &.settings.active a,
+            &.create_funnel.active a {
+                color: $primary-color;
+    
+                path {
+                    stroke:$primary-color;
+                }
+                circle {
+                    stroke:$primary-color;
+                }
+            }
+
+            &.integrations.active {
+                path {
+                    stroke:$primary-color;
+                }
+            }
+    
+    
+        }
+    
+        .logo {
+            margin-bottom: 32px;
+            display: block;
+            
+            a {
+                display: block;
+                text-align: center;
+                padding: 24px 0;
+                border-bottom: 1px solid #E5E8F3;
+    
+                svg {
+                    display: block;
+                    margin: 0 auto;
+                }
+            }
+        }
+    
+    }
+    
+    
+    //-----daashboard nav content----
+    .dashboard-nav__content {
+        width: calc(100% - 120px);
+        position: relative;
+        padding-right: 20px;
+    }
+    
+    //-----daashboard nav content header----
+    .wpfnl-dashboard__header {
+        box-shadow: 0 1px 2px 0 rgba(190,190,215,0.20);;
+        background: #fff;
+        width: calc(100% + 20px);
+        display: flex;
+        flex-flow: row wrap;
+        align-items: center;
+        justify-content: space-between;
+        padding: 27.5px 20px 27.5px 30px;
+        border-left: 1px solid #ebedf7;
+    
+        .title {
+            h2 {
+                font-weight: 600;
+                font-size: 18px;
+                line-height: 21px;
+                color: #363B4E;
+            }
+        }
+    
+    }
+    
+    //----dashboard inner content---
+    .wpfnl-dashboard__inner-content {
+        min-height: 425px;
+        width: calc(100% - 140px * 2);
+        margin: 40px auto 0;
+    
+        &.no-funnel {
+            display: flex;
+            flex-flow: column;
+            align-items: center;
+            justify-content: center;
+        }
+    }
+
+    .addon-loader {
+        position: absolute;
+        top: 77px;
+        left: 1px;
+        width: 100%;
+        height: calc(100% - 77px);
+        background: #fff;
+        z-index: 9;
+        display: block;
+        border-radius: 0;
+
+        .loader-inner {
+            height: 100%;
+            width: 100%;
+            display: flex;
+            flex-flow: column;
+            align-items: center;
+            justify-content: center;
+
+            .wpfnl-loader {
+                width: 40px;
+                height: 40px;
+            }
+        }
+    }
+
+    .addon-wrapper {
+        display: flex;
+        flex-flow: row wrap;
+        margin-left: -30px;
+        position: relative;
+        padding-left: 30px;
+        padding-top: 30px;
+    }
+
+    .single-addon {
+        background: #FFFFFF;
+        box-shadow: 0px 1px 2px #00000014;
+        border-radius: 10px;
+        width: calc(100% / 3 - 30px);
+        margin-left: 30px;
+        margin-bottom: 30px;
+
+        .hints {
+            display: none;
+        }
+
+        .addon-header {
+            border-bottom: 1px solid #F0F2F5;
+            display: flex;
+            flex-flow: row wrap;
+            align-items: center;
+            justify-content: space-between;
+            padding: 14px 25px;
+            min-height: 65px;
+
+            .logo svg {
+                display: block;
+            }
+        }
+
+        .addon-body {
+            padding: 20px;
+            height: calc(100% - 65px);
+
+            .addon-authorize-form {
+                display: none;
+            }
+
+            .addon-body-title {
+                font-size: 14px;
+                line-height: 1.4;
+                color: #7a8b9ae6;
+                margin: 0 0 15px;
+
+                a {
+                    color: #6E49D0;
+                    font-weight: 600;
+
+                    svg {
+                        margin-left: 2px;
+                        display: inline-block;
+                    }
+
+                    &:hover {
+                        text-decoration: underline;
+                    }
+                }
+            }
+
+            .form-group {
+                margin-bottom: 15px;
+
+                &:last-child {
+                    margin-bottom: 0;
+                }
+
+                &.action-btn {
+                    display: flex;
+                    flex-flow: row wrap;
+                    gap: 10px;
+                }
+
+                label {
+                    margin-bottom: 8px;
+                    display: block;
+                    font-weight: 500;
+                    font-size: 14px;
+                    line-height: 1;
+                    color: #363B4E;
+                }
+
+                input[type=text] {
+                    color: #8897A5;
+                    background: #FCFDFF;
+                    border: 1px solid #E6F0FF;
+                    border-radius: 8px;
+                    padding: 8px 15px;
+                    height: 40px;
+                }
+
+                .btn-default {
+                    font-size: 15px;
+                    height: 42px;
+                    line-height: 42px;
+                    width: calc(100% / 2 - 5px);
+                    min-width: auto;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+
+                    span {
+                        color: #fff;
+                    }
+
+                    .wpfnl-loader {
+                        position: relative;
+                        top: 2px;
+                        left: 2px;
+                        display: none;
+                    }
+                }
+            }
+
+            .addon-banner {
+                background: #000000;
+                border-radius: 7px;
+                text-align: center;
+                display: flex;
+                flex-flow: column;
+                align-items: center;
+                justify-content: center;
+                padding: 30px;
+                min-height: 240px;
+                height: 100%;
+
+                .banner-title {
+                    font-size: 15px;
+                    line-height: 1.6;
+                    color: #FFFFFF;
+                    margin: 10px auto 0;
+                    max-width: 304px;
+                    width: 100%;
+                }
+            }
+        }
+
+    }
+
+    .mailchimp {
+        .addon-body {
+            .addon-banner {
+                .logo path {
+                    fill: #ffffff;
+                }
+            }
+        }
+    }
+
+    .active-campaign {
+        .addon-body {
+            .addon-banner {
+                background: #004CFF;
+            }
+        }
+    }
+
+    .constant-contact {
+        .addon-body {
+            .addon-banner {
+                background: #1856ED;
+            }
+        }
+    }
+
+    .aweber {
+        .addon-body {
+            .addon-banner {
+                background: #2773ea;
+            }
+        }
+    }
+
+    .sendinblue {
+        .addon-body {
+            .addon-banner {
+                background: #0092ff;
+            }
+            .logo path {
+                fill: #ffffff;
+            }
+        }
+    }
+
+    .mailpoet {
+        .addon-body {
+            .addon-body-title {
+                text-align: center;
+                font-size: 17px;
+                max-width: 430px;
+                font-weight: 500;
+                color: #383a3c;
+            }
+
+            .addon-banner {
+                background: #FE5301;
+            }
+
+            .mailpoet-addon {
+                height: 100%;
+                min-height: 240px;
+                flex-flow: column;
+                align-items: center;
+                justify-content: center;
+            }
+            
+        }
+    }
+
+    .addon-enabled {
+        .addon-body {
+            .addon-authorize-form {
+                display: block;
+            }
+
+            .addon-banner {
+                display: none;
+            }
+
+            .mailpoet-addon {
+                display: flex;
+            }
+        }
+    }
+
+}
+
+
+@media only screen and (max-width: 1399px) {
+    .wpfnl-addons .addon-wrapper {
+        margin-left: -20px;
+    }
+    .wpfnl-addons .addon-loader {
+        left: 20px;
+        width: calc(100% - 20px);
+    }
+
+    .wpfnl-addons .single-addon {
+        width: calc(100% / 3 - 20px);
+        margin-left: 20px;
+        margin-bottom: 20px;
+    }
+
+    .wpfnl-addons .single-addon .addon-body .addon-banner {
+        padding: 15px;
+    }
+
+}
+
+@media only screen and (max-width: 1199px) {
+    .wpfnl-addons .single-addon {
+        width: calc(100% / 2 - 20px);
+    }
+
+}
+
+@media only screen and (max-width: 767px) {
+    .wpfnl-addons .wpfnl-dashboard__header .title h2 {
+        font-size: 16px;
+    }
+
+}

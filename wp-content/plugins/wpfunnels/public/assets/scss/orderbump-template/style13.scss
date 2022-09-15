@@ -1,0 +1,125 @@
+//-------order bump template style-13--------
+.wpfnl-order-bump__template-style13 {
+    background-color: #ffffff;
+    border-radius: 12px;
+    position: relative;
+    border: 2px dashed #E5E8F3;
+    padding: 20px;
+    margin-bottom: 20px;
+
+    .subtitle {
+        font-weight: 500;
+        font-size: 18px;
+        line-height: 1.3;
+        color: $primary-color;
+        margin-bottom: 20px!important;
+        text-align: center!important;
+    }
+
+    .template-preview-wrapper {
+        display: flex;
+        flex-flow: row wrap;
+        align-items: flex-start;
+
+        .template-img {
+            width: 150px;
+            height: 150px;
+            background-color: #F2F2F8;
+            border-radius: 10px;
+            position: relative;
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: cover;
+            object-fit: cover;
+        }
+
+
+        .template-content {
+            width: calc(100% - 160px);
+            padding-left: 20px;
+        }
+        .template-title {
+            font-weight: 500;
+            font-size: 14px;
+            line-height: 16px;
+            color: #363B4E;
+            margin-bottom: 9px;
+        }
+        
+        .description li,
+        .description span,
+        .description p,
+        .description {
+            font-size: 13px;
+            line-height: 20px;
+            color: #7A8B9A;
+        }
+
+    }
+
+    .product-price {
+        display: inline-block;
+        font-weight: 500;
+        font-size: 15px;
+        line-height: 1.2;
+        color: #EE8134;
+        margin-left: 5px;
+
+        span {
+            font-size: 15px;
+            color: #EE8134;
+            font-weight: 500;
+        }
+
+        ins {
+            text-decoration: none;
+        }
+    }
+
+    .offer-checkbox {
+        background-color: $primary-color;
+        padding: 11px 20px;
+        margin-bottom: 20px;
+        border-radius: 10px;
+
+        .wpfnl-checkbox label {
+            font-weight: 600;
+            font-size: 15px;
+            line-height: 18px;
+            color: #363B4E;
+            padding: 0 0 0 26px;
+            margin: 0;
+            border: 0;
+        }
+        .wpfnl-checkbox label:before {
+            top: 1px;
+            border-color: $primary-color;
+        }
+        .wpfnl-checkbox label:after {
+            left: 4px;
+            top: 6px;
+            width: 10px;
+            height: 6px;
+            border-bottom-color: $primary-color;
+            border-left-color: $primary-color;
+        }
+        .wpfnl-checkbox input[type=checkbox]:checked + label::before {
+            background-color: #fff;
+        }
+
+    }
+}
+
+
+//------responsive style-------
+@media only screen and (max-width: 425px) {
+    .wpfnl-order-bump__template-style13 .template-preview-wrapper {
+        display: block;
+    }
+    .wpfnl-order-bump__template-style13 .template-preview-wrapper .template-content {
+        width: 100%;
+        padding-left: 0;
+        margin-top: 15px;
+    }
+
+}

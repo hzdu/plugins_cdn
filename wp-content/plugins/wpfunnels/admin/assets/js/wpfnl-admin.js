@@ -57,35 +57,35 @@
         function WpfnlDatePicker() {
             var dateFormat = "M d, yy",
             from = $( "#analytics-from" ).datepicker( {
-                    dateFormat: "M d, yy",
-                    numberOfMonths: 1,
-                    changeMonth: true,
-                    changeYear: true,
-                    yearRange: "2021:2040",
-                    beforeShow:function(textbox, instance){
-                        $('.div-to-append-calender').append($('#ui-datepicker-div'));
-                    },
-                    onSelect: function(dateText) {
-                        var presentDate = PresentDateForm(this.value);
-                        $('.select-from-date').text(presentDate.slice(4));
-                        var compareDate = CompareDateForm(this.value);
-                        $('.compare-from-date').text(compareDate.slice(4));
+                dateFormat: "M d, yy",
+                numberOfMonths: 1,
+                changeMonth: true,
+                changeYear: true,
+                yearRange: "2021:2040",
+                beforeShow:function(textbox, instance){
+                    $('.div-to-append-calender').append($('#ui-datepicker-div'));
+                },
+                onSelect: function(dateText) {
+                    var presentDate = PresentDateForm(this.value);
+                    $('.select-from-date').text(presentDate.slice(4));
+                    var compareDate = CompareDateForm(this.value);
+                    $('.compare-from-date').text(compareDate.slice(4));
 
-                        //for highlighting select date
-                        $("#ui-datepicker-div").find(".ui-state-default").removeClass("ui-state-active");
-                        var date = new Date(this.value),
-                            day = date.getDate(),
-                            month = date.getMonth(),
-                            year = date.getFullYear();
-                        $("#ui-datepicker-div").find(".ui-state-default").each(function(index, obj){
-                            if($(obj).text() == day && $(obj).parent().data('month') == month && $(obj).parent().data('year') == year){
-                                $(obj).addClass("ui-state-active");
-                            }
-                        });
-                    }
-                } ).datepicker( "setDate", '-6d' ).on( "change", function () {
-                    to.datepicker( "option", "minDate" );
-                } ),
+                    //for highlighting select date
+                    $("#ui-datepicker-div").find(".ui-state-default").removeClass("ui-state-active");
+                    var date = new Date(this.value),
+                        day = date.getDate(),
+                        month = date.getMonth(),
+                        year = date.getFullYear();
+                    $("#ui-datepicker-div").find(".ui-state-default").each(function(index, obj){
+                        if($(obj).text() == day && $(obj).parent().data('month') == month && $(obj).parent().data('year') == year){
+                            $(obj).addClass("ui-state-active");
+                        }
+                    });
+                }
+            } ).datepicker( "setDate", '-6d' ).on( "change", function () {
+                to.datepicker( "option", "minDate" );
+            } ),
 
             to = $( "#analytics-to" ).datepicker( {
                 dateFormat: "M d, yy",
@@ -119,8 +119,8 @@
 
                 }
             } ).datepicker( "setDate", new Date() ).on( "change", function () {
-                    from.datepicker( "option", "maxDate" );
-                } );
+                from.datepicker( "option", "maxDate" );
+            } );
 
             $('.chart-calendar-filter .vs').hide();
             $('.chart-calendar-filter .compare-date').hide();
@@ -194,6 +194,102 @@
         });
 
 
+        //-------GBF checkout product date range datepicker-------
+
+        // $(document).on("click", ".gbf-product-area .condition-wrapper .gbf-date-is .gbf-product-date-from", function() {
+        //     if( $(".gbf-product-area .selectbox-wrapper select").val() == 'date' ){
+        //         $( ".gbf-product-date-from" ).datepicker({
+        //             defaultDate: "+1w",
+        //             changeMonth: true,
+        //             changeYear: true,
+        //             numberOfMonths: 1,
+        //             beforeShow:function(textbox, instance){
+        //                 $('.div-to-append-calender').append($('#ui-datepicker-div'));
+        //             },
+        //             onSelect: function(dateText) {
+        //                 var presentDate = PresentDateForm(this.value);
+                       
+        //                 $("#ui-datepicker-div").find(".ui-state-default").removeClass("ui-state-active");
+        //                 var date = new Date(this.value),
+        //                     day = date.getDate(),
+        //                     month = date.getMonth(),
+        //                     year = date.getFullYear();
+        //                 $("#ui-datepicker-div").find(".ui-state-default").each(function(index, obj){
+        //                     if($(obj).text() == day && $(obj).parent().data('month') == month && $(obj).parent().data('year') == year){
+        //                         $(obj).addClass("ui-state-active");
+        //                     }
+        //                 });
+        //             }
+        //         }).datepicker( "setDate", new Date() ).on( "change", function () {
+        //             to.datepicker( "option", "minDate" );
+        //         } )
+        //     }
+        // });
+
+
+        // $(document).on("click", ".gbf-product-area .condition-wrapper .gbf-date-is .gbf-product-date-range-from", function() {
+        //     if( $(".gbf-product-area .selectbox-wrapper select").val() == 'dateRange' ){
+        //         var dateFormat = "M d, yy"
+        //         $( ".gbf-product-date-range-from" ).datepicker({
+        //             defaultDate: "+1w",
+        //             changeMonth: true,
+        //             changeYear: true,
+        //             numberOfMonths: 1,
+        //             beforeShow:function(textbox, instance){
+        //                 console.log('so far so good');
+        //                 $('.div-to-append-range-calender').append($('#ui-datepicker-div'));
+        //             },
+        //             onSelect: function(dateText) {
+        //                 var presentDate = PresentDateForm(this.value);
+                       
+        //                 $("#ui-datepicker-div").find(".ui-state-default").removeClass("ui-state-active");
+        //                 var date = new Date(this.value),
+        //                     day = date.getDate(),
+        //                     month = date.getMonth(),
+        //                     year = date.getFullYear();
+        //                 $("#ui-datepicker-div").find(".ui-state-default").each(function(index, obj){
+        //                     if($(obj).text() == day && $(obj).parent().data('month') == month && $(obj).parent().data('year') == year){
+        //                         $(obj).addClass("ui-state-active");
+        //                     }
+        //                 });
+        //             }
+        //         })
+        //     }
+        // });
+
+
+        // $(document).on("click", ".gbf-product-area .condition-wrapper .gbf-date-is .gbf-product-date-range-to", function() {
+        //     if( $(".gbf-product-area .selectbox-wrapper select").val() == 'dateRange' ){
+        //         console.log($(".gbf-product-area .selectbox-wrapper select").val());
+        //         $( ".gbf-product-date-range-to" ).datepicker({
+        //             defaultDate: "+1w",
+        //             changeMonth: true,
+        //             changeYear: true,
+        //             numberOfMonths: 1,
+        //             beforeShow:function(textbox, instance){
+        //                 $('.div-to-append-range-calender').append($('#ui-datepicker-div'));
+        //             },
+        //             onSelect: function(dateText) {
+        //                 var presentDate = PresentDateForm(this.value);
+                        
+        //                 $("#ui-datepicker-div").find(".ui-state-default").removeClass("ui-state-active");
+        //                 var date = new Date(this.value),
+        //                     day = date.getDate(),
+        //                     month = date.getMonth(),
+        //                     year = date.getFullYear();
+        //                 $("#ui-datepicker-div").find(".ui-state-default").each(function(index, obj){
+        //                     if($(obj).text() == day && $(obj).parent().data('month') == month && $(obj).parent().data('year') == year){
+        //                         $(obj).addClass("ui-state-active");
+        //                     }
+        //                 });
+        //             }
+        //         }).datepicker( "setDate", new Date() ).on( "change", function () {
+        //             from.datepicker( "option", "minDate" );
+        //         } )  
+        //     }
+        // });
+
+
         // -------show/hide step stats info-------
         $(document).on("change", "#stats", function(e) {
             if( $(this).is(':checked') ){
@@ -211,6 +307,7 @@
 
             $('.wpfnl-duplicate-funnel').on('click', this.cloneFunnel);
             $('.wpfnl-delete-funnel').on('click', this.deleteFunnel);
+            $('.wpfnl-update-funnel-status').on('click', this.UpdateFunnelStatus);
         };
 
         /**
@@ -401,6 +498,32 @@
                     .success(function(response) {
 
                         window.location.href = response.redirectUrl;
+                    })
+                    .error(function(response) {
+
+                    });
+            }
+        };
+
+        /**
+         * Update funnel status
+         * data
+         *
+         * @param event
+         * @since 1.0.0
+         */
+         FunnelHandler.prototype.UpdateFunnelStatus = function(event) {
+            event.preventDefault();
+            var funnel_id = $(this).attr('data-id');
+            var new_status = $(this).attr('data-status');
+            var payload = {
+                funnel_id : funnel_id,
+                status    :new_status
+            };
+            if (confirm("Are you sure?")) {
+                wpAjaxHelperRequest("update-funnel-status", payload)
+                    .success(function(response) {
+                        window.location.href = response.redirect_url;
                     })
                     .error(function(response) {
 

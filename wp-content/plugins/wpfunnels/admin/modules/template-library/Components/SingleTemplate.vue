@@ -91,6 +91,7 @@
             activeCategory: String,
             isPro: Boolean,
             freeProFilter: String,
+            type: String,
             showStepsPreview: Boolean,
             isAddNewFunnelButtonDisabled: Boolean
         },
@@ -115,6 +116,7 @@
                         steps   : this.steps,
                         source  : 'remote',
                         name    : this.data.title,
+                        type    : this.type,
                     },
                     that = this;
                 wpAjaxHelperRequest( "wpfunnel-import-funnel", data )

@@ -1,0 +1,141 @@
+
+//-------order bump template style-14--------
+.wpfnl-order-bump__template-style14 {
+    border-radius: 10px;
+    position: relative;
+    margin: 0 0 20px;
+    background-color: #ffffff;
+    border: 1px solid #6E42D3;
+
+    .template-preview-wrapper {
+        padding: 20px 15px;
+        display: flex;
+        flex-flow: row wrap;
+        align-items: flex-start;
+        border-radius: 0 0 10px 10px;
+        border-top: none;
+
+        .template-img {
+            width: 150px;
+            height: 150px;
+            background-color: #F2F2F8;
+            border-radius: 10px;
+            position: relative;
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: cover;
+			object-fit: cover;
+        }
+
+        .for-mobile {
+            display: none;
+            border-radius: 10px;
+        }
+
+        .template-content {
+            width: calc(100% - 150px);
+            padding-left: 20px;
+        }
+        .template-title {
+            font-weight: 500;
+            font-size: 14px;
+            line-height: 16px;
+            color: #363B4E;
+            margin-bottom: 9px;
+        }
+        .subtitle {
+            font-weight: 500;
+            font-size: 14px;
+            line-height: 16px;
+            color: $primary-color;
+            margin-bottom: 14px;
+        }
+        .description li,
+        .description span,
+        .description p,
+        .description {
+            font-size: 13px;
+            line-height: 20px;
+            color: #7A8B9A;
+            margin: 0;
+        }
+
+        .product-price {
+            font-weight: 500;
+            font-size: 12px;
+            line-height: 14px;
+            color: #EE8134;
+            margin-left: auto;
+            text-align: right;
+            margin-top: 15px;
+            display: block;
+
+            span {
+                font-size: 12px;
+                color: #EE8134;
+                font-weight: 500;
+                line-height: normal;
+            }
+
+            ins {
+                text-decoration: none;
+            }
+        }
+
+    }
+
+    .offer-checkbox {
+        padding: 12px 15px 9px;
+        border-radius: 7px 7px 0 0;
+        display: flex;
+        flex-flow: row wrap;
+        align-items: flex-start;
+        border-bottom: 1px solid #6e42d3;
+
+        .wpfnl-checkbox {
+            line-height: normal;
+            display: block;
+        }
+        .wpfnl-checkbox label {
+            font-weight: 500;
+            color: #363B4E;
+            padding: 0 0 0 26px;
+            font-size: 12px;
+            line-height: 14px;
+            margin: 0;
+            border: none;
+        }
+        .wpfnl-checkbox label:before {
+            border: none;
+            width: 18px;
+            height: 18px;
+            background-color: #cacacb;
+        }
+        .wpfnl-checkbox label:after {
+            left: 4px;
+            top: 2px;
+            width: 10px;
+            height: 6px;
+        }
+
+        
+    }
+}
+
+
+//------responsive style-------
+@media only screen and (max-width: 425px) {
+    .wpfnl-order-bump__template-style14 .template-preview-wrapper {
+        display: block;
+    }
+    .wpfnl-order-bump__template-style14 .template-preview-wrapper .template-content {
+        width: 100%;
+        padding-left: 0;
+        margin-top: 15px;
+    }
+    .wpfnl-order-bump__template-style14 .template-preview-wrapper .product-price {
+        text-align: left;
+        margin-top: 10px;
+    }
+
+}

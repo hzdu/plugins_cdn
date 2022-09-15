@@ -1,0 +1,178 @@
+.wpfnl-order-bump__template-style4 {
+    background-color: #f7f7f7;
+    border-radius: 10px;
+    position: relative;
+    margin: 20px 0;
+
+    .template-preview-wrapper {
+        padding: 20px;
+        display: flex;
+        flex-flow: row wrap;
+        align-items: center;
+
+        .template-img {
+            width: 70px;
+            height: 70px;
+            background-color: #F2F2F8;
+            border-radius: 5px;
+            position: relative;
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: cover;
+            object-fit: cover;
+        }
+
+        .for-mobile {
+            display: none;
+            border-radius: 5px;
+        }
+
+        .template-content {
+            width: calc(100% - 340px);
+            padding-left: 14px;
+        }
+        .template-title {
+            font-weight: 500;
+            font-size: 16px;
+            line-height: 1.2;
+            color: #363B4E;
+            margin: 0 0 7px 0;
+            max-width: 206px;
+        }
+        .rating {
+            color: #363B4E;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            line-height: 1;
+            font-size: 15px;
+
+            .star-rating {
+                float: none;
+                width: 86px;
+                height: 15px;
+
+                &::before {
+                    content: "s s s s s";
+                    font-size: 13px;
+                    line-height: 1.2;
+                    color: #EE8134;
+                }
+
+                span::before {
+                    content: "S S S S S";
+                    font-size: 13px;
+                    line-height: 1.2;
+                    color: #EE8134;
+                }
+            }
+        }
+        .subtitle {
+            font-weight: 500;
+            font-size: 14px;
+            line-height: 16px;
+            color: $primary-color;
+            margin-bottom: 14px;
+        }
+        .description li,
+        .description span,
+        .description p,
+        .description {
+            font-size: 13px;
+            line-height: 20px;
+            color: #7A8B9A;
+            margin: 0;
+        }
+
+        .template-price {
+            line-height: 1;
+            padding-left: 20px;
+            width: 110px;
+        }
+        .product-price {
+            display: inline-block;
+            font-weight: 500;
+            font-size: 13px;
+            line-height: 15px;
+            color: #EE8134;
+            margin-left: auto;
+
+            span {
+                font-size: 13px;
+                line-height: 15px;
+                color: #EE8134;
+                font-weight: 500;
+            }
+
+            ins {
+                text-decoration: none;
+                background: transparent;
+            }
+        }
+
+    }
+
+    .offer-checkbox {
+        margin-left: auto;
+        max-width: 160px;
+
+        .wpfnl-checkbox {
+            label:before,
+            label:after {
+                display: none;
+            }
+
+            label {
+                border: 1px solid $primary-color;
+                color: $primary-color;
+                padding: 10px 15px;
+                border-radius: 5px;
+                font-size: 16px;
+                font-weight: 500;
+                text-align: center;
+                line-height: 1.2;
+                display: block;
+            }
+
+            input[type=checkbox]:checked + label {
+                color: #fff;
+                background-color: $primary-color;
+            }
+        }
+    }
+}
+
+
+//------responsive style-------
+@media only screen and (max-width: 575px) {
+    .wpfnl-order-bump__template-style4 .template-preview-wrapper {
+        padding: 15px;
+        display: block;
+    }
+    .wpfnl-order-bump__template-style4 .template-preview-wrapper .template-img {
+        width: auto;
+        height: auto;
+        background-image: none!important;
+    }
+    .wpfnl-order-bump__template-style4 .template-preview-wrapper .for-mobile {
+        display: block;
+        margin-bottom: 16px;
+    }
+    .wpfnl-order-bump__template-style4 .template-preview-wrapper .template-content {
+        width: 100%;
+        padding-left: 0;
+    }
+    .wpfnl-order-bump__template-style4 .template-preview-wrapper .template-title {
+        max-width: 100%;
+    }
+    .wpfnl-order-bump__template-style4 .template-preview-wrapper .template-price {
+        padding-left: 0;
+        margin: 12px 0;
+        width: 100%;
+    }
+    .wpfnl-order-bump__template-style4 .offer-checkbox {
+        margin-left: 0;
+        max-width: inherit;
+    }
+
+}

@@ -175,7 +175,24 @@
 
 			if( 'billing' == targetID ){
 				// Login validation goes here if needed
+				$('.theme-woostify.checkout-layout-2 .wpfnl-checkout.wpfnl-multistep .multi-step-checkout-wrapper .multi-step-checkout-content').hide();
+				$('.theme-woostify.checkout-layout-2 .wpfnl-checkout.wpfnl-multistep .multi-step-checkout-wrapper .multi-step-checkout-content[data-step="first"]').show();
+				$('.theme-woostify.checkout-layout-2 .wpfnl-checkout.wpfnl-multistep .multi-step-checkout-wrapper .multi-step-checkout-button-wrapper').hide();
+
+				//-----for gutenberg------
+				$('.theme-woostify.checkout-layout-2 .wpfnl-checkout-form-wpfnl-multistep .multi-step-checkout-wrapper .multi-step-checkout-content').hide();
+				$('.theme-woostify.checkout-layout-2 .wpfnl-checkout-form-wpfnl-multistep .multi-step-checkout-wrapper .multi-step-checkout-content[data-step="first"]').show();
+				$('.theme-woostify.checkout-layout-2 .wpfnl-checkout-form-wpfnl-multistep .multi-step-checkout-wrapper .multi-step-checkout-button-wrapper').hide();
+
 			}else if( 'shipping' == targetID ){
+				$('.theme-woostify.checkout-layout-2 .wpfnl-checkout.wpfnl-multistep .multi-step-checkout-wrapper .multi-step-checkout-content').hide();
+				$('.theme-woostify.checkout-layout-2 .wpfnl-checkout.wpfnl-multistep .multi-step-checkout-wrapper .multi-step-checkout-content[data-step="first"]').show();
+				$('.theme-woostify.checkout-layout-2 .wpfnl-checkout.wpfnl-multistep .multi-step-checkout-wrapper .multi-step-checkout-button-wrapper').hide();
+
+				//-------for gutenberg-----
+				$('.theme-woostify.checkout-layout-2 .wpfnl-checkout-form-wpfnl-multistep .multi-step-checkout-wrapper .multi-step-checkout-content').hide();
+				$('.theme-woostify.checkout-layout-2 .wpfnl-checkout-form-wpfnl-multistep .multi-step-checkout-wrapper .multi-step-checkout-content[data-step="first"]').show();
+				$('.theme-woostify.checkout-layout-2 .wpfnl-checkout-form-wpfnl-multistep .multi-step-checkout-wrapper .multi-step-checkout-button-wrapper').hide();
 
 				checkoutFieldValidation('#wpfnl_checkout_billing');
 
@@ -193,6 +210,13 @@
 
 			}else if( 'order-review' == targetID ){
 				var is_enabled_dirrerent_address = $('input[name="ship_to_different_address"]').is(":checked");
+
+				$('.theme-woostify.checkout-layout-2 .wpfnl-checkout.wpfnl-multistep .multi-step-checkout-wrapper .multi-step-checkout-content').show();
+				$('.theme-woostify.checkout-layout-2 .wpfnl-checkout.wpfnl-multistep .multi-step-checkout-wrapper .multi-step-checkout-button-wrapper').show();
+
+				//---for gutenberg---
+				$('.theme-woostify.checkout-layout-2 .wpfnl-checkout-form-wpfnl-multistep .multi-step-checkout-wrapper .multi-step-checkout-content').show();
+				$('.theme-woostify.checkout-layout-2 .wpfnl-checkout-form-wpfnl-multistep .multi-step-checkout-wrapper .multi-step-checkout-button-wrapper').show();
 
 				//----billing validation---
 				checkoutFieldValidation('#wpfnl_checkout_billing');
@@ -283,7 +307,26 @@
 
 			if( 'billing' == targetID ){
 				// Login validation goes here if needed
+
+				$('.theme-woostify.checkout-layout-2 .wpfnl-checkout.wpfnl-multistep .multi-step-checkout-wrapper .multi-step-checkout-content').hide();
+				$('.theme-woostify.checkout-layout-2 .wpfnl-checkout.wpfnl-multistep .multi-step-checkout-wrapper .multi-step-checkout-content[data-step="first"]').show();
+				$('.theme-woostify.checkout-layout-2 .wpfnl-checkout.wpfnl-multistep .multi-step-checkout-wrapper .multi-step-checkout-button-wrapper').hide();
+
+				//-----for gutenberg------
+				$('.theme-woostify.checkout-layout-2 .wpfnl-checkout-form-wpfnl-multistep .multi-step-checkout-wrapper .multi-step-checkout-content').hide();
+				$('.theme-woostify.checkout-layout-2 .wpfnl-checkout-form-wpfnl-multistep .multi-step-checkout-wrapper .multi-step-checkout-content[data-step="first"]').show();
+				$('.theme-woostify.checkout-layout-2 .wpfnl-checkout-form-wpfnl-multistep .multi-step-checkout-wrapper .multi-step-checkout-button-wrapper').hide();
+				
 			}else if( 'shipping' == targetID ){
+				$('.theme-woostify.checkout-layout-2 .wpfnl-checkout.wpfnl-multistep .multi-step-checkout-wrapper .multi-step-checkout-content').hide();
+				$('.theme-woostify.checkout-layout-2 .wpfnl-checkout.wpfnl-multistep .multi-step-checkout-wrapper .multi-step-checkout-content[data-step="first"]').show();
+				$('.theme-woostify.checkout-layout-2 .wpfnl-checkout.wpfnl-multistep .multi-step-checkout-wrapper .multi-step-checkout-button-wrapper').hide();
+
+				//-----for gutenberg------
+				$('.theme-woostify.checkout-layout-2 .wpfnl-checkout-form-wpfnl-multistep .multi-step-checkout-wrapper .multi-step-checkout-content').hide();
+				$('.theme-woostify.checkout-layout-2 .wpfnl-checkout-form-wpfnl-multistep .multi-step-checkout-wrapper .multi-step-checkout-content[data-step="first"]').show();
+				$('.theme-woostify.checkout-layout-2 .wpfnl-checkout-form-wpfnl-multistep .multi-step-checkout-wrapper .multi-step-checkout-button-wrapper').hide();
+
 				checkoutFieldValidation('#wpfnl_checkout_billing');
 
 				$('#wpfnl_checkout_billing .validate-required').each(function(){
@@ -300,6 +343,13 @@
 
 			}else if( 'order-review' == targetID ){
 				var is_enabled_dirrerent_address = $('input[name="ship_to_different_address"]').is(":checked");
+
+				$('.theme-woostify.checkout-layout-2 .wpfnl-checkout.wpfnl-multistep .multi-step-checkout-wrapper .multi-step-checkout-content').show();
+				$('.theme-woostify.checkout-layout-2 .wpfnl-checkout.wpfnl-multistep .multi-step-checkout-wrapper .multi-step-checkout-button-wrapper').show();
+
+				//-----gutenberg-----
+				$('.theme-woostify.checkout-layout-2 .wpfnl-checkout-form-wpfnl-multistep .multi-step-checkout-wrapper .multi-step-checkout-content').show();
+				$('.theme-woostify.checkout-layout-2 .wpfnl-checkout-form-wpfnl-multistep .multi-step-checkout-wrapper .multi-step-checkout-button-wrapper').show();
 
 				if ( is_enabled_dirrerent_address == true ){
 					checkoutFieldValidation('#wpfnl_checkout_shipping');
@@ -406,6 +456,15 @@
 				$(this).siblings().attr('data-target', 'billing').prop('disabled', false);
 
 			}else if( 'billing' == targetID ){
+				$('.theme-woostify.checkout-layout-2 .wpfnl-checkout.wpfnl-multistep .multi-step-checkout-wrapper .multi-step-checkout-content').hide();
+				$('.theme-woostify.checkout-layout-2 .wpfnl-checkout.wpfnl-multistep .multi-step-checkout-wrapper .multi-step-checkout-content[data-step="first"]').show();
+				$('.theme-woostify.checkout-layout-2 .wpfnl-checkout.wpfnl-multistep .multi-step-checkout-wrapper .multi-step-checkout-button-wrapper').hide();
+
+				//------for gutenberg------
+				$('.theme-woostify.checkout-layout-2 .wpfnl-checkout-form-wpfnl-multistep .multi-step-checkout-wrapper .multi-step-checkout-content').hide();
+				$('.theme-woostify.checkout-layout-2 .wpfnl-checkout-form-wpfnl-multistep .multi-step-checkout-wrapper .multi-step-checkout-content[data-step="first"]').show();
+				$('.theme-woostify.checkout-layout-2 .wpfnl-checkout-form-wpfnl-multistep .multi-step-checkout-wrapper .multi-step-checkout-button-wrapper').hide();
+
 				if( is_user_logged_in ){
 					$(this).attr('data-target', 'login').prop('disabled', true);
 				}else{
@@ -419,12 +478,39 @@
 				$(this).siblings().attr('data-target', 'shipping').prop('disabled', false);
 
 			}else if( 'shipping' == targetID ){
+				$('.theme-woostify.checkout-layout-2 .wpfnl-checkout.wpfnl-multistep .multi-step-checkout-wrapper .multi-step-checkout-content').hide();
+				$('.theme-woostify.checkout-layout-2 .wpfnl-checkout.wpfnl-multistep .multi-step-checkout-wrapper .multi-step-checkout-content[data-step="first"]').show();
+				$('.theme-woostify.checkout-layout-2 .wpfnl-checkout.wpfnl-multistep .multi-step-checkout-wrapper .multi-step-checkout-button-wrapper').hide();
+
+				//-------for gutenberg--------
+				$('.theme-woostify.checkout-layout-2 .wpfnl-checkout-form-wpfnl-multistep .multi-step-checkout-wrapper .multi-step-checkout-content').hide();
+				$('.theme-woostify.checkout-layout-2 .wpfnl-checkout-form-wpfnl-multistep .multi-step-checkout-wrapper .multi-step-checkout-content[data-step="first"]').show();
+				$('.theme-woostify.checkout-layout-2 .wpfnl-checkout-form-wpfnl-multistep .multi-step-checkout-wrapper .multi-step-checkout-button-wrapper').hide();
+
 				$(this).attr('data-target', 'billing');
 				$(this).siblings().attr('data-target', 'order-review').prop('disabled', false);
 
 			}
 		});
 		//-------end multistep checkout------
+
+
+		$(".wpfnl-learndash-pay form input[type='submit']").on("click", function () {
+			var ajaxurl = window.wpfnl_obj.ajaxurl;
+			let step_id = $('.wpfnl-learndash-pay').data('id');
+			jQuery.ajax({
+				type: "POST",
+				url: ajaxurl,
+				data: {
+					action			: "wpfnl_set_learndash_session",
+					step_id			: step_id,
+				},
+				success: function (response) {
+					console.log(response)
+				}
+			});
+		});
+
 
 
 		/**
@@ -468,7 +554,6 @@
 					i++;
 				}
 			});
-			console.log(variations);
 			jQuery.ajax({
 				type: "POST",
 				url: ajaxurl,
@@ -480,17 +565,54 @@
 					$( 'body' ).trigger( 'update_checkout' );
 				}
 			});
-		})
+		});
+
+		
+
+		// $(document).on("click", ".learndash_checkout_button", function (e) {
+		// 	var dropDownId = $(this).data('jq-dropdown');
+		// 	$(mainCourseId).attr("id", dropDownId.replace('#',''));
+		// 	$(dropDownId).css('display','block');
+
+		// 	// console.log(mainCourseId);
+		// 	// $(dropDownId).show();
+
+		// 	var ajaxurl = window.wpfnl_obj.ajaxurl;
+		// 	jQuery.ajax({
+		// 		type: "POST",
+		// 		url: ajaxurl,
+		// 		data: {
+		// 			action			: "wpfnl_get_course_details",
+		// 			course_id		: dropDownId.replace('#jq-dropdown-',''),
+		// 		},
+		// 		success: function (response) {
+		// 			$('input[name=item_number]').val(response.course.id);
+		// 			$('input[name=amount]').val(response.course.price);
+		// 			$('input[name=item_name]').val(response.course.title);
+		// 			$('input[name=custom]').val(window.wpfnl_obj.step_id);
+		// 			$('input[name=stripe_course_id]').val(response.course.id);
+		// 			$('input[name=stripe_plan_id]').val('learndash-course-'+response.course.id);
+		// 			$('input[name=stripe_name]').val(response.course.title);
+		// 			$('input[name=stripe_price]').val(response.course.price*100);
+		// 		}
+		// 	});
+
+
+		// });
+
+
+
+
 		$(document).on("change", ".wpfnl-order-bump-cb", function (e) {
 
 			e.preventDefault();
-			console.log(this);
 			$(this).parents('.wpfnl-reset').find('.oderbump-loader').css('display', 'flex');
-			// $('.oderbump-loader').css('display', 'flex');
 			var ajaxurl = window.wpfnl_obj.ajaxurl;
+			var user_id = window.wpfnl_obj.user_id;
 			var step_id = $(this).attr('data-step');
 			var quantity = $(this).attr('data-quantity');
 			var key = $(this).attr('data-key');
+			var isLms = $(this).attr('data-lms');
 			var product = $(this).val();
 			let checker = false,
 				main_products = $(this).attr('data-main-products');
@@ -502,12 +624,14 @@
 			}
 
 			if(checker) {
-				$( '[name=_wpfunnels_order_bump_product]' ).val(product);
+				
+				$("input[name='_wpfunnels_order_bump_product_"+key +"']").val(product);
+				
 			} else {
-				$( '[name=_wpfunnels_order_bump_product]' ).val('');
+				$("input[name='_wpfunnels_order_bump_product_"+key +"']").val('');
+				
 			}
-
-
+		
 			jQuery.ajax({
 				type: "POST",
 				url: ajaxurl,
@@ -517,24 +641,59 @@
 					quantity		: quantity,
 					product			: product,
 					checker			: checker,
+					is_lms			: isLms,
+					user_id			: user_id,
 					key			    : key,
 					main_products 	: main_products
 				},
 				success: function (response) {
-					jQuery('body').trigger('update_checkout');
+					$('.wpfnl-lms-access-course-message').text('')
 					wpf_remove_spinner( response );
 					$('.oderbump-loader').css('display', 'none');
+					if(isLms === 'wc'){
+						jQuery('body').trigger('update_checkout');
+					}else{
+						$( ".wpfnl-order-bump-cb" ).each(function( index ) {
+							if($(this).val() != product){
+								$(this).prop("checked", false);
+							}
+						});
+
+						$('.wpfnl-lms-checkout').empty();
+						
+						$('.wpfnl-lms-checkout').append(response.html);
+						var notify_url = $('input[name=notify_url]').val();
+						var return_url = $('input[name=return]').val();
+						var cancel_url = $('input[name=cancel_return]').val();
+
+						notify_url = notify_url.split('=')[0]+ "="+ response.paypal_nonce;
+						return_url = return_url.split('return-success=')[0]+ "step_id="+response.step_id+"&user_id="+response.user_id+"&return-success="+ response.paypal_nonce;
+						cancel_url = cancel_url.split('=')[0]+ "="+ response.paypal_nonce;
+					
+						$('input[name=notify_url]').val(notify_url);
+						$('input[name=return]').val(return_url);
+						$('input[name=cancel_return]').val(cancel_url);
+						
+					}
+
 
 					$( ".wpfnl-order-bump-cb" ).each(function( index ) {
-
 						var isReplace = $(this).data('replace');
 						var qty = $(this).data('quantity');
 						if( (isReplace == 'yes') && ( (qty != quantity ) || product != $(this).val() ) ){
 							$(this).prop("checked", false);
 						}
 
+						if(isLms == 'yes'){
+							console.log($(this).val());
+							console.log(product);
+							if($(this).val() != product){
+								$(this).prop("checked", false);
+							}
+						}
+
 					});
-					// $(this).parents('.wpfnl-reset').find('.oderbump-loader').css('display', 'none');
+					
 				}
 			});
 		});
@@ -752,6 +911,73 @@
 				}
 			});
 		})
+
+		// $('.learndash_join_button form').on('submit', function(e){
+		$('#wpfnl-lms-free-course').on('click', function(e){
+			e.preventDefault()
+			$(this).html('Enrolling... <span class="wpfnl-loader"></span>');
+			var ajaxurl = window.wpfnl_obj.ajaxurl;
+			var step_id = $(this).attr('step_id')
+			var course_id = $(this).attr('course_id')
+			var user_id = $(this).attr('user_id');
+			var data    = {
+				action 	: 'wpfnl_learndash_free_course',
+				step_id : step_id,
+				course_id : course_id,
+				user_id : user_id,
+				data 	: $(this).serialize(),
+			};
+			$.ajax({
+				type	: "POST",
+				url		: ajaxurl,
+				data	: data,
+				dataType: 'json',
+				success	: function (response) {
+					if(response.success) {
+						setTimeout(function(){
+							window.location = response.next_step;
+						}, 1000);
+					}
+				}
+			});
+		});
+		
+		$('.learndash-stripe-checkout').append('<input type="hidden" name="custom" value="'+window.wpfnl_obj.step_id+"&"+window.wpfnl_obj.user_id+'">');
+		$(document).on("click", "#wpfnl-lms-access-course", function (e) {
+		// $('#wpfnl-lms-access-course').on('click',function(e){
+			e.preventDefault()
+			// $(this).html('Enrolling... <span class="wpfnl-loader"></span>');
+			var next_step_url = $(this).attr('href');
+			var ajaxurl = window.wpfnl_obj.ajaxurl;
+
+			var data    = {
+				action 	: 'wpfnl_learndash_already_enroll_course',
+				step_id : window.wpfnl_obj.step_id,
+				user_id : window.wpfnl_obj.user_id,
+			};
+			
+			console.log(data);
+			$.ajax({
+				type	: "POST",
+				url		: ajaxurl,
+				data	: data,
+				dataType: 'json',
+				success	: function (response) {
+					if(response.success) {
+						$('.wpfnl-lms-access-course-message').text('You are already enrolled in this course.')
+						setTimeout(function(){
+							window.location = next_step_url;
+						}, 2500);
+					}
+				}
+			});
+
+		})
+
+		$(document).ready(function () {
+			// window.onbeforeunload = doAjaxBeforeUnload;
+			// $(window).unload(doAjaxBeforeUnload);
+		});
 	});
 
 })(jQuery);

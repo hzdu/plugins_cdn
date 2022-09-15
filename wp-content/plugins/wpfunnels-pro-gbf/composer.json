@@ -6,8 +6,17 @@
             "email": "support@getwpfunnels.com"
         }
     ],
-    "require": {},
+    "require": {
+    
+    },
+    "scripts": {
+        "phpunit": "phpunit"
+    },
     "autoload": {
         "classmap": ["admin/", "public/", "includes/core", "includes/utils"]
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^7",
+        "yoast/phpunit-polyfills": "1.x-dev"
     }
 }

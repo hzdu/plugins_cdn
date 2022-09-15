@@ -1,0 +1,29 @@
+{
+  "name": "wpfunnels/wpfunnels-pro-integrations",
+  "type": "wordpress-plugin",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "WPFunnels Team",
+      "email": "support@getwpfunnels.com"
+    }
+  ],
+  "minimum-stability": "dev",
+  "autoload": {
+    "classmap": [
+      "admin/",
+      "public/",
+      "includes/core",
+      "includes/utils",
+      "includes/lib"
+    ]
+  },
+  "config": {
+    "platform-check": false
+  },
+  "require": {
+    "philipnewcomer/wp-ajax-helper": "^1.0",
+    "sendinblue/api-v3-sdk": "8.x.x",
+    "mailerlite/mailerlite-api-v2-php-sdk": "dev-main"
+  }
+}
