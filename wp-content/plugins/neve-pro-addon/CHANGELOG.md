@@ -1,3 +1,15 @@
+#### [Version 2.4.0](https://github.com/Codeinwp/neve-pro-addon/compare/v2.3.6...v2.4.0) (2022-09-19)
+
+- [Feat] Advanced style controls for sub menus - [Learn more](https://docs.themeisle.com/article/1226-header-primary-menu)
+- [Feat] Improve Custom Layouts experience - [Learn more](https://docs.themeisle.com/article/1062-custom-layouts-module)
+- [Feat] Responsive controls for Social Icons - [Learn more](https://docs.themeisle.com/article/1288-the-social-icons-component)
+- [Feat] Add Advanced search icon header component - [Learn more](https://docs.themeisle.com/article/1715-the-advanced-search-icon-component-neve-header-footer-builder)
+- [Feat] Add Advanced search form header component - [Learn more](https://docs.themeisle.com/article/1714-the-advanced-search-form-component-neve-header-footer-builder)
+- [Feat] Add Finance Blog starter site - [Gutenberg](https://demosites.io/finance-blog-gb/)
+- [Fix] Prevent other users than the Administrator and Editor from creating a Custom layout
+- [Fix] Social icons not appearing without setting a background color
+- [Fix] Issues related to Sparks installation from Neve dashboard
+
 ##### [Version 2.3.6](https://github.com/Codeinwp/neve-pro-addon/compare/v2.3.5...v2.3.6) (2022-08-31)
 
 - [Fix] Compatibility issue between Sparks Variation Swatches & Neve Pro infinite products mechanism
