@@ -1,17 +1,36 @@
 <div class="tvd-modal-content">
 	<h3 class="pl-30 tvd-modal-title"><?php echo __( 'Unlock options', 'thrive-apprentice' ); ?></h3>
-	<div class="tva-drip-types-container">
-		<# if ( this.model.hasInherited() ) { #>
-		<div class="tva-content-trigger-locked">
-			<?php tva_get_svg_icon( 'lock-alt_light' ); ?>
-			<?php esc_html_e( 'This lesson will be unlocked once the parent module has unlocked', 'thrive-apprentice' ); ?>
-		</div>
-		<div class="tva-trigger-sep mt-15 mb-15">
+	<div class="tva-sequential-info-box hidden">
+		<p><?php tva_get_svg_icon( 'alt-sequential' ); ?><?php esc_html_e( 'This ', 'thrive-apprentice' ); ?> <#= this.courseItem.get( 'post_type' ).substring(4) #> <?php esc_html_e( ' is unlocked when all content before it is completed', 'thrive-apprentice' ); ?></p>
+		<div class="tva-trigger-sep mt-25">
 			<span class="tva-trigger-sep__line"></span>
 			<span class="tva-trigger-sep__and"><?php esc_html_e( 'and', 'thrive-apprentice' ); ?></span>
 			<span class="tva-trigger-sep__line"></span>
 		</div>
-		<# } #>
+	</div>
+	<div class="tva-inherited-sequential-info-box hidden">
+		<div class="tva-content-trigger-locked">
+			<?php tva_get_svg_icon( 'lock-alt_light' ); ?>
+			<?php esc_html_e( 'This lesson is unlocked when content before it is completed and when parent module is unlocked', 'thrive-apprentice' ); ?>
+		</div>
+		<div class="tva-trigger-sep mt-25">
+			<span class="tva-trigger-sep__line"></span>
+			<span class="tva-trigger-sep__and"><?php esc_html_e( 'and', 'thrive-apprentice' ); ?></span>
+			<span class="tva-trigger-sep__line"></span>
+		</div>
+	</div>
+	<div class="tva-drip-types-container tva-drip-unlock-settings">
+		<div class="tva-inherited-info-box hidden">
+			<div class="tva-content-trigger-locked">
+				<?php tva_get_svg_icon( 'lock-alt_light' ); ?>
+				<?php esc_html_e( 'This lesson will be unlocked once the parent module has unlocked', 'thrive-apprentice' ); ?>
+			</div>
+			<div class="tva-trigger-sep mt-15 mb-15">
+				<span class="tva-trigger-sep__line"></span>
+				<span class="tva-trigger-sep__and"><?php esc_html_e( 'and', 'thrive-apprentice' ); ?></span>
+				<span class="tva-trigger-sep__line"></span>
+			</div>
+		</div>
 		<p class="tva-drip-unlock">
 			<?php esc_html_e( 'Unlock content if', 'thrive-apprentice' ); ?>
 			<select data-calculate-width="1" data-bind="condition" class="tva-drip-unlock-select tva-control-inline tva-select-compact" data-container-class="material" data-width="50px">
@@ -53,7 +72,8 @@
 				<select class="change" data-fn="triggerSelected">
 					<option data-icon="drip-campaign-scratch" value="" selected disabled><?php esc_html_e( 'Select a new condition', 'thrive-apprentice' ); ?>&hellip;</option>
 					<# _.each( this.getAvailableTriggers(), function( trigger ) { #>
-					<option data-icon="<#- trigger.icon #>"<#=trigger.disabled ? ' disabled' : ''#> value="<#-trigger.id#>"><#-trigger.name#></option>
+					<option data-icon="<#- trigger.icon #>"
+					<#=trigger.disabled ? ' disabled' : ''#> value="<#-trigger.id#>"><#-trigger.name#></option>
 					<# }, this ) #>
 				</select>
 				<div class="drip-select-icon drip-select-green"><?php tva_get_svg_icon( 'drip-campaign-scratch' ); ?></div>
@@ -68,19 +88,53 @@
 			</div>
 		</div>
 
-		<div class="tva-drip-content-visibility tva-flex">
-			<?php tva_get_svg_icon( 'icon-eye' ); ?>
-			<?php esc_html_e( 'Lesson visibility in lesson list when content is locked', 'thrive-apprentice' ); ?>
-			&nbsp;
-			<select data-calculate-width="1" class="tva-drip-visibility-select tva-select-compact" data-width="160px" data-bind="visibility" data-container-class="material">
-				<# if ( this.campaign.get( 'display_locked' ) ) { #>
-				<option value="inherited"><?php echo __( 'Inherited (Displayed)', 'thrive-apprentice' ); ?></option>
-				<# } else { #>
-				<option value="inherited"><?php echo __( 'Inherited (Hidden)', 'thrive-apprentice' ); ?></option>
-				<# } #>
-				<option value="hidden"><?php esc_html_e( 'Hidden', 'thrive-apprentice' ); ?></option>
-				<option value="displayed"><?php esc_html_e( 'Displayed as locked', 'thrive-apprentice' ); ?></option>
-			</select>
+		<div class="tva-drip-advanced-settings">
+			<div class="tva-advanced-settings-button click">
+				<p><?php esc_html_e( 'Advanced settings', 'thrive-apprentice' ); ?>
+				<p id="ta-arrow-down"><?php tva_get_svg_icon( 'caret-down_solid' ); ?>
+				<p id="ta-arrow-up" class="hidden"><?php tva_get_svg_icon( 'caret-up' ); ?>
+				</p>
+				<p class="tva-active-options hidden"></p>
+			</div>
+			<div class="tva-drip-content-settings tva-flex">
+				<div id="tva-drip-forced-unlock-dropdown-disabled">
+					<?php tva_get_svg_icon( 'sequential' ); ?>
+					<p><?php esc_html_e( 'This setting is disabled for the first ', 'thrive-apprentice' ) ?><#= this.courseItem.get( 'post_type' ).substring(4) #><?php esc_html_e( ' of the course.', 'thrive-apprentice' ); ?>
+						&nbsp;
+				</div>
+				<div id="tva-drip-forced-unlock-dropdown">
+					<?php tva_get_svg_icon( 'sequential' ); ?>
+					<p>
+						<?php esc_html_e( 'Users must complete all previous content to unlock', 'thrive-apprentice' ); ?>
+						&nbsp;
+					</p>
+					<select data-calculate-width="1" class="tva-drip-content-setting tva-select-compact" data-width="150px" data-bind="forced_unlock" data-container-class="material">
+						<# if ( this.campaign.get( 'force_unlock_order' ) ) { #>
+						<option value="inherited"><?php echo __( 'Inherited (Yes)', 'thrive-apprentice' ); ?></option>
+						<# } else { #>
+						<option value="inherited"><?php echo __( 'Inherited (No)', 'thrive-apprentice' ); ?></option>
+						<# } #>
+						<option value="yes"><?php esc_html_e( 'Yes', 'thrive-apprentice' ); ?></option>
+						<option value="no"><?php esc_html_e( 'No', 'thrive-apprentice' ); ?></option>
+					</select>
+				</div>
+				<div>
+					<?php tva_get_svg_icon( 'icon-eye' ); ?>
+					<p>
+						<#= this.courseItem.get( 'post_type' ).substring(4) #><?php esc_html_e( ' visibility in lesson list when content is locked', 'thrive-apprentice' ); ?>
+						&nbsp;
+					</p>
+					<select data-calculate-width="1" class="tva-drip-content-setting tva-select-compact" data-width="150px" data-bind="visibility" data-container-class="material">
+						<# if ( this.campaign.get( 'display_locked' ) ) { #>
+						<option value="inherited"><?php echo __( 'Inherited (Displayed)', 'thrive-apprentice' ); ?></option>
+						<# } else { #>
+						<option value="inherited"><?php echo __( 'Inherited (Hidden)', 'thrive-apprentice' ); ?></option>
+						<# } #>
+						<option value="hidden"><?php esc_html_e( 'Hidden', 'thrive-apprentice' ); ?></option>
+						<option value="displayed"><?php esc_html_e( 'Displayed as locked', 'thrive-apprentice' ); ?></option>
+					</select>
+				</div>
+			</div>
 		</div>
 	</div>
 	<div class="tvd-modal-btm tva-flex tva-flex-row tva-space-between">

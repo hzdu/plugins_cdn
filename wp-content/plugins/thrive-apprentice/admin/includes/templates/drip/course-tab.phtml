@@ -64,8 +64,28 @@
 					<span class="tva-drip-icon"><?php tva_get_svg_icon( 'drip-main' ); ?></span>
 					<span class="tva-drip-name"><#- model.get('post_title') #></span>
 					<div class="tva-drip-type">
-						<#= model.getIcon() #>
-						<#- model.getTypeLabel() #>
+						<div class="tva-drip-schedule-list">
+							<div class="tva-summary-items">
+								<div class="tva-summary-trigger">
+									<div class="mt-10 tva-flex tva-align-center">
+										<#= model.getTriggerIcon() #>
+										<span class="tva-s-text"><#- model.getTriggerSummary() #></span>
+									</div>
+								</div>
+								<div class="tva-summary-arrow">
+									<div class="mt-10 tva-flex tva-align-center tva-arrow">
+										<div class="tva-brdr"></div>
+										<?php tva_get_svg_icon( 'caret-down_solid' ); ?>
+									</div>
+								</div>
+								<div class="tva-summary-schedule">
+									<div class="mt-10 tva-flex tva-align-center">
+										<#= model.getScheduleIcon() #>
+										<span class="tva-s-text"><#= model.getScheduleSummary() #></span>
+									</div>
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
 				<div class="tva-drip-actions">

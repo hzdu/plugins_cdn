@@ -53,20 +53,15 @@
 			</button>
 		</div>
 		<div class="tva-drip-campaign-behaviour tva-drip-card p-15">
-			<div class="tva-tooltip-parent">
-				<div class="tva-card-content tva-disabled">
-					<div class="tva-grid mt-5 tvd-switch">
-						<?php tva_get_svg_icon( 'unlock-alt_light', 'tva-main-color' ); ?>
-						<label>
-							<?php esc_html_e( 'Force users to complete course in order', 'thrive-apprentice' ); ?>
-							<input type="checkbox">
-							<span class="tvd-lever ml-10"></span>
-						</label>
-					</div>
+			<div class="tva-card-content">
+				<div class="tva-grid mt-5 tvd-switch">
+					<?php tva_get_svg_icon( 'sequential', 'tva-main-color' ); ?>
+					<label>
+						<?php esc_html_e( 'Force users to complete course in order', 'thrive-apprentice' ); ?>
+						<input id="tva-drip-force-unlock-order" type="checkbox" class="click" data-fn="forceOrderChanged" data-campaign-id="<#-this.model.get('id')#>" <#= this.model.get('force_unlock_order') ? 'checked="checked"' : '' #>>
+						<span class="tvd-lever ml-10"></span>
+					</label>
 				</div>
-				<span class="tva-custom-tooltip">
-					<?php esc_attr_e( 'This feature is coming soon', 'thrive-apprentice' ); ?>
-				</span>
 			</div>
 			<div class="tva-card-content">
 				<div class="tva-grid mt-10 tvd-switch">

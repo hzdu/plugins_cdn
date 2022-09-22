@@ -15,15 +15,20 @@
 		<div class="drip-summary-item click" data-fn="editUnlockSettings" data-content-id="<#- contentId #>" data-trigger="<#- state.items[0].id #>">
 			<div class="drip-summary-icon"><#= TVA.Utils.icon( state.items[0].icon ) #></div>
 			<div class="drip-summary-text"><#= state.items[0].text #></div>
-			<# if ( state.items.length > 1 && !state.inherited ) { #>
+			<# if ( state.items.length > 1 && ! state.inherited && ! state.forced_unlock ) { #>
 			<div class="drip-conditions-bubble">
 				<span class="drip-conditions-bubble-text"><#= state.items.length - 1 #></span>
-				<div class="tva-custom-tooltip tva-tooltip-inherited"><?php esc_html_e( 'Click here to see and edit all of your drip rules for this piece of content.', 'thrive-apprentice' ); ?></div>
+				<div class="tva-custom-tooltip tva-tooltip-inherited"><#= TVA.t.drip_bubble_tooltip #></div>
 			</div>
-			<# } else if ( state.inherited ) { #>
+			<# } else if ( state.inherited && ! state.forced_unlock || ! state.inherited && state.forced_unlock) { #>
 			<div class="drip-conditions-bubble">
 				<span class="drip-conditions-bubble-text"><#= state.items.length #></span>
-				<div class="tva-custom-tooltip tva-tooltip-inherited"><?php esc_html_e( 'Click here to see and edit all of your drip rules for this piece of content.', 'thrive-apprentice' ); ?></div>
+				<div class="tva-custom-tooltip tva-tooltip-inherited"><#= TVA.t.drip_bubble_tooltip #></div>
+			</div>
+			<# } else if ( state.inherited && state.forced_unlock ) { #>
+			<div class="drip-conditions-bubble">
+				<span class="drip-conditions-bubble-text"><#= state.items.length + 1 #></span>
+				<div class="tva-custom-tooltip tva-tooltip-inherited"><#= TVA.t.drip_bubble_tooltip #></div>
 			</div>
 			<# } else { #>
 			<div class="tva-custom-tooltip"><#- state.items[0].tooltip #></div>
@@ -31,6 +36,14 @@
 		</div>
 	</div>
 	<# } #>
+	<# } else if ( state.forced_unlock ) { #>
+	<div class="tva-drip-sequential tva-tooltip-parent">
+		<div class="drip-summary-item tva-tooltip-parent click" data-fn="editUnlockSettings" data-content-id="<#- contentId #>">
+			<div class="tva-custom-tooltip tva-tooltip-inherited"><?php esc_html_e( 'Content locked until previous course item is completed', 'thrive-apprentice' ); ?></div>
+			<div class="drip-summary-icon"><?php tva_get_svg_icon( 'alt-sequential' ); ?></div>
+			<div class="drip-summary-text"><?php esc_html_e( 'Sequential', 'thrive-apprentice' ); ?></div>
+		</div>
+	</div>
 	<# } else { #>
 	<div class="tva-tooltip-parent">
 		<button class="drip-summary-item tva-drip-unlocked click" data-fn="editUnlockSettings" data-content-id="<#- contentId #>">

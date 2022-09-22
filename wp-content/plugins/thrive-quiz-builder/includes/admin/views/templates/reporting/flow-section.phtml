@@ -53,11 +53,10 @@
 
 		<div class="tqb-progress-number-left"><#= conversions #> </div>
 		<div class="tqb-progress-number-right"><#= impressions - conversions #> </div>
-		<# if( impressions ) { #>
-			<div class="tqb-bar-arrow">
-				<span><#= ( conversions * 100 / impressions ).toFixed(2) #>%</span>
-			</div>
-		<# } #>
+		<div class="tqb-bar-arrow">
+			<span><#= ( impressions && impressions !== '0' ) ? ( conversions * 100 / impressions ).toFixed(2) : 0 #>%</span>
+		</div>
+
 	</div>
 	<p class="tqb-flow-section-info" id="tqb-total-number">
 		<#= impressions #>
@@ -72,7 +71,7 @@
 	<img src="../wp-content/plugins/thrive-quiz-builder/assets/css/admin/images/arrows.png" alt="arrows" class="tqb-reports-arrows">
 	<div class="tqb-dropped-off-container">
 		<span>
-			<#= impressions? ( ( impressions - conversions ) * 100 / impressions ).toFixed(2) : 0 #>%
+			<#= ( impressions && impressions !== '0' ) ? ( ( impressions - conversions ) * 100 / impressions ).toFixed(2) : 0 #>%
 		</span>
 
 		<span>

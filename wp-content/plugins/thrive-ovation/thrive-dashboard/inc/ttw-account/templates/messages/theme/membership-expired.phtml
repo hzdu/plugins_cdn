@@ -19,4 +19,9 @@
 		)
 		?>
 	</strong>
+	<?php if ( isset( $recheck_url ) ) : ?>
+		<a class="ttw-cla" href="<?php echo $recheck_url; ?>">
+			<?php echo __( 'Check license again', 'thrive-dash' ); ?>
+		</a>
+	<?php endif; ?>
 </p>

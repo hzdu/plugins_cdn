@@ -3,7 +3,9 @@
 		<h3 class="tvd-modal-title tva-text-center"><?php echo __( 'Choose a Drip Template', 'thrive-apprentice' ); ?></h3>
 
 		<div class="tva-drip-types-container">
-			<p class="tva-drip-question-box"><?php esc_html_e( 'What kind of drip schedule would you like to create?', 'thrive-apprentice' ); ?></p>
+			<div class="tva-drip-info-text">
+				<p class="tva-drip-question-box"><?php esc_html_e( 'What kind of drip automation would you like to create?', 'thrive-apprentice' ); ?>
+			</div>
 
 			<div class="tva-drip-types">
 				<# _.each( TVA.drip.campaign_types, function( campaign ) { #>
@@ -15,7 +17,7 @@
 				<div class="tva-drip-campaign-title"><#- campaign.label #></div>
 				<div class="mt-10 tva-drip-campaign-description"><#- campaign.desc #></div>
 				<# if ( campaign.type === 'automator' && campaign.disabled ) { #>
-				<div class="mt-10 tva-drip-campaign-disabled"><?php echo __( 'This requires having `Thrive Automator` plugin installed and activated', 'thrive-apprentice' ); ?></div>
+				<div class="mt-10 tva-drip-campaign-disabled"><?php echo __( 'This requires Thrive Automator to be installed and activated', 'thrive-apprentice' ); ?></div>
 				<# } #>
 			</div>
 			<# }, this ) #>
@@ -31,9 +33,7 @@
 
 <div class="tva-modal-step" data-step="1">
 	<div class="tvd-modal-content">
-		<h3 class="tvd-modal-title tva-text-center"><#= this.model.getModalTitle() #></h3>
 		<div class="tva-drip-types-container">
-			<div class="tva-drip-info-text"></div>
 			<div class="tva-drip-form mb-20"></div>
 		</div>
 		<div class="tvd-modal-btm tva-flex tva-flex-row tva-space-between tva-relative">

@@ -596,7 +596,15 @@
 				if ( domtoimage.impl.options.useCredentials ) {
 					request.withCredentials = true;
 				}
-				if ( ! url.includes( window.location.hostname ) && ! url.includes( 'gravatar' ) && ! url.includes( 'fonts.gstatic' ) ) {
+
+				let hostname = window.location.hostname;
+
+				//strip the www from the hostname if it exists because some links don't include it
+				if ( hostname.substring( 0, 4 ) === 'www.' ) {
+					hostname = hostname.substring( 4 );
+				}
+
+				if ( ! url.includes( hostname ) && ! url.includes( 'gravatar' ) && ! url.includes( 'fonts.gstatic' ) ) {
 					url = '//cors-anywhere.herokuapp.com/' + url;
 				}
 

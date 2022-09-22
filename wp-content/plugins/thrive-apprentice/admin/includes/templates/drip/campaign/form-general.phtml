@@ -32,7 +32,7 @@
 			</div>
 			<select data-bind="schedule_type" class="change" data-fn="handleDynamicFields">
 				<option data-icon="drip-campaign-scratch" value="" disabled><?php esc_html_e( 'Please select one...', 'thrive-apprentice' ); ?></option>
-				<option data-icon="drip-icon-non-repeat" value="non_repeating"><?php esc_html_e( 'At custom intervals', 'thrive-apprentice' ); ?></option>
+				<option data-icon="drip-icon-non-repeat" value="non_repeating"><?php esc_html_e( 'Custom unlock conditions', 'thrive-apprentice' ); ?></option>
 				<option data-icon="drip-icon-repeat" value="repeating"><?php esc_html_e( 'Systematically (e.g., every week)', 'thrive-apprentice' ); ?></option>
 				<option data-icon="drip-automator" value="automator"<?php echo ! \TVA\TTB\Check::automator() ? ' disabled' : ''; ?>><?php esc_html_e( 'With Thrive Automator', 'thrive-apprentice' ); ?></option>
 			</select>
@@ -76,4 +76,36 @@
 
 <div class="tva-drip-dynamic schedule_type-repeating">
 	<div class="tva-schedule-controls"></div>
+</div>
+
+<div class="tva-drip-advanced-settings">
+	<div class="tva-advanced-settings-button click">
+		<p><?php esc_html_e( 'Advanced settings', 'thrive-apprentice' ); ?>
+		<p id="ta-arrow-down"><?php tva_get_svg_icon( 'caret-down_solid' ); ?>
+		<p id="ta-arrow-up" class="hidden"><?php tva_get_svg_icon( 'caret-up' ); ?>
+		</p>
+		<p class="tva-active-options hidden"></p>
+	</div>
+	<div class="tva-drip-campaign-behaviour tva-drip-card p-15 hidden">
+		<div class="tva-card-content">
+			<div class="tva-grid mt-5 tvd-switch">
+				<?php tva_get_svg_icon( 'sequential', 'ta-icon-eye tva-main-color' ); ?>
+				<label>
+					<?php esc_html_e( 'Force users to complete course in order', 'thrive-apprentice' ); ?>
+					<input id="tva-drip-force-unlock-order" type="checkbox" class="tva-drip-settings-input click" data-fn="forceOrderChanged" data-campaign-id="<#-this.model.get('id')#>">
+					<span class="tvd-lever ml-10"></span>
+				</label>
+			</div>
+		</div>
+		<div class="tva-card-content">
+			<div class="tva-grid mt-10 tvd-switch">
+				<?php tva_get_svg_icon( 'icon-eye', 'ta-icon-eye tva-main-color' ); ?>
+				<label>
+					<?php esc_html_e( 'Show locked content in lesson lists', 'thrive-apprentice' ); ?>
+					<input id="tva-drip-display-locked" type="checkbox" class="tva-drip-settings-input click" data-fn="visibilityChanged" data-campaign-id="<#-this.model.get('id')#>">
+					<span class="tvd-lever ml-10"></span>
+				</label>
+			</div>
+		</div>
+	</div>
 </div>

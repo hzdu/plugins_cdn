@@ -30,13 +30,11 @@ $version = $state->update->version;
 		<?php echo __( 'Renew', 'thrive-dash' ) ?>
 	</a>
 	&nbsp;&nbsp;&nbsp;&nbsp;
-	<?php
-	echo sprintf(
-		'<a class="ttw-cla" href="%s">%s</a>',
-		TD_TTW_User_Licenses::get_instance()->get_recheck_url(),
-		__( 'Check license again', 'thrive-dash' )
-	);
-	?>
+	<?php if ( isset( $recheck_url ) ) : ?>
+		<a class="ttw-cla" href="<?php echo $recheck_url; ?>">
+			<?php echo __( 'Check license again', 'thrive-dash' ); ?>
+		</a>
+	<?php endif; ?>
 </p>
 <style>
     #<?php echo $slug ?>-update p:last-child {
