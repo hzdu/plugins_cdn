@@ -45,6 +45,8 @@ function wcsts_tinymce_init()
 	tinymce.remove();
 	
 	tinyMCE.init({
+		menubar:false,
+		//statusbar: false, //to disable status bar: 
         mode : "specific_textareas",
         editor_selector :"tinymce-enabled",
 		setup : function(ed) 
