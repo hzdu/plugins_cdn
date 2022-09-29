@@ -163,7 +163,6 @@
 			this.$submit.on( 'click', this.buttonSubmit.bind( this ) );
 			this.$submitLinks.on( 'click', this.linkSubmit.bind( this ) );
 			this.$el.on( 'happyforms-scrolltop', this.onScrollTop.bind( this ) );
-			this.$el.on( 'click', '.happyforms-fill-out-again', this.fillAgain.bind( this ) );
 			this.$el.on( 'click', '.happyforms-print-submission', this.printSubmission.bind( this ) );
 			this.$el.on( 'click', '.happyforms-redirect-to-page', this.redirectNow.bind( this ) );
 		},
@@ -349,19 +348,6 @@
 			e.preventDefault();
 
 			$('.happyforms-printable-submission-frame', this.$el ).get(0).contentWindow.print();
-		},
-
-		fillAgain: function( e ) {
-			e.preventDefault();
-
-			var path = window.location.pathname;
-			path = path.substring(0, path.length - 1);
-
-			var url = window.location.origin + path;
-			url += '#' + this.$form.attr( 'id' );
-
-			window.history.pushState( null, null, url );
- 			window.location.reload();
 		},
 
 		redirectNow: function( e ) {

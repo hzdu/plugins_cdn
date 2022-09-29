@@ -8,35 +8,12 @@
 	};
 
 	FormSessions.prototype.bind = function() {
-		$( document ).on( 'happyforms-change', '[data-happyforms-abandonable]', this.onChange.bind( this ) );
 		$( document ).on( 'click', 'button.happyforms-clear-session', this.onSessionClear.bind( this ) );
 		$( document ).on( 'click', 'button.happyforms-save-session', this.onSessionSave.bind( this ) );
 	};
 
-	FormSessions.prototype.onChange = function( e ) {
-		var $form = $( e.currentTarget ).parents( '.happyforms-form' );
-		var form = $.data( $form.get( 0 ), 'HappyForm' );
-
-		// Form class might not exist yet
-		if ( ! form ) {
-			return;
-		}
-
-		var $parts = $( '[data-happyforms-type]', form.$form );
-
-		// Parts might not be there yet
-		if ( 0 === $parts.length ) {
-			return;
-		}
-
-		clearTimeout( this.timeout );
-		this.timeout = setTimeout( this.sync.bind( this, form ), this.interval );
-	};
-
 	FormSessions.prototype.hasSessions = function( form ) {
-		var hasSessions = (
-			form.$form.is( '[data-happyforms-abandonable]' ) ||
-			form.$form.is( '[data-happyforms-resumable]' )
+		var hasSessions = ( form.$form.is( '[data-happyforms-resumable]' )
 		);
 
 		return hasSessions;

@@ -604,10 +604,7 @@ if (!String.prototype.trim) {
         var utmId = ['fbadid', 'gadid', 'padid', 'bingid'];
         var requestParams = [];
 
-        function validateEmail(email) {
-            var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-            return re.test(email);
-        }
+
         function getDomain(url) {
 
             url = url.replace(/(https?:\/\/)?(www.)?/i, '');
@@ -783,7 +780,7 @@ if (!String.prototype.trim) {
         }
 
         function filterEmails(value) {
-            return validateEmail(value) ? undefined : value;
+            return Utils.validateEmail(value) ? undefined : value;
         }
 
         /**
@@ -796,6 +793,10 @@ if (!String.prototype.trim) {
             PRODUCT_BUNDLE : 2,
             PRODUCT_GROUPED : 3,
 
+            validateEmail: function (email) {
+                var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+                return re.test(email);
+            },
              fireEventForAllPixel:function(functionName,events){
                 if (events.hasOwnProperty(Facebook.tag()))
                     Facebook[functionName](events[Facebook.tag()]);
@@ -1852,7 +1853,39 @@ if (!String.prototype.trim) {
                 });
 
 
+            },
+
+            /**
+             * Advanced From Data
+             */
+            saveAdvancedFormData: function (email,phone,firstName,lastName) {
+                let data = Utils.getAdvancedFormData();
+
+                if(email != null) {
+                    data["email"] = email;
+                }
+                if(phone != null) {
+                    data["phone"] = phone;
+                }
+                if(firstName != null) {
+                    data["first_name"] = firstName;
+                }
+                if(lastName != null) {
+                    data["last_name"] = lastName;
+                }
+                console.log("save",data)
+                Cookies.set('pys_advanced_form_data', JSON.stringify(data),{ expires: 300 } );
+            },
+
+            getAdvancedFormData: function () {
+                let dataStr = Cookies.get("pys_advanced_form_data");
+                if(dataStr === undefined) {
+                    return {'first_name':"",'last_name':"",'email':"",'phone':""};
+                } else {
+                    return JSON.parse(dataStr);
+                }
             }
+
         };
 
     }(options);
@@ -2242,6 +2275,37 @@ if (!String.prototype.trim) {
                 Utils.fireStaticEvents('facebook');
 
             },
+            advancedMatching: function () {
+                if(options.facebook.advancedMatchingEnabled) {
+                    let advancedMatchingForm = Utils.getAdvancedFormData();
+                    let advancedMatching = {};
+                    if(Object.keys(options.facebook.advancedMatching).length > 0) {
+                        advancedMatching = options.facebook.advancedMatching;
+                    }
+
+                    if(!advancedMatching.hasOwnProperty("em")
+                        && advancedMatchingForm.hasOwnProperty("email") && advancedMatchingForm["email"].length > 0) {
+                        advancedMatching["em"] = advancedMatchingForm["email"];
+                    }
+                    if(!advancedMatching.hasOwnProperty("ph")
+                        && advancedMatchingForm.hasOwnProperty("phone") && advancedMatchingForm["phone"].length > 0) {
+                        advancedMatching["ph"] = advancedMatchingForm["phone"];
+                    }
+                    if(!advancedMatching.hasOwnProperty("fn")
+                        && advancedMatchingForm.hasOwnProperty("first_name") && advancedMatchingForm["first_name"].length > 0) {
+                        advancedMatching["fn"] = advancedMatchingForm["first_name"];
+                    }
+                    if(!advancedMatching.hasOwnProperty("ln")
+                        && advancedMatchingForm.hasOwnProperty("last_name") && advancedMatchingForm["last_name"].length > 0) {
+                        advancedMatching["ln"] = advancedMatchingForm["last_name"];
+                    }
+
+                    if(Object.keys(advancedMatching).length > 0) {
+                        return advancedMatching;
+                    }
+                }
+                return false
+            },
             maybeInitPixel: function(pixelId) {
 
                 if(configuredPixels.includes(pixelId)) return;
@@ -2249,26 +2313,28 @@ if (!String.prototype.trim) {
                 if (options.facebook.removeMetadata) {
                     fbq('set', 'autoConfig', false, pixelId);
                 }
+                let advancedMatching = Facebook.advancedMatching();
+
                 if (options.gdpr.consent_magic_integration_enabled && typeof CS_Data !== "undefined") {
-                    if(options.facebook.advancedMatching.length === 0) {
+                    if(!advancedMatching) {
                         fbq('init', pixelId);
                     } else {
                         var cs_advanced_matching = Cookies.get('cs_enabled_advanced_matching'+test_prefix);
                         if (jQuery('#cs_enabled_advanced_matching'+test_prefix).length > 0) {
                             if (cs_advanced_matching == 'yes') {
-                                fbq('init', pixelId, options.facebook.advancedMatching);
+                                fbq('init', pixelId, advancedMatching);
                             } else {
                                 fbq('init', pixelId);
                             }
                         } else {
-                            fbq('init', pixelId, options.facebook.advancedMatching);
+                            fbq('init', pixelId, advancedMatching);
                         }
                     }
                 } else {
-                    if(options.facebook.advancedMatching.length === 0) {
+                    if(!advancedMatching) {
                         fbq('init', pixelId);
                     }  else {
-                        fbq('init', pixelId, options.facebook.advancedMatching);
+                        fbq('init', pixelId, advancedMatching);
                     }
                 }
                 configuredPixels.push(pixelId);
@@ -3367,6 +3433,49 @@ if (!String.prototype.trim) {
         Utils.manageCookies();
         Utils.initializeRequestParams();
         Utils.setupGdprCallbacks();
+
+
+        //Setup Advanced Form Data
+        if(options.enable_auto_save_advance_matching) {
+            $(document).on("blur","input[type='email']",function () {
+                let email = $(this).val().trim().toLowerCase();
+                if(Utils.validateEmail(email)) {
+                    Utils.saveAdvancedFormData(email,null,null,null);
+                }
+            })
+            $(document).on("blur","input[type='tel']",function () {
+                let phone = $(this).val().trim().replace(/\D/g, "");
+                if(phone.length > 5) {
+                    Utils.saveAdvancedFormData(null,phone,null,null);
+                }
+            })
+            $(document).on("blur","input[type='text']",function () {
+                let name = $(this).attr("name").trim().toLocaleString()
+                if(name && options.advance_matching_fn_names.includes(name)) {
+                    let value = $(this).val().trim();
+                    if(value.length > 0) {
+                        Utils.saveAdvancedFormData(null,null,value,null);
+                    }
+                }
+                if(name && options.advance_matching_ln_names.includes(name)) {
+                    let value = $(this).val().trim();
+                    if(value.length > 0) {
+                        Utils.saveAdvancedFormData(null,null,null,value);
+                    }
+                }
+                if(name && options.advance_matching_tel_names.includes(name)) {
+                    let value = $(this).val().trim();
+                    if(value.length > 0) {
+                        console.log(value);
+                        Utils.saveAdvancedFormData(null,value,null,null);
+                    }
+                }
+
+            })
+        }
+
+
+
 
         // setup Click Event
         if (

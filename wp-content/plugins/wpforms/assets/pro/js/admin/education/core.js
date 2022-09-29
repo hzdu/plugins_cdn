@@ -131,7 +131,7 @@ WPFormsEducation.proCore = window.WPFormsEducation.proCore || ( function( docume
 						if ( res.success ) {
 							location.reload();
 						} else {
-							$form.append( '<div class="msg error" style="display: none">' + wpforms_admin[ pluginType + '_error' ] + '</div>' );
+							$form.append( '<div class="msg error" style="display: none;">' + wpforms_admin[ pluginType + '_error' ] + '</div>' );
 							$form.find( '.msg' ).slideDown();
 						}
 						$button.text( buttonText );

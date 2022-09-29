@@ -10,6 +10,7 @@
 			this.stripe = '';
 			this.elements = {};
 			this.checkoutDataKey = 'happyforms_' + this.formID + '_stripe_checkout';
+			this.isComplete = { cardNumber: false, cardExpiry: false, cardCvc: false };
 
 			if ( ! this.$paymentsPart.is( '[data-happyforms-has-stripe]' ) ) {
 				return;
@@ -68,7 +69,35 @@
 		 * @param {array} options Extra options.
 		 */
 		HappyFormsStripe.prototype.initStripeElements = function( options ) {
-			var elements = this.stripe.elements();
+			var fontSources = [];
+
+			for ( var styleSheet of document.styleSheets ) {
+				try {
+					if ( ! styleSheet.cssRules ) {
+						continue;
+					}
+
+					for ( var cssRule of styleSheet.cssRules ) {
+						if ( ! cssRule.cssText.startsWith('@font-face' ) ) {
+							continue;
+						}
+
+						fontSources.push( {
+							family: cssRule.style.fontFamily,
+							src: cssRule.style.src,
+							display: 'auto',
+							style: cssRule.style.fontStyle,
+							unicodeRange: cssRule.style.unicodeRange,
+							weight: cssRule.style.fontWeight,
+						} );
+					}
+				} catch ( e ) {
+					console.log( e );
+				}
+			}
+			var elements = this.stripe.elements( {
+				fonts: fontSources,
+			} );
 
 			var formComputedStyle = window.getComputedStyle( this.el );
 			var partComputedStyle = window.getComputedStyle( this.$paymentsPart[0] );
@@ -78,30 +107,58 @@
 			if ( options && options.placeholder ) {
 				placeholderColor = options.placeholder;
 			}
+			var fontSize = formComputedStyle.getPropertyValue( '--happyforms-part-value-font-size' ).trim();
+			var fontFamily = partComputedStyle.getPropertyValue( 'font-family' );
+			var fontColor = formComputedStyle.getPropertyValue( '--happyforms-color-part-value' );
+			var textAlign = 'left';
+
+			if ( this.$el.hasClass( 'happyforms-form--part-value-text-align-center' ) ) {
+				textAlign = 'center';
+			}
+
+			if ( this.$el.hasClass( 'happyforms-form--part-value-text-align-right' ) ) {
+				textAlign = 'right';
+			}
 
 			var elementsStyle = {
 				base: {
-					fontSize: formComputedStyle.getPropertyValue( '--happyforms-part-value-font-size' ).trim(),
-					fontFamily: partComputedStyle.getPropertyValue( 'font-family' ),
-					color: partComputedStyle.getPropertyValue( 'color' ),
+					fontSize: fontSize,
+					fontFamily: fontFamily,
+					color: fontColor,
 					'::placeholder': {
 						color: placeholderColor
-					}
+					},
+					textAlign: textAlign,
 				},
 				invalid: {
-					color: partComputedStyle.getPropertyValue( 'color' )
+					color: fontColor
 				}
 			};
 
 			var paymentsPartID = this.$paymentsPart.data( 'happyforms-id' );
 			var partID = 'happyforms-' + this.formID + '_' + paymentsPartID;
 
-			this.elements['card'] = elements.create( 'card', {
+			this.elements['card'] = elements.create( 'cardNumber', {
 				hidePostalCode: ( 1 == settings.hidePostalCode ) ? true : false,
-				style: elementsStyle
+				style: elementsStyle,
+				placeholder: '',
 			} );
 			this.elements['card'].mount( '#' + partID + '_stripe_card' );
 			this.elements['card'].on( 'change', this.onElementChange.bind( this ) );
+
+			this.elements['cardExpiry'] = elements.create( 'cardExpiry', {
+				style: elementsStyle,
+				placeholder: '',
+			} );
+			this.elements['cardExpiry'].mount( '#' + partID + '_stripe_card_expiry' );
+			this.elements['cardExpiry'].on( 'change', this.onElementChange.bind( this ) );
+
+			this.elements['cardCvc'] = elements.create( 'cardCvc', {
+				style: elementsStyle,
+				placeholder: '',
+			} );
+			this.elements['cardCvc'].mount( '#' + partID + '_stripe_card_cvc' );
+			this.elements['cardCvc'].on( 'change', this.onElementChange.bind( this ) );
 		},
 
 		/**
@@ -130,6 +187,10 @@
 			this.hideError();
 
 			if ( e.complete ) {
+				this.isComplete[ e.elementType ] = true;
+			}
+
+			if ( this.isComplete.cardNumber && this.isComplete.cardExpiry && this.isComplete.cardCvc ) {
 				this.setPaymentMethod();
 				return;
 			}
@@ -138,7 +199,7 @@
 				return;
 			}
 
-			this.setError( e.error.message );
+			// this.setError( e.error.message );
 		},
 
 		/**

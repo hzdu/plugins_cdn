@@ -1,6 +1,33 @@
 # Changelog
 All notable changes to this project will be documented in this file and formatted via [this recommendation](https://keepachangelog.com/).
 
+## [1.7.7] - 2022-09-27
+### Added
+- Introducing a completely new Layout field to help you build advanced form layouts that automatically adjust to the users’ screen size.
+- All templates are now available on our new Form Templates admin page.
+- Form Templates can now be marked as favorite for easier access to forms inside the Form Builder.
+- The form fields column can now be collapsed in the Form Builder to give more space to the form preview panel.
+- Form submission values can now be attached as a CSV file to the notification email. You can set it up on the Form Builder > Notifications screen.
+
+### Changed
+- The DB tables row in the Site Health Info section is now private which means it's excluded from the copied data when the "Copy site info to clipboard" button is clicked.
+
+### Fixed
+- Selected columns were not centered in the Entries Field Columns dropdown.
+- WPForms Challenge was displayed after a forms search with no result.
+- WPForms Challenge disappeared after selecting a template for the new form.
+- After a form submission a PHP warning was generated in some cases when the Akismet anti-spam protection setting was enabled.
+- Using allow/deny list was breaking input mask validation for all fields above the Email field.
+- An unusually long text string in the confirmation message caused layout problems due to overflow.
+- File upload field was broken in the Block Editor on WordPress 5.2-5.4.
+- The time value for the Date/Time field was not populated correctly on the Edit Entry page.
+- `page_title` smart tag was working inconsistently on a form preview page.
+- `wpforms()->get( 'entry' )->get_entries()` returned all entries when no entries were found.
+- From Email address check in the Form Builder > Notifications was incorrectly handling domain check containing the `www` prefix.
+- It was possible to execute exported field values as formulas in `.csv` and `.xlsx` files.
+- Input mask validation message didn't use what was previously saved on the WPForms > Settings > Validation page.
+- On the Form builder, a template selection didn't work if a page was translated through web extensions.
+
 ## [1.7.6] - 2022-08-16
 ### Added
 - Entries can now be checked against the Akismet API to prevent spam submissions.

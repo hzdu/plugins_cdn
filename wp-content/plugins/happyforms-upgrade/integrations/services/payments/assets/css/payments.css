@@ -112,9 +112,58 @@
 .happyforms-form--part-inner-padding-wide .happyforms-part--payments .stripe-element {
   padding: 15px;
 }
+
+.happyforms-part--payments span.happyforms-stripe-expiry-hint,
+.happyforms-part--payments span.happyforms-stripe-cvc-hint {
+  margin-bottom: 10px;
+}
+
 .happyforms-payments__card {
   width: 102%;
   margin-bottom: 0;
+}
+
+.happyforms-payments__card.happyforms-payments__stripe-el label {
+  display: block;
+}
+
+.stripe-element.stripe-card,
+.stripe-element.stripe-card-expiry,
+.stripe-element.stripe-card-cvc {
+  width: auto;
+  min-width: 1em;
+  display: inline-grid;
+  align-items: stretch;
+}
+
+.stripe-element.stripe-card > div,
+.stripe-element.stripe-card-expiry > div,
+.stripe-element.stripe-card-cvc > div {
+  grid-area: 2/1;
+  position: relative;
+}
+
+.stripe-element.stripe-card:after,
+.stripe-element.stripe-card-expiry:after,
+.stripe-element.stripe-card-cvc:after {
+  content: attr(data-value) " ";
+  visibility: hidden;
+  font-size: var( --happyforms-part-value-font-size );
+  grid-area: 2/1;
+  line-height: 1.15;
+}
+
+
+.happyforms-payments__card .stripe-element:not(:last-child) {
+  margin-bottom: 15px;
+}
+
+.happyforms-form--part-outer-padding-narrow .happyforms-payments__card .stripe-element:not(:last-child) {
+  margin-bottom: 5px;
+}
+
+.happyforms-form--part-outer-padding-wide .happyforms-payments__card .stripe-element:not(:last-child) {
+  margin-bottom: 35px;
 }
 
 .happyforms-part--payments .happyforms-part__description {
@@ -185,4 +234,8 @@
   margin: 0 8px 0 0;
   color: #f23000;
   color: var(--happyforms-color-error);
+}
+
+.happyforms-styles.happyforms-form--part-border-off .happyforms-part.happyforms-payments__card .stripe-element {
+  border-color: transparent !important;
 }

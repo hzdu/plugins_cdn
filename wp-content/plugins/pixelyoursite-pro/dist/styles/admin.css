@@ -264,4 +264,36 @@
     padding: 5px;
     margin-bottom:15px;
 }
+/* remove X from locked tag */
+ .locked-tag .select2-selection__choice__remove{
+    visibility: hidden!important;
+     padding: 5px 0!important;
+     width:1px;
+}
 
+/* I suggest to hide  all selected tags from drop down list */
+.select2-results__option[aria-selected="true"]{
+    display: none;
+}
+.pys_report_menu_templates
+{
+    max-width: 100%;
+    background: #fff;
+    padding: 60px 15px;
+}
+.pys_report_menu_templates .row .col
+{
+    display: grid;
+}
+.report_menu_link
+{
+    padding: 40px 20px;
+    border-radius: 20px;
+    border: 2px solid #E1E1E1;
+    color: #616161;
+    font-size: 1.5em;
+}
+.advance_matching_bottom_margin .select2
+{
+    margin-bottom: 15px;
+}

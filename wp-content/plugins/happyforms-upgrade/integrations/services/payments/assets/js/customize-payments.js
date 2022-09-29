@@ -171,7 +171,31 @@
 		cardNumberLabelChangeCallback: function( $form ) {
 			var label = happyForms.form.get( 'card_number_label' );
 
-			$( '.happyforms-payments__card .happyforms-part__label span.label ', $form ).text( label );
+			$( '.happyforms-payments__card .happyforms-stripe-card-number-label span.label', $form ).text( label );
+		},
+
+		cardExpiryLabelChangeCallback: function( $form ) {
+			var label = happyForms.form.get( 'card_expiry_label' );
+
+			$( '.happyforms-payments__card .happyforms-stripe-card-expiry-label span.label', $form ).text( label );
+		},
+
+		cardCvcLabelChangeCallback: function( $form ) {
+			var label = happyForms.form.get( 'card_cvc_label' );
+
+			$( '.happyforms-payments__card .happyforms-stripe-card-cvc-label span.label', $form ).text( label );
+		},
+
+		cardExpiryHintChangeCallback: function( $form ) {
+			var label = happyForms.form.get( 'card_expiry_hint' );
+
+			$( '.happyforms-payments__card .happyforms-stripe-expiry-hint', $form ).text( label );
+		},
+
+		cardCvcHintChangeCallback: function( $form ) {
+			var label = happyForms.form.get( 'card_cvc_hint' );
+
+			$( '.happyforms-payments__card .happyforms-stripe-cvc-hint', $form ).text( label );
 		},
 
 		onPaymentsUserPricePlaceholderChange: function( id, html, options ) {
@@ -258,6 +282,10 @@
 			'keyup [data-attribute="stripe_option_label"]' : 'onStripeOptionLabelChange',
 			'keyup [data-attribute="user_price_label"]' : 'onUserPriceLabelChange',
 			'keyup [data-attribute="card_number_label"]' : 'cardNumberLabelChange',
+			'keyup [data-attribute="card_expiry_label"]' : 'cardExpiryLabelChange',
+			'keyup [data-attribute="card_cvc_label"]' : 'cardCvcLabelChange',
+			'keyup [data-attribute="card_expiry_hint"]' : 'cardExpiryHintChange',
+			'keyup [data-attribute="card_cvc_hint"]' : 'cardCvcHintChange',
 		} ),
 
 		applyMsgConditionClasses: function() {
@@ -316,6 +344,38 @@
 		cardNumberLabelChange: function( e ) {
 			var data = {
 				callback: 'cardNumberLabelChangeCallback',
+			}
+
+			happyForms.previewSend( 'happyforms-form-dom-update', data );
+		},
+
+		cardExpiryLabelChange: function( e ) {
+			var data = {
+				callback: 'cardExpiryLabelChangeCallback',
+			}
+
+			happyForms.previewSend( 'happyforms-form-dom-update', data );
+		},
+
+		cardCvcLabelChange: function( e ) {
+			var data = {
+				callback: 'cardCvcLabelChangeCallback',
+			}
+
+			happyForms.previewSend( 'happyforms-form-dom-update', data );
+		},
+
+		cardExpiryHintChange: function( e ) {
+			var data = {
+				callback: 'cardExpiryHintChangeCallback',
+			}
+
+			happyForms.previewSend( 'happyforms-form-dom-update', data );
+		},
+
+		cardCvcHintChange: function( e ) {
+			var data = {
+				callback: 'cardCvcHintChangeCallback',
 			}
 
 			happyForms.previewSend( 'happyforms-form-dom-update', data );

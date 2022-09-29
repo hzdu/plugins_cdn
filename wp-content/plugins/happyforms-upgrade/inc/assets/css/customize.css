@@ -22,7 +22,6 @@
 .has-recaptcha-integration #customize-control-captcha.checked ~ .happyforms-nested-settings[data-trigger=captcha],
 #customize-control-password_protect.checked ~ .happyforms-nested-settings[data-trigger=password_protect],
 #customize-control-unique_id.checked ~ .happyforms-nested-settings[data-trigger=unique_id],
-#customize-control-save_abandoned_responses.checked ~ .happyforms-nested-settings[data-trigger=save_abandoned_responses],
 .happyforms-email-view.abandoned-resume-response-expire #customize-control-abandoned_resume_send_alert_email.checked ~ .happyforms-nested-settings[data-trigger=abandoned_resume_send_alert_email],
 #customize-control-preview_before_submit.checked ~ .happyforms-nested-settings[data-trigger=preview_before_submit],
 #customize-control-schedule_visibility.checked ~ .happyforms-nested-settings[data-trigger=schedule_visibility],
@@ -49,7 +48,6 @@
 .has-page_break #customize-control-color_multistep_back_link,
 .has-page_break #customize-control-color_multistep_back_link_hover,
 #customize-control-submission_redirect_notice,
-#customize-control-fill_out_again_link,
 #customize-control-redirect_now_link,
 #customize-control-print_submission_link {
   display: block;
@@ -102,14 +100,6 @@
 #customize-control-mailchimp_subscribe_status[data-value="unsubscribe"] ~ #customize-control-mailchimp_tags_unsubscribe,
 #customize-control-sendgrid_subscribe_status[data-value=""] ~ #customize-control-sendgrid_list,
 #customize-control-sendgrid_subscribe_status[data-value="unsubscribe"] ~ #customize-control-sendgrid_list_unsubscribe {
-  display: block;
-}
-
-#customize-control-alert_email_include_user_data, {
-  display: none;
-}
-
-.has-save-user-data #customize-control-alert_email_include_user_data {
   display: block;
 }
 
@@ -462,20 +452,6 @@ ul.happyforms-parts-list li[data-part-type="media"] .happyforms-parts-list-item-
  .happyforms-reset-password + .customize-password-field-wrap {
    display: none;
    margin-top: 10px;
- }
-
- /**
-  *
-  * Submission sessions
-  *
-  */
-
- #customize-control-abandoned_response_expire {
-   margin-top: 10px;
- }
-
- #customize-control-abandoned_response_whitelist {
-   padding-top: 0;
  }
 
  /**
@@ -854,6 +830,10 @@ button.happyforms-conditional__add {
 .has-paypal-integration.has-payments #customize-control-paypal_redirect_hint,
 .has-stripe-integration.has-payments #customize-control-stripe_processing_hint,
 .has-stripe-integration.has-payments #customize-control-card_number_label,
+.has-stripe-integration.has-payments #customize-control-card_expiry_label,
+.has-stripe-integration.has-payments #customize-control-card_expiry_hint,
+.has-stripe-integration.has-payments #customize-control-card_cvc_label,
+.has-stripe-integration.has-payments #customize-control-card_cvc_hint,
 .has-payments.accept-coupons #customize-control-coupon_label,
 .has-payments.accept-coupons #customize-control-coupon_apply_label,
 .has-payments.accept-coupons #customize-control-coupon_not_allowed,

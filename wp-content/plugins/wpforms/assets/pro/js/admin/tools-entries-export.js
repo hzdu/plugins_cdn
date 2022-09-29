@@ -438,9 +438,9 @@ var WPFormsEntriesExport = window.WPFormsEntriesExport || ( function( document, 
 			el.$selectFormMsg.html( msg );
 
 			if ( msg.length > 0 ) {
-				el.$selectFormMsg.removeClass('hidden');
+				el.$selectFormMsg.removeClass( 'hidden' );
 			} else {
-				el.$selectFormMsg.addClass('hidden');
+				el.$selectFormMsg.addClass( 'hidden' );
 			}
 		},
 

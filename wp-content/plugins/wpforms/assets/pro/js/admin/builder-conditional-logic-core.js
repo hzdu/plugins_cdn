@@ -17,7 +17,7 @@ var WPFormsConditionals = window.WPFormsConditionals || ( function( document, wi
 		 * @since 1.6.0.2
 		 *
 		 * @param {Array}  array Array to split.
-		 * @param {number} n     Number of elements in each chunks.
+		 * @param {number} n     Number of elements in each chunk.
 		 *
 		 * @returns {Array} Array.
 		 */

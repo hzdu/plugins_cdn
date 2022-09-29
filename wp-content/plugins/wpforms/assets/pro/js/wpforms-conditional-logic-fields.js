@@ -162,7 +162,7 @@
 						const fieldId = $field.closest( '.wpforms-field' ).data( 'field-id' ),
 							$smartPhoneHiddenField = $field.siblings( '[name="wpforms[fields][' + fieldId + ']"]' ).first();
 
-						// Reset smart phone hidden field.
+						// Reset Smart Phone hidden field.
 						if ( fieldId && $field.data( 'ruleSmartPhoneField' ) && $smartPhoneHiddenField.length > 0 ) {
 							$smartPhoneHiddenField.val( '' );
 						}

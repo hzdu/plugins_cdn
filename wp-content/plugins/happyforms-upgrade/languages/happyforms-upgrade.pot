@@ -2,14 +2,14 @@
 # This file is distributed under the same license as the Happyforms plugin.
 msgid ""
 msgstr ""
-"Project-Id-Version: Happyforms 1.31.1\n"
+"Project-Id-Version: Happyforms 1.32.0\n"
 "Report-Msgid-Bugs-To: ask@happyforms.io\n"
 "Last-Translator: The Theme Foundry\n"
 "Language-Team: The Theme Foundry\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2022-09-02T13:52:07+00:00\n"
+"POT-Creation-Date: 2022-09-28T14:57:16+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.4.0\n"
 "X-Domain: happyforms\n"
@@ -33,7 +33,7 @@ msgstr ""
 #: core/classes/class-happyforms-core.php:186
 #: core/classes/class-happyforms-core.php:187
 #: core/classes/class-happyforms-widget.php:13
-#: core/helpers/helper-misc.php:1057
+#: core/helpers/helper-misc.php:1068
 msgid "Forms"
 msgstr ""
 
@@ -72,7 +72,8 @@ msgid "Last modified"
 msgstr ""
 
 #: core/classes/class-form-admin.php:450
-#: inc/classes/class-form-setup-upgrade.php:102
+#: inc/classes/class-form-setup-upgrade.php:90
+#: inc/classes/class-message-admin-edit.php:292
 msgid "Edit"
 msgstr ""
 
@@ -89,7 +90,7 @@ msgstr ""
 
 #: core/classes/class-form-admin.php:458
 #: inc/classes/class-message-admin.php:552
-#: inc/classes/class-message-admin.php:1232
+#: inc/classes/class-message-admin.php:1206
 msgid "Trash"
 msgstr ""
 
@@ -102,7 +103,9 @@ msgstr ""
 #: inc/classes/class-form-admin-upgrade.php:316
 #: inc/classes/class-message-admin.php:386
 #: inc/classes/class-message-admin.php:437
-#: inc/helpers/helper-misc.php:275
+#: inc/classes/class-message-admin.php:1364
+#: inc/classes/class-message-admin.php:1373
+#: inc/helpers/helper-misc.php:300
 msgid "Undo"
 msgstr ""
 
@@ -159,66 +162,69 @@ msgstr ""
 msgid " Copy"
 msgstr ""
 
-#: core/classes/class-form-email.php:52
+#: core/classes/class-form-email.php:48
 msgid "You received a new message"
 msgstr ""
 
-#: core/classes/class-form-email.php:76
+#: core/classes/class-form-email.php:72
 msgid "We received your message"
 msgstr ""
 
-#: core/classes/class-form-email.php:80
+#: core/classes/class-form-email.php:76
 msgid "Your message has been successfully sent. We appreciate you contacting us and we’ll be in touch soon."
 msgstr ""
 
-#: core/classes/class-form-email.php:96
+#: core/classes/class-form-email.php:92
 msgid "Email me a copy of each submission"
 msgstr ""
 
-#: core/classes/class-form-email.php:106
-#: inc/classes/class-form-sessions.php:187
-#: inc/classes/class-form-setup-upgrade.php:216
+#: core/classes/class-form-email.php:102
+#: inc/classes/class-form-sessions.php:159
+#: inc/classes/class-form-setup-upgrade.php:189
 msgid "To email address"
 msgstr ""
 
-#: core/classes/class-form-email.php:111
+#: core/classes/class-form-email.php:107
 msgid "To Bcc email address"
 msgstr ""
 
-#: core/classes/class-form-email.php:116
-#: core/classes/class-form-email.php:148
-#: inc/classes/class-form-sessions.php:177
+#: core/classes/class-form-email.php:112
+#: core/classes/class-form-email.php:144
+#: inc/classes/class-form-sessions.php:149
 msgid "From email address"
 msgstr ""
 
-#: core/classes/class-form-email.php:121
-#: core/classes/class-form-email.php:153
-#: inc/classes/class-form-sessions.php:182
+#: core/classes/class-form-email.php:117
+#: core/classes/class-form-email.php:149
+#: inc/classes/class-form-sessions.php:154
 msgid "Reply email address"
 msgstr ""
 
-#: core/classes/class-form-email.php:126
-#: core/classes/class-form-email.php:158
-#: inc/classes/class-form-sessions.php:192
+#: core/classes/class-form-email.php:122
+#: core/classes/class-form-email.php:154
+#: inc/classes/class-form-sessions.php:164
 msgid "Email display name"
 msgstr ""
 
-#: core/classes/class-form-email.php:131
-#: core/classes/class-form-email.php:163
-#: inc/classes/class-form-sessions.php:197
-msgid "Email subject"
+#: core/classes/class-form-email.php:127
+msgid "New submission to your form"
 msgstr ""
 
-#: core/classes/class-form-email.php:139
+#: core/classes/class-form-email.php:135
 msgid "Email submitter a copy of their reply"
 msgstr ""
 
-#: core/classes/class-form-email.php:168
-#: inc/classes/class-form-sessions.php:202
+#: core/classes/class-form-email.php:159
+#: inc/classes/class-form-sessions.php:169
+msgid "Email subject"
+msgstr ""
+
+#: core/classes/class-form-email.php:164
+#: inc/classes/class-form-sessions.php:174
 msgid "Email content"
 msgstr ""
 
-#: core/classes/class-form-email.php:173
+#: core/classes/class-form-email.php:169
 msgid "Include submitted values"
 msgstr ""
 
@@ -372,40 +378,32 @@ msgstr ""
 msgid "Send"
 msgstr ""
 
-#: core/classes/class-form-setup.php:133
-msgid "Fill out this form again"
-msgstr ""
-
-#: core/classes/class-form-setup.php:147
+#: core/classes/class-form-setup.php:143
 msgid "Add custom CSS classes to submit button"
 msgstr ""
 
-#: core/classes/class-form-setup.php:156
+#: core/classes/class-form-setup.php:152
 msgid "Submit button CSS classes"
 msgstr ""
 
-#: core/classes/class-form-setup.php:165
+#: core/classes/class-form-setup.php:161
 msgid "Add custom HTML ID to form"
 msgstr ""
 
-#: core/classes/class-form-setup.php:174
+#: core/classes/class-form-setup.php:170
 msgid "Form HTML ID"
 msgstr ""
 
-#: core/classes/class-form-setup.php:194
+#: core/classes/class-form-setup.php:190
 msgid "Form is successfully submitted"
 msgstr ""
 
-#: core/classes/class-form-setup.php:199
+#: core/classes/class-form-setup.php:195
 msgid "Form can’t be submitted"
 msgstr ""
 
-#: core/classes/class-form-setup.php:204
+#: core/classes/class-form-setup.php:200
 msgid "Submit form"
-msgstr ""
-
-#: core/classes/class-form-setup.php:209
-msgid "Fill out again the form"
 msgstr ""
 
 #: core/classes/class-form-styles.php:54
@@ -926,8 +924,8 @@ msgstr ""
 #: core/classes/class-happyforms-core.php:211
 #: inc/classes/class-attachment-controller.php:647
 #: inc/classes/class-form-admin-upgrade.php:36
-#: inc/classes/class-message-controller.php:198
-#: inc/classes/class-message-controller.php:1054
+#: inc/classes/class-message-controller.php:196
+#: inc/classes/class-message-controller.php:1068
 msgid "Submissions"
 msgstr ""
 
@@ -1185,1563 +1183,1564 @@ msgstr ""
 msgid "Leave this field blank"
 msgstr ""
 
-#: core/helpers/helper-form-templates.php:470
+#: core/helpers/helper-form-templates.php:471
+#: core/helpers/helper-misc.php:18
 msgid "(no title)"
 msgstr ""
 
-#: core/helpers/helper-form-templates.php:997
+#: core/helpers/helper-form-templates.php:998
 msgid "January"
 msgstr ""
 
-#: core/helpers/helper-form-templates.php:998
+#: core/helpers/helper-form-templates.php:999
 msgid "February"
 msgstr ""
 
-#: core/helpers/helper-form-templates.php:999
+#: core/helpers/helper-form-templates.php:1000
 msgid "March"
 msgstr ""
 
-#: core/helpers/helper-form-templates.php:1000
+#: core/helpers/helper-form-templates.php:1001
 msgid "April"
 msgstr ""
 
-#: core/helpers/helper-form-templates.php:1001
+#: core/helpers/helper-form-templates.php:1002
 msgid "May"
 msgstr ""
 
-#: core/helpers/helper-form-templates.php:1002
+#: core/helpers/helper-form-templates.php:1003
 msgid "June"
 msgstr ""
 
-#: core/helpers/helper-form-templates.php:1003
+#: core/helpers/helper-form-templates.php:1004
 msgid "July"
 msgstr ""
 
-#: core/helpers/helper-form-templates.php:1004
+#: core/helpers/helper-form-templates.php:1005
 msgid "August"
 msgstr ""
 
-#: core/helpers/helper-form-templates.php:1005
+#: core/helpers/helper-form-templates.php:1006
 msgid "September"
 msgstr ""
 
-#: core/helpers/helper-form-templates.php:1006
+#: core/helpers/helper-form-templates.php:1007
 msgid "October"
 msgstr ""
 
-#: core/helpers/helper-form-templates.php:1007
+#: core/helpers/helper-form-templates.php:1008
 msgid "November"
 msgstr ""
 
-#: core/helpers/helper-form-templates.php:1008
+#: core/helpers/helper-form-templates.php:1009
 msgid "December"
 msgstr ""
 
-#: core/helpers/helper-misc.php:207
+#: core/helpers/helper-misc.php:218
 msgid "Thank you for creating with"
 msgstr ""
 
-#: core/helpers/helper-misc.php:224
+#: core/helpers/helper-misc.php:235
 msgid "Afghanistan"
 msgstr ""
 
-#: core/helpers/helper-misc.php:225
+#: core/helpers/helper-misc.php:236
 msgid "Albania"
 msgstr ""
 
-#: core/helpers/helper-misc.php:226
+#: core/helpers/helper-misc.php:237
 msgid "Algeria"
 msgstr ""
 
-#: core/helpers/helper-misc.php:227
+#: core/helpers/helper-misc.php:238
 msgid "American Samoa"
 msgstr ""
 
-#: core/helpers/helper-misc.php:228
+#: core/helpers/helper-misc.php:239
 msgid "Andorra"
 msgstr ""
 
-#: core/helpers/helper-misc.php:229
+#: core/helpers/helper-misc.php:240
 msgid "Angola"
 msgstr ""
 
-#: core/helpers/helper-misc.php:230
+#: core/helpers/helper-misc.php:241
 msgid "Anguilla"
 msgstr ""
 
-#: core/helpers/helper-misc.php:231
+#: core/helpers/helper-misc.php:242
 msgid "Antarctica"
 msgstr ""
 
-#: core/helpers/helper-misc.php:232
+#: core/helpers/helper-misc.php:243
 msgid "Antigua and Barbuda"
 msgstr ""
 
-#: core/helpers/helper-misc.php:233
+#: core/helpers/helper-misc.php:244
 msgid "Argentina"
 msgstr ""
 
-#: core/helpers/helper-misc.php:234
+#: core/helpers/helper-misc.php:245
 msgid "Armenia"
 msgstr ""
 
-#: core/helpers/helper-misc.php:235
+#: core/helpers/helper-misc.php:246
 msgid "Aruba"
 msgstr ""
 
-#: core/helpers/helper-misc.php:236
+#: core/helpers/helper-misc.php:247
 msgid "Australia"
 msgstr ""
 
-#: core/helpers/helper-misc.php:237
+#: core/helpers/helper-misc.php:248
 msgid "Austria"
 msgstr ""
 
-#: core/helpers/helper-misc.php:238
+#: core/helpers/helper-misc.php:249
 msgid "Azerbaijan"
 msgstr ""
 
-#: core/helpers/helper-misc.php:239
+#: core/helpers/helper-misc.php:250
 msgid "Bahamas"
 msgstr ""
 
-#: core/helpers/helper-misc.php:240
+#: core/helpers/helper-misc.php:251
 msgid "Bahrain"
 msgstr ""
 
-#: core/helpers/helper-misc.php:241
+#: core/helpers/helper-misc.php:252
 msgid "Bangladesh"
 msgstr ""
 
-#: core/helpers/helper-misc.php:242
+#: core/helpers/helper-misc.php:253
 msgid "Barbados"
 msgstr ""
 
-#: core/helpers/helper-misc.php:243
+#: core/helpers/helper-misc.php:254
 msgid "Belarus"
 msgstr ""
 
-#: core/helpers/helper-misc.php:244
+#: core/helpers/helper-misc.php:255
 msgid "Belgium"
 msgstr ""
 
-#: core/helpers/helper-misc.php:245
+#: core/helpers/helper-misc.php:256
 msgid "Belize"
 msgstr ""
 
-#: core/helpers/helper-misc.php:246
+#: core/helpers/helper-misc.php:257
 msgid "Benin"
 msgstr ""
 
-#: core/helpers/helper-misc.php:247
+#: core/helpers/helper-misc.php:258
 msgid "Bermuda"
 msgstr ""
 
-#: core/helpers/helper-misc.php:248
+#: core/helpers/helper-misc.php:259
 msgid "Bhutan"
 msgstr ""
 
-#: core/helpers/helper-misc.php:249
+#: core/helpers/helper-misc.php:260
 msgid "Bolivia"
 msgstr ""
 
-#: core/helpers/helper-misc.php:250
+#: core/helpers/helper-misc.php:261
 msgid "Bosnia and Herzegowina"
 msgstr ""
 
-#: core/helpers/helper-misc.php:251
+#: core/helpers/helper-misc.php:262
 msgid "Botswana"
 msgstr ""
 
-#: core/helpers/helper-misc.php:252
+#: core/helpers/helper-misc.php:263
 msgid "Bouvet Island"
 msgstr ""
 
-#: core/helpers/helper-misc.php:253
+#: core/helpers/helper-misc.php:264
 msgid "Brazil"
 msgstr ""
 
-#: core/helpers/helper-misc.php:254
+#: core/helpers/helper-misc.php:265
 msgid "British Indian Ocean Territory"
 msgstr ""
 
-#: core/helpers/helper-misc.php:255
+#: core/helpers/helper-misc.php:266
 msgid "Brunei Darussalam"
 msgstr ""
 
-#: core/helpers/helper-misc.php:256
+#: core/helpers/helper-misc.php:267
 msgid "Bulgaria"
 msgstr ""
 
-#: core/helpers/helper-misc.php:257
+#: core/helpers/helper-misc.php:268
 msgid "Burkina Faso"
 msgstr ""
 
-#: core/helpers/helper-misc.php:258
+#: core/helpers/helper-misc.php:269
 msgid "Burundi"
 msgstr ""
 
-#: core/helpers/helper-misc.php:259
+#: core/helpers/helper-misc.php:270
 msgid "Cambodia"
 msgstr ""
 
-#: core/helpers/helper-misc.php:260
+#: core/helpers/helper-misc.php:271
 msgid "Cameroon"
 msgstr ""
 
-#: core/helpers/helper-misc.php:261
+#: core/helpers/helper-misc.php:272
 msgid "Canada"
 msgstr ""
 
-#: core/helpers/helper-misc.php:262
+#: core/helpers/helper-misc.php:273
 msgid "Cape Verde"
 msgstr ""
 
-#: core/helpers/helper-misc.php:263
+#: core/helpers/helper-misc.php:274
 msgid "Cayman Islands"
 msgstr ""
 
-#: core/helpers/helper-misc.php:264
+#: core/helpers/helper-misc.php:275
 msgid "Central African Republic"
 msgstr ""
 
-#: core/helpers/helper-misc.php:265
+#: core/helpers/helper-misc.php:276
 msgid "Chad"
 msgstr ""
 
-#: core/helpers/helper-misc.php:266
+#: core/helpers/helper-misc.php:277
 msgid "Chile"
 msgstr ""
 
-#: core/helpers/helper-misc.php:267
+#: core/helpers/helper-misc.php:278
 msgid "China"
 msgstr ""
 
-#: core/helpers/helper-misc.php:268
+#: core/helpers/helper-misc.php:279
 msgid "Christmas Island"
 msgstr ""
 
-#: core/helpers/helper-misc.php:269
+#: core/helpers/helper-misc.php:280
 msgid "Cocos (Keeling) Islands"
 msgstr ""
 
-#: core/helpers/helper-misc.php:270
+#: core/helpers/helper-misc.php:281
 msgid "Colombia"
 msgstr ""
 
-#: core/helpers/helper-misc.php:271
+#: core/helpers/helper-misc.php:282
 msgid "Comoros"
 msgstr ""
 
-#: core/helpers/helper-misc.php:272
+#: core/helpers/helper-misc.php:283
 msgid "Congo"
 msgstr ""
 
-#: core/helpers/helper-misc.php:273
+#: core/helpers/helper-misc.php:284
 msgid "Congo, the Democratic Republic of the"
 msgstr ""
 
-#: core/helpers/helper-misc.php:274
+#: core/helpers/helper-misc.php:285
 msgid "Cook Islands"
 msgstr ""
 
-#: core/helpers/helper-misc.php:275
+#: core/helpers/helper-misc.php:286
 msgid "Costa Rica"
 msgstr ""
 
-#: core/helpers/helper-misc.php:276
+#: core/helpers/helper-misc.php:287
 msgid "Ivory Coast"
 msgstr ""
 
-#: core/helpers/helper-misc.php:277
+#: core/helpers/helper-misc.php:288
 msgid "Croatia (Hrvatska)"
 msgstr ""
 
-#: core/helpers/helper-misc.php:278
+#: core/helpers/helper-misc.php:289
 msgid "Cuba"
 msgstr ""
 
-#: core/helpers/helper-misc.php:279
+#: core/helpers/helper-misc.php:290
 msgid "Cyprus"
 msgstr ""
 
-#: core/helpers/helper-misc.php:280
+#: core/helpers/helper-misc.php:291
 msgid "Czech Republic"
 msgstr ""
 
-#: core/helpers/helper-misc.php:281
+#: core/helpers/helper-misc.php:292
 msgid "Denmark"
 msgstr ""
 
-#: core/helpers/helper-misc.php:282
+#: core/helpers/helper-misc.php:293
 msgid "Djibouti"
 msgstr ""
 
-#: core/helpers/helper-misc.php:283
+#: core/helpers/helper-misc.php:294
 msgid "Dominica"
 msgstr ""
 
-#: core/helpers/helper-misc.php:284
+#: core/helpers/helper-misc.php:295
 msgid "Dominican Republic"
 msgstr ""
 
-#: core/helpers/helper-misc.php:285
+#: core/helpers/helper-misc.php:296
 msgid "East Timor"
 msgstr ""
 
-#: core/helpers/helper-misc.php:286
+#: core/helpers/helper-misc.php:297
 msgid "Ecuador"
 msgstr ""
 
-#: core/helpers/helper-misc.php:287
+#: core/helpers/helper-misc.php:298
 msgid "Egypt"
 msgstr ""
 
-#: core/helpers/helper-misc.php:288
+#: core/helpers/helper-misc.php:299
 msgid "El Salvador"
 msgstr ""
 
-#: core/helpers/helper-misc.php:289
+#: core/helpers/helper-misc.php:300
 msgid "Equatorial Guinea"
 msgstr ""
 
-#: core/helpers/helper-misc.php:290
+#: core/helpers/helper-misc.php:301
 msgid "Eritrea"
 msgstr ""
 
-#: core/helpers/helper-misc.php:291
+#: core/helpers/helper-misc.php:302
 msgid "Estonia"
 msgstr ""
 
-#: core/helpers/helper-misc.php:292
+#: core/helpers/helper-misc.php:303
 msgid "Ethiopia"
 msgstr ""
 
-#: core/helpers/helper-misc.php:293
+#: core/helpers/helper-misc.php:304
 msgid "Falkland Islands (Malvinas)"
 msgstr ""
 
-#: core/helpers/helper-misc.php:294
+#: core/helpers/helper-misc.php:305
 msgid "Faroe Islands"
 msgstr ""
 
-#: core/helpers/helper-misc.php:295
+#: core/helpers/helper-misc.php:306
 msgid "Fiji"
 msgstr ""
 
-#: core/helpers/helper-misc.php:296
+#: core/helpers/helper-misc.php:307
 msgid "Finland"
 msgstr ""
 
-#: core/helpers/helper-misc.php:297
+#: core/helpers/helper-misc.php:308
 msgid "France"
 msgstr ""
 
-#: core/helpers/helper-misc.php:298
+#: core/helpers/helper-misc.php:309
 msgid "France Metropolitan"
 msgstr ""
 
-#: core/helpers/helper-misc.php:299
+#: core/helpers/helper-misc.php:310
 msgid "French Guiana"
 msgstr ""
 
-#: core/helpers/helper-misc.php:300
+#: core/helpers/helper-misc.php:311
 msgid "French Polynesia"
 msgstr ""
 
-#: core/helpers/helper-misc.php:301
+#: core/helpers/helper-misc.php:312
 msgid "French Southern Territories"
 msgstr ""
 
-#: core/helpers/helper-misc.php:302
+#: core/helpers/helper-misc.php:313
 msgid "Gabon"
 msgstr ""
 
-#: core/helpers/helper-misc.php:303
+#: core/helpers/helper-misc.php:314
 msgid "Gambia"
 msgstr ""
 
-#: core/helpers/helper-misc.php:304
+#: core/helpers/helper-misc.php:315
 msgid "Georgia"
 msgstr ""
 
-#: core/helpers/helper-misc.php:305
+#: core/helpers/helper-misc.php:316
 msgid "Germany"
 msgstr ""
 
-#: core/helpers/helper-misc.php:306
+#: core/helpers/helper-misc.php:317
 msgid "Ghana"
 msgstr ""
 
-#: core/helpers/helper-misc.php:307
+#: core/helpers/helper-misc.php:318
 msgid "Gibraltar"
 msgstr ""
 
-#: core/helpers/helper-misc.php:308
+#: core/helpers/helper-misc.php:319
 msgid "Greece"
 msgstr ""
 
-#: core/helpers/helper-misc.php:309
+#: core/helpers/helper-misc.php:320
 msgid "Greenland"
 msgstr ""
 
-#: core/helpers/helper-misc.php:310
+#: core/helpers/helper-misc.php:321
 msgid "Grenada"
 msgstr ""
 
-#: core/helpers/helper-misc.php:311
+#: core/helpers/helper-misc.php:322
 msgid "Guadeloupe"
 msgstr ""
 
-#: core/helpers/helper-misc.php:312
+#: core/helpers/helper-misc.php:323
 msgid "Guam"
 msgstr ""
 
-#: core/helpers/helper-misc.php:313
+#: core/helpers/helper-misc.php:324
 msgid "Guatemala"
 msgstr ""
 
-#: core/helpers/helper-misc.php:314
+#: core/helpers/helper-misc.php:325
 msgid "Guinea"
 msgstr ""
 
-#: core/helpers/helper-misc.php:315
+#: core/helpers/helper-misc.php:326
 msgid "Guinea-Bissau"
 msgstr ""
 
-#: core/helpers/helper-misc.php:316
+#: core/helpers/helper-misc.php:327
 msgid "Guyana"
 msgstr ""
 
-#: core/helpers/helper-misc.php:317
+#: core/helpers/helper-misc.php:328
 msgid "Haiti"
 msgstr ""
 
-#: core/helpers/helper-misc.php:318
+#: core/helpers/helper-misc.php:329
 msgid "Heard and Mc Donald Islands"
 msgstr ""
 
-#: core/helpers/helper-misc.php:319
+#: core/helpers/helper-misc.php:330
 msgid "Holy See (Vatican City State)"
 msgstr ""
 
-#: core/helpers/helper-misc.php:320
+#: core/helpers/helper-misc.php:331
 msgid "Honduras"
 msgstr ""
 
-#: core/helpers/helper-misc.php:321
+#: core/helpers/helper-misc.php:332
 msgid "Hong Kong"
 msgstr ""
 
-#: core/helpers/helper-misc.php:322
+#: core/helpers/helper-misc.php:333
 msgid "Hungary"
 msgstr ""
 
-#: core/helpers/helper-misc.php:323
+#: core/helpers/helper-misc.php:334
 msgid "Iceland"
 msgstr ""
 
-#: core/helpers/helper-misc.php:324
+#: core/helpers/helper-misc.php:335
 msgid "India"
 msgstr ""
 
-#: core/helpers/helper-misc.php:325
+#: core/helpers/helper-misc.php:336
 msgid "Indonesia"
 msgstr ""
 
-#: core/helpers/helper-misc.php:326
+#: core/helpers/helper-misc.php:337
 msgid "Iran (Islamic Republic of)"
 msgstr ""
 
-#: core/helpers/helper-misc.php:327
+#: core/helpers/helper-misc.php:338
 msgid "Iraq"
 msgstr ""
 
-#: core/helpers/helper-misc.php:328
+#: core/helpers/helper-misc.php:339
 msgid "Ireland"
 msgstr ""
 
-#: core/helpers/helper-misc.php:329
+#: core/helpers/helper-misc.php:340
 msgid "Israel"
 msgstr ""
 
-#: core/helpers/helper-misc.php:330
+#: core/helpers/helper-misc.php:341
 msgid "Italy"
 msgstr ""
 
-#: core/helpers/helper-misc.php:331
+#: core/helpers/helper-misc.php:342
 msgid "Jamaica"
 msgstr ""
 
-#: core/helpers/helper-misc.php:332
+#: core/helpers/helper-misc.php:343
 msgid "Japan"
 msgstr ""
 
-#: core/helpers/helper-misc.php:333
+#: core/helpers/helper-misc.php:344
 msgid "Jordan"
 msgstr ""
 
-#: core/helpers/helper-misc.php:334
+#: core/helpers/helper-misc.php:345
 msgid "Kazakhstan"
 msgstr ""
 
-#: core/helpers/helper-misc.php:335
+#: core/helpers/helper-misc.php:346
 msgid "Kenya"
 msgstr ""
 
-#: core/helpers/helper-misc.php:336
+#: core/helpers/helper-misc.php:347
 msgid "Kiribati"
 msgstr ""
 
-#: core/helpers/helper-misc.php:337
+#: core/helpers/helper-misc.php:348
 msgid "Korea, Democratic People's Republic of"
 msgstr ""
 
-#: core/helpers/helper-misc.php:338
+#: core/helpers/helper-misc.php:349
 msgid "Korea, Republic of"
 msgstr ""
 
-#: core/helpers/helper-misc.php:339
+#: core/helpers/helper-misc.php:350
 msgid "Kuwait"
 msgstr ""
 
-#: core/helpers/helper-misc.php:340
+#: core/helpers/helper-misc.php:351
 msgid "Kyrgyzstan"
 msgstr ""
 
-#: core/helpers/helper-misc.php:341
+#: core/helpers/helper-misc.php:352
 msgid "Lao, People's Democratic Republic"
 msgstr ""
 
-#: core/helpers/helper-misc.php:342
+#: core/helpers/helper-misc.php:353
 msgid "Latvia"
 msgstr ""
 
-#: core/helpers/helper-misc.php:343
+#: core/helpers/helper-misc.php:354
 msgid "Lebanon"
 msgstr ""
 
-#: core/helpers/helper-misc.php:344
+#: core/helpers/helper-misc.php:355
 msgid "Lesotho"
 msgstr ""
 
-#: core/helpers/helper-misc.php:345
+#: core/helpers/helper-misc.php:356
 msgid "Liberia"
 msgstr ""
 
-#: core/helpers/helper-misc.php:346
+#: core/helpers/helper-misc.php:357
 msgid "Libyan Arab Jamahiriya"
 msgstr ""
 
-#: core/helpers/helper-misc.php:347
+#: core/helpers/helper-misc.php:358
 msgid "Liechtenstein"
 msgstr ""
 
-#: core/helpers/helper-misc.php:348
+#: core/helpers/helper-misc.php:359
 msgid "Lithuania"
 msgstr ""
 
-#: core/helpers/helper-misc.php:349
+#: core/helpers/helper-misc.php:360
 msgid "Luxembourg"
 msgstr ""
 
-#: core/helpers/helper-misc.php:350
+#: core/helpers/helper-misc.php:361
 msgid "Macau"
 msgstr ""
 
-#: core/helpers/helper-misc.php:351
+#: core/helpers/helper-misc.php:362
 msgid "Macedonia, The Former Yugoslav Republic of"
 msgstr ""
 
-#: core/helpers/helper-misc.php:352
+#: core/helpers/helper-misc.php:363
 msgid "Madagascar"
 msgstr ""
 
-#: core/helpers/helper-misc.php:353
+#: core/helpers/helper-misc.php:364
 msgid "Malawi"
 msgstr ""
 
-#: core/helpers/helper-misc.php:354
+#: core/helpers/helper-misc.php:365
 msgid "Malaysia"
 msgstr ""
 
-#: core/helpers/helper-misc.php:355
+#: core/helpers/helper-misc.php:366
 msgid "Maldives"
 msgstr ""
 
-#: core/helpers/helper-misc.php:356
+#: core/helpers/helper-misc.php:367
 msgid "Mali"
 msgstr ""
 
-#: core/helpers/helper-misc.php:357
+#: core/helpers/helper-misc.php:368
 msgid "Malta"
 msgstr ""
 
-#: core/helpers/helper-misc.php:358
+#: core/helpers/helper-misc.php:369
 msgid "Marshall Islands"
 msgstr ""
 
-#: core/helpers/helper-misc.php:359
+#: core/helpers/helper-misc.php:370
 msgid "Martinique"
 msgstr ""
 
-#: core/helpers/helper-misc.php:360
+#: core/helpers/helper-misc.php:371
 msgid "Mauritania"
 msgstr ""
 
-#: core/helpers/helper-misc.php:361
+#: core/helpers/helper-misc.php:372
 msgid "Mauritius"
 msgstr ""
 
-#: core/helpers/helper-misc.php:362
+#: core/helpers/helper-misc.php:373
 msgid "Mayotte"
 msgstr ""
 
-#: core/helpers/helper-misc.php:363
+#: core/helpers/helper-misc.php:374
 msgid "Mexico"
 msgstr ""
 
-#: core/helpers/helper-misc.php:364
+#: core/helpers/helper-misc.php:375
 msgid "Micronesia, Federated States of"
 msgstr ""
 
-#: core/helpers/helper-misc.php:365
+#: core/helpers/helper-misc.php:376
 msgid "Moldova, Republic of"
 msgstr ""
 
-#: core/helpers/helper-misc.php:366
+#: core/helpers/helper-misc.php:377
 msgid "Monaco"
 msgstr ""
 
-#: core/helpers/helper-misc.php:367
+#: core/helpers/helper-misc.php:378
 msgid "Mongolia"
 msgstr ""
 
-#: core/helpers/helper-misc.php:368
+#: core/helpers/helper-misc.php:379
 msgid "Montserrat"
 msgstr ""
 
-#: core/helpers/helper-misc.php:369
+#: core/helpers/helper-misc.php:380
 msgid "Morocco"
 msgstr ""
 
-#: core/helpers/helper-misc.php:370
+#: core/helpers/helper-misc.php:381
 msgid "Mozambique"
 msgstr ""
 
-#: core/helpers/helper-misc.php:371
+#: core/helpers/helper-misc.php:382
 msgid "Myanmar"
 msgstr ""
 
-#: core/helpers/helper-misc.php:372
+#: core/helpers/helper-misc.php:383
 msgid "Namibia"
 msgstr ""
 
-#: core/helpers/helper-misc.php:373
+#: core/helpers/helper-misc.php:384
 msgid "Nauru"
 msgstr ""
 
-#: core/helpers/helper-misc.php:374
+#: core/helpers/helper-misc.php:385
 msgid "Nepal"
 msgstr ""
 
-#: core/helpers/helper-misc.php:375
+#: core/helpers/helper-misc.php:386
 msgid "Netherlands"
 msgstr ""
 
-#: core/helpers/helper-misc.php:376
+#: core/helpers/helper-misc.php:387
 msgid "Netherlands Antilles"
 msgstr ""
 
-#: core/helpers/helper-misc.php:377
+#: core/helpers/helper-misc.php:388
 msgid "New Caledonia"
 msgstr ""
 
-#: core/helpers/helper-misc.php:378
+#: core/helpers/helper-misc.php:389
 msgid "New Zealand"
 msgstr ""
 
-#: core/helpers/helper-misc.php:379
+#: core/helpers/helper-misc.php:390
 msgid "Nicaragua"
 msgstr ""
 
-#: core/helpers/helper-misc.php:380
+#: core/helpers/helper-misc.php:391
 msgid "Niger"
 msgstr ""
 
-#: core/helpers/helper-misc.php:381
+#: core/helpers/helper-misc.php:392
 msgid "Nigeria"
 msgstr ""
 
-#: core/helpers/helper-misc.php:382
+#: core/helpers/helper-misc.php:393
 msgid "Niue"
 msgstr ""
 
-#: core/helpers/helper-misc.php:383
+#: core/helpers/helper-misc.php:394
 msgid "Norfolk Island"
 msgstr ""
 
-#: core/helpers/helper-misc.php:384
+#: core/helpers/helper-misc.php:395
 msgid "Northern Mariana Islands"
 msgstr ""
 
-#: core/helpers/helper-misc.php:385
+#: core/helpers/helper-misc.php:396
 msgid "Norway"
 msgstr ""
 
-#: core/helpers/helper-misc.php:386
+#: core/helpers/helper-misc.php:397
 msgid "Oman"
 msgstr ""
 
-#: core/helpers/helper-misc.php:387
+#: core/helpers/helper-misc.php:398
 msgid "Pakistan"
 msgstr ""
 
-#: core/helpers/helper-misc.php:388
+#: core/helpers/helper-misc.php:399
 msgid "Palau"
 msgstr ""
 
-#: core/helpers/helper-misc.php:389
+#: core/helpers/helper-misc.php:400
 msgid "Panama"
 msgstr ""
 
-#: core/helpers/helper-misc.php:390
+#: core/helpers/helper-misc.php:401
 msgid "Papua New Guinea"
 msgstr ""
 
-#: core/helpers/helper-misc.php:391
+#: core/helpers/helper-misc.php:402
 msgid "Paraguay"
 msgstr ""
 
-#: core/helpers/helper-misc.php:392
+#: core/helpers/helper-misc.php:403
 msgid "Peru"
 msgstr ""
 
-#: core/helpers/helper-misc.php:393
+#: core/helpers/helper-misc.php:404
 msgid "Philippines"
 msgstr ""
 
-#: core/helpers/helper-misc.php:394
+#: core/helpers/helper-misc.php:405
 msgid "Pitcairn"
 msgstr ""
 
-#: core/helpers/helper-misc.php:395
+#: core/helpers/helper-misc.php:406
 msgid "Poland"
 msgstr ""
 
-#: core/helpers/helper-misc.php:396
+#: core/helpers/helper-misc.php:407
 msgid "Portugal"
 msgstr ""
 
-#: core/helpers/helper-misc.php:397
+#: core/helpers/helper-misc.php:408
 msgid "Puerto Rico"
 msgstr ""
 
-#: core/helpers/helper-misc.php:398
+#: core/helpers/helper-misc.php:409
 msgid "Qatar"
 msgstr ""
 
-#: core/helpers/helper-misc.php:399
+#: core/helpers/helper-misc.php:410
 msgid "Reunion"
 msgstr ""
 
-#: core/helpers/helper-misc.php:400
+#: core/helpers/helper-misc.php:411
 msgid "Romania"
 msgstr ""
 
-#: core/helpers/helper-misc.php:401
+#: core/helpers/helper-misc.php:412
 msgid "Russian Federation"
 msgstr ""
 
-#: core/helpers/helper-misc.php:402
+#: core/helpers/helper-misc.php:413
 msgid "Rwanda"
 msgstr ""
 
-#: core/helpers/helper-misc.php:403
+#: core/helpers/helper-misc.php:414
 msgid "Saint Kitts and Nevis"
 msgstr ""
 
-#: core/helpers/helper-misc.php:404
+#: core/helpers/helper-misc.php:415
 msgid "Saint Lucia"
 msgstr ""
 
-#: core/helpers/helper-misc.php:405
+#: core/helpers/helper-misc.php:416
 msgid "Saint Vincent and the Grenadines"
 msgstr ""
 
-#: core/helpers/helper-misc.php:406
+#: core/helpers/helper-misc.php:417
 msgid "Samoa"
 msgstr ""
 
-#: core/helpers/helper-misc.php:407
+#: core/helpers/helper-misc.php:418
 msgid "San Marino"
 msgstr ""
 
-#: core/helpers/helper-misc.php:408
+#: core/helpers/helper-misc.php:419
 msgid "Sao Tome and Principe"
 msgstr ""
 
-#: core/helpers/helper-misc.php:409
+#: core/helpers/helper-misc.php:420
 msgid "Saudi Arabia"
 msgstr ""
 
-#: core/helpers/helper-misc.php:410
+#: core/helpers/helper-misc.php:421
 msgid "Senegal"
 msgstr ""
 
-#: core/helpers/helper-misc.php:411
+#: core/helpers/helper-misc.php:422
 msgid "Seychelles"
 msgstr ""
 
-#: core/helpers/helper-misc.php:412
+#: core/helpers/helper-misc.php:423
 msgid "Sierra Leone"
 msgstr ""
 
-#: core/helpers/helper-misc.php:413
+#: core/helpers/helper-misc.php:424
 msgid "Singapore"
 msgstr ""
 
-#: core/helpers/helper-misc.php:414
+#: core/helpers/helper-misc.php:425
 msgid "Slovakia (Slovak Republic)"
 msgstr ""
 
-#: core/helpers/helper-misc.php:415
+#: core/helpers/helper-misc.php:426
 msgid "Slovenia"
 msgstr ""
 
-#: core/helpers/helper-misc.php:416
+#: core/helpers/helper-misc.php:427
 msgid "Solomon Islands"
 msgstr ""
 
-#: core/helpers/helper-misc.php:417
+#: core/helpers/helper-misc.php:428
 msgid "Somalia"
 msgstr ""
 
-#: core/helpers/helper-misc.php:418
+#: core/helpers/helper-misc.php:429
 msgid "South Africa"
 msgstr ""
 
-#: core/helpers/helper-misc.php:419
+#: core/helpers/helper-misc.php:430
 msgid "South Georgia and the South Sandwich Islands"
 msgstr ""
 
-#: core/helpers/helper-misc.php:420
+#: core/helpers/helper-misc.php:431
 msgid "Spain"
 msgstr ""
 
-#: core/helpers/helper-misc.php:421
+#: core/helpers/helper-misc.php:432
 msgid "Sri Lanka"
 msgstr ""
 
-#: core/helpers/helper-misc.php:422
+#: core/helpers/helper-misc.php:433
 msgid "St. Helena"
 msgstr ""
 
-#: core/helpers/helper-misc.php:423
+#: core/helpers/helper-misc.php:434
 msgid "St. Pierre and Miquelon"
 msgstr ""
 
-#: core/helpers/helper-misc.php:424
+#: core/helpers/helper-misc.php:435
 msgid "Sudan"
 msgstr ""
 
-#: core/helpers/helper-misc.php:425
+#: core/helpers/helper-misc.php:436
 msgid "Suriname"
 msgstr ""
 
-#: core/helpers/helper-misc.php:426
+#: core/helpers/helper-misc.php:437
 msgid "Svalbard and Jan Mayen Islands"
 msgstr ""
 
-#: core/helpers/helper-misc.php:427
+#: core/helpers/helper-misc.php:438
 msgid "Swaziland"
 msgstr ""
 
-#: core/helpers/helper-misc.php:428
+#: core/helpers/helper-misc.php:439
 msgid "Sweden"
 msgstr ""
 
-#: core/helpers/helper-misc.php:429
+#: core/helpers/helper-misc.php:440
 msgid "Switzerland"
 msgstr ""
 
-#: core/helpers/helper-misc.php:430
+#: core/helpers/helper-misc.php:441
 msgid "Syrian Arab Republic"
 msgstr ""
 
-#: core/helpers/helper-misc.php:431
+#: core/helpers/helper-misc.php:442
 msgid "Taiwan, Province of China"
 msgstr ""
 
-#: core/helpers/helper-misc.php:432
+#: core/helpers/helper-misc.php:443
 msgid "Tajikistan"
 msgstr ""
 
-#: core/helpers/helper-misc.php:433
+#: core/helpers/helper-misc.php:444
 msgid "Tanzania, United Republic of"
 msgstr ""
 
-#: core/helpers/helper-misc.php:434
+#: core/helpers/helper-misc.php:445
 msgid "Thailand"
 msgstr ""
 
-#: core/helpers/helper-misc.php:435
+#: core/helpers/helper-misc.php:446
 msgid "Togo"
 msgstr ""
 
-#: core/helpers/helper-misc.php:436
+#: core/helpers/helper-misc.php:447
 msgid "Tokelau"
 msgstr ""
 
-#: core/helpers/helper-misc.php:437
+#: core/helpers/helper-misc.php:448
 msgid "Tonga"
 msgstr ""
 
-#: core/helpers/helper-misc.php:438
+#: core/helpers/helper-misc.php:449
 msgid "Trinidad and Tobago"
 msgstr ""
 
-#: core/helpers/helper-misc.php:439
+#: core/helpers/helper-misc.php:450
 msgid "Tunisia"
 msgstr ""
 
-#: core/helpers/helper-misc.php:440
+#: core/helpers/helper-misc.php:451
 msgid "Turkey"
 msgstr ""
 
-#: core/helpers/helper-misc.php:441
+#: core/helpers/helper-misc.php:452
 msgid "Turkmenistan"
 msgstr ""
 
-#: core/helpers/helper-misc.php:442
+#: core/helpers/helper-misc.php:453
 msgid "Turks and Caicos Islands"
 msgstr ""
 
-#: core/helpers/helper-misc.php:443
+#: core/helpers/helper-misc.php:454
 msgid "Tuvalu"
 msgstr ""
 
-#: core/helpers/helper-misc.php:444
+#: core/helpers/helper-misc.php:455
 msgid "Uganda"
 msgstr ""
 
-#: core/helpers/helper-misc.php:445
+#: core/helpers/helper-misc.php:456
 msgid "Ukraine"
 msgstr ""
 
-#: core/helpers/helper-misc.php:446
+#: core/helpers/helper-misc.php:457
 msgid "United Arab Emirates"
 msgstr ""
 
-#: core/helpers/helper-misc.php:447
+#: core/helpers/helper-misc.php:458
 msgid "United Kingdom"
 msgstr ""
 
-#: core/helpers/helper-misc.php:448
+#: core/helpers/helper-misc.php:459
 msgid "United States"
 msgstr ""
 
-#: core/helpers/helper-misc.php:449
+#: core/helpers/helper-misc.php:460
 msgid "United States Minor Outlying Islands"
 msgstr ""
 
-#: core/helpers/helper-misc.php:450
+#: core/helpers/helper-misc.php:461
 msgid "Uruguay"
 msgstr ""
 
-#: core/helpers/helper-misc.php:451
+#: core/helpers/helper-misc.php:462
 msgid "Uzbekistan"
 msgstr ""
 
-#: core/helpers/helper-misc.php:452
+#: core/helpers/helper-misc.php:463
 msgid "Vanuatu"
 msgstr ""
 
-#: core/helpers/helper-misc.php:453
+#: core/helpers/helper-misc.php:464
 msgid "Venezuela"
 msgstr ""
 
-#: core/helpers/helper-misc.php:454
+#: core/helpers/helper-misc.php:465
 msgid "Vietnam"
 msgstr ""
 
-#: core/helpers/helper-misc.php:455
+#: core/helpers/helper-misc.php:466
 msgid "Virgin Islands (British)"
 msgstr ""
 
-#: core/helpers/helper-misc.php:456
+#: core/helpers/helper-misc.php:467
 msgid "Virgin Islands (U.S.)"
 msgstr ""
 
-#: core/helpers/helper-misc.php:457
+#: core/helpers/helper-misc.php:468
 msgid "Wallis and Futuna Islands"
 msgstr ""
 
-#: core/helpers/helper-misc.php:458
+#: core/helpers/helper-misc.php:469
 msgid "Western Sahara"
 msgstr ""
 
-#: core/helpers/helper-misc.php:459
+#: core/helpers/helper-misc.php:470
 msgid "Yemen"
 msgstr ""
 
-#: core/helpers/helper-misc.php:460
+#: core/helpers/helper-misc.php:471
 msgid "Yugoslavia"
 msgstr ""
 
-#: core/helpers/helper-misc.php:461
+#: core/helpers/helper-misc.php:472
 msgid "Zambia"
 msgstr ""
 
-#: core/helpers/helper-misc.php:462
+#: core/helpers/helper-misc.php:473
 msgid "Zimbabwe"
 msgstr ""
 
-#: core/helpers/helper-misc.php:675
+#: core/helpers/helper-misc.php:686
 msgid "Submission #%s"
 msgstr ""
 
-#: core/helpers/helper-misc.php:734
+#: core/helpers/helper-misc.php:745
 msgid "Afrikaans"
 msgstr ""
 
-#: core/helpers/helper-misc.php:735
+#: core/helpers/helper-misc.php:746
 msgid "Akan"
 msgstr ""
 
-#: core/helpers/helper-misc.php:736
+#: core/helpers/helper-misc.php:747
 msgid "Albanian"
 msgstr ""
 
-#: core/helpers/helper-misc.php:737
+#: core/helpers/helper-misc.php:748
 msgid "Algerian Arabic"
 msgstr ""
 
-#: core/helpers/helper-misc.php:738
+#: core/helpers/helper-misc.php:749
 msgid "Amharic"
 msgstr ""
 
-#: core/helpers/helper-misc.php:739
+#: core/helpers/helper-misc.php:750
 msgid "Arabic"
 msgstr ""
 
-#: core/helpers/helper-misc.php:740
+#: core/helpers/helper-misc.php:751
 msgid "Armenian"
 msgstr ""
 
-#: core/helpers/helper-misc.php:741
+#: core/helpers/helper-misc.php:752
 msgid "Aromanian"
 msgstr ""
 
-#: core/helpers/helper-misc.php:742
+#: core/helpers/helper-misc.php:753
 msgid "Arpitan"
 msgstr ""
 
-#: core/helpers/helper-misc.php:743
+#: core/helpers/helper-misc.php:754
 msgid "Assamese"
 msgstr ""
 
-#: core/helpers/helper-misc.php:744
+#: core/helpers/helper-misc.php:755
 msgid "Azerbaijani"
 msgstr ""
 
-#: core/helpers/helper-misc.php:745
+#: core/helpers/helper-misc.php:756
 msgid "Balochi Southern"
 msgstr ""
 
-#: core/helpers/helper-misc.php:746
+#: core/helpers/helper-misc.php:757
 msgid "Bashkir"
 msgstr ""
 
-#: core/helpers/helper-misc.php:747
+#: core/helpers/helper-misc.php:758
 msgid "Basque"
 msgstr ""
 
-#: core/helpers/helper-misc.php:748
+#: core/helpers/helper-misc.php:759
 msgid "Belarusian"
 msgstr ""
 
-#: core/helpers/helper-misc.php:749
+#: core/helpers/helper-misc.php:760
 msgid "Bengali"
 msgstr ""
 
-#: core/helpers/helper-misc.php:750
+#: core/helpers/helper-misc.php:761
 msgid "Bosnian"
 msgstr ""
 
-#: core/helpers/helper-misc.php:751
+#: core/helpers/helper-misc.php:762
 msgid "Breton"
 msgstr ""
 
-#: core/helpers/helper-misc.php:752
+#: core/helpers/helper-misc.php:763
 msgid "Bulgarian"
 msgstr ""
 
-#: core/helpers/helper-misc.php:753
+#: core/helpers/helper-misc.php:764
 msgid "Catalan"
 msgstr ""
 
-#: core/helpers/helper-misc.php:754
+#: core/helpers/helper-misc.php:765
 msgid "Cebuano"
 msgstr ""
 
-#: core/helpers/helper-misc.php:755
+#: core/helpers/helper-misc.php:766
 msgid "Chinese"
 msgstr ""
 
-#: core/helpers/helper-misc.php:756
+#: core/helpers/helper-misc.php:767
 msgid "Corsican"
 msgstr ""
 
-#: core/helpers/helper-misc.php:757
+#: core/helpers/helper-misc.php:768
 msgid "Croatian"
 msgstr ""
 
-#: core/helpers/helper-misc.php:758
+#: core/helpers/helper-misc.php:769
 msgid "Czech"
 msgstr ""
 
-#: core/helpers/helper-misc.php:759
+#: core/helpers/helper-misc.php:770
 msgid "Danish"
 msgstr ""
 
-#: core/helpers/helper-misc.php:760
+#: core/helpers/helper-misc.php:771
 msgid "Dhivehi"
 msgstr ""
 
-#: core/helpers/helper-misc.php:761
+#: core/helpers/helper-misc.php:772
 msgid "Dutch"
 msgstr ""
 
-#: core/helpers/helper-misc.php:762
+#: core/helpers/helper-misc.php:773
 msgid "Dzongkha"
 msgstr ""
 
-#: core/helpers/helper-misc.php:763
+#: core/helpers/helper-misc.php:774
 msgid "English"
 msgstr ""
 
-#: core/helpers/helper-misc.php:764
+#: core/helpers/helper-misc.php:775
 msgid "Esperanto"
 msgstr ""
 
-#: core/helpers/helper-misc.php:765
+#: core/helpers/helper-misc.php:776
 msgid "Estonian"
 msgstr ""
 
-#: core/helpers/helper-misc.php:766
+#: core/helpers/helper-misc.php:777
 msgid "Faroese"
 msgstr ""
 
-#: core/helpers/helper-misc.php:767
+#: core/helpers/helper-misc.php:778
 msgid "Finnish"
 msgstr ""
 
-#: core/helpers/helper-misc.php:768
+#: core/helpers/helper-misc.php:779
 msgid "French"
 msgstr ""
 
-#: core/helpers/helper-misc.php:769
+#: core/helpers/helper-misc.php:780
 msgid "Frisian"
 msgstr ""
 
-#: core/helpers/helper-misc.php:770
+#: core/helpers/helper-misc.php:781
 msgid "Friulian"
 msgstr ""
 
-#: core/helpers/helper-misc.php:771
+#: core/helpers/helper-misc.php:782
 msgid "Fulah"
 msgstr ""
 
-#: core/helpers/helper-misc.php:772
+#: core/helpers/helper-misc.php:783
 msgid "Galician"
 msgstr ""
 
-#: core/helpers/helper-misc.php:773
+#: core/helpers/helper-misc.php:784
 msgid "Georgian"
 msgstr ""
 
-#: core/helpers/helper-misc.php:774
+#: core/helpers/helper-misc.php:785
 msgid "German"
 msgstr ""
 
-#: core/helpers/helper-misc.php:775
+#: core/helpers/helper-misc.php:786
 msgid "Greek"
 msgstr ""
 
-#: core/helpers/helper-misc.php:776
+#: core/helpers/helper-misc.php:787
 msgid "Greenlandic"
 msgstr ""
 
-#: core/helpers/helper-misc.php:777
+#: core/helpers/helper-misc.php:788
 msgid "Guaraní"
 msgstr ""
 
-#: core/helpers/helper-misc.php:778
+#: core/helpers/helper-misc.php:789
 msgid "Gujarati"
 msgstr ""
 
-#: core/helpers/helper-misc.php:779
+#: core/helpers/helper-misc.php:790
 msgid "Hawaiian"
 msgstr ""
 
-#: core/helpers/helper-misc.php:780
+#: core/helpers/helper-misc.php:791
 msgid "Hazaragi"
 msgstr ""
 
-#: core/helpers/helper-misc.php:781
+#: core/helpers/helper-misc.php:792
 msgid "Hebrew"
 msgstr ""
 
-#: core/helpers/helper-misc.php:782
+#: core/helpers/helper-misc.php:793
 msgid "Hindi"
 msgstr ""
 
-#: core/helpers/helper-misc.php:783
+#: core/helpers/helper-misc.php:794
 msgid "Hungarian"
 msgstr ""
 
-#: core/helpers/helper-misc.php:784
+#: core/helpers/helper-misc.php:795
 msgid "Icelandic"
 msgstr ""
 
-#: core/helpers/helper-misc.php:785
+#: core/helpers/helper-misc.php:796
 msgid "Ido"
 msgstr ""
 
-#: core/helpers/helper-misc.php:786
+#: core/helpers/helper-misc.php:797
 msgid "Indonesian"
 msgstr ""
 
-#: core/helpers/helper-misc.php:787
+#: core/helpers/helper-misc.php:798
 msgid "Irish"
 msgstr ""
 
-#: core/helpers/helper-misc.php:788
+#: core/helpers/helper-misc.php:799
 msgid "Italian"
 msgstr ""
 
-#: core/helpers/helper-misc.php:789
+#: core/helpers/helper-misc.php:800
 msgid "Japanese"
 msgstr ""
 
-#: core/helpers/helper-misc.php:790
+#: core/helpers/helper-misc.php:801
 msgid "Javanese"
 msgstr ""
 
-#: core/helpers/helper-misc.php:791
+#: core/helpers/helper-misc.php:802
 msgid "Kabyle"
 msgstr ""
 
-#: core/helpers/helper-misc.php:792
+#: core/helpers/helper-misc.php:803
 msgid "Kannada"
 msgstr ""
 
-#: core/helpers/helper-misc.php:793
+#: core/helpers/helper-misc.php:804
 msgid "Kazakh"
 msgstr ""
 
-#: core/helpers/helper-misc.php:794
+#: core/helpers/helper-misc.php:805
 msgid "Khmer"
 msgstr ""
 
-#: core/helpers/helper-misc.php:795
+#: core/helpers/helper-misc.php:806
 msgid "Kinyarwanda"
 msgstr ""
 
-#: core/helpers/helper-misc.php:796
+#: core/helpers/helper-misc.php:807
 msgid "Kirghiz"
 msgstr ""
 
-#: core/helpers/helper-misc.php:797
+#: core/helpers/helper-misc.php:808
 msgid "Korean"
 msgstr ""
 
-#: core/helpers/helper-misc.php:798
+#: core/helpers/helper-misc.php:809
 msgid "Kurdish"
 msgstr ""
 
-#: core/helpers/helper-misc.php:799
+#: core/helpers/helper-misc.php:810
 msgid "Lao"
 msgstr ""
 
-#: core/helpers/helper-misc.php:800
+#: core/helpers/helper-misc.php:811
 msgid "Latvian"
 msgstr ""
 
-#: core/helpers/helper-misc.php:801
+#: core/helpers/helper-misc.php:812
 msgid "Limburgish"
 msgstr ""
 
-#: core/helpers/helper-misc.php:802
+#: core/helpers/helper-misc.php:813
 msgid "Lingala"
 msgstr ""
 
-#: core/helpers/helper-misc.php:803
+#: core/helpers/helper-misc.php:814
 msgid "Lithuanian"
 msgstr ""
 
-#: core/helpers/helper-misc.php:804
+#: core/helpers/helper-misc.php:815
 msgid "Luxembourgish"
 msgstr ""
 
-#: core/helpers/helper-misc.php:805
+#: core/helpers/helper-misc.php:816
 msgid "Macedonian"
 msgstr ""
 
-#: core/helpers/helper-misc.php:806
+#: core/helpers/helper-misc.php:817
 msgid "Malagasy"
 msgstr ""
 
-#: core/helpers/helper-misc.php:807
+#: core/helpers/helper-misc.php:818
 msgid "Malay"
 msgstr ""
 
-#: core/helpers/helper-misc.php:808
+#: core/helpers/helper-misc.php:819
 msgid "Malayalam"
 msgstr ""
 
-#: core/helpers/helper-misc.php:809
+#: core/helpers/helper-misc.php:820
 msgid "Maori"
 msgstr ""
 
-#: core/helpers/helper-misc.php:810
+#: core/helpers/helper-misc.php:821
 msgid "Marathi"
 msgstr ""
 
-#: core/helpers/helper-misc.php:811
+#: core/helpers/helper-misc.php:822
 msgid "Mingrelian"
 msgstr ""
 
-#: core/helpers/helper-misc.php:812
+#: core/helpers/helper-misc.php:823
 msgid "Mongolian"
 msgstr ""
 
-#: core/helpers/helper-misc.php:813
+#: core/helpers/helper-misc.php:824
 msgid "Montenegrin"
 msgstr ""
 
-#: core/helpers/helper-misc.php:814
+#: core/helpers/helper-misc.php:825
 msgid "Moroccan Arabic"
 msgstr ""
 
-#: core/helpers/helper-misc.php:815
+#: core/helpers/helper-misc.php:826
 msgid "Myanmar (Burmese)"
 msgstr ""
 
-#: core/helpers/helper-misc.php:816
+#: core/helpers/helper-misc.php:827
 msgid "Nepali"
 msgstr ""
 
-#: core/helpers/helper-misc.php:817
+#: core/helpers/helper-misc.php:828
 msgid "Norwegian (Bokmål)"
 msgstr ""
 
-#: core/helpers/helper-misc.php:818
+#: core/helpers/helper-misc.php:829
 msgid "Norwegian (Nynorsk)"
 msgstr ""
 
-#: core/helpers/helper-misc.php:819
+#: core/helpers/helper-misc.php:830
 msgid "Occitan"
 msgstr ""
 
-#: core/helpers/helper-misc.php:820
+#: core/helpers/helper-misc.php:831
 msgid "Oriya"
 msgstr ""
 
-#: core/helpers/helper-misc.php:821
+#: core/helpers/helper-misc.php:832
 msgid "Ossetic"
 msgstr ""
 
-#: core/helpers/helper-misc.php:822
+#: core/helpers/helper-misc.php:833
 msgid "Pashto"
 msgstr ""
 
-#: core/helpers/helper-misc.php:823
+#: core/helpers/helper-misc.php:834
 msgid "Persian"
 msgstr ""
 
-#: core/helpers/helper-misc.php:824
+#: core/helpers/helper-misc.php:835
 msgid "Polish"
 msgstr ""
 
-#: core/helpers/helper-misc.php:825
+#: core/helpers/helper-misc.php:836
 msgid "Portuguese"
 msgstr ""
 
-#: core/helpers/helper-misc.php:826
+#: core/helpers/helper-misc.php:837
 msgid "Punjabi"
 msgstr ""
 
-#: core/helpers/helper-misc.php:827
+#: core/helpers/helper-misc.php:838
 msgid "Rohingya"
 msgstr ""
 
-#: core/helpers/helper-misc.php:828
+#: core/helpers/helper-misc.php:839
 msgid "Romanian"
 msgstr ""
 
-#: core/helpers/helper-misc.php:829
+#: core/helpers/helper-misc.php:840
 msgid "Romansh Vallader"
 msgstr ""
 
-#: core/helpers/helper-misc.php:830
+#: core/helpers/helper-misc.php:841
 msgid "Russian"
 msgstr ""
 
-#: core/helpers/helper-misc.php:831
+#: core/helpers/helper-misc.php:842
 msgid "Rusyn"
 msgstr ""
 
-#: core/helpers/helper-misc.php:832
+#: core/helpers/helper-misc.php:843
 msgid "Sakha"
 msgstr ""
 
-#: core/helpers/helper-misc.php:833
+#: core/helpers/helper-misc.php:844
 msgid "Sanskrit"
 msgstr ""
 
-#: core/helpers/helper-misc.php:834
+#: core/helpers/helper-misc.php:845
 msgid "Sardinian"
 msgstr ""
 
-#: core/helpers/helper-misc.php:835
+#: core/helpers/helper-misc.php:846
 msgid "Scottish Gaelic"
 msgstr ""
 
-#: core/helpers/helper-misc.php:836
+#: core/helpers/helper-misc.php:847
 msgid "Serbian"
 msgstr ""
 
-#: core/helpers/helper-misc.php:837
+#: core/helpers/helper-misc.php:848
 msgid "Silesian"
 msgstr ""
 
-#: core/helpers/helper-misc.php:838
+#: core/helpers/helper-misc.php:849
 msgid "Sindhi"
 msgstr ""
 
-#: core/helpers/helper-misc.php:839
+#: core/helpers/helper-misc.php:850
 msgid "Sinhala"
 msgstr ""
 
-#: core/helpers/helper-misc.php:840
+#: core/helpers/helper-misc.php:851
 msgid "Slovak"
 msgstr ""
 
-#: core/helpers/helper-misc.php:841
+#: core/helpers/helper-misc.php:852
 msgid "Slovenian"
 msgstr ""
 
-#: core/helpers/helper-misc.php:842
+#: core/helpers/helper-misc.php:853
 msgid "Somali"
 msgstr ""
 
-#: core/helpers/helper-misc.php:843
+#: core/helpers/helper-misc.php:854
 msgid "South Azerbaijani"
 msgstr ""
 
-#: core/helpers/helper-misc.php:844
+#: core/helpers/helper-misc.php:855
 msgid "Spanish"
 msgstr ""
 
-#: core/helpers/helper-misc.php:845
+#: core/helpers/helper-misc.php:856
 msgid "Sundanese"
 msgstr ""
 
-#: core/helpers/helper-misc.php:846
+#: core/helpers/helper-misc.php:857
 msgid "Swahili"
 msgstr ""
 
-#: core/helpers/helper-misc.php:847
+#: core/helpers/helper-misc.php:858
 msgid "Swedish"
 msgstr ""
 
-#: core/helpers/helper-misc.php:848
+#: core/helpers/helper-misc.php:859
 msgid "Swiss German"
 msgstr ""
 
-#: core/helpers/helper-misc.php:849
+#: core/helpers/helper-misc.php:860
 msgid "Tagalog"
 msgstr ""
 
-#: core/helpers/helper-misc.php:850
+#: core/helpers/helper-misc.php:861
 msgid "Tahitian"
 msgstr ""
 
-#: core/helpers/helper-misc.php:851
+#: core/helpers/helper-misc.php:862
 msgid "Tajik"
 msgstr ""
 
-#: core/helpers/helper-misc.php:852
+#: core/helpers/helper-misc.php:863
 msgid "Tamazight"
 msgstr ""
 
-#: core/helpers/helper-misc.php:853
+#: core/helpers/helper-misc.php:864
 msgid "Tamil"
 msgstr ""
 
-#: core/helpers/helper-misc.php:854
+#: core/helpers/helper-misc.php:865
 msgid "Tatar"
 msgstr ""
 
-#: core/helpers/helper-misc.php:855
+#: core/helpers/helper-misc.php:866
 msgid "Telugu"
 msgstr ""
 
-#: core/helpers/helper-misc.php:856
+#: core/helpers/helper-misc.php:867
 msgid "Thai"
 msgstr ""
 
-#: core/helpers/helper-misc.php:857
+#: core/helpers/helper-misc.php:868
 msgid "Tibetan"
 msgstr ""
 
-#: core/helpers/helper-misc.php:858
+#: core/helpers/helper-misc.php:869
 msgid "Tigrinya"
 msgstr ""
 
-#: core/helpers/helper-misc.php:859
+#: core/helpers/helper-misc.php:870
 msgid "Turkish"
 msgstr ""
 
-#: core/helpers/helper-misc.php:860
+#: core/helpers/helper-misc.php:871
 msgid "Turkmen"
 msgstr ""
 
-#: core/helpers/helper-misc.php:861
+#: core/helpers/helper-misc.php:872
 msgid "Tweants"
 msgstr ""
 
-#: core/helpers/helper-misc.php:862
+#: core/helpers/helper-misc.php:873
 msgid "Uighur"
 msgstr ""
 
-#: core/helpers/helper-misc.php:863
+#: core/helpers/helper-misc.php:874
 msgid "Ukrainian"
 msgstr ""
 
-#: core/helpers/helper-misc.php:864
+#: core/helpers/helper-misc.php:875
 msgid "Urdu"
 msgstr ""
 
-#: core/helpers/helper-misc.php:865
+#: core/helpers/helper-misc.php:876
 msgid "Uzbek"
 msgstr ""
 
-#: core/helpers/helper-misc.php:866
+#: core/helpers/helper-misc.php:877
 msgid "Vietnamese"
 msgstr ""
 
-#: core/helpers/helper-misc.php:867
+#: core/helpers/helper-misc.php:878
 msgid "Walloon"
 msgstr ""
 
-#: core/helpers/helper-misc.php:868
+#: core/helpers/helper-misc.php:879
 msgid "Welsh"
 msgstr ""
 
-#: core/helpers/helper-misc.php:869
+#: core/helpers/helper-misc.php:880
 msgid "Yoruba"
 msgstr ""
 
@@ -2779,7 +2778,7 @@ msgid "Members Only"
 msgstr ""
 
 #: core/templates/customize-controls/style/divider.php:10
-#: inc/classes/class-form-setup-upgrade.php:110
+#: inc/classes/class-form-setup-upgrade.php:98
 msgid "Back"
 msgstr ""
 
@@ -2879,7 +2878,7 @@ msgid "Styles"
 msgstr ""
 
 #: core/templates/customize-header-actions.php:5
-#: inc/classes/class-message-admin-edit.php:189
+#: inc/classes/class-message-admin-edit.php:141
 msgid "Save"
 msgstr ""
 
@@ -3162,7 +3161,7 @@ msgstr ""
 #: core/templates/parts/customize-email.php:39
 #: core/templates/parts/customize-number.php:67
 #: core/templates/parts/customize-single-line-text.php:38
-#: inc/classes/class-form-setup-upgrade.php:172
+#: inc/classes/class-form-setup-upgrade.php:160
 #: inc/templates/parts/customize-website-url.php:39
 msgid "Prefix"
 msgstr ""
@@ -3170,7 +3169,7 @@ msgstr ""
 #: core/templates/parts/customize-email.php:43
 #: core/templates/parts/customize-number.php:71
 #: core/templates/parts/customize-single-line-text.php:42
-#: inc/classes/class-form-setup-upgrade.php:178
+#: inc/classes/class-form-setup-upgrade.php:166
 #: inc/templates/parts/customize-website-url.php:43
 msgid "Suffix"
 msgstr ""
@@ -3228,7 +3227,7 @@ msgid "Click to edit this part."
 msgstr ""
 
 #: inc/classes/class-attachment-controller.php:725
-#: inc/classes/class-message-admin.php:961
+#: inc/classes/class-message-admin.php:935
 msgid "All forms"
 msgstr ""
 
@@ -3256,7 +3255,7 @@ msgid "Then subject…"
 msgstr ""
 
 #: inc/classes/class-conditionals-ui-controller.php:112
-#: inc/classes/class-form-setup-upgrade.php:147
+#: inc/classes/class-form-setup-upgrade.php:135
 #: integrations/services/sendinblue/class-integration-sendinblue.php:158
 msgid "Paste web address or type to search"
 msgstr ""
@@ -3284,14 +3283,14 @@ msgstr ""
 
 #: inc/classes/class-form-admin-upgrade.php:67
 #: inc/classes/class-form-admin-upgrade.php:153
-#: inc/classes/class-message-admin.php:1011
-#: inc/classes/class-message-admin.php:1238
+#: inc/classes/class-message-admin.php:985
+#: inc/classes/class-message-admin.php:1212
 msgid "Restore"
 msgstr ""
 
 #: inc/classes/class-form-admin-upgrade.php:72
 #: inc/classes/class-form-admin-upgrade.php:154
-#: inc/classes/class-message-admin.php:1244
+#: inc/classes/class-message-admin.php:1218
 msgid "Delete Permanently"
 msgstr ""
 
@@ -3305,7 +3304,7 @@ msgid "Move to Archive"
 msgstr ""
 
 #: inc/classes/class-form-admin-upgrade.php:144
-#: inc/classes/class-message-admin.php:1010
+#: inc/classes/class-message-admin.php:984
 msgid "Move to Trash"
 msgstr ""
 
@@ -3513,135 +3512,95 @@ msgid "Clear"
 msgstr ""
 
 #: inc/classes/class-form-sessions.php:125
-msgid "Save incomplete and abandoned submissions"
-msgstr ""
-
-#: inc/classes/class-form-sessions.php:134
-msgid "Save when following field is filled"
-msgstr ""
-
-#: inc/classes/class-form-sessions.php:136
-msgid "Any (may include spam)"
-msgstr ""
-
-#: inc/classes/class-form-sessions.php:140
-msgid "Delete submissions after"
-msgstr ""
-
-#: inc/classes/class-form-sessions.php:142
-msgid "One day"
-msgstr ""
-
-#: inc/classes/class-form-sessions.php:143
-msgid "One week"
-msgstr ""
-
-#: inc/classes/class-form-sessions.php:144
-msgid "One month"
-msgstr ""
-
-#: inc/classes/class-form-sessions.php:153
 msgid "Let submitters save a draft for set number of days"
 msgstr ""
 
-#: inc/classes/class-form-sessions.php:168
+#: inc/classes/class-form-sessions.php:140
 msgid "Send abandonment email"
 msgstr ""
 
-#: inc/classes/class-form-sessions.php:219
+#: inc/classes/class-form-sessions.php:191
 msgid "Save draft reply"
 msgstr ""
 
-#: inc/classes/class-form-sessions.php:224
+#: inc/classes/class-form-sessions.php:196
 msgid "Submitter has returned to a draft"
 msgstr ""
 
-#: inc/classes/class-form-sessions.php:229
+#: inc/classes/class-form-sessions.php:201
 msgid "Clear saved draft reply"
 msgstr ""
 
-#: inc/classes/class-form-setup-upgrade.php:94
+#: inc/classes/class-form-setup-upgrade.php:82
 msgid "Please double-check for mistake."
 msgstr ""
 
-#: inc/classes/class-form-setup-upgrade.php:98
-#: inc/classes/class-form-setup-upgrade.php:240
+#: inc/classes/class-form-setup-upgrade.php:86
+#: inc/classes/class-form-setup-upgrade.php:213
 msgid "Review reply"
 msgstr ""
 
-#: inc/classes/class-form-setup-upgrade.php:106
+#: inc/classes/class-form-setup-upgrade.php:94
 msgid "Step"
 msgstr ""
 
-#: inc/classes/class-form-setup-upgrade.php:114
+#: inc/classes/class-form-setup-upgrade.php:102
 msgid "In a few seconds, you'll be automatically redirected to another page."
 msgstr ""
 
-#: inc/classes/class-form-setup-upgrade.php:118
+#: inc/classes/class-form-setup-upgrade.php:106
 msgid "Continue to redirected page now"
 msgstr ""
 
-#: inc/classes/class-form-setup-upgrade.php:122
+#: inc/classes/class-form-setup-upgrade.php:110
 msgid "Print my submission"
 msgstr ""
 
-#: inc/classes/class-form-setup-upgrade.php:146
+#: inc/classes/class-form-setup-upgrade.php:134
 msgid "Redirect to this page address (URL) after submission"
 msgstr ""
 
-#: inc/classes/class-form-setup-upgrade.php:152
+#: inc/classes/class-form-setup-upgrade.php:140
 msgid "Open web address in new tab"
 msgstr ""
 
-#: inc/classes/class-form-setup-upgrade.php:157
+#: inc/classes/class-form-setup-upgrade.php:145
 msgid "Add submission identifier"
 msgstr ""
 
-#: inc/classes/class-form-setup-upgrade.php:166
+#: inc/classes/class-form-setup-upgrade.php:154
 msgid "Start counter from"
 msgstr ""
 
-#: inc/classes/class-form-setup-upgrade.php:187
+#: inc/classes/class-form-setup-upgrade.php:175
 msgid "Require submitters to review a submission"
 msgstr ""
 
-#: inc/classes/class-form-setup-upgrade.php:201
-msgid "Include reply link"
-msgstr ""
-
-#: inc/classes/class-form-setup-upgrade.php:206
-msgid "Include user's meta data"
-msgstr ""
-
-#: inc/classes/class-form-setup-upgrade.php:211
-msgid "Include referral web address"
-msgstr ""
-
-#: inc/classes/class-form-setup-upgrade.php:230
+#: inc/classes/class-form-setup-upgrade.php:203
 msgid "Form redirected after submission"
 msgstr ""
 
-#: inc/classes/class-form-setup-upgrade.php:235
+#: inc/classes/class-form-setup-upgrade.php:208
 msgid "Submitter is viewing review page"
 msgstr ""
 
-#: inc/classes/class-form-setup-upgrade.php:246
+#: inc/classes/class-form-setup-upgrade.php:219
 msgid "Edit reply"
 msgstr ""
 
-#: inc/classes/class-form-setup-upgrade.php:252
+#: inc/classes/class-form-setup-upgrade.php:225
 msgid "Current page"
 msgstr ""
 
-#: inc/classes/class-form-setup-upgrade.php:257
+#: inc/classes/class-form-setup-upgrade.php:230
 msgid "Previous page"
 msgstr ""
 
-#: inc/classes/class-form-setup-upgrade.php:262
+#: inc/classes/class-form-setup-upgrade.php:235
 msgid "Redirect to page"
 msgstr ""
 
-#: inc/classes/class-form-setup-upgrade.php:267
+#: inc/classes/class-form-setup-upgrade.php:240
 msgid "Print user submission"
 msgstr ""
 
@@ -3693,13 +3652,13 @@ msgstr ""
 msgid "Color"
 msgstr ""
 
-#: inc/classes/class-happyforms-upgrade.php:483
+#: inc/classes/class-happyforms-upgrade.php:487
 #: inc/assets/jsx/build/admin/dashboard-modals.js:375
 #: inc/assets/jsx/src/admin/dashboard-modals.js:204
 msgid "You're unregistered"
 msgstr ""
 
-#: inc/classes/class-happyforms-upgrade.php:485
+#: inc/classes/class-happyforms-upgrade.php:489
 msgid "Register now"
 msgstr ""
 
@@ -3743,69 +3702,91 @@ msgstr ""
 msgid "An error occured while importing %s."
 msgstr ""
 
-#: inc/classes/class-message-admin-edit.php:202
+#: inc/classes/class-message-admin-edit.php:154
 msgid "Details"
 msgstr ""
 
-#: inc/classes/class-message-admin-edit.php:212
+#: inc/classes/class-message-admin-edit.php:164
 msgid "Email Confirmation"
 msgstr ""
 
-#: inc/classes/class-message-admin-edit.php:225
-#: inc/templates/email-owner.php:67
+#: inc/classes/class-message-admin-edit.php:177
+#: inc/templates/admin-message-moderate.php:98
+#: inc/templates/email-owner.php:45
 #: inc/templates/printable-submission.php:18
 msgid "IPv4/IPv6"
 msgstr ""
 
-#: inc/classes/class-message-admin-edit.php:242
+#: inc/classes/class-message-admin-edit.php:194
 #: integrations/services/mailpoet/class-service-mailpoet.php:51
 #: inc/assets/jsx/build/admin/dashboard-modals.js:279
 #: inc/assets/jsx/src/admin/dashboard-modals.js:106
 msgid "Email address"
 msgstr ""
 
-#: inc/classes/class-message-admin-edit.php:249
+#: inc/classes/class-message-admin-edit.php:201
 msgid "Send Email"
 msgstr ""
 
-#: inc/classes/class-message-admin-edit.php:307
-#: inc/classes/class-message-admin-edit.php:321
+#: inc/classes/class-message-admin-edit.php:250
+#: inc/classes/class-message-admin-edit.php:265
+#: inc/classes/class-message-admin-moderate.php:70
 #: inc/classes/class-message-admin.php:538
+#: inc/templates/admin-message-moderate.php:25
 msgid "Read"
 msgstr ""
 
-#: inc/classes/class-message-admin-edit.php:310
-#: inc/classes/class-message-admin-edit.php:327
+#: inc/classes/class-message-admin-edit.php:253
+#: inc/classes/class-message-admin-edit.php:271
+#: inc/classes/class-message-admin-moderate.php:74
 #: inc/classes/class-message-admin.php:545
-#: inc/classes/class-message-admin.php:1180
+#: inc/classes/class-message-admin.php:1154
+#: inc/templates/admin-message-moderate.php:29
 msgid "Spam"
 msgstr ""
 
-#: inc/classes/class-message-admin-edit.php:313
-#: inc/classes/class-message-admin-edit.php:324
+#: inc/classes/class-message-admin-edit.php:256
+#: inc/classes/class-message-admin-edit.php:268
+#: inc/classes/class-message-admin-moderate.php:78
 #: inc/classes/class-message-admin.php:531
+#: inc/templates/admin-message-moderate.php:33
 msgid "Unread"
 msgstr ""
 
-#: inc/classes/class-message-admin-edit.php:319
+#: inc/classes/class-message-admin-edit.php:261
+msgid "Status: "
+msgstr ""
+
+#: inc/classes/class-message-admin-edit.php:263
 msgid "Submission status"
 msgstr ""
 
-#: inc/classes/class-message-admin-edit.php:338
+#: inc/classes/class-message-admin-edit.php:282
+#: inc/templates/admin-message-moderate.php:15
 msgid "%1$s at %2$s"
 msgstr ""
 
-#: inc/classes/class-message-admin-edit.php:345
+#: inc/classes/class-message-admin-edit.php:289
 #: inc/classes/class-message-admin.php:605
+#: inc/templates/admin-message-moderate.php:94
 msgid "Submitted on"
 msgstr ""
 
-#: inc/classes/class-message-admin-edit.php:350
+#: inc/classes/class-message-admin-edit.php:292
+msgid "Edit date and time"
+msgstr ""
+
+#: inc/classes/class-message-admin-edit.php:300
 msgid "Submitted to:"
 msgstr ""
 
-#: inc/classes/class-message-admin-edit.php:487
+#: inc/classes/class-message-admin-edit.php:447
 msgid "Dismiss this notice."
+msgstr ""
+
+#: inc/classes/class-message-admin-moderate.php:32
+#: inc/classes/class-message-admin-moderate.php:200
+msgid "Moderate Submission"
 msgstr ""
 
 #: inc/classes/class-message-admin.php:292
@@ -3887,13 +3868,14 @@ msgid "All"
 msgstr ""
 
 #: inc/classes/class-message-admin.php:603
-#: inc/classes/class-message-controller.php:199
-#: inc/templates/admin-message-edit.php:26
-#: inc/templates/admin-message-edit.php:28
+#: inc/classes/class-message-controller.php:197
+#: inc/templates/admin-message-edit.php:13
+#: inc/templates/admin-message-edit.php:15
 msgid "Submission"
 msgstr ""
 
 #: inc/classes/class-message-admin.php:604
+#: inc/templates/admin-message-moderate.php:90
 msgid "Submitted to"
 msgstr ""
 
@@ -3901,48 +3883,70 @@ msgstr ""
 msgid "View Referral"
 msgstr ""
 
-#: inc/classes/class-message-admin.php:989
+#: inc/classes/class-message-admin.php:963
 msgid "Empty Spam"
 msgstr ""
 
-#: inc/classes/class-message-admin.php:1006
+#: inc/classes/class-message-admin.php:980
 msgid "Mark as unread"
 msgstr ""
 
-#: inc/classes/class-message-admin.php:1007
+#: inc/classes/class-message-admin.php:981
 msgid "Mark as read"
 msgstr ""
 
-#: inc/classes/class-message-admin.php:1008
+#: inc/classes/class-message-admin.php:982
 msgid "Mark as spam"
 msgstr ""
 
-#: inc/classes/class-message-admin.php:1009
+#: inc/classes/class-message-admin.php:983
 msgid "Not spam"
 msgstr ""
 
-#: inc/classes/class-message-admin.php:1012
+#: inc/classes/class-message-admin.php:986
 msgid "Delete permanently"
 msgstr ""
 
-#: inc/classes/class-message-admin.php:1162
+#: inc/classes/class-message-admin.php:1136
 msgid "View"
 msgstr ""
 
-#: inc/classes/class-message-admin.php:1186
+#: inc/classes/class-message-admin.php:1160
 msgid "Not Spam"
 msgstr ""
 
-#: inc/classes/class-message-admin.php:1198
+#: inc/classes/class-message-admin.php:1172
 msgid "Mark as Read"
 msgstr ""
 
-#: inc/classes/class-message-admin.php:1209
+#: inc/classes/class-message-admin.php:1183
 msgid "Mark as Unread"
 msgstr ""
 
-#: inc/classes/class-message-admin.php:1349
+#: inc/classes/class-message-admin.php:1323
 msgid "Submissions to"
+msgstr ""
+
+#: inc/classes/class-message-admin.php:1356
+msgid "1 submission marked as read."
+msgstr ""
+
+#: inc/classes/class-message-admin.php:1360
+msgid "1 submission moved to Trash."
+msgstr ""
+
+#: inc/classes/class-message-admin.php:1369
+msgid "1 submission marked as spam."
+msgstr ""
+
+#: inc/classes/class-message-admin.php:1377
+msgid "This submission is already marked as"
+msgstr ""
+
+#: inc/classes/class-message-admin.php:1382
+#: inc/classes/class-message-controller.php:198
+#: inc/classes/class-message-controller.php:1081
+msgid "Edit Submission"
 msgstr ""
 
 #: inc/classes/class-message-blocklist.php:88
@@ -3985,45 +3989,41 @@ msgstr ""
 msgid "One per line. Not case sensitive. Punctuation, numbers and alt characters disallowed."
 msgstr ""
 
-#: inc/classes/class-message-controller.php:200
-msgid "Edit Submission"
-msgstr ""
-
-#: inc/classes/class-message-controller.php:201
+#: inc/classes/class-message-controller.php:199
 msgid "View Submission"
 msgstr ""
 
-#: inc/classes/class-message-controller.php:202
+#: inc/classes/class-message-controller.php:200
 msgid "View Submissions"
 msgstr ""
 
-#: inc/classes/class-message-controller.php:203
+#: inc/classes/class-message-controller.php:201
 msgid "Search Submissions"
 msgstr ""
 
-#: inc/classes/class-message-controller.php:204
+#: inc/classes/class-message-controller.php:202
 msgid "No submissions found."
 msgstr ""
 
-#: inc/classes/class-message-controller.php:205
+#: inc/classes/class-message-controller.php:203
 msgid "No submissions found in Trash."
 msgstr ""
 
-#: inc/classes/class-message-controller.php:206
-#: inc/classes/class-message-controller.php:207
+#: inc/classes/class-message-controller.php:204
+#: inc/classes/class-message-controller.php:205
 msgid "All Submissions"
 msgstr ""
 
-#: inc/classes/class-message-controller.php:727
-#: inc/templates/admin-message-edit.php:46
+#: inc/classes/class-message-controller.php:741
+#: inc/templates/admin-message-edit.php:33
 msgid "Tracking number"
 msgstr ""
 
-#: inc/classes/class-message-controller.php:1010
+#: inc/classes/class-message-controller.php:1024
 msgid "Invalid email."
 msgstr ""
 
-#: inc/classes/class-message-controller.php:1011
+#: inc/classes/class-message-controller.php:1025
 msgid "Email sent."
 msgstr ""
 
@@ -4529,32 +4529,52 @@ msgstr ""
 msgid "Day"
 msgstr ""
 
-#: inc/helpers/helper-misc.php:174
+#: inc/helpers/helper-misc.php:199
 msgid "read submissions"
 msgstr ""
 
-#: inc/helpers/helper-misc.php:198
+#: inc/helpers/helper-misc.php:223
 msgid "unread submissions"
 msgstr ""
 
-#: inc/helpers/helper-misc.php:242
+#: inc/helpers/helper-misc.php:267
 #: integrations/services/google-analytics/partial-widget.php:18
 #: inc/assets/jsx/build/admin/dashboard-modals.js:332
 #: inc/assets/jsx/src/admin/dashboard-modals.js:153
 msgid "Show credentials"
 msgstr ""
 
-#: inc/helpers/helper-misc.php:242
+#: inc/helpers/helper-misc.php:267
 #: integrations/services/google-analytics/partial-widget.php:18
 msgid "Hide credentials"
 msgstr ""
 
-#: inc/helpers/helper-misc.php:273
+#: inc/helpers/helper-misc.php:298
 msgid "Comment by %s marked as spam."
 msgstr ""
 
-#: inc/templates/admin-message-edit.php:13
-msgid "Referral:"
+#: inc/templates/admin-message-moderate.php:51
+msgid "You are about to move the following submission to the Trash:"
+msgstr ""
+
+#: inc/templates/admin-message-moderate.php:57
+msgid "You are about to mark the following submission as spam:"
+msgstr ""
+
+#: inc/templates/admin-message-moderate.php:64
+msgid "You are about to mark the following submission as read:"
+msgstr ""
+
+#: inc/templates/admin-message-moderate.php:74
+msgid "This submission is currently marked as spam."
+msgstr ""
+
+#: inc/templates/admin-message-moderate.php:76
+msgid "Caution:"
+msgstr ""
+
+#: inc/templates/admin-message-moderate.php:80
+msgid "Status"
 msgstr ""
 
 #: inc/templates/admin-settings-export.php:18
@@ -4800,12 +4820,24 @@ msgstr ""
 msgid "Add a Radio, Checkbox or Dropdown field to get started."
 msgstr ""
 
-#: inc/templates/email-owner.php:50
-msgid "Referral"
+#: inc/templates/email-owner.php:49
+msgid "You can see all submissions to this form here:"
 msgstr ""
 
-#: inc/templates/email-owner.php:84
-msgid "Reply to this message and mark it as read"
+#: inc/templates/email-owner.php:52
+msgid "Referral:"
+msgstr ""
+
+#: inc/templates/email-owner.php:53
+msgid "Read it:"
+msgstr ""
+
+#: inc/templates/email-owner.php:54
+msgid "Trash it:"
+msgstr ""
+
+#: inc/templates/email-owner.php:55
+msgid "Spam it:"
 msgstr ""
 
 #: inc/templates/partials/admin-stats-wrapper.php:8
@@ -5708,78 +5740,78 @@ msgstr ""
 msgid "Discount Percentage"
 msgstr ""
 
-#: integrations/services/payments/class-integration-payments.php:207
+#: integrations/services/payments/class-integration-payments.php:212
 msgid "This price isn't high enough."
 msgstr ""
 
-#: integrations/services/payments/class-integration-payments.php:211
+#: integrations/services/payments/class-integration-payments.php:216
 msgid "Thank you! Your payment was successful."
 msgstr ""
 
-#: integrations/services/payments/class-integration-payments.php:215
+#: integrations/services/payments/class-integration-payments.php:220
 msgid "Payment failed."
 msgstr ""
 
-#: integrations/services/payments/class-integration-payments.php:219
+#: integrations/services/payments/class-integration-payments.php:224
 msgid "Payment canceled."
 msgstr ""
 
-#: integrations/services/payments/class-integration-payments.php:223
+#: integrations/services/payments/class-integration-payments.php:228
 msgid "Choose a payment method"
 msgstr ""
 
-#: integrations/services/payments/class-integration-payments.php:227
+#: integrations/services/payments/class-integration-payments.php:232
 msgid "Name a price"
 msgstr ""
 
-#: integrations/services/payments/class-integration-payments.php:245
+#: integrations/services/payments/class-integration-payments.php:250
 msgid "Price is too low"
 msgstr ""
 
-#: integrations/services/payments/class-integration-payments.php:250
+#: integrations/services/payments/class-integration-payments.php:255
 msgid "Payment completed"
 msgstr ""
 
-#: integrations/services/payments/class-integration-payments.php:255
+#: integrations/services/payments/class-integration-payments.php:260
 msgid "Payment failed"
 msgstr ""
 
-#: integrations/services/payments/class-integration-payments.php:260
+#: integrations/services/payments/class-integration-payments.php:265
 msgid "Payment cancelled"
 msgstr ""
 
-#: integrations/services/payments/class-integration-payments.php:265
+#: integrations/services/payments/class-integration-payments.php:270
 msgid "Payment method"
 msgstr ""
 
-#: integrations/services/payments/class-integration-payments.php:270
+#: integrations/services/payments/class-integration-payments.php:275
 msgid "Pay what you want"
 msgstr ""
 
-#: integrations/services/payments/class-integration-payments.php:302
-#: integrations/services/payments/class-integration-payments.php:304
-#: integrations/services/payments/class-integration-payments.php:306
-#: integrations/services/payments/class-integration-payments.php:308
-#: integrations/services/payments/class-integration-payments.php:331
-#: integrations/services/payments/class-integration-payments.php:333
-#: integrations/services/payments/class-integration-payments.php:335
-#: integrations/services/payments/class-integration-payments.php:337
+#: integrations/services/payments/class-integration-payments.php:307
+#: integrations/services/payments/class-integration-payments.php:309
+#: integrations/services/payments/class-integration-payments.php:311
+#: integrations/services/payments/class-integration-payments.php:313
+#: integrations/services/payments/class-integration-payments.php:336
+#: integrations/services/payments/class-integration-payments.php:338
+#: integrations/services/payments/class-integration-payments.php:340
+#: integrations/services/payments/class-integration-payments.php:342
 msgid "completed"
 msgstr ""
 
-#: integrations/services/payments/class-integration-payments.php:302
-#: integrations/services/payments/class-integration-payments.php:304
-#: integrations/services/payments/class-integration-payments.php:331
-#: integrations/services/payments/class-integration-payments.php:333
+#: integrations/services/payments/class-integration-payments.php:307
+#: integrations/services/payments/class-integration-payments.php:309
+#: integrations/services/payments/class-integration-payments.php:336
+#: integrations/services/payments/class-integration-payments.php:338
 msgid "see details"
 msgstr ""
 
-#: integrations/services/payments/class-integration-payments.php:313
-#: integrations/services/payments/class-integration-payments.php:342
+#: integrations/services/payments/class-integration-payments.php:318
+#: integrations/services/payments/class-integration-payments.php:347
 msgid "canceled"
 msgstr ""
 
-#: integrations/services/payments/class-integration-payments.php:352
+#: integrations/services/payments/class-integration-payments.php:357
 msgid "through"
 msgstr ""
 
@@ -6079,16 +6111,42 @@ msgid "Credit card"
 msgstr ""
 
 #: integrations/services/stripe/class-integration-stripe.php:343
-#: integrations/services/stripe/class-integration-stripe.php:365
+#: integrations/services/stripe/class-integration-stripe.php:381
 msgid "Card number"
 msgstr ""
 
+#: integrations/services/stripe/class-integration-stripe.php:347
+#: integrations/services/stripe/class-integration-stripe.php:386
+msgid "Card expiration"
+msgstr ""
+
+#: integrations/services/stripe/class-integration-stripe.php:351
+#: integrations/services/stripe/class-integration-stripe.php:396
+msgid "Card security code"
+msgstr ""
+
 #: integrations/services/stripe/class-integration-stripe.php:355
+msgid "The three-digit code on the back of the card, to the right of the signature. For American Express this is the four-digit code on the front of the card, above the card number."
+msgstr ""
+
+#: integrations/services/stripe/class-integration-stripe.php:359
+msgid "The month and year as shown on the front of the card, below the card number."
+msgstr ""
+
+#: integrations/services/stripe/class-integration-stripe.php:371
 msgid "Stripe is processing payment"
 msgstr ""
 
-#: integrations/services/stripe/class-integration-stripe.php:360
+#: integrations/services/stripe/class-integration-stripe.php:376
 msgid "Stripe payment"
+msgstr ""
+
+#: integrations/services/stripe/class-integration-stripe.php:391
+msgid "Card expiration hint"
+msgstr ""
+
+#: integrations/services/stripe/class-integration-stripe.php:401
+msgid "Card security code hint"
 msgstr ""
 
 #: integrations/services/stripe/class-service-stripe.php:9

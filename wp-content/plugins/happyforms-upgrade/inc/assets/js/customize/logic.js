@@ -854,6 +854,11 @@
 		 */
 		enhanceActionLabel: function() {
 			var label = this.formItem.get( 'label' );
+
+			if ( this.formItem.get( 'type' ) !== 'option' ) {
+				label = '' !== label ? label : _happyFormsSettings.unlabeledFieldLabel;
+			}
+
 			var action = this.$actionDropdown.val();
 			var prefix = this.$actionDropdown.attr( 'data-' + action + '-prefix' );
 			var $selectedOption = $( 'option[value=' + this.$actionDropdown.val() + ']', this.$actionDropdown );

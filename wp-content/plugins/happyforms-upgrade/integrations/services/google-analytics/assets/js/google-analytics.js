@@ -20,16 +20,8 @@
 	};
 
 	GoogleAnalytics.prototype.bind = function() {
-		$( document ).on( 'happyforms-change', '[data-happyforms-abandonable]', this.onChange.bind( this ) );
 		$( window ).on( 'unload', this.onUnload.bind( this ) );
 	};
-
-	GoogleAnalytics.prototype.onChange = function( e ) {
-		var $form = $( e.currentTarget );
-		var formId = $( '[name="happyforms_form_id"]', $form ).val();
-
-		this.forms[formId] = $form;
-	}
 
 	GoogleAnalytics.prototype.onUnload = function( e ) {
 		for ( var formId in this.forms ) {
