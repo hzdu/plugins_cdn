@@ -1,5 +1,5 @@
 /*!
- * Filter Everything admin 1.6.9
+ * Filter Everything admin 1.7.1
  */
 #filters-seo-rules .inside,
 #filters-set-items .inside{
@@ -289,8 +289,11 @@ label[for="wpc_seo_rules-wp_entity"],
     color: #666666;
     margin: 0;
 }
+.wpc-filter-post_meta_num .wpc-field-hierarchy-tr,
 .wpc-view-range .wpc-field-search-tr,
 .wpc-view-dropdown .wpc-field-search-tr,
+.wpc-view-range .wpc-field-more-less-tr,
+.wpc-view-dropdown .wpc-field-more-less-tr,
 .wpc-field-for-variations-tr,
 .wpc-field-hierarchy-tr,
 .wpc-field-entity-tr,
@@ -301,11 +304,12 @@ label[for="wpc_seo_rules-wp_entity"],
 #wpc-filters-list[data-posttype="product"] .wpc-filter-post_meta .wpc-field-for-variations-tr,
 #wpc-filters-list[data-posttype="product"] .wpc-filter-post_meta_num .wpc-field-for-variations-tr,
 #wpc-filters-list[data-posttype="product"] .wpc-filter-taxonomy.taxonomy-product-attribute .wpc-field-for-variations-tr,
-.wpc-filter-taxonomy.taxonomy-hierarchical .wpc-field-hierarchy-tr,
+.wpc-filter-taxonomy.taxonomy-hierarchical.wpc-view-checkboxes .wpc-field-hierarchy-tr,
 .wpc-filter-post_meta_exists .wpc-field-ename-tr,
 .wpc-filter-post_meta_num .wpc-field-ename-tr,
 .wpc-filter-post_meta .wpc-field-ename-tr,
-.wpc-new-filter-item .wpc-field-entity-tr{
+.wpc-new-filter-item .wpc-field-entity-tr,
+.wpc-filter-tax_numeric .wpc-field-ename-tr{
     display: table-row;
 }
 .wpc-belongs-not,
@@ -560,14 +564,23 @@ tr.wpc-sortable-row.ui-sortable-helper{
 }
 .wpc-field-range-slider-tr,
 .wpc-field-value-step-tr,
+.wpc-filter-tax_numeric .wpc-field-logic-tr,
+.wpc-filter-tax_numeric .wpc-field-orderby-tr,
+.wpc-filter-tax_numeric .wpc-field-path-tr,
+.wpc-filter-tax_numeric .wpc-field-exclude-tr,
+.wpc-filter-tax_numeric .wpc-field-collapse-tr,
+.wpc-filter-tax_numeric .wpc-field-search-tr,
 .wpc-filter-post_meta_num .wpc-field-logic-tr,
 .wpc-filter-post_meta_num .wpc-field-orderby-tr,
 .wpc-filter-post_meta_num .wpc-field-path-tr,
 .wpc-filter-post_meta_num .wpc-field-exclude-tr,
 .wpc-filter-post_meta_num .wpc-field-collapse-tr,
+.wpc-filter-post_meta_num .wpc-field-search-tr,
 .wpc-filter-post_meta_num .wpc-field-a-labels-tr{
     display: none;
 }
+.wpc-filter-tax_numeric .wpc-field-range-slider-tr,
+.wpc-filter-tax_numeric .wpc-field-value-step-tr,
 .wpc-filter-post_meta_num .wpc-field-range-slider-tr,
 .wpc-filter-post_meta_num .wpc-field-value-step-tr{
     display: table-row;
@@ -714,6 +727,11 @@ input[disabled="disabled"]+.wpc-checkbox-placeholder{
 .wpc-filter-field-td .select2-container .select2-search--inline .select2-search__field{
     min-height: 0;
     width: auto !important;
+}
+#wpc-filters-list a.wpc-more-options-toggle{
+    text-decoration: none;
+    border-bottom-width: 1px;
+    border-bottom-style: dashed;
 }
 .wpc-more-options-toggle.wpc-opened:hover{
     color: #dc3232;

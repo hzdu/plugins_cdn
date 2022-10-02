@@ -1,9 +1,12 @@
 /*!
- * Filter Everything set admin 1.6.9
+ * Filter Everything set admin 1.7.1
  */
 (function($) {
     "use strict";
     let filtersFormValid = false;
+    let postTypesTaxList = wpcSetVars.postTypesTaxList;
+    let numFieldNoTaxes  = wpcSetVars.numFieldNoTaxes;
+    let numFieldAttrs    = wpcSetVars.numFieldAttrs;
 
     function validateFiltersForm( $el )
     {
@@ -147,6 +150,11 @@
         });
     }
 
+    /**
+     * Creates array with taxonomies that do not belong to the Post type
+     * selected in Filter Set
+     * @returns {[]|*[]}
+     */
     function getForbiddenTaxes()
     {
         if( typeof wpcSetVars.postTypesTaxList !== 'undefined'){
@@ -176,16 +184,24 @@
         return [];
     }
 
+    /**
+     * Retrieves already selected filter entities to disable double using of them
+     * @param $inputs - select tags, where we collect used entities. Usually .wpc-field-entity
+     * @param excludeInput
+     * @returns {boolean|[]}
+     */
     function getUsedEntities( $inputs, excludeInput )
     {
         let usedEntities = [];
         let currentVal   = '';
-        let doNotInclude = ['post_meta', 'post_meta_num', 'post_meta_exists'];
+        // Pass through these entities
+        let doNotInclude = ['post_meta', 'post_meta_num', 'post_meta_exists', 'tax_numeric'];
 
-        if( $inputs.length > 0 ){
-            $inputs.each(function(){
+        if ( $inputs.length > 0 ) {
+            $inputs.each( function(){
                 currentVal = $(this).val();
 
+                // Continue
                 if( $(this).attr('id') == excludeInput.attr('id') ){
                     return;
                 }
@@ -193,7 +209,9 @@
                 if( doNotInclude.includes( currentVal ) ){
                     return;
                 }
-                usedEntities.push( $(this).val() );
+                if( currentVal ) {
+                    usedEntities.push( currentVal );
+                }
             });
 
             return usedEntities;
@@ -201,20 +219,31 @@
         return false;
     }
 
-    function setAvailableEntities( $el, noChange )
-    {
-        let currentVal = '';
-        let exclude = getUsedEntities( $('.wpc-field-entity'), $el );
-        let forbiddenTaxes = getForbiddenTaxes();
+    /**
+     * Pass through new filter entity options and set as disabled already used taxonomies
+     * @param $theSelect - the select element with options to set. Usually it is .wpc-field-entity
+     * @param dropdownClass - class of the select element where we have to set option status
+     * @param noChange
+     * @returns {boolean}
+     */
+    function setAvailableEntities( $theSelect, noChange )
+    {   // .wpc-field-entity
+        let currentVal      = '';
+        let selectClass     = $theSelect.attr('class');
+        let exclude         = getUsedEntities( $( '.'+selectClass ), $theSelect ); // Entities already selected in other filters
+        let forbiddenTaxes  = getForbiddenTaxes(); // Entities that do not belong to the Post type
 
-        $el.find('option').each( function (){
+        $theSelect.find('option').each( function (){
             currentVal = $(this).val();
 
-            if( currentVal === 'post_meta_exists' && ( wpcSetVars.filtersPro < 1) ){
+            if( currentVal === 'post_meta_exists' && ( wpcSetVars.filtersPro < 1 ) ) {
+                return;
+            }
+            if( currentVal === 'tax_numeric' && ( wpcSetVars.filtersPro < 1 ) ) {
                 return;
             }
 
-            if( exclude.includes( currentVal ) || forbiddenTaxes.includes(currentVal) ){
+            if( exclude.includes( currentVal ) || forbiddenTaxes.includes( currentVal ) ){
                 $(this).attr( 'disabled', 'disabled' );
             }else{
                 $(this).removeAttr( 'disabled' );
@@ -222,24 +251,26 @@
         } );
 
         // If currently selected option is disabled, make first available option selected.
-        let disabled = $el.find('option:selected').attr('disabled');
+        let disabled = $theSelect.find('option:selected').attr('disabled');
+        // if noChange === false this works
         if( disabled === 'disabled' && ! noChange ){
-            $el.find('option:not([disabled]):first').prop('selected', true)
+            $theSelect.find('option:not([disabled]):first').prop('selected', true)
                 .trigger('change');
         }
 
         return true;
     }
 
-    function passNewEntities(select)
+
+    function passNewEntities( select )
     {
         let time = 0;
 
-        $('.wpc-new-filter-item .wpc-field-entity').each(function (){
-            let select = $(this);
+        $('.wpc-new-filter-item .wpc-field-entity').each( function () {
+            let select   = $(this);
             let noChange = false;
-
-            if( $(this).attr('id') == select.attr('id') ){
+            // Do not change current select tag
+            if( $(this).attr('id') == select.attr('id') ) {
                 noChange = true;
             }
 
@@ -340,7 +371,7 @@
 
         });
 
-        $('.wpc-form-fields-table:not(.wpc-filter-post_meta_num) .wpc-field-exclude, .wpc-form-fields-table:not(.wpc-filter-post_meta_exists) .wpc-field-exclude').select2({
+        $('.wpc-form-fields-table:not(.wpc-filter-tax_numeric) .wpc-field-exclude, .wpc-form-fields-table:not(.wpc-filter-post_meta_num) .wpc-field-exclude, .wpc-form-fields-table:not(.wpc-filter-post_meta_exists) .wpc-field-exclude').select2({
             width: '100%',
             placeholder: wpcSetVars.excludePlaceholder
         });
@@ -408,27 +439,43 @@
             .toggleClass('wpc-additional-opened');
         });
 
+        $('body').on('change', 'select.wpc-field-ename', function(e){
+            let time = 0;
+            // let fid = $(this).parents('.wpc-filter-item').data('fid');
+
+            $( $('.wpc-new-filter-item select.wpc-field-ename').get().reverse() ).each( function () {
+                let eNameSelect = $(this);
+
+                setTimeout( function(){ setAvailableEntities( eNameSelect, false ); }, time);
+                time += 100;
+            });
+        });
+
         $('body').on('change', '.wpc-field-entity', function(e){
-            let select = $(this);
+            let thisSelect = $(this);
             let theTitle = '';
 
             // Set available entities again
-            passNewEntities(select);
-            syncEntityWithPrefix(select);
-            handleMetaKeyField(select);
-            handleLogicField(select);
-            setEntityTableClass(select);
-            syncEntityWithView(select);
-            syncEntityWithSortTerms(select);
+            passNewEntities(thisSelect);
+            syncEntityWithPrefix(thisSelect);
+            handleMetaKeyField(thisSelect);
+            handleLogicField(thisSelect);
+            setEntityTableClass(thisSelect);
+            syncEntityWithView(thisSelect);
+            syncEntityWithSortTerms(thisSelect);
 
-            handleHierarchyField(select);
+            handleHierarchyField(thisSelect);
             // handleUsedForVariationsField(select);
 
             // Load terms for exclude
             let entity = $(this).val();
-            let fid   = $(this).parents('.wpc-filter-item').data('fid');
+            let fid    = $(this).parents('.wpc-filter-item').data('fid');
 
-            if( entity === 'post_meta' || entity === 'post_meta_num' || entity === 'post_meta_exists' ){
+            if ( entity === 'tax_numeric' ) {
+                $('#wpc_filter_fields-'+fid+'-e_name').trigger('change');
+            }
+
+            if( entity === 'tax_numeric' || entity === 'post_meta' || entity === 'post_meta_num' || entity === 'post_meta_exists' ){
                 let target = $('#wpc_filter_fields-'+fid+'-exclude');
                 target.select2({
                     disabled: true,
@@ -450,7 +497,7 @@
 
             $(".wpc-field-parent-filter option[value='"+fid+"'").each(function (index, element){
                 $(this).text( theTitle + " (" +wpcShortenEname( entity )+ ")" );
-                if( entity === 'post_meta_num' ){
+                if( entity === 'post_meta_num' || entity === 'tax_numeric' ){
                     $(this).attr('disabled', 'disabled');
                 }else{
                     $(this).removeAttr('disabled');
@@ -466,11 +513,13 @@
                 let val = '';
                 let slugs = wpcSetVars.filterSlugs;
 
-                if( entity === 'post_meta_num' ){
+                if ( entity === 'post_meta_num' ) {
                     val = 'post_meta_num_' + ename;
-                }else if( entity === 'post_meta_exists' ){
+                } else if ( entity === 'tax_numeric' ) {
+                    val = 'tax_numeric_' + ename;
+                } else if ( entity === 'post_meta_exists' ) {
                     val = 'post_meta_exists_' + ename;
-                }else{
+                } else {
                     val = 'post_meta_' + ename;
                 }
 
@@ -478,8 +527,8 @@
                     $('#wpc_filter_fields-'+fid+'-slug').val( slugs[val] )
                         .trigger('input');
 
-                    // Do not load exclude terms for Post Meta Num and Post Meta Exists
-                    if( entity !== 'post_meta_num' ){
+                    // Do not load exclude terms for Post Meta Num and Tax Numeric
+                    if( entity !== 'post_meta_num' && entity !== 'tax_numeric' ){
                         loadExcludeItems(entity, fid, ename);
                     }
 
@@ -537,9 +586,18 @@
 
             if( allowedViews.includes(optionVal) ){
                 $divFilterItem.find('.wpc-field-search-tr').show();
+                $divFilterItem.find('.wpc-field-more-less-tr').show();
             }else{
                 $divFilterItem.find('.wpc-field-search-tr').hide();
+                $divFilterItem.find('.wpc-field-more-less-tr').hide();
             }
+
+            if( optionVal === 'checkboxes' ) {
+                $divFilterItem.find('.wpc-form-fields-table').addClass('wpc-view-checkboxes');
+            } else {
+                $divFilterItem.find('.wpc-form-fields-table').removeClass('wpc-view-checkboxes');
+            }
+
         });
 
         $( '.wpc-filter-set-wrapper .wpc-filters-list' ).sortable({
@@ -638,9 +696,10 @@
         // Get set location fields
         $('body').on('change', '#wpc_set_fields-post_type', function (){
 
-            $("#wpc-filters-list").attr('data-posttype', $(this).val() );
+            let postType = $(this).val();
+            $("#wpc-filters-list").attr('data-posttype', postType );
 
-            if( wpcSetVars.filtersPro < 1){
+            if( wpcSetVars.filtersPro < 1 ){
                 return true;
             }
             setAvailableEntities( $('.wpc-new-filter-item .wpc-field-entity') );
@@ -652,6 +711,13 @@
             if( typeof selected !== 'undefined' /*&& selected === 'common:common'*/ ){
                 wpcGetLocationTerms( selected );
             }
+
+            // Change options in all select.wpc-field-ename
+            let eNameSelect = $("select.wpc-field-ename");
+            if( eNameSelect.length > 0 ) {
+                fillTaxNumSelect( eNameSelect, postType );
+            }
+
         });
 
         // Filtered WP_Query location
@@ -787,7 +853,7 @@
                         text: inelem['title']+" ("+wpcShortenEname( inelem['ename'] )+")"
                     });
 
-                    if( inelem['ename'] === 'post_meta_num' ){
+                    if( inelem['ename'] === 'post_meta_num' || inelem['ename'] === 'tax_numeric' ){
                         newOption.attr("disabled", "disabled");
                     }
 
@@ -1030,15 +1096,17 @@
         let val = entitySelect.val();
         let fid = entitySelect.parents('.wpc-filter-item').data('fid');
 
-        if( val === 'post_meta_num' ) {
+        if( val === 'post_meta_num' || val === 'tax_numeric' ) {
             $('#wpc_filter_fields-'+fid+'-view option:not([value="range"])').attr('disabled', 'disabled');
             $('#wpc_filter_fields-'+fid+'-view option[value="range"]').removeAttr('disabled')
                 .prop('selected', true);
+            $('#wpc_filter_fields-'+fid+'-view').trigger('change');
 
         }else{
             $('#wpc_filter_fields-'+fid+'-view option').removeAttr('disabled')
             $('#wpc_filter_fields-'+fid+'-view option:not([disabled]):first').prop('selected', true);
             $('#wpc_filter_fields-'+fid+'-view option[value="range"]').attr('disabled', 'disabled');
+            $('#wpc_filter_fields-'+fid+'-view').trigger('change');
         }
     }
 
@@ -1048,16 +1116,16 @@
         let val = entitySelect.val();
         let fid = entitySelect.parents('.wpc-filter-item').data('fid');
 
-        if( val === 'author_author' || val === 'post_meta_exists' ) {
-            $('#wpc_filter_fields-' + fid + '-logic option[value="and"]').attr('disabled', 'disabled');
-            $('#wpc_filter_fields-' + fid + '-logic option[value="or"]').prop('selected', true);
-
-        }else if( val === 'post_meta_num' ){
-            $('#wpc_filter_fields-' + fid + '-logic option[value="or"]').attr('disabled', 'disabled');
-            $('#wpc_filter_fields-' + fid + '-logic option[value="and"]').prop('selected', true);
-        }else{
-            $('#wpc_filter_fields-'+fid+'-logic option[value="and"]').removeAttr('disabled');
-            $('#wpc_filter_fields-'+fid+'-logic option[value="or"]').removeAttr('disabled');
+        if ( val === 'author_author' || val === 'post_meta_exists' ) {
+            $( '#wpc_filter_fields-' + fid + '-logic option[value="and"]' ).attr( 'disabled', 'disabled' );
+            $( '#wpc_filter_fields-' + fid + '-logic option[value="or"]' ).prop( 'selected', true );
+        } else if ( val === 'post_meta_num' || val === 'tax_numeric' ) {
+            // If filter is numeric logic can be AND only
+            $( '#wpc_filter_fields-' + fid + '-logic option[value="or"]' ).attr( 'disabled', 'disabled' );
+            $( '#wpc_filter_fields-' + fid + '-logic option[value="and"]' ).prop( 'selected', true );
+        } else {
+            $( '#wpc_filter_fields-'+fid+'-logic option[value="and"]' ).removeAttr( 'disabled' );
+            $( '#wpc_filter_fields-'+fid+'-logic option[value="or"]' ).removeAttr( 'disabled' );
         }
 
         return true;
@@ -1066,21 +1134,22 @@
     function handleHierarchyField( entitySelect )
     {
         let val = entitySelect.val();
-        let fid = entitySelect.parents('.wpc-filter-item').data('fid');
-        let posttype = $("#wpc-filters-list").attr('data-posttype');
+        let $divFilterItem = entitySelect.parents('.wpc-filter-item');
 
         if( val.indexOf('taxonomy') !== -1 ){
             $.each( wpcSetVars.postTypesTaxList, function ( pType, taxesArray ){
                 $.each( taxesArray, function ( index, theTax ){
                     if( theTax['name'] === val ){
                         if( theTax['hierarchical'] ){
-                            $("#wpc-filter-id-"+fid+" .wpc-field-hierarchy-tr").show();
+                            $divFilterItem.find('.wpc-form-fields-table').addClass('taxonomy-hierarchical');
                         }else{
-                            $("#wpc-filter-id-"+fid+" .wpc-field-hierarchy-tr").hide();
+                            $divFilterItem.find('.wpc-form-fields-table').removeClass('taxonomy-hierarchical');
                         }
                     }
                 });
             });
+        } else {
+            $divFilterItem.find('.wpc-form-fields-table').removeClass('taxonomy-hierarchical');
         }
     }
 
@@ -1089,15 +1158,64 @@
         let val = entitySelect.val();
         let fid = entitySelect.parents('.wpc-filter-item').data('fid');
 
-        if( val === 'post_meta' || val === 'post_meta_num' || val === 'post_meta_exists' ){
-            $('#wpc_filter_fields-'+fid+'-e_name').val('')
-                .removeAttr('readonly')
-                .parents('.wpc-field-ename-tr').show();
-        }else{
+        if ( val === 'post_meta' || val === 'post_meta_num' || val === 'post_meta_exists' ) {
+            let eNameTag = $('#wpc_filter_fields-'+fid+'-e_name');
+
+            if ( eNameTag.prop("tagName").toLowerCase() === 'select' ) {
+                let eNameInput = $('<input>');
+                let postType = $("#wpc_set_fields-post_type").val();
+
+                eNameInput.attr( 'class', eNameTag.attr('class') )
+                    .attr( 'type', 'text' )
+                    .attr( 'name', eNameTag.attr('name') )
+                    .attr( 'id', eNameTag.attr('id') );
+
+                eNameTag.val('');
+                eNameTag.removeAttr('readonly');
+                eNameTag.replaceWith(eNameInput);
+
+                eNameInput.parents('.wpc-field-ename-tr').show();
+            } else {
+                eNameTag.val('');
+                eNameTag.parents('.wpc-field-ename-tr').show();
+            }
+
+            $('#wpc-filter-id-'+fid+' .wpc-field-ename-tr p.wpc-field-description').text( numFieldAttrs['post_meta_num']['description'] );
+            $('#wpc-filter-id-'+fid+' .wpc-field-ename-tr label.wpc-filter-label span.wpc-label-text').text( numFieldAttrs['post_meta_num']['label'] );
+            $('#wpc-filter-id-'+fid+' .wpc-field-ename-tr p.description').css('visibility', 'visible');
+
+        } else if ( val === 'tax_numeric' ) {
+            let eNameTag = $('#wpc_filter_fields-'+fid+'-e_name');
+            let postType = $("#wpc_set_fields-post_type").val();
+
+            if ( eNameTag.prop("tagName").toLowerCase() === 'input' ) {
+                let eNameSelect = $('<select>');
+
+                eNameSelect.attr( 'class', eNameTag.attr('class') )
+                    .attr( 'name', eNameTag.attr('name') )
+                    .attr( 'id', eNameTag.attr('id') );
+
+                eNameTag.removeAttr( 'readonly' );
+                eNameTag.replaceWith( eNameSelect );
+                //@todo - if already existing tax_numeric slug presents, it should be inserted as usual
+                //@todo - if filter by this tax numeric entity exists, it should be deactivated in the Tax num dropdown
+                fillTaxNumSelect( eNameSelect, postType );
+                eNameSelect.parents('.wpc-field-ename-tr').show();
+            } else {
+                fillTaxNumSelect( eNameTag, postType );
+                eNameTag.parents('.wpc-field-ename-tr').show();
+            }
+
+            $('#wpc-filter-id-'+fid+' .wpc-field-ename-tr p.wpc-field-description').text( numFieldAttrs['tax_numeric']['description'] );
+            $('#wpc-filter-id-'+fid+' .wpc-field-ename-tr label.wpc-filter-label span.wpc-label-text').text( numFieldAttrs['tax_numeric']['label'] );
+            $('#wpc-filter-id-'+fid+' .wpc-field-ename-tr p.description').css('visibility', 'hidden');
+
+        } else {
             $('#wpc_filter_fields-'+fid+'-e_name').parents('.wpc-field-ename-tr').hide();
         }
 
-        if( val === 'post_meta_num' ){
+        // Numeric values can not be in URL path
+        if( val === 'post_meta_num' || val === 'tax_numeric' ){
             $('#wpc_filter_fields-'+fid+'-in_path').prop( "checked", false );
             // $('#wpc_filter_fields-'+fid+'-show_chips').prop( "checked", false );
         }else{
@@ -1195,6 +1313,25 @@
 
     function wpcIsObject( a ){
         return ( typeof a === 'object' );
+    }
+
+    /**
+     * Fills Tax Num Select with options
+     * @param $el (object) The select element
+     * @param postType Post type selected to filter
+     */
+    function fillTaxNumSelect( $el, postType ) {
+        $el.find('option')
+            .remove()
+            .end();
+
+        if ( postType in postTypesTaxList ) {
+            $( postTypesTaxList[ postType ] ).each( function() {
+                $el.append( $("<option>").attr('value', this.name ).text( this.label ) );
+            });
+        } else {
+            $el.append( $("<option>").attr('value', -1 ).text( numFieldNoTaxes ) );
+        }
     }
 
 })(jQuery);

@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Filter Everything PRO\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-02-23 21:45+0000\n"
-"PO-Revision-Date: 2022-08-10 09:37+0000\n"
+"PO-Revision-Date: 2022-09-30 09:22+0000\n"
 "Last-Translator: Administrator\n"
 "Language-Team: Czech\n"
 "Language: cs_CZ\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Loco https://localise.biz/\n"
-"X-Loco-Version: 2.6.2; wp-6.0.1\n"
+"X-Loco-Version: 2.6.2; wp-6.0.2\n"
 "X-Domain: filter-everything"
 
 msgid ""
@@ -400,7 +400,7 @@ msgid "by product Width"
 msgstr "podle produktu Šířka"
 
 msgid ""
-"by Sale Price (Custom Field Num) or on Sale Status (Custom Field Exists)"
+"by Sale Price (Custom Field Numeric) or on Sale Status (Custom Field Exists)"
 msgstr ""
 "podle prodejní ceny (vlastní pole Num) nebo podle stavu prodeje (vlastní "
 "pole Existuje)"
@@ -411,7 +411,7 @@ msgstr "podle počtu prodejů"
 msgid "by Sold Individually status (Custom Field)"
 msgstr "podle stavu Prodáno jednotlivě (vlastní pole)"
 
-msgid "by Stock Quantity (Custom Field Num)"
+msgid "by Stock Quantity (Custom Field Numeric)"
 msgstr "podle skladového množství (vlastní pole Num)"
 
 msgid "By title: alphabetical"
@@ -513,7 +513,7 @@ msgid "Custom Field Filters"
 msgstr "Vlastní filtry polí"
 
 #: src/Entities/EntityManager.php:119
-msgid "Custom Field Num"
+msgid "Custom Field Numeric"
 msgstr "Vlastní pole Num"
 
 #: pro/Admin/SeoRules.php:111 src/Admin/FilterSet.php:150
@@ -680,16 +680,28 @@ msgstr ""
 "Subjekty, jejichž výrazy by se měly v datech SEO zobrazovat bez vynuceného "
 "malého písmene"
 
-#: src/Admin/AdminHooks.php:53
+#: src/Admin/AdminHooks.php:154
 #, php-format
 msgid ""
 "Error: <strong>%s</strong> filter prefix is not allowed and must be changed "
 "on the Filter %s settings <a href=\"%s\" target=\"_blank\">page</a>. "
 "Otherwise this site will not work properly."
-msgstr ""
+msgid_plural ""
+"Error: following filter prefixes <strong>%s</strong> are not allowed and "
+"must be changed on the Filter %s settings <a href=\"%s\" target=\"_blank\">"
+"page</a>. Otherwise this site will not work properly."
+msgstr[0] ""
 "Chyba: předpona filtru <strong>%s</strong> není povolena a musí být změněna "
 "v nastavení filtru %s <a href=\"%s\" target=\"_blank\">stránka</a>. Jinak "
 "tato stránka nebude fungovat správně."
+msgstr[1] ""
+"Chyba: následující předpony filtru <strong>%s</strong> nejsou povoleny a je "
+"třeba je změnit na <a href=\"%s\" target=\"_blank\">stránce</a> nastavení "
+"filtru %s. Jinak tato stránka nebude fungovat správně."
+msgstr[2] ""
+"Chyba: následující předpony filtru <strong>%s</strong> nejsou povoleny a je "
+"třeba je změnit na <a href=\"%s\" target=\"_blank\">stránce</a> nastavení "
+"filtru %s. Jinak tato stránka nebude fungovat správně."
 
 #: src/Admin/FilterFields.php:1278
 msgid "Error: all SEO data fields could not be empty."
@@ -710,10 +722,6 @@ msgstr "Chyba: prefix filtru by neměl být prázdný."
 #: src/Admin/FilterFields.php:1272
 msgid "Error: for filter Post Author logic OR is acceptable only."
 msgstr "Chyba: pro filtr Autor příspěvku je přípustná pouze logika OR."
-
-#: src/Admin/FilterFields.php:1274
-msgid "Error: for filter Post Meta Num logic AND is acceptable only."
-msgstr "Chyba: pro filtr Post Meta Num je přípustná pouze logika AND."
 
 #: src/Admin/FilterFields.php:1271
 msgid "Error: invalid exclude terms"
@@ -759,6 +767,9 @@ msgstr "Chyba: neplatný parametr Orderby"
 msgid "Error: invalid post type."
 msgstr "Chyba: neplatný typ příspěvku."
 
+msgid "Error: invalid query."
+msgstr "Chyba: neplatný dotaz."
+
 #: src/Admin/FilterFields.php:1280
 msgid "Error: invalid SEO Rule ID."
 msgstr "Chyba: neplatné ID pravidla SEO."
@@ -779,12 +790,19 @@ msgstr "Chyba: neplatná hodnota pole Kde filtrovat?."
 msgid "Error: invalid View parameter."
 msgstr "Chyba: neplatný parametr View."
 
+msgid "Error: invalid WP Page type."
+msgstr "Chyba: neplatný typ stránky."
+
 msgid "Error: invalid «Apply Button» mode field."
 msgstr "Chyba: neplatné pole režimu tlačítka \"Použít\"."
 
 #: src/Admin/FilterFields.php:1273
-msgid "Error: Post meta num filter can not be in URL path."
-msgstr "Chyba: Filtr Post meta num nemůže být v cestě URL."
+msgid "Error: numeric filter can not be in URL path."
+msgstr "Chyba: číselný filtr nemůže být v cestě URL."
+
+#: src/Admin/FilterFields.php:1274
+msgid "Error: only AND logic is supported for numeric filters."
+msgstr "Chyba: pro číselné filtry je podporována pouze logika AND."
 
 #: src/Admin/FilterFields.php:1264
 msgid ""
@@ -805,6 +823,9 @@ msgstr "Chyba: Pravidlo SEO musí obsahovat alespoň jeden filtr."
 #: src/Admin/FilterFields.php:1276
 msgid "Error: SEO Rule must have specified Post Type."
 msgstr "Chyba: Pravidlo SEO musí mít zadaný typ příspěvku."
+
+msgid "Error: SEO rule with selected Filters Combination already exists."
+msgstr "Chyba: pravidlo SEO s vybranou kombinací filtrů již existuje."
 
 #: src/Admin/FilterFields.php:1265
 msgid ""
@@ -865,7 +886,7 @@ msgstr "Filtrovat podle"
 msgid "filter by Featured Image (Custom Field Exists)"
 msgstr "filtrovat podle doporučeného obrázku (vlastní pole existuje)"
 
-msgid "filter by Product price (Custom Field Num)"
+msgid "filter by Product price (Custom Field Numeric)"
 msgstr "filtrovat podle ceny produktu (Vlastní pole Num)"
 
 msgid "filter by Product Stock status (Custom Field)"
@@ -915,6 +936,9 @@ msgid ""
 msgstr ""
 "Filter Everything - plugin pro filtrování produktů WordPress & WooCommerce, "
 "který umožňuje navrhnout flexibilní systém filtrování."
+
+msgid "Filter Everything&nbsp;— WooCoomerce Product & WordPress Filter"
+msgstr "Filter Everything&nbsp;— filtr pro WordPress a WooCommerce"
 
 #: src/Admin/FilterFields.php:65
 msgid "Filter Label"
@@ -1005,6 +1029,14 @@ msgstr "Filtry libovolného typu příspěvku (příspěvky, produkty atd.)"
 #: views/admin/filters-seo-rules.php:33
 msgid "Filters Combination"
 msgstr "Kombinace filtrů"
+
+msgid ""
+"Filters everything in WordPress & WooCommerce: Products, any Post types, by "
+"Any Criteria. Compatible with WPML, ACF and others popular. Supports AJAX."
+msgstr ""
+"Filtruje vše ve WordPressu a WooCommerce: produkty, všechny typy příspěvků "
+"podle jakýchkoli kritérií. Kompatibilní s WPML, ACF a dalšími populární. "
+"Podporuje AJAX."
 
 #: src/PostTypes.php:20
 msgid "Filters Set"
@@ -1150,6 +1182,9 @@ msgstr "V adrese URL"
 msgid "include"
 msgstr "zahrnout"
 
+msgid "Include selected terms only"
+msgstr "Obsahovat pouze vybrané výrazy"
+
 #: pro/Admin/SeoRules.php:587
 msgid "Include WordPress page for SEO rule"
 msgstr "Zahrnout stránku WordPress pro pravidlo SEO"
@@ -1262,6 +1297,9 @@ msgstr "Mobilní zařízení"
 #: src/Admin/FilterSet.php:223 views/admin/filter-row.php:25
 msgid "More options"
 msgstr "Další možnosti"
+
+msgid "More/Less"
+msgstr "Více/Méně"
 
 msgid "N/A"
 msgstr "NEUPLATŇUJE SE"
@@ -1440,6 +1478,9 @@ msgstr "Pokud se widget nezobrazuje, povolte prosím tuto funkci"
 msgid "Please, add filters first"
 msgstr "Nejprve přidejte filtry"
 
+msgid "Please, do not call the \"%s\" function before the \"wp\" action"
+msgstr "Prosím, nevolejte funkci \"%s\" před háček \"wp\"."
+
 msgid ""
 "Please, specify desired Sorting widget by adding id parameter to the "
 "shortcode."
@@ -1504,6 +1545,13 @@ msgid ""
 msgstr ""
 "Část prefixu před znakem \"-\" se nemůže rovnat jinému existujícímu prefixu."
 
+msgid ""
+"Prefix «%s» is not allowed, because such term already exists. Please, use "
+"another prefix."
+msgstr ""
+"Předpona «%s» není povolena, protože takový výraz již existuje. Prosím, "
+"použijte jinou předvolbu."
+
 msgid "Premium support"
 msgstr "Prémiová podpora"
 
@@ -1541,6 +1589,9 @@ msgstr "Přečtěte si více"
 
 msgid "Registered"
 msgstr "Registrovaný"
+
+msgid "Regular price"
+msgstr "Běžná cena"
 
 #: views/frontend/chips.php:4
 #, php-format
@@ -1685,6 +1736,9 @@ msgstr "Stránka obchodu"
 msgid "Show %s"
 msgstr "Zobrazit %s"
 
+msgid "Show a toggle link after %s terms"
+msgstr "Přidá přepínač po %s výrazech"
+
 msgid "Show Chips only for Set with IDs:"
 msgstr "Zobrazit Štítky pouze pro sadu s ID:"
 
@@ -1706,6 +1760,12 @@ msgstr "Zobrazit ikonu"
 #: src/Admin/FilterFields.php:149
 msgid "Show in Chips"
 msgstr "Zobrazit ve Štítcích"
+
+msgid "See less"
+msgstr "Ukaž méně"
+
+msgid "See more"
+msgstr "Ukaž víc"
 
 #: src/Admin/Widgets/FiltersWidget.php:193
 msgid "Show number of posts found"
@@ -1841,9 +1901,21 @@ msgstr "Podporuje AJAX"
 msgid "Taxonomies"
 msgstr "Taxonomie"
 
+msgid "Taxonomy"
+msgstr "Taxonomie"
+
 #: src/Entities/EntityManager.php:111
 msgid "Taxonomy Filters"
 msgstr "Filtry taxonomie"
+
+msgid "Taxonomy Numeric"
+msgstr "Taxonomie Numerický"
+
+msgid "Taxonomy Numeric - Available in Pro"
+msgstr "Taxonomie Numerická – k dispozici v PRO"
+
+msgid "Taxonomy with numeric values you need to filter by"
+msgstr "Taxonomie s číselnými hodnotami, podle kterých musíte filtrovat"
 
 #: src/Admin/FilterFields.php:260
 msgid "Term ID &laquo;123&raquo;"
@@ -1936,6 +2008,9 @@ msgstr "Název, který se zobrazí ve widgetu filtru"
 #: pro/Admin/Admin.php:136
 msgid "Title will be created automatically"
 msgstr "Název se vytvoří automaticky"
+
+msgid "Title:"
+msgstr "Titul:"
 
 msgid ""
 "To allow the plugin to update automatically and avoid blocking some of its "

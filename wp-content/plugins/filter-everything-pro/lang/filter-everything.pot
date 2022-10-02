@@ -380,13 +380,15 @@ msgstr ""
 msgid "Add Filters"
 msgstr ""
 
-#: src/Admin/AdminHooks.php:53
+#: src/Admin/AdminHooks.php:154
 #, php-format
 msgid ""
 "Error: <strong>%s</strong> filter prefix is not allowed and must be changed "
 "on the Filter %s settings <a href=\"%s\" target=\"_blank\">page</a>. "
 "Otherwise this site will not work properly."
-msgstr ""
+msgid_plural "Error: following filter prefixes <strong>%s</strong> are not allowed and must be changed on the Filter %s settings <a href=\"%s\" target=\"_blank\">page</a>. Otherwise this site will not work properly."
+msgstr[0] ""
+msgstr[1] ""
 
 #: src/Admin/AdminHooks.php:64 src/Admin/AdminHooks.php:88
 msgid "Dismiss this notice."
@@ -675,11 +677,11 @@ msgid "Error: for filter Post Author logic OR is acceptable only."
 msgstr ""
 
 #: src/Admin/FilterFields.php:1273
-msgid "Error: Post meta num filter can not be in URL path."
+msgid "Error: numeric filter can not be in URL path."
 msgstr ""
 
 #: src/Admin/FilterFields.php:1274
-msgid "Error: for filter Post Meta Num logic AND is acceptable only."
+msgid "Error: only AND logic is supported for numeric filters."
 msgstr ""
 
 #: src/Admin/FilterFields.php:1275
@@ -851,7 +853,7 @@ msgid "Custom Field"
 msgstr ""
 
 #: src/Entities/EntityManager.php:119
-msgid "Custom Field Num"
+msgid "Custom Field Numeric"
 msgstr ""
 
 #: src/Entities/EntityManager.php:120
@@ -1243,13 +1245,13 @@ msgstr ""
 msgid "WooCommerce"
 msgstr ""
 
-msgid "filter by Product price (Custom Field Num)"
+msgid "filter by Product price (Custom Field Numeric)"
 msgstr ""
 
 msgid "filter by Product Stock status (Custom Field)"
 msgstr ""
 
-msgid "by Sale Price (Custom Field Num) or on Sale Status (Custom Field Exists)"
+msgid "by Sale Price (Custom Field Numeric) or on Sale Status (Custom Field Exists)"
 msgstr ""
 
 msgid "by Sales Count"
@@ -1264,7 +1266,7 @@ msgstr ""
 msgid "by Sold Individually status (Custom Field)"
 msgstr ""
 
-msgid "by Stock Quantity (Custom Field Num)"
+msgid "by Stock Quantity (Custom Field Numeric)"
 msgstr ""
 
 msgid "by Product Virtual status (Custom Field)"
@@ -1913,4 +1915,58 @@ msgid "License"
 msgstr ""
 
 msgid "You have been using the plugin for more than two months without license key and now it is locked. Read more on the <a href=\"%1$s\">License page</a>."
+msgstr ""
+
+msgid "Include selected terms only"
+msgstr ""
+
+msgid "Please, do not call the \"%s\" function before the \"wp\" action"
+msgstr ""
+
+msgid "Regular price"
+msgstr ""
+
+msgid "Prefix «%s» is not allowed, because such term already exists. Please, use another prefix."
+msgstr ""
+
+msgid "Title:"
+msgstr ""
+
+msgid "Error: SEO rule with selected Filters Combination already exists."
+msgstr ""
+
+msgid "Error: invalid query."
+msgstr ""
+
+msgid "Error: invalid WP Page type."
+msgstr ""
+
+msgid "Filters everything in WordPress & WooCommerce: Products, any Post types, by Any Criteria. Compatible with WPML, ACF and others popular. Supports AJAX."
+msgstr ""
+
+msgid "Filter Everything&nbsp;— WooCoomerce Product & WordPress Filter"
+msgstr ""
+
+msgid "Taxonomy Numeric"
+msgstr ""
+
+msgid "Taxonomy Numeric - Available in Pro"
+msgstr ""
+
+msgid "Taxonomy"
+msgstr ""
+
+msgid "Taxonomy with numeric values you need to filter by"
+msgstr ""
+
+msgid "More/Less"
+msgstr ""
+
+msgid "Show a toggle link after %s terms"
+msgstr ""
+
+msgid "See less"
+msgstr ""
+
+msgid "See more"
 msgstr ""

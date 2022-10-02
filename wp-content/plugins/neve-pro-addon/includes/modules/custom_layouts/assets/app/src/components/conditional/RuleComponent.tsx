@@ -118,7 +118,7 @@ const RuleComponent = ( {
 		if ( isArchiveTaxonomy ) {
 			return Object.values( processed ).flat() as Option[];
 		}
-		return Object.values( processed ).flat()[ 0 ] as Option[];
+		return Object.values( processed ).flat().flat() as Option[];
 	};
 
 	const endRoot = Object.keys(

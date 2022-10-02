@@ -1,5 +1,5 @@
 /*!
- * Filter Everything 1.6.9
+ * Filter Everything 1.7.1
  */
 body .wpc-hidden{
     display: none;
@@ -46,6 +46,12 @@ body .wpc-hidden{
     margin-left: 0;
     float: none;
 }
+#top .widget .wpc-filter-more-less:not(.wpc-filter-few-terms) ul.wpc-filters-ul-list,
+.widget-area .wpc-filter-more-less:not(.wpc-filter-few-terms) ul.wpc-filters-ul-list,
+.wpc-filters-widget-main-wrapper .wpc-filter-more-less:not(.wpc-filter-few-terms) ul.wpc-filters-ul-list{
+    padding-bottom: 0;
+    margin-bottom: 0;
+}
 .theme-numinous .widget-area ul.wpc-filters-ul-list,
 .theme-numinous .wpc-filters-widget-main-wrapper ul.wpc-filters-ul-list{
     margin-top: 0;
@@ -72,18 +78,8 @@ body .wpc-filters-widget-main-wrapper li.wpc-term-item,
     padding: 0;
     margin-left: 0;
 }
-/*#top li.wpc-term-item > .wpc-term-item-content-wrapper+ul.children,*/
-/*#top li.wpc-term-item ul.children,*/
-li.wpc-term-item > .wpc-term-item-content-wrapper+ul.children,
-li.wpc-term-item ul.children{
-    display: none;
-    margin-top: 14px;
-}
 #top li.wpc-term-item > .wpc-term-item-content-wrapper+ul.children{
     margin-top: 14px;
-}
-li.wpc-term-item.wpc-opened > ul.children{
-    display: block;
 }
 .theme-flatsome li.wpc-term-item > button.toggle{
     display: none;
@@ -132,6 +128,28 @@ i.wpc-toggle-children-list:before{
 i.wpc-toggle-children-list:after{
     bottom: calc(50% + -1px);
 }
+/* Hierarchy hide children */
+.wpc-filter-hierarchy-reverse li.wpc-term-item.wpc-closed > .wpc-term-item-content-wrapper+ul.children,
+li.wpc-term-item > .wpc-term-item-content-wrapper+ul.children,
+li.wpc-term-item ul.children{
+    display: none;
+    margin-top: 14px;
+}
+/* Hierarchy show children */
+.wpc-search-active li.wpc-term-item > .wpc-term-item-content-wrapper+ul.children,
+.wpc-search-active li.wpc-term-item.wpc-closed > .wpc-term-item-content-wrapper+ul.children,
+.wpc-filter-hierarchy-reverse li.wpc-term-item > .wpc-term-item-content-wrapper+ul.children,
+li.wpc-term-item.wpc-opened > ul.children{
+    display: block;
+}
+/* Hierarchy closed toggle */
+.wpc-filter-hierarchy-reverse .wpc-checkbox-item.wpc-closed > .wpc-term-item-content-wrapper > i.wpc-toggle-children-list:before{
+    display: inline-block;
+}
+/* Hierarchy opened toggle */
+.wpc-search-active .wpc-checkbox-item > .wpc-term-item-content-wrapper > i.wpc-toggle-children-list:before,
+.wpc-search-active .wpc-checkbox-item.wpc-closed > .wpc-term-item-content-wrapper > i.wpc-toggle-children-list:before,
+.wpc-filter-hierarchy-reverse .wpc-checkbox-item > .wpc-term-item-content-wrapper > i.wpc-toggle-children-list:before,
 .wpc-checkbox-item.wpc-opened > .wpc-term-item-content-wrapper > i.wpc-toggle-children-list:before{
     display: none;
 }
@@ -309,14 +327,13 @@ body li.wpc-term-item a:focus,
     box-shadow: none;
     text-decoration: none;
 }
-
 .widget-area .widget .wpc-filter-chips-list a,
 body .wpc-filter-chips-list li.wpc-filter-chip a,
 .wpc-filter-chips-list a{
     text-decoration: none;
     font-weight: 400;
     border-radius: 50px;
-    padding: 3px 15px;
+    padding: 1px 10px 2px 10px;
     display: inline-block;
     outline: none;
     border: 1px solid #d8d8d8;
@@ -347,8 +364,7 @@ body .wpc-filter-chips-list li.wpc-filter-chip a:active,
     color: #cc0000;
 }
 .widget-area .widget ul.wpc-filter-chips-list,
-body ul.wpc-filter-chips-list
-{
+body ul.wpc-filter-chips-list{
     margin-left: 0;
     list-style: none !important;
 }
@@ -359,6 +375,7 @@ li.wpc-filter-chip{
     padding: 0;
     border: none;
     list-style: none;
+    font-size: 91%;
 }
 .wpc-filter-chip-name{
     margin-right: 0.5em;
@@ -523,20 +540,11 @@ html .ui-button.ui-state-disabled:active {
 .ui-slider-vertical .ui-slider-range-max {
     top: 0;
 }
-.wpc-filter-has-selected .wpc-filter-collapsible+.wpc-closed,
-.wpc-filter-collapsible+.wpc-filter-content:not(.wpc-opened),
-.wpc-filter-collapsible+.wpc-filter-content.wpc-closed{
-    display: none;
-}
-.wpc-filter-has-selected .wpc-filter-collapsible+.wpc-filter-content:not(.wpc-closed),
-.wpc-filter-collapsible+.wpc-filter-content.wpc-opened{
-    display: block;
-}
-.wpc-filter-collapsible .wpc-filter-title{
-    position: relative;
-}
-.wpc-filter-has-selected .wpc-filter-collapsible.wpc-closed .wpc-filter-title button .wpc-open-icon,
-.wpc-filter-collapsible .wpc-filter-title button .wpc-open-icon{
+/* Closed filter header */
+.wpc-filter-collapsible-reverse.wpc-filter-collapsible.wpc-closed .wpc-filter-title .wpc-open-icon,
+.wpc-filter-has-selected.wpc-closed .wpc-filter-title .wpc-open-icon,
+.wpc-filter-collapsible.wpc-closed .wpc-filter-title .wpc-open-icon,
+.wpc-filter-collapsible .wpc-filter-title .wpc-open-icon{
     content: "";
     width: 0.5em;
     min-width: 0.5em;
@@ -547,9 +555,26 @@ html .ui-button.ui-state-disabled:active {
     position: relative;
     transform: rotate(-135deg);
 }
-.wpc-filter-has-selected .wpc-filter-title button .wpc-open-icon,
-.wpc-filter-collapsible.wpc-opened .wpc-filter-title button .wpc-open-icon{
+/* Opened filter header */
+.wpc-filter-collapsible-reverse.wpc-filter-collapsible .wpc-filter-title .wpc-open-icon,
+.wpc-filter-has-selected .wpc-filter-title .wpc-open-icon,
+.wpc-filter-collapsible.wpc-opened .wpc-filter-title .wpc-open-icon{
     transform: rotate(45deg);
+}
+/* Closed filter container */
+.wpc-filter-has-selected.wpc-closed .wpc-filter-content,
+.wpc-filter-collapsible.wpc-closed .wpc-filter-content,
+.wpc-filter-collapsible .wpc-filter-content{
+    display: none;
+}
+/* Opened filter container */
+.wpc-filter-collapsible-reverse .wpc-filter-content,
+.wpc-filter-has-selected .wpc-filter-content,
+.wpc-filter-collapsible.wpc-opened .wpc-filter-content{
+    display: block;
+}
+.wpc-filter-collapsible .wpc-filter-title{
+    position: relative;
 }
 .wpc-filter-header .wpc-filter-title button{
     width: 100%;
@@ -587,6 +612,14 @@ html .ui-button.ui-state-disabled:active {
 .wpc-filters-widget-main-wrapper,
 .widget_wpc_filters_widget{
     position: relative;
+}
+.widget_wpc_filters_widget{
+    overflow: visible;
+}
+.wpc-filters-widget-main-wrapper a.wpc-toggle-a{
+    text-decoration: none;
+    border-bottom-width: 1px;
+    border-bottom-style: dashed;
 }
 .wpc-filters-widget-top-container{
     background: #fff;
@@ -686,6 +719,9 @@ a.wpc-widget-close-icon{
     display: flex;
     align-items: center;
     justify-content: center;
+}
+.wpc-filters-widget-main-wrapper a.wpc-filters-reset-button{
+    background-color: #ffffff;
 }
 .wpc-filters-widget-controls-container a.wpc-filters-apply-button{
     background-color: #d8d8d8;
@@ -932,6 +968,51 @@ span.wpc-icon-line-3:after{
 .wpc-widget-close-icon span.wpc-icon-line-1{
     margin-bottom: -2px;
     height: 2px;
+}
+/* Hide Controls */
+.wpc-filter-few-terms .wpc-see-less-control,
+.wpc-filter-few-terms .wpc-see-more-control{
+    display: none !important;
+}
+.wpc-show-more-reverse.wpc-filter-more-less.wpc-show-less .wpc-see-less-control,
+.wpc-show-more-reverse.wpc-filter-more-less .wpc-see-more-control,
+.wpc-filter-has-selected.wpc-show-less .wpc-see-less-control,
+.wpc-filter-has-selected.wpc-filter-more-less .wpc-see-more-control,
+.wpc-filter-more-less.wpc-show-more .wpc-see-more-control,
+.wpc-filter-more-less .wpc-see-less-control{
+    display: none;
+}
+/* Show Controls */
+.wpc-show-more-reverse.wpc-filter-more-less.wpc-show-less .wpc-see-more-control,
+.wpc-show-more-reverse.wpc-filter-more-less .wpc-see-less-control,
+.wpc-filter-has-selected.wpc-show-less .wpc-see-more-control,
+.wpc-filter-has-selected .wpc-see-less-control,
+.wpc-filter-more-less.wpc-show-more .wpc-see-less-control,
+.wpc-filter-more-less .wpc-see-more-control{
+    display: inline;
+}
+/* Hide list items */
+.wpc-show-more-reverse.wpc-show-less .wpc-filters-ul-list > li,
+.wpc-filter-has-selected.wpc-filter-more-less.wpc-show-less .wpc-filters-ul-list > li,
+.wpc-filter-more-less .wpc-filters-ul-list > li{
+    display: none;
+}
+/* Show list items */
+.wpc-show-more-reverse .wpc-filters-ul-list > li,
+.wpc-filter-has-selected.wpc-filter-more-less .wpc-filters-ul-list > li,
+.wpc-filter-more-less.wpc-show-more .wpc-filters-ul-list > li{
+    display: list-item;
+}
+.wpc-search-active .wpc-toggle-a{
+    display: none !important;
+}
+.wpc-search-active .wpc-filters-ul-list li,
+.wpc-search-active.wpc-filter-more-less .wpc-filters-ul-list li{
+    display: none;
+}
+.wpc-search-active.wpc-filter-more-less .wpc-filters-ul-list li.showli,
+.wpc-search-active .wpc-filters-ul-list li.showli{
+    display: list-item;
 }
 .theme-generatepress.woocommerce .wpc-filters-open-button-container,
 .theme-Avada .woocommerce-container .wpc-filters-open-button-container{

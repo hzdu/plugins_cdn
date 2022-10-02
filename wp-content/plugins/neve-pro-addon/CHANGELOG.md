@@ -1,3 +1,17 @@
+##### [Version 2.4.2](https://github.com/Codeinwp/neve-pro-addon/compare/v2.4.1...v2.4.2) (2022-09-27)
+
+- [Fix] Upside down menu caret in Safari
+- [Fix] Page header not appearing when expanding its section
+- [Fix[ Submenu looks different in customizer by default
+- [Fix] Performace issue caused by Advanced search components
+
+##### [Version 2.4.1](https://github.com/Codeinwp/neve-pro-addon/compare/v2.4.0...v2.4.1) (2022-09-19)
+
+- [Fix] Missing PHP editor in custom layouts
+- [Fix] Added an additional check for custom layouts role capability
+- [Fix] Custom layout sidebar not working
+- [Fix] Missing conditions when setting a custom layout
+
 #### [Version 2.4.0](https://github.com/Codeinwp/neve-pro-addon/compare/v2.3.6...v2.4.0) (2022-09-19)
 
 - [Feat] Advanced style controls for sub menus - [Learn more](https://docs.themeisle.com/article/1226-header-primary-menu)

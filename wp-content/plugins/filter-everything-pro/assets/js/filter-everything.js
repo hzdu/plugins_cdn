@@ -1,10 +1,11 @@
 /*!
- * Filter Everything 1.6.9
+ * Filter Everything 1.7.1
  */
 (function ($) {
     "use strict";
     let wpcAjax                     = wpcFilterFront.wpcAjaxEnabled;
     let wpcStatusCookieName         = wpcFilterFront.wpcStatusCookieName;
+    let wpcMoreLessCookieName       = wpcFilterFront.wpcMoreLessCookieName;
     let wpcWidgetStatusCookieName   = wpcFilterFront.wpcWidgetStatusCookieName;
     let wpcHierachyListCookieName   = wpcFilterFront.wpcHierarchyListCookieName;
     let wpcMobileWidth              = wpcFilterFront.wpcMobileWidth;
@@ -19,6 +20,14 @@
     let wpcQueryOnThePageSets       = wpcFilterFront.wpcQueryOnThePageSets;
     let wpcWidgetContainer          = '.wpc-filters-widget-main-wrapper';
     let wpcIsMobile                 = false;
+    let toReplaceSEO                = true;
+    let prevState                   = false; // Contains SEO Rule availability on a page
+    let currentState                = false; // Contains SEO Rule availability on a page
+
+    let seoRuleId = $('#wpc-seo-rule-id').data( 'seoruleid' );
+    if ( seoRuleId > 0 ) {
+        prevState = true;
+    }
 
     function removeElement($el)
     {
@@ -49,7 +58,7 @@
 
     $(document).on('change', '.wpc-orderby-select', function (){
         let wpcSortingForm = $(this).parents('form.wpc-sorting-form');
-        let wpcSortingVal  = $(this).val();
+        // let wpcSortingVal  = $(this).val();
         let search = '';
         //@todo bug on mobile force AJAX
         search = '?' + wpcSortingForm.serialize();
@@ -150,17 +159,28 @@
     });
 
     $(document).on('click', 'i.wpc-toggle-children-list', function (){
-        let _tid = $(this).data('tid');
-        let wpcTermContentWrapper = $(this).parent(".wpc-term-item-content-wrapper");
-        let wpcTargetUl = wpcTermContentWrapper.parent('li').children('ul.children');
+        let tid = $(this).data('tid');
+        let $targetLi = $(this).parent(".wpc-term-item-content-wrapper").parent('li');
+        let $targetFilter = $(this).parents('.wpc-filters-section');
 
-        wpcTermContentWrapper.parent('li').toggleClass('wpc-opened');
-        // wpcTermContentWrapper.toggleClass('wpc-opened');
-
-        if( wpcTargetUl.is(':visible' ) ){
-            rememberOpened( _tid, wpcHierachyListCookieName );
-        }else{
-            forgetOpened( _tid, wpcHierachyListCookieName );
+        if ( $targetLi.hasClass( 'wpc-opened' ) ) {
+            $targetLi.removeClass( 'wpc-opened' )
+                .addClass( 'wpc-closed' );
+            setStatusCookie( -tid, wpcHierachyListCookieName );
+        } else if ( $targetLi.hasClass( 'wpc-closed' ) ) {
+            $targetLi.removeClass( 'wpc-closed' )
+                .addClass( 'wpc-opened' );
+            setStatusCookie( tid, wpcHierachyListCookieName );
+        } else {
+            if ( $targetFilter.hasClass( 'wpc-filter-hierarchy-reverse' ) ) {
+                $targetLi.removeClass( 'wpc-opened' ) // For any case
+                    .addClass( 'wpc-closed' );
+                setStatusCookie( -tid, wpcHierachyListCookieName );
+            } else {
+                $targetLi.removeClass( 'wpc-closed' ) // For any case
+                    .addClass( 'wpc-opened' );
+                setStatusCookie( tid, wpcHierachyListCookieName );
+            }
         }
     });
 
@@ -251,6 +271,7 @@
         let setId       = $wrapper.data( 'set' );
         wpcCloseFiltersContainer(setId);
     });
+
     $(document).on('click', '.wpc-filters-apply-button', function (e){
         e.preventDefault();
         let $wrapper    = $( this ).parents( wpcWidgetContainer );
@@ -329,17 +350,57 @@
         wpcCloseFiltersContainer(setId);
     });
 
-    $(document).on('click', '.wpc-filter-title button', function (e){
+    $(document).on('click', 'a.wpc-toggle-a', function (e){
         e.preventDefault();
-        let buttonHead = $(this).parents('.wpc-filter-collapsible');
-        let filterId   = buttonHead.parents('.wpc-filters-section').data('fid');
+        let fid            = $(this).data('fid');
+        let $filterSection = $( ".wpc-filters-section-" + fid );
+        //$( ".wpc-filters-section-" + fid ).toggleClass( 'wpc-show-more' );
 
-        if( $( '.wpc-filters-section-'+filterId+' .wpc-filter-content' ).is( ':visible' ) ){
-            closeFilterContentBox(buttonHead);
-            forgetOpened(filterId, wpcStatusCookieName);
-        }else{
-            openFilterContentBox(buttonHead);
-            rememberOpened(filterId, wpcStatusCookieName);
+        if ( $filterSection.hasClass('wpc-show-more' ) ) {
+            $filterSection.removeClass( 'wpc-show-more' )
+                .addClass( 'wpc-show-less' );
+            setStatusCookie( -fid, wpcMoreLessCookieName );
+        } else if ( $filterSection.hasClass('wpc-show-less' ) ) {
+            $filterSection.removeClass( 'wpc-show-less' )
+                .addClass( 'wpc-show-more' );
+            setStatusCookie( fid, wpcMoreLessCookieName );
+        } else {
+            // No status class detected
+            if( $filterSection.hasClass( 'wpc-filter-has-selected' ) || $filterSection.hasClass( 'wpc-show-more-reverse' ) ) {
+                $filterSection.removeClass( 'wpc-show-more' ) // For any case
+                    .addClass( 'wpc-show-less' );
+                setStatusCookie( -fid, wpcMoreLessCookieName );
+            } else {
+                $filterSection.removeClass( 'wpc-show-less' ) // For any case
+                    .addClass( 'wpc-show-more' );
+                setStatusCookie( fid, wpcMoreLessCookieName );
+            }
+        }
+    });
+
+    $(document).on('click', '.wpc-filter-title button', function (e) {
+        e.preventDefault();
+        let $filterSection = $(this).parents('.wpc-filters-section');
+        let filterId       = $filterSection.data( 'fid' );
+
+        if ( $filterSection.hasClass( 'wpc-opened' ) ) {
+            $filterSection.removeClass( 'wpc-opened' )
+                .addClass( 'wpc-closed' );
+            setStatusCookie( -filterId, wpcStatusCookieName );
+        } else if ( $filterSection.hasClass( 'wpc-closed' ) ) {
+            $filterSection.removeClass( 'wpc-closed' )
+                .addClass( 'wpc-opened' );
+            setStatusCookie( filterId, wpcStatusCookieName );
+        } else {
+           if( $filterSection.hasClass( 'wpc-filter-has-selected' ) || $filterSection.hasClass( 'wpc-filter-collapsible-reverse' ) ) {
+                $filterSection.removeClass( 'wpc-opened' )
+                    .addClass( 'wpc-closed' );
+               setStatusCookie( -filterId, wpcStatusCookieName );
+           } else {
+               $filterSection.removeClass( 'wpc-closed' )
+                   .addClass( 'wpc-opened' );
+               setStatusCookie( filterId, wpcStatusCookieName );
+           }
         }
     });
 
@@ -376,22 +437,25 @@
     });
 
     $(document).on('input', '.wpc-filter-search-field',function (e){
-        let $search = $(this).val().toString().toLowerCase();
-        let fid = $(this).parents('.wpc-filters-section').data('fid');
+        let $search  = $(this).val().toString().toLowerCase();
+        let $section = $(this).parents('.wpc-filters-section');
+        let fid      = $section.data('fid');
 
         if( $search !== '' ){
             $(".wpc-filter-search-wrapper-"+fid+" .wpc-search-clear").show();
+            $section.addClass('wpc-search-active');
         }else{
             $(".wpc-filter-search-wrapper-"+fid+" .wpc-search-clear").hide();
+            $section.removeClass('wpc-search-active');
         }
 
         $(".wpc-filters-list-"+fid+" li").each(function( index, value ) {
             let $li = $(value);
             let $termName = $(value).find('label a').text().toLowerCase();
             if ($termName.indexOf($search) > -1) {
-                $li.show();
+                $li.addClass('showli');
             } else {
-                $li.hide();
+                $li.removeClass('showli');
             }
         });
     });
@@ -513,50 +577,11 @@
         document.cookie = updatedCookie
     }
 
-    function wpcDeleteCookie(name) {
-        wpcSetCookie(name, null, { expires: -1 })
-    }
-
-    function openFilterContentBox(buttonHead)
-    {
-        let body  = buttonHead.next('.wpc-filter-content');
-        let setId = buttonHead.parents(wpcWidgetContainer).data('set');
-        let widgetClass = 'wpc-filter-set-'+setId;
-
-        buttonHead.addClass('wpc-opened')
-            .removeClass('wpc-closed');
-
-        body.slideDown({
-            duration: 100,
-            complete: function (){
-                $(this).addClass('wpc-opened')
-                    .removeClass('wpc-closed');
-
-                wpcInitSelect2(widgetClass);
-            }
-        });
-    }
-
-    function closeFilterContentBox(buttonHead)
-    {
-        let body = buttonHead.next('.wpc-filter-content');
-
-        buttonHead.removeClass('wpc-opened')
-            .addClass('wpc-closed');
-
-        body.slideUp({
-            duration: 100,
-            complete: function (){
-                $(this).removeClass('wpc-opened')
-                    .addClass('wpc-closed');
-            }
-        });
-    }
-
-    function rememberOpened(fid, wpcListCookieName)
+    function setStatusCookie( fid, wpcListCookieName )
     {
         let status = wpcGetCookie(wpcListCookieName);
         let _fids  = new Array();
+
         fid = fid.toString();
 
         // In case there is no Cookies yet
@@ -572,6 +597,14 @@
             return el != '';
         });
 
+        // Remove possible existing closed/opened to avoid double commands e.g. 151 and -151
+        let reversal = -fid;
+        let pos = _fids.indexOf( reversal.toString() );
+
+        if ( pos !== -1 ) {
+            _fids.splice(pos, 1);
+        }
+
         if( _fids.indexOf(fid) === -1 ){
             _fids.push(fid);
 
@@ -585,33 +618,6 @@
 
             wpcSetCookie( wpcListCookieName, newStatus, {path: '/', 'max-age': 2592000} )
         }
-
-    }
-
-    function forgetOpened(fid, wpcListCookieName)
-    {
-        let status = wpcGetCookie(wpcListCookieName);
-        fid = fid.toString();
-
-        if( typeof status !== 'undefined' ){
-            let _fids = status.split(',');
-            let pos = _fids.indexOf(fid);
-            if( pos !== -1 ){
-                _fids.splice(pos, 1);
-                let newStatus = _fids.join(',');
-
-                wpcSetCookie( wpcListCookieName, newStatus, {path: '/', 'max-age': 2592000} )
-            }
-        }
-    }
-
-    function wpcSetVisibilityCssValues( $tag )
-    {
-        let wpcCssDisplay = $tag.css('display');
-        let wpcCssOpacity = $tag.css('opacity');
-
-        $tag.data('wpc-display', wpcCssDisplay);
-        $tag.data('wpc-opacity', wpcCssOpacity);
 
     }
 
@@ -909,26 +915,43 @@
                 }
 
             },
-            success: function (response) {
-                if (typeof response !== 'undefined' ) {
-
+            success: function ( response ) {
+                if ( typeof response !== 'undefined' ) {
                     // Products
                     // Wrap response to allow .find method search inner elements.
-                    response = '<div class="responseWrapper">'+response+'</div>';
-                    let $response = $(response);
+                    response                    = '<div class="responseWrapper">'+response+'</div>';
+                    let $response               = $(response);
+                    let $responsePostsContainer = $response.find(targetPostsContainer);
+                    let currentSeoRuleId        = $response.find('#wpc-seo-rule-id').data('seoruleid');
+                    let isFilterRequest         = $response.find('.wpc-filters-widget-main-wrapper').hasClass('wpc-filter-request');
+
+                    if ( currentSeoRuleId > 0 ) {
+                        currentState = true;
+                    } else {
+                        currentState = false;
+                    }
+
+                    if ( ! currentState && ! prevState ) {
+                        toReplaceSEO = false;
+                    } else {
+                        toReplaceSEO = true;
+                    }
 
                     if( applyButtonMode ){
                         // Filters Widget
-                        wpcReloadWidget(response, widgetClass);
+                        wpcReloadFiltersWidget( $response, widgetClass );
                         return;
                     }
 
-                    if( ( $response.find(targetPostsContainer).length > 0 ) && wpcFilterFront.wpcAjaxEnabled && wpcQueryOnThePageSets.includes( setId ) ){
-                        let responseTitle     = $response.find('title').text();
-                        let responseCanonical = $response.find('link[rel="canonical"]').attr('href');
+                    if( ( $responsePostsContainer.length > 0 ) && wpcFilterFront.wpcAjaxEnabled && wpcQueryOnThePageSets.includes( setId ) ){
 
+                        if( isFilterRequest ) {
+                            $("body").addClass('wpc_is_filter_request');
+                        } else {
+                            $("body").removeClass('wpc_is_filter_request');
+                        }
                         // But this works on TV also
-                        $(targetPostsContainer).html( $response.find(targetPostsContainer).html() );
+                        $(targetPostsContainer).html( $responsePostsContainer.html() );
                         // wpcPostsWereLoaded = true;
 
                         // Mark the "Show" button to not reload content
@@ -936,65 +959,82 @@
 
                         //@todo update selected terms if them outside of posts container
 
-                        // If h1 outside of posts container
-                        if( $response.find(targetPostsContainer).find('h1').length < 1 ){
-                            if($response.find('h1').length > 0){
-                                $('h1')[0].replaceWith( $response.find('h1')[0] );
-                            }
-                        }
+                        if ( toReplaceSEO ) {
+                            let responseTitle     = $response.find('title').text();
+                            let responseCanonical = $response.find('link[rel="canonical"]').attr('href');
 
-                        // If seoText container is outside from posts container
-                        if( $response.find(targetPostsContainer).find('.wpc-page-seo-description').length < 1 ){
-                            let wpcSeoTextContainer = $response.find('.wpc-page-seo-description');
-                            let originalSeoTextContainer = $('.wpc-page-seo-description');
-                            if( wpcSeoTextContainer.length > 0 && originalSeoTextContainer.length > 0){
-                                $('.wpc-page-seo-description')[0].replaceWith( wpcSeoTextContainer[0] );
+                            // If h1 outside of posts container
+                            if( $responsePostsContainer.find('h1').length < 1 ){
+                                if( $response.find('h1').length > 0){
+                                    $('h1')[0].replaceWith( $response.find('h1')[0] );
+                                }
+                            }
+
+                            // If seoText container is outside from posts container
+                            if( $responsePostsContainer.find('.wpc-page-seo-description').length < 1 ){
+                                let wpcSeoTextContainer = $response.find('.wpc-page-seo-description');
+                                let originalSeoTextContainer = $('.wpc-page-seo-description');
+                                if( wpcSeoTextContainer.length > 0 && originalSeoTextContainer.length > 0){
+                                    $('.wpc-page-seo-description')[0].replaceWith( wpcSeoTextContainer[0] );
+                                }
+                            }
+
+                            // Replace title
+                            if( typeof responseTitle !== 'undefined' && responseTitle !== '' ){
+                                $(document).attr( 'title', responseTitle );
+                            }
+
+                            // Handle <meta name="description" /> tag
+                            handleMetaTag('description', response);
+
+                            // Handle <meta name="robots" /> tag
+                            handleMetaTag('robots', response);
+
+                            // Handle Canonical
+                            if( typeof responseCanonical !== 'undefined' && responseCanonical !== '' ){
+                                // Replace content if tag exists
+                                if( $('link[rel="canonical"]').length > 0 ){
+                                    $('link[rel="canonical"]').attr('href', responseCanonical );
+                                } else {
+                                    // Append meta tag
+                                    $('head').append('<link rel="canonical" href="'+responseCanonical+'" />');
+                                }
+                            }else{
+                                if( $('link[rel="canonical"]').length > 0 ){
+                                    $('link[rel="canonical"]').remove();
+                                }
                             }
                         }
 
                         // If Filters open button outside of posts container
-                        if( $response.find(targetPostsContainer).find('.wpc-open-button-'+setId).length < 1 ){
-                            if($response.find('.wpc-open-button-'+setId+' .wpc-button-inner').length > 0){
-                                let wpcButtonInnerContent = $response.find('.wpc-open-button-'+setId+' .wpc-button-inner')[0];
-                                $('.wpc-open-button-'+setId+' .wpc-button-inner').replaceWith( wpcButtonInnerContent );
-                            }
-                        }
-                        // Replace title
-                        if( typeof responseTitle !== 'undefined' && responseTitle !== '' ){
-                            $(document).attr( 'title', responseTitle );
-                        }
-
-                        // Handle <meta name="description" /> tag
-                        handleMetaTag('description', response);
-
-                        // Handle <meta name="robots" /> tag
-                        handleMetaTag('robots', response);
-
-                        // Handle Canonical
-                        if( typeof responseCanonical !== 'undefined' && responseCanonical !== '' ){
-                            // Replace content if tag exists
-                            if( $('link[rel="canonical"]').length > 0 ){
-                                $('link[rel="canonical"]').attr('href', responseCanonical );
-                            } else {
-                                // Append meta tag
-                                $('head').append('<link rel="canonical" href="'+responseCanonical+'" />');
-                            }
-                        }else{
-                            if( $('link[rel="canonical"]').length > 0 ){
-                                $('link[rel="canonical"]').remove();
+                        if( $responsePostsContainer.find('.wpc-open-button-'+setId).length < 1 ) {
+                            let wpcButtonInnerContent = $response.find('.wpc-open-button-'+setId+' .wpc-button-inner');
+                            if( wpcButtonInnerContent.length > 0 ) {
+                                // let wpcButtonInnerContent = $response.find('.wpc-open-button-'+setId+' .wpc-button-inner')[0];
+                                $('.wpc-open-button-'+setId+' .wpc-button-inner').replaceWith( wpcButtonInnerContent[0] );
                             }
                         }
 
                         window.history.pushState({wpcHandler: 'wpcFilterEverything'}, null, link);
+
+                        // console.log( 'toReplace ' + toReplaceSEO );
+                        // console.log( 'prevState ' + prevState );
+                        // console.log( 'currentState ' + currentState );
+
+                        prevState = currentState;
                     }
 
+                    let wpcPostsFound   = $response.find('.'+widgetClass).find('.wpc-posts-found').data('found');
+                    wpcPostsFound       = parseFloat( wpcPostsFound );
+
                     // Chips
-                    wpcReloadChips($response);
+                    wpcReloadChips( $response );
 
-                    // Filters Widget
-                    wpcReloadWidget(response, widgetClass);
+                    // Sorting widget
+                    wpcReloadSorting( $response );
 
-                    wpcReloadSorting($response);
+                    // Filters Widget. It modifies $response so it is better to fire it in the end
+                    wpcReloadFiltersWidget( $response, widgetClass );
 
                     //trigger events
                     $(document).trigger( 'ready' );
@@ -1005,9 +1045,6 @@
                     $(window).trigger( 'lazyshow' );
 
                     wpcFixWoocommerceOrder();
-
-                    let wpcPostsFound   = $response.find('.'+widgetClass).find('.wpc-posts-found').data('found');
-                    wpcPostsFound       = parseFloat( wpcPostsFound );
 
                     let applyButtonFilterSet = false;
                     if( setId > 0 && wpcApplyButtonSets.length > 0 && wpcApplyButtonSets.includes( setId ) ){
@@ -1035,7 +1072,7 @@
                 wpcHideSpinner();
                 let $a_el = $(widget).find('.wpc-filters-apply-button');
                 let oldLink = $a_el.data('href');
-                $a_el.attr('href', oldLink);
+                $a_el.attr('href', oldLink );
             }
         });
 
@@ -1066,11 +1103,10 @@
         });
     }
 
-    function wpcReloadWidget( response, widgetClass ){
+    function wpcReloadFiltersWidget( $response, widgetClass ){
         // Replace parts
-        let targetWidget = '.'+widgetClass;
-
-        let $response    = $(response);
+        // let targetWidget = '.'+widgetClass;
+        // let $response    = $response;
         // It seems we need to reload all widgets available on the page
         if( wpcIsMobile === true && (wpcFilterFront.showBottomWidget === 'yes') ){
 
@@ -1115,17 +1151,25 @@
 
     function wpcReloadSorting( $response ){
         let wpcSortingForms   = $response.find('.wpc-sorting-form');
+        if ( wpcSortingForms.length < 1 ) {
+            return;
+        }
         let originalSortingForms = $(".wpc-sorting-form");
 
         if( wpcSortingForms.length > 0 ){
-            wpcSortingForms.each(function ( index, elem ){
+            wpcSortingForms.each( function ( index, elem ){
                 originalSortingForms[index].replaceWith(elem);
             });
         }
     }
 
     function wpcReloadChips( $response ){
-        $(".wpc-filter-chips-list").each( function ( index, chipsWidget ) {
+        let $chips = $(".wpc-filter-chips-list");
+        if ( $chips.length < 1 ) {
+            return;
+        }
+
+        $chips.each( function ( index, chipsWidget ) {
             let chipsSet            = $(chipsWidget).data('set');
             let chipsWidgetClass    = '.wpc-filter-chips-'+chipsSet;
             let newWidgets          = $response.find(chipsWidgetClass);
@@ -1140,7 +1184,7 @@
 
         });
 
-        $(".wpc-chips-locked").removeClass("wpc-chips-locked");
+        //$(".wpc-chips-locked").removeClass("wpc-chips-locked");
     }
 
     window.addEventListener( 'popstate', function ( e ) {

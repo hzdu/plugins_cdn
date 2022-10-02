@@ -3,9 +3,9 @@ msgstr ""
 "Project-Id-Version: Filter Everything PRO\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-02-23 21:45+0000\n"
-"PO-Revision-Date: 2022-08-08 12:18+0000\n"
+"PO-Revision-Date: 2022-09-30 09:19+0000\n"
 "Last-Translator: Administrator\n"
-"Language-Team: Українська\n"
+"Language-Team: Ukrainian\n"
 "Language: uk\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10 >= 2 && "
 "n%10<=4 &&(n%100<10||n%100 >= 20)? 1 : 2);\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Loco https://localise.biz/\n"
-"X-Loco-Version: 2.6.1; wp-6.0.1\n"
+"X-Loco-Version: 2.6.2; wp-6.0.2\n"
 "X-Domain: filter-everything"
 
 msgid ""
@@ -403,7 +403,7 @@ msgid "by product Width"
 msgstr "по ширині товару"
 
 msgid ""
-"by Sale Price (Custom Field Num) or on Sale Status (Custom Field Exists)"
+"by Sale Price (Custom Field Numeric) or on Sale Status (Custom Field Exists)"
 msgstr ""
 "по акційній ціні (Мета поле, тип «Числа»‎) або по акційному статусу товару "
 "(Мета поле, тип «Існує»‎)"
@@ -414,7 +414,7 @@ msgstr "по кількості продаж"
 msgid "by Sold Individually status (Custom Field)"
 msgstr "по статусу Продавати індивідуально (Мета поле)"
 
-msgid "by Stock Quantity (Custom Field Num)"
+msgid "by Stock Quantity (Custom Field Numeric)"
 msgstr "по кількості В наявності (Мета поле, тип «Числа»‎)"
 
 msgid "By title: alphabetical"
@@ -516,7 +516,7 @@ msgid "Custom Field Filters"
 msgstr "Фільтри по мета полям"
 
 #: src/Entities/EntityManager.php:119
-msgid "Custom Field Num"
+msgid "Custom Field Numeric"
 msgstr "Мета поле, тип «Числа»‎"
 
 #: pro/Admin/SeoRules.php:111 src/Admin/FilterSet.php:150
@@ -684,16 +684,30 @@ msgid ""
 "Entities, whose terms should display in SEO data without force lowercasing"
 msgstr "Сутності, для яких SEO-дані не повинні починатися з маленької літери"
 
-#: src/Admin/AdminHooks.php:53
+#: src/Admin/AdminHooks.php:154
 #, php-format
 msgid ""
 "Error: <strong>%s</strong> filter prefix is not allowed and must be changed "
 "on the Filter %s settings <a href=\"%s\" target=\"_blank\">page</a>. "
 "Otherwise this site will not work properly."
-msgstr ""
+msgid_plural ""
+"Error: following filter prefixes <strong>%s</strong> are not allowed and "
+"must be changed on the Filter %s settings <a href=\"%s\" target=\"_blank\">"
+"page</a>. Otherwise this site will not work properly."
+msgstr[0] ""
 "Помилка: значення <strong>%s</strong> небажане в якості URL префіксу і краще "
 "його змінити на вкладці <strong>%s</strong> <a href=\"%s\" target=\"_blank\">"
 "сторінки налаштувань</a>.<br /> Інакше ваш сайт працюватиме з помилками."
+msgstr[1] ""
+"Помилка: значення <strong>%s</strong> небажані в якості URL префіксів і "
+"краще їх змінити на вкладці <strong>%s</strong> <a href=\"%s\" "
+"target=\"_blank\">сторінки налаштувань</a>.<br /> Інакше ваш сайт "
+"працюватиме з помилками."
+msgstr[2] ""
+"Помилка: значення <strong>%s</strong> небажані в якості URL префіксів і "
+"краще їх змінити на вкладці <strong>%s</strong> <a href=\"%s\" "
+"target=\"_blank\">сторінки налаштувань</a>.<br /> Інакше ваш сайт "
+"працюватиме з помилками."
 
 #: src/Admin/FilterFields.php:1278
 msgid "Error: all SEO data fields could not be empty."
@@ -714,10 +728,6 @@ msgstr "Помилка: URL префікс не може бути пустим."
 #: src/Admin/FilterFields.php:1272
 msgid "Error: for filter Post Author logic OR is acceptable only."
 msgstr "Помилка: фільтр за автором підтримує лише логіку \"АБО\""
-
-#: src/Admin/FilterFields.php:1274
-msgid "Error: for filter Post Meta Num logic AND is acceptable only."
-msgstr "Помилка: фільтр Мета поле, тип «Числа»‎ підтримує лише логіку \"І\""
 
 #: src/Admin/FilterFields.php:1271
 msgid "Error: invalid exclude terms"
@@ -763,6 +773,9 @@ msgstr "Помилка: некоректне значення поля «Сор�
 msgid "Error: invalid post type."
 msgstr "Помилка: некоректний тип допису."
 
+msgid "Error: invalid query."
+msgstr "Помилка: некоректний WP_Query"
+
 #: src/Admin/FilterFields.php:1280
 msgid "Error: invalid SEO Rule ID."
 msgstr "Помилка: некоректне значення ID SEO правила."
@@ -783,12 +796,19 @@ msgstr "Помилка: некоректне значення поля «Де ф
 msgid "Error: invalid View parameter."
 msgstr "Помилка: некоректне значення поля «Вигляд у віджеті»‎"
 
+msgid "Error: invalid WP Page type."
+msgstr "Помилка: некоректний тип сторінки."
+
 msgid "Error: invalid «Apply Button» mode field."
 msgstr "Помилка: некоректне значення поля Кнопка «Застосувати»"
 
 #: src/Admin/FilterFields.php:1273
-msgid "Error: Post meta num filter can not be in URL path."
-msgstr "Помилка: фільтр Мета поле, тип «Числа» не може бути в шляху URL"
+msgid "Error: numeric filter can not be in URL path."
+msgstr "Помилка: числовий фільтр не може бути в шляху URL"
+
+#: src/Admin/FilterFields.php:1274
+msgid "Error: only AND logic is supported for numeric filters."
+msgstr "Помилка: у числових фільтрах‎ дозволена тільки логіка \"І\""
 
 #: src/Admin/FilterFields.php:1264
 msgid ""
@@ -811,6 +831,9 @@ msgstr "Помилка: SEO правило повинно містити хоч�
 #: src/Admin/FilterFields.php:1276
 msgid "Error: SEO Rule must have specified Post Type."
 msgstr "Помилка: потрібно вказати тип допису для SEO правила."
+
+msgid "Error: SEO rule with selected Filters Combination already exists."
+msgstr "Помилка: SEO правило з такою комбінацією фільтрів вже існує."
 
 #: src/Admin/FilterFields.php:1265
 msgid ""
@@ -870,7 +893,7 @@ msgstr "Фільтр по"
 msgid "filter by Featured Image (Custom Field Exists)"
 msgstr "фільтр по Головній картинці допису (Мета поле, тип «Існує»‎)"
 
-msgid "filter by Product price (Custom Field Num)"
+msgid "filter by Product price (Custom Field Numeric)"
 msgstr "фільтр по ціні товару (Мета поле, тип «Числа»‎)"
 
 msgid "filter by Product Stock status (Custom Field)"
@@ -919,6 +942,9 @@ msgid ""
 "allows you to design flexible filtering system."
 msgstr ""
 "Filter Everything — гнучкий плагін фільтрів для WordPress та WooCommerce."
+
+msgid "Filter Everything&nbsp;— WooCoomerce Product & WordPress Filter"
+msgstr "Filter Everything&nbsp;— фільтр для WordPress та WooCommerce"
 
 #: src/Admin/FilterFields.php:65
 msgid "Filter Label"
@@ -1008,6 +1034,14 @@ msgstr "Фільтрування будь-яких типів дописів"
 #: views/admin/filters-seo-rules.php:33
 msgid "Filters Combination"
 msgstr "Комбінація фільтрів"
+
+msgid ""
+"Filters everything in WordPress & WooCommerce: Products, any Post types, by "
+"Any Criteria. Compatible with WPML, ACF and others popular. Supports AJAX."
+msgstr ""
+"Фільтрує все у WordPress та WooCommerce: Товари, будь-які Типи дописів і за "
+"будь-яким критерієм. Сумісний з WPML, ACF та іншими популярними. Підтримує "
+"AJAX."
 
 #: src/PostTypes.php:20
 msgid "Filters Set"
@@ -1152,6 +1186,9 @@ msgstr "В URL"
 msgid "include"
 msgstr "залучити"
 
+msgid "Include selected terms only"
+msgstr "Включити тільки вибрані терми"
+
 #: pro/Admin/SeoRules.php:587
 msgid "Include WordPress page for SEO rule"
 msgstr "Додати сторінку WordPress у SEO правило"
@@ -1264,6 +1301,9 @@ msgstr "Мобільні пристрої"
 #: src/Admin/FilterSet.php:223 views/admin/filter-row.php:25
 msgid "More options"
 msgstr "Більше налаштувань"
+
+msgid "More/Less"
+msgstr "Розгорнути/Згорнути"
 
 msgid "N/A"
 msgstr "н/д"
@@ -1420,7 +1460,7 @@ msgstr "Огляд"
 #: pro/SeoFrontend.php:141
 #, php-format
 msgid "page %d"
-msgstr "сторінка %s"
+msgstr "сторінка %d"
 
 #: pro/Admin/SeoRules.php:580
 msgid "Page archive for:"
@@ -1441,6 +1481,9 @@ msgstr "Будь ласка, активуйте, якщо віджет не з'�
 
 msgid "Please, add filters first"
 msgstr "Будь ласка, створіть хоча б ще один фільтр"
+
+msgid "Please, do not call the \"%s\" function before the \"wp\" action"
+msgstr "Будь ласка не викликайте функцію «%s» перед хуком «wp»"
 
 msgid ""
 "Please, specify desired Sorting widget by adding id parameter to the "
@@ -1506,6 +1549,13 @@ msgstr ""
 "Частина URL префіксу перед \"-\" не може співпадати з іншим існуючим "
 "префіксом."
 
+msgid ""
+"Prefix «%s» is not allowed, because such term already exists. Please, use "
+"another prefix."
+msgstr ""
+"Префікс «%s» не дозволений тому що вже існує терм з таким слагом. Будь ласка,"
+" виберіть якийсь інший."
+
 msgid "Premium support"
 msgstr "Преміум підтримка"
 
@@ -1543,6 +1593,9 @@ msgstr "Дізнатися більше"
 
 msgid "Registered"
 msgstr "Зареєстрований"
+
+msgid "Regular price"
+msgstr "Звичайна ціна"
 
 #: views/frontend/chips.php:4
 #, php-format
@@ -1686,6 +1739,9 @@ msgstr "Сторінка магазину"
 msgid "Show %s"
 msgstr "Показати %s"
 
+msgid "Show a toggle link after %s terms"
+msgstr "Додає перемикач після %s термів"
+
 msgid "Show Chips only for Set with IDs:"
 msgstr "Показувати чіпси лише для набору фільтрів з ID:"
 
@@ -1707,6 +1763,12 @@ msgstr "Показувати іконку"
 #: src/Admin/FilterFields.php:149
 msgid "Show in Chips"
 msgstr "Показувати в Чіпсах"
+
+msgid "See less"
+msgstr "Показати менше"
+
+msgid "See more"
+msgstr "Показати більше"
 
 #: src/Admin/Widgets/FiltersWidget.php:193
 msgid "Show number of posts found"
@@ -1843,9 +1905,21 @@ msgstr "Підтримка AJAX"
 msgid "Taxonomies"
 msgstr "Таксономії"
 
+msgid "Taxonomy"
+msgstr "Таксономія"
+
 #: src/Entities/EntityManager.php:111
 msgid "Taxonomy Filters"
 msgstr "Фільтри по таксономіям"
+
+msgid "Taxonomy Numeric"
+msgstr "Числова таксономія"
+
+msgid "Taxonomy Numeric - Available in Pro"
+msgstr "Числова таксономія - Доступно в PRO"
+
+msgid "Taxonomy with numeric values you need to filter by"
+msgstr "Таксономія з числовими значеннями, за якими ви хочете фільтрувати"
 
 #: src/Admin/FilterFields.php:260
 msgid "Term ID &laquo;123&raquo;"
@@ -1936,6 +2010,9 @@ msgstr "Ця назва буде відображатися у віджеті ф
 #: pro/Admin/Admin.php:136
 msgid "Title will be created automatically"
 msgstr "Заголовок буде створено автоматично"
+
+msgid "Title:"
+msgstr "Заголовок:"
 
 msgid ""
 "To allow the plugin to update automatically and avoid blocking some of its "

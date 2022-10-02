@@ -84,7 +84,7 @@ const MainPanel: React.FC< Props > = ( {
 
 	const showSidebar = postMeta[ META_LAYOUT ] === 'sidebar';
 
-	const hasManySidebars = Object.keys( sidebarPositions ).length > 2;
+	const hasManySidebars = Object.keys( sidebarPositions ).length > 1;
 
 	const showInside = postMeta[ META_LAYOUT ] === 'inside';
 
