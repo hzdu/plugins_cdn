@@ -14,8 +14,8 @@
 		position: absolute;
 		top: 50%;
 		left: 50%;
-		margin-left: -$size / 2;
-		margin-top: -$size / 2;
+		margin-left: calc( -1 * $size / 2 );
+		margin-top: calc( -1 * $size / 2 );
 		animation: spin .8s linear infinite;
 		content: "";
 		background: url('../img/loader.svg') center center;

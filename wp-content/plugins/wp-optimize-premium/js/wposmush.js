@@ -635,26 +635,7 @@ var WP_Optimize_Smush = function() {
 
 		$('#wpo_smush_images_save_options_spinner').show().delay(3000).fadeOut();
 
-		if ($('#enable_custom_compression').is(":checked")) {
-			image_quality = $('#custom_compression_slider').val();
-		} else {
-			// The '90' here has to be kept in sync with WP_Optimize::admin_page_wpo_images_smush()
-			image_quality = $('#enable_lossy_compression').is(":checked") ? 60 : 100;
-		}
-		lossy_compression = image_quality < 100 ? true : false;
-
-		var smush_options = {
-			'compression_server': $("input[name='compression_server']:checked").val(),
-			'image_quality': image_quality,
-			'lossy_compression': lossy_compression,
-			'back_up_original': $('#smush-backup-original').is(":checked"),
-			'back_up_delete_after': $('#smush-backup-delete').is(":checked"),
-			'back_up_delete_after_days': $('#smush-backup-delete-days').val(),
-			'preserve_exif': $('#smush-preserve-exif').is(":checked"),
-			'autosmush': $('#smush-automatically').is(":checked"),
-			'show_smush_metabox': $('#smush-show-metabox').is(":checked"),
-			'webp_conversion': $('#enable_webp_conversion').is(":checked")
-		}
+		var smush_options = get_smush_options();
 
 		smush_manager_send_command('update_smush_options', smush_options, function(resp) {
 			$('#wpo_smush_images_save_options_spinner').hide();
@@ -1185,6 +1166,31 @@ var WP_Optimize_Smush = function() {
 
 	};
 
+	// Gather smush options
+	var get_smush_options = function() {
+		var image_quality = '';
+		if ($('#enable_custom_compression').is(":checked")) {
+			image_quality = $('#custom_compression_slider').val();
+		} else {
+			// The '90' here has to be kept in sync with WP_Optimize::admin_page_wpo_images_smush()
+			image_quality = $('#enable_lossy_compression').is(":checked") ? 60 : 100;
+		}
+		var lossy_compression = image_quality < 100 ? true : false;
+
+		return {
+			'compression_server': $("input[name='compression_server']:checked").val(),
+			'image_quality': image_quality,
+			'lossy_compression': lossy_compression,
+			'back_up_original': $('#smush-backup-original').is(":checked"),
+			'back_up_delete_after': $('#smush-backup-delete').is(":checked"),
+			'back_up_delete_after_days': $('#smush-backup-delete-days').val(),
+			'preserve_exif': $('#smush-preserve-exif').is(":checked"),
+			'autosmush': $('#smush-automatically').is(":checked"),
+			'show_smush_metabox': $('#smush-show-metabox').is(":checked"),
+			'webp_conversion': $('#enable_webp_conversion').is(":checked")
+		};
+	}
+	wp_optimize.smush_settings = get_smush_options;
 } // END WP_Optimize_Smush
 
 /**

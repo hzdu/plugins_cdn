@@ -156,43 +156,6 @@
 				}
 			});
 
-			/**
-			 * Gather data from the given form
-			 *
-			 * @param {HTMLFormElement} form
-			 *
-			 * @returns {Array} Array of collected data from the form
-			 */
-			function gather_data(form) {
-				var data = $(form).serializeArray().reduce(form_serialize_reduce_cb, {});
-				$(form).find('input[type="checkbox"]').each(function (i) {
-					var name = $(this).prop("name");
-					if (name.includes('[]')) {
-						if (!$(this).is(':checked')) return;
-						var newName = name.replace('[]', '');
-						if (!data[newName]) data[newName] = [];
-						data[newName].push($(this).val());
-					} else {
-						data[name] = $(this).is(':checked') ? 'true' : 'false';
-					}
-				});
-				return data;
-			}
-			
-			/**
-			 * Reduces the form elements array into an object
-			 *
-			 * @param {Object} collection An empty object
-			 * @param {*} item form input element as array element
-			 *
-			 * @returns {Object} collection An object of form data
-			 */
-			function form_serialize_reduce_cb(collection, item) {
-				// Ignore items containing [], which we expect to be returned as arrays
-				if (item.name.includes('[]')) return collection;
-				collection[item.name] = item.value;
-				return collection;
-			}
 			send_command('save_minify_settings', data, function(response) {
 				if (response.hasOwnProperty('error')) {
 					// show error
@@ -589,6 +552,55 @@
 			$("#wpo_min_cache_path").html(data.cachePath);
 		}
 	};
+
+	 /**
+	  * Gather data from the given form
+	  *
+	  * @param {HTMLFormElement} form
+	  *
+	  * @returns {Array} Array of collected data from the form
+	  */
+	 function gather_data(form) {
+		 var data = $(form).serializeArray().reduce(form_serialize_reduce_cb, {});
+		 $(form).find('input[type="checkbox"]').each(function (i) {
+			 var name = $(this).prop("name");
+			 if (name.includes('[]')) {
+				 if (!$(this).is(':checked')) return;
+				 var newName = name.replace('[]', '');
+				 if (!data[newName]) data[newName] = [];
+				 data[newName].push($(this).val());
+			 } else {
+				 data[name] = $(this).is(':checked') ? 'true' : 'false';
+			 }
+		 });
+		 return data;
+	 }
+
+	 /**
+	  * Reduces the form elements array into an object
+	  *
+	  * @param {Object} collection An empty object
+	  * @param {*} item form input element as array element
+	  *
+	  * @returns {Object} collection An object of form data
+	  */
+	 function form_serialize_reduce_cb(collection, item) {
+		 // Ignore items containing [], which we expect to be returned as arrays
+		 if (item.name.includes('[]')) return collection;
+		 collection[item.name] = item.value;
+		 return collection;
+	 }
+
+	 // Gather minify settings from all tabs
+	 wp_optimize.minify_settings = function() {
+		var tabs = $('[data-whichpage="wpo_minify"] .wp-optimize-nav-tab-contents form');
+		var data = {}
+		tabs.each(function() {
+			var tab = $(this);
+			data = Object.assign(data, gather_data(tab));
+		});
+		return data;
+	}
 
 	wp_optimize.minify = minify;
 

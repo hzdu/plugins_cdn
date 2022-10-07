@@ -1841,6 +1841,125 @@ var WP_Optimize = function () {
 		});
 	});
 
+	$('#wpo-settings-export').on('click', export_settings);
+
+	$('#wpo-settings-import').on('click', function(e) {
+		e.preventDefault();
+
+		block_ui();
+
+		var wpo_import_file_input = document.getElementById('import_settings');
+		if (0 === wpo_import_file_input.files.length) {
+			alert(wpoptimize.import_select_file);
+			$.unblockUI();
+			return;
+		}
+		read_settings_json_file(wpo_import_file_input.files[0]);
+	});
+
+	/**
+	 * Blocks UI
+	 */
+	function block_ui() {
+		$.blockUI({
+			css: {
+				width: '300px',
+				border: 'none',
+				'border-radius': '10px',
+				left: 'calc(50% - 150px)',
+				padding: '20px'
+			},
+			message: '<div style="margin: 8px; font-size:150%;" class="updraft_saving_popup"><img src="'+wpoptimize.spinner_src+'" height="80" width="80" style="padding-bottom:10px;"><br>'+wpoptimize.importing+'</div>'
+		});
+	}
+
+	/**
+	 * Export plugin settings as a JSON file
+	 *
+	 * @param {object} e - Event object
+	 *
+	 * @return {void}
+	 */
+	function export_settings(e) {
+		e.preventDefault();
+
+		var date_now = new Date();
+
+		form_data = JSON.stringify({
+			epoch_date: date_now.getTime(),
+			local_date: date_now.toLocaleString(),
+			network_site_url: wpoptimize.network_site_url,
+			data: {
+				cache_settings: wp_optimize.cache_settings(),
+				minify_settings: wp_optimize.minify_settings(),
+				smush_settings: wp_optimize.smush_settings(),
+				database_settings: gather_settings('string')
+			}
+		});
+
+		// Attach this data to an anchor on page
+		var link = document.body.appendChild(document.createElement('a'));
+		link.setAttribute('download', wpoptimize.export_settings_file_name);
+		link.setAttribute('style', "display:none;");
+		link.setAttribute('href', 'data:text/json' + ';charset=UTF-8,' + encodeURIComponent(form_data));
+		link.click();
+	}
+
+	/**
+	 * Read json settings file and import it
+	 *
+	 * @param {Blob} file - Settings file
+	 *
+	 * @return {void}
+	 */
+	function read_settings_json_file(file) {
+		var file_reader = new FileReader();
+		file_reader.onload = function() {
+			import_settings(this.result);
+		};
+		file_reader.readAsText(file);
+	}
+
+	/**
+	 * Import json data and save it as plugin settings in database
+	 *
+	 * @param {json} json_data
+	 *
+	 * @return {void}
+	 */
+	function import_settings(json_data) {
+		var parsed;
+		try {
+			parsed = wpo_parse_json(json_data);
+		} catch (e) {
+			$.unblockUI();
+			jQuery('#import_settings').val('');
+			console.log(json_data);
+			console.log(e);
+			alert(wpoptimize.import_invalid_json_file);
+			return;
+		}
+		if (window.confirm(wpoptimize.importing_data_from + ' ' + parsed['network_site_url'] + "\n" + wpoptimize.exported_on + ' ' + parsed['local_date'] + "\n" + wpoptimize.continue_import)) {
+			// GET the settings back to the AJAX handler
+			var stringified = JSON.stringify(parsed['data']);
+			send_command('import_settings', {
+				settings: stringified
+			}, function(response) {
+				$.unblockUI();
+				if (response && response.errors) {
+					alert(response.errors.join('<br />'));
+				} else if (response && response.success) {
+					alert(response.message);
+					setTimeout(function() {
+						window.location.reload();
+					}, 200);
+				}
+			 });
+		} else {
+			$.unblockUI();
+		}
+	}
+
 	return {
 		send_command: send_command,
 		optimization_get_info: optimization_get_info,

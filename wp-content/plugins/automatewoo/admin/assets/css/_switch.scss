@@ -35,7 +35,7 @@
 
 
 	&[data-aw-switch="on"] {
-		box-shadow: inset 0 0 0 ( $height / 2 ) $blue;
+		box-shadow: inset 0 0 0 calc( $height / 2 ) $blue;
 
 		&:before {
 			transform: translateX( $width - $height );
