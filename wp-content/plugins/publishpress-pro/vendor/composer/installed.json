@@ -2,18 +2,18 @@
     "packages": [
         {
             "name": "alledia/edd-sl-plugin-updater",
-            "version": "v1.6.21",
-            "version_normalized": "1.6.21.0",
+            "version": "v1.6.22",
+            "version_normalized": "1.6.22.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/OSTraining/EDD-License-handler",
-                "reference": "0c87ee916d3a4fafa1c940691b101aa48ec8622c"
+                "reference": "56525f1acd28e340f7a7e523638c1424ca7f0e0a"
             },
             "require": {
                 "ext-json": "*",
                 "php": ">=5.6.20"
             },
-            "time": "2022-06-03T17:30:27+00:00",
+            "time": "2022-09-23T19:16:06+00:00",
             "type": "library",
             "installation-source": "source",
             "autoload": {
@@ -376,17 +376,17 @@
         },
         {
             "name": "publishpress/publishpress",
-            "version": "v3.8.3",
-            "version_normalized": "3.8.3.0",
+            "version": "v3.8.4",
+            "version_normalized": "3.8.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/publishpress/PublishPress.git",
-                "reference": "1e41d279e909eb851e0a0d591757def7260f4e0b"
+                "reference": "2f7309f96b4ba39ead5f73e98983a9a26e91d504"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/publishpress/PublishPress/zipball/1e41d279e909eb851e0a0d591757def7260f4e0b",
-                "reference": "1e41d279e909eb851e0a0d591757def7260f4e0b",
+                "url": "https://api.github.com/repos/publishpress/PublishPress/zipball/2f7309f96b4ba39ead5f73e98983a9a26e91d504",
+                "reference": "2f7309f96b4ba39ead5f73e98983a9a26e91d504",
                 "shasum": ""
             },
             "require": {
@@ -397,8 +397,7 @@
                 "publishpress/wordpress-reviews": "^1.1",
                 "publishpress/wordpress-version-notices": "^1",
                 "sabre/vobject": "^3.4",
-                "symfony/polyfill-ctype": "1.19.*",
-                "twig/twig": "1.42.5.*"
+                "symfony/polyfill-ctype": "1.19.*"
             },
             "require-dev": {
                 "automattic/vipwpcs": "^2.2",
@@ -410,15 +409,20 @@
                 "codeception/module-phpbrowser": "^1.0.0",
                 "codeception/module-webdriver": "^1.0",
                 "codeception/util-universalframework": "^1.0",
-                "dealerdirect/phpcodesniffer-composer-installer": "^0.7.1",
+                "dealerdirect/phpcodesniffer-composer-installer": "^0.7.0",
                 "mustache/mustache": "2.14.1",
                 "overtrue/phplint": "^2.1",
+                "phpcompatibility/php-compatibility": "*",
+                "publishpress/publishpress-phpcs-standards": "dev-main",
                 "publishpress/publishpress-plugin-builder": "^1.2",
-                "publishpress/wp-browser": "2.6.5.2"
+                "publishpress/wp-browser": "2.6.5.2",
+                "spatie/ray": "*",
+                "spatie/wordpress-ray": "dev-patch-1",
+                "squizlabs/php_codesniffer": "3.*"
             },
-            "time": "2022-09-08T17:40:17+00:00",
+            "time": "2022-10-04T19:18:04+00:00",
             "type": "library",
-            "installation-source": "dist",
+            "installation-source": "source",
             "autoload": {
                 "files": [
                     "defines-free-plugin-path.php"
@@ -430,6 +434,12 @@
                 ],
                 "build-unpacked": [
                     "vendor/bin/robo build:unpacked --ansi"
+                ],
+                "post-install-cmd": [
+                    "[ $COMPOSER_DEV_MODE -eq 0 ] || vendor/bin/phpcs --config-set installed_paths \"../../automattic/vipwpcs,../../phpcompatibility/php-compatibility,../../sirbrillig/phpcs-variable-analysis,../../wp-coding-standards/wpcs,../../publishpress/publishpress-phpcs-standards/standards/PublishPressStandards\""
+                ],
+                "post-update-cmd": [
+                    "[ $COMPOSER_DEV_MODE -eq 0 ] || vendor/bin/phpcs --config-set installed_paths \"../../automattic/vipwpcs,../../phpcompatibility/php-compatibility,../../sirbrillig/phpcs-variable-analysis,../../wp-coding-standards/wpcs,../../publishpress/publishpress-phpcs-standards/standards/PublishPressStandards\""
                 ]
             },
             "license": [
@@ -444,7 +454,7 @@
             "description": "WordPress plugin to accelerate your publishing workflow.",
             "homepage": "http://publishpress.com/",
             "support": {
-                "source": "https://github.com/publishpress/PublishPress/tree/v3.8.3",
+                "source": "https://github.com/publishpress/PublishPress/tree/v3.8.4",
                 "issues": "https://github.com/publishpress/PublishPress/issues"
             },
             "install-path": "../publishpress/publishpress"
@@ -719,12 +729,12 @@
             },
             "installation-source": "dist",
             "autoload": {
-                "files": [
-                    "bootstrap.php"
-                ],
                 "psr-4": {
                     "Symfony\\Polyfill\\Ctype\\": ""
-                }
+                },
+                "files": [
+                    "bootstrap.php"
+                ]
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -766,77 +776,6 @@
                 }
             ],
             "install-path": "../symfony/polyfill-ctype"
-        },
-        {
-            "name": "twig/twig",
-            "version": "v1.42.5",
-            "version_normalized": "1.42.5.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/twigphp/Twig.git",
-                "reference": "87b2ea9d8f6fd014d0621ca089bb1b3769ea3f8e"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/Twig/zipball/87b2ea9d8f6fd014d0621ca089bb1b3769ea3f8e",
-                "reference": "87b2ea9d8f6fd014d0621ca089bb1b3769ea3f8e",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.5.0",
-                "symfony/polyfill-ctype": "^1.8"
-            },
-            "require-dev": {
-                "psr/container": "^1.0",
-                "symfony/phpunit-bridge": "^4.4|^5.0"
-            },
-            "time": "2020-02-11T05:59:23+00:00",
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.42-dev"
-                }
-            },
-            "installation-source": "dist",
-            "autoload": {
-                "psr-0": {
-                    "Twig_": "lib/"
-                },
-                "psr-4": {
-                    "Twig\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD-3-Clause"
-            ],
-            "authors": [
-                {
-                    "name": "Fabien Potencier",
-                    "email": "fabien@symfony.com",
-                    "homepage": "http://fabien.potencier.org",
-                    "role": "Lead Developer"
-                },
-                {
-                    "name": "Twig Team",
-                    "role": "Contributors"
-                },
-                {
-                    "name": "Armin Ronacher",
-                    "email": "armin.ronacher@active-4.com",
-                    "role": "Project Founder"
-                }
-            ],
-            "description": "Twig, the flexible, fast, and secure template language for PHP",
-            "homepage": "https://twig.symfony.com",
-            "keywords": [
-                "templating"
-            ],
-            "support": {
-                "issues": "https://github.com/twigphp/Twig/issues",
-                "source": "https://github.com/twigphp/Twig/tree/1.x"
-            },
-            "install-path": "../twig/twig"
         }
     ],
     "dev": false,
