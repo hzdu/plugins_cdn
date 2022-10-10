@@ -41,7 +41,7 @@
   box-shadow: 0 5px 7px #ccc;
   width: 100%;
 }
-.btn.button.ced_rnx_return_request_morefiles {
+.btn.button.ced_rnx_return_request_morefiles, .btn.button.ced_rnx_exchange_request_morefiles {
   margin-top: 1%;
 }
 .ced_rnx_return_notification > img, .ced_rnx_exchange_notification > img{
@@ -460,6 +460,9 @@ margin-top: 40px;
 .mwb_order_messages .mwb_order_msg_sender{
 background-color: #4f62b9;
 }
+.mwb_order_messages .mwb_order_msg_sender_Customer {
+  background-color: #318f46 !important;
+}
 .mwb_order_messages .mwb_order_msg_date{
 font-size: 11pt;
 }
@@ -619,4 +622,7 @@ margin-bottom: 6px !important;
 
 .my_account_orders .woocommerce-orders-table__row .woocommerce-orders-table__cell a{
   margin: 3px;
+}
+.ced_rnx_return_bank_details_div {
+  display: none;
 }

@@ -236,6 +236,17 @@ jQuery(document).ready(function(){
 			jQuery(document).find(".ced_rnx_return_request_morefiles").data('count', count+1);
 		}
 	});
+
+	//Add more files to attachment on exchange
+	jQuery(".ced_rnx_exchange_request_morefiles").click(function(){
+		var count = jQuery(this).data('count');
+		var max   = jQuery(this).data('max');
+		var html = '<br/><input type="file" class="input-text ced_rnx_exchange_request_files" name="ced_rnx_exchange_request_files[]">';
+		if (count < max) {
+			jQuery("#ced_rnx_exchange_request_files").append(html);
+			jQuery(document).find(".ced_rnx_exchange_request_morefiles").data('count', count+1);
+		}
+	});
 	
 	jQuery('#ced_rnx_coupon_regenertor').click(function(){
 		var id = jQuery(this).data('id');
@@ -278,6 +289,20 @@ jQuery(document).ready(function(){
 		});
 		
 	});
+	
+	if ( 'yes' == global_rnx.ced_rnx_refund_method ) {
+		jQuery('input[name=ced_rnx_refund_method]').on( 'change', function(){
+			if ( 'manual_method' == jQuery(this).val() ) {
+				jQuery('.ced_rnx_return_bank_details_div').show();
+			} else {
+				jQuery('.ced_rnx_return_bank_details_div').hide();
+			}
+		});
+		if ( jQuery('input[name=ced_rnx_refund_method]').val() != 'wallet_method' ) {
+			jQuery('.ced_rnx_return_bank_details_div').show();
+		}
+	}
+
 	//Submit Retun Request form
 	jQuery("#ced_rnx_return_request_form").on('submit', function(e){
 		e.preventDefault();	
@@ -292,12 +317,15 @@ jQuery(document).ready(function(){
 			alerthtml += '<li>'+global_rnx.select_product_msg+'</li>';
 		}
 		var rr_subject = jQuery("#ced_rnx_return_request_subject").val();
+
 		if(rr_subject == '' || rr_subject == null)
 		{
 			var rr_subject1 = jQuery("#ced_rnx_return_request_subject_text").val();
 			if(rr_subject1 == '' || rr_subject1 == null || ! rr_subject1.match(/[[A-Za-z]/i ) )
 			{
 				alerthtml += '<li>'+global_rnx.return_subject_msg+'</li>';
+			} else {
+				rr_subject = rr_subject1 
 			}
 		}
 		jQuery(".ced_rnx_return_column").each(function(){
@@ -325,7 +353,6 @@ jQuery(document).ready(function(){
 				alerthtml += '<li>'+global_rnx.return_reason_msg+'</li>';
 			}
 		}	
-		
 		if(alerthtml != '') {
 			jQuery("#ced-return-alert").show();
 			jQuery("#ced-return-alert").html(alerthtml);
@@ -336,7 +363,8 @@ jQuery(document).ready(function(){
 		} else {
 			jQuery("#ced-return-alert").hide();
 			jQuery("#ced-return-alert").html(alerthtml);
-		}	
+		}
+
 
 		jQuery(".ced_rnx_return_column").each(function(){
 			if(jQuery(this).find("td:eq(0)").children('.ced_rnx_return_product').is(':checked')){
@@ -359,6 +387,8 @@ jQuery(document).ready(function(){
 
 		var ced_rnx_refund_method = jQuery('input[name=ced_rnx_refund_method]:checked').val();
 
+		var ced_rnx_bank_details = jQuery('.ced_rnx_return_bank_details').val();
+
 		var data = {	
 			action	:'ced_rnx_return_product_info',
 			products: selected_product,
@@ -367,7 +397,8 @@ jQuery(document).ready(function(){
 			reason	: rr_reason,
 			orderid : orderid,
 			refund_method : ced_rnx_refund_method,
-			security_check	:	global_rnx.ced_rnx_nonce	
+			security_check	:	global_rnx.ced_rnx_nonce,
+			bank_details : ced_rnx_bank_details,
 		}
 		
 		jQuery(".ced_rnx_return_notification").show();
@@ -633,7 +664,8 @@ jQuery(document).ready(function(){
 		});
 	});
 	
-	jQuery(".ced_rnx_exchange_request_submit").click(function(){
+	jQuery("#ced_rnx_exchange_request_form").on('submit', function(e){
+		e.preventDefault();	
 		var orderid = jQuery("#ced_rnx_exchange_request_order").val();
 		var total = ced_rnx_exchange_total();
 		var alerthtml = '';
@@ -722,26 +754,42 @@ jQuery(document).ready(function(){
 			subject: rr_subject,
 			security_check	:global_rnx.ced_rnx_nonce	
 		}
+
+		var formData = new FormData(this);
+		formData.append('action', 'ced_rnx_exchange_upload_files');
+		jQuery("body").css("cursor", "progress");
 		jQuery.ajax({
 			url: global_rnx.ajaxurl, 
-			type: "POST",  
-			data: data,
-			dataType :'json',	
-			success: function(response) 
+			type: "POST",             
+			data: formData, 
+			contentType: false,       
+			cache: false,             
+			processData:false,       
+			success: function(respond)   
 			{
-				jQuery(".ced_rnx_exchange_notification").hide();
-				jQuery("#ced-exchange-alert").html(response.msg);
-				jQuery("#ced-exchange-alert").removeClass('woocommerce-error');
-				jQuery("#ced-exchange-alert").addClass("woocommerce-message");
-				jQuery("#ced-exchange-alert").css("color", "white");
-				jQuery("#ced-exchange-alert").show();
-				jQuery('html, body').animate({
-					scrollTop: jQuery("#ced_rnx_exchange_request_container").offset().top
-				}, 800);
-				
-				window.setTimeout(function() {
-					window.location.href = global_rnx.myaccount_url;
-				}, 10000);
+				//Send exchange request
+				jQuery.ajax({
+					url: global_rnx.ajaxurl, 
+					type: "POST",  
+					data: data,
+					dataType :'json',	
+					success: function(response) 
+					{
+						jQuery(".ced_rnx_exchange_notification").hide();
+						jQuery("#ced-exchange-alert").html(response.msg);
+						jQuery("#ced-exchange-alert").removeClass('woocommerce-error');
+						jQuery("#ced-exchange-alert").addClass("woocommerce-message");
+						jQuery("#ced-exchange-alert").css("color", "white");
+						jQuery("#ced-exchange-alert").show();
+						jQuery('html, body').animate({
+							scrollTop: jQuery("#ced_rnx_exchange_request_container").offset().top
+						}, 800);
+						
+						window.setTimeout(function() {
+							window.location.href = global_rnx.myaccount_url;
+						}, 10000);
+					}
+				});
 			}
 		});
 	});

@@ -1787,7 +1787,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
     };
 
     registerBlockType('advgb/countdown', {
-        title: __('Countdown', 'advanced-gutenberg'),
+        title: __('Countdown - PublishPress', 'advanced-gutenberg'),
         description: __('Easily create a customizable countdown.', 'advanced-gutenberg'),
         icon: {
             src: blockIcon,
@@ -2330,7 +2330,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
     };
 
     registerBlockType('advgb/feature-list', {
-        title: __('Feature List', 'advanced-gutenberg'),
+        title: __('Feature List - PublishPress', 'advanced-gutenberg'),
         description: __('Show your visitors a list of features. This is ideal for pricing and comparison tables.', 'advanced-gutenberg'),
         icon: {
             src: blockIcon,
@@ -3421,7 +3421,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
     };
 
     registerBlockType('advgb/pricing-table', {
-        title: __('Pricing Table', 'advanced-gutenberg'),
+        title: __('Pricing Table - PublishPress', 'advanced-gutenberg'),
         description: __('Easily create a customizable pricing table.', 'advanced-gutenberg'),
         icon: {
             src: blockIcon,
