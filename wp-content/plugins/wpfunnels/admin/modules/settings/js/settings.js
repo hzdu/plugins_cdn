@@ -5,6 +5,14 @@ jQuery(function($) {
     'use strict';
     $(document).ready(function ($) {
 
+		function enable_disable_recapcha(){
+			if ($("input[name='wpfnl-recapcha-enable']").prop("checked")){
+				$("#wpfnl-recapcha").show()
+			}else{
+				$("#wpfnl-recapcha").hide()
+			}
+		}
+
         if ($("input[name='wpfnl-utm-enable']").prop("checked")){
 			$("#wpfnl-utm").show()
 		}else{
@@ -42,6 +50,12 @@ jQuery(function($) {
 			}else {
 				$("#wpfnl-facebook-pixel").hide()
 			}
+		})
+
+		enable_disable_recapcha()
+
+		$('#recapcha-pixel-enable').on('click',function (){
+			enable_disable_recapcha()
 		})
 
         var GeneralSettingsHandler = function () {
@@ -139,7 +153,13 @@ jQuery(function($) {
                     'utm_campaign'			    : $('#wpfnl-utm-campaign').val(),
                     'utm_content'			    : $('#wpfnl-utm-content').val(),
                     'disable_theme_style'	    : $('#disable-theme-style').is(':checked') ? 'on' : 'off',
-                };
+
+					'enable_recaptcha'			: $('input[name="wpfnl-recapcha-enable"]:checked').val(),
+					'recaptcha_site_key'		: $('#wpfnl-recapcha-site-key').val(),
+					'recaptcha_site_secret'		: $('#wpfnl-recapcha-site-secret').val(),
+
+
+			};
 
             var thisLoader = $(this).find('.wpfnl-loader');
             var thisAlert = $(this).siblings('.wpfnl-alert');

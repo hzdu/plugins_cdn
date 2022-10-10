@@ -18,8 +18,10 @@
                 :setUpType="setUpType"
                 :showLoader="showLoader"
                 :isLmsInstalled="isLmsInstalled"
+                :funnelType="funnelType"
                 @setPluginSlug="setPluginSlug"
                 @changeSetUpType="changeSetUpType"
+                @changeFunnelType="changeFunnelType"
                 @processSettings="processSettings"
             />
             <Builder
@@ -93,10 +95,12 @@
                 isCLActive:     window.setup_wizard_obj.is_cl_active,
                 isQBActive:     window.setup_wizard_obj.is_qb_active,
                 dashboardUrl:   window.setup_wizard_obj.dashboard_url,
+                funnelType:     window.setup_wizard_obj.funnel_type,
                 setUpType:      'plugin',
                 showLoader:      false,
                 isPermitted:     false,
                 isLmsPermitted:  false,
+
             }
         },
         mounted () {
@@ -120,10 +124,14 @@
             changeSetUpType: function (type) {
                 this.setUpType = type
             },
+            changeFunnelType: function (type) {
+                this.funnelType = type
+            },
             processSettings: function (e) {
                 this.showLoader = true;
-
+                
                 if ( this.pluginSlug === 'woocommerce' ) {
+                    this.updateFunnelType();
                     if( this.pluginSlug === 'woocommerce' ){
                         if (this.isWCInstalled === 'yes') {
                             this.activateWCPlugins( 'yes', this.isPermitted, this.isLmsPermitted )
@@ -135,15 +143,18 @@
                             this.installPlugin('cart-lift')
                         }
                     }
+                    
 
                 } else if (this.pluginSlug === 'elementor') {
+                   
                     if (this.isElmInstalled === 'yes') {
                         this.saveFunnelBuilder()
                     } else if (this.isElmActive === 'no') {
                         this.installPlugin('elementor')
                     }
+                    
                 } else if (this.pluginSlug === 'gutenberg') {
-
+                  
 					if (this.isQBInstalled === 'yes') {
 						this.saveFunnelBuilder()
 					} else if (this.isQBActive === 'no' && this.isPermitted == true) {
@@ -153,12 +164,12 @@
                         window.location.href = this.nextStepLink
                     }
                 } else {
+                    this.updateFunnelType();
                     if( this.isLmsPermitted ){
                         this.activateWCPlugins( 'no', false, this.isLmsPermitted )
                     }else{
                         window.location.href = this.nextStepLink
                     }
-                    
                    
 				}
             },
@@ -220,6 +231,18 @@
                     data: { value: this.pluginSlug, type: 'ignore_activation', slug: this.pluginSlug }
                 }).then(response => {
                     window.location.href = that.nextStepLink
+                }, error => {
+
+                })
+            },
+            updateFunnelType: function () {
+                var that = this
+                apiFetch({
+                    path: window.setup_wizard_obj.rest_api_url + 'wpfunnels/v1/settings/update-funnel-type/',
+                    method: 'POST',
+                    data: { type: this.funnelType }
+                }).then(response => {
+                    console.log(response)
                 }, error => {
 
                 })

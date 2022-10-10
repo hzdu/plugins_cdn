@@ -120,3 +120,21 @@
         }
     }
 }
+
+//-----RTL style------
+body.rtl.et_divi_builder #et_builder_outer_content,
+body.rtl {
+    .wpfnl-order-bump__template-style3 .offer-checkbox .wpfnl-checkbox label {
+        padding-left: 0;
+        padding-right: 28px;
+    }
+    .wpfnl-order-bump__template-style3 .offer-checkbox .wpfnl-checkbox label:before {
+        left: inherit;
+        right: 0;
+    }
+    .wpfnl-order-bump__template-style3 .offer-checkbox .wpfnl-checkbox label:after {
+        right: 4px;
+        top: 4px;
+    }
+    
+}

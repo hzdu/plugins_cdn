@@ -1,8 +1,6 @@
 import Vue from 'vue'
-import axios from 'axios'
-import VueAxios from 'vue-axios'
 var j = jQuery.noConflict()
-Vue.use(VueAxios, axios)
+// Vue.use(VueAxios, axios)
 import TemplatesLibrary from '../Components/TemplatesLibrary.vue'
 
 const store = Vue.observable({

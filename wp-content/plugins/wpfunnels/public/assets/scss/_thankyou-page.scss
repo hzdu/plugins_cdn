@@ -191,6 +191,23 @@
 
 }
 
+body.rtl.et_divi_builder #et_builder_outer_content,
+body.rtl {
+	.wpfnl-thankyou-wrapper .woocommerce-order-details .woocommerce-table--order-details th, 
+	.wpfnl-thankyou-wrapper .woocommerce-order-details .woocommerce-table--order-details td {
+		text-align: right;
+	}
+	.wpfnl-thankyou-wrapper .woocommerce-customer-details .woocommerce-columns--addresses .woocommerce-column.col-2 {
+		padding-left: 0;
+		padding-right: 10px;
+	}
+	.wpfnl-thankyou-wrapper .woocommerce-customer-details .woocommerce-columns--addresses .woocommerce-column.col-1 {
+		padding-right: 0;
+		padding-left: 10px;
+	}
+
+}
+
 
 /* ---order-overview on/off */
 .wpfnl-elementor-display-order-overview-off .woocommerce-thankyou-order-details {

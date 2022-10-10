@@ -148,6 +148,13 @@
 
 }
 
+//------2 step checkout------
+.wpfnl-multistep.wpfnl-2-step {
+	.woocommerce #wpfnl_checkout_shipping {
+		display: block;
+	}
+}
+
 .wpfnl-checkout-form-wpfnl-multistep .woocommerce #customer_details.col2-set,
 .wpfnl-multistep .woocommerce #customer_details.col2-set {
 	width: 100% !important;
@@ -169,13 +176,17 @@
 
 
 .wpfnl-checkout-form-wpfnl-multistep .user-not-logedin #wpfnl_checkout_billing,
+.wpfnl-multistep.wpfnl-2-step .user-not-logedin #wpfnl_checkout_billing,
 .wpfnl-multistep .user-not-logedin #wpfnl_checkout_billing {
 	display: none;
 }
+
 .wpfnl-checkout-form-wpfnl-multistep .woocommerce #wpfnl_checkout_shipping,
+.wpfnl-multistep.wpfnl-2-step .user-not-logedin #wpfnl_checkout_shipping,
 .wpfnl-multistep .woocommerce #wpfnl_checkout_shipping {
 	display: none;
 }
+
 
 
 @media only screen and (max-width: 575px){

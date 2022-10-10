@@ -61,6 +61,7 @@
 		border-radius: 0 0 10px 10px;
 		width: 100%;
 		max-width: 100%;
+		padding: 20px;
 
 		& > p {
 			font-size: 16px;
@@ -297,11 +298,11 @@
 			background: transparent;
 
 			&.product-name {
-				padding-left: 20px;
+				padding-left: 12px;
 				width: calc(100% - 180px);
 			}
 			&.product-total {
-				padding-right: 20px;
+				padding-right: 12px;
 				width: 180px;
 			}
 		}
@@ -1365,6 +1366,120 @@
 	width: 100%;
 }
 
+//-----RTL style------
+body.rtl.et_divi_builder #et_builder_outer_content,
+body.rtl {
+	.wpfnl-checkout #ship-to-different-address label span {
+		text-align: right;
+	}
+	.wpfnl-checkout table.woocommerce-checkout-review-order-table th, 
+    .wpfnl-checkout table.woocommerce-checkout-review-order-table td {
+        text-align: right;
+    }
+    .wpfnl-checkout .woocommerce-shipping-methods li label {
+        padding-right: 28px;
+        padding-left: 0;
+    }
+    .wpfnl-checkout .woocommerce-shipping-methods li label:before {
+        left: inherit;
+        right: 0;
+    }
+    .wpfnl-checkout .woocommerce-shipping-methods li label:after {
+        left: inherit;
+        right: 5px;
+    }
+    .wpfnl-checkout .woocommerce-checkout #payment .woocommerce-SavedPaymentMethods > li > label, 
+    .wpfnl-checkout .woocommerce-checkout #payment ul.payment_methods > li > label {
+        padding: 0 30px 0 0;
+		text-align: right;
+    }
+    .wpfnl-checkout .woocommerce-checkout #payment .woocommerce-SavedPaymentMethods > li > label:before, 
+    .wpfnl-checkout .woocommerce-checkout #payment ul.payment_methods > li > label:before {
+        left: inherit;
+        right: 0;
+    }
+    .wpfnl-checkout .woocommerce-checkout #payment .woocommerce-SavedPaymentMethods > li > label:after, 
+    .wpfnl-checkout .woocommerce-checkout #payment ul.payment_methods > li > label:after {
+        right: 5px;
+        left: inherit;
+    }
+    .wpfnl-checkout .woocommerce-checkout #payment .woocommerce-SavedPaymentMethods > li > label img, 
+    .wpfnl-checkout .woocommerce-checkout #payment ul.payment_methods > li > label img {
+        float: left;
+    }
+    .wpfnl-checkout .woocommerce-checkout #payment div.payment_box:before {
+        right: 20px;
+        left: inherit;
+    }
+    .wpfnl-checkout .woocommerce-checkout #payment .wc-credit-card-form div.form-row.form-row-last {
+        padding-left: 0;
+        padding-right: 10px;
+    }
+
+    #add_payment_method #payment ul.payment_methods li .stripe-credit-card-brand, 
+    .woocommerce-checkout #payment ul.payment_methods li .stripe-credit-card-brand {
+        right: inherit;
+        left: 10px;
+    }
+    .wpfnl-checkout .woocommerce-checkout #payment .woocommerce-SavedPaymentMethods-saveNew > label {
+        padding-left: inherit;
+        padding-right: 30px;
+    }
+    .wpfnl-checkout .woocommerce-checkout #payment .woocommerce-SavedPaymentMethods-saveNew > label:before {
+        left: inherit;
+        right: 0;
+    }
+    .wpfnl-checkout .woocommerce-checkout #payment .woocommerce-SavedPaymentMethods-saveNew > label:after {
+        left: inherit;
+        right: 6px;
+    }
+    .wpfnl-checkout .woocommerce .woocommerce-checkout-review-order {
+        padding-left: 0;
+        padding-right: 10px;
+    }
+	.wpfnl-checkout .woocommerce .col2-set, .woocommerce-page .wpfnl-checkout .col2-set {
+		padding-right: 0;
+		padding-left: 10px;
+	}
+
+	//------1 column style-----
+	.wpfnl-checkout .wpfnl-checkout-form-one-column .woocommerce .col2-set, 
+	.wpfnl-checkout.wpfnl-col-1 .woocommerce .col2-set, 
+	.woocommerce-page .wpfnl-checkout.wpfnl-col-1 .col2-set {
+		padding: 0;
+	}
+
+	//---------multistep style---------
+	.wpfnl-checkout-form-wpfnl-multistep .wpfnl-multistep-navigation, 
+	.wpfnl-multistep .wpfnl-multistep-navigation {
+		justify-content: flex-start;
+	}
+
+	//------express checkout------
+	.wpfnl-express-checkout .wpfnl-express-checkout-wrapper .wpfnl-express-checkout-right {
+		margin-left: 0;
+		margin-right: 30px;
+	}
+	.wpfnl-express-checkout .wpfnl-express-checkout-wrapper .wpfnl-express-checkout-left .express-shipping-table table td, 
+	.wpfnl-express-checkout .wpfnl-express-checkout-wrapper .wpfnl-express-checkout-left .express-shipping-table table th {
+		text-align: right;
+	}
+
+	.woocommerce-terms-and-conditions-wrapper .woocommerce-form__label-for-checkbox .woocommerce-terms-and-conditions-checkbox-text {
+		padding-left: 0;
+		padding-right: 26px;
+	}
+	.woocommerce-terms-and-conditions-wrapper .woocommerce-form__label-for-checkbox .woocommerce-terms-and-conditions-checkbox-text:before {
+		left: inherit;
+		right: 0;
+	}
+	.woocommerce-terms-and-conditions-wrapper .woocommerce-form__label-for-checkbox .woocommerce-terms-and-conditions-checkbox-text:after {
+		left: inherit;
+		right: 6px;
+	}
+
+}
+
 
 
 //---------responsive style--------
@@ -1382,7 +1497,24 @@
 		padding-left: 0;
 	}
 
+	body.rtl.et_divi_builder #et_builder_outer_content .wpfnl-checkout .woocommerce .col2-set,
+	body.rtl.et_divi_builder #et_builder_outer_content .woocommerce-page .wpfnl-checkout .col2-set,
+	body.rtl .wpfnl-checkout .woocommerce .col2-set,
+	body.rtl .woocommerce-page .wpfnl-checkout .col2-set {
+		padding-left: 0;
+	}
+	body.rtl.et_divi_builder #et_builder_outer_content .wpfnl-checkout .woocommerce .woocommerce-checkout-review-order,
+	body.rtl .wpfnl-checkout .woocommerce .woocommerce-checkout-review-order {
+        padding-right: 0;
+    }
+
+	body.rtl.et_divi_builder #et_builder_outer_content .wpfnl-express-checkout .wpfnl-express-checkout-wrapper .wpfnl-express-checkout-right,
+	body.rtl .wpfnl-express-checkout .wpfnl-express-checkout-wrapper .wpfnl-express-checkout-right {
+		margin-right: 0;
+	}
+
 }
+
 
 @media only screen and (max-width: 575px){
 	.wpfnl-checkout .woocommerce form .form-row-first,

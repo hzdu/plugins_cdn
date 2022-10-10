@@ -110,6 +110,27 @@
     }
 }
 
+//-----RTL style------
+body.rtl.et_divi_builder #et_builder_outer_content,
+body.rtl {
+    .wpfnl-order-bump__template-style13 .offer-checkbox .wpfnl-checkbox label {
+        padding: 0 26px 0 0;
+    }
+    .wpfnl-order-bump__template-style13 .offer-checkbox .wpfnl-checkbox label:before {
+        left: inherit;
+        right: 0;
+    }
+    .wpfnl-order-bump__template-style13 .offer-checkbox .wpfnl-checkbox label:after {
+        left: inherit;
+        right: 4px;
+    }
+    .wpfnl-order-bump__template-style13 .template-preview-wrapper .template-content {
+        padding-left: 0;
+        padding-right: 20px;
+    }
+
+}
+
 
 //------responsive style-------
 @media only screen and (max-width: 425px) {
@@ -120,6 +141,11 @@
         width: 100%;
         padding-left: 0;
         margin-top: 15px;
+    }
+
+    body.rtl.et_divi_builder #et_builder_outer_content .wpfnl-order-bump__template-style13 .template-preview-wrapper .template-content,
+    body.rtl .wpfnl-order-bump__template-style13 .template-preview-wrapper .template-content {
+        padding-right: 0;
     }
 
 }

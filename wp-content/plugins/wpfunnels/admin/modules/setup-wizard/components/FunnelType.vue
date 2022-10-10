@@ -22,7 +22,7 @@
                 </option>
             </select>
 
-            <div class="wpfnl-field-wrapper" v-if="isLmsInstalled">
+            <div class="wpfnl-field-wrapper" v-if="isLmsInstalled && 'sales' === selected">
                 <div class="wpfnl-fields">
                     <span class="wpfnl-checkbox no-title">
                         <input type="checkbox" name="install-lms" v-model="isIstallLms" id="install-lms" @change="isPermitted"/>
@@ -81,7 +81,7 @@
                 </p>
             </div>
             
-            <span class="hints">
+            <span class="hints" v-show="'sales' === selected">
                 The following plugins will be installed for you: <span v-if="isIstallLms"><a href="#" target="_blank">Learndash</a></span><span v-if="isIstallLms && isIstallWc">, </span><span v-if="isIstallWc"><a href="https://wordpress.org/plugins/woocommerce/" target="_blank">WooCommerce</a></span> <span v-if="isIstallCartLift && isIstallWc">& <a href="https://wordpress.org/plugins/cart-lift/" target="_blank">CartLift</a></span>
             </span>
         </div>
@@ -111,6 +111,7 @@
         props: {
             // eslint-disable-next-line vue/require-default-prop
             wizardSlug: String,
+            funnelType: String,
             showLoader: Boolean,
             isLmsInstalled: Boolean,
         },
@@ -123,13 +124,13 @@
                 ],
                 isIstallWc: true,
                 isIstallLms: false,
-                selected: 'sales',
+                selected: this.funnelType ? this.funnelType : 'sales',
                 isIstallCartLift: true,
                 
             }
         },
         mounted () {
-
+            this.selected = this.funnelType ? this.funnelType : 'sales';
             if(this.isIstallWc){
                 this.$emit('setPluginSlug', 'woocommerce',this.isIstallCartLift)
             }
@@ -157,6 +158,7 @@
             },
             
             onChange (event) {
+                this.$emit('changeFunnelType', this.selected)
                 if ('sales' === event.target.value ) {
                     if(this.isIstallWc){
                         this.$emit('setPluginSlug', 'woocommerce',this.isIstallCartLift)

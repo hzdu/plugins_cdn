@@ -92,7 +92,6 @@
 <script>
     import SingleStep from './SingleStep.vue'
     import StepCategorySelect from './StepCategorySelect.vue'
-    import axios from 'axios'
     var j = jQuery.noConflict();
     export default {
         name: 'StepImporter',

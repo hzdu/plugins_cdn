@@ -109,6 +109,7 @@
 				$('.wpfnl-multistep .woocommerce-form-coupon-toggle').fadeOut().removeClass('show-form');
 				$('.wpfnl-multistep .woocommerce-form-coupon').fadeOut();
 				$('.wpfnl-multistep #wpfnl_checkout_shipping').fadeOut();
+				$('.wpfnl-multistep.wpfnl-2-step #wpfnl_checkout_shipping').fadeIn();
 				$('.wpfnl-multistep #order_review').fadeOut();
 
 				//------for Gutenberg block-------
@@ -275,6 +276,7 @@
 				$('.wpfnl-multistep-navigation button.next').attr('data-target', 'billing').prop('disabled', false);
 
 			}else if( 'billing' == targetID ){
+
 				if( is_user_logged_in ){
 					$('.wpfnl-multistep-navigation button.previous').attr('data-target', 'login').prop('disabled', true);
 				}else{
@@ -285,14 +287,28 @@
 					}
 				}
 
-				$('.wpfnl-multistep-navigation button.next').attr('data-target', 'shipping').prop('disabled', false);
+				if( $(this).hasClass('two-step') ){
+					$('.wpfnl-multistep-navigation button.next').attr('data-target', 'order-review').prop('disabled', false);
+
+				}else{
+					$('.wpfnl-multistep-navigation button.next').attr('data-target', 'shipping').prop('disabled', false);
+				}
+
 
 			}else if( 'shipping' == targetID ){
+
 				$('.wpfnl-multistep-navigation button.previous').attr('data-target', 'billing').prop('disabled', false);
 				$('.wpfnl-multistep-navigation button.next').attr('data-target', 'order-review').prop('disabled', false);
 
 			}else if( 'order-review' == targetID ){
-				$('.wpfnl-multistep-navigation button.previous').attr('data-target', 'shipping').prop('disabled', false);
+
+				if( $(this).hasClass('two-step') ){
+					$('.wpfnl-multistep-navigation button.previous').attr('data-target', 'billing').prop('disabled', false);
+
+				}else{
+					$('.wpfnl-multistep-navigation button.previous').attr('data-target', 'shipping').prop('disabled', false);
+				}
+
 				$('.wpfnl-multistep-navigation button.next').attr('data-target', '').prop('disabled', true);
 
 			}
@@ -316,7 +332,7 @@
 				$('.theme-woostify.checkout-layout-2 .wpfnl-checkout-form-wpfnl-multistep .multi-step-checkout-wrapper .multi-step-checkout-content').hide();
 				$('.theme-woostify.checkout-layout-2 .wpfnl-checkout-form-wpfnl-multistep .multi-step-checkout-wrapper .multi-step-checkout-content[data-step="first"]').show();
 				$('.theme-woostify.checkout-layout-2 .wpfnl-checkout-form-wpfnl-multistep .multi-step-checkout-wrapper .multi-step-checkout-button-wrapper').hide();
-				
+
 			}else if( 'shipping' == targetID ){
 				$('.theme-woostify.checkout-layout-2 .wpfnl-checkout.wpfnl-multistep .multi-step-checkout-wrapper .multi-step-checkout-content').hide();
 				$('.theme-woostify.checkout-layout-2 .wpfnl-checkout.wpfnl-multistep .multi-step-checkout-wrapper .multi-step-checkout-content[data-step="first"]').show();
@@ -393,15 +409,28 @@
 
 			if( 'billing' == targetID ){
 				$(this).siblings().attr('data-target', 'login').prop('disabled', false);
-				$(this).attr('data-target', 'shipping');
+
+				if( $(this).hasClass('two-step') ){
+					$(this).attr('data-target', 'order-review');
+
+				}else {
+					$(this).attr('data-target', 'shipping');
+				}
 
 			}else if( 'shipping' == targetID ){
 				$(this).siblings().attr('data-target', 'billing').prop('disabled', false);
 				$(this).attr('data-target', 'order-review');
 
 			}else if( 'order-review' == targetID ){
-				$(this).siblings().attr('data-target', 'shipping');
+				if( $(this).hasClass('two-step') ){
+					$(this).siblings().attr('data-target', 'billing').prop('disabled', false);
+
+				}else {
+					$(this).siblings().attr('data-target', 'shipping');
+				}
+
 				$(this).prop('disabled', true);
+
 			}
 		});
 
@@ -474,8 +503,12 @@
 						$(this).attr('data-target', 'login').prop('disabled', true);
 					}
 				}
+				if( $(this).hasClass('two-step') ){
+					$(this).siblings().attr('data-target', 'order-review').prop('disabled', false);
 
-				$(this).siblings().attr('data-target', 'shipping').prop('disabled', false);
+				}else {
+					$(this).siblings().attr('data-target', 'shipping').prop('disabled', false);
+				}
 
 			}else if( 'shipping' == targetID ){
 				$('.theme-woostify.checkout-layout-2 .wpfnl-checkout.wpfnl-multistep .multi-step-checkout-wrapper .multi-step-checkout-content').hide();
@@ -567,7 +600,7 @@
 			});
 		});
 
-		
+
 
 		// $(document).on("click", ".learndash_checkout_button", function (e) {
 		// 	var dropDownId = $(this).data('jq-dropdown');
@@ -624,14 +657,14 @@
 			}
 
 			if(checker) {
-				
+
 				$("input[name='_wpfunnels_order_bump_product_"+key +"']").val(product);
-				
+
 			} else {
 				$("input[name='_wpfunnels_order_bump_product_"+key +"']").val('');
-				
+
 			}
-		
+
 			jQuery.ajax({
 				type: "POST",
 				url: ajaxurl,
@@ -660,7 +693,7 @@
 						});
 
 						$('.wpfnl-lms-checkout').empty();
-						
+
 						$('.wpfnl-lms-checkout').append(response.html);
 						var notify_url = $('input[name=notify_url]').val();
 						var return_url = $('input[name=return]').val();
@@ -669,11 +702,11 @@
 						notify_url = notify_url.split('=')[0]+ "="+ response.paypal_nonce;
 						return_url = return_url.split('return-success=')[0]+ "step_id="+response.step_id+"&user_id="+response.user_id+"&return-success="+ response.paypal_nonce;
 						cancel_url = cancel_url.split('=')[0]+ "="+ response.paypal_nonce;
-					
+
 						$('input[name=notify_url]').val(notify_url);
 						$('input[name=return]').val(return_url);
 						$('input[name=cancel_return]').val(cancel_url);
-						
+
 					}
 
 
@@ -685,15 +718,14 @@
 						}
 
 						if(isLms == 'yes'){
-							console.log($(this).val());
-							console.log(product);
+
 							if($(this).val() != product){
 								$(this).prop("checked", false);
 							}
 						}
 
 					});
-					
+
 				}
 			});
 		});
@@ -771,6 +803,11 @@
 								window.location.href = response.redirect_url;
 							}, 1000)
 						}
+					}else{
+						thisParents.find('.response').fadeIn('fast');
+						form.find('.wpfnl-loader').css('display','none');
+						thisParents.find('.response').css('color', 'red');
+						thisParents.find('.response').text(response.notification_text);
 					}
 				}
 			});
@@ -846,6 +883,11 @@
 								window.location.href = response.redirect_url;
 							}, 1000)
 						}
+					}else{
+						thisParents.find('.response').fadeIn('fast');
+						form.find('.wpfnl-loader').css('display','none');
+						thisParents.find('.response').css('color', 'red');
+						thisParents.find('.response').text(response.notification_text);
 					}
 				}
 			});
@@ -855,6 +897,21 @@
 		/**
 		 * Gutenberg optin form submission ajax
 		 */
+
+		$(document).ready(function (){
+			var get_optin = $("#wpf-optin-g-guternburg").val();
+			if(get_optin != undefined){
+				if(get_optin != '' || get_optin != NUll ){
+					grecaptcha.ready(function() {
+						grecaptcha.execute(get_optin, {action: 'homepage'}).then(function(token) {
+							document.getElementById("wpf-optin-g-guternburg").value = token;
+						});
+					});
+				}
+			}
+
+		})
+
 		 $('.wpfnl-gutenberg-optin-form-wrapper form').on('submit', function (e) {
 			e.preventDefault();
 			 var thisParents = $(this).parents('.wpfnl-gutenberg-optin-form-wrapper');
@@ -907,6 +964,11 @@
 								window.location.href = response.redirect_url;
 							}, 1000)
 						}
+					}else{
+						thisParents.find('.response').fadeIn('fast');
+						form.find('.wpfnl-loader').css('display','none');
+						thisParents.find('.response').css('color', 'red');
+						thisParents.find('.response').text(response.notification_text);
 					}
 				}
 			});
@@ -941,7 +1003,7 @@
 				}
 			});
 		});
-		
+
 		$('.learndash-stripe-checkout').append('<input type="hidden" name="custom" value="'+window.wpfnl_obj.step_id+"&"+window.wpfnl_obj.user_id+'">');
 		$(document).on("click", "#wpfnl-lms-access-course", function (e) {
 		// $('#wpfnl-lms-access-course').on('click',function(e){
@@ -955,8 +1017,7 @@
 				step_id : window.wpfnl_obj.step_id,
 				user_id : window.wpfnl_obj.user_id,
 			};
-			
-			console.log(data);
+
 			$.ajax({
 				type	: "POST",
 				url		: ajaxurl,
