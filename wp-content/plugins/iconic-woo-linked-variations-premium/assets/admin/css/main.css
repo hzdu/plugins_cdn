@@ -1,0 +1,90 @@
+/**
+ * Modules.
+ */
+/**
+ * Block.
+ */
+div.form-field,
+.woocommerce_options_panel p.form-field {
+  padding: 5px 20px 5px 180px !important;
+  margin: 9px 0;
+}
+
+@media only screen and (max-width: 500px) {
+  div.form-field,
+  .woocommerce_options_panel p.form-field {
+    padding: 5px !important;
+  }
+}
+
+/**
+ * Elements.
+ */
+div.form-field label,
+.woocommerce_options_panel p.form-field label {
+  font-weight: bold;
+  margin-left: -180px;
+}
+
+@media only screen and (max-width: 500px) {
+  div.form-field label,
+  .woocommerce_options_panel p.form-field label {
+    margin-left: 0;
+  }
+}
+
+div.form-field ul,
+.woocommerce_options_panel p.form-field ul {
+  margin: 0;
+}
+
+@media only screen and (max-width: 500px) {
+  div.form-field ul,
+  .woocommerce_options_panel p.form-field ul {
+    margin: 10px 0 0;
+  }
+}
+
+div.form-field ul label,
+.woocommerce_options_panel p.form-field ul label {
+  float: none;
+  margin: 0 0 0 6px;
+  width: auto;
+  padding: 0;
+  display: inline-block;
+  font-weight: normal;
+}
+
+/**
+ * Block.
+ */
+.iconic-wlv-attributes {
+  max-width: 220px;
+}
+
+/**
+ * Elements.
+ */
+.iconic-wlv-attributes__attribute {
+  display: block;
+  width: auto;
+  position: relative;
+  min-height: 35px;
+  padding: 6px 8px;
+  background: #F6F6F6;
+  border: 1px solid #C5C5C5;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.iconic-wlv-attributes__attribute-handle {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  cursor: move;
+  margin: -15px 0 0;
+}
