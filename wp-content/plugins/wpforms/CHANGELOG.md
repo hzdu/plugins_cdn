@@ -1,6 +1,18 @@
 # Changelog
 All notable changes to this project will be documented in this file and formatted via [this recommendation](https://keepachangelog.com/).
 
+## [1.7.7.2] - 2022-10-12
+### Added
+- There is a new filter `wpforms_builder_panel_sidebar_section_classes` to change builder panel sidebar section classes.
+
+### Changed
+- Updated DOMPurify library to 2.4.0.
+
+### Fixed
+- Placeholder text in the Dropdown field was cut off in the Form Builder.
+- The Form Builder had an inconsistent text strings escaping.
+- The information about "no form templates to display" did not disappear when a category was changed.
+
 ## [1.7.7.1] - 2022-10-05
 ### Fixed
 - Email Notifications options for completed payments were displayed in an incorrect place - below the Settings > Notifications > Advanced section in the Form Builder.

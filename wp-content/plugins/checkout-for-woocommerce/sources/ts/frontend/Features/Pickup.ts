@@ -53,8 +53,8 @@ class Pickup {
                 .css( 'background', 'none' );
 
             const shippingMethodBreadcrumb = jQuery( 'li.cfw-shipping-method > a' );
-            const old_label = shippingMethodBreadcrumb.text();
-            shippingMethodBreadcrumb.text( DataService.getMessage( 'pickup_label' ) ).data( 'old_label', old_label );
+            const oldLabel = shippingMethodBreadcrumb.text();
+            shippingMethodBreadcrumb.text( DataService.getMessage( 'pickup_label' ) ).data( 'old_label', oldLabel );
         } else {
             // Shipping address
             jQuery( '#cfw-customer-info-address.shipping' ).show();

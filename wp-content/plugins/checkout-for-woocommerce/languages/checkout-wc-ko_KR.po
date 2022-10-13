@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Checkout for WooCommerce\n"
-"POT-Creation-Date: 2022-06-29 10:08-0400\n"
-"PO-Revision-Date: 2022-06-29 10:17-0400\n"
+"POT-Creation-Date: 2022-09-26 12:12-0400\n"
+"PO-Revision-Date: 2022-09-26 12:20-0400\n"
 "Last-Translator: \n"
 "Language-Team: support@checkoutwc.com\n"
 "Language: ko\n"
@@ -10,7 +10,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 3.1\n"
+"X-Generator: Poedit 3.1.1\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-Flags-xgettext: --add-comments=translators:\n"
 "X-Poedit-WPHeader: checkout-for-woocommerce.php\n"
@@ -27,7 +27,33 @@ msgstr ""
 msgid ""
 "There was an error logging in. Please check your credentials and try again."
 msgstr ""
-"로그인하는 동안 오류가 발생했습니다. 자격 증명을 확인하고 다시 시도하십시오."
+"로그인하는 동안 오류가 발생했습니다. 자격 증명을 확인하고 다시 시도하십시"
+"오."
+
+#: includes/Action/SmartyStreetsAddressValidationAction.php:68
+#: includes/Features/SmartyStreets.php:114
+msgid "Use Recommended"
+msgstr "권장 사용"
+
+#: includes/Action/SmartyStreetsAddressValidationAction.php:69
+#: includes/Features/SmartyStreets.php:120
+msgid "Use Your Address"
+msgstr "주소 사용"
+
+#: includes/Action/SmartyStreetsAddressValidationAction.php:78
+msgid "Reenter Address"
+msgstr "주소 재입력"
+
+#: includes/Action/SmartyStreetsAddressValidationAction.php:79
+msgid "Use Existing Address"
+msgstr "기존 주소 사용"
+
+#: includes/Action/SmartyStreetsAddressValidationAction.php:147
+#: includes/Action/SmartyStreetsAddressValidationAction.php:193
+#: includes/Action/SmartyStreetsAddressValidationAction.php:246
+#: includes/Features/SmartyStreets.php:81
+msgid "We are unable to verify your address."
+msgstr "주소를 확인할 수 없습니다."
 
 #. translators: %s is the postcode field label
 #: includes/Action/ValidateEmailDomainAction.php:36
@@ -53,9 +79,9 @@ msgid "Street name"
 msgstr "거리 이름"
 
 #: includes/Compatibility/Gateways/PayPalForWooCommerce.php:153
-#: sources/php/template-functions.php:705
-#: sources/php/template-functions.php:1297
-#: sources/php/template-functions.php:2005
+#: sources/php/template-functions.php:708
+#: sources/php/template-functions.php:1314
+#: sources/php/template-functions.php:2022
 msgid "Billing address"
 msgstr "청구지 주소"
 
@@ -76,84 +102,94 @@ msgstr "주소 입력란 2 추가"
 msgid "Add Company"
 msgstr "회사 추가"
 
-#: includes/Features/Pickup.php:50
+#: includes/Features/OrderReviewStep.php:70
+msgid "Review"
+msgstr "리뷰"
+
+#: includes/Features/Pickup.php:79
 msgid "Pick up"
 msgstr "승차"
 
-#: includes/Features/Pickup.php:54
-msgid "Delivery method"
-msgstr "배달 방법"
-
-#: includes/Features/Pickup.php:66
+#: includes/Features/Pickup.php:93
 msgid "Ship"
 msgstr "배"
 
-#: includes/Features/Pickup.php:113
+#: includes/Features/Pickup.php:107
+msgid "Delivery method"
+msgstr "배달 방법"
+
+#: includes/Features/Pickup.php:169
 msgid "Pickup locations"
 msgstr "픽업 장소"
 
-#: includes/Features/Pickup.php:325
+#: includes/Features/Pickup.php:397
 msgid "Pick up in store"
 msgstr "매장에서 픽업"
 
-#: includes/Features/Pickup.php:345 includes/Managers/AssetManager.php:511
+#: includes/Features/Pickup.php:413 includes/Managers/AssetManager.php:510
 msgid "Pickup"
 msgstr "픽업"
 
-#: includes/Features/Pickup.php:380
+#: includes/Features/Pickup.php:470
 msgid "Pickup instructions"
 msgstr "픽업 안내"
 
-#: includes/Features/Pickup.php:483
+#: includes/Features/Pickup.php:579
 msgid "Usually ready in 1 hour."
 msgstr "보통 1시간 안에 준비됩니다."
 
-#: includes/Features/Pickup.php:484
+#: includes/Features/Pickup.php:580
 msgid "Usually ready in 2 hours."
 msgstr "보통 2시간 안에 준비됩니다."
 
-#: includes/Features/Pickup.php:485
+#: includes/Features/Pickup.php:581
 msgid "Usually ready in 4 hours."
 msgstr "보통 4시간 안에 준비됩니다."
 
-#: includes/Features/Pickup.php:486
+#: includes/Features/Pickup.php:582
 msgid "Usually ready in 24 hours."
 msgstr "보통 24시간 안에 준비됩니다."
 
-#: includes/Features/Pickup.php:487
+#: includes/Features/Pickup.php:583
 msgid "Usually ready in 2-4 days."
 msgstr "보통 2-4일 안에 준비됩니다."
 
-#: includes/Features/Pickup.php:488
+#: includes/Features/Pickup.php:584
 msgid "Usually ready in 5+ days."
 msgstr "보통 5일 이상 후에 준비됩니다."
 
-#: includes/Features/SideCart.php:174
+#: includes/Features/SideCart.php:170
 msgid "Close Cart"
 msgstr "장바구니 닫기"
 
-#: includes/Features/SideCart.php:209 sources/php/template-functions.php:1503
+#: includes/Features/SideCart.php:205 sources/php/template-functions.php:1520
 msgid "Apply"
 msgstr "적용"
 
-#: includes/Features/SideCart.php:223 sources/php/template-functions.php:1532
+#: includes/Features/SideCart.php:219 sources/php/template-functions.php:1549
 msgid "Have a promo code? Click here."
 msgstr "프로모션 코드가 있습니까? 여기를 클릭하세요."
 
-#: includes/Features/SideCart.php:244 sources/php/template-functions.php:1553
+#: includes/Features/SideCart.php:240 sources/php/template-functions.php:1570
 msgid "Promo Code"
 msgstr "프로모션 코드"
 
-#: includes/Features/SideCart.php:252 sources/php/template-functions.php:1561
+#: includes/Features/SideCart.php:248 sources/php/template-functions.php:1578
 msgid "Enter Promo Code"
 msgstr "프로모션 코드 입력하기"
 
-#: includes/Features/SideCart.php:484
+#: includes/Features/SideCart.php:288 includes/Features/SideCart.php:289
+#: sources/php/template-functions.php:2035
+#: sources/php/template-functions.php:2277
+msgid "Shipping"
+msgstr "배송"
+
+#: includes/Features/SideCart.php:501
 msgid "Congrats! You get free standard shipping."
 msgstr "축하 해요! 무료 표준 배송을 받습니다."
 
 #. translators: %s is the amount remaining for free shipping
-#: includes/Features/SideCart.php:497
+#: includes/Features/SideCart.php:514
 #, php-format
 msgid "You're %s away from free shipping!"
 msgstr "무료 배송이 %s 남았습니다!"
@@ -162,45 +198,45 @@ msgstr "무료 배송이 %s 남았습니다!"
 msgid "Use This Address"
 msgstr "이 주소를 써"
 
-#: includes/Features/SmartyStreets.php:76
-msgid "Address Verification"
-msgstr "주소 인증"
+#: includes/Features/SmartyStreets.php:77
+msgid "Use recommended address instead?"
+msgstr "대신 추천 주소를 사용하시겠습니까?"
 
-#: includes/Features/SmartyStreets.php:79
-msgid ""
-"The shipping address you provided does not match the suggested address from "
-"our verification service. Please verify your address."
-msgstr ""
-"제공 한 배송 주소가 확인 서비스에서 제안한 주소와 일치하지 않습니다. 주소를 "
-"확인하십시오."
+#: includes/Features/SmartyStreets.php:85
+msgid "We're unable to verify your address, but found a close match."
+msgstr "주소를 확인할 수 없지만 거의 일치하는 항목을 찾았습니다."
 
-#: includes/Features/SmartyStreets.php:87
+#: includes/Features/SmartyStreets.php:89
+msgid "Please confirm you would like to use this address or try again."
+msgstr "이 주소를 사용할 것인지 확인하거나 다시 시도하십시오."
+
+#: includes/Features/SmartyStreets.php:95
 msgid "You Entered"
 msgstr "당신은 들어갔다"
 
-#: includes/Features/SmartyStreets.php:101
-msgid "We Suggest"
-msgstr "우리는 제안합니다"
+#: includes/Features/SmartyStreets.php:105
+msgid "Recommended"
+msgstr "추천"
 
-#: includes/Managers/AssetManager.php:500
+#: includes/Managers/AssetManager.php:499
 msgid "Please enter a valid phone number."
 msgstr "유효한 전화 번호를 입력하세요."
 
-#: includes/Managers/AssetManager.php:501
+#: includes/Managers/AssetManager.php:500
 msgid "Please enter your first and last name."
 msgstr "이름과 성을 입력하세요."
 
-#: includes/Managers/AssetManager.php:502
-#: sources/php/template-functions.php:715
-#: sources/php/template-functions.php:1989
+#: includes/Managers/AssetManager.php:501
+#: sources/php/template-functions.php:718
+#: sources/php/template-functions.php:2006
 msgid "Shipping address"
 msgstr "배송지 주소"
 
-#: includes/Managers/AssetManager.php:503
+#: includes/Managers/AssetManager.php:502
 msgid "Please enter a new quantity:"
 msgstr "새 수량을 입력하십시오 :"
 
-#: includes/Managers/AssetManager.php:504
+#: includes/Managers/AssetManager.php:503
 msgid ""
 "3-digit security code usually found on the back of your card. American "
 "Express cards have a 4-digit code located on the front."
@@ -208,85 +244,85 @@ msgstr ""
 "일반적으로 카드 뒷면에있는 3 자리 보안 코드입니다. American Express 카드는 "
 "앞면에 4 자리 코드가 있습니다."
 
-#: includes/Managers/AssetManager.php:505
+#: includes/Managers/AssetManager.php:504
 msgid "Are you sure you want to remove this item from your cart?"
 msgstr "이 항목을 장바구니에서 제거 하시겠습니까?"
 
-#: includes/Managers/AssetManager.php:510
+#: includes/Managers/AssetManager.php:509
 msgid "Please enter a valid postcode / ZIP."
 msgstr "유효한 우편번호를 입력해주세요."
 
-#: sources/php/functions.php:188
+#: sources/php/functions.php:192
 msgid "Ship to"
 msgstr "배송지"
 
-#: sources/php/functions.php:1127
+#: sources/php/functions.php:1122
 msgid "No shipping methods available"
 msgstr "사용 가능한 배송 방법이 없습니다"
 
-#: sources/php/functions.php:1298
+#: sources/php/functions.php:1293
 msgid "Complete Order"
 msgstr "완료된 나눔"
 
-#: sources/php/functions.php:1358 sources/php/template-functions.php:1067
-#: sources/php/template-functions.php:1970
-#: sources/php/template-functions.php:2274
+#: sources/php/functions.php:1353 sources/php/template-functions.php:1070
+#: sources/php/template-functions.php:1987
+#: sources/php/template-functions.php:2291
 msgid "Payment"
 msgstr "결제"
 
-#: sources/php/functions.php:1383
+#: sources/php/functions.php:1378
 msgid "All transactions are secure and encrypted."
 msgstr "모든 거래는 안전하고 암호화됩니다."
 
-#: sources/php/functions.php:1404
+#: sources/php/functions.php:1399
 msgid "Your order is free. No payment is required."
 msgstr "주문은 무료입니다. 지불이 필요하지 않습니다."
 
-#: sources/php/functions.php:1449
+#: sources/php/functions.php:1444
 msgid "Same as shipping address"
 msgstr "배송 주소와 동일"
 
-#: sources/php/functions.php:1469
+#: sources/php/functions.php:1464
 msgid "Use a different billing address"
 msgstr "다른 청구 지 주소 사용"
 
-#: sources/php/functions.php:1643
+#: sources/php/functions.php:1631
 msgid "Return to cart"
 msgstr "장바구니로 돌아가기"
 
-#: sources/php/functions.php:1680
+#: sources/php/functions.php:1668
 msgid "Continue to shipping"
 msgstr "계속 배송"
 
-#: sources/php/functions.php:1702
+#: sources/php/functions.php:1690
 msgid "Continue to payment"
 msgstr "지불 계속하기"
 
-#: sources/php/functions.php:1738
+#: sources/php/functions.php:1726
 msgid "Review order"
 msgstr "주문 검토"
 
-#: sources/php/functions.php:1758
+#: sources/php/functions.php:1746
 msgid "Return to information"
 msgstr "정보로 돌아 가기"
 
-#: sources/php/functions.php:1778
+#: sources/php/functions.php:1766
 msgid "Return to shipping"
 msgstr "배송으로 돌아 가기"
 
-#: sources/php/functions.php:1798
+#: sources/php/functions.php:1786
 msgid "Return to payment"
 msgstr "지불로 돌아 가기"
 
-#: sources/php/functions.php:2295
+#: sources/php/functions.php:2283
 msgid "Or"
 msgstr "또는"
 
-#: sources/php/functions.php:2465
+#: sources/php/functions.php:2461
 msgid "Decrement"
 msgstr "감소"
 
-#: sources/php/functions.php:2471
+#: sources/php/functions.php:2467
 msgid "Increment"
 msgstr "증가"
 
@@ -303,8 +339,8 @@ msgid "Express checkout"
 msgstr "익스프레스 체크 아웃"
 
 #: sources/php/template-functions.php:295
-#: sources/php/template-functions.php:1952
-#: sources/php/template-functions.php:2245
+#: sources/php/template-functions.php:1969
+#: sources/php/template-functions.php:2262
 msgid "Information"
 msgstr "정보"
 
@@ -321,126 +357,118 @@ msgid "Log in for a faster checkout experience."
 msgstr "더 빠른 결제 경험을 위해 로그인하십시오."
 
 #. translators: %s: site name
-#: sources/php/template-functions.php:505
+#: sources/php/template-functions.php:508
 #, php-format
 msgid "Create %s shopping account."
 msgstr "%s 쇼핑 계정을 만드세요."
 
-#: sources/php/template-functions.php:517
+#: sources/php/template-functions.php:520
 msgid "If you do not have an account, we will create one for you."
 msgstr "계정이없는 경우 자동으로 생성 해드립니다."
 
 #. translators: %1 is the customer's name, %2 is their email address
-#: sources/php/template-functions.php:549
+#: sources/php/template-functions.php:552
 #, php-format
 msgid "Welcome back, %1$s (%2$s)."
 msgstr "다시 오신 것을 환영합니다. %1$s (%2$s)."
 
-#: sources/php/template-functions.php:567
+#: sources/php/template-functions.php:570
 msgid "Log out."
 msgstr "로그 아웃."
 
-#: sources/php/template-functions.php:585
+#: sources/php/template-functions.php:588
 msgid "Welcome back"
 msgstr "다시 오신 것을 환영합니다"
 
-#: sources/php/template-functions.php:589
+#: sources/php/template-functions.php:592
 msgid ""
 "It looks like you already have an account. Please enter your login details "
 "below."
 msgstr "이미 계정이 있는 것 같습니다. 아래에 로그인 정보를 입력하세요."
 
-#: sources/php/template-functions.php:592
+#: sources/php/template-functions.php:595
 msgid ""
 "If you have shopped with us before, please enter your login details below."
-msgstr "이전에 당사에서 쇼핑한 적이 있다면 아래에 로그인 정보를 입력하십시오."
+msgstr ""
+"이전에 당사에서 쇼핑한 적이 있다면 아래에 로그인 정보를 입력하십시오."
 
-#: sources/php/template-functions.php:645
+#: sources/php/template-functions.php:648
 msgid "Or continue as guest"
 msgstr "또는 게스트로 계속"
 
-#: sources/php/template-functions.php:695
-#: sources/php/template-functions.php:1982
+#: sources/php/template-functions.php:698
+#: sources/php/template-functions.php:1999
 msgid "Billing and Shipping address"
 msgstr "청구 및 배송 주소"
 
-#: sources/php/template-functions.php:921
-#: sources/php/template-functions.php:963
-#: sources/php/template-functions.php:1019
+#: sources/php/template-functions.php:924
+#: sources/php/template-functions.php:966
+#: sources/php/template-functions.php:1022
 msgid "Contact"
 msgstr "연락처"
 
-#: sources/php/template-functions.php:929
-#: sources/php/template-functions.php:945
-#: sources/php/template-functions.php:971
-#: sources/php/template-functions.php:987
-#: sources/php/template-functions.php:1002
-#: sources/php/template-functions.php:1027
-#: sources/php/template-functions.php:1043
-#: sources/php/template-functions.php:1058
-#: sources/php/template-functions.php:1074
+#: sources/php/template-functions.php:932
+#: sources/php/template-functions.php:948
+#: sources/php/template-functions.php:974
+#: sources/php/template-functions.php:990
+#: sources/php/template-functions.php:1005
+#: sources/php/template-functions.php:1030
+#: sources/php/template-functions.php:1046
+#: sources/php/template-functions.php:1061
+#: sources/php/template-functions.php:1077
 msgid "Change"
 msgstr "변경"
 
-#: sources/php/template-functions.php:994
-#: sources/php/template-functions.php:1050
+#: sources/php/template-functions.php:997
+#: sources/php/template-functions.php:1053
 msgid "Method"
 msgstr "방법"
 
-#: sources/php/template-functions.php:1206
+#: sources/php/template-functions.php:1209
 msgid "Shipping method"
 msgstr "배송 방법"
 
-#: sources/php/template-functions.php:1318
+#: sources/php/template-functions.php:1335
 msgid "Select the address that matches your card or payment method."
 msgstr "카드 또는 결제 방법과 일치하는 주소를 선택하십시오."
 
-#: sources/php/template-functions.php:1516
+#: sources/php/template-functions.php:1533
 msgid "Promo code"
 msgstr "프로모션 코드"
 
 #. translators: %s is the order number
-#: sources/php/template-functions.php:1719
+#: sources/php/template-functions.php:1736
 #, php-format
 msgid "Order %s"
 msgstr "주문 %s"
 
 #. translators: %s is the billing first name
-#: sources/php/template-functions.php:1732
+#: sources/php/template-functions.php:1749
 #, php-format
 msgid "Thank you %s!"
 msgstr "%s 감사합니다!"
 
-#: sources/php/template-functions.php:1836
+#: sources/php/template-functions.php:1853
 msgid "Order status"
 msgstr "주문 상태"
 
-#: sources/php/template-functions.php:1867
+#: sources/php/template-functions.php:1884
 msgid "Order updates"
 msgstr "주문 업데이트"
 
-#: sources/php/template-functions.php:1876
+#: sources/php/template-functions.php:1893
 msgid "You’ll get shipping and delivery updates by email."
 msgstr "이메일로 배송 및 배송 업데이트를 받게됩니다."
 
-#: sources/php/template-functions.php:1966
+#: sources/php/template-functions.php:1983
 msgid "Contact information"
 msgstr "연락처 정보"
 
-#: sources/php/template-functions.php:2018
-#: sources/php/template-functions.php:2260
-msgid "Shipping"
-msgstr "배송"
-
-#: sources/php/template-functions.php:2118
+#: sources/php/template-functions.php:2135
 msgid "Login"
 msgstr "로그인"
 
-#: sources/php/template-functions.php:2346
-msgid "Review"
-msgstr "리뷰"
-
-#: sources/php/template-functions.php:2405
+#: sources/php/template-functions.php:2392
 msgid "Your Cart is Empty"
 msgstr "장바구니가 비어 있습니다"
 
@@ -463,6 +491,19 @@ msgstr "Objectiv"
 #. Author URI of the plugin/theme
 msgid "https://objectiv.co"
 msgstr "https://objectiv.co"
+
+#~ msgid "Address Verification"
+#~ msgstr "주소 인증"
+
+#~ msgid ""
+#~ "The shipping address you provided does not match the suggested address "
+#~ "from our verification service. Please verify your address."
+#~ msgstr ""
+#~ "제공 한 배송 주소가 확인 서비스에서 제안한 주소와 일치하지 않습니다. 주"
+#~ "소를 확인하십시오."
+
+#~ msgid "We Suggest"
+#~ msgstr "우리는 제안합니다"
 
 #~ msgid "Select a country"
 #~ msgstr "국가를 고르시 오"

@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Checkout for WooCommerce\n"
-"POT-Creation-Date: 2022-06-29 10:08-0400\n"
-"PO-Revision-Date: 2022-06-29 10:21-0400\n"
+"POT-Creation-Date: 2022-09-26 12:12-0400\n"
+"PO-Revision-Date: 2022-09-26 12:25-0400\n"
 "Last-Translator: Clifton Griffin <clif@checkoutwc.com>\n"
 "Language-Team: support@checkoutwc.com\n"
 "Language: fi_FI\n"
@@ -10,7 +10,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.1\n"
+"X-Generator: Poedit 3.1.1\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-Flags-xgettext: --add-comments=translators:\n"
 "X-Poedit-WPHeader: checkout-for-woocommerce.php\n"
@@ -29,6 +29,31 @@ msgid ""
 msgstr ""
 "Sisäänkirjautumisessa tapahtui virhe. Tarkista kirjautumistiedot ja yritä "
 "uudelleen."
+
+#: includes/Action/SmartyStreetsAddressValidationAction.php:68
+#: includes/Features/SmartyStreets.php:114
+msgid "Use Recommended"
+msgstr "Käyttö Suositeltava"
+
+#: includes/Action/SmartyStreetsAddressValidationAction.php:69
+#: includes/Features/SmartyStreets.php:120
+msgid "Use Your Address"
+msgstr "Käytä osoitettasi"
+
+#: includes/Action/SmartyStreetsAddressValidationAction.php:78
+msgid "Reenter Address"
+msgstr "Syötä osoite uudelleen"
+
+#: includes/Action/SmartyStreetsAddressValidationAction.php:79
+msgid "Use Existing Address"
+msgstr "Käytä olemassa olevaa osoitetta"
+
+#: includes/Action/SmartyStreetsAddressValidationAction.php:147
+#: includes/Action/SmartyStreetsAddressValidationAction.php:193
+#: includes/Action/SmartyStreetsAddressValidationAction.php:246
+#: includes/Features/SmartyStreets.php:81
+msgid "We are unable to verify your address."
+msgstr "Emme pysty tarkistamaan osoitettasi."
 
 #. translators: %s is the postcode field label
 #: includes/Action/ValidateEmailDomainAction.php:36
@@ -54,9 +79,9 @@ msgid "Street name"
 msgstr "Kadun nimi"
 
 #: includes/Compatibility/Gateways/PayPalForWooCommerce.php:153
-#: sources/php/template-functions.php:705
-#: sources/php/template-functions.php:1297
-#: sources/php/template-functions.php:2005
+#: sources/php/template-functions.php:708
+#: sources/php/template-functions.php:1314
+#: sources/php/template-functions.php:2022
 msgid "Billing address"
 msgstr "Laskutusosoite"
 
@@ -77,84 +102,94 @@ msgstr "Lisää osoiteriville 2"
 msgid "Add Company"
 msgstr "Lisää Yritys"
 
-#: includes/Features/Pickup.php:50
+#: includes/Features/OrderReviewStep.php:70
+msgid "Review"
+msgstr "Arvostelu"
+
+#: includes/Features/Pickup.php:79
 msgid "Pick up"
 msgstr "Poimi"
 
-#: includes/Features/Pickup.php:54
-msgid "Delivery method"
-msgstr "Toimitustapa"
-
-#: includes/Features/Pickup.php:66
+#: includes/Features/Pickup.php:93
 msgid "Ship"
 msgstr "Postita"
 
-#: includes/Features/Pickup.php:113
+#: includes/Features/Pickup.php:107
+msgid "Delivery method"
+msgstr "Toimitustapa"
+
+#: includes/Features/Pickup.php:169
 msgid "Pickup locations"
 msgstr "Noutopaikat"
 
-#: includes/Features/Pickup.php:325
+#: includes/Features/Pickup.php:397
 msgid "Pick up in store"
 msgstr "Nouto myymälästä"
 
-#: includes/Features/Pickup.php:345 includes/Managers/AssetManager.php:511
+#: includes/Features/Pickup.php:413 includes/Managers/AssetManager.php:510
 msgid "Pickup"
 msgstr "Nouto"
 
-#: includes/Features/Pickup.php:380
+#: includes/Features/Pickup.php:470
 msgid "Pickup instructions"
 msgstr "Nouto-ohjeet"
 
-#: includes/Features/Pickup.php:483
+#: includes/Features/Pickup.php:579
 msgid "Usually ready in 1 hour."
 msgstr "Yleensä valmis 1 tunnissa."
 
-#: includes/Features/Pickup.php:484
+#: includes/Features/Pickup.php:580
 msgid "Usually ready in 2 hours."
 msgstr "Yleensä valmis 2 tunnissa."
 
-#: includes/Features/Pickup.php:485
+#: includes/Features/Pickup.php:581
 msgid "Usually ready in 4 hours."
 msgstr "Yleensä valmis 4 tunnissa."
 
-#: includes/Features/Pickup.php:486
+#: includes/Features/Pickup.php:582
 msgid "Usually ready in 24 hours."
 msgstr "Yleensä valmis 24 tunnissa."
 
-#: includes/Features/Pickup.php:487
+#: includes/Features/Pickup.php:583
 msgid "Usually ready in 2-4 days."
 msgstr "Yleensä valmis 2-4 päivässä."
 
-#: includes/Features/Pickup.php:488
+#: includes/Features/Pickup.php:584
 msgid "Usually ready in 5+ days."
 msgstr "Yleensä valmis 5+ päivässä."
 
-#: includes/Features/SideCart.php:174
+#: includes/Features/SideCart.php:170
 msgid "Close Cart"
 msgstr "Sulje ostoskori"
 
-#: includes/Features/SideCart.php:209 sources/php/template-functions.php:1503
+#: includes/Features/SideCart.php:205 sources/php/template-functions.php:1520
 msgid "Apply"
 msgstr "Käytä"
 
-#: includes/Features/SideCart.php:223 sources/php/template-functions.php:1532
+#: includes/Features/SideCart.php:219 sources/php/template-functions.php:1549
 msgid "Have a promo code? Click here."
 msgstr "Onko sinulla tarjouskoodi? Klikkaa tästä."
 
-#: includes/Features/SideCart.php:244 sources/php/template-functions.php:1553
+#: includes/Features/SideCart.php:240 sources/php/template-functions.php:1570
 msgid "Promo Code"
 msgstr "Tarjouskoodi"
 
-#: includes/Features/SideCart.php:252 sources/php/template-functions.php:1561
+#: includes/Features/SideCart.php:248 sources/php/template-functions.php:1578
 msgid "Enter Promo Code"
 msgstr "Kirjoita tarjouskoodi"
 
-#: includes/Features/SideCart.php:484
+#: includes/Features/SideCart.php:288 includes/Features/SideCart.php:289
+#: sources/php/template-functions.php:2035
+#: sources/php/template-functions.php:2277
+msgid "Shipping"
+msgstr "Toimitus"
+
+#: includes/Features/SideCart.php:501
 msgid "Congrats! You get free standard shipping."
 msgstr "Onneksi olkoon! Saat ilmaisen vakiotoimituksen."
 
 #. translators: %s is the amount remaining for free shipping
-#: includes/Features/SideCart.php:497
+#: includes/Features/SideCart.php:514
 #, php-format
 msgid "You're %s away from free shipping!"
 msgstr "Olet %s päässä ilmaisesta toimituksesta!"
@@ -163,45 +198,47 @@ msgstr "Olet %s päässä ilmaisesta toimituksesta!"
 msgid "Use This Address"
 msgstr "Käytä tätä osoitetta"
 
-#: includes/Features/SmartyStreets.php:76
-msgid "Address Verification"
-msgstr "Osoitteen vahvistaminen"
+#: includes/Features/SmartyStreets.php:77
+msgid "Use recommended address instead?"
+msgstr "Käytä sen sijaan suositeltua osoitetta?"
 
-#: includes/Features/SmartyStreets.php:79
-msgid ""
-"The shipping address you provided does not match the suggested address from "
-"our verification service. Please verify your address."
+#: includes/Features/SmartyStreets.php:85
+msgid "We're unable to verify your address, but found a close match."
 msgstr ""
-"Antamasi toimitusosoite ei vastaa vahvistuspalvelumme ehdottamaa osoitetta. "
-"Tarkista osoitteesi."
+"Emme pystyneet vahvistamaan osoitettasi, mutta löysimme lähelle osuvan "
+"osoitteen."
 
-#: includes/Features/SmartyStreets.php:87
+#: includes/Features/SmartyStreets.php:89
+msgid "Please confirm you would like to use this address or try again."
+msgstr "Vahvista, että haluat käyttää tätä osoitetta, tai yritä uudelleen."
+
+#: includes/Features/SmartyStreets.php:95
 msgid "You Entered"
 msgstr "Sinä syötit"
 
-#: includes/Features/SmartyStreets.php:101
-msgid "We Suggest"
-msgstr "Ehdotamme"
+#: includes/Features/SmartyStreets.php:105
+msgid "Recommended"
+msgstr "Suositeltu"
 
-#: includes/Managers/AssetManager.php:500
+#: includes/Managers/AssetManager.php:499
 msgid "Please enter a valid phone number."
 msgstr "Syötä toimiva puhelinnumero."
 
-#: includes/Managers/AssetManager.php:501
+#: includes/Managers/AssetManager.php:500
 msgid "Please enter your first and last name."
 msgstr "Kirjoita etu- ja sukunimesi."
 
-#: includes/Managers/AssetManager.php:502
-#: sources/php/template-functions.php:715
-#: sources/php/template-functions.php:1989
+#: includes/Managers/AssetManager.php:501
+#: sources/php/template-functions.php:718
+#: sources/php/template-functions.php:2006
 msgid "Shipping address"
 msgstr "Toimitusosoite"
 
-#: includes/Managers/AssetManager.php:503
+#: includes/Managers/AssetManager.php:502
 msgid "Please enter a new quantity:"
 msgstr "Kirjoita uusi määrä:"
 
-#: includes/Managers/AssetManager.php:504
+#: includes/Managers/AssetManager.php:503
 msgid ""
 "3-digit security code usually found on the back of your card. American "
 "Express cards have a 4-digit code located on the front."
@@ -209,85 +246,85 @@ msgstr ""
 "3-numeroinen turvakoodi, joka yleensä löytyy kortin takaosasta. American "
 "Express -korttien etuosassa on nelinumeroinen koodi."
 
-#: includes/Managers/AssetManager.php:505
+#: includes/Managers/AssetManager.php:504
 msgid "Are you sure you want to remove this item from your cart?"
 msgstr "Haluatko varmasti poistaa tämän tuotteen ostoskoristasi?"
 
-#: includes/Managers/AssetManager.php:510
+#: includes/Managers/AssetManager.php:509
 msgid "Please enter a valid postcode / ZIP."
 msgstr "Kirjoita kelvollinen postinumero."
 
-#: sources/php/functions.php:188
+#: sources/php/functions.php:192
 msgid "Ship to"
 msgstr "Toimitusosoite"
 
-#: sources/php/functions.php:1127
+#: sources/php/functions.php:1122
 msgid "No shipping methods available"
 msgstr "Ei lähetystapoja"
 
-#: sources/php/functions.php:1298
+#: sources/php/functions.php:1293
 msgid "Complete Order"
 msgstr "Lähetä tilaus"
 
-#: sources/php/functions.php:1358 sources/php/template-functions.php:1067
-#: sources/php/template-functions.php:1970
-#: sources/php/template-functions.php:2274
+#: sources/php/functions.php:1353 sources/php/template-functions.php:1070
+#: sources/php/template-functions.php:1987
+#: sources/php/template-functions.php:2291
 msgid "Payment"
 msgstr "Maksu"
 
-#: sources/php/functions.php:1383
+#: sources/php/functions.php:1378
 msgid "All transactions are secure and encrypted."
 msgstr "Kaikki tapahtumat ovat suojattuja ja salattuja."
 
-#: sources/php/functions.php:1404
+#: sources/php/functions.php:1399
 msgid "Your order is free. No payment is required."
 msgstr "Tilauksesi on ilmainen. Maksua ei vaadita."
 
-#: sources/php/functions.php:1449
+#: sources/php/functions.php:1444
 msgid "Same as shipping address"
 msgstr "Sama kuin toimitusosoite"
 
-#: sources/php/functions.php:1469
+#: sources/php/functions.php:1464
 msgid "Use a different billing address"
 msgstr "Käytä toista laskutusosoitetta"
 
-#: sources/php/functions.php:1643
+#: sources/php/functions.php:1631
 msgid "Return to cart"
 msgstr "Takaisin ostoskoriin"
 
-#: sources/php/functions.php:1680
+#: sources/php/functions.php:1668
 msgid "Continue to shipping"
 msgstr "Jatka toimitukseen"
 
-#: sources/php/functions.php:1702
+#: sources/php/functions.php:1690
 msgid "Continue to payment"
 msgstr "Jatka maksamiseen"
 
-#: sources/php/functions.php:1738
+#: sources/php/functions.php:1726
 msgid "Review order"
 msgstr "Tarkista tilaus"
 
-#: sources/php/functions.php:1758
+#: sources/php/functions.php:1746
 msgid "Return to information"
 msgstr "Palaa tietoihin"
 
-#: sources/php/functions.php:1778
+#: sources/php/functions.php:1766
 msgid "Return to shipping"
 msgstr "Palaa kuljetuspalveluun"
 
-#: sources/php/functions.php:1798
+#: sources/php/functions.php:1786
 msgid "Return to payment"
 msgstr "Palaa maksuun"
 
-#: sources/php/functions.php:2295
+#: sources/php/functions.php:2283
 msgid "Or"
 msgstr "Tai"
 
-#: sources/php/functions.php:2465
+#: sources/php/functions.php:2461
 msgid "Decrement"
 msgstr "Vähennys"
 
-#: sources/php/functions.php:2471
+#: sources/php/functions.php:2467
 msgid "Increment"
 msgstr "Lisäys"
 
@@ -304,8 +341,8 @@ msgid "Express checkout"
 msgstr "Pikakassa"
 
 #: sources/php/template-functions.php:295
-#: sources/php/template-functions.php:1952
-#: sources/php/template-functions.php:2245
+#: sources/php/template-functions.php:1969
+#: sources/php/template-functions.php:2262
 msgid "Information"
 msgstr "Tiedot"
 
@@ -322,127 +359,118 @@ msgid "Log in for a faster checkout experience."
 msgstr "Kirjaudu sisään saadaksesi nopeamman kassakokemuksen."
 
 #. translators: %s: site name
-#: sources/php/template-functions.php:505
+#: sources/php/template-functions.php:508
 #, php-format
 msgid "Create %s shopping account."
 msgstr "Luo %s ostostili."
 
-#: sources/php/template-functions.php:517
+#: sources/php/template-functions.php:520
 msgid "If you do not have an account, we will create one for you."
 msgstr "Jos sinulla ei ole tiliä, me luot sen sinulle."
 
 #. translators: %1 is the customer's name, %2 is their email address
-#: sources/php/template-functions.php:549
+#: sources/php/template-functions.php:552
 #, php-format
 msgid "Welcome back, %1$s (%2$s)."
 msgstr "Tervetuloa takaisin,%1$s (%2$s)."
 
-#: sources/php/template-functions.php:567
+#: sources/php/template-functions.php:570
 msgid "Log out."
 msgstr "Kirjautua ulos."
 
-#: sources/php/template-functions.php:585
+#: sources/php/template-functions.php:588
 msgid "Welcome back"
 msgstr "Tervetuloa takaisin"
 
-#: sources/php/template-functions.php:589
+#: sources/php/template-functions.php:592
 msgid ""
 "It looks like you already have an account. Please enter your login details "
 "below."
 msgstr "Näyttää siltä, että sinulla on jo tili. Anna kirjautumistietosi alla."
 
-#: sources/php/template-functions.php:592
+#: sources/php/template-functions.php:595
 msgid ""
 "If you have shopped with us before, please enter your login details below."
 msgstr ""
 "Jos olet tehnyt ostoksia kanssamme aiemmin, anna kirjautumistietosi alla."
 
-#: sources/php/template-functions.php:645
+#: sources/php/template-functions.php:648
 msgid "Or continue as guest"
 msgstr "Tai jatka vieraana"
 
-#: sources/php/template-functions.php:695
-#: sources/php/template-functions.php:1982
+#: sources/php/template-functions.php:698
+#: sources/php/template-functions.php:1999
 msgid "Billing and Shipping address"
 msgstr "Laskutus- ja toimitusosoite"
 
-#: sources/php/template-functions.php:921
-#: sources/php/template-functions.php:963
-#: sources/php/template-functions.php:1019
+#: sources/php/template-functions.php:924
+#: sources/php/template-functions.php:966
+#: sources/php/template-functions.php:1022
 msgid "Contact"
 msgstr "Ota yhteyttä"
 
-#: sources/php/template-functions.php:929
-#: sources/php/template-functions.php:945
-#: sources/php/template-functions.php:971
-#: sources/php/template-functions.php:987
-#: sources/php/template-functions.php:1002
-#: sources/php/template-functions.php:1027
-#: sources/php/template-functions.php:1043
-#: sources/php/template-functions.php:1058
-#: sources/php/template-functions.php:1074
+#: sources/php/template-functions.php:932
+#: sources/php/template-functions.php:948
+#: sources/php/template-functions.php:974
+#: sources/php/template-functions.php:990
+#: sources/php/template-functions.php:1005
+#: sources/php/template-functions.php:1030
+#: sources/php/template-functions.php:1046
+#: sources/php/template-functions.php:1061
+#: sources/php/template-functions.php:1077
 msgid "Change"
 msgstr "Vaihda"
 
-#: sources/php/template-functions.php:994
-#: sources/php/template-functions.php:1050
+#: sources/php/template-functions.php:997
+#: sources/php/template-functions.php:1053
 msgid "Method"
 msgstr "Menetelmä"
 
-#: sources/php/template-functions.php:1206
+#: sources/php/template-functions.php:1209
 msgid "Shipping method"
 msgstr "Toimitustapa"
 
-#: sources/php/template-functions.php:1318
+#: sources/php/template-functions.php:1335
 msgid "Select the address that matches your card or payment method."
 msgstr "Valitse korttiasi tai maksutapaa vastaava osoite."
 
-#: sources/php/template-functions.php:1516
+#: sources/php/template-functions.php:1533
 msgid "Promo code"
 msgstr "Tarjouskoodi"
 
 #. translators: %s is the order number
-#: sources/php/template-functions.php:1719
+#: sources/php/template-functions.php:1736
 #, php-format
 msgid "Order %s"
 msgstr "Tilaus %s"
 
 #. translators: %s is the billing first name
-#: sources/php/template-functions.php:1732
+#: sources/php/template-functions.php:1749
 #, php-format
 msgid "Thank you %s!"
 msgstr "Kiitos %s!"
 
-#: sources/php/template-functions.php:1836
+#: sources/php/template-functions.php:1853
 msgid "Order status"
 msgstr "Tilauksen tilanne"
 
-#: sources/php/template-functions.php:1867
+#: sources/php/template-functions.php:1884
 msgid "Order updates"
 msgstr "Tilauksen päivitykset"
 
-#: sources/php/template-functions.php:1876
+#: sources/php/template-functions.php:1893
 msgid "You’ll get shipping and delivery updates by email."
 msgstr "Saat tilaus- ja toimituspäivitykset sähköpostitse."
 
-#: sources/php/template-functions.php:1966
+#: sources/php/template-functions.php:1983
 msgid "Contact information"
 msgstr "Yhteystiedot"
 
-#: sources/php/template-functions.php:2018
-#: sources/php/template-functions.php:2260
-msgid "Shipping"
-msgstr "Toimitus"
-
-#: sources/php/template-functions.php:2118
+#: sources/php/template-functions.php:2135
 msgid "Login"
 msgstr "Kirjaudu"
 
-#: sources/php/template-functions.php:2346
-msgid "Review"
-msgstr "Arvostelu"
-
-#: sources/php/template-functions.php:2405
+#: sources/php/template-functions.php:2392
 msgid "Your Cart is Empty"
 msgstr "Ostoskori on tyhjä"
 
@@ -465,6 +493,19 @@ msgstr "Objectiv"
 #. Author URI of the plugin/theme
 msgid "https://objectiv.co"
 msgstr "https://objectiv.co"
+
+#~ msgid "Address Verification"
+#~ msgstr "Osoitteen vahvistaminen"
+
+#~ msgid ""
+#~ "The shipping address you provided does not match the suggested address "
+#~ "from our verification service. Please verify your address."
+#~ msgstr ""
+#~ "Antamasi toimitusosoite ei vastaa vahvistuspalvelumme ehdottamaa "
+#~ "osoitetta. Tarkista osoitteesi."
+
+#~ msgid "We Suggest"
+#~ msgstr "Ehdotamme"
 
 #~ msgid "Select a country"
 #~ msgstr "Valitse maa"
@@ -654,9 +695,6 @@ msgstr "https://objectiv.co"
 
 #~ msgid "Cart Item Label"
 #~ msgstr "Ostoskorin etiketti"
-
-#~ msgid "Text (Recommended)"
-#~ msgstr "Teksti (suositeltava)"
 
 #~ msgid "Link"
 #~ msgstr "Linkki"

@@ -3,7 +3,6 @@ import Main                  from '../Main';
 import AlertService          from '../Services/AlertService';
 import DataService           from '../Services/DataService';
 import LoggingService        from '../Services/LoggingService';
-import UpdateCheckoutService from '../Services/UpdateCheckoutService';
 import Action                from './Action';
 
 class CompleteOrderAction extends Action {

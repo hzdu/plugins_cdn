@@ -197,9 +197,19 @@ body.admin-bar {
             background: var(--cfw-body-background-color) !important;
             border: none;
         }
+    }
 
-        .cfw-cart-item-subtotal {
+    .cfw-side-cart-totals table {
+        border-collapse: collapse;
 
+        tr {
+            td, th {
+                padding: 10px 0;
+            }
+        }
+
+        tr.order-total {
+            border-top: 2px solid #000;
         }
     }
 

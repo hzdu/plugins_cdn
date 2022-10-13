@@ -1,5 +1,5 @@
 /*
-! tailwindcss v3.1.2 | MIT License | https://tailwindcss.com
+! tailwindcss v3.1.8 | MIT License | https://tailwindcss.com
 */
 
 /*
@@ -38,8 +38,7 @@ html {
   -webkit-text-size-adjust: 100%;
   /* 2 */
   /* 3 */
-  -o-tab-size: 4;
-     tab-size: 4;
+  tab-size: 4;
   /* 3 */
   font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   /* 4 */
@@ -607,6 +606,53 @@ select {
   --tw-backdrop-sepia:  ;
 }
 
+::-webkit-backdrop {
+  --tw-border-spacing-x: 0;
+  --tw-border-spacing-y: 0;
+  --tw-translate-x: 0;
+  --tw-translate-y: 0;
+  --tw-rotate: 0;
+  --tw-skew-x: 0;
+  --tw-skew-y: 0;
+  --tw-scale-x: 1;
+  --tw-scale-y: 1;
+  --tw-pan-x:  ;
+  --tw-pan-y:  ;
+  --tw-pinch-zoom:  ;
+  --tw-scroll-snap-strictness: proximity;
+  --tw-ordinal:  ;
+  --tw-slashed-zero:  ;
+  --tw-numeric-figure:  ;
+  --tw-numeric-spacing:  ;
+  --tw-numeric-fraction:  ;
+  --tw-ring-inset:  ;
+  --tw-ring-offset-width: 0px;
+  --tw-ring-offset-color: #fff;
+  --tw-ring-color: rgb(78 154 224 / 0.5);
+  --tw-ring-offset-shadow: 0 0 #0000;
+  --tw-ring-shadow: 0 0 #0000;
+  --tw-shadow: 0 0 #0000;
+  --tw-shadow-colored: 0 0 #0000;
+  --tw-blur:  ;
+  --tw-brightness:  ;
+  --tw-contrast:  ;
+  --tw-grayscale:  ;
+  --tw-hue-rotate:  ;
+  --tw-invert:  ;
+  --tw-saturate:  ;
+  --tw-sepia:  ;
+  --tw-drop-shadow:  ;
+  --tw-backdrop-blur:  ;
+  --tw-backdrop-brightness:  ;
+  --tw-backdrop-contrast:  ;
+  --tw-backdrop-grayscale:  ;
+  --tw-backdrop-hue-rotate:  ;
+  --tw-backdrop-invert:  ;
+  --tw-backdrop-opacity:  ;
+  --tw-backdrop-saturate:  ;
+  --tw-backdrop-sepia:  ;
+}
+
 ::backdrop {
   --tw-border-spacing-x: 0;
   --tw-border-spacing-y: 0;
@@ -798,6 +844,10 @@ select {
   margin-bottom: 1.5rem;
 }
 
+.mt-2 {
+  margin-top: 0.5rem;
+}
+
 .mb-2 {
   margin-bottom: 0.5rem;
 }
@@ -812,10 +862,6 @@ select {
 
 .ml-7 {
   margin-left: 1.75rem;
-}
-
-.mt-2 {
-  margin-top: 0.5rem;
 }
 
 .mr-8 {
@@ -1026,6 +1072,10 @@ select {
   max-width: 42rem;
 }
 
+.max-w-full {
+  max-width: 100%;
+}
+
 .flex-1 {
   flex: 1 1 0%;
 }
@@ -1147,6 +1197,18 @@ select {
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
+.grid-cols-1 {
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+}
+
+.grid-cols-6 {
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+}
+
+.grid-cols-4 {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
 .flex-row {
   flex-direction: row;
 }
@@ -1181,6 +1243,10 @@ select {
 
 .gap-6 {
   gap: 1.5rem;
+}
+
+.gap-1 {
+  gap: 0.25rem;
 }
 
 .space-y-6 > :not([hidden]) ~ :not([hidden]) {
@@ -1953,6 +2019,10 @@ select {
     transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
   }
 
+  .sm\:grid-cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
   .sm\:items-center {
     align-items: center;
   }
@@ -2029,11 +2099,41 @@ select {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
+  .md\:grid-cols-6 {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+  }
+
   .md\:justify-between {
     justify-content: space-between;
   }
 
   .md\:gap-6 {
     gap: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .lg\:grid-cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .lg\:grid-cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1280px) {
+  .xl\:grid-cols-4 {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1536px) {
+  .\32xl\:grid-cols-4 {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .\32xl\:grid-cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }

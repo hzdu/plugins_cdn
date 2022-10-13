@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Checkout for WooCommerce\n"
-"POT-Creation-Date: 2022-06-29 10:08-0400\n"
-"PO-Revision-Date: 2022-06-29 10:13-0400\n"
+"POT-Creation-Date: 2022-09-26 12:12-0400\n"
+"PO-Revision-Date: 2022-09-26 12:17-0400\n"
 "Last-Translator: Clifton Griffin <clif@checkoutwc.com>\n"
 "Language-Team: support@checkoutwc.com\n"
 "Language: ru_RU\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<12 || n%100>14) ? 1 : 2);\n"
-"X-Generator: Poedit 3.1\n"
+"X-Generator: Poedit 3.1.1\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-Flags-xgettext: --add-comments=translators:\n"
 "X-Poedit-WPHeader: checkout-for-woocommerce.php\n"
@@ -30,6 +30,31 @@ msgid ""
 msgstr ""
 "Произошла ошибка при входе в систему. Пожалуйста, проверьте свои учетные "
 "данные и попробуйте еще раз."
+
+#: includes/Action/SmartyStreetsAddressValidationAction.php:68
+#: includes/Features/SmartyStreets.php:114
+msgid "Use Recommended"
+msgstr "Рекомендуется использовать"
+
+#: includes/Action/SmartyStreetsAddressValidationAction.php:69
+#: includes/Features/SmartyStreets.php:120
+msgid "Use Your Address"
+msgstr "Используйте свой адрес"
+
+#: includes/Action/SmartyStreetsAddressValidationAction.php:78
+msgid "Reenter Address"
+msgstr "Повторный ввод адреса"
+
+#: includes/Action/SmartyStreetsAddressValidationAction.php:79
+msgid "Use Existing Address"
+msgstr "Использовать существующий адрес"
+
+#: includes/Action/SmartyStreetsAddressValidationAction.php:147
+#: includes/Action/SmartyStreetsAddressValidationAction.php:193
+#: includes/Action/SmartyStreetsAddressValidationAction.php:246
+#: includes/Features/SmartyStreets.php:81
+msgid "We are unable to verify your address."
+msgstr "Мы не можем проверить ваш адрес."
 
 #. translators: %s is the postcode field label
 #: includes/Action/ValidateEmailDomainAction.php:36
@@ -55,9 +80,9 @@ msgid "Street name"
 msgstr "Улица"
 
 #: includes/Compatibility/Gateways/PayPalForWooCommerce.php:153
-#: sources/php/template-functions.php:705
-#: sources/php/template-functions.php:1297
-#: sources/php/template-functions.php:2005
+#: sources/php/template-functions.php:708
+#: sources/php/template-functions.php:1314
+#: sources/php/template-functions.php:2022
 msgid "Billing address"
 msgstr "Платежный адрес"
 
@@ -78,84 +103,94 @@ msgstr "Добавить адресную строку 2"
 msgid "Add Company"
 msgstr "Добавить компанию"
 
-#: includes/Features/Pickup.php:50
+#: includes/Features/OrderReviewStep.php:70
+msgid "Review"
+msgstr "Обзор"
+
+#: includes/Features/Pickup.php:79
 msgid "Pick up"
 msgstr "Подобрать"
 
-#: includes/Features/Pickup.php:54
-msgid "Delivery method"
-msgstr "Cпособ доставки"
-
-#: includes/Features/Pickup.php:66
+#: includes/Features/Pickup.php:93
 msgid "Ship"
 msgstr "Доставлять"
 
-#: includes/Features/Pickup.php:113
+#: includes/Features/Pickup.php:107
+msgid "Delivery method"
+msgstr "Cпособ доставки"
+
+#: includes/Features/Pickup.php:169
 msgid "Pickup locations"
 msgstr "Места забора"
 
-#: includes/Features/Pickup.php:325
+#: includes/Features/Pickup.php:397
 msgid "Pick up in store"
 msgstr "Забрать в магазине"
 
-#: includes/Features/Pickup.php:345 includes/Managers/AssetManager.php:511
+#: includes/Features/Pickup.php:413 includes/Managers/AssetManager.php:510
 msgid "Pickup"
 msgstr "Самовывоз"
 
-#: includes/Features/Pickup.php:380
+#: includes/Features/Pickup.php:470
 msgid "Pickup instructions"
 msgstr "Инструкции по подбору"
 
-#: includes/Features/Pickup.php:483
+#: includes/Features/Pickup.php:579
 msgid "Usually ready in 1 hour."
 msgstr "Обычно готово через 1 час."
 
-#: includes/Features/Pickup.php:484
+#: includes/Features/Pickup.php:580
 msgid "Usually ready in 2 hours."
 msgstr "Обычно готово через 2 часа."
 
-#: includes/Features/Pickup.php:485
+#: includes/Features/Pickup.php:581
 msgid "Usually ready in 4 hours."
 msgstr "Обычно готово через 4 часа."
 
-#: includes/Features/Pickup.php:486
+#: includes/Features/Pickup.php:582
 msgid "Usually ready in 24 hours."
 msgstr "Обычно готово в течение 24 часов."
 
-#: includes/Features/Pickup.php:487
+#: includes/Features/Pickup.php:583
 msgid "Usually ready in 2-4 days."
 msgstr "Обычно готовы через 2-4 дня."
 
-#: includes/Features/Pickup.php:488
+#: includes/Features/Pickup.php:584
 msgid "Usually ready in 5+ days."
 msgstr "Обычно готовы через 5+ дней."
 
-#: includes/Features/SideCart.php:174
+#: includes/Features/SideCart.php:170
 msgid "Close Cart"
 msgstr "Закрыть корзину"
 
-#: includes/Features/SideCart.php:209 sources/php/template-functions.php:1503
+#: includes/Features/SideCart.php:205 sources/php/template-functions.php:1520
 msgid "Apply"
 msgstr "Применить"
 
-#: includes/Features/SideCart.php:223 sources/php/template-functions.php:1532
+#: includes/Features/SideCart.php:219 sources/php/template-functions.php:1549
 msgid "Have a promo code? Click here."
 msgstr "У тебя есть промо-код? Нажми сюда."
 
-#: includes/Features/SideCart.php:244 sources/php/template-functions.php:1553
+#: includes/Features/SideCart.php:240 sources/php/template-functions.php:1570
 msgid "Promo Code"
 msgstr "Промо код"
 
-#: includes/Features/SideCart.php:252 sources/php/template-functions.php:1561
+#: includes/Features/SideCart.php:248 sources/php/template-functions.php:1578
 msgid "Enter Promo Code"
 msgstr "Код купона"
 
-#: includes/Features/SideCart.php:484
+#: includes/Features/SideCart.php:288 includes/Features/SideCart.php:289
+#: sources/php/template-functions.php:2035
+#: sources/php/template-functions.php:2277
+msgid "Shipping"
+msgstr "Доставка"
+
+#: includes/Features/SideCart.php:501
 msgid "Congrats! You get free standard shipping."
 msgstr "Поздравляем! Вы получаете бесплатную стандартную доставку."
 
 #. translators: %s is the amount remaining for free shipping
-#: includes/Features/SideCart.php:497
+#: includes/Features/SideCart.php:514
 #, php-format
 msgid "You're %s away from free shipping!"
 msgstr "Вы находитесь на расстоянии %s от бесплатной доставки!"
@@ -164,45 +199,47 @@ msgstr "Вы находитесь на расстоянии %s от беспла
 msgid "Use This Address"
 msgstr "Используйте этот адрес"
 
-#: includes/Features/SmartyStreets.php:76
-msgid "Address Verification"
-msgstr "Проверка на адрес"
+#: includes/Features/SmartyStreets.php:77
+msgid "Use recommended address instead?"
+msgstr "Использовать рекомендуемый адрес?"
 
-#: includes/Features/SmartyStreets.php:79
-msgid ""
-"The shipping address you provided does not match the suggested address from "
-"our verification service. Please verify your address."
+#: includes/Features/SmartyStreets.php:85
+msgid "We're unable to verify your address, but found a close match."
+msgstr "Мы не можем проверить ваш адрес, но нашли близкое совпадение."
+
+#: includes/Features/SmartyStreets.php:89
+msgid "Please confirm you would like to use this address or try again."
 msgstr ""
-"Указанный вами адрес доставки не совпадает с предложенным адресом нашей "
-"службы проверки. Пожалуйста, проверьте ваш адрес."
+"Пожалуйста, подтвердите, что вы хотите использовать этот адрес, или "
+"попробуйте еще раз."
 
-#: includes/Features/SmartyStreets.php:87
+#: includes/Features/SmartyStreets.php:95
 msgid "You Entered"
 msgstr "Вы вошли"
 
-#: includes/Features/SmartyStreets.php:101
-msgid "We Suggest"
-msgstr "Мы предлагаем"
+#: includes/Features/SmartyStreets.php:105
+msgid "Recommended"
+msgstr "Рекомендуемые"
 
-#: includes/Managers/AssetManager.php:500
+#: includes/Managers/AssetManager.php:499
 msgid "Please enter a valid phone number."
 msgstr "﻿Введите правильный номер телефона."
 
-#: includes/Managers/AssetManager.php:501
+#: includes/Managers/AssetManager.php:500
 msgid "Please enter your first and last name."
 msgstr "Пожалуйста, введите ваше имя и фамилию."
 
-#: includes/Managers/AssetManager.php:502
-#: sources/php/template-functions.php:715
-#: sources/php/template-functions.php:1989
+#: includes/Managers/AssetManager.php:501
+#: sources/php/template-functions.php:718
+#: sources/php/template-functions.php:2006
 msgid "Shipping address"
 msgstr "Адрес доставки"
 
-#: includes/Managers/AssetManager.php:503
+#: includes/Managers/AssetManager.php:502
 msgid "Please enter a new quantity:"
 msgstr "Пожалуйста, введите новое количество:"
 
-#: includes/Managers/AssetManager.php:504
+#: includes/Managers/AssetManager.php:503
 msgid ""
 "3-digit security code usually found on the back of your card. American "
 "Express cards have a 4-digit code located on the front."
@@ -211,85 +248,85 @@ msgstr ""
 "карты. Карты American Express имеют 4-значный код, расположенный на лицевой "
 "стороне."
 
-#: includes/Managers/AssetManager.php:505
+#: includes/Managers/AssetManager.php:504
 msgid "Are you sure you want to remove this item from your cart?"
 msgstr "Вы уверены, что хотите удалить этот пункт из вашей корзины?"
 
-#: includes/Managers/AssetManager.php:510
+#: includes/Managers/AssetManager.php:509
 msgid "Please enter a valid postcode / ZIP."
 msgstr "Пожалуйста, введите действительный почтовый индекс / Индекс."
 
-#: sources/php/functions.php:188
+#: sources/php/functions.php:192
 msgid "Ship to"
 msgstr "Доставка в"
 
-#: sources/php/functions.php:1127
+#: sources/php/functions.php:1122
 msgid "No shipping methods available"
 msgstr "Методы доставки отсутствуют"
 
-#: sources/php/functions.php:1298
+#: sources/php/functions.php:1293
 msgid "Complete Order"
 msgstr "Завершить заказ"
 
-#: sources/php/functions.php:1358 sources/php/template-functions.php:1067
-#: sources/php/template-functions.php:1970
-#: sources/php/template-functions.php:2274
+#: sources/php/functions.php:1353 sources/php/template-functions.php:1070
+#: sources/php/template-functions.php:1987
+#: sources/php/template-functions.php:2291
 msgid "Payment"
 msgstr "Оплата"
 
-#: sources/php/functions.php:1383
+#: sources/php/functions.php:1378
 msgid "All transactions are secure and encrypted."
 msgstr "Все операции защищены и зашифрованы."
 
-#: sources/php/functions.php:1404
+#: sources/php/functions.php:1399
 msgid "Your order is free. No payment is required."
 msgstr "Ваш заказ бесплатный. Оплата не требуется."
 
-#: sources/php/functions.php:1449
+#: sources/php/functions.php:1444
 msgid "Same as shipping address"
 msgstr "Тот же, что адрес доставки"
 
-#: sources/php/functions.php:1469
+#: sources/php/functions.php:1464
 msgid "Use a different billing address"
 msgstr "Использовать другой адрес для выставления счетов"
 
-#: sources/php/functions.php:1643
+#: sources/php/functions.php:1631
 msgid "Return to cart"
 msgstr "Вернуться в корзину"
 
-#: sources/php/functions.php:1680
+#: sources/php/functions.php:1668
 msgid "Continue to shipping"
 msgstr "Продолжить отгрузку"
 
-#: sources/php/functions.php:1702
+#: sources/php/functions.php:1690
 msgid "Continue to payment"
 msgstr "Перейти к оплате"
 
-#: sources/php/functions.php:1738
+#: sources/php/functions.php:1726
 msgid "Review order"
 msgstr "Просмотр заказа"
 
-#: sources/php/functions.php:1758
+#: sources/php/functions.php:1746
 msgid "Return to information"
 msgstr "Вернуться к информации"
 
-#: sources/php/functions.php:1778
+#: sources/php/functions.php:1766
 msgid "Return to shipping"
 msgstr "Возврат к отгрузке"
 
-#: sources/php/functions.php:1798
+#: sources/php/functions.php:1786
 msgid "Return to payment"
 msgstr "Возврат к оплате"
 
-#: sources/php/functions.php:2295
+#: sources/php/functions.php:2283
 msgid "Or"
 msgstr "Или"
 
-#: sources/php/functions.php:2465
+#: sources/php/functions.php:2461
 msgid "Decrement"
 msgstr "Уменьшение"
 
-#: sources/php/functions.php:2471
+#: sources/php/functions.php:2467
 msgid "Increment"
 msgstr "Шаг"
 
@@ -306,8 +343,8 @@ msgid "Express checkout"
 msgstr "Экспресс-оформление"
 
 #: sources/php/template-functions.php:295
-#: sources/php/template-functions.php:1952
-#: sources/php/template-functions.php:2245
+#: sources/php/template-functions.php:1969
+#: sources/php/template-functions.php:2262
 msgid "Information"
 msgstr "Информация"
 
@@ -324,30 +361,30 @@ msgid "Log in for a faster checkout experience."
 msgstr "Авторизуйтесь для более быстрого оформления заказа."
 
 #. translators: %s: site name
-#: sources/php/template-functions.php:505
+#: sources/php/template-functions.php:508
 #, php-format
 msgid "Create %s shopping account."
 msgstr "Создайте аккаунт для покупок в %s."
 
-#: sources/php/template-functions.php:517
+#: sources/php/template-functions.php:520
 msgid "If you do not have an account, we will create one for you."
 msgstr "Если у вас нет учетной записи, мы создадим ее для вас."
 
 #. translators: %1 is the customer's name, %2 is their email address
-#: sources/php/template-functions.php:549
+#: sources/php/template-functions.php:552
 #, php-format
 msgid "Welcome back, %1$s (%2$s)."
 msgstr "С возвращением, %1$s (%2$s)."
 
-#: sources/php/template-functions.php:567
+#: sources/php/template-functions.php:570
 msgid "Log out."
 msgstr "Выходите."
 
-#: sources/php/template-functions.php:585
+#: sources/php/template-functions.php:588
 msgid "Welcome back"
 msgstr "С возвращением"
 
-#: sources/php/template-functions.php:589
+#: sources/php/template-functions.php:592
 msgid ""
 "It looks like you already have an account. Please enter your login details "
 "below."
@@ -355,99 +392,90 @@ msgstr ""
 "Похоже, что у вас уже есть учетная запись. Пожалуйста, введите свои данные "
 "для входа в систему ниже."
 
-#: sources/php/template-functions.php:592
+#: sources/php/template-functions.php:595
 msgid ""
 "If you have shopped with us before, please enter your login details below."
 msgstr ""
 "Если вы уже делали у нас покупки, введите свои данные для входа в систему "
 "ниже."
 
-#: sources/php/template-functions.php:645
+#: sources/php/template-functions.php:648
 msgid "Or continue as guest"
 msgstr "Или продолжить в качестве гостя"
 
-#: sources/php/template-functions.php:695
-#: sources/php/template-functions.php:1982
+#: sources/php/template-functions.php:698
+#: sources/php/template-functions.php:1999
 msgid "Billing and Shipping address"
 msgstr "Адрес выставления счета и доставки"
 
-#: sources/php/template-functions.php:921
-#: sources/php/template-functions.php:963
-#: sources/php/template-functions.php:1019
+#: sources/php/template-functions.php:924
+#: sources/php/template-functions.php:966
+#: sources/php/template-functions.php:1022
 msgid "Contact"
 msgstr "Контакты"
 
-#: sources/php/template-functions.php:929
-#: sources/php/template-functions.php:945
-#: sources/php/template-functions.php:971
-#: sources/php/template-functions.php:987
-#: sources/php/template-functions.php:1002
-#: sources/php/template-functions.php:1027
-#: sources/php/template-functions.php:1043
-#: sources/php/template-functions.php:1058
-#: sources/php/template-functions.php:1074
+#: sources/php/template-functions.php:932
+#: sources/php/template-functions.php:948
+#: sources/php/template-functions.php:974
+#: sources/php/template-functions.php:990
+#: sources/php/template-functions.php:1005
+#: sources/php/template-functions.php:1030
+#: sources/php/template-functions.php:1046
+#: sources/php/template-functions.php:1061
+#: sources/php/template-functions.php:1077
 msgid "Change"
 msgstr "Изменить"
 
-#: sources/php/template-functions.php:994
-#: sources/php/template-functions.php:1050
+#: sources/php/template-functions.php:997
+#: sources/php/template-functions.php:1053
 msgid "Method"
 msgstr "Метод"
 
-#: sources/php/template-functions.php:1206
+#: sources/php/template-functions.php:1209
 msgid "Shipping method"
 msgstr "Способ доставки"
 
-#: sources/php/template-functions.php:1318
+#: sources/php/template-functions.php:1335
 msgid "Select the address that matches your card or payment method."
 msgstr "Выберите адрес, соответствующий Вашей карте или способу оплаты."
 
-#: sources/php/template-functions.php:1516
+#: sources/php/template-functions.php:1533
 msgid "Promo code"
 msgstr "Промо код"
 
 #. translators: %s is the order number
-#: sources/php/template-functions.php:1719
+#: sources/php/template-functions.php:1736
 #, php-format
 msgid "Order %s"
 msgstr "Заказ %s"
 
 #. translators: %s is the billing first name
-#: sources/php/template-functions.php:1732
+#: sources/php/template-functions.php:1749
 #, php-format
 msgid "Thank you %s!"
 msgstr "Спасибо, %s!"
 
-#: sources/php/template-functions.php:1836
+#: sources/php/template-functions.php:1853
 msgid "Order status"
 msgstr "Статус заказа"
 
-#: sources/php/template-functions.php:1867
+#: sources/php/template-functions.php:1884
 msgid "Order updates"
 msgstr "Обновления заказа"
 
-#: sources/php/template-functions.php:1876
+#: sources/php/template-functions.php:1893
 msgid "You’ll get shipping and delivery updates by email."
 msgstr "Обновления о доставке и доставке вы получите по электронной почте."
 
-#: sources/php/template-functions.php:1966
+#: sources/php/template-functions.php:1983
 msgid "Contact information"
 msgstr "Контактная информация"
 
-#: sources/php/template-functions.php:2018
-#: sources/php/template-functions.php:2260
-msgid "Shipping"
-msgstr "Доставка"
-
-#: sources/php/template-functions.php:2118
+#: sources/php/template-functions.php:2135
 msgid "Login"
 msgstr "Войти"
 
-#: sources/php/template-functions.php:2346
-msgid "Review"
-msgstr "Обзор"
-
-#: sources/php/template-functions.php:2405
+#: sources/php/template-functions.php:2392
 msgid "Your Cart is Empty"
 msgstr "Ваша корзина пуста"
 
@@ -472,6 +500,19 @@ msgstr "Objectiv"
 #. Author URI of the plugin/theme
 msgid "https://objectiv.co"
 msgstr "https://objectiv.co"
+
+#~ msgid "Address Verification"
+#~ msgstr "Проверка на адрес"
+
+#~ msgid ""
+#~ "The shipping address you provided does not match the suggested address "
+#~ "from our verification service. Please verify your address."
+#~ msgstr ""
+#~ "Указанный вами адрес доставки не совпадает с предложенным адресом нашей "
+#~ "службы проверки. Пожалуйста, проверьте ваш адрес."
+
+#~ msgid "We Suggest"
+#~ msgstr "Мы предлагаем"
 
 #, php-format
 #~ msgid "You can only have 1 %s in your cart."
@@ -669,9 +710,6 @@ msgstr "https://objectiv.co"
 
 #~ msgid "Cart Item Label"
 #~ msgstr "Маркировка товара в корзине"
-
-#~ msgid "Text (Recommended)"
-#~ msgstr "Текст (Рекомендуется)"
 
 #~ msgid "Link"
 #~ msgstr "Ссылка"

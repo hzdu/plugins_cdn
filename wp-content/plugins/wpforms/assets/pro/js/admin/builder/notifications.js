@@ -555,12 +555,12 @@ WPForms.Admin.Builder.Notifications = WPForms.Admin.Builder.Notifications || ( f
 
 					const field = fields[ fieldKey ];
 
-					if ( ! field || wpforms_builder.entry_information.excluded_field_types.includes( field.type ) ) {
+					if ( ! field || field.label === undefined  || wpforms_builder.entry_information.excluded_field_types.includes( field.type ) ) {
 						continue;
 					}
 
 					availableFields.push( {
-						label: field.label,
+						label: wpf.encodeHTMLEntities( wpf.sanitizeHTML( field.label ) ),
 						value: field.id.toString(),
 					} );
 				}

@@ -25,7 +25,7 @@
     category: 'widgets',
     attributes: { // Necessary for saving block content.
       title: {
-        type    : 'text',
+        type    : 'string',
         default : __('Prefer to Login with Social Media')
       },
       networks: {
@@ -64,7 +64,7 @@
           },
           // Social Login Title
           el(TextControl, {
-            type  : 'text',
+            type  : 'string',
             label : i18n.__('Social Login Title'),
             help  : i18n.__('Enter a social login title.'),
             value : title,

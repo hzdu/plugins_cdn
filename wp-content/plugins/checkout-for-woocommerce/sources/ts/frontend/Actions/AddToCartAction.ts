@@ -27,6 +27,8 @@ class AddToCartAction extends Action {
             return;
         }
 
+        jQuery( '#cfw_empty_side_cart_message' ).hide();
+
         jQuery( document.body ).trigger( 'wc_fragment_refresh' );
         jQuery( document.body ).trigger( 'added_to_cart', [ resp.fragments, resp.cart_hash, this.button ] );
         jQuery( document.body ).trigger( 'updated_cart_totals' );

@@ -100,8 +100,15 @@ class UpdateCheckoutAction extends Action {
             return;
         }
 
+        // Prioritize redirect over reload lest we accidentally disable our own cart_edit_empty_cart_redirect setting
         if ( resp.redirect !== false ) {
             window.location = resp.redirect;
+            return;
+        }
+
+        if ( resp.reload === true ) {
+            ( <any>window ).location.reload();
+            return;
         }
 
         /**

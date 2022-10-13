@@ -28,6 +28,13 @@ class KlarnaCheckout extends Compatibility {
 
           this.maybeChangeToKco();
       } );
+
+      jQuery( window ).on( 'load', () => {
+          // If kco_params is undefined, hide the button
+          if ( typeof kco_params === 'undefined' ) {
+              pay_btn.hide();
+          }
+      } );
   }
 
   // When payment method is changed to KCO in regular WC Checkout page.

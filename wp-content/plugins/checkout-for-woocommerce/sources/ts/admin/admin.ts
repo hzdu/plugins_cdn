@@ -19,7 +19,7 @@ cfwDomReady( () => {
     const beforeUnloadHandler = ( event ) => {
         if ( changed ) {
             event.preventDefault();
-            event.returnValue = objectiv_cfw_admin.i18n_nav_warning;
+            event.returnValue = ( <any>window ).objectiv_cfw_admin.i18n_nav_warning;
         }
     };
 
@@ -200,6 +200,52 @@ cfwDomReady( () => {
         submitHandler( form ) {
             form.submit();
         },
+    } );
+
+    jQuery( document.body ).on( 'input', '#cfw_license_key', () => {
+        const key = jQuery( '#cfw_license_key' ).val().toString().trim();
+
+        if ( key.length !== 32 ) {
+            return;
+        }
+
+        const licenseContentDiv = jQuery( '#1-activate-your-license_content' );
+
+        licenseContentDiv.block( {
+            message: null,
+            overlayCSS: {
+                background: '#fff',
+                opacity: 0.4,
+            },
+        } );
+
+        jQuery.ajax( {
+            type: 'POST',
+            url: ( <any>window ).objectiv_cfw_admin.ajax_url,
+            data: {
+                action: 'cfw_license_save',
+                key,
+                nonce: ( <any>window ).objectiv_cfw_admin.nonce,
+            },
+            success( response ) {
+                if ( response.success === false ) {
+                    return;
+                }
+
+                if ( response.fragments ) {
+                    jQuery.each( response.fragments, ( selector: any, value ) => {
+                        if ( typeof value === 'string' ) {
+                            jQuery( selector ).replaceWith( value );
+                        }
+                    } );
+                }
+            },
+            complete() {
+                licenseContentDiv.unblock();
+            },
+            dataType: 'json',
+            cache: false,
+        } );
     } );
 
     jQuery( document.body ).on( 'click', '#cfw_admin_header_save_button', ( e ) => {

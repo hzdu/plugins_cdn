@@ -117,16 +117,16 @@ class UpdateCheckoutService {
      *
      * This should be the ONLY place we call this ourselves
      */
-    triggerUpdateCheckout(): void {
+    triggerUpdateCheckout( args? ): void {
         if ( DataService.getSetting( 'is_checkout_pay_page' ) ) {
             return;
         }
 
-        const args = {
-            update_shipping_method: true,
+        let theArgs = typeof args !== 'undefined' ? args : {
+            update_shipping_method: true
         };
 
-        new UpdateCheckoutAction().load( UpdateCheckoutService.getData( args ) );
+        new UpdateCheckoutAction().load( UpdateCheckoutService.getData( theArgs ) );
     }
 
     /**

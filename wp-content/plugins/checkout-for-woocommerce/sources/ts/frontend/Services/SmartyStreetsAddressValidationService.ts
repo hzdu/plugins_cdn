@@ -87,9 +87,20 @@ class SmartyStreetsAddressValidationService {
 
         const response = data;
 
-        if ( !response.result ) {
+        if ( response.code === 1 ) {
             return true;
         }
+
+        if ( response.code === 2 ) {
+            jQuery( '.cfw-smarty-matched' ).show();
+            jQuery( '.cfw-smarty-unmatched' ).hide();
+        } else {
+            jQuery( '.cfw-smarty-matched' ).hide();
+            jQuery( '.cfw-smarty-unmatched' ).show();
+        }
+
+        jQuery( '.cfw-smartystreets-suggested-address-button' ).text( response.suggested_button_label );
+        jQuery( '.cfw-smartystreets-user-address-button' ).text( response.user_button_label );
 
         jQuery( '.cfw-smartystreets-user-address' ).html( response.original );
         jQuery( '.cfw-smartystreets-suggested-address' ).html( response.address );
@@ -115,21 +126,7 @@ class SmartyStreetsAddressValidationService {
          */
         Main.instance.tabService.tabContainer.bind( 'easytabs:before', this.handleEasyTabsBefore.bind( this ) );
 
-        const wraps  = jQuery( '.cfw-smartystreets-option-wrap' );
-
-        const updateButtons = () => {
-            wraps.each( ( i, wrap ) => {
-                const noCheckedRadio = jQuery( wrap ).find( 'input:radio:checked' ).length === 0;
-
-                jQuery( wrap ).toggleClass( 'cfw-smartystreets-hide-buttons', noCheckedRadio );
-            } );
-        };
-
-        jQuery( '.cfw-smartystreets-option-wrap input:radio' ).on( 'change', updateButtons );
-
-        updateButtons();
-
-        const closeItUp = ( event ) => {
+        const closeItUp = () => {
             this.userHasAcceptedAddress = true;
 
             this.modaalTrigger.modaal( 'close' );
@@ -138,6 +135,10 @@ class SmartyStreetsAddressValidationService {
         };
 
         const handleSuggestedAddressButtonClick = ( event ) => {
+            if ( !this.suggestedAddress ) {
+                this.modaalTrigger.modaal( 'close' );
+            }
+
             // Replace address with suggested address
             // TODO: Don't iterate over every field smarty streets sends back, instead look for the ones we want (address_1, address_2, city, state, postcode, country, etc)
             Object.keys( this.suggestedAddress ).forEach( ( key: any ) => {
@@ -147,7 +148,7 @@ class SmartyStreetsAddressValidationService {
             // Set the comparison data to the actual field values to prevent false positives
             this.userAddress = this.getAddress();
 
-            closeItUp( event );
+            closeItUp();
         };
 
         jQuery( document.body ).on( 'click', '.cfw-smartystreets-suggested-address-button', handleSuggestedAddressButtonClick );

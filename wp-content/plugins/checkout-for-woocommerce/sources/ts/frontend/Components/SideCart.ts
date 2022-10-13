@@ -22,6 +22,8 @@ class SideCart {
                 return;
             }
 
+            jQuery( '#cfw_empty_side_cart_message' ).hide();
+
             this.openCart();
         } );
         jQuery( document.body ).on( 'click', `a.wc-forward:contains(${DataService.getMessage( 'view_cart' )})`, this.openCart.bind( this ) );
