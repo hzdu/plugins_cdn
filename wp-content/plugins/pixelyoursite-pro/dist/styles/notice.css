@@ -1,11 +1,20 @@
 /* Notify styles */
 .wp-core-ui .notice.pys-fixed-notice {
+    background: #fff;
+    border-left: 1px solid #c3c4c7;
+    border-left-width: 4px;
+    box-shadow: 0 1px 1px rgb(0 0 0 / 4%);
+    margin: 10px 0px 10px;
+    padding: 1px 12px;
+}
+.wp-core-ui .notice.pys-fixed-notice .notice_content {
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 30px;
+
 }
-.wp-core-ui .notice.pys-fixed-notice:not(.notice-disable-dismiss) {
+.wp-core-ui .notice.pys-fixed-notice:not(.notice-disable-dismiss){
     padding-right: 100px;
 }
 .notice.pys-fixed-notice .notice-item {
@@ -124,6 +133,40 @@
 .pys-fixed-notice a.notice-watch-link:focus, .pys-fixed-notice a.notice-watch-link:hover {
     text-decoration: none!important;
 }
+.notice_opt_out_block {
+    padding: 30px;
+    padding-left: 132px;
+    padding-right: 0px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+}
+.opt_out_dismiss_button {
+    white-space: nowrap;
+}
+.opt_out_dismiss_button button {
+    color: #3c434a!important;
+    background-color: #F0F0F2!important;
+    border-color: #F0F0F2!important;
+    padding: 0.25rem 0.5rem!important;
+    display: inline-block;
+    cursor: pointer;
+    font-weight: 500;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    border: 1px solid transparent;
+    font-size: 0.8rem;
+    line-height: 1.2;
+    border-radius: 0.25rem;
+    text-decoration: none;
+    transition: background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
 @media (max-width: 600px) {
     .wp-core-ui .notice.pys-fixed-notice:not(.notice-disable-dismiss) {
         padding-right: 25px;
@@ -164,5 +207,11 @@
     .pys-notice-form-group:not(:last-child) {
         margin-right: 0px;
         margin-bottom: 10px;
+    }
+    .notice_opt_out_block {
+        padding-left: 15px;
+        padding-right: 15px;
+        flex-direction: column;
+        align-items: flex-start;
     }
 }

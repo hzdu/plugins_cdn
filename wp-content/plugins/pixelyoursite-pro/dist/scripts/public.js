@@ -2140,7 +2140,6 @@ if (!String.prototype.trim) {
                         if(event.hasOwnProperty('edd_order')) {
                             json['edd_order'] = event.edd_order;
                         }
-
                         if(event.e_id === "automatic_event_internal_link"
                             || event.e_id === "automatic_event_outbound_link"
                         ) {
@@ -2155,7 +2154,42 @@ if (!String.prototype.trim) {
                                     success: function(){},
                                 });
                             },500)
-                        } else {
+                        } else if(name == 'PageView') {
+                            let expires = parseInt(options.cookie_duration);
+                            var currentTimeInSeconds=Date.now();
+                            var randomNum = Math.floor(1000000000 + Math.random() * 9000000000);
+                            timeoutDelay = 0;
+
+                            if(!Cookies.get('_fbp'))
+                            {
+                                timeoutDelay = 600;
+                            }
+                            if(getUrlParameter('fbclid') && !Cookies.get('_fbc'))
+                            {
+                                timeoutDelay = 600;
+                            }
+                            setTimeout(function(){
+                                if(!Cookies.get('_fbp'))
+                                {
+                                    Cookies.set('_fbp','fb.1.'+currentTimeInSeconds+'.'+randomNum,  { expires: expires })
+                                }
+                                if(getUrlParameter('fbclid') && !Cookies.get('_fbc'))
+                                {
+                                    Cookies.set('_fbc', 'fb.1.'+currentTimeInSeconds+'.'+getUrlParameter('fbclid'),  { expires: expires })
+                                }
+                                jQuery.ajax( {
+                                    type: 'POST',
+                                    url: options.ajaxUrl,
+                                    data: json,
+                                    headers: {
+                                        'Cache-Control': 'no-cache'
+                                    },
+                                    success: function(){},
+                                });
+                            },timeoutDelay)
+                        }
+                        else
+                        {
                             jQuery.ajax( {
                                 type: 'POST',
                                 url: options.ajaxUrl,
@@ -4411,3 +4445,18 @@ function getPixelBySlag(slug) {
         case "tiktok": return window.pys.TikTok;
     }
 }
+var getUrlParameter = function getUrlParameter(sParam) {
+    var sPageURL = window.location.search.substring(1),
+        sURLVariables = sPageURL.split('&'),
+        sParameterName,
+        i;
+
+    for (i = 0; i < sURLVariables.length; i++) {
+        sParameterName = sURLVariables[i].split('=');
+
+        if (sParameterName[0] === sParam) {
+            return sParameterName[1] === undefined ? true : decodeURIComponent(sParameterName[1]);
+        }
+    }
+    return false;
+};
