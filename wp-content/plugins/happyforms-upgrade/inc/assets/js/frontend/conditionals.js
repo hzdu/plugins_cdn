@@ -114,15 +114,37 @@
 			$select.html( $( this ).data( 'originalHTML' ) );
 		} );
 
+		$( '[data-happyforms-type="select"]', $form ).each( function() {
+			$( 'select', $( this ) ).val( $( this ).data( 'originalValue' ) );
+		} );
+
 		// Run the whole condition stack 
 		// multiple times. Could be optimized,
 		// but ensures that any decently-sized chain of logic is correctly resolved.
 		for ( var l = 0; l < settings.chainLength; l ++ ) {
 			$( '[' + this.visitedAttribute + ']', $form ).removeAttr( this.visitedAttribute );
 
-			conditions.forEach( function( condition ) {
-				var result = this.evaluateIf( condition, formID );
-				this.applyThen( result, condition.then, formID );
+			var results = conditions.map( function( condition ) {
+				var result = {
+					condition: condition,
+					result: this.evaluateIf( condition, formID ),
+				};
+
+				return result;
+			}.bind( this ) );
+
+			results.sort( function( a, b ) {
+				if ( b.result ) {
+					return 1;
+				} else if ( a.result ) {
+					return -1;
+				}
+
+				return 0;
+			} );
+
+			results.forEach( function( result ) {
+				this.applyThen( result.result, result.condition.then, formID );
 
 				$( '[data-happyforms-type="select"]', $form ).each( function() {
 					$( 'select', $( this ) ).val( $( this ).data( 'originalValue' ) );

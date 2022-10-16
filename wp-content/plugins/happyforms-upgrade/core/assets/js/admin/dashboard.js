@@ -11,7 +11,7 @@
 			$( document ).on( 'click', '.happyforms-editor-button', this.onEditorButton.bind( this ) );
 			$( '.happyforms-dialog__button' ).on( 'click', this.onDialogButton.bind( this ) );
 			$( '.happyforms-notice:not(.one-time)' ).on( 'click', '.notice-dismiss', this.onNoticeDismiss.bind( this ) );
-			$( document ).on( 'click', 'button.happyforms-shortcode-clipboard__button', this.copyShortcodeToClipboard );
+			$( document ).on( 'click', 'button.happyforms-clipboard__button', this.copyToClipboard );
 		},
 
 		onEditorButton: function( e ) {
@@ -87,12 +87,12 @@
 			);
 		},
 
-		copyShortcodeToClipboard: function( e ) {
+		copyToClipboard: function( e ) {
 			var $target = $( e.target );
 			var $success = $target.next();
 			var $input = $( '<input>' );
 
-			$input.val( $target.attr( 'data-shortcode' ) );
+			$input.val( $target.attr( 'data-value' ) );
 			$target.after( $input );
 			$input.focus().select();
 

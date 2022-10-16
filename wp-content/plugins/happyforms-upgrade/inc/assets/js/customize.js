@@ -1804,6 +1804,7 @@
 				},
 				select: function( event, ui ) {
 					$input.val( ui.item.permalink );
+					$input.trigger( 'change' );
 
 					if ( 9 === event.keyCode && typeof window.wpLinkL10n !== 'undefined' ) {
 						// Audible confirmation message when a link has been selected.

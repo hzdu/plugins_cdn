@@ -2,14 +2,14 @@
 # This file is distributed under the same license as the Happyforms plugin.
 msgid ""
 msgstr ""
-"Project-Id-Version: Happyforms 1.32.1\n"
+"Project-Id-Version: Happyforms 1.32.2\n"
 "Report-Msgid-Bugs-To: ask@happyforms.io\n"
 "Last-Translator: The Theme Foundry\n"
 "Language-Team: The Theme Foundry\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2022-10-06T16:16:16+00:00\n"
+"POT-Creation-Date: 2022-10-14T08:58:55+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.4.0\n"
 "X-Domain: happyforms\n"
@@ -60,10 +60,12 @@ msgid "Date"
 msgstr ""
 
 #: core/classes/class-form-admin.php:335
+#: integrations/services/stripe/partial-widget.php:75
 msgid "Copy to clipboard"
 msgstr ""
 
 #: core/classes/class-form-admin.php:335
+#: integrations/services/stripe/partial-widget.php:76
 msgid "Copied!"
 msgstr ""
 
@@ -105,7 +107,7 @@ msgstr ""
 #: inc/classes/class-message-admin.php:437
 #: inc/classes/class-message-admin.php:1364
 #: inc/classes/class-message-admin.php:1373
-#: inc/helpers/helper-misc.php:300
+#: inc/helpers/helper-misc.php:301
 msgid "Undo"
 msgstr ""
 
@@ -1073,107 +1075,41 @@ msgid "Sample Form"
 msgstr ""
 
 #: core/helpers/helper-activation.php:65
-msgid "Get in touch"
+msgid "Send my question"
 msgstr ""
 
 #: core/helpers/helper-activation.php:70
-#: integrations/services/active-campaign/class-service-active-campaign.php:128
-#: integrations/services/aweber/class-service-aweber.php:249
-msgid "Full name"
+#: integrations/services/active-campaign/class-service-active-campaign.php:133
+#: integrations/services/constant-contact/class-service-constant-contact.php:278
+#: integrations/services/mailpoet/class-service-mailpoet.php:57
+msgid "First name"
 msgstr ""
 
-#: core/helpers/helper-activation.php:74
-msgid "Work email"
+#: core/helpers/helper-activation.php:75
+#: integrations/services/active-campaign/class-service-active-campaign.php:138
+#: integrations/services/constant-contact/class-service-constant-contact.php:282
+#: integrations/services/mailpoet/class-service-mailpoet.php:62
+msgid "Last name"
 msgstr ""
 
-#: core/helpers/helper-activation.php:79
-#: integrations/services/constant-contact/class-service-constant-contact.php:286
-msgid "Job title"
+#: core/helpers/helper-activation.php:80
+#: inc/classes/class-message-admin-edit.php:194
+#: integrations/services/mailpoet/class-service-mailpoet.php:52
+#: inc/assets/jsx/build/admin/dashboard-modals.js:279
+#: inc/assets/jsx/src/admin/dashboard-modals.js:106
+msgid "Email address"
 msgstr ""
 
-#: core/helpers/helper-activation.php:85
-#: integrations/services/constant-contact/class-service-constant-contact.php:290
-msgid "Company name"
+#: core/helpers/helper-activation.php:84
+msgid "How can we help?"
 msgstr ""
 
-#: core/helpers/helper-activation.php:90
-msgid "Industry"
+#: core/helpers/helper-activation.php:89
+msgid "Agreement"
 msgstr ""
 
-#: core/helpers/helper-activation.php:92
-msgid "Choose from this list"
-msgstr ""
-
-#: core/helpers/helper-activation.php:95
-msgid "Agriculture, animals and food"
-msgstr ""
-
-#: core/helpers/helper-activation.php:98
-msgid "Science, environment and construction"
-msgstr ""
-
-#: core/helpers/helper-activation.php:101
-msgid "Healthcare, wellbeing and sport"
-msgstr ""
-
-#: core/helpers/helper-activation.php:104
-msgid "Creative arts, fashion and media"
-msgstr ""
-
-#: core/helpers/helper-activation.php:107
-msgid "Government, law and education"
-msgstr ""
-
-#: core/helpers/helper-activation.php:110
-msgid "Accountancy, finance and insurance"
-msgstr ""
-
-#: core/helpers/helper-activation.php:113
-msgid "Business, sales and tourism"
-msgstr ""
-
-#: core/helpers/helper-activation.php:116
-msgid "Charity, social work and religion"
-msgstr ""
-
-#: core/helpers/helper-activation.php:119
-msgid "Something else"
-msgstr ""
-
-#: core/helpers/helper-activation.php:125
-msgid "Tell us about your project"
-msgstr ""
-
-#: core/helpers/helper-activation.php:130
-msgid "How might you describe your company size?"
-msgstr ""
-
-#: core/helpers/helper-activation.php:133
-msgid "It's just me"
-msgstr ""
-
-#: core/helpers/helper-activation.php:136
-msgid "There's two of us"
-msgstr ""
-
-#: core/helpers/helper-activation.php:139
-msgid "We're a small group"
-msgstr ""
-
-#: core/helpers/helper-activation.php:142
-msgid "We're a big team"
-msgstr ""
-
-#: core/helpers/helper-activation.php:148
-msgid "How did you hear about us?"
-msgstr ""
-
-#: core/helpers/helper-activation.php:153
-msgid "Privacy compliance"
-msgstr ""
-
-#: core/helpers/helper-activation.php:157
-msgid "I agree to the storage and handling of my data by this website"
+#: core/helpers/helper-activation.php:93
+msgid "I agree to allow this site to store and process the personal information submitted."
 msgstr ""
 
 #: core/helpers/helper-form-templates.php:62
@@ -2760,6 +2696,7 @@ msgstr ""
 msgid "All Email fields"
 msgstr ""
 
+#: core/templates/customize-controls/messages/escaped_text.php:7
 #: core/templates/customize-controls/messages/text.php:7
 #: inc/templates/admin-settings-register-form.php:17
 msgid "Reset"
@@ -3243,7 +3180,7 @@ msgstr ""
 
 #: inc/classes/class-conditionals-ui-controller.php:99
 #: inc/classes/class-conditionals-ui-controller.php:104
-#: inc/classes/class-conditionals-ui-controller.php:117
+#: inc/classes/class-conditionals-ui-controller.php:118
 msgid "Email field is…"
 msgstr ""
 
@@ -3251,10 +3188,9 @@ msgstr ""
 msgid "Then subject…"
 msgstr ""
 
-#: inc/classes/class-conditionals-ui-controller.php:112
+#: inc/classes/class-conditionals-ui-controller.php:113
 #: inc/classes/class-form-setup-upgrade.php:135
-#: integrations/services/sendinblue/class-integration-sendinblue.php:158
-msgid "Paste web address or type to search"
+msgid "Search or type URL"
 msgstr ""
 
 #: inc/classes/class-export-controller.php:78
@@ -3712,13 +3648,6 @@ msgstr ""
 #: inc/templates/email-owner.php:44
 #: inc/templates/printable-submission.php:18
 msgid "IPv4/IPv6"
-msgstr ""
-
-#: inc/classes/class-message-admin-edit.php:194
-#: integrations/services/mailpoet/class-service-mailpoet.php:52
-#: inc/assets/jsx/build/admin/dashboard-modals.js:279
-#: inc/assets/jsx/src/admin/dashboard-modals.js:106
-msgid "Email address"
 msgstr ""
 
 #: inc/classes/class-message-admin-edit.php:201
@@ -4526,27 +4455,27 @@ msgstr ""
 msgid "Day"
 msgstr ""
 
-#: inc/helpers/helper-misc.php:199
+#: inc/helpers/helper-misc.php:201
 msgid "read submissions"
 msgstr ""
 
-#: inc/helpers/helper-misc.php:223
+#: inc/helpers/helper-misc.php:224
 msgid "unread submissions"
 msgstr ""
 
-#: inc/helpers/helper-misc.php:267
+#: inc/helpers/helper-misc.php:268
 #: integrations/services/google-analytics/partial-widget.php:18
 #: inc/assets/jsx/build/admin/dashboard-modals.js:332
 #: inc/assets/jsx/src/admin/dashboard-modals.js:153
 msgid "Show credentials"
 msgstr ""
 
-#: inc/helpers/helper-misc.php:267
+#: inc/helpers/helper-misc.php:268
 #: integrations/services/google-analytics/partial-widget.php:18
 msgid "Hide credentials"
 msgstr ""
 
-#: inc/helpers/helper-misc.php:298
+#: inc/helpers/helper-misc.php:299
 msgid "Comment by %s marked as spam."
 msgstr ""
 
@@ -4731,7 +4660,7 @@ msgstr ""
 #: integrations/services/sendfox/partial-widget.php:27
 #: integrations/services/sendgrid/partial-widget.php:27
 #: integrations/services/sendinblue/partial-widget.php:27
-#: integrations/services/stripe/partial-widget.php:74
+#: integrations/services/stripe/partial-widget.php:104
 #: integrations/services/zapier/partial-widget.php:20
 #: integrations/templates/admin-analytics-integrations.php:31
 #: integrations/templates/admin-antispam-integrations.php:41
@@ -5266,16 +5195,9 @@ msgstr ""
 msgid "Unknown"
 msgstr ""
 
-#: integrations/services/active-campaign/class-service-active-campaign.php:133
-#: integrations/services/constant-contact/class-service-constant-contact.php:278
-#: integrations/services/mailpoet/class-service-mailpoet.php:57
-msgid "First name"
-msgstr ""
-
-#: integrations/services/active-campaign/class-service-active-campaign.php:138
-#: integrations/services/constant-contact/class-service-constant-contact.php:282
-#: integrations/services/mailpoet/class-service-mailpoet.php:62
-msgid "Last name"
+#: integrations/services/active-campaign/class-service-active-campaign.php:128
+#: integrations/services/aweber/class-service-aweber.php:249
+msgid "Full name"
 msgstr ""
 
 #: integrations/services/active-campaign/partial-widget.php:19
@@ -5338,6 +5260,14 @@ msgstr ""
 
 #: integrations/services/constant-contact/class-service-constant-contact.php:25
 msgid "Constant Contact"
+msgstr ""
+
+#: integrations/services/constant-contact/class-service-constant-contact.php:286
+msgid "Job title"
+msgstr ""
+
+#: integrations/services/constant-contact/class-service-constant-contact.php:290
+msgid "Company name"
 msgstr ""
 
 #: integrations/services/constant-contact/class-service-constant-contact.php:298
@@ -6087,6 +6017,10 @@ msgstr ""
 msgid "Double opt-in redirect address"
 msgstr ""
 
+#: integrations/services/sendinblue/class-integration-sendinblue.php:158
+msgid "Paste web address or type to search"
+msgstr ""
+
 #: integrations/services/sendinblue/class-integration-sendinblue.php:251
 msgid "Map field to Sendinblue field"
 msgstr ""
@@ -6099,54 +6033,54 @@ msgstr ""
 msgid "API v3 key"
 msgstr ""
 
-#: integrations/services/stripe/class-integration-stripe.php:335
+#: integrations/services/stripe/class-integration-stripe.php:338
 msgid "Please wait while we process your payment."
 msgstr ""
 
-#: integrations/services/stripe/class-integration-stripe.php:339
+#: integrations/services/stripe/class-integration-stripe.php:342
 msgid "Credit card"
 msgstr ""
 
-#: integrations/services/stripe/class-integration-stripe.php:343
-#: integrations/services/stripe/class-integration-stripe.php:381
+#: integrations/services/stripe/class-integration-stripe.php:346
+#: integrations/services/stripe/class-integration-stripe.php:384
 msgid "Card number"
 msgstr ""
 
-#: integrations/services/stripe/class-integration-stripe.php:347
-#: integrations/services/stripe/class-integration-stripe.php:386
+#: integrations/services/stripe/class-integration-stripe.php:350
+#: integrations/services/stripe/class-integration-stripe.php:389
 msgid "Card expiration"
 msgstr ""
 
-#: integrations/services/stripe/class-integration-stripe.php:351
-#: integrations/services/stripe/class-integration-stripe.php:396
+#: integrations/services/stripe/class-integration-stripe.php:354
+#: integrations/services/stripe/class-integration-stripe.php:399
 msgid "Card security code"
 msgstr ""
 
-#: integrations/services/stripe/class-integration-stripe.php:355
+#: integrations/services/stripe/class-integration-stripe.php:358
 msgid "The three-digit code on the back of the card, to the right of the signature. For American Express this is the four-digit code on the front of the card, above the card number."
 msgstr ""
 
-#: integrations/services/stripe/class-integration-stripe.php:359
+#: integrations/services/stripe/class-integration-stripe.php:362
 msgid "The month and year as shown on the front of the card, below the card number."
 msgstr ""
 
-#: integrations/services/stripe/class-integration-stripe.php:371
+#: integrations/services/stripe/class-integration-stripe.php:374
 msgid "Stripe is processing payment"
 msgstr ""
 
-#: integrations/services/stripe/class-integration-stripe.php:376
+#: integrations/services/stripe/class-integration-stripe.php:379
 msgid "Stripe payment"
 msgstr ""
 
-#: integrations/services/stripe/class-integration-stripe.php:391
+#: integrations/services/stripe/class-integration-stripe.php:394
 msgid "Card expiration hint"
 msgstr ""
 
-#: integrations/services/stripe/class-integration-stripe.php:401
+#: integrations/services/stripe/class-integration-stripe.php:404
 msgid "Card security code hint"
 msgstr ""
 
-#: integrations/services/stripe/class-service-stripe.php:9
+#: integrations/services/stripe/class-service-stripe.php:11
 msgid "Stripe"
 msgstr ""
 
@@ -6157,6 +6091,15 @@ msgstr ""
 #: integrations/services/stripe/partial-widget.php:35
 #: integrations/services/stripe/partial-widget.php:56
 msgid "Publishable key"
+msgstr ""
+
+#: integrations/services/stripe/partial-widget.php:71
+msgid "Webhook endpoint URL"
+msgstr ""
+
+#: integrations/services/stripe/partial-widget.php:85
+#: integrations/services/stripe/partial-widget.php:95
+msgid "Webhook endpoint secret key"
 msgstr ""
 
 #: integrations/services/zapier/class-service-zapier.php:10
