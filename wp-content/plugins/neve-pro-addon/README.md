@@ -15,6 +15,16 @@ The code is licensed under GPLv3.
 
 ## Changelog ##
 
+##### [Version 2.4.3](https://github.com/Codeinwp/neve-pro-addon/compare/v2.4.2...v2.4.3) (2022-10-12)
+
+- [Fix] Added styles for RankMath breadcrumbs.
+- [Fix] Empty line between border and element when the row is sticky 
+- [Fix] Notice for new sharing icons until a title is set for it
+- Prepare Neve Pro for WordPress 6.1
+
+
+
+
 ##### [Version 2.4.2](https://github.com/Codeinwp/neve-pro-addon/compare/v2.4.1...v2.4.2) (2022-09-27)
 
 - [Fix] Upside down menu caret in Safari
