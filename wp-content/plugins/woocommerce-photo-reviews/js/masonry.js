@@ -32,7 +32,7 @@ jQuery(document).ready(function ($) {
     function wcpr_enable_scroll() {
         let scrollTop = parseInt($('html').css('top'));
         $('html').removeClass('wcpr-noscroll');
-        $('html,body').scrollTop(-scrollTop);
+        window.scrollTo({top: -scrollTop, behavior: 'instant'})
     }
 
     function wcpr_disable_scroll() {
@@ -85,16 +85,19 @@ jQuery(document).ready(function ($) {
             $left_modal.find('.reviews-images').closest('a').on('click', function () {
                 swipeBoxIndex = $(this).data('image_index');
                 let current_image_src = $(this).attr('href');
-                let temp ='';
-                if (jQuery(this).hasClass('reviews-iframe') || jQuery(this).find('.reviews-iframe').length){
+                let temp = '';
+                if (jQuery(this).hasClass('reviews-iframe') || jQuery(this).find('.reviews-iframe').length) {
                     temp = jQuery(`<iframe class="reviews-images reviews-iframe" data-original_src="${current_image_src}" src="${current_image_src}" frameborder="0" allowfullscreen></iframe>`);
-                } else if (jQuery(this).hasClass('reviews-videos') || jQuery(this).find('.reviews-videos').length){
+                } else if (jQuery(this).hasClass('reviews-videos') || jQuery(this).find('.reviews-videos').length) {
                     temp = jQuery(`<video class="reviews-images reviews-videos" data-original_src="${current_image_src}" src="${current_image_src}" controls></video>`);
-                }else {
+                } else {
                     temp = jQuery(`<img class="reviews-images" data-original_src="${current_image_src}" src="${current_image_src}">`);
-                    temp.attr('title',$left_main.find('.reviews-images').attr('title'));
+                    temp.attr('title', $left_main.find('.reviews-images').attr('title'));
                 }
-                temp.attr({width:$left_main.find('.reviews-images').attr('width'),height:$left_main.find('.reviews-images').attr('width') });
+                temp.attr({
+                    width: $left_main.find('.reviews-images').attr('width'),
+                    height: $left_main.find('.reviews-images').attr('width')
+                });
                 $left_main.find('.reviews-images').replaceWith(temp);
                 $left_main.find('source').attr('srcset', current_image_src);
                 $left_main.find('.wcpr-review-image-caption').html($(this).data('image_caption'));
@@ -213,17 +216,17 @@ jQuery(document).ready(function ($) {
     jQuery(document.body).on('wcpr_ajax_load_more_reviews_end wcpr_ajax_pagination_end', function () {
         setTimeout(function () {
             wcpr_resize_masonry_items();
-        }, 100);
+        }, 200);
     });
     $(document).on('scroll', function (e) {
         setTimeout(function () {
             wcpr_resize_masonry_items();
-        },100);
+        }, 200);
     });
-    $(document).on('click','a', function (e) {
+    $(document).on('click', 'a', function (e) {
         setTimeout(function () {
             wcpr_resize_masonry_items();
-        },100);
+        }, 200);
     });
     $(document).on('skeleton-loaded', function () {
         wcpr_resize_masonry_items(true);
@@ -249,7 +252,7 @@ jQuery(window).on('load', function () {
     'use strict';
     setTimeout(function () {
         wcpr_resize_masonry_items();
-    },100);
+    }, 100);
 }).on('resize', function () {
     'use strict';
     wcpr_resize_masonry_items(true);
@@ -258,13 +261,13 @@ jQuery(window).on('load', function () {
 function wcpr_resize_masonry_items(force_resize = false) {
     if (force_resize) {
         jQuery('.wcpr-grid-item.wcpr-grid-item-init').removeClass('wcpr-grid-item-init');
-    }else if (jQuery('.wcpr-grid-item .reviews-videos').length){
+    } else if (jQuery('.wcpr-grid-item .reviews-videos').length) {
         setTimeout(function () {
             wcpr_resize_masonry_items(true);
-        },150);
+        }, 150);
     }
     jQuery('.wcpr-grid-loadmore .wcpr-grid-item:not(.wcpr-grid-item-init)').each(function () {
-        if (!jQuery(this).is(':visible')){
+        if (!jQuery(this).is(':visible')) {
             return false;
         }
         wcpr_resize_masonry_item(jQuery(this));

@@ -72,11 +72,23 @@ jQuery(document).ready(function ($) {
     });
 
     $('#commentform').find('input[type="submit"]').on('click', function (e) {
-        let $container = $(this).closest('form');
+        let $button = $(this);
+        if ($button.hasClass('viwcpr_form_checked')){
+            return true;
+        }
+        let $container = $button.closest('form');
         let $content = $container.find('textarea[id="comment"]') || $container.find('textarea[name="comment"]');
         let $name = $container.find('input[name="author"]');
         let $email = $container.find('input[name="email"]');
         jQuery('.wcpr-comment-form-error-wraps').addClass('wcpr-hidden');
+        jQuery('.wcpr-comment-form-notify-wraps').addClass('wcpr-hidden');
+        let $rating = $container.find( '#rating' ),
+            rating  = $rating.val();
+        if ( $rating.length > 0 && ! rating && woocommerce_photo_reviews_params.review_rating_required === 'yes' ) {
+            jQuery('.wcpr-comment-form-error-wraps').removeClass('wcpr-hidden').html(woocommerce_photo_reviews_params.i18n_required_rating_text);
+            e.preventDefault();
+            return false;
+        }
         if ($content.length > 0 ) {
             let comment = $content.val();
             if (!comment && woocommerce_photo_reviews_params.allow_empty_comment != 1) {
@@ -148,6 +160,43 @@ jQuery(document).ready(function ($) {
             jQuery('.wcpr-comment-form-error-wraps').removeClass('wcpr-hidden').html(woocommerce_photo_reviews_params.warning_gdpr);
             e.preventDefault();
             return false;
+        }
+        jQuery('.wcpr-comment-form-notify-wraps').removeClass('wcpr-hidden');
+        if (woocommerce_photo_reviews_params.restrict_number_of_reviews) {
+            $button.attr('type','button');
+            let restrict_number_of_reviews = async function () {
+                let error = '';
+                await new Promise(function (resolve) {
+                    let data = $container.serialize();
+                    $.ajax({
+                        type: 'post',
+                        url: woocommerce_photo_reviews_params.wc_ajax_url.toString().replace('%%endpoint%%', 'viwcpr_restrict_number_of_reviews'),
+                        data: data,
+                        success: function (response) {
+                            if (response.error){
+                                error = response.error;
+                            }
+                            resolve(error)
+                        },
+                        error:function (err){
+                            error = err.responseText === '-1' ? err.statusText : err.responseText;
+                            resolve(error)
+                        }
+                    });
+                });
+                return error;
+            };
+            restrict_number_of_reviews().then(function (error) {
+                $button.attr('type','submit');
+                if (error) {
+                    jQuery('.wcpr-comment-form-notify-wraps').addClass('wcpr-hidden');
+                    jQuery('.wcpr-comment-form-error-wraps').removeClass('wcpr-hidden').html(error);
+                    e.preventDefault();
+                    return false;
+                }else {
+                    $button.addClass('viwcpr_form_checked').trigger('click');
+                }
+            });
         }
     });
     let comments = woocommerce_photo_reviews_params.hasOwnProperty('comments_container_id') ? woocommerce_photo_reviews_params.comments_container_id : 'comments';

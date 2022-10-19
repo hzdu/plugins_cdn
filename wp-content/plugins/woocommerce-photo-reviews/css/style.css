@@ -22,6 +22,8 @@
 }
 .wcpr_image_upload_button, .wcpr_image_upload_button.button{
     text-transform: inherit;
+    margin-top: 0;
+    margin-bottom: 0;
 }
 .wcpr-hidden {
     display: none !important;
@@ -30,6 +32,48 @@
     color: red;
     display: inline-grid;
     white-space: break-spaces !important;
+    margin-bottom: 15px;
+}
+
+.wcpr-comment-form-notify {
+    color: #456083;
+    display: inline-block;
+}
+.wcpr-comment-form-notify > span {
+    display: inline-flex;
+    white-space: break-spaces !important;
+    align-items: baseline;
+    gap: 5px;
+    margin-left: 5px;
+}
+.wcpr-comment-form-notify > span span {
+    width: 5px;
+    height: 5px;
+    border-radius: 100%;
+    background: #456083;
+    animation: wcpr_notify_loading 0.5s 0.1s alternate infinite cubic-bezier(.6, .05, .15, .95) backwards;
+}
+.wcpr-comment-form-notify > span span:first-child {
+    animation: wcpr_notify_loading 0.5s alternate infinite cubic-bezier(.6, .05, .15, .95);
+}
+.wcpr-comment-form-notify > span span:last-child {
+    animation: wcpr_notify_loading 0.5s 0.12s alternate infinite cubic-bezier(.6, .05, .15, .95) backwards;
+}
+@keyframes wcpr_notify_loading {
+    0% {
+        transform: translate3d(0, 2px, 0) scale(1.2, 0.85);
+    }
+    100% {
+        transform: translate3d(0, -5px, 0) scale(0.9, 1.1);
+    }
+}
+@keyframes wcpr_notify_loading {
+    0% {
+        transform: translate3d(0, 2px, 0) scale(1.2, 0.85);
+    }
+    100% {
+        transform: translate3d(0, -5px, 0) scale(0.9, 1.1);
+    }
 }
 .wcpr-stars-count {
     padding-left: 20px;
@@ -414,7 +458,7 @@ li.wcpr-filter-button-li {
 .wcpr-input-file-container .wcpr-input-file-wrap .wcpr-selected-image-container {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-evenly;
+    justify-content: space-between;
     align-items: flex-end;
 }
 
@@ -426,7 +470,7 @@ li.wcpr-filter-button-li {
 .wcpr-comment-form-images .wcpr-selected-image {
     width: 30%;
     max-width: 128px;
-    margin-bottom: 10px;
+    margin: 10px 0 0;
 }
 
 .wcpr-comment-form-images.wcpr-comment-form-images-with-caption .wcpr-selected-image {

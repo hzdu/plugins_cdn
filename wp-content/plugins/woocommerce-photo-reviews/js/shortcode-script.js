@@ -696,7 +696,7 @@ function wcpr_enable_scroll() {
     'use strict';
     let scrollTop = parseInt(jQuery('html').css('top'));
     jQuery('html').removeClass('shortcode-wcpr-noscroll');
-    jQuery('html,body').scrollTop(-scrollTop);
+    window.scrollTo({top:-scrollTop,behavior: 'instant'})
 }
 
 function wcpr_disable_scroll() {
