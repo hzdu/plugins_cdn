@@ -19,7 +19,14 @@
   "proxyConfiguration": {
     "useApifyProxy": false
   },
-  "proxyRotation": "RECOMMENDED",
+  "proxyConfiguration": {
+    "useApifyProxy": true,
+    "apifyProxyGroups": [
+      "RESIDENTIAL"
+    ],
+    "apifyProxyCountry": "US"
+  },
+   "proxyRotation": "RECOMMENDED",
   "useChrome": false,
   "useStealth": false,
   "ignoreSslErrors": false,
