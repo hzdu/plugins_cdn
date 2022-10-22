@@ -1143,7 +1143,7 @@ TL_Front.open_ribbon = function ( $target ) {
 	 */
 	function open_it() {
 		$target.addClass( 'tve-leads-triggered' );
-		var $editor = $target.find( '.tve_shortcode_editor' ),
+		const $editor = $target.find( '.tve_shortcode_editor' ),
 			editorHeight = $editor.length ? $editor.outerHeight() : 0,
 			position = $target.attr( 'data-position' ) || 'top';
 
@@ -1158,17 +1158,19 @@ TL_Front.open_ribbon = function ( $target ) {
 				$target.css( 'bottom', '0px' );
 				$target.css( 'top', 'auto' );
 				break;
+			default:
+				break;
 		}
 
 		/**
 		 * Mozilla is really slow at applying the loaded css. we need this workaround to have it work in mozilla.
 		 */
-		var iterations = 0,
-			initial_height = Math.max( $target.outerHeight(), editorHeight ),
+		let iterations = 0,
+			initialHeight = Math.max( $target.outerHeight(), editorHeight ),
 			ii = setInterval( function () {
 				iterations ++;
-				var _h = Math.max( $target.outerHeight(), editorHeight );
-				if ( _h != initial_height || iterations == 10 ) {
+				const _h = Math.max( $target.outerHeight(), editorHeight );
+				if ( _h != initialHeight || iterations == 10 ) {
 					clearInterval( ii );
 				}
 				if ( position === 'top' ) {
@@ -1184,16 +1186,16 @@ TL_Front.open_ribbon = function ( $target ) {
 				}
 			}, 100 );
 
-		var $header = ThriveGlobal.$j( 'body' ).find( '.thrv_header.tve-scroll-sticky' );
+		const $header = ThriveGlobal.$j( 'body' ).find( '.thrv_header.tve-scroll-sticky' );
 
 		if ( $header.length && position === 'top' ) {
-			var extraOffset = parseFloat( $header.css( '--tcb-header-extra-offset' ) ) || 0;
+			const extraOffset = parseFloat( TCB_Front.inlineCssVariable( $header, '--tcb-header-extra-offset' ) ) || 0;
 
-			$header.css( '--tcb-header-extra-offset', extraOffset + initial_height + 'px' );
+			TCB_Front.inlineCssVariable( $header, '--tcb-header-extra-offset', extraOffset + initialHeight + 'px' );
 		}
 
 		$target.off( 'switchstate' ).on( 'switchstate', function ( e, $target ) {
-			var args = Array.prototype.slice.call( arguments, 1 );
+			const args = Array.prototype.slice.call( arguments, 1 );
 			TL_Front.switch_ribbon_state.apply( TL_Front, args );
 		} );
 	}
@@ -1219,37 +1221,39 @@ TL_Front.switch_ribbon_state = function ( $target ) {
 };
 
 TL_Front.open_greedy_ribbon = function ( $target ) {
-	var $body = ThriveGlobal.$j( 'body' ),
+	const $body = ThriveGlobal.$j( 'body' ),
 		$window = ThriveGlobal.$j( window ),
 		initial_position = $body.css( 'position' );
+
 	$window.scrollTop( 0 );
 	//for situations where the user's theme adds a position css on body
 	$body.css( 'position', 'static' );
 	$body.addClass( 'tve-tl-gr-anim' );
-	$target.css( 'top', ThriveGlobal.$j( '#wpadminbar' ).length ? '32px' : '0px' );
-	var wHeight = $target.outerHeight();
-	$body[ 0 ].style.setProperty( 'margin-top', wHeight + 'px', 'important' );
-	var greedyCondition = 1;
 
+	TCB_Front.$window.trigger( 'scroll' );
+	$target.css( 'top', ThriveGlobal.$j( '#wpadminbar' ).length ? '32px' : '0px' );
+	const wHeight = $target.outerHeight();
+	$body[ 0 ].style.setProperty( 'margin-top', wHeight + 'px', 'important' );
+	let greedyCondition = 1;
 	setTimeout( function () {
 		ThriveGlobal.$j( '.tve-leads-ribbon[data-position="top"]' ).removeClass( 'tve-leads-triggered' );
 	}, 50 );
 
 	$window.scroll( function () {
-		var isFormOpen = $body.hasClass( 'tve-tl-gr-anim' );
-		if ( greedyCondition === 1 && isFormOpen ) {
-			var browserScroll = $window.scrollTop();
+		const isFormOpen = $body.hasClass( 'tve-tl-gr-anim' );
+		if ( greedyCondition && isFormOpen ) {
+			const browserScroll = $window.scrollTop();
 			if ( browserScroll > wHeight ) {
-				var hasWistiaPopover = $target.find( '.tve_ea_thrive_wistia' ).length || $target.find( '.tve_with_wistia_popover' );
+				const hasWistiaPopover = $target.find( '.tve_ea_thrive_wistia' ).length || $target.find( '.tve_with_wistia_popover' );
 				if ( hasWistiaPopover ) {
 					ThriveGlobal.$j( '.wistia_placebo_close_button' ).trigger( 'click' );
 				}
 				$body.removeClass( 'tve-tl-gr-anim' );
 				$target.addClass( 'tve-no-animation' );
-				var greedyScroll = browserScroll - wHeight;
+				const greedyScroll = browserScroll - wHeight;
 				$target.removeClass( 'tve-leads-triggered' );
 				$target.find( '.thrv_responsive_video iframe, .thrv_custom_html_shortcode iframe, .thrv_responsive_video video' ).each( function () {
-					var $this = ThriveGlobal.$j( this );
+					const $this = ThriveGlobal.$j( this );
 					$this.attr( 'data-src', $this.attr( 'src' ) );
 					$this.attr( 'src', '' );
 				} );
@@ -1373,9 +1377,9 @@ TL_Front.open_screen_filler = function ( $target, TargetEvent ) {
 			$this.attr( 'src', $this.attr( 'data-src' ) );
 		}
 	} );
-	setTimeout(()=>{
+	setTimeout( () => {
 		TCB_Front.resizePageSection();
-	}, 500)
+	}, 500 )
 };
 
 TL_Front.switch_slide_in_state = function ( $state ) {
@@ -1499,18 +1503,18 @@ TL_Front.close_form = function ( element, trigger, action, config ) {
 	TL_Front.handle_typefocus( $parent, 'pause' );
 	switch ( type ) {
 		case 'ribbon':
-			var $close = $parent.find( '.tve-ribbon-close' );
+			let $close = $parent.find( '.tve-ribbon-close' );
 			if ( ! $close.length ) {
 				$close = jQuery( '<span class="tve-ribbon-close" style="display: none"></span>' ).appendTo( $parent );
 			}
 			$close.trigger( 'click' );//there already exists a bind for close
 
-			var $header = ThriveGlobal.$j( 'body' ).find( '.thrv_header.tve-scroll-sticky' );
+			const $header = ThriveGlobal.$j( 'body' ).find( '.thrv_header.tve-scroll-sticky' );
 
 			if ( $header.length && $parent.attr( 'data-position' ) === 'top' ) {
-				var extraOffset = ( parseFloat( $header.css( '--tcb-header-extra-offset' ) ) - $parent.outerHeight( true ) ) + 'px'
+				const extraOffset = ( parseFloat( TCB_Front.inlineCssVariable( $header, '--tcb-header-extra-offset' ) ) - $parent.outerHeight( true ) ) + 'px'
 
-				$header.css( '--tcb-header-extra-offset', extraOffset );
+				TCB_Front.inlineCssVariable( $header, '--tcb-header-extra-offset', extraOffset );
 			}
 			break;
 		case 'slide-in':
