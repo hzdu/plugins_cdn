@@ -2,8 +2,8 @@
 Contributors: anbinder, karzin, pluggabl
 Tags: woocommerce, booster for woocommerce, woocommerce jetpack
 Requires at least: 4.4
-Tested up to: 6.0.2
-Stable tag: 5.6.4
+Tested up to: 6.0.3
+Stable tag: 5.6.5
 License: GNU General Public License v3.0
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -203,6 +203,20 @@ You can see the differences between versions in this [table](https://booster.io/
 8. Booster for WooCommerce - Emails & Misc.
 
 == Changelog ==
+
+= 5.6.5 27/10/2022 =
+
+* FIXED - PAYMENT GATEWAYS - Gateways Currency Converter - Fixed the issue of currency on the cart page.
+* FIXED - CART & CHECKOUT - Checkout Files Upload - Fixed Security vulnerability for ShopManager + Arbitrary File Download.
+* FIXED - CART & CHECKOUT - Checkout Files Upload - Fixed Security vulnerability for Checkout Files Deletion.
+* FIXED - PRODUCTS - Product Input Fields - Fixed Security vulnerability for ShopManager + Arbitrary File Download.
+* FIXED - PRODUCTS - Products per Page - Fixed "Template - Form" default text translators issue.
+* FIXED - BUTTON & PRICE LABELS - Custom Price Labels- Escape the HTML content from the "per page product meta box" value.
+* FIXED - Added CSRF Token for each "Reset settings" button of the module.
+* FIXED - Added Security vulnerability fixes - Multiple CSRF.
+* FIXED - Added Security vulnerability fixes.
+* WooCommerce 7.0.0 tested
+* WordPress 6.0.3 Tested
 
 = 5.6.4 28/09/2022 =
 
