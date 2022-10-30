@@ -1,0 +1,21 @@
+<div class="license-form">
+    <form action="{{ action }}" method="post">
+        {{ nonce | raw }}
+        <table class="form-table">
+            <tr>
+                <th>
+                    <label for="licensekey">{{ __('Your License Key', 'brizy-pro') }}:</label>
+                </th>
+                <td>
+                    {% if license %}
+                        <input type="text" value="{{ license }}" class="regular-text" id="licensekey" readonly/>
+                    {% else %}
+                        <input name="key" type="text" value="" class="regular-text" id="licensekey"/>
+                    {% endif %}
+                    <input type="hidden" value="{{ license_form_action }}" name="license_form_action"/>
+                    <input type="submit" name="brizy-license-submit" id="submit" class="button button-primary" value="{{ submit_label }}" style="vertical-align:baseline;">
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
