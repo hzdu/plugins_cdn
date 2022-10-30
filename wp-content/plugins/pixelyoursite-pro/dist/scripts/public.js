@@ -2162,11 +2162,11 @@ if (!String.prototype.trim) {
 
                             if(!Cookies.get('_fbp'))
                             {
-                                timeoutDelay = 600;
+                                timeoutDelay = 100;
                             }
                             if(getUrlParameter('fbclid') && !Cookies.get('_fbc'))
                             {
-                                timeoutDelay = 600;
+                                timeoutDelay = 100;
                             }
                             setTimeout(function(){
                                 if(!Cookies.get('_fbp'))

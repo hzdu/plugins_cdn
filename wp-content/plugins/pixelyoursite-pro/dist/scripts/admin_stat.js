@@ -4,7 +4,7 @@
     let chart = {
         chartGlobal: "",
         chartSingle: "",
-        colors:["#1B2B9A","#FAFAC6","#E6AF2E","#BEB2C8","#B6244F","#35524A","#162521","#408c35","#bb9b31","#ff00ff"],
+        colors:["#1B2B9A","#78c5b0","#E6AF2E","#BEB2C8","#B6244F","#35524A","#162521","#408c35","#bb9b31","#ff00ff"],
         init : function () {
             if(jQuery("#pys_stat_graphics").length > 0) {
                 this.chartGlobal = new Chart(jQuery("#pys_stat_graphics"), {
@@ -144,7 +144,7 @@
                 });
 
                 datasets.push({
-                    label: "Gross Sale",
+                    label: (pysStatSingle.cog === 'cog' || pysStatGlobal.cog === 'cog') ? 'Cost Sale' : 'Gross Sale',
                     data: dateItems,
                     parsing: {
                         yAxisKey: 'gross'
@@ -154,7 +154,7 @@
                 })
 
                 datasets.push({
-                    label: "Net Sale",
+                    label: (pysStatSingle.cog === 'cog' || pysStatGlobal.cog === 'cog') ? 'Profit Sale' : 'Net Sale',
                     data: dateItems,
                     parsing: {
                         yAxisKey: 'net'
@@ -218,7 +218,7 @@
             } catch( error ) {
                 date = null;
             }
-    
+
             return date;
         },
         getEndDate:function (type) {
@@ -283,7 +283,7 @@
         startDate : null,
         endDate : null,
         type : "",
-
+        cog: "default",
         init: function (type) {
             chart.init()
             pysStatGlobal.type = type
@@ -366,7 +366,13 @@
             $(".pys_visit_model").on("change",function () {
                 pysStatGlobal.loadGlobalData(1)
             })
-
+            $(".pys_stat .COG_custom_report_button_block button.button").on("click",function (e) {
+                e.preventDefault();
+                $(".pys_stat .COG_custom_report_button_block button.button").removeClass('btn-primary btn-secondary');
+                $(this).addClass('btn-primary');
+                pysStatGlobal.cog = $(this).data('value');
+                pysStatGlobal.loadGlobalData(1)
+            })
 
 
             jQuery(".global_data .pys_stat_time").on("change",function () {
@@ -385,6 +391,8 @@
             })
 
             $(".global_data .report").on("click",function () {
+
+                $(".global_data .report_form input[name='cog']").val(pysStatGlobal.cog);
                 $(".global_data .report_form input[name='label']").val(jQuery(".pys_stat_info th.title").text())
                 $(".global_data .report_form input[name='type']").val(type)
                 $(".global_data .report_form input[name='start_date']").val(util.toFormat(pysStatGlobal.startDate,util.dateFormat))
@@ -426,6 +434,7 @@
                 perPage:pysStatGlobal.perPage,
                 model:model,
                 order_by:order_by,
+                cog: pysStatGlobal.cog,
                 sort:$(".global_data .pys_stat_info .active").data("sort")
             }
             navigation.loading()
@@ -436,24 +445,67 @@
                 success: function(msg){
                     //console.log(msg);
                     if(msg.success) {
-                        navigation.loaded()
-                        pysStatGlobal.data = msg.data.items
-                        pysStatGlobal.max = msg.data.max
-                        pysStatGlobal.page = page
-                        chart.showGrossChart(msg.data.items,startDate,endDate,order_by)
-                        singleTable.fillData(msg.data.items_sum.filters)
+                        if (msg.data.cog == 'cog' && !msg.data.cogActive) {
+                            $(".pys_stat").addClass('showInfoBlock');
+                            navigation.loaded()
+                        } else {
+                            $(".pys_stat").removeClass('showInfoBlock');
+                            navigation.loaded()
+                            pysStatGlobal.data = msg.data.items
+                            pysStatGlobal.max = msg.data.max
+                            pysStatGlobal.page = page
+                            chart.showGrossChart(msg.data.items, startDate, endDate, order_by)
+                            singleTable.head = [
+                                {
+                                    title: "",
+                                    isSortable: false,
+                                    slug: "",
+                                    isDefault: false,
+                                },
+                                {
+                                    title: "Orders",
+                                    isSortable: true,
+                                    slug: "order",
+                                    isDefault: false,
+                                },
+                                {
+                                    title: (pysStatSingle.cog === 'cog' || pysStatGlobal.cog === 'cog') ? 'Cost Sale' : 'Gross Sale',
+                                    isSortable: true,
+                                    slug: "gross_sale",
+                                    isDefault: false,
+                                },
+                                {
+                                    title: (pysStatSingle.cog === 'cog' || pysStatGlobal.cog === 'cog') ? 'Profit Sale' : 'Net Sale',
+                                    isSortable: true,
+                                    slug: "net_sale",
+                                    isDefault: true,
+                                },
+                                {
+                                    title: "Total sale",
+                                    isSortable: true,
+                                    slug: "total_sale",
+                                    isDefault: false,
+                                }
+                            ]
+                            singleTable.fillHead();
+                            singleTable.fillData(msg.data.items_sum.filters)
 
-                        if(page == 1) {
-                            tableNavigation.initPages(msg.data.max, pysStatGlobal.perPage)
+                            if (page == 1) {
+                                tableNavigation.initPages(msg.data.max, pysStatGlobal.perPage)
+                            }
+                            let total = "<li><span class=\"title\">" + $(".pys_stats_filters .active").text().trim() + ": </span> <span class=\"count\">" + msg.data.max + "</span></li>"
+                            msg.data.total.forEach(function (el) {
+                                total += "<li>" + el.name + el.value + "</li>";
+                            })
+
+                            $(".global_data .total").html(total)
+
                         }
-                        let total = "<li><span class=\"title\">"+$(".pys_stats_filters .active").text().trim()+": </span> <span class=\"count\">"+msg.data.max+"</span></li>"
-                        msg.data.total.forEach(function (el) {
-                            total += "<li>"+el.name+el.value+"</li>";
-                        })
-                        $(".global_data .total").html(total)
-                    } else {
+                    }
+                    else {
                         navigation.loadingError("Error load data")
                     }
+
                 },
                 error: function (e) {
                     console.log("Error load ",e)
@@ -471,6 +523,7 @@
         data : [],
         model : "",
         type:"",
+        cog: "default",
         perPage:50,
 
         init : function (type,model,filter,filterId) {
@@ -496,6 +549,7 @@
                 pysStatSingle.loadData(tableNavigation.page)
             })
             $(".single_data .report").on("click",function () {
+                $(".single_data .report_form input[name='cog']").val(pysStatSingle.cog);
                 $(".single_data .report_form input[name='type']").val(type)
                 $(".single_data .report_form input[name='start_date']").val(util.toFormat(pysStatSingle.startDate,util.dateFormat))
                 $(".single_data .report_form input[name='end_date']").val(util.toFormat(pysStatSingle.endDate,util.dateFormat))
@@ -506,7 +560,7 @@
 
                 $(".single_data .report_form").submit()
             })
-            
+
             let startDatepickerSingle =  jQuery( ".single_data .pys_stat_time_custom .datepicker_start" )
                 .datepicker({
                     dateFormat:"mm/dd/yy"
@@ -550,6 +604,14 @@
                 pysStatSingle.loadData()
             })
 
+            $(".pys_stat .COG_custom_report_button_block button.button").on("click",function (e) {
+                e.preventDefault();
+                $(".pys_stat .COG_custom_report_button_block button.button").removeClass('btn-primary btn-secondary');
+                $(this).addClass('btn-primary');
+                pysStatSingle.cog = $(this).data('value');
+                pysStatSingle.loadData()
+            })
+
 
             jQuery(".single_back").on("click",function () {
                 history.back()
@@ -557,8 +619,8 @@
 
             $(".btn-group.order_buttons .btn").on("click",function () {
                 let active = $(".btn-group.order_buttons .btn.btn-primary")
-                    active.removeClass("btn-primary")
-                    active.addClass("btn-secondary")
+                active.removeClass("btn-primary")
+                active.addClass("btn-secondary")
                 $(this).removeClass("btn-secondary")
                 $(this).addClass("btn-primary")
                 singleTable.initTable($(this).data("slug"),pysStatSingle.type)
@@ -601,6 +663,7 @@
                 order_by:singleTable.orderBy,
                 sort:singleTable.sort,
                 page:page,
+                cog: pysStatSingle.cog,
                 perPage:pysStatSingle.perPage
             }
             jQuery.ajax({
@@ -608,23 +671,34 @@
                 url:ajaxurl,
                 data:data,
                 success: function(msg){
-                   // console.log(msg);
+                    // console.log(msg);
                     if(msg.success) {
-                        navigation.loaded()
-                        pysStatSingle.data = msg.data
-                        pysStatSingle.max = msg.data.max
-                        pysStatSingle.showPage(page)
-                        if(page == 1) {
-                            tableNavigation.initPages(msg.data.max,pysStatSingle.perPage)
-                        }
-                        chart.showSingleChart(msg.data,dateStart,dateEnd,singleTable.tableType,singleTable.selectedColl)
-                        let total = ""
-                        msg.data.total.forEach(function (el) {
-                            total += "<li>"+el.name+el.value+"</li>";
-                        })
-                        $(".single_data .total").html(total)
+                        if (msg.data.cog == 'cog' && !msg.data.cogActive) {
+                            $(".pys_stat").addClass('showInfoBlock');
+                            navigation.loaded()
+                        } else {
+                            $(".pys_stat").removeClass('showInfoBlock');
+                            navigation.loaded()
+                            pysStatSingle.data = msg.data
+                            pysStatSingle.max = msg.data.max
+                            pysStatSingle.showPage(page)
+                            if (page == 1) {
+                                tableNavigation.initPages(msg.data.max, pysStatSingle.perPage)
+                            }
+                            chart.showSingleChart(msg.data, dateStart, dateEnd, singleTable.tableType, singleTable.selectedColl)
+                            let total = ""
+                            msg.data.total.forEach(function (el) {
+                                total += "<li>" + el.name + el.value + "</li>";
+                            })
 
-                    } else {
+
+                            $(".single_data .total").html(total)
+
+                        }
+
+                    }
+                    else
+                    {
                         navigation.loadingError("Error load data")
                     }
                 },
@@ -730,13 +804,13 @@
                     isDefault:false,
                 },
                 {
-                    title:"Gross sale",
+                    title: (pysStatSingle.cog === 'cog' || pysStatGlobal.cog === 'cog') ? 'Cost Sale' : 'Gross Sale',
                     isSortable:true,
                     slug:"gross_sale",
                     isDefault:false,
                 },
                 {
-                    title:"Net sale",
+                    title:(pysStatSingle.cog === 'cog' || pysStatGlobal.cog === 'cog') ? 'Profit Sale' : 'Net Sale',
                     isSortable:true,
                     slug:"net_sale",
                     isDefault:true,
@@ -767,12 +841,12 @@
                     slug:"orders"
                 },
                 {
-                    title:"Gross sale",
+                    title:(pysStatSingle.cog === 'cog' || pysStatGlobal.cog === 'cog') ? 'Cost Sale' : 'Gross Sale',
                     isSortable:false,
                     slug:"gross"
                 },
                 {
-                    title:"Net sale",
+                    title:(pysStatSingle.cog === 'cog' || pysStatGlobal.cog === 'cog') ? 'Profit Sale' : 'Net Sale',
                     isSortable:false,
                     slug:"net"
                 },
@@ -796,12 +870,12 @@
                     slug:"order_id"
                 },
                 {
-                    title:"Gross sale",
+                    title:(pysStatSingle.cog === 'cog' || pysStatGlobal.cog === 'cog') ? 'Cost Sale' : 'Gross Sale',
                     isSortable:false,
                     slug:"gross"
                 },
                 {
-                    title:"Net sale",
+                    title: (pysStatSingle.cog === 'cog' || pysStatGlobal.cog === 'cog') ? 'Profit Sale' : 'Net Sale',
                     isSortable:false,
                     slug:"net"
                 },
@@ -838,7 +912,7 @@
                     slug:"count_order"
                 },
                 {
-                    title:"Gross sale",
+                    title:(pysStatSingle.cog === 'cog' || pysStatGlobal.cog === 'cog') ? 'Cost Sale' : 'Gross Sale',
                     isSortable:true,
                     isDefault:true,
                     slug:"gross"
@@ -915,6 +989,34 @@
                     })
                 } break;
                 case "dates": {
+                    singleTable.head = [
+                        {
+                            title:"Date",
+                            isSortable:false,
+                            slug:"date"
+                        },
+                        {
+                            title:"Orders",
+                            isSortable:false,
+                            slug:"orders"
+                        },
+                        {
+                            title:(pysStatSingle.cog === 'cog' || pysStatGlobal.cog === 'cog') ? 'Cost Sale' : 'Gross Sale',
+                            isSortable:false,
+                            slug:"gross"
+                        },
+                        {
+                            title:(pysStatSingle.cog === 'cog' || pysStatGlobal.cog === 'cog') ? 'Profit Sale' : 'Net Sale',
+                            isSortable:false,
+                            slug:"net"
+                        },
+                        {
+                            title:"Total sale",
+                            isSortable:false,
+                            slug:"total"
+                        }
+                    ]
+                    singleTable.fillHead();
                     items.forEach(function (item) {
                         let data = (new Date(item.x)).toLocaleDateString()
                         rows += "<tr class='data'>" +
@@ -927,6 +1029,29 @@
                     })
                 } break;
                 case "orders": {
+                    singleTable.head = [
+                        {
+                            title:"Order Id",
+                            isSortable:false,
+                            slug:"order_id"
+                        },
+                        {
+                            title:(pysStatSingle.cog === 'cog' || pysStatGlobal.cog === 'cog') ? 'Cost Sale' : 'Gross Sale',
+                            isSortable:false,
+                            slug:"gross"
+                        },
+                        {
+                            title: (pysStatSingle.cog === 'cog' || pysStatGlobal.cog === 'cog') ? 'Profit Sale' : 'Net Sale',
+                            isSortable:false,
+                            slug:"net"
+                        },
+                        {
+                            title:"Total sale",
+                            isSortable:false,
+                            slug:"total"
+                        }
+                    ]
+                    singleTable.fillHead()
                     items.forEach(function (item) {
                         let url = "";
                         if(singleTable.type == "woo") {
@@ -944,6 +1069,32 @@
                     })
                 } break;
                 case "products": {
+                    singleTable.head = [
+                        {
+                            title:"Product Name",
+                            isSortable:false,
+                            isDefault:false,
+                            slug:"product"
+                        },
+                        {
+                            title:"Qty",
+                            isSortable:true,
+                            isDefault:false,
+                            slug:"qty"
+                        },
+                        {
+                            title:"Orders",
+                            isSortable:true,
+                            isDefault:false,
+                            slug:"count_order"
+                        },
+                        {
+                            title:(pysStatSingle.cog === 'cog' || pysStatGlobal.cog === 'cog') ? 'Profit Sale' : 'Gross Sale',
+                            isSortable:true,
+                            isDefault:true,
+                            slug:"gross"
+                        }];
+                    singleTable.fillHead()
                     items.forEach(function (item) {
                         rows += "<tr class='data'>" +
                             "<td><a href='post.php?post="+item.id+"&action=edit' target='_blank'>"+ item.name+"</a></td>" +
