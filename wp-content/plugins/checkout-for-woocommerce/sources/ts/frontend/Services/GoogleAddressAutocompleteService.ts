@@ -9,6 +9,8 @@ class GoogleAddressAutocompleteService {
     private _fieldValidator: FieldValidationRefresher;
 
     constructor( fieldValidator: FieldValidationRefresher ) {
+        LoggingService.logNotice( 'Loading Google Address Autocomplete Service' );
+
         if ( !DataService.getSetting( 'enable_address_autocomplete' ) ) {
             return;
         }
@@ -25,6 +27,8 @@ class GoogleAddressAutocompleteService {
         }
 
         this.initAutocomplete( 'billing_', 'billing_address_1', DataService.getSetting( 'address_autocomplete_billing_countries' )  );
+
+        DataService.setRuntimeParameter( 'loaded_google_autocomplete', true );
     }
 
     initAutocomplete( prefix: string, mountId: string, countryRestrictions?: string|string[] ): void {

@@ -131,9 +131,13 @@ class BillingAddressSyncService {
         if ( currentValue !== newValue ) {
             LoggingService.log( `Syncing field: ${srcField.attr( 'name' )} to ${destField.attr( 'name' )}` );
 
-            destField.val( srcField.val() )
-                .trigger( 'change' )
-                .trigger( 'cfw_garlic_store' );
+            destField.val( srcField.val() );
+
+            if ( destField.val() !== newValue ) {
+                return; // something went wrong - perhaps the destination select doesn't have a matching option
+            }
+
+            destField.trigger( 'change' ).trigger( 'cfw_garlic_store' );
 
             LoggingService.logEvent( 'Fired cfw_garlic_store event.' );
         }

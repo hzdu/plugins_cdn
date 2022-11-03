@@ -63,6 +63,7 @@ import TooltipService                        from './Services/TooltipService';
 import UpdateCheckoutService                 from './Services/UpdateCheckoutService';
 import ValidationService                     from './Services/ValidationService';
 import ZipAutocompleteService                from './Services/ZipAutocompleteService';
+import Data = google.maps.Data;
 
 /**
  * The main class of the front end checkout system
@@ -175,7 +176,13 @@ class Main {
         new ZipAutocompleteService( this.parsleyService );
 
         if ( !hasDiscreetAddress1Fields ) {
-            new GoogleAddressAutocompleteService( this.parsleyService );
+            jQuery( document.body ).on( 'cfw_load_google_autocomplete', () => {
+                if ( !DataService.getRuntimeParameter( 'loaded_google_autocomplete' ) ) {
+                    new GoogleAddressAutocompleteService( this.parsleyService );
+                }
+            } );
+
+            jQuery( document.body ).trigger( 'cfw_load_google_autocomplete' );
         }
 
         if ( DataService.getSetting( 'enable_fetchify_address_autocomplete' ) ) {
@@ -234,10 +241,19 @@ class Main {
             Main.instance.updateCheckoutService.queueUpdateCheckout();
         } );
 
+        const expandCart = jQuery( '#cfw-expand-cart' );
+
         jQuery( '#cfw-mobile-cart-header' ).on( 'click', ( e ) => {
             e.preventDefault();
             jQuery( '#cfw-cart-summary-content' ).slideToggle( 300 );
-            jQuery( '#cfw-expand-cart' ).toggleClass( 'active' );
+            expandCart.toggleClass( 'active' );
+        } );
+
+        jQuery( document.body ).on( 'cfw-after-tab-change', () => {
+            if ( expandCart.hasClass( 'active' ) ) {
+                jQuery( '#cfw-cart-summary-content' ).slideUp( 300 );
+                expandCart.removeClass( 'active' );
+            }
         } );
 
         jQuery( window ).on( 'load', () => {

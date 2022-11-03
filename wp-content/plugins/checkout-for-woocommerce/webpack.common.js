@@ -15,6 +15,10 @@ module.exports = {
         'js-cookie': 'Cookies',
     },
     entry: {
+        'checkoutwc-selectwoo': [
+            require.resolve( 'cfwselectwoo/dist/js/selectWoo.full.js' ),
+            require.resolve( 'cfwselectwoo/dist/css/selectWoo.css' ),
+        ],
         'checkoutwc-vendor': [
             require.resolve( 'dom4/build/dom4.max.js' ),
             require.resolve( 'jquery-first-event/dist/index.js' ),

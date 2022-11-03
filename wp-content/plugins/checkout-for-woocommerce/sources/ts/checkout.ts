@@ -7,14 +7,6 @@ import LoggingService                            from './frontend/Services/Loggi
 
 declare let cfwEventData: any;
 
-// selectWoo Shim
-( function ( $ ) {
-    $.fn.selectWoo = function ( options ) {
-        LoggingService.logNotice( 'jQuery.selectWoo is not currently supported by CheckoutWC.' );
-        return this;
-    };
-}( jQuery ) );
-
 cfwDomReady( () => {
     const data = cfwEventData;
     const formEl = jQuery( data.elements.checkoutFormSelector );

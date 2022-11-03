@@ -256,6 +256,7 @@ jQuery(document).ready(function ($) {
             if (img_data) {
                 $('.shortcode-wcpr-modal-light-box').removeClass('shortcode-wcpr-no-images');
                 $left_main.html(img_data);
+                $left_main.find('img').attr('src', $left_main.find('img').data('original_src') || $left_main.find('img').attr('src'));
             }
             $left_modal.find('.shortcode-reviews-images').map(function () {
                 let lazy_load_src = $(this).data('src');
@@ -271,6 +272,7 @@ jQuery(document).ready(function ($) {
                 } else if (jQuery(this).hasClass('reviews-videos') || jQuery(this).find('.reviews-videos').length){
                     temp = jQuery(`<video class="shortcode-reviews-images reviews-videos" data-original_src="${current_image_src}" src="${current_image_src}" controls></video>`);
                 }else {
+                    current_image_src = $(this).data('image_src') || current_image_src;
                     temp = jQuery(`<img class="shortcode-reviews-images" data-original_src="${current_image_src}" src="${current_image_src}">`);
                     temp.attr('title',$left_main.find('.shortcode-reviews-images').attr('title'));
                 }

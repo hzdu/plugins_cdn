@@ -72,11 +72,11 @@ class AmazonPay extends Compatibility {
         // Clear shadow-root from #pay_with_amazon button
         this.iterations += 1;
 
-        if ( this.iterations > 1000 ) {
+        if ( this.iterations > 50 ) {
             clearInterval( this.timer );
         }
         try {
-            if ( jQuery( document.body ).find( '#pay_with_amazon' ).get( 0 ).shadowRoot.innerHTML.length ) {
+            if ( jQuery( document.body ).find( '#pay_with_amazon' ).get( 0 )?.shadowRoot?.innerHTML?.length ) {
                 jQuery( document.body ).find( '#pay_with_amazon' ).get( 0 ).shadowRoot.innerHTML = '';
                 jQuery( '#pay_with_amazon' ).css( 'opacity', '1' );
                 clearInterval( this.timer );
