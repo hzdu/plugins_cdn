@@ -15,6 +15,21 @@ The code is licensed under GPLv3.
 
 ## Changelog ##
 
+##### [Version 2.4.4](https://github.com/Codeinwp/neve-pro-addon/compare/v2.4.3...v2.4.4) (2022-11-03)
+
+- [Feat] Add Line icon to social icons component
+- [Fix] Typekit font locally loading
+- [Fix] Page Parent and Page Ancestor properties for custom layout
+- [Fix] Compatibility between Spectra and Neve's scroll to top button
+- [Fix] Tab title when installing Otter Pro
+- [Fix] Template not applying without WooCommerce installed
+- [Fix] Fixed the PHP editor render when switching between Code / Visual editor
+- [Fix] Deprecation warnings in PHP 8.1
+- [Fix] Post and Pages conditions in Custom Layouts are capped at 100 entries
+
+
+
+
 ##### [Version 2.4.3](https://github.com/Codeinwp/neve-pro-addon/compare/v2.4.2...v2.4.3) (2022-10-12)
 
 - [Fix] Added styles for RankMath breadcrumbs.

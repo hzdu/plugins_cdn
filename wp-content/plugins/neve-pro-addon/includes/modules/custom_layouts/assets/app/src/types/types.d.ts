@@ -38,6 +38,7 @@ type SidebarOptionsType = {
 };
 
 interface LocalizedData {
+	ajaxOptions: string;
 	customEditorEndpoint: string;
 	nonce: string;
 	phpError: string;

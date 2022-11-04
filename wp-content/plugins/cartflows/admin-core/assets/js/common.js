@@ -42,4 +42,42 @@
 		// Copy the log to clipboard.
 		wcf_copy_the_log();
 	} );
+
+	function installSuccess( event, args ) {
+		event.preventDefault();
+		const plugin_slug = args.slug;
+		activatePlugin( plugin_slug );
+	}
+
+	function activatePlugin( plugin_slug ) {
+		const plugin_init = plugin_slug + '/' + plugin_slug + '.php';
+		$.ajax( {
+			type: 'POST',
+			dataType: 'json',
+			url: cartflows_admin.ajax_url,
+			data: {
+				action: 'cartflows_activate_plugin',
+				security: cartflows_admin.activate_plugin_nonce,
+				init: plugin_init,
+			},
+			success( response ) {
+				if ( response.data && response.data.success ) {
+					if ( 'checkout-plugins-stripe-woo' === plugin_slug ) {
+						window.location.replace(
+							cartflows_admin.admin_base_url +
+								`index.php?page=cpsw-onboarding`
+						);
+					} else {
+						window.location.reload();
+					}
+				}
+			},
+			error() {
+				$( 'body' ).css( 'cursor', 'default' );
+				alert( 'Something went wrong!' );
+			},
+		} );
+	}
+
+	$( document ).on( 'wp-plugin-install-success', installSuccess );
 } )( jQuery );

@@ -119,6 +119,12 @@
 					}
 
 					if ( parseFloat( rsp.cart_total ) > 0 ) {
+						/**
+						 * Universal triger just like update_checkout but of CartFlows.
+						 * This trigger will be trigger after Order Bump, product options, quantity updation processes.
+						 */
+						$( 'body' ).trigger( 'cartflows_update_checkout' );
+
 						$(
 							'.woocommerce-checkout-review-order-table, .wcf-product-option-wrap, .wcf-bump-order-wrap'
 						).unblock();
@@ -909,6 +915,15 @@
 					wcf_update_summary_height( true );
 				}, 300 );
 			}
+
+			// Add trrigger to slide back to the varations selected image while in flexslider.
+			$( document ).on(
+				'woocommerce_gallery_reset_slide_position',
+				function () {
+					// Varations image is always replaced at the first index of the slider.
+					image_slider_wrap.flexslider( 0 );
+				}
+			);
 
 			// stop loader
 			$( document ).trigger( 'wcf_quick_view_loader_stop' );

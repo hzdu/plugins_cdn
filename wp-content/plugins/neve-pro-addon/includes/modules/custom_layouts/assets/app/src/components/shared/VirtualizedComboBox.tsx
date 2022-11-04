@@ -145,6 +145,9 @@ type VirtualizedComboBoxProps = {
 	options: Option[];
 	label?: string;
 	messages?: { selected: string };
+	setQueryOpt?: ( value: string ) => void;
+	queryOpt?: string;
+	dynamicQuery?: boolean;
 };
 
 /**
@@ -162,10 +165,13 @@ const VirtualizedComboBox = React.memo(
 		messages = {
 			selected: __( 'Item selected.', 'neve' ),
 		},
+		queryOpt = '',
+		setQueryOpt,
+		dynamicQuery = false,
 	}: VirtualizedComboBoxProps ) => {
 		const [ isExpanded, setIsExpanded ] = useState( false );
 		const [ inputHasFocus, setInputHasFocus ] = useState( false );
-		const [ query, setQuery ] = useState( '' );
+		const [ query, setQuery ] = useState( dynamicQuery ? queryOpt : '' );
 		const [ focusedItemIndex, setFocusedItemIndex ] = useState( -1 );
 
 		const currentOption = options.find(
@@ -290,6 +296,9 @@ const VirtualizedComboBox = React.memo(
 		};
 
 		const onInputChange = ( event: { target: { value: string } } ) => {
+			if ( dynamicQuery && setQueryOpt ) {
+				setQueryOpt( event.target.value );
+			}
 			setQuery( event.target.value );
 			const matchIndex = matchingSuggestionsToFirstIndex();
 

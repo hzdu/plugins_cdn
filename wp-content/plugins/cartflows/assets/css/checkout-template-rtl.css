@@ -82,6 +82,7 @@
 .wcf-embed-checkout-form .woocommerce .wcf-product-name {
 	display: inline-block;
 	width: 75%;
+	margin-left: 10px;
 }
 
 .wcf-embed-checkout-form .woocommerce .wcf-product-image img {
@@ -91,7 +92,7 @@
 .wcf-embed-checkout-form .woocommerce .wcf-product-image .wcf-product-thumbnail {
 	position: relative;
 	border-radius: 4px;
-	width: 25%;
+	width: 20%;
 	margin-left: 10px;
 }
 
@@ -814,6 +815,7 @@
 .wcf-embed-checkout-form table.shop_table tbody tr td:nth-child( 2 ),
 .wcf-embed-checkout-form table.shop_table tfoot tr td:nth-child( 2 ) {
 	width: 30%;
+	padding-right: 10px;
 }
 
 .wcf-embed-checkout-form table.shop_table tbody tr.cart_item td.product-name {
@@ -1435,7 +1437,7 @@ a.et_pb_more_button::after {
 	vertical-align: top;
 }
 
-.wcf-embed-checkout-form.wcf-embed-checkout-form-modern-checkout .wcf_cartflows_review_order_wrapper {
+.wcf-embed-checkout-form.wcf-embed-checkout-form-modern-checkout .wcf-cartflows-review-order-wrapper {
 	display: none;
 	margin: 0 -20px;
 }
@@ -2221,7 +2223,7 @@ body.cartflows_step-template .select2-container--default .select2-search--dropdo
 
 	.wcf-embed-checkout-form.wcf-embed-checkout-form-modern-checkout #order_review .wcf-custom-coupon-field,
 	.wcf-embed-checkout-form.wcf-embed-checkout-form-modern-checkout #order_review table.shop_table,
-	.wcf-embed-checkout-form.wcf-embed-checkout-form-modern-checkout .wcf_cartflows_review_order_wrapper {
+	.wcf-embed-checkout-form.wcf-embed-checkout-form-modern-checkout .wcf-cartflows-review-order-wrapper {
 		display: none;
 	}
 
@@ -2305,11 +2307,15 @@ body.cartflows_step-template .select2-container--default .select2-search--dropdo
 		margin: 0 -20px;
 	}
 
-	.wcf-embed-checkout-form.wcf-embed-checkout-form-modern-checkout .wcf-order-review-toggle.wcf-show .dashicons-arrow-down-alt2 {
+	.wcf-embed-checkout-form.wcf-embed-checkout-form-modern-checkout .wcf-collapsed-order-review-section.wcf-show .wcf-cartflows-review-order-wrapper {
+		display: block !important;
+	}
+
+	.wcf-embed-checkout-form.wcf-embed-checkout-form-modern-checkout .wcf-collapsed-order-review-section.wcf-show .dashicons-arrow-down-alt2 {
 		display: none;
 	}
 
-	.wcf-embed-checkout-form.wcf-embed-checkout-form-modern-checkout .wcf-order-review-toggle.wcf-show .dashicons-arrow-up-alt2 {
+	.wcf-embed-checkout-form.wcf-embed-checkout-form-modern-checkout .wcf-collapsed-order-review-section.wcf-show .dashicons-arrow-up-alt2 {
 		display: inline;
 	}
 
@@ -2434,7 +2440,7 @@ body.cartflows_step-template .select2-container--default .select2-search--dropdo
 */
 
 /* Modern Floating Style */
-.wcf-embed-checkout-form.wcf-field-modern-label .woocommerce #customer_details .form-row label:not( .woocommerce-form__label-for-checkbox, .checkbox ) {
+.wcf-embed-checkout-form.wcf-field-modern-label .woocommerce #customer_details .form-row:not( .wcf-anim-hidden-label ) label:not( .woocommerce-form__label-for-checkbox, .checkbox ) {
 	-webkit-user-select: none;
 	user-select: none;
 	pointer-events: none;
@@ -2558,3 +2564,15 @@ body .pac-placeholder {
 	margin-top: 10px;
 }
 /* Checkout Plugin - Stripe for WooCommerce Smart Button box CSS */
+
+/**
+* Mainly for Official - Stripe for WooCommerce Smart Button box & for rest of the gateways.
+*
+* The selector -payment-request-wrapper & -payment-request-button-separator remains the same for.
+* most of the payment gateways and they are pre-pended with payment gateway key.
+*/
+.wcf-embed-checkout-form.wcf-embed-checkout-form-modern-checkout .woocommerce-checkout [id*="-payment-request-wrapper"],
+.wcf-embed-checkout-form.wcf-embed-checkout-form-modern-checkout .woocommerce-checkout [id*="-payment-request-button-separator"] {
+	width: 100%;
+}
+/* Official - Stripe for WooCommerce Smart Button box CSS */

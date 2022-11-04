@@ -17,10 +17,47 @@
 				}
 			}
 		},
+		is_doing_offer_ajax: false,
+	};
+
+	const trigger_offer_events = function ( ajax_data ) {
+		if ( ajax_data.offer_action ) {
+			// Prepare the offer data to sent to event.
+			const event_data = {
+				action: ajax_data.action,
+				flow_id: ajax_data.flow_id,
+				input_qty: ajax_data.input_qty,
+				offer_action: ajax_data.offer_action,
+				offer_type: ajax_data.offer_type,
+				order_id: ajax_data.order_id,
+				product_id: ajax_data.product_id,
+				step_id: ajax_data.step_id,
+				variation_id: ajax_data.variation_id,
+			};
+
+			// Create a custom event and dispatch it.
+			document.dispatchEvent(
+				new CustomEvent( ajax_data.action, {
+					bubbles: true, // The bubbles will make sure that the code executes in the line-by-line pattern only.
+					detail: event_data, // eslint-disable-line quote-props
+				} )
+			);
+		}
 	};
 
 	const wcf_process_offer = function ( ajax_data ) {
 		ajax_data._nonce = cartflows_offer[ ajax_data.action + '_nonce' ];
+
+		// Stop sending multiple ajax requests at the same time to avoid duplicate orders.
+		if ( ! CartFlowsHelper.is_doing_offer_ajax ) {
+			CartFlowsHelper.is_doing_offer_ajax = true;
+		} else {
+			console.log(
+				'Muliple Clicks detected: Offer accepted ajax is already in progress.'
+			);
+			return;
+		}
+
 		$.ajax( {
 			url: cartflows.ajax_url,
 			data: ajax_data,
@@ -29,10 +66,14 @@
 			success( data ) {
 				const msg = data.message;
 				const msg_class = 'wcf-payment-' + data.status;
+				// Trigger the offer accept/reject events.
+				trigger_offer_events( ajax_data );
 				$( 'body' ).trigger( 'wcf-update-msg', [ msg, msg_class ] );
+				// Updating the state to ajax complete.
+				CartFlowsHelper.is_doing_offer_ajax = false;
 				setTimeout( function () {
 					window.location.href = data.redirect;
-				}, 500 );
+				}, 600 );
 			},
 		} );
 	};
@@ -65,7 +106,19 @@
 				e.preventDefault();
 
 				const $this = $( this ),
-					href = $this.attr( 'href' ),
+					is_disabled = $this.attr( 'disabled' ) ? true : false;
+
+				if ( ! is_disabled ) {
+					$this.attr( 'disabled', true );
+				} else {
+					// Skip the workflow if clicked multiple times on the same buttons.
+					console.log(
+						'Restricted action: Multiple button clicks detected.'
+					);
+					return false;
+				}
+
+				const href = $this.attr( 'href' ),
 					step_id = cartflows_offer.step_id,
 					product_id = cartflows_offer.product_id,
 					order_id = cartflows_offer.order_id,
@@ -544,7 +597,7 @@
 		if ( product_gallery.length > 0 ) {
 			if (
 				product_gallery.find( '.woocommerce-product-gallery__image' )
-					.length > 1
+					.length >= 1
 			) {
 				const slider_obj = jQuery(
 					'.woocommerce-product-gallery'
@@ -827,12 +880,7 @@
 				);
 			}
 
-			// Added for the backwoard compatibility. Remove this after 2 update and change the "cartflows_fb_data" var to "cartflows.fb_setting".
-			const cartflows_fb_data =
-				typeof cartflows.fb_setting !== 'undefined'
-					? cartflows.fb_setting
-					: cartflows.fb_active;
-			// Added for the backwoard compatibility. Remove this after 2 update and change the "cartflows_fb_data" var to "cartflows.fb_setting".
+			const cartflows_fb_data = cartflows.fb_setting;
 
 			if (
 				'enable' ===
@@ -853,13 +901,7 @@
 				return;
 			}
 
-			// Added for the backwoard compatibility. Remove this after 2 update and change the "cartflows_ga_data" var to "cartflows.ga_setting".
-			const cartflows_ga_data =
-				typeof cartflows.ga_setting !== 'undefined'
-					? cartflows.ga_setting
-					: cartflows.wcf_ga_active;
-			// Added for the backwoard compatibility. Remove this after 2 update and change the "cartflows_fb_data" var to "cartflows.ga_setting".
-
+			const cartflows_ga_data = cartflows.ga_setting;
 			const ga_add_to_cart = cartflows_ga_data.enable_add_to_cart;
 
 			const ga_payment_info = cartflows_ga_data.enable_add_payment_info;

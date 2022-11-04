@@ -332,3 +332,16 @@ p.wcf-process-msg {
 		transform: scale( 1.2 );
 	}
 }
+
+/**
+* Astra Addon Compatibility CSS.
+*
+* Removing the raw HTML of plus/minus buttons on the upsell page.
+* Restricted only to offer page using wcf-offer-product-quantity class.
+*/
+body[class*=" astra-addon-"] .wcf-offer-product-quantity label[for^="minus_qty"],
+body[class*=" astra-addon-"] .wcf-offer-product-quantity a#minus_qty,
+body[class*=" astra-addon-"] .wcf-offer-product-quantity a#plus_qty,
+body[class*=" astra-addon-"] .wcf-offer-product-quantity label[for^="plus_qty"] {
+	display: none !important;
+}

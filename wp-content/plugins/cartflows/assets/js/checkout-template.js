@@ -268,24 +268,29 @@
 				url: cartflows.ajax_url,
 				data,
 
-				success( code ) {
+				success( code_data ) {
 					const coupon_message = $( '.wcf-custom-coupon-field' );
 					coupon_message
 						.find( '.woocommerce-error, .woocommerce-message' )
 						.remove();
 
-					const code_data = JSON.parse( code );
-
-					if ( code_data.status === true ) {
+					if ( code_data && code_data.status === true ) {
 						$( document.body ).trigger( 'update_checkout', {
 							update_shipping_method: false,
 						} );
 						coupon_message.prepend( code_data.msg );
 						coupon_wrapper_class.addClass( 'wcf-coupon-applied' );
-					} else {
+					} else if ( code_data && code_data.msg ) {
 						coupon_message.prepend( code_data.msg );
 						coupon_wrapper_class.removeClass(
 							'wcf-coupon-applied'
+						);
+					} else {
+						console.log(
+							'Error: Error while applying the coupon. Response: ' +
+								code_data.data && code_data.data.error
+								? code_data.data.error
+								: code_data
 						);
 					}
 				},
@@ -370,177 +375,6 @@
 		);
 	};
 
-	const wcf_anim_field_label_event = function () {
-		//Add focus class automatically if value is present in input
-		const $all_inputs = $(
-			'.wcf-field-style-one form.woocommerce-checkout'
-		).find( 'input' );
-
-		$( $all_inputs ).each( function () {
-			const $this = $( this ),
-				field_type = $this.attr( 'type' ),
-				form_row = $this.closest( '.form-row' ),
-				has_class = form_row.hasClass( 'mt20' );
-			let input_elem_value = $this.val();
-
-			$this.attr( 'placeholder', '' );
-
-			const input_placeholder = $this.attr( 'placeholder' )
-				? $this.attr( 'placeholder' )
-				: '';
-
-			if ( '' === input_elem_value && '' !== input_placeholder ) {
-				input_elem_value = input_placeholder;
-			}
-
-			_add_anim_class(
-				has_class,
-				input_elem_value,
-				field_type,
-				form_row
-			);
-		} );
-
-		//Add focus class automatically if value is present in selects
-		const $all_selects = $(
-			'.wcf-field-style-one form.woocommerce-checkout'
-		).find( 'select' );
-
-		$( $all_selects ).each( function () {
-			const $this = $( this ),
-				form_row = $this.closest( '.form-row' ),
-				field_type = 'select',
-				has_class = form_row.hasClass( 'mt20' ),
-				input_elem_value = $this.val();
-
-			_add_anim_class(
-				has_class,
-				input_elem_value,
-				field_type,
-				form_row
-			);
-		} );
-
-		// Common function to add wcf-anim-label
-		function _add_anim_class(
-			has_class,
-			input_elem_value,
-			field_type,
-			form_row
-		) {
-			if ( has_class ) {
-				form_row.removeClass( 'mt20' );
-			}
-
-			if (
-				input_elem_value !== '' ||
-				( input_elem_value !== ' ' && 'select' === field_type )
-			) {
-				form_row.addClass( 'wcf-anim-label' );
-			}
-
-			if ( field_type === 'hidden' ) {
-				form_row.removeClass( 'wcf-anim-label' );
-				form_row.addClass( 'wcf-anim-label-fix' );
-			}
-		}
-	};
-
-	/**
-	 * Label Animation
-	 */
-	const wcf_anim_field_label = function () {
-		const $inputs = $(
-			'.wcf-field-style-one form.woocommerce-checkout, .wcf-field-style-one form.woocommerce-form-login'
-		).find( 'input' );
-		const $select_input = $(
-			'.wcf-field-style-one form.woocommerce-checkout'
-		).find( '.select2' );
-		const $textarea = $(
-			'.wcf-field-style-one form.woocommerce-checkout'
-		).find( 'textarea' );
-
-		//Add focus class on clicked on input types
-		$inputs.on( 'focus', function () {
-			const $this = $( this ),
-				field_row = $this.closest( '.form-row' );
-			has_class = field_row.hasClass( 'wcf-anim-label' );
-			field_value = $this.val();
-
-			if ( field_value === '' ) {
-				field_row.addClass( 'wcf-anim-label' );
-			}
-		} );
-
-		//Remove focus class on clicked outside/other input types
-		$inputs.on( 'focusout', function () {
-			const $this = $( this ),
-				field_row = $this.closest( '.form-row' ),
-				field_value = $this.val(),
-				field_placeholder = $this.attr( 'placeholder' )
-					? $this.attr( 'placeholder' )
-					: '';
-
-			if ( '' === field_value && '' === field_placeholder ) {
-				field_row.removeClass( 'wcf-anim-label' );
-			} else {
-				field_row.addClass( 'wcf-anim-label' );
-			}
-		} );
-
-		//Add focus class on clicked on Select
-		$select_input.on( 'click', function () {
-			const $this = $( this ),
-				field_row = $this.closest( '.form-row' );
-			has_class = field_row.hasClass( 'wcf-anim-label' );
-			field_value = $this.find( '.select2-selection__rendered' ).text();
-
-			if ( field_value === '' ) {
-				field_row.addClass( 'wcf-anim-label' );
-			}
-		} );
-
-		//Remove focus class on clicked outside/another Select or fields
-		$select_input.on( 'focusout', function () {
-			const $this = $( this ),
-				field_row = $this.closest( '.form-row' );
-			has_class = field_row.hasClass( 'wcf-anim-label' );
-			field_value = $this.find( '.select2-selection__rendered' ).text();
-
-			if ( field_value === '' ) {
-				field_row.removeClass( 'wcf-anim-label' );
-			} else {
-				field_row.addClass( 'wcf-anim-label' );
-			}
-		} );
-
-		//Add focus class on clicked on textarea
-		$textarea.on( 'click', function () {
-			const $this = $( this ),
-				field_row = $this.closest( '.form-row' );
-			has_class = field_row.hasClass( 'wcf-anim-label' );
-			field_value = $this.val();
-
-			if ( field_value === '' ) {
-				field_row.addClass( 'wcf-anim-label' );
-			}
-		} );
-
-		//Remove focus class on clicked outside/another textarea or fields
-		$textarea.on( 'focusout', function () {
-			const $this = $( this ),
-				field_row = $this.closest( '.form-row' );
-			has_class = field_row.hasClass( 'wcf-anim-label' );
-			field_value = $this.val();
-
-			if ( field_value === '' ) {
-				field_row.removeClass( 'wcf-anim-label' );
-			} else {
-				field_row.addClass( 'wcf-anim-label' );
-			}
-		} );
-	};
-
 	const wcf_toggle_optimized_fields = function () {
 		jQuery.each(
 			cartflows_checkout_optimized_fields,
@@ -576,6 +410,12 @@
 			'.wcf-field-modern-label .woocommerce input, .wcf-field-modern-label .woocommerce select, .wcf-field-modern-label .woocommerce textarea'
 		);
 
+		/**
+		 * Add wcf-anim-label class when floating label option is enabled.
+		 * The class will be added only when the info is started to type in the checkout fields.
+		 *
+		 * @param {Object} $this the object of current checkout field
+		 */
 		const _add_anim_class = function ( $this ) {
 			const field_row = $this.closest( '.form-row' ),
 				is_select =
@@ -583,41 +423,27 @@
 					$this.hasClass( 'select2-hidden-accessible' ),
 				field_value = is_select
 					? $this.find( ':selected' ).text()
-					: $this.val();
+					: $this.val(),
+				field_type = $this.attr( 'type' );
 
 			if ( '' === field_value ) {
 				field_row.removeClass( 'wcf-anim-label' );
+			} else if ( 'hidden' === field_type ) {
+				field_row.addClass( 'wcf-anim-hidden-label' );
 			} else {
 				field_row.addClass( 'wcf-anim-label' );
 			}
 		};
 
-		/**
-		 * Function to add the * to the required fields if marked.
-		 *
-		 * @param {Object} $this the current focused field.
-		 */
-		const _show_required_field_mark = function ( $this ) {
-			const field_row = $this.closest( '.form-row' ),
-				is_required = field_row.hasClass( 'validate-required' );
-			let placeholder_text = $this.attr( 'placeholder' );
-
-			if ( is_required && '' !== placeholder_text ) {
-				placeholder_text = placeholder_text + ' *';
-			}
-
-			$this.attr( 'placeholder', placeholder_text );
-		};
-
+		// Trigger the addition of anim class when focused or info is inputed on the field.
 		$inputs.on( 'focusout input', function () {
 			const $this = $( this );
 			_add_anim_class( $this );
 		} );
 
+		// Load the anim class on the page ready.
 		$( $inputs ).each( function () {
-			const $this = $( this );
-			_add_anim_class( $this );
-			_show_required_field_mark( $this );
+			_add_anim_class( $( this ) );
 		} );
 	};
 
@@ -674,6 +500,7 @@
 						validation_msg_wrap.remove();
 
 						if (
+							resp.data &&
 							resp.data.success &&
 							customer_login_wrap.hasClass( 'wcf-show' )
 						) {
@@ -686,7 +513,7 @@
 							return;
 						}
 
-						if ( resp.data.success ) {
+						if ( resp.data && resp.data.success ) {
 							if ( resp.data.is_login_allowed ) {
 								email_field.after(
 									'<span class="wcf-email-validation-block success">' +
@@ -762,7 +589,7 @@
 						security: cartflows.woocommerce_login_nonce,
 					},
 					success( resp ) {
-						if ( resp.data.success ) {
+						if ( resp.data && resp.data.success ) {
 							location.reload();
 						} else {
 							$( '.wcf-customer-info__notice' )
@@ -776,8 +603,11 @@
 	};
 
 	const wcf_order_review_toggler = function () {
-		const mobile_order_review_wrap = $(
-				'.wcf_cartflows_review_order_wrapper'
+		const mobile_order_review_section = $(
+				'.wcf-collapsed-order-review-section'
+			),
+			mobile_order_review_wrap = $(
+				'.wcf-cartflows-review-order-wrapper'
 			),
 			desktop_order_review_wrap = $( '.wcf-order-wrap' );
 
@@ -790,17 +620,15 @@
 			function wcf_show_order_summary( e ) {
 				e.preventDefault();
 
-				if ( mobile_order_review_wrap.hasClass( 'wcf-show' ) ) {
+				if ( mobile_order_review_section.hasClass( 'wcf-show' ) ) {
 					mobile_order_review_wrap.slideUp( 400 );
-					mobile_order_review_wrap.removeClass( 'wcf-show' );
-					$( this ).removeClass( 'wcf-show' );
+					mobile_order_review_section.removeClass( 'wcf-show' );
 					$( '.wcf-order-review-toggle-text' ).text(
 						cartflows.order_review_toggle_texts.toggle_show_text
 					);
 				} else {
 					mobile_order_review_wrap.slideDown( 400 );
-					mobile_order_review_wrap.addClass( 'wcf-show' );
-					$( this ).addClass( 'wcf-show' );
+					mobile_order_review_section.addClass( 'wcf-show' );
 					$( '.wcf-order-review-toggle-text' ).text(
 						cartflows.order_review_toggle_texts.toggle_hide_text
 					);
@@ -859,10 +687,6 @@
 		wcf_remove_cart_products();
 
 		wcf_checkout_coupons.init();
-
-		wcf_anim_field_label_event();
-
-		wcf_anim_field_label();
 
 		wcf_toggle_optimized_fields();
 

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback, useEffect, useMemo, useRef } from 'react';
 
 import VirtualizedComboBox, { Option } from '../shared/VirtualizedComboBox';
 import { __ } from '@wordpress/i18n';
@@ -7,6 +7,9 @@ import { mapOptGroupRoot, mapSimpleOptions } from '../../common/utils';
 import { Button, ButtonGroup, SelectControl } from '@wordpress/components';
 import { plus } from '@wordpress/icons';
 import { Rules } from './ConditionalPanel';
+import { useState } from '@wordpress/element';
+import { debounce } from 'lodash';
+import { maybeParseJson } from '@neve-wp/components';
 
 /**
  * Type for RuleComponent
@@ -151,6 +154,7 @@ const RuleComponent = ( {
 			...parsedOptions,
 		];
 	}
+	const [ endOptionsState, setEndOptionsState ] = useState( endOptions );
 
 	const rootOptions = ( mapOptGroupRoot(
 		( root as unknown ) as Record<
@@ -175,6 +179,123 @@ const RuleComponent = ( {
 		updateEnd,
 	] );
 
+	const [ query, setQuery ] = useState( '' );
+	const [ prevOption, setPrevOption ] = useState( {} );
+	const restUrl = window.neveCustomLayouts.ajaxOptions;
+	const nonce = window.neveCustomLayouts.nonce;
+	const options: RequestInit = {
+		headers: {
+			Accept: 'application/json',
+			'Content-Type': 'application/json',
+			'x-wp-nonce': nonce,
+		},
+		method: 'GET',
+	};
+
+	useEffect( () => {
+		if ( selectedEnd && [ 'pages', 'posts' ].includes( endRoot ) ) {
+			options.method = 'GET';
+			const fetchAbortController = new AbortController();
+
+			try {
+				fetch( `${ restUrl }/${ selectedEnd }`, {
+					...options,
+					signal: fetchAbortController.signal,
+				} ).then( async ( response ) => {
+					const responseJson = await response.json();
+					const data = maybeParseJson( responseJson.data );
+
+					setPrevOption( {
+						value: `${ data.value }`,
+						label: data.label,
+						type: endRoot,
+					} );
+
+					const found = Object.keys( endOptions ).filter( ( k ) => {
+						// @ts-ignore
+						return endOptions[ k ].value === selectedEnd;
+					} );
+					if ( found.length === 0 ) {
+						endOptions = [
+							...endOptions,
+							{
+								value: `${ data.value }`,
+								label: data.label as string,
+							},
+						];
+					}
+					setEndOptionsState( endOptions );
+
+					return responseJson;
+				} );
+			} catch ( e ) {
+				if ( ! fetchAbortController.signal.aborted ) {
+					// eslint-disable-next-line no-console
+					console.error( e );
+				}
+			}
+
+			return () => {
+				fetchAbortController.abort();
+			};
+		}
+	}, [] );
+
+	const fetchResults = useCallback(
+		debounce( ( searchQuery, searchType, alreadyDefinedOption ) => {
+			const postOptions = {
+				...options,
+				method: 'POST',
+				body: JSON.stringify( {
+					type: searchType === 'pages' ? 'page' : 'post',
+					query: searchQuery,
+				} ),
+			};
+			fetch( `${ restUrl }`, postOptions ).then( async ( response ) => {
+				const responseJson = await response.json();
+				const parsedOptions = mapSimpleOptions( responseJson.data );
+				endOptions = [
+					{ value: '', label: __( 'Select', 'neve' ) },
+					...parsedOptions,
+				];
+				const found = Object.keys( endOptions ).filter( ( k ) => {
+					// @ts-ignore
+					return endOptions[ k ].value === selectedEnd;
+				} );
+				if (
+					found.length === 0 &&
+					searchType === alreadyDefinedOption.type
+				) {
+					endOptions = [
+						...endOptions,
+						{
+							value: `${ alreadyDefinedOption.value }`,
+							label: alreadyDefinedOption.label,
+						},
+					];
+				}
+
+				setEndOptionsState( endOptions );
+				return responseJson;
+			} );
+		}, 250 ),
+		[]
+	);
+
+	const handleQueryChange = ( nextValue: string ) => {
+		setQuery( nextValue );
+		fetchResults( nextValue, endRoot, prevOption );
+	};
+
+	useEffect( () => {
+		if ( ! [ 'pages', 'posts' ].includes( endRoot ) ) {
+			setEndOptionsState( endOptions );
+			return;
+		}
+
+		fetchResults( query, endRoot, prevOption );
+	}, [ prevOption, endRoot ] );
+
 	return (
 		<>
 			<div className="rule-set">
@@ -194,9 +315,14 @@ const RuleComponent = ( {
 				/>
 				{ endConditions && (
 					<VirtualizedComboBox
-						options={ endOptions }
+						options={ endOptionsState }
 						value={ selectedEnd as string }
 						onChange={ onEndChange }
+						dynamicQuery={ [ 'pages', 'posts' ].includes(
+							endRoot
+						) }
+						setQueryOpt={ handleQueryChange }
+						queryOpt={ query }
 					/>
 				) }
 				<ButtonGroup className="rule-actions">

@@ -22,8 +22,7 @@
 		}
 		const options = {
 			componentRestrictions: { country: [ country ] },
-			fields: [ 'address_components' ],
-			types: [ 'address' ],
+			types: [ 'geocode' ],
 		};
 
 		// Remove country restriction if country field is disabled or not present in checkout form.
@@ -52,8 +51,7 @@
 		}
 		const options = {
 			componentRestrictions: { country: [ country ] },
-			fields: [ 'address_components' ],
-			types: [ 'address' ],
+			types: [ 'geocode' ],
 		};
 
 		// Remove country restriction if country field is disabled or not present in checkout form.
@@ -180,6 +178,20 @@
 					.trigger( 'focus' )
 					.trigger( 'change' );
 			}
+
+			/**
+			 * Replace the billing_address_1 field value depending on the country's address format.
+			 * Example:
+			 * For US the format is street_number and street_route and
+			 * for Netherlands the format is street_route and street_number.
+			 * So replace it with the value if available.
+			 */
+			if (
+				place.name &&
+				( '' !== place.name || 'undefined' !== typeof place.name )
+			) {
+				$( '#billing_address_1' ).val( place.name );
+			}
 		}
 	}
 
@@ -278,6 +290,20 @@
 						.val( shipping_country )
 						.trigger( 'focus' )
 						.trigger( 'change' );
+				}
+
+				/**
+				 * Replace the shipping_address_1 field value depending on the country's address format.
+				 * Example:
+				 * For US the format is street_number and street_route and
+				 * for Netherlands the format is street_route and street_number.
+				 * So replace it with the value if available.
+				 */
+				if (
+					place.name &&
+					( '' !== place.name || 'undefined' !== typeof place.name )
+				) {
+					$( '#shipping_address_1' ).val( place.name );
 				}
 			}
 		}
