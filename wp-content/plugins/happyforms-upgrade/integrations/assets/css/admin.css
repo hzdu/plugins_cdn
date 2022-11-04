@@ -123,37 +123,53 @@
     display: block;
 }
 
-.happyforms-stripe-webhook-endpoint-url {
+.happyforms-clipboard-field {
     margin: 0 0 1em;
 }
 
-.happyforms-stripe-webhook-endpoint-url-input-wrapper {
+.happyforms-clipboard-field-input-wrapper {
     display: flex;
     flex-wrap: wrap;
 }
 
-.happyforms-stripe-webhook-endpoint-url input[type="text"] {
+.happyforms-clipboard-field-input-wrapper input[type="text"] {
     flex: 1 0 auto;
-    margin-right: 8px;
+    width: 100%;
+    margin: 0 0 8px 0;
 }
 
-@media only screen and (max-width: 800px) {
-    .happyforms-stripe-webhook-endpoint-url input[type="text"] {
-        margin: 0 0 8px;
+@media only screen and (min-width: 782px) {
+    .happyforms-clipboard-field-input-wrapper input[type="text"] {
+        width: auto;
+        margin: 0 8px 0 0;
     }
 }
 
-@media only screen and (min-width: 800px) and (max-width: 1499px) {
-    .happyforms-stripe-webhook-endpoint-url input[type="text"] {
+@media only screen and (min-width: 800px) {
+    .happyforms-clipboard-field-input-wrapper input[type="text"] {
         width: 100%;
-        margin: 0 0 8px;
+        margin: 0 0 8px 0;
     }
 }
 
-@media only screen and (max-width: 799px) {
-    .happyforms-stripe-webhook-endpoint-url input[type="text"] {
+@media only screen and (min-width: 1100px) {
+    .happyforms-clipboard-field-input-wrapper input[type="text"] {
+        width: auto;
+        margin: 0 8px 0 0;
+    }
+}
+
+@media only screen and (min-width: 1800px) {
+    .happyforms-clipboard-field-input-wrapper input[type="text"] {
         width: 100%;
-        margin: 0 0 8px;
+        margin: 0 0 8px 0;
+    }
+}
+
+@media only screen and (min-width: 1920px) {
+    .happyforms-clipboard-field-input-wrapper input[type="text"] {
+        width: auto;
+        margin: 0 8px 0 0;
     }
 }
 

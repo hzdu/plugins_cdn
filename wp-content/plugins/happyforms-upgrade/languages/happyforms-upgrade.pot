@@ -2,14 +2,14 @@
 # This file is distributed under the same license as the Happyforms plugin.
 msgid ""
 msgstr ""
-"Project-Id-Version: Happyforms 1.32.2\n"
+"Project-Id-Version: Happyforms 1.33.0\n"
 "Report-Msgid-Bugs-To: ask@happyforms.io\n"
 "Last-Translator: The Theme Foundry\n"
 "Language-Team: The Theme Foundry\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2022-10-14T08:58:55+00:00\n"
+"POT-Creation-Date: 2022-11-03T08:45:40+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.4.0\n"
 "X-Domain: happyforms\n"
@@ -60,11 +60,13 @@ msgid "Date"
 msgstr ""
 
 #: core/classes/class-form-admin.php:335
+#: integrations/services/constant-contact/partial-widget.php:20
 #: integrations/services/stripe/partial-widget.php:75
 msgid "Copy to clipboard"
 msgstr ""
 
 #: core/classes/class-form-admin.php:335
+#: integrations/services/constant-contact/partial-widget.php:21
 #: integrations/services/stripe/partial-widget.php:76
 msgid "Copied!"
 msgstr ""
@@ -91,8 +93,8 @@ msgid "Duplicate"
 msgstr ""
 
 #: core/classes/class-form-admin.php:458
-#: inc/classes/class-message-admin.php:552
-#: inc/classes/class-message-admin.php:1206
+#: inc/classes/class-message-admin.php:551
+#: inc/classes/class-message-admin.php:1205
 msgid "Trash"
 msgstr ""
 
@@ -103,11 +105,9 @@ msgstr ""
 #: core/classes/class-form-admin.php:504
 #: inc/classes/class-form-admin-upgrade.php:284
 #: inc/classes/class-form-admin-upgrade.php:316
-#: inc/classes/class-message-admin.php:386
-#: inc/classes/class-message-admin.php:437
-#: inc/classes/class-message-admin.php:1364
-#: inc/classes/class-message-admin.php:1373
-#: inc/helpers/helper-misc.php:301
+#: inc/classes/class-message-admin.php:385
+#: inc/classes/class-message-admin.php:436
+#: inc/helpers/helper-misc.php:253
 msgid "Undo"
 msgstr ""
 
@@ -168,62 +168,77 @@ msgstr ""
 msgid "New submission to your form"
 msgstr ""
 
-#: core/classes/class-form-email.php:72
+#: core/classes/class-form-email.php:84
 msgid "We received your message"
 msgstr ""
 
-#: core/classes/class-form-email.php:76
+#: core/classes/class-form-email.php:88
 msgid "Your message has been successfully sent. We appreciate you contacting us and we’ll be in touch soon."
 msgstr ""
 
-#: core/classes/class-form-email.php:92
+#: core/classes/class-form-email.php:116
 msgid "Email me a copy of each submission"
 msgstr ""
 
-#: core/classes/class-form-email.php:102
+#: core/classes/class-form-email.php:126
 #: inc/classes/class-form-sessions.php:159
 #: inc/classes/class-form-setup-upgrade.php:189
 msgid "To email address"
 msgstr ""
 
-#: core/classes/class-form-email.php:107
+#: core/classes/class-form-email.php:131
 msgid "To Bcc email address"
 msgstr ""
 
-#: core/classes/class-form-email.php:112
-#: core/classes/class-form-email.php:144
+#: core/classes/class-form-email.php:136
+#: core/classes/class-form-email.php:183
 #: inc/classes/class-form-sessions.php:149
 msgid "From email address"
 msgstr ""
 
-#: core/classes/class-form-email.php:117
-#: core/classes/class-form-email.php:149
+#: core/classes/class-form-email.php:141
+#: core/classes/class-form-email.php:188
 #: inc/classes/class-form-sessions.php:154
 msgid "Reply email address"
 msgstr ""
 
-#: core/classes/class-form-email.php:122
-#: core/classes/class-form-email.php:154
+#: core/classes/class-form-email.php:146
+#: core/classes/class-form-email.php:193
 #: inc/classes/class-form-sessions.php:164
 msgid "Email display name"
 msgstr ""
 
-#: core/classes/class-form-email.php:127
-#: core/classes/class-form-email.php:159
+#: core/classes/class-form-email.php:151
+#: core/classes/class-form-email.php:198
 #: inc/classes/class-form-sessions.php:169
 msgid "Email subject"
 msgstr ""
 
-#: core/classes/class-form-email.php:135
+#: core/classes/class-form-email.php:156
+#: core/classes/class-form-email.php:213
+msgid "Include submitter's IP address"
+msgstr ""
+
+#: core/classes/class-form-email.php:161
+#: core/classes/class-form-email.php:218
+msgid "Include referral link"
+msgstr ""
+
+#: core/classes/class-form-email.php:166
+#: core/classes/class-form-email.php:223
+msgid "Include submission date and time"
+msgstr ""
+
+#: core/classes/class-form-email.php:174
 msgid "Email submitter a copy of their reply"
 msgstr ""
 
-#: core/classes/class-form-email.php:164
+#: core/classes/class-form-email.php:203
 #: inc/classes/class-form-sessions.php:174
 msgid "Email content"
 msgstr ""
 
-#: core/classes/class-form-email.php:169
+#: core/classes/class-form-email.php:208
 msgid "Include submitted values"
 msgstr ""
 
@@ -923,8 +938,9 @@ msgstr ""
 #: core/classes/class-happyforms-core.php:211
 #: inc/classes/class-attachment-controller.php:647
 #: inc/classes/class-form-admin-upgrade.php:36
-#: inc/classes/class-message-controller.php:196
-#: inc/classes/class-message-controller.php:1068
+#: inc/classes/class-form-admin-upgrade.php:37
+#: inc/classes/class-message-controller.php:194
+#: inc/classes/class-message-controller.php:1066
 msgid "Submissions"
 msgstr ""
 
@@ -1043,6 +1059,7 @@ msgid "For paragraph text fields."
 msgstr ""
 
 #: core/classes/parts/class-part-number.php:8
+#: integrations/services/stripe/class-integration-stripe.php:350
 msgid "Number"
 msgstr ""
 
@@ -3161,7 +3178,7 @@ msgid "Click to edit this part."
 msgstr ""
 
 #: inc/classes/class-attachment-controller.php:725
-#: inc/classes/class-message-admin.php:935
+#: inc/classes/class-message-admin.php:934
 msgid "All forms"
 msgstr ""
 
@@ -3216,14 +3233,14 @@ msgstr ""
 
 #: inc/classes/class-form-admin-upgrade.php:67
 #: inc/classes/class-form-admin-upgrade.php:153
-#: inc/classes/class-message-admin.php:985
-#: inc/classes/class-message-admin.php:1212
+#: inc/classes/class-message-admin.php:984
+#: inc/classes/class-message-admin.php:1211
 msgid "Restore"
 msgstr ""
 
 #: inc/classes/class-form-admin-upgrade.php:72
 #: inc/classes/class-form-admin-upgrade.php:154
-#: inc/classes/class-message-admin.php:1218
+#: inc/classes/class-message-admin.php:1217
 msgid "Delete Permanently"
 msgstr ""
 
@@ -3237,7 +3254,7 @@ msgid "Move to Archive"
 msgstr ""
 
 #: inc/classes/class-form-admin-upgrade.php:144
-#: inc/classes/class-message-admin.php:984
+#: inc/classes/class-message-admin.php:983
 msgid "Move to Trash"
 msgstr ""
 
@@ -3585,13 +3602,13 @@ msgstr ""
 msgid "Color"
 msgstr ""
 
-#: inc/classes/class-happyforms-upgrade.php:487
+#: inc/classes/class-happyforms-upgrade.php:486
 #: inc/assets/jsx/build/admin/dashboard-modals.js:375
 #: inc/assets/jsx/src/admin/dashboard-modals.js:204
 msgid "You're unregistered"
 msgstr ""
 
-#: inc/classes/class-happyforms-upgrade.php:489
+#: inc/classes/class-happyforms-upgrade.php:488
 msgid "Register now"
 msgstr ""
 
@@ -3644,8 +3661,8 @@ msgid "Email Confirmation"
 msgstr ""
 
 #: inc/classes/class-message-admin-edit.php:177
-#: inc/templates/admin-message-moderate.php:98
-#: inc/templates/email-owner.php:44
+#: inc/templates/email-owner.php:43
+#: inc/templates/email-user.php:53
 #: inc/templates/printable-submission.php:18
 msgid "IPv4/IPv6"
 msgstr ""
@@ -3656,26 +3673,20 @@ msgstr ""
 
 #: inc/classes/class-message-admin-edit.php:250
 #: inc/classes/class-message-admin-edit.php:265
-#: inc/classes/class-message-admin-moderate.php:70
-#: inc/classes/class-message-admin.php:538
-#: inc/templates/admin-message-moderate.php:25
+#: inc/classes/class-message-admin.php:537
 msgid "Read"
 msgstr ""
 
 #: inc/classes/class-message-admin-edit.php:253
 #: inc/classes/class-message-admin-edit.php:271
-#: inc/classes/class-message-admin-moderate.php:74
-#: inc/classes/class-message-admin.php:545
-#: inc/classes/class-message-admin.php:1154
-#: inc/templates/admin-message-moderate.php:29
+#: inc/classes/class-message-admin.php:544
+#: inc/classes/class-message-admin.php:1153
 msgid "Spam"
 msgstr ""
 
 #: inc/classes/class-message-admin-edit.php:256
 #: inc/classes/class-message-admin-edit.php:268
-#: inc/classes/class-message-admin-moderate.php:78
-#: inc/classes/class-message-admin.php:531
-#: inc/templates/admin-message-moderate.php:33
+#: inc/classes/class-message-admin.php:530
 msgid "Unread"
 msgstr ""
 
@@ -3688,13 +3699,11 @@ msgid "Submission status"
 msgstr ""
 
 #: inc/classes/class-message-admin-edit.php:282
-#: inc/templates/admin-message-moderate.php:15
 msgid "%1$s at %2$s"
 msgstr ""
 
 #: inc/classes/class-message-admin-edit.php:289
-#: inc/classes/class-message-admin.php:605
-#: inc/templates/admin-message-moderate.php:94
+#: inc/classes/class-message-admin.php:604
 msgid "Submitted on"
 msgstr ""
 
@@ -3710,74 +3719,69 @@ msgstr ""
 msgid "Dismiss this notice."
 msgstr ""
 
-#: inc/classes/class-message-admin-moderate.php:32
-#: inc/classes/class-message-admin-moderate.php:200
-msgid "Moderate Submission"
-msgstr ""
-
-#: inc/classes/class-message-admin.php:292
+#: inc/classes/class-message-admin.php:291
 msgid "Fields"
 msgstr ""
 
-#: inc/classes/class-message-admin.php:293
+#: inc/classes/class-message-admin.php:292
 msgid "Number of fields per submission:"
 msgstr ""
 
-#: inc/classes/class-message-admin.php:299
+#: inc/classes/class-message-admin.php:298
 msgid "Pagination"
 msgstr ""
 
-#: inc/classes/class-message-admin.php:300
+#: inc/classes/class-message-admin.php:299
 msgid "Number of items per page:"
 msgstr ""
 
-#: inc/classes/class-message-admin.php:304
+#: inc/classes/class-message-admin.php:303
 msgid "View mode"
 msgstr ""
 
-#: inc/classes/class-message-admin.php:307
+#: inc/classes/class-message-admin.php:306
 msgid "Compact view"
 msgstr ""
 
-#: inc/classes/class-message-admin.php:311
+#: inc/classes/class-message-admin.php:310
 msgid "Extended view"
 msgstr ""
 
-#: inc/classes/class-message-admin.php:373
+#: inc/classes/class-message-admin.php:372
 msgid "submission marked as spam."
 msgid_plural "submissions marked as spam."
 msgstr[0] ""
 msgstr[1] ""
 
-#: inc/classes/class-message-admin.php:394
+#: inc/classes/class-message-admin.php:393
 msgid "submission restored from spam."
 msgid_plural "submissions restored from spam."
 msgstr[0] ""
 msgstr[1] ""
 
-#: inc/classes/class-message-admin.php:400
+#: inc/classes/class-message-admin.php:399
 msgid "submission marked as read."
 msgid_plural "submissions marked as read."
 msgstr[0] ""
 msgstr[1] ""
 
-#: inc/classes/class-message-admin.php:433
+#: inc/classes/class-message-admin.php:432
 msgid "Submission marked as spam"
 msgstr ""
 
-#: inc/classes/class-message-admin.php:434
+#: inc/classes/class-message-admin.php:433
 msgid "Submission moved to the Trash"
 msgstr ""
 
-#: inc/classes/class-message-admin.php:435
+#: inc/classes/class-message-admin.php:434
 msgid "No submissions found"
 msgstr ""
 
-#: inc/classes/class-message-admin.php:436
+#: inc/classes/class-message-admin.php:435
 msgid "No submissions found in Trash"
 msgstr ""
 
-#: inc/classes/class-message-admin.php:524
+#: inc/classes/class-message-admin.php:523
 #: integrations/services/constant-contact/class-integration-constant-contact.php:67
 #: integrations/services/constant-contact/class-integration-constant-contact.php:116
 #: integrations/services/mailerlite/class-integration-mailerlite.php:88
@@ -3793,86 +3797,63 @@ msgstr ""
 msgid "All"
 msgstr ""
 
-#: inc/classes/class-message-admin.php:603
-#: inc/classes/class-message-controller.php:197
+#: inc/classes/class-message-admin.php:602
+#: inc/classes/class-message-controller.php:195
 #: inc/templates/admin-message-edit.php:13
 #: inc/templates/admin-message-edit.php:15
 msgid "Submission"
 msgstr ""
 
-#: inc/classes/class-message-admin.php:604
-#: inc/templates/admin-message-moderate.php:90
+#: inc/classes/class-message-admin.php:603
 msgid "Submitted to"
 msgstr ""
 
-#: inc/classes/class-message-admin.php:691
+#: inc/classes/class-message-admin.php:690
 msgid "View Referral"
 msgstr ""
 
-#: inc/classes/class-message-admin.php:963
+#: inc/classes/class-message-admin.php:962
 msgid "Empty Spam"
 msgstr ""
 
-#: inc/classes/class-message-admin.php:980
+#: inc/classes/class-message-admin.php:979
 msgid "Mark as unread"
 msgstr ""
 
-#: inc/classes/class-message-admin.php:981
+#: inc/classes/class-message-admin.php:980
 msgid "Mark as read"
 msgstr ""
 
-#: inc/classes/class-message-admin.php:982
+#: inc/classes/class-message-admin.php:981
 msgid "Mark as spam"
 msgstr ""
 
-#: inc/classes/class-message-admin.php:983
+#: inc/classes/class-message-admin.php:982
 msgid "Not spam"
 msgstr ""
 
-#: inc/classes/class-message-admin.php:986
+#: inc/classes/class-message-admin.php:985
 msgid "Delete permanently"
 msgstr ""
 
-#: inc/classes/class-message-admin.php:1136
+#: inc/classes/class-message-admin.php:1135
 msgid "View"
 msgstr ""
 
-#: inc/classes/class-message-admin.php:1160
+#: inc/classes/class-message-admin.php:1159
 msgid "Not Spam"
 msgstr ""
 
-#: inc/classes/class-message-admin.php:1172
+#: inc/classes/class-message-admin.php:1171
 msgid "Mark as Read"
 msgstr ""
 
-#: inc/classes/class-message-admin.php:1183
+#: inc/classes/class-message-admin.php:1182
 msgid "Mark as Unread"
 msgstr ""
 
-#: inc/classes/class-message-admin.php:1323
+#: inc/classes/class-message-admin.php:1322
 msgid "Submissions to"
-msgstr ""
-
-#: inc/classes/class-message-admin.php:1356
-msgid "1 submission marked as read."
-msgstr ""
-
-#: inc/classes/class-message-admin.php:1360
-msgid "1 submission moved to Trash."
-msgstr ""
-
-#: inc/classes/class-message-admin.php:1369
-msgid "1 submission marked as spam."
-msgstr ""
-
-#: inc/classes/class-message-admin.php:1377
-msgid "This submission is already marked as"
-msgstr ""
-
-#: inc/classes/class-message-admin.php:1382
-#: inc/classes/class-message-controller.php:198
-#: inc/classes/class-message-controller.php:1081
-msgid "Edit Submission"
 msgstr ""
 
 #: inc/classes/class-message-blocklist.php:88
@@ -3915,41 +3896,46 @@ msgstr ""
 msgid "One per line. Not case sensitive. Punctuation, numbers and alt characters disallowed."
 msgstr ""
 
-#: inc/classes/class-message-controller.php:199
+#: inc/classes/class-message-controller.php:196
+#: inc/classes/class-message-controller.php:1079
+msgid "Edit Submission"
+msgstr ""
+
+#: inc/classes/class-message-controller.php:197
 msgid "View Submission"
 msgstr ""
 
-#: inc/classes/class-message-controller.php:200
+#: inc/classes/class-message-controller.php:198
 msgid "View Submissions"
 msgstr ""
 
-#: inc/classes/class-message-controller.php:201
+#: inc/classes/class-message-controller.php:199
 msgid "Search Submissions"
 msgstr ""
 
-#: inc/classes/class-message-controller.php:202
+#: inc/classes/class-message-controller.php:200
 msgid "No submissions found."
 msgstr ""
 
-#: inc/classes/class-message-controller.php:203
+#: inc/classes/class-message-controller.php:201
 msgid "No submissions found in Trash."
 msgstr ""
 
-#: inc/classes/class-message-controller.php:204
-#: inc/classes/class-message-controller.php:205
+#: inc/classes/class-message-controller.php:202
+#: inc/classes/class-message-controller.php:203
 msgid "All Submissions"
 msgstr ""
 
-#: inc/classes/class-message-controller.php:741
+#: inc/classes/class-message-controller.php:739
 #: inc/templates/admin-message-edit.php:33
 msgid "Tracking number"
 msgstr ""
 
-#: inc/classes/class-message-controller.php:1024
+#: inc/classes/class-message-controller.php:1022
 msgid "Invalid email."
 msgstr ""
 
-#: inc/classes/class-message-controller.php:1025
+#: inc/classes/class-message-controller.php:1023
 msgid "Email sent."
 msgstr ""
 
@@ -4060,8 +4046,8 @@ msgid "Erase submitter's personal data after set number of days"
 msgstr ""
 
 #: inc/classes/class-role-permissions.php:143
-#: integrations/classes/class-integrations.php:255
-#: integrations/classes/class-integrations.php:345
+#: integrations/classes/class-integrations.php:259
+#: integrations/classes/class-integrations.php:349
 msgid "Changes saved."
 msgstr ""
 
@@ -4431,76 +4417,52 @@ msgstr ""
 msgid "For collecting formatted site or page addresses (URL)."
 msgstr ""
 
-#: inc/helpers/helper-form-templates.php:125
+#: inc/helpers/helper-form-templates.php:109
 msgid "votes"
 msgstr ""
 
-#: inc/helpers/helper-form-templates.php:128
+#: inc/helpers/helper-form-templates.php:112
 msgid "vote"
 msgstr ""
 
-#: inc/helpers/helper-form-templates.php:141
+#: inc/helpers/helper-form-templates.php:125
 msgid "Get location"
 msgstr ""
 
-#: inc/helpers/helper-form-templates.php:180
+#: inc/helpers/helper-form-templates.php:164
 msgid "Year"
 msgstr ""
 
-#: inc/helpers/helper-form-templates.php:181
+#: inc/helpers/helper-form-templates.php:165
 msgid "Month"
 msgstr ""
 
-#: inc/helpers/helper-form-templates.php:182
+#: inc/helpers/helper-form-templates.php:166
 msgid "Day"
 msgstr ""
 
-#: inc/helpers/helper-misc.php:201
+#: inc/helpers/helper-misc.php:153
 msgid "read submissions"
 msgstr ""
 
-#: inc/helpers/helper-misc.php:224
+#: inc/helpers/helper-misc.php:176
 msgid "unread submissions"
 msgstr ""
 
-#: inc/helpers/helper-misc.php:268
+#: inc/helpers/helper-misc.php:220
 #: integrations/services/google-analytics/partial-widget.php:18
 #: inc/assets/jsx/build/admin/dashboard-modals.js:332
 #: inc/assets/jsx/src/admin/dashboard-modals.js:153
 msgid "Show credentials"
 msgstr ""
 
-#: inc/helpers/helper-misc.php:268
+#: inc/helpers/helper-misc.php:220
 #: integrations/services/google-analytics/partial-widget.php:18
 msgid "Hide credentials"
 msgstr ""
 
-#: inc/helpers/helper-misc.php:299
+#: inc/helpers/helper-misc.php:251
 msgid "Comment by %s marked as spam."
-msgstr ""
-
-#: inc/templates/admin-message-moderate.php:51
-msgid "You are about to move the following submission to the Trash:"
-msgstr ""
-
-#: inc/templates/admin-message-moderate.php:57
-msgid "You are about to mark the following submission as spam:"
-msgstr ""
-
-#: inc/templates/admin-message-moderate.php:64
-msgid "You are about to mark the following submission as read:"
-msgstr ""
-
-#: inc/templates/admin-message-moderate.php:74
-msgid "This submission is currently marked as spam."
-msgstr ""
-
-#: inc/templates/admin-message-moderate.php:76
-msgid "Caution:"
-msgstr ""
-
-#: inc/templates/admin-message-moderate.php:80
-msgid "Status"
 msgstr ""
 
 #: inc/templates/admin-settings-export.php:18
@@ -4513,6 +4475,7 @@ msgstr ""
 
 #: inc/templates/admin-settings-export.php:26
 #: integrations/services/convertkit/class-integration-convertkit.php:188
+#: integrations/services/emailoctopus/class-integration-emailoctopus.php:208
 #: integrations/services/mailerlite/class-integration-mailerlite.php:182
 #: integrations/services/mailpoet/class-integration-mailpoet.php:191
 #: integrations/services/sendfox/class-integration-sendfox.php:166
@@ -4550,6 +4513,8 @@ msgstr ""
 #: integrations/services/constant-contact/class-integration-constant-contact.php:98
 #: integrations/services/constant-contact/templates/partial-part-controls.php:5
 #: integrations/services/convertkit/class-integration-convertkit.php:117
+#: integrations/services/emailoctopus/class-integration-emailoctopus.php:120
+#: integrations/services/emailoctopus/class-integration-emailoctopus.php:128
 #: integrations/services/mailchimp/class-integration-mailchimp.php:279
 #: integrations/services/mailchimp/class-integration-mailchimp.php:286
 #: integrations/services/mailchimp/templates/partial-part-controls.php:5
@@ -4647,8 +4612,9 @@ msgstr ""
 #: inc/templates/admin-settings-validation-messages.php:31
 #: integrations/services/active-campaign/partial-widget.php:36
 #: integrations/services/aweber/partial-widget.php:37
-#: integrations/services/constant-contact/partial-widget.php:39
+#: integrations/services/constant-contact/partial-widget.php:49
 #: integrations/services/convertkit/partial-widget.php:36
+#: integrations/services/emailoctopus/partial-widget.php:28
 #: integrations/services/google-analytics/partial-widget.php:26
 #: integrations/services/google-geocoding/partial-widget.php:28
 #: integrations/services/google-places/partial-widget.php:28
@@ -4746,24 +4712,19 @@ msgstr ""
 msgid "Add a Radio, Checkbox or Dropdown field to get started."
 msgstr ""
 
-#: inc/templates/email-owner.php:55
-msgid "You can see all submissions to this form here:"
-msgstr ""
-
-#: inc/templates/email-owner.php:58
-msgid "Referral:"
-msgstr ""
-
-#: inc/templates/email-owner.php:59
-msgid "Read it:"
+#: inc/templates/email-owner.php:52
+#: inc/templates/email-user.php:62
+msgid "Referral"
 msgstr ""
 
 #: inc/templates/email-owner.php:60
-msgid "Trash it:"
+#: inc/templates/email-user.php:70
+msgid "%1$s UTC%2$s"
 msgstr ""
 
-#: inc/templates/email-owner.php:61
-msgid "Spam it:"
+#: inc/templates/email-owner.php:66
+#: inc/templates/email-user.php:76
+msgid "Date and time"
 msgstr ""
 
 #: inc/templates/partials/admin-stats-wrapper.php:8
@@ -5094,6 +5055,7 @@ msgstr ""
 #: integrations/services/aweber/class-integration-aweber.php:85
 #: integrations/services/constant-contact/class-integration-constant-contact.php:82
 #: integrations/services/convertkit/class-integration-convertkit.php:108
+#: integrations/services/emailoctopus/class-integration-emailoctopus.php:111
 #: integrations/services/mailchimp/class-integration-mailchimp.php:270
 #: integrations/services/mailerlite/class-integration-mailerlite.php:103
 #: integrations/services/mailpoet/class-integration-mailpoet.php:109
@@ -5106,6 +5068,7 @@ msgstr ""
 #: integrations/services/active-campaign/class-integration-active-campaign.php:95
 #: integrations/services/aweber/class-integration-aweber.php:95
 #: integrations/services/constant-contact/class-integration-constant-contact.php:92
+#: integrations/services/emailoctopus/class-integration-emailoctopus.php:121
 #: integrations/services/mailchimp/class-integration-mailchimp.php:280
 #: integrations/services/sendfox/class-integration-sendfox.php:99
 #: integrations/services/sendgrid/class-integration-sendgrid.php:114
@@ -5116,6 +5079,7 @@ msgstr ""
 #: integrations/services/active-campaign/class-integration-active-campaign.php:102
 #: integrations/services/aweber/class-integration-aweber.php:102
 #: integrations/services/constant-contact/class-integration-constant-contact.php:99
+#: integrations/services/emailoctopus/class-integration-emailoctopus.php:129
 #: integrations/services/mailchimp/class-integration-mailchimp.php:287
 #: integrations/services/sendfox/class-integration-sendfox.php:107
 #: integrations/services/sendgrid/class-integration-sendgrid.php:122
@@ -5126,6 +5090,7 @@ msgstr ""
 #: integrations/services/active-campaign/class-integration-active-campaign.php:108
 #: integrations/services/aweber/class-integration-aweber.php:108
 #: integrations/services/convertkit/class-integration-convertkit.php:124
+#: integrations/services/emailoctopus/class-integration-emailoctopus.php:136
 #: integrations/services/mailchimp/class-integration-mailchimp.php:307
 msgid "Add these tags to submitter"
 msgstr ""
@@ -5136,6 +5101,8 @@ msgstr ""
 #: integrations/services/aweber/class-integration-aweber.php:115
 #: integrations/services/convertkit/class-integration-convertkit.php:125
 #: integrations/services/convertkit/class-integration-convertkit.php:131
+#: integrations/services/emailoctopus/class-integration-emailoctopus.php:137
+#: integrations/services/emailoctopus/class-integration-emailoctopus.php:143
 #: integrations/services/mailchimp/class-integration-mailchimp.php:308
 #: integrations/services/mailchimp/class-integration-mailchimp.php:314
 msgid "e.g. Influencer, Prospect, Uses coupons"
@@ -5144,6 +5111,7 @@ msgstr ""
 #: integrations/services/active-campaign/class-integration-active-campaign.php:114
 #: integrations/services/aweber/class-integration-aweber.php:114
 #: integrations/services/convertkit/class-integration-convertkit.php:130
+#: integrations/services/emailoctopus/class-integration-emailoctopus.php:142
 #: integrations/services/mailchimp/class-integration-mailchimp.php:313
 msgid "Remove these tags from submitter"
 msgstr ""
@@ -5152,6 +5120,7 @@ msgstr ""
 #: integrations/services/aweber/class-integration-aweber.php:134
 #: integrations/services/constant-contact/class-integration-constant-contact.php:126
 #: integrations/services/convertkit/class-integration-convertkit.php:157
+#: integrations/services/emailoctopus/class-integration-emailoctopus.php:171
 #: integrations/services/mailchimp/class-integration-mailchimp.php:343
 #: integrations/services/mailerlite/class-integration-mailerlite.php:155
 #: integrations/services/mailpoet/class-integration-mailpoet.php:164
@@ -5164,6 +5133,7 @@ msgstr ""
 #: integrations/services/active-campaign/class-integration-active-campaign.php:140
 #: integrations/services/aweber/class-integration-aweber.php:140
 #: integrations/services/constant-contact/class-integration-constant-contact.php:132
+#: integrations/services/emailoctopus/class-integration-emailoctopus.php:177
 #: integrations/services/mailchimp/class-integration-mailchimp.php:349
 #: integrations/services/mailerlite/class-integration-mailerlite.php:161
 #: integrations/services/mailpoet/class-integration-mailpoet.php:170
@@ -5176,6 +5146,7 @@ msgstr ""
 #: integrations/services/active-campaign/class-integration-active-campaign.php:145
 #: integrations/services/aweber/class-integration-aweber.php:145
 #: integrations/services/convertkit/class-integration-convertkit.php:162
+#: integrations/services/emailoctopus/class-integration-emailoctopus.php:182
 #: integrations/services/mailchimp/class-integration-mailchimp.php:364
 msgid "Then add tags…"
 msgstr ""
@@ -5183,6 +5154,7 @@ msgstr ""
 #: integrations/services/active-campaign/class-integration-active-campaign.php:150
 #: integrations/services/aweber/class-integration-aweber.php:150
 #: integrations/services/convertkit/class-integration-convertkit.php:167
+#: integrations/services/emailoctopus/class-integration-emailoctopus.php:187
 #: integrations/services/mailchimp/class-integration-mailchimp.php:369
 msgid "Then remove tags…"
 msgstr ""
@@ -5205,8 +5177,9 @@ msgid "API URL"
 msgstr ""
 
 #: integrations/services/active-campaign/partial-widget.php:27
-#: integrations/services/constant-contact/partial-widget.php:19
+#: integrations/services/constant-contact/partial-widget.php:29
 #: integrations/services/convertkit/partial-widget.php:19
+#: integrations/services/emailoctopus/partial-widget.php:19
 #: integrations/services/google-geocoding/partial-widget.php:19
 #: integrations/services/google-places/partial-widget.php:19
 #: integrations/services/integrately/partial-widget.php:14
@@ -5287,7 +5260,11 @@ msgstr ""
 msgid "Postal code"
 msgstr ""
 
-#: integrations/services/constant-contact/partial-widget.php:27
+#: integrations/services/constant-contact/partial-widget.php:16
+msgid "Redirect URI"
+msgstr ""
+
+#: integrations/services/constant-contact/partial-widget.php:37
 #: integrations/services/convertkit/partial-widget.php:27
 msgid "API secret"
 msgstr ""
@@ -5329,6 +5306,14 @@ msgstr ""
 
 #: integrations/services/email/class-part-email-integration.php:30
 msgid "I agree to receive marketing emails"
+msgstr ""
+
+#: integrations/services/emailoctopus/class-integration-emailoctopus.php:206
+msgid "Map field to EmailOctopus field"
+msgstr ""
+
+#: integrations/services/emailoctopus/class-service-emailoctopus.php:18
+msgid "EmailOctopus"
 msgstr ""
 
 #: integrations/services/google-analytics/class-integration-google-analytics.php:63
@@ -6042,42 +6027,39 @@ msgid "Credit card"
 msgstr ""
 
 #: integrations/services/stripe/class-integration-stripe.php:346
-#: integrations/services/stripe/class-integration-stripe.php:384
-msgid "Card number"
-msgstr ""
-
-#: integrations/services/stripe/class-integration-stripe.php:350
-#: integrations/services/stripe/class-integration-stripe.php:389
-msgid "Card expiration"
+msgid "Card"
 msgstr ""
 
 #: integrations/services/stripe/class-integration-stripe.php:354
-#: integrations/services/stripe/class-integration-stripe.php:399
-msgid "Card security code"
+msgid "Expiry"
 msgstr ""
 
 #: integrations/services/stripe/class-integration-stripe.php:358
-msgid "The three-digit code on the back of the card, to the right of the signature. For American Express this is the four-digit code on the front of the card, above the card number."
+msgid "CVV/CVC"
 msgstr ""
 
-#: integrations/services/stripe/class-integration-stripe.php:362
-msgid "The month and year as shown on the front of the card, below the card number."
-msgstr ""
-
-#: integrations/services/stripe/class-integration-stripe.php:374
+#: integrations/services/stripe/class-integration-stripe.php:370
 msgid "Stripe is processing payment"
 msgstr ""
 
-#: integrations/services/stripe/class-integration-stripe.php:379
+#: integrations/services/stripe/class-integration-stripe.php:375
 msgid "Stripe payment"
 msgstr ""
 
-#: integrations/services/stripe/class-integration-stripe.php:394
-msgid "Card expiration hint"
+#: integrations/services/stripe/class-integration-stripe.php:380
+msgid "Stripe card field"
 msgstr ""
 
-#: integrations/services/stripe/class-integration-stripe.php:404
-msgid "Card security code hint"
+#: integrations/services/stripe/class-integration-stripe.php:385
+msgid "Card number"
+msgstr ""
+
+#: integrations/services/stripe/class-integration-stripe.php:390
+msgid "Card expiration"
+msgstr ""
+
+#: integrations/services/stripe/class-integration-stripe.php:395
+msgid "Card security code"
 msgstr ""
 
 #: integrations/services/stripe/class-service-stripe.php:11

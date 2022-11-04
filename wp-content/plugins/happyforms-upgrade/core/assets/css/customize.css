@@ -584,7 +584,8 @@ a.happyforms-form-part-remove:hover {
 }
 
 .happyforms-setup-view .customize-control .customize-inside-control-row,
-.happyforms-email-view .customize-control .customize-inside-control-row {
+.happyforms-email-view .customize-control .customize-inside-control-row,
+.happyforms-messages-view .customize-control .customize-inside-control-row {
   margin-left: 0;
   padding: 0;
 }
@@ -622,44 +623,12 @@ a.happyforms-form-part-remove:hover {
  * Form message
  *
  */
-.happyforms-messages-view .customize-control,
-.happyforms-messages-view #messages-view-errors,
-.happyforms-messages-view #messages-view-hints {
-  display: none;
-}
-
-#customize-control-error_message,
-.has-required-selection-fields #messages-view-errors,
-.has-min-limit-choices #messages-view-errors,
-.has-field #messages-view-errors,
-.has-optional-field #messages-view-hints,
-.has-required-field #messages-view-hints,
-.has-select #messages-view-hints,
-.has-min-chars-label #messages-view-hints,
-.has-max-chars-label #messages-view-hints,
-.has-min-words-label #messages-view-hints,
-.has-max-words-label #messages-view-hints {
-  display: block;
-}
 
 #customize-control-submit_button_label,
 .has-field #customize-control-field_invalid,
 .has-required-text-fields #customize-control-field_empty,
 .has-required-selection-fields #customize-control-no_selection,
-.has-optional-field #customize-control-optional_part_label,
-.has-required-field #customize-control-required_field_label,
-.has-min-limit-choices #customize-control-select_more_choices,
-.has-max-limit-choices #customize-control-select_less_choices,
 #customize-control-confirmation_message,
-.has-min-words-label #customize-control-words_label_min,
-.has-max-words-label #customize-control-words_label_max,
-.has-min-chars-label #customize-control-characters_label_min,
-.has-max-chars-label #customize-control-characters_label_max,
-.show-msg-short-label #customize-control-message_too_short,
-.has-max-chars-label #customize-control-message_too_long,
-.has-max-words-label #customize-control-message_too_long,
-.has-number #customize-control-number_min_invalid,
-.has-number #customize-control-number_max_invalid,
 .has-show-submissions-left #customize-control-submissions_left_label {
   display: block;
 }
@@ -1899,4 +1868,9 @@ ul.happyforms-parts-list li[data-part-type="poll"] {
 .customize-control-panel_dummy .accordion-section-title-dummy {
   margin: 0;
   padding: 10px 10px 11px 14px;
+}
+
+/* deprecated message fields */
+#customize-control-no_results_label {
+  display: none;
 }

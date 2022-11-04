@@ -70,6 +70,23 @@
   border-style: solid;
   border-color: #000;
 }
+
+.happyforms-part--payments .happyforms-payments__stripe-el .happyforms-part__el {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.happyforms-part--payments .happyforms-payments__stripe-el label.happyforms-stripe-card-label {
+  width: 100%;
+}
+
+@media only screen and (max-width: 400px) {
+  .happyforms-part--payments .happyforms-payments__stripe-el .happyforms-part__el > div {
+    width: 100%;
+  }
+}
+
 .happyforms-styles .happyforms-part--payments .stripe-element {
   padding: 13px 10px;
   border-radius: 6px !important;

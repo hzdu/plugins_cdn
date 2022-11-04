@@ -1674,14 +1674,6 @@
 
 			self.$el.addClass( 'has-' + happyForms.form.get( 'parts' ).length + '-parts' );
 
-			var requiredPart = happyForms.form.get( 'parts' ).findWhere( {
-				required: 1
-			} );
-
-			if ( requiredPart ) {
-				self.$el.addClass( 'has-required-field' );
-			}
-
 			var partsWithLimitedOptions = happyForms.form.get( 'parts' ).filter( function( part ) {
 				var hasOptions = [ 'radio', 'checkbox', 'select' ].includes( part.get( 'type' ) );
 
@@ -1709,14 +1701,6 @@
 
 			if ( handDrawnSignature ) {
 				self.$el.addClass( 'has-drawn-signature' );
-			}
-
-			var pageBreakPart = this.model.get( 'parts' ).findWhere( {
-				type: 'page_break',
-			} );
-
-			if ( pageBreakPart ) {
-				self.$el.addClass( 'has-page-break' );
 			}
 		},
 
@@ -2202,25 +2186,6 @@
 				self.$el.addClass( 'has-required-selection-fields' );
 			}
 
-			var hasRequiredFileUpload = this.model.get( 'parts' ).findWhere( {
-				type: 'attachment',
-				required: 1
-			} );
-
-			if ( hasRequiredFileUpload ) {
-				self.$el.addClass( 'has-required-file-upload' );
-			}
-
-			var optionalPart = this.model.get( 'parts' ).find( function( part ) {
-				var part_required = part.get( 'required' );
-
-				return ( part_required == 0 || part_required == '' );
-			} );
-
-			if ( optionalPart ) {
-				self.$el.addClass( 'has-optional-field' );
-			}
-
 			var hasLimitChoice = happyForms.form.get( 'parts' ).findWhere( {
 				limit_choices: 1
 			} );
@@ -2255,77 +2220,6 @@
 				self.$el.addClass( 'is-show-success-msg' );
 			}
 
-			var hasLimitedMinChoices = happyForms.form.get( 'parts' ).find( function( part ) {
-				if ( part.get( 'limit_choices' ) == 1 && part.get( 'limit_choices_min' ) > 1 ) {
-					return true;
-				}
-			} );
-
-			if ( hasLimitedMinChoices ) {
-				self.$el.addClass( 'has-min-limit-choices' );
-			}
-
-			var hasLimitedMaxChoices = happyForms.form.get( 'parts' ).find( function( part ) {
-				if ( part.get( 'limit_choices' ) == 1 && part.get( 'limit_choices_max' ) > 0 ) {
-					return true;
-				}
-			} );
-
-			if ( hasLimitedMaxChoices ) {
-				self.$el.addClass( 'has-max-limit-choices' );
-			}
-
-			var hasMinWords = happyForms.form.get( 'parts' ).findWhere( {
-				limit_input: 1,
-				character_limit_mode: 'word_min'
-			} );
-
-			if ( hasMinWords ) {
-				self.$el.addClass( 'has-min-words-label' );
-			}
-
-			var hasMaxWords = happyForms.form.get( 'parts' ).findWhere( {
-				limit_input: 1,
-				character_limit_mode: 'word_max'
-			} );
-
-			if ( hasMaxWords ) {
-				self.$el.addClass( 'has-max-words-label' );
-			}
-
-			var hasMinChars = happyForms.form.get( 'parts' ).findWhere( {
-				limit_input: 1,
-				character_limit_mode: 'character_min'
-			} );
-
-			if ( hasMinChars ) {
-				self.$el.addClass( 'has-min-chars-label' );
-			}
-
-			var hasMaxChars = happyForms.form.get( 'parts' ).findWhere( {
-				limit_input: 1,
-				character_limit_mode: 'character_max'
-			} );
-
-			if ( hasMaxChars ) {
-				self.$el.addClass( 'has-max-chars-label' );
-			}
-
-			var showMsgShortLabel = happyForms.form.get( 'parts' ).find( function( part ) {
-				var limit_mode = part.get( 'character_limit_mode' );
-
-				if ( limit_mode ) {
-					if ( part.get( 'limit_input' ) == 1 && ( limit_mode == 'character_min' || limit_mode == 'word_min' ) &&
-						part.get( 'character_limit' ) > 1 ) {
-						return true;
-					}
-				}
-			} );
-
-			if ( showMsgShortLabel ) {
-				self.$el.addClass( 'show-msg-short-label' );
-			}
-
 			var hasShowResultVoting = happyForms.form.get( 'parts' ).findWhere( {
 				show_results_before_voting: 1
 			} );
@@ -2334,52 +2228,12 @@
 				self.$el.addClass( 'has-show-voting' );
 			}
 
-			var fileUploadWithMinCount = happyForms.form.get( 'parts' ).find( function( part ) {
- 				return part.get( 'min_file_count' ) > 0;
- 			} );
-
- 			if ( fileUploadWithMinCount ) {
- 				self.$el.addClass( 'has-file-upload-min-limit' );
- 			}
-
-			var fileUploadWithCount = happyForms.form.get( 'parts' ).find( function( part ) {
-				return part.get( 'max_file_count' ) > 0;
-			} );
-
-			if ( fileUploadWithCount ) {
-				self.$el.addClass( 'has-file-upload-limit' );
-			}
-
-			var handDrawnSignature = this.model.get( 'parts' ).findWhere( {
-				type: 'signature',
-				signature_type: 'draw',
-			} );
-
-			if ( handDrawnSignature ) {
-				self.$el.addClass( 'has-drawn-signature' );
-			}
-
-			if ( 1 == this.model.get( 'validate_with_disallowed_keys' ) ||
-				 1 == this.model.get( 'block_emails' ) ||
-				 1 == this.model.get( 'block_language' ) ) {
-				self.$el.addClass( 'has-disallowed-validation' );
-			}
-
 			var limitedAnswerField = happyForms.form.get( 'parts' ).find( function( part ) {
 				return part.get( 'max_limit_answer' ) >= 0;
 			} );
 
 			if ( limitedAnswerField ) {
 				self.$el.addClass( 'has-limit-answer' );
-			}
-
-			var hasPhoneInternational = this.model.get( 'parts' ).findWhere( {
-				type: 'phone',
-				masked: 1,
-			} );
-
-			if ( hasPhoneInternational ) {
-				self.$el.addClass( 'has-phone-international' );
 			}
 
 			var rankOrder = this.model.get( 'parts' ).findWhere( {
