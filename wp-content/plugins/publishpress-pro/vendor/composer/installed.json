@@ -376,17 +376,17 @@
         },
         {
             "name": "publishpress/publishpress",
-            "version": "v3.8.4",
-            "version_normalized": "3.8.4.0",
+            "version": "v3.9.0",
+            "version_normalized": "3.9.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/publishpress/PublishPress.git",
-                "reference": "2f7309f96b4ba39ead5f73e98983a9a26e91d504"
+                "reference": "c1729176bdfe3e1dc230f2a055e8b80434064c04"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/publishpress/PublishPress/zipball/2f7309f96b4ba39ead5f73e98983a9a26e91d504",
-                "reference": "2f7309f96b4ba39ead5f73e98983a9a26e91d504",
+                "url": "https://api.github.com/repos/publishpress/PublishPress/zipball/c1729176bdfe3e1dc230f2a055e8b80434064c04",
+                "reference": "c1729176bdfe3e1dc230f2a055e8b80434064c04",
                 "shasum": ""
             },
             "require": {
@@ -414,15 +414,19 @@
                 "overtrue/phplint": "^2.1",
                 "phpcompatibility/php-compatibility": "*",
                 "publishpress/publishpress-phpcs-standards": "dev-main",
-                "publishpress/publishpress-plugin-builder": "^1.2",
                 "publishpress/wp-browser": "2.6.5.2",
                 "spatie/ray": "*",
                 "spatie/wordpress-ray": "dev-patch-1",
                 "squizlabs/php_codesniffer": "3.*"
             },
-            "time": "2022-10-04T19:18:04+00:00",
+            "time": "2022-11-03T13:11:29+00:00",
             "type": "library",
-            "installation-source": "source",
+            "extra": {
+                "plugin-name": "publishpress",
+                "plugin-slug": "publishpress",
+                "plugin-folder": "publishpress"
+            },
+            "installation-source": "dist",
             "autoload": {
                 "files": [
                     "defines-free-plugin-path.php"
@@ -430,10 +434,10 @@
             },
             "scripts": {
                 "build": [
-                    "vendor/bin/robo build --ansi"
+                    "builder/docker/scripts/build build"
                 ],
                 "build-unpacked": [
-                    "vendor/bin/robo build:unpacked --ansi"
+                    "builder/docker/scripts/build build-dir"
                 ],
                 "post-install-cmd": [
                     "[ $COMPOSER_DEV_MODE -eq 0 ] || vendor/bin/phpcs --config-set installed_paths \"../../automattic/vipwpcs,../../phpcompatibility/php-compatibility,../../sirbrillig/phpcs-variable-analysis,../../wp-coding-standards/wpcs,../../publishpress/publishpress-phpcs-standards/standards/PublishPressStandards\""
@@ -454,24 +458,24 @@
             "description": "WordPress plugin to accelerate your publishing workflow.",
             "homepage": "http://publishpress.com/",
             "support": {
-                "source": "https://github.com/publishpress/PublishPress/tree/v3.8.4",
+                "source": "https://github.com/publishpress/PublishPress/tree/v3.9.0",
                 "issues": "https://github.com/publishpress/PublishPress/issues"
             },
             "install-path": "../publishpress/publishpress"
         },
         {
             "name": "publishpress/publishpress-instance-protection",
-            "version": "v1.0.2",
-            "version_normalized": "1.0.2.0",
+            "version": "v1.0.3",
+            "version_normalized": "1.0.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/publishpress/publishpress-instance-protection",
-                "reference": "ef1a631a41b723ce2e856f534ff4befbe914e964"
+                "reference": "6a4e7038c95fac43264b1d61a5cdae2b1e3cc4ee"
             },
             "require": {
                 "php": ">=5.6.20"
             },
-            "time": "2022-06-03T17:41:36+00:00",
+            "time": "2022-10-28T16:14:03+00:00",
             "type": "library",
             "installation-source": "source",
             "license": [
@@ -729,12 +733,12 @@
             },
             "installation-source": "dist",
             "autoload": {
-                "psr-4": {
-                    "Symfony\\Polyfill\\Ctype\\": ""
-                },
                 "files": [
                     "bootstrap.php"
-                ]
+                ],
+                "psr-4": {
+                    "Symfony\\Polyfill\\Ctype\\": ""
+                }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [

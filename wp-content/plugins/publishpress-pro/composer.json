@@ -50,13 +50,12 @@
     "pimple/pimple": "3.2.3.*",
     "symfony/polyfill-ctype": "1.19.*",
     "alledia/wordpress-edd-license-integration": "^2.3",
-    "publishpress/publishpress": "3.8.4",
+    "publishpress/publishpress": "3.9.0",
     "composer/installers": "~1.0",
     "psr/container": "1.0.0",
     "publishpress/publishpress-instance-protection": "^1.0"
   },
   "require-dev": {
-    "publishpress/publishpress-plugin-builder": "^1.2",
     "bartlett/php-compatinfo": "^5.2",
     "overtrue/phplint": "^2.1",
     "lucatume/wp-browser": "^3",
@@ -78,7 +77,12 @@
     }
   },
   "scripts": {
-    "build": "vendor/bin/robo build --ansi",
-    "build-unpacked": "vendor/bin/robo build:unpacked --ansi"
+    "build": "builder/docker/scripts/build build",
+    "build-unpacked": "builder/docker/scripts/build build-dir"
+  },
+  "extra": {
+    "plugin-name": "publishpress-pro",
+    "plugin-slug": "publishpress-pro",
+    "plugin-folder": "publishpress-pro"
   }
 }
