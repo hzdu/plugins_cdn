@@ -360,6 +360,72 @@
 								}
 							},
 						} );
+					} else if (
+						'woocommerce_payments' ===
+						cartflows_offer.payment_method
+					) {
+						ajax_data.action = 'wcf_woop_create_payment_intent';
+						ajax_data.wcf_wc_payment_nonce =
+							cartflows_offer.wcf_woop_create_payment_intent_nonce;
+						$.ajax( {
+							url: cartflows.ajax_url,
+							data: ajax_data,
+							dataType: 'json',
+							type: 'POST',
+							success( response ) {
+								if (
+									response.hasOwnProperty(
+										'client_secret'
+									) &&
+									'' !== response.client_secret &&
+									'succeeded' !== response.status
+								) {
+									const stripe = Stripe(
+										response.client_public
+									);
+
+									stripe
+										.confirmCardPayment(
+											response.client_secret
+										)
+										.then( function ( resp ) {
+											console.log( resp );
+											if ( resp.error ) {
+												throw resp.error;
+											}
+
+											if (
+												'requires_capture' !==
+													resp.paymentIntent.status &&
+												'succeeded' !==
+													resp.paymentIntent.status
+											) {
+												console.log(
+													'Order not complete. Received status: ' +
+														resp.paymentIntent
+															.status
+												);
+												return;
+											}
+
+											ajax_data.action = action;
+											ajax_data.woop_intent_id =
+												resp.paymentIntent.id;
+											ajax_data.woop_payment_method =
+												resp.paymentIntent.payment_method;
+											wcf_process_offer( ajax_data );
+										} )
+										.catch( function () {
+											window.location.reload();
+										} );
+								} else {
+									ajax_data.action = action;
+									ajax_data.woop_intent_id =
+										response.client_intend;
+									wcf_process_offer( ajax_data );
+								}
+							},
+						} );
 					} else {
 						ajax_data.action = action;
 						wcf_process_offer( ajax_data );

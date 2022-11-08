@@ -2,14 +2,14 @@
 # This file is distributed under the same license as the CartFlows Pro plugin.
 msgid ""
 msgstr ""
-"Project-Id-Version: CartFlows Pro 1.11.2\n"
+"Project-Id-Version: CartFlows Pro 1.11.3\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/cartflows-pro\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2022-10-12T09:12:54+00:00\n"
+"POT-Creation-Date: 2022-11-04T12:29:21+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.5.0\n"
 "X-Domain: cartflows-pro\n"
@@ -36,6 +36,7 @@ msgid "Sorry, you are not allowed to do this operation."
 msgstr ""
 
 #: admin-core/ajax/ajax-errors.php:59
+#: modules/gateways/class-cartflows-pro-gateway-woocommerce-payments.php:121
 msgid "Nonce validation failed"
 msgstr ""
 
@@ -305,48 +306,48 @@ msgstr ""
 msgid "License API Response:"
 msgstr ""
 
-#: admin/views/html-refund-offer.php:80
+#: admin/views/html-refund-offer.php:85
 msgid "Product Name"
 msgstr ""
 
-#: admin/views/html-refund-offer.php:81
+#: admin/views/html-refund-offer.php:86
 msgid "Offer Type"
 msgstr ""
 
-#: admin/views/html-refund-offer.php:82
+#: admin/views/html-refund-offer.php:87
 #: modules/checkout/templates/your-product/product-table-titles.php:23
 msgid "Quantity"
 msgstr ""
 
-#: admin/views/html-refund-offer.php:83
+#: admin/views/html-refund-offer.php:88
 #: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:173
 #: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:387
 #: modules/thankyou/template/child-order-details.php:59
 msgid "Total"
 msgstr ""
 
-#: admin/views/html-refund-offer.php:84
+#: admin/views/html-refund-offer.php:89
 msgid "Action"
 msgstr ""
 
 #. translators: %1$s: item total, %2$s: tax, %3$s: product total
-#: admin/views/html-refund-offer.php:129
+#: admin/views/html-refund-offer.php:134
 msgid "<div class=\"amount_distribution\"><span class=\"\">Item Prices: %1$s</span><br/><span class=\"\">Tax & Other: %2$s</span><br><span class=\"\">Total: %3$s</span></div>"
 msgstr ""
 
-#: admin/views/html-refund-offer.php:147
+#: admin/views/html-refund-offer.php:152
 msgid "Refund"
 msgstr ""
 
-#: admin/views/html-refund-offer.php:150
+#: admin/views/html-refund-offer.php:155
 msgid "Refunded"
 msgstr ""
 
-#: admin/views/html-refund-offer.php:168
+#: admin/views/html-refund-offer.php:173
 msgid "Use WooCommerce's refund feature to refund the main order. You can refund upsell/downsell offers from this section. Always refund upsell/downsell offers first & then refund the main order."
 msgstr ""
 
-#: admin/views/html-refund-offer.php:173
+#: admin/views/html-refund-offer.php:178
 msgid "Refunds are not available for any offer(s) against this order."
 msgstr ""
 
@@ -367,80 +368,80 @@ msgid "Thankyou ( Woo )"
 msgstr ""
 
 #. translators: %1$s: HTML, %2$s: HTML
-#: classes/class-cartflows-pro-admin.php:120
+#: classes/class-cartflows-pro-admin.php:132
 msgid "%1$sYou are installing the lower plan of the CartFlows compared to what currently you have, it will disable some pro features that you might be using. %2$s"
 msgstr ""
 
 #. translators: %1$s: HTML, %2$s: HTML
-#: classes/class-cartflows-pro-admin.php:126
+#: classes/class-cartflows-pro-admin.php:138
 msgid "%1$sYou are installing the lower plan of the CartFlows compared to what currently you have, it will disable some plus features that you might be using. %2$s"
 msgstr ""
 
-#: classes/class-cartflows-pro-admin.php:148
+#: classes/class-cartflows-pro-admin.php:160
 msgid "CartFlows is migrating the old order bump to the new one in the background. The migration process may take a little while, so please be patient."
 msgstr ""
 
-#: classes/class-cartflows-pro-admin.php:149
-#: classes/class-cartflows-pro-admin.php:357
+#: classes/class-cartflows-pro-admin.php:161
+#: classes/class-cartflows-pro-admin.php:369
 msgid "View Progress >>"
 msgstr ""
 
-#: classes/class-cartflows-pro-admin.php:203
+#: classes/class-cartflows-pro-admin.php:215
 msgid "Hurray! CartFlows Multiple Order Bump migration process is completed successfully."
 msgstr ""
 
-#: classes/class-cartflows-pro-admin.php:234
-#: classes/class-cartflows-pro-admin.php:387
+#: classes/class-cartflows-pro-admin.php:246
+#: classes/class-cartflows-pro-admin.php:399
 msgid "Cannot schedule a migration. Action scheduler function not found."
 msgstr ""
 
-#: classes/class-cartflows-pro-admin.php:244
+#: classes/class-cartflows-pro-admin.php:256
 msgid "Order Bump 1st migration action scheduled successfully."
 msgstr ""
 
 #. translators: %1$1s: link html start, %2$12: link html end
-#: classes/class-cartflows-pro-admin.php:274
+#: classes/class-cartflows-pro-admin.php:286
 msgid "CartFlows is migrating the old order bump to the new one in the background. The migration process may take a little while, so please be patient. %1$1s View Progress >> %2$2s"
 msgstr ""
 
 #. translators: %1$1s: link html start, %2$12: link html end
-#: classes/class-cartflows-pro-admin.php:276
+#: classes/class-cartflows-pro-admin.php:288
 msgid "CartFlows is migrating the pre checkout offer styles in the background. The migration process may take a little while, so please be patient. %1$1s View Progress >> %2$2s"
 msgstr ""
 
-#: classes/class-cartflows-pro-admin.php:293
+#: classes/class-cartflows-pro-admin.php:305
 msgid "We have introduced the multiple order bump feature. If your checkout page has the order bump feature enabled, you need to migrate an old order bump settings to the new multiple order bump settings."
 msgstr ""
 
-#: classes/class-cartflows-pro-admin.php:295
+#: classes/class-cartflows-pro-admin.php:307
 msgid "Migrate Order Bump"
 msgstr ""
 
-#: classes/class-cartflows-pro-admin.php:314
+#: classes/class-cartflows-pro-admin.php:326
 msgid "We have moved the pre-checkout offer styling option from the page builder settings and added it to the checkout offer tab. If your checkout page has the pre-checkout feature enabled, then you need to migrate those settings."
 msgstr ""
 
-#: classes/class-cartflows-pro-admin.php:316
+#: classes/class-cartflows-pro-admin.php:328
 msgid "Migrate pre-checkout offer styles"
 msgstr ""
 
-#: classes/class-cartflows-pro-admin.php:334
+#: classes/class-cartflows-pro-admin.php:346
 msgid "Hurray! CartFlows pre checkout offer styles migration process is completed successfully."
 msgstr ""
 
-#: classes/class-cartflows-pro-admin.php:356
+#: classes/class-cartflows-pro-admin.php:368
 msgid "CartFlows is migrating the pre checkout offer styles in the background. The migration process may take a little while, so please be patient."
 msgstr ""
 
-#: classes/class-cartflows-pro-admin.php:397
+#: classes/class-cartflows-pro-admin.php:409
 msgid "1st migration action scheduled successfully."
 msgstr ""
 
-#: classes/class-cartflows-pro-admin.php:516
+#: classes/class-cartflows-pro-admin.php:528
 msgid "Upsell Offer"
 msgstr ""
 
-#: classes/class-cartflows-pro-admin.php:518
+#: classes/class-cartflows-pro-admin.php:530
 msgid "Downsell Offer"
 msgstr ""
 
@@ -460,18 +461,27 @@ msgstr ""
 msgid "Please wait while we redirect you..."
 msgstr ""
 
-#: classes/class-cartflows-pro-flow-frontend.php:500
-#: modules/offer/classes/class-cartflows-pro-base-offer-markup.php:296
+#: classes/class-cartflows-pro-flow-frontend.php:499
+#: modules/offer/classes/class-cartflows-pro-base-offer-markup.php:302
 msgid "Product Added Successfully."
 msgstr ""
 
-#: classes/class-cartflows-pro-flow-frontend.php:518
-#: modules/offer/classes/class-cartflows-pro-base-offer-markup.php:314
+#: classes/class-cartflows-pro-flow-frontend.php:517
+#: modules/offer/classes/class-cartflows-pro-base-offer-markup.php:320
 msgid "Oooops! Your Payment Failed."
 msgstr ""
 
 #: classes/class-cartflows-pro-frontend.php:326
 msgid "Your session is expired"
+msgstr ""
+
+#: classes/class-cartflows-pro-helper.php:189
+#: classes/class-cartflows-pro-licence.php:473
+msgid "No error found."
+msgstr ""
+
+#: classes/class-cartflows-pro-helper.php:199
+msgid "API call to create a purchase failed."
 msgstr ""
 
 #. translators: %1$s Software Title, %2$s Plugin, %3$s Anchor opening tag, %4$s Anchor closing tag, %5$s Software Title.
@@ -527,11 +537,6 @@ msgstr ""
 msgid "Oops! Security nonce is invalid."
 msgstr ""
 
-#: classes/class-cartflows-pro-licence.php:473
-#: modules/gateways/class-cartflows-pro-gateway-square.php:555
-msgid "No error found."
-msgstr ""
-
 #. translators: %1$s: HTML, %2$s: HTML
 #: classes/class-cartflows-pro-licence.php:484
 msgid "For more information, please check this %1$sarticle%2$s."
@@ -585,23 +590,23 @@ msgstr ""
 msgid "Update CartFlows Now"
 msgstr ""
 
-#: classes/class-cartflows-pro-refund.php:56
+#: classes/class-cartflows-pro-refund.php:60
 msgid "Unexpected error occoured"
 msgstr ""
 
-#: classes/class-cartflows-pro-refund.php:85
+#: classes/class-cartflows-pro-refund.php:89
 msgid "Refund unsuccessful"
 msgstr ""
 
-#: classes/class-cartflows-pro-refund.php:140
+#: classes/class-cartflows-pro-refund.php:144
 msgid "Refund Unsuccessful"
 msgstr ""
 
-#: classes/class-cartflows-pro-refund.php:148
+#: classes/class-cartflows-pro-refund.php:152
 msgid "Refund Successful"
 msgstr ""
 
-#: classes/class-cartflows-pro-refund.php:193
+#: classes/class-cartflows-pro-refund.php:182
 msgid "CartFlows Refund Offers"
 msgstr ""
 
@@ -702,241 +707,225 @@ msgstr ""
 msgid "Variation - %1$s deleted. Flow  - %2$s"
 msgstr ""
 
-#: modules/beaver-builder/cartflows-pro-bb-checkout-form-extend/cartflows-pro-bb-checkout-form-extend.php:212
+#: modules/beaver-builder/cartflows-pro-bb-checkout-form-extend/cartflows-pro-bb-checkout-form-extend.php:210
 #: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:3148
 #: modules/elementor/widgets/class-cartflows-pro-el-checkout-form-extend.php:107
-#: modules/gutenberg/dist/blocks.build.js:1
 msgid "Enable Checkout Note"
 msgstr ""
 
-#: modules/beaver-builder/cartflows-pro-bb-checkout-form-extend/cartflows-pro-bb-checkout-form-extend.php:215
-#: modules/beaver-builder/cartflows-pro-bb-checkout-form-extend/cartflows-pro-bb-checkout-form-extend.php:303
+#: modules/beaver-builder/cartflows-pro-bb-checkout-form-extend/cartflows-pro-bb-checkout-form-extend.php:213
+#: modules/beaver-builder/cartflows-pro-bb-checkout-form-extend/cartflows-pro-bb-checkout-form-extend.php:301
 #: modules/beaver-builder/cartflows-pro-bb-offer-product-description/cartflows-pro-bb-offer-product-description.php:82
 #: modules/elementor/widgets/class-cartflows-pro-el-checkout-form-extend.php:343
-#: modules/gutenberg/dist/blocks.build.js:1
 msgid "Yes"
 msgstr ""
 
-#: modules/beaver-builder/cartflows-pro-bb-checkout-form-extend/cartflows-pro-bb-checkout-form-extend.php:216
-#: modules/beaver-builder/cartflows-pro-bb-checkout-form-extend/cartflows-pro-bb-checkout-form-extend.php:304
+#: modules/beaver-builder/cartflows-pro-bb-checkout-form-extend/cartflows-pro-bb-checkout-form-extend.php:214
+#: modules/beaver-builder/cartflows-pro-bb-checkout-form-extend/cartflows-pro-bb-checkout-form-extend.php:302
 #: modules/beaver-builder/cartflows-pro-bb-offer-product-description/cartflows-pro-bb-offer-product-description.php:83
 #: modules/elementor/widgets/class-cartflows-pro-el-checkout-form-extend.php:344
-#: modules/gutenberg/dist/blocks.build.js:1
 msgid "No"
 msgstr ""
 
-#: modules/beaver-builder/cartflows-pro-bb-checkout-form-extend/cartflows-pro-bb-checkout-form-extend.php:226
+#: modules/beaver-builder/cartflows-pro-bb-checkout-form-extend/cartflows-pro-bb-checkout-form-extend.php:224
 #: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:3152
 #: modules/elementor/widgets/class-cartflows-pro-el-checkout-form-extend.php:119
-#: modules/gutenberg/dist/blocks.build.js:1
 msgid "Note Text"
 msgstr ""
 
-#: modules/beaver-builder/cartflows-pro-bb-checkout-form-extend/cartflows-pro-bb-checkout-form-extend.php:227
+#. translators: abbreviation for units
+#: modules/beaver-builder/cartflows-pro-bb-checkout-form-extend/cartflows-pro-bb-checkout-form-extend.php:225
 #: modules/checkout/classes/class-cartflows-pro-checkout-default-meta.php:391
 #: modules/elementor/widgets/class-cartflows-pro-el-checkout-form-extend.php:121
 #: modules/elementor/widgets/class-cartflows-pro-el-checkout-form-extend.php:122
-#: modules/gutenberg/dist/blocks.build.js:1
+#: modules/gutenberg/dist/blocks/cartflows-pro-gb-checkout-form-extend/class-cartflows-pro-checkout-form.php:339
+#: modules/gutenberg/build/blocks.js:3
 msgid "Get Your FREE copy of CartFlows in just few steps."
 msgstr ""
 
-#: modules/beaver-builder/cartflows-pro-bb-checkout-form-extend/cartflows-pro-bb-checkout-form-extend.php:232
+#: modules/beaver-builder/cartflows-pro-bb-checkout-form-extend/cartflows-pro-bb-checkout-form-extend.php:230
 #: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:3173
 #: modules/elementor/widgets/class-cartflows-pro-el-checkout-form-extend.php:142
-#: modules/gutenberg/dist/blocks.build.js:1
 msgid "Step One Title"
 msgstr ""
 
-#: modules/beaver-builder/cartflows-pro-bb-checkout-form-extend/cartflows-pro-bb-checkout-form-extend.php:233
+#: modules/beaver-builder/cartflows-pro-bb-checkout-form-extend/cartflows-pro-bb-checkout-form-extend.php:231
 #: modules/checkout/classes/class-cartflows-pro-checkout-default-meta.php:406
 #: modules/elementor/widgets/class-cartflows-pro-el-checkout-form-extend.php:143
 #: modules/elementor/widgets/class-cartflows-pro-el-checkout-form-extend.php:145
-#: modules/gutenberg/dist/blocks/cartflows-pro-gb-checkout-form-extend/class-cartflows-pro-checkout-form.php:348
-#: modules/gutenberg/dist/blocks.build.js:1
+#: modules/gutenberg/dist/blocks/cartflows-pro-gb-checkout-form-extend/class-cartflows-pro-checkout-form.php:346
+#: modules/gutenberg/build/blocks.js:3
 msgid "Shipping"
 msgstr ""
 
-#: modules/beaver-builder/cartflows-pro-bb-checkout-form-extend/cartflows-pro-bb-checkout-form-extend.php:238
+#: modules/beaver-builder/cartflows-pro-bb-checkout-form-extend/cartflows-pro-bb-checkout-form-extend.php:236
 #: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:3178
 #: modules/elementor/widgets/class-cartflows-pro-el-checkout-form-extend.php:152
-#: modules/gutenberg/dist/blocks.build.js:1
 msgid "Step One Sub Title"
 msgstr ""
 
-#: modules/beaver-builder/cartflows-pro-bb-checkout-form-extend/cartflows-pro-bb-checkout-form-extend.php:239
+#: modules/beaver-builder/cartflows-pro-bb-checkout-form-extend/cartflows-pro-bb-checkout-form-extend.php:237
 #: modules/checkout/classes/class-cartflows-pro-checkout-default-meta.php:410
 #: modules/elementor/widgets/class-cartflows-pro-el-checkout-form-extend.php:153
 #: modules/elementor/widgets/class-cartflows-pro-el-checkout-form-extend.php:155
-#: modules/gutenberg/dist/blocks/cartflows-pro-gb-checkout-form-extend/class-cartflows-pro-checkout-form.php:352
-#: modules/gutenberg/dist/blocks.build.js:1
+#: modules/gutenberg/dist/blocks/cartflows-pro-gb-checkout-form-extend/class-cartflows-pro-checkout-form.php:350
+#: modules/gutenberg/build/blocks.js:3
 msgid "Where to ship it?"
 msgstr ""
 
-#: modules/beaver-builder/cartflows-pro-bb-checkout-form-extend/cartflows-pro-bb-checkout-form-extend.php:244
+#: modules/beaver-builder/cartflows-pro-bb-checkout-form-extend/cartflows-pro-bb-checkout-form-extend.php:242
 #: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:3183
 #: modules/elementor/widgets/class-cartflows-pro-el-checkout-form-extend.php:162
-#: modules/gutenberg/dist/blocks.build.js:1
 msgid "Step Two Title"
 msgstr ""
 
-#: modules/beaver-builder/cartflows-pro-bb-checkout-form-extend/cartflows-pro-bb-checkout-form-extend.php:245
+#: modules/beaver-builder/cartflows-pro-bb-checkout-form-extend/cartflows-pro-bb-checkout-form-extend.php:243
 #: modules/checkout/classes/class-cartflows-pro-checkout-default-meta.php:415
 #: modules/elementor/widgets/class-cartflows-pro-el-checkout-form-extend.php:163
 #: modules/elementor/widgets/class-cartflows-pro-el-checkout-form-extend.php:165
-#: modules/gutenberg/dist/blocks/cartflows-pro-gb-checkout-form-extend/class-cartflows-pro-checkout-form.php:356
-#: modules/gutenberg/dist/blocks.build.js:1
+#: modules/gutenberg/dist/blocks/cartflows-pro-gb-checkout-form-extend/class-cartflows-pro-checkout-form.php:354
+#: modules/gutenberg/build/blocks.js:3
 msgid "Payment"
 msgstr ""
 
-#: modules/beaver-builder/cartflows-pro-bb-checkout-form-extend/cartflows-pro-bb-checkout-form-extend.php:250
+#: modules/beaver-builder/cartflows-pro-bb-checkout-form-extend/cartflows-pro-bb-checkout-form-extend.php:248
 #: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:3188
 #: modules/elementor/widgets/class-cartflows-pro-el-checkout-form-extend.php:172
-#: modules/gutenberg/dist/blocks.build.js:1
 msgid "Step Two Sub Title"
 msgstr ""
 
-#: modules/beaver-builder/cartflows-pro-bb-checkout-form-extend/cartflows-pro-bb-checkout-form-extend.php:251
+#: modules/beaver-builder/cartflows-pro-bb-checkout-form-extend/cartflows-pro-bb-checkout-form-extend.php:249
 #: modules/checkout/classes/class-cartflows-pro-checkout-default-meta.php:419
 #: modules/elementor/widgets/class-cartflows-pro-el-checkout-form-extend.php:173
 #: modules/elementor/widgets/class-cartflows-pro-el-checkout-form-extend.php:175
-#: modules/gutenberg/dist/blocks/cartflows-pro-gb-checkout-form-extend/class-cartflows-pro-checkout-form.php:360
-#: modules/gutenberg/dist/blocks.build.js:1
+#: modules/gutenberg/dist/blocks/cartflows-pro-gb-checkout-form-extend/class-cartflows-pro-checkout-form.php:358
+#: modules/gutenberg/build/blocks.js:3
 msgid "Of your order"
 msgstr ""
 
-#: modules/beaver-builder/cartflows-pro-bb-checkout-form-extend/cartflows-pro-bb-checkout-form-extend.php:256
+#: modules/beaver-builder/cartflows-pro-bb-checkout-form-extend/cartflows-pro-bb-checkout-form-extend.php:254
 #: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:3220
 #: modules/elementor/widgets/class-cartflows-pro-el-checkout-form-extend.php:191
-#: modules/gutenberg/dist/blocks.build.js:1
 msgid "Offer Button Title"
 msgstr ""
 
-#: modules/beaver-builder/cartflows-pro-bb-checkout-form-extend/cartflows-pro-bb-checkout-form-extend.php:257
+#: modules/beaver-builder/cartflows-pro-bb-checkout-form-extend/cartflows-pro-bb-checkout-form-extend.php:255
 #: modules/checkout/classes/class-cartflows-pro-checkout-default-meta.php:423
 #: modules/elementor/widgets/class-cartflows-pro-el-checkout-form-extend.php:192
 #: modules/elementor/widgets/class-cartflows-pro-el-checkout-form-extend.php:195
-#: modules/gutenberg/dist/blocks/cartflows-pro-gb-checkout-form-extend/class-cartflows-pro-checkout-form.php:364
-#: modules/gutenberg/dist/blocks.build.js:1
+#: modules/gutenberg/dist/blocks/cartflows-pro-gb-checkout-form-extend/class-cartflows-pro-checkout-form.php:362
+#: modules/gutenberg/build/blocks.js:3
 msgid "For Special Offer Click Here"
 msgstr ""
 
-#: modules/beaver-builder/cartflows-pro-bb-checkout-form-extend/cartflows-pro-bb-checkout-form-extend.php:262
+#: modules/beaver-builder/cartflows-pro-bb-checkout-form-extend/cartflows-pro-bb-checkout-form-extend.php:260
 #: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:3225
 #: modules/elementor/widgets/class-cartflows-pro-el-checkout-form-extend.php:202
-#: modules/gutenberg/dist/blocks.build.js:1
 msgid "Offer Button Sub Title"
 msgstr ""
 
-#: modules/beaver-builder/cartflows-pro-bb-checkout-form-extend/cartflows-pro-bb-checkout-form-extend.php:263
+#: modules/beaver-builder/cartflows-pro-bb-checkout-form-extend/cartflows-pro-bb-checkout-form-extend.php:261
 #: modules/checkout/classes/class-cartflows-pro-checkout-default-meta.php:427
 #: modules/elementor/widgets/class-cartflows-pro-el-checkout-form-extend.php:203
 #: modules/elementor/widgets/class-cartflows-pro-el-checkout-form-extend.php:206
-#: modules/gutenberg/dist/blocks/cartflows-pro-gb-checkout-form-extend/class-cartflows-pro-checkout-form.php:368
-#: modules/gutenberg/dist/blocks.build.js:1
+#: modules/gutenberg/dist/blocks/cartflows-pro-gb-checkout-form-extend/class-cartflows-pro-checkout-form.php:366
+#: modules/gutenberg/build/blocks.js:3
 msgid "Yes! I want this offer!"
 msgstr ""
 
-#: modules/beaver-builder/cartflows-pro-bb-checkout-form-extend/cartflows-pro-bb-checkout-form-extend.php:274
+#: modules/beaver-builder/cartflows-pro-bb-checkout-form-extend/cartflows-pro-bb-checkout-form-extend.php:272
 msgid "Select Position"
 msgstr ""
 
-#: modules/beaver-builder/cartflows-pro-bb-checkout-form-extend/cartflows-pro-bb-checkout-form-extend.php:277
+#: modules/beaver-builder/cartflows-pro-bb-checkout-form-extend/cartflows-pro-bb-checkout-form-extend.php:275
 #: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:1169
 #: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:1540
 #: modules/elementor/widgets/class-cartflows-pro-el-checkout-form-extend.php:316
 msgid "Before Checkout"
 msgstr ""
 
-#: modules/beaver-builder/cartflows-pro-bb-checkout-form-extend/cartflows-pro-bb-checkout-form-extend.php:278
+#: modules/beaver-builder/cartflows-pro-bb-checkout-form-extend/cartflows-pro-bb-checkout-form-extend.php:276
 #: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:1173
 #: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:1544
 #: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:3250
 #: modules/elementor/widgets/class-cartflows-pro-el-checkout-form-extend.php:317
-#: modules/gutenberg/dist/blocks.build.js:1
 msgid "After Customer Details"
 msgstr ""
 
-#: modules/beaver-builder/cartflows-pro-bb-checkout-form-extend/cartflows-pro-bb-checkout-form-extend.php:279
+#: modules/beaver-builder/cartflows-pro-bb-checkout-form-extend/cartflows-pro-bb-checkout-form-extend.php:277
 #: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:3254
 #: modules/elementor/widgets/class-cartflows-pro-el-checkout-form-extend.php:318
-#: modules/gutenberg/dist/blocks.build.js:1
 msgid "Before Order Review"
 msgstr ""
 
 #. translators: %1$1s, %2$2s Link to meta
-#: modules/beaver-builder/cartflows-pro-bb-checkout-form-extend/cartflows-pro-bb-checkout-form-extend.php:284
+#: modules/beaver-builder/cartflows-pro-bb-checkout-form-extend/cartflows-pro-bb-checkout-form-extend.php:282
 msgid "Please enable \"Product-Options\" from %1$1shere%2$2s to edit options."
 msgstr ""
 
-#: modules/beaver-builder/cartflows-pro-bb-checkout-form-extend/cartflows-pro-bb-checkout-form-extend.php:291
+#: modules/beaver-builder/cartflows-pro-bb-checkout-form-extend/cartflows-pro-bb-checkout-form-extend.php:289
 #: modules/elementor/widgets/class-cartflows-pro-el-checkout-form-extend.php:326
-#: modules/gutenberg/dist/blocks.build.js:1
 msgid "Skin"
 msgstr ""
 
-#: modules/beaver-builder/cartflows-pro-bb-checkout-form-extend/cartflows-pro-bb-checkout-form-extend.php:294
+#: modules/beaver-builder/cartflows-pro-bb-checkout-form-extend/cartflows-pro-bb-checkout-form-extend.php:292
 #: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:3265
 #: modules/elementor/widgets/class-cartflows-pro-el-checkout-form-extend.php:330
-#: modules/gutenberg/dist/blocks.build.js:1
 msgid "Classic"
 msgstr ""
 
-#: modules/beaver-builder/cartflows-pro-bb-checkout-form-extend/cartflows-pro-bb-checkout-form-extend.php:295
+#: modules/beaver-builder/cartflows-pro-bb-checkout-form-extend/cartflows-pro-bb-checkout-form-extend.php:293
 #: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:3269
 #: modules/elementor/widgets/class-cartflows-pro-el-checkout-form-extend.php:331
-#: modules/gutenberg/dist/blocks.build.js:1
 msgid "Cards"
 msgstr ""
 
-#: modules/beaver-builder/cartflows-pro-bb-checkout-form-extend/cartflows-pro-bb-checkout-form-extend.php:300
+#: modules/beaver-builder/cartflows-pro-bb-checkout-form-extend/cartflows-pro-bb-checkout-form-extend.php:298
 #: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:3275
 #: modules/elementor/widgets/class-cartflows-pro-el-checkout-form-extend.php:339
-#: modules/gutenberg/dist/blocks.build.js:1
 msgid "Show Product Images"
 msgstr ""
 
-#: modules/beaver-builder/cartflows-pro-bb-checkout-form-extend/cartflows-pro-bb-checkout-form-extend.php:309
+#: modules/beaver-builder/cartflows-pro-bb-checkout-form-extend/cartflows-pro-bb-checkout-form-extend.php:307
 #: modules/elementor/widgets/class-cartflows-pro-el-checkout-form-extend.php:352
-#: modules/gutenberg/dist/blocks.build.js:1
 msgid "Section Title Text"
 msgstr ""
 
-#: modules/beaver-builder/cartflows-pro-bb-checkout-form-extend/cartflows-pro-bb-checkout-form-extend.php:310
+#: modules/beaver-builder/cartflows-pro-bb-checkout-form-extend/cartflows-pro-bb-checkout-form-extend.php:308
 #: modules/checkout/classes/class-cartflows-pro-checkout-default-meta.php:67
 #: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:3236
 #: modules/elementor/widgets/class-cartflows-pro-el-checkout-form-extend.php:354
 msgid "Your Products"
 msgstr ""
 
-#: modules/beaver-builder/cartflows-pro-bb-checkout-form-extend/cartflows-pro-bb-checkout-form-extend.php:318
+#: modules/beaver-builder/cartflows-pro-bb-checkout-form-extend/cartflows-pro-bb-checkout-form-extend.php:316
 #: modules/elementor/widgets/class-cartflows-pro-el-checkout-form-extend.php:97
 #: modules/elementor/widgets/class-cartflows-pro-el-checkout-form-extend.php:227
-#: modules/gutenberg/dist/blocks.build.js:1
 msgid "Two Step"
 msgstr ""
 
-#: modules/beaver-builder/cartflows-pro-bb-checkout-form-extend/cartflows-pro-bb-checkout-form-extend.php:322
+#: modules/beaver-builder/cartflows-pro-bb-checkout-form-extend/cartflows-pro-bb-checkout-form-extend.php:320
 #: modules/elementor/widgets/class-cartflows-pro-el-checkout-form-extend.php:239
 msgid "Note Text Color"
 msgstr ""
 
-#: modules/beaver-builder/cartflows-pro-bb-checkout-form-extend/cartflows-pro-bb-checkout-form-extend.php:336
+#: modules/beaver-builder/cartflows-pro-bb-checkout-form-extend/cartflows-pro-bb-checkout-form-extend.php:334
 #: modules/elementor/widgets/class-cartflows-pro-el-checkout-form-extend.php:255
 msgid "Note Background Color"
 msgstr ""
 
-#: modules/beaver-builder/cartflows-pro-bb-checkout-form-extend/cartflows-pro-bb-checkout-form-extend.php:350
+#: modules/beaver-builder/cartflows-pro-bb-checkout-form-extend/cartflows-pro-bb-checkout-form-extend.php:348
 #: modules/elementor/widgets/class-cartflows-pro-el-checkout-form-extend.php:274
 msgid "Note Typography"
 msgstr ""
 
-#: modules/beaver-builder/cartflows-pro-bb-checkout-form-extend/cartflows-pro-bb-checkout-form-extend.php:361
+#: modules/beaver-builder/cartflows-pro-bb-checkout-form-extend/cartflows-pro-bb-checkout-form-extend.php:359
 #: modules/elementor/widgets/class-cartflows-pro-el-checkout-form-extend.php:303
 #: modules/elementor/widgets/class-cartflows-pro-el-checkout-form-extend.php:393
 msgid "Product Options"
 msgstr ""
 
-#: modules/beaver-builder/cartflows-pro-bb-checkout-form-extend/cartflows-pro-bb-checkout-form-extend.php:365
+#: modules/beaver-builder/cartflows-pro-bb-checkout-form-extend/cartflows-pro-bb-checkout-form-extend.php:363
 #: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:438
 #: modules/beaver-builder/cartflows-pro-bb-offer-action-link/cartflows-pro-bb-offer-action-link.php:155
 #: modules/beaver-builder/cartflows-pro-bb-offer-product-description/cartflows-pro-bb-offer-product-description.php:88
@@ -954,11 +943,10 @@ msgstr ""
 #: modules/elementor/widgets/class-cartflows-pro-el-offer-product-description.php:183
 #: modules/elementor/widgets/class-cartflows-pro-el-offer-product-price.php:190
 #: modules/elementor/widgets/class-cartflows-pro-el-offer-product-title.php:190
-#: modules/gutenberg/dist/blocks.build.js:1
 msgid "Text Color"
 msgstr ""
 
-#: modules/beaver-builder/cartflows-pro-bb-checkout-form-extend/cartflows-pro-bb-checkout-form-extend.php:379
+#: modules/beaver-builder/cartflows-pro-bb-checkout-form-extend/cartflows-pro-bb-checkout-form-extend.php:377
 #: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:469
 #: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:1661
 #: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:1922
@@ -970,11 +958,10 @@ msgstr ""
 #: modules/elementor/widgets/class-cartflows-pro-el-checkout-form-extend.php:495
 #: modules/elementor/widgets/class-cartflows-pro-el-offer-action-button.php:377
 #: modules/elementor/widgets/class-cartflows-pro-el-offer-product-quantity.php:220
-#: modules/gutenberg/dist/blocks.build.js:1
 msgid "Background Color"
 msgstr ""
 
-#: modules/beaver-builder/cartflows-pro-bb-checkout-form-extend/cartflows-pro-bb-checkout-form-extend.php:394
+#: modules/beaver-builder/cartflows-pro-bb-checkout-form-extend/cartflows-pro-bb-checkout-form-extend.php:392
 #: modules/beaver-builder/cartflows-pro-bb-offer-product-image/cartflows-pro-bb-offer-product-image.php:109
 #: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:1692
 #: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2018
@@ -982,19 +969,18 @@ msgstr ""
 #: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:3053
 #: modules/elementor/widgets/class-cartflows-pro-el-checkout-form-extend.php:426
 #: modules/elementor/widgets/class-cartflows-pro-el-checkout-form-extend.php:517
-#: modules/gutenberg/dist/blocks.build.js:1
 msgid "Border Style"
 msgstr ""
 
-#: modules/beaver-builder/cartflows-pro-bb-checkout-form-extend/cartflows-pro-bb-checkout-form-extend.php:396
-#: modules/beaver-builder/cartflows-pro-bb-checkout-form-extend/cartflows-pro-bb-checkout-form-extend.php:503
+#: modules/beaver-builder/cartflows-pro-bb-checkout-form-extend/cartflows-pro-bb-checkout-form-extend.php:394
+#: modules/beaver-builder/cartflows-pro-bb-checkout-form-extend/cartflows-pro-bb-checkout-form-extend.php:501
 #: modules/beaver-builder/cartflows-pro-bb-offer-product-image/cartflows-pro-bb-offer-product-image.php:111
 #: modules/beaver-builder/cartflows-pro-bb-offer-product-image/cartflows-pro-bb-offer-product-image.php:199
 msgid "The type of border to use. Double borders must have a width of at least 3px to render properly."
 msgstr ""
 
-#: modules/beaver-builder/cartflows-pro-bb-checkout-form-extend/cartflows-pro-bb-checkout-form-extend.php:398
-#: modules/beaver-builder/cartflows-pro-bb-checkout-form-extend/cartflows-pro-bb-checkout-form-extend.php:505
+#: modules/beaver-builder/cartflows-pro-bb-checkout-form-extend/cartflows-pro-bb-checkout-form-extend.php:396
+#: modules/beaver-builder/cartflows-pro-bb-checkout-form-extend/cartflows-pro-bb-checkout-form-extend.php:503
 #: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:277
 #: modules/beaver-builder/cartflows-pro-bb-offer-product-image/cartflows-pro-bb-offer-product-image.php:113
 #: modules/beaver-builder/cartflows-pro-bb-offer-product-image/cartflows-pro-bb-offer-product-image.php:201
@@ -1003,12 +989,11 @@ msgstr ""
 #: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2174
 #: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:3074
 #: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:3204
-#: modules/gutenberg/dist/blocks.build.js:1
 msgid "None"
 msgstr ""
 
-#: modules/beaver-builder/cartflows-pro-bb-checkout-form-extend/cartflows-pro-bb-checkout-form-extend.php:399
-#: modules/beaver-builder/cartflows-pro-bb-checkout-form-extend/cartflows-pro-bb-checkout-form-extend.php:506
+#: modules/beaver-builder/cartflows-pro-bb-checkout-form-extend/cartflows-pro-bb-checkout-form-extend.php:397
+#: modules/beaver-builder/cartflows-pro-bb-checkout-form-extend/cartflows-pro-bb-checkout-form-extend.php:504
 #: modules/beaver-builder/cartflows-pro-bb-offer-product-image/cartflows-pro-bb-offer-product-image.php:114
 #: modules/beaver-builder/cartflows-pro-bb-offer-product-image/cartflows-pro-bb-offer-product-image.php:202
 #: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:1709
@@ -1018,12 +1003,11 @@ msgstr ""
 #: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:3208
 #: modules/elementor/widgets/class-cartflows-pro-el-checkout-form-extend.php:432
 #: modules/elementor/widgets/class-cartflows-pro-el-checkout-form-extend.php:523
-#: modules/gutenberg/dist/blocks.build.js:1
 msgid "Solid"
 msgstr ""
 
-#: modules/beaver-builder/cartflows-pro-bb-checkout-form-extend/cartflows-pro-bb-checkout-form-extend.php:400
-#: modules/beaver-builder/cartflows-pro-bb-checkout-form-extend/cartflows-pro-bb-checkout-form-extend.php:507
+#: modules/beaver-builder/cartflows-pro-bb-checkout-form-extend/cartflows-pro-bb-checkout-form-extend.php:398
+#: modules/beaver-builder/cartflows-pro-bb-checkout-form-extend/cartflows-pro-bb-checkout-form-extend.php:505
 #: modules/beaver-builder/cartflows-pro-bb-offer-product-image/cartflows-pro-bb-offer-product-image.php:115
 #: modules/beaver-builder/cartflows-pro-bb-offer-product-image/cartflows-pro-bb-offer-product-image.php:203
 #: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:1701
@@ -1032,12 +1016,11 @@ msgstr ""
 #: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:3062
 #: modules/elementor/widgets/class-cartflows-pro-el-checkout-form-extend.php:435
 #: modules/elementor/widgets/class-cartflows-pro-el-checkout-form-extend.php:526
-#: modules/gutenberg/dist/blocks.build.js:1
 msgid "Dashed"
 msgstr ""
 
-#: modules/beaver-builder/cartflows-pro-bb-checkout-form-extend/cartflows-pro-bb-checkout-form-extend.php:401
-#: modules/beaver-builder/cartflows-pro-bb-checkout-form-extend/cartflows-pro-bb-checkout-form-extend.php:508
+#: modules/beaver-builder/cartflows-pro-bb-checkout-form-extend/cartflows-pro-bb-checkout-form-extend.php:399
+#: modules/beaver-builder/cartflows-pro-bb-checkout-form-extend/cartflows-pro-bb-checkout-form-extend.php:506
 #: modules/beaver-builder/cartflows-pro-bb-offer-product-image/cartflows-pro-bb-offer-product-image.php:116
 #: modules/beaver-builder/cartflows-pro-bb-offer-product-image/cartflows-pro-bb-offer-product-image.php:204
 #: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:1705
@@ -1046,22 +1029,20 @@ msgstr ""
 #: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:3066
 #: modules/elementor/widgets/class-cartflows-pro-el-checkout-form-extend.php:434
 #: modules/elementor/widgets/class-cartflows-pro-el-checkout-form-extend.php:525
-#: modules/gutenberg/dist/blocks.build.js:1
 msgid "Dotted"
 msgstr ""
 
-#: modules/beaver-builder/cartflows-pro-bb-checkout-form-extend/cartflows-pro-bb-checkout-form-extend.php:402
-#: modules/beaver-builder/cartflows-pro-bb-checkout-form-extend/cartflows-pro-bb-checkout-form-extend.php:509
+#: modules/beaver-builder/cartflows-pro-bb-checkout-form-extend/cartflows-pro-bb-checkout-form-extend.php:400
+#: modules/beaver-builder/cartflows-pro-bb-checkout-form-extend/cartflows-pro-bb-checkout-form-extend.php:507
 #: modules/beaver-builder/cartflows-pro-bb-offer-product-image/cartflows-pro-bb-offer-product-image.php:117
 #: modules/beaver-builder/cartflows-pro-bb-offer-product-image/cartflows-pro-bb-offer-product-image.php:205
 #: modules/elementor/widgets/class-cartflows-pro-el-checkout-form-extend.php:433
 #: modules/elementor/widgets/class-cartflows-pro-el-checkout-form-extend.php:524
-#: modules/gutenberg/dist/blocks.build.js:1
 msgid "Double"
 msgstr ""
 
-#: modules/beaver-builder/cartflows-pro-bb-checkout-form-extend/cartflows-pro-bb-checkout-form-extend.php:427
-#: modules/beaver-builder/cartflows-pro-bb-checkout-form-extend/cartflows-pro-bb-checkout-form-extend.php:533
+#: modules/beaver-builder/cartflows-pro-bb-checkout-form-extend/cartflows-pro-bb-checkout-form-extend.php:425
+#: modules/beaver-builder/cartflows-pro-bb-checkout-form-extend/cartflows-pro-bb-checkout-form-extend.php:531
 #: modules/beaver-builder/cartflows-pro-bb-offer-product-image/cartflows-pro-bb-offer-product-image.php:141
 #: modules/beaver-builder/cartflows-pro-bb-offer-product-image/cartflows-pro-bb-offer-product-image.php:229
 #: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:1735
@@ -1069,12 +1050,11 @@ msgstr ""
 #: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2182
 #: modules/elementor/widgets/class-cartflows-pro-el-checkout-form-extend.php:447
 #: modules/elementor/widgets/class-cartflows-pro-el-checkout-form-extend.php:537
-#: modules/gutenberg/dist/blocks.build.js:1
 msgid "Border Width"
 msgstr ""
 
-#: modules/beaver-builder/cartflows-pro-bb-checkout-form-extend/cartflows-pro-bb-checkout-form-extend.php:443
-#: modules/beaver-builder/cartflows-pro-bb-checkout-form-extend/cartflows-pro-bb-checkout-form-extend.php:548
+#: modules/beaver-builder/cartflows-pro-bb-checkout-form-extend/cartflows-pro-bb-checkout-form-extend.php:441
+#: modules/beaver-builder/cartflows-pro-bb-checkout-form-extend/cartflows-pro-bb-checkout-form-extend.php:546
 #: modules/beaver-builder/cartflows-pro-bb-offer-product-image/cartflows-pro-bb-offer-product-image.php:156
 #: modules/beaver-builder/cartflows-pro-bb-offer-product-image/cartflows-pro-bb-offer-product-image.php:244
 #: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:1781
@@ -1083,42 +1063,40 @@ msgstr ""
 #: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:3081
 #: modules/elementor/widgets/class-cartflows-pro-el-checkout-form-extend.php:460
 #: modules/elementor/widgets/class-cartflows-pro-el-checkout-form-extend.php:549
-#: modules/gutenberg/dist/blocks.build.js:1
 msgid "Border Color"
 msgstr ""
 
-#: modules/beaver-builder/cartflows-pro-bb-checkout-form-extend/cartflows-pro-bb-checkout-form-extend.php:457
-#: modules/beaver-builder/cartflows-pro-bb-checkout-form-extend/cartflows-pro-bb-checkout-form-extend.php:561
+#: modules/beaver-builder/cartflows-pro-bb-checkout-form-extend/cartflows-pro-bb-checkout-form-extend.php:455
+#: modules/beaver-builder/cartflows-pro-bb-checkout-form-extend/cartflows-pro-bb-checkout-form-extend.php:559
 #: modules/beaver-builder/cartflows-pro-bb-offer-product-image/cartflows-pro-bb-offer-product-image.php:169
 #: modules/beaver-builder/cartflows-pro-bb-offer-product-image/cartflows-pro-bb-offer-product-image.php:257
 #: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:1758
 #: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2072
 #: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2191
-#: modules/gutenberg/dist/blocks.build.js:1
 msgid "Border Radius"
 msgstr ""
 
-#: modules/beaver-builder/cartflows-pro-bb-checkout-form-extend/cartflows-pro-bb-checkout-form-extend.php:473
+#: modules/beaver-builder/cartflows-pro-bb-checkout-form-extend/cartflows-pro-bb-checkout-form-extend.php:471
 #: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:3303
 msgid "Highlight Product Background Color"
 msgstr ""
 
-#: modules/beaver-builder/cartflows-pro-bb-checkout-form-extend/cartflows-pro-bb-checkout-form-extend.php:487
+#: modules/beaver-builder/cartflows-pro-bb-checkout-form-extend/cartflows-pro-bb-checkout-form-extend.php:485
 #: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:3298
 msgid "Highlight Product Text Color"
 msgstr ""
 
-#: modules/beaver-builder/cartflows-pro-bb-checkout-form-extend/cartflows-pro-bb-checkout-form-extend.php:501
+#: modules/beaver-builder/cartflows-pro-bb-checkout-form-extend/cartflows-pro-bb-checkout-form-extend.php:499
 msgid "Highlight Product Border Style"
 msgstr ""
 
-#: modules/beaver-builder/cartflows-pro-bb-checkout-form-extend/cartflows-pro-bb-checkout-form-extend.php:576
+#: modules/beaver-builder/cartflows-pro-bb-checkout-form-extend/cartflows-pro-bb-checkout-form-extend.php:574
 #: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:3313
 #: modules/elementor/widgets/class-cartflows-pro-el-checkout-form-extend.php:573
 msgid "Highlight Flag Text Color"
 msgstr ""
 
-#: modules/beaver-builder/cartflows-pro-bb-checkout-form-extend/cartflows-pro-bb-checkout-form-extend.php:590
+#: modules/beaver-builder/cartflows-pro-bb-checkout-form-extend/cartflows-pro-bb-checkout-form-extend.php:588
 #: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:3318
 #: modules/elementor/widgets/class-cartflows-pro-el-checkout-form-extend.php:584
 msgid "Highlight Flag Background Color"
@@ -1126,7 +1104,7 @@ msgstr ""
 
 #: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:33
 #: modules/elementor/widgets/class-cartflows-pro-el-offer-action-button.php:69
-#: modules/gutenberg/classes/class-cartflows-pro-block-config.php:73
+#: modules/gutenberg/classes/class-cartflows-pro-block-config.php:97
 msgid "Offer Yes/No Button"
 msgstr ""
 
@@ -1160,7 +1138,6 @@ msgstr ""
 #: modules/elementor/widgets/class-cartflows-pro-el-offer-action-link.php:140
 #: modules/elementor/widgets/class-cartflows-pro-el-offer-action-link.php:246
 #: modules/offer/classes/class-cartflows-pro-base-offer-meta-data.php:380
-#: modules/gutenberg/dist/blocks.build.js:1
 msgid "General"
 msgstr ""
 
@@ -1172,7 +1149,7 @@ msgstr ""
 #: modules/elementor/widgets/class-cartflows-pro-el-offer-action-button.php:177
 #: modules/elementor/widgets/class-cartflows-pro-el-offer-action-link.php:147
 #: modules/elementor/widgets/class-cartflows-pro-el-offer-action-link.php:162
-#: modules/gutenberg/dist/blocks.build.js:1
+#: modules/gutenberg/build/blocks.js:11
 msgid "Offer Action"
 msgstr ""
 
@@ -1180,7 +1157,7 @@ msgstr ""
 #: modules/beaver-builder/cartflows-pro-bb-offer-action-link/cartflows-pro-bb-offer-action-link.php:101
 #: modules/elementor/widgets/class-cartflows-pro-el-offer-action-button.php:166
 #: modules/elementor/widgets/class-cartflows-pro-el-offer-action-link.php:151
-#: modules/gutenberg/dist/blocks.build.js:1
+#: modules/gutenberg/build/blocks.js:11
 msgid "Accept Offer"
 msgstr ""
 
@@ -1188,7 +1165,7 @@ msgstr ""
 #: modules/beaver-builder/cartflows-pro-bb-offer-action-link/cartflows-pro-bb-offer-action-link.php:102
 #: modules/elementor/widgets/class-cartflows-pro-el-offer-action-button.php:167
 #: modules/elementor/widgets/class-cartflows-pro-el-offer-action-link.php:152
-#: modules/gutenberg/dist/blocks.build.js:1
+#: modules/gutenberg/build/blocks.js:11
 msgid "Reject Offer"
 msgstr ""
 
@@ -1196,13 +1173,11 @@ msgstr ""
 #: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:1560
 #: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2418
 #: modules/elementor/widgets/class-cartflows-pro-el-offer-action-button.php:175
-#: modules/gutenberg/dist/blocks.build.js:1
 msgid "Title"
 msgstr ""
 
 #: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:172
 #: modules/elementor/widgets/class-cartflows-pro-el-offer-action-button.php:184
-#: modules/gutenberg/dist/blocks.build.js:1
 msgid "Sub Title"
 msgstr ""
 
@@ -1210,7 +1185,6 @@ msgstr ""
 #: modules/beaver-builder/cartflows-pro-bb-offer-action-link/cartflows-pro-bb-offer-action-link.php:117
 #: modules/elementor/widgets/class-cartflows-pro-el-offer-action-button.php:192
 #: modules/elementor/widgets/class-cartflows-pro-el-offer-action-link.php:169
-#: modules/gutenberg/dist/blocks.build.js:1
 msgid "Icon"
 msgstr ""
 
@@ -1218,33 +1192,28 @@ msgstr ""
 #: modules/beaver-builder/cartflows-pro-bb-offer-action-link/cartflows-pro-bb-offer-action-link.php:125
 #: modules/elementor/widgets/class-cartflows-pro-el-offer-action-button.php:200
 #: modules/elementor/widgets/class-cartflows-pro-el-offer-action-link.php:177
-#: modules/gutenberg/dist/blocks.build.js:1
 msgid "Icon Position"
 msgstr ""
 
 #: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:192
 #: modules/beaver-builder/cartflows-pro-bb-offer-action-link/cartflows-pro-bb-offer-action-link.php:128
 #: modules/elementor/widgets/class-cartflows-pro-el-offer-action-button.php:204
-#: modules/gutenberg/dist/blocks.build.js:1
 msgid "Before Title"
 msgstr ""
 
 #: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:193
 #: modules/beaver-builder/cartflows-pro-bb-offer-action-link/cartflows-pro-bb-offer-action-link.php:129
 #: modules/elementor/widgets/class-cartflows-pro-el-offer-action-button.php:205
-#: modules/gutenberg/dist/blocks.build.js:1
 msgid "After Title"
 msgstr ""
 
 #: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:194
 #: modules/elementor/widgets/class-cartflows-pro-el-offer-action-button.php:206
-#: modules/gutenberg/dist/blocks.build.js:1
 msgid "Before Title & Sub Title"
 msgstr ""
 
 #: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:195
 #: modules/elementor/widgets/class-cartflows-pro-el-offer-action-button.php:207
-#: modules/gutenberg/dist/blocks.build.js:1
 msgid "After Title & Sub Title"
 msgstr ""
 
@@ -1267,7 +1236,6 @@ msgstr ""
 #: modules/beaver-builder/cartflows-pro-bb-offer-action-link/cartflows-pro-bb-offer-action-link.php:137
 #: modules/elementor/widgets/class-cartflows-pro-el-offer-action-button.php:245
 #: modules/elementor/widgets/class-cartflows-pro-el-offer-action-link.php:193
-#: modules/gutenberg/dist/blocks.build.js:1
 msgid "Icon Spacing"
 msgstr ""
 
@@ -1286,7 +1254,6 @@ msgstr ""
 #: modules/beaver-builder/cartflows-pro-bb-offer-product-title/cartflows-pro-bb-offer-product-title.php:74
 #: modules/beaver-builder/cartflows-pro-bb-offer-product-variation/cartflows-pro-bb-offer-product-variation.php:72
 #: modules/beaver-builder/cartflows-pro-bb-offer-product-variation/cartflows-pro-bb-offer-product-variation.php:75
-#: modules/gutenberg/dist/blocks.build.js:1
 msgid "Style"
 msgstr ""
 
@@ -1299,7 +1266,6 @@ msgid "Flat"
 msgstr ""
 
 #: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:247
-#: modules/gutenberg/dist/blocks.build.js:1
 msgid "Gradient"
 msgstr ""
 
@@ -1411,7 +1377,6 @@ msgstr ""
 #: modules/elementor/widgets/class-cartflows-pro-el-offer-product-quantity.php:144
 #: modules/elementor/widgets/class-cartflows-pro-el-offer-product-title.php:143
 #: modules/elementor/widgets/class-cartflows-pro-el-offer-product-variation.php:143
-#: modules/gutenberg/dist/blocks.build.js:1
 msgid "Alignment"
 msgstr ""
 
@@ -1430,7 +1395,6 @@ msgstr ""
 #: modules/elementor/widgets/class-cartflows-pro-el-offer-product-quantity.php:152
 #: modules/elementor/widgets/class-cartflows-pro-el-offer-product-title.php:151
 #: modules/elementor/widgets/class-cartflows-pro-el-offer-product-variation.php:151
-#: modules/gutenberg/dist/blocks.build.js:1
 msgid "Center"
 msgstr ""
 
@@ -1450,7 +1414,6 @@ msgstr ""
 #: modules/elementor/widgets/class-cartflows-pro-el-offer-product-quantity.php:148
 #: modules/elementor/widgets/class-cartflows-pro-el-offer-product-title.php:147
 #: modules/elementor/widgets/class-cartflows-pro-el-offer-product-variation.php:147
-#: modules/gutenberg/dist/blocks.build.js:1
 msgid "Left"
 msgstr ""
 
@@ -1470,7 +1433,6 @@ msgstr ""
 #: modules/elementor/widgets/class-cartflows-pro-el-offer-product-quantity.php:156
 #: modules/elementor/widgets/class-cartflows-pro-el-offer-product-title.php:155
 #: modules/elementor/widgets/class-cartflows-pro-el-offer-product-variation.php:155
-#: modules/gutenberg/dist/blocks.build.js:1
 msgid "Right"
 msgstr ""
 
@@ -1480,7 +1442,6 @@ msgstr ""
 
 #: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:349
 #: modules/elementor/widgets/class-cartflows-pro-el-offer-action-button.php:343
-#: modules/gutenberg/dist/blocks.build.js:1
 msgid "Padding"
 msgstr ""
 
@@ -1489,7 +1450,6 @@ msgstr ""
 #: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:3198
 #: modules/elementor/widgets/class-cartflows-pro-el-offer-action-button.php:395
 #: modules/elementor/widgets/class-cartflows-pro-el-offer-product-quantity.php:232
-#: modules/gutenberg/dist/blocks.build.js:1
 msgid "Border"
 msgstr ""
 
@@ -1554,7 +1514,6 @@ msgstr ""
 #: modules/elementor/widgets/class-cartflows-pro-el-offer-product-quantity.php:187
 #: modules/elementor/widgets/class-cartflows-pro-el-offer-product-title.php:172
 #: modules/elementor/widgets/class-cartflows-pro-el-offer-product-variation.php:210
-#: modules/gutenberg/dist/blocks.build.js:1
 msgid "Typography"
 msgstr ""
 
@@ -1565,13 +1524,12 @@ msgstr ""
 #: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:509
 #: modules/elementor/widgets/class-cartflows-pro-el-offer-action-button.php:265
 #: modules/elementor/widgets/class-cartflows-pro-el-offer-action-link.php:214
-#: modules/gutenberg/dist/blocks.build.js:1
 msgid "Icon Size"
 msgstr ""
 
 #: modules/beaver-builder/cartflows-pro-bb-offer-action-link/cartflows-pro-bb-offer-action-link.php:33
 #: modules/elementor/widgets/class-cartflows-pro-el-offer-action-link.php:67
-#: modules/gutenberg/classes/class-cartflows-pro-block-config.php:46
+#: modules/gutenberg/classes/class-cartflows-pro-block-config.php:52
 msgid "Offer Yes/No Link"
 msgstr ""
 
@@ -1587,7 +1545,7 @@ msgstr ""
 #: modules/beaver-builder/cartflows-pro-bb-offer-product-description/cartflows-pro-bb-offer-product-description.php:33
 #: modules/elementor/widgets/class-cartflows-pro-el-offer-product-description.php:65
 #: modules/elementor/widgets/class-cartflows-pro-el-offer-product-description.php:135
-#: modules/gutenberg/classes/class-cartflows-pro-block-config.php:174
+#: modules/gutenberg/classes/class-cartflows-pro-block-config.php:238
 msgid "Offer Product Description"
 msgstr ""
 
@@ -1597,7 +1555,6 @@ msgstr ""
 
 #: modules/beaver-builder/cartflows-pro-bb-offer-product-description/cartflows-pro-bb-offer-product-description.php:79
 #: modules/elementor/widgets/class-cartflows-pro-el-offer-product-description.php:143
-#: modules/gutenberg/dist/blocks.build.js:1
 msgid "Short Description"
 msgstr ""
 
@@ -1605,8 +1562,7 @@ msgstr ""
 #: modules/beaver-builder/cartflows-pro-bb-offer-product-image/cartflows-pro-bb-offer-product-image.php:76
 #: modules/elementor/widgets/class-cartflows-pro-el-offer-product-image.php:63
 #: modules/elementor/widgets/class-cartflows-pro-el-offer-product-image.php:134
-#: modules/gutenberg/classes/class-cartflows-pro-block-config.php:302
-#: modules/gutenberg/dist/blocks.build.js:1
+#: modules/gutenberg/classes/class-cartflows-pro-block-config.php:439
 msgid "Offer Product Image"
 msgstr ""
 
@@ -1620,7 +1576,6 @@ msgstr ""
 
 #: modules/beaver-builder/cartflows-pro-bb-offer-product-image/cartflows-pro-bb-offer-product-image.php:185
 #: modules/elementor/widgets/class-cartflows-pro-el-offer-product-image.php:219
-#: modules/gutenberg/dist/blocks.build.js:1
 msgid "Thumbnails"
 msgstr ""
 
@@ -1636,7 +1591,7 @@ msgstr ""
 #: modules/beaver-builder/cartflows-pro-bb-offer-product-price/cartflows-pro-bb-offer-product-price.php:33
 #: modules/elementor/widgets/class-cartflows-pro-el-offer-product-price.php:65
 #: modules/elementor/widgets/class-cartflows-pro-el-offer-product-price.php:135
-#: modules/gutenberg/classes/class-cartflows-pro-block-config.php:208
+#: modules/gutenberg/classes/class-cartflows-pro-block-config.php:288
 msgid "Offer Product Price"
 msgstr ""
 
@@ -1647,7 +1602,7 @@ msgstr ""
 #: modules/beaver-builder/cartflows-pro-bb-offer-product-quantity/cartflows-pro-bb-offer-product-quantity.php:32
 #: modules/elementor/widgets/class-cartflows-pro-el-offer-product-quantity.php:66
 #: modules/elementor/widgets/class-cartflows-pro-el-offer-product-quantity.php:136
-#: modules/gutenberg/classes/class-cartflows-pro-block-config.php:236
+#: modules/gutenberg/classes/class-cartflows-pro-block-config.php:334
 msgid "Offer Product Quantity"
 msgstr ""
 
@@ -1667,7 +1622,6 @@ msgstr ""
 #: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:3091
 #: modules/elementor/widgets/class-cartflows-pro-el-offer-product-quantity.php:196
 #: modules/elementor/widgets/class-cartflows-pro-el-offer-product-variation.php:185
-#: modules/gutenberg/dist/blocks.build.js:1
 msgid "Label Color"
 msgstr ""
 
@@ -1675,14 +1629,13 @@ msgstr ""
 #: modules/beaver-builder/cartflows-pro-bb-offer-product-variation/cartflows-pro-bb-offer-product-variation.php:123
 #: modules/elementor/widgets/class-cartflows-pro-el-offer-product-quantity.php:208
 #: modules/elementor/widgets/class-cartflows-pro-el-offer-product-variation.php:197
-#: modules/gutenberg/dist/blocks.build.js:1
 msgid "Input Text Color"
 msgstr ""
 
 #: modules/beaver-builder/cartflows-pro-bb-offer-product-title/cartflows-pro-bb-offer-product-title.php:33
 #: modules/elementor/widgets/class-cartflows-pro-el-offer-product-title.php:65
 #: modules/elementor/widgets/class-cartflows-pro-el-offer-product-title.php:135
-#: modules/gutenberg/classes/class-cartflows-pro-block-config.php:146
+#: modules/gutenberg/classes/class-cartflows-pro-block-config.php:192
 msgid "Offer Product Title"
 msgstr ""
 
@@ -1693,7 +1646,7 @@ msgstr ""
 #: modules/beaver-builder/cartflows-pro-bb-offer-product-variation/cartflows-pro-bb-offer-product-variation.php:33
 #: modules/elementor/widgets/class-cartflows-pro-el-offer-product-variation.php:65
 #: modules/elementor/widgets/class-cartflows-pro-el-offer-product-variation.php:135
-#: modules/gutenberg/classes/class-cartflows-pro-block-config.php:271
+#: modules/gutenberg/classes/class-cartflows-pro-block-config.php:392
 msgid "Offer Product Variation"
 msgstr ""
 
@@ -1788,16 +1741,16 @@ msgstr ""
 msgid "Here is Great Offer!"
 msgstr ""
 
-#: modules/checkout/classes/class-cartflows-pro-checkout-markup.php:1024
-#: modules/optin/classes/class-cartflows-pro-optin-markup.php:141
+#: modules/checkout/classes/class-cartflows-pro-checkout-markup.php:1035
+#: modules/optin/classes/class-cartflows-pro-optin-markup.php:139
 msgid "Billing Custom Fields"
 msgstr ""
 
-#: modules/checkout/classes/class-cartflows-pro-checkout-markup.php:1061
+#: modules/checkout/classes/class-cartflows-pro-checkout-markup.php:1072
 msgid "Shipping Custom Fields"
 msgstr ""
 
-#: modules/checkout/classes/class-cartflows-pro-checkout-markup.php:1106
+#: modules/checkout/classes/class-cartflows-pro-checkout-markup.php:1117
 msgid "Processing..."
 msgstr ""
 
@@ -1962,7 +1915,6 @@ msgstr ""
 #: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:534
 #: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2702
 #: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:3005
-#: modules/gutenberg/dist/blocks.build.js:1
 msgid "Title Text"
 msgstr ""
 
@@ -2254,7 +2206,6 @@ msgstr ""
 #: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:1531
 #: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:1535
 #: modules/elementor/widgets/class-cartflows-pro-el-checkout-form-extend.php:312
-#: modules/gutenberg/dist/blocks.build.js:1
 msgid "Position"
 msgstr ""
 
@@ -2266,7 +2217,6 @@ msgstr ""
 #: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:1830
 #: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2366
 #: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2902
-#: modules/gutenberg/dist/blocks.build.js:1
 msgid "Button"
 msgstr ""
 
@@ -2287,17 +2237,14 @@ msgid "Shadow Color"
 msgstr ""
 
 #: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2217
-#: modules/gutenberg/dist/blocks.build.js:1
 msgid "Horizontal"
 msgstr ""
 
 #: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2225
-#: modules/gutenberg/dist/blocks.build.js:1
 msgid "Vertical"
 msgstr ""
 
 #: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2233
-#: modules/gutenberg/dist/blocks.build.js:1
 msgid "Blur"
 msgstr ""
 
@@ -2357,7 +2304,6 @@ msgid "Minimum image size should be 300 X 300 in pixls for ideal display."
 msgstr ""
 
 #: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2496
-#: modules/gutenberg/dist/blocks.build.js:1
 msgid "Image Position"
 msgstr ""
 
@@ -2383,7 +2329,6 @@ msgstr ""
 
 #: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2688
 #: modules/elementor/widgets/class-cartflows-pro-el-offer-action-button.php:470
-#: modules/gutenberg/dist/blocks.build.js:1
 msgid "Content"
 msgstr ""
 
@@ -2425,17 +2370,14 @@ msgid "Titles & Description"
 msgstr ""
 
 #: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2857
-#: modules/gutenberg/dist/blocks.build.js:1
 msgid "Title Color"
 msgstr ""
 
 #: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2872
-#: modules/gutenberg/dist/blocks.build.js:1
 msgid "Subtitle Color"
 msgstr ""
 
 #: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2887
-#: modules/gutenberg/dist/blocks.build.js:1
 msgid "Description Color"
 msgstr ""
 
@@ -2444,7 +2386,6 @@ msgid "Button Color"
 msgstr ""
 
 #: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2945
-#: modules/gutenberg/dist/blocks.build.js:1
 msgid "Overlay Background Color"
 msgstr ""
 
@@ -2475,7 +2416,6 @@ msgstr ""
 
 #: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:3168
 #: modules/elementor/widgets/class-cartflows-pro-el-checkout-form-extend.php:133
-#: modules/gutenberg/dist/blocks.build.js:1
 msgid "Steps"
 msgstr ""
 
@@ -2485,7 +2425,6 @@ msgstr ""
 
 #: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:3215
 #: modules/elementor/widgets/class-cartflows-pro-el-checkout-form-extend.php:182
-#: modules/gutenberg/dist/blocks.build.js:1
 msgid "Offer Button"
 msgstr ""
 
@@ -2498,7 +2437,6 @@ msgid "Section Position"
 msgstr ""
 
 #: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:3246
-#: modules/gutenberg/dist/blocks.build.js:1
 msgid "Before Checkout Section"
 msgstr ""
 
@@ -2659,7 +2597,6 @@ msgstr ""
 #: modules/elementor/widgets/class-cartflows-pro-el-offer-product-description.php:171
 #: modules/elementor/widgets/class-cartflows-pro-el-offer-product-price.php:159
 #: modules/elementor/widgets/class-cartflows-pro-el-offer-product-title.php:159
-#: modules/gutenberg/dist/blocks.build.js:1
 msgid "Justify"
 msgstr ""
 
@@ -2671,7 +2608,6 @@ msgstr ""
 #: modules/elementor/widgets/class-cartflows-pro-el-offer-action-link.php:294
 #: modules/elementor/widgets/class-cartflows-pro-el-offer-product-price.php:183
 #: modules/elementor/widgets/class-cartflows-pro-el-offer-product-title.php:183
-#: modules/gutenberg/dist/blocks.build.js:1
 msgid "Normal"
 msgstr ""
 
@@ -2679,7 +2615,6 @@ msgstr ""
 #: modules/elementor/widgets/class-cartflows-pro-el-offer-action-link.php:315
 #: modules/elementor/widgets/class-cartflows-pro-el-offer-product-price.php:213
 #: modules/elementor/widgets/class-cartflows-pro-el-offer-product-title.php:213
-#: modules/gutenberg/dist/blocks.build.js:1
 msgid "Hover"
 msgstr ""
 
@@ -2694,7 +2629,6 @@ msgid "Hover Background Color"
 msgstr ""
 
 #: modules/elementor/widgets/class-cartflows-pro-el-offer-action-button.php:478
-#: modules/gutenberg/dist/blocks.build.js:1
 msgid "Text Alignment"
 msgstr ""
 
@@ -2743,7 +2677,6 @@ msgstr ""
 #: modules/elementor/widgets/class-cartflows-pro-el-offer-product-quantity.php:256
 #: modules/elementor/widgets/class-cartflows-pro-el-offer-product-title.php:203
 #: modules/elementor/widgets/class-cartflows-pro-el-offer-product-variation.php:222
-#: modules/gutenberg/dist/blocks.build.js:1
 msgid "Text Shadow"
 msgstr ""
 
@@ -2752,7 +2685,6 @@ msgid "Image bottom Spacing"
 msgstr ""
 
 #: modules/elementor/widgets/class-cartflows-pro-el-offer-product-image.php:184
-#: modules/gutenberg/dist/blocks.build.js:1
 msgid "Image Border"
 msgstr ""
 
@@ -2761,7 +2693,6 @@ msgid "Image Rounded Corners"
 msgstr ""
 
 #: modules/elementor/widgets/class-cartflows-pro-el-offer-product-image.php:243
-#: modules/gutenberg/dist/blocks.build.js:1
 msgid "Thumbnail Border"
 msgstr ""
 
@@ -2803,25 +2734,25 @@ msgid "Pre-Order Release Payment Failed: %s"
 msgstr ""
 
 #. translators: %1s error message
-#: modules/gateways/class-cartflows-pro-gateway-authorize-net.php:691
+#: modules/gateways/class-cartflows-pro-gateway-authorize-net.php:690
 msgid "Authorize.net CIM Transaction Failed (%s)"
 msgstr ""
 
 #. translators: %1s site name
-#: modules/gateways/class-cartflows-pro-gateway-authorize-net.php:701
+#: modules/gateways/class-cartflows-pro-gateway-authorize-net.php:700
 msgid "Authorize.Net CIM Transaction Failed (%s)"
 msgstr ""
 
 #. translators: %1s site name
 #. translators: %1$s: site name, %2$s: order id, %3$s: step id
-#: modules/gateways/class-cartflows-pro-gateway-cpsw-stripe.php:272
-#: modules/gateways/class-cartflows-pro-gateway-square-old.php:265
-#: modules/gateways/class-cartflows-pro-gateway-square.php:308
+#: modules/gateways/class-cartflows-pro-gateway-cpsw-stripe.php:277
+#: modules/gateways/class-cartflows-pro-gateway-square-old.php:264
+#: modules/gateways/class-cartflows-pro-gateway-square.php:340
 msgid "%1$s - Order %2$s_%3$s - One Click Payment"
 msgstr ""
 
 #. translators: %1s order number
-#: modules/gateways/class-cartflows-pro-gateway-cpsw-stripe.php:274
+#: modules/gateways/class-cartflows-pro-gateway-cpsw-stripe.php:279
 msgid "Order %1$s_%2$s OTO"
 msgstr ""
 
@@ -2857,17 +2788,17 @@ msgid "Orders with %s"
 msgstr ""
 
 #: modules/gateways/class-cartflows-pro-gateway-paypal-express.php:672
-#: modules/gateways/class-cartflows-pro-gateway-paypal-standard.php:1177
+#: modules/gateways/class-cartflows-pro-gateway-paypal-standard.php:1175
 msgid "Unable to find order for PayPal billing agreement."
 msgstr ""
 
-#: modules/gateways/class-cartflows-pro-gateway-paypal-express.php:726
-#: modules/gateways/class-cartflows-pro-gateway-paypal-standard.php:1231
+#: modules/gateways/class-cartflows-pro-gateway-paypal-express.php:727
+#: modules/gateways/class-cartflows-pro-gateway-paypal-standard.php:1230
 msgid "An error occurred, please try again or try an alternate form of payment."
 msgstr ""
 
 #. translators: exception message.
-#: modules/gateways/class-cartflows-pro-gateway-paypal-express.php:1046
+#: modules/gateways/class-cartflows-pro-gateway-paypal-express.php:1047
 msgid "PayPal Exp Transaction Failed (%s)"
 msgstr ""
 
@@ -2892,26 +2823,27 @@ msgstr ""
 msgid "One Time Offer - "
 msgstr ""
 
-#: modules/gateways/class-cartflows-pro-gateway-square.php:565
-msgid "API call to create a purchase failed."
-msgstr ""
-
 #. translators: %1s site name
-#: modules/gateways/class-cartflows-pro-gateway-stripe.php:410
+#: modules/gateways/class-cartflows-pro-gateway-stripe.php:411
 msgid "%1$s - Order %2$s - One Time offer"
 msgstr ""
 
 #. translators: %1s order number
-#: modules/gateways/class-cartflows-pro-gateway-stripe.php:413
+#: modules/gateways/class-cartflows-pro-gateway-stripe.php:414
+#: modules/gateways/class-cartflows-pro-gateway-woocommerce-payments.php:499
 msgid "Order %1$s-OTO"
 msgstr ""
 
-#: modules/gateways/class-cartflows-pro-gateway-stripe.php:425
+#: modules/gateways/class-cartflows-pro-gateway-stripe.php:426
 msgid "customer_name"
 msgstr ""
 
-#: modules/gateways/class-cartflows-pro-gateway-stripe.php:426
+#: modules/gateways/class-cartflows-pro-gateway-stripe.php:427
 msgid "customer_email"
+msgstr ""
+
+#: modules/gateways/class-cartflows-pro-gateway-woocommerce-payments.php:220
+msgid "No payment. No gateway found"
 msgstr ""
 
 #: modules/gateways/class-cartflows-pro-paypal-gateway-helper.php:159
@@ -2923,19 +2855,19 @@ msgstr ""
 msgid "%s - Order"
 msgstr ""
 
-#: modules/gutenberg/classes/class-cartflows-pro-init-blocks.php:352
+#: modules/gutenberg/classes/class-cartflows-pro-init-blocks.php:372
 msgid "Cartflows Pro"
 msgstr ""
 
-#: modules/offer/classes/class-cartflows-pro-base-offer-markup.php:213
+#: modules/offer/classes/class-cartflows-pro-base-offer-markup.php:219
 msgid "Oooops! Product is out of stock."
 msgstr ""
 
-#: modules/offer/classes/class-cartflows-pro-base-offer-markup.php:235
+#: modules/offer/classes/class-cartflows-pro-base-offer-markup.php:241
 msgid "Oooops! Product's price is not correct."
 msgstr ""
 
-#: modules/offer/classes/class-cartflows-pro-base-offer-markup.php:347
+#: modules/offer/classes/class-cartflows-pro-base-offer-markup.php:353
 msgid "Redirecting..."
 msgstr ""
 
@@ -3203,314 +3135,15 @@ msgstr ""
 msgid "Step ID:"
 msgstr ""
 
-#: modules/gutenberg/dist/blocks.build.js:1
-msgid "Hide Advanced"
-msgstr ""
-
-#: modules/gutenberg/dist/blocks.build.js:1
-msgid "Advanced"
-msgstr ""
-
-#: modules/gutenberg/dist/blocks.build.js:1
-msgid "Line Height"
-msgstr ""
-
-#: modules/gutenberg/dist/blocks.build.js:1
-msgid "Font Size"
-msgstr ""
-
-#: modules/gutenberg/dist/blocks.build.js:1
-msgid "cartflows pro"
-msgstr ""
-
-#: modules/gutenberg/dist/blocks.build.js:1
-msgid "Offer yes no link"
-msgstr ""
-
-#: modules/gutenberg/dist/blocks.build.js:1
-msgid "cfp"
-msgstr ""
-
-#: modules/gutenberg/dist/blocks.build.js:1
-msgid "Select Icon"
-msgstr ""
-
-#: modules/gutenberg/dist/blocks.build.js:1
+#. translators: abbreviation for units
+#: modules/gutenberg/build/blocks.js:11
 msgid "Before Link Text"
 msgstr ""
 
-#: modules/gutenberg/dist/blocks.build.js:1
+#: modules/gutenberg/build/blocks.js:11
 msgid "After Link Text"
 msgstr ""
 
-#: modules/gutenberg/dist/blocks.build.js:1
-msgid "Spacing"
-msgstr ""
-
-#: modules/gutenberg/dist/blocks.build.js:1
-msgid "Margin (px)"
-msgstr ""
-
-#: modules/gutenberg/dist/blocks.build.js:1
+#: modules/gutenberg/build/blocks.js:11
 msgid "Add text…"
-msgstr ""
-
-#: modules/gutenberg/dist/blocks.build.js:1
-msgid "px"
-msgstr ""
-
-#: modules/gutenberg/dist/blocks.build.js:1
-msgid "em"
-msgstr ""
-
-#: modules/gutenberg/dist/blocks.build.js:1
-msgid "Size Type"
-msgstr ""
-
-#: modules/gutenberg/dist/blocks.build.js:1
-msgid "offer yes no button"
-msgstr ""
-
-#: modules/gutenberg/dist/blocks.build.js:1
-msgid "Decline Offer"
-msgstr ""
-
-#: modules/gutenberg/dist/blocks.build.js:1
-msgid "Background Type"
-msgstr ""
-
-#: modules/gutenberg/dist/blocks.build.js:1
-msgid "Color"
-msgstr ""
-
-#: modules/gutenberg/dist/blocks.build.js:1
-msgid "Image"
-msgstr ""
-
-#: modules/gutenberg/dist/blocks.build.js:1
-msgid "Background Image"
-msgstr ""
-
-#: modules/gutenberg/dist/blocks.build.js:1
-msgid "Select Background Image"
-msgstr ""
-
-#: modules/gutenberg/dist/blocks.build.js:1
-msgid "Replace image"
-msgstr ""
-
-#: modules/gutenberg/dist/blocks.build.js:1
-msgid "Remove Image"
-msgstr ""
-
-#: modules/gutenberg/dist/blocks.build.js:1
-msgid "Top Left"
-msgstr ""
-
-#: modules/gutenberg/dist/blocks.build.js:1
-msgid "Top Center"
-msgstr ""
-
-#: modules/gutenberg/dist/blocks.build.js:1
-msgid "Top Right"
-msgstr ""
-
-#: modules/gutenberg/dist/blocks.build.js:1
-msgid "Center Left"
-msgstr ""
-
-#: modules/gutenberg/dist/blocks.build.js:1
-msgid "Center Center"
-msgstr ""
-
-#: modules/gutenberg/dist/blocks.build.js:1
-msgid "Center Right"
-msgstr ""
-
-#: modules/gutenberg/dist/blocks.build.js:1
-msgid "Bottom Left"
-msgstr ""
-
-#: modules/gutenberg/dist/blocks.build.js:1
-msgid "Bottom Center"
-msgstr ""
-
-#: modules/gutenberg/dist/blocks.build.js:1
-msgid "Bottom Right"
-msgstr ""
-
-#: modules/gutenberg/dist/blocks.build.js:1
-msgid "Attachment"
-msgstr ""
-
-#: modules/gutenberg/dist/blocks.build.js:1
-msgid "Fixed"
-msgstr ""
-
-#: modules/gutenberg/dist/blocks.build.js:1
-msgid "Scroll"
-msgstr ""
-
-#: modules/gutenberg/dist/blocks.build.js:1
-msgid "Repeat"
-msgstr ""
-
-#: modules/gutenberg/dist/blocks.build.js:1
-msgid "No Repeat"
-msgstr ""
-
-#: modules/gutenberg/dist/blocks.build.js:1
-msgid "Repeat-x"
-msgstr ""
-
-#: modules/gutenberg/dist/blocks.build.js:1
-msgid "Repeat-y"
-msgstr ""
-
-#: modules/gutenberg/dist/blocks.build.js:1
-msgid "Size"
-msgstr ""
-
-#: modules/gutenberg/dist/blocks.build.js:1
-msgid "Auto"
-msgstr ""
-
-#: modules/gutenberg/dist/blocks.build.js:1
-msgid "Cover"
-msgstr ""
-
-#: modules/gutenberg/dist/blocks.build.js:1
-msgid "Contain"
-msgstr ""
-
-#: modules/gutenberg/dist/blocks.build.js:1
-msgid "Opacity"
-msgstr ""
-
-#: modules/gutenberg/dist/blocks.build.js:1
-msgid "Icon Color"
-msgstr ""
-
-#: modules/gutenberg/dist/blocks.build.js:1
-msgid "Text"
-msgstr ""
-
-#: modules/gutenberg/dist/blocks.build.js:1
-msgid "Groove"
-msgstr ""
-
-#: modules/gutenberg/dist/blocks.build.js:1
-msgid "Inset"
-msgstr ""
-
-#: modules/gutenberg/dist/blocks.build.js:1
-msgid "Outset"
-msgstr ""
-
-#: modules/gutenberg/dist/blocks.build.js:1
-msgid "Ridge"
-msgstr ""
-
-#: modules/gutenberg/dist/blocks.build.js:1
-msgid "Title Bottom Spacing (px)"
-msgstr ""
-
-#: modules/gutenberg/dist/blocks.build.js:1
-msgid "Color Settings"
-msgstr ""
-
-#: modules/gutenberg/dist/blocks.build.js:1
-msgid "Overlay Color"
-msgstr ""
-
-#: modules/gutenberg/dist/blocks.build.js:1
-msgid "cartflows"
-msgstr ""
-
-#: modules/gutenberg/dist/blocks.build.js:1
-msgid "offer product title"
-msgstr ""
-
-#: modules/gutenberg/dist/blocks.build.js:1
-msgid "product title"
-msgstr ""
-
-#: modules/gutenberg/dist/blocks.build.js:1
-msgid "offer product description"
-msgstr ""
-
-#: modules/gutenberg/dist/blocks.build.js:1
-msgid "offer product price"
-msgstr ""
-
-#: modules/gutenberg/dist/blocks.build.js:1
-msgid "offer product quantity"
-msgstr ""
-
-#: modules/gutenberg/dist/blocks.build.js:1
-msgid "Input Field Border"
-msgstr ""
-
-#: modules/gutenberg/dist/blocks.build.js:1
-msgid "offer product variation"
-msgstr ""
-
-#: modules/gutenberg/dist/blocks.build.js:1
-msgid "offer product image"
-msgstr ""
-
-#: modules/gutenberg/dist/blocks.build.js:1
-msgid "Product Option"
-msgstr ""
-
-#: modules/gutenberg/dist/blocks.build.js:1
-msgid "Your Proucts"
-msgstr ""
-
-#: modules/gutenberg/dist/blocks.build.js:1
-msgid "Border Width (px)"
-msgstr ""
-
-#: modules/gutenberg/dist/blocks.build.js:1
-msgid "Hightlight Product"
-msgstr ""
-
-#: modules/gutenberg/dist/blocks.build.js:1
-msgid "Hightlight Flag"
-msgstr ""
-
-#: modules/gutenberg/dist/blocks.build.js:1
-msgid "Flag Text Color"
-msgstr ""
-
-#: modules/gutenberg/dist/blocks.build.js:1
-msgid "Flag Background Color"
-msgstr ""
-
-#: modules/gutenberg/dist/blocks.build.js:1
-msgid "Product option"
-msgstr ""
-
-#: modules/gutenberg/dist/blocks.build.js:1
-msgid "Please enable Product option from meta settings."
-msgstr ""
-
-#: modules/gutenberg/dist/blocks.build.js:1
-msgid "Pre Checkout Offer"
-msgstr ""
-
-#: modules/gutenberg/dist/blocks.build.js:1
-msgid "Enable preview"
-msgstr ""
-
-#: modules/gutenberg/dist/blocks.build.js:1
-msgid "Overlay color visible at front-end."
-msgstr ""
-
-#: modules/gutenberg/dist/blocks.build.js:1
-msgid "Modal Background Color"
-msgstr ""
-
-#: modules/gutenberg/dist/blocks.build.js:1
-msgid "Please enable Pre Checkout Offer from meta settings."
 msgstr ""

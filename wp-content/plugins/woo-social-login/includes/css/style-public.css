@@ -396,3 +396,39 @@ form.bbp-login-form #woo-slg-social-container-login{
     font-size: 13px;
     margin: 5px 0 21px;
 }
+
+/* googleplus change */
+.woo-slg-social-googleplus {
+    position: relative;
+    top: -35px;
+    height: 0;
+    max-width: fit-content;
+}
+.woo-slg-social-googleplus > div {
+    opacity: 0;
+    height: 0;
+    width: 100%;
+    left: -7px;
+}
+.woo-slg-social-googleplus iframe {
+    width: 100% !important;
+    margin: 0 !important;
+    top: -11px !important;
+}
+.woo-slg-social-btn .woo-slg-social-googleplus iframe,
+.woo-slg-social-btn .woo-slg-social-googleplus > div {
+    width: 250px !important;
+}
+.woo-slg-social-btn .woo-slg-social-googleplus > div {
+     left: -18px;
+}
+.login-action-login .woo-slg-social-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.woo-slg-social-googleplus .S9gUrf-YoZ4jf > div {
+    width: 100%;
+    position: absolute;
+}

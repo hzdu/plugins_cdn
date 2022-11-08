@@ -2,14 +2,14 @@
 # This file is distributed under the same license as the CartFlows plugin.
 msgid ""
 msgstr ""
-"Project-Id-Version: CartFlows 1.11.3\n"
+"Project-Id-Version: CartFlows 1.11.4\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/cartflows\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2022-11-04T10:10:28+00:00\n"
+"POT-Creation-Date: 2022-11-04T12:38:38+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.5.0\n"
 "X-Domain: cartflows\n"
@@ -293,7 +293,7 @@ msgstr ""
 #. translators: %1$s: HTML, %2$s: HTML
 #: admin-core/ajax/importer.php:784
 #: admin-core/ajax/importer.php:896
-#: admin-core/inc/admin-helper.php:986
+#: admin-core/inc/admin-helper.php:1008
 msgid "Request timeout error. Please check if the firewall or any security plugin is blocking the outgoing HTTP/HTTPS requests to templates.cartflows.com or not. %1$1sTo resolve this issue, please check this %2$2sarticle%3$3s."
 msgstr ""
 
@@ -468,7 +468,7 @@ msgstr ""
 #: modules/optin/classes/class-cartflows-optin-meta-data.php:206
 #: modules/optin/classes/class-cartflows-optin-meta-data.php:405
 #: admin-core/assets/build/editor-app.js:53
-#: modules/gutenberg/dist/blocks.build.js:1
+#: modules/gutenberg/build/blocks.js:11
 msgid "Default"
 msgstr ""
 
@@ -509,16 +509,16 @@ msgstr ""
 msgid "Restore"
 msgstr ""
 
-#: admin-core/inc/admin-helper.php:974
+#: admin-core/inc/admin-helper.php:996
 msgid "Ooops! Something went wrong. Please open a support ticket from the website."
 msgstr ""
 
-#: admin-core/inc/admin-helper.php:975
+#: admin-core/inc/admin-helper.php:997
 msgid "No error found."
 msgstr ""
 
 #. translators: %1$s: HTML, %2$s: HTML, %3$s: HTML
-#: admin-core/inc/admin-helper.php:1000
+#: admin-core/inc/admin-helper.php:1022
 msgid "Sorry for the inconvenience, but your website seems to be having trouble connecting to our server. %1$s Please open a technical %2$ssupport ticket%3$s and share the server's outgoing IP address."
 msgstr ""
 
@@ -1137,9 +1137,16 @@ msgstr ""
 msgid "Place Order"
 msgstr ""
 
+#: classes/class-cartflows-default-meta.php:538
+#: modules/beaver-builder/cartflows-bb-order-details/cartflows-bb-order-details.php:102
+#: modules/elementor/widgets/class-cartflows-el-order-details-form.php:163
+#: modules/thankyou/classes/class-cartflows-thankyou-meta-data.php:277
+#: modules/gutenberg/build/blocks.js:7
+msgid "Thank you. Your order has been received."
+msgstr ""
+
 #: classes/class-cartflows-default-meta.php:705
 #: modules/optin/classes/class-cartflows-optin-meta-data.php:686
-#: modules/gutenberg/dist/blocks.build.js:1
 msgid "Submit"
 msgstr ""
 
@@ -1180,7 +1187,6 @@ msgstr ""
 #: modules/beaver-builder/cartflows-bb-next-step/cartflows-bb-next-step.php:249
 #: modules/beaver-builder/cartflows-bb-optin-form/cartflows-bb-optin-form.php:202
 #: modules/beaver-builder/cartflows-bb-optin-form/cartflows-bb-optin-form.php:348
-#: modules/gutenberg/dist/blocks.build.js:1
 msgid "None"
 msgstr ""
 
@@ -1266,9 +1272,8 @@ msgstr ""
 
 #: modules/beaver-builder/cartflows-bb-checkout-form/cartflows-bb-checkout-form.php:33
 #: modules/elementor/widgets/class-cartflows-el-checkout-form.php:66
-#: modules/gutenberg/classes/class-cartflows-block-config.php:311
-#: modules/gutenberg/dist/blocks-placeholder.js:9
-#: modules/gutenberg/dist/blocks.build.js:1
+#: modules/gutenberg/classes/class-cartflows-block-config.php:368
+#: modules/gutenberg/build/blocks-placeholder.js:9
 msgid "Checkout Form"
 msgstr ""
 
@@ -1292,7 +1297,7 @@ msgstr ""
 #: modules/checkout/classes/class-cartflows-checkout-meta-data.php:233
 #: modules/elementor/widgets/class-cartflows-el-checkout-form.php:153
 #: modules/elementor/widgets/class-cartflows-el-checkout-form.php:161
-#: modules/gutenberg/dist/blocks.build.js:1
+#: modules/gutenberg/build/blocks.js:11
 msgid "Modern Checkout"
 msgstr ""
 
@@ -1301,7 +1306,7 @@ msgstr ""
 #: modules/checkout/classes/class-cartflows-checkout-meta-data.php:237
 #: modules/elementor/widgets/class-cartflows-el-checkout-form.php:154
 #: modules/elementor/widgets/class-cartflows-el-checkout-form.php:162
-#: modules/gutenberg/dist/blocks.build.js:1
+#: modules/gutenberg/build/blocks.js:11
 msgid "Modern One Column"
 msgstr ""
 
@@ -1310,7 +1315,7 @@ msgstr ""
 #: modules/checkout/classes/class-cartflows-checkout-meta-data.php:241
 #: modules/elementor/widgets/class-cartflows-el-checkout-form.php:155
 #: modules/elementor/widgets/class-cartflows-el-checkout-form.php:163
-#: modules/gutenberg/dist/blocks.build.js:1
+#: modules/gutenberg/build/blocks.js:11
 msgid "One Column"
 msgstr ""
 
@@ -1319,7 +1324,7 @@ msgstr ""
 #: modules/checkout/classes/class-cartflows-checkout-meta-data.php:245
 #: modules/elementor/widgets/class-cartflows-el-checkout-form.php:156
 #: modules/elementor/widgets/class-cartflows-el-checkout-form.php:164
-#: modules/gutenberg/dist/blocks.build.js:1
+#: modules/gutenberg/build/blocks.js:11
 msgid "Two Column"
 msgstr ""
 
@@ -1331,14 +1336,14 @@ msgstr ""
 #: modules/beaver-builder/cartflows-bb-checkout-form/cartflows-bb-checkout-form.php:149
 #: modules/checkout/classes/class-cartflows-checkout-meta-data.php:249
 #: modules/elementor/widgets/class-cartflows-el-checkout-form.php:165
-#: modules/gutenberg/dist/blocks.build.js:1
+#: modules/gutenberg/build/blocks.js:11
 msgid "Two Step"
 msgstr ""
 
 #: modules/beaver-builder/cartflows-bb-checkout-form/cartflows-bb-checkout-form.php:166
 #: modules/checkout/classes/class-cartflows-checkout-meta-data.php:357
 #: modules/elementor/widgets/class-cartflows-el-checkout-form.php:182
-#: modules/gutenberg/dist/blocks.build.js:1
+#: modules/gutenberg/build/blocks.js:11
 msgid "Modern Labels"
 msgstr ""
 
@@ -1353,13 +1358,12 @@ msgstr ""
 #: modules/landing/classes/class-cartflows-landing-meta-data.php:107
 #: modules/optin/classes/class-cartflows-optin-meta-data.php:655
 #: modules/thankyou/classes/class-cartflows-thankyou-meta-data.php:215
-#: modules/gutenberg/dist/blocks.build.js:1
 msgid "General"
 msgstr ""
 
 #: modules/beaver-builder/cartflows-bb-checkout-form/cartflows-bb-checkout-form.php:188
 #: modules/elementor/widgets/class-cartflows-el-checkout-form.php:206
-#: modules/gutenberg/dist/blocks.build.js:1
+#: modules/gutenberg/build/blocks.js:11
 msgid "Select Layout"
 msgstr ""
 
@@ -1379,14 +1383,14 @@ msgstr ""
 #: modules/elementor/widgets/class-cartflows-el-checkout-form.php:469
 #: modules/elementor/widgets/class-cartflows-el-optin-form.php:207
 #: modules/optin/classes/class-cartflows-optin-meta-data.php:399
-#: modules/gutenberg/dist/blocks.build.js:1
+#: modules/gutenberg/build/blocks.js:11
 msgid "Style"
 msgstr ""
 
 #: modules/beaver-builder/cartflows-bb-checkout-form/cartflows-bb-checkout-form.php:205
 #: modules/beaver-builder/cartflows-bb-optin-form/cartflows-bb-optin-form.php:115
 #: modules/elementor/widgets/class-cartflows-el-checkout-form.php:290
-#: modules/gutenberg/dist/blocks.build.js:1
+#: modules/gutenberg/build/blocks.js:11
 msgid "Global"
 msgstr ""
 
@@ -1396,7 +1400,7 @@ msgstr ""
 #: modules/elementor/widgets/class-cartflows-el-checkout-form.php:298
 #: modules/elementor/widgets/class-cartflows-el-optin-form.php:168
 #: modules/optin/classes/class-cartflows-optin-meta-data.php:381
-#: modules/gutenberg/dist/blocks.build.js:1
+#: modules/gutenberg/build/blocks.js:11
 #: wizard/assets/build/wizard-app.js:5
 msgid "Primary Color"
 msgstr ""
@@ -1435,7 +1439,8 @@ msgstr ""
 #: modules/elementor/widgets/class-cartflows-el-order-details-form.php:706
 #: modules/elementor/widgets/class-cartflows-el-order-details-form.php:736
 #: modules/optin/classes/class-cartflows-optin-meta-data.php:585
-#: modules/gutenberg/dist/blocks.build.js:1
+#: modules/gutenberg/build/blocks.js:7
+#: modules/gutenberg/build/blocks.js:11
 msgid "Text Color"
 msgstr ""
 
@@ -1451,10 +1456,12 @@ msgstr ""
 #: modules/beaver-builder/cartflows-bb-order-details/cartflows-bb-order-details.php:211
 #: modules/beaver-builder/cartflows-bb-order-details/cartflows-bb-order-details.php:239
 #: modules/beaver-builder/cartflows-bb-order-details/cartflows-bb-order-details.php:285
-#: modules/gutenberg/dist/blocks.build.js:1
+#: modules/gutenberg/build/blocks.js:7
+#: modules/gutenberg/build/blocks.js:11
 msgid "Typography"
 msgstr ""
 
+#. translators: abbreviation for units
 #: modules/beaver-builder/cartflows-bb-checkout-form/cartflows-bb-checkout-form.php:241
 #: modules/beaver-builder/cartflows-bb-order-details/cartflows-bb-order-details.php:193
 #: modules/checkout/classes/class-cartflows-checkout-meta-data.php:284
@@ -1464,7 +1471,8 @@ msgstr ""
 #: modules/elementor/widgets/class-cartflows-el-order-details-form.php:600
 #: modules/elementor/widgets/class-cartflows-el-order-details-form.php:689
 #: modules/thankyou/classes/class-cartflows-thankyou-meta-data.php:92
-#: modules/gutenberg/dist/blocks.build.js:1
+#: modules/gutenberg/build/blocks.js:7
+#: modules/gutenberg/build/blocks.js:11
 msgid "Heading"
 msgstr ""
 
@@ -1484,7 +1492,7 @@ msgstr ""
 #: modules/elementor/widgets/class-cartflows-el-checkout-form.php:957
 #: modules/elementor/widgets/class-cartflows-el-optin-form.php:226
 #: modules/optin/classes/class-cartflows-optin-meta-data.php:471
-#: modules/gutenberg/dist/blocks.build.js:1
+#: modules/gutenberg/build/blocks.js:11
 msgid "Label Color"
 msgstr ""
 
@@ -1492,7 +1500,7 @@ msgstr ""
 #: modules/beaver-builder/cartflows-bb-optin-form/cartflows-bb-optin-form.php:161
 #: modules/elementor/widgets/class-cartflows-el-checkout-form.php:509
 #: modules/elementor/widgets/class-cartflows-el-optin-form.php:237
-#: modules/gutenberg/dist/blocks.build.js:1
+#: modules/gutenberg/build/blocks.js:11
 msgid "Field Background Color"
 msgstr ""
 
@@ -1500,7 +1508,6 @@ msgstr ""
 #: modules/beaver-builder/cartflows-bb-optin-form/cartflows-bb-optin-form.php:175
 #: modules/elementor/widgets/class-cartflows-el-checkout-form.php:525
 #: modules/elementor/widgets/class-cartflows-el-optin-form.php:248
-#: modules/gutenberg/dist/blocks.build.js:1
 msgid "Input Text / Placeholder Color"
 msgstr ""
 
@@ -1510,7 +1517,6 @@ msgstr ""
 #: modules/beaver-builder/cartflows-bb-optin-form/cartflows-bb-optin-form.php:344
 #: modules/elementor/widgets/class-cartflows-el-checkout-form.php:543
 #: modules/elementor/widgets/class-cartflows-el-optin-form.php:259
-#: modules/gutenberg/dist/blocks.build.js:1
 msgid "Border Style"
 msgstr ""
 
@@ -1527,7 +1533,6 @@ msgstr ""
 #: modules/beaver-builder/cartflows-bb-optin-form/cartflows-bb-optin-form.php:349
 #: modules/elementor/widgets/class-cartflows-el-checkout-form.php:549
 #: modules/elementor/widgets/class-cartflows-el-optin-form.php:265
-#: modules/gutenberg/dist/blocks.build.js:1
 msgid "Solid"
 msgstr ""
 
@@ -1537,7 +1542,6 @@ msgstr ""
 #: modules/beaver-builder/cartflows-bb-optin-form/cartflows-bb-optin-form.php:350
 #: modules/elementor/widgets/class-cartflows-el-checkout-form.php:552
 #: modules/elementor/widgets/class-cartflows-el-optin-form.php:268
-#: modules/gutenberg/dist/blocks.build.js:1
 msgid "Dashed"
 msgstr ""
 
@@ -1547,7 +1551,6 @@ msgstr ""
 #: modules/beaver-builder/cartflows-bb-optin-form/cartflows-bb-optin-form.php:351
 #: modules/elementor/widgets/class-cartflows-el-checkout-form.php:551
 #: modules/elementor/widgets/class-cartflows-el-optin-form.php:267
-#: modules/gutenberg/dist/blocks.build.js:1
 msgid "Dotted"
 msgstr ""
 
@@ -1557,7 +1560,6 @@ msgstr ""
 #: modules/beaver-builder/cartflows-bb-optin-form/cartflows-bb-optin-form.php:352
 #: modules/elementor/widgets/class-cartflows-el-checkout-form.php:550
 #: modules/elementor/widgets/class-cartflows-el-optin-form.php:266
-#: modules/gutenberg/dist/blocks.build.js:1
 msgid "Double"
 msgstr ""
 
@@ -1567,7 +1569,6 @@ msgstr ""
 #: modules/beaver-builder/cartflows-bb-optin-form/cartflows-bb-optin-form.php:377
 #: modules/elementor/widgets/class-cartflows-el-checkout-form.php:567
 #: modules/elementor/widgets/class-cartflows-el-optin-form.php:278
-#: modules/gutenberg/dist/blocks.build.js:1
 msgid "Border Width"
 msgstr ""
 
@@ -1583,7 +1584,7 @@ msgstr ""
 #: modules/elementor/widgets/class-cartflows-el-optin-form.php:290
 #: modules/optin/classes/class-cartflows-optin-meta-data.php:489
 #: modules/optin/classes/class-cartflows-optin-meta-data.php:609
-#: modules/gutenberg/dist/blocks.build.js:1
+#: modules/gutenberg/build/blocks.js:11
 msgid "Border Color"
 msgstr ""
 
@@ -1592,7 +1593,7 @@ msgstr ""
 #: modules/beaver-builder/cartflows-bb-checkout-form/cartflows-bb-checkout-form.php:750
 #: modules/beaver-builder/cartflows-bb-optin-form/cartflows-bb-optin-form.php:258
 #: modules/beaver-builder/cartflows-bb-optin-form/cartflows-bb-optin-form.php:421
-#: modules/gutenberg/dist/blocks.build.js:1
+#: modules/gutenberg/build/blocks.js:11
 msgid "Border Radius"
 msgstr ""
 
@@ -1600,6 +1601,7 @@ msgstr ""
 #: modules/beaver-builder/cartflows-bb-optin-form/cartflows-bb-optin-form.php:274
 #: modules/checkout/classes/class-cartflows-checkout-meta-data.php:524
 #: modules/elementor/widgets/class-cartflows-el-checkout-form.php:628
+#: modules/gutenberg/build/blocks.js:11
 msgid "Buttons"
 msgstr ""
 
@@ -1608,7 +1610,7 @@ msgstr ""
 #: modules/beaver-builder/cartflows-bb-optin-form/cartflows-bb-optin-form.php:292
 #: modules/checkout/classes/class-cartflows-checkout-meta-data.php:653
 #: modules/optin/classes/class-cartflows-optin-meta-data.php:591
-#: modules/gutenberg/dist/blocks.build.js:1
+#: modules/gutenberg/build/blocks.js:11
 msgid "Text Hover Color"
 msgstr ""
 
@@ -1638,7 +1640,7 @@ msgstr ""
 #: modules/elementor/widgets/class-cartflows-el-order-details-form.php:749
 #: modules/optin/classes/class-cartflows-optin-meta-data.php:483
 #: modules/optin/classes/class-cartflows-optin-meta-data.php:597
-#: modules/gutenberg/dist/blocks.build.js:1
+#: modules/gutenberg/build/blocks.js:11
 msgid "Background Color"
 msgstr ""
 
@@ -1647,6 +1649,7 @@ msgstr ""
 #: modules/beaver-builder/cartflows-bb-optin-form/cartflows-bb-optin-form.php:320
 #: modules/checkout/classes/class-cartflows-checkout-meta-data.php:683
 #: modules/optin/classes/class-cartflows-optin-meta-data.php:603
+#: modules/gutenberg/build/blocks.js:11
 msgid "Background Hover Color"
 msgstr ""
 
@@ -1658,32 +1661,29 @@ msgstr ""
 #: modules/elementor/widgets/class-cartflows-el-next-step-button.php:448
 #: modules/elementor/widgets/class-cartflows-el-optin-form.php:421
 #: modules/optin/classes/class-cartflows-optin-meta-data.php:615
-#: modules/gutenberg/dist/blocks.build.js:1
 msgid "Border Hover Color"
 msgstr ""
 
 #: modules/beaver-builder/cartflows-bb-checkout-form/cartflows-bb-checkout-form.php:668
 #: modules/elementor/widgets/class-cartflows-el-checkout-form.php:833
-#: modules/gutenberg/dist/blocks.build.js:1
+#: modules/gutenberg/build/blocks.js:11
 msgid "Payment Section"
 msgstr ""
 
 #: modules/beaver-builder/cartflows-bb-checkout-form/cartflows-bb-checkout-form.php:686
 #: modules/elementor/widgets/class-cartflows-el-checkout-form.php:854
-#: modules/gutenberg/dist/blocks.build.js:1
+#: modules/gutenberg/build/blocks.js:11
 msgid "Description Color"
 msgstr ""
 
 #: modules/beaver-builder/cartflows-bb-checkout-form/cartflows-bb-checkout-form.php:700
 #: modules/elementor/widgets/class-cartflows-el-checkout-form.php:879
-#: modules/gutenberg/dist/blocks.build.js:1
 msgid "Information Background Color"
 msgstr ""
 
 #: modules/beaver-builder/cartflows-bb-checkout-form/cartflows-bb-checkout-form.php:708
 #: modules/elementor/widgets/class-cartflows-el-checkout-form.php:867
 #: modules/thankyou/classes/class-cartflows-thankyou-meta-data.php:166
-#: modules/gutenberg/dist/blocks.build.js:1
 msgid "Section Background Color"
 msgstr ""
 
@@ -1693,6 +1693,7 @@ msgid "Section Padding"
 msgstr ""
 
 #: modules/beaver-builder/cartflows-bb-checkout-form/cartflows-bb-checkout-form.php:736
+#: modules/gutenberg/build/blocks.js:11
 msgid "Margin"
 msgstr ""
 
@@ -1717,15 +1718,16 @@ msgstr ""
 
 #: modules/beaver-builder/cartflows-bb-checkout-form/cartflows-bb-checkout-form.php:855
 #: modules/elementor/widgets/class-cartflows-el-checkout-form.php:1046
-#: modules/gutenberg/dist/blocks.build.js:1
+#: modules/gutenberg/build/blocks.js:7
+#: modules/gutenberg/build/blocks.js:11
 msgid "Order Review"
 msgstr ""
 
 #: modules/beaver-builder/cartflows-bb-next-step/cartflows-bb-next-step.php:32
 #: modules/elementor/widgets/class-cartflows-el-next-step-button.php:70
-#: modules/gutenberg/classes/class-cartflows-block-config.php:46
-#: modules/gutenberg/dist/blocks-placeholder.js:10
-#: modules/gutenberg/dist/blocks.build.js:1
+#: modules/gutenberg/classes/class-cartflows-block-config.php:54
+#: modules/gutenberg/build/blocks-placeholder.js:10
+#: modules/gutenberg/build/blocks.js:11
 msgid "Next Step Button"
 msgstr ""
 
@@ -1736,7 +1738,7 @@ msgstr ""
 #: modules/beaver-builder/cartflows-bb-next-step/cartflows-bb-next-step.php:139
 #: modules/thankyou/classes/class-cartflows-thankyou-meta-data.php:114
 #: admin-core/assets/build/editor-app.js:53
-#: modules/gutenberg/dist/blocks.build.js:1
+#: modules/gutenberg/build/blocks.js:11
 msgid "Text"
 msgstr ""
 
@@ -1748,13 +1750,12 @@ msgstr ""
 
 #: modules/beaver-builder/cartflows-bb-next-step/cartflows-bb-next-step.php:149
 #: modules/elementor/widgets/class-cartflows-el-next-step-button.php:187
-#: modules/gutenberg/dist/blocks.build.js:1
+#: modules/gutenberg/build/blocks.js:11
 msgid "Icon"
 msgstr ""
 
 #: modules/beaver-builder/cartflows-bb-next-step/cartflows-bb-next-step.php:160
 #: modules/elementor/widgets/class-cartflows-el-next-step-button.php:195
-#: modules/gutenberg/dist/blocks.build.js:1
 msgid "Icon Position"
 msgstr ""
 
@@ -1768,7 +1769,6 @@ msgstr ""
 
 #: modules/beaver-builder/cartflows-bb-next-step/cartflows-bb-next-step.php:172
 #: modules/elementor/widgets/class-cartflows-el-next-step-button.php:240
-#: modules/gutenberg/dist/blocks.build.js:1
 msgid "Icon Spacing"
 msgstr ""
 
@@ -1782,7 +1782,6 @@ msgid "Flat"
 msgstr ""
 
 #: modules/beaver-builder/cartflows-bb-next-step/cartflows-bb-next-step.php:196
-#: modules/gutenberg/dist/blocks.build.js:1
 msgid "Gradient"
 msgstr ""
 
@@ -1891,6 +1890,7 @@ msgid "Auto"
 msgstr ""
 
 #: modules/beaver-builder/cartflows-bb-next-step/cartflows-bb-next-step.php:267
+#: modules/gutenberg/build/blocks.js:11
 msgid "Full Width"
 msgstr ""
 
@@ -1902,10 +1902,11 @@ msgstr ""
 msgid "Custom"
 msgstr ""
 
+#. translators: abbreviation for units
 #: modules/beaver-builder/cartflows-bb-next-step/cartflows-bb-next-step.php:284
 #: modules/elementor/widgets/class-cartflows-el-next-step-button.php:299
 #: modules/elementor/widgets/class-cartflows-el-order-details-form.php:296
-#: modules/gutenberg/dist/blocks.build.js:1
+#: modules/gutenberg/build/blocks.js:11
 msgid "Alignment"
 msgstr ""
 
@@ -1915,7 +1916,8 @@ msgstr ""
 #: modules/elementor/widgets/class-cartflows-el-next-step-button.php:499
 #: modules/elementor/widgets/class-cartflows-el-order-details-form.php:304
 #: modules/optin/classes/class-cartflows-optin-meta-data.php:575
-#: modules/gutenberg/dist/blocks.build.js:1
+#: modules/gutenberg/build/blocks.js:7
+#: modules/gutenberg/build/blocks.js:11
 msgid "Center"
 msgstr ""
 
@@ -1925,7 +1927,8 @@ msgstr ""
 #: modules/elementor/widgets/class-cartflows-el-next-step-button.php:495
 #: modules/elementor/widgets/class-cartflows-el-order-details-form.php:300
 #: modules/optin/classes/class-cartflows-optin-meta-data.php:571
-#: modules/gutenberg/dist/blocks.build.js:1
+#: modules/gutenberg/build/blocks.js:7
+#: modules/gutenberg/build/blocks.js:11
 msgid "Left"
 msgstr ""
 
@@ -1935,7 +1938,8 @@ msgstr ""
 #: modules/elementor/widgets/class-cartflows-el-next-step-button.php:503
 #: modules/elementor/widgets/class-cartflows-el-order-details-form.php:308
 #: modules/optin/classes/class-cartflows-optin-meta-data.php:579
-#: modules/gutenberg/dist/blocks.build.js:1
+#: modules/gutenberg/build/blocks.js:7
+#: modules/gutenberg/build/blocks.js:11
 msgid "Right"
 msgstr ""
 
@@ -1945,7 +1949,7 @@ msgstr ""
 
 #: modules/beaver-builder/cartflows-bb-next-step/cartflows-bb-next-step.php:304
 #: modules/elementor/widgets/class-cartflows-el-next-step-button.php:337
-#: modules/gutenberg/dist/blocks.build.js:1
+#: modules/gutenberg/build/blocks.js:11
 msgid "Padding"
 msgstr ""
 
@@ -1954,7 +1958,7 @@ msgstr ""
 #: modules/elementor/widgets/class-cartflows-el-checkout-form.php:702
 #: modules/elementor/widgets/class-cartflows-el-next-step-button.php:389
 #: modules/elementor/widgets/class-cartflows-el-optin-form.php:373
-#: modules/gutenberg/dist/blocks.build.js:1
+#: modules/gutenberg/build/blocks.js:11
 msgid "Border"
 msgstr ""
 
@@ -1979,7 +1983,6 @@ msgid "Round Corners"
 msgstr ""
 
 #: modules/beaver-builder/cartflows-bb-next-step/cartflows-bb-next-step.php:393
-#: modules/gutenberg/dist/blocks.build.js:1
 msgid "Colors"
 msgstr ""
 
@@ -1988,6 +1991,8 @@ msgid "Apply Hover Color To"
 msgstr ""
 
 #: modules/beaver-builder/cartflows-bb-next-step/cartflows-bb-next-step.php:448
+#: modules/gutenberg/build/blocks.js:7
+#: modules/gutenberg/build/blocks.js:11
 msgid "Background"
 msgstr ""
 
@@ -1997,16 +2002,15 @@ msgstr ""
 
 #: modules/beaver-builder/cartflows-bb-next-step/cartflows-bb-next-step.php:465
 #: modules/elementor/widgets/class-cartflows-el-next-step-button.php:260
-#: modules/gutenberg/dist/blocks.build.js:1
+#: modules/gutenberg/build/blocks.js:11
 msgid "Icon Size"
 msgstr ""
 
 #: modules/beaver-builder/cartflows-bb-optin-form/cartflows-bb-optin-form.php:33
 #: modules/elementor/widgets/class-cartflows-el-optin-form.php:66
-#: modules/gutenberg/classes/class-cartflows-block-config.php:444
+#: modules/gutenberg/classes/class-cartflows-block-config.php:549
 #: modules/optin/classes/class-cartflows-optin-meta-data.php:647
-#: modules/gutenberg/dist/blocks-placeholder.js:11
-#: modules/gutenberg/dist/blocks.build.js:1
+#: modules/gutenberg/build/blocks-placeholder.js:11
 msgid "Optin Form"
 msgstr ""
 
@@ -2022,7 +2026,7 @@ msgstr ""
 
 #: modules/beaver-builder/cartflows-bb-order-details/cartflows-bb-order-details.php:32
 #: modules/elementor/widgets/class-cartflows-el-order-details-form.php:67
-#: modules/gutenberg/classes/class-cartflows-block-config.php:125
+#: modules/gutenberg/classes/class-cartflows-block-config.php:152
 msgid "Order Details Form"
 msgstr ""
 
@@ -2032,22 +2036,15 @@ msgstr ""
 
 #: modules/beaver-builder/cartflows-bb-order-details/cartflows-bb-order-details.php:101
 #: modules/elementor/widgets/class-cartflows-el-order-details-form.php:161
-#: modules/gutenberg/dist/blocks.build.js:1
+#: modules/gutenberg/build/blocks.js:7
 msgid "Thank You Text"
-msgstr ""
-
-#: modules/beaver-builder/cartflows-bb-order-details/cartflows-bb-order-details.php:102
-#: modules/elementor/widgets/class-cartflows-el-order-details-form.php:163
-#: modules/thankyou/classes/class-cartflows-thankyou-meta-data.php:277
-#: modules/gutenberg/dist/blocks.build.js:1
-msgid "Thank you. Your order has been received."
 msgstr ""
 
 #: modules/beaver-builder/cartflows-bb-order-details/cartflows-bb-order-details.php:111
 #: modules/beaver-builder/cartflows-bb-order-details/cartflows-bb-order-details.php:296
 #: modules/elementor/widgets/class-cartflows-el-order-details-form.php:171
 #: modules/elementor/widgets/class-cartflows-el-order-details-form.php:446
-#: modules/gutenberg/dist/blocks.build.js:1
+#: modules/gutenberg/build/blocks.js:7
 msgid "Order Overview"
 msgstr ""
 
@@ -2056,25 +2053,25 @@ msgstr ""
 #: modules/elementor/widgets/class-cartflows-el-order-details-form.php:183
 #: modules/elementor/widgets/class-cartflows-el-order-details-form.php:589
 #: modules/thankyou/classes/class-cartflows-thankyou-meta-data.php:207
-#: modules/gutenberg/dist/blocks.build.js:1
+#: modules/gutenberg/build/blocks.js:7
 msgid "Order Details"
 msgstr ""
 
 #: modules/beaver-builder/cartflows-bb-order-details/cartflows-bb-order-details.php:129
 #: modules/elementor/widgets/class-cartflows-el-order-details-form.php:195
-#: modules/gutenberg/dist/blocks.build.js:1
+#: modules/gutenberg/build/blocks.js:7
 msgid "Billing Address"
 msgstr ""
 
 #: modules/beaver-builder/cartflows-bb-order-details/cartflows-bb-order-details.php:138
 #: modules/elementor/widgets/class-cartflows-el-order-details-form.php:207
-#: modules/gutenberg/dist/blocks.build.js:1
+#: modules/gutenberg/build/blocks.js:7
 msgid "Shipping Address"
 msgstr ""
 
 #: modules/beaver-builder/cartflows-bb-order-details/cartflows-bb-order-details.php:153
 #: modules/elementor/widgets/class-cartflows-el-order-details-form.php:231
-#: modules/gutenberg/dist/blocks.build.js:1
+#: modules/gutenberg/build/blocks.js:11
 msgid "Spacing"
 msgstr ""
 
@@ -2107,7 +2104,6 @@ msgstr ""
 
 #: modules/beaver-builder/cartflows-bb-order-details/cartflows-bb-order-details.php:338
 #: modules/elementor/widgets/class-cartflows-el-order-details-form.php:499
-#: modules/gutenberg/dist/blocks.build.js:1
 msgid "Downloads"
 msgstr ""
 
@@ -2115,6 +2111,7 @@ msgstr ""
 #: modules/beaver-builder/cartflows-bb-order-details/cartflows-bb-order-details.php:407
 #: modules/beaver-builder/cartflows-bb-order-details/cartflows-bb-order-details.php:473
 #: modules/checkout/classes/class-cartflows-checkout-meta-data.php:298
+#: modules/gutenberg/build/blocks.js:11
 msgid "Heading Color"
 msgstr ""
 
@@ -2126,7 +2123,7 @@ msgstr ""
 
 #: modules/beaver-builder/cartflows-bb-order-details/cartflows-bb-order-details.php:469
 #: modules/elementor/widgets/class-cartflows-el-order-details-form.php:681
-#: modules/gutenberg/dist/blocks.build.js:1
+#: modules/gutenberg/build/blocks.js:7
 msgid "Customer Details"
 msgstr ""
 
@@ -2304,11 +2301,11 @@ msgstr ""
 msgid "Email not exist"
 msgstr ""
 
-#: modules/checkout/classes/class-cartflows-checkout-markup.php:2078
+#: modules/checkout/classes/class-cartflows-checkout-markup.php:2090
 msgid "Show Order Summary"
 msgstr ""
 
-#: modules/checkout/classes/class-cartflows-checkout-markup.php:2079
+#: modules/checkout/classes/class-cartflows-checkout-markup.php:2091
 msgid "Hide Order Summary"
 msgstr ""
 
@@ -2359,7 +2356,6 @@ msgstr ""
 #: modules/optin/classes/class-cartflows-optin-meta-data.php:510
 #: modules/thankyou/classes/class-cartflows-thankyou-meta-data.php:104
 #: modules/thankyou/classes/class-cartflows-thankyou-meta-data.php:126
-#: modules/gutenberg/dist/blocks.build.js:1
 msgid "Font Family"
 msgstr ""
 
@@ -2375,7 +2371,6 @@ msgstr ""
 #: modules/checkout/classes/class-cartflows-checkout-meta-data.php:557
 #: modules/optin/classes/class-cartflows-optin-meta-data.php:427
 #: modules/optin/classes/class-cartflows-optin-meta-data.php:521
-#: modules/gutenberg/dist/blocks.build.js:1
 msgid "Size"
 msgstr ""
 
@@ -2435,7 +2430,7 @@ msgstr ""
 
 #: modules/checkout/classes/class-cartflows-checkout-meta-data.php:729
 #: modules/elementor/widgets/class-cartflows-el-order-details-form.php:354
-#: modules/gutenberg/dist/blocks.build.js:1
+#: modules/gutenberg/build/blocks.js:7
 msgid "Sections"
 msgstr ""
 
@@ -2819,12 +2814,12 @@ msgid "All Rights Reserved"
 msgstr ""
 
 #: modules/elementor/class-cartflows-el-widgets-loader.php:123
-#: modules/gutenberg/classes/class-cartflows-init-blocks.php:374
+#: modules/gutenberg/classes/class-cartflows-init-blocks.php:485
 msgid "Cartflows"
 msgstr ""
 
 #: modules/elementor/widgets/class-cartflows-el-checkout-form.php:199
-#: modules/gutenberg/dist/blocks.build.js:1
+#: modules/gutenberg/build/blocks.js:11
 msgid "Layout"
 msgstr ""
 
@@ -2854,7 +2849,7 @@ msgstr ""
 #: modules/elementor/widgets/class-cartflows-el-checkout-form.php:422
 #: modules/thankyou/classes/class-cartflows-thankyou-meta-data.php:98
 #: modules/thankyou/classes/class-cartflows-thankyou-meta-data.php:120
-#: modules/gutenberg/dist/blocks.build.js:1
+#: modules/gutenberg/build/blocks.js:11
 msgid "Color"
 msgstr ""
 
@@ -2874,14 +2869,14 @@ msgstr ""
 #: modules/elementor/widgets/class-cartflows-el-checkout-form.php:656
 #: modules/elementor/widgets/class-cartflows-el-next-step-button.php:351
 #: modules/elementor/widgets/class-cartflows-el-optin-form.php:343
-#: modules/gutenberg/dist/blocks.build.js:1
+#: modules/gutenberg/build/blocks.js:11
 msgid "Normal"
 msgstr ""
 
 #: modules/elementor/widgets/class-cartflows-el-checkout-form.php:756
 #: modules/elementor/widgets/class-cartflows-el-next-step-button.php:411
 #: modules/elementor/widgets/class-cartflows-el-optin-form.php:403
-#: modules/gutenberg/dist/blocks.build.js:1
+#: modules/gutenberg/build/blocks.js:11
 msgid "Hover"
 msgstr ""
 
@@ -2890,12 +2885,10 @@ msgid "Section Margin"
 msgstr ""
 
 #: modules/elementor/widgets/class-cartflows-el-checkout-form.php:918
-#: modules/gutenberg/dist/blocks.build.js:1
 msgid "Section Rounded Corners"
 msgstr ""
 
 #: modules/elementor/widgets/class-cartflows-el-checkout-form.php:948
-#: modules/gutenberg/dist/blocks.build.js:1
 msgid "Field Validation"
 msgstr ""
 
@@ -2905,7 +2898,7 @@ msgstr ""
 
 #: modules/elementor/widgets/class-cartflows-el-next-step-button.php:164
 #: admin-core/assets/build/editor-app.js:53
-#: modules/gutenberg/dist/blocks.build.js:1
+#: modules/gutenberg/build/blocks.js:11
 msgid "Title"
 msgstr ""
 
@@ -2914,27 +2907,26 @@ msgid "BUY NOW"
 msgstr ""
 
 #: modules/elementor/widgets/class-cartflows-el-next-step-button.php:176
-#: modules/gutenberg/dist/blocks.build.js:1
 msgid "Sub Title"
 msgstr ""
 
 #: modules/elementor/widgets/class-cartflows-el-next-step-button.php:199
-#: modules/gutenberg/dist/blocks.build.js:1
+#: modules/gutenberg/build/blocks.js:11
 msgid "Before Title"
 msgstr ""
 
 #: modules/elementor/widgets/class-cartflows-el-next-step-button.php:200
-#: modules/gutenberg/dist/blocks.build.js:1
+#: modules/gutenberg/build/blocks.js:11
 msgid "After Title"
 msgstr ""
 
 #: modules/elementor/widgets/class-cartflows-el-next-step-button.php:201
-#: modules/gutenberg/dist/blocks.build.js:1
+#: modules/gutenberg/build/blocks.js:11
 msgid "Before Title & Sub Title"
 msgstr ""
 
 #: modules/elementor/widgets/class-cartflows-el-next-step-button.php:202
-#: modules/gutenberg/dist/blocks.build.js:1
+#: modules/gutenberg/build/blocks.js:11
 msgid "After Title & Sub Title"
 msgstr ""
 
@@ -2975,12 +2967,13 @@ msgstr ""
 #: modules/elementor/widgets/class-cartflows-el-order-details-form.php:629
 #: modules/elementor/widgets/class-cartflows-el-order-details-form.php:718
 #: admin-core/assets/build/editor-app.js:53
-#: modules/gutenberg/dist/blocks.build.js:1
+#: modules/gutenberg/build/blocks.js:7
 msgid "Content"
 msgstr ""
 
 #: modules/elementor/widgets/class-cartflows-el-next-step-button.php:491
-#: modules/gutenberg/dist/blocks.build.js:1
+#: modules/gutenberg/build/blocks.js:7
+#: modules/gutenberg/build/blocks.js:11
 msgid "Text Alignment"
 msgstr ""
 
@@ -2990,7 +2983,6 @@ msgstr ""
 
 #: modules/elementor/widgets/class-cartflows-el-optin-form.php:324
 #: modules/optin/classes/class-cartflows-optin-meta-data.php:498
-#: modules/gutenberg/dist/blocks.build.js:1
 msgid "Submit Button"
 msgstr ""
 
@@ -3379,11 +3371,11 @@ msgstr ""
 msgid "Learn How"
 msgstr ""
 
-#: modules/gutenberg/classes/class-cartflows-init-blocks.php:127
+#: modules/gutenberg/classes/class-cartflows-init-blocks.php:144
 msgid "No product is selected. Please select products from the checkout meta settings to continue."
 msgstr ""
 
-#: modules/gutenberg/classes/class-cartflows-init-blocks.php:227
+#: modules/gutenberg/classes/class-cartflows-init-blocks.php:245
 #: modules/optin/classes/class-cartflows-optin-markup.php:312
 msgid "No product is selected. Please select a Simple, Virtual and Free product from the meta settings."
 msgstr ""
@@ -3433,12 +3425,11 @@ msgstr ""
 
 #: modules/optin/classes/class-cartflows-optin-meta-data.php:503
 #: modules/thankyou/classes/class-cartflows-thankyou-meta-data.php:132
-#: modules/gutenberg/dist/blocks.build.js:1
 msgid "Font Size"
 msgstr ""
 
 #: modules/optin/classes/class-cartflows-optin-meta-data.php:565
-#: modules/gutenberg/dist/blocks.build.js:1
+#: modules/gutenberg/build/blocks.js:11
 msgid "Position"
 msgstr ""
 
@@ -3452,6 +3443,7 @@ msgid "Optin Settings"
 msgstr ""
 
 #: modules/optin/classes/class-cartflows-optin-meta-data.php:683
+#: modules/gutenberg/build/blocks.js:11
 msgid "Button Text"
 msgstr ""
 
@@ -3869,7 +3861,6 @@ msgid "Image Preview"
 msgstr ""
 
 #: admin-core/assets/build/editor-app.js:1
-#: modules/gutenberg/dist/blocks.build.js:1
 msgid "Remove Image"
 msgstr ""
 
@@ -4675,7 +4666,6 @@ msgid "Add To"
 msgstr ""
 
 #: admin-core/assets/build/editor-app.js:53
-#: modules/gutenberg/dist/blocks.build.js:1
 msgid "Label"
 msgstr ""
 
@@ -5305,377 +5295,197 @@ msgstr ""
 msgid "Store Checkout Templates"
 msgstr ""
 
-#: modules/gutenberg/dist/blocks-placeholder.js:12
-#: modules/gutenberg/dist/blocks.build.js:1
+#: modules/gutenberg/build/blocks-placeholder.js:12
+#: modules/gutenberg/build/blocks.js:7
 msgid "Order Detail Form"
 msgstr ""
 
-#: modules/gutenberg/dist/blocks.build.js:1
-msgid "Hide Advanced"
-msgstr ""
-
-#: modules/gutenberg/dist/blocks.build.js:1
-msgid "Advanced"
-msgstr ""
-
-#: modules/gutenberg/dist/blocks.build.js:1
-msgid "Line Height"
-msgstr ""
-
-#: modules/gutenberg/dist/blocks.build.js:1
-msgid "Color Settings"
-msgstr ""
-
-#: modules/gutenberg/dist/blocks.build.js:1
-msgid "Overlay Color"
-msgstr ""
-
-#: modules/gutenberg/dist/blocks.build.js:1
-msgid "Inset"
-msgstr ""
-
-#: modules/gutenberg/dist/blocks.build.js:1
-msgid "Outset"
-msgstr ""
-
-#: modules/gutenberg/dist/blocks.build.js:1
-msgid "CartFlows Order Detail Form Block"
-msgstr ""
-
-#: modules/gutenberg/dist/blocks.build.js:1
-msgid "cartflows"
-msgstr ""
-
-#: modules/gutenberg/dist/blocks.build.js:1
-msgid "order detail form"
-msgstr ""
-
-#: modules/gutenberg/dist/blocks.build.js:1
-msgid "cf"
-msgstr ""
-
-#: modules/gutenberg/dist/blocks.build.js:1
+#: modules/gutenberg/build/blocks.js:7
 msgid "Hide/Show Order Overview."
 msgstr ""
 
-#: modules/gutenberg/dist/blocks.build.js:1
+#: modules/gutenberg/build/blocks.js:7
 msgid "Order Detail"
 msgstr ""
 
-#: modules/gutenberg/dist/blocks.build.js:1
+#: modules/gutenberg/build/blocks.js:7
 msgid "Hide/Show Order Detail."
 msgstr ""
 
-#: modules/gutenberg/dist/blocks.build.js:1
+#: modules/gutenberg/build/blocks.js:7
 msgid "Hide/Show Billing Address."
 msgstr ""
 
-#: modules/gutenberg/dist/blocks.build.js:1
+#: modules/gutenberg/build/blocks.js:7
 msgid "Hide/Show Shipping Address."
 msgstr ""
 
-#: modules/gutenberg/dist/blocks.build.js:1
+#: modules/gutenberg/build/blocks.js:7
+msgid "Heading Text"
+msgstr ""
+
+#: modules/gutenberg/build/blocks.js:7
+msgid "Heading Text Color"
+msgstr ""
+
+#: modules/gutenberg/build/blocks.js:7
 msgid "Heading Bottom Spacing(px)"
 msgstr ""
 
-#: modules/gutenberg/dist/blocks.build.js:1
-msgid "Spacing Between Sections(px)"
-msgstr ""
-
-#: modules/gutenberg/dist/blocks.build.js:1
-msgid "Background Type"
-msgstr ""
-
-#: modules/gutenberg/dist/blocks.build.js:1
-msgid "Image"
-msgstr ""
-
-#: modules/gutenberg/dist/blocks.build.js:1
-msgid "Background Image"
-msgstr ""
-
-#: modules/gutenberg/dist/blocks.build.js:1
-msgid "Select Background Image"
-msgstr ""
-
-#: modules/gutenberg/dist/blocks.build.js:1
-msgid "Replace image"
-msgstr ""
-
-#: modules/gutenberg/dist/blocks.build.js:1
-msgid "Image Position"
-msgstr ""
-
-#: modules/gutenberg/dist/blocks.build.js:1
-msgid "Top Left"
-msgstr ""
-
-#: modules/gutenberg/dist/blocks.build.js:1
-msgid "Top Center"
-msgstr ""
-
-#: modules/gutenberg/dist/blocks.build.js:1
-msgid "Top Right"
-msgstr ""
-
-#: modules/gutenberg/dist/blocks.build.js:1
-msgid "Center Left"
-msgstr ""
-
-#: modules/gutenberg/dist/blocks.build.js:1
-msgid "Center Center"
-msgstr ""
-
-#: modules/gutenberg/dist/blocks.build.js:1
-msgid "Center Right"
-msgstr ""
-
-#: modules/gutenberg/dist/blocks.build.js:1
-msgid "Bottom Left"
-msgstr ""
-
-#: modules/gutenberg/dist/blocks.build.js:1
-msgid "Bottom Center"
-msgstr ""
-
-#: modules/gutenberg/dist/blocks.build.js:1
-msgid "Bottom Right"
-msgstr ""
-
-#: modules/gutenberg/dist/blocks.build.js:1
-msgid "Attachment"
-msgstr ""
-
-#: modules/gutenberg/dist/blocks.build.js:1
-msgid "Fixed"
-msgstr ""
-
-#: modules/gutenberg/dist/blocks.build.js:1
-msgid "Scroll"
-msgstr ""
-
-#: modules/gutenberg/dist/blocks.build.js:1
-msgid "Repeat"
-msgstr ""
-
-#: modules/gutenberg/dist/blocks.build.js:1
-msgid "No Repeat"
-msgstr ""
-
-#: modules/gutenberg/dist/blocks.build.js:1
-msgid "Repeat-x"
-msgstr ""
-
-#: modules/gutenberg/dist/blocks.build.js:1
-msgid "Repeat-y"
-msgstr ""
-
-#: modules/gutenberg/dist/blocks.build.js:1
-msgid "Auto"
-msgstr ""
-
-#: modules/gutenberg/dist/blocks.build.js:1
-msgid "Cover"
-msgstr ""
-
-#: modules/gutenberg/dist/blocks.build.js:1
-msgid "Contain"
-msgstr ""
-
-#: modules/gutenberg/dist/blocks.build.js:1
+#: modules/gutenberg/build/blocks.js:7
+#: modules/gutenberg/build/blocks.js:11
 msgid "Opacity"
 msgstr ""
 
-#: modules/gutenberg/dist/blocks.build.js:1
+#: modules/gutenberg/build/blocks.js:7
+msgid "Section Spacing"
+msgstr ""
+
+#: modules/gutenberg/build/blocks.js:7
+msgid "Download Details"
+msgstr ""
+
+#: modules/gutenberg/build/blocks.js:7
+#: modules/gutenberg/build/blocks.js:11
 msgid "Loading"
 msgstr ""
 
-#: modules/gutenberg/dist/blocks.build.js:1
-msgid "Font Weight"
+#: modules/gutenberg/build/blocks.js:7
+msgid "CartFlows Order Detail Form Block"
 msgstr ""
 
-#: modules/gutenberg/dist/blocks.build.js:1
-msgid "Font Subset"
+#: modules/gutenberg/build/blocks.js:7
+#: modules/gutenberg/build/blocks.js:11
+msgid "cartflows"
 msgstr ""
 
-#: modules/gutenberg/dist/blocks.build.js:1
-msgid "px"
+#: modules/gutenberg/build/blocks.js:7
+msgid "order detail form"
 msgstr ""
 
-#: modules/gutenberg/dist/blocks.build.js:1
-msgid "em"
+#: modules/gutenberg/build/blocks.js:7
+#: modules/gutenberg/build/blocks.js:11
+msgid "cf"
 msgstr ""
 
-#: modules/gutenberg/dist/blocks.build.js:1
-msgid "Size Type"
-msgstr ""
-
-#: modules/gutenberg/dist/blocks.build.js:1
-msgid "Next Step Button Block"
-msgstr ""
-
-#: modules/gutenberg/dist/blocks.build.js:1
-msgid "next step button"
-msgstr ""
-
-#: modules/gutenberg/dist/blocks.build.js:1
-msgid "Select Icon"
-msgstr ""
-
-#: modules/gutenberg/dist/blocks.build.js:1
-msgid "Button Hover Color"
-msgstr ""
-
-#: modules/gutenberg/dist/blocks.build.js:1
+#: modules/gutenberg/build/blocks.js:11
 msgid "Icon Color"
 msgstr ""
 
-#: modules/gutenberg/dist/blocks.build.js:1
+#: modules/gutenberg/build/blocks.js:11
 msgid "Icon Hover Color"
 msgstr ""
 
-#: modules/gutenberg/dist/blocks.build.js:1
-msgid "Groove"
+#: modules/gutenberg/build/blocks.js:11
+msgid "Gap Between Icon And Text"
 msgstr ""
 
-#: modules/gutenberg/dist/blocks.build.js:1
-msgid "Ridge"
+#: modules/gutenberg/build/blocks.js:11
+msgid "Letter Spacing"
 msgstr ""
 
-#: modules/gutenberg/dist/blocks.build.js:1
-msgid "Title Bottom Spacing (px)"
+#: modules/gutenberg/build/blocks.js:11
+msgid "Title Bottom Spacing"
 msgstr ""
 
-#: modules/gutenberg/dist/blocks.build.js:1
-msgid "Hover Color"
+#: modules/gutenberg/build/blocks.js:11
+msgid "SubTitle"
 msgstr ""
 
-#: modules/gutenberg/dist/blocks.build.js:1
-msgid "Text Transform"
-msgstr ""
-
-#: modules/gutenberg/dist/blocks.build.js:1
-msgid "Capitalize"
-msgstr ""
-
-#: modules/gutenberg/dist/blocks.build.js:1
-msgid "Uppercase"
-msgstr ""
-
-#: modules/gutenberg/dist/blocks.build.js:1
-msgid "Lowercase"
-msgstr ""
-
-#: modules/gutenberg/dist/blocks.build.js:1
-msgid "Letter Spacing (px)"
-msgstr ""
-
-#: modules/gutenberg/dist/blocks.build.js:1
+#: modules/gutenberg/build/blocks.js:11
 msgid "Add text…"
 msgstr ""
 
-#: modules/gutenberg/dist/blocks.build.js:1
-msgid "CartFlows Checkout Block"
+#: modules/gutenberg/build/blocks.js:11
+msgid "CartFlows Next Step Button Block."
 msgstr ""
 
-#: modules/gutenberg/dist/blocks.build.js:1
-msgid "checkout form"
+#: modules/gutenberg/build/blocks.js:11
+msgid "next step button"
 msgstr ""
 
-#: modules/gutenberg/dist/blocks.build.js:1
+#: modules/gutenberg/build/blocks.js:11
 msgid "Two Step ( Pro )"
 msgstr ""
 
-#: modules/gutenberg/dist/blocks.build.js:1
-msgid "Border Width (px)"
-msgstr ""
-
-#: modules/gutenberg/dist/blocks.build.js:1
+#: modules/gutenberg/build/blocks.js:11
 msgid "Note: This feature is available in the CartFlows Pro. Upgrade Now!."
 msgstr ""
 
-#: modules/gutenberg/dist/blocks.build.js:1
+#: modules/gutenberg/build/blocks.js:11
+msgid "Input Field Skin"
+msgstr ""
+
+#: modules/gutenberg/build/blocks.js:11
 msgid "Input Field"
 msgstr ""
 
-#: modules/gutenberg/dist/blocks.build.js:1
-msgid "Input/Text Placeholder Color"
+#: modules/gutenberg/build/blocks.js:11
+msgid "Field Text Color"
 msgstr ""
 
-#: modules/gutenberg/dist/blocks.build.js:1
-msgid "Border Radius (px)"
+#: modules/gutenberg/build/blocks.js:11
+msgid "Input Field Validation"
 msgstr ""
 
-#: modules/gutenberg/dist/blocks.build.js:1
-msgid "Button"
-msgstr ""
-
-#: modules/gutenberg/dist/blocks.build.js:1
+#: modules/gutenberg/build/blocks.js:11
 msgid "Box Shadow"
 msgstr ""
 
-#: modules/gutenberg/dist/blocks.build.js:1
+#: modules/gutenberg/build/blocks.js:11
 msgid "Horizontal"
 msgstr ""
 
-#: modules/gutenberg/dist/blocks.build.js:1
+#: modules/gutenberg/build/blocks.js:11
 msgid "Vertical"
 msgstr ""
 
-#: modules/gutenberg/dist/blocks.build.js:1
+#: modules/gutenberg/build/blocks.js:11
 msgid "Blur"
 msgstr ""
 
-#: modules/gutenberg/dist/blocks.build.js:1
+#: modules/gutenberg/build/blocks.js:11
 msgid "Spread"
 msgstr ""
 
-#: modules/gutenberg/dist/blocks.build.js:1
+#: modules/gutenberg/build/blocks.js:11
+msgid "Buttons Text"
+msgstr ""
+
+#: modules/gutenberg/build/blocks.js:11
 msgid "Title Color"
 msgstr ""
 
-#: modules/gutenberg/dist/blocks.build.js:1
-msgid "Section Padding (px)"
+#: modules/gutenberg/build/blocks.js:11
+msgid "Title Background Color"
 msgstr ""
 
-#: modules/gutenberg/dist/blocks.build.js:1
-msgid "Section Margin (px)"
+#: modules/gutenberg/build/blocks.js:11
+msgid "Desc Background Color"
 msgstr ""
 
-#: modules/gutenberg/dist/blocks.build.js:1
-msgid "Success / Error Message"
+#: modules/gutenberg/build/blocks.js:11
+msgid "Success/Error Message"
 msgstr ""
 
-#: modules/gutenberg/dist/blocks.build.js:1
-msgid "Form success / Error validation"
-msgstr ""
-
-#: modules/gutenberg/dist/blocks.build.js:1
-msgid "Error Message"
-msgstr ""
-
-#: modules/gutenberg/dist/blocks.build.js:1
+#: modules/gutenberg/build/blocks.js:11
 msgid "Message Color"
 msgstr ""
 
-#: modules/gutenberg/dist/blocks.build.js:1
-msgid "CartFlows Optin Form Block"
-msgstr ""
-
-#: modules/gutenberg/dist/blocks.build.js:1
-msgid "optin form"
-msgstr ""
-
-#: modules/gutenberg/dist/blocks.build.js:1
-msgid "Floating Label ( Pro )"
-msgstr ""
-
-#: modules/gutenberg/dist/blocks.build.js:1
+#: modules/gutenberg/build/blocks.js:11
 msgid "Floating Label"
 msgstr ""
 
-#: modules/gutenberg/dist/blocks.build.js:1
-msgid "Submit Button Text"
+#: modules/gutenberg/build/blocks.js:11
+msgid "Input Skin"
+msgstr ""
+
+#: modules/gutenberg/build/blocks.js:11
+msgid "Skin"
+msgstr ""
+
+#: modules/gutenberg/build/blocks.js:11
+msgid "Button"
 msgstr ""
 
 #: wizard/assets/build/wizard-app.js:1

@@ -3,32 +3,46 @@
 jQuery(document).ready(function ($) {
 
     // if google button is display
-    if ($(".woo-slg-social-login-googleplus").length > 0) {
+    if ($(".woo-slg-social-googleplus").length > 0) {
         var auth2;
         var googleUser = {};
         if (WOOSlg.google_client_id != "") {
 
-            // init handler
-            var woo_slg_start_app = function () {
-                gapi.load('auth2', function () {
-                    auth2 = gapi.auth2.init({
-                        client_id: WOOSlg.google_client_id,
-                        cookiepolicy: 'single_host_origin',
-
-                    });
-
-                    // attach events with google buttons
-                    $('.woo-slg-social-login-googleplus').each(function (i, j) {
-                        woo_slg_google_signin(j);
-                    });
+             var woo_slg_start_app = function () {                 
+                google.accounts.id.initialize({
+                    client_id: WOOSlg.google_client_id,
+                    callback: handleCredentialResponse
                 });
+
+                $(".woo-slg-social-googleplus").each(function(key, value) {
+
+                    var buttonid = $(this).attr('id');
+                    var newbutton_id = buttonid +"-"+ key;
+                    $(this).attr('id', newbutton_id);
+
+                    var image = $(this).parents("a").find("img").width();
+                    google.accounts.id.renderButton(
+                        document.getElementById(newbutton_id),
+                        {   theme: "filled_blue", 
+                            size: "medium", 
+                            width: "standard",
+                            type: "standard",
+                            width : image+"px" }
+                    );
+
+                });
+
+
+                google.accounts.id.prompt();
+
+
             };
 
             // initialize google library
             woo_slg_start_app();
         }else{
 
-            var object = $('.woo-slg-social-login-googleplus');
+            var object = $('.woo-slg-social-googleplus');
             var errorel = $(object).parents('.woo-slg-social-container').find('.woo-slg-login-error');
 
             errorel.hide();
@@ -43,67 +57,29 @@ jQuery(document).ready(function ($) {
 
         }
 
-        function woo_slg_google_signin(element) {
+         function handleCredentialResponse(response) {
 
-            var object = $(element);
-            var errorel = $(object).parents('.woo-slg-social-container').find('.woo-slg-login-error');
+             // send ajax google data
+            var object = $('.woo-slg-social-googleplus');
 
-            errorel.hide();
-            errorel.html('');
+            var woo_slg_post_data = {
+                action: 'woo_slg_social_login',
+                type: 'googleplus',
+                gp_userdata: response.credential,
+            };
 
-            // if have any error
-            if (WOOSlg.gperror == '1') {
-                errorel.show();
-                errorel.html(WOOSlg.gperrormsg);
-                return false;
-            }
-
-
-            auth2.attachClickHandler(element, {},
-
-                function (googleUser) {
-
-                    var profile = googleUser.getBasicProfile();
-
-                    var gp_userdata = {
-                        given_name: profile.getGivenName(),
-                        family_name: profile.getFamilyName(),
-                        name: profile.getName(),
-                        email: profile.getEmail(),
-                        id: profile.getId(),
-                        img_url: profile.getImageUrl(),
-                    };
-
-                    var woo_slg_post_data = {
-                        action: 'woo_slg_social_login',
-                        type: 'googleplus',
-                        gp_userdata: gp_userdata,
-
-                    };
-
-                    // send ajax google data
-                    $.ajax({
-                        url: WOOSlg.ajaxurl,
-                        type: 'post',
-                        data: woo_slg_post_data,
-                        success: function (woo_slg_google_ajax_response) {
-                            if (woo_slg_google_ajax_response) {
-                                woo_slg_social_connect('googleplus', object);
-                            }
-                        }
-                    });
-
-                }, function (error) {
-                    if (error.error == "popup_closed_by_user") {
-                        return false;
-                    } else {
-                        errorel.show();
-                        errorel.html(error.error);
-                        return false;
-                    }
-
-                });
-        }
+            $.ajax({
+                url: WOOSlg.ajaxurl,
+                type: 'post',
+                data: woo_slg_post_data,
+                success: function (woo_slg_google_ajax_response) {
+                    if (woo_slg_google_ajax_response) {
+                        woo_slg_social_connect('googleplus', object);
+                    } 
+                }
+            }); 
+            
+        }  
 
     }
 
@@ -951,29 +927,20 @@ function checkWebView() {
 
         function _detectBrowser(ua) {
             var android = /Android/.test(ua);
-
+        
             switch (true) {
-                case / CriOS / .test(ua):
-                    return "Chrome for iOS"; // https://developer.chrome.com/multidevice/user-agent
-                    case / Edge / .test(ua):
-                    return "Edge";
-                    case android && /Silk\//.test(ua):
-                    return "Silk"; // Kidle Silk browser
-                    case / Chrome / .test(ua):
-                    return "Chrome";
-                    case / Firefox / .test(ua):
-                    return "Firefox";
-                    case android:
-                    return "AOSP"; // AOSP stock browser
-                    case / MSIE | Trident / .test(ua):
-                    return "IE";
-                    case / Safari\//.test(ua):
-                    return "Safari";
-                    case / AppleWebKit / .test(ua):
-                    return "WebKit";
-                }
-                return "";
+            case /CriOS/.test(ua):              return "Chrome for iOS"; // https://developer.chrome.com/multidevice/user-agent
+            case /Edge/.test(ua):               return "Edge";
+            case android && /Silk\//.test(ua):  return "Silk"; // Kidle Silk browser
+            case /Chrome/.test(ua):             return "Chrome";
+            case /Firefox/.test(ua):            return "Firefox";
+            case android:                       return "AOSP"; // AOSP stock browser
+            case /MSIE|Trident/.test(ua):       return "IE";
+            case /Safari\//.test(ua):           return "Safari";
+            case /AppleWebKit/.test(ua):        return "WebKit";
             }
+            return "";
+        }
 
             function _detectBrowserVersion(ua, browser) {
                 switch (browser) {
