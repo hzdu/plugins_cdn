@@ -1402,6 +1402,15 @@
         parent: field.$el.parent(),
         suppressFilters: true
       });
+    } // Check for fields on other settings tabs (probably less fast).
+
+
+    if (!fields.length && $('.acf-field-settings').length) {
+      fields = acf.getFields({
+        key: key,
+        parent: field.$el.parents('.acf-field-settings:first'),
+        suppressFilters: true
+      });
     } // return
 
 
@@ -3480,6 +3489,8 @@
       'change [data-filter]': 'onChangeFilter',
       'keyup [data-filter]': 'onChangeFilter',
       'click .choices-list .acf-rel-item': 'onClickAdd',
+      'keypress .choices-list .acf-rel-item': 'onKeypressFilter',
+      'keypress .values-list .acf-rel-item': 'onKeypressFilter',
       'click [data-name="remove_item"]': 'onClickRemove'
     },
     $control: function () {
@@ -3502,10 +3513,10 @@
       return val.length ? val : false;
     },
     newChoice: function (props) {
-      return ['<li>', '<span data-id="' + props.id + '" class="acf-rel-item">' + props.text + '</span>', '</li>'].join('');
+      return ['<li>', '<span tabindex="0" data-id="' + props.id + '" class="acf-rel-item">' + props.text + '</span>', '</li>'].join('');
     },
     newValue: function (props) {
-      return ['<li>', '<input type="hidden" name="' + this.getInputName() + '[]" value="' + props.id + '" />', '<span data-id="' + props.id + '" class="acf-rel-item">' + props.text, '<a href="#" class="acf-icon -minus small dark" data-name="remove_item"></a>', '</span>', '</li>'].join('');
+      return ['<li>', '<input type="hidden" name="' + this.getInputName() + '[]" value="' + props.id + '" />', '<span tabindex="0" data-id="' + props.id + '" class="acf-rel-item acf-rel-item-remove">' + props.text, '<a href="#" class="acf-icon -minus small dark" data-name="remove_item"></a>', '</span>', '</li>'].join('');
     },
     initialize: function () {
       // Delay initialization until "interacted with" or "in view".
@@ -3552,7 +3563,17 @@
       }
     },
     onKeypressFilter: function (e, $el) {
-      // don't submit form
+      // Receive enter key when selecting relationship items.
+      if ($el.hasClass('acf-rel-item-add') && e.which == 13) {
+        this.onClickAdd(e, $el);
+      } // Receive enter key when removing relationship items.
+
+
+      if ($el.hasClass('acf-rel-item-remove') && e.which == 13) {
+        this.onClickRemove(e, $el);
+      } // don't submit form
+
+
       if (e.which == 13) {
         e.preventDefault();
       }
@@ -3609,11 +3630,19 @@
     },
     onClickRemove: function (e, $el) {
       // Prevent default here because generic handler wont be triggered.
-      e.preventDefault(); // vars
+      e.preventDefault();
+      let $span; // Behavior if triggered from tabbed event.
 
-      var $span = $el.parent();
-      var $li = $span.parent();
-      var id = $span.data('id'); // remove value
+      if ($el.hasClass('acf-rel-item-remove')) {
+        $span = $el;
+      } else {
+        // Behavior if triggered through click event.
+        $span = $el.parent();
+      } // vars
+
+
+      const $li = $span.parent();
+      const id = $span.data('id'); // remove value
 
       $li.remove(); // show choice
 
@@ -3755,7 +3784,7 @@
             html += walk(data.children);
             html += '</ul></li>'; // single
           } else {
-            html += '<li><span class="acf-rel-item" data-id="' + acf.escAttr(data.id) + '">' + acf.escHtml(data.text) + '</span></li>';
+            html += '<li><span tabindex="0" class="acf-rel-item acf-rel-item-add" data-id="' + acf.escAttr(data.id) + '">' + acf.escHtml(data.text) + '</span></li>';
           }
         } // return
 
@@ -5378,7 +5407,7 @@
 
 
     if (args.visible) {
-      selector += ':visible, .acf-field-acf-field-settings-tabs';
+      selector += ':visible';
     }
 
     if (!args.suppressFilters) {
