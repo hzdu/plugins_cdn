@@ -526,6 +526,8 @@ var generateOffside = offside( '.slideout-navigation', {
 			}
 		}
 
+		document.querySelector( '.slideout-navigation' ).removeAttribute( 'aria-hidden' );
+
 		// Focus the first focusable element.
 		var focusable = document.querySelector( '.slideout-navigation' ).querySelectorAll( 'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])' );
 
@@ -568,6 +570,7 @@ var generateOffside = offside( '.slideout-navigation', {
 		// Turn off visibility.
 		setTimeout( function() {
 			document.querySelector( '.slideout-navigation:not(.is-open)' ).style.visibility = '';
+			document.querySelector( '.slideout-navigation:not(.is-open)' ).setAttribute( 'aria-hidden', 'true' );
 		}, 500 );
 
 		// Focus our slideout toggle.
