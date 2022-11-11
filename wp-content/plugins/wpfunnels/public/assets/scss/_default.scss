@@ -364,6 +364,23 @@ $body-color: #7A8B9A;
 
 }
 
+.wpfnl-oxy-next-step-btn .wpfnl-loader {
+    position: relative;
+    top: 3px;
+}
+
+#wpfunnels_next_step_controller.elementor-button {
+    display: inline-flex;
+    align-items: center;
+}
+
+.et_divi_builder #et_builder_outer_content .et_pb_button.btn-optin.disabled,
+#wpfunnels_next_step_controller.disabled {
+    pointer-events: none;
+    cursor: default;
+    opacity: 0.7;
+}
+
 //--------divi builder input default style----------
 .et-db #et-boc .et-l .et_pb_module {
     input[type="text"], 

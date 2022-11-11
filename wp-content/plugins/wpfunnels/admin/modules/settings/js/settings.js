@@ -58,6 +58,75 @@ jQuery(function($) {
 			enable_disable_recapcha()
 		})
 
+        $('.wpfnl-log-view').on('click',function (e){
+            e.preventDefault();
+            var thisElement = $(this);
+			show_log(thisElement);
+		})
+        
+        $('.wpfnl-log-delete').on('click',function (e){
+            e.preventDefault();
+            var thisElement = $(this);
+			delete_log(thisElement);
+		})
+
+        /**
+         * Show WPFunnels log
+         */
+        function show_log(thisElement) {
+            thisElement.find('.wpfnl-loader').css('display', 'inline-block');
+            
+            var log_key = $( '#wpfnl-log option:selected' ).val();
+            var payload = {
+                'logKey': log_key
+            };
+            if ( !log_key ) {
+                $( '#log-viewer pre' ).html( '' );
+            } else {
+                wpAjaxHelperRequest( 'wpfnl-show-log', payload )
+                    .success( function ( response ) {
+                        thisElement.find('.wpfnl-loader').hide();
+
+                        if( response.success ){
+                            $( '#log-viewer pre' ).html( response.content );
+                        }
+                    } )
+                    .error( function ( response ) {
+                    } );
+            }
+
+        }
+
+        /**
+         * Show WPFunnels log
+         */
+         function delete_log(thisElement) {
+            thisElement.find('.wpfnl-loader').css('display', 'inline-block');
+            localStorage.setItem("buttonClicked", true);
+
+            var log_key = $( '#wpfnl-log option:selected' ).val();
+            var payload = {
+                'logKey': log_key
+            };
+            if ( !log_key ) {
+                $( '#log-viewer' ).html( '' );
+            } else {
+                wpAjaxHelperRequest( 'wpfnl-delete-log', payload )
+                    .success( function ( response ) {
+                        if( response.success ){
+                            $('#wpfnl-log option:selected').remove();
+                            $('#log-viewer').empty();
+                        }
+                        
+                        thisElement.find('.wpfnl-loader').hide();
+                        
+                    } )
+                    .error( function ( response ) {
+                    } );
+            }
+
+        }
+
         var GeneralSettingsHandler = function () {
             $(document.body)
                 .on('click', '#wpfnl-update-global-settings', this.updateGeneralSettings)
@@ -153,6 +222,7 @@ jQuery(function($) {
                     'utm_campaign'			    : $('#wpfnl-utm-campaign').val(),
                     'utm_content'			    : $('#wpfnl-utm-content').val(),
                     'disable_theme_style'	    : $('#disable-theme-style').is(':checked') ? 'on' : 'off',
+                    'enable_log_status'	        : $('#enable-log-status').is(':checked') ? 'on' : 'off',
 
 					'enable_recaptcha'			: $('input[name="wpfnl-recapcha-enable"]:checked').val(),
 					'recaptcha_site_key'		: $('#wpfnl-recapcha-site-key').val(),

@@ -64,6 +64,11 @@
                 position: relative;
                 top: 2px;
             }
+
+            &[disabled] {
+                opacity: 0.7;
+                cursor: not-allowed;
+            }
         }
 
         &.user-registration-checkbox,
@@ -164,6 +169,7 @@
 
 }
 
+.wpfunnels-block-next-step-button:after,
 .wpfnl-gutenberg-optin-form-wrapper .submit button:after {
     content: "";
     border: 2px solid #8265c5;
@@ -177,9 +183,29 @@
     position: relative;
     top: 1px;
 }
+.wpfunnels-block-next-step-button.show-loader:after,
 .wpfnl-gutenberg-optin-form-wrapper .submit button.show-loader:after {
     display: inline-block;
 }
+
+.et-db #et-boc .et-l .et_pb_button.wpfnl_next_step_button:after {
+    content: ""!important;
+    border: 2px solid #8265c5;
+    border-radius: 50%;
+    border-top: 2px solid #fff;
+    width: 13px;
+    height: 13px;
+    animation: spin 0.7s linear infinite;
+    display: none;
+    margin-left: 5px!important;
+    position: relative!important;
+    top: 1px;
+    opacity: 1!important;
+}
+.et-db #et-boc .et-l .et_pb_button.wpfnl_next_step_button.show-loader:after {
+    display: inline-block!important;
+}
+
 
 //---------form style--------
 .wpfnl-optin-form {

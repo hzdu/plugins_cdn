@@ -3,7 +3,7 @@
         <div class="template-preview-image">
             <div class="importar-loader" v-show="showLoader">
                 <span class="title-wrapper">
-                    <span class="title">Step Importing</span>
+                    <span class="title">Importing Step</span>
                     <span class="dot-wrapper">
                         <span class="dot-one">.</span>
                         <span class="dot-two">.</span>

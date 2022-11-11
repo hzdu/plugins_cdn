@@ -359,7 +359,6 @@
         $('.wpfunnels-offer-loader').show();
 
         if ( is_lms === 'yes' || (undefined !== order_id && undefined !== order_key) ) {
-
             var ajax_data = {
                 action              : action,
                 step_id             : step_id,
@@ -770,13 +769,8 @@
                     if (response.success) {
                         $(that).val(quantity);
                         if(response.data.status == 'success'){
-                            
                             $('body').trigger('update_checkout');
-                        }else{
-                            console.log(response);
                         }
-                    } else {
-                        console.log(response);
                     }
                 }
             });

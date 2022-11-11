@@ -42,27 +42,38 @@
 		if (sURLVariables[0] == "elementor-preview") {
 			console.log("elementor");
 		} else {
-			$('#wpfnl-next-button-loader').show();
+			$(this).addClass('disabled show-loader');
+			$(this).find('.wpfnl-loader').css('display', 'inline-block');
+			$('.et_pb_button.wpfnl_next_step_button').addClass('show-loader');
+
 			var products = $(this).attr('data-products');
-			var step_id = window.wpfnl_obj.step_id;
-			jQuery.ajax({
-				type: "POST",
-				url: ajaxurl,
-				data: {
-					action: "wpfnl_next_button_ajax",
-					step_id: step_id,
-					products: products,
-				},
-				success: function (response) {
-					$('#wpfnl-next-button-loader').hide();
-					if (response == 'error') {
-						console.log(response);
-					} else {
-						console.log(response)
-						window.location.href = response;
+			var button_type = $(this).attr('data-button-type');
+			var url = $(this).attr('data-url');
+			if( 'url-path' === button_type || 'another-funnel' === button_type ){
+				window.location.href = url;
+			}else{
+				var step_id = window.wpfnl_obj.step_id;
+				jQuery.ajax({
+					type: "POST",
+					url: ajaxurl,
+					data: {
+						action : "wpfnl_next_button_ajax",
+						step_id: step_id,
+						url    : window.location.href,
+						products: products,
+					},
+					success: function (response) {
+						$('#wpfnl-next-button-loader').hide();
+						if (response == 'error') {
+							console.log(response);
+						} else {
+							console.log(response)
+							window.location.href = response;
+						}
 					}
-				}
-			});
+				});
+			}
+			
 		}
 		// === Detect editor ===//
 	});
@@ -782,11 +793,13 @@
 					action 		: 'wpfnl_optin_submission',
 					security 	: security,
 					step_id 	: step_id,
+					url 		: window.location.href,
 					postData 	: $(this).serialize()
 				},
 				postData = data.postData.split('&'),
 				form 		= $(this)
 			form.find('.wpfnl-loader').show();
+			form.find('button[type="submit"]').prop('disabled', true);
 			$.ajax({
 				type	: "POST",
 				url		: ajaxurl,
@@ -795,6 +808,7 @@
 				success	: function (response) {
 					if(response.success) {
 						form.hide();
+						form.find('button[type="submit"]').prop('disabled', false);
 						thisParents.find('.response').fadeIn('fast');
 						thisParents.find('.response').css('color', 'green');
 						thisParents.find('.response').text(response.notification_text);
@@ -805,6 +819,7 @@
 						}
 					}else{
 						thisParents.find('.response').fadeIn('fast');
+						form.find('button[type="submit"]').prop('disabled', false);
 						form.find('.wpfnl-loader').css('display','none');
 						thisParents.find('.response').css('color', 'red');
 						thisParents.find('.response').text(response.notification_text);
@@ -862,10 +877,14 @@
 					action 		: 'wpfnl_shortcode_optin_submission',
 					security 	: security,
 					step_id 	: step_id,
+					url 		: window.location.href,
 					postData 	: thisParents.find('form').serialize()
 				},
 				postData = data.postData.split('&'),
 				form 		= thisParents.find('form')
+
+			form.find('.et_pb_button.btn-optin').addClass('disabled');
+			form.find('.btn-optin').prop('disabled', true);
 			form.find('.wpfnl-loader').css('display','inline-block');
 			$.ajax({
 				type	: "POST",
@@ -875,6 +894,8 @@
 				success	: function (response) {
 					if(response.success) {
 						form.hide();
+						form.find('.et_pb_button.btn-optin').removeClass('disabled');
+						form.find('.btn-optin').prop('disabled', false);
 						thisParents.find('.response').fadeIn('fast');
 						thisParents.find('.response').css('color', 'green');
 						thisParents.find('.response').text(response.notification_text);
@@ -884,6 +905,8 @@
 							}, 1000)
 						}
 					}else{
+						form.find('.et_pb_button.btn-optin').removeClass('disabled');
+						form.find('.btn-optin').prop('disabled', false);
 						thisParents.find('.response').fadeIn('fast');
 						form.find('.wpfnl-loader').css('display','none');
 						thisParents.find('.response').css('color', 'red');
@@ -918,7 +941,7 @@
 			 var thisEmail 		= thisParents.find('#wpfnl-email');
 			 var thisFirstName 	= thisParents.find('#wpfnl-first-name');
 			 var thisLastName 	= thisParents.find('#wpfnl-last-name');
-			 var thisAcceptance 	= thisParents.find('#wpfnl-acceptance_checkbox');
+			 var thisAcceptance = thisParents.find('#wpfnl-acceptance_checkbox');
 			 var thisPhone 		= thisParents.find('#wpfnl-phone');
 
 			 thisParents.find('.response').css('display','none');
@@ -932,7 +955,8 @@
 
 				return false;
 			}
-			$('.wpfnl-optin-form .wpfnl-optin-form-group .btn-default').addClass('show-loader');
+			$('.wpfnl-optin-form .wpfnl-optin-form-group .btn-optin').prop('disabled', true).addClass('show-loader');
+
 			var ajaxurl 	= wpfnl_obj.ajaxurl,
 				security 	= wpfnl_obj.optin_form_nonce,
 				step_id 	= wpfnl_obj.step_id,
@@ -941,6 +965,7 @@
 					action 		: 'wpfnl_gutenberg_optin_submission',
 					security 	: security,
 					step_id 	: step_id,
+					url 		: window.location.href,
 					postData 	: $(this).serialize()
 				},
 				form 		= $(this);
@@ -955,7 +980,7 @@
 					if(response.success) {
 						form.hide();
 						let post_action = response.post_action;
-						$('.wpfnl-optin-form .wpfnl-optin-form-group .btn-default').removeClass('show-loader');
+						$('.wpfnl-optin-form .wpfnl-optin-form-group .btn-optin').prop('disabled', false).removeClass('show-loader');
 						thisParents.find('.response').fadeIn('fast');
 						thisParents.find('.response').css('color', 'green');
 						thisParents.find('.response').text(response.notification_text);

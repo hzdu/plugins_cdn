@@ -7,9 +7,9 @@
         </div>
 
         <div class="step-template-info">
-            <span class="title">{{step.name}}</span>
+            <span class="title">{{step.title}}</span>
             <div class="template-action">
-                <a :href="step.preview_link" target="_blank" class="step-btn preview"> preview </a>
+                <a :href="step.link" target="_blank" class="step-btn preview"> preview </a>
             </div>
         </div>
     </div>

@@ -4067,6 +4067,44 @@ ul.wpfnl-dropdown li a:hover path {
 .steps-settings.upsell .settings-content__footer .wpfnl-alert {
   display: block;
 }
+.steps-settings.downsell .wpfnl-fields.price-range,
+.steps-settings.upsell .wpfnl-fields.price-range {
+  display: flex;
+  flex-flow: row wrap;
+}
+.steps-settings.downsell .wpfnl-fields.price-range .price-to,
+.steps-settings.downsell .wpfnl-fields.price-range .price-from,
+.steps-settings.upsell .wpfnl-fields.price-range .price-to,
+.steps-settings.upsell .wpfnl-fields.price-range .price-from {
+  width: 50%;
+}
+.steps-settings.downsell .wpfnl-fields.price-range .price-to > label,
+.steps-settings.downsell .wpfnl-fields.price-range .price-from > label,
+.steps-settings.upsell .wpfnl-fields.price-range .price-to > label,
+.steps-settings.upsell .wpfnl-fields.price-range .price-from > label {
+  margin-bottom: 5px;
+  display: block;
+}
+.steps-settings.downsell .wpfnl-fields.price-range .price-to .wpfnl-fields,
+.steps-settings.downsell .wpfnl-fields.price-range .price-from .wpfnl-fields,
+.steps-settings.upsell .wpfnl-fields.price-range .price-to .wpfnl-fields,
+.steps-settings.upsell .wpfnl-fields.price-range .price-from .wpfnl-fields {
+  width: 100%;
+}
+.steps-settings.downsell .wpfnl-fields.price-range .price-to .wpfnl-fields input[type=number],
+.steps-settings.downsell .wpfnl-fields.price-range .price-from .wpfnl-fields input[type=number],
+.steps-settings.upsell .wpfnl-fields.price-range .price-to .wpfnl-fields input[type=number],
+.steps-settings.upsell .wpfnl-fields.price-range .price-from .wpfnl-fields input[type=number] {
+  min-width: auto;
+}
+.steps-settings.downsell .wpfnl-fields.price-range .price-from,
+.steps-settings.upsell .wpfnl-fields.price-range .price-from {
+  padding-right: 10px;
+}
+.steps-settings.downsell .wpfnl-fields.price-range .price-to,
+.steps-settings.upsell .wpfnl-fields.price-range .price-to {
+  padding-left: 10px;
+}
 
 .steps-settings.thank-you .single__settings-box {
   border: 1px solid #E5E8F3;
@@ -4334,7 +4372,7 @@ ul.wpfnl-dropdown li a:hover path {
 .checkout-product-setting-tab__content-wrapper .accordion-footer .product-price,
 .checkout-product-setting-tab__content-wrapper .product-single__accordion-head .product-price,
 .checkout-product-setting-tab__content-wrapper .accordion-head .product-price {
-  width: 73px;
+  width: 77px;
   cursor: text;
 }
 .step-settings__single-tab-content .accordion-footer .product-quantity,
@@ -5140,7 +5178,7 @@ ul.wpfnl-dropdown li a:hover path {
   word-break: break-word;
 }
 .checkout-order-bump-setting-tab__content-wrapper .order-bump-settings-area {
-  width: calc(100% - 445px);
+  width: calc(50% - 25px);
   margin-right: 25px;
 }
 .checkout-order-bump-setting-tab__content-wrapper .order-bump-settings-area .enable-order-bump {
@@ -5280,7 +5318,7 @@ ul.wpfnl-dropdown li a:hover path {
   border: 1px solid #E5E8F3;
 }
 .checkout-order-bump-setting-tab__content-wrapper .order-bump-template-preview-area {
-  width: 420px;
+  width: 50%;
   position: sticky;
   top: 20px;
 }
@@ -5300,11 +5338,6 @@ ul.wpfnl-dropdown li a:hover path {
 }
 
 @media only screen and (max-width: 1599px) {
-  .checkout-order-bump-setting-tab__content-wrapper .order-bump-settings-area {
-    width: calc(100% - 445px);
-    margin-right: 25px;
-  }
-
   .checkout-order-bump-setting-tab__content-wrapper .wpfnl-field-wrapper > label {
     width: 190px;
   }
@@ -5313,21 +5346,17 @@ ul.wpfnl-dropdown li a:hover path {
     width: calc(100% - 190px);
   }
 }
-@media only screen and (max-width: 1350px) {
-  .checkout-order-bump-setting-tab__content-wrapper .wpfnl-box {
-    padding: 20px 20px;
-  }
-}
 @media only screen and (max-width: 1350px) and (min-width: 1200px) {
-  .checkout-order-bump-setting-tab__content-wrapper .wpfnl-field-wrapper::not(".no-title-checkbox") {
-    margin-bottom: 18px;
-    display: block;
+  .checkout-order-bump-setting-tab__content-wrapper .order-bump-settings-area {
+    width: calc(55% - 25px);
   }
 
-  .checkout-order-bump-setting-tab__content-wrapper .wpfnl-field-wrapper > label {
-    width: auto;
-    margin-bottom: 5px;
-    padding: 0;
+  .checkout-order-bump-setting-tab__content-wrapper .order-bump-template-preview-area {
+    width: 45%;
+  }
+
+  .checkout-order-bump-setting-tab__content-wrapper .wpfnl-field-wrapper::not(".no-title-checkbox") {
+    margin-bottom: 18px;
     display: block;
   }
 
@@ -5335,12 +5364,8 @@ ul.wpfnl-dropdown li a:hover path {
     width: auto;
     margin-bottom: 0;
     padding-right: 10px;
+    padding-top: 4px;
     display: inline-block;
-  }
-
-  .checkout-order-bump-setting-tab__content-wrapper .wpfnl-field-wrapper .wpfnl-fields {
-    width: 100%;
-    max-width: 100%;
   }
 
   .checkout-order-bump-setting-tab__content-wrapper .wpfnl-field-wrapper.no-title-checkbox .wpfnl-fields {
@@ -6279,6 +6304,16 @@ ul.wpfnl-dropdown li a:hover path {
 .wpfnl-funnel-settings__wrapper .wpfnl-funnel__single-settings.advance-settings .rollback-field .wpfnl-fields .wpfnl-rollback-button.show-loader:after {
   display: inline-block;
 }
+.wpfnl-funnel-settings__wrapper .wpfnl-funnel__single-settings.log-settings .log-view-select {
+  width: 330px;
+}
+.wpfnl-funnel-settings__wrapper .wpfnl-funnel__single-settings.log-settings .log-view-btn > a {
+  margin-left: 10px;
+}
+.wpfnl-funnel-settings__wrapper .wpfnl-funnel__single-settings.log-settings .wpfnl-loader {
+  position: relative;
+  top: 2px;
+}
 
 @-webkit-keyframes sync_spin {
   0% {
@@ -6327,6 +6362,10 @@ ul.wpfnl-dropdown li a:hover path {
 
   .wpfnl-funnel-settings__wrapper .wpfnl-funnel__single-settings .wpfnl-box {
     padding: 25px 20px;
+  }
+
+  .wpfnl-funnel-settings__wrapper .wpfnl-funnel__single-settings.log-settings .log-view-btn > a {
+    min-width: 100px;
   }
 }
 @media only screen and (max-width: 991px) {
@@ -7308,7 +7347,7 @@ ul.wpfnl-dropdown li a:hover path {
   right: -190px;
   background-color: #fff;
   z-index: 99;
-  width: 1133px;
+  width: 1300px;
   height: calc(100vh - 32px);
   box-shadow: -1px 3px 13px rgba(150, 141, 169, 0.1);
   transition: all 0.3s ease-in-out;
@@ -7456,9 +7495,14 @@ ul.wpfnl-dropdown li a:hover path {
   padding: 26px 16px 20px 20px;
 }
 
+@media only screen and (max-width: 1599px) {
+  .wpfnl-step-settings-drawer {
+    width: 1183px;
+  }
+}
 @media only screen and (max-width: 1400px) {
   .wpfnl-step-settings-drawer {
-    width: 983px;
+    width: 1085px;
   }
 }
 @media only screen and (max-width: 1199px) {
@@ -8786,6 +8830,11 @@ ul.wpfnl-dropdown li a:hover path {
   min-width: auto;
   width: 100%;
 }
+.gbf-product-area .single-condition .selectbox-wrapper .wpfnl-tag-search {
+  position: absolute;
+  opacity: 0;
+  visibility: hidden;
+}
 .gbf-product-area .single-condition label {
   cursor: default;
   padding-right: 10px;
@@ -8836,6 +8885,7 @@ ul.wpfnl-dropdown li a:hover path {
 .gbf-product-area .single-condition .condition-then.gbf-date-is .wpfnl-form-group .from-date input[type=text] {
   height: 40px;
   min-width: auto;
+  cursor: pointer;
 }
 .gbf-product-area .single-condition .condition-then.gbf-date-is .wpfnl-form-group .to-date {
   padding-left: 25px;
@@ -11033,7 +11083,7 @@ ul.wpfnl-dropdown li a:hover path {
   margin-bottom: 20px;
 }
 .wpfnl-order-bump__template-style7 .template-preview-wrapper {
-  background: #6E42D3;
+  background: #5a26d1;
   border-radius: 10px;
   padding: 15px 15px;
 }
@@ -11079,7 +11129,7 @@ ul.wpfnl-dropdown li a:hover path {
   transition: all 0.3s ease;
 }
 .wpfnl-order-bump__template-style7 .template-preview-wrapper .template-content .wpfnl-checkbox label svg path {
-  stroke: #6E42D3;
+  stroke: #ffffff;
 }
 .wpfnl-order-bump__template-style7 .template-preview-wrapper .template-content .wpfnl-checkbox input[type=checkbox]:checked + label svg {
   transform: rotate(45deg);

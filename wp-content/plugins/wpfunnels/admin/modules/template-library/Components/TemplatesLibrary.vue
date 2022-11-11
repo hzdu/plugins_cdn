@@ -57,13 +57,13 @@
                             <ReturnIcon/>
                         </span>
 
-                        <ul class="template-type-filter" v-if="tempalateTypes.length > 0">
-                            <li data-filter="woocommerce" v-for="(tempalateType, index) in template_type"  :key="index" :class="tempalateType.name == type ? 'active' : '' " @click="doTemplateCatFilter(tempalateType)"  >{{tempalateType.label}}</li>
+                        <ul class="template-type-filter" v-if="template_type.length">
+                            <li data-filter="woocommerce" v-for="(tempalateType, index) in template_type"  :key="index" :class="tempalateType.slug == type ? 'active' : '' " @click="doTemplateCatFilter(tempalateType)"  >{{tempalateType.label}}</li>
                         </ul>
-                        
-                        <CategoryNav v-if="tempalateTypes.length > 0 && !showStepsPreview" :categories="categories" :activeCategory="activeCategory"  @doCatFilter="doCatFilter"/>
 
-                        <ul class="pro-free__filter" v-if="tempalateTypes.length > 0 && showProFilter" v-show="!showStepsPreview">
+                        <CategoryNav v-if="template_type.length > 0 && !showStepsPreview" :categories="categories" :activeCategory="activeCategory"  @doCatFilter="doCatFilter"/>
+
+                        <ul class="pro-free__filter" v-if="template_type.length > 0 && showProFilter" v-show="!showStepsPreview">
                             <li data-filter="all" :class="templatesType == 'all' ? 'active' : '' "
                                 @click="doFreeProFilter('all')">all
                             </li>
@@ -157,7 +157,7 @@
                         <template v-if="isAnyPluginMissing == 'no'">
                             <SingleTemplate
                                 v-for="(data, index) in templates"
-                                :data="data"
+                                :templatedata="data"
                                 :active-category="activeCategory"
                                 :isPro="data.is_pro"
                                 :type="type"
@@ -359,13 +359,13 @@ export default {
 			isRemoteFunnel: false,
             funnelType: window.WPFunnelVars.global_funnel_type,
 			type: 'lead' == window.WPFunnelVars.global_funnel_type ? 'lead' : window.WPFunnelVars.is_wc_installed === 'yes' ? 'wc' : 'lms',
-			selectedType: 'lead' == window.WPFunnelVars.global_funnel_type ? 81 : window.WPFunnelVars.is_wc_installed === 'yes' ? 74 : 73,
+			selectedType: 'lead' == window.WPFunnelVars.global_funnel_type ? 'lead' : window.WPFunnelVars.is_wc_installed === 'yes' ? 'wc' : 'lms',
             tempalateTypes : [],
             template_type : window.template_library_object.template_type
         }
 
     },
-    
+
     computed: {
         isAddNewFunnelButtonDisabled: function () {
             if (!this.isProActivated) {
@@ -377,7 +377,6 @@ export default {
         }
     },
     mounted() {
-        console.log(window.WPFunnelVars.global_funnel_type)
         j(document).on(
             'wp-plugin-install-success',
             this.pluginInstalledSuccess
@@ -387,17 +386,17 @@ export default {
             'wp-plugin-install-error',
             this.pluginInstalledError
         );
-        
+
         if(!this.$store.isRemoteFunnel) {
             this.getTemplate();
 		} else {
 			this.loader = false
 		}
-       
+
     },
 
     methods: {
-        
+
         getTemplate: function (){
             if( this.selectedType ){
                 apiFetch({
@@ -407,24 +406,24 @@ export default {
                     method: 'GET'
                 }).then(response => {
                     if (response.success) {
-                        this.templates = response.templates
-                        this.allTemplates = response.templates
-                        this.tempalateTypes = response.templateType
-                        this.templatesType = 'all'
-                        this.categories = response.categories
+                        this.templates 		= response.templates
+                        this.allTemplates 	= response.templates
+						this.steps 			= response.steps
+						this.allSteps 		= response.steps
+                        this.templatesType 	= 'all'
+                        this.categories 	= response.categories
                         this.stepCategories = response.categories
-                        this.steps = response.steps
-                        this.allSteps = response.steps
+						this.loader 		= false
+						this.templateCatFilterLoader = false;
                         if (response.templates) {
                             this.totalTemplates = this.isAnyPluginMissing === 'yes' ? 0 : response.templates.length
                         }
-                        this.loader = false
-                        this.templateCatFilterLoader = false;
+
                     }
-                    
+
                 })
             }
-            
+
         },
         createFunnel: function (e) {
             e.preventDefault();
@@ -465,12 +464,11 @@ export default {
             this.disabled = true;
 
             let data = {
-                    action: 'wpfunnel_import_funnel',
-                    steps: this.steps,
-                    name: j('.import-funnel-name input').val(),
-                    source: 'remote',
+                    action	: 'wpfunnel_import_funnel',
+                    steps	: this.steps,
+                    name	: j('.import-funnel-name input').val(),
+                    source	: 'remote',
                 },
-                funnelData = this.activeTemplate.funnel_data,
                 that = this;
 
             that.loaderMessage = 'Please Wait...',
@@ -482,7 +480,7 @@ export default {
                         first_step_id = 0;
                     j.when.apply(j, j.map(that.steps, function (step, index) {
                         looper = looper.then(function () {
-                            return that.createStep(step, response.funnelID, index, that, funnelData);
+                            return that.createStep(step, response.funnelID, index, that);
                         });
                         return looper;
                     })).then(function () {
@@ -534,9 +532,14 @@ export default {
             this.activeCategory = value === '' ? 'all' : value
             if (value !== '') {
                 this.templates = this.allTemplates.filter(function (template) {
-                    return template.industry.slug === value;
+                    if( null !== template.wpf_funnel_industry ) {
+                        if( 'slug' in template.wpf_funnel_industry ){
+                            return template.wpf_funnel_industry.slug === value;
+                        }
+                    }
+                    
                 });
-            } else {
+            }else {
                 this.templates = this.allTemplates
             }
             this.totalTemplates = this.templates.length
@@ -579,11 +582,12 @@ export default {
             this.totalTemplates = this.templates.length
         },
         doTemplateCatFilter: function (value) {
+            
             this.loader = true;
             this.templateCatFilterLoader = true;
-            
-            this.selectedType = value.id
-            this.type = value.name
+
+            this.selectedType = value.slug
+            this.type = value.slug
             this.activeCategory = 'all'
             this.doCatFilter('')
             this.getTemplate();

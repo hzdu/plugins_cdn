@@ -1644,6 +1644,13 @@
 		}
 	});
 
+    // delete anniversary notice permanently 
+    $(document).on("click", ".wpfnl-anniversary-notice .notice-dismiss", function(event) {
+		event.preventDefault();
+		wpAjaxHelperRequest("delete_anniversary_notice")
+	});
+
+
 
     /**
      * Multiple Orderbump Accordion

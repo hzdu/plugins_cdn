@@ -31,6 +31,7 @@
 
 	jQuery(document).ready(function($) {
 
+		// Start Mailchimp authentication 
 		$('.mailchimp-auth').click(function(e){
 			e.preventDefault();
 			var payload = {
@@ -60,7 +61,9 @@
                 });
 				
 		})
+		// End Mailchimp authentication 
 
+		// Start Active Campaign authentication 
 		$('.active-campaign-auth').click(function(e){
 			e.preventDefault();
 			var payload = {
@@ -91,7 +94,9 @@
                 });
 			
 		})
+		// End Active campaign authentication 
 
+		// Start Constant Conatct authentication 
 		$('.constant-contact-auth').click( function(e){
 			e.preventDefault();
 			var payload = {
@@ -113,7 +118,9 @@
 					}
 				})
 		})
+		// End Constant Contact authentication 
 
+		// Start Aweber authentication 
 		$('.aweber-auth').click( function(e){
 			e.preventDefault();
 			var payload = {
@@ -135,7 +142,9 @@
 					}
 				})
 		})
+		// End Aweber authentication 
 
+		// Start Sendinblue authentication 
         $('.sendinblue-auth').click( function(e){
 			e.preventDefault();
 			var payload = {
@@ -159,7 +168,9 @@
 					}
 				})
 		})
+		// End Sendinblue authentication 
 
+		// Start Mailerlite authentication 
 		$('.mailerlite-auth').click( function(e){
 			e.preventDefault();
 			var payload = {
@@ -183,7 +194,63 @@
 					}
 				})
 		})
+		// End Mailerlite authentication 
 
+		// Start GetResponse authentication 
+		$('.getresponse-auth').click( function(e){
+			e.preventDefault();
+			var payload = {
+                getresponse_api    : $('.getresponse-api').val(),
+				getresponse_status : $( ".getresponse-active" ).is(':checked') ? 'active' : 'deactive'
+            };
+			$('.getresponse-hints').css('display','none');
+			$('.getresponse-hints-auth').text('Please input valid credentials');
+			var is_validate = validation( 'getresponse', payload );
+			if( !is_validate ){
+				return false;
+			}
+			$('.getresponse-auth .wpfnl-loader').css('display','flex');
+			wpAjaxHelperRequest("wpfnl-getresponse-authentication", payload)
+                .success(function(response) {
+					getAddonsCredAffterUpdate( 'getresponse' );
+					$('.getresponse-reset .wpfnl-loader').css('display','none');
+					$('.getresponse-auth .wpfnl-loader').css('display','none');
+					$('.getresponse-auth').prop("disabled",false);
+					$('.getresponse-auth .wpfnl-loader').css('display','none');
+					
+				})
+		})
+		// End GetResponse authentication 
+
+
+		// Start Encharge authentication 
+		$('.encharge-auth').click( function(e){
+			e.preventDefault();
+			var payload = {
+                encharge_api    : $('.encharge-api').val(),
+				encharge_status : $( ".encharge-active" ).is(':checked') ? 'active' : 'deactive'
+            };
+			$('.encharge-hints').css('display','none');
+			$('.encharge-hints-auth').text('Please input valid credentials');
+			var is_validate = validation( 'encharge', payload );
+			if( !is_validate ){
+				return false;
+			}
+			$('.encharge-auth .wpfnl-loader').css('display','flex');
+			wpAjaxHelperRequest("wpfnl-encharge-authentication", payload)
+                .success(function(response) {
+					getAddonsCredAffterUpdate( 'encharge' );
+					$('.encharge-reset .wpfnl-loader').css('display','none');
+					$('.encharge-auth .wpfnl-loader').css('display','none');
+					$('.encharge-auth').prop("disabled",false);
+					$('.encharge-auth .wpfnl-loader').css('display','none');
+					
+				})
+		})
+
+		// End Encharge authentication 
+
+		// Start Reset Authentication
 		$('.mailchimp-reset').click(function (e){
 			 $('.mailchimp-apikey').val('')
 			 $('.mailchimp-server').val('')
@@ -196,7 +263,7 @@
 			$('.mailchimp-auth').prop('disabled', true);
 			wpAjaxHelperRequest("wpfnl-update-addons-cred", payload)
 				.success(function(response) {
-
+					$('.mailchimp-auth .btn-text').text('Authorize Now');
 					getAddonsCredAffterUpdate( 'mailchimp' );
 					$('.mailchimp-reset .wpfnl-loader').css('display','none');
 					$('.mailchimp-auth').prop("disabled",false);
@@ -207,6 +274,7 @@
 				});
 
 		})
+
 		$('.active-campaign-reset').click(function (e){
 			 $('.active-campaign-url').val('')
 			 $('.active-campaign-api').val('')
@@ -221,7 +289,7 @@
 
 			wpAjaxHelperRequest("wpfnl-update-addons-cred", payload)
 				.success(function(response) {
-
+					$('.active-campaign-auth .btn-text').text('Authorize Now');
 					getAddonsCredAffterUpdate( 'active-campaign' );
 					$('.active-campaign-reset .wpfnl-loader').css('display','none');
 					$('.active-campaign-auth').prop("disabled",false);
@@ -232,6 +300,7 @@
 				});
 
 		})
+
 		$('.constant-contact-reset').click( function(e){
 			e.preventDefault();
 			$('.constant-contact-url').val('')
@@ -245,11 +314,13 @@
 			};
 			wpAjaxHelperRequest("wpfnl-constant-contact-authentication", payload)
 				.success(function(response) {
+					$('.constant-contact-auth .btn-text').text('Authorize Now');
 					if( response.success ){
 						window.location.href = response.data;
 					}
 				})
 		})
+
 		$('.aweber-reset').click( function(e){
 			e.preventDefault();
 			 $('.aweber-url').val('')
@@ -263,7 +334,10 @@
 			};
 			wpAjaxHelperRequest("wpfnl-aweber-authentication", payload)
 				.success(function(response) {
+					$('.aweber-auth .btn-text').text('Authorize Now');
+
 					if( response.success ){
+						
 						window.location.href = response.data;
 					}
 				})
@@ -280,10 +354,12 @@
 			wpAjaxHelperRequest("wpfnl-sendinblue-authentication", payload)
 				.success(function(response) {
 					if( response.success ){
+						
 						getAddonsCredAffterUpdate( 'sendinblue' );
 						$('.sendinblue-reset .wpfnl-loader').css('display','none');
 						$('.sendinblue-auth').prop("disabled",false);
 					}
+					$('.sendinblue-auth .btn-text').text('Authorize Now');
 				})
 		})
 
@@ -298,14 +374,58 @@
 			wpAjaxHelperRequest("wpfnl-mailerlite-authentication", payload)
 				.success(function(response) {
 					if( response.success ){
+						
 						getAddonsCredAffterUpdate( 'mailerlite' );
 						$('.mailerlite-reset .wpfnl-loader').css('display','none');
 						$('.mailerlite-auth').prop("disabled",false);
 					}
+					$('.mailerlite-auth .btn-text').text('Authorize Now');
 				})
 		})
 
+		$('.getresponse-reset').click( function(e){
+			e.preventDefault();
+			$('.getresponse-api').val('')
+			var payload = {
+				getresponse_api    : $('.getresponse-api').val(),
+				getresponse_status : $( ".getresponse-active" ).is(':checked') ? 'active' : 'deactive'
+			};
+			$('.getresponse-reset .wpfnl-loader').css('display','flex');
+			wpAjaxHelperRequest("wpfnl-getresponse-authentication", payload)
+				.success(function(response) {
+					if( response.success ){
+						
+						getAddonsCredAffterUpdate( 'getresponse' );
+					}
+					$('.getresponse-auth .btn-text').text('Authorize Now');
+					$('.getresponse-reset .wpfnl-loader').css('display','none');
+					$('.getresponse-auth').prop("disabled",false);
+				})
+		})
+		
+		
+		$('.encharge-reset').click( function(e){
+			e.preventDefault();
+			$('.encharge-api').val('')
+			var payload = {
+				encharge_api    : $('.encharge-api').val(),
+				encharge_status : $( ".encharge-active" ).is(':checked') ? 'active' : 'deactive'
+			};
+			$('.encharge-reset .wpfnl-loader').css('display','flex');
+			wpAjaxHelperRequest("wpfnl-encharge-authentication", payload)
+				.success(function(response) {
+					if( response.success ){
+						getAddonsCredAffterUpdate( 'encharge' );
+					}
+					$('.encharge-auth .btn-text').text('Authorize Now');
+					$('.encharge-reset .wpfnl-loader').css('display','none');
+					$('.encharge-auth').prop("disabled",false);
+				})
+		})
+		// End Reset authentication 
 
+		
+		// Start CRM's field validation
 		function validation( crm , payload ){
 			var is_validate = true;
 			if( 'mailchimp' === crm ){
@@ -389,11 +509,31 @@
 				}
 				
 			}
+
+			if( 'getresponse' === crm ){
+                if( !payload.getresponse_api ){
+					is_validate = false;
+					$('.getresponse-auth .btn-text').text('Authorize Now');
+					$('.getresponse-hints-api').css('display','block');
+				}
+				
+			}
+			
+			if( 'encharge' === crm ){
+                if( !payload.encharge_api ){
+					is_validate = false;
+					$('.encharge-auth .btn-text').text('Authorize Now');
+					$('.encharge-hints-api').css('display','block');
+				}
+				
+			}
 			return is_validate;
 		}
+		// End CRM's field validation
 
 		getAddonsCred();
 
+		// Get CRM's credentials
 		function getAddonsCred(){
 			wpAjaxHelperRequest("wpfnl-get-addons-cred")
                 .success(function(response) {
@@ -535,7 +675,49 @@
 							$('.mailerlite-active').prop('checked', false);
 							$('.mailerlite-active').parents('.single-addon').removeClass('addon-enabled');
 						}
+
+						if( response.data.getresponse.getresponse_url ){
+							$('.getresponse-url').val(response.data.getresponse.getresponse_url)
+						}
+						if( response.data.getresponse.getresponse_api ){
+							$('.getresponse-api').val(response.data.getresponse.getresponse_api)
+						}
+						if( response.data.getresponse.getresponse_secret ){
+							$('.getresponse-secret').val(response.data.getresponse.getresponse_secret)
+						}
+						if( response.data.getresponse.getresponse_status == 'active' ){
+							$('.getresponse-auth .btn-text').text('Authorized');
+						}else{
+							$('.getresponse-auth .btn-text').text('Authorize Now');
+						}
+
+						if( response.data.getresponse.status == 'active' ){
+							$('.getresponse-active').prop('checked', true);
+							$('.getresponse-active').parents('.single-addon').addClass('addon-enabled');
+						}else{
+							$('.getresponse-active').prop('checked', false);
+							$('.getresponse-active').parents('.single-addon').removeClass('addon-enabled');
+						}
 						
+
+						
+						if( response.data.encharge.encharge_api ){
+							$('.encharge-api').val(response.data.encharge.encharge_api)
+						}
+						
+						if( response.data.encharge.encharge_status == 'active' ){
+							$('.encharge-auth .btn-text').text('Authorized');
+						}else{
+							$('.encharge-auth .btn-text').text('Authorize Now');
+						}
+
+						if( response.data.encharge.status == 'active' ){
+							$('.encharge-active').prop('checked', true);
+							$('.encharge-active').parents('.single-addon').addClass('addon-enabled');
+						}else{
+							$('.encharge-active').prop('checked', false);
+							$('.encharge-active').parents('.single-addon').removeClass('addon-enabled');
+						}
 						
 					}
 					$('.addon-loader').css('display','none');
@@ -547,7 +729,7 @@
 		
 		}
 
-
+		// Get CRM's credentials after update
 		function getAddonsCredAffterUpdate( crm = '' ){
 			
 			wpAjaxHelperRequest("wpfnl-get-addons-cred")
@@ -700,7 +882,49 @@
 							$('.mailerlite-active').parents('.single-addon').removeClass('addon-enabled');
 						}
 
-						
+
+						if( response.data.getresponse.getresponse_api ){
+							$('.getresponse-api').val(response.data.getresponse.getresponse_api)
+						}
+		
+						if( response.data.getresponse.getresponse_status == 'active' ){
+							$('.getresponse-auth .btn-text').text('Authorized');
+						}else{
+							$('.getresponse-auth .btn-text').text('Authorize Now');
+							if( 'getresponse' == crm ){
+								invalidAuth( crm );
+							}
+						}
+
+						if( response.data.getresponse.status == 'active' ){
+							$('.getresponse-active').prop('checked', true);
+							$('.getresponse-active').parents('.single-addon').addClass('addon-enabled');
+						}else{
+							$('.getresponse-active').prop('checked', false);
+							$('.getresponse-active').parents('.single-addon').removeClass('addon-enabled');
+						}
+
+
+						if( response.data.encharge.encharge_api ){
+							$('.encharge-api').val(response.data.encharge.encharge_api)
+						}
+		
+						if( response.data.encharge.encharge_status == 'active' ){
+							$('.encharge-auth .btn-text').text('Authorized');
+						}else{
+							$('.encharge-auth .btn-text').text('Authorize Now');
+							if( 'encharge' == crm ){
+								invalidAuth( crm );
+							}
+						}
+
+						if( response.data.encharge.status == 'active' ){
+							$('.encharge-active').prop('checked', true);
+							$('.encharge-active').parents('.single-addon').addClass('addon-enabled');
+						}else{
+							$('.encharge-active').prop('checked', false);
+							$('.encharge-active').parents('.single-addon').removeClass('addon-enabled');
+						}
 
 					}
 					
@@ -714,6 +938,7 @@
 
 		//------addon switcher option------
 
+		// Enable/Disbale CRM's status
 		$('.single-addon .wpfnl-switcher input[type="checkbox"]').on('click', function(){
 			let id  = $(this).attr('id'),
 				crm = '',
@@ -740,6 +965,12 @@
 			}else if( 'mailerlite-active' == id ){
 				crm 		= 'mailerlite';
 				className 	= 'mailerlite';
+			}else if( 'getresponse-active' == id ){
+				crm 		= 'getresponse';
+				className 	= 'getresponse';
+			}else if( 'encharge-active' == id ){
+				crm 		= 'encharge';
+				className 	= 'encharge';
 			}
 
 			if($(this).is(":checked")){
@@ -751,6 +982,7 @@
 
 		});
 
+		// Update CRM's status
 		function updateCrmStatus( crm, className ){
 			var payload = {
 				'crm'	 : crm, 	
@@ -765,6 +997,7 @@
                 });
 		}
 
+		// Show error message if credentials are wrong
 		function invalidAuth( crm ){
 			
 			$('.'+crm+'-hints-auth').css('display','block');

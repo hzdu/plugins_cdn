@@ -1,0 +1,1 @@
+"use strict";!function(){var e=document.getElementById("su_option_shortcode-creator_license");if(e){var t=e.getAttribute("data-key"),a=e.getAttribute("data-key-masked");e.addEventListener("focus",function(){e.value===a&&(e.value=t)}),e.addEventListener("blur",function(){e.value===t&&(e.value=a)})}}();
