@@ -15,6 +15,18 @@ The code is licensed under GPLv3.
 
 ## Changelog ##
 
+##### [Version 2.4.5](https://github.com/Codeinwp/neve-pro-addon/compare/v2.4.4...v2.4.5) (2022-11-16)
+
+- [Feat] Add compatibility between Custom meta and Pods fields
+- [Fix] Cross-sells image width
+- [Fix] Products image width when shop shortcode is used
+- [Fix] Submenu border width not working 
+- Remove unnecessary functions for product video
+- Test Neve with WooCommerce 7.0
+
+
+
+
 ##### [Version 2.4.4](https://github.com/Codeinwp/neve-pro-addon/compare/v2.4.3...v2.4.4) (2022-11-03)
 
 - [Feat] Add Line icon to social icons component

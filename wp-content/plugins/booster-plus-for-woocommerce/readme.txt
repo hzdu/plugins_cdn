@@ -1,9 +1,9 @@
 === Booster Plus for WooCommerce ===
 Contributors: anbinder, karzin, pluggabl
 Tags: woocommerce, booster for woocommerce, woocommerce jetpack
-Requires at least: 4.4
-Tested up to: 6.0.3
-Stable tag: 5.6.5
+Requires at least: 5.8
+Tested up to: 6.1
+Stable tag: 5.6.6
 License: GNU General Public License v3.0
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -203,6 +203,17 @@ You can see the differences between versions in this [table](https://booster.io/
 8. Booster for WooCommerce - Emails & Misc.
 
 == Changelog ==
+
+= 5.6.6 16/11/2022 =
+
+* FIXED - CART & CHECKOUT - EU VAT Number - Replace endpoint to validate EU VAT number for without soap method
+* FIXED - CART & CHECKOUT - EU VAT Number - Fixed tools UI
+* FIXED - EMAILS & MISC. - Admin Tools - Fixed admin order page issue when order item value is array.
+* FIXED - BUTTON & PRICE LABELS - Custom Price Labels- Escape the HTML content from the "per page product meta box" value.
+* FIXED - PHP Warning: asort() expects parameter 1 to be array, string given in .../includes/shortcodes/class-wcj-general-shortcodes.php..
+* FIXED - Added Security vulnerability fixes.
+* WooCommerce 7.1.0 tested
+* WordPress 6.1 Tested
 
 = 5.6.5 27/10/2022 =
 

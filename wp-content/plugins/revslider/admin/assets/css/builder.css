@@ -147,6 +147,7 @@
 #the_container .form_collector .form_inner ._shflic_,
 #the_container .form_collector .form_inner._shflic_,
 #the_container .form_collector .form_inner ._shflig_,
+#the_container .form_collector .form_inner ._shfliginset_,
 #the_container .form_collector .form_inner._shflig_,
 #the_container .form_collector .form_inner ._shflicg_,
 #the_container .form_collector .form_inner._shflicg_,
@@ -211,6 +212,12 @@
 #the_container._layer_in_group_sel_ .form_collector .form_inner._shflicg_,
 #the_container._layer_in_group_sel_ .form_collector .form_inner ._shflicg_,
 
+#the_container._layer_in_group_sel_ .form_collector .form_inner._shflig_,
+#the_container._layer_in_group_sel_ .form_collector .form_inner ._shflig_,
+
+#the_container._layer_in_group_sel_.layer_is_inset .form_collector .form_inner._shfliginset_,
+#the_container._layer_in_group_sel_.layer_is_inset .form_collector .form_inner ._shfliginset_,
+
 #the_container._text_sel_ .form_collector .form_inner._shoft_,
 #the_container._button_sel_ .form_collector .form_inner._shofb_,
 
@@ -229,6 +236,12 @@
 #the_container.multiple_layers_selected._text_sel_._row_sel_ .form_collector .form_inner._homs_,
 #the_container.multiple_layers_selected._text_sel_._column_sel_ .form_collector .form_inner._homs_ { display: none !important;}
 
+
+
+#the_container._layer_in_group_sel_.layer_is_inset .form_collector .form_inner._nfliginset_,
+#the_container._layer_in_group_sel_.layer_is_inset .form_collector .form_inner ._nfliginset_,
+#the_container._layer_in_group_sel_.layer_is_inset .ui-resizable.selected .ui-resizable-handle,
+#the_container._layer_in_group_sel_.layer_is_inset .ui-resizable.selected ._lc_reScaler,
 #the_container._layer_in_root_sel_ .hide_on_root,
 #the_container._layer_in_root_sel_._shape_sel_ .form_collector .form_inner._nsfsir_,
 #the_container._layer_in_root_sel_._shape_sel_ .form_collector .form_inner ._nsfsir_,
@@ -3413,6 +3426,13 @@ rs-pzimg-wrap { display: block; position: absolute }
 /* QUICK GUIDE*/
 #rbm_quickguide .mcg_page {display: none;width: 100%;height: 100%;position: absolute;top: 0px;left: 0px;box-sizing: border-box; padding:75px 120px;background-color:#212226;}
 #rbm_quickguide .mcg_page.mcg_selected { display: block; }
+
+#rbm_googleprecaching {
+    width: 500px;
+    height: 200px;
+}
+
+#rbm_googleprecaching .rbm_content { padding:20px; text-align:center}
 
 #mcg_page_0_blurredbox,
 #mcg_page_0 { background-image: url(../images/guide/guide.jpg); background-size:1202px 752px; background-position:center top; background-repeat: no-repeat;}
