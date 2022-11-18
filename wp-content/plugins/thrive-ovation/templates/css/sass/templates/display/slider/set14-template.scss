@@ -16,10 +16,12 @@
 .tvo-#{$template-name}-template {
   &.tvo-testimonials-display-slider {
     @include tvo-relative;
+
     .tvo-testimonial-display-item {
       @include display-flex();
       flex-direction: column;
       -webkit-flex-direction: column;
+
       h4 {
         font-size: $title-size-large;
         font-weight: $title-weight-large;
@@ -28,9 +30,11 @@
         margin-top: 0;
       }
     }
+
     [id*='thrlider'] {
       padding-bottom: $slider-margin;
     }
+
     .tvo-item-grid {
       -webkit-align-items: center;
       align-items: center;
@@ -38,10 +42,12 @@
       position: absolute;
       bottom: 10px;
     }
+
     .tvo-apply-background {
       @include tvo-relative;
       border-radius: $item-border-radius;
     }
+
     .tvo-testimonial-content {
       padding: $grid-item-padding-vertical $grid-item-padding-side 60px;
     }
@@ -49,25 +55,30 @@
     .tvo-testimonial-quote {
       margin-bottom: ($quote-margin-bottom *2);
     }
+
     .tvo-image-wrapper {
       min-width: $image-size;
       margin-bottom: -($image-size * .6);
     }
+
     .tvo-testimonial-image-cover {
       border-radius: $image-border-radius;
       height: $image-size;
       width: $image-size;
     }
+
     .tvo-testimonial-image {
       height: $image-size;
       width: $image-size;
     }
+
     .tvo-testimonial-info {
       -webkit-flex: 1;
       flex: 1;
       margin-top: $grid-item-padding-vertical;
       padding-left: $grid-item-padding-vertical;
     }
+
     .tvo-testimonial-name {
       color: $name-color-dark;
       display: block;
@@ -75,38 +86,46 @@
       font-weight: $name-weight;
       line-height: $name-line-height;
     }
+
     .tvo-testimonial-role {
       color: $job-color-dark;
       font-size: $job-size 1.33;
       font-weight: $job-weight;
       line-height: $job-line-height;
+
       a {
         color: inherit;
         text-decoration: none;
       }
     }
+
     .thrlider-nav-wrapper {
-      margin: 0 auto (($slider-spacing -  $bullet-size) /2);
+      margin: 0 auto (($slider-spacing -  $bullet-size) *0.5);
       position: relative;
       z-index: 1;
     }
+
     .thrlider-navItem {
       border-radius: $bullet-border-radius;
       background: $bullet-bg;
       height: $bullet-size;
       margin: 0 5px;
       width: $bullet-size;
+
       &:hover {
         background: $bullet-bg-hover;
       }
     }
+
     .thrlider-prev, .thrlider-next {
       margin-bottom: $grid-item-padding-vertical;
       position: absolute;
       bottom: $slider-margin;
     }
+
     .thrlider-prev {
       right: $grid-item-padding-side * 2;
+
       &:after {
         content: '|';
         position: absolute;
@@ -114,6 +133,7 @@
         right: -4px;
       }
     }
+
     .thrlider-next {
       right: $grid-item-padding-side;
     }

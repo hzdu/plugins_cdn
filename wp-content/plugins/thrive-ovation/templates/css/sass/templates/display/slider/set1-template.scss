@@ -18,10 +18,12 @@
     @include tvo-relative;
     box-sizing: border-box;
     padding: 0 $slider-spacing;
+
     .tvo-item-grid {
       margin-left: 0;
       margin-right: 0;
     }
+
     .tvo-testimonial-display-item {
       h4 {
         color: $title-color-large;
@@ -31,6 +33,7 @@
         margin-bottom: $title-small-margin-bottom;
         margin-top: 0;
       }
+
       p {
         color: $font-color;
         font-size: $font-size;
@@ -39,26 +42,33 @@
         margin-bottom: $font-margin-bottom;
       }
     }
+
     .tvo-testimonial-image-cover {
       height: $image-size;
       width: $image-size;
     }
+
     .tvo-testimonial-image {
       height: $image-size;
       width: $image-size;
     }
+
     .tvo-image-wrapper {
       margin-bottom: $grid-item-padding-vertical;
     }
+
     .tvo-testimonial-content {
       padding: 0 $grid-item-padding-side;
     }
+
     .thrlider-nav {
       text-align: center;
     }
+
     .thrlider-nav-wrapper {
-      margin: 0 auto ($slider-spacing/2);
+      margin: 0 auto ($slider-spacing*0.5);
     }
+
     .thrlider-navItem {
       display: inline-block;
       float: none;
@@ -66,11 +76,13 @@
       background: $bullet-bg;
       height: $bullet-size;
       width: $bullet-size;
+
       &:hover {
         circle {
           fill: currentColor;
         }
       }
+
       &.thrlider-active {
         svg {
           circle {
@@ -80,6 +92,7 @@
           }
         }
       }
+
       circle {
         color: #373434;
         fill: rgba(#fff, 0.1);
@@ -89,17 +102,20 @@
         stroke-dashoffset: 0;
       }
     }
+
     .thrlider-prev, .thrlider-next {
       margin: auto;
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
     }
+
     .thrlider-prev {
-      left: $slider-spacing/2;
+      left: $slider-spacing*0.5;
     }
+
     .thrlider-next {
-      right: $slider-spacing/2;
+      right: $slider-spacing*0.5;
     }
   }
 }

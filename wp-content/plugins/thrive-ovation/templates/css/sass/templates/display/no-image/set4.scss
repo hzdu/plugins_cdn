@@ -5,27 +5,34 @@
 .tvo-#{$template-name}-template {
   .custom-set4 {
     margin-bottom: 50px;
+
     .tvo-apply-background {
       margin-top: 20px;
     }
+
     h4 {
       font-size: 30px;
       font-weight: 600;
     }
+
     .tvo-testimonial-content {
       padding: 25px;
       margin: 0;
       position: relative;
+
       p {
         margin-bottom: 0 !important;
         color: #fff;
       }
+
       &.arrow-box {
         position: relative;
+
         #no-title-white-quote {
           color: #fff;
           top: -20px;
         }
+
         &:before {
           border-width: 22px;
           transform: rotate(90deg) translateX(-50%);
@@ -33,10 +40,12 @@
         }
       }
     }
+
     .tvo-testimonial-quote {
       display: inline-block;
       margin-bottom: 5px;
       margin-right: 25px;
+
       &:before {
         font-family: Arial;
         line-height: 1 !important;
@@ -49,6 +58,7 @@
         top: -40px !important;
       }
     }
+
     .tvo-testimonial-info {
       margin-top: 0;
       position: relative;
@@ -64,12 +74,14 @@
       &:after {
         left: 30px !important;
       }
+
       &:before {
         margin-left: 0;
       }
     }
   }
 }
+
 @media (max-width: 320px) {
   .tvo-default-template .custom-set4 .tvo-testimonial-info {
     width: 80%;

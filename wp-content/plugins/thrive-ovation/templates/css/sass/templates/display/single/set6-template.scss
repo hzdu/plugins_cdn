@@ -13,6 +13,7 @@
       margin-bottom: $grid-item-padding-side;
       padding-top: $grid-item-padding-vertical * 1.5;
       padding-bottom: $grid-item-padding-vertical;
+
       h4 {
         @include transform-uppercase;
         color: $title-color-large;
@@ -23,6 +24,7 @@
         margin-bottom: $title-large-margin-bottom;
       }
     }
+
     .tvo-testimonial-quote {
       @include tvo-relative;
       @include up-quotes;
@@ -32,6 +34,7 @@
         left: -50px;
       }
     }
+
     .tvo-testimonial-image-cover {
       @include center-align;
       border-radius: $image-border-radius;
@@ -41,24 +44,29 @@
       margin-bottom: $grid-item-padding-side;
       width: $image-size-large;
     }
+
     .tvo-testimonial-image {
       height: $image-size-large;
       width: $image-size-large;
     }
+
     .tvo-testimonial-info {
       @include center-text;
       max-width: 100%;
     }
+
     .tvo-testimonial-content {
       -webkit-flex: 1;
       flex: 1;
       max-width: 55%;
     }
+
     .tvo-testimonial-image-wrapper {
       min-width: ($image-size-large + 14px);
       margin-bottom: (-$image-size-large);
       width: 45%;
     }
+
     .tvo-item-grid {
       //margin-top: -50px;
       margin-left: $grid-item-padding-vertical *2;

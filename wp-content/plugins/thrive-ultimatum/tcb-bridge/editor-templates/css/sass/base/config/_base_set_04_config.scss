@@ -89,9 +89,9 @@ $item-height: 40px; //numbers height, not the whole item
 $item-min-width: 40px; //numbers width (without padding)
 $item-spacing: 8px; //space from the outer margin to the first number
 $item-padding: $item-spacing;
-$item2-spacing: $item-spacing + ($item-min-width/2);
-$item3-spacing: $item2-spacing + ($item-min-width/2);
-$item4-spacing: $item3-spacing + ($item-min-width/2);
+$item2-spacing: $item-spacing + ($item-min-width*0.5);
+$item3-spacing: $item2-spacing + ($item-min-width*0.5);
+$item4-spacing: $item3-spacing + ($item-min-width*0.5);
 //countdown responsive size
 $item-font-size-r: 20px;
 $item-line-height-r: 36px;
@@ -99,9 +99,9 @@ $item-height-r: 36px; //numbers height, not the whole item
 $item-min-width-r: 30px; //numbers width (without padding)
 $item-spacing-r: 5px; //space from the outer margin to the first number
 $item-padding-r: $item-spacing-r;
-$item2-spacing-r: $item-spacing-r + ($item-min-width-r/2);
-$item3-spacing-r: $item2-spacing-r + ($item-min-width-r/2);
-$item4-spacing-r: $item3-spacing-r + ($item-min-width-r/2);
+$item2-spacing-r: $item-spacing-r + ($item-min-width-r*0.5);
+$item3-spacing-r: $item2-spacing-r + ($item-min-width-r*0.5);
+$item4-spacing-r: $item3-spacing-r + ($item-min-width-r*0.5);
 //caption
 $caption-color: #fff;
 $caption-color-dark: #333;

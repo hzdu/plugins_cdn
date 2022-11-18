@@ -1,4 +1,5 @@
 @import "../../../../grid";
+
 @font-face {
   font-family: 'Roboto';
   src: url('../../fonts/google/Roboto.ttf') format('truetype');
@@ -35,6 +36,7 @@ $background_color: #f9f8f8;
     .tvo-testimonial-display-item {
       padding: 22px 60px 22px 22px;
       position: relative;
+
       h4 {
         font-size: 24px;
         font-family: Georgia, sans-serif !important;
@@ -42,8 +44,10 @@ $background_color: #f9f8f8;
         margin-top: 0;
         margin-bottom: 15px;
       }
+
       .tvo-image-and-text-wrapper {
         position: relative;
+
         p {
           font-size: $font-size;
           font-weight: $font-weight;
@@ -52,6 +56,7 @@ $background_color: #f9f8f8;
           margin-bottom: $font-margin-bottom;
           margin-left: 90px;
         }
+
         .tvo-testimonial-image-cover {
           position: absolute;
           border-radius: 50%;
@@ -67,6 +72,7 @@ $background_color: #f9f8f8;
           line-height: $font-line-height;
           font-style: $font-style;
           border: 1px solid transparent;
+
           .tvo-testimonial-name {
             text-transform: uppercase;
             font-weight: 600;
@@ -90,18 +96,23 @@ $background_color: #f9f8f8;
       .tvo-apply-background {
         background-color: nth($color, 2);
       }
+
       h4 {
         color: nth($color, 1);
       }
+
       p {
         color: nth($color, 3);
       }
+
       .tvo-testimonial-info {
         .tvo-testimonial-name {
           color: nth($color, 3);
         }
+
         .tvo-testimonial-role {
           color: nth($color, 4);
+
           a {
             color: inherit;
           }

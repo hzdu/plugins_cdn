@@ -1,0 +1,49 @@
+<div data-id="<#= model.get( 'id' ) #>" class="tva-card tva-customer-card tva-card-small tva-cc-grid mb-10 click" data-fn="viewCourse">
+	<div class="tva-cc-title tva-cc-main">
+		<# if ( this.model.get( 'cover_image' ) ) { #>
+		<div class="tva-course-img" style="background-image: url('<#= model.get('cover_image') #>')"></div>
+		<# } else { #>
+		<div class="tva-course-img"></div>
+		<# } #>
+		<#= model.get( 'name' ) #>
+		<# if ( this.model.get( 'status' ) === 'draft' ) { #>
+		<span class="tva-student-course-draft variation"><?php echo __( '(Draft)', 'thrive-apprentice' ); ?></span>
+		<# } #>
+	</div>
+	<div class="tva-cc-date"><#= this.enrolled #></div>
+	<div class="tva-cc-status">
+
+		<# if ( this.model.get( 'status' ) === 'draft' ) { #>
+		<button class="tva-cc-status-btn tva-status-draft"><?php echo esc_attr__( 'Unpublished', 'thrive-apprentice' ) ?></button>
+		<# } else if ( this.locked ) { #>
+		<div class="tva-tooltip-parent">
+			<button class="tva-drip-status-btn locked locked-inactive">
+				<div class="tva-drip-status-btn-icon"><?php tva_get_svg_icon( 'lock-alt_light' ); ?></div>
+				<div class="tva-drip-status-btn-text"><?php echo __( 'Locked', 'thrive-apprentice' ); ?></div>
+			</button>
+			<div class="tva-custom-tooltip"><?php echo __( 'This course has a drip schedule with a start date in the future', 'thrive-apprentice' ); ?></div>
+		</div>
+
+		<# } else if ( this.progress === '100%' ) { #>
+		<button class="tva-cc-status-btn tva-status-completed"><?php echo esc_attr__( 'Completed', 'thrive-apprentice' ) ?></button>
+		<# } else if ( this.activity ) { #>
+		<button class="tva-cc-status-btn tva-status-progress"><?php echo esc_attr__( 'Started', 'thrive-apprentice' ) ?></button>
+		<# } else { #>
+		<button class="tva-cc-status-btn tva-status-pending"><?php echo esc_attr__( 'Unlocked', 'thrive-apprentice' ) ?></button>
+		<# } #>
+	</div>
+	<div class="tva-cc-progress">
+		<div class="tva-cc-progress-inner">
+			<#= this.progress #><br>
+			<span class="tva-cc-progressbar<#=this.progress === '100%' ? ' completed' : '' #>">
+				<span style="width: <#= this.progress #>;"></span>
+			</span>
+		</div>
+	</div>
+	<div class="tva-cc-activity">
+		<span<#= ! this.activity ? ' class="no-activity"' : '' #>><#= this.activity ? this.activity : '-' #></span>
+		<div class="tva-cc-activity-arrow">
+			<button class="tva-cc-arrow-btn"><?php tva_get_svg_icon( 'circle-right' ); ?></button>
+		</div>
+	</div>
+</div>

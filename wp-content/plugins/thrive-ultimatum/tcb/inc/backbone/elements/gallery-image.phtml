@@ -5,7 +5,7 @@
 	 draggable="true">
 	<span class="tve_image_frame">
 	<#if(imageLinks && imageLinks[image.id] && imageLinks[image.id].hasLink){#>
-	<a href="<#=imageLinks[image.id].href#>" target="<#=imageLinks[image.id].target#>" rel="<#=imageLinks[image.id].rel#>">
+	<a href="<#=imageLinks[image.id].href#>" target="<#=imageLinks[image.id].target#>" rel="<#=imageLinks[image.id].rel#>" class="<#= imageLinks[image.id].linkClass ? imageLinks[image.id].linkClass: ''#>" data-shortcode-id = "<#=  imageLinks[image.id].shortcodeId ? imageLinks[image.id].shortcodeId: ''#>" data-dynamic-link="<#=  imageLinks[image.id].dynamicLink ? imageLinks[image.id].dynamicLink: ''#>">
 	<# } #>
 		<img class="tve_image wp-image-<#=image.id#>"
 			 alt="<#=image.alt#>"

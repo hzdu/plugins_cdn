@@ -1,4 +1,5 @@
 @import "../../../../grid";
+
 @font-face {
   font-family: 'Lato';
   src: url('../../../fonts/google/Lato.ttf') format('truetype');
@@ -32,6 +33,7 @@ $font-line-height: 25px;
   &.tvo-testimonials-display-grid {
     .tvo-testimonial-display-item {
       position: relative;
+
       .tvo-testimonial-message-box {
         margin: 10px 10px;
         padding: 32px 27px;
@@ -40,6 +42,7 @@ $font-line-height: 25px;
         -webkit-border-radius: 4px;
         -moz-border-radius: 4px;
         border-radius: 4px;
+
         &::after {
           content: '';
           border-left: 10px solid transparent;
@@ -49,6 +52,7 @@ $font-line-height: 25px;
           top: 100%;
           right: 36px;
         }
+
         h4 {
           font-family: $custom-font-family;
           font-size: 18px;
@@ -59,8 +63,10 @@ $font-line-height: 25px;
           margin-top: 0;
           margin-bottom: 35px;
         }
+
         .tvo-testimonial-content-wrapper {
           position: relative;
+
           .tvo-testimonial-quote {
             &::before {
               display: block;
@@ -76,6 +82,7 @@ $font-line-height: 25px;
               width: 40px;
             }
           }
+
           p {
             &.tvo-testimonial-text {
               font-size: $font-size;
@@ -85,13 +92,16 @@ $font-line-height: 25px;
               line-height: $font-line-height;
               margin-bottom: 0;
             }
+
             margin: 0;
             padding: 0;
           }
         }
       }
+
       .tvo-testimonial-info-wrapper {
         margin-top: 20px;
+
         .tvo-testimonial-image-cover {
           display: inline-block;
           float: right;
@@ -106,6 +116,7 @@ $font-line-height: 25px;
           float: right;
           font-family: $font-family;
           border: 1px solid transparent;
+
           .tvo-testimonial-name {
             font-size: 16px;
             display: block;
@@ -113,6 +124,7 @@ $font-line-height: 25px;
             margin: 5px 10px 0;
             font-weight: 400;
           }
+
           .tvo-testimonial-role {
             font-size: 13px;
             font-weight: 400;
@@ -126,6 +138,7 @@ $font-line-height: 25px;
     }
   }
 }
+
 /**
 * Fix for changing quotes color from TAR
 */
@@ -141,16 +154,21 @@ $font-line-height: 25px;
       .tvo-testimonial-display-item {
         .tvo-testimonial-message-box {
           box-shadow: 0 3px 0 0 nth($color, 1);
+
           &::after {
             border-top-color: nth($color, 1);
           }
+
           background-color: nth($color, 4);
+
           h4 {
             color: nth($color, 3);
           }
+
           p {
             color: nth($color, 5);
           }
+
           .tvo-testimonial-quote {
             &::before {
               color: nth($color, 2);
@@ -158,13 +176,16 @@ $font-line-height: 25px;
           }
         }
       }
+
       .tvo-testimonial-info-wrapper {
         .tvo-testimonial-info {
           .tvo-testimonial-name {
             color: nth($color, 3);
           }
+
           .tvo-testimonial-role {
             color: nth($color, 5);
+
             a {
               color: inherit;
             }

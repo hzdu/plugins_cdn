@@ -1,16 +1,19 @@
 @import "../../../../grid";
+
 @font-face {
   font-family: 'Open Sans';
   src: url('../../../fonts/google/OpenSans.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
+
 @font-face {
   font-family: 'Archivo Black';
   src: url('../../../fonts/google/ArchivoBlack.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
+
 $template-name: set6-small;
 
 $font-family: 'Arial', sans-serif;
@@ -40,6 +43,7 @@ $background_color: #f9f8f8;
     .tvo-testimonial-display-item {
       padding: 30px 20px 20px 20px;
       position: relative;
+
       h4 {
         font-size: 23px;
         font-family: $custom-font-family;
@@ -65,6 +69,7 @@ $background_color: #f9f8f8;
 
       .tvo-image-and-text-wrapper {
         position: relative;
+
         p {
           font-size: $font-size;
           font-weight: $font-weight;
@@ -73,6 +78,7 @@ $background_color: #f9f8f8;
           margin-bottom: $font-margin-bottom;
           margin-left: 150px;
         }
+
         .tvo-testimonial-image-cover {
           position: absolute;
           border-radius: 50%;
@@ -87,6 +93,7 @@ $background_color: #f9f8f8;
           font-size: 15px;
           line-height: $font-line-height;
           border: 1px solid transparent;
+
           .tvo-testimonial-name {
             text-transform: uppercase;
             font-weight: 600;
@@ -97,6 +104,7 @@ $background_color: #f9f8f8;
     }
   }
 }
+
 /**
 * Fix for changing quotes color from TAR
 */
@@ -112,23 +120,29 @@ $background_color: #f9f8f8;
       .tvo-apply-background {
         background-color: nth($color, 2);
       }
+
       h4 {
         color: nth($color, 1);
       }
+
       p {
         color: nth($color, 4);
       }
+
       .tvo-testimonial-quote {
         &::before {
           color: nth($color, 3);
         }
       }
+
       .tvo-testimonial-info {
         .tvo-testimonial-name {
           color: nth($color, 3);
         }
+
         .tvo-testimonial-role {
           color: nth($color, 4);
+
           a {
             color: inherit;
           }

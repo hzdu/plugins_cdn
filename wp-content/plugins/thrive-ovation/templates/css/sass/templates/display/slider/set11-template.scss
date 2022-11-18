@@ -16,14 +16,17 @@
 .tvo-#{$template-name}-template {
   &.tvo-testimonials-display-slider {
     @include center-text;
+
     .tvo-item-grid {
       -webkit-align-items: center;
       align-items: center;
       margin-left: 0;
       margin-right: 0;
     }
+
     .tvo-testimonial-display-item {
       padding-top: $image-size;
+
       h4 {
         color: $title-color-large;
         font-size: $title-size-large;
@@ -32,6 +35,7 @@
         margin-bottom: $title-small-margin-bottom;
         margin-top: 0;
       }
+
       p {
         color: $font-color;
         font-size: $font-size;
@@ -41,36 +45,45 @@
         margin-bottom: $font-margin-bottom;
       }
     }
+
     .tvo-testimonial-content {
       -webkit-flex: 1;
       flex: 1;
       padding: 0 $grid-item-padding-side;
     }
+
     .thrlider-nav {
       margin-top: 0;
     }
+
     .thrlider-nav-wrapper {
       margin: 0 auto;
     }
+
     .tvo-testimonial-content {
       p:first-of-type::before {
         content: '"';
       }
+
       p:last-of-type::after {
         content: '"';
       }
     }
+
     .thrlider-navItem {
       width: $bullet-size;
+
       .tvo-image-wrapper {
         border-radius: $image-border-radius;
         background: #fff;
         margin: 0 auto;
+
         .tvo-testimonial-image-cover {
           opacity: .5;
           transition: opacity .3s ease;
         }
       }
+
       &:hover {
         .tvo-image-wrapper {
           .tvo-testimonial-image-cover {
@@ -78,6 +91,7 @@
           }
         }
       }
+
       &.thrlider-active {
         .tvo-image-wrapper {
           .tvo-testimonial-image-cover {
@@ -86,9 +100,11 @@
         }
       }
     }
+
     .thrlider-slider {
       margin-bottom: $grid-item-padding-side;
     }
+
     .thrlider-prev, .thrlider-next {
       border-radius: $image-border-radius;
       border: 2px solid currentColor;
@@ -101,12 +117,15 @@
       bottom: 0;
       width: $navigation-icon-dimension;
     }
+
     .thrlider-prev {
       left: (-$navigation-icon-dimension);
     }
+
     .thrlider-next {
       right: (-$navigation-icon-dimension);
     }
+
     .tvo-testimonial-nav-container {
       display: table;
       margin: 0 auto;

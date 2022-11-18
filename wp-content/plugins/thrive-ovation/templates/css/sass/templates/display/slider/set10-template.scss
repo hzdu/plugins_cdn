@@ -7,12 +7,14 @@
     @include tvo-relative;
     @include center-text;
     padding: 0 $slider-spacing;
+
     .tvo-item-grid {
       -webkit-align-items: center;
       align-items: center;
       margin-left: 0;
       margin-right: 0;
     }
+
     .tvo-testimonial-display-item {
       //  padding: $grid-item-padding-small;
       h4 {
@@ -23,6 +25,7 @@
         margin-bottom: $title-small-margin-bottom;
         margin-top: 0;
       }
+
       p {
         color: $font-color;
         font-size: $font-size;
@@ -32,38 +35,47 @@
         margin-bottom: $font-margin-bottom;
       }
     }
+
     .tvo-testimonial-content {
       -webkit-flex: 1;
       flex: 1;
       padding: 0 $grid-item-padding-side;
     }
+
     .thrlider-nav-wrapper {
       margin: 0 auto $grid-item-padding-vertical;
     }
+
     .thrlider-navItem {
       opacity: .5;
       transition: opacity .3s ease;
       width: $bullet-size;
+
       &:hover {
         opacity: 1;
       }
+
       &.thrlider-active {
         opacity: 1;
       }
     }
+
     .thrlider-slider {
       margin-bottom: $grid-item-padding-side;
     }
+
     .thrlider-prev, .thrlider-next {
       font-weight: 700;
       text-align: center;
     }
+
     .thrlider-prev {
       &:after {
         content: '|';
         padding: 0 0 0 5px;
       }
     }
+
     .thrlider-next {
       float: none;
     }

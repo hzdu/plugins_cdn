@@ -1,6 +1,7 @@
 .tvo_testimonial_form.tvo-#{$template-name}-template {
   .tvo-form-field {
     @include input-placeholder($input-color);
+
     .tvo-form-input {
       @include box-sizing;
       @if ($input-has-border) {
@@ -30,6 +31,7 @@
         text-transform: $input-text-transform;
       }
       width: 100%;
+
       &:hover {
         @if ($input-different-hover-border) {
           border: $input-border-hover;
@@ -39,6 +41,7 @@
           color: $input-color-hover;
         }
       }
+
       &:focus {
         @if ($input-different-box-shdaow-focus == false) {
           box-shadow: none;
@@ -56,12 +59,14 @@
         outline: none;
       }
     }
+
     .tvo-question-label {
       font-weight: 600;
       color: $input-color;
       font-family: $font-family;
       font-size: $input-font-size;
     }
+
     .tvo-form-textarea {
       @include box-sizing;
       @if ($textarea-has-border) {
@@ -88,6 +93,7 @@
       padding: $textarea-padding !important;
       resize: vertical;
       width: 100%;
+
       &:hover {
         @if ($textarea-different-hover-border) {
           border: $textarea-border-hover;
@@ -98,6 +104,7 @@
           color: $textarea-color-hover;
         }
       }
+
       &:focus {
         @if ($textarea-different-box-shdaow-focus) {
           box-shadow: $textarea-box-shadow-focus;
@@ -112,6 +119,7 @@
         outline: none;
       }
     }
+
     .tvo-form-button {
       @if ($button-has-border == false) {
         border: 0;
@@ -132,6 +140,7 @@
       line-height: $button-line-height;
       padding: $button-padding;
       text-transform: $button-text-transform;
+
       &:active, &:focus {
         outline: none;
       }
@@ -142,6 +151,7 @@
 .tvo_success_state {
   margin-top: 20px;
   margin-bottom: 20px;
+
   p.tvo-success-message {
     color: $success-message-color;
     font-size: 20px;
@@ -166,6 +176,7 @@
   width: 100%;
   height: 100%;
   display: none;
+
   .tvo-google-button {
     cursor: pointer;
     position: relative;
@@ -174,6 +185,7 @@
     margin-left: -75px;
     width: 150px;
   }
+
   .tvo-fb-button {
     cursor: pointer;
     position: relative;

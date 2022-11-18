@@ -4,6 +4,8 @@
 	<span class="tva-items-flex-three"><#= model.get('source') #></span>
 	<span class="tva-items-flex-four tva-flex tva-align-center tva-space-between">
 		<#= model.get('date') #>
+		<# if ( ! model.get('source').includes('role') ) { #>
 		<a href="javascript:void(0)" class="tva-item-del click" data-fn="deleteAccessItem" data-id="<#= model.get('id') #>"><?php tva_get_svg_icon( 'trash-1' ); ?></a>
+		<# } #>
 	</span>
 </div>

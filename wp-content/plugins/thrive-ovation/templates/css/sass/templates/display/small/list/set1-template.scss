@@ -1,4 +1,5 @@
 @import "../../../../grid";
+
 @font-face {
   font-family: 'Raleway';
   src: url('../../fonts/google/Raleway.ttf') format('truetype');
@@ -35,6 +36,7 @@ $background_color: #f9f8f8;
     .tvo-testimonial-display-item {
       padding: 40px 30px 10px 30px;
       position: relative;
+
       h4 {
         font-family: $custom-font-family;
         font-weight: 600;
@@ -46,6 +48,7 @@ $background_color: #f9f8f8;
         margin-bottom: 35px;
         letter-spacing: 0.05em;
       }
+
       p {
         font-family: $custom-font-family;
         font-size: 18px;
@@ -92,6 +95,7 @@ $background_color: #f9f8f8;
       .tvo-testimonial-info {
         font-family: $custom-font-family;
         border: 1px solid transparent;
+
         .tvo-testimonial-name {
           display: block;
           font-size: 16px;
@@ -99,6 +103,7 @@ $background_color: #f9f8f8;
           line-height: 24px;
           margin-top: 15px;
         }
+
         .tvo-testimonial-role {
           display: block;
           font-size: 15px;
@@ -117,26 +122,33 @@ $background_color: #f9f8f8;
         border: 2px solid nth($color, 2);
         border-radius: 4px;
       }
+
       h4 {
         color: nth($color, 4);
       }
+
       p {
         color: nth($color, 4);
       }
+
       svg {
         stroke: nth($color, 2);
       }
+
       .tvo-testimonial-quote {
         &::before {
           color: nth($color, 2);
         }
       }
+
       .tvo-testimonial-info {
         .tvo-testimonial-name {
           color: nth($color, 1);
         }
+
         .tvo-testimonial-role {
           color: nth($color, 5);
+
           a {
             color: inherit;
           }

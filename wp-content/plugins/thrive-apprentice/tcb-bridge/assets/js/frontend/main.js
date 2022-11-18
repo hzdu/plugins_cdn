@@ -1,8 +1,10 @@
 ( function () {
 	if ( window.TCB_Front ) {
 		TCB_Front.course = require( './elements/course' );
+		TCB_Front.certificate_verification = require( './elements/certificate-verification' );
 
 		TCB_Front.course.init();
+		TCB_Front.certificate_verification.init();
 
 		/**
 		 * The course list class extends the post list class from TCB, so we do this check before initializing the course list functionality

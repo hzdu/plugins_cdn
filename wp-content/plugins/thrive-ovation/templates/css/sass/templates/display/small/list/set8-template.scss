@@ -1,10 +1,12 @@
 @import "../../../../grid";
+
 @font-face {
   font-family: 'Open Sans';
   src: url('../../../fonts/google/OpenSans.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
+
 @font-face {
   font-family: 'Lato';
   src: url('../../../fonts/google/Lato.ttf') format('truetype');
@@ -38,6 +40,7 @@ $font-line-height: 27px;
   &.tvo-testimonials-display-grid {
     .tvo-testimonial-display-item {
       position: relative;
+
       .tvo-testimonial-message-box {
         margin: 10px 10px;
         padding: 35px 30px;
@@ -46,6 +49,7 @@ $font-line-height: 27px;
         -webkit-border-radius: 4px;
         -moz-border-radius: 4px;
         border-radius: 4px;
+
         &::after {
           content: '';
           border-left: 10px solid transparent;
@@ -55,6 +59,7 @@ $font-line-height: 27px;
           top: 100%;
           right: 38px;
         }
+
         h4 {
           font-family: $font-family;
           font-size: 18px;
@@ -63,8 +68,10 @@ $font-line-height: 27px;
           text-transform: uppercase;
           margin-top: 0;
         }
+
         .tvo-testimonial-quote {
           max-height: 55px;
+
           &::before {
             display: block;
             content: '“';
@@ -75,6 +82,7 @@ $font-line-height: 27px;
             width: 40px;
           }
         }
+
         p {
           &.tvo-testimonial-text {
             font-size: $font-size;
@@ -84,12 +92,15 @@ $font-line-height: 27px;
             line-height: $font-line-height;
             margin-bottom: 0;
           }
+
           margin: 0;
           padding: 0;
         }
       }
+
       .tvo-testimonial-info-wrapper {
         margin-top: 20px;
+
         .tvo-testimonial-image-cover {
           display: inline-block;
           float: right;
@@ -104,6 +115,7 @@ $font-line-height: 27px;
           float: right;
           font-family: $custom-font-family;
           border: 1px solid transparent;
+
           .tvo-testimonial-name {
             font-size: 18px;
             display: block;
@@ -112,6 +124,7 @@ $font-line-height: 27px;
             margin-top: 15px;
             font-weight: 400;
           }
+
           .tvo-testimonial-role {
             font-size: 14px;
             display: block;
@@ -131,16 +144,21 @@ $font-line-height: 27px;
       .tvo-testimonial-display-item {
         .tvo-testimonial-message-box {
           box-shadow: 0 3px 0 0 nth($color, 1);
+
           &::after {
             border-top-color: nth($color, 1);
           }
+
           background-color: nth($color, 4);
+
           h4 {
             color: nth($color, 3);
           }
+
           p {
             color: nth($color, 5);
           }
+
           .tvo-testimonial-quote {
             &::before {
               color: nth($color, 2);
@@ -148,13 +166,16 @@ $font-line-height: 27px;
           }
         }
       }
+
       .tvo-testimonial-info-wrapper {
         .tvo-testimonial-info {
           .tvo-testimonial-name {
             color: nth($color, 3);
           }
+
           .tvo-testimonial-role {
             color: nth($color, 5);
+
             a {
               color: inherit;
             }

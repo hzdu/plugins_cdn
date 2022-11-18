@@ -62,6 +62,21 @@
 			<?php endif; ?>
 		</div>
 	<?php endif; ?>
+	<div class="ls-advanced-emoji-settings">
+		<p class="ls-advanced-setting-disable-emoji">
+			<?php echo __( 'Disable emojis', 'thrive-cb' ); ?>
+		</p>
+		<div class="ls-option-item">
+			<input type="checkbox"
+				   id="ls-disable-emoji-lp-checkbox"
+				   data-key="<?php echo \TCB\Lightspeed\Emoji::DISABLE_EMOJI; ?>"
+				   class="noUi-target noUi-ltr noUi-horizontal noUi-background ls-advanced-setting-input"
+			<#= <?php echo TCB\Lightspeed\Emoji::DISABLE_EMOJI ?> ? 'checked': '' #>>
+			<label for="ls-disable-emoji-lp-checkbox">
+				<?php echo __( 'Prevent WordPress from automatically loading emojis in your pages.', 'thrive-cb' ); ?>
+			</label>
+		</div>
+	</div>
 	<a class="ls-save-advanced-settings tvd-waves-effect tvd-waves-light tvd-btn tvd-btn-green" style="width:300px;"><?php echo __( 'Save', 'thrive-cb' ); ?> </a>
 	<div class="page-content" style="width:300px; ">
 		<div class="progress-bar-wrapper" style="display: none;"></div>

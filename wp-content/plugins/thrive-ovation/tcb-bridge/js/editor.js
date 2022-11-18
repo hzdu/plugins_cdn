@@ -13,7 +13,7 @@ var isBlockType = false;
 
 		TVE.main.on( 'device_change', function () {
 			TVE.inner_$( '.thrlider-slider' ).each( function () {
-				TVE.inner_$( this ).parent().thrlider( 'redraw' );
+				TVE.inner_$( this ).parents( '[id*="thrlider"]' ).thrlider( 'redraw' );
 			} )
 		} );
 
@@ -146,7 +146,7 @@ var isBlockType = false;
 					url: TVO_Front.routes.shortcodes + '/render'
 				} ).done( function ( response ) {
 					self.updateElement( TVE.ActiveElement, response, $modal );
-					TVE.ActiveElement.find( '.thrlider-slider' ).parent().thrlider( 'redraw' );
+					TVE.ActiveElement.find( '[id*="thrlider"]' ).thrlider( 'redraw' );
 				} ).fail( function ( response ) {
 					console.error( response );
 				} )

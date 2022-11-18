@@ -3,11 +3,13 @@
 .tvo-testimonials-display.tvo-#{$template-name}-template {
   @include box-sizing;
   font-family: $font-family;
+
   .tvo-testimonial-display-item {
     h4, p {
       font-family: $font-family;
     }
   }
+
   .tvo-testimonial-image-cover {
     @include center-align;
     border-radius: $image-border-radius;
@@ -15,12 +17,15 @@
     margin-bottom: $image-margin-bottom;
     width: $image-size;
   }
+
   .tvo-testimonial-image {
     height: $image-size;
     width: $image-size;
   }
+
   .tvo-testimonial-quote {
     height: 40px;
+
     &:before {
       content: '\02018\02019';
       font-family: 'Arial';
@@ -30,6 +35,7 @@
       letter-spacing: -2px;
     }
   }
+
   //.tvo-testimonial-content {
   //  word-break: break-all;
   //}
@@ -40,9 +46,11 @@
     .tvo-apply-background {
       background: nth($color, 1);
     }
+
     .tvo-testimonial-quote {
       color: nth($color, 4);
     }
+
     .thrlider-prev, .thrlider-next {
       &:hover {
         background: nth($color, 4);
@@ -58,9 +66,11 @@
         color: nth($color, 1);
       }
     }
+
     .tvo-testimonial-name {
       color: nth($color, 2);
     }
+
     .tvo-testimonial-role {
       color: nth($color, 3);
     }

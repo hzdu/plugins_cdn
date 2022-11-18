@@ -3,15 +3,19 @@
 .tvo-testimonials-display.tvo-#{$template-name}-template {
   @include box-sizing;
   font-family: $font-family;
+
   .custom-set2-grid .tvo-testimonial-content {
     color: #666666;
   }
+
   .tvo-testimonial-display-item {
     @include center-text;
     @include box-sizing;
+
     h4, p {
       font-family: $font-family;
     }
+
     p {
       //color: $title-color-small;
       font-size: $font-size;
@@ -21,13 +25,16 @@
       margin-bottom: $font-margin-bottom;
     }
   }
+
   h4 {
     @include transform-uppercase;
   }
+
   .tvo-testimonial-image {
     height: $image-size;
     width: $image-size;
   }
+
   .tvo-testimonial-image-cover {
     @include center-align;
     border-radius: $image-border-radius;
@@ -38,15 +45,17 @@
     max-width: 100%;
     width: $image-size;
   }
+
   .tvo-testimonial-quote {
     background: inherit;
-    border-color:  rgba(#fff, .2);
+    border-color: rgba(#fff, .2);
     border-top-width: 1px;
     border-top-style: solid;
     color: $quotes-color;
     height: 1px;
     position: relative;
-    margin: ($quotes-size/3) (-$grid-item-padding-side) ($quotes-size);
+    margin: calc($quotes-size/3) (-$grid-item-padding-side) ($quotes-size);
+
     &:before {
       @include up-quotes-arial;
       @include center-align;
@@ -65,6 +74,7 @@
       width: $quotes-size;
       z-index: 1;
     }
+
     &:after {
       background: inherit;
       content: '';
@@ -80,6 +90,7 @@
       width: $quotes-size;
     }
   }
+
   .tvo-testimonial-info {
     -webkit-align-self: flex-end;
     align-self: flex-end;
@@ -89,6 +100,7 @@
     padding: $grid-item-padding-side;
     width: 100%;
   }
+
   .tvo-testimonial-name {
     @include transform-uppercase;
     color: $name-color-light;
@@ -97,17 +109,20 @@
     font-weight: $name-weight;
     line-height: $name-line-height;
   }
+
   .tvo-testimonial-role {
     color: $name-color-light;
     font-size: $job-size;
     font-weight: $job-weight;
     // font-style: italic;
     line-height: $job-line-height;
+
     a {
       color: inherit;
       text-decoration: none;
     }
   }
+
   //.tvo-testimonial-content {
   //  word-break: break-all;
   //}
@@ -118,9 +133,11 @@
     .tvo-apply-background {
       background: nth($color, 1);
     }
+
     .custom-set2-grid .tvo-testimonial-info span, .custom-set3-grid .tvo-testimonial-info span {
       color: nth($color, 1);
     }
+
     .custom-set3-grid {
       .tvo-testimonial-quote:after, .tvo-testimonial-quote:before {
         color: inherit;
@@ -130,14 +147,14 @@
 }
 
 $pale-color-pallete: (
-  'black': (#cccccc),
-  'blue': (#d6e0f5),
-  'green': (#e1e8d0),
-  'orange': (#f1e8d8),
-  'purple': (#ebdced),
-  'red': (#f1d0d0),
-  'teal': (#d0ebec),
-  'white': (#d9d9d9)
+        'black': (#cccccc),
+        'blue': (#d6e0f5),
+        'green': (#e1e8d0),
+        'orange': (#f1e8d8),
+        'purple': (#ebdced),
+        'red': (#f1d0d0),
+        'teal': (#d0ebec),
+        'white': (#d9d9d9)
 );
 
 @each $name, $color in $pale-color-pallete {
@@ -145,6 +162,7 @@ $pale-color-pallete: (
     .custom-set2-grid .tvo-testimonial-display-item, .custom-set2-grid .tvo-testimonial-quote {
       border: 2px solid $color;
     }
+
     .custom-set2-grid {
       .tvo-testimonial-quote:after, .tvo-testimonial-quote:before {
         color: inherit;
@@ -159,10 +177,12 @@ $pale-color-pallete: (
       span, p, h4, .tvo-testimonial-quote {
         color: $color !important;
       }
+
       hr {
         background-color: $color !important;
       }
     }
+
     .custom-set2-grid {
       .tvo-testimonial-info span, .tvo-testimonial-content p, h4 {
         color: $color !important;
@@ -172,11 +192,13 @@ $pale-color-pallete: (
     .custom-set6 {
       background-color: #f5f5f5;
     }
+
     .custom-set6-grid {
       .tvo-apply-background {
         background-color: #f5f5f5;
       }
     }
+
     .custom-set3-grid {
       .tvo-testimonial-quote:before, .tvo-testimonial-name {
         color: #ccc;

@@ -10,6 +10,7 @@
       -webkit-flex-direction: column;
       flex-direction: column;
       padding: $grid-item-padding;
+
       h4 {
         @include center-text;
         color: $title-color-small;
@@ -20,17 +21,20 @@
         margin-top: 0;
       }
     }
+
     .tvo-testimonial-quote {
       position: absolute;
       top: 0;
       left: 0;
     }
+
     .tvo-testimonial-info {
       margin: (-$grid-item-padding-vertical) (-$grid-item-padding-side) $info-margin-bottom;
+
       &:before {
         background: inherit;
         border-color: inherit;
-        border-width: 0 1px 1px 0 ;
+        border-width: 0 1px 1px 0;
         border-style: solid;
         content: '';
         display: block;
@@ -49,6 +53,7 @@
         width: 20px;
       }
     }
+
     .tvo-testimonial-content {
       padding: 0 $grid-item-padding-vertical;
     }

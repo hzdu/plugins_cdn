@@ -8,6 +8,7 @@
       @include center-text;
       @include box-sizing;
       padding: $grid-item-padding;
+
       h4 {
         color: $title-color-large;
         font-size: $title-size-large;
@@ -16,6 +17,7 @@
         margin-bottom: $title-small-margin-bottom;
         margin-top: 0;
       }
+
       p {
         color: $font-color;
         font-size: $font-size;
@@ -24,12 +26,15 @@
         margin-bottom: $font-margin-bottom;
       }
     }
+
     .tvo-item-col {
       margin-bottom: $grid-item-padding-side;
     }
+
     .tvo-testimonial-quote {
       margin-top: $quote-margin-bottom;
     }
+
     .tvo-testimonial-name {
       @include transform-uppercase;
       color: $name-color-light;
@@ -38,20 +43,24 @@
       font-weight: $name-weight;
       line-height: $name-line-height;
     }
+
     .tvo-testimonial-role {
       color: $name-color-light;
       font-size: $job-size;
       font-weight: $job-weight;
       line-height: $job-line-height;
+
       a {
         color: inherit;
         text-decoration: none;
       }
     }
   }
+
   .tvo-apply-background {
     @include tvo-relative;
     border-radius: $item-border-radius;
+
     &:before, &:after {
       background: inherit;
       border-bottom-left-radius: $item-border-radius;
@@ -61,6 +70,7 @@
       height: 10px;
       position: absolute;
     }
+
     &:before {
       -webkit-filter: brightness(90%);
       filter: brightness(90%);
@@ -68,6 +78,7 @@
       left: 7px;
       right: 7px;
     }
+
     &:after {
       -webkit-filter: brightness(80%);
       filter: brightness(80%);

@@ -1,5 +1,5 @@
 ( function ( $ ) {
-	var $document = $( document );
+	const $document = $( document );
 	$document.on( 'heartbeat-tick.wp-auth-check', function ( e, data ) {
 		if ( 'wp-auth-check' in data && ! data[ 'wp-auth-check' ] ) {
 			/* when opening the auth iframe popup, add our user key field so we can identify him */

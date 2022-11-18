@@ -8,6 +8,7 @@
       @include box-sizing;
       @include display-flex;
       margin-bottom: $grid-item-padding-vertical;
+
       h4 {
         color: $title-color-large;
         font-size: $title-size-large;
@@ -17,15 +18,18 @@
         margin-top: 0;
       }
     }
+
     .tvo-testimonial-quote {
       position: absolute;
       top: 55px;
       left: 30px;
     }
+
     .tvo-testimonial-info {
       min-width: $image-size;
       padding: $grid-item-padding-vertical 0;
       width: 25%;
+
       &:before {
         background: inherit;
         border-color: inherit;
@@ -43,6 +47,7 @@
         width: 20px;
       }
     }
+
     .tvo-testimonial-content {
       -webkit-flex: 1;
       flex: 1;
@@ -67,6 +72,7 @@
   }
   .tvo-set4-template.tvo-testimonials-display-single .tvo-testimonial-info {
     min-width: 100%;
+
     &:before, &:after {
       border-left: 20px solid transparent;
       border-right: 20px solid transparent;
@@ -76,12 +82,14 @@
       right: 0;
       width: 0;
     }
+
     &:before {
       border-top: 20px solid $testimonial-info-border;
       background: transparent;
       bottom: -21px;
       transform: none;
     }
+
     &:after {
       border-top: 20px solid #fff;
       bottom: -20px;

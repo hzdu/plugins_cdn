@@ -18,26 +18,31 @@
       position: relative;
       text-align: left;
       width: 100%;
+
       &:hover, &:active {
         color: $button-color;
       }
     }
   }
+
   .tvo-submit-arrow {
     font-family: $navigation-icon;
     position: absolute;
     right: 10px;
+
     &:before {
       content: '\e900';
       font-size: 35px;
     }
   }
+
   .tvo_success_state {
     border-top: 3px solid $success-message-color;
     border-bottom: 3px solid $success-message-color;
     padding-top: 70px;
     padding-bottom: 70px;
   }
+
   .tvo-set2-image {
     text-align: center;
     @media (min-width: 1080px) {

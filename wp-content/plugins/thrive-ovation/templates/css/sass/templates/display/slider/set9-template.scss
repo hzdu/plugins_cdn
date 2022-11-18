@@ -17,12 +17,14 @@
   &.tvo-testimonials-display-slider {
     @include tvo-relative;
     padding: 0 $slider-spacing;
+
     .tvo-item-grid {
       -webkit-align-items: center;
       align-items: center;
       margin-left: 0;
       margin-right: 0;
     }
+
     .tvo-testimonial-display-item {
       //  padding: $grid-item-padding-small;
       h4 {
@@ -33,6 +35,7 @@
         margin-bottom: $title-small-margin-bottom;
         margin-top: 0;
       }
+
       p {
         color: $font-color;
         font-size: $font-size;
@@ -42,29 +45,36 @@
         overflow-wrap: break-word;
       }
     }
+
     .tvo-image-wrapper {
       min-width: $image-size;
     }
+
     .tvo-testimonial-content {
       -webkit-flex: 1;
       flex: 1;
       padding: 0 $grid-item-padding-side;
     }
+
     .thrlider-nav-wrapper {
       box-sizing: border-box;
       padding: 0 $grid-item-padding-side;
       margin: 0 !important;
     }
+
     .thrlider-navItem {
       opacity: .5;
       transition: opacity .3s ease;
+
       &:hover {
         opacity: 1;
       }
+
       &.thrlider-active {
         opacity: 1;
       }
     }
+
     .thrlider-prev, .thrlider-next {
       margin: auto;
       position: absolute;
@@ -74,11 +84,13 @@
       transform: translateY(-50%);
 
     }
+
     .thrlider-prev {
-      left: ($slider-spacing/3);
+      left: calc($slider-spacing/3);
     }
+
     .thrlider-next {
-      right: ($slider-spacing/3);
+      right: calc($slider-spacing/3);
     }
   }
 }

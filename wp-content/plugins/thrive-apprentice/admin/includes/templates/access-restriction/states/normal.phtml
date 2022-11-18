@@ -21,12 +21,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 				<?php tva_get_svg_icon( 'eye_light' ); ?>
 				<?php echo __( 'View', 'thrive-apprentice' ) ?>
 			</a>
-			<# if(settings.edit_with_tar) { #>
+			<# if( settings.edit_with_tar ) { #>
 			<a class="tva-page-option tva-edit-page-with-tar" href="<#- model.get( 'edit_url' ) #>" target="_blank">
 				<?php tva_get_svg_icon( 'tar-icon' ); ?>
 				<#- TVA.t.settings_tab.login_page.edit_post #>
 			</a>
-			<# } else if ( model.get( 'category' ) !== 'custom_link' ){ #>
+			<# } else if ( model.get( 'category' ) !== 'custom_link' ) { #>
 			<a class="tva-page-option tva-edit-page-wp" href="<#- model.get( 'edit_with_wp' ) #>" target="_blank">
 				<?php tva_get_svg_icon( 'edit-summary' ); ?>
 				<?php echo __( 'Edit', 'thrive-apprentice' ) ?>

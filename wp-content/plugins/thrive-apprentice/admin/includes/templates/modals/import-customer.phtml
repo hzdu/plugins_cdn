@@ -15,7 +15,7 @@ $import_types = TVA_Customer_Manager::get_import_types();
 ?>
 <div class="tva-modal-step" data-step="0">
 	<div class="tvd-modal-content">
-		<h3 class="tvd-modal-title"><?php echo __( 'Bulk customer import', 'thrive-apprentice' ); ?></h3>
+		<h3 class="tvd-modal-title"><?php echo __( 'Bulk member import', 'thrive-apprentice' ); ?></h3>
 		<p class="mt-0 mb-15"><?php echo __( 'Choose the import method:', 'thrive-apprentice' ); ?></p>
 		<div class="tva-flex tva-flex-row tva-space-center mb-15">
 			<?php foreach ( $import_types as $type ): ?>
@@ -29,7 +29,7 @@ $import_types = TVA_Customer_Manager::get_import_types();
 </div>
 <div class="tva-modal-step" data-step="1">
 	<div class="tvd-modal-content">
-		<h3 class="tvd-modal-title"><?php echo __( 'Import customer list', 'thrive-apprentice' ); ?></h3>
+		<h3 class="tvd-modal-title"><?php echo __( 'Import member list', 'thrive-apprentice' ); ?></h3>
 		<p class="mt-0 mb-15 tva-flex tva-space-between">
 			<span><?php echo __( 'Drop the file to be uploaded below.', 'thrive-apprentice' ) ?></span>
 			<span class="tva-flex tva-align-center">
@@ -55,8 +55,8 @@ $import_types = TVA_Customer_Manager::get_import_types();
 <div class="tva-modal-step" data-step="2">
 	<div class="tvd-modal-content">
 
-		<h3 class="tvd-modal-title"><?php echo __( 'Bulk add customers', 'thrive-apprentice' ); ?></h3>
-		<p class="mt-0 mb-15"><?php echo __( 'Add the name and email address of each customer, separated by a coma. One customer per line.', 'thrive-apprentice' ); ?></p>
+		<h3 class="tvd-modal-title"><?php echo __( 'Bulk add members', 'thrive-apprentice' ); ?></h3>
+		<p class="mt-0 mb-15"><?php echo __( 'Add the name and email address of each member, separated by a coma. One member per line.', 'thrive-apprentice' ); ?></p>
 		<textarea id="tva-list-import" placeholder="<?php echo esc_html__( 'Jane Doe, janedoe@gmail.com,' . "\r\n" . 'John Doe, johndoe@gmail.com', 'thrive-apprentice' ); ?>"></textarea>
 		<div class="tva-flex tva-flex-row tva-space-between margin-top-30">
 			<button type="button" class="click tva-modal-btn tva-modal-btn-back" data-fn="jumpToStep" data-step="0"><?php echo __( 'Back', 'thrive-apprentice' ); ?></button>
@@ -66,7 +66,7 @@ $import_types = TVA_Customer_Manager::get_import_types();
 </div>
 <div class="tva-modal-step" data-step="3">
 	<div class="tvd-modal-content">
-		<h3 class="tvd-modal-title"><?php echo __( 'Import customer list', 'thrive-apprentice' ); ?></h3>
+		<h3 class="tvd-modal-title"><?php echo __( 'Import member list', 'thrive-apprentice' ); ?></h3>
 
 		<div class="tvd-modal-overflow">
 			<div class="mt-0 mb-15 tva-flex tva-space-between">
@@ -76,7 +76,7 @@ $import_types = TVA_Customer_Manager::get_import_types();
 			<table class="tva-csv-customers-list mb-30">
 				<thead>
 				<tr>
-					<th><?php echo __( 'Customer name', 'thrive-apprentice' ); ?></th>
+					<th><?php echo __( 'Member name', 'thrive-apprentice' ); ?></th>
 					<th>
 						<?php echo __( 'Email address', 'thrive-apprentice' ); ?>
 						<span class="click toggle" data-fn="toggleTable">

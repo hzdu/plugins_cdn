@@ -13,20 +13,20 @@ $font-family: 'Open Sans', sans-serif;
 $font-style: 'normal';
 
 $color-pallete: (
-  'black': (#383636, #2b2a2a, #8e8d8d),
-  'blue': (#2477a7, #1c5b80, #82b2cd),
-  'green': (#27ae60, #1e864a, #84d1a5),
-  'orange': (#f39c12, #bb780e, #f8c778),
-  'purple': (#8c4fa6, #6c3d80, #be9bcc),
-  'red': (#c0392b, #942c21, #db8e86),
-  'teal': (#16a085, #117b66, #7bc9ba),
-  'white': (#ffffff, #c4c4c4, #e6e6e6)
+        'black': (#383636, #2b2a2a, #8e8d8d),
+        'blue': (#2477a7, #1c5b80, #82b2cd),
+        'green': (#27ae60, #1e864a, #84d1a5),
+        'orange': (#f39c12, #bb780e, #f8c778),
+        'purple': (#8c4fa6, #6c3d80, #be9bcc),
+        'red': (#c0392b, #942c21, #db8e86),
+        'teal': (#16a085, #117b66, #7bc9ba),
+        'white': (#ffffff, #c4c4c4, #e6e6e6)
 );
 
 $grid-item-padding-side: 25px;
 $grid-item-padding-vertical: 30px;
 $grid-item-padding: $grid-item-padding-vertical $grid-item-padding-side;
-$grid-item-padding-small: ($grid-item-padding-vertical /2) $grid-item-padding-side ($grid-item-padding-vertical*2);
+$grid-item-padding-small: ($grid-item-padding-vertical *0.5) $grid-item-padding-side ($grid-item-padding-vertical*2);
 
 $image-size: 160px;
 $image-border-radius: 100px;
@@ -70,10 +70,10 @@ $image-margin-bottom: 25px;
 
 $different-variation: true;
 $different-variation-name: (
-  'white': #2b2a2a
+        'white': #2b2a2a
 );
 $white-variation-name: (
-  'white': #fff
+        'white': #fff
 );
 
 $testimonial-info-bg: transparent;

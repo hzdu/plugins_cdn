@@ -1,4 +1,3 @@
-@import "bourbon";
 @import "../../grid";
 @import "../../config/capture/_set1-template";
 @import "../../form";
@@ -7,9 +6,11 @@
   .tvo_testimonial_form.tve_#{$name}.tvo-#{$template-name}-template {
     .tvo-form-button {
       background: nth($color, 1);
+
       &:hover {
         background: nth($color, 2);
       }
+
       &:active {
         background: nth($color, 1);
       }
