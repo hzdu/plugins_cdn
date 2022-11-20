@@ -44,7 +44,13 @@
 			"type": "object"
 		},
 		"columnsWidth": {
-			"type": "number"
+			"type": [ "number", "string" ]
+		},
+		"columnsWidthTablet": {
+			"type": "string"
+		},
+		"columnsWidthMobile": {
+			"type": "string"
 		},
 		"horizontalAlign": {
 			"type": "string",
@@ -55,17 +61,26 @@
 			"default": "auto"
 		},
 		"columnsHeightCustom": {
-			"type": "number"
+			"type": [ "number", "string" ]
 		},
 		"columnsHeightCustomTablet": {
-			"type": "number"
+			"type": [ "number", "string" ]
 		},
 		"columnsHeightCustomMobile": {
-			"type": "number"
+			"type": [ "number", "string" ]
 		},
 		"verticalAlign": {
 			"type": "string",
 			"default": "unset"
+		},
+		"color": {
+			"type": "string"
+		},
+		"colorHover": {
+			"type": "string"
+		},
+		"linkColor": {
+			"type": "string"
 		},
 		"backgroundType": {
 			"type": "string",
@@ -161,8 +176,7 @@
 			"type": "object"
 		},
 		"borderColor": {
-			"type": "string",
-			"default": "#000000"
+			"type": "string"
 		},
 		"borderRadius": {
 			"type": "object"
@@ -204,28 +218,22 @@
 			"default": "#000000"
 		},
 		"dividerTopWidth": {
-			"type": "number",
-			"default": 100
+			"type": "number"
 		},
 		"dividerTopWidthTablet": {
-			"type": "number",
-			"default": 100
+			"type": "number"
 		},
 		"dividerTopWidthMobile": {
-			"type": "number",
-			"default": 100
+			"type": "number"
 		},
 		"dividerTopHeight": {
-			"type": "number",
-			"default": 100
+			"type": "number"
 		},
 		"dividerTopHeightTablet": {
-			"type": "number",
-			"default": 100
+			"type": "number"
 		},
 		"dividerTopHeightMobile": {
-			"type": "number",
-			"default": 100
+			"type": "number"
 		},
 		"dividerTopInvert": {
 			"type": "boolean",
@@ -240,28 +248,22 @@
 			"default": "#000000"
 		},
 		"dividerBottomWidth": {
-			"type": "number",
-			"default": 100
+			"type": "number"
 		},
 		"dividerBottomWidthTablet": {
-			"type": "number",
-			"default": 100
+			"type": "number"
 		},
 		"dividerBottomWidthMobile": {
-			"type": "number",
-			"default": 100
+			"type": "number"
 		},
 		"dividerBottomHeight": {
-			"type": "number",
-			"default": 100
+			"type": "number"
 		},
 		"dividerBottomHeightTablet": {
-			"type": "number",
-			"default": 100
+			"type": "number"
 		},
 		"dividerBottomHeightMobile": {
-			"type": "number",
-			"default": 100
+			"type": "number"
 		},
 		"dividerBottomInvert": {
 			"type": "boolean",

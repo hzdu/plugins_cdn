@@ -2,23 +2,23 @@
     "packages": [
         {
             "name": "codeinwp/themeisle-sdk",
-            "version": "3.2.26",
-            "version_normalized": "3.2.26.0",
+            "version": "3.2.29",
+            "version_normalized": "3.2.29.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Codeinwp/themeisle-sdk.git",
-                "reference": "a4451041bb97a325c7bb8e86a5584adf4636650e"
+                "reference": "9456fb0944ec69c3975de04aaf56233ddc2f828c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Codeinwp/themeisle-sdk/zipball/a4451041bb97a325c7bb8e86a5584adf4636650e",
-                "reference": "a4451041bb97a325c7bb8e86a5584adf4636650e",
+                "url": "https://api.github.com/repos/Codeinwp/themeisle-sdk/zipball/9456fb0944ec69c3975de04aaf56233ddc2f828c",
+                "reference": "9456fb0944ec69c3975de04aaf56233ddc2f828c",
                 "shasum": ""
             },
             "require-dev": {
                 "codeinwp/phpcs-ruleset": "dev-main"
             },
-            "time": "2022-05-12T11:55:06+00:00",
+            "time": "2022-09-08T15:34:21+00:00",
             "type": "library",
             "installation-source": "dist",
             "notification-url": "https://packagist.org/downloads/",
@@ -39,7 +39,7 @@
             ],
             "support": {
                 "issues": "https://github.com/Codeinwp/themeisle-sdk/issues",
-                "source": "https://github.com/Codeinwp/themeisle-sdk/tree/v3.2.26"
+                "source": "https://github.com/Codeinwp/themeisle-sdk/tree/v3.2.29"
             },
             "install-path": "../codeinwp/themeisle-sdk"
         },
@@ -116,6 +116,62 @@
             "install-path": "../masterminds/html5"
         },
         {
+            "name": "sabberworm/php-css-parser",
+            "version": "8.4.0",
+            "version_normalized": "8.4.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/sabberworm/PHP-CSS-Parser.git",
+                "reference": "e41d2140031d533348b2192a83f02d8dd8a71d30"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/sabberworm/PHP-CSS-Parser/zipball/e41d2140031d533348b2192a83f02d8dd8a71d30",
+                "reference": "e41d2140031d533348b2192a83f02d8dd8a71d30",
+                "shasum": ""
+            },
+            "require": {
+                "ext-iconv": "*",
+                "php": ">=5.6.20"
+            },
+            "require-dev": {
+                "codacy/coverage": "^1.4",
+                "phpunit/phpunit": "^4.8.36"
+            },
+            "suggest": {
+                "ext-mbstring": "for parsing UTF-8 CSS"
+            },
+            "time": "2021-12-11T13:40:54+00:00",
+            "type": "library",
+            "installation-source": "dist",
+            "autoload": {
+                "psr-4": {
+                    "Sabberworm\\CSS\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Raphael Schweikert"
+                }
+            ],
+            "description": "Parser for CSS Files written in PHP",
+            "homepage": "https://www.sabberworm.com/blog/2010/6/10/php-css-parser",
+            "keywords": [
+                "css",
+                "parser",
+                "stylesheet"
+            ],
+            "support": {
+                "issues": "https://github.com/sabberworm/PHP-CSS-Parser/issues",
+                "source": "https://github.com/sabberworm/PHP-CSS-Parser/tree/8.4.0"
+            },
+            "install-path": "../sabberworm/php-css-parser"
+        },
+        {
             "name": "tubalmartin/cssmin",
             "version": "v4.1.1",
             "version_normalized": "4.1.1.0",
@@ -174,6 +230,54 @@
                 "source": "https://github.com/tubalmartin/YUI-CSS-compressor-PHP-port"
             },
             "install-path": "../tubalmartin/cssmin"
+        },
+        {
+            "name": "wptt/webfont-loader",
+            "version": "v1.1.2",
+            "version_normalized": "1.1.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/WPTT/webfont-loader.git",
+                "reference": "780e564bf0554c419ef447c2b5b768b497ecee40"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/WPTT/webfont-loader/zipball/780e564bf0554c419ef447c2b5b768b497ecee40",
+                "reference": "780e564bf0554c419ef447c2b5b768b497ecee40",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.6"
+            },
+            "require-dev": {
+                "composer/installers": "~1.0",
+                "dealerdirect/phpcodesniffer-composer-installer": "^0.7.0",
+                "php-parallel-lint/php-parallel-lint": "^1.2",
+                "wptrt/wpthemereview": "^0.2.1"
+            },
+            "time": "2022-06-17T10:41:00+00:00",
+            "type": "package",
+            "installation-source": "dist",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Contributors",
+                    "homepage": "https://github.com/WPTT/font-loader/graphs/contributors"
+                }
+            ],
+            "description": "Locally host webfonts.",
+            "homepage": "https://github.com/WPTT/font-loader",
+            "keywords": [
+                "wordpress"
+            ],
+            "support": {
+                "issues": "https://github.com/WPTT/font-loader/issues",
+                "source": "https://github.com/WPTT/font-loader"
+            },
+            "install-path": "../wptt/webfont-loader"
         }
     ],
     "dev": false,

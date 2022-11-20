@@ -229,6 +229,16 @@ if (!String.prototype.trim) {
                 }
 
             }
+            if (options.gdpr.consent_magic_integration_enabled && typeof CS_Data !== "undefined") {
+                if (typeof CS_Data.cs_google_analytics_consent_mode !== "undefined" && CS_Data.cs_google_analytics_consent_mode == 1) {
+                    Analytics.loadPixel();
+                }
+
+                if (typeof CS_Data.cs_google_ads_consent_mode !== "undefined" && CS_Data.cs_google_ads_consent_mode == 1 ) {
+                    GAds.loadPixel();
+                }
+            }
+
 
         }
 
@@ -1515,7 +1525,7 @@ if (!String.prototype.trim) {
                 /**
                  * ConsentMagic
                  */
-                if (options.gdpr.consent_magic_integration_enabled && typeof CS_Data !== "undefined") {
+                if (options.gdpr.consent_magic_integration_enabled && typeof CS_Data !== "undefined" ) {
 
                     var cs_cookie = Cookies.get('cs_viewed_cookie_policy'+test_prefix);
 
@@ -1528,7 +1538,15 @@ if (!String.prototype.trim) {
                             return true;
                         }
                     }
+                    if (options.gdpr.consent_magic_integration_enabled && typeof CS_Data !== "undefined") {
+                        if ((typeof CS_Data.cs_google_analytics_consent_mode !== "undefined" && CS_Data.cs_google_analytics_consent_mode == 1) && pixel == 'analytics') {
+                            return true;
+                        }
 
+                        if ((typeof CS_Data.cs_google_ads_consent_mode !== "undefined" && CS_Data.cs_google_ads_consent_mode == 1) && pixel == 'google_ads') {
+                            return true;
+                        }
+                    }
                     return false;
 
                 }
@@ -1682,12 +1700,12 @@ if (!String.prototype.trim) {
                                     if (categoryCookie === CS_Data.cs_script_cat.bing) {
                                         Bing.loadPixel();
                                     }
+                                    if (categoryCookie === CS_Data.cs_script_cat.analytics || (typeof CS_Data.cs_google_analytics_consent_mode !== "undefined" && CS_Data.cs_google_analytics_consent_mode == 1)) {
 
-                                    if (categoryCookie === CS_Data.cs_script_cat.analytics) {
                                         Analytics.loadPixel();
                                     }
 
-                                    if (categoryCookie === CS_Data.cs_script_cat.gads) {
+                                    if (categoryCookie === CS_Data.cs_script_cat.gads || (typeof CS_Data.cs_google_ads_consent_mode !== "undefined" && CS_Data.cs_google_ads_consent_mode == 1)) {
                                         GAds.loadPixel();
                                     }
 
@@ -1707,11 +1725,11 @@ if (!String.prototype.trim) {
                                         Bing.disable();
                                     }
 
-                                    if (categoryCookie === CS_Data.cs_script_cat.analytics) {
+                                    if (categoryCookie === CS_Data.cs_script_cat.analytics && (typeof CS_Data.cs_google_analytics_consent_mode == "undefined" || CS_Data.cs_google_analytics_consent_mode == 0)) {
                                         Analytics.disable();
                                     }
 
-                                    if (categoryCookie === CS_Data.cs_script_cat.gads) {
+                                    if (categoryCookie === CS_Data.cs_script_cat.gads && (typeof CS_Data.cs_google_ads_consent_mode == "undefined" || CS_Data.cs_google_ads_consent_mode == 0)) {
                                         GAds.disable();
                                     }
 
@@ -1742,10 +1760,17 @@ if (!String.prototype.trim) {
                                 Pinterest.loadPixel();
                                 TikTok.loadPixel();
                             } else if(button_action === 'disable_all') {
+
                                 Facebook.disable();
                                 Bing.disable();
-                                Analytics.disable();
-                                GAds.disable();
+                                if(CS_Data.cs_google_analytics_consent_mode == 0 || typeof CS_Data.cs_google_analytics_consent_mode == "undefined")
+                                {
+                                    Analytics.disable();
+                                }
+                                if(CS_Data.cs_google_ads_consent_mode == 0 || typeof CS_Data.cs_google_ads_consent_mode == "undefined")
+                                {
+                                    GAds.disable();
+                                }
                                 Pinterest.disable();
                                 TikTok.disable();
                             }
@@ -1873,7 +1898,6 @@ if (!String.prototype.trim) {
                 if(lastName != null) {
                     data["last_name"] = lastName;
                 }
-                console.log("save",data)
                 Cookies.set('pys_advanced_form_data', JSON.stringify(data),{ expires: 300 } );
             },
 
@@ -3484,7 +3508,11 @@ if (!String.prototype.trim) {
                 }
             })
             $(document).on("blur","input[type='text']",function () {
-                let name = $(this).attr("name").trim().toLocaleString()
+                if($(this).attr("name") && $(this).attr("name") != '')
+                {
+                    let name = $(this).attr("name").trim()
+                }
+
                 if(name && options.advance_matching_fn_names.includes(name)) {
                     let value = $(this).val().trim();
                     if(value.length > 0) {
@@ -3500,7 +3528,6 @@ if (!String.prototype.trim) {
                 if(name && options.advance_matching_tel_names.includes(name)) {
                     let value = $(this).val().trim();
                     if(value.length > 0) {
-                        console.log(value);
                         Utils.saveAdvancedFormData(null,value,null,null);
                     }
                 }
