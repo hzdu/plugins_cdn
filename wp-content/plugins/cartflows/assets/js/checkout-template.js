@@ -92,22 +92,58 @@
 	 * is blank
 	 */
 	const wcf_custom_field_validation = function () {
+		/**
+		 * Controls the display of the error message on the basis of backend setting.
+		 *
+		 * @param {boolean} field_required
+		 * @param {string}  field_row
+		 * @param {string}  field_wrap
+		 */
+		const add_validation_msg = function (
+			field_required = false,
+			field_row,
+			field_wrap
+		) {
+			field_row.find( '.wcf-field-required-error' ).remove();
+
+			if (
+				field_required &&
+				'yes' === cartflows.field_validation.is_enabled
+			) {
+				const label_text = field_row.find( 'label' ).text();
+				field_wrap.after(
+					'<span class="wcf-field-required-error">' +
+						label_text.replace( /\*/g, '' ).trim() +
+						' ' +
+						cartflows.field_validation.error_msg +
+						'</span>'
+				);
+			} else {
+				field_row.find( '.wcf-field-required-error' ).remove();
+			}
+		};
+
 		const custom_field_add_class = function (
 			field_value,
 			field_row,
 			field_wrap,
 			field_type
 		) {
+			let isError = false;
+
 			if (
 				field_value === '' ||
 				( 'select' === field_type && field_value === ' ' )
 			) {
 				if ( field_row.hasClass( 'validate-required' ) ) {
 					field_wrap.addClass( 'field-required' );
+					isError = true;
 				}
 			} else {
 				field_wrap.removeClass( 'field-required' );
 			}
+
+			add_validation_msg( isError, field_row, field_wrap );
 		};
 
 		const fields_wrapper = $( 'form.woocommerce-checkout' ),

@@ -26,3 +26,14 @@ wp.UAGBSvgIcons = Object.keys( uagb_blocks_info.uagb_svg_icons );
 updateCategory( 'cartflows', {
 	icon: CF_Block_Icons.logo,
 } );
+
+const addCfResponsiveCondtionBlocks = function ( blocks ) {
+	blocks.push( 'wcfb/' );
+	return blocks;
+};
+
+wp.hooks.addFilter(
+	'uag_reponsive_conditions_compatible_blocks',
+	'enable_reponsive_condition_for_cf_blocks',
+	addCfResponsiveCondtionBlocks
+);
