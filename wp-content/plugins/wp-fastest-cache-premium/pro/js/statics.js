@@ -18,37 +18,42 @@ var WpFcStatics = {
 		this.set_click_event_filter();
 		this.set_click_event_per_page();
 		this.set_click_event_buy_image_credit();
+
+		this.set_click_event_auto_optimize();
+	},
+	set_click_event_auto_optimize: function(){
+		jQuery("#auto-optimize-link").click(function(){
+
+			Wpfc_New_Dialog.dialog("wpfc-modal-auto-optimize", {
+				close: function(e){
+					let modal = jQuery(e).closest("div[id^='wpfc-modal-auto-optimize']");
+					modal.remove();
+				},
+			}, function(dialog){
+				Wpfc_New_Dialog.show_button("close");
+			});
+			
+		});
 	},
 	set_click_event_buy_image_credit: function(){
 		var self = this;
 
-		jQuery("#buy-image-credit-link").click(function(){
+		//jQuery("#buy-image-credit-link").click(function(){
+		jQuery("#wpfc-optimized-statics-credit").click(function(){
 
-			var shop = jQuery('<div id="wpfc-shop-modal" style="width: 500px;height: 100px;"></div>');
-			jQuery("body").append(shop);
+			Wpfc_New_Dialog.dialog("wpfc-modal-buy-crdit", {
+				finish: function(e){
+					let modal = jQuery(e).closest("div[id^='wpfc-modal-buy-crdit']");
 
-			var windowHeight = (jQuery(window).height() - shop.height())/2 + jQuery(window).scrollTop();
-			var windowWidth = (jQuery(window).width() - shop.width())/2;
-			shop.css({"top": windowHeight, "left": windowWidth});
+					if(modal.find("input[type='radio']:checked").length == 1){
+						modal.find("form").submit();
+					}
 
-
-			jQuery.ajax({
-				type: 'GET',
-				url: self.ajax_url,
-				data : {"action": "wpfc_image_credit_template_ajax_request"},
-				cache: false, 
-				success: function(data){
-					jQuery("#wpfc-shop-modal").css({"background" : "white"});
-					jQuery("#wpfc-shop-modal").html(data);
-
-					windowHeight = 35 + jQuery(window).scrollTop();
-					windowWidth = (jQuery(window).width() - shop.width())/2;
-					shop.css({"top": windowHeight, "left": windowWidth});
-
-					self.event_on_shop();
-
-				}
+				},
+			}, function(dialog){
+				Wpfc_New_Dialog.show_button("finish");
 			});
+
 		});
 	},
 	event_on_shop: function(){
@@ -323,7 +328,7 @@ var WpFcStatics = {
 		var asia = "AF, AM, AZ, BH, BD, BT, BN, KH, CN, GE, HK, IN, ID, IR, IQ, JP, JO, KW, KG, LA, LB, MO, MY, MV, MN, MM, NP, KP, OM, PK, PH, QA, SA, SG, KR, LK, SY, TW, TJ, TH, TM, AE, UZ, VN, YE";
 			
 		var w_europe = "AD, AT, BE, DK, FO, FR, DE, GI, IS, IE, IM, IT, LI, LU, MT, MC, NL, PT, SM, ES, CH, GB, VA";
-		var e_europe = "AL, BY, BA, BG, HR, CY, CZ, EE, FI, GR, HU, IL, XK, LV, LT, MK, MD, ME, NO, PL, RO, RU, RS, SK, SI, SE, TR, UA";
+		var e_europe = "AL, BY, BA, BG, HR, CY, CZ, EE, FI, GR, HU, KZ, IL, XK, LV, LT, MK, MD, ME, NO, PL, RO, RU, RS, SK, SI, SE, TR, UA";
 
 		var africa = "DZ, AO, BJ, BW, BF, BI, CM, CV, CF, KM, CD, DJ, EG, GQ, ER, ET, GA, GM, GH, GN, GW, CI, KE, LS, LR, LY, MG, MW, ML, MR, MU, MA, MZ, NA, NE, NG, CG, RE, RW, SH, ST, SN, SC, SL, SO, ZA, SS, SD, SZ, TZ, TG, TN, UG, EH, ZM, ZW";
 		var time_out = 4000;

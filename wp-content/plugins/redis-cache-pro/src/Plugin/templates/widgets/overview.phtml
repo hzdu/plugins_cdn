@@ -19,6 +19,7 @@ $relayMemory = $diagnostics['statistics']['relay-memory'] ?? false;
 $configError = $this->config->initException ?? false;
 $configDefined = defined('\WP_REDIS_CONFIG');
 $configDefinedTooLate = $this->lazyAssConfig();
+$networkFlushing = $this->config->network_flush !== $this->config::NETWORK_FLUSH_ALL;
 $isDisabled = $diagnostics->isDisabled();
 $dropinExists = $diagnostics->dropinExists();
 $dropinIsValid = $dropinExists && $diagnostics->dropinIsValid();
@@ -106,15 +107,17 @@ $admin_nonce_url = function ($action) {
     <div class="actions">
 
         <?php if (! $isDisabled && $dropinExists && $dropinIsValid && $diagnostics->ping()) : ?>
+            <?php $flushText = (is_multisite() && $networkFlushing) ? (is_network_admin() ? 'Flush Network Cache' : 'Flush Site Cache') : 'Flush Cache'; ?>
+            <?php $flushAction = (is_multisite() && $networkFlushing) ? (is_network_admin() ? 'flush-network-cache' : 'flush-site-cache') : 'flush-cache'; ?>
             <?php if ($license->isValid()) : ?>
                 <a class="button button-primary"
-                    href="<?php echo $admin_nonce_url('flush-cache'); ?>"
+                    href="<?php echo $admin_nonce_url($flushAction); ?>"
                 >
-                    Flush Cache
+                    <?php echo $flushText; ?>
                 </a>
             <?php else : ?>
                 <a class="button button-primary" href="#!" disabled>
-                    Flush Cache
+                    <?php echo $flushText; ?>
                 </a>
             <?php endif; ?>
         <?php endif; ?>
@@ -242,7 +245,8 @@ $admin_nonce_url = function ($action) {
 <?php endif; ?>
 
 <script>
-    if (history.replaceState && (location.href.indexOf('objectcache-status') > -1 || location.href.indexOf('page=objectcache') > -1)) {
-        history.replaceState({}, document.title, location.href.replace(/(?<=[\?&])(objectcache-)?status=[\w-]+/, '').replace(/[\?|&]$/, ''));
+    if (history.replaceState) {
+        location.href.indexOf('objectcache-status') > -1 && history.replaceState({}, document.title, location.href.replace(/\?objectcache-status=[\w-]+$/, ''));
+        location.href.indexOf('page=objectcache') > -1 && history.replaceState({}, document.title, location.href.replace(/&status=[\w-]+/, ''));
     }
 </script>

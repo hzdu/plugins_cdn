@@ -100,7 +100,7 @@ if (! defined('QM_OBJECTCACHE_HEAVY')) {
                         <span class="dashicons dashicons-warning" aria-hidden="true"></span>
                     <?php endif; ?>
 
-                    <code><?php echo size_format($command['bytes'], $command['bytes'] > 1024 ? 2 : 0); ?></code>
+                    <code><?php echo size_format($command['bytes'], $command['bytes'] > 1029 ? 2 : 0); ?></code>
                 </td>
 
                 <?php $expensive = $command['time'] >= (QM_OBJECTCACHE_EXPENSIVE * 1000); ?>

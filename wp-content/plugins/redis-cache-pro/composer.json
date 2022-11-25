@@ -59,7 +59,7 @@
         "style": "php-cs-fixer fix --verbose --dry-run --diff",
         "style:fix": "php-cs-fixer fix --verbose",
         "lint": "phpcs --no-cache --ignore=vendor --extensions=php --standard=PSR12 .",
-        "compatibility": "phpcs --no-cache -p --standard=PHPCompatibility --ignore=vendor,tests .",
-        "analyze": "phpstan analyze"
+        "compat": "phpcs --no-cache -p --standard=PHPCompatibility --ignore=vendor,tests .",
+        "phpstan": "phpstan analyze"
     }
 }

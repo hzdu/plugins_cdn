@@ -2,6 +2,63 @@
 
 All notable changes to this project will be documented in this file.
 
+## 1.17.0 - 2022-11-23
+### Added
+- Added support replicated and sentinel Relay connections
+- Added `group_flush` configuration option supporting `keys` (new faster default), `scan` (previous default) and `incremental` (enormous datasets)
+- Added `tracer` configuration option supporting `new-relic` and global `open-telemetry` tracer providers
+- Support `network_flush` option when using Redis Cluster
+- Support New Relic tracing for Redis Cluster, Redis Sentinel and Relay clients
+- Added `*Connection::listKeys()` helpers
+- Added `PhpRedisClusterConnection::eval*()` helpers
+- Added Redis Server version health checks and indicators
+
+### Changed
+- Bumped scan and batch removal from `100` to `500` keys
+- Flush more prudently even on main site when using `network_flush`
+- Indicate whether the network or site will be flushed in overview widget in multisite environments
+- Renamed all the things from _master(s)_ to _primary/primaries_ with backwards compatibility
+- Improved must-use plugin detection
+- ⚠️ Added `client()` method to `ConnectionInterface`
+- ⚠️ Use new `ClientInterface` in all `ConnectionInterface` implementations
+- ⚠️ Renamed `Connector` interface to `ConnectorInterface`
+- ⚠️ Renamed `handleBlogFlush()` to `shouldFlushBlog()`
+- Renamed `flush_network` option to `network_flush`
+- Use `ObjectCache::$blogId` instead of `get_current_blog_id()`
+- Use `ObjectCacheCollector::get_storage(): QM_Data` return type
+- Show received bytes _and sent bytes_ in Query Monitor
+- Strip slashes from commands in Query Monitor
+- Improved support for `scan()` and `*scan()` methods
+- Delete FOSS drop-in upon plugin activation
+
+### Fixed
+- Fixed various Redis Sentinel issues
+- Fixed `Invalid regular expression` in Safari
+- Fixed parsing `rawCommand()` in Query Monitor calls when using Redis Cluster
+- Fixed health check for configuration constant being defined too late
+- Fixed attempted property access on null in `Diagnostics::relayHasCache()`
+- Fixed groups widget padding
+- Fixed inverted "Relay Cache" metadata in Query Monitor
+
+### Removed
+- Dropped Twemproxy support
+- Dropped `PhpRedisClusterConnection::scanNode()` helper
+- Dropped `*ObjectCache::Client` constants
+- Dropped `WP_REDIS_PHPREDIS_OPTIONS` constant
+
+## 1.16.4 - 2022-10-31
+### Added
+- Added support for WordPress 6.1's `wp_cache_supports()`
+
+### Changed
+- Refer to "external cache" as "datastore" everywhere
+- Hide `wp_cache_get_last_changed()` and `wp_cache_flush_group()` in Query Monitor
+
+### Fixed
+- Fixed inverted "Relay Cache" diagnostic
+- Fixed rare undefined `OPT_MAX_RETRIES` constant error
+- Don't use WordPress 5.3's `WP_REST_Request::has_param()`
+
 ## 1.16.3 - 2022-10-09
 ### Added
 - Added new `wp redis status` command
@@ -567,7 +624,7 @@ This releases introduces a settings page to keep an eye on cache analytics, mana
 - Minor dashboard widget improvements
 - Minor Query Monitor extension improvements
 - Cleanup plugin options upon deactivation
-- Disable free version when activating plugin to avoid confusion
+- Disable FOSS version when activating plugin to avoid confusion
 
 ### Fixed
 - Escape more HTML outputs
