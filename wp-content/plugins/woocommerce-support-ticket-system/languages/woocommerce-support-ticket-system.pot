@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: WooCommerce Support Ticket System\n"
-"POT-Creation-Date: 2022-10-21 08:55+0200\n"
+"POT-Creation-Date: 2022-11-25 19:40+0100\n"
 "PO-Revision-Date: 2017-04-18 00:09+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -10,7 +10,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
-"X-Generator: Poedit 3.1.1\n"
+"X-Generator: Poedit 3.2\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-Flags-xgettext: --add-comments=translators:\n"
 "X-Poedit-WPHeader: woocommerce-support-ticket-system.php\n"
@@ -113,6 +113,7 @@ msgstr ""
 
 #: classes/admin/WCSTS_AssignTicketPage.php:54
 #: classes/admin/WCSTS_CustomStatusConfiguratorPage.php:31
+#: classes/admin/WCSTS_CustomersAgentsAssociationPage.php:51
 msgid "Operation successfully performed."
 msgstr ""
 
@@ -122,7 +123,7 @@ msgstr ""
 
 #: classes/admin/WCSTS_AssignTicketPage.php:69
 msgid ""
-"No user has been select, in this way the previous ticket(s) assignements "
+"No agent has been select, in this way the previous ticket(s) assignements "
 "will be removed. Do you want to procede?"
 msgstr ""
 
@@ -133,6 +134,7 @@ msgid ""
 msgstr ""
 
 #: classes/admin/WCSTS_AssignTicketPage.php:81
+#: classes/admin/WCSTS_CustomersAgentsAssociationPage.php:79
 msgid "How it works?"
 msgstr ""
 
@@ -144,10 +146,11 @@ msgid ""
 msgstr ""
 
 #: classes/admin/WCSTS_AssignTicketPage.php:83
-msgid "1. Select users"
+msgid "1. Select agents"
 msgstr ""
 
 #: classes/admin/WCSTS_AssignTicketPage.php:84
+#: classes/admin/WCSTS_CustomersAgentsAssociationPage.php:87
 msgid ""
 "You can search by user id, name, surname or email. <strong>NOTE:</strong> to "
 "reset previous ticket user assignements, leave empty this field and then "
@@ -159,6 +162,7 @@ msgid "2. Select tickets"
 msgstr ""
 
 #: classes/admin/WCSTS_AssignTicketPage.php:88
+#: classes/admin/WCSTS_CustomersAgentsAssociationPage.php:82
 msgid ""
 "You can search by ticket id. <strong>NOTE:</strong> to reset all ticket "
 "assigned to an user, in the previous step select the user(s) you need and "
@@ -182,14 +186,14 @@ msgstr ""
 #: classes/admin/WCSTS_AssignTicketPage.php:97
 #: classes/admin/WCSTS_ProductTablePage.php:29
 #: classes/admin/WCSTS_ProductTablePage.php:42
-#: classes/com/WCSTS_HtmlHelper.php:57
+#: classes/com/WCSTS_HtmlHelper.php:58
 msgid "No"
 msgstr ""
 
 #: classes/admin/WCSTS_AssignTicketPage.php:98
 #: classes/admin/WCSTS_ProductTablePage.php:29
 #: classes/admin/WCSTS_ProductTablePage.php:42
-#: classes/com/WCSTS_HtmlHelper.php:58
+#: classes/com/WCSTS_HtmlHelper.php:59
 msgid "Yes"
 msgstr ""
 
@@ -221,8 +225,39 @@ msgstr ""
 msgid "Save"
 msgstr ""
 
+#: classes/admin/WCSTS_CustomersAgentsAssociationPage.php:55
+msgid "Choose at least 1 agent and/or 1 customer."
+msgstr ""
+
+#: classes/admin/WCSTS_CustomersAgentsAssociationPage.php:66
+msgid ""
+"No Agents has been select, in this way the previous agent(s) assignements "
+"will be removed. Do you want to procede?"
+msgstr ""
+
+#: classes/admin/WCSTS_CustomersAgentsAssociationPage.php:67
+msgid ""
+"No Customer has been select, in this way all tickets assigned to the "
+"selected user(s) will be removed. Do you want to procede?"
+msgstr ""
+
+#: classes/admin/WCSTS_CustomersAgentsAssociationPage.php:80
+msgid ""
+"This menu allows you to associate customers with agents. In this way, "
+"tickets opened by a user will be automatically assigned to the associated "
+"agent."
+msgstr ""
+
+#: classes/admin/WCSTS_CustomersAgentsAssociationPage.php:81
+msgid "1. Select customers"
+msgstr ""
+
+#: classes/admin/WCSTS_CustomersAgentsAssociationPage.php:86
+msgid "2. Select administrator"
+msgstr ""
+
 #: classes/admin/WCSTS_ManageTicketVisibilityPage.php:29
-#: classes/admin/WCSTS_TicketPage.php:465 classes/com/WCSTS_Ticket.php:899
+#: classes/admin/WCSTS_TicketPage.php:465 classes/com/WCSTS_Ticket.php:905
 msgid "N/A"
 msgstr ""
 
@@ -231,7 +266,7 @@ msgid "Login"
 msgstr ""
 
 #: classes/admin/WCSTS_ManageTicketVisibilityPage.php:46
-#: classes/com/WCSTS_HtmlHelper.php:538 classes/com/WCSTS_HtmlHelper.php:539
+#: classes/com/WCSTS_HtmlHelper.php:540 classes/com/WCSTS_HtmlHelper.php:541
 msgid "Name"
 msgstr ""
 
@@ -265,13 +300,13 @@ msgstr ""
 
 #: classes/admin/WCSTS_PriorityPage.php:29
 #: classes/admin/WCSTS_PriorityPage.php:70
-#: classes/admin/WCSTS_PriorityPage.php:92 classes/com/WCSTS_HtmlHelper.php:542
+#: classes/admin/WCSTS_PriorityPage.php:92 classes/com/WCSTS_HtmlHelper.php:544
 msgid "Background color"
 msgstr ""
 
 #: classes/admin/WCSTS_PriorityPage.php:30
 #: classes/admin/WCSTS_PriorityPage.php:77
-#: classes/admin/WCSTS_PriorityPage.php:98 classes/com/WCSTS_HtmlHelper.php:547
+#: classes/admin/WCSTS_PriorityPage.php:98 classes/com/WCSTS_HtmlHelper.php:549
 msgid "Text color"
 msgstr ""
 
@@ -312,7 +347,7 @@ msgid "Questions number"
 msgstr ""
 
 #: classes/admin/WCSTS_ProductTablePage.php:13
-#: classes/admin/WCSTS_UserPage.php:44 classes/com/WCSTS_Ticket.php:368
+#: classes/admin/WCSTS_UserPage.php:56 classes/com/WCSTS_Ticket.php:368
 msgid "Pay per ticket"
 msgstr ""
 
@@ -344,19 +379,19 @@ msgstr ""
 msgid "WooCommerce Support Ticket - Reply"
 msgstr ""
 
-#: classes/admin/WCSTS_TicketPage.php:184 classes/com/WCSTS_HtmlHelper.php:162
+#: classes/admin/WCSTS_TicketPage.php:184 classes/com/WCSTS_HtmlHelper.php:164
 msgid "Message cannot be empty"
 msgstr ""
 
-#: classes/admin/WCSTS_TicketPage.php:185 classes/com/WCSTS_HtmlHelper.php:163
+#: classes/admin/WCSTS_TicketPage.php:185 classes/com/WCSTS_HtmlHelper.php:165
 msgid "Subject cannot be empty"
 msgstr ""
 
-#: classes/admin/WCSTS_TicketPage.php:186 classes/com/WCSTS_HtmlHelper.php:164
+#: classes/admin/WCSTS_TicketPage.php:186 classes/com/WCSTS_HtmlHelper.php:166
 msgid "The file size excedes the size limit of: "
 msgstr ""
 
-#: classes/admin/WCSTS_TicketPage.php:187 classes/com/WCSTS_HtmlHelper.php:167
+#: classes/admin/WCSTS_TicketPage.php:187 classes/com/WCSTS_HtmlHelper.php:169
 msgid "Please wait, upload still in progress."
 msgstr ""
 
@@ -386,15 +421,15 @@ msgstr ""
 msgid "Attachments"
 msgstr ""
 
-#: classes/admin/WCSTS_TicketPage.php:249 classes/com/WCSTS_HtmlHelper.php:372
-#: classes/com/WCSTS_HtmlHelper.php:477
+#: classes/admin/WCSTS_TicketPage.php:249 classes/com/WCSTS_HtmlHelper.php:374
+#: classes/com/WCSTS_HtmlHelper.php:479
 msgid "Upload"
 msgstr ""
 
 #: classes/admin/WCSTS_TicketPage.php:253
 #: classes/admin/WCSTS_TicketTablePage.php:317
-#: classes/admin/WCSTS_UserPage.php:67 classes/com/WCSTS_HtmlHelper.php:379
-#: classes/com/WCSTS_HtmlHelper.php:484 classes/com/WCSTS_HtmlHelper.php:593
+#: classes/admin/WCSTS_UserPage.php:79 classes/com/WCSTS_HtmlHelper.php:381
+#: classes/com/WCSTS_HtmlHelper.php:486 classes/com/WCSTS_HtmlHelper.php:595
 msgid "Delete"
 msgstr ""
 
@@ -406,7 +441,7 @@ msgstr ""
 msgid "Product ID"
 msgstr ""
 
-#: classes/admin/WCSTS_TicketPage.php:293 classes/admin/WCSTS_UserPage.php:51
+#: classes/admin/WCSTS_TicketPage.php:293 classes/admin/WCSTS_UserPage.php:63
 msgid "Product name"
 msgstr ""
 
@@ -559,8 +594,8 @@ msgid ""
 msgstr ""
 
 #: classes/admin/WCSTS_TicketPage.php:521
-#: classes/admin/WCSTS_TicketPage.php:546 classes/com/WCSTS_HtmlHelper.php:301
-#: classes/com/WCSTS_HtmlHelper.php:327
+#: classes/admin/WCSTS_TicketPage.php:546 classes/com/WCSTS_HtmlHelper.php:303
+#: classes/com/WCSTS_HtmlHelper.php:329
 #, php-format
 msgid "Attachment %d"
 msgstr ""
@@ -628,7 +663,7 @@ msgid "Total messages"
 msgstr ""
 
 #: classes/admin/WCSTS_TicketTablePage.php:263
-#: classes/com/WCSTS_HtmlHelper.php:422
+#: classes/com/WCSTS_HtmlHelper.php:424
 msgid "Subject"
 msgstr ""
 
@@ -680,23 +715,27 @@ msgstr ""
 msgid "Any"
 msgstr ""
 
-#: classes/admin/WCSTS_UserPage.php:22
+#: classes/admin/WCSTS_UserPage.php:26
 msgid "Assigned tickets"
 msgstr ""
 
-#: classes/admin/WCSTS_UserPage.php:26
+#: classes/admin/WCSTS_UserPage.php:30
 msgid "Tickets id(s)"
 msgstr ""
 
-#: classes/admin/WCSTS_UserPage.php:55
+#: classes/admin/WCSTS_UserPage.php:47
+msgid "Associated ticket managers"
+msgstr ""
+
+#: classes/admin/WCSTS_UserPage.php:67
 msgid "Questions left"
 msgstr ""
 
-#: classes/admin/WCSTS_UserPage.php:60
+#: classes/admin/WCSTS_UserPage.php:72
 msgid "Purchased on"
 msgstr ""
 
-#: classes/admin/WCSTS_UserPage.php:68
+#: classes/admin/WCSTS_UserPage.php:80
 msgid ""
 "To delete a Pay Per Ticket data, just check the checkbox and then it the "
 "\"Update Profile\" button you find at the bottom of the page"
@@ -800,190 +839,190 @@ msgid ""
 "Left empty to allow any user to manage the ticket."
 msgstr ""
 
-#: classes/com/WCSTS_HtmlHelper.php:55
+#: classes/com/WCSTS_HtmlHelper.php:56
 msgid "Notify users about the ticket assignment?"
 msgstr ""
 
-#: classes/com/WCSTS_HtmlHelper.php:62
+#: classes/com/WCSTS_HtmlHelper.php:64
 msgid "Only the administrator can assign the ticket managment."
 msgstr ""
 
-#: classes/com/WCSTS_HtmlHelper.php:77
+#: classes/com/WCSTS_HtmlHelper.php:79
 #, php-format
 msgid "Please <a href=\"%s\">login</a>."
 msgstr ""
 
-#: classes/com/WCSTS_HtmlHelper.php:165
+#: classes/com/WCSTS_HtmlHelper.php:167
 msgid "Your browser is not HTML5 compliant "
 msgstr ""
 
-#: classes/com/WCSTS_HtmlHelper.php:166
+#: classes/com/WCSTS_HtmlHelper.php:168
 msgid "The your are trying to upload files with a not allowed extension"
 msgstr ""
 
-#: classes/com/WCSTS_HtmlHelper.php:168
+#: classes/com/WCSTS_HtmlHelper.php:170
 #, php-format
 msgid "Please wait, the message cannot be shorter than %s characters."
 msgstr ""
 
-#: classes/com/WCSTS_HtmlHelper.php:174 classes/com/WCSTS_HtmlHelper.php:272
+#: classes/com/WCSTS_HtmlHelper.php:176 classes/com/WCSTS_HtmlHelper.php:274
 msgid "Expand"
 msgstr ""
 
-#: classes/com/WCSTS_HtmlHelper.php:175 classes/com/WCSTS_HtmlHelper.php:272
+#: classes/com/WCSTS_HtmlHelper.php:177 classes/com/WCSTS_HtmlHelper.php:274
 msgid "Collapse"
 msgstr ""
 
-#: classes/com/WCSTS_HtmlHelper.php:202
+#: classes/com/WCSTS_HtmlHelper.php:204
 msgid "Contact us"
 msgstr ""
 
-#: classes/com/WCSTS_HtmlHelper.php:210
+#: classes/com/WCSTS_HtmlHelper.php:212
 msgid "Sort tickets from:"
 msgstr ""
 
-#: classes/com/WCSTS_HtmlHelper.php:212
+#: classes/com/WCSTS_HtmlHelper.php:214
 msgid "Default sorting"
 msgstr ""
 
-#: classes/com/WCSTS_HtmlHelper.php:213
+#: classes/com/WCSTS_HtmlHelper.php:215
 msgid "Newer to older"
 msgstr ""
 
-#: classes/com/WCSTS_HtmlHelper.php:214
+#: classes/com/WCSTS_HtmlHelper.php:216
 msgid "Older to newer"
 msgstr ""
 
-#: classes/com/WCSTS_HtmlHelper.php:219
+#: classes/com/WCSTS_HtmlHelper.php:221
 msgid "Filter by status:"
 msgstr ""
 
-#: classes/com/WCSTS_HtmlHelper.php:221
+#: classes/com/WCSTS_HtmlHelper.php:223
 msgid "Show all"
 msgstr ""
 
-#: classes/com/WCSTS_HtmlHelper.php:235
+#: classes/com/WCSTS_HtmlHelper.php:237
 msgid "New ticket"
 msgstr ""
 
-#: classes/com/WCSTS_HtmlHelper.php:264
+#: classes/com/WCSTS_HtmlHelper.php:266
 msgid "Order status: "
 msgstr ""
 
-#: classes/com/WCSTS_HtmlHelper.php:274
+#: classes/com/WCSTS_HtmlHelper.php:276
 msgid "Status:"
 msgstr ""
 
-#: classes/com/WCSTS_HtmlHelper.php:274
+#: classes/com/WCSTS_HtmlHelper.php:276
 msgid "ID:"
 msgstr ""
 
-#: classes/com/WCSTS_HtmlHelper.php:274
+#: classes/com/WCSTS_HtmlHelper.php:276
 msgid "Number of messages:"
 msgstr ""
 
-#: classes/com/WCSTS_HtmlHelper.php:274
+#: classes/com/WCSTS_HtmlHelper.php:276
 msgid "Created on:"
 msgstr ""
 
-#: classes/com/WCSTS_HtmlHelper.php:276
+#: classes/com/WCSTS_HtmlHelper.php:278
 msgid "Priority:"
 msgstr ""
 
-#: classes/com/WCSTS_HtmlHelper.php:279
+#: classes/com/WCSTS_HtmlHelper.php:281
 msgid "Questions left:"
 msgstr ""
 
-#: classes/com/WCSTS_HtmlHelper.php:291
+#: classes/com/WCSTS_HtmlHelper.php:293
 msgid "You on"
 msgstr ""
 
-#: classes/com/WCSTS_HtmlHelper.php:315
+#: classes/com/WCSTS_HtmlHelper.php:317
 msgid " on"
 msgstr ""
 
-#: classes/com/WCSTS_HtmlHelper.php:342
+#: classes/com/WCSTS_HtmlHelper.php:344
 msgid "New message"
 msgstr ""
 
-#: classes/com/WCSTS_HtmlHelper.php:342 classes/com/WCSTS_HtmlHelper.php:422
-#: classes/com/WCSTS_HtmlHelper.php:449
+#: classes/com/WCSTS_HtmlHelper.php:344 classes/com/WCSTS_HtmlHelper.php:424
+#: classes/com/WCSTS_HtmlHelper.php:451
 msgid "Characters left:"
 msgstr ""
 
-#: classes/com/WCSTS_HtmlHelper.php:342 classes/com/WCSTS_HtmlHelper.php:449
+#: classes/com/WCSTS_HtmlHelper.php:344 classes/com/WCSTS_HtmlHelper.php:451
 #, php-format
 msgid ", Min characters:  %s"
 msgstr ""
 
-#: classes/com/WCSTS_HtmlHelper.php:346 classes/com/WCSTS_HtmlHelper.php:453
+#: classes/com/WCSTS_HtmlHelper.php:348 classes/com/WCSTS_HtmlHelper.php:455
 msgid "Attachment(s)"
 msgstr ""
 
-#: classes/com/WCSTS_HtmlHelper.php:346 classes/com/WCSTS_HtmlHelper.php:453
+#: classes/com/WCSTS_HtmlHelper.php:348 classes/com/WCSTS_HtmlHelper.php:455
 #, php-format
 msgid "(Max size: %s)"
 msgstr ""
 
-#: classes/com/WCSTS_HtmlHelper.php:390
+#: classes/com/WCSTS_HtmlHelper.php:392
 msgid "Submit new message"
 msgstr ""
 
-#: classes/com/WCSTS_HtmlHelper.php:396 classes/com/WCSTS_HtmlHelper.php:497
+#: classes/com/WCSTS_HtmlHelper.php:398 classes/com/WCSTS_HtmlHelper.php:499
 #, php-format
 msgid "Ticket can be opened every %d seconds"
 msgstr ""
 
-#: classes/com/WCSTS_HtmlHelper.php:401
+#: classes/com/WCSTS_HtmlHelper.php:403
 msgid "Add new message"
 msgstr ""
 
-#: classes/com/WCSTS_HtmlHelper.php:416
+#: classes/com/WCSTS_HtmlHelper.php:418
 msgid "Submit a new ticket"
 msgstr ""
 
-#: classes/com/WCSTS_HtmlHelper.php:439
+#: classes/com/WCSTS_HtmlHelper.php:441
 msgid "Priority"
 msgstr ""
 
-#: classes/com/WCSTS_HtmlHelper.php:449
+#: classes/com/WCSTS_HtmlHelper.php:451
 msgid "Message"
 msgstr ""
 
-#: classes/com/WCSTS_HtmlHelper.php:502
+#: classes/com/WCSTS_HtmlHelper.php:504
 msgid "Open new ticket"
 msgstr ""
 
-#: classes/com/WCSTS_HtmlHelper.php:552
+#: classes/com/WCSTS_HtmlHelper.php:554
 msgid "Automatic switch to selected status in case of reply"
 msgstr ""
 
-#: classes/com/WCSTS_HtmlHelper.php:553
+#: classes/com/WCSTS_HtmlHelper.php:555
 msgid ""
 "If enabled, when the user posts a reply, the current ticket status will be "
 "switched to the selected one."
 msgstr ""
 
-#: classes/com/WCSTS_HtmlHelper.php:555
+#: classes/com/WCSTS_HtmlHelper.php:557
 msgid "Note: "
 msgstr ""
 
-#: classes/com/WCSTS_HtmlHelper.php:555
+#: classes/com/WCSTS_HtmlHelper.php:557
 msgid ""
 "If a ticket is marked as closed, the user will not be able to reply. To "
 "allow that, enable the special option in the <strong>Ticket System Options</"
 "strong> menu."
 msgstr ""
 
-#: classes/com/WCSTS_HtmlHelper.php:560
+#: classes/com/WCSTS_HtmlHelper.php:562
 msgid "Disabled"
 msgstr ""
 
-#: classes/com/WCSTS_HtmlHelper.php:574
+#: classes/com/WCSTS_HtmlHelper.php:576
 msgid "WPML"
 msgstr ""
 
-#: classes/com/WCSTS_HtmlHelper.php:585
+#: classes/com/WCSTS_HtmlHelper.php:587
 #, php-format
 msgid "Name for %s language"
 msgstr ""
@@ -1139,7 +1178,7 @@ msgstr ""
 msgid "New Status Name"
 msgstr ""
 
-#: classes/com/WCSTS_Ticket.php:140 woocommerce-support-ticket-system.php:243
+#: classes/com/WCSTS_Ticket.php:140 woocommerce-support-ticket-system.php:247
 msgid "Statuses"
 msgstr ""
 
@@ -1192,19 +1231,19 @@ msgstr ""
 msgid "User"
 msgstr ""
 
-#: classes/com/WCSTS_Ticket.php:555 classes/com/WCSTS_Ticket.php:641
+#: classes/com/WCSTS_Ticket.php:561 classes/com/WCSTS_Ticket.php:647
 msgid "Error"
 msgstr ""
 
-#: classes/com/WCSTS_Ticket.php:1018
+#: classes/com/WCSTS_Ticket.php:1024
 msgid "Open"
 msgstr ""
 
-#: classes/com/WCSTS_Ticket.php:1019
+#: classes/com/WCSTS_Ticket.php:1025
 msgid "In Progress"
 msgstr ""
 
-#: classes/com/WCSTS_Ticket.php:1020
+#: classes/com/WCSTS_Ticket.php:1026
 msgid "Closed"
 msgstr ""
 
@@ -1368,8 +1407,12 @@ msgid ""
 "\">here</a> to verify it."
 msgstr ""
 
-#: woocommerce-support-ticket-system.php:244
+#: woocommerce-support-ticket-system.php:248
 msgid "Assign ticket"
+msgstr ""
+
+#: woocommerce-support-ticket-system.php:249
+msgid "Customers <-> Agents association"
 msgstr ""
 
 #. Description of the plugin/theme

@@ -4,7 +4,7 @@ jQuery(document).ready(function()
 	jQuery(".js-data-customers-ajax").select2(
 	{
 	  placeholder: wcsts.select2_selected_value == "" ? wcsts.select2_placeholder : wcsts.selected_user_info_label+wcsts.select2_selected_value,
-	  width: 300,
+	 /*  width: 350, */
 	  ajax: {
 		url: ajaxurl,
 		dataType: 'json',
@@ -26,7 +26,8 @@ jQuery(document).ready(function()
 			{
 				var user = (obj.first_name+obj.last_name).length != 0 ? "<br><b>User: </b>"+obj.first_name+" "+obj.last_name+"<br>" : "<br>";
 				
-				 return { id: obj.ID, text: "<b>User ID: </b>"+obj.ID+"<br>"+  
+				 return { id: obj.ID, text: "<b>Login: </b>"+obj.user_login+"<br>"+  
+											 "<b>User ID: </b>"+obj.ID+"<br>"+  
 											  "<b>Email: </b>"+obj.email+"<br>"+
 											  "<b>Billing: </b> "+obj.billing_name+" "+obj.billing_last_name+" <br>"+obj.billing_email+
 											  user

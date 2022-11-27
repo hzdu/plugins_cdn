@@ -36,8 +36,23 @@ jQuery(document).ready(function()
 	  },
 	  escapeMarkup: function (markup) { return markup; }, // let our custom formatter work
 	  minimumInputLength: 0,
-	  templateResult: wcsts_formatRepo, 
-	  templateSelection: wcsts_formatRepoSelection  
+	  templateResult: wcsts_user_formatRepo, 
+	  templateSelection: wcsts_user_formatRepoSelection  
 	}
 	);
 });
+function wcsts_user_formatRepo (repo) 
+{
+	if (repo.loading) return repo.text;
+	
+	var markup = '<div class="clearfix">' +
+			'<div class="col-sm-12">' + repo.text + '</div>';
+    markup += '</div>'; 
+	
+    return markup;
+  }
+
+  function wcsts_user_formatRepoSelection (repo) 
+  {
+	  return repo.full_name || repo.text;
+  }
