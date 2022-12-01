@@ -1,7 +1,7 @@
 /**
  * eu-vat-number.
  *
- * @version 5.3.7
+ * @version 1.0.0
  */
 
 var _ajax_object = ajax_object;
@@ -45,6 +45,7 @@ jQuery(function ($) {
             var data = {
                 'action': 'wcj_validate_eu_vat_number',
                 'wcj_eu_vat_number_to_check': vatNumberToCheck,
+			    '_wpnonce': _ajax_object._wpnonce,
             };
             $.ajax({
                 type: "POST",

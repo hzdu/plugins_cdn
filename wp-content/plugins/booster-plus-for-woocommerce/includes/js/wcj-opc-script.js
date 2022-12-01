@@ -1,8 +1,8 @@
 /**
  * wcj-opc-script.
  *
- * @version 5.5.8
- * @since   5.4.2
+ * @version 1.1.0
+ * @since  1.0.0
  */
 
 jQuery(document).ready(function ($) {
@@ -10,7 +10,7 @@ jQuery(document).ready(function ($) {
 	var opc_response_messages = '';
 
 	$('.wcj_opc_add_to_cart_btn').on('click', function (e) {
-			var thisobj = $(this);
+				var thisobj = $(this);
 		$(thisobj).addClass('loading');
 		var product_id = $(this).val();
 		var product_title = $(this).data('product_title');

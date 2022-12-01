@@ -1,7 +1,7 @@
 /**
  * Booster for WooCommerce - Variations Radio Buttons
  *
- * @version 4.3.0
+ * @version 1.0.0
  * @author  Pluggabl LLC.
  */
 
@@ -9,8 +9,8 @@
  * Finds correspondent WooCommerce dropdown and triggers the 'change' event manually.
  * That will make WooCommerce itself do the rest, like update image, prices, and so on.
  *
- * @version 4.3.0
- * @since   4.3.0
+ * @version 1.0.0
+ * @since  1.0.0
  * @param variation_id
  */
 function select_wc_dropdown_programmatically(variation_id) {
@@ -39,8 +39,8 @@ function select_wc_dropdown_programmatically(variation_id) {
 /**
  * process_variations.
  *
- * @version 4.3.0
- * @since   2.9.0
+ * @version 1.0.0
+ * @since  1.0.0
  */
 function process_variations(variation_id) {
 	var data_product_variations = jQuery.parseJSON(jQuery("form.variations_form.cart").attr('data-product_variations'));
@@ -54,8 +54,8 @@ function process_variations(variation_id) {
 /**
  * hide_all.
  *
- * @version 2.9.0
- * @since   2.9.0
+ * @version 1.0.0
+ * @since  1.0.0
  */
 function hide_all() {
 	jQuery("div.woocommerce-variation-availability").hide();
@@ -67,8 +67,8 @@ function hide_all() {
 /**
  * show_all.
  *
- * @version 2.9.0
- * @since   2.9.0
+ * @version 1.0.0
+ * @since  1.0.0
  */
 function show_all() {
 	jQuery("div.woocommerce-variation-availability").show();
@@ -80,8 +80,8 @@ function show_all() {
 /**
  * fill_values.
  *
- * @version 2.9.0
- * @since   2.9.0
+ * @version 1.0.0
+ * @since  1.0.0
  */
 function fill_values(variation_id,radio_element) {
 	jQuery("input:hidden[name='variation_id']").val(variation_id);
@@ -97,7 +97,7 @@ function fill_values(variation_id,radio_element) {
 /**
  * document ready.
  *
- * @version 2.9.0
+ * @version 1.0.0
  */
 jQuery(document).ready(function() {
 	// Initial display

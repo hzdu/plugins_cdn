@@ -1,8 +1,8 @@
 /**
  * wcj-offer-price.
  *
- * @version 2.9.0
- * @since   2.9.0
+ * @version 1.0.0
+ * @since  1.0.0
  */
 
 // Get the modal

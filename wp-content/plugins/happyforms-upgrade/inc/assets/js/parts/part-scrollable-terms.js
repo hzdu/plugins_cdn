@@ -20,6 +20,9 @@
 
 		ready: function() {
 			happyForms.classes.views.Part.prototype.ready.apply( this, arguments );
+
+			this.listenTo( this, 'refresh', this.onRefresh );
+			
 			this.initEditor();
 		},
 
@@ -47,6 +50,11 @@
 		},
 
 		onSortStop: function() {
+			this.removeEditor();
+			this.initEditor();
+		},
+
+		onRefresh: function() {
 			this.removeEditor();
 			this.initEditor();
 		},

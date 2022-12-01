@@ -274,6 +274,15 @@
 		// Remove unpreviewable
 		$( '.happyforms-form form' ).removeClass( 'customize-unpreviewable' );
 		$( '.notice a' ).removeClass( 'customize-unpreviewable' );
+
+		// Parent frame links
+		$( document ).on( 'click', '.happyforms-builder-preview a.happyforms-redirect-integrations-screen', function( e ) {
+			e.preventDefault();
+
+			window.parent.postMessage( {
+				'action': 'happyforms-redirect-integrations-screen',
+			}, window.location.origin );
+		} );
 	}
 
 	handlers.bind = function() {

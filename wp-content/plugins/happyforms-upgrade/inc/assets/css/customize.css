@@ -197,15 +197,6 @@ ul.happyforms-parts-list li[data-part-type="scrollable_terms"] .happyforms-parts
   background-image: url(../../../core/assets/svg/icons/scrollable-terms.svg);
 }
 
-/**
- *
- * Placeholder part
- *
- */
-ul.happyforms-parts-list li[data-part-type="placeholder"] .happyforms-parts-list-item-title:before {
-  background-image: url(../../../core/assets/svg/icons/paragraph.svg);
-}
-
 .happyforms-part-widget[data-part-type="placeholder"] .wp-switch-editor,
 .happyforms-part-widget[data-part-type="toggletip"] .wp-switch-editor,
 .happyforms-part-widget[data-part-type="scrollable_terms"] .wp-switch-editor {
@@ -322,11 +313,6 @@ ul.happyforms-parts-list li[data-part-type="attachment"] .happyforms-parts-list-
  *
  */
  ul.happyforms-parts-list li[data-part-type="payments"] {
-   display: none;
- }
-
- .has-stripe-integration ul.happyforms-parts-list li[data-part-type="payments"],
- .has-paypal-integration ul.happyforms-parts-list li[data-part-type="payments"] {
    display: block;
  }
 
@@ -338,33 +324,6 @@ ul.happyforms-parts-list li[data-part-type="attachment"] .happyforms-parts-list-
  ul.happyforms-parts-list li[data-part-type="payments"] .happyforms-parts-list-item-title:before {
    background-image: url(../../../core/assets/svg/icons/payment.svg);
  }
-
-/**
- *
- * Divider part
- *
- */
-ul.happyforms-parts-list li[data-part-type="divider"] .happyforms-parts-list-item-title:before {
-  background-image: url(../../../core/assets/svg/icons/separator.svg);
-}
-
-/**
- *
- * Layout Title part
- *
- */
-ul.happyforms-parts-list li[data-part-type="layout_title"] .happyforms-parts-list-item-title:before {
-  background-image: url(../../../core/assets/svg/icons/heading.svg);
-}
-
-/**
- *
- * Media part
- *
- */
-ul.happyforms-parts-list li[data-part-type="media"] .happyforms-parts-list-item-title:before {
-  background-image: url(../../../core/assets/svg/icons/media.svg);
-}
 
 #customize-controls span.happyforms-file-extensions,
 #customize-controls .happyforms-hide-file-extensions {
@@ -509,37 +468,6 @@ ul.happyforms-parts-list li[data-part-type="media"] .happyforms-parts-list-item-
 
  .happyforms-style-view.has-poll #customize-control-poll {
    display: block;
- }
-
- /**
-  *
-  * Uploader
-  *
-  */
- img.happyforms-upload-preview {
-   display: none;
-   width: auto;
-   height: auto;
-   max-width: 100%;
-   max-height: 120px;
- }
-
- .happyforms-upload-preview {
-   display: none;
- }
-
- .happyforms-upload-preview.show {
-   display: block;
- }
-
- .wp-core-ui .happyforms-media-upload button.button-add-media,
- .wp-core-ui .happyforms-media-upload button.happyforms-change-button {
-   display: none;
- }
-
- .wp-core-ui .happyforms-media-upload button.button-add-media.show,
- .wp-core-ui .happyforms-media-upload button.happyforms-change-button.show {
-   display: inline-block;
  }
 
  .happyforms-customize-part-include_in_pdf {

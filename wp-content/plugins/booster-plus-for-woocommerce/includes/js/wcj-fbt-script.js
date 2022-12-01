@@ -1,7 +1,7 @@
 /**
  * wcj-fbt-script.
  *
- * @version 5.4.2
+ * @version 1.0.0
  */
 
 //jQuery(document.body).on('change','.variations select',change_price);

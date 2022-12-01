@@ -177,6 +177,7 @@
 		serialize: function( submitEl ) {
 			var action = $( '[name=action]', this.$form ).val();
 			var clientReferer = $( '[name="client_referer"]', this.$form ).val();
+			var currentPostID = $( '[name="current_post_id"]', this.$form ).val();
 			var form_id = $( '[name=happyforms_form_id]', this.$form ).val();
 			var step = this.$step.val();
 			var randomSeed = $( '[name=happyforms_random_seed]', this.$form ).val();
@@ -184,6 +185,7 @@
 			var formData = [
 				{ name: 'action', value: action },
 				{ name: 'happyforms_client_referer', value: clientReferer },
+				{ name: 'happyforms_current_post_id', value: currentPostID },
 				{ name: 'happyforms_form_id', value: form_id },
 				{ name: 'happyforms_step', value: step },
 				{ name: 'happyforms_random_seed', value: randomSeed },
@@ -216,7 +218,7 @@
 
 			var data = formData.concat( partData );
 			var params = new URLSearchParams();
-			
+
 			data.forEach( function( entry ) {
 				params.append( entry.name, entry.value );
 			} );
@@ -224,13 +226,13 @@
 			var hash = HappyForms.Antispam.getHash( data );
 
 			params.append( 'hash', hash );
-			
+
 			var platformInfo = HappyForms.Antispam.getPlatformInfo();
 
 			for ( const [key, value] of Object.entries( platformInfo ) ) {
 				params.append( key , value );
 			}
-			
+
 			params = params.toString();
 
 			return params;

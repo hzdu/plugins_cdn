@@ -3,7 +3,7 @@ Contributors: anbinder, karzin, pluggabl
 Tags: woocommerce, booster for woocommerce, woocommerce jetpack
 Requires at least: 5.8
 Tested up to: 6.1
-Stable tag: 5.6.6
+Stable tag: 6.0.0
 License: GNU General Public License v3.0
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -203,6 +203,20 @@ You can see the differences between versions in this [table](https://booster.io/
 8. Booster for WooCommerce - Emails & Misc.
 
 == Changelog ==
+
+= 6.0.0 30/11/2022 =
+
+* FIXED - PDF INVOICING & PACKING SLIPS - PDF Invoicing - Fixed error PHP Deprecated: Function WC_Order_Item_Product::offsetSet is deprecated since version...
+* FIXED - PDF INVOICING & PACKING SLIPS - PDF Invoicing - Fixed calculation issue in wcj_order_item_total_refunded shortcode.
+* FIXED - PRICES & CURRENCIES - Currency Exchange Rates - Fixed exchange rate issue for European Central Bank (ECB) exchange rate server response.
+* FIXED - PRICES & CURRENCIES - Currency Exchange Rates - "Always Use cURL" option removed.
+* FIXED - PRICES & CURRENCIES - Multicurrency (Currency Switcher) - Fixed Default Currency and Role Defaults conflict.
+* FIXED - PRICES & CURRENCIES - Product Price by Formula - Fixed verify nonce issue.
+* FIXED - EMAILS & MISC. - General - Added missing images for jquery-ui.css
+* FIXED - Added Security vulnerability fixes - Multiple CSRF.
+* FIXED - Added Security vulnerability fixes.
+* WooCommerce 7.1.0 tested
+* WordPress 6.1 Tested
 
 = 5.6.6 16/11/2022 =
 

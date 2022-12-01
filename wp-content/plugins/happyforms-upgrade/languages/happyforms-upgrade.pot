@@ -2,14 +2,14 @@
 # This file is distributed under the same license as the Happyforms plugin.
 msgid ""
 msgstr ""
-"Project-Id-Version: Happyforms 1.33.1\n"
+"Project-Id-Version: Happyforms 1.34.0\n"
 "Report-Msgid-Bugs-To: ask@happyforms.io\n"
 "Last-Translator: The Theme Foundry\n"
 "Language-Team: The Theme Foundry\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2022-11-08T10:14:21+00:00\n"
+"POT-Creation-Date: 2022-11-30T11:03:01+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.4.0\n"
 "X-Domain: happyforms\n"
@@ -30,9 +30,10 @@ msgstr ""
 
 #: core/classes/class-block.php:52
 #: core/classes/class-form-controller.php:73
-#: core/classes/class-happyforms-core.php:186
 #: core/classes/class-happyforms-core.php:187
+#: core/classes/class-happyforms-core.php:188
 #: core/classes/class-happyforms-widget.php:13
+#: core/classes/class-import-controller.php:42
 #: core/helpers/helper-misc.php:1068
 msgid "Forms"
 msgstr ""
@@ -83,18 +84,18 @@ msgstr ""
 
 #: core/classes/class-form-admin.php:454
 #: core/templates/customize-form-item.php:27
+#: core/templates/parts/customize-divider.php:25
+#: core/templates/parts/customize-layout_title.php:41
 #: inc/templates/customize-form-part-choice-footer.php:3
 #: inc/templates/customize-form-part-footer.php:4
-#: inc/templates/parts/customize-divider.php:25
-#: inc/templates/parts/customize-layout_title.php:41
 #: inc/templates/parts/customize-page-break.php:33
 #: inc/templates/parts/customize-poll.php:135
 msgid "Duplicate"
 msgstr ""
 
 #: core/classes/class-form-admin.php:458
-#: inc/classes/class-message-admin.php:551
-#: inc/classes/class-message-admin.php:1205
+#: inc/classes/class-message-admin.php:552
+#: inc/classes/class-message-admin.php:1227
 msgid "Trash"
 msgstr ""
 
@@ -105,20 +106,20 @@ msgstr ""
 #: core/classes/class-form-admin.php:504
 #: inc/classes/class-form-admin-upgrade.php:284
 #: inc/classes/class-form-admin-upgrade.php:316
-#: inc/classes/class-message-admin.php:385
-#: inc/classes/class-message-admin.php:436
+#: inc/classes/class-message-admin.php:386
+#: inc/classes/class-message-admin.php:437
 #: inc/helpers/helper-misc.php:253
 msgid "Undo"
 msgstr ""
 
 #: core/classes/class-form-controller.php:74
-#: inc/templates/admin-settings-export.php:35
+#: inc/templates/admin-settings-export.php:34
 msgid "Form"
 msgstr ""
 
 #: core/classes/class-form-controller.php:75
-#: core/classes/class-happyforms-core.php:202
 #: core/classes/class-happyforms-core.php:203
+#: core/classes/class-happyforms-core.php:204
 #: integrations/services/payments/class-coupon-controller.php:42
 msgid "Add New"
 msgstr ""
@@ -155,8 +156,8 @@ msgstr ""
 
 #: core/classes/class-form-controller.php:84
 #: core/classes/class-form-controller.php:85
-#: core/classes/class-happyforms-core.php:194
 #: core/classes/class-happyforms-core.php:195
+#: core/classes/class-happyforms-core.php:196
 msgid "All Forms"
 msgstr ""
 
@@ -372,7 +373,7 @@ msgstr ""
 msgid "Remaining submissions"
 msgstr ""
 
-#: core/classes/class-form-part-library.php:233
+#: core/classes/class-form-part-library.php:239
 msgid "Missing validation callback for field %s"
 msgstr ""
 
@@ -458,8 +459,10 @@ msgstr ""
 #: core/classes/class-form-styles.php:253
 #: core/templates/parts/customize-checkbox.php:10
 #: core/templates/parts/customize-email.php:10
+#: core/templates/parts/customize-media.php:11
 #: core/templates/parts/customize-multi-line-text.php:10
 #: core/templates/parts/customize-number.php:10
+#: core/templates/parts/customize-placeholder.php:12
 #: core/templates/parts/customize-radio.php:10
 #: core/templates/parts/customize-select.php:10
 #: core/templates/parts/customize-single-line-text.php:10
@@ -473,10 +476,8 @@ msgstr ""
 #: inc/templates/parts/customize-date.php:27
 #: inc/templates/parts/customize-legal.php:8
 #: inc/templates/parts/customize-likert-scale.php:11
-#: inc/templates/parts/customize-media.php:11
 #: inc/templates/parts/customize-narrative.php:8
 #: inc/templates/parts/customize-phone.php:10
-#: inc/templates/parts/customize-placeholder.php:12
 #: inc/templates/parts/customize-poll.php:10
 #: inc/templates/parts/customize-rank-order.php:10
 #: inc/templates/parts/customize-rating.php:10
@@ -496,8 +497,10 @@ msgstr ""
 #: core/classes/class-form-styles.php:254
 #: core/templates/parts/customize-checkbox.php:14
 #: core/templates/parts/customize-email.php:14
+#: core/templates/parts/customize-media.php:15
 #: core/templates/parts/customize-multi-line-text.php:14
 #: core/templates/parts/customize-number.php:14
+#: core/templates/parts/customize-placeholder.php:16
 #: core/templates/parts/customize-radio.php:14
 #: core/templates/parts/customize-select.php:14
 #: core/templates/parts/customize-single-line-text.php:14
@@ -510,10 +513,8 @@ msgstr ""
 #: inc/templates/parts/customize-date.php:14
 #: inc/templates/parts/customize-legal.php:15
 #: inc/templates/parts/customize-likert-scale.php:15
-#: inc/templates/parts/customize-media.php:15
 #: inc/templates/parts/customize-narrative.php:15
 #: inc/templates/parts/customize-phone.php:14
-#: inc/templates/parts/customize-placeholder.php:16
 #: inc/templates/parts/customize-poll.php:14
 #: inc/templates/parts/customize-rank-order.php:14
 #: inc/templates/parts/customize-rating.php:14
@@ -610,167 +611,169 @@ msgstr ""
 msgid "Full width"
 msgstr ""
 
-#: core/classes/class-form-styles.php:502
+#: core/classes/class-form-styles.php:508
 msgid "General"
 msgstr ""
 
-#: core/classes/class-form-styles.php:507
-#: core/classes/class-form-styles.php:772
+#: core/classes/class-form-styles.php:513
+#: core/classes/class-form-styles.php:788
 #: core/templates/partials/customize-field-width.php:2
 #: integrations/services/payments/templates/customize-payments.php:89
 msgid "Width"
 msgstr ""
 
-#: core/classes/class-form-styles.php:512
-#: core/classes/class-form-styles.php:777
+#: core/classes/class-form-styles.php:518
+#: core/classes/class-form-styles.php:793
 #: inc/classes/class-form-modals.php:162
 msgid "Padding"
 msgstr ""
 
-#: core/classes/class-form-styles.php:517
+#: core/classes/class-form-styles.php:523
 msgid "Direction"
 msgstr ""
 
-#: core/classes/class-form-styles.php:523
-#: core/classes/class-form-styles.php:608
-#: core/classes/class-form-styles.php:678
-#: core/classes/class-form-styles.php:803
+#: core/classes/class-form-styles.php:529
+#: core/classes/class-form-styles.php:614
+#: core/classes/class-form-styles.php:684
+#: core/classes/class-form-styles.php:819
 msgid "Colors"
 msgstr ""
 
-#: core/classes/class-form-styles.php:527
+#: core/classes/class-form-styles.php:533
 msgid "Primary"
 msgstr ""
 
-#: core/classes/class-form-styles.php:532
+#: core/classes/class-form-styles.php:538
 msgid "Success message background"
 msgstr ""
 
-#: core/classes/class-form-styles.php:537
+#: core/classes/class-form-styles.php:543
 msgid "Success message text"
 msgstr ""
 
-#: core/classes/class-form-styles.php:542
+#: core/classes/class-form-styles.php:548
 msgid "Validation message text"
 msgstr ""
 
-#: core/classes/class-form-styles.php:547
+#: core/classes/class-form-styles.php:553
 msgid "Error message background"
 msgstr ""
 
-#: core/classes/class-form-styles.php:552
+#: core/classes/class-form-styles.php:558
 msgid "Error message text"
 msgstr ""
 
-#: core/classes/class-form-styles.php:557
+#: core/classes/class-form-styles.php:563
 #: inc/classes/parts/class-part-title.php:8
 msgid "Title"
 msgstr ""
 
-#: core/classes/class-form-styles.php:562
+#: core/classes/class-form-styles.php:568
 msgid "Display"
 msgstr ""
 
-#: core/classes/class-form-styles.php:567
-#: core/classes/class-form-styles.php:792
+#: core/classes/class-form-styles.php:573
+#: core/classes/class-form-styles.php:808
 msgid "Alignment"
 msgstr ""
 
-#: core/classes/class-form-styles.php:572
-#: core/classes/class-form-styles.php:782
+#: core/classes/class-form-styles.php:578
+#: core/classes/class-form-styles.php:798
 msgid "Font size"
 msgstr ""
 
-#: core/classes/class-form-styles.php:577
+#: core/classes/class-form-styles.php:583
 msgid "Field borders & spacing"
 msgstr ""
 
-#: core/classes/class-form-styles.php:582
-#: core/classes/class-form-styles.php:612
-#: core/classes/class-form-styles.php:762
-#: core/classes/class-form-styles.php:817
+#: core/classes/class-form-styles.php:588
+#: core/classes/class-form-styles.php:618
+#: core/classes/class-form-styles.php:778
+#: core/classes/class-form-styles.php:833
 msgid "Border"
 msgstr ""
 
-#: core/classes/class-form-styles.php:587
+#: core/classes/class-form-styles.php:593
 msgid "Border location"
 msgstr ""
 
-#: core/classes/class-form-styles.php:592
-#: core/classes/class-form-styles.php:767
+#: core/classes/class-form-styles.php:598
+#: core/classes/class-form-styles.php:783
 #: inc/classes/class-form-modals.php:167
 msgid "Border radius"
 msgstr ""
 
-#: core/classes/class-form-styles.php:597
+#: core/classes/class-form-styles.php:603
 msgid "Outer spacing"
 msgstr ""
 
-#: core/classes/class-form-styles.php:602
+#: core/classes/class-form-styles.php:608
 msgid "Inner spacing"
 msgstr ""
 
-#: core/classes/class-form-styles.php:617
+#: core/classes/class-form-styles.php:623
 msgid "Border on focus"
 msgstr ""
 
-#: core/classes/class-form-styles.php:622
-#: core/classes/class-form-styles.php:712
-#: core/classes/class-form-styles.php:807
-#: inc/classes/class-form-styles-upgrade.php:76
+#: core/classes/class-form-styles.php:628
+#: core/classes/class-form-styles.php:718
+#: core/classes/class-form-styles.php:823
+#: inc/classes/class-form-styles-upgrade.php:70
 msgid "Background"
 msgstr ""
 
-#: core/classes/class-form-styles.php:627
-#: core/classes/class-form-styles.php:722
-#: core/classes/class-form-styles.php:812
-#: inc/classes/class-form-styles-upgrade.php:81
+#: core/classes/class-form-styles.php:633
+#: core/classes/class-form-styles.php:728
+#: core/classes/class-form-styles.php:828
+#: inc/classes/class-form-styles-upgrade.php:75
 msgid "Background on focus"
 msgstr ""
 
-#: core/classes/class-form-styles.php:632
+#: core/classes/class-form-styles.php:638
 msgid "Field labels & text"
 msgstr ""
 
-#: core/classes/class-form-styles.php:637
+#: core/classes/class-form-styles.php:643
 msgid "Toggle placeholder on field focus"
 msgstr ""
 
-#: core/classes/class-form-styles.php:642
+#: core/classes/class-form-styles.php:648
 msgid "Label alignment"
 msgstr ""
 
-#: core/classes/class-form-styles.php:647
+#: core/classes/class-form-styles.php:653
 msgid "Label font size"
 msgstr ""
 
-#: core/classes/class-form-styles.php:652
+#: core/classes/class-form-styles.php:658
 msgid "Label font weight"
 msgstr ""
 
-#: core/classes/class-form-styles.php:657
+#: core/classes/class-form-styles.php:663
 msgid "Hint alignment"
 msgstr ""
 
-#: core/classes/class-form-styles.php:662
+#: core/classes/class-form-styles.php:668
 msgid "Hint font size"
 msgstr ""
 
-#: core/classes/class-form-styles.php:667
+#: core/classes/class-form-styles.php:673
 msgid "Placeholder &amp; value alignment"
 msgstr ""
 
-#: core/classes/class-form-styles.php:672
+#: core/classes/class-form-styles.php:678
 msgid "Value font size"
 msgstr ""
 
-#: core/classes/class-form-styles.php:682
+#: core/classes/class-form-styles.php:688
 #: core/templates/parts/customize-checkbox.php:4
 #: core/templates/parts/customize-checkbox.php:139
 #: core/templates/parts/customize-checkbox.php:187
 #: core/templates/parts/customize-email.php:4
+#: core/templates/parts/customize-media.php:5
 #: core/templates/parts/customize-multi-line-text.php:4
 #: core/templates/parts/customize-number.php:4
+#: core/templates/parts/customize-placeholder.php:6
 #: core/templates/parts/customize-radio.php:4
 #: core/templates/parts/customize-radio.php:125
 #: core/templates/parts/customize-radio.php:174
@@ -783,10 +786,8 @@ msgstr ""
 #: inc/templates/parts/customize-date.php:4
 #: inc/templates/parts/customize-legal.php:4
 #: inc/templates/parts/customize-likert-scale.php:5
-#: inc/templates/parts/customize-media.php:5
 #: inc/templates/parts/customize-narrative.php:4
 #: inc/templates/parts/customize-phone.php:4
-#: inc/templates/parts/customize-placeholder.php:6
 #: inc/templates/parts/customize-poll.php:4
 #: inc/templates/parts/customize-poll.php:129
 #: inc/templates/parts/customize-rank-order.php:4
@@ -806,11 +807,11 @@ msgstr ""
 msgid "Label"
 msgstr ""
 
-#: core/classes/class-form-styles.php:687
+#: core/classes/class-form-styles.php:693
 msgid "Value"
 msgstr ""
 
-#: core/classes/class-form-styles.php:692
+#: core/classes/class-form-styles.php:698
 #: core/templates/parts/customize-email.php:20
 #: core/templates/parts/customize-multi-line-text.php:20
 #: core/templates/parts/customize-number.php:20
@@ -827,12 +828,13 @@ msgstr ""
 msgid "Placeholder"
 msgstr ""
 
-#: core/classes/class-form-styles.php:697
+#: core/classes/class-form-styles.php:703
 #: core/templates/parts/customize-checkbox.php:20
 #: core/templates/parts/customize-checkbox.php:145
 #: core/templates/parts/customize-email.php:28
 #: core/templates/parts/customize-multi-line-text.php:28
 #: core/templates/parts/customize-number.php:28
+#: core/templates/parts/customize-placeholder.php:25
 #: core/templates/parts/customize-radio.php:20
 #: core/templates/parts/customize-radio.php:131
 #: core/templates/parts/customize-select.php:24
@@ -844,7 +846,6 @@ msgstr ""
 #: inc/templates/parts/customize-likert-scale.php:21
 #: inc/templates/parts/customize-narrative.php:21
 #: inc/templates/parts/customize-phone.php:28
-#: inc/templates/parts/customize-placeholder.php:25
 #: inc/templates/parts/customize-poll.php:20
 #: inc/templates/parts/customize-rank-order.php:24
 #: inc/templates/parts/customize-rating.php:20
@@ -859,111 +860,119 @@ msgstr ""
 msgid "Hint"
 msgstr ""
 
-#: core/classes/class-form-styles.php:702
+#: core/classes/class-form-styles.php:708
 msgid "Address dropdowns"
 msgstr ""
 
-#: core/classes/class-form-styles.php:708
+#: core/classes/class-form-styles.php:714
 msgid "Items"
 msgstr ""
 
-#: core/classes/class-form-styles.php:717
-#: core/classes/class-form-styles.php:822
+#: core/classes/class-form-styles.php:723
+#: core/classes/class-form-styles.php:838
 #: core/classes/parts/class-part-single-line-text.php:8
+#: core/templates/parts/customize-placeholder.php:32
 #: inc/classes/class-form-stepper.php:488
-#: inc/templates/parts/customize-placeholder.php:32
 #: inc/templates/parts/customize-scrollable-terms.php:27
 #: inc/templates/parts/customize-toggletip.php:11
 msgid "Text"
 msgstr ""
 
-#: core/classes/class-form-styles.php:727
+#: core/classes/class-form-styles.php:733
 msgid "Text focused"
 msgstr ""
 
-#: core/classes/class-form-styles.php:732
+#: core/classes/class-form-styles.php:738
 msgid "Tables"
 msgstr ""
 
-#: core/classes/class-form-styles.php:737
+#: core/classes/class-form-styles.php:743
 msgid "Odd row primary"
 msgstr ""
 
-#: core/classes/class-form-styles.php:742
+#: core/classes/class-form-styles.php:748
 msgid "Odd row secondary"
 msgstr ""
 
-#: core/classes/class-form-styles.php:747
+#: core/classes/class-form-styles.php:753
 msgid "Even row primary"
 msgstr ""
 
-#: core/classes/class-form-styles.php:752
+#: core/classes/class-form-styles.php:758
 msgid "Even row secondary"
 msgstr ""
 
-#: core/classes/class-form-styles.php:757
+#: core/classes/class-form-styles.php:763
+msgid "Separators"
+msgstr ""
+
+#: core/classes/class-form-styles.php:768
+msgid "Color"
+msgstr ""
+
+#: core/classes/class-form-styles.php:773
 msgid "Submit button"
 msgstr ""
 
-#: core/classes/class-form-styles.php:787
+#: core/classes/class-form-styles.php:803
 msgid "Font weight"
 msgstr ""
 
-#: core/classes/class-form-styles.php:797
+#: core/classes/class-form-styles.php:813
 msgid "Make button a field of last input"
 msgstr ""
 
-#: core/classes/class-form-styles.php:827
+#: core/classes/class-form-styles.php:843
 msgid "Text on focus"
 msgstr ""
 
-#: core/classes/class-form-styles.php:839
+#: core/classes/class-form-styles.php:855
 msgid "Add your own CSS code here to customize the appearance of your form."
 msgstr ""
 
-#: core/classes/class-form-styles.php:841
+#: core/classes/class-form-styles.php:857
 msgid "For each rule you add, we'll prepend your form's HTML ID. This makes sure all styles added will only apply to this form. For example %s becomes %s."
 msgstr ""
 
-#: core/classes/class-form-styles.php:849
+#: core/classes/class-form-styles.php:865
 msgid "The edit field automatically highlights code syntax. You can disable this in your <a href=\"%s\" class=\"%s\" target=\"_blank\">user profile</a> to work in plain text mode."
 msgstr ""
 
-#: core/classes/class-form-styles.php:857
-#: core/classes/class-form-styles.php:867
+#: core/classes/class-form-styles.php:873
+#: core/classes/class-form-styles.php:883
 msgid "Additional CSS"
 msgstr ""
 
-#: core/classes/class-happyforms-core.php:210
 #: core/classes/class-happyforms-core.php:211
+#: core/classes/class-happyforms-core.php:212
 #: inc/classes/class-attachment-controller.php:647
 #: inc/classes/class-form-admin-upgrade.php:36
 #: inc/classes/class-form-admin-upgrade.php:37
 #: inc/classes/class-message-controller.php:194
-#: inc/classes/class-message-controller.php:1066
+#: inc/classes/class-message-controller.php:1070
 msgid "Submissions"
 msgstr ""
 
-#: core/classes/class-happyforms-core.php:219
 #: core/classes/class-happyforms-core.php:220
+#: core/classes/class-happyforms-core.php:221
 #: integrations/services/payments/class-coupon-controller.php:40
 msgid "Coupons"
 msgstr ""
 
-#: core/classes/class-happyforms-core.php:228
 #: core/classes/class-happyforms-core.php:229
+#: core/classes/class-happyforms-core.php:230
 #: integrations/templates/admin-integrations.php:3
 msgid "Integrations"
 msgstr ""
 
-#: core/classes/class-happyforms-core.php:237
 #: core/classes/class-happyforms-core.php:238
+#: core/classes/class-happyforms-core.php:239
 #: inc/templates/admin-settings.php:3
 #: core/assets/jsx/build/admin/block.js:173
 msgid "Settings"
 msgstr ""
 
-#: core/classes/class-happyforms-core.php:479
+#: core/classes/class-happyforms-core.php:480
 msgid "Add Form"
 msgstr ""
 
@@ -973,6 +982,26 @@ msgstr ""
 
 #: core/classes/class-happyforms-widget.php:84
 msgid "Form:"
+msgstr ""
+
+#: core/classes/class-import-controller.php:37
+msgid "Import forms from a forms export file."
+msgstr ""
+
+#: core/classes/class-import-controller.php:83
+msgid "Import Forms"
+msgstr ""
+
+#: core/classes/class-import-controller.php:92
+msgid "Choose a forms export (.xml) file to upload, then click Upload file and import."
+msgstr ""
+
+#: core/classes/class-import-controller.php:101
+msgid "Sorry, there has been an error."
+msgstr ""
+
+#: core/classes/class-import-controller.php:107
+msgid "The export file could not be found at <code>%s</code>. It is likely that this was caused by a permissions problem."
 msgstr ""
 
 #: core/classes/class-validation-messages.php:72
@@ -1023,6 +1052,10 @@ msgstr ""
 msgid "Form updated."
 msgstr ""
 
+#: core/classes/class-wp-customize-form-manager.php:323
+msgid "The changes you made will be lost if you navigate away from this page."
+msgstr ""
+
 #: core/classes/parts/class-part-checkbox.php:10
 msgid "Checkbox"
 msgstr ""
@@ -1038,6 +1071,14 @@ msgstr ""
 msgid "Other"
 msgstr ""
 
+#: core/classes/parts/class-part-divider.php:8
+msgid "Separator"
+msgstr ""
+
+#: core/classes/parts/class-part-divider.php:9
+msgid "For adding a horizontal rule to visually separate fields."
+msgstr ""
+
 #: core/classes/parts/class-part-email.php:8
 #: integrations/services/active-campaign/class-service-active-campaign.php:123
 #: integrations/services/aweber/class-service-aweber.php:246
@@ -1050,6 +1091,32 @@ msgstr ""
 msgid "For formatted email addresses. The '@' symbol is required."
 msgstr ""
 
+#: core/classes/parts/class-part-layout-drawer-group.php:9
+msgid "Design"
+msgstr ""
+
+#: core/classes/parts/class-part-layout-title.php:8
+#: core/templates/parts/customize-checkbox.php:180
+#: core/templates/parts/customize-layout_title.php:16
+#: core/templates/parts/customize-radio.php:167
+#: core/templates/parts/customize-select.php:151
+#: inc/templates/parts/customize-toggletip.php:4
+msgid "Heading"
+msgstr ""
+
+#: core/classes/parts/class-part-layout-title.php:9
+msgid "For adding titles to visually separate fields."
+msgstr ""
+
+#: core/classes/parts/class-part-media.php:8
+#: core/templates/parts/customize-media.php:25
+msgid "Media"
+msgstr ""
+
+#: core/classes/parts/class-part-media.php:9
+msgid "For adding a single image, video, animated gif or audio clip."
+msgstr ""
+
 #: core/classes/parts/class-part-multi-line-text.php:8
 msgid "Long Text"
 msgstr ""
@@ -1059,12 +1126,20 @@ msgid "For paragraph text fields."
 msgstr ""
 
 #: core/classes/parts/class-part-number.php:8
-#: integrations/services/stripe/class-integration-stripe.php:350
+#: integrations/services/stripe/class-integration-stripe.php:354
 msgid "Number"
 msgstr ""
 
 #: core/classes/parts/class-part-number.php:9
 msgid "For numeric fields."
+msgstr ""
+
+#: core/classes/parts/class-part-placeholder.php:8
+msgid "Paragraph"
+msgstr ""
+
+#: core/classes/parts/class-part-placeholder.php:9
+msgid "For adding helper text, notes and formatted messages."
 msgstr ""
 
 #: core/classes/parts/class-part-radio.php:12
@@ -1129,60 +1204,60 @@ msgstr ""
 msgid "I agree to allow this site to store and process the personal information submitted."
 msgstr ""
 
-#: core/helpers/helper-form-templates.php:62
+#: core/helpers/helper-form-templates.php:79
 msgid "Leave this field blank"
 msgstr ""
 
-#: core/helpers/helper-form-templates.php:471
+#: core/helpers/helper-form-templates.php:488
 #: core/helpers/helper-misc.php:18
 msgid "(no title)"
 msgstr ""
 
-#: core/helpers/helper-form-templates.php:998
+#: core/helpers/helper-form-templates.php:1015
 msgid "January"
 msgstr ""
 
-#: core/helpers/helper-form-templates.php:999
+#: core/helpers/helper-form-templates.php:1016
 msgid "February"
 msgstr ""
 
-#: core/helpers/helper-form-templates.php:1000
+#: core/helpers/helper-form-templates.php:1017
 msgid "March"
 msgstr ""
 
-#: core/helpers/helper-form-templates.php:1001
+#: core/helpers/helper-form-templates.php:1018
 msgid "April"
 msgstr ""
 
-#: core/helpers/helper-form-templates.php:1002
+#: core/helpers/helper-form-templates.php:1019
 msgid "May"
 msgstr ""
 
-#: core/helpers/helper-form-templates.php:1003
+#: core/helpers/helper-form-templates.php:1020
 msgid "June"
 msgstr ""
 
-#: core/helpers/helper-form-templates.php:1004
+#: core/helpers/helper-form-templates.php:1021
 msgid "July"
 msgstr ""
 
-#: core/helpers/helper-form-templates.php:1005
+#: core/helpers/helper-form-templates.php:1022
 msgid "August"
 msgstr ""
 
-#: core/helpers/helper-form-templates.php:1006
+#: core/helpers/helper-form-templates.php:1023
 msgid "September"
 msgstr ""
 
-#: core/helpers/helper-form-templates.php:1007
+#: core/helpers/helper-form-templates.php:1024
 msgid "October"
 msgstr ""
 
-#: core/helpers/helper-form-templates.php:1008
+#: core/helpers/helper-form-templates.php:1025
 msgid "November"
 msgstr ""
 
-#: core/helpers/helper-form-templates.php:1009
+#: core/helpers/helper-form-templates.php:1026
 msgid "December"
 msgstr ""
 
@@ -2765,12 +2840,12 @@ msgid "Style"
 msgstr ""
 
 #: core/templates/customize-form-item.php:33
+#: core/templates/parts/customize-divider.php:24
+#: core/templates/parts/customize-layout_title.php:40
 #: inc/classes/class-form-messages-upgrade.php:41
 #: inc/templates/customize-form-logic-group.php:48
 #: inc/templates/customize-form-part-choice-footer.php:2
 #: inc/templates/customize-form-part-footer.php:3
-#: inc/templates/parts/customize-divider.php:24
-#: inc/templates/parts/customize-layout_title.php:40
 #: inc/templates/parts/customize-page-break.php:32
 #: inc/templates/parts/customize-poll.php:134
 #: inc/templates/parts/customize-rank-order.php:102
@@ -2843,10 +2918,6 @@ msgstr ""
 
 #: core/templates/customize-header-actions.php:8
 msgid "Updated"
-msgstr ""
-
-#: core/templates/customize-header-actions.php:21
-msgid "The changes you made will be lost if you navigate away from this page."
 msgstr ""
 
 #: core/templates/customize-header-actions.php:22
@@ -3037,24 +3108,24 @@ msgid "Require an answer"
 msgstr ""
 
 #: core/templates/parts/customize-checkbox.php:111
+#: core/templates/parts/customize-divider.php:18
 #: core/templates/parts/customize-email.php:57
+#: core/templates/parts/customize-layout_title.php:34
+#: core/templates/parts/customize-media.php:112
 #: core/templates/parts/customize-multi-line-text.php:70
 #: core/templates/parts/customize-number.php:83
+#: core/templates/parts/customize-placeholder.php:45
 #: core/templates/parts/customize-radio.php:95
 #: core/templates/parts/customize-select.php:86
 #: core/templates/parts/customize-single-line-text.php:56
 #: inc/templates/parts/customize-address.php:53
 #: inc/templates/parts/customize-attachment.php:74
 #: inc/templates/parts/customize-date.php:95
-#: inc/templates/parts/customize-divider.php:18
-#: inc/templates/parts/customize-layout_title.php:34
 #: inc/templates/parts/customize-legal.php:41
 #: inc/templates/parts/customize-likert-scale.php:61
-#: inc/templates/parts/customize-media.php:112
 #: inc/templates/parts/customize-narrative.php:45
 #: inc/templates/parts/customize-page-break.php:24
 #: inc/templates/parts/customize-phone.php:60
-#: inc/templates/parts/customize-placeholder.php:45
 #: inc/templates/parts/customize-poll.php:101
 #: inc/templates/parts/customize-rank-order.php:79
 #: inc/templates/parts/customize-rating.php:41
@@ -3091,15 +3162,6 @@ msgstr ""
 msgid "Make this choice default"
 msgstr ""
 
-#: core/templates/parts/customize-checkbox.php:180
-#: core/templates/parts/customize-radio.php:167
-#: core/templates/parts/customize-select.php:151
-#: inc/classes/parts/class-part-layout-title.php:8
-#: inc/templates/parts/customize-layout_title.php:16
-#: inc/templates/parts/customize-toggletip.php:4
-msgid "Heading"
-msgstr ""
-
 #: core/templates/parts/customize-email.php:24
 #: core/templates/parts/customize-multi-line-text.php:24
 #: core/templates/parts/customize-number.php:24
@@ -3123,6 +3185,27 @@ msgstr ""
 #: inc/classes/class-form-setup-upgrade.php:166
 #: inc/templates/parts/customize-website-url.php:43
 msgid "Suffix"
+msgstr ""
+
+#: core/templates/parts/customize-layout_title.php:20
+msgid "Heading level"
+msgstr ""
+
+#: core/templates/parts/customize-layout_title.php:25
+msgid "H"
+msgstr ""
+
+#: core/templates/parts/customize-media.php:24
+#: core/templates/parts/customize-media.php:94
+msgid "Select media"
+msgstr ""
+
+#: core/templates/parts/customize-media.php:24
+msgid "Select Media"
+msgstr ""
+
+#: core/templates/parts/customize-media.php:98
+msgid "Replace Media"
 msgstr ""
 
 #: core/templates/parts/customize-multi-line-text.php:40
@@ -3178,7 +3261,7 @@ msgid "Click to edit this part."
 msgstr ""
 
 #: inc/classes/class-attachment-controller.php:725
-#: inc/classes/class-message-admin.php:934
+#: inc/classes/class-message-admin.php:948
 msgid "All forms"
 msgstr ""
 
@@ -3210,16 +3293,12 @@ msgstr ""
 msgid "Search or type URL"
 msgstr ""
 
-#: inc/classes/class-export-controller.php:78
+#: inc/classes/class-export-controller.php:77
 msgid "Sorry, you are not allowed to access this page."
 msgstr ""
 
-#: inc/classes/class-export-controller.php:154
-msgid "Upload failed"
-msgstr ""
-
 #: inc/classes/class-exporter-csv.php:19
-#: inc/classes/class-exporter-xml.php:21
+#: inc/classes/class-exporter-xml.php:24
 msgid "Form not found"
 msgstr ""
 
@@ -3233,14 +3312,14 @@ msgstr ""
 
 #: inc/classes/class-form-admin-upgrade.php:67
 #: inc/classes/class-form-admin-upgrade.php:153
-#: inc/classes/class-message-admin.php:984
-#: inc/classes/class-message-admin.php:1211
+#: inc/classes/class-message-admin.php:998
+#: inc/classes/class-message-admin.php:1233
 msgid "Restore"
 msgstr ""
 
 #: inc/classes/class-form-admin-upgrade.php:72
 #: inc/classes/class-form-admin-upgrade.php:154
-#: inc/classes/class-message-admin.php:1217
+#: inc/classes/class-message-admin.php:1239
 msgid "Delete Permanently"
 msgstr ""
 
@@ -3254,7 +3333,7 @@ msgid "Move to Archive"
 msgstr ""
 
 #: inc/classes/class-form-admin-upgrade.php:144
-#: inc/classes/class-message-admin.php:983
+#: inc/classes/class-message-admin.php:997
 msgid "Move to Trash"
 msgstr ""
 
@@ -3574,42 +3653,38 @@ msgstr ""
 msgid "Back link on focus"
 msgstr ""
 
-#: inc/classes/class-form-styles-upgrade.php:71
+#: inc/classes/class-form-styles-upgrade.php:65
 msgid "Checkboxes & Radios"
 msgstr ""
 
-#: inc/classes/class-form-styles-upgrade.php:86
+#: inc/classes/class-form-styles-upgrade.php:80
 msgid "Checkmark"
 msgstr ""
 
-#: inc/classes/class-form-styles-upgrade.php:91
+#: inc/classes/class-form-styles-upgrade.php:85
 msgid "Rating"
 msgstr ""
 
-#: inc/classes/class-form-styles-upgrade.php:96
+#: inc/classes/class-form-styles-upgrade.php:90
 msgid "Rating star color"
 msgstr ""
 
-#: inc/classes/class-form-styles-upgrade.php:101
+#: inc/classes/class-form-styles-upgrade.php:95
 msgid "Rating star color on hover"
 msgstr ""
 
-#: inc/classes/class-form-styles-upgrade.php:106
-msgid "Separators"
-msgstr ""
-
-#: inc/classes/class-form-styles-upgrade.php:111
-msgid "Color"
-msgstr ""
-
-#: inc/classes/class-happyforms-upgrade.php:486
+#: inc/classes/class-happyforms-upgrade.php:461
 #: inc/assets/jsx/build/admin/dashboard-modals.js:375
 #: inc/assets/jsx/src/admin/dashboard-modals.js:204
 msgid "You're unregistered"
 msgstr ""
 
-#: inc/classes/class-happyforms-upgrade.php:488
+#: inc/classes/class-happyforms-upgrade.php:463
 msgid "Register now"
+msgstr ""
+
+#: inc/classes/class-happyforms-upgrade.php:518
+msgid "Import forms and submissions from a forms export file."
 msgstr ""
 
 #: inc/classes/class-importer-xml.php:162
@@ -3637,7 +3712,7 @@ msgid "polls"
 msgstr ""
 
 #: inc/classes/class-importer-xml.php:205
-msgid "%s %s imported succesfully."
+msgid "%s %s imported successfully."
 msgstr ""
 
 #: inc/classes/class-importer-xml.php:211
@@ -3673,20 +3748,20 @@ msgstr ""
 
 #: inc/classes/class-message-admin-edit.php:250
 #: inc/classes/class-message-admin-edit.php:265
-#: inc/classes/class-message-admin.php:537
+#: inc/classes/class-message-admin.php:538
 msgid "Read"
 msgstr ""
 
 #: inc/classes/class-message-admin-edit.php:253
 #: inc/classes/class-message-admin-edit.php:271
-#: inc/classes/class-message-admin.php:544
-#: inc/classes/class-message-admin.php:1153
+#: inc/classes/class-message-admin.php:545
+#: inc/classes/class-message-admin.php:1175
 msgid "Spam"
 msgstr ""
 
 #: inc/classes/class-message-admin-edit.php:256
 #: inc/classes/class-message-admin-edit.php:268
-#: inc/classes/class-message-admin.php:530
+#: inc/classes/class-message-admin.php:531
 msgid "Unread"
 msgstr ""
 
@@ -3703,7 +3778,7 @@ msgid "%1$s at %2$s"
 msgstr ""
 
 #: inc/classes/class-message-admin-edit.php:289
-#: inc/classes/class-message-admin.php:604
+#: inc/classes/class-message-admin.php:605
 msgid "Submitted on"
 msgstr ""
 
@@ -3719,69 +3794,69 @@ msgstr ""
 msgid "Dismiss this notice."
 msgstr ""
 
-#: inc/classes/class-message-admin.php:291
+#: inc/classes/class-message-admin.php:292
 msgid "Fields"
 msgstr ""
 
-#: inc/classes/class-message-admin.php:292
+#: inc/classes/class-message-admin.php:293
 msgid "Number of fields per submission:"
 msgstr ""
 
-#: inc/classes/class-message-admin.php:298
+#: inc/classes/class-message-admin.php:299
 msgid "Pagination"
 msgstr ""
 
-#: inc/classes/class-message-admin.php:299
+#: inc/classes/class-message-admin.php:300
 msgid "Number of items per page:"
 msgstr ""
 
-#: inc/classes/class-message-admin.php:303
+#: inc/classes/class-message-admin.php:304
 msgid "View mode"
 msgstr ""
 
-#: inc/classes/class-message-admin.php:306
+#: inc/classes/class-message-admin.php:307
 msgid "Compact view"
 msgstr ""
 
-#: inc/classes/class-message-admin.php:310
+#: inc/classes/class-message-admin.php:311
 msgid "Extended view"
 msgstr ""
 
-#: inc/classes/class-message-admin.php:372
+#: inc/classes/class-message-admin.php:373
 msgid "submission marked as spam."
 msgid_plural "submissions marked as spam."
 msgstr[0] ""
 msgstr[1] ""
 
-#: inc/classes/class-message-admin.php:393
+#: inc/classes/class-message-admin.php:394
 msgid "submission restored from spam."
 msgid_plural "submissions restored from spam."
 msgstr[0] ""
 msgstr[1] ""
 
-#: inc/classes/class-message-admin.php:399
+#: inc/classes/class-message-admin.php:400
 msgid "submission marked as read."
 msgid_plural "submissions marked as read."
 msgstr[0] ""
 msgstr[1] ""
 
-#: inc/classes/class-message-admin.php:432
+#: inc/classes/class-message-admin.php:433
 msgid "Submission marked as spam"
 msgstr ""
 
-#: inc/classes/class-message-admin.php:433
+#: inc/classes/class-message-admin.php:434
 msgid "Submission moved to the Trash"
 msgstr ""
 
-#: inc/classes/class-message-admin.php:434
+#: inc/classes/class-message-admin.php:435
 msgid "No submissions found"
 msgstr ""
 
-#: inc/classes/class-message-admin.php:435
+#: inc/classes/class-message-admin.php:436
 msgid "No submissions found in Trash"
 msgstr ""
 
-#: inc/classes/class-message-admin.php:523
+#: inc/classes/class-message-admin.php:524
 #: integrations/services/constant-contact/class-integration-constant-contact.php:67
 #: integrations/services/constant-contact/class-integration-constant-contact.php:116
 #: integrations/services/mailerlite/class-integration-mailerlite.php:88
@@ -3797,62 +3872,66 @@ msgstr ""
 msgid "All"
 msgstr ""
 
-#: inc/classes/class-message-admin.php:602
+#: inc/classes/class-message-admin.php:603
 #: inc/classes/class-message-controller.php:195
-#: inc/templates/admin-message-edit.php:13
-#: inc/templates/admin-message-edit.php:15
+#: inc/templates/admin-message-edit.php:26
+#: inc/templates/admin-message-edit.php:28
 msgid "Submission"
 msgstr ""
 
-#: inc/classes/class-message-admin.php:603
+#: inc/classes/class-message-admin.php:604
 msgid "Submitted to"
 msgstr ""
 
-#: inc/classes/class-message-admin.php:690
-msgid "View Referral"
+#: inc/classes/class-message-admin.php:687
+msgid "page"
 msgstr ""
 
-#: inc/classes/class-message-admin.php:962
+#: inc/classes/class-message-admin.php:703
+msgid "View "
+msgstr ""
+
+#: inc/classes/class-message-admin.php:976
 msgid "Empty Spam"
 msgstr ""
 
-#: inc/classes/class-message-admin.php:979
+#: inc/classes/class-message-admin.php:993
 msgid "Mark as unread"
 msgstr ""
 
-#: inc/classes/class-message-admin.php:980
+#: inc/classes/class-message-admin.php:994
 msgid "Mark as read"
 msgstr ""
 
-#: inc/classes/class-message-admin.php:981
+#: inc/classes/class-message-admin.php:995
 msgid "Mark as spam"
 msgstr ""
 
-#: inc/classes/class-message-admin.php:982
+#: inc/classes/class-message-admin.php:996
 msgid "Not spam"
 msgstr ""
 
-#: inc/classes/class-message-admin.php:985
+#: inc/classes/class-message-admin.php:999
 msgid "Delete permanently"
 msgstr ""
 
-#: inc/classes/class-message-admin.php:1135
+#: inc/classes/class-message-admin.php:1157
 msgid "View"
 msgstr ""
 
-#: inc/classes/class-message-admin.php:1159
+#: inc/classes/class-message-admin.php:1181
 msgid "Not Spam"
 msgstr ""
 
-#: inc/classes/class-message-admin.php:1171
+#: inc/classes/class-message-admin.php:1193
 msgid "Mark as Read"
 msgstr ""
 
-#: inc/classes/class-message-admin.php:1182
+#: inc/classes/class-message-admin.php:1204
 msgid "Mark as Unread"
 msgstr ""
 
-#: inc/classes/class-message-admin.php:1322
+#: inc/classes/class-message-admin.php:1344
 msgid "Submissions to"
 msgstr ""
 
@@ -3897,7 +3976,7 @@ msgid "One per line. Not case sensitive. Punctuation, numbers and alt characters
 msgstr ""
 
 #: inc/classes/class-message-controller.php:196
-#: inc/classes/class-message-controller.php:1079
+#: inc/classes/class-message-controller.php:1083
 msgid "Edit Submission"
 msgstr ""
 
@@ -3926,16 +4005,16 @@ msgstr ""
 msgid "All Submissions"
 msgstr ""
 
-#: inc/classes/class-message-controller.php:739
-#: inc/templates/admin-message-edit.php:33
+#: inc/classes/class-message-controller.php:743
+#: inc/templates/admin-message-edit.php:46
 msgid "Tracking number"
 msgstr ""
 
-#: inc/classes/class-message-controller.php:1022
+#: inc/classes/class-message-controller.php:1026
 msgid "Invalid email."
 msgstr ""
 
-#: inc/classes/class-message-controller.php:1023
+#: inc/classes/class-message-controller.php:1027
 msgid "Email sent."
 msgstr ""
 
@@ -4046,13 +4125,13 @@ msgid "Erase submitter's personal data after set number of days"
 msgstr ""
 
 #: inc/classes/class-role-permissions.php:143
-#: integrations/classes/class-integrations.php:259
-#: integrations/classes/class-integrations.php:349
+#: integrations/classes/class-integrations.php:254
+#: integrations/classes/class-integrations.php:344
 msgid "Changes saved."
 msgstr ""
 
 #: inc/classes/class-settings-page-controller.php:35
-msgid "Import and Export"
+msgid "Tools"
 msgstr ""
 
 #: inc/classes/class-settings-page-controller.php:43
@@ -4136,22 +4215,6 @@ msgstr ""
 msgid "For formatted day, month, year and or time fields."
 msgstr ""
 
-#: inc/classes/parts/class-part-divider.php:8
-msgid "Separator"
-msgstr ""
-
-#: inc/classes/parts/class-part-divider.php:9
-msgid "For adding a horizontal rule to visually separate fields."
-msgstr ""
-
-#: inc/classes/parts/class-part-layout-drawer-group.php:9
-msgid "Design"
-msgstr ""
-
-#: inc/classes/parts/class-part-layout-title.php:9
-msgid "For adding titles to visually separate fields."
-msgstr ""
-
 #: inc/classes/parts/class-part-legal.php:9
 msgid "Consent Choice"
 msgstr ""
@@ -4170,15 +4233,6 @@ msgstr ""
 
 #: inc/classes/parts/class-part-likert-scale.php:9
 msgid "For collecting ratings using a fixed numeric scale."
-msgstr ""
-
-#: inc/classes/parts/class-part-media.php:8
-#: inc/templates/parts/customize-media.php:25
-msgid "Media"
-msgstr ""
-
-#: inc/classes/parts/class-part-media.php:9
-msgid "For adding a single image, video, animated gif or audio clip."
 msgstr ""
 
 #: inc/classes/parts/class-part-narrative.php:8
@@ -4229,14 +4283,6 @@ msgstr ""
 
 #: inc/classes/parts/class-part-phone.php:338
 msgid "Phone field number label"
-msgstr ""
-
-#: inc/classes/parts/class-part-placeholder.php:8
-msgid "Paragraph"
-msgstr ""
-
-#: inc/classes/parts/class-part-placeholder.php:9
-msgid "For adding helper text, notes and formatted messages."
 msgstr ""
 
 #: inc/classes/parts/class-part-poll.php:9
@@ -4465,6 +4511,10 @@ msgstr ""
 msgid "Comment by %s marked as spam."
 msgstr ""
 
+#: inc/templates/admin-message-edit.php:13
+msgid "Referral:"
+msgstr ""
+
 #: inc/templates/admin-settings-export.php:18
 msgid "Transfer forms and submissions to and from sites."
 msgstr ""
@@ -4487,22 +4537,18 @@ msgid "Select"
 msgstr ""
 
 #: inc/templates/admin-settings-export.php:27
-msgid "Import data (.xml)"
-msgstr ""
-
-#: inc/templates/admin-settings-export.php:28
 msgid "Export submissions to spreadsheet (.csv)"
 msgstr ""
 
-#: inc/templates/admin-settings-export.php:29
+#: inc/templates/admin-settings-export.php:28
 msgid "Export a form (.xml)"
 msgstr ""
 
-#: inc/templates/admin-settings-export.php:30
+#: inc/templates/admin-settings-export.php:29
 msgid "Export a form and its submissions (.xml)"
 msgstr ""
 
-#: inc/templates/admin-settings-export.php:37
+#: inc/templates/admin-settings-export.php:36
 #: integrations/services/active-campaign/class-integration-active-campaign.php:94
 #: integrations/services/active-campaign/class-integration-active-campaign.php:101
 #: integrations/services/active-campaign/templates/partial-part-controls.php:5
@@ -4532,35 +4578,35 @@ msgstr ""
 msgid "— Select —"
 msgstr ""
 
-#: inc/templates/admin-settings-export.php:59
+#: inc/templates/admin-settings-export.php:58
 msgid "Choose a file from your computer"
 msgstr ""
 
-#: inc/templates/admin-settings-export.php:60
+#: inc/templates/admin-settings-export.php:59
 msgid "Maximum size"
 msgstr ""
 
-#: inc/templates/admin-settings-export.php:69
+#: inc/templates/admin-settings-export.php:68
 msgid "Importing file…"
 msgstr ""
 
-#: inc/templates/admin-settings-export.php:84
+#: inc/templates/admin-settings-export.php:83
 msgid "Download Export File"
 msgstr ""
 
-#: inc/templates/admin-settings-export.php:85
+#: inc/templates/admin-settings-export.php:84
 msgid "Upload File and Import"
 msgstr ""
 
-#: inc/templates/admin-settings-export.php:88
+#: inc/templates/admin-settings-export.php:87
 msgid "Submit"
 msgstr ""
 
-#: inc/templates/admin-settings-export.php:92
+#: inc/templates/admin-settings-export.php:91
 msgid "Retry"
 msgstr ""
 
-#: inc/templates/admin-settings-export.php:95
+#: inc/templates/admin-settings-export.php:94
 msgid "Import another file"
 msgstr ""
 
@@ -4858,14 +4904,6 @@ msgstr ""
 msgid "24-hour clock"
 msgstr ""
 
-#: inc/templates/parts/customize-layout_title.php:20
-msgid "Heading level"
-msgstr ""
-
-#: inc/templates/parts/customize-layout_title.php:25
-msgid "H"
-msgstr ""
-
 #: inc/templates/parts/customize-likert-scale.php:43
 #: inc/templates/parts/customize-scale.php:64
 msgid "Min number label"
@@ -4874,19 +4912,6 @@ msgstr ""
 #: inc/templates/parts/customize-likert-scale.php:47
 #: inc/templates/parts/customize-scale.php:68
 msgid "Max number label"
-msgstr ""
-
-#: inc/templates/parts/customize-media.php:24
-#: inc/templates/parts/customize-media.php:94
-msgid "Select media"
-msgstr ""
-
-#: inc/templates/parts/customize-media.php:24
-msgid "Select Media"
-msgstr ""
-
-#: inc/templates/parts/customize-media.php:98
-msgid "Replace Media"
 msgstr ""
 
 #: inc/templates/parts/customize-page-break.php:16
@@ -5308,6 +5333,15 @@ msgstr ""
 msgid "I agree to receive marketing emails"
 msgstr ""
 
+#: integrations/services/email/templates/preview-email-integration.php:5
+msgid "Email marketing integration required."
+msgstr ""
+
+#: integrations/services/email/templates/preview-email-integration.php:7
+#: integrations/services/payments/templates/preview-payments.php:7
+msgid "Set up on Integrations screen"
+msgstr ""
+
 #: integrations/services/emailoctopus/class-integration-emailoctopus.php:206
 msgid "Map field to EmailOctopus field"
 msgstr ""
@@ -5652,78 +5686,84 @@ msgstr ""
 msgid "Discount Percentage"
 msgstr ""
 
-#: integrations/services/payments/class-integration-payments.php:212
+#: integrations/services/payments/class-integration-payments.php:22
+#: integrations/services/paypal/class-integration-paypal.php:473
+#: integrations/services/paypal/class-service-paypal.php:9
+msgid "PayPal"
+msgstr ""
+
+#: integrations/services/payments/class-integration-payments.php:213
 msgid "This price isn't high enough."
 msgstr ""
 
-#: integrations/services/payments/class-integration-payments.php:216
+#: integrations/services/payments/class-integration-payments.php:217
 msgid "Thank you! Your payment was successful."
 msgstr ""
 
-#: integrations/services/payments/class-integration-payments.php:220
+#: integrations/services/payments/class-integration-payments.php:221
 msgid "Payment failed."
 msgstr ""
 
-#: integrations/services/payments/class-integration-payments.php:224
+#: integrations/services/payments/class-integration-payments.php:225
 msgid "Payment canceled."
 msgstr ""
 
-#: integrations/services/payments/class-integration-payments.php:228
+#: integrations/services/payments/class-integration-payments.php:229
 msgid "Choose a payment method"
 msgstr ""
 
-#: integrations/services/payments/class-integration-payments.php:232
+#: integrations/services/payments/class-integration-payments.php:233
 msgid "Name a price"
 msgstr ""
 
-#: integrations/services/payments/class-integration-payments.php:250
+#: integrations/services/payments/class-integration-payments.php:251
 msgid "Price is too low"
 msgstr ""
 
-#: integrations/services/payments/class-integration-payments.php:255
+#: integrations/services/payments/class-integration-payments.php:256
 msgid "Payment completed"
 msgstr ""
 
-#: integrations/services/payments/class-integration-payments.php:260
+#: integrations/services/payments/class-integration-payments.php:261
 msgid "Payment failed"
 msgstr ""
 
-#: integrations/services/payments/class-integration-payments.php:265
+#: integrations/services/payments/class-integration-payments.php:266
 msgid "Payment cancelled"
 msgstr ""
 
-#: integrations/services/payments/class-integration-payments.php:270
+#: integrations/services/payments/class-integration-payments.php:271
 msgid "Payment method"
 msgstr ""
 
-#: integrations/services/payments/class-integration-payments.php:275
+#: integrations/services/payments/class-integration-payments.php:276
 msgid "Pay what you want"
 msgstr ""
 
-#: integrations/services/payments/class-integration-payments.php:307
-#: integrations/services/payments/class-integration-payments.php:309
-#: integrations/services/payments/class-integration-payments.php:311
-#: integrations/services/payments/class-integration-payments.php:313
-#: integrations/services/payments/class-integration-payments.php:336
-#: integrations/services/payments/class-integration-payments.php:338
-#: integrations/services/payments/class-integration-payments.php:340
-#: integrations/services/payments/class-integration-payments.php:342
+#: integrations/services/payments/class-integration-payments.php:308
+#: integrations/services/payments/class-integration-payments.php:310
+#: integrations/services/payments/class-integration-payments.php:312
+#: integrations/services/payments/class-integration-payments.php:314
+#: integrations/services/payments/class-integration-payments.php:337
+#: integrations/services/payments/class-integration-payments.php:339
+#: integrations/services/payments/class-integration-payments.php:341
+#: integrations/services/payments/class-integration-payments.php:343
 msgid "completed"
 msgstr ""
 
-#: integrations/services/payments/class-integration-payments.php:307
-#: integrations/services/payments/class-integration-payments.php:309
-#: integrations/services/payments/class-integration-payments.php:336
-#: integrations/services/payments/class-integration-payments.php:338
+#: integrations/services/payments/class-integration-payments.php:308
+#: integrations/services/payments/class-integration-payments.php:310
+#: integrations/services/payments/class-integration-payments.php:337
+#: integrations/services/payments/class-integration-payments.php:339
 msgid "see details"
 msgstr ""
 
-#: integrations/services/payments/class-integration-payments.php:318
-#: integrations/services/payments/class-integration-payments.php:347
+#: integrations/services/payments/class-integration-payments.php:319
+#: integrations/services/payments/class-integration-payments.php:348
 msgid "canceled"
 msgstr ""
 
-#: integrations/services/payments/class-integration-payments.php:357
+#: integrations/services/payments/class-integration-payments.php:358
 msgid "through"
 msgstr ""
 
@@ -5736,107 +5776,107 @@ msgstr ""
 msgid "For processing payments using your favorite services."
 msgstr ""
 
-#: integrations/services/payments/helper-payments.php:37
+#: integrations/services/payments/helper-payments.php:46
 msgid "Australian dollar (AUD)"
 msgstr ""
 
-#: integrations/services/payments/helper-payments.php:42
+#: integrations/services/payments/helper-payments.php:51
 msgid "Thai Baht (THB)"
 msgstr ""
 
-#: integrations/services/payments/helper-payments.php:47
+#: integrations/services/payments/helper-payments.php:56
 msgid "Brazilian real (BRL)"
 msgstr ""
 
-#: integrations/services/payments/helper-payments.php:52
+#: integrations/services/payments/helper-payments.php:61
 msgid "Canadian dollar (CAD)"
 msgstr ""
 
-#: integrations/services/payments/helper-payments.php:57
+#: integrations/services/payments/helper-payments.php:66
 msgid "Chinese Renmenbi (CNY)"
 msgstr ""
 
-#: integrations/services/payments/helper-payments.php:62
+#: integrations/services/payments/helper-payments.php:71
 msgid "Czech koruna (CZK)"
 msgstr ""
 
-#: integrations/services/payments/helper-payments.php:67
+#: integrations/services/payments/helper-payments.php:76
 msgid "Danish krone (DKK)"
 msgstr ""
 
-#: integrations/services/payments/helper-payments.php:72
+#: integrations/services/payments/helper-payments.php:81
 msgid "Euro (EUR)"
 msgstr ""
 
-#: integrations/services/payments/helper-payments.php:77
+#: integrations/services/payments/helper-payments.php:86
 msgid "Hong Kong dollar (HKD)"
 msgstr ""
 
-#: integrations/services/payments/helper-payments.php:82
+#: integrations/services/payments/helper-payments.php:91
 msgid "Hungarian forint (HUF)"
 msgstr ""
 
-#: integrations/services/payments/helper-payments.php:87
+#: integrations/services/payments/helper-payments.php:96
 msgid "Indian rupee (INR)"
 msgstr ""
 
-#: integrations/services/payments/helper-payments.php:92
+#: integrations/services/payments/helper-payments.php:101
 msgid "Israeli new shekel (ILS)"
 msgstr ""
 
-#: integrations/services/payments/helper-payments.php:97
+#: integrations/services/payments/helper-payments.php:106
 msgid "Japanese yen (JPY)"
 msgstr ""
 
-#: integrations/services/payments/helper-payments.php:102
+#: integrations/services/payments/helper-payments.php:111
 msgid "Malaysian ringgit (MYR)"
 msgstr ""
 
-#: integrations/services/payments/helper-payments.php:107
+#: integrations/services/payments/helper-payments.php:116
 msgid "Mexican peso (MXN)"
 msgstr ""
 
-#: integrations/services/payments/helper-payments.php:112
+#: integrations/services/payments/helper-payments.php:121
 msgid "New Taiwan dollar (TWD)"
 msgstr ""
 
-#: integrations/services/payments/helper-payments.php:117
+#: integrations/services/payments/helper-payments.php:126
 msgid "New Zealand dollar (NZD)"
 msgstr ""
 
-#: integrations/services/payments/helper-payments.php:122
+#: integrations/services/payments/helper-payments.php:131
 msgid "Norwegian krone (NOK)"
 msgstr ""
 
-#: integrations/services/payments/helper-payments.php:127
+#: integrations/services/payments/helper-payments.php:136
 msgid "Philippine peso (PHP)"
 msgstr ""
 
-#: integrations/services/payments/helper-payments.php:132
+#: integrations/services/payments/helper-payments.php:141
 msgid "Polish złoty (PLN)"
 msgstr ""
 
-#: integrations/services/payments/helper-payments.php:137
+#: integrations/services/payments/helper-payments.php:146
 msgid "Pound sterling (GBP)"
 msgstr ""
 
-#: integrations/services/payments/helper-payments.php:142
+#: integrations/services/payments/helper-payments.php:151
 msgid "Russian ruble (RUB)"
 msgstr ""
 
-#: integrations/services/payments/helper-payments.php:147
+#: integrations/services/payments/helper-payments.php:156
 msgid "Singapore dollar (SGD)"
 msgstr ""
 
-#: integrations/services/payments/helper-payments.php:152
+#: integrations/services/payments/helper-payments.php:161
 msgid "Swedish krona (SEK)"
 msgstr ""
 
-#: integrations/services/payments/helper-payments.php:157
+#: integrations/services/payments/helper-payments.php:166
 msgid "Swiss franc (CHF)"
 msgstr ""
 
-#: integrations/services/payments/helper-payments.php:162
+#: integrations/services/payments/helper-payments.php:171
 msgid "United States dollar (USD)"
 msgstr ""
 
@@ -5892,26 +5932,25 @@ msgstr ""
 msgid "Add to payment details"
 msgstr ""
 
-#: integrations/services/paypal/class-integration-paypal.php:122
-#: integrations/services/paypal/class-integration-paypal.php:144
-#: integrations/services/paypal/class-integration-paypal.php:164
+#: integrations/services/payments/templates/preview-payments.php:5
+msgid "Payment processing integration required."
+msgstr ""
+
+#: integrations/services/paypal/class-integration-paypal.php:126
+#: integrations/services/paypal/class-integration-paypal.php:148
+#: integrations/services/paypal/class-integration-paypal.php:168
 msgid "Unknown error"
 msgstr ""
 
-#: integrations/services/paypal/class-integration-paypal.php:465
+#: integrations/services/paypal/class-integration-paypal.php:469
 msgid "After submitting this form, you'll be redirected to PayPal to complete your purchase securely."
 msgstr ""
 
-#: integrations/services/paypal/class-integration-paypal.php:469
-#: integrations/services/paypal/class-service-paypal.php:9
-msgid "PayPal"
-msgstr ""
-
-#: integrations/services/paypal/class-integration-paypal.php:481
+#: integrations/services/paypal/class-integration-paypal.php:485
 msgid "Submitter will be redirected to PayPal"
 msgstr ""
 
-#: integrations/services/paypal/class-integration-paypal.php:486
+#: integrations/services/paypal/class-integration-paypal.php:490
 msgid "PayPal payment"
 msgstr ""
 
@@ -6018,47 +6057,47 @@ msgstr ""
 msgid "API v3 key"
 msgstr ""
 
-#: integrations/services/stripe/class-integration-stripe.php:338
+#: integrations/services/stripe/class-integration-stripe.php:342
 msgid "Please wait while we process your payment."
 msgstr ""
 
-#: integrations/services/stripe/class-integration-stripe.php:342
+#: integrations/services/stripe/class-integration-stripe.php:346
 msgid "Credit card"
 msgstr ""
 
-#: integrations/services/stripe/class-integration-stripe.php:346
+#: integrations/services/stripe/class-integration-stripe.php:350
 msgid "Card"
 msgstr ""
 
-#: integrations/services/stripe/class-integration-stripe.php:354
+#: integrations/services/stripe/class-integration-stripe.php:358
 msgid "Expiry"
 msgstr ""
 
-#: integrations/services/stripe/class-integration-stripe.php:358
+#: integrations/services/stripe/class-integration-stripe.php:362
 msgid "CVV/CVC"
 msgstr ""
 
-#: integrations/services/stripe/class-integration-stripe.php:370
+#: integrations/services/stripe/class-integration-stripe.php:374
 msgid "Stripe is processing payment"
 msgstr ""
 
-#: integrations/services/stripe/class-integration-stripe.php:375
+#: integrations/services/stripe/class-integration-stripe.php:379
 msgid "Stripe payment"
 msgstr ""
 
-#: integrations/services/stripe/class-integration-stripe.php:380
+#: integrations/services/stripe/class-integration-stripe.php:384
 msgid "Stripe card field"
 msgstr ""
 
-#: integrations/services/stripe/class-integration-stripe.php:385
+#: integrations/services/stripe/class-integration-stripe.php:389
 msgid "Card number"
 msgstr ""
 
-#: integrations/services/stripe/class-integration-stripe.php:390
+#: integrations/services/stripe/class-integration-stripe.php:394
 msgid "Card expiration"
 msgstr ""
 
-#: integrations/services/stripe/class-integration-stripe.php:395
+#: integrations/services/stripe/class-integration-stripe.php:399
 msgid "Card security code"
 msgstr ""
 

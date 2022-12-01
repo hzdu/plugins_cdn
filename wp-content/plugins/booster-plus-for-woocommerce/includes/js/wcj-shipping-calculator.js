@@ -1,8 +1,8 @@
 /**
  * wcj-shipping-calculator.
  *
- * @version 2.5.7
- * @since   2.5.7
+ * @version 1.0.0
+ * @since  1.0.0
  */
 
 jQuery(document).ready(change_labels);

@@ -1,8 +1,8 @@
 /**
 * wcj-checkout-core-fields.
 *
-* @version 5.4.7
-* @since   5.3.7
+* @version 1.0.0
+* @since  1.0.0
 */
 
 jQuery(document).ready(function () {

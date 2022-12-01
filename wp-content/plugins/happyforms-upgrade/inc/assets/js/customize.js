@@ -356,7 +356,6 @@
 		style: function() {
 			// noop
 		},
-
 	} );
 
 	classes.views.Base = Backbone.View.extend( {
@@ -470,6 +469,8 @@
 			classes.views.Base.prototype.initialize.apply( this, arguments );
 
 			this.listenTo( this.model, 'change', this.onFormChange );
+
+			window.addEventListener( 'message', this.handleMessageEvent.bind( this ), false );
 			$( window ).bind( 'beforeunload', this.onWindowClose.bind( this ) );
 		},
 
@@ -499,18 +500,29 @@
 			this.enableSave();
 		},
 
+		handleMessageEvent: function( e ) {
+			if ( e.data.action == 'happyforms-redirect-integrations-screen' ) {
+				if ( this.isDirty() ) {
+					if ( ! confirm( settings.abandonAlertMessage ) ) {
+						return false;
+					}
+				}
+
+				$( window ).unbind( 'beforeunload' );
+				window.location.href = settings.integrationsURL;
+			}
+		},
+
 		onCloseClick: function( e ) {
 			if ( this.isDirty() ) {
-				var message = $( e.currentTarget ).data( 'message' );
-
-				if ( ! confirm( message ) ) {
+				if ( ! confirm( settings.abandonAlertMessage ) ) {
 					e.preventDefault();
 					e.stopPropagation();
 
 					return false;
-				} else {
-					$( window ).unbind( 'beforeunload' );
 				}
+
+				$( window ).unbind( 'beforeunload' );
 			}
 		},
 

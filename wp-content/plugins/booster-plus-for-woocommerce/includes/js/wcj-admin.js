@@ -1,8 +1,8 @@
 /**
  * wcj-admin.
  *
- * @version 5.4.9
- * @since   5.4.2
+ * @version 1.0.2
+ * @since  1.0.0
  */
 
 jQuery(document).ready(function () {
@@ -10,11 +10,11 @@ jQuery(document).ready(function () {
     subCircles = document.querySelectorAll('.subCircles > div');
     if (null !== circleBadge) {
     circleBadge.addEventListener('click', showCircles);
-
+    
     function showCircles() {
         subCircles.forEach(circle => {
             circle.classList.toggle("show");
         })
     };
-  }   
+}
 });

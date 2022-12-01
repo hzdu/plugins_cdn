@@ -108,7 +108,8 @@ cfwDomReady( () => {
         + '[name="_cfw__setting[side_cart_icon][string]"], '
         + '#cfw_checkbox_enable_promo_codes_on_side_cart, '
         + '#cfw_checkbox_enable_side_cart_continue_shopping_button, '
-        + '#cfw_checkbox_show_side_cart_item_discount',
+        + '#cfw_checkbox_show_side_cart_item_discount, '
+        + '#cfw_checkbox_enable_side_cart_payment_buttons',
     );
 
     new FieldToggler(

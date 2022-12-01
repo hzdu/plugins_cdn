@@ -1,8 +1,8 @@
 /**
  * wcj-price-by-user-role-admin.js
  *
- * @version 3.6.0
- * @since   3.6.0
+ * @version 1.0.0
+ * @since  1.0.0
  */
 
 jQuery(document).ready(function() {

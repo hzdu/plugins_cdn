@@ -54,6 +54,8 @@ module.exports = {
             require.resolve( 'parsleyjs/dist/i18n/zh_cn.js' ),
             require.resolve( 'parsleyjs/dist/i18n/ru.js' ),
             require.resolve( 'parsleyjs/dist/i18n/ru.extra' ),
+            require.resolve( 'parsleyjs/dist/i18n/lt.js' ),
+            require.resolve( 'parsleyjs/dist/i18n/lt.extra' ),
             require.resolve( 'parsleyjs/dist/i18n/en.js' ),
         ],
         'checkoutwc-front': [

@@ -108,11 +108,11 @@
 
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Theme = void 0;
-var Theme = /** @class */ (function () {
-    function Theme() {
-        jQuery(document.body).on('updated_checkout', function () {
-            jQuery('.cfw-shipping-methods-list').each(function (index, element) {
-                jQuery(element).find('input[type="radio"]').each(function (i, el) {
+class Theme {
+    constructor() {
+        jQuery(document.body).on('updated_checkout', () => {
+            jQuery('.cfw-shipping-methods-list').each((index, element) => {
+                jQuery(element).find('input[type="radio"]').each((i, el) => {
                     if (jQuery(el).is(':checked')) {
                         jQuery(el).parents('li').first().addClass('active');
                     }
@@ -123,8 +123,7 @@ var Theme = /** @class */ (function () {
             });
         });
     }
-    return Theme;
-}());
+}
 exports.Theme = Theme;
 new Theme();
 
