@@ -1,0 +1,57 @@
+[class*="ct-wishlist-button"]:not(.active) {
+	.ct-heart-fill {
+		opacity: 0;
+	}
+}
+
+.ct-wishlist-button-single {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	position: relative;
+	height: var(--buttonMinHeight);
+	border: 1px solid var(--border-color);
+	border-radius: var(--buttonBorderRadius, 3px);
+	--linkInitialColor: var(--color);
+
+	@include media-breakpoint-up (md) {
+		--item-order: 4;
+		--item-width: var(--buttonMinHeight);
+
+		&:not(:only-child) {
+			margin-inline-start: var(--cart-actions-items-spacing, 10px);
+		}
+	}
+
+	.ct-label {
+		margin-inline-start: 0.5em;
+		--fontSize: var(--buttonFontSize);
+    	--fontWeight: var(--buttonFontWeight);
+	}
+
+	&:hover,
+	&.active {
+
+		.ct-icon {
+			fill: var(--icon-hover-color, var(--paletteColor1));
+		}
+	}
+
+	.ct-tooltip-top {
+		transform: translate3d(0px, -45px, 0px);
+	}
+
+	&:hover .ct-tooltip-top {
+		opacity: 1;
+		visibility: visible;
+		transform: translate3d(0px, -55px, 0px);
+	}
+}
+
+
+// add to wishlist button container for out of stock product
+.out-of-stock + .ct-cart-actions {
+	margin-top: var(--product-element-spacing, 35px);
+	padding-top: var(--product-element-spacing, 35px);
+	border-top: 1px solid var(--border-color);
+}

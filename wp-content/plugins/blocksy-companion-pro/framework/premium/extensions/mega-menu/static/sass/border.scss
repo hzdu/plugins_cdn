@@ -1,0 +1,17 @@
+.menu > [class*='ct-mega-menu'] {
+
+	> .sub-menu > li {
+		border-top: none;
+	}
+
+	// column border
+	> .sub-menu > li {
+		&:not(:last-child) {
+			border-inline-end: var(--dropdown-columns-divider);
+		}
+	}
+
+	.sub-menu [class*="ct-toggle-dropdown-desktop"] {
+		display: none;
+	}
+}

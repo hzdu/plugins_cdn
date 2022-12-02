@@ -1,0 +1,58 @@
+.ct-glocal-fonts-modal {
+	.ct-modal-description {
+		padding-bottom: 20px;
+		border-bottom: 1px dashed #eee;
+	}
+
+	.ct-control {
+		margin-bottom: 20px;
+	}
+
+	.ct-add-layer-controls {
+		position: sticky;
+		top: 0;
+		padding: 10px;
+		margin: 0 -10px;
+		border-radius: 3px;
+		background: #f7f7f7;
+	}
+
+	.ct-layers:not(:empty) {
+		margin-top: 20px;
+	}
+
+	.ct-checkbox-container {
+		align-items: flex-start;
+		font-size: 13px;
+	}
+
+	.ct-checkbox {
+		margin-top: 3px;
+		margin-inline-end: 10px;
+	}
+
+	.ct-modal-actions.has-divider {
+		padding-top: 30px;
+	}
+
+	.ct-checkbox-container {
+		font-size: 13px;
+		font-weight: 400;
+		margin: 0;
+		padding: 0 0 20px 0;
+	}
+
+	.ct-lgf-date {
+		text-align: center;
+	}
+
+	.ct-select-input {
+		&:before {
+			content: 'ref-width';
+			position: absolute;
+			visibility: hidden;
+			width: 0;
+			height: 0;
+		}
+	}
+}

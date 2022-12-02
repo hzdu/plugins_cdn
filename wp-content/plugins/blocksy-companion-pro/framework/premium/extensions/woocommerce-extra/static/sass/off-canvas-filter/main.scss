@@ -1,0 +1,45 @@
+.ct-filter-trigger {
+	display: flex;
+	align-items: center;
+	font-size: 11px;
+	font-weight: 600;
+	text-transform: uppercase;
+	padding: 7px 13px;
+	border-radius: 3px;
+	border: 1px solid var(--border-color);
+	--linkInitialColor: var(--color);
+
+	@include media-breakpoint-down (xs) {
+		margin-bottom: var(--content-spacing);
+	}
+
+	@include media-breakpoint-up (sm) {
+		margin-inline-end: 1.2em;
+	}
+
+	svg {
+		--icon-color: currentColor;
+		--icon-size: 12px;
+		margin-inline-end: 8px;
+	}
+
+	&:hover,
+	&:active {
+		color: #fff;
+		background: var(--linkHoverColor);
+		border-color: var(--linkHoverColor);
+	}
+}
+
+#woo-filters-panel {
+	--horizontal-alignment: stretch;
+
+	.ct-sidebar {
+		margin: initial;
+	}
+
+	.widget-title {
+		--fontSize: 15px;
+		--fontWeight: 600;
+	}
+}

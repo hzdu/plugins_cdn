@@ -1,0 +1,36 @@
+.ct-dynamic-filter {
+	text-align: var(--filter-items-alignment, center);
+	margin: calc(var(--items-vertical-spacing, 10px) * -1)
+			calc(var(--items-horizontal-spacing, 30px) / -2)
+			var(--container-spacing, 40px)
+			calc(var(--items-horizontal-spacing, 30px) / -2);
+
+	a {
+		display: inline-flex;
+		margin: var(--items-vertical-spacing, 10px)
+				calc(var(--items-horizontal-spacing, 30px) / 2)
+				0
+				calc(var(--items-horizontal-spacing, 30px) / 2);
+
+		&.active {
+			color: var(--linkHoverColor);
+		}
+	}
+
+
+	// filter button type
+	&[data-type="buttons"] a {
+		padding: var(--padding, 8px 15px);
+		border-radius: var(--border-radius, 3px);
+		background: var(--buttonInitialColor);
+
+		&:hover,
+		&.active {
+			background: var(--buttonHoverColor);
+		}
+	}
+
+
+	// resets
+	--linkInitialColor: var(--color);
+}

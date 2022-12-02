@@ -1,0 +1,32 @@
+.ct-quick-view-card {
+
+	.woocommerce-product-gallery {
+		margin-bottom: 0;
+
+		.ct-image-container {
+			pointer-events: none;
+		}
+
+		@include media-breakpoint-down (sm) {
+			.ct-ratio {
+				padding-bottom: 100% !important;
+			}
+		}
+
+		@include media-breakpoint-up (md) {
+			width: 50%;
+		}
+	}
+
+	// flexy
+	.flexy-pills[data-type="circle"] {
+		position: absolute;
+		z-index: 2;
+		left: 0;
+		right: 0;
+		bottom: 20px;
+		--pills-horizontal-alignment: center;
+		--flexyInitialPill: rgba(255, 255, 255, 0.6);
+		--flexyActivePill: #fff;
+	}
+}

@@ -1,0 +1,23 @@
+.ct-columns-top-gallery {
+
+	// .woocommerce-product-gallery {
+	// 	padding-bottom: 80px;
+	// }
+	
+	.flexy-items {
+		margin: 0 calc(var(--thumbs-spacing, 15px) / -2);
+
+		> * {
+			padding: 0 calc(var(--thumbs-spacing, 15px) / 2);
+			flex: 0 0 calc(100% / var(--columns, 3));
+		}
+	}
+
+	.flexy-pills {
+		// position: absolute;
+		// bottom: 0;
+		// width: 100%;
+		margin-top: 2.5em;
+		--pills-horizontal-alignment: center;
+	}
+}

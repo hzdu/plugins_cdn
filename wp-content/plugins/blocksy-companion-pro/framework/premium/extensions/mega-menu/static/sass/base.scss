@@ -1,0 +1,54 @@
+nav > ul > [class*='ct-mega-menu'] {
+
+	.entry-content {
+		color: var(--color);
+	}
+
+	// column heading
+	.ct-column-heading {
+		--linkInitialColor: var(--headings-color);
+	}
+}
+
+// disabled links
+.ct-disabled-link {
+	pointer-events: none;
+	--linkHoverColor: var(--linkInitialColor);
+}
+
+nav > ul > [class*='ct-mega-menu'] > .sub-menu {
+	// --background-color: initial;
+	// background-color: var(--background-color, var(--dropdown-background-color, var(--paletteColor4)));
+}
+
+// hover effect
+[data-dropdown*='simple'] > ul > [class*='ct-mega-menu'] {
+	.entry-content,
+	.sub-menu > li > a {
+		padding-left: 0;
+		padding-right: 0;
+	}
+}
+
+[data-dropdown*='solid'] > ul > [class*='ct-mega-menu'] {
+	.sub-menu {
+		--menu-item-padding: var(--dropdown-items-spacing, 13px);
+	}
+}
+
+[data-dropdown*='padded'] > ul > [class*='ct-mega-menu'] {
+	.sub-menu > li > a {
+		margin-left: 0;
+		margin-right: 0;
+	}
+}
+
+
+// when megamenu is transformed to normal dropdown
+.more-items-container [class*='ct-mega-menu'] {
+
+	.entry-content {
+		padding: var(--menu-item-padding, 0px);
+	}
+}
+

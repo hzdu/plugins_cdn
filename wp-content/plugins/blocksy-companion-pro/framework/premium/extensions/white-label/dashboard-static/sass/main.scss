@@ -1,0 +1,96 @@
+.ct-whitelabel-modal {
+
+	.ct-current-tab {
+		padding-top: 30px !important;
+	}
+
+	
+	// layers
+	.ct-layer {
+		--optionBorderColor: #e6e6e6;
+	}
+
+	.ct-layer-controls .ct-layer-label {
+		font-size: 13px;
+		cursor: pointer;
+	}
+
+	.ct-layer-content {
+		padding-bottom: 5px;
+	}
+
+	.ct-white-label-group {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-between;
+		// margin-top: 25px;
+		padding: 17px;
+
+		> div {
+			display: flex;
+			flex-direction: column;
+
+			&:not(.half-size) {
+				width: 100%;
+			}
+
+			&.half-size {
+				width: 48%;
+			}
+
+			&:not(:last-child) {
+				margin-bottom: 20px;
+			}
+		}
+
+		label {
+			margin-bottom: 5px;
+			font-size: 12px;
+			font-weight: 500;
+		}
+
+		textarea {
+			min-height: 70px;
+
+			&:not(:focus) {
+				border-color: var(--borderColor, #ddd);
+			}
+		}
+	}
+
+	.ct-upload-thumb {
+		display: flex;
+		flex-wrap: wrap;
+
+		input {
+			flex: 1;
+			margin-right: 10px;
+		}
+
+		span {
+			font-size: 12px;
+			font-style: italic;
+			width: 100%;
+			margin-top: 5px;
+			opacity: 0.5;
+		}
+
+		button {
+			margin-inline-start: 10px;
+		}
+	}
+
+	.ct-white-label-actions-group {
+		label {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+
+			&:not(:last-child) {
+				margin-bottom: 25px;
+				padding-bottom: 25px;
+				border-bottom: 1px dashed var(--optionBorderColor);
+			}
+		}
+	}
+}

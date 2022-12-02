@@ -1,0 +1,75 @@
+.ct-quick-view-card {
+	position: relative;
+
+	.entry-summary {
+		@include media-breakpoint-down(sm) {
+			padding: 6vw 6vw 0 6vw;
+
+			&:after {
+				padding-bottom: 6vw;
+			}
+		}
+
+		@include media-breakpoint-up(md) {
+			position: absolute;
+			top: 0;
+			left: 50%;
+			right: 0;
+			z-index: 1;
+			height: 100%;
+			overflow-y: auto;
+			padding: 40px 35px 0 35px;
+
+			&:after {
+				padding-bottom: 40px;
+			}
+		}
+
+		&:after {
+			content: '';
+			display: block;
+		}
+
+		.product_title {
+			padding-inline-end: 40px;
+		}
+
+		.woocommerce-product-details__short-description {
+			color: var(--color);
+		}
+
+		form.cart {
+			border-bottom: 1px dashed rgba(224, 229, 235, 0.8);
+			margin-bottom: 25px;
+			padding-bottom: 15px;
+		}
+	}
+
+	.ct-cart-actions[data-wishlist-button] {
+		.ct-wishlist-button-single {
+			--item-order: 3;
+		}
+		
+		.added_to_cart {
+			--item-order: 4;
+			flex: initial;
+			margin-inline-start: initial;
+		}
+	}
+
+	.product_meta {
+		margin-bottom: var(--product-element-spacing, 25px);
+		padding-bottom: var(--product-element-spacing, 25px);
+		border-bottom: 1px dashed var(--border-color);
+	}
+
+	.ct-quick-more {
+		--buttonMinHeight: 55px;
+		--buttonTextInitialColor: var(--color);
+		--buttonTextHoverColor: var(--color);
+		--buttonInitialColor: rgba(224, 229, 235, 0.6);
+		--buttonHoverColor: rgba(224, 229, 235, 1);
+
+		width: 100%;
+	}
+}
