@@ -1,6 +1,36 @@
 # Changelog
 All notable changes to this project will be documented in this file and formatted via [this recommendation](https://keepachangelog.com/).
 
+## [1.7.8] - 2022-11-09
+### Added
+- Introducing a completely new Content field to help you easily add formatted text to your forms.
+- Submitted files can now be attached to the notification email, that is configurable on the Form Builder > Notifications screen.
+- All anti-spam protection settings are grouped in one place in the Form Builder > Settings for easier access.
+- You can now completely block form submissions from certain countries.
+- You can also block form submissions that contain particular keywords.
+- New hooks at the beginning and end of each page of the Page Break field.
+
+### Changed
+- Recently added Form Templates are now available in the "New Templates" category.
+- Non-responsive (desktop) version of the Form Builder is not accessible on mobile devices.
+
+### Fixed
+- jQuery deprecation notices were triggered in the browser's console.
+- Close button in dropdowns was displayed incorrectly in certain places.
+- A PHP warning was raised on certain site configurations when the user tried to submit a form.
+- Toggle control animation was working incorrectly in certain cases.
+- Required fields were still highlighted as incomplete after being filled on the Form Builder > Marketing screen.
+- Text was overlapping the down arrow on dropdowns in the 2021 theme.
+- The Currency field dropdown went outside of the page border in the Form Builder.
+- WPForms Challenge user experience was improved.
+- Smart tag list was too big in fields with warnings.
+- Some input masks caused the text in the Text field to be right-aligned.
+- Compatibility with the 2023 theme was improved.
+- Search was incorrectly processing the `0` term when performed on the Entries Overview page.
+- Entry Preview functionality didn't work on the Form Preview page when Conversational Forms was enabled.
+- A PHP warning related to the Entry CSV Attachment was raised when navigating through different form revisions.
+- Entry CSV Attachment settings were not saved properly when saved too quickly after the page load.
+
 ## [1.7.7.2] - 2022-10-12
 ### Added
 - There is a new filter `wpforms_builder_panel_sidebar_section_classes` to change builder panel sidebar section classes.
