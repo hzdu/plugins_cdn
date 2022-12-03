@@ -33,7 +33,14 @@ import {
 	Modal,
 } from '@wordpress/components';
 
-const allowedBlocks = [ 'generateblocks/container', 'generateblocks/button', 'generateblocks/headline' ];
+const allowedBlocks = [
+	'generateblocks/container',
+	'generateblocks/button',
+	'generateblocks/headline',
+	'generateblocks/button-container',
+	'generateblocks/grid',
+	'generateblocks/image',
+];
 
 /**
  * Add custom attribute for mobile visibility.

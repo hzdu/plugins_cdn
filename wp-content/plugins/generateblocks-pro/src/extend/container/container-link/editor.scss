@@ -1,21 +1,6 @@
-.gb-container-link {
-	position: absolute;
-	top: 0;
-	right: 0;
-	bottom: 0;
-	left: 0;
-	z-index: 10;
-}
-
-.is-selected,
-.has-child-selected {
-	& > .gb-container > .gb-inside-container > .gb-container-link {
-		pointer-events: none;
-	}
-
-	& > a.gb-container {
-		cursor: auto;
-	}
+.gb-container.is-selected,
+.gb-container.has-child-selected {
+	cursor: auto !important;
 }
 
 .gblocks-container-link-dropdown {

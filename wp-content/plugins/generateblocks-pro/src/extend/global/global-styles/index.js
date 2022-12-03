@@ -16,13 +16,19 @@ import {
 	Fragment,
 } from '@wordpress/element';
 
-const allowedBlocks = [ 'generateblocks/container', 'generateblocks/button', 'generateblocks/button-container', 'generateblocks/headline', 'generateblocks/grid' ];
+const allowedBlocks = [
+	'generateblocks/container',
+	'generateblocks/button',
+	'generateblocks/button-container',
+	'generateblocks/headline',
+	'generateblocks/grid',
+	'generateblocks/image',
+];
 
 /**
  * Add custom attribute for mobile visibility.
  *
  * @param {Object} settings Settings for the block.
- *
  * @return {Object} settings Modified settings.
  */
 function addAttributes( settings ) {
@@ -40,6 +46,8 @@ function addAttributes( settings ) {
 		blockName = 'headline';
 	} else if ( 'generateblocks/grid' === settings.name ) {
 		blockName = 'gridContainer';
+	} else if ( 'generateblocks/image' === settings.name ) {
+		blockName = 'image';
 	}
 
 	if ( typeof settings.attributes !== 'undefined' ) {
@@ -56,20 +64,24 @@ function addAttributes( settings ) {
 				type: 'string',
 				default: generateBlocksDefaults[ blockName ].globalStyleId,
 			},
+			globalStyleLabel: {
+				type: 'string',
+				default: '',
+			},
 		} );
 	}
 
 	return settings;
 }
 
-function addControls( output, id, data ) {
+function addControls( output, id, props ) {
 	if ( 'afterResponsiveTabs' !== id ) {
 		return output;
 	}
 
 	const {
 		name,
-	} = data;
+	} = props;
 
 	if ( ! allowedBlocks.includes( name ) ) {
 		return output;
@@ -86,8 +98,18 @@ function addControls( output, id, data ) {
 
 	if ( ids ) {
 		Object.keys( ids ).forEach( ( globalId ) => {
+			let styleLabel = ids[ globalId ];
+
+			if (
+				generateBlocksPro.globalStyleAttrs[ blockName ] &&
+				generateBlocksPro.globalStyleAttrs[ blockName ][ ids[ globalId ] ] &&
+				generateBlocksPro.globalStyleAttrs[ blockName ][ ids[ globalId ] ].globalStyleLabel
+			) {
+				styleLabel = generateBlocksPro.globalStyleAttrs[ blockName ][ ids[ globalId ] ].globalStyleLabel;
+			}
+
 			globalIdOptions.push( {
-				label: ids[ globalId ],
+				label: styleLabel || ids[ globalId ],
 				value: ids[ globalId ],
 			} );
 		} );
@@ -99,7 +121,8 @@ function addControls( output, id, data ) {
 
 	return (
 		<Fragment>
-			<GlobalStylePicker { ...data }
+			<GlobalStylePicker
+				{ ...props }
 				options={ globalIdOptions }
 			/>
 
@@ -135,6 +158,10 @@ function addCustomAttributes( blockHtmlAttributes, blockName, blockAttributes ) 
 		id = 'gb-grid-wrapper-' + blockAttributes.globalStyleId;
 	}
 
+	if ( 'generateblocks/image' === blockName ) {
+		id = 'gb-image-' + blockAttributes.globalStyleId;
+	}
+
 	if ( blockAttributes.useGlobalStyle && blockAttributes.globalStyleId ) {
 		blockHtmlAttributes = Object.assign( blockHtmlAttributes, {
 			className: blockHtmlAttributes.className + ' ' + id,
@@ -147,7 +174,8 @@ function addCustomAttributes( blockHtmlAttributes, blockName, blockAttributes ) 
 function filterCSS( attributes, props ) {
 	if ( attributes.useGlobalStyle && '' !== attributes.globalStyleId ) {
 		const blockName = props.name.replace( 'generateblocks/', '' );
-		const globalAttrs = generateBlocksPro.globalStyleAttrs[ blockName ][ attributes.globalStyleId ];
+		const globalBlocks = generateBlocksPro.globalStyleAttrs[ blockName ] || undefined;
+		const globalAttrs = globalBlocks ? globalBlocks[ attributes.globalStyleId ] : undefined;
 
 		if ( 'undefined' === typeof globalAttrs || ! globalAttrs ) {
 			return attributes;
@@ -163,6 +191,8 @@ function filterCSS( attributes, props ) {
 			defaultBlockName = 'headline';
 		} else if ( 'generateblocks/grid' === props.name ) {
 			defaultBlockName = 'gridContainer';
+		} else if ( 'generateblocks/image' === props.name ) {
+			defaultBlockName = 'image';
 		}
 
 		const newAttrs = Object.assign( {}, attributes );

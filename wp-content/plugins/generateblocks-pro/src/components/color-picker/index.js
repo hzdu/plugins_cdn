@@ -1,250 +1,199 @@
-import hexToRGBA from '../../utils/hex-to-rgba';
-import getIcon from '../../utils/get-icon';
-
-// Import CSS
-import './editor.scss';
-
-import {
-	Component,
-} from '@wordpress/element';
-
-import {
-	__,
-} from '@wordpress/i18n';
-
+/**
+ * External dependencies
+ */
+import { RgbStringColorPicker, RgbaStringColorPicker } from 'react-colorful';
+import { colord } from 'colord';
+import { useDebounce } from '@wordpress/compose';
+import { __ } from '@wordpress/i18n';
+import { ColorPalette } from '@wordpress/block-editor';
+import { useState, useEffect, useMemo, useRef } from '@wordpress/element';
 import {
 	Tooltip,
 	BaseControl,
-	ColorPicker,
 	RangeControl,
-	Popover,
+	Dropdown,
 	Button,
 	TextControl,
 } from '@wordpress/components';
 
-import {
-	ColorPalette,
-} from '@wordpress/block-editor';
+/**
+ * Internal dependencies
+ */
+import hexToRGBA from '../../utils/hex-to-rgba';
+import getIcon from '../../utils/get-icon';
+import './editor.scss';
 
-export default class GenerateBlocksColorPicker extends Component {
-	constructor() {
-		super( ...arguments );
+export default function ColorPicker( props ) {
+	const {
+		value,
+		onChange,
+		onOpacityChange,
+		label,
+		alpha = false,
+		valueOpacity = 1,
+		tooltip,
+	} = props;
 
-		this.state = {
-			colorKey: false,
-		};
+	const [ valueState, setValueState ] = useState( value || '' );
+	const inputRef = useRef( null );
 
-		this.timer = null;
-	}
+	const Component = alpha && 1 === valueOpacity
+		? RgbaStringColorPicker
+		: RgbStringColorPicker;
 
-	componentWillUnmount() {
-		clearTimeout( this.timer );
-	}
+	const isHex = ( hex ) => {
+		return /^([0-9A-F]{3}){1,2}$/i.test( hex );
+	};
 
-	render() {
-		const {
-			value,
-			onChange,
-			onOpacityChange,
-			label,
-			alpha = false,
-			valueOpacity,
-		} = this.props;
+	const getPaletteValue = ( colorValue ) => {
+		if ( String( colorValue ).startsWith( 'var(' ) ) {
+			const variableName = colorValue.match( /\(([^)]+)\)/ );
 
-		const {
-			colorKey,
-		} = this.state;
+			if ( variableName ) {
+				const variableValue = getComputedStyle( document.documentElement ).getPropertyValue( variableName[ 1 ] );
 
-		const toggleVisible = () => {
-			this.setState( { isVisible: true } );
-		};
-
-		const toggleClose = () => {
-			if ( this.state.isVisible === true ) {
-				this.setState( { isVisible: false } );
-			}
-		};
-
-		const isHex = ( hex ) => {
-			return /^([0-9A-F]{3}){1,2}$/i.test( hex );
-		};
-
-		const getPaletteValue = ( colorValue ) => {
-			if ( String( colorValue ).startsWith( 'var(' ) ) {
-				const variableName = colorValue.match( /\(([^)]+)\)/ );
-
-				if ( variableName ) {
-					const variableValue = getComputedStyle( document.documentElement ).getPropertyValue( variableName[ 1 ] );
-
-					if ( variableValue ) {
-						colorValue = variableValue;
-					}
+				if ( variableValue ) {
+					colorValue = variableValue;
 				}
 			}
+		}
 
-			return colorValue;
-		};
+		return colord( colorValue ).toRgbString();
+	};
 
-		return (
-			<BaseControl
-				className="gblocks-component-color-picker-wrapper"
-			>
-				{ !! label &&
-					<div className="gblocks-color-component-label">
-						<span>{ label }</span>
-					</div>
-				}
+	const rgbColor = useMemo( () => getPaletteValue( value ), [ value ] );
+	const debouncedSetColor = useDebounce( onChange );
 
-				<div className="gblocks-color-picker-area">
-					{ ! this.state.isVisible &&
-						<div className="components-circular-option-picker__option-wrapper">
-							<Tooltip text={ __( 'Choose Color', 'generateblocks-pro' ) }>
-								<button
-									type="button"
-									aria-expanded={ this.state.isVisible }
-									className="components-color-palette__item components-circular-option-picker__option"
-									onClick={ toggleVisible }
-									aria-label={ __( 'Custom color picker', 'generateblocks-pro' ) }
-									style={ { color: value ? hexToRGBA( value, valueOpacity ) : 'transparent' } }
-								>
-									<span className="components-color-palette__custom-color-gradient" />
-								</button>
-							</Tooltip>
-						</div>
-					}
+	useEffect( () => {
+		if ( value !== valueState ) {
+			debouncedSetColor( valueState );
+		}
 
-					{ this.state.isVisible &&
-						<div className="components-circular-option-picker__option-wrapper">
-							<Tooltip text={ __( 'Choose Color', 'generateblocks-pro' ) }>
-								<button
-									type="button"
-									aria-expanded={ this.state.isVisible }
-									className="components-color-palette__item components-circular-option-picker__option"
-									onClick={ toggleClose }
-									aria-label={ __( 'Custom color picker', 'generateblocks-pro' ) }
-									style={ { color: value ? hexToRGBA( value, valueOpacity ) : 'transparent' } }
-								>
-									<span className="components-color-palette__custom-color-gradient" />
-								</button>
-							</Tooltip>
-						</div>
-					}
+		// Keep the input focused.
+		setTimeout( () => {
+			if ( inputRef.current ) {
+				inputRef.current.focus();
+			}
+		}, 10 );
+	}, [ valueState ] );
 
-					{ this.state.isVisible &&
-						<Popover position="top left" className="gblocks-component-color-picker gblocks-component-color-picker__has-rgba" onClose={ toggleClose }>
-							<BaseControl key={ colorKey }>
-								<ColorPicker
-									key={ colorKey }
-									color={ getPaletteValue( value ) || '' }
-									onChangeComplete={ ( color ) => {
-										let colorString;
+	return (
+		<div className="gblocks-color-component">
+			{ !! label &&
+				<span className="gblocks-color-component__label">{ label }</span>
+			}
 
-										if ( 'undefined' === typeof color.rgb || color.rgb.a === 1 ) {
-											colorString = color.hex;
-										} else {
-											const { r, g, b, a } = color.rgb;
-											colorString = `rgba(${ r }, ${ g }, ${ b }, ${ a })`;
-										}
+			<Dropdown
+				className="gblocks-color-component__toggle"
+				contentClassName="gblocks-color-component-content"
+				position="top left"
+				renderToggle={ ( { isOpen, onToggle } ) => {
+					const button = <Button
+						className="gblocks-color-component__toggle-button"
+						onClick={ onToggle }
+						aria-expanded={ isOpen }
+					>
+						<span
+							className="gblocks-color-component__toggle-indicator"
+							style={ { background: value ? hexToRGBA( value, valueOpacity ) : null } }
+						/>
+					</Button>;
 
-										onChange( colorString );
-									} }
-									disableAlpha={ ! alpha || 1 !== valueOpacity }
-								/>
-
-								<div className="gblocks-color-input-wrapper">
-									<TextControl
-										className="gblocks-color-input"
-										type={ 'text' }
-										value={ value || '' }
-										onChange={ ( color ) => {
-											if ( ! color.startsWith( '#' ) && isHex( color ) ) {
-												color = '#' + color;
-											}
-
-											onChange( color );
-
-											clearTimeout( this.timer );
-
-											this.timer = setTimeout( () => {
-												this.setState( {
-													colorKey: color,
-												} );
-
-												const input = document.querySelector( '.gblocks-color-input-wrapper input' );
-
-												if ( input ) {
-													input.focus();
-												}
-											}, 350 );
-										} }
-									/>
-
-									<Button
-										isSmall
-										isSecondary
-										className="components-color-clear-color"
-										onClick={ () => {
-											onChange( '' );
-
-											if ( alpha && 1 !== valueOpacity ) {
-												onOpacityChange( 1 );
-											}
-
-											this.setState( {
-												colorKey: false,
-											} );
-
-											setTimeout( function() {
-												document.querySelector( '.gblocks-color-input-wrapper input' ).focus();
-											}, 10 );
-										} }
-									>
-										{ __( 'Clear Color', 'generateblocks-pro' ) }
-									</Button>
-								</div>
-							</BaseControl>
-
-							{ alpha && 1 !== valueOpacity &&
-								<div className="gblocks-component-color-opacity">
-									<Tooltip text={ __( 'Opacity', 'generateblocks-pro' ) }>
-										{ getIcon( 'gradient' ) }
-									</Tooltip>
-
-									<RangeControl
-										value={ valueOpacity ? valueOpacity : 0 }
-										onChange={ ( opacityValue ) => onOpacityChange( opacityValue ) }
-										min={ 0 }
-										max={ 1 }
-										step={ 0.01 }
-										initialPosition={ 1 }
-									/>
-								</div>
+					return (
+						<>
+							{ !! tooltip
+								? <Tooltip text={ tooltip }>{ button }</Tooltip>
+								: button
 							}
+						</>
+					);
+				} }
+				renderContent={ () =>
+					<>
+						<Component
+							color={ rgbColor }
+							onChange={ ( nextColor ) => {
+								if ( colord( nextColor ).isValid() ) {
+									const alphaValue = colord( nextColor ).alpha();
+									nextColor = 1 === alphaValue ? colord( nextColor ).toHex() : nextColor;
+								}
 
-							<BaseControl
-								className="gblocks-component-color-picker-palette"
+								setValueState( nextColor );
+							} }
+						/>
+
+						<div className="gblocks-color-component-content__input-wrapper">
+							<TextControl
+								ref={ inputRef }
+								className="gblocks-color-input"
+								type={ 'text' }
+								value={ valueState }
+								onChange={ ( nextColor ) => {
+									if ( ! nextColor.startsWith( '#' ) && isHex( nextColor ) ) {
+										nextColor = '#' + nextColor;
+									}
+
+									setValueState( nextColor );
+								} }
+								onBlur={ () => {
+									if ( colord( value ).isValid() ) {
+										const alphaValue = colord( value ).alpha();
+
+										if ( 1 === alphaValue ) {
+											setValueState( colord( value ).toHex() );
+										}
+									}
+								} }
+							/>
+
+							<Button
+								isSmall
+								isSecondary
+								className="gblocks-color-input-clear"
+								onClick={ () => {
+									setValueState( '' );
+
+									if ( alpha && 1 !== valueOpacity ) {
+										onOpacityChange( 1 );
+									}
+								} }
 							>
-								<ColorPalette
-									value={ value }
-									onChange={ ( color ) => {
-										onChange( color );
+								{ __( 'Clear', 'generateblocks' ) }
+							</Button>
+						</div>
 
-										this.setState( {
-											colorKey: color,
-										} );
+						{ alpha && 1 !== valueOpacity &&
+							<div className="gblocks-color-component-content__opacity">
+								<Tooltip text={ __( 'Opacity', 'generateblocks' ) }>
+									{ getIcon( 'gradient' ) }
+								</Tooltip>
 
-										setTimeout( function() {
-											document.querySelector( '.gblocks-color-input-wrapper input' ).focus();
-										}, 10 );
-									} }
-									disableCustomColors={ true }
-									clearable={ false }
+								<RangeControl
+									value={ valueOpacity ? valueOpacity : 0 }
+									onChange={ ( opacityValue ) => onOpacityChange( opacityValue ) }
+									min={ 0 }
+									max={ 1 }
+									step={ 0.01 }
+									initialPosition={ 1 }
 								/>
-							</BaseControl>
-						</Popover>
-					}
-				</div>
-			</BaseControl>
-		);
-	}
+							</div>
+						}
+
+						<BaseControl
+							className="gblocks-color-component-content__palette"
+						>
+							<ColorPalette
+								value={ value ? value : '' }
+								onChange={ ( color ) => {
+									setValueState( color );
+								} }
+								disableCustomColors={ true }
+								clearable={ false }
+							/>
+						</BaseControl>
+					</>
+				}
+			/>
+		</div>
+	);
 }

@@ -30,7 +30,7 @@ import {
 	Notice,
 } from '@wordpress/components';
 
-const allowedBlocks = [ 'generateblocks/container', 'generateblocks/button', 'generateblocks/button-container', 'generateblocks/headline' ];
+const allowedBlocks = [ 'generateblocks/container', 'generateblocks/button', 'generateblocks/button-container', 'generateblocks/headline', 'generateblocks/image' ];
 
 /**
  * Add custom attribute for mobile visibility.

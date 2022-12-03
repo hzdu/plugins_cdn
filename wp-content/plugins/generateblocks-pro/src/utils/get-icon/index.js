@@ -42,11 +42,10 @@ export default function getIcon( icon ) {
 	}
 
 	if ( 'copy' === icon ) {
-		return el( 'svg', { width: 24, height: 24, viewBox: '0 0 256 256', fillRule: 'evenodd' },
-			el( 'path', {
-				d: 'M221.993 39.994v144.001a6 6 0 0 1-12 0v-138H71.986a6 6 0 0 1 0-12h144.007a6 6 0 0 1 6 6zm-32 32.001v144a6 6 0 0 1-6 6H39.986a6 6 0 0 1-6-6v-144a6 6 0 0 1 6-6h144.007a6 6 0 0 1 6 6zm-12 6H45.986v132h132.007z',
-			} ),
-		);
+		return <svg strokeWidth="1.2" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+			<path d="M19.4 20H9.6a.6.6 0 0 1-.6-.6V9.6a.6.6 0 0 1 .6-.6h9.8a.6.6 0 0 1 .6.6v9.8a.6.6 0 0 1-.6.6Z" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" />
+			<path d="M15 9V4.6a.6.6 0 0 0-.6-.6H4.6a.6.6 0 0 0-.6.6v9.8a.6.6 0 0 0 .6.6H9" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+		</svg>;
 	}
 
 	if ( 'link' === icon ) {
@@ -83,5 +82,13 @@ export default function getIcon( icon ) {
 
 	if ( 'lock' === icon ) {
 		return <svg xmlns="http://www.w3.org/2000/svg" fill="none" style={ { fill: 'none' } } stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2" /><path d="M7 11V7a5 5 0 0110 0v4" /></svg>;
+	}
+
+	if ( 'template-library' === icon ) {
+		return <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="20" width="20" className="gblocks-block-icon">
+			<path d="M12.6 10h-1.2c-.2 0-.3-.1-.3-.3V3.1c0-.2.1-.3.3-.3h1.2c.2 0 .3.1.3.3v6.6c0 .2-.1.3-.3.3z" />
+			<path d="M8.4 7.1V5.8c0-.2.1-.3.3-.3h6.6c.2 0 .3.1.3.3V7c0 .2-.1.3-.3.3H8.7c-.1 0-.3-.1-.3-.2z" />
+			<path d="M0 12.6V.3C0 .1.1 0 .3 0h23.4c.2 0 .3.1.3.3v12.3c0 .2-.1.3-.3.3H.3c-.2 0-.3-.1-.3-.3zM22.2 1.8H1.8v9.3h20.4V1.8zM10.9 15.3v8.4c0 .2-.1.3-.3.3H.3c-.2 0-.3-.1-.3-.3v-8.4c0-.1.1-.3.3-.3h10.3c.1 0 .3.2.3.3zm-9.1 6.9h7.3v-5.4H1.8v5.4zm21.9-3.6H14c-.2 0-.3.1-.3.3v1.2c0 .2.1.3.3.3h9.7c.2 0 .3-.1.3-.3v-1.2c0-.1-.1-.3-.3-.3zm0-3.6H14c-.2 0-.3.1-.3.3v1.2c0 .2.1.3.3.3h9.7c.2 0 .3-.1.3-.3v-1.2c0-.1-.1-.3-.3-.3zM23.7 22.2H14c-.2 0-.3.1-.3.3v1.2c0 .2.1.3.3.3h9.7c.2 0 .3-.1.3-.3v-1.2c0-.2-.1-.3-.3-.3z" />
+		</svg>;
 	}
 }

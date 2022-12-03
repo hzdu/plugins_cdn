@@ -200,7 +200,7 @@ class TemplatesModal extends Component {
 				name: 'local',
 				title: (
 					<span>
-						{ __( 'Local Templates', 'generateblocks-pro' ) }
+						{ __( 'Local Patterns', 'generateblocks-pro' ) }
 					</span>
 				),
 				className: 'generateblocks-control-tabs-tab',
@@ -209,7 +209,7 @@ class TemplatesModal extends Component {
 
 		return (
 			<Modal
-				title={ __( 'Templates', 'generateblocks-pro' ) }
+				title={ __( 'Patterns', 'generateblocks-pro' ) }
 				className={ classnames(
 					'generateblocks-plugin-templates-modal',
 					'generateblocks-plugin-templates-modal-hide-header',
@@ -246,12 +246,12 @@ class TemplatesModal extends Component {
 											<div>
 												{ 'local' === tabType ? (
 													<Fragment>
-														<p>{ __( 'No templates found.', 'generateblocks-pro' ) }</p>
+														<p>{ __( 'No patterns found.', 'generateblocks-pro' ) }</p>
 														<a className="components-button is-button is-primary" href={ generateBlocksPro.templatesURL } target="_blank" rel="noopener noreferrer">{ __( 'Add Template', 'generateblocks-pro' ) }</a>
 													</Fragment>
 												) : (
 													<>
-														<p>{ __( 'No templates found.', 'generateblocks-pro' ) }</p>
+														<p>{ __( 'No patterns found.', 'generateblocks-pro' ) }</p>
 														{ remoteError }
 													</>
 												) }
@@ -267,7 +267,7 @@ class TemplatesModal extends Component {
 														<RawHTML>
 															{ sprintf(
 																/* translators: Number of templates. */
-																__( 'Templates: %s', 'generateblocks-pro' ),
+																__( 'Patterns: %s', 'generateblocks-pro' ),
 																`<strong>${ currentTemplates.length }</strong>` )
 															}
 														</RawHTML>

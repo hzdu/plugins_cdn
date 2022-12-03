@@ -59,7 +59,57 @@ function addAttributes( settings ) {
 	return settings;
 }
 
+function addColorItems( items, props ) {
+	if ( 'generateblocks/container' !== props.name ) {
+		return items;
+	}
+
+	const newItems = [
+		{
+			group: 'background',
+			attribute: 'backgroundColorHover',
+			tooltip: __( 'Hover', 'generateblocks-pro' ),
+			alpha: true,
+		},
+		{
+			group: 'text',
+			attribute: 'textColorHover',
+			tooltip: __( 'Hover', 'generateblocks-pro' ),
+			alpha: false,
+		},
+		{
+			group: 'border',
+			attribute: 'borderColorHover',
+			tooltip: __( 'Hover', 'generateblocks-pro' ),
+			alpha: true,
+		},
+	];
+
+	items.forEach( ( colorItem, index ) => {
+		newItems.forEach( ( newColorItem ) => {
+			if (
+				newColorItem.group === colorItem.group &&
+				! colorItem.items.some( ( item ) => item.attribute === newColorItem.attribute )
+			) {
+				items[ index ].items.push(
+					{
+						tooltip: newColorItem.tooltip,
+						attribute: newColorItem.attribute,
+						alpha: newColorItem.alpha,
+					}
+				);
+			}
+		} );
+	} );
+
+	return items;
+}
+
 function addControls( output, data ) {
+	if ( generateBlocksPro.hasColorGroups ) {
+		return output;
+	}
+
 	const {
 		attributes,
 		setAttributes,
@@ -314,6 +364,12 @@ addFilter(
 	'generateblocks.panel.containerColors',
 	'generateblocks-pro/container-colors/add-controls',
 	addControls
+);
+
+addFilter(
+	'generateblocks.editor.colorGroupItems',
+	'generateblocks-pro/container-colors/add-color-items',
+	addColorItems
 );
 
 addFilter(

@@ -41,6 +41,8 @@ class EffectPanelItem extends Component {
 			effectName,
 			effectOptions,
 			effectLabel,
+			onClose,
+			useEffectName,
 		} = this.props;
 
 		const {
@@ -89,6 +91,11 @@ class EffectPanelItem extends Component {
 
 													effectValues.splice( index, 1 );
 													setAttributes( { [ effectName ]: effectValues } );
+
+													if ( effectValues.length === 0 ) {
+														setAttributes( { [ useEffectName ]: false } );
+														onClose();
+													}
 												}
 											} }
 											icon={ getIcon( 'trash' ) }

@@ -91,12 +91,12 @@ class App extends Component {
 			<Fragment>
 				<div className="generateblocks-settings-main">
 					<PanelBody
-						title={ __( 'Template Library' ) }
+						title={ __( 'Pattern Library' ) }
 					>
 						<div className="gblocks-dashboard-panel-row-wrapper">
 							<PanelRow>
 								<ToggleControl
-									label={ __( 'Enable Local Templates', 'generateblocks-pro' ) }
+									label={ __( 'Enable Local Patterns', 'generateblocks-pro' ) }
 									checked={ !! this.state.enableLocalTemplates }
 									onChange={ ( value ) => {
 										this.setState( {
@@ -106,7 +106,7 @@ class App extends Component {
 								/>
 
 								<ToggleControl
-									label={ __( 'Enable Remote Templates', 'generateblocks-pro' ) }
+									label={ __( 'Enable Remote Patterns', 'generateblocks-pro' ) }
 									checked={ !! this.state.enableRemoteTemplates }
 									onChange={ ( value ) => {
 										this.setState( {
@@ -119,7 +119,7 @@ class App extends Component {
 									<BaseControl
 										id="gblocks-sync-template-library"
 										className="gblocks-sync-template-library"
-										help={ __( 'The template library syncs once a day by default. Clicking this button will force it to re-sync.', 'generateblocks-pro' ) }
+										help={ __( 'The pattern library syncs once a day by default. Clicking this button will force it to re-sync.', 'generateblocks-pro' ) }
 									>
 										<Button
 											isSecondary
@@ -138,7 +138,7 @@ class App extends Component {
 														message.classList.add( 'gblocks-action-message--error' );
 														message.textContent = result;
 													} else {
-														message.textContent = __( 'Remote templates synced.', 'generateblocks-pro' );
+														message.textContent = __( 'Remote patterns synced.', 'generateblocks-pro' );
 
 														setTimeout( function() {
 															message.classList.remove( 'gblocks-action-message--show' );
@@ -148,7 +148,7 @@ class App extends Component {
 											} }
 										>
 											{ this.state.isSyncingLibrary && <Spinner /> }
-											{ ! this.state.isSyncingLibrary && __( 'Sync Remote Templates', 'generateblocks-pro' ) }
+											{ ! this.state.isSyncingLibrary && __( 'Sync Remote Patterns', 'generateblocks-pro' ) }
 										</Button>
 
 										<span className="gblocks-action-message"></span>

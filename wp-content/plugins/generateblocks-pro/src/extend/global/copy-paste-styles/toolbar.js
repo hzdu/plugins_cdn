@@ -19,47 +19,37 @@ import {
 	createHigherOrderComponent,
 } from '@wordpress/compose';
 
-const allowedBlocks = [ 'generateblocks/container', 'generateblocks/button', 'generateblocks/headline', 'generateblocks/button-container' ];
+const allowedBlocks = [
+	'generateblocks/container',
+	'generateblocks/button',
+	'generateblocks/headline',
+	'generateblocks/button-container',
+	'generateblocks/image',
+];
 
 /**
  * Add controls to the Container block toolbar.
  *
  * @param {Function} BlockEdit Block edit component.
- *
  * @return {Function} BlockEdit Modified block edit component.
  */
 const withAdvancedControls = createHigherOrderComponent( ( BlockEdit ) => {
 	return ( props ) => {
 		const {
 			name,
-			attributes,
-			isSelected,
 			setAttributes,
 		} = props;
-
-		let blockName = '';
-
-		if ( 'generateblocks/container' === name ) {
-			blockName = 'Container';
-		} else if ( 'generateblocks/button' === name ) {
-			blockName = 'Button';
-		} else if ( 'generateblocks/headline' === name ) {
-			blockName = 'Headline';
-		} else if ( 'generateblocks/container' === name ) {
-			blockName = 'ButtonContainer';
-		}
 
 		return (
 			<Fragment>
 				<BlockEdit { ...props } />
 
-				{ isSelected && allowedBlocks.includes( name ) &&
+				{ allowedBlocks.includes( name ) &&
 					<Fragment>
 						<BlockControls>
 							<CopyPasteStyles
+								{ ...props }
 								onPaste={ ( value ) => setAttributes( value ) }
-								blockAttributes={ attributes }
-								blockName={ blockName }
 							/>
 						</BlockControls>
 					</Fragment>

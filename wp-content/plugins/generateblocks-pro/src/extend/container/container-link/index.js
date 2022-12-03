@@ -42,7 +42,6 @@ import {
  * Add custom attribute for mobile visibility.
  *
  * @param {Object} settings Settings for the block.
- *
  * @return {Object} settings Modified settings.
  */
 function addAttributes( settings ) {
@@ -75,85 +74,36 @@ function addAttributes( settings ) {
 	return settings;
 }
 
-function addHiddenLink( output, attributes ) {
-	const {
-		url,
-		linkType,
-		hiddenLinkAriaLabel,
-		relNoFollow,
-		target,
-		relSponsored,
-	} = attributes;
-
-	const relAttributes = [];
-
-	if ( relNoFollow ) {
-		relAttributes.push( 'nofollow' );
-	}
-
-	if ( target ) {
-		relAttributes.push( 'noopener', 'noreferrer' );
-	}
-
-	if ( relSponsored ) {
-		relAttributes.push( 'sponsored' );
-	}
-
-	return (
-		<Fragment>
-			{ '' !== url && 'hidden-link' === linkType &&
-				<a
-					href={ url }
-					className={ 'gb-container-link' }
-					aria-label={ '' !== hiddenLinkAriaLabel ? hiddenLinkAriaLabel : undefined }
-					rel={ relAttributes && relAttributes.length > 0 ? relAttributes.join( ' ' ) : null }
-					onClick={ ( e ) => {
-						e.preventDefault();
-					} }
-				>
-
-				</a>
-			}
-
-			{ output }
-		</Fragment>
-	);
-}
-
 function addLinkWrapper( htmlAttributes, id, attributes ) {
 	if ( 'generateblocks/container' !== id ) {
 		return htmlAttributes;
 	}
 
-	if ( '' !== attributes.url && 'wrapper' === attributes.linkType ) {
-		const relAttributes = [];
-
-		if ( attributes.relNoFollow ) {
-			relAttributes.push( 'nofollow' );
-		}
-
-		if ( attributes.target ) {
-			relAttributes.push( 'noopener', 'noreferrer' );
-		}
-
-		if ( attributes.relSponsored ) {
-			relAttributes.push( 'sponsored' );
-		}
-
-		htmlAttributes = Object.assign( htmlAttributes, {
-			href: attributes.url,
+	if ( hasContainerUrl( attributes ) ) {
+		let newAttributes = {
+			href: '#',
 			onClick: ( e ) => {
 				e.preventDefault();
 			},
-			rel: relAttributes && relAttributes.length > 0 ? relAttributes.join( ' ' ) : null,
-		} );
+		};
+
+		if ( 'hidden-link' === attributes.linkType ) {
+			newAttributes = {
+				style: {
+					...htmlAttributes.style,
+					cursor: 'pointer',
+				},
+			};
+		}
+
+		htmlAttributes = Object.assign( htmlAttributes, newAttributes );
 	}
 
 	return htmlAttributes;
 }
 
 function changeTagName( tagName, attributes ) {
-	if ( '' !== attributes.url && 'wrapper' === attributes.linkType ) {
+	if ( hasContainerUrl( attributes ) && 'wrapper' === attributes.linkType ) {
 		tagName = 'a';
 	}
 
@@ -171,7 +121,6 @@ function addMainCSS( css, props, name ) {
 
 	const {
 		uniqueId,
-		url,
 		linkType,
 		textColor,
 		textColorHover,
@@ -185,13 +134,7 @@ function addMainCSS( css, props, name ) {
 		wrapperDisplay = 'flex';
 	}
 
-	if ( '' !== url && 'hidden-link' === linkType ) {
-		addToCSS( css, '.gb-container-' + uniqueId, {
-			position: 'relative',
-		} );
-	}
-
-	if ( '' !== url && 'wrapper' === linkType ) {
+	if ( hasContainerUrl( attributes ) && 'wrapper' === linkType ) {
 		addToCSS( css, '.gb-container-' + uniqueId, {
 			display: wrapperDisplay,
 		} );
@@ -212,7 +155,6 @@ function addMainCSS( css, props, name ) {
  * Add controls to the Container block toolbar.
  *
  * @param {Function} BlockEdit Block edit component.
- *
  * @return {Function} BlockEdit Modified block edit component.
  */
 const addContainerLinkToolbar = createHigherOrderComponent( ( BlockEdit ) => {
@@ -231,6 +173,8 @@ const addContainerLinkToolbar = createHigherOrderComponent( ( BlockEdit ) => {
 			target,
 			relSponsored,
 			relNoFollow,
+			useDynamicData,
+			dynamicLinkType,
 		} = attributes;
 
 		const POPOVER_PROPS = {
@@ -258,29 +202,41 @@ const addContainerLinkToolbar = createHigherOrderComponent( ( BlockEdit ) => {
 									renderToggle={ ( { isOpen, onToggle } ) => (
 										<ToolbarButton
 											icon={ getIcon( 'link' ) }
-											label={ ! url ? __( 'Set Container Link', 'generateblocks-pro' ) : __( 'Change Container Link', 'generateblocks-pro' ) }
+											label={ ! hasContainerUrl( attributes ) ? __( 'Set Container Link', 'generateblocks-pro' ) : __( 'Change Container Link', 'generateblocks-pro' ) }
 											onClick={ onToggle }
 											aria-expanded={ isOpen }
-											isPressed={ !! url }
+											isPressed={ !! hasContainerUrl( attributes ) }
 										/>
 									) }
 									renderContent={ () => (
 										<Fragment>
-											<BaseControl
-												className="gblocks-container-link-wrapper"
-											>
-												<URLInput
-													className={ 'gblocks-container-link' }
-													value={ url }
-													onChange={ ( value ) => {
-														setAttributes( {
-															url: value,
-														} );
-													} }
-												/>
-											</BaseControl>
+											{ ! useDynamicData &&
+												<BaseControl
+													className="gblocks-container-link-wrapper"
+												>
+													<URLInput
+														className={ 'gblocks-container-link' }
+														value={ url }
+														onChange={ ( value ) => {
+															setAttributes( {
+																url: value,
+															} );
+														} }
+													/>
+												</BaseControl>
+											}
 
-											{ '' !== url &&
+											{ !! useDynamicData && '' !== dynamicLinkType &&
+												<div style={ {
+													width: '300px',
+													'font-style': 'italic',
+													'margin-bottom': ( !! dynamicLinkType ? '15px' : '0' ),
+												} }>
+													{ __( 'This container is using a dynamic link.', 'generateblocks-pro' ) }
+												</div>
+											}
+
+											{ !! hasContainerUrl( attributes ) &&
 												<Fragment>
 													<ToggleControl
 														label={ __( 'Open link in a new tab', 'generateblocks-pro' ) }
@@ -329,7 +285,7 @@ const addContainerLinkToolbar = createHigherOrderComponent( ( BlockEdit ) => {
 												</Fragment>
 											}
 
-											{ '' !== url && 'hidden-link' === linkType &&
+											{ !! hasContainerUrl( attributes ) && 'hidden-link' === linkType &&
 												<TextControl
 													label={ __( 'Aria Label', 'generateblocks-pro' ) }
 													help={ __( 'Help screen readers understand what this link does.', 'generateblocks-pro' ) }
@@ -354,6 +310,16 @@ const addContainerLinkToolbar = createHigherOrderComponent( ( BlockEdit ) => {
 	};
 }, 'addContainerLinkToolbar' );
 
+function hasContainerUrl( attributes ) {
+	const {
+		url,
+		useDynamicData,
+		dynamicLinkType,
+	} = attributes;
+
+	return url || ( useDynamicData && '' !== dynamicLinkType );
+}
+
 addFilter(
 	'blocks.registerBlockType',
 	'generateblocks-pro/container-link/add-attributes',
@@ -370,12 +336,6 @@ addFilter(
 	'generateblocks.frontend.containerTagName',
 	'generateblocks-pro/container-link/add-tag-name',
 	changeTagName
-);
-
-addFilter(
-	'generateblocks.frontend.insideContainer',
-	'generateblocks-pro/container-link/add-hidden-link',
-	addHiddenLink
 );
 
 addFilter(

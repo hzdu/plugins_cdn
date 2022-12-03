@@ -91,7 +91,7 @@ function addGradientControls( output, id, props ) {
 					} }
 				/>
 				<Dropdown
-					position="top center"
+					position="top left"
 					focusOnMount={ 'container' }
 					contentClassName="gblocks-advanced-dropdown gblocks-background-dropdown"
 					renderToggle={ ( { isOpen, onToggle } ) => (

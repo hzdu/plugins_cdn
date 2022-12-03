@@ -33,13 +33,12 @@ import {
 	Button,
 } from '@wordpress/components';
 
-const allowedBlocks = [ 'generateblocks/container', 'generateblocks/button', 'generateblocks/headline' ];
+const allowedBlocks = [ 'generateblocks/container', 'generateblocks/button', 'generateblocks/headline', 'generateblocks/image' ];
 
 /**
  * Add custom attribute for mobile visibility.
  *
  * @param {Object} settings Settings for the block.
- *
  * @return {Object} settings Modified settings.
  */
 function addAttributes( settings ) {
@@ -53,6 +52,8 @@ function addAttributes( settings ) {
 		blockName = 'button';
 	} else if ( 'generateblocks/headline' === settings.name ) {
 		blockName = 'headline';
+	} else if ( 'generateblocks/image' === settings.name ) {
+		blockName = 'image';
 	}
 
 	if ( typeof settings.attributes !== 'undefined' ) {
@@ -184,7 +185,7 @@ function addControls( output, data ) {
 					<div className="gblocks-advanced-dropdown-item">
 						<ToggleControl
 							label={
-								opacities.length > 0 && !! useOpacity ? (
+								opacities.length > 0 ? (
 									/* translators: Number of transforms. */
 									sprintf( __( 'Opacity & Blend (%s)', 'generateblocks-pro' ), opacities.length )
 								) : (
@@ -199,7 +200,7 @@ function addControls( output, data ) {
 							} }
 						/>
 						<Dropdown
-							position="top center"
+							position="top left"
 							focusOnMount={ 'container' }
 							contentClassName="gblocks-advanced-dropdown"
 							renderToggle={ ( { isOpen, onToggle } ) => (
@@ -218,7 +219,9 @@ function addControls( output, data ) {
 											effectLabel={ __( 'Opacity', 'generateblocks-pro' ) }
 											effectType="opacity"
 											effectName="opacities"
+											useEffectName="useOpacity"
 											effectOptions={ targetOptions }
+											onClose={ onClose }
 										/>
 
 										<div className="gblocks-advanced-dropdown-actions">
@@ -272,7 +275,7 @@ function addControls( output, data ) {
 					<div className="gblocks-advanced-dropdown-item">
 						<ToggleControl
 							label={
-								transitions.length > 0 && !! useTransition ? (
+								transitions.length > 0 ? (
 									/* translators: Number of transforms. */
 									sprintf( __( 'Transition (%s)', 'generateblocks-pro' ), transitions.length )
 								) : (
@@ -302,7 +305,7 @@ function addControls( output, data ) {
 							} }
 						/>
 						<Dropdown
-							position="top center"
+							position="top left"
 							focusOnMount={ 'container' }
 							contentClassName="gblocks-advanced-dropdown gblocks-transition-dropdown"
 							renderToggle={ ( { isOpen, onToggle } ) => (
@@ -321,7 +324,9 @@ function addControls( output, data ) {
 											effectLabel={ __( 'Transition', 'generateblocks-pro' ) }
 											effectType="transition"
 											effectName="transitions"
+											useEffectName="useTransition"
 											effectOptions={ targetOptions }
+											onClose={ onClose }
 										/>
 
 										<div className="gblocks-advanced-dropdown-actions">
@@ -366,7 +371,7 @@ function addControls( output, data ) {
 					<div className="gblocks-advanced-dropdown-item">
 						<ToggleControl
 							label={
-								boxShadows.length > 0 && !! useBoxShadow ? (
+								boxShadows.length > 0 ? (
 									/* translators: Number of transforms. */
 									sprintf( __( 'Box Shadow (%s)', 'generateblocks-pro' ), boxShadows.length )
 								) : (
@@ -383,8 +388,8 @@ function addControls( output, data ) {
 										target: 'self',
 										customSelector: '',
 										inset: false,
-										color: '#000000',
-										colorOpacity: 0.1,
+										color: generateBlocksPro.hasRgbaSupport ? 'rgba(0,0,0,0.1)' : '#000000',
+										colorOpacity: generateBlocksPro.hasRgbaSupport ? undefined : 0.1,
 										xOffset: 5,
 										yOffset: 5,
 										blur: 10,
@@ -399,7 +404,7 @@ function addControls( output, data ) {
 							} }
 						/>
 						<Dropdown
-							position="top center"
+							position="top left"
 							focusOnMount={ 'container' }
 							contentClassName="gblocks-advanced-dropdown gblocks-box-shadow-dropdown"
 							renderToggle={ ( { isOpen, onToggle } ) => (
@@ -418,7 +423,9 @@ function addControls( output, data ) {
 											effectLabel={ __( 'Box Shadow', 'generateblocks-pro' ) }
 											effectType="box-shadow"
 											effectName="boxShadows"
+											useEffectName="useBoxShadow"
 											effectOptions={ targetOptions }
+											onClose={ onClose }
 										/>
 
 										<div className="gblocks-advanced-dropdown-actions">
@@ -436,8 +443,8 @@ function addControls( output, data ) {
 														target: 'self',
 														customSelector: '',
 														inset: false,
-														color: '#000000',
-														colorOpacity: 0.1,
+														color: generateBlocksPro.hasRgbaSupport ? 'rgba(0,0,0,0.1)' : '#000000',
+														colorOpacity: generateBlocksPro.hasRgbaSupport ? undefined : 0.1,
 														xOffset: 5,
 														yOffset: 5,
 														blur: 10,
@@ -463,106 +470,110 @@ function addControls( output, data ) {
 						/>
 					</div>
 
-					<div className="gblocks-advanced-dropdown-item">
-						<ToggleControl
-							label={
-								textShadows.length > 0 && !! useTextShadow ? (
-									/* translators: Number of transforms. */
-									sprintf( __( 'Text Shadow (%s)', 'generateblocks-pro' ), textShadows.length )
-								) : (
-									__( 'Text Shadow', 'generateblocks-pro' )
-								)
-							}
-							checked={ !! useTextShadow }
-							onChange={ ( value ) => {
-								const effectValues = [ ...textShadows ];
-
-								if ( textShadows.length < 1 && value ) {
-									effectValues.push( {
-										state: 'normal',
-										target: 'self',
-										customSelector: '',
-										color: '#000000',
-										colorOpacity: 0.5,
-										xOffset: 5,
-										yOffset: 5,
-										blur: 10,
-									} );
+					{ 'generateblocks/image' !== name &&
+						<div className="gblocks-advanced-dropdown-item">
+							<ToggleControl
+								label={
+									textShadows.length > 0 ? (
+										/* translators: Number of transforms. */
+										sprintf( __( 'Text Shadow (%s)', 'generateblocks-pro' ), textShadows.length )
+									) : (
+										__( 'Text Shadow', 'generateblocks-pro' )
+									)
 								}
+								checked={ !! useTextShadow }
+								onChange={ ( value ) => {
+									const effectValues = [ ...textShadows ];
 
-								setAttributes( {
-									useTextShadow: value,
-									textShadows: effectValues,
-								} );
-							} }
-						/>
-						<Dropdown
-							position="top center"
-							focusOnMount={ 'container' }
-							contentClassName="gblocks-advanced-dropdown gblocks-text-shadow-dropdown"
-							renderToggle={ ( { isOpen, onToggle } ) => (
-								<Button
-									isSecondary={ isOpen ? undefined : true }
-									isPrimary={ isOpen ? true : undefined }
-									icon={ isOpen ? getIcon( 'x' ) : getIcon( 'wrench' ) }
-									onClick={ onToggle }
-									aria-expanded={ isOpen }
-								/>
-							) }
-							renderContent={ ( { onClose } ) => (
-								<div>
-									<Fragment>
-										<EffectPanelItem { ...data.props }
-											effectLabel={ __( 'Text Shadow', 'generateblocks-pro' ) }
-											effectType="text-shadow"
-											effectName="textShadows"
-											effectOptions={ targetOptions }
-										/>
+									if ( textShadows.length < 1 && value ) {
+										effectValues.push( {
+											state: 'normal',
+											target: 'self',
+											customSelector: '',
+											color: generateBlocksPro.hasRgbaSupport ? 'rgba(0,0,0,0.5)' : '#000000',
+											colorOpacity: generateBlocksPro.hasRgbaSupport ? undefined : 0.5,
+											xOffset: 5,
+											yOffset: 5,
+											blur: 10,
+										} );
+									}
 
-										<div className="gblocks-advanced-dropdown-actions">
-											<Button
-												isSecondary
-												onClick={ () => {
-													if ( ! useTextShadow && textShadows.length < 1 ) {
-														setAttributes( { useTextShadow: true } );
-													}
+									setAttributes( {
+										useTextShadow: value,
+										textShadows: effectValues,
+									} );
+								} }
+							/>
+							<Dropdown
+								position="top left"
+								focusOnMount={ 'container' }
+								contentClassName="gblocks-advanced-dropdown gblocks-text-shadow-dropdown"
+								renderToggle={ ( { isOpen, onToggle } ) => (
+									<Button
+										isSecondary={ isOpen ? undefined : true }
+										isPrimary={ isOpen ? true : undefined }
+										icon={ isOpen ? getIcon( 'x' ) : getIcon( 'wrench' ) }
+										onClick={ onToggle }
+										aria-expanded={ isOpen }
+									/>
+								) }
+								renderContent={ ( { onClose } ) => (
+									<div>
+										<Fragment>
+											<EffectPanelItem { ...data.props }
+												effectLabel={ __( 'Text Shadow', 'generateblocks-pro' ) }
+												effectType="text-shadow"
+												effectName="textShadows"
+												useEffectName="useTextShadow"
+												effectOptions={ targetOptions }
+												onClose={ onClose }
+											/>
 
-													const effectValues = [ ...textShadows ];
+											<div className="gblocks-advanced-dropdown-actions">
+												<Button
+													isSecondary
+													onClick={ () => {
+														if ( ! useTextShadow && textShadows.length < 1 ) {
+															setAttributes( { useTextShadow: true } );
+														}
 
-													effectValues.push( {
-														state: 'normal',
-														target: 'self',
-														customSelector: '',
-														color: '#000000',
-														colorOpacity: 0.5,
-														xOffset: 5,
-														yOffset: 5,
-														blur: 10,
-													} );
+														const effectValues = [ ...textShadows ];
 
-													setAttributes( { textShadows: effectValues } );
-												} }
-											>
-												{ __( 'Add Effect', 'generateblocks-pro' ) }
-											</Button>
+														effectValues.push( {
+															state: 'normal',
+															target: 'self',
+															customSelector: '',
+															color: generateBlocksPro.hasRgbaSupport ? 'rgba(0,0,0,0.5)' : '#000000',
+															colorOpacity: generateBlocksPro.hasRgbaSupport ? undefined : 0.5,
+															xOffset: 5,
+															yOffset: 5,
+															blur: 10,
+														} );
 
-											<Button
-												isPrimary
-												onClick={ onClose }
-											>
-												{ __( 'Close', 'generateblocks-pro' ) }
-											</Button>
-										</div>
-									</Fragment>
-								</div>
-							) }
-						/>
-					</div>
+														setAttributes( { textShadows: effectValues } );
+													} }
+												>
+													{ __( 'Add Effect', 'generateblocks-pro' ) }
+												</Button>
+
+												<Button
+													isPrimary
+													onClick={ onClose }
+												>
+													{ __( 'Close', 'generateblocks-pro' ) }
+												</Button>
+											</div>
+										</Fragment>
+									</div>
+								) }
+							/>
+						</div>
+					}
 
 					<div className="gblocks-advanced-dropdown-item">
 						<ToggleControl
 							label={
-								transforms.length > 0 && !! useTransform ? (
+								transforms.length > 0 ? (
 									/* translators: Number of transforms. */
 									sprintf( __( 'Transform (%s)', 'generateblocks-pro' ), transforms.length )
 								) : (
@@ -577,7 +588,7 @@ function addControls( output, data ) {
 							} }
 						/>
 						<Dropdown
-							position="top center"
+							position="top left"
 							focusOnMount={ 'container' }
 							contentClassName="gblocks-advanced-dropdown"
 							renderToggle={ ( { isOpen, onToggle } ) => (
@@ -596,7 +607,9 @@ function addControls( output, data ) {
 											effectLabel={ __( 'Transform', 'generateblocks-pro' ) }
 											effectType="transforms"
 											effectName="transforms"
+											useEffectName="useTransform"
 											effectOptions={ targetOptions }
+											onClose={ onClose }
 										/>
 
 										<div className="gblocks-advanced-dropdown-actions">
@@ -649,7 +662,7 @@ function addControls( output, data ) {
 					<div className="gblocks-advanced-dropdown-item">
 						<ToggleControl
 							label={
-								filters.length > 0 && !! useFilter ? (
+								filters.length > 0 ? (
 									/* translators: Number of transforms. */
 									sprintf( __( 'Filter (%s)', 'generateblocks-pro' ), filters.length )
 								) : (
@@ -664,7 +677,7 @@ function addControls( output, data ) {
 							} }
 						/>
 						<Dropdown
-							position="top center"
+							position="top left"
 							focusOnMount={ 'container' }
 							contentClassName="gblocks-advanced-dropdown"
 							renderToggle={ ( { isOpen, onToggle } ) => (
@@ -683,7 +696,9 @@ function addControls( output, data ) {
 											effectLabel={ __( 'Filter', 'generateblocks-pro' ) }
 											effectType="filters"
 											effectName="filters"
+											useEffectName="useFilter"
 											effectOptions={ targetOptions }
+											onClose={ onClose }
 										/>
 
 										<div className="gblocks-advanced-dropdown-actions">
@@ -731,7 +746,7 @@ function addControls( output, data ) {
 }
 
 function addCSS( css, props, name ) {
-	const allowedAreas = [ 'container', 'button', 'headline' ];
+	const allowedAreas = [ 'container', 'button', 'headline', 'image' ];
 
 	if ( ! allowedAreas.includes( name ) ) {
 		return css;
@@ -755,15 +770,19 @@ function addCSS( css, props, name ) {
 		useFilter,
 	} = attributes;
 
-	if ( 'container' === name || 'button' === name || 'headline' === name ) {
-		let selector = '.gb-container-' + uniqueId;
+	if ( 'container' === name || 'button' === name || 'headline' === name || 'image' === name ) {
+		let selector = '.editor-styles-wrapper .gb-container-' + uniqueId;
 
 		if ( 'button' === name ) {
-			selector = '.gb-button-wrapper .gb-button-' + uniqueId;
+			selector = '.editor-styles-wrapper .gb-button-wrapper .gb-button-' + uniqueId;
 		}
 
 		if ( 'headline' === name ) {
-			selector = '.gb-headline-' + uniqueId;
+			selector = '.editor-styles-wrapper .gb-headline-' + uniqueId;
+		}
+
+		if ( 'image' === name ) {
+			selector = '.editor-styles-wrapper .gb-image-' + uniqueId;
 		}
 
 		if ( useBoxShadow ) {
@@ -845,7 +864,13 @@ function addCSS( css, props, name ) {
 
 						let opacitySelector = data.selector;
 
-						let blockNotSelected = '.wp-block:not(.is-selected):not(.has-child-selected) > ';
+						let blockNotSelected = '.wp-block:not(.is-selected):not(.has-child-selected)';
+
+						// GB < 1.5.0 had the .wp-block selector as a parent to the block itself.
+						// hasColorGroups is only true in GB 1.5.0.
+						if ( ! generateBlocksPro.hasColorGroups ) {
+							blockNotSelected += ' > ';
+						}
 
 						if ( ! opacityDisableInEditor ) {
 							blockNotSelected = '';
@@ -941,7 +966,13 @@ function addCSS( css, props, name ) {
 
 				let transformSelector = data.selector;
 
-				let transformNotSelected = '.wp-block:not(.is-selected):not(.has-child-selected) > ';
+				let transformNotSelected = '.wp-block:not(.is-selected):not(.has-child-selected)';
+
+				// GB < 1.5.0 had the .wp-block selector as a parent to the block itself.
+				// hasColorGroups is only true in GB 1.5.0.
+				if ( ! generateBlocksPro.hasColorGroups ) {
+					transformNotSelected += ' > ';
+				}
 
 				if ( ! transformDisableInEditor ) {
 					transformNotSelected = '';
@@ -1069,6 +1100,12 @@ addFilter(
 addFilter(
 	'generateblocks.panel.headlineDocumentation',
 	'generateblocks-pro/effects/add-headline-controls',
+	addControls
+);
+
+addFilter(
+	'generateblocks.panel.imageDocumentation',
+	'generateblocks-pro/effects/add-image-controls',
 	addControls
 );
 

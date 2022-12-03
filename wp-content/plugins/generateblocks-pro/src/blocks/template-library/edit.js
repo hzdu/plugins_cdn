@@ -43,8 +43,8 @@ class GenerateBlocksTemplateLibrary extends Component {
 		return (
 			<Fragment>
 				<Placeholder
-					label={ __( 'Template Library', 'generateblocks-pro' ) }
-					instructions={ __( 'Insert pre-built templates directly into your content.', 'generateblocks-pro' ) }
+					label={ __( 'Pattern Library', 'generateblocks-pro' ) }
+					instructions={ __( 'Insert pre-built patterns directly into your content.', 'generateblocks-pro' ) }
 					className="gblocks-select-template"
 				>
 					<Button
@@ -54,7 +54,7 @@ class GenerateBlocksTemplateLibrary extends Component {
 							this.setState( { isModalOpen: 'templates' } );
 						} }
 					>
-						{ __( 'Open Template Library', 'generateblocks-pro' ) }
+						{ __( 'Open Pattern Library', 'generateblocks-pro' ) }
 					</Button>
 
 					{ 'templates' === isModalOpen &&
