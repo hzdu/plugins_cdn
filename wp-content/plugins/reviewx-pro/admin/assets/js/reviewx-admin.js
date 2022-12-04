@@ -785,6 +785,13 @@
 				let allowed_edit_review = "No";
 				$("#action_edit_review").text(allowed_edit_review);
 			}
+			if ($("#rx_" + type + "_allow_reviewer_name_censor").is(':checked')) {
+				let allowed_reviewer_name_censor = "Yes";
+				$("#action_reviewer_name_censor_allowed").text(allowed_reviewer_name_censor);
+			} else {
+				let allowed_reviewer_name_censor = "No";
+				$("#action_reviewer_name_censor_allowed").text(allowed_reviewer_name_censor);
+			}
 
 			if ($("#rx_" + type + "_allow_recommendation").is(':checked')) {
 				let allow_recommendation = "Enabled";
@@ -2046,6 +2053,16 @@
 
 
 	$('#filterButton').on('click', function () {
+		$('#TB_overlay').click()
+		Swal.fire({
+			onBeforeOpen: () => {
+				Swal.showLoading()
+			},
+			title: 'Please Wait !',
+			html: '<div class="rx-email-loader-html"> Email Sending...</div>',
+			allowOutsideClick: false,
+			customClass: 'rx-mail-loader',
+		});
 		$.ajax({
 			url: ajax_admin.ajax_admin_url,
 			type: 'post',
@@ -2055,10 +2072,7 @@
 				returned: true
 			},
 			success: function (data) {
-				$('#TB_overlay').click()
-
 				filterIntialization('', false, true);
-
 				Swal.fire({
 					title: ajax_admin.review_success_title,
 					text: '',
@@ -2631,5 +2645,81 @@
 		}
 
 	})
+
+	// email notification tab js
+	$(document).ready(function(){
+		var setting = $('.rx-general-setting-li[data-tabid="1"]');
+		var license = $('.rx-general-setting-li[data-tabid="2"]');
+		var licenseTab = $('#rx-go_license_tab .rx-settings-right');
+		var adminNotificationTab = $('#rx-go_admin_notification_tab .rx-settings-right');
+		if(setting.hasClass('active')){
+			licenseTab.hide();
+		}
+
+		$(license).on('click', function(){
+			licenseTab.show();
+			adminNotificationTab.hide();
+		})
+
+		$(setting).on('click', function(){
+			licenseTab.hide();
+			adminNotificationTab.show()
+		})
+	});
+
+	// ajax call for save email notification setting
+	$(document).on("click", ".rx-notification-setting-btn", function() {
+		let adminEmails  = $("#rx-admin-email-list").val();
+		let selectedRating  = $("#rx-select-rating option:selected").val();
+		var sendEmail = $('.rx_reminder_email_swither:checked').val();
+
+		if( sendEmail == 'on' ){
+			var notification = `Notification email will send to ${adminEmails}`;
+		} else {
+			var notification = `Notification email disabled!`;
+		}
+
+        var data = {
+			'action': 'rx_email_notification',
+			'data': sendEmail,
+			'rating': selectedRating,
+			'admin_email': adminEmails
+		};
+
+		// since 2.8 ajaxurl is always defined in the admin header and points to admin-ajax.php
+		jQuery.post(ajaxurl, data, function(response) {			
+			Swal.fire({
+				title: "Saved",
+				text: '',
+				html: notification,
+				type: 'success',
+				timer: 2000,
+			})
+		});
+    });
+
+	// 
+	var ischecked = $('#rx-notification-email-swither').attr("enable-admin-notification");
+   console.log("----",ischecked)
+   var check = false
+   if(ischecked == 1){
+	check = true
+   }
+   if(ischecked == 0){
+	check = false
+   }
+   
+	$("#rx-notification-email-swither").click(function() {			 
+		check=!check		 
+		enableDisable(check)
+	});
+
+	function enableDisable(ischecked) {
+		if(ischecked) {
+			$('.rx-select-rating, .rx-admin-email-list').prop("disabled", false);
+		} else {
+			$('.rx-select-rating, .rx-admin-email-list').prop("disabled", true);
+		}
+	}
 
 })(jQuery);
