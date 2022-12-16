@@ -38,7 +38,60 @@
 
 			<div class="typography-spacer"></div>
 
-			<p style="margin: 0;padding: 0;" class="thrv_text_element breadcrumbs-hidden"><a class="tcb-selector-mouseover tve_editable" data-selector-key="link" href="https://thrivethemes.com" target="_blank" data-element-name="<?php echo esc_attr__( 'Landing Page Link', 'thrive-cb' ); ?>">This is a hyperlink.</a></p>
+			<!-- thrv-typography-link -> this will replace the old general link, inside it are the other, more specific links	-->
+			<div class="thrv-typography-link tcb-selector-mouseover tve_editable" data-element-name="All Links" data-selector-key="link" style="padding:10px;">
+				<div style="margin:0;padding-left:10px;padding-bottom: 5px;" class="thrv_text_element breadcrumbs-hidden">
+					<p style="padding:0;">
+						<a class="tcb-not-editable thrv-typography-link-text">
+							This is a hyperlink. These settings apply to all links unless you edit a specific one.
+						</a>
+					</p>
+				</div>
+				<!--Link on Heading-->
+				<div style="margin-bottom:8px;padding-left:10px;" class="thrv_text_element breadcrumbs-hidden">
+					<h5 style="padding: 0;">
+						<a class="tcb-selector-mouseover tve_editable tcb-heading-link"
+						   data-element-name="<?php echo esc_attr__( 'Heading Link', 'thrive-cb' ); ?>"
+						   data-selector-key="heading_link"
+						   href="https://thrivethemes.com" target="_blank">
+							This is a hyperlink in headings.
+						</a>
+					</h5>
+				</div>
+
+				<!--Link on Paragraph-->
+				<div style="margin:0;padding-left:10px;" class="thrv_text_element breadcrumbs-hidden">
+					<p style="padding:0;">
+						<a class="tcb-selector-mouseover tve_editable"
+						   data-element-name="<?php echo esc_attr__( 'Paragraph Link', 'thrive-cb' ); ?>"
+						   data-selector-key="p_link" href="https://thrivethemes.com" target="_blank">
+							This is a hyperlink in a paragraph.
+						</a>
+					</p>
+				</div>
+
+				<!--Link on List Item-->
+				<div style="padding-left:10px;" class="tcb-styled-list breadcrumbs-hidden">
+					<a class="tcb-selector-mouseover tve_editable"
+					   data-selector-key="li_link"
+					   data-element-name="<?php echo esc_attr__( 'List Item Link', 'thrive-cb' ); ?>"
+					   href="https://thrivethemes.com" target="_blank">
+						This is a hyperlink inside lists.
+					</a>
+				</div>
+
+				<!--Link on Plain Text(spans)-->
+				<div style="padding-left:10px;" class="thrv_text_element breadcrumbs-hidden">
+					<div class="tcb-plain-text breadcrumbs-hidden" style="cursor:pointer;">
+						<a class="tcb-selector-mouseover tve_editable"
+						   data-selector-key="plaintext_link"
+						   data-element-name="<?php echo esc_attr__( 'Plaintext Link', 'thrive-cb' ); ?>"
+						   href="https://thrivethemes.com" target="_blank">
+							This is a hyperlink inside span tags.
+						</a>
+					</div>
+				</div>
+			</div>
 
 			<div class="typography-spacer"></div>
 

@@ -2,14 +2,14 @@
 # This file is distributed under the same license as the Happyforms plugin.
 msgid ""
 msgstr ""
-"Project-Id-Version: Happyforms 1.34.0\n"
+"Project-Id-Version: Happyforms 1.35.0\n"
 "Report-Msgid-Bugs-To: ask@happyforms.io\n"
 "Last-Translator: The Theme Foundry\n"
 "Language-Team: The Theme Foundry\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2022-11-30T11:03:01+00:00\n"
+"POT-Creation-Date: 2022-12-15T08:44:55+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.4.0\n"
 "X-Domain: happyforms\n"
@@ -309,67 +309,75 @@ msgstr ""
 msgid "These messages are shown to submitters as they fill out the form to help them trigger an action."
 msgstr ""
 
-#: core/classes/class-form-messages.php:113
+#: core/classes/class-form-messages.php:115
+msgid "Links"
+msgstr ""
+
+#: core/classes/class-form-messages.php:116
+msgid "These messages are shown to submitters as they fill out the form to help them go to a new page or move somewhere on the same page."
+msgstr ""
+
+#: core/classes/class-form-messages.php:127
 msgid "Errors"
 msgstr ""
 
-#: core/classes/class-form-messages.php:114
+#: core/classes/class-form-messages.php:128
 msgid "These messages are shown to submitters when they try to submit but one or more fields has a mistake."
 msgstr ""
 
-#: core/classes/class-form-messages.php:123
+#: core/classes/class-form-messages.php:137
 msgid "Hints"
 msgstr ""
 
-#: core/classes/class-form-messages.php:124
+#: core/classes/class-form-messages.php:138
 msgid "These messages are shown to submitters as they fill out the form to help them avoid mistakes."
 msgstr ""
 
-#: core/classes/class-form-messages.php:131
+#: core/classes/class-form-messages.php:145
 msgid "Too many choices are selected"
 msgstr ""
 
-#: core/classes/class-form-messages.php:136
+#: core/classes/class-form-messages.php:150
 msgid "Not enough choices are selected"
 msgstr ""
 
-#: core/classes/class-form-messages.php:143
+#: core/classes/class-form-messages.php:157
 msgid "Number too small"
 msgstr ""
 
-#: core/classes/class-form-messages.php:148
+#: core/classes/class-form-messages.php:162
 msgid "Number too big"
 msgstr ""
 
-#: core/classes/class-form-messages.php:153
+#: core/classes/class-form-messages.php:167
 msgid "Search couldn't find anything"
 msgstr ""
 
-#: core/classes/class-form-messages.php:158
+#: core/classes/class-form-messages.php:172
 msgid "Minimum characters"
 msgstr ""
 
-#: core/classes/class-form-messages.php:163
+#: core/classes/class-form-messages.php:177
 msgid "Maximum characters"
 msgstr ""
 
-#: core/classes/class-form-messages.php:168
+#: core/classes/class-form-messages.php:182
 msgid "Minimum words"
 msgstr ""
 
-#: core/classes/class-form-messages.php:173
+#: core/classes/class-form-messages.php:187
 msgid "Maximum words"
 msgstr ""
 
-#: core/classes/class-form-messages.php:178
+#: core/classes/class-form-messages.php:192
 msgid "Question is optional"
 msgstr ""
 
-#: core/classes/class-form-messages.php:183
+#: core/classes/class-form-messages.php:197
 msgid "Question is required"
 msgstr ""
 
-#: core/classes/class-form-messages.php:188
+#: core/classes/class-form-messages.php:202
 msgid "Remaining submissions"
 msgstr ""
 
@@ -949,7 +957,7 @@ msgstr ""
 #: inc/classes/class-form-admin-upgrade.php:36
 #: inc/classes/class-form-admin-upgrade.php:37
 #: inc/classes/class-message-controller.php:194
-#: inc/classes/class-message-controller.php:1070
+#: inc/classes/class-message-controller.php:1090
 msgid "Submissions"
 msgstr ""
 
@@ -1044,15 +1052,11 @@ msgstr ""
 msgid "This answer isn't long enough."
 msgstr ""
 
-#: core/classes/class-wp-customize-form-manager.php:162
-msgid "Form saved. To publish, add a Forms block to any post, page or widget area."
+#: core/classes/class-wp-customize-form-manager.php:161
+msgid "To publish your new form, add a <i>Forms</i> block anywhere your theme allows blocks to be added. If you're using an older theme or page builder, you might instead need to copy the form's shortcode and paste it into your site as your theme's author recommends."
 msgstr ""
 
-#: core/classes/class-wp-customize-form-manager.php:163
-msgid "Form updated."
-msgstr ""
-
-#: core/classes/class-wp-customize-form-manager.php:323
+#: core/classes/class-wp-customize-form-manager.php:321
 msgid "The changes you made will be lost if you navigate away from this page."
 msgstr ""
 
@@ -3935,48 +3939,32 @@ msgstr ""
 msgid "Submissions to"
 msgstr ""
 
-#: inc/classes/class-message-blocklist.php:88
-msgid "Show an error message if field contains words in"
+#: inc/classes/class-message-blocklist.php:84
+msgid "Trash submission if it contains words in"
 msgstr ""
 
-#: inc/classes/class-message-blocklist.php:89
+#: inc/classes/class-message-blocklist.php:85
 msgid "Disallowed Comment Keys"
 msgstr ""
 
-#: inc/classes/class-message-blocklist.php:183
-msgid "A word or phrase here isn't allowed."
-msgstr ""
-
-#: inc/classes/class-message-blocklist.php:187
-msgid "Your IP address or browser’s user agent isn’t allowed."
-msgstr ""
-
-#: inc/classes/class-message-blocklist.php:201
-msgid "Field contains disallowed word"
-msgstr ""
-
-#: inc/classes/class-message-blocklist.php:206
-msgid "Disallowed IP address or browser"
-msgstr ""
-
-#: inc/classes/class-message-blocklist.php:270
+#: inc/classes/class-message-blocklist.php:232
 msgid "Block these email addresses, email domains and email partials"
 msgstr ""
 
-#: inc/classes/class-message-blocklist.php:282
+#: inc/classes/class-message-blocklist.php:244
 msgid "One per line. Not case sensitive. Blank spaces disallowed"
 msgstr ""
 
-#: inc/classes/class-message-blocklist.php:289
+#: inc/classes/class-message-blocklist.php:251
 msgid "Block these words, phrases and letters"
 msgstr ""
 
-#: inc/classes/class-message-blocklist.php:301
+#: inc/classes/class-message-blocklist.php:263
 msgid "One per line. Not case sensitive. Punctuation, numbers and alt characters disallowed."
 msgstr ""
 
 #: inc/classes/class-message-controller.php:196
-#: inc/classes/class-message-controller.php:1083
+#: inc/classes/class-message-controller.php:1103
 msgid "Edit Submission"
 msgstr ""
 
@@ -4005,16 +3993,16 @@ msgstr ""
 msgid "All Submissions"
 msgstr ""
 
-#: inc/classes/class-message-controller.php:743
+#: inc/classes/class-message-controller.php:763
 #: inc/templates/admin-message-edit.php:46
 msgid "Tracking number"
 msgstr ""
 
-#: inc/classes/class-message-controller.php:1026
+#: inc/classes/class-message-controller.php:1046
 msgid "Invalid email."
 msgstr ""
 
-#: inc/classes/class-message-controller.php:1027
+#: inc/classes/class-message-controller.php:1047
 msgid "Email sent."
 msgstr ""
 

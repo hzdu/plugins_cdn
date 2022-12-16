@@ -23,9 +23,7 @@
 		 */
 		hooks() {
 			wp.hooks.addFilter( 'rank_math_content', 'rank-math', content => {
-				content += this.content;
-
-				return content;
+				return this.content ? this.content : content;
 			}, 11 );
 		}
 

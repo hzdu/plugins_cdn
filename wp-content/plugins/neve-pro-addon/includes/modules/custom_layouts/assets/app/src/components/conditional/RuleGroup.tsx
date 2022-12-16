@@ -4,6 +4,7 @@ import { __ } from '@wordpress/i18n';
 import { Button } from '@wordpress/components';
 import RuleComponent from './RuleComponent';
 import { Rules } from './ConditionalPanel';
+import MagicTagsComponent from './MagicTagsComponent';
 
 /**
  * Type for RuleGroup
@@ -13,6 +14,7 @@ type RuleGroupArgs = {
 	isFirst: boolean;
 	isLast: boolean;
 	canAddMore: boolean;
+	magicTags: string[];
 	onChange: (
 		val: string | [  ],
 		type: keyof Rules,
@@ -36,7 +38,7 @@ const RuleGroup = ( {
 	isFirst,
 	isLast,
 	canAddMore,
-
+	magicTags,
 	onChange,
 	addRuleSet,
 	addRuleGroup,
@@ -58,6 +60,8 @@ const RuleGroup = ( {
 	return (
 		<>
 			<div className="rule-group">
+				<MagicTagsComponent magicTags={ magicTags } />
+
 				{ Object.values( group ).map( ( ruleset, index ) => (
 					<RuleComponent
 						key={ index }

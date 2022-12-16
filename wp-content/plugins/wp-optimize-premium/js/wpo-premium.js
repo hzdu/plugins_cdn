@@ -1923,7 +1923,7 @@ var WP_Optimize_Premium = function() {
 	var enable_per_role_cache_checkbox = $('#enable_per_role_cache'),
 		per_role_cache_roles_list = $('#wpo_per_role_cache_roles_list');
 
-	enable_per_role_cache_checkbox.change(function() {
+	enable_per_role_cache_checkbox.on('change', function() {
 		if (enable_per_role_cache_checkbox.prop('checked')) {
 			per_role_cache_roles_list.removeClass('wpo_hidden');
 		} else {
@@ -1938,6 +1938,7 @@ var WP_Optimize_Premium = function() {
 jQuery(function($) {
 
 	var $auto_options = $('#wp-optimize-auto-options');
+	var $db_settings_form = $('#database_settings_form');
 	var $time_fields = $('input[type="time"]');
 	var $date_fields = $('input[type="date"]');
 	var today = new Date().toISOString().split('T')[0];
@@ -2021,16 +2022,18 @@ jQuery(function($) {
 	/**
 	 * Adds settings fields for event scheduling
 	 */
-	$('#wpo-add-event').on('click', function(e) {
+	$db_settings_form.on('click', '#wpo-add-event', function(e) {
 		e.preventDefault();
 		count++;
 		var optimizations = WP_Optimize_Handlebars.optimizations.handlebars({'optimizations': wpoptimize.auto_optimizations, 'count': count});
 		var schedule_types = WP_Optimize_Handlebars.schedule_types.handlebars({'schedule_types': wpoptimize.schedule_types, 'count': count});
-		var action = WP_Optimize_Handlebars.action.handlebars({'count': count});
+		var add_schedule_new 	= wpoptimize.add_schedule_new;
+		var add_schedule_cancel = wpoptimize.add_schedule_cancel;
+		var action = WP_Optimize_Handlebars.action.handlebars({'count': count, 'add_schedule_new': add_schedule_new, 'add_schedule_cancel': add_schedule_cancel });
 		var html_content = '<div class="wpo_auto_event wpo_cf" data-count="' + count +'">';
 		html_content += optimizations + schedule_types + action;
 		html_content += '</div>';
-		$('#wpo_auto_events').prepend(html_content);
+		$('#wpo_auto_events').append(html_content);
 		$('.wpo_auto_optimizations').select2({
 			placeholder: wpoptimize.select_optimizations
 		});
@@ -2043,8 +2046,11 @@ jQuery(function($) {
 	/**
 	 * Show appropriate fields (date, time, week and day) when schedule type is changed
 	 */
-	$auto_options.on('change', '.wpo_schedule_type', function() {
+	$db_settings_form.on('change', '.wpo_schedule_type', function() {
 		var $container = $(this).closest('.wpo_auto_event');
+
+		var add_schedule_new 	= wpoptimize.add_schedule_new;
+		var add_schedule_cancel = wpoptimize.add_schedule_cancel;
 
 		// Use existing count, if it is editing to existing event or use incremented count
 		var event_count = $container.data('count') || count;
@@ -2073,7 +2079,7 @@ jQuery(function($) {
 		};
 		var schedule_fields = display_field_details(schedule_type, field_details);
 		var status = WP_Optimize_Handlebars.status.handlebars({'details': field_details});
-		var action = WP_Optimize_Handlebars.action.handlebars({});
+		var action = WP_Optimize_Handlebars.action.handlebars({'add_schedule_new': add_schedule_new, 'add_schedule_cancel': add_schedule_cancel});
 		$(this).next().html('');
 		$container.find('.wpo_event_status').remove();
 		$container.find('.wpo_event_actions').remove();
@@ -2086,17 +2092,18 @@ jQuery(function($) {
 	/**
 	 * Edit event details
 	 */
-	$auto_options.on('click', '.wpo_edit_event', function() {
+	$db_settings_form.on('click', '#wp-optimize-auto-options .wpo_edit_event', function() {
 		var $container = $(this).closest('.wpo_scheduled_event');
 		$container.hide();
 		$container.next().show();
 		display_headers();
+		display_select2_options_after_document_change();
 	});
 
 	/**
 	 * Remove event details
 	 */
-	$auto_options.on('click', '.wpo_remove_event', function() {
+	$db_settings_form.on('click', '.wpo_remove_event', function() {
 		var count = $(this).data('count');
 		var ok_remove = confirm(wpoptimize.confirm_remove_task);
 		if (true === ok_remove) {
@@ -2117,9 +2124,22 @@ jQuery(function($) {
 			// Delete newly created event
 			$auto_event.remove();
 
-			$("#save_settings_reminder").slideDown();
+			setTimeout(function(){
+				$('#wp-optimize-save-database-settings').trigger('click');
+			}, 500);
+
+			//$("#save_settings_reminder").slideDown();
 			display_headers();
 		}
+	});
+
+	/**
+	 * Cancel event edit.
+	 */
+	$db_settings_form.on('click', '#wp-optimize-auto-options .wpo_cancel_event', function() {
+		var $container = $(this).closest('.wpo_auto_event');
+		$container.hide();
+		$container.prev().show();
 	});
 
 	/**
@@ -2214,6 +2234,23 @@ jQuery(function($) {
 				break;
 		}
 		return schedule_fields;
+	}
+
+
+	/**
+	 * Displays select2 options after document change.
+	 *
+	 * @return void
+	 */
+	function display_select2_options_after_document_change() {
+		$('.wpo_auto_optimizations').select2({
+			placeholder: wpoptimize.select_optimizations
+		});
+
+		$('.wpo_auto_optimizations').on('select2:opening select2:closing', function(event) {
+			var $searchfield = $(this).parent().find('.select2-search__field');
+			$searchfield.prop('disabled', true);
+		});
 	}
 
 	/**

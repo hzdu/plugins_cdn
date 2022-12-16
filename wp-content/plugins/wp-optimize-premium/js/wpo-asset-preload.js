@@ -107,13 +107,17 @@
 						crossorigin: this.$crossorigin.is(':checked')
 					});
 				} else {
-					this.model.set({
+					wp_optimize.asset_preload.items.remove(this.model);
+					wp_optimize.asset_preload.items.add({
 						href: this.$href.val(),
 						type: this.$type.val(),
 						crossorigin: this.$crossorigin.is(':checked')
 					});
 				}
 				wp_optimize.asset_preload.app.hide_form();
+				setTimeout(function() {
+					$('#wpo_minify_settings_form .wp-optimize-save-minify-settings').trigger('click');
+				}, 1200);
 			},
 			detect_values: function(e) {
 				var url = this.$href.val();
@@ -168,6 +172,9 @@
 			delete_item: function() {
 				// wp_optimize.asset_preload.items.remove(this.model);
 				this.model.destroy();
+				setTimeout(function() {
+					$('#wpo_minify_settings_form .wp-optimize-save-minify-settings').trigger('click');
+				}, 1200);
 			},
 			cancel: function() {
 				this.$el.removeClass('editing');

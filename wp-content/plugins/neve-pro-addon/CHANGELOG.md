@@ -1,3 +1,20 @@
+##### [Version 2.4.7](https://github.com/Codeinwp/neve-pro-addon/compare/v2.4.6...v2.4.7) (2022-12-14)
+
+- [Feat] Add advanced search component support for post types created with ACF Extended
+- [Fix] Notice for Otter Pro for new users
+- [Fix] Social icons component throwing an error when the link is missing
+- [Fix] Posts per page control not working
+- [Fix] Show Available Magic Tags on Custom Layout Editor
+- [Fix] Theme's header disappears when the footer is built in Elementor Pro
+
+##### [Version 2.4.6](https://github.com/Codeinwp/neve-pro-addon/compare/v2.4.5...v2.4.6) (2022-11-29)
+
+- [Feat] Add an option for displaying the MyAccount icon for non-logged users
+- [Fix] Text color not configurable with menu skin mode 2 for sub-menus
+- [Fix] Post meta compatibility with ACF
+- [Fix] Woo actions not executing when a template exists
+- Test WooCommerce and update the "tested up to" version
+
 ##### [Version 2.4.5](https://github.com/Codeinwp/neve-pro-addon/compare/v2.4.4...v2.4.5) (2022-11-16)
 
 - [Feat] Add compatibility between Custom meta and Pods fields

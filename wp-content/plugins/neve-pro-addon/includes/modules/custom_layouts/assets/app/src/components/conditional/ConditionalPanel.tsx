@@ -3,6 +3,7 @@ import { __ } from '@wordpress/i18n';
 import { isRenderDebugOn } from '../../common/utils';
 import DebugRender from '../shared/DebugRender';
 import RuleGroup from './RuleGroup';
+import { useState } from '@wordpress/element';
 
 /**
  * Check if an item is an object
@@ -107,6 +108,11 @@ const ConditionalPanel = React.memo(
 				newValue[ groupIndex ][ ruleSetIndex ].end = '';
 			}
 
+			magicTags[ groupIndex ] = getGroupMagicTags(
+				newValue[ groupIndex ]
+			);
+			setMagicTags( magicTags );
+
 			onChange( newValue );
 			updateDb( newValue );
 		};
@@ -123,6 +129,70 @@ const ConditionalPanel = React.memo(
 			onChange( newValue );
 			updateDb( newValue );
 		};
+
+		const getGroupMagicTags = ( groupValue: Rules[] ) => {
+			let allMagicTags: string[] = [];
+			for ( const index in groupValue ) {
+				const rule = groupValue[ index ];
+				const root = rule.root;
+				const cond = rule.condition;
+				const end = rule.end;
+
+				if ( cond !== '===' ) {
+					continue;
+				}
+
+				if (
+					root === '' ||
+					end === '' ||
+					typeof root !== 'string' ||
+					typeof end !== 'string'
+				) {
+					continue;
+				}
+
+				if (
+					! window.neveCustomLayouts.magicTags.hasOwnProperty( root )
+				) {
+					continue;
+				}
+
+				if (
+					window.neveCustomLayouts.magicTags[ root ].hasOwnProperty(
+						'general'
+					)
+				) {
+					allMagicTags = allMagicTags.concat(
+						window.neveCustomLayouts.magicTags[ root ].general
+					);
+				}
+
+				const endArray = window.neveCustomLayouts.magicTags[ root ];
+				if ( ! endArray.hasOwnProperty( end ) ) {
+					continue;
+				}
+
+				allMagicTags = allMagicTags.concat( endArray[ end ] );
+			}
+
+			return allMagicTags.filter(
+				( tag, index ) => allMagicTags.indexOf( tag ) === index
+			);
+		};
+
+		const getDefaultMagicTags = () => {
+			const defaultTags: Record< number, string[] > = [];
+
+			// extract magic tags of the current rule groups (already saved ones)
+			for ( const index in getRules() ) {
+				const groupRules = rules[ index ];
+				defaultTags[ index ] = getGroupMagicTags( groupRules );
+			}
+
+			return defaultTags;
+		};
+
+		const [ magicTags, setMagicTags ] = useState( getDefaultMagicTags );
 
 		const addRuleGroup = ( groupIndex: number ) => {
 			const newValue = [ ...rules ];
@@ -183,6 +253,7 @@ const ConditionalPanel = React.memo(
 								isFirst={ index === 0 }
 								isLast={ index === rules.length - 1 }
 								canAddMore={ rules.length < 5 }
+								magicTags={ magicTags[ index ] }
 								onChange={ (
 									val: string | [  ],
 									type: keyof Rules,

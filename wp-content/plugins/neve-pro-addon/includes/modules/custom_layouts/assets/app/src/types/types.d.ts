@@ -42,7 +42,7 @@ interface LocalizedData {
 	customEditorEndpoint: string;
 	nonce: string;
 	phpError: string;
-	magicTags: Record< string, string >;
+	magicTags: Record< string, Record< string, [  ] > >;
 	strings: Record< string, string >;
 	conditionMap: Record< string, Record< string, string > >;
 	sidebarOptions: SidebarOptionsType;
@@ -58,5 +58,18 @@ interface LocalizedData {
 declare global {
 	interface Window {
 		neveCustomLayouts: LocalizedData;
+		wp: {
+			data: {
+				dispatch: (
+					value: string
+				) => {
+					createNotice: (
+						type: string,
+						text: string,
+						args: Record< string, unknown >
+					) => never;
+				};
+			};
+		};
 	}
 }
