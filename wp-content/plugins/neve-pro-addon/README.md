@@ -15,6 +15,14 @@ The code is licensed under GPLv3.
 
 ## Changelog ##
 
+##### [Version 2.4.8](https://github.com/Codeinwp/neve-pro-addon/compare/v2.4.7...v2.4.8) (2022-12-15)
+
+- [Fix] Blocks module not displaying the required plugins
+- [Fix] Revert menu changes to fix regressions
+
+
+
+
 ##### [Version 2.4.7](https://github.com/Codeinwp/neve-pro-addon/compare/v2.4.6...v2.4.7) (2022-12-14)
 
 - [Feat] Add advanced search component support for post types created with ACF Extended

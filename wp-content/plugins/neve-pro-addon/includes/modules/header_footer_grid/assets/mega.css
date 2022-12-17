@@ -14,7 +14,7 @@
   width: 100vw; }
 
 .neve-mega-menu > .sub-menu {
-  display: grid;
+  display: grid !important;
   grid-template-columns: var(--gridcols);
   color: var(--color);
   --activecolor: var(--color); }
@@ -26,16 +26,10 @@
       background-color: transparent; }
     .neve-mega-menu > .sub-menu > li > a:hover, .neve-mega-menu > .sub-menu > li > a:hover i, .neve-mega-menu > .sub-menu > li > a:hover span {
       color: var(--color) !important; }
-  .neve-mega-menu > .sub-menu li > .wrap > a:hover, .neve-mega-menu > .sub-menu li > .wrap > a:hover i, .neve-mega-menu > .sub-menu li > .wrap > a:hover span, .neve-mega-menu > .sub-menu li > .wrap > a:hover .dd-title > i,
-  .neve-mega-menu > .sub-menu li > a:hover,
-  .neve-mega-menu > .sub-menu li > a:hover i,
-  .neve-mega-menu > .sub-menu li > a:hover span,
-  .neve-mega-menu > .sub-menu li > a:hover .dd-title > i {
-    color: var(--hovertextcolor); }
+  .neve-mega-menu > .sub-menu li > a:hover, .neve-mega-menu > .sub-menu li > a:hover i, .neve-mega-menu > .sub-menu li > a:hover span, .neve-mega-menu > .sub-menu li > a:hover .dd-title > i {
+    color: var(--hovercolor); }
   .neve-mega-menu > .sub-menu .neve-mm-heading > a, .neve-mega-menu > .sub-menu .neve-mm-heading > span, .neve-mega-menu > .sub-menu .neve-mm-heading i {
     color: var(--headingcolor, var(--color)); }
-  .neve-mega-menu > .sub-menu .menu-item > .wrap > a > i,
-  .neve-mega-menu > .sub-menu .menu-item > .wrap > a > .dd-title > i,
   .neve-mega-menu > .sub-menu .menu-item > a > i,
   .neve-mega-menu > .sub-menu .menu-item > a > .dd-title > i {
     color: var(--iconcolor, var(--color)); }
