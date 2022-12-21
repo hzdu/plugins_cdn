@@ -1,8 +1,6 @@
 <div class="tva-card tva-customer-card tva-card-small tva-c-course-grid-elem">
 	<div class="tva-cc-title">
-		<# if ( ! this.moduleLocked ) { #>
-			<input type="checkbox" class="tva-section-select" data-level="lesson" data-item-id="<#= this.lesson.get('ID') #>">
-		<# } #>
+			<input type="checkbox" <#= this.moduleLocked ? 'disabled' : '' #> class="tva-section-select" data-level="lesson" data-item-id="<#= this.lesson.get('ID') #>">
 		<div>
 			<#= this.lesson.get( 'post_title' ) #>
 			<span class="variation"><#= this.lesson.get( 'lesson_type' ) #>&nbsp;<?php echo __( 'lesson', 'thrive-apprentice' ); ?></span>

@@ -34,7 +34,7 @@ export default {
 	mixins: [ GenericField ],
 	computed: {
 		settingsUrl() {
-			return TAPAdmin.settings_url;
+			return TAPAdmin.urls.settings_url;
 		},
 		timezone() {
 			return TAPAdmin.timezone_offset.includes( '-' ) ? TAPAdmin.timezone_offset.replace( '-', '- ' ) : `+ ${TAPAdmin.timezone_offset || 0}`;

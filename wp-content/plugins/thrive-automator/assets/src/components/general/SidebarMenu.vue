@@ -1,11 +1,11 @@
 <template>
 	<div class="tap-sidebar-menu">
-		<div :class="{active: $route.path.includes('saved')}" class="tap-menu-header-item" @click="goToDash">
+		<div :class="{active: currentPath === 'saved'}" class="tap-menu-header-item" @click="goToDash">
 			<icon :icon-name="'tap-logo'"/>
 			<span class="tap-menu-text">Automator</span>
 		</div>
-		<div class="tap-menu-items">
-			<div :class="{active: $route.path.includes('error_log')}" class="tap-menu-item" @click="goToLogs()">
+		<div class="tap-menu-items tap-flex--column">
+			<div :class="{active: currentPath === 'error_log'}" class="tap-menu-item" @click="goToLogs">
 				<icon :icon-name="'tap-error-log-active'" class="active-icon"/>
 				<icon :icon-name="'tap-error-log-default'" class="default-icon"/>
 				<span class="tap-menu-text">Logs</span>
@@ -40,6 +40,10 @@
 					</div>
 				</template>
 			</Dropdown>
+			<div v-if="!hasTTW" :class="{active: currentPath === 'settings'}" class="tap-menu-item tap-menu-item-settings" @click="goToSettings">
+				<icon icon-name="tap-cog"/>
+				<span class="tap-menu-text">Settings</span>
+			</div>
 		</div>
 	</div>
 </template>
@@ -77,11 +81,21 @@ export default {
 		},
 		showAppsTooltip() {
 			return this.showInfo && this.showAppPopup && this.getConnected
+		},
+		currentPath() {
+			const path = this.$route.path.split( '/' ).filter( part => part );
+			return path[ 0 ];
+		},
+		hasTTW() {
+			return TAPAdmin.ttw.connected;
 		}
 	},
 	methods: {
 		goToDash() {
 			this.$router.push( {path: '/saved'} );
+		},
+		goToSettings() {
+			this.$router.push( {path: '/settings'} );
 		},
 		goToLogs() {
 			this.$router.push( {path: '/error_log'} );

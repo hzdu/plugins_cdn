@@ -88,6 +88,9 @@ export default {
 		...mapGetters( 'suite', [ 'getConnected', 'getInstalled', 'getActive' ] ),
 		showRibbon() {
 			return ! this.getActive || ! this.getInstalled || ! this.getConnected;
+		},
+		metricsNotice() {
+			return TAPAdmin.$( '.tve-metrics-consent-notice' );
 		}
 	},
 	watch: {
@@ -100,7 +103,15 @@ export default {
 		this.resetSteps();
 		this.resetFilters()
 		this.$root.$el.classList.toggle( 'tap-no-sidebar', this.getAutomations.length < 2 );
-		this.$el.parentNode.classList.toggle( 'tap-columns', this.showRibbon );
+		this.$el.parentNode.classList.toggle( 'tap-columns', this.showRibbon || this.metricsNotice.length );
+		//move the notice so its displayed well in dashboard
+		if ( this.metricsNotice.length ) {
+			if ( this.showRibbon ) {
+				this.metricsNotice.remove();
+			} else {
+				TAPAdmin.$( this.$el.parentNode ).prepend( this.metricsNotice );
+			}
+		}
 	},
 	methods: {
 		...mapActions( 'steps', [ 'setCurrentAutomation', 'resetSteps', 'updateAutomation', 'deleteAutomation' ] ),

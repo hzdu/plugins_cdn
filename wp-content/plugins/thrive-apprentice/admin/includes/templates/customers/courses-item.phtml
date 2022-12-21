@@ -10,7 +10,7 @@
 		<span class="tva-student-course-draft variation"><?php echo __( '(Draft)', 'thrive-apprentice' ); ?></span>
 		<# } #>
 	</div>
-	<div class="tva-cc-date"><#= this.enrolled #></div>
+	<div class="tva-cc-date"><#= this.model.get( 'enrollment_date' ) #></div>
 	<div class="tva-cc-status">
 
 		<# if ( this.model.get( 'status' ) === 'draft' ) { #>

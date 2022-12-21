@@ -8,7 +8,6 @@
            theme: 'automator',
            offset: [0, 10],}" :class="{'tap-not-active':!showSettings}"
 			 class="tap-flex tap-trigger-settings-icon pl-5 pr-5"
-
 			 @click="showSettings=true">
 			<icon icon-name="tap-cog"/>
 		</div>

@@ -24,3 +24,10 @@
 		<?php tqb_get_svg_icon( 'next-q' ); ?>
 	</a>
 </div>
+<# if(item.allowMultipleAnswers() && this.shortcode.shouldDisplayFeedbackUntilNext()){ #>
+<div class="tqb-button-holder">
+	<a href="javascript:void(0)" class="tqb-feedback-button">
+		<?php tqb_get_svg_icon( 'thumbs-up' ); ?>
+	</a>
+</div>
+<# } #>

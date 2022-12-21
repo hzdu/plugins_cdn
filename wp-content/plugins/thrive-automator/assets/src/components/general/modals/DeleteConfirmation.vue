@@ -3,11 +3,11 @@
 		<div
 			v-if="shouldShow"
 			:style="modalSizes"
-			class="tap-modal">
+			class="tap-modal tap-delete-confirmation-modal">
 			<div
 				class="tap-modal-container">
 				<div class="tap-modal-content">
-					<div class="tap-modal-header">
+					<div class="tap-modal-header mb-20">
 						{{ modalHeader }}
 					</div>
 					<div class="tap-modal-description">

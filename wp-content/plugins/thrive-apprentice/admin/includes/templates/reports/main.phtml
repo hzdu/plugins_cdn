@@ -68,13 +68,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 			] ); ?>
 		</div>
 		<div class="col-2-8">
-			<?php Main::render_report( 'tve_reporting_card', 'total_members', 'users' ); ?>
+			<?php Main::render_report( 'tve_reporting_card', 'new_members', 'users' ); ?>
 		</div>
 	</div>
 
 	<div class="apprentice-dashboard-wrapper">
 		<div class="col-4-8">
-			<?php Main::render_report( 'tve_reporting_timeline', 'total_members', 'user-plus', [
+			<?php Main::render_report( 'tve_reporting_timeline', 'new_members', 'user-plus', [
 				'report-title'          => 'Latest members',
 				'report-data-type'      => 'latest_members',
 				'report-expanded-view'  => '#students',

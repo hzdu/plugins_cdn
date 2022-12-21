@@ -14,7 +14,7 @@
 					<h3>Welcome to Thrive Automator</h3>
 					<icon-button :button-styles="['ghost', 'grey','no-border', 'clean']" button-text="Skip for now" icon-name="tap-cross" icon-position="right" @click="skipEnroll"/>
 					<div v-if="!showConnection" class="tap-suite-comparison tap-flex--end tap-flex--column p-35">
-						<suite-header :is-splash="true" :class="['tap-fw','tap-flex--between']" @button-click="showConnection=true"/>
+						<suite-header :class="['tap-fw','tap-flex--between']" :is-splash="true" @button-click="showConnection=true"/>
 						<suite-comparison/>
 						<div class="tap-comparison-footer tap-flex mt-25 tap-fw">
 							<div class="tap-separator tap-fw"/>
@@ -36,14 +36,14 @@
 									<h4 class="m-0">
 										Thrive Product Manager
 									</h4>
-									<a :href="tpmLink" target="_blank" class="tap-download-link p-10 mt-20">Click here to Download</a>
+									<a :href="tpmLink" class="tap-download-link p-10 mt-20" target="_blank">Click here to Download</a>
 								</div>
 								<div class="tap-tpm-upload tap-flex--column p-20">
 									<icon icon-name="tap-plugin-upload"/>
 									<h4 class="m-5">
 										Upload it here
 									</h4>
-									<file-upload :button-styles="uploadButtonStyles" :prevent-upload="preventUpload" :confirmation-message="uploadMessage" :confirmation-icon="uploadIcon" :button-text="uploadText" accept="application/zip" @files-added="verifyArchive" @upload="installArchive"/>
+									<file-upload :button-styles="uploadButtonStyles" :button-text="uploadText" :confirmation-icon="uploadIcon" :confirmation-message="uploadMessage" :prevent-upload="preventUpload" accept="application/zip" @upload="installArchive" @files-added="verifyArchive"/>
 								</div>
 							</div>
 						</div>
@@ -57,7 +57,7 @@
 								<h4 class="m-0">
 									Thrive Product Manager
 								</h4>
-								<a class="tap-activate-link p-10 m-20 tap-flex" :class="{'tap-activating': duringActivation}" @click="activateTpm">{{ activationMessage }}</a>
+								<a :class="{'tap-activating': duringActivation}" class="tap-activate-link p-10 m-20 tap-flex" @click="activateTpm">{{ activationMessage }}</a>
 							</div>
 						</div>
 						<div v-if="currentStep===3" class="tap-suite-connect tap-suite-step p-15 tap-flex--column">
@@ -66,7 +66,7 @@
 								<h3>
 									<span> Create or Connect your Thrive Account for FREE</span>
 								</h3>
-								<custom-form :inputs="formInputs" :button-text="formButtonText" :show-form-loader="showFormLoader" :consent-message="consentMessage" :has-consent="hasConsent" @input="handleInput" @submit="handleRegister" @change-consent="hasConsent=!hasConsent"/>
+								<custom-form :button-text="formButtonText" :consent-message="consentMessage" :has-consent="hasConsent" :inputs="formInputs" :show-form-loader="showFormLoader" @input="handleInput" @submit="handleRegister" @change-consent="hasConsent=!hasConsent"/>
 								<div class="tap-suite-go-to-login tap-flex">
 									<p>Already have a Thrive Themes account?</p>
 									<login-popup ref="loginTrigger" @loggedin="successLogin"/>
@@ -188,7 +188,7 @@ export default {
 			return TAPAdmin.ttw.download_link;
 		},
 		consentMessage() {
-			return `I accept the <a href="${TAPAdmin.term_cond}" target="_blank">terms & conditions</a> and agree to receive news and product related emails from Thrive Themes.`
+			return `I accept the <a href="${TAPAdmin.urls.term_cond}" target="_blank">terms & conditions</a> and agree to receive news and product related emails from Thrive Themes.`
 		},
 		formButtonText() {
 			return 'Create my Thrive Themes Account';
@@ -301,7 +301,9 @@ export default {
 		},
 		goToSaved() {
 			toggleBodyOverflow( false )
-			this.$router.push( {path: '/saved'} );
+			this.$router.push( {path: '/saved'} ).then( () => {
+				location.reload();
+			} );
 		},
 		skipSuite() {
 			this.setConnected( true );

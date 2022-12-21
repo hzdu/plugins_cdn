@@ -1,6 +1,6 @@
 <template>
 	<div v-tooltip="{
-         content: tooltip || 'icon' ,
+         content: tooltip || '' ,
          theme: tooltip? 'automator':'tooltip',
          offset: [0, 15],
          delay:{

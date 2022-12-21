@@ -1,6 +1,6 @@
 <template>
 	<label class="tap-checkbox-wrapper tap-flex">
-		<input :checked="value" :name="id" type="checkbox" @input.prevent.stop="$emit('input',id,!value)">
+		<input :checked="value" :name="id" type="checkbox" @input.prevent.stop="onInput">
 		<span class="tap-checkmark"/>
 		<span v-if="text" class="tap-checkbox-label">{{ text }}</span>
 	</label>
@@ -21,6 +21,11 @@ export default {
 		value: {
 			type: Boolean,
 			default: () => false,
+		}
+	},
+	methods: {
+		onInput( event ) {
+			this.$emit( 'input', this.id, ! this.value, event );
 		}
 	}
 }

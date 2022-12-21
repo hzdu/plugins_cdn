@@ -5,6 +5,7 @@ import ErrorLog from "@/views/ErrorLog";
 import SuiteIntegration from "@/views/SuiteIntegration";
 import Apps from "@/views/Apps";
 import store from "@/store";
+import Settings from "@/views/Settings";
 
 const routes = [
 	{
@@ -35,6 +36,11 @@ const routes = [
 		path: '/apps',
 		name: 'Apps',
 		component: Apps
+	},
+	{
+		path: '/settings',
+		name: 'Settings',
+		component: Settings
 	}
 ];
 

@@ -1,6 +1,24 @@
 const isProduction = process.env.NODE_ENV === 'production';
 const wpPot = require( 'wp-pot' );
+const rootDir = 'src/externals';
 const svgToMiniDataURI = require( 'mini-svg-data-uri' );
+const fs = require( 'fs' );
+const pages = {
+	admin: {
+		entry: 'src/admin.js',
+		chunks: [ 'admin' ]
+	}
+};
+
+fs.readdirSync( rootDir ).forEach( path => {
+	if ( fs.statSync( `${rootDir}/${path}` ).isDirectory() ) {
+		pages[ path ] = {
+			entry: `${rootDir}/${path}/main.js`,
+			chunks: [ path ]
+		}
+	}
+} );
+
 module.exports = {
 	filenameHashing: false,
 	configureWebpack: {
@@ -26,7 +44,7 @@ module.exports = {
 			} )
 		}
 
-		config.plugins.delete( 'html-admin' );
+		Object.keys( pages ).forEach( page => config.plugins.delete( `html-${page}` ) );
 
 		const imagesRule = config.module.rule( 'images' );
 
@@ -46,9 +64,6 @@ module.exports = {
 		} )
 	},
 	pages: {
-		admin: {
-			entry: 'src/admin.js',
-			chunks: [ 'admin' ]
-		},
+		...pages,
 	},
 };

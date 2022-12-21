@@ -1,6 +1,6 @@
 <template>
 	<div class="tap-apps-container tap-fw">
-		<iframe class="tap-suite-apps-iframe" title="Apps" :src="appsLink" @load="iframeLoaded"/>
+		<iframe :src="appsLink" class="tap-suite-apps-iframe" title="Apps" @load="iframeLoaded"/>
 	</div>
 </template>
 
@@ -13,7 +13,7 @@ export default {
 	computed: {
 		...mapGetters( 'suite', [ 'getConnected' ] ),
 		appsLink() {
-			return `${TAPAdmin.apps_link}&body_class=tap-suite-apps-body`;
+			return `${TAPAdmin.urls.apps_link}&body_class=tap-suite-apps-body`;
 		}
 	},
 	mounted() {

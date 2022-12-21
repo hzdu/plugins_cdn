@@ -35,6 +35,7 @@ MODAL
   transform: translate(-50%, -50%);
   z-index: 9999999;
   color: var(--tap-text-color);
+  overflow: hidden;
 
   &.tap-error-modal {
     height: 1px;
@@ -51,11 +52,20 @@ MODAL
     flex-direction: column;
     height: 100%;
     min-height: 100px;
+    @include scrollbars();
+
+    .tap-content-title {
+      font-size: 22px;
+      margin: 0 0 20px;
+    }
   }
 
   .tap-modal-header {
     font-size: 22px;
-    margin-bottom: 20px;
+
+    &:empty {
+      display: none;
+    }
   }
 
   .tap-modal-description {
@@ -64,12 +74,32 @@ MODAL
   }
 
   .tap-modal-footer {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
+    position: sticky;
+    background: #fff;
+    top: 100vh;
+    justify-content: end;
+    display: grid;
+    grid-auto-flow: column;
+    gap: 20px;
+    align-items: center;
+    color: rgba(58, 62, 69, 0.8);
+    font-size: 14px;
 
     .tap-button {
       font-weight: 500;
+    }
+
+    .tap-modal-actions {
+      position: absolute;
+      bottom: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      background: #fff;
+      padding: 30px;
+      width: 100%;
+      box-sizing: border-box;
     }
   }
 
@@ -85,6 +115,26 @@ MODAL
       opacity: 0.8;
     }
   }
+
+  &.tap-delete-confirmation-modal {
+    .tap-modal-footer {
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+}
+
+.tap-no-consent-modal {
+  .tap-info {
+    .tap-icon-wrapper {
+      margin: 0 auto;
+      --tap-icon-size: 13px;
+    }
+  }
+}
+
+.tap-disable-consent-modal {
+  --modal-height: 600px;
 }
 
 .tap-inline-delete-confirmation {

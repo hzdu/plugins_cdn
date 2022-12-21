@@ -49,7 +49,7 @@ export default {
 			return this.currentPath === 'error_log';
 		},
 		noSidebar() {
-			return [ 'error_log', 'suite', 'apps', 'automation' ].includes( this.currentPath );
+			return this.currentPath !== 'saved';
 		},
 		hasErrors() {
 			return Array.isArray( this.getErrors );

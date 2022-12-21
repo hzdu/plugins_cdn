@@ -61,7 +61,6 @@ export default class ApiRequest {
 		if ( ! TAPAdmin._.isEmpty( body ) || ( body instanceof FormData && [ ...body.keys() ].length ) ) {
 			fetchOptions.body = body;
 		}
-
 		return fetch( path, fetchOptions ).then( response => {
 			if ( response.ok ) {
 				return response.json();
@@ -178,6 +177,14 @@ export default class ApiRequest {
 			path: `${this.route()}/settings`,
 			method: 'POST',
 			data: props,
+		} )
+	}
+
+	customRequest( subPath, data = {}, method = 'GET' ) {
+		return apiFetch( {
+			path: `${this.route()}/${subPath}`,
+			method,
+			data
 		} )
 	}
 

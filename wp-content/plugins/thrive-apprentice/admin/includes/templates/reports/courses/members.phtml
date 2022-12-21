@@ -37,7 +37,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 	<div class="apprentice-dashboard-wrapper">
 		<div class="col-3-8">
-			<?php Main::render_report( 'tve_reporting_card', 'total_members', 'abacus', [
+			<?php Main::render_report( 'tve_reporting_card', 'new_members', 'abacus', [
 				'has-chart'             => 0,
 				'report-size'           => 'lg',
 				'report-title'          => __( 'Count', 'thrive-apprentice' ),
@@ -48,7 +48,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 		</div>
 
 		<div class="col-5-8">
-			<?php Main::render_report( 'tve_reporting_chart', 'total_members', 'arrow-clock', [
+			<?php Main::render_report( 'tve_reporting_chart', 'new_members', 'arrow-clock', [
 				'report-title'          => __( 'Over time', 'thrive-apprentice' ),
 				'report-global-filters' => 'date',
 				'report-expanded-view'  => '',
@@ -62,7 +62,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 	<div class="apprentice-dashboard-wrapper">
 		<div class="col-8-8">
-			<?php Main::render_report( 'tve_reporting_table', 'total_members', 'info', [
+			<?php Main::render_report( 'tve_reporting_table', 'new_members', 'info', [
 				'report-title'              => __( 'Details', 'thrive-apprentice' ),
 				'report-global-filters'     => 'date',
 				'report-expanded-view'      => '',

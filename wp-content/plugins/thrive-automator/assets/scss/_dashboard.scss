@@ -36,6 +36,12 @@
     width: 60px;
     z-index: 2;
 
+    .tap-menu-items {
+      height: calc(100% - 120px);
+      flex: 1;
+      justify-content: flex-start;
+    }
+
     .tap-menu-item {
       min-height: 65px;
       padding: 5px;
@@ -44,6 +50,10 @@
       position: relative;
       left: 3px;
       margin-bottom: 1px;
+
+      &.tap-menu-item-settings {
+        margin-top: auto;
+      }
 
       &.active, &:hover {
         color: #667374;
@@ -135,6 +145,7 @@
     box-sizing: border-box;
     display: flex;
     background-color: #f1f1f1;
+    padding: 0 10px;
 
     body.folded & {
       width: calc(100% - 355px);
@@ -170,6 +181,11 @@
   }
 }
 
+.tap-view-saved {
+  .tve-metrics-consent-notice {
+    display: flex !important;
+  }
+}
 
 #message, .error, .notice, .update-nag, .sbi_notice, .update, .updated {
   display: none !important;
