@@ -80,7 +80,8 @@ function TRP_IN_Determine_Language(){
                 publish_languages: trp_language_cookie_data['publish_languages'],
                 iso_codes: trp_language_cookie_data['iso_codes'],
                 english_name: trp_language_cookie_data['english_name'],
-                default_language: trp_language_cookie_data['default_language']
+                default_language: trp_language_cookie_data['default_language'],
+                is_iphone_user_check: trp_language_cookie_data['is_iphone_user_check']
             },
             success: function( response ) {
                 if ( response ) {
@@ -335,14 +336,27 @@ function TRP_IN_Determine_Language(){
         });
     };
 
+    this.check_if_iphone_user = function (){
+        
+        if( trp_language_cookie_data['is_iphone_user_check'] == false ){
+            return false;
+        }else{
+            if( /iPhone/g.test(navigator.userAgent) ){
+                return true;
+            }else{
+                return false;
+            }
+        }
+    };
+
     this.redirect_if_needed = function( needed_language ){
         trpCookie.setCookie( trp_language_cookie_data['cookie_name'], needed_language, trp_language_cookie_data['cookie_age'], trp_language_cookie_data['cookie_path'] );
         _this.add_event_handlers();
 
-        if (!(_this.is_same_language_code(_this.get_current_dom_language(), needed_language))){
+        if (!(_this.is_same_language_code(_this.get_current_dom_language(), needed_language)) && _this.check_if_iphone_user() == false ){
             url_to_redirect = _this.get_url_for_lang( needed_language );
 
-            if(url_to_redirect != 'undefined' && url_to_redirect!= false) {
+            if(url_to_redirect != 'undefined' && url_to_redirect!= false ) {
                 // redirect to needed language
                 if(trp_language_cookie_data['popup_type'] == 'normal_popup' && trp_language_cookie_data['popup_option'] == 'popup'){
                     _this.activate_popup( needed_language, url_to_redirect );
