@@ -1,0 +1,143 @@
+.bricksextras-settings input[type="checkbox"] {
+    appearance: none;
+    background-color: #eaecef;
+    border: none;
+    border-radius: 16px;
+    box-shadow: none;
+    cursor: pointer;
+    height: 16px;
+    margin: 0 4px 0 0;
+    outline: none;
+    padding: 0;
+    width: 26px;
+}
+.bricksextras-settings .plugins input[type="checkbox"]:before {
+    -webkit-appearance: none;
+    background-color: #9da8b2;
+    border-radius: 12px;
+    content: "";
+    cursor: pointer;
+    display: block;
+    height: 12px;
+    left: 2px;
+    margin: 0;
+    position: relative;
+    top: 2px;
+    transition: 0.1s;
+    transition: all 0.2s ease-out;
+    width: 12px;
+}
+.bricksextras-settings input[type="checkbox"]:checked {
+    background-color: #2271b1;
+}
+.bricksextras-settings input[type="checkbox"]:checked:before {
+    background-color: #fff;
+    content: "";
+    left: 0;
+    opacity: 1;
+    transform: translateX(100%);
+}
+.bricksextras-settings textarea.bricks-code {
+    font-family: Consolas, monaco, Courier New, monospace;
+}
+
+.bricksextras-settings .plugin-update-tr.active td, 
+.bricksextras-settings .plugins .active th.check-column {
+    border-left: none;
+}
+
+.bricksextras-settings .plugins tbody th.check-column,
+.bricksextras-settings .plugins thead td.check-column  {
+    padding: 10px 0px 10px 10px;
+}
+
+.bricksextras-settings table.widefat {
+    border: 1px solid #ddd;
+    box-shadow: none;
+}
+
+.bricksextras-settings .plugins .inactive th,
+.bricksextras-settings .plugins .inactive td,
+.bricksextras-settings .plugins .active th,
+.bricksextras-settings .plugins .active td,
+.bricksextras-settings .plugins tr.active+tr.inactive td, 
+.bricksextras-settings .plugins tr.active+tr.inactive th {
+    border-bottom: 1px solid #f1f1f1;
+    box-shadow: none;
+}
+
+.bricksextras-settings .plugins .inactive:last-child th,
+.bricksextras-settings .plugins .inactive:last-child td,
+.bricksextras-settings .plugins .active:last-child th,
+.bricksextras-settings .plugins .active:last-child td,
+.bricksextras-settings .plugins tr.active+tr.inactive:last-child td, 
+.bricksextras-settings .plugins tr.active+tr.inactive:last-child th {
+    border: none;
+}
+
+.bricksextras-settings .plugins tr.active+tr.inactive td, 
+.bricksextras-settings .plugins tr.active+tr.inactive th, 
+.bricksextras-settings .plugins tr.active.plugin-update-tr+tr.inactive td, 
+.bricksextras-settings .plugins tr.active.plugin-update-tr+tr.inactive th {
+    border-top: 0;
+}
+
+
+.bricksextras-settings .widefat thead td, 
+.bricksextras-settings .widefat thead th {
+    border-color: #ddd;
+}
+
+.bricksextras-settings .widefat td,
+.bricksextras-settings p.doc-link {
+    line-height: 1.8;
+}
+
+.bricksextras-settings td.plugin-title strong {
+    margin-bottom: 0;
+}
+
+.bricksextras-settings .plugins .active td, 
+.bricksextras-settings .plugins .active th {
+    background-color: #F6F7F8;
+}
+
+.bricksextras-settings .plugins, 
+.bricksextras-settings .plugins td, 
+.bricksextras-settings .plugins th {
+    color: #3c434a;
+}
+
+.bricksextras-settings .changelog-entry {
+    background-color: #fff; 
+    padding: 15px 20px; 
+    border: 1px solid #ddd;
+    margin-bottom: 10px;
+}
+
+.bricksextras-settings .changelog-entry h3 {
+    margin-top: 0.5em;
+}
+
+.bricksextras-settings .changelog-entry li:last-child,
+.bricksextras-settings .changelog-entry ul:last-child {
+    margin-bottom: 0;
+}
+
+.bricksextras-settings .nav-tab {
+    padding-left: 25px;
+    padding-right: 25px;
+    transition: background-color .3s ease;
+}
+
+@media screen and (max-width: 782px) {
+
+    .bricksextras-settings .form-plugin-links {
+        flex-direction: column;
+    }
+
+    #wpbody-content .bricksextras-settings .wp-list-table.plugins td {
+        display: table-cell;
+    }
+
+}

@@ -1,0 +1,215 @@
+component.x-slider {
+    --xitemstoshow: 1;
+    --xspacebetween: 0px;
+    --xsliderautoheight: 
+}
+
+.brx-body.iframe .x-slider.splide {
+    visibility: visible;
+}
+
+.x-slider_builder .splide__list {
+    overflow-x: scroll;
+    gap: var(--xspacebetween);
+}
+
+.x-slider.x-slider_no-slides {
+    display: none;
+}
+
+.x-slider_builder .splide__list > .brxe-code,
+.x-slider_builder .x-slider-gallery {
+    overflow-x: scroll;
+    gap: var(--xspacebetween);
+    display: flex;
+}
+
+.x-slider-gallery {
+    width: 100%;
+}
+
+.x-slider_slide {
+    display: flex;
+}
+
+.x-slider_slide[class*=brxe-] {
+    max-width: none;
+}
+
+.x-slider_slide-image {
+    position: relative;
+}
+
+.x-slider_slide-caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0,0,0,.25);
+    font-size: inherit;
+    margin: 0;
+    padding: 10px 15px;
+    z-index: 1;
+    color: #fff;
+}
+
+.x-slider,
+.x-slider .splide__track,
+.x-slider .splide__list  {
+    width: 100%;
+}
+
+.x-slider {
+    --xsliderprogress-thickness: 4px;
+}
+
+.splide__track_builder {
+    --xslidesize: calc( ( 100%  - ( calc( var(--xitemstoshow) - 1 ) * var(--xspacebetween) ) ) / var(--xitemstoshow) )!important;
+}
+
+.x-slider .splide__track_builder.splide__track--fade .x-slider_slide {
+    height: 100%!important;
+    width: 100%!important;
+}
+
+.x-slider .splide__track_builder.x-slider_autoWidth .x-slider_slide {
+    width: auto!important;
+}
+
+.x-slider .splide__track_builder.splide__track--fade>.splide__list>.splide__slide:first-of-type {
+    opacity: 1;
+}
+
+.x-slider .splide__slide img {
+    height: auto;
+    width: 100%;
+}
+
+.x-slider_slide {
+    width: var(--xslidesize);
+    height: auto;
+    padding: 4rem 1rem;
+}
+
+.x-slider-gallery .x-slider_slide {
+    padding: 0;
+}
+
+.brxe-code .x-slider_slide {
+    padding: 0;
+}
+
+.x-slider_builder .splide__list .x-slider_slide {
+    flex-shrink: 0;
+    width: var(--xslidesize);
+    height: auto;
+}
+
+
+
+
+/* vertical spacing */
+
+.x-slider_builder.splide--ttb .splide__list,
+.x-slider_builder.splide--ttb .splide__list > .brxe-code,
+.x-slider_builder.splide--ttb .splide__list.x-slider-gallery {
+    flex-direction: column;
+    --xsliderautoheight: var(--xslidesize);
+}
+
+.x-slider_builder.splide--ttb .x-slider_slide {
+    height: var(--xslidesize);
+    width: 100%;
+}
+
+.x-slider_builder.splide--ttb .x-slider_slide {
+    height: var(--xsliderautoheight);
+}
+
+.x-slider .splide__arrows--ttb i {
+    transform: rotate(90deg);
+}
+
+
+/* horizontal spacing */
+
+.x-slider_builder.splide--ltr .splide__list,
+.x-slider_builder.splide--ltr .splide__list > .brxe-code,
+.x-slider_builder.splide--ltr .splide__list > .x-slider-gallery {
+    flex-direction: row;
+}
+
+.x-slider_builder.splide--rtl .splide__list,
+.x-slider_builder.splide--rtl .splide__list > .brxe-code,
+.x-slider_builder.splide--rtl .splide__list > .xproslidergalleryslides {
+    flex-direction: unset;
+}
+
+.x-slider_builder.splide--ltr .x-slider_slide,
+.x-slider_builder.splide--rtl .x-slider_slide  {
+    width: var(--xslidesize);
+    height: auto;
+}
+ 
+.x-slider_slide > * {
+    position: relative;
+}
+
+.x-slider .splide__arrows--rtl .splide__arrow > * {
+    transform: rotate(180deg);
+}
+
+
+.x-splide__arrows .splide__arrow {
+    font-size: 16px;
+    border-radius: 100%;
+    transition-duration: 0.3s;
+    transition-property: opacity, color, background-color;
+    transition-timing-function: ease;
+}
+
+.x-splide__arrows .splide__arrow i {
+    height: 1em;
+    width: 1em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.splide__track--nav>.splide__list>.splide__slide {
+    opacity: 0.75;
+}
+
+.splide__track--nav>.splide__list>.splide__slide.is-active {
+    opacity: 1;
+}
+
+.x-splide__track.splide__track--nav>.splide__list>.splide__slide,
+.x-splide__track.splide__track--nav>.splide__list>.splide__slide.is-active {
+    border: none;
+}
+
+.x-slider [data-x-animation*=fade] {
+    opacity: 0;
+}
+
+
+.x-slider {
+    position: relative;
+}
+
+.x-slider_builder {
+    width: 100%;
+}
+
+
+
+/* slider for builder */
+
+.x-slider_builder {
+    --xslidedirection: ltr;
+}
+
+.x-slider_builder .x-slider-gallery:empty {
+    min-height: 200px;
+}

@@ -1,0 +1,65 @@
+:root {
+    --x-floating-distance: -20px;
+    --x-floating-delay: 0ms;
+    --x-floating-duration: 6000ms;
+}
+
+[data-x-floating] {
+    animation-duration: var(--x-floating-duration);
+    animation-delay: var(--x-floating-delay);
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+    animation-name: x-float-vertical;
+}
+
+[data-x-floating="horizontal"] {
+    animation-name: x-float-horizontal;
+}
+
+@keyframes x-float-vertical {
+    0% {
+        transform: translatey(0);
+        -webkit-transform: translatey(0);
+        -moz-transform: translatey(0);
+        -ms-transform: translatey(0);
+        -o-transform: translatey(0);
+    }
+    50% {
+        transform: translatey(var(--x-floating-distance));
+        -webkit-transform: translatey(var(--x-floating-distance));
+        -moz-transform: translatey(var(--x-floating-distance));
+        -ms-transform: translatey(var(--x-floating-distance));
+        -o-transform: translatey(var(--x-floating-distance));
+    }
+    100% {
+        transform: translatey(0);
+        -webkit-transform: translatey(0);
+        -moz-transform: translatey(0);
+        -ms-transform: translatey(0);
+        -o-transform: translatey(0);
+    }
+}
+
+@keyframes x-float-horizontal {
+    0% {
+        transform: translatex(0);
+        -webkit-transform: translatex(0);
+        -moz-transform: translatex(0);
+        -ms-transform: translatex(0);
+        -o-transform: translatex(0);
+    }
+    50% {
+        transform: translatex(var(--x-floating-distance));
+        -webkit-transform: translatex(var(--x-floating-distance));
+        -moz-transform: translatex(var(--x-floating-distance));
+        -ms-transform: translatex(var(--x-floating-distance));
+        -o-transform: translatex(var(--x-floating-distance));
+    }
+    100% {
+        transform: translatex(0);
+        -webkit-transform: translatex(0);
+        -moz-transform: translatex(0);
+        -ms-transform: translatex(0);
+        -o-transform: translatex(0);
+    }
+}
