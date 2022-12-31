@@ -14,7 +14,8 @@ class LostPasswordModal {
             e.preventDefault();
 
             new LostPasswordAction().load( {
-                fields: jQuery( e.target ).serialize(),
+                user_login: jQuery( '#user_login' ).val(),
+                'woocommerce-lost-password-nonce': jQuery( '#woocommerce-lost-password-nonce' ).val(),
             } );
         } );
 

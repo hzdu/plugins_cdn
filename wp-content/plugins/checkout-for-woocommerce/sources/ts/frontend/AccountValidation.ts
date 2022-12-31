@@ -5,7 +5,7 @@ import DataService  from './Services/DataService';
 class AccountValidation {
     public init(): void {
         jQuery( document.body ).on( 'cfw_account_exists updated_checkout', ( { type } ) => {
-            if ( this.validateProvidedAccountEmailAndLoggedInState() ) {
+            if ( this.accountDoesNotExistOrLoginIsNotRequired() || !DataService.getSetting( 'login_allowed_at_checkout' ) ) {
                 return;
             }
 
@@ -19,7 +19,7 @@ class AccountValidation {
 
     public getValidatorFactory(): () => Promise<any> {
         return () => new Promise( ( resolve, reject ) => {
-            if ( this.validateProvidedAccountEmailAndLoggedInState() ) {
+            if ( this.accountDoesNotExistOrLoginIsNotRequired() || !DataService.getSetting( 'login_allowed_at_checkout' ) ) {
                 resolve( true );
                 return;
             }
@@ -38,7 +38,7 @@ class AccountValidation {
         AlertService.queueAlert( new Alert( 'error', message, classes ) );
     }
 
-    protected validateProvidedAccountEmailAndLoggedInState(): boolean {
+    protected accountDoesNotExistOrLoginIsNotRequired(): boolean {
         const userIsNotLoggedIn = !DataService.getSetting( 'user_logged_in' );
         const registrationIsRequired = DataService.getSetting( 'is_registration_required' );
         const runtimeEmailMatchedUser = DataService.getRuntimeParameter( 'runtime_email_matched_user' );

@@ -61,18 +61,23 @@ class AmazonPay extends Compatibility {
 
             jQuery( '#pay_with_amazon' ).css( 'opacity', '0' );
 
-            this.timer = setInterval( this.clearShadowRoot.bind( this ), 100 );
+            this.timer = setInterval( this.clearShadowRoot.bind( this ), 25 );
         } catch ( error ) {
             // eslint-disable-next-line no-console
             console.log( error );
         }
+
+        jQuery( window ).on( 'updated_checkout', () => {
+            this.iterations = 0;
+            this.timer = setInterval( this.clearShadowRoot.bind( this ), 25 );
+        } );
     }
 
     clearShadowRoot(): void {
         // Clear shadow-root from #pay_with_amazon button
         this.iterations += 1;
 
-        if ( this.iterations > 50 ) {
+        if ( this.iterations > 100 ) {
             clearInterval( this.timer );
         }
         try {

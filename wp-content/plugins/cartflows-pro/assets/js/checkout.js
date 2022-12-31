@@ -606,6 +606,8 @@
 					$( '[name=_wcf_bump_products]' ).val(
 						JSON.stringify( bump_product_ids )
 					);
+					// Re-calculate the cart total
+					$( document.body ).trigger( 'updated_cart_totals' );
 				},
 				error() {
 					$( '.woocommerce-checkout-review-order-table' ).unblock();
@@ -1712,6 +1714,8 @@
 				'wcf-current-step'
 			);
 
+			updateEmailValue();
+
 			next_step_element.text(
 				cartflows.multistep_buttons_strings.shipping
 			);
@@ -1736,6 +1740,16 @@
 			$( '.wcf-embed-checkout-form' ).addClass( 'wcf-payment' );
 			$( '.wcf-checkout-breadcrumb.payment-step a' ).addClass(
 				'wcf-current-step'
+			);
+
+			updateEmailValue();
+		}
+		function updateEmailValue() {
+			// Update email if it is changed.
+			$( '.wcf-review-detail-content.contact-details' ).text(
+				$( '.wcf-embed-checkout-form form.woocommerce-checkout' )
+					.find( 'input[type="email"]' )
+					.val()
 			);
 		}
 

@@ -6,6 +6,7 @@ import AmazonPay                             from './Compatibility/Gateways/Amaz
 import BraintreeForWooCommerce               from './Compatibility/Gateways/BraintreeForWooCommerce';
 import Braintree                             from './Compatibility/Gateways/Braintree';
 import KlarnaCheckout                        from './Compatibility/Gateways/KlarnaCheckout';
+import NMI                                   from './Compatibility/Gateways/NMI';
 import PayPalForWooCommerce                  from './Compatibility/Gateways/PayPalForWooCommerce';
 import PayPalPlusCw                          from './Compatibility/Gateways/PayPalPlusCw';
 import Square                                from './Compatibility/Gateways/Square';
@@ -304,6 +305,7 @@ class Main {
             new WooCommercePensoPay(),
             new MyShipper(),
             new ExtraCheckoutFieldsBrazil(),
+            new NMI(),
         ].forEach( ( compat ) => compat.maybeLoad() );
     }
 
