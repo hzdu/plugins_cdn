@@ -1,5 +1,5 @@
 /*!
- * Filter Everything admin 1.7.1
+ * Filter Everything admin 1.7.3
  */
 #filters-seo-rules .inside,
 #filters-set-items .inside{
@@ -130,6 +130,7 @@ li.wpc-filter-slug{
     border: 1px solid #e3e3e3;
     box-shadow: 0 1px 1px rgba(0,0,0,.04);
 }
+.wpc-field-show-term-names-tr,
 .wpc-field-apply-button-text-tr,
 .wpc-field-apply-button-page-type-tr,
 .wpc-field-reset-button-text-tr,
@@ -137,6 +138,8 @@ li.wpc-filter-slug{
 #wpc-filter-id-apply-button{
     display: none;
 }
+.taxonomy-has-swatches .wpc-field-show-term-names-tr,
+.wpc-filter-has-brands .wpc-field-show-term-names-tr,
 .wpc-field-apply-button-text-tr.wpc-opened,
 .wpc-field-reset-button-text-tr.wpc-opened,
 .wpc-field-hide-until-parent-tr.wpc-opened,
@@ -964,9 +967,11 @@ a.wpc-location-preview span{
     width: calc(100% - 25px);
     margin-right: 5px;
 }
+.wpc-color-swatches-taxonomies,
 .wpc-bottom-widget-compatibility{
     display: none;
 }
+.wpc-color-swatches-taxonomies.wpc-opened,
 .wpc-bottom-widget-compatibility.wpc-opened{
     display: table-row;
 }
@@ -1039,6 +1044,9 @@ a.wpc-location-preview span{
 .wpc-form-table.form-table .select2-search.select2-search--inline input.select2-search__field{
     width: auto !important;
 }
+.wpc-form-table.form-table select#color_swatches_taxonomies+.select2 .select2-search.select2-search--inline input.select2-search__field{
+    min-width: 200px;
+}
 .wpc-filter-sortable-handle{
     width: 14px;
     height: 14px;
@@ -1065,6 +1073,41 @@ a#wpc-get-license-key:hover::after {
 }
 .rtl .wpc-additional-fields-selector{
     text-align: left;
+}
+.wpc-upload-image-button{
+    max-width: 150px;
+    display: block;
+}
+.wpc-upload-image-button img{
+    max-width: 150px;
+    height: auto;
+}
+#wpc_term_color{
+    max-width: 115px;
+}
+.wpc-remove{
+    color: #cc0000;
+    text-decoration: none;
+    border-bottom: 1px dashed #cc0000;
+}
+.wpc-remove:hover{
+    color: #e72020;
+    border-bottom: 1px dashed #e72020;
+}
+#wpc-image-description,
+#wpc-color-description{
+    color: #646970;
+    margin-top: 4px;
+}
+.wpc-term-preview{
+    width: 30px;
+    height: 30px;
+    border: rgba(0, 0, 0, 0.2) 1px solid;
+    border-radius: 2px;
+    margin: 1px 2px;
+}
+#wpc-term-meta{
+    width: 30px;
 }
 @media screen and (max-width: 1200px) {
     #wpc-intersections-table .wpc-filter-field-td{

@@ -1,5 +1,5 @@
 /*!
- * Filter Everything set admin 1.7.1
+ * Filter Everything set admin 1.7.3
  */
 (function($) {
     "use strict";
@@ -261,6 +261,26 @@
         return true;
     }
 
+    function handleShowTerms( select )
+    {
+        let currentVal = select.val();
+        let currentFid = select.parents('.wpc-filter-item').data('fid');
+        currentVal     = wpcShortenEname( currentVal );
+
+        let $formTable  = $( "#wpc-filter-id-"+currentFid+" .wpc-form-fields-table" );
+
+        if ( wpcSetVars.swatchesTaxonomies.includes( currentVal ) ){
+            $formTable.addClass("taxonomy-has-swatches");
+        } else {
+            $formTable.removeClass("taxonomy-has-swatches");
+        }
+
+        if ( wpcSetVars.brandEntities.includes( currentVal ) ){
+            $formTable.addClass("wpc-filter-has-brands");
+        } else {
+            $formTable.removeClass("wpc-filter-has-brands");
+        }
+    }
 
     function passNewEntities( select )
     {
@@ -336,6 +356,7 @@
             // Make already used entities unavailable to selection
             setAvailableEntities( select );
             handleHierarchyField( select );
+            handleShowTerms( select );
             // handleUsedForVariationsField( select );
 
             $el.find('.wpc-field-exclude').select2({
@@ -465,6 +486,7 @@
             syncEntityWithSortTerms(thisSelect);
 
             handleHierarchyField(thisSelect);
+            handleShowTerms( thisSelect );
             // handleUsedForVariationsField(select);
 
             // Load terms for exclude

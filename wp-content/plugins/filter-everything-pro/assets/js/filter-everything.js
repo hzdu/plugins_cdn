@@ -1,5 +1,5 @@
 /*!
- * Filter Everything 1.7.1
+ * Filter Everything 1.7.3
  */
 (function ($) {
     "use strict";
@@ -513,17 +513,11 @@
         $('.wpc-filters-widget-select').select2({
             dropdownCssClass: 'wpc-filter-everything-dropdown',
             dropdownParent: $('.'+widgetClass+' .wpc-filters-widget-content'),
-            templateResult: function(data) {
-                // We only really care if there is an element to pull classes from
-                if (!data.element) {
-                    return data.text;
-                }
-                let $dr_element = $(data.element);
-                let $dr_wrapper = $('<span></span>');
-                $dr_wrapper.addClass($dr_element[0].className);
-                $dr_wrapper.text(data.text);
-
-                return $dr_wrapper;
+            templateResult: function( data ) {
+                return wpcSelect2Template( data );
+            },
+            templateSelection: function( data ) {
+                return wpcSelect2Template( data );
             },
             minimumResultsForSearch: wpcAllowSearchField
         });
@@ -547,6 +541,58 @@
         });
     }
 
+    function wpcSelect2Template( data ) {
+        // We only really care if there is an element to pull classes from
+        if ( ! data.element ) {
+            return data.text;
+        }
+
+        let theImageSrc = $(data.element).data('image');
+        let brandImageSrc = $(data.element).data('brand');
+        let theColor = $(data.element).data('color');
+        let innerHtml = data.text;
+        let postsCount = $(data.element).data('count');
+        let additionalClass = '';
+
+        if ( typeof theImageSrc !== 'undefined' ) {
+
+            additionalClass = 'wpc-item-has-swatch';
+            innerHtml = $('<span class="wpc-term-swatch-wrapper wpc-term-swatch-image"><img src="'+theImageSrc+'" class="wpc-term-image" /></span><span class="wpc-term-name">'+data.text+'</span>');
+
+        } else if ( typeof theColor !== 'undefined'  ) {
+
+            additionalClass = 'wpc-item-has-swatch';
+
+            let swatch = '<span class="wpc-term-swatch-wrapper">';
+            if ( theColor === 'none' ){
+                swatch += '<span class="wpc-term-swatch wpc-no-swatch-yet">';
+            } else {
+                swatch += '<span class="wpc-term-swatch" style="background-color:'+theColor+'">';
+            }
+            swatch += '</span></span><span class="wpc-term-name">'+data.text+'</span>';
+
+            innerHtml = $( swatch );
+
+        } else if ( typeof brandImageSrc !== 'undefined' ) {
+
+            additionalClass = 'wpc-item-has-brand';
+            innerHtml = $('<span class="wpc-term-image-wrapper"><img src="'+brandImageSrc+'"/></span><span class="wpc-term-name">'+data.text+'</span>');
+
+        }
+
+        let $dr_element = $(data.element);
+        let $dr_wrapper = $('<span></span>');
+        $dr_wrapper.addClass($dr_element[0].className);
+        if ( additionalClass !== '' ){
+            $dr_wrapper.addClass( additionalClass );
+        }
+        $dr_wrapper.html( innerHtml );
+        if ( typeof postsCount !== 'undefined' ){
+            $dr_wrapper.append( '<span class="wpc-term-count">(<span class="wpc-term-count-value">'+postsCount+'</span>)</span>' );
+        }
+
+        return $dr_wrapper;
+    }
 
     function wpcGetCookie(name) {
         var matches = document.cookie.match(new RegExp(

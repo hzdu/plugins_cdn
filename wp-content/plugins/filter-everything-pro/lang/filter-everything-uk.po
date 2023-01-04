@@ -3,9 +3,9 @@ msgstr ""
 "Project-Id-Version: Filter Everything PRO\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-02-23 21:45+0000\n"
-"PO-Revision-Date: 2022-09-30 09:19+0000\n"
+"PO-Revision-Date: 2022-12-29 11:48+0000\n"
 "Last-Translator: Administrator\n"
-"Language-Team: Ukrainian\n"
+"Language-Team: Українська\n"
 "Language: uk\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10 >= 2 && "
 "n%10<=4 &&(n%100<10||n%100 >= 20)? 1 : 2);\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Loco https://localise.biz/\n"
-"X-Loco-Version: 2.6.2; wp-6.0.2\n"
+"X-Loco-Version: 2.6.2; wp-6.1.1\n"
 "X-Domain: filter-everything"
 
 msgid ""
@@ -457,6 +457,9 @@ msgstr "Читабельні URL та пермалінки"
 msgid "Clear search"
 msgstr "Очистити"
 
+msgid "Click to select taxonomies"
+msgstr "Клікніть для вибору таксономій"
+
 #: views/admin/filter-row.php:77
 msgid "Close"
 msgstr "Закрити"
@@ -468,6 +471,12 @@ msgstr "Згортати віджет фільтрів на мобільних �
 #: src/Settings/Tabs/SettingsTab.php:34
 msgid "Collapse widget and show the Filters opening button"
 msgstr "Згорнути віджет і показати кнопки «‎Відкрити»"
+
+msgid "Color"
+msgstr "Колір"
+
+msgid "Color swatches for Filters"
+msgstr "Кольорові взірці для фільтрів"
 
 msgid "Comma separated entities. E.g. \"pa_brand,product_cat,_stock_status\""
 msgstr ""
@@ -659,6 +668,9 @@ msgstr "Зміна порядку префіксів в URL доступна л�
 #: src/Admin/FilterSet.php:51
 msgid "Empty Terms"
 msgstr "Пусті терми"
+
+msgid "Enable Color swatches"
+msgstr "Увімкнути кольорові взірці"
 
 msgid "Enable compatibility mode"
 msgstr "Увімкнути режим сумісності"
@@ -857,6 +869,15 @@ msgid ""
 msgstr ""
 "Помилка: така назва URL змінної не дозволяється, оскільки вона співпадає з "
 "тегом, категорією чи іншим термом таксономії."
+
+msgid ""
+"Error: you can not update settings because Filter Everything Pro plugin is "
+"locked. Please, ask your site Superadmin enter plugin license key to unlock "
+"it."
+msgstr ""
+"Помилка: ви не можете оновити налаштування тому що плагін Filter Everything "
+"Pro заблокований. Будь ласка, попросіть Суперадміна вашого сайту ввести "
+"ліцензійний ключ плагіну, щоб зняти блокування."
 
 msgid ""
 "Error: you can not update settings because Filter Everything Pro plugin is "
@@ -1173,6 +1194,9 @@ msgstr ""
 "Якщо вказаний, то терми даного фільтра стануть доступні лише після вибору "
 "батьківського"
 
+msgid "Image"
+msgstr "Картинка"
+
 msgid "Improved dropdowns"
 msgstr "Покращені випадаючі списки"
 
@@ -1479,6 +1503,11 @@ msgstr ""
 msgid "Please enable this, if the widget doesn't appear"
 msgstr "Будь ласка, активуйте, якщо віджет не з'являється"
 
+msgid "Please specify taxonomies whose filters should display color swatches"
+msgstr ""
+"Будь ласка, виберіть таксономії, для яких фільтри будуть з кольоровими "
+"взірцями"
+
 msgid "Please, add filters first"
 msgstr "Будь ласка, створіть хоча б ще один фільтр"
 
@@ -1602,6 +1631,9 @@ msgstr "Звичайна ціна"
 msgid "Remove %s from results"
 msgstr "Видалити %s з результатів"
 
+msgid "Remove image"
+msgstr "Видалити картинку"
+
 msgid "Reset"
 msgstr "Скинути"
 
@@ -1641,6 +1673,12 @@ msgstr "Сторінка результатів пошуку для цього �
 msgid "Search SEO Rule"
 msgstr "Шукати SEO правило"
 
+msgid "See less"
+msgstr "Показати менше"
+
+msgid "See more"
+msgstr "Показати більше"
+
 #: pro/Admin/SeoRules.php:480 views/frontend/dropdown.php:12
 #, php-format
 msgid "Select %s"
@@ -1677,6 +1715,9 @@ msgstr ""
 
 msgid "Select WP Query you want to filter"
 msgstr "Оберіть WP Query, який ви хочете фільтрувати"
+
+msgid "Selected color will be shown in the filter term."
+msgstr "Вибраний колір буде відображатися в термі фільтра."
 
 #: src/Settings/Tabs/SettingsTab.php:79
 msgid "Selected Filters (Chips) integration"
@@ -1764,12 +1805,6 @@ msgstr "Показувати іконку"
 msgid "Show in Chips"
 msgstr "Показувати в Чіпсах"
 
-msgid "See less"
-msgstr "Показати менше"
-
-msgid "See more"
-msgstr "Показати більше"
-
 #: src/Admin/Widgets/FiltersWidget.php:193
 msgid "Show number of posts found"
 msgstr "Показувати кількість знайдених дописів"
@@ -1780,6 +1815,9 @@ msgstr "Відображати на мобільних пристроях"
 #: src/Admin/Widgets/FiltersWidget.php:189
 msgid "Show selected terms (Chips)"
 msgstr "Показувати вибрані терми (Чіпси)"
+
+msgid "Show Term names"
+msgstr "Показувати назви термів"
 
 msgid "Show this Filter Set if page is:"
 msgstr "Показувати цей набір фільтрів, якщо це сторінка:"
@@ -1905,6 +1943,9 @@ msgstr "Підтримка AJAX"
 msgid "Taxonomies"
 msgstr "Таксономії"
 
+msgid "Taxonomies for Color swatches"
+msgstr "Таксономії для кольорових взірців"
+
 msgid "Taxonomy"
 msgstr "Таксономія"
 
@@ -1937,12 +1978,19 @@ msgstr "Назвою &laquo;А-Б-В&raquo;"
 msgid "Term name &laquo;cba&raquo;"
 msgstr "Назвою &laquo;В-Б-А&raquo;"
 
+msgid "Term names for filters with swatches or brand images may be hidden"
+msgstr ""
+"Назви термів у фільтрах з кольоровими взірцями чи брендами можна приховати"
+
 msgid ""
 "The free version of the plugin does not support filtering on singular pages. "
 "But <a href=\"%s\">PRO version</a> supports."
 msgstr ""
 "Поточна версія плагіну не підтримує фільтрування на сторінках даного типу. "
 "Проте це дозволяє <a href=\"%s\">PRO версія</a>."
+
+msgid "The image will be shown in the filter term."
+msgstr "Картинка буде відображатися в термі фільтра."
 
 #: src/Admin/FilterFields.php:115
 msgid "The order in which terms appear in widget"
@@ -2077,6 +2125,9 @@ msgstr ""
 
 msgid "Unregistered"
 msgstr "Незареєстрований"
+
+msgid "Upload image"
+msgstr "Додати картинку"
 
 #: views/admin/filters-set.php:33
 msgid "URL Prefix"

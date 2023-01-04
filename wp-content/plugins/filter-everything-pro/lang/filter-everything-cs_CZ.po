@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Filter Everything PRO\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-02-23 21:45+0000\n"
-"PO-Revision-Date: 2022-09-30 09:22+0000\n"
+"PO-Revision-Date: 2022-12-29 12:51+0000\n"
 "Last-Translator: Administrator\n"
 "Language-Team: Czech\n"
 "Language: cs_CZ\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Loco https://localise.biz/\n"
-"X-Loco-Version: 2.6.2; wp-6.0.2\n"
+"X-Loco-Version: 2.6.2; wp-6.1.1\n"
 "X-Domain: filter-everything"
 
 msgid ""
@@ -455,6 +455,9 @@ msgstr "Čisté adresy URL a trvalé odkazy"
 msgid "Clear search"
 msgstr "Přehledné vyhledávání"
 
+msgid "Click to select taxonomies"
+msgstr "Kliknutím vyberte taxonomie"
+
 #: views/admin/filter-row.php:77
 msgid "Close"
 msgstr "Zavřít"
@@ -466,6 +469,12 @@ msgstr "Sbalit filtry Widget na mobilních zařízeních"
 #: src/Settings/Tabs/SettingsTab.php:34
 msgid "Collapse widget and show the Filters opening button"
 msgstr "Sbalení widgetu a zobrazení tlačítka pro otevření filtrů"
+
+msgid "Color"
+msgstr "Barva"
+
+msgid "Color swatches for Filters"
+msgstr "Vzorník barev pro filtry"
 
 msgid "Comma separated entities. E.g. \"pa_brand,product_cat,_stock_status\""
 msgstr "Entity oddělené čárkou. Např. \"pa_brand,product_cat,_stock_status\""
@@ -653,6 +662,9 @@ msgstr "Úprava pořadí předpon URL je k dispozici ve verzi PRO"
 #: src/Admin/FilterSet.php:51
 msgid "Empty Terms"
 msgstr "Prázdné termíny"
+
+msgid "Enable Color swatches"
+msgstr "Povolit vzorníky barev"
 
 msgid "Enable compatibility mode"
 msgstr "Povolení režimu kompatibility"
@@ -850,6 +862,15 @@ msgid ""
 msgstr ""
 "Chyba: název var není povolen, protože se shoduje s názvem taxonomie nebo "
 "termínu, který se již na vašem webu používá."
+
+msgid ""
+"Error: you can not update settings because Filter Everything Pro plugin is "
+"locked. Please, ask your site Superadmin enter plugin license key to unlock "
+"it."
+msgstr ""
+"Chyba: Nastavení nelze aktualizovat, protože plugin Filter Everything Pro je "
+"uzamčen. Požádejte prosím svého správce webu o vstoupit licenčního klíče "
+"pluginu, abyste jej odemkli."
 
 msgid ""
 "Error: you can not update settings because Filter Everything Pro plugin is "
@@ -1169,6 +1190,9 @@ msgstr ""
 "Pokud je zadáno, aktuální termíny filtru jsou k dispozici až po výběru "
 "nadřazeného filtru"
 
+msgid "Image"
+msgstr "Obraz"
+
 msgid "Improved dropdowns"
 msgstr "Vylepšené rozbalovací nabídky"
 
@@ -1475,6 +1499,10 @@ msgstr ""
 msgid "Please enable this, if the widget doesn't appear"
 msgstr "Pokud se widget nezobrazuje, povolte prosím tuto funkci"
 
+msgid "Please specify taxonomies whose filters should display color swatches"
+msgstr ""
+"Uveďte prosím taxonomie, jejichž filtry by měly zobrazovat vzorky barev"
+
 msgid "Please, add filters first"
 msgstr "Nejprve přidejte filtry"
 
@@ -1598,6 +1626,9 @@ msgstr "Běžná cena"
 msgid "Remove %s from results"
 msgstr "Odstranění %s z výsledků"
 
+msgid "Remove image"
+msgstr "Odebrat obrázek"
+
 msgid "Reset"
 msgstr "Obnovení"
 
@@ -1637,6 +1668,12 @@ msgstr "Stránka s výsledky vyhledávání pro vybraný typ příspěvku"
 msgid "Search SEO Rule"
 msgstr "Vyhledávání SEO Pravidlo"
 
+msgid "See less"
+msgstr "Ukaž méně"
+
+msgid "See more"
+msgstr "Ukaž víc"
+
 #: pro/Admin/SeoRules.php:480 views/frontend/dropdown.php:12
 #, php-format
 msgid "Select %s"
@@ -1673,6 +1710,9 @@ msgstr ""
 
 msgid "Select WP Query you want to filter"
 msgstr "Vyberte dotaz WP, který chcete filtrovat"
+
+msgid "Selected color will be shown in the filter term."
+msgstr "Vybraná barva se zobrazí v termínu filtru."
 
 #: src/Settings/Tabs/SettingsTab.php:79
 msgid "Selected Filters (Chips) integration"
@@ -1761,12 +1801,6 @@ msgstr "Zobrazit ikonu"
 msgid "Show in Chips"
 msgstr "Zobrazit ve Štítcích"
 
-msgid "See less"
-msgstr "Ukaž méně"
-
-msgid "See more"
-msgstr "Ukaž víc"
-
 #: src/Admin/Widgets/FiltersWidget.php:193
 msgid "Show number of posts found"
 msgstr "Zobrazit počet nalezených příspěvků"
@@ -1777,6 +1811,9 @@ msgstr "Zobrazit v mobilu"
 #: src/Admin/Widgets/FiltersWidget.php:189
 msgid "Show selected terms (Chips)"
 msgstr "Zobrazit vybrané pojmy (Štítky)"
+
+msgid "Show Term names"
+msgstr "Zobrazit názvy termínů"
 
 msgid "Show this Filter Set if page is:"
 msgstr "Zobrazit tuto sadu filtrů, pokud stránka je:"
@@ -1901,6 +1938,9 @@ msgstr "Podporuje AJAX"
 msgid "Taxonomies"
 msgstr "Taxonomie"
 
+msgid "Taxonomies for Color swatches"
+msgstr "Taxonomie pro vzorníky barev"
+
 msgid "Taxonomy"
 msgstr "Taxonomie"
 
@@ -1933,12 +1973,19 @@ msgstr "Název termínu &laquo;abc&raquo;"
 msgid "Term name &laquo;cba&raquo;"
 msgstr "Název termínu &laquo;cba&raquo;"
 
+msgid "Term names for filters with swatches or brand images may be hidden"
+msgstr ""
+"Názvy termínů pro filtry se vzorníky nebo obrázky značek mohou být skryté"
+
 msgid ""
 "The free version of the plugin does not support filtering on singular pages. "
 "But <a href=\"%s\">PRO version</a> supports."
 msgstr ""
 "Bezplatná verze pluginu nepodporuje filtrování jednotlivých stránek. Ale <a "
 "href=\"%s\">PRO verze</a> podporuje."
+
+msgid "The image will be shown in the filter term."
+msgstr "Obrázek se zobrazí v termínu filtru."
 
 #: src/Admin/FilterFields.php:115
 msgid "The order in which terms appear in widget"
@@ -2075,6 +2122,9 @@ msgstr ""
 
 msgid "Unregistered"
 msgstr "Neregistrovaný"
+
+msgid "Upload image"
+msgstr "Nahrát obrázek"
 
 #: views/admin/filters-set.php:33
 msgid "URL Prefix"
