@@ -1,3 +1,34 @@
+@3 January 2023 v3.60.0
+NEW: OpenAI GPT support to create articles and use with any module with shortcode [gpt3] prompt [/gpt3]
+NEW: option to translate the content between square brackets
+NEW: Facebook events import now set the post date to the event start date if option enabled
+Fix: Amazon custom HTML product extraction algorithm improved
+
+@14 December 2022 v3.59.1
+NEW: option to extract and import amazon products from any page HTML
+Fix: Facebook events import back to work after recent changes from FB
+Fix: Youtube Auto-hyperlink URLs now correctly hyperlink links with @handle
+Fix: Reddit flairs as categories/tags back to work
+Fix: Tiktok back to work again after new changes
+Fix: eBay all images extraction back to work after new changes from eBay
+
+
+@22 November 2022 v3.59.0
+NEW: Option to filter the comments and skip comments containing a specific keyword
+NEW: Youtube new tag [vid_duration_in_seconds] for duration filteration 
+NEW: Make permalink link directly to the source now works for custom post types
+Fix: Instagram featured image now works correctly
+Fix: Workaround added to sort WordPress adding line breaks inside JavaScript
+Fix: Fixing relative paths algorithm improved
+Fix: Tiktok can now import from users with dot in username  
+Fix: CareerJet now reset page index after 1000 results
+Fix: Search and replace now aware of encoded chars like & char
+Fix: Tags/Categories extraction now removes unnecessary slashes
+Fix: Amazon now returns book description
+Fix: Amazon now returns correct description/item features
+Fix: Envato now reset page after reaching page 60
+
+
 @10 October 2022 v3.58.1
 Fix: Apify back to work after recent changes that triggered an error Field input.proxyConfiguration is required
 Fix: Facebook group posts full text extraction now back to work
