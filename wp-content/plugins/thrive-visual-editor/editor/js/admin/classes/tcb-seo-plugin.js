@@ -13,7 +13,7 @@
 					action: 'tve_get_seo_content'
 				}
 			} ).done( response => {
-				const $content = $( response.content );
+				const $content = $( `<div>${response.content}</div>` );
 				/* Remove TTB headers and footers from SEO analysis */
 				$content.find( 'header#thrive-header, footer#thrive-footer, aside#theme-sidebar-section' ).remove();
 
