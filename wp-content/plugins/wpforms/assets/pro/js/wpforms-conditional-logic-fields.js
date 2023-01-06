@@ -82,7 +82,7 @@
 				WPFormsConditionals.processConditionals( $( this ), true );
 			} );
 
-			$( document ).on( 'elementor/popup/show', function() {
+			window.addEventListener( 'elementor/popup/show', function() {
 				WPFormsConditionals.processConditionals( $( '.elementor-popup-modal .wpforms-form' ), true );
 			} );
 
@@ -483,11 +483,20 @@
 				}
 
 				if ( ( pass && action === 'hide' ) || ( ! pass && action !== 'hide' ) ) {
-					$form
-						.find( '#wpforms-' + formID + '-field_' + fieldID + '-container' )
+					const $fieldContainer = $form.find( '#wpforms-' + formID + '-field_' + fieldID + '-container' );
+
+					$fieldContainer
 						.hide()
 						.addClass( 'wpforms-conditional-hide' )
 						.removeClass( 'wpforms-conditional-show' );
+
+					// If the field is inside a layout field and no other fields inside the layout field are visible, hide the layout container.
+					if ( WPFormsConditionals.isInsideLayoutField( $fieldContainer ) &&
+						! $fieldContainer.closest( '.wpforms-field-layout' ).find( 'div.wpforms-field:visible' ).length
+					) {
+						$fieldContainer.closest( '.wpforms-field-layout' ).hide();
+					}
+
 					hidden = true;
 				} else {
 					var $fieldContainer = $form.find( '#wpforms-' + formID + '-field_' + fieldID + '-container' );
@@ -501,6 +510,12 @@
 						.show()
 						.removeClass( 'wpforms-conditional-hide' )
 						.addClass( 'wpforms-conditional-show' );
+
+					// If the field is inside a layout field, show the layout container.
+					if ( WPFormsConditionals.isInsideLayoutField( $fieldContainer ) ) {
+						$fieldContainer.closest( '.wpforms-field-layout' ).show();
+					}
+
 					$this.trigger( 'wpformsShowConditionalsField' );
 				}
 
@@ -717,6 +732,20 @@
 		floatval: function( mixedVar ) {
 
 			return ( parseFloat( mixedVar ) || 0 );
+		},
+
+		/**
+		 * Check if the provided field container is inside of a layout field.
+		 *
+		 * @since 1.7.9
+		 *
+		 * @param {object} $fieldContainer Container DOM element of the field being checked.
+		 *
+		 * @returns {boolean} Whether or not the provided field container is within a layout field.
+		 */
+		isInsideLayoutField: function( $fieldContainer ) {
+
+			return $fieldContainer.parent().hasClass( 'wpforms-layout-column' );
 		},
 	};
 
