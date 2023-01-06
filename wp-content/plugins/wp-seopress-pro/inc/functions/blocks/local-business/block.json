@@ -1,0 +1,48 @@
+{
+    "apiVersion": 2,
+    "name": "wpseopress/local-business",
+    "title": "Local Business",
+    "description": "Displays Local Business information",
+    "icon": "store",
+    "category": "wpseopress",
+    "textdomain": "wp-seopress-pro",
+    "supports": {
+        "align": true,
+        "html": false,
+        "color": {
+            "gradients": true,
+            "link": true
+        },
+        "spacing": {
+            "margin": true,
+            "padding": true
+        },
+        "typography": {
+            "fontSize": true,
+            "lineHeight": true
+        }
+    },
+    "attributes": {
+        "textColor": {
+            "type": "string"
+        },
+        "backgroundColor": {
+            "type": "string"
+        },
+        "style": {
+            "type": "object"
+        },
+        "className": {
+            "type": "string"
+        },
+        "fontSize": {
+            "type": "string"
+        },
+        "gradient": {
+            "type": "string"
+        }
+    },
+    "editorScript": "file:../../../../public/editor/blocks/local-business/index.js",
+    "editorStyle": "file:../../../../public/editor/blocks/local-business/index.css",
+    "style": "file:../../../../public/editor/blocks/local-business/style-index.css"
+}

@@ -1,0 +1,58 @@
+{
+    "apiVersion": 2,
+    "name": "wpseopress/how-to",
+    "title": "How To",
+    "description": "Display a tutorial block",
+    "icon": "feedback",
+    "category": "wpseopress",
+    "textdomain": "wp-seopress-pro",
+    "supports": {
+        "align": true,
+        "html": false,
+        "color": {
+            "gradients": true,
+            "link": true
+        },
+        "spacing": {
+            "margin": true,
+            "padding": true
+        },
+        "typography": {
+            "fontSize": true,
+            "lineHeight": true
+        }
+    },
+    "attributes": {
+        "description": {
+            "type": "string",
+            "default": ""
+        },
+        "unorderedList": {
+            "type": "bool",
+            "default": false
+        },
+        "estimatedCost": {
+            "type": "string",
+            "default": ""
+        },
+        "durationDays": {
+            "type": "string",
+            "default": ""
+        },
+        "durationHours": {
+            "type": "string",
+            "default": ""
+        },
+        "durationMinutes": {
+            "type": "string",
+            "default": ""
+        },
+        "schema": {
+            "type": "object",
+            "default": {}
+        }
+    },
+    "editorScript": "file:../../../../public/editor/blocks/how-to/index.js",
+    "editorStyle": "file:../../../../public/editor/blocks/how-to/index.css",
+    "style": "file:../../../../public/editor/blocks/how-to/style-index.css"
+}
