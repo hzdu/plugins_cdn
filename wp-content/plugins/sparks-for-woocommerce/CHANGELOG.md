@@ -1,3 +1,7 @@
+#### [Version 1.1.0](https://github.com/Codeinwp/sparks-for-woocommerce/compare/v1.0.10...v1.1.0) (2022-12-20)
+
+- [Feat] Customizable icon support for the Add to Comparison Table
+
 ##### [Version 1.0.10](https://github.com/Codeinwp/sparks-for-woocommerce/compare/v1.0.9...v1.0.10) (2022-12-07)
 
 - [Fix] Variation Swatches - Displaying Products (cross-sells, when two or more rows of items are available)

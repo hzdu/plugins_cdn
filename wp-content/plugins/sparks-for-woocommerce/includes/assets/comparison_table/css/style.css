@@ -100,10 +100,17 @@
   .sp-ct-compare-btn:hover, .sp-ct-compare-btn:focus {
     color: #fff; }
 
+.sp-ct-icon {
+  line-height: 0; }
+  .sp-ct-icon svg {
+    width: 16px; }
+    .sp-ct-icon svg path {
+      fill: currentColor; }
+
 .sp-ct-item-added:hover .sp-ct-check-icon, .sp-ct-item-added .sp-ct-check-icon {
   display: block; }
 
-.sp-ct-item-added:hover .sp-ct-plus-icon, .sp-ct-item-added .sp-ct-plus-icon {
+.sp-ct-item-added:hover .sp-ct-plus-icon > svg, .sp-ct-item-added .sp-ct-plus-icon > svg {
   display: none; }
 
 li.sale-tag-in-right .sp-ct-compare-btn-wrap.top {

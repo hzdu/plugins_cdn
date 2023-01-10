@@ -15,6 +15,19 @@ The code is licensed under GPLv3.
 
 ## Changelog ##
 
+##### [Version 2.4.9](https://github.com/Codeinwp/neve-pro-addon/compare/v2.4.8...v2.4.9) (2023-01-09)
+
+- [Feat] Add Bandcamp icon to the social component in HFG
+- [Feat] Allow the installation of Otter directly from Neve's dashboard
+- [Fix] Conditional header added as custom layout also appears on the search page template
+- [Fix] Popup for color controls in mega menu not appearing
+- [Fix] Sticky Add to Cart does not work if the Single Product Elementor template is applied
+- Adjusted position of the Custom Layouts modal close button
+- Test integration with WooCommerce 7.2 and update tested up to
+
+
+
+
 ##### [Version 2.4.8](https://github.com/Codeinwp/neve-pro-addon/compare/v2.4.7...v2.4.8) (2022-12-15)
 
 - [Fix] Blocks module not displaying the required plugins

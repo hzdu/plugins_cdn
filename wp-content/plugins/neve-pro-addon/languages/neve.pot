@@ -1,4 +1,4 @@
-# Copyright (C) 2022 ThemeIsle
+# Copyright (C) 2023 ThemeIsle
 # This file is distributed under the GPLv3.
 msgid ""
 msgstr ""
@@ -483,20 +483,20 @@ msgstr ""
 msgid "White Label"
 msgstr ""
 
-#: includes/core/abstract_module.php:374
+#: includes/core/abstract_module.php:428
 msgid "You need to update the theme in order to use this module!"
 msgstr ""
 
-#: includes/core/abstract_module.php:424
+#: includes/core/abstract_module.php:478
 msgid "installing"
 msgstr ""
 
-#: includes/core/abstract_module.php:425
+#: includes/core/abstract_module.php:479
 msgid "activating"
 msgstr ""
 
 #. translators: %s - plugin to activate
-#: includes/core/abstract_module.php:434
+#: includes/core/abstract_module.php:488
 msgid "The module requires %s plugin."
 msgstr ""
 
@@ -562,23 +562,46 @@ msgstr ""
 msgid "Easy Digital Downloads"
 msgstr ""
 
-#: includes/modules/block_editor_booster/module.php:65
-#: includes/modules/block_editor_booster/module.php:247
-#: includes/modules/block_editor_booster/module.php:263
+#: includes/modules/block_editor_booster/module.php:127
+#: includes/modules/block_editor_booster/module.php:229
 msgid "Block Editor Booster"
 msgstr ""
 
-#: includes/modules/block_editor_booster/module.php:66
+#: includes/modules/block_editor_booster/module.php:128
 msgid "Do more with the Block Editor with Otter's additional blocks made specifically for Neve Pro."
 msgstr ""
 
-#: includes/modules/block_editor_booster/module.php:89
+#: includes/modules/block_editor_booster/module.php:133
+msgid "Install & Activate Otter Blocks"
+msgstr ""
+
+#. translators: %s plugin name
+#: includes/modules/block_editor_booster/module.php:135
+msgid "%s is installing"
+msgstr ""
+
+#. translators: %s plugin name
+#: includes/modules/block_editor_booster/module.php:137
+msgid "%s is activating"
+msgstr ""
+
+#. translators: %s plugin name
+#: includes/modules/block_editor_booster/module.php:139
+msgid "Install & Activate %s"
+msgstr ""
+
+#. translators: %s plugin name
+#: includes/modules/block_editor_booster/module.php:141
+msgid "Activate %s"
+msgstr ""
+
+#: includes/modules/block_editor_booster/module.php:162
 #: includes/modules/elementor_booster/widgets/typed_headline.php:99
 #: includes/modules/white_label/module.php:87
 msgid "Settings"
 msgstr ""
 
-#: includes/modules/block_editor_booster/module.php:94
+#: includes/modules/block_editor_booster/module.php:167
 #: includes/modules/blog_pro/module.php:41
 #: includes/modules/custom_layouts/module.php:47
 #: includes/modules/easy_digital_downloads/module.php:42
@@ -596,51 +619,17 @@ msgstr ""
 msgid "Learn more"
 msgstr ""
 
-#. translators: %s: plugin update url
-#: includes/modules/block_editor_booster/module.php:160
-msgid "Installing Otter Pro"
-msgstr ""
-
-#: includes/modules/block_editor_booster/module.php:190
+#: includes/modules/block_editor_booster/module.php:202
 msgid "You need to update Otter and install Otter Pro to continue using Block Editor Booster"
 msgstr ""
 
-#: includes/modules/block_editor_booster/module.php:196
-#: includes/modules/block_editor_booster/module.php:255
+#: includes/modules/block_editor_booster/module.php:208
+#: includes/modules/block_editor_booster/module.php:237
 msgid "Update & Install"
 msgstr ""
 
-#: includes/modules/block_editor_booster/module.php:203
-msgid "You need to install Otter Pro to continue using Block Editor Booster"
-msgstr ""
-
-#: includes/modules/block_editor_booster/module.php:209
-#: includes/modules/woocommerce_booster/compatibility/sparks_dependency_check.php:90
-#: includes/modules/woocommerce_booster/compatibility/sparks_dependency_check.php:126
-msgid "Install"
-msgstr ""
-
-#: includes/modules/block_editor_booster/module.php:216
-msgid "You need to activate Otter Pro to continue using Block Editor Booster"
-msgstr ""
-
-#: includes/modules/block_editor_booster/module.php:222
-#: includes/modules/woocommerce_booster/compatibility/sparks_dependency_check.php:108
-#: includes/modules/woocommerce_booster/compatibility/sparks_dependency_check.php:139
-msgid "Activate"
-msgstr ""
-
-#: includes/modules/block_editor_booster/module.php:248
+#: includes/modules/block_editor_booster/module.php:230
 msgid "You need to update Otter and install Otter Pro to continue using Block Editor Booster."
-msgstr ""
-
-#: includes/modules/block_editor_booster/module.php:264
-msgid "You need to install & activate Otter Pro to continue using Block Editor Booster."
-msgstr ""
-
-#: includes/modules/block_editor_booster/module.php:271
-#: includes/modules/header_footer_grid/components/payment_icons.php:271
-msgid "Install & Activate"
 msgstr ""
 
 #: includes/modules/blog_pro/customizer/blog_pro.php:98
@@ -4046,6 +4035,10 @@ msgstr ""
 msgid "In order to use <strong>Payment Icons Component</strong>, you need to install <strong>Sparks for WooCommerce</strong> plugin."
 msgstr ""
 
+#: includes/modules/header_footer_grid/components/payment_icons.php:271
+msgid "Install & Activate"
+msgstr ""
+
 #: includes/modules/header_footer_grid/components/payment_icons.php:276
 msgid "In order to use <strong>Payment Icons Component</strong>, you need to install <strong>Sparks for WooCommerce</strong>. Please contact your website administrator."
 msgstr ""
@@ -4833,8 +4826,18 @@ msgstr ""
 msgid "You need to install Sparks for WooCommerce to continue using WooCommerce Booster."
 msgstr ""
 
+#: includes/modules/woocommerce_booster/compatibility/sparks_dependency_check.php:90
+#: includes/modules/woocommerce_booster/compatibility/sparks_dependency_check.php:126
+msgid "Install"
+msgstr ""
+
 #: includes/modules/woocommerce_booster/compatibility/sparks_dependency_check.php:101
 msgid "You need to activate Sparks for WooCommerce to continue using WooCommerce Booster."
+msgstr ""
+
+#: includes/modules/woocommerce_booster/compatibility/sparks_dependency_check.php:108
+#: includes/modules/woocommerce_booster/compatibility/sparks_dependency_check.php:139
+msgid "Activate"
 msgstr ""
 
 #: includes/modules/woocommerce_booster/compatibility/sparks_dependency_check.php:120
@@ -5339,15 +5342,15 @@ msgid_plural "Categories:"
 msgstr[0] ""
 msgstr[1] ""
 
-#: includes/modules/woocommerce_booster/views/single_product.php:183
+#: includes/modules/woocommerce_booster/views/single_product.php:185
 msgid "Recently Viewed"
 msgstr ""
 
-#: includes/modules/woocommerce_booster/views/single_product.php:399
+#: includes/modules/woocommerce_booster/views/single_product.php:401
 msgid "Previous Product"
 msgstr ""
 
-#: includes/modules/woocommerce_booster/views/single_product.php:403
+#: includes/modules/woocommerce_booster/views/single_product.php:405
 msgid "Next Product"
 msgstr ""
 
