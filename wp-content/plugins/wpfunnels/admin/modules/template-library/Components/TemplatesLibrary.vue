@@ -101,7 +101,6 @@
                                 <span class="btn-text">{{loaderMessage}}</span>
                             </a>
 
-
                             <!-- <a :href="proUrl" class="btn-default" title="Click to Upgrade Pro" target="_blank" v-if="isAddNewFunnelButtonDisabled" >
                                 Import
                                 <span class="pro-tag">coming soon</span>
@@ -124,8 +123,16 @@
                     </div>
 
                     <div class="wpfnl-create-funnel__templates">
+                        <div class="funnel-loader" :class="templateCatFilterLoader ? 'show-loader' : '' ">
+                            <span class="loader-item-1"></span>
+                            <span class="loader-item-2"></span>
+                            <span class="loader-item-3"></span>
+                            <span class="loader-item-4"></span>
+                            <span class="loader-item-5"></span>
+                        </div>
+
                         <div v-show="loader" class="wpfnl-create-funnel__loader">
-                            <span class="wpfnl-loader" v-show="templateCatFilterLoader"></span>
+                            <!-- <span class="wpfnl-loader" v-show="templateCatFilterLoader"></span> -->
                         </div>
 
                         <div class="create-funnel__single-template create__from-scratch"
@@ -386,7 +393,6 @@ export default {
             'wp-plugin-install-error',
             this.pluginInstalledError
         );
-
         if(!this.$store.isRemoteFunnel) {
             this.getTemplate();
 		} else {
@@ -468,6 +474,8 @@ export default {
                     steps	: this.steps,
                     name	: j('.import-funnel-name input').val(),
                     source	: 'remote',
+                    remoteID: this.activeTemplate.ID,
+					type    : this.type,
                 },
                 that = this;
 

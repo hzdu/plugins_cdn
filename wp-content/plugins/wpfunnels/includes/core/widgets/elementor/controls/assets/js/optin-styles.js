@@ -1,5 +1,4 @@
 jQuery( window ).on( 'elementor:init', () => {
-
 	var optinFormStylesItemView = elementor.modules.controls.BaseData.extend({
 		onReady() {
 			console.log(this.$el)
@@ -11,7 +10,5 @@ jQuery( window ).on( 'elementor:init', () => {
 			this.$el.remove();
 		}
 	});
-
 	elementor.addControlView( 'optin_styles', optinFormStylesItemView );
-
 } );

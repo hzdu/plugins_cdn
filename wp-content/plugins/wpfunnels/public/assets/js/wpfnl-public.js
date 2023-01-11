@@ -724,9 +724,9 @@
 					$( ".wpfnl-order-bump-cb" ).each(function( index ) {
 						var isReplace = $(this).data('replace');
 						var qty = $(this).data('quantity');
-						if( (isReplace == 'yes') && ( (qty != quantity ) || product != $(this).val() ) ){
-							$(this).prop("checked", false);
-						}
+						// if( (isReplace == 'yes') && ( (qty != quantity ) || product != $(this).val() ) ){
+						// 	$(this).prop("checked", false);
+						// }
 
 						if(isLms == 'yes'){
 

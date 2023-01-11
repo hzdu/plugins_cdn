@@ -76,6 +76,7 @@
                 };
                 wpAjaxHelperRequest( "wpfunnel-after-step-creation", payload )
                     .success( function( response ) {
+                        console.log(response);  
                         window.location = response.redirectLink
                     })
                     .error( function( response ) {

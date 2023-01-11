@@ -1,17 +1,13 @@
-import Vue from 'vue'
+import { createApp } from "vue";
+import store from './store'
 var j = jQuery.noConflict()
-// Vue.use(VueAxios, axios)
-import TemplatesLibrary from '../Components/TemplatesLibrary.vue'
+import TemplatesLibrary from '../Components/TemplatesLibrary'
 
-const store = Vue.observable({
-	isRemoteFunnel: false,
-});
-Vue.prototype.$store = store
 if(document.getElementById("templates-library")){
-  new Vue({ // eslint-disable-line no-new
-      el: '#templates-library',
-      render: h => h(TemplatesLibrary)
-  });
+	const app = createApp(TemplatesLibrary);
+	app.config.globalProperties.$store = store
+	app.mount("#templates-library");
+	store.actions.initializeStore()
 }
 
 j(document).ready(function (j) {
@@ -24,6 +20,7 @@ j(document).ready(function (j) {
 
     /**
      * show template library
+     *
      * @param e
      */
     TemplateLibrary.prototype.showTemplateLibrary = function(e) {
@@ -40,6 +37,7 @@ j(document).ready(function (j) {
 
     /**
      * get all step templates
+     *
      * @param e
      */
     TemplateLibrary.prototype.getStepTemplates = function(e) {
@@ -58,6 +56,7 @@ j(document).ready(function (j) {
 
     /**
      * close template modals
+     *
      * @param e
      */
     TemplateLibrary.prototype.closeTemplateLibraryModal = function (e) {

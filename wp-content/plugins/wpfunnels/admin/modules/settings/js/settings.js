@@ -170,12 +170,20 @@ jQuery(function($) {
         GeneralSettingsHandler.prototype.updateGeneralSettings = function (e) {
             e.preventDefault();
             var userRole 		= {};
+            var permittedRole 		= {};
             var gtmEvents 		= {};
 			var fbTrackEvent 	= {};
 			var advancedSettings= {};
             $("input[name='analytics-role[]']").map(function(){
                 if($(this).prop("checked")){
                     userRole[$(this).data('role')] = 'true';
+                }
+                return  $(this).prop("checked") ? 1 : 0;
+            }).get();
+
+            $("input[name='permission-role[]']").map(function(){
+                if($(this).prop("checked")){
+                    permittedRole[$(this).data('role')] = 'true';
                 }
                 return  $(this).prop("checked") ? 1 : 0;
             }).get();
@@ -200,6 +208,7 @@ jQuery(function($) {
                     'builder'				    : $('#wpfunnels-page-builder').val(),
                     'paypal_reference'		    : $('#wpfunnels-paypal-reference').is(':checked') ? 'on' : 'off',
                     'analytics_roles'		    : userRole,
+                    'permission_role'		    : permittedRole,
                     'order_bump'			    : $('#wpfunnels-order-bump').is(':checked') ? 'on' : 'off',
                     'ab_testing'			    : $('#wpfunnels-ab-testing').is(':checked') ? 'on' : 'off',
                     'permalink_settings'	    : $("input[name='wpfunnels-set-permalink']:checked").val(),
@@ -209,6 +218,8 @@ jQuery(function($) {
                     'offer_orders'			    : $('input[name="offer-orders"]:checked').val(),
                     'skip_offer_step'                   : $('#wpfnl-skip-offer-step').is(':checked') ? 'on' : 'off',
                     'skip_offer_step_for_free'          : $('#wpfnl-skip-offer-step-for-free').is(':checked') ? 'on' : 'off',
+                    'skip_offer_for_recurring_buyer'             : $('#wpfnl-skip-offer-for-recurring-buyer').is(':checked') ? 'on' : 'off',
+                    'skip_offer_for_recurring_buyer_within_year' : $('#wpfnl-skip-offer-for-recurring-buyer-within-year').is(':checked') ? 'on' : 'off',
                     'show_supported_payment_gateway'    : $('#wpfnl-show-supported-payment-gateway').is(':checked') ? 'on' : 'off',
                     'gtm_enable'			    : $('input[name="wpfnl-gtm-enable"]:checked').val(),
                     'gtm_container_id'			: $('#wpfnl-gtm-container-id').val(),
@@ -223,7 +234,6 @@ jQuery(function($) {
                     'utm_content'			    : $('#wpfnl-utm-content').val(),
                     'disable_theme_style'	    : $('#disable-theme-style').is(':checked') ? 'on' : 'off',
                     'enable_log_status'	        : $('#enable-log-status').is(':checked') ? 'on' : 'off',
-
 					'enable_recaptcha'			: $('input[name="wpfnl-recapcha-enable"]:checked').val(),
 					'recaptcha_site_key'		: $('#wpfnl-recapcha-site-key').val(),
 					'recaptcha_site_secret'		: $('#wpfnl-recapcha-site-secret').val(),
@@ -293,6 +303,7 @@ jQuery(function($) {
 
 		/**
 		 * clear all transients related to wpfunnels
+   *
 		 * @param e
 		 */
 		GeneralSettingsHandler.prototype.clearTransients = function (e) {

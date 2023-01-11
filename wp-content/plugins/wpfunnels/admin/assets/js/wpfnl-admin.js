@@ -33,7 +33,6 @@
 
 
     jQuery(document).ready(function($) {
-
         //date format
         function PresentDateForm(date){
             var date = new Date(date),
@@ -194,100 +193,7 @@
         });
 
 
-        //-------GBF checkout product date range datepicker-------
-
-        // $(document).on("click", ".gbf-product-area .condition-wrapper .gbf-date-is .gbf-product-date-from", function() {
-        //     if( $(".gbf-product-area .selectbox-wrapper select").val() == 'date' ){
-        //         $( ".gbf-product-date-from" ).datepicker({
-        //             defaultDate: "+1w",
-        //             changeMonth: true,
-        //             changeYear: true,
-        //             numberOfMonths: 1,
-        //             beforeShow:function(textbox, instance){
-        //                 $('.div-to-append-calender').append($('#ui-datepicker-div'));
-        //             },
-        //             onSelect: function(dateText) {
-        //                 var presentDate = PresentDateForm(this.value);
-                       
-        //                 $("#ui-datepicker-div").find(".ui-state-default").removeClass("ui-state-active");
-        //                 var date = new Date(this.value),
-        //                     day = date.getDate(),
-        //                     month = date.getMonth(),
-        //                     year = date.getFullYear();
-        //                 $("#ui-datepicker-div").find(".ui-state-default").each(function(index, obj){
-        //                     if($(obj).text() == day && $(obj).parent().data('month') == month && $(obj).parent().data('year') == year){
-        //                         $(obj).addClass("ui-state-active");
-        //                     }
-        //                 });
-        //             }
-        //         }).datepicker( "setDate", new Date() ).on( "change", function () {
-        //             to.datepicker( "option", "minDate" );
-        //         } )
-        //     }
-        // });
-
-
-        // $(document).on("click", ".gbf-product-area .condition-wrapper .gbf-date-is .gbf-product-date-range-from", function() {
-        //     if( $(".gbf-product-area .selectbox-wrapper select").val() == 'dateRange' ){
-        //         var dateFormat = "M d, yy"
-        //         $( ".gbf-product-date-range-from" ).datepicker({
-        //             defaultDate: "+1w",
-        //             changeMonth: true,
-        //             changeYear: true,
-        //             numberOfMonths: 1,
-        //             beforeShow:function(textbox, instance){
-        //                 console.log('so far so good');
-        //                 $('.div-to-append-range-calender').append($('#ui-datepicker-div'));
-        //             },
-        //             onSelect: function(dateText) {
-        //                 var presentDate = PresentDateForm(this.value);
-                       
-        //                 $("#ui-datepicker-div").find(".ui-state-default").removeClass("ui-state-active");
-        //                 var date = new Date(this.value),
-        //                     day = date.getDate(),
-        //                     month = date.getMonth(),
-        //                     year = date.getFullYear();
-        //                 $("#ui-datepicker-div").find(".ui-state-default").each(function(index, obj){
-        //                     if($(obj).text() == day && $(obj).parent().data('month') == month && $(obj).parent().data('year') == year){
-        //                         $(obj).addClass("ui-state-active");
-        //                     }
-        //                 });
-        //             }
-        //         })
-        //     }
-        // });
-
-
-        // $(document).on("click", ".gbf-product-area .condition-wrapper .gbf-date-is .gbf-product-date-range-to", function() {
-        //     if( $(".gbf-product-area .selectbox-wrapper select").val() == 'dateRange' ){
-        //         console.log($(".gbf-product-area .selectbox-wrapper select").val());
-        //         $( ".gbf-product-date-range-to" ).datepicker({
-        //             defaultDate: "+1w",
-        //             changeMonth: true,
-        //             changeYear: true,
-        //             numberOfMonths: 1,
-        //             beforeShow:function(textbox, instance){
-        //                 $('.div-to-append-range-calender').append($('#ui-datepicker-div'));
-        //             },
-        //             onSelect: function(dateText) {
-        //                 var presentDate = PresentDateForm(this.value);
-                        
-        //                 $("#ui-datepicker-div").find(".ui-state-default").removeClass("ui-state-active");
-        //                 var date = new Date(this.value),
-        //                     day = date.getDate(),
-        //                     month = date.getMonth(),
-        //                     year = date.getFullYear();
-        //                 $("#ui-datepicker-div").find(".ui-state-default").each(function(index, obj){
-        //                     if($(obj).text() == day && $(obj).parent().data('month') == month && $(obj).parent().data('year') == year){
-        //                         $(obj).addClass("ui-state-active");
-        //                     }
-        //                 });
-        //             }
-        //         }).datepicker( "setDate", new Date() ).on( "change", function () {
-        //             from.datepicker( "option", "minDate" );
-        //         } )  
-        //     }
-        // });
+        
 
 
         // -------show/hide step stats info-------
@@ -308,6 +214,9 @@
             $('.wpfnl-duplicate-funnel').on('click', this.cloneFunnel);
             $('.wpfnl-delete-funnel').on('click', this.deleteFunnel);
             $('.wpfnl-update-funnel-status').on('click', this.UpdateFunnelStatus);
+            $('.wpfnl-export-funnel').on('click', this.ExportFunnel);
+            $('.wpfnl-export-all-funnels').on('click', this.ExportAllFunnel);
+            $('#wpfnl-import-funnels').on('submit', this.ImportFunnels);
         };
 
         /**
@@ -531,6 +440,153 @@
             }
         };
 
+
+
+        /**
+         *
+         * Ajax handler for export a single funnel
+         * funnel action
+         *
+         * @param event
+         * @since 2.6.3
+         */
+         FunnelHandler.prototype.ExportFunnel = function(event) {
+            event.preventDefault();
+
+            var funnel_id = $(this).attr('data-id'),
+                loader    = $(this).find('.wpfnl-loader');
+            var payload = {
+                funnel_id: funnel_id
+            };
+
+            $(this).css('pointer-events', 'none');
+            loader.show();
+
+            wpAjaxHelperRequest("wpfnl-export-funnel", payload)
+                .success(function(response) {
+                    if( response.success ){
+                        const jsonData = response.steps;
+                        const filename = response.title + '.json';
+                        download(JSON.stringify(jsonData), filename, "text/plain");
+                    }
+                    loader.hide();
+                })
+                .error(function(response) {
+                    loader.hide();
+                });
+        };
+        
+        
+        /**
+         *
+         * Ajax handler for export a single funnel
+         * funnel action
+         *
+         * @param event
+         * @since 2.6.3
+         */
+         FunnelHandler.prototype.ExportAllFunnel = function(event) {
+            event.preventDefault();
+
+            var status = 'all',
+                loader    = $(this).find('.wpfnl-loader');
+            var payload = {
+                status: status
+            };
+
+            $(this).css('pointer-events', 'none');
+            loader.show();
+
+            wpAjaxHelperRequest("wpfnl-export-all-funnels", payload)
+                .success(function(response) {
+                    if( response.success ){
+                        const jsonData = response.data;
+
+                        var today = new Date();
+                        var dd = String(today.getDate()).padStart(2, '0');
+                        var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+                        var yyyy = today.getFullYear();
+                        today = mm + '-' + dd + '-' + yyyy;
+                        const filename = 'wpfunnels-export-'+today+'-.json';
+                        
+                        download(JSON.stringify(jsonData), filename, "text/plain");
+                    }
+                    loader.hide();
+                })
+                .error(function(response) {
+                    loader.hide();
+                });
+        };
+        
+        
+        /**
+         *
+         * Ajax handler for import funnels
+         * funnel action
+         *
+         * @param event
+         * @since 2.6.3
+         */
+         FunnelHandler.prototype.ImportFunnels = function(event) {
+            // event.stopPropagation();
+            event.preventDefault();
+
+
+            let formData = new FormData(this);
+            let importFile = $('#wpfnl-file-import')[0].files[0];
+           
+            formData.append('action', 'wpfnl_import_funnels');
+            formData.append('is_ajax', 'yes');
+            formData.append('uploaded_file', importFile);
+            console.log(formData)
+            $.ajax( {
+				url: WPFunnelVars.ajaxurl,
+				type: 'post',
+                contentType: false,
+                dataType:'json',
+                processData: false,
+				data: formData,
+				success: function(response) {
+					if(response.success) {
+						window.location.reload();
+					}
+				}
+			}).done( function ( request, status, XHR ) {
+				if(status.success) {
+					// window.location.reload();
+				}
+			});
+
+
+            // wpAjaxHelperRequest("wpfnl-import-funnels", payload)
+            //     .success(function(response) {
+            //         if( response.success ){
+                        
+            //         }
+                    
+            //     })
+            //     .error(function(response) {
+                    
+            //     });
+        };
+
+
+        /**
+         * Download json file
+         * 
+         * @param content 
+         * @param fileName 
+         * @param contentType 
+         * 
+         * @since 2.6.3
+         */
+        function download(content, fileName, contentType) {
+            const a = document.createElement("a");
+            const file = new Blob([content], { type: contentType });
+            a.href = URL.createObjectURL(file);
+            a.download = fileName;
+            a.click();
+        }
 
         /**
          * Realtime funnel name change on header
@@ -904,8 +960,7 @@
                     }, 2000);
                 });
         };
-
-
+        
         /**
          * save upsell settings
          * options
@@ -1372,7 +1427,7 @@
          */
         $('.step-settings__single-tab-content:first-child').show();
 
-        $(document).on("click", ".steps-settings__tab-nav a", function(e) {
+        $(document).on("click", ".steps-settings__tab-nav:not(.ab-nav) a", function(e) {
             if( ! $(this).parent('li').hasClass('disabled') ){
                 e.preventDefault();
                 var dataID = $(this).attr('href');
@@ -1664,6 +1719,47 @@
         $(this).parents('.single-order-bump').siblings().find('.order-bump-accordion-content').removeClass('show-content');
         $(this).parents('.single-order-bump').find('.order-bump-accordion-content').toggleClass('show-content');
     });
+
+    
+    /**
+     * Automatic winner choose condition dropdown
+     *
+    */
+    $(document).on("click", ".automatic-winner .set-condition .selected-item", function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        $(this).parents('.wpfnl-selectbox').find('.selectable-option').slideToggle(300);
+    });
+    $(document).on("click", "body", function() {
+        $('.automatic-winner .set-condition .selectable-option').hide();
+    });
+
+    $(document).on("click", ".automatic-winner .set-condition .selectable-option li", function(e) {
+        e.preventDefault();
+        var selected_item_text = $(this).text();
+        var selected_item_data = $(this).attr('data-value');
+        
+        $(this).siblings().removeClass('active');
+        $(this).addClass('active');
+        $('.automatic-winner .set-condition .selected-item').text(selected_item_text).attr('data-value', selected_item_data);
+    });
+
+    
+    /**
+     * Show step control button when clik on step (on drawflow window page)
+     *
+    */
+    $(document).on("click", ".drawflow .drawflow-node .single-node", function(e) {
+        e.stopPropagation();
+        $(this).parents('.parent-node').siblings().find('.single-node').removeClass('im-selected-node');
+        $(this).siblings().removeClass('im-selected-node');
+        $(this).addClass('im-selected-node');
+    });
+    
+    $(document).on("click", "body", function() {
+        $('.drawflow .drawflow-node .single-node').removeClass('im-selected-node');
+    });
+
 
 })(jQuery);
 

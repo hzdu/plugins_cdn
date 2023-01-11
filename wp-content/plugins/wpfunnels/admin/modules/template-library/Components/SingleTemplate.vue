@@ -203,7 +203,7 @@ export default {
 			e.preventDefault()
 			this.$emit('toggleStepsPreview')
 			this.$emit('initSteps', this.steps)
-			this.$emit('setActiveTemplate', this.data)
+			this.$emit('setActiveTemplate', this.templatedata)
 		},
 	},
 }

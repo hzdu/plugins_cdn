@@ -82,7 +82,7 @@
                         :key="index"
                         :funnelID="funnelID"
                         :activeStep="activeStep"
-                        v-if="activeStep === step.step_type"
+                        v-if="activeStep === step?.step_type"
                     />
                 </div>
             </div>
