@@ -236,10 +236,6 @@ h3.happyforms-form__title {
   margin-bottom: 10px;
 }
 
-.happyforms-part--scale-multiple .happyforms-part__description {
-  margin-bottom: 25px;
-}
-
 .happyforms-part input[type=text],
 .happyforms-part input[type=password],
 .happyforms-part input[type=email],
@@ -579,14 +575,6 @@ h3.happyforms-form__title {
 
 /* parts - scale */
 
-.happyforms-part--scale output {
-  position: absolute;
-  padding: 4px 12px;
-  left: 50%;
-  margin-top: 25px;
-  transform: translateX(-50%);
-}
-
 .happyforms-part--scale__labels {
   position: relative;
   width: 100%;
@@ -597,22 +585,13 @@ h3.happyforms-form__title {
   flex-flow: column wrap;
 }
 
-.happyforms-part--scale__wrap {
-  position: relative;
-  margin-bottom: 20px;
+.happyforms-part--scale-multiple .happyforms-part--scale__wrap {
+  margin-top: 20px;
 }
 
 .happyforms-part--scale .happyforms-part__description {
   margin-top: -3px;
   word-break: break-word;
-}
-
-.happyforms-part--scale-multiple output {
-  margin-top: 10px;
-}
-
-.happyforms-part--scale-multiple .happyforms-part__description {
-  margin-top: 15px;
 }
 
 .happyforms-part--scale-multiple .happyforms-part--scale__labels {
@@ -1520,47 +1499,58 @@ button[type=submit][disabled].happyforms-button--submit {
 
 /* multirange */
 @supports (--css: variables) {
-  input[type="range"].multirange {
-    padding: 0;
-    margin: 0;
-    display: inline-block;
-    vertical-align: top;
-  }
-
-  input[type="range"].multirange.original {
-    position: absolute;
-  }
-
-  input[type="range"].multirange.original::-webkit-slider-thumb {
-    position: relative;
-    z-index: 2;
-  }
-
-  input[type="range"].multirange.original::-moz-range-thumb {
-    transform: scale(1);
-    /* FF doesn't apply position it seems */
-    z-index: 1;
-  }
-
-  input[type="range"].multirange::-moz-range-track {
-    border-color: transparent;
-    /* needed to switch FF to "styleable" control */
-  }
-
-  input[type="range"].multirange.ghost {
+  .happyforms-part--scale input[type="range"].multirange.ghost {
     position: relative;
     background: var(--track-background);
-    --track-background: linear-gradient(to right, var(--happyforms-color-part-border) var(--low), var(--range-color) 0, var(--range-color) var(--high), var(--happyforms-color-part-border) 0) no-repeat 0 45% / 100% 10%;
+    --track-background: linear-gradient(to right, var(--happyforms-color-part-border) var(--low), var(--range-color) 0, var(--range-color) var(--high), var(--happyforms-color-part-border) 0) no-repeat 0 45% / 100% 100%;
     --range-color: var(--happyforms-color-part-value);
   }
+}
 
-  input[type="range"].multirange.ghost::-webkit-slider-runnable-track {
-    background: var(--track-background);
-  }
+.happyforms-part--scale input[type="range"].multirange {
+  padding: 0;
+  margin: 0;
+  display: inline-block;
+  vertical-align: top;
+}
 
-  input[type="range"].multirange.ghost::-moz-range-track {
-    background: var(--track-background);
-  }
+.happyforms-part--scale input[type="range"].multirange.original {
+  position: absolute;
+}
+
+.happyforms-part--scale input[type="range"].multirange.original::-webkit-slider-thumb {
+  position: relative;
+  z-index: 2;
+}
+
+.happyforms-part--scale input[type="range"].multirange.original::-moz-range-thumb {
+  transform: scale(1);
+  /* FF doesn't apply position it seems */
+  z-index: 1;
+}
+
+.happyforms-part--scale input[type="range"].multirange::-moz-range-track {
+  border-color: transparent;
+  /* needed to switch FF to "styleable" control */
+}
+
+.happyforms-part--scale input.multirange[type=range]{
+  pointer-events: none;
+}
+
+ /* Chrome and Safari*/
+.happyforms-part--scale input.multirange[type=range]::-webkit-slider-thumb {
+  pointer-events: auto;
+}
+
+/* Firefox */
+.happyforms-part--scale input.multirange[type=range]::-moz-range-thumb {
+  pointer-events: auto;
+}
+
+/* Internet Explorer */
+.happyforms-part--scale input.multirange[type=range]::-ms-thumb { 
+  pointer-events: auto;
 }
 
 
@@ -1914,6 +1904,21 @@ button[type=submit][disabled].happyforms-button--submit {
 
   .happyforms-form-preview .happyforms-part--submit input {
     margin-right: 0;
+  }
+
+  .happyforms-styles .happyforms-part input[type=range]::-webkit-slider-thumb {
+    width: 28px!important;
+    height: 28px!important;
+  }
+
+  .happyforms-styles .happyforms-part input[type=range]::-moz-range-thumb {
+    width: 28px!important;
+    height: 28px!important;
+  }
+
+  .happyforms-styles .happyforms-part input[type=range]::-ms-thumb {
+    width: 28px!important;
+    height: 28px!important;
   }
 }
 

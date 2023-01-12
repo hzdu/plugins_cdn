@@ -16,9 +16,9 @@
 		initialize: function() {
 			happyForms.classes.views.Part.prototype.initialize.apply( this, arguments );
 
-			this.listenTo( this.model, 'change:min_label', this.onMinLabelChange );
-			this.listenTo( this.model, 'change:max_label', this.onMaxLabelChange );
 			this.listenTo( this.model, 'change:multiple', this.onMultipleChange );
+			this.listenTo( this.model, 'change:prefix', this.onPartScalePrefixChange );
+			this.listenTo( this.model, 'change:suffix', this.onPartScaleSuffixChange );
 			this.listenTo( happyForms.form, 'save', this.onFormSave );
 		},
 
@@ -106,25 +106,8 @@
 			happyForms.previewSend( 'happyforms-part-dom-update', data );
 		},
 
-		onMinLabelChange: function( model, value ) {
-			var data = {
-				id: this.model.get( 'id' ),
-				callback: 'onScaleMinLabelChange',
-			};
-
-			happyForms.previewSend( 'happyforms-part-dom-update', data );
-		},
-
-		onMaxLabelChange: function ( model, value ) {
-			var data = {
-				id: this.model.get( 'id' ),
-				callback: 'onScaleMaxLabelChange',
-			};
-
-			happyForms.previewSend( 'happyforms-part-dom-update', data );
-		},
-
 		onMultipleChange: function ( model, value ) {
+			value = parseInt( value );
 			var $multipleOptions = $( '.happyforms-nested-settings[data-trigger="multiple"]', this.$el );
 
 			if ( 1 === value ) {
@@ -138,9 +121,31 @@
 			this.refreshPart();
 		},
 
+		onPartScalePrefixChange: function( model, value ) {
+			var data;
+
+			data = {
+				id: this.model.get( 'id' ),
+				callback: 'onPartScalePrefixChangeCallback',
+			};
+
+			happyForms.previewSend( 'happyforms-part-dom-update', data );
+		},
+
+		onPartScaleSuffixChange: function( model, value ) {
+			var data;
+
+			data = {
+				id: this.model.get( 'id' ),
+				callback: 'onPartScaleSuffixChangeCallback',
+			};
+
+			happyForms.previewSend( 'happyforms-part-dom-update', data );
+		},
+
 		onFormSave: function( form ) {
-			var part = _.findWhere( form.parts, { 
-				id: this.model.get( 'id' ) 
+			var part = _.findWhere( form.parts, {
+				id: this.model.get( 'id' )
 			} );
 
 			if ( ! part ) {
@@ -163,20 +168,20 @@
 			$input.attr( 'step', part.get( 'step' ) );
 		},
 
-		onScaleMinLabelChange: function( id, html, options ) {
+		onPartScalePrefixChangeCallback: function( id, html, options, $ ) {
 			var part = this.getPartModel( id );
 			var $part = this.getPartElement( html );
-			var $label = this.$( '.label-min', $part );
+			var $prefix = this.$( 'span.happyforms-part--scale__prefix', $part );
 
-			$label.text( part.get( 'min_label' ) );
+			$prefix.text( part.get( 'prefix' ) );
 		},
 
-		onScaleMaxLabelChange: function( id, html, options ) {
+		onPartScaleSuffixChangeCallback: function( id, html, options, $ ) {
 			var part = this.getPartModel( id );
 			var $part = this.getPartElement( html );
-			var $label = this.$( '.label-max', $part );
+			var $prefix = this.$( 'span.happyforms-part--scale__suffix', $part );
 
-			$label.text( part.get( 'max_label' ) );
+			$prefix.text( part.get( 'suffix' ) );
 		},
 	} );
 

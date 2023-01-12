@@ -40,6 +40,7 @@
 .has-email #customize-control-active_email_service[data-value=sendgrid] ~ .happyforms-nested-settings[data-trigger=sendgrid],
 .has-email #customize-control-active_email_service[data-value=sendinblue] ~ .happyforms-nested-settings[data-trigger=sendinblue],
 .has-email #customize-control-active_email_service[data-value=emailoctopus] ~ .happyforms-nested-settings[data-trigger=emailoctopus],
+.has-email #customize-control-active_email_service[data-value=drip] ~ .happyforms-nested-settings[data-trigger=drip],
 .has-email #customize-control-sendinblue_subscribe_status[data-value=""] ~ #customize-control-sendinblue_double_opt_in.checked ~ .happyforms-nested-settings[data-trigger=sendinblue_double_opt_in],
 .has-email #customize-control-alert_email_reply_to,
 #customize-control-submission_redirect_notice,
@@ -59,7 +60,8 @@
 #customize-control-sendinblue_subscribe_status ~ div.customize-control,
 #customize-control-sendinblue_list,
 #customize-control-sendinblue_list_unsubscribe,
-#customize-control-emailoctopus_subscribe_status ~ div.customize-control {
+#customize-control-emailoctopus_subscribe_status ~ div.customize-control,
+#customize-control-drip_subscribe_status ~ div.customize-control {
   display: none;
 }
 
@@ -98,7 +100,11 @@
 #customize-control-emailoctopus_subscribe_status[data-value=""] ~ #customize-control-emailoctopus_list,
 #customize-control-emailoctopus_subscribe_status[data-value="unsubscribe"] ~ #customize-control-emailoctopus_list_unsubscribe,
 #customize-control-emailoctopus_subscribe_status[data-value=""] ~ #customize-control-emailoctopus_tags,
-#customize-control-emailoctopus_subscribe_status[data-value="unsubscribe"] ~ #customize-control-emailoctopus_tags_unsubscribe {
+#customize-control-emailoctopus_subscribe_status[data-value="unsubscribe"] ~ #customize-control-emailoctopus_tags_unsubscribe,
+#customize-control-drip_subscribe_status[data-value=""] ~ #customize-control-drip_list,
+#customize-control-drip_subscribe_status[data-value=""] ~ #customize-control-drip_tags,
+#customize-control-drip_subscribe_status[data-value="unsubscribe"] ~ #customize-control-drip_list_unsubscribe,
+#customize-control-drip_subscribe_status[data-value="unsubscribe"] ~ #customize-control-drip_tags_unsubscribe {
   display: block;
 }
 

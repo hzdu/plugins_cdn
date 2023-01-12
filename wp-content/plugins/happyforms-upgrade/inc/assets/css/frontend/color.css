@@ -317,7 +317,11 @@
 }
 
 .happyforms-styles .happyforms-part .happyforms-part-option label.heading-label,
-.happyforms-styles .happyforms-part--phone .happyforms-phone-international-labels {
+.happyforms-styles .happyforms-part--phone .happyforms-phone-international-labels,
+.happyforms-styles .happyforms-part--scale output,
+.happyforms-styles .happyforms-part--scale .happyforms-part--scale__prefix,
+.happyforms-styles .happyforms-part--scale .happyforms-part--scale__suffix,
+.happyforms-styles .happyforms-part--scale .happyforms-part--scale__dash {
   font-weight: normal;
   font-style: normal;
   font-size: 16px;
@@ -529,18 +533,6 @@
 .happyforms-styles .happyforms-part input[type=range]:focus::-ms-fill-upper {
   background: #000;
   background: var(--happyforms-color-part-value);
-}
-
-.happyforms-styles .happyforms-part--scale output {
-  font-size: 16px;
-  font-size: var(--happyforms-part-value-font-size);
-}
-
-.happyforms-styles .happyforms-part--scale output span {
-  position: absolute;
-  left: 0;
-  color: #000;
-  color: var(--happyforms-color-part-value);
 }
 
 .happyforms-styles .happyforms-part--scale output span {
