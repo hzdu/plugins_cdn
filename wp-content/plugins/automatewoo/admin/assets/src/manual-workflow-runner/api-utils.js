@@ -52,7 +52,7 @@ export async function getWorkflowMatchingItems(
  * Add items to queue.
  *
  * @param {number} workflowId
- * @param {Array} batch
+ * @param {Array}  batch
  * @return {Promise<*>} Post request promise.
  * @throws Error
  */

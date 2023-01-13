@@ -28,15 +28,13 @@ const PresetsTab = () => {
 			getPresetsError: presetsSelect.getError( 'getPresets' ),
 			getPresetsIsRequesting: presetsSelect.isRequesting( 'getPresets' ),
 			presets: presetsSelect.getPresets(),
-			createWorkflowIsRequesting: presetsSelect.isRequesting(
-				'createWorkflow'
-			),
+			createWorkflowIsRequesting:
+				presetsSelect.isRequesting( 'createWorkflow' ),
 			didCreateWorkflow: presetsSelect.didCreateWorkflow(),
 		};
 	}, [] );
-	const { createWorkflow: createWorkflowAction } = useDispatch(
-		PRESETS_STORE_NAME
-	);
+	const { createWorkflow: createWorkflowAction } =
+		useDispatch( PRESETS_STORE_NAME );
 	const { createNotice } = useDispatch( 'core/notices' );
 	let cardBody;
 

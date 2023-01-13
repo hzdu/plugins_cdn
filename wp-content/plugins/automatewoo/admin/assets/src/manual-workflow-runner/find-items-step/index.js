@@ -23,17 +23,12 @@ const FindItemsStep = ( {
 	workflowQuickFilterData,
 	possibleResultsCount,
 } ) => {
-	const {
-		primaryDataTypePluralName,
-		possibleResultCounts,
-	} = workflowQuickFilterData;
-	const [
-		dismissedHighVolumeWarning,
-		setDismissedHighVolumeWarning,
-	] = useState( false );
-	const [ findItemsState, findItemsDispatch ] = useFindItemsReducer(
-		possibleResultCounts
-	);
+	const { primaryDataTypePluralName, possibleResultCounts } =
+		workflowQuickFilterData;
+	const [ dismissedHighVolumeWarning, setDismissedHighVolumeWarning ] =
+		useState( false );
+	const [ findItemsState, findItemsDispatch ] =
+		useFindItemsReducer( possibleResultCounts );
 
 	// Logic for high volume warning
 	let showHighVolumeWarning = false;

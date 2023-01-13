@@ -1,50 +1,47 @@
-jQuery(function($) {
+// Register eslint ignored glabals - to be revisited.
+// https://github.com/woocommerce/automatewoo/issues/1212
+/* global ajaxurl, alert */
+jQuery( function ( $ ) {
+	/**
+	 * Init
+	 */
+	function init() {
+		setIframeHeight();
 
-    /**
-     * Init
-     */
-    function init() {
+		$( window ).on( 'resize', function () {
+			setIframeHeight();
+		} );
+	}
 
-        set_iframe_height();
+	function setIframeHeight() {
+		$( '.aw-preview__email-iframe' ).height(
+			$( window ).height() - $( '.aw-preview__header' ).outerHeight()
+		);
+	}
 
-        $(window).on( 'resize', function(){
-            set_iframe_height();
-        });
+	$( 'form.aw-preview__send-test-form' ).on( 'submit', function ( e ) {
+		e.preventDefault();
 
-    }
+		const $form = $( this );
 
+		$form.addClass( 'aw-loading' );
+		$form.find( 'button' ).trigger( 'blur' );
 
-    function set_iframe_height() {
-        $('.aw-preview__email-iframe').height( $(window).height() - $('.aw-preview__header').outerHeight() );
-    }
+		const data = {
+			action: 'aw_send_test_email',
+			type: $form.find( '[name="type"]' ).val(),
+			to_emails: $form.find( '[name="to_emails"]' ).val(),
+			args: JSON.parse( $form.find( '[name="args"]' ).val() ),
+		};
 
+		$.post( ajaxurl, data, function ( response ) {
+			// eslint-disable-next-line no-alert -- Pre eslint introduction code, to be revised.
+			alert( response.data.message );
+			$form.removeClass( 'aw-loading' );
+		} );
 
+		return false;
+	} );
 
-    $('form.aw-preview__send-test-form').on( 'submit', function(e){
-        e.preventDefault();
-
-        var $form = $(this);
-
-        $form.addClass('aw-loading');
-        $form.find('button').trigger( 'blur' );
-
-        var data = {
-            action: 'aw_send_test_email',
-            type: $form.find('[name="type"]').val(),
-            to_emails: $form.find('[name="to_emails"]').val(),
-            args: JSON.parse( $form.find('[name="args"]').val() )
-        };
-
-        $.post( ajaxurl, data, function( response ){
-            alert( response.data.message );
-            $form.removeClass('aw-loading');
-        });
-
-        return false;
-
-    });
-
-
-    init();
-
-});
+	init();
+} );

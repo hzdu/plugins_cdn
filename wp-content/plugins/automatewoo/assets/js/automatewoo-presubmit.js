@@ -1,90 +1,101 @@
-jQuery(function($) {
+jQuery( function ( $ ) {
+	// eslint-disable-next-line camelcase -- Legacy global.
+	if ( typeof automatewoo_presubmit_params === 'undefined' ) {
+		return false;
+	}
 
-    if ( typeof automatewoo_presubmit_params === 'undefined' ) {
-        return false;
-    }
+	// eslint-disable-next-line camelcase, no-undef -- Legacy global.
+	const params = automatewoo_presubmit_params;
 
-    var params = automatewoo_presubmit_params;
+	let guestId = parseInt( params.guest_id, 10 );
+	let email = '';
+	const $checkoutForm = $( 'form.checkout' );
+	const emailFields = params.email_capture_selectors;
+	const checkoutFields = params.checkout_capture_selectors;
+	const checkoutFieldsData = {};
+	const language = params.language;
+	let captureEmailXhr;
 
-    var guest_id = parseInt( params.guest_id );
-    var email = '';
-    var $checkout_form = $( 'form.checkout' );
-    var email_fields = params.email_capture_selectors;
-    var checkout_fields = params.checkout_capture_selectors;
-    var checkout_fields_data = {};
-    var language = params.language;
-    var capture_email_xhr;
+	$.each( checkoutFields, function ( i, fieldName ) {
+		checkoutFieldsData[ fieldName ] = '';
+	} );
 
-    $.each( checkout_fields, function( i, field_name ) {
-        checkout_fields_data[field_name] = '';
-    });
+	function captureEmail() {
+		if ( ! $( this ).val() || email === $( this ).val() ) {
+			return;
+		}
 
-    function captureEmail() {
-        if ( ! $(this).val() || email === $(this).val() ) {
-            return;
-        }
+		email = $( this ).val();
 
-        email = $(this).val();
+		const data = {
+			email,
+			language,
+			checkout_fields: getCheckoutFieldValues(),
+		};
 
-        var data = {
-            email: email,
-            language: language,
-            checkout_fields: getCheckoutFieldValues()
-        };
+		if ( captureEmailXhr ) {
+			captureEmailXhr.abort();
+		}
 
-        if ( capture_email_xhr ) {
-            capture_email_xhr.abort();
-        }
+		captureEmailXhr = $.post(
+			params.ajax_url
+				.toString()
+				.replace( '%%endpoint%%', 'capture_email' ),
+			data,
+			function ( response ) {
+				if ( response && response.success ) {
+					guestId = response.data.guest_id;
+				}
+			}
+		);
+	}
 
-        capture_email_xhr = $.post( params.ajax_url.toString().replace( '%%endpoint%%', 'capture_email' ), data, function( response ) {
-            if ( response && response.success ) {
-                guest_id = response.data.guest_id;
-            }
-        });
-    }
+	function captureCheckoutField() {
+		const fieldName = $( this ).attr( 'name' );
+		if ( ! fieldName || checkoutFields.indexOf( fieldName ) === -1 ) {
+			return;
+		}
 
-    function captureCheckoutField() {
-        var field_name = $(this).attr( 'name' );
-        var field_value = $(this).val();
+		const fieldValue = $( this ).val();
+		// Don't capture if the field is empty or hasn't changed
+		if ( ! fieldValue || checkoutFieldsData[ fieldName ] === fieldValue ) {
+			return;
+		}
 
-        if ( ! field_name || checkout_fields.indexOf( field_name ) === -1  ) {
-            return;
-        }
+		checkoutFieldsData[ fieldName ] = fieldValue;
 
-        // Don't capture if the field is empty or hasn't changed
-        if ( ! field_value || checkout_fields_data[field_name] === field_value ) {
-            return;
-        }
+		if ( guestId ) {
+			$.post(
+				params.ajax_url
+					.toString()
+					.replace( '%%endpoint%%', 'capture_checkout_field' ),
+				{
+					guest_id: guestId,
+					field_name: fieldName,
+					field_value: fieldValue,
+				}
+			);
+		}
+	}
 
-        checkout_fields_data[field_name] = field_value;
+	/**
+	 * Get the current values for checkout fields.
+	 *
+	 * @return {Object} Checkout fields.
+	 */
+	function getCheckoutFieldValues() {
+		const fields = {};
 
-        if ( guest_id ) {
-            $.post( params.ajax_url.toString().replace( '%%endpoint%%', 'capture_checkout_field' ), {
-                guest_id: guest_id,
-                field_name: field_name,
-                field_value: field_value
-            });
-        }
-    }
+		$.each( checkoutFields, function ( i, fieldName ) {
+			fields[ fieldName ] = $(
+				'form.woocommerce-checkout [name="' + fieldName + '"]'
+			).val();
+		} );
 
-    /**
-     * Get the current values for checkout fields.
-     *
-     * @return object
-     */
-    function getCheckoutFieldValues() {
-        var fields = {};
+		return fields;
+	}
 
-        $.each( checkout_fields, function( i, field_name ) {
-            fields[field_name] = $('form.woocommerce-checkout [name="'+field_name+'"]').val();
-        });
-
-        return fields;
-    }
-
-
-    $(document).on( 'blur change', email_fields.join(', '), captureEmail );
-    $checkout_form.on( 'change', 'select', captureCheckoutField );
-    $checkout_form.on( 'blur change', '.input-text', captureCheckoutField );
-
-});
+	$( document ).on( 'blur change', emailFields.join( ', ' ), captureEmail );
+	$checkoutForm.on( 'change', 'select', captureCheckoutField );
+	$checkoutForm.on( 'blur change', '.input-text', captureCheckoutField );
+} );

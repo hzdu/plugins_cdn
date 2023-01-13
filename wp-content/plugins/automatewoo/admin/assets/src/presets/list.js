@@ -20,16 +20,17 @@ const PresetsList = ( {
 		<>
 			{ presets.map( ( preset, i ) => (
 				<CardRow key={ i } number={ i }>
-					{ 'guide' === preset.type
-						? <ListItemGuide { ...preset } />
-						: <ListItemPreset
+					{ preset.type === 'guide' ? (
+						<ListItemGuide { ...preset } />
+					) : (
+						<ListItemPreset
 							{ ...preset }
 							createWorkflow={ createWorkflow }
 							createWorkflowIsRequesting={
 								createWorkflowIsRequesting
 							}
-						  />
-					}
+						/>
+					) }
 				</CardRow>
 			) ) }
 		</>

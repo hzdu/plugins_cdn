@@ -43,17 +43,14 @@ const ManualWorkflowRunner = ( { query } ) => {
 		} );
 
 		try {
-			const {
-				possibleResultCounts,
-				primaryDataType,
-			} = await getWorkflowQuickFilterData( workflow.id );
+			const { possibleResultCounts, primaryDataType } =
+				await getWorkflowQuickFilterData( workflow.id );
 
 			setQuickFilterData( {
 				possibleResultCounts,
 				primaryDataType,
-				primaryDataTypePluralName: getDataTypePluralName(
-					primaryDataType
-				),
+				primaryDataTypePluralName:
+					getDataTypePluralName( primaryDataType ),
 			} );
 			setCurrentStep( 'find' );
 			setStepperIsPending( false );

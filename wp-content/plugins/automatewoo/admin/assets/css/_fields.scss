@@ -20,7 +20,7 @@ $field-border-color-active: #a1a1a1;
 	}
 
 	&--monospace {
-		font-family: Consolas,Monaco,monospace;
+		font-family: Consolas, Monaco, monospace;
 		font-size: 13px;
 		word-break: break-all;
 	}
@@ -43,6 +43,7 @@ $field-border-color-active: #a1a1a1;
 }
 
 .automatewoo-table__col {
+
 	.wc-enhanced-select,
 	.select2-container,
 	.select2-search,
@@ -52,7 +53,8 @@ $field-border-color-active: #a1a1a1;
 }
 
 .automatewoo-table__col--field {
-	input[type=checkbox] {
+
+	input[type="checkbox"] {
 		margin: 6px 0;
 	}
 }
@@ -66,8 +68,10 @@ $field-border-color-active: #a1a1a1;
 .automatewoo-field-row--loading {
 
 	.automatewoo-field-wrap {
+
 		@extend .aw-loader;
-		&:before {
+
+		&::before {
 			left: 20px;
 			margin-left: 0;
 		}
@@ -85,9 +89,11 @@ $field-border-color-active: #a1a1a1;
 }
 
 .field-cols {
-	.col-1, .col-2 {
+
+	.col-1,
+	.col-2 {
 		float: left;
-		width: 48%
+		width: 48%;
 	}
 
 	.col-2 {
@@ -107,11 +113,11 @@ $field-border-color-active: #a1a1a1;
 .aw-required-asterisk {
 	color: $red;
 	font-weight: bold;
-	&:before {
-		content: '*';
+
+	&::before {
+		content: "*";
 	}
 }
-
 
 
 select.aw-field.wc-enhanced-select {
@@ -145,7 +151,6 @@ select.aw-field.wc-enhanced-select {
 }
 
 
-
 .automatewoo-label {
 	display: block;
 	font-weight: 600;
@@ -174,6 +179,7 @@ select.aw-field.wc-enhanced-select {
 
 
 .automatewoo-time-field-group {
+
 	@include clearfix;
 
 	&__fields {
@@ -203,6 +209,7 @@ select.aw-field.wc-enhanced-select {
 
 
 .automatewoo-before-after-day-field-group {
+
 	&__field {
 		margin: 1px;
 		vertical-align: top;
@@ -218,6 +225,7 @@ select.aw-field.wc-enhanced-select {
 }
 
 .automatewoo-list-table-form .tablenav {
+
 	.select2-selection--single {
 		height: 30px;
 
@@ -226,7 +234,7 @@ select.aw-field.wc-enhanced-select {
 			line-height: 2;
 			font-size: 14px;
 		}
-		
+
 		.select2-selection__arrow {
 			height: 28px;
 		}
@@ -234,6 +242,7 @@ select.aw-field.wc-enhanced-select {
 }
 
 .automatewoo-field-group--email-address-with-name {
+
 	@include clearfix;
 
 	.automatewoo-field-group__fields {

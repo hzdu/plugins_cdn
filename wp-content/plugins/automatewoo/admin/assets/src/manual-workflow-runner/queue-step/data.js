@@ -27,8 +27,9 @@ const reducer = ( state, action ) => {
 				status: STATUSES.ERROR,
 			};
 		case 'ADD_ITEMS_SUCCESS':
-			const itemsRemainingCount = Object.keys( action.itemsRemaining )
-				.length;
+			const itemsRemainingCount = Object.keys(
+				action.itemsRemaining
+			).length;
 			return {
 				...state,
 				itemsRemaining: action.itemsRemaining,

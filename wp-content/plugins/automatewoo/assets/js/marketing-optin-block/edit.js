@@ -2,11 +2,11 @@
  * External dependencies
  */
 import { useBlockProps, RichText } from '@wordpress/block-editor';
-import { CheckboxControl } from '@woocommerce/blocks-checkout';
 import { getSetting } from '@woocommerce/settings';
 import { Placeholder, Button } from '@wordpress/components';
 import { Icon, megaphone } from '@wordpress/icons';
 import { __ } from '@wordpress/i18n';
+import { CheckboxControl } from '@woocommerce/blocks-checkout'; // eslint-disable-line import/no-unresolved -- This is DEWPed from WooCommerce Blocks.
 /**
  * Internal dependencies
  */

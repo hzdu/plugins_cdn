@@ -33,9 +33,8 @@ const QueueStep = ( {
 	workflowQuickFilterData,
 	onStepCancel,
 } ) => {
-	const [ queueItemsState, queueItemsDispatch ] = useQueueItemsReducer(
-		items
-	);
+	const [ queueItemsState, queueItemsDispatch ] =
+		useQueueItemsReducer( items );
 	useWarnBeforeUnloadWhileRequesting( queueItemsState.status );
 	const itemCount = Object.keys( items ).length;
 

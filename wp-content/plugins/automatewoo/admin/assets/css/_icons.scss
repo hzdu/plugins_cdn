@@ -7,7 +7,7 @@
 	height: 2em !important;
 	width: 2em;
 
-	&:after {
+	&::after {
 		font-family: Dashicons;
 		text-indent: 0;
 		position: absolute;
@@ -25,34 +25,34 @@
 		font-weight: 400;
 	}
 
-	&.delete:after {
+	&.delete::after {
 		content: "\f335";
 	}
 
-	&.view:after {
+	&.view::after {
 		content: "\f177";
 	}
 
-	&.approve:after {
+	&.approve::after {
 		content: "\f529";
 	}
 
-	&.tick:after {
+	&.tick::after {
 		content: "\f147";
 	}
 
-	&.reject:after {
+	&.reject::after {
 		content: "\f542";
 	}
 
-	&--settings:after {
+	&--settings::after {
 		content: "\f111";
 	}
 
 	&--size-md {
 		font-size: 14px;
 
-		&:after {
+		&::after {
 			line-height: 1.95;
 		}
 	}

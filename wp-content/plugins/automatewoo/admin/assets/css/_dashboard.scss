@@ -1,7 +1,7 @@
 $gutter: 20px;
 
 $color-dashboard-blue: #2694cf;
-$color-dashboard-text-light-grey: #aaaaaa;
+$color-dashboard-text-light-grey: #aaa;
 $color-dashboard-light-border: #e5e5e5;
 $color-dashboard-light-grey-bg: #fafafa;
 
@@ -9,7 +9,7 @@ $color-dashboard-light-grey-bg: #fafafa;
 %box-style {
 	background: $white;
 	border: 1px solid $color-dashboard-light-border;
-	box-shadow: 0 1px 1px rgba(0,0,0,0.04);
+	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.04);
 }
 
 %box-style-link-hover {
@@ -45,7 +45,7 @@ $color-dashboard-light-grey-bg: #fafafa;
 		display: block;
 		float: left;
 		text-decoration: none;
-		color: lighten( $color-dark-grey, 10% );
+		color: lighten($color-dark-grey, 10%);
 		font-weight: 500;
 		font-size: 11px;
 		border: 1px solid #ccc;
@@ -75,18 +75,18 @@ $color-dashboard-light-grey-bg: #fafafa;
 	}
 
 	&-widget-sizer {
-		width: calc( 100% - #{$gutter} );
+		width: calc(100% - #{$gutter});
 
 		@media ( min-width: 800px ) {
-			width: calc( 50% - #{$gutter} );
+			width: calc(50% - #{$gutter});
 		}
 
 		@media ( min-width: 1200px ) {
-			width: calc( 33.33% - #{$gutter} );
+			width: calc(33.33% - #{$gutter});
 		}
 
 		@media ( min-width: 1750px ) {
-			width: calc( 25% - #{$gutter} );
+			width: calc(25% - #{$gutter});
 		}
 	}
 
@@ -94,18 +94,18 @@ $color-dashboard-light-grey-bg: #fafafa;
 
 	&-widget {
 		margin-bottom: $gutter;
-		width: calc( 100% - #{$gutter} );
+		width: calc(100% - #{$gutter});
 
 		@media ( min-width: 800px ) {
-			width: calc( 50% - #{$gutter} );
+			width: calc(50% - #{$gutter});
 		}
 
 		@media ( min-width: 1200px ) {
-			width: calc( 33.33% - #{$gutter} );
+			width: calc(33.33% - #{$gutter});
 		}
 
 		@media ( min-width: 1750px ) {
-			width: calc( 25% - #{$gutter} );
+			width: calc(25% - #{$gutter});
 		}
 	}
 
@@ -121,16 +121,18 @@ $color-dashboard-light-grey-bg: #fafafa;
 	}
 
 	&__figures {
+
 		@include clearfix;
-		margin: 0 calc( -1 * $gutter / 2 );
+		margin: 0 calc(-1 * $gutter / 2);
 	}
 
 	&__figure {
+
 		@extend %box-style;
 		@extend %box-style-link-hover;
-		margin: 0 calc( $gutter / 2 ) $gutter;
+		margin: 0 calc($gutter / 2) $gutter;
 		float: left;
-		width: calc( 50% - #{$gutter} );
+		width: calc(50% - #{$gutter});
 		text-align: center;
 		background-color: #fff;
 		box-sizing: border-box;
@@ -156,10 +158,12 @@ $color-dashboard-light-grey-bg: #fafafa;
 	// FEATURED WORKFLOWS
 
 	&__workflows {
+
 		@extend %box-style;
 	}
 
 	&__workflow {
+
 		@extend %box-style-link-hover;
 		padding: 17px 17px;
 
@@ -182,6 +186,7 @@ $color-dashboard-light-grey-bg: #fafafa;
 	// CHARTS
 
 	&-chart {
+
 		@extend %box-style;
 		position: relative;
 	}
@@ -226,6 +231,7 @@ $color-dashboard-light-grey-bg: #fafafa;
 		border-bottom: 1px solid $grey-very-light-border;
 		position: relative;
 		height: 73px;
+
 		@include clearfix;
 		overflow: hidden;
 	}
@@ -282,6 +288,7 @@ $color-dashboard-light-grey-bg: #fafafa;
 	// LIST TABLE
 
 	&-list {
+
 		@extend %box-style;
 	}
 

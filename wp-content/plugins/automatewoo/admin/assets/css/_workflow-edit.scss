@@ -10,9 +10,10 @@ body.post-type-aw_workflow {
 	#aw_variables_box {
 
 		&.aw-loading {
+
 			.inside,
 			h3.hndle {
-				opacity: .45;
+				opacity: 0.45;
 			}
 
 			@include loader();
@@ -25,6 +26,7 @@ body.post-type-aw_workflow {
 #aw_save_box,
 #aw_timing_box,
 #aw_variables_box {
+
 	.handlediv,
 	.hndle,
 	.postbox-header { // .postbox-header was added in WP 5.5
@@ -65,6 +67,7 @@ body.post-type-aw_workflow {
 	}
 
 	h2.hndle {
+
 		small {
 			font-weight: normal;
 			padding-left: 1px;
@@ -79,8 +82,11 @@ body.post-type-aw_workflow {
 }
 
 body.wc-wp-version-gte-55 {
+
 	.automatewoo-metabox.postbox {
+
 		h2.hndle {
+
 			small {
 				font-weight: normal;
 				padding-left: 6px;

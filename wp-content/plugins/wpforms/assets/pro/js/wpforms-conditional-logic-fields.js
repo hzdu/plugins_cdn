@@ -482,24 +482,28 @@
 					console.log( 'Result: ' + pass );
 				}
 
-				if ( ( pass && action === 'hide' ) || ( ! pass && action !== 'hide' ) ) {
-					const $fieldContainer = $form.find( '#wpforms-' + formID + '-field_' + fieldID + '-container' );
+				const $fieldContainer     = $form.find( '#wpforms-' + formID + '-field_' + fieldID + '-container' );
+				const $closestLayoutField = $fieldContainer.closest( '.wpforms-field-layout' );
 
+				if ( ( pass && action === 'hide' ) || ( ! pass && action !== 'hide' ) ) {
 					$fieldContainer
 						.hide()
 						.addClass( 'wpforms-conditional-hide' )
 						.removeClass( 'wpforms-conditional-show' );
 
 					// If the field is inside a layout field and no other fields inside the layout field are visible, hide the layout container.
-					if ( WPFormsConditionals.isInsideLayoutField( $fieldContainer ) &&
-						! $fieldContainer.closest( '.wpforms-field-layout' ).find( 'div.wpforms-field:visible' ).length
+					if (
+						WPFormsConditionals.isInsideLayoutField( $fieldContainer ) &&
+						$closestLayoutField.find( 'div.wpforms-conditional-hide' ).length === $closestLayoutField.find( '.wpforms-field' ).length
 					) {
-						$fieldContainer.closest( '.wpforms-field-layout' ).hide();
+						$closestLayoutField
+							.hide()
+							.addClass( 'wpforms-conditional-hide' )
+							.removeClass( 'wpforms-conditional-show' );
 					}
 
 					hidden = true;
 				} else {
-					var $fieldContainer = $form.find( '#wpforms-' + formID + '-field_' + fieldID + '-container' );
 					if (
 						$this.closest( '.wpforms-field' ).attr( 'id' ) !== $fieldContainer.attr( 'id' ) &&
 						$fieldContainer.hasClass( 'wpforms-conditional-hide' )
@@ -513,7 +517,10 @@
 
 					// If the field is inside a layout field, show the layout container.
 					if ( WPFormsConditionals.isInsideLayoutField( $fieldContainer ) ) {
-						$fieldContainer.closest( '.wpforms-field-layout' ).show();
+						$closestLayoutField
+							.show()
+							.removeClass( 'wpforms-conditional-hide' )
+							.addClass( 'wpforms-conditional-show' );
 					}
 
 					$this.trigger( 'wpformsShowConditionalsField' );

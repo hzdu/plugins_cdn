@@ -17,7 +17,7 @@ export const getWorkflowEditUrl = ( workflowId, origin = null ) => {
 	);
 };
 
-export function handleFetchError( noticeText ) {
+export function handleFetchError( noticeText, error ) {
 	const { createNotice } = dispatch( 'core/notices' );
 
 	createNotice( 'error', noticeText );

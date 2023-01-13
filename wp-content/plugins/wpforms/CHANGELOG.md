@@ -1,6 +1,12 @@
 # Changelog
 All notable changes to this project will be documented in this file and formatted via [this recommendation](https://keepachangelog.com/).
 
+## [1.7.9.1] - 2023-01-11
+### Fixed
+- Layout fields were not shown when they were on any page other than the first page of a multi-page form and conditional logic was enabled on at least one field within the Layout field.
+- Incorrect spacing around the Submit button in the Form Builder was fixed.
+- Missing assets were added to the plugin.
+
 ## [1.7.9] - 2023-01-03
 ### Added
 - Icon Choices feature for Checkboxes, Multiple Choice, Checkbox Items, and Multiple Items payment fields - a selection of 2000+ icons can now be used with your choices!

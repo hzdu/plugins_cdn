@@ -1,30 +1,27 @@
-(function($) {
+// Register eslint ignored glabals - to be revisited.
+// https://github.com/woocommerce/automatewoo/issues/1212
+/* global AW, automatewooSettingsLocalizeScript, alert */
+( function ( $ ) {
+	const self = {
+		params: {},
 
-    var self;
+		init() {
+			self.params = automatewooSettingsLocalizeScript;
+			self.initSwitchToOptinModeWarning();
+		},
 
-    AW.Settings = {
+		initSwitchToOptinModeWarning() {
+			const $field = $( '#automatewoo_optin_mode' );
 
-        params: {},
+			$field.on( 'change', function () {
+				if ( $( this ).val() === 'optin' ) {
+					// eslint-disable-next-line no-alert -- Pre eslint introduction code, to be revised.
+					alert( self.params.messages.switchToOptinWarning );
+				}
+			} );
+		},
+	};
 
-        init: function() {
-            self.params = automatewooSettingsLocalizeScript;
-            self.initSwitchToOptinModeWarning();
-        },
-
-
-        initSwitchToOptinModeWarning: function() {
-            var $field = $('#automatewoo_optin_mode');
-
-            $field.on( 'change',function( a, b ) {
-                if ( $(this).val() === 'optin' ) {
-                    alert( self.params.messages.switchToOptinWarning );
-                }
-            });
-        }
-
-    };
-
-    self = AW.Settings;
-    self.init();
-
-})(jQuery);
+	AW.Settings = self;
+	self.init();
+} )( jQuery );

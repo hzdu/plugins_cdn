@@ -1,158 +1,162 @@
+// Register eslint ignored glabals - to be revisited.
+// https://github.com/woocommerce/automatewoo/issues/1212
+/* global AutomateWoo, ClipboardJS, ajaxurl */
 /**
  * AutomateWoo Variables
  */
 
-jQuery(function($) {
+jQuery( function ( $ ) {
+	AutomateWoo.Variables = {
+		$meta_box: $( '#aw_variables_box' ),
 
-    AutomateWoo.Variables = {
+		init() {
+			this.init_clipboard();
 
-        $meta_box: $('#aw_variables_box'),
+			$( document.body ).on(
+				'change keyup',
+				'.aw-workflow-variable-parameter',
+				this.update_preview_field
+			);
+			$( document.body ).on(
+				'keypress',
+				'input.aw-workflow-variable-parameter',
+				this.restrict_parameter_chars
+			);
 
+			this.$meta_box.on(
+				'click',
+				'.aw-workflow-variable',
+				this.open_modal
+			);
+		},
 
-        init: function(){
+		/**
+		 */
+		init_clipboard() {
+			const clipboard = new ClipboardJS( '.aw-clipboard-btn', {
+				text() {
+					return $( '#aw_workflow_variable_preview_field' ).text();
+				},
+			} );
 
-            this.init_clipboard();
+			clipboard.on( 'success', function () {
+				$( '.aw-clipboard-btn' ).html( 'Copied!' );
 
-            $(document.body).on( 'change keyup', '.aw-workflow-variable-parameter', this.update_preview_field );
-            $(document.body).on( 'keypress', 'input.aw-workflow-variable-parameter', this.restrict_parameter_chars );
+				setTimeout( function () {
+					AutomateWoo.Modal.close();
+				}, 500 );
+			} );
+		},
 
-            this.$meta_box.on( 'click', '.aw-workflow-variable', this.open_modal );
-        },
+		open_modal() {
+			AutomateWoo.Modal.open( 'ajax' );
+			AutomateWoo.Modal.loading();
 
+			const ajaxData = {
+				action: 'aw_modal_variable_info',
+				variable: $( this ).text(),
+			};
 
-        /**
-         *
-         */
-        init_clipboard: function() {
+			$.post( ajaxurl, ajaxData, function ( response ) {
+				AutomateWoo.Modal.contents( response );
+				AutomateWoo.Variables.update_preview_field();
+			} );
+		},
 
-            var clipboard = new ClipboardJS('.aw-clipboard-btn', {
-                text: function(trigger) {
-                    return $('#aw_workflow_variable_preview_field').text();
-                }
-            });
+		/**
+		 * Updates the variable preview text field
+		 */
+		update_preview_field() {
+			const $previewField = $( '#aw_workflow_variable_preview_field' );
+			const variable = $previewField.data( 'variable' );
+			const parameters = [];
 
-            clipboard.on('success', function(e) {
+			$( '.aw-workflow-variable-parameter' ).each( function () {
+				const $paramRow = $( this ).parents(
+					'.aw-workflow-variables-parameter-row:first'
+				);
 
-                $('.aw-clipboard-btn').html('Copied!');
+				// Check 'show' logic
+				if ( $paramRow.data( 'parameter-show' ) ) {
+					const showLogic = $paramRow
+						.data( 'parameter-show' )
+						.split( '=' );
 
-                setTimeout(function(){
-                    AutomateWoo.Modal.close();
-                }, 500 );
-            });
+					const $conditionField = $(
+						'.aw-workflow-variable-parameter[name="' +
+							showLogic[ 0 ] +
+							'"]'
+					);
 
-        },
+					if (
+						$conditionField.length &&
+						$conditionField.val() === showLogic[ 1 ]
+					) {
+						$paramRow.show();
+					} else {
+						$paramRow.hide();
+						return; // don't add parameter to preview
+					}
+				}
 
+				const param = {
+					name: $( this ).attr( 'name' ),
+					required: $paramRow.data( 'is-required' ),
+					value: $( this ).val(),
+				};
 
-        open_modal: function(){
+				parameters.push( param );
+			} );
 
-            AutomateWoo.Modal.open( 'ajax' );
-            AutomateWoo.Modal.loading();
+			const string = AutomateWoo.Variables.generate_variable_string(
+				variable,
+				parameters
+			);
 
-            var ajax_data = {
-                action: 'aw_modal_variable_info',
-                variable: $(this).text()
-            };
+			$previewField.text( string );
 
-            $.post( ajaxurl, ajax_data, function( response ){
-                AutomateWoo.Modal.contents( response );
-                AutomateWoo.Variables.update_preview_field();
-            });
-        },
+			AutomateWoo.Modal.position();
+		},
 
+		/**
+		 *
+		 * @param {string}        variable
+		 * @param {Array<Object>} parameters
+		 */
+		generate_variable_string( variable, parameters ) {
+			let string = '{{ ' + variable;
 
-        /**
-         * Updates the variable preview text field
-         */
-        update_preview_field: function() {
+			if ( parameters.length ) {
+				const paramParts = [];
 
-            var $preview_field = $('#aw_workflow_variable_preview_field');
-            var variable = $preview_field.data('variable');
-            var parameters = [];
+				$.each( parameters, function ( i, param ) {
+					if ( param.value ) {
+						paramParts.push(
+							param.name + ": '" + param.value + "'"
+						);
+					} else if ( param.required ) {
+						paramParts.push( param.name + ": '...'" );
+					}
+				} );
 
-            $('.aw-workflow-variable-parameter').each(function(){
+				if ( paramParts.length > 0 ) {
+					string += ' | ';
+					string += paramParts.join( ', ' );
+				}
+			}
 
-                var $param_row = $(this).parents('.aw-workflow-variables-parameter-row:first');
+			return string + ' }}';
+		},
 
-                // Check 'show' logic
-                if ( $param_row.data('parameter-show') ) {
+		/**
+		 * @param {Event} event jQuery `keypress` event, with `which` property.
+		 */
+		restrict_parameter_chars( event ) {
+			const restricted = [ 39, 123, 124, 125 ];
 
-                    var show_logic = $param_row.data('parameter-show').split('=');
+			if ( $.inArray( event.which, restricted ) !== -1 ) return false;
+		},
+	};
 
-                    var $condition_field = $('.aw-workflow-variable-parameter[name="' + show_logic[0] + '"]');
-
-                    if ( $condition_field.length && $condition_field.val() == show_logic[1] ) {
-                        $param_row.show();
-                    } else {
-                        $param_row.hide();
-                        return; // don't add parameter to preview
-                    }
-                }
-
-                var param = {
-                    name: $(this).attr('name'),
-                    required: $param_row.data('is-required'),
-                    value: $(this).val()
-                };
-
-                parameters.push( param );
-            });
-
-            var string = AutomateWoo.Variables.generate_variable_string( variable, parameters );
-
-            $preview_field.text( string );
-
-            AutomateWoo.Modal.position();
-        },
-
-
-        /**
-         *
-         * @param variable
-         * @param parameters
-         */
-        generate_variable_string: function( variable, parameters ) {
-
-            var string = '{{ ' + variable;
-
-            if ( parameters.length ) {
-                var param_parts = [];
-
-                $.each( parameters, function( i, param ) {
-
-                    if ( param.value ) {
-                        param_parts.push( param.name + ": '" + param.value + "'" );
-                    }
-                    else if ( param.required ) {
-                        param_parts.push( param.name + ": '...'" );
-                    }
-                });
-
-
-                if ( param_parts.length > 0 ) {
-                    string += ' | ';
-                    string += param_parts.join( ', ' );
-                }
-            }
-
-            return string + ' }}';
-        },
-
-
-        /**
-         *
-         * @param e
-         */
-        restrict_parameter_chars: function(e) {
-
-            var restricted = [ 39, 123, 124, 125 ];
-
-            if ( $.inArray( e.which, restricted ) !== -1 )
-                return false;
-        }
-
-    };
-
-
-    AutomateWoo.Variables.init();
-
-});
+	AutomateWoo.Variables.init();
+} );

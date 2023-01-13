@@ -2,15 +2,15 @@ $color-body-bg: #f1f1f1;
 $grey-text-light: #8e8e8e;
 $grey-very-light: #f5f5f5;
 $grey-very-light-border: #f2f2f2;
-$grey-light-border: #E1E1E1;
+$grey-light-border: #e1e1e1;
 $grey-border: #ccc;
 $grey-very-light-border: #eee;
 $blue-light: #08a5e2;
 $blue: #0085ba;
-$white: #ffffff;
-$black: #000000;
+$white: #fff;
+$black: #000;
 $red: #dc3232;
-$red-light: #F55E4F;
+$red-light: #f55e4f;
 $color-text-dark-grey: #515151;
 
 $warning-badge-red: #ca4a1f;
@@ -26,41 +26,40 @@ $color-dark-grey: #464646;
 $color-g2-dark-grey: #1e1e1e;
 
 
-
 $breakpoint-xlarge: 1450px;
 
-@import 'mixins';
-@import 'loader';
-@import 'icons';
-@import 'switch';
-@import 'actions';
-@import 'reports';
-@import 'modal';
-@import 'tables';
-@import 'variables';
-@import 'settings';
-@import 'admin-menu';
-@import 'fields';
-@import 'rules';
-@import 'workflow-list';
-@import 'workflow-edit';
-@import 'dashboard';
-@import 'welcome-notice';
+@import "mixins";
+@import "loader";
+@import "icons";
+@import "switch";
+@import "actions";
+@import "reports";
+@import "modal";
+@import "tables";
+@import "variables";
+@import "settings";
+@import "admin-menu";
+@import "fields";
+@import "rules";
+@import "workflow-list";
+@import "workflow-edit";
+@import "dashboard";
+@import "welcome-notice";
 
 
 .automatewoo-notice {
 	position: relative;
-	transition: opacity .2s ease;
+	transition: opacity 0.2s ease;
 
 	p {
-		transition: opacity .2s ease;
+		transition: opacity 0.2s ease;
 	}
 
 	&.aw-loading {
-		opacity: .65;
+		opacity: 0.65;
 
 		p {
-			opacity: .6;
+			opacity: 0.6;
 		}
 
 		@include loader();
@@ -70,8 +69,6 @@ $breakpoint-xlarge: 1450px;
 		border-left-color: $color-brand-purple;
 	}
 }
-
-
 
 
 .automatewoo-upgrade-loader {
@@ -86,21 +83,22 @@ $breakpoint-xlarge: 1450px;
 
 
 .automatewoo-info-box {
-	background: #E4E4E4;
+	background: #e4e4e4;
 	padding: 12px 16px 14px;
-	border: 1px solid #CCCCCC;
+	border: 1px solid #ccc;
 }
 
 
 dl.automatewoo-meta-data {
 	margin: 0;
+
 	@include clearfix();
 
 	dt,
 	dd {
 		display: inline-block;
 		float: left;
-		margin: 0 0 .8em;
+		margin: 0 0 0.8em;
 		padding: 0;
 	}
 
@@ -111,6 +109,7 @@ dl.automatewoo-meta-data {
 	}
 
 	dd {
+
 		p:last-child {
 			margin-bottom: 0;
 		}
@@ -124,12 +123,13 @@ dl.automatewoo-meta-data {
 
 body.post-type-aw_workflow #wpbody-content,
 .automatewoo-page {
-	h1:before {
-		content: '';
+
+	h1::before {
+		content: "";
 		display: inline-block;
 		width: 27px;
 		height: 20px;
-		background-image: url('../img/header-badge.svg');
+		background-image: url("../img/header-badge.svg");
 		background-size: contain;
 		background-repeat: no-repeat;
 		// Modified again in the next rule.
@@ -139,9 +139,28 @@ body.post-type-aw_workflow #wpbody-content,
 	}
 }
 
-body.post-type-aw_workflow #wpbody-content h1:before {
+body.post-type-aw_workflow #wpbody-content h1::before {
 	margin-right: 4px;
 }
+
+// Smaller icon for AutomateWoo's items in the WooCommerce's Analytics menu.
+automatewoo-icon {
+	content: "";
+	display: inline-block;
+	// Use the font size.
+	height: 1em;
+	// Scale proportionally to font height.
+	width: calc(1em * 611 / 439);
+	background-image: url("../img/header-badge.svg");
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center;
+	// Invert the color to make it white.
+	filter: invert(100%);
+	margin-right: 0.5em;
+	vertical-align: text-bottom;
+}
+
 #wpbody-content #wp__notice-list + .automatewoo-page:not(.woocommerce) {
 	padding-top: 96px;
 }
@@ -149,6 +168,7 @@ body.post-type-aw_workflow #wpbody-content h1:before {
 .automatewoo-content {}
 
 .automatewoo-content--has-sidebar {
+
 	@include clearfix;
 
 	@media ( min-width: $breakpoint-xlarge ) {
@@ -203,7 +223,8 @@ body.post-type-aw_workflow #wpbody-content h1:before {
 	text-align: center;
 	position: relative;
 
-	&:before {
+	&::before {
+
 		@include dashicon( "\f345" );
 		position: absolute;
 		top: 1px;
@@ -231,7 +252,8 @@ body.post-type-aw_workflow #wpbody-content h1:before {
 		text-decoration: underline;
 	}
 
-	&:before {
+	&::before {
+
 		@include dashicon( "\f348" );
 		margin: 0 8px 0 -2px;
 	}
@@ -261,12 +283,14 @@ body.post-type-aw_workflow #wpbody-content h1:before {
 
 .automatewoo-help-link {
 
-	&:before {
-		@include dashicon( '\f504' );
-		color: #bbbbbb;
+	&::before {
+
+		@include dashicon( "\f504" );
+		color: #bbb;
 		font-size: 16px;
 	}
-	&:hover:before {
+
+	&:hover::before {
 		color: $blue;
 	}
 }
@@ -300,6 +324,7 @@ body.post-type-aw_workflow #wpbody-content h1:before {
 	}
 
 	&--blocked-email {
+
 		@extend %automatewoo-badge-in-circle;
 		background: $warning-badge-red;
 
@@ -309,6 +334,7 @@ body.post-type-aw_workflow #wpbody-content h1:before {
 
 
 .aw_system_check_table {
+
 	td.help {
 		position: relative;
 	}

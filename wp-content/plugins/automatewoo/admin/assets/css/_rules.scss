@@ -44,7 +44,6 @@ $breakpoint-xxl: 1760px;
 }
 
 
-
 .automatewoo-rule-container {}
 
 
@@ -54,6 +53,7 @@ $breakpoint-xxl: 1760px;
 	box-sizing: border-box;
 	position: relative;
 	padding: 7px 0;
+
 	@include clearfix();
 
 	@media ( min-width: $breakpoint-lg) {
@@ -74,7 +74,7 @@ $breakpoint-xxl: 1760px;
 			bottom: auto;
 		}
 
-		.automatewoo-rule--type-select &{
+		.automatewoo-rule--type-select & {
 			min-height: 46px;
 
 			@media ( min-width: ($breakpoint-sm + 1)) {
@@ -102,9 +102,9 @@ $breakpoint-xxl: 1760px;
 		background: transparent;
 		cursor: pointer;
 
-		&:after {
+		&::after {
 			display: block;
-			content: '';
+			content: "";
 			width: 11px;
 			height: 1px;
 			position: absolute;
@@ -117,7 +117,7 @@ $breakpoint-xxl: 1760px;
 			border-color: $red;
 			background: $red-light;
 
-			&:after {
+			&::after {
 				background: $white;
 			}
 		}
@@ -230,6 +230,7 @@ $breakpoint-xxl: 1760px;
 
 
 	&--type-meta {
+
 		.js-rule-value-field {
 			width: 48%;
 			float: left;
@@ -246,6 +247,7 @@ $breakpoint-xxl: 1760px;
 
 	&--type-meta.automatewoo-rule--compare-blank,
 	&--type-meta.automatewoo-rule--compare-not_blank {
+
 		.js-rule-value-field {
 			width: 100%;
 

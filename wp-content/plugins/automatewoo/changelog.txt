@@ -1,5 +1,49 @@
 *** AutomateWoo Changelog ***
 
+2023-01-10 - version 5.6.3
+* Tweak - Compat - Remove deprecated from before the 5.0.0 release.
+* Tweak - WC 7.3 compatibility.
+
+2022-12-20 - version 5.6.2
+* Add - **Order Refunded Manually** trigger.
+* Add - `refund.amount` and `refund.reason` refund workflow variables.
+* Tweak - Updated **Order Refunded** trigger to run on partial and full refunds.
+
+2022-12-14 - version 5.6.1
+* Dev - Add eslinting to `/admin/assets/js/*.js`.
+* Dev - Build scripts without gulp.
+* Dev - Fix the Subscription unit tests.
+* Dev - Update comments for supported WP/WC versions in GH workflows.
+* Fix - Add workflow filters to analytic pages.
+* Fix - Register mocked AW Analytics under WC Analytics.
+* Tweak - WC 7.2 compatibility.
+* Update - Drop support for WordPress 5.8.
+
+2022-11-15 - version 5.6.0
+* Update - Improve Marketing Opt-in validation.
+
+2022-11-09 - version 5.5.23
+* Add - Declare incompatibility for High Performance Order Storage.
+* Fix - Tracker conversion queries compatibility with custom order tables.
+* Fix - Use order status changes to detect new order created from draft status.
+* Tweak - Remove deprecated order compatibility classes.
+* Update - Handle order deleted actions when HPOS is enabled.
+* Update - Make Order Query rules compatible with HPOS.
+* Update - Refactor customer order queries to support customer order tables.
+* Update - Use order functions for admin edit order URL.
+* Update - Use wc_get_orders to retrieve conversions.
+
+2022-11-03 - version 5.5.22
+* Dev - Add JS & CSS linting to GitHub workflows.
+* Dev - Update Node to 16.
+* Dev - Update Webpack-related dependencies.
+* Dev - Update bundled `@wordpress/` & `@woo…` packages to wp-5.8 & WC 6.7 .
+* Dev -Externalize `@woocommerce/tracks`.
+* Fix - Error logging when workflow run or search fails.
+* Tweak - WC 7.1 compatibility.
+* Tweak - WP 6.1 compatibility.
+* Update - Drop WordPress < 5.8 & WooCommerce < 6.7 support.
+
 2022-10-04 - version 5.5.21
 * Tweak - WC 7.0 compatibility.
 
