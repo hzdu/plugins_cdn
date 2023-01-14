@@ -163,7 +163,7 @@ jQuery(document).ready(function ($) {
             $('.default-options').removeClass('wcpr-hidden-items');
         }
     });
-    $('#verified-type').dropdown({
+    $('.verified-type').dropdown({
         onChange: function (val) {
             switch (val) {
                 case 'text':
@@ -234,7 +234,8 @@ jQuery(document).ready(function ($) {
                 delay: 250,
                 data: function (params) {
                     return {
-                        keyword: params.term
+                        keyword: params.term,
+                        nonce:$('#wcpr_nonce_field').val()
                     };
                 },
                 processResults: function (data) {
@@ -366,6 +367,7 @@ jQuery(document).ready(function ($) {
                 dataType: 'JSON',
                 data: {
                     action: 'wcpr_preview_emails',
+                    nonce: $('#wcpr_nonce_field').val(),
                     email_type: 'coupon',
                     heading: rule.find('.heading' + language).val(),
                     content: tinyMCE.get(editor_id) ? tinyMCE.get(editor_id).getContent() : $('#content' + language).val(),

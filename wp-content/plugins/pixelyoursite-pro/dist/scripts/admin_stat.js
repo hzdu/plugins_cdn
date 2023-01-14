@@ -436,7 +436,8 @@
                 model:model,
                 order_by:order_by,
                 cog: pysStatGlobal.cog,
-                sort:$(".global_data .pys_stat_info .active").data("sort")
+                sort:$(".global_data .pys_stat_info .active").data("sort"),
+                _wpnonce:$("#html_report_wpnonce").val()
             }
             navigation.loading()
             jQuery.ajax({
@@ -665,7 +666,8 @@
                 sort:singleTable.sort,
                 page:page,
                 cog: pysStatSingle.cog,
-                perPage:pysStatSingle.perPage
+                perPage:pysStatSingle.perPage,
+                _wpnonce:$("#html_report_wpnonce").val()
             };
             jQuery.ajax({
                 method: "POST",
@@ -745,7 +747,11 @@
             jQuery.ajax({
                 method: "POST",
                 url:ajaxurl,
-                data:{action:"pys_"+statImport.type+"_stat_sync",page:page},
+                data:{
+                    action:"pys_"+statImport.type+"_stat_sync",
+                    page:page,
+                    _wpnonce:$("#html_report_wpnonce").val()
+                },
                 success: function(msg){
                     if(msg.success) {
                         statImport.updateProgress(page)
@@ -1126,7 +1132,11 @@
             jQuery.ajax({
                 method: "POST",
                 url:ajaxurl,
-                data:{action:"pys_woo_stat_change_orders_status",orders:$("#woo_stat_order_statuses").val()},
+                data:{
+                    action:"pys_woo_stat_change_orders_status",
+                    orders:$("#woo_stat_order_statuses").val(),
+                    _wpnonce:$("#html_report_wpnonce").val()
+                },
                 success: function(msg){
                     if(msg.success) {
                         window.location.reload();
@@ -1140,7 +1150,11 @@
             jQuery.ajax({
                 method: "POST",
                 url:ajaxurl,
-                data:{action:"pys_edd_stat_change_orders_status",orders:$("#edd_stat_order_statuses").val()},
+                data:{
+                    action:"pys_edd_stat_change_orders_status",
+                    orders:$("#edd_stat_order_statuses").val(),
+                    _wpnonce:$("#html_report_wpnonce").val()
+                },
                 success: function(msg){
                     if(msg.success) {
                         window.location.reload();

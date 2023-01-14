@@ -2157,6 +2157,7 @@ if (!String.prototype.trim) {
                             data:params,
                             url:window.location.href,
                             eventID:event.eventID,
+                            ajax_event:options.ajax_event
                         };
 
                         if(event.hasOwnProperty('woo_order')) {
@@ -2880,7 +2881,24 @@ if (!String.prototype.trim) {
                         }
                     }
 
-                    gtag('config', trackingId, config);
+                    if (options.gdpr.cookiebot_integration_enabled && typeof Cookiebot !== 'undefined') {
+
+                        var cookiebot_consent_category = options.gdpr['cookiebot_analytics_consent_category'];
+                        if (options.gdpr['analytics_prior_consent_enabled']) {
+                            if (Cookiebot.consented === true && Cookiebot.consent[cookiebot_consent_category]) {
+                                gtag('config', trackingId, config);
+                            }
+                        } else {
+                            if (Cookiebot.consent[cookiebot_consent_category]) {
+                                gtag('config', trackingId, config);
+                            }
+                        }
+
+                    }
+                    else
+                    {
+                        gtag('config', trackingId, config);
+                    }
                     
                 });
 
@@ -2915,8 +2933,8 @@ if (!String.prototype.trim) {
 
             },
 
-            onAdSenseEvent: function () {
-                // not supported
+            onAdSenseEvent: function (event) {
+                this.fireEvent(event.name, event);
             },
 
             onClickEvent: function (event) {
@@ -3285,7 +3303,7 @@ if (!String.prototype.trim) {
             },
 
             onAdSenseEvent: function (event) {
-                // not supported
+                this.fireEvent(event.name, event);
             },
 
             onClickEvent: function (action, params) {
@@ -3528,7 +3546,7 @@ if (!String.prototype.trim) {
                 }
             })
             $(document).on("blur","input[type='text']",function () {
-                let name = $(this).attr("name");
+                let name;
                 if($(this).attr("name") && $(this).attr("name") != '')
                 {
                     name = $(this).attr("name").trim()
@@ -3796,7 +3814,7 @@ if (!String.prototype.trim) {
             $(window)
                 .on( "blur",function () {
                     if (isOverGoogleAd) {
-
+                        console.log('automatic_event_adsense')
                         if(options.dynamicEvents.hasOwnProperty("automatic_event_adsense")) {
                             var pixels = Object.keys(options.dynamicEvents.automatic_event_adsense);
                             for (var i = 0; i < pixels.length; i++) {

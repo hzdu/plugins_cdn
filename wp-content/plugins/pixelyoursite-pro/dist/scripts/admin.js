@@ -2,9 +2,7 @@ function pysTagTemplateSelection(tag, container){
     // here we are finding option element of tag and
     // if it has property 'locked' we will add class 'locked-tag'
     // to be able to style element in select
-    console.log('.pys-tags-select2 option[value="'+tag.id+'"]')
     var $option = $('.pys-tags-select2 option[value="'+tag.id+'"]');
-    console.log(tag,$option)
     if ($option.attr('locked')){
         $(container).addClass('locked-tag');
         tag.locked = true;
@@ -144,6 +142,7 @@ jQuery( document ).ready(function($) {
 
     $("#import_events_file").on('change',function(){
         var fd = new FormData();
+        fd.append("_wpnonce",$("#import_events_file_nonce").val());
         fd.append("action","pys_import_events");
         fd.append($(this).attr("name"), $(this).prop('files')[0]);
 

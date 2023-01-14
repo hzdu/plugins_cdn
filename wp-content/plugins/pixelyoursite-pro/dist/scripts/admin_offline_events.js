@@ -51,6 +51,7 @@ jQuery( document ).ready(function($) {
                 "type":type,
                 "start":start,
                 "end":end,
+                "_wpnonce":$("#woo_generate_export_wpnonce").val(),
                 "order_status":orderStatus
             },
             type: 'POST',
@@ -135,7 +136,8 @@ jQuery( document ).ready(function($) {
                 "start":start,
                 "end":end,
                 "order_status":orderStatus,
-                "key":key
+                "key":key,
+                "_wpnonce":$("#woo_generate_export_wpnonce").val()
             },
             type: 'POST',
             success: function (data) {

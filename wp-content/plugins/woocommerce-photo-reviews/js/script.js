@@ -8,14 +8,10 @@ jQuery(window).on('elementor/frontend/init', () => {
         viwcpr_flexslider();
     });
 });
-jQuery(window).on('load',function () {
-    viwcpr_flexslider();
-});
 jQuery(document).ready(function ($) {
     'use strict';
     let image_caption_enable = woocommerce_photo_reviews_params.image_caption_enable == 1;
     let i18n_image_caption = woocommerce_photo_reviews_params.i18n_image_caption;
-
     function getSelectedImageHtml(src, name, error='') {
         let selectImageHtml;
         let temp =`<img title="${name}" src="${src}" class="wcpr-selected-image-preview">`;
@@ -53,6 +49,7 @@ jQuery(document).ready(function ($) {
 
     /*helpful button*/
     wcpr_helpful_button();
+    viwcpr_flexslider();
     let max_files = woocommerce_photo_reviews_params.max_files;
     $('#commentform').on('change', '.wcpr_image_upload', function (e) {
         $(this).parent().find('.wcpr-selected-image-container').html('');
@@ -105,6 +102,23 @@ jQuery(document).ready(function ($) {
                 return false;
             }
         }
+        if ($name.length > 0 && $name.attr('required') && !$name.val()) {
+            jQuery('.wcpr-comment-form-error-wraps').removeClass('wcpr-hidden').html(woocommerce_photo_reviews_params.i18n_required_name_text);
+            e.preventDefault();
+            $name.focus();
+            return false;
+        }
+        if ($email.length > 0 && $email.attr('required') && !$email.val()) {
+            jQuery('.wcpr-comment-form-error-wraps').removeClass('wcpr-hidden').html(woocommerce_photo_reviews_params.i18n_required_email_text);
+            e.preventDefault();
+            $email.focus();
+            return false;
+        }
+        if ($container.find('input[name="wcpr_gdpr_checkbox"]').prop('checked') === false) {
+            jQuery('.wcpr-comment-form-error-wraps').removeClass('wcpr-hidden').html(woocommerce_photo_reviews_params.warning_gdpr);
+            e.preventDefault();
+            return false;
+        }
         if ('on' === woocommerce_photo_reviews_params.enable_photo) {
             if (!$container.attr('enctype') || $container.attr('enctype') !== 'multipart/form-data') {
                 $container.attr('enctype', 'multipart/form-data');
@@ -144,37 +158,32 @@ jQuery(document).ready(function ($) {
                 return false;
             }
         }
-        if ($name.length > 0 && $name.attr('required') && !$name.val()) {
-            jQuery('.wcpr-comment-form-error-wraps').removeClass('wcpr-hidden').html(woocommerce_photo_reviews_params.i18n_required_name_text);
-            e.preventDefault();
-            $name.focus();
-            return false;
-        }
-        if ($email.length > 0 && $email.attr('required') && !$email.val()) {
-            jQuery('.wcpr-comment-form-error-wraps').removeClass('wcpr-hidden').html(woocommerce_photo_reviews_params.i18n_required_email_text);
-            e.preventDefault();
-            $email.focus();
-            return false;
-        }
-        if ($container.find('input[name="wcpr_gdpr_checkbox"]').prop('checked') === false) {
-            jQuery('.wcpr-comment-form-error-wraps').removeClass('wcpr-hidden').html(woocommerce_photo_reviews_params.warning_gdpr);
-            e.preventDefault();
-            return false;
-        }
         jQuery('.wcpr-comment-form-notify-wraps').removeClass('wcpr-hidden');
         if (woocommerce_photo_reviews_params.restrict_number_of_reviews) {
             $button.attr('type','button');
             let restrict_number_of_reviews = async function () {
-                let error = '';
+                let error = '',data =new FormData($container[0]);
+                if ($content.val() && !$container.find('textarea[name="comment"]').val()){
+                    data.set('comment',$content.val()) ;
+                }
                 await new Promise(function (resolve) {
-                    let data = $container.serialize();
                     $.ajax({
                         type: 'post',
                         url: woocommerce_photo_reviews_params.wc_ajax_url.toString().replace('%%endpoint%%', 'viwcpr_restrict_number_of_reviews'),
+                        processData: false,
+                        cache: false,
+                        contentType: false,
                         data: data,
                         success: function (response) {
                             if (response.error){
                                 error = response.error;
+                            }else {
+                                if (response.remove_upload_file) {
+                                    $container.find('.wcpr_image_upload').val('');
+                                }
+                                if (response.img_id) {
+                                    $container.append(`<input type="hidden" name="wcpr_image_upload_id" value="${response.img_id}">`);
+                                }
                             }
                             resolve(error)
                         },
@@ -708,6 +717,12 @@ function wcpr_pagination_loadmore($comments, $pagination_container) {
 
 function viwcpr_flexslider() {
     'use strict';
+    if (!jQuery('.woocommerce-photo-reviews-shortcode, .wcpr-review-title').length){
+        setTimeout(function (){
+            viwcpr_flexslider();
+        }, 100);
+        return false;
+    }
     jQuery('.woocommerce-photo-reviews-shortcode:not(.woocommerce-photo-reviews-slide)').each(function () {
         let wrap = jQuery(this);
         wrap.addClass('woocommerce-photo-reviews-slide');
@@ -797,6 +812,14 @@ function viwcpr_flexslider() {
     });
     jQuery('.wcpr-grid .wcpr-grid-item').last().css('display','inline-block');
     jQuery('.shortcode-wcpr-grid .shortcode-wcpr-grid-item').last().css('display','inline-block');
+    if (jQuery('#wcpr_thank_you_message').length){
+        setTimeout(function (){
+            jQuery( '.reviews_tab a' ).trigger( 'click' );
+            setTimeout(function (){
+                window.scrollTo({top: jQuery('#review_form').offset().top - 450 });
+            });
+        },100);
+    }
 }
 function wcpr_helpful_button() {
     'use strict';

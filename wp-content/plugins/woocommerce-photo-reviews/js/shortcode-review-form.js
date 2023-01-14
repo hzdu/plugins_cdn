@@ -200,17 +200,31 @@ jQuery(document).ready(function ($) {
         if (woocommerce_photo_reviews_form_params.restrict_number_of_reviews) {
             $button.attr('type','button');
             let restrict_number_of_reviews = async function () {
-                let error = '';
+                let error = '',data =new FormData(jQuery('.woocommerce-photo-reviews-form-container form')[0]);
+                if ($content.val() && !$container.find('textarea[name="comment"]').val()){
+                    data.set('comment',$content.val()) ;
+                }
                 await new Promise(function (resolve) {
-                    let data = jQuery('.woocommerce-photo-reviews-form-container form').serialize();
+                   // let data = jQuery('.woocommerce-photo-reviews-form-container form').serialize();
                     $.ajax({
                         type: 'post',
                         url: woocommerce_photo_reviews_form_params.wc_ajax_url.toString().replace('%%endpoint%%', 'viwcpr_restrict_number_of_reviews'),
+                        processData: false,
+                        cache: false,
+                        contentType: false,
                         data: data,
                         success: function (response) {
                             if (response.error){
                                 error = response.error;
+                            }else {
+                                if (response.remove_upload_file) {
+                                    jQuery('.woocommerce-photo-reviews-form-container form').find('.wcpr_image_upload').val('');
+                                }
+                                if (response.img_id) {
+                                    jQuery('.woocommerce-photo-reviews-form-container form').append(`<input type="hidden" name="wcpr_image_upload_id" value="${response.img_id}">`);
+                                }
                             }
+                            console.log(response)
                             resolve(error)
                         },
                         error:function (err){

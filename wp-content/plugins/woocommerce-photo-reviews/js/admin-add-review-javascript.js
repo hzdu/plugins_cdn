@@ -61,7 +61,8 @@ jQuery(document).ready(function ($) {
             delay: 250,
             data: function (params) {
                 return {
-                    keyword: params.term
+                    keyword: params.term,
+                    nonce: $('#wcpr_admin_add_review_nonce').val()
                 };
             },
             processResults: function (data) {
