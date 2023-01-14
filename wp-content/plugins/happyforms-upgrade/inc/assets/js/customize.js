@@ -1501,21 +1501,8 @@
 			$controls.each( function( index, control ) {
 				var $control = $( control );
 				var source   = $control.data( 'source' );
-				var sourceArr = source.split( ',' );
-
-				if ( sourceArr.length > 1 ) {
-					var service = $control.data( 'var-service' );
-					if ( service ) {
-						source = sourceArr[0];
-						var status = happyForms.form.get( service + '_subscribe_status' );
-
-						if ( 'unsubscribe' == status ) {
-							source = sourceArr[1];
-						}
-					}
-				}
-
 				var value    = happyForms.form.get( source );
+
 				var variable = $control.data( 'var' );
 				var property = $control.data( 'var-prop' );
 				var options  = window[variable][property];
@@ -1524,7 +1511,7 @@
 					options = window[variable][property][value];
 				}
 
-				if ( ( ! options ) || typeof options[0] === 'undefined' ) {
+				if ( ! options ) {
 					return;
 				}
 
