@@ -248,8 +248,8 @@ Initial release.
 
 Currently unsupported:
 
-- `Psr\Http\Message\ServerRequestInterface`
-- `Psr\Http\Message\UploadedFileInterface`
+- `FSPOSTER_Psr\Http\Message\ServerRequestInterface`
+- `FSPOSTER_Psr\Http\Message\UploadedFileInterface`
 
 
 

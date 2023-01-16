@@ -22,7 +22,7 @@ If you need a logger, you can use the interface like this:
 ```php
 <?php
 
-use Psr\Log\LoggerInterface;
+use FSPOSTER_Psr\Log\LoggerInterface;
 
 class Foo
 {

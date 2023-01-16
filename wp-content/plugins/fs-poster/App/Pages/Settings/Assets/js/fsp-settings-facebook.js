@@ -12,6 +12,16 @@
 
 		$( '#fs_load_groups' ).trigger( 'change' );
 
+		$( '#fs_fetch_fb_comments' ).on( 'change', function () {
+			if ( $( this ).is( ':checked' ) )
+			{
+				$( '#fspFetchCommentsForPostsPublishedAt' ).slideDown();
+			}
+			else
+			{
+				$( '#fspFetchCommentsForPostsPublishedAt' ).slideUp();
+			}
+		} ).trigger( 'change' );
 
 		$( '.fsp-settings-fbcontrol-input > .fsp-form-input' ).on( 'change keyup', function () {
 			let _this = $( this );

@@ -151,18 +151,31 @@
 				}, function ( result ) {
 					fspShowInsightsDropdown( _this, result );
 				});
-		} ).on( 'click', function ( e ) {
+		} ).on('click', '.fsp-show-webhook-data', function (){
+			let id = $( this ).data( 'feed-id' );
+			FSPoster.loadModal('logs_webhook_response', {id});
+		}).on( 'click', function ( e ) {
 			if ( ! $( e.target ).is( '.get-insights-button' ) )
 			{
 				$( '#fspInsightsDropdown' ).hide();
 			}
-
 		} ).on( 'change', '#fspCheckAllLogs', function () {
 			let isAllChecked = $( this ).is( ':checked' );
 
 			$( '.fsp-log input[type=checkbox]' ).prop( 'checked', isAllChecked );
 		} );
 		FSPLoadLogs( FSPObject.page );
+
+		if(FSPObject.webhook_feed_id > 0){
+			FSPoster.loadModal('logs_webhook_response', {id: FSPObject.webhook_feed_id});
+			FSPObject.webhook_feed_id = 0;
+			let url = new URL(window.location.href);
+
+			let params = new URLSearchParams(url.search);
+
+			params.delete('webhook_feed_id');
+			window.history.pushState({}, '', '?' + params.toString());
+		}
 	} );
 } )( jQuery );
 
@@ -278,6 +291,10 @@ function logData ( result )
 			statusBtn += `<button class="fsp-button fsp-is-warning fsp-logs-retry" data-feed-id="${ result[ 'id' ] }"><i class="fas fa-sync"></i>${ fsp__( 'RETRY' ) }</button>`;
 		}
 	}
+	else if ( result[ 'status' ] === 'processing' )
+	{
+		statusBtn = `<div class="fsp-status fsp-is-warning"><i class="fas fa-check"></i>${ fsp__( 'PROCESSING' ) }</div>`;
+	}
 	else
 	{
 		statusBtn = `<div class="fsp-status fsp-is-warning"><i class="fas fa-check"></i>${ fsp__( 'NOT SENT' ) }</div>`;
@@ -285,12 +302,16 @@ function logData ( result )
 
 	let driverIcon = result[ 'icon' ];
 
-	let post_link = `<a target="_blank" href="${ result[ 'wp_post_link' ] }" class="fsp-tooltip" data-title="${ fsp__( 'Post permalink' ) }"><i class="fas fa-external-link-alt"></i></a>`;
+	let post_link = ``;
+
+	if(result['driver'] !== 'webhook'){
+		post_link = `<a target="_blank" href="${ result[ 'wp_post_link' ] }" class="fsp-tooltip" data-title="${ fsp__( 'Post permalink' ) }"><i class="fas fa-external-link-alt"></i></a>`;
+	}
 
 
 	let account_link = ``;
 
-	if ( ! result[ 'is_deleted' ] )
+	if ( ! result[ 'is_deleted' ] && result['driver'] !== 'webhook' )
 	{
 		account_link = `<a target="_blank" href="${ result[ 'profile_link' ] }" class="fsp-tooltip" data-title="${ fsp__( 'Profile link' ) }"><i class="fas fa-external-link-alt"></i></a>`;
 	}
@@ -318,24 +339,32 @@ function logData ( result )
 						</div>
 					</div>
 					<div class="fsp-log-title fsp-is-second">
-						<div class="fsp-log-title-link">
+					${ result[ 'driver' ] !== 'webhook' ?
+						`<div class="fsp-log-title-link">
 							<a target="_blank" href="${ result[ 'post_link' ] }">
 								<i class="fas fa-external-link-alt"></i>
-								${ fsp__( 'Shared post link' ) }
+								${fsp__('Shared post link')}
 							</a>
-						</div>
+						</div>` : ''
+					}
 						<div class="fsp-log-title-subtext fsp-log-title-sublink">
-							<i class="${ driverIcon }"></i>&nbsp;${ result[ 'driver' ][ 0 ].toUpperCase() + result[ 'driver' ].substring( 1 ) }&nbsp;>&nbsp;${ result[ 'node_type' ] + ( result[ 'feed_type' ] !== '' ? ' > ' + result[ 'feed_type' ] : '' ) }
+							<i class="${ driverIcon }"></i>${ result[ 'driver' ][ 0 ].toUpperCase() + result[ 'driver' ].substring( 1 ) }&nbsp;>&nbsp;${ (result[ 'driver' ] === 'webhook' ? result['username'] : result[ 'node_type' ]) + ( result[ 'feed_type' ] !== '' ? ' > ' + result[ 'feed_type' ] : '' ) }
 						</div>
 					</div>
 					<div class="fsp-log-status-container">
 						${ statusBtn }
 					</div>
 					<div class="fsp-log-stats">
-						${ result[ 'hide_stats' ] ? '' : `
+						${ result[ 'hide_stats' ] ? '' : result['driver'] !== 'webhook' ? `
 							<div class="fsp-logs-controls">
 								<div class="fsp-logs-control get-insights-button" data-feed-id="${ result['id'] }">
 									<i class="far fa-chart-bar"></i>
+								</div>
+							</div>
+						`: `
+						<div class="fsp-logs-controls">
+								<div class="fsp-logs-control fsp-show-webhook-data" data-feed-id="${ result['id'] }">
+									<i class="fas fa-eye"></i>
 								</div>
 							</div>
 						` }

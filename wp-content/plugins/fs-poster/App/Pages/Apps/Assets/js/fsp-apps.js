@@ -31,6 +31,7 @@
 			let appID = $( '#fspAppID' ).val().trim();
 			let appKey = $( '#fspAppKey' ).val().trim();
 			let appSecret = $( '#fspAppSecret' ).val().trim();
+			let botToken = $( '#fspBotToken' ).val().trim();
 			let appVersion = $( '#fspAppVersion' ).val().trim();
 			let driver = $( '#fspAppDriver' ).val().trim();
 
@@ -38,6 +39,7 @@
 				app_id: appID,
 				app_key: appKey,
 				app_secret: appSecret,
+				bot_token: botToken,
 				driver: driver,
 				version: appVersion
 			}, function ( res ) {

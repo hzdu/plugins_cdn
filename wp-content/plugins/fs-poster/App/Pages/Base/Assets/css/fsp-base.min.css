@@ -50,6 +50,55 @@
     animation: show-tooltip-arrow 0.2s forwards
 }
 
+.fsp-tooltip-is-info {
+    color: #1499ff !important;
+}
+
+.fsp-dashboard-tooltip-container {
+    position: fixed;
+    z-index: 100000000;
+    padding-bottom: 0;
+    -webkit-transform: translateY(16px);
+    transform: translateY(16px);
+    opacity: 0;
+    -webkit-animation: show-tooltip 0.2s forwards;
+    animation: show-tooltip 0.2s forwards;
+    top: 0;
+    left: 0
+}
+
+.fsp-dashboard-tooltip-container > div {
+    background: #424242;
+    border-radius: 4px;
+    color: #ffffff;
+    max-width: 400px;
+    padding: 5px 15px;
+    font-size: 13px;
+    font-weight: normal;
+    position: relative;
+    font-family: 'Poppins';
+    cursor: text;
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+    user-select: text;
+    white-space: normal;
+    text-transform: initial;
+    line-height: 20px;
+    text-align: left
+}
+
+.fsp-dashboard-tooltip-container > div::after {
+    position: absolute;
+    content: '';
+    top: -7.1px;
+    width: 10px;
+    height: 10px;
+    background-color: #424242;
+    -webkit-transform: rotate(45deg) translate(50%, 0%);
+    transform: rotate(45deg) translate(50%, 0%);
+}
+
 .fsp-dropdown {
     background-color: #ffffff;
     border-radius: 4px;
@@ -1015,6 +1064,16 @@
     transform: rotate(45deg) translate(-100%, -100%);
     -webkit-animation: show-tooltip-arrow 0.2s forwards;
     animation: show-tooltip-arrow 0.2s forwards
+}
+
+[dir="rtl"] .fsp-dashboard-tooltip-container {
+    -webkit-transform: translateY(16px);
+    right: 0;
+    left: unset;
+}
+
+[dir="rtl"] .fsp-dashboard-tooltip-container > div {
+    text-align: right;
 }
 
 [dir="rtl"] .fsp-dropdown {

@@ -761,7 +761,7 @@
     background-color: #ffffff !important;
     border: 1px solid #e3eaf3 !important;
     border-radius: 2px !important;
-    color: #828f9a !important;
+    color: #292d32 !important;
     display: block;
     font-family: Poppins, sans-serif;
     font-size: 14px;
@@ -772,6 +772,21 @@
     -webkit-transition: 0.2s;
     -o-transition: 0.2s;
     transition: 0.2s;
+}
+
+.fsp-form-input::placeholder {
+    color: #828f9a !important;
+    opacity: 1 !important;
+}
+
+.fsp-form-input::-moz-placeholder {
+    color: #828f9a !important;
+    opacity: 1 !important;
+}
+
+.fsp-form-input::-webkit-input-placeholder {
+    color: #828f9a !important;
+    opacity: 1 !important;
 }
 
 .fsp-form-input-has-icon {
@@ -805,7 +820,7 @@
     border: 1px solid #e3eaf3 !important;
     border-radius: 2px !important;
     padding: 10px 36px 10px 16px !important;
-    color: #828f9a !important;
+    color: #292d32 !important;
     font-family: Poppins, sans-serif !important;
     font-size: 14px !important;
     max-width: 100% !important;
@@ -933,7 +948,7 @@
     background-color: #ffffff !important;
     border: 1px solid #e3eaf3 !important;
     border-radius: 2px !important;
-    color: #828f9a !important;
+    color: #292d32 !important;
     display: block;
     font-family: Poppins, sans-serif;
     font-size: 14px;
@@ -941,6 +956,22 @@
     line-height: 24px !important;
     padding: 12px 20px !important;
     width: 100%;
+}
+
+.fsp-form-textarea::placeholder {
+    color: #828f9a !important;
+}
+
+.fsp-form-textarea::-webkit-input-placeholder {
+    color: #828f9a !important;
+}
+
+.fsp-form-textarea::-moz-placeholder {
+    color: #828f9a !important;
+}
+
+.fsp-form-textarea::-ms-input-placeholder {
+    color: #828f9a !important;
 }
 
 .fsp-form-textarea:focus {
@@ -1599,6 +1630,27 @@
 .fsp-xing-group-block {
     margin-left: auto;
     margin-right: 50px;
+}
+
+.planly-icon {
+    display: inline-block;
+    background: url("../img/planly.svg") center no-repeat;
+    background-size: contain;
+}
+
+.planly-icon-12 {
+    width: 12px;
+    height: 12px;
+}
+
+.planly-icon-16 {
+    width: 16px;
+    height: 16px;
+}
+
+.planly-icon-18 {
+    width: 18px;
+    height: 18px;
 }
 
 /*rtl*/

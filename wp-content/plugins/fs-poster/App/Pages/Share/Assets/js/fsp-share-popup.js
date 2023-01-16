@@ -16,19 +16,22 @@
 				return;
 			}
 
-			var background = $( '#background_share_chckbx' ).is( ':checked' ) ? 1 : 0;
+			let background = $( '#background_share_chckbx' ).is( ':checked' ) ? 1 : 0;
 
-			var custom_messages = {};
+			let custom_messages = {};
 			$( '#fspMetaboxCustomMessages textarea[name]' ).each( function () {
 				custom_messages[ $( this ).attr( 'name' ).replace( 'fs_post_text_message_', '' ) ] = $( this ).val();
 			} );
+
+			let instagramPin = $( '#instagram_pin_post' ).is( ':checked' ) ? 1 : 0;
 
 			FSPoster.ajax( 'share_saved_post', {
 				'post_id': FSPObject.postID,
 				'nodes': nodes,
 				'background': background,
 				'custom_messages': custom_messages,
-				'shared_from': 'manual_share'
+				'shared_from': 'manual_share',
+				'instagram_pin_the_post': instagramPin
 			}, function () {
 				$( '[data-modal-close=true]' ).click();
 

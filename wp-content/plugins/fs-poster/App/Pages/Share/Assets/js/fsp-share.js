@@ -4,25 +4,45 @@
 	let doc = $( document );
 
 	doc.ready( function () {
-		let frame = wp.media( {
-			title: fsp__( 'Select or upload image' ), button: {
-				text: fsp__( 'Use this media' )
-			}, multiple: false, library: {
-				type: 'image'
+		let saveID = FSPObject.saveID;
+
+		doc.on( 'click', '.fsp-direct-share-close-img', function () {
+			$( this ).parent( '.fsp-direct-share-form-image-preview' ).remove();
+
+			if ( $( '.fsp-direct-share-images' ).html().trim() === '' )
+			{
+				$( '#wpMediaBtn' ).removeClass( 'fsp-hide' );
+				$( '#fspShareURL .fsp-tooltip' ).addClass( 'fsp-hide' );
 			}
 		} );
 
-		let saveID = FSPObject.saveID;
-
-		frame.on( 'select', function () {
-			var attachment = frame.state().get( 'selection' ).first().toJSON();
-
-			$( '#imageID' ).val( attachment.id );
-			$( '#imageShow' ).removeClass( 'fsp-hide' ).data( 'id', attachment.id ).children( 'img' ).attr( 'src', attachment.url );
-			$( '#wpMediaBtn, #fspShareURL' ).addClass( 'fsp-hide' );
-		} );
-
 		$( '#wpMediaBtn' ).click( function ( event ) {
+			let frame = wp.media( {
+				title: fsp__( 'Select or upload image' ), button: {
+					text: fsp__( 'Use this media' )
+				}, multiple: true, library: {
+					type: 'image',
+					post__not_in: ( function () {
+						let images = [];
+
+						$( '.fsp-direct-share-form-image-preview' ).each( function () {
+							images.push( $( this ).data( 'id' ) );
+						} );
+
+						return images;
+					} )()
+				}
+			} );
+			frame.on( 'select', function () {
+				let attachments = frame.state().get( 'selection' ).toJSON();
+
+				for ( const attachment of attachments )
+				{
+					$( '.fsp-direct-share-images' ).append( `<div class="fsp-direct-share-form-image-preview" data-id="${ attachment.id }"><img src="${ attachment.url }"><i class="fas fa-times fsp-direct-share-close-img"></i></div>` );
+				}
+
+				$( '#fspShareURL .fsp-tooltip' ).removeClass( 'fsp-hide' );
+			} );
 			frame.open();
 		} );
 
@@ -30,20 +50,19 @@
 			savePost( false, savePostCallback, $( this ).hasClass( 'saveBtnNew' ) );
 		} );
 
-		$( '#closeImg' ).click( function () {
-			$( '#imageShow' ).addClass( 'fsp-hide' ).children( 'img' ).attr( 'src', '' ).data( 'id', 0 );
-			$( '#wpMediaBtn, #fspShareURL' ).removeClass( 'fsp-hide' );
-		} );
-
 		function savePost ( tmp, callback, saveAndNew = false, isSchedule = false )
 		{
 			let is_empty = true;
-			var link = $( '.link_url' ).val().trim(), message = {},
-				image = $( '#imageShow' ).data( 'id' );
+			let link = $( '.link_url' ).val().trim(), message = {},
+				images = [];
 
-			var title = $( '#fspPostTitle' ).val().trim();
+			$( '.fsp-direct-share-form-image-preview' ).each( function () {
+				images.push( $( this ).data( 'id' ) );
+			} );
 
-			is_empty = link === '' && image === '';
+			let title = $( '#fspPostTitle' ).val().trim();
+
+			is_empty = link === '' && images === [];
 
 			$( '.message_box' ).each( function () {
 				let m_val = $( this ).val().trim();
@@ -51,9 +70,11 @@
 				message[ $( this ).data( 'sn-id' ) ] = m_val;
 			} );
 
-			var save = function () {
+			let instagramPin = $( '#instagram_pin_post' ).is( ':checked' ) ? 1 : 0;
 
-				var nodes = [];
+			let save = function () {
+
+				let nodes = [];
 				$( '.fsp-metabox-accounts input[name=\'share_on_nodes[]\']' ).each( function () {
 					nodes.push( $( this ).val() );
 				} );
@@ -63,9 +84,10 @@
 					'title': title,
 					'link': link,
 					'message': message,
-					'image': image,
+					'images': images,
 					'nodes': nodes,
-					'tmp': tmp ? 1 : 0
+					'tmp': tmp ? 1 : 0,
+					'instagram_pin_the_post': instagramPin
 				}, function ( result ) {
 					saveID = result[ 'id' ];
 
@@ -139,17 +161,20 @@
 					nodes.push( $( this ).val() );
 				} );
 
+				let instagramPin = $( '#instagram_pin_post' ).is( ':checked' ) ? 1 : 0;
+
 				FSPoster.loadModal( 'add_schedule', {
 					'post_ids': saveID,
 					'nodes': nodes,
-					'is_direct_share_tab': 1
+					'is_direct_share_tab': 1,
+					'instagram_pin_the_post': instagramPin
 				} );
 			}, false, true );
 		} );
 
 		$( '.shareNowBtn' ).click( function () {
 			savePost( true, function () {
-				var nodes = [];
+				let nodes = [];
 				$( '.fsp-metabox-accounts input[name=\'share_on_nodes[]\']' ).each( function () {
 					nodes.push( $( this ).val() );
 				} );
@@ -160,8 +185,14 @@
 					return;
 				}
 
+				let instagramPin = $( '#instagram_pin_post' ).is( ':checked' ) ? 1 : 0;
+
 				FSPoster.ajax( 'share_saved_post', {
-					'post_id': saveID, 'nodes': nodes, 'background': 0, 'shared_from': 'direct_share'
+					'post_id': saveID,
+					'nodes': nodes,
+					'background': 0,
+					'shared_from': 'direct_share',
+					'instagram_pin_the_post': instagramPin
 				}, function () {
 					FSPoster.loadModal( 'share_feeds', { 'post_id': saveID }, true );
 				} );
@@ -171,7 +202,7 @@
 		$( '.delete_post_btn' ).click( function () {
 			var tr = $( this ).closest( '.fsp-share-post' ), post_id = tr.data( 'id' );
 
-			FSPoster.confirm( 'Are you sure you want to delete?', function () {
+			FSPoster.confirm( fsp__( 'Are you sure you want to delete?' ), function () {
 				FSPoster.ajax( 'manual_share_delete', { 'id': post_id }, function () {
 					tr.fadeOut( 500, function () {
 						if ( post_id === saveID )

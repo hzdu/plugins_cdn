@@ -12,6 +12,14 @@
 			} );
 		} );
 
+		$( '#fspPostingTypeSelector' ).on( 'change', function () {
+			if ( $( this ).val() != 2   ) {
+				$( '#fspPostingTypeRow' ).slideDown();
+			} else {
+				$( '#fspPostingTypeRow' ).slideUp();
+			}
+		} ).trigger( 'change' );
+
 		$( '.fsp-settings-igcontrol-input > .fsp-form-input.iginput' ).on( 'change keyup', function () {
 			let _this = $( this );
 			let type = _this.data( 'type' );
@@ -167,5 +175,16 @@
 				$( '#fspIgCustomFontResetInput' ).remove();
 			}, 'fas fa-redo-alt', 'RESET' );
 		} );
+
+		$( '#fspIgAllowComment' ).on( 'change', function () {
+			if ( $( this ).is( ':checked' ) )
+			{
+				$( '#fspIgFirstComment' ).slideDown();
+			}
+			else
+			{
+				$( '#fspIgFirstComment' ).slideUp();
+			}
+		} ).trigger( 'change' );
 	} );
 } )( jQuery );

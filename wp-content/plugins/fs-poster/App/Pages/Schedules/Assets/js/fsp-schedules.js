@@ -138,21 +138,14 @@
 
 		FSPoster.ajax('fsp_fetch_schedule_list', {
 			page,
-			search: scheduleSearchKeyword,
-			rows_count
+			rows_count,
+			search : scheduleSearchKeyword
 		}, function (response) {
-			let url = window.location.href;
-
-			if ( url.indexOf( 'schedule_page' ) > -1 )
-			{
-				url = url.replace( /schedule_page=([0-9]+)/, `schedule_page=${ page }` );
-			}
-			else
-			{
-				url += `${ ( url.indexOf( '?' ) > -1 ? '&' : '?' ) }schedule_page=${ page }`;
-			}
-
-			window.history.pushState( '', '', url );
+			let url = window.location.search;
+			let urlParams = new URLSearchParams( url );
+			urlParams.set( "schedule_page", page );
+			urlParams.set( "search", scheduleSearchKeyword );
+			window.history.pushState( '', '', window.location.pathname + "?" + urlParams.toString() );
 
 			var fspScheduleWrapper = $( "#fspSchedules" );
 			$( "#fspSchedulesCount" ).text( response.scheduleCount );
@@ -278,7 +271,7 @@
 						<span class="fsp-schedule-control-text">${ schedule.shares_count }</span>
 					</div>
 					<div class="fsp-schedule-control">
-						<i class="far fa-user fsp-tooltip" data-title="Selected account(s)"></i>
+						<i class="far fa-user fsp-tooltip" data-title="${ fsp__('Selected account(s)') }"></i>
 						<span class="fsp-schedule-control-text">${ schedule.accounts_count }</span>
 					</div>
 					

@@ -517,7 +517,7 @@ var FSPoster;
 
 			scriptsArray: [],
 
-			load_script: function ( url, func_on_load = undefined, can_repeat = true ) {
+			load_script: function ( url, can_repeat = true, func_on_load = undefined ) {
 				if ( ! can_repeat && $.inArray( url, this.scriptsArray ) + 1 )
 				{
 					return false;
@@ -767,7 +767,18 @@ var FSPoster;
 	} );
 } )( jQuery );
 
-function fsp__ ( str )
+function fsp__ ( str, binds = [], $esc_html = true )
 {
+	if( typeof wp !== 'undefined' && wp.hasOwnProperty( 'i18n' )){
+		const { __, _x, _n, sprintf } = wp.i18n;
+
+		if ( typeof Array.isArray( binds ) && binds !== [] )
+		{
+			str = sprintf( str, binds );
+		}
+
+		return __( str, 'fs-poster' );
+	}
+
 	return str;
 }

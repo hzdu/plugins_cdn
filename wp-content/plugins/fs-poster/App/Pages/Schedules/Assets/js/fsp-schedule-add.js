@@ -75,7 +75,6 @@
 				startTime = $( '.schedule_popup .schedule_input_start_time' ).val(),
 				interval = $( '.schedule_popup .interval' ).val(),
 				intervalType = $( '.schedule_popup .interval_type' ).val(),
-				share_time = $( '.schedule_popup .share_time' ).val(),
 				post_type_filter = $( '.schedule_popup .schedule_input_post_type_filter' ).val(),
 				dont_post_out_of_stock_products = $( '.schedule_popup .schedule_dont_post_out_of_stock_products' ).is( ':checked' ) ? 1 : 0,
 				category_filter = $( '.schedule_popup .schedule_input_category_filter' ).val(),
@@ -116,6 +115,8 @@
 			$( '.schedule_popup .fsp-custom-post > textarea' ).each( function () {
 				custom_messages[ $( this ).data( 'sn-id' ) ] = $( this ).val();
 			} );
+
+			let instagramPin = $( '#instagram_pin_post' ).is( ':checked' ) ? 1 : 0;
 
 			let bypass_confirm_dialog = true;
 
@@ -158,7 +159,6 @@
 					'start_date': startDate,
 					'start_time': startTime,
 					'interval': ( parseInt( interval ) * parseInt( intervalType ) ),
-					'share_time': share_time,
 					'post_type_filter': post_type_filter,
 					'filter_posts_date_range_from': filter_posts_date_range_from,
 					'filter_posts_date_range_to': filter_posts_date_range_to,
@@ -170,7 +170,8 @@
 					'sleep_time_start': sleep_time_start,
 					'sleep_time_end': sleep_time_end,
 					'custom_messages': JSON.stringify( custom_messages ),
-					'accounts_list': JSON.stringify( accounts_list )
+					'accounts_list': JSON.stringify( accounts_list ),
+					'instagram_pin_the_post': instagramPin
 				}, function () {
 					FSPoster.loading( true );
 
@@ -181,11 +182,14 @@
 						page = activePage.data( 'page' );
 					}
 
-					window.location.href = 'admin.php?page=fs-poster-schedules&view=list&schedule_page=' + page;
+					let fspScheduleSearchInput = $( '#fsp-schedule-search-input' ).length ? $( '#fsp-schedule-search-input' ).val() : " ";
+					let searchedKeyword = fspScheduleSearchInput.trim().toLowerCase();
+
+					window.location.href = 'admin.php?page=fs-poster-schedules&view=list&search='+ searchedKeyword +'&schedule_page=' + page;
 				} );
 			}
 		} ).on( 'click', '.wp_native_schedule_save_btn', function () {
-			var info = $( this ).data( 'info' ), custom_messages = {}, accounts_list = [];
+			let info = $( this ).data( 'info' ), custom_messages = {}, accounts_list = [];
 
 			$( '.schedule_popup .fsp-custom-post > textarea' ).each( function () {
 				custom_messages[ $( this ).data( 'sn-id' ) ] = $( this ).val();
@@ -198,12 +202,15 @@
 				accounts_list.push( realVal );
 			} );
 
+			let instagramPin = $( '#instagram_pin_post' ).is( ':checked' ) ? 1 : 0;
+
 			if(Array.isArray(accounts_list) && accounts_list.length > 0)
 			{
 				FSPoster.ajax( 'wp_native_schedule_save', {
 					'info': JSON.stringify( info ),
 					'custom_messages': JSON.stringify( custom_messages ),
-					'accounts_list': JSON.stringify( accounts_list )
+					'accounts_list': JSON.stringify( accounts_list ),
+					'instagram_pin_the_post': instagramPin
 				}, function ( result ) {
 					FSPoster.loading( true );
 

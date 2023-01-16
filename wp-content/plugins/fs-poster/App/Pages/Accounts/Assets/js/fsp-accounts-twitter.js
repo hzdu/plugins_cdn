@@ -30,4 +30,13 @@
 			} );
 		}
 	} );
+
+	$( '#fspModalUpdateCookiesButton' ).on( 'click', function () {
+		let id = $( '#account_to_update' ).val().trim();
+		let auth_token = $( '#fspCookie_auth_token' ).val().trim();
+		let proxy 			= $( '#fspProxy' ).val().trim();
+		FSPoster.ajax( 'update_twitter_account_cookie', { id, auth_token, proxy }, function () {
+			accountUpdated();
+		} );
+	} );
 } )( jQuery );

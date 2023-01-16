@@ -75,7 +75,7 @@ functions that wrap handlers (or are injected into a
     `FSP_GuzzleHttp\PrepareBodyMiddleware`
   - `FSP_GuzzleHttp\Subscriber\Redirect` is now provided by
     `FSP_GuzzleHttp\RedirectMiddleware`
-- Guzzle now uses `Psr\Http\Message\UriInterface` (implements in
+- Guzzle now uses `FSPOSTER_Psr\Http\Message\UriInterface` (implements in
   `FSP_GuzzleHttp\Psr7\Uri`) for URI support. `FSP_GuzzleHttp\Url` is now gone.
 - Static functions in `FSP_GuzzleHttp\Utils` have been moved to namespaced
   functions under the `FSP_GuzzleHttp` namespace. This requires either a FSP_Composer

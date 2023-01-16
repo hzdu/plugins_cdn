@@ -142,6 +142,7 @@
 		}
 
 		let ctx3 = document.getElementById( 'fspReports_comparisonChart' ).getContext( '2d' );
+
 		new Chart( ctx3, {
 			type: 'doughnut',
 			data: {
@@ -192,8 +193,7 @@
 								return [];
 							}
 						}
-					}
-
+					},
 
 				},
 				responsive: true
@@ -208,6 +208,16 @@
 		}
 
 		let ctx4 = document.getElementById( 'fspReports_accComparisonChart' ).getContext( '2d' );
+
+		let tooltip  = $('#dashboardTooltip');
+		$(document).on('click', function (){
+			tooltip.hide();
+		});
+		$('#fspReports_accComparisonChart').on('mouseout' , function(event) {
+			tooltip.html("");
+			tooltip.hide();
+		});
+
 		new Chart( ctx4, {
 			type: 'doughnut',
 			data: {
@@ -258,9 +268,23 @@
 								return [];
 							}
 						}
+					},
+
+					onHover: function( event, legendItem, legend ) {
+						tooltip.show();
+						tooltip.html( `<div>${fspConfig.accComparison.labels_full[legendItem.index]}</div>` );
+						tooltip.css( 'top', ( event.y + 20 ) + 'px' );
+						tooltip.css('left', ( event.x - 100) + 'px' );
+
+						if ( FSPoster.isRTL() )
+						{
+							tooltip.css( 'right', ( $( window ).width() - event.x - 100 ) + 'px' );
+						}
+						else
+						{
+							tooltip.css( 'left', ( event.x - 100 ) + 'px' );
+						}
 					}
-
-
 				},
 				responsive: true
 			}

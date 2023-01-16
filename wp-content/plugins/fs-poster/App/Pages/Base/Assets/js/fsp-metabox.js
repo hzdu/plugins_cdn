@@ -18,8 +18,12 @@
 				let _this = $( this );
 				let dataID = _this.data( 'id' );
 				//let cover = _this.find( '.fsp-metabox-account-image > img' ).attr( 'src' );
-				let name = _this.find( '.fsp-metabox-account-text' ).text().trim();
-				let link = _this.find( '.fsp-metabox-account-text' ).prop( 'href' ).trim();
+
+				let metaboxAccountText = _this.find( '.fsp-metabox-account-text' );
+
+				let name = metaboxAccountText.text().trim();
+				let link = metaboxAccountText.prop( 'href' ).trim();
+				link     = link === '' ? metaboxAccountText.data('link') : link;
 
 				let cover = '';
 
@@ -117,6 +121,8 @@
 				}
 			} ).on( 'click', '.fsp-metabox-custom-message-label', function () {
 				$( this ).next().slideToggle( 200 );
+			} ).on( 'change', '#instagram_pin_post', function (){
+				saveMetabox();
 			} );
 
 			FSPObject.metabox_js_loaded = true;
@@ -145,23 +151,27 @@ function FSPAddToList ( dataID, cover, name, link )
 	let tab = dataID[ 0 ];
 	let nodeType = dataID[ 1 ];
 	let sn_names = {
+		fsp: 'FSP',
 		fb: 'FB',
-		twitter: 'Twitter',
 		instagram: 'Instagram',
+		twitter: 'Twitter',
+		planly: 'Planly',
 		linkedin: 'Linkedin',
-		vk: 'VK',
 		pinterest: 'Pinterest',
+		telegram: 'Telegram',
 		reddit: 'Reddit',
+		youtube_community: 'Youtube Community',
 		tumblr: 'Tumblr',
 		ok: 'OK',
-		google_b: 'GMB',
-		blogger: 'Blogger',
-		telegram: 'Telegram',
+		vk: 'VK',
+		google_b: 'GBP',
 		medium: 'Medium',
 		wordpress: 'WordPress',
+		webhook: 'Webhook',
+		blogger: 'Blogger',
 		plurk: 'Plurk',
 		xing: 'Xing',
-		fsp: 'FSP'
+		discord: 'Discord',
 	};
 	let tabName = sn_names[ tab ];
 
@@ -175,15 +185,16 @@ function FSPAddToList ( dataID, cover, name, link )
 		cover_html = '<div class="fsp-metabox-account-image"><img src="' + cover +'" onerror="FSPoster.no_photo( this );"></div>';
 	}
 
+	let href = tab === 'webhook' ? '' : `href="${link}"`;
 	$( `<div data-driver="${ tab }" class="fsp-metabox-account">
 		<input type="hidden" name="share_on_nodes[]" value="${ dataID.join( ':' ) }">
 		${cover_html}
 		<div class="fsp-metabox-account-label">
-			<a target="_blank" href="${ link }" class="fsp-metabox-account-text">
+			<a target="_blank" ${href} class="fsp-metabox-account-text">
 				${ name }
 			</a>
 			<div class="fsp-metabox-account-subtext">
-				${ tabName }&nbsp;>&nbsp;${ nodeType }
+				${ tabName }&nbsp;>&nbsp;${ tab === 'webhook' ? link : nodeType }
 			</div>
 		</div>
 		<div class="fsp-metabox-account-remove">
@@ -211,26 +222,30 @@ function saveMetabox ()
 
 		let id = FSPObject.id;
 		let share_checked = $( '#fspMetaboxShare' ).is( ':checked' ) ? 1 : 0;
+		let instagramPin = $( '#instagram_pin_post' ).is( ':checked' ) ? 1 : 0;
 		let accounts = [];
 		let custom_messages = {
 			'fb': $( 'textarea[name="fs_post_text_message_fb"]' ).val(),
 			'fb_h': $( 'textarea[name="fs_post_text_message_fb_h"]' ).val(),
-			'twitter': $( 'textarea[name="fs_post_text_message_twitter"]' ).val(),
 			'instagram': $( 'textarea[name="fs_post_text_message_instagram"]' ).val(),
 			'instagram_h': $( 'textarea[name="fs_post_text_message_instagram_h"]' ).val(),
+			'twitter': $( 'textarea[name="fs_post_text_message_twitter"]' ).val(),
+			'planly': $( 'textarea[name="fs_post_text_message_planly"]' ).val(),
 			'linkedin': $( 'textarea[name="fs_post_text_message_linkedin"]' ).val(),
-			'vk': $( 'textarea[name="fs_post_text_message_vk"]' ).val(),
 			'pinterest': $( 'textarea[name="fs_post_text_message_pinterest"]' ).val(),
+			'telegram': $( 'textarea[name="fs_post_text_message_telegram"]' ).val(),
 			'reddit': $( 'textarea[name="fs_post_text_message_reddit"]' ).val(),
+			'youtube_community': $( 'textarea[name="fs_post_text_message_youtube_community"]' ).val(),
 			'tumblr': $( 'textarea[name="fs_post_text_message_tumblr"]' ).val(),
 			'ok': $( 'textarea[name="fs_post_text_message_ok"]' ).val(),
+			'vk': $( 'textarea[name="fs_post_text_message_vk"]' ).val(),
 			'google_b': $( 'textarea[name="fs_post_text_message_google_b"]' ).val(),
-			'blogger': $( 'textarea[name="fs_post_text_message_blogger"]' ).val(),
-			'telegram': $( 'textarea[name="fs_post_text_message_telegram"]' ).val(),
 			'medium': $( 'textarea[name="fs_post_text_message_medium"]' ).val(),
 			'wordpress': $( 'textarea[name="fs_post_text_message_wordpress"]' ).val(),
+			'blogger': $( 'textarea[name="fs_post_text_message_blogger"]' ).val(),
 			'plurk': $( 'textarea[name="fs_post_text_message_plurk"]' ).val(),
 			'xing': $( 'textarea[name="fs_post_text_message_xing"]' ).val(),
+			'discord': $( 'textarea[name="fs_post_text_message_discord"]' ).val(),
 		};
 
 		$( 'input[name^="share_on_nodes"]' ).each( function () {
@@ -238,7 +253,7 @@ function saveMetabox ()
 		} );
 
 		FSPoster.ajax( 'save_metabox', {
-			id, share_checked, accounts, custom_messages
+			id, share_checked, accounts, custom_messages, instagramPin
 		}, function () {
 			$( '#fspSavingMetabox' ).addClass( 'fsp-hide' );
 		}, true, function () {

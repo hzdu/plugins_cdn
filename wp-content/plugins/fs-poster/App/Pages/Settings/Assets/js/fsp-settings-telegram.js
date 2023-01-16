@@ -10,6 +10,15 @@
 			} );
 		} );
 
-
+		$( '#useReadMoreButton' ).on( 'change', function () {
+			if ( $( this ).is( ':checked' ) )
+			{
+				$( '#fspUseCustomButton' ).slideDown();
+			}
+			else
+			{
+				$( '#fspUseCustomButton' ).slideUp();
+			}
+		} ).trigger( 'change' );
 	} );
 } )( jQuery );

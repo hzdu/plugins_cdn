@@ -10,10 +10,12 @@
 
 			if ( selectedMethod === '1' )
 			{
-				let cookie_sessionid = $( '#fspModalStep_1 #fspCookie_sessionid' ).val().trim();
+				let cookie_csrf_token = $( '#fspModalStep_1 #fspCookie_csrf_token' ).val().trim();
+				let cookie_ds_user_id = $( '#fspModalStep_1 #fspCookie_ds_user_id' ).val().trim();
+				let cookie_sessionid  = $( '#fspModalStep_1 #fspCookie_sessionid' ).val().trim();
 				let proxy = $( '#fspProxy' ).val().trim();
 
-				FSPoster.ajax( 'add_instagram_account_cookie_method', { cookie_sessionid, proxy }, function () {
+				FSPoster.ajax( 'add_instagram_account_cookie_method', { cookie_csrf_token, cookie_ds_user_id, cookie_sessionid, proxy }, function () {
 					accountAdded();
 				} );
 			}
@@ -37,12 +39,15 @@
 			}
 		} );
 
-		$('#fspModalUpdateCookiesButton').on('click', function (  ){
-			let account_id = $( '#account_to_update' ).val().trim();
-			let cookie_sessionid = $( '#fspCookie_sessionid' ).val().trim();
-			let proxy = $( '#fspProxy' ).val().trim();
+		$('#fspModalUpdateCookiesButton').on('click', function () {
+			let data = {
+				account_id: ( $( '#account_to_update' ).val() || '' ).trim(),
+				cookie_sessionid: ( $( '#fspCookie_sessionid' ).val() || '' ).trim(),
+				cookie_csrf_token: ( $( '#fspCookie_csrf_token' ).val() || '' ).trim(),
+				proxy: ( $( '#fspProxy' ).val() || '' ).trim()
+			}
 
-			FSPoster.ajax( 'update_instagram_account_cookie', { account_id, cookie_sessionid, proxy }, function () {
+			FSPoster.ajax( 'update_instagram_account_cookie', data, function () {
 				accountUpdated();
 			} );
 		});

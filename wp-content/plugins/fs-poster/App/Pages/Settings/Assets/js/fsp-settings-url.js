@@ -8,7 +8,7 @@
 			let data = FSPoster.serialize( $( '#fspSettingsForm' ) );
 
 			FSPoster.ajax( 'settings_url_save', data, function ( res ) {
-				FSPoster.toast( res[ 'msg' ], 'success');
+				FSPoster.toast( res[ 'msg' ], 'success' );
 			} );
 		} );
 
@@ -24,13 +24,26 @@
 		} ).trigger( 'change' );
 
 		$( '#fspShortenerSelector' ).on( 'change', function () {
-			if ( $( this ).val() === 'bitly' )
+			$( '#fspBitly, #fspYourlsApiUrl, #fspYourlsApiToken, #fspPolrApiUrl, #fspPolrApiKey, #fspShlinkApiKey, #fspShlinkApiUrl, #fspRebrandlyApiKey, #fspRebrandlyDomain' ).slideUp();
+			switch ( $( this ).val() )
 			{
-				$( '#fspBitly' ).slideDown();
-			}
-			else
-			{
-				$( '#fspBitly' ).slideUp();
+				case 'bitly':
+					$( '#fspBitly' ).slideDown();
+					break;
+				case 'yourls':
+					$( '#fspYourlsApiUrl, #fspYourlsApiToken' ).slideDown();
+					break;
+				case 'polr':
+					$( '#fspPolrApiUrl, #fspPolrApiKey' ).slideDown();
+					break;
+				case 'shlink':
+					$( '#fspShlinkApiKey, #fspShlinkApiUrl' ).slideDown();
+					break;
+				case 'rebrandly':
+					$( '#fspRebrandlyApiKey, #fspRebrandlyDomain' ).slideDown();
+					break;
+				default :
+					break;
 			}
 		} ).trigger( 'change' );
 

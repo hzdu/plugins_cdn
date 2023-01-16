@@ -372,7 +372,7 @@
 			} );
 		} );
 
-		$( '#fspMoreMenu > #fsp-update-cookies' ).on( 'click', function () {
+		$( '#fspMoreMenu > #fsp-update-cookies, #fspMoreMenu > #fsp-update-webhook' ).on( 'click', function () {
 			let _this = $( this );
 			let menuDiv = _this.parent();
 			let id = menuDiv.data( 'id' );
@@ -381,6 +381,20 @@
 			{
 				FSPoster.loadModal( FSPObject.editModalURL, { 'account_id': id } );
 			}
+		} );
+
+		$( '#fspMoreMenu > #fsp-export-webhook' ).on( 'click', function () {
+			let _this = $( this );
+			let menuDiv = _this.parent();
+			let id = menuDiv.data( 'id' );
+
+			FSPoster.confirm( fsp__('If you want to share this template with other FS Poster customers, please submit exported JSON via Google Form. After review it will be published in templates list. It is reccomended to redact informations like credentials, tokens, etc. before submit it.'), function (){
+				FSPoster.ajax( 'export_webhook', { id }, function (result) {
+					FSPoster.toast( result[ 'msg' ], 'success' );
+					window.location.href = `${ window.location.href }&download=${ result[ 'file_id' ] }`;
+					window.open( result['redirect_url'], '_blank' );
+				} );
+			}, 'fas fa-question', fsp__('Export') );
 		} );
 
 		$( '#fspMoreMenu > .fsp-add-to-groups' ).on( 'click', function () {
@@ -610,6 +624,7 @@
 			let type = accountDiv.data( 'type' ) ? accountDiv.data( 'type' ) : 'account';
 			let hidden = accountDiv.data( 'hidden' ) ? 1 : 0;
 			let has_cookie = accountDiv.data( 'cookie' );
+			let driver = accountDiv.data('driver');
 
 			if ( hidden )
 			{
@@ -640,6 +655,15 @@
 			else
 			{
 				$( '#fspMoreMenu > #fsp-update-cookies' ).addClass( 'fsp-hide' );
+			}
+
+			if( driver === 'webhook' )
+			{
+				$( '#fspMoreMenu > #fsp-update-webhook' ).removeClass( 'fsp-hide' );
+			}
+			else
+			{
+				$( '#fspMoreMenu > #fsp-update-webhook, #fspMoreMenu > #fsp-export-webhook' ).addClass( 'fsp-hide' );
 			}
 
 			let topPos = _this.offset().top + 25 - $( window ).scrollTop();
@@ -706,7 +730,7 @@
 	} );
 } )( jQuery );
 
-function accountAdded ()
+function accountAdded (nodeType = fsp__('Account'))
 {
 	if ( typeof jQuery !== 'undefined' )
 	{
@@ -719,13 +743,13 @@ function accountAdded ()
 	{
 		$( '.fsp-modal-footer' ).remove();
 
-		modalBody.html( `<div class="fsp-modal-succeed"><div class="fsp-modal-succeed-image"><img src="${ FSPoster.asset( 'Base', 'img/success.svg' ) }"></div><div class="fsp-modal-succeed-text">${ fsp__( 'Account has been added successfully!' ) }</div><div class="fsp-modal-succeed-button"><button class="fsp-button" data-modal-close="true">${ fsp__( 'CLOSE' ) }</button></div></div>` );
+		modalBody.html( `<div class="fsp-modal-succeed"><div class="fsp-modal-succeed-image"><img src="${ FSPoster.asset( 'Base', 'img/success.svg' ) }"></div><div class="fsp-modal-succeed-text">${ fsp__( '%s has been added successfully!', [nodeType] ) }</div><div class="fsp-modal-succeed-button"><button class="fsp-button" data-modal-close="true">${ fsp__( 'CLOSE' ) }</button></div></div>` );
 
 		$( '.fsp-tab.fsp-is-active' ).click();
 	}
 }
 
-function accountUpdated ()
+function accountUpdated (nodeType = fsp__('Account'))
 {
 	if ( typeof jQuery !== 'undefined' )
 	{
@@ -738,7 +762,7 @@ function accountUpdated ()
 	{
 		$( '.fsp-modal-footer' ).remove();
 
-		modalBody.html( `<div class="fsp-modal-succeed"><div class="fsp-modal-succeed-image"><img src="${ FSPoster.asset( 'Base', 'img/success.svg' ) }"></div><div class="fsp-modal-succeed-text">${ fsp__( 'Account has been updated successfully!' ) }</div><div class="fsp-modal-succeed-button"><button class="fsp-button" data-modal-close="true">${ fsp__( 'CLOSE' ) }</button></div></div>` );
+		modalBody.html( `<div class="fsp-modal-succeed"><div class="fsp-modal-succeed-image"><img src="${ FSPoster.asset( 'Base', 'img/success.svg' ) }"></div><div class="fsp-modal-succeed-text">${ fsp__( '%s has been updated successfully!', [nodeType] ) }</div><div class="fsp-modal-succeed-button"><button class="fsp-button" data-modal-close="true">${ fsp__( 'CLOSE' ) }</button></div></div>` );
 
 		$( '.fsp-tab.fsp-is-active' ).click();
 	}
@@ -782,64 +806,6 @@ function groupCreated ( id, name )
 		);
 		$( '.fsp-tab.fsp-is-active' ).on( 'click', '.fsp-group-more', groupMoreClicked );
 		$( '.fsp-tab.fsp-is-active' ).click();
-	}
-}
-
-function accountMoreClicked ( e )
-{
-	e.stopPropagation();
-
-	let _this = $( this );
-	let accountDiv = _this.parent().parent();
-	let id = accountDiv.data( 'id' );
-	let type = accountDiv.data( 'type' ) ? accountDiv.data( 'type' ) : 'account';
-	let hidden = accountDiv.data( 'hidden' ) ? 1 : 0;
-	let has_cookie = accountDiv.data( 'cookie' );
-
-	if ( hidden )
-	{
-		$( '#fspMoreMenu > [data-type="hide"]' ).addClass( 'fsp-hide' );
-		$( '#fspMoreMenu > [data-type="unhide"]' ).removeClass( 'fsp-hide' );
-	}
-	else
-	{
-		$( '#fspMoreMenu > [data-type="hide"]' ).removeClass( 'fsp-hide' );
-		$( '#fspMoreMenu > [data-type="unhide"]' ).addClass( 'fsp-hide' );
-	}
-
-	if ( accountDiv.find( '.fsp-account-is-public' ).hasClass( 'fsp-hide' ) )
-	{
-		$( '#fspMoreMenu > [data-type="public"]' ).removeClass( 'fsp-hide' );
-		$( '#fspMoreMenu > [data-type="private"]' ).addClass( 'fsp-hide' );
-	}
-	else
-	{
-		$( '#fspMoreMenu > [data-type="public"]' ).addClass( 'fsp-hide' );
-		$( '#fspMoreMenu > [data-type="private"]' ).removeClass( 'fsp-hide' );
-	}
-
-	if ( has_cookie )
-	{
-		$( '#fspMoreMenu > #fsp-update-cookies' ).removeClass( 'fsp-hide' );
-	}
-	else
-	{
-		$( '#fspMoreMenu > #fsp-update-cookies' ).addClass( 'fsp-hide' );
-	}
-
-	if ( ! FSPoster.isRTL() )
-	{
-		$( '#fspMoreMenu' ).data( 'hidden', hidden ).data( 'id', id ).data( 'type', type ).css( {
-			top: _this.offset().top + 25 - $( window ).scrollTop(),
-			left: _this.offset().left - ( $( '#fspMoreMenu' ).width() ) + 10
-		} ).show();
-	}
-	else
-	{
-		$( '#fspMoreMenu' ).data( 'hidden', hidden ).data( 'id', id ).data( 'type', type ).css( {
-			top: _this.offset().top + 25 - $( window ).scrollTop(),
-			right: $( window ).width() - _this.offset().left - ( $( '#fspMoreMenu' ).width() ) + 10
-		} ).show();
 	}
 }
 

@@ -10,7 +10,15 @@
 			} );
 		} );
 
-
-
+		$( '#fspRedditAllowComment' ).on( 'change', function () {
+			if ( $( this ).is( ':checked' ) )
+			{
+				$( '#fspRedditFirstComment' ).slideDown();
+			}
+			else
+			{
+				$( '#fspRedditFirstComment' ).slideUp();
+			}
+		} ).trigger( 'change' );
 	} );
 } )( jQuery );

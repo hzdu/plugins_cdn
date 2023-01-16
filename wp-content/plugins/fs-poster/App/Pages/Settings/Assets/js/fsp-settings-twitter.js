@@ -9,5 +9,16 @@
 				FSPoster.toast( res[ 'msg' ], 'success');
 			} );
 		} );
+
+		$( '#fspTwitterAllowComment' ).on( 'change', function () {
+			if ( $( this ).is( ':checked' ) )
+			{
+				$( '#fspTwitterFirstComment' ).slideDown();
+			}
+			else
+			{
+				$( '#fspTwitterFirstComment' ).slideUp();
+			}
+		} ).trigger( 'change' );
 	} );
 } )( jQuery );
