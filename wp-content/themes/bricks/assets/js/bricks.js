@@ -13,18 +13,23 @@ var BricksIntersect = /*#__PURE__*/_createClass(function BricksIntersect() {
   _classCallCheck(this, BricksIntersect);
   var t = e.element || !1,
     r = e.callback || !1,
-    i = !e.hasOwnProperty("once") || e.once;
+    i = !e.hasOwnProperty("once") || e.once,
+    s = !!e.hasOwnProperty("trigger") && e.trigger;
   if ("IntersectionObserver" in window) {
-    var s = new IntersectionObserver(function (e, s) {
-      e.forEach(function (e) {
-        e.isIntersecting && (t && r && r(e.target), i && s.unobserve(e.target));
+    var o = !0,
+      a = new IntersectionObserver(function (e, a) {
+        e.forEach(function (e) {
+          if ("leaveView" === s ? !e.isIntersecting : e.isIntersecting) {
+            if (o && "leaveView" === s) return void (o = !1);
+            t && r && r(e.target), i && a.unobserve(e.target);
+          }
+        });
+      }, {
+        threshold: e.threshold || 0,
+        root: e.root || null,
+        rootMargin: (e === null || e === void 0 ? void 0 : e.rootMargin) || "0px"
       });
-    }, {
-      threshold: e.threshold || 0,
-      root: e.root || null,
-      rootMargin: (e === null || e === void 0 ? void 0 : e.rootMargin) || "0px"
-    });
-    t instanceof Element && s.observe(t);
+    t instanceof Element && a.observe(t);
   } else {
     var _e = !1,
       _i = function _i() {
@@ -1153,22 +1158,14 @@ function bricksInteractions() {
             }, _r7);
             break;
           case "enterView":
-            new BricksIntersect({
-              element: e,
-              callback: function callback(e) {
-                return bricksInteractionCallbackExecution(e, t);
-              },
-              once: t === null || t === void 0 ? void 0 : t.runOnce
-            });
-            break;
           case "leaveView":
             new BricksIntersect({
               element: e,
               callback: function callback(e) {
                 return bricksInteractionCallbackExecution(e, t);
               },
-              rootMargin: "0px 0px -100% 0px",
-              once: t === null || t === void 0 ? void 0 : t.runOnce
+              once: t === null || t === void 0 ? void 0 : t.runOnce,
+              trigger: t === null || t === void 0 ? void 0 : t.trigger
             });
         }
       }
