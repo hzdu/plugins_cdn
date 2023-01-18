@@ -428,4 +428,108 @@
 			);
 		});
 	});
+
+	// Add padding when display icon option enabled
+	$(document).ready(function () {
+		$(".input-wrapper").each(function () {
+			if ($(this).children().length == 2) {
+				var firstEl = $(this).children(":first");
+				if (firstEl.hasClass("password-input-group")) {
+					firstEl
+						.children(":first")
+						.addClass("ur-pro-input-icon-padding");
+				} else {
+					firstEl.addClass("ur-pro-input-icon-padding");
+				}
+			}
+		});
+	});
+
+	$(document).ready(function () {
+		enable_keyboard_friendly_form();
+		render_tooltips();
+		restrict_copy_paste();
+	});
+
+	// Keyboard Friendly Form
+	function enable_keyboard_friendly_form() {
+		if (
+			"yes" ===
+				user_registration_pro_frontend_data.keyboard_friendly_form_enabled ||
+			"1" ===
+				user_registration_pro_frontend_data.keyboard_friendly_form_enabled
+		) {
+			var ur_form = $("form.register");
+			var ur_fields = ur_form.find(".ur-frontend-field");
+			ur_fields.first().trigger("focus");
+
+			$("body").on("keydown", function (e) {
+				if (e.ctrlKey || e.metaKey) {
+					if (13 === e.which) {
+						e.preventDefault();
+						ur_form.submit();
+					}
+				}
+
+				if (ur_fields.last().is(":focus")) {
+					if (9 === e.which) {
+						e.preventDefault();
+						$("form.register")
+							.find(".ur-submit-button")
+							.first()
+							.trigger("focus");
+					}
+				} else if (
+					$("form.register")
+						.find(".ur-submit-button.button")
+						.is(":focus")
+				) {
+					if (9 === e.which) {
+						e.preventDefault();
+						ur_fields.first().trigger("focus");
+					}
+				}
+			});
+		}
+	}
+
+	// Render Tooltips.
+	function render_tooltips() {
+		var args = {
+			theme: "tooltipster-borderless",
+			maxWidth: 200,
+			multiple: true,
+			interactive: true,
+			position: "bottom",
+			contentAsHTML: true,
+			functionInit: function (instance, helper) {
+				var $origin = jQuery(helper.origin),
+					dataTip = $origin.attr("data-tip");
+
+				if (dataTip) {
+					instance.content(dataTip);
+				}
+			},
+		};
+
+		$(".ur-portal-tooltip").tooltipster(args);
+	}
+
+	// Restrict copy/paste on confirm email and confirm password fields.
+	function restrict_copy_paste() {
+		var fields =
+			user_registration_pro_frontend_data.restrict_copy_paste_fields;
+		if (Array.isArray(fields) && fields.length) {
+			$(fields).each(function (i, field) {
+				$("#" + field).on("cut copy paste", function (e) {
+					e.preventDefault();
+				});
+			});
+		}
+		if ($("#password_2").hasClass("restrict-copy-paste")) {
+			$("#password_2").on("cut copy paste", function (e) {
+				e.preventDefault();
+			});
+		}
+	}
 })(jQuery);

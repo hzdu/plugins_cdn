@@ -300,6 +300,54 @@ jQuery(function ($) {
 	} else {
 		minimum_password_strength_wrapper_field.hide();
 	}
+	var password_strength_option = minimum_password_strength_wrapper_field.find(
+		"#user_registration_form_setting_minimum_password_strength"
+	);
+
+	// show password strength info.
+	$(document).ready(function () {
+		var strength_info = "";
+		var password_hint = "";
+		var password_strength_value = password_strength_option
+			.find(":selected")
+			.val();
+		show_password_strength_info(password_strength_value);
+
+		$(password_strength_option).on("change", function () {
+			password_hint =
+				minimum_password_strength_wrapper_field.find("span");
+			$strength = $(this).find(":selected").val();
+			password_hint.remove();
+			show_password_strength_info($strength);
+		});
+		function show_password_strength_info($strength_value) {
+			switch ($strength_value) {
+				case "0":
+					strength_info =
+						user_registration_form_builder_data.user_registration_very_weak_password_info;
+					break;
+				case "1":
+					strength_info =
+						user_registration_form_builder_data.user_registration_weak_password_info;
+					break;
+				case "2":
+					strength_info =
+						user_registration_form_builder_data.user_registration_medium_password_info;
+					break;
+				case "3":
+					strength_info =
+						user_registration_form_builder_data.user_registration_strong_password_info;
+					break;
+
+				default:
+					strength_info = "";
+					break;
+			}
+			minimum_password_strength_wrapper_field.append(
+				"<span class='description'>" + strength_info + "</span>"
+			);
+		}
+	});
 
 	$(strong_password_field).on("change", function () {
 		enable_strong_password = $(this).is(":checked");
@@ -319,16 +367,16 @@ jQuery(function ($) {
 		.on("init_tooltips", function () {
 			ur_init_tooltips(".tips, .help_tip, .user-registration-help-tip");
 			ur_init_tooltips(
-				".ur-copy-shortcode, #ur-setting-form .ur-portal-tooltip",
+				".ur-copy-shortcode, .ur-portal-tooltip",
 				{ keepAlive: false }
 			);
 
-			// Add tiptip to parent element for widefat tables
+			// Add Tooltipster to parent element for widefat tables
 			$(".parent-tips").each(function () {
 				$(this)
 					.closest("a, th")
 					.attr("data-tip", $(this).data("tip"))
-					.tipTip(tiptip_args)
+					.tooltipster()
 					.css("cursor", "help");
 			});
 		})
@@ -361,6 +409,49 @@ jQuery(function ($) {
 			$("#ur-full-screen-mode.opened").trigger("click");
 		}
 	});
+
+	// 	Hide Email Approval Setting if not set to admin approval
+	if (
+		$("#user_registration_form_setting_login_options").val() !==
+		"admin_approval"
+	) {
+		$("#user_registration_form_setting_enable_email_approval")
+			.parent()
+			.parent()
+			.hide();
+	} else {
+		// Store the initial value of checkbox
+		var user_registration_form_setting_enable_email_approval_initial_value =
+			$("#user_registration_form_setting_enable_email_approval").prop(
+				"checked"
+			);
+	}
+
+	// Toggle display of enable email approval setting
+	$("#user_registration_form_setting_login_options").on(
+		"change",
+		function () {
+			var enable_approval_row = $(
+				"#user_registration_form_setting_enable_email_approval"
+			)
+				.parent()
+				.parent();
+
+			if ($(this).val() === "admin_approval") {
+				$("#user_registration_form_setting_enable_email_approval").prop(
+					"checked",
+					user_registration_form_setting_enable_email_approval_initial_value
+				);
+				enable_approval_row.show();
+			} else {
+				enable_approval_row.hide();
+				$("#user_registration_form_setting_enable_email_approval").prop(
+					"checked",
+					false
+				);
+			}
+		}
+	);
 
 	$("input.input-color").wpColorPicker();
 	// send test email message
@@ -474,11 +565,20 @@ jQuery(function ($) {
 function ur_init_tooltips($elements, options) {
 	if (undefined !== $elements && null !== $elements && "" !== $elements) {
 		var args = {
-			attribute: "data-tip",
-			fadeIn: 50,
-			fadeOut: 50,
-			delay: 200,
-			keepAlive: true,
+			theme: "tooltipster-borderless",
+			maxWidth: 200,
+			multiple: true,
+			interactive: true,
+			position: "bottom",
+			contentAsHTML: true,
+			functionInit: function (instance, helper) {
+				var $origin = jQuery(helper.origin),
+					dataTip = $origin.attr("data-tip");
+
+				if (dataTip) {
+					instance.content(dataTip);
+				}
+			},
 		};
 
 		if (options && "object" === typeof options) {
@@ -488,9 +588,9 @@ function ur_init_tooltips($elements, options) {
 		}
 
 		if ("string" === typeof $elements) {
-			jQuery($elements).tipTip(args);
+			jQuery($elements).tooltipster(args);
 		} else {
-			$elements.tipTip(args);
+			$elements.tooltipster(args);
 		}
 	}
 }

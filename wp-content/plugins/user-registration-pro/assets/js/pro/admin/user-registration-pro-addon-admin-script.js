@@ -5,6 +5,7 @@ jQuery(function ($) {
 	var UR_ADDON = {
 		init: function () {
 			this.initialize_conditional_logic_settings();
+			this.initialize_prevent_active_login_settings();
 		},
 		initialize_conditional_logic_settings: function () {
 			/**
@@ -211,6 +212,35 @@ jQuery(function ($) {
 						nodeClass +
 						'">'
 				);
+			}
+		},
+		/**
+		 * Handle prevent active login settings.
+		 */
+		initialize_prevent_active_login_settings: function () {
+			$("#user_registration_pro_general_setting_prevent_active_login").on(
+				"click",
+				function () {
+					UR_ADDON.showHideActiveLogin($(this));
+				}
+			);
+
+			UR_ADDON.showHideActiveLogin(
+				$("#user_registration_pro_general_setting_prevent_active_login")
+			);
+		},
+		/**
+		 * Show or hide active login limits option.
+		 */
+		showHideActiveLogin: function ($node) {
+			if ($node.prop("checked")) {
+				$("#user_registration_pro_general_setting_limited_login")
+					.parents("tr")
+					.removeClass("userregistration-forms-hidden");
+			} else {
+				$("#user_registration_pro_general_setting_limited_login")
+					.parents("tr")
+					.addClass("userregistration-forms-hidden");
 			}
 		},
 	};

@@ -565,6 +565,35 @@
 											.after(error_message);
 									}
 
+									$(document).trigger(
+										"user_registration_frontend_validate_before_form_submit",
+										[$this]
+									);
+
+									if (
+										0 <
+										$this.find(".dz-error-message").length
+									) {
+										return;
+									}
+
+									if (
+										$this
+											.find(
+												"#user_registration_stripe_gateway"
+											)
+											.find(".user-registration-error")
+											.length > 0 &&
+										$this
+											.find(
+												"#user_registration_stripe_gateway"
+											)
+											.find(".user-registration-error")
+											.is(":visible")
+									) {
+										return;
+									}
+
 									if (!$this.valid()) {
 										return;
 									}
@@ -682,18 +711,19 @@
 										async: true,
 										complete: function (ajax_response) {
 											var ajaxFlag = [];
-											ajaxFlag["status"] = false;
+											ajaxFlag["status"] = true;
 											$(document).trigger(
 												"user_registration_frontend_before_ajax_complete_success_message",
-												[ajax_response, ajaxFlag]
+												[ajax_response, ajaxFlag, $this]
 											);
-											if (!ajaxFlag["status"]) {
+											if (ajaxFlag["status"]) {
 												$this
 													.find(".ur-submit-button")
 													.find("span")
 													.removeClass(
 														"ur-front-spinner"
 													);
+
 												var redirect_url = $this
 													.find(
 														'input[name="ur-redirect-url"]'
@@ -708,6 +738,11 @@
 													var response = JSON.parse(
 														ajax_response.responseText
 													);
+													var timeout = response.data
+														.redirect_timeout
+														? response.data
+																.redirect_timeout
+														: 2000;
 
 													if (
 														typeof response.success !==
@@ -718,8 +753,13 @@
 															.paypal_redirect !==
 															"undefined"
 													) {
-														window.location =
-															response.data.paypal_redirect;
+														window.setTimeout(
+															function () {
+																window.location =
+																	response.data.paypal_redirect;
+															},
+															timeout
+														);
 													}
 
 													if (
@@ -830,12 +870,17 @@
 																typeof redirect_url &&
 															redirect_url !== ""
 														) {
+															$(document).trigger(
+																"user_registration_frontend_before_redirect_url",
+																[redirect_url]
+															);
+
 															window.setTimeout(
 																function () {
 																	window.location =
 																		redirect_url;
 																},
-																1000
+																timeout
 															);
 														} else {
 															if (
@@ -846,7 +891,18 @@
 																response.data
 																	.auto_login
 															) {
-																location.reload();
+																$(
+																	document
+																).trigger(
+																	"user_registration_frontend_before_auto_login"
+																);
+
+																window.setTimeout(
+																	function () {
+																		location.reload();
+																	},
+																	timeout
+																);
 															}
 														}
 													} else if (
@@ -895,12 +951,87 @@
 													).data
 														.success_message_positon;
 
-												form.show_message(
-													message,
-													type,
-													$this,
-													success_message_position
-												);
+												if (
+													!response.data.hasOwnProperty(
+														"message"
+													) ||
+													!response.data.message.hasOwnProperty(
+														"individual"
+													)
+												) {
+													form.show_message(
+														message,
+														type,
+														$this,
+														success_message_position
+													);
+												} else {
+													var $field_id = [];
+													$.each(
+														$this
+															.find(
+																".ur-field-item"
+															)
+															.find(
+																".ur-frontend-field"
+															),
+														function (index) {
+															var $this = $(this);
+															var $id =
+																$this.attr(
+																	"id"
+																);
+															$field_id.push($id);
+														}
+													);
+													var field_name = "";
+													$.each(
+														response.data.message,
+														function (
+															index,
+															value
+														) {
+															if (
+																$field_id.includes(
+																	index
+																)
+															) {
+																field_name =
+																	index;
+																var error_message =
+																	'<label id="' +
+																	index +
+																	"-error" +
+																	'" class="user-registration-error" for="' +
+																	index +
+																	'">' +
+																	value +
+																	"</label>";
+																var wrapper =
+																	$this
+																		.find(
+																			".ur-field-item"
+																		)
+																		.find(
+																			"input[id='" +
+																				index +
+																				"']"
+																		);
+																wrapper
+																	.closest(
+																		".form-row"
+																	)
+																	.append(
+																		error_message
+																	);
+															}
+														}
+													);
+													$(document).trigger(
+														"ur_handle_field_error_messages",
+														[$this, field_name]
+													);
+												}
 
 												// Check the position set by the admin and scroll to the message postion accordingly.
 												if (
@@ -1026,7 +1157,7 @@
 								}
 
 								if (!$this.valid()) {
-									return;
+									return false;
 								}
 
 								event.preventDefault();
@@ -1108,24 +1239,99 @@
 											}
 
 											if (
-												typeof response.data.message ===
-												"object"
+												!response.data.hasOwnProperty(
+													"message"
+												) ||
+												!response.data.message.hasOwnProperty(
+													"individual"
+												)
 											) {
+												if (
+													typeof response.data
+														.message === "object"
+												) {
+													$.each(
+														response.data.message,
+														function (
+															index,
+															value
+														) {
+															message.append(
+																"<li>" +
+																	value +
+																	"</li>"
+															);
+														}
+													);
+												} else {
+													message.append(
+														"<li>" +
+															response.data
+																.message +
+															"</li>"
+													);
+												}
+												form.show_message(
+													message,
+													type,
+													$this,
+													"0"
+												);
+											} else {
+												var $field_id = [];
+												$.each(
+													$this
+														.find(".ur-form-row")
+														.find(".ur-field-item")
+														.find(
+															".ur-edit-profile-field"
+														),
+													function (index) {
+														var $this = $(this);
+														var $id =
+															$this.attr("id");
+														$field_id.push($id);
+													}
+												);
 												$.each(
 													response.data.message,
 													function (index, value) {
-														message.append(
-															"<li>" +
+														if (
+															$field_id.includes(
+																index
+															)
+														) {
+															var error_message =
+																'<label id="' +
+																index +
+																"-error" +
+																'" class="user-registration-error" for="' +
+																index +
+																'">' +
 																value +
-																"</li>"
-														);
+																"</label>";
+
+															var wrapper = $this
+																.find(
+																	".ur-form-row"
+																)
+																.find(
+																	".ur-field-item"
+																)
+																.find(
+																	"input[id='" +
+																		index +
+																		"']"
+																);
+															wrapper
+																.closest(
+																	".form-row"
+																)
+																.append(
+																	error_message
+																);
+														}
 													}
-												);
-											} else {
-												message.append(
-													"<li>" +
-														response.data.message +
-														"</li>"
 												);
 											}
 										} catch (e) {
@@ -1134,13 +1340,10 @@
 											);
 										}
 
-										form.show_message(
-											message,
-											type,
-											$this,
-											"0"
+										// Add trigger to handle functionalities that may be needed after edit-profile ajax submission submissions.
+										$(document).trigger(
+											"user_registration_edit_profile_after_ajax_complete"
 										);
-
 										$this
 											.find(
 												".user-registration-submit-Button"
@@ -1183,60 +1386,78 @@
 				}
 			});
 
-			var date_flatpickrs = {};
+			// Initialize the flatpickr when the document is ready to be manipulated.
+			$(document).ready(function () {
+				if ($(".ur-flatpickr-field").length) {
+					// create an array to store the flatpickr instances.
+					var flatpickrInstances = [];
+					$(".ur-flatpickr-field").each(function () {
+						var field = $(this);
+						// check if flatpickr has already been initialized for the field.
+						var instance = flatpickrInstances.find(function (i) {
+							return i.element == field[0];
+						});
 
-			$(document.body).on("click", "#load_flatpickr", function () {
-				var field_id = $(this).data("id");
-				var date_flatpickr = date_flatpickrs[field_id];
+						if (instance) {
+							// flatpickr has already been initialized for the field, so open the instance.
+							instance.open();
+						} else {
+							var field_id = field.data("id");
+							var formated_date = field
+								.closest(".ur-field-item")
+								.find("#formated_date")
+								.val();
 
-				// Load a flatpicker for the field, if hasn't been loaded.
-				if (!date_flatpickr) {
-					var formated_date = $(this)
-						.closest(".ur-field-item")
-						.find("#formated_date")
-						.val();
+							if (0 < $(".ur-frontend-form").length) {
+								var date_selector = $(
+									".ur-frontend-form #" + field_id
+								)
+									.attr("type", "text")
+									.val(formated_date);
+							} else {
+								var date_selector = $(
+									".woocommerce-MyAccount-content #" +
+										field_id
+								)
+									.attr("type", "text")
+									.val(formated_date);
+							}
 
-					if (0 < $(".ur-frontend-form").length) {
-						var date_selector = $(".ur-frontend-form #" + field_id)
-							.attr("type", "text")
-							.val(formated_date);
-					} else {
-						var date_selector = $(
-							".woocommerce-MyAccount-content #" + field_id
-						)
-							.attr("type", "text")
-							.val(formated_date);
-					}
+							field.attr(
+								"data-date-format",
+								date_selector.data("date-format")
+							);
 
-					$(this).attr(
-						"data-date-format",
-						date_selector.data("date-format")
-					);
-					$(this).attr("data-mode", date_selector.data("mode"));
-					$(this).attr(
-						"data-min-date",
-						date_selector.data("min-date")
-					);
-					$(this).attr(
-						"data-max-date",
-						date_selector.data("max-date")
-					);
-					$(this).attr("data-default-date", formated_date);
-					date_flatpickr = $(this).flatpickr({
-						disableMobile: true,
-						onChange: function (
-							selectedDates,
-							dateString,
-							instance
-						) {
-							$("#" + field_id).val(dateString);
-						},
+							field.attr("data-mode", date_selector.data("mode"));
+							field.attr(
+								"data-locale",
+								date_selector.data("locale")
+							);
+							field.attr(
+								"data-min-date",
+								date_selector.data("min-date")
+							);
+							field.attr(
+								"data-max-date",
+								date_selector.data("max-date")
+							);
+							field.attr("data-default-date", formated_date);
+
+							// flatpickr has not been initialized for the field, so create a new instance.
+							instance = field.flatpickr({
+								disableMobile: true,
+								onChange: function (
+									selectedDates,
+									dateString,
+									instance
+								) {
+									$("#" + field_id).val(dateString);
+								},
+							});
+
+							flatpickrInstances.push(instance);
+						}
 					});
-					date_flatpickrs[field_id] = date_flatpickr;
-				}
-
-				if (date_flatpickr) {
-					date_flatpickr.open();
 				}
 			});
 
@@ -1457,6 +1678,11 @@ function ur_includes(arr, item) {
 			$password_field = $(this)
 				.closest(".user-registration-form-row")
 				.find('input[name="password_2"]');
+		}
+		if ($password_field.length === 0) {
+			$password_field = $(this)
+				.closest(".field-password")
+				.find(".input-password");
 		}
 
 		if ($password_field.length > 0) {

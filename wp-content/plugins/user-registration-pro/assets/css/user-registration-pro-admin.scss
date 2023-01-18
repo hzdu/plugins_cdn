@@ -1,3 +1,5 @@
+@import '../../../user-registration-pro/assets/css/variables/variables';
+
 .user-registration-pro-dashboard {
 	& *,
 	&::before,
@@ -116,4 +118,137 @@
 	font-weight: normal;
 	font-style: normal;
 	font-display: block;
+}
+
+.ur-pro-field-mapping-box {
+	margin: 0 0 8px;
+
+	.ur-pro-external-field-map-group {
+		display: flex;
+		align-items: center;
+		padding: 8px;
+		border-radius: 4px;
+		background: $color_gray_five;
+
+		.ur-pro-external-field-map-form-group {
+			flex: 1;
+		}
+
+		.ur-pro-operator {
+			width: 120px;
+			margin: 0 8px;
+			text-align: center;
+		}
+
+		.ur-pro-value {
+			flex: 1;
+			margin-right: 8px;
+		}
+
+		.add {
+			padding: 8px;
+			max-width: inherit;
+			flex: 0 0 auto;
+		}
+
+		.remove {
+			&:hover {
+				background: $red;
+				border-color: $red;
+				color: $white;
+			}
+		}
+	}
+}
+
+.ur-grid-lists {
+	.ur-grid-list-item {
+		.ur-label {
+			.ur-portal-tooltip {
+				margin-left: 2px;
+				font-size: 16px;
+				top: 3px;
+			}
+		}
+	}
+}
+
+.ur-export-custom-fields{
+	p {
+		font-weight: bold;
+	}
+
+	.ur-form-fields-container {
+		max-height: 200px;
+		overflow-y: auto;
+	}
+}
+
+// Bulk Options CSS.
+.ur-toggle-content {
+	.ur-general-setting {
+		&.ur-setting-checkbox,
+		&.ur-setting-radio,
+		&.ur-setting-select {
+			label {
+				&[for=ur-type-radio],
+				&[for=ur-type-checkbox],
+				&[for=ur-type-select] {
+					margin-bottom: 18px;
+
+					.ur-toggle-bulk-options {
+						float: right;
+						margin-top: 3px;
+						color: #2271b1;
+						transition-duration: .05s;
+						transition-timing-function: ease-in-out;
+
+						&:focus {
+							box-shadow: none;
+						}
+					}
+
+					.ur-toggle-bulk-options:hover {
+						color: #135e96;
+					}
+				}
+
+				&[for=ur-type-textarea] {
+					display: flex;
+					align-items: center;
+					gap: .4em;
+
+					.ur-portal-tooltip {
+						&::after {
+							line-height: unset;
+						}
+					}
+				}
+			}
+
+			// Bulk option with background and top arrow css
+			> .ur-bulk-options-container {
+				padding: 8px 12px 13px;
+				border-radius: 6px;
+				position: relative;
+				background: #f3f3f3;
+
+				&::after {
+					content: "";
+					position: absolute;
+					border-bottom: 15px solid #f3f3f3;
+					border-right: 10px solid transparent;
+					border-left: 10px solid transparent;
+					top: -13px;
+					right: 18px;
+				}
+
+				.ur-setting-textarea {
+					margin-top: 10px;
+					margin-bottom: 12px;
+					padding: 0;
+				}
+			}
+		}				
+	}		
 }

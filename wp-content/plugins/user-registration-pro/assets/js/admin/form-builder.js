@@ -73,7 +73,30 @@
 							}
 						}
 					});
+					// Show Keyboard Shortcuts Help Dialog Box on keypress.
+					$(window).on("keydown", function (e) {
+						if (e.ctrlKey || e.metaKey) {
+							if (
+								"h" ===
+									String.fromCharCode(
+										e.which
+									).toLowerCase() ||
+								85 === e.which
+							) {
+								e.preventDefault();
+								URFormBuilder.ur_show_help();
+								return false;
+							}
+						}
+					});
 				}
+
+				// Show Help Dialog when quick link is clicked.
+				$("#ur-keyboard-shortcut-link").on("click", function (e) {
+					e.preventDefault();
+					$(".ur-quick-links-content").slideToggle();
+					URFormBuilder.ur_show_help();
+				});
 
 				// Save the form when Update Form button is clicked.
 				$(".ur_save_form_action_button").on("click", function () {
@@ -92,6 +115,116 @@
 
 				// Initialize the actions on choice field options.
 				URFormBuilder.init_choice_field_options();
+
+				// Show Help Dialog when new form is created.
+				$(document).ready(function () {
+					var queryString = window.location.search;
+					var urlParams = new URLSearchParams(queryString);
+					var urPage = urlParams.get("page");
+					var isEditPage = urlParams.get("edit-registration");
+					var isTemplatePage = $(".user-registration-setup").length;
+
+					var previousPage = document.referrer.split("page=")[1];
+
+					if (
+						"add-new-registration" === urPage &&
+						(null === isEditPage ||
+							(null !== isEditPage &&
+								"add-new-registration" === previousPage)) &&
+						0 === isTemplatePage
+					) {
+						URFormBuilder.ur_show_help();
+					}
+				});
+
+				// Toggle `Bulk Add` option.
+				$(document.body).on(
+					"click",
+					".ur-toggle-bulk-options",
+					function (e) {
+						e.preventDefault();
+						$this = $(this);
+
+						var bulk_options_html = "";
+						bulk_options_html +=
+							'<div class="ur-bulk-options-container">';
+						bulk_options_html +=
+							'<div class="ur-general-setting ur-setting-textarea ur-general-setting-bulk-options ur-bulk-options-container"><label for="ur-type-textarea">' +
+							$this.data("bulk-options-label") +
+							'<span class="ur-portal-tooltip tooltipstered" data-tip="' +
+							$this.data("bulk-options-tip") +
+							'"></span></label>';
+						bulk_options_html +=
+							'<textarea data-field="description" class="ur-general-setting-field ur-type-textarea"></textarea></div>';
+						bulk_options_html +=
+							'<a class="button button-small ur-add-bulk-options" href="#">' +
+							$this.data("bulk-options-button") +
+							"</a></div>";
+
+						if (
+							$this.parent().next(".ur-bulk-options-container")
+								.length
+						) {
+							if (
+								$this
+									.parent()
+									.next(".ur-bulk-options-container")
+									.css("display") === "none"
+							) {
+								$this
+									.parent()
+									.next(".ur-bulk-options-container")
+									.show();
+							} else {
+								$this
+									.parent()
+									.next(".ur-bulk-options-container")
+									.hide();
+							}
+						} else {
+							$(bulk_options_html).insertAfter($this.parent()).trigger('init_tooltips');
+						}
+					}
+				);
+
+				// Add custom list of options.
+				$(document.body).on(
+					"click",
+					".ur-add-bulk-options",
+					function (e) {
+						e.preventDefault();
+						var options = $(this).parent().next(".ur-options-list");
+						var bulk_options_container = $(this).parent(
+							".ur-bulk-options-container"
+						);
+						if (options.length) {
+							var options_texts = bulk_options_container
+								.find(".ur-type-textarea")
+								.val()
+								.replace(/<\/?[^>]+(>|$)/g, "")
+								.split("\n");
+
+							options_texts = $.unique(options_texts);
+
+							options_texts.forEach(function (option_text) {
+								if ("" !== option_text) {
+									var $add_button = options
+										.find("li")
+										.last()
+										.find("a.add");
+
+									URFormBuilder.add_choice_field_option(
+										$add_button,
+										option_text.trim()
+									);
+								}
+							});
+							bulk_options_container
+								.find(".ur-type-textarea")
+								.val("");
+						}
+					}
+				);
 			},
 			init_user_profile_modal: function () {
 				var user_profile_modal = {
@@ -241,6 +374,53 @@
 						}
 					},
 				});
+			},
+			/**
+			 * Show Help Popup
+			 */
+			ur_show_help: function () {
+				if (!$(".jconfirm").length) {
+					var shortcut_keys_html = "<ul>";
+
+					$.each(
+						user_registration_form_builder_data.i18n_shortcut_keys,
+						function (key, value) {
+							shortcut_keys_html +=
+								'<li class="ur-shortcut-keyword"><div class="ur-shortcut-title">' +
+								value +
+								'</div><div class="ur-key"><span class="ur-key-ctrl">' +
+								key.split("+")[0] +
+								'</span><i class="ur-key-plus"> + </i><span class="ur-key-character"><b>' +
+								key.split("+")[1] +
+								"</b></span></div></li>";
+						}
+					);
+
+					shortcut_keys_html += "</ul>";
+
+					jc = $.dialog({
+						title: user_registration_form_builder_data.i18n_shortcut_key_title,
+						content: shortcut_keys_html,
+						icon: "dashicons dashicons-info",
+						type: "blue",
+						useBootstrap: "false",
+						boxWidth: "550px",
+						buttons: {
+							confirm: {
+								text: user_registration_form_builder_data.i18n_close,
+								btnClass: "btn-confirm",
+								keys: ["enter"],
+							},
+						},
+						escapeKey: true,
+						backgroundDismiss: function () {
+							return true;
+						},
+						theme: "material",
+					});
+				} else {
+					jc.close();
+				}
 			},
 			/**
 			 * Returns all the validation messages for the specific form in form builder.
@@ -1315,7 +1495,7 @@
 									.closest(".ur-selected-item")
 									.find(".ur-label")
 									.find("label");
-								label_node.find("span").remove();
+								label_node.find("span:contains('*')").remove();
 								label_node.append(
 									'<span style="color:red">*</span>'
 								);
@@ -1673,7 +1853,7 @@
 														);
 														single_row.remove();
 														$this.check_grid();
-														URFormBuilder.manage_draggable_users_fields();
+														builder.manage_draggable_users_fields();
 
 														Swal.fire({
 															icon: "success",
@@ -1852,14 +2032,12 @@
 											);
 											builder.manage_empty_grid();
 										},
-										revert: true,
 										connectWith: ".ur-grid-list-item",
 									})
 									.disableSelection();
 								$(".ur-input-grids").sortable({
 									containment: ".ur-builder-wrapper",
 									tolerance: "pointer",
-									revert: "invalid",
 									placeholder: "ur-single-row",
 									forceHelperSize: true,
 									over: function () {
@@ -1888,7 +2066,6 @@
 														)
 												);
 										},
-										revert: "invalid",
 										// start: function (event, ui) {
 										// },
 										stop: function (event, ui) {
@@ -2015,6 +2192,10 @@
 															removed_item +
 															'"]'
 													).remove();
+
+													$(document.body).trigger(
+														"ur_field_removed"
+													);
 
 													// To prevent click on whole item.
 													return false;
@@ -2407,6 +2588,7 @@
 
 				$(document.body).trigger("ur_rendered_field_options");
 				$(document.body).trigger("init_tooltips");
+				$(document.body).trigger("init_field_options_toggle");
 			},
 			/**
 			 * Render the advance setting for selected field.
@@ -2823,6 +3005,25 @@
 									.toggle();
 							});
 							break;
+						case "validate_unique":
+							if ("false" === $this_node.val()) {
+								$(this)
+									.closest(".ur-advance-setting-block")
+									.find(".ur-advance-validation_message")
+									.hide();
+							}
+
+							$this_node.on("change", function () {
+								$(this)
+									.closest(".ur-advance-setting-block")
+									.find(".ur-advance-validation_message")
+									.toggle();
+
+								$(".ur-selected-item.ur-item-active")
+									.find(".ur-advance-validation_message")
+									.toggle();
+							});
+							break;
 					}
 					var node_type = $this_node.get(0).tagName.toLowerCase();
 
@@ -3022,6 +3223,10 @@
 						.find("input.ur-type-radio-label")
 						.val();
 					value = value.trim();
+
+					// To remove all HTML tags from a value.
+					value = value.replace(/<\/?[^>]+(>|$)/g, "");
+
 					radio = $(element)
 						.find("input.ur-type-radio-value")
 						.is(":checked");
@@ -3087,6 +3292,21 @@
 						.find("input.ur-type-checkbox-label")
 						.val();
 					value = value.trim();
+
+					// To remove all HTML tags (opening or closing or self closing)from a string except for anchor tags.
+					value = value.replace(/<(?!\/?a\b)[^>]+>/gi, "");
+
+					// To remove attributes except "href, target, download, rel, hreflang, type, name, accesskey, tabindex, title" from anchor tag.
+					value = value.replace(
+						/(?!href|target|download|rel|hreflang|type|name|accesskey|tabindex|title)\b\w+=['"][^'"]*['"]/g,
+						""
+					);
+
+					// To add a closing </a> tag to a string if an open <a> tag is present but not closed.
+					if (/<a(?:(?!<\/a>).)*$/.test(value)) {
+						value += "</a>";
+					}
+
 					checkbox = $(element)
 						.find("input.ur-type-checkbox-value")
 						.is(":checked");
@@ -3106,6 +3326,10 @@
 
 				for (var i = 0; i < array_value.length; i++) {
 					if (array_value[i] !== "") {
+						array_value[i].value = array_value[i].value.replaceAll(
+							'"',
+							"'"
+						);
 						checkbox.append(
 							'<label><input value="' +
 								array_value[i].value.trim() +
@@ -3312,7 +3536,22 @@
 			 */
 			trigger_general_setting_required: function ($label) {
 				var wrapper = $(".ur-selected-item.ur-item-active");
-				wrapper.find(".ur-label").find("label").find("span").remove();
+
+				wrapper
+					.find(".ur-general-setting-block")
+					.find(
+						'select[data-field="' +
+							$label.attr("data-field") +
+							'"] option:selected'
+					)
+					.removeAttr("selected");
+
+				wrapper
+					.find(".ur-label")
+					.find("label")
+					.find("span:contains(*)")
+					.remove();
+
 				if ($label.val() === "yes") {
 					wrapper
 						.find(".ur-label")
@@ -3325,7 +3564,7 @@
 						'select[data-field="' + $label.attr("data-field") + '"]'
 					)
 					.find('option[value="' + $label.val() + '"]')
-					.prop("selected", true);
+					.attr("selected", true);
 			},
 			/**
 			 * Reflects changes in required field of field settings into selected field in form builder area.
@@ -3370,6 +3609,7 @@
 					.find('option[value="' + $label.val() + '"]')
 					.attr("selected", true);
 			},
+
 			/**
 			 * Reflects changes in hide advance settings of field settings into selected field in form builder area.
 			 *
@@ -3500,13 +3740,16 @@
 			 * Add a new option in choice field when called.
 			 *
 			 * @param object $this_obj The field option to add.
+			 * @param string value The value of the option.
 			 */
-			add_choice_field_option: function ($this) {
+			add_choice_field_option: function ($this, value) {
 				var $wrapper = $(".ur-selected-item.ur-item-active"),
 					this_index = $this.parent("li").index(),
 					cloning_element = $this.parent("li").clone(true, true);
 
-				cloning_element.find('input[data-field="options"]').val("");
+				cloning_element
+					.find('input[data-field="options"]')
+					.val(typeof value !== "undefined" ? value : "");
 				cloning_element
 					.find('input[data-field="default_value"]')
 					.prop("checked", false);
@@ -3592,32 +3835,35 @@
 		$(document).ready(function () {
 			var date_flatpickrs = {};
 
-			$(document.body).on("click", "#load_flatpickr", function () {
+			$(document.body).on("click", ".ur-flatpickr-field", function () {
 				var field_id = $(this).data("id");
 				var date_flatpickr = date_flatpickrs[field_id];
 
 				// Load a flatpicker for the field, if hasn't been loaded.
 				if (!date_flatpickr) {
-					var formated_date = $(this).siblings("#formated_date").val()
-						? $(this).siblings("#formated_date").val()
-						: $(this)
-								.closest(".ur-field-item")
-								.find("#formatted_date")
-								.val();
-					var date_selector = $(
-						".ur-frontend-form #" +
-							field_id +
-							", #fieldset-user_registration #" +
-							field_id
-					)
-						.attr("type", "text")
-						.val(formated_date);
+					var formated_date = $(this)
+						.closest(".ur-field-item")
+						.find("#formated_date")
+						.val();
+
+					if (0 < $(".ur-frontend-form").length) {
+						var date_selector = $(".ur-frontend-form #" + field_id)
+							.attr("type", "text")
+							.val(formated_date);
+					} else {
+						var date_selector = $(
+							".woocommerce-MyAccount-content #" + field_id
+						)
+							.attr("type", "text")
+							.val(formated_date);
+					}
 
 					$(this).attr(
 						"data-date-format",
 						date_selector.data("date-format")
 					);
 					$(this).attr("data-mode", date_selector.data("mode"));
+					$(this).attr("data-locale", date_selector.data("locale"));
 					$(this).attr(
 						"data-min-date",
 						date_selector.data("min-date")
@@ -3655,23 +3901,35 @@
 				}
 			});
 		});
-
 		/**
 		 * For toggling headings.
 		 */
-
 		$(document).on("click", ".ur-toggle-heading", function () {
 			if ($(this).hasClass("closed")) {
 				$(this).removeClass("closed");
 			} else {
 				$(this).addClass("closed");
 			}
+			$(this)
+				.parent(".user-registration-field-option-group")
+				.toggleClass("closed")
+				.toggleClass("open");
 			var field_list = $(this).find(" ~ .ur-registered-list")[0];
 			$(field_list).slideToggle();
 
 			// For `Field Options` section
-			$(this).siblings(".ur-toggle-content").slideToggle();
+			$(this).siblings(".ur-toggle-content").stop().slideToggle();
 		});
+
+		$(document.body)
+			.on("init_field_options_toggle", function () {
+				$(".user-registration-field-option-group.closed").each(
+					function () {
+						$(this).find(".ur-toggle-content").hide();
+					}
+				);
+			})
+			.trigger("init_field_options_toggle");
 
 		/**
 		 * For toggling quick links content.
