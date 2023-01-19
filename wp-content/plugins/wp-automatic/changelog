@@ -1,3 +1,23 @@
+
+@19 January 2023 v3.61.0
+NEW: Import/Export feature for campaigns 
+NEW: Multi-page scraper/Feeds new option to remove unwanted parts by Visual selector/XPath
+NEW: Multi-page scraper original time now support custom REGEX for extraction
+NEW: Only import the post if the a specific criteria applies new option to allow if any
+NEW: Skip the post if the a specific criteria applies new option to check all
+NEW: Feeds/Multi-Scraper new option to search and replace in extracted tags
+NEW: OpenAI new option to only post one article per keyword
+Fix: eBay now reset the page number if reached last page
+Fix: Multi-scraper now bypass cache for created feed files especially on OVH 
+
+
+@12 January 2023 v3.60.1
+NEW: OpenAI option to use keywords directly for articles instead of generating titles
+NEW: OpenAI option to set the post as pending if prompt failed
+Fix: [gpt3] shortcode now works for Amazon campaigns
+Fix: Youtube skip posts older than a specific minute now generate a dynamic date for search
+Fix: Careerjet module updated to get full description again after changes from CJ side
+
 @3 January 2023 v3.60.0
 NEW: OpenAI GPT support to create articles and use with any module with shortcode [gpt3] prompt [/gpt3]
 NEW: option to translate the content between square brackets
@@ -12,10 +32,9 @@ Fix: Reddit flairs as categories/tags back to work
 Fix: Tiktok back to work again after new changes
 Fix: eBay all images extraction back to work after new changes from eBay
 
-
 @22 November 2022 v3.59.0
 NEW: Option to filter the comments and skip comments containing a specific keyword
-NEW: Youtube new tag [vid_duration_in_seconds] for duration filteration 
+NEW: Youtube new tag [vid_duration_in_seconds] for duration filteration
 NEW: Make permalink link directly to the source now works for custom post types
 Fix: Instagram featured image now works correctly
 Fix: Workaround added to sort WordPress adding line breaks inside JavaScript
@@ -28,7 +47,6 @@ Fix: Amazon now returns book description
 Fix: Amazon now returns correct description/item features
 Fix: Envato now reset page after reaching page 60
 
-
 @10 October 2022 v3.58.1
 Fix: Apify back to work after recent changes that triggered an error Field input.proxyConfiguration is required
 Fix: Facebook group posts full text extraction now back to work
@@ -39,10 +57,10 @@ NEW: Feeds/Multi-scraper option to extract original meta description and set as 
 NEW: Twitter option to auto embed direct video URL instead of Twitter embed code
 NEW: Twitter new tag [item_video_url_direct] to get direct video URL for embed
 NEW: Reddit option to set flairs as tags/categories and a new tag [item_flairs] to return them
-NEW: option to not remember imported posts urls 
+NEW: option to not remember imported posts urls
 Fix: Facbook events import back to work for new page experience pages
 Fix: eBay now reset the keyword search index after reaching 10k results which is eBay limit
-Fix: Feeds/Multi-scraper relative links fix algorithm imporved 
+Fix: Feeds/Multi-scraper relative links fix algorithm imporved
 
 @19 September 2022 v3.57.4
 NEW: Option to filter returned posts by fields equal to a specific value, contains a specific value, greater than a specific value and more
@@ -53,13 +71,12 @@ Fix: Twitter format from:user filter:videos now works
 @6 September 2022 v3.57.3
 Fix: The previous version created categories even if the option was not enabled, now sorted
 
-
 4 September 2022 v3.57.2
 NEW: option to search PixaBay from title keywords and get a featured image
 NEW: AliExpress option to send an email notification if the cookie expired and needs renewal
-NEW: Amazon option to set the imported product categories as WordPress categories 
+NEW: Amazon option to set the imported product categories as WordPress categories
 Fix: AliExpress link generation back to work after recent changes from AliExpress
-Fix: Now reviews work for latest WooCommerce version  6.8.2
+Fix: Now reviews work for latest WooCommerce version 6.8.2
 
 24 August 2022 v3.57.1
 NEW: Amazon option to delete no more available products on amazon
@@ -67,13 +84,13 @@ NEW: Amazon option to set out of stock products to pending and publish them when
 NEW: Facebook/Instagram session expire email notification option added
 NEW: Feeds/Multi-page scraper original categories can now be set as tags
 NEW: Reddit now support importing gallery reddits
-Fix: Facebook now imports events from new experience FB pages 
+Fix: Facebook now imports events from new experience FB pages
 Fix: add all content image as gallery now use the block format instead of legacy
-Fix: Cron improved to bypass cloudflare and siteground cache 
-Fix: TikTok now works for non-latin keywords like Japanese 
+Fix: Cron improved to bypass cloudflare and siteground cache
+Fix: TikTok now works for non-latin keywords like Japanese
 
 @11 August 2022 v3.57.0
-NEW: Option to set featured image from pixabay.com 
+NEW: Option to set featured image from pixabay.com
 NEW: Option to create a gallery from found post images
 NEW: Set post tags option now supports current post tags like [original_title]
 NEW: Twitter new option to get recent or popular tweets
@@ -92,21 +109,21 @@ Fix: TikTok module imporved to bypass if your server is blocked
 Fix: Instagram module updated to cope with new changes
 
 @8 June 2022 v3.56.0
-NEW: Now supports AliExpress 
-New: Amazon option to set a custom location if the server country is different 
+NEW: Now supports AliExpress
+New: Amazon option to set a custom location if the server country is different
 NEW: Multi-page scraper original date extraction algorithm improved
-NEW: Youtube new option to skip live videos 
+NEW: Youtube new option to skip live videos
 NEW: Instagram tag [item_comments_count]
 Fix: eBay module updated to cope with recent changes
 Fix: Instagram module updated to cope with new changes, mulitple images back to work
-Fix: Download images from the content now download webp as well 
+Fix: Download images from the content now download webp as well
 Fix: Multi-page scraper title extraction by regex now consider \s
 Fix: Multi-page scraper now get the title when posting from custom list of ulrs
 Fix: Multi-page scraper/feed extract by REGEX now return correct result for [rule_1] tag
 Fix: Title words as tags now keeps the dot character
 Fix: Twitter post from a specific user up to a specific date now skips pagination
 
-@20 April 2022 v3.55.6 
+@20 April 2022 v3.55.6
 Fix: Array error when translation using Google translate is now sorted
 
 @17 April 2022 v3.55.5
@@ -119,12 +136,12 @@ Fix: Single page scraper update post date now stay as-is
 @12 March 2022 v3.55.4
 Fix: Facebook updatd to cope with new changes
 NEW: Amazon new tag [item_details]
-NEW: eBay affiliate reference ID support 
+NEW: eBay affiliate reference ID support
 
 @11 Febrary 2022 v3.55.3
 Fix: Google translation back to work normally
-NEW: Careerjet now imports the logo image 
-NEW: Reddit can now filter videos only and Gifs only 
+NEW: Careerjet now imports the logo image
+NEW: Reddit can now filter videos only and Gifs only
 Fix: Amazon images now load correctly
 
 @7 Febrary 2022 v3.55.2
@@ -138,17 +155,16 @@ Fix: amazon last time price updated tag now returns correct date
 @19 January 2022 v3.55.0
 Fix: eBay module rewritten to use the new eBay Browse API
 Fix: Facebook now import description if containing quotes
-Fix: The plugin now keep backslashes in title and content 
-Fix: Careerjet full description extraction better method 
+Fix: The plugin now keep backslashes in title and content
+Fix: Careerjet full description extraction better method
 Fix: Instagram can now import popular images without issues
-Fix: Youtube embed back to load normally 
+Fix: Youtube embed back to load normally
 NEW: option to hyperlink specific keywords with a specific link
-NEW: option to not remove html tags from title 
+NEW: option to not remove html tags from title
 NEW: Feeds/multi-scraper option to only check top post
 NEW: Deepl new fomality option
 NEW: Option to set parent category for created categories
-NEW: Option to remove inline links from the post content 
-
+NEW: Option to remove inline links from the post content
 
 @15 November 2021 v3.54.2
 Fix: Facebook back to import images after new changes
@@ -160,13 +176,12 @@ Fix: Amazon price extraction now works with recent changes from Amazon
 NEW: JavaScript support for single/multi-page scrper/feeds
 NEW: Pinterest skip pins with no title
 
-
 @18 October 2021 v3.53.6
 Fix: amazon without API and EzineArticles recent changes handled
 New: option to skip posts longer than a specific length
 
 @26 September 2021 v3.53.5
-Fix: Youtube fixed invalidPageToken error 
+Fix: Youtube fixed invalidPageToken error
 
 @20 September 2021 v3.53.4
 Fix: Craigslist back to work with major improvements and full Woo support
@@ -176,24 +191,23 @@ Fix: List of languages updated for Deepl
 
 @23 August 2021 v3.53.3
 Urgent: Fix of a core bug, all users must upgrade to this version
-Fix: Facebook removal of translation links of group posts 
-
+Fix: Facebook removal of translation links of group posts
 
 @31 July 2021 v3.53.2
-NEW: PolyLang plugin full support 
+NEW: PolyLang plugin full support
 Fix: Facebook updated to fix not logged in for EU users
 Fix: Amazon extra part on the description CDATA now fixed
-Fix: CareerJet now save the sorting option as date 
+Fix: CareerJet now save the sorting option as date
 
 @3 July 2021 v3.53.1
-Fix: Instagram posting back to work 
+Fix: Instagram posting back to work
 Fix: Facebook posting from events now get end date again
 
 @28 May 2021 v3.53.0
 NEW: option to adjust numeric values e.g: increase returned price
 Fix: SoundCloud module updated to work again after new changes
 Fix: Facebook pinned post now get skipped
-Fix: Facebook events now return the date 
+Fix: Facebook events now return the date
 Fix: Facebook option to skip shared posts now works
 Fix: Amazon books now get imported with more details
 Improved: new user nick name from display name when creating a user
@@ -207,20 +221,19 @@ Fix: FB empty images issue sorted
 Fix: FB videos back to embed normally
 Fix: Multi-page scraper Fixed pattern next page URL now supports negative steps
 
-
 @6 March 2021v3.51.4
 Fix: eBay updated to support new links format
 NEW: Youtube safe search option added
 NEW: Google translate now supports Traditional chineese
 
 @25 Feb 2021 v3.51.3
-Fix: TikTok now can import from a specific user normally even if blocked 
+Fix: TikTok now can import from a specific user normally even if blocked
 
 @23 Feb 2021 v3.51.2
-Fix: Facebook now reports when a cookie is a must 
-NEW: Reddit video embeds now supports sound 
+Fix: Facebook now reports when a cookie is a must
+NEW: Reddit video embeds now supports sound
 Fix: TikTok can now import by keyword normally
-Fix: TikTok can now set the featured image if cache is disabled as well 
+Fix: TikTok can now set the featured image if cache is disabled as well
 
 @4 Feb 2021 v3.51.1
 Fix: Facebook posting from groups now back to work normally
@@ -234,12 +247,11 @@ Fix: Facebook import corrections
 Fix: Microsfot translate now works with any region, region code must be added
 
 @18 December 2020 v3.50.12
-Urgent Fix: Amazon posting without API _c url error message sorted
+Urgent Fix: Amazon posting without API \_c url error message sorted
 NEW: Option to limit processing time for each campaign
 NEW: Multi-page scraper option to skip posts older than a specific date
 NEW: Reddit tag item_nsfw returns yes or no
 Fix: Feeds visual selector now works if multiple feed URLs are used
-
 
 @8 December 2020 v3.50.11
 Important: SoundCloud now back to fully work
@@ -261,14 +273,14 @@ Fix: Feeds/Multi-page fix for relative links when a base URL exists
 @24 October 2020 v3.50.9
 Fix: Facebook back to partially work for pages and profiles, other features to work on coming release
 Fix: Multi-page scraper random posts order now corrected
-Fix: Set the post to pending when featured image was missing now works with fifu plugin 
+Fix: Set the post to pending when featured image was missing now works with fifu plugin
 
 @30 September 2020 v3.50.8
 Fix: eBay module updated to work with the official eBay finding API
 Fix: Twitter auto title now do not have links when expand url option is active
 
 @14 Septebmer 2020 v3.50.7
-Temporary patch: FB now works better till compelte revamp 
+Temporary patch: FB now works better till compelte revamp
 
 @2 September 2020 v3.50.6
 Urgent: Instagram updated to work again after recent changes
@@ -288,7 +300,6 @@ NEW: Multi-page Scraper option to append someting to extracted URLs
 Improved: option to set the post to pending if it was not possible to set a featured image more accurate
 Improved: Reddit no more post stickied comments
 Fix: Facebook video title from verified pages now get returned
-
 
 @19 July 2020 v3.50.3
 Fix: Amazon featured image using API sometimes did not work
@@ -315,20 +326,19 @@ NEW: Option Add posts with its original time for multi-page scraper
 NEW: Careerjet new tag [source_site_name]
 Fix: Google translate back to work
 Fix: Facebook now imports up to 4 images again from the post
-Fix: Reddit imgur and gfycat gifs/videos now get embeded 
-Fix: Feeds Single quotes now get replaced by double quotes 
+Fix: Reddit imgur and gfycat gifs/videos now get embeded
+Fix: Feeds Single quotes now get replaced by double quotes
 Fix: Feeds/Multi-page scraper relative path correction for images now works better
 Fix: Instagram now imports all images if cached is enabled as well
 Fix: Envato affiliate URL now get correctly set for Woo products
-Fix: Careerjet now can grab the full description 
+Fix: Careerjet now can grab the full description
 Fix: Youtube original tags extraction now back to work
 Fix: Youtube published after specific date now back to work
 
-
-@14 May 2020 v2.49.0 
+@14 May 2020 v2.49.0
 NEW: Multi-page scraper next page URL fixed pattern support example.com/page/[page_number]
 NEW: Keyword to tag option can now check title only, content only or both
-NEW: Youtube now uses playlistitems API endpoint when posting from a specific channel that reduces used quota from 100 to 3 per call 
+NEW: Youtube now uses playlistitems API endpoint when posting from a specific channel that reduces used quota from 100 to 3 per call
 NEW: Youtube videos to videopro theme now have a duration
 NEW: Feeds module can now import from RSS feeds that do not contain a link tag
 NEW: Button on the campaign page to reactivate all keywords at once
@@ -337,13 +347,13 @@ Fix: Feeds/Multi-page scraper lazy loading now fixes images with single quotes o
 Fix: Amazon import without API key algorithm enhancement to bypass block
 Fix: Facebook event description now get imported after recent FB changes
 
-@1 May 2020 v2.48.0 
+@1 May 2020 v2.48.0
 NEW: content template tag [title_words_as_hashtags]
 Fix: Amazon import without an API key algoritm updated to bypass blockage
 Fix: Instagram cached images now have a correct name if generated from title
 Fix: Google translation from japanese corrected when containing a bracket
 Fix: Envato post original item tags as tags now works for WooCommerce products
-Fix: Strip links option now does not affect aside tags 
+Fix: Strip links option now does not affect aside tags
 Fix: Featured image from post content now supports images with single quotes
 Fix: Strip original links from the imported content now more accurate
 Fix: Some UI fixes
@@ -368,7 +378,7 @@ Fix: Multi-Page scraper now can import from login protected websites using cooki
 Fix: Users on Hetzner hosting was getting 404 error when publishing a campaign, now sorted
 
 @30 January 2020 v3.46.12
-Fix: SoundCloud back to work after recent changes from SC 
+Fix: SoundCloud back to work after recent changes from SC
 Fix: Amazon gallery now compatible with lazy loading plugins
 Fix: Facebook comments back to work after recent changes from FB
 
@@ -377,20 +387,19 @@ NEW: Instagram option to remove hashtags from post content
 Fix: Multi-page scraper now corrects relative links when custom base url is set
 Fix: Amazon asked for capacha fix
 
-
 @29 December 2019 v3.46.10
-Fix: SoundCloud back to work 
+Fix: SoundCloud back to work
 
 @26 December 2019 v3.46.9
 Fix: Caching images back to work
 
 @25 December 2019 v3.46.8
 NEW: eBay campaign now accepts up to 3 categories
-NEW: CareerJet option to get the full job description 
+NEW: CareerJet option to get the full job description
 NEW: Facebook option to only post owner posts when posting from a profile
 Fix: Amazon woo prices for amazon.es now get saved correctly
 Fix: Youtube comments URLs & profile images back to work
-Fix: Skip posts lower than a specific length now more accurate 
+Fix: Skip posts lower than a specific length now more accurate
 Fix: Translation twice if title contains quotes now work + tags translation
 Fix: Translation now correctly protect shortcodes
 Fix: Facebook profile tagged posts now have a correct link and correct images sizes
@@ -399,58 +408,56 @@ Fix: Facebook tag place_phone now returns the phone if starts with +
 Fix: Twitter now embed Tweets with GIFs
 Fix: Now back to work with Google news RSS feeds
 
-
 @12 November 2019 v3.46.7
 Fix: Pinterest module back to work after recent changes
 
 @3 November v3.46.6
-NEW: Amazon module now imports book description beside editorial review 
+NEW: Amazon module now imports book description beside editorial review
 NEW: Feeds/Multi-page scraper can now grab and save the price as woo product price
 Fix: UI fixes for chrome new version
 Fix: Lazy loading auto-detect algorithm imporved
 Fix: og:image short form // now works as a featured image
-Fix: eBay ships_to tag now does not contain | 
+Fix: eBay ships_to tag now does not contain |
 Fix: Walmart woo external affiliate product now get added with correct link
 
 @11 October v3.46.5
 NEW: Skip posts if content legnth below a specific number option for all campaign types
 NEW: Feed/multi-page scraper lazy loading automatic fix added
-NEW: eBay new tags  [item_seller_username] , [item_location] , [item_ships_to] , [item_condition] , [item_return_policy] & more
+NEW: eBay new tags [item_seller_username] , [item_location] , [item_ships_to] , [item_condition] , [item_return_policy] & more
 Fix: Feeds/Multi-page scraper Youtube format containing parameters fix
 Fix: Youtube comments posting when having multiple API keys back to work
-Improved: Featured images URLs now get IRI encoded before loading the 
+Improved: Featured images URLs now get IRI encoded before loading the
 
 @2 October v3.46.4
-Improved: Feeds/Multi-page scraper Youtube embeded videos now get changed to WordPress format 
+Improved: Feeds/Multi-page scraper Youtube embeded videos now get changed to WordPress format
 Fix: Feeds/Multi-page Strip parts using Class/ID now works correctly
 Fix: Feeds/Multi-page scraper srcset attribute relative images now get converted to full
 Fix: Youtube video duration format fix hours:minutes:seconds
 
 @1 October v3.46.3
 NEW: Feed/Multi-page Scraper new tag source_url_encoded
-Improved: Amazon importing without API major improvements and algorithm update 
+Improved: Amazon importing without API major improvements and algorithm update
 Improved: Image name from title now removes imojis
 Fix: custom extraction to tags now can extract multiple tags/categories
 Fix: seaprator in saved pin descriptions now display correctly
 Fix: Feed/Multi-page scraper extraction/removal by class now work for PHP 7.3
 
-
 @20 September v3.46.2
-Fix: Feed convert encoding now back to work 
+Fix: Feed convert encoding now back to work
 Fix: Amazon post without PA keys now work
 Fix: Amazon address simulation option now work correctly
 Improved: Amazon can now extract prices from eBooks and more
 Improved: Amazon search now exclude zero priced items
-Improved: UI now retain correct metabox order 
+Improved: UI now retain correct metabox order
 
 @10 September v3.46.1
 Fix: Facebook session not valid error now fixed
 Fix: Facebook posts with images now get imported correctly
 
-@31 August 2019 v3.46.0 
+@31 August 2019 v3.46.0
 NEW: Amazon now can import without the need of PA API keys
 NEW: Youtube multiple API keys support to get rid of daily limits
-NEW: Feeds new tag [source_domain] 
+NEW: Feeds new tag [source_domain]
 NEW: Instagram new tag for video embed + new option to not add embed to description
 NEW: option to skip fixed chosen categories if keyword to category option has matches
 NEW: option to check at title only when skipping by keyword
@@ -466,12 +473,11 @@ Fix: original category extraction by class now works
 Fix: Custom fields containing astrisks now correctly get saved
 Improved: lack of php-xml module existence message
 Improved: Feeds/multi-page scraper can now extract multiple parts in the same rule
- 
 
 v3.45.1
 NEW: Yandex translate support
 NEW: Feeds/Multi-page scraper extraction to custom taxonomy support
-NEW: option to disable Newspaper theme integration for videos 
+NEW: option to disable Newspaper theme integration for videos
 NEW: Facebook option to auto-generate title for shared links
 Fix: Facebook share count and likes count back to work
 Fix: Facebook posts with a background now get imported
@@ -482,7 +488,6 @@ Fix: Some empty pages using the visual selector now display
 Fix: Reddit gyfcat embeds back to work
 Fix: Instagram comments back to work after Iinstagram changes
 
-
 @4 May 2019 v3.44.0
 NEW: option to add woo product as a simple product
 NEW: Youtube option to add title tag to embed code
@@ -490,13 +495,12 @@ Improved: Reddit gfycat better higher quality mp4 video embeds
 Improved: Multi-Page scraper next page extraction by REGEX now supports meta format
 Improved: Specific part extraction to custom field can now be used in post content
 Improved: Minimum MySQL version check added
-Fix: Vimeo no new content fix 
+Fix: Vimeo no new content fix
 Fix: FB shared posts full content now get imported
-Fix: If active, proxies are now used with multi-page scraper 
+Fix: If active, proxies are now used with multi-page scraper
 Fix: FB comments now back to work after a change from FB side
 Fix: titleonly in search and replace now work on set rule only
 Fix: original title from og:title option now function correctly
-
 
 @20 March 2019 v3.43.1
 NEW: tag for feeds named [redirect_url] to return the redirection URL of the post
@@ -528,13 +532,12 @@ Fix: Facebook event description now get extracted correctly
 Fix: Facebook commenter name now correct for non-latin
 Fix: Featured images with spaces in the file name now get converted to dashes
 
-
 @5 January 2019 v3.42.1
 Fix: sorted a recent issue in the latest version that affected the multi-page scraper and feeds module
 
 @3 January 2019 v3.42.0
 NEW: Keyword to category new option to check the title
-NEW: Keyword to category new option not to check the content 
+NEW: Keyword to category new option not to check the content
 Fix: formated_date shortcode in content when other shortcode exists now works
 Fix: Craigslist price now gets extracted even if not the last part of the title
 Fix: keyword tag now works for custom fields
@@ -567,16 +570,16 @@ Improved: content type verification for featured images now more smarter not to 
 @18September 2018 v3.39.2
 Important Note: If you are updating from an older version, activating this version will take long time so be patient as it includes database tables refactoring
 Improved: performance optimized so it is now more lighter & smarter
-Fix: Facebook pagination back to work 
+Fix: Facebook pagination back to work
 Fix: FB for sale posts now get imported correctly
 Fix: Make permalinks link to the source now works with almost all themes
 Fix: from_id from closed groups now returns the correct id
 
 @6 September 2018 v3.39.1
 Fix:Facebook module essential code fixes
-New: Facebook events new tags added [end_time_timestamp] , [start_time_timestamp] 
+New: Facebook events new tags added [end_time_timestamp] , [start_time_timestamp]
 New: WordPress comments now get added as bbPress replies if bbPress was used
-Improved: formated_date tag now works on custom fields as well 
+Improved: formated_date tag now works on custom fields as well
 Improved: Items from Envato can now get posts as Woo products
 
 @17 August 2018 v3.39.0
@@ -611,8 +614,7 @@ Improved: YT posting from a specific playlist now returns original video author 
 Improved: EzineArticles now uses Google custom search instead of DuckDuckGo
 Improved: EzineArticles search improved to exclude useless results
 Fix: Twitter external image from bit.ly links and links containing twitter in URL now works
-New: Youtube tag [vid_title] 
-
+New: Youtube tag [vid_title]
 
 @14 April 2018 v3.37.4
 Fix: Instagram back to work after a recent change from Instagram side. Now a session cookie is needed at the plugin settings page
@@ -626,12 +628,11 @@ NEW: option to set the used keyword to fetch the item as a tag
 NEW: custom field tag to add a random number to a field
 NEW: Tag to generate a random number between two values
 NEW: Spintax new option to replace similar sets with the same replacement
-NEW: Facebook new tag for event description 
+NEW: Facebook new tag for event description
 NEW: Featured image new tag for custom fields
 Fix: Title from og:title with single quote now returns the full title
-Fix: Image name from the title with emoji now works 
+Fix: Image name from the title with emoji now works
 Fix: Itunes affiliate ID now get added to audiobooks and other types
-
 
 @26 March 2018 v3.37.2
 Fix: Instagram module is back to work after recent changes from Instagram side
@@ -660,7 +661,7 @@ Fix:Feed lazyloading fix now fixes images that are in multiple lines
 Fix:Facebook new album now returns all images
 Fix:TheBestSpinner protected terms now work again
 Fix:Keyword to category now checks the final content
-Fix:Special chars in tags from FB og:title 
+Fix:Special chars in tags from FB og:title
 Fix:Contributers now available for author selection
 Fix:Reddit hosted gifs now get embeded
 
@@ -679,8 +680,7 @@ Fix: Feeds extraction using visual selector encoding sorted
 Fix: License activation improved for blocked connections
 Fix: EzineArticles first article after Ezine scraping now works
 Fix: Visual selector improvements
-Improvement: download images to the server now validates the image content 
-
+Improvement: download images to the server now validates the image content
 
 @6 November 2017 v3.35.1
 Fix: On campaign publish error sorted
@@ -691,7 +691,6 @@ New: Youtube new option to set the channel author as WordPress author
 fix: Feeds multiple extractions for same ID/Class stopped working now sorted
 fix: Twitter pagination now works on 32-bit servers
 
-
 @25 October 2017 v3.34.0
 NEW: Visual selector for feed content, tags, author
 NEW: Unlimited rules to extract by ID/Class/REGEX for content,removing unwanted parts
@@ -701,20 +700,20 @@ fix: Single scraper auto detect method for content now works
 fix: Strip links option now does not strip links from twitter embeded tweets
 
 @9 October 2017 v3.33.0
-new - new module named "Single Scraper" to extract parts from a specific page 
+new - new module named "Single Scraper" to extract parts from a specific page
 Improvement: Feed lazy loading option now accepts custom attributes names
-Improvement: Feeds original content now follows meta="refresh" redirects 
+Improvement: Feeds original content now follows meta="refresh" redirects
 Improvement: Amazon products prices updates now more faster
 new - Amazon temlate updated to contain the last time the price was upated and amazon disclaimer
 new - Facebook vid_embed tag for videos
 new - Facebook new option to set hashtags as WordPress tags
 new - Youtube option to post videos by IDs
-fix    - note type filter added 
-fix - Feeds when no og:image exists and the og:image option is active now set a featured image from the content 
+fix - note type filter added
+fix - Feeds when no og:image exists and the og:image option is active now set a featured image from the content
 fix - Feeds option to clean cURL encoding now works with all extraction methods
 fix - Twitter posting from a specific user now lists all tweets including shared via APPs tweets
 fix - Translation failed when auto detect is the same as the destination sorted
-fix -  Youtube tags as WordPress tags now back to work
+fix - Youtube tags as WordPress tags now back to work
 fix - Spintax module now replaces each set separately
 
 @14 August 2017 v3.32.0
@@ -724,7 +723,7 @@ new feature - Facebook & Instagram embeded videos auto play
 improvement - Facebook event cover pic is now returned instead of the smaller image
 Improvement - Post types for category selection shows only public types
 new feature - Instagram remove mentions from title option
-new feature - Amazon new tag for item author and another for the brand 
+new feature - Amazon new tag for item author and another for the brand
 new feature - grab alt text for featured image
 new - Craiglsist tag item_price
 new - Feeds specific extraction to custom field now saves to tags or excerpt
@@ -736,11 +735,11 @@ fix - Facebook older than 100 posts option now works with the latest FB API vers
 NEW: bbPress support so now posts can be posted as topics with an option to set the forum
 NEW: Feeds option to skip stripping srcset attributes from images
 Fix:Microsoft translator now works again
-Fix:Emojis now get encoded to hex for non utf8mp4 encoded tables 
+Fix:Emojis now get encoded to hex for non utf8mp4 encoded tables
 Fix:Feed fetch full content twitter embeds missing script now get added
 Fix:Amazon scraper now deactivate the keyword if no more items exists at the last available page
 Fix:Default category now get removed if original categories will be set
-Fix:EzineArticles  ad was completely removed
+Fix:EzineArticles ad was completely removed
 Fix:Amazon iframe width when using thebestspinner now sorted
 Fix:Facebook links small image now gets replaced by the largest image
 Improved: eBay module now paginates the search results up to 100 pages
@@ -756,25 +755,23 @@ Fix:Instagram module rewritten to cope with new changes from Instagram like vide
 Fix:Instagram tags like username now works in title template
 Fix:Feeds publish date now consider the blog timezone
 Fix:Feeds now works with proxies
-Fix:Feeds decode entities now consider single and double quotes 
+Fix:Feeds decode entities now consider single and double quotes
 Fix:Google translate now works if open_basedir is set
 Fix:Banned words option now works even if exact words option is not active
 
-
 @20 March 2017 v3.29.0
-NEW:Walmart support so now you can import from Walmart to Wordpress 
+NEW:Walmart support so now you can import from Walmart to Wordpress
 NEW:Amazon new tag [price_with_discount_fixed]
 NEW:Vimeo new option to post from a specific album
 NEW:Option to skip numeric tags from title
 NEW:Feeds new option to fix lazy image loading
 Fix:Instagram module updated to cope with new Instagram changes
-Fix:Feeds now support proxies 
+Fix:Feeds now support proxies
 Fix:Amazon lowest price now returns the correct price
 Fix:Amazon.es prices now fixed and also posting by ASIN
 Fix:Youtube must exist keywords and banned keywords now get considered
 
-
-@28 February 2017 v3.28.0 
+@28 February 2017 v3.28.0
 NEW:Reddit support so now you can post from Reddit by subReddit url
 NEW:Amazon module now can scrape all items from amazon for a specific search
 NEW:Amazon module now posts all product images as a gallery
@@ -782,12 +779,12 @@ NEW:Amazon Prices are now displayed with list price and discounted price format
 NEW:Amazon module now can automatically update prices daily
 NEW:Amazon default post template got a facelift
 NEW:Post from Amazon using an ASINs list. just paste a list of ASINs in the keywords field
-NEW:Facebook videos integration for TrueMag/VideoPro themes 
+NEW:Facebook videos integration for TrueMag/VideoPro themes
 NEW:Feeds strip html tags option
 NEW:Feeds new option to only post items if a string exists
 NEW:Instagram new option to post popular items from a hashtag
 NEW:Keywords field now accepts keywords at one keyword per line format
-Fix:Twitter embed as cards option and featured image option now work together 
+Fix:Twitter embed as cards option and featured image option now work together
 Fix:Facebook shared post with a shared link now gets the original shared link title
 Fix:DailyMotion featured image option now works
 Fix:Craigslist image now works after a Craigslist change
@@ -798,14 +795,14 @@ NEW:DailyMotion Integration so now you can post from DailyMotion by keyword, use
 NEW:PHP 7 compatibility
 NEW:Twitter option to post hashtags as wordpress tags
 NEW:Twitter option to embed videos
-NEW:Flicker tags for high resolution images 
+NEW:Flicker tags for high resolution images
 Fix:Instagram and Twitter now consider timezone for dates  
-Fix:Feeds &apos; chars now get fixed at sites using it. 
+Fix:Feeds &apos; chars now get fixed at sites using it.
 Fix:Feeds content extracted now does not contain srcset tags
 Fix:Generate names from post title for clickbank was not working now fixed
 Fix:Amazon items with price variations now returns the lowest price previously was displaying free
 Fix:SoundCloud search by tag option was setting a license filter, now sorted
-Fix:[nospin] tags now does not get removed if the spin option is not enabled 
+Fix:[nospin] tags now does not get removed if the spin option is not enabled
 Fix:Youtube skip the video if specific minutes passed now works
 Fix:Instagram posting from a specific user sometimes was not able to get the numeric ID, now sorted.
 
@@ -815,7 +812,7 @@ Fix: Security concern.
 
 @10 December 2016 v3.26.1
 Fix: Translation using Google translate stopped setting a featured image and caching images now sorted.
-Fix: Notice at the front-end appears now sorted. 
+Fix: Notice at the front-end appears now sorted.
 
 @6 December 2016 v3.26.0
 Improved: ClickBank module rewritten with new much better post template for new campaigns
@@ -829,13 +826,13 @@ NEW: Facebook new option to generate title from before line breaks
 NEW: Facebook new option to disable adding "..." at end of generated titles
 NEW: Feeds new feature to set featured image title at media library from post title
 NEW: Feeds new option to disable getting the title from the original page title and use it from the feed
-Fix: Feeds fetch full content method no more skips iframes 
+Fix: Feeds fetch full content method no more skips iframes
 Fix: Facebook if skip posts older than a specific date is active. older posts will not got checked
 Fix: Facebook sometimes didn't return description for image now sorted.
-Fix: Translation using Microsoft translator was sometimes failing for large content that is not originally in English now fixed 
-Fix: Translation using Google completely rewritten to accept large articles and cope with new Google changes 
+Fix: Translation using Microsoft translator was sometimes failing for large content that is not originally in English now fixed
+Fix: Translation using Google completely rewritten to accept large articles and cope with new Google changes
 Fix: Excluded links were not correctly excluded for some cases where the url in feed is not the effective url now fixed
-Fix: ClickBank thumbnails for sites starting with https was not working.. now fixed 
+Fix: ClickBank thumbnails for sites starting with https was not working.. now fixed
 Fix: options page on some servers with mod_security active refused to save adsense code. now sorted.
 
 @7 November 2016 v3.25.0
@@ -851,7 +848,7 @@ Fix: Envato more than 60 pages returned now deactivates keyword (Envato limits n
 Fix: SoundCloud no image sounds now uses the item user image as the featured image
 Fix: Name cached images with post title now strips special chars
 Fix: Fetch full content now returns the original title instead of the in-feed title
-Improved: Campaigns page now displays part of feeds if there are a long list added 
+Improved: Campaigns page now displays part of feeds if there are a long list added
 
 @26 September 2016 v3.24.0
 NEW: Envato support so now we can post from Envato marketplaces including ThemeForest,CodeCanyon,AudioJungle and all markets
@@ -883,7 +880,7 @@ NEW: option to disable posting urls for comments author
 NEW: option to disable deactivating keywords for an hour if there is no new items at the source
 NEW: new facebook tags added for campaign template. [image_src] and [external_url]
 Improved: Categories now get displayed in hierarchical layout
-Fix: Clickbank module now back to work after recent changes from Clickbank 
+Fix: Clickbank module now back to work after recent changes from Clickbank
 Fix: Google news feeds and Google alerts feeds are now compatible with feeds module
 Fix: Canonical tag now gets added only when the option to set it is activated.
 Fix: Instagram tags as wordpress tags now works normally
@@ -892,11 +889,11 @@ Fix: Youutbe non valid next page now get removed.
 @10 June 2016 v3.22.1
 Important: Instagram now works again after 1 June instagram update with same behaviour as before.
 NEW: keyword to Category option: you can set a keyword and if exists, the plugin will set the post to the matching category
-NEW: keyword to tag option: you can set a keyword and if exists, the pluginw will tag the post 
+NEW: keyword to tag option: you can set a keyword and if exists, the pluginw will tag the post
 NEW: option to post the item if it matchs a specific regex only
 NEW: option to skip the item if it matchs a specific regex  
 NEW: instagram new option to skip video posts/images posts
-NEW: Flicker now support posting from photo albums 
+NEW: Flicker now support posting from photo albums
 NEW: TrueMag/NewsTube theme integration with instagram videos
 NEW: search/replace using REGEX now has the option to word replace and replace shuffle
 NEW: ebay additional parameters option added
@@ -914,15 +911,15 @@ Fix: Feeds decode html now decodes the title as well
 Fix: Feeds now support news.google feed, previously the images were not displayed and the og:image was not extracted
 
 @24 Mar 2016 v3.22.0
-NEW: Now the plugin can post Craigslist to wordpress 
+NEW: Now the plugin can post Craigslist to wordpress
 Fix: EzineArticles module rewritten to work for all users
-NEW: Twitter new tag item_original_link 
+NEW: Twitter new tag item_original_link
 NEW: Search and replace option for all campaign types
 NEW: option to strip textual content from FB posts
 NEW: option to never post same link again
 NEW: New Facebook option to post images without linking to it.
-Fix: added link as a possible post type to FB posts filter by type. 
-Fix: Microsoft second translation didn't work now fixed. 
+Fix: added link as a possible post type to FB posts filter by type.
+Fix: Microsoft second translation didn't work now fixed.
 Fix: optoin don't spin the title now works with all campaign types also spintax in title
 Improved: Cron now process a single campaign only for better resources usage
 
@@ -931,14 +928,12 @@ New: articlesbase.com module added so now you can post from articlesbase.com
 New: Twitter new item_embed tag  
 Fix: option skip posts with no image now record links with no images not to be checked again
 Fix: option skip posts with no image now don't skip posts with og:image and no images in content
-Fix: Fatal error when extracting content using REGEX 
+Fix: Fatal error when extracting content using REGEX
 Fix: Keyword suggest feature now works with https
-
 
 @25 January 2016 v3.20.1
 Fix: Internal cron job stopped working at v3.20 now working again
 Fix: Spintax now get applied only if the post contains spintax tags
-
 
 @24 January 2016 v3.20.0
 NEW: Instagram item_embed tag to embed instagram items directly to wordpress
@@ -946,17 +941,16 @@ NEW: Facebook post_embed tag to embed posts from facebook
 NEW: Feeds option to set a specific part to a custom field
 NEW: Translation option to set failed translation posts status to pending
 Improved: code optimized to increase speed and lower load
-Fix: Articles module rewritten to work again 
+Fix: Articles module rewritten to work again
 Fix: Exact match/banned word bug fix
-Fix: Youtube videos older than a specific date for playlists now get skipped 
+Fix: Youtube videos older than a specific date for playlists now get skipped
 Fix: Feed fetch full content video fix
 Fix: Feed charachter encoding fix
 Fix: eBay extract full details now consider language of the localized site
 Fix: eBay full image sometimes returns no images if there is no maximum resulution image now fixed
-  
 
 @11 January 2016 v3.19.1
-NEW: option for must be in the content and must not be in content filters to be processed on the final content 
+NEW: option for must be in the content and must not be in content filters to be processed on the final content
 Fix: Articles module updated to work with recent souce changes
 Fix: Articles module now works when curl followlocation disabled
 Fix: Fetch full content for utf-8 encoded texts were sometimes skiping special chars now fixed
@@ -964,16 +958,15 @@ Fix: Social Network Auto Poster workaround added
 
 @3 January 2016 v3.19.0
 NEW: Facebook campaign can now post specific type of posts, videos,images,etc
-NEW: Google Translate integrated again 
+NEW: Google Translate integrated again
 NEW: Feeds generate image name from title now supports non latin chars
-NEW: Twitter new option to remove RT from post title 
-Fix: Limit title to specific number of chars option now does not add ... if original title is below limit 
+NEW: Twitter new option to remove RT from post title
+Fix: Limit title to specific number of chars option now does not add ... if original title is below limit
 Fix: Translation module rewritten fixing translation failed issue for long posts
 Fix: W3 cached rss feeds was not loaded correctly to post from, Now fixed
-Fix: ClickBank posting for centOS   
+Fix: ClickBank posting for centOS  
 Improved:Posted youtube comments as comments count now random from 20-50
 Improved:Posted SoundCloud comments as comments count now random from 20-30
-
 
 @22 December 2015 v3.18.0
 NEW: Microsoft translator integrated for translation
@@ -981,17 +974,16 @@ Fix: Articles module rewritten to work again after source changes
 NEW: NewsPaper wordpress theme integration for youtube and vimeo
 NEW: Feeds search and replace option to appply to titles also
 Fix: all src urls now get fixed not only images i.e src="/"
-Fix: Date displayed for last run and any date displayed now consider local time  
-
+Fix: Date displayed for last run and any date displayed now consider local time
 
 @10 december 2015 v3.17.0
 NEW: Facebook module can now posts from Groups
 NEW: Facebook module can now post comments from
 NEW: Facebook module Now accepts the numeric page id direclty instead of page url
 NEW: Facebook module new tags like from_name,from_id ,etc
-NEW: Facebook cache option 
+NEW: Facebook cache option
 NEW: Facebook skip posts if older than a specific date
-NEW: Tags custom taxonomy support 
+NEW: Tags custom taxonomy support
 NEW: instagram option to skip posts older than a specific date
 NEW: eBay campaigns Now posts the heigh resolution images
 NEW: eBay description iframe height option
@@ -1014,7 +1006,6 @@ NEW: new twitter tags added for author profile image and background image
 NEW: Deeper TruMag/NewsTube theme integration so now vid views/likes/dislikes get viewed at the display.
 NEW: New Facebook option to hide posts with no images
 
-
 Fix: Pinterest user or board option was getting reset to user now fixed
 Fix: very long keywords was giving no links found message now fixed
 Fix: eBay description iframe height was set to 10000 now lowered
@@ -1031,10 +1022,9 @@ NEW: Twitter campaigns to post from twitter
 NEW: Duplicate campaign option so now you can duplicate any campaign just hover it's title and click the duplicate link
 NEW: New feeds option to get the featured image from the og:image tag that is used by sites for FB
 NEW: new ebay option to redirect to a specific page if the posted item expiry date was reached.
-NEW: now you can use Emojis at the post template 
+NEW: now you can use Emojis at the post template
 NEW: NewsTube theme support out of the box to post Youtube/Vimeo videos.
 NEW: new youtube tag [vid_author_title]
-
 
 Fix: Youtube comments now using the official api
 Fix: now posted box only contains latest 10 posted posts with a button to load more.
@@ -1048,11 +1038,10 @@ Fix: feeds module og:image extraction more accurate
 @17 August 2015 v3.14.0
 NEW: Now instagram videos get embeded to the post
 NEW: new feature to set a secret word for the cron job at the settings page
-NEW: feeds new option to skip items with title that already exists for a post 
+NEW: feeds new option to skip items with title that already exists for a post
 Fix:Translation now working again after stopping working.
 Fix:Facebook posting fix
-Fix:Amazon price woo-commerce truncation error fixed 
-
+Fix:Amazon price woo-commerce truncation error fixed
 
 @11 July 2015 v3.13.0
 New: pin_link tag added to pinterest post template so it can point to the source directly
@@ -1071,16 +1060,15 @@ Improved: youtube now posts the maximum resultion image if found as featured ima
 Improved: scripts tags now get stripped by defualt  
 Removed: Strip inline links cause of users are misusing it
 
-
 @4 June 2015 v3.12.0
 NEW: WPML support so now you can set the language of the new posts
 NEW: protect html tags in search and replace feeds campaign option added
 Fix: Facebook video render now works after a minor FB change
 Fix: Youtube duplicate posts after the v3 api upgrade now fixed
-Fix: translation module improvements 
-Fix: decode html entities option fix 
+Fix: translation module improvements
+Fix: decode html entities option fix
 Fix: now custom fields values can contain single and double quotes or even a serialized array
-Fix: internal server error fixed for windows servers when re-saving a campaign 
+Fix: internal server error fixed for windows servers when re-saving a campaign
 
 @22 MAY v3.11.0
 NEW: instagram now got supported so you can post instagram images for a tag or a user.
@@ -1093,32 +1081,30 @@ NEW: Pinterest campaigns added to post from pinterest to wordpress
 NEW: New feed tag to extract the enclusure link
 NEW: New flicker license type option
 
-
 @27 APRIL v3.9.0
 New: Vimeo camaigns added
 NEW: amazon.in now integrated
 NEW: new option for setting refer to the source site when caching images
 NEW: new option for amazon campaign to optionally create the short description
-NEW: new option to strip inline links texts in content 
+NEW: new option to strip inline links texts in content
 Fix: replace keyword with specified link fixed was replacing parts of words
-Fix: now caching images and thumbnails keep records  of already cached items not to cache same image twice
+Fix: now caching images and thumbnails keep records of already cached items not to cache same image twice
 Fix: relative links now points to source host when extracting using id/class/regex etc
 
-@7 Apr 2015  v3.8
+@7 Apr 2015 v3.8
 NEW: Facebook campaigns now added so you can now post from facebook to wordpress
 NEW: eBay now integrates with woo-commerce to directly link items via the buy now button
-NEW: nospin tag added to skip spinning parts of content 
+NEW: nospin tag added to skip spinning parts of content
 NEW: option to decode html entities from feeds
 NEW: the plugin can now process feed enclosure for featured image if no image elsewhere exists
 NEW: Feeds campaign now can extract the real author of the post and assign to the same author locally or create a new one if not exists
 NEW: TrueMag theme on the fly settings now get added
 
-
-Fix: cache images with spaces , encoded sources now works 
+Fix: cache images with spaces , encoded sources now works
 Fix: youtube rating images stopped displaying now fixed
 Fix: feeds with items with empty title was stopping the feed from processing now fixed to skip no title feeds items
 Fix: campaign editing/adding gave 500 http error with windows platforms now fixed
-Fix: html encoded image srcs now fixed for thumbnail setting and caching 
+Fix: html encoded image srcs now fixed for thumbnail setting and caching
 Fix: clear refer value at caching images
 Fix: TBS were deforming encoded html entities now fixed.
 Fix: ad_1, ad_2 now does not appear at feed items
@@ -1130,9 +1116,8 @@ Fix: jetpack auto publicize feature stopped working now fixed
 @14/1/2015 v3.7.2
 Improvement: cURL exist check added.
 Fix: getpack stats stopped working due to a conflict. now working
-Fix: double check duplicate before posting 
+Fix: double check duplicate before posting
 Fix: entity_decode urls before extracting content from feeds
-
 
 @17/12/2014 v3.7.1
 Bug fix: amazon products [product_link] tag stopped working now it is back
@@ -1152,7 +1137,6 @@ Fix: translate were generating numbers in some cases now fixed
 Fix: translate were generating unexpected input with encoded charachters like &euoro; now fixed
 Fix: fetch full content titles with colons were truncated now fixed
 Fix: opttion to strip links didn't work with flicker items now it works
-
 
 @2/11/2014 v3.6
 NEW: post from a youtube playlist
@@ -1177,12 +1161,11 @@ Fix: ebay duplicate were deleting most posts even they were not duplicate
 Fix: amazon GPB numeric fix
 
 @13/9/2014 v3.5.1
-Fix: Clickbank Featured image now get set 
+Fix: Clickbank Featured image now get set
 Fix: ezinearticles showed some google mobile ads now it don't
 Fix: ezinearticles module recoded
-Fix: images with space in it's source url now get cached without problem 
+Fix: images with space in it's source url now get cached without problem
 Fix: set random image if no image exists sometimes ignore images in original post and always set one of the random. now fixed
- 
 
 @9/9/2014 v3.5
 NEW: Spintax campaign type
@@ -1192,23 +1175,22 @@ NEW: Rotate Feeds option
 NEW: Random featured image
 NEW: amazon browse node without keyword filtering
 NEW: amazon sort results
-NEW: Youtube minimum vid date added 
+NEW: Youtube minimum vid date added
 NEW: Feeds minimum vid date added
-NEW: Reverse order of items youtube and feeds 
+NEW: Reverse order of items youtube and feeds
 
-Fix: ebay keywords with spaced were generating errors now fixed by encoding 
+Fix: ebay keywords with spaced were generating errors now fixed by encoding
 Fix: clickbank password wiht special chars get encoded
 Fix: image caching using curl instead of file_get_Contents
 Fix: translate second time was translating from first language to thired language
 Fix: removed tidy that caused broken images html
-Fix: Youtube duplicate posts 
+Fix: Youtube duplicate posts
 Fix: attachment guid
-Fix: amazon keyword was urlencoded twice . 
-Fix: wp_automatic_Readability mb_encoding function not exists fix 
+Fix: amazon keyword was urlencoded twice .
+Fix: wp_automatic_Readability mb_encoding function not exists fix
 Fix: wp_automatic_Readability remove styles disabled
-Fix: Striping links from the post 
+Fix: Striping links from the post
 Fix: general table encoding to utf
-
 
 @23/7/2014 v3.4.0
 NEW: amazon it es etc (Not fully compatible)
@@ -1217,38 +1199,36 @@ NEW: REGEX support
 NEW: TBS REPORT success or fail
 NEW: New id/class rule 3
 Fix : remove_filter('content_save_pre', 'wp_filter_post_kses'); that removes iframe and js when posting from cron
-Fix : ui keyword field * when uncheck the post all without filtering fixed
+Fix : ui keyword field \* when uncheck the post all without filtering fixed
 Fix : youtube non caching index now starts at 1
-Fix : Flicker ssl required 
+Fix : Flicker ssl required
 Fix : base 48 encode for camp_general
 Fix : strip first image was stripping all images
 Fix : clickbank extraction correction
 Fix : wp_automatic_log cleaning
 
-@29/3/2014 v3.3.0 
+@29/3/2014 v3.3.0
 Fix: Articles module
 ADD: Strip first image after setting as featured image option
 Fix: Amazon no thumbnail product fixed
 Improvment : youtube featured image now get set
-ADD : youtube tag vid_id
+ADD : youtube tag vid*id
 Improvement: clear feed cache
-Fix : cache images with + _ marks
+Fix : cache images with + * marks
 Improvment : amazon products with no list price now gets price from offer summary
 Rotate keywords
 Full youtube description
 youtube tags as wordpress tags
 youtube comments as wordpress comments
 
-
 @23/3/2013 v3.2.0
-Fix : amazon custom fields fix 
+Fix : amazon custom fields fix
 Fix : translation module fix
 Fix : skip posts without images
 Added : by class or id extraction
 
-
 @3/3/2013 v3.1.1
-New : Skip posts without images option for feeds campaigns 
+New : Skip posts without images option for feeds campaigns
 Fix : youtube post getting method resetting index to 1 if exhausted when no caching .
 Fix : Articles module webcrawler .
 
@@ -1258,28 +1238,25 @@ Add : custom post formats support .
 Fix : youtube links cache mixing now fixed .
 Fix : bug with search and replace
 
-
 v3.0.1
 Fix : backward comptability with older post type
 
 v3.0
-New version 
+New version
 
 v2.1.2
 Fix : articles module now working
 Fix : Maximum number display now shows max
 
-
 v2.1.1
 New Feature : added proxy authentication ip:port:username:password
-Fix : articles module now works fine as bing changed 
+Fix : articles module now works fine as bing changed
 
 #v2.1.0
 @18/6/2013
 New Feature : amazon now use .com , .ca , .co.uk ..etc .
 
-
 #v2.0.11
 @14/6/2013
-bug fix : file gcomplete was generating error because the selector was returning null . fixed file 'js/jquery.gcomplete' 
-bug fix : plugin was not accepting non-english chars and converting them to ?? . fixed by changing encodeing to utf 
+bug fix : file gcomplete was generating error because the selector was returning null . fixed file 'js/jquery.gcomplete'
+bug fix : plugin was not accepting non-english chars and converting them to ?? . fixed by changing encodeing to utf
