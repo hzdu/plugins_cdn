@@ -1,7 +1,7 @@
 /**
  * wcj-opc-script.
  *
- * @version 1.1.0
+ * @version 6.0.2
  * @since  1.0.0
  */
 
@@ -17,6 +17,7 @@ jQuery(document).ready(function ($) {
 		var data = {
 			'action': 'wcj_ajax_add_opc_add_to_cart',
 			'product_id': product_id,
+			'wpnonce': ajax_object.wpnonce,
 		};
 		$.ajax({
 			type: "POST",
