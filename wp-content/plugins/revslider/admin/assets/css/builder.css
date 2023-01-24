@@ -995,8 +995,12 @@ i.emptyspace20 { display: inline-block; width: 20px; }
 
 
 .shortcuttext { text-align:right;  line-height: 30px; color:inherit; float:right; top:0px; font-size: 12px;}
-.shortcut_cmdctrl { line-height: 30px; color:inherit; display: inline-block; margin-right: 5px; font-size:12px;}
+.shortcut_alt,
+.shortcut_cmdctrl,
+.shortcut_shift { line-height: 30px; color:inherit; display: inline-block; margin-right: 5px; font-size:12px;}
 .osx .shortcut_cmdctrl  { font-size: 13px }
+
+.shortcut_shift { margin-left:2px;}
 
 /* .osx.shortcuttext { width: 25px } */
 
@@ -3297,6 +3301,8 @@ rs-pzimg-wrap { display: block; position: absolute }
 #the_container .form_collector .form_closer { display: none !important; }
 
 #the_container .form_collector .formcontainer.collapsed .form_inner { display: none !important; }
+#the_container._shape_sel_ #the_right_toolbar #the_right_toolbar_inner._layer_content_selected_ .form_collector .formcontainer.collapsed #form_layerstyle_bg.form_inner { display:block !important}
+#the_container._shape_sel_ #the_right_toolbar #the_right_toolbar_inner._layer_content_selected_ #form_layer_content { padding-bottom:0px; margin-bottom:0px !important}
 
 /* FORM MENUS */
 .form_menu_level_1 { list-style: none; margin: 0px 0px 0px 0px; line-height: 20px; border-bottom: 1px solid #333;  display:block; padding:25px 25px 6px;border-top:1px solid #333;}
@@ -3557,8 +3563,36 @@ li.layer_depending_on { line-height: 35px; padding: 0px 15px; margin: 0px;border
 ul#selected_layer_actions { margin: 10px 0px 0px; padding: 0px; }
 li.single_layer_action { border: 1px dashed #f82c90; line-height: 30px; display: block; position: relative; padding: 0px 10px; cursor:pointer; margin-bottom:10px; margin-right:70px; box-sizing: border-box; height: 30px;}
 .sla_icon.material-icons { color: #f82c90; font-size: 17px; margin-right: 10px; margin-left:5px; line-height: 30px; vertical-align: top }
-.sla_layername { line-height: 30px; color: #fff; font-size: 14px; display: inline-block;vertical-align: top;     max-width: 130px;overflow: hidden;white-space: nowrap;}
-.sla_actionname { line-height: 30px; color: #f82c90; font-size: 14px;  float:right; vertical-align: top;max-width: 130px;overflow: hidden;white-space: nowrap;}
+.sla_layername { line-height: 30px; color: #fff; font-size: 14px; display: inline-block;vertical-align: top;     max-width: 110px;overflow: hidden;white-space: nowrap;}
+.sla_actionname { line-height: 30px; color: #f82c90; font-size: 11px;  float:right; vertical-align: top;max-width: 110px;overflow: hidden;white-space: nowrap;}
+
+li.single_layer_action .action_tooltip_evnt {     position: relative;
+    display: inline-block;
+    background: #f82c90;
+    padding: 0px 3px;
+    height:16px;
+    display: inline-block;
+    color: #fff;
+    font-weight: 500;
+    font-size: 11px;
+    line-height: 16px;
+    width: 44px;
+    text-align: center;
+    overflow: hidden;
+    vertical-align: top;
+    margin-top: 7px;
+    margin-right: 5px;
+    overflow:hidden;
+    text-transform: uppercase;
+  }
+
+  
+
+li.single_layer_action.selected .action_tooltip_evnt,
+li.single_layer_action:hover .action_tooltip_evnt {
+  background:#fff;
+  color:#f82c90
+}
 
 .single_layer_action:hover,
 .single_layer_action.selected { background:#f82c90; border:1px solid #f82c90;}
@@ -5232,7 +5266,6 @@ i.fullpage_main_icon.material-icons { color: #777c80; font-size: 50px !important
 .modal_fields_title { font-size: 14px; line-height: 30px; vertical-align: top; margin-bottom: 15px; font-weight: 900; color: #b7bbc0; display: inline-block }
 
 .global_sas_wrap { position:absolute; bottom:0px; left:0px; text-align: center;width: 100%; padding: 10px 0px 0px; border-top: 1px solid #3f4449; }
-
 
 /****************************
   - CSS / JS  API - 

@@ -1,4 +1,50 @@
 <div class="slider-revolution-update-list">
+	<h3 class="version-number">Version 6.6.10 (25th January 2023)</h3>
+	<div class="bugfix"><strong style="font-weight:700">Bugfixes</strong></div>
+	<ul>	
+		<li>Carousel is broken due to regression in 6.6.9</li>
+	</ul>	
+	<h3 class="version-number">Version 6.6.9 (25th January 2023)</h3>
+	<div class="bugfix"><strong style="font-weight:700">Bugfixes</strong></div>
+	<ul>	
+		<li>background=1 and background=0 Vimeo attributes get written twice if customers added these values manually</li>
+		<li>updating from v5 can cause an hover PHP error in PHP 8.x</li>
+		<li>Elementor deprecation messages appear</li>
+		<li>Gradient background effect does not work on small devices</li>
+		<li>Scroll based animations sometimes loose layer visibility on browser tab blur/focus</li>
+		<li>Carousel wheel navigation doesn't work if snap is set to off</li>
+	</ul>	
+	<h3 class="version-number">Version 6.6.8 (21st December 2022)</h3>
+	<div class="newfeature"><strong style="font-weight:700">New Features</strong></div>
+	<ul>
+		<li>Added Copy to Clipboard (Alt + Shift + C) and Paste from Clipboard (Alt + Shift + V) to be able to copy layers, groups, rows between modules in different tabs</li>		
+		<li>Added a new HTML tag "label" and its attribute "label for"</li>
+		<li>Video pause on slide change: Layer videos now have a new option for carousel slider to pause video layers on inactive slides even when they are visible</li>
+		<li>New parallax feature for carousel, now parallax layers will move based on carousel movement. The use is triggered by the "Drag & Mouse Move" option under mouse interaction in the parallax settings.</li>
+	</ul>
+	<div class="change"><strong style="font-weight:700">Changes</strong></div>
+	<ul>
+		<li>Shape background image management is now also available in the layer content for a better understanding</li>		
+		<li>Double click on shape with an background image will open the last used image library for that shape</li>
+		<li>Layer targets (in actions and label for dropdown) will show the correct layer hierarchy with spacings and search boxes</li>
+	</ul>
+	<div class="bugfix"><strong style="font-weight:700">Bugfixes</strong></div>
+	<ul>	
+		<li>HTML5 video looping in background causes fullscreen mode to exit.</li>
+		<li>SFX block mask does not work correctly on safari if translate Z is used</li>
+		<li>Groups in columns did not respect the order of layers</li>		
+		<li>Carousel slides popup into the place if carousel has 3 slides.</li>
+		<li>Regression in update 6.6.7 causes BG videos to not play sometimes in carousel</li>
+		<li>Groups in columns did not respect the order of layers</li>
+		<li>Groups in columns set to absolute will not align well</li>
+		<li>Modal closes after any video in background completes a loop due to conflict.</li>
+		<li>Carousel visibility option for layers "Always visible on Carousel" disappears.</li>
+		<li>Block Scroll option does not work as expected on mobile.</li>
+		<li>Vimeo video speed option doesn't work on background video.</li>
+		<li>Attempting to change image via double click on shape layer results in error</li>
+		<li>Horizontal swipe gets triggered on iOS while swiping vertically</li>
+	</ul>
+	
 	<h3 class="version-number">Version 6.6.7 (17th November 2022)</h3>
 	<div class="newfeature"><strong style="font-weight:700">New Features</strong></div>
 	<ul>
@@ -1342,7 +1388,7 @@
 		<li>Fixed google font preload not working properly with italic fonts</li>
 		<li>Fixed CountDown AddOn where the count down layers were not auto updated within groups, rows and columns. CountDown AddOn version 2.1.1 is required</li>
 		<li>Carousel animation was laggy if all layers were visible on all slide elements</li>
-		<li>Carousel did not auto transform to next slide and did not reacted to navigation evens if "snap to X aligment" option was turned off</li>
+		<li>Carousel did not auto transform to next slide and did not reacted to navigation evens if "snap to X alignment" option was turned off</li>
 		<li>Carousel Elements sometimes disappearing by Swipe if max amount of elements size smaller then Document width</li>
 		<li>Fixed exploding layers issues in the editor where a layer can not be moved around in the animation mode. AddOn version 2.1.0 required</li>
 		<li>Fixed an issue with exploding layers where the animation on Layers with a tag will not animate smoothly. AddOn version 2.1.0 required</li>
@@ -1623,7 +1669,7 @@
 		<li>Fixed an issue in the import process where YouTube images could create a notice</li>
 		<li>Fixed the gradient background colors for columns in Firefox</li>
 		<li>Fixed offset cursors at first click in the custom CSS and JavaScript editor in the slider settings</li>
-		<li>Aligment of content based navigation on carousel has been fixed</li>
+		<li>Alignment of content based navigation on carousel has been fixed</li>
 		<li>Fixed the Font Awesome iconset in the object library</li>
 		<li>Content with loop effects in columns and groups were not resizing well</li>
 		<li>Selecting navigation elements in the editor was not selecting settings of that element automatically</li>
