@@ -5,7 +5,7 @@ License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl.html
 Tags: SEO, XML sitemap, Content analysis, Readability, Schema
 Tested up to: 6.1
-Stable tag: 19.10
+Stable tag: 20.0
 Requires PHP: 5.6.20
 
 Improve your WordPress SEO: Write better content and have a fully optimized WordPress site using the Yoast SEO plugin.
@@ -56,7 +56,7 @@ We know content is king, that's why Yoast SEO is famous for its **state-of-the-a
 * **[Premium]** An orphaned content filter to detect posts that have no links pointing towards them!
 * **[Premium]** SEO workouts to make working on your site as easy as ABC. These SEO workflows will get your site into shape in no time!
 * **[Premium]** **New!** Yoast SEO Premium comes with a new word complexity feature that gives you actionable feedback on using difficult words. This feature is in beta and English only for now.
-* **[Premium]** **New!** Yoast SEO Premium comes with a new inclusive language analysis that helps you write inclusive content. This feature is opt-in, in beta and English only for now.
+* **New!** Yoast SEO Free and Premium come with a new inclusive language analysis that helps you write inclusive content. This feature is opt-in and English-only for now.
 
 #### KEEP YOUR SITE IN PERFECT SHAPE
 
@@ -236,62 +236,68 @@ Your question has most likely been answered on our help center: [yoast.com/help/
 
 == Screenshots ==
 
-1. The Yoast SEO plugin general meta box. You'll see this on edit post pages, for posts, pages and custom post types.
-2. Example of the SEO analysis functionality.
-3. Example of the readability analysis functionality.
-4. Overview of site-wide SEO problems and possible improvements.
-5. Control over which features you want to use.
-6. Easily import SEO data from other SEO plugins like All In One SEO pack, HeadSpace2 SEO and wpSEO.de.
+1. The modern interface makes Yoast SEO easy to work with.
+2. Easily manage how your posts and pages appear in SERPs.
+3. Yoast SEO Premium has extra crawl optimization options.
+4. Yoast SEO integrates with tools like Semrush and Wincher.
+5. The famous SEO and readability analyses in Yoast SEO.
+6. See what your post looks like in Google.
+7. The First-time configuration helps you get started quickly.
+8. The inclusive language analysis in Yoast SEO.
 
 == Changelog ==
 
-= 19.10 =
-Release Date: November 8th, 2022
+= 20.0 =
 
-Yoast SEO 19.10 is out today. This release mostly consists of bug fixes and enhancements. In addition, we're getting our WordPress plugins ready for the upcoming High Performance Order Storage feature in WooCommerce 7.1+. Update now! Read more about what's new in Yoast SEO 19.9 in [our release post in English](https://yoa.st/release-8-11-22) or [our release post in Spanish](https://yoa.st/release-8-11-22-spanish)!
+Release date: 2023-01-24
 
-Enhancements:
+We're proud to introduce a brand new settings interface in Yoast SEO 20.0. We've worked hard to make this interface both beautiful and helpful. It's now much easier and enjoyable to work on your SEO. Plus, it's the start of much more cool stuff to come! Find out more about what's new in Yoast SEO 20.0 in [our release post](https://yoa.st/release-24-1-23)!
 
-* Improves the call-to-action feedback string of the _Flesch Reading Ease_ insight when the text is recognized as fairly difficult.
+#### Enhancements
 
-Bugfixes:
+* NEW: Introduces a brand-new design for Yoast SEO's settings pages:
+ * Completely overhauled the old 'settings' admin pages with a sleek and modern interface.
+ * Combines, moves and improves various admin pages.
+ * Adds the ability to search through site settings to quickly discover and modify your desired setting.
+ * Adds extra information and help for all controls.
+ * Vastly improves accessibility (including better support for keyboard navigation).
+ * Key features are now listed on the 'Site features' page under 'General'.
+ * Webmaster Tools settings have moved to 'Site connections' page under 'General'.
+ * Open Graph settings can now be found in 'Site features' under 'General'.
+ * Adds an introduction modal with videos to quickly help you on your way.
+* Improves the link focus styles in the first time configuration.
 
-* Fixes a bug where a fatal error would be thrown in the classic editor in combination with certain plugins that misuse metabox hooks.
-* Fixes a bug where users with site-wide basic access authentication would be prompted to insert their credentials when saving a post in Elementor if they didn't have the `manage_options` capability.
-* Fixes a bug where Yoast SEO-related post meta data would not be saved if a user without the `manage_options` capability would save a post in Elementor.
+#### Other
 
-Other:
+* Displays a notification urging to upgrade Premium if the version is below 20.0, since some settings might be missing from the new user interface.
 
-* Deprecates the hooks used to add custom content to the Yoast SEO settings pages, in preparation for future releases. The following hooks have been deprecated: `wpseo_tools_overview_list_items`, `wpseo_settings_tab_crawl_cleanup`, `wpseo_settings_tab_site_analysis`, `Yoast\WP\SEO\admin_author_archives_meta`, `Yoast\WP\SEO\admin_date_archives_meta`, `Yoast\WP\SEO\admin_post_types_beforearchive`, `Yoast\WP\SEO\admin_post_types_archive`, `Yoast\WP\SEO\admin_taxonomies_meta`, `wpseo_admin_other_section`, `wpseo_admin_opengraph_section`, `wpseo_admin_pinterest_section`, `wpseo_admin_twitter_section`, `wpseo_import_other_plugins`.
-* Ensures compatibility with the _High Performance Order Storage_ feature in WooCommerce 7.1+.
-* Sets the WordPress tested up to version to 6.1.
+= 19.14 =
 
-= 19.9 =
-Release Date: October 25th, 2022
+Release date: 2023-01-10
 
-Yoast SEO 19.9 is out today. Yoast SEO already supports the Schema necessary for Google's Site Names update, but we've expanded support for it in this release. In addition, we give users more control over what names they can add, including an alternate title. Of course, there's a lot more, so check it out! Read more about what's new in Yoast SEO 19.9 in [our release post in English](https://yoa.st/release-25-10-22) or [our release post in Spanish](https://yoa.st/release-25-10-22-spanish)!
+Yoast SEO 19.14 introduces the first round of improvements to the inclusive language analysis. We've made the analysis smarter in detecting terms in certain contexts and improved the feedback we give writers. Check it out! Find out more about what's new in Yoast SEO 19.14 in [our release post](https://yoa.st/release-10-1-23)!
 
-Enhancements:
+#### Enhancements
 
-* Adds input fields to overwrite the site name, as well as an extra input field for a (potentially shorter) alternate name. Google introduced new support for [site names in Google Search](https://developers.google.com/search/blog/2022/10/introducing-site-names-on-search). Yoast SEO already outputs this value correctly, using the WordPress site name. With these changes, we have increased the control site owners have over this value.
-* Improves the Schema output for Organization by no longer putting out an empty array if no social profiles have been added for it.
-* Adds immediate keyphrase tracking after connecting to Wincher.
+* Improves the _inclusive language analysis_ by expanding the number of non-inclusive phrases recognized as well as by improving the feedback, for example by adding more inclusive alternatives or fixing inconsistencies. Specifically, this includes the following changes:
+  * Adds "OCD", "normal" and "abnormal" to the terms that are targeted by the _inclusive language analysis_ in specific contexts.
+  * Adds "stupid" to the terms that are always targeted by the _inclusive language analysis_.
+  * Removes the term "African American Vernacular English" from the terms targeted by the  _inclusive language analysis_.  
+  * Changes the terms "exotic" and "oriental" to be considered potentially non-inclusive in the _inclusive language analysis_, adds exceptions and updates their feedback.
+  * Improves the categorization of the targeted terms in the _inclusive language analysis_ by splitting the `other` category into a more specific one.
+  * Improves the feedback for some (potentially) non-inclusive target terms in the _inclusive language analysis_.
+  * Adds more alternatives to some (potentially) non-inclusive target terms in the _inclusive language analysis_.
+  * Adds terms that are only considered (potentially) non-inclusive when they are followed by certain words or a punctuation mark.
+* Avoids a deprecation notice for the Yoast sidebar panel in the block editor.
+* Improves the accuracy of calculating text length in Japanese by excluding all spaces and HTML tags from the character count, and by including domain names.
 
-Bugfixes:
+#### Bugfixes
 
-* Fixes a bug where a fatal error would be thrown when using the `wpseo_breadcrumb_links` filter in the wrong way on PHP 8.0+.
-* Fixes a bug where social or canonical URLs containing `@` would lead to encoding issues. Props to [@stodorovic](https://github.com/stodorovic).
-* Fixes a bug where the buttons in the _FAQ_ and in the _how-to_ block would be hardly visible when using a dark theme.
-* Fixes a bug where the number of words would be counted incorrectly when using Cyrillic script. Props to [kudinovfedor](https://github.com/kudinovfedor).
-* Fixes a bug where the _previously used keyphrase_ assessment would also appear under the readability analysis tab when the cornerstone content toggle would be switched on.
-* Fixes a bug where the SEO optimization routine would give an error when an image file of an image linked in a post could not be retrieved.
-* Fixes a bug where the wrong canonical URL would be set on attachment pages.
+* Fixes a bug where indexable hierarchy wasn't built when the Indexable is built for the first time.
 
-Other:
+#### Other
 
-* Adds taxonomy information to breadcrumbs of type "term" to be able to filter them better with the `wpseo_breadcrumb_links` filter. Props to [@svenvonarx](https://github.com/svenvonarx).
-* Adds a `wpseo_primary_category_admin_pages` filter to enable the use of the primary category in the post URL of additional admin pages besides the default ones. Props to [@ssvet](https://github.com/ssvet).
-* Reinstates the `wpseo_twitter_card_type` filter that was wrongly deprecated in 19.8.
+* Sets the minimum supported WordPress version to 6.0.
 
 = Earlier versions =
 For the changelog of earlier versions, please refer to [the changelog on yoast.com](https://yoa.st/yoast-seo-changelog).
