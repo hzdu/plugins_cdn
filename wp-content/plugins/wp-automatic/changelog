@@ -1,5 +1,10 @@
+Version 3.62.0 (25 January 2023)
+NEW: Open AP article generation prompt now supports the [keyword] tag
+NEW: Youtube now can get transcript of imported videos, use tag [transcript]
+NEW: PixaBay keyword now supports the [keyword] tag
+NEW: Cron option to set number of campaigns to process per cron run
 
-@19 January 2023 v3.61.0
+Version 3.61.0 (19 January 2023)
 NEW: Import/Export feature for campaigns 
 NEW: Multi-page scraper/Feeds new option to remove unwanted parts by Visual selector/XPath
 NEW: Multi-page scraper original time now support custom REGEX for extraction
@@ -12,7 +17,7 @@ Fix: Multi-scraper now bypass cache for created feed files especially on OVH
 
 
 @12 January 2023 v3.60.1
-NEW: OpenAI option to use keywords directly for articles instead of generating titles
+NEW: OpenAI option to use keywords directly for articles instead of generating tigtles
 NEW: OpenAI option to set the post as pending if prompt failed
 Fix: [gpt3] shortcode now works for Amazon campaigns
 Fix: Youtube skip posts older than a specific minute now generate a dynamic date for search

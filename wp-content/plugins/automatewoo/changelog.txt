@@ -1,5 +1,17 @@
 *** AutomateWoo Changelog ***
 
+2023-01-24 - version 5.6.5
+* Fix - Prevent critical error when an invalid time is set in Fixed time workflows.
+
+2023-01-17 - version 5.6.4
+* Compat - Compatibility with MailPoet email customizer
+* Compat - Quickfilter Compatibility for Subscriptions with HPOS.
+* Dev - Reuse HPOS Toggle trait from WooCommerce core to prevent temporary tables from being created during unit tests.
+* Dev - Unit testing for delete order hooks with HPOS.
+* Dev - Unit testing for order and subscription status changes.
+* Fix - Escape Term Slug inside admin_url function in the users tags column.
+* Fix - Use get_edit_order_url for admin Subscription links.
+
 2023-01-10 - version 5.6.3
 * Tweak - Compat - Remove deprecated from before the 5.0.0 release.
 * Tweak - WC 7.3 compatibility.

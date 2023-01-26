@@ -1,4 +1,4 @@
-// Description: This file contains the tutorials object and the function 
+// Description: This file contains the tutorials object and the function
 //to update the tutorials list based on the selected camp type
 
 const tutorials = {
@@ -13,6 +13,14 @@ const tutorials = {
     {
       title: "How to import from RSS to WordPress",
       url: "https://www.youtube.com/watch?v=YgN5Hv3eJms",
+    },
+    {
+      title: "How to import from RSS feeds protected with Cloudflare",
+      url: "https://valvepress.com/how-to-import-from-rss-feeds-protected-with-cloudflare/",
+    },
+    {
+      title: "How to import Amazon products from a specific country",
+      url: "https://valvepress.com/how-to-import-amazon-products-from-a-specific-country-using-wordpress-automatic/",
     },
   ],
   Amazon: [
@@ -42,6 +50,11 @@ const tutorials = {
     {
       title: "How to import from Youtube to WordPress",
       url: "https://www.youtube.com/watch?v=UzR5WZq3Ad8",
+    },
+    {
+      title:
+        "How to import Youtube video transcript to WordPress and generate OpenAI GPT content from it",
+      url: "https://www.youtube.com/watch?v=Ywa7DQ1oWZA",
     },
   ],
   Vimeo: [
@@ -90,6 +103,11 @@ const tutorials = {
     {
       title: "How to import TikTok videos to WordPress",
       url: "https://www.youtube.com/watch?v=TB64u0J1wz0",
+    },
+    {
+      title:
+        "How to post older TikTok videos to WordPress using Automatic Plugin",
+      url: "https://valvepress.com/how-to-post-older-tiktok-videos-to-wordpress-using-automatic-plugin/",
     },
   ],
   Twitter: [

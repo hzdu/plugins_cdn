@@ -2,14 +2,14 @@
 # This file is distributed under the GPLv3.
 msgid ""
 msgstr ""
-"Project-Id-Version: AutomateWoo 5.6.3\n"
+"Project-Id-Version: AutomateWoo 5.6.5\n"
 "Report-Msgid-Bugs-To: https://woocommerce.com/my-account/create-a-ticket/\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2023-01-10T09:53:42+00:00\n"
+"POT-Creation-Date: 2023-01-24T17:23:25+01:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.7.1\n"
 "X-Domain: automatewoo\n"
@@ -536,7 +536,7 @@ msgstr ""
 msgid "highest converting workflow"
 msgstr ""
 
-#: admin/data-layer-formatter.php:33
+#: admin/data-layer-formatter.php:31
 #: admin/reports/conversions-list.php:139
 #: includes/Actions/Order_Add_Note.php:19
 #: includes/Actions/Order_Change_Status.php:19
@@ -550,7 +550,7 @@ msgstr ""
 msgid "Order"
 msgstr ""
 
-#: admin/data-layer-formatter.php:40
+#: admin/data-layer-formatter.php:41
 #: admin/reports/carts.php:41
 #: admin/reports/conversions-list.php:140
 #: admin/reports/logs.php:110
@@ -573,7 +573,7 @@ msgstr ""
 msgid "Guest"
 msgstr ""
 
-#: admin/data-layer-formatter.php:58
+#: admin/data-layer-formatter.php:57
 #: admin/reports/carts.php:20
 #: admin/reports/carts.php:39
 #: includes/Privacy_Exporters.php:338
@@ -581,7 +581,7 @@ msgstr ""
 msgid "Cart"
 msgstr ""
 
-#: admin/data-layer-formatter.php:67
+#: admin/data-layer-formatter.php:65
 #: includes/Privacy_Exporters.php:346
 #: templates/email/review-grid-3-col.php:46
 msgid "Review"
@@ -596,7 +596,7 @@ msgstr ""
 msgid "Product"
 msgstr ""
 
-#: admin/data-layer-formatter.php:85
+#: admin/data-layer-formatter.php:87
 #: includes/Actions/Subscriptions/AbstractEditItem.php:73
 #: includes/Actions/Subscriptions/RecalculateTaxes.php:34
 #: includes/Actions/Subscriptions/RegenerateDownloadPermissions.php:32
@@ -609,13 +609,13 @@ msgstr ""
 msgid "Subscription"
 msgstr ""
 
-#: admin/data-layer-formatter.php:94
+#: admin/data-layer-formatter.php:98
 #: includes/Actions/Memberships_Abstract.php:15
 #: includes/Privacy_Exporters.php:370
 msgid "Membership"
 msgstr ""
 
-#: admin/data-layer-formatter.php:102
+#: admin/data-layer-formatter.php:108
 #: includes/Privacy_Exporters.php:377
 msgid "Wishlist"
 msgstr ""
@@ -3092,7 +3092,7 @@ msgstr ""
 
 #: includes/DataTypes/Order.php:74
 #: includes/Triggers/Abstract_Order_Base.php:31
-#: includes/Triggers/Order_Refunded.php:28
+#: includes/Triggers/Order_Refunded.php:33
 #: includes/Triggers/User_Purchases_Product_Variation_With_Attribute.php:27
 #: includes/Triggers/Utilities/OrderGroup.php:18
 #: admin/assets/build/analytics.js:1
@@ -4765,7 +4765,7 @@ msgstr ""
 
 #: includes/Trigger.php:416
 #: includes/Trigger.php:446
-#: includes/Triggers/Subscription_Status_Changed.php:57
+#: includes/Triggers/Subscription_Status_Changed.php:56
 msgid "Recheck status before run"
 msgstr ""
 
@@ -4844,8 +4844,8 @@ msgstr ""
 
 #: includes/Triggers/BookingStatusChanged.php:65
 #: includes/Triggers/Membership_Status_Changed.php:38
-#: includes/Triggers/Order_Status_Changes.php:26
-#: includes/Triggers/Subscription_Status_Changed.php:45
+#: includes/Triggers/Order_Status_Changes.php:29
+#: includes/Triggers/Subscription_Status_Changed.php:44
 msgid "Status changes from"
 msgstr ""
 
@@ -4855,8 +4855,8 @@ msgstr ""
 
 #: includes/Triggers/BookingStatusChanged.php:72
 #: includes/Triggers/Membership_Status_Changed.php:45
-#: includes/Triggers/Order_Status_Changes.php:32
-#: includes/Triggers/Subscription_Status_Changed.php:52
+#: includes/Triggers/Order_Status_Changes.php:35
+#: includes/Triggers/Subscription_Status_Changed.php:51
 msgid "Status changes to"
 msgstr ""
 
@@ -5005,11 +5005,11 @@ msgstr ""
 msgid "Fires when a note is added to an order for each line item in the order. This can include both private notes and notes to the customer. These notes appear on the right of the order edit screen."
 msgstr ""
 
-#: includes/Triggers/Order_Cancelled.php:18
+#: includes/Triggers/Order_Cancelled.php:25
 msgid "Order Cancelled"
 msgstr ""
 
-#: includes/Triggers/Order_Completed.php:18
+#: includes/Triggers/Order_Completed.php:25
 msgid "Order Completed"
 msgstr ""
 
@@ -5049,7 +5049,7 @@ msgstr ""
 msgid "[All]"
 msgstr ""
 
-#: includes/Triggers/Order_On_Hold.php:18
+#: includes/Triggers/Order_On_Hold.php:25
 msgid "Order On Hold"
 msgstr ""
 
@@ -5069,19 +5069,19 @@ msgstr ""
 msgid "Triggers for each order line item at the end of the payment process after the order status has been changed and stock has been reduced."
 msgstr ""
 
-#: includes/Triggers/Order_Pending.php:18
+#: includes/Triggers/Order_Pending.php:25
 msgid "Order Pending Payment"
 msgstr ""
 
-#: includes/Triggers/Order_Processing.php:18
+#: includes/Triggers/Order_Processing.php:25
 msgid "Order Processing"
 msgstr ""
 
-#: includes/Triggers/Order_Refunded.php:26
+#: includes/Triggers/Order_Refunded.php:31
 msgid "Order Refunded"
 msgstr ""
 
-#: includes/Triggers/Order_Refunded.php:27
+#: includes/Triggers/Order_Refunded.php:32
 msgid "Fires when an order is refunded, both for partial and full refunds."
 msgstr ""
 
@@ -5093,23 +5093,23 @@ msgstr ""
 msgid "Fires when an order is refunded manually. This trigger does not fire when an order is refunded automatically."
 msgstr ""
 
-#: includes/Triggers/Order_Status_Changes.php:16
+#: includes/Triggers/Order_Status_Changes.php:17
 msgid "Order Status Changes"
 msgstr ""
 
-#: includes/Triggers/Order_Status_Changes.php:17
+#: includes/Triggers/Order_Status_Changes.php:18
 msgid "Triggers after an order changes status occurs. Set the workflow to run on certain status changes with the trigger options."
 msgstr ""
 
-#: includes/Triggers/Order_Status_Changes.php:23
+#: includes/Triggers/Order_Status_Changes.php:26
 msgid "Select which order statuses will trigger this workflow. Leave blank for any status."
 msgstr ""
 
-#: includes/Triggers/Order_Status_Changes_Each_Line_Item.php:19
+#: includes/Triggers/Order_Status_Changes_Each_Line_Item.php:26
 msgid "Order Status Changes - Each Line Item"
 msgstr ""
 
-#: includes/Triggers/Order_Status_Changes_Each_Line_Item.php:20
+#: includes/Triggers/Order_Status_Changes_Each_Line_Item.php:27
 msgid "This trigger runs for each line item after an order status change occurs. Using this trigger allows access to the specific order item and product data."
 msgstr ""
 
@@ -5209,19 +5209,19 @@ msgstr ""
 msgid "Subscription Renewal Payment Failed"
 msgstr ""
 
-#: includes/Triggers/Subscription_Status_Changed.php:30
+#: includes/Triggers/Subscription_Status_Changed.php:32
 msgid "Subscription Status Changed"
 msgstr ""
 
-#: includes/Triggers/Subscription_Status_Changed.php:31
+#: includes/Triggers/Subscription_Status_Changed.php:33
 msgid "This trigger fires when a subscription status changes with one exception. When an automatic subscription payment is processed the subscription status is changed to \"On-hold\" and then immediately back to \"Active\" if the payment is successful. When this happens this trigger deliberately doesn't fire because the status was only changed momentarily while the subscription has essentially remained \"Active\"."
 msgstr ""
 
-#: includes/Triggers/Subscription_Status_Changed.php:47
+#: includes/Triggers/Subscription_Status_Changed.php:46
 msgid "Select which subscription status changes will trigger this workflow. Leave blank for any subscription status."
 msgstr ""
 
-#: includes/Triggers/Subscription_Status_Changed.php:58
+#: includes/Triggers/Subscription_Status_Changed.php:57
 msgid "This is useful for workflows that are not run immediately as it ensures the status of the subscription hasn't changed since initial trigger."
 msgstr ""
 
@@ -6327,55 +6327,59 @@ msgctxt "timing option"
 msgid "Fixed at %s"
 msgstr ""
 
-#: includes/Workflows/TimingDescriptionGenerator.php:152
+#: includes/Workflows/TimingDescriptionGenerator.php:140
+msgid "Invalid time"
+msgstr ""
+
+#: includes/Workflows/TimingDescriptionGenerator.php:154
 msgid "%s hour"
 msgid_plural "%s hours"
 msgstr[0] ""
 msgstr[1] ""
 
-#: includes/Workflows/TimingDescriptionGenerator.php:155
+#: includes/Workflows/TimingDescriptionGenerator.php:157
 msgid "%s minute"
 msgid_plural "%s minutes"
 msgstr[0] ""
 msgstr[1] ""
 
-#: includes/Workflows/TimingDescriptionGenerator.php:158
+#: includes/Workflows/TimingDescriptionGenerator.php:160
 msgid "%s day"
 msgid_plural "%s days"
 msgstr[0] ""
 msgstr[1] ""
 
-#: includes/Workflows/TimingDescriptionGenerator.php:161
+#: includes/Workflows/TimingDescriptionGenerator.php:163
 msgid "%s week"
 msgid_plural "%s weeks"
 msgstr[0] ""
 msgstr[1] ""
 
-#: includes/Workflows/TimingDescriptionGenerator.php:164
+#: includes/Workflows/TimingDescriptionGenerator.php:166
 msgid "%s month"
 msgid_plural "%s months"
 msgstr[0] ""
 msgstr[1] ""
 
-#: includes/Workflows/TimingDescriptionGenerator.php:182
+#: includes/Workflows/TimingDescriptionGenerator.php:184
 msgid "Weekdays"
 msgstr ""
 
-#: includes/Workflows/TimingDescriptionGenerator.php:184
+#: includes/Workflows/TimingDescriptionGenerator.php:186
 msgid "Weekends"
 msgstr ""
 
-#: includes/Workflows/TimingDescriptionGenerator.php:191
+#: includes/Workflows/TimingDescriptionGenerator.php:193
 msgctxt "day"
 msgid " or "
 msgstr ""
 
-#: includes/Workflows/TimingDescriptionGenerator.php:217
+#: includes/Workflows/TimingDescriptionGenerator.php:219
 msgctxt "timing option"
 msgid "Runs daily at %s"
 msgstr ""
 
-#: includes/Workflows/TimingDescriptionGenerator.php:219
+#: includes/Workflows/TimingDescriptionGenerator.php:221
 msgctxt "timing option"
 msgid "Checked daily at %s"
 msgstr ""
