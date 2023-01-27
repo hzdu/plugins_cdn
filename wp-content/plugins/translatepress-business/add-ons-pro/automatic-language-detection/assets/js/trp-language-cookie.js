@@ -274,11 +274,18 @@ function TRP_IN_Determine_Language(){
         }
     }
 
+    this.decode_HTML_entities = function(str) {
+        let txt = new DOMParser().parseFromString(str, "text/html");
+        return txt.documentElement.textContent;
+    }
+
     this.get_url_for_lang = function( language ){
 
         for( i in trp_language_cookie_data['language_urls'] ){
             if( i === language ) {
-                return trp_language_cookie_data['language_urls'][i];
+                let url_for_language = _this.decode_HTML_entities(trp_language_cookie_data['language_urls'][i]);
+
+                return url_for_language;
             }
         }
         return false;
