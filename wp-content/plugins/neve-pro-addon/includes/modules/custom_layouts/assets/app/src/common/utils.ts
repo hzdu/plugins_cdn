@@ -90,8 +90,12 @@ const mapOptGroupOptions = ( options: Option[], beautifyLabel = false ) => {
 			mappedValues = valueKeys.map( ( name, index ) => {
 				// @ts-ignore
 				const element = ( values[ name ] || values[ index ] ) as string;
+				// For items where the numeric index is the same with the name value use the element instead.
+				// `hooks` will use element value, `inside_content` will use name as value.
+				const itemValue =
+					parseInt( name, 10 ) === index ? element : name;
 				return {
-					value: name !== values[ name ] ? values[ name ] : element,
+					value: itemValue,
 					label: beautifyLabel
 						? beautifyHookName( element )
 						: element,

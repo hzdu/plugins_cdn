@@ -32,9 +32,10 @@ export type Rules = {
  * Type for ConditionalPanel
  */
 type ConditionalPanelArgs = {
-	selectedRules: Record< number, Record< number, Rules > >;
-	onChange: ( nextValue: Record< number, Record< number, Rules > > ) => void;
-	updateDb: ( nextValue: Record< number, Record< number, Rules > > ) => void;
+	selectedRules: Rules[][];
+	onChange: ( nextValue: Rules[][] ) => void;
+	updateDb: ( nextValue: Rules[][] ) => void;
+	description?: string;
 };
 
 /**
@@ -44,7 +45,12 @@ type ConditionalPanelArgs = {
  * @class
  */
 const ConditionalPanel = React.memo(
-	( { selectedRules, onChange, updateDb }: ConditionalPanelArgs ) => {
+	( {
+		selectedRules,
+		onChange,
+		updateDb,
+		description = undefined,
+	}: ConditionalPanelArgs ) => {
 		const migrateGroupData = ( oldGroup: Record< number, Rules > ) => {
 			const newGroupData: Rules[] = [];
 			Object.values( oldGroup ).forEach( ( groupItem: Rules ) => {
@@ -131,6 +137,10 @@ const ConditionalPanel = React.memo(
 		};
 
 		const getGroupMagicTags = ( groupValue: Rules[] ) => {
+			if ( ! window.neveCustomLayouts.magicTags ) {
+				return [];
+			}
+
 			let allMagicTags: string[] = [];
 			for ( const index in groupValue ) {
 				const rule = groupValue[ index ];
@@ -237,12 +247,7 @@ const ConditionalPanel = React.memo(
 							color: '#898A8B',
 						} }
 					>
-						<i>
-							{ __(
-								'If no conditional logic is selected, the Custom Layout will be applied site-wide.',
-								'neve'
-							) }
-						</i>
+						{ description && <i>{ description }</i> }
 					</span>
 					{ rules.map( ( group, index ) => {
 						group = migrateGroupData( group );

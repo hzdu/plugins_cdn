@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo, useRef } from 'react';
+import React, { useCallback, useEffect } from 'react';
 
 import VirtualizedComboBox, { Option } from '../shared/VirtualizedComboBox';
 import { __ } from '@wordpress/i18n';

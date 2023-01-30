@@ -337,7 +337,7 @@ const VirtualizedComboBox = React.memo(
 							justify="space-between"
 							style={ { height: '100%' } }
 						>
-							<FlexItem>
+							<FlexItem style={ { width: '100%' } }>
 								<input
 									type="text"
 									className="components-combobox-control__input components-form-token-field__input"

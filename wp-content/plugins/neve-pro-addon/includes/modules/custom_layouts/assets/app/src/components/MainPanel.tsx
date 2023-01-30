@@ -25,6 +25,7 @@ type Props = {
 	currentPostId: number;
 	setPostMeta: ( newValue: Record< string, unknown > | null ) => void;
 	setPostTitle: ( newValue: string ) => void;
+	removeEditorPanel: < T = void >( panel: string ) => T;
 };
 
 const MainPanel: React.FC< Props > = ( {
@@ -32,6 +33,7 @@ const MainPanel: React.FC< Props > = ( {
 	currentPostId,
 	setPostMeta,
 	setPostTitle,
+	removeEditorPanel,
 } ) => {
 	const {
 		layouts,
@@ -40,6 +42,16 @@ const MainPanel: React.FC< Props > = ( {
 		sidebarActions,
 		insidePositions,
 	} = window.neveCustomLayouts.sidebarOptions;
+
+	const REMOVE_PANELS = [
+		'featured-image',
+		'post-excerpt',
+		'discussion-panel',
+		'page-attributes',
+	];
+	REMOVE_PANELS.forEach( ( panel ) => {
+		removeEditorPanel( panel );
+	} );
 
 	const META_LAYOUT = 'custom-layout-options-layout';
 	const META_HOOK = 'custom-layout-options-hook';
@@ -53,12 +65,10 @@ const MainPanel: React.FC< Props > = ( {
 	const META_CONDITIONAL = 'custom-layout-conditional-logic';
 
 	const [ isloaded, setLoaded ] = useState( false );
-	const [ conditions, setConditions ] = useState(
-		React.useCallback( () => {
-			return ( maybeParseJson( postMeta[ META_CONDITIONAL ] as string ) ??
-				[] ) as Record< number, Record< number, Rules > >;
-		}, [ postMeta ] )
-	);
+	const [ conditions, setConditions ] = useState( () => {
+		return ( ( maybeParseJson( postMeta[ META_CONDITIONAL ] as string ) ??
+			[] ) as unknown ) as Rules[][];
+	} );
 
 	const [ date, setDate ] = useState(
 		postMeta[ META_EXP_DATE ]
@@ -149,9 +159,7 @@ const MainPanel: React.FC< Props > = ( {
 		} );
 	};
 
-	const changeConditionalRules = (
-		nextValue: Record< number, Record< number, Rules > >
-	) => {
+	const changeConditionalRules = ( nextValue: Rules[][] ) => {
 		const filteredValue = Object.values( nextValue )
 			.map( function ( group ) {
 				let itemToCheck = group as Array< Rules >;
@@ -315,6 +323,10 @@ const MainPanel: React.FC< Props > = ( {
 
 				{ showConditional && (
 					<ConditionalPanel
+						description={ __(
+							'If no conditional logic is selected, the Custom Layout will be applied site-wide.',
+							'neve'
+						) }
 						selectedRules={ conditions }
 						onChange={ setConditions }
 						updateDb={ changeConditionalRules }
@@ -335,6 +347,7 @@ export default compose(
 		};
 	} ),
 	withDispatch( ( dispatch ) => {
+		const { removeEditorPanel } = dispatch( 'core/edit-post' );
 		return {
 			setPostMeta(
 				newMeta:
@@ -349,6 +362,7 @@ export default compose(
 			setPostTitle( newTitle: string ) {
 				dispatch( 'core/editor' ).editPost( { title: newTitle } );
 			},
+			removeEditorPanel,
 		};
 	} )
 )( MainPanel );

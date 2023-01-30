@@ -1,3 +1,17 @@
+#### [Version 2.5.0](https://github.com/Codeinwp/neve-pro-addon/compare/v2.4.9...v2.5.0) (2023-01-30)
+
+- [Feat] Blog hover effects - [Learn more](https://docs.themeisle.com/article/1306-neve-blog-archive-options#image-style)
+- [Feat] Custom Layout Patterns - [Learn more](https://docs.themeisle.com/article/1725-templates-in-neves-custom-layouts)
+- [Feat] Custom sidebars module - [Learn more](https://docs.themeisle.com/article/1770-custom-sidebars-module-documentation)
+- [Fix] Show missing license notification in the customizer
+- [Fix] Activate License label from the plugin screen was replaced with Activate
+- [Fix] Inside content display values
+- [Fix] After Shop Loop hook is moved before pagination when Sparks is activated
+- [Fix] Compatibility support added for Elementor v3.5+
+- [Fix] "Select icon" tooltip in the mega menu admin screen
+- Test WooCommerce 7.3
+- Improve the testing process
+
 ##### [Version 2.4.9](https://github.com/Codeinwp/neve-pro-addon/compare/v2.4.8...v2.4.9) (2023-01-09)
 
 - [Feat] Add Bandcamp icon to the social component in HFG
