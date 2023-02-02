@@ -133,6 +133,45 @@ MODAL
   }
 }
 
+
+.tap-firefox-browser {
+  .tap-modal {
+    &.tap-no-consent-modal {
+      .tap-modal-content {
+        height: 100%;
+      }
+    }
+  }
+}
+
+@media screen and (max-height: 900px) {
+  .tap-firefox-browser {
+    .tap-modal {
+      &.tap-no-consent-modal {
+        .tap-modal-content {
+          height: calc(100% - 90px);
+        }
+      }
+
+      .tap-modal-footer {
+        position: initial;
+      }
+    }
+  }
+}
+
+@media screen and (max-height: 750px) {
+  .tap-firefox-browser {
+    .tap-modal {
+      &.tap-no-consent-modal {
+        .tap-modal-content {
+          height: calc(100% - 20vh - 40px);
+        }
+      }
+    }
+  }
+}
+
 .tap-disable-consent-modal {
   --modal-height: 600px;
 }

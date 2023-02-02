@@ -100,6 +100,10 @@ export function validateValue( value, validator = [] ) {
 						isValid = false;
 						message = 'No spaces allowed';
 					}
+					if ( isValid && Array.isArray( value ) && value?.some( pair => pair.key && ! ( validateDataKey( pair.key ).isValid ) ) ) {
+						isValid = false;
+						message = 'No special characters allowed';
+					}
 					break;
 				case 'http_headers':
 					if ( Array.isArray( value ) && value?.some( pair => pair.key && pair.key.match( /[a-zA-Z0-9$-]+/g )?.[ 0 ] !== pair.key ) ) {
@@ -288,14 +292,21 @@ export function validateKeyPair( value ) {
  * @returns {*}
  */
 export function validateDataKey( key, regex = '[a-zA-Z0-9-_]+(\\[(.*?)\\])*$' ) {
-	let isValid = false, message = '';
+	let isValid = false,
+		message = '';
 	if ( key ) {
 		if ( /\s/g.test( key ) ) {
 			message = 'No spaces allowed';
 		} else {
 			regex = new RegExp( regex, 'g' )
 			if ( ! /^[a-zA-Z]/.test( key ) || key.match( regex )?.[ 0 ] !== key ) {
-				message = 'No special characters allowed';
+				//just in case we have numbers as keys
+				if ( parseInt( key ) == key ) {
+					message = '';
+					isValid = true;
+				} else {
+					message = 'No special characters allowed';
+				}
 			} else {
 				isValid = true;
 			}
@@ -346,3 +357,30 @@ export function getFieldInfo( value, dataObjects ) {
 		field
 	};
 }
+
+/**
+ * Function to detect current browser
+ */
+export function detectBrowser() {
+	const ua = navigator.userAgent;
+	let browser = 'unknown';
+
+	if ( /Firefox[\/\s](\d+\.\d+)/.test( ua ) ) {
+		browser = 'firefox';
+	} else if ( /MSIE (\d+\.\d+);/.test( ua ) ) {
+		browser = 'ie';
+	} else if ( /Chrome[\/\s](\d+\.\d+)/.test( ua ) ) {
+		browser = 'chrome';
+	} else if ( /Safari[\/\s](\d+\.\d+)/.test( ua ) ) {
+		browser = 'safari';
+	} else if ( /Opera[\/\s](\d+\.\d+)/.test( ua ) ) {
+		browser = 'opera';
+	} else if ( /Edge[\/\s](\d+\.\d+)/.test( ua ) || /Edg[\/\s](\d+\.\d+)/.test( ua ) ) {
+		browser = 'edge';
+	} else if ( /iPad|iPhone|iPod/.test( ua ) && ! window.MSStream ) {
+		browser = 'ios';
+	}
+
+	return browser;
+}
+

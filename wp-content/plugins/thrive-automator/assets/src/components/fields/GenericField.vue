@@ -178,7 +178,6 @@ export default {
 		...mapActions( 'steps', [ 'updateStep', 'setActionField', 'setActionFieldCustomProp', 'setTriggerField', 'setTriggerFieldCustomProp', 'updateStepDataField' ] ),
 		...mapActions( 'fields', [ 'clearTriggerFields', 'clearActionFields', 'getActionSubfields', 'getTriggerSubfields', 'fetchActionFields', 'fetchTriggerFields', 'getActionFieldsMapping', 'getTriggerFieldsMapping', 'setInitialFetched' ] ),
 		...mapActions( 'triggers', [ 'syncTriggerData' ] ),
-		...mapActions( 'actions', [ 'syncActionData' ] ),
 		...mapActions( 'generic', [ 'setDataObject' ] ),
 		clearEmptyFields() {
 		},
@@ -204,6 +203,8 @@ export default {
 		changeProp( value ) {
 			// prevent multiple fetches
 			if ( this.fieldValue !== value ) {
+				const shouldFetchSubfields = this.subfieldKeys?.length && value;
+
 				this.hasChanges = true;
 				this[ `set${this.parentName}Field` ]( {
 					stepIndex: this.stepIndex,
@@ -213,7 +214,9 @@ export default {
 					preview: this.getPrettyPreview( value ),
 					value,
 				} )
+
 				if ( this.syncOnChange && typeof this[ `sync${this.parentName}Data` ] === 'function' ) {
+					this.toggleLoader();
 					this[ `sync${this.parentName}Data` ]( this.parentData ).then( data => {
 						if ( this.parentType === 'trigger' ) {
 							this.updateStepDataField( {
@@ -228,13 +231,21 @@ export default {
 									fields: data.filterable_fields[ dataObjectKey ],
 								} );
 							} )
+							// fetch subfields
+							if ( shouldFetchSubfields ) {
+								this.fetchSubfields( value ).then( () => {
+									this.toggleLoader( false );
+								} );
+							} else {
+								this.toggleLoader( false );
+							}
 						}
 					} );
-				}
-
-				// fetch sbufields
-				if ( this.subfieldKeys?.length && value ) {
-					this.fetchSubfields( value );
+				} else {
+					// fetch subfields
+					if ( shouldFetchSubfields ) {
+						this.fetchSubfields( value );
+					}
 				}
 			}
 		},

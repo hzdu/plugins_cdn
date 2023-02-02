@@ -33,7 +33,7 @@
 				<div class="tap-arrow-right"/>
 			</div>
 		</div>
-		<div class="tap-col--40" @click="enterEditMode">
+		<div class="tap-col--40 tap-aut-saved-actions" @click="enterEditMode">
 			<div v-for="(action,index) in autActions"
 				 :key="index"
 				 v-tooltip="{
@@ -46,7 +46,7 @@
 				<icon :icon-name="'tap-move-right'"/>
 			</div>
 		</div>
-		<div class="tap-col--10 tap-flex--between">
+		<div class="tap-col--10 tap-flex--between tap-aut-functions">
 			<div class="tap-auto-status">
 				<icon-button :button-styles="['status',isPublished ? 'active': 'inactive']" :button-text="isPublished ? 'Active' : 'Inactive'" @click="toggleStatus"/>
 			</div>

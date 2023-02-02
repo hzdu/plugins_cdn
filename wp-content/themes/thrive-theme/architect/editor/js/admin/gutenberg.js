@@ -1,4 +1,7 @@
 ( function ( $ ) {
+
+	const EDITOR_SELECTORS = '.editor-block-list__layout,.block-editor-block-list__layout';
+
 	const ThriveGutenbergSwitch = {
 
 		/**
@@ -10,36 +13,37 @@
 		},
 
 		init: function () {
-			const self = this;
+			this.coreEditor = wp.data.select( 'core/editor' );
 			this.$gutenberg = $( '#editor' );
 			this.$architectNotificationContent = $( '#thrive-gutenberg-switch' ).html();
 			this.$architectDisplay = $( '<div id="tar-display">' ).append( this.$architectNotificationContent );
 			this.$architectLauncher = this.$architectDisplay.find( '#thrive_preview_button' );
 			this.isPostBox = this.$architectNotificationContent.indexOf( 'postbox' ) !== - 1;
 
-			$( window ).on( 'storage.tcb', function ( event ) {
-				const currentPost = wp.data.select( 'core/editor' ).getCurrentPost();
+			$( window ).on( 'storage.tcb', event => {
+				if ( this.coreEditor ) {
+					const currentPost = this.coreEditor.getCurrentPost();
 					let post;
 
-				try {
-					post = JSON.parse( event.originalEvent.newValue );
-				} catch ( e ) {
+					try {
+						post = JSON.parse( event.originalEvent.newValue );
+					} catch ( e ) {
 
-				}
+					}
 
-				if ( post && post.ID && event.originalEvent.key === 'tve_post_options_change' && post.ID === Number( currentPost.id ) ) {
-					window.location.reload();
+					if ( post && post.ID && event.originalEvent.key === 'tve_post_options_change' && post.ID === Number( currentPost.id ) ) {
+						window.location.reload();
+					}
 				}
 			} );
 
-			wp.data.subscribe( function () {
-				const coreEditor = wp.data.select( 'core/editor' );
-				if ( coreEditor ) {
-					const isSavingPost = coreEditor.isSavingPost(),
-						isAutosavingPost = coreEditor.isAutosavingPost();
+			wp.data.subscribe( () => {
+				if ( this.coreEditor ) {
+					const isSavingPost = this.coreEditor.isSavingPost(),
+						isAutosavingPost = this.coreEditor.isAutosavingPost();
 
 					if ( isSavingPost && ! isAutosavingPost ) {
-						const data = JSON.stringify( coreEditor.getCurrentPost() );
+						const data = JSON.stringify( this.coreEditor.getCurrentPost() );
 
 						window.localStorage.setItem( 'tve_post_options_change', data );
 					}
@@ -48,17 +52,17 @@
 				/**
 				 * On data subscribe check if our elements exists
 				 */
-				setTimeout( function () {
-					self.render();
+				setTimeout( () => {
+					this.render();
 				}, 1 );
 			} );
 		},
 		render: function () {
-			const self = this;
+			const $postTitle = this.$gutenberg.find( '.editor-post-title' ),
+				$wpContent = this.$gutenberg.find( EDITOR_SELECTORS ).not( $postTitle.closest( EDITOR_SELECTORS ) );
 			let shouldBindEvents = false;
 			if ( this.isPostBox ) {
 				if ( ! $( '#tar-display' ).length ) {
-					const $postTitle = this.$gutenberg.find( '.editor-post-title' );
 					if ( $postTitle.length ) {
 						if ( $postTitle[ 0 ].tagName === 'DIV' ) {
 							$postTitle.append( this.$architectDisplay );
@@ -66,8 +70,7 @@
 							$postTitle.after( this.$architectDisplay );
 						}
 					}
-
-					this.$gutenberg.find( '.editor-block-list__layout,.block-editor-block-list__layout' ).hide();
+					$wpContent.hide();
 					this.$gutenberg.find( '.editor-post-title__block' ).css( 'margin-bottom', '0' );
 					this.$gutenberg.find( '.editor-writing-flow__click-redirect,.block-editor-writing-flow__click-redirect' ).hide();
 					this.$gutenberg.find( '.edit-post-header-toolbar' ).css( 'visibility', 'hidden' );
@@ -77,7 +80,7 @@
 				if ( ! $( '#thrive_preview_button' ).length ) {
 					this.$gutenberg.find( '.edit-post-header-toolbar' ).append( this.$architectLauncher );
 					this.$architectLauncher.on( 'click', function () {
-						self.$gutenberg.find( '.editor-block-list__layout' ).hide();
+						$wpContent.hide();
 					} );
 					this.$gutenberg.find( '.edit-post-header-toolbar' ).css( 'visibility', 'visible' );
 					shouldBindEvents = true;
@@ -141,8 +144,8 @@
 					if ( ! el ) {
 						return 0;
 					}
-					let height = el.offsetHeight,
-						style = getComputedStyle( el );
+					let height = el.offsetHeight;
+					const style = getComputedStyle( el );
 
 					height += parseInt( style.marginTop ) + parseInt( style.marginBottom );
 					return height;

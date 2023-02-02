@@ -1,5 +1,5 @@
 <template>
-	<div :class="{'is-preview': !allowDelete, 'mb-15':allowDelete, 'is-active':!collapsed}" class="tap-trigger-item tap-flex--column">
+	<div ref="containerElement" :class="{'is-preview': !allowDelete, 'mb-15':allowDelete, 'is-active':!collapsed}" class="tap-trigger-item tap-flex--column">
 		<div :class="{'is-active':!collapsed, 'pb-10': !collapsed}" class="tap-trigger-data tap-fw tap-flex p-10" @click="collapsed=!collapsed">
 			<div v-if="allowDelete" class="tap-toggle-icon mr-20">
 				<icon icon-name="tap-chevron-down"/>
@@ -36,7 +36,7 @@
 				</div>
 				<div v-if="interfaceFields.length" class="tap-trigger-fields pb-15 pr-5 pl-5">
 					<div v-for="(field,index) in interfaceFields" :key="index" class="tap-trigger-field">
-						<component :is="getFieldComponent(field.type)" :field-data="field" :is-saved="!allowDelete" :object-identifiers="[field.id]" :parent-data="trigger" :parent-show-errors="showErrors" :parent-index="triggerIndex" :step-index="stepIndex" parent-type="trigger"/>
+						<component :is="getFieldComponent(field.type)" :container-element="$refs.containerElement" :field-data="field" :is-saved="!allowDelete" :object-identifiers="[field.id]" :parent-data="trigger" :parent-index="triggerIndex" :parent-show-errors="showErrors" :step-index="stepIndex" parent-type="trigger"/>
 					</div>
 				</div>
 				<div v-if="hasData" class="tap-trigger-conditions tap-fw">

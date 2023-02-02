@@ -25,9 +25,6 @@ export default {
 		async sendTestData( {commit}, payload ) {
 			return API.sendWebhook( payload )
 		},
-
-		async syncActionData( {commit}, payload ) {
-		}
 	},
 	/**
 	 * GETTERS

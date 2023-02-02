@@ -1,5 +1,5 @@
 <template>
-	<div class="tap-card tap-actions-card">
+	<div v-if="savedData" class="tap-card tap-actions-card">
 		<p :class="{'tap-card-delete':showDeleteConfirmation}" class="tap-card-name--actions">
 			{{ showDeleteConfirmation ? 'Delete' : 'Do this' }}
 		</p>

@@ -1,5 +1,5 @@
 /*!
- * Filter Everything common admin 1.7.3
+ * Filter Everything common admin 1.7.4
  */
 (function($) {
     "use strict";
@@ -87,8 +87,9 @@
 
             let requestParams      = {};
             requestParams._wpnonce = $(this).data('nonce');
+            let dismissAction      = $(this).data('action');
 
-            wp.ajax.post( 'wpc_dismiss_license_notice', requestParams )
+            wp.ajax.post( dismissAction, requestParams )
                 .always( function( response ) {
                     // $spinner.removeClass( 'is-active' );
                     var $el = $( '.license-notice' );

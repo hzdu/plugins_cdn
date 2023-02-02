@@ -23,21 +23,24 @@
 	</a>
 	<# } #>
 	<# if (settings_icon = view.get_config( 'settings_icon', false )) { #>
-	<a href="javascript:void(0)" data-side="left" data-tooltip="<?php esc_attr_e( 'Edit', 'thrive-cb' ) ?>" class="action-edit click" data-fn="item_click"
-	   data-index="<#=item.index#>">
+	<a href="javascript:void(0)" data-side="left" data-tooltip="<?php esc_attr_e( 'Edit', 'thrive-cb' ) ?>" class="action-edit click" data-fn="item_click" data-index="<#=item.index#>">
 		<#=TVE.icon(settings_icon)#>
 	</a>
 	<# } #>
 	<# if (clone_icon = view.get_config( 'clone_icon', false )) { #>
-	<a href="javascript:void(0)" data-tooltip="<?php esc_attr_e( 'Duplicate', 'thrive-cb' ) ?>" class="action-clone click" data-fn="item_duplicate"
-	   data-index="<#=item.index#>">
+	<a href="javascript:void(0)" data-tooltip="<?php esc_attr_e( 'Duplicate', 'thrive-cb' ) ?>" class="action-clone click" data-fn="item_duplicate" data-index="<#=item.index#>">
 		<#=TVE.icon(clone_icon)#>
 	</a>
 	<# } #>
 	<# if ( !item.get('preventDelete') ) { #>
-	<a href="javascript:void(0)" data-side="right" data-tooltip="<?php esc_attr_e( 'Remove', 'thrive-cb' ) ?>" class="action-remove click" data-fn="item_remove"
-	   data-index="<#=item.index#>">
+	<a href="javascript:void(0)" data-side="right" data-tooltip="<?php esc_attr_e( 'Remove', 'thrive-cb' ) ?>" class="action-remove click" data-fn="item_remove" data-index="<#=item.index#>">
 		<?php tcb_icon( 'trash-light' ) ?>
+	</a>
+	<# } #>
+
+	<# if ( item.get('preventDelete') ) { #>
+	<a href="javascript:void(0)" data-side="right" data-tooltip="<?php esc_attr_e( 'Field cannot be deleted because you have a connection that requires it to work', 'thrive-cb' ) ?>" class="tvd-tooltipped" data-position="top" data-index="<#=item.index#>">
+		<?php tcb_icon( 'info-circle-solid' ) ?>
 	</a>
 	<# } #>
 	<# if ( item.get('toggleControl') ) { #>

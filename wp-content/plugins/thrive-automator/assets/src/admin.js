@@ -23,6 +23,7 @@ import MappingPairField from "@/components/fields/MappingPairField";
 import AutocompleteToggleField from "@/components/fields/AutocompleteToggleField";
 import SelectToggleField from "@/components/fields/SelectToggleField";
 import SwitchField from "@/components/fields/SwitchField";
+import { setBrowserClass } from "@/utils/ui-fn";
 
 window.TAPAdmin = window.TAPAdmin || {};
 
@@ -79,3 +80,5 @@ app.mount( `#${TAPAdmin.app_id}` );
 TAPAdmin.app = app;
 TAPAdmin.$ = window.jQuery.noConflict();
 TAPAdmin._ = window.lodash.noConflict();
+
+setBrowserClass();

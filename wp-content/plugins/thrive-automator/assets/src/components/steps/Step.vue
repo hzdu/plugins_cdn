@@ -28,7 +28,7 @@
 				</div>
 			</div>
 		</div>
-		<div v-if="getAutomationSteps[index].saved || index+1!==getAutomationSteps.length" class="tap-new-step tap-flex--column">
+		<div v-if="showAddStep" class="tap-new-step tap-flex--column">
 			<div class="tap-add-step-line"/>
 			<div :class="{'last-step': index+1===getAutomationSteps.length}" class="tap-add-step tap-flex" @click="$emit('generate-step')">
 				<icon icon-name="tap-plus"/>
@@ -95,6 +95,9 @@ export default {
 		...mapGetters( 'steps', [ 'getAutomationSteps', 'getCurrentAutomation' ] ),
 		...mapGetters( 'actions', [ 'getActions' ] ),
 		...mapGetters( 'generic', [ 'getApps' ] ),
+		showAddStep() {
+			return this.getAutomationSteps[ this.index ]?.saved || this.index + 1 !== this.getAutomationSteps.length
+		},
 		actionApps() {
 			const actions =
 				{

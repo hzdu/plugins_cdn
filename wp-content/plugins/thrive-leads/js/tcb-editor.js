@@ -251,6 +251,12 @@ TL_Editor.views.ThriveBoxAction = TCB_AnimViews.ThriveLightbox.extend( {
 			 */
 			lgComponent.leadGenerationView.read( 'asset_delivery' );
 
+			if ( ! lgComponent.leadGenerationModel.get( 'form_fields' ).hasOwnProperty('email') ) {
+				this.input( TVE.ActiveElement, { checked: 0 } )
+				this.disable();
+			} else {
+				this.enable();
+			}
 			var is_checked = lgComponent.leadGenerationModel.get( 'asset_delivery' )._asset_option;
 			this.setChecked( is_checked );
 			this.$el.parent().find( '#tve-leads-asset-controls' ).toggleClass( 'tcb-hidden', ! is_checked );

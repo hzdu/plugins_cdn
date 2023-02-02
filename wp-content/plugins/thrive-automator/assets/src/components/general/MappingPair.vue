@@ -9,7 +9,7 @@
 		</div>
 		<div v-if="hasErrors && (hasKeyError||hasValueError)" :class="{'tap-flex--end': hasValueError && !hasKeyError}" class="tap-kp-errors tap-fw tap-flex--between p-5">
 			<div v-if="hasKeyError" class="tap-kp-key-error">
-				No key set
+				{{ keyErrorMessage }}
 			</div>
 			<div v-if="hasValueError" class="tap-kp-field-error">
 				No value set
@@ -24,6 +24,7 @@ import InputField from "@/components/general/InputField";
 import Select2 from "@/components/general/Select2";
 import { select2Matcher, select2Option } from "@/utils/ui-fn";
 import { mapGetters } from "vuex";
+import { validateDataKey } from "@/utils/data-fn";
 
 export default {
 	name: "MappingPair",
@@ -71,10 +72,13 @@ export default {
 	computed: {
 		...mapGetters( 'steps', [ 'dynamicDataFields' ] ),
 		hasKeyError() {
-			return ! this.pairValue.key;
+			return ! validateDataKey( this.pairValue.key ).isValid;
 		},
 		hasValueError() {
 			return ! this.pairValue.value;
+		},
+		keyErrorMessage() {
+			return validateDataKey( this.pairValue.key ).message;
 		},
 		mappingOptions() {
 			const options = [ {id: '', text: ''} ];

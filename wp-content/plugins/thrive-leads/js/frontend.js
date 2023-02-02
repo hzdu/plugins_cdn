@@ -427,7 +427,7 @@ ThriveGlobal.$j( function () {
 					if ( ! post.length ) {
 						post = ThriveGlobal.$j( '#tve_editor.tar-main-content' );
 					}
-					const p = post.find( 'p' ).filter( ':visible' ).not( '.thrv_table p, form p, .tcb-post-list p, .thrv_text_element div p, p.wp-caption-text, .thrv_responsive_video p' );
+					const p = post.find( 'p' ).filter( ':visible' ).not( '.thrv_table p, form p, .tcb-post-list p, .thrv_text_element div p, p.wp-caption-text, .thrv_responsive_video p, .thrv_header p' );
 
 					if ( p.length === 0 && position === 0 ) {
 						post.prepend( html );

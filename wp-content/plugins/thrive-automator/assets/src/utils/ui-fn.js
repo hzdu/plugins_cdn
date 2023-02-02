@@ -1,3 +1,5 @@
+import { detectBrowser } from "@/utils/data-fn";
+
 /**
  * Prevent view to have overflow
  * @param hideOverflow
@@ -19,6 +21,10 @@ export function toggleAppLoader( show = true ) {
  */
 export function foldWpMenu() {
 	document.body.classList.add( 'folded' );
+}
+
+export function setBrowserClass() {
+	document.body.classList.add( `tap-${detectBrowser()}-browser` );
 }
 
 /**

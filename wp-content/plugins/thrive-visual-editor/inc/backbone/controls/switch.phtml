@@ -7,6 +7,9 @@
 		<# if ( this.model.config.instructions ) { #>
 		<span class="click" data-type="<#=this.model.config.instructions.type#>" data-url="<#=this.model.config.instructions.url#>" data-link="<#=this.model.config.instructions.link#>" data-fn="openInstructionsLightbox"><#= TVE.icon( this.model.config.instructions.type + "-instructions" ) #></span>
 		<# } #>
+		<# if ( this.model.config.tooltip ) { #>
+		<span class="click" data-tooltip="<#- this.model.config.tooltip #>" data-side="<#- this.model.config.tooltip_side #>"><?php tcb_icon( 'info-circle-solid' ); ?></span>
+		<# } #>
 	</div>
 	<div class="tcb-switch tcb-text-right">
 		<label>

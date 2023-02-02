@@ -97,6 +97,7 @@ export default {
 				method: 'POST',
 				body: {
 					reason: this.options.find( opt => opt.key === this.selectedOpt ).label || 'Other',
+					reason_id: this.selectedOpt,
 					extra_message: this.selectedOpt === 'other' ? this.otherReason : '',
 					nonce: TAPAdmin.deactivate_nonce
 				}

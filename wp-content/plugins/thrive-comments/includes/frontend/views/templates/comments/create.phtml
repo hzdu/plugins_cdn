@@ -60,7 +60,7 @@
 				</label>
 				<# } #>
 
-				<# if ( ThriveComments.settings.remember_me === '1' && ! ThriveComments.current_user.ID ) { #>
+				<# if ( ThriveComments.settings.remember_me === '1' && ! ThriveComments.current_user.ID && ! ThriveComments.social_user ) { #>
 				<label class="tcm_remember_me">
 					<#= ThriveComments.util.render_label('remember_me') #>
 					<input id="tcm_remember_me" class="form-input" type="checkbox" name="tcm_remember_me"/>

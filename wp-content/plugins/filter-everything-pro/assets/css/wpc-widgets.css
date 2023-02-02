@@ -1,5 +1,5 @@
 /*!
- * Filter Everything admin 1.7.3
+ * Filter Everything widgets 1.7.4
  */
 .wpc-sorting-list{
     margin-top: 15px;
@@ -120,4 +120,15 @@
     margin: 0 auto 16px auto;
     width: 100%;
     box-sizing: border-box;
+}
+.wpc-columns-wrapper{
+    visibility: hidden;
+}
+.wpc-horizontal-checkbox:checked+label+.wpc-columns-wrapper{
+    visibility: visible;
+}
+.wp-block-legacy-widget__edit-form .widget-inside.widget-inside .wpc-columns-wrapper select,
+.wpc-columns-wrapper select{
+    width: auto;
+    display: inline-block;
 }

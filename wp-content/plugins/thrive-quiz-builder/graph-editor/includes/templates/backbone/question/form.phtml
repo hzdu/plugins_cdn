@@ -20,14 +20,16 @@
 			</div>
 			<div class="clearfix tge-swither-holder">
 				<div class="tvd-no-margin tge-gray-layer">
+					<# if ( TGE_Editor.quiz.quiz_type === 'personality' && !this.model.isOpenEndedType() ) { #>
 					<div class="clearfix">
-						<div id="tge-points-switcher">&nbsp;</div>
+						<div id="tge-points-switcher"></div>
+					</div>
+					<# } #>
+					<div class="clearfix">
+						<div id="tge-tags-switcher"></div>
 					</div>
 					<div class="clearfix">
-						<div id="tge-tags-switcher">&nbsp;</div>
-					</div>
-					<div class="clearfix">
-						<div id="tge-feedback-switcher">&nbsp;</div>
+						<div id="tge-feedback-switcher"></div>
 					</div>
 					<div class="clearfix tqb-max-allowed-answers-wrapper"></div>
 				</div>

@@ -1,5 +1,5 @@
 /*!
- * Filter Everything admin 1.7.3
+ * Filter Everything admin 1.7.4
  */
 #filters-seo-rules .inside,
 #filters-set-items .inside{
@@ -1108,6 +1108,59 @@ a#wpc-get-license-key:hover::after {
 }
 #wpc-term-meta{
     width: 30px;
+}
+/* https://www.kirupa.com/animations/creating_pulsing_circle_animation.htm */
+.wpc-tab-helpme:before,
+.wpc-help-me:before{
+    content: "";
+    display: inline-block;
+    width: 7px;
+    height: 7px;
+    background-color: #10c350;
+    border-radius: 7px;
+    margin-right: 6px;
+}
+.wpc-help-me-wrapper{
+    background-color: #ffffff;
+    padding: 25px;
+    max-width: 775px;
+    border: 1px solid #ccc;
+    border-top-color: transparent;
+    margin-top: 10px;
+}
+.wpc-help-me-image{
+    float: left;
+    margin-right: 25px;
+    border: 1px solid #c8c8c8;
+}
+.wpc-help-me-wrapper+p.submit{
+    display: none;
+}
+.wpc-help-me-buttons a.wpc-leave-review-button{
+    margin-right: 30px;
+}
+.wpc-help-me-buttons{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+}
+.wpc-help-me-remove-tab{
+    margin-top: 24px;
+    text-align: center;
+}
+.wpc-help-me-remove-tab a{
+    color: #cc0000;
+    text-decoration: none;
+    border-bottom: 1px dashed #cc0000;
+}
+.wpc-help-me-remove-tab a:hover{
+    color: #ff0000;
+    border-bottom-color: #ff0000;
+}
+.wpc-help-me-remove-icon{
+    font-size: 120%;
 }
 @media screen and (max-width: 1200px) {
     #wpc-intersections-table .wpc-filter-field-td{

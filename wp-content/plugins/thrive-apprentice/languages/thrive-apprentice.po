@@ -3297,7 +3297,7 @@ msgstr ""
 msgid "Over time"
 msgstr ""
 
-#: ../admin/includes/templates/reports/courses/engagements.phtml:19, ../admin/includes/templates/reports/courses/engagements.phtml:80, ../admin/includes/templates/reports/courses/engagements.phtml:19, ../admin/includes/templates/reports/courses/engagements.phtml:80, ../inc/classes/reporting/report-types/class-all-engagements.php:16, ../inc/classes/reporting/report-types/class-engagement-type.php:198
+#: ../admin/includes/templates/reports/courses/engagements.phtml:19, ../admin/includes/templates/reports/courses/engagements.phtml:81, ../admin/includes/templates/reports/courses/engagements.phtml:19, ../admin/includes/templates/reports/courses/engagements.phtml:81, ../inc/classes/reporting/report-types/class-all-engagements.php:16, ../inc/classes/reporting/report-types/class-engagement-type.php:198
 msgid "Engagements"
 msgstr ""
 
@@ -3313,7 +3313,7 @@ msgstr ""
 msgid "The course enrollments report shows when members receive access to a course. This could be from granting them access to a new Thrive Apprentice product that protects one or more courses, or adding a course to the protected content of a product they already have access to."
 msgstr ""
 
-#: ../admin/includes/templates/reports/courses/lessons.phtml:19, ../admin/includes/templates/reports/courses/lessons.phtml:81, ../admin/includes/templates/reports/courses/lessons.phtml:19, ../admin/includes/templates/reports/courses/lessons.phtml:81, ../inc/classes/reporting/class-main.php:88, ../inc/classes/reporting/report-types/class-engagement-type.php:310
+#: ../admin/includes/templates/reports/courses/lessons.phtml:19, ../admin/includes/templates/reports/courses/lessons.phtml:81, ../admin/includes/templates/reports/courses/lessons.phtml:19, ../admin/includes/templates/reports/courses/lessons.phtml:81, ../inc/classes/reporting/class-main.php:88, ../inc/classes/reporting/report-types/class-engagement-type.php:318
 msgid "Lesson completions"
 msgstr ""
 
@@ -3357,7 +3357,7 @@ msgstr ""
 msgid "Average progress over time"
 msgstr ""
 
-#: ../admin/includes/templates/reports/courses/progress.phtml:92, ../admin/includes/templates/reports/courses/progress.phtml:92, ../admin/includes/templates/settings/labels/course-progress.phtml:3, ../admin/includes/templates/settings/labels/course-progress.phtml:3, ../inc/classes/reporting/report-types/class-course-progress.php:28, ../tcb-bridge/classes/course-list/class-hooks.php:245, ../tcb-bridge/classes/dynamic-actions/class-hooks.php:161, ../tcb-bridge/classes/conditional-display/fields/class-course-progress.php:30
+#: ../admin/includes/templates/reports/courses/progress.phtml:93, ../admin/includes/templates/reports/courses/progress.phtml:93, ../admin/includes/templates/settings/labels/course-progress.phtml:3, ../admin/includes/templates/settings/labels/course-progress.phtml:3, ../inc/classes/reporting/report-types/class-course-progress.php:28, ../tcb-bridge/classes/course-list/class-hooks.php:245, ../tcb-bridge/classes/dynamic-actions/class-hooks.php:161, ../tcb-bridge/classes/conditional-display/fields/class-course-progress.php:30
 msgid "Course progress"
 msgstr ""
 
@@ -6040,15 +6040,15 @@ msgstr ""
 msgid "bundle"
 msgstr ""
 
-#: ../inc/classes/reporting/class-main.php:80, ../inc/classes/reporting/report-types/class-engagement-type.php:311
+#: ../inc/classes/reporting/class-main.php:80, ../inc/classes/reporting/report-types/class-engagement-type.php:319
 msgid "Comments"
 msgstr ""
 
-#: ../inc/classes/reporting/class-main.php:84, ../inc/classes/reporting/report-types/class-engagement-type.php:313, ../inc/classes/reporting/report-types/class-popular-courses.php:160
+#: ../inc/classes/reporting/class-main.php:84, ../inc/classes/reporting/report-types/class-engagement-type.php:321, ../inc/classes/reporting/report-types/class-popular-courses.php:162
 msgid "Enrollments"
 msgstr ""
 
-#: ../inc/classes/reporting/class-main.php:92, ../inc/classes/reporting/report-types/class-engagement-type.php:312
+#: ../inc/classes/reporting/class-main.php:92, ../inc/classes/reporting/report-types/class-engagement-type.php:320
 msgid "Quiz completions"
 msgstr ""
 
@@ -6248,7 +6248,7 @@ msgstr ""
 msgid "Engagement type "
 msgstr ""
 
-#: ../inc/classes/reporting/report-types/class-engagement-type.php:308
+#: ../inc/classes/reporting/report-types/class-engagement-type.php:316
 msgid "Engagement type"
 msgstr ""
 
@@ -6256,12 +6256,20 @@ msgstr ""
 msgid "enrolments"
 msgstr ""
 
-#: ../inc/classes/reporting/report-types/class-popular-courses.php:165
+#: ../inc/classes/reporting/report-types/class-popular-courses.php:167
 msgid "Lessons completed"
 msgstr ""
 
-#: ../inc/classes/reporting/report-types/class-popular-courses.php:170
+#: ../inc/classes/reporting/report-types/class-popular-courses.php:172
 msgid "Completion rate"
+msgstr ""
+
+#: ../inc/classes/managers/automator/triggers/class-course-complete-trigger.php:64
+msgid "User completes a course"
+msgstr ""
+
+#: ../inc/classes/managers/automator/triggers/class-course-complete-trigger.php:73
+msgid "This trigger will be fired when the user marks a course as complete.  Will only be fired if the course is published"
 msgstr ""
 
 #: ../tcb-bridge/tcb-hooks.php:272

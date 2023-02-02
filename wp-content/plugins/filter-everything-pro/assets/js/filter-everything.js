@@ -1,5 +1,5 @@
 /*!
- * Filter Everything 1.7.3
+ * Filter Everything 1.7.4
  */
 (function ($) {
     "use strict";
@@ -1055,17 +1055,18 @@
                         // If Filters open button outside of posts container
                         if( $responsePostsContainer.find('.wpc-open-button-'+setId).length < 1 ) {
                             let wpcButtonInnerContent = $response.find('.wpc-open-button-'+setId+' .wpc-button-inner');
+
                             if( wpcButtonInnerContent.length > 0 ) {
-                                // let wpcButtonInnerContent = $response.find('.wpc-open-button-'+setId+' .wpc-button-inner')[0];
-                                $('.wpc-open-button-'+setId+' .wpc-button-inner').replaceWith( wpcButtonInnerContent[0] );
+                                $('.wpc-open-button-'+setId).each( function ( bIndex, bUtton ) {
+                                    if ( $(this).parent('div').hasClass('wpc-filters-widget-main-wrapper') ){
+                                        return true;
+                                    }
+                                    $(this).find(".wpc-button-inner").replaceWith( wpcButtonInnerContent[0] );
+                                } );
                             }
                         }
 
                         window.history.pushState({wpcHandler: 'wpcFilterEverything'}, null, link);
-
-                        // console.log( 'toReplace ' + toReplaceSEO );
-                        // console.log( 'prevState ' + prevState );
-                        // console.log( 'currentState ' + currentState );
 
                         prevState = currentState;
                     }
@@ -1105,11 +1106,19 @@
 
                     // Re-init Elementor actions
                     if( typeof( elementorFrontend ) !== 'undefined' ){
-                        $(targetPostsContainer+' .elementor-element').each(
-                            function() {
-                                elementorFrontend.elementsHandler.runReadyTrigger( $( this ) );
-                            }
-                        );
+                        if( $responsePostsContainer.hasClass('elementor-element') ){
+                            $(targetPostsContainer+'.elementor-element').each(
+                                function() {
+                                    elementorFrontend.elementsHandler.runReadyTrigger($(this));
+                                }
+                            );
+                        } else {
+                            $(targetPostsContainer+' .elementor-element').each(
+                                function() {
+                                    elementorFrontend.elementsHandler.runReadyTrigger($(this));
+                                }
+                            );
+                        }
                     }
                 }
             },
@@ -1154,7 +1163,7 @@
         // let targetWidget = '.'+widgetClass;
         // let $response    = $response;
         // It seems we need to reload all widgets available on the page
-        if( wpcIsMobile === true && (wpcFilterFront.showBottomWidget === 'yes') ){
+        if( wpcIsMobile === true && ( wpcFilterFront.showBottomWidget === 'yes' ) ){
 
             $(wpcWidgetContainer).each( function ( index, widget ){
                 let widgetSet = $(widget).data('set');
@@ -1216,18 +1225,22 @@
         }
 
         $chips.each( function ( index, chipsWidget ) {
-            let chipsSet            = $(chipsWidget).data('set');
-            let chipsWidgetClass    = '.wpc-filter-chips-'+chipsSet;
-            let newWidgets          = $response.find(chipsWidgetClass);
 
-            $(chipsWidgetClass).each( function ( innerIndex, theChipsWidget ) {
-                let $theChipsWidget = $(theChipsWidget);
-
-                if (newWidgets.length > 0) {
-                    $theChipsWidget.replaceWith(newWidgets[innerIndex]);
+            if( ( wpcIsMobile === true && ( wpcFilterFront.showBottomWidget !== 'yes' ) ) || wpcIsMobile === false ){
+                // Do not replace Chips inside Filters widget
+                if ( $(this).parent('div').hasClass('wpc-inner-widget-chips-wrapper') ){
+                    return true;
                 }
-            });
+            }
 
+            let chipsSetCount       = $(chipsWidget).data('setcount');
+            let chipsWidgetClass    = '.wpc-filter-chips-'+chipsSetCount;
+            let newChipsInstance    = $response.find(chipsWidgetClass);
+
+            if ( newChipsInstance.length > 0 ) {
+                // Do not use $(this) because reloaded widget kills it
+                $(chipsWidgetClass).replaceWith( newChipsInstance );
+            }
         });
 
         //$(".wpc-chips-locked").removeClass("wpc-chips-locked");
