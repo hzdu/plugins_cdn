@@ -174,6 +174,79 @@
 			} );
 		},
 
+		initTrigger() {
+			const $triggerBox = $( '#aw_trigger_box' );
+			$triggerBox
+				.find( '[data-automatewoo-dynamic-select]' )
+				.each( function ( i, el ) {
+					AW.workflowView.initDynamicTriggerOptions(
+						$( el ),
+						$triggerBox
+					);
+				} );
+		},
+
+		initDynamicTriggerOptions( $field, $triggerBox ) {
+			const referenceFieldName = $field.attr(
+				'data-automatewoo-dynamic-select-reference'
+			);
+			const $referenceField = $triggerBox.find(
+				'.automatewoo-field[data-name="' + referenceFieldName + '"]'
+			);
+
+			$referenceField.on( 'change', function () {
+				AW.workflowView.updateDynamicTriggerOptions(
+					$field,
+					$referenceField
+				);
+			} );
+		},
+
+		updateDynamicTriggerOptions( $field, $referenceField ) {
+			if ( $field.is( '.automatewoo-field--loading' ) ) {
+				return;
+			}
+
+			// remove existing options
+			$field.empty();
+
+			if ( ! $referenceField.val() ) {
+				return;
+			}
+
+			const $fieldRow = $field.parents( '.automatewoo-table__row' );
+			$fieldRow.addClass( 'automatewoo-field-row--loading' );
+
+			const data = {
+				action: 'aw_update_dynamic_trigger_options_select',
+				trigger_name: $(
+					'#aw_trigger_box select[name="aw_workflow_data[trigger_name]"]'
+				).val(),
+				target_field_name: $field.attr( 'data-name' ),
+				reference_field_value: $referenceField.val(),
+			};
+
+			$.post( ajaxurl, data, function ( response ) {
+				if ( response.success ) {
+					const options = $.map(
+						response.data,
+						function ( text, value ) {
+							return $( '<option/>', {
+								value,
+								text,
+							} );
+						}
+					);
+
+					if ( options && options.length ) {
+						$field.append( options );
+					}
+				}
+
+				$fieldRow.removeClass( 'automatewoo-field-row--loading' );
+			} );
+		},
+
 		/**
 		 * Add helplinks to top of meta box
 		 */
@@ -327,6 +400,8 @@ jQuery( function ( $ ) {
 					);
 				}
 			);
+
+			AW.workflowView.initTrigger();
 		},
 
 		/**
@@ -453,6 +528,7 @@ jQuery( function ( $ ) {
 					);
 
 					AW.workflow.set( 'trigger', response.data.trigger );
+					AW.workflowView.initTrigger();
 				} );
 			} else {
 				AW.workflow.set( 'trigger', false );

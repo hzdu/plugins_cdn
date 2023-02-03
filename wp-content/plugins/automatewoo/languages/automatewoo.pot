@@ -2,14 +2,14 @@
 # This file is distributed under the GPLv3.
 msgid ""
 msgstr ""
-"Project-Id-Version: AutomateWoo 5.6.5\n"
+"Project-Id-Version: AutomateWoo 5.6.6\n"
 "Report-Msgid-Bugs-To: https://woocommerce.com/my-account/create-a-ticket/\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2023-01-24T17:23:25+01:00\n"
+"POT-Creation-Date: 2023-01-31T17:29:02+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.7.1\n"
 "X-Domain: automatewoo\n"
@@ -158,41 +158,41 @@ msgstr ""
 
 #. translators: %s: Error message
 #. translators: %s: The error message.
-#: admin/ajax.php:360
+#: admin/ajax.php:361
 #: admin/assets/build/index.js:19
 msgid "Error: %s"
 msgstr ""
 
-#: admin/ajax.php:367
+#: admin/ajax.php:368
 msgid "Success! %s email%s sent."
 msgstr ""
 
-#: admin/ajax.php:395
+#: admin/ajax.php:396
 msgid "Message sent."
 msgstr ""
 
-#: admin/ajax.php:412
+#: admin/ajax.php:413
 msgid "Permission error."
 msgstr ""
 
-#: admin/ajax.php:433
+#: admin/ajax.php:434
 #: admin/views/page-data-upgrade.php:19
 msgid "Add-on could not be updated"
 msgstr ""
 
-#: admin/ajax.php:539
+#: admin/ajax.php:540
 msgid "No log found."
 msgstr ""
 
-#: admin/ajax.php:553
+#: admin/ajax.php:554
 msgid "No queued event found."
 msgstr ""
 
-#: admin/ajax.php:571
+#: admin/ajax.php:572
 msgid "Variable not found."
 msgstr ""
 
-#: admin/ajax.php:585
+#: admin/ajax.php:586
 msgid "No cart found."
 msgstr ""
 
@@ -592,6 +592,7 @@ msgstr ""
 #: includes/Actions/Update_Product_Meta.php:18
 #: includes/Fields/Product.php:40
 #: includes/Privacy_Exporters.php:354
+#: includes/Triggers/Abstract_Downloadable_Content.php:37
 #: templates/email/cart-table.php:33
 msgid "Product"
 msgstr ""
@@ -3090,6 +3091,14 @@ msgstr ""
 msgid "Customers"
 msgstr ""
 
+#: includes/DataTypes/Download.php:68
+msgid "Download"
+msgstr ""
+
+#: includes/DataTypes/Download.php:77
+msgid "Downloads"
+msgstr ""
+
 #: includes/DataTypes/Order.php:74
 #: includes/Triggers/Abstract_Order_Base.php:31
 #: includes/Triggers/Order_Refunded.php:33
@@ -3226,7 +3235,7 @@ msgstr ""
 msgid "(Product not found)"
 msgstr ""
 
-#: includes/Fields/Searchable_Select_Abstract.php:75
+#: includes/Fields/Searchable_Select_Abstract.php:77
 msgid "Search&hellip;"
 msgstr ""
 
@@ -3480,7 +3489,6 @@ msgid_plural "Disabled <span class=\"count\">(%s)</span>"
 msgstr[0] ""
 msgstr[1] ""
 
-#. translators: placeholder is previous workflow title
 #: includes/Post_Types.php:95
 #: includes/Post_Types.php:98
 #: includes/Post_Types.php:101
@@ -3520,7 +3528,6 @@ msgctxt "used in \"Workflow scheduled for <date>\""
 msgid "M j, Y @ G:i"
 msgstr ""
 
-#. translators: php date string, see http://php.net/date
 #: includes/Post_Types.php:106
 msgid "Workflow draft updated."
 msgstr ""
@@ -4814,6 +4821,22 @@ msgstr ""
 msgid "Carts are considered abandoned if they are inactive for %d minutes. When a customer purchases or empties their abandoned cart all queued workflows will be automatically cleared. <%s>View documentation.<%s>"
 msgstr ""
 
+#: includes/Triggers/Abstract_Downloadable_Content.php:28
+msgid "Downloadable Content"
+msgstr ""
+
+#: includes/Triggers/Abstract_Downloadable_Content.php:38
+msgid "Select a product here to have this workflow trigger only for that specific product. Leave blank to run for all products."
+msgstr ""
+
+#: includes/Triggers/Abstract_Downloadable_Content.php:43
+msgid "Downloadable Files"
+msgstr ""
+
+#: includes/Triggers/Abstract_Downloadable_Content.php:44
+msgid "Select files here to have this workflow trigger only for those specific items. Leave blank to run for all downloadable files of the selected product."
+msgstr ""
+
 #: includes/Triggers/Abstract_Memberships.php:18
 msgid "Memberships"
 msgstr ""
@@ -4951,6 +4974,38 @@ msgstr ""
 
 #: includes/Triggers/Customer_Win_Back.php:49
 msgid "If checked this trigger will repeatedly fire after the minimum last purchase date passes and the customer has not made a purchase. E.g. if the minimum is set to 30 days the trigger will fire 30 days after the customers last purchase and every 30 days from then until the maximum is reached or the customer makes another purchase. If unchecked the trigger will not repeat until the customer makes a new purchase."
+msgstr ""
+
+#: includes/Triggers/Downloadable_Product_Purchased.php:28
+msgid "Downloadable Product Purchased"
+msgstr ""
+
+#: includes/Triggers/Downloadable_Product_Purchased.php:29
+msgid "This trigger fires after downloadable product is purchased."
+msgstr ""
+
+#: includes/Triggers/Downloadable_Product_Purchased.php:40
+msgid "Downloadable Products"
+msgstr ""
+
+#: includes/Triggers/Downloadable_Product_Purchased.php:41
+msgid "Select downloadable products here to have this workflow trigger only for those specific products. Leave blank to run for all products."
+msgstr ""
+
+#: includes/Triggers/File_Downloaded.php:19
+msgid "File Downloaded"
+msgstr ""
+
+#: includes/Triggers/File_Downloaded.php:20
+msgid "This trigger fires after a file is downloaded."
+msgstr ""
+
+#: includes/Triggers/File_Not_Yet_Downloaded.php:19
+msgid "File Not Yet Downloaded"
+msgstr ""
+
+#: includes/Triggers/File_Not_Yet_Downloaded.php:20
+msgid "This trigger will fire if a file has not yet been downloaded after a set period of time."
 msgstr ""
 
 #: includes/Triggers/Guest_Created.php:18
@@ -5737,6 +5792,14 @@ msgstr ""
 
 #: includes/Variables/Customer_User_ID.php:15
 msgid "Displays the customer's user ID."
+msgstr ""
+
+#: includes/Variables/Download_File_Name.php:19
+msgid "Displays the downloadable file name."
+msgstr ""
+
+#: includes/Variables/Download_URL.php:19
+msgid "Displays the download URL."
 msgstr ""
 
 #: includes/Variables/Guest_Email.php:15
