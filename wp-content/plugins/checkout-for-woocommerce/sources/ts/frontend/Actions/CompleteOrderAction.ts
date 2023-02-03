@@ -9,7 +9,7 @@ class CompleteOrderAction extends Action {
     /**
      */
     constructor() {
-        super( 'complete_order' );
+        super( 'checkout' );
 
         DataService.checkoutForm.off( 'form:validate' );
     }
