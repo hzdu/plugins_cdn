@@ -2,14 +2,14 @@
 # This file is distributed under the same license as the Happyforms plugin.
 msgid ""
 msgstr ""
-"Project-Id-Version: Happyforms 1.36.1\n"
+"Project-Id-Version: Happyforms 1.37.0\n"
 "Report-Msgid-Bugs-To: ask@happyforms.io\n"
 "Last-Translator: The Theme Foundry\n"
 "Language-Team: The Theme Foundry\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2023-01-13T09:43:48+00:00\n"
+"POT-Creation-Date: 2023-02-02T11:12:49+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.4.0\n"
 "X-Domain: happyforms\n"
@@ -30,10 +30,9 @@ msgstr ""
 
 #: core/classes/class-block.php:52
 #: core/classes/class-form-controller.php:73
-#: core/classes/class-happyforms-core.php:187
 #: core/classes/class-happyforms-core.php:188
+#: core/classes/class-happyforms-core.php:189
 #: core/classes/class-happyforms-widget.php:13
-#: core/classes/class-import-controller.php:42
 #: core/helpers/helper-misc.php:1068
 msgid "Forms"
 msgstr ""
@@ -41,6 +40,10 @@ msgstr ""
 #: core/classes/class-block.php:53
 #: core/classes/class-happyforms-widget.php:15
 msgid "Displays a form."
+msgstr ""
+
+#: core/classes/class-export-controller.php:76
+msgid "Sorry, you are not allowed to access this page."
 msgstr ""
 
 #: core/classes/class-form-admin.php:285
@@ -113,13 +116,14 @@ msgid "Undo"
 msgstr ""
 
 #: core/classes/class-form-controller.php:74
-#: inc/templates/admin-settings-export.php:34
+#: inc/templates/admin-export.php:22
+#: inc/templates/admin-export.php:43
 msgid "Form"
 msgstr ""
 
 #: core/classes/class-form-controller.php:75
-#: core/classes/class-happyforms-core.php:203
 #: core/classes/class-happyforms-core.php:204
+#: core/classes/class-happyforms-core.php:205
 #: integrations/services/payments/class-coupon-controller.php:42
 msgid "Add New"
 msgstr ""
@@ -156,8 +160,8 @@ msgstr ""
 
 #: core/classes/class-form-controller.php:84
 #: core/classes/class-form-controller.php:85
-#: core/classes/class-happyforms-core.php:195
 #: core/classes/class-happyforms-core.php:196
+#: core/classes/class-happyforms-core.php:197
 msgid "All Forms"
 msgstr ""
 
@@ -960,36 +964,47 @@ msgstr ""
 msgid "Additional CSS"
 msgstr ""
 
-#: core/classes/class-happyforms-core.php:211
 #: core/classes/class-happyforms-core.php:212
+#: core/classes/class-happyforms-core.php:213
 #: inc/classes/class-attachment-controller.php:647
 #: inc/classes/class-form-admin-upgrade.php:36
 #: inc/classes/class-form-admin-upgrade.php:37
 #: inc/classes/class-message-controller.php:194
-#: inc/classes/class-message-controller.php:1090
+#: inc/classes/class-message-controller.php:1088
 msgid "Submissions"
 msgstr ""
 
-#: core/classes/class-happyforms-core.php:220
 #: core/classes/class-happyforms-core.php:221
+#: core/classes/class-happyforms-core.php:222
 #: integrations/services/payments/class-coupon-controller.php:40
 msgid "Coupons"
 msgstr ""
 
-#: core/classes/class-happyforms-core.php:229
 #: core/classes/class-happyforms-core.php:230
+#: core/classes/class-happyforms-core.php:231
 #: integrations/templates/admin-integrations.php:3
 msgid "Integrations"
 msgstr ""
 
-#: core/classes/class-happyforms-core.php:238
 #: core/classes/class-happyforms-core.php:239
+#: core/classes/class-happyforms-core.php:240
+msgid "Import"
+msgstr ""
+
+#: core/classes/class-happyforms-core.php:248
+#: core/classes/class-happyforms-core.php:249
+#: inc/templates/admin-export.php:11
+msgid "Export"
+msgstr ""
+
+#: core/classes/class-happyforms-core.php:257
+#: core/classes/class-happyforms-core.php:258
 #: inc/templates/admin-settings.php:3
 #: core/assets/jsx/build/admin/block.js:173
 msgid "Settings"
 msgstr ""
 
-#: core/classes/class-happyforms-core.php:480
+#: core/classes/class-happyforms-core.php:499
 msgid "Add Form"
 msgstr ""
 
@@ -1001,23 +1016,19 @@ msgstr ""
 msgid "Form:"
 msgstr ""
 
-#: core/classes/class-import-controller.php:37
-msgid "Import forms from a forms export file."
-msgstr ""
-
-#: core/classes/class-import-controller.php:83
+#: core/classes/class-import-controller.php:75
 msgid "Import Forms"
 msgstr ""
 
-#: core/classes/class-import-controller.php:92
+#: core/classes/class-import-controller.php:84
 msgid "Choose a forms export (.xml) file to upload, then click Upload file and import."
 msgstr ""
 
-#: core/classes/class-import-controller.php:101
+#: core/classes/class-import-controller.php:93
 msgid "Sorry, there has been an error."
 msgstr ""
 
-#: core/classes/class-import-controller.php:107
+#: core/classes/class-import-controller.php:99
 msgid "The export file could not be found at <code>%s</code>. It is likely that this was caused by a permissions problem."
 msgstr ""
 
@@ -3310,10 +3321,6 @@ msgstr ""
 msgid "Search or type URL"
 msgstr ""
 
-#: inc/classes/class-export-controller.php:77
-msgid "Sorry, you are not allowed to access this page."
-msgstr ""
-
 #: inc/classes/class-exporter-csv.php:19
 #: inc/classes/class-exporter-xml.php:24
 msgid "Form not found"
@@ -3682,18 +3689,14 @@ msgstr ""
 msgid "Rating star color on hover"
 msgstr ""
 
-#: inc/classes/class-happyforms-upgrade.php:461
+#: inc/classes/class-happyforms-upgrade.php:456
 #: inc/assets/jsx/build/admin/dashboard-modals.js:375
 #: inc/assets/jsx/src/admin/dashboard-modals.js:204
 msgid "You're unregistered"
 msgstr ""
 
-#: inc/classes/class-happyforms-upgrade.php:463
+#: inc/classes/class-happyforms-upgrade.php:458
 msgid "Register now"
-msgstr ""
-
-#: inc/classes/class-happyforms-upgrade.php:518
-msgid "Import forms and submissions from a forms export file."
 msgstr ""
 
 #: inc/classes/class-importer-xml.php:162
@@ -3969,7 +3972,7 @@ msgid "One per line. Not case sensitive. Punctuation, numbers and alt characters
 msgstr ""
 
 #: inc/classes/class-message-controller.php:196
-#: inc/classes/class-message-controller.php:1103
+#: inc/classes/class-message-controller.php:1101
 msgid "Edit Submission"
 msgstr ""
 
@@ -4003,11 +4006,11 @@ msgstr ""
 msgid "Tracking number"
 msgstr ""
 
-#: inc/classes/class-message-controller.php:1046
+#: inc/classes/class-message-controller.php:1044
 msgid "Invalid email."
 msgstr ""
 
-#: inc/classes/class-message-controller.php:1047
+#: inc/classes/class-message-controller.php:1045
 msgid "Email sent."
 msgstr ""
 
@@ -4118,16 +4121,12 @@ msgid "Erase submitter's personal data after set number of days"
 msgstr ""
 
 #: inc/classes/class-role-permissions.php:143
-#: integrations/classes/class-integrations.php:256
-#: integrations/classes/class-integrations.php:346
+#: integrations/classes/class-integrations.php:259
+#: integrations/classes/class-integrations.php:349
 msgid "Changes saved."
 msgstr ""
 
-#: inc/classes/class-settings-page-controller.php:35
-msgid "Tools"
-msgstr ""
-
-#: inc/classes/class-settings-page-controller.php:43
+#: inc/classes/class-settings-page-controller.php:32
 msgid "Role Capabilities"
 msgstr ""
 
@@ -4505,45 +4504,24 @@ msgstr ""
 msgid "Comment by %s marked as spam."
 msgstr ""
 
-#: inc/templates/admin-message-edit.php:13
-msgid "Referral:"
+#: inc/templates/admin-export.php:12
+msgid "When you click the button below WordPress will create an XML or CSV file for you to save to your computer."
 msgstr ""
 
-#: inc/templates/admin-settings-export.php:18
-msgid "Transfer forms and submissions to and from sites."
+#: inc/templates/admin-export.php:12
+msgid "The file will contain your forms or submissions."
 msgstr ""
 
-#: inc/templates/admin-settings-export.php:24
-msgid "Action"
+#: inc/templates/admin-export.php:13
+msgid "Once you've saved the download file, you can use the Import function in another WordPress installation to import the content from this site."
 msgstr ""
 
-#: inc/templates/admin-settings-export.php:26
-#: integrations/services/convertkit/class-integration-convertkit.php:188
-#: integrations/services/drip/class-integration-drip.php:209
-#: integrations/services/emailoctopus/class-integration-emailoctopus.php:208
-#: integrations/services/mailerlite/class-integration-mailerlite.php:182
-#: integrations/services/mailpoet/class-integration-mailpoet.php:191
-#: integrations/services/sendfox/class-integration-sendfox.php:166
-#: integrations/services/sendgrid/class-integration-sendgrid.php:180
-#: integrations/services/sendinblue/class-integration-sendinblue.php:253
-#: integrations/templates/admin-automation-integrations.php:27
-#: integrations/templates/admin-email-integrations.php:27
-msgid "Select"
+#: inc/templates/admin-export.php:14
+msgid "Choose what to export"
 msgstr ""
 
-#: inc/templates/admin-settings-export.php:27
-msgid "Export submissions to spreadsheet (.csv)"
-msgstr ""
-
-#: inc/templates/admin-settings-export.php:28
-msgid "Export a form (.xml)"
-msgstr ""
-
-#: inc/templates/admin-settings-export.php:29
-msgid "Export a form and its submissions (.xml)"
-msgstr ""
-
-#: inc/templates/admin-settings-export.php:36
+#: inc/templates/admin-export.php:24
+#: inc/templates/admin-export.php:45
 #: integrations/services/active-campaign/class-integration-active-campaign.php:94
 #: integrations/services/active-campaign/class-integration-active-campaign.php:101
 #: integrations/services/active-campaign/templates/partial-part-controls.php:5
@@ -4575,36 +4553,12 @@ msgstr ""
 msgid "— Select —"
 msgstr ""
 
-#: inc/templates/admin-settings-export.php:58
-msgid "Choose a file from your computer"
+#: inc/templates/admin-export.php:57
+msgid "Include submissions of selected form in export file"
 msgstr ""
 
-#: inc/templates/admin-settings-export.php:59
-msgid "Maximum size"
-msgstr ""
-
-#: inc/templates/admin-settings-export.php:68
-msgid "Importing file…"
-msgstr ""
-
-#: inc/templates/admin-settings-export.php:83
-msgid "Download Export File"
-msgstr ""
-
-#: inc/templates/admin-settings-export.php:84
-msgid "Upload File and Import"
-msgstr ""
-
-#: inc/templates/admin-settings-export.php:87
-msgid "Submit"
-msgstr ""
-
-#: inc/templates/admin-settings-export.php:91
-msgid "Retry"
-msgstr ""
-
-#: inc/templates/admin-settings-export.php:94
-msgid "Import another file"
+#: inc/templates/admin-message-edit.php:13
+msgid "Referral:"
 msgstr ""
 
 #: inc/templates/admin-settings-register-form.php:2
@@ -5313,6 +5267,19 @@ msgstr ""
 
 #: integrations/services/convertkit/class-integration-convertkit.php:186
 msgid "Map field to ConvertKit field"
+msgstr ""
+
+#: integrations/services/convertkit/class-integration-convertkit.php:188
+#: integrations/services/drip/class-integration-drip.php:209
+#: integrations/services/emailoctopus/class-integration-emailoctopus.php:208
+#: integrations/services/mailerlite/class-integration-mailerlite.php:182
+#: integrations/services/mailpoet/class-integration-mailpoet.php:191
+#: integrations/services/sendfox/class-integration-sendfox.php:166
+#: integrations/services/sendgrid/class-integration-sendgrid.php:180
+#: integrations/services/sendinblue/class-integration-sendinblue.php:253
+#: integrations/templates/admin-automation-integrations.php:27
+#: integrations/templates/admin-email-integrations.php:27
+msgid "Select"
 msgstr ""
 
 #: integrations/services/convertkit/class-service-convertkit.php:21
@@ -6163,6 +6130,22 @@ msgstr ""
 #: integrations/services/stripe/partial-widget.php:85
 #: integrations/services/stripe/partial-widget.php:95
 msgid "Webhook endpoint secret key"
+msgstr ""
+
+#: integrations/services/thrive-automator/class-integration-thrive-data-object.php:13
+msgid "Happyforms form data"
+msgstr ""
+
+#: integrations/services/thrive-automator/class-integration-thrive-trigger-email-field.php:47
+msgid "Unlabeled field"
+msgstr ""
+
+#: integrations/services/thrive-automator/class-integration-thrive-trigger.php:35
+msgid "Happyforms form submit"
+msgstr ""
+
+#: integrations/services/thrive-automator/class-integration-thrive-trigger.php:39
+msgid "Triggers when a Happyforms form is successfully submitted"
 msgstr ""
 
 #: integrations/services/zapier/class-service-zapier.php:10
