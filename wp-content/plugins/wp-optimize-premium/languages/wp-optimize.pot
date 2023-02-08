@@ -1,4 +1,4 @@
-# Copyright (C) 2022 wp-optimize
+# Copyright (C) 2023 wp-optimize
 # This file is distributed under the same license as the wp-optimize package.
 msgid ""
 msgstr ""
@@ -7,7 +7,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2022-MO-DA HO:MI+ZONE\n"
+"PO-Revision-Date: 2023-MO-DA HO:MI+ZONE\n"
 "Last-Translator: John Doe <mail@example.com>\n"
 "Language-Team: Team Updraft <mail@example.com>\n"
 "X-Poedit-Basepath: ..\n"
@@ -65,33 +65,33 @@ msgstr ""
 msgid "Page cache settings updated successfully."
 msgstr ""
 
-#: src/cache/class-wp-optimize-page-cache-preloader.php:158
+#: src/cache/class-wp-optimize-page-cache-preloader.php:161
 msgid "Creating tasks for preload site urls."
 msgstr ""
 
-#: src/cache/class-wp-optimize-page-cache-preloader.php:177
+#: src/cache/class-wp-optimize-page-cache-preloader.php:180
 msgid "Tasks for preload site urls created."
 msgstr ""
 
-#: src/cache/class-wp-optimize-page-cache-preloader.php:255, src/includes/class-wp-optimize-preloader.php:356
+#: src/cache/class-wp-optimize-page-cache-preloader.php:258, src/includes/class-wp-optimize-preloader.php:356
 msgid "%d url found."
 msgid_plural "%d urls found."
 msgstr[0] ""
 msgstr[1] ""
 
-#: src/cache/class-wp-optimize-page-cache-preloader.php:609
+#: src/cache/class-wp-optimize-page-cache-preloader.php:612
 msgid "Page cache is disabled."
 msgstr ""
 
-#: src/cache/class-wp-optimize-page-cache-preloader.php:621
+#: src/cache/class-wp-optimize-page-cache-preloader.php:624
 msgid "Probably page cache preload is running already."
 msgstr ""
 
-#: src/cache/class-wp-optimize-page-cache-preloader.php:632, src/minify/class-wp-optimize-minify-preloader.php:128, src/wp-optimize.php:878
+#: src/cache/class-wp-optimize-page-cache-preloader.php:635, src/minify/class-wp-optimize-minify-preloader.php:131, src/wp-optimize.php:750
 msgid "Loading URLs..."
 msgstr ""
 
-#: src/cache/class-wp-optimize-page-cache-preloader.php:641, src/minify/class-wp-optimize-minify-preloader.php:137
+#: src/cache/class-wp-optimize-page-cache-preloader.php:644, src/minify/class-wp-optimize-minify-preloader.php:140
 msgid "Last preload finished at %s"
 msgstr ""
 
@@ -99,111 +99,111 @@ msgstr ""
 msgid "The cache configuration file could not be saved to the disk; please check the file/folder permissions of %s ."
 msgstr ""
 
-#: src/cache/class-wpo-page-cache.php:178, src/includes/class-wp-optimize-admin.php:52
+#: src/cache/class-wpo-page-cache.php:181, src/includes/class-wp-optimize-admin.php:52
 msgid "Page cache"
 msgstr ""
 
-#: src/cache/class-wpo-page-cache.php:179, src/minify/class-wp-optimize-minify.php:82
+#: src/cache/class-wpo-page-cache.php:182, src/minify/class-wp-optimize-minify.php:82
 msgid "Cache size:"
 msgstr ""
 
-#: src/cache/class-wpo-page-cache.php:179
+#: src/cache/class-wpo-page-cache.php:182
 msgid "(%d files)"
 msgstr ""
 
-#: src/cache/class-wpo-page-cache.php:192, src/cache/class-wpo-page-cache.php:195
+#: src/cache/class-wpo-page-cache.php:195, src/cache/class-wpo-page-cache.php:198
 msgid "Purge cache for all pages"
 msgstr ""
 
-#: src/cache/class-wpo-page-cache.php:203, src/cache/class-wpo-page-cache.php:206
+#: src/cache/class-wpo-page-cache.php:206, src/cache/class-wpo-page-cache.php:209
 msgid "Purge cache for this page"
 msgstr ""
 
-#: src/cache/class-wpo-page-cache.php:266, src/cache/class-wpo-page-cache.php:280
+#: src/cache/class-wpo-page-cache.php:269, src/cache/class-wpo-page-cache.php:283
 msgid "The page cache was successfully purged."
 msgstr ""
 
-#: src/cache/class-wpo-page-cache.php:273, src/cache/class-wpo-page-cache.php:287
+#: src/cache/class-wpo-page-cache.php:276, src/cache/class-wpo-page-cache.php:290
 msgid "The page cache was not purged."
 msgstr ""
 
-#: src/cache/class-wpo-page-cache.php:355, src/cache/class-wpo-page-cache.php:1316
+#: src/cache/class-wpo-page-cache.php:358, src/cache/class-wpo-page-cache.php:1346
 msgid "Please check file and directory permissions on the file paths up to this point, and your PHP error log."
 msgstr ""
 
-#: src/cache/class-wpo-page-cache.php:358
+#: src/cache/class-wpo-page-cache.php:361
 msgid "1. Please navigate, via FTP, to the folder - %s"
 msgstr ""
 
-#: src/cache/class-wpo-page-cache.php:359
+#: src/cache/class-wpo-page-cache.php:362
 msgid "2. Edit or create a file with the name advanced-cache.php"
 msgstr ""
 
-#: src/cache/class-wpo-page-cache.php:360
+#: src/cache/class-wpo-page-cache.php:363
 msgid "3. Copy and paste the following lines into the file:"
 msgstr ""
 
-#: src/cache/class-wpo-page-cache.php:404
+#: src/cache/class-wpo-page-cache.php:407
 msgid "Could not turn off the WP_CACHE constant in wp-config.php"
 msgstr ""
 
-#: src/cache/class-wpo-page-cache.php:414
+#: src/cache/class-wpo-page-cache.php:417
 msgid "The request to the filesystem to remove or empty advanced-cache.php failed"
 msgstr ""
 
-#: src/cache/class-wpo-page-cache.php:420
+#: src/cache/class-wpo-page-cache.php:423
 msgid "The page caching could not be disabled: the WP_CACHE constant could not be removed from wp-config.php and the request to the filesystem to remove or empty advanced-cache.php failed."
 msgstr ""
 
-#: src/cache/class-wpo-page-cache.php:745
+#: src/cache/class-wpo-page-cache.php:748
 msgid "The file advanced-cache.php needs to be updated, but the automatic process failed."
 msgstr ""
 
-#: src/cache/class-wpo-page-cache.php:746
+#: src/cache/class-wpo-page-cache.php:749
 msgid "Please try to disable and then re-enable the WP-Optimize cache manually."
 msgstr ""
 
-#: src/cache/class-wpo-page-cache.php:844
+#: src/cache/class-wpo-page-cache.php:847
 msgid "Unable to write to or find wp-config.php; please check file/folder permissions."
 msgstr ""
 
-#: src/cache/class-wpo-page-cache.php:852
+#: src/cache/class-wpo-page-cache.php:855
 msgid "Unable to write the file advanced-cache.php inside the wp-content folder; please check file/folder permissions"
 msgstr ""
 
-#: src/cache/class-wpo-page-cache.php:859
+#: src/cache/class-wpo-page-cache.php:862
 msgid "Unable to write inside the cache files folder (%s); please check file/folder permissions (no cache files will be able to be created otherwise)"
 msgstr ""
 
-#: src/cache/class-wpo-page-cache.php:872
+#: src/cache/class-wpo-page-cache.php:875
 msgid "Unable to write inside the cache configuration folder (%s); please check file/folder permissions"
 msgstr ""
 
-#: src/cache/class-wpo-page-cache.php:1287, src/cache/class-wpo-page-cache.php:1308
+#: src/cache/class-wpo-page-cache.php:1317, src/cache/class-wpo-page-cache.php:1338
 msgid "WP-Optimize:"
 msgstr ""
 
-#: src/cache/class-wpo-page-cache.php:1287
+#: src/cache/class-wpo-page-cache.php:1317
 msgid "Please disable the feature \"Gzip compression\" in PageSpeed Ninja to prevent conflicts."
 msgstr ""
 
-#: src/cache/class-wpo-page-cache.php:1308
+#: src/cache/class-wpo-page-cache.php:1338
 msgid "Please disable the feature \"Gzip compression\" in Far Future Expiration to prevent conflicts."
 msgstr ""
 
-#: src/cache/class-wpo-page-cache.php:1315
+#: src/cache/class-wpo-page-cache.php:1345
 msgid "The request to write the file %s failed."
 msgstr ""
 
-#: src/cache/class-wpo-page-cache.php:1335
+#: src/cache/class-wpo-page-cache.php:1365
 msgid "Every time after the cache has expired"
 msgstr ""
 
-#: src/cache/class-wpo-page-cache.php:1340
+#: src/cache/class-wpo-page-cache.php:1370
 msgid "%d minutes"
 msgstr ""
 
-#: src/cache/class-wpo-page-cache.php:1345
+#: src/cache/class-wpo-page-cache.php:1375
 msgid "Same as cache lifespan: %s"
 msgstr ""
 
@@ -255,19 +255,19 @@ msgstr ""
 msgid "Attempt to create subfolder within cache directory failed"
 msgstr ""
 
-#: src/cache/file-based-page-cache-functions.php:273
+#: src/cache/file-based-page-cache-functions.php:276
 msgid "Page type is not cacheable (search, 404 or password-protected)"
 msgstr ""
 
-#: src/cache/file-based-page-cache-functions.php:279
+#: src/cache/file-based-page-cache-functions.php:282
 msgid "In the settings, caching is disabled for the front page"
 msgstr ""
 
-#: src/cache/file-based-page-cache-functions.php:289
+#: src/cache/file-based-page-cache-functions.php:292
 msgid "We don't cache RSS feeds"
 msgstr ""
 
-#: src/cache/file-based-page-cache-functions.php:904
+#: src/cache/file-based-page-cache-functions.php:908
 msgid "In the settings, caching is disabled for %s"
 msgstr ""
 
@@ -299,7 +299,7 @@ msgstr ""
 msgid "How many last records store?"
 msgstr ""
 
-#: src/includes/class-updraft-smush-manager-commands.php:64, src/includes/class-updraft-smush-manager.php:290
+#: src/includes/class-updraft-smush-manager-commands.php:64, src/includes/class-updraft-smush-manager.php:299
 msgid "The blog ID provided does not match the current blog."
 msgstr ""
 
@@ -367,11 +367,11 @@ msgid_plural "The selected images were successfully marked as compressed"
 msgstr[0] ""
 msgstr[1] ""
 
-#: src/includes/class-updraft-smush-manager-commands.php:371, src/includes/class-updraft-smush-manager-commands.php:395, src/includes/class-updraft-smush-manager.php:442
+#: src/includes/class-updraft-smush-manager-commands.php:371, src/includes/class-updraft-smush-manager-commands.php:395, src/includes/class-updraft-smush-manager.php:451
 msgid "All the compressed images were successfully restored."
 msgstr ""
 
-#: src/includes/class-updraft-smush-manager-commands.php:397, src/includes/class-updraft-smush-manager.php:448
+#: src/includes/class-updraft-smush-manager-commands.php:397, src/includes/class-updraft-smush-manager.php:457
 msgid "All the compressed images were successfully marked as uncompressed."
 msgstr ""
 
@@ -379,127 +379,127 @@ msgstr ""
 msgid "Log file does not exist or could not be read"
 msgstr ""
 
-#: src/includes/class-updraft-smush-manager.php:123
+#: src/includes/class-updraft-smush-manager.php:132
 msgid "The file was either compressed using another tool or marked as compressed"
 msgstr ""
 
-#: src/includes/class-updraft-smush-manager.php:131, src/includes/class-updraft-smush-task.php:284
+#: src/includes/class-updraft-smush-manager.php:140, src/includes/class-updraft-smush-task.php:284
 msgid "The file was compressed to %s using WP-Optimize"
 msgstr ""
 
-#: src/includes/class-updraft-smush-manager.php:134
+#: src/includes/class-updraft-smush-manager.php:143
 msgid "The file was compressed from %s to %s, saving %s percent, using WP-Optimize"
 msgstr ""
 
-#: src/includes/class-updraft-smush-manager.php:336
+#: src/includes/class-updraft-smush-manager.php:345
 msgid "The backup was not found; it may have been deleted or was already restored"
 msgstr ""
 
-#: src/includes/class-updraft-smush-manager.php:338
+#: src/includes/class-updraft-smush-manager.php:347
 msgid "The destination could not be written to."
 msgstr ""
 
-#: src/includes/class-updraft-smush-manager.php:338
+#: src/includes/class-updraft-smush-manager.php:347
 msgid "Please check your folder's permissions"
 msgstr ""
 
-#: src/includes/class-updraft-smush-manager.php:340
+#: src/includes/class-updraft-smush-manager.php:349
 msgid "The file could not be copied; check your PHP error logs for details"
 msgstr ""
 
-#: src/includes/class-updraft-smush-manager.php:342
+#: src/includes/class-updraft-smush-manager.php:351
 msgid "The backup file %s could not be deleted."
 msgstr ""
 
-#: src/includes/class-updraft-smush-manager.php:426
+#: src/includes/class-updraft-smush-manager.php:435
 msgid "%s compressed images were restored from their backup for the site %s"
 msgstr ""
 
-#: src/includes/class-updraft-smush-manager.php:428
+#: src/includes/class-updraft-smush-manager.php:437
 msgid "%s compressed images were restored from their backup"
 msgstr ""
 
-#: src/includes/class-updraft-smush-manager.php:440
+#: src/includes/class-updraft-smush-manager.php:449
 msgid "All the compressed images for the site %s were successfully restored."
 msgstr ""
 
-#: src/includes/class-updraft-smush-manager.php:446
+#: src/includes/class-updraft-smush-manager.php:455
 msgid "All the compressed images for the site %s were successfully marked as uncompressed."
 msgstr ""
 
-#: src/includes/class-updraft-smush-manager.php:702
+#: src/includes/class-updraft-smush-manager.php:711
 msgid "No uncompressed images were found."
 msgstr ""
 
-#: src/includes/class-updraft-smush-manager.php:703
+#: src/includes/class-updraft-smush-manager.php:712
 msgid "An unexpected response was received from the server. More information has been logged in the browser console."
 msgstr ""
 
-#: src/includes/class-updraft-smush-manager.php:704
+#: src/includes/class-updraft-smush-manager.php:713
 msgid "Please wait: compressing the selected image."
 msgstr ""
 
-#: src/includes/class-updraft-smush-manager.php:705
+#: src/includes/class-updraft-smush-manager.php:714
 msgid "Please try again later."
 msgstr ""
 
-#: src/includes/class-updraft-smush-manager.php:706
+#: src/includes/class-updraft-smush-manager.php:715
 msgid "Connecting to the Smush API server, please wait"
 msgstr ""
 
-#: src/includes/class-updraft-smush-manager.php:707
+#: src/includes/class-updraft-smush-manager.php:716
 msgid "Please wait while the request is being processed"
 msgstr ""
 
-#: src/includes/class-updraft-smush-manager.php:708
+#: src/includes/class-updraft-smush-manager.php:717
 msgid "There was an error connecting to the image compression server. This could mean either the server is temporarily unavailable or there are connectivity issues with your internet connection. Please try later."
 msgstr ""
 
-#: src/includes/class-updraft-smush-manager.php:709
+#: src/includes/class-updraft-smush-manager.php:718
 msgid "Please select the images you want compressed from the \"Uncompressed images\" panel first"
 msgstr ""
 
-#: src/includes/class-updraft-smush-manager.php:710
+#: src/includes/class-updraft-smush-manager.php:719
 msgid "Please wait: updating information about the selected image."
 msgstr ""
 
-#: src/includes/class-updraft-smush-manager.php:711
+#: src/includes/class-updraft-smush-manager.php:720
 msgid "Please select the images you want to mark as already compressed from the \"Uncompressed images\" panel first"
 msgstr ""
 
-#: src/includes/class-updraft-smush-manager.php:712
+#: src/includes/class-updraft-smush-manager.php:721
 msgid "View Image"
 msgstr ""
 
-#: src/includes/class-updraft-smush-manager.php:713
+#: src/includes/class-updraft-smush-manager.php:722
 msgid "Do you really want to delete all backup images now? This action is irreversible."
 msgstr ""
 
-#: src/includes/class-updraft-smush-manager.php:714
+#: src/includes/class-updraft-smush-manager.php:723
 msgid "Do you really want to mark all the images as uncompressed? This action is irreversible."
 msgstr ""
 
-#: src/includes/class-updraft-smush-manager.php:715
+#: src/includes/class-updraft-smush-manager.php:724
 msgid "Do you want to restore the original images from the backup (where they exist?)"
 msgstr ""
 
-#: src/includes/class-updraft-smush-manager.php:716
+#: src/includes/class-updraft-smush-manager.php:725
 msgid "Do you really want to restore all the compressed images?"
 msgstr ""
 
-#: src/includes/class-updraft-smush-manager.php:717, src/templates/images/smush-details.php:2
+#: src/includes/class-updraft-smush-manager.php:726, src/templates/images/smush-details.php:2
 msgid "More"
 msgstr ""
 
-#: src/includes/class-updraft-smush-manager.php:718
+#: src/includes/class-updraft-smush-manager.php:727
 msgid "Less"
 msgstr ""
 
-#: src/includes/class-updraft-smush-manager.php:735
+#: src/includes/class-updraft-smush-manager.php:744
 msgid "Compress Image"
 msgstr ""
 
-#: src/includes/class-updraft-smush-manager.php:1519
+#: src/includes/class-updraft-smush-manager.php:1529
 msgid "Compress image"
 msgstr ""
 
@@ -547,7 +547,7 @@ msgstr ""
 msgid "Tables"
 msgstr ""
 
-#: src/includes/class-wp-optimize-admin.php:44, src/includes/class-wp-optimize-admin.php:63, src/includes/class-wp-optimize-admin.php:69, src/includes/class-wp-optimize-admin.php:653, src/includes/class-wp-optimize-admin.php:654, src/templates/minify/status-tab.php:111, src/templates/minify/status-tab.php:133, src/wp-optimize.php:957
+#: src/includes/class-wp-optimize-admin.php:44, src/includes/class-wp-optimize-admin.php:63, src/includes/class-wp-optimize-admin.php:69, src/includes/class-wp-optimize-admin.php:653, src/includes/class-wp-optimize-admin.php:654, src/templates/minify/status-tab.php:111, src/templates/minify/status-tab.php:133, src/wp-optimize.php:829
 msgid "Settings"
 msgstr ""
 
@@ -639,7 +639,7 @@ msgstr ""
 msgid "Enjoyed %s? Please leave us a %s rating. We really appreciate your support!"
 msgstr ""
 
-#: src/includes/class-wp-optimize-admin.php:560, src/includes/class-wp-optimize-admin.php:563, src/templates/cache/page-cache.php:52, src/wp-optimize.php:928, src/wp-optimize.php:931
+#: src/includes/class-wp-optimize-admin.php:560, src/includes/class-wp-optimize-admin.php:563, src/templates/cache/page-cache.php:52, src/wp-optimize.php:800, src/wp-optimize.php:803
 msgid "Purge cache"
 msgstr ""
 
@@ -913,6 +913,22 @@ msgstr ""
 msgid "All trackbacks on existing posts were enabled at %s."
 msgstr ""
 
+#: src/includes/class-wpo-ajax.php:126
+msgid "The security check failed; try refreshing the page."
+msgstr ""
+
+#: src/includes/class-wpo-ajax.php:147
+msgid "You are not allowed to run this command."
+msgstr ""
+
+#: src/includes/class-wpo-ajax.php:171
+msgid "Options can only be saved by network admin"
+msgstr ""
+
+#: src/includes/class-wpo-ajax.php:306
+msgid "The command \"%s\" was not found"
+msgstr ""
+
 #: src/minify/class-wp-optimize-minify-admin.php:78
 msgid "WP-Optimize Minify requires PHP 5.4 or higher. You’re using version %s."
 msgstr ""
@@ -973,7 +989,7 @@ msgstr ""
 msgid "All caches from WP-Optimize Minify have been purged."
 msgstr ""
 
-#: src/minify/class-wp-optimize-minify-commands.php:116, src/wp-optimize.php:887
+#: src/minify/class-wp-optimize-minify-commands.php:116, src/wp-optimize.php:759
 msgid "Cache file was not found."
 msgstr ""
 
@@ -981,19 +997,19 @@ msgstr ""
 msgid "Cache deleted."
 msgstr ""
 
-#: src/minify/class-wp-optimize-minify-preloader.php:63
+#: src/minify/class-wp-optimize-minify-preloader.php:66
 msgid "Minify: Creating tasks for preload site urls."
 msgstr ""
 
-#: src/minify/class-wp-optimize-minify-preloader.php:75
+#: src/minify/class-wp-optimize-minify-preloader.php:78
 msgid "Minify: Tasks for preload site urls created."
 msgstr ""
 
-#: src/minify/class-wp-optimize-minify-preloader.php:100
+#: src/minify/class-wp-optimize-minify-preloader.php:103
 msgid "Minify is disabled."
 msgstr ""
 
-#: src/minify/class-wp-optimize-minify-preloader.php:112
+#: src/minify/class-wp-optimize-minify-preloader.php:115
 msgid "Probably minify preload is running already."
 msgstr ""
 
@@ -1573,7 +1589,7 @@ msgstr ""
 msgid "Close"
 msgstr ""
 
-#: src/templates/admin-metabox-smush.php:103, src/templates/cache/page-cache-preload.php:7, src/templates/database/tables-list-after.php:58, src/templates/images/smush.php:195, src/templates/images/smush.php:228, src/templates/minify/preload-tab.php:18, src/templates/settings/settings-logging.php:51, src/templates/settings/settings-logging.php:51, src/wp-optimize.php:863
+#: src/templates/admin-metabox-smush.php:103, src/templates/cache/page-cache-preload.php:7, src/templates/database/tables-list-after.php:58, src/templates/images/smush.php:195, src/templates/images/smush.php:228, src/templates/minify/preload-tab.php:18, src/templates/settings/settings-logging.php:51, src/templates/settings/settings-logging.php:51, src/wp-optimize.php:735
 msgid "Cancel"
 msgstr ""
 
@@ -1629,7 +1645,7 @@ msgstr ""
 msgid "More plugins"
 msgstr ""
 
-#: src/templates/admin-page-header.php:29, src/templates/settings/may-also-like.php:26, src/wp-optimize.php:953
+#: src/templates/admin-page-header.php:29, src/templates/settings/may-also-like.php:26, src/wp-optimize.php:825
 msgid "Premium"
 msgstr ""
 
@@ -1665,11 +1681,11 @@ msgstr ""
 msgid "disabled"
 msgstr ""
 
-#: src/templates/cache/browser-cache.php:39, src/wp-optimize.php:875
+#: src/templates/cache/browser-cache.php:39, src/wp-optimize.php:747
 msgid "Update"
 msgstr ""
 
-#: src/templates/cache/browser-cache.php:39, src/templates/cache/gzip-compression.php:47, src/templates/settings/settings-trackback-and-comments.php:18, src/templates/settings/settings-trackback-and-comments.php:49, src/wp-optimize.php:865
+#: src/templates/cache/browser-cache.php:39, src/templates/cache/gzip-compression.php:47, src/templates/settings/settings-trackback-and-comments.php:18, src/templates/settings/settings-trackback-and-comments.php:49, src/wp-optimize.php:737
 msgid "Enable"
 msgstr ""
 
@@ -1733,7 +1749,7 @@ msgstr ""
 msgid "Check status again"
 msgstr ""
 
-#: src/templates/cache/gzip-compression.php:47, src/templates/settings/settings-trackback-and-comments.php:20, src/templates/settings/settings-trackback-and-comments.php:51, src/wp-optimize.php:866
+#: src/templates/cache/gzip-compression.php:47, src/templates/settings/settings-trackback-and-comments.php:20, src/templates/settings/settings-trackback-and-comments.php:51, src/wp-optimize.php:738
 msgid "Disable"
 msgstr ""
 
@@ -1821,7 +1837,7 @@ msgstr ""
 msgid "Preload now"
 msgstr ""
 
-#: src/templates/cache/page-cache-preload.php:7, src/templates/minify/preload-tab.php:18, src/wp-optimize.php:876
+#: src/templates/cache/page-cache-preload.php:7, src/templates/minify/preload-tab.php:18, src/wp-optimize.php:748
 msgid "Run now"
 msgstr ""
 
@@ -1917,11 +1933,11 @@ msgstr ""
 msgid "Deletes the entire cache contents but keeps the page cache enabled."
 msgstr ""
 
-#: src/templates/cache/page-cache.php:60, src/wp-optimize.php:879
+#: src/templates/cache/page-cache.php:60, src/wp-optimize.php:751
 msgid "Current cache size:"
 msgstr ""
 
-#: src/templates/cache/page-cache.php:61, src/wp-optimize.php:880
+#: src/templates/cache/page-cache.php:61, src/wp-optimize.php:752
 msgid "Number of files:"
 msgstr ""
 
@@ -1977,7 +1993,7 @@ msgstr ""
 msgid "Go"
 msgstr ""
 
-#: src/templates/database/optimize-table.php:8, src/templates/database/tables.php:5, src/wp-optimize.php:889
+#: src/templates/database/optimize-table.php:8, src/templates/database/tables.php:5, src/wp-optimize.php:761
 msgid "Loading data..."
 msgstr ""
 
@@ -2801,19 +2817,19 @@ msgstr ""
 msgid "Load asynchronously"
 msgstr ""
 
-#: src/templates/minify/cached-file.php:4, src/wp-optimize.php:881
+#: src/templates/minify/cached-file.php:4, src/wp-optimize.php:753
 msgid "Show information"
 msgstr ""
 
-#: src/templates/minify/cached-file.php:5, src/templates/settings/settings-logging.php:47, src/templates/settings/settings-logging.php:47, src/wp-optimize.php:882
+#: src/templates/minify/cached-file.php:5, src/templates/settings/settings-logging.php:47, src/templates/settings/settings-logging.php:47, src/wp-optimize.php:754
 msgid "Delete"
 msgstr ""
 
-#: src/templates/minify/cached-file.php:7, src/wp-optimize.php:884
+#: src/templates/minify/cached-file.php:7, src/wp-optimize.php:756
 msgid "The file was added to the list"
 msgstr ""
 
-#: src/templates/minify/cached-file.php:8, src/wp-optimize.php:885
+#: src/templates/minify/cached-file.php:8, src/wp-optimize.php:757
 msgid "Save the changes"
 msgstr ""
 
@@ -3360,7 +3376,7 @@ msgstr ""
 msgid "Current cache:"
 msgstr ""
 
-#: src/templates/minify/status-tab.php:163, src/templates/minify/status-tab.php:176, src/wp-optimize.php:895
+#: src/templates/minify/status-tab.php:163, src/templates/minify/status-tab.php:176, src/wp-optimize.php:767
 msgid "No minified files are present"
 msgstr ""
 
@@ -3968,169 +3984,153 @@ msgid "New feature: WP-Optimize Premium can now optimize all sites within a mult
 msgstr ""
 
 #: src/wp-optimize.php:728
-msgid "The security check failed; try refreshing the page."
-msgstr ""
-
-#: src/wp-optimize.php:739
-msgid "You are not allowed to run this command."
-msgstr ""
-
-#: src/wp-optimize.php:753
-msgid "Options can only be saved by network admin"
-msgstr ""
-
-#: src/wp-optimize.php:799
-msgid "The command \"%s\" was not found"
-msgstr ""
-
-#: src/wp-optimize.php:856
 msgid "Automatic backup before optimizations"
 msgstr ""
 
-#: src/wp-optimize.php:857
+#: src/wp-optimize.php:729
 msgid "An unexpected response was received."
 msgstr ""
 
-#: src/wp-optimize.php:858
+#: src/wp-optimize.php:730
 msgid "Optimization complete"
 msgstr ""
 
-#: src/wp-optimize.php:859
+#: src/wp-optimize.php:731
 msgid "(with warnings - open the browser console for more details)"
 msgstr ""
 
-#: src/wp-optimize.php:860
+#: src/wp-optimize.php:732
 msgid "Optimizing table:"
 msgstr ""
 
-#: src/wp-optimize.php:861
+#: src/wp-optimize.php:733
 msgid "Run optimizations"
 msgstr ""
 
-#: src/wp-optimize.php:864
+#: src/wp-optimize.php:736
 msgid "Cancelling..."
 msgstr ""
 
-#: src/wp-optimize.php:867
+#: src/wp-optimize.php:739
 msgid "Please, select settings file."
 msgstr ""
 
-#: src/wp-optimize.php:868
+#: src/wp-optimize.php:740
 msgid "Are you sure you want to remove this logging destination?"
 msgstr ""
 
-#: src/wp-optimize.php:869
+#: src/wp-optimize.php:741
 msgid "Before saving, you need to complete the currently incomplete settings (or remove them)."
 msgstr ""
 
-#: src/wp-optimize.php:870
+#: src/wp-optimize.php:742
 msgid "%s was not repaired. For more details, please check the logs (configured in your logging destinations settings)."
 msgstr ""
 
-#: src/wp-optimize.php:871
+#: src/wp-optimize.php:743
 msgid "%s was not deleted. For more details, please check your logs configured in logging destinations settings."
 msgstr ""
 
-#: src/wp-optimize.php:872
+#: src/wp-optimize.php:744
 msgid "%s was not converted to InnoDB. For more details, please check your logs configured in logging destinations settings."
 msgstr ""
 
-#: src/wp-optimize.php:873
+#: src/wp-optimize.php:745
 msgid "Please use positive integers."
 msgstr ""
 
-#: src/wp-optimize.php:874
+#: src/wp-optimize.php:746
 msgid "Please use valid values."
 msgstr ""
 
-#: src/wp-optimize.php:877
+#: src/wp-optimize.php:749
 msgid "Started preload..."
 msgstr ""
 
-#: src/wp-optimize.php:883
+#: src/wp-optimize.php:755
 msgid "Added to the list"
 msgstr ""
 
-#: src/wp-optimize.php:886
+#: src/wp-optimize.php:758
 msgid "Refreshing the page to reflect changes..."
 msgstr ""
 
-#: src/wp-optimize.php:888
+#: src/wp-optimize.php:760
 msgid "WP-Optimize settings have been deleted successfully."
 msgstr ""
 
-#: src/wp-optimize.php:894
+#: src/wp-optimize.php:766
 msgid "The tweak has been performed."
 msgstr ""
 
-#: src/wp-optimize.php:898
+#: src/wp-optimize.php:770
 msgid "You have not yet selected a file to import."
 msgstr ""
 
-#: src/wp-optimize.php:899
+#: src/wp-optimize.php:771
 msgid "Error: The chosen file is corrupt. Please choose a valid WP-Optimize export file."
 msgstr ""
 
-#: src/wp-optimize.php:900
+#: src/wp-optimize.php:772
 msgid "Importing..."
 msgstr ""
 
-#: src/wp-optimize.php:901
+#: src/wp-optimize.php:773
 msgid "This will import data from:"
 msgstr ""
 
-#: src/wp-optimize.php:902
+#: src/wp-optimize.php:774
 msgid "Which was exported on:"
 msgstr ""
 
-#: src/wp-optimize.php:903
+#: src/wp-optimize.php:775
 msgid "Do you want to carry out the import?"
 msgstr ""
 
-#: src/wp-optimize.php:960
+#: src/wp-optimize.php:832
 msgid "Optimize"
 msgstr ""
 
-#: src/wp-optimize.php:976
+#: src/wp-optimize.php:848
 msgid "Repair"
 msgstr ""
 
-#: src/wp-optimize.php:985
+#: src/wp-optimize.php:857
 msgid "Remove"
 msgstr ""
 
-#: src/wp-optimize.php:994
+#: src/wp-optimize.php:866
 msgid "Convert to InnoDB"
 msgstr ""
 
-#: src/wp-optimize.php:1135
+#: src/wp-optimize.php:1007
 msgid "Warning"
 msgstr ""
 
-#: src/wp-optimize.php:1135
+#: src/wp-optimize.php:1007
 msgid "WordPress has a number (%d) of scheduled tasks which are overdue. Unless this is a development site, this probably means that the scheduler in your WordPress install is not working."
 msgstr ""
 
-#: src/wp-optimize.php:1135
+#: src/wp-optimize.php:1007
 msgid "Read this page for a guide to possible causes and how to fix it."
 msgstr ""
 
-#: src/wp-optimize.php:1190
+#: src/wp-optimize.php:1062
 msgid "Error:"
 msgstr ""
 
-#: src/wp-optimize.php:1190
+#: src/wp-optimize.php:1062
 msgid "template not found"
 msgstr ""
 
-#: src/wp-optimize.php:1254
+#: src/wp-optimize.php:1126
 msgid "N/A"
 msgstr ""
 
-#: src/wp-optimize.php:1875
+#: src/wp-optimize.php:1754
 msgid "Only Network Administrator can activate WP-Optimize plugin."
 msgstr ""
 
-#: src/wp-optimize.php:1876
+#: src/wp-optimize.php:1755
 msgid "go back"
 msgstr ""

@@ -1,5 +1,5 @@
 /*!
- * jquery-timepicker v1.13.18 - A jQuery timepicker plugin inspired by Google Calendar. It supports both mouse and keyboard navigation.
+ * jquery-timepicker v1.14.0 - A jQuery timepicker plugin inspired by Google Calendar. It supports both mouse and keyboard navigation.
  * Copyright (c) 2021 Jon Thornton - https://www.jonthornton.com/jquery-timepicker/
  * License: MIT
  */
@@ -172,31 +172,26 @@
   var roundingFunction = function roundingFunction(seconds, settings) {
     if (seconds === null) {
       return null;
-    } else if (typeof settings.step !== "number") {
-      // TODO: nearest fit irregular steps
-      return seconds;
+    }
+
+    var i = 0;
+    var nextVal = 0;
+
+    while (nextVal < seconds) {
+      i++;
+      nextVal += settings.step(i) * 60;
+    }
+
+    var prevVal = nextVal - settings.step(i - 1) * 60;
+
+    if (seconds - prevVal < nextVal - seconds) {
+      return moduloSeconds(prevVal, settings);
     } else {
-      var _settings$minTime;
-
-      var offset = seconds % (settings.step * 60); // step is in minutes
-
-      var start = (_settings$minTime = settings.minTime()) !== null && _settings$minTime !== void 0 ? _settings$minTime : 0; // adjust offset by start mod step so that the offset is aligned not to 00:00 but to the start
-
-      offset -= start % (settings.step * 60);
-
-      if (offset >= settings.step * 30) {
-        // if offset is larger than a half step, round up
-        seconds += settings.step * 60 - offset;
-      } else {
-        // round down
-        seconds -= offset;
-      }
-
-      return _moduloSeconds(seconds, settings);
+      return moduloSeconds(nextVal, settings);
     }
   };
 
-  function _moduloSeconds(seconds, settings) {
+  function moduloSeconds(seconds, settings) {
     if (seconds == ONE_DAY && settings.show2400) {
       return seconds;
     }
@@ -207,7 +202,8 @@
   var DEFAULT_SETTINGS = {
     appendTo: "body",
     className: null,
-    closeOnWindowScroll: false,
+    closeOnWindow: false,
+    closeOnScroll: false,
     disableTextInput: false,
     disableTimeRanges: [],
     disableTouchKeyboard: false,
@@ -225,7 +221,6 @@
     show2400: false,
     showDuration: false,
     showOn: ["click", "focus"],
-    showOnFocus: true,
     step: 30,
     stopScrollPropagation: false,
     timeFormat: "g:ia",
@@ -455,14 +450,21 @@
 
         var hour = parseInt(time[3] * 1, 10);
         var ampm = time[2] || time[9];
-        var hours = hour;
-        var minutes = time[5] * 1 || 0;
+        var minutes = this.parseMinuteString(time[5]);
         var seconds = time[7] * 1 || 0;
 
         if (!ampm && time[3].length == 2 && time[3][0] == "0") {
           // preceding '0' implies AM
           ampm = "am";
         }
+
+        if (hour > 24 && !minutes) {
+          // if someone types in something like "83", turn it into "8h 30m"
+          hour = time[3][0] * 1;
+          minutes = this.parseMinuteString(time[3][1]);
+        }
+
+        var hours = hour;
 
         if (hour <= 12 && ampm) {
           ampm = ampm.trim();
@@ -496,6 +498,21 @@
         }
 
         return timeInt;
+      }
+    }, {
+      key: "parseMinuteString",
+      value: function parseMinuteString(minutesString) {
+        if (!minutesString) {
+          minutesString = 0;
+        }
+
+        var multiplier = 1;
+
+        if (minutesString.length == 1) {
+          multiplier = 10;
+        }
+
+        return parseInt(minutesString) * multiplier || 0;
       }
     }, {
       key: "intStringDateOrFunc2func",
@@ -542,34 +559,51 @@
           settings._twelveHourTime = true;
         }
 
-        if (settings.showOnFocus === false && settings.showOn.indexOf("focus") != -1) {
-          settings.showOn.splice(settings.showOn.indexOf("focus"), 1);
+        if (typeof settings.step != 'function') {
+          var curryStep = settings.step;
+
+          settings.step = function () {
+            return curryStep;
+          };
         }
 
-        if (!settings.disableTimeRanges) {
-          settings.disableTimeRanges = [];
+        settings.disableTimeRanges = this._parseDisableTimeRanges(settings.disableTimeRanges);
+
+        if (settings.closeOnWindowScroll && !settings.closeOnScroll) {
+          settings.closeOnScroll = settings.closeOnWindowScroll;
         }
 
-        if (settings.disableTimeRanges.length > 0) {
-          // convert string times to integers
-          for (var i in settings.disableTimeRanges) {
-            settings.disableTimeRanges[i] = [this.anytime2int(settings.disableTimeRanges[i][0]), this.anytime2int(settings.disableTimeRanges[i][1])];
-          } // sort by starting time
-
-
-          settings.disableTimeRanges = settings.disableTimeRanges.sort(function (a, b) {
-            return a[0] - b[0];
-          }); // merge any overlapping ranges
-
-          for (var i = settings.disableTimeRanges.length - 1; i > 0; i--) {
-            if (settings.disableTimeRanges[i][0] <= settings.disableTimeRanges[i - 1][1]) {
-              settings.disableTimeRanges[i - 1] = [Math.min(settings.disableTimeRanges[i][0], settings.disableTimeRanges[i - 1][0]), Math.max(settings.disableTimeRanges[i][1], settings.disableTimeRanges[i - 1][1])];
-              settings.disableTimeRanges.splice(i, 1);
-            }
-          }
+        if (settings.closeOnScroll === true) {
+          settings.closeOnScroll = window.document;
         }
 
         return settings;
+      }
+    }, {
+      key: "_parseDisableTimeRanges",
+      value: function _parseDisableTimeRanges(disableTimeRanges) {
+        if (!disableTimeRanges || disableTimeRanges.length == 0) {
+          return [];
+        } // convert string times to integers
+
+
+        for (var i in disableTimeRanges) {
+          disableTimeRanges[i] = [this.anytime2int(disableTimeRanges[i][0]), this.anytime2int(disableTimeRanges[i][1])];
+        } // sort by starting time
+
+
+        disableTimeRanges = disableTimeRanges.sort(function (a, b) {
+          return a[0] - b[0];
+        }); // merge any overlapping ranges
+
+        for (var i = disableTimeRanges.length - 1; i > 0; i--) {
+          if (disableTimeRanges[i][0] <= disableTimeRanges[i - 1][1]) {
+            disableTimeRanges[i - 1] = [Math.min(disableTimeRanges[i][0], disableTimeRanges[i - 1][0]), Math.max(disableTimeRanges[i][1], disableTimeRanges[i - 1][1])];
+            disableTimeRanges.splice(i, 1);
+          }
+        }
+
+        return disableTimeRanges;
       }
       /*
        *  Filter freeform input
@@ -624,6 +658,7 @@
     }, {
       key: "_roundAndFormatTime",
       value: function _roundAndFormatTime(seconds) {
+        // console.log('_roundAndFormatTime')
         seconds = this.settings.roundingFunction(seconds, this.settings);
 
         if (seconds !== null) {
@@ -1001,6 +1036,245 @@
     window.CustomEvent = CustomEvent;
   })();
 
+  function _getNoneOptionItems(settings) {
+    if (!settings.noneOption) {
+      return [];
+    }
+
+    var noneOptions = _getNoneOptionItemsHelper(settings.noneOption);
+
+    if (Array.isArray(settings.noneOption)) {
+      return noneOptions;
+    } else {
+      return [noneOptions];
+    }
+  }
+
+  function _getNoneOptionItemsHelper(noneOption) {
+    if (Array.isArray(noneOption)) {
+      return noneOption.map(_getNoneOptionItemsHelper);
+    }
+
+    if (noneOption === true) {
+      return {
+        'label': 'None',
+        'value': ''
+      };
+    }
+
+    if (_typeof(noneOption) === 'object') {
+      return noneOption;
+    }
+
+    return {
+      'label': noneOption,
+      'value': ''
+    };
+  }
+
+  function _getDropdownTimes(tp) {
+    var _settings$minTime, _settings$maxTime;
+
+    var settings = tp.settings;
+    var start = (_settings$minTime = settings.minTime()) !== null && _settings$minTime !== void 0 ? _settings$minTime : 0;
+    var end = (_settings$maxTime = settings.maxTime()) !== null && _settings$maxTime !== void 0 ? _settings$maxTime : start + ONE_DAY - 1;
+
+    if (end < start) {
+      // make sure the end time is greater than start time, otherwise there will be no list to show
+      end += ONE_DAY;
+    }
+
+    if (end === ONE_DAY - 1 && typeof settings.timeFormat === 'string' && settings.show2400) {
+      // show a 24:00 option when using military time
+      end = ONE_DAY;
+    }
+
+    var output = [];
+
+    for (var i = start, j = 0; i <= end; j++, i += settings.step(j) * 60) {
+      var timeInt = i;
+
+      var timeString = tp._int2time(timeInt);
+
+      var className = timeInt % ONE_DAY < ONE_DAY / 2 ? 'ui-timepicker-am' : 'ui-timepicker-pm';
+      var item = {
+        'label': timeString,
+        'value': moduloSeconds(timeInt, settings),
+        'className': className
+      };
+
+      if ((settings.minTime() !== null || settings.durationTime() !== null) && settings.showDuration) {
+        var _settings$durationTim;
+
+        var durStart = (_settings$durationTim = settings.durationTime()) !== null && _settings$durationTim !== void 0 ? _settings$durationTim : settings.minTime();
+
+        if (durStart > i) {
+          durStart -= ONE_DAY;
+        }
+
+        var durationString = tp._int2duration(i - durStart, settings.step());
+
+        item.duration = durationString;
+      }
+
+      var _iterator = _createForOfIteratorHelper(settings.disableTimeRanges),
+          _step;
+
+      try {
+        for (_iterator.s(); !(_step = _iterator.n()).done;) {
+          var range = _step.value;
+
+          if (timeInt % ONE_DAY >= range[0] && timeInt % ONE_DAY < range[1]) {
+            item.disabled = true;
+            break;
+          }
+        }
+      } catch (err) {
+        _iterator.e(err);
+      } finally {
+        _iterator.f();
+      }
+
+      output.push(item);
+    }
+
+    return output;
+  }
+
+  function _renderSelectItem(item) {
+    var el = document.createElement('option');
+    el.value = item.label;
+
+    if (item.duration) {
+      el.appendChild(document.createTextNode(item.label + ' (' + item.duration + ')'));
+    } else {
+      el.appendChild(document.createTextNode(item.label));
+    }
+
+    if (item.disabled) {
+      el.disabled = true;
+    }
+
+    return el;
+  }
+
+  function _renderStandardItem(item) {
+    var el = document.createElement('li');
+    el.dataset['time'] = item.value;
+
+    if (item.className) {
+      el.classList.add(item.className);
+    }
+
+    el.className = item.className;
+    el.appendChild(document.createTextNode(item.label));
+
+    if (item.duration) {
+      var durationEl = document.createElement('span');
+      durationEl.appendChild(document.createTextNode('(' + item.duration + ')'));
+      durationEl.classList.add('ui-timepicker-duration');
+      el.appendChild(durationEl);
+    }
+
+    if (item.disabled) {
+      el.classList.add('ui-timepicker-disabled');
+    }
+
+    return el;
+  }
+
+  function _renderStandardList(items) {
+    var list = document.createElement('ul');
+    list.classList.add('ui-timepicker-list');
+
+    var _iterator2 = _createForOfIteratorHelper(items),
+        _step2;
+
+    try {
+      for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
+        var item = _step2.value;
+
+        var itemEl = _renderStandardItem(item);
+
+        list.appendChild(itemEl);
+      }
+    } catch (err) {
+      _iterator2.e(err);
+    } finally {
+      _iterator2.f();
+    }
+
+    var wrapper = document.createElement('div');
+    wrapper.classList.add('ui-timepicker-wrapper');
+    wrapper.tabIndex = -1;
+    wrapper.style.display = 'none';
+    wrapper.style.position = 'absolute';
+    wrapper.appendChild(list);
+    return wrapper;
+  }
+
+  function _renderSelectList(items, targetName) {
+    var el = document.createElement('select');
+    el.classList.add('ui-timepicker-select');
+
+    if (targetName) {
+      el.name = 'ui-timepicker-' + targetName;
+    }
+
+    var _iterator3 = _createForOfIteratorHelper(items),
+        _step3;
+
+    try {
+      for (_iterator3.s(); !(_step3 = _iterator3.n()).done;) {
+        var item = _step3.value;
+
+        var itemEl = _renderSelectItem(item);
+
+        el.appendChild(itemEl);
+      }
+    } catch (err) {
+      _iterator3.e(err);
+    } finally {
+      _iterator3.f();
+    }
+
+    return el;
+  }
+
+  function renderHtml(tp) {
+    var items = [].concat(_getNoneOptionItems(tp.settings), _getDropdownTimes(tp));
+    var el;
+
+    if (tp.settings.useSelect) {
+      el = _renderSelectList(items, tp.targetEl.name);
+    } else {
+      el = _renderStandardList(items);
+    }
+
+    if (tp.settings.className) {
+      var _iterator4 = _createForOfIteratorHelper(tp.settings.className.split(' ')),
+          _step4;
+
+      try {
+        for (_iterator4.s(); !(_step4 = _iterator4.n()).done;) {
+          var token = _step4.value;
+          el.classList.add(token);
+        }
+      } catch (err) {
+        _iterator4.e(err);
+      } finally {
+        _iterator4.f();
+      }
+    }
+
+    if (tp.settings.showDuration && (tp.settings.minTime !== null || tp.settings.durationTime !== null)) {
+      el.classList.add("ui-timepicker-with-duration");
+      el.classList.add("ui-timepicker-step-" + tp.settings.step());
+    }
+
+    return el;
+  }
+
   (function (factory) {
     if ((typeof exports === "undefined" ? "undefined" : _typeof(exports)) === "object" && exports && (typeof module === "undefined" ? "undefined" : _typeof(module)) === "object" && module && module.exports === exports) {
       // Browserify. Attach to jQuery module.
@@ -1172,8 +1446,8 @@
         $(document).on("mousedown.ui-timepicker", _closeHandler);
         window.addEventListener('resize', _closeHandler);
 
-        if (settings.closeOnWindowScroll) {
-          $(document).on("scroll.ui-timepicker", _closeHandler);
+        if (settings.closeOnScroll) {
+          $(settings.closeOnScroll).on("scroll.ui-timepicker", _closeHandler);
         }
 
         self.trigger("showTimepicker");
@@ -1313,8 +1587,6 @@
     }; // private methods
 
     function _render(self) {
-      var _settings$durationTim, _settings$minTime, _settings$maxTime;
-
       var tp = self[0].timepickerObj;
       var list = tp.list;
       var settings = tp.settings;
@@ -1324,131 +1596,12 @@
         tp.list = null;
       }
 
+      var wrapped_list = $(renderHtml(tp));
+
       if (settings.useSelect) {
-        list = $("<select></select>", {
-          "class": "ui-timepicker-select"
-        });
-
-        if (self.attr("name")) {
-          list.attr("name", "ui-timepicker-" + self.attr("name"));
-        }
-
-        var wrapped_list = list;
+        list = wrapped_list;
       } else {
-        list = $("<ul></ul>", {
-          "class": "ui-timepicker-list"
-        });
-        var wrapped_list = $("<div></div>", {
-          "class": "ui-timepicker-wrapper",
-          tabindex: -1
-        });
-        wrapped_list.css({
-          display: "none",
-          position: "absolute"
-        }).append(list);
-      }
-
-      if (settings.noneOption) {
-        if (settings.noneOption === true) {
-          settings.noneOption = settings.useSelect ? "Time..." : "None";
-        }
-
-        if ($.isArray(settings.noneOption)) {
-          for (var i in settings.noneOption) {
-            if (parseInt(i, 10) == i) {
-              var noneElement = tp._generateNoneElement(settings.noneOption[i], settings.useSelect);
-
-              list.append(noneElement);
-            }
-          }
-        } else {
-          var noneElement = tp._generateNoneElement(settings.noneOption, settings.useSelect);
-
-          list.append(noneElement);
-        }
-      }
-
-      if (settings.className) {
-        wrapped_list.addClass(settings.className);
-      }
-
-      if ((settings.minTime !== null || settings.durationTime !== null) && settings.showDuration) {
-        typeof settings.step == "function" ? "function" : settings.step;
-        wrapped_list.addClass("ui-timepicker-with-duration");
-        wrapped_list.addClass("ui-timepicker-step-" + settings.step);
-      }
-
-      var durStart = (_settings$durationTim = settings.durationTime()) !== null && _settings$durationTim !== void 0 ? _settings$durationTim : settings.minTime();
-      var start = (_settings$minTime = settings.minTime()) !== null && _settings$minTime !== void 0 ? _settings$minTime : 0;
-      var end = (_settings$maxTime = settings.maxTime()) !== null && _settings$maxTime !== void 0 ? _settings$maxTime : start + ONE_DAY - 1;
-
-      if (end < start) {
-        // make sure the end time is greater than start time, otherwise there will be no list to show
-        end += ONE_DAY;
-      }
-
-      if (end === ONE_DAY - 1 && $.type(settings.timeFormat) === "string" && settings.show2400) {
-        // show a 24:00 option when using military time
-        end = ONE_DAY;
-      }
-
-      var dr = settings.disableTimeRanges;
-      var drCur = 0;
-      var drLen = dr.length;
-      var stepFunc = settings.step;
-
-      if (typeof stepFunc != "function") {
-        stepFunc = function stepFunc() {
-          return settings.step;
-        };
-      }
-
-      for (var i = start, j = 0; i <= end; j++, i += stepFunc(j) * 60) {
-        var timeInt = i;
-
-        var timeString = tp._int2time(timeInt);
-
-        if (settings.useSelect) {
-          var row = $("<option></option>", {
-            value: timeString
-          });
-          row.text(timeString);
-        } else {
-          var row = $("<li></li>");
-          row.addClass(timeInt % ONE_DAY < ONE_DAY / 2 ? "ui-timepicker-am" : "ui-timepicker-pm");
-          row.attr("data-time", roundingFunction(timeInt, settings));
-          row.text(timeString);
-        }
-
-        if ((settings.minTime() !== null || settings.durationTime() !== null) && settings.showDuration) {
-          var durationString = tp._int2duration(i - durStart, settings.step);
-
-          if (settings.useSelect) {
-            row.text(row.text() + " (" + durationString + ")");
-          } else {
-            var duration = $("<span></span>", {
-              "class": "ui-timepicker-duration"
-            });
-            duration.text(" (" + durationString + ")");
-            row.append(duration);
-          }
-        }
-
-        if (drCur < drLen) {
-          if (timeInt >= dr[drCur][1]) {
-            drCur += 1;
-          }
-
-          if (dr[drCur] && timeInt >= dr[drCur][0] && timeInt < dr[drCur][1]) {
-            if (settings.useSelect) {
-              row.prop("disabled", true);
-            } else {
-              row.addClass("ui-timepicker-disabled");
-            }
-          }
-        }
-
-        list.append(row);
+        list = wrapped_list.children('ul');
       }
 
       wrapped_list.data("timepicker-input", self);
@@ -1529,8 +1682,8 @@
       }
 
       Timepicker.hideAll();
-      $(document).unbind(".ui-timepicker");
-      $(window).unbind(".ui-timepicker");
+      $(document).off(".ui-timepicker");
+      $(window).off(".ui-timepicker");
     }
     /*
      *  Keyboard navigation via arrow keys
