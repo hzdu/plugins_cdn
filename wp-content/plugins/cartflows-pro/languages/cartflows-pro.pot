@@ -1,15 +1,15 @@
-# Copyright (C) 2022 CartFlows Inc
+# Copyright (C) 2023 CartFlows Inc
 # This file is distributed under the same license as the CartFlows Pro plugin.
 msgid ""
 msgstr ""
-"Project-Id-Version: CartFlows Pro 1.11.8\n"
+"Project-Id-Version: CartFlows Pro 1.11.9\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/cartflows-pro\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2022-12-27T11:17:16+00:00\n"
+"POT-Creation-Date: 2023-02-06T15:19:33+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.5.0\n"
 "X-Domain: cartflows-pro\n"
@@ -47,13 +47,13 @@ msgstr ""
 #: admin-core/ajax/form-fields.php:82
 #: admin-core/ajax/form-fields.php:176
 #: admin-core/ajax/multiple-order-bump.php:82
-#: admin-core/ajax/multiple-order-bump.php:299
-#: admin-core/ajax/multiple-order-bump.php:529
-#: admin-core/ajax/multiple-order-bump.php:591
-#: admin-core/ajax/multiple-order-bump.php:654
-#: admin-core/ajax/multiple-order-bump.php:712
-#: admin-core/ajax/multiple-order-bump.php:780
-#: admin-core/ajax/multiple-order-bump.php:829
+#: admin-core/ajax/multiple-order-bump.php:311
+#: admin-core/ajax/multiple-order-bump.php:543
+#: admin-core/ajax/multiple-order-bump.php:611
+#: admin-core/ajax/multiple-order-bump.php:678
+#: admin-core/ajax/multiple-order-bump.php:736
+#: admin-core/ajax/multiple-order-bump.php:810
+#: admin-core/ajax/multiple-order-bump.php:872
 #: admin-core/ajax/offer-settings.php:82
 msgid "No post data found!"
 msgstr ""
@@ -66,69 +66,73 @@ msgstr ""
 msgid "Name field is empty!"
 msgstr ""
 
-#: admin-core/ajax/multiple-order-bump.php:128
-msgid "Order bump settings saved successfully!"
-msgstr ""
-
-#: admin-core/ajax/multiple-order-bump.php:139
+#: admin-core/ajax/multiple-order-bump.php:88
 msgid "Order Bump data not saved."
 msgstr ""
 
-#: admin-core/ajax/multiple-order-bump.php:314
-msgid "Order Bump Data Retrived"
+#: admin-core/ajax/multiple-order-bump.php:135
+msgid "Order bump settings saved successfully!"
 msgstr ""
 
-#: admin-core/ajax/multiple-order-bump.php:321
+#: admin-core/ajax/multiple-order-bump.php:326
+msgid "Order Bump Data Retrieved"
+msgstr ""
+
+#: admin-core/ajax/multiple-order-bump.php:333
 msgid "No data."
 msgstr ""
 
-#: admin-core/ajax/multiple-order-bump.php:557
-msgid "Order Bump Status Updated Succesfully"
-msgstr ""
-
-#: admin-core/ajax/multiple-order-bump.php:564
+#: admin-core/ajax/multiple-order-bump.php:549
 msgid "Cant update order bump status!"
 msgstr ""
 
-#: admin-core/ajax/multiple-order-bump.php:618
-msgid "Order Bump Deleted Succesfully"
+#: admin-core/ajax/multiple-order-bump.php:577
+msgid "Order Bump Status Updated Succesfully"
 msgstr ""
 
-#: admin-core/ajax/multiple-order-bump.php:626
+#: admin-core/ajax/multiple-order-bump.php:617
 msgid "Cant delete order bump!"
 msgstr ""
 
-#: admin-core/ajax/multiple-order-bump.php:677
+#: admin-core/ajax/multiple-order-bump.php:644
+msgid "Order Bump Deleted Succesfully"
+msgstr ""
+
+#: admin-core/ajax/multiple-order-bump.php:701
 msgid "Order Bump Added Succesfully"
 msgstr ""
 
-#: admin-core/ajax/multiple-order-bump.php:684
+#: admin-core/ajax/multiple-order-bump.php:708
 msgid "Cant add order bump!"
 msgstr ""
 
-#: admin-core/ajax/multiple-order-bump.php:735
-msgid " Clone"
-msgstr ""
-
-#: admin-core/ajax/multiple-order-bump.php:747
-msgid "Order Bump Cloned Succesfully"
-msgstr ""
-
-#: admin-core/ajax/multiple-order-bump.php:755
+#: admin-core/ajax/multiple-order-bump.php:741
 msgid "Can't clone the order bump! Order Bump ID or Page ID not found."
 msgstr ""
 
-#: admin-core/ajax/multiple-order-bump.php:804
+#: admin-core/ajax/multiple-order-bump.php:766
+msgid " Clone"
+msgstr ""
+
+#: admin-core/ajax/multiple-order-bump.php:778
+msgid "Order Bump Cloned Succesfully"
+msgstr ""
+
+#: admin-core/ajax/multiple-order-bump.php:837
 msgid "Order Bump Title Updated Succesfully"
 msgstr ""
 
+#: admin-core/ajax/multiple-order-bump.php:845
+msgid "Order Bump Title Not Updated."
+msgstr ""
+
 #. translators: %s flow id
-#: admin-core/ajax/multiple-order-bump.php:841
+#: admin-core/ajax/multiple-order-bump.php:884
 msgid "Order Bumps not sorted."
 msgstr ""
 
 #. translators: %s step id
-#: admin-core/ajax/multiple-order-bump.php:862
+#: admin-core/ajax/multiple-order-bump.php:905
 msgid "Order Bump sorted for step - %s"
 msgstr ""
 
@@ -153,13 +157,13 @@ msgstr ""
 
 #: admin-core/inc/admin-helper.php:125
 #: admin-core/inc/admin-helper.php:293
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:1178
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:1184
 msgid "50%"
 msgstr ""
 
 #: admin-core/inc/admin-helper.php:129
 #: admin-core/inc/admin-helper.php:297
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:1182
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:1188
 msgid "100%"
 msgstr ""
 
@@ -177,11 +181,11 @@ msgstr ""
 #: admin-core/inc/admin-helper.php:168
 #: admin-core/inc/admin-helper.php:319
 #: admin-core/inc/admin-helper.php:336
-#: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:245
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:1354
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:1680
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:1815
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2714
+#: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:236
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:1360
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:1686
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:1821
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2720
 #: modules/elementor/widgets/class-cartflows-pro-el-checkout-form-extend.php:442
 #: modules/elementor/widgets/class-cartflows-pro-el-checkout-form-extend.php:533
 msgid "Default"
@@ -394,89 +398,89 @@ msgid "Thankyou ( Woo )"
 msgstr ""
 
 #. translators: %1$1s: HTML Tag, %2$2s: HTML Tag, %3$3s: HTML Tag, %4$4s: HTML Tag
-#: classes/class-cartflows-pro-admin.php:107
+#: classes/class-cartflows-pro-admin.php:179
 msgid "Hey! We have improved the way we track your flow analytics for accurate stats and better performance. You can try the new analytic feature right now in beta. Go ahead and give it a try. %1$1s Try now %2$2s"
 msgstr ""
 
-#: classes/class-cartflows-pro-admin.php:112
+#: classes/class-cartflows-pro-admin.php:184
 msgid "Introducing a new way to track your flow analytics."
 msgstr ""
 
 #. translators: %1$s: HTML, %2$s: HTML
-#: classes/class-cartflows-pro-admin.php:190
+#: classes/class-cartflows-pro-admin.php:261
 msgid "%1$sYou are installing the lower plan of the CartFlows compared to what currently you have, it will disable some pro features that you might be using. %2$s"
 msgstr ""
 
 #. translators: %1$s: HTML, %2$s: HTML
-#: classes/class-cartflows-pro-admin.php:196
+#: classes/class-cartflows-pro-admin.php:267
 msgid "%1$sYou are installing the lower plan of the CartFlows compared to what currently you have, it will disable some plus features that you might be using. %2$s"
 msgstr ""
 
-#: classes/class-cartflows-pro-admin.php:218
+#: classes/class-cartflows-pro-admin.php:289
 msgid "CartFlows is migrating the old order bump to the new one in the background. The migration process may take a little while, so please be patient."
 msgstr ""
 
-#: classes/class-cartflows-pro-admin.php:219
-#: classes/class-cartflows-pro-admin.php:428
+#: classes/class-cartflows-pro-admin.php:290
+#: classes/class-cartflows-pro-admin.php:499
 msgid "View Progress >>"
 msgstr ""
 
-#: classes/class-cartflows-pro-admin.php:273
+#: classes/class-cartflows-pro-admin.php:344
 msgid "Hurray! CartFlows Multiple Order Bump migration process is completed successfully."
 msgstr ""
 
-#: classes/class-cartflows-pro-admin.php:304
-#: classes/class-cartflows-pro-admin.php:458
+#: classes/class-cartflows-pro-admin.php:375
+#: classes/class-cartflows-pro-admin.php:529
 msgid "Cannot schedule a migration. Action scheduler function not found."
 msgstr ""
 
-#: classes/class-cartflows-pro-admin.php:314
+#: classes/class-cartflows-pro-admin.php:385
 msgid "Order Bump 1st migration action scheduled successfully."
 msgstr ""
 
 #. translators: %1$1s: link html start, %2$12: link html end
-#: classes/class-cartflows-pro-admin.php:344
+#: classes/class-cartflows-pro-admin.php:415
 msgid "CartFlows is migrating the old order bump to the new one in the background. The migration process may take a little while, so please be patient. %1$1s View Progress >> %2$2s"
 msgstr ""
 
 #. translators: %1$1s: link html start, %2$12: link html end
-#: classes/class-cartflows-pro-admin.php:346
+#: classes/class-cartflows-pro-admin.php:417
 msgid "CartFlows is migrating the pre checkout offer styles in the background. The migration process may take a little while, so please be patient. %1$1s View Progress >> %2$2s"
 msgstr ""
 
-#: classes/class-cartflows-pro-admin.php:364
+#: classes/class-cartflows-pro-admin.php:435
 msgid "We have introduced the multiple order bump feature. If your checkout page has the order bump feature enabled, you need to migrate an old order bump settings to the new multiple order bump settings."
 msgstr ""
 
-#: classes/class-cartflows-pro-admin.php:366
+#: classes/class-cartflows-pro-admin.php:437
 msgid "Migrate Order Bump"
 msgstr ""
 
-#: classes/class-cartflows-pro-admin.php:385
+#: classes/class-cartflows-pro-admin.php:456
 msgid "We have moved the pre-checkout offer styling option from the page builder settings and added it to the checkout offer tab. If your checkout page has the pre-checkout feature enabled, then you need to migrate those settings."
 msgstr ""
 
-#: classes/class-cartflows-pro-admin.php:387
+#: classes/class-cartflows-pro-admin.php:458
 msgid "Migrate pre-checkout offer styles"
 msgstr ""
 
-#: classes/class-cartflows-pro-admin.php:405
+#: classes/class-cartflows-pro-admin.php:476
 msgid "Hurray! CartFlows pre checkout offer styles migration process is completed successfully."
 msgstr ""
 
-#: classes/class-cartflows-pro-admin.php:427
+#: classes/class-cartflows-pro-admin.php:498
 msgid "CartFlows is migrating the pre checkout offer styles in the background. The migration process may take a little while, so please be patient."
 msgstr ""
 
-#: classes/class-cartflows-pro-admin.php:468
+#: classes/class-cartflows-pro-admin.php:539
 msgid "1st migration action scheduled successfully."
 msgstr ""
 
-#: classes/class-cartflows-pro-admin.php:587
+#: classes/class-cartflows-pro-admin.php:658
 msgid "Upsell Offer"
 msgstr ""
 
-#: classes/class-cartflows-pro-admin.php:589
+#: classes/class-cartflows-pro-admin.php:660
 msgid "Downsell Offer"
 msgstr ""
 
@@ -513,7 +517,7 @@ msgid "Your session is expired"
 msgstr ""
 
 #: classes/class-cartflows-pro-helper.php:189
-#: classes/class-cartflows-pro-licence.php:473
+#: classes/class-cartflows-pro-licence.php:488
 msgid "No error found."
 msgstr ""
 
@@ -522,77 +526,83 @@ msgid "API call to create a purchase failed."
 msgstr ""
 
 #. translators: %1$s Software Title, %2$s Plugin, %3$s Anchor opening tag, %4$s Anchor closing tag, %5$s Software Title.
-#: classes/class-cartflows-pro-licence.php:141
+#: classes/class-cartflows-pro-licence.php:159
 msgid "The <strong>%1$s</strong> License Key has not been activated, so the %2$s is inactive! %3$sClick here%4$s to activate <strong>%5$s</strong>."
 msgstr ""
 
-#: classes/class-cartflows-pro-licence.php:187
-#: classes/class-cartflows-pro-licence.php:240
+#: classes/class-cartflows-pro-licence.php:204
+#: classes/class-cartflows-pro-licence.php:257
 msgid "Activate License"
 msgstr ""
 
-#: classes/class-cartflows-pro-licence.php:197
-#: classes/class-cartflows-pro-licence.php:215
+#: classes/class-cartflows-pro-licence.php:214
+#: classes/class-cartflows-pro-licence.php:232
 msgid "License Key"
 msgstr ""
 
-#: classes/class-cartflows-pro-licence.php:199
+#: classes/class-cartflows-pro-licence.php:216
 msgid "Enter your License Key"
 msgstr ""
 
 #. translators: Cartflows site URL.
-#: classes/class-cartflows-pro-licence.php:202
+#: classes/class-cartflows-pro-licence.php:219
 msgid "If you don't have License key, you can get it from <a target=\"_blank\" href=\"%1$s\">here</a>."
 msgstr ""
 
-#: classes/class-cartflows-pro-licence.php:207
+#: classes/class-cartflows-pro-licence.php:224
 msgid "Activate"
 msgstr ""
 
-#: classes/class-cartflows-pro-licence.php:217
-msgid "******************"
-msgstr ""
-
-#: classes/class-cartflows-pro-licence.php:223
+#: classes/class-cartflows-pro-licence.php:240
 msgid "Deactivate"
 msgstr ""
 
-#: classes/class-cartflows-pro-licence.php:240
-#: classes/class-cartflows-pro-licence.php:242
+#: classes/class-cartflows-pro-licence.php:257
+#: classes/class-cartflows-pro-licence.php:259
 #: classes/class-cartflows-pro-loader.php:165
 #: modules/offer/classes/class-cartflows-pro-base-offer-meta-data.php:117
 msgid "Settings"
 msgstr ""
 
-#: classes/class-cartflows-pro-licence.php:242
+#: classes/class-cartflows-pro-licence.php:259
 msgid "Deactivate License"
 msgstr ""
 
-#: classes/class-cartflows-pro-licence.php:297
-#: classes/class-cartflows-pro-licence.php:368
+#: classes/class-cartflows-pro-licence.php:312
+#: classes/class-cartflows-pro-licence.php:383
 msgid "Oops! Security nonce is invalid."
 msgstr ""
 
 #. translators: %1$s: HTML, %2$s: HTML
-#: classes/class-cartflows-pro-licence.php:484
+#: classes/class-cartflows-pro-licence.php:499
 msgid "For more information, please check this %1$sarticle%2$s."
 msgstr ""
 
 #. translators: %1$s: HTML, %2$s: HTML, %3$s: HTML
-#: classes/class-cartflows-pro-licence.php:497
+#: classes/class-cartflows-pro-licence.php:512
 msgid "Sorry for the inconvenience, but your website seems to be having trouble connecting to our licensing system. %1$s Please open a technical %2$ssupport ticket%3$s and share the server's outgoing IP address."
 msgstr ""
 
-#: classes/class-cartflows-pro-licence.php:544
+#: classes/class-cartflows-pro-licence.php:559
 msgid "Provide a license key to process license request!"
 msgstr ""
 
-#: classes/class-cartflows-pro-licence.php:548
+#: classes/class-cartflows-pro-licence.php:563
 msgid "Provide a license request!"
 msgstr ""
 
-#: classes/class-cartflows-pro-licence.php:554
+#: classes/class-cartflows-pro-licence.php:569
 msgid "Invalid license request!"
+msgstr ""
+
+#: classes/class-cartflows-pro-licence.php:575
+#: classes/class-cartflows-pro-licence.php:579
+msgid "No request type"
+msgstr ""
+
+#: classes/class-cartflows-pro-licence.php:576
+#: classes/class-cartflows-pro-licence.php:580
+msgid "Request type not provided"
 msgstr ""
 
 #: classes/class-cartflows-pro-loader.php:166
@@ -666,65 +676,65 @@ msgid "License Deactivated : %s"
 msgstr ""
 
 #. translators: %s flow id
-#: modules/ab-test/classes/class-cartflows-pro-ab-test-meta.php:241
+#: modules/ab-test/classes/class-cartflows-pro-ab-test-meta.php:234
 msgid "Step not deleted for flow - %s"
 msgstr ""
 
 #. translators: %s flow id
-#: modules/ab-test/classes/class-cartflows-pro-ab-test-meta.php:254
+#: modules/ab-test/classes/class-cartflows-pro-ab-test-meta.php:247
 msgid "Step deleted for flow - %s"
 msgstr ""
 
 #. translators: %s flow id
-#: modules/ab-test/classes/class-cartflows-pro-ab-test-meta.php:282
+#: modules/ab-test/classes/class-cartflows-pro-ab-test-meta.php:275
 msgid "Can't archive this step - %1$s. Flow - %2$s"
 msgstr ""
 
 #. translators: %s flow id
-#: modules/ab-test/classes/class-cartflows-pro-ab-test-meta.php:295
-#: modules/ab-test/classes/class-cartflows-pro-ab-test-meta.php:638
+#: modules/ab-test/classes/class-cartflows-pro-ab-test-meta.php:288
+#: modules/ab-test/classes/class-cartflows-pro-ab-test-meta.php:636
 msgid "Step - %1$s archived. Flow - %2$s"
 msgstr ""
 
 #. translators: %s step id
-#: modules/ab-test/classes/class-cartflows-pro-ab-test-meta.php:323
+#: modules/ab-test/classes/class-cartflows-pro-ab-test-meta.php:316
 msgid "Can't create a variation for this step - %s"
 msgstr ""
 
 #. translators: %s flow id
-#: modules/ab-test/classes/class-cartflows-pro-ab-test-meta.php:378
+#: modules/ab-test/classes/class-cartflows-pro-ab-test-meta.php:372
 msgid "Variation created for step - %s"
 msgstr ""
 
-#: modules/ab-test/classes/class-cartflows-pro-ab-test-meta.php:406
+#: modules/ab-test/classes/class-cartflows-pro-ab-test-meta.php:401
 msgid "Can't start a split test"
 msgstr ""
 
-#: modules/ab-test/classes/class-cartflows-pro-ab-test-meta.php:413
+#: modules/ab-test/classes/class-cartflows-pro-ab-test-meta.php:408
 msgid "Stop Split Test"
 msgstr ""
 
-#: modules/ab-test/classes/class-cartflows-pro-ab-test-meta.php:426
+#: modules/ab-test/classes/class-cartflows-pro-ab-test-meta.php:422
 msgid "Start Split Test"
 msgstr ""
 
 #. translators: %s step id
-#: modules/ab-test/classes/class-cartflows-pro-ab-test-meta.php:472
+#: modules/ab-test/classes/class-cartflows-pro-ab-test-meta.php:469
 msgid "Can't update the winner for this step - %s"
 msgstr ""
 
 #. translators: %s step id
-#: modules/ab-test/classes/class-cartflows-pro-ab-test-meta.php:564
+#: modules/ab-test/classes/class-cartflows-pro-ab-test-meta.php:561
 msgid "Winner updated for this step - %s"
 msgstr ""
 
 #. translators: %s flow id
-#: modules/ab-test/classes/class-cartflows-pro-ab-test-meta.php:595
+#: modules/ab-test/classes/class-cartflows-pro-ab-test-meta.php:592
 msgid "Can't clone this step - %1$s. Flow - %2$s"
 msgstr ""
 
 #. translators: %s flow id
-#: modules/ab-test/classes/class-cartflows-pro-ab-test-meta.php:669
+#: modules/ab-test/classes/class-cartflows-pro-ab-test-meta.php:668
 msgid "Can't restore this variation - %1$s. Flow - %2$s"
 msgstr ""
 
@@ -734,12 +744,12 @@ msgid "Variation - %1$s restored. Flow  - %2$s"
 msgstr ""
 
 #. translators: %s flow id
-#: modules/ab-test/classes/class-cartflows-pro-ab-test-meta.php:753
+#: modules/ab-test/classes/class-cartflows-pro-ab-test-meta.php:754
 msgid "Can't delete this variation - %1$s. Flow - %2$s"
 msgstr ""
 
 #. translators: %s flow id
-#: modules/ab-test/classes/class-cartflows-pro-ab-test-meta.php:794
+#: modules/ab-test/classes/class-cartflows-pro-ab-test-meta.php:796
 msgid "Variation - %1$s deleted. Flow  - %2$s"
 msgstr ""
 
@@ -748,20 +758,20 @@ msgid "Select Position"
 msgstr ""
 
 #: modules/beaver-builder/cartflows-pro-bb-checkout-form-extend/cartflows-pro-bb-checkout-form-extend.php:218
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:1197
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:1203
 #: modules/elementor/widgets/class-cartflows-pro-el-checkout-form-extend.php:321
 msgid "Before Checkout"
 msgstr ""
 
 #: modules/beaver-builder/cartflows-pro-bb-checkout-form-extend/cartflows-pro-bb-checkout-form-extend.php:219
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:1201
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2906
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:1207
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2912
 #: modules/elementor/widgets/class-cartflows-pro-el-checkout-form-extend.php:322
 msgid "After Customer Details"
 msgstr ""
 
 #: modules/beaver-builder/cartflows-pro-bb-checkout-form-extend/cartflows-pro-bb-checkout-form-extend.php:220
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2910
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2916
 #: modules/elementor/widgets/class-cartflows-pro-el-checkout-form-extend.php:323
 msgid "Before Order Review"
 msgstr ""
@@ -777,33 +787,33 @@ msgid "Skin"
 msgstr ""
 
 #: modules/beaver-builder/cartflows-pro-bb-checkout-form-extend/cartflows-pro-bb-checkout-form-extend.php:235
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2921
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2927
 #: modules/elementor/widgets/class-cartflows-pro-el-checkout-form-extend.php:335
 msgid "Classic"
 msgstr ""
 
 #: modules/beaver-builder/cartflows-pro-bb-checkout-form-extend/cartflows-pro-bb-checkout-form-extend.php:236
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2925
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2931
 #: modules/elementor/widgets/class-cartflows-pro-el-checkout-form-extend.php:336
 msgid "Cards"
 msgstr ""
 
 #: modules/beaver-builder/cartflows-pro-bb-checkout-form-extend/cartflows-pro-bb-checkout-form-extend.php:241
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2931
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2937
 #: modules/elementor/widgets/class-cartflows-pro-el-checkout-form-extend.php:344
 msgid "Show Product Images"
 msgstr ""
 
 #: modules/beaver-builder/cartflows-pro-bb-checkout-form-extend/cartflows-pro-bb-checkout-form-extend.php:244
 #: modules/beaver-builder/cartflows-pro-bb-checkout-form-extend/cartflows-pro-bb-checkout-form-extend.php:512
-#: modules/beaver-builder/cartflows-pro-bb-offer-product-description/cartflows-pro-bb-offer-product-description.php:82
+#: modules/beaver-builder/cartflows-pro-bb-offer-product-description/cartflows-pro-bb-offer-product-description.php:79
 #: modules/elementor/widgets/class-cartflows-pro-el-checkout-form-extend.php:348
 msgid "Yes"
 msgstr ""
 
 #: modules/beaver-builder/cartflows-pro-bb-checkout-form-extend/cartflows-pro-bb-checkout-form-extend.php:245
 #: modules/beaver-builder/cartflows-pro-bb-checkout-form-extend/cartflows-pro-bb-checkout-form-extend.php:513
-#: modules/beaver-builder/cartflows-pro-bb-offer-product-description/cartflows-pro-bb-offer-product-description.php:83
+#: modules/beaver-builder/cartflows-pro-bb-offer-product-description/cartflows-pro-bb-offer-product-description.php:80
 #: modules/elementor/widgets/class-cartflows-pro-el-checkout-form-extend.php:349
 msgid "No"
 msgstr ""
@@ -815,7 +825,7 @@ msgstr ""
 
 #: modules/beaver-builder/cartflows-pro-bb-checkout-form-extend/cartflows-pro-bb-checkout-form-extend.php:251
 #: modules/checkout/classes/class-cartflows-pro-checkout-default-meta.php:67
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2892
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2898
 #: modules/elementor/widgets/class-cartflows-pro-el-checkout-form-extend.php:359
 msgid "Your Products"
 msgstr ""
@@ -827,17 +837,17 @@ msgid "Product Options"
 msgstr ""
 
 #: modules/beaver-builder/cartflows-pro-bb-checkout-form-extend/cartflows-pro-bb-checkout-form-extend.php:262
-#: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:438
-#: modules/beaver-builder/cartflows-pro-bb-offer-action-link/cartflows-pro-bb-offer-action-link.php:155
-#: modules/beaver-builder/cartflows-pro-bb-offer-product-description/cartflows-pro-bb-offer-product-description.php:88
-#: modules/beaver-builder/cartflows-pro-bb-offer-product-price/cartflows-pro-bb-offer-product-price.php:95
-#: modules/beaver-builder/cartflows-pro-bb-offer-product-title/cartflows-pro-bb-offer-product-title.php:78
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:1231
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:1251
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:1287
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:1472
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:1517
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2813
+#: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:429
+#: modules/beaver-builder/cartflows-pro-bb-offer-action-link/cartflows-pro-bb-offer-action-link.php:150
+#: modules/beaver-builder/cartflows-pro-bb-offer-product-description/cartflows-pro-bb-offer-product-description.php:85
+#: modules/beaver-builder/cartflows-pro-bb-offer-product-price/cartflows-pro-bb-offer-product-price.php:92
+#: modules/beaver-builder/cartflows-pro-bb-offer-product-title/cartflows-pro-bb-offer-product-title.php:75
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:1237
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:1257
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:1293
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:1478
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:1523
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2819
 #: modules/elementor/widgets/class-cartflows-pro-el-checkout-form-extend.php:414
 #: modules/elementor/widgets/class-cartflows-pro-el-checkout-form-extend.php:517
 #: modules/elementor/widgets/class-cartflows-pro-el-offer-action-button.php:364
@@ -848,13 +858,13 @@ msgid "Text Color"
 msgstr ""
 
 #: modules/beaver-builder/cartflows-pro-bb-checkout-form-extend/cartflows-pro-bb-checkout-form-extend.php:276
-#: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:469
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:1318
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:1579
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:1799
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2616
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2742
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2991
+#: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:460
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:1324
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:1585
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:1805
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2622
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2748
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2997
 #: modules/elementor/widgets/class-cartflows-pro-el-checkout-form-extend.php:425
 #: modules/elementor/widgets/class-cartflows-pro-el-checkout-form-extend.php:506
 #: modules/elementor/widgets/class-cartflows-pro-el-offer-action-button.php:377
@@ -863,11 +873,11 @@ msgid "Background Color"
 msgstr ""
 
 #: modules/beaver-builder/cartflows-pro-bb-checkout-form-extend/cartflows-pro-bb-checkout-form-extend.php:291
-#: modules/beaver-builder/cartflows-pro-bb-offer-product-image/cartflows-pro-bb-offer-product-image.php:109
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:1349
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:1675
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:1810
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2709
+#: modules/beaver-builder/cartflows-pro-bb-offer-product-image/cartflows-pro-bb-offer-product-image.php:106
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:1355
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:1681
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:1816
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2715
 #: modules/elementor/widgets/class-cartflows-pro-el-checkout-form-extend.php:437
 #: modules/elementor/widgets/class-cartflows-pro-el-checkout-form-extend.php:528
 msgid "Border Style"
@@ -875,33 +885,33 @@ msgstr ""
 
 #: modules/beaver-builder/cartflows-pro-bb-checkout-form-extend/cartflows-pro-bb-checkout-form-extend.php:293
 #: modules/beaver-builder/cartflows-pro-bb-checkout-form-extend/cartflows-pro-bb-checkout-form-extend.php:400
-#: modules/beaver-builder/cartflows-pro-bb-offer-product-image/cartflows-pro-bb-offer-product-image.php:111
-#: modules/beaver-builder/cartflows-pro-bb-offer-product-image/cartflows-pro-bb-offer-product-image.php:199
+#: modules/beaver-builder/cartflows-pro-bb-offer-product-image/cartflows-pro-bb-offer-product-image.php:108
+#: modules/beaver-builder/cartflows-pro-bb-offer-product-image/cartflows-pro-bb-offer-product-image.php:196
 msgid "The type of border to use. Double borders must have a width of at least 3px to render properly."
 msgstr ""
 
 #: modules/beaver-builder/cartflows-pro-bb-checkout-form-extend/cartflows-pro-bb-checkout-form-extend.php:295
 #: modules/beaver-builder/cartflows-pro-bb-checkout-form-extend/cartflows-pro-bb-checkout-form-extend.php:402
-#: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:277
-#: modules/beaver-builder/cartflows-pro-bb-offer-product-image/cartflows-pro-bb-offer-product-image.php:113
-#: modules/beaver-builder/cartflows-pro-bb-offer-product-image/cartflows-pro-bb-offer-product-image.php:201
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:1370
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:1696
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:1831
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2730
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2860
+#: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:268
+#: modules/beaver-builder/cartflows-pro-bb-offer-product-image/cartflows-pro-bb-offer-product-image.php:110
+#: modules/beaver-builder/cartflows-pro-bb-offer-product-image/cartflows-pro-bb-offer-product-image.php:198
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:1376
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:1702
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:1837
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2736
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2866
 msgid "None"
 msgstr ""
 
 #: modules/beaver-builder/cartflows-pro-bb-checkout-form-extend/cartflows-pro-bb-checkout-form-extend.php:296
 #: modules/beaver-builder/cartflows-pro-bb-checkout-form-extend/cartflows-pro-bb-checkout-form-extend.php:403
-#: modules/beaver-builder/cartflows-pro-bb-offer-product-image/cartflows-pro-bb-offer-product-image.php:114
-#: modules/beaver-builder/cartflows-pro-bb-offer-product-image/cartflows-pro-bb-offer-product-image.php:202
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:1366
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:1692
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:1827
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2726
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2864
+#: modules/beaver-builder/cartflows-pro-bb-offer-product-image/cartflows-pro-bb-offer-product-image.php:111
+#: modules/beaver-builder/cartflows-pro-bb-offer-product-image/cartflows-pro-bb-offer-product-image.php:199
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:1372
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:1698
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:1833
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2732
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2870
 #: modules/elementor/widgets/class-cartflows-pro-el-checkout-form-extend.php:443
 #: modules/elementor/widgets/class-cartflows-pro-el-checkout-form-extend.php:534
 msgid "Solid"
@@ -909,12 +919,12 @@ msgstr ""
 
 #: modules/beaver-builder/cartflows-pro-bb-checkout-form-extend/cartflows-pro-bb-checkout-form-extend.php:297
 #: modules/beaver-builder/cartflows-pro-bb-checkout-form-extend/cartflows-pro-bb-checkout-form-extend.php:404
-#: modules/beaver-builder/cartflows-pro-bb-offer-product-image/cartflows-pro-bb-offer-product-image.php:115
-#: modules/beaver-builder/cartflows-pro-bb-offer-product-image/cartflows-pro-bb-offer-product-image.php:203
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:1358
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:1684
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:1819
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2718
+#: modules/beaver-builder/cartflows-pro-bb-offer-product-image/cartflows-pro-bb-offer-product-image.php:112
+#: modules/beaver-builder/cartflows-pro-bb-offer-product-image/cartflows-pro-bb-offer-product-image.php:200
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:1364
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:1690
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:1825
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2724
 #: modules/elementor/widgets/class-cartflows-pro-el-checkout-form-extend.php:446
 #: modules/elementor/widgets/class-cartflows-pro-el-checkout-form-extend.php:537
 msgid "Dashed"
@@ -922,12 +932,12 @@ msgstr ""
 
 #: modules/beaver-builder/cartflows-pro-bb-checkout-form-extend/cartflows-pro-bb-checkout-form-extend.php:298
 #: modules/beaver-builder/cartflows-pro-bb-checkout-form-extend/cartflows-pro-bb-checkout-form-extend.php:405
-#: modules/beaver-builder/cartflows-pro-bb-offer-product-image/cartflows-pro-bb-offer-product-image.php:116
-#: modules/beaver-builder/cartflows-pro-bb-offer-product-image/cartflows-pro-bb-offer-product-image.php:204
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:1362
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:1688
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:1823
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2722
+#: modules/beaver-builder/cartflows-pro-bb-offer-product-image/cartflows-pro-bb-offer-product-image.php:113
+#: modules/beaver-builder/cartflows-pro-bb-offer-product-image/cartflows-pro-bb-offer-product-image.php:201
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:1368
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:1694
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:1829
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2728
 #: modules/elementor/widgets/class-cartflows-pro-el-checkout-form-extend.php:445
 #: modules/elementor/widgets/class-cartflows-pro-el-checkout-form-extend.php:536
 msgid "Dotted"
@@ -935,8 +945,8 @@ msgstr ""
 
 #: modules/beaver-builder/cartflows-pro-bb-checkout-form-extend/cartflows-pro-bb-checkout-form-extend.php:299
 #: modules/beaver-builder/cartflows-pro-bb-checkout-form-extend/cartflows-pro-bb-checkout-form-extend.php:406
-#: modules/beaver-builder/cartflows-pro-bb-offer-product-image/cartflows-pro-bb-offer-product-image.php:117
-#: modules/beaver-builder/cartflows-pro-bb-offer-product-image/cartflows-pro-bb-offer-product-image.php:205
+#: modules/beaver-builder/cartflows-pro-bb-offer-product-image/cartflows-pro-bb-offer-product-image.php:114
+#: modules/beaver-builder/cartflows-pro-bb-offer-product-image/cartflows-pro-bb-offer-product-image.php:202
 #: modules/elementor/widgets/class-cartflows-pro-el-checkout-form-extend.php:444
 #: modules/elementor/widgets/class-cartflows-pro-el-checkout-form-extend.php:535
 msgid "Double"
@@ -944,11 +954,11 @@ msgstr ""
 
 #: modules/beaver-builder/cartflows-pro-bb-checkout-form-extend/cartflows-pro-bb-checkout-form-extend.php:324
 #: modules/beaver-builder/cartflows-pro-bb-checkout-form-extend/cartflows-pro-bb-checkout-form-extend.php:430
-#: modules/beaver-builder/cartflows-pro-bb-offer-product-image/cartflows-pro-bb-offer-product-image.php:141
-#: modules/beaver-builder/cartflows-pro-bb-offer-product-image/cartflows-pro-bb-offer-product-image.php:229
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:1392
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:1641
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:1839
+#: modules/beaver-builder/cartflows-pro-bb-offer-product-image/cartflows-pro-bb-offer-product-image.php:138
+#: modules/beaver-builder/cartflows-pro-bb-offer-product-image/cartflows-pro-bb-offer-product-image.php:226
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:1398
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:1647
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:1845
 #: modules/elementor/widgets/class-cartflows-pro-el-checkout-form-extend.php:458
 #: modules/elementor/widgets/class-cartflows-pro-el-checkout-form-extend.php:548
 msgid "Border Width"
@@ -956,12 +966,12 @@ msgstr ""
 
 #: modules/beaver-builder/cartflows-pro-bb-checkout-form-extend/cartflows-pro-bb-checkout-form-extend.php:340
 #: modules/beaver-builder/cartflows-pro-bb-checkout-form-extend/cartflows-pro-bb-checkout-form-extend.php:445
-#: modules/beaver-builder/cartflows-pro-bb-offer-product-image/cartflows-pro-bb-offer-product-image.php:156
-#: modules/beaver-builder/cartflows-pro-bb-offer-product-image/cartflows-pro-bb-offer-product-image.php:244
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:1438
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:1763
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:1857
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2737
+#: modules/beaver-builder/cartflows-pro-bb-offer-product-image/cartflows-pro-bb-offer-product-image.php:153
+#: modules/beaver-builder/cartflows-pro-bb-offer-product-image/cartflows-pro-bb-offer-product-image.php:241
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:1444
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:1769
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:1863
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2743
 #: modules/elementor/widgets/class-cartflows-pro-el-checkout-form-extend.php:471
 #: modules/elementor/widgets/class-cartflows-pro-el-checkout-form-extend.php:560
 msgid "Border Color"
@@ -969,21 +979,21 @@ msgstr ""
 
 #: modules/beaver-builder/cartflows-pro-bb-checkout-form-extend/cartflows-pro-bb-checkout-form-extend.php:354
 #: modules/beaver-builder/cartflows-pro-bb-checkout-form-extend/cartflows-pro-bb-checkout-form-extend.php:458
-#: modules/beaver-builder/cartflows-pro-bb-offer-product-image/cartflows-pro-bb-offer-product-image.php:169
-#: modules/beaver-builder/cartflows-pro-bb-offer-product-image/cartflows-pro-bb-offer-product-image.php:257
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:1415
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:1729
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:1848
+#: modules/beaver-builder/cartflows-pro-bb-offer-product-image/cartflows-pro-bb-offer-product-image.php:166
+#: modules/beaver-builder/cartflows-pro-bb-offer-product-image/cartflows-pro-bb-offer-product-image.php:254
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:1421
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:1735
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:1854
 msgid "Border Radius"
 msgstr ""
 
 #: modules/beaver-builder/cartflows-pro-bb-checkout-form-extend/cartflows-pro-bb-checkout-form-extend.php:370
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2959
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2965
 msgid "Highlight Product Background Color"
 msgstr ""
 
 #: modules/beaver-builder/cartflows-pro-bb-checkout-form-extend/cartflows-pro-bb-checkout-form-extend.php:384
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2954
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2960
 msgid "Highlight Product Text Color"
 msgstr ""
 
@@ -992,25 +1002,25 @@ msgid "Highlight Product Border Style"
 msgstr ""
 
 #: modules/beaver-builder/cartflows-pro-bb-checkout-form-extend/cartflows-pro-bb-checkout-form-extend.php:473
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2969
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2975
 #: modules/elementor/widgets/class-cartflows-pro-el-checkout-form-extend.php:584
 msgid "Highlight Flag Text Color"
 msgstr ""
 
 #: modules/beaver-builder/cartflows-pro-bb-checkout-form-extend/cartflows-pro-bb-checkout-form-extend.php:487
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2974
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2980
 #: modules/elementor/widgets/class-cartflows-pro-el-checkout-form-extend.php:595
 msgid "Highlight Flag Background Color"
 msgstr ""
 
 #: modules/beaver-builder/cartflows-pro-bb-checkout-form-extend/cartflows-pro-bb-checkout-form-extend.php:509
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2804
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2810
 #: modules/elementor/widgets/class-cartflows-pro-el-checkout-form-extend.php:107
 msgid "Enable Checkout Note"
 msgstr ""
 
 #: modules/beaver-builder/cartflows-pro-bb-checkout-form-extend/cartflows-pro-bb-checkout-form-extend.php:523
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2808
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2814
 #: modules/elementor/widgets/class-cartflows-pro-el-checkout-form-extend.php:119
 msgid "Note Text"
 msgstr ""
@@ -1026,14 +1036,14 @@ msgid "Get Your FREE copy of CartFlows in just few steps."
 msgstr ""
 
 #: modules/beaver-builder/cartflows-pro-bb-checkout-form-extend/cartflows-pro-bb-checkout-form-extend.php:529
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2829
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2835
 #: modules/elementor/widgets/class-cartflows-pro-el-checkout-form-extend.php:142
 msgid "Step One Title"
 msgstr ""
 
 #: modules/beaver-builder/cartflows-pro-bb-checkout-form-extend/cartflows-pro-bb-checkout-form-extend.php:530
 #: modules/checkout/classes/class-cartflows-pro-checkout-default-meta.php:406
-#: modules/checkout/classes/layout/class-cartflows-pro-multistep-checkout.php:332
+#: modules/checkout/classes/layout/class-cartflows-pro-multistep-checkout.php:337
 #: modules/checkout/templates/checkout/multistep-review-order.php:83
 #: modules/elementor/widgets/class-cartflows-pro-el-checkout-form-extend.php:143
 #: modules/elementor/widgets/class-cartflows-pro-el-checkout-form-extend.php:145
@@ -1043,7 +1053,7 @@ msgid "Shipping"
 msgstr ""
 
 #: modules/beaver-builder/cartflows-pro-bb-checkout-form-extend/cartflows-pro-bb-checkout-form-extend.php:535
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2834
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2840
 #: modules/elementor/widgets/class-cartflows-pro-el-checkout-form-extend.php:152
 msgid "Step One Sub Title"
 msgstr ""
@@ -1058,16 +1068,16 @@ msgid "Where to ship it?"
 msgstr ""
 
 #: modules/beaver-builder/cartflows-pro-bb-checkout-form-extend/cartflows-pro-bb-checkout-form-extend.php:541
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2839
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2845
 #: modules/elementor/widgets/class-cartflows-pro-el-checkout-form-extend.php:162
 msgid "Step Two Title"
 msgstr ""
 
 #: modules/beaver-builder/cartflows-pro-bb-checkout-form-extend/cartflows-pro-bb-checkout-form-extend.php:542
 #: modules/checkout/classes/class-cartflows-pro-checkout-default-meta.php:415
-#: modules/checkout/classes/layout/class-cartflows-pro-multistep-checkout.php:344
-#: modules/checkout/classes/layout/class-cartflows-pro-multistep-checkout.php:353
-#: modules/checkout/classes/layout/class-cartflows-pro-multistep-checkout.php:573
+#: modules/checkout/classes/layout/class-cartflows-pro-multistep-checkout.php:349
+#: modules/checkout/classes/layout/class-cartflows-pro-multistep-checkout.php:358
+#: modules/checkout/classes/layout/class-cartflows-pro-multistep-checkout.php:578
 #: modules/elementor/widgets/class-cartflows-pro-el-checkout-form-extend.php:163
 #: modules/elementor/widgets/class-cartflows-pro-el-checkout-form-extend.php:165
 #: modules/gutenberg/dist/blocks/cartflows-pro-gb-checkout-form-extend/class-cartflows-pro-checkout-form.php:354
@@ -1076,7 +1086,7 @@ msgid "Payment"
 msgstr ""
 
 #: modules/beaver-builder/cartflows-pro-bb-checkout-form-extend/cartflows-pro-bb-checkout-form-extend.php:547
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2844
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2850
 #: modules/elementor/widgets/class-cartflows-pro-el-checkout-form-extend.php:172
 msgid "Step Two Sub Title"
 msgstr ""
@@ -1091,7 +1101,7 @@ msgid "Of your order"
 msgstr ""
 
 #: modules/beaver-builder/cartflows-pro-bb-checkout-form-extend/cartflows-pro-bb-checkout-form-extend.php:553
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2876
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2882
 #: modules/elementor/widgets/class-cartflows-pro-el-checkout-form-extend.php:191
 msgid "Offer Button Title"
 msgstr ""
@@ -1106,7 +1116,7 @@ msgid "For Special Offer Click Here"
 msgstr ""
 
 #: modules/beaver-builder/cartflows-pro-bb-checkout-form-extend/cartflows-pro-bb-checkout-form-extend.php:559
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2881
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2887
 #: modules/elementor/widgets/class-cartflows-pro-el-checkout-form-extend.php:202
 msgid "Offer Button Sub Title"
 msgstr ""
@@ -1141,37 +1151,37 @@ msgstr ""
 msgid "Note Typography"
 msgstr ""
 
-#: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:33
+#: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:31
 #: modules/elementor/widgets/class-cartflows-pro-el-offer-action-button.php:69
 #: modules/gutenberg/classes/class-cartflows-pro-block-config.php:105
 msgid "Offer Yes/No Button"
 msgstr ""
 
-#: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:34
+#: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:32
 msgid "Offer Yes/No Button."
 msgstr ""
 
-#: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:35
-#: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:36
-#: modules/beaver-builder/cartflows-pro-bb-offer-action-link/cartflows-pro-bb-offer-action-link.php:35
-#: modules/beaver-builder/cartflows-pro-bb-offer-action-link/cartflows-pro-bb-offer-action-link.php:36
-#: modules/beaver-builder/cartflows-pro-bb-offer-product-description/cartflows-pro-bb-offer-product-description.php:35
-#: modules/beaver-builder/cartflows-pro-bb-offer-product-description/cartflows-pro-bb-offer-product-description.php:36
-#: modules/beaver-builder/cartflows-pro-bb-offer-product-image/cartflows-pro-bb-offer-product-image.php:36
-#: modules/beaver-builder/cartflows-pro-bb-offer-product-image/cartflows-pro-bb-offer-product-image.php:37
-#: modules/beaver-builder/cartflows-pro-bb-offer-product-price/cartflows-pro-bb-offer-product-price.php:35
-#: modules/beaver-builder/cartflows-pro-bb-offer-product-price/cartflows-pro-bb-offer-product-price.php:36
-#: modules/beaver-builder/cartflows-pro-bb-offer-product-quantity/cartflows-pro-bb-offer-product-quantity.php:34
-#: modules/beaver-builder/cartflows-pro-bb-offer-product-quantity/cartflows-pro-bb-offer-product-quantity.php:35
-#: modules/beaver-builder/cartflows-pro-bb-offer-product-title/cartflows-pro-bb-offer-product-title.php:35
-#: modules/beaver-builder/cartflows-pro-bb-offer-product-title/cartflows-pro-bb-offer-product-title.php:36
-#: modules/beaver-builder/cartflows-pro-bb-offer-product-variation/cartflows-pro-bb-offer-product-variation.php:35
-#: modules/beaver-builder/cartflows-pro-bb-offer-product-variation/cartflows-pro-bb-offer-product-variation.php:36
+#: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:33
+#: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:34
+#: modules/beaver-builder/cartflows-pro-bb-offer-action-link/cartflows-pro-bb-offer-action-link.php:33
+#: modules/beaver-builder/cartflows-pro-bb-offer-action-link/cartflows-pro-bb-offer-action-link.php:34
+#: modules/beaver-builder/cartflows-pro-bb-offer-product-description/cartflows-pro-bb-offer-product-description.php:33
+#: modules/beaver-builder/cartflows-pro-bb-offer-product-description/cartflows-pro-bb-offer-product-description.php:34
+#: modules/beaver-builder/cartflows-pro-bb-offer-product-image/cartflows-pro-bb-offer-product-image.php:34
+#: modules/beaver-builder/cartflows-pro-bb-offer-product-image/cartflows-pro-bb-offer-product-image.php:35
+#: modules/beaver-builder/cartflows-pro-bb-offer-product-price/cartflows-pro-bb-offer-product-price.php:33
+#: modules/beaver-builder/cartflows-pro-bb-offer-product-price/cartflows-pro-bb-offer-product-price.php:34
+#: modules/beaver-builder/cartflows-pro-bb-offer-product-quantity/cartflows-pro-bb-offer-product-quantity.php:32
+#: modules/beaver-builder/cartflows-pro-bb-offer-product-quantity/cartflows-pro-bb-offer-product-quantity.php:33
+#: modules/beaver-builder/cartflows-pro-bb-offer-product-title/cartflows-pro-bb-offer-product-title.php:33
+#: modules/beaver-builder/cartflows-pro-bb-offer-product-title/cartflows-pro-bb-offer-product-title.php:34
+#: modules/beaver-builder/cartflows-pro-bb-offer-product-variation/cartflows-pro-bb-offer-product-variation.php:33
+#: modules/beaver-builder/cartflows-pro-bb-offer-product-variation/cartflows-pro-bb-offer-product-variation.php:34
 msgid "Cartflows Modules"
 msgstr ""
 
-#: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:146
-#: modules/beaver-builder/cartflows-pro-bb-offer-action-link/cartflows-pro-bb-offer-action-link.php:91
+#: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:137
+#: modules/beaver-builder/cartflows-pro-bb-offer-action-link/cartflows-pro-bb-offer-action-link.php:86
 #: modules/elementor/widgets/class-cartflows-pro-el-offer-action-button.php:155
 #: modules/elementor/widgets/class-cartflows-pro-el-offer-action-button.php:297
 #: modules/elementor/widgets/class-cartflows-pro-el-offer-action-link.php:138
@@ -1180,10 +1190,10 @@ msgstr ""
 msgid "General"
 msgstr ""
 
-#: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:153
-#: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:163
-#: modules/beaver-builder/cartflows-pro-bb-offer-action-link/cartflows-pro-bb-offer-action-link.php:98
-#: modules/beaver-builder/cartflows-pro-bb-offer-action-link/cartflows-pro-bb-offer-action-link.php:108
+#: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:144
+#: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:154
+#: modules/beaver-builder/cartflows-pro-bb-offer-action-link/cartflows-pro-bb-offer-action-link.php:93
+#: modules/beaver-builder/cartflows-pro-bb-offer-action-link/cartflows-pro-bb-offer-action-link.php:103
 #: modules/elementor/widgets/class-cartflows-pro-el-offer-action-button.php:162
 #: modules/elementor/widgets/class-cartflows-pro-el-offer-action-button.php:177
 #: modules/elementor/widgets/class-cartflows-pro-el-offer-action-link.php:145
@@ -1192,222 +1202,222 @@ msgstr ""
 msgid "Offer Action"
 msgstr ""
 
-#: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:156
-#: modules/beaver-builder/cartflows-pro-bb-offer-action-link/cartflows-pro-bb-offer-action-link.php:101
+#: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:147
+#: modules/beaver-builder/cartflows-pro-bb-offer-action-link/cartflows-pro-bb-offer-action-link.php:96
 #: modules/elementor/widgets/class-cartflows-pro-el-offer-action-button.php:166
 #: modules/elementor/widgets/class-cartflows-pro-el-offer-action-link.php:149
 #: modules/gutenberg/build/blocks.js:11
 msgid "Accept Offer"
 msgstr ""
 
-#: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:157
-#: modules/beaver-builder/cartflows-pro-bb-offer-action-link/cartflows-pro-bb-offer-action-link.php:102
+#: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:148
+#: modules/beaver-builder/cartflows-pro-bb-offer-action-link/cartflows-pro-bb-offer-action-link.php:97
 #: modules/elementor/widgets/class-cartflows-pro-el-offer-action-button.php:167
 #: modules/elementor/widgets/class-cartflows-pro-el-offer-action-link.php:150
 #: modules/gutenberg/build/blocks.js:11
 msgid "Reject Offer"
 msgstr ""
 
-#: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:162
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:1217
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2075
+#: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:153
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:1223
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2081
 #: modules/elementor/widgets/class-cartflows-pro-el-offer-action-button.php:175
 msgid "Title"
 msgstr ""
 
-#: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:172
+#: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:163
 #: modules/elementor/widgets/class-cartflows-pro-el-offer-action-button.php:184
 msgid "Sub Title"
 msgstr ""
 
-#: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:181
-#: modules/beaver-builder/cartflows-pro-bb-offer-action-link/cartflows-pro-bb-offer-action-link.php:117
+#: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:172
+#: modules/beaver-builder/cartflows-pro-bb-offer-action-link/cartflows-pro-bb-offer-action-link.php:112
 #: modules/elementor/widgets/class-cartflows-pro-el-offer-action-button.php:192
 #: modules/elementor/widgets/class-cartflows-pro-el-offer-action-link.php:167
 msgid "Icon"
 msgstr ""
 
-#: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:189
-#: modules/beaver-builder/cartflows-pro-bb-offer-action-link/cartflows-pro-bb-offer-action-link.php:125
+#: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:180
+#: modules/beaver-builder/cartflows-pro-bb-offer-action-link/cartflows-pro-bb-offer-action-link.php:120
 #: modules/elementor/widgets/class-cartflows-pro-el-offer-action-button.php:200
 #: modules/elementor/widgets/class-cartflows-pro-el-offer-action-link.php:175
 msgid "Icon Position"
 msgstr ""
 
-#: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:192
-#: modules/beaver-builder/cartflows-pro-bb-offer-action-link/cartflows-pro-bb-offer-action-link.php:128
+#: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:183
+#: modules/beaver-builder/cartflows-pro-bb-offer-action-link/cartflows-pro-bb-offer-action-link.php:123
 #: modules/elementor/widgets/class-cartflows-pro-el-offer-action-button.php:204
 msgid "Before Title"
 msgstr ""
 
-#: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:193
-#: modules/beaver-builder/cartflows-pro-bb-offer-action-link/cartflows-pro-bb-offer-action-link.php:129
+#: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:184
+#: modules/beaver-builder/cartflows-pro-bb-offer-action-link/cartflows-pro-bb-offer-action-link.php:124
 #: modules/elementor/widgets/class-cartflows-pro-el-offer-action-button.php:205
 msgid "After Title"
 msgstr ""
 
-#: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:194
+#: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:185
 #: modules/elementor/widgets/class-cartflows-pro-el-offer-action-button.php:206
 msgid "Before Title & Sub Title"
 msgstr ""
 
-#: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:195
+#: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:186
 #: modules/elementor/widgets/class-cartflows-pro-el-offer-action-button.php:207
 msgid "After Title & Sub Title"
 msgstr ""
 
-#: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:211
+#: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:202
 msgid "Vertical Alignment"
 msgstr ""
 
-#: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:214
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2162
+#: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:205
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2168
 #: modules/elementor/widgets/class-cartflows-pro-el-offer-action-button.php:224
 msgid "Top"
 msgstr ""
 
-#: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:215
+#: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:206
 #: modules/elementor/widgets/class-cartflows-pro-el-offer-action-button.php:228
 msgid "Middle"
 msgstr ""
 
-#: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:223
-#: modules/beaver-builder/cartflows-pro-bb-offer-action-link/cartflows-pro-bb-offer-action-link.php:137
+#: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:214
+#: modules/beaver-builder/cartflows-pro-bb-offer-action-link/cartflows-pro-bb-offer-action-link.php:132
 #: modules/elementor/widgets/class-cartflows-pro-el-offer-action-button.php:245
 #: modules/elementor/widgets/class-cartflows-pro-el-offer-action-link.php:191
 msgid "Icon Spacing"
 msgstr ""
 
-#: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:234
-#: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:237
-#: modules/beaver-builder/cartflows-pro-bb-offer-action-link/cartflows-pro-bb-offer-action-link.php:148
-#: modules/beaver-builder/cartflows-pro-bb-offer-action-link/cartflows-pro-bb-offer-action-link.php:151
+#: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:225
+#: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:228
+#: modules/beaver-builder/cartflows-pro-bb-offer-action-link/cartflows-pro-bb-offer-action-link.php:143
+#: modules/beaver-builder/cartflows-pro-bb-offer-action-link/cartflows-pro-bb-offer-action-link.php:146
+#: modules/beaver-builder/cartflows-pro-bb-offer-product-description/cartflows-pro-bb-offer-product-description.php:69
 #: modules/beaver-builder/cartflows-pro-bb-offer-product-description/cartflows-pro-bb-offer-product-description.php:72
-#: modules/beaver-builder/cartflows-pro-bb-offer-product-description/cartflows-pro-bb-offer-product-description.php:75
-#: modules/beaver-builder/cartflows-pro-bb-offer-product-image/cartflows-pro-bb-offer-product-image.php:73
+#: modules/beaver-builder/cartflows-pro-bb-offer-product-image/cartflows-pro-bb-offer-product-image.php:70
+#: modules/beaver-builder/cartflows-pro-bb-offer-product-price/cartflows-pro-bb-offer-product-price.php:69
 #: modules/beaver-builder/cartflows-pro-bb-offer-product-price/cartflows-pro-bb-offer-product-price.php:72
-#: modules/beaver-builder/cartflows-pro-bb-offer-product-price/cartflows-pro-bb-offer-product-price.php:75
+#: modules/beaver-builder/cartflows-pro-bb-offer-product-quantity/cartflows-pro-bb-offer-product-quantity.php:67
 #: modules/beaver-builder/cartflows-pro-bb-offer-product-quantity/cartflows-pro-bb-offer-product-quantity.php:70
-#: modules/beaver-builder/cartflows-pro-bb-offer-product-quantity/cartflows-pro-bb-offer-product-quantity.php:73
+#: modules/beaver-builder/cartflows-pro-bb-offer-product-title/cartflows-pro-bb-offer-product-title.php:68
 #: modules/beaver-builder/cartflows-pro-bb-offer-product-title/cartflows-pro-bb-offer-product-title.php:71
-#: modules/beaver-builder/cartflows-pro-bb-offer-product-title/cartflows-pro-bb-offer-product-title.php:74
+#: modules/beaver-builder/cartflows-pro-bb-offer-product-variation/cartflows-pro-bb-offer-product-variation.php:69
 #: modules/beaver-builder/cartflows-pro-bb-offer-product-variation/cartflows-pro-bb-offer-product-variation.php:72
-#: modules/beaver-builder/cartflows-pro-bb-offer-product-variation/cartflows-pro-bb-offer-product-variation.php:75
 msgid "Style"
 msgstr ""
 
-#: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:241
+#: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:232
 msgid "Type"
 msgstr ""
 
-#: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:246
+#: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:237
 msgid "Flat"
 msgstr ""
 
-#: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:247
+#: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:238
 msgid "Gradient"
 msgstr ""
 
-#: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:248
+#: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:239
 msgid "Transparent"
 msgstr ""
 
-#: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:249
+#: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:240
 msgid "3D"
 msgstr ""
 
-#: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:259
+#: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:250
 msgid "Border Size"
 msgstr ""
 
-#: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:274
-#: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:290
+#: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:265
+#: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:281
 msgid "Hover Styles"
 msgstr ""
 
-#: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:278
+#: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:269
 msgid "Fade Background"
 msgstr ""
 
-#: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:279
+#: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:270
 msgid "Fill Background From Top"
 msgstr ""
 
-#: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:280
+#: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:271
 msgid "Fill Background From Bottom"
 msgstr ""
 
-#: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:281
+#: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:272
 msgid "Fill Background From Left"
 msgstr ""
 
-#: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:282
+#: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:273
 msgid "Fill Background From Right"
 msgstr ""
 
-#: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:283
+#: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:274
 msgid "Fill Background Vertical"
 msgstr ""
 
-#: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:284
+#: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:275
 msgid "Fill Background Diagonal"
 msgstr ""
 
-#: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:285
+#: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:276
 msgid "Fill Background Horizontal"
 msgstr ""
 
-#: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:293
+#: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:284
 msgid "Move Down"
 msgstr ""
 
-#: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:294
+#: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:285
 msgid "Move Up"
 msgstr ""
 
-#: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:295
+#: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:286
 msgid "Move Left"
 msgstr ""
 
-#: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:296
+#: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:287
 msgid "Move Right"
 msgstr ""
 
-#: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:297
+#: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:288
 msgid "Animate Top"
 msgstr ""
 
-#: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:298
+#: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:289
 msgid "Animate Bottom"
 msgstr ""
 
-#: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:304
+#: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:295
 msgid "Structure"
 msgstr ""
 
-#: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:308
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:1173
+#: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:299
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:1179
 msgid "Width"
 msgstr ""
 
-#: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:311
+#: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:302
 msgctxt "Width."
 msgid "Auto"
 msgstr ""
 
-#: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:312
+#: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:303
 msgid "Full Width"
 msgstr ""
 
-#: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:313
+#: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:304
 msgid "Custom"
 msgstr ""
 
-#: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:329
-#: modules/beaver-builder/cartflows-pro-bb-offer-product-image/cartflows-pro-bb-offer-product-image.php:80
-#: modules/beaver-builder/cartflows-pro-bb-offer-product-price/cartflows-pro-bb-offer-product-price.php:79
-#: modules/beaver-builder/cartflows-pro-bb-offer-product-quantity/cartflows-pro-bb-offer-product-quantity.php:77
-#: modules/beaver-builder/cartflows-pro-bb-offer-product-variation/cartflows-pro-bb-offer-product-variation.php:79
+#: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:320
+#: modules/beaver-builder/cartflows-pro-bb-offer-product-image/cartflows-pro-bb-offer-product-image.php:77
+#: modules/beaver-builder/cartflows-pro-bb-offer-product-price/cartflows-pro-bb-offer-product-price.php:76
+#: modules/beaver-builder/cartflows-pro-bb-offer-product-quantity/cartflows-pro-bb-offer-product-quantity.php:74
+#: modules/beaver-builder/cartflows-pro-bb-offer-product-variation/cartflows-pro-bb-offer-product-variation.php:76
 #: modules/elementor/widgets/class-cartflows-pro-el-offer-action-button.php:305
 #: modules/elementor/widgets/class-cartflows-pro-el-offer-action-link.php:252
 #: modules/elementor/widgets/class-cartflows-pro-el-offer-product-description.php:155
@@ -1419,12 +1429,12 @@ msgstr ""
 msgid "Alignment"
 msgstr ""
 
-#: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:332
-#: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:342
-#: modules/beaver-builder/cartflows-pro-bb-offer-product-image/cartflows-pro-bb-offer-product-image.php:83
-#: modules/beaver-builder/cartflows-pro-bb-offer-product-price/cartflows-pro-bb-offer-product-price.php:82
-#: modules/beaver-builder/cartflows-pro-bb-offer-product-quantity/cartflows-pro-bb-offer-product-quantity.php:80
-#: modules/beaver-builder/cartflows-pro-bb-offer-product-variation/cartflows-pro-bb-offer-product-variation.php:82
+#: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:323
+#: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:333
+#: modules/beaver-builder/cartflows-pro-bb-offer-product-image/cartflows-pro-bb-offer-product-image.php:80
+#: modules/beaver-builder/cartflows-pro-bb-offer-product-price/cartflows-pro-bb-offer-product-price.php:79
+#: modules/beaver-builder/cartflows-pro-bb-offer-product-quantity/cartflows-pro-bb-offer-product-quantity.php:77
+#: modules/beaver-builder/cartflows-pro-bb-offer-product-variation/cartflows-pro-bb-offer-product-variation.php:79
 #: modules/elementor/widgets/class-cartflows-pro-el-offer-action-button.php:313
 #: modules/elementor/widgets/class-cartflows-pro-el-offer-action-button.php:486
 #: modules/elementor/widgets/class-cartflows-pro-el-offer-action-link.php:260
@@ -1437,13 +1447,13 @@ msgstr ""
 msgid "Center"
 msgstr ""
 
-#: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:333
-#: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:343
-#: modules/beaver-builder/cartflows-pro-bb-offer-product-image/cartflows-pro-bb-offer-product-image.php:84
-#: modules/beaver-builder/cartflows-pro-bb-offer-product-price/cartflows-pro-bb-offer-product-price.php:83
-#: modules/beaver-builder/cartflows-pro-bb-offer-product-quantity/cartflows-pro-bb-offer-product-quantity.php:81
-#: modules/beaver-builder/cartflows-pro-bb-offer-product-variation/cartflows-pro-bb-offer-product-variation.php:83
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2158
+#: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:324
+#: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:334
+#: modules/beaver-builder/cartflows-pro-bb-offer-product-image/cartflows-pro-bb-offer-product-image.php:81
+#: modules/beaver-builder/cartflows-pro-bb-offer-product-price/cartflows-pro-bb-offer-product-price.php:80
+#: modules/beaver-builder/cartflows-pro-bb-offer-product-quantity/cartflows-pro-bb-offer-product-quantity.php:78
+#: modules/beaver-builder/cartflows-pro-bb-offer-product-variation/cartflows-pro-bb-offer-product-variation.php:80
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2164
 #: modules/elementor/widgets/class-cartflows-pro-el-offer-action-button.php:309
 #: modules/elementor/widgets/class-cartflows-pro-el-offer-action-button.php:482
 #: modules/elementor/widgets/class-cartflows-pro-el-offer-action-link.php:256
@@ -1456,13 +1466,13 @@ msgstr ""
 msgid "Left"
 msgstr ""
 
-#: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:334
-#: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:344
-#: modules/beaver-builder/cartflows-pro-bb-offer-product-image/cartflows-pro-bb-offer-product-image.php:85
-#: modules/beaver-builder/cartflows-pro-bb-offer-product-price/cartflows-pro-bb-offer-product-price.php:84
-#: modules/beaver-builder/cartflows-pro-bb-offer-product-quantity/cartflows-pro-bb-offer-product-quantity.php:82
-#: modules/beaver-builder/cartflows-pro-bb-offer-product-variation/cartflows-pro-bb-offer-product-variation.php:84
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2166
+#: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:325
+#: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:335
+#: modules/beaver-builder/cartflows-pro-bb-offer-product-image/cartflows-pro-bb-offer-product-image.php:82
+#: modules/beaver-builder/cartflows-pro-bb-offer-product-price/cartflows-pro-bb-offer-product-price.php:81
+#: modules/beaver-builder/cartflows-pro-bb-offer-product-quantity/cartflows-pro-bb-offer-product-quantity.php:79
+#: modules/beaver-builder/cartflows-pro-bb-offer-product-variation/cartflows-pro-bb-offer-product-variation.php:81
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2172
 #: modules/elementor/widgets/class-cartflows-pro-el-offer-action-button.php:317
 #: modules/elementor/widgets/class-cartflows-pro-el-offer-action-button.php:490
 #: modules/elementor/widgets/class-cartflows-pro-el-offer-action-link.php:264
@@ -1475,79 +1485,79 @@ msgstr ""
 msgid "Right"
 msgstr ""
 
-#: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:339
+#: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:330
 msgid "Mobile Alignment"
 msgstr ""
 
-#: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:349
+#: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:340
 #: modules/elementor/widgets/class-cartflows-pro-el-offer-action-button.php:343
 msgid "Padding"
 msgstr ""
 
-#: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:364
-#: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:491
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2854
+#: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:355
+#: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:482
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2860
 #: modules/elementor/widgets/class-cartflows-pro-el-offer-action-button.php:395
 #: modules/elementor/widgets/class-cartflows-pro-el-offer-product-quantity.php:232
 msgid "Border"
 msgstr ""
 
-#: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:378
+#: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:369
 msgid "Border Hover Color"
 msgstr ""
 
-#: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:389
+#: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:380
 msgid "Custom Width"
 msgstr ""
 
-#: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:398
+#: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:389
 msgid "Custom Height"
 msgstr ""
 
-#: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:407
+#: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:398
 msgid "Padding Top/Bottom"
 msgstr ""
 
-#: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:416
+#: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:407
 msgid "Padding Left/Right"
 msgstr ""
 
-#: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:425
+#: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:416
 msgid "Round Corners"
 msgstr ""
 
-#: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:434
+#: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:425
 msgid "Colors"
 msgstr ""
 
-#: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:452
-#: modules/beaver-builder/cartflows-pro-bb-offer-action-link/cartflows-pro-bb-offer-action-link.php:171
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:1548
+#: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:443
+#: modules/beaver-builder/cartflows-pro-bb-offer-action-link/cartflows-pro-bb-offer-action-link.php:166
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:1554
 msgid "Text Hover Color"
 msgstr ""
 
-#: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:477
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:1610
+#: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:468
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:1616
 msgid "Background Hover Color"
 msgstr ""
 
-#: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:488
+#: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:479
 msgid "Apply Hover Color To"
 msgstr ""
 
-#: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:492
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2587
+#: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:483
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2593
 msgid "Background"
 msgstr ""
 
-#: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:502
-#: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:517
-#: modules/beaver-builder/cartflows-pro-bb-offer-action-link/cartflows-pro-bb-offer-action-link.php:187
-#: modules/beaver-builder/cartflows-pro-bb-offer-product-description/cartflows-pro-bb-offer-product-description.php:102
-#: modules/beaver-builder/cartflows-pro-bb-offer-product-price/cartflows-pro-bb-offer-product-price.php:110
-#: modules/beaver-builder/cartflows-pro-bb-offer-product-quantity/cartflows-pro-bb-offer-product-quantity.php:134
-#: modules/beaver-builder/cartflows-pro-bb-offer-product-title/cartflows-pro-bb-offer-product-title.php:92
-#: modules/beaver-builder/cartflows-pro-bb-offer-product-variation/cartflows-pro-bb-offer-product-variation.php:137
+#: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:493
+#: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:508
+#: modules/beaver-builder/cartflows-pro-bb-offer-action-link/cartflows-pro-bb-offer-action-link.php:182
+#: modules/beaver-builder/cartflows-pro-bb-offer-product-description/cartflows-pro-bb-offer-product-description.php:99
+#: modules/beaver-builder/cartflows-pro-bb-offer-product-price/cartflows-pro-bb-offer-product-price.php:107
+#: modules/beaver-builder/cartflows-pro-bb-offer-product-quantity/cartflows-pro-bb-offer-product-quantity.php:131
+#: modules/beaver-builder/cartflows-pro-bb-offer-product-title/cartflows-pro-bb-offer-product-title.php:89
+#: modules/beaver-builder/cartflows-pro-bb-offer-product-variation/cartflows-pro-bb-offer-product-variation.php:134
 #: modules/elementor/widgets/class-cartflows-pro-el-offer-product-description.php:196
 #: modules/elementor/widgets/class-cartflows-pro-el-offer-product-price.php:172
 #: modules/elementor/widgets/class-cartflows-pro-el-offer-product-quantity.php:187
@@ -1556,140 +1566,140 @@ msgstr ""
 msgid "Typography"
 msgstr ""
 
-#: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:505
+#: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:496
 msgid "Button Settings"
 msgstr ""
 
-#: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:509
+#: modules/beaver-builder/cartflows-pro-bb-offer-action-button/cartflows-pro-bb-offer-action-button.php:500
 #: modules/elementor/widgets/class-cartflows-pro-el-offer-action-button.php:265
 #: modules/elementor/widgets/class-cartflows-pro-el-offer-action-link.php:212
 msgid "Icon Size"
 msgstr ""
 
-#: modules/beaver-builder/cartflows-pro-bb-offer-action-link/cartflows-pro-bb-offer-action-link.php:33
+#: modules/beaver-builder/cartflows-pro-bb-offer-action-link/cartflows-pro-bb-offer-action-link.php:31
 #: modules/elementor/widgets/class-cartflows-pro-el-offer-action-link.php:65
 #: modules/gutenberg/classes/class-cartflows-pro-block-config.php:52
 msgid "Offer Yes/No Link"
 msgstr ""
 
-#: modules/beaver-builder/cartflows-pro-bb-offer-action-link/cartflows-pro-bb-offer-action-link.php:34
+#: modules/beaver-builder/cartflows-pro-bb-offer-action-link/cartflows-pro-bb-offer-action-link.php:32
 msgid "Offer Yes/No Link."
 msgstr ""
 
-#: modules/beaver-builder/cartflows-pro-bb-offer-action-link/cartflows-pro-bb-offer-action-link.php:107
+#: modules/beaver-builder/cartflows-pro-bb-offer-action-link/cartflows-pro-bb-offer-action-link.php:102
 #: modules/elementor/widgets/class-cartflows-pro-el-offer-action-link.php:158
 msgid "Link Text"
 msgstr ""
 
-#: modules/beaver-builder/cartflows-pro-bb-offer-product-description/cartflows-pro-bb-offer-product-description.php:33
+#: modules/beaver-builder/cartflows-pro-bb-offer-product-description/cartflows-pro-bb-offer-product-description.php:31
 #: modules/elementor/widgets/class-cartflows-pro-el-offer-product-description.php:65
 #: modules/elementor/widgets/class-cartflows-pro-el-offer-product-description.php:135
 #: modules/gutenberg/classes/class-cartflows-pro-block-config.php:264
 msgid "Offer Product Description"
 msgstr ""
 
-#: modules/beaver-builder/cartflows-pro-bb-offer-product-description/cartflows-pro-bb-offer-product-description.php:34
+#: modules/beaver-builder/cartflows-pro-bb-offer-product-description/cartflows-pro-bb-offer-product-description.php:32
 msgid "Offer Product Description."
 msgstr ""
 
-#: modules/beaver-builder/cartflows-pro-bb-offer-product-description/cartflows-pro-bb-offer-product-description.php:79
+#: modules/beaver-builder/cartflows-pro-bb-offer-product-description/cartflows-pro-bb-offer-product-description.php:76
 #: modules/elementor/widgets/class-cartflows-pro-el-offer-product-description.php:143
 msgid "Short Description"
 msgstr ""
 
-#: modules/beaver-builder/cartflows-pro-bb-offer-product-image/cartflows-pro-bb-offer-product-image.php:34
-#: modules/beaver-builder/cartflows-pro-bb-offer-product-image/cartflows-pro-bb-offer-product-image.php:76
+#: modules/beaver-builder/cartflows-pro-bb-offer-product-image/cartflows-pro-bb-offer-product-image.php:32
+#: modules/beaver-builder/cartflows-pro-bb-offer-product-image/cartflows-pro-bb-offer-product-image.php:73
 #: modules/elementor/widgets/class-cartflows-pro-el-offer-product-image.php:63
 #: modules/elementor/widgets/class-cartflows-pro-el-offer-product-image.php:134
 #: modules/gutenberg/classes/class-cartflows-pro-block-config.php:489
 msgid "Offer Product Image"
 msgstr ""
 
-#: modules/beaver-builder/cartflows-pro-bb-offer-product-image/cartflows-pro-bb-offer-product-image.php:35
+#: modules/beaver-builder/cartflows-pro-bb-offer-product-image/cartflows-pro-bb-offer-product-image.php:33
 msgid "Offer Product Image."
 msgstr ""
 
-#: modules/beaver-builder/cartflows-pro-bb-offer-product-image/cartflows-pro-bb-offer-product-image.php:95
+#: modules/beaver-builder/cartflows-pro-bb-offer-product-image/cartflows-pro-bb-offer-product-image.php:92
 msgid "Image Bottom Spacing"
 msgstr ""
 
-#: modules/beaver-builder/cartflows-pro-bb-offer-product-image/cartflows-pro-bb-offer-product-image.php:185
+#: modules/beaver-builder/cartflows-pro-bb-offer-product-image/cartflows-pro-bb-offer-product-image.php:182
 #: modules/elementor/widgets/class-cartflows-pro-el-offer-product-image.php:219
 msgid "Thumbnails"
 msgstr ""
 
-#: modules/beaver-builder/cartflows-pro-bb-offer-product-image/cartflows-pro-bb-offer-product-image.php:189
+#: modules/beaver-builder/cartflows-pro-bb-offer-product-image/cartflows-pro-bb-offer-product-image.php:186
 #: modules/elementor/widgets/class-cartflows-pro-el-offer-product-image.php:227
 msgid "Spacing between Thumbnails"
 msgstr ""
 
-#: modules/beaver-builder/cartflows-pro-bb-offer-product-image/cartflows-pro-bb-offer-product-image.php:197
+#: modules/beaver-builder/cartflows-pro-bb-offer-product-image/cartflows-pro-bb-offer-product-image.php:194
 msgid "Thumbnails Border Style"
 msgstr ""
 
-#: modules/beaver-builder/cartflows-pro-bb-offer-product-price/cartflows-pro-bb-offer-product-price.php:33
+#: modules/beaver-builder/cartflows-pro-bb-offer-product-price/cartflows-pro-bb-offer-product-price.php:31
 #: modules/elementor/widgets/class-cartflows-pro-el-offer-product-price.php:65
 #: modules/elementor/widgets/class-cartflows-pro-el-offer-product-price.php:135
 #: modules/gutenberg/classes/class-cartflows-pro-block-config.php:322
 msgid "Offer Product Price"
 msgstr ""
 
-#: modules/beaver-builder/cartflows-pro-bb-offer-product-price/cartflows-pro-bb-offer-product-price.php:34
+#: modules/beaver-builder/cartflows-pro-bb-offer-product-price/cartflows-pro-bb-offer-product-price.php:32
 msgid "Offer Product Price."
 msgstr ""
 
-#: modules/beaver-builder/cartflows-pro-bb-offer-product-quantity/cartflows-pro-bb-offer-product-quantity.php:32
+#: modules/beaver-builder/cartflows-pro-bb-offer-product-quantity/cartflows-pro-bb-offer-product-quantity.php:30
 #: modules/elementor/widgets/class-cartflows-pro-el-offer-product-quantity.php:66
 #: modules/elementor/widgets/class-cartflows-pro-el-offer-product-quantity.php:136
 #: modules/gutenberg/classes/class-cartflows-pro-block-config.php:374
 msgid "Offer Product Quantity"
 msgstr ""
 
-#: modules/beaver-builder/cartflows-pro-bb-offer-product-quantity/cartflows-pro-bb-offer-product-quantity.php:33
+#: modules/beaver-builder/cartflows-pro-bb-offer-product-quantity/cartflows-pro-bb-offer-product-quantity.php:31
 msgid "Offer Product Quantity."
 msgstr ""
 
-#: modules/beaver-builder/cartflows-pro-bb-offer-product-quantity/cartflows-pro-bb-offer-product-quantity.php:92
-#: modules/beaver-builder/cartflows-pro-bb-offer-product-variation/cartflows-pro-bb-offer-product-variation.php:94
+#: modules/beaver-builder/cartflows-pro-bb-offer-product-quantity/cartflows-pro-bb-offer-product-quantity.php:89
+#: modules/beaver-builder/cartflows-pro-bb-offer-product-variation/cartflows-pro-bb-offer-product-variation.php:91
 #: modules/elementor/widgets/class-cartflows-pro-el-offer-product-quantity.php:167
 #: modules/elementor/widgets/class-cartflows-pro-el-offer-product-variation.php:166
 msgid "Width(%)"
 msgstr ""
 
-#: modules/beaver-builder/cartflows-pro-bb-offer-product-quantity/cartflows-pro-bb-offer-product-quantity.php:106
-#: modules/beaver-builder/cartflows-pro-bb-offer-product-variation/cartflows-pro-bb-offer-product-variation.php:108
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2747
+#: modules/beaver-builder/cartflows-pro-bb-offer-product-quantity/cartflows-pro-bb-offer-product-quantity.php:103
+#: modules/beaver-builder/cartflows-pro-bb-offer-product-variation/cartflows-pro-bb-offer-product-variation.php:105
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2753
 #: modules/elementor/widgets/class-cartflows-pro-el-offer-product-quantity.php:196
 #: modules/elementor/widgets/class-cartflows-pro-el-offer-product-variation.php:185
 msgid "Label Color"
 msgstr ""
 
-#: modules/beaver-builder/cartflows-pro-bb-offer-product-quantity/cartflows-pro-bb-offer-product-quantity.php:120
-#: modules/beaver-builder/cartflows-pro-bb-offer-product-variation/cartflows-pro-bb-offer-product-variation.php:123
+#: modules/beaver-builder/cartflows-pro-bb-offer-product-quantity/cartflows-pro-bb-offer-product-quantity.php:117
+#: modules/beaver-builder/cartflows-pro-bb-offer-product-variation/cartflows-pro-bb-offer-product-variation.php:120
 #: modules/elementor/widgets/class-cartflows-pro-el-offer-product-quantity.php:208
 #: modules/elementor/widgets/class-cartflows-pro-el-offer-product-variation.php:197
 msgid "Input Text Color"
 msgstr ""
 
-#: modules/beaver-builder/cartflows-pro-bb-offer-product-title/cartflows-pro-bb-offer-product-title.php:33
+#: modules/beaver-builder/cartflows-pro-bb-offer-product-title/cartflows-pro-bb-offer-product-title.php:31
 #: modules/elementor/widgets/class-cartflows-pro-el-offer-product-title.php:65
 #: modules/elementor/widgets/class-cartflows-pro-el-offer-product-title.php:135
 #: modules/gutenberg/classes/class-cartflows-pro-block-config.php:210
 msgid "Offer Product Title"
 msgstr ""
 
-#: modules/beaver-builder/cartflows-pro-bb-offer-product-title/cartflows-pro-bb-offer-product-title.php:34
+#: modules/beaver-builder/cartflows-pro-bb-offer-product-title/cartflows-pro-bb-offer-product-title.php:32
 msgid "Offer Product Title."
 msgstr ""
 
-#: modules/beaver-builder/cartflows-pro-bb-offer-product-variation/cartflows-pro-bb-offer-product-variation.php:33
+#: modules/beaver-builder/cartflows-pro-bb-offer-product-variation/cartflows-pro-bb-offer-product-variation.php:31
 #: modules/elementor/widgets/class-cartflows-pro-el-offer-product-variation.php:65
 #: modules/elementor/widgets/class-cartflows-pro-el-offer-product-variation.php:135
 #: modules/gutenberg/classes/class-cartflows-pro-block-config.php:437
 msgid "Offer Product Variation"
 msgstr ""
 
-#: modules/beaver-builder/cartflows-pro-bb-offer-product-variation/cartflows-pro-bb-offer-product-variation.php:34
+#: modules/beaver-builder/cartflows-pro-bb-offer-product-variation/cartflows-pro-bb-offer-product-variation.php:32
 msgid "Offer Product Variation."
 msgstr ""
 
@@ -1714,25 +1724,25 @@ msgstr ""
 
 #: modules/checkout/classes/class-cartflows-pre-checkout-offer-product.php:535
 #: modules/checkout/classes/class-cartflows-pro-checkout-default-meta.php:130
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2360
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2366
 msgid "{first_name}, Wait! Your Order Is Almost Complete..."
 msgstr ""
 
 #: modules/checkout/classes/class-cartflows-pre-checkout-offer-product.php:540
 #: modules/checkout/classes/class-cartflows-pro-checkout-default-meta.php:142
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2421
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2427
 msgid "Yes, Add to My Order!"
 msgstr ""
 
 #: modules/checkout/classes/class-cartflows-pre-checkout-offer-product.php:545
 #: modules/checkout/classes/class-cartflows-pro-checkout-default-meta.php:147
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2436
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2442
 msgid "No, thanks!"
 msgstr ""
 
 #: modules/checkout/classes/class-cartflows-pre-checkout-offer-product.php:565
 #: modules/checkout/classes/class-cartflows-pro-checkout-default-meta.php:126
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2405
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2411
 msgid "Write a few words about this awesome product and tell shoppers why they must get it. You may highlight this as \"one time offer\" and make it irresistible."
 msgstr ""
 
@@ -1746,29 +1756,29 @@ msgstr ""
 
 #: modules/checkout/classes/class-cartflows-pro-checkout-default-meta.php:233
 #: modules/checkout/classes/class-cartflows-pro-checkout-default-meta.php:241
-#: modules/checkout/classes/class-cartflows-pro-checkout-default-meta.php:556
+#: modules/checkout/classes/class-cartflows-pro-checkout-default-meta.php:560
 msgid "Yes, I will take it!"
 msgstr ""
 
 #: modules/checkout/classes/class-cartflows-pro-checkout-default-meta.php:237
-#: modules/checkout/templates/bump-order/wcf-bump-order-style-4.php:39
-#: modules/checkout/templates/bump-order/wcf-bump-order-style-4.php:44
-#: modules/checkout/templates/bump-order/wcf-bump-order-style-4.php:53
-#: modules/checkout/templates/bump-order/wcf-bump-order-style-4.php:57
-#: modules/checkout/templates/bump-order/wcf-bump-order-style-5.php:45
-#: modules/checkout/templates/bump-order/wcf-bump-order-style-5.php:49
-#: modules/checkout/templates/bump-order/wcf-bump-order-style-5.php:96
-#: modules/checkout/templates/bump-order/wcf-bump-order-style-5.php:100
+#: modules/checkout/templates/bump-order/wcf-bump-order-style-4.php:46
+#: modules/checkout/templates/bump-order/wcf-bump-order-style-4.php:51
+#: modules/checkout/templates/bump-order/wcf-bump-order-style-4.php:60
+#: modules/checkout/templates/bump-order/wcf-bump-order-style-4.php:64
+#: modules/checkout/templates/bump-order/wcf-bump-order-style-5.php:52
+#: modules/checkout/templates/bump-order/wcf-bump-order-style-5.php:56
+#: modules/checkout/templates/bump-order/wcf-bump-order-style-5.php:110
+#: modules/checkout/templates/bump-order/wcf-bump-order-style-5.php:114
 msgid "Add"
 msgstr ""
 
 #: modules/checkout/classes/class-cartflows-pro-checkout-default-meta.php:245
-#: modules/checkout/classes/class-cartflows-pro-checkout-default-meta.php:568
+#: modules/checkout/classes/class-cartflows-pro-checkout-default-meta.php:572
 msgid "One Time Offer"
 msgstr ""
 
 #: modules/checkout/classes/class-cartflows-pro-checkout-default-meta.php:249
-#: modules/checkout/classes/class-cartflows-pro-checkout-default-meta.php:572
+#: modules/checkout/classes/class-cartflows-pro-checkout-default-meta.php:576
 msgid "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut, quod hic expedita consectetur vitae nulla sint adipisci cupiditate at."
 msgstr ""
 
@@ -1776,20 +1786,20 @@ msgstr ""
 msgid "no title"
 msgstr ""
 
-#: modules/checkout/classes/class-cartflows-pro-checkout-default-meta.php:564
+#: modules/checkout/classes/class-cartflows-pro-checkout-default-meta.php:568
 msgid "Here is Great Offer!"
 msgstr ""
 
-#: modules/checkout/classes/class-cartflows-pro-checkout-markup.php:1044
-#: modules/optin/classes/class-cartflows-pro-optin-markup.php:139
+#: modules/checkout/classes/class-cartflows-pro-checkout-markup.php:1047
+#: modules/optin/classes/class-cartflows-pro-optin-markup.php:141
 msgid "Billing Custom Fields"
 msgstr ""
 
-#: modules/checkout/classes/class-cartflows-pro-checkout-markup.php:1081
+#: modules/checkout/classes/class-cartflows-pro-checkout-markup.php:1085
 msgid "Shipping Custom Fields"
 msgstr ""
 
-#: modules/checkout/classes/class-cartflows-pro-checkout-markup.php:1126
+#: modules/checkout/classes/class-cartflows-pro-checkout-markup.php:1130
 msgid "Processing..."
 msgstr ""
 
@@ -1886,7 +1896,7 @@ msgstr ""
 
 #: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:181
 #: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:405
-#: modules/checkout/classes/layout/class-cartflows-pro-multistep-checkout.php:247
+#: modules/checkout/classes/layout/class-cartflows-pro-multistep-checkout.php:252
 msgid "Shipping method"
 msgstr ""
 
@@ -1966,13 +1976,13 @@ msgid "Expected custom field meta value"
 msgstr ""
 
 #: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:566
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2655
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2661
 msgid "Enable Browser Tab Animation"
 msgstr ""
 
 #: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:572
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2358
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2661
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2364
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2667
 msgid "Title Text"
 msgstr ""
 
@@ -2034,7 +2044,7 @@ msgid "For more information about the product option settings %1$1s Click here. 
 msgstr ""
 
 #: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:1012
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2244
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2250
 #: modules/offer/classes/class-cartflows-pro-base-offer-meta-data.php:153
 msgid "Select Product"
 msgstr ""
@@ -2051,25 +2061,25 @@ msgid "Product Quantity"
 msgstr ""
 
 #: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:1030
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2262
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2268
 #: modules/offer/classes/class-cartflows-pro-base-offer-meta-data.php:168
 msgid "Discount Type"
 msgstr ""
 
 #: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:1035
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2267
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2273
 #: modules/offer/classes/class-cartflows-pro-base-offer-meta-data.php:173
 msgid "Original"
 msgstr ""
 
 #: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:1039
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2271
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2277
 #: modules/offer/classes/class-cartflows-pro-base-offer-meta-data.php:177
 msgid "Discount Percentage"
 msgstr ""
 
 #: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:1043
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2275
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2281
 #: modules/offer/classes/class-cartflows-pro-base-offer-meta-data.php:181
 #: modules/offer/classes/class-cartflows-pro-base-offer-meta-data.php:221
 msgid "Discount Price"
@@ -2080,30 +2090,30 @@ msgid "Coupon"
 msgstr ""
 
 #: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:1053
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2291
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2297
 #: modules/offer/classes/class-cartflows-pro-base-offer-meta-data.php:187
 msgid "Discount Value"
 msgstr ""
 
 #: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:1086
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2311
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2317
 #: modules/offer/classes/class-cartflows-pro-base-offer-meta-data.php:213
 msgid "Original Price"
 msgstr ""
 
 #: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:1088
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2313
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2319
 #: modules/offer/classes/class-cartflows-pro-base-offer-meta-data.php:215
 msgid "This is the unit price of product"
 msgstr ""
 
 #: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:1095
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2327
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2333
 msgid "Sell Price"
 msgstr ""
 
 #: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:1097
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2329
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2335
 #: modules/offer/classes/class-cartflows-pro-base-offer-meta-data.php:222
 msgid "This is the unit discounted price of product"
 msgstr ""
@@ -2132,506 +2142,514 @@ msgstr ""
 msgid "It will pre-check this order bump and add the assigned product to the cart on the checkout page."
 msgstr ""
 
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:1141
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:1137
+msgid "Enable Quantity Field"
+msgstr ""
+
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:1139
+msgid "It will display the quantity field in the order bump description."
+msgstr ""
+
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:1147
 msgid "Order Bump Layout"
 msgstr ""
 
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:1146
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2694
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:1152
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2700
 msgid "Order Bump Skin"
 msgstr ""
 
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:1151
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2699
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:1157
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2705
 msgid "Style 1"
 msgstr ""
 
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:1155
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2703
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:1161
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2709
 msgid "Style 2"
 msgstr ""
 
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:1159
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:1165
 msgid "Style 3"
 msgstr ""
 
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:1163
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:1169
 msgid "Style 4"
 msgstr ""
 
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:1167
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:1173
 msgid "Style 5"
 msgstr ""
 
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:1188
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:1192
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:1194
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:1198
 #: modules/elementor/widgets/class-cartflows-pro-el-checkout-form-extend.php:317
 msgid "Position"
 msgstr ""
 
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:1205
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:1211
 msgid "After Order"
 msgstr ""
 
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:1209
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:1215
 msgid "After Payment"
 msgstr ""
 
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:1246
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2104
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:1252
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2110
 msgid "Description"
 msgstr ""
 
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:1257
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2044
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:1263
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2050
 msgid "Checkbox Label"
 msgstr ""
 
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:1458
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2090
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:1464
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2096
 msgid "Highlight Text"
 msgstr ""
 
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:1487
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2023
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2558
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:1493
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2029
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2564
 msgid "Button"
 msgstr ""
 
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:1794
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:1800
 msgid "Box Background"
 msgstr ""
 
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:1805
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:1811
 msgid "Box Border"
 msgstr ""
 
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:1863
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:1869
 msgid "Box Shadow"
 msgstr ""
 
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:1868
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:1874
 msgid "Shadow Color"
 msgstr ""
 
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:1874
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:1880
 msgid "Horizontal"
 msgstr ""
 
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:1882
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:1888
 msgid "Vertical"
 msgstr ""
 
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:1890
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:1896
 msgid "Blur"
 msgstr ""
 
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:1898
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:1904
 msgid "Spread"
 msgstr ""
 
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:1907
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2769
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:1913
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2775
 msgid "Order Bump Pointing Arrow"
 msgstr ""
 
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:1937
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2774
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:1943
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2780
 msgid "Enable Arrow "
 msgstr ""
 
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:1967
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2780
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:1973
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2786
 msgid "Enable Animation "
 msgstr ""
 
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2000
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2006
 msgid "Action Element"
 msgstr ""
 
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2014
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2020
 msgid "Element"
 msgstr ""
 
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2019
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2025
 msgid "Checkbox"
 msgstr ""
 
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2039
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2045
 msgid "Contents"
 msgstr ""
 
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2113
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2119
 msgid "Use {{product_name}}, {{product_desc}}, {{product_price}} & {{quantity}} to fetch respective product details."
 msgstr ""
 
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2118
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2124
 msgid "Media"
 msgstr ""
 
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2123
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2129
 msgid "Enable Image Options"
 msgstr ""
 
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2129
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2135
 #: modules/offer/classes/class-cartflows-pro-base-offer-meta-data.php:372
 msgid "Product Image"
 msgstr ""
 
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2134
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2140
 msgid "By default, product image will be shown. If product image is not set then placeholder image will be used as product image."
 msgstr ""
 
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2148
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2154
 msgid "Minimum image size should be 300 X 300 in pixls for ideal display."
 msgstr ""
 
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2153
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2159
 msgid "Image Position"
 msgstr ""
 
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2182
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2188
 msgid "Image Width"
 msgstr ""
 
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2187
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2193
 msgid "Keep value empty for 100% width"
 msgstr ""
 
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2201
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2207
 msgid "Show Image on Tab and Mobile"
 msgstr ""
 
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2224
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2230
 msgid "Enable Checkout Offer"
 msgstr ""
 
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2230
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2236
 #: modules/checkout/templates/your-product/product-table-titles.php:20
 #: modules/offer/classes/class-cartflows-pro-base-offer-meta-data.php:148
 #: modules/thankyou/template/child-order-details.php:58
 msgid "Product"
 msgstr ""
 
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2248
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2254
 msgid "Type to search for a product"
 msgstr ""
 
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2344
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2350
 #: modules/elementor/widgets/class-cartflows-pro-el-offer-action-button.php:470
 msgid "Content"
 msgstr ""
 
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2374
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2380
 msgid "Sub-title Text"
 msgstr ""
 
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2388
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2394
 #: modules/offer/classes/class-cartflows-pro-base-offer-meta-data.php:347
 msgid "Product Title"
 msgstr ""
 
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2390
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2396
 msgid "Enter to override default product title."
 msgstr ""
 
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2403
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2409
 #: modules/offer/classes/class-cartflows-pro-base-offer-meta-data.php:353
 msgid "Product Description"
 msgstr ""
 
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2419
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2425
 msgid "Order Button Text"
 msgstr ""
 
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2434
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2440
 msgid "Skip Button Text"
 msgstr ""
 
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2450
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2456
 msgid "Styles"
 msgstr ""
 
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2469
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2475
 msgid "NavBar"
 msgstr ""
 
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2484
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2490
 msgid "NavBar Color"
 msgstr ""
 
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2499
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2505
 msgid "Titles & Description"
 msgstr ""
 
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2513
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2519
 msgid "Title Color"
 msgstr ""
 
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2528
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2534
 msgid "Subtitle Color"
 msgstr ""
 
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2543
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2549
 msgid "Description Color"
 msgstr ""
 
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2572
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2578
 msgid "Button Color"
 msgstr ""
 
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2601
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2607
 msgid "Overlay Background Color"
 msgstr ""
 
 #. translators: %1$1s: link html start, %2$12: link html end
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2639
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2645
 msgid "For more information about the pre-checkout offer please %1$1sClick here.%2$2s"
 msgstr ""
 
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2752
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2758
 msgid "Label Background Color"
 msgstr ""
 
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2758
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2764
 msgid "Description Text Color"
 msgstr ""
 
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2763
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2769
 msgid "Highlight Text Color"
 msgstr ""
 
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2802
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2808
 msgid "Enable Note Text"
 msgstr ""
 
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2818
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2824
 msgid "Note Box Background Color"
 msgstr ""
 
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2824
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2830
 #: modules/elementor/widgets/class-cartflows-pro-el-checkout-form-extend.php:133
 msgid "Steps"
 msgstr ""
 
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2849
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2855
 msgid "Section Width"
 msgstr ""
 
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2871
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2877
 #: modules/elementor/widgets/class-cartflows-pro-el-checkout-form-extend.php:182
 msgid "Offer Button"
 msgstr ""
 
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2890
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2896
 msgid "Section Title"
 msgstr ""
 
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2897
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2903
 msgid "Section Position"
 msgstr ""
 
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2902
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2908
 msgid "Before Checkout Section"
 msgstr ""
 
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2916
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2922
 msgid "Skins"
 msgstr ""
 
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2933
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2939
 msgid "It will add images on checkout page."
 msgstr ""
 
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2938
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2944
 msgid "Product Text Color"
 msgstr ""
 
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2943
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2949
 msgid "Product Background Color"
 msgstr ""
 
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2949
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2955
 msgid "Highlight Product Design"
 msgstr ""
 
-#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2964
+#: modules/checkout/classes/class-cartflows-pro-checkout-meta-data.php:2970
 msgid "Highlight Box Border Color"
 msgstr ""
 
-#: modules/checkout/classes/class-cartflows-pro-order-bump-product.php:120
+#: modules/checkout/classes/class-cartflows-pro-order-bump-product.php:124
 msgid "Sorry, your session has expired."
 msgstr ""
 
-#: modules/checkout/classes/class-cartflows-pro-product-options.php:1121
+#: modules/checkout/classes/class-cartflows-pro-product-options.php:1122
 msgid "Choose a Variation"
 msgstr ""
 
 #. translators: %s: Attribute name.
-#: modules/checkout/classes/class-cartflows-pro-product-options.php:1282
+#: modules/checkout/classes/class-cartflows-pro-product-options.php:1283
 msgid "Invalid value posted for %s"
 msgstr ""
 
 #. translators: %s: Attribute name.
-#: modules/checkout/classes/class-cartflows-pro-product-options.php:1291
+#: modules/checkout/classes/class-cartflows-pro-product-options.php:1292
 msgid "%s is a required field"
 msgid_plural "%s are required fields"
 msgstr[0] ""
 msgstr[1] ""
 
-#: modules/checkout/classes/class-cartflows-pro-product-options.php:1416
+#: modules/checkout/classes/class-cartflows-pro-product-options.php:1417
 #: modules/checkout/templates/your-product/item-title.php:60
 msgid " every "
 msgstr ""
 
 #. translators:  %1$s %2$s : trial length trial period
-#: modules/checkout/classes/class-cartflows-pro-product-options.php:1731
+#: modules/checkout/classes/class-cartflows-pro-product-options.php:1732
 msgid " with %1$s %2$s free trial "
 msgstr ""
 
 #: modules/checkout/classes/layout/class-cartflows-pro-multistep-checkout.php:75
-#: modules/checkout/classes/layout/class-cartflows-pro-multistep-checkout.php:405
+#: modules/checkout/classes/layout/class-cartflows-pro-multistep-checkout.php:410
 #: modules/gutenberg/classes/class-cartflows-pro-init-blocks.php:334
 msgid "Continue to shipping"
 msgstr ""
 
 #: modules/checkout/classes/layout/class-cartflows-pro-multistep-checkout.php:77
-#: modules/checkout/classes/layout/class-cartflows-pro-multistep-checkout.php:408
+#: modules/checkout/classes/layout/class-cartflows-pro-multistep-checkout.php:413
 msgid "Continue to order notes"
 msgstr ""
 
 #: modules/checkout/classes/layout/class-cartflows-pro-multistep-checkout.php:81
 #: modules/checkout/classes/layout/class-cartflows-pro-multistep-checkout.php:88
-#: modules/checkout/classes/layout/class-cartflows-pro-multistep-checkout.php:414
+#: modules/checkout/classes/layout/class-cartflows-pro-multistep-checkout.php:419
 #: modules/gutenberg/classes/class-cartflows-pro-init-blocks.php:335
 msgid "Continue to payment"
 msgstr ""
 
-#: modules/checkout/classes/layout/class-cartflows-pro-multistep-checkout.php:286
-#: modules/checkout/classes/layout/class-cartflows-pro-multistep-checkout.php:650
+#: modules/checkout/classes/layout/class-cartflows-pro-multistep-checkout.php:291
+#: modules/checkout/classes/layout/class-cartflows-pro-multistep-checkout.php:655
 msgid "Contact"
 msgstr ""
 
-#: modules/checkout/classes/layout/class-cartflows-pro-multistep-checkout.php:290
-#: modules/checkout/classes/layout/class-cartflows-pro-multistep-checkout.php:654
-#: modules/checkout/classes/layout/class-cartflows-pro-multistep-checkout.php:664
+#: modules/checkout/classes/layout/class-cartflows-pro-multistep-checkout.php:295
+#: modules/checkout/classes/layout/class-cartflows-pro-multistep-checkout.php:659
+#: modules/checkout/classes/layout/class-cartflows-pro-multistep-checkout.php:669
 msgid "Change"
 msgstr ""
 
-#: modules/checkout/classes/layout/class-cartflows-pro-multistep-checkout.php:335
+#: modules/checkout/classes/layout/class-cartflows-pro-multistep-checkout.php:340
 msgid "Order notes"
 msgstr ""
 
-#: modules/checkout/classes/layout/class-cartflows-pro-multistep-checkout.php:343
-#: modules/checkout/classes/layout/class-cartflows-pro-multistep-checkout.php:351
+#: modules/checkout/classes/layout/class-cartflows-pro-multistep-checkout.php:348
+#: modules/checkout/classes/layout/class-cartflows-pro-multistep-checkout.php:356
 msgid "Information"
 msgstr ""
 
-#: modules/checkout/classes/layout/class-cartflows-pro-multistep-checkout.php:378
+#: modules/checkout/classes/layout/class-cartflows-pro-multistep-checkout.php:383
 msgid "« Back to shipping"
 msgstr ""
 
-#: modules/checkout/classes/layout/class-cartflows-pro-multistep-checkout.php:381
+#: modules/checkout/classes/layout/class-cartflows-pro-multistep-checkout.php:386
 msgid "« Back to order notes"
 msgstr ""
 
-#: modules/checkout/classes/layout/class-cartflows-pro-multistep-checkout.php:385
-#: modules/checkout/classes/layout/class-cartflows-pro-multistep-checkout.php:419
+#: modules/checkout/classes/layout/class-cartflows-pro-multistep-checkout.php:390
+#: modules/checkout/classes/layout/class-cartflows-pro-multistep-checkout.php:424
 msgid "« Back to information"
 msgstr ""
 
-#: modules/checkout/classes/layout/class-cartflows-pro-multistep-checkout.php:455
+#: modules/checkout/classes/layout/class-cartflows-pro-multistep-checkout.php:460
 msgid "Customer information"
 msgstr ""
 
 #. translators: %1$s: Link HTML start, %2$s Link HTML End
-#: modules/checkout/classes/layout/class-cartflows-pro-multistep-checkout.php:457
+#: modules/checkout/classes/layout/class-cartflows-pro-multistep-checkout.php:462
 msgid "Already have an account? %1$1s Log in%2$2s"
 msgstr ""
 
-#: modules/checkout/classes/layout/class-cartflows-pro-multistep-checkout.php:470
+#: modules/checkout/classes/layout/class-cartflows-pro-multistep-checkout.php:475
 msgid "Email Address"
 msgstr ""
 
 #. translators: %s: asterisk mark
-#: modules/checkout/classes/layout/class-cartflows-pro-multistep-checkout.php:473
+#: modules/checkout/classes/layout/class-cartflows-pro-multistep-checkout.php:478
 msgid "Email Address %s"
 msgstr ""
 
-#: modules/checkout/classes/layout/class-cartflows-pro-multistep-checkout.php:488
+#: modules/checkout/classes/layout/class-cartflows-pro-multistep-checkout.php:493
 msgid "Password"
 msgstr ""
 
 #. translators: %s: asterisk mark
-#: modules/checkout/classes/layout/class-cartflows-pro-multistep-checkout.php:490
+#: modules/checkout/classes/layout/class-cartflows-pro-multistep-checkout.php:495
 msgid "Password %s"
 msgstr ""
 
-#: modules/checkout/classes/layout/class-cartflows-pro-multistep-checkout.php:496
+#: modules/checkout/classes/layout/class-cartflows-pro-multistep-checkout.php:501
 msgid "Login"
 msgstr ""
 
-#: modules/checkout/classes/layout/class-cartflows-pro-multistep-checkout.php:497
+#: modules/checkout/classes/layout/class-cartflows-pro-multistep-checkout.php:502
 msgid "Lost your password?"
 msgstr ""
 
-#: modules/checkout/classes/layout/class-cartflows-pro-multistep-checkout.php:502
+#: modules/checkout/classes/layout/class-cartflows-pro-multistep-checkout.php:507
 msgid "Login is optional, you can continue with your order below."
 msgstr ""
 
-#: modules/checkout/classes/layout/class-cartflows-pro-multistep-checkout.php:514
+#: modules/checkout/classes/layout/class-cartflows-pro-multistep-checkout.php:519
 msgid "Create an account?"
 msgstr ""
 
-#: modules/checkout/classes/layout/class-cartflows-pro-multistep-checkout.php:529
+#: modules/checkout/classes/layout/class-cartflows-pro-multistep-checkout.php:534
 msgid "Account username"
 msgstr ""
 
 #. translators: %s: asterisk mark
-#: modules/checkout/classes/layout/class-cartflows-pro-multistep-checkout.php:531
+#: modules/checkout/classes/layout/class-cartflows-pro-multistep-checkout.php:536
 msgid "Account username %s"
 msgstr ""
 
-#: modules/checkout/classes/layout/class-cartflows-pro-multistep-checkout.php:543
+#: modules/checkout/classes/layout/class-cartflows-pro-multistep-checkout.php:548
 msgid "Create account password"
 msgstr ""
 
 #. translators: %s: asterisk mark
-#: modules/checkout/classes/layout/class-cartflows-pro-multistep-checkout.php:545
+#: modules/checkout/classes/layout/class-cartflows-pro-multistep-checkout.php:550
 msgid "Create account password %s"
 msgstr ""
 
 #. translators: %1$s: username, %2$s emailid
-#: modules/checkout/classes/layout/class-cartflows-pro-multistep-checkout.php:554
+#: modules/checkout/classes/layout/class-cartflows-pro-multistep-checkout.php:559
 msgid " Welcome Back %1$s ( %2$s )"
 msgstr ""
 
-#: modules/checkout/classes/layout/class-cartflows-pro-multistep-checkout.php:660
+#: modules/checkout/classes/layout/class-cartflows-pro-multistep-checkout.php:665
 msgid "Address"
 msgstr ""
 
-#: modules/checkout/templates/bump-order/wcf-bump-order-style-4.php:39
-#: modules/checkout/templates/bump-order/wcf-bump-order-style-4.php:42
-#: modules/checkout/templates/bump-order/wcf-bump-order-style-4.php:53
-#: modules/checkout/templates/bump-order/wcf-bump-order-style-4.php:55
-#: modules/checkout/templates/bump-order/wcf-bump-order-style-5.php:45
-#: modules/checkout/templates/bump-order/wcf-bump-order-style-5.php:47
-#: modules/checkout/templates/bump-order/wcf-bump-order-style-5.php:96
-#: modules/checkout/templates/bump-order/wcf-bump-order-style-5.php:98
+#: modules/checkout/templates/bump-order/wcf-bump-order-style-4.php:46
+#: modules/checkout/templates/bump-order/wcf-bump-order-style-4.php:49
+#: modules/checkout/templates/bump-order/wcf-bump-order-style-4.php:60
+#: modules/checkout/templates/bump-order/wcf-bump-order-style-4.php:62
+#: modules/checkout/templates/bump-order/wcf-bump-order-style-5.php:52
+#: modules/checkout/templates/bump-order/wcf-bump-order-style-5.php:54
+#: modules/checkout/templates/bump-order/wcf-bump-order-style-5.php:110
+#: modules/checkout/templates/bump-order/wcf-bump-order-style-5.php:112
 msgid "Remove"
 msgstr ""
 
-#: modules/checkout/templates/bump-order/wcf-bump-order-style-4.php:42
-#: modules/checkout/templates/bump-order/wcf-bump-order-style-4.php:55
-#: modules/checkout/templates/bump-order/wcf-bump-order-style-5.php:47
-#: modules/checkout/templates/bump-order/wcf-bump-order-style-5.php:98
+#: modules/checkout/templates/bump-order/wcf-bump-order-style-4.php:49
+#: modules/checkout/templates/bump-order/wcf-bump-order-style-4.php:62
+#: modules/checkout/templates/bump-order/wcf-bump-order-style-5.php:54
+#: modules/checkout/templates/bump-order/wcf-bump-order-style-5.php:112
 msgid "Removing"
 msgstr ""
 
-#: modules/checkout/templates/bump-order/wcf-bump-order-style-4.php:44
-#: modules/checkout/templates/bump-order/wcf-bump-order-style-4.php:57
-#: modules/checkout/templates/bump-order/wcf-bump-order-style-5.php:49
-#: modules/checkout/templates/bump-order/wcf-bump-order-style-5.php:100
+#: modules/checkout/templates/bump-order/wcf-bump-order-style-4.php:51
+#: modules/checkout/templates/bump-order/wcf-bump-order-style-4.php:64
+#: modules/checkout/templates/bump-order/wcf-bump-order-style-5.php:56
+#: modules/checkout/templates/bump-order/wcf-bump-order-style-5.php:114
 msgid "Adding"
 msgstr ""
 
@@ -2928,7 +2946,7 @@ msgid "An error occurred, please try again or try an alternate form of payment."
 msgstr ""
 
 #. translators: exception message.
-#: modules/gateways/class-cartflows-pro-gateway-paypal-express.php:1047
+#: modules/gateways/class-cartflows-pro-gateway-paypal-express.php:1045
 msgid "PayPal Exp Transaction Failed (%s)"
 msgstr ""
 
@@ -3181,39 +3199,39 @@ msgstr ""
 msgid "No, Thanks"
 msgstr ""
 
-#: modules/offer/classes/class-cartflows-pro-offer-order-meta.php:66
+#: modules/offer/classes/class-cartflows-pro-offer-order-meta.php:71
 msgid "CartFlows Order Auto Cancelled"
 msgstr ""
 
-#: modules/offer/classes/class-cartflows-pro-offer-order-meta.php:74
+#: modules/offer/classes/class-cartflows-pro-offer-order-meta.php:79
 msgid "CartFlows Upsell"
 msgstr ""
 
-#: modules/offer/classes/class-cartflows-pro-offer-order-meta.php:76
+#: modules/offer/classes/class-cartflows-pro-offer-order-meta.php:81
 msgid "CartFlows Downsell"
 msgstr ""
 
-#: modules/offer/classes/class-cartflows-pro-offer-order-meta.php:101
+#: modules/offer/classes/class-cartflows-pro-offer-order-meta.php:106
 msgid "Amount Charged: "
 msgstr ""
 
-#: modules/offer/classes/class-cartflows-pro-offer-order-meta.php:102
+#: modules/offer/classes/class-cartflows-pro-offer-order-meta.php:107
 msgid "This order has charged the difference, and the same amount will be considered while refunding this order. You need to refund the rest of the amount from the parent order."
 msgstr ""
 
-#: modules/offer/classes/class-cartflows-pro-offer-order-meta.php:111
+#: modules/offer/classes/class-cartflows-pro-offer-order-meta.php:116
 msgid "CartFlows Parent Order"
 msgstr ""
 
-#: modules/offer/classes/class-cartflows-pro-offer-order-meta.php:123
+#: modules/offer/classes/class-cartflows-pro-offer-order-meta.php:128
 msgid "CartFlows Upsell&sol;Downsell Orders"
 msgstr ""
 
-#: modules/offer/classes/class-cartflows-pro-offer-order-meta.php:132
+#: modules/offer/classes/class-cartflows-pro-offer-order-meta.php:137
 msgid "Upsell"
 msgstr ""
 
-#: modules/offer/classes/class-cartflows-pro-offer-order-meta.php:134
+#: modules/offer/classes/class-cartflows-pro-offer-order-meta.php:139
 msgid "Downsell"
 msgstr ""
 

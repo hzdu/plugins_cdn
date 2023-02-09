@@ -149,6 +149,14 @@
 		}
 	};
 
+	/**
+	 * Re-calculate the cart total by triggering 'updated_cart_totals' trigger.
+	 */
+	const wcf_re_calculate_totals = function () {
+		// Re-calculate the cart total
+		$( document.body ).trigger( 'updated_cart_totals' );
+	};
+
 	const wcf_product_quantity_var_options = function () {
 		const wcf_variation_validation_trigger_click = function () {
 			$( 'form.woocommerce-checkout' ).on(
@@ -256,7 +264,7 @@
 					wrap.attr( 'data-options', JSON.stringify( option ) );
 
 					// Re-calculate the cart total
-					$( document.body ).trigger( 'updated_cart_totals' );
+					wcf_re_calculate_totals();
 				},
 				error() {
 					$( '.woocommerce-checkout-review-order-table' ).unblock();
@@ -342,7 +350,7 @@
 					wrap.attr( 'data-options', JSON.stringify( option ) );
 
 					// Re-calculate the cart total
-					$( document.body ).trigger( 'updated_cart_totals' );
+					wcf_re_calculate_totals();
 				},
 				error() {
 					$( '.woocommerce-checkout-review-order-table' ).unblock();
@@ -399,7 +407,7 @@
 					wcf_remove_spinner( response );
 					$( '.wcf-qty-options' ).removeClass( 'wcf-loading' );
 					// Re-calculate the cart total
-					$( document.body ).trigger( 'updated_cart_totals' );
+					wcf_re_calculate_totals();
 				},
 				error() {
 					$( '.woocommerce-checkout-review-order-table' ).unblock();
@@ -481,7 +489,7 @@
 					wcf_remove_spinner( response );
 					$( '.wcf-qty-options' ).removeClass( 'wcf-loading' );
 					// Re-calculate the cart total
-					$( document.body ).trigger( 'updated_cart_totals' );
+					wcf_re_calculate_totals();
 				},
 				error() {
 					$( '.woocommerce-checkout-review-order-table' ).unblock();
@@ -533,6 +541,10 @@
 			const checkout_id = $( '[name=_wcf_checkout_id]' ).val();
 			const bump_offer_data = $this.attr( 'data-ob_data' ),
 				ob_id = $this.data( 'ob_data' ).ob_id;
+			const bump_offer_qty = $this
+				.closest( '.wcf-bump-order-content' )
+				.find( '.wcf-order-bump-quantity-updater' )
+				.val();
 
 			const button_class = $this
 				.closest( '.wcf-bump-order-field-wrap' )
@@ -546,6 +558,7 @@
 				_wcf_checkout_id: checkout_id,
 				_wcf_product_id: product_id,
 				_bump_offer_data: bump_offer_data ? bump_offer_data : '',
+				_bump_offer_qty: bump_offer_qty > 0 ? bump_offer_qty : '',
 				action: 'wcf_bump_order_process',
 			};
 
@@ -607,7 +620,7 @@
 						JSON.stringify( bump_product_ids )
 					);
 					// Re-calculate the cart total
-					$( document.body ).trigger( 'updated_cart_totals' );
+					wcf_re_calculate_totals();
 				},
 				error() {
 					$( '.woocommerce-checkout-review-order-table' ).unblock();
@@ -1539,6 +1552,93 @@
 		} );
 	};
 
+	const ob_quantity_changer = function () {
+		let wcf_order_bump_qty_update = false;
+
+		$( document ).on( 'click', '.wcf-ob-qty-selection-btn', function ( e ) {
+			e.preventDefault();
+
+			if ( true === wcf_order_bump_qty_update ) {
+				return false;
+			}
+
+			wcf_order_bump_qty_update = true;
+
+			const $this = $( this ),
+				quantity_input = $this
+					.parents( '.wcf-ob-qty-selection-wrap' )
+					.find( '.wcf-order-bump-quantity-updater' ),
+				min_value = quantity_input.attr( 'min' );
+			let updated_qty = '';
+
+			const val = parseInt( quantity_input.val(), 10 );
+
+			if ( $( e.target ).hasClass( 'wcf-ob-qty-increment' ) ) {
+				updated_qty = val + 1;
+				quantity_input.val( updated_qty );
+			} else {
+				updated_qty = val <= min_value ? min_value : val - 1;
+				quantity_input.val( updated_qty );
+			}
+
+			// Make a ajax call to update the quantity in the cart.
+			update_ob_quantity( $this, updated_qty );
+
+			wcf_order_bump_qty_update = false;
+
+			$( '.wcf-order-bump-quantity-updater' ).trigger( 'change' );
+		} );
+	};
+
+	const update_ob_quantity = function ( $this, updated_qty ) {
+		const bump_offer_wrap = $this.closest( '.wcf-bump-order-wrap' ),
+			checkbox_field = bump_offer_wrap.find( '#wcf-bump-order-cb' ),
+			bump_offer_data = checkbox_field.attr( 'data-ob_data' ),
+			ob_data = checkbox_field.data( 'ob_data' ),
+			product_id = ob_data.product_id;
+
+		const data = {
+			_wcf_product_id: product_id,
+			_bump_offer_data: bump_offer_data ? bump_offer_data : '',
+			_bump_offer_qty: updated_qty > 0 ? updated_qty : '',
+			security: cartflows.wcf_update_order_bump_qty_nonce,
+			action: 'wcf_update_order_bump_qty',
+		};
+
+		if ( false === checkbox_field.is( ':checked' ) ) {
+			return;
+		}
+		data._wcf_bump_product_action = 'add_bump_product';
+
+		// Display spinner for specific order bump.
+		bump_offer_wrap.block( {
+			message: null,
+			overlayCSS: {
+				background: '#fff',
+				opacity: 0.6,
+			},
+		} );
+
+		wcf_display_spinner();
+
+		$.ajax( {
+			url: cartflows.ajax_url,
+			data,
+			dataType: 'json',
+			type: 'POST',
+			success( response ) {
+				// Re-calculate the cart total
+				wcf_re_calculate_totals();
+				wcf_remove_spinner( response );
+			},
+			error() {
+				$( '.woocommerce-checkout-review-order-table' ).unblock();
+			},
+		} );
+
+		return false;
+	};
+
 	const multistep_checkout_buttons_navigation = function () {
 		let previous_step = 'billing',
 			current_step = 'billing';
@@ -2034,6 +2134,8 @@
 		//In multi checkout case we need to update the cart item key of the data-option for the product options.
 		wcf_update_product_options_cart_item_key();
 		quantity_changer();
+
+		ob_quantity_changer();
 
 		multistep_checkout_buttons_navigation();
 	} );
