@@ -1,0 +1,377 @@
+/* Fixed WordPress .wrap class */
+.wrap * {
+	box-sizing: border-box;
+}
+
+/* Activation Form */
+.wws-plugin-activation-form-wrapper > div {
+	text-align: center;
+	width: 500px;
+	max-width: 98%;
+	margin: 10% auto 0 auto;
+}
+
+.wws-plugin-activation-form-wrapper > div > h2 {
+	font-size: 30px;
+}
+
+.wws-plugin-activation-form {
+	padding: 15px;
+	margin-bottom: 20px;
+}
+
+/* Form table CSS */
+.form-table th {
+	padding: 20px 40px 20px 0 !important;
+	width: 250px !important;
+}
+
+.form-table th .wws-tippy-tooltip {
+	float: right;
+	margin-right: -40px;
+	color: #444;
+	vertical-align: middle;
+}
+
+/* Card design */
+.wws-admin-card {
+	padding: 15px;
+	margin-bottom: 20px;
+}
+
+.wws-admin-card.filled {
+	background: #fff;
+}
+
+/* Flex Grid */
+.flex-grid {
+	display: -ms-flexbox;
+	display: flex;
+	-ms-flex-pack: justify;
+	    justify-content: space-between;
+}
+.flex-grid-1 .col {
+	width: calc( 100% );
+}
+.flex-grid-2 .col {
+	width: calc( 50% - 15px );
+}
+.flex-grid-3 .col {
+	width: calc( 33.3% - 15px );
+}
+.flex-grid-4 .col {
+	width: calc( 25% - 15px );
+}
+
+@media ( max-width: 768px ) {
+
+	.flex-grid {
+		display: block;
+	}
+	.flex-grid-1 .col,
+	.flex-grid-2 .col,
+	.flex-grid-3 .col,
+	.flex-grid-4 .col {
+		width: 100%;
+	}
+
+}
+
+/* WWS custom admin field design */
+.wws-admin-field {
+	display: block;
+	width: 100%;
+	margin-bottom: 20px;
+}
+
+.wws-admin-field label {
+	display: block;
+	text-align: left;
+	font-weight: 700;
+	margin-bottom: 4px;
+}
+
+.wws-admin-field p {
+	margin: 0;
+	font-style: italic;
+	color: #666;
+}
+
+.wws-admin-field select, .wws-admin-field textarea, .wws-admin-field input[type='number'], .wws-admin-field input[type='text'] {
+	width: 100%;
+	box-shadow: none;
+	border: 1px solid #bbb;
+}
+
+/* Appearance setting page CSS */
+.sk-wws-admin-label > .sk-wws-admin-radio {
+
+	/* HIDE RADIO */
+	visibility: hidden; /* Makes input not-clickable */
+	position: absolute; /* Remove input from document flow */
+}
+
+.sk-wws-admin-label > .sk-wws-admin-radio + .sk-wws-admin-radio-image {
+
+	/* IMAGE STYLES */
+	cursor: pointer;
+	border: 2px solid transparent;
+	-moz-filter: drop-shadow(0 0 5px rgba(0, 0, 0, .1));
+	-o-filter: drop-shadow(0 0 5px rgba(0, 0, 0, .1));
+	-ms-filter: drop-shadow(0 0 5px rgba(0, 0, 0, .1));
+	filter: drop-shadow(0 0 5px rgba(0, 0, 0, .1));
+}
+
+.sk-wws-admin-label > .sk-wws-admin-radio:checked + .sk-wws-admin-radio-image {
+
+	/* (RADIO CHECKED) IMAGE STYLES */
+	border: 2px solid #22C15E;
+}
+
+/* Basic settings page CSS */
+#wws-admin__custom-css {
+	height: 200px;
+	width: 524px;
+	max-width: 100%;
+}
+
+/* Button generator admin page CSS */
+.wws-button-generator {
+	width: 100%;
+	padding: 15px;
+}
+
+.wws-button-gen-visual-representation {
+	width: 100%;
+	padding: 0px 15px 40px 15px;
+	text-align: center;
+}
+
+.wws-button-gen-visual-representation p {
+	display: block;
+	font-weight: 700;
+	margin-bottom: 20px;
+}
+
+.wws-button-gen-visual-representation button {
+	color: #fff;
+	background-color: #22c15e;
+	border: none;
+	border-radius: 3px;
+	padding: 5px 10px;
+	cursor: pointer;
+	font-size: 15px;
+}
+
+#wws-button-gen-invitation {
+	display: none;
+}
+
+#wws-button-gen-btn-visual > span,
+#wws-button-gen-btn-visual > svg {
+	vertical-align: middle;
+}
+
+#wws-button-gen-btn-visual > svg {
+	width: 16px;
+	height: 16px;
+}
+
+/* Link generator admin page CSS */
+.wws-link-generator {
+	width: 100%;
+	padding: 15px;
+}
+
+#wws-link-gen-group {
+	display: none;
+}
+
+
+/* QR CSS Admin */
+#wws-admin-qr-view {
+	text-align: center;
+	margin-bottom: 30px;
+}
+#wws-qr-gen-code i {
+	display: none;
+}
+
+/* Manage support person table CSS */
+#wws-manage-support-persons-table table {
+	margin-bottom: 20px;
+}
+
+#wws-manage-support-persons-table th,
+#wws-manage-support-persons-table td {
+	padding: 10px 20px !important;
+}
+
+/* input mask selector */
+a[data-wws-mask] {
+	text-decoration: none;
+	margin: 8px;
+}
+
+a[data-wws-mask]:first-child {
+	margin-left: 0;
+}
+
+a[data-wws-mask]:last-child {
+	margin-right: 0;
+}
+
+/**
+ * Chartist JS CSS
+ */
+.ct-series-a .ct-bar,
+.ct-series-a .ct-line,
+.ct-series-a .ct-point,
+.ct-series-a .ct-slice-donut {
+	stroke: #0073aa;
+}
+
+.ct-series-a .ct-area,
+.ct-series-a .ct-slice-donut-solid,
+.ct-series-a .ct-slice-pie {
+	fill: #0073aa;
+}
+
+.ct-chart-bar,
+.ct-chart-line{
+	overflow: visible;
+}
+
+.ct-label.ct-label.ct-horizontal.ct-end {
+	position: relative;
+	-ms-flex-pack: end;
+	    justify-content: flex-end;
+	text-align: right;
+	transform-origin: 100% 0;
+	transform: translate(-100%) rotate(-45deg);
+	white-space:nowrap;
+}
+
+/* Top 10 analytics CSS  */
+.wws-top-10-click-analytics {
+	background-color: #fff;
+}
+
+.wws-top-10-click-analytics table {
+	width: 100%
+}
+
+.wws-top-10-click-analytics table th,
+.wws-top-10-click-analytics table td {
+	text-align: left;
+	padding: 5px 10px;
+}
+
+.wws-top-10-click-analytics table thead tr {
+	background: #eceff1;
+}
+
+.wws-top-10-click-analytics table tbody tr:nth-child( even )  {
+	background-color: #fafafa;
+}
+
+.wws-top-10-click-analytics table thead tr th:last-child {
+	width: 70px;
+}
+
+/* Total click analytics  */
+.wws-total-click-analytics h1 {
+	font-size: 40px;
+}
+
+.wws-total-click-analytics p > svg{
+	width: 16px;
+	height: 16px;
+	vertical-align: bottom;
+	margin-right: 5px;
+}
+
+/* Table tooltip */
+.form-table th {
+	padding: 20px 40px 20px 0 !important;
+	width: 250px !important;
+}
+
+.form-table td {
+	position: relative;
+}
+
+.form-table td [data-tooltip] {
+	float: left;
+	color: #444;
+	position: absolute;
+	top: 20px;
+	left: -30px;
+	cursor: pointer;
+}
+
+.form-table td [data-tooltip]:hover::after {
+	content: attr(data-tooltip);
+	background: #23282d;
+	color: #ffffff;
+	padding: 10px 20px;
+	border-radius: 6px;
+	position: absolute;
+	bottom: 25px;
+	left: -90px;
+	width: 160px;
+	text-align: center;
+	font-size: 13px;
+	box-shadow: 0 20px 30px rgba(0,0,0,.2);
+	z-index: 999999;
+}
+
+@media ( max-width: 782px ) {
+	.form-table td [data-tooltip] {
+		top: -38px;
+		right: 15px;
+		left: auto;
+	}
+
+	.form-table td [data-tooltip]:hover::after {
+		left: auto;
+		right: 0;
+	}
+}
+
+// Support person CSS.
+.wws-support-person-avaliability {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+
+	input[type="text"] {
+		width: 140px;
+	}
+
+	a {
+		display: inline-block;
+		font-weight: 600;
+		outline: none;
+
+		&:hover,
+		&:focus,
+		&:active {
+			color: inherit;
+			outline: none;
+		}
+
+		svg {
+			width: 26px;
+			vertical-align: middle;
+		}
+	}
+
+	&--add {
+		color: #388e3c;
+	}
+
+	&--remove {
+		color: #d32f2f;
+	}
+}
