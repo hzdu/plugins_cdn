@@ -234,7 +234,6 @@ a.bya_link {
     border: 1px solid #000;
 }
 
-
 .bya_product_search_inp {
     width: 100%;
     padding: 10px 20px;
@@ -274,8 +273,29 @@ a.bya_link {
     margin-top: 10px;
 }
 
-@media screen and (max-width: 768px) {
+.bya-current-page {
+    height: 32px;
+    margin: 0 2px 0 0;
+    font-size: 13px;
+    text-align: center;
+    padding: 0 8px;
+    line-height: 2;
+    width: 50px;
+    min-height: 30px;
+    box-shadow: 0 0 0 transparent;
+    border-radius: 4px;
+    border: 1px solid #8c8f94;
+    background-color: #fff;
+    color: #2c3338;
+}
 
+.bya_readonly {
+    opacity: 0.5;
+    cursor: not-allowed !important;
+    pointer-events: none;
+}
+
+@media screen and (max-width: 768px) {
     .bya_product_table_container .bya_buy_again_product_table tbody tr {
         display: block;
     }
@@ -317,5 +337,4 @@ a.bya_link {
         float: left;
         margin: 5px 0;
     }
-
 }

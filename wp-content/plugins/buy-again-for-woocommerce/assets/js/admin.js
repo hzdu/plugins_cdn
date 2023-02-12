@@ -22,6 +22,7 @@ jQuery(function ($) {
             $(document).on('change', '#bya_advanced_buy_again_table_product_img_disp', this.toggle_image_disp_type);
             $(document).on('change', '#bya_localization_allow_order_count_col', this.toggle_display_order_count_col);
             $(document).on('change', '#bya_localization_allow_last_purchased_order_id_col', this.toggle_display_order_id_col);
+            $(document).on('change', '#bya_localization_allow_stock_col', this.toggle_display_stock_count_col);
 
         }, trigger_on_page_load: function () {
             this.allow_products('#bya_advanced_allow_products');
@@ -36,7 +37,8 @@ jQuery(function ($) {
             this.image_disp_type('#bya_advanced_buy_again_table_product_img_disp');
             this.show_filter_button_opt('#bya_advanced_allow_filter_btn');
             this.display_order_count_col('#bya_localization_allow_order_count_col');
-            this.display_order_id_col('#bya_localization_allow_last_purchased_order_id_col')
+            this.display_order_id_col('#bya_localization_allow_last_purchased_order_id_col');
+            this.display_stock_count_col('#bya_localization_allow_stock_col');
         }, 
 
         toggle_show_filter_button: function(event){
@@ -210,6 +212,17 @@ jQuery(function ($) {
                 $('#bya_localization_last_purchased_order_id_label').closest('tr').show();
             } else {
                 $('#bya_localization_last_purchased_order_id_label').closest('tr').hide();
+            }
+        },
+
+        toggle_display_stock_count_col(e){
+            e.preventDefault();
+            BYA_Admin.display_stock_count_col(this);
+        }, display_stock_count_col($this){
+            if ($($this).is(':checked')) {
+                $('#bya_localization_stock_label').closest('tr').show();
+            } else {
+                $('#bya_localization_stock_label').closest('tr').hide();
             }
         },
         

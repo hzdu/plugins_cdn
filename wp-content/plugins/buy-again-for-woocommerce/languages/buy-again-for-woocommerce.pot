@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: buy-again-for-woocommerce\n"
-"POT-Creation-Date: 2022-11-16 18:27+0530\n"
+"POT-Creation-Date: 2023-02-07 17:12+0530\n"
 "PO-Revision-Date: 2018-04-27 12:20+0530\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 3.2.1\n"
+"X-Generator: Poedit 3.2.2\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-KeywordsList: __;_e;_x;esc_html_e;esc_attr_e;esc_html__;esc_attr__;esc_html_x;esc_attr_x\n"
 "X-Poedit-SearchPath-0: inc\n"
@@ -26,17 +26,17 @@ msgstr ""
 msgid "Your settings have been reset"
 msgstr ""
 
-#: inc/admin/class-bya-admin-ajax.php:53
+#: inc/admin/class-bya-admin-ajax.php:57
 msgid "No Products found"
 msgstr ""
 
-#: inc/admin/class-bya-admin-ajax.php:105
+#: inc/admin/class-bya-admin-ajax.php:116
 msgid "No Users found"
 msgstr ""
 
-#: inc/admin/class-bya-admin-ajax.php:146
-#: inc/admin/class-bya-admin-ajax.php:199
-#: inc/admin/class-bya-admin-ajax.php:226
+#: inc/admin/class-bya-admin-ajax.php:160
+#: inc/admin/class-bya-admin-ajax.php:215
+#: inc/admin/class-bya-admin-ajax.php:245
 msgid "Invalid Request"
 msgstr ""
 
@@ -79,7 +79,7 @@ msgstr ""
 
 #: inc/admin/menu/class-bya-menu-management.php:115
 #: inc/admin/menu/tabs/general.php:91 inc/admin/menu/tabs/general.php:103
-#: inc/admin/menu/tabs/general.php:145
+#: inc/admin/menu/tabs/general.php:155
 msgid "Order Details"
 msgstr ""
 
@@ -184,7 +184,7 @@ msgstr ""
 msgid "Based on Product Name"
 msgstr ""
 
-#: inc/admin/menu/tabs/advanced.php:192 inc/bya-common-functions.php:462
+#: inc/admin/menu/tabs/advanced.php:192 inc/bya-common-functions.php:458
 msgid "Product Image"
 msgstr ""
 
@@ -268,31 +268,43 @@ msgstr ""
 msgid "Hide Quantity Field in Order details page"
 msgstr ""
 
-#: inc/admin/menu/tabs/general.php:122
+#: inc/admin/menu/tabs/general.php:115
+msgid "Same product Quantity display in Cart page(when Added using Normal Add  to Cart and Buy Again Add to Cart)"
+msgstr ""
+
+#: inc/admin/menu/tabs/general.php:119
+msgid "Update only Quantity"
+msgstr ""
+
+#: inc/admin/menu/tabs/general.php:120
+msgid "Display separate"
+msgstr ""
+
+#: inc/admin/menu/tabs/general.php:132
 msgid "Messages"
 msgstr ""
 
-#: inc/admin/menu/tabs/general.php:126
+#: inc/admin/menu/tabs/general.php:136
 msgid "Display Previously Purchased Notice on Single Product Page"
 msgstr ""
 
-#: inc/admin/menu/tabs/general.php:131 inc/admin/menu/tabs/localization.php:110
+#: inc/admin/menu/tabs/general.php:141 inc/admin/menu/tabs/localization.php:110
 msgid "Show"
 msgstr ""
 
-#: inc/admin/menu/tabs/general.php:132 inc/admin/menu/tabs/localization.php:111
+#: inc/admin/menu/tabs/general.php:142 inc/admin/menu/tabs/localization.php:111
 msgid "Hide"
 msgstr ""
 
-#: inc/admin/menu/tabs/general.php:136
+#: inc/admin/menu/tabs/general.php:146
 msgid "Previously Purchased Message"
 msgstr ""
 
-#: inc/admin/menu/tabs/general.php:139
+#: inc/admin/menu/tabs/general.php:149
 msgid "You have previously purchased this product [order_details]"
 msgstr ""
 
-#: inc/admin/menu/tabs/general.php:142
+#: inc/admin/menu/tabs/general.php:152
 msgid "Order Details Link Caption "
 msgstr ""
 
@@ -354,50 +366,62 @@ msgid "Last purchased order column label"
 msgstr ""
 
 #: inc/admin/menu/tabs/localization.php:152
+msgid "Display Stock Count in Buy Again Table"
+msgstr ""
+
+#: inc/admin/menu/tabs/localization.php:157
+msgid "Stock Count display for each product in Buy Again table.  Note, stock count display only if you are enabled Manage stock for the  product."
+msgstr ""
+
+#: inc/admin/menu/tabs/localization.php:160
+msgid "Stock Count Column Label"
+msgstr ""
+
+#: inc/admin/menu/tabs/localization.php:167
 msgid "Product Price Column"
 msgstr ""
 
-#: inc/admin/menu/tabs/localization.php:159
+#: inc/admin/menu/tabs/localization.php:174
 msgid "Product Price Column Label"
 msgstr ""
 
-#: inc/admin/menu/tabs/localization.php:166
+#: inc/admin/menu/tabs/localization.php:181
 msgid "Product Quantity Column"
 msgstr ""
 
-#: inc/admin/menu/tabs/localization.php:173
+#: inc/admin/menu/tabs/localization.php:188
 msgid "Product Quantity Column Label"
 msgstr ""
 
-#: inc/admin/menu/tabs/localization.php:180
+#: inc/admin/menu/tabs/localization.php:195
 msgid "Action Column"
 msgstr ""
 
-#: inc/admin/menu/tabs/localization.php:187
+#: inc/admin/menu/tabs/localization.php:202
 msgid "Action Column Label"
 msgstr ""
 
-#: inc/admin/menu/tabs/localization.php:194
+#: inc/admin/menu/tabs/localization.php:209
 msgid "Display Add to Cart Button"
 msgstr ""
 
-#: inc/admin/menu/tabs/localization.php:200
+#: inc/admin/menu/tabs/localization.php:215
 msgid "Add to Cart Button Label"
 msgstr ""
 
-#: inc/admin/menu/tabs/localization.php:206
+#: inc/admin/menu/tabs/localization.php:221
 msgid "Buy Now Button Label"
 msgstr ""
 
-#: inc/admin/menu/tabs/localization.php:212
+#: inc/admin/menu/tabs/localization.php:227
 msgid "Filter Button Label"
 msgstr ""
 
-#: inc/admin/menu/tabs/localization.php:218
+#: inc/admin/menu/tabs/localization.php:233
 msgid "Filter By label"
 msgstr ""
 
-#: inc/admin/menu/tabs/localization.php:224
+#: inc/admin/menu/tabs/localization.php:239
 msgid "Search Button Label"
 msgstr ""
 
@@ -453,7 +477,7 @@ msgid "Order ID"
 msgstr ""
 
 #: inc/admin/menu/wp-list-table/class-bya-order-details-list-table.php:142
-#: inc/bya-common-functions.php:474 inc/bya-common-functions.php:482
+#: inc/bya-common-functions.php:470 inc/bya-common-functions.php:482
 msgid "Product Price"
 msgstr ""
 
@@ -471,7 +495,7 @@ msgid "Order #%s"
 msgstr ""
 
 #: inc/admin/menu/wp-list-table/class-bya-product-details-list-table.php:129
-#: inc/bya-common-functions.php:466
+#: inc/bya-common-functions.php:462
 msgid "Product Name"
 msgstr ""
 
@@ -617,11 +641,11 @@ msgstr ""
 msgid "No Product Found"
 msgstr ""
 
-#: inc/frontend/class-bya-product-notice-handler.php:54
+#: inc/frontend/class-bya-product-notice-handler.php:53
 msgid "Order_details"
 msgstr ""
 
-#: inc/frontend/class-bya-product-notice-handler.php:56
+#: inc/frontend/class-bya-product-notice-handler.php:55
 msgid "Previously you have puchased this product [order_details]"
 msgstr ""
 
@@ -674,19 +698,19 @@ msgstr ""
 msgid "Buy Now"
 msgstr ""
 
-#: templates/display-input-fields.php:68
+#: templates/display-input-fields.php:72
 msgid "This product was currently unavailable"
 msgstr ""
 
-#: templates/display-input-fields.php:74
+#: templates/display-input-fields.php:78
 msgid "This variation was currently unavailable"
 msgstr ""
 
-#: templates/display-input-fields.php:80
+#: templates/display-input-fields.php:84
 msgid "Out of Stock"
 msgstr ""
 
-#: templates/display-input-fields.php:88
+#: templates/display-input-fields.php:98
 msgid "Add to cart"
 msgstr ""
 
@@ -696,6 +720,15 @@ msgstr ""
 
 #: templates/myaccount-buy-again.php:51
 msgid "No Product(s) Found"
+msgstr ""
+
+#: templates/pagination.php:19
+msgid "Current Page"
+msgstr ""
+
+#: templates/pagination.php:24
+#, php-format
+msgid "of %s"
 msgstr ""
 
 #: templates/quantity-input.php:35

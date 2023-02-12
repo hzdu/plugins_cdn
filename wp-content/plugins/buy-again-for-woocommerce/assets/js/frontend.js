@@ -11,10 +11,12 @@ jQuery(function ($) {
             $(document).on('change', '.bya_qty_field', this.change_qty_field_value);
             $(document).on('click', '.bya_add_to_cart_btn', this.add_to_cart);
             $(document).on('click', '.buy_again_btn', this.buy_again);
-            $(document).on('click', '.bya_pagination', this.buy_again_pagination);
+            $(document).on('click', '.bya_pagination', this.buy_again_pagination_key_change);
+            $(document).on('change', '.bya-current-page', this.buy_again_pagination_val_change);
             $(document).on('change', '.bya_sort_action_selector', this.buy_again_product_sort)
             $(document).on('change', '.bya_time_filter', this.change_time_filter_actions);
             $(document).on('change', '.bya_start_date, .bya_end_date', this.change_start_end_datepicker);
+
             $(window).click(function () {
                 $('div.bya_dialog_box').hide();
             });
@@ -23,6 +25,14 @@ jQuery(function ($) {
         trigger_on_page_load: function (event) {
             $('bya_product_search_inp').val();
             BYA_Frontend.time_filter_actions('.bya_time_filter');
+
+            var currentPageNo = localStorage.getItem("current_page");
+
+            if ('' !== currentPageNo && null !== currentPageNo) {
+                localStorage.setItem("current_page", '');
+                $('.bya-current-page').val(currentPageNo);
+                BYA_Frontend.buy_again_pagination(currentPageNo);
+            }
         },
 
         change_start_end_datepicker: function (event) {
@@ -40,25 +50,25 @@ jQuery(function ($) {
             BYA_Frontend.time_filter_actions($this);
         }, time_filter_actions($this) {
             var today = new Date();
-                var from_date = '';
-                var $start_date = $('.bya_start_date');
-                var $end_date = $('.bya_end_date');
+            var from_date = '';
+            var $start_date = $('.bya_start_date');
+            var $end_date = $('.bya_end_date');
 
             if ($.inArray($($this).val(), ['', '6']) !== -1) {
-                if( '6' === $($this).val()){
+                if ('6' === $($this).val()) {
                     $('.bya_time_filter_field').closest('div').show();
 
                 } else {
                     $('.bya_time_filter_field').closest('div').hide();
                     $start_date.val('');
                     $start_date.next('.bya_alter_datepicker_value').val('');
-                    
+
                     $end_date.val('');
                     $end_date.next('.bya_alter_datepicker_value').val('');
                 }
             } else {
                 $('.bya_time_filter_field').closest('div').show();
-                
+
                 if ('2' === $($this).val()) {
                     var from_date = new Date(new Date().setDate(today.getDate() - 30));
                 } else if ('3' === $($this).val()) {
@@ -69,7 +79,7 @@ jQuery(function ($) {
                     var from_date = new Date(new Date().setDate(today.getDate() - 180));
                 }
 
-                
+
                 from_date = moment(from_date, 'YYYY-MM-DD').format("YYYY-MM-DD");
                 $start_date.val(from_date);
                 $start_date.next('.bya_alter_datepicker_value').val(from_date);
@@ -152,15 +162,22 @@ jQuery(function ($) {
             var $this = $(event.currentTarget),
                 product_id = $this.data('product_id'),
                 variation_id = $this.data('variation_id'),
+                redirect_url = $this.data('redirect_url'),
                 price = $this.data('price'),
                 qty_id = ('' === variation_id) ? '#bsf_qty_' + product_id : '#bsf_qty_' + variation_id,
                 qty = (undefined == $(qty_id).val()) ? parseInt(1) : parseInt($(qty_id).val()),
-                msg = BYA_Frontend.qty_validation(qty_id);
+                msg = BYA_Frontend.qty_validation(qty_id),
+                currentPageNo = $('.bya-current-page').val();
 
             if ('' != msg) {
                 $(qty_id).next('div.bya_dialog_box').html('<p>' + msg + '</p>');
                 $(qty_id).next('div.bya_dialog_box').show();
                 return false;
+            }
+
+            if ('' !== redirect_url) {
+                window.location.replace(redirect_url);
+                return true;
             }
 
             BYA_Frontend.block($this);
@@ -174,14 +191,20 @@ jQuery(function ($) {
                 bya_security: bya_frontend_params.add_to_cart_nonce,
             });
             $.post(bya_frontend_params.ajaxurl, data, function (res) {
-                if ('yes' == bya_frontend_params.ajax_add_to_cart) {
-                    $(document.body).trigger('added_to_cart', [res.fragments, res.cart_hash, $this]);
+                if (res.hasOwnProperty('cart_hash')) {
+                    if ('yes' == bya_frontend_params.ajax_add_to_cart) {
+                        $(document.body).trigger('added_to_cart', [res.fragments, res.cart_hash, $this]);
 
-                    if ('yes' == bya_frontend_params.redirect_add_to_cart) {
-                        location.replace(bya_frontend_params.cart_url);
+                        if ('yes' == bya_frontend_params.redirect_add_to_cart) {
+                            location.replace(bya_frontend_params.cart_url);
+                        }
+                    } else {
+                        window.location.reload(true);
+                        localStorage.setItem("current_page", currentPageNo);
                     }
                 } else {
-                    location.reload(true);
+                    window.location.reload(true);
+                    localStorage.setItem("current_page", currentPageNo);
                 }
 
                 BYA_Frontend.unblock($this);
@@ -223,17 +246,32 @@ jQuery(function ($) {
             }
             );
         },
-
-        buy_again_pagination: function (event) {
-            event.preventDefault();
-            var $this = $(event.currentTarget),
-                table = $this.closest('table.bya_buy_again_product_table'),
+        buy_again_pagination_val_change(e) {
+            e.preventDefault()
+            let page_no = $(this).val();
+            BYA_Frontend.buy_again_pagination(page_no);
+        }, buy_again_pagination_key_change(e) {
+            e.preventDefault()
+            let page_no = $(this).data('page');
+            BYA_Frontend.buy_again_pagination(page_no);
+        }, buy_again_pagination: function (page_no) {
+            var table = $('table.bya_buy_again_product_table'),
                 table_body = table.find('tbody'),
                 search_inp = $('.bya_product_search_inp').val(),
-                current_page = $this.data('page'),
+                current_page = page_no,
+                total_page = $('.bya-paging-text').data('total_page'),
                 orderby = bya_frontend_params.orderby,
                 order = bya_frontend_params.order;
-            BYA_Frontend.block(table_body);
+
+            if ('' == current_page || 0 == current_page) {
+                current_page = 1
+            }
+
+            if (current_page > total_page) {
+                current_page = total_page;
+            }
+
+            $('.bya-current-page').val(current_page);
 
             var data = ({
                 action: 'bya_products_pagination',
@@ -245,16 +283,29 @@ jQuery(function ($) {
                 bya_get_my_account_end_point_url: bya_frontend_params.bya_get_my_account_end_point_url,
                 bya_security: bya_frontend_params.pagination_nonce,
             });
-            $.post(bya_frontend_params.ajaxurl, data, function (res) {
 
+            BYA_Frontend.block(table_body);
+
+            $.post(bya_frontend_params.ajaxurl, data, function (res) {
                 if (true === res.success) {
                     table_body.html(res.data.html);
 
-                    table.find('.bya_pagination').removeClass('current');
-                    $($this).addClass('current');
+                    let nextPageNo = (current_page < total_page) ? Number(current_page) + 1 : total_page,
+                        prevPageNo = (current_page > 1) ? Number(current_page) - 1 : 1;
 
-                    table.find('.bya_next_pagination').attr('data-page', current_page + 1);
-                    table.find('.bya_prev_pagination').attr('data-page', current_page - 1);
+                    table.find('.bya_next_pagination').data('page', nextPageNo);
+                    table.find('.bya_prev_pagination').data('page', prevPageNo);
+                    table.find('.bya_pagination').removeClass('bya_readonly');
+
+                    if (current_page >= total_page) {
+                        table.find('.bya_last_pagination').addClass('bya_readonly');
+                        table.find('.bya_next_pagination').addClass('bya_readonly');
+                    }
+
+                    if ((current_page <= 1)) {
+                        table.find('.bya_first_pagination').addClass('bya_readonly');
+                        table.find('.bya_prev_pagination').addClass('bya_readonly');
+                    }
                 } else {
                     alert(res.data.error);
                 }

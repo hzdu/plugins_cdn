@@ -1,4 +1,4 @@
-function wbcr_factory_logger_124_LogCleanup(element) {
+function wbcr_factory_logger_125_LogCleanup(element) {
     var btn = jQuery(element),
         currentBtnText = btn.html();
 
@@ -10,8 +10,8 @@ function wbcr_factory_logger_124_LogCleanup(element) {
         url: ajaxurl,
         method: 'post',
         data: {
-            action: 'wbcr_factory_logger_124_'+wbcr_factory_logger_124.plugin_prefix+'logs_cleanup',
-            nonce: wbcr_factory_logger_124.clean_logs_nonce
+            action: 'wbcr_factory_logger_125_'+wbcr_factory_logger_125.plugin_prefix+'logs_cleanup',
+            nonce: wbcr_factory_logger_125.clean_logs_nonce
         },
         success: function (data) {
             btn.html(currentBtnText);
