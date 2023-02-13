@@ -490,7 +490,7 @@ jQuery(document).ready(function () {
       // fixed tags for all campaigns content only
       supportedText =
         supportedText +
-        ', <abbr title="Retruns the title words as hashtags. e.g: if the title is hello world, it will return #hello #world" >[title_words_as_hashtags]</abbr>';
+        ', <abbr title="Retruns the title words as hashtags. e.g: if the title is hello world, it will return #hello #world" >[title_words_as_hashtags]</abbr>, <abbr title="Return the current timestamp" >[now]</abbr>';
 
       jQuery(".supportedTags").html("supported Tags: " + supportedText);
       jQuery(".supportedTags2").html("supported Tags: " + supportedText2);
@@ -1005,10 +1005,24 @@ jQuery(document).ready(function () {
         if (jQuery('input[value="OPT_FEED_APIFY"]').prop("checked") == true) {
           iframeUrl = iframeUrl + "&js_enabled=yes";
         }
+
+        //read input with name cg_apify_wait_for and add it to the iframe url
+        var wait_for = jQuery('input[name="cg_apify_wait_for_single"]').val();
+        if (wait_for != "") {
+          iframeUrl = iframeUrl + "&wait_for=" + wait_for;
+        }
+
       } else if (which == "cg_ml_lnk_visual[]") {
         if (jQuery('input[value="OPT_FEED_APIFY2"]').prop("checked") == true) {
           iframeUrl = iframeUrl + "&js_enabled=yes";
         }
+
+        //read input with name cg_apify_wait_for and add it to the iframe url
+        var wait_for = jQuery('input[name="cg_apify_wait_for"]').val();
+        if (wait_for != "") {
+          iframeUrl = iframeUrl + "&wait_for=" + wait_for;
+        }
+
       } else {
         //OPT_FEED_APIFY : single page scraper
 
@@ -1017,6 +1031,13 @@ jQuery(document).ready(function () {
           jQuery('input[value="OPT_FEED_APIFY2"]').prop("checked") == true
         ) {
           iframeUrl = iframeUrl + "&js_enabled=yes";
+        
+          //read input with name cg_apify_wait_for and add it to the iframe url
+          var wait_for = jQuery('input[name="cg_apify_wait_for_single"]').val();
+          if (wait_for != "") {
+            iframeUrl = iframeUrl + "&wait_for=" + wait_for;
+          }
+        
         }
       }
       // SOURCE campaign type

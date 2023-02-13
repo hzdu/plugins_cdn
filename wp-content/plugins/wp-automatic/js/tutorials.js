@@ -19,8 +19,8 @@ const tutorials = {
       url: "https://valvepress.com/how-to-import-from-rss-feeds-protected-with-cloudflare/",
     },
     {
-      title: "How to import Amazon products from a specific country",
-      url: "https://valvepress.com/how-to-import-amazon-products-from-a-specific-country-using-wordpress-automatic/",
+      url: "https://valvepress.com/how-to-auto-post-google-news-to-wordpress/",
+      title: "How to auto post Google News to WordPress",
     },
   ],
   Amazon: [
@@ -32,6 +32,22 @@ const tutorials = {
       title:
         "How to import all Amazon wish list products to WordPress using WordPress Automatic",
       url: "https://www.youtube.com/watch?v=LpTgZRRIXJI",
+    },
+
+    {
+      title: "How to import Amazon products from a specific country",
+      url: "https://valvepress.com/how-to-import-amazon-products-from-a-specific-country-using-wordpress-automatic/",
+    },
+
+    {
+      url: "https://valvepress.com/how-to-replace-your-old-amazon-associate-id-with-a-new-id-on-posts-products/",
+      title:
+        "How to replace your old Amazon Associate ID with a new ID on posts/products",
+    },
+    {
+      url: "https://valvepress.com/how-to-import-amazon-products-from-a-specific-category-using-wordpress-automatic/",
+      title:
+        "How to import Amazon products from a specific category using WordPress Automatic",
     },
   ],
   Aliexpress: [
@@ -55,6 +71,14 @@ const tutorials = {
       title:
         "How to import Youtube video transcript to WordPress and generate OpenAI GPT content from it",
       url: "https://www.youtube.com/watch?v=Ywa7DQ1oWZA",
+    },
+    {
+      url: "https://valvepress.com/how-to-import-trending-youtube-videos-to-wordpress/",
+      title: "How to import trending Youtube videos to WordPress",
+    },
+    {
+      url: "https://valvepress.com/how-to-display-videos-as-a-grid-in-wordpress/",
+      title: "How to display videos as a grid in WordPress",
     },
   ],
   Vimeo: [
@@ -174,6 +198,53 @@ const tutorials = {
       title: "how to import from any online shop to WooCommerce",
       url: "https://valvepress.com/how-to-import-from-any-online-shop-to-wordpress-woocommerce-products/",
     },
+    {
+      url: "https://valvepress.com/how-to-import-from-sites-with-infinite-scroll-using-wordpress-automatic-plugin/",
+      title:
+        "How to import from sites with infinite scroll using WordPress Automatic Plugin",
+    },
+    {
+      url: "https://valvepress.com/how-to-import-protected-sites-content-to-wordpress-automatically/",
+      title: "How to import protected sites content to WordPress automatically",
+    },
+    {
+      url: "https://valvepress.com/sitemap-to-wordpress-posts/",
+      title: "How to import sitemap to WordPress posts",
+    },
+  ],
+  General: [
+    {
+      url: "https://youtu.be/cBfhaq1-BuQ?t=224",
+      title: "How to Integrate OpenAI GPT-3/ChatGPT with any module",
+    },
+    {
+      url: "https://valvepress.com/wordpress-internal-cron-job-work-may-need-setup-external-cron/",
+      title: "WordPress internal cron job work may need setup external cron",
+    },
+
+    {
+      url: "https://valvepress.com/how-to-open-wordpress-external-links-in-a-popup/",
+      title: "How to open WordPress external links in a popup",
+    },
+
+    {
+      url: "https://valvepress.com/how-to-know-used-custom-fields-names-by-wordpress-plugins-themes/",
+      title: "How to know used custom fields names by WordPress plugins/themes",
+    },
+
+    {
+      title: "How to set the primary category for posts imported automatically",
+      url: "https://valvepress.com/how-to-set-the-primary-category-for-posts-imported-automatically/",
+    },
+    {
+      url: "https://valvepress.com/how-to-format-dates-returned-from-wordpress-automatic/",
+      title: "How to format dates returned from WordPress Automatic",
+    },
+    {
+      url: "https://valvepress.com/how-to-post-contentiously-from-a-specific-campaign-at-wordpress-automatic/",
+      title:
+        "How to post contentiously from a specific campaign at WordPress Automatic",
+    },
   ],
 };
 
@@ -192,6 +263,24 @@ jQuery(document).ready(function ($) {
       const html = `<li><a href="${tutorial.url}" target="_blank">${tutorial.title}</a></li>`;
       //append the html
       jQuery("#tutorials").append(html);
+    });
+
+    //get general tutorials
+    const general_tutorials = tutorials["General"];
+
+    //clear the general tutorials
+    jQuery("#general_tutorials").html("");
+
+    //loop through the general tutorials
+    general_tutorials.forEach((tutorial) => {
+      //get the value of the select with id named camp_type and set as the html of the span with class module_name
+      jQuery(".module_name").html(jQuery("#camp_type").val());
+
+      //create the html
+      const html = `<li><a href="${tutorial.url}" target="_blank">${tutorial.title}</a></li>`;
+
+      //append the html
+      jQuery("#general_tutorials").append(html);
     });
   };
 
