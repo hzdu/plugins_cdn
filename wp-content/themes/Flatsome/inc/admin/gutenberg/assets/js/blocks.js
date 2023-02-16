@@ -42,7 +42,7 @@
       el(
         wp.components.Button,
         {
-          isDefault: true,
+          variant: 'secondary',
           onFocus: function (e) {
             e.stopPropagation()
           },

@@ -39,15 +39,13 @@
   padding: 0;
 }
 
-.tm-extra-product-options .tm-extra-product-options-field{
-  margin: 0;
-}
-
 .tm-extra-product-options .tmcp-field-wrap .amount, .tm-extra-product-options .tmcp-field-wrap .after-amount{
   margin: .6em 0 1em;
 }
 
-
+.tm-extra-product-options .tc-epo-label.tm-epo-element-label {
+  margin-bottom: 1em;
+}
 
 dt.tm-options-totals,
 dt.tm-final-totals{
@@ -76,4 +74,13 @@ dt.tm-options-totals, dd.tm-options-totals{
 .tm-final-totals{
   border-top: 1px solid #eee;
   padding-top: .5em;
+}
+
+.sticky-add-to-cart--active .tc-extra-product-options {
+  display: none;
+}
+
+.sticky-add-to-cart--active .tc-totals-form {
+  width: 20%;
+  padding: 0 15px;
 }
