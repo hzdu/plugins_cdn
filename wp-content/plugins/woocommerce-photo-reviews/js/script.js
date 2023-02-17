@@ -70,7 +70,7 @@ jQuery(document).ready(function ($) {
 
     $('#commentform').find('input[type="submit"]').on('click', function (e) {
         let $button = $(this);
-        if ($button.hasClass('viwcpr_form_checked')){
+        if ($button.hasClass('viwcpr_form_checked') || !$('#wcpr_image_upload_nonce').length){
             return true;
         }
         let $container = $button.closest('form');

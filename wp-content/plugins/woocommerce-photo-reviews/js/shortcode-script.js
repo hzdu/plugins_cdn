@@ -646,23 +646,19 @@ jQuery(document).ready(function ($) {
         },100);
     });
 });
-jQuery(window).on('load',function () {
-    'use strict';
-    setTimeout(function () {
-        shortcode_wcpr_resize_masonry_items();
-    },100);
-}).on('resize', function () {
+jQuery(window).on('resize', function () {
     'use strict';
     shortcode_wcpr_resize_masonry_items(true);
 });
 function shortcode_wcpr_resize_masonry_items(force_resize = false){
-    if (force_resize) {
-        jQuery('.shortcode-wcpr-grid-item.wcpr-grid-item-init').removeClass('wcpr-grid-item-init');
-    }else if (jQuery('.shortcode-wcpr-grid-item .reviews-videos').length){
-        setTimeout(function () {
-            shortcode_wcpr_resize_masonry_items(true);
-        },150);
-    }
+    // if (force_resize) {
+    //     jQuery('.shortcode-wcpr-grid-item.wcpr-grid-item-init').removeClass('wcpr-grid-item-init');
+    // }else if (jQuery('.shortcode-wcpr-grid-item .reviews-videos').length){
+    //     setTimeout(function () {
+    //         shortcode_wcpr_resize_masonry_items(true);
+    //     },150);
+    // }
+    jQuery('.shortcode-wcpr-grid-item.wcpr-grid-item-init').removeClass('wcpr-grid-item-init');
     let row_height = 1,row_gap = 20, reviews_shortcode ;
     jQuery('.wcpr-grid-loadmore .shortcode-wcpr-grid-item:not(.wcpr-grid-item-init)').each(function () {
         if (!jQuery(this).is(':visible')){
