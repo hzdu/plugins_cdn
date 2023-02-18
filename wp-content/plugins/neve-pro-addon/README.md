@@ -15,6 +15,17 @@ The code is licensed under GPLv3.
 
 ## Changelog ##
 
+##### [Version 2.5.2](https://github.com/Codeinwp/neve-pro-addon/compare/v2.5.1...v2.5.2) (2023-02-15)
+
+- [Feat] Add Hide
+
+##### [Version 2.5.1](https://github.com/Codeinwp/neve-pro-addon/compare/v2.5.0...v2.5.1) (2023-01-30)
+
+- Update the tested up to version for Neve
+
+
+
+
 #### [Version 2.5.0](https://github.com/Codeinwp/neve-pro-addon/compare/v2.4.9...v2.5.0) (2023-01-30)
 
 - [Feat] Blog hover effects - [Learn more](https://docs.themeisle.com/article/1306-neve-blog-archive-options#image-style)

@@ -1,3 +1,12 @@
+##### [Version 1.1.1](https://github.com/Codeinwp/sparks-for-woocommerce/compare/v1.1.0...v1.1.1) (2023-02-15)
+
+- [Fix] Polylang & other third-party plugins compatibility issue on WP Admin Product Terms screen.
+- [Fix] The style of the color picker where in WP admin -> Products -> Attributes was fixed.
+- [Fix] Bottom margin for the Comparison Table page.
+- [Fix] Removing category from a Custom Product Tab doesn't remove the Tab from the products belonging to the category
+- Store custom product tabs content as plain instead of base64 encoded
+- Code improvements
+
 #### [Version 1.1.0](https://github.com/Codeinwp/sparks-for-woocommerce/compare/v1.0.10...v1.1.0) (2022-12-20)
 
 - [Feat] Customizable icon support for the Add to Comparison Table

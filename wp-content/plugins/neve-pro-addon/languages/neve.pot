@@ -391,7 +391,7 @@ msgstr ""
 
 #. translators: 1: Module name passed via wp cli. 2: Please try command again text string.
 #: includes/cli/modules/setting.php:53
-#: includes/cli/modules/setting.php:378
+#: includes/cli/modules/setting.php:382
 msgid "Module %1$s does not contain subsettings.%2$s"
 msgstr ""
 
@@ -400,85 +400,91 @@ msgid "No subsettings available."
 msgstr ""
 
 #: includes/cli/modules/setting.php:145
-#: includes/cli/modules/setting.php:455
+#: includes/cli/modules/setting.php:461
 msgid "subsetting does not exist."
 msgstr ""
 
 #: includes/cli/modules/setting.php:149
-#: includes/cli/modules/setting.php:460
+#: includes/cli/modules/setting.php:466
 msgid "No setting value was provided."
 msgstr ""
 
-#: includes/cli/modules/setting.php:269
+#: includes/cli/modules/setting.php:271
 #: includes/modules/white_label/includes/admin.php:56
 msgid "Agency Author"
 msgstr ""
 
-#: includes/cli/modules/setting.php:270
+#: includes/cli/modules/setting.php:272
 #: includes/modules/white_label/includes/admin.php:61
 msgid "Agency Author URL"
 msgstr ""
 
-#: includes/cli/modules/setting.php:271
-#: includes/cli/modules/setting.php:420
+#: includes/cli/modules/setting.php:273
+#: includes/cli/modules/setting.php:425
 #: includes/modules/white_label/includes/admin.php:66
 msgid "Hide Sites Library"
 msgstr ""
 
-#: includes/cli/modules/setting.php:272
-#: includes/modules/white_label/includes/admin.php:98
-msgid "Plugin Name"
-msgstr ""
-
-#: includes/cli/modules/setting.php:273
-#: includes/modules/white_label/includes/admin.php:103
-msgid "Plugin Description"
-msgstr ""
-
 #: includes/cli/modules/setting.php:274
-#: includes/modules/white_label/includes/admin.php:77
-msgid "Theme Name"
+#: includes/cli/modules/setting.php:426
+#: includes/modules/white_label/includes/admin.php:71
+msgid "Hide My Library"
 msgstr ""
 
 #: includes/cli/modules/setting.php:275
-#: includes/modules/white_label/includes/admin.php:82
-msgid "Theme Description"
+#: includes/modules/white_label/includes/admin.php:104
+msgid "Plugin Name"
 msgstr ""
 
 #: includes/cli/modules/setting.php:276
-#: includes/modules/white_label/includes/admin.php:87
-msgid "Screenshot URL"
+#: includes/modules/white_label/includes/admin.php:109
+msgid "Plugin Description"
 msgstr ""
 
 #: includes/cli/modules/setting.php:277
-#: includes/cli/modules/setting.php:421
-#: includes/modules/white_label/includes/admin.php:113
-msgid "Hide Options from Dashboard"
+#: includes/modules/white_label/includes/admin.php:83
+msgid "Theme Name"
 msgstr ""
 
 #: includes/cli/modules/setting.php:278
-#: includes/cli/modules/setting.php:422
-#: includes/modules/white_label/includes/admin.php:120
+#: includes/modules/white_label/includes/admin.php:88
+msgid "Theme Description"
+msgstr ""
+
+#: includes/cli/modules/setting.php:279
+#: includes/modules/white_label/includes/admin.php:93
+msgid "Screenshot URL"
+msgstr ""
+
+#: includes/cli/modules/setting.php:280
+#: includes/cli/modules/setting.php:427
+#: includes/modules/white_label/includes/admin.php:119
+msgid "Hide Options from Dashboard"
+msgstr ""
+
+#: includes/cli/modules/setting.php:281
+#: includes/cli/modules/setting.php:428
+#: includes/modules/white_label/includes/admin.php:126
 msgid "Enable License Hiding"
 msgstr ""
 
 #. translators: %s: List of valid choices
-#: includes/cli/modules/setting.php:333
+#: includes/cli/modules/setting.php:337
 msgid "That setting value is not valid. Valid choices are: %s"
 msgstr ""
 
 #. translators: %s: Specifies the option key
-#: includes/cli/modules/setting.php:349
+#: includes/cli/modules/setting.php:353
 msgid "That setting key(%s) is not supported."
 msgstr ""
 
-#: includes/cli/modules/setting.php:351
+#: includes/cli/modules/setting.php:355
 msgid "That setting value is not supported."
 msgstr ""
 
-#: includes/cli/modules/setting.php:480
-#: includes/modules/white_label/includes/admin.php:178
-#: includes/modules/white_label/includes/admin.php:179
+#: includes/cli/modules/setting.php:487
+#: includes/modules/white_label/includes/admin.php:184
+#: includes/modules/white_label/includes/admin.php:185
 #: includes/modules/white_label/module.php:81
 msgid "White Label"
 msgstr ""
@@ -4048,7 +4054,7 @@ msgstr ""
 #. translators: %1$s is Theme Name ( Neve ), %2$s is WordPress
 #. translators: %1$s is Theme Name, %2$s is WordPress
 #: includes/modules/header_footer_grid/components/copyright.php:64
-#: includes/modules/white_label/includes/markup.php:433
+#: includes/modules/white_label/includes/markup.php:434
 msgid "%1$s | Powered by %2$s"
 msgstr ""
 
@@ -4916,24 +4922,24 @@ msgstr ""
 msgid "Agency Branding"
 msgstr ""
 
-#: includes/modules/white_label/includes/admin.php:73
+#: includes/modules/white_label/includes/admin.php:79
 msgid "Theme Branding"
 msgstr ""
 
-#: includes/modules/white_label/includes/admin.php:94
+#: includes/modules/white_label/includes/admin.php:100
 msgid "Plugin Branding"
 msgstr ""
 
-#: includes/modules/white_label/includes/admin.php:110
+#: includes/modules/white_label/includes/admin.php:116
 msgid "Enable White Label"
 msgstr ""
 
 #. translators: Neve Pro
-#: includes/modules/white_label/includes/admin.php:117
+#: includes/modules/white_label/includes/admin.php:123
 msgid "This will remove the white label module from the dashboard. If you want to access white label settings in future, simply deactivate the %s plugin and activate it again."
 msgstr ""
 
-#: includes/modules/white_label/includes/admin.php:123
+#: includes/modules/white_label/includes/admin.php:129
 msgid "This will remove the license field from the Dashboard page and all the admin notices related to it."
 msgstr ""
 
@@ -5058,7 +5064,7 @@ msgid "Box Background Color"
 msgstr ""
 
 #: includes/modules/woocommerce_booster/customizer/checkout_page.php:343
-#: includes/modules/woocommerce_booster/views/checkout_page.php:137
+#: includes/modules/woocommerce_booster/views/checkout_page.php:145
 msgid "Billing and shipping"
 msgstr ""
 
@@ -5415,13 +5421,13 @@ msgstr ""
 msgid "Select options"
 msgstr ""
 
-#: includes/modules/woocommerce_booster/views/checkout_page.php:138
-#: includes/modules/woocommerce_booster/views/checkout_page.php:161
+#: includes/modules/woocommerce_booster/views/checkout_page.php:146
+#: includes/modules/woocommerce_booster/views/checkout_page.php:169
 msgid "Order review"
 msgstr ""
 
-#: includes/modules/woocommerce_booster/views/checkout_page.php:139
-#: includes/modules/woocommerce_booster/views/checkout_page.php:172
+#: includes/modules/woocommerce_booster/views/checkout_page.php:147
+#: includes/modules/woocommerce_booster/views/checkout_page.php:180
 msgid "Payment"
 msgstr ""
 
