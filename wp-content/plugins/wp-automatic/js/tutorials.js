@@ -22,11 +22,17 @@ const tutorials = {
       url: "https://valvepress.com/how-to-auto-post-google-news-to-wordpress/",
       title: "How to auto post Google News to WordPress",
     },
+    { url: "https://youtu.be/vPTNRBcWvDY", title: "How to import Web Stories" },
   ],
   Amazon: [
     {
       title: "How to import from Amazon to WordPress",
       url: "https://www.youtube.com/watch?v=RlXYMAP_qlw",
+    },
+    {
+      url: "https://valvepress.com/how-to-import-specific-amazon-products-to-wordpress-using-wordpress-automatic-plugin/",
+      title:
+        "How to import specific Amazon products to WordPress using WordPress Automatic plugin",
     },
     {
       title:
@@ -211,6 +217,7 @@ const tutorials = {
       url: "https://valvepress.com/sitemap-to-wordpress-posts/",
       title: "How to import sitemap to WordPress posts",
     },
+    { url: "https://youtu.be/vPTNRBcWvDY", title: "How to import Web Stories" },
   ],
   General: [
     {

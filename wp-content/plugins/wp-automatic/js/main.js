@@ -197,6 +197,33 @@ jQuery(document).ready(function () {
     return false;
   });
 
+  // Copy tag button .copy_rule_tag to copy tag to clipboard and show a message
+  jQuery(document).on("click", ".copy_rule_tag", function () {
+    
+    //get this button parent parent index and set it as the [rule_index] in the tag
+    var rule_index = jQuery(this).parent().parent().index();
+    
+    //increase rule_index by 1 to match the rule number in the UI
+    rule_index = rule_index + 1;
+    
+    var tag = '[rule_' + rule_index + ']';
+
+    // copy to clipboard
+    var $temp = jQuery("<input>");
+    jQuery("body").append($temp);
+    $temp.val(tag).select();
+    document.execCommand("copy");
+    $temp.remove();
+
+    // show message and hide it after 2 seconds
+    jQuery(this).html( tag + " Copied!");
+    setTimeout(function () {
+      jQuery(".copy_rule_tag").html("");
+    }, 1000);
+
+    return false;
+  });
+
   // flicker user fl_user
   slider("#fl_user", "#fl_user_c");
 
