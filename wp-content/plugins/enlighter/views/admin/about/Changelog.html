@@ -1,0 +1,20 @@
+<h3 id="461">4.6.1</h3>
+<ul>
+<li>Bugfix: <code>pre</code> wrapper introduced in <code>v4.6.0</code> caused wpautop to handle inline code as block element which breaks the layout. Affects inline codeblocks of markdown codeblocks and shortcodes. Gutenberg/TinyMCE editors were not affected - thanks to <a href="https://github.com/EnlighterJS/Plugin.WordPress/issues/363">the community on GitHub</a></li>
+</ul>
+<h3 id="460">4.6.0</h3>
+<ul>
+<li>Added: EnlighterJS <code>v3.6.0</code></li>
+<li>Added: css tooltips to the toolbar</li>
+<li>Added: copy-to-clipboard success/error message via tooltip</li>
+<li>Added: language identifier as css class to the outer wrapper <code>enlighter-l-&lt;resolvedLanguage&gt;</code></li>
+<li>Added: <code>htaccess</code> language alias to &quot;Apache httpd&quot;</li>
+<li>Changed: WordPress <code>6.0</code> required</li>
+<li>Changed: DOM structure has changed: each raw+highlighted code elements are wrapper into <code>enlighter-code</code> container</li>
+<li>Changed: DOM structure has changed: removed <code>enlighter-codegroup-wrapper</code></li>
+<li>Changed: toolbar position is now persistent and not affected by horizontal/vertical scrolling</li>
+<li>Bugfix: compatibility filters may cause malformed markup caused by <code>wpauto</code> filter. To avoid such issues the placeholders are wrapped into <code>&lt;pre&gt;</code> tags - thanks to <a href="https://github.com/EnlighterJS/EnlighterJS/issues/351">dmadison  on GitHub</a></li>
+<li>Bugfix: <code>bash</code> pound style comment regex also matched variable substituions and special cases - thanks to <a href="https://github.com/EnlighterJS/EnlighterJS/issues/200">maidentaiwan on GitHub</a></li>
+<li>Bugfix: <code>bash</code> single quoted strings not highlighted</li>
+<li>Bugfix: language alias <code>js</code> was processed as <code>typescript</code> due to inheritance issue (missing override)</li>
+</ul>
