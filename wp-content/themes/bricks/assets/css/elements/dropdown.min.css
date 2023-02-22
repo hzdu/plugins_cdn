@@ -1,0 +1,37 @@
+.brxe-dropdown {
+  position: relative !important;
+  display: inline-flex;
+}
+.brxe-dropdown.brx-draggable.is-empty {
+  min-height: 0;
+}
+.brxe-dropdown.brx-draggable.is-empty:not(.editing) {
+  outline: none;
+}
+.brxe-dropdown:hover .brx-dropdown-content, .brxe-dropdown.expand .brx-dropdown-content, .brxe-dropdown.builder-active-element .brx-dropdown-content {
+  visibility: visible;
+  opacity: 1;
+}
+
+.brx-dropdown-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  cursor: pointer;
+}
+.brx-dropdown-toggle .brxe-icon {
+  transition: all 0.1s ease;
+  stroke: currentColor;
+}
+
+.brx-dropdown-content {
+  display: flex;
+  flex-direction: column;
+  position: absolute !important;
+  z-index: 1001;
+  top: 100%;
+  left: 0;
+  background-color: #fff;
+  visibility: hidden;
+  opacity: 0;
+}

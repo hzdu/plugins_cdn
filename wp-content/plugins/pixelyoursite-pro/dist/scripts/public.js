@@ -3922,10 +3922,10 @@ if (!String.prototype.trim) {
         }
 
         // setup Dynamic events
+
         $.each(options.triggerEventTypes, function (triggerType, events) {
 
             $.each(events, function (eventId, triggers) {
-
                 switch (triggerType) {
                     case 'url_click':
                         //@see: Utils.setupURLClickEvents()
@@ -4360,74 +4360,256 @@ if (!String.prototype.trim) {
                 if ($form.hasClass('edd_form') || $form.hasClass('edd_download_purchase_form')) {
                     return;
                 }
+                // exclude CF7 forms
+                if ($form.hasClass('wpcf7-form')) {
+                    return;
+                }
+                // exclude Forminator forms
+                if ($form.hasClass('forminator-custom-form') || $form.hasClass('forminator_ajax')) {
+                    return;
+                }
+                // exclude WPforms forms
+                if ($form.hasClass('wpforms-form') || $form.hasClass('wpforms-ajax-form')) {
+                    return;
+                }
+                // exclude Formidable forms
+                /*if ($form.hasClass('frm-show-form')) {
+                    return;
+                }*/
+                // exclude Ninja Forms forms
+                if ($form.parent().hasClass('nf-form-layout')) {
+                    return;
+                }
+                // exclude Fluent forms
+                if ($form.hasClass('frm-fluent-form')) {
+                    return;
+                }
+                if(!options.enable_success_send_form) {
+                    var params = {
+                        form_id: $form.attr('id'),
+                        form_class: $form.attr('class'),
+                        text: $form.find('[type="submit"]').is('input') ?
+                            $form.find('[type="submit"]').val() : $form.find('[type="submit"]').text()
+                    };
 
-                var params = {
-                    form_id: $form.attr('id'),
-                    form_class: $form.attr('class'),
-                    text: $form.find('[type="submit"]').is('input') ?
-                        $form.find('[type="submit"]').val() : $form.find('[type="submit"]').text()
-                };
+                    if (options.dynamicEvents.hasOwnProperty("automatic_event_form")) {
+                        var pixels = Object.keys(options.dynamicEvents.automatic_event_form);
+                        for (var i = 0; i < pixels.length; i++) {
+                            var event = Utils.clone(options.dynamicEvents.automatic_event_form[pixels[i]]);
 
-                if(options.dynamicEvents.hasOwnProperty("automatic_event_form") ) {
-                    var pixels = Object.keys(options.dynamicEvents.automatic_event_form);
-                    for (var i = 0; i < pixels.length; i++) {
-                        var event = Utils.clone(options.dynamicEvents.automatic_event_form[pixels[i]]);
-
-                        if(pixels[i] === "tiktok") {
-                            getPixelBySlag(pixels[i]).fireEvent(event.name, event);
-                        } else {
-                            Utils.copyProperties(params, event.params,)
-                            Utils.copyProperties(Utils.getRequestParams(), event.params);
-                            getPixelBySlag(pixels[i]).onFormEvent(event);
+                            if (pixels[i] === "tiktok") {
+                                getPixelBySlag(pixels[i]).fireEvent(event.name, event);
+                            } else {
+                                Utils.copyProperties(params, event.params,)
+                                Utils.copyProperties(Utils.getRequestParams(), event.params);
+                                getPixelBySlag(pixels[i]).onFormEvent(event);
+                            }
                         }
                     }
                 }
             });
+            document.addEventListener( 'wpcf7mailsent', function( event ) {
+                var form_id = event.detail.contactFormId;
+                var sendEventId = null;
+                var disabled_form_action = false;
+                if(options.triggerEventTypes.hasOwnProperty('CF7'))
+                {
+                    key_event = Object.keys(options.triggerEventTypes.CF7)[0];
+                    if(options.triggerEventTypes.CF7[key_event].hasOwnProperty('disabled_form_action'))
+                    {
+                        disabled_form_action = options.triggerEventTypes.CF7[key_event].disabled_form_action;
+                    }
+                    $.each(options.triggerEventTypes.CF7, function (eventId, triggers) {
+                        $.each(triggers.forms, function (index, value) {
+                            if(value == form_id) {
+                                sendEventId=eventId;
+                            };
+                        });
+                    });
+                }
+                if(sendEventId != null)
+                {
+                    Utils.fireTriggerEvent(sendEventId);
 
+                    if(!disabled_form_action)
+                    {
+                        sendFormAction($(event.target), form_id);
+                    }
+                }
+                else {
+                    sendFormAction($(event.target), form_id);
+                }
+            }, false );
             //Forminator
-            $(document).on( 'forminator:form:submit:success', function( formData ){
-                var params = {
-                    form_id: $(formData.target).find('input[name="form_id"]').val(),
-                    text: $(formData.target).find('.forminator-button-submit').text()
-                };
-
-                if(options.dynamicEvents.hasOwnProperty("automatic_event_form") ) {
-                    var pixels = Object.keys(options.dynamicEvents.automatic_event_form);
-                    for (var i = 0; i < pixels.length; i++) {
-                        var event = Utils.clone(options.dynamicEvents.automatic_event_form[pixels[i]]);
-                        if(pixels[i] === "tiktok") {
-                            getPixelBySlag(pixels[i]).fireEvent(event.name, event);
-                        } else {
-                            Utils.copyProperties(params, event.params)
-                            Utils.copyProperties(Utils.getRequestParams(), event.params);
-                            getPixelBySlag(pixels[i]).onFormEvent(event);
-                        }
+            $(document).on( 'forminator:form:submit:success', function( event ){
+                var form_id = $(event.target).find('input[name="form_id"]').val();
+                var sendEventId = null;
+                var disabled_form_action = false;
+                if(options.triggerEventTypes.hasOwnProperty('forminator'))
+                {
+                    key_event = Object.keys(options.triggerEventTypes.forminator)[0];
+                    if(options.triggerEventTypes.forminator[key_event].hasOwnProperty('disabled_form_action'))
+                    {
+                        disabled_form_action = options.triggerEventTypes.forminator[key_event].disabled_form_action;
                     }
+                    $.each(options.triggerEventTypes.forminator, function (eventId, triggers) {
+                        $.each(triggers.forms, function (index, value) {
+                            if(value == form_id) {
+                                sendEventId=eventId;
+                            };
+                        });
+                    });
+                }
+                if(sendEventId != null)
+                {
+                    Utils.fireTriggerEvent(sendEventId);
+
+                    if(!disabled_form_action)
+                    {
+                        sendFormAction($(event.target), form_id);
+                    }
+                }
+                else {
+                    sendFormAction($(event.target), form_id);
+                }
+
+            });
+
+            //WPForm
+            $('form.wpforms-form').on('wpformsAjaxSubmitSuccess', (event) => {
+                var form_id = $(event.target).attr('data-formid');
+                var sendEventId = null;
+                var disabled_form_action = false;
+                if(options.triggerEventTypes.hasOwnProperty('wpforms'))
+                {
+                    key_event = Object.keys(options.triggerEventTypes.wpforms)[0];
+                    if(options.triggerEventTypes.wpforms[key_event].hasOwnProperty('disabled_form_action'))
+                    {
+                        disabled_form_action = options.triggerEventTypes.wpforms[key_event].disabled_form_action;
+                    }
+                    $.each(options.triggerEventTypes.wpforms, function (eventId, triggers) {
+                        $.each(triggers.forms, function (index, value) {
+                            if(value == form_id) {
+                                sendEventId=eventId;
+                            };
+                        });
+                    });
+                }
+                if(sendEventId != null)
+                {
+                    Utils.fireTriggerEvent(sendEventId);
+
+                    if(!disabled_form_action)
+                    {
+                        sendFormAction($(event.target), form_id);
+                    }
+                }
+                else {
+                    sendFormAction($(event.target), form_id);
+                }
+            })
+            $(document).on( 'frmFormComplete', function( event, form, response ) {
+                const form_id = $(form).find('input[name="form_id"]').val();
+                var sendEventId = null;
+                var disabled_form_action = false;
+                if(options.triggerEventTypes.hasOwnProperty('formidable'))
+                {
+                    key_event = Object.keys(options.triggerEventTypes.formidable)[0];
+                    if(options.triggerEventTypes.formidable[key_event].hasOwnProperty('disabled_form_action'))
+                    {
+                        disabled_form_action = options.triggerEventTypes.formidable[key_event].disabled_form_action;
+                    }
+                    $.each(options.triggerEventTypes.formidable, function (eventId, triggers) {
+                        $.each(triggers.forms, function (index, value) {
+                            if(value == form_id) {
+                                sendEventId=eventId;
+                            };
+                        });
+                    });
+                }
+                if(sendEventId != null)
+                {
+                    Utils.fireTriggerEvent(sendEventId);
+
+                    if(!disabled_form_action)
+                    {
+                        sendFormAction($(event.target), form_id);
+                    }
+                }
+                else {
+                    sendFormAction($(event.target), form_id);
+                }
+            });
+            // Ninja Forms
+            $(document).onFirst('nfFormSubmitResponse', function (event, data) {
+                const form_id = data.response.data.form_id;
+                var sendEventId = null;
+                var disabled_form_action = false;
+                if(options.triggerEventTypes.hasOwnProperty('ninjaform'))
+                {
+                    key_event = Object.keys(options.triggerEventTypes.ninjaform)[0];
+                    if(options.triggerEventTypes.ninjaform[key_event].hasOwnProperty('disabled_form_action'))
+                    {
+                        disabled_form_action = options.triggerEventTypes.ninjaform[key_event].disabled_form_action;
+                    }
+                    $.each(options.triggerEventTypes.ninjaform, function (eventId, triggers) {
+                        $.each(triggers.forms, function (index, value) {
+                            if(value == form_id) {
+                                sendEventId=eventId;
+                            };
+                        });
+                    });
+                }
+                if(sendEventId != null)
+                {
+                    Utils.fireTriggerEvent(sendEventId);
+
+                    if(!disabled_form_action)
+                    {
+                        sendFormAction($(event.target), form_id);
+                    }
+                }
+                else {
+                    sendFormAction($(event.target), form_id);
                 }
             });
 
-            // Ninja Forms
-            $(document).onFirst('nfFormSubmitResponse', function (e, data) {
+            var fluentForms = $('form.frm-fluent-form');
+            fluentForms.each(function() {
+                var $form = $(this);
+                $form.on('fluentform_submission_success', function(event) {
+                    var $formItem = $(this);
+                    var form_id = $formItem.attr('data-form_id');
+                    var sendEventId = null;
+                    var disabled_form_action = false;
+                    if(options.triggerEventTypes.hasOwnProperty('fluentform'))
+                    {
+                        key_event = Object.keys(options.triggerEventTypes.fluentform)[0];
+                        if(options.triggerEventTypes.fluentform[key_event].hasOwnProperty('disabled_form_action'))
+                        {
+                            disabled_form_action = options.triggerEventTypes.fluentform[key_event].disabled_form_action;
+                        }
+                        $.each(options.triggerEventTypes.fluentform, function (eventId, triggers) {
+                            $.each(triggers.forms, function (index, value) {
+                                if(value == form_id) {
+                                    sendEventId=eventId;
+                                };
+                            });
+                        });
+                    }
+                    if(sendEventId != null)
+                    {
+                        Utils.fireTriggerEvent(sendEventId);
 
-                var params = {
-                    form_id: data.response.data.form_id,
-                    text: data.response.data.settings.title
-                };
-
-                if(options.dynamicEvents.hasOwnProperty("automatic_event_form") ) {
-                    var pixels = Object.keys(options.dynamicEvents.automatic_event_form);
-                    for(var i = 0;i<pixels.length;i++) {
-                        var event = options.dynamicEvents.automatic_event_form[pixels[i]];
-                        if(pixels[i] === "tiktok") {
-                            getPixelBySlag(pixels[i]).fireEvent(event.name, event);
-                        } else {
-                            Utils.copyProperties(params, event.params)
-                            Utils.copyProperties(Utils.getRequestParams(), event.params);
-                            getPixelBySlag(pixels[i]).onFormEvent(event);
+                        if(!disabled_form_action)
+                        {
+                            sendFormAction($(event.target), form_id);
                         }
                     }
-                }
-
+                    else {
+                        sendFormAction($(event.target), form_id);
+                    }
+                });
             });
 
         }
@@ -4471,6 +4653,28 @@ if (!String.prototype.trim) {
         }
     }
 
+    var sendFormAction = function (form_target, formId){
+        var params = {
+                form_id: formId,
+                text: form_target.find('[type="submit"]').is('input') ? form_target.find('[type="submit"]').val() :
+                    form_target.find('.forminator-button-submit').text() != '' ? form_target.find('.forminator-button-submit').text() :
+                    form_target.find('[type="submit"]').text()
+            };
+
+            if (options.dynamicEvents.hasOwnProperty("automatic_event_form")) {
+                var pixels = Object.keys(options.dynamicEvents.automatic_event_form);
+                for (var i = 0; i < pixels.length; i++) {
+                    var event = options.dynamicEvents.automatic_event_form[pixels[i]];
+                    if (pixels[i] === "tiktok") {
+                        getPixelBySlag(pixels[i]).fireEvent(event.name, event);
+                    } else {
+                        Utils.copyProperties(params, event.params)
+                        Utils.copyProperties(Utils.getRequestParams(), event.params);
+                        getPixelBySlag(pixels[i]).onFormEvent(event);
+                    }
+                }
+            }
+    }
 
 
 }(jQuery, pysOptions);
@@ -4525,3 +4729,10 @@ var getUrlParameter = function getUrlParameter(sParam) {
     }
     return false;
 };
+function inArray(needle, haystack) {
+    var length = haystack.length;
+    for(var i = 0; i < length; i++) {
+        if(haystack[i] == needle) return true;
+    }
+    return false;
+}

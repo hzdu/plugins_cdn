@@ -176,13 +176,13 @@
 #pys .pys_stat_time_custom {
     display: none;
 }
-#pys .select2 ul {
+#pys .pysselect2 ul {
     margin-bottom:0px;
 }
-#pys .select2-search {
+#pys .pysselect2-search {
     width:auto;
 }
-#pys .select2-container--default .select2-selection--multiple .select2-selection__choice__remove {
+#pys .pysselect2-container--default .pysselect2-selection--multiple .pysselect2-selection__choice__remove {
     padding:5px;
 }
 #pys .progress {
@@ -265,14 +265,14 @@
     margin-bottom:15px;
 }
 /* remove X from locked tag */
- .locked-tag .select2-selection__choice__remove{
+ .locked-tag .pysselect2-selection__choice__remove{
     visibility: hidden!important;
      padding: 5px 0!important;
      width:1px;
 }
 
 /* I suggest to hide  all selected tags from drop down list */
-.select2-results__option[aria-selected="true"]{
+.pysselect2-results__option[aria-selected="true"]{
     display: none;
 }
 .pys_report_menu_templates
@@ -293,7 +293,7 @@
     color: #616161;
     font-size: 1.5em;
 }
-.advance_matching_bottom_margin .select2
+.advance_matching_bottom_margin .pysselect2
 {
     margin-bottom: 15px;
 }
@@ -349,4 +349,11 @@
     color: #000;
     background-color: #fff;
     border-color: #FF0000;
+}
+#pys [class^=col-] {
+    margin-right: 0px;
+}
+
+.row.form-event-card {
+    margin: 15px 0px;
 }
