@@ -74,6 +74,9 @@ jQuery(document).ready(function ($) {
 
     $(document).on('click', '.wcai-uname-info.wcai-not-clicked', function (e) {
         e.preventDefault();
+        if($(e.target).hasClass('wpd-user-nicename')){
+            return;
+        }
         var elem = $(this);
         elem.removeClass('wcai-not-clicked');
         var attrId = elem.parents('.wpd-comment-right').attr('id');

@@ -1,7 +1,3 @@
-import { Md5 } from 'ts-md5/dist/md5';
-
-const debounce = require( 'debounce' );
-
 class Alert {
     public type: 'error' | 'notice' | 'success';
 

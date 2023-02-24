@@ -49,12 +49,14 @@ class SmartyStreetsAddressValidationService {
         };
     }
 
-    public handleEasyTabsBefore( event, clicked, target ): boolean {
-        if ( this.isWrongTabContext( target ) ) {
+    public maybeValidateAddress( event, clicked, target ): boolean {
+        if ( Main.instance.tabsLoaded && this.isWrongTabContext( target ) ) {
             return true;
         }
 
-        this.tabChangeDestinationID = target[ 0 ].id;
+        if ( Main.instance.tabsLoaded ) {
+            this.tabChangeDestinationID = target[ 0 ].id;
+        }
 
         const address = this.getAddress();
 
@@ -124,13 +126,22 @@ class SmartyStreetsAddressValidationService {
          * Only fires when the current tab is the information tab
          * and the destination tab is to the right
          */
-        Main.instance.tabService.tabContainer.bind( 'easytabs:before', this.handleEasyTabsBefore.bind( this ) );
+        if ( Main.instance.tabsLoaded ) {
+            Main.instance.tabService.tabContainer.bind( 'easytabs:before', this.maybeValidateAddress.bind( this ) );
+        } else {
+            DataService.checkoutForm.on( 'checkout_place_order', this.maybeValidateAddress.bind( this ) );
+        }
 
         const closeItUp = () => {
             this.userHasAcceptedAddress = true;
 
             this.modaalTrigger.modaal( 'close' );
-            Main.instance.tabService.tabContainer.easytabs( 'select', `#${this.tabChangeDestinationID}` );
+
+            if ( Main.instance.tabsLoaded ) {
+                Main.instance.tabService.tabContainer.easytabs( 'select', `#${this.tabChangeDestinationID}` );
+            } else {
+                DataService.checkoutForm.submit();
+            }
             this.tabChangeDestinationID = null;
         };
 

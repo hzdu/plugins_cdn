@@ -122,8 +122,8 @@ class UpdateCheckoutService {
             return;
         }
 
-        let theArgs = typeof args !== 'undefined' ? args : {
-            update_shipping_method: true
+        const theArgs = typeof args !== 'undefined' ? args : {
+            update_shipping_method: true,
         };
 
         new UpdateCheckoutAction().load( UpdateCheckoutService.getData( theArgs ) );
@@ -214,6 +214,7 @@ class UpdateCheckoutService {
             bill_to_different_address: billToDifferentAddress,
             post_data: checkoutForm.serialize(),
             shipping_method: undefined,
+            cfw: true,
         };
 
         if ( typeof args !== 'undefined' && typeof args.update_shipping_method !== 'undefined' && args.update_shipping_method !== false ) {

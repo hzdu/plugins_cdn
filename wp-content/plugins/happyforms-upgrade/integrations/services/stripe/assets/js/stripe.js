@@ -139,7 +139,6 @@
 			var partID = 'happyforms-' + this.formID + '_' + paymentsPartID;
 
 			this.elements['card'] = elements.create( 'cardNumber', {
-				hidePostalCode: ( 1 == settings.hidePostalCode ) ? true : false,
 				style: elementsStyle,
 				placeholder: '',
 			} );

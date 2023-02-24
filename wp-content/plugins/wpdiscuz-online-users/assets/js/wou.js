@@ -40,12 +40,14 @@ jQuery(document).ready(function ($) {
                                 $(userStatus).removeClass('wou-status-offline');
                                 $(userStatus).addClass('wou-status-online');
                                 $('.wou-status-phrase', userStatus).text(wouVars.wouPhraseStatusOnline);
+                                $(userStatus).attr('wpd-tooltip', wouVars.wouPhraseStatusOnline);
                             }
                         } else { // offline
                             if ($(userStatus).hasClass('wou-status-online')) {
                                 $(userStatus).removeClass('wou-status-online');
                                 $(userStatus).addClass('wou-status-offline');
                                 $('.wou-status-phrase', userStatus).text(wouVars.wouPhraseStatusOffline);
+                                $(userStatus).attr('wpd-tooltip', wouVars.wouPhraseStatusOffline);
                                 var itemUuid = $('.wou-notification-item input[value="' + userUID + '"]');
                                 if (itemUuid.length) {
                                     var itemParent = itemUuid.parent();

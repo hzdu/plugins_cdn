@@ -1,5 +1,6 @@
-wpDiscuzEditor.addButtonEventHandler('sticker', wpdemSticker);
-
+if (wpDiscuzEditor) {
+    wpDiscuzEditor.addButtonEventHandler('sticker', wpdemSticker);
+}
 function wpdemSticker(editor, uniqueID) {
     var wpdemEditorWraper = document.getElementById('wpd-editor-wraper-' + uniqueID);
     var wpdemCurrentRange = editor.getSelection();

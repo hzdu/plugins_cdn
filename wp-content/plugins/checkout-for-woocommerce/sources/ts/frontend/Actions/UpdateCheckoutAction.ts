@@ -18,7 +18,7 @@ class UpdateCheckoutAction extends Action {
      * @param fields
      */
     constructor() {
-        super( 'update_checkout' );
+        super( 'update_order_review' );
 
         this.blockUISelector = '#cfw-billing-methods, .cfw-review-pane, #cfw-cart-summary, #cfw-place-order, #cfw-payment-request-buttons, #cfw-mobile-total, .cfw-order-bumps, #cfw-shipping-methods';
     }
@@ -187,19 +187,19 @@ class UpdateCheckoutAction extends Action {
 
         if ( resp.notices.success ) {
             Object.keys( resp.notices.success ).forEach( ( key: any ) => {
-                alerts.push( new Alert( 'success', resp.notices.success[ key ], 'cfw-alert-success' ) );
+                alerts.push( new Alert( 'success', resp.notices.success[ key ].notice, 'cfw-alert-success', resp.notices.success[ key ].data.temporary ?? false ) );
             } );
         }
 
         if ( resp.notices.notice ) {
             Object.keys( resp.notices.notice ).forEach( ( key: any ) => {
-                alerts.push( new Alert( 'notice', resp.notices.notice[ key ], 'cfw-alert-info' ) );
+                alerts.push( new Alert( 'notice', resp.notices.notice[ key ].notice, 'cfw-alert-info', resp.notices.notice[ key ].data.temporary ?? false ) );
             } );
         }
 
         if ( resp.notices.error ) {
             Object.keys( resp.notices.error ).forEach( ( key: any ) => {
-                alerts.push( new Alert( 'error', resp.notices.error[ key ], 'cfw-alert-error' ) );
+                alerts.push( new Alert( 'error', resp.notices.error[ key ].notice, 'cfw-alert-error', resp.notices.error[ key ].data.temporary ?? false ) );
             } );
         }
 

@@ -1731,6 +1731,10 @@ button[type=submit][disabled].happyforms-button--submit {
   align-self: flex-end;
 }
 
+.happyforms-phone-international .happyforms-phone-country-group .happyforms-input-group.with-prefix span {
+  line-height: normal;
+}
+
 .happyforms-part--phone.happyforms-phone-international .happyforms-part-phone-wrap>input[type=text] {
   padding-left: 45px;
 }
@@ -2300,11 +2304,6 @@ div.mce-inline-toolbar-grp.happyforms-editor-toolbar-link .mce-btn:active {
   display: none;
   margin-top: 5px;
   pointer-events: none;
-}
-
-.happyforms-part__char-counter .counter-label,
-.happyforms-part .happyforms-remaining-choice {
-  text-transform: lowercase;
 }
 
 .happyforms-part--checkbox .option-label .label-wrap,

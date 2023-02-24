@@ -41,6 +41,11 @@ input:disabled {
 	padding: 1px 20px;
 }
 
+.aDBc-button-icon {
+	padding: 4px 4px 0px 0px !important;
+	background-repeat: no-repeat;
+}
+
 /*---------------------------------------------------------------------------------------------
 *  Header
 *---------------------------------------------------------------------------------------------*/
@@ -947,7 +952,6 @@ input:disabled {
 	cursor: pointer;
 	border-width: 1px;
 	border-style: solid;
-	-webkit-appearance: none;
 	border-radius: 3px;
 	white-space: nowrap;
 	box-sizing: border-box;
@@ -978,7 +982,6 @@ input:disabled {
 	cursor: pointer;
 	border-width: 1px;
 	border-style: solid;
-	-webkit-appearance: none;
 	border-radius: 3px;
 	white-space: nowrap;
 	box-sizing: border-box;
@@ -1131,83 +1134,137 @@ input:disabled {
 }
 
 .aDBc-save-settings {
-	margin-left: 24px !important;
-	height: 30px !important;
-	padding: 1px 20px !important;
-	margin-top: 10px !important;
+	padding: 2px 15px !important;
+	margin-top: 20px !important;
 }
 
 /*---------------------------------------------------------------------------------------------
 *  License tab
 *---------------------------------------------------------------------------------------------*/
 
-.aDBc-license-label {
-	float: left;
-	width: 125px;
-	margin-top: 5px;
+.aDBc-license-container {
+	max-width: 600px;
+	border-radius: 5px;
+	-webkit-box-shadow: 0px 0px 20px 2px rgba(240,240,240,1);
+	-moz-box-shadow: 0px 0px 20px 2px rgba(240,240,240,1);
+	box-shadow: 0px 0px 20px 2px rgba(240,240,240,1);
 }
 
-@media screen and (max-width: 690px) {
-	.aDBc-license-label {
-		width: 100%;
-		margin-bottom: 5px;
+.aDBc-license-container a {
+	text-decoration: none;
+}
+
+.aDBc-license-container a:hover {
+	cursor: pointer;
+}
+
+.aDBc-status-box {
+	padding: 40px 40px;
+	border-bottom: 1px solid #f3f3f3;
+}
+
+.aDBc-div-status {
+	float: left;
+}
+
+@media screen and (max-width: 620px) {
+	.aDBc-div-status {
+		float: none;
 	}
+}
+
+.aDBc-license-status-label {
+	color: #000;
+	font-size: 1rem;
+	font-weight: 500;
+}
+
+.aDBc-license-status {
+	font-size: 0.95rem;
+	font-weight: 700;
+	/*font-style: italic;*/
+	margin-left: 5px;
+	margin-right: 20px;
+}
+
+.aDBc-check-license-btn {
+	float: left;
+}
+
+@media screen and (max-width: 620px) {
+	.aDBc-check-license-btn {
+		float: none;
+		margin-top: 10px;
+	}
+}
+
+.aDBc-license-account {
+	float: right;
+}
+
+@media screen and (max-width: 620px) {
+	.aDBc-license-account {
+		float: none;
+		margin-top: 10px;
+	}
+}
+
+.aDBc-license-icon {
+	padding: 1px 3px 1px 0px;
+	font-size: 17px;
+}
+
+.aDBc-license-box {
+	padding: 40px 40px;
+	position: relative;
 }
 
 .aDBc-license-key-input {
-	float: left;
-	width: 290px;
-	height: 32px;
-	font-size: 15px;
-	border-radius: 4px;
-	margin-right: 8px;
+	height: 40px;
+	width: 100%;
+	letter-spacing: 0.08em;
+	font-size: 0.9rem;
+	font-weight: 400;
+	color: #000 !important;
+	border-radius: 2px !important;
+	border-width: 1px 1px 2px 1px !important;
+	border-color: #2271b1 !important;
 }
+
+.aDBc-license-key-input:focus {
+    box-shadow: none !important;
+    -moz-box-shadow: none !important;
+    -webkit-box-shadow: none !important;
+}
+
+.aDBc-license-key-input:disabled {
+    background-color: #f9f9f9 !important;
+}
+
+.aDBc-license-btn {
+	position: absolute;
+	top: 40px;
+	right:40px;
+	box-sizing: border-box;
+	padding: 10px 14px;
+	height: 40px;
+	cursor: pointer;
+	text-align: center;
+	border-radius: 2px;
+	background: #2271b1;
+	color: white;
+}
+
+.aDBc-license-btn:hover {
+	background: #135e96;
+}
+
 
 @media screen and (max-width: 690px) {
-	.aDBc-license-key-input {
-		margin-bottom: 5px;
-		width: calc(100% - 5px);
-	}
-}
-
-.aDBc-license-submit {
-	height: 32px !important;
-	vertical-align: middle;
-}
-
-.aDBc-license-inactive {
-	float: left;
-	color: red;
-	font-size: 13px;
-	background: #f9f9f9;
-	padding: 4px 8px;
-	margin-right: 8px;
-	vertical-align: middle;
-	border: 1px solid red;
-	border-radius: 4px;
-}
-
-@media screen and (max-width: 690px) {
-	.aDBc-license-inactive {
-		margin-bottom: 5px;
-	}
-}
-
-.aDBc-license-active {
-	float: left;
-	color: green;
-	font-size: 13px;
-	background: #f5f5f5;
-	padding: 4px 8px;
-	margin-right: 8px;
-	vertical-align: middle;
-	border: 1px solid green;
-	border-radius: 4px;
-}
-
-@media screen and (max-width: 690px) {
-	.aDBc-license-active {
-		margin-bottom: 5px;
+	.aDBc-license-btn {
+		position: relative;
+		top: 10px;
+		left: 0px;
 	}
 }
 

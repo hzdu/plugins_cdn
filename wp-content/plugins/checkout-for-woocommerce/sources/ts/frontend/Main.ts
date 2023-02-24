@@ -115,6 +115,12 @@ class Main {
     private _loadTabs: any;
 
     /**
+     * @type boolean
+     * @private
+     */
+    private _tabsLoaded: any;
+
+    /**
      * @type {Main}
      * @private
      * @static
@@ -145,16 +151,16 @@ class Main {
         this.settings = settings;
         this.loadTabs = this.settings.load_tabs;
         this.tabService = new TabService( this.tabContainer, breadCrumbElement );
-        let tabsLoaded = false;
+        this.tabsLoaded = false;
 
         /**
          * Services
          */
         if ( this.loadTabs ) {
-            tabsLoaded = this.tabService.maybeLoadTabs();
+            this.tabsLoaded = this.tabService.maybeLoadTabs();
         }
 
-        if ( tabsLoaded ) {
+        if ( this.tabsLoaded ) {
             // Only relevant on tabbed pages
             new ChromeAutocompleteBugService();
         }
@@ -413,6 +419,14 @@ class Main {
 
     set loadTabs( value: any ) {
         this._loadTabs = value;
+    }
+
+    get tabsLoaded(): any {
+        return this._tabsLoaded;
+    }
+
+    set tabsLoaded( value: any ) {
+        this._tabsLoaded = value;
     }
 
     /**

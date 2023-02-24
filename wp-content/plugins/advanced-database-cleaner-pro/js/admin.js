@@ -18,7 +18,7 @@ jQuery(document).ready(function(){
 	jQuery('#bulk-action-selector-top').on("change", function(e) {
 		var abdc_action = jQuery('#bulk-action-selector-top').val();
 		jQuery('#bulk-action-selector-bottom').val(abdc_action);
-	});	
+	});
 
 	// Get items type from hidden input in the page
 	var aDBc_item_type = jQuery("#aDBc_item_type").attr('value');
@@ -118,7 +118,7 @@ jQuery(document).ready(function(){
 			},
 			complete: function(){
 				// wait for 1 sec then reload the page.
-				setTimeout(function(){location.reload();}, 1000);				
+				setTimeout(function(){location.reload();}, 1000);
 			}
 		});
 		setTimeout(getProgress, 500);
@@ -292,7 +292,7 @@ jQuery(document).ready(function(){
 			},
 			complete: function(){
 				// wait for 1 sec then reload the page
-				setTimeout(function(){location.reload();}, 1000);				
+				setTimeout(function(){location.reload();}, 1000);
 
 			}
 		});
@@ -358,5 +358,154 @@ jQuery(document).ready(function(){
 		jQuery('.aDBc-keep-link').css("color", "");
 
 	});
+
+	// Save settings in "Overview & Settings"
+
+	jQuery('#aDBc_save_settings').on('click', function(e) {
+
+        e.preventDefault();
+
+		// Show processing msg box
+		showProcessingMsgBox( aDBc_ajax_obj.please_wait );
+
+		// Get checkboxes values
+		var left_menu 			= jQuery('input[name="aDBc_left_menu"]').is(':checked') ? 1 : 0;
+		var menu_under_tools 	= jQuery('input[name="aDBc_menu_under_tools"]').is(':checked') ? 1 : 0;
+		var hide_premium_tab 	= jQuery('input[name="aDBc_hide_premium_tab"]').is(':checked') ? 1 : 0;
+
+		jQuery.ajax({
+			type : "post",
+			url: aDBc_ajax_obj.ajaxurl,
+			cache: false,
+			data: {
+				'action'			: 'aDBc_save_settings_callback',
+				'security'			: aDBc_ajax_obj.ajax_nonce,
+				'left_menu'			: left_menu,
+				'menu_under_tools'	: menu_under_tools,
+				'hide_premium_tab'	: hide_premium_tab
+			},
+			success: function(result) {
+
+				// Show success/error message
+				if ( true === result.success ) {
+
+					Swal.fire({
+						icon					: 'success',
+						showConfirmButton		: false,
+					});
+					setTimeout(function(){location.reload();}, 1000);
+
+				} else {
+					Swal.fire({
+						html	: '<font size="3px">' + result.data + '</font>',
+						icon	: 'error'
+					});
+				}
+
+			},
+			complete: function(){
+			}
+		});
+
+	});
+
+	/*****************************************************************************
+	*
+	* Activate / deactivate / check license
+	*
+	******************************************************************************/
+
+	jQuery( '#aDBc_activate_license_btn, #aDBc_deactivate_license_btn, #aDBc_check_license_btn' ).on( 'click', function(e) {
+
+        e.preventDefault();
+
+		showProcessingMsgBox( aDBc_ajax_obj.please_wait );
+
+		// Get action from the clicked button
+		var aDBc_edd_action = this.id;
+
+		// Get license
+		var license_key	= jQuery.trim( jQuery('#aDBc_license_key_input').val() );
+
+		jQuery.ajax({
+			type : "post",
+			url: aDBc_ajax_obj.ajaxurl,
+			cache: false,
+			data: {
+				'action'			: 'aDBc_license_actions_callback',
+				'security'			: aDBc_ajax_obj.ajax_nonce,
+				'aDBc_edd_action'	: aDBc_edd_action,
+				'license_key'		: license_key
+			},
+			success: function(result) {
+
+				// Show success/error message
+				if ( true === result.success ) {
+
+					if ( aDBc_edd_action == 'aDBc_activate_license_btn' ) {
+
+						jQuery('.aDBc-please-activate-msg').hide();
+						jQuery('#aDBc_license_status').text(aDBc_ajax_obj.active);
+						jQuery('#aDBc_license_status').css("color", "green");
+						jQuery('#aDBc_check_license_btn').show();
+						jQuery('#aDBc_activate_license_btn').hide();
+						jQuery('#aDBc_deactivate_license_btn').show();
+						jQuery('#aDBc_license_key_input').val( license_key.substring(0, 4) + "************************" + license_key.slice( -4 ) );
+						jQuery('#aDBc_license_key_input').prop( "disabled", true );
+
+					} else if ( aDBc_edd_action == 'aDBc_deactivate_license_btn' ) {
+
+						jQuery('.aDBc-please-activate-msg').show();
+						jQuery('#aDBc_license_status').text(aDBc_ajax_obj.inactive);
+						jQuery('#aDBc_license_status').css("color", "red");
+						jQuery('#aDBc_check_license_btn').hide();
+						jQuery('#aDBc_activate_license_btn').show();
+						jQuery('#aDBc_deactivate_license_btn').hide();
+						jQuery('#aDBc_license_key_input').val("");
+						jQuery('#aDBc_license_key_input').prop( "disabled", false );
+
+					}
+
+					Swal.fire({
+						icon				: 'success',
+						html				: '<font size="3px">' + result.data + '</font>',
+						showConfirmButton	: false,
+						timer				: 2000,
+						timerProgressBar	: true
+					});
+
+				} else {
+
+					Swal.fire({
+						html	: '<font size="3px">' + result.data + '</font>',
+						icon	: 'error'
+					});
+
+				}
+
+			},
+			complete: function(){}
+		});
+	});
+
+	/*****************************************************************************
+	*
+	* Shows a "processing" msg when performing an action
+	*
+	******************************************************************************/
+
+	function showProcessingMsgBox( msgToShow ) {
+
+		Swal.fire({
+			html				: '<font size="3px">' + msgToShow + '</font>',
+			imageUrl			: aDBc_ajax_obj.images_path + 'loading20px.svg',
+			imageWidth			: 50,
+			imageHeight			: 50,
+			showCloseButton		: false,
+			showConfirmButton	: false,
+			allowOutsideClick	: false
+		});
+	}
+
 
 });

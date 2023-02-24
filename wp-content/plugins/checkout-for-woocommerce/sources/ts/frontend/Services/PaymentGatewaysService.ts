@@ -1,5 +1,4 @@
 import cfwUpdatePaymentMethod from '../../functions/cfwUpdatePaymentMethod';
-import DataService            from './DataService';
 import LoggingService         from './LoggingService';
 import ClickEvent = JQuery.ClickEvent;
 

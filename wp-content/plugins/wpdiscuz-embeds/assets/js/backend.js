@@ -80,11 +80,11 @@ jQuery(document).ready(function ($) {
         $('#playerWidth').val(Math.ceil(height * aspectRatio));
     }
 
-    $(document).on('change keyup', '#playerWidth', function () {
-        weAspectRatioHeight();
-    });
-
-    $(document).on('change keyup', '#playerHeight', function () {
-        weAspectRatioWidth();
-    });
+//    $(document).on('change keyup', '#playerWidth', function () {
+//        weAspectRatioHeight();
+//    });
+//
+//    $(document).on('change keyup', '#playerHeight', function () {
+//        weAspectRatioWidth();
+//    });
 });

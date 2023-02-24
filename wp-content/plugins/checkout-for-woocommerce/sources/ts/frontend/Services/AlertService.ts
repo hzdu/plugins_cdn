@@ -50,6 +50,8 @@ class AlertService {
     }
 
     public static showAlerts( queue = 'default', container: string = null ): void {
+        AlertService.removeTemporaryAlerts( container );
+
         // If we don't have any alerts to show, let's bail here
         if ( !AlertService.queues[ queue ] || AlertService.queues[ queue ].length === 0 ) {
             return;
@@ -60,8 +62,6 @@ class AlertService {
         if ( !AlertService.preserveAlerts ) {
             AlertService.hideAlerts( container );
         }
-
-        AlertService.removeTemporaryAlerts( container );
 
         const containerElement = container ? jQuery( container ) : AlertService.alertContainer;
 
