@@ -1,0 +1,15 @@
+.gb-accordion__item:not(.is-selected):not(.has-child-selected):not([data-accordion-is-open]) {
+	& > .gb-container:not(.gb-accordion__toggle) {
+		display: none;
+	}
+
+	& > .gb-button .gb-accordion__icon-open {
+		display: none;
+	}
+}
+
+.gb-accordion__item[data-accordion-is-open] {
+	& > .gb-button .gb-accordion__icon {
+		display: none;
+	}
+}

@@ -10,14 +10,8 @@
         }
 
         .generateblocks-plugin-templates-modal-loading-spinner {
-            position: absolute;
-            top: 14px;
-            right: 50px;
-            z-index: 10;
-
             .components-spinner {
-                float: none;
-                margin-left: 0;
+                margin: 0;
             }
         }
     }
@@ -89,6 +83,10 @@
                 box-shadow: 0 0 0 2px #216eb7;
             }
 
+			&[disabled] {
+				cursor: not-allowed;
+			}
+
             .generateblocks-plugin-templates-list-item-image {
                 position: relative;
                 display: block;
@@ -139,4 +137,11 @@
 .generateblocks-plugin-templates-modal {
     min-width: 600px;
     width: 60%;
+}
+
+.gblocks-template-requires-version {
+	font-size: 11px;
+	color: #000;
+	margin-left: 0;
+	margin-right: 0;
 }

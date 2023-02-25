@@ -64,6 +64,14 @@ const noStyleAttributes = applyFilters(
 		'noCommentsText',
 		'singleCommentsText',
 		'multipleCommentsText',
+		'defaultOpenedTab',
+		'tabItemOpen',
+		'accordionMultipleOpen',
+		'accordionItemOpen',
+		'variantRole',
+		'useInnerContainer',
+		'buttonType',
+		'iconLocation',
 	],
 );
 

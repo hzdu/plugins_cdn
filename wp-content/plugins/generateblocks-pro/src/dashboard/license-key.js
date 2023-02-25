@@ -153,8 +153,8 @@ class App extends Component {
 								<PanelRow>
 									<BaseControl>
 										<ToggleControl
-											label={ __( 'Receive beta updates' ) }
-											help={ __( 'Get alpha and beta updates directly to your Dashboard.', 'generateblocks-pro' ) }
+											label={ __( 'Receive development version updates' ) }
+											help={ __( 'Receive alpha, beta, and release candidate updates. This should only be used on staging/development websites.', 'generateblocks-pro' ) }
 											checked={ !! this.getSetting( 'beta' ) }
 											onChange={ ( value ) => {
 												this.setState( {

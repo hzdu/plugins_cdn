@@ -4,7 +4,6 @@
 import hasNumericValue from '../../utils/has-numeric-value';
 import getIcon from '../../utils/get-icon';
 import RangeControlInput from '../range-control';
-import UnitPicker from '../unit-picker';
 import ColorPicker from '../color-picker';
 
 /**
@@ -48,6 +47,7 @@ class BackgroundPanelItem extends Component {
 
 		const {
 			advBackgrounds,
+			useInnerContainer,
 		} = attributes;
 
 		const bgImageSizes = [];
@@ -117,9 +117,19 @@ class BackgroundPanelItem extends Component {
 														}
 													}
 
+													const layoutAttributes = {};
+
+													if ( useInnerContainer ) {
+														layoutAttributes.innerZindex = 1;
+													} else {
+														layoutAttributes.position = 'relative';
+														layoutAttributes.overflowX = 'hidden';
+														layoutAttributes.overflowY = 'hidden';
+													}
+
 													setAttributes( {
 														advBackgrounds: effectValues,
-														innerZindex: 1,
+														...layoutAttributes,
 													} );
 												} }
 											/>
@@ -136,22 +146,6 @@ class BackgroundPanelItem extends Component {
 												{ __( 'Image', 'generateblocks-pro' ) }
 											</span>
 										}
-
-										<Tooltip text={ __( 'Delete Background', 'generateblocks-pro' ) }>
-											<Button
-												className="gblocks-delete-transform"
-												onClick={ () => {
-													// eslint-disable-next-line
-													if ( window.confirm( __( 'This will permanently delete this background.', 'generateblocks-pro' ) ) ) {
-														const effectValues = [ ...advBackgrounds ];
-
-														effectValues.splice( index, 1 );
-														setAttributes( { advBackgrounds: effectValues } );
-													}
-												} }
-												icon={ getIcon( 'trash' ) }
-											/>
-										</Tooltip>
 									</Fragment>
 								</div>
 
@@ -285,7 +279,6 @@ class BackgroundPanelItem extends Component {
 													<BaseControl
 														id="gblocks-box-shadow-color-one"
 														className="gblocks-box-shadow-color"
-														label={ __( 'Color', 'generateblocks-pro' ) }
 													>
 														<ColorPicker
 															value={ advBackgrounds[ index ].colorOne }
@@ -320,16 +313,9 @@ class BackgroundPanelItem extends Component {
 												</div>
 
 												<div className="gblocks-adv-dropdown-option">
-													<UnitPicker
-														label={ __( 'Stop One', 'generateblocks-pro' ) }
-														value={ '%' }
-														units={ [ '%' ] }
-														onClick={ () => {
-															return false;
-														} }
-													/>
-
 													<RangeControlInput
+														label={ __( 'Stop One', 'generateblocks-pro' ) }
+														unit="%"
 														value={ hasNumericValue( advBackgrounds[ index ].stopOne ) ? advBackgrounds[ index ].stopOne : '' }
 														onChange={ ( value ) => {
 															const effectValues = [ ...advBackgrounds ];
@@ -349,11 +335,12 @@ class BackgroundPanelItem extends Component {
 													/>
 												</div>
 
+												<div className="gblocks-adv-dropdown-separator"></div>
+
 												<div className="gblocks-adv-dropdown-option gblocks-adv-dropdown-option-no-grow">
 													<BaseControl
 														id="gblocks-box-shadow-color-two"
 														className="gblocks-box-shadow-color"
-														label={ __( 'Color', 'generateblocks-pro' ) }
 													>
 														<ColorPicker
 															value={ advBackgrounds[ index ].colorTwo }
@@ -388,16 +375,9 @@ class BackgroundPanelItem extends Component {
 												</div>
 
 												<div className="gblocks-adv-dropdown-option">
-													<UnitPicker
-														label={ __( 'Stop Two', 'generateblocks-pro' ) }
-														value={ '%' }
-														units={ [ '%' ] }
-														onClick={ () => {
-															return false;
-														} }
-													/>
-
 													<RangeControlInput
+														label={ __( 'Stop Two', 'generateblocks-pro' ) }
+														unit="%"
 														value={ hasNumericValue( advBackgrounds[ index ].stopTwo ) ? advBackgrounds[ index ].stopTwo : '' }
 														onChange={ ( value ) => {
 															const effectValues = [ ...advBackgrounds ];
@@ -617,6 +597,28 @@ class BackgroundPanelItem extends Component {
 										}
 									</div>
 								}
+
+								<div className="gblocks-effects-footer">
+									<Tooltip text={ __( 'Delete this background.', 'generateblocks-pro' ) }>
+										<Button
+											isSecondary
+											isSmall
+											className="gblocks-delete-effect"
+											onClick={ () => {
+												// eslint-disable-next-line
+												if ( window.confirm( __( 'This will permanently delete this background.', 'generateblocks-pro' ) ) ) {
+													const effectValues = [ ...advBackgrounds ];
+
+													effectValues.splice( index, 1 );
+													setAttributes( { advBackgrounds: effectValues } );
+												}
+											} }
+											icon={ getIcon( 'trash' ) }
+										>
+											{ __( 'Delete', 'generateblocks-pro' ) }
+										</Button>
+									</Tooltip>
+								</div>
 							</div>
 						</Fragment>;
 					} )

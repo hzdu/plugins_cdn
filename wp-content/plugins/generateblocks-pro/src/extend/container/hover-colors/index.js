@@ -53,6 +53,18 @@ function addAttributes( settings ) {
 				type: 'number',
 				default: 1,
 			},
+			backgroundColorCurrent: {
+				type: 'string',
+				default: '',
+			},
+			textColorCurrent: {
+				type: 'string',
+				default: '',
+			},
+			borderColorCurrent: {
+				type: 'string',
+				default: '',
+			},
 		} );
 	}
 
@@ -85,6 +97,35 @@ function addColorItems( items, props ) {
 		},
 	];
 
+	const addCurrentColors = applyFilters(
+		'generateblocks.editor.addContainerCurrentColors',
+		false,
+		props
+	);
+
+	if ( addCurrentColors ) {
+		newItems.push(
+			{
+				group: 'background',
+				attribute: 'backgroundColorCurrent',
+				tooltip: __( 'Current', 'generateblocks-pro' ),
+				alpha: true,
+			},
+			{
+				group: 'text',
+				attribute: 'textColorCurrent',
+				tooltip: __( 'Current', 'generateblocks-pro' ),
+				alpha: false,
+			},
+			{
+				group: 'border',
+				attribute: 'borderColorCurrent',
+				tooltip: __( 'Current', 'generateblocks-pro' ),
+				alpha: true,
+			},
+		);
+	}
+
 	items.forEach( ( colorItem, index ) => {
 		newItems.forEach( ( newColorItem ) => {
 			if (
@@ -100,6 +141,12 @@ function addColorItems( items, props ) {
 				);
 			}
 		} );
+
+		if ( ! addCurrentColors ) {
+			colorItem.items = colorItem
+				.items
+				.filter( ( item ) => ! item.attribute.includes( 'Current' ) );
+		}
 	} );
 
 	return items;
@@ -320,6 +367,9 @@ function addMainCSS( css, props, name ) {
 		borderColorHover,
 		borderColorOpacity,
 		borderColorHoverOpacity,
+		backgroundColorCurrent,
+		textColorCurrent,
+		borderColorCurrent,
 	} = attributes;
 
 	if ( 'container' === name ) {
@@ -335,6 +385,15 @@ function addMainCSS( css, props, name ) {
 			'background-color': hexToRGBA( backgroundColorHover, backgroundColorHoverOpacity ),
 			'border-color': hexToRGBA( borderColorHover, borderColorHoverOpacity ),
 			color: textColorHover,
+		} );
+
+		const selector = `.gb-container-${ uniqueId }[data-container-is-current]`;
+		const currentSelector = `${ selector }, ${ selector }:hover, ${ selector }:active, ${ selector }:focus`;
+
+		addToCSS( css, currentSelector, {
+			'background-color': backgroundColorCurrent,
+			color: textColorCurrent,
+			'border-color': borderColorCurrent,
 		} );
 
 		const headlineSelectors = [

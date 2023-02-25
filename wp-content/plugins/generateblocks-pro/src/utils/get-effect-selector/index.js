@@ -3,8 +3,8 @@
  *
  * @param {Array}  effectData The effect we're targeting.
  * @param {Object} attributes The attributes.
- * @param {string} selector The current selector.
- * @param {number} key The array key.
+ * @param {string} selector   The current selector.
+ * @param {number} key        The array key.
  * @return {Object} The data we need.
  */
 export default function getEffectSelector( effectData, attributes, selector, key ) {
@@ -47,7 +47,11 @@ export default function getEffectSelector( effectData, attributes, selector, key
 	let effectSelector = selector + state;
 
 	if ( 'innerContainer' === effects[ key ].target ) {
-		effectSelector = '.gb-container-' + attributes.uniqueId + state + ' > .gb-inside-container';
+		if ( 'undefined' !== typeof attributes.useInnerContainer && ! attributes.useInnerContainer ) {
+			effectSelector = '.gb-container-' + attributes.uniqueId + state + ' > .gb-container';
+		} else {
+			effectSelector = '.gb-container-' + attributes.uniqueId + state + ' > .gb-inside-container';
+		}
 	}
 
 	if ( 'backgroundImage' === effects[ key ].target ) {
@@ -56,6 +60,10 @@ export default function getEffectSelector( effectData, attributes, selector, key
 
 	if ( 'icon' === effects[ key ].target ) {
 		effectSelector = selector + state + ' .gb-icon';
+	}
+
+	if ( 'accordionContent' === effects[ key ].target ) {
+		effectSelector = selector + state + ' > .gb-accordion__content';
 	}
 
 	if ( 'customSelector' === effects[ key ].target ) {

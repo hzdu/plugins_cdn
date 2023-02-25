@@ -815,8 +815,9 @@
     }
 
     $(document).ready(function () {
-        // window.onbeforeunload = doAjaxBeforeUnload;
-        $(window).unload(doAjaxBeforeUnload);
+        window.onbeforeunload = doAjaxBeforeUnload;
+        // $(window).on("unload", doAjaxBeforeUnload);
+        // $(window).unload(doAjaxBeforeUnload);
     });
 
 

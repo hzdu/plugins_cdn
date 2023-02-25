@@ -26,10 +26,12 @@ import {
 	SelectControl,
 	Button,
 	Tooltip,
+	Notice,
 } from '@wordpress/components';
 
 import { useDispatch } from '@wordpress/data';
 import { createBlock } from '@wordpress/blocks';
+import { getCompatibilityWarning } from './utils';
 
 export default function GlobalStylePicker( props ) {
 	const {
@@ -45,6 +47,8 @@ export default function GlobalStylePicker( props ) {
 		useGlobalStyle,
 		globalStyleId,
 		globalStyleLabel,
+		hasButtonContainer = false,
+		useInnerContainer = false,
 	} = attributes;
 
 	const [ globalStyleLocked, setGlobalStyleLocked ] = useState( true );
@@ -137,6 +141,13 @@ export default function GlobalStylePicker( props ) {
 			);
 		}
 	};
+
+	const compatibilityNotice = getCompatibilityWarning( {
+		name,
+		globalStyleId,
+		hasButtonContainer,
+		useInnerContainer,
+	} );
 
 	return (
 		<Fragment>
@@ -254,6 +265,10 @@ export default function GlobalStylePicker( props ) {
 								>
 									{ __( 'Clear local styles', 'generateblocks-pro' ) }
 								</Button>
+							}
+
+							{ !! compatibilityNotice &&
+								<Notice status="warning" isDismissible={ false } className="gblocks-global-style-compatibility">{ compatibilityNotice }</Notice>
 							}
 						</Fragment>
 					}

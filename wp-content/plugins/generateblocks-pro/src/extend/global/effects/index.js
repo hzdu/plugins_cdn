@@ -7,6 +7,7 @@ import getTransformData from '../../../utils/get-transform-data';
 import getCSSFilterData from '../../../utils/get-css-filter-data';
 import getEffectSelector from '../../../utils/get-effect-selector';
 import EffectPanelItem from '../../../components/effect-panel-item';
+import { createHigherOrderComponent } from '@wordpress/compose';
 
 /**
  * WordPress Dependencies
@@ -32,6 +33,7 @@ import {
 	Dropdown,
 	Button,
 } from '@wordpress/components';
+import { InspectorControls } from '@wordpress/block-editor';
 
 const allowedBlocks = [ 'generateblocks/container', 'generateblocks/button', 'generateblocks/headline', 'generateblocks/image' ];
 
@@ -120,12 +122,16 @@ function addAttributes( settings ) {
 	return settings;
 }
 
-function addControls( output, data ) {
+const withEffectControls = createHigherOrderComponent( ( BlockEdit ) => ( props ) => {
 	const {
 		attributes,
 		setAttributes,
 		name,
-	} = data.props;
+	} = props;
+
+	if ( ! allowedBlocks.includes( props.name ) || ! props.isSelected ) {
+		return <BlockEdit { ...props } />;
+	}
 
 	const {
 		useOpacity,
@@ -142,6 +148,7 @@ function addControls( output, data ) {
 		transforms,
 		useFilter,
 		filters,
+		variantRole,
 	} = attributes;
 
 	const targetOptions = [ {
@@ -173,9 +180,18 @@ function addControls( output, data ) {
 		} );
 	}
 
+	if ( 'accordion-item' === variantRole ) {
+		targetOptions.push( {
+			label: __( 'Accordion Content', 'generateblocks-pro' ),
+			value: 'accordionContent',
+		} );
+	}
+
 	return (
 		<Fragment>
-			<Fragment>
+			<BlockEdit { ...props } />
+
+			<InspectorControls>
 				<PanelBody
 					title={ __( 'Effects', 'generateblocks-pro' ) }
 					initialOpen={ false }
@@ -215,7 +231,7 @@ function addControls( output, data ) {
 							renderContent={ ( { onClose } ) => (
 								<div>
 									<Fragment>
-										<EffectPanelItem { ...data.props }
+										<EffectPanelItem { ...props }
 											effectLabel={ __( 'Opacity', 'generateblocks-pro' ) }
 											effectType="opacity"
 											effectName="opacities"
@@ -254,17 +270,18 @@ function addControls( output, data ) {
 												{ __( 'Close', 'generateblocks-pro' ) }
 											</Button>
 
-											<ToggleControl
-												className="gblocks-disable-in-editor"
-												label={ __( 'Disable in editor', 'generateblocks-pro' ) }
-												help={ __( 'Disable these effects in the editor when this block is selected.', 'generateblocks-pro' ) }
-												checked={ !! opacityDisableInEditor }
-												onChange={ ( value ) => {
-													setAttributes( {
-														opacityDisableInEditor: value,
-													} );
-												} }
-											/>
+											{ !! opacities.length &&
+												<ToggleControl
+													className="gblocks-disable-in-editor"
+													label={ __( 'Disable in editor', 'generateblocks-pro' ) }
+													checked={ !! opacityDisableInEditor }
+													onChange={ ( value ) => {
+														setAttributes( {
+															opacityDisableInEditor: value,
+														} );
+													} }
+												/>
+											}
 										</div>
 									</Fragment>
 								</div>
@@ -320,7 +337,7 @@ function addControls( output, data ) {
 							renderContent={ ( { onClose } ) => (
 								<div>
 									<Fragment>
-										<EffectPanelItem { ...data.props }
+										<EffectPanelItem { ...props }
 											effectLabel={ __( 'Transition', 'generateblocks-pro' ) }
 											effectType="transition"
 											effectName="transitions"
@@ -419,7 +436,7 @@ function addControls( output, data ) {
 							renderContent={ ( { onClose } ) => (
 								<div>
 									<Fragment>
-										<EffectPanelItem { ...data.props }
+										<EffectPanelItem { ...props }
 											effectLabel={ __( 'Box Shadow', 'generateblocks-pro' ) }
 											effectType="box-shadow"
 											effectName="boxShadows"
@@ -520,7 +537,7 @@ function addControls( output, data ) {
 								renderContent={ ( { onClose } ) => (
 									<div>
 										<Fragment>
-											<EffectPanelItem { ...data.props }
+											<EffectPanelItem { ...props }
 												effectLabel={ __( 'Text Shadow', 'generateblocks-pro' ) }
 												effectType="text-shadow"
 												effectName="textShadows"
@@ -603,7 +620,7 @@ function addControls( output, data ) {
 							renderContent={ ( { onClose } ) => (
 								<div>
 									<Fragment>
-										<EffectPanelItem { ...data.props }
+										<EffectPanelItem { ...props }
 											effectLabel={ __( 'Transform', 'generateblocks-pro' ) }
 											effectType="transforms"
 											effectName="transforms"
@@ -641,17 +658,18 @@ function addControls( output, data ) {
 												{ __( 'Close', 'generateblocks-pro' ) }
 											</Button>
 
-											<ToggleControl
-												className="gblocks-disable-in-editor"
-												label={ __( 'Disable in editor', 'generateblocks-pro' ) }
-												help={ __( 'Disable transforms in the editor when this block is selected.', 'generateblocks-pro' ) }
-												checked={ !! transformDisableInEditor }
-												onChange={ ( value ) => {
-													setAttributes( {
-														transformDisableInEditor: value,
-													} );
-												} }
-											/>
+											{ !! transforms.length &&
+												<ToggleControl
+													className="gblocks-disable-in-editor"
+													label={ __( 'Disable in editor', 'generateblocks-pro' ) }
+													checked={ !! transformDisableInEditor }
+													onChange={ ( value ) => {
+														setAttributes( {
+															transformDisableInEditor: value,
+														} );
+													} }
+												/>
+											}
 										</div>
 									</Fragment>
 								</div>
@@ -692,7 +710,7 @@ function addControls( output, data ) {
 							renderContent={ ( { onClose } ) => (
 								<div>
 									<Fragment>
-										<EffectPanelItem { ...data.props }
+										<EffectPanelItem { ...props }
 											effectLabel={ __( 'Filter', 'generateblocks-pro' ) }
 											effectType="filters"
 											effectName="filters"
@@ -736,14 +754,10 @@ function addControls( output, data ) {
 						/>
 					</div>
 				</PanelBody>
-			</Fragment>
-
-			<Fragment>
-				{ output }
-			</Fragment>
+			</InspectorControls>
 		</Fragment>
 	);
-}
+}, 'withEffectControls' );
 
 function addCSS( css, props, name ) {
 	const allowedAreas = [ 'container', 'button', 'headline', 'image' ];
@@ -768,13 +782,16 @@ function addCSS( css, props, name ) {
 		useTextShadow,
 		textShadows,
 		useFilter,
+		hasButtonContainer = false,
 	} = attributes;
 
 	if ( 'container' === name || 'button' === name || 'headline' === name || 'image' === name ) {
 		let selector = '.editor-styles-wrapper .gb-container-' + uniqueId;
 
 		if ( 'button' === name ) {
-			selector = '.editor-styles-wrapper .gb-button-wrapper .gb-button-' + uniqueId;
+			selector = hasButtonContainer
+				? '.editor-styles-wrapper .gb-button-wrapper .gb-button-' + uniqueId
+				: '.editor-styles-wrapper .gb-button-' + uniqueId;
 		}
 
 		if ( 'headline' === name ) {
@@ -925,7 +942,7 @@ function addCSS( css, props, name ) {
 
 					const transitionDelay = hasNumericValue( transitions[ key ].delay ) ? transitions[ key ].delay + 's' : '';
 					const transition = transitions[ key ].property + ' ' + valueWithUnit( transitions[ key ].duration, 's' ) + ' ' + transitions[ key ].timingFunction + ' ' + transitionDelay;
-					transitionData[ selectorData.element ].transitions.push( transition );
+					transitionData[ selectorData.element ].transitions.push( transition.trim() );
 
 					Object.keys( transitionData ).forEach( function( target ) {
 						const data = transitionData[ target ];
@@ -950,7 +967,7 @@ function addCSS( css, props, name ) {
 
 						if ( 'undefined' !== typeof data.transitions ) {
 							addToCSS( css, data.selector, {
-								transition: data.transitions.join( ' ' ),
+								transition: data.transitions.join( ', ' ),
 							} );
 						}
 					} );
@@ -1086,27 +1103,9 @@ addFilter(
 );
 
 addFilter(
-	'generateblocks.panel.containerDocumentation',
-	'generateblocks-pro/effects/add-container-controls',
-	addControls
-);
-
-addFilter(
-	'generateblocks.panel.buttonDocumentation',
-	'generateblocks-pro/effects/add-button-controls',
-	addControls
-);
-
-addFilter(
-	'generateblocks.panel.headlineDocumentation',
-	'generateblocks-pro/effects/add-headline-controls',
-	addControls
-);
-
-addFilter(
-	'generateblocks.panel.imageDocumentation',
-	'generateblocks-pro/effects/add-image-controls',
-	addControls
+	'editor.BlockEdit',
+	'generateblocks-pro/effects/add-controls',
+	withEffectControls
 );
 
 addFilter(

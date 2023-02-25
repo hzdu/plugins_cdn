@@ -25,10 +25,7 @@ import {
 	createHigherOrderComponent,
 } from '@wordpress/compose';
 
-import {
-	ToggleControl,
-	Notice,
-} from '@wordpress/components';
+import { ToggleControl, Notice } from '@wordpress/components';
 
 const allowedBlocks = [ 'generateblocks/container', 'generateblocks/button', 'generateblocks/button-container', 'generateblocks/headline', 'generateblocks/image' ];
 
@@ -139,9 +136,11 @@ function addCSS( css, props ) {
 	const attributes = applyFilters( 'generateblocks.editor.cssAttrs', props.attributes, props );
 
 	const {
+		uniqueId,
 		hideOnDesktop,
 		hideOnTablet,
 		hideOnMobile,
+		isGrid,
 	} = attributes;
 
 	let hideOnDevice = hideOnDesktop;
@@ -153,15 +152,79 @@ function addCSS( css, props ) {
 	}
 
 	if ( hideOnDevice ) {
-		addToCSS( css, '#block-' + clientId, {
+		addToCSS( css, '.editor-styles-wrapper [data-block="' + clientId + '"]', {
 			display: 'none !important',
 		} );
+
+		if ( isGrid ) {
+			addToCSS( css, '.gb-grid-column-' + uniqueId, {
+				display: 'none',
+			} );
+		}
 	}
 
 	return css;
 }
 
-function addDeviceMessage( output, id, data ) {
+function DeviceMessage( props ) {
+	const {
+		device,
+		attributes,
+		setAttributes,
+	} = props;
+
+	const {
+		hideOnDesktop,
+		hideOnTablet,
+		hideOnMobile,
+	} = attributes;
+
+	return (
+		<>
+			{ 'Desktop' === device &&
+				<ToggleControl
+					label={ __( 'Hide on desktop', 'generateblocks-pro' ) }
+					checked={ !! hideOnDesktop }
+					onChange={ ( value ) => {
+						setAttributes( {
+							hideOnDesktop: value,
+						} );
+					} }
+					help={ __( 'This block is hidden on this device.', 'generateblocks-pro' ) }
+				/>
+			}
+
+			{ 'Tablet' === device &&
+				<ToggleControl
+					label={ __( 'Hide on tablet', 'generateblocks-pro' ) }
+					checked={ !! hideOnTablet }
+					onChange={ ( value ) => {
+						setAttributes( {
+							hideOnTablet: value,
+						} );
+					} }
+					help={ __( 'This block is hidden on this device.', 'generateblocks-pro' ) }
+				/>
+			}
+
+			{ 'Mobile' === device &&
+				<ToggleControl
+					label={ __( 'Hide on mobile', 'generateblocks-pro' ) }
+					checked={ !! hideOnMobile }
+					onChange={ ( value ) => {
+						setAttributes( {
+							hideOnMobile: value,
+						} );
+					} }
+					help={ __( 'This block is hidden on this device.', 'generateblocks-pro' ) }
+				/>
+			}
+		</>
+	);
+}
+
+// Old device message using GB < 1.7.0.
+function addLegacyDeviceMessage( output, id, data ) {
 	if ( 'afterResponsiveTabs' !== id ) {
 		return output;
 	}
@@ -178,15 +241,11 @@ function addDeviceMessage( output, id, data ) {
 		hideOnMobile,
 	} = attributes;
 
-	if ( 'Desktop' === selectedDevice && ! hideOnDesktop ) {
-		return output;
-	}
-
-	if ( 'Tablet' === selectedDevice && ! hideOnTablet ) {
-		return output;
-	}
-
-	if ( 'Mobile' === selectedDevice && ! hideOnMobile ) {
+	if (
+		( 'Desktop' === selectedDevice && ! hideOnDesktop ) ||
+		( 'Tablet' === selectedDevice && ! hideOnTablet ) ||
+		( 'Mobile' === selectedDevice && ! hideOnMobile )
+	) {
 		return output;
 	}
 
@@ -197,49 +256,62 @@ function addDeviceMessage( output, id, data ) {
 				status="info"
 				isDismissible={ false }
 			>
-				{ __( 'This block is hidden on this device.', 'generateblocks-pro' ) }
-
-				{ 'Desktop' === selectedDevice &&
-					<ToggleControl
-						label={ __( 'Hide on desktop', 'generateblocks-pro' ) }
-						checked={ !! hideOnDesktop }
-						onChange={ ( value ) => {
-							setAttributes( {
-								hideOnDesktop: value,
-							} );
-						} }
-					/>
-				}
-
-				{ 'Tablet' === selectedDevice &&
-					<ToggleControl
-						label={ __( 'Hide on tablet', 'generateblocks-pro' ) }
-						checked={ !! hideOnTablet }
-						onChange={ ( value ) => {
-							setAttributes( {
-								hideOnTablet: value,
-							} );
-						} }
-					/>
-				}
-
-				{ 'Mobile' === selectedDevice &&
-					<ToggleControl
-						label={ __( 'Hide on mobile', 'generateblocks-pro' ) }
-						checked={ !! hideOnMobile }
-						onChange={ ( value ) => {
-							setAttributes( {
-								hideOnMobile: value,
-							} );
-						} }
-					/>
-				}
+				<DeviceMessage
+					device={ selectedDevice }
+					attributes={ attributes }
+					setAttributes={ setAttributes }
+				/>
 			</Notice>
 
 			{ output }
 		</Fragment>
 	);
 }
+
+function addDeviceMessage( content, props ) {
+	const {
+		device,
+		name,
+		attributes,
+		setAttributes,
+	} = props;
+
+	if ( ! allowedBlocks.includes( name ) ) {
+		return content;
+	}
+
+	const {
+		hideOnDesktop,
+		hideOnTablet,
+		hideOnMobile,
+	} = attributes;
+
+	if (
+		( 'Desktop' === device && ! hideOnDesktop ) ||
+		( 'Tablet' === device && ! hideOnTablet ) ||
+		( 'Mobile' === device && ! hideOnMobile )
+	) {
+		return content;
+	}
+
+	return (
+		<>
+			<DeviceMessage
+				device={ device }
+				attributes={ attributes }
+				setAttributes={ setAttributes }
+			/>
+
+			{ content }
+		</>
+	);
+}
+
+addFilter(
+	'generateblocks.editor.settingsPanel',
+	'generateblocks/device-display/add-notice',
+	addDeviceMessage
+);
 
 addFilter(
 	'blocks.registerBlockType',
@@ -274,5 +346,5 @@ addFilter(
 addFilter(
 	'generateblocks.editor.controls',
 	'generateblocks-pro/device-display/add-hidden-message',
-	addDeviceMessage
+	addLegacyDeviceMessage
 );

@@ -10,12 +10,15 @@ import {
 import {
 	RangeControl,
 	TextControl,
+	BaseControl,
 } from '@wordpress/components';
 
 export default class RangeControlInput extends Component {
 	render() {
 		const {
 			label,
+			id,
+			unit,
 			value,
 			onChange,
 			rangeMin = 0,
@@ -30,12 +33,12 @@ export default class RangeControlInput extends Component {
 		} = this.props;
 
 		return (
-			<div className="components-gblocks-range-control">
-				{ label &&
-					<div className="components-gblocks-range-control--label">
-						{ label }
-					</div>
-				}
+			<BaseControl
+				label={ label }
+				id={ id }
+				className="components-gblocks-range-control components-base-control"
+			>
+				{ !! unit && <span className="gblocks-pro-range-control-unit">{ unit }</span> }
 
 				<div className="components-gblocks-range-control--wrapper">
 					<div className="components-gblocks-range-control--range">
@@ -54,6 +57,7 @@ export default class RangeControlInput extends Component {
 
 					<div className="components-gblocks-range-control-input">
 						<TextControl
+							id={ id }
 							type="number"
 							placeholder={ '' !== placeholder ? placeholder : '' }
 							min={ inputMin }
@@ -79,7 +83,7 @@ export default class RangeControlInput extends Component {
 						{ help }
 					</p>
 				}
-			</div>
+			</BaseControl>
 		);
 	}
 }

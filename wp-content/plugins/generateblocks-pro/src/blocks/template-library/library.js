@@ -48,6 +48,7 @@ import {
 	Spinner,
 	SelectControl,
 	Modal,
+	Notice,
 } from '@wordpress/components';
 
 class TemplatesModal extends Component {
@@ -286,6 +287,11 @@ class TemplatesModal extends Component {
 													{ currentTemplates.map( ( template ) => {
 														const withThumb = !! template.thumbnail;
 														const templateTitle = decodeEntities( template.title );
+														const liClassName = classnames(
+															'generateblocks-plugin-templates-list-item',
+															`gbp-pattern-${ template.id }`,
+															withThumb ? '' : 'generateblocks-plugin-templates-list-item-no-thumb',
+														);
 
 														let thumbAspectRatio = false;
 
@@ -293,12 +299,16 @@ class TemplatesModal extends Component {
 															thumbAspectRatio = template.thumbnail_height / template.thumbnail_width;
 														}
 
+														const requiredFreeVersion = template.required_free_version ? parseFloat( template.required_free_version ) : parseFloat( generateBlocksPro.generateblocksVersion );
+														const requiredProVersion = template.required_pro_version ? parseFloat( template.required_pro_version ) : parseFloat( generateBlocksPro.generateblocksProVersion );
+														const needsFreeUpdate = requiredFreeVersion > parseFloat( generateBlocksPro.generateblocksVersion );
+														const needsProUpdate = requiredProVersion > parseFloat( generateBlocksPro.generateblocksProVersion );
+														const isDisabled = needsFreeUpdate || needsProUpdate;
+
 														return (
-															<li
-																className={ classnames( 'generateblocks-plugin-templates-list-item', withThumb ? '' : 'generateblocks-plugin-templates-list-item-no-thumb' ) }
-																key={ template.id }
-															>
+															<li className={ liClassName } key={ template.id }>
 																<button
+																	disabled={ isDisabled }
 																	onClick={ () => {
 																		this.setState( {
 																			loading: true,
@@ -340,6 +350,20 @@ class TemplatesModal extends Component {
 																		</div>
 																	}
 																	<div className="generateblocks-plugin-templates-list-item-title">{ templateTitle }</div>
+																	{ ( !! needsFreeUpdate || !! needsProUpdate ) &&
+																		<Notice status="error" className="gblocks-template-requires-version" isDismissible={ false }>
+																			{ !! needsFreeUpdate && sprintf(
+																				/* translators: GenerateBlocks version number */
+																				__( 'Requires GenerateBlocks %s', 'generateblocks-pro' ),
+																				requiredFreeVersion
+																			) }
+																			{ !! needsProUpdate && sprintf(
+																				/* translators: GenerateBlocks Pro version number */
+																				__( 'Requires GenerateBlocks Pro %s', 'generateblocks-pro' ),
+																				requiredProVersion
+																			) }
+																		</Notice>
+																	}
 																</button>
 															</li>
 														);

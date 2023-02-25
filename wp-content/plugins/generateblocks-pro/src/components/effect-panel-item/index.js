@@ -5,8 +5,8 @@ import classnames from 'classnames';
 import hasNumericValue from '../../utils/has-numeric-value';
 import getIcon from '../../utils/get-icon';
 import RangeControlInput from '../range-control';
-import UnitPicker from '../unit-picker';
 import ColorPicker from '../color-picker';
+import { transitionExists } from './utils';
 
 /**
  * WordPress dependencies
@@ -52,24 +52,6 @@ class EffectPanelItem extends Component {
 
 		const effects = attributes[ effectName ];
 
-		function transitionExists( target, customSelector ) {
-			return transitions.some( function( el ) {
-				let hasTarget = false;
-
-				if ( el.target === target ) {
-					hasTarget = true;
-
-					if ( 'undefined' !== typeof customSelector && '' !== customSelector ) {
-						if ( el.customSelector !== customSelector ) {
-							hasTarget = false;
-						}
-					}
-				}
-
-				return hasTarget;
-			} );
-		}
-
 		return (
 			<Fragment>
 				{
@@ -80,27 +62,6 @@ class EffectPanelItem extends Component {
 									<span className="gblocks-adv-dropdown-type-label">
 										{ effectLabel }
 									</span>
-
-									<Tooltip text={ __( 'Delete Effect', 'generateblocks-pro' ) }>
-										<Button
-											className="gblocks-delete-transform"
-											onClick={ () => {
-												// eslint-disable-next-line
-												if ( window.confirm( __( 'This will permanently delete this transform.', 'generateblocks-pro' ) ) ) {
-													const effectValues = [ ...effects ];
-
-													effectValues.splice( index, 1 );
-													setAttributes( { [ effectName ]: effectValues } );
-
-													if ( effectValues.length === 0 ) {
-														setAttributes( { [ useEffectName ]: false } );
-														onClose();
-													}
-												}
-											} }
-											icon={ getIcon( 'trash' ) }
-										/>
-									</Tooltip>
 								</div>
 
 								<div className="gblocks-advanced-dropdown-options">
@@ -240,6 +201,9 @@ class EffectPanelItem extends Component {
 																	...bgOptions,
 																	selector: 'pseudo-element',
 																},
+																position: 'relative',
+																overflowX: 'hidden',
+																overflowY: 'hidden',
 															} );
 														} else {
 															setAttributes( {
@@ -395,16 +359,9 @@ class EffectPanelItem extends Component {
 											<div className="gblocks-adv-dropdown-separator"></div>
 
 											<div className="gblocks-adv-dropdown-option">
-												<UnitPicker
-													label={ __( 'Transition Duration', 'generateblocks-pro' ) }
-													value={ 'sec' }
-													units={ [ 'sec' ] }
-													onClick={ () => {
-														return false;
-													} }
-												/>
-
 												<RangeControlInput
+													label={ __( 'Transition Duration', 'generateblocks-pro' ) }
+													unit="sec"
 													value={ hasNumericValue( effects[ index ].duration ) ? effects[ index ].duration : '' }
 													onChange={ ( value ) => {
 														const effectValues = [ ...effects ];
@@ -427,16 +384,9 @@ class EffectPanelItem extends Component {
 											</div>
 
 											<div className="gblocks-adv-dropdown-option">
-												<UnitPicker
-													label={ __( 'Delay', 'generateblocks-pro' ) }
-													value={ 'sec' }
-													units={ [ 'sec' ] }
-													onClick={ () => {
-														return false;
-													} }
-												/>
-
 												<RangeControlInput
+													label={ __( 'Delay', 'generateblocks-pro' ) }
+													unit="sec"
 													value={ hasNumericValue( effects[ index ].delay ) ? effects[ index ].delay : '' }
 													onChange={ ( value ) => {
 														const effectValues = [ ...effects ];
@@ -522,17 +472,12 @@ class EffectPanelItem extends Component {
 												</BaseControl>
 											</div>
 
-											<div className="gblocks-adv-dropdown-option">
-												<UnitPicker
-													label={ __( 'Horizontal Offset', 'generateblocks-pro' ) }
-													value={ 'px' }
-													units={ [ 'px' ] }
-													onClick={ () => {
-														return false;
-													} }
-												/>
+											<div className="gblocks-adv-dropdown-separator"></div>
 
+											<div className="gblocks-adv-dropdown-option">
 												<RangeControlInput
+													label={ __( 'Horizontal Offset', 'generateblocks-pro' ) }
+													unit="px"
 													value={ hasNumericValue( effects[ index ].xOffset ) ? effects[ index ].xOffset : '' }
 													onChange={ ( value ) => {
 														const effectValues = [ ...effects ];
@@ -553,16 +498,9 @@ class EffectPanelItem extends Component {
 											</div>
 
 											<div className="gblocks-adv-dropdown-option">
-												<UnitPicker
-													label={ __( 'Vertical Offset', 'generateblocks-pro' ) }
-													value={ 'px' }
-													units={ [ 'px' ] }
-													onClick={ () => {
-														return false;
-													} }
-												/>
-
 												<RangeControlInput
+													label={ __( 'Vertical Offset', 'generateblocks-pro' ) }
+													unit="px"
 													value={ hasNumericValue( effects[ index ].yOffset ) ? effects[ index ].yOffset : '' }
 													onChange={ ( value ) => {
 														const effectValues = [ ...effects ];
@@ -585,16 +523,9 @@ class EffectPanelItem extends Component {
 											<div className="gblocks-adv-dropdown-separator"></div>
 
 											<div className="gblocks-adv-dropdown-option">
-												<UnitPicker
-													label={ __( 'Blur', 'generateblocks-pro' ) }
-													value={ 'px' }
-													units={ [ 'px' ] }
-													onClick={ () => {
-														return false;
-													} }
-												/>
-
 												<RangeControlInput
+													label={ __( 'Blur', 'generateblocks-pro' ) }
+													unit="px"
 													value={ hasNumericValue( effects[ index ].blur ) ? effects[ index ].blur : '' }
 													onChange={ ( value ) => {
 														const effectValues = [ ...effects ];
@@ -616,16 +547,9 @@ class EffectPanelItem extends Component {
 											</div>
 
 											<div className="gblocks-adv-dropdown-option">
-												<UnitPicker
-													label={ __( 'Spread', 'generateblocks-pro' ) }
-													value={ 'px' }
-													units={ [ 'px' ] }
-													onClick={ () => {
-														return false;
-													} }
-												/>
-
 												<RangeControlInput
+													label={ __( 'Spread', 'generateblocks-pro' ) }
+													unit="px"
 													value={ hasNumericValue( effects[ index ].spread ) ? effects[ index ].spread : '' }
 													onChange={ ( value ) => {
 														const effectValues = [ ...effects ];
@@ -648,7 +572,7 @@ class EffectPanelItem extends Component {
 
 									{ 'text-shadow' === effectType &&
 										<Fragment>
-											<div className="gblocks-adv-dropdown-option gblocks-adv-dropdown-option-no-grow">
+											<div className="gblocks-adv-dropdown-option gblocks-adv-dropdown-option-no-grow gblocks-inline-color-label">
 												<BaseControl
 													id="gblocks-text-shadow-color"
 													label={ __( 'Color', 'generateblocks-pro' ) }
@@ -685,17 +609,12 @@ class EffectPanelItem extends Component {
 												</BaseControl>
 											</div>
 
-											<div className="gblocks-adv-dropdown-option">
-												<UnitPicker
-													label={ __( 'Horizontal Offset', 'generateblocks-pro' ) }
-													value={ 'px' }
-													units={ [ 'px' ] }
-													onClick={ () => {
-														return false;
-													} }
-												/>
+											<div className="gblocks-adv-dropdown-separator"></div>
 
+											<div className="gblocks-adv-dropdown-option">
 												<RangeControlInput
+													label={ __( 'Horizontal Offset', 'generateblocks-pro' ) }
+													unit="px"
 													value={ hasNumericValue( effects[ index ].xOffset ) ? effects[ index ].xOffset : '' }
 													onChange={ ( value ) => {
 														const effectValues = [ ...effects ];
@@ -716,16 +635,9 @@ class EffectPanelItem extends Component {
 											</div>
 
 											<div className="gblocks-adv-dropdown-option">
-												<UnitPicker
-													label={ __( 'Vertical Offset', 'generateblocks-pro' ) }
-													value={ 'px' }
-													units={ [ 'px' ] }
-													onClick={ () => {
-														return false;
-													} }
-												/>
-
 												<RangeControlInput
+													label={ __( 'Vertical Offset', 'generateblocks-pro' ) }
+													unit="px"
 													value={ hasNumericValue( effects[ index ].yOffset ) ? effects[ index ].yOffset : '' }
 													onChange={ ( value ) => {
 														const effectValues = [ ...effects ];
@@ -746,16 +658,9 @@ class EffectPanelItem extends Component {
 											</div>
 
 											<div className="gblocks-adv-dropdown-option">
-												<UnitPicker
-													label={ __( 'Blur', 'generateblocks-pro' ) }
-													value={ 'px' }
-													units={ [ 'px' ] }
-													onClick={ () => {
-														return false;
-													} }
-												/>
-
 												<RangeControlInput
+													label={ __( 'Blur', 'generateblocks-pro' ) }
+													unit="px"
 													value={ hasNumericValue( effects[ index ].blur ) ? effects[ index ].blur : '' }
 													onChange={ ( value ) => {
 														const effectValues = [ ...effects ];
@@ -783,16 +688,9 @@ class EffectPanelItem extends Component {
 											{ 'translate' === effects[ index ].type &&
 												<Fragment>
 													<div className="gblocks-adv-dropdown-option">
-														<UnitPicker
-															label={ __( 'Translate X', 'generateblocks-pro' ) }
-															value={ 'px' }
-															units={ [ 'px' ] }
-															onClick={ () => {
-																return false;
-															} }
-														/>
-
 														<RangeControlInput
+															label={ __( 'Translate X', 'generateblocks-pro' ) }
+															unit="px"
 															value={ hasNumericValue( effects[ index ].translateX ) ? effects[ index ].translateX : '' }
 															onChange={ ( value ) => {
 																const effectValues = [ ...effects ];
@@ -813,16 +711,9 @@ class EffectPanelItem extends Component {
 													</div>
 
 													<div className="gblocks-adv-dropdown-option">
-														<UnitPicker
-															label={ __( 'Translate Y', 'generateblocks-pro' ) }
-															value={ 'px' }
-															units={ [ 'px' ] }
-															onClick={ () => {
-																return false;
-															} }
-														/>
-
 														<RangeControlInput
+															label={ __( 'Translate Y', 'generateblocks-pro' ) }
+															unit="px"
 															value={ hasNumericValue( effects[ index ].translateY ) ? effects[ index ].translateY : '' }
 															onChange={ ( value ) => {
 																const effectValues = [ ...effects ];
@@ -847,16 +738,9 @@ class EffectPanelItem extends Component {
 											{ 'rotate' === effects[ index ].type &&
 												<Fragment>
 													<div className="gblocks-adv-dropdown-option">
-														<UnitPicker
-															label={ __( 'Rotate', 'generateblocks-pro' ) }
-															value={ 'deg' }
-															units={ [ 'deg' ] }
-															onClick={ () => {
-																return false;
-															} }
-														/>
-
 														<RangeControlInput
+															label={ __( 'Rotate', 'generateblocks-pro' ) }
+															unit="deg"
 															value={ hasNumericValue( effects[ index ].rotate ) ? effects[ index ].rotate : '' }
 															onChange={ ( value ) => {
 																const effectValues = [ ...effects ];
@@ -881,16 +765,9 @@ class EffectPanelItem extends Component {
 											{ 'skew' === effects[ index ].type &&
 												<Fragment>
 													<div className="gblocks-adv-dropdown-option">
-														<UnitPicker
-															label={ __( 'Skew X', 'generateblocks-pro' ) }
-															value={ 'deg' }
-															units={ [ 'deg' ] }
-															onClick={ () => {
-																return false;
-															} }
-														/>
-
 														<RangeControlInput
+															label={ __( 'Skew X', 'generateblocks-pro' ) }
+															unit="deg"
 															value={ hasNumericValue( effects[ index ].skewX ) ? effects[ index ].skewX : '' }
 															onChange={ ( value ) => {
 																const effectValues = [ ...effects ];
@@ -911,16 +788,9 @@ class EffectPanelItem extends Component {
 													</div>
 
 													<div className="gblocks-adv-dropdown-option">
-														<UnitPicker
-															label={ __( 'Skew Y', 'generateblocks-pro' ) }
-															value={ 'deg' }
-															units={ [ 'deg' ] }
-															onClick={ () => {
-																return false;
-															} }
-														/>
-
 														<RangeControlInput
+															label={ __( 'Skew Y', 'generateblocks-pro' ) }
+															unit="deg"
 															value={ hasNumericValue( effects[ index ].skewY ) ? effects[ index ].skewY : '' }
 															onChange={ ( value ) => {
 																const effectValues = [ ...effects ];
@@ -977,16 +847,9 @@ class EffectPanelItem extends Component {
 											{ 'blur' === effects[ index ].type &&
 												<Fragment>
 													<div className="gblocks-adv-dropdown-option">
-														<UnitPicker
-															label={ __( 'Blur', 'generateblocks-pro' ) }
-															value={ 'px' }
-															units={ [ 'px' ] }
-															onClick={ () => {
-																return false;
-															} }
-														/>
-
 														<RangeControlInput
+															label={ __( 'Blur', 'generateblocks-pro' ) }
+															unit="px"
 															value={ hasNumericValue( effects[ index ].blur ) ? effects[ index ].blur : '' }
 															onChange={ ( value ) => {
 																const effectValues = [ ...effects ];
@@ -1011,16 +874,9 @@ class EffectPanelItem extends Component {
 											{ 'brightness' === effects[ index ].type &&
 												<Fragment>
 													<div className="gblocks-adv-dropdown-option">
-														<UnitPicker
-															label={ __( 'Brightness', 'generateblocks-pro' ) }
-															value={ '%' }
-															units={ [ '%' ] }
-															onClick={ () => {
-																return false;
-															} }
-														/>
-
 														<RangeControlInput
+															label={ __( 'Brightness', 'generateblocks-pro' ) }
+															unit="%"
 															value={ hasNumericValue( effects[ index ].brightness ) ? effects[ index ].brightness : '' }
 															onChange={ ( value ) => {
 																const effectValues = [ ...effects ];
@@ -1046,16 +902,9 @@ class EffectPanelItem extends Component {
 											{ 'contrast' === effects[ index ].type &&
 												<Fragment>
 													<div className="gblocks-adv-dropdown-option">
-														<UnitPicker
-															label={ __( 'Contrast', 'generateblocks-pro' ) }
-															value={ '%' }
-															units={ [ '%' ] }
-															onClick={ () => {
-																return false;
-															} }
-														/>
-
 														<RangeControlInput
+															label={ __( 'Contrast', 'generateblocks-pro' ) }
+															unit="%"
 															value={ hasNumericValue( effects[ index ].contrast ) ? effects[ index ].contrast : '' }
 															onChange={ ( value ) => {
 																const effectValues = [ ...effects ];
@@ -1081,16 +930,9 @@ class EffectPanelItem extends Component {
 											{ 'grayscale' === effects[ index ].type &&
 												<Fragment>
 													<div className="gblocks-adv-dropdown-option">
-														<UnitPicker
-															label={ __( 'Grayscale', 'generateblocks-pro' ) }
-															value={ '%' }
-															units={ [ '%' ] }
-															onClick={ () => {
-																return false;
-															} }
-														/>
-
 														<RangeControlInput
+															label={ __( 'Grayscale', 'generateblocks-pro' ) }
+															unit="%"
 															value={ hasNumericValue( effects[ index ].grayscale ) ? effects[ index ].grayscale : '' }
 															onChange={ ( value ) => {
 																const effectValues = [ ...effects ];
@@ -1115,16 +957,9 @@ class EffectPanelItem extends Component {
 											{ 'hue-rotate' === effects[ index ].type &&
 												<Fragment>
 													<div className="gblocks-adv-dropdown-option">
-														<UnitPicker
-															label={ __( 'Hue-Rotate', 'generateblocks-pro' ) }
-															value={ 'deg' }
-															units={ [ 'deg' ] }
-															onClick={ () => {
-																return false;
-															} }
-														/>
-
 														<RangeControlInput
+															label={ __( 'Hue-Rotate', 'generateblocks-pro' ) }
+															unit="deg"
 															value={ hasNumericValue( effects[ index ].hueRotate ) ? effects[ index ].hueRotate : '' }
 															onChange={ ( value ) => {
 																const effectValues = [ ...effects ];
@@ -1149,16 +984,9 @@ class EffectPanelItem extends Component {
 											{ 'invert' === effects[ index ].type &&
 												<Fragment>
 													<div className="gblocks-adv-dropdown-option">
-														<UnitPicker
-															label={ __( 'Invert', 'generateblocks-pro' ) }
-															value={ '%' }
-															units={ [ '%' ] }
-															onClick={ () => {
-																return false;
-															} }
-														/>
-
 														<RangeControlInput
+															label={ __( 'Invert', 'generateblocks-pro' ) }
+															unit="%"
 															value={ hasNumericValue( effects[ index ].invert ) ? effects[ index ].invert : '' }
 															onChange={ ( value ) => {
 																const effectValues = [ ...effects ];
@@ -1183,16 +1011,9 @@ class EffectPanelItem extends Component {
 											{ 'saturate' === effects[ index ].type &&
 												<Fragment>
 													<div className="gblocks-adv-dropdown-option">
-														<UnitPicker
-															label={ __( 'Saturate', 'generateblocks-pro' ) }
-															value={ '%' }
-															units={ [ '%' ] }
-															onClick={ () => {
-																return false;
-															} }
-														/>
-
 														<RangeControlInput
+															label={ __( 'Saturate', 'generateblocks-pro' ) }
+															unit="%"
 															value={ hasNumericValue( effects[ index ].saturate ) ? effects[ index ].saturate : '' }
 															onChange={ ( value ) => {
 																const effectValues = [ ...effects ];
@@ -1218,16 +1039,9 @@ class EffectPanelItem extends Component {
 											{ 'sepia' === effects[ index ].type &&
 												<Fragment>
 													<div className="gblocks-adv-dropdown-option">
-														<UnitPicker
-															label={ __( 'Sepia', 'generateblocks-pro' ) }
-															value={ '%' }
-															units={ [ '%' ] }
-															onClick={ () => {
-																return false;
-															} }
-														/>
-
 														<RangeControlInput
+															label={ __( 'Sepia', 'generateblocks-pro' ) }
+															unit="%"
 															value={ hasNumericValue( effects[ index ].sepia ) ? effects[ index ].sepia : '' }
 															onChange={ ( value ) => {
 																const effectValues = [ ...effects ];
@@ -1252,8 +1066,8 @@ class EffectPanelItem extends Component {
 									}
 								</div>
 
-								{ 'transition' !== effectType && ! transitionExists( effects[ index ].target, effects[ index ].customSelector ) &&
-									<div className="gblocks-effects-auto-add-transition">
+								<div className="gblocks-effects-footer">
+									{ 'transition' !== effectType && ! transitionExists( effects[ index ].target, effects[ index ].customSelector, transitions ) &&
 										<Tooltip
 											text={ __( 'Automatically add a smooth transition to this effect.', 'generateblocks-pro' ) }
 										>
@@ -1296,8 +1110,33 @@ class EffectPanelItem extends Component {
 												{ __( 'Add Transition', 'generateblocks-pro' ) }
 											</Button>
 										</Tooltip>
-									</div>
-								}
+									}
+
+									<Tooltip text={ __( 'Delete this effect.', 'generateblocks-pro' ) }>
+										<Button
+											isSecondary
+											isSmall
+											className="gblocks-delete-effect"
+											onClick={ () => {
+												// eslint-disable-next-line
+												if ( window.confirm( __( 'This will permanently delete this effect.', 'generateblocks-pro' ) ) ) {
+													const effectValues = [ ...effects ];
+
+													effectValues.splice( index, 1 );
+													setAttributes( { [ effectName ]: effectValues } );
+
+													if ( effectValues.length === 0 ) {
+														setAttributes( { [ useEffectName ]: false } );
+														onClose();
+													}
+												}
+											} }
+											icon={ getIcon( 'trash' ) }
+										>
+											{ __( 'Delete', 'generateblocks-pro' ) }
+										</Button>
+									</Tooltip>
+								</div>
 							</div>
 						</Fragment>;
 					} )

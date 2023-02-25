@@ -31,27 +31,31 @@
 .gblocks-advanced-dropdown-container {
 	background: #fafafa;
     align-items: center;
-    margin-bottom: 20px;
-    border-radius: 3px;
+    margin-bottom: 10px;
     padding: 10px;
-    border: 1px solid #ccc;
 
-	button.gblocks-delete-transform {
-		margin-left: auto;
-		align-self: flex-start;
-	}
+	button.gblocks-delete-effect {
+		box-shadow: inset 0 0 0 1px #D11A2A;
+		color: #D11A2A;
 
-	.components-dropdown {
-		margin-left: auto;
-	}
-
-	.components-button.gblocks-transform-dropdown,
-	.components-button.gblocks-delete-transform {
-		justify-content: center;
-
-		& > svg {
-			margin-right: 0;
+		svg {
+			width: 1em;
+			height: 1em;
+			margin-right: 4px !important;
 		}
+	}
+
+	.components-dropdown:not(.gblocks-color-component__toggle) {
+		margin-left: auto;
+	}
+
+	.gblocks-color-component__toggle-button {
+		padding: 0;
+	}
+
+	.gblocks-color-component__toggle-indicator {
+		width: 22px;
+		height: 22px;
 	}
 
 	&:last-child {
@@ -66,6 +70,7 @@
 
 .gblocks-disable-in-editor {
 	margin-left: auto;
+	margin-bottom: 0 !important;
 
 	.components-base-control__field {
 		justify-content: flex-end;
@@ -73,6 +78,7 @@
 
 	.components-base-control__help {
 		margin-bottom: 0;
+		margin-top: 0;
 	}
 }
 
@@ -88,8 +94,28 @@
 
 .gblocks-advanced-dropdown-options {
 	display: flex;
-	flex-grow: 1;
 	flex-wrap: wrap;
+
+	.components-flex {
+		gap: 0;
+	}
+
+	.gblocks-pro-range-control-unit {
+		display: inline-block;
+		margin-left: 5px;
+		font-size: 8px;
+		text-transform: uppercase;
+		background: #fff;
+		padding: 0 2px;
+		vertical-align: middle;
+	}
+
+	.gblocks-inline-color-label .components-base-control__field {
+		display: flex;
+		align-items: center;
+		gap: 5px;
+		flex-direction: row-reverse;
+	}
 
 	.gblocks-adv-dropdown-separator {
 		flex-basis: 100%;
@@ -151,10 +177,8 @@
 
 .gblocks-advanced-dropdown-actions {
     display: flex;
-
-	button {
-		margin-right: 5px;
-	}
+	align-items: center;
+	gap: 5px;
 }
 
 .gblocks-adv-dropdown-header {
@@ -167,6 +191,10 @@
 	}
 }
 
-.gblocks-effects-auto-add-transition {
-	padding: 5px;
+.gblocks-effects-footer {
+	background: #f0f2f4;
+	padding: 10px;
+	display: flex;
+	gap: 5px;
+	margin: 10px -10px -10px;
 }

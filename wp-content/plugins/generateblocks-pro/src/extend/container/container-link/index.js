@@ -16,7 +16,7 @@ import {
 } from '@wordpress/hooks';
 
 import {
-	Fragment,
+	Fragment, useEffect, useRef,
 } from '@wordpress/element';
 
 import {
@@ -175,6 +175,7 @@ const addContainerLinkToolbar = createHigherOrderComponent( ( BlockEdit ) => {
 			relNoFollow,
 			useDynamicData,
 			dynamicLinkType,
+			position,
 		} = attributes;
 
 		const POPOVER_PROPS = {
@@ -182,11 +183,24 @@ const addContainerLinkToolbar = createHigherOrderComponent( ( BlockEdit ) => {
 			position: 'bottom right',
 		};
 
-		let typeMessage = __( 'This makes your Element Tag a link element. It uses valid HTML5 coding but will break if you add interative elements (links or buttons) inside the container.', 'generateblocks-pro' );
+		let typeMessage = __( 'This makes your Element Tag a link element. It uses valid HTML5 coding but will break if you add interactive elements (links or buttons) inside the container.', 'generateblocks-pro' );
 
 		if ( 'hidden-link' === linkType ) {
 			typeMessage = __( 'This adds a hidden link inside your container and tells it to cover the entire element. It is less prone to breakage, but is not as clean as the wrapper method.', 'generateblocks-pro' );
 		}
+
+		const isMounted = useRef( false );
+
+		useEffect( () => {
+			if ( ! isMounted.current ) {
+				isMounted.current = true;
+				return;
+			}
+
+			if ( ! position && ( !! url || !! dynamicLinkType ) && 'hidden-link' === linkType ) {
+				setAttributes( { position: 'relative' } );
+			}
+		}, [ url, dynamicLinkType, linkType ] );
 
 		return (
 			<Fragment>

@@ -187,6 +187,7 @@ function addCSS( css, props, name ) {
 		borderRadiusTopLeftMobile,
 		borderRadiusUnit,
 		innerZindex,
+		useInnerContainer,
 	} = attributes;
 
 	const selector = '.gb-container-' + uniqueId;
@@ -277,12 +278,15 @@ function addCSS( css, props, name ) {
 							right: '0',
 							bottom: '0',
 							left: '0',
+							'pointer-events': 'none',
 						} );
 
-						addToCSS( css, '.gb-container-' + uniqueId, {
-							position: 'relative',
-							overflow: 'hidden',
-						} );
+						if ( useInnerContainer ) {
+							addToCSS( css, '.gb-container-' + uniqueId, {
+								position: 'relative',
+								overflow: 'hidden',
+							} );
+						}
 
 						hasAfterPseudo = true;
 					}
@@ -305,6 +309,7 @@ function addCSS( css, props, name ) {
 								right: '0',
 								bottom: '0',
 								left: '0',
+								'pointer-events': 'none',
 							} );
 
 							if ( 'undefined' === typeof data.device || 'desktop' === data.device ) {
@@ -336,10 +341,12 @@ function addCSS( css, props, name ) {
 							}
 						}
 
-						addToCSS( css, '.gb-container-' + uniqueId, {
-							position: 'relative',
-							overflow: 'hidden',
-						} );
+						if ( useInnerContainer ) {
+							addToCSS( css, '.gb-container-' + uniqueId, {
+								position: 'relative',
+								overflow: 'hidden',
+							} );
+						}
 					}
 
 					addToCSS( css, data.selector, {
@@ -353,7 +360,7 @@ function addCSS( css, props, name ) {
 			} );
 		} );
 
-		if ( innerZIndexValue || 0 === innerZIndexValue ) {
+		if ( useInnerContainer && ( innerZIndexValue || 0 === innerZIndexValue ) ) {
 			addToCSS( css, '.gb-container-' + uniqueId + ' > .gb-inside-container', {
 				'z-index': innerZIndexValue,
 				position: 'relative',
