@@ -1,6 +1,17 @@
 # Changelog
 All notable changes to this project will be documented in this file and formatted via [this recommendation](https://keepachangelog.com/).
 
+## [1.8.0.2] - 2023-02-28
+### Changed
+- Updated DOMPurify library to 3.0.1.
+
+### Fixed
+- An error occurred when the DreamHost Panel Login plugin and WPForms Lite were both active and WPForms Pro was activated.
+- Some dropdown fields in the Marketing settings area of the Form Builder were rendered incorrectly in Safari after making a selection.
+- Form template block in the Form Builder could overflow the container on smaller screen sizes.
+- Long links in the HTML email messages did not wrap and caused overflow issues.
+- Google reCAPTCHA v2 could not be reset on server-side validation failure.
+
 ## [1.8.0.1] - 2023-02-15
 ### Fixed 
 - Invisible reCaptcha was incorrectly processed resulting in failed form submissions with a wrong error message.
