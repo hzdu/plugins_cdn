@@ -226,7 +226,7 @@ const tutorials = {
     },
     {
       url: "https://valvepress.com/wordpress-internal-cron-job-work-may-need-setup-external-cron/",
-      title: "WordPress internal cron job work may need setup external cron",
+      title: "How to setup a cron job to run WordPress Automatic campaigns automatically",
     },
 
     {
