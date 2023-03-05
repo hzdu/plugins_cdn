@@ -3,7 +3,7 @@ Contributors: anbinder, karzin, pluggabl
 Tags: woocommerce, booster for woocommerce, woocommerce jetpack
 Requires at least: 5.8
 Tested up to: 6.1.1
-Stable tag: 6.0.3
+Stable tag: 6.0.4
 License: GNU General Public License v3.0
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -203,6 +203,12 @@ You can see the differences between versions in this [table](https://booster.io/
 8. Booster for WooCommerce - Emails & Misc.
 
 == Changelog ==
+
+= 6.0.4 02/03/2023 =
+
+* FIXED - PDF INVOICING & PACKING SLIPS - PDF Invoicing - Fixed PDF Header and Footer issue.
+* WooCommerce 7.4.0 Tested
+* WordPress 6.1.1 Tested
 
 = 6.0.3 22/02/2023 =
 
