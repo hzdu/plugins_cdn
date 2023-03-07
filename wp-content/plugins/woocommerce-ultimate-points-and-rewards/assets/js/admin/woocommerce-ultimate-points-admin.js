@@ -85,7 +85,7 @@
 	                        jQuery("#mwb_wpr_loader").hide();
 	                    }
 		  			}
-		  		});	
+		  		});
 			}
 		});
     	jQuery(document).on('click','.mwb_wpr_repeat_button',function(){
@@ -448,7 +448,7 @@
 		      },success: function(response) 
 		      {
 		        if( response.msg == '' ){
-		          response.msg = 'Something Went Wrong! Please try again';
+		          response.msg = mwb_wpr.license_error_msg;
 		        }
 		        $('.loading_image').hide();
 		        console.log(response);
@@ -487,7 +487,7 @@
 				if( response == true)
 				{
 					var tbody_length = $('.mwb_wpr_thankyouorder_tbody > tr').length;
-					var new_row = '<tr valign="top"><td class="forminp forminp-text"><label for="mwb_wpr_thankyouorder_minimum"><input type="text" name="mwb_wpr_thankyouorder_minimum[]" class="mwb_wpr_thankyouorder_minimum input-text wc_input_price" required=""></label></td><td class="forminp forminp-text"><label for="mwb_wpr_thankyouorder_maximum"><input type="text" name="mwb_wpr_thankyouorder_maximum[]" class="mwb_wpr_thankyouorder_maximum"></label></td><td class="forminp forminp-text"><label for="mwb_wpr_thankyouorder_current_type"><input type="text" name="mwb_wpr_thankyouorder_current_type[]" class="mwb_wpr_thankyouorder_current_type input-text wc_input_price" required=""></label></td><td class="mwb_wpr_remove_thankyouorder_content forminp forminp-text"><input type="button" value="Remove" class="mwb_wpr_remove_thankyouorder button" ></td></tr>';
+					var new_row = '<tr valign="top"><td class="forminp forminp-text"><label for="mwb_wpr_thankyouorder_minimum"><input type="text" name="mwb_wpr_thankyouorder_minimum[]" class="mwb_wpr_thankyouorder_minimum input-text wc_input_price" required=""></label></td><td class="forminp forminp-text"><label for="mwb_wpr_thankyouorder_maximum"><input type="text" name="mwb_wpr_thankyouorder_maximum[]" class="mwb_wpr_thankyouorder_maximum"></label></td><td class="forminp forminp-text"><label for="mwb_wpr_thankyouorder_current_type"><input type="text" name="mwb_wpr_thankyouorder_current_type[]" class="mwb_wpr_thankyouorder_current_type input-text wc_input_price" required=""></label></td><td class="mwb_wpr_remove_thankyouorder_content forminp forminp-text"><input type="button" value="' + mwb_wpr.remove_button + '" class="mwb_wpr_remove_thankyouorder button" ></td></tr>';
 					
 					if( tbody_length == 2 )
 					{
@@ -573,7 +573,7 @@ var check_validation_setting = function(){
 				$('html, body').animate({
 			        scrollTop: $(".woocommerce_page_mwb-wpr-setting").offset().top
 			    }, 800);
-			    var empty_message = '<div class="notice notice-error is-dismissible"><p><strong>Some Fields are empty!</strong></p></div>';
+			    var empty_message = '<div class="notice notice-error is-dismissible"><p><strong>' + mwb_wpr.empty_field_msg + '</strong></p></div>';
 			    $(empty_message).insertAfter($('h1.mwb_wpr_setting'));
 				return;
 			}
@@ -606,7 +606,7 @@ var check_validation_setting = function(){
 					$('html, body').animate({
 				        scrollTop: $(".woocommerce_page_mwb-wpr-setting").offset().top
 				    }, 800);
-				    var empty_message = '<div class="notice notice-error is-dismissible"><p><strong>Some Fields are empty!</strong></p></div>';
+				    var empty_message = '<div class="notice notice-error is-dismissible"><p><strong>' + mwb_wpr.empty_field_msg + '</strong></p></div>';
 				    $(empty_message).insertAfter($('h1.mwb_wpr_setting'));
 					return;
 				}
@@ -622,7 +622,7 @@ var check_validation_setting = function(){
 				$('html, body').animate({
 			        scrollTop: $(".woocommerce_page_mwb-wpr-setting").offset().top
 			    }, 800);
-			    var empty_message = '<div class="notice notice-error is-dismissible"><p><strong>Minimum value cannot have value grater than Maximim value.</strong></p></div>';
+			    var empty_message = '<div class="notice notice-error is-dismissible"><p><strong>' + mwb_wpr.min_max_error_msg + '</strong></p></div>';
 			    $(empty_message).insertAfter($('h1.mwb_wpr_setting'));
 				return;
 			}
@@ -632,5 +632,27 @@ var check_validation_setting = function(){
 			return false;
 		}
 	};
+
+	// This function is used to remove member from user when click on remove button.
+	jQuery(document).on('click', '.mwb_wpr_remove_button', function(){
+		var count      = $(this).attr('id');
+		var level_name = $('#mwb_wpr_membership_level_name_'+count).val();
+
+		var data = {
+			action     : 'mwb_wpr_remove__membership',
+			level_name : level_name,
+			mwb_nonce  : mwb_wpr.mwb_wpr_nonce,
+		};
+
+		$.ajax({
+			url: mwb_wpr.ajaxurl,
+			type: "POST",  
+			data: data,
+			success: function(response) 
+			{
+				console.log(response);
+			}
+		});
+	});
 
 } ( jQuery ) );

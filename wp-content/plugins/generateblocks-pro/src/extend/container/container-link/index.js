@@ -178,6 +178,12 @@ const addContainerLinkToolbar = createHigherOrderComponent( ( BlockEdit ) => {
 			position,
 		} = attributes;
 
+		if ( 'generateblocks/container' !== name ) {
+			return (
+				<BlockEdit { ...props } />
+			);
+		}
+
 		const POPOVER_PROPS = {
 			className: 'block-editor-block-settings-menu__popover',
 			position: 'bottom right',
@@ -206,7 +212,7 @@ const addContainerLinkToolbar = createHigherOrderComponent( ( BlockEdit ) => {
 			<Fragment>
 				<BlockEdit { ...props } />
 
-				{ isSelected && 'generateblocks/container' === name &&
+				{ isSelected &&
 					<Fragment>
 						<BlockControls>
 							<ToolbarGroup>

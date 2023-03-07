@@ -8,11 +8,9 @@ class BraintreeForWooCommerce extends Compatibility {
     }
 
     load(): void {
-        if ( typeof wc_braintree_googlepay_params === 'undefined' ) {
-            return;
+        if ( typeof wc_braintree_googlepay_params !== 'undefined' ) {
+            wc_braintree_googlepay_params.button_options.buttonSizeMode = 'fill';
         }
-
-        wc_braintree_googlepay_params.button_options.buttonSizeMode = 'fill';
 
         // Fix Braintree for WooCommerce buttons that don't initiate
         jQuery( window ).on( 'load', () => {

@@ -29,11 +29,6 @@ class PaymentRequestButtons {
         } );
     }
 
-    hideExpressButtons(): void {
-        this.expressButtonContainer.css( 'position', 'absolute' ).css( 'visibility', 'hidden' );
-        this.expressButtonSeparator.hide();
-    }
-
     showExpressButtons(): void {
         this.expressButtonContainer.css( 'position', 'relative' ).css( 'visibility', 'visible' );
         this.expressButtonSeparator.show();

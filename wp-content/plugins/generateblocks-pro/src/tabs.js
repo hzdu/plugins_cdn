@@ -5,7 +5,8 @@ const Tabs = ( button ) => {
 		return;
 	}
 
-	const index = [ ...button.parentElement.children ].indexOf( button );
+	const allButtons = [ ...button.parentElement.children ].filter( ( child ) => child.classList.contains( 'gb-tabs__button' ) );
+	const index = allButtons.indexOf( button );
 	const itemContainer = container.querySelector( '.gb-tabs__items' ); // Only get the first items element.
 	const items = itemContainer.querySelectorAll( ':scope > .gb-tabs__item' );
 	const item = items[ index ];

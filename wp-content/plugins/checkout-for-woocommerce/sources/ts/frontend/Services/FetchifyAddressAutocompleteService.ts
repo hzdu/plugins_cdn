@@ -43,10 +43,12 @@ class FetchifyAddressAutocompleteService {
             this.fieldValidationRefresher.refreshField( document.getElementById( `${prefix}_company` ) );
             this.fieldValidationRefresher.refreshField( document.getElementById( `${prefix}_city` ) );
             this.fieldValidationRefresher.refreshField( document.getElementById( `${prefix}_postcode` ) );
+
+            jQuery( `#${prefix}_fetchify_search` ).val( '' );
         };
 
         fetchify.attach( {
-            search: `${prefix}_address_1`, // search box element
+            search: `${prefix}_fetchify_search`, // search box element
             line_1: `${prefix}_address_1`,
             line_2: `${prefix}_address_2`,
             company: `${prefix}_company`,

@@ -27,6 +27,12 @@ const withAccordion = createHigherOrderComponent( ( BlockEdit ) => {
 			transitions,
 		} = attributes;
 
+		const isAccordionItem = ( 'generateblocks/container' === name || 'generateblocks/button' === name ) && variantRole && variantRole.includes( 'accordion' );
+
+		if ( ! isAccordionItem ) {
+			return <BlockEdit { ...props } />;
+		}
+
 		const { getBlock, getBlockParentsByBlockName, getBlocks } = useSelect( ( select ) => select( blockEditorStore ), [] );
 		const { updateBlockAttributes } = useDispatch( blockEditorStore );
 		const [ currentClientId ] = useState( clientId );
@@ -171,12 +177,6 @@ const withAccordion = createHigherOrderComponent( ( BlockEdit ) => {
 				}
 			}
 		}, [ accordionTransition, transitions ] );
-
-		const isAccordionItem = ( 'generateblocks/container' === name || 'generateblocks/button' === name ) && variantRole && variantRole.includes( 'accordion' );
-
-		if ( ! isAccordionItem ) {
-			return <BlockEdit { ...props } />;
-		}
 
 		return (
 			<>

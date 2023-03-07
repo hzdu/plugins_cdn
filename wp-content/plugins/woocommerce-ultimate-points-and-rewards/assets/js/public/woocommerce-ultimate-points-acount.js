@@ -225,7 +225,7 @@
 						}
 						//MWB CUSTOM CODE
 						if(response.purchase_pro_pnts_only == "purchased_pro_points" && response.price_html !=null){
-							$('.woocommerce-variation-price').html(response.price_html+" Points");
+							$('.woocommerce-variation-price').html(response.price_html + ' ' + mwb_wpr.mwb_points);
 						}
 						//MWB CUSTOM CODE
 						
@@ -253,7 +253,7 @@
 		  				
 						//MWB CUSTOM CODE
 						if(response.purchase_pro_pnts_only == "purchased_pro_points" && response.price_html !=null){
-							$('.woocommerce-variation-price').html(response.price_html+" Points");
+							$('.woocommerce-variation-price').html(response.price_html + ' ' + mwb_wpr.mwb_points);
 						}
 						//MWB CUSTOM CODE
 		  			},

@@ -566,7 +566,7 @@ html,body{
   width: 100%;
   margin-top: 30px;
   text-align: center;
-  padding: 20px 0;
+  padding: 10px 0;
 }
 #mwb_wpr_order_notice p {
   display: inline-block;
@@ -576,12 +576,24 @@ html,body{
   margin-bottom: 0;
 }
 .mwb_wpr_apply_custom_points #mwb_cart_points {
-  height: 42px;
-  width: 100px;
   border: 2px solid #CCCCCC;
   border-radius: 4px;
   font-size: 14px;
   background: #ffffff;
+  max-width: 135px;
+  padding: 10px;
+}
+
+.theme-Divi #mwb_cart_points_apply {
+  border: 2px solid #056f9d;
+  color: #fff;
+  background-color: #056f9d;
+}
+
+input#mwb_cart_points_apply {
+  min-height: 30px;
+  padding: 10px;
+  height: auto;
 }
 
 .mwb_wpr_reward {
@@ -619,20 +631,22 @@ html,body{
     margin-bottom: 0;
 }
 .custom_point_checkout .mwb_apply_checkout p {
-  float: left;
+  float: unset;
   width: 100%;
   margin-bottom: 0;
 }
 .custom_point_checkout #mwb_cart_points {
     padding: 4px 10px;
     width: 135px;
-    float: left;
+    float: unset;
+    min-height: 30px;
 }
 .custom_point_checkout #mwb_cart_points_apply {
-    float: left;
     margin-left: 10px;
     padding: 8px 10px;
     font-size: 14px;
+    float: unset;
+    min-height: 30px;
 }
 #mwb_wpr_pro_cost_to_points {
   padding: 8px;
@@ -640,6 +654,7 @@ html,body{
   margin-right: 10px;
   vertical-align: middle;
   -webkit-appearance: checkbox;
+  width: auto;
 }
 
 /* design changes */
@@ -660,6 +675,39 @@ html,body{
 
 .mwb_wpr_common_slider {
   padding: 10px;
+}
+
+.theme-Divi input#mwb_cart_points_apply+p {
+  color: #555;
+}
+
+.wps_wpr_main_custom_coupon__wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+form#mwb_wpr_membership input[type=submit] {
+  min-height: 40px;
+  padding: 10px;
+}
+
+form#points_form .wps_wpr_main_custom_coupon__wrapper input[type=number] {
+  border: 1px solid #ccc;
+  flex: 1 0 80%;
+  max-width: 200px;
+}
+
+.wps_wpr_main_custom_coupon__wrapper input[type='button'] {
+  min-height: 40px;
+  padding: 10px;
+}
+
+.woocommerce-message.wps_wpr_message_for_redemption__wrapper ul {
+  margin: 0;
+}
+
+.mwb_referral_link_shortcode{
+  max-width: 600px;
 }
 
 @media only screen and (max-width: 768px) {

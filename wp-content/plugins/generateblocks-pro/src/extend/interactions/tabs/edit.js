@@ -27,6 +27,12 @@ const withTabs = createHigherOrderComponent( ( BlockEdit ) => {
 			lock,
 		} = attributes;
 
+		const isTabItem = ( 'generateblocks/container' === name || 'generateblocks/button' === name ) && variantRole && variantRole.includes( 'tab' );
+
+		if ( ! isTabItem ) {
+			return <BlockEdit { ...props } />;
+		}
+
 		const { getBlock, getBlockParentsByBlockName, getBlocks } = useSelect( ( select ) => select( blockEditorStore ), [] );
 		const { updateBlockAttributes } = useDispatch( blockEditorStore );
 		const [ currentClientId ] = useState( clientId );
@@ -111,12 +117,6 @@ const withTabs = createHigherOrderComponent( ( BlockEdit ) => {
 				}
 			}
 		}, [ JSON.stringify( attributes ) ] );
-
-		const isTabItem = ( 'generateblocks/container' === name || 'generateblocks/button' === name ) && variantRole && variantRole.includes( 'tab' );
-
-		if ( ! isTabItem ) {
-			return <BlockEdit { ...props } />;
-		}
 
 		return (
 			<>
