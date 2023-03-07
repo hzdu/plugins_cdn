@@ -20,6 +20,7 @@
     visibility: visible;
     width: 100%;
     transform: none;
+    pointer-events: auto;
 }
 
 .x-content-switcher .x-content-switcher_content:not([data-x-switcher]) > *:nth-child(2)  {
@@ -30,6 +31,7 @@
     opacity: 0;
     visibility: hidden;
     width: 100%;
+    pointer-events: none;
 }
 
 .x-content-switcher .x-content-switcher_toggled > *:nth-child(1) {
@@ -39,6 +41,7 @@
     opacity: 0;
     visibility: hidden;
     width: 100%;
+    pointer-events: none;
 }
 
 .x-content-switcher .x-content-switcher_toggled:not([data-x-switcher]) > *:nth-child(2) {
@@ -47,6 +50,7 @@
     visibility: visible;
     width: 100%;
     transform: none;
+    pointer-events: auto;
 }
 
 .x-content-switcher_content[data-x-switcher^="1"] > *:not(:nth-child(1)), 
@@ -68,6 +72,7 @@
     opacity: 0;
     visibility: hidden;
     width: 100%;
+    pointer-events: none;
 }
 
 .x-content-switcher_hide > *:not(:first-child) {
@@ -77,6 +82,7 @@
     opacity: 0;
     visibility: hidden;
     width: 100%;
+    pointer-events: none;
 }
 
 .brx-body.iframe .x-content-switcher_content > *.editing,
@@ -86,5 +92,6 @@
     visibility: visible!important;
     width: 100%!important;
     transform: none!important;
+    pointer-events: auto!important;
 }
 

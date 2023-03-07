@@ -6,10 +6,6 @@
    display: none;
 }
 
-[data-x-table] {
-    box-shadow: 0 1px 3px 0 rgb(0 0 0 / 10%), 0 1px 2px 0 rgb(0 0 0 / 26%);
-}
-
 .brxe-xdynamictable .gridjs-wrapper {
     border-radius: 0;
 }
@@ -227,10 +223,7 @@ th.gridjs-th-sort {
 th.gridjs-th-sort .gridjs-th-content {
     width: calc(100% - 15px);
 }
-th.gridjs-th-sort:focus,
-th.gridjs-th-sort:hover {
-    background-color: var(--x-grid-border-color);
-}
+
 th.gridjs-th-fixed {
     box-shadow: 0 1px 0 0 var(--x-grid-border-color);
     position: sticky;
@@ -252,7 +245,7 @@ th.gridjs-th:last-child {
 .gridjs-tr-selected td {
     background-color: #ebf5ff;
 }
-.gridjs-tr:last-child td {
+.x-dynamic-table_container:not(.x-dynamic-table_stacked) .gridjs-tr:last-child td {
     border-bottom: 0;
 }
 .gridjs *,
@@ -335,10 +328,85 @@ th.gridjs-th:last-child {
 .gridjs-footer {
     box-shadow: none;
     border: 1px solid var(--x-grid-border-color);
+}
+
+.x-dynamic-table_container:not(.x-dynamic-table_stacked) .gridjs-footer {
     border-top: none;
 }
 
 .gridjs-wrapper {
     box-shadow: none;
     border: 1px solid var(--x-grid-border-color);
+}
+
+.x-dynamic-table_stacked thead{
+    position: absolute;
+    top: 0;
+    left:0;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+}
+
+.x-dynamic-table_stacked td.gridjs-td {
+    border-top: none;
+    border-left: none;
+    border-right: none;
+}
+
+.x-dynamic-table_stacked td.gridjs-td:last-child {
+    border-bottom: 0;
+}
+
+.x-dynamic-table_stacked td{
+    position: relative;
+    text-align: right;
+    padding-right: 16px;
+    padding-left: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.x-dynamic-table_stacked td:before{
+    content: attr(data-x-mobile-label);
+    position: absolute;
+    left:0;
+    top:0;
+    bottom: 0;
+    min-width: 150px;
+    font-size: 14px;
+    font-weight: 700;
+    padding: 8px 16px;
+    text-align: left;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-color: #f9fafb;
+    border-right: 1px solid var(--x-grid-border-color);
+    box-sizing: border-box;
+    color: #6b7280;
+}
+
+.x-dynamic-table_stacked .gridjs-tbody {
+    display: flex;
+    flex-direction: column;
+    border: none;
+}
+
+.x-dynamic-table_stacked .gridjs-wrapper {
+    border: none;
+}
+
+.x-dynamic-table_stacked .gridjs-tr {
+    border: 1px solid var(--x-grid-border-color);
+}
+
+.x-dynamic-table_stacked td[data-label="Name"]{
+    order: -1;
+    font-weight: 700;
+}
+
+.x-dynamic-table_stacked .gridjs-tr:last-child td:last-child {
+    border-bottom: 0;
 }

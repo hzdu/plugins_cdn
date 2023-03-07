@@ -80,7 +80,7 @@ component.x-slider {
     opacity: 1;
 }
 
-.x-slider .splide__slide img {
+.x-slider-gallery .splide__slide img {
     height: auto;
     width: 100%;
 }
@@ -177,7 +177,7 @@ component.x-slider {
 }
 
 .splide__track--nav>.splide__list>.splide__slide {
-    opacity: 0.75;
+    opacity: 1;
 }
 
 .splide__track--nav>.splide__list>.splide__slide.is-active {
@@ -190,19 +190,86 @@ component.x-slider {
 }
 
 .x-slider [data-x-animation*=fade] {
+     opacity: 0;
+}
+
+.x-slider .splide__slide [data-x-interaction-animation] {
     opacity: 0;
 }
 
+.x-slider .splide__slide [data-x-interaction-animation] {
+    animation-name: none;
+}
+
+.x-slider .splide__slide [data-x-interaction-animation].x-animated {
+    opacity: 1;
+}
+
+/* if active */
+
+.x-slider[data-x-slider*=is-active][data-x-slider*=animateOnce] .splide__slide [data-x-interaction-animation].brx-x-animate-fadeIn,
+.x-slider[data-x-slider*=is-active]:not([data-x-slider*=animateOnce]) .splide__slide.is-active [data-x-interaction-animation].brx-x-animate-fadeIn {
+    animation-name: fadeIn;
+}
+
+.x-slider[data-x-slider*=is-active][data-x-slider*=animateOnce] .splide__slide [data-x-interaction-animation].brx-x-animate-fadeInDown,
+.x-slider[data-x-slider*=is-active]:not([data-x-slider*=animateOnce]) .splide__slide.is-active [data-x-interaction-animation].brx-x-animate-fadeInDown {
+    animation-name: fadeInDown;
+}
+
+.x-slider[data-x-slider*=is-active][data-x-slider*=animateOnce] .splide__slide [data-x-interaction-animation].brx-x-animate-fadeInLeft,
+.x-slider[data-x-slider*=is-active]:not([data-x-slider*=animateOnce]) .splide__slide.is-active [data-x-interaction-animation].brx-x-animate-fadeInLeft {
+    animation-name: fadeInLeft;
+}
+
+.x-slider[data-x-slider*=is-active][data-x-slider*=animateOnce] .splide__slide [data-x-interaction-animation].brx-x-animate-fadeInUp,
+.x-slider[data-x-slider*=is-active]:not([data-x-slider*=animateOnce]) .splide__slide.is-active [data-x-interaction-animation].brx-x-animate-fadeInUp {
+    animation-name: fadeInUp;
+}
+
+.x-slider[data-x-slider*=is-active][data-x-slider*=animateOnce] .splide__slide [data-x-interaction-animation].brx-x-animate-fadeInRight,
+.x-slider[data-x-slider*=is-active]:not([data-x-slider*=animateOnce]) .splide__slide.is-active [data-x-interaction-animation].brx-x-animate-fadeInRight {
+    animation-name: fadeInRight;
+}
+
+/* if visible */
+
+.x-slider[data-x-slider*=is-visible][data-x-slider*=animateOnce] .splide__slide [data-x-interaction-animation].brx-x-animate-fadeIn,
+.x-slider[data-x-slider*=is-visible]:not([data-x-slider*=animateOnce]) .splide__slide.is-visible [data-x-interaction-animation].brx-x-animate-fadeIn {
+    animation-name: fadeIn;
+}
+
+.x-slider[data-x-slider*=is-visible][data-x-slider*=animateOnce] .splide__slide [data-x-interaction-animation].brx-x-animate-fadeInDown,
+.x-slider[data-x-slider*=is-visible]:not([data-x-slider*=animateOnce]) .splide__slide.is-visible [data-x-interaction-animation].brx-x-animate-fadeInDown {
+    animation-name: fadeInDown;
+}
+
+.x-slider[data-x-slider*=is-visible][data-x-slider*=animateOnce] .splide__slide [data-x-interaction-animation].brx-x-animate-fadeInLeft,
+.x-slider[data-x-slider*=is-visible]:not([data-x-slider*=animateOnce]) .splide__slide.is-visible [data-x-interaction-animation].brx-x-animate-fadeInLeft {
+    animation-name: fadeInLeft;
+}
+
+.x-slider[data-x-slider*=is-visible][data-x-slider*=animateOnce] .splide__slide [data-x-interaction-animation].brx-x-animate-fadeInUp,
+.x-slider[data-x-slider*=is-visible]:not([data-x-slider*=animateOnce]) .splide__slide.is-visible [data-x-interaction-animation].brx-x-animate-fadeInUp {
+    animation-name: fadeInUp;
+}
+
+.x-slider[data-x-slider*=is-visible][data-x-slider*=animateOnce] .splide__slide [data-x-interaction-animation].brx-x-animate-fadeInRight,
+.x-slider[data-x-slider*=is-visible]:not([data-x-slider*=animateOnce]) .splide__slide.is-visible [data-x-interaction-animation].brx-x-animate-fadeInRight {
+    animation-name: fadeInRight;
+}
 
 .x-slider {
     position: relative;
 }
 
+.x-slider .splide__arrows:not(.x-splide__arrows) {
+    display: none;
+}
+
 .x-slider_builder {
     width: 100%;
 }
-
-
 
 /* slider for builder */
 
@@ -212,4 +279,12 @@ component.x-slider {
 
 .x-slider_builder .x-slider-gallery:empty {
     min-height: 200px;
+}
+
+body.bricks-is-frontend .x-slider_slide:focus {
+    outline: none;
+}
+
+body.bricks-is-frontend .x-slider_slide:focus-visible {
+    outline: thin dotted currentcolor;
 }

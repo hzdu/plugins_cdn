@@ -25,7 +25,7 @@ button.x-header-search_toggle-close {
     right: 0;
     bottom: 0;
     top: 0;
-    overflow: hidden;
+    /* overflow: hidden; */
     z-index: 99;
     transition: all var(--x-header-transiton) ease;
     visibility: hidden;
@@ -141,4 +141,9 @@ component.brxe-xheadersearch[class*=brxe-] {
 .brxe-xheadersearch input:-webkit-autofill:hover,
 .brxe-xheadersearch input:-webkit-autofill:focus {
   -webkit-box-shadow: 0 0 0px 1000px #ffffff inset !important;
+}
+
+[data-type=below_header][aria-expanded=true] + .x-search-form, 
+[data-type=below_header][data-reveal=fade] + .x-search-form {
+    --x-header-slide-height: 80px;
 }

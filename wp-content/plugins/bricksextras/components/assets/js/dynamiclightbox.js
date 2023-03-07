@@ -9,7 +9,7 @@ function xLightbox(){
 
     let xLightboxFocus = {}; 
   
-      const extrasLightbox = function ( container ) {
+      const extrasLightbox = function ( container, ajax ) {
 
         container.querySelectorAll('.brxe-xdynamiclightbox').forEach((dynamicLightbox, index) => {
 
@@ -60,9 +60,64 @@ function xLightbox(){
 
             if ( insideLoop ) {
                 count = config.loopIndex
+
+                /* new count for ajax loaded content */
+                if (ajax) {
+                    let loopingID = config.isLooping
+                    let loopingElement = dynamicLightbox.closest('.brxe-' + loopingID)
+
+                    if ( loopingElement ) {
+
+                        if ( null != loopingElement.previousElementSibling ) {
+
+                            if ( loopingElement.previousElementSibling.classList.contains('brxe-' + loopingID) ) {
+                                
+
+                                let prevSiblingAttr = loopingElement.previousElementSibling.querySelector('.brxe-xdynamiclightbox').getAttribute('data-x-id')
+
+                                let prevSiblingChar = prevSiblingAttr.lastIndexOf("_");
+                                let newLoopIndex = parseInt( prevSiblingAttr.substr(prevSiblingChar+1) ) + 1;
+                                let prevSiblingIdentifier = prevSiblingAttr.substr(0,prevSiblingChar);
+
+                                dynamicLightbox.setAttribute('data-x-id', prevSiblingIdentifier + '_' + newLoopIndex );
+
+                                /* inline */
+                                if ( dynamicLightbox.querySelector('.x-dynamic-lightbox_content') ) {
+                                    
+                                    dynamicLightbox.querySelector('.x-dynamic-lightbox_content').id = 'x-dynamic-lightbox_content-' + prevSiblingIdentifier + '-' + newLoopIndex;
+                                }
+
+                                if ( dynamicLightbox.querySelector('.x-dynamic-lightbox_link') ) {
+                                    
+                                    let newClassList = []
+                                    let prefix = 'x-dynamic-lightbox_link-' + prevSiblingIdentifier + '-';
+            
+                                    dynamicLightbox.querySelector('.x-dynamic-lightbox_link').classList.forEach(className => {
+                                        if (className.indexOf(prefix) !== 0 ) {
+                                            newClassList.push(className)
+                                        }
+                                    })
+                                    
+                                    dynamicLightbox.querySelector('.x-dynamic-lightbox_link').className = newClassList.join(' ')
+                                    dynamicLightbox.querySelector('.x-dynamic-lightbox_link').classList.add('x-dynamic-lightbox_link-' + prevSiblingIdentifier + '-' + newLoopIndex)
+
+                                }
+
+                                count = newLoopIndex;
+
+                            }
+
+                        }
+
+                    }
+                    
+                }
+
             } else {
                 count = 0
             }
+
+            
 
             let lightboxLinkIdentifier = 'true' === config.grouping ? config.identifier : config.identifier + '-' + count;
             let lightboxIdentifier
@@ -150,7 +205,7 @@ function xLightbox(){
 
             if ( document.querySelector(clickSelector) ) {
 
-                if ( "A" !== document.querySelector(clickSelector).tagName ) {
+                if ( "A" !== document.querySelector(clickSelector).tagName && ('gallery' !== config.contentType)) {
                     console.log('BricksExtras: Link selector is not a link. Make sure to use a link.')
                 }
 
@@ -183,7 +238,35 @@ function xLightbox(){
                 /* 0ms timeout needed to ensure hrefs set properly earlier */
                 setTimeout(() => {
 
+                    if ('gallery' === config.contentType) {
+
+                        delete mergedOptions.selector;
+
+                        let galleryArray = [];
+
+                        if ( null != config.galleryImages ) {
+
+                            config.galleryImages.forEach((galleryImage) => {
+                                galleryArray.push( { 
+                                    "href": galleryImage[0]
+                                } );
+                            })
+
+                        }
+                        
+                        mergedOptions.elements = galleryArray;
+
+                    }
+
                     const lightboxInstance = new GLightbox(mergedOptions);
+
+                    if ('gallery' === config.contentType) {
+
+                        dynamicLightbox.querySelector('.x-dynamic-lightbox_link').addEventListener('click', () => {
+                            lightboxInstance.open();
+                         })
+    
+                    }
 
                     setTimeout(function () {
                         window.xDynamicLightbox.Instances[dynamicLightbox.dataset.xId] = lightboxInstance;
@@ -243,7 +326,9 @@ function xLightbox(){
 
                                 const iframeDoc = iframeEl.contentDocument;
                             
-                                iframeDoc.querySelector('#wpadminbar').style.display = 'none'
+                                if ( iframeDoc.querySelector('#wpadminbar') ) {
+                                    iframeDoc.querySelector('#wpadminbar').style.display = 'none'
+                                }
                                 iframeDoc.head.insertAdjacentHTML("beforeend", `<style> html { margin-top: 0!important; } </style>`)
                                 iframeDoc.querySelector('html').classList.add('x_inside_lightbox')
 
@@ -273,6 +358,12 @@ function xLightbox(){
                         }
 
                         /* read more */
+
+                        if ( slideNode.querySelector('.x-accordion') ) {
+                            if (typeof doExtrasAccordion == 'function') {
+                                doExtrasAccordion(slideNode)
+                            }
+                        }
 
                         if ( slideNode.querySelector('.brxe-xreadmoreless') ) {
 
@@ -441,7 +532,7 @@ function xLightbox(){
 
     }
 
-    extrasLightbox(document);
+    extrasLightbox(document, ajax = false);
 
     // Expose function
     window.doExtrasLightbox = extrasLightbox;

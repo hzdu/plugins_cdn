@@ -363,7 +363,7 @@ function isEnvironmentSupported() {
 var resizeBoxes = debounce(function () {
   var elements = document.querySelectorAll('[data-readmore]');
   forEach(elements, function (element) {
-    var expanded = element.getAttribute('aria-expanded') === 'true';
+    var expanded = element.classList.contains('x-read-more_expand');
     setBoxHeights(element);
     element.style.height = "".concat(expanded ? element.readmore.expandedHeight : element.readmore.collapsedHeight, "px");
   });
@@ -448,7 +448,7 @@ function () {
       }
 
       element.setAttribute('data-readmore', '');
-      element.setAttribute('aria-expanded', expanded);
+      //element.setAttribute('aria-expanded', expanded);
       element.id = element.id || uniqueId();
       var toggleLink = expanded ? _this2.options.lessLink : _this2.options.moreLink;
       var toggleElement = buildToggle(toggleLink, element, _this2);
@@ -501,7 +501,7 @@ function () {
           }
 
           transitionEvent.stopPropagation();
-          element.setAttribute('aria-expanded', expanded);
+          //element.setAttribute('aria-expanded', expanded);
           element.removeEventListener('transitionend', transitionendHandler, false);
         };
 
@@ -578,7 +578,7 @@ function () {
         element.style.height = 'initial';
         element.style.maxHeight = 'initial';
         element.removeAttribute('data-readmore');
-        element.removeAttribute('aria-expanded');
+        //element.removeAttribute('aria-expanded');
         var trigger = document.querySelector("[aria-controls=\"".concat(element.id, "\"]"));
 
         if (trigger) {
@@ -637,8 +637,8 @@ function xReadMoreLess(){
               lessAria = config.lessAria ? config.lessAria : '',
               buttonIcon = null != config.icon ? '<span class="x-read-more_link-icon"><i class="' + config.icon.icon + '"></i></span>' : ''
 
-        const moreText = '<button aria-label="' + moreAria + '" href=# class=x-read-more_link><span class="x-read-more_link-text">' + openText + '</span>' + buttonIcon + '</button>'
-        const lessText = '<button aria-label="' + lessAria + '"href=# class=x-read-more_link><span class="x-read-more_link-text">' + closeText + '</span>' + buttonIcon + '</button>'
+        const moreText = '<button aria-expanded="false" aria-label="' + moreAria + '" href=# class=x-read-more_link><span class="x-read-more_link-text">' + openText + '</span>' + buttonIcon + '</button>'
+        const lessText = '<button aria-expanded="true" aria-label="' + lessAria + '"href=# class=x-read-more_link><span class="x-read-more_link-text">' + closeText + '</span>' + buttonIcon + '</button>'
 
         function doReadMore() {
 
@@ -651,6 +651,7 @@ function xReadMoreLess(){
                   collapsedHeight: parseInt(readMore.style.maxHeight),
                   heightMargin: config.heightMargin ? parseInt(config.heightMargin) : 20,
                   beforeToggle: function(trigger, element, expanded) {
+                    document.dispatchEvent(new Event('x_readmore:before_toggle'))
                     if(!expanded) {
                       readMoreContent.classList.add('x-read-more_expand');
                       readMore.dispatchEvent(new Event('x_readmore:expand'))
@@ -670,6 +671,10 @@ function xReadMoreLess(){
                     if(! collapsable) {
                       readMoreContent.classList.add('x-read-more_not-collapsable');
                       readMore.classList.remove('x-read-more_fade')
+                    } else {
+                      if ( readMore.hasAttribute('data-x-fade') ) {
+                        readMore.classList.add('x-read-more_fade')
+                      }
                     }
                   }
               });
@@ -693,5 +698,6 @@ function xReadMoreLess(){
 document.addEventListener("DOMContentLoaded",function(e){
   setTimeout(() => {
     bricksIsFrontend&&xReadMoreLess()
+    window.dispatchEvent(new Event('resize'))
   }, 100)
 });

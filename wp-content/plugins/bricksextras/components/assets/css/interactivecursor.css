@@ -148,13 +148,15 @@
     z-index: 10;
 }
 
-.x-cursor_offpage .x-cursor_ball::after {
+.x-cursor_offpage .x-cursor_ball::after,
+.x-cursor_iframe .x-cursor_ball::after {
     opacity: 0;
     -webkit-transform: scale(0);
             transform: scale(0);
 }
 
-.x-cursor_offpage .x-cursor_trail {
+.x-cursor_offpage .x-cursor_trail,
+.x-cursor_iframe .x-cursor_trail {
     opacity: 0;
     -webkit-transform: translate3d(-50%, -50%,0) scale(0);
             transform: translate3d(-50%, -50%,0) scale(0);

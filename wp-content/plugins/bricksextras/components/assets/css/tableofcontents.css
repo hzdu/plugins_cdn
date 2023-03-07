@@ -174,3 +174,9 @@ a.x-toc_link {
 [data-x-toc-content] h6[tabindex]:focus {
     outline: none;
 }
+
+.x-toc_body {
+    --x-toc-close-true: none;
+    --x-toc-close-false: flex;
+    display: var(--x-toc-close)
+}

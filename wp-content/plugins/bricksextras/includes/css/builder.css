@@ -6,3 +6,26 @@
 .brx-body.iframe [data-x-hide=true] {
     display: none!important;
 }
+
+.extras-x-ray:not(.bricks-is-previewing) #brx-content,
+.extras-x-ray:not(.bricks-is-previewing) #brx-header, 
+.extras-x-ray:not(.bricks-is-previewing) #brx-footer,
+.extras-x-ray:not(.bricks-is-previewing) .bricks-preview-element-spacing,
+.extras-x-ray:not(.bricks-is-previewing) #bricks-css-grid-layout .cell:before {
+    /* filter: grayscale(1); */
+}
+
+.extras-x-ray:not(.bricks-is-previewing) #brx-content *:not(.builder-active-element):not(.placeholder-title),
+.extras-x-ray:not(.bricks-is-previewing) #brx-header *:not(.builder-active-element):not(.placeholder-title),
+.extras-x-ray:not(.bricks-is-previewing) #brx-footer *:not(.builder-active-element):not(.placeholder-title) {
+    outline: 1px solid #ddd!important;
+}
+
+.extras-x-ray:not(.bricks-is-previewing) .bricks-preview-element-spacing {
+    color: #333;
+}
+
+.extras-x-ray:not(.bricks-is-previewing) .bricks-preview-element-spacing:before {
+    background-color: #888;
+}
+

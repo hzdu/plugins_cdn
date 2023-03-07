@@ -158,7 +158,7 @@ function xProSlider() {
 
             if ( 'progressBar' ===  controlConfig.type ) {
           
-              xSplideInstance.on( 'mounted active', function () {
+              xSplideInstance.on( 'mounted active overflow', function () {
                 const end  = xSplideInstance.Components.Controller.getEnd() + 1;
                 const rate = Math.min( ( xSplideInstance.index + 1 ) / end, 1 );
                 sliderControl.querySelector( '.x-slider_progress-bar' ).style.width = String( 100 * rate ) + '%';
@@ -219,7 +219,7 @@ function xProSlider() {
               let currentSlideEl = sliderControl.querySelector('.x-slider_counter-index-number')
               let totalSlidesEl = sliderControl.querySelector('.x-slider_counter-total-number')
               
-              xSplideInstance.on( 'mounted active', function () {
+              xSplideInstance.on( 'mounted active overflow', function () {
                 currentSlideEl.innerHTML = xSplideInstance.index + 1;
                 totalSlidesEl.innerHTML = xSplideInstance.Components.Controller.getEnd() + 1
                 sliderControl.querySelector('.x-slider_counter').style.opacity = 1
@@ -306,7 +306,7 @@ function xProSlider() {
                 disableArrows(prevButton,nextButton)
               }
 
-              xSplideInstance.on( 'active moved', function () {
+              xSplideInstance.on( 'active moved overflow', function () {
                 disableArrows(prevButton,nextButton)
               })
 
@@ -337,12 +337,45 @@ function xProSlider() {
         xSplideInstance.on( 'ready', function (newIndex) { 
 
           bricksQuerySelectorAll(slider, ".x-slider_slide").forEach(function (slide) {
+
+            bricksQuerySelectorAll(slide, ["[data-interactions]"]).forEach(function (animatedElement,i) {
+
+            var interactionAnimationType
+              const arr = JSON.parse(animatedElement.dataset.interactions);
+
+              arr.forEach((interaction) => {
+                if (interaction.trigger) {
+                    if ( ("enterView" === interaction.trigger) && "startAnimation" === interaction.action ) {
+                      if ( interaction.animationType ) {
+                        interactionAnimationType = interaction.animationType
+                      }
+                    }
+                  }
+                })
+
+                if ( interactionAnimationType ) {
+                  animatedElement.setAttribute("data-x-interaction-animation",interactionAnimationType)
+                }
+
+                var animationType = animatedElement.dataset.xInteractionAnimation;
+
+                if ( animationType && animatedElement.closest('.x-slider_slide').classList.contains(sliderConfig.animationTrigger) ) {
+                 animatedElement.classList.add("brx-x-animate-".concat(animationType));
+                }
+
+            })
           
-            bricksQuerySelectorAll(slide, ".brx-animated").forEach(function (animatedElement,i) {
+            bricksQuerySelectorAll(slide, [".brx-animated:not([data-interactions])"]).forEach(function (animatedElement,i) {
 
               if ( sliderConfig.animationStagger && !animatedElement.classList.contains('no-stagger') ) {
                 const animationDelay = sliderConfig.animationStagger ? sliderConfig.animationDelay : 0;
-                animatedElement.style.animationDelay = i * animationDelay + 'ms'
+                const animationDelayFirst = sliderConfig.animationStagger ? sliderConfig.animationDelayFirst : 0;
+                if (0 === i) {
+                  animatedElement.style.animationDelay = animationDelayFirst + 'ms'
+                } else {
+                  animatedElement.style.animationDelay = animationDelayFirst + (i * animationDelay) + 'ms'
+                }
+                
               }
 
               /* remove usual bricks animation cycle */
@@ -351,7 +384,39 @@ function xProSlider() {
                 animatedElement.setAttribute("data-x-animation",animationType)
                 animatedElement.classList.remove("brx-animate-".concat(animationType))
                 animatedElement.removeAttribute("data-animation")
+              }
 
+              /* add it back in when splide says so */
+              if ( slide.classList.contains(sliderConfig.animationTrigger) ) {
+
+                setTimeout(function () {
+                  var animationType = animatedElement.dataset.xAnimation;
+                  animationType && (animatedElement.classList.add("brx-animate-".concat(animationType)));
+                }, 100)
+
+              }
+              
+            })
+
+            bricksQuerySelectorAll(slide, ["[data-interactions]"]).forEach(function (animatedElement,i) {
+
+              if ( sliderConfig.animationStagger && !animatedElement.classList.contains('no-stagger') ) {
+                const animationDelay = sliderConfig.animationStagger ? sliderConfig.animationDelay : 0;
+                const animationDelayFirst = sliderConfig.animationStagger ? sliderConfig.animationDelayFirst : 0;
+                if (0 === i) {
+                  animatedElement.style.animationDelay = animationDelayFirst + 'ms'
+                } else {
+                  animatedElement.style.animationDelay = animationDelayFirst + (i * animationDelay) + 'ms'
+                }
+                
+              }
+
+              /* remove usual bricks animation cycle */
+              var animationType = animatedElement.dataset.animation;
+              if ( animationType ) {
+                animatedElement.setAttribute("data-x-animation",animationType)
+                animatedElement.classList.remove("brx-animate-".concat(animationType))
+                animatedElement.removeAttribute("data-animation")
               }
 
               /* add it back in when splide says so */
@@ -389,6 +454,46 @@ function xProSlider() {
        })
       }
 
+      /* overflow (conditional slider) */
+
+      if (sliderConfig.conditional) {
+
+        xSplideInstance.on( 'overflow', function ( isOverflow ) {
+
+            if ( 'loop' === sliderConfig.rawConfig.type ) {
+              xSplideInstance.go( 0 )
+              xSplideInstance.options = {
+                arrows    : isOverflow,
+                pagination: isOverflow ? sliderConfig.rawConfig.pagination : false,
+                drag      : isOverflow,
+                clones    : isOverflow ? undefined : 0,
+              };
+            } else {
+              xSplideInstance.options = {
+                arrows    : isOverflow,
+                pagination: isOverflow ? sliderConfig.rawConfig.pagination : false,
+                drag      : isOverflow,
+              };
+            }
+
+            if ( isOverflow  ) {
+              slider.classList.remove('x-no-slider')
+              container.querySelectorAll( '.x-slider-control' ).forEach(function (sliderControl) {
+                sliderControl.style.removeProperty('display')
+              })
+            } else {
+              slider.classList.add('x-no-slider')
+              container.querySelectorAll( '.x-slider-control' ).forEach(function (sliderControl) {
+                sliderControl.style.display = 'none';
+              })
+            }
+          
+        } );
+
+    }
+
+       
+
       if ( null != sliderConfig.rawConfig.autoScroll || false != sliderConfig.hashNav ) {
         xSplideInstance.mount( window.splide.Extensions );
       } else {
@@ -397,7 +502,8 @@ function xProSlider() {
 
       setTimeout(function () {
           window.xSlider.Instances[slider.dataset.xId] = xSplideInstance;
-      }, 200)
+          slider.dispatchEvent(new Event('x_slider:init'))
+      }, 150)
 
      
       /* sort out lazy loading */
@@ -438,11 +544,25 @@ function xProSlider() {
 
           })
 
+          bricksQuerySelectorAll(slider, ".x-slider_slide." + sliderConfig.animationTrigger + " [data-x-interaction-animation]:not(.x-animated)").forEach(function (animatedElement,i) {
+
+            var animationType = animatedElement.dataset.xInteractionAnimation;
+
+            if ( animationType ) {
+
+              if ( sliderConfig.animateOnce ) {
+                
+              }
+
+            }
+
+        })
+
         } );
 
         xSplideInstance.on( 'moved', () => {
 
-          bricksQuerySelectorAll(slider, ".x-slider_slide." + sliderConfig.animationTrigger + " .brx-animated").forEach(function (animatedElement,i) {
+          bricksQuerySelectorAll(slider, ".x-slider_slide." + sliderConfig.animationTrigger + " .brx-animated:not([data-x-interaction-animation])").forEach(function (animatedElement,i) {
 
               var animationType = animatedElement.dataset.xAnimation;
               animationType && (animatedElement.classList.add("brx-animate-".concat(animationType)));
@@ -450,6 +570,20 @@ function xProSlider() {
               if ( sliderConfig.animateOnce ) {
                 animatedElement.classList.add('x-animated')
               }
+
+              if ( animationType ) {
+                animatedElement.classList.remove("brx-x-animate-".concat(animationType));
+              }
+
+          })
+
+          bricksQuerySelectorAll(slider, ".x-slider_slide." + sliderConfig.animationTrigger + " [data-x-interaction-animation]:not(.x-animated)").forEach(function (animatedElement,i) {
+
+            var animationType = animatedElement.dataset.xInteractionAnimation;
+
+            if ( animationType ) {
+              animatedElement.classList.add("brx-x-animate-".concat(animationType));
+            }
 
           })
 
@@ -512,7 +646,7 @@ function xProSlider() {
           console.log('BricksExtras: Looking for slider to sync, but not found. Check the ID/Class on the slider being controlled.')
         }
 
-      }, 300)
+      }, 250)
 
     })
 

@@ -4,12 +4,10 @@ function xCursor() {
     
         document.querySelectorAll(".x-interactive-cursor").forEach((cursor) => { 
 
-                if ( ( 'ontouchstart' in window ) ||  ( navigator.maxTouchPoints > 0 ) || ( navigator.msMaxTouchPoints > 0 ) ) {
-                    return;
-                }
-
                 const config = cursor.getAttribute('data-x-cursor') ? JSON.parse(cursor.getAttribute('data-x-cursor')) : {}
                 const balls = cursor.querySelectorAll(".x-cursor_inner")
+
+                setTimeout(function () {
     
                 let aimX = 0
                 let aimY = 0
@@ -84,10 +82,43 @@ function xCursor() {
                     })
                 })
 
+                document.querySelectorAll( 'iframe' ).forEach(iframe => {
+                    iframe.addEventListener("mouseover", function () {
+                        cursor.classList.add("x-cursor_iframe")
+                    })
+                    
+                    iframe.addEventListener("mouseleave", function () {
+                        cursor.classList.remove("x-cursor_iframe")
+                    })
+                })
+
+                document.addEventListener('x_readmore:before_toggle', function() {
+                    cursor.classList.remove("x-cursor_trail-grow")
+                    setTimeout(function () {
+                        document.querySelectorAll( config.hoverSelectors ).forEach(growElement => {
+                            growElement.addEventListener("mouseover", function () {
+                                cursor.classList.add("x-cursor_trail-grow")
+                            })
+                            
+                            growElement.addEventListener("mouseout", function () {
+                                cursor.classList.remove("x-cursor_trail-grow")
+                            })
+                        })
+                    }, 100)
+                })
+
+                /* disable if user using touch */
+                document.addEventListener('touchstart', function() {
+					cursor.style.display = 'none'
+				})
+
+            }, config.trailDelay)
          });
        
 }
 
 document.addEventListener("DOMContentLoaded",function(e){
-    bricksIsFrontend&&xCursor()
+    setTimeout(() => {
+     bricksIsFrontend&&xCursor()
+    }, 100) 
 });

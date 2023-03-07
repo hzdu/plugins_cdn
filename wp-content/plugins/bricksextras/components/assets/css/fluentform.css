@@ -1,3 +1,7 @@
+:root {
+    --x-ff-gap: 15px;
+}
+
 .brxe-xfluentform .fluentform input[type=checkbox], 
 .brxe-xfluentform .fluentform input[type=radio] {
     width: auto
@@ -78,5 +82,19 @@
     }
     .brxe-xfluentform .frm-fluent-form .ff-t-cell:last-of-type {
         padding-right: 0!important;
+    }
+}
+
+.brxe-xfluentform .ff-el-repeat-buttons-list svg {
+    height: 1em;
+    width: 1em;
+    font-size: 20px;
+}
+
+@media (min-width: 768px) {
+    .brxe-xfluentform .frm-fluent-form .ff-t-container {
+        display: flex;
+        gap: var(--x-ff-gap);
+        width: 100%;
     }
 }

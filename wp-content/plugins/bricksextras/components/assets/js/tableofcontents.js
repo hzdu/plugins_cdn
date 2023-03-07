@@ -12,6 +12,9 @@ function xTableOfContents(){
     const configAttr = toc.getAttribute('data-x-toc')
 		const elementConfig = configAttr ? JSON.parse(configAttr) : {}
 
+    const tocHeader = toc.querySelector('.x-toc_header')
+    
+
     // if no ID, force an ID.
     if (!toc.id) {
       toc.id = toc.querySelector('.x-toc_body').id.replace('x-toc_','brxe-');
@@ -91,6 +94,46 @@ function xTableOfContents(){
       }  
     }
 
+    const debounce = (fn, threshold) => {
+      var timeout;
+      threshold = threshold || 100;
+      return function debounced() {
+         clearTimeout(timeout);
+         var args = arguments;
+         var _this = this;
+
+         function delayed() {
+            fn.apply(_this, args);
+         }
+         timeout = setTimeout(delayed, threshold);
+      };
+   };
+
+    function toggleOpenResize() {
+
+      if ( null == elementConfig.hidden.breakpoints ) {
+        return
+      }
+      
+      if ('none' === getComputedStyle(toc.querySelector('.x-toc_body')).getPropertyValue('--x-toc-close').split(" ").join("")) {
+        tocHeader.setAttribute('aria-expanded','false')
+        tocHeader.nextElementSibling.setAttribute('aria-hidden','true')
+        tocHeader.nextElementSibling.xslideUp(0)
+      } else {
+        tocHeader.setAttribute('aria-expanded','true')
+        tocHeader.nextElementSibling.setAttribute('aria-hidden','false')
+        tocHeader.nextElementSibling.xslideDown(0)
+      }
+
+    }
+
+
+    toggleOpenResize()
+
+    window.addEventListener('resize', debounce(() => {
+     toggleOpenResize()
+    }, 0))
+
     tocbot.init({
       // Where to render the table of contents.
       tocSelector: '#' + toc.id + ' .x-toc_body',
@@ -98,7 +141,7 @@ function xTableOfContents(){
       headingSelector: elementConfig.headingSelectors.toString(),
       ignoreSelector: elementConfig.ignoreSelector,
       hasInnerContainers: true,
-      collapseDepth: elementConfig.collapseDepth,
+      collapseDepth: 6 - parseInt(elementConfig.collapseDepth),
       scrollSmooth: elementConfig.smoothScroll != 'false',
       scrollSmoothOffset: elementConfig.scrollSmoothOffset,
       headingsOffset: - elementConfig.scrollSmoothOffset,

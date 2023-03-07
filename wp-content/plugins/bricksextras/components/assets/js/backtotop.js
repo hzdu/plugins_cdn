@@ -64,13 +64,15 @@ function xBackToTop() {
         function setVisibility(scrollPosition,oldScrollPosition) {
 
             function revealBTT() {
-                backToTop.setAttribute('aria-hidden', false);
+                backToTop.setAttribute('aria-hidden', false)
+                backToTop.removeAttribute('disabled')
                 backToTop.style.opacity = '1'
                 backToTop.style.transform = 'none'
             }
 
             function hideBTT() {
                 backToTop.setAttribute('aria-hidden', true)
+                backToTop.setAttribute('disabled', '')
                 backToTop.style.removeProperty('opacity')
                 backToTop.style.removeProperty('transform')
             }
