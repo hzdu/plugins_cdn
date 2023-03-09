@@ -214,6 +214,10 @@ const tutorials = {
       title: "How to import protected sites content to WordPress automatically",
     },
     {
+      url: "https://valvepress.com/how-to-import-from-rss-feeds-protected-with-cloudflare/",
+      title: "How to import from sites protected with Cloudflare",
+    },
+    {
       url: "https://valvepress.com/sitemap-to-wordpress-posts/",
       title: "How to import sitemap to WordPress posts",
     },
@@ -223,6 +227,10 @@ const tutorials = {
     {
       url: "https://youtu.be/cBfhaq1-BuQ?t=224",
       title: "How to Integrate OpenAI GPT-3/ChatGPT with any module",
+    },
+    {
+      url: "https://valvepress.com/how-to-automatically-generate-yoast-rank-math-seo-description-using-openai-gpt/",
+      title: "How to automatically generate Yoast/Rank Math SEO description using OpenAI GPT",
     },
     {
       url: "https://valvepress.com/wordpress-internal-cron-job-work-may-need-setup-external-cron/",
@@ -281,7 +289,7 @@ jQuery(document).ready(function ($) {
     //loop through the general tutorials
     general_tutorials.forEach((tutorial) => {
       //get the value of the select with id named camp_type and set as the html of the span with class module_name
-      jQuery(".module_name").html(jQuery("#camp_type").val());
+      jQuery(".module_name").html( jQuery('#camp_type option:selected').text() );
 
       //create the html
       const html = `<li><a href="${tutorial.url}" target="_blank">${tutorial.title}</a></li>`;
