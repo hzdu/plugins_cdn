@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: WooCommerce Direct Checkout PRO\n"
-"POT-Creation-Date: 2023-01-02 12:32-0300\n"
+"POT-Creation-Date: 2023-02-25 20:47-0300\n"
 "PO-Revision-Date: 2023-01-02 12:32-0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -22,27 +22,6 @@ msgstr ""
 "X-Poedit-SearchPathExcluded-0: *.min.js\n"
 "X-Poedit-SearchPathExcluded-1: vendor\n"
 
-#: includes/controllers/license.php:19
-#: jetpack_vendor/quadlayers/wp-license-client/src/Backend/Page/Load.php:71
-#: jetpack_vendor/quadlayers/wp-license-client/src/Backend/Page/Load.php:72
-#: jetpack_vendor/quadlayers/wp-license-client/src/Backend/Page/view/license.php:7
-#: wp-plugin-table-links.php:12
-msgid "License"
-msgstr ""
-
-#: includes/view/frontend/archives.php:24
-#: includes/view/frontend/checkout.php:48
-msgid "Please reload page."
-msgstr ""
-
-#: includes/view/frontend/checkout.php:137
-msgid "Click here to enter your coupon code"
-msgstr ""
-
-#: includes/view/frontend/products.php:130
-msgid "Purchase Now"
-msgstr ""
-
 #. translators: %s is the script handle.
 #: jetpack_vendor/automattic/jetpack-assets/src/class-assets.php:389
 #, php-format
@@ -57,31 +36,31 @@ msgid ""
 "was triggered by the %2$s domain."
 msgstr ""
 
-#: jetpack_vendor/quadlayers/wp-dashboard-widget-news/src/Load.php:34
+#: jetpack_vendor/quadlayers/wp-dashboard-widget-news/src/Load.php:71
 msgid ""
 "Hi! We are Quadlayers! We’re a team of international people who have been "
 "working in the WordPress sphere for the last ten years."
 msgstr ""
 
-#: jetpack_vendor/quadlayers/wp-dashboard-widget-news/src/Load.php:37
+#: jetpack_vendor/quadlayers/wp-dashboard-widget-news/src/Load.php:74
 msgid "More products"
 msgstr ""
 
-#: jetpack_vendor/quadlayers/wp-dashboard-widget-news/src/Load.php:60
+#: jetpack_vendor/quadlayers/wp-dashboard-widget-news/src/Load.php:97
 msgid "Untitled"
 msgstr ""
 
-#: jetpack_vendor/quadlayers/wp-dashboard-widget-news/src/Load.php:88
+#: jetpack_vendor/quadlayers/wp-dashboard-widget-news/src/Load.php:125
 msgid "Read more like this on our blog"
 msgstr ""
 
-#: jetpack_vendor/quadlayers/wp-dashboard-widget-news/src/Load.php:106
-#: jetpack_vendor/quadlayers/wp-dashboard-widget-news/src/Load.php:112
+#: jetpack_vendor/quadlayers/wp-dashboard-widget-news/src/Load.php:148
+#: jetpack_vendor/quadlayers/wp-dashboard-widget-news/src/Load.php:154
 msgid ""
 "An error has occurred, which probably means the feed is down. Try again later"
 msgstr ""
 
-#: jetpack_vendor/quadlayers/wp-license-client/src/Api/Fetch/Base.php:141
+#: jetpack_vendor/quadlayers/wp-license-client/src/Api/Fetch/Base.php:142
 msgid "Unknown error. Please try again."
 msgstr ""
 
@@ -116,27 +95,35 @@ msgstr ""
 msgid "User data could not be found."
 msgstr ""
 
-#: jetpack_vendor/quadlayers/wp-license-client/src/Backend/Notice/Load.php:53
+#: jetpack_vendor/quadlayers/wp-license-client/src/Backend/Notice/Load.php:48
 #, php-format
 msgid "Please activate your %s license key."
 msgstr ""
 
-#: jetpack_vendor/quadlayers/wp-license-client/src/Backend/Notice/Load.php:55
+#: jetpack_vendor/quadlayers/wp-license-client/src/Backend/Notice/Load.php:50
 msgid ""
 "Please complete the license activation process to receive automatic updates "
 "and enable all premium features."
 msgstr ""
 
-#: jetpack_vendor/quadlayers/wp-license-client/src/Backend/Notice/Load.php:58
+#: jetpack_vendor/quadlayers/wp-license-client/src/Backend/Notice/Load.php:53
 msgid "Activate"
 msgstr ""
 
-#: jetpack_vendor/quadlayers/wp-license-client/src/Backend/Notice/Load.php:62
+#: jetpack_vendor/quadlayers/wp-license-client/src/Backend/Notice/Load.php:57
 msgid "Get license key"
 msgstr ""
 
-#: jetpack_vendor/quadlayers/wp-license-client/src/Backend/Notice/Load.php:67
+#: jetpack_vendor/quadlayers/wp-license-client/src/Backend/Notice/Load.php:62
 msgid "Get support"
+msgstr ""
+
+#: jetpack_vendor/quadlayers/wp-license-client/src/Backend/Page/Load.php:71
+#: jetpack_vendor/quadlayers/wp-license-client/src/Backend/Page/Load.php:72
+#: jetpack_vendor/quadlayers/wp-license-client/src/Backend/Page/view/license.php:7
+#: lib/controllers/class-license.php:44
+#: vendor_packages/wp-plugin-table-links.php:12
+msgid "License"
 msgstr ""
 
 #: jetpack_vendor/quadlayers/wp-license-client/src/Backend/Page/view/license.php:12
@@ -197,7 +184,7 @@ msgid "Expires on %s"
 msgstr ""
 
 #: jetpack_vendor/quadlayers/wp-license-client/src/Backend/Page/view/license.php:63
-#: wp-plugin-table-links.php:8
+#: vendor_packages/wp-plugin-table-links.php:8
 msgid "Support"
 msgstr ""
 
@@ -223,68 +210,90 @@ msgstr ""
 msgid "Delete"
 msgstr ""
 
-#: jetpack_vendor/quadlayers/wp-license-client/src/Backend/Plugin/Download.php:87
-#: jetpack_vendor/quadlayers/wp-license-client/src/Backend/Plugin/Table.php:110
-#: jetpack_vendor/quadlayers/wp-license-client/src/Backend/Plugin/Update.php:87
+#: jetpack_vendor/quadlayers/wp-license-client/src/Backend/Plugin/Download.php:91
+#: jetpack_vendor/quadlayers/wp-license-client/src/Backend/Plugin/Table.php:121
+#: jetpack_vendor/quadlayers/wp-license-client/src/Backend/Plugin/Update.php:91
 msgid "Activate your license."
 msgstr ""
 
-#: jetpack_vendor/quadlayers/wp-license-client/src/Backend/Plugin/Download.php:89
-#: jetpack_vendor/quadlayers/wp-license-client/src/Backend/Plugin/Table.php:112
-#: jetpack_vendor/quadlayers/wp-license-client/src/Backend/Plugin/Update.php:89
+#: jetpack_vendor/quadlayers/wp-license-client/src/Backend/Plugin/Download.php:93
+#: jetpack_vendor/quadlayers/wp-license-client/src/Backend/Plugin/Table.php:123
+#: jetpack_vendor/quadlayers/wp-license-client/src/Backend/Plugin/Update.php:93
 #, php-format
 msgid "Please visit %1$s to activate the license or %2$s in our website."
 msgstr ""
 
-#: jetpack_vendor/quadlayers/wp-license-client/src/Backend/Plugin/Download.php:93
-#: jetpack_vendor/quadlayers/wp-license-client/src/Backend/Plugin/Table.php:116
-#: jetpack_vendor/quadlayers/wp-license-client/src/Backend/Plugin/Update.php:93
+#: jetpack_vendor/quadlayers/wp-license-client/src/Backend/Plugin/Download.php:97
+#: jetpack_vendor/quadlayers/wp-license-client/src/Backend/Plugin/Table.php:127
+#: jetpack_vendor/quadlayers/wp-license-client/src/Backend/Plugin/Update.php:97
 msgid "settings"
 msgstr ""
 
-#: jetpack_vendor/quadlayers/wp-license-client/src/Backend/Plugin/Download.php:98
-#: jetpack_vendor/quadlayers/wp-license-client/src/Backend/Plugin/Table.php:121
-#: jetpack_vendor/quadlayers/wp-license-client/src/Backend/Plugin/Update.php:98
+#: jetpack_vendor/quadlayers/wp-license-client/src/Backend/Plugin/Download.php:102
+#: jetpack_vendor/quadlayers/wp-license-client/src/Backend/Plugin/Table.php:132
+#: jetpack_vendor/quadlayers/wp-license-client/src/Backend/Plugin/Update.php:102
 msgid "purchase"
 msgstr ""
 
-#: jetpack_vendor/quadlayers/wp-license-client/src/Backend/Plugin/Download.php:127
-#: jetpack_vendor/quadlayers/wp-license-client/src/Backend/Plugin/Table.php:134
-#: jetpack_vendor/quadlayers/wp-license-client/src/Backend/Plugin/Update.php:127
+#: jetpack_vendor/quadlayers/wp-license-client/src/Backend/Plugin/Download.php:131
+#: jetpack_vendor/quadlayers/wp-license-client/src/Backend/Plugin/Table.php:145
+#: jetpack_vendor/quadlayers/wp-license-client/src/Backend/Plugin/Update.php:131
 msgid "Automatic updates are disabled."
 msgstr ""
 
-#: jetpack_vendor/quadlayers/wp-license-client/src/Backend/Plugin/Download.php:129
-#: jetpack_vendor/quadlayers/wp-license-client/src/Backend/Plugin/Table.php:136
-#: jetpack_vendor/quadlayers/wp-license-client/src/Backend/Plugin/Update.php:129
+#: jetpack_vendor/quadlayers/wp-license-client/src/Backend/Plugin/Download.php:133
+#: jetpack_vendor/quadlayers/wp-license-client/src/Backend/Plugin/Table.php:147
+#: jetpack_vendor/quadlayers/wp-license-client/src/Backend/Plugin/Update.php:133
 #, php-format
 msgid "Please contact the plugin author %1$s."
 msgstr ""
 
-#: jetpack_vendor/quadlayers/wp-license-client/src/Backend/Plugin/Download.php:133
-#: jetpack_vendor/quadlayers/wp-license-client/src/Backend/Plugin/Table.php:140
-#: jetpack_vendor/quadlayers/wp-license-client/src/Backend/Plugin/Update.php:133
+#: jetpack_vendor/quadlayers/wp-license-client/src/Backend/Plugin/Download.php:137
+#: jetpack_vendor/quadlayers/wp-license-client/src/Backend/Plugin/Table.php:151
+#: jetpack_vendor/quadlayers/wp-license-client/src/Backend/Plugin/Update.php:137
 msgid "here"
 msgstr ""
 
-#: jetpack_vendor/quadlayers/wp-notice-plugin-required/src/Load.php:73
+#: jetpack_vendor/quadlayers/wp-license-client/src/Load.php:80
+msgid "Please include a valid plugin_file."
+msgstr ""
+
+#: jetpack_vendor/quadlayers/wp-license-client/src/Load.php:101
+#, php-format
+msgid "%s is not a valid plugin file."
+msgstr ""
+
+#: jetpack_vendor/quadlayers/wp-notice-plugin-required/src/Load.php:99
 #, php-format
 msgid "Activate % s"
 msgstr ""
 
-#: jetpack_vendor/quadlayers/wp-notice-plugin-required/src/Load.php:74
+#: jetpack_vendor/quadlayers/wp-notice-plugin-required/src/Load.php:100
 #, php-format
 msgid "%1$s not working because you need to activate the %2$s plugin . "
 msgstr ""
 
-#: jetpack_vendor/quadlayers/wp-notice-plugin-required/src/Load.php:87
+#: jetpack_vendor/quadlayers/wp-notice-plugin-required/src/Load.php:113
 #, php-format
 msgid "Install % s"
 msgstr ""
 
-#: jetpack_vendor/quadlayers/wp-notice-plugin-required/src/Load.php:88
+#: jetpack_vendor/quadlayers/wp-notice-plugin-required/src/Load.php:114
 #, php-format
 msgid "%1$s not working because you need to install the %2$s plugin . "
+msgstr ""
+
+#: lib/view/frontend/class-archives.php:52
+#: lib/view/frontend/class-checkout.php:75
+msgid "Please reload page."
+msgstr ""
+
+#: lib/view/frontend/class-checkout.php:211
+msgid "Click here to enter your coupon code"
+msgstr ""
+
+#: lib/view/frontend/class-products.php:193
+msgid "Purchase Now"
 msgstr ""
 
 #: templates/checkout/review-order.php:32
@@ -329,5 +338,5 @@ msgid "QuadLayers"
 msgstr ""
 
 #. Author URI of the plugin/theme
-msgid "https://www.quadlayers.com"
+msgid "https://quadlayers.com"
 msgstr ""
