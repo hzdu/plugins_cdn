@@ -15,6 +15,13 @@ The code is licensed under GPLv3.
 
 ## Changelog ##
 
+##### [Version 2.5.4](https://github.com/Codeinwp/neve-pro-addon/compare/v2.5.3...v2.5.4) (2023-03-13)
+
+- Removed legacy skin
+
+
+
+
 ##### [Version 2.5.3](https://github.com/Codeinwp/neve-pro-addon/compare/v2.5.2...v2.5.3) (2023-03-01)
 
 - [Feat] Allow the show/hide mechanism on posts with closed comments

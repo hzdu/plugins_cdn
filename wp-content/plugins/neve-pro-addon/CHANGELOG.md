@@ -1,18 +1,12 @@
+##### [Version 2.5.4](https://github.com/Codeinwp/neve-pro-addon/compare/v2.5.3...v2.5.4) (2023-03-13)
+
+- Removed legacy skin
+
 ##### [Version 2.5.3](https://github.com/Codeinwp/neve-pro-addon/compare/v2.5.2...v2.5.3) (2023-03-01)
 
 - [Feat] Allow the show/hide mechanism on posts with closed comments
 - [Feat] Allow custom colors to be selected inside the mega-menu module
 - [Fix] Thumbnails slider section is not syncing with main image in the slider of product page
-- [Fix] Fade animation issue on mobile menu
-- [Fix] cart-link magic tag not correctly replaced
-- [Fix] Prevent Layout toggle from displaying when the shop page displays just categories
-- [Fix] Mega menu column display
-- Improve the shop page when it shows categories and products
-- A new notification in the Neve dashboard indicating that a license is almost expired
-- Check compatibility with WooCommerce 7.4
-- [Feat] Allow the show/hide mechanism on posts with closed comments
-- [Feat] Allow custom colors to be selected inside the mega-menu module
-- [Fix] Thumbnails slider section is not syncing with the main image in the slider of the product gallery
 - [Fix] Fade animation issue on mobile menu
 - [Fix] cart-link magic tag not correctly replaced
 - [Fix] Prevent Layout toggle from displaying when the shop page displays just categories
