@@ -5,6 +5,8 @@ const buttonAttributes = {
 	backgroundColorCurrent: '#fafafa',
 	textColorCurrent: '#000000',
 	buttonType: 'button',
+	flexGrowMobile: 1,
+	flexShrinkMobile: 0,
 };
 
 const tabAttributes = {
@@ -43,6 +45,10 @@ const template = [
 		{
 			variantRole: 'tab-buttons',
 			display: 'inline-flex',
+			overflowXMobile: 'auto',
+			sizing: {
+				maxWidthMobile: '100%',
+			},
 		},
 		[
 			defaultTabButtonTemplate,

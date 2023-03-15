@@ -199,6 +199,10 @@ function filterCSS( attributes, props ) {
 
 		const newAttrs = Object.assign( {}, attributes );
 
+		if ( ! globalAttrs.sizing ) {
+			globalAttrs.sizing = {};
+		}
+
 		Object.keys( globalAttrs ).forEach( ( attribute ) => {
 			let hasValue = !! attributes[ attribute ] || 0 === attributes[ attribute ];
 
@@ -216,11 +220,43 @@ function filterCSS( attributes, props ) {
 			}
 
 			if ( ! noStyleAttributes.includes( attribute ) && ( ! hasValue || attributes[ attribute ] === generateBlocksDefaults[ defaultBlockName ][ attribute ] ) ) {
+				// Migrate old button layout.
 				if ( 'button' === defaultBlockName && ( ! globalAttrs.blockVersion || globalAttrs?.blockVersion < 3 ) ) {
 					globalAttrs.display = 'inline-flex';
 					globalAttrs.alignItems = 'center';
 					globalAttrs.justifyContent = 'center';
 					globalAttrs.alignment = 'center';
+				}
+
+				// Migrate old sizing values.
+				if ( 'container' === defaultBlockName && ( ! globalAttrs.blockVersion || globalAttrs?.blockVersion < 3 ) ) {
+					if ( globalAttrs.width ) {
+						globalAttrs.sizing.width = String( globalAttrs.width + '%' );
+					}
+
+					if ( globalAttrs.widthTablet ) {
+						globalAttrs.sizing.widthTablet = globalAttrs.autoWidthTablet
+							? 'auto'
+							: String( globalAttrs.widthTablet + '%' );
+					}
+
+					if ( globalAttrs.widthMobile ) {
+						globalAttrs.sizing.widthMobile = globalAttrs.autoWidthMobile
+							? 'auto'
+							: String( globalAttrs.widthMobile + '%' );
+					}
+
+					if ( globalAttrs.minHeight ) {
+						globalAttrs.sizing.minHeight = String( globalAttrs.minHeight + globalAttrs.minHeightUnit );
+					}
+
+					if ( globalAttrs.minHeightTablet ) {
+						globalAttrs.sizing.minHeightTablet = String( globalAttrs.minHeightTablet + globalAttrs.minHeightUnitTablet );
+					}
+
+					if ( globalAttrs.minHeightMobile ) {
+						globalAttrs.sizing.minHeightMobile = String( globalAttrs.minHeightMobile + globalAttrs.minHeightUnitMobile );
+					}
 				}
 
 				newAttrs[ attribute ] = globalAttrs[ attribute ];

@@ -5,6 +5,8 @@ const buttonAttributes = {
 	backgroundColorCurrent: '#fafafa',
 	textColorCurrent: '#000000',
 	buttonType: 'button',
+	flexGrowMobile: 1,
+	flexShrinkMobile: 0,
 };
 
 const tabAttributes = {
@@ -21,7 +23,13 @@ const template = [
 			variantRole: 'tab-buttons',
 			display: 'flex',
 			flexDirection: 'column',
-			sizing: { width: '200px' },
+			flexDirectionMobile: 'row',
+			overflowXMobile: 'auto',
+			sizing: {
+				width: '200px',
+				widthMobile: 'auto',
+				maxWidthMobile: '100%',
+			},
 		},
 		[
 			[ 'generateblocks/button',

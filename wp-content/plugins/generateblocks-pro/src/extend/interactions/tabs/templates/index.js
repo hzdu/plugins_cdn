@@ -24,6 +24,7 @@ function addTemplateSelectors( context, props ) {
 				attributes: {
 					display: 'flex',
 					flexDirection: 'row',
+					flexDirectionMobile: 'column',
 				},
 			},
 			{

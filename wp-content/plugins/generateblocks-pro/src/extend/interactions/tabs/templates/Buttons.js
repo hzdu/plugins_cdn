@@ -5,6 +5,8 @@ const buttonAttributes = {
 	backgroundColorCurrent: generateBlocksPro?.blockStyles?.button.backgroundColorHover,
 	textColorCurrent: generateBlocksPro?.blockStyles?.button.textColorHover,
 	buttonType: 'button',
+	flexGrowMobile: 1,
+	flexShrinkMobile: 0,
 };
 
 const tabAttributes = {
@@ -18,6 +20,10 @@ const template = [
 			display: 'flex',
 			justifyContent: 'center',
 			columnGap: '10px',
+			overflowXMobile: 'auto',
+			sizing: {
+				maxWidthMobile: '100%',
+			},
 		},
 		[
 			[ 'generateblocks/button',
