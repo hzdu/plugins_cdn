@@ -1,5 +1,5 @@
 /*!
- * Filter Everything common admin 1.7.5
+ * Filter Everything common admin 1.7.6
  */
 (function($) {
     "use strict";

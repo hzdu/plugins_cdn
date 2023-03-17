@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Filter Everything PRO\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-02-23 21:45+0000\n"
-"PO-Revision-Date: 2023-01-31 12:53+0000\n"
+"PO-Revision-Date: 2023-03-14 13:28+0000\n"
 "Last-Translator: Administrator\n"
 "Language-Team: Czech\n"
 "Language: cs_CZ\n"
@@ -964,10 +964,6 @@ msgstr ""
 msgid "Filter Everything&nbsp;— WooCoomerce Product & WordPress Filter"
 msgstr "Filter Everything&nbsp;— filtr pro WordPress a WooCommerce"
 
-#: src/Admin/FilterFields.php:65
-msgid "Filter Label"
-msgstr "Štítek filtru"
-
 #: src/Admin/FilterFields.php:102
 msgid "Filter Logic"
 msgstr "Filtr Logic"
@@ -1023,6 +1019,10 @@ msgstr "Sady filtrů"
 msgid "Filter Sets are Filters grouped together. Create your first Filter Set."
 msgstr ""
 "Sady filtrů jsou filtry seskupené dohromady. Vytvořte první sadu filtrů."
+
+#: src/Admin/FilterFields.php:65
+msgid "Filter Title"
+msgstr "Název filtru"
 
 msgid "Filtering by Taxonomies, Custom Fields, Post Author"
 msgstr "Filtrování podle taxonomií, vlastních polí, autora příspěvku"
@@ -1273,10 +1273,6 @@ msgstr "Položka č"
 #: src/wpc-helpers.php:492
 msgid "items"
 msgstr "položky"
-
-#: views/admin/filters-set.php:30
-msgid "Label"
-msgstr "Štítek"
 
 #: src/Admin/FilterFields.php:246
 msgid "Labels list"
@@ -2011,6 +2007,13 @@ msgid "Thank you so much!"
 msgstr "Děkuji mnohokrát!"
 
 msgid ""
+"The Filter Everything Sorting widget only works on pages with filtering "
+"posts."
+msgstr ""
+"Třídicí widget Filter Everything funguje pouze na stránkách, které mají "
+"filtrovatelné příspěvky."
+
+msgid ""
 "The free version of the plugin does not support filtering on singular pages. "
 "But <a href=\"%s\">PRO version</a> supports."
 msgstr ""
@@ -2039,6 +2042,12 @@ msgstr ""
 msgid "The same page as for filtered posts"
 msgstr "Stejná stránka jako pro filtrované příspěvky"
 
+#: views/frontend/checkboxes.php:26 views/frontend/dropdown.php:26
+#: views/frontend/labels.php:31 views/frontend/radio.php:27
+#: views/frontend/range.php:67
+msgid "There are no filter terms yet"
+msgstr "Filtr ještě nemá podmínky"
+
 msgid ""
 "There are no filters in the Filter Set yet. Please add them to the <a "
 "href=\"%s\">Filter Set</a> related to this page."
@@ -2066,12 +2075,6 @@ msgstr ""
 "Na této stránce zatím nejsou žádné widgety pro třídění. Prosím, vytvořte je "
 "jako první."
 
-#: views/frontend/checkboxes.php:26 views/frontend/dropdown.php:26
-#: views/frontend/labels.php:31 views/frontend/radio.php:27
-#: views/frontend/range.php:67
-msgid "There are no terms yet"
-msgstr "Zatím neexistují žádné podmínky"
-
 msgid ""
 "This filter is inactive because it is not related with the selected post "
 "type."
@@ -2080,10 +2083,6 @@ msgstr ""
 
 msgid "Title"
 msgstr "Název"
-
-#: src/Admin/FilterFields.php:68
-msgid "Title which will appear in filter widget"
-msgstr "Název, který se zobrazí ve widgetu filtru"
 
 #: pro/Admin/Admin.php:136
 msgid "Title will be created automatically"
@@ -2256,8 +2255,12 @@ msgstr "Základní barva widgetu"
 msgid "Widget shortcode:"
 msgstr "Zkratka widgetu:"
 
-msgid "Will appear next to the Filter Label"
-msgstr "Zobrazí se vedle štítku filtru"
+#: src/Admin/FilterFields.php:68
+msgid "Will appear in Filters widget"
+msgstr "Zobrazí se ve widgetu Filtry"
+
+msgid "Will appear next to the Filter Title"
+msgstr "Zobrazí se vedle názvu filtru"
 
 #: pro/Admin/SeoRules.php:460
 #, php-format

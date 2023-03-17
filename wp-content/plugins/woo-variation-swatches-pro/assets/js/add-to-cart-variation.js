@@ -2,7 +2,7 @@
  * Variation Swatches for WooCommerce - PRO
  *
  * Author: Emran Ahmed ( emran.bd.08@gmail.com )
- * Date: 1/18/2023, 1:03:38 PM
+ * Date: 3/16/2023, 9:12:56 PM
  * Released under the GPLv3 license.
  */
 /******/ (function() { // webpackBootstrap
@@ -290,9 +290,14 @@ var __webpack_exports__ = {};
       wp.apiFetch({
         path: wp.url.addQueryArgs("/woo-variation-swatches/v1/single-product-preview", currentAttributes)
       }).then(function (variation) {
-        form.$form.off('reset_image.wc-variation-form');
-        form.$form.wc_variations_image_update(variation);
-        form.$form.trigger('show_variation', [variation, false]);
+        var attributes = form.getChosenAttributes(); // extra check if variation chosen during api request
+
+        if (attributes.count && attributes.count > attributes.chosenCount) {
+          form.$form.off('reset_image.wc-variation-form');
+          form.$form.wc_variations_image_update(variation); // for variation gallery plugin support
+
+          form.$form.trigger('show_variation', [variation, false]);
+        }
 
         if ($gallery.length > 0) {
           $gallery.unblock();

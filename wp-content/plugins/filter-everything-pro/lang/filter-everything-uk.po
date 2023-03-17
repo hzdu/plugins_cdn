@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Filter Everything PRO\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-02-23 21:45+0000\n"
-"PO-Revision-Date: 2023-01-31 12:52+0000\n"
+"PO-Revision-Date: 2023-03-14 13:23+0000\n"
 "Last-Translator: Administrator\n"
 "Language-Team: Ukrainian\n"
 "Language: uk\n"
@@ -970,10 +970,6 @@ msgstr ""
 msgid "Filter Everything&nbsp;— WooCoomerce Product & WordPress Filter"
 msgstr "Filter Everything&nbsp;— фільтр для WordPress та WooCommerce"
 
-#: src/Admin/FilterFields.php:65
-msgid "Filter Label"
-msgstr "Ярлик фільтра"
-
 #: src/Admin/FilterFields.php:102
 msgid "Filter Logic"
 msgstr "Логіка фільтра"
@@ -1028,6 +1024,10 @@ msgstr "Набори фільтрів"
 #: src/PostTypes.php:27
 msgid "Filter Sets are Filters grouped together. Create your first Filter Set."
 msgstr "Створіть свій перший набір фільтрів."
+
+#: src/Admin/FilterFields.php:65
+msgid "Filter Title"
+msgstr "Назва фільтра"
 
 msgid "Filtering by Taxonomies, Custom Fields, Post Author"
 msgstr "Фільтрування по Таксономіям, Мета полям, Автору"
@@ -1277,10 +1277,6 @@ msgstr "Параметр №"
 #: src/wpc-helpers.php:492
 msgid "items"
 msgstr "дописів"
-
-#: views/admin/filters-set.php:30
-msgid "Label"
-msgstr "Ярлик"
 
 #: src/Admin/FilterFields.php:246
 msgid "Labels list"
@@ -2016,6 +2012,13 @@ msgid "Thank you so much!"
 msgstr "Щиро дякую!"
 
 msgid ""
+"The Filter Everything Sorting widget only works on pages with filtering "
+"posts."
+msgstr ""
+"Віджет сортування Filter Everything працює лише на тих сторінках, де є "
+"дописи, які фільтруються."
+
+msgid ""
 "The free version of the plugin does not support filtering on singular pages. "
 "But <a href=\"%s\">PRO version</a> supports."
 msgstr ""
@@ -2044,6 +2047,12 @@ msgstr ""
 msgid "The same page as for filtered posts"
 msgstr "Та сама сторінка, що й для дописів"
 
+#: views/frontend/checkboxes.php:26 views/frontend/dropdown.php:26
+#: views/frontend/labels.php:31 views/frontend/radio.php:27
+#: views/frontend/range.php:67
+msgid "There are no filter terms yet"
+msgstr "Фільтр поки ще не має термів"
+
 msgid ""
 "There are no filters in the Filter Set yet. Please add them to the <a "
 "href=\"%s\">Filter Set</a> related to this page."
@@ -2069,12 +2078,6 @@ msgstr ""
 "На цьому сайті ще немає жодного віджету сортування. Будь ласка спочатку "
 "створіть його."
 
-#: views/frontend/checkboxes.php:26 views/frontend/dropdown.php:26
-#: views/frontend/labels.php:31 views/frontend/radio.php:27
-#: views/frontend/range.php:67
-msgid "There are no terms yet"
-msgstr "Поки що немає ніяких термів"
-
 msgid ""
 "This filter is inactive because it is not related with the selected post "
 "type."
@@ -2082,11 +2085,7 @@ msgstr ""
 "Цей фільтр неактивний, тому що він не пов'язаний з обраним типом допису."
 
 msgid "Title"
-msgstr "Назва параметру"
-
-#: src/Admin/FilterFields.php:68
-msgid "Title which will appear in filter widget"
-msgstr "Ця назва буде відображатися у віджеті фільтрів"
+msgstr "Назва"
 
 #: pro/Admin/Admin.php:136
 msgid "Title will be created automatically"
@@ -2259,8 +2258,12 @@ msgstr "Основний колір віджету"
 msgid "Widget shortcode:"
 msgstr "Шорткод віджета:"
 
-msgid "Will appear next to the Filter Label"
-msgstr "З'явиться поруч з ярликом фільтра"
+#: src/Admin/FilterFields.php:68
+msgid "Will appear in Filters widget"
+msgstr "Буде відображатися у віджеті фільтрів"
+
+msgid "Will appear next to the Filter Title"
+msgstr "З'явиться поруч з назвою фільтра"
 
 #: pro/Admin/SeoRules.php:460
 #, php-format

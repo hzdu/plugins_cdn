@@ -1,5 +1,5 @@
 /*!
- * Filter Everything 1.7.5
+ * Filter Everything 1.7.6
  */
 (function ($) {
     "use strict";
@@ -18,7 +18,7 @@
     let wpcPopupCompatMode          = wpcFilterFront.wpcPopupCompatMode;
     let wpcApplyButtonSets          = wpcFilterFront.wpcApplyButtonSets;
     let wpcQueryOnThePageSets       = wpcFilterFront.wpcQueryOnThePageSets;
-    let wpcWidgetContainer          = '.wpc-filters-widget-main-wrapper';
+    let wpcWidgetContainer          = '.wpc-filters-main-wrap';
     let wpcIsMobile                 = false;
     let toReplaceSEO                = true;
     let prevState                   = false; // Contains SEO Rule availability on a page
@@ -66,7 +66,7 @@
         let wpcLink = wpcSortingForm.attr('action') + search;
 
         if( wpcFilterFront.wpcAjaxEnabled ) {
-            $('.wpc-filters-widget-main-wrapper').each(function (index, element) {
+            $('.wpc-filters-main-wrap').each(function (index, element) {
                 let $el = $(element);
                 wpcSendFilterRequest(wpcLink, $el, false);
             });
@@ -123,7 +123,7 @@
         }
 
         let wpcLink = $(this).attr('href');
-        let setId   = $(this).parents('.wpc-filters-widget-main-wrapper').data('set');
+        let setId   = $(this).parents('.wpc-filters-main-wrap').data('set');
         let $el     = $('.wpc-filter-set-'+setId);
 
         if( wpcAjax && wpcQueryOnThePageSets.includes( setId ) ) {
@@ -142,7 +142,7 @@
         }
 
         let wpcLink = $(this).attr('href');
-        let setId   = $(this).parents('.wpc-filters-widget-main-wrapper').data('set');
+        let setId   = $(this).parents('.wpc-filters-main-wrap').data('set');
         let $el     = $('.wpc-filter-set-'+setId);
 
         if( wpcAjax ) {
@@ -736,7 +736,7 @@
                 if (!wpcVisibility || wpcTransform !== 'none') {
                     if (!$currentTag.hasClass('widget_wpc_filters_widget')
                         &&
-                        !$currentTag.hasClass('wpc-filters-widget-main-wrapper')
+                        !$currentTag.hasClass('wpc-filters-main-wrap')
                     ) {
                         $currentTag.css('opacity', '0');
                         $currentTag.addClass('wpc-force-visibility wpc-was-invisible');
@@ -969,7 +969,7 @@
                     let $response               = $(response);
                     let $responsePostsContainer = $response.find(targetPostsContainer);
                     let currentSeoRuleId        = $response.find('#wpc-seo-rule-id').data('seoruleid');
-                    let isFilterRequest         = $response.find('.wpc-filters-widget-main-wrapper').hasClass('wpc-filter-request');
+                    let isFilterRequest         = $response.find('.wpc-filters-main-wrap').hasClass('wpc-filter-request');
 
                     if ( currentSeoRuleId > 0 ) {
                         currentState = true;
@@ -1058,7 +1058,7 @@
 
                             if( wpcButtonInnerContent.length > 0 ) {
                                 $('.wpc-open-button-'+setId).each( function ( bIndex, bUtton ) {
-                                    if ( $(this).parent('div').hasClass('wpc-filters-widget-main-wrapper') ){
+                                    if ( $(this).parent('div').hasClass('wpc-filters-main-wrap') ){
                                         return true;
                                     }
                                     $(this).find(".wpc-button-inner").replaceWith( wpcButtonInnerContent[0] );
