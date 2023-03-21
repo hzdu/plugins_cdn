@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- generator="WordPress/5.4.1" created="2020-06-10 19:19" -->
+
+<channel>
+	<title>API Demos</title>
+	<pubDate>Wed, 10 Jun 2020 19:19:44 +0000</pubDate>
+
+	<form>
+		<id>109</id>
+		<form_key><![CDATA[compound-interest-calculator]]></form_key>
+		<name><![CDATA[Compound Interest Calculator]]></name>
+		<description><![CDATA[<p>Calculate the expected final value of your investment of a period of time</p>
+]]></description>
+		<created_at>2019-10-24 19:03:34</created_at>
+		<logged_in>0</logged_in>
+		<is_template>0</is_template>
+		<editable>0</editable>
+		<options><![CDATA[{"show_form":"1","success_msg":"Final value: <strong>$[1508 thousands_sep=\\\",\\\"]<\/strong>\r\nFinal compound interest: <strong>$[1509 thousands_sep=\\\",\\\"]<\/strong>\r\n<hr>\r\nTotal balance from principal: <strong>$[1504 thousands_sep=\\\",\\\"]<\/strong>\r\nTotal compound interest on principal: <strong>$[1505 thousands_sep=\\\",\\\"]<\/strong>\r\nTotal balance from additional payments\/loans: <strong>$[1506 thousands_sep=\\\",\\\"]<\/strong>\r\nTotal compound interest from additional payments\/loans: <strong>$[1507 thousands_sep=\\\",\\\"]<\/strong>","edit_page_id":"","open_date":"2019-10-24 19:03","submit_value":"Calculate","submit_conditions":{"show_hide":"show","any_all":"all"},"before_html":"<legend class=\\\"frm_screen_reader\\\">[form_name]<\/legend>\r\n[if form_name]<h3 class=\\\"frm_form_title\\\">[form_name]<\/h3>[\/if form_name]\r\n[if form_description]<div class=\\\"frm_description\\\">[form_description]<\/div>[\/if form_description]\r\n\r\n<!-- Style to remove bootstrap prepend border for total fields -->\r\n<style type=\\\"text\/css\\\">\r\n.frm_total span.input-group-addon {\r\n    border: 0;\r\n}\r\n<\/style>","submit_html":"<div class=\\\"frm_submit\\\">\r\n[if back_button]<button type=\\\"submit\\\" name=\\\"frm_prev_page\\\" formnovalidate=\\\"formnovalidate\\\" class=\\\"frm_prev_page\\\" [back_hook]>[back_label]<\/button>[\/if back_button]\r\n<button class=\\\"frm_button_submit\\\" type=\\\"submit\\\"  [button_action]>[button_label]<\/button>\r\n[if save_draft]<a href=\\\"#\\\" tabindex=\\\"0\\\" class=\\\"frm_save_draft\\\" [draft_hook]>[draft_label]<\/a>[\/if save_draft]\r\n<\/div>"}]]></options>
+		<status><![CDATA[published]]></status>
+		<parent_form_id>0</parent_form_id>
+		<field>
+			<id>1489</id>
+			<field_key><![CDATA[ar3ja]]></field_key>
+			<name><![CDATA[Initial amount]]></name>
+			<description><![CDATA[]]></description>
+			<type><![CDATA[number]]></type>
+			<default_value>10000</default_value>
+			<field_order>1</field_order>
+			<form_id>109</form_id>
+			<required>0</required>
+			<options><![CDATA[]]></options>
+			<field_options><![CDATA[{"blank":"","invalid":"Number is invalid","classes":"frm_half","maxnum":"99999999","btsp":{"prepend":"","append":""},"prepend":"$"}]]></field_options>
+		</field>
+		<field>
+			<id>1490</id>
+			<field_key><![CDATA[qq46h]]></field_key>
+			<name><![CDATA[Interest rate]]></name>
+			<description><![CDATA[]]></description>
+			<type><![CDATA[number]]></type>
+			<default_value>8</default_value>
+			<field_order>2</field_order>
+			<form_id>109</form_id>
+			<required>0</required>
+			<options><![CDATA[]]></options>
+			<field_options><![CDATA[{"blank":"","invalid":"Number is invalid","classes":"frm_half","maxnum":"100","btsp":{"prepend":"","append":""},"append":"%"}]]></field_options>
+		</field>
+		<field>
+			<id>1491</id>
+			<field_key><![CDATA[5xym0]]></field_key>
+			<name><![CDATA[Term]]></name>
+			<description><![CDATA[Years]]></description>
+			<type><![CDATA[number]]></type>
+			<default_value>25</default_value>
+			<field_order>3</field_order>
+			<form_id>109</form_id>
+			<required>0</required>
+			<options><![CDATA[]]></options>
+			<field_options><![CDATA[{"blank":"","invalid":"Number is invalid","classes":"frm_fourth","btsp":{"prepend":"","append":""}}]]></field_options>
+		</field>
+		<field>
+			<id>1492</id>
+			<field_key><![CDATA[5s2n3]]></field_key>
+			<name><![CDATA[Term - Months]]></name>
+			<description><![CDATA[Months]]></description>
+			<type><![CDATA[number]]></type>
+			<default_value>0</default_value>
+			<field_order>4</field_order>
+			<form_id>109</form_id>
+			<required>0</required>
+			<options><![CDATA[]]></options>
+			<field_options><![CDATA[{"label":"hidden","blank":"","invalid":"Number is invalid","classes":"frm_fourth","btsp":{"prepend":"","append":""}}]]></field_options>
+		</field>
+		<field>
+			<id>1493</id>
+			<field_key><![CDATA[h45ud]]></field_key>
+			<name><![CDATA[Compound frequency]]></name>
+			<description><![CDATA[]]></description>
+			<type><![CDATA[select]]></type>
+			<default_value>12</default_value>
+			<field_order>5</field_order>
+			<form_id>109</form_id>
+			<required>0</required>
+			<options><![CDATA[{"0":{"label":"","value":""},"1":{"label":"Yearly","value":"1"},"6":{"label":"Semi-Annually","value":"2"},"2":{"label":"Quarterly","value":"4"},"3":{"label":"Monthly","value":"12"},"4":{"label":"Weekly","value":"52"},"5":{"label":"Daily","value":"365"}}]]></options>
+			<field_options><![CDATA[{"blank":"","separate_value":"1","classes":"frm_half","custom_html":"<div id=\\\"frm_field_[id]_container\\\" class=\\\"frm_form_field form-field [required_class][error_class]\\\">\r\n    <label for=\\\"field_[key]\\\" id=\\\"field_[key]_label\\\" class=\\\"frm_primary_label\\\">[field_name]\r\n        <span class=\\\"frm_required\\\">[required_label]<\/span>\r\n    <\/label>\r\n    [input]\r\n    [if description]<div class=\\\"frm_description\\\" id=\\\"frm_desc_field_[key]\\\">[description]<\/div>[\/if description]\r\n    [if error]<div class=\\\"frm_error\\\" id=\\\"frm_error_field_[key]\\\">[error]<\/div>[\/if error]\r\n<\/div>","btsp":{"prepend":"","append":""}}]]></field_options>
+		</field>
+		<field>
+			<id>1494</id>
+			<field_key><![CDATA[ujrcs]]></field_key>
+			<name><![CDATA[Additional deposits/loans]]></name>
+			<description><![CDATA[]]></description>
+			<type><![CDATA[divider]]></type>
+			<default_value><![CDATA[]]></default_value>
+			<field_order>6</field_order>
+			<form_id>109</form_id>
+			<required>0</required>
+			<options><![CDATA[]]></options>
+			<field_options><![CDATA[{"label":"","blank":"","custom_html":"<div id=\\\"frm_field_[id]_container\\\" class=\\\"frm_form_field frm_section_heading form-field[error_class]\\\">\r\n<h3 class=\\\"frm_pos_[label_position][collapse_class]\\\">[field_name]<\/h3>\r\n[if description]<div class=\\\"frm_description\\\">[description]<\/div>[\/if description]\r\n[collapse_this]\r\n<\/div>","btsp":""}]]></field_options>
+		</field>
+		<field>
+			<id>1496</id>
+			<field_key><![CDATA[y48iq]]></field_key>
+			<name><![CDATA[Monthly deposit/loan amount]]></name>
+			<description><![CDATA[]]></description>
+			<type><![CDATA[number]]></type>
+			<default_value>0</default_value>
+			<field_order>7</field_order>
+			<form_id>109</form_id>
+			<required>0</required>
+			<options><![CDATA[]]></options>
+			<field_options><![CDATA[{"in_section":"1494","blank":"","invalid":"Number is invalid","classes":"frm_half","btsp":{"prepend":"","append":""},"prepend":"$"}]]></field_options>
+		</field>
+		<field>
+			<id>1498</id>
+			<field_key><![CDATA[hzys3]]></field_key>
+			<name><![CDATA[Deposited/loaned at beginning or end of period?]]></name>
+			<description><![CDATA[]]></description>
+			<type><![CDATA[select]]></type>
+			<default_value>0</default_value>
+			<field_order>8</field_order>
+			<form_id>109</form_id>
+			<required>0</required>
+			<options><![CDATA[[{"label":"Beginning","value":"1"},{"label":"End","value":"0"}]]]></options>
+			<field_options><![CDATA[{"in_section":"1494","blank":"","separate_value":"1","classes":"frm_half","custom_html":"<div id=\\\"frm_field_[id]_container\\\" class=\\\"frm_form_field form-field [required_class][error_class]\\\">\r\n    <label for=\\\"field_[key]\\\" id=\\\"field_[key]_label\\\" class=\\\"frm_primary_label\\\">[field_name]\r\n        <span class=\\\"frm_required\\\">[required_label]<\/span>\r\n    <\/label>\r\n    [input]\r\n    [if description]<div class=\\\"frm_description\\\" id=\\\"frm_desc_field_[key]\\\">[description]<\/div>[\/if description]\r\n    [if error]<div class=\\\"frm_error\\\" id=\\\"frm_error_field_[key]\\\">[error]<\/div>[\/if error]\r\n<\/div>","btsp":{"prepend":"","append":""}}]]></field_options>
+		</field>
+		<field>
+			<id>1495</id>
+			<field_key><![CDATA[dm8wx]]></field_key>
+			<name><![CDATA[Section Buttons]]></name>
+			<description><![CDATA[]]></description>
+			<type><![CDATA[end_divider]]></type>
+			<default_value><![CDATA[]]></default_value>
+			<field_order>9</field_order>
+			<form_id>109</form_id>
+			<required>0</required>
+			<options><![CDATA[]]></options>
+			<field_options><![CDATA[{"blank":"","btsp":""}]]></field_options>
+		</field>
+		<field>
+			<id>2568</id>
+			<field_key><![CDATA[u50in]]></field_key>
+			<name><![CDATA[Totals]]></name>
+			<description><![CDATA[]]></description>
+			<type><![CDATA[divider]]></type>
+			<default_value><![CDATA[]]></default_value>
+			<field_order>10</field_order>
+			<form_id>109</form_id>
+			<required>0</required>
+			<options><![CDATA[]]></options>
+			<field_options><![CDATA[{"label":"none","blank":"","classes":"frm_color_block","btsp":""}]]></field_options>
+		</field>
+		<field>
+			<id>1504</id>
+			<field_key><![CDATA[x92tp]]></field_key>
+			<name><![CDATA[Principal]]></name>
+			<description><![CDATA[]]></description>
+			<type><![CDATA[number]]></type>
+			<default_value><![CDATA[]]></default_value>
+			<field_order>11</field_order>
+			<form_id>109</form_id>
+			<required>0</required>
+			<options><![CDATA[]]></options>
+			<field_options><![CDATA[{"read_only":"1","calc":"[1489] * Math.pow( (1 + (.01 * [1490]) \/ [1493] ) , ([1493] * ([1491] + [1492] \/ 12) ) )","calc_dec":"2","in_section":"2568","blank":"","invalid":"Number is invalid","classes":"frm_total","maxnum":"999999999999","btsp":{"prepend":"","append":""},"prepend":"$"}]]></field_options>
+		</field>
+		<field>
+			<id>1506</id>
+			<field_key><![CDATA[y3eld]]></field_key>
+			<name><![CDATA[Deposits]]></name>
+			<description><![CDATA[]]></description>
+			<type><![CDATA[number]]></type>
+			<default_value><![CDATA[]]></default_value>
+			<field_order>12</field_order>
+			<form_id>109</form_id>
+			<required>0</required>
+			<options><![CDATA[]]></options>
+			<field_options><![CDATA[{"read_only":"1","calc":"[1496] * ((Math.pow( (1 + (.01 * [1490]) \/ [1493] ) , ([1493] * ([1491] + [1492] \/ 12) ) ) - 1) \/ ((.01 * [1490]) \/ [1493]) ) * (1 + ((.01 * [1490]) * [1498] \/ [1493]))","calc_dec":"2","in_section":"2568","blank":"","invalid":"Number is invalid","classes":"frm_total","maxnum":"9999999999999","btsp":{"prepend":"","append":""},"prepend":"$"}]]></field_options>
+		</field>
+		<field>
+			<id>1505</id>
+			<field_key><![CDATA[gqmsl]]></field_key>
+			<name><![CDATA[Compound interest on principal]]></name>
+			<description><![CDATA[]]></description>
+			<type><![CDATA[number]]></type>
+			<default_value><![CDATA[]]></default_value>
+			<field_order>13</field_order>
+			<form_id>109</form_id>
+			<required>0</required>
+			<options><![CDATA[]]></options>
+			<field_options><![CDATA[{"read_only":"1","calc":"[1504]-[1489]","calc_dec":"2","in_section":"2568","blank":"","invalid":"Number is invalid","classes":"frm_total","maxnum":"9999999999999","btsp":{"prepend":"","append":""},"prepend":"$"}]]></field_options>
+		</field>
+		<field>
+			<id>1507</id>
+			<field_key><![CDATA[8l981]]></field_key>
+			<name><![CDATA[Compound interest on deposits]]></name>
+			<description><![CDATA[]]></description>
+			<type><![CDATA[number]]></type>
+			<default_value><![CDATA[]]></default_value>
+			<field_order>14</field_order>
+			<form_id>109</form_id>
+			<required>0</required>
+			<options><![CDATA[]]></options>
+			<field_options><![CDATA[{"read_only":"1","calc":"[1506] - ([1491] + [1492] \/ 12) * ([1496] * 12)","calc_dec":"2","in_section":"2568","blank":"","invalid":"Number is invalid","classes":"frm_total","maxnum":"9999999999999","btsp":{"prepend":"","append":""},"prepend":"$"}]]></field_options>
+		</field>
+		<field>
+			<id>1509</id>
+			<field_key><![CDATA[udern]]></field_key>
+			<name><![CDATA[Total compound interest]]></name>
+			<description><![CDATA[]]></description>
+			<type><![CDATA[number]]></type>
+			<default_value><![CDATA[]]></default_value>
+			<field_order>15</field_order>
+			<form_id>109</form_id>
+			<required>0</required>
+			<options><![CDATA[]]></options>
+			<field_options><![CDATA[{"read_only":"1","calc":"[1505]+[1507]","calc_dec":"2","in_section":"2568","blank":"","invalid":"Number is invalid","classes":"frm_total","maxnum":"9999999999999","btsp":{"prepend":"","append":""},"prepend":"$"}]]></field_options>
+		</field>
+		<field>
+			<id>1508</id>
+			<field_key><![CDATA[v1kta]]></field_key>
+			<name><![CDATA[Final balance]]></name>
+			<description><![CDATA[]]></description>
+			<type><![CDATA[number]]></type>
+			<default_value><![CDATA[]]></default_value>
+			<field_order>16</field_order>
+			<form_id>109</form_id>
+			<required>0</required>
+			<options><![CDATA[]]></options>
+			<field_options><![CDATA[{"read_only":"1","calc":"[1504] + [1506]","calc_dec":"2","in_section":"2568","blank":"","invalid":"Number is invalid","classes":"frm_total frm_total_big","maxnum":"9999999999999","btsp":{"prepend":"","append":""},"prepend":"$"}]]></field_options>
+		</field>
+		<field>
+			<id>2569</id>
+			<field_key><![CDATA[vl8fi]]></field_key>
+			<name><![CDATA[Section Buttons]]></name>
+			<description><![CDATA[]]></description>
+			<type><![CDATA[end_divider]]></type>
+			<default_value><![CDATA[]]></default_value>
+			<field_order>17</field_order>
+			<form_id>109</form_id>
+			<required>0</required>
+			<options><![CDATA[]]></options>
+			<field_options><![CDATA[{"blank":"","btsp":""}]]></field_options>
+		</field>
+	</form>
+	<view>
+		<title>Send Email</title>
+		<link></link>
+		<post_author><![CDATA[matt]]></post_author>
+		<description></description>
+		<content><![CDATA[{"email_to":"[admin_email]","cc":"","bcc":"","from":"[sitename] <[admin_email]>","reply_to":"","email_subject":"","email_message":"[default-message]","inc_user_info":"0","plain_text":"0","event":["create"],"conditions":{"send_stop":"","any_all":""}}]]></content>
+		<excerpt><![CDATA[email]]></excerpt>
+		<post_id>359</post_id>
+		<post_date>2019-10-24 19:03:34</post_date>
+		<post_date_gmt>2019-10-24 19:03:34</post_date_gmt>
+		<comment_status>closed</comment_status>
+		<ping_status>closed</ping_status>
+		<post_name>109_email_</post_name>
+		<status>draft</status>
+		<post_parent>0</post_parent>
+		<menu_order>109</menu_order>
+		<post_type>frm_form_actions</post_type>
+		<post_password><![CDATA[]]></post_password>
+		<is_sticky>0</is_sticky>
+	</view>
+</channel>

@@ -1,0 +1,375 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- generator="WordPress/5.4.1" created="2020-06-09 21:49" -->
+
+<channel>
+	<title>API Demos</title>
+	<pubDate>Tue, 09 Jun 2020 21:49:56 +0000</pubDate>
+
+	<form>
+		<id>8</id>
+		<form_key><![CDATA[automobile-payment-calculator]]></form_key>
+		<name><![CDATA[Automobile Payment Calculator]]></name>
+		<description><![CDATA[<p>This form can be used to calculate a how much a monthly payment might be for buying a car.</p>
+]]></description>
+		<created_at>2016-09-14 23:23:13</created_at>
+		<logged_in>0</logged_in>
+		<is_template>0</is_template>
+		<editable>0</editable>
+		<options><![CDATA[{"edit_page_id":"","open_date":"2019-01-29 16:55","submit_conditions":{"show_hide":"show","any_all":"all"},"before_html":"<legend class=\\\"frm_hidden\\\">[form_name]<\/legend>\r\n[if form_name]<h3 class=\\\"frm_form_title\\\">[form_name]<\/h3>[\/if form_name]\r\n[if form_description]<div class=\\\"frm_description\\\">[form_description]<\/div>[\/if form_description]","submit_html":"<div class=\\\"frm_submit\\\">\r\n[if back_button]<input type=\\\"button\\\" value=\\\"[back_label]\\\" name=\\\"frm_prev_page\\\" formnovalidate=\\\"formnovalidate\\\" class=\\\"frm_prev_page\\\" [back_hook] \/>[\/if back_button]\r\n<input type=\\\"submit\\\" value=\\\"[button_label]\\\" [button_action] \/>\r\n<img class=\\\"frm_ajax_loading\\\" src=\\\"[frmurl]\/images\/ajax_loader.gif\\\" alt=\\\"Sending\\\"\/>\r\n[if save_draft]<a href=\\\"#\\\" class=\\\"frm_save_draft\\\" [draft_hook]>[draft_label]<\/a>[\/if save_draft]\r\n<\/div>"}]]></options>
+		<status><![CDATA[published]]></status>
+		<parent_form_id>0</parent_form_id>
+		<field>
+			<id>2534</id>
+			<field_key><![CDATA[b3cfb]]></field_key>
+			<name><![CDATA[Purchase Details]]></name>
+			<description><![CDATA[]]></description>
+			<type><![CDATA[divider]]></type>
+			<default_value><![CDATA[]]></default_value>
+			<field_order>1</field_order>
+			<form_id>8</form_id>
+			<required>0</required>
+			<options><![CDATA[]]></options>
+			<field_options><![CDATA[{"label":"","blank":"","custom_html":"<div id=\\\"frm_field_[id]_container\\\" class=\\\"frm_form_field frm_section_heading form-field[error_class]\\\">\r\n<h3 class=\\\"frm_pos_[label_position][collapse_class]\\\">[field_name]<\/h3>\r\n[if description]<div class=\\\"frm_description\\\">[description]<\/div>[\/if description]\r\n[collapse_this]\r\n<\/div>","btsp":""}]]></field_options>
+		</field>
+		<field>
+			<id>80</id>
+			<field_key><![CDATA[8uxc3]]></field_key>
+			<name><![CDATA[Price of Car]]></name>
+			<description><![CDATA[]]></description>
+			<type><![CDATA[number]]></type>
+			<default_value><![CDATA[]]></default_value>
+			<field_order>2</field_order>
+			<form_id>8</form_id>
+			<required>0</required>
+			<options><![CDATA[]]></options>
+			<field_options><![CDATA[{"classes":"frm_first frm_half","btsp":{"prepend":"","append":""},"in_section":"2534","use_calc":0,"autopopulate_value":false,"watch_lookup":[""],"blank":"","required_indicator":"","default_blank":"0","custom_html":"<div id=\\\"frm_field_[id]_container\\\" class=\\\"frm_form_field form-field [required_class][error_class]\\\">\r\n    <label for=\\\"field_[key]\\\" class=\\\"frm_primary_label\\\">[field_name]\r\n        <span class=\\\"frm_required\\\">[required_label]<\/span>\r\n    <\/label>\r\n    [input]\r\n    [if description]<div class=\\\"frm_description\\\" id=\\\"frm_desc_field_[key]\\\">[description]<\/div>[\/if description]\r\n    [if error]<div class=\\\"frm_error\\\">[error]<\/div>[\/if error]\r\n<\/div>","prepend":"$","append":".00"}]]></field_options>
+		</field>
+		<field>
+			<id>81</id>
+			<field_key><![CDATA[m5c0i]]></field_key>
+			<name><![CDATA[Sales Tax]]></name>
+			<description><![CDATA[]]></description>
+			<type><![CDATA[number]]></type>
+			<default_value>7</default_value>
+			<field_order>3</field_order>
+			<form_id>8</form_id>
+			<required>0</required>
+			<options><![CDATA[]]></options>
+			<field_options><![CDATA[{"classes":"frm_half","step":".01","btsp":{"prepend":"","append":""},"in_section":"2534","use_calc":0,"autopopulate_value":false,"watch_lookup":[""],"blank":"","required_indicator":"","default_blank":"0","custom_html":"<div id=\\\"frm_field_[id]_container\\\" class=\\\"frm_form_field form-field [required_class][error_class]\\\">\r\n    <label for=\\\"field_[key]\\\" class=\\\"frm_primary_label\\\">[field_name]\r\n        <span class=\\\"frm_required\\\">[required_label]<\/span>\r\n    <\/label>\r\n    [input]\r\n    [if description]<div class=\\\"frm_description\\\" id=\\\"frm_desc_field_[key]\\\">[description]<\/div>[\/if description]\r\n    [if error]<div class=\\\"frm_error\\\">[error]<\/div>[\/if error]\r\n<\/div>","append":"%"}]]></field_options>
+		</field>
+		<field>
+			<id>95</id>
+			<field_key><![CDATA[3wral]]></field_key>
+			<name><![CDATA[Annual Interest]]></name>
+			<description><![CDATA[]]></description>
+			<type><![CDATA[range]]></type>
+			<default_value>3.5</default_value>
+			<field_order>4</field_order>
+			<form_id>8</form_id>
+			<required>0</required>
+			<options><![CDATA[]]></options>
+			<field_options><![CDATA[{"classes":"frm_first frm_half","maxnum":"25","step":"0.01","btsp":"","in_section":"2534","use_calc":0,"autopopulate_value":false,"get_values_form":"","get_values_field":"","watch_lookup":[""],"get_most_recent_value":"","lookup_filter_current_user":false,"blank":"","required_indicator":"","default_blank":"0","custom_html":"<div id=\\\"frm_field_[id]_container\\\" class=\\\"frm_form_field form-field [required_class][error_class]\\\">\r\n    <label for=\\\"field_[key]\\\" class=\\\"frm_primary_label\\\">[field_name]\r\n        <span class=\\\"frm_required\\\">[required_label]<\/span>\r\n    <\/label>\r\n    [input]\r\n    [if description]<div class=\\\"frm_description\\\" id=\\\"frm_desc_field_[key]\\\">[description]<\/div>[\/if description]\r\n    [if error]<div class=\\\"frm_error\\\">[error]<\/div>[\/if error]\r\n<\/div>","unit":"%"}]]></field_options>
+		</field>
+		<field>
+			<id>97</id>
+			<field_key><![CDATA[o910s]]></field_key>
+			<name><![CDATA[Length of Loan]]></name>
+			<description><![CDATA[]]></description>
+			<type><![CDATA[range]]></type>
+			<default_value>60</default_value>
+			<field_order>5</field_order>
+			<form_id>8</form_id>
+			<required>0</required>
+			<options><![CDATA[]]></options>
+			<field_options><![CDATA[{"classes":"frm_half","maxnum":"97","btsp":"","in_section":"2534","use_calc":0,"autopopulate_value":false,"get_values_form":"","get_values_field":"","watch_lookup":[""],"get_most_recent_value":"","lookup_filter_current_user":false,"blank":"","required_indicator":"","default_blank":"0","minnum":"3","custom_html":"<div id=\\\"frm_field_[id]_container\\\" class=\\\"frm_form_field form-field [required_class][error_class]\\\">\r\n    <label for=\\\"field_[key]\\\" class=\\\"frm_primary_label\\\">[field_name]\r\n        <span class=\\\"frm_required\\\">[required_label]<\/span>\r\n    <\/label>\r\n    [input]\r\n    [if description]<div class=\\\"frm_description\\\" id=\\\"frm_desc_field_[key]\\\">[description]<\/div>[\/if description]\r\n    [if error]<div class=\\\"frm_error\\\">[error]<\/div>[\/if error]\r\n<\/div>","unit":"months"}]]></field_options>
+		</field>
+		<field>
+			<id>82</id>
+			<field_key><![CDATA[9eo6u]]></field_key>
+			<name><![CDATA[Are you trading in a car?]]></name>
+			<description><![CDATA[]]></description>
+			<type><![CDATA[radio]]></type>
+			<default_value><![CDATA[]]></default_value>
+			<field_order>6</field_order>
+			<form_id>8</form_id>
+			<required>0</required>
+			<options><![CDATA[[{"label":"Yes","value":"Yes"},{"label":"No","value":"No"}]]]></options>
+			<field_options><![CDATA[{"classes":"frm_first frm_half","custom_html":"<div id=\\\"frm_field_[id]_container\\\" class=\\\"frm_form_field form-field [required_class][error_class]\\\">\r\n    <label  class=\\\"frm_primary_label\\\">[field_name]\r\n        <span class=\\\"frm_required\\\">[required_label]<\/span>\r\n    <\/label>\r\n    <div class=\\\"frm_opt_container\\\">[input]<\/div>\r\n    [if description]<div class=\\\"frm_description\\\">[description]<\/div>[\/if description]\r\n    [if error]<div class=\\\"frm_error\\\">[error]<\/div>[\/if error]\r\n<\/div>","align":"inline","in_section":"2534","use_calc":0,"blank":"","required_indicator":"","default_blank":0,"btsp":""}]]></field_options>
+		</field>
+		<field>
+			<id>83</id>
+			<field_key><![CDATA[i8x14]]></field_key>
+			<name><![CDATA[Trade-In Value]]></name>
+			<description><![CDATA[]]></description>
+			<type><![CDATA[number]]></type>
+			<default_value><![CDATA[]]></default_value>
+			<field_order>7</field_order>
+			<form_id>8</form_id>
+			<required>0</required>
+			<options><![CDATA[]]></options>
+			<field_options><![CDATA[{"classes":"frm_half","hide_field":["82"],"hide_opt":["Yes"],"step":"1","btsp":{"prepend":"","append":""},"in_section":"2534","use_calc":0,"autopopulate_value":false,"watch_lookup":[""],"blank":"","required_indicator":"","default_blank":"0","custom_html":"<div id=\\\"frm_field_[id]_container\\\" class=\\\"frm_form_field form-field [required_class][error_class]\\\">\r\n    <label for=\\\"field_[key]\\\" class=\\\"frm_primary_label\\\">[field_name]\r\n        <span class=\\\"frm_required\\\">[required_label]<\/span>\r\n    <\/label>\r\n    [input]\r\n    [if description]<div class=\\\"frm_description\\\" id=\\\"frm_desc_field_[key]\\\">[description]<\/div>[\/if description]\r\n    [if error]<div class=\\\"frm_error\\\">[error]<\/div>[\/if error]\r\n<\/div>","prepend":"$","append":".00"}]]></field_options>
+		</field>
+		<field>
+			<id>84</id>
+			<field_key><![CDATA[exe26]]></field_key>
+			<name><![CDATA[Estimated Dealer Fees]]></name>
+			<description><![CDATA[]]></description>
+			<type><![CDATA[number]]></type>
+			<default_value><![CDATA[]]></default_value>
+			<field_order>8</field_order>
+			<form_id>8</form_id>
+			<required>0</required>
+			<options><![CDATA[]]></options>
+			<field_options><![CDATA[{"classes":"frm_first frm_third","step":"1","btsp":{"prepend":"","append":""},"in_section":"2534","use_calc":0,"autopopulate_value":false,"watch_lookup":[""],"blank":"","required_indicator":"","default_blank":"0","custom_html":"<div id=\\\"frm_field_[id]_container\\\" class=\\\"frm_form_field form-field [required_class][error_class]\\\">\r\n    <label for=\\\"field_[key]\\\" class=\\\"frm_primary_label\\\">[field_name]\r\n        <span class=\\\"frm_required\\\">[required_label]<\/span>\r\n    <\/label>\r\n    [input]\r\n    [if description]<div class=\\\"frm_description\\\" id=\\\"frm_desc_field_[key]\\\">[description]<\/div>[\/if description]\r\n    [if error]<div class=\\\"frm_error\\\">[error]<\/div>[\/if error]\r\n<\/div>","prepend":"$","append":".00"}]]></field_options>
+		</field>
+		<field>
+			<id>85</id>
+			<field_key><![CDATA[4eza1]]></field_key>
+			<name><![CDATA[Estimated Rebates]]></name>
+			<description><![CDATA[]]></description>
+			<type><![CDATA[number]]></type>
+			<default_value><![CDATA[]]></default_value>
+			<field_order>9</field_order>
+			<form_id>8</form_id>
+			<required>0</required>
+			<options><![CDATA[]]></options>
+			<field_options><![CDATA[{"classes":"frm_third","step":"1","btsp":{"prepend":"","append":""},"in_section":"2534","use_calc":0,"autopopulate_value":false,"watch_lookup":[""],"blank":"","required_indicator":"","invalid":"Estimated Rebates\/Incentives is invalid","default_blank":"0","custom_html":"<div id=\\\"frm_field_[id]_container\\\" class=\\\"frm_form_field form-field [required_class][error_class]\\\">\r\n    <label for=\\\"field_[key]\\\" class=\\\"frm_primary_label\\\">[field_name]\r\n        <span class=\\\"frm_required\\\">[required_label]<\/span>\r\n    <\/label>\r\n    [input]\r\n    [if description]<div class=\\\"frm_description\\\" id=\\\"frm_desc_field_[key]\\\">[description]<\/div>[\/if description]\r\n    [if error]<div class=\\\"frm_error\\\">[error]<\/div>[\/if error]\r\n<\/div>","prepend":"$","append":".00"}]]></field_options>
+		</field>
+		<field>
+			<id>86</id>
+			<field_key><![CDATA[i8u41]]></field_key>
+			<name><![CDATA[Estimated Down Payment]]></name>
+			<description><![CDATA[]]></description>
+			<type><![CDATA[number]]></type>
+			<default_value><![CDATA[]]></default_value>
+			<field_order>10</field_order>
+			<form_id>8</form_id>
+			<required>0</required>
+			<options><![CDATA[]]></options>
+			<field_options><![CDATA[{"classes":"frm_third","step":"1","btsp":{"prepend":"","append":""},"in_section":"2534","use_calc":0,"autopopulate_value":false,"watch_lookup":[""],"blank":"","required_indicator":"","default_blank":"0","custom_html":"<div id=\\\"frm_field_[id]_container\\\" class=\\\"frm_form_field form-field [required_class][error_class]\\\">\r\n    <label for=\\\"field_[key]\\\" class=\\\"frm_primary_label\\\">[field_name]\r\n        <span class=\\\"frm_required\\\">[required_label]<\/span>\r\n    <\/label>\r\n    [input]\r\n    [if description]<div class=\\\"frm_description\\\" id=\\\"frm_desc_field_[key]\\\">[description]<\/div>[\/if description]\r\n    [if error]<div class=\\\"frm_error\\\">[error]<\/div>[\/if error]\r\n<\/div>","prepend":"$","append":".00"}]]></field_options>
+		</field>
+		<field>
+			<id>2535</id>
+			<field_key><![CDATA[ha87]]></field_key>
+			<name><![CDATA[Section Buttons]]></name>
+			<description><![CDATA[]]></description>
+			<type><![CDATA[end_divider]]></type>
+			<default_value><![CDATA[]]></default_value>
+			<field_order>11</field_order>
+			<form_id>8</form_id>
+			<required>0</required>
+			<options><![CDATA[]]></options>
+			<field_options><![CDATA[{"blank":"","btsp":""}]]></field_options>
+		</field>
+		<field>
+			<id>87</id>
+			<field_key><![CDATA[zw6xk]]></field_key>
+			<name><![CDATA[Loan Calculation]]></name>
+			<description><![CDATA[]]></description>
+			<type><![CDATA[divider]]></type>
+			<default_value><![CDATA[]]></default_value>
+			<field_order>12</field_order>
+			<form_id>8</form_id>
+			<required>0</required>
+			<options><![CDATA[]]></options>
+			<field_options><![CDATA[{"custom_html":"<div id=\\\"frm_field_[id]_container\\\" class=\\\"frm_form_field frm_section_heading form-field[error_class]\\\">\r\n<h3 class=\\\"frm_pos_[label_position][collapse_class]\\\">[field_name]<\/h3>\r\n[if description]<div class=\\\"frm_description\\\">[description]<\/div>[\/if description]\r\n[collapse_this]\r\n<\/div>","use_calc":0,"blank":"","default_blank":0,"classes":"frm_color_block","btsp":""}]]></field_options>
+		</field>
+		<field>
+			<id>88</id>
+			<field_key><![CDATA[cdqlj]]></field_key>
+			<name><![CDATA[Price of Car & Fees]]></name>
+			<description><![CDATA[]]></description>
+			<type><![CDATA[number]]></type>
+			<default_value><![CDATA[]]></default_value>
+			<field_order>13</field_order>
+			<form_id>8</form_id>
+			<required>0</required>
+			<options><![CDATA[]]></options>
+			<field_options><![CDATA[{"classes":"frm_total","custom_html":"<div id=\\\"frm_field_[id]_container\\\" class=\\\"frm_grid_container frm_form_field form-field [required_class][error_class]\\\">\r\n<div class=\\\"frm_first frm_form_field frm_two_thirds\\\">\r\n    <label for=\\\"field_[key]\\\" class=\\\"frm_primary_label\\\">[field_name]\r\n        <span class=\\\"frm_required\\\">[required_label]<\/span>\r\n    <\/label>\r\n<\/div>\r\n<div class=\\\"frm_third frm_form_field\\\">\r\n    [input tabindex=-1]\r\n<\/div>\r\n    [if description]<div class=\\\"frm_description\\\">[description]<\/div>[\/if description]\r\n    [if error]<div class=\\\"frm_error\\\">[error]<\/div>[\/if error]\r\n<\/div>","in_section":"87","read_only":"1","use_calc":"1","calc":"[80]+[84]","calc_dec":"2","btsp":{"prepend":"","append":""},"autopopulate_value":false,"watch_lookup":[""],"label":"top","blank":"","required_indicator":"","invalid":"Price of Car w\/Dealer Fees is invalid","default_blank":"0","prepend":"$"}]]></field_options>
+		</field>
+		<field>
+			<id>89</id>
+			<field_key><![CDATA[m6tj4]]></field_key>
+			<name><![CDATA[Taxes]]></name>
+			<description><![CDATA[]]></description>
+			<type><![CDATA[number]]></type>
+			<default_value><![CDATA[]]></default_value>
+			<field_order>14</field_order>
+			<form_id>8</form_id>
+			<required>0</required>
+			<options><![CDATA[]]></options>
+			<field_options><![CDATA[{"classes":"frm_total","custom_html":"<div id=\\\"frm_field_[id]_container\\\" class=\\\"frm_grid_container frm_form_field form-field [required_class][error_class]\\\">\r\n<div class=\\\"frm_first frm_form_field frm_two_thirds\\\">\r\n    <label for=\\\"field_[key]\\\" class=\\\"frm_primary_label\\\">[field_name]\r\n        <span class=\\\"frm_required\\\">[required_label]<\/span>\r\n    <\/label>\r\n<\/div>\r\n<div class=\\\"frm_third frm_form_field\\\">\r\n    [input tabindex=-1]\r\n<\/div>\r\n    [if description]<div class=\\\"frm_description\\\">[description]<\/div>[\/if description]\r\n    [if error]<div class=\\\"frm_error\\\">[error]<\/div>[\/if error]\r\n<\/div>","in_section":"87","read_only":"1","use_calc":"1","calc":"(([80]-[83])*([81]\/100))","calc_dec":"2","btsp":{"prepend":"","append":""},"autopopulate_value":false,"watch_lookup":[""],"label":"top","blank":"","required_indicator":"","invalid":"Estimated Taxes is invalid","default_blank":"0","prepend":"$"}]]></field_options>
+		</field>
+		<field>
+			<id>90</id>
+			<field_key><![CDATA[e22qn]]></field_key>
+			<name><![CDATA[Rebates]]></name>
+			<description><![CDATA[]]></description>
+			<type><![CDATA[number]]></type>
+			<default_value><![CDATA[]]></default_value>
+			<field_order>15</field_order>
+			<form_id>8</form_id>
+			<required>0</required>
+			<options><![CDATA[]]></options>
+			<field_options><![CDATA[{"classes":"frm_total","custom_html":"<div id=\\\"frm_field_[id]_container\\\" class=\\\"frm_grid_container frm_form_field form-field [required_class][error_class]\\\">\r\n<div class=\\\"frm_first frm_form_field frm_two_thirds\\\">\r\n    <label for=\\\"field_[key]\\\" class=\\\"frm_primary_label\\\">[field_name]\r\n        <span class=\\\"frm_required\\\">[required_label]<\/span>\r\n    <\/label>\r\n<\/div>\r\n<div class=\\\"frm_third frm_form_field\\\">\r\n    [input tabindex=-1]\r\n<\/div>\r\n    [if description]<div class=\\\"frm_description\\\">[description]<\/div>[\/if description]\r\n    [if error]<div class=\\\"frm_error\\\">[error]<\/div>[\/if error]\r\n<\/div>","in_section":"87","read_only":"1","use_calc":"1","calc":"[85]","calc_dec":"2","btsp":{"prepend":"","append":""},"hide_field":["85"],"hide_field_cond":["!="],"hide_opt":[""],"autopopulate_value":false,"watch_lookup":[""],"label":"top","blank":"","required_indicator":"","invalid":"Estimated Rebates is invalid","default_blank":"0","prepend":"$"}]]></field_options>
+		</field>
+		<field>
+			<id>91</id>
+			<field_key><![CDATA[q8z4r]]></field_key>
+			<name><![CDATA[Down Payment]]></name>
+			<description><![CDATA[]]></description>
+			<type><![CDATA[number]]></type>
+			<default_value><![CDATA[]]></default_value>
+			<field_order>16</field_order>
+			<form_id>8</form_id>
+			<required>0</required>
+			<options><![CDATA[]]></options>
+			<field_options><![CDATA[{"classes":"frm_total","custom_html":"<div id=\\\"frm_field_[id]_container\\\" class=\\\"frm_grid_container frm_form_field form-field [required_class][error_class]\\\">\r\n<div class=\\\"frm_first frm_form_field frm_two_thirds\\\">\r\n    <label for=\\\"field_[key]\\\" class=\\\"frm_primary_label\\\">[field_name]\r\n        <span class=\\\"frm_required\\\">[required_label]<\/span>\r\n    <\/label>\r\n<\/div>\r\n<div class=\\\"frm_third frm_form_field\\\">\r\n    [input tabindex=-1]\r\n<\/div>\r\n    [if description]<div class=\\\"frm_description\\\">[description]<\/div>[\/if description]\r\n    [if error]<div class=\\\"frm_error\\\">[error]<\/div>[\/if error]\r\n<\/div>","in_section":"87","read_only":"1","use_calc":"1","calc":"[86]","calc_dec":"2","btsp":{"prepend":"","append":""},"hide_field":["86"],"hide_field_cond":["!="],"hide_opt":[""],"autopopulate_value":false,"watch_lookup":[""],"label":"top","blank":"","required_indicator":"","invalid":"Estimated Down Payment is invalid","default_blank":"0","prepend":"$"}]]></field_options>
+		</field>
+		<field>
+			<id>92</id>
+			<field_key><![CDATA[zpqx9]]></field_key>
+			<name><![CDATA[Trade-In Value]]></name>
+			<description><![CDATA[]]></description>
+			<type><![CDATA[number]]></type>
+			<default_value><![CDATA[]]></default_value>
+			<field_order>17</field_order>
+			<form_id>8</form_id>
+			<required>0</required>
+			<options><![CDATA[]]></options>
+			<field_options><![CDATA[{"classes":"frm_total","custom_html":"<div id=\\\"frm_field_[id]_container\\\" class=\\\"frm_grid_container frm_form_field form-field [required_class][error_class]\\\">\r\n<div class=\\\"frm_first frm_form_field frm_two_thirds\\\">\r\n    <label for=\\\"field_[key]\\\" class=\\\"frm_primary_label\\\">[field_name]\r\n        <span class=\\\"frm_required\\\">[required_label]<\/span>\r\n    <\/label>\r\n<\/div>\r\n<div class=\\\"frm_third frm_form_field\\\">\r\n    [input tabindex=-1]\r\n<\/div>\r\n    [if description]<div class=\\\"frm_description\\\">[description]<\/div>[\/if description]\r\n    [if error]<div class=\\\"frm_error\\\">[error]<\/div>[\/if error]\r\n<\/div>","in_section":"87","hide_field":["82"],"hide_opt":["Yes"],"read_only":"1","use_calc":"1","calc":"[83]","calc_dec":"2","autopopulate_value":false,"watch_lookup":[""],"label":"top","blank":"","required_indicator":"","invalid":"Estimated Trade-In Value is invalid","default_blank":"0","btsp":{"prepend":"","append":""},"prepend":"$"}]]></field_options>
+		</field>
+		<field>
+			<id>93</id>
+			<field_key><![CDATA[xvp2v]]></field_key>
+			<name><![CDATA[Loan Amount]]></name>
+			<description><![CDATA[]]></description>
+			<type><![CDATA[number]]></type>
+			<default_value><![CDATA[]]></default_value>
+			<field_order>18</field_order>
+			<form_id>8</form_id>
+			<required>0</required>
+			<options><![CDATA[]]></options>
+			<field_options><![CDATA[{"classes":"frm_total","custom_html":"<div id=\\\"frm_field_[id]_container\\\" class=\\\"frm_grid_container frm_form_field form-field [required_class][error_class]\\\">\r\n<div class=\\\"frm_first frm_form_field frm_two_thirds\\\">\r\n    <label for=\\\"field_[key]\\\" class=\\\"frm_primary_label\\\">[field_name]\r\n        <span class=\\\"frm_required\\\">[required_label]<\/span>\r\n    <\/label>\r\n<\/div>\r\n<div class=\\\"frm_third frm_form_field\\\">\r\n    [input tabindex=-1]\r\n<\/div>\r\n    [if description]<div class=\\\"frm_description\\\">[description]<\/div>[\/if description]\r\n    [if error]<div class=\\\"frm_error\\\">[error]<\/div>[\/if error]\r\n<\/div>","in_section":"87","read_only":"1","use_calc":"1","calc":"[88]+[89]-[90]-[91]-[92]","calc_dec":"2","btsp":{"prepend":"","append":""},"autopopulate_value":false,"watch_lookup":[""],"label":"top","blank":"","required_indicator":"","invalid":"Estimated Loan Amount is invalid","default_blank":"0","prepend":"$"}]]></field_options>
+		</field>
+		<field>
+			<id>96</id>
+			<field_key><![CDATA[rm3cs]]></field_key>
+			<name><![CDATA[Monthly Interest]]></name>
+			<description><![CDATA[]]></description>
+			<type><![CDATA[hidden]]></type>
+			<default_value><![CDATA[]]></default_value>
+			<field_order>19</field_order>
+			<form_id>8</form_id>
+			<required>0</required>
+			<options><![CDATA[]]></options>
+			<field_options><![CDATA[{"use_calc":"1","calc":"[95]\/12\/100","in_section":"87","autopopulate_value":false,"watch_lookup":[""],"blank":"","default_blank":0,"btsp":""}]]></field_options>
+		</field>
+		<field>
+			<id>98</id>
+			<field_key><![CDATA[48dey]]></field_key>
+			<name><![CDATA[Loan Calculation - (1+r)^n]]></name>
+			<description><![CDATA[]]></description>
+			<type><![CDATA[hidden]]></type>
+			<default_value><![CDATA[]]></default_value>
+			<field_order>20</field_order>
+			<form_id>8</form_id>
+			<required>0</required>
+			<options><![CDATA[]]></options>
+			<field_options><![CDATA[{"use_calc":"1","calc":"Math.pow((1+[96]),[97])","in_section":"87","autopopulate_value":false,"watch_lookup":[""],"blank":"","default_blank":0,"btsp":""}]]></field_options>
+		</field>
+		<field>
+			<id>99</id>
+			<field_key><![CDATA[szn43]]></field_key>
+			<name><![CDATA[Loan Calculation -  r(1+r)^n]]></name>
+			<description><![CDATA[]]></description>
+			<type><![CDATA[hidden]]></type>
+			<default_value><![CDATA[]]></default_value>
+			<field_order>21</field_order>
+			<form_id>8</form_id>
+			<required>0</required>
+			<options><![CDATA[]]></options>
+			<field_options><![CDATA[{"use_calc":"1","calc":"[96]*[98]","in_section":"87","autopopulate_value":false,"watch_lookup":[""],"blank":"","default_blank":0,"btsp":""}]]></field_options>
+		</field>
+		<field>
+			<id>100</id>
+			<field_key><![CDATA[ofjad]]></field_key>
+			<name><![CDATA[Loan Calculation - (1+r)^n -1]]></name>
+			<description><![CDATA[]]></description>
+			<type><![CDATA[hidden]]></type>
+			<default_value><![CDATA[]]></default_value>
+			<field_order>22</field_order>
+			<form_id>8</form_id>
+			<required>0</required>
+			<options><![CDATA[]]></options>
+			<field_options><![CDATA[{"use_calc":"1","calc":"[98]-1","in_section":"87","autopopulate_value":false,"watch_lookup":[""],"blank":"","default_blank":0,"btsp":""}]]></field_options>
+		</field>
+		<field>
+			<id>102</id>
+			<field_key><![CDATA[w0dge]]></field_key>
+			<name><![CDATA[Monthly Payment with Interest]]></name>
+			<description><![CDATA[]]></description>
+			<type><![CDATA[number]]></type>
+			<default_value><![CDATA[]]></default_value>
+			<field_order>23</field_order>
+			<form_id>8</form_id>
+			<required>0</required>
+			<options><![CDATA[]]></options>
+			<field_options><![CDATA[{"label":"top","classes":"frm_total frm_total_big","custom_html":"<div id=\"frm_field_[id]_container\" class=\"frm_form_field form-field [required_class][error_class]\">\r\n    <label for=\"field_[key]\" class=\"frm_primary_label\">[field_name]\r\n        <span class=\"frm_required\">[required_label]<\/span>\r\n    <\/label>\r\n    [input tabindex=-1]\r\n    [if description]<div class=\"frm_description\">[description]<\/div>[\/if description]\r\n    [if error]<div class=\"frm_error\">[error]<\/div>[\/if error]\r\n<\/div>","in_section":"87","hide_field":["95"],"hide_field_cond":[">"],"hide_opt":["0"],"read_only":"1","use_calc":"1","calc":"[93]*([96]*[98])\/([98]-1)","calc_dec":"2","btsp":{"prepend":"","append":""},"autopopulate_value":false,"watch_lookup":[""],"blank":"","required_indicator":"","invalid":"Loan Payment with Annual Interest above 0% is invalid","default_blank":"0","prepend":"$"}]]></field_options>
+		</field>
+		<field>
+			<id>103</id>
+			<field_key><![CDATA[amg0e]]></field_key>
+			<name><![CDATA[Monthly Payment]]></name>
+			<description><![CDATA[]]></description>
+			<type><![CDATA[number]]></type>
+			<default_value><![CDATA[]]></default_value>
+			<field_order>24</field_order>
+			<form_id>8</form_id>
+			<required>0</required>
+			<options><![CDATA[]]></options>
+			<field_options><![CDATA[{"label":"top","classes":"frm_total frm_total_big","custom_html":"<div id=\"frm_field_[id]_container\" class=\"frm_form_field form-field [required_class][error_class]\">\r\n    <label for=\"field_[key]\" class=\"frm_primary_label\">[field_name]\r\n        <span class=\"frm_required\">[required_label]<\/span>\r\n    <\/label>\r\n    [input tabindex=-1]\r\n    [if description]<div class=\"frm_description\">[description]<\/div>[\/if description]\r\n    [if error]<div class=\"frm_error\">[error]<\/div>[\/if error]\r\n<\/div>","in_section":"87","hide_field":["95"],"hide_opt":["0"],"read_only":"1","use_calc":"1","calc":"[93]\/[97]","calc_dec":"2","btsp":{"prepend":"","append":""},"autopopulate_value":false,"watch_lookup":[""],"blank":"","required_indicator":"","invalid":"Loan Payment with 0% Annual Interest is invalid","default_blank":"0","prepend":"$"}]]></field_options>
+		</field>
+		<field>
+			<id>94</id>
+			<field_key><![CDATA[zqn1t]]></field_key>
+			<name><![CDATA[End Section]]></name>
+			<description><![CDATA[]]></description>
+			<type><![CDATA[end_divider]]></type>
+			<default_value><![CDATA[]]></default_value>
+			<field_order>25</field_order>
+			<form_id>8</form_id>
+			<required>0</required>
+			<options><![CDATA[]]></options>
+			<field_options><![CDATA[{"use_calc":0,"blank":"","default_blank":0,"btsp":""}]]></field_options>
+		</field>
+	</form>
+	<view>
+		<title>Email Notification</title>
+		<link></link>
+		<post_author><![CDATA[stephywells]]></post_author>
+		<description></description>
+		<content><![CDATA[{"event":["create"],"email_to":"[admin_email]","cc":"","bcc":"","from":"[sitename] <[admin_email]>","reply_to":"","email_subject":"","email_message":"[default-message exclude_fields=\"48dey,szn43,ofjad\"]","conditions":{"send_stop":"send","any_all":"any"},"autoresponder":{"is_active":"","do_default_trigger":"no","send_interval":"1","send_unit":"days","send_before_after":"after","send_date":"","send_after_interval_type":"number","send_after_interval":"1","send_after_interval_field":"","send_after_unit":"days","send_after_count":"1"}}]]></content>
+		<excerpt><![CDATA[email]]></excerpt>
+		<post_id>16</post_id>
+		<post_date>2016-09-14 23:23:13</post_date>
+		<post_date_gmt>2016-09-14 23:23:13</post_date_gmt>
+		<comment_status>closed</comment_status>
+		<ping_status>closed</ping_status>
+		<post_name>8_email_16</post_name>
+		<status>publish</status>
+		<post_parent>0</post_parent>
+		<menu_order>8</menu_order>
+		<post_type>frm_form_actions</post_type>
+		<post_password><![CDATA[]]></post_password>
+		<is_sticky>0</is_sticky>
+		<postmeta>
+			<meta_key>_wp_old_slug</meta_key>
+			<meta_value><![CDATA[336_email_]]></meta_value>
+		</postmeta>
+		<postmeta>
+			<meta_key>_wp_old_slug</meta_key>
+			<meta_value><![CDATA[336_email_1028]]></meta_value>
+		</postmeta>
+	</view>
+</channel>

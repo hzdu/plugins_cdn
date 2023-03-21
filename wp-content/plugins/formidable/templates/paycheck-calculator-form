@@ -1,0 +1,328 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- generator="WordPress/5.4.1" created="2020-06-10 20:28" -->
+
+<channel>
+	<title>API Demos</title>
+	<pubDate>Wed, 10 Jun 2020 20:28:27 +0000</pubDate>
+
+	<form>
+		<id>111</id>
+		<form_key><![CDATA[paycheck-calculator]]></form_key>
+		<name><![CDATA[Paycheck Calculator]]></name>
+		<description><![CDATA[<p>Find out your salary, daily, weekly and monthly wages based on your hourly rate, or vice versa.</p>
+]]></description>
+		<created_at>2019-10-30 16:25:02</created_at>
+		<logged_in>0</logged_in>
+		<is_template>0</is_template>
+		<editable>0</editable>
+		<options><![CDATA[{"edit_page_id":"","open_date":"2019-10-30 16:25","submit_conditions":{"show_hide":"show","any_all":"all"},"before_html":"<legend class=\\\"frm_screen_reader\\\">[form_name]<\/legend>\r\n[if form_name]<h3 class=\\\"frm_form_title\\\">[form_name]<\/h3>[\/if form_name]\r\n[if form_description]<div class=\\\"frm_description\\\">[form_description]<\/div>[\/if form_description]\r\n<!-- Custom CSS to hide bootstrap prepend borders for total fields -->\r\n<style type=\\\"text\/css\\\">\r\n.frm_total .input-group-addon {\r\n    border: 0;\r\n}\r\n<\/style>","submit_html":"<div class=\\\"frm_submit\\\">\r\n[if back_button]<button type=\\\"submit\\\" name=\\\"frm_prev_page\\\" formnovalidate=\\\"formnovalidate\\\" class=\\\"frm_prev_page\\\" [back_hook]>[back_label]<\/button>[\/if back_button]\r\n<button class=\\\"frm_button_submit\\\" type=\\\"submit\\\"  [button_action]>[button_label]<\/button>\r\n[if save_draft]<a href=\\\"#\\\" tabindex=\\\"0\\\" class=\\\"frm_save_draft\\\" [draft_hook]>[draft_label]<\/a>[\/if save_draft]\r\n<\/div>"}]]></options>
+		<status><![CDATA[published]]></status>
+		<parent_form_id>0</parent_form_id>
+		<field>
+			<id>2575</id>
+			<field_key><![CDATA[w1twl]]></field_key>
+			<name><![CDATA[Details]]></name>
+			<description><![CDATA[]]></description>
+			<type><![CDATA[divider]]></type>
+			<default_value><![CDATA[]]></default_value>
+			<field_order>1</field_order>
+			<form_id>111</form_id>
+			<required>0</required>
+			<options><![CDATA[]]></options>
+			<field_options><![CDATA[{"label":"none","blank":"","btsp":""}]]></field_options>
+		</field>
+		<field>
+			<id>1526</id>
+			<field_key><![CDATA[39i9p]]></field_key>
+			<name><![CDATA[Weekly hours worked]]></name>
+			<description><![CDATA[]]></description>
+			<type><![CDATA[range]]></type>
+			<default_value>40</default_value>
+			<field_order>2</field_order>
+			<form_id>111</form_id>
+			<required>0</required>
+			<options><![CDATA[]]></options>
+			<field_options><![CDATA[{"in_section":"2575","get_values_form":"","get_values_field":"","watch_lookup":[],"get_most_recent_value":"","lookup_filter_current_user":false,"blank":"","invalid":"Number is invalid","maxnum":"168","btsp":"","unit":"hours"}]]></field_options>
+		</field>
+		<field>
+			<id>1527</id>
+			<field_key><![CDATA[8na9m]]></field_key>
+			<name><![CDATA[Calculation method]]></name>
+			<description><![CDATA[]]></description>
+			<type><![CDATA[radio]]></type>
+			<default_value><![CDATA[Enter annual salary]]></default_value>
+			<field_order>3</field_order>
+			<form_id>111</form_id>
+			<required>0</required>
+			<options><![CDATA[[{"label":"Enter annual salary","value":"Enter annual salary"},{"label":"Enter hourly wage","value":"Enter hourly wage"}]]]></options>
+			<field_options><![CDATA[{"align":"inline","in_section":"2575","blank":"","classes":"frm_half frm_first","btsp":""}]]></field_options>
+		</field>
+		<field>
+			<id>1525</id>
+			<field_key><![CDATA[5vekv]]></field_key>
+			<name><![CDATA[Hourly wage]]></name>
+			<description><![CDATA[]]></description>
+			<type><![CDATA[number]]></type>
+			<default_value>20</default_value>
+			<field_order>4</field_order>
+			<form_id>111</form_id>
+			<required>0</required>
+			<options><![CDATA[]]></options>
+			<field_options><![CDATA[{"hide_field":["1527"],"hide_opt":["Enter hourly wage"],"in_section":"2575","blank":"","invalid":"Number is invalid","classes":"frm_half","btsp":{"prepend":"","append":""},"prepend":"$"}]]></field_options>
+		</field>
+		<field>
+			<id>1535</id>
+			<field_key><![CDATA[wfpwn]]></field_key>
+			<name><![CDATA[Annual salary]]></name>
+			<description><![CDATA[]]></description>
+			<type><![CDATA[number]]></type>
+			<default_value>40000</default_value>
+			<field_order>5</field_order>
+			<form_id>111</form_id>
+			<required>0</required>
+			<options><![CDATA[]]></options>
+			<field_options><![CDATA[{"hide_field":["1527"],"hide_opt":["Enter annual salary"],"calc_dec":"2","in_section":"2575","blank":"","invalid":"Number is invalid","classes":"frm_half","maxnum":"99999999","btsp":{"prepend":"","append":""},"prepend":"$"}]]></field_options>
+		</field>
+		<field>
+			<id>1537</id>
+			<field_key><![CDATA[6xw58]]></field_key>
+			<name><![CDATA[Calculate average net income?]]></name>
+			<description><![CDATA[This will show your average annual salary subtracting income tax]]></description>
+			<type><![CDATA[radio]]></type>
+			<default_value><![CDATA[No]]></default_value>
+			<field_order>6</field_order>
+			<form_id>111</form_id>
+			<required>0</required>
+			<options><![CDATA[{"1":{"label":"No","value":"No"},"0":{"label":"Yes","value":"Yes"}}]]></options>
+			<field_options><![CDATA[{"align":"inline","in_section":"2575","blank":"","classes":"frm_half frm_first","btsp":""}]]></field_options>
+		</field>
+		<field>
+			<id>1538</id>
+			<field_key><![CDATA[xn9f6]]></field_key>
+			<name><![CDATA[Income tax rate]]></name>
+			<description><![CDATA[14.2% was the average income tax rate for Americans in 2016]]></description>
+			<type><![CDATA[number]]></type>
+			<default_value>14.2</default_value>
+			<field_order>7</field_order>
+			<form_id>111</form_id>
+			<required>0</required>
+			<options><![CDATA[]]></options>
+			<field_options><![CDATA[{"hide_field":["1537"],"hide_opt":["Yes"],"in_section":"2575","blank":"","invalid":"Number is invalid","classes":"frm_half","btsp":{"prepend":"","append":""},"append":"%"}]]></field_options>
+		</field>
+		<field>
+			<id>2576</id>
+			<field_key><![CDATA[qcvgv]]></field_key>
+			<name><![CDATA[Section Buttons]]></name>
+			<description><![CDATA[]]></description>
+			<type><![CDATA[end_divider]]></type>
+			<default_value><![CDATA[]]></default_value>
+			<field_order>8</field_order>
+			<form_id>111</form_id>
+			<required>0</required>
+			<options><![CDATA[]]></options>
+			<field_options><![CDATA[{"blank":"","btsp":""}]]></field_options>
+		</field>
+		<field>
+			<id>1528</id>
+			<field_key><![CDATA[k7a4e]]></field_key>
+			<name><![CDATA[Paycheck Calculation]]></name>
+			<description><![CDATA[]]></description>
+			<type><![CDATA[divider]]></type>
+			<default_value><![CDATA[]]></default_value>
+			<field_order>9</field_order>
+			<form_id>111</form_id>
+			<required>0</required>
+			<options><![CDATA[]]></options>
+			<field_options><![CDATA[{"label":"","blank":"","classes":"frm_color_block","btsp":""}]]></field_options>
+		</field>
+		<field>
+			<id>1521</id>
+			<field_key><![CDATA[3quhk]]></field_key>
+			<name><![CDATA[Annual]]></name>
+			<description><![CDATA[]]></description>
+			<type><![CDATA[number]]></type>
+			<default_value><![CDATA[]]></default_value>
+			<field_order>10</field_order>
+			<form_id>111</form_id>
+			<required>0</required>
+			<options><![CDATA[]]></options>
+			<field_options><![CDATA[{"hide_field":["1527"],"hide_opt":["Enter hourly wage"],"read_only":"1","calc":"[1525]*[1526]*52","calc_dec":"2","in_section":"1528","blank":"","invalid":"Number is invalid","classes":"frm_half frm_total","maxnum":"99999999","btsp":{"prepend":"","append":""},"prepend":"$"}]]></field_options>
+		</field>
+		<field>
+			<id>1522</id>
+			<field_key><![CDATA[dpalj]]></field_key>
+			<name><![CDATA[Monthly]]></name>
+			<description><![CDATA[]]></description>
+			<type><![CDATA[number]]></type>
+			<default_value><![CDATA[]]></default_value>
+			<field_order>11</field_order>
+			<form_id>111</form_id>
+			<required>0</required>
+			<options><![CDATA[]]></options>
+			<field_options><![CDATA[{"hide_field":["1527"],"hide_opt":["Enter hourly wage"],"read_only":"1","calc":"[1521]\/12","calc_dec":"2","in_section":"1528","blank":"","invalid":"Number is invalid","classes":"frm_total frm_half","btsp":{"prepend":"","append":""},"prepend":"$"}]]></field_options>
+		</field>
+		<field>
+			<id>1523</id>
+			<field_key><![CDATA[o1qxm]]></field_key>
+			<name><![CDATA[Weekly]]></name>
+			<description><![CDATA[]]></description>
+			<type><![CDATA[number]]></type>
+			<default_value><![CDATA[]]></default_value>
+			<field_order>12</field_order>
+			<form_id>111</form_id>
+			<required>0</required>
+			<options><![CDATA[]]></options>
+			<field_options><![CDATA[{"hide_field":["1527"],"hide_opt":["Enter hourly wage"],"read_only":"1","calc":"[1525]*[1526]","calc_dec":"2","in_section":"1528","blank":"","invalid":"Number is invalid","classes":"frm_total frm_half","btsp":{"prepend":"","append":""},"prepend":"$"}]]></field_options>
+		</field>
+		<field>
+			<id>1524</id>
+			<field_key><![CDATA[di7tt]]></field_key>
+			<name><![CDATA[Daily]]></name>
+			<description><![CDATA[]]></description>
+			<type><![CDATA[number]]></type>
+			<default_value><![CDATA[]]></default_value>
+			<field_order>13</field_order>
+			<form_id>111</form_id>
+			<required>0</required>
+			<options><![CDATA[]]></options>
+			<field_options><![CDATA[{"hide_field":["1527"],"hide_opt":["Enter hourly wage"],"read_only":"1","calc":"[1523]\/7","calc_dec":"2","in_section":"1528","blank":"","invalid":"Number is invalid","classes":"frm_total frm_half","btsp":{"prepend":"","append":""},"prepend":"$"}]]></field_options>
+		</field>
+		<field>
+			<id>2574</id>
+			<field_key><![CDATA[nmgd6]]></field_key>
+			<name><![CDATA[Hourly]]></name>
+			<description><![CDATA[]]></description>
+			<type><![CDATA[number]]></type>
+			<default_value><![CDATA[]]></default_value>
+			<field_order>14</field_order>
+			<form_id>111</form_id>
+			<required>0</required>
+			<options><![CDATA[]]></options>
+			<field_options><![CDATA[{"hide_field":["1527"],"hide_opt":["Enter hourly wage"],"read_only":"1","calc":"[1523]","calc_dec":"2","in_section":"1528","blank":"","invalid":"Number is invalid","classes":"frm_total frm_half","btsp":{"prepend":"","append":""},"prepend":"$"}]]></field_options>
+		</field>
+		<field>
+			<id>2573</id>
+			<field_key><![CDATA[zh12f]]></field_key>
+			<name><![CDATA[Annual]]></name>
+			<description><![CDATA[]]></description>
+			<type><![CDATA[number]]></type>
+			<default_value><![CDATA[]]></default_value>
+			<field_order>15</field_order>
+			<form_id>111</form_id>
+			<required>0</required>
+			<options><![CDATA[]]></options>
+			<field_options><![CDATA[{"hide_field":["1527"],"hide_opt":["Enter annual salary"],"read_only":"1","calc":"[1535]","calc_dec":"2","in_section":"1528","blank":"","invalid":"Number is invalid","classes":"frm_total frm_half","btsp":{"prepend":"","append":""},"prepend":"$"}]]></field_options>
+		</field>
+		<field>
+			<id>1534</id>
+			<field_key><![CDATA[4z45d]]></field_key>
+			<name><![CDATA[Monthly]]></name>
+			<description><![CDATA[]]></description>
+			<type><![CDATA[number]]></type>
+			<default_value><![CDATA[]]></default_value>
+			<field_order>16</field_order>
+			<form_id>111</form_id>
+			<required>0</required>
+			<options><![CDATA[]]></options>
+			<field_options><![CDATA[{"hide_field":["1527"],"hide_opt":["Enter annual salary"],"read_only":"1","calc":"[1535]\/12","calc_dec":"2","in_section":"1528","blank":"","invalid":"Number is invalid","classes":"frm_total frm_half","btsp":{"prepend":"","append":""},"prepend":"$"}]]></field_options>
+		</field>
+		<field>
+			<id>1533</id>
+			<field_key><![CDATA[rpuz1]]></field_key>
+			<name><![CDATA[Weekly]]></name>
+			<description><![CDATA[]]></description>
+			<type><![CDATA[number]]></type>
+			<default_value><![CDATA[]]></default_value>
+			<field_order>17</field_order>
+			<form_id>111</form_id>
+			<required>0</required>
+			<options><![CDATA[]]></options>
+			<field_options><![CDATA[{"hide_field":["1527"],"hide_opt":["Enter annual salary"],"read_only":"1","calc":"[1535]\/52","calc_dec":"2","in_section":"1528","blank":"","invalid":"Number is invalid","classes":"frm_total frm_half","btsp":{"prepend":"","append":""},"prepend":"$"}]]></field_options>
+		</field>
+		<field>
+			<id>1532</id>
+			<field_key><![CDATA[a19eu]]></field_key>
+			<name><![CDATA[Daily]]></name>
+			<description><![CDATA[]]></description>
+			<type><![CDATA[number]]></type>
+			<default_value><![CDATA[]]></default_value>
+			<field_order>18</field_order>
+			<form_id>111</form_id>
+			<required>0</required>
+			<options><![CDATA[]]></options>
+			<field_options><![CDATA[{"hide_field":["1527"],"hide_opt":["Enter annual salary"],"read_only":"1","calc":"[1533]\/7","calc_dec":"2","in_section":"1528","blank":"","invalid":"Number is invalid","classes":"frm_total frm_half","btsp":{"prepend":"","append":""},"prepend":"$"}]]></field_options>
+		</field>
+		<field>
+			<id>1531</id>
+			<field_key><![CDATA[2pbfw]]></field_key>
+			<name><![CDATA[Hourly]]></name>
+			<description><![CDATA[]]></description>
+			<type><![CDATA[number]]></type>
+			<default_value><![CDATA[]]></default_value>
+			<field_order>19</field_order>
+			<form_id>111</form_id>
+			<required>0</required>
+			<options><![CDATA[]]></options>
+			<field_options><![CDATA[{"hide_field":["1527"],"hide_opt":["Enter annual salary"],"read_only":"1","calc":"[1533]\/[1526]","calc_dec":"2","in_section":"1528","blank":"","invalid":"Number is invalid","classes":"frm_half frm_total","btsp":{"prepend":"","append":""},"prepend":"$"}]]></field_options>
+		</field>
+		<field>
+			<id>1540</id>
+			<field_key><![CDATA[anlqy]]></field_key>
+			<name><![CDATA[Total income tax]]></name>
+			<description><![CDATA[]]></description>
+			<type><![CDATA[number]]></type>
+			<default_value><![CDATA[]]></default_value>
+			<field_order>20</field_order>
+			<form_id>111</form_id>
+			<required>0</required>
+			<options><![CDATA[]]></options>
+			<field_options><![CDATA[{"hide_field":["1537"],"hide_opt":["Yes"],"read_only":"1","calc":"([1521]+[1535]) - [1539]","calc_dec":"2","in_section":"1528","blank":"","invalid":"Number is invalid","classes":"frm_total frm_half frm_first","btsp":{"prepend":"","append":""},"prepend":"$"}]]></field_options>
+		</field>
+		<field>
+			<id>1539</id>
+			<field_key><![CDATA[38rx8]]></field_key>
+			<name><![CDATA[Annual net income]]></name>
+			<description><![CDATA[]]></description>
+			<type><![CDATA[number]]></type>
+			<default_value><![CDATA[]]></default_value>
+			<field_order>21</field_order>
+			<form_id>111</form_id>
+			<required>0</required>
+			<options><![CDATA[]]></options>
+			<field_options><![CDATA[{"hide_field":["1537"],"hide_opt":["Yes"],"read_only":"1","calc":"([1521] + [1535]) - ([1521] + [1535]) * ([1538] * .01)","calc_dec":"2","in_section":"1528","blank":"","invalid":"Number is invalid","classes":"frm_half frm_total frm_total_big","maxnum":"99999999","btsp":{"prepend":"","append":""},"prepend":"$"}]]></field_options>
+		</field>
+		<field>
+			<id>1529</id>
+			<field_key><![CDATA[7q1nr]]></field_key>
+			<name><![CDATA[Section Buttons]]></name>
+			<description><![CDATA[]]></description>
+			<type><![CDATA[end_divider]]></type>
+			<default_value><![CDATA[]]></default_value>
+			<field_order>22</field_order>
+			<form_id>111</form_id>
+			<required>0</required>
+			<options><![CDATA[]]></options>
+			<field_options><![CDATA[{"blank":"","btsp":""}]]></field_options>
+		</field>
+	</form>
+	<view>
+		<title>Send Email</title>
+		<link></link>
+		<post_author><![CDATA[matt]]></post_author>
+		<description></description>
+		<content><![CDATA[{"email_to":"[admin_email]","cc":"","bcc":"","from":"[sitename] <[admin_email]>","reply_to":"","email_subject":"","email_message":"[default-message]","inc_user_info":"0","plain_text":"0","event":["create"],"conditions":{"send_stop":"","any_all":""}}]]></content>
+		<excerpt><![CDATA[email]]></excerpt>
+		<post_id>364</post_id>
+		<post_date>2019-10-30 16:25:02</post_date>
+		<post_date_gmt>2019-10-30 16:25:02</post_date_gmt>
+		<comment_status>closed</comment_status>
+		<ping_status>closed</ping_status>
+		<post_name>111_email_</post_name>
+		<status>publish</status>
+		<post_parent>0</post_parent>
+		<menu_order>111</menu_order>
+		<post_type>frm_form_actions</post_type>
+		<post_password><![CDATA[]]></post_password>
+		<is_sticky>0</is_sticky>
+	</view>
+</channel>

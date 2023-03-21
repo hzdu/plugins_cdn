@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- generator="WordPress/5.4.1" created="2020-06-10 20:51" -->
+
+<channel>
+	<title>API Demos</title>
+	<pubDate>Wed, 10 Jun 2020 20:51:16 +0000</pubDate>
+
+	<form>
+		<id>115</id>
+		<form_key><![CDATA[daily-calorie-intake-calculator]]></form_key>
+		<name><![CDATA[Daily Calorie Intake Calculator]]></name>
+		<description><![CDATA[<p>Find the daily calorie intake required for you in your individual situation.</p>
+]]></description>
+		<created_at>2019-10-31 19:15:45</created_at>
+		<logged_in>0</logged_in>
+		<is_template>0</is_template>
+		<editable>0</editable>
+		<options><![CDATA[{"edit_page_id":"","open_date":"2019-10-31 19:15","submit_conditions":{"show_hide":"show","any_all":"all"},"before_html":"<legend class=\\\"frm_screen_reader\\\">[form_name]<\/legend>\r\n[if form_name]<h3 class=\\\"frm_form_title\\\">[form_name]<\/h3>[\/if form_name]\r\n[if form_description]<div class=\\\"frm_description\\\">[form_description]<\/div>[\/if form_description]","submit_html":"<div class=\\\"frm_submit\\\">\r\n[if back_button]<button type=\\\"submit\\\" name=\\\"frm_prev_page\\\" formnovalidate=\\\"formnovalidate\\\" class=\\\"frm_prev_page\\\" [back_hook]>[back_label]<\/button>[\/if back_button]\r\n<button class=\\\"frm_button_submit\\\" type=\\\"submit\\\"  [button_action]>[button_label]<\/button>\r\n[if save_draft]<a href=\\\"#\\\" tabindex=\\\"0\\\" class=\\\"frm_save_draft\\\" [draft_hook]>[draft_label]<\/a>[\/if save_draft]\r\n<\/div>"}]]></options>
+		<status><![CDATA[published]]></status>
+		<parent_form_id>0</parent_form_id>
+		<field>
+			<id>1577</id>
+			<field_key><![CDATA[70md4]]></field_key>
+			<name><![CDATA[Sex]]></name>
+			<description><![CDATA[]]></description>
+			<type><![CDATA[radio]]></type>
+			<default_value><![CDATA[]]></default_value>
+			<field_order>1</field_order>
+			<form_id>115</form_id>
+			<required>0</required>
+			<options><![CDATA[[{"label":"Male","value":"5"},{"label":"Female","value":"-161"}]]]></options>
+			<field_options><![CDATA[{"align":"inline","blank":"","separate_value":"1","classes":"frm_half frm_first","btsp":""}]]></field_options>
+		</field>
+		<field>
+			<id>2572</id>
+			<field_key><![CDATA[4ienk]]></field_key>
+			<name><![CDATA[Unit]]></name>
+			<description><![CDATA[]]></description>
+			<type><![CDATA[toggle]]></type>
+			<default_value><![CDATA[]]></default_value>
+			<field_order>2</field_order>
+			<form_id>115</form_id>
+			<required>0</required>
+			<options><![CDATA[]]></options>
+			<field_options><![CDATA[{"blank":"","classes":"frm_half","show_label":"1","toggle_on":"Metric","toggle_off":"Imperial","btsp":""}]]></field_options>
+		</field>
+		<field>
+			<id>1578</id>
+			<field_key><![CDATA[1sbij]]></field_key>
+			<name><![CDATA[Height]]></name>
+			<description><![CDATA[]]></description>
+			<type><![CDATA[number]]></type>
+			<default_value><![CDATA[]]></default_value>
+			<field_order>3</field_order>
+			<form_id>115</form_id>
+			<required>0</required>
+			<options><![CDATA[]]></options>
+			<field_options><![CDATA[{"hide_field":["2572"],"hide_opt":["Metric"],"blank":"","invalid":"Number is invalid","classes":"frm_fourth","btsp":{"prepend":"","append":""},"append":"ft"}]]></field_options>
+		</field>
+		<field>
+			<id>1579</id>
+			<field_key><![CDATA[qox4r]]></field_key>
+			<name><![CDATA[Height - inches]]></name>
+			<description><![CDATA[]]></description>
+			<type><![CDATA[number]]></type>
+			<default_value><![CDATA[]]></default_value>
+			<field_order>4</field_order>
+			<form_id>115</form_id>
+			<required>0</required>
+			<options><![CDATA[]]></options>
+			<field_options><![CDATA[{"hide_field":["2572"],"hide_opt":["Metric"],"label":"hidden","blank":"","invalid":"Number is invalid","classes":"frm_fourth","btsp":{"prepend":"","append":""},"append":"in"}]]></field_options>
+		</field>
+		<field>
+			<id>1580</id>
+			<field_key><![CDATA[ystjr]]></field_key>
+			<name><![CDATA[Height]]></name>
+			<description><![CDATA[]]></description>
+			<type><![CDATA[number]]></type>
+			<default_value><![CDATA[]]></default_value>
+			<field_order>5</field_order>
+			<form_id>115</form_id>
+			<required>0</required>
+			<options><![CDATA[]]></options>
+			<field_options><![CDATA[{"hide_field":["2572"],"hide_field_cond":["!="],"hide_opt":["Metric"],"blank":"","invalid":"Number is invalid","classes":"frm_half","btsp":{"prepend":"","append":""},"append":"cm"}]]></field_options>
+		</field>
+		<field>
+			<id>1588</id>
+			<field_key><![CDATA[w9lse]]></field_key>
+			<name><![CDATA[height (cm) - hidden]]></name>
+			<description><![CDATA[]]></description>
+			<type><![CDATA[hidden]]></type>
+			<default_value><![CDATA[]]></default_value>
+			<field_order>7</field_order>
+			<form_id>115</form_id>
+			<required>0</required>
+			<options><![CDATA[]]></options>
+			<field_options><![CDATA[{"calc":"(([1578]+([1579]\/12))*12*2.54) + [1580]","blank":"","btsp":""}]]></field_options>
+		</field>
+		<field>
+			<id>1582</id>
+			<field_key><![CDATA[6gpak]]></field_key>
+			<name><![CDATA[Weight]]></name>
+			<description><![CDATA[]]></description>
+			<type><![CDATA[number]]></type>
+			<default_value><![CDATA[]]></default_value>
+			<field_order>8</field_order>
+			<form_id>115</form_id>
+			<required>0</required>
+			<options><![CDATA[]]></options>
+			<field_options><![CDATA[{"hide_field":["2572"],"hide_opt":["Metric"],"blank":"","invalid":"Number is invalid","classes":"frm_half","btsp":{"prepend":"","append":""},"append":"lbs"}]]></field_options>
+		</field>
+		<field>
+			<id>1583</id>
+			<field_key><![CDATA[s4y67]]></field_key>
+			<name><![CDATA[Weight]]></name>
+			<description><![CDATA[]]></description>
+			<type><![CDATA[number]]></type>
+			<default_value><![CDATA[]]></default_value>
+			<field_order>9</field_order>
+			<form_id>115</form_id>
+			<required>0</required>
+			<options><![CDATA[]]></options>
+			<field_options><![CDATA[{"hide_field":["2572"],"hide_field_cond":["!="],"hide_opt":["Metric"],"blank":"","invalid":"Number is invalid","classes":"frm_half","btsp":{"prepend":"","append":""},"append":"kg"}]]></field_options>
+		</field>
+		<field>
+			<id>1589</id>
+			<field_key><![CDATA[rqiui]]></field_key>
+			<name><![CDATA[weight (kilos) - hidden]]></name>
+			<description><![CDATA[]]></description>
+			<type><![CDATA[hidden]]></type>
+			<default_value><![CDATA[]]></default_value>
+			<field_order>11</field_order>
+			<form_id>115</form_id>
+			<required>0</required>
+			<options><![CDATA[]]></options>
+			<field_options><![CDATA[{"calc":"([1582]*0.453592) + [1583]","blank":"","btsp":""}]]></field_options>
+		</field>
+		<field>
+			<id>1585</id>
+			<field_key><![CDATA[e8qa]]></field_key>
+			<name><![CDATA[Age]]></name>
+			<description><![CDATA[]]></description>
+			<type><![CDATA[number]]></type>
+			<default_value><![CDATA[]]></default_value>
+			<field_order>12</field_order>
+			<form_id>115</form_id>
+			<required>0</required>
+			<options><![CDATA[]]></options>
+			<field_options><![CDATA[{"blank":"","invalid":"Number is invalid","classes":"frm_fourth","maxnum":"120","step":"1","btsp":{"prepend":"","append":""}}]]></field_options>
+		</field>
+		<field>
+			<id>1586</id>
+			<field_key><![CDATA[3ik3i]]></field_key>
+			<name><![CDATA[Activity level]]></name>
+			<description><![CDATA[If unsure, choose a lower level.]]></description>
+			<type><![CDATA[select]]></type>
+			<default_value><![CDATA[]]></default_value>
+			<field_order>13</field_order>
+			<form_id>115</form_id>
+			<required>0</required>
+			<options><![CDATA[[{"label":"Sedentary lifestyle (little or no exercise)","value":"1.2"},{"label":"Slightly active lifestyle (light exercise or sports 1-2 days\/week)","value":"1.4"},{"label":"Moderately active lifestyle (moderate exercise or sports 2-3 days\/week)","value":"1.6"},{"label":"Very active lifestyle (hard exercise or sports 4-5 days\/week)","value":"1.75"},{"label":"Extra active lifestyle (very hard exercise, physical job or sports 6-7 days\/week)","value":"2"},{"label":"Professional athlete","value":"2.3"}]]]></options>
+			<field_options><![CDATA[{"blank":"","separate_value":"1","classes":"frm_three_fourths","btsp":{"prepend":"","append":""}}]]></field_options>
+		</field>
+		<field>
+			<id>2570</id>
+			<field_key><![CDATA[fj9gz]]></field_key>
+			<name><![CDATA[Totals]]></name>
+			<description><![CDATA[]]></description>
+			<type><![CDATA[divider]]></type>
+			<default_value><![CDATA[]]></default_value>
+			<field_order>14</field_order>
+			<form_id>115</form_id>
+			<required>0</required>
+			<options><![CDATA[]]></options>
+			<field_options><![CDATA[{"any_all":"all","hide_field":["1577","1585"],"hide_field_cond":["!=","!="],"hide_opt":["",""],"label":"none","blank":"","classes":"frm_color_block","btsp":""}]]></field_options>
+		</field>
+		<field>
+			<id>1587</id>
+			<field_key><![CDATA[oelxf]]></field_key>
+			<name><![CDATA[Daily Caloric Intake]]></name>
+			<description><![CDATA[]]></description>
+			<type><![CDATA[number]]></type>
+			<default_value><![CDATA[]]></default_value>
+			<field_order>15</field_order>
+			<form_id>115</form_id>
+			<required>0</required>
+			<options><![CDATA[]]></options>
+			<field_options><![CDATA[{"read_only":"1","calc":"(10 * [1589] + 6.25 * [1588] - 5 * [1585] + [1577]) * [1586]","calc_dec":"0","in_section":"2570","blank":"","invalid":"Number is invalid","classes":"frm_total frm_total_big","btsp":{"prepend":"","append":""},"append":"kcal\/day"}]]></field_options>
+		</field>
+		<field>
+			<id>2571</id>
+			<field_key><![CDATA[tb5km]]></field_key>
+			<name><![CDATA[Section Buttons]]></name>
+			<description><![CDATA[]]></description>
+			<type><![CDATA[end_divider]]></type>
+			<default_value><![CDATA[]]></default_value>
+			<field_order>16</field_order>
+			<form_id>115</form_id>
+			<required>0</required>
+			<options><![CDATA[]]></options>
+			<field_options><![CDATA[{"blank":"","btsp":""}]]></field_options>
+		</field>
+	</form>
+	<view>
+		<title>Send Email</title>
+		<link></link>
+		<post_author><![CDATA[matt]]></post_author>
+		<description></description>
+		<content><![CDATA[{"email_to":"[admin_email]","cc":"","bcc":"","from":"[sitename] <[admin_email]>","reply_to":"","email_subject":"","email_message":"[default-message]","inc_user_info":"0","plain_text":"0","event":["create"],"conditions":{"send_stop":"","any_all":""}}]]></content>
+		<excerpt><![CDATA[email]]></excerpt>
+		<post_id>368</post_id>
+		<post_date>2019-10-31 19:15:45</post_date>
+		<post_date_gmt>2019-10-31 19:15:45</post_date_gmt>
+		<comment_status>closed</comment_status>
+		<ping_status>closed</ping_status>
+		<post_name>115_email_</post_name>
+		<status>publish</status>
+		<post_parent>0</post_parent>
+		<menu_order>115</menu_order>
+		<post_type>frm_form_actions</post_type>
+		<post_password><![CDATA[]]></post_password>
+		<is_sticky>0</is_sticky>
+	</view>
+</channel>

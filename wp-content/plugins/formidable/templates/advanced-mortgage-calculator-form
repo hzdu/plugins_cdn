@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- generator="WordPress/5.4.1" created="2020-06-09 22:39" -->
+
+<channel>
+	<title>API Demos</title>
+	<pubDate>Tue, 09 Jun 2020 22:39:35 +0000</pubDate>
+
+	<form>
+		<id>11</id>
+		<form_key><![CDATA[advanced-mortgage-calculator]]></form_key>
+		<name><![CDATA[Advanced Mortgage Calculator]]></name>
+		<description><![CDATA[]]></description>
+		<created_at>2015-10-17 05:45:42</created_at>
+		<logged_in>0</logged_in>
+		<is_template>0</is_template>
+		<editable>0</editable>
+		<options><![CDATA[{"edit_page_id":"","open_date":"2019-01-29 16:53","submit_conditions":{"show_hide":"show","any_all":"all"},"before_html":"<legend class=\\\"frm_hidden\\\">[form_name]<\/legend>\r\n[if form_name]<h3 class=\\\"frm_form_title\\\">[form_name]<\/h3>[\/if form_name]\r\n[if form_description]<div class=\\\"frm_description\\\">[form_description]<\/div>[\/if form_description]","submit_html":"<div class=\\\"frm_submit\\\">\r\n[if back_button]<input type=\\\"button\\\" value=\\\"[back_label]\\\" name=\\\"frm_prev_page\\\" formnovalidate=\\\"formnovalidate\\\" class=\\\"frm_prev_page\\\" [back_hook] \/>[\/if back_button]\r\n<input type=\\\"submit\\\" value=\\\"[button_label]\\\" [button_action] \/>\r\n<img class=\\\"frm_ajax_loading\\\" src=\\\"[frmurl]\/images\/ajax_loader.gif\\\" alt=\\\"Sending\\\"\/>\r\n[if save_draft]<a href=\\\"#\\\" class=\\\"frm_save_draft\\\" [draft_hook]>[draft_label]<\/a>[\/if save_draft]\r\n<\/div>"}]]></options>
+		<status><![CDATA[published]]></status>
+		<parent_form_id>0</parent_form_id>
+		<field>
+			<id>117</id>
+			<field_key><![CDATA[dc6f69]]></field_key>
+			<name><![CDATA[Loan Information]]></name>
+			<description><![CDATA[]]></description>
+			<type><![CDATA[divider]]></type>
+			<default_value><![CDATA[]]></default_value>
+			<field_order>3</field_order>
+			<form_id>11</form_id>
+			<required>0</required>
+			<options><![CDATA[]]></options>
+			<field_options><![CDATA[{"use_calc":0,"blank":"","default_blank":0,"btsp":""}]]></field_options>
+		</field>
+		<field>
+			<id>123</id>
+			<field_key><![CDATA[3cw6fa]]></field_key>
+			<name><![CDATA[Home Value]]></name>
+			<description><![CDATA[]]></description>
+			<type><![CDATA[number]]></type>
+			<default_value>300000</default_value>
+			<field_order>4</field_order>
+			<form_id>11</form_id>
+			<required>0</required>
+			<options><![CDATA[]]></options>
+			<field_options><![CDATA[{"maxnum":"999999999","step":"1","btsp":{"prepend":"","append":""},"in_section":"117","use_calc":0,"autopopulate_value":false,"watch_lookup":[""],"blank":"","required_indicator":"","default_blank":"0","classes":"frm_half frm_first","custom_html":"<div id=\"frm_field_[id]_container\" class=\"frm_form_field form-field [required_class][error_class]\">\r\n    <label for=\"field_[key]\" class=\"frm_primary_label\">[field_name]\r\n        <span class=\"frm_required\">[required_label]<\/span>\r\n    <\/label>\r\n    [input]\r\n    [if description]<div class=\"frm_description\" id=\"frm_desc_field_[key]\">[description]<\/div>[\/if description]\r\n    [if error]<div class=\"frm_error\">[error]<\/div>[\/if error]\r\n<\/div>","prepend":"$","append":".00"}]]></field_options>
+		</field>
+		<field>
+			<id>118</id>
+			<field_key><![CDATA[uqkzd82]]></field_key>
+			<name><![CDATA[Loan Amount]]></name>
+			<description><![CDATA[]]></description>
+			<type><![CDATA[number]]></type>
+			<default_value>250000</default_value>
+			<field_order>5</field_order>
+			<form_id>11</form_id>
+			<required>1</required>
+			<options><![CDATA[]]></options>
+			<field_options><![CDATA[{"classes":"frm_half","maxnum":"999999999","step":".01","btsp":{"prepend":"","append":""},"in_section":"117","use_calc":0,"autopopulate_value":false,"watch_lookup":[""],"required_indicator":"","invalid":"Amount is invalid","default_blank":"0","custom_html":"<div id=\"frm_field_[id]_container\" class=\"frm_form_field form-field [required_class][error_class]\">\r\n    <label for=\"field_[key]\" class=\"frm_primary_label\">[field_name]\r\n        <span class=\"frm_required\">[required_label]<\/span>\r\n    <\/label>\r\n    [input]\r\n    [if description]<div class=\"frm_description\" id=\"frm_desc_field_[key]\">[description]<\/div>[\/if description]\r\n    [if error]<div class=\"frm_error\">[error]<\/div>[\/if error]\r\n<\/div>","prepend":"$","append":".00"}]]></field_options>
+		</field>
+		<field>
+			<id>119</id>
+			<field_key><![CDATA[2faqgq2]]></field_key>
+			<name><![CDATA[Interest Rate]]></name>
+			<description><![CDATA[]]></description>
+			<type><![CDATA[range]]></type>
+			<default_value>4</default_value>
+			<field_order>6</field_order>
+			<form_id>11</form_id>
+			<required>1</required>
+			<options><![CDATA[]]></options>
+			<field_options><![CDATA[{"classes":"frm_first frm_half","maxnum":"20","step":".01","btsp":"","in_section":"117","use_calc":0,"autopopulate_value":false,"get_values_form":"","get_values_field":"","watch_lookup":[""],"get_most_recent_value":"","lookup_filter_current_user":false,"required_indicator":"","invalid":"Interest Rate (%) is invalid","default_blank":"0","custom_html":"<div id=\"frm_field_[id]_container\" class=\"frm_form_field form-field [required_class][error_class]\">\r\n    <label for=\"field_[key]\" class=\"frm_primary_label\">[field_name]\r\n        <span class=\"frm_required\">[required_label]<\/span>\r\n    <\/label>\r\n    [input]\r\n    [if description]<div class=\"frm_description\" id=\"frm_desc_field_[key]\">[description]<\/div>[\/if description]\r\n    [if error]<div class=\"frm_error\">[error]<\/div>[\/if error]\r\n<\/div>","unit":"%"}]]></field_options>
+		</field>
+		<field>
+			<id>120</id>
+			<field_key><![CDATA[e7kk832]]></field_key>
+			<name><![CDATA[Length]]></name>
+			<description><![CDATA[]]></description>
+			<type><![CDATA[range]]></type>
+			<default_value>30</default_value>
+			<field_order>7</field_order>
+			<form_id>11</form_id>
+			<required>1</required>
+			<options><![CDATA[]]></options>
+			<field_options><![CDATA[{"classes":"frm_half","maxnum":"50","minnum":"1","btsp":"","in_section":"117","use_calc":0,"autopopulate_value":false,"get_values_form":"","get_values_field":"","watch_lookup":[""],"get_most_recent_value":"","lookup_filter_current_user":false,"required_indicator":"","invalid":"Length (years) is invalid","default_blank":"0","custom_html":"<div id=\"frm_field_[id]_container\" class=\"frm_form_field form-field [required_class][error_class]\">\r\n    <label for=\"field_[key]\" class=\"frm_primary_label\">[field_name]\r\n        <span class=\"frm_required\">[required_label]<\/span>\r\n    <\/label>\r\n    [input]\r\n    [if description]<div class=\"frm_description\" id=\"frm_desc_field_[key]\">[description]<\/div>[\/if description]\r\n    [if error]<div class=\"frm_error\">[error]<\/div>[\/if error]\r\n<\/div>","unit":"years"}]]></field_options>
+		</field>
+		<field>
+			<id>121</id>
+			<field_key><![CDATA[3lva2x]]></field_key>
+			<name><![CDATA[End Section]]></name>
+			<description><![CDATA[]]></description>
+			<type><![CDATA[end_divider]]></type>
+			<default_value><![CDATA[]]></default_value>
+			<field_order>8</field_order>
+			<form_id>11</form_id>
+			<required>0</required>
+			<options><![CDATA[]]></options>
+			<field_options><![CDATA[{"use_calc":0,"blank":"","default_blank":0,"btsp":""}]]></field_options>
+		</field>
+		<field>
+			<id>125</id>
+			<field_key><![CDATA[z0t9vv]]></field_key>
+			<name><![CDATA[Taxes and Insurance]]></name>
+			<description><![CDATA[]]></description>
+			<type><![CDATA[divider]]></type>
+			<default_value><![CDATA[]]></default_value>
+			<field_order>9</field_order>
+			<form_id>11</form_id>
+			<required>0</required>
+			<options><![CDATA[]]></options>
+			<field_options><![CDATA[{"use_calc":0,"blank":"","default_blank":0,"btsp":""}]]></field_options>
+		</field>
+		<field>
+			<id>126</id>
+			<field_key><![CDATA[1lwmnb]]></field_key>
+			<name><![CDATA[Annual Taxes]]></name>
+			<description><![CDATA[]]></description>
+			<type><![CDATA[number]]></type>
+			<default_value>3000</default_value>
+			<field_order>10</field_order>
+			<form_id>11</form_id>
+			<required>0</required>
+			<options><![CDATA[]]></options>
+			<field_options><![CDATA[{"classes":"frm_first frm_third","step":".01","btsp":{"prepend":"","append":""},"in_section":"125","use_calc":0,"autopopulate_value":false,"watch_lookup":[""],"blank":"","required_indicator":"","default_blank":"0","custom_html":"<div id=\"frm_field_[id]_container\" class=\"frm_form_field form-field [required_class][error_class]\">\r\n    <label for=\"field_[key]\" class=\"frm_primary_label\">[field_name]\r\n        <span class=\"frm_required\">[required_label]<\/span>\r\n    <\/label>\r\n    [input]\r\n    [if description]<div class=\"frm_description\" id=\"frm_desc_field_[key]\">[description]<\/div>[\/if description]\r\n    [if error]<div class=\"frm_error\">[error]<\/div>[\/if error]\r\n<\/div>","prepend":"$","append":".00"}]]></field_options>
+		</field>
+		<field>
+			<id>127</id>
+			<field_key><![CDATA[gwbd7r]]></field_key>
+			<name><![CDATA[Annual Insurance]]></name>
+			<description><![CDATA[]]></description>
+			<type><![CDATA[number]]></type>
+			<default_value>1500</default_value>
+			<field_order>11</field_order>
+			<form_id>11</form_id>
+			<required>0</required>
+			<options><![CDATA[]]></options>
+			<field_options><![CDATA[{"classes":"frm_third","step":".01","btsp":{"prepend":"","append":""},"in_section":"125","use_calc":0,"autopopulate_value":false,"watch_lookup":[""],"blank":"","required_indicator":"","default_blank":"0","custom_html":"<div id=\"frm_field_[id]_container\" class=\"frm_form_field form-field [required_class][error_class]\">\r\n    <label for=\"field_[key]\" class=\"frm_primary_label\">[field_name]\r\n        <span class=\"frm_required\">[required_label]<\/span>\r\n    <\/label>\r\n    [input]\r\n    [if description]<div class=\"frm_description\" id=\"frm_desc_field_[key]\">[description]<\/div>[\/if description]\r\n    [if error]<div class=\"frm_error\">[error]<\/div>[\/if error]\r\n<\/div>","prepend":"$","append":".00"}]]></field_options>
+		</field>
+		<field>
+			<id>128</id>
+			<field_key><![CDATA[t3lwen]]></field_key>
+			<name><![CDATA[Annual PMI]]></name>
+			<description><![CDATA[]]></description>
+			<type><![CDATA[number]]></type>
+			<default_value>0.5</default_value>
+			<field_order>12</field_order>
+			<form_id>11</form_id>
+			<required>0</required>
+			<options><![CDATA[]]></options>
+			<field_options><![CDATA[{"classes":"frm_third","maxnum":"100","step":".01","btsp":{"prepend":"","append":""},"in_section":"125","use_calc":0,"autopopulate_value":false,"watch_lookup":[""],"blank":"","required_indicator":"","default_blank":"0","custom_html":"<div id=\"frm_field_[id]_container\" class=\"frm_form_field form-field [required_class][error_class]\">\r\n    <label for=\"field_[key]\" class=\"frm_primary_label\">[field_name]\r\n        <span class=\"frm_required\">[required_label]<\/span>\r\n    <\/label>\r\n    [input]\r\n    [if description]<div class=\"frm_description\" id=\"frm_desc_field_[key]\">[description]<\/div>[\/if description]\r\n    [if error]<div class=\"frm_error\">[error]<\/div>[\/if error]\r\n<\/div>","append":"%"}]]></field_options>
+		</field>
+		<field>
+			<id>129</id>
+			<field_key><![CDATA[e4rf24]]></field_key>
+			<name><![CDATA[End Section]]></name>
+			<description><![CDATA[]]></description>
+			<type><![CDATA[end_divider]]></type>
+			<default_value><![CDATA[]]></default_value>
+			<field_order>13</field_order>
+			<form_id>11</form_id>
+			<required>0</required>
+			<options><![CDATA[]]></options>
+			<field_options><![CDATA[{"use_calc":0,"blank":"","default_blank":0,"btsp":""}]]></field_options>
+		</field>
+		<field>
+			<id>130</id>
+			<field_key><![CDATA[7lnsq]]></field_key>
+			<name><![CDATA[Financial Analysis]]></name>
+			<description><![CDATA[]]></description>
+			<type><![CDATA[divider]]></type>
+			<default_value><![CDATA[]]></default_value>
+			<field_order>14</field_order>
+			<form_id>11</form_id>
+			<required>0</required>
+			<options><![CDATA[]]></options>
+			<field_options><![CDATA[{"use_calc":0,"blank":"","default_blank":0,"classes":"frm_color_block","btsp":"","custom_html":"<div id=\\\"frm_field_[id]_container\\\" class=\\\"frm_form_field frm_section_heading form-field[error_class]\\\">\r\n<h3 class=\\\"frm_pos_[label_position][collapse_class]\\\">[field_name]<\/h3>\r\n[if description]<div class=\\\"frm_description\\\">[description]<\/div>[\/if description]\r\n[collapse_this]\r\n<\/div>"}]]></field_options>
+		</field>
+		<field>
+			<id>131</id>
+			<field_key><![CDATA[rgh3n92]]></field_key>
+			<name><![CDATA[Monthly Principal and Interest]]></name>
+			<description><![CDATA[]]></description>
+			<type><![CDATA[number]]></type>
+			<default_value><![CDATA[]]></default_value>
+			<field_order>15</field_order>
+			<form_id>11</form_id>
+			<required>0</required>
+			<options><![CDATA[]]></options>
+			<field_options><![CDATA[{"classes":"frm_total","custom_html":"","read_only":"1","step":".01","use_calc":"1","calc":"[118] * ([119] \/ 1200) \/ (1 - (Math.pow(1\/(1 + ([119] \/ 1200)), ([120]*12))))","calc_dec":"2","in_section":"130","autopopulate_value":false,"watch_lookup":[""],"label":"left","blank":"","required_indicator":"","default_blank":"0","btsp":{"prepend":"","append":""},"prepend":"$"}]]></field_options>
+		</field>
+		<field>
+			<id>132</id>
+			<field_key><![CDATA[hbynct]]></field_key>
+			<name><![CDATA[Monthly Insurance]]></name>
+			<description><![CDATA[]]></description>
+			<type><![CDATA[number]]></type>
+			<default_value><![CDATA[]]></default_value>
+			<field_order>16</field_order>
+			<form_id>11</form_id>
+			<required>0</required>
+			<options><![CDATA[]]></options>
+			<field_options><![CDATA[{"classes":"frm_total","custom_html":"","read_only":"1","step":".01","use_calc":"1","calc":"[127]\/12","calc_dec":"2","in_section":"130","autopopulate_value":false,"watch_lookup":[""],"label":"left","blank":"","required_indicator":"","default_blank":"0","btsp":{"prepend":"","append":""},"prepend":"$"}]]></field_options>
+		</field>
+		<field>
+			<id>133</id>
+			<field_key><![CDATA[cydwl5]]></field_key>
+			<name><![CDATA[Monthly Taxes]]></name>
+			<description><![CDATA[]]></description>
+			<type><![CDATA[text]]></type>
+			<default_value><![CDATA[]]></default_value>
+			<field_order>17</field_order>
+			<form_id>11</form_id>
+			<required>0</required>
+			<options><![CDATA[]]></options>
+			<field_options><![CDATA[{"classes":"frm_total","custom_html":"<div id=\\\"frm_field_[id]_container\\\" class=\\\"frm_form_field form-field [required_class][error_class]\\\">\r\n    <label for=\\\"field_[key]\\\" id=\\\"field_[key]_label\\\" class=\\\"frm_primary_label\\\">[field_name]\r\n        <span class=\\\"frm_required\\\">[required_label]<\/span>\r\n    <\/label>\r\n    [input]\r\n    [if description]<div class=\\\"frm_description\\\" id=\\\"frm_desc_field_[key]\\\">[description]<\/div>[\/if description]\r\n    [if error]<div class=\\\"frm_error\\\" id=\\\"frm_error_field_[key]\\\">[error]<\/div>[\/if error]\r\n<\/div>","read_only":"1","use_calc":"1","calc":"[126]\/12","calc_dec":"2","in_section":"130","autopopulate_value":false,"watch_lookup":[""],"label":"left","blank":"","required_indicator":"","default_blank":"0","btsp":{"prepend":"","append":""},"prepend":"$"}]]></field_options>
+		</field>
+		<field>
+			<id>134</id>
+			<field_key><![CDATA[im80vb]]></field_key>
+			<name><![CDATA[Loan to Value]]></name>
+			<description><![CDATA[]]></description>
+			<type><![CDATA[number]]></type>
+			<default_value><![CDATA[]]></default_value>
+			<field_order>18</field_order>
+			<form_id>11</form_id>
+			<required>0</required>
+			<options><![CDATA[]]></options>
+			<field_options><![CDATA[{"classes":"frm_total","custom_html":"<div id=\\\"frm_field_[id]_container\\\" class=\\\"frm_form_field form-field [required_class][error_class]\\\">\r\n    <label for=\\\"field_[key]\\\" id=\\\"field_[key]_label\\\" class=\\\"frm_primary_label\\\">[field_name]\r\n        <span class=\\\"frm_required\\\">[required_label]<\/span>\r\n    <\/label>\r\n    [input]\r\n    [if description]<div class=\\\"frm_description\\\" id=\\\"frm_desc_field_[key]\\\">[description]<\/div>[\/if description]\r\n    [if error]<div class=\\\"frm_error\\\" id=\\\"frm_error_field_[key]\\\">[error]<\/div>[\/if error]\r\n<\/div>","step":".01","use_calc":"1","calc":"([118]\/[123])*100","calc_dec":"2","in_section":"130","autopopulate_value":false,"watch_lookup":[""],"label":"left","blank":"","required_indicator":"","default_blank":"0","btsp":{"prepend":"","append":""},"prepend":"$"}]]></field_options>
+		</field>
+		<field>
+			<id>135</id>
+			<field_key><![CDATA[lchlkt]]></field_key>
+			<name><![CDATA[Monthly PMI]]></name>
+			<description><![CDATA[]]></description>
+			<type><![CDATA[number]]></type>
+			<default_value><![CDATA[]]></default_value>
+			<field_order>19</field_order>
+			<form_id>11</form_id>
+			<required>0</required>
+			<options><![CDATA[]]></options>
+			<field_options><![CDATA[{"classes":"frm_total","custom_html":"<div id=\\\"frm_field_[id]_container\\\" class=\\\"frm_form_field form-field [required_class][error_class]\\\">\r\n    <label for=\\\"field_[key]\\\" id=\\\"field_[key]_label\\\" class=\\\"frm_primary_label\\\">[field_name]\r\n        <span class=\\\"frm_required\\\">[required_label]<\/span>\r\n    <\/label>\r\n    [input]\r\n    [if description]<div class=\\\"frm_description\\\" id=\\\"frm_desc_field_[key]\\\">[description]<\/div>[\/if description]\r\n    [if error]<div class=\\\"frm_error\\\" id=\\\"frm_error_field_[key]\\\">[error]<\/div>[\/if error]\r\n<\/div>","hide_field":["134"],"hide_field_cond":[">"],"hide_opt":["80"],"step":".01","use_calc":"1","calc":"([118]*([128]\/100))\/12","calc_dec":"2","in_section":"130","autopopulate_value":false,"watch_lookup":[""],"label":"left","blank":"","required_indicator":"","default_blank":"0","btsp":{"prepend":"","append":""},"prepend":"$"}]]></field_options>
+		</field>
+		<field>
+			<id>136</id>
+			<field_key><![CDATA[nqxbxg]]></field_key>
+			<name><![CDATA[Total Monthly Payment]]></name>
+			<description><![CDATA[]]></description>
+			<type><![CDATA[number]]></type>
+			<default_value><![CDATA[]]></default_value>
+			<field_order>20</field_order>
+			<form_id>11</form_id>
+			<required>0</required>
+			<options><![CDATA[]]></options>
+			<field_options><![CDATA[{"classes":"frm_total frm_total_big","custom_html":"<div id=\\\"frm_field_[id]_container\\\" class=\\\"frm_form_field form-field [required_class][error_class]\\\">\r\n    <label for=\\\"field_[key]\\\" id=\\\"field_[key]_label\\\" class=\\\"frm_primary_label\\\">[field_name]\r\n        <span class=\\\"frm_required\\\">[required_label]<\/span>\r\n    <\/label>\r\n    [input]\r\n    [if description]<div class=\\\"frm_description\\\" id=\\\"frm_desc_field_[key]\\\">[description]<\/div>[\/if description]\r\n    [if error]<div class=\\\"frm_error\\\" id=\\\"frm_error_field_[key]\\\">[error]<\/div>[\/if error]\r\n<\/div>","read_only":"1","step":".01","use_calc":"1","calc":"[131]+[132]+[133]+[135]","calc_dec":"2","in_section":"130","autopopulate_value":false,"watch_lookup":[""],"blank":"","required_indicator":"","default_blank":"0","btsp":{"prepend":"","append":""},"prepend":"$"}]]></field_options>
+		</field>
+		<field>
+			<id>137</id>
+			<field_key><![CDATA[5ao9vw]]></field_key>
+			<name><![CDATA[End Section]]></name>
+			<description><![CDATA[]]></description>
+			<type><![CDATA[end_divider]]></type>
+			<default_value><![CDATA[]]></default_value>
+			<field_order>21</field_order>
+			<form_id>11</form_id>
+			<required>0</required>
+			<options><![CDATA[]]></options>
+			<field_options><![CDATA[{"use_calc":0,"blank":"","default_blank":0,"btsp":""}]]></field_options>
+		</field>
+	</form>
+</channel>

@@ -1,0 +1,135 @@
+/*
+CSS to be used on the dedicated form page
+*/
+
+
+html .sticky_header {
+	display: none;
+}
+
+html,
+html body,
+#form-cover {
+	background-color: #f1f1f1;
+	font-size: 13px;
+	line-height: 1.4em;
+	display: block;
+	min-height: 100%;
+	font-family: 'Open Sans','Helvetica Neue', Arial, sans-serif;
+}
+html body .site-header {
+	display: none;
+}
+html body
+{
+	margin: 0;
+}
+html body:before
+{
+	content: none;
+}
+.disabled-form
+{
+	font-size: 19px;
+	color: #666;
+}
+html body .formcraft-css.form-live
+{
+	padding-top: 40px;
+	padding-bottom: 80px;
+	text-align: center;
+}
+html body .form-disabled-message
+{
+	margin-top: 100px;
+	color: #888;
+	font-size: 1.7em;
+	text-align: center;
+}
+html .formcraft-css .fc-pagination
+{
+	width: auto !important;
+}
+html .formcraft-css .fc-pagination.fixed
+{
+	position: fixed;
+	left: 0;
+	right: 0;
+	z-index: 999999;
+	top: 0;
+	box-shadow: 0px 1px 2px rgba(0,0,0,.3);
+	background: rgba(255,255,255,.95);
+}
+html [class^="icon-"]:before,
+html [class*=" icon-"]:before {
+	font-family: "fc";
+	font-style: normal;
+	font-weight: normal;
+	speak: none;
+
+	display: inline-block;
+	text-decoration: inherit;
+	width: 1em;
+	margin-right: .2em;
+	text-align: center;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1em;
+	margin-left: .2em;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+#wpadminbar
+{
+	display: none;
+}
+#toast-container
+{
+	top: 4px !important;
+	font-size: 14px;
+	.toast
+	{
+		font-weight: normal !important;
+		-webkit-animation: slideLeft .2s;
+		animation: slideLeft .2s;
+		.icon-ok
+		{
+			font-size: 10px;
+			padding: 1px 0;
+		}
+	}
+}
+#notification-panel {
+	position: fixed;
+	top: 32px;
+	z-index: 999;	
+	font-size: 1.1em;
+	right: 32px;
+	padding: 1.05em 1em;
+	display: inline-block;
+	&.green {
+		color: green;
+	}
+	&.red {
+		color: red;
+	}
+}
+html div.formcraft-css .fc-pagination-cover
+{
+	margin-left: 0;
+}
+html div.formcraft-css .fc-pagination.fixed
+{
+	margin-left: 0;
+}
+@media (max-width : 480px) {
+	html body .formcraft-css.form-live
+	{
+		padding-top: 0px;
+		padding-bottom: 0px;
+	}
+	html body .formcraft-css .fc-form
+	{
+		box-shadow: none;
+	}
+}

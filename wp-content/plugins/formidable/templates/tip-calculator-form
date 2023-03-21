@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- generator="WordPress/5.4.1" created="2020-06-10 20:31" -->
+
+<channel>
+	<title>API Demos</title>
+	<pubDate>Wed, 10 Jun 2020 20:31:50 +0000</pubDate>
+
+	<form>
+		<id>113</id>
+		<form_key><![CDATA[tip-calculator]]></form_key>
+		<name><![CDATA[Tip Calculator]]></name>
+		<description><![CDATA[<p>Whether splitting the bill or paying alone, use this calculator to find how much to tip.</p>
+]]></description>
+		<created_at>2019-10-30 18:27:23</created_at>
+		<logged_in>0</logged_in>
+		<is_template>0</is_template>
+		<editable>0</editable>
+		<options><![CDATA[{"edit_page_id":"","open_date":"2019-10-30 18:27","submit_conditions":{"show_hide":"show","any_all":"all"},"before_html":"<legend class=\\\"frm_screen_reader\\\">[form_name]<\/legend>\r\n[if form_name]<h3 class=\\\"frm_form_title\\\">[form_name]<\/h3>[\/if form_name]\r\n[if form_description]<div class=\\\"frm_description\\\">[form_description]<\/div>[\/if form_description]\r\n<!-- Custom CSS to hide bootstrap prepend borders for total fields -->\r\n<style type=\\\"text\/css\\\">\r\n.frm_total .input-group-addon {\r\n    border: 0;\r\n}\r\n<\/style>","submit_html":"<div class=\\\"frm_submit\\\">\r\n[if back_button]<button type=\\\"submit\\\" name=\\\"frm_prev_page\\\" formnovalidate=\\\"formnovalidate\\\" class=\\\"frm_prev_page\\\" [back_hook]>[back_label]<\/button>[\/if back_button]\r\n<button class=\\\"frm_button_submit\\\" type=\\\"submit\\\"  [button_action]>[button_label]<\/button>\r\n[if save_draft]<a href=\\\"#\\\" tabindex=\\\"0\\\" class=\\\"frm_save_draft\\\" [draft_hook]>[draft_label]<\/a>[\/if save_draft]\r\n<\/div>"}]]></options>
+		<status><![CDATA[published]]></status>
+		<parent_form_id>0</parent_form_id>
+		<field>
+			<id>2542</id>
+			<field_key><![CDATA[5wjtl]]></field_key>
+			<name><![CDATA[Bill]]></name>
+			<description><![CDATA[]]></description>
+			<type><![CDATA[divider]]></type>
+			<default_value><![CDATA[]]></default_value>
+			<field_order>1</field_order>
+			<form_id>113</form_id>
+			<required>0</required>
+			<options><![CDATA[]]></options>
+			<field_options><![CDATA[{"label":"none","blank":"","classes":"frm_two_thirds frm_first","btsp":""}]]></field_options>
+		</field>
+		<field>
+			<id>1544</id>
+			<field_key><![CDATA[6x7d4]]></field_key>
+			<name><![CDATA[Bill]]></name>
+			<description><![CDATA[]]></description>
+			<type><![CDATA[number]]></type>
+			<default_value><![CDATA[]]></default_value>
+			<field_order>2</field_order>
+			<form_id>113</form_id>
+			<required>0</required>
+			<options><![CDATA[]]></options>
+			<field_options><![CDATA[{"in_section":"2542","blank":"","invalid":"Number is invalid","classes":"frm_half","btsp":{"prepend":"","append":""},"prepend":"$"}]]></field_options>
+		</field>
+		<field>
+			<id>1545</id>
+			<field_key><![CDATA[z8xya]]></field_key>
+			<name><![CDATA[Tip percentage]]></name>
+			<description><![CDATA[]]></description>
+			<type><![CDATA[number]]></type>
+			<default_value>20</default_value>
+			<field_order>3</field_order>
+			<form_id>113</form_id>
+			<required>0</required>
+			<options><![CDATA[]]></options>
+			<field_options><![CDATA[{"in_section":"2542","blank":"","invalid":"Number is invalid","classes":"frm_half","btsp":{"prepend":"","append":""},"append":"%"}]]></field_options>
+		</field>
+		<field>
+			<id>2538</id>
+			<field_key><![CDATA[txoz6]]></field_key>
+			<name><![CDATA[Include tax?]]></name>
+			<description><![CDATA[]]></description>
+			<type><![CDATA[toggle]]></type>
+			<default_value><![CDATA[]]></default_value>
+			<field_order>4</field_order>
+			<form_id>113</form_id>
+			<required>0</required>
+			<options><![CDATA[]]></options>
+			<field_options><![CDATA[{"in_section":"2542","blank":"","classes":"frm_half frm_first","show_label":"1","btsp":""}]]></field_options>
+		</field>
+		<field>
+			<id>1558</id>
+			<field_key><![CDATA[o9lqe]]></field_key>
+			<name><![CDATA[Tax amount]]></name>
+			<description><![CDATA[]]></description>
+			<type><![CDATA[number]]></type>
+			<default_value><![CDATA[]]></default_value>
+			<field_order>5</field_order>
+			<form_id>113</form_id>
+			<required>0</required>
+			<options><![CDATA[]]></options>
+			<field_options><![CDATA[{"hide_field":["2538"],"hide_opt":["Yes"],"in_section":"2542","blank":"","invalid":"Number is invalid","classes":"frm_half","btsp":{"prepend":"$","append":""}}]]></field_options>
+		</field>
+		<field>
+			<id>2539</id>
+			<field_key><![CDATA[srpis]]></field_key>
+			<name><![CDATA[Are you splitting the bill?]]></name>
+			<description><![CDATA[]]></description>
+			<type><![CDATA[toggle]]></type>
+			<default_value><![CDATA[]]></default_value>
+			<field_order>6</field_order>
+			<form_id>113</form_id>
+			<required>0</required>
+			<options><![CDATA[]]></options>
+			<field_options><![CDATA[{"in_section":"2542","blank":"","classes":"frm_half frm_first","show_label":"1","btsp":""}]]></field_options>
+		</field>
+		<field>
+			<id>1551</id>
+			<field_key><![CDATA[t0y8c]]></field_key>
+			<name><![CDATA[Number of people]]></name>
+			<description><![CDATA[]]></description>
+			<type><![CDATA[number]]></type>
+			<default_value>2</default_value>
+			<field_order>7</field_order>
+			<form_id>113</form_id>
+			<required>0</required>
+			<options><![CDATA[]]></options>
+			<field_options><![CDATA[{"hide_field":["2539"],"hide_opt":["Yes"],"in_section":"2542","blank":"","invalid":"Number is invalid","classes":"frm_half","btsp":{"prepend":"","append":""}}]]></field_options>
+		</field>
+		<field>
+			<id>2543</id>
+			<field_key><![CDATA[gmw7w]]></field_key>
+			<name><![CDATA[Section Buttons]]></name>
+			<description><![CDATA[]]></description>
+			<type><![CDATA[end_divider]]></type>
+			<default_value><![CDATA[]]></default_value>
+			<field_order>8</field_order>
+			<form_id>113</form_id>
+			<required>0</required>
+			<options><![CDATA[]]></options>
+			<field_options><![CDATA[{"blank":"","btsp":""}]]></field_options>
+		</field>
+		<field>
+			<id>2540</id>
+			<field_key><![CDATA[fur7i]]></field_key>
+			<name><![CDATA[Totals]]></name>
+			<description><![CDATA[]]></description>
+			<type><![CDATA[divider]]></type>
+			<default_value><![CDATA[]]></default_value>
+			<field_order>9</field_order>
+			<form_id>113</form_id>
+			<required>0</required>
+			<options><![CDATA[]]></options>
+			<field_options><![CDATA[{"label":"none","blank":"","classes":"frm_color_block frm_third","btsp":""}]]></field_options>
+		</field>
+		<field>
+			<id>1546</id>
+			<field_key><![CDATA[bnhms]]></field_key>
+			<name><![CDATA[Tip amount]]></name>
+			<description><![CDATA[]]></description>
+			<type><![CDATA[number]]></type>
+			<default_value><![CDATA[]]></default_value>
+			<field_order>10</field_order>
+			<form_id>113</form_id>
+			<required>0</required>
+			<options><![CDATA[]]></options>
+			<field_options><![CDATA[{"read_only":"1","calc":"[1544] * [1545] * 0.01","calc_dec":"2","in_section":"2540","blank":"","invalid":"Number is invalid","classes":"frm_total frm_total_big","btsp":{"prepend":"","append":""},"prepend":"$"}]]></field_options>
+		</field>
+		<field>
+			<id>1547</id>
+			<field_key><![CDATA[zddd2]]></field_key>
+			<name><![CDATA[Total]]></name>
+			<description><![CDATA[]]></description>
+			<type><![CDATA[number]]></type>
+			<default_value><![CDATA[]]></default_value>
+			<field_order>11</field_order>
+			<form_id>113</form_id>
+			<required>0</required>
+			<options><![CDATA[]]></options>
+			<field_options><![CDATA[{"hide_field":["1558"],"hide_opt":[""],"calc":"[1544]+[1546]","calc_dec":"2","blank":"","invalid":"Number is invalid","classes":"frm_total frm_total_big","btsp":{"prepend":"","append":""},"prepend":"$"}]]></field_options>
+		</field>
+		<field>
+			<id>1557</id>
+			<field_key><![CDATA[g6ozj]]></field_key>
+			<name><![CDATA[Total]]></name>
+			<description><![CDATA[]]></description>
+			<type><![CDATA[number]]></type>
+			<default_value><![CDATA[]]></default_value>
+			<field_order>12</field_order>
+			<form_id>113</form_id>
+			<required>0</required>
+			<options><![CDATA[]]></options>
+			<field_options><![CDATA[{"hide_field":["1558"],"hide_field_cond":[">"],"hide_opt":["0"],"read_only":"1","calc":"[1544]+[1546]+[1558]","calc_dec":"2","in_section":"2540","blank":"","invalid":"Number is invalid","classes":"frm_total frm_total_big","btsp":{"prepend":"","append":""},"prepend":"$"}]]></field_options>
+		</field>
+		<field>
+			<id>1559</id>
+			<field_key><![CDATA[116oh]]></field_key>
+			<name><![CDATA[Per person]]></name>
+			<description><![CDATA[]]></description>
+			<type><![CDATA[number]]></type>
+			<default_value><![CDATA[]]></default_value>
+			<field_order>13</field_order>
+			<form_id>113</form_id>
+			<required>0</required>
+			<options><![CDATA[]]></options>
+			<field_options><![CDATA[{"any_all":"all","hide_field":["1558","1551"],"hide_field_cond":[">",">"],"hide_opt":["0","1"],"calc":"[1557]\/[1551]","calc_dec":"2","in_section":"2540","blank":"","invalid":"Number is invalid","classes":"frm_total frm_total_big","btsp":{"prepend":"","append":""},"prepend":"$"}]]></field_options>
+		</field>
+		<field>
+			<id>1553</id>
+			<field_key><![CDATA[4mzg]]></field_key>
+			<name><![CDATA[Per person]]></name>
+			<description><![CDATA[]]></description>
+			<type><![CDATA[number]]></type>
+			<default_value><![CDATA[]]></default_value>
+			<field_order>14</field_order>
+			<form_id>113</form_id>
+			<required>0</required>
+			<options><![CDATA[]]></options>
+			<field_options><![CDATA[{"any_all":"all","hide_field":["1551","1558"],"hide_field_cond":[">","=="],"hide_opt":["1",""],"read_only":"1","calc":"[1547]\/[1551]","calc_dec":"2","in_section":"2540","blank":"","invalid":"Number is invalid","classes":"frm_total frm_total_big","btsp":{"prepend":"","append":""},"prepend":"$"}]]></field_options>
+		</field>
+		<field>
+			<id>2541</id>
+			<field_key><![CDATA[clpvg]]></field_key>
+			<name><![CDATA[Section Buttons]]></name>
+			<description><![CDATA[]]></description>
+			<type><![CDATA[end_divider]]></type>
+			<default_value><![CDATA[]]></default_value>
+			<field_order>15</field_order>
+			<form_id>113</form_id>
+			<required>0</required>
+			<options><![CDATA[]]></options>
+			<field_options><![CDATA[{"blank":"","btsp":""}]]></field_options>
+		</field>
+	</form>
+	<view>
+		<title>Send Email</title>
+		<link></link>
+		<post_author><![CDATA[matt]]></post_author>
+		<description></description>
+		<content><![CDATA[{"email_to":"[admin_email]","cc":"","bcc":"","from":"[sitename] <[admin_email]>","reply_to":"","email_subject":"","email_message":"[default-message]","inc_user_info":"0","plain_text":"0","event":["create"],"conditions":{"send_stop":"","any_all":""}}]]></content>
+		<excerpt><![CDATA[email]]></excerpt>
+		<post_id>366</post_id>
+		<post_date>2019-10-30 18:27:23</post_date>
+		<post_date_gmt>2019-10-30 18:27:23</post_date_gmt>
+		<comment_status>closed</comment_status>
+		<ping_status>closed</ping_status>
+		<post_name>113_email_</post_name>
+		<status>publish</status>
+		<post_parent>0</post_parent>
+		<menu_order>113</menu_order>
+		<post_type>frm_form_actions</post_type>
+		<post_password><![CDATA[]]></post_password>
+		<is_sticky>0</is_sticky>
+	</view>
+</channel>

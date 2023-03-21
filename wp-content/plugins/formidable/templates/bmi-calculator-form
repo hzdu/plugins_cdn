@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- generator="WordPress/5.4.1" created="2020-06-09 22:21" -->
+
+<channel>
+	<title>API Demos</title>
+	<pubDate>Tue, 09 Jun 2020 22:21:28 +0000</pubDate>
+
+	<form>
+		<id>106</id>
+		<form_key><![CDATA[bmi-calculator]]></form_key>
+		<name><![CDATA[BMI Calculator]]></name>
+		<description><![CDATA[<p>Calculate your Body Mass Index with this calculator form template.</p>
+]]></description>
+		<created_at>2019-10-17 18:02:02</created_at>
+		<logged_in>0</logged_in>
+		<is_template>0</is_template>
+		<editable>0</editable>
+		<options><![CDATA[{"show_form":"1","ajax_submit":"1","js_validate":"1","success_msg":"Your BMI Result is:\r\n[if 1461 less_than=\\\"18.5\\\"]Underweight[\/if 1461]\r\n[if 1461 greater_than=\\\"18.4\\\" less_than=\\\"25\\\"]Healthy\/Normal weight[\/if 1461]\r\n[if 1461 greater_than=\\\"24.9\\\" less_than=\\\"30\\\"]Overweight[\/if 1461]\r\n[if 1461 greater_than=\\\"29.9\\\" less_than=\\\"35\\\"]Obese[\/if 1461]\r\n[if 1461 greater_than=\\\"34.9\\\"]Severely obese[\/if 1461]\r\n\r\n<p><ul style=\\\"padding-left:20px\\\">\r\n<li>Underweight: less than 18.5<\/li>\r\n<li>Normal weight: 18.5 - 24.9<\/li>\r\n<li>Overweight: 25 - 29.9<\/li>\r\n<li>Obesity: 30 - 35<\/li>\r\n<li>Severe obesity: 35+<\/li>\r\n<\/ul><\/p>","edit_page_id":"","open_date":"2019-10-17 18:02","submit_value":"See my range","submit_align":"center","submit_conditions":{"show_hide":"show","any_all":"all","hide_field":["1461"],"hide_field_cond":[">"],"hide_opt":["0"]},"before_html":"<legend class=\\\"frm_screen_reader\\\">[form_name]<\/legend>\r\n[if form_name]<h3 class=\\\"frm_form_title\\\">[form_name]<\/h3>[\/if form_name]\r\n[if form_description]<div class=\\\"frm_description\\\">[form_description]<\/div>[\/if form_description]\r\n<!-- Script to trigger calculations on keyup -->\r\n<script>\r\njQuery(document).on(\\'keyup\\', \\'.frm-show-form input[name^=\\\"item_meta\\\"], .frm-show-form select[name^=\\\"item_meta\\\"], .frm-show-form textarea[name^=\\\"item_meta\\\"]\\', function(){\r\njQuery(this).change();\r\n});\r\n<\/script>","submit_html":"<div class=\\\"frm_submit\\\">\r\n[if back_button]<button type=\\\"submit\\\" name=\\\"frm_prev_page\\\" formnovalidate=\\\"formnovalidate\\\" class=\\\"frm_prev_page\\\" [back_hook]>[back_label]<\/button>[\/if back_button]\r\n<button class=\\\"frm_button_submit\\\" type=\\\"submit\\\"  [button_action]>[button_label]<\/button>\r\n[if save_draft]<a href=\\\"#\\\" tabindex=\\\"0\\\" class=\\\"frm_save_draft\\\" [draft_hook]>[draft_label]<\/a>[\/if save_draft]\r\n<\/div>"}]]></options>
+		<status><![CDATA[published]]></status>
+		<parent_form_id>0</parent_form_id>
+		<field>
+			<id>2546</id>
+			<field_key><![CDATA[1ip4r]]></field_key>
+			<name><![CDATA[Weight]]></name>
+			<description><![CDATA[]]></description>
+			<type><![CDATA[divider]]></type>
+			<default_value><![CDATA[]]></default_value>
+			<field_order>1</field_order>
+			<form_id>106</form_id>
+			<required>0</required>
+			<options><![CDATA[]]></options>
+			<field_options><![CDATA[{"label":"none","blank":"","classes":"frm_two_thirds","btsp":""}]]></field_options>
+		</field>
+		<field>
+			<id>1455</id>
+			<field_key><![CDATA[vct2g]]></field_key>
+			<name><![CDATA[Unit of measurement]]></name>
+			<description><![CDATA[]]></description>
+			<type><![CDATA[select]]></type>
+			<default_value><![CDATA[Metric]]></default_value>
+			<field_order>2</field_order>
+			<form_id>106</form_id>
+			<required>1</required>
+			<options><![CDATA[{"1":{"label":"Metric","value":"Metric"},"0":{"label":"Imperial","value":"Imperial"}}]]></options>
+			<field_options><![CDATA[{"in_section":"2546","classes":"frm_half","custom_html":"<div id=\"frm_field_[id]_container\" class=\"frm_form_field form-field [required_class][error_class]\">\r\n    <div  id=\"field_[key]_label\" class=\"frm_primary_label\">[field_name]\r\n        <span class=\"frm_required\">[required_label]<\/span>\r\n    <\/div>\r\n    <div class=\"frm_opt_container\" aria-labelledby=\"field_[key]_label\" role=\"group\">[input]<\/div>\r\n    [if description]<div class=\"frm_description\" id=\"frm_desc_field_[key]\">[description]<\/div>[\/if description]\r\n    [if error]<div class=\"frm_error\" id=\"frm_error_field_[key]\">[error]<\/div>[\/if error]\r\n<\/div>","btsp":{"prepend":"","append":""}}]]></field_options>
+		</field>
+		<field>
+			<id>1456</id>
+			<field_key><![CDATA[ert3z]]></field_key>
+			<name><![CDATA[Height]]></name>
+			<description><![CDATA[]]></description>
+			<type><![CDATA[number]]></type>
+			<default_value><![CDATA[]]></default_value>
+			<field_order>3</field_order>
+			<form_id>106</form_id>
+			<required>0</required>
+			<options><![CDATA[]]></options>
+			<field_options><![CDATA[{"hide_field":["1455"],"hide_opt":["Metric"],"in_section":"2546","blank":"","invalid":"Number is invalid","classes":"frm_half frm_first","maxnum":"999","btsp":{"prepend":"","append":""},"append":"cm"}]]></field_options>
+		</field>
+		<field>
+			<id>1459</id>
+			<field_key><![CDATA[f5dh2]]></field_key>
+			<name><![CDATA[Weight]]></name>
+			<description><![CDATA[]]></description>
+			<type><![CDATA[number]]></type>
+			<default_value><![CDATA[]]></default_value>
+			<field_order>4</field_order>
+			<form_id>106</form_id>
+			<required>0</required>
+			<options><![CDATA[]]></options>
+			<field_options><![CDATA[{"hide_field":["1455"],"hide_opt":["Metric"],"in_section":"2546","blank":"","invalid":"Number is invalid","classes":"frm_half","maxnum":"999","btsp":{"prepend":"","append":""},"append":"kg"}]]></field_options>
+		</field>
+		<field>
+			<id>1457</id>
+			<field_key><![CDATA[js0y8]]></field_key>
+			<name><![CDATA[Height]]></name>
+			<description><![CDATA[]]></description>
+			<type><![CDATA[number]]></type>
+			<default_value><![CDATA[]]></default_value>
+			<field_order>5</field_order>
+			<form_id>106</form_id>
+			<required>0</required>
+			<options><![CDATA[]]></options>
+			<field_options><![CDATA[{"hide_field":["1455"],"hide_opt":["Imperial"],"in_section":"2546","blank":"","invalid":"Number is invalid","classes":"frm_fourth frm_first","maxnum":"10","step":"1","btsp":{"prepend":"","append":""},"append":"ft"}]]></field_options>
+		</field>
+		<field>
+			<id>1458</id>
+			<field_key><![CDATA[rkvu2]]></field_key>
+			<name><![CDATA[Inches]]></name>
+			<description><![CDATA[]]></description>
+			<type><![CDATA[number]]></type>
+			<default_value><![CDATA[]]></default_value>
+			<field_order>6</field_order>
+			<form_id>106</form_id>
+			<required>0</required>
+			<options><![CDATA[]]></options>
+			<field_options><![CDATA[{"hide_field":["1455"],"hide_opt":["Imperial"],"in_section":"2546","label":"hidden","blank":"","invalid":"Number is invalid","classes":"frm_fourth","maxnum":"500","btsp":{"prepend":"","append":""},"append":"in"}]]></field_options>
+		</field>
+		<field>
+			<id>1460</id>
+			<field_key><![CDATA[fy6ip]]></field_key>
+			<name><![CDATA[Weight]]></name>
+			<description><![CDATA[]]></description>
+			<type><![CDATA[number]]></type>
+			<default_value><![CDATA[]]></default_value>
+			<field_order>7</field_order>
+			<form_id>106</form_id>
+			<required>0</required>
+			<options><![CDATA[]]></options>
+			<field_options><![CDATA[{"hide_field":["1455"],"hide_opt":["Imperial"],"in_section":"2546","blank":"","invalid":"Number is invalid","classes":"frm_half","btsp":{"prepend":"","append":""},"append":"lbs"}]]></field_options>
+		</field>
+		<field>
+			<id>2547</id>
+			<field_key><![CDATA[uawhx]]></field_key>
+			<name><![CDATA[Section Buttons]]></name>
+			<description><![CDATA[]]></description>
+			<type><![CDATA[end_divider]]></type>
+			<default_value><![CDATA[]]></default_value>
+			<field_order>8</field_order>
+			<form_id>106</form_id>
+			<required>0</required>
+			<options><![CDATA[]]></options>
+			<field_options><![CDATA[{"blank":"","btsp":""}]]></field_options>
+		</field>
+		<field>
+			<id>1463</id>
+			<field_key><![CDATA[7mv2l]]></field_key>
+			<name><![CDATA[Hidden Field (Imperial height to centimeters)]]></name>
+			<description><![CDATA[]]></description>
+			<type><![CDATA[hidden]]></type>
+			<default_value><![CDATA[]]></default_value>
+			<field_order>9</field_order>
+			<form_id>106</form_id>
+			<required>0</required>
+			<options><![CDATA[]]></options>
+			<field_options><![CDATA[{"calc":"([1457] * 12 + [1458]) * 2.54","blank":"","btsp":""}]]></field_options>
+		</field>
+		<field>
+			<id>1464</id>
+			<field_key><![CDATA[vitt9]]></field_key>
+			<name><![CDATA[Hidden Field (Imperial weight to metric)]]></name>
+			<description><![CDATA[]]></description>
+			<type><![CDATA[hidden]]></type>
+			<default_value><![CDATA[]]></default_value>
+			<field_order>10</field_order>
+			<form_id>106</form_id>
+			<required>0</required>
+			<options><![CDATA[]]></options>
+			<field_options><![CDATA[{"calc":"[1460] * 0.453592","blank":"","btsp":""}]]></field_options>
+		</field>
+		<field>
+			<id>2544</id>
+			<field_key><![CDATA[5n6r4]]></field_key>
+			<name><![CDATA[BMI]]></name>
+			<description><![CDATA[]]></description>
+			<type><![CDATA[divider]]></type>
+			<default_value><![CDATA[]]></default_value>
+			<field_order>11</field_order>
+			<form_id>106</form_id>
+			<required>0</required>
+			<options><![CDATA[]]></options>
+			<field_options><![CDATA[{"any_all":"all","label":"none","blank":"","classes":"frm_third frm_color_block","btsp":""}]]></field_options>
+		</field>
+		<field>
+			<id>1461</id>
+			<field_key><![CDATA[7qzay]]></field_key>
+			<name><![CDATA[BMI]]></name>
+			<description><![CDATA[]]></description>
+			<type><![CDATA[number]]></type>
+			<default_value><![CDATA[]]></default_value>
+			<field_order>12</field_order>
+			<form_id>106</form_id>
+			<required>0</required>
+			<options><![CDATA[]]></options>
+			<field_options><![CDATA[{"read_only":"1","calc":"([1459] + [1464]) \/ Math.pow( (([1463] + [1456]) \/ 100), 2)","calc_dec":"1","in_section":"2544","blank":"","invalid":"Number is invalid","classes":"frm_half frm_total frm_total_big","btsp":{"prepend":"","append":""}}]]></field_options>
+		</field>
+		<field>
+			<id>1462</id>
+			<field_key><![CDATA[ogeuq]]></field_key>
+			<name><![CDATA[BMI Prime]]></name>
+			<description><![CDATA[> 1.0 = Overweight]]></description>
+			<type><![CDATA[hidden]]></type>
+			<default_value><![CDATA[]]></default_value>
+			<field_order>13</field_order>
+			<form_id>106</form_id>
+			<required>0</required>
+			<options><![CDATA[]]></options>
+			<field_options><![CDATA[{"calc":"[1461] \/ 24.9","calc_dec":"2","in_section":"2544","blank":"","custom_html":"<div id=\"frm_field_[id]_container\" class=\"frm_form_field form-field [required_class][error_class]\">\r\n    <label for=\"field_[key]\" id=\"field_[key]_label\" class=\"frm_primary_label\">[field_name]\r\n        <span class=\"frm_required\">[required_label]<\/span>\r\n    <\/label>\r\n    [input]\r\n    [if description]<div class=\"frm_description\" id=\"frm_desc_field_[key]\">[description]<\/div>[\/if description]\r\n    [if error]<div class=\"frm_error\" id=\"frm_error_field_[key]\">[error]<\/div>[\/if error]\r\n<\/div>","btsp":""}]]></field_options>
+		</field>
+		<field>
+			<id>1514</id>
+			<field_key><![CDATA[vaq54]]></field_key>
+			<name><![CDATA[Underweight]]></name>
+			<description><![CDATA[Underweight]]></description>
+			<type><![CDATA[html]]></type>
+			<default_value><![CDATA[]]></default_value>
+			<field_order>14</field_order>
+			<form_id>106</form_id>
+			<required>0</required>
+			<options><![CDATA[]]></options>
+			<field_options><![CDATA[{"any_all":"all","hide_field":["1461","1461"],"hide_field_cond":["<","!="],"hide_opt":["18.5","0"],"in_section":"2544","blank":"","btsp":""}]]></field_options>
+		</field>
+		<field>
+			<id>1518</id>
+			<field_key><![CDATA[pehbg]]></field_key>
+			<name><![CDATA[Healthy weight]]></name>
+			<description><![CDATA[Healthy]]></description>
+			<type><![CDATA[html]]></type>
+			<default_value><![CDATA[]]></default_value>
+			<field_order>15</field_order>
+			<form_id>106</form_id>
+			<required>0</required>
+			<options><![CDATA[]]></options>
+			<field_options><![CDATA[{"any_all":"all","hide_field":["1461","1461"],"hide_field_cond":[">","<"],"hide_opt":["18.49","25"],"in_section":"2544","blank":"","btsp":""}]]></field_options>
+		</field>
+		<field>
+			<id>1519</id>
+			<field_key><![CDATA[vfrkt]]></field_key>
+			<name><![CDATA[Overweight]]></name>
+			<description><![CDATA[Overweight]]></description>
+			<type><![CDATA[html]]></type>
+			<default_value><![CDATA[]]></default_value>
+			<field_order>16</field_order>
+			<form_id>106</form_id>
+			<required>0</required>
+			<options><![CDATA[]]></options>
+			<field_options><![CDATA[{"any_all":"all","hide_field":["1461","1461"],"hide_field_cond":[">=","<"],"hide_opt":["25","30"],"in_section":"2544","blank":"","btsp":""}]]></field_options>
+		</field>
+		<field>
+			<id>1520</id>
+			<field_key><![CDATA[g6bwg]]></field_key>
+			<name><![CDATA[Obese]]></name>
+			<description><![CDATA[Obese]]></description>
+			<type><![CDATA[html]]></type>
+			<default_value><![CDATA[]]></default_value>
+			<field_order>17</field_order>
+			<form_id>106</form_id>
+			<required>0</required>
+			<options><![CDATA[]]></options>
+			<field_options><![CDATA[{"any_all":"all","hide_field":["1461"],"hide_field_cond":[">="],"hide_opt":["30"],"in_section":"2544","blank":"","btsp":""}]]></field_options>
+		</field>
+		<field>
+			<id>2545</id>
+			<field_key><![CDATA[bw3g]]></field_key>
+			<name><![CDATA[Section Buttons]]></name>
+			<description><![CDATA[]]></description>
+			<type><![CDATA[end_divider]]></type>
+			<default_value><![CDATA[]]></default_value>
+			<field_order>18</field_order>
+			<form_id>106</form_id>
+			<required>0</required>
+			<options><![CDATA[]]></options>
+			<field_options><![CDATA[{"blank":"","btsp":""}]]></field_options>
+		</field>
+	</form>
+</channel>

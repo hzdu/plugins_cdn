@@ -1,0 +1,68 @@
+.editor-block-list-item-formcraft-embed-form svg {
+  color: #6495ed;
+}
+
+.wp-block .formcraft-block {
+  border: 2px dashed #ccc;
+  position: relative;
+  padding: .5em;
+}
+.wp-block .formcraft-block::before {
+  position: absolute;
+  top: -1em;
+  left: 50%;
+  margin-left: -5em;
+  text-align: center;
+  content: 'FormCraft Form';
+  width: 10em;
+  background: white;
+}
+.wp-block .formcraft-block label {
+  display: block;
+  width: 100%;
+  padding: .5em;
+  font-size: 90%;
+  vertical-align: top;
+}
+
+.wp-block .formcraft-block label .main-label-cover {
+  display: inline-block;
+  width: 62%;
+  vertical-align: top;
+}
+
+.wp-block .formcraft-block label .main-label {
+  display: block;
+  vertical-align: top;
+}
+.wp-block .formcraft-block label .desc {
+  float: left;
+  font-size: 95%;
+  line-height: 1.25;
+  opacity: .6;
+  vertical-align: top;
+}
+
+.wp-block .formcraft-block .formcraft-block-small label {
+  display: block;
+}
+
+.wp-block .formcraft-block .formcraft-block-small {
+  font-size: 100%;
+}
+
+.wp-block .formcraft-block label input,
+.wp-block .formcraft-block label select {
+  float: right;
+  width: 34%;
+  vertical-align: top;
+}
+
+.wp-block .formcraft-block label input::placeholder {
+  color: #bbb;
+}
+
+.wp-block .formcraft-block .formcraft-block-small label input,
+.wp-block .formcraft-block .formcraft-block-small label select {
+  width: 34%;
+}

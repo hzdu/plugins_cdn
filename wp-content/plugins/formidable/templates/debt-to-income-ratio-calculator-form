@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- generator="WordPress/5.4.1" created="2020-06-09 23:22" -->
+
+<channel>
+	<title>API Demos</title>
+	<pubDate>Tue, 09 Jun 2020 23:22:36 +0000</pubDate>
+
+	<form>
+		<id>118</id>
+		<form_key><![CDATA[debt-to-income-ratio-calculator]]></form_key>
+		<name><![CDATA[Debt to Income Ratio Calculator]]></name>
+		<description><![CDATA[<p>The debt to income ratio calculator is for every person who has any kind of loan, including a mortgage. It will tell you how in debt you are and whether you can afford another loan.</p>
+]]></description>
+		<created_at>2019-11-01 18:20:58</created_at>
+		<logged_in>0</logged_in>
+		<is_template>0</is_template>
+		<editable>0</editable>
+		<options><![CDATA[{"edit_page_id":"","open_date":"2019-11-01 18:20","submit_conditions":{"show_hide":"show","any_all":"all"},"before_html":"<legend class=\\\"frm_screen_reader\\\">[form_name]<\/legend>\r\n[if form_name]<h3 class=\\\"frm_form_title\\\">[form_name]<\/h3>[\/if form_name]\r\n[if form_description]<div class=\\\"frm_description\\\">[form_description]<\/div>[\/if form_description]\r\n<!-- Style to remove bootstrap prepend border for total fields -->\r\n<style type=\\\"text\/css\\\">\r\n.frm_total span.input-group-addon {\r\n    border: 0;\r\n}\r\n<\/style>","submit_html":"<div class=\\\"frm_submit\\\">\r\n[if back_button]<button type=\\\"submit\\\" name=\\\"frm_prev_page\\\" formnovalidate=\\\"formnovalidate\\\" class=\\\"frm_prev_page\\\" [back_hook]>[back_label]<\/button>[\/if back_button]\r\n<button class=\\\"frm_button_submit\\\" type=\\\"submit\\\"  [button_action]>[button_label]<\/button>\r\n[if save_draft]<a href=\\\"#\\\" tabindex=\\\"0\\\" class=\\\"frm_save_draft\\\" [draft_hook]>[draft_label]<\/a>[\/if save_draft]\r\n<\/div>"}]]></options>
+		<status><![CDATA[published]]></status>
+		<parent_form_id>0</parent_form_id>
+		<field>
+			<id>1602</id>
+			<field_key><![CDATA[nceo6]]></field_key>
+			<name><![CDATA[Monthly income]]></name>
+			<description><![CDATA[]]></description>
+			<type><![CDATA[number]]></type>
+			<default_value><![CDATA[]]></default_value>
+			<field_order>1</field_order>
+			<form_id>118</form_id>
+			<required>0</required>
+			<options><![CDATA[]]></options>
+			<field_options><![CDATA[{"blank":"","invalid":"Number is invalid","classes":"frm_half","maxnum":"99999999","btsp":{"prepend":"","append":""},"prepend":"$","unit":"USD"}]]></field_options>
+		</field>
+		<field>
+			<id>1603</id>
+			<field_key><![CDATA[fqedf]]></field_key>
+			<name><![CDATA[Monthly debt payment]]></name>
+			<description><![CDATA[]]></description>
+			<type><![CDATA[number]]></type>
+			<default_value><![CDATA[]]></default_value>
+			<field_order>2</field_order>
+			<form_id>118</form_id>
+			<required>0</required>
+			<options><![CDATA[]]></options>
+			<field_options><![CDATA[{"blank":"","invalid":"Number is invalid","classes":"frm_half","maxnum":"99999999","btsp":{"prepend":"","append":""},"prepend":"$","unit":"USD"}]]></field_options>
+		</field>
+		<field>
+			<id>1604</id>
+			<field_key><![CDATA[ise51]]></field_key>
+			<name><![CDATA[DTI]]></name>
+			<description><![CDATA[]]></description>
+			<type><![CDATA[number]]></type>
+			<default_value><![CDATA[]]></default_value>
+			<field_order>3</field_order>
+			<form_id>118</form_id>
+			<required>0</required>
+			<options><![CDATA[]]></options>
+			<field_options><![CDATA[{"any_all":"all","hide_field":["1602","1603"],"hide_field_cond":["!=","!="],"hide_opt":["",""],"read_only":"1","calc":"[1603]\/[1602]*100","calc_dec":"2","blank":"","invalid":"Number is invalid","classes":"frm_total frm_fourth frm_total_big","maxnum":"9999","btsp":{"prepend":"","append":""},"append":"%"}]]></field_options>
+		</field>
+		<field>
+			<id>1605</id>
+			<field_key><![CDATA[xb7oh]]></field_key>
+			<name><![CDATA[Excellent DTI]]></name>
+			<description><![CDATA[<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512" height="20" width="20"><path fill="currentColor" d="M248 8a248 248 0 100 496 248 248 0 000-496zm152.7 400.7a216.3 216.3 0 01-305.6 0 216.3 216.3 0 010-305.6 216.3 216.3 0 01305.6 0 216.3 216.3 0 010 305.6zM287 227.9l9.5-17c7.7-13.7 19.2-21.6 31.5-21.6s23.8 7.9 31.5 21.6l9.5 17c4.1 7.4 15.6 4 14.9-4.5-3.3-42.1-32.2-71.4-56-71.4s-52.7 29.3-56 71.4c-.6 8.6 11 11.9 15.1 4.5zm-160 0l9.5-17c7.7-13.7 19.2-21.6 31.5-21.6s23.8 7.9 31.5 21.6l9.5 17c4.1 7.4 15.6 4 14.9-4.5-3.3-42.1-32.2-71.4-56-71.4s-52.7 29.3-56 71.4c-.6 8.5 10.9 11.9 15.1 4.5zM383 288H113a16 16 0 00-15.9 18A144 144 0 00240 432h16c73.4 0 134-55 142.9-126a16 16 0 00-15.9-18zM256 400h-16c-50.2 0-93.5-33.3-107.4-80h230.8A112.2 112.2 0 01256 400z"/></svg> <strong>Excellent!</strong> While you should pay off your debt as soon as possible, this debt to income ratio should allow you to live the lifestyle you want without major constraints.]]></description>
+			<type><![CDATA[html]]></type>
+			<default_value><![CDATA[]]></default_value>
+			<field_order>4</field_order>
+			<form_id>118</form_id>
+			<required>0</required>
+			<options><![CDATA[]]></options>
+			<field_options><![CDATA[{"hide_field":["1604"],"hide_field_cond":["<"],"hide_opt":["20"],"blank":"","btsp":""}]]></field_options>
+		</field>
+		<field>
+			<id>1611</id>
+			<field_key><![CDATA[3mp35]]></field_key>
+			<name><![CDATA[Healthy DTI]]></name>
+			<description><![CDATA[<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512" height="20" width="20"><path fill="currentColor" d="M248 8a248 248 0 100 496 248 248 0 000-496zm0 464c-119.1 0-216-96.9-216-216S128.9 40 248 40s216 96.9 216 216-96.9 216-216 216zm90.2-146.2a117.3 117.3 0 01-180.4 0 16 16 0 00-22.5-2 16 16 0 00-2 22.5 149.1 149.1 0 00229.5-.1 15.9 15.9 0 00-2-22.5 16.1 16.1 0 00-22.6 2.1zM168 240a32 32 0 100-64 32 32 0 000 64zm160 0a32 32 0 100-64 32 32 0 000 64z"/></svg> <strong>Healthy</strong>. You should avoid incurring more debts, and might have a problem getting approved for a mortgage or yet another loan. Still, you are in a relatively good situation.]]></description>
+			<type><![CDATA[html]]></type>
+			<default_value><![CDATA[]]></default_value>
+			<field_order>5</field_order>
+			<form_id>118</form_id>
+			<required>0</required>
+			<options><![CDATA[]]></options>
+			<field_options><![CDATA[{"any_all":"all","hide_field":["1604","1604"],"hide_field_cond":[">=","<="],"hide_opt":["20","36"],"blank":"","btsp":""}]]></field_options>
+		</field>
+		<field>
+			<id>1612</id>
+			<field_key><![CDATA[zpdd]]></field_key>
+			<name><![CDATA[Troubling DTI]]></name>
+			<description><![CDATA[<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512" height="20" width="20"><path fill="currentColor" d="M248 8a248 248 0 100 496 248 248 0 000-496zm0 464c-119.1 0-216-96.9-216-216S128.9 40 248 40s216 96.9 216 216-96.9 216-216 216zm-80-232a32 32 0 100-64 32 32 0 000 64zm160-64a32 32 0 100 64 32 32 0 000-64zm16 160H152c-8.8 0-16 7.2-16 16s7.2 16 16 16h192c8.8 0 16-7.2 16-16s-7.2-16-16-16z"/></svg> <strong>Troubling</strong>. You probably won't get approved for any additional loans; you should start working on a plan that will help you reduce your debts.]]></description>
+			<type><![CDATA[html]]></type>
+			<default_value><![CDATA[]]></default_value>
+			<field_order>6</field_order>
+			<form_id>118</form_id>
+			<required>0</required>
+			<options><![CDATA[]]></options>
+			<field_options><![CDATA[{"any_all":"all","hide_field":["1604","1604"],"hide_field_cond":[">","<="],"hide_opt":["36","42"],"blank":"","btsp":""}]]></field_options>
+		</field>
+		<field>
+			<id>1614</id>
+			<field_key><![CDATA[dmazx]]></field_key>
+			<name><![CDATA[Dangerous DTI]]></name>
+			<description><![CDATA[<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512" height="20" width="20"><path fill="currentColor" d="M248 8a248 248 0 100 496 248 248 0 000-496zm0 464c-119.1 0-216-96.9-216-216S128.9 40 248 40s216 96.9 216 216-96.9 216-216 216zm-80-232a32 32 0 100-64 32 32 0 000 64zm160-64a32 32 0 100 64 32 32 0 000-64zm-80 112c-39.7 0-102.6 23.7-111.5 74.5a32.1 32.1 0 0040.9 36.1c29.3-9 56.4-14.6 70.6-14.6s41.3 5.6 70.6 14.6a32 32 0 0040.9-36.1C350.6 311.7 287.7 288 248 288zm0 64c-17.7 0-46.9 5.8-80 16 5.2-29.7 50.1-48 80-48s74.8 18.3 80 48c-33.1-10.2-62.3-16-80-16z"/></svg> <strong>Dangerous</strong>. Such a debt to income ratio indicates financial trouble. You should devote as much money and energy as possible to pay off your loans.]]></description>
+			<type><![CDATA[html]]></type>
+			<default_value><![CDATA[]]></default_value>
+			<field_order>7</field_order>
+			<form_id>118</form_id>
+			<required>0</required>
+			<options><![CDATA[]]></options>
+			<field_options><![CDATA[{"any_all":"all","hide_field":["1604","1604"],"hide_field_cond":[">","<="],"hide_opt":["42","50"],"blank":"","btsp":""}]]></field_options>
+		</field>
+		<field>
+			<id>1613</id>
+			<field_key><![CDATA[va525]]></field_key>
+			<name><![CDATA[Extremely dangerous DTI]]></name>
+			<description><![CDATA[<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512" height="20" width="20"><path fill="currentColor" d="M248 8a248 248 0 100 496 248 248 0 000-496zm0 464c-119.1 0-216-96.9-216-216S128.9 40 248 40s216 96.9 216 216-96.9 216-216 216zm0-184a64 64 0 10.1 128.1A64 64 0 00248 288zm0 96c-17.6 0-32-14.4-32-32s14.4-32 32-32 32 14.4 32 32-14.4 32-32 32zm-48-176a32 32 0 10-64 0 32 32 0 0064 0zm128-32a32 32 0 100 64 32 32 0 000-64z"/></svg> <strong>Extremely Dangerous</strong>. More than half of your income is used to pay off debts and mortgages. If you're not following a strict payment plan yet, don't hesitate to consult a financial advisor and get professional help.]]></description>
+			<type><![CDATA[html]]></type>
+			<default_value><![CDATA[]]></default_value>
+			<field_order>8</field_order>
+			<form_id>118</form_id>
+			<required>0</required>
+			<options><![CDATA[]]></options>
+			<field_options><![CDATA[{"hide_field":["1604"],"hide_field_cond":[">"],"hide_opt":["50"],"blank":"","btsp":""}]]></field_options>
+		</field>
+	</form>
+	<view>
+		<title>Send Email</title>
+		<link></link>
+		<post_author><![CDATA[matt]]></post_author>
+		<description></description>
+		<content><![CDATA[{"email_to":"[admin_email]","cc":"","bcc":"","from":"[sitename] <[admin_email]>","reply_to":"","email_subject":"","email_message":"[default-message]","inc_user_info":"0","plain_text":"0","event":["create"],"conditions":{"send_stop":"","any_all":""}}]]></content>
+		<excerpt><![CDATA[email]]></excerpt>
+		<post_id>371</post_id>
+		<post_date>2019-11-01 18:20:58</post_date>
+		<post_date_gmt>2019-11-01 18:20:58</post_date_gmt>
+		<comment_status>closed</comment_status>
+		<ping_status>closed</ping_status>
+		<post_name>118_email_</post_name>
+		<status>publish</status>
+		<post_parent>0</post_parent>
+		<menu_order>118</menu_order>
+		<post_type>frm_form_actions</post_type>
+		<post_password><![CDATA[]]></post_password>
+		<is_sticky>0</is_sticky>
+	</view>
+</channel>

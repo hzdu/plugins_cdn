@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- generator="WordPress/5.4.2" created="2020-06-15 23:42" -->
+
+<channel>
+	<title>API Demos</title>
+	<pubDate>Mon, 15 Jun 2020 23:42:49 +0000</pubDate>
+
+	<form>
+		<id>119</id>
+		<form_key><![CDATA[life-insurance-calculator]]></form_key>
+		<name><![CDATA[Life Insurance Calculator]]></name>
+		<description><![CDATA[<p>How much life insurance do you need? Based on your answers to the following questions, we\'ll provide you with an estimate of how much life insurance coverage would be best for your situation.</p>
+]]></description>
+		<created_at>2019-11-05 18:52:59</created_at>
+		<logged_in>0</logged_in>
+		<is_template>0</is_template>
+		<editable>0</editable>
+		<options><![CDATA[{"ajax_submit":"1","edit_page_id":"","open_date":"2019-11-05 18:52","submit_conditions":{"show_hide":"show","any_all":"all"},"before_html":"<legend class=\\\"frm_screen_reader\\\">[form_name]<\/legend>\r\n[if form_name]<h3 class=\\\"frm_form_title\\\">[form_name]<\/h3>[\/if form_name]\r\n[if form_description]<div class=\\\"frm_description\\\">[form_description]<\/div>[\/if form_description]\r\n<!-- Style to remove bootstrap prepend border for total fields -->\r\n<style type=\\\"text\/css\\\">\r\n.frm_total span.input-group-addon {\r\n    border: 0;\r\n}\r\n<\/style>","submit_html":"<div class=\\\"frm_submit\\\">\r\n[if back_button]<button type=\\\"submit\\\" name=\\\"frm_prev_page\\\" formnovalidate=\\\"formnovalidate\\\" class=\\\"frm_prev_page\\\" [back_hook]>[back_label]<\/button>[\/if back_button]\r\n<button class=\\\"frm_button_submit\\\" type=\\\"submit\\\"  [button_action]>[button_label]<\/button>\r\n[if save_draft]<a href=\\\"#\\\" tabindex=\\\"0\\\" class=\\\"frm_save_draft\\\" [draft_hook]>[draft_label]<\/a>[\/if save_draft]\r\n<\/div>","paypal_item_name":"","paypal_amount_field":"","paypal_amount":"","paypal_list":[],"paypal_stop_email":0,"paypal_type":"","repeat_num":1,"repeat_time":"M","retry":0,"trial":0,"trial_amount":"","trial_num":1,"trial_time":"M","change_field":[],"action_id":0,"business_email":"steph@strategy11.com","currency":"USD","return_url":"http:\/\/sandbox.formidableforms.com\/demos","cancel_url":"http:\/\/sandbox.formidableforms.com\/demos"}]]></options>
+		<status><![CDATA[published]]></status>
+		<parent_form_id>0</parent_form_id>
+		<field>
+			<id>1617</id>
+			<field_key><![CDATA[wejts]]></field_key>
+			<name><![CDATA[Annual income needed]]></name>
+			<description><![CDATA[]]></description>
+			<type><![CDATA[number]]></type>
+			<default_value>50000</default_value>
+			<field_order>1</field_order>
+			<form_id>119</form_id>
+			<required>0</required>
+			<options><![CDATA[]]></options>
+			<field_options><![CDATA[{"blank":"","invalid":"Number is invalid","classes":"frm_half frm_first","maxnum":"99999999","btsp":{"prepend":"","append":""},"prepend":"$"}]]></field_options>
+		</field>
+		<field>
+			<id>1616</id>
+			<field_key><![CDATA[qxxc3]]></field_key>
+			<name><![CDATA[How many years of income are required?]]></name>
+			<description><![CDATA[]]></description>
+			<type><![CDATA[number]]></type>
+			<default_value>25</default_value>
+			<field_order>2</field_order>
+			<form_id>119</form_id>
+			<required>0</required>
+			<options><![CDATA[]]></options>
+			<field_options><![CDATA[{"blank":"","invalid":"Number is invalid","classes":"frm_half","maxnum":"100","btsp":{"prepend":"","append":""},"append":"years"}]]></field_options>
+		</field>
+		<field>
+			<id>1618</id>
+			<field_key><![CDATA[v18i3]]></field_key>
+			<name><![CDATA[Total in savings and investment accounts]]></name>
+			<description><![CDATA[]]></description>
+			<type><![CDATA[number]]></type>
+			<default_value><![CDATA[]]></default_value>
+			<field_order>3</field_order>
+			<form_id>119</form_id>
+			<required>0</required>
+			<options><![CDATA[]]></options>
+			<field_options><![CDATA[{"blank":"","invalid":"Number is invalid","classes":"frm_half frm_first","maxnum":"99999999","btsp":{"prepend":"","append":""},"prepend":"$"}]]></field_options>
+		</field>
+		<field>
+			<id>1615</id>
+			<field_key><![CDATA[ykkh7]]></field_key>
+			<name><![CDATA[Funeral expenses]]></name>
+			<description><![CDATA[]]></description>
+			<type><![CDATA[number]]></type>
+			<default_value><![CDATA[]]></default_value>
+			<field_order>4</field_order>
+			<form_id>119</form_id>
+			<required>0</required>
+			<options><![CDATA[]]></options>
+			<field_options><![CDATA[{"blank":"","invalid":"Number is invalid","classes":"frm_half","btsp":{"prepend":"","append":""},"prepend":"$"}]]></field_options>
+		</field>
+		<field>
+			<id>1619</id>
+			<field_key><![CDATA[94jv6]]></field_key>
+			<name><![CDATA[Inflation rate]]></name>
+			<description><![CDATA[]]></description>
+			<type><![CDATA[range]]></type>
+			<default_value>2.5</default_value>
+			<field_order>5</field_order>
+			<form_id>119</form_id>
+			<required>0</required>
+			<options><![CDATA[]]></options>
+			<field_options><![CDATA[{"get_values_form":"","get_values_field":"","watch_lookup":[],"get_most_recent_value":"","lookup_filter_current_user":false,"blank":"","invalid":"Number is invalid","classes":"frm_half","step":".05","btsp":"","append":"%"}]]></field_options>
+		</field>
+		<field>
+			<id>1620</id>
+			<field_key><![CDATA[u5wij]]></field_key>
+			<name><![CDATA[Estimated after tax investment yield]]></name>
+			<description><![CDATA[]]></description>
+			<type><![CDATA[range]]></type>
+			<default_value>4</default_value>
+			<field_order>6</field_order>
+			<form_id>119</form_id>
+			<required>0</required>
+			<options><![CDATA[]]></options>
+			<field_options><![CDATA[{"get_values_form":"","get_values_field":"","watch_lookup":[],"get_most_recent_value":"","lookup_filter_current_user":false,"blank":"","invalid":"Number is invalid","classes":"frm_half","step":".05","btsp":"","append":"%"}]]></field_options>
+		</field>
+		<field>
+			<id>1621</id>
+			<field_key><![CDATA[w223a]]></field_key>
+			<name><![CDATA[interest for inflation rate (hidden)]]></name>
+			<description><![CDATA[]]></description>
+			<type><![CDATA[hidden]]></type>
+			<default_value><![CDATA[]]></default_value>
+			<field_order>7</field_order>
+			<form_id>119</form_id>
+			<required>0</required>
+			<options><![CDATA[]]></options>
+			<field_options><![CDATA[{"calc":"(([1617]*(1+0.01*[1619]))-[1617])*[1616]","blank":"","btsp":""}]]></field_options>
+		</field>
+		<field>
+			<id>1622</id>
+			<field_key><![CDATA[e4iju]]></field_key>
+			<name><![CDATA[interest for investment (hidden)]]></name>
+			<description><![CDATA[]]></description>
+			<type><![CDATA[hidden]]></type>
+			<default_value><![CDATA[]]></default_value>
+			<field_order>8</field_order>
+			<form_id>119</form_id>
+			<required>0</required>
+			<options><![CDATA[]]></options>
+			<field_options><![CDATA[{"calc":"([1617]*(1+0.01*[1620])*[1616]) - ([1617]*[1616])","blank":"","btsp":""}]]></field_options>
+		</field>
+		<field>
+			<id>1623</id>
+			<field_key><![CDATA[fuja0]]></field_key>
+			<name><![CDATA[Interest/inflation offset (hidden)]]></name>
+			<description><![CDATA[]]></description>
+			<type><![CDATA[hidden]]></type>
+			<default_value><![CDATA[]]></default_value>
+			<field_order>9</field_order>
+			<form_id>119</form_id>
+			<required>0</required>
+			<options><![CDATA[]]></options>
+			<field_options><![CDATA[{"calc":"[1622]+[1621]","blank":"","btsp":""}]]></field_options>
+		</field>
+		<field>
+			<id>2551</id>
+			<field_key><![CDATA[24e4e]]></field_key>
+			<name><![CDATA[Will your spouse be working?]]></name>
+			<description><![CDATA[]]></description>
+			<type><![CDATA[toggle]]></type>
+			<default_value><![CDATA[]]></default_value>
+			<field_order>10</field_order>
+			<form_id>119</form_id>
+			<required>0</required>
+			<options><![CDATA[]]></options>
+			<field_options><![CDATA[{"blank":"","classes":"frm_third frm_first","custom_html":"<div id=\\\"frm_field_[id]_container\\\" class=\\\"frm_form_field form-field [required_class][error_class]\\\">\r\n    <label for=\\\"field_[key]\\\" id=\\\"field_[key]_label\\\" class=\\\"frm_primary_label\\\">[field_name]\r\n        <span class=\\\"frm_required\\\">[required_label]<\/span>\r\n    <\/label>\r\n    [input]\r\n    [if description]<div class=\\\"frm_description\\\" id=\\\"frm_desc_field_[key]\\\">[description]<\/div>[\/if description]\r\n    [if error]<div class=\\\"frm_error\\\" id=\\\"frm_error_field_[key]\\\">[error]<\/div>[\/if error]\r\n<\/div>","show_label":"1","btsp":""}]]></field_options>
+		</field>
+		<field>
+			<id>1625</id>
+			<field_key><![CDATA[hicz1]]></field_key>
+			<name><![CDATA[Spouse work]]></name>
+			<description><![CDATA[]]></description>
+			<type><![CDATA[divider]]></type>
+			<default_value><![CDATA[]]></default_value>
+			<field_order>11</field_order>
+			<form_id>119</form_id>
+			<required>0</required>
+			<options><![CDATA[]]></options>
+			<field_options><![CDATA[{"hide_field":["2551"],"hide_opt":["Yes"],"label":"none","blank":"","classes":"frm_two_thirds","custom_html":"<div id=\\\"frm_field_[id]_container\\\" class=\\\"frm_form_field frm_section_heading form-field[error_class]\\\">\r\n<h3 class=\\\"frm_pos_[label_position][collapse_class]\\\">[field_name]<\/h3>\r\n[if description]<div class=\\\"frm_description\\\">[description]<\/div>[\/if description]\r\n[collapse_this]\r\n<\/div>","btsp":""}]]></field_options>
+		</field>
+		<field>
+			<id>1627</id>
+			<field_key><![CDATA[3r7t9]]></field_key>
+			<name><![CDATA[Annual net income]]></name>
+			<description><![CDATA[]]></description>
+			<type><![CDATA[number]]></type>
+			<default_value><![CDATA[]]></default_value>
+			<field_order>12</field_order>
+			<form_id>119</form_id>
+			<required>0</required>
+			<options><![CDATA[]]></options>
+			<field_options><![CDATA[{"in_section":"1625","blank":"","invalid":"Number is invalid","classes":"frm_half","custom_html":"<div id=\\\"frm_field_[id]_container\\\" class=\\\"frm_form_field form-field [required_class][error_class]\\\">\r\n    <label for=\\\"field_[key]\\\" id=\\\"field_[key]_label\\\" class=\\\"frm_primary_label\\\">[field_name]\r\n        <span class=\\\"frm_required\\\">[required_label]<\/span>\r\n    <\/label>\r\n    [input]\r\n    [if description]<div class=\\\"frm_description\\\" id=\\\"frm_desc_field_[key]\\\">[description]<\/div>[\/if description]\r\n    [if error]<div class=\\\"frm_error\\\" id=\\\"frm_error_field_[key]\\\">[error]<\/div>[\/if error]\r\n<\/div>","btsp":{"prepend":"","append":""},"prepend":"$"}]]></field_options>
+		</field>
+		<field>
+			<id>1628</id>
+			<field_key><![CDATA[fp7ud]]></field_key>
+			<name><![CDATA[Expected number of years to work]]></name>
+			<description><![CDATA[]]></description>
+			<type><![CDATA[number]]></type>
+			<default_value><![CDATA[]]></default_value>
+			<field_order>13</field_order>
+			<form_id>119</form_id>
+			<required>0</required>
+			<options><![CDATA[]]></options>
+			<field_options><![CDATA[{"in_section":"1625","blank":"","invalid":"Number is invalid","classes":"frm_half","custom_html":"<div id=\\\"frm_field_[id]_container\\\" class=\\\"frm_form_field form-field [required_class][error_class]\\\">\r\n    <label for=\\\"field_[key]\\\" id=\\\"field_[key]_label\\\" class=\\\"frm_primary_label\\\">[field_name]\r\n        <span class=\\\"frm_required\\\">[required_label]<\/span>\r\n    <\/label>\r\n    [input]\r\n    [if description]<div class=\\\"frm_description\\\" id=\\\"frm_desc_field_[key]\\\">[description]<\/div>[\/if description]\r\n    [if error]<div class=\\\"frm_error\\\" id=\\\"frm_error_field_[key]\\\">[error]<\/div>[\/if error]\r\n<\/div>","maxnum":"100","btsp":{"prepend":"","append":""},"append":"years"}]]></field_options>
+		</field>
+		<field>
+			<id>1626</id>
+			<field_key><![CDATA[t8txt]]></field_key>
+			<name><![CDATA[Section Buttons]]></name>
+			<description><![CDATA[]]></description>
+			<type><![CDATA[end_divider]]></type>
+			<default_value><![CDATA[]]></default_value>
+			<field_order>14</field_order>
+			<form_id>119</form_id>
+			<required>0</required>
+			<options><![CDATA[]]></options>
+			<field_options><![CDATA[{"blank":"","btsp":""}]]></field_options>
+		</field>
+		<field>
+			<id>2552</id>
+			<field_key><![CDATA[chol0]]></field_key>
+			<name><![CDATA[Do you need college (or other) funding for children?]]></name>
+			<description><![CDATA[]]></description>
+			<type><![CDATA[toggle]]></type>
+			<default_value><![CDATA[]]></default_value>
+			<field_order>15</field_order>
+			<form_id>119</form_id>
+			<required>0</required>
+			<options><![CDATA[]]></options>
+			<field_options><![CDATA[{"blank":"","classes":"frm_third frm_first","show_label":"1","btsp":""}]]></field_options>
+		</field>
+		<field>
+			<id>1631</id>
+			<field_key><![CDATA[ehrm]]></field_key>
+			<name><![CDATA[Children funding]]></name>
+			<description><![CDATA[]]></description>
+			<type><![CDATA[divider]]></type>
+			<default_value><![CDATA[]]></default_value>
+			<field_order>16</field_order>
+			<form_id>119</form_id>
+			<required>0</required>
+			<options><![CDATA[]]></options>
+			<field_options><![CDATA[{"hide_field":["2552"],"hide_opt":["Yes"],"label":"none","blank":"","classes":"frm_two_thirds","btsp":""}]]></field_options>
+		</field>
+		<field>
+			<id>1632</id>
+			<field_key><![CDATA[zfw0a]]></field_key>
+			<name><![CDATA[Amount needed per child]]></name>
+			<description><![CDATA[]]></description>
+			<type><![CDATA[number]]></type>
+			<default_value>100000</default_value>
+			<field_order>17</field_order>
+			<form_id>119</form_id>
+			<required>0</required>
+			<options><![CDATA[]]></options>
+			<field_options><![CDATA[{"in_section":"1631","blank":"","invalid":"Number is invalid","classes":"frm_half","maxnum":"99999999","btsp":{"prepend":"","append":""},"prepend":"$"}]]></field_options>
+		</field>
+		<field>
+			<id>1633</id>
+			<field_key><![CDATA[hlzbm]]></field_key>
+			<name><![CDATA[Number of children]]></name>
+			<description><![CDATA[]]></description>
+			<type><![CDATA[number]]></type>
+			<default_value><![CDATA[]]></default_value>
+			<field_order>18</field_order>
+			<form_id>119</form_id>
+			<required>0</required>
+			<options><![CDATA[]]></options>
+			<field_options><![CDATA[{"in_section":"1631","blank":"","invalid":"Number is invalid","classes":"frm_half","maxnum":"100","btsp":{"prepend":"","append":""}}]]></field_options>
+		</field>
+		<field>
+			<id>1634</id>
+			<field_key><![CDATA[mlwyb]]></field_key>
+			<name><![CDATA[Section Buttons]]></name>
+			<description><![CDATA[]]></description>
+			<type><![CDATA[end_divider]]></type>
+			<default_value><![CDATA[]]></default_value>
+			<field_order>19</field_order>
+			<form_id>119</form_id>
+			<required>0</required>
+			<options><![CDATA[]]></options>
+			<field_options><![CDATA[{"blank":"","btsp":""}]]></field_options>
+		</field>
+		<field>
+			<id>1624</id>
+			<field_key><![CDATA[rkqu7]]></field_key>
+			<name><![CDATA[Estimated life insurance needed]]></name>
+			<description><![CDATA[]]></description>
+			<type><![CDATA[number]]></type>
+			<default_value><![CDATA[]]></default_value>
+			<field_order>20</field_order>
+			<form_id>119</form_id>
+			<required>0</required>
+			<options><![CDATA[]]></options>
+			<field_options><![CDATA[{"read_only":"1","calc":"([1617]*[1616] - [1623]) - [1618] + [1615] - ([1627]*[1628]) + ([1633]*[1632])","calc_dec":"2","blank":"","invalid":"Number is invalid","classes":"frm_total frm_total_big","maxnum":"9999999999","btsp":{"prepend":"","append":""},"is_currency":"1"}]]></field_options>
+		</field>
+	</form>
+	<view>
+		<title>Send Email</title>
+		<link></link>
+		<post_author><![CDATA[matt]]></post_author>
+		<description></description>
+		<content><![CDATA[{"email_to":"[admin_email]","cc":"","bcc":"","from":"[sitename] <[admin_email]>","reply_to":"","email_subject":"","email_message":"[default-message]","inc_user_info":"0","plain_text":"0","event":["create"],"conditions":{"send_stop":"","any_all":""}}]]></content>
+		<excerpt><![CDATA[email]]></excerpt>
+		<post_id>375</post_id>
+		<post_date>2019-11-05 18:52:59</post_date>
+		<post_date_gmt>2019-11-05 18:52:59</post_date_gmt>
+		<comment_status>closed</comment_status>
+		<ping_status>closed</ping_status>
+		<post_name>119_email_</post_name>
+		<status>publish</status>
+		<post_parent>0</post_parent>
+		<menu_order>119</menu_order>
+		<post_type>frm_form_actions</post_type>
+		<post_password><![CDATA[]]></post_password>
+		<is_sticky>0</is_sticky>
+	</view>
+</channel>
