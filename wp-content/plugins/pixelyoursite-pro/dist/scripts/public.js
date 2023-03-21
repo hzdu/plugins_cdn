@@ -1000,7 +1000,7 @@ if (!String.prototype.trim) {
                 let landing = window.location.href.split('?')[0];
                 try {
                     // save data for first visit
-                    if(Cookies.get('pys_first_visit') === undefined) {
+                    if(Cookies.get('pys_first_visit') === undefined ) {
                         Cookies.set('pys_first_visit', true, { expires: expires });
                         Cookies.set('pysTrafficSource', getTrafficSource(), { expires: expires });
                         Cookies.set('pys_landing_page',landing,{ expires: expires });
@@ -1384,6 +1384,7 @@ if (!String.prototype.trim) {
                     });
 
                 }
+
             },
 
             /**
@@ -1527,26 +1528,70 @@ if (!String.prototype.trim) {
                  */
                 if (options.gdpr.consent_magic_integration_enabled && typeof CS_Data !== "undefined" ) {
 
-                    var cs_cookie = Cookies.get('cs_viewed_cookie_policy'+test_prefix);
+                    var test_prefix = CS_Data.test_prefix;
+                    if ((typeof CS_Data.cs_google_analytics_consent_mode !== "undefined" && CS_Data.cs_google_analytics_consent_mode == 1) && pixel == 'analytics') {
+                        return true;
+                    }
+                    if ((typeof CS_Data.cs_google_ads_consent_mode !== "undefined" && CS_Data.cs_google_ads_consent_mode == 1) && pixel == 'google_ads') {
+                        return true;
+                    }
 
-                    if (options.gdpr[pixel + '_prior_consent_enabled']) {
-                        if (typeof cs_cookie === 'undefined' || cs_cookie === 'yes') {
-                            return true;
+                    if ( CS_Data.cs_cache_enabled == 1 ) {
+                        var substring = "cs_enabled_cookie_term";
+                        var theCookies = document.cookie.split(';');
+
+                        for (var i = 1 ; i <= theCookies.length; i++) {
+                            if ( theCookies[ i - 1 ].indexOf( substring ) !== -1 ) {
+                                var categoryCookie = theCookies[ i - 1 ].replace( 'cs_enabled_cookie_term' + test_prefix + '_', '' );
+                                categoryCookie = Number( categoryCookie.replace( /\D+/g, "" ) );
+                                var cs_cookie_val = Cookies.get( 'cs_enabled_cookie_term' + test_prefix + '_' + categoryCookie );
+
+                                if ( categoryCookie === CS_Data.cs_script_cat.facebook && pixel == 'facebook' ) {
+                                    if ( cs_cookie_val == 'yes' ) {
+                                        return true;
+                                    } else {
+                                        return false;
+                                    }
+                                } else if ( categoryCookie === CS_Data.cs_script_cat.bing && pixel == 'bing' ) {
+                                    if ( cs_cookie_val == 'yes' ) {
+                                        return true;
+                                    } else {
+                                        return false;
+                                    }
+                                } else if ( categoryCookie === CS_Data.cs_script_cat.analytics && pixel == 'analytics' ) {
+                                    if ( cs_cookie_val == 'yes' ) {
+                                        return true;
+                                    } else {
+                                        return false;
+                                    }
+                                } else if ( categoryCookie === CS_Data.cs_script_cat.gads && pixel == 'gads' ) {
+                                    if ( cs_cookie_val == 'yes' ) {
+                                        return true;
+                                    } else {
+                                        return false;
+                                    }
+                                } else if ( categoryCookie === CS_Data.cs_script_cat.pinterest && pixel == 'pinterest' ) {
+                                    if ( cs_cookie_val == 'yes' ) {
+                                        return true;
+                                    } else {
+                                        return false;
+                                    }
+                                } else if ( categoryCookie === CS_Data.cs_script_cat.tiktok && pixel == 'tiktok' ) {
+                                    if ( cs_cookie_val == 'yes' ) {
+                                        return true;
+                                    } else {
+                                        return false;
+                                    }
+                                }
+                            }
                         }
                     } else {
+                        var cs_cookie = Cookies.get('cs_viewed_cookie_policy'+test_prefix);
                         if (typeof cs_cookie === 'undefined' || cs_cookie === 'yes') {
                             return true;
                         }
                     }
-                    if (options.gdpr.consent_magic_integration_enabled && typeof CS_Data !== "undefined") {
-                        if ((typeof CS_Data.cs_google_analytics_consent_mode !== "undefined" && CS_Data.cs_google_analytics_consent_mode == 1) && pixel == 'analytics') {
-                            return true;
-                        }
 
-                        if ((typeof CS_Data.cs_google_ads_consent_mode !== "undefined" && CS_Data.cs_google_ads_consent_mode == 1) && pixel == 'google_ads') {
-                            return true;
-                        }
-                    }
                     return false;
 
                 }
@@ -1927,19 +1972,18 @@ if (!String.prototype.trim) {
             }
             var params = Utils.copyProperties(event.params, {});
 
-            event.pixelIds.forEach(function(pixelId){
-                if (options.debug) {
-                    console.log('[TikTok] ' + name, params,"pixel_id",pixelId);
-                }
+                event.pixelIds.forEach(function(pixelId){
+                    if (options.debug) {
+                        console.log('[TikTok] ' + name, params,"pixel_id",pixelId);
+                    }
 
-                if(options.tiktok.hasOwnProperty('advanced_matching')
-                    && Object.keys(options.tiktok.advanced_matching).length > 0) {
-                    ttq.instance(pixelId).identify(options.tiktok.advanced_matching)
-                }
+                    if(options.tiktok.hasOwnProperty('advanced_matching')
+                        && Object.keys(options.tiktok.advanced_matching).length > 0) {
+                        ttq.instance(pixelId).identify(options.tiktok.advanced_matching)
+                    }
 
-                ttq.instance(pixelId).track(name,params)
-            });
-
+                    ttq.instance(pixelId).track(name,params)
+                });
         }
 
         return {
@@ -1977,7 +2021,12 @@ if (!String.prototype.trim) {
                     ttq.page();
                 });
                 initialized = true;
-                Utils.fireStaticEvents('tiktok');
+
+                if (options.staticEvents.hasOwnProperty('tiktok')) {
+                    setTimeout(function () {
+                        Utils.fireStaticEvents('tiktok');
+                    }, 1500)
+                }
             },
 
             fireEvent: function (name, data) {
@@ -3525,8 +3574,34 @@ if (!String.prototype.trim) {
 
         var Pinterest = Utils.setupPinterestObject();
         var Bing = Utils.setupBingObject();
+        if((options.woo.enabled || options.edd.enabled) && (options.woo.enabled_save_data_to_orders || options.edd.enabled_save_data_to_orders))
+        {
+            Utils.manageCookies();
+        }
+        else
+        {
+            Cookies.remove('pys_first_visit')
+            Cookies.remove('pysTrafficSource')
+            Cookies.remove('pys_landing_page')
+            Cookies.remove('last_pys_landing_page')
+            Cookies.remove('last_pysTrafficSource')
+            Cookies.remove('pys_start_session')
+            Cookies.remove('pys_session_limit')
 
-        Utils.manageCookies();
+            $.each(utmTerms, function (index, name) {
+                Cookies.remove('pys_' + name)
+            });
+            $.each(utmId,function(index,name) {
+                Cookies.remove('pys_' + name)
+            })
+            $.each(utmTerms, function (index, name) {
+                Cookies.remove('last_pys_' + name)
+            });
+            $.each(utmId,function(index,name) {
+                Cookies.remove('last_pys_' + name)
+            });
+        }
+
         Utils.initializeRequestParams();
         Utils.setupGdprCallbacks();
 

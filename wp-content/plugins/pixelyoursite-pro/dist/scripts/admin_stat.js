@@ -6,7 +6,7 @@
         colors:["#1B2B9A","#78c5b0","#E6AF2E","#BEB2C8","#B6244F","#35524A","#162521","#408c35","#bb9b31","#ff00ff"],
         init : function () {
             if(jQuery("#pys_stat_graphics").length > 0) {
-                this.chartGlobal = new Chart(jQuery("#pys_stat_graphics"), {
+                this.chartGlobal = new PYS_Chart(jQuery("#pys_stat_graphics"), {
                         type: 'line',
                         data: {},
                         options: {
@@ -41,7 +41,7 @@
                 );
             }
             if(jQuery("#pys_stat_single_graphics").length > 0) {
-                this.chartSingle = new Chart(jQuery("#pys_stat_single_graphics"), {
+                this.chartSingle = new PYS_Chart(jQuery("#pys_stat_single_graphics"), {
                         type: 'line',
                         data: {},
                         options: {
@@ -200,16 +200,16 @@
         dateFormat : "yyyy-MM-dd",
 
         toFormat : function (date,format) {
-            return Chart._adapters._date.prototype.format(date,format)
+            return PYS_Chart._adapters._date.prototype.format(date,format)
         },
         add:function (date, duration,unit) {
-            return Chart._adapters._date.prototype.add(date, duration,unit)
+            return PYS_Chart._adapters._date.prototype.add(date, duration,unit)
         },
         startOf:function (date, unit) {
-            return Chart._adapters._date.prototype.startOf(date, unit)
+            return PYS_Chart._adapters._date.prototype.startOf(date, unit)
         },
         endOf:function (date, unit) {
-            return Chart._adapters._date.prototype.endOf(date, unit)
+            return PYS_Chart._adapters._date.prototype.endOf(date, unit)
         },
         getDatepickerDate( value ) {
             var date;
