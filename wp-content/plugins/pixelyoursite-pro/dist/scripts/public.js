@@ -3588,16 +3588,16 @@ if (!String.prototype.trim) {
             Cookies.remove('pys_start_session')
             Cookies.remove('pys_session_limit')
 
-            $.each(utmTerms, function (index, name) {
+            $.each(Utils.utmTerms, function (index, name) {
                 Cookies.remove('pys_' + name)
             });
-            $.each(utmId,function(index,name) {
+            $.each(Utils.utmId,function(index,name) {
                 Cookies.remove('pys_' + name)
             })
-            $.each(utmTerms, function (index, name) {
+            $.each(Utils.utmTerms, function (index, name) {
                 Cookies.remove('last_pys_' + name)
             });
-            $.each(utmId,function(index,name) {
+            $.each(Utils.utmId,function(index,name) {
                 Cookies.remove('last_pys_' + name)
             });
         }

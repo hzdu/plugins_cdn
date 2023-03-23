@@ -233,6 +233,10 @@ const tutorials = {
       title: "How to automatically generate Yoast/Rank Math SEO description using OpenAI GPT",
     },
     {
+      url: "https://valvepress.com/how-to-automatically-generate-wordpress-tags-using-openai-gpt-api/",
+      title: "How to automatically generate WordPress tags using OpenAI GPT API",
+    },
+    {
       url: "https://valvepress.com/wordpress-internal-cron-job-work-may-need-setup-external-cron/",
       title: "How to setup a cron job to run WordPress Automatic campaigns automatically",
     },

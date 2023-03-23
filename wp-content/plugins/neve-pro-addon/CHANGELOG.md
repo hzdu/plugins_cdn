@@ -1,3 +1,12 @@
+##### [Version 2.5.5](https://github.com/Codeinwp/neve-pro-addon/compare/v2.5.4...v2.5.5) (2023-03-22)
+
+- [Fix] Infinite scroll on the shop page
+- [Fix] Card image hover effects do not work on category archive pages
+- [Fix] Sidebar patterns display issue
+- Improve the development process
+- Remove Neve v2.x support
+- Update WooCommerce tested version to 7.5
+
 ##### [Version 2.5.4](https://github.com/Codeinwp/neve-pro-addon/compare/v2.5.3...v2.5.4) (2023-03-13)
 
 - Removed legacy skin
