@@ -1,0 +1,240 @@
+/**
+ *  SignaturePad: A jQuery plugin for assisting in the creation of an HTML5 canvas
+ *  based signature pad. Records the drawn signature in JSON for later regeneration.
+ *
+ *  @project ca.thomasjbradley.applications.signaturepad
+ *  @author Thomas J Bradley <hey@thomasjbradley.ca>
+ *  @link http://thomasjbradley.ca/lab/signature-pad
+ *  @link http://github.com/thomasjbradley/signature-pad
+ *  @copyright Copyright MMXI, Thomas J Bradley
+ *  @license New BSD License
+ */
+
+@font-face {
+	font-family: "Journal";
+	src: url("../../formidable-signature/assets/journal.eot");
+	src: local("Journal Regular"), local("Journal"),
+		url("../../formidable-signature/assets/journal.woff") format("woff"),
+		url("../../formidable-signature/assets/journal.ttf") format("truetype"),
+		url("../../formidable-signature/assets/journal.svg#Journal")
+			format("svg");
+	font-weight: normal;
+	font-style: normal;
+}
+
+.sigPad {
+	margin: 0;
+	padding: 0;
+}
+
+.sigPad label {
+	display: block;
+	margin: 0 0 0.515em;
+	padding: 0;
+	color: #000;
+	font: italic normal 1em/1.375 Georgia, Times, serif;
+}
+
+.sigPad label.error {
+	color: #f33;
+}
+
+.sigPad input.error {
+	border-color: #f33;
+}
+
+.sigPad button {
+	margin: 1em 0 0 0;
+	padding: 0.6em 0.6em 0.7em;
+	background-color: #f0e2eb;
+	border: 0;
+	-moz-border-radius: 8px;
+	-webkit-border-radius: 8px;
+	border-radius: 8px;
+	cursor: pointer;
+	color: #ea088c;
+	font: bold 1em/1.375 "Helvetica Neue", Helvetica, Arial, sans-serif;
+	text-align: left;
+}
+
+.sigPad button:hover {
+	background-color: #ea088c;
+	color: #fff;
+}
+
+.sigNav {
+	display: block;
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
+	position: absolute;
+	z-index: 100;
+	right: 0;
+}
+
+#frm_builder_page .sigNav.frm_hidden,
+.sigNav.frm_hidden {
+	display: none;
+}
+
+#frm_builder_page .sigNav {
+	display: block;
+}
+
+#frm_builder_page .sigPad input {
+	display: none;
+}
+
+.frm_form_field .sigPad ul.sigNav li {
+	display: block;
+	margin: 3px 3px 0;
+	margin-top: var(--button-margin);
+	margin-left: var(--button-side-margin);
+	margin-right: var(--button-margin);
+	padding: 0;
+	background: none;
+	line-height: normal;
+}
+
+.frm_form_field .sigNav a {
+	margin: 0;
+	padding: 8px;
+	padding: var(--button-padding);
+	border: 0;
+	text-decoration: none;
+	-moz-border-radius: 50%;
+	-webkit-border-radius: 50%;
+	border-radius: 50%;
+	outline: none;
+	background-color: var(--inactive);
+}
+
+.frm_form_field .sigNav a,
+.frm_form_field .sigNav a i {
+	display: block;
+	font-size: 16px;
+	font-size: var(--button-size);
+	color: var(--inactive-text);
+}
+
+.frm_form_field .sigNav a i {
+	width: 20px;
+	height: 20px;
+	width: var(--icon);
+	height: var(--icon);
+}
+
+.sigNav a,
+.sigNav a:active,
+.sigNav a:focus,
+.sigNav a:hover {
+	box-shadow: none;
+}
+
+.frm_form_field .sigNav a.frm-active-sig-type,
+.frm_fields_container .frm_form_field .sigNav a.frm-active-sig-type:focus {
+	background-color: #eee;
+	background-color: var(--active);
+}
+
+.frm_form_field .sigNav a.frm-active-sig-type,
+.frm_fields_container .frm_form_field .sigNav a.frm-active-sig-type:focus,
+.frm_form_field .sigNav a.frm-active-sig-type i {
+	color: var(--active-text);
+}
+
+.sigWrapper {
+	clear: both;
+	border: 2px solid #eee;
+	background-color: #fff;
+	box-sizing: content-box;
+	position: relative;
+	background-color: var(--bg-color);
+}
+
+.signed .sigWrapper {
+	border: 0;
+}
+
+.pad {
+	position: relative;
+	cursor: crosshair;
+	width: 100%;
+	height: 100%;
+	z-index: 2;
+}
+
+.typed {
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	cursor: default;
+	color: #145394;
+	font: normal 3em/50px "Journal", Georgia, Times, serif;
+	padding: 0;
+	margin: 0;
+}
+
+.frm-typed-drawline{
+	position: absolute;
+	z-index: 1;
+	position: absolute;
+	z-index: 3;
+	background-color: #000;
+}
+
+.typed input[type="text"],
+.typed input[type="text"]:focus,
+#content .with_frm_style .typed input[type="text"],
+.with_frm_style .typed input[type="text"],
+.with_frm_style .typed input[type="text"]:focus {
+	font: normal 2em "Journal", Georgia, Times, serif !important;
+	text-indent: 6%;
+	border: none !important;
+	padding: 0 !important;
+	margin: 0;
+	-moz-box-shadow: none !important;
+	-webkit-box-shadow: none !important;
+	box-shadow: none !important;
+	height: 100% !important;
+	width: 100%;
+	vertical-align: middle;
+	background-color: transparent !important;
+	position: relative;
+	z-index: 2;
+}
+
+.typed input[type="text"]:focus {
+	background: inherit;
+}
+
+.frm-typed-display {
+	font-family: "Journal", Georgia, Times, serif;
+	font-size: 4em;
+	line-height: 1;
+}
+
+a.frm-clear-signature {
+	font-size: 14px;
+}
+
+.sigPad .clearButton {
+	position: absolute;
+	font-size: 13px;
+	margin: -25px 5% 0;
+	z-index: 2;
+	display: inherit;
+	line-height: 1em;
+	left: 0;
+	bottom: 5px;
+}
+
+.sigPad .clearButton a {
+	color: var(--active);
+}
+
+.frm-clear-signature-container {
+	margin: 10px 0;
+}

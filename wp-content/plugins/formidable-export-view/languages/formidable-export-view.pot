@@ -1,0 +1,178 @@
+# Copyright (C) 2022 Strategy11
+# This file is distributed under the same license as the Formidable Export View to CSV plugin.
+msgid ""
+msgstr ""
+"Project-Id-Version: Formidable Export View to CSV 1.06\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/formidable-export-view\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2022-06-13T14:19:10+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.4.0\n"
+"X-Domain: formidable-export-view\n"
+
+#. Plugin Name of the plugin
+msgid "Formidable Export View to CSV"
+msgstr ""
+
+#. Plugin URI of the plugin
+#. Author URI of the plugin
+msgid "https://formidableforms.com/"
+msgstr ""
+
+#. Description of the plugin
+msgid "Export table Views to CSV files"
+msgstr ""
+
+#. Author of the plugin
+msgid "Strategy11"
+msgstr ""
+
+#. Translators: %s: Formidable Pro minimum version number.
+#: controllers/FrmExportViewAppController.php:14
+msgid "Formidable Export View requires Formidable Forms Pro version %s or higher to be installed."
+msgstr ""
+
+#: controllers/FrmExportViewCSVController.php:171
+msgid "This View cannot be exported.  It may not be a table View, or it may not have been saved since the FrmExportView add-on was installed."
+msgstr ""
+
+#: controllers/FrmExportViewCSVController.php:172
+#: controllers/FrmExportViewCSVController.php:180
+msgid "You can return to the previous page using your browser's back button."
+msgstr ""
+
+#. translators: %d - View id.
+#: controllers/FrmExportViewCSVController.php:176
+msgid "View %d is not a table View or it has not been saved since the Formidable Export View add-on was activated.  A CSV file was not created."
+msgstr ""
+
+#: controllers/FrmExportViewCSVController.php:179
+msgid "This View has no entries to download."
+msgstr ""
+
+#. translators: %d - View id.
+#: controllers/FrmExportViewCSVController.php:185
+msgid "View %d has no entries.  A CSV file was not created."
+msgstr ""
+
+#: controllers/FrmExportViewCSVController.php:441
+msgid "The CSV has been saved.  You can use your browser's back button to return to the previous page."
+msgstr ""
+
+#: controllers/FrmExportViewCSVController.php:450
+msgid "The CSV could not be saved because a valid location wasn't available or an .htaccess file is blocking access. Please enter a valid location in Global Settings->ExportView or with the frm_export_view_file_location hook or adjust the .htaccess file to allow access. You can use your browser's back button to return to the previous page."
+msgstr ""
+
+#: controllers/FrmExportViewGlobalSettingsController.php:57
+msgid "Settings Saved"
+msgstr ""
+
+#: controllers/FrmExportViewSettingsController.php:15
+msgid "Export View Settings"
+msgstr ""
+
+#. Translators: %s: path to location where CSV export will be saved.
+#: helpers/FrmExportViewCSVHelper.php:175
+msgid "Unable to write to %s to protect your exports."
+msgstr ""
+
+#. translators: %1$s - frequency, %2$s - recurring period.
+#: models/FrmExportViewCron.php:61
+msgid "Every %1$s %2$s"
+msgstr ""
+
+#: models/FrmExportViewShortcode.php:69
+msgid "The [frm-export-view] shortcode needs to have a view param, which should be set to the id or key of the View you would like to export."
+msgstr ""
+
+#: models/FrmExportViewShortcode.php:70
+msgid "Please set the view param of the [frm-export-view] shortcode to the id or key of a View on this site."
+msgstr ""
+
+#: models/FrmExportViewShortcode.php:71
+msgid "Please set the view param of the [frm-export-view] shortcode to an All Entries or Dynamic View that is set up as a table."
+msgstr ""
+
+#: views/export-view-metabox.php:3
+msgid "Export Link"
+msgstr ""
+
+#: views/export-view-metabox.php:5
+msgid "If selected, a link for the user to download the View as a CSV file will be displayed under the View."
+msgstr ""
+
+#: views/export-view-metabox.php:11
+msgid "Show Export Link with View"
+msgstr ""
+
+#: views/export-view-metabox.php:16
+msgid "Filename"
+msgstr ""
+
+#: views/export-view-metabox.php:18
+msgid "Filename of View export. Leave blank to use View title."
+msgstr ""
+
+#: views/export-view-metabox.php:24
+msgid "Leave blank to use View title"
+msgstr ""
+
+#: views/export-view-metabox.php:29
+msgid "Export Link Text"
+msgstr ""
+
+#: views/export-view-metabox.php:31
+msgid "Text of link to download CSV on front-end."
+msgstr ""
+
+#: views/export-view-metabox.php:37
+msgid "Export to CSV"
+msgstr ""
+
+#: views/export-view-metabox.php:41
+msgid "Include params with your CSV export?"
+msgstr ""
+
+#: views/export-view-metabox.php:43
+msgid "If selected, params will be available to your View export for filtering and display.  These params can be seen and changed easily using browser tools, so including params is not recommended for Views with sensitive data."
+msgstr ""
+
+#: views/export-view-metabox.php:50
+msgid "Yes (more flexible, not recommended for Views with sensitive data)"
+msgstr ""
+
+#: views/export-view-metabox.php:56
+msgid "No (more secure)"
+msgstr ""
+
+#: views/settings/form.php:6
+msgid "If you don't see a table View on this list, try going to the View and updating it."
+msgstr ""
+
+#: views/settings/form.php:36
+msgid "Frequency"
+msgstr ""
+
+#: views/settings/form.php:54
+msgid "Format"
+msgstr ""
+
+#: views/settings/form.php:56
+msgid "If your CSV special characters are not working correctly, try a different formatting option."
+msgstr ""
+
+#: views/settings/form.php:71
+msgid "Column separation"
+msgstr ""
+
+#: views/settings/form.php:82
+msgid "Destination Directory Path"
+msgstr ""
+
+#: views/settings/form.php:87
+msgid "Leave blank to use wp-content/uploads/formidable/exports"
+msgstr ""
