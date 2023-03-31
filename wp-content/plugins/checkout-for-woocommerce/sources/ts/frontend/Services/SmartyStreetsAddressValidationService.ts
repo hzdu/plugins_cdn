@@ -107,9 +107,6 @@ class SmartyStreetsAddressValidationService {
         jQuery( '.cfw-smartystreets-user-address' ).html( response.original );
         jQuery( '.cfw-smartystreets-suggested-address' ).html( response.address );
 
-        // Set to suggested by default
-        jQuery( '.cfw-radio-suggested-address' ).prop( 'checked', true ).trigger( 'change' );
-
         this.modaalTrigger.modaal( 'open' );
 
         this.suggestedAddress = response.components;

@@ -45,10 +45,16 @@ class FetchifyAddressAutocompleteService {
             this.fieldValidationRefresher.refreshField( document.getElementById( `${prefix}_postcode` ) );
 
             jQuery( `#${prefix}_fetchify_search` ).val( '' );
+
+            const address2 = jQuery( `#${prefix}_address_2` );
+
+            if ( address2.length && address2.val() !== '' ) {
+                jQuery( `#${prefix}_address_2_field` ).prev( '.cfw-add-field' ).trigger( 'click' );
+            }
         };
 
         fetchify.attach( {
-            search: `${prefix}_fetchify_search`, // search box element
+            search: jQuery( `#${prefix}_fetchify_search` ).length ? `${prefix}_fetchify_search` : `${prefix}_address_1`, // search box element
             line_1: `${prefix}_address_1`,
             line_2: `${prefix}_address_2`,
             company: `${prefix}_company`,

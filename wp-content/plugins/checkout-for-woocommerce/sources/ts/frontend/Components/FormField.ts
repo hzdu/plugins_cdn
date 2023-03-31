@@ -28,6 +28,15 @@ class FormField {
                 jQuery( this ).next( 'input' ).attr( 'type', 'text' );
             }
         } );
+
+        // Attempt to remove our styling from select2 styled fields
+        jQuery( '.cfw-select-input' ).each( ( index, element ) => {
+            if ( !jQuery( element ).find( '.select2-container' ).length ) {
+                return;
+            }
+
+            jQuery( element ).removeClass( 'cfw-select-input cfw-input-wrap cfw-label-is-floated' );
+        } );
     }
 
     maybeAddFloatClass( element: any ): void {

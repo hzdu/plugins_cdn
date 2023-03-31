@@ -8,6 +8,9 @@
 .flatsome-instagram-accounts .widefat td {
 	vertical-align: middle;
 }
+.flatsome-instagram-accounts .widefat th:last-child {
+	text-align: right;
+}
 
 .flatsome-instagram-connect {
 	position: fixed;
@@ -26,6 +29,40 @@
 	max-width: 450px;
 	background: #fff;
 	box-shadow: 0 5px 5px rgba(0,0,0,0.1);
+}
+
+.flatsome-instagram-accounts__access-token-form {
+	display: flex;
+	gap: 8px;
+}
+.flatsome-instagram-accounts__access-token-form > input {
+	margin-left: 0 !important;
+}
+.flatsome-instagram-accounts__access-token-form > button.button {
+	display: flex;
+	align-items: center;
+	margin-bottom: 0;
+}
+
+.flatsome-instagram-accounts__access-token-form > button.button.is-busy {
+	opacity: 0.75;
+	background-size: 100px 100%;
+	background-image: linear-gradient(-45deg, #fafafa 33%, #e0e0e0 33%, #e0e0e0 70%, #fafafa 70%);
+	animation: flatsome-instagram-animate-busy 2500ms infinite linear;
+}
+
+.instagram-account-updated {
+  animation-duration: 1s;
+  animation-name: flatsome-instagram-animate-fade;
+  animation-fill-mode: backwards;
+}
+
+@keyframes flatsome-instagram-animate-fade {
+  0% { background-color: #edfaef; }
+  100% { background-color: transparent; }
+}
+@keyframes flatsome-instagram-animate-busy {
+  0% { background-position: 200px 0; }
 }
 
 #of_container {
