@@ -5,7 +5,7 @@ Tags: perfmatters
 Requires at least: 5.5
 Requires PHP: 7.0
 Tested up to: 6.2
-Stable tag: 2.0.8
+Stable tag: 2.0.9
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -34,6 +34,11 @@ Perfmatters is a lightweight performance plugin developed to speed up your WordP
 Check out our [documentation](https://perfmatters.io/docs/) for more information on how to use Perfmatters.
 
 == Changelog ==
+
+= 2.0.9 - 03.30.2023 =
+* Updated Request library functions used to download local font files to fix a compatibility issue with WordPress 6.2.
+* Added new perfmatters_preloads_ready filter.
+* Fixed a styling issue in Safari where the settings UI logo was getting clipped.
 
 = 2.0.8 - 03.29.2023 =
 * Updated plugin settings UI. Completely overhauled admin header and navigation. Made additional improvements to various elements (icons, buttons, toggles, etc.).
