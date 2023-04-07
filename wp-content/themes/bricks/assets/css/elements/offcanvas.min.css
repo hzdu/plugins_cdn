@@ -1,0 +1,59 @@
+.brxe-offcanvas.brx-open .brx-offcanvas-inner {
+  transform: translate(0, 0) !important;
+}
+.brxe-offcanvas.brx-open .brx-offcanvas-backdrop {
+  z-index: 998;
+  opacity: 1;
+  visibility: visible;
+}
+.brxe-offcanvas.top .brx-offcanvas-inner {
+  top: 0;
+  bottom: auto;
+  height: 300px;
+  width: 100% !important;
+  transform: translate(0, -100%);
+}
+.brxe-offcanvas.right .brx-offcanvas-inner {
+  top: 0;
+  left: auto;
+  right: 0;
+  height: 100% !important;
+  transform: translate(100%, 0);
+  overflow: auto;
+}
+.brxe-offcanvas.bottom .brx-offcanvas-inner {
+  top: auto;
+  bottom: 0;
+  height: 300px;
+  width: 100% !important;
+  transform: translate(0, 100%);
+}
+.brxe-offcanvas.left .brx-offcanvas-inner {
+  top: 0;
+  left: 0;
+  right: auto;
+  height: 100% !important;
+  transform: translate(-100%, 0);
+  overflow: auto;
+}
+.brxe-offcanvas .brx-offcanvas-inner {
+  z-index: 999;
+  position: fixed;
+  width: 300px;
+  display: flex;
+  padding: 30px;
+  background-color: #fff;
+  transition: transform 0.2s cubic-bezier(0.25, 0, 0.25, 1);
+}
+.brxe-offcanvas .brx-offcanvas-backdrop {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  opacity: 0;
+  z-index: -1;
+  visibility: hidden;
+  background: rgba(0, 0, 0, 0.5);
+  transition: all 0.2s cubic-bezier(0.25, 0, 0.25, 1);
+}

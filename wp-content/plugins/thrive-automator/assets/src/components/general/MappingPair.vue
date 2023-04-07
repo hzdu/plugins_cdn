@@ -2,7 +2,7 @@
 	<div class="tap-flex--column tap-fw tap-mapping-pair-container">
 		<div class="tap-flex--between tap-fw tap-mapping-pair p-5">
 			<select2 :options="mappingOptions" :value="pairValue.key" :wrapper-classes="hasErrors && hasKeyError ? 'tap-error' : ''" @input="handleKeyInput"/>
-			<input-field :dynamic-data-fields="dynamicDataFields(stepIndex)" :has-dynamic-data="hasDynamic" :has-errors="hasErrors&&hasValueError" :placeholder="valuePlaceholder" :value="pairValue.value" @input="handleValueInput"/>
+			<input-field :dynamic-data-fields="dynamicDataFields(stepIndex-1)" :has-dynamic-data="hasDynamic" :has-errors="hasErrors&&hasValueError" :placeholder="valuePlaceholder" :value="pairValue.value" @input="handleValueInput"/>
 			<div class="tap-pair-delete">
 				<icon icon-name="tap-cross" @click="$emit('delete')"/>
 			</div>

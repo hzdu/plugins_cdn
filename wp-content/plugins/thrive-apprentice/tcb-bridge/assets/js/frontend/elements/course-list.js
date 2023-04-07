@@ -25,6 +25,8 @@ module.exports = ( $, TCB_Front ) => {
 			} );
 		};
 
+	TCB_Front.Hooks.addFilter( 'tve.carousel.element_with_links', selector => `${ selector },.tva-course-list-item` );
+
 	class CourseList extends TCB_Front.PostList {
 		/**
 		 * @param {jQuery} $courseList
@@ -92,21 +94,24 @@ module.exports = ( $, TCB_Front ) => {
 		 * @return {CourseList}
 		 */
 		initCoursePermalinks ( $wrapper ) {
-			$wrapper.on( 'mousedown', '.tva-course-list[data-disabled-links="1"] > .tva-course-list-item', function ( e ) {
-				let target;
+			$wrapper.on( 'click', '.tva-course-list[data-disabled-links="1"] .tva-course-list-item', function ( e ) {
+				//prevent course redirect during drag
+				if ( ! this.classList.contains( 'tcb-during-drag' ) ) {
+					let target;
 
-				switch ( e.button ) {
-					case 0:
-						target = '_self';
-						break;
-					case 1:
-						target = '_blank';
-						break;
-					default:
-						break;
+					switch ( e.button ) {
+						case 0:
+							target = '_self';
+							break;
+						case 1:
+							target = '_blank';
+							break;
+						default:
+							break;
+					}
+
+					window.open( $( this ).attr( 'data-permalink' ), target );
 				}
-
-				window.open( $( this ).attr( 'data-permalink' ), target );
 			} );
 
 			return this;

@@ -3,7 +3,7 @@
 		<div class="tap-container-heading">
 			{{ fieldData.name }}
 		</div>
-		<input-field :dynamic-data-fields="dynamicDataFields(stepIndex)" :has-dynamic-data="true" :placeholder="fieldData?.placeholder" :value="fieldValue" @input="changeProp"/>
+		<input-field :dynamic-data-fields="dynamicDataFields(stepIndex-1)" :has-dynamic-data="true" :placeholder="fieldData?.placeholder" :value="fieldValue" @input="changeProp"/>
 		<div v-if="hasErrors && !fieldValidation?.isValid" class="tap-filter-error">
 			{{ fieldValidation?.message }}
 		</div>

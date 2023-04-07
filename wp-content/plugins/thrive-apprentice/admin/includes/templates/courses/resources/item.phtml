@@ -30,6 +30,8 @@
 						<#=this.model.get('type') === 'file' ? 'selected ' : ''#>value="file"><?php esc_html_e( 'Upload file', 'thrive-apprentice' ); ?></option>
 						<option
 						<#=this.model.get('type') === 'content' ? 'selected ' : ''#>value="content"><?php esc_html_e( 'Site content', 'thrive-apprentice' ); ?></option>
+						<option
+						<#=this.model.get('type') === 'protected_file' ? 'selected ' : ''#>value="protected_file"><?php esc_html_e( 'Protected file', 'thrive-apprentice' ); ?></option>
 					</select>
 				</div>
 				<div class="tva-res-type-settings">
@@ -52,7 +54,7 @@
 						<a href="javascript:;" class="click ml-10 tva-resource-file-remove" data-fn="clearConfig"><?php tva_get_svg_icon( 'cross' ); ?></a>
 					</div>
 					<# } else { #>
-					<input type="text" class="tva-resource-autocomplete" data-field="config.post" placeholder="<?php esc_attr_e( 'Search for a post or page on this site', 'thrive-apprentice' ); ?>">
+					<input type="text" class="tva-resource-autocomplete" data-field="config.post" placeholder="<?php esc_attr_e( 'Search for a resource on this site', 'thrive-apprentice' ); ?>">
 					<# } #>
 
 					<# } #>

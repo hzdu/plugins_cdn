@@ -6,7 +6,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2023-02-01 10:33+0000\n"
+"POT-Creation-Date: 2023-04-05 11:53+0000\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-KeywordsList: __;_e;_ex:1,2c;_n:1,2;_n_noop:1,2;_nx:1,2,4c;_nx_noop:1,2,3c;_x:1,2c;esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c\n"
 "X-Poedit-SearchPath-0: .\n"
@@ -14,7 +14,7 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: ../admin/functions.php:19, ../admin/functions.php:20, ../admin/views/dashboard.php:8, ../inc/helpers.php:380, ../inc/classes/class-tvo-privacy.php:39, ../inc/classes/class-tvo-privacy.php:55, ../inc/classes/class-tvo-product.php:37
+#: ../admin/functions.php:19, ../admin/functions.php:20, ../admin/views/dashboard.php:8, ../inc/helpers.php:389, ../inc/classes/class-tvo-privacy.php:39, ../inc/classes/class-tvo-privacy.php:55, ../inc/classes/class-tvo-product.php:39
 msgid "Thrive Ovation"
 msgstr ""
 
@@ -146,7 +146,7 @@ msgstr ""
 msgid "Currently, there are no testimonials satisfying the selected criteria"
 msgstr ""
 
-#: ../admin/i18n.php:35, ../admin/views/template/email/configure-email.phtml:34, ../admin/views/template/email/configure-email.phtml:58, ../admin/views/template/email/configure-email.phtml:81, ../admin/views/template/shortcodes/shortcode.phtml:54
+#: ../admin/i18n.php:35, ../admin/views/template/email/configure-email.phtml:34, ../admin/views/template/email/configure-email.phtml:58, ../admin/views/template/email/configure-email.phtml:81, ../admin/views/template/shortcodes/shortcode.phtml:78
 msgid "Copy"
 msgstr ""
 
@@ -198,11 +198,11 @@ msgstr ""
 msgid "Edit configuration"
 msgstr ""
 
-#: ../admin/i18n.php:48, ../tcb-bridge/functions.php:140
+#: ../admin/i18n.php:48, ../tcb-bridge/functions.php:142
 msgid "The 'from' value should be smaller than the 'to' value"
 msgstr ""
 
-#: ../admin/i18n.php:49, ../tcb-bridge/functions.php:141
+#: ../admin/i18n.php:49, ../tcb-bridge/functions.php:143
 msgid "Please insert only numbers"
 msgstr ""
 
@@ -222,7 +222,7 @@ msgstr ""
 msgid "before you can use the Thrive Ovation plugin!"
 msgstr ""
 
-#: ../admin/views/menu.php:6
+#: ../admin/views/menu.php:6, ../tcb-bridge/classes/display-testimonials/elements/class-tcb-display-testimonials-element.php:24, ../tcb-bridge/classes/display-testimonials/views/component.phtml:14
 msgid "Display Testimonials"
 msgstr ""
 
@@ -258,7 +258,7 @@ msgstr ""
 msgid "Import from Social Media"
 msgstr ""
 
-#: ../admin/views/menu.php:56, ../inc/helpers.php:385
+#: ../admin/views/menu.php:56, ../inc/helpers.php:394
 msgid "Settings"
 msgstr ""
 
@@ -266,7 +266,7 @@ msgstr ""
 msgid "Create testimonial from comment"
 msgstr ""
 
-#: ../admin/views/comments/modal-comment-edit.php:7, ../inc/helpers.php:391
+#: ../admin/views/comments/modal-comment-edit.php:7, ../inc/helpers.php:400
 msgid "Edit Testimonial"
 msgstr ""
 
@@ -286,7 +286,7 @@ msgstr ""
 msgid "Please fill in the title field"
 msgstr ""
 
-#: ../admin/views/comments/modal-comment-edit.php:39, ../admin/views/template/testimonials/base.phtml:26, ../admin/views/template/testimonials/social-import.phtml:21, ../admin/views/template/testimonials/testimonial.phtml:94, ../inc/classes/class-tvo-privacy.php:94, ../tcb-bridge/templates/capture-form-settings-lightbox.php:89, ../tcb-bridge/frontend/views/menu/display-testimonial.php:51
+#: ../admin/views/comments/modal-comment-edit.php:39, ../admin/views/template/testimonials/base.phtml:26, ../admin/views/template/testimonials/social-import.phtml:21, ../admin/views/template/testimonials/testimonial.phtml:94, ../inc/classes/class-tvo-privacy.php:94, ../inc/classes/api-connection/Ovation.php:199, ../tcb-bridge/templates/capture-form-settings-lightbox.php:89, ../tcb-bridge/classes/display-testimonials/class-utils.php:20, ../tcb-bridge/classes/display-testimonials/class-utils.php:21, ../tcb-bridge/frontend/views/menu/display-testimonial.php:51
 msgid "Title"
 msgstr ""
 
@@ -294,7 +294,7 @@ msgstr ""
 msgid "Please fill in the name field"
 msgstr ""
 
-#: ../admin/views/comments/modal-comment-edit.php:50, ../admin/views/template/testimonials/base.phtml:36, ../admin/views/template/testimonials/social-import.phtml:30, ../admin/views/template/testimonials/testimonial.phtml:104, ../inc/helpers.php:479
+#: ../admin/views/comments/modal-comment-edit.php:50, ../admin/views/template/testimonials/base.phtml:36, ../admin/views/template/testimonials/social-import.phtml:30, ../admin/views/template/testimonials/testimonial.phtml:104, ../inc/helpers.php:488, ../tcb-bridge/classes/display-testimonials/elements/class-tcb-display-testimonial-author-element.php:23
 msgid "Full Name"
 msgstr ""
 
@@ -310,7 +310,7 @@ msgstr ""
 msgid "Please fill in the occupation field"
 msgstr ""
 
-#: ../admin/views/comments/modal-comment-edit.php:70, ../admin/views/template/testimonials/base.phtml:57, ../admin/views/template/testimonials/social-import.phtml:38, ../admin/views/template/testimonials/testimonial.phtml:135
+#: ../admin/views/comments/modal-comment-edit.php:70, ../admin/views/template/testimonials/base.phtml:57, ../admin/views/template/testimonials/social-import.phtml:38, ../admin/views/template/testimonials/testimonial.phtml:135, ../tcb-bridge/classes/display-testimonials/class-utils.php:37, ../tcb-bridge/classes/display-testimonials/class-utils.php:38, ../tcb-bridge/classes/display-testimonials/elements/class-tcb-display-testimonial-role-element.php:34
 msgid "Role/Occupation"
 msgstr ""
 
@@ -318,7 +318,7 @@ msgstr ""
 msgid "Please fill in a valid website URL"
 msgstr ""
 
-#: ../admin/views/comments/modal-comment-edit.php:79, ../admin/views/template/testimonials/base.phtml:64, ../admin/views/template/testimonials/social-import.phtml:62, ../admin/views/template/testimonials/testimonial.phtml:144, ../inc/helpers.php:483, ../tcb-bridge/templates/capture-form-settings-lightbox.php:69, ../tcb-bridge/templates/capture-form-settings-lightbox.php:72
+#: ../admin/views/comments/modal-comment-edit.php:79, ../admin/views/template/testimonials/base.phtml:64, ../admin/views/template/testimonials/social-import.phtml:62, ../admin/views/template/testimonials/testimonial.phtml:144, ../inc/helpers.php:492, ../inc/classes/api-connection/Ovation.php:194, ../tcb-bridge/templates/capture-form-settings-lightbox.php:69, ../tcb-bridge/templates/capture-form-settings-lightbox.php:72
 msgid "Website URL"
 msgstr ""
 
@@ -354,7 +354,7 @@ msgstr ""
 msgid "This option allows you to ask the customer for permission (via email) to use testimonials that are gathered from WordPress comments."
 msgstr ""
 
-#: ../admin/views/template/settings.phtml:32, ../admin/views/template/testimonials/testimonial.phtml:123, ../inc/helpers.php:481, ../tcb-bridge/templates/capture-form-settings-lightbox.php:30, ../tcb-bridge/templates/capture-form-settings-lightbox.php:32
+#: ../admin/views/template/settings.phtml:32, ../admin/views/template/testimonials/testimonial.phtml:123, ../inc/helpers.php:490, ../inc/classes/api-connection/Ovation.php:231, ../tcb-bridge/templates/capture-form-settings-lightbox.php:30, ../tcb-bridge/templates/capture-form-settings-lightbox.php:32
 msgid "Email"
 msgstr ""
 
@@ -562,7 +562,7 @@ msgstr ""
 msgid "Showing"
 msgstr ""
 
-#: ../admin/views/template/pagination/table-view.phtml:6, ../tcb-bridge/templates/backbone/select-testimonials.phtml:35
+#: ../admin/views/template/pagination/table-view.phtml:6, ../tcb-bridge/templates/backbone/select-testimonials.phtml:35, ../tcb-bridge/classes/display-testimonials/query/views/backbone/modal/filters.phtml:17
 msgid "to"
 msgstr ""
 
@@ -586,7 +586,7 @@ msgstr ""
 msgid "Are you sure you want to delete this shortcode?"
 msgstr ""
 
-#: ../admin/views/template/shortcodes/delete-shortcode.phtml:11
+#: ../admin/views/template/shortcodes/delete-shortcode.phtml:11, ../tcb-bridge/classes/display-testimonials/query/views/backbone/modal/set-item.phtml:42
 msgid "Yes, delete"
 msgstr ""
 
@@ -630,23 +630,31 @@ msgstr ""
 msgid "Shortcode name is required"
 msgstr ""
 
+#: ../admin/views/template/shortcodes/shortcode.phtml:5
+msgid "Legacy elements are now deprecated. They are still visible on your website but not accessible through the new testimonial blocks"
+msgstr ""
+
 #: ../admin/views/template/shortcodes/shortcode.phtml:6
+msgid "Legacy element"
+msgstr ""
+
+#: ../admin/views/template/shortcodes/shortcode.phtml:18, ../admin/views/template/shortcodes/shortcode.phtml:26
 msgid "PREVIEW & EDIT"
 msgstr ""
 
-#: ../admin/views/template/shortcodes/shortcode.phtml:11
+#: ../admin/views/template/shortcodes/shortcode.phtml:33
 msgid "CHOOSE TEMPLATE"
 msgstr ""
 
-#: ../admin/views/template/shortcodes/shortcode.phtml:31
+#: ../admin/views/template/shortcodes/shortcode.phtml:54
 msgid "Edit title"
 msgstr ""
 
-#: ../admin/views/template/shortcodes/shortcode.phtml:37
+#: ../admin/views/template/shortcodes/shortcode.phtml:60
 msgid "Delete Shortcode"
 msgstr ""
 
-#: ../admin/views/template/shortcodes/shortcode.phtml:61, ../admin/views/template/testimonials/item.phtml:110
+#: ../admin/views/template/shortcodes/shortcode.phtml:86, ../admin/views/template/testimonials/item.phtml:110
 msgid "Edit"
 msgstr ""
 
@@ -702,11 +710,11 @@ msgstr ""
 msgid "Please fill in a Twitter handle"
 msgstr ""
 
-#: ../admin/views/template/testimonials/base.phtml:46, ../admin/views/template/testimonials/social-import.phtml:49, ../admin/views/template/testimonials/testimonial.phtml:118, ../inc/data.php:684
+#: ../admin/views/template/testimonials/base.phtml:46, ../admin/views/template/testimonials/social-import.phtml:49, ../admin/views/template/testimonials/testimonial.phtml:118, ../inc/data.php:683
 msgid "Twitter handle"
 msgstr ""
 
-#: ../admin/views/template/testimonials/item.phtml:47, ../tcb-bridge/templates/capture-form-settings-lightbox.php:200, ../tcb-bridge/templates/capture-testimonial-templates-lightbox.php:19, ../tcb-bridge/templates/display-testimonial-templates-lightbox.php:19
+#: ../admin/views/template/testimonials/item.phtml:47, ../tcb-bridge/templates/capture-form-settings-lightbox.php:200, ../tcb-bridge/templates/capture-testimonial-templates-lightbox.php:19, ../tcb-bridge/templates/display-testimonial-templates-lightbox.php:19, ../tcb-bridge/classes/display-testimonials/query/views/backbone/modal/pages/dynamic.phtml:49, ../tcb-bridge/classes/display-testimonials/query/views/backbone/modal/pages/set.phtml:43, ../tcb-bridge/classes/display-testimonials/query/views/backbone/modal/pages/static.phtml:72
 msgid "Save"
 msgstr ""
 
@@ -738,7 +746,7 @@ msgstr ""
 msgid "Delete"
 msgstr ""
 
-#: ../admin/views/template/testimonials/list.phtml:6, ../inc/functions.php:428, ../inc/classes/class-tvo-privacy.php:136, ../tcb-bridge/templates/backbone/pre-select.phtml:14
+#: ../admin/views/template/testimonials/list.phtml:6, ../inc/functions.php:463, ../inc/classes/class-tvo-privacy.php:136, ../tcb-bridge/templates/backbone/pre-select.phtml:14, ../tcb-bridge/classes/display-testimonials/query/views/backbone/modal/pages/dynamic.phtml:20
 msgid "Testimonials"
 msgstr ""
 
@@ -766,7 +774,7 @@ msgstr ""
 msgid "No results found!"
 msgstr ""
 
-#: ../admin/views/template/testimonials/list.phtml:135
+#: ../admin/views/template/testimonials/list.phtml:135, ../tcb-bridge/classes/display-testimonials/query/views/backbone/modal/pages/dynamic.phtml:53, ../tcb-bridge/classes/display-testimonials/query/views/backbone/modal/pages/static.phtml:76
 msgid "Apply"
 msgstr ""
 
@@ -850,7 +858,7 @@ msgstr ""
 msgid "If you import testimonials from pages with restricted content, the image will not be available."
 msgstr ""
 
-#: ../admin/views/template/testimonials/social-import.phtml:50, ../admin/views/template/testimonials/testimonial.phtml:118, ../inc/data.php:682
+#: ../admin/views/template/testimonials/social-import.phtml:50, ../admin/views/template/testimonials/testimonial.phtml:118, ../inc/data.php:681
 msgid "Facebook ID"
 msgstr ""
 
@@ -858,7 +866,7 @@ msgstr ""
 msgid "Please fill in the Facebook ID"
 msgstr ""
 
-#: ../admin/views/template/testimonials/testimonial-modal.phtml:16, ../inc/helpers.php:543
+#: ../admin/views/template/testimonials/testimonial-modal.phtml:16, ../inc/helpers.php:552
 msgid "Add testimonial"
 msgstr ""
 
@@ -882,11 +890,11 @@ msgstr ""
 msgid "Change profile picture"
 msgstr ""
 
-#: ../admin/views/template/testimonials/testimonial.phtml:146, ../inc/classes/class-tvo-privacy.php:122, ../tcb-bridge/frontend/views/menu/display-testimonial.php:48
+#: ../admin/views/template/testimonials/testimonial.phtml:146, ../inc/classes/class-tvo-privacy.php:122, ../tcb-bridge/classes/display-testimonials/class-utils.php:49, ../tcb-bridge/classes/display-testimonials/class-utils.php:50, ../tcb-bridge/classes/display-testimonials/elements/class-tcb-display-testimonial-website-element.php:34, ../tcb-bridge/frontend/views/menu/display-testimonial.php:48
 msgid "Website"
 msgstr ""
 
-#: ../admin/views/template/testimonials/testimonial.phtml:170
+#: ../admin/views/template/testimonials/testimonial.phtml:170, ../inc/classes/api-connection/Ovation.php:204, ../tcb-bridge/classes/display-testimonials/class-main.php:306
 msgid "Testimonial"
 msgstr ""
 
@@ -894,7 +902,7 @@ msgstr ""
 msgid "Update testimonial"
 msgstr ""
 
-#: ../inc/data.php:18, ../inc/data.php:114, ../inc/data.php:166, ../inc/data.php:187
+#: ../inc/data.php:18, ../inc/data.php:114, ../inc/data.php:166, ../inc/data.php:186
 msgid "Invalid ID"
 msgstr ""
 
@@ -902,91 +910,91 @@ msgstr ""
 msgid "Missing parameters"
 msgstr ""
 
-#: ../inc/data.php:183
+#: ../inc/data.php:182
 msgid "Success"
 msgstr ""
 
-#: ../inc/data.php:232, ../inc/data.php:273, ../inc/data.php:417, ../inc/data.php:444, ../inc/data.php:487
+#: ../inc/data.php:231, ../inc/data.php:272, ../inc/data.php:416, ../inc/data.php:443, ../inc/data.php:486
 msgid "Post id is invalid"
 msgstr ""
 
-#: ../inc/data.php:320, ../inc/data.php:420, ../inc/classes/endpoints/class-tvo-rest-settings-controller.php:425
+#: ../inc/data.php:319, ../inc/data.php:419, ../inc/classes/endpoints/class-tvo-rest-settings-controller.php:425
 msgid "Error"
 msgstr ""
 
-#: ../inc/data.php:425, ../inc/data.php:451
+#: ../inc/data.php:424, ../inc/data.php:450
 msgid "Tag id is invalid"
 msgstr ""
 
-#: ../inc/data.php:510
+#: ../inc/data.php:509
 msgid "Testimonial added through "
 msgstr ""
 
-#: ../inc/data.php:514
+#: ../inc/data.php:513
 msgid " converted "
 msgstr ""
 
-#: ../inc/data.php:514
+#: ../inc/data.php:513
 msgid " into testimonial "
 msgstr ""
 
-#: ../inc/data.php:519
+#: ../inc/data.php:518
 msgid " added testimonial from "
 msgstr ""
 
-#: ../inc/data.php:523
+#: ../inc/data.php:522
 msgid " added this testimonial manually "
 msgstr ""
 
-#: ../inc/data.php:527
+#: ../inc/data.php:526
 msgid " added this testimonial through copy"
 msgstr ""
 
-#: ../inc/data.php:531
+#: ../inc/data.php:530
 msgid " updated "
 msgstr ""
 
-#: ../inc/data.php:535
+#: ../inc/data.php:534
 msgid " Approval email send to "
 msgstr ""
 
-#: ../inc/data.php:542
+#: ../inc/data.php:541
 msgid " Customer changed the status of the testimonial form "
 msgstr ""
 
-#: ../inc/data.php:540
+#: ../inc/data.php:539
 msgid " changed the status of the testimonial form "
 msgstr ""
 
-#: ../inc/data.php:548
+#: ../inc/data.php:547
 msgid " modified the testimonial "
 msgstr ""
 
-#: ../inc/data.php:665
+#: ../inc/data.php:664
 msgid "title"
 msgstr ""
 
-#: ../inc/data.php:670
+#: ../inc/data.php:669
 msgid "author name"
 msgstr ""
 
-#: ../inc/data.php:675
+#: ../inc/data.php:674
 msgid "testimonial text"
 msgstr ""
 
-#: ../inc/data.php:687
+#: ../inc/data.php:686
 msgid "email address"
 msgstr ""
 
-#: ../inc/data.php:693
+#: ../inc/data.php:692
 msgid "role/occupation"
 msgstr ""
 
-#: ../inc/data.php:698
+#: ../inc/data.php:697
 msgid "web site URL"
 msgstr ""
 
-#: ../inc/data.php:709
+#: ../inc/data.php:708
 msgid "testimonial tags"
 msgstr ""
 
@@ -1042,35 +1050,43 @@ msgstr ""
 msgid "Thrive Ovation Shortcode"
 msgstr ""
 
-#: ../inc/functions.php:263
+#: ../inc/functions.php:220
+msgid "Thrive Ovation Capture"
+msgstr ""
+
+#: ../inc/functions.php:237
+msgid "Thrive Ovation Display"
+msgstr ""
+
+#: ../inc/functions.php:298
 msgid "Save as Testimonial"
 msgstr ""
 
-#: ../inc/functions.php:281, ../inc/classes/endpoints/class-tvo-rest-comments-controller.php:112
+#: ../inc/functions.php:316, ../inc/classes/endpoints/class-tvo-rest-comments-controller.php:112
 msgid "Saved"
 msgstr ""
 
-#: ../inc/functions.php:295
+#: ../inc/functions.php:330
 msgid "Email Delivery"
 msgstr ""
 
-#: ../inc/functions.php:406, ../inc/helpers.php:713
+#: ../inc/functions.php:441, ../inc/helpers.php:722
 msgid "Please fill the required fields."
 msgstr ""
 
-#: ../inc/functions.php:407, ../inc/helpers.php:714
+#: ../inc/functions.php:442, ../inc/helpers.php:723
 msgid "Please enter a valid email."
 msgstr ""
 
-#: ../inc/functions.php:408
+#: ../inc/functions.php:443
 msgid "Please enter a valid URL, /n Make  \n sure you also use the website protocol (http, https, ftp)"
 msgstr ""
 
-#: ../inc/functions.php:409, ../inc/helpers.php:498, ../inc/helpers.php:716, ../tcb-bridge/templates/capture-form-settings-lightbox.php:162
+#: ../inc/functions.php:444, ../inc/helpers.php:507, ../inc/helpers.php:725, ../tcb-bridge/templates/capture-form-settings-lightbox.php:162
 msgid "Submit"
 msgstr ""
 
-#: ../inc/functions.php:410, ../inc/helpers.php:717
+#: ../inc/functions.php:445, ../inc/helpers.php:726
 msgid "Sending..."
 msgstr ""
 
@@ -1102,71 +1118,71 @@ msgstr ""
 msgid "manually added"
 msgstr ""
 
-#: ../inc/helpers.php:375
+#: ../inc/helpers.php:384
 msgid "Thrive Dashboard"
 msgstr ""
 
-#: ../inc/helpers.php:397
+#: ../inc/helpers.php:406
 msgid "Capture shortcodes"
 msgstr ""
 
-#: ../inc/helpers.php:403
+#: ../inc/helpers.php:412
 msgid "Display shortcodes"
 msgstr ""
 
-#: ../inc/helpers.php:409
+#: ../inc/helpers.php:418
 msgid "Social Media Import"
 msgstr ""
 
-#: ../inc/helpers.php:480
+#: ../inc/helpers.php:489, ../tcb-bridge/classes/display-testimonials/elements/class-tcb-display-testimonial-title-element.php:34
 msgid "Testimonial Title"
 msgstr ""
 
-#: ../inc/helpers.php:482, ../tcb-bridge/templates/capture-form-settings-lightbox.php:52, ../tcb-bridge/frontend/views/menu/display-testimonial.php:45
+#: ../inc/helpers.php:491, ../inc/classes/api-connection/Ovation.php:189, ../tcb-bridge/templates/capture-form-settings-lightbox.php:52, ../tcb-bridge/frontend/views/menu/display-testimonial.php:45
 msgid "Role"
 msgstr ""
 
-#: ../inc/helpers.php:494
+#: ../inc/helpers.php:503
 msgid "What was your experience with our product like?"
 msgstr ""
 
-#: ../inc/helpers.php:500, ../tcb-bridge/templates/capture-form-settings-lightbox.php:143, ../tcb-bridge/templates/capture-form-settings-lightbox.php:150
+#: ../inc/helpers.php:509, ../tcb-bridge/templates/capture-form-settings-lightbox.php:143, ../tcb-bridge/templates/capture-form-settings-lightbox.php:150
 msgid "Thanks for submitting your testimonial."
 msgstr ""
 
-#: ../inc/helpers.php:556
+#: ../inc/helpers.php:565
 msgid "We can't send an approval email because you haven't configured your email settings. "
 msgstr ""
 
-#: ../inc/helpers.php:556
+#: ../inc/helpers.php:565
 msgid "Click here to enable sending of email"
 msgstr ""
 
-#: ../inc/helpers.php:556
+#: ../inc/helpers.php:565
 msgid " and after you are done "
 msgstr ""
 
-#: ../inc/helpers.php:556
+#: ../inc/helpers.php:565
 msgid "  click here to refresh."
 msgstr ""
 
-#: ../inc/helpers.php:551
+#: ../inc/helpers.php:560
 msgid "Send email to customer"
 msgstr ""
 
-#: ../inc/helpers.php:552
+#: ../inc/helpers.php:561
 msgid "Email preview"
 msgstr ""
 
-#: ../inc/helpers.php:553
+#: ../inc/helpers.php:562
 msgid "Refresh"
 msgstr ""
 
-#: ../inc/helpers.php:584
+#: ../inc/helpers.php:593
 msgid "capture form"
 msgstr ""
 
-#: ../inc/helpers.php:715
+#: ../inc/helpers.php:724
 msgid "Please enter a valid URL <br> Make sure you also use the website protocol (http, https, ftp)"
 msgstr ""
 
@@ -1194,20 +1210,44 @@ msgstr ""
 msgid "Picture"
 msgstr ""
 
-#: ../inc/classes/class-tvo-product.php:32
+#: ../inc/classes/class-tvo-product.php:34
 msgid "Thrive Ovation is a testimonial management plugin."
 msgstr ""
 
-#: ../inc/classes/class-tvo-product.php:46
+#: ../inc/classes/class-tvo-product.php:48
 msgid "Tutorials"
 msgstr ""
 
-#: ../inc/classes/class-tvo-product.php:53
+#: ../inc/classes/class-tvo-product.php:55
 msgid "Support"
 msgstr ""
 
-#: ../inc/classes/class-tvo-rest-controller.php:116, ../inc/classes/class-tvo-rest-controller.php:127, ../inc/classes/class-tvo-rest-controller.php:139, ../inc/classes/endpoints/class-tvo-rest-shortcodes-controller.php:46, ../inc/classes/endpoints/class-tvo-rest-shortcodes-controller.php:71, ../inc/classes/endpoints/class-tvo-rest-shortcodes-controller.php:144, ../inc/classes/endpoints/class-tvo-rest-testimonials-controller.php:247, ../inc/classes/endpoints/class-tvo-rest-testimonials-controller.php:271, ../inc/classes/endpoints/class-tvo-rest-testimonials-controller.php:265, ../inc/classes/endpoints/class-tvo-rest-testimonials-controller.php:377
+#: ../inc/classes/class-tvo-rest-controller.php:116, ../inc/classes/class-tvo-rest-controller.php:127, ../inc/classes/class-tvo-rest-controller.php:139, ../inc/classes/endpoints/class-tvo-rest-shortcodes-controller.php:46, ../inc/classes/endpoints/class-tvo-rest-shortcodes-controller.php:71, ../inc/classes/endpoints/class-tvo-rest-shortcodes-controller.php:146, ../inc/classes/endpoints/class-tvo-rest-testimonials-controller.php:247, ../inc/classes/endpoints/class-tvo-rest-testimonials-controller.php:271, ../inc/classes/endpoints/class-tvo-rest-testimonials-controller.php:265, ../inc/classes/endpoints/class-tvo-rest-testimonials-controller.php:377
 msgid "message"
+msgstr ""
+
+#: ../inc/classes/api-connection/Ovation.php:38, ../inc/classes/api-connection/Ovation.php:63
+msgid "Thrive Ovation must be installed and activated."
+msgstr ""
+
+#: ../inc/classes/api-connection/Ovation.php:167
+msgid "Thrive Ovation is not installed or activated on website"
+msgstr ""
+
+#: ../inc/classes/api-connection/Ovation.php:164, ../inc/classes/endpoints/class-tvo-rest-testimonials-controller.php:139
+msgid "Something went wrong while trying to send data. Please try again."
+msgstr ""
+
+#: ../inc/classes/api-connection/Ovation.php:209
+msgid "Hidden"
+msgstr ""
+
+#: ../inc/classes/api-connection/Ovation.php:214
+msgid "Avatar picker"
+msgstr ""
+
+#: ../inc/classes/api-connection/Ovation.php:225, ../tcb-bridge/templates/capture-form-settings-lightbox.php:19, ../tcb-bridge/templates/capture-form-settings-lightbox.php:20
+msgid "Name"
 msgstr ""
 
 #: ../inc/classes/endpoints/class-tvo-rest-comments-controller.php:102
@@ -1254,7 +1294,7 @@ msgstr ""
 msgid "Sending test email failed"
 msgstr ""
 
-#: ../inc/classes/endpoints/class-tvo-rest-shortcodes-controller.php:238
+#: ../inc/classes/endpoints/class-tvo-rest-shortcodes-controller.php:240
 msgid "Delete action failed"
 msgstr ""
 
@@ -1280,10 +1320,6 @@ msgstr ""
 
 #: ../inc/classes/endpoints/class-tvo-rest-testimonials-controller.php:93
 msgid "Please prove us that you are not a robot!!!"
-msgstr ""
-
-#: ../inc/classes/endpoints/class-tvo-rest-testimonials-controller.php:139
-msgid "Something went wrong while trying to send data. Please try again."
 msgstr ""
 
 #: ../inc/classes/endpoints/class-tvo-rest-testimonials-controller.php:157
@@ -1318,7 +1354,7 @@ msgstr ""
 msgid "Form Settings"
 msgstr ""
 
-#: ../tcb-bridge/templates/capture-form-settings-lightbox.php:10
+#: ../tcb-bridge/templates/capture-form-settings-lightbox.php:10, ../tcb-bridge/classes/display-testimonials/query/views/backbone/modal/order-options.phtml:7
 msgid "Display"
 msgstr ""
 
@@ -1336,10 +1372,6 @@ msgstr ""
 
 #: ../tcb-bridge/templates/capture-form-settings-lightbox.php:18, ../tcb-bridge/templates/capture-form-settings-lightbox.php:29
 msgid "Always"
-msgstr ""
-
-#: ../tcb-bridge/templates/capture-form-settings-lightbox.php:19, ../tcb-bridge/templates/capture-form-settings-lightbox.php:20
-msgid "Name"
 msgstr ""
 
 #: ../tcb-bridge/templates/capture-form-settings-lightbox.php:109
@@ -1394,7 +1426,7 @@ msgstr ""
 msgid "Testimonial Display Settings"
 msgstr ""
 
-#: ../tcb-bridge/templates/display-settings-lightbox.php:12
+#: ../tcb-bridge/templates/display-settings-lightbox.php:12, ../tcb-bridge/classes/display-testimonials/query/views/backbone/modal/pages/set.phtml:38
 msgid "Back"
 msgstr ""
 
@@ -1404,6 +1436,26 @@ msgstr ""
 
 #: ../tcb-bridge/templates/display-testimonial-templates-lightbox.php:4
 msgid "Testimonial Display Templates"
+msgstr ""
+
+#: ../tcb-bridge/classes/display-testimonials/class-main.php:54
+msgid "Ovation Elements"
+msgstr ""
+
+#: ../tcb-bridge/classes/display-testimonials/class-utils.php:26, ../tcb-bridge/classes/display-testimonials/class-utils.php:43, ../tcb-bridge/classes/display-testimonials/class-utils.php:55
+msgid "Default value"
+msgstr ""
+
+#: ../tcb-bridge/classes/display-testimonials/class-utils.php:32, ../tcb-bridge/classes/display-testimonials/class-utils.php:33
+msgid "Full name"
+msgstr ""
+
+#: ../tcb-bridge/classes/display-testimonials/class-utils.php:60
+msgid "Open in new tab"
+msgstr ""
+
+#: ../tcb-bridge/classes/display-testimonials/class-utils.php:66
+msgid "No follow"
 msgstr ""
 
 #: ../tcb-bridge/frontend/views/no-access.php:14
@@ -1418,7 +1470,7 @@ msgstr ""
 msgid "Create New Display Template"
 msgstr ""
 
-#: ../tcb-bridge/templates/backbone/display-options.phtml:4
+#: ../tcb-bridge/templates/backbone/display-options.phtml:4, ../tcb-bridge/classes/display-testimonials/query/views/backbone/modal/static-options.phtml:22
 msgid "Drag and drop testimonials into the desired order below"
 msgstr ""
 
@@ -1494,15 +1546,15 @@ msgstr ""
 msgid "You have <b>0</b> testimonials on your list"
 msgstr ""
 
-#: ../tcb-bridge/templates/backbone/select-testimonials.phtml:32
+#: ../tcb-bridge/templates/backbone/select-testimonials.phtml:32, ../tcb-bridge/classes/display-testimonials/query/views/backbone/modal/filters.phtml:13
 msgid "Word count from"
 msgstr ""
 
-#: ../tcb-bridge/templates/backbone/select-testimonials.phtml:44
+#: ../tcb-bridge/templates/backbone/select-testimonials.phtml:44, ../tcb-bridge/classes/display-testimonials/query/views/backbone/modal/filters.phtml:2
 msgid "Search"
 msgstr ""
 
-#: ../tcb-bridge/templates/backbone/select-testimonials.phtml:52
+#: ../tcb-bridge/templates/backbone/select-testimonials.phtml:52, ../tcb-bridge/classes/display-testimonials/query/views/backbone/modal/static-options.phtml:7
 msgid "Select all"
 msgstr ""
 
@@ -1516,6 +1568,34 @@ msgstr ""
 
 #: ../tcb-bridge/templates/backbone/testimonial-item.phtml:39
 msgid "No tags"
+msgstr ""
+
+#: ../tcb-bridge/classes/display-testimonials/elements/class-tcb-display-testimonial-content-element.php:35
+msgid "Testimonial Content"
+msgstr ""
+
+#: ../tcb-bridge/classes/display-testimonials/elements/class-tcb-display-testimonial-image-element.php:24
+msgid "Testimonial Image"
+msgstr ""
+
+#: ../tcb-bridge/classes/display-testimonials/views/component.phtml:19
+msgid "Edit Design"
+msgstr ""
+
+#: ../tcb-bridge/classes/display-testimonials/views/component.phtml:20
+msgid "Filter Testimonials"
+msgstr ""
+
+#: ../tcb-bridge/classes/display-testimonials/views/component.phtml:38
+msgid "Advanced"
+msgstr ""
+
+#: ../tcb-bridge/classes/display-testimonials/views/component.phtml:43
+msgid "No results message"
+msgstr ""
+
+#: ../tcb-bridge/classes/display-testimonials/views/component.phtml:44
+msgid "Message that appears when no testimonials are found"
 msgstr ""
 
 #: ../tcb-bridge/frontend/views/menu/capture-testimonial.php:18, ../tcb-bridge/frontend/views/menu/display-testimonial.php:18
@@ -1540,4 +1620,174 @@ msgstr ""
 
 #: ../tcb-bridge/frontend/views/menu/display-testimonial.php:54
 msgid "Save Changes"
+msgstr ""
+
+#: ../tcb-bridge/classes/display-testimonials/query/views/backbone/modal/order-options.phtml:17
+msgid "Starting with no"
+msgstr ""
+
+#: ../tcb-bridge/classes/display-testimonials/query/views/backbone/modal/pagination.phtml:3
+msgid "Rows per page"
+msgstr ""
+
+#: ../tcb-bridge/classes/display-testimonials/query/views/backbone/modal/set-item.phtml:12, ../tcb-bridge/classes/display-testimonials/query/views/backbone/modal/tag-item.phtml:12, ../tcb-bridge/classes/display-testimonials/query/views/backbone/modal/pages/set.phtml:21
+msgid "testimonials"
+msgstr ""
+
+#: ../tcb-bridge/classes/display-testimonials/query/views/backbone/modal/set-item.phtml:17
+msgid "View"
+msgstr ""
+
+#: ../tcb-bridge/classes/display-testimonials/query/views/backbone/modal/set-item.phtml:21
+msgid "load"
+msgstr ""
+
+#: ../tcb-bridge/classes/display-testimonials/query/views/backbone/modal/set-item.phtml:31
+msgid "overwrite"
+msgstr ""
+
+#: ../tcb-bridge/classes/display-testimonials/query/views/backbone/modal/set-item.phtml:36
+msgid "You are about to delete a testimonial set. Do you want to continue?"
+msgstr ""
+
+#: ../tcb-bridge/classes/display-testimonials/query/views/backbone/modal/set-item.phtml:39
+msgid "No, cancel"
+msgstr ""
+
+#: ../tcb-bridge/classes/display-testimonials/query/views/backbone/modal/static-options.phtml:13
+msgid "testimonials selected"
+msgstr ""
+
+#: ../tcb-bridge/classes/display-testimonials/query/views/backbone/modal/static-options.phtml:32
+msgid "Filters"
+msgstr ""
+
+#: ../tcb-bridge/classes/display-testimonials/query/views/backbone/modal/static-options.phtml:38
+msgid "Set order"
+msgstr ""
+
+#: ../tcb-bridge/classes/display-testimonials/query/views/backbone/modal/static-options.phtml:44
+msgid "Add testimonials"
+msgstr ""
+
+#: ../tcb-bridge/classes/display-testimonials/query/views/backbone/modal/pages/dynamic.phtml:7
+msgid "Tag"
+msgstr ""
+
+#: ../tcb-bridge/classes/display-testimonials/query/views/backbone/modal/pages/dynamic.phtml:12
+msgid "Order"
+msgstr ""
+
+#: ../tcb-bridge/classes/display-testimonials/query/views/backbone/modal/pages/dynamic.phtml:23
+msgid "currently match this dynamic query"
+msgstr ""
+
+#: ../tcb-bridge/classes/display-testimonials/query/views/backbone/modal/pages/dynamic.phtml:33, ../tcb-bridge/classes/display-testimonials/query/views/backbone/modal/pages/static.phtml:45
+msgid "Back to testimonial types"
+msgstr ""
+
+#: ../tcb-bridge/classes/display-testimonials/query/views/backbone/modal/pages/dynamic.phtml:39, ../tcb-bridge/classes/display-testimonials/query/views/backbone/modal/pages/static.phtml:57
+msgid "Edit set"
+msgstr ""
+
+#: ../tcb-bridge/classes/display-testimonials/query/views/backbone/modal/pages/dynamic.phtml:43, ../tcb-bridge/classes/display-testimonials/query/views/backbone/modal/pages/set.phtml:3, ../tcb-bridge/classes/display-testimonials/query/views/backbone/modal/pages/static.phtml:61
+msgid "Save a new testimonial set"
+msgstr ""
+
+#: ../tcb-bridge/classes/display-testimonials/query/views/backbone/modal/pages/set.phtml:9
+msgid "New set"
+msgstr ""
+
+#: ../tcb-bridge/classes/display-testimonials/query/views/backbone/modal/pages/set.phtml:27
+msgid "Existing sets"
+msgstr ""
+
+#: ../tcb-bridge/classes/display-testimonials/query/views/backbone/modal/pages/splash.phtml:3
+msgid "Which testimonials do you want to display?"
+msgstr ""
+
+#: ../tcb-bridge/classes/display-testimonials/query/views/backbone/modal/pages/splash.phtml:9
+msgid "Create a new list of testimonials"
+msgstr ""
+
+#: ../tcb-bridge/classes/display-testimonials/query/views/backbone/modal/pages/splash.phtml:17
+msgid "Specific testimonials"
+msgstr ""
+
+#: ../tcb-bridge/classes/display-testimonials/query/views/backbone/modal/pages/splash.phtml:20
+msgid "Manually select and order the testimonials that you would like to display"
+msgstr ""
+
+#: ../tcb-bridge/classes/display-testimonials/query/views/backbone/modal/pages/splash.phtml:29
+msgid "Dynamic list"
+msgstr ""
+
+#: ../tcb-bridge/classes/display-testimonials/query/views/backbone/modal/pages/splash.phtml:32
+msgid "Choose which testimonials will be displayed based on their assigned tag"
+msgstr ""
+
+#: ../tcb-bridge/classes/display-testimonials/query/views/backbone/modal/pages/splash.phtml:39
+msgid "or choose an existing testimonial set"
+msgstr ""
+
+#: ../tcb-bridge/classes/display-testimonials/query/views/backbone/modal/pages/splash.phtml:45
+msgid "Testimonial sets"
+msgstr ""
+
+#: ../tcb-bridge/classes/display-testimonials/query/views/backbone/modal/pages/splash.phtml:50
+msgid "Specific testimonial sets"
+msgstr ""
+
+#: ../tcb-bridge/classes/display-testimonials/query/views/backbone/modal/pages/splash.phtml:57
+msgid "Dynamic testimonial sets"
+msgstr ""
+
+#: ../tcb-bridge/classes/display-testimonials/query/views/backbone/modal/pages/splash.phtml:71
+msgid ""
+"You don't have any testimonials yet.\n"
+"To add and manage testimonials"
+msgstr ""
+
+#: ../tcb-bridge/classes/display-testimonials/query/views/backbone/modal/pages/splash.phtml:72
+msgid "go to Thrive Ovation."
+msgstr ""
+
+#: ../tcb-bridge/classes/display-testimonials/query/views/backbone/modal/pages/splash.phtml:79
+msgid "Back to templates"
+msgstr ""
+
+#: ../tcb-bridge/classes/display-testimonials/query/views/backbone/modal/pages/static.phtml:17
+msgid "No results found"
+msgstr ""
+
+#: ../tcb-bridge/classes/display-testimonials/query/views/backbone/modal/pages/static.phtml:25
+msgid "You need to have at least one"
+msgstr ""
+
+#: ../tcb-bridge/classes/display-testimonials/query/views/backbone/modal/pages/static.phtml:26
+msgid "testimonial"
+msgstr ""
+
+#: ../tcb-bridge/classes/display-testimonials/query/views/backbone/modal/pages/static.phtml:27
+msgid "or"
+msgstr ""
+
+#: ../tcb-bridge/classes/display-testimonials/query/views/backbone/modal/pages/static.phtml:28
+msgid "testimonial set"
+msgstr ""
+
+#: ../tcb-bridge/classes/display-testimonials/query/views/backbone/modal/pages/static.phtml:29
+msgid "selected to continue."
+msgstr ""
+
+#: ../tcb-bridge/classes/display-testimonials/query/views/backbone/modal/pages/static.phtml:33
+msgid "This set currently has no testimonials."
+msgstr ""
+
+#: ../tcb-bridge/classes/display-testimonials/query/views/backbone/modal/pages/static.phtml:50
+msgid "Back to testimonial selection"
+msgstr ""
+
+#: ../tcb-bridge/classes/display-testimonials/query/views/backbone/modal/pages/static.phtml:68
+msgid "Set the order"
 msgstr ""

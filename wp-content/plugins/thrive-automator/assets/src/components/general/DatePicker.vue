@@ -28,10 +28,10 @@ export default {
 		}
 	},
 	watch: {
-		pickedDate: function () {
+		pickedDate() {
 			this.$emit( 'input', this.pickedDate )
 		},
-		value: function () {
+		value() {
 			if ( this.value ) {
 				this.pickedDate = ref( new Date( this.value ) );
 			}

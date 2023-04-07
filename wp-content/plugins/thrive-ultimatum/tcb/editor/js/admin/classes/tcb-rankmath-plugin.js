@@ -6,7 +6,6 @@ module.exports = class TCBRankMathPlugin extends TCBSeoPlugin {
 	 */
 	constructor() {
 		super();
-		this.hooks();
 	}
 
 	/**
@@ -14,6 +13,7 @@ module.exports = class TCBRankMathPlugin extends TCBSeoPlugin {
 	 */
 	init() {
 		this.content = '';
+		this.hooks();
 		this.fetchContent();
 	}
 
@@ -21,9 +21,11 @@ module.exports = class TCBRankMathPlugin extends TCBSeoPlugin {
 	 * Hook into Rank Math App eco-system
 	 */
 	hooks() {
-		wp.hooks.addFilter( 'rank_math_content', 'rank-math', content => {
-			return this.content ? this.content : content;
-		}, 11 );
+		if ( window.wp && wp.hooks ) {
+			wp.hooks.addFilter( 'rank_math_content', 'rank-math', content => {
+				return this.content ? this.content : content;
+			}, 11 );
+		}
 	}
 
 	/**

@@ -38,7 +38,7 @@ registerBlockType( 'thrive/ovation-capture', {
 			),
 		};
 	} )( function( props ) {
-		if ( props.attributes.previewImage ) {
+		if ( props?.attributes.previewImage ) {
 			return [
 				wp.element.createElement( 'img', {
 					src: TVO_Data.capture_preview,

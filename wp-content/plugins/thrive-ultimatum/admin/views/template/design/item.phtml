@@ -26,6 +26,11 @@
 						<i class="tvu-icon-code"></i>
 					</a>
 					<# } #>
+					<# if( item.get( 'post_type' ) === 'header-bar' ) { #>
+					<a class="tvu-top-ribbon-settings tvu-icon-gray tvu-btn-icon-small">
+						<i class="tvd-icon-settings"></i>
+					</a>
+					<# } #>
 					<a class="tvu-edit-design tvu-icon-gray tvu-btn-icon-small"
 					   href="<#= item.get('tcb_edit_url') #>" target="_blank">
 						<i class="tvd-icon-pencil"></i>

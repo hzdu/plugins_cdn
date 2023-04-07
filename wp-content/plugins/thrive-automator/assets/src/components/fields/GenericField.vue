@@ -137,7 +137,7 @@ export default {
 		dynamicOptions() {
 			const options = [];
 			if ( this.fieldData.allowed_data_set_values.length ) {
-				this.fieldData.allowed_data_set_values.forEach( ( item ) => {
+				this.fieldData.allowed_data_set_values.forEach( item => {
 					if ( this.getStepDataObjects( this.stepIndex ).includes( item ) ) {
 						options.push( {
 							value: `tap-dynamic-${item}`,

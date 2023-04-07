@@ -1,0 +1,90 @@
+/*!
+ * Hamburgers
+ * @description Tasty CSS-animated hamburgers
+ * @author Jonathan Suh @jonsuh
+ * @site https://jonsuh.com/hamburgers
+ * @link https://github.com/jonsuh/hamburgers
+ */
+.brxe-toggle {
+  transition-property: opacity, filter;
+  transition-duration: 0.15s;
+  transition-timing-function: linear;
+  font: inherit;
+  color: inherit;
+  text-transform: none;
+  background-color: transparent;
+  border: 0;
+  margin: 0;
+  overflow: visible;
+}
+
+.brxa-wrap {
+  width: 40px;
+  height: 24px;
+  display: inline-block;
+  position: relative;
+}
+
+.brxa-inner {
+  display: block;
+  top: 50%;
+  margin-top: -2px;
+}
+.brxa-inner, .brxa-inner::before, .brxa-inner::after {
+  width: 40px;
+  height: 4px;
+  background-color: currentcolor;
+  border-radius: 4px;
+  position: absolute;
+  transition-property: transform;
+  transition-duration: 0.15s;
+  transition-timing-function: ease;
+}
+.brxa-inner::before, .brxa-inner::after {
+  content: "";
+  display: block;
+}
+.brxa-inner::before {
+  top: -10px;
+}
+.brxa-inner::after {
+  bottom: -10px;
+}
+
+/*
+  * Arrow
+  */
+.brxa--arrow.is-active .brxa-inner::before {
+  transform: translate3d(-8px, 0, 0) rotate(-45deg) scale(0.7, 1);
+}
+.brxa--arrow.is-active .brxa-inner::after {
+  transform: translate3d(-8px, 0, 0) rotate(45deg) scale(0.7, 1);
+}
+
+/*
+  * Arrow Right
+  */
+.brxa--arrow-r.is-active .brxa-inner::before {
+  transform: translate3d(8px, 0, 0) rotate(45deg) scale(0.7, 1);
+}
+.brxa--arrow-r.is-active .brxa-inner::after {
+  transform: translate3d(8px, 0, 0) rotate(-45deg) scale(0.7, 1);
+}
+
+.brxe-toggle {
+  --brxe-toggle-scale: 1;
+  --brxe-toggle-width: 40px;
+  --brxe-toggle-height: 24px;
+  --brxe-toggle-bar-height: 4px;
+  --brxe-toggle-bar-width: 40px;
+  --brxe-toggle-bar-radius: 4px;
+  display: flex;
+  line-height: 1;
+  transform: scale(var(--brxe-toggle-scale));
+  cursor: pointer;
+}
+.brxe-toggle .brxa-inner, .brxe-toggle .brxa-inner::before, .brxe-toggle .brxa-inner::after {
+  width: var(--brxe-toggle-bar-width);
+  height: var(--brxe-toggle-bar-height);
+  border-radius: var(--brxe-toggle-bar-radius);
+}

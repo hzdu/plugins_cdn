@@ -20,14 +20,24 @@
 </div>
 <div class="tqb-answers-container"></div>
 <div class="tqb-button-holder tqb-hide">
-	<a href="javascript:void(0)" class="tqb-next-button">
-		<?php tqb_get_svg_icon( 'next-q' ); ?>
-	</a>
+	<div class="tqb-nav-button tqb-prev-button tqb-hide">
+		<a href="javascript:void(0)">
+			<?php tqb_get_svg_icon( 'prev-q' ); ?>
+		</a>
+	</div>
+	<div class="tqb-nav-button tqb-next-button tqb-hide tqb-disabled">
+		<a href="javascript:void(0)">
+			<?php tqb_get_svg_icon( 'next-q' ); ?>
+		</a>
+	</div>
+	<div class="tqb-nav-button tqb-check-button tqb-hide tqb-disabled">
+		<a href="javascript:void(0)">
+			<?php tqb_get_svg_icon( 'check-circle_solid' ); ?>
+		</a>
+	</div>
+	<div class="tqb-nav-button tqb-finish-button tqb-hide tqb-disabled">
+		<a href="javascript:void(0)">
+			<?php tqb_get_svg_icon( 'finish-q' ); ?>
+		</a>
+	</div>
 </div>
-<# if(item.allowMultipleAnswers() && this.shortcode.shouldDisplayFeedbackUntilNext()){ #>
-<div class="tqb-button-holder">
-	<a href="javascript:void(0)" class="tqb-feedback-button">
-		<?php tqb_get_svg_icon( 'thumbs-up' ); ?>
-	</a>
-</div>
-<# } #>

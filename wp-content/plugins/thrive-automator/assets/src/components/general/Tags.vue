@@ -15,7 +15,7 @@
 				</div>
 				<template #popper>
 					<div ref="closeSelect" v-close-popper class="tap-hidden tap-toggle-close"/>
-					<dynamic-data :dynamic-data="dynamicDataFields(stepIndex)" @addShortcode="handleShortcode"/>
+					<dynamic-data :dynamic-data="dynamicDataFields(stepIndex-1)" @addShortcode="handleShortcode"/>
 				</template>
 			</dropdown>
 		</div>
@@ -68,7 +68,7 @@ export default {
 	computed: {
 		...mapGetters( 'steps', [ 'dynamicDataFields' ] ),
 		shouldShowDynamicData() {
-			return this.hasDynamicData && Object.keys( this.dynamicDataFields( this.stepIndex ) )?.length;
+			return this.hasDynamicData && Object.keys( this.dynamicDataFields( this.stepIndex - 1 ) )?.length;
 		}
 	},
 	methods: {

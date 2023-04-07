@@ -155,7 +155,5 @@ export function getFieldsPreview( fieldsData, showUnused = false ) {
  */
 export function replaceStringSpecialChars( string ) {
 	string = string.replace( /(&#8216;|&#8217;)/g, '\'' ).replace( /(&amp;)/g, '&' );// replace left-right single quote with normal quote
-	return string.replace( /&#(\d+);/g, ( _match, dec ) => {
-		return String.fromCharCode( dec );
-	} );
+	return string.replace( /&#(\d+);/g, ( _match, dec ) => String.fromCharCode( dec ) );
 }

@@ -21,6 +21,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 			<div class="apprentice-dashboard-wrapper no-focus">
 				<?php Main::render_report( 'tve_reporting_filter', 'users_filter' ); ?>
+				<?php Main::render_report( 'tve_reporting_filter', 'course_status_filter' ); ?>
 				<?php Main::render_report( 'tve_reporting_filter', 'date_filter' ); ?>
 			</div>
 		</div>
@@ -39,7 +40,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 		<div class="col-8-8">
 			<?php Main::render_report( 'tve_reporting_table', 'popular_courses', 'info', [
 				'report-title'              => __( 'Details', 'thrive-apprentice' ),
-				'report-global-filters'     => 'date,user_id,course_id',
+				'report-global-filters'     => 'date,user_id,course_id,course_status',
 				'report-expanded-view'      => '',
 				'has-pagination'            => 1,
 				'report-items-per-page'     => 10,

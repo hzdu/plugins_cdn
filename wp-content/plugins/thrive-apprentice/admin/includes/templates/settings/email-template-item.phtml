@@ -36,7 +36,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 				</button>
 			</div>
 		</div>
-		<div>
+		<div class="tva-email-trigger-header">
 			<label class="mb-10"><?php echo esc_html__( 'Email triggers', 'thrive-apprentice' ); ?></label>
 		</div>
 		<div class="tva-flex tva-flex-row">
@@ -48,9 +48,17 @@ if ( ! defined( 'ABSPATH' ) ) {
 	</div>
 	<div class="tva-et-info">
 		<h3><?php echo esc_html__( 'Email details', 'thrive-apprentice' ); ?></h3>
+		<# if ( this.model.get( 'slug' ) === 'newAccount' ) { #>
 		<p><?php echo esc_html__( 'This email is sent to new customers that have either purchased a course or signed up for a free course.', 'thrive-apprentice' ); ?></p>
 		<p><?php echo esc_html__( 'The email typically includes login details that customers can use to access their account.', 'thrive-apprentice' ); ?></p>
 		<p><?php echo esc_html__( 'This email is only triggered when the account is created.  Repeat purchases through the same user account will not trigger the email.', 'thrive-apprentice' ); ?></p>
 		<p><?php echo esc_html__( 'Login Button and Login Link shortcodes will link to the page set under Apprentice &rarr; Settings &rarr; Login & access restriction &rarr; Login & registration page.', 'thrive-apprentice' ); ?></p>
+		<# } else if ( this.model.get( 'slug' ) === 'certificateIssued' ) { #>
+		<p><?php echo esc_html__( 'This email is sent to members after you have manually issued a course certificate to them.', 'thrive-apprentice' ); ?></p>
+		<p><?php echo esc_html__( 'The email typically includes a login button and a certificate download button.', 'thrive-apprentice' ); ?></p>
+		<p><?php echo esc_html__( 'This email is triggered each time the customer is issued a source certificate from the Apprentice member area.', 'thrive-apprentice' ); ?></p>
+		<p><?php echo esc_html__( 'Login Button and Login Link shortcodes will link to the page set under Apprentice &rarr; Settings &rarr; Login & access restriction &rarr; Login & registration page.', 'thrive-apprentice' ); ?></p>
+		<p><?php echo esc_html__( 'Certificate download button will link the member to the nominated certificate download page or when not available a direct download link.', 'thrive-apprentice' ); ?></p>
+		<# } #>
 	</div>
 </div>

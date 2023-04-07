@@ -1,8 +1,57 @@
 .brxe-nav-nested {
   display: inline-flex;
   align-items: center;
-  gap: 20px;
 }
-.brxe-nav-nested > * {
+.brxe-nav-nested[data-toggle=always] .brx-nav-nested-items {
+  display: none;
+}
+.brxe-nav-nested[data-toggle=always] .brxe-toggle {
+  display: inline-flex;
+}
+.brxe-nav-nested .brxe-toggle {
+  display: none;
+}
+
+.brxe-nav-nested.brx-open .brx-nav-nested-items {
+  gap: 0;
+  position: fixed;
+  z-index: 1001;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex !important;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+}
+.brxe-nav-nested.brx-open .brxe-dropdown:hover .brx-dropdown-content {
+  visibility: hidden;
+  opacity: 0;
+}
+.brxe-nav-nested.brx-open .brxe-dropdown.open {
+  align-items: center;
+}
+.brxe-nav-nested.brx-open .brxe-dropdown.open .brx-dropdown-content {
+  display: flex;
+  min-width: auto;
+  visibility: visible;
+  opacity: 1;
+}
+.brxe-nav-nested.brx-open .brxe-dropdown .brx-dropdown-content {
+  display: none;
+  position: static !important;
+}
+
+.brx-nav-nested-items {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 20px;
+  transition: all 0.1s;
+}
+.brx-nav-nested-items > [class*=brxe-] {
   padding: 15px;
 }

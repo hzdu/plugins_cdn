@@ -5,7 +5,7 @@
 			<div class="tap-key-pair-separator tap-flex">
 				=
 			</div>
-			<input-field :dynamic-data-fields="dynamicDataFields(stepIndex)" :has-dynamic-data="hasDynamic" :has-errors="hasErrors&&hasValueError" :placeholder="valuePlaceholder" :value="pairValue.value" @input="handleValueInput"/>
+			<input-field :dynamic-data-fields="dynamicDataFields(stepIndex-1)" :has-dynamic-data="hasDynamic" :has-errors="hasErrors&&hasValueError" :placeholder="valuePlaceholder" :value="pairValue.value" @input="handleValueInput"/>
 			<div class="tap-pair-delete">
 				<icon icon-name="tap-cross" @click="$emit('delete')"/>
 			</div>

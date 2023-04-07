@@ -3,8 +3,12 @@ function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArra
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _iterableToArrayLimit(arr, i) { var _i = null == arr ? null : "undefined" != typeof Symbol && arr[Symbol.iterator] || arr["@@iterator"]; if (null != _i) { var _s, _e, _x, _r, _arr = [], _n = !0, _d = !1; try { if (_x = (_i = _i.call(arr)).next, 0 === i) { if (Object(_i) !== _i) return; _n = !1; } else for (; !(_n = (_s = _x.call(_i)).done) && (_arr.push(_s.value), _arr.length !== i); _n = !0); } catch (err) { _d = !0, _e = err; } finally { try { if (!_n && null != _i["return"] && (_r = _i["return"](), Object(_r) !== _r)) return; } finally { if (_d) throw _e; } } return _arr; } }
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e38) { throw _e38; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e39) { didErr = true; err = _e39; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
+function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e36) { throw _e36; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e37) { didErr = true; err = _e37; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, _toPropertyKey(descriptor.key), descriptor); } }
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
@@ -149,7 +153,7 @@ function bricksQueryLoadPage(e) {
           page: s,
           maxPages: a
         }), bricksLazyLoad(), setTimeout(function () {
-          bricksInteractions(), bricksAnimation(), o.isPostsElement ? (newQueryTrail = e.parentNode.querySelector(".bricks-isotope-sizer").previousElementSibling, bricksIsotope()) : newQueryTrail = Array.from(document.querySelectorAll(".brxe-".concat(i, ":not(.brx-popup)"))).pop(), o.infiniteScroll && (newQueryTrail.dataset.queryElementId = i, BricksIsInViewport(newQueryTrail) ? bricksQueryLoadPage(newQueryTrail) : new BricksIntersect({
+          bricksInteractions(), bricksPhotoswipe(), bricksAnimation(), o.isPostsElement ? (newQueryTrail = e.parentNode.querySelector(".bricks-isotope-sizer").previousElementSibling, bricksIsotope()) : newQueryTrail = Array.from(document.querySelectorAll(".brxe-".concat(i, ":not(.brx-popup)"))).pop(), o.infiniteScroll && (newQueryTrail.dataset.queryElementId = i, BricksIsInViewport(newQueryTrail) ? bricksQueryLoadPage(newQueryTrail) : new BricksIntersect({
             element: newQueryTrail,
             callback: function callback(e) {
               return bricksQueryLoadPage(e);
@@ -365,54 +369,24 @@ function bricksTabs() {
     });
   });
 }
-function bricksLightbox() {
-  var e = bricksQuerySelectorAll(document, '[data-link="lightbox"]');
-  if (!e.length) return;
-  var t = document.getElementById("bricks-lightbox"),
-    r = !!t && t.querySelector(".inner"),
-    i = !!t && t.querySelector(".close");
-  t || (t = document.createElement("div"), t.id = "bricks-lightbox", document.body.appendChild(t), r || (r = document.createElement("div"), r.classList.add("inner"), t.appendChild(r)), i || (i = document.createElement("div"), i.classList.add("close"), i.innerText = "×", t.appendChild(i))), t.addEventListener("click", function (e) {
-    ("bricks-lightbox" === e.target.id || e.target.classList.contains("inner") || e.target.classList.contains("close")) && (t.classList.remove("show"), r.innerHTML = "");
-  }), document.onkeydown = function (e) {
-    "Escape" === e.key && (t.classList.remove("show"), r.innerHTML = "");
-  }, e.forEach(function (e) {
-    var i = !1;
-    e.addEventListener("click", function (o) {
-      o.preventDefault();
-      var s = e.dataset.bricksLightboxImageUrl;
-      if (s) {
-        i = !0;
-        var _e5 = document.createElement("img");
-        _e5.src = s, r.appendChild(_e5);
-      }
-      var a = e.dataset.bricksLightboxVideoUrl;
-      if (a) {
-        i = !0;
-        var _e6 = !1;
-        if (-1 !== a.indexOf("youtube.com") && (_e6 = !0, a = a.replace("watch?v=", "embed/"), a += "?autoplay=1", a += "&rel=0"), -1 !== a.indexOf("vimeo.com") && (_e6 = !0, -1 === a.indexOf("player.vimeo.com/video") && (a = a.replace("vimeo.com", "player.vimeo.com/video")), a += "?autoplay=1"), _e6) {
-          var _e7 = document.createElement("iframe");
-          _e7.setAttribute("src", a), _e7.setAttribute("allow", "autoplay"), _e7.setAttribute("allowfullscreen", 1), r.appendChild(_e7);
-        } else {
-          var _e8 = document.createElement("video");
-          _e8.setAttribute("src", a), _e8.setAttribute("autoplay", 1), _e8.setAttribute("controls", 1), _e8.setAttribute("playsinline", 1), r.appendChild(_e8);
-        }
-      }
-      i && t.classList.add("show");
-    });
-  });
-}
 function bricksVideoOverlayClickDetector() {
   if (!bricksIsFrontend) return;
-  var e = bricksQuerySelectorAll(document, ".bricks-video-overlay"),
-    t = bricksQuerySelectorAll(document, ".bricks-video-overlay-icon");
-  bricksVideoOverlayElements = e.concat(t), bricksVideoOverlayElements.length && bricksVideoOverlayElements.forEach(function (e) {
+  var e = [].concat(_toConsumableArray(bricksQuerySelectorAll(document, ".bricks-video-overlay")), _toConsumableArray(bricksQuerySelectorAll(document, ".bricks-video-overlay-icon")), _toConsumableArray(bricksQuerySelectorAll(document, ".bricks-video-preview-image")));
+  e.length && e.forEach(function (e) {
     e.addEventListener("click", function (e) {
       var t = e.target.closest(".brxe-video");
       if (!t) return;
-      var r = t.querySelector("iframe");
-      r && r.getAttribute("src") && (r.src += "&autoplay=1");
-      var i = t.querySelector("video");
-      i && i.play();
+      var r = t.querySelector(".bricks-video-preview-image");
+      if (r) {
+        var _e5 = document.createElement("iframe");
+        _toConsumableArray(r.attributes).forEach(function (t) {
+          "class" !== t.name && "style" !== t.name && ("data-iframe-src" !== t.name ? _e5.setAttribute(t.name, t.value) : _e5.setAttribute("src", t.value));
+        }), r.replaceWith(_e5);
+      }
+      var i = t.querySelector("iframe");
+      i && i.getAttribute("src") && (i.src += "&autoplay=1");
+      var o = t.querySelector("video");
+      o && o.play();
     });
   });
 }
@@ -430,8 +404,8 @@ function bricksBackgroundVideoInit() {
       n = parseInt(s.split(":")[1] || 9);
     if (-1 !== t.indexOf("youtube.com")) {
       i = !0;
-      var _e9 = t.lastIndexOf("="),
-        _r2 = t.slice(_e9 + 1);
+      var _e6 = t.lastIndexOf("="),
+        _r2 = t.slice(_e6 + 1);
       t += "?origin=".concat(window.location.origin), t += "&rel=0", t += "&autoplay=1", t += "&mute=1", t += "&widgetid=1", t += "&controls=0", t += "&showinfo=0", t += "&modestbranding=1", t += "&cc_load_policy=0", t += "&iv_load_policy=3", t += "&autohide=0", t += "&loop=1", t += "&playlist=".concat(_r2), t += "&enablejsapi=1", t = t.replace("watch?v=", "embed/");
     }
     -1 !== t.indexOf("vimeo.com") && (i = !0, t += "?background=1", t += "&byline=0", t += "&portrait=0", t += "&title=0", -1 === t.indexOf("player.vimeo.com/video") && (t = t.replace("vimeo.com", "player.vimeo.com/video"))), i ? (o = document.createElement("iframe"), o.setAttribute("width", 640), o.setAttribute("height", 360), o.setAttribute("src", t), o.setAttribute("allow", "autoplay"), o.setAttribute("allowfullscreen", 1), r && (o.style.transform = "translate(-50%, -50%) scale(".concat(r, ")")), e.removeChild(e.querySelector("video"))) : (o = e.querySelector("video"), r && (o.style.transform = "scale(".concat(r, ")"))), bricksIsFrontend ? e.classList.contains("bricks-lazy-video") && new BricksIntersect({
@@ -462,39 +436,54 @@ function bricksBackgroundVideoInit() {
   });
 }
 function bricksPhotoswipe() {
-  var e = document.querySelector(".pswp");
-  if (!e) return;
-  var t = bricksQuerySelectorAll(document, ".bricks-lightbox");
-  if (!t) return;
-  var r = {};
-  t.forEach(function (t) {
-    var _t$dataset, _t$dataset2, _t$dataset3, _t$dataset4, _t$dataset5, _t$dataset6;
-    if (t.classList.contains("pswp-init") || t.parentNode.classList.contains("swiper-slide-duplicate")) return;
-    var i = (_t$dataset = t.dataset) === null || _t$dataset === void 0 ? void 0 : _t$dataset.bricksLightboxId,
-      o = parseInt((_t$dataset2 = t.dataset) === null || _t$dataset2 === void 0 ? void 0 : _t$dataset2.bricksLightboxIndex) || 0;
-    (r === null || r === void 0 ? void 0 : r[i]) || (r[i] = []);
-    var s = ((_t$dataset3 = t.dataset) === null || _t$dataset3 === void 0 ? void 0 : _t$dataset3.bricksLightboxSource) || ((_t$dataset4 = t.dataset) === null || _t$dataset4 === void 0 ? void 0 : _t$dataset4.src) || t.src;
-    if (!s) return;
-    var a = ((_t$dataset5 = t.dataset) === null || _t$dataset5 === void 0 ? void 0 : _t$dataset5.bricksLightboxWidth) || t.width,
-      n = ((_t$dataset6 = t.dataset) === null || _t$dataset6 === void 0 ? void 0 : _t$dataset6.bricksLightboxHeight) || t.height;
-    r[i][o] = {
-      src: s,
-      w: a,
-      h: n
-    }, t.addEventListener("click", function (t) {
-      var _t$target$dataset;
-      if (!t.target.classList.contains("bricks-lightbox")) return 1;
-      t.stopPropagation();
-      var i = (_t$target$dataset = t.target.dataset) === null || _t$target$dataset === void 0 ? void 0 : _t$target$dataset.bricksLightboxId,
-        o = r === null || r === void 0 ? void 0 : r[i];
-      if (!o) return;
-      new PhotoSwipe(e, PhotoSwipeUI_Default, o, {
-        bgOpacity: .9,
-        showHideOpacity: !0,
-        index: parseInt(t.target.dataset.bricksLightboxIndex) || 0
-      }).init();
-    }), t.classList.add("pswp-init");
+  var e = bricksQuerySelectorAll(document, ".bricks-lightbox");
+  window.PhotoSwipeLightbox && e.forEach(function (e) {
+    var t = e,
+      r = "A" === e.tagName ? "" : "a",
+      i = e.getAttribute("data-pswp-id");
+    i ? r = bricksQuerySelectorAll(document, "[data-pswp-id=\"".concat(i, "\"]")) : t.classList.contains("brxe-carousel") && (r = t.querySelectorAll(".swiper-slide:not(.swiper-slide-duplicate) a"));
+    var o = {
+        gallery: t,
+        children: r,
+        pswpModule: PhotoSwipe,
+        closeSVG: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>'
+      },
+      s = e.classList.contains("brxe-product-gallery");
+    if (s) {
+      var _t8 = bricksQuerySelectorAll(e, "[data-pswp-id=\"".concat(e.getAttribute("data-script-id"), "\"]"));
+      o.children = [], _t8.forEach(function (e, t) {
+        var r = e.closest("a");
+        r && (r.setAttribute("data-pswp-index", t), r.setAttribute("data-pswp-src", e.getAttribute("data-pswp-src")), e.removeAttribute("data-pswp-src"), r.setAttribute("data-pswp-width", e.getAttribute("data-pswp-width")), e.removeAttribute("data-pswp-width"), r.setAttribute("data-pswp-height", e.getAttribute("data-pswp-height")), e.removeAttribute("data-pswp-height"), o.children.push(r));
+      });
+    }
+    var a = new PhotoSwipeLightbox(o);
+    s && e.addEventListener("click", function (e) {
+      var r = 0;
+      e.target.closest(".flex-viewport") && (r = e.target.previousElementSibling.getAttribute("data-pswp-index")), a.loadAndOpen(parseInt(r), {
+        gallery: t
+      });
+    }), a.on("itemData", function (t) {
+      var r = e.getAttribute("data-pswp-video-url");
+      if (r) {
+        var _e7 = bricksGetLightboxVideoNode(r);
+        t.itemData = {
+          html: _e7.outerHTML
+        };
+      }
+    }), a.init();
   });
+}
+function bricksGetLightboxVideoNode(e) {
+  if (e) {
+    hasContent = !0;
+    var t = !1;
+    if (-1 !== e.indexOf("youtube.com") && (t = !0, e = e.replace("watch?v=", "embed/"), e += "?autoplay=1", e += "&rel=0"), -1 !== e.indexOf("vimeo.com") && (t = !0, -1 === e.indexOf("player.vimeo.com/video") && (e = e.replace("vimeo.com", "player.vimeo.com/video")), e += "?autoplay=1"), t) {
+      var _t9 = document.createElement("iframe");
+      return _t9.setAttribute("src", e), _t9.setAttribute("allow", "autoplay"), _t9.setAttribute("allowfullscreen", 1), _t9;
+    }
+    var r = document.createElement("video");
+    return r.setAttribute("src", e), r.setAttribute("autoplay", 1), r.setAttribute("controls", 1), r.setAttribute("playsinline", 1), r;
+  }
 }
 function bricksAccordion() {
   var e = bricksQuerySelectorAll(document, ".brxe-accordion"),
@@ -536,10 +525,10 @@ function bricksAccordion() {
         if (n) {
           var _e$dataset$scriptArgs2;
           if (!((_e$dataset$scriptArgs2 = e.dataset.scriptArgs) !== null && _e$dataset$scriptArgs2 !== void 0 && _e$dataset$scriptArgs2.includes("independentToggle"))) {
-            var _t8 = e.querySelector(".brx-open");
-            if (_t8) {
-              var _e10 = _t8.querySelector(".accordion-content-wrapper");
-              _e10 && _e10 !== n && (_t8.classList.remove("brx-open"), r(_e10, o));
+            var _t10 = e.querySelector(".brx-open");
+            if (_t10) {
+              var _e8 = _t10.querySelector(".accordion-content-wrapper");
+              _e8 && _e8 !== n && (_t10.classList.remove("brx-open"), r(_e8, o));
             }
           }
           i(n, o), a.classList.toggle("brx-open");
@@ -570,28 +559,28 @@ function bricksAudio() {
   });
 }
 function bricksCountdown() {
-  var e = function e(_e13, t, r) {
+  var e = function e(_e11, t, r) {
     var i = t.date.replace(" ", "T"),
       o = new Date(i).getTime() - new Date().getTime();
     if (o <= 0) {
-      if (clearInterval(_e13.dataset.bricksCountdownId), "hide" === t.action) return void (_e13.innerHTML = "");
-      if ("text" === t.action) return void (_e13.innerHTML = t.actionText);
+      if (clearInterval(_e11.dataset.bricksCountdownId), "hide" === t.action) return void (_e11.innerHTML = "");
+      if ("text" === t.action) return void (_e11.innerHTML = t.actionText);
     }
-    r && (_e13.innerHTML = "", t.fields.forEach(function (t) {
+    r && (_e11.innerHTML = "", t.fields.forEach(function (t) {
       if (!t.format) return;
       var r = document.createElement("div");
       if (r.classList.add("field"), t.prefix) {
-        var _e11 = document.createElement("span");
-        _e11.classList.add("prefix"), _e11.innerHTML = t.prefix, r.appendChild(_e11);
+        var _e9 = document.createElement("span");
+        _e9.classList.add("prefix"), _e9.innerHTML = t.prefix, r.appendChild(_e9);
       }
       var i = document.createElement("span");
       if (i.classList.add("format"), r.appendChild(i), t.suffix) {
-        var _e12 = document.createElement("span");
-        _e12.classList.add("suffix"), _e12.innerHTML = t.suffix, r.appendChild(_e12);
+        var _e10 = document.createElement("span");
+        _e10.classList.add("suffix"), _e10.innerHTML = t.suffix, r.appendChild(_e10);
       }
-      _e13.appendChild(r);
+      _e11.appendChild(r);
     }));
-    var s = bricksQuerySelectorAll(_e13, ".field"),
+    var s = bricksQuerySelectorAll(_e11, ".field"),
       a = Math.floor(o / 864e5),
       n = Math.floor(o % 864e5 / 36e5),
       c = Math.floor(o % 36e5 / 6e4),
@@ -678,21 +667,21 @@ function bricksForm() {
         if (!c) return;
         var d = e.querySelector(".file-result[data-files-ref=\"".concat(i, "\"]"));
         var _loop = function _loop() {
-          var t = n[_e14],
+          var t = n[_e12],
             i = !1,
             a = d.cloneNode(!0);
           if (s && r.hasOwnProperty(l) && r[l].length >= s && (i = "limit"), o && t.size > o && (i = "size"), i) a.classList.add("danger"), a.innerHTML = a.getAttribute("data-error-".concat(i)).replace("%s", t.name), setTimeout(function () {
             a.remove();
           }, 5e3);else {
             r.hasOwnProperty(l) || (r[l] = []), r[l].push(t), a.classList.add("show");
-            var _e15 = a.querySelector(".text"),
+            var _e13 = a.querySelector(".text"),
               _i3 = a.querySelector(".remove");
-            _e15.innerHTML = t.name, _i3.setAttribute("data-name", t.name), _i3.setAttribute("data-field", l), _i3.addEventListener("click", function (e) {
+            _e13.innerHTML = t.name, _i3.setAttribute("data-name", t.name), _i3.setAttribute("data-field", l), _i3.addEventListener("click", function (e) {
               var t = e.target.getAttribute("data-name"),
                 i = e.target.getAttribute("data-field"),
                 o = r[i];
-              for (var _e16 = 0; _e16 < o.length; _e16++) if (o[_e16].name === t) {
-                r[l].splice(_e16, 1);
+              for (var _e14 = 0; _e14 < o.length; _e14++) if (o[_e14].name === t) {
+                r[l].splice(_e14, 1);
                 break;
               }
               a.remove();
@@ -700,7 +689,7 @@ function bricksForm() {
           }
           d.parentNode.insertBefore(a, d.nextSibling);
         };
-        for (var _e14 = 0; _e14 < c; _e14++) {
+        for (var _e12 = 0; _e12 < c; _e12++) {
           _loop();
         }
       });
@@ -735,13 +724,13 @@ function bricksSubmitForm(e, t, r, i) {
   o.classList.add("sending");
   var s = new FormData(t);
   s.append("action", "bricks_form_submit"), s.append("postId", window.bricksData.postId), s.append("formId", e), s.append("recaptchaToken", i || ""), s.append("nonce", window.bricksData.nonce), s.append("referrer", location.toString());
-  var _loop2 = function _loop2(_e17) {
-    r[_e17].forEach(function (t) {
-      s.append("".concat(_e17, "[]"), t, t.name);
+  var _loop2 = function _loop2(_e15) {
+    r[_e15].forEach(function (t) {
+      s.append("".concat(_e15, "[]"), t, t.name);
     });
   };
-  for (var _e17 in r) {
-    _loop2(_e17);
+  for (var _e15 in r) {
+    _loop2(_e15);
   }
   var a = window.bricksData.ajaxUrl,
     n = new XMLHttpRequest();
@@ -764,20 +753,20 @@ function bricksSubmitForm(e, t, r, i) {
     i.classList.add("message");
     var s = document.createElement("div");
     if (s.classList.add("text"), (_e$data5 = e.data) !== null && _e$data5 !== void 0 && _e$data5.message) if ((_e$data$message = e.data.message) !== null && _e$data$message !== void 0 && _e$data$message.errors) {
-      var _t9 = e.data.message.errors;
-      Object.keys(_t9).forEach(function (e) {
-        s.innerHTML += _t9[e][0] + "<br>";
+      var _t11 = e.data.message.errors;
+      Object.keys(_t11).forEach(function (e) {
+        s.innerHTML += _t11[e][0] + "<br>";
       });
     } else s.innerHTML = e.data.message;
     if (i.appendChild(s), (_e$data6 = e.data) !== null && _e$data6 !== void 0 && _e$data6.info) {
-      var _t10 = document.createElement("div"),
+      var _t12 = document.createElement("div"),
         _r4 = document.createElement("div");
-      _r4.innerHTML = e.data.info.join("<br>"), i.appendChild(_t10), _t10.appendChild(_r4);
+      _r4.innerHTML = e.data.info.join("<br>"), i.appendChild(_t12), _t12.appendChild(_r4);
     } else i.classList.add(e.data.type);
     if (t.appendChild(i), o.classList.remove("sending"), e.success) {
       t.reset(), r = {};
-      var _e18 = bricksQuerySelectorAll(t, ".file-result");
-      null !== _e18 && _e18.forEach(function (e) {
+      var _e16 = bricksQuerySelectorAll(t, ".file-result");
+      null !== _e16 && _e16.forEach(function (e) {
         e.remove();
       });
     }
@@ -848,15 +837,15 @@ function bricksMap() {
         };
       t.zoomControl && (t !== null && t !== void 0 && t.maxZoom && (d.maxZoom = parseInt(t.maxZoom)), (t === null || t === void 0 ? void 0 : t.minZoom) && (d.minZoom = parseInt(t.minZoom)));
       var u = new google.maps.Map(e, d);
-      for (var _e19 = 0; _e19 < r.length; _e19++) {
-        var _t11 = r[_e19];
-        if (_t11 !== null && _t11 !== void 0 && _t11.latitude && _t11 !== null && _t11 !== void 0 && _t11.longitude) b(_t11, {
-          lat: parseFloat(_t11.latitude),
-          lng: parseFloat(_t11.longitude)
-        });else if (_t11 !== null && _t11 !== void 0 && _t11.address) {
+      for (var _e17 = 0; _e17 < r.length; _e17++) {
+        var _t13 = r[_e17];
+        if (_t13 !== null && _t13 !== void 0 && _t13.latitude && _t13 !== null && _t13 !== void 0 && _t13.longitude) b(_t13, {
+          lat: parseFloat(_t13.latitude),
+          lng: parseFloat(_t13.longitude)
+        });else if (_t13 !== null && _t13 !== void 0 && _t13.address) {
           new google.maps.Geocoder().geocode({
-            address: _t11.address
-          }, p(_t11));
+            address: _t13.address
+          }, p(_t13));
         }
       }
       function p(e) {
@@ -889,11 +878,11 @@ function bricksMap() {
             b && (l += '<ul class="content">', b = b.split("\n"), b.length && b.forEach(function (e) {
               l += "<li>".concat(e, "</li>");
             }), l += "</ul>");
-            m.length && (l += '<ul class="images">', m.forEach(function (t, r) {
-              l += "<li>", t.url && (l += "<img\n\t\t\t\t\t\t\t\t\tsrc=\"".concat(t.url, "\"\n\t\t\t\t\t\t\t\t\tclass=\"bricks-lightbox\"\n\t\t\t\t\t\t\t\t\tdata-bricks-lightbox-source=\"").concat(t.full, "\"\n\t\t\t\t\t\t\t\t\tdata-bricks-lightbox-height=\"376\"\n\t\t\t\t\t\t\t\t\tdata-bricks-lightbox-width=\"376\"\n\t\t\t\t\t\t\t\t\tdata-bricks-lightbox-index=\"").concat(r, "\"\n\t\t\t\t\t\t\t\t\tdata-bricks-lightbox-id=\"").concat(e.id, "\"\n\t\t\t\t\t\t\t\t/>")), l += "</li>";
+            m.length && (l += '<ul class="images">', m.forEach(function (t) {
+              l += "<li>", t.url && (l += "<a\n\t\t\t\t\t\t\t\t\tclass=\"bricks-lightbox\"\n\t\t\t\t\t\t\t\t\tdata-pswp-src=\"".concat(t.full, "\"\n\t\t\t\t\t\t\t\t\tdata-pswp-height=\"376\"\n\t\t\t\t\t\t\t\t\tdata-pswp-width=\"376\"\n\t\t\t\t\t\t\t\t\tdata-pswp-id=\"").concat(e.id, "\">"), l += "<img src=\"".concat(t.url, "\"/>"), l += "</a>"), l += "</li>";
             }), l += "</ul>");
             if (l) {
-              var _e20 = {
+              var _e18 = {
                 content: l,
                 disableAutoPan: !1,
                 pixelOffset: new google.maps.Size(0, 0),
@@ -908,25 +897,25 @@ function bricksMap() {
                   left: 0
                 }
               };
-              void 0 !== window.jQuery && (_e20.closeBoxURL = "", _e20.content += '<span class="close">×</span>');
-              var _i4 = new InfoBox(_e20);
+              void 0 !== window.jQuery && (_e18.closeBoxURL = "", _e18.content += '<span class="close">×</span>');
+              var _i4 = new InfoBox(_e18);
               _i4.open(u, c), a.push(_i4), u.panTo(_i4.getPosition()), google.maps.event.addListener(_i4, "domready", function (e) {
-                void 0 !== window.jQuery && jQuery(".close").on("click", function () {
+                m.length && bricksPhotoswipe(), void 0 !== window.jQuery && jQuery(".close").on("click", function () {
                   _i4.close(), o !== null && o !== void 0 && o.icon && c.setIcon(o.icon), r.length > 1 && (n.extend(t), u.fitBounds(n), u.panToBounds(n));
                 });
               });
             }
           }(e);
         }), n.extend(t), u.fitBounds(n), u.panToBounds(n), 1 === r.length) {
-          var _e21 = google.maps.event.addListener(u, "idle", function () {
-            u.setZoom(l), google.maps.event.removeListener(_e21);
+          var _e19 = google.maps.event.addListener(u, "idle", function () {
+            u.setZoom(l), google.maps.event.removeListener(_e19);
           });
         }
       }
       if (t !== null && t !== void 0 && t.type && u.setMapTypeId(t.type), t !== null && t !== void 0 && t.style) if ("custom" === t.style && t !== null && t !== void 0 && t.customStyle) {
-        var _e22 = JSON.stringify(t.customStyle);
+        var _e20 = JSON.stringify(t.customStyle);
         u.setOptions({
-          styles: JSON.parse(_e22)
+          styles: JSON.parse(_e20)
         });
       } else window.bricksData && window.bricksData.mapStyles[t.style] && u.setOptions({
         styles: JSON.parse(window.bricksData.mapStyles[t.style].style)
@@ -997,13 +986,13 @@ function bricksSplide() {
         t.id = t.dataset.id;
         var _i5 = e.querySelector(".splide__pagination");
         if (_i5) {
-          var _e23 = _i5.querySelector("li:nth-child(".concat(r + 1, ") .splide__pagination__page"));
-          _e23 && _e23.setAttribute("aria-controls", t.id);
+          var _e21 = _i5.querySelector("li:nth-child(".concat(r + 1, ") .splide__pagination__page"));
+          _e21 && _e21.setAttribute("aria-controls", t.id);
         }
       }
       if (!t.classList.contains("bricks-lazy-hidden")) {
-        var _e24 = t.getAttribute("style") || "";
-        t.dataset.style && (_e24 += t.dataset.style, t.setAttribute("style", _e24));
+        var _e22 = t.getAttribute("style") || "";
+        t.dataset.style && (_e22 += t.dataset.style, t.setAttribute("style", _e22));
       }
     });
   });
@@ -1051,10 +1040,10 @@ function bricksVideo() {
     if (t) {
       if (window.hasOwnProperty("Plyr")) {
         var _window$bricksData, _window$bricksData$vi;
-        var _t12 = e.dataset.scriptId,
+        var _t14 = e.dataset.scriptId,
           r = e.querySelector(".bricks-plyr"),
-          i = ((_window$bricksData = window.bricksData) === null || _window$bricksData === void 0 ? void 0 : (_window$bricksData$vi = _window$bricksData.videoInstances) === null || _window$bricksData$vi === void 0 ? void 0 : _window$bricksData$vi[_t12]) || void 0;
-        i && i.destroy(), r && (i = new Plyr(r)), window.bricksData.videoInstances[_t12] = i;
+          i = ((_window$bricksData = window.bricksData) === null || _window$bricksData === void 0 ? void 0 : (_window$bricksData$vi = _window$bricksData.videoInstances) === null || _window$bricksData$vi === void 0 ? void 0 : _window$bricksData$vi[_t14]) || void 0;
+        i && i.destroy(), r && (i = new Plyr(r)), window.bricksData.videoInstances[_t14] = i;
       }
       t.setAttribute("playsinline", !0);
     }
@@ -1068,8 +1057,8 @@ function bricksFacebookSDK() {
     i = new XMLHttpRequest();
   i.open("GET", r), i.onreadystatechange = function () {
     if (4 == this.readyState && 200 == this.status) {
-      var _e25 = document.createElement("script");
-      _e25.type = "text/javascript", _e25.id = "bricks-facebook-page-sdk", _e25.appendChild(document.createTextNode(i.responseText)), document.body.appendChild(_e25), FB.init({
+      var _e23 = document.createElement("script");
+      _e23.type = "text/javascript", _e23.id = "bricks-facebook-page-sdk", _e23.appendChild(document.createTextNode(i.responseText)), document.body.appendChild(_e23), FB.init({
         appId: t,
         version: "v3.3",
         xfbml: !0
@@ -1116,11 +1105,11 @@ function bricksInteractions() {
       if (t !== null && t !== void 0 && t.trigger) {
         var _window$bricksData2;
         if ("scroll" === t.trigger) {
-          var _e26 = 0;
-          if (t !== null && t !== void 0 && t.scrollOffset) if (_e26 = t === null || t === void 0 ? void 0 : t.scrollOffset.replace("px", ""), _e26.includes("%")) {
-            _e26 = Math.max(document.body.scrollHeight, document.documentElement.scrollHeight, document.body.offsetHeight, document.documentElement.offsetHeight, document.body.clientHeight, document.documentElement.clientHeight) / 100 * parseInt(_e26);
-          } else _e26.includes("vh") && (_e26 = window.innerHeight / 100 * parseInt(_e26));
-          t.scrollOffset = _e26;
+          var _e24 = 0;
+          if (t !== null && t !== void 0 && t.scrollOffset) if (_e24 = t === null || t === void 0 ? void 0 : t.scrollOffset.replace("px", ""), _e24.includes("%")) {
+            _e24 = Math.max(document.body.scrollHeight, document.documentElement.scrollHeight, document.body.offsetHeight, document.documentElement.offsetHeight, document.body.clientHeight, document.documentElement.clientHeight) / 100 * parseInt(_e24);
+          } else _e24.includes("vh") && (_e24 = window.innerHeight / 100 * parseInt(_e24));
+          t.scrollOffset = _e24;
         } else "mouseleaveWindow" === t.trigger && (t.trigger = "mouseleave", i = !0);
         if ("loadMore" === t.action) {
           var _window$bricksData$qu2;
@@ -1171,10 +1160,10 @@ function bricksPopups() {
     t && (setTimeout(function () {
       var e = bricksGetFocusables(t);
       if (e.length) {
-        var _t13 = e[0],
+        var _t15 = e[0],
           r = e[e.length - 1];
         e[0].focus(), document.addEventListener("keydown", function (e) {
-          "Tab" === e.key && (e.shiftKey ? document.activeElement === _t13 && (r.focus(), e.preventDefault()) : document.activeElement === r && (_t13.focus(), e.preventDefault()));
+          "Tab" === e.key && (e.shiftKey ? document.activeElement === _t15 && (r.focus(), e.preventDefault()) : document.activeElement === r && (_t15.focus(), e.preventDefault()));
         }, {
           once: !0
         });
@@ -1193,10 +1182,10 @@ function bricksScrollInteractions(e) {
       return "scroll" === e.trigger;
     }).forEach(function (t) {
       if (e >= t.scrollOffset && (bricksInteractionCallbackExecution(t.el, t), t !== null && t !== void 0 && t.runOnce)) {
-        var _e27 = window.bricksData.interactions.findIndex(function (e) {
+        var _e25 = window.bricksData.interactions.findIndex(function (e) {
           return e.id === t.id;
         });
-        -1 !== _e27 && window.bricksData.interactions.splice(_e27, 1);
+        -1 !== _e25 && window.bricksData.interactions.splice(_e25, 1);
       }
     });
   }, 50);
@@ -1261,8 +1250,8 @@ function bricksInteractionCallbackExecution(e, t) {
           s = t === null || t === void 0 ? void 0 : t.actionAttributeKey,
           a = t.hasOwnProperty("actionAttributeValue") ? t.actionAttributeValue : 0;
         if (_o2 && s) if ("storageAdd" === t.action) bricksStorageSetItem(_o2, s, a);else if ("storageRemove" === t.action) bricksStorageRemoveItem(_o2, s);else if ("storageCount" === t.action) {
-          var _e28 = bricksStorageGetItem(_o2, s);
-          _e28 = _e28 ? parseInt(_e28) : 0, bricksStorageSetItem(_o2, s, _e28 + 1);
+          var _e26 = bricksStorageGetItem(_o2, s);
+          _e26 = _e26 ? parseInt(_e26) : 0, bricksStorageSetItem(_o2, s, _e26 + 1);
         }
         break;
       case "startAnimation":
@@ -1292,13 +1281,13 @@ function bricksOpenPopup(e) {
   var r = t.dataset.popupId;
   if (bricksPopupCheckLimit(t)) {
     t.classList.remove("hide"), t.dataset.popupBodyScroll || document.body.classList.add("no-scroll");
-    var _e29 = new CustomEvent("bricks/popup/open", {
+    var _e27 = new CustomEvent("bricks/popup/open", {
       detail: {
         popupId: r,
         popupElement: t
       }
     });
-    document.dispatchEvent(_e29), bricksPopupCounter(t);
+    document.dispatchEvent(_e27), bricksPopupCounter(t);
   }
 }
 function bricksClosePopup(e) {
@@ -1365,10 +1354,10 @@ function bricksInteractionCheckConditions(e) {
       s = (e === null || e === void 0 ? void 0 : e.storageKey) || !1,
       a = !1;
     if (o && s) {
-      var _t14 = (e === null || e === void 0 ? void 0 : e.storageCompare) || "exists",
+      var _t16 = (e === null || e === void 0 ? void 0 : e.storageCompare) || "exists",
         _r9 = e === null || e === void 0 ? void 0 : e.storageCompareValue,
         n = bricksStorageGetItem(o, s);
-      switch (_t14) {
+      switch (_t16) {
         case "exists":
           a = null !== n;
           break;
@@ -1455,18 +1444,18 @@ function bricksNavNested() {
   var t = new MutationObserver(function (e) {
     e.forEach(function (e) {
       if ("attributes" === e.type && "class" === e.attributeName) {
-        var _t15 = e.target;
-        if (_t15.classList.contains("brx-open")) {
-          _t15.ariaHidden = !1;
-          var _e30 = _t15.querySelector(".brx-nav-nested-items button.brxe-toggle");
-          if (_e30) _e30.classList.add("is-active"), _e30.setAttribute("aria-expanded", !0), _e30.focus();else {
-            var _e31 = bricksGetFocusables(_t15);
-            _e31.length && _e31[0].focus();
+        var _t17 = e.target;
+        if (_t17.classList.contains("brx-open")) {
+          _t17.ariaHidden = !1;
+          var _e28 = _t17.querySelector(".brx-nav-nested-items button.brxe-toggle");
+          if (_e28) _e28.classList.add("is-active"), _e28.setAttribute("aria-expanded", !0), _e28.focus();else {
+            var _e29 = bricksGetFocusables(_t17);
+            _e29.length && _e29[0].focus();
           }
         } else {
-          var _e32 = _t15.dataset.toggleScriptId,
-            r = document.querySelector("button[data-script-id=\"".concat(_e32, "\"]"));
-          r && (r.setAttribute("aria-expanded", !1), r.classList.remove("is-active"), r.focus()), _t15.ariaHidden = !0;
+          var _e30 = _t17.dataset.toggleScriptId,
+            r = document.querySelector("button[data-script-id=\"".concat(_e30, "\"]"));
+          r && (r.setAttribute("aria-expanded", !1), r.classList.remove("is-active"), r.focus()), _t17.ariaHidden = !0;
         }
       }
     });
@@ -1489,24 +1478,24 @@ function bricksOffcanvas() {
   var t = new MutationObserver(function (e) {
     e.forEach(function (e) {
       if ("attributes" === e.type && "class" === e.attributeName) {
-        var _t16 = e.target;
-        if (_t16.classList.contains("brx-open")) {
-          if (_t16.ariaHidden = !1, "offset" === _t16.dataset.effect) {
-            var _e33 = _t16.querySelector(".brx-offcanvas-inner");
-            if (_e33) {
-              var _r10 = window.getComputedStyle(_e33).getPropertyValue("transition");
-              document.body.style.transition = _r10, _t16.classList.contains("top") ? (document.body.style.marginTop = "".concat(_e33.offsetHeight, "px"), document.body.style.overflowY = "hidden") : _t16.classList.contains("right") ? (document.body.style.marginLeft = "-".concat(_e33.offsetWidth, "px"), document.body.style.overflowX = "hidden") : _t16.classList.contains("bottom") ? (document.body.style.marginTop = "-".concat(_e33.offsetHeight, "px"), document.body.style.overflowY = "hidden") : _t16.classList.contains("left") && (document.body.style.marginLeft = "".concat(_e33.offsetWidth, "px"), document.body.style.overflowX = "hidden");
+        var _t18 = e.target;
+        if (_t18.classList.contains("brx-open")) {
+          if (_t18.ariaHidden = !1, "offset" === _t18.dataset.effect) {
+            var _e31 = _t18.querySelector(".brx-offcanvas-inner");
+            if (_e31) {
+              var _r10 = window.getComputedStyle(_e31).getPropertyValue("transition");
+              document.body.style.transition = _r10, _t18.classList.contains("top") ? (document.body.style.marginTop = "".concat(_e31.offsetHeight, "px"), document.body.style.overflowY = "hidden") : _t18.classList.contains("right") ? (document.body.style.marginLeft = "-".concat(_e31.offsetWidth, "px"), document.body.style.overflowX = "hidden") : _t18.classList.contains("bottom") ? (document.body.style.marginTop = "-".concat(_e31.offsetHeight, "px"), document.body.style.overflowY = "hidden") : _t18.classList.contains("left") && (document.body.style.marginLeft = "".concat(_e31.offsetWidth, "px"), document.body.style.overflowX = "hidden");
             }
           }
-          _t16.dataset.noScroll && document.body.classList.add("no-scroll");
-          var _e34 = bricksGetFocusables(_t16);
-          _e34.length && _e34[0].focus();
-          var r = _t16.querySelector(".brx-offcanvas-inner > button.brxe-toggle");
+          _t18.dataset.noScroll && document.body.classList.add("no-scroll");
+          var _e32 = bricksGetFocusables(_t18);
+          _e32.length && _e32[0].focus();
+          var r = _t18.querySelector(".brx-offcanvas-inner > button.brxe-toggle");
           r && (r.classList.add("is-active"), r.setAttribute("aria-expanded", !0));
         } else {
-          var _e35 = _t16.dataset.toggleScriptId,
-            _r11 = document.querySelector("button[data-script-id=\"".concat(_e35, "\"]"));
-          _r11 && (_r11.setAttribute("aria-expanded", !1), _r11.classList.remove("is-active"), _r11.focus()), _t16.ariaHidden = !0, "offset" === _t16.dataset.effect && (document.body.style = null), document.body.classList.remove("no-scroll");
+          var _e33 = _t18.dataset.toggleScriptId,
+            _r11 = document.querySelector("button[data-script-id=\"".concat(_e33, "\"]"));
+          _r11 && (_r11.setAttribute("aria-expanded", !1), _r11.classList.remove("is-active"), _r11.focus()), _t18.ariaHidden = !0, "offset" === _t18.dataset.effect && (document.body.style = null), document.body.classList.remove("no-scroll");
         }
       }
     });
@@ -1572,16 +1561,16 @@ function bricksDropdown() {
     });
   }), document.addEventListener("keydown", function (t) {
     if (("Enter" === t.key || " " === t.key) && document.activeElement) {
-      var _e36 = document.activeElement.hasAttribute("aria-expanded") && t.target.parentNode.classList.contains(".brx-dropdown-toggle");
-      _e36 && bricksDropdownToggleContent(_e36);
+      var _e34 = document.activeElement.hasAttribute("aria-expanded") && t.target.parentNode.classList.contains(".brx-dropdown-toggle");
+      _e34 && bricksDropdownToggleContent(_e34);
     }
     if ("Escape" === t.key && e.forEach(function (e) {
       bricksDropdownToggleContent(e, "close");
     }), "Tab" === t.key) {
-      var _e37 = document.activeElement.closest(".brxe-dropdown.open");
-      if (_e37 && !document.activeElement.nextSibling && (!document.activeElement.hasAttribute("aria-expanded") || "false" === document.activeElement.getAttribute("aria-expanded"))) {
-        var _t17 = _e37.querySelector(".brx-dropdown-toggle [aria-expanded]");
-        _t17 && bricksDropdownToggleContent(_t17, "close");
+      var _e35 = document.activeElement.closest(".brxe-dropdown.open");
+      if (_e35 && !document.activeElement.nextSibling && (!document.activeElement.hasAttribute("aria-expanded") || "false" === document.activeElement.getAttribute("aria-expanded"))) {
+        var _t19 = _e35.querySelector(".brx-dropdown-toggle [aria-expanded]");
+        _t19 && bricksDropdownToggleContent(_t19, "close");
       }
     }
   }), document.addEventListener("click", function (t) {
@@ -1595,8 +1584,8 @@ function bricksDropdown() {
 function bricksDropdownToggleContent(e) {
   var t = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "toggle";
   if (e) if ("toggle" === t) {
-    var _t18 = e.closest(".brxe-dropdown");
-    _t18 && _t18.classList.toggle("open");
+    var _t20 = e.closest(".brxe-dropdown");
+    _t20 && _t20.classList.toggle("open");
     var r = "true" === e.getAttribute("aria-expanded");
     e.setAttribute("aria-expanded", !r);
   } else if ("close" === t) {
@@ -1614,9 +1603,9 @@ function bricksGetFocusables(e) {
 var bricksIsFrontend, bricksScrollTimeout;
 document.addEventListener("DOMContentLoaded", function (e) {
   var t;
-  bricksIsFrontend = document.body.classList.contains("bricks-is-frontend"), bricksStickyHeader(), bricksNavSubmenuPositioning(), bricksOnePageNavigation(), bricksPrettify(), bricksSkipLinks(), bricksAccordion(), bricksAnimatedTyping(), bricksAudio(), bricksCountdown(), bricksCounter(), bricksIsotope(), bricksPricingTables(), bricksSplide(), bricksSwiper(), bricksVideo(), bricksLightbox(), bricksFacebookSDK(), setTimeout(function () {
+  bricksIsFrontend = document.body.classList.contains("bricks-is-frontend"), bricksStickyHeader(), bricksNavSubmenuPositioning(), bricksOnePageNavigation(), bricksPrettify(), bricksSkipLinks(), bricksPhotoswipe(), bricksAccordion(), bricksAnimatedTyping(), bricksAudio(), bricksCountdown(), bricksCounter(), bricksIsotope(), bricksPricingTables(), bricksSplide(), bricksSwiper(), bricksVideo(), bricksFacebookSDK(), setTimeout(function () {
     bricksLazyLoad(), bricksAnimation(), bricksDropdown(), bricksNavNested(), bricksOffcanvas(), bricksToggle(), bricksPieChart(), bricksProgressBar(), bricksForm(), bricksInitQueryLoopInstances(), bricksQueryPagination(), bricksInteractions(), bricksPopups();
-  }, 200), bricksSearchOverlay(), bricksNavMenu(), bricksAlertDismiss(), bricksTabs(), bricksVideoOverlayClickDetector(), bricksBackgroundVideoInit(), bricksPhotoswipe(), window.addEventListener("resize", function () {
+  }, 200), bricksSearchOverlay(), bricksNavMenu(), bricksAlertDismiss(), bricksTabs(), bricksVideoOverlayClickDetector(), bricksBackgroundVideoInit(), window.addEventListener("resize", function () {
     clearTimeout(t), bricksIsFrontend || (t = setTimeout(bricksSwiper, 250), t = setTimeout(bricksSplide, 250)), t = setTimeout(bricksDropdownContent, 250);
   });
 });

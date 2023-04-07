@@ -1,7 +1,7 @@
 import ApiRequest from "@/utils/ApiRequest";
 import { generateRandomString, initFields, setUrlParam, ucFirst } from "@/utils/data-fn";
 import apiFetch from "@wordpress/api-fetch";
-import {toggleAppLoader} from "@/utils/ui-fn";
+import { toggleAppLoader } from "@/utils/ui-fn";
 
 const Automation = new ApiRequest( 'automation' );
 /**
@@ -86,8 +86,8 @@ export default {
 		},
 		async duplicateAutomation( {commit}, id ) {
 			toggleAppLoader();
-			return Automation.duplicateOne( id ).then( ( payload ) => {
-				toggleAppLoader(false );
+			return Automation.duplicateOne( id ).then( payload => {
+				toggleAppLoader( false );
 				commit( 'automations/addAutomation', payload, {root: true} );
 				commit( 'generic/setNoticeData', {
 					header: 'Automation duplicated successfully',
