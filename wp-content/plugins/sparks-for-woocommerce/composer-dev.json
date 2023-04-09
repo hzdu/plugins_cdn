@@ -1,0 +1,56 @@
+{
+    "name": "codeinwp/sparks-for-woocommerce",
+    "type": "wordpress-plugin",
+    "license": "GPL-2.0+",
+    "autoload": {
+        "psr-4": {
+            "Codeinwp\\Sparks\\": "includes/"
+        },
+        "files": [
+            "includes/utilities/core-wrappers.php",
+            "includes/utilities/globals.php",
+            "includes/utilities/sdk-utils.php",
+            "vendor/codeinwp/themeisle-sdk/load.php"
+        ]
+    },
+    "autoload-dev": {
+        "files": [
+            "tests/php/phpstan/ModulesDynamicReturnTypeExtension.php"
+        ]
+    },
+    "authors": [
+        {
+            "name": "ThemeIsle Team",
+            "email": "friends@themeisle.com",
+            "homepage": "https://themeisle.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "codeinwp/themeisle-sdk": "^3.2"
+    },
+    "require-dev": {
+        "codeinwp/phpcs-ruleset": "dev-main",
+        "phpro/grumphp": "^1.8",
+        "phpmd/phpmd" : "@stable",
+        "phpunit/phpunit": "^9.5",
+        "sebastian/phpcpd": "^6.0",
+        "phpstan/phpstan": "1.4.10",
+        "php-stubs/woocommerce-stubs": "6.0.0",
+        "szepeviktor/phpstan-wordpress": "1.0.3",
+        "phpstan/extension-installer": "1.1.0"
+    },
+    "scripts": {
+        "grumphp": "./vendor/bin/grumphp run"
+    },
+    "config": {
+        "platform": {
+            "php": "8.0"
+        },
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true,
+            "phpro/grumphp": true,
+            "phpstan/extension-installer": true
+        }
+    }
+}

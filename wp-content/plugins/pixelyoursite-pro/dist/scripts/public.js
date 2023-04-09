@@ -1564,7 +1564,7 @@ if (!String.prototype.trim) {
                                     } else {
                                         return false;
                                     }
-                                } else if ( categoryCookie === CS_Data.cs_script_cat.gads && pixel == 'gads' ) {
+                                } else if ( categoryCookie === CS_Data.cs_script_cat.gads && pixel == 'google_ads' ) {
                                     if ( cs_cookie_val == 'yes' ) {
                                         return true;
                                     } else {
@@ -4706,23 +4706,17 @@ if (!String.prototype.trim) {
          */
         var consentApi = window.consentApi;
         if (consentApi && options.gdpr.real_cookie_banner_integration_enabled) {
-            if (options.automatic.enable_youtube
-
-            ) {
+            if (options.automatic.enable_youtube && options.enable_event_video && options.enable_automatic_events) {
                 window.consentApi.consent("http", "CONSENT", ".youtube.com").then(Utils.initYouTubeAPI);
             }
-            if (options.automatic.enable_vimeo
-
-            ) {
+            if (options.automatic.enable_vimeo && options.enable_event_video && options.enable_automatic_events) {
                 window.consentApi.consent("http", "player", ".vimeo.com").then(Utils.initVimeoAPI);
             }
         }else{
-            if (options.automatic.enable_youtube
-            ) {
+            if (options.automatic.enable_youtube && options.enable_event_video && options.enable_automatic_events) {
                 Utils.initYouTubeAPI();
             }
-            if (options.automatic.enable_vimeo
-            ) {
+            if (options.automatic.enable_vimeo && options.enable_event_video && options.enable_automatic_events) {
                 Utils.initVimeoAPI();
             }
         }

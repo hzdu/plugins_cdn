@@ -1,3 +1,17 @@
+##### [Version 1.1.3](https://github.com/Codeinwp/sparks-for-woocommerce/compare/v1.1.2...v1.1.3) (2023-03-21)
+
+- Fix: Comparison sticky appears even on comparison page
+- Fix: Renaming the custom Product Tab does not change its name on the product itself
+- Fix: Two scrollbars present in the quick view with WC 7.2.1
+- Fix: 'View cart' color is inherited from table text color in the comparison page
+- Fix: Otter style isn't working in the Thank you pages
+- Fix: Order preview feature of custom thank you page on admin editor
+- Themeisle SDK version updated to v3.2.39
+
+##### [Version 1.1.2](https://github.com/Codeinwp/sparks-for-woocommerce/compare/v1.1.1...v1.1.2) (2023-02-21)
+
+- [Fix] License activation issue has been fixed.
+
 ##### [Version 1.1.1](https://github.com/Codeinwp/sparks-for-woocommerce/compare/v1.1.0...v1.1.1) (2023-02-15)
 
 - [Fix] Polylang & other third-party plugins compatibility issue on WP Admin Product Terms screen.

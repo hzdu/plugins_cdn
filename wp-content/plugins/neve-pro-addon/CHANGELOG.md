@@ -1,3 +1,14 @@
+##### [Version 2.5.6](https://github.com/Codeinwp/neve-pro-addon/compare/v2.5.5...v2.5.6) (2023-04-06)
+
+- [Feat] Dynamic Icon Selection and Optional Button for HFG Advanced Search Components
+- [Fix] The color for the copyright component is not updating in the customizer
+- [Fix] Search form inherits the post card min-height on the search-no-result page
+- [Fix] Primary menu Submenu Icon size is different in customizer vs. frontend
+- [Fix] The customizer is not opening with older Neve versions (Neve v3.1 or Neve v3.2 etc.)
+- [Fix] Sticky header remains on top of the lightbox of image
+- [Fix] Social icons in footer
+- Improve code readability
+
 ##### [Version 2.5.5](https://github.com/Codeinwp/neve-pro-addon/compare/v2.5.4...v2.5.5) (2023-03-22)
 
 - [Fix] Infinite scroll on the shop page
