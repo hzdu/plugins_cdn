@@ -223,9 +223,7 @@ jQuery(document).ready(function ($) {
 
     $(document).on('click', '.reviews_tab', function () {
         $comments = $('#' + comments);
-        if (($('.wcpr-filter-container').length > 0 && $comments.find('.wcpr-filter-container').length === 0) || ($('.wcpr-overall-rating-and-rating-count').length > 0 && $comments.find('.wcpr-overall-rating-and-rating-count').length === 0)) {
-            $comments.prepend($('.wcpr-filter-container')).prepend($('.wcpr-overall-rating-and-rating-count')).prepend($('.woocommerce-Reviews-title').eq(0));
-        }
+        append_filters_and_overall_rating();
     });
 
     function handle_ajax_pagination_and_loadmore() {
@@ -258,7 +256,6 @@ function wcpr_pagination_basic($comments, $pagination_container) {
         if (ajax_pagination_running) {
             return false;
         }
-        console.log('ajax_pagination_running')
         e.preventDefault();
         e.stopPropagation();
         let $container = woocommerce_photo_reviews_params.display === '1' ? $comments.find('.wcpr-grid') : $comments.find(woocommerce_photo_reviews_params.container);
