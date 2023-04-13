@@ -51,9 +51,133 @@
   bottom: -10px;
 }
 
-/*
-  * Arrow
-  */
+.brxa--3dx-r .brxa-wrap {
+  perspective: 80px;
+}
+.brxa--3dx-r .brxa-inner {
+  transition: transform 0.15s cubic-bezier(0.645, 0.045, 0.355, 1), background-color 0s 0.1s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+.brxa--3dx-r .brxa-inner::before, .brxa--3dx-r .brxa-inner::after {
+  transition: transform 0s 0.1s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+.brxa--3dx-r.is-active .brxa-inner {
+  background-color: transparent !important;
+  transform: rotateY(-180deg);
+}
+.brxa--3dx-r.is-active .brxa-inner::before {
+  transform: translate3d(0, 10px, 0) rotate(45deg);
+}
+.brxa--3dx-r.is-active .brxa-inner::after {
+  transform: translate3d(0, -10px, 0) rotate(-45deg);
+}
+
+.brxa--3dx .brxa-wrap {
+  perspective: 80px;
+}
+.brxa--3dx .brxa-inner {
+  transition: transform 0.15s cubic-bezier(0.645, 0.045, 0.355, 1), background-color 0s 0.1s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+.brxa--3dx .brxa-inner::before, .brxa--3dx .brxa-inner::after {
+  transition: transform 0s 0.1s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+.brxa--3dx.is-active .brxa-inner {
+  background-color: transparent !important;
+  transform: rotateY(180deg);
+}
+.brxa--3dx.is-active .brxa-inner::before {
+  transform: translate3d(0, 10px, 0) rotate(45deg);
+}
+.brxa--3dx.is-active .brxa-inner::after {
+  transform: translate3d(0, -10px, 0) rotate(-45deg);
+}
+
+.brxa--3dy-r .brxa-wrap {
+  perspective: 80px;
+}
+.brxa--3dy-r .brxa-inner {
+  transition: transform 0.15s cubic-bezier(0.645, 0.045, 0.355, 1), background-color 0s 0.1s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+.brxa--3dy-r .brxa-inner::before, .brxa--3dy-r .brxa-inner::after {
+  transition: transform 0s 0.1s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+.brxa--3dy-r.is-active .brxa-inner {
+  background-color: transparent !important;
+  transform: rotateX(180deg);
+}
+.brxa--3dy-r.is-active .brxa-inner::before {
+  transform: translate3d(0, 10px, 0) rotate(45deg);
+}
+.brxa--3dy-r.is-active .brxa-inner::after {
+  transform: translate3d(0, -10px, 0) rotate(-45deg);
+}
+
+.brxa--3dy .brxa-wrap {
+  perspective: 80px;
+}
+.brxa--3dy .brxa-inner {
+  transition: transform 0.15s cubic-bezier(0.645, 0.045, 0.355, 1), background-color 0s 0.1s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+.brxa--3dy .brxa-inner::before, .brxa--3dy .brxa-inner::after {
+  transition: transform 0s 0.1s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+.brxa--3dy.is-active .brxa-inner {
+  background-color: transparent !important;
+  transform: rotateX(-180deg);
+}
+.brxa--3dy.is-active .brxa-inner::before {
+  transform: translate3d(0, 10px, 0) rotate(45deg);
+}
+.brxa--3dy.is-active .brxa-inner::after {
+  transform: translate3d(0, -10px, 0) rotate(-45deg);
+}
+
+.brxa--3dxy-r .brxa-wrap {
+  perspective: 80px;
+}
+.brxa--3dxy-r .brxa-inner {
+  transition: transform 0.15s cubic-bezier(0.645, 0.045, 0.355, 1), background-color 0s 0.1s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+.brxa--3dxy-r .brxa-inner::before, .brxa--3dxy-r .brxa-inner::after {
+  transition: transform 0s 0.1s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+.brxa--3dxy-r.is-active .brxa-inner {
+  background-color: transparent !important;
+  transform: rotateX(180deg) rotateY(180deg) rotateZ(-180deg);
+}
+.brxa--3dxy-r.is-active .brxa-inner::before {
+  transform: translate3d(0, 10px, 0) rotate(45deg);
+}
+.brxa--3dxy-r.is-active .brxa-inner::after {
+  transform: translate3d(0, -10px, 0) rotate(-45deg);
+}
+
+.brxa--3dxy .brxa-wrap {
+  perspective: 80px;
+}
+.brxa--3dxy .brxa-inner {
+  transition: transform 0.15s cubic-bezier(0.645, 0.045, 0.355, 1), background-color 0s 0.1s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+.brxa--3dxy .brxa-inner::before, .brxa--3dxy .brxa-inner::after {
+  transition: transform 0s 0.1s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+.brxa--3dxy.is-active .brxa-inner {
+  background-color: transparent !important;
+  transform: rotateX(180deg) rotateY(180deg);
+}
+.brxa--3dxy.is-active .brxa-inner::before {
+  transform: translate3d(0, 10px, 0) rotate(45deg);
+}
+.brxa--3dxy.is-active .brxa-inner::after {
+  transform: translate3d(0, -10px, 0) rotate(-45deg);
+}
+
+.brxa--arrow-r.is-active .brxa-inner::before {
+  transform: translate3d(8px, 0, 0) rotate(45deg) scale(0.7, 1);
+}
+.brxa--arrow-r.is-active .brxa-inner::after {
+  transform: translate3d(8px, 0, 0) rotate(-45deg) scale(0.7, 1);
+}
+
 .brxa--arrow.is-active .brxa-inner::before {
   transform: translate3d(-8px, 0, 0) rotate(-45deg) scale(0.7, 1);
 }
@@ -61,14 +185,552 @@
   transform: translate3d(-8px, 0, 0) rotate(45deg) scale(0.7, 1);
 }
 
-/*
-  * Arrow Right
-  */
-.brxa--arrow-r.is-active .brxa-inner::before {
+.brxa--arrowalt-r .brxa-inner::before {
+  transition: top 0.1s 0.1s ease, transform 0.1s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+.brxa--arrowalt-r .brxa-inner::after {
+  transition: bottom 0.1s 0.1s ease, transform 0.1s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+.brxa--arrowalt-r.is-active .brxa-inner::before {
+  top: 0;
+  transform: translate3d(8px, -10px, 0) rotate(45deg) scale(0.7, 1);
+  transition: top 0.1s ease, transform 0.1s 0.1s cubic-bezier(0.895, 0.03, 0.685, 0.22);
+}
+.brxa--arrowalt-r.is-active .brxa-inner::after {
+  bottom: 0;
+  transform: translate3d(8px, 10px, 0) rotate(-45deg) scale(0.7, 1);
+  transition: bottom 0.1s ease, transform 0.1s 0.1s cubic-bezier(0.895, 0.03, 0.685, 0.22);
+}
+
+.brxa--arrowalt .brxa-inner::before {
+  transition: top 0.1s 0.1s ease, transform 0.1s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+.brxa--arrowalt .brxa-inner::after {
+  transition: bottom 0.1s 0.1s ease, transform 0.1s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+.brxa--arrowalt.is-active .brxa-inner::before {
+  top: 0;
+  transform: translate3d(-8px, -10px, 0) rotate(-45deg) scale(0.7, 1);
+  transition: top 0.1s ease, transform 0.1s 0.1s cubic-bezier(0.895, 0.03, 0.685, 0.22);
+}
+.brxa--arrowalt.is-active .brxa-inner::after {
+  bottom: 0;
+  transform: translate3d(-8px, 10px, 0) rotate(45deg) scale(0.7, 1);
+  transition: bottom 0.1s ease, transform 0.1s 0.1s cubic-bezier(0.895, 0.03, 0.685, 0.22);
+}
+
+.brxa--arrowturn-r.is-active .brxa-inner {
+  transform: rotate(-180deg);
+}
+.brxa--arrowturn-r.is-active .brxa-inner::before {
+  transform: translate3d(-8px, 0, 0) rotate(-45deg) scale(0.7, 1);
+}
+.brxa--arrowturn-r.is-active .brxa-inner::after {
+  transform: translate3d(-8px, 0, 0) rotate(45deg) scale(0.7, 1);
+}
+
+.brxa--arrowturn.is-active .brxa-inner {
+  transform: rotate(-180deg);
+}
+.brxa--arrowturn.is-active .brxa-inner::before {
   transform: translate3d(8px, 0, 0) rotate(45deg) scale(0.7, 1);
 }
-.brxa--arrow-r.is-active .brxa-inner::after {
+.brxa--arrowturn.is-active .brxa-inner::after {
   transform: translate3d(8px, 0, 0) rotate(-45deg) scale(0.7, 1);
+}
+
+.brxa--boring .brxa-inner, .brxa--boring .brxa-inner::before, .brxa--boring .brxa-inner::after {
+  transition-property: none;
+}
+.brxa--boring.is-active .brxa-inner {
+  transform: rotate(45deg);
+}
+.brxa--boring.is-active .brxa-inner::before {
+  top: 0;
+  opacity: 0;
+}
+.brxa--boring.is-active .brxa-inner::after {
+  bottom: 0;
+  transform: rotate(-90deg);
+}
+
+.brxa--collapse-r .brxa-inner {
+  top: auto;
+  bottom: 0;
+  transition-duration: 0.13s;
+  transition-delay: 0.13s;
+  transition-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+}
+.brxa--collapse-r .brxa-inner::after {
+  top: -20px;
+  transition: top 0.2s 0.2s cubic-bezier(0.33333, 0.66667, 0.66667, 1), opacity 0.1s linear;
+}
+.brxa--collapse-r .brxa-inner::before {
+  transition: top 0.12s 0.2s cubic-bezier(0.33333, 0.66667, 0.66667, 1), transform 0.13s cubic-bezier(0.55, 0.055, 0.675, 0.19);
+}
+.brxa--collapse-r.is-active .brxa-inner {
+  transform: translate3d(0, -10px, 0) rotate(45deg);
+  transition-delay: 0.22s;
+  transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+.brxa--collapse-r.is-active .brxa-inner::after {
+  top: 0;
+  opacity: 0;
+  transition: top 0.2s cubic-bezier(0.33333, 0, 0.66667, 0.33333), opacity 0.1s 0.22s linear;
+}
+.brxa--collapse-r.is-active .brxa-inner::before {
+  top: 0;
+  transform: rotate(90deg);
+  transition: top 0.1s 0.16s cubic-bezier(0.33333, 0, 0.66667, 0.33333), transform 0.13s 0.25s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+.brxa--collapse .brxa-inner {
+  top: auto;
+  bottom: 0;
+  transition-duration: 0.13s;
+  transition-delay: 0.13s;
+  transition-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+}
+.brxa--collapse .brxa-inner::after {
+  top: -20px;
+  transition: top 0.2s 0.2s cubic-bezier(0.33333, 0.66667, 0.66667, 1), opacity 0.1s linear;
+}
+.brxa--collapse .brxa-inner::before {
+  transition: top 0.12s 0.2s cubic-bezier(0.33333, 0.66667, 0.66667, 1), transform 0.13s cubic-bezier(0.55, 0.055, 0.675, 0.19);
+}
+.brxa--collapse.is-active .brxa-inner {
+  transform: translate3d(0, -10px, 0) rotate(-45deg);
+  transition-delay: 0.22s;
+  transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+.brxa--collapse.is-active .brxa-inner::after {
+  top: 0;
+  opacity: 0;
+  transition: top 0.2s cubic-bezier(0.33333, 0, 0.66667, 0.33333), opacity 0.1s 0.22s linear;
+}
+.brxa--collapse.is-active .brxa-inner::before {
+  top: 0;
+  transform: rotate(-90deg);
+  transition: top 0.1s 0.16s cubic-bezier(0.33333, 0, 0.66667, 0.33333), transform 0.13s 0.25s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+.brxa--elastic-r .brxa-inner {
+  top: 2px;
+  transition-duration: 0.275s;
+  transition-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+.brxa--elastic-r .brxa-inner::before {
+  top: 10px;
+  transition: opacity 0.125s 0.275s ease;
+}
+.brxa--elastic-r .brxa-inner::after {
+  top: 20px;
+  transition: transform 0.275s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+.brxa--elastic-r.is-active .brxa-inner {
+  transform: translate3d(0, 10px, 0) rotate(-135deg);
+  transition-delay: 0.075s;
+}
+.brxa--elastic-r.is-active .brxa-inner::before {
+  transition-delay: 0s;
+  opacity: 0;
+}
+.brxa--elastic-r.is-active .brxa-inner::after {
+  transform: translate3d(0, -20px, 0) rotate(270deg);
+  transition-delay: 0.075s;
+}
+
+.brxa--elastic .brxa-inner {
+  top: 2px;
+  transition-duration: 0.275s;
+  transition-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+.brxa--elastic .brxa-inner::before {
+  top: 10px;
+  transition: opacity 0.125s 0.275s ease;
+}
+.brxa--elastic .brxa-inner::after {
+  top: 20px;
+  transition: transform 0.275s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+.brxa--elastic.is-active .brxa-inner {
+  transform: translate3d(0, 10px, 0) rotate(135deg);
+  transition-delay: 0.075s;
+}
+.brxa--elastic.is-active .brxa-inner::before {
+  transition-delay: 0s;
+  opacity: 0;
+}
+.brxa--elastic.is-active .brxa-inner::after {
+  transform: translate3d(0, -20px, 0) rotate(-270deg);
+  transition-delay: 0.075s;
+}
+
+.brxa--emphatic-r .brxa-inner {
+  transition: background-color 0.125s 0.175s ease-in;
+}
+.brxa--emphatic-r .brxa-inner::before {
+  left: 0;
+  transition: transform 0.125s cubic-bezier(0.6, 0.04, 0.98, 0.335), top 0.05s 0.125s linear, left 0.125s 0.175s ease-in;
+}
+.brxa--emphatic-r .brxa-inner::after {
+  top: 10px;
+  right: 0;
+  transition: transform 0.125s cubic-bezier(0.6, 0.04, 0.98, 0.335), top 0.05s 0.125s linear, right 0.125s 0.175s ease-in;
+}
+.brxa--emphatic-r.is-active .brxa-inner {
+  transition-delay: 0s;
+  transition-timing-function: ease-out;
+  background-color: transparent !important;
+}
+.brxa--emphatic-r.is-active .brxa-inner::before {
+  left: -80px;
+  top: 80px;
+  transform: translate3d(80px, -80px, 0) rotate(-45deg);
+  transition: left 0.125s ease-out, top 0.05s 0.125s linear, transform 0.125s 0.175s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+.brxa--emphatic-r.is-active .brxa-inner::after {
+  right: -80px;
+  top: 80px;
+  transform: translate3d(-80px, -80px, 0) rotate(45deg);
+  transition: right 0.125s ease-out, top 0.05s 0.125s linear, transform 0.125s 0.175s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+.brxa--emphatic .brxa-inner {
+  transition: background-color 0.125s 0.175s ease-in;
+}
+.brxa--emphatic .brxa-inner::before {
+  left: 0;
+  transition: transform 0.125s cubic-bezier(0.6, 0.04, 0.98, 0.335), top 0.05s 0.125s linear, left 0.125s 0.175s ease-in;
+}
+.brxa--emphatic .brxa-inner::after {
+  top: 10px;
+  right: 0;
+  transition: transform 0.125s cubic-bezier(0.6, 0.04, 0.98, 0.335), top 0.05s 0.125s linear, right 0.125s 0.175s ease-in;
+}
+.brxa--emphatic.is-active .brxa-inner {
+  transition-delay: 0s;
+  transition-timing-function: ease-out;
+  background-color: transparent !important;
+}
+.brxa--emphatic.is-active .brxa-inner::before {
+  left: -80px;
+  top: -80px;
+  transform: translate3d(80px, 80px, 0) rotate(45deg);
+  transition: left 0.125s ease-out, top 0.05s 0.125s linear, transform 0.125s 0.175s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+.brxa--emphatic.is-active .brxa-inner::after {
+  right: -80px;
+  top: -80px;
+  transform: translate3d(-80px, 80px, 0) rotate(-45deg);
+  transition: right 0.125s ease-out, top 0.05s 0.125s linear, transform 0.125s 0.175s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+.brxa--minus .brxa-inner::before, .brxa--minus .brxa-inner::after {
+  transition: bottom 0.08s 0s ease-out, top 0.08s 0s ease-out, opacity 0s linear;
+}
+.brxa--minus.is-active .brxa-inner::before, .brxa--minus.is-active .brxa-inner::after {
+  opacity: 0;
+  transition: bottom 0.08s ease-out, top 0.08s ease-out, opacity 0s 0.08s linear;
+}
+.brxa--minus.is-active .brxa-inner::before {
+  top: 0;
+}
+.brxa--minus.is-active .brxa-inner::after {
+  bottom: 0;
+}
+
+.brxa--slider-r .brxa-inner {
+  top: 2px;
+}
+.brxa--slider-r .brxa-inner::before {
+  top: 10px;
+  transition-property: transform, opacity;
+  transition-timing-function: ease;
+  transition-duration: 0.15s;
+}
+.brxa--slider-r .brxa-inner::after {
+  top: 20px;
+}
+.brxa--slider-r.is-active .brxa-inner {
+  transform: translate3d(0, 10px, 0) rotate(-45deg);
+}
+.brxa--slider-r.is-active .brxa-inner::before {
+  transform: rotate(45deg) translate3d(5.7142857143px, -6px, 0);
+  opacity: 0;
+}
+.brxa--slider-r.is-active .brxa-inner::after {
+  transform: translate3d(0, -20px, 0) rotate(90deg);
+}
+
+.brxa--slider .brxa-inner {
+  top: 2px;
+}
+.brxa--slider .brxa-inner::before {
+  top: 10px;
+  transition-property: transform, opacity;
+  transition-timing-function: ease;
+  transition-duration: 0.15s;
+}
+.brxa--slider .brxa-inner::after {
+  top: 20px;
+}
+.brxa--slider.is-active .brxa-inner {
+  transform: translate3d(0, 10px, 0) rotate(45deg);
+}
+.brxa--slider.is-active .brxa-inner::before {
+  transform: rotate(-45deg) translate3d(-5.7142857143px, -6px, 0);
+  opacity: 0;
+}
+.brxa--slider.is-active .brxa-inner::after {
+  transform: translate3d(0, -20px, 0) rotate(-90deg);
+}
+
+.brxa--spin-r .brxa-inner {
+  transition-duration: 0.22s;
+  transition-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+}
+.brxa--spin-r .brxa-inner::before {
+  transition: top 0.1s 0.25s ease-in, opacity 0.1s ease-in;
+}
+.brxa--spin-r .brxa-inner::after {
+  transition: bottom 0.1s 0.25s ease-in, transform 0.22s cubic-bezier(0.55, 0.055, 0.675, 0.19);
+}
+.brxa--spin-r.is-active .brxa-inner {
+  transform: rotate(-225deg);
+  transition-delay: 0.12s;
+  transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+.brxa--spin-r.is-active .brxa-inner::before {
+  top: 0;
+  opacity: 0;
+  transition: top 0.1s ease-out, opacity 0.1s 0.12s ease-out;
+}
+.brxa--spin-r.is-active .brxa-inner::after {
+  bottom: 0;
+  transform: rotate(90deg);
+  transition: bottom 0.1s ease-out, transform 0.22s 0.12s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+.brxa--spin .brxa-inner {
+  transition-duration: 0.22s;
+  transition-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+}
+.brxa--spin .brxa-inner::before {
+  transition: top 0.1s 0.25s ease-in, opacity 0.1s ease-in;
+}
+.brxa--spin .brxa-inner::after {
+  transition: bottom 0.1s 0.25s ease-in, transform 0.22s cubic-bezier(0.55, 0.055, 0.675, 0.19);
+}
+.brxa--spin.is-active .brxa-inner {
+  transform: rotate(225deg);
+  transition-delay: 0.12s;
+  transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+.brxa--spin.is-active .brxa-inner::before {
+  top: 0;
+  opacity: 0;
+  transition: top 0.1s ease-out, opacity 0.1s 0.12s ease-out;
+}
+.brxa--spin.is-active .brxa-inner::after {
+  bottom: 0;
+  transform: rotate(-90deg);
+  transition: bottom 0.1s ease-out, transform 0.22s 0.12s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+.brxa--spring-r .brxa-inner {
+  top: auto;
+  bottom: 0;
+  transition-duration: 0.13s;
+  transition-delay: 0s;
+  transition-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+}
+.brxa--spring-r .brxa-inner::after {
+  top: -20px;
+  transition: top 0.2s 0.2s cubic-bezier(0.33333, 0.66667, 0.66667, 1), opacity 0s linear;
+}
+.brxa--spring-r .brxa-inner::before {
+  transition: top 0.1s 0.2s cubic-bezier(0.33333, 0.66667, 0.66667, 1), transform 0.13s cubic-bezier(0.55, 0.055, 0.675, 0.19);
+}
+.brxa--spring-r.is-active .brxa-inner {
+  transform: translate3d(0, -10px, 0) rotate(-45deg);
+  transition-delay: 0.22s;
+  transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+.brxa--spring-r.is-active .brxa-inner::after {
+  top: 0;
+  opacity: 0;
+  transition: top 0.2s cubic-bezier(0.33333, 0, 0.66667, 0.33333), opacity 0s 0.22s linear;
+}
+.brxa--spring-r.is-active .brxa-inner::before {
+  top: 0;
+  transform: rotate(90deg);
+  transition: top 0.1s 0.15s cubic-bezier(0.33333, 0, 0.66667, 0.33333), transform 0.13s 0.22s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+.brxa--spring .brxa-inner {
+  top: 2px;
+  transition: background-color 0s 0.13s linear;
+}
+.brxa--spring .brxa-inner::before {
+  top: 10px;
+  transition: top 0.1s 0.2s cubic-bezier(0.33333, 0.66667, 0.66667, 1), transform 0.13s cubic-bezier(0.55, 0.055, 0.675, 0.19);
+}
+.brxa--spring .brxa-inner::after {
+  top: 20px;
+  transition: top 0.2s 0.2s cubic-bezier(0.33333, 0.66667, 0.66667, 1), transform 0.13s cubic-bezier(0.55, 0.055, 0.675, 0.19);
+}
+.brxa--spring.is-active .brxa-inner {
+  transition-delay: 0.22s;
+  background-color: transparent !important;
+}
+.brxa--spring.is-active .brxa-inner::before {
+  top: 0;
+  transition: top 0.1s 0.15s cubic-bezier(0.33333, 0, 0.66667, 0.33333), transform 0.13s 0.22s cubic-bezier(0.215, 0.61, 0.355, 1);
+  transform: translate3d(0, 10px, 0) rotate(45deg);
+}
+.brxa--spring.is-active .brxa-inner::after {
+  top: 0;
+  transition: top 0.2s cubic-bezier(0.33333, 0, 0.66667, 0.33333), transform 0.13s 0.22s cubic-bezier(0.215, 0.61, 0.355, 1);
+  transform: translate3d(0, 10px, 0) rotate(-45deg);
+}
+
+.brxa--stand-r .brxa-inner {
+  transition: transform 0.075s 0.15s cubic-bezier(0.55, 0.055, 0.675, 0.19), background-color 0s 0.075s linear;
+}
+.brxa--stand-r .brxa-inner::before {
+  transition: top 0.075s 0.075s ease-in, transform 0.075s 0s cubic-bezier(0.55, 0.055, 0.675, 0.19);
+}
+.brxa--stand-r .brxa-inner::after {
+  transition: bottom 0.075s 0.075s ease-in, transform 0.075s 0s cubic-bezier(0.55, 0.055, 0.675, 0.19);
+}
+.brxa--stand-r.is-active .brxa-inner {
+  transform: rotate(-90deg);
+  background-color: transparent !important;
+  transition: transform 0.075s 0s cubic-bezier(0.215, 0.61, 0.355, 1), background-color 0s 0.15s linear;
+}
+.brxa--stand-r.is-active .brxa-inner::before {
+  top: 0;
+  transform: rotate(-45deg);
+  transition: top 0.075s 0.1s ease-out, transform 0.075s 0.15s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+.brxa--stand-r.is-active .brxa-inner::after {
+  bottom: 0;
+  transform: rotate(45deg);
+  transition: bottom 0.075s 0.1s ease-out, transform 0.075s 0.15s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+.brxa--stand .brxa-inner {
+  transition: transform 0.075s 0.15s cubic-bezier(0.55, 0.055, 0.675, 0.19), background-color 0s 0.075s linear;
+}
+.brxa--stand .brxa-inner::before {
+  transition: top 0.075s 0.075s ease-in, transform 0.075s 0s cubic-bezier(0.55, 0.055, 0.675, 0.19);
+}
+.brxa--stand .brxa-inner::after {
+  transition: bottom 0.075s 0.075s ease-in, transform 0.075s 0s cubic-bezier(0.55, 0.055, 0.675, 0.19);
+}
+.brxa--stand.is-active .brxa-inner {
+  transform: rotate(90deg);
+  background-color: transparent !important;
+  transition: transform 0.075s 0s cubic-bezier(0.215, 0.61, 0.355, 1), background-color 0s 0.15s linear;
+}
+.brxa--stand.is-active .brxa-inner::before {
+  top: 0;
+  transform: rotate(-45deg);
+  transition: top 0.075s 0.1s ease-out, transform 0.075s 0.15s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+.brxa--stand.is-active .brxa-inner::after {
+  bottom: 0;
+  transform: rotate(45deg);
+  transition: bottom 0.075s 0.1s ease-out, transform 0.075s 0.15s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+.brxa--squeeze .brxa-inner {
+  transition-duration: 0.075s;
+  transition-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+}
+.brxa--squeeze .brxa-inner::before {
+  transition: top 0.075s 0.12s ease, opacity 0.075s ease;
+}
+.brxa--squeeze .brxa-inner::after {
+  transition: bottom 0.075s 0.12s ease, transform 0.075s cubic-bezier(0.55, 0.055, 0.675, 0.19);
+}
+.brxa--squeeze.is-active .brxa-inner {
+  transform: rotate(45deg);
+  transition-delay: 0.12s;
+  transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+.brxa--squeeze.is-active .brxa-inner::before {
+  top: 0;
+  opacity: 0;
+  transition: top 0.075s ease, opacity 0.075s 0.12s ease;
+}
+.brxa--squeeze.is-active .brxa-inner::after {
+  bottom: 0;
+  transform: rotate(-90deg);
+  transition: bottom 0.075s ease, transform 0.075s 0.12s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+.brxa--vortex-r .brxa-inner {
+  transition-duration: 0.2s;
+  transition-timing-function: cubic-bezier(0.19, 1, 0.22, 1);
+}
+.brxa--vortex-r .brxa-inner::before, .brxa--vortex-r .brxa-inner::after {
+  transition-duration: 0s;
+  transition-delay: 0.1s;
+  transition-timing-function: linear;
+}
+.brxa--vortex-r .brxa-inner::before {
+  transition-property: top, opacity;
+}
+.brxa--vortex-r .brxa-inner::after {
+  transition-property: bottom, transform;
+}
+.brxa--vortex-r.is-active .brxa-inner {
+  transform: rotate(-765deg);
+  transition-timing-function: cubic-bezier(0.19, 1, 0.22, 1);
+}
+.brxa--vortex-r.is-active .brxa-inner::before, .brxa--vortex-r.is-active .brxa-inner::after {
+  transition-delay: 0s;
+}
+.brxa--vortex-r.is-active .brxa-inner::before {
+  top: 0;
+  opacity: 0;
+}
+.brxa--vortex-r.is-active .brxa-inner::after {
+  bottom: 0;
+  transform: rotate(-90deg);
+}
+
+.brxa--vortex .brxa-inner {
+  transition-duration: 0.2s;
+  transition-timing-function: cubic-bezier(0.19, 1, 0.22, 1);
+}
+.brxa--vortex .brxa-inner::before, .brxa--vortex .brxa-inner::after {
+  transition-duration: 0s;
+  transition-delay: 0.1s;
+  transition-timing-function: linear;
+}
+.brxa--vortex .brxa-inner::before {
+  transition-property: top, opacity;
+}
+.brxa--vortex .brxa-inner::after {
+  transition-property: bottom, transform;
+}
+.brxa--vortex.is-active .brxa-inner {
+  transform: rotate(765deg);
+  transition-timing-function: cubic-bezier(0.19, 1, 0.22, 1);
+}
+.brxa--vortex.is-active .brxa-inner::before, .brxa--vortex.is-active .brxa-inner::after {
+  transition-delay: 0s;
+}
+.brxa--vortex.is-active .brxa-inner::before {
+  top: 0;
+  opacity: 0;
+}
+.brxa--vortex.is-active .brxa-inner::after {
+  bottom: 0;
+  transform: rotate(90deg);
 }
 
 .brxe-toggle {

@@ -1,10 +1,41 @@
 .brxe-dropdown {
-  position: relative !important;
+  position: relative;
   display: inline-flex;
   flex-direction: column;
 }
-.brxe-dropdown.full .brx-dropdown-content {
-  min-width: 100vw;
+.brxe-dropdown.caret .brx-dropdown-content::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translate(0, -100%);
+  width: 0;
+  height: 0;
+  border: 0 solid transparent;
+  border-bottom-color: #fff;
+}
+.brxe-dropdown.ml {
+  position: static;
+  width: 100%;
+  overflow: hidden;
+}
+.brxe-dropdown.ml > .brx-dropdown-toggle {
+  width: 100%;
+}
+.brxe-dropdown.ml > .brx-dropdown-content {
+  position: absolute !important;
+  display: flex !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  transform: translateX(100%);
+  transition: transform 0.2s;
+}
+.brxe-dropdown.ml.open > .brx-dropdown-content {
+  transform: translateX(0);
 }
 .brxe-dropdown.brx-draggable:empty {
   min-height: 0;
@@ -12,7 +43,7 @@
 .brxe-dropdown.brx-draggable:empty:not(.editing) {
   outline: none;
 }
-.brxe-dropdown:hover > .brx-dropdown-content, .brxe-dropdown.open > .brx-dropdown-content, .brxe-dropdown.is-active-element > .brx-dropdown-content {
+.brxe-dropdown:hover:not([data-toggle=click]) > .brx-dropdown-content, .brxe-dropdown.open > .brx-dropdown-content, .brxe-dropdown.is-active-element > .brx-dropdown-content {
   visibility: visible;
   opacity: 1;
 }
@@ -23,20 +54,29 @@
   gap: 3px;
   cursor: pointer;
 }
-.brx-dropdown-toggle .brxe-icon {
-  transition: all 0.1s ease;
-  stroke: currentcolor;
-}
 .brx-dropdown-toggle button {
   all: unset;
   display: inline-flex;
+  cursor: pointer;
+}
+.brx-dropdown-toggle i,
+.brx-dropdown-toggle svg {
+  transition: all 0.1s ease;
+  stroke: currentcolor;
+}
+
+.brx-dropdown-back {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 3px;
   cursor: pointer;
 }
 
 .brx-dropdown-content {
   display: flex;
   flex-direction: column;
-  position: absolute !important;
+  position: absolute;
   z-index: 1001;
   top: 100%;
   left: 0;
