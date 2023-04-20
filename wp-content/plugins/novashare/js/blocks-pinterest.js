@@ -143,24 +143,29 @@
 					//novashare panel section
 					el(wp.components.PanelBody, {title : 'Novashare'},
 
-						//pin title
-						el(wp.components.TextControl, {
-							value    : props.attributes.novasharePinTitle,
-							label    : __('Pin Title', 'novashare'),
-							onChange : function( new_value ) {
-								props.setAttributes({novasharePinTitle : new_value});
-							}
-						}),
+						//depcrated
+						el('div', {style: {display: (() => {
+							return (!novashare.show_deprecated ? 'none' : '');
+						})()}},
 
-						//pin description
-						el(wp.components.TextareaControl, {
-							value    : props.attributes.novasharePinDescription,
-							label    : __('Pin Description', 'novashare'),
-							help 	 : __("Pinterest does not yet support passing both a title and description from a pin. We've added both fields in advance, but currently, only the title will be sent to Pinterest.", 'novashare'),
-							onChange : function (new_value) {
-								props.setAttributes({novasharePinDescription : new_value});
-							}
-						}),
+							//pin title
+							el(wp.components.TextControl, {
+								value    : props.attributes.novasharePinTitle,
+								label    : __('Pin Title', 'novashare') + ' (' + __('Deprecated', 'novashare') + ')',
+								onChange : function( new_value ) {
+									props.setAttributes({novasharePinTitle : new_value});
+								}
+							}),
+
+							//pin description
+							el(wp.components.TextareaControl, {
+								value    : props.attributes.novasharePinDescription,
+								label    : __('Pin Description', 'novashare') + ' (' + __('Deprecated', 'novashare') + ')',
+								onChange : function (new_value) {
+									props.setAttributes({novasharePinDescription : new_value});
+								}
+							})
+						),
 
 						//pin repin id
 						el(wp.components.TextControl, {

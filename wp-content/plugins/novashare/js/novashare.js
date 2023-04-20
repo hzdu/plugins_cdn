@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function() {
 
-	var novashareButtons = document.querySelectorAll(".novashare-button:not(.novashare-follow-button), .novashare-ctt, .novashare-pinterest-image-button");
+	var novashareButtons = document.querySelectorAll(".ns-button:not(.ns-follow-button), .ns-ctt, .ns-pinterest-image-button");
 
 	novashareButtons.forEach(function(button) {
 
@@ -35,7 +35,7 @@ document.addEventListener("DOMContentLoaded", function() {
 			}
 
 			//specific dimensions for buffer
-			if(this.classList.contains('buffer') || this.classList.contains('novashare-pinterest-image-button') || this.classList.contains('linkedin')) {
+			if(this.classList.contains('buffer') || this.classList.contains('ns-pinterest-image-button') || this.classList.contains('linkedin')) {
 				size.w = 800;
 				size.h = 575;
 			}

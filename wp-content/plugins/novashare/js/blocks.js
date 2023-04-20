@@ -170,20 +170,20 @@
 
 							var extra_classes = '';
 
-							extra_classes+= ' novashare-ctt';
+							extra_classes+= ' ns-ctt';
 
 							//theme container class
 							if(props.attributes.theme) {
-								extra_classes+= ' novashare-ctt-' + props.attributes.theme;
+								extra_classes+= ' ns-ctt-' + props.attributes.theme;
 							} else if(novashare.click_to_tweet.theme) {
-								extra_classes+= ' novashare-ctt-' + novashare.click_to_tweet.theme;
+								extra_classes+= ' ns-ctt-' + novashare.click_to_tweet.theme;
 							}
 							
 							//cta position container class
 							if(props.attributes.cta_position) {
-								extra_classes+= ' novashare-ctt-cta-' + props.attributes.cta_position;
+								extra_classes+= ' ns-ctt-cta-' + props.attributes.cta_position;
 							} else if(novashare.click_to_tweet.cta_position) {
-								extra_classes+= ' novashare-ctt-cta-' + novashare.click_to_tweet.cta_position;
+								extra_classes+= ' ns-ctt-cta-' + novashare.click_to_tweet.cta_position;
 							}
 
 							return extra_classes;
@@ -202,7 +202,7 @@
 					},
 
 						//editable tweet
-						el('div', { className: 'novashare-ctt-tweet' },
+						el('div', { className: 'ns-ctt-tweet' },
 							el(RichText, {
 								format: 'string',
 								onChange: (value) => {
@@ -214,8 +214,8 @@
 						),
 
 						//tweet cta container
-						el('div', { className: 'novashare-ctt-cta-container' },
-							el('span', { className: 'novashare-ctt-cta',
+						el('div', { className: 'ns-ctt-cta-container' },
+							el('span', { className: 'ns-ctt-cta',
 								style: {
 									color: (() => {
 										if(props.attributes.theme || novashare.click_to_tweet.theme) {
@@ -226,7 +226,7 @@
 							},
 
 								//cta text
-								el('span', { className: 'novashare-ctt-cta-text' },
+								el('span', { className: 'ns-ctt-cta-text' },
 									(() => {
 										if(props.attributes.cta_text) {
 											return props.attributes.cta_text;
@@ -239,7 +239,7 @@
 								),
 
 								//cta icon
-								el('span', { className: 'novashare-ctt-cta-icon' }, 
+								el('span', { className: 'ns-ctt-cta-icon' }, 
 									(() => {
 										return iconTwitter;
 									})()
@@ -249,7 +249,7 @@
 					),
 
 					//characters remaining
-					el('div', { className: 'novashare-ctt-char-count' },
+					el('div', { className: 'ns-ctt-char-count' },
 
 						//calculate character count
 						(() => {
@@ -266,7 +266,7 @@
 							chars_remaining = initial_char_count - username_length - url_length - tweet_length;
 
 							//container class based on +/- status
-							count_status = (chars_remaining >= 0) ? 'novashare-ctt-positive' : 'novashare-ctt-negative';
+							count_status = (chars_remaining >= 0) ? 'ns-ctt-positive' : 'ns-ctt-negative';
 						})(),
 
 						//print finished character count

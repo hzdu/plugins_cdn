@@ -10,11 +10,11 @@
 
 	//swap button colors on hover in editor
 	const hoverSwap = (event) => {
-		var wrapper = event.target.closest('.novashare-buttons-wrapper');
+		var wrapper = event.target.closest('.ns-buttons-wrapper');
 		if(wrapper) {
 			var buttonHoverColor = wrapper.getAttribute('data-button-hover-color');
 		 	var iconHoverColor = wrapper.getAttribute('data-icon-hover-color');
-		 	var blocks = event.target.querySelectorAll('.novashare-button-wrapper .novashare-button-block');
+		 	var blocks = event.target.querySelectorAll('.ns-button-wrapper .ns-button-block');
 
 		 	blocks.forEach(function(block) {
 		 		if(event.type == 'mouseover') {
@@ -99,7 +99,7 @@
 	  		});
 
 			const blockProps = useBlockProps({
-				className: 'novashare-buttons-wrapper' + (props.attributes.alignment ? ' novashare-align-' + props.attributes.alignment : ''),
+				className: 'ns-buttons-wrapper' + (props.attributes.alignment ? ' ns-align-' + props.attributes.alignment : ''),
 				style: {
 					gap: (props.attributes.buttonMargin ?? 10) + 'px'
 				}
@@ -254,7 +254,7 @@
 					),
 
 					//print block in editor
-					el('div', { className: 'novashare-buttons novashare-block-' + props.attributes.id, style: { width: '100%' } },
+					el('div', { className: 'ns-buttons ns-block-' + props.attributes.id, style: { width: '100%' } },
 						el("div", innerBlocksProps, innerBlocksProps.children)
 					),
 				)
@@ -264,8 +264,8 @@
 		//save block
 		save: function(props) {
             return (
-            	el("div", {className: 'novashare-buttons novashare-block-' + props.attributes.id},
-            		el("div", useInnerBlocksProps.save(useBlockProps.save({className: 'novashare-buttons-wrapper'  + (props.attributes.alignment ? ' novashare-align-' + props.attributes.alignment : '')})))
+            	el("div", {className: 'ns-buttons ns-block-' + props.attributes.id},
+            		el("div", useInnerBlocksProps.save(useBlockProps.save({className: 'ns-buttons-wrapper'  + (props.attributes.alignment ? ' ns-align-' + props.attributes.alignment : '')})))
             	)
             );
 		}
@@ -401,16 +401,16 @@
 						onClick: () => { 
 					        toggleVisible(true);
 					    },
-						className: props.attributes.network + ' novashare-button novashare-follow-button', 
+						className: props.attributes.network + ' ns-button ns-follow-button', 
 						style: {
 							margin: '0',
 							width: props.context['buttonSize'],
 							height: props.context['buttonSize'],
 							minWidth: props.context['buttonSize']
 						}}),
-						el('span', { className: 'novashare-button-wrapper novashare-button-block' + (props.context['buttonShape'] ? ' novashare-' + props.context['buttonShape'] : '') },
+						el('span', { className: 'ns-button-wrapper ns-button-block' + (props.context['buttonShape'] ? ' ns-' + props.context['buttonShape'] : '') },
 							el('span', { 
-								className: 'novashare-button-icon novashare-button-block', 
+								className: 'ns-button-icon ns-button-block', 
 								style: { 
 									backgroundColor: props.context['buttonColor'], 
 									color: props.context['iconColor'],

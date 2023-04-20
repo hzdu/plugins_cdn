@@ -1,93 +1,117 @@
 /* wp ui */
-.settings_page_novashare .notice {
-  margin: 10px 0px;
-}
-.settings_page_novashare .update-nag {
+.settings_page_novashare #wpbody-content {
   margin-top: 5px;
+}
+.settings_page_novashare #wpbody-content>.notice {
+  margin: 15px auto 15px 2px;
+  max-width: 1200px;
+  box-sizing: border-box;
+}
+.settings_page_novashare #wpbody-content>.update-nag {
+  margin-bottom: 0px;
+}
+#novashare-admin-container .notice {
+  display: none;
+}
+#novashare-admin-container a {
+  color: #4D4595;
+}
+
+/* admin wrappers */
+#novashare-admin {
+  max-width: 1200px;
+  margin-top: 15px;
+}
+#novashare-admin-container {
+  display: flex; 
+  gap: 20px;
+}
+#novashare-admin .novashare-admin-block {
+  position: relative;
+  background: #fff;
+  border: 1px solid #e2e4e7;
+  border-radius: 5px;
+  padding: 20px;
+  box-sizing: border-box;
 }
 
 /* header */
 #novashare-admin-header {
+  margin-bottom: 10px;
+  width: 227px;
+}
+#novashare-logo-bar {
   display: flex;
   align-items: center;
-  background: #4d4595;
-  margin: 0px 0px 0px -20px;
-  padding: 0px 20px 0px 22px;
 }
 #novashare-logo {
-  height: 24px;
-  margin-right: 10px;
-}
-#novashare-page-title {
-  font-size: 24px;
-  color: #fff;
-}
-#novashare-admin-header-buttons {
-  line-height: 60px;
-  height: 60px;
   display: flex;
-  flex-grow: 1;
-  justify-content: flex-end;
-  align-items: center;
+  height: 30px; 
+  margin: 10px auto;
+  overflow: visible;
 }
-#novashare-admin-header-buttons a {
-  display:  flex;
-  align-items: center;
-  padding: 8px 10px;
-  color: #fff;
+#novashare-menu-toggle {
+  display: none;
   text-decoration: none;
-  margin: 0px 0px 0px 10px;
-  line-height: normal;
-  font-size: 13px;
-  border-radius: 3px;
 }
-#novashare-admin-header-buttons a.novashare-active, #novashare-admin-header-buttons a:hover {
-  background: rgba(0,0,0,0.25);
+#novashare-menu-toggle .dashicons {
+  width: 30px;
+  height: 30px;
+  font-size: 30px;
 }
-#novashare-admin-header-buttons a i {
-  width: auto;
-  height: auto;
-  font-size: 13px;
-  margin-right: 3px;
+#novashare-menu {
+  margin-top: 15px;
 }
-
-/* subnav */
-#novashare-subnav {
+#novashare-menu a {
   display: flex;
-  background: #fff;
-  margin-bottom: 10px;
-  border-radius: 3px;
-  overflow: hidden;
-  border: 1px solid #e2e4e7;
-}
-#novashare-subnav a {
-  display: inline-flex;
   align-items: center;
-  font-size: 14px; 
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
   padding: 10px;
   text-decoration: none;
   box-shadow: none;
-  border-bottom: 2px solid transparent;
+  border: 1px solid transparent;
+  border-radius: 5px;
   transition: none;
+  margin-top: 2px;
 }
-#novashare-subnav a.active {
-  color: #333333;
-  border-color: #333333;
+#novashare-menu a:hover {
+  color: #4D4595;
 }
-#novashare-subnav a .dashicons {
-  margin-right: 3px;
-  font-size: inherit;
-  width: auto;
-  height: auto;
+#novashare-menu a.active {
+  color: #4D4595;
+  border-color: #4D4595;
+  background: #e9e8ff;
+}
+#novashare-menu a .dashicons {
+  margin-right: 8px;
+  font-size: 23px;
+  width: 23px;
+  height: 23px;
+}
+#novashare-menu .novashare-subnav {
+  border-top: 1px solid #f2f2f2;
+  border-bottom: 1px solid #f2f2f2;
+  padding: 9px 0px;
+  margin-bottom: 10px;
+}
+#novashare-menu .novashare-subnav a {
+  font-size: 14px;
+  padding: 8px 10px;
+  margin: 1px 0px;
+  font-weight: 500;
+}
+#novashare-menu .novashare-subnav a .dashicons {
+  font-size: 16px;
+  height: 16px;
 }
 
 /* general ui */
 .novashare-settings-section {
-  background: #fff;
-  padding: 15px;
   margin-bottom: 20px;
-  border: 1px solid #e2e4e7;
-  border-radius: 3px;
+  border-bottom: 1px solid #f2f2f2;
+  padding-bottom: 20px;
 }
 #novashare-admin .section-content.active {
   display: block;
@@ -97,20 +121,64 @@
 }
 #novashare-admin h2 {
   font-size: 18px;
+  font-weight: 500;
 	line-height: normal;
+  margin: 0px auto 10px auto;
+}
+#novashare-admin .novashare-settings-section:first-of-type h2:first-of-type {
+  display: flex;
+  align-items: center;
+  font-size: 22px;
+  margin: -20px -20px 20px -20px;
+  padding: 20px;
+  font-weight: 500;
+  background: #4D4595;
+  border-radius: 5px 5px 0px 0px;
+  color: #fff;
+}
+#novashare-admin .novashare-settings-section:first-of-type h2:first-of-type .dashicons {
+  font-size:23px;
+  width: 23px;
+  height: 23px;
+  margin-right: 8px;
+  color: #fff;
+}
+#novashare-admin .novashare-settings-section:last-of-type {
+  border-bottom: none;
+  padding-bottom: 0px;
+  margin-bottom: 0px;
+}
+#novashare-admin .form-table {
   margin: 0px;
-  padding-bottom: 15px;
-  border-bottom: 1px solid #e2e4e7;
 }
 #novashare-admin .form-table th {
   padding: 15px 10px 15px 0px;
   font-size: 13px;
   font-weight: normal;
+  min-width: 200px;
 }
 #novashare-admin td {
   position: relative;
   padding: 10px;
 }
+#novashare-admin .novashare-title-wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+#novashare-admin .form-table th label {
+  vertical-align: top;
+  padding-right: 5px;
+}
+.novashare-beta {
+  background: #ED5464;
+  color: #ffffff;
+  padding: 5px;
+  vertical-align: middle;
+  font-size: 10px;
+  margin-left: 3px;
+}
+
+/* inputs */
 #novashare-admin .novashare-switch {
   position: relative;
   display: inline-block;
@@ -130,7 +198,7 @@
   inset: 0;
   background-color: #ccc;
   transition: .4s;
-  border-radius: 3px;
+  border-radius: 50px;
 }
 #novashare-admin .novashare-slider:before {
   position: absolute;
@@ -141,13 +209,13 @@
   bottom: 4px;
   background-color: #fff;
   transition: .4s;
-  border-radius: 3px;
+  border-radius: 50%;
 }
 #novashare-admin input:checked + .novashare-slider {
-  background-color: #007cba;
+  background-color: #4D4595;
 }
 #novashare-admin input:focus + .novashare-slider {
-  box-shadow: 0 0 1px #007cba;
+  box-shadow: 0 0 1px #4D4595;
 }
 #novashare-admin input:checked + .novashare-slider:before {
   transform: translateX(20px);
@@ -156,26 +224,27 @@
   min-width: 300px;
   margin: 0px;
 }
+#novashare-admin input[type="file"] {
+  margin-bottom: 5px;
+}
 #novashare-admin textarea {
   min-width: 600px;
   resize: both;
   min-height: 150px;
 }
-#novashare-admin input[type="file"] {
-  margin-bottom: 5px;
-}
 #novashare-admin .CodeMirror {
   max-width: 700px;
   max-height: 200px;
+  height: 100px;
 }
-#novashare-admin .novashare-title-wrapper {
-  display: flex;
-  justify-content: space-between;
+#novashare-admin .CodeMirror.CodeMirror-focused {
+  height: 200px;
 }
-#novashare-admin .form-table th label {
-  vertical-align: top;
-  padding-right: 5px;
+#novashare-admin ::placeholder {
+  color: #ccc;
 }
+
+/* tooltips */
 #novashare-admin .novashare-tooltip-wrapper {
   position: relative;
   display: inline-block;
@@ -213,12 +282,6 @@
   line-height: 20px;
   font-weight: normal;
 }
-#novashare-admin .novashare-tooltip-text-am {
-  font-size: 12px;
-  font-style: italic;
-  margin-top: 5px;
-  display: block;
-}
 #novashare-admin .novashare-tooltip-text::after {
   content: " ";
   position: absolute;
@@ -227,27 +290,6 @@
   border-width: 0px 4.5px 6px;
   border-style: solid;
   border-color: transparent transparent #23282D transparent;
-}
-#novashare-admin .novashare-tooltip-table {
-  width: 100%;
-  margin-top: 3px;
-}
-#novashare-admin .novashare-tooltip-table th, #novashare-admin .novashare-tooltip-table td {
-  display: table-cell;
-  padding: 2px 5px;
-  padding-bottom: 0px;
-  color: #ffffff;
-  width: auto;
-  font-size: 12px;
-}
-#novashare-admin .novashare-tooltip-table td {
-  text-align: center;
-}
-#novashare-admin .novashare-tooltip-text-am .novashare-tooltip-table {
-  width: auto;
-}
-#novashare-admin .novashare-tooltip-text-am .novashare-tooltip-table th, #novashare-admin .novashare-tooltip-text-am .novashare-tooltip-table td {
-  color: #444444;
 }
 #novashare-admin .novashare-tooltip-subtext {
   display: block; 
@@ -270,70 +312,64 @@
   color: #bbbbbb;
   border-radius: 50%;
 }
-.novashare-beta {
-  background: #ED5464;
-  color: #ffffff;
-  padding: 5px;
-  vertical-align: middle;
-  font-size: 10px;
-  margin-left: 3px;
+#novashare-admin .novashare-tooltip-table {
+  table-layout: fixed;
+  width: 100%;
+  margin-top: 3px;
 }
-#novashare-admin p.submit {
-  margin: 0px;
+#novashare-admin .novashare-tooltip-table th, #novashare-admin .novashare-tooltip-table td {
+  display: table-cell;
+  padding: 2px 5px;
+  padding-bottom: 0px;
+  color: #ffffff;
+  width: auto;
+  font-size: 12px;
+}
+#novashare-admin .novashare-tooltip-table td {
+  text-align: center;
+}
+
+/* buttons */
+#novashare-admin-container .button-primary {
+  padding: 2px 10px;
+  border-radius: 5px;
+  background: #4D4595;
+  border-color: #4D4595;
+}
+#novashare-admin-container .button-secondary {
+  border-color: #4D4595;
+  color: #4D4595;
+}
+#novashare-admin-container p.submit {
+  margin: 20px 0px 0px 0px;
   padding: 0px;
 }
-#novashare-admin .novashare-button-warning {
-	background: #ED5464;
-	border-color: #ED5464;
-	color: #ffffff;
+#novashare-admin-container .novashare-button-warning {
+  background: #ED5464;
+  border-color: #ED5464;
+  color: #ffffff;
 }
-#novashare-admin .novashare-button-warning:hover {
-	background: #c14552;
-	border-color: #c14552;
+#novashare-admin-container .novashare-button-warning:hover {
+  background: #c14552;
+  border-color: #c14552;
 }
-#novashare-admin ::placeholder {
-  color: #ccc;
+
+/* misc */
+#novashare-admin .wp-color-result.button {
+  margin: 0px;
+  border-color: #8c8f94;
 }
-.novashare-submit-message.success {
-  color: green;
-}
-.novashare-submit-message.error {
-  color: red;
-}
+
+/* section notice */
 .novashare-section-notice {
   display: flex; 
   align-items: center; 
   border: 1px solid #e2e4e7; 
-  border-top:0px;
-  border-left: 4px solid #72aee6; 
+  border-left: 4px solid #4D4595; 
   padding: 10px 12px;
 }
 .novashare-section-notice .dashicons {
   margin-right: 10px;
-}
-
-@media all and (max-width: 782px) {
-  #novashare-subnav {
-    flex-direction: column;
-  }
-  #novashare-admin .form-table th {
-    padding-bottom: 5px;
-  }
-  #novashare-admin .novashare-tooltip {
-    margin-right: 0px;
-  }
-  #novashare-admin .novashare-tooltip-text {
-    left: unset;
-    right: -5px;
-    top: 3px;
-  }
-  #novashare-admin .novashare-tooltip-text::after {
-    left: unset;
-    right: 19px;
-  }
-  .novashare-mobile-hide {
-    display: none !important;
-  }
 }
 
 /* sortable social networks */
@@ -348,21 +384,18 @@
   margin-bottom: 0px;
 }
 .novashare-social-networks.novashare-sortable li label {
-  display: block;
   position: relative;
-  width: 70px;
-  height: 60px;
-  font-size: 9px;
+  width: 123px;
+  height: 30px;
+  font-size: 12px;
   float: left;
   background: #dddddd;
   color: #aaaaaa;
   margin: 0px 10px 10px 0px;
-  padding: 5px 0px;
-  display: table-cell;
-  vertical-align: middle;
-  text-align: center;
+  display: flex;
+  align-items: center;
   cursor: pointer;
-  border-radius: 3px;
+  border-radius: 5px;
   overflow: hidden;
 }
 .novashare-social-networks li label.active {
@@ -370,10 +403,9 @@
   color: #ffffff;
 }
 .novashare-social-networks.novashare-sortable li label svg {
-  display: block;
-  margin: 8px auto;
   fill: #ffffff;
-  height: 28px;
+  height: 15px;
+  width: 30px;
 }
 .novashare-social-networks.novashare-sortable li label input[type="checkbox"] {
   position: absolute;
@@ -557,6 +589,7 @@ li.novashare-social-network-share label.active {
   color:#555555;
 }
 
+/*media queries */
 @media all and (max-width: 1200px) {
   .novashare-details-halves .novashare-details-half {
     width: 100%;
@@ -566,15 +599,56 @@ li.novashare-social-network-share label.active {
   #novashare-details-checkboxes label {
     margin-top: 5px;
   }
-  .novashare-details-tooltip {
-    width: 40px;
-    height: 40px;
-    line-height: 40px;
-    font-size: 26px;
-    margin-left: 15px;
+}
+
+@media all and (max-width: 1024px) {
+  #novashare-admin {
+    margin-top: 10px;
+  }
+  #novashare-admin-container {
+    flex-direction: column;
+    gap: 10px;
+  }
+  #novashare-admin-header {
+    width: 100%;
+    margin: 0px;
+  }
+  #novashare-logo {
+    margin: 0px auto;
+  }
+  #novashare-menu-toggle {
+    display: flex;
+  }
+  #novashare-menu {
+    display: none;
+  }
+  #novashare-menu.novashare-menu-expanded {
+    display: block;
   }
 }
 
+@media all and (max-width: 782px) {
+  #novashare-admin .form-table th {
+    padding-bottom: 5px;
+  }
+  #novashare-admin .novashare-tooltip {
+    margin-right: 0px;
+  }
+  #novashare-admin .novashare-tooltip-text {
+    left: unset;
+    right: -5px;
+    top: 3px;
+  }
+  #novashare-admin .novashare-tooltip-text::after {
+    left: unset;
+    right: 19px;
+  }
+  .novashare-mobile-hide {
+    display: none !important;
+  }
+}
+
+/* recovery urls */
 #novashare-post-recovery-urls .novashare-post-recovery-url {
   display: flex;
   margin-bottom: 10px;
@@ -646,7 +720,6 @@ li.novashare-social-network-share label.active {
   overflow: hidden;
   align-items: start;
 }
-
 .novashare-pinterest-hidden-image .dashicons-no {
   visibility: hidden;
   position: absolute;
@@ -657,16 +730,6 @@ li.novashare-social-network-share label.active {
   cursor: pointer;
   border-radius: 3px;
 }
-
 .novashare-pinterest-hidden-image:hover .dashicons-no {
   visibility: visible;
-}
-
-@media all and (max-width: 600px) {
-  #novashare-admin-header {
-    padding-top: 46px;
-  }
-  #novashare-admin-header + #wpbody {
-    padding-top: 0px;
-  }
 }

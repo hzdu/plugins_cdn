@@ -2,15 +2,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Novashare\n"
-"POT-Creation-Date: 2023-01-05 15:46-0800\n"
-"PO-Revision-Date: 2023-01-05 15:45-0800\n"
+"POT-Creation-Date: 2023-04-18 13:28-0700\n"
+"PO-Revision-Date: 2023-04-18 13:27-0700\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Poedit 3.2.2\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-Flags-xgettext: --add-comments=translators:\n"
 "X-Poedit-WPHeader: novashare.php\n"
@@ -54,178 +54,235 @@ msgstr ""
 msgid "Error"
 msgstr ""
 
-#: inc/admin.php:22 inc/settings.php:13
+#: inc/admin.php:33
+msgid "Network"
+msgstr ""
+
+#: inc/admin.php:38
+msgid "Options"
+msgstr ""
+
+#: inc/admin.php:40 inc/settings.php:13
 msgid "Inline Content"
 msgstr ""
 
-#: inc/admin.php:23 inc/settings.php:461
+#: inc/admin.php:41 inc/settings.php:461
 msgid "Floating Bar"
 msgstr ""
 
-#: inc/admin.php:24 inc/settings.php:995
+#: inc/admin.php:42 inc/settings.php:995
 msgid "Share Button"
 msgstr ""
 
-#: inc/admin.php:25 inc/click_to_tweet.php:133 inc/settings.php:1128
-#: inc/settings.php:1162 js/blocks.js:31 novashare.php:294
+#: inc/admin.php:43 inc/click_to_tweet.php:133 inc/settings.php:1128
+#: inc/settings.php:1162 js/blocks.js:31 novashare.php:304
 msgid "Click to Tweet"
 msgstr ""
 
-#: inc/admin.php:26 inc/settings.php:1244
+#: inc/admin.php:44 inc/settings.php:1244
 msgid "Pinterest"
 msgstr ""
 
-#: inc/admin.php:27 inc/settings.php:1377
+#: inc/admin.php:45 inc/settings.php:1392
 msgid "Configuration"
+msgstr ""
+
+#: inc/admin.php:49 inc/settings.php:1866
+msgid "Tools"
+msgstr ""
+
+#: inc/admin.php:54 inc/license.php:67
+msgid "License"
+msgstr ""
+
+#: inc/admin.php:58 inc/support.php:5 novashare.php:386
+msgid "Support"
+msgstr ""
+
+#: inc/admin.php:67
+msgid "Version"
 msgstr ""
 
 #: inc/functions.php:238
 msgid "Subscribe"
 msgstr ""
 
-#: inc/functions.php:1109
+#: inc/functions.php:1105
 msgid "URL Copied"
 msgstr ""
 
-#: inc/functions.php:1158
+#: inc/functions.php:1154
 msgid "SHARES"
 msgstr ""
 
-#: inc/functions.php:1158
+#: inc/functions.php:1154
 msgid "SHARE"
 msgstr ""
 
-#: inc/functions.php:1198 inc/settings.php:1026
+#: inc/functions.php:1194 inc/settings.php:1026
 msgid "Share to..."
 msgstr ""
 
-#: inc/functions.php:1425
+#: inc/functions.php:1421
 msgid "Share counts purged."
 msgstr ""
 
-#: inc/functions.php:1428
+#: inc/functions.php:1424
 msgid "Share counts not purged."
 msgstr ""
 
-#: inc/functions.php:1445
+#: inc/functions.php:1441
 msgid "Short links purged."
 msgstr ""
 
-#: inc/functions.php:1448
+#: inc/functions.php:1444
 msgid "Short links not purged."
 msgstr ""
 
-#: inc/functions.php:1467
+#: inc/functions.php:1463
 msgid "Successfully restored default options."
 msgstr ""
 
-#: inc/functions.php:1499
+#: inc/functions.php:1495
 msgid "No import file given."
 msgstr ""
 
-#: inc/functions.php:1507
+#: inc/functions.php:1503
 msgid "Please upload a valid .json file."
 msgstr ""
 
-#: inc/functions.php:1522
+#: inc/functions.php:1518
 msgid "Successfully imported Novashare settings."
 msgstr ""
 
-#: inc/functions_pinterest.php:70 inc/functions_pinterest.php:168
-#: js/blocks-pinterest.js:149
+#: inc/functions_network.php:18
+msgid "Network Access"
+msgstr ""
+
+#: inc/functions_network.php:23
+msgid "Choose who has access to manage Novashare plugin settings."
+msgstr ""
+
+#: inc/functions_network.php:30
+msgid "Network Default"
+msgstr ""
+
+#: inc/functions_network.php:35
+msgid "Choose a subsite that you want to pull default settings from."
+msgstr ""
+
+#: inc/functions_network.php:42 inc/settings.php:1873
+msgid "Clean Uninstall"
+msgstr ""
+
+#: inc/functions_network.php:49
+msgid ""
+"When enabled, this will cause all Novashare options data to be removed from "
+"your database when the plugin is uninstalled."
+msgstr ""
+
+#: inc/functions_network.php:62
+msgid "Site Admins (Default)"
+msgstr ""
+
+#: inc/functions_network.php:63
+msgid "Super Admins Only"
+msgstr ""
+
+#: inc/functions_network.php:79
+msgid "None"
+msgstr ""
+
+#: inc/functions_pinterest.php:76 inc/functions_pinterest.php:176
+#: js/blocks-pinterest.js:154
 msgid "Pin Title"
 msgstr ""
 
-#: inc/functions_pinterest.php:76 inc/functions_pinterest.php:170
-#: js/blocks-pinterest.js:158
+#: inc/functions_pinterest.php:76 inc/functions_pinterest.php:82
+#: inc/functions_pinterest.php:176 inc/functions_pinterest.php:178
+#: inc/meta.php:104 inc/meta.php:110 js/blocks-pinterest.js:154
+#: js/blocks-pinterest.js:163
+msgid "Deprecated"
+msgstr ""
+
+#: inc/functions_pinterest.php:82 inc/functions_pinterest.php:178
+#: js/blocks-pinterest.js:163
 msgid "Pin Description"
 msgstr ""
 
-#: inc/functions_pinterest.php:77 inc/functions_pinterest.php:170
-#: inc/meta.php:109 js/blocks-pinterest.js:159
-msgid ""
-"Pinterest does not yet support passing both a title and description from a "
-"pin. We've added both fields in advance, but currently, only the title will "
-"be sent to Pinterest."
-msgstr ""
-
-#: inc/functions_pinterest.php:83 inc/functions_pinterest.php:172
-#: js/blocks-pinterest.js:168
+#: inc/functions_pinterest.php:89 inc/functions_pinterest.php:180
+#: js/blocks-pinterest.js:173
 msgid "Pin Repin ID"
 msgstr ""
 
-#: inc/functions_pinterest.php:88 inc/functions_pinterest.php:174
-#: js/blocks-pinterest.js:177
+#: inc/functions_pinterest.php:94 inc/functions_pinterest.php:182
+#: js/blocks-pinterest.js:182
 msgid "Disable Pinning"
 msgstr ""
 
-#: inc/functions_pinterest.php:321
+#: inc/functions_pinterest.php:331
 msgid "Pin"
 msgstr ""
 
-#: inc/license.php:67 novashare.php:409
-msgid "License"
+#: inc/functions_pinterest.php:524
+msgid "Hidden Image"
 msgstr ""
 
 #: inc/license.php:74
 msgid "License Key"
 msgstr ""
 
-#: inc/license.php:80
+#: inc/license.php:81
 msgid "Save License"
 msgstr ""
 
-#: inc/license.php:84
+#: inc/license.php:85
 msgid "Remove License"
 msgstr ""
 
-#: inc/license.php:87
+#: inc/license.php:88
 msgid "Save or remove your license key."
 msgstr ""
 
-#: inc/license.php:113 inc/license.php:120
+#: inc/license.php:114 inc/license.php:121
 msgid "Activate License"
 msgstr ""
 
-#: inc/license.php:116
+#: inc/license.php:117
 msgid "Deactivate License"
 msgstr ""
 
-#: inc/license.php:117
+#: inc/license.php:118
 msgid "License is activated."
 msgstr ""
 
-#: inc/license.php:121
+#: inc/license.php:122
 msgid "License is not activated."
 msgstr ""
 
-#: inc/license.php:124
+#: inc/license.php:125
 msgid ""
 "Unlimited License needed for use in a multisite environment. Please contact "
 "support to upgrade."
 msgstr ""
 
-#: inc/license.php:133
-msgid "Customer Email"
-msgstr ""
-
-#: inc/license.php:141
+#: inc/license.php:134
 msgid "License Status"
 msgstr ""
 
-#: inc/license.php:146
+#: inc/license.php:139
 msgid "Renew Your License for Updates + Support!"
 msgstr ""
 
-#: inc/license.php:155
+#: inc/license.php:148
 msgid "Licenses Used"
 msgstr ""
 
-#: inc/license.php:163
+#: inc/license.php:156
 msgid "Expiration Date"
 msgstr ""
 
-#: inc/license.php:164
+#: inc/license.php:157
 msgid "Lifetime"
 msgstr ""
 
@@ -233,7 +290,7 @@ msgstr ""
 msgid "Details"
 msgstr ""
 
-#: inc/meta.php:27 inc/settings.php:1749
+#: inc/meta.php:27 inc/settings.php:1764
 msgid "Share Count Recovery"
 msgstr ""
 
@@ -245,11 +302,11 @@ msgstr ""
 msgid "Upload an image for social media."
 msgstr ""
 
-#: inc/meta.php:60 inc/meta.php:95 inc/settings.php:2089
+#: inc/meta.php:60 inc/meta.php:95 inc/settings.php:2104
 msgid "Select an Image"
 msgstr ""
 
-#: inc/meta.php:60 inc/meta.php:95 inc/settings.php:2089
+#: inc/meta.php:60 inc/meta.php:95 inc/settings.php:2104
 msgid "Upload"
 msgstr ""
 
@@ -277,141 +334,103 @@ msgstr ""
 msgid "Upload an image for Pinterest."
 msgstr ""
 
-#: inc/meta.php:101
+#: inc/meta.php:104
 msgid "Pinterest Title"
 msgstr ""
 
-#: inc/meta.php:102
+#: inc/meta.php:105
 msgid "Write a custom title for Pinterest."
 msgstr ""
 
-#: inc/meta.php:107
+#: inc/meta.php:110
 msgid "Pinterest Description"
 msgstr ""
 
-#: inc/meta.php:108
+#: inc/meta.php:111
 msgid "Write a custom description for Pinterest."
 msgstr ""
 
-#: inc/meta.php:114
+#: inc/meta.php:118
 msgid "Pinterest Hidden Images"
 msgstr ""
 
-#: inc/meta.php:134
+#: inc/meta.php:138
 msgid "Select Images"
 msgstr ""
 
-#: inc/meta.php:134
+#: inc/meta.php:138
 msgid "Add Images"
 msgstr ""
 
-#: inc/meta.php:148
+#: inc/meta.php:152
 msgid "Hide Inline Content"
 msgstr ""
 
-#: inc/meta.php:154
+#: inc/meta.php:158
 msgid "Hide Floating Bar"
 msgstr ""
 
-#: inc/meta.php:160
+#: inc/meta.php:164
 msgid "Disable Image Pins"
 msgstr ""
 
-#: inc/meta.php:174
+#: inc/meta.php:178
 msgid "Refresh Share Counts"
 msgstr ""
 
-#: inc/meta.php:180 inc/meta.php:219 inc/settings.php:2252
+#: inc/meta.php:184 inc/meta.php:223 inc/settings.php:2267
 msgid "View Documentation"
 msgstr ""
 
-#: inc/meta.php:192
+#: inc/meta.php:196
 msgid ""
 "Add previous URLs to recover social share counts. For example, changing a "
 "slug on a URL."
 msgstr ""
 
-#: inc/meta.php:206 js/admin.js:303
+#: inc/meta.php:210 js/admin.js:325
 msgid "Remove"
 msgstr ""
 
-#: inc/meta.php:216
+#: inc/meta.php:220
 msgid "Add URL"
 msgstr ""
 
-#: inc/meta.php:222
+#: inc/meta.php:226
 msgid "You've reached the maximum amount of recovery URLs."
 msgstr ""
 
-#: inc/network.php:17
-msgid "Network Access"
-msgstr ""
-
-#: inc/network.php:22
-msgid "Choose who has access to manage Novashare plugin settings."
-msgstr ""
-
-#: inc/network.php:29
-msgid "Network Default"
-msgstr ""
-
-#: inc/network.php:34
-msgid "Choose a subsite that you want to pull default settings from."
-msgstr ""
-
-#: inc/network.php:41 inc/settings.php:1858
-msgid "Clean Uninstall"
-msgstr ""
-
-#: inc/network.php:48
-msgid ""
-"When enabled, this will cause all Novashare options data to be removed from "
-"your database when the plugin is uninstalled."
-msgstr ""
-
-#: inc/network.php:61
-msgid "Site Admins (Default)"
-msgstr ""
-
-#: inc/network.php:62
-msgid "Super Admins Only"
-msgstr ""
-
-#: inc/network.php:78
-msgid "None"
-msgstr ""
-
-#: inc/network.php:126
+#: inc/network.php:35
 msgid "Default settings applied!"
 msgstr ""
 
-#: inc/network.php:130
+#: inc/network.php:39
 msgid "Select a site that is not already the Network Default."
 msgstr ""
 
-#: inc/network.php:135
+#: inc/network.php:44
 msgid "Network Default not set."
 msgstr ""
 
-#: inc/network.php:141
+#: inc/network.php:50
 msgid "Error: Blog Not Found."
 msgstr ""
 
-#: inc/network.php:148
+#: inc/network.php:57
 msgid "Options saved."
 msgstr ""
 
-#: inc/network.php:172 inc/network.php:186
+#: inc/network.php:70 inc/network.php:84
 msgid "Apply Default Settings"
 msgstr ""
 
-#: inc/network.php:174
+#: inc/network.php:72
 msgid ""
 "Select a site from the dropdown and click to apply the settings from your "
 "network default (above)."
 msgstr ""
 
-#: inc/network.php:179
+#: inc/network.php:77
 msgid "Select a Site"
 msgstr ""
 
@@ -440,7 +459,7 @@ msgstr ""
 msgid "Display"
 msgstr ""
 
-#: inc/settings.php:49 inc/settings.php:497 inc/settings.php:1286
+#: inc/settings.php:49 inc/settings.php:497 inc/settings.php:1301
 msgid "Post Types"
 msgstr ""
 
@@ -457,7 +476,7 @@ msgstr ""
 msgid "Show your inline social share buttons in post feeds. Default: Disabled"
 msgstr ""
 
-#: inc/settings.php:77 inc/settings.php:555 inc/settings.php:1301
+#: inc/settings.php:77 inc/settings.php:555 inc/settings.php:1316
 msgid "Button Position"
 msgstr ""
 
@@ -590,7 +609,7 @@ msgid "Button Alignment"
 msgstr ""
 
 #: inc/settings.php:203 inc/settings.php:583 inc/settings.php:1180
-#: inc/widget.php:90 js/blocks.js:115 novashare.php:312
+#: inc/widget.php:90 js/blocks.js:115 novashare.php:322
 msgid "Left"
 msgstr ""
 
@@ -598,7 +617,7 @@ msgstr ""
 msgid "Right"
 msgstr ""
 
-#: inc/settings.php:205 inc/settings.php:1314 inc/widget.php:92
+#: inc/settings.php:205 inc/settings.php:1329 inc/widget.php:92
 msgid "Center"
 msgstr ""
 
@@ -616,7 +635,7 @@ msgid "Small"
 msgstr ""
 
 #: inc/settings.php:225 inc/settings.php:759 inc/settings.php:1100
-#: inc/settings.php:1588 inc/settings.php:1595
+#: inc/settings.php:1603 inc/settings.php:1610
 msgid "Medium"
 msgstr ""
 
@@ -629,22 +648,22 @@ msgid "Change the size of your inline social share buttons. Default: Medium"
 msgstr ""
 
 #: inc/settings.php:235 inc/settings.php:769 inc/settings.php:1110
-#: inc/settings.php:1324 inc/widget.php:75 js/blocks-follow.js:138
+#: inc/settings.php:1339 inc/widget.php:75 js/blocks-follow.js:138
 msgid "Button Shape"
 msgstr ""
 
 #: inc/settings.php:244 inc/settings.php:778 inc/settings.php:1119
-#: inc/settings.php:1333 inc/widget.php:77 js/blocks-follow.js:146
+#: inc/settings.php:1348 inc/widget.php:77 js/blocks-follow.js:146
 msgid "Squared"
 msgstr ""
 
 #: inc/settings.php:245 inc/settings.php:779 inc/settings.php:1120
-#: inc/settings.php:1334 inc/widget.php:78 js/blocks-follow.js:153
+#: inc/settings.php:1349 inc/widget.php:78 js/blocks-follow.js:153
 msgid "Rounded"
 msgstr ""
 
 #: inc/settings.php:246 inc/settings.php:780 inc/settings.php:1121
-#: inc/settings.php:1335 inc/widget.php:79 js/blocks-follow.js:160
+#: inc/settings.php:1350 inc/widget.php:79 js/blocks-follow.js:160
 msgid "Circular"
 msgstr ""
 
@@ -710,7 +729,7 @@ msgid ""
 "Disabled"
 msgstr ""
 
-#: inc/settings.php:343 inc/settings.php:927 inc/settings.php:1558
+#: inc/settings.php:343 inc/settings.php:927 inc/settings.php:1573
 msgid "Share Counts"
 msgstr ""
 
@@ -836,7 +855,7 @@ msgid ""
 "Show your floating social share buttons on your homepage. Default: Disabled"
 msgstr ""
 
-#: inc/settings.php:564 inc/settings.php:1142 inc/settings.php:1404
+#: inc/settings.php:564 inc/settings.php:1142 inc/settings.php:1419
 msgid "Default"
 msgstr ""
 
@@ -1055,7 +1074,7 @@ msgid ""
 "Squared"
 msgstr ""
 
-#: inc/settings.php:1133 js/blocks.js:89 novashare.php:300
+#: inc/settings.php:1133 js/blocks.js:89 novashare.php:310
 msgid "Theme"
 msgstr ""
 
@@ -1071,7 +1090,7 @@ msgstr ""
 msgid "Change the visual style of your click to tweet boxes."
 msgstr ""
 
-#: inc/settings.php:1153 js/blocks.js:103 novashare.php:307
+#: inc/settings.php:1153 js/blocks.js:103 novashare.php:317
 msgid "Call to Action Text"
 msgstr ""
 
@@ -1081,11 +1100,11 @@ msgid ""
 "boxes."
 msgstr ""
 
-#: inc/settings.php:1170 js/blocks.js:112 novashare.php:309
+#: inc/settings.php:1170 js/blocks.js:112 novashare.php:319
 msgid "Call to Action Position"
 msgstr ""
 
-#: inc/settings.php:1179 js/blocks.js:114 novashare.php:311
+#: inc/settings.php:1179 js/blocks.js:114 novashare.php:321
 msgid "Right (Default)"
 msgstr ""
 
@@ -1105,7 +1124,7 @@ msgid ""
 "boxes."
 msgstr ""
 
-#: inc/settings.php:1203 js/blocks.js:134 novashare.php:320
+#: inc/settings.php:1203 js/blocks.js:134 novashare.php:330
 msgid "Remove Username"
 msgstr ""
 
@@ -1115,7 +1134,7 @@ msgid ""
 "tweet boxes."
 msgstr ""
 
-#: inc/settings.php:1217 js/blocks.js:143 novashare.php:324
+#: inc/settings.php:1217 js/blocks.js:143 novashare.php:334
 msgid "Hide Hashtags"
 msgstr ""
 
@@ -1125,7 +1144,7 @@ msgid ""
 "boxes."
 msgstr ""
 
-#: inc/settings.php:1231 js/blocks.js:152 novashare.php:327
+#: inc/settings.php:1231 js/blocks.js:152 novashare.php:337
 msgid "Accent Color"
 msgstr ""
 
@@ -1155,530 +1174,536 @@ msgid ""
 "Share Post Image"
 msgstr ""
 
-#: inc/settings.php:1266
+#: inc/settings.php:1269
+msgid "Enable Image Attributes"
+msgstr ""
+
+#: inc/settings.php:1277
+msgid ""
+"Allow for control of Pinterest-specific image attributes throughout the "
+"plugin, even if image pins are not enabled. Default: Disabled"
+msgstr ""
+
+#: inc/settings.php:1281
 msgid "Image Pins"
 msgstr ""
 
-#: inc/settings.php:1271
+#: inc/settings.php:1286
 msgid "Enable Image Pins"
 msgstr ""
 
-#: inc/settings.php:1279
+#: inc/settings.php:1294
 msgid ""
 "Show Pinterest pin buttons when hovering over images in your content. "
 "Default: Disabled"
 msgstr ""
 
-#: inc/settings.php:1294
+#: inc/settings.php:1309
 msgid "Choose which post types display Pinterest image pins."
 msgstr ""
 
-#: inc/settings.php:1310
+#: inc/settings.php:1325
 msgid "Top Left"
 msgstr ""
 
-#: inc/settings.php:1311
+#: inc/settings.php:1326
 msgid "Top Right"
 msgstr ""
 
-#: inc/settings.php:1312
+#: inc/settings.php:1327
 msgid "Bottom Left"
 msgstr ""
 
-#: inc/settings.php:1313
+#: inc/settings.php:1328
 msgid "Bottom Right"
 msgstr ""
 
-#: inc/settings.php:1317
+#: inc/settings.php:1332
 msgid ""
 "Choose where on the image to display your Pinterest image pin buttons. "
 "Default: Top Left"
 msgstr ""
 
-#: inc/settings.php:1338
+#: inc/settings.php:1353
 msgid "Change the shape of your Pinterest image pin buttons. Default: Squared"
 msgstr ""
 
-#: inc/settings.php:1345
+#: inc/settings.php:1360
 msgid "Hide Button Labels"
 msgstr ""
 
-#: inc/settings.php:1354
+#: inc/settings.php:1369
 msgid "Hide the labels on your Pinterest image pin buttons. Default: Disabled"
 msgstr ""
 
-#: inc/settings.php:1361
+#: inc/settings.php:1376
 msgid "Excluded Images"
 msgstr ""
 
-#: inc/settings.php:1372
+#: inc/settings.php:1387
 msgid ""
 "Exclude specific images from getting pins applied. Exclude an image by "
 "adding the source URL (example.png) or by adding any unique portion of its "
 "attribute string (class=\"example\"). Format: one per line"
 msgstr ""
 
-#: inc/settings.php:1382
+#: inc/settings.php:1397
 msgid "Enable Twitter Counts"
 msgstr ""
 
-#: inc/settings.php:1389
+#: inc/settings.php:1404
 msgid ""
 "Request and store Twitter share counts using a third party service. Default: "
 "Disabled"
 msgstr ""
 
-#: inc/settings.php:1396
+#: inc/settings.php:1411
 msgid "Twitter Count Service"
 msgstr ""
 
-#: inc/settings.php:1408
+#: inc/settings.php:1423
 msgid "Choose which service to use to pull Twitter share counts."
 msgstr ""
 
-#: inc/settings.php:1415
+#: inc/settings.php:1430
 msgid "Twitter Username"
 msgstr ""
 
-#: inc/settings.php:1424
+#: inc/settings.php:1439
 msgid "novashare"
 msgstr ""
 
-#: inc/settings.php:1425
+#: inc/settings.php:1440
 msgid "The username used when sharing content to Twitter."
 msgstr ""
 
-#: inc/settings.php:1432
+#: inc/settings.php:1447
 msgid "Facebook App ID"
 msgstr ""
 
-#: inc/settings.php:1440
+#: inc/settings.php:1455
 msgid "The Facebook App ID from your Facebook Developer Application."
 msgstr ""
 
-#: inc/settings.php:1447
+#: inc/settings.php:1462
 msgid "Facebook App Secret"
 msgstr ""
 
-#: inc/settings.php:1455
+#: inc/settings.php:1470
 msgid "The Facebook App Secret from your Facebook Developer Application."
 msgstr ""
 
-#: inc/settings.php:1462
+#: inc/settings.php:1477
 msgid "Subscribe Link"
 msgstr ""
 
-#: inc/settings.php:1471
+#: inc/settings.php:1486
 msgid "The URL used for your subscribe button."
 msgstr ""
 
-#: inc/settings.php:1478
+#: inc/settings.php:1493
 msgid "Global Styles"
 msgstr ""
 
-#: inc/settings.php:1484
+#: inc/settings.php:1499
 msgid ""
 "Enqueue stylesheet globally to allow for use of shortcodes and widgets in "
 "custom templates. Default: Disabled"
 msgstr ""
 
-#: inc/settings.php:1491
+#: inc/settings.php:1506
 msgid "Custom CSS"
 msgstr ""
 
-#: inc/settings.php:1499
+#: inc/settings.php:1514
 msgid "Add custom CSS to only load when needed."
 msgstr ""
 
-#: inc/settings.php:1504
+#: inc/settings.php:1519
 msgid "Meta"
 msgstr ""
 
-#: inc/settings.php:1510
+#: inc/settings.php:1525
 msgid ""
 "A compatible SEO plugin is active. Meta and open graph data that is not "
 "specific to Novashare will be handled there."
 msgstr ""
 
-#: inc/settings.php:1519
+#: inc/settings.php:1534
 msgid "Enable Open Graph"
 msgstr ""
 
-#: inc/settings.php:1525
+#: inc/settings.php:1540
 #, php-format
 msgid ""
 "Print out open graph meta tags with Novashare in the %s section of your "
 "site. Default: Enabled"
 msgstr ""
 
-#: inc/settings.php:1532
+#: inc/settings.php:1547
 msgid "Hide Meta Box"
 msgstr ""
 
-#: inc/settings.php:1538
+#: inc/settings.php:1553
 msgid "Hide Novashare meta box in the WordPress editor. Default: Disabled"
 msgstr ""
 
-#: inc/settings.php:1545
+#: inc/settings.php:1560
 msgid "Default Social Image"
 msgstr ""
 
-#: inc/settings.php:1552
+#: inc/settings.php:1567
 msgid ""
 "Add a default image that will be used for share links and meta tags if no "
 "post specific images are found."
 msgstr ""
 
-#: inc/settings.php:1563
+#: inc/settings.php:1578
 msgid "Minimum Share Count"
 msgstr ""
 
-#: inc/settings.php:1572
+#: inc/settings.php:1587
 msgid ""
 "Set a minimum total share count threshold to reach before share counts are "
 "displayed."
 msgstr ""
 
-#: inc/settings.php:1579
+#: inc/settings.php:1594
 msgid "Share Counts Refresh Rate"
 msgstr ""
 
-#: inc/settings.php:1587 inc/settings.php:1594
+#: inc/settings.php:1602 inc/settings.php:1609
 msgid "High"
 msgstr ""
 
-#: inc/settings.php:1589 inc/settings.php:1596
+#: inc/settings.php:1604 inc/settings.php:1611
 msgid "Low"
 msgstr ""
 
-#: inc/settings.php:1591
+#: inc/settings.php:1606
 msgid ""
 "Adjust the rate at which your social share counts are refreshed based on the "
 "modified date. Default: High"
 msgstr ""
 
-#: inc/settings.php:1593
+#: inc/settings.php:1608
 msgid "Modified"
 msgstr ""
 
-#: inc/settings.php:1593
+#: inc/settings.php:1608
 msgid "days"
 msgstr ""
 
-#: inc/settings.php:1594 inc/settings.php:1595 inc/settings.php:1596
+#: inc/settings.php:1609 inc/settings.php:1610 inc/settings.php:1611
 msgid "hours"
 msgstr ""
 
-#: inc/settings.php:1604 inc/settings.php:1611
+#: inc/settings.php:1619 inc/settings.php:1626
 msgid "Purge Share Counts"
 msgstr ""
 
-#: inc/settings.php:1612
+#: inc/settings.php:1627
 msgid ""
 "Are you sure? This will delete all existing share count data for all posts "
 "from the database."
 msgstr ""
 
-#: inc/settings.php:1613
+#: inc/settings.php:1628
 msgid "Permanently delete all existing share counts from your database."
 msgstr ""
 
-#: inc/settings.php:1618
+#: inc/settings.php:1633
 msgid "Google Analytics"
 msgstr ""
 
-#: inc/settings.php:1623
+#: inc/settings.php:1638
 msgid "Enable UTM Tracking"
 msgstr ""
 
-#: inc/settings.php:1630
+#: inc/settings.php:1645
 msgid "Add UTM parameters to social sharing links."
 msgstr ""
 
-#: inc/settings.php:1637
+#: inc/settings.php:1652
 msgid "Campaign UTM Source"
 msgstr ""
 
-#: inc/settings.php:1646
+#: inc/settings.php:1661
 msgid ""
 "The value of the UTM source parameter added to your social sharing links. "
 "Use {{network}} to dynamically populate the value with the relative social "
 "network. Default: {{network}}"
 msgstr ""
 
-#: inc/settings.php:1653
+#: inc/settings.php:1668
 msgid "Campaign UTM Medium"
 msgstr ""
 
-#: inc/settings.php:1662
+#: inc/settings.php:1677
 msgid ""
 "The value of the UTM medium parameter added to your social sharing links. "
 "Default: social"
 msgstr ""
 
-#: inc/settings.php:1669
+#: inc/settings.php:1684
 msgid "Campaign UTM Name"
 msgstr ""
 
-#: inc/settings.php:1678
+#: inc/settings.php:1693
 msgid ""
 "The value of the UTM name parameter added to your social sharing links. "
 "Default: novashare"
 msgstr ""
 
-#: inc/settings.php:1683
+#: inc/settings.php:1698
 msgid "Link Shortening"
 msgstr ""
 
-#: inc/settings.php:1688
+#: inc/settings.php:1703
 msgid "Enable Bitly"
 msgstr ""
 
-#: inc/settings.php:1695
+#: inc/settings.php:1710
 msgid "Generate Bitly short links for all share URLs."
 msgstr ""
 
-#: inc/settings.php:1702
+#: inc/settings.php:1717
 msgid "Generic Access Token"
 msgstr ""
 
-#: inc/settings.php:1711
+#: inc/settings.php:1726
 msgid "The Generic Access Token from your Bitly account."
 msgstr ""
 
-#: inc/settings.php:1718
+#: inc/settings.php:1733
 msgid "Group"
 msgstr ""
 
-#: inc/settings.php:1727
+#: inc/settings.php:1742
 msgid ""
 "The group from your Bitly account used to generate and store short links. "
 "Non-enterprise users will only have one default group."
 msgstr ""
 
-#: inc/settings.php:1734 inc/settings.php:1741
+#: inc/settings.php:1749 inc/settings.php:1756
 msgid "Purge Short Links"
 msgstr ""
 
-#: inc/settings.php:1743
+#: inc/settings.php:1758
 msgid ""
 "Are you sure? This will delete all existing short links from the database."
 msgstr ""
 
-#: inc/settings.php:1744
+#: inc/settings.php:1759
 msgid "Permanently delete all existing short links from your database."
 msgstr ""
 
-#: inc/settings.php:1754
+#: inc/settings.php:1769
 msgid "Combine HTTP & HTTPS"
 msgstr ""
 
-#: inc/settings.php:1760
+#: inc/settings.php:1775
 msgid ""
 "Combine share counts for HTTP and HTTPS URLs for networks that store them "
 "separately. This will double the amount of API calls for those networks."
 msgstr ""
 
-#: inc/settings.php:1767
+#: inc/settings.php:1782
 msgid "Recover Previous Permalinks"
 msgstr ""
 
-#: inc/settings.php:1774
+#: inc/settings.php:1789
 msgid "Recover share counts for a previous permalink structure."
 msgstr ""
 
-#: inc/settings.php:1781
+#: inc/settings.php:1796
 msgid "Previous Permalink Structure"
 msgstr ""
 
-#: inc/settings.php:1789
+#: inc/settings.php:1804
 msgid "Select a Structure"
 msgstr ""
 
-#: inc/settings.php:1790
+#: inc/settings.php:1805
 msgid "Plain"
 msgstr ""
 
-#: inc/settings.php:1791
+#: inc/settings.php:1806
 msgid "Day and name"
 msgstr ""
 
-#: inc/settings.php:1792
+#: inc/settings.php:1807
 msgid "Month and name"
 msgstr ""
 
-#: inc/settings.php:1793
+#: inc/settings.php:1808
 msgid "Numeric"
 msgstr ""
 
-#: inc/settings.php:1794
+#: inc/settings.php:1809
 msgid "Post name"
 msgstr ""
 
-#: inc/settings.php:1795
+#: inc/settings.php:1810
 msgid "Custom Structure"
 msgstr ""
 
-#: inc/settings.php:1798
+#: inc/settings.php:1813
 msgid "The permalink structure used to recover share counts."
 msgstr ""
 
-#: inc/settings.php:1805
+#: inc/settings.php:1820
 msgid "Custom Permalink Structure"
 msgstr ""
 
-#: inc/settings.php:1813
+#: inc/settings.php:1828
 msgid ""
 "If you are recovering share counts for a custom permalink structure, please "
 "provide that structure here."
 msgstr ""
 
-#: inc/settings.php:1821
+#: inc/settings.php:1836
 msgid "Recover Previous Domain"
 msgstr ""
 
-#: inc/settings.php:1828
+#: inc/settings.php:1843
 msgid "Recover share counts for a previous domain."
 msgstr ""
 
-#: inc/settings.php:1835
+#: inc/settings.php:1850
 msgid "Previous Domain"
 msgstr ""
 
-#: inc/settings.php:1844
+#: inc/settings.php:1859
 msgid "The domain used to recover share counts."
 msgstr ""
 
-#: inc/settings.php:1851 novashare.php:405
-msgid "Tools"
-msgstr ""
-
-#: inc/settings.php:1865
+#: inc/settings.php:1880
 msgid ""
 "Permanently delete all Novashare data from your database when the plugin is "
 "uninstalled."
 msgstr ""
 
-#: inc/settings.php:1873
+#: inc/settings.php:1888
 msgid "Accessibility Mode"
 msgstr ""
 
-#: inc/settings.php:1881
+#: inc/settings.php:1896
 msgid ""
 "Disable the use of visual UI elements in the plugin settings such as "
 "checkbox toggles and hovering tooltips."
 msgstr ""
 
-#: inc/settings.php:1888 inc/settings.php:1895
+#: inc/settings.php:1903 inc/settings.php:1910
 msgid "Restore Default Options"
 msgstr ""
 
-#: inc/settings.php:1896
+#: inc/settings.php:1911
 msgid ""
 "Are you sure? This will remove all existing plugin options and restore them "
 "to their default states."
 msgstr ""
 
-#: inc/settings.php:1898
+#: inc/settings.php:1913
 msgid "Restore all plugin options to their default settings."
 msgstr ""
 
-#: inc/settings.php:1905
+#: inc/settings.php:1920
 msgid "Export Settings"
 msgstr ""
 
-#: inc/settings.php:1912
+#: inc/settings.php:1927
 msgid "Export Plugin Settings"
 msgstr ""
 
-#: inc/settings.php:1914
+#: inc/settings.php:1929
 msgid ""
 "Export your Novashare settings for this site as a .json file. This lets you "
 "easily import the configuration into another site."
 msgstr ""
 
-#: inc/settings.php:1921
+#: inc/settings.php:1936
 msgid "Import Settings"
 msgstr ""
 
-#: inc/settings.php:1926
+#: inc/settings.php:1941
 msgid "Import Novashare settings from an exported .json file."
 msgstr ""
 
-#: inc/settings.php:2086
+#: inc/settings.php:2101
 msgid "Upload an image."
 msgstr ""
 
-#: inc/settings.php:2206
+#: inc/settings.php:2221
 msgid "Import Plugin Settings"
 msgstr ""
 
-#: inc/settings.php:2231
+#: inc/settings.php:2246
 #, php-format
 msgid "Click %s to view documentation."
 msgstr ""
 
-#: inc/support.php:4 inc/support.php:7
+#: inc/support.php:9 inc/support.php:12
 msgid "Documentation"
 msgstr ""
 
-#: inc/support.php:6
+#: inc/support.php:11
 msgid ""
 "Need help? Check out our in-depth documentation. Every feature has a step-by-"
 "step walkthrough."
 msgstr ""
 
-#: inc/support.php:13 inc/support.php:16
+#: inc/support.php:18 inc/support.php:21
 msgid "Contact Us"
 msgstr ""
 
-#: inc/support.php:15
+#: inc/support.php:20
 msgid ""
 "If you have questions or problems, please send us a message. We’ll get back "
 "to you as soon as possible."
 msgstr ""
 
-#: inc/support.php:22
+#: inc/support.php:27
 msgid "Frequently Asked Questions"
 msgstr ""
 
-#: inc/support.php:26
+#: inc/support.php:31
 msgid "How do I license activate the plugin?"
 msgstr ""
 
-#: inc/support.php:27
+#: inc/support.php:32
 msgid "How do I update the plugin?"
 msgstr ""
 
-#: inc/support.php:28
+#: inc/support.php:33
 msgid "How do I upgrade my license?"
 msgstr ""
 
-#: inc/support.php:29
+#: inc/support.php:34
 msgid "Where can I view the changelog?"
 msgstr ""
 
-#: inc/support.php:30
+#: inc/support.php:35
 msgid "Where can I sign up for the affiliate program?"
 msgstr ""
 
-#: inc/support.php:33
+#: inc/support.php:38
 msgid "How do I enable inline share buttons?"
 msgstr ""
 
-#: inc/support.php:34
+#: inc/support.php:39
 msgid "How do I enable floating bar share buttons?"
 msgstr ""
 
-#: inc/support.php:35
+#: inc/support.php:40
 msgid "How do I enable share counts (total + network)?"
 msgstr ""
 
-#: inc/support.php:36
+#: inc/support.php:41
 msgid "How do I customize Click to Tweet settings?"
 msgstr ""
 
-#: inc/support.php:37
+#: inc/support.php:42
 msgid "How do I enable Pinterest image hover pins?"
 msgstr ""
 
@@ -1726,15 +1751,15 @@ msgstr ""
 msgid "Username"
 msgstr ""
 
-#: js/admin.js:360
+#: js/admin.js:382
 msgid "Characters"
 msgstr ""
 
-#: js/admin.js:363
+#: js/admin.js:385
 msgid "Character"
 msgstr ""
 
-#: js/admin.js:367
+#: js/admin.js:389
 msgid "Remaining"
 msgstr ""
 
@@ -1750,7 +1775,7 @@ msgstr ""
 msgid "Add Networks"
 msgstr ""
 
-#: js/blocks-follow.js:135 js/blocks.js:85 novashare.php:361
+#: js/blocks-follow.js:135 js/blocks.js:85 novashare.php:374
 msgid "Settings"
 msgstr ""
 
@@ -1774,19 +1799,19 @@ msgstr ""
 msgid "Apply"
 msgstr ""
 
-#: js/blocks-pinterest.js:185
+#: js/blocks-pinterest.js:190
 msgid "Pin Image"
 msgstr ""
 
-#: js/blocks-pinterest.js:195
+#: js/blocks-pinterest.js:200
 msgid "Upload Image"
 msgstr ""
 
-#: js/blocks-pinterest.js:211
+#: js/blocks-pinterest.js:216
 msgid "Replace Image"
 msgstr ""
 
-#: js/blocks-pinterest.js:217
+#: js/blocks-pinterest.js:222
 msgid "Remove image"
 msgstr ""
 
@@ -1798,64 +1823,52 @@ msgstr ""
 msgid "Default (Accent Background)"
 msgstr ""
 
-#: js/blocks.js:92 novashare.php:303
+#: js/blocks.js:92 novashare.php:313
 msgid "Simple (Transparent Background)"
 msgstr ""
 
-#: js/blocks.js:93 novashare.php:304
+#: js/blocks.js:93 novashare.php:314
 msgid "Simple Alternate (Gray Background)"
 msgstr ""
 
-#: js/blocks.js:275 novashare.php:328
+#: js/blocks.js:275 novashare.php:338
 msgid "Characters Remaining"
 msgstr ""
 
-#: novashare.php:295
+#: novashare.php:305
 msgid "Click to Tweet Shortcode"
 msgstr ""
 
-#: novashare.php:296
+#: novashare.php:306
 msgid "Insert Shortcode"
 msgstr ""
 
-#: novashare.php:298
+#: novashare.php:308
 msgid "Tweet"
 msgstr ""
 
-#: novashare.php:302
+#: novashare.php:312
 msgid "Default (Blue Background)"
 msgstr ""
 
-#: novashare.php:316
+#: novashare.php:326
 msgid "Remove Post URL"
 msgstr ""
 
-#: novashare.php:317
+#: novashare.php:327
 msgid "The URL of the current post will not be added to the tweet."
 msgstr ""
 
-#: novashare.php:321
+#: novashare.php:331
 msgid "The Twitter username saved in Novashare will not be added to the tweet."
 msgstr ""
 
-#: novashare.php:325
+#: novashare.php:335
 msgid "Trailing hashtags will be hidden from the display box."
 msgstr ""
 
-#: novashare.php:373 novashare.php:412
-msgid "Support"
-msgstr ""
-
-#: novashare.php:401
-msgid "Network"
-msgstr ""
-
-#: novashare.php:404
-msgid "Options"
-msgstr ""
-
-#: novashare.php:416
-msgid "Speed Up Guide"
+#: novashare.php:400
+msgid "Enter valid license key for automatic updates."
 msgstr ""
 
 #. Plugin Name of the plugin/theme

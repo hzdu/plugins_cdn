@@ -27,13 +27,35 @@
 			$('.novashare-color-picker').wpColorPicker();
 		});
 
-		//tab-content display
-		$('#novashare-subnav > a').click(function(e) {
+		//menu toggle
+		var menuToggle = document.getElementById('novashare-menu-toggle');
+		if(menuToggle) {
+			menuToggle.addEventListener('click', function(e) {
+				e.preventDefault();
+				var header = document.getElementById('novashare-menu');
+				if(!header.classList.contains('novashare-menu-expanded')) {
+					header.classList.add('novashare-menu-expanded');
+				}
+				else {
+					header.classList.remove('novashare-menu-expanded');
+				}
+			});
+		}
 
+		//tab-content display
+		$('#novashare-menu .novashare-subnav a').click(function(e) {
 			e.preventDefault();
+
+			//go to options section from another tab
+			var url = new URL(window.location.href);
+			if(url.searchParams.has('tab')) {
+				url.searchParams.delete('tab');
+				window.location = url.href + '#' + $(this).attr('rel');
+				return;
+			}
 						
 			//get displaying tab content jQuery selector
-			var active_tab = $('#novashare-subnav > a.active');		
+			var active_tab = $('#novashare-menu .novashare-subnav a.active');		
 						
 			//find actived navigation and remove 'active' css
 			active_tab.removeClass('active');
