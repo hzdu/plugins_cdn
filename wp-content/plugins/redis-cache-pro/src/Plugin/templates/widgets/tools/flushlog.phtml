@@ -1,5 +1,6 @@
 <?php
 
+$config = $this->plugin->config();
 $log = get_site_option('objectcache_flushlog', []);
 
 ?>
@@ -54,7 +55,7 @@ $log = get_site_option('objectcache_flushlog', []);
 
     <?php endif; ?>
 
-    <?php if (! WP_DEBUG && ! $this->plugin->config()->debug) : ?>
+    <?php if (! $config->debug && ! $config->save_commands && ! WP_DEBUG) : ?>
         <label class="inset">
             <input type="checkbox" name="flushlog" value="1" <?php checked($this->plugin->option('flushlog')); ?>>
             Keep a log of cache flushes

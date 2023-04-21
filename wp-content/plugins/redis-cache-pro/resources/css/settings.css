@@ -194,12 +194,18 @@ body.js .is-unix-socket .hide-if-unix-socket {
 
 .objectcache\:groups-widget .table-container + .actions {
     margin-top: 1em !important;
+    align-items: center;
+}
+
+.objectcache\:groups-widget .actions .button:first-child {
+    margin-right: auto;
 }
 
 #objectcache_groups .inside {
     padding-right: 2px;
 }
 
+#objectcache_groups .actions,
 #objectcache_groups .table-container,
 #objectcache_groups p {
     padding-right: 10px;
@@ -211,7 +217,7 @@ body.js .is-unix-socket .hide-if-unix-socket {
 }
 
 #objectcache_flushlog .inset {
-    margin: 12px;
+    margin: 8px 12px 12px 12px;
 }
 
 .objectcache\:flushlog-widget details:first-of-type {

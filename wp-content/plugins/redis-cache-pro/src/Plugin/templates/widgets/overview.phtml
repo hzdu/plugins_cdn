@@ -3,8 +3,7 @@
 $license = $this->license();
 $diagnostics = $this->diagnostics();
 
-$usingRelay = $diagnostics->usingRelay();
-$relayHasCache = $diagnostics->relayHasCache();
+$usingRelayCache = $diagnostics->usingRelayCache();
 
 $status = $diagnostics['general']['status']->html;
 $dropin = $diagnostics['general']['dropin']->html;
@@ -19,7 +18,7 @@ $relayMemory = $diagnostics['statistics']['relay-memory'] ?? false;
 $configError = $this->config->initException ?? false;
 $configDefined = defined('\WP_REDIS_CONFIG');
 $configDefinedTooLate = $this->lazyAssConfig();
-$networkFlushing = $this->config->network_flush !== $this->config::NETWORK_FLUSH_ALL;
+$networkFlushing = is_multisite() && $this->config->network_flush !== $this->config::NETWORK_FLUSH_ALL;
 $isDisabled = $diagnostics->isDisabled();
 $dropinExists = $diagnostics->dropinExists();
 $dropinIsValid = $dropinExists && $diagnostics->dropinIsValid();
@@ -89,7 +88,7 @@ $admin_nonce_url = function ($action) {
             </li>
         <?php endif; ?>
 
-        <?php if ($usingRelay && $relayHasCache) : ?>
+        <?php if ($usingRelayCache) : ?>
             <?php if ($this->config->shared && $relayKeys->hasValue()) : ?>
                 <li>
                     <span class="dashicons dashicons-database-add"></span>
@@ -107,8 +106,8 @@ $admin_nonce_url = function ($action) {
     <div class="actions">
 
         <?php if (! $isDisabled && $dropinExists && $dropinIsValid && $diagnostics->ping()) : ?>
-            <?php $flushText = (is_multisite() && $networkFlushing) ? (is_network_admin() ? 'Flush Network Cache' : 'Flush Site Cache') : 'Flush Cache'; ?>
-            <?php $flushAction = (is_multisite() && $networkFlushing) ? (is_network_admin() ? 'flush-network-cache' : 'flush-site-cache') : 'flush-cache'; ?>
+            <?php $flushText = is_network_admin() ? 'Flush Network Cache' : ($networkFlushing ? 'Flush Site Cache' : 'Flush Cache'); ?>
+            <?php $flushAction = is_network_admin() ? 'flush-network-cache' : ($networkFlushing ? 'flush-site-cache' : 'flush-cache'); ?>
             <?php if ($license->isValid()) : ?>
                 <a class="button button-primary"
                     href="<?php echo $admin_nonce_url($flushAction); ?>"

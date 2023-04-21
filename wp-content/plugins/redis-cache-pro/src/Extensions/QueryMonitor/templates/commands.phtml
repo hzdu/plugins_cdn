@@ -20,10 +20,10 @@ if (! defined('QM_OBJECTCACHE_HEAVY')) {
             <th scope="col" class="qm-filterable-column">
                 <?php echo $this->build_filter('type', $data['types'], 'Command'); ?>
             </th>
-            <th scope="col">
-                Caller
-            </th>
             <?php if (isset($data['components'])) : ?>
+                <th scope="col">
+                    Caller
+                </th>
                 <th scope="col" class="qm-filterable-column">
                     <?php echo $this->build_filter('component', $data['components'], 'Component'); ?>
                 </th>
@@ -42,7 +42,7 @@ if (! defined('QM_OBJECTCACHE_HEAVY')) {
         <?php foreach ($data['commands'] as $no => $command) : ?>
             <tr
                 data-qm-type="<?php echo esc_attr(strtoupper($command['command'])); ?>"
-                data-qm-component="<?php echo is_array($command['backtrace']) ? '' : esc_attr($command['backtrace']->get_component()->name); ?>"
+                data-qm-component="<?php echo isset($command['backtrace']) ? esc_attr($command['backtrace']->get_component()->name) : ''; ?>"
                 data-qm-time="<?php echo esc_attr($command['time']); ?>"
             >
                 <th scope="row" class="qm-row-num qm-num">
@@ -56,16 +56,8 @@ if (! defined('QM_OBJECTCACHE_HEAVY')) {
                     </code>
                 </td>
 
-                <td class="qm-row-caller qm-ltr qm-has-toggle qm-nowrap">
-                    <?php if (is_array($command['backtrace'])) : ?>
-                        <ul>
-                            <?php foreach ($command['backtrace'] as $trace) : ?>
-                                <li>
-                                    <code><?php echo esc_html($trace); ?></code>
-                                </li>
-                            <?php endforeach; ?>
-                        </ul>
-                    <?php else : ?>
+                <?php if (isset($command['backtrace'])) : ?>
+                    <td class="qm-row-caller qm-ltr qm-has-toggle qm-nowrap">
                         <?php echo self::build_toggler(); ?>
 
                         <?php $caller = $command['backtrace']->get_caller(); ?>
@@ -84,10 +76,8 @@ if (! defined('QM_OBJECTCACHE_HEAVY')) {
                                 <?php endforeach; ?>
                             </div>
                         </ol>
-                    <?php endif; ?>
-                </td>
+                    </td>
 
-                <?php if (isset($data['components'])) : ?>
                     <td class="qm-nowrap">
                         <?php echo esc_html($command['backtrace']->get_component()->name); ?>
                     </td>
@@ -119,15 +109,19 @@ if (! defined('QM_OBJECTCACHE_HEAVY')) {
     <tfoot>
 
         <tr>
-            <td colspan="<?php echo isset($data['components']) ? 5 : 4; ?>">
+            <td colspan="<?php echo isset($data['components']) ? 4 : 2; ?>">
                 Total:
                 <span class="qm-items-number">
                     <?php echo count($data['commands']); ?>
                 </span>
             </td>
 
-            <td class="qm-num qm-items-time">
-                <?php echo number_format(array_sum(array_column($data['commands'], 'time')), 4, '.', ''); ?>
+            <td class="qm-num">
+                <?php echo size_format(array_sum(array_column($data['commands'], 'bytes')), 2); ?>
+            </td>
+
+            <td class="qm-num">
+                <?php echo number_format(array_sum(array_column($data['commands'], 'time')), 2, '.', ''); ?>ms
             </td>
         </tr>
 

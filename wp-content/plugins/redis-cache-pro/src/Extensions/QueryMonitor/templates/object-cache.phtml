@@ -11,7 +11,7 @@
     <section>
         <h3>Cache</h3>
         <p>
-            Size: <?php echo size_format($data['bytes'], 2); ?>
+            Size: <?php echo size_format($data['memory'], 2); ?>
 
             <?php if (isset($data['prefetches'])) : ?>
                 <br>
@@ -27,11 +27,11 @@
         </p>
     </section>
 
-    <?php if (isset($data['ms_total'])) : ?>
+    <?php if (isset($data['ms_request'])) : ?>
         <section>
             <h3>Timing</h3>
             <p>
-                Request: <?php echo esc_html($data['ms_total']); ?> ms
+                Request: <?php echo esc_html($data['ms_request']); ?> ms
                 <?php if (isset($data['ms_cache'])) : ?>
                     <br>
                     Cache: <?php echo esc_html($data['ms_cache']); ?> ms
@@ -39,7 +39,7 @@
                     <span class="qm-info">
                         <?php echo esc_html($data['ms_cache_ratio']); ?>% of request
                         <br>
-                        <?php echo esc_html($data['ms_cache_median']); ?> ms median
+                        <?php echo esc_html($data['ms_cache_median']); ?> ms average
                     </span>
                 <?php endif; ?>
             </p>
@@ -51,9 +51,9 @@
         <p>
             <?php echo esc_html($data['ratio']); ?>% hit rate
             <br>
-            <?php echo esc_html($data['hits']); ?> hits
+            <?php echo esc_html(number_format($data['hits'])); ?> hits
             <br>
-            <?php echo esc_html($data['misses']); ?> misses
+            <?php echo esc_html(number_format($data['misses'])); ?> misses
         </p>
     </section>
 
@@ -116,7 +116,7 @@
                                     'The license token <code>••••••••%s</code> could not be verified.',
                                     substr($data['license']->token(), -4)
                                 ); ?>
-                            <?php elseif ($data['license']->isInvalid()) : ?>
+                            <?php elseif ($data['license']->token() && $data['license']->isInvalid()) : ?>
                                 <?php printf(
                                     'The license token <code>••••••••%s</code> appears to be invalid.',
                                     substr($data['license']->token(), -4)
@@ -160,21 +160,23 @@
     <?php if (! empty($data['cache'])) : ?>
 
         <section>
-            <h3>Groups</h3>
+            <h3>Request Groups</h3>
 
             <table>
                 <tbody>
-                    <?php foreach ($data['cache'] as $group => $values) : ?>
+                    <?php foreach ($data['cache'] as $name => $group) : ?>
                         <tr>
-                            <th scope="row"><?php echo esc_html($group); ?></th>
+                            <th scope="row"><?php echo esc_html($name); ?></th>
                             <td class="qm-ltr qm-wrap">
                                 <?php printf(
-                                    _n('%s key', '%s keys', $values['keys'], 'object-cache-pro'),
-                                    $values['keys']
+                                    _n('%s key', '%s keys', $group->keys, 'object-cache-pro'),
+                                    $group->keys
                                 ); ?>
-                                <span class="qm-info">
-                                    (<?php echo size_format($values['bytes']); ?>)
-                                </span>
+                                <?php if ($group->memory) : ?>
+                                    <span class="qm-info">
+                                        (<?php echo size_format($group->memory, $group->memory > (1024 * 1024) ? 2 : 0); ?>)
+                                    </span>
+                                <?php endif; ?>
                             </td>
                         </tr>
                     <?php endforeach; ?>

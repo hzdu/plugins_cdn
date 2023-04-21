@@ -15,6 +15,26 @@ The code is licensed under GPLv3.
 
 ## Changelog ##
 
+##### [Version 2.5.8](https://github.com/Codeinwp/neve-pro-addon/compare/v2.5.7...v2.5.8) (2023-04-21)
+
+- [Fix] HFG components not available if the page header is disabled
+
+
+
+
+##### [Version 2.5.7](https://github.com/Codeinwp/neve-pro-addon/compare/v2.5.6...v2.5.7) (2023-04-19)
+
+- [Feat] Add a direct link to the support form inside the Neve dashboard
+- [Fix] Reading time meta not working for individual post settings
+- [Fix] Author Avatar and Reading Time not available for cover mode in individual post settings by default
+- [Fix] The Reading Time from the individual post setting not reflecting the value from the customizer
+- [Fix] Sale tag text and percentage do not apply in the Quick View modal
+- [Fix] Properly disable the page header when it is disabled from module settings
+- Test compatibility with WooCommerce 7.6
+
+
+
+
 ##### [Version 2.5.6](https://github.com/Codeinwp/neve-pro-addon/compare/v2.5.5...v2.5.6) (2023-04-06)
 
 - [Feat] Dynamic Icon Selection and Optional Button for HFG Advanced Search Components

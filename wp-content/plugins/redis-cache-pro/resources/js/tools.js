@@ -85,14 +85,17 @@ jQuery.extend(window.objectcache, {
 
             var widget = document.querySelector('.objectcache\\:groups-widget');
             var copyButton = widget.querySelector('.button[data-clipboard-target]');
+            var copyText = widget.querySelector('.button[data-clipboard-target] + span');
             var clipboard = new ClipboardJS(copyButton);
 
             clipboard.on('success', function (event) {
                 event.clearSelection();
-                copyButton.textContent = copyButton.dataset.copied;
+                copyButton.classList.add('hidden');
+                copyText.classList.remove('hidden');
 
                 setTimeout(function () {
-                    copyButton.textContent = copyButton.dataset.text;
+                    copyText.classList.add('hidden');
+                    copyButton.classList.remove('hidden');
                 }, 3000);
             });
 
@@ -120,6 +123,16 @@ jQuery.extend(window.objectcache, {
             var error = widget.querySelector('.error');
             error && widget.removeChild(error);
 
+            var title = document.querySelector('#objectcache_groups .hndle');
+
+            if (title) {
+                if ('label' in title.dataset) {
+                    title.textContent = title.dataset.label;
+                } else {
+                    title.dataset.label = title.textContent;
+                }
+            }
+
             jQuery
                 .ajax({
                     url: objectcache.rest.url + 'objectcache/v1/groups',
@@ -138,12 +151,21 @@ jQuery.extend(window.objectcache, {
                     var table = document.createElement('table');
                     container.prepend(table);
 
+                    var escapeHtml = function (text) {
+                        var div = document.createElement('div');
+                        div.innerText = text;
+
+                        return div.innerHTML.replace(/"/g, '&quot;').replace(/'/g, '&apos;');
+                    };
+
                     var content = '';
 
                     if (data.length) {
+                        title.textContent = title.dataset.label + ' (' + data.length + ')';
+
                         data.forEach(function (item) {
-                            content += '<tr title="' + item.count + ' objects found in `' + item.group + '` group">';
-                            content += '  <td>' + item.group + '</td>';
+                            content += '<tr title="' + item.count + ' objects found in `' + escapeHtml(item.group) + '` group">';
+                            content += '  <td data-group="' + item.group + '">' + escapeHtml(item.group) + '</td>';
                             content += '  <td>';
                             content += '    <strong>' + item.count + '</strong>';
                             content += '  </td>';

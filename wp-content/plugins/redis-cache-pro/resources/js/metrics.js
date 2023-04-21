@@ -437,7 +437,7 @@ jQuery.extend(window.objectcache, {
                 return Math.round(value) + ' ms';
             }
 
-            if (this.id === 'ms-cache-median') {
+            if (this.id === 'ms-cache-avg') {
                 return value.toFixed(2) + ' ms';
             }
 
