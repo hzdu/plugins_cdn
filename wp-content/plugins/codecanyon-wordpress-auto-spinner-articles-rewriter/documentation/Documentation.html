@@ -1,0 +1,304 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<head lang="en">
+	<meta http-equiv="content-type" content="text/html;charset=utf-8">
+	<title>Plugin Documentation</title>
+	<!-- Framework CSS -->
+	<link rel="stylesheet" href="assets/blueprint-css/screen.css" type="text/css" media="screen, projection">
+	<link rel="stylesheet" href="assets/blueprint-css/print.css" type="text/css" media="print">
+	<!--[if lt IE 8]><link rel="stylesheet" href="assets/blueprint-css/ie.css" type="text/css" media="screen, projection"><![endif]-->
+	<link rel="stylesheet" href="assets/blueprint-css/plugins/fancy-type/screen.css" type="text/css" media="screen, projection">
+	<style type="text/css" media="screen">
+		p, table, hr, .box { margin-bottom:25px; }
+		.box p { margin-bottom:10px; }
+	</style>
+</head>
+
+
+<body>
+	<div class="container">
+	
+		<h3 class="center alt">&ldquo;Wordpress Auto Spinner&rdquo; Documentation by &ldquo;ValvePress&rdquo; v3.1</h3>
+		
+		<hr>
+		
+		<h1 class="center">&ldquo;Wordpress Auto Spinner&rdquo;</h1>
+		
+		<div class="borderTop">
+			<div class="span-6 colborder info prepend-1">
+				<p class="prepend-top">
+					<strong>
+					Created: 17/2/2013<br>
+					Version 3.1 : 11/3/2015<br>
+					By: <a href="http://codecanyon.net/user/ValvePress">ValvePress</a><br>
+					 
+					</strong>
+				</p>
+			</div><!-- end div .span-6 -->		
+	
+			<div class="span-12 last">
+				<p class="prepend-top append-0">Thank you for purchasing my Plugin. If you have any questions that are beyond the scope of this help file, please feel free to open a support ticket <a href="http://deandev.com/support">here</a>. Thanks so much!</p>
+			</div>
+		</div><!-- end div .borderTop -->
+		
+		<hr>
+		
+		<h2 id="toc" class="alt">Table of Contents</h2>
+		<ol class="alpha">
+			<li><a href="#pinstall">Plugin Installation</a></li>
+			<li><a href="#sett">Plugin Settings</a></li>
+			<li><a href="#dens">Plugin Usage</a></li>			
+			<li><a href="#th1">Thesaurus</a></li>			
+			<li><a href="#th2">Custom Thesaurus</a></li>			
+			<li><a href="#wq">Waiting Queue</a></li>
+			<li><a href="#cs">Cron Setup</a></li>
+			<li><a href="#htsop">Spin old posts</a></li>
+			
+		</ol>
+		
+		<hr>
+		
+		<h3 id="pinstall"><strong>A) Plugin installation</strong> - <a href="#toc">top</a></h3>
+		<p>
+			<p>For a <strong>fast overview</strong> of the plugin installation view this demo video showing the plugin installation and usage in action : </p>
+			<iframe width="560" height="315" src="http://www.youtube.com/embed/vLcepQVZD5M" frameborder="0" allowfullscreen></iframe>
+		</p>
+
+		<ol>
+			<li>Extract your downloaded file from CodeCanyon you will find a .zip file named <strong>"wp-auto-spinner-v3.x.x.zip"</strong> located in the <strong>WWW</strong> folder inside the main extracted file. this is the plugin file we will use for upload.</li>
+			<li>Visit your <strong>Admin Page</strong> of the wordpress installation you have. then under the <strong>"Plugins Menu"</strong> hit <strong>"Add New"</strong><br><img src="assets/images/1_add.png"></li>
+			<li>Hit the <strong>Upload</strong> link to upload the plugin file.<br/><img src="assets/images/2_upload.png" /></li>
+			<li>Click <strong>"browse"</strong> button to start uploading <br/> <img src="assets/images/3_browse.png" /></li>
+			<li>Select the plugin file <strong>"wp-auto-spinner-v-x.x.x.zip"</strong> located at your <strong>WWW</strong> folder and hit <strong>Open</strong><br><img src="assets/images/4_select.png"</li>
+			<li>Click <strong>"install now"</strong> <br/> <img src="assets/images/5_install.png" /></li>
+			<li><strong>Activate</strong> the plugin <br/> <img src="assets/images/6_activate.png" /></li>
+
+			<p><strong>Congratulations</strong> now the plugin installed and ready for use. move to the <a href="#sett">Settings Section</a> to set plugin settings.</p>
+		</ol>
+
+		<hr>
+ 
+		<h3 id="sett"><strong>B) Plugin Settings</strong> - <a href="#toc">top</a></h3>
+		
+		<ol>
+			<li>
+				<p>To set the plugin settings , under "WP Spinner" menu click "settings" .
+					<img src="assets/images/settings_small.png"   />
+				</p>
+			</li>
+
+			<li>
+			<p>Settings will show . check options you need and hit "save options"
+					<img src="assets/images/settings.png"   />
+
+					<ol>
+						<li>
+							Choose your blog language
+						</li>
+
+						<li>
+							<strong>Activate automatic spin for posts:</strong> checking this option will make the plugin automatically spin your posts so if you are auto posting to your blog check it to rewrite your posts.
+						</li>
+
+						<li>
+							<strong> Spin post title to :</strong> check it to re-write the post title 
+						</li>
+						<li>Don't spin the content: tick this option if you don't want the content of the post to be spinned. If you checked this the synonyms in the rewritten article editor will not select an alternative </li>
+
+						<li><strong>Spin post slug:</strong> check this option to spin the post slug </li>
+						
+						<li><strong>Spin links texts:</strong>check this if you want to spin the links alt text</li>
+
+						<li>
+							<strong> Automatically spin articles I manually write :</strong> checking this option will automatically spin posts you manually write so when you preview the post it will get rewritten .
+						</li>
+						
+						<li>
+							<strong> Spin instantly :</strong> check this option for bots posts to get spinned instantly not go to queue .
+						</li>
+						
+						<li>
+							<strong> Activate shuffule mode :</strong> By default if we have a synonyms set on the form word1|word2|word3 if the content contains word1 it will be replaced by word2 or word3 but if it contains word2 it will not be replaced as the plugin replaces the first word of the set not the counter . by ticking this option if word2 or word3 are in the content they will be replaced by word1 or another word on the set. 
+						</li>
+						
+						
+						
+						<li>
+							<strong> Spin scheduled posts instantly :</strong> By default scheduled posts get spinned once published tick here if you don't want them to wait untill published  
+						</li>
+						
+						<li>
+							<strong> Spin draft posts :</strong> By default draft posts get spinned once published tick here if you don't want them to wait untill published   
+						</li>
+						
+						<li>
+							<strong> Disable spinning queue :</strong> Tick this option to disable the spinning queue so the cron will not process any item from the queue (be carefull this option will stop spinning items in the queue)   
+						</li>
+						
+						<li>
+							<strong> Custom Post Types :</strong> if you have a plugin that uses a custom post type choose this type for the plugin to support. chosen types will show the plugin box at it's admin page. as example if you have woocommerce and want the plugin to support it tick the "product" post type 
+						</li>
+						
+						<li>
+							<strong> Use internal cron :</strong> Posts eligible for spinning get sent to the pinning queue then the cron runs every minute to process one item from the queue. tick this option to use the internal wordpress cron if you will not setup an external cron job .
+						</li>
+						
+					
+						
+						<li>
+							<strong> Start Now :</strong> Click this link to trigger the cron job .
+						</li>
+						
+						<li>
+							<strong> Cron Command :</strong> Copy this command to your crontab when you setup the cron job .
+						</li>
+						
+						<li>
+							<strong> Alternate Command :</strong> another alternative cron command you can use if the above didn't work for you .
+						</li>
+						
+						<li>
+							<strong> Execlude Title Words :</strong> Tick this option for the plugin to execlude title words from spinning on the content  .
+						</li>
+						
+						<li>
+							<strong> Execlude capped words :</strong> Tick this option to execlude spinning words with capetal starting letter .
+						</li>
+						
+						<li>
+							<strong> Execlude textual urls :</strong> sometimes the links are written as plain text without the html markup. this will detect links from the context.
+						</li>
+						
+						<li>
+							<strong> Execlude smart quotes :</strong>  This will exclude quotes between single ‘ ’ and double “ ” curely quotes. 
+						</li>
+						
+						<li>
+							<strong> Exclude regular quotes  :</strong>   This will exclude quotes between double regular quotes " ". 
+						</li>
+
+						<li>
+							<strong> Reserved Words:</strong> add words you don't like to spin
+						</li>
+
+						<li>
+							<strong>Execluded Categories:</strong>check what categories you don't like to spin 
+						</li>
+						
+						<li>
+							<strong>Spinning mode:</strong>By Default, the plugin uses it's internal synonyms database but you still can use any of 6 most popular APIs to spin the posts .
+							 
+						</li>
+						
+						 
+						
+					</ol>
+
+			</p>
+
+			</li>
+
+			
+		</ol>
+	 
+		<hr>
+		
+
+		<h3 id="dens"><strong>C) Plugin usage</strong> - <a href="#toc">top</a></h3>
+		<p>
+		once you installed the plugin you are ready to use . under "Posts" menu click "Add New"
+		<img src="assets/images/new_post.png"   />
+		<br>to start using the plugin :
+		
+		<ol>
+			<li>
+				Write/paste your post content 
+			</li>
+			<li>
+				click "Rewrite the post"
+			</li>
+		</ol>
+
+		once you clicked "Rewrite the post" , you will get a rewritten post as shown so you have two options there :
+		<img src="assets/images/d2_rewritten.png"   />
+		<ol>
+			<li>
+				Send to editor : will send the rewritten article to the editor 
+			</li>
+			<li>
+				Generate new post : will generate a new rewritten article 
+			</li>
+		</ol>
+
+		<strong>Synonyms tab :</strong> contains synonyms for your article i.e possible suggestions for each word on your original article 
+		<img src="assets/images/d2_synonyms.png"   />
+		<br>
+		<strong>Original article tab :</strong> contains original article before being rewritten where you can restore 
+		<img src="assets/images/d2_ori.png"   />
+		 
+
+
+		</p>
+
+		<hr>
+
+		<h3 id="th1"><strong>D) Thesaurus</strong> - <a href="#toc">top</a></h3>
+			<p>Plugin spin the content using a synonyms database which you can edit , add and remove synonyms to edit them visit "Thesaurus" under the plugin menu</p>
+			<img src="assets/images/thesaurs.png" />
+		<hr>
+
+		<h3 id="th2"><strong>E)Custom Thesaurus</strong> - <a href="#toc">top</a></h3>
+			<p>You can add new synonyms just visit "Custom Thesaurus" and add your new synonyms one word per line on the right form</p>
+			<img src="assets/images/thesaurs_custom.png" />
+		
+		
+		<hr>
+		
+
+		<h3 id="wq"><strong>G) Waiting Queue</strong> - <a href="#toc">top</a></h3>
+		
+			<p>
+				
+				When a bot post get added to your wordpress and it is eligible for spinning it will be added to the waiting queue
+				
+				This queue was made to mange server resources smartly 
+				
+				<img src="assets/images/wq.png" />
+				
+			</p>
+			
+		<hr>
+		
+		<h3 id="cs"><strong>G) Cron Setup</strong> - <a href="#toc">top</a></h3>
+			
+			
+		
+		<p>
+			
+			To setup a cron job for processing the waiting queue refer to your hosting control panel. find something called "Cron Jobs" this is the case at my hosting account 
+			 <img src="assets/images/cj.png" />
+			
+			<br>
+			Set it to call every minute and Copy/Paste the cron command to the box 
+			<img src="assets/images/cj2.png" />
+			
+			
+		</p>
+		<hr>
+		
+		<h3 id="htsop"><strong>H) Spin old posts</strong> - <a href="#toc">top</a></h3>
+		
+		<p>
+			The plugin has a bulk spin option which can send posts in bulk to the spinning queue. visit the posts page then select your posts and send to the spinning queue. 
+			<img src="assets/images/bs.png" />
+		</p>
+		
+		<hr>
+		<p>Once again, thank you so much for purchasing this Plugin. As I said at the beginning, I'd be glad to help you if you have any questions relating to this Plugin. No guarantees, but I'll do my best to assist. If you have a more general question relating to the Plugins on CodeCanyon, you might consider visiting the Item page and asking your question in the "Item Discussion" section.</p> 
+		
+		<p class="append-bottom alt large"><strong>Atef</strong></p>
+		<p><a href="#toc">Go To Table of Contents</a></p>
+		
+		<hr class="space">
+	</div><!-- end div .container -->
+</body>
+</html>
