@@ -1,3 +1,76 @@
+--- 3.17.0 ---
+NEW: Lottie Element (Bodymovin), a powerful and flexible way to integrate Lottie animations.
+NEW: AJAX add to cart buttons on single product page & quick view (optional).
+NEW: Lazy load Instagram feeds (optional).
+NEW: Header element Secondary Menu.
+NEW: Implemented native CSS-based sticky columns for enhanced performance.
+NEW: Integrated dynamic per-page load offset calculation for optimized scroll-to experience.
+NEW: Sticky sidebar/column mode option.
+NEW: Swatches/shop: Reset limited swatches option.
+NEW: Auto open & scroll to accordion item per URL hash.
+NEW: Auto-scroll to tab per URL hash.
+NEW: Slider: Responsive slide width.
+NEW: Refactored follow links for enhanced customization, addition, and reordering capabilities.
+NEW: Refactored share links for enhanced customization, addition, and reordering capabilities.
+NEW: Refactored sticky column JavaScript (enhanced & developed in-house).
+NEW: Lottie Path: Set the source path or upload a file for your Lottie animation.
+NEW: Lottie Animation Speed: Adjust the animation speed to suit your needs.
+NEW: Lottie Autoplay: Toggle autoplay for your Lottie animations.
+NEW: Lottie Mouse behavior: Set the animation behavior on mouse events.
+NEW: Lottie Triggers: Choose from multiple trigger options for your animations: none, on hover, on click, or on scroll.
+NEW: Lottie Start at X% Viewport (scroll): Define the animation start point based on the viewport percentage when scrolling.
+NEW: Lottie Finish at X% Viewport (scroll): Define the animation end point based on the viewport percentage when scrolling.
+NEW: Lottie Play in Reverse: Enable playing the animation in reverse.
+NEW: Lottie Start Animation at X%: Set the starting point of the animation.
+NEW: Lottie End Animation at X%: Set the ending point of the animation.
+NEW: Lottie Player Controls: Provide users with built-in player controls for the Lottie animations.
+NEW: Added 'Offset Type' option on scroll-to.
+NEW: Added 'Offset Value' option for customizing scroll-to value.
+NEW: Yoast & Rank Math: make primary term active category in WooCommerce widget.
+
+ENHANCEMENT: Centering the canvas in UX Builder.
+ENHANCEMENT: Combined post date and author into a single string for translation purposes.
+ENHANCEMENT: Improved customizer sortable enabled/disabled state style.
+ENHANCEMENT: Improved various translation strings.
+ENHANCEMENT: Infinite scrolling in conjunction with Facet WP.
+ENHANCEMENT: Menu link element can now use mailto:, sms:, ... protocol links.
+ENHANCEMENT: Replaced jQuery waypoint with a more efficient method for better performance.
+ENHANCEMENT: Separated blog post shortcode links to image and title.
+ENHANCEMENT: Scroll hierarchy when dragging over it in UX Builder.
+ENHANCEMENT: Swatch flex spacing & added size variables.
+ENHANCEMENT: UX Blocks: Hide from nav menus selection.
+ENHANCEMENT: Various CSS improvements.
+
+FIXED: Attach events to duplicated elements in UX Builder.
+FIXED: Edit with UX Builder button in Gutenberg not visible in some cases.
+FIXED: Focus duplicated element correctly in UX Builder.
+FIXED: Sorting multi select controls in UX Builder.
+FIXED: Multi select controls showing all terms or tags in UX Builder in some cases.
+FIXED: Issue where the $.block overlay was appearing over the header in some cases.
+FIXED: Mobile logo left positioning in conjunction with desktop center logo positioning.
+FIXED: Portfolio tag breadcrumbs going outside of the container.
+FIXED: Potential XSS within UX Builder.
+FIXED: Prevent native drag on elements in UX Builder.
+FIXED: Refined scroll-to positioning for WooCommerce notices (e.g., on the checkout page) for a better user experience.
+FIXED: Replaced WooCommerce deprecated methods.
+FIXED: Search lightbox and shortcode button dimensions on mobile.
+FIXED: Tabs: Lazy load issue in other than the first tab with animated content element.
+FIXED: Blog posts href on button element.
+FIXED: Unknown format specifier on tab title in some cases.
+FIXED: WordPress 6.2 deprecations.
+
+UPDATED: Google Fonts list.
+UPDATED: Language files.
+
+DEV: Added flatsome_follow_links filter.
+DEV: Added flatsome_share_links filter.
+DEV: Added flatsome_shortcode_${tag}_social_links filter.
+DEV: Deprecated flatsome_swatches() in favor of swatches().
+DEV: Updated Tooltipster to 4.2.8 + migrate.
+
+Note: Minimum required WooCommerce version 4.7.0.
+Note: Minimum required WP version 5.4.0.
+
 --- 3.16.8 ---
 NEW: Support for Instagram access tokens (Instagram Basic Display).
 NEW: Select connected Instagram account from select list in UX Builder.
@@ -150,7 +223,7 @@ DEV: Added flatsome_single_product_thumbnails_classes filter.
 DEV: Added flatsome_single_product_thumbnails_render_without_attachments filter.
 
 Note: add_action( 'wp_head', 'flatsome_prefetch_scripts', 5 ); changed to add_filter( 'wp_resource_hints', 'flatsome_prefetch_scripts', 10, 2 );
-Note: UX Builder: To scrub and input value (margin, padding, ...) press the mouse key down upon an input, then move the mouse.
+Note: UX Builder: To scrub and input value (margin, padding, ...) press the mouse key down upon an input, then move the mouse up or down.
 Note: Dropping support for IE (new features are no longer tested and are not guaranteed to function optimally for this browser)
 
 --- 3.15.7 ---

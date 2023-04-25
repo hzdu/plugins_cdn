@@ -1,12 +1,12 @@
-/* global flatsome_gutenberg, wp */
-(function () {
+/* global flatsome_gutenberg */
+(function (wp) {
   'use strict'
 
   var FlatsomeGutenberg = {
     headerToolbar: null,
     editButton: null,
     init: function () {
-      if (!flatsome_gutenberg.edit_button.enabled) {
+      if (!flatsome_gutenberg.edit_button.enabled || this.editButton) {
         return
       }
 
@@ -58,12 +58,11 @@
         }
       }, 500)
     }
-
   }
 
-  document.addEventListener('DOMContentLoaded', function () {
-    setTimeout(function () {
+  wp.domReady(function () {
+    wp.data.subscribe(function () {
       FlatsomeGutenberg.init()
-    }, 10)
+    })
   })
-}())
+}(window.wp))
