@@ -25,6 +25,8 @@
           document.addEventListener('keydown', escToCloseModal)
         }
 
+        window.dispatchEvent(new Event('resize'))
+
         if ( 'false' !== config.hashToClose ) {
           el.querySelectorAll("a[href*='#']:not(.menu-item-has-children > a)").forEach((hashLink) => {
             hashLink.addEventListener("click", (e) => {
@@ -55,6 +57,18 @@
          })
          
         }
+
+        el.querySelectorAll('[data-x-modal-close]').forEach(closeBtn => {
+          closeBtn.addEventListener('click', (e) => {
+
+            if ( e.currentTarget.classList.contains('x-modal_backdrop') ) {
+              if(e.target !== e.currentTarget) return;
+            }
+           
+            xCloseModal(el.id)
+          })
+        })
+
       });
 
       el.addEventListener("x_modal:close", function() {
@@ -410,7 +424,9 @@ document.addEventListener("DOMContentLoaded",function(e){
         return;
     }
 
-      const modals = document.querySelectorAll('.x-modal');
+    const extrasModal = function ( container ) {
+
+      const modals = container.querySelectorAll('.x-modal');
 
       modals.forEach(modal => {
 
@@ -424,6 +440,13 @@ document.addEventListener("DOMContentLoaded",function(e){
 
         xProModal(modal, xProModalConfig(modal))
       })
+
+    }
+
+    extrasModal(document);
+
+    // Expose function
+    window.doExtrasModal = extrasModal;
 
       // Expose function
       window.xOpenModal = xOpenModal;

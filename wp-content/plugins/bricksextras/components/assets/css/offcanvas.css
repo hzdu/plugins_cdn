@@ -129,6 +129,19 @@ html[class*="x-offcanvas_prevent-scroll"] > body {
     overflow: hidden;
 }
 
+.x-offcanvas_inner[aria-hidden="true"][data-type="fade"] {
+    opacity: 0;
+    visibility: hidden;
+    transform: none!important;
+    transition: all var(--x-offcanvas-duration) cubic-bezier(0.77,0,0.175,1)
+}
+
+.x-offcanvas_inner[aria-hidden="false"][data-type="fade"] {
+    opacity: 1;
+    visibility: visible;
+    transform: none!important;
+}
+
 @media (prefers-reduced-motion: reduce) {
 
     .x-offcanvas[data-x-offcanvas*=notransition] .x-offcanvas_backdrop,

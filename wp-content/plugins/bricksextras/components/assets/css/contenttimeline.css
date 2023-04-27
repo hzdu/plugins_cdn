@@ -10,6 +10,7 @@
     --x-timeline-meta-bg: ;
     --x-timeline-meta-color: ;
     --x-timeline-meta-opacity: ;
+    --x-timeline-progress: 0;
 }
 
 :where(.brxe-xcontenttimeline) {
@@ -139,10 +140,19 @@
     width: var(--x-timeline-thickness);
     content: '';
     background-color: #eee;
+    opacity: 0;
 }
 
 [data-x-horizontal="true"] .x-content-timeline_marker::before {
     content: none;
+}
+
+[data-x-horizontal="false"] .x-content-timeline_line-active {
+    transform: scaleY( calc( var(--x-timeline-progress) / 100 ) );
+}
+
+[data-x-horizontal="true"] .x-content-timeline_line-active {
+    transform: scaleX( calc( var(--x-timeline-progress) / 100 ) );
 }
 
 .x-content-timeline_ready .x-content-timeline_marker::before {
@@ -195,9 +205,13 @@
     transform-origin: left;
     background-color: #111;
     transition: transform .15s ease;
-    transform: scaleX(0);
+    transform: scaleX( calc( var(--x-timeline-progress) / 100 ) );
 }
 
 .brx-body.iframe .x-content-timeline_line {
     display: none;
+}
+
+.brx-body.iframe .x-content-timeline_marker::before {
+    opacity:1;
 }

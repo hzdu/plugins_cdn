@@ -1,7 +1,11 @@
 component.x-slider {
     --xitemstoshow: 1;
     --xspacebetween: 0px;
-    --xsliderautoheight: 
+    --xsliderautoheight: ;
+}
+
+:root {
+    --xadaptiveheightduration: 0.2s;
 }
 
 .brx-body.iframe .x-slider.splide {
@@ -105,7 +109,9 @@ component.x-slider {
     height: auto;
 }
 
-
+.splide__list {
+    display: flex;
+  }
 
 
 /* vertical spacing */
@@ -232,6 +238,26 @@ component.x-slider {
     animation-name: fadeInRight;
 }
 
+.x-slider[data-x-slider*=is-active][data-x-slider*=animateOnce] .splide__slide [data-x-interaction-animation].brx-x-animate-fadeInDownBig,
+.x-slider[data-x-slider*=is-active]:not([data-x-slider*=animateOnce]) .splide__slide.is-active [data-x-interaction-animation].brx-x-animate-fadeInDownBig {
+    animation-name: fadeInDownBig;
+}
+
+.x-slider[data-x-slider*=is-active][data-x-slider*=animateOnce] .splide__slide [data-x-interaction-animation].brx-x-animate-fadeInLeftBig,
+.x-slider[data-x-slider*=is-active]:not([data-x-slider*=animateOnce]) .splide__slide.is-active [data-x-interaction-animation].brx-x-animate-fadeInLeftBig {
+    animation-name: fadeInLeftBig;
+}
+
+.x-slider[data-x-slider*=is-active][data-x-slider*=animateOnce] .splide__slide [data-x-interaction-animation].brx-x-animate-fadeInUpBig,
+.x-slider[data-x-slider*=is-active]:not([data-x-slider*=animateOnce]) .splide__slide.is-active [data-x-interaction-animation].brx-x-animate-fadeInUpBig {
+    animation-name: fadeInUpBig;
+}
+
+.x-slider[data-x-slider*=is-active][data-x-slider*=animateOnce] .splide__slide [data-x-interaction-animation].brx-x-animate-fadeInRightBig,
+.x-slider[data-x-slider*=is-active]:not([data-x-slider*=animateOnce]) .splide__slide.is-active [data-x-interaction-animation].brx-x-animate-fadeInRightBig {
+    animation-name: fadeInRightBig;
+}
+
 /* if visible */
 
 .x-slider[data-x-slider*=is-visible][data-x-slider*=animateOnce] .splide__slide [data-x-interaction-animation].brx-x-animate-fadeIn,
@@ -259,6 +285,26 @@ component.x-slider {
     animation-name: fadeInRight;
 }
 
+.x-slider[data-x-slider*=is-visible][data-x-slider*=animateOnce] .splide__slide [data-x-interaction-animation].brx-x-animate-fadeInDownBig,
+.x-slider[data-x-slider*=is-visible]:not([data-x-slider*=animateOnce]) .splide__slide.is-visible [data-x-interaction-animation].brx-x-animate-fadeInDownBig {
+    animation-name: fadeInDownBig;
+}
+
+.x-slider[data-x-slider*=is-visible][data-x-slider*=animateOnce] .splide__slide [data-x-interaction-animation].brx-x-animate-fadeInLeftBig,
+.x-slider[data-x-slider*=is-visible]:not([data-x-slider*=animateOnce]) .splide__slide.is-visible [data-x-interaction-animation].brx-x-animate-fadeInLeftBig {
+    animation-name: fadeInLeftBig;
+}
+
+.x-slider[data-x-slider*=is-visible][data-x-slider*=animateOnce] .splide__slide [data-x-interaction-animation].brx-x-animate-fadeInUpBig,
+.x-slider[data-x-slider*=is-visible]:not([data-x-slider*=animateOnce]) .splide__slide.is-visible [data-x-interaction-animation].brx-x-animate-fadeInUpBig {
+    animation-name: fadeInUpBig;
+}
+
+.x-slider[data-x-slider*=is-visible][data-x-slider*=animateOnce] .splide__slide [data-x-interaction-animation].brx-x-animate-fadeInRightBig,
+.x-slider[data-x-slider*=is-visible]:not([data-x-slider*=animateOnce]) .splide__slide.is-visible [data-x-interaction-animation].brx-x-animate-fadeInRightBig {
+    animation-name: fadeInRightBig;
+}
+
 .x-slider {
     position: relative;
 }
@@ -269,6 +315,20 @@ component.x-slider {
 
 .x-slider_builder {
     width: 100%;
+}
+
+/* adaptive height */
+
+.x-slider[data-x-slider*=adaptiveHeight] .splide__list {
+    align-items: var(--xadaptiveheight);
+}
+
+.x-slider[data-x-slider*=adaptiveHeight] .splide__track {
+    --xadaptiveheight-disable: unset;
+    --xadaptiveheight-enable: flex-start;
+    --xadaptiveheight: var(--xadaptiveheight-disable);
+    transition-property: height,max-height;
+    transition-duration: var(--xadaptiveheightduration);
 }
 
 /* slider for builder */

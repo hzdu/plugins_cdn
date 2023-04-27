@@ -27,6 +27,7 @@ function xDynamicChart() {
             let dataSetArray = [];
             let dataSetColors = [];
             let queryLoop = false;
+            let tickValue;
 
             const headerLabels = table.querySelectorAll('th');
 
@@ -114,13 +115,74 @@ function xDynamicChart() {
                 return;
             }
 
+            let scaleX = {
+                display: 'false' != config.xAxisDisplay,
+                //stacked: true,
+                title: {
+                  display: true,
+                  text: config.xAxisTitle ? config.xAxisTitle : '',
+                  color: config.xAxisTitleColor.rgb ? config.xAxisTitleColor.rgb : ( config.xAxisTitleColor.hex ? config.xAxisTitleColor.hex : '#222' ),
+                },
+                ticks: {
+                    color: config.xAxisTicksColor.rgb ? config.xAxisTicksColor.rgb : ( config.xAxisTicksColor.hex ? config.xAxisTicksColor.hex : '#222' ),
+                    //callback: value => `${value / 100} m`
+                },
+                grid: {
+                    drawBorder: true,
+                    borderColor: config.xBorderColor.rgb ? config.xBorderColor.rgb : ( config.xBorderColor.hex ? config.xBorderColor.hex : '#222' ),
+                    lineWidth: 1,
+                    color: config.xGridColor.rgb ? config.xGridColor.rgb : ( config.xGridColor.hex ? config.xGridColor.hex : '#eee' )
+                },
+                drawTicks: false,
+              };
+
+              let scaleY = {
+                display: 'false' != config.yAxisDisplay,
+                title: {
+                  display: true,
+                  text: config.yAxisTitle ? config.yAxisTitle : '',
+                  color: config.yAxisTitleColor.rgb ? config.yAxisTitleColor.rgb : ( config.yAxisTitleColor.hex ? config.yAxisTitleColor.hex : '#222' ),
+                },
+                ticks: {
+                    color: config.yAxisTicksColor.rgb ? config.yAxisTicksColor.rgb : ( config.yAxisTicksColor.hex ? config.yAxisTicksColor.hex : '#222' ),
+                },
+                grid: {
+                    drawBorder: true,
+                    borderColor: config.yBorderColor.rgb ? config.yBorderColor.rgb : ( config.yBorderColor.hex ? config.yBorderColor.hex : '#222' ),
+                    lineWidth: 1,
+                    color: config.yGridColor.rgb ? config.yGridColor.rgb : ( config.yGridColor.hex ? config.yGridColor.hex : '#eee' )
+                },
+              };
+
+              let yAxisOptions = {
+                type: config.yAxisType,
+                beginAtZero: 'true' == config.beginAtZero,
+                suggestedMin: config.suggestedMin,
+                suggestedMax: config.suggestedMax
+             };
+
+             if ('after' === config.xAxisUnitPosition) {
+                tickValue = value => `${value}` + config.xAxisUnits
+             } else {
+                tickValue = value => config.xAxisUnits + `${value}`
+             }
+
+
+            if ( 'vertical' === config.chartDirection ) {
+                scaleY = Object.assign({}, scaleY, yAxisOptions);
+                scaleY['ticks']['callback'] = tickValue
+            } else {
+               scaleX = Object.assign({}, scaleX, yAxisOptions);
+               scaleX['ticks']['callback'] = tickValue
+            }
+
             var canvas = document.createElement('canvas');
                 canvas.setAttribute('aria-label', config.ariaLabel);
                 canvas.setAttribute('role', 'img');
                 dynamicChart.appendChild(canvas)
 
                 var ctx = canvas.getContext('2d');
-            
+
                 var myChart = new Chart(ctx, {
                   type: config.chartType,
                   data: {
@@ -129,7 +191,8 @@ function xDynamicChart() {
                   },
                   resizeDelay: 250,
                   options: {
-                    events: ['click'],
+                    indexAxis: 'vertical' !== config.chartDirection ? 'y' : 'x',
+                    events: 'click' != config.events ? ['mousemove', 'mouseout', 'click', 'touchstart', 'touchmove'] : ['click', 'mouseout'],
                     elements: {
                         line: {
                             borderColor: config.lineColor.rgb ? config.lineColor.rgb : ( config.lineColor.hex ? config.lineColor.hex : '#44889c' ),
@@ -151,48 +214,30 @@ function xDynamicChart() {
                     },
                     spanGaps: true,
                     scales: {
-                        x: {
-                            display: 'false' != config.xAxisDisplay,
-                            //stacked: true,
-                            title: {
-                              display: true,
-                              text: config.xAxisTitle ? config.xAxisTitle : '',
-                              color: config.xAxisTitleColor.rgb ? config.xAxisTitleColor.rgb : ( config.xAxisTitleColor.hex ? config.xAxisTitleColor.hex : '#222' ),
-                            },
-                            ticks: {
-                                color: config.xAxisTicksColor.rgb ? config.xAxisTicksColor.rgb : ( config.xAxisTicksColor.hex ? config.xAxisTicksColor.hex : '#222' ),
-                            },
-                            grid: {
-                                drawBorder: true,
-                                borderColor: config.xBorderColor.rgb ? config.xBorderColor.rgb : ( config.xBorderColor.hex ? config.xBorderColor.hex : '#222' ),
-                                lineWidth: 1,
-                                color: config.xGridColor.rgb ? config.xGridColor.rgb : ( config.xGridColor.hex ? config.xGridColor.hex : '#eee' )
-                            },
-                            drawTicks: false,
-                           // type: 'linear',
-                          },
-                          y: {
-                            display: 'false' != config.yAxisDisplay,
-                            title: {
-                              display: true,
-                              text: config.yAxisTitle ? config.yAxisTitle : '',
-                              color: config.yAxisTitleColor.rgb ? config.yAxisTitleColor.rgb : ( config.yAxisTitleColor.hex ? config.yAxisTitleColor.hex : '#222' ),
-                            },
-                            ticks: {
-                                color: config.yAxisTicksColor.rgb ? config.yAxisTicksColor.rgb : ( config.yAxisTicksColor.hex ? config.yAxisTicksColor.hex : '#222' ),
-                            },
-                            grid: {
-                                drawBorder: true,
-                                borderColor: config.yBorderColor.rgb ? config.yBorderColor.rgb : ( config.yBorderColor.hex ? config.yBorderColor.hex : '#222' ),
-                                lineWidth: 1,
-                                color: config.yGridColor.rgb ? config.yGridColor.rgb : ( config.yGridColor.hex ? config.yGridColor.hex : '#eee' )
-                            },
-                            type: config.yAxisType,
-                            beginAtZero: 'true' == config.beginAtZero,
-                            suggestedMin: config.suggestedMin,
-                            suggestedMax: config.suggestedMax
-                          }
+                        x: scaleX,
+                        y: scaleY
                     },
+                    interaction: {
+                        mode: 'index',
+                        intersect: false,
+                    },
+                    animations: {
+                        tension: {
+                          duration: 0,
+                        },
+                        radius: {
+                            duration: 0,
+                        },
+                        borderWidth: {
+                            duration: 0,
+                        },
+                        x: {
+                            duration: 0,
+                        },
+                        y: {
+                            duration: 0,
+                        },
+                      },
                     plugins: {
                         legend: {
                             display: 'false' != config.legendDisplay,
@@ -205,17 +250,62 @@ function xDynamicChart() {
                             },
                         },
                         tooltip: {
-                           enabled: false,
+                           enabled: 'false' != config.tooltipDisplay,
+                           padding: 20,
+                           backgroundColor: config.tooltipBackground.rgb ? config.tooltipBackground.rgb : ( config.tooltipBackground.hex ? config.tooltipBackground.hex : '#fff' ),
+                           titleColor: config.tooltipColor.rgb ? config.tooltipColor.rgb : ( config.tooltipColor.hex ? config.tooltipColor.hex : '#111' ),
+                           bodyColor: config.tooltipColor.rgb ? config.tooltipColor.rgb : ( config.tooltipColor.hex ? config.tooltipColor.hex : '#222' ),
+                           borderColor: config.tooltipBorderColor.rgb ? config.tooltipBorderColor.rgb : ( config.tooltipBorderColor.hex ? config.tooltipBorderColor.hex : '#222' ),
+                           borderWidth: config.tooltipBorderWidth ? config.tooltipBorderWidth : 1,
+                           caretSize: config.tooltipCaretSize ? config.tooltipCaretSize : 5,
+                           caretPadding: 10,
+                           cornerRadius: 10,
+                           displayColors: false,
+                           callbacks: {
+                                label: function(context) {
+                                    let label = context.dataset.label || '';
+                                    
+                                    if (label) {
+                                        label += ': ';
+                                    }
+
+                                    if ( 'vertical' === config.chartDirection ) {
+                                    
+                                        if (context.parsed.y !== null) {
+                                            if ('after' == config.xAxisUnitPosition) {
+                                                label += context.parsed.y + config.xAxisUnits;
+                                            } else {
+                                                label += config.xAxisUnits + context.parsed.y;
+                                            }
+                                        }
+
+                                    } else {
+                                        if (context.parsed.x !== null) {
+                                            if ('after' == config.xAxisUnitPosition) {
+                                                label += context.parsed.x + config.xAxisUnits;
+                                            } else {
+                                                label += config.xAxisUnits + context.parsed.x;
+                                            }
+                                        }
+                                    }
+                                    
+                                    return label;
+                                }
+                            }
                         }
                     },
-                    animation: false,
+                    
                     rotation: config.rotation,
                     circumference: config.circumference,
                     cutout: config.pieCutOut ? config.pieCutOut.toString() + '%' : 0,
                   }
               });
+
+              window.xChart.Instances[dynamicChart.dataset.xId] = myChart;
            
         })
+
+        
 
     }, 30)
 

@@ -150,6 +150,12 @@ function xLightbox(){
 
                         document.querySelectorAll(config.linkSelector).forEach((linkSelector, i) => {
 
+                            if ( "A" !== linkSelector.tagName ) {
+                                if ( linkSelector.querySelector('a') ) {
+                                    linkSelector = linkSelector.querySelector('a')
+                                }
+                            }
+
                             if ( 'true' !== config.grouping ) {
                                 linkSelector.setAttribute('data-x-lightbox-link', lightboxLinkIdentifier)
                             } 
@@ -169,9 +175,15 @@ function xLightbox(){
 
                     document.querySelectorAll(config.linkSelector).forEach((linkSelector, i) => {
 
+                        if ( "A" !== linkSelector.tagName ) {
+                            if ( linkSelector.querySelector('a') ) {
+                                linkSelector = linkSelector.querySelector('a')
+                            }
+                        }
+
                         if ( '' != linkSelector.getAttribute('href') ) {
                             linkSelector.setAttribute('data-x-lightbox-link', lightboxLinkIdentifier)
-                        }
+                        } 
                     })
 
                 } else {
@@ -206,7 +218,13 @@ function xLightbox(){
             if ( document.querySelector(clickSelector) ) {
 
                 if ( "A" !== document.querySelector(clickSelector).tagName && ('gallery' !== config.contentType)) {
-                    console.log('BricksExtras: Link selector is not a link. Make sure to use a link.')
+
+                    if ( document.querySelector(clickSelector).querySelector('a') ) {
+                        clickSelector = clickSelector + ' a';
+                    } else {
+                        console.log('BricksExtras: Link selector is not a link. Make sure to use a link.')
+                    }
+                    
                 }
 
                 const settingOptions = config.rawConfig;

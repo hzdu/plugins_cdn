@@ -142,10 +142,30 @@ function xProSlider() {
         let sliderToControl
 
         if ( false === controlConfig.slider ) {
-          if ( sliderControl.closest('section') ) {
-            sliderToControl = '.x-slider[data-x-id="' + sliderControl.closest('section').querySelector('.x-slider').getAttribute('data-x-id') + '"]';
+          if ( null != controlConfig.isLooping ) {
+
+            let loopingID = controlConfig.isLooping
+            let loopingElement = sliderControl.closest('.brxe-' + loopingID)
+
+            if ( loopingElement ) {
+              sliderToControl = '.x-slider[data-x-id="' + loopingElement.querySelector('.x-slider').getAttribute('data-x-id') + '"]';
+            } else if ( sliderControl.closest('section') ) {
+              sliderToControl = '.x-slider[data-x-id="' + sliderControl.closest('section').querySelector('.x-slider').getAttribute('data-x-id') + '"]';
+            } else if ( sliderControl.closest('.brxe-xdynamiclightbox') ) {
+              sliderToControl = '.x-slider[data-x-id="' + sliderControl.closest('.brxe-xdynamiclightbox').querySelector('.x-slider').getAttribute('data-x-id') + '"]';
+            }
+
           } else {
-            console.log('BricksExtras: No section element found for the pro slider control')
+            if ( sliderControl.closest('section') ) {
+              sliderToControl = '.x-slider[data-x-id="' + sliderControl.closest('section').querySelector('.x-slider').getAttribute('data-x-id') + '"]';
+            } else {
+              if ( sliderControl.closest('.gcontainer') ) {
+                sliderToControl = '.x-slider[data-x-id="' + sliderControl.closest('.gcontainer').querySelector('.x-slider').getAttribute('data-x-id') + '"]';
+              } else {
+                console.log('BricksExtras: No section element found for the pro slider control')
+              }
+              
+            }
           }
           
         } else {
@@ -490,9 +510,10 @@ function xProSlider() {
           
         } );
 
-    }
+      }
 
-       
+
+      
 
       if ( null != sliderConfig.rawConfig.autoScroll || false != sliderConfig.hashNav ) {
         xSplideInstance.mount( window.splide.Extensions );
@@ -504,6 +525,31 @@ function xProSlider() {
           window.xSlider.Instances[slider.dataset.xId] = xSplideInstance;
           slider.dispatchEvent(new Event('x_slider:init'))
       }, 150)
+
+
+      /* adaptive height */
+
+      if ( null != sliderConfig.adaptiveHeight ) {
+
+        xSplideInstance.on( 'active move resize', (newIndex) => {
+
+          let slide = xSplideInstance.Components.Slides.getAt( typeof( newIndex ) == 'number' ? newIndex : xSplideInstance.index ).slide
+
+          if ( 'true' === sliderConfig.adaptiveHeight ) {
+
+            if ( getComputedStyle(slider.querySelector('.splide__list')).getPropertyValue('--xadaptiveheight').includes("flex-start") ) {
+              slide.parentElement.parentElement.style.height = slide.offsetHeight + 'px';
+              slide.parentElement.parentElement.style.maxHeight = slide.offsetHeight + 'px';
+            } else {
+              slide.parentElement.parentElement.style.removeProperty('height')
+              slide.parentElement.parentElement.style.removeProperty('max-height')
+            }
+
+          } 
+
+        })
+
+      }
 
      
       /* sort out lazy loading */

@@ -94,7 +94,6 @@ function xDynamicTable() {
                     prevButton: 'true' === config.paginationButtons,
                     nextButton: 'true' === config.paginationButtons,
                 },
-                // fixed header with a set height
                 fixedHeader: true,
                 style: {
                     table: {

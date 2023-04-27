@@ -3,6 +3,15 @@ function xOffCanvas(offcanvas, elementConfig) {
    const offcanvasInner = offcanvas.querySelector(".x-offcanvas_inner")
    const offcanvasID = offcanvas.id
 
+   let insideLoop = false;
+   let loopContainer;
+
+    if ( null != elementConfig.isLooping ) {
+       loopContainer = offcanvas.closest('.brxe-' + elementConfig.isLooping)
+    } else {
+      loopContainer = document
+    }
+
    offcanvasInner.querySelectorAll('img[loading=lazy]').forEach((lazyImage) => {
     lazyImage.setAttribute('loading','auto')
    })
@@ -53,7 +62,7 @@ function xOffCanvas(offcanvas, elementConfig) {
         });
     }
      
-      document.querySelectorAll(elementConfig.clickTrigger).forEach((clickTrigger) => {
+     loopContainer.querySelectorAll(elementConfig.clickTrigger).forEach((clickTrigger) => {
           
           clickTrigger.addEventListener('click', () => {
 
@@ -69,16 +78,20 @@ function xOffCanvas(offcanvas, elementConfig) {
 
             if ('true' === elementConfig.syncBurgers) {
 
-              document.querySelectorAll(elementConfig.clickTrigger).forEach((otherTrigger) => {
+              loopContainer.querySelectorAll(elementConfig.clickTrigger).forEach((otherTrigger) => {
 
                 if (otherTrigger !== clickTrigger) {
 
                   if ('true' != clickTrigger.getAttribute('aria-expanded')) {
                     otherTrigger.setAttribute('aria-expanded', 'false')
-                    otherTrigger.querySelector(".x-hamburger-box").classList.remove("is-active")
+                    if ( otherTrigger.querySelector(".x-hamburger-box") ) {
+                          otherTrigger.querySelector(".x-hamburger-box").classList.remove("is-active")
+                    }
                   } else {
                     otherTrigger.setAttribute('aria-expanded', 'true')
-                    otherTrigger.querySelector(".x-hamburger-box").classList.add("is-active")
+                    if ( otherTrigger.querySelector(".x-hamburger-box") ) {
+                      otherTrigger.querySelector(".x-hamburger-box").classList.add("is-active")
+                    }
                   }
                   
                 }
@@ -189,17 +202,26 @@ document.addEventListener("DOMContentLoaded",function(e){
     return
  }
 
-  const offcanvases = document.querySelectorAll(".x-offcanvas")
-    
-  offcanvases.forEach(offcanvas => {
+  const extrasOffCanvas = function ( container ) {
 
-    if ( '' === offcanvas.id ) {
-      offcanvas.setAttribute('id','x-offcanvas_' + offcanvas.getAttribute('data-x-id'))
-    }
+    const offcanvases = container.querySelectorAll(".x-offcanvas")
+      
+    offcanvases.forEach(offcanvas => {
 
-    xOffCanvas(offcanvas, xOffCanvasConfig(offcanvas.id))
+      if ( '' === offcanvas.id ) {
+        offcanvas.setAttribute('id','x-offcanvas_' + offcanvas.getAttribute('data-x-id'))
+      }
 
-  })
+      xOffCanvas(offcanvas, xOffCanvasConfig(offcanvas.id))
+
+    })
+
+  }
+
+  extrasOffCanvas(document);
+
+  // Expose function
+  window.doExtrasOffCanvas = extrasOffCanvas;
 
   // Expose function
   window.xOpenOffCanvas = xOpenOffCanvas;

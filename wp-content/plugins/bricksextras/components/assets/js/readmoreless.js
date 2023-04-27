@@ -685,6 +685,8 @@ function xReadMoreLess(){
 
       })
 
+      window.dispatchEvent(new Event('resize'))
+
     }
 
     extrasReadmore(document);
@@ -698,6 +700,5 @@ function xReadMoreLess(){
 document.addEventListener("DOMContentLoaded",function(e){
   setTimeout(() => {
     bricksIsFrontend&&xReadMoreLess()
-    window.dispatchEvent(new Event('resize'))
   }, 100)
 });

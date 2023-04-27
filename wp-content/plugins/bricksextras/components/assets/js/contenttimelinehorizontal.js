@@ -62,13 +62,17 @@ function xContentTimelineHorizontal() {
                             let activeMarkerLeft = slider.querySelector('.is-active').offsetLeft + ( slider.querySelector('.is-active').offsetWidth / 2 ) - (firstItem.offsetWidth / 2)
 
                             let lineScale = 1 / ( sliderLineTotal / activeMarkerLeft );
+                            let lineScalePercent = lineScale * 100;
 
                             if (lineScale < 0) {
-                                sliderLineActive.style.transform = "scaleX(0)";
+                                //sliderLineActive.style.transform = "scaleX(0)";
+                                slider.style.setProperty('--x-timeline-progress', '0')
                             } else if (0 <= lineScale && lineScale <= 1) {
-                                sliderLineActive.style.transform = "scaleX(" + (lineScale) + ")";
+                                slider.style.setProperty('--x-timeline-progress', lineScalePercent)
+                                //sliderLineActive.style.transform = "scaleX(" + (lineScale) + ")";
                             } else {
-                                sliderLineActive.style.transform = "scaleX(1)";
+                                slider.style.setProperty('--x-timeline-progress', '1')
+                                //sliderLineActive.style.transform = "scaleX(1)";
                             }   
 
                         }, 10)

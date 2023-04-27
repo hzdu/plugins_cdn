@@ -1,0 +1,60 @@
+:root {
+    --xwsf-checkbox-size: 20px;
+    --xwsf-checkbox-spacing: 5px;
+    --xwsf-grid-gutter: 20px;
+    --xwsf-border-width: 2px;
+}
+
+.brxe-xwsforms .wsf-form input[type=radio].wsf-field + label.wsf-label,
+.brxe-xwsforms .wsf-form input[type=checkbox].wsf-field + label.wsf-label {
+    display: flex;
+    align-items: center;
+    -webkit-padding-start: calc(var(--xwsf-checkbox-spacing) + var(--xwsf-checkbox-size) );
+    padding-inline-start: calc(var(--xwsf-checkbox-spacing) + var(--xwsf-checkbox-size) );
+}
+
+.brxe-xwsforms input[type=radio].wsf-field + label.wsf-label:after,
+.brxe-xwsforms input[type=checkbox].wsf-field + label.wsf-label:after {
+    top: unset;
+}
+
+.brxe-xwsforms .wsf-grid {
+    margin-left: calc(0px - (var(--xwsf-grid-gutter)/2));
+    margin-right: calc(0px - (var(--xwsf-grid-gutter)/2));
+}
+
+.brxe-xwsforms .wsf-tile {
+    padding-left: calc( var(--xwsf-grid-gutter)/2 );
+    padding-right: calc( var(--xwsf-grid-gutter)/2 );
+}
+
+.brxe-xwsforms input[type=date].wsf-field:focus, 
+.brxe-xwsforms input[type=datetime-local].wsf-field:focus, 
+.brxe-xwsforms input[type=file].wsf-field:focus, 
+.brxe-xwsforms input[type=month].wsf-field:focus, 
+.brxe-xwsforms input[type=password].wsf-field:focus, 
+.brxe-xwsforms input[type=search].wsf-field:focus, 
+.brxe-xwsforms input[type=time].wsf-field:focus, 
+.brxe-xwsforms input[type=week].wsf-field:focus, 
+.brxe-xwsforms input[type=email].wsf-field:focus, 
+.brxe-xwsforms input[type=number].wsf-field:focus, 
+.brxe-xwsforms input[type=tel].wsf-field:focus, 
+.brxe-xwsforms input[type=text].wsf-field:focus, 
+.brxe-xwsforms input[type=url].wsf-field:focus, 
+.brxe-xwsforms select.wsf-field:focus, 
+.brxe-xwsforms textarea.wsf-field:focus {
+    box-shadow: none;
+}
+
+/*
+
+.brxe-xwsforms .wsf-form ul.wsf-group-tabs > li.wsf-group-tab  {
+    margin-bottom: calc(0px - var(--xwsf-border-width));
+}
+
+.brxe-xwsforms .wsf-form ul.wsf-group-tabs.wsf-steps > li > a:before {
+    height: calc(37px + ( 2 * var(--xwsf-border-width) ));
+    width: calc(37px + ( 2 * var(--xwsf-border-width) ));
+}
+
+*/
