@@ -35,6 +35,11 @@
         margin-bottom: 0;
         margin-right: 0;
 
+        &:before, &:after {
+            content: none !important;
+            display: none !important;
+        }
+
         &.maxed {
             cursor: not-allowed;
 
