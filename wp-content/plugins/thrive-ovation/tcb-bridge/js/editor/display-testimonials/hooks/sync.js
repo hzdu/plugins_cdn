@@ -28,12 +28,17 @@ const content = require( '../content' ),
 			$article.find( '.thrive-shortcode-content' ).each( function ( index, elem ) {
 				const $element = TVE.inner_$( elem ),
 					shortcode = $element.attr( 'data-shortcode' ),
-					post = TVE.displayTestimonials.testimonials_shortcodes[ ID ],
+					post = TVE.displayTestimonials.testimonial_shortcodes[ ID ],
 					/* replace the dynamic content with data from the posts object */
 					newContent = post ? post[ shortcode ] : '',
 					$newContent = TVE.inner_$( newContent );
 				if ( $newContent.length ) {
 					let text = $newContent.text();
+
+					/* If the shortcode is testimonial content we keep the html tags because content can be edited from TO Dashboard */
+					if ( 'tvo_testimonial_content' === $element.attr( 'data-shortcode' ) ) {
+						text = $newContent.html();
+					}
 
 					/* use default value when existing */
 					if ( text.length === 0 && shortcode.includes( 'testimonial' ) && $element.attr( 'data-attr-default' ) ) {

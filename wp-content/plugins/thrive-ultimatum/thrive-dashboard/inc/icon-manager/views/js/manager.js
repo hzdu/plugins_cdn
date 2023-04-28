@@ -7,7 +7,7 @@
 			$inputId = $( '#tve_icon_pack_file_id' );
 		let wpFileFrame;
 
-		$input.on('click', () => {
+		$input.on( 'click', () => {
 			$upload.click();
 		} );
 
@@ -22,6 +22,12 @@
 					},
 					multiple: false
 				} );
+
+				/* Add class so we can add custom CSS */
+				wpFileFrame.on( 'open', function () {
+					wpFileFrame.$el.addClass( 'retina-icon-picker' )
+				} );
+
 				wpFileFrame.on( 'select', function () {
 					const attachment = wpFileFrame.state().get( 'selection' ).first().toJSON();
 					$inputId.val( attachment.id );

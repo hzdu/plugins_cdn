@@ -9,6 +9,7 @@ import AutocompleteField from "@/components/fields/AutocompleteField";
 import SelectField from "@/components/fields/SelectField";
 import CheckboxField from "@/components/fields/CheckboxField";
 import TextField from "@/components/fields/TextField";
+import TextareaField from "@/components/fields/TextareaField";
 import TagsField from "@/components/fields/TagsField";
 import DoubleDropdownField from "@/components/fields/DoubleDropdownField";
 import DateTimeField from "@/components/fields/DateTimeField";
@@ -60,6 +61,7 @@ const app = createApp( App )
 	.component( 'CheckboxField', CheckboxField )
 	.component( 'SelectField', SelectField )
 	.component( 'TextField', TextField )
+	.component( 'TextareaField', TextareaField )
 	.component( 'RadioField', RadioField )
 	.component( 'DoubleDropdownField', DoubleDropdownField )
 	.component( 'DateTimeField', DateTimeField )

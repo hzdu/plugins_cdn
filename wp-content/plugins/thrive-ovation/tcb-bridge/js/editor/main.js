@@ -166,7 +166,7 @@ let isBlockType = false;
 		} );
 
 		TVE.add_filter( 'tcb.cloud_templates.element_name', name => {
-			if ( TVE.ActiveElement.is( TVE.identifier( 'capture_testimonials_v2' ) ) ) {
+			if ( TVE.ActiveElement?.is( TVE.identifier( 'capture_testimonials_v2' ) ) ) {
 				name = 'Capture testimonial';
 			}
 

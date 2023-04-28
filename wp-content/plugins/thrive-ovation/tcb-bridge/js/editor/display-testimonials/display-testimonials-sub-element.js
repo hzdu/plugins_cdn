@@ -25,11 +25,13 @@ module.exports = TVE.renderers.baseModel.extend( {
 			attr = {
 				'data-shortcode': this.key,
 			};
-		let newContent = TVE.displayTestimonials.testimonials_shortcodes[ articleID ][ this.key ];
+		let newContent = TVE.displayTestimonials.testimonial_shortcodes[ articleID ][ this.key ];
 
 		switch ( this.key ) {
-			case 'tvo_testimonial_title':
 			case 'tvo_testimonial_content':
+				newContent = TVE.$( newContent ).html();
+				break;
+			case 'tvo_testimonial_title':
 			case 'tvo_testimonial_role':
 			case 'tvo_testimonial_author':
 				newContent = TVE.$( newContent ).text();
@@ -39,7 +41,7 @@ module.exports = TVE.renderers.baseModel.extend( {
 				attr[ 'data-attr-link' ] = 1;
 				break;
 			case 'tvo_testimonial_image':
-				const imageSrc = TVE.Components.image.controls.ImagePicker.picker.clean_url( TVE.displayTestimonials.testimonials_shortcodes[ articleID ].image );
+				const imageSrc = TVE.Components.image.controls.ImagePicker.picker.clean_url( TVE.displayTestimonials.testimonial_shortcodes[ articleID ].image );
 				newContent = `<span class="tve_image_frame"><img class="tve_image" src="${imageSrc}" loading="lazy" data-d-f="featured" /></span>`;
 				break;
 			default:

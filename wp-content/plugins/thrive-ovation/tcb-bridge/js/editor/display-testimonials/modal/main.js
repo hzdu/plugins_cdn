@@ -36,20 +36,14 @@ module.exports = TVE.modal.base.extend( {
 	},
 
 	backToTemplates() {
+		this.close();
+
 		TVE.ActiveElement.attr( 'data-ct', `display_testimonials-${TVE.ActiveElement.attr( 'data-cloud-template' )}` );
 
 		this.cloudModalInstance.open( {
 			element: TVE.ActiveElement,
 		},
 		);
-
-		this.destroy();
-		this.close();
-	},
-	destroy() {
-		this.stopListening();
-		this.undelegateEvents();
-		this.$el.removeData().off();
 	},
 	afterInitialize() {
 		this.$el.on( 'click', event => {
@@ -100,12 +94,6 @@ module.exports = TVE.modal.base.extend( {
 			    canSwitchToTemplates: this.canSwitchToTemplates,
 		    } ) ).$el.addClass( 'thrive-display-testimonials-inner' ) );
 	},
-	/**
-	 * @param  type
-	 * @param  items
-	 * @param  ordering
-	 * @param  setId
-	 */
 	initializeExistingData( type, items, ordering, setId ) {
 		this.dataModel.initializeData( type, ordering, items )
 		    .set( 'status', 'reorder', { silent: true } );
@@ -115,6 +103,11 @@ module.exports = TVE.modal.base.extend( {
 		}
 
 		this.dataModel.setPage( type, setId );
+	},
+	destroy() {
+		this.stopListening();
+		this.undelegateEvents();
+		this.$el.off();
 	},
 	handle_keyup() {
 		/* overwrite the default functionality, which is to close the modal on 'enter' */

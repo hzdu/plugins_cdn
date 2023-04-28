@@ -3,7 +3,7 @@ const content = require( '../content' ),
 	utils = require( '../utils' ),
 	constants = require( '../constants' ),
 	dynamicImageElementCallback = imageType => {
-		const testimonial = TVE.displayTestimonials.testimonials_shortcodes[ utils.getArticleID() ];
+		const testimonial = TVE.displayTestimonials.testimonial_shortcodes[ utils.getArticleID() ];
 
 		if ( testimonial ) {
 			TVE.ActiveElement.attr( {
@@ -56,7 +56,7 @@ const content = require( '../content' ),
 		 */
 		'tcb.image_picker.dynamic_source': dynamicSourceObj => {
 			if ( editMode.isInsideEditMode() ) {
-				const testimonial = TVE.displayTestimonials.testimonials_shortcodes[ utils.getArticleID() ];
+				const testimonial = TVE.displayTestimonials.testimonial_shortcodes[ utils.getArticleID() ];
 
 				if ( testimonial ) {
 					TVE.ActiveElement.attr( { 'data-dynamic': 'featured' } );

@@ -38,6 +38,28 @@ const content = require( '../content' ),
 	},
 	filters = {
 		/**
+		 * The dynamic images from the hover state need some 'help' with getting the default css variable (only when nothing was set before), so we add the value here
+		 *
+		 * @param {string}         cssValue
+		 * @param {string | Array} rules
+		 * @param {string}         selector
+		 * @return {string}        cssValue
+		 */
+		'tcb.css.fallback_value': ( cssValue, rules, selector ) => {
+			if ( ! cssValue && TVE.state_manager.is_hover() && selector && rules === 'background-image' ) {
+				const isInsideTestimonialList = selector.includes( TVE.identifier( 'display_testimonials' ) ) ||
+				                                ( selector.includes( TVE.identifier( 'article' ) ) && utils.isInsideTestimonialsList() ),
+					dynamicBackgroundUrlPrefix = TVE.CONST.dynamic_background_url_prefix,
+					dynamicCss = TVE.inner_$( selector ).css( `${TVE.CONST.cssVarPrefix}background-image` );
+
+				if ( isInsideTestimonialList && dynamicCss && dynamicCss.includes( dynamicBackgroundUrlPrefix ) ) {
+					cssValue = dynamicCss.replace( 'var$', 'var' );
+				}
+			}
+
+			return cssValue;
+		},
+		/**
 		 * Used for changing the element prefix
 		 *
 		 * @param {string} prefix
@@ -68,6 +90,28 @@ const content = require( '../content' ),
 			}
 
 			return cssId;
+		},
+		/**
+		 * Generate a prefix for the hover selector.
+		 *
+		 * @param {string} prefix
+		 * @param {jQuery} currentElement
+		 */
+		'hover_prefix_selector': ( prefix, currentElement ) => {
+			const $element = TVE.inner_$( currentElement );
+
+			/* this is only needed when adding a content box background */
+			if ( $element.hasClass( 'tve-content-box-background' ) ) {
+				/* need to add the testimonial list + the data css of the testimonial list to the prefix */
+				const $displayTestimonials = $element.parents( TVE.identifier( 'display_testimonials' ) );
+
+				if ( $displayTestimonials.length ) {
+					/* When editing elements inside the testimonial list, we add the testimonial list selector to the prefix so it won't apply to elements outside this testimonial-list. */
+					prefix = utils.getDisplayTestimonialsSelector( $displayTestimonials ).trim();
+				}
+			}
+
+			return prefix;
 		},
 
 		/**

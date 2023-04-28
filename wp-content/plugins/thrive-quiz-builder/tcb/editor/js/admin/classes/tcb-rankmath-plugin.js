@@ -32,7 +32,9 @@ module.exports = class TCBRankMathPlugin extends TCBSeoPlugin {
 	 * Fetch Post Content from TCB
 	 */
 	sendContent( fetchedContent ) {
-		this.content = fetchedContent;
+		if ( ! this.isEditedWithTar ) {
+			this.content = fetchedContent;
+		}
 		if ( typeof window.rankMathEditor !== 'undefined' ) {
 			rankMathEditor.refresh( 'content' );
 		}

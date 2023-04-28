@@ -87,7 +87,7 @@ const content = require( '../content' ),
 		 */
 		'tcb.inline_shortcodes.shortcode_value': ( shortcodeValue, shortcodeData ) => {
 			if ( shortcodeData.key.includes( 'tvo_testimonial' ) && shortcodeData.configOptions[ 0 ] && shortcodeData.configOptions[ 0 ].value ) {
-				const actualValue = TVE.inner_$( TVE.displayTestimonials.testimonials_shortcodes[ utils.getArticleID() ][ shortcodeData.key ] )[ 0 ].innerText;
+				const actualValue = TVE.inner_$( TVE.displayTestimonials.testimonial_shortcodes[ utils.getArticleID() ][ shortcodeData.key ] )[ 0 ].innerText;
 				if ( ! actualValue.length ) {
 					shortcodeValue = shortcodeData.configOptions[ 0 ].value;
 				}
@@ -111,7 +111,7 @@ const content = require( '../content' ),
 				if ( key === websiteShortcode ) {
 					const $shortcodeContent = $element.find( '.thrive-shortcode-content' ),
 						ID = utils.getArticleID( $element ),
-						testimonialData = TVE.displayTestimonials.testimonials_shortcodes[ ID ],
+						testimonialData = TVE.displayTestimonials.testimonial_shortcodes[ ID ],
 
 						/* replace the dynamic content with data from the posts object */
 						$newContent = TVE.inner_$( testimonialData[ key ] );

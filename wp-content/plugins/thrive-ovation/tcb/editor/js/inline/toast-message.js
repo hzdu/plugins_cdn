@@ -4,7 +4,7 @@
 	 */
 	if ( window.sessionStorage ) {
 		$( window ).on( 'tcb_after_dom_ready', () => {
-			let message = sessionStorage.getItem( 'tcb_toast_message' );
+			const message = sessionStorage.getItem( 'tcb_toast_message' );
 
 			if ( message ) {
 				tcbToast( sessionStorage.getItem( 'tcb_toast_message' ), false );
@@ -15,6 +15,10 @@
 
 	/**
 	 * Displays toast message
+	 *
+	 * @param {string}   message  - message to display
+	 * @param {Boolean}  error    - whether the message is an error or not
+	 * @param {Function} callback - callback function to be called after the message is closed
 	 */
 	function tcbToast( message, error, callback ) {
 		/* Also allow "message" objects */

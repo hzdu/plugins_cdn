@@ -36,8 +36,8 @@ module.exports = TVE.Views.Components.display_testimonials = TVE.Views.Component
 		controls.NumberOfItems.change = function ( $element, control ) {
 			const query = { ...TVE.PostList.utils.readQueryFromElement(), posts_per_page: control.value };
 
-			utils.fetchTestimonials( query, $element ).then( response => {
-				utils.fetchTestimonialCallback( response, $element );
+			utils.applyQuery( query, $element ).then( response => {
+				utils.applyQueryCallback( response, $element );
 			} );
 		};
 
@@ -82,6 +82,10 @@ module.exports = TVE.Views.Components.display_testimonials = TVE.Views.Component
 	 */
 	filterTestimonials( cloudModalInstance = null, canSwitchToTemplates = false ) {
 		const Modal = require( './modal/main' );
+
+		if ( typeof TVE.displayTestimonialsModal !== 'undefined' ) {
+			TVE.displayTestimonialsModal.destroy();
+		}
 
 		TVE.displayTestimonialsModal = new Modal( {
 			el: TVE.modal.get_element( 'display-testimonials' ),

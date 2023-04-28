@@ -13,7 +13,7 @@ module.exports = TVE.Views.Base.base_view.extend( {
 		} );
 	},
 	afterRender() {
-		if ( Object.keys( TVE.displayTestimonials.testimonials_shortcodes ).length ) {
+		if ( TVE.displayTestimonials.has_at_least_one_testimonial ) {
 			this.updateSetCounts();
 
 			this.$( '.thrive-display-testimonials-action-buttons' ).toggle( this.canSwitchToTemplates );

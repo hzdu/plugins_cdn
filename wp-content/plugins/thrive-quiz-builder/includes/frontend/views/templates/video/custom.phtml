@@ -7,7 +7,7 @@
 		<#= 1 === options.hide_controls.value ? '' : ' controls="true"' #>
 		<#= 1 === options.loop.value ? ' loop="true"' : '' #>
 		allowtransparency="true"
-		frameborder="0">
+		playsinline frameborder="0">
 		<source src="<#= item.get( 'url' ) #>" type="<#= mime #>">
 		<?php echo __( 'Not supported video tag', 'thrive-quiz-builder' ); ?>
 		</video>

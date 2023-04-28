@@ -30,22 +30,27 @@ module.exports = TVE.Views.Base.base_view.extend( {
 		Utils.toggleLoading( this.$tagList );
 
 		DataManager.getTags().then( tags => {
-			const selectedTags = this.dataModel.getItemIds();
+			if ( tags.length ) {
+				const selectedTags = this.dataModel.getItemIds();
 
-			/* check the tags that should be selected */
-			if ( selectedTags.length ) {
-				tags.forEach( tag => tag.selected = selectedTags.includes( parseInt( tag.value ) ) ? 1 : 0 );
+				/* check the tags that should be selected */
+				if ( selectedTags.length ) {
+					tags.forEach( tag => tag.selected = selectedTags.includes( parseInt( tag.value ) ) ? 1 : 0 );
+				}
+
+				this.collection.reset( tags );
+
+				( new TagListView( {
+					el: this.$tagList[ 0 ],
+					collection: this.collection,
+				} ) );
+
+				this.updateCounter();
+			} else {
+				this.$tagList.find( '.no-tags-message' ).show();
 			}
 
-			this.collection.reset( tags );
-
-			( new TagListView( {
-				el: this.$tagList[ 0 ],
-				collection: this.collection,
-			} ) );
-
 			Utils.toggleLoading( this.$tagList, false );
-			this.updateCounter();
 		} );
 
 		this.initializeNav();

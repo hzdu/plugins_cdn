@@ -17,6 +17,7 @@
 				/* Remove TTB headers and footers from SEO analysis */
 				$content.find( 'header#thrive-header, footer#thrive-footer, aside#theme-sidebar-section' ).remove();
 
+				this.isEditedWithTar = response.is_edited_with_tar;
 				this.afterFetch( $content[ 0 ].outerHTML );
 			} );
 		}

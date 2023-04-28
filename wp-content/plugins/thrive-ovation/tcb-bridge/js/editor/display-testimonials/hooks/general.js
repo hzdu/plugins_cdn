@@ -5,12 +5,13 @@ const content = require( '../content' ),
 	DisplayTestimonialSubElement = require( '../display-testimonials-sub-element' ),
 	actions = {
 		/**
-		 * After lazy load is done, we initialize the data manager and set the testimonials data.
+		 * After the lazy load is done, we initialize the testimonial and set data
 		 *
 		 * @param {Object} response
 		 */
 		'tve.lazyload.done': response => {
-			TVE.displayTestimonials.testimonials_shortcodes = response.testimonial_shortcodes;
+			TVE.displayTestimonials.testimonial_shortcodes = response.testimonial_shortcodes ? response.testimonial_shortcodes : {};
+			TVE.displayTestimonials.has_at_least_one_testimonial = response.has_at_least_one_testimonial;
 
 			/* it's not worth loading the sets on demand, since the amount of data is kind of chill */
 			TVE.displayTestimonials.sets = response.sets;
@@ -104,6 +105,12 @@ const content = require( '../content' ),
 
 			TVE.PostList.layout.masonryRedo();
 		},
+		'tcb.insert_content_template': Utils.fetchExistingTestimonials,
+		'tve.imported_content': Utils.fetchExistingTestimonials,
+		'tcb.symbol_loaded': Utils.fetchExistingTestimonials,
+		'theme.section.after_insert': ( data, section ) => {
+			Utils.fetchExistingTestimonials( data.$element );
+		},
 	},
 	filters = {
 		/**
@@ -111,7 +118,7 @@ const content = require( '../content' ),
 		 * @return {*&{testimonial_data: *}}
 		 */
 		'tcb.lazyload.data': data => {
-			data[ 'testimonial-existing-ids' ] = _.uniq( TVE.inner.$body.find( '.thrive-testimonial-wrapper' ).map( ( index, element ) => parseInt( element.dataset.id ) ) );
+			data[ 'testimonial-existing-ids' ] = Utils.getTestimonialIdsFromContent();
 
 			return data;
 		},
@@ -223,6 +230,12 @@ const content = require( '../content' ),
 		 * @param {string} selectors
 		 */
 		'tcb.post_list.device_change_selectors': selectors => `${selectors}, ${TVE.identifier( 'display_testimonials' )}`,
+		/**
+		 *
+		 * @param identifier
+		 * @returns {`${string}, ${string}`}
+		 */
+		'theme.post_list.identifier': identifier => `${identifier}, ${TVE.identifier( 'display_testimonials' )}`,
 	};
 
 module.exports = { actions, filters };

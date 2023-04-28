@@ -6,7 +6,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2023-04-05 11:53+0000\n"
+"POT-Creation-Date: 2023-04-26 09:08+0000\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-KeywordsList: __;_e;_ex:1,2c;_n:1,2;_n_noop:1,2;_nx:1,2,4c;_nx_noop:1,2,3c;_x:1,2c;esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c\n"
 "X-Poedit-SearchPath-0: .\n"
@@ -334,7 +334,7 @@ msgstr ""
 msgid "A similar action already exists"
 msgstr ""
 
-#: ../admin/i18n.php:86, ../inc/data.php:1172, ../inc/data.php:1309, ../inc/data.php:1310
+#: ../admin/i18n.php:86, ../inc/data.php:1187, ../inc/data.php:1324, ../inc/data.php:1325
 msgid "main state"
 msgstr ""
 
@@ -880,7 +880,7 @@ msgstr ""
 msgid "Visit to conversion page"
 msgstr ""
 
-#: ../admin/views/template/conversion/visit-page.phtml:5, ../admin/views/template/campaign/type/evergreen-specific.phtml:4
+#: ../admin/views/template/conversion/visit-page.phtml:5, ../admin/views/template/campaign/type/evergreen-specific.phtml:4, ../admin/views/template/campaign/type/evergreen-specific.phtml:23
 msgid "Search for content on site"
 msgstr ""
 
@@ -912,7 +912,7 @@ msgstr ""
 msgid "Copy campaign - "
 msgstr ""
 
-#: ../admin/views/template/modals/copy-campaign.phtml:13, ../admin/views/template/modals/edit-campaign.phtml:29, ../admin/views/template/modals/edit-date-settings.phtml:115, ../admin/views/template/modals/edit-event.phtml:56, ../admin/views/template/modals/edit-lockdown.phtml:97, ../admin/views/template/modals/new-campaign.phtml:14, ../admin/views/template/modals/new-conversion-event.phtml:25, ../admin/views/template/modals/new-design.phtml:35, ../admin/views/template/modals/top-ribbon.phtml:17, ../admin/views/template/campaign/settings/main.phtml:72
+#: ../admin/views/template/modals/copy-campaign.phtml:13, ../admin/views/template/modals/edit-campaign.phtml:29, ../admin/views/template/modals/edit-date-settings.phtml:115, ../admin/views/template/modals/edit-event.phtml:56, ../admin/views/template/modals/edit-lockdown.phtml:102, ../admin/views/template/modals/new-campaign.phtml:14, ../admin/views/template/modals/new-conversion-event.phtml:25, ../admin/views/template/modals/new-design.phtml:35, ../admin/views/template/modals/top-ribbon.phtml:17, ../admin/views/template/campaign/settings/main.phtml:72
 msgid "Cancel"
 msgstr ""
 
@@ -928,7 +928,7 @@ msgstr ""
 msgid "Events on timeline may be affected by the campaign's duration."
 msgstr ""
 
-#: ../admin/views/template/modals/edit-campaign.phtml:35, ../admin/views/template/modals/edit-lockdown.phtml:103, ../admin/views/template/modals/new-conversion-event.phtml:67, ../admin/views/template/modals/top-ribbon.phtml:23, ../tcb-bridge/editor-lightbox/add-edit-state.php:22
+#: ../admin/views/template/modals/edit-campaign.phtml:35, ../admin/views/template/modals/edit-lockdown.phtml:108, ../admin/views/template/modals/new-conversion-event.phtml:67, ../admin/views/template/modals/top-ribbon.phtml:23, ../tcb-bridge/editor-lightbox/add-edit-state.php:22
 msgid "Save"
 msgstr ""
 
@@ -1056,59 +1056,63 @@ msgstr ""
 msgid "Activate Lockdown Campaign"
 msgstr ""
 
-#: ../admin/views/template/modals/edit-lockdown.phtml:13
+#: ../admin/views/template/modals/edit-lockdown.phtml:15
 msgid "Lockdown campaigns can't be cheated because promotions are tied to an email address.  Unknown visitors aren't able to access the promotion. They are especially useful when you set up a sales page, but you don't want anyone to be able to access it before your campaign starts or you want to set up an offer that's available to subscribers exclusively."
 msgstr ""
 
-#: ../admin/views/template/modals/edit-lockdown.phtml:14
+#: ../admin/views/template/modals/edit-lockdown.phtml:17
+msgid "A lockdown campaign will only allow visitors to access the promotion page on the days when the campaign is active. Before the campaign starts they will be redirected to a pre-access page and once it's over, if they try to visit the promotion page, they will be redirected to an expired page."
+msgstr ""
+
+#: ../admin/views/template/modals/edit-lockdown.phtml:19
 msgid "Learn more about the difference between open and locked campaigns"
 msgstr ""
 
-#: ../admin/views/template/modals/edit-lockdown.phtml:20
+#: ../admin/views/template/modals/edit-lockdown.phtml:25
 msgid "Lockdown promotion pages need to be excluded from your caching plugin in order to work correctly."
 msgstr ""
 
-#: ../admin/views/template/modals/edit-lockdown.phtml:21
+#: ../admin/views/template/modals/edit-lockdown.phtml:26
 msgid "Learn how to do this"
 msgstr ""
 
-#: ../admin/views/template/modals/edit-lockdown.phtml:27
+#: ../admin/views/template/modals/edit-lockdown.phtml:32
 msgid "Pre-access page"
 msgstr ""
 
-#: ../admin/views/template/modals/edit-lockdown.phtml:28
+#: ../admin/views/template/modals/edit-lockdown.phtml:33
 msgid "This is what visitors see if the campaign has not yet started for them"
 msgstr ""
 
-#: ../admin/views/template/modals/edit-lockdown.phtml:32, ../admin/views/template/modals/edit-lockdown.phtml:41
+#: ../admin/views/template/modals/edit-lockdown.phtml:37, ../admin/views/template/modals/edit-lockdown.phtml:46
 msgid "Enter URL or search term"
 msgstr ""
 
-#: ../admin/views/template/modals/edit-lockdown.phtml:36
+#: ../admin/views/template/modals/edit-lockdown.phtml:41
 msgid "Expired page"
 msgstr ""
 
-#: ../admin/views/template/modals/edit-lockdown.phtml:37
+#: ../admin/views/template/modals/edit-lockdown.phtml:42
 msgid "This is the page that the visitors see once their countdown expires"
 msgstr ""
 
-#: ../admin/views/template/modals/edit-lockdown.phtml:46
+#: ../admin/views/template/modals/edit-lockdown.phtml:51
 msgid "Promotion pages"
 msgstr ""
 
-#: ../admin/views/template/modals/edit-lockdown.phtml:47
+#: ../admin/views/template/modals/edit-lockdown.phtml:52
 msgid "These are the pages that are only available during the campaign"
 msgstr ""
 
-#: ../admin/views/template/modals/edit-lockdown.phtml:53, ../admin/views/template/modals/edit-lockdown.phtml:70
+#: ../admin/views/template/modals/edit-lockdown.phtml:59, ../admin/views/template/modals/edit-lockdown.phtml:76
 msgid "Select Email Service"
 msgstr ""
 
-#: ../admin/views/template/modals/edit-lockdown.phtml:76
+#: ../admin/views/template/modals/edit-lockdown.phtml:83
 msgid "URL or search item"
 msgstr ""
 
-#: ../admin/views/template/modals/edit-lockdown.phtml:87
+#: ../admin/views/template/modals/edit-lockdown.phtml:92
 msgid "Add new promotion page"
 msgstr ""
 
@@ -1188,11 +1192,11 @@ msgstr ""
 msgid "Repeat this campaign?"
 msgstr ""
 
-#: ../admin/views/template/modals/new-conversion-event.phtml:101, ../admin/views/template/campaign/type/evergreen-state.phtml:87, ../admin/views/template/campaign/type/evergreen-state.phtml:102
+#: ../admin/views/template/modals/new-conversion-event.phtml:101, ../admin/views/template/campaign/type/evergreen-specific.phtml:13, ../admin/views/template/campaign/type/evergreen-state.phtml:87, ../admin/views/template/campaign/type/evergreen-state.phtml:102
 msgid "NO"
 msgstr ""
 
-#: ../admin/views/template/modals/new-conversion-event.phtml:104, ../admin/views/template/campaign/type/evergreen-state.phtml:90, ../admin/views/template/campaign/type/evergreen-state.phtml:105
+#: ../admin/views/template/modals/new-conversion-event.phtml:104, ../admin/views/template/campaign/type/evergreen-specific.phtml:16, ../admin/views/template/campaign/type/evergreen-state.phtml:90, ../admin/views/template/campaign/type/evergreen-state.phtml:105
 msgid "YES"
 msgstr ""
 
@@ -1418,6 +1422,14 @@ msgstr ""
 
 #: ../admin/views/template/campaign/type/evergreen-conversion.phtml:8
 msgid "No trigger defined"
+msgstr ""
+
+#: ../admin/views/template/campaign/type/evergreen-specific.phtml:8
+msgid "Redirect when expired?"
+msgstr ""
+
+#: ../admin/views/template/campaign/type/evergreen-specific.phtml:9
+msgid "Activate this toggle to set a cookie on each visitor who lands on the promotion page for the first time. This allows you to redirect the visitors to a different page if they land on the promotion page after the cookie has expired."
 msgstr ""
 
 #: ../admin/views/template/campaign/type/evergreen-state.phtml:1
@@ -1680,11 +1692,11 @@ msgstr ""
 msgid "This trigger will be fired when a user triggers an evergreen Ultimatum campaign by either visiting a landing page, entering their details into a lead generation form or when triggered by 3rd party events"
 msgstr ""
 
-#: ../inc/data.php:1017
+#: ../inc/data.php:1032
 msgid "This campaign has been automatically paused because all designs have been deleted"
 msgstr ""
 
-#: ../inc/data.php:1384
+#: ../inc/data.php:1399
 msgid "Not logging impression for logged user"
 msgstr ""
 

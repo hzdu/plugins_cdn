@@ -49,7 +49,7 @@ const constants = require( './constants' ),
 
 			/* if for some reason, this article doesn't have an ID, we can't really sync info */
 			if ( ID ) {
-				const testimonial = TVE.displayTestimonials.testimonials_shortcodes[ ID ];
+				const testimonial = TVE.displayTestimonials.testimonial_shortcodes[ ID ];
 
 				if ( testimonial ) {
 					content.syncDynamicImages( $clone, testimonial.image );
@@ -73,7 +73,7 @@ const constants = require( './constants' ),
 
 			$clone.remove();
 		},
-		syncDisplayTestimonial( $newArticle, $testimonialList = null, posts = TVE.displayTestimonials.testimonials_shortcodes || [] ) {
+		syncDisplayTestimonial( $newArticle, $testimonialList = null, posts = TVE.displayTestimonials.testimonial_shortcodes || [] ) {
 			/* clean template content */
 			$newArticle.find( '.tve-dropped' ).removeClass( 'tve-dropped' );
 
@@ -252,9 +252,9 @@ const constants = require( './constants' ),
 			return $content.find( '.thrive-testimonial-wrapper:not(.slick-cloned)' ).length;
 		},
 		replaceShortcodeWithData( shortcode, $html, ID ) {
-			if ( shortcode && ID && TVE.displayTestimonials.testimonials_shortcodes && TVE.displayTestimonials.testimonials_shortcodes[ ID ] && TVE.displayTestimonials.testimonials_shortcodes[ ID ][ shortcode ] ) {
+			if ( shortcode && ID && TVE.displayTestimonials.testimonial_shortcodes && TVE.displayTestimonials.testimonial_shortcodes[ ID ] && TVE.displayTestimonials.testimonial_shortcodes[ ID ][ shortcode ] ) {
 				/* Get the html we want to replace the element with. Add a filter here in case there are specific implementations. */
-				const newHtml = TVE.displayTestimonials.testimonials_shortcodes[ ID ][ shortcode ];
+				const newHtml = TVE.displayTestimonials.testimonial_shortcodes[ ID ][ shortcode ];
 
 				/* jQuerify the new html, then use its inner HTML (without the wrapper) to replace the shortcode */
 				const $newEl = TVE.inner_$( newHtml );

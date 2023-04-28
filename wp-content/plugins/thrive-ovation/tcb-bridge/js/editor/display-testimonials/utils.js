@@ -6,56 +6,72 @@ const content = require( './content' ),
 		 * @param {Object} query
 		 * @param {jQuery} $element
 		 */
-		fetchTestimonials: ( query, $element = TVE.ActiveElement ) => {
+		applyQuery: ( query, $element = TVE.ActiveElement ) => {
 			return new Promise( resolve => {
 				const noPostsText = $element.attr( 'data-no_posts_text' ) || query.no_posts_text;
+
 				/* replace double quotes with single ones so we can safely save it in element attribute */
 				$element.addClass( 'tve-loading' )
 				        .attr( 'data-query', JSON.stringify( query ).replace( /"/g, '\'' ) )
 				        .attr( 'data-no_posts_text', noPostsText );
 
-				TVE.$.ajax( {
-					url: TVE.CONST.routes.base + '/testimonials/html',
-					/* This should be GET, but a lot of data is sent through this request, and it is appended in the request URL string.
-					 * Because of the really long URL string, there were 414 errors for some users because the server can block requests like these.
-					 * As a solution, we changed this to POST so the data is added inside the request */
-					headers: {
-						'X-WP-Nonce': TVE.CONST.rest_nonce,
-					},
-					method: 'POST',
-					data: {
-						args: query,
-						has_pagination: $element.attr( 'data-pagination-type' ) === 'none' ? 0 : 1,
-					},
-					success( response ) {
-						/* todo: temporarily commented */
-						//TVE.displayTestimonials.testimonials_shortcodes = response.testimonials;
-
-						$element.attr( 'data-total_post_count', response.total_post_count )
-						        .removeClass( 'tve-loading' );
-
-						resolve( response );
-					},
-					// eslint-disable-next-line no-console
-					error: console.warn,
+				utils.fetchTestimonials( query, $element, response => {
+					$element.removeClass( 'tve-loading' );
+					resolve( response );
 				} );
 			} );
 		},
 		/**
-		 * Callback after getting the testimonials
+		 * @param {Object}   query
+		 * @param {jQuery}   $element
+		 * @param {Function} callback
+		 */
+		fetchTestimonials: ( query, $element = TVE.ActiveElement, callback = null ) => {
+			TVE.$.ajax( {
+				url: TVE.CONST.routes.base + '/testimonials/html',
+				headers: {
+					'X-WP-Nonce': TVE.CONST.rest_nonce,
+				},
+				/* This is POST instead of GET on purpose (see the explanation in TVE.PostList.utils.fetchPosts) */
+				method: 'POST',
+				data: {
+					args: query,
+					has_pagination: $element.attr( 'data-pagination-type' ) === 'none' ? 0 : 1,
+				},
+				success( response ) {
+					/* add the newly retrieved testimonials to the localized object */
+					TVE.displayTestimonials.testimonial_shortcodes = Object.assign( TVE.displayTestimonials.testimonial_shortcodes, response.testimonials );
+
+					if ( typeof callback === 'function' ) {
+						callback( response );
+					}
+				},
+				// eslint-disable-next-line no-console
+				error: console.warn,
+			} );
+		},
+		fetchExistingTestimonials: ( $content = TVE.inner.$body ) => {
+			utils.fetchTestimonials( {
+				'post__in': utils.getTestimonialIdsFromContent( $content ),
+				'posts_per_page': -1,
+			}, $content );
+		},
+		getTestimonialIdsFromContent: ( $content = TVE.inner.$body ) => {
+			return _.uniq( $content.find( '.thrive-testimonial-wrapper' ).map( ( index, element ) => parseInt( element.dataset.id ) ) );
+		},
+		/**
+		 * Callback after applying the query. Syncs the testimonial list and updates some controls after fetching new testimonials.
 		 *
 		 * @param {Object} response
 		 * @param {jQuery} $element
 		 */
-		fetchTestimonialCallback: ( response, $element = TVE.ActiveElement ) => {
+		applyQueryCallback: ( response, $element = TVE.ActiveElement ) => {
 			const testimonials = [];
 
-			/* todo: temporarily commented */
-			//TVE.displayTestimonials.testimonials_shortcodes = {};
 			_.each( response.testimonials, ( testimonial, key ) => {
 				testimonials[ parseInt( testimonial.order ) ] = testimonial;
-				TVE.displayTestimonials.testimonials_shortcodes[ key ] = testimonial;
 			} );
+
 			/* if there are no testimonials, we add a class that will hide the testimonials inside and just display a text */
 			$element.toggleClass( 'empty-list', testimonials.length === 0 );
 
@@ -69,25 +85,30 @@ const content = require( './content' ),
 				TVE.Components.display_testimonials.$noResultsMessageTextArea.val( $element.attr( 'data-no_posts_text' ) );
 			}
 		},
+		/**
+		 * This is called only the first time the element is added.
+		 *
+		 * @param  template
+		 * @param  query
+		 * @return {Promise<unknown>}
+		 */
 		fetchCloudTemplate: ( template, query ) => {
 			return new Promise( resolve => {
 				TVE.ActiveElement.addClass( 'tve-loading' );
 
 				TVE.$.ajax( {
 					url: `${TVE.CONST.routes.base}/testimonials/cloud`,
-					/* This should be GET, but a lot of data is sent through this request, and it is appended in the request URL string.
-					 * Because of the really long URL string, there were 414 errors for some users because the server can block requests like these.
-					 * As a solution, we changed this to POST so the data is added inside the request */
 					headers: {
 						'X-WP-Nonce': TVE.CONST.rest_nonce,
 					},
+					/* This is POST instead of GET on purpose (see the explanation in TVE.PostList.utils.fetchPosts) */
 					method: 'POST',
-					data: {
-						query,
-						template,
-					},
+					data: { template, query },
 					success( response ) {
-						const modal = TVE.modal_open( 'cloud-templates', 'currentInstance' );
+						/* fetch the testimonial shortcode data for the testimonials that we have loaded */
+						utils.fetchExistingTestimonials( TVE.inner_$( response.content ) );
+
+						const modal = TVE.modal_open( 'display-testimonials', 'currentInstance' );
 
 						modal.applyTo = TVE.ActiveElement;
 						modal.apply_cloud_template( response );
@@ -113,7 +134,7 @@ const content = require( './content' ),
 
 			/* all the other shortcodes ( mostly ovation list shortcodes ) are processed here */
 			const ID = utils.getArticleID( $element ),
-				testimonialData = TVE.displayTestimonials.testimonials_shortcodes[ ID ];
+				testimonialData = TVE.displayTestimonials.testimonial_shortcodes[ ID ];
 
 			if ( ! _.isEmpty( testimonialData ) ) {
 				const newContent = testimonialData[ key ],
@@ -232,6 +253,9 @@ const content = require( './content' ),
 			}
 
 			return $target;
+		},
+		isInsideTestimonialsList: ( $element = TVE.ActiveElement ) => {
+			return $element.closest( TVE.identifier( 'display_testimonials' ) ).length > 0;
 		},
 		/**
 		 * Get the display testimonials selector for the given  display testimonials / element inside the display testimonials

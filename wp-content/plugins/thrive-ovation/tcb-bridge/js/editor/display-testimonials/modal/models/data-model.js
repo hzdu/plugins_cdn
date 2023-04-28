@@ -145,8 +145,8 @@ module.exports = Backbone.Model.extend( {
 				this.set( 'template', null );
 			} );
 		} else {
-			ElementUtils.fetchTestimonials( query ).then( response => {
-				ElementUtils.fetchTestimonialCallback( response );
+			ElementUtils.applyQuery( query ).then( response => {
+				ElementUtils.applyQueryCallback( response );
 
 				this.trigger( 'finish-loading' );
 			} );

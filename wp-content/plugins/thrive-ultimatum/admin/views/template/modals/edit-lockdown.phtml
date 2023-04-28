@@ -10,7 +10,12 @@
 			</p>
 		</div>
 		<div class="pl-30">
-			<p class="tvu-small-gray-text mb-10"><?php echo __( "Lockdown campaigns can't be cheated because promotions are tied to an email address.  Unknown visitors aren't able to access the promotion. They are especially useful when you set up a sales page, but you don't want anyone to be able to access it before your campaign starts or you want to set up an offer that's available to subscribers exclusively.", 'thrive-ult' ) ?></p>
+			<p class="tvu-small-gray-text mb-10">
+				<# if(model.get('type') == ThriveUlt.util.campaignType.evergreen) { #>
+				<?php echo __( "Lockdown campaigns can't be cheated because promotions are tied to an email address.  Unknown visitors aren't able to access the promotion. They are especially useful when you set up a sales page, but you don't want anyone to be able to access it before your campaign starts or you want to set up an offer that's available to subscribers exclusively.", 'thrive-ult' ) ?></p>
+			<# } else { #>
+				<?php echo __( "A lockdown campaign will only allow visitors to access the promotion page on the days when the campaign is active. Before the campaign starts they will be redirected to a pre-access page and once it's over, if they try to visit the promotion page, they will be redirected to an expired page.", 'thrive-ult' ) ?></p>
+			<# } #>
 			<a style="font-size: 12px;" href="https://thrivethemes.com/tkb_item/thrive-ultimatum-open-campaign-vs-lockdown-campaign/"><?php echo __( 'Learn more about the difference between open and locked campaigns', 'thrive-ult' ) ?></a>
 		</div>
 	</div>
@@ -45,6 +50,7 @@
 		<div class="tvu-white-borderless-box pt-15">
 			<p class="tvu-bold-text-important m-0"><?php echo __( 'Promotion pages', 'thrive-ult' ) ?></p>
 			<p class="tvu-tiny-gray-text mt-5"><?php echo __( 'These are the pages that are only available during the campaign', 'thrive-ult' ) ?></p>
+			<# if(model.get('type') == ThriveUlt.util.campaignType.evergreen) { #>
 			<div class="tvd-row tvd-no-mb">
 				<div class="tvd-row tvd-collapse tvd-no-mb">
 					<div class="tvd-col tvd-s12" style="width: 30%">
@@ -72,6 +78,7 @@
 					</div>
 				</div>
 			</div>
+			<# } #>
 			<div>
 				<p class="tvu-tiny-blue-text mb-10"><?php echo __( 'URL or search item', 'thrive-ult' ) ?></p>
 			</div>
@@ -79,9 +86,7 @@
 				<div class="tve-ult-promotion-wrapper"></div>
 
 				<!--	Lockdown box-->
-				<# if(model.get('type') == ThriveUlt.util.campaignType.evergreen) { #>
 				<div class="tvu-url-to-copy-wrapper"></div>
-				<# } #>
 			</div>
 			<div class="pb-10">
 				<a href="javascript:void(0)" class="tve_ult_add_promotion_field"><span>+</span><?php echo __( 'Add new promotion page', 'thrive-ult' ) ?></a>

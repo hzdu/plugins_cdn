@@ -230,7 +230,9 @@
 	Slick.prototype.animateHeight = function () {
 		var _ = this;
 		if ( _.options.slidesToShow === 1 && _.options.adaptiveHeight === true && _.options.vertical === false ) {
+			_.$slides.eq( _.currentSlide ).removeClass( 'slick-active' );
 			var targetHeight = _.$slides.eq( _.currentSlide ).outerHeight( true );
+			_.$slides.eq( _.currentSlide ).addClass( 'slick-active' );
 			_.$list.animate( {
 				height: targetHeight
 			}, _.options.speed );

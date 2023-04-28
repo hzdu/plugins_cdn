@@ -1,13 +1,22 @@
 <div class="tva-generate">
 	<form class="tva-generate-courses">
 		<div class="mb-10">
-			<p><?php echo __( 'The courses will be generated with a random number of modules/chapters/lessons from the intervals given', 'thrive-apprentice' ) ?></p>
 			<b><?php echo __( 'Select Number of courses', 'thrive-apprentice' ) ?> </b>
 			<br/>
 			<input type="number" id="course-count" name="courseCount" value="1">
 		</div>
 		<div class="mb-10">
 			<b><?php echo __( 'Select Number of modules', 'thrive-apprentice' ) ?></b>
+			<div class="tva-info-icon tva-relative tva-tooltip-parent tva-mega-tooltip">
+				<svg class="tva-icon ta-info-solid">
+					<use xlink:href="#ta-info-solid"></use>
+				</svg>
+				<div class="tva-custom-tooltip p-15 mt-50">
+					<p class="mb-0 mt-0">
+						<?php echo __( 'For each generated course, random number of modules will be generated from the interval given', 'thrive-apprentice' ) ?>
+					</p>
+				</div>
+			</div>
 			<br/>
 			<label for="min-modules"><b><?php echo __( 'From', 'thrive-apprentice' ) ?></b></label>
 			<input type="number" id="min-modules" name="minModules" value="0">
@@ -16,6 +25,16 @@
 		</div>
 		<div class="mb-10">
 			<b><?php echo __( 'Select Number of Chapters', 'thrive-apprentice' ) ?></b>
+			<div class="tva-info-icon tva-relative tva-tooltip-parent tva-mega-tooltip">
+				<svg class="tva-icon ta-info-solid">
+					<use xlink:href="#ta-info-solid"></use>
+				</svg>
+				<div class="tva-custom-tooltip p-15 mt-50">
+					<p class="mb-0 mt-0">
+						<?php echo __( 'For each generated course/module, random number of chapters will be generated from the interval given', 'thrive-apprentice' ) ?>
+					</p>
+				</div>
+			</div>
 			<br/>
 			<label for="min-chapters"><b><?php echo __( 'From', 'thrive-apprentice' ) ?></b></label>
 			<input type="number" id="min-chapters" name="minChapters" value="0">
@@ -24,6 +43,16 @@
 		</div>
 		<div class="mb-10">
 			<b><?php echo __( 'Select Number of Lessons', 'thrive-apprentice' ) ?></b>
+			<div class="tva-info-icon tva-relative tva-tooltip-parent tva-mega-tooltip">
+				<svg class="tva-icon ta-info-solid">
+					<use xlink:href="#ta-info-solid"></use>
+				</svg>
+				<div class="tva-custom-tooltip p-15 mt-50">
+					<p class="mb-0 mt-0">
+						<?php echo __( 'For each generated course/module/chapter, random number of lessons will be generated from the interval given', 'thrive-apprentice' ) ?>
+					</p>
+				</div>
+			</div>
 			<br/>
 			<label for="min-lessons"><b><?php echo __( 'From', 'thrive-apprentice' ) ?></b></label>
 			<input type="number" id="min-lessons" name="minLessons" value="1">
@@ -43,6 +72,21 @@
 			<input type="number" id="products-count" name="productsCount" value="1">
 			<br/>
 			<b><?php echo __( 'Select Course Percentage per Product', 'thrive-apprentice' ) ?></b>
+			<div class="tva-info-icon tva-relative tva-tooltip-parent tva-mega-tooltip">
+				<svg class="tva-icon ta-info-solid">
+					<use xlink:href="#ta-info-solid"></use>
+				</svg>
+				<div class="tva-custom-tooltip p-15 mt-50">
+					<p class="mb-0 mt-0">
+						<?php echo __( 'For each product, a random percentage of the existing courses will be attached', 'thrive-apprentice' ) ?>
+						<br/>
+						<?php echo __( 'If you have no courses, empty products will be generated', 'thrive-apprentice' ) ?>
+						<br/>
+						<?php echo __( 'If you have at least one course, generated products will have at least one course', 'thrive-apprentice' ) ?>
+						<br/>
+					</p>
+				</div>
+			</div>
 			<br/>
 			<label for="course-percentage-min"><b><?php echo __( 'From', 'thrive-apprentice' ) ?></b></label>
 			<input type="number" min="0" max="100" id="course-percentage-min" name="coursePercentageMin" value="30">
@@ -63,6 +107,21 @@
 			<input type="number" id="members-count" name="membersCount" value="1">
 			<br/>
 			<b><?php echo __( 'Select Products Percentage per Member', 'thrive-apprentice' ) ?></b>
+			<div class="tva-info-icon tva-relative tva-tooltip-parent tva-mega-tooltip">
+				<svg class="tva-icon ta-info-solid">
+					<use xlink:href="#ta-info-solid"></use>
+				</svg>
+				<div class="tva-custom-tooltip p-15 mt-50">
+					<p class="mb-0 mt-0">
+						<?php echo __( 'Each generated member will receive access to a random percentage of products from the interval given', 'thrive-apprentice' ) ?>
+						<br/>
+						<?php echo __( 'If you have no products or you have empty products, members with access to 0 products/courses will be generated, they wont be visible in the members list, only in wordpress in the user list until they manually receive access to a course', 'thrive-apprentice' ) ?>
+						<br/>
+						<?php echo __( 'If you have at least one product, generated members will receive access to at least one product', 'thrive-apprentice' ) ?>
+						<br/>
+					</p>
+				</div>
+			</div>
 			<br/>
 			<label for="product-percentage-min"><b><?php echo __( 'From', 'thrive-apprentice' ) ?></b></label>
 			<input type="number" min="0" max="100" id="product-percentage-min" name="productPercentageMin" value="10">
@@ -80,6 +139,21 @@
 	<form class="tva-generate-completion">
 		<div class="mb-10">
 			<b><?php echo __( 'Select Completion Rate', 'thrive-apprentice' ) ?></b>
+			<div class="tva-info-icon tva-relative tva-tooltip-parent tva-mega-tooltip">
+				<svg class="tva-icon ta-info-solid">
+					<use xlink:href="#ta-info-solid"></use>
+				</svg>
+				<div class="tva-custom-tooltip p-15 mt-50">
+					<p class="mb-0 mt-0">
+						<?php echo __( 'Each generated member will receive a random progress for each course from the specified interval', 'thrive-apprentice' ) ?>
+						<br/>
+						<?php echo __( 'If there are few lessons, the interval wont be that relevant', 'thrive-apprentice' ) ?>
+						<br/>
+						<?php echo __( 'For example if there is only one lesson to a course, the lesson will be marked as completed if the interval is not the value 0', 'thrive-apprentice' ) ?>
+						<br/>
+					</p>
+				</div>
+			</div>
 			<br/>
 			<label for="completion-percentage-min"><b><?php echo __( 'From', 'thrive-apprentice' ) ?></b></label>
 			<input type="number" min="0" max="100" id="completion-percentage-min" name="completionPercentageMin" value="30">

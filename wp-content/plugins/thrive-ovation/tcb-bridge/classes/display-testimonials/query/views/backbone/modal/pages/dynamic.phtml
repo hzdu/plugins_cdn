@@ -5,7 +5,11 @@
 <div class="thrive-display-testimonials-content thrive-display-testimonials-dynamic-content">
 	<div class="thrive-display-testimonials-tags-container">
 		<span class="card-title"> <?php echo esc_html__( 'Tag', 'thrive-ovation' ); ?> </span>
-		<ul class="thrive-display-testimonials-tags-list <#= this.dataModel.isViewMode() ? 'tcb-disabled' : ''#>"></ul>
+		<ul class="thrive-display-testimonials-tags-list <#= this.dataModel.isViewMode() ? 'tcb-disabled' : ''#>">
+			<div class="no-tags-message" style="display: none">
+				<?php echo esc_html__( 'No tags found. To be able to create dynamic lists, you need at least one tag assigned to your testimonials.', 'thrive-ovation' ); ?>
+			</div>
+		</ul>
 	</div>
 
 	<div class="order-container dynamic-order-container">

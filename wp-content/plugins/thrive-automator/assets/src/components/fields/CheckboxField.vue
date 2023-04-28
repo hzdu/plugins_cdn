@@ -47,8 +47,8 @@ export default {
 		}
 	},
 	mounted() {
-		if ( ! this.fieldValue?.length && this.fieldData?.default_value ) {
-			this.onCheck( this.fieldData?.default_value )
+		if ( ! this.fieldValue && this.fieldData?.default_value ) {
+			this.onCheck( this.fieldData?.default_value, true )
 		}
 	},
 	methods: {

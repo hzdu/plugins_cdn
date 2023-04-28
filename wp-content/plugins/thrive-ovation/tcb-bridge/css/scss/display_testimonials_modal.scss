@@ -81,6 +81,8 @@
               .default-value {
                 border-bottom: solid 1px rgba(176, 185, 193, 0.8);
                 font-size: 22px;
+                word-break: break-word;
+                padding-right: 20px;
               }
 
               ul {
@@ -96,6 +98,7 @@
                 height: 44px;
                 font-size: 15px;
                 border-radius: 3px;
+                line-height: normal;
               }
 
               .icon {
@@ -103,7 +106,7 @@
                 background-size: 20px 20px;
                 background-repeat: no-repeat;
 
-                width: 20px;
+                width: 23px;
                 height: 20px;
                 display: inline-flex;
                 margin-right: 10px;
@@ -835,6 +838,11 @@
                 .tag-count {
                   font-size: 13px;
                 }
+              }
+
+              .no-tags-message {
+                width: 100%;
+                text-align: center;
               }
             }
           }

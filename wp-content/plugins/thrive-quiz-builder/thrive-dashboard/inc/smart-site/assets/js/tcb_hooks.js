@@ -20,9 +20,19 @@ var TVD_SS = TVD_SS || {};
 	function tvdBeforeInsert( content, shortcodeData ) {
 		/* wrap the content so it behaves like a link */
 		if ( shortcodeData.key === 'thrv_dynamic_data_user' && userDataWithLink.includes( shortcodeData.extra_key ) ) {
-			var link = shortcodeData.configOptions.filter( opt => opt.key === 'link' )[ 0 ];
+			const link = shortcodeData.configOptions.find( opt => opt.key === 'link' );
 			if ( link && link.value === '1' ) {
 				content = '<a href="#">' + content + '</a>'
+			}
+		} else if ( shortcodeData.key === 'thrive_global_fields' && shortcodeData.extra_key === '1' ) {
+			if ( ! content.includes( 'thrive-shortcode-notice' ) ) {
+				const call = shortcodeData.configOptions.find( opt => opt.key === 'enable_call' );
+				const mail = shortcodeData.configOptions.find( opt => opt.key === 'enable_email' );
+				if ( call && call.value === '1' ) {
+					content = `<a href="tel:${content}">${content}</a>`
+				} else if ( mail && mail.value === '1' ) {
+					content = `<a href="mailto:${content}">${content}</a>`
+				}
 			}
 		}
 		return content;

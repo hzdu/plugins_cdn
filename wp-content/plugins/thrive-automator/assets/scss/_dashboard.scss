@@ -187,8 +187,10 @@
   }
 }
 
-#message, .error, .notice, .update-nag, .sbi_notice, .update, .updated {
-  display: none !important;
+:not(#_s) {
+  #message, .error, .notice, .update-nag, .sbi_notice, .update, .updated, .fs-notice {
+    display: none !important;
+  }
 }
 
 @keyframes slide-right {

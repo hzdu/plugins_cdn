@@ -13,9 +13,14 @@ const files = {
 	inlineShortcodes: require( './hooks/inline-shortcodes' ),
 	sync: require( './hooks/sync' ),
 };
+
+/* change priorities for hooks that we want executed earlier / later ( default is 10 ) */
+const priorities = {
+	'tcb_head_css_prefix': 9,
+};
 /* For each file that contains hooks, add the actions and filters. */
 _.each( files, file => {
-	TVE.addHooks( file );
+	TVE.addHooks( file, priorities );
 } );
 
 constants.htmlChangeActions.forEach( action => TVE.add_action( action, content.checkForDisplayTestimonialsSync ) );
