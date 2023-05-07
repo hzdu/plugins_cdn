@@ -1,0 +1,35 @@
+$grid-gutter-width: 10px;
+
+// scss-docs-start grid-breakpoints
+$grid-breakpoints: (
+    xs: 0,
+    sm: 576px,
+    md: 768px,
+    lg: 992px,
+    xl: 1200px,
+    xxl: 1400px
+) !default;
+
+@import "~bootstrap/scss/mixins/breakpoints";
+
+html, body.checkout-wc, main.checkoutwc {
+    height: 100%;
+}
+
+body.admin-bar {
+    height: calc(100% - 32px);
+
+    @include media-breakpoint-down(md) {
+        height: calc(100% - 46px);
+    }
+}
+
+body.checkout-wc, main.checkoutwc, form#checkout {
+    display: flex;
+    flex: 1 0 auto;
+}
+
+
+@import "template/content";
+@import "template/header";
+@import "template/footer";

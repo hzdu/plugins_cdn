@@ -1,3 +1,5 @@
+import EmailAutocompleteInput from './EmailAutocompleteInput';
+
 class FormField {
     private static _floatClass = 'cfw-label-is-floated';
 
@@ -10,10 +12,7 @@ class FormField {
 
         // Handle fields after dynamic refreshes
         jQuery( document.body ).on( 'updated_checkout', () => {
-            // Ditto
-            setTimeout( () => {
-                this.processFieldLabels();
-            } );
+            this.processFieldLabels();
         } );
 
         // Disable highlighted countries separator
@@ -29,14 +28,22 @@ class FormField {
             }
         } );
 
-        // Attempt to remove our styling from select2 styled fields
-        jQuery( '.cfw-select-input' ).each( ( index, element ) => {
-            if ( !jQuery( element ).find( '.select2-container' ).length ) {
-                return;
-            }
+        jQuery( window ).on( 'load', () => {
+            // Attempt to remove our styling from select2 styled fields
+            jQuery( '.cfw-select-input' ).each( ( index, element ) => {
+                if ( !jQuery( element ).find( '.select2-hidden-accessible' ).length ) {
+                    return;
+                }
 
-            jQuery( element ).removeClass( 'cfw-select-input cfw-input-wrap cfw-label-is-floated' );
+                jQuery( element ).removeClass( 'cfw-select-input cfw-input-wrap cfw-label-is-floated' );
+            } );
         } );
+
+        const options: EmailAutocompleteInputOptions = {
+            inputElement: jQuery( '#billing_email' ).get( 0 ) as HTMLInputElement,
+        };
+
+        new EmailAutocompleteInput( options );
     }
 
     maybeAddFloatClass( element: any ): void {

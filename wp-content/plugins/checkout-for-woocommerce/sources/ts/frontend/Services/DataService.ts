@@ -23,6 +23,10 @@ class DataService {
         return false;
     }
 
+    static getData( key: string ): any {
+        return cfwEventData.data[ key ] ?? false;
+    }
+
     static getMessage( messageKey: string ): string {
         if ( cfwEventData.messages[ messageKey ] ) {
             return cfwEventData.messages[ messageKey ];

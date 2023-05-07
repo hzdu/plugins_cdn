@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Checkout for WooCommerce\n"
-"POT-Creation-Date: 2022-09-26 12:12-0400\n"
-"PO-Revision-Date: 2022-09-26 12:28-0400\n"
+"POT-Creation-Date: 2023-04-21 14:36-0400\n"
+"PO-Revision-Date: 2023-04-21 14:52-0400\n"
 "Last-Translator: Clifton Griffin <clif@checkoutwc.com>\n"
 "Language-Team: support@checkoutwc.com\n"
 "Language: el\n"
@@ -10,7 +10,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.1.1\n"
+"X-Generator: Poedit 3.2.2\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-Flags-xgettext: --add-comments=translators:\n"
 "X-Poedit-WPHeader: checkout-for-woocommerce.php\n"
@@ -23,76 +23,168 @@ msgstr ""
 "X-Poedit-SearchPathExcluded-1: dist\n"
 "X-Poedit-SearchPathExcluded-2: vendor\n"
 
-#: includes/Action/LogInAction.php:38
+#: checkout-for-woocommerce.php:148
+msgid ""
+"Your site is running an <strong>insecure version</strong> of PHP that is no "
+"longer supported. Please contact your web hosting provider to update your "
+"PHP version."
+msgstr ""
+"Ο ιστότοπός σας εκτελεί μια <strong>ανασφαλή έκδοση</strong> της PHP που δεν "
+"υποστηρίζεται πλέον. Παρακαλούμε επικοινωνήστε με τον πάροχο φιλοξενίας "
+"ιστοσελίδων σας για να ενημερώσετε την έκδοση της PHP."
+
+#. translators: %s - checkoutwc.com URL for documentation with more details.
+#: checkout-for-woocommerce.php:154
+#, php-format
+msgid ""
+"<strong>Note:</strong> CheckoutWC is disabled on your site until you fix the "
+"issue. <a href=\"%s\" target=\"_blank\" rel=\"noopener noreferrer\">Need "
+"help? Click here.</a>"
+msgstr ""
+"<strong>Σημείωση</strong>: Το CheckoutWC είναι απενεργοποιημένο στον "
+"ιστότοπό σας μέχρι να διορθώσετε το πρόβλημα. <a href=\"%s\" "
+"target=\"_blank\" rel=\"noopener noreferrer\">Χρειάζεστε βοήθεια Κάντε κλικ "
+"εδώ.</a>"
+
+#. translators: %s - WordPress version.
+#: checkout-for-woocommerce.php:194
+#, php-format
+msgid "CheckoutWC requires WordPress %s or later."
+msgstr "Το CheckoutWC απαιτεί WordPress %s ή νεότερη έκδοση."
+
+#. translators: %s - WordPress version.
+#: checkout-for-woocommerce.php:232
+#, php-format
+msgid "CheckoutWC requires WooCommerce %s or later."
+msgstr "Το CheckoutWC απαιτεί WooCommerce %s ή νεότερη έκδοση."
+
+#: includes/API/AfterCheckoutBumpProductFormAPI.php:23
+#: includes/API/ModalOrderBumpProductFormAPI.php:174
+msgid "No thanks, just complete my order"
+msgstr "Όχι ευχαριστώ, απλά ολοκληρώστε την παραγγελία μου"
+
+#: includes/API/AfterCheckoutBumpProductFormAPI.php:40
+msgid "Your order is almost complete..."
+msgstr "Η παραγγελία σας έχει σχεδόν ολοκληρωθεί..."
+
+#: includes/API/AfterCheckoutBumpProductFormAPI.php:44
+msgid "Add this offer to your order and save!"
+msgstr "Προσθέστε αυτή την προσφορά στην παραγγελία σας και εξοικονομήστε!"
+
+#: includes/API/AfterCheckoutBumpProductFormAPI.php:54
+msgid "Order Submitted"
+msgstr "Υποβληθείσα παραγγελία"
+
+#: includes/API/AfterCheckoutBumpProductFormAPI.php:60
+msgid "Special Offer"
+msgstr "ΝΕΑ ΔΙΑΔΡΟΜΗ"
+
+#: includes/API/AfterCheckoutBumpProductFormAPI.php:66
+msgid "Order Received"
+msgstr "Ολοκλήρωση Παραγγελίας"
+
+#: includes/API/GetVariationFormAPI.php:25
+#: includes/API/ModalOrderBumpProductFormAPI.php:43
+msgid "Product not found"
+msgstr "Δεν βρέθηκε προϊόν"
+
+#: includes/API/ModalOrderBumpProductFormAPI.php:39
+msgid "No thanks"
+msgstr "Όχι ευχαριστώ"
+
+#: includes/Action/LogInAction.php:37
 msgid ""
 "There was an error logging in. Please check your credentials and try again."
 msgstr ""
 "Παρουσιάστηκε σφάλμα κατά τη σύνδεση. Ελέγξτε τα διαπιστευτήριά σας και "
 "δοκιμάστε ξανά."
 
-#: includes/Action/SmartyStreetsAddressValidationAction.php:68
-#: includes/Features/SmartyStreets.php:114
+#: includes/Action/SmartyStreetsAddressValidationAction.php:67
+#: includes/Features/SmartyStreets.php:119
 msgid "Use Recommended"
 msgstr "Χρήση Συνιστάται"
 
-#: includes/Action/SmartyStreetsAddressValidationAction.php:69
-#: includes/Features/SmartyStreets.php:120
+#: includes/Action/SmartyStreetsAddressValidationAction.php:68
+#: includes/Features/SmartyStreets.php:125
 msgid "Use Your Address"
 msgstr "Χρησιμοποιήστε τη διεύθυνσή σας"
 
-#: includes/Action/SmartyStreetsAddressValidationAction.php:78
+#: includes/Action/SmartyStreetsAddressValidationAction.php:77
 msgid "Reenter Address"
 msgstr "Επανεισάγετε τη διεύθυνση"
 
-#: includes/Action/SmartyStreetsAddressValidationAction.php:79
+#: includes/Action/SmartyStreetsAddressValidationAction.php:78
 msgid "Use Existing Address"
 msgstr "Χρήση υπάρχουσας διεύθυνσης"
 
-#: includes/Action/SmartyStreetsAddressValidationAction.php:147
-#: includes/Action/SmartyStreetsAddressValidationAction.php:193
-#: includes/Action/SmartyStreetsAddressValidationAction.php:246
-#: includes/Features/SmartyStreets.php:81
+#: includes/Action/SmartyStreetsAddressValidationAction.php:160
+#: includes/Action/SmartyStreetsAddressValidationAction.php:206
+#: includes/Action/SmartyStreetsAddressValidationAction.php:261
+#: includes/Features/SmartyStreets.php:86
 msgid "We are unable to verify your address."
 msgstr "Δεν μπορούμε να επαληθεύσουμε τη διεύθυνσή σας."
 
 #. translators: %s is the postcode field label
-#: includes/Action/ValidateEmailDomainAction.php:36
+#: includes/Action/ValidateEmailDomainAction.php:35
 msgid "Email address contains invalid domain name."
 msgstr "Η διεύθυνση ηλεκτρονικού ταχυδρομείου περιέχει άκυρο όνομα τομέα."
 
 #. translators: %s is the postcode field label
-#: includes/Action/ValidatePostcodeAction.php:34
+#: includes/Action/ValidatePostcodeAction.php:33
 #, php-format
 msgid "Please enter a valid %s."
 msgstr "Παρακαλώ εισάγετε ένα έγκυρο %s."
 
-#: includes/AddressFieldsAugmenter.php:114
+#: includes/AddressFieldsAugmenter.php:124
 msgid "Full name"
 msgstr "Ονοματεπώνυμο"
 
-#: includes/AddressFieldsAugmenter.php:167
+#: includes/AddressFieldsAugmenter.php:177
 msgid "House number"
 msgstr "Αριθμός Οδού"
 
-#: includes/AddressFieldsAugmenter.php:179
+#: includes/AddressFieldsAugmenter.php:189
 msgid "Street name"
 msgstr "Όνομα οδού"
 
-#: includes/Compatibility/Gateways/PayPalForWooCommerce.php:153
-#: sources/php/template-functions.php:708
-#: sources/php/template-functions.php:1314
-#: sources/php/template-functions.php:2022
+#: includes/Admin/Notices/CompatibilityNotice.php:34
+msgid "Please deactivate to avoid problems with your checkout page."
+msgstr ""
+"Παρακαλούμε απενεργοποιήστε το για να αποφύγετε προβλήματα με τη σελίδα "
+"πληρωμής."
+
+#: includes/Compatibility/Gateways/PayPalForWooCommerce.php:157
+#: sources/php/template-functions.php:714
+#: sources/php/template-functions.php:1320
+#: sources/php/template-functions.php:2028
 msgid "Billing address"
 msgstr "Διεύθυνση χρέωσης"
 
-#: includes/Compatibility/Gateways/PayPalForWooCommerce.php:319
+#: includes/Compatibility/Gateways/PayPalForWooCommerce.php:328
 msgid "Logged in with PayPal. Please continue your order below."
 msgstr "Συνδεθείτε με το PayPal. Συνεχίστε την παραγγελία σας παρακάτω."
 
 #. Plugin Name of the plugin/theme
-#: includes/Compatibility/Plugins/CartFlows.php:61
+#: includes/Compatibility/Plugins/CartFlows.php:62
 msgid "CheckoutWC"
 msgstr "CheckoutWC"
+
+#: includes/Features/AbandonedCartRecovery.php:80
+msgid "You have been unsubscribed from our cart reminder emails."
+msgstr "Έχετε διαγραφεί από τα email υπενθύμισης καλαθιού."
+
+#: includes/Features/AbandonedCartRecovery.php:697
+#: includes/Features/AbandonedCartRecovery.php:761
+msgid "This order was abandoned and subsequently recovered."
+msgstr "Η εντολή αυτή εγκαταλείφθηκε και στη συνέχεια ανακτήθηκε."
+
+#: includes/Features/FetchifyAddressAutocomplete.php:80
+msgid "Address Search"
+msgstr "Αναζήτηση διευθύνσεων"
+
+#: includes/Features/FetchifyAddressAutocomplete.php:81
+msgid "Start with post/zip code or street"
+msgstr "Ξεκινήστε με τον ταχυδρομικό κώδικα ή την οδό"
 
 #: includes/Features/HideOptionalAddressFields.php:37
 msgid "Add Address Line 2"
@@ -102,145 +194,149 @@ msgstr "Προσθέστε τη γραμμή διεύθυνσης 2"
 msgid "Add Company"
 msgstr "Προσθήκη Επιχείρησης"
 
-#: includes/Features/OrderReviewStep.php:70
+#: includes/Features/OrderReviewStep.php:76
 msgid "Review"
 msgstr "Αξιολόγηση"
 
-#: includes/Features/Pickup.php:79
+#: includes/Features/Pickup.php:74
 msgid "Pick up"
 msgstr "Παραλαβή"
 
-#: includes/Features/Pickup.php:93
+#: includes/Features/Pickup.php:88
 msgid "Ship"
 msgstr "Αποστολή προς"
 
-#: includes/Features/Pickup.php:107
+#: includes/Features/Pickup.php:102
 msgid "Delivery method"
 msgstr "Μέθοδος παράδοσης"
 
-#: includes/Features/Pickup.php:169
+#: includes/Features/Pickup.php:164
 msgid "Pickup locations"
 msgstr "Τοποθεσίες παραλαβής"
 
-#: includes/Features/Pickup.php:397
+#: includes/Features/Pickup.php:414
 msgid "Pick up in store"
 msgstr "Παραλαβή στο κατάστημα"
 
-#: includes/Features/Pickup.php:413 includes/Managers/AssetManager.php:510
+#: includes/Features/Pickup.php:431 includes/Managers/AssetManager.php:630
 msgid "Pickup"
 msgstr "Παραλαβή"
 
-#: includes/Features/Pickup.php:470
+#: includes/Features/Pickup.php:471
+msgid "Pickup Location"
+msgstr "Τόπος Παραλαβής"
+
+#: includes/Features/Pickup.php:528
 msgid "Pickup instructions"
 msgstr "Οδηγίες παραλαβής"
 
-#: includes/Features/Pickup.php:579
+#: includes/Features/Pickup.php:645
 msgid "Usually ready in 1 hour."
 msgstr "Συνήθως είναι έτοιμο σε 1 ώρα."
 
-#: includes/Features/Pickup.php:580
+#: includes/Features/Pickup.php:646
 msgid "Usually ready in 2 hours."
 msgstr "Συνήθως είναι έτοιμο σε 2 ώρες."
 
-#: includes/Features/Pickup.php:581
+#: includes/Features/Pickup.php:647
 msgid "Usually ready in 4 hours."
 msgstr "Συνήθως είναι έτοιμο σε 4 ώρες."
 
-#: includes/Features/Pickup.php:582
+#: includes/Features/Pickup.php:648
 msgid "Usually ready in 24 hours."
 msgstr "Συνήθως έτοιμο σε 24 ώρες."
 
-#: includes/Features/Pickup.php:583
+#: includes/Features/Pickup.php:649
 msgid "Usually ready in 2-4 days."
 msgstr "Συνήθως είναι έτοιμο σε 2-4 ημέρες."
 
-#: includes/Features/Pickup.php:584
+#: includes/Features/Pickup.php:650
 msgid "Usually ready in 5+ days."
 msgstr "Συνήθως είναι έτοιμο σε 5+ ημέρες."
 
-#: includes/Features/SideCart.php:170
+#: includes/Features/SideCart.php:215
 msgid "Close Cart"
 msgstr "Κλείσιμο καλαθιού"
 
-#: includes/Features/SideCart.php:205 sources/php/template-functions.php:1520
+#: includes/Features/SideCart.php:252 sources/php/template-functions.php:1526
 msgid "Apply"
 msgstr "Εφαρμογή"
 
-#: includes/Features/SideCart.php:219 sources/php/template-functions.php:1549
+#: includes/Features/SideCart.php:267 sources/php/template-functions.php:1555
 msgid "Have a promo code? Click here."
 msgstr "Έχετε ένα κωδικό προσφοράς; Κάντε κλικ ΕΔΩ."
 
-#: includes/Features/SideCart.php:240 sources/php/template-functions.php:1570
+#: includes/Features/SideCart.php:289 sources/php/template-functions.php:1576
 msgid "Promo Code"
 msgstr "Κωδικός προσφοράς"
 
-#: includes/Features/SideCart.php:248 sources/php/template-functions.php:1578
+#: includes/Features/SideCart.php:298 sources/php/template-functions.php:1584
 msgid "Enter Promo Code"
 msgstr "Πληκτρολογήστε τον κωδικό προσφοράς"
 
-#: includes/Features/SideCart.php:288 includes/Features/SideCart.php:289
-#: sources/php/template-functions.php:2035
-#: sources/php/template-functions.php:2277
+#: includes/Features/SideCart.php:341 includes/Features/SideCart.php:342
+#: sources/php/template-functions.php:2041
+#: sources/php/template-functions.php:2284
 msgid "Shipping"
 msgstr "Αποστολή"
 
-#: includes/Features/SideCart.php:501
+#: includes/Features/SideCart.php:627
 msgid "Congrats! You get free standard shipping."
 msgstr "Συγχαρητήρια! Θα έχετε δωρεάν κανονική αποστολή."
 
 #. translators: %s is the amount remaining for free shipping
-#: includes/Features/SideCart.php:514
+#: includes/Features/SideCart.php:641
 #, php-format
 msgid "You're %s away from free shipping!"
 msgstr "Είστε %s μακριά από τη δωρεάν αποστολή!"
 
-#: includes/Features/SmartyStreets.php:72
+#: includes/Features/SmartyStreets.php:77
 msgid "Use This Address"
 msgstr "Χρησιμοποιήστε αυτή τη διεύθυνση"
 
-#: includes/Features/SmartyStreets.php:77
+#: includes/Features/SmartyStreets.php:82
 msgid "Use recommended address instead?"
 msgstr "Χρησιμοποιήστε τη συνιστώμενη διεύθυνση"
 
-#: includes/Features/SmartyStreets.php:85
+#: includes/Features/SmartyStreets.php:90
 msgid "We're unable to verify your address, but found a close match."
 msgstr ""
 "Δεν είμαστε σε θέση να επαληθεύσουμε τη διεύθυνσή σας, αλλά βρήκαμε μια "
 "κοντινή αντιστοιχία."
 
-#: includes/Features/SmartyStreets.php:89
+#: includes/Features/SmartyStreets.php:94
 msgid "Please confirm you would like to use this address or try again."
 msgstr ""
 "Παρακαλούμε επιβεβαιώστε ότι θέλετε να χρησιμοποιήσετε αυτή τη διεύθυνση ή "
 "προσπαθήστε ξανά."
 
-#: includes/Features/SmartyStreets.php:95
+#: includes/Features/SmartyStreets.php:100
 msgid "You Entered"
 msgstr "Εισήλθατε"
 
-#: includes/Features/SmartyStreets.php:105
+#: includes/Features/SmartyStreets.php:110
 msgid "Recommended"
 msgstr "Συνιστάται"
 
-#: includes/Managers/AssetManager.php:499
+#: includes/Managers/AssetManager.php:611
 msgid "Please enter a valid phone number."
 msgstr "Παρακαλώ εισάγετε ένα έγκυρο αριθμό τηλεφώνου."
 
-#: includes/Managers/AssetManager.php:500
+#: includes/Managers/AssetManager.php:620
 msgid "Please enter your first and last name."
 msgstr "Παρακαλώ εισάγετε το όνομα και το επώνυμό σας."
 
-#: includes/Managers/AssetManager.php:501
-#: sources/php/template-functions.php:718
-#: sources/php/template-functions.php:2006
+#: includes/Managers/AssetManager.php:621
+#: sources/php/template-functions.php:724
+#: sources/php/template-functions.php:2012
 msgid "Shipping address"
 msgstr "Διεύθυνση Αποστολής"
 
-#: includes/Managers/AssetManager.php:502
+#: includes/Managers/AssetManager.php:622
 msgid "Please enter a new quantity:"
 msgstr "Εισαγάγετε μια νέα ποσότητα:"
 
-#: includes/Managers/AssetManager.php:503
+#: includes/Managers/AssetManager.php:623
 msgid ""
 "3-digit security code usually found on the back of your card. American "
 "Express cards have a 4-digit code located on the front."
@@ -249,144 +345,152 @@ msgstr ""
 "σας. Οι κάρτες American Express έχουν έναν τετραψήφιο κωδικό που βρίσκεται "
 "στο μπροστινό μέρος."
 
-#: includes/Managers/AssetManager.php:504
+#: includes/Managers/AssetManager.php:624
 msgid "Are you sure you want to remove this item from your cart?"
 msgstr ""
 "Είστε βέβαιοι ότι θέλετε να καταργήσετε αυτό το στοιχείο από το καλάθι σας;"
 
-#: includes/Managers/AssetManager.php:509
+#: includes/Managers/AssetManager.php:629
 msgid "Please enter a valid postcode / ZIP."
 msgstr "Παρακαλούμε εισάγετε έναν έγκυρο ταχυδρομικό κώδικα."
 
-#: sources/php/functions.php:192
+#: lib/sendwp-sdk/remote-install.php:84
+msgid "Something went wrong. SendWP was not installed correctly."
+msgstr "Κάτι πήγε στραβά. Το SendWP δεν εγκαταστάθηκε σωστά."
+
+#: sources/php/functions.php:194
 msgid "Ship to"
 msgstr "Αποστολή προς"
 
-#: sources/php/functions.php:1122
+#: sources/php/functions.php:1113
 msgid "No shipping methods available"
 msgstr "Δεν υπάρχουν διαθέσιμες μέθοδοι αποστολής"
 
-#: sources/php/functions.php:1293
+#: sources/php/functions.php:1284
 msgid "Complete Order"
 msgstr "Ολοκλήρωση παραγγελίας"
 
-#: sources/php/functions.php:1353 sources/php/template-functions.php:1070
-#: sources/php/template-functions.php:1987
-#: sources/php/template-functions.php:2291
+#: sources/php/functions.php:1342 sources/php/template-functions.php:1077
+#: sources/php/template-functions.php:1993
+#: sources/php/template-functions.php:2298
 msgid "Payment"
 msgstr "Πληρωμή"
 
-#: sources/php/functions.php:1378
+#: sources/php/functions.php:1367
 msgid "All transactions are secure and encrypted."
 msgstr "Όλες οι συναλλαγές είναι ασφαλείς και κρυπτογραφημένες."
 
-#: sources/php/functions.php:1399
+#: sources/php/functions.php:1388
 msgid "Your order is free. No payment is required."
 msgstr "Η παραγγελία σας είναι δωρεάν. Δεν απαιτείται πληρωμή."
 
-#: sources/php/functions.php:1444
+#: sources/php/functions.php:1433
 msgid "Same as shipping address"
 msgstr "Ίδια με τη διεύθυνση αποστολής"
 
-#: sources/php/functions.php:1464
+#: sources/php/functions.php:1453
 msgid "Use a different billing address"
 msgstr "Χρησιμοποιήστε μια διαφορετική διεύθυνση χρέωσης"
 
-#: sources/php/functions.php:1631
+#: sources/php/functions.php:1636
 msgid "Return to cart"
 msgstr "Πίσω στο καλάθι"
 
-#: sources/php/functions.php:1668
+#: sources/php/functions.php:1673
 msgid "Continue to shipping"
 msgstr "Συνεχίστε στην αποστολή"
 
-#: sources/php/functions.php:1690
+#: sources/php/functions.php:1695
 msgid "Continue to payment"
 msgstr "Συνεχίστε στην πληρωμή"
 
-#: sources/php/functions.php:1726
+#: sources/php/functions.php:1731
 msgid "Review order"
 msgstr "Έλεγχος παραγγελίας"
 
-#: sources/php/functions.php:1746
+#: sources/php/functions.php:1751
 msgid "Return to information"
 msgstr "Επιστροφή στις πληροφορίες"
 
-#: sources/php/functions.php:1766
+#: sources/php/functions.php:1771
 msgid "Return to shipping"
 msgstr "Επιστροφή στην αποστολή"
 
-#: sources/php/functions.php:1786
+#: sources/php/functions.php:1791
 msgid "Return to payment"
 msgstr "Επιστροφή στην πληρωμή"
 
-#: sources/php/functions.php:2283
+#: sources/php/functions.php:2294
 msgid "Or"
 msgstr "Ή"
 
-#: sources/php/functions.php:2461
+#: sources/php/functions.php:2471
 msgid "Decrement"
 msgstr "Μείωση"
 
-#: sources/php/functions.php:2467
+#: sources/php/functions.php:2477
 msgid "Increment"
 msgstr "Αύξηση"
 
-#: sources/php/template-functions.php:100
+#: sources/php/functions.php:3102
+msgid "Unsubscribe"
+msgstr "Διαγραφή"
+
+#: sources/php/template-functions.php:106
 msgid "Show order summary"
 msgstr "Εμφάνιση σύνοψης παραγγελίας"
 
-#: sources/php/template-functions.php:117
+#: sources/php/template-functions.php:123
 msgid "Hide order summary"
 msgstr "Απόκρυψη σύνοψης παραγγελίας"
 
-#: sources/php/template-functions.php:263
+#: sources/php/template-functions.php:269
 msgid "Express checkout"
 msgstr "Express checkout"
 
-#: sources/php/template-functions.php:295
-#: sources/php/template-functions.php:1969
-#: sources/php/template-functions.php:2262
+#: sources/php/template-functions.php:301
+#: sources/php/template-functions.php:1975
+#: sources/php/template-functions.php:2269
 msgid "Information"
 msgstr "Πληροφορίες"
 
-#: sources/php/template-functions.php:314
+#: sources/php/template-functions.php:320
 msgid "Order review"
 msgstr "Έλεγχος παραγγελίας"
 
-#: sources/php/template-functions.php:386
+#: sources/php/template-functions.php:392
 msgid "Already have an account with us?"
 msgstr "Έχετε ήδη λογαριασμό μαζί μας;"
 
-#: sources/php/template-functions.php:398
-msgid "Log in for a faster checkout experience."
-msgstr "Συνδεθείτε για μια ταχύτερη εμπειρία checkout."
+#: sources/php/template-functions.php:404
+msgid "Log in."
+msgstr "Συνδεθείτε."
 
 #. translators: %s: site name
-#: sources/php/template-functions.php:508
+#: sources/php/template-functions.php:514
 #, php-format
 msgid "Create %s shopping account."
 msgstr "Δημιουργήστε λογαριασμό αγορών %s."
 
-#: sources/php/template-functions.php:520
+#: sources/php/template-functions.php:526
 msgid "If you do not have an account, we will create one for you."
 msgstr "Εάν δεν έχετε λογαριασμό, θα δημιουργήσουμε ένα για εσάς."
 
 #. translators: %1 is the customer's name, %2 is their email address
-#: sources/php/template-functions.php:552
+#: sources/php/template-functions.php:558
 #, php-format
 msgid "Welcome back, %1$s (%2$s)."
 msgstr "Καλώς ορίσατε ξανά,%1$s (%2$s)."
 
-#: sources/php/template-functions.php:570
+#: sources/php/template-functions.php:576
 msgid "Log out."
 msgstr "Αποσύνδεση."
 
-#: sources/php/template-functions.php:588
+#: sources/php/template-functions.php:594
 msgid "Welcome back"
 msgstr "Καλώς ήρθατε και πάλι"
 
-#: sources/php/template-functions.php:592
+#: sources/php/template-functions.php:598
 msgid ""
 "It looks like you already have an account. Please enter your login details "
 "below."
@@ -394,96 +498,96 @@ msgstr ""
 "Φαίνεται ότι έχετε ήδη λογαριασμό. Παρακαλούμε εισάγετε τα στοιχεία σύνδεσής "
 "σας παρακάτω."
 
-#: sources/php/template-functions.php:595
+#: sources/php/template-functions.php:601
 msgid ""
 "If you have shopped with us before, please enter your login details below."
 msgstr ""
 "Αν έχετε ξαναγοράσει από εμάς, παρακαλούμε εισάγετε τα στοιχεία σύνδεσής σας "
 "παρακάτω."
 
-#: sources/php/template-functions.php:648
+#: sources/php/template-functions.php:654
 msgid "Or continue as guest"
 msgstr "Ή συνεχίστε ως επισκέπτης"
 
-#: sources/php/template-functions.php:698
-#: sources/php/template-functions.php:1999
+#: sources/php/template-functions.php:704
+#: sources/php/template-functions.php:2005
 msgid "Billing and Shipping address"
 msgstr "Διεύθυνση χρέωσης και αποστολής"
 
-#: sources/php/template-functions.php:924
-#: sources/php/template-functions.php:966
-#: sources/php/template-functions.php:1022
+#: sources/php/template-functions.php:931
+#: sources/php/template-functions.php:973
+#: sources/php/template-functions.php:1029
 msgid "Contact"
 msgstr "Επικοινωνία"
 
-#: sources/php/template-functions.php:932
-#: sources/php/template-functions.php:948
-#: sources/php/template-functions.php:974
-#: sources/php/template-functions.php:990
-#: sources/php/template-functions.php:1005
-#: sources/php/template-functions.php:1030
-#: sources/php/template-functions.php:1046
-#: sources/php/template-functions.php:1061
-#: sources/php/template-functions.php:1077
+#: sources/php/template-functions.php:939
+#: sources/php/template-functions.php:955
+#: sources/php/template-functions.php:981
+#: sources/php/template-functions.php:997
+#: sources/php/template-functions.php:1012
+#: sources/php/template-functions.php:1037
+#: sources/php/template-functions.php:1053
+#: sources/php/template-functions.php:1068
+#: sources/php/template-functions.php:1084
 msgid "Change"
 msgstr "Αλλαγή"
 
-#: sources/php/template-functions.php:997
-#: sources/php/template-functions.php:1053
+#: sources/php/template-functions.php:1004
+#: sources/php/template-functions.php:1060
 msgid "Method"
 msgstr "Μέθοδος"
 
-#: sources/php/template-functions.php:1209
+#: sources/php/template-functions.php:1216
 msgid "Shipping method"
 msgstr "Μέθοδος αποστολής"
 
-#: sources/php/template-functions.php:1335
+#: sources/php/template-functions.php:1341
 msgid "Select the address that matches your card or payment method."
 msgstr ""
 "Επιλέξτε τη διεύθυνση που ταιριάζει με την κάρτα ή τον τρόπο πληρωμής σας."
 
-#: sources/php/template-functions.php:1533
+#: sources/php/template-functions.php:1539
 msgid "Promo code"
 msgstr "Κωδικός προσφοράς"
 
 #. translators: %s is the order number
-#: sources/php/template-functions.php:1736
+#: sources/php/template-functions.php:1742
 #, php-format
 msgid "Order %s"
 msgstr "Παραγγελία %s"
 
 #. translators: %s is the billing first name
-#: sources/php/template-functions.php:1749
+#: sources/php/template-functions.php:1755
 #, php-format
 msgid "Thank you %s!"
 msgstr "Ευχαριστώ  %s!"
 
-#: sources/php/template-functions.php:1853
+#: sources/php/template-functions.php:1859
 msgid "Order status"
 msgstr "Κατάσταση Παραγγελίας"
 
-#: sources/php/template-functions.php:1884
+#: sources/php/template-functions.php:1890
 msgid "Order updates"
 msgstr "Ενημερώσεις παραγγελίας"
 
-#: sources/php/template-functions.php:1893
+#: sources/php/template-functions.php:1899
 msgid "You’ll get shipping and delivery updates by email."
 msgstr ""
 "Θα λάβετε ενημερώσεις αποστολής και παράδοσης μέσω ηλεκτρονικού ταχυδρομείου."
 
-#: sources/php/template-functions.php:1983
+#: sources/php/template-functions.php:1989
 msgid "Contact information"
 msgstr "Στοιχεία επικοινωνίας"
 
-#: sources/php/template-functions.php:2135
+#: sources/php/template-functions.php:2142
 msgid "Login"
 msgstr "Σύνδεση"
 
-#: sources/php/template-functions.php:2392
+#: sources/php/template-functions.php:2398
 msgid "Your Cart is Empty"
 msgstr "Το καλάθι σας είναι άδειο"
 
-#: templates/futurist/functions.php:17 templates/glass/functions.php:38
+#: templates/futurist/functions.php:19 templates/glass/functions.php:40
 msgid "Your Cart"
 msgstr "Το καλάθι σας"
 
@@ -502,6 +606,9 @@ msgstr "Στόχος"
 #. Author URI of the plugin/theme
 msgid "https://objectiv.co"
 msgstr "https://objectiv.co"
+
+#~ msgid "Log in for a faster checkout experience."
+#~ msgstr "Συνδεθείτε για μια ταχύτερη εμπειρία checkout."
 
 #~ msgid "Address Verification"
 #~ msgstr "Επαλήθευση Διεύθυνσης"
@@ -527,9 +634,6 @@ msgstr "https://objectiv.co"
 #~ msgstr ""
 #~ "Η είσοδος είναι προαιρετική. Μπορείτε να συνεχίσετε με την παραγγελία σας "
 #~ "παρακάτω."
-
-#~ msgid "Address Required"
-#~ msgstr "Απαιτείται διεύθυνση"
 
 #, php-format
 #~ msgid ""
@@ -642,9 +746,6 @@ msgstr "https://objectiv.co"
 
 #~ msgid "Enable / Disable"
 #~ msgstr "Ενεργοποίηση/Απενεργοποίηση"
-
-#~ msgid "Use Checkout for WooCommerce Template"
-#~ msgstr "Χρησιμοποιήστε το στοιχείο Checkout για το πρότυπο WooCommerce"
 
 #~ msgid ""
 #~ "Enable or disable Checkout for WooCommerce theme. (NOTE: Theme is always "
@@ -943,9 +1044,6 @@ msgstr "https://objectiv.co"
 #~ "πρότυπο χρησιμοποιείται επίσης κατά την προβολή παραγγελιών στο "
 #~ "λογαριασμό μου."
 
-#~ msgid "Order Statuses"
-#~ msgstr "Κατάσταση παραγγελιών"
-
 #~ msgid "The statuses to show on the thank you page."
 #~ msgstr "Οι καταστάσεις που εμφανίζονται στη σελίδα ευχαριστιών."
 
@@ -1025,8 +1123,8 @@ msgstr "https://objectiv.co"
 #, php-format
 #~ msgid ""
 #~ "Add PHP snippets to modify your checkout page here. If you have lots of "
-#~ "snippets, you may want to consider using <a target=\"_blank\" href=\"%s"
-#~ "\">Code Snippets</a>."
+#~ "snippets, you may want to consider using <a target=\"_blank\" "
+#~ "href=\"%s\">Code Snippets</a>."
 #~ msgstr ""
 #~ "Προσθέστε αποσπάσματα PHP για να τροποποιήσετε τη σελίδα πληρωμής σας "
 #~ "εδώ. Εάν έχετε πολλά αποσπάσματα, μπορείτε να εξετάσετε το ενδεχόμενο να "
@@ -1043,12 +1141,12 @@ msgstr "https://objectiv.co"
 #, php-format
 #~ msgid ""
 #~ "You can upgrade your license in <a target=\"_blank\" href=\"%1$s\">My "
-#~ "Account</a>. For help upgrading your license, <a target=\"_blank\" href="
-#~ "\"%2$s\">click here.</a>"
+#~ "Account</a>. For help upgrading your license, <a target=\"_blank\" "
+#~ "href=\"%2$s\">click here.</a>"
 #~ msgstr ""
-#~ "Μπορείτε να αναβαθμίσετε την άδεια χρήσης στο <a target=\"_blank\" href="
-#~ "\"%1$s\">λογαριασμό μου</a> . Για βοήθεια σχετικά με την αναβάθμιση της "
-#~ "άδειας χρήσης, <a target=\"_blank\" href=\"%2$s\">κάντε κλικ εδώ.</a>"
+#~ "Μπορείτε να αναβαθμίσετε την άδεια χρήσης στο <a target=\"_blank\" "
+#~ "href=\"%1$s\">λογαριασμό μου</a> . Για βοήθεια σχετικά με την αναβάθμιση "
+#~ "της άδειας χρήσης, <a target=\"_blank\" href=\"%2$s\">κάντε κλικ εδώ.</a>"
 
 #~ msgid "Setting Overridden"
 #~ msgstr "Παράκαμψη ρύθμισης"
@@ -1153,8 +1251,8 @@ msgstr "https://objectiv.co"
 #~ "You can find the answer to most questions in our <a href=\"https://kb."
 #~ "checkoutwc.com\" target=\"_blank\">knowledge base</a>."
 #~ msgstr ""
-#~ "Μπορείτε να βρείτε την απάντηση στις περισσότερες ερωτήσεις στη <a href="
-#~ "\"https://kb.checkoutwc.com\" target=\"_blank\">βάση γνώσεων</a> μας."
+#~ "Μπορείτε να βρείτε την απάντηση στις περισσότερες ερωτήσεις στη <a "
+#~ "href=\"https://kb.checkoutwc.com\" target=\"_blank\">βάση γνώσεων</a> μας."
 
 #~ msgid "Here are some popular guides:"
 #~ msgstr "Ακολουθούν μερικοί δημοφιλείς οδηγοί:"
@@ -1192,12 +1290,6 @@ msgstr "https://objectiv.co"
 #~ msgstr ""
 #~ "<strong> %s</strong> : Εντοπίστηκαν ασυμβίβαστα πρόσθετα προειδοποίησης!"
 
-#~ msgid ""
-#~ "Please deactivate these plugins to avoid problems with your checkout!"
-#~ msgstr ""
-#~ "Απενεργοποιήστε αυτές τις προσθήκες για να αποφύγετε προβλήματα με το "
-#~ "ταμείο σας!"
-
 #, php-format
 #~ msgid ""
 #~ "<strong>%s</strong>: Your license is valid and activated for this site "
@@ -1215,27 +1307,27 @@ msgstr "https://objectiv.co"
 #, php-format
 #~ msgid ""
 #~ "<strong>%s</strong>: Your license key appears to have expired. Please "
-#~ "verify that your license key is valid or <a target=\"_blank\" href="
-#~ "\"https://www.checkoutwc.com/checkout/?edd_license_key=%s\">renew your "
-#~ "license now</a> to restore full functionality."
+#~ "verify that your license key is valid or <a target=\"_blank\" "
+#~ "href=\"https://www.checkoutwc.com/checkout/?edd_license_key=%s\">renew "
+#~ "your license now</a> to restore full functionality."
 #~ msgstr ""
 #~ "<strong> %s</strong> : Το κλειδί άδειας χρήσης φαίνεται να έχει λήξει. "
-#~ "Επαληθεύστε ότι το κλειδί άδειας χρήσης σας είναι έγκυρο ή <a target="
-#~ "\"_blank\" href=\"https://www.checkoutwc.com/checkout/?edd_license_key=%s"
-#~ "\">ανανεώστε την άδειά σας τώρα</a> για να επαναφέρετε την πλήρη "
-#~ "λειτουργικότητα."
+#~ "Επαληθεύστε ότι το κλειδί άδειας χρήσης σας είναι έγκυρο ή <a "
+#~ "target=\"_blank\" href=\"https://www.checkoutwc.com/checkout/?"
+#~ "edd_license_key=%s\">ανανεώστε την άδειά σας τώρα</a> για να επαναφέρετε "
+#~ "την πλήρη λειτουργικότητα."
 
 #, php-format
 #~ msgid ""
 #~ "<strong>%s</strong>: Your license key is missing or invalid. Please "
-#~ "verify that your license key is valid or <a target=\"_blank\" href="
-#~ "\"https://www.checkoutwc.com/\">purchase a license</a> to restore full "
-#~ "functionality."
+#~ "verify that your license key is valid or <a target=\"_blank\" "
+#~ "href=\"https://www.checkoutwc.com/\">purchase a license</a> to restore "
+#~ "full functionality."
 #~ msgstr ""
 #~ "<strong> %s</strong> : Το κλειδί άδειας χρήσης λείπει ή δεν είναι έγκυρο. "
-#~ "Βεβαιωθείτε ότι το κλειδί άδειας χρήσης σας είναι έγκυρο ή <a target="
-#~ "\"_blank\" href=\"https://www.checkoutwc.com/\">αγοράστε μια άδεια</a> "
-#~ "για την αποκατάσταση της πλήρους λειτουργικότητας."
+#~ "Βεβαιωθείτε ότι το κλειδί άδειας χρήσης σας είναι έγκυρο ή <a "
+#~ "target=\"_blank\" href=\"https://www.checkoutwc.com/\">αγοράστε μια "
+#~ "άδεια</a> για την αποκατάσταση της πλήρους λειτουργικότητας."
 
 #~ msgid ""
 #~ "Thank you for installing Checkout for WooCommerce! To get started, click "
@@ -1334,16 +1426,16 @@ msgstr "https://objectiv.co"
 
 #, php-format
 #~ msgid ""
-#~ "There is a new version of %1$s available. %2$sView version %3$s details"
-#~ "%4$s."
+#~ "There is a new version of %1$s available. %2$sView version %3$s "
+#~ "details%4$s."
 #~ msgstr ""
 #~ "Υπάρχει διαθέσιμη μια νέα έκδοση του %1$s. %2$s Προβολή έκδοσης %3$s "
 #~ "Λεπτομέρειες %4$s."
 
 #, php-format
 #~ msgid ""
-#~ "There is a new version of %1$s available. %2$sView version %3$s details"
-#~ "%4$s or %5$supdate now%6$s."
+#~ "There is a new version of %1$s available. %2$sView version %3$s "
+#~ "details%4$s or %5$supdate now%6$s."
 #~ msgstr ""
 #~ "Υπάρχει διαθέσιμη μια νέα έκδοση του %1$s . %2$s Προβολή έκδοσης %3$s "
 #~ "λεπτομέρειες %4$s ή %5$ παράταση τώρα%6$s."

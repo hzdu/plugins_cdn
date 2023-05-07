@@ -1,20 +1,21 @@
-@import "../../../node_modules/bootstrap/scss/_functions"; // required to pull in nested bootstrap grid
+// Custom fonts
+@import "custom-fonts";
 
-// scss-docs-start grid-breakpoints
-$grid-breakpoints: (
-    xs: 0,
-    sm: 576px,
-    md: 768px,
-    lg: 992px,
-    xl: 1200px,
-    xxl: 1400px
-) !default;
-
-@import "~bootstrap/scss/mixins/breakpoints";
+@import "grid-mixins";
 @import "components/buttons";
+@import "components/variation-modal";
+@import "components/modals";
 
 .cfw-side-cart-open-trigger {
     cursor: pointer;
+}
+
+@font-face {
+    font-family: "cfw-slick";
+    src: url("../fonts/slick.eot");
+    src: url("../fonts/slick.eot?#iefix") format("embedded-opentype"), url("../fonts/slick.woff") format("woff"), url("../fonts/slick.ttf") format("truetype"), url("../fonts/slick.svg#slick") format("svg");
+    font-weight: normal;
+    font-style: normal;
 }
 
 body.admin-bar {
@@ -41,8 +42,21 @@ body.admin-bar {
     height: 100vh;
 }
 
+$slick-font-family: "cfw-slick";
+$slick-loader-path: "images/";
+/*rtl:begin:ignore*/
+@import "~slick-carousel/slick/slick";
+@import "~slick-carousel/slick/slick-theme";
+/*rtl:end:ignore*/
+
+.slick-dotted.slick-slider {
+    margin-bottom: 10px;
+}
+
 // Requires grid
 @import "utility-classes";
+
+@import "components/order-bump";
 
 #cfw-side-cart {
     font-size: 16px;
@@ -66,16 +80,6 @@ body.admin-bar {
     line-height: 1;
     visibility: hidden;
 
-    .slick-dots button {
-        font-size: 8px;
-
-        &:hover {
-            background: none;
-            color: initial;
-            font-size: 8px;
-        }
-    }
-
     @import "variables";
     @import "custom-properties";
 
@@ -86,16 +90,13 @@ body.admin-bar {
     }
 
     @import "components/cart-summary/cart-item-quantity-control";
-    @import "components/order-bump";
+    @import "components/suggested-products";
     @import "compatibility/woocommerce-subscriptions";
     @import "compatibility/woocommerce-product-bundles";
 
     #cfw_order_bumps_below_cart_items {
         display: block !important;
     }
-
-    // Bootstrap 5.0 Grid
-    @import "grid";
 
     // Checkbox
     @import "components/form-fields";
@@ -226,6 +227,7 @@ body.admin-bar {
     .cfw-side-cart-totals {
         table {
             border-spacing: 0 1em;
+
             th, td {
                 padding: 0;
                 text-align: left;
@@ -248,9 +250,10 @@ body.admin-bar {
         top: 8px;
         right: 0;
         font-size: 0.9em;
-        color: var(--cfw-body-text-color);
+        color: var(--cfw-body-text-color) !important;
         font-weight: bold;
         transition: all 0.3s ease;
+        text-decoration: none;
     }
 
     tr:hover .cfw-remove-item-button {
@@ -316,7 +319,7 @@ body.admin-bar {
     }
 
     .cfw-side-cart-free-shipping-progress {
-        background-color: var(--cfw-side-cart-free-shipping-progress-background, #f5f5f5 );
+        background-color: var(--cfw-side-cart-free-shipping-progress-background, #f5f5f5);
     }
 
     .cfw-side-cart-free-shipping-progress-indicator {
@@ -344,18 +347,29 @@ body.admin-bar {
                 font-size: 14px;
             }
         }
+
+        a {
+            text-decoration: none;
+        }
     }
 
     .woocommerce-remove-coupon {
         display: none;
     }
 
-    //#cfw-alert-container {
-    //    position: absolute;
-    //    left: 0;
-    //    right: 0;
-    //    top: 0;
-    //}
+    .cfw_side_cart_item_after_data {
+        margin-top: 0.5em;
+        display: flex;
+        align-items: center;
+
+        .cfw-edit-item-quantity-control-wrap {
+            margin-right: 7px;
+        }
+    }
+
+    .cfw-cart-edit-item-variation {
+        text-decoration: none;
+    }
 
     @include media-breakpoint-down(lg) {
         width: 100%;
@@ -397,7 +411,7 @@ body.admin-bar {
     background: var(--cfw-side-cart-button-background, #fff);
     border-radius: 8px;
     padding: 16px;
-    box-shadow: var(--cfw-side-cart-button-box-shadow, 0 2px 10px rgba(0, 0, 0, 0.372863) );
+    box-shadow: var(--cfw-side-cart-button-box-shadow, 0 2px 10px rgba(0, 0, 0, 0.372863));
     cursor: pointer;
     text-rendering: optimizelegibility !important;
     -webkit-font-smoothing: subpixel-antialiased;
@@ -405,6 +419,7 @@ body.admin-bar {
     z-index: 999997;
     color: #222;
     text-transform: none;
+    text-decoration: none;
 
     &:hover .cfw-side-cart-quantity-wrap {
         opacity: 0.5;
@@ -460,6 +475,29 @@ body.cfw-side-cart-close {
 
 html[dir="rtl"] .cfw-side-cart-close-btn svg {
     transform: scaleX(-1);
+}
+
+.cfw-shake {
+    animation-name: cfw-shake;
+    animation-duration: 0.8s;
+    animation-iteration-count: 1;
+    animation-timing-function: ease;
+    animation-fill-mode: both;
+}
+
+@keyframes cfw-shake {
+    0% {
+        transform: translate(0, 0);
+    }
+    10%, 30%, 50%, 70%, 90% {
+        transform: translate(-5px, 0);
+    }
+    20%, 40%, 60%, 80% {
+        transform: translate(5px, 0);
+    }
+    100% {
+        transform: translate(0, 0);
+    }
 }
 
 

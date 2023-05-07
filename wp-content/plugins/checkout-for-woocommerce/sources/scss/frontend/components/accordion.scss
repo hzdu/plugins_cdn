@@ -61,18 +61,18 @@
             align-items: flex-start;
         }
 
-        & > input[type="radio"] {
-            margin-top: 1em !important;
-            margin-bottom: 1em !important;
+        > input {
+            margin-top: 1em;
+            margin-bottom: 1em;
         }
     }
 
     .cfw-radio-reveal-label {
+        padding: 1em 0;
         clear: both;
         display: flex !important;
         align-items: center;
         flex-grow: 1;
-        padding: 1em 0;
         cursor: pointer;
 
         &.cfw-align-top {
@@ -90,13 +90,23 @@
 
     .cfw-radio-reveal-content {
         background: #f4f4f4;
-        padding: 20px 10px 20px 10px;
-        border-top: 1px solid #ddd;
+        padding: 0 10px;
         margin: 0 !important;
+        overflow: hidden;
+        max-height: 0;
+        display: block !important;
+        transition: all 0.3s ease;
 
         p {
             font-size: 0.825em;
             line-height: 1.25;
         }
+    }
+
+    .cfw-active .cfw-radio-reveal-content {
+        max-height: 100vh;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        border-top: 1px solid #ddd;
     }
 }

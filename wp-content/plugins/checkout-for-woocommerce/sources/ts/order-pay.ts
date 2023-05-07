@@ -1,14 +1,12 @@
-import 'core-js/features/object/assign';
-import 'ts-polyfill';
-import { cfwDomReady, cfwDefineScrollToNotices } from './_functions';
-import Accordion                                 from './frontend/Components/Accordion';
-import TermsAndConditions                        from './frontend/Components/TermsAndConditions';
-import AddressInternationalizationService        from './frontend/Services/AddressInternationalizationService';
-import AlertService                              from './frontend/Services/AlertService';
-import DataService                               from './frontend/Services/DataService';
-import LoggingService                            from './frontend/Services/LoggingService';
-import PaymentGatewaysService                    from './frontend/Services/PaymentGatewaysService';
-import UpdateCheckoutService                     from './frontend/Services/UpdateCheckoutService';
+import { cfwDomReady, cfwDefineScrollToNotices }       from './_functions';
+import Accordion                                       from './frontend/Components/Accordion';
+import StorePolicyModals                               from './frontend/Components/StorePolicyModals';
+import TermsAndConditions                              from './frontend/Components/TermsAndConditions';
+import AddressInternationalizationService              from './frontend/Services/AddressInternationalizationService';
+import AlertService                                    from './frontend/Services/AlertService';
+import DataService                                     from './frontend/Services/DataService';
+import LoggingService                                  from './frontend/Services/LoggingService';
+import PaymentGatewaysService                          from './frontend/Services/PaymentGatewaysService';
 
 // eslint-disable-next-line import/prefer-default-export
 class OrderPay {
@@ -22,6 +20,7 @@ class OrderPay {
 
             new AddressInternationalizationService();
             new PaymentGatewaysService();
+            new StorePolicyModals();
 
             // Alert Service
             const alertContainer = DataService.getElement( 'alertContainerId' );
@@ -50,7 +49,7 @@ class OrderPay {
             new PaymentGatewaysService();
 
             // Trigger updated checkout
-            UpdateCheckoutService.triggerUpdatedCheckout();
+            jQuery( document.body ).trigger( 'updated_checkout' );
 
             cfwDefineScrollToNotices();
 

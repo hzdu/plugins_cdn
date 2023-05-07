@@ -1,15 +1,15 @@
-import { cfwDomReady }        from '../_functions';
-import FieldToggler           from './components/FieldToggler';
-import FontSelector           from './components/FontSelector';
-import ImagePicker            from './components/ImagePicker';
-import OrderBumpsAdmin        from './components/OrderBumpsAdmin';
-import RichEditor             from './components/RichEditor';
-import SettingsExporterButton from './components/SettingsExporterButton';
-import SettingsImporterButton from './components/SettingsImporterButton';
-import TrustBadgeRepeater     from './components/TrustBadgeRepeater';
+import swal                    from 'sweetalert2/dist/sweetalert2';
+import { cfwDomReady }         from '../_functions';
+import FieldToggler            from './components/FieldToggler';
+import FontSelector            from './components/FontSelector';
+import ImagePicker             from './components/ImagePicker';
+import OrderBumpsAdmin         from './components/OrderBumpsAdmin';
+import RichEditor              from './components/RichEditor';
+import SettingsExporterButton  from './components/SettingsExporterButton';
+import SettingsImporterButton  from './components/SettingsImporterButton';
+import TrustBadgeRepeater      from './components/TrustBadgeRepeater';
 
-// eslint-disable-next-line camelcase
-let objectiv_cfw_admin: any;
+declare const cfw_sendwp_remote_install: any;
 
 cfwDomReady( () => {
     /**
@@ -81,7 +81,7 @@ cfwDomReady( () => {
     /**
      * Toggled Field Sections
      */
-    new FieldToggler( '#cfw_checkbox_enable_cart_editing', '#cart_edit_empty_cart_redirect' );
+    new FieldToggler( '#cfw_checkbox_enable_cart_editing', '#cart_edit_empty_cart_redirect, #cfw_checkbox_allow_checkout_cart_item_variation_changes' );
     new FieldToggler( '#cfw_checkbox_enable_thank_you_page', '#cfw_checkbox_enable_map_embed, #thank_you_order_statuses, #cfw_checkbox_override_view_order_template' );
     new FieldToggler( '#cfw_checkbox_enable_trust_badges', '#trust_badges_title, .cfw-admin-trust-badge-row:not(.cfw-admin-trust-badge-template-row), .cfw-admin-add-trust-badge-row-button, [name="_cfw__setting[trust_badge_position][string]"]' );
     new FieldToggler( '#cfw_checkbox_enable_smartystreets_integration', '#smartystreets_auth_id, #smartystreets_auth_token' );
@@ -109,7 +109,8 @@ cfwDomReady( () => {
         + '#cfw_checkbox_enable_promo_codes_on_side_cart, '
         + '#cfw_checkbox_enable_side_cart_continue_shopping_button, '
         + '#cfw_checkbox_show_side_cart_item_discount, '
-        + '#cfw_checkbox_enable_side_cart_payment_buttons',
+        + '#cfw_checkbox_enable_side_cart_payment_buttons, '
+        + '#cfw_checkbox_allow_side_cart_item_variation_changes',
     );
 
     new FieldToggler(
@@ -203,6 +204,32 @@ cfwDomReady( () => {
         },
     } );
 
+    /**
+     * Order Bumps Settings Validation
+     */
+    jQuery( '#order_bumps_settings_form' ).validate( {
+        rules: {
+            '_cfw__setting[max_bumps][string]': {
+                required: true,
+                number: true,
+            },
+        },
+        focusInvalid: false,
+        invalidHandler( form, validator ) {
+            if ( !validator.numberOfInvalids() ) return;
+
+            jQuery( 'html, body' ).animate( {
+                scrollTop: jQuery( validator.errorList[ 0 ].element ).offset().top,
+            }, 300 );
+        },
+        errorPlacement( error, element ) {
+            error.appendTo( element.closest( '.cfw-admin-field-container' ) );
+        },
+        submitHandler( form ) {
+            form.submit();
+        },
+    } );
+
     jQuery( document.body ).on( 'input', '#cfw_license_key', () => {
         const key = jQuery( '#cfw_license_key' ).val().toString().trim();
 
@@ -252,5 +279,27 @@ cfwDomReady( () => {
     jQuery( document.body ).on( 'click', '#cfw_admin_header_save_button', ( e ) => {
         e.preventDefault();
         jQuery( '#cfw_admin_page_submit' ).trigger( 'click' );
+    } );
+
+    jQuery( document.body ).on( 'click', '#cfw_reset_stats', ( e ) => {
+        swal.fire( {
+            title: 'Confirm',
+            text: 'Are you sure you want to reset your conversion statistics for this Order Bump? This cannot be undone.',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Yes, reset!',
+            confirmButtonColor: '#4e9ae0',
+            customClass: {
+                container: 'cfw-swal-container',
+            },
+        } ).then( ( result ) => {
+            if ( !result.isConfirmed ) {
+                jQuery( e.currentTarget ).prop( 'checked', false );
+            }
+        } );
+    } );
+
+    jQuery( document.body ).on( 'click', '#cfw_sendwp_install_button', ( e ) => {
+        cfw_sendwp_remote_install();
     } );
 } );

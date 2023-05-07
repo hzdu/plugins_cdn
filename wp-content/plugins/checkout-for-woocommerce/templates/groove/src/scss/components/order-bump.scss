@@ -1,0 +1,22 @@
+#cfw-cart-summary {
+    .cfw-order-bumps .cfw-order-bump {
+        font-size: 14px;
+        line-height: 1.4em;
+        background-color: var(--cfw-cart-summary-component-bg);
+        border: var(--cfw-cart-summary-border);
+        box-shadow: none;
+
+        .cfw-order-bump-header {
+            border-bottom: var(--cfw-cart-summary-border);
+            letter-spacing: 0.4px;
+        }
+    }
+
+    .cfw-order-bump-body, .cfw-order-bump-header {
+        color: var(--cfw-cart-summary-text-color-contrast);
+    }
+
+    .cfw-order-bump-total {
+        color: var(--cfw-cart-summary-text-color-default);
+    }
+}

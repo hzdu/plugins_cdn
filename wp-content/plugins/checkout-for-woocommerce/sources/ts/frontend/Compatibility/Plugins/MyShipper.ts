@@ -14,7 +14,7 @@ class MyShipper extends Compatibility {
 
         easyTabsWrap.bind( 'easytabs:after', () => {
             if ( Main.instance.tabService.getCurrentTab().attr( 'id' ) === TabService.shippingMethodTabId ) {
-                Main.instance.updateCheckoutService.triggerUpdateCheckout();
+                Main.instance.updateCheckoutService.queueUpdateCheckout();
             }
         } );
 

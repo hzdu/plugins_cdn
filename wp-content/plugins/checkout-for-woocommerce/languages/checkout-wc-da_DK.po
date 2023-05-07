@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Checkout for WooCommerce\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-26 12:12-0400\n"
-"PO-Revision-Date: 2022-09-26 12:29-0400\n"
+"POT-Creation-Date: 2023-04-21 14:36-0400\n"
+"PO-Revision-Date: 2023-04-21 14:54-0400\n"
 "Last-Translator: Clifton Griffin <clif@checkoutwc.com>\n"
 "Language-Team: Dansk\n"
 "Language: da_DK\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.1.1\n"
+"X-Generator: Poedit 3.2.2\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-Flags-xgettext: --add-comments=translators:\n"
 "X-Poedit-WPHeader: checkout-for-woocommerce.php\n"
@@ -25,76 +25,166 @@ msgstr ""
 "X-Poedit-SearchPathExcluded-1: dist\n"
 "X-Poedit-SearchPathExcluded-2: vendor\n"
 
-#: includes/Action/LogInAction.php:38
+#: checkout-for-woocommerce.php:148
+msgid ""
+"Your site is running an <strong>insecure version</strong> of PHP that is no "
+"longer supported. Please contact your web hosting provider to update your "
+"PHP version."
+msgstr ""
+"Dit websted kører en <strong>usikker version</strong> af PHP, som ikke "
+"længere understøttes. Kontakt venligst din webhostingudbyder for at få "
+"opdateret din PHP-version."
+
+#. translators: %s - checkoutwc.com URL for documentation with more details.
+#: checkout-for-woocommerce.php:154
+#, php-format
+msgid ""
+"<strong>Note:</strong> CheckoutWC is disabled on your site until you fix the "
+"issue. <a href=\"%s\" target=\"_blank\" rel=\"noopener noreferrer\">Need "
+"help? Click here.</a>"
+msgstr ""
+"<strong>Bemærk:</strong> CheckoutWC er deaktiveret på dit websted, indtil du "
+"løser problemet. <a href=\"%s\" target=\"_blank\" rel=\"noopener "
+"noreferrer\">Har du brug for hjælp? Klik her.</a>"
+
+#. translators: %s - WordPress version.
+#: checkout-for-woocommerce.php:194
+#, php-format
+msgid "CheckoutWC requires WordPress %s or later."
+msgstr "CheckoutWC kræver WordPress %s eller nyere."
+
+#. translators: %s - WordPress version.
+#: checkout-for-woocommerce.php:232
+#, php-format
+msgid "CheckoutWC requires WooCommerce %s or later."
+msgstr "CheckoutWC kræver WooCommerce %s eller nyere."
+
+#: includes/API/AfterCheckoutBumpProductFormAPI.php:23
+#: includes/API/ModalOrderBumpProductFormAPI.php:174
+msgid "No thanks, just complete my order"
+msgstr "Nej tak, bare fuldfør min ordre"
+
+#: includes/API/AfterCheckoutBumpProductFormAPI.php:40
+msgid "Your order is almost complete..."
+msgstr "Din ordre er næsten færdig..."
+
+#: includes/API/AfterCheckoutBumpProductFormAPI.php:44
+msgid "Add this offer to your order and save!"
+msgstr "Tilføj dette tilbud til din ordre og spar!"
+
+#: includes/API/AfterCheckoutBumpProductFormAPI.php:54
+msgid "Order Submitted"
+msgstr "Bestilling indsendt"
+
+#: includes/API/AfterCheckoutBumpProductFormAPI.php:60
+msgid "Special Offer"
+msgstr "Special tilbud"
+
+#: includes/API/AfterCheckoutBumpProductFormAPI.php:66
+msgid "Order Received"
+msgstr "Ordren modtaget"
+
+#: includes/API/GetVariationFormAPI.php:25
+#: includes/API/ModalOrderBumpProductFormAPI.php:43
+msgid "Product not found"
+msgstr "Vare blev ikke fundet"
+
+#: includes/API/ModalOrderBumpProductFormAPI.php:39
+msgid "No thanks"
+msgstr "Nei tak"
+
+#: includes/Action/LogInAction.php:37
 msgid ""
 "There was an error logging in. Please check your credentials and try again."
 msgstr ""
 "Der opstod en fejl ved login. Kontroller dine legitimationsoplysninger, og "
 "prøv igen."
 
-#: includes/Action/SmartyStreetsAddressValidationAction.php:68
-#: includes/Features/SmartyStreets.php:114
+#: includes/Action/SmartyStreetsAddressValidationAction.php:67
+#: includes/Features/SmartyStreets.php:119
 msgid "Use Recommended"
 msgstr "Anvendelse Anbefalet"
 
-#: includes/Action/SmartyStreetsAddressValidationAction.php:69
-#: includes/Features/SmartyStreets.php:120
+#: includes/Action/SmartyStreetsAddressValidationAction.php:68
+#: includes/Features/SmartyStreets.php:125
 msgid "Use Your Address"
 msgstr "Brug din adresse"
 
-#: includes/Action/SmartyStreetsAddressValidationAction.php:78
+#: includes/Action/SmartyStreetsAddressValidationAction.php:77
 msgid "Reenter Address"
 msgstr "Indtast adresse igen"
 
-#: includes/Action/SmartyStreetsAddressValidationAction.php:79
+#: includes/Action/SmartyStreetsAddressValidationAction.php:78
 msgid "Use Existing Address"
 msgstr "Brug eksisterende adresse"
 
-#: includes/Action/SmartyStreetsAddressValidationAction.php:147
-#: includes/Action/SmartyStreetsAddressValidationAction.php:193
-#: includes/Action/SmartyStreetsAddressValidationAction.php:246
-#: includes/Features/SmartyStreets.php:81
+#: includes/Action/SmartyStreetsAddressValidationAction.php:160
+#: includes/Action/SmartyStreetsAddressValidationAction.php:206
+#: includes/Action/SmartyStreetsAddressValidationAction.php:261
+#: includes/Features/SmartyStreets.php:86
 msgid "We are unable to verify your address."
 msgstr "Vi kan ikke bekræfte din adresse."
 
 #. translators: %s is the postcode field label
-#: includes/Action/ValidateEmailDomainAction.php:36
+#: includes/Action/ValidateEmailDomainAction.php:35
 msgid "Email address contains invalid domain name."
 msgstr "E-mail-adressen indeholder et ugyldigt domænenavn."
 
 #. translators: %s is the postcode field label
-#: includes/Action/ValidatePostcodeAction.php:34
+#: includes/Action/ValidatePostcodeAction.php:33
 #, php-format
 msgid "Please enter a valid %s."
 msgstr "Indtast venligst et gyldigt %s."
 
-#: includes/AddressFieldsAugmenter.php:114
+#: includes/AddressFieldsAugmenter.php:124
 msgid "Full name"
 msgstr "Fulde navn"
 
-#: includes/AddressFieldsAugmenter.php:167
+#: includes/AddressFieldsAugmenter.php:177
 msgid "House number"
 msgstr "Husnummer"
 
-#: includes/AddressFieldsAugmenter.php:179
+#: includes/AddressFieldsAugmenter.php:189
 msgid "Street name"
 msgstr "Gadenavn"
 
-#: includes/Compatibility/Gateways/PayPalForWooCommerce.php:153
-#: sources/php/template-functions.php:708
-#: sources/php/template-functions.php:1314
-#: sources/php/template-functions.php:2022
+#: includes/Admin/Notices/CompatibilityNotice.php:34
+msgid "Please deactivate to avoid problems with your checkout page."
+msgstr "Deaktivér venligst for at undgå problemer med din checkout-side."
+
+#: includes/Compatibility/Gateways/PayPalForWooCommerce.php:157
+#: sources/php/template-functions.php:714
+#: sources/php/template-functions.php:1320
+#: sources/php/template-functions.php:2028
 msgid "Billing address"
 msgstr "Faktura adresse"
 
-#: includes/Compatibility/Gateways/PayPalForWooCommerce.php:319
+#: includes/Compatibility/Gateways/PayPalForWooCommerce.php:328
 msgid "Logged in with PayPal. Please continue your order below."
 msgstr "Logget ind med PayPal. Fortsæt din bestilling nedenfor."
 
 #. Plugin Name of the plugin/theme
-#: includes/Compatibility/Plugins/CartFlows.php:61
+#: includes/Compatibility/Plugins/CartFlows.php:62
 msgid "CheckoutWC"
 msgstr "CheckoutWC"
+
+#: includes/Features/AbandonedCartRecovery.php:80
+msgid "You have been unsubscribed from our cart reminder emails."
+msgstr ""
+"Du er blevet afmeldt fra vores e-mails med påmindelser om indkøbskurven."
+
+#: includes/Features/AbandonedCartRecovery.php:697
+#: includes/Features/AbandonedCartRecovery.php:761
+msgid "This order was abandoned and subsequently recovered."
+msgstr "Denne ordre blev opgivet og senere inddrevet."
+
+#: includes/Features/FetchifyAddressAutocomplete.php:80
+msgid "Address Search"
+msgstr "Adresse søgning"
+
+#: includes/Features/FetchifyAddressAutocomplete.php:81
+msgid "Start with post/zip code or street"
+msgstr "Start med postnummer eller gade"
 
 #: includes/Features/HideOptionalAddressFields.php:37
 msgid "Add Address Line 2"
@@ -104,143 +194,147 @@ msgstr "Tilføj adresse linje 2"
 msgid "Add Company"
 msgstr "Tilføj Firma"
 
-#: includes/Features/OrderReviewStep.php:70
+#: includes/Features/OrderReviewStep.php:76
 msgid "Review"
 msgstr "Anmeldelse"
 
-#: includes/Features/Pickup.php:79
+#: includes/Features/Pickup.php:74
 msgid "Pick up"
 msgstr "Pick up"
 
-#: includes/Features/Pickup.php:93
+#: includes/Features/Pickup.php:88
 msgid "Ship"
 msgstr "Send"
 
-#: includes/Features/Pickup.php:107
+#: includes/Features/Pickup.php:102
 msgid "Delivery method"
 msgstr "Levering"
 
-#: includes/Features/Pickup.php:169
+#: includes/Features/Pickup.php:164
 msgid "Pickup locations"
 msgstr "Afhentningssteder"
 
-#: includes/Features/Pickup.php:397
+#: includes/Features/Pickup.php:414
 msgid "Pick up in store"
 msgstr "Afhentning i butikken"
 
-#: includes/Features/Pickup.php:413 includes/Managers/AssetManager.php:510
+#: includes/Features/Pickup.php:431 includes/Managers/AssetManager.php:630
 msgid "Pickup"
 msgstr "Valgfri pris for lokal afhentning"
 
-#: includes/Features/Pickup.php:470
+#: includes/Features/Pickup.php:471
+msgid "Pickup Location"
+msgstr "Afhentnings sted"
+
+#: includes/Features/Pickup.php:528
 msgid "Pickup instructions"
 msgstr "Vejledning til afhentning"
 
-#: includes/Features/Pickup.php:579
+#: includes/Features/Pickup.php:645
 msgid "Usually ready in 1 hour."
 msgstr "Normalt klar på 1 time."
 
-#: includes/Features/Pickup.php:580
+#: includes/Features/Pickup.php:646
 msgid "Usually ready in 2 hours."
 msgstr "Normalt klar på 2 timer."
 
-#: includes/Features/Pickup.php:581
+#: includes/Features/Pickup.php:647
 msgid "Usually ready in 4 hours."
 msgstr "Normalt klar på 4 timer."
 
-#: includes/Features/Pickup.php:582
+#: includes/Features/Pickup.php:648
 msgid "Usually ready in 24 hours."
 msgstr "Normalt klar inden for 24 timer."
 
-#: includes/Features/Pickup.php:583
+#: includes/Features/Pickup.php:649
 msgid "Usually ready in 2-4 days."
 msgstr "Normalt klar om 2-4 dage."
 
-#: includes/Features/Pickup.php:584
+#: includes/Features/Pickup.php:650
 msgid "Usually ready in 5+ days."
 msgstr "Normalt klar om mere end 5 dage."
 
-#: includes/Features/SideCart.php:170
+#: includes/Features/SideCart.php:215
 msgid "Close Cart"
 msgstr "Luk kurv"
 
-#: includes/Features/SideCart.php:205 sources/php/template-functions.php:1520
+#: includes/Features/SideCart.php:252 sources/php/template-functions.php:1526
 msgid "Apply"
 msgstr "Anvend"
 
-#: includes/Features/SideCart.php:219 sources/php/template-functions.php:1549
+#: includes/Features/SideCart.php:267 sources/php/template-functions.php:1555
 msgid "Have a promo code? Click here."
 msgstr "Har du en kampagnekode? Klik her."
 
-#: includes/Features/SideCart.php:240 sources/php/template-functions.php:1570
+#: includes/Features/SideCart.php:289 sources/php/template-functions.php:1576
 msgid "Promo Code"
 msgstr "Tilbudskode"
 
-#: includes/Features/SideCart.php:248 sources/php/template-functions.php:1578
+#: includes/Features/SideCart.php:298 sources/php/template-functions.php:1584
 msgid "Enter Promo Code"
 msgstr "Indtast kampagnekode"
 
-#: includes/Features/SideCart.php:288 includes/Features/SideCart.php:289
-#: sources/php/template-functions.php:2035
-#: sources/php/template-functions.php:2277
+#: includes/Features/SideCart.php:341 includes/Features/SideCart.php:342
+#: sources/php/template-functions.php:2041
+#: sources/php/template-functions.php:2284
 msgid "Shipping"
 msgstr "Forsendelse"
 
-#: includes/Features/SideCart.php:501
+#: includes/Features/SideCart.php:627
 msgid "Congrats! You get free standard shipping."
 msgstr "Tillykke! Du får gratis standardforsendelse."
 
 #. translators: %s is the amount remaining for free shipping
-#: includes/Features/SideCart.php:514
+#: includes/Features/SideCart.php:641
 #, php-format
 msgid "You're %s away from free shipping!"
 msgstr "Du er %s væk fra gratis forsendelse!"
 
-#: includes/Features/SmartyStreets.php:72
+#: includes/Features/SmartyStreets.php:77
 msgid "Use This Address"
 msgstr "Brug denne adresse"
 
-#: includes/Features/SmartyStreets.php:77
+#: includes/Features/SmartyStreets.php:82
 msgid "Use recommended address instead?"
 msgstr "Brug anbefalet adresse i stedet?"
 
-#: includes/Features/SmartyStreets.php:85
+#: includes/Features/SmartyStreets.php:90
 msgid "We're unable to verify your address, but found a close match."
 msgstr ""
 "Vi kan ikke bekræfte din adresse, men har fundet en tæt på samme adresse."
 
-#: includes/Features/SmartyStreets.php:89
+#: includes/Features/SmartyStreets.php:94
 msgid "Please confirm you would like to use this address or try again."
 msgstr ""
 "Bekræft venligst, at du ønsker at bruge denne adresse, eller prøv igen."
 
-#: includes/Features/SmartyStreets.php:95
+#: includes/Features/SmartyStreets.php:100
 msgid "You Entered"
 msgstr "Du har deltaget"
 
-#: includes/Features/SmartyStreets.php:105
+#: includes/Features/SmartyStreets.php:110
 msgid "Recommended"
 msgstr "Anbefalet"
 
-#: includes/Managers/AssetManager.php:499
+#: includes/Managers/AssetManager.php:611
 msgid "Please enter a valid phone number."
 msgstr "Indtast venligst et gyldigt telefonnummer."
 
-#: includes/Managers/AssetManager.php:500
+#: includes/Managers/AssetManager.php:620
 msgid "Please enter your first and last name."
 msgstr "Indtast dit for- og efternavn."
 
-#: includes/Managers/AssetManager.php:501
-#: sources/php/template-functions.php:718
-#: sources/php/template-functions.php:2006
+#: includes/Managers/AssetManager.php:621
+#: sources/php/template-functions.php:724
+#: sources/php/template-functions.php:2012
 msgid "Shipping address"
 msgstr "Leverings adresse"
 
-#: includes/Managers/AssetManager.php:502
+#: includes/Managers/AssetManager.php:622
 msgid "Please enter a new quantity:"
 msgstr "Indtast en ny mængde:"
 
-#: includes/Managers/AssetManager.php:503
+#: includes/Managers/AssetManager.php:623
 msgid ""
 "3-digit security code usually found on the back of your card. American "
 "Express cards have a 4-digit code located on the front."
@@ -248,143 +342,151 @@ msgstr ""
 "3-cifret sikkerhedskode findes normalt på bagsiden af dit kort. American "
 "Express-kort har en 4-cifret kode placeret på forsiden."
 
-#: includes/Managers/AssetManager.php:504
+#: includes/Managers/AssetManager.php:624
 msgid "Are you sure you want to remove this item from your cart?"
 msgstr "Er du sikker på, at du vil fjerne denne vare fra din indkøbskurv?"
 
-#: includes/Managers/AssetManager.php:509
+#: includes/Managers/AssetManager.php:629
 msgid "Please enter a valid postcode / ZIP."
 msgstr "Angiv venligst et gyldigt postnummer."
 
-#: sources/php/functions.php:192
+#: lib/sendwp-sdk/remote-install.php:84
+msgid "Something went wrong. SendWP was not installed correctly."
+msgstr "Noget gik galt. SendWP blev ikke installeret korrekt."
+
+#: sources/php/functions.php:194
 msgid "Ship to"
 msgstr "Send til"
 
-#: sources/php/functions.php:1122
+#: sources/php/functions.php:1113
 msgid "No shipping methods available"
 msgstr "Ingen tilgængelige forsendelsesmetoder"
 
-#: sources/php/functions.php:1293
+#: sources/php/functions.php:1284
 msgid "Complete Order"
 msgstr "Ordren udføres"
 
-#: sources/php/functions.php:1353 sources/php/template-functions.php:1070
-#: sources/php/template-functions.php:1987
-#: sources/php/template-functions.php:2291
+#: sources/php/functions.php:1342 sources/php/template-functions.php:1077
+#: sources/php/template-functions.php:1993
+#: sources/php/template-functions.php:2298
 msgid "Payment"
 msgstr "Betaling"
 
-#: sources/php/functions.php:1378
+#: sources/php/functions.php:1367
 msgid "All transactions are secure and encrypted."
 msgstr "Alle transaktioner er sikre og krypterede."
 
-#: sources/php/functions.php:1399
+#: sources/php/functions.php:1388
 msgid "Your order is free. No payment is required."
 msgstr "Din ordre er gratis. Ingen betaling er påkrævet."
 
-#: sources/php/functions.php:1444
+#: sources/php/functions.php:1433
 msgid "Same as shipping address"
 msgstr "Samme som forsendelsesadresse"
 
-#: sources/php/functions.php:1464
+#: sources/php/functions.php:1453
 msgid "Use a different billing address"
 msgstr "Brug en anden faktureringsadresse"
 
-#: sources/php/functions.php:1631
+#: sources/php/functions.php:1636
 msgid "Return to cart"
 msgstr "Tilbage til kurv"
 
-#: sources/php/functions.php:1668
+#: sources/php/functions.php:1673
 msgid "Continue to shipping"
 msgstr "Fortsæt til forsendelse"
 
-#: sources/php/functions.php:1690
+#: sources/php/functions.php:1695
 msgid "Continue to payment"
 msgstr "Fortsæt til betaling"
 
-#: sources/php/functions.php:1726
+#: sources/php/functions.php:1731
 msgid "Review order"
 msgstr "Gennemse ordre"
 
-#: sources/php/functions.php:1746
+#: sources/php/functions.php:1751
 msgid "Return to information"
 msgstr "Vend tilbage til oplysninger"
 
-#: sources/php/functions.php:1766
+#: sources/php/functions.php:1771
 msgid "Return to shipping"
 msgstr "Tilbage til levering"
 
-#: sources/php/functions.php:1786
+#: sources/php/functions.php:1791
 msgid "Return to payment"
 msgstr "Vend tilbage til betaling"
 
-#: sources/php/functions.php:2283
+#: sources/php/functions.php:2294
 msgid "Or"
 msgstr "Eller"
 
-#: sources/php/functions.php:2461
+#: sources/php/functions.php:2471
 msgid "Decrement"
 msgstr "Nedsættelse"
 
-#: sources/php/functions.php:2467
+#: sources/php/functions.php:2477
 msgid "Increment"
 msgstr "Inkrement"
 
-#: sources/php/template-functions.php:100
+#: sources/php/functions.php:3102
+msgid "Unsubscribe"
+msgstr "Afmeld"
+
+#: sources/php/template-functions.php:106
 msgid "Show order summary"
 msgstr "Vis ordreoversigt"
 
-#: sources/php/template-functions.php:117
+#: sources/php/template-functions.php:123
 msgid "Hide order summary"
 msgstr "Skjul ordresammendrag"
 
-#: sources/php/template-functions.php:263
+#: sources/php/template-functions.php:269
 msgid "Express checkout"
 msgstr "Hurtig checkout"
 
-#: sources/php/template-functions.php:295
-#: sources/php/template-functions.php:1969
-#: sources/php/template-functions.php:2262
+#: sources/php/template-functions.php:301
+#: sources/php/template-functions.php:1975
+#: sources/php/template-functions.php:2269
 msgid "Information"
 msgstr "Information"
 
-#: sources/php/template-functions.php:314
+#: sources/php/template-functions.php:320
 msgid "Order review"
 msgstr "Godkend ordre"
 
-#: sources/php/template-functions.php:386
+#: sources/php/template-functions.php:392
 msgid "Already have an account with us?"
 msgstr "Har du allerede en konto hos os?"
 
-#: sources/php/template-functions.php:398
-msgid "Log in for a faster checkout experience."
-msgstr "Log ind for en hurtigere checkout oplevelse."
+#: sources/php/template-functions.php:404
+msgid "Log in."
+msgstr "Log ind."
 
 #. translators: %s: site name
-#: sources/php/template-functions.php:508
+#: sources/php/template-functions.php:514
 #, php-format
 msgid "Create %s shopping account."
 msgstr "Opret %s shoppingkonto."
 
-#: sources/php/template-functions.php:520
+#: sources/php/template-functions.php:526
 msgid "If you do not have an account, we will create one for you."
 msgstr "Hvis du ikke har en bruger, opretter vi en til dig."
 
 #. translators: %1 is the customer's name, %2 is their email address
-#: sources/php/template-functions.php:552
+#: sources/php/template-functions.php:558
 #, php-format
 msgid "Welcome back, %1$s (%2$s)."
 msgstr "Velkommen tilbage, %1$s (%2$s)."
 
-#: sources/php/template-functions.php:570
+#: sources/php/template-functions.php:576
 msgid "Log out."
 msgstr "Log ud."
 
-#: sources/php/template-functions.php:588
+#: sources/php/template-functions.php:594
 msgid "Welcome back"
 msgstr "Velkommen tilbage"
 
-#: sources/php/template-functions.php:592
+#: sources/php/template-functions.php:598
 msgid ""
 "It looks like you already have an account. Please enter your login details "
 "below."
@@ -392,94 +494,94 @@ msgstr ""
 "Det ser ud til, at du allerede har en konto. Indtast venligst dine "
 "loginoplysninger nedenfor."
 
-#: sources/php/template-functions.php:595
+#: sources/php/template-functions.php:601
 msgid ""
 "If you have shopped with us before, please enter your login details below."
 msgstr ""
 "Hvis du har handlet hos os før, skal du indtaste dine loginoplysninger "
 "nedenfor."
 
-#: sources/php/template-functions.php:648
+#: sources/php/template-functions.php:654
 msgid "Or continue as guest"
 msgstr "Eller fortsæt som gæst"
 
-#: sources/php/template-functions.php:698
-#: sources/php/template-functions.php:1999
+#: sources/php/template-functions.php:704
+#: sources/php/template-functions.php:2005
 msgid "Billing and Shipping address"
 msgstr "Fakturerings- og forsendelsesadresse"
 
-#: sources/php/template-functions.php:924
-#: sources/php/template-functions.php:966
-#: sources/php/template-functions.php:1022
+#: sources/php/template-functions.php:931
+#: sources/php/template-functions.php:973
+#: sources/php/template-functions.php:1029
 msgid "Contact"
 msgstr "Kontakt"
 
-#: sources/php/template-functions.php:932
-#: sources/php/template-functions.php:948
-#: sources/php/template-functions.php:974
-#: sources/php/template-functions.php:990
-#: sources/php/template-functions.php:1005
-#: sources/php/template-functions.php:1030
-#: sources/php/template-functions.php:1046
-#: sources/php/template-functions.php:1061
-#: sources/php/template-functions.php:1077
+#: sources/php/template-functions.php:939
+#: sources/php/template-functions.php:955
+#: sources/php/template-functions.php:981
+#: sources/php/template-functions.php:997
+#: sources/php/template-functions.php:1012
+#: sources/php/template-functions.php:1037
+#: sources/php/template-functions.php:1053
+#: sources/php/template-functions.php:1068
+#: sources/php/template-functions.php:1084
 msgid "Change"
 msgstr "Ret"
 
-#: sources/php/template-functions.php:997
-#: sources/php/template-functions.php:1053
+#: sources/php/template-functions.php:1004
+#: sources/php/template-functions.php:1060
 msgid "Method"
 msgstr "Metode"
 
-#: sources/php/template-functions.php:1209
+#: sources/php/template-functions.php:1216
 msgid "Shipping method"
 msgstr "Forsendelsesmetode"
 
-#: sources/php/template-functions.php:1335
+#: sources/php/template-functions.php:1341
 msgid "Select the address that matches your card or payment method."
 msgstr "Vælg den adresse, der matcher dit kort eller din betalingsmetode."
 
-#: sources/php/template-functions.php:1533
+#: sources/php/template-functions.php:1539
 msgid "Promo code"
 msgstr "Tilbudskode"
 
 #. translators: %s is the order number
-#: sources/php/template-functions.php:1736
+#: sources/php/template-functions.php:1742
 #, php-format
 msgid "Order %s"
 msgstr "Ordre %s"
 
 #. translators: %s is the billing first name
-#: sources/php/template-functions.php:1749
+#: sources/php/template-functions.php:1755
 #, php-format
 msgid "Thank you %s!"
 msgstr "Tak %s!"
 
-#: sources/php/template-functions.php:1853
+#: sources/php/template-functions.php:1859
 msgid "Order status"
 msgstr "Bestillings status"
 
-#: sources/php/template-functions.php:1884
+#: sources/php/template-functions.php:1890
 msgid "Order updates"
 msgstr "Ordreopdateringer"
 
-#: sources/php/template-functions.php:1893
+#: sources/php/template-functions.php:1899
 msgid "You’ll get shipping and delivery updates by email."
 msgstr "Du modtager forsendelses- og leveringsopdateringer via e-mail."
 
-#: sources/php/template-functions.php:1983
+#: sources/php/template-functions.php:1989
 msgid "Contact information"
 msgstr "Kontaktoplysninger"
 
-#: sources/php/template-functions.php:2135
+#: sources/php/template-functions.php:2142
 msgid "Login"
 msgstr "Log ind"
 
-#: sources/php/template-functions.php:2392
+#: sources/php/template-functions.php:2398
 msgid "Your Cart is Empty"
 msgstr "Din indkøbskurv er tom"
 
-#: templates/futurist/functions.php:17 templates/glass/functions.php:38
+#: templates/futurist/functions.php:19 templates/glass/functions.php:40
 msgid "Your Cart"
 msgstr "Din kurv"
 
@@ -498,6 +600,9 @@ msgstr "Objectiv"
 #. Author URI of the plugin/theme
 msgid "https://objectiv.co"
 msgstr "https://objectiv.co"
+
+#~ msgid "Log in for a faster checkout experience."
+#~ msgstr "Log ind for en hurtigere checkout oplevelse."
 
 #~ msgid "Address Verification"
 #~ msgstr "Verifikation af adresse"
@@ -521,9 +626,6 @@ msgstr "https://objectiv.co"
 
 #~ msgid "Login is optional. You may continue with your order below."
 #~ msgstr "Login er valgfrit. Du kan fortsætte med din ordre nedenfor."
-
-#~ msgid "Address Required"
-#~ msgstr "Adresse kræves"
 
 #, php-format
 #~ msgid ""
@@ -629,9 +731,6 @@ msgstr "https://objectiv.co"
 
 #~ msgid "Enable / Disable"
 #~ msgstr "Aktiver / Deaktiver"
-
-#~ msgid "Use Checkout for WooCommerce Template"
-#~ msgstr "Brug Checkout for WooCommerce-skabelon"
 
 #~ msgid ""
 #~ "Enable or disable Checkout for WooCommerce theme. (NOTE: Theme is always "
@@ -916,9 +1015,6 @@ msgstr "https://objectiv.co"
 #~ "Aktivér takkeside / ordre modtaget skabelon. Denne skabelon bruges også "
 #~ "ved visning af ordrer i Min konto."
 
-#~ msgid "Order Statuses"
-#~ msgstr "Ordrestatusser"
-
 #~ msgid "The statuses to show on the thank you page."
 #~ msgstr "Statusene, der skal vises på takkesiden."
 
@@ -994,12 +1090,12 @@ msgstr "https://objectiv.co"
 #, php-format
 #~ msgid ""
 #~ "Add PHP snippets to modify your checkout page here. If you have lots of "
-#~ "snippets, you may want to consider using <a target=\"_blank\" href=\"%s"
-#~ "\">Code Snippets</a>."
+#~ "snippets, you may want to consider using <a target=\"_blank\" "
+#~ "href=\"%s\">Code Snippets</a>."
 #~ msgstr ""
 #~ "Tilføj PHP-kodestykker for at ændre din checkout-side her. Hvis du har "
-#~ "masser af snippets, kan du overveje at bruge <a target=\"_blank\" href="
-#~ "\"%s\">Kodestumper</a> ."
+#~ "masser af snippets, kan du overveje at bruge <a target=\"_blank\" "
+#~ "href=\"%s\">Kodestumper</a> ."
 
 #~ msgid "License Upgrade Required"
 #~ msgstr "Opgradering af licens kræves"
@@ -1012,8 +1108,8 @@ msgstr "https://objectiv.co"
 #, php-format
 #~ msgid ""
 #~ "You can upgrade your license in <a target=\"_blank\" href=\"%1$s\">My "
-#~ "Account</a>. For help upgrading your license, <a target=\"_blank\" href="
-#~ "\"%2$s\">click here.</a>"
+#~ "Account</a>. For help upgrading your license, <a target=\"_blank\" "
+#~ "href=\"%2$s\">click here.</a>"
 #~ msgstr ""
 #~ "Du kan opgradere dit licens i <a target=\"_blank\" href=\"%1$s\">Min "
 #~ "konto</a> . For hjælp med at opgradere din licens, <a target=\"_blank\" "
@@ -1158,11 +1254,6 @@ msgstr "https://objectiv.co"
 #~ msgid "<strong>%s</strong>: Warning incompatible plugins detected!"
 #~ msgstr "<strong> %s</strong> : Advarsel inkompatible plugins opdaget!"
 
-#~ msgid ""
-#~ "Please deactivate these plugins to avoid problems with your checkout!"
-#~ msgstr ""
-#~ "Deaktiver venligst disse plugins for at undgå problemer med din kasse!"
-
 #, php-format
 #~ msgid ""
 #~ "<strong>%s</strong>: Your license is valid and activated for this site "
@@ -1179,26 +1270,26 @@ msgstr "https://objectiv.co"
 #, php-format
 #~ msgid ""
 #~ "<strong>%s</strong>: Your license key appears to have expired. Please "
-#~ "verify that your license key is valid or <a target=\"_blank\" href="
-#~ "\"https://www.checkoutwc.com/checkout/?edd_license_key=%s\">renew your "
-#~ "license now</a> to restore full functionality."
+#~ "verify that your license key is valid or <a target=\"_blank\" "
+#~ "href=\"https://www.checkoutwc.com/checkout/?edd_license_key=%s\">renew "
+#~ "your license now</a> to restore full functionality."
 #~ msgstr ""
 #~ "<strong>%s</strong> : Din licensnøgle ser ud til at være udløbet. "
-#~ "Kontroller, at din licensnøgle er gyldig, eller <a target=\"_blank\" href="
-#~ "\"https://www.checkoutwc.com/checkout/?edd_license_key=%s\">forny din "
-#~ "licens nu for</a> at gendanne fuld funktionalitet."
+#~ "Kontroller, at din licensnøgle er gyldig, eller <a target=\"_blank\" "
+#~ "href=\"https://www.checkoutwc.com/checkout/?edd_license_key=%s\">forny "
+#~ "din licens nu for</a> at gendanne fuld funktionalitet."
 
 #, php-format
 #~ msgid ""
 #~ "<strong>%s</strong>: Your license key is missing or invalid. Please "
-#~ "verify that your license key is valid or <a target=\"_blank\" href="
-#~ "\"https://www.checkoutwc.com/\">purchase a license</a> to restore full "
-#~ "functionality."
+#~ "verify that your license key is valid or <a target=\"_blank\" "
+#~ "href=\"https://www.checkoutwc.com/\">purchase a license</a> to restore "
+#~ "full functionality."
 #~ msgstr ""
 #~ "<strong>%s</strong> : Din licensnøgle mangler eller er ugyldig. "
-#~ "Kontroller, at din licensnøgle er gyldig, eller <a target=\"_blank\" href="
-#~ "\"https://www.checkoutwc.com/\">køb en licens for</a> at gendanne fuld "
-#~ "funktionalitet."
+#~ "Kontroller, at din licensnøgle er gyldig, eller <a target=\"_blank\" "
+#~ "href=\"https://www.checkoutwc.com/\">køb en licens for</a> at gendanne "
+#~ "fuld funktionalitet."
 
 #~ msgid ""
 #~ "Thank you for installing Checkout for WooCommerce! To get started, click "
@@ -1297,16 +1388,16 @@ msgstr "https://objectiv.co"
 
 #, php-format
 #~ msgid ""
-#~ "There is a new version of %1$s available. %2$sView version %3$s details"
-#~ "%4$s."
+#~ "There is a new version of %1$s available. %2$sView version %3$s "
+#~ "details%4$s."
 #~ msgstr ""
-#~ "Der er en ny version af %1$s til rådighed. %2$sVis version %3$s detaljer"
-#~ "%4$s."
+#~ "Der er en ny version af %1$s til rådighed. %2$sVis version %3$s "
+#~ "detaljer%4$s."
 
 #, php-format
 #~ msgid ""
-#~ "There is a new version of %1$s available. %2$sView version %3$s details"
-#~ "%4$s or %5$supdate now%6$s."
+#~ "There is a new version of %1$s available. %2$sView version %3$s "
+#~ "details%4$s or %5$supdate now%6$s."
 #~ msgstr ""
 #~ "Der findes en ny version af %1$s tilgængelig. %2$sVis version %3$s "
 #~ "detaljer %4$s eller %5$sopdater nu %6$s."

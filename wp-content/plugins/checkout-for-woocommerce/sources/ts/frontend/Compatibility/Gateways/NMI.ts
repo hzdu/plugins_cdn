@@ -8,7 +8,7 @@ class NMI extends Compatibility {
 
     load( params ): void {
         jQuery( document.body ).on( 'cfw-payment-tab-loaded', () => {
-            Main.instance.updateCheckoutService.triggerUpdateCheckout();
+            Main.instance.updateCheckoutService.queueUpdateCheckout();
         } );
     }
 }

@@ -1,11 +1,11 @@
-import 'core-js/features/object/assign';
-import 'ts-polyfill';
-import { cfwDomReady }  from './_functions';
-import DataService      from './frontend/Services/DataService';
-import MapEmbedService  from './frontend/Services/MapEmbedService';
+import { cfwDomReady }        from './_functions';
+import StorePolicyModals      from './frontend/Components/StorePolicyModals';
+import DataService            from './frontend/Services/DataService';
+import MapEmbedService        from './frontend/Services/MapEmbedService';
 
 class ThankYou {
     constructor() {
+        new StorePolicyModals();
         const map_embed_service = new MapEmbedService();
 
         cfwDomReady( () => {

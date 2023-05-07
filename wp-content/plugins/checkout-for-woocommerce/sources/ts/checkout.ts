@@ -1,5 +1,3 @@
-import 'core-js/features/object/assign';
-import 'ts-polyfill';
 import { cfwDomReady, cfwDefineScrollToNotices } from './_functions';
 import Main                                      from './frontend/Main';
 import DataService                               from './frontend/Services/DataService';

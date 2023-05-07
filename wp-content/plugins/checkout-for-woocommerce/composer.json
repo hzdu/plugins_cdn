@@ -24,15 +24,18 @@
         "kint-php/kint": "*",
         "phpcompatibility/php-compatibility": "*",
         "dealerdirect/phpcodesniffer-composer-installer": "*",
-        "phpunit/phpunit": "*",
+        "phpunit/phpunit": "^9.3",
         "wp-coding-standards/wpcs": "*",
         "squizlabs/php_codesniffer": "*",
         "woocommerce/woocommerce-sniffs": "0.1.3"
     },
     "require": {
-        "php": ">=7.1.0",
+        "php": ">=7.2.0",
         "ext-json": "*",
-        "smartystreets/phpsdk": "*"
+        "smartystreets/phpsdk": "*",
+        "woocommerce/action-scheduler": "^3.5",
+        "symfony/css-selector": "^4.4.44",
+        "tijsverkoyen/css-to-inline-styles": "^2.2"
     },
     "prefer-stable": true
 }

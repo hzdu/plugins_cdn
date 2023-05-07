@@ -15,13 +15,6 @@ class PaymentGatewaysService {
             this.initSelectedPaymentGateway();
         } );
 
-        jQuery( document.body ).on( 'cfw-payment-tab-loaded', () => {
-            // Fix Stripe rendering issue
-            setTimeout( () => {
-                jQuery( '.wc_payment_method.cfw-active .payment_box' ).hide().show( 0 );
-            }, 100 );
-        } );
-
         this.initSelectedPaymentGateway();
     }
 
@@ -82,11 +75,8 @@ class PaymentGatewaysService {
         const currentSelectedPaymentMethod = selectedPaymentMethod.attr( 'id' );
 
         if ( currentSelectedPaymentMethod !== this._selectedGateway ) {
-            // Give the accordion time to open in case this is helpful
-            setTimeout( () => {
-                jQuery( document.body ).trigger( 'payment_method_selected' );
-                LoggingService.logEvent( `Fired payment_method_selected event. Gateway: ${currentSelectedPaymentMethod}` );
-            }, 400 );
+            jQuery( document.body ).trigger( 'payment_method_selected' );
+            LoggingService.logEvent( `Fired payment_method_selected event. Gateway: ${currentSelectedPaymentMethod}` );
         }
 
         this._selectedGateway = currentSelectedPaymentMethod;

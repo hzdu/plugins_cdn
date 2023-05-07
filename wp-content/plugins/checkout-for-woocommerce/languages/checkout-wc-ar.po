@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Checkout for WooCommerce\n"
-"POT-Creation-Date: 2022-09-26 12:12-0400\n"
-"PO-Revision-Date: 2022-09-26 12:23-0400\n"
+"POT-Creation-Date: 2023-04-21 14:36-0400\n"
+"PO-Revision-Date: 2023-04-21 14:56-0400\n"
 "Last-Translator: Clifton Griffin <clif@checkoutwc.com>\n"
 "Language-Team: support@checkoutwc.com\n"
 "Language: ar\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=6; plural=(n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && "
 "n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5);\n"
-"X-Generator: Poedit 3.1.1\n"
+"X-Generator: Poedit 3.2.2\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-Flags-xgettext: --add-comments=translators:\n"
 "X-Poedit-WPHeader: checkout-for-woocommerce.php\n"
@@ -24,75 +24,163 @@ msgstr ""
 "X-Poedit-SearchPathExcluded-1: dist\n"
 "X-Poedit-SearchPathExcluded-2: vendor\n"
 
-#: includes/Action/LogInAction.php:38
+#: checkout-for-woocommerce.php:148
+msgid ""
+"Your site is running an <strong>insecure version</strong> of PHP that is no "
+"longer supported. Please contact your web hosting provider to update your PHP "
+"version."
+msgstr ""
+"يشغّل موقعك <strong>إصدارًا غير آمن</strong> من PHP لم يعد مدعومًا. يرجى الاتصال "
+"بمزود استضافة الويب لتحديث إصدار PHP الخاص بك."
+
+#. translators: %s - checkoutwc.com URL for documentation with more details.
+#: checkout-for-woocommerce.php:154
+#, php-format
+msgid ""
+"<strong>Note:</strong> CheckoutWC is disabled on your site until you fix the "
+"issue. <a href=\"%s\" target=\"_blank\" rel=\"noopener noreferrer\">Need help? "
+"Click here.</a>"
+msgstr ""
+"<strong>ملاحظة:</strong> تم تعطيل CheckoutWC على موقعك حتى تصلح المشكلة. <a "
+"href=\"%s\" target=\"_blank\" rel=\"noopener noreferrer\">تحتاج مساعدة؟ انقر "
+"هنا.</a>"
+
+#. translators: %s - WordPress version.
+#: checkout-for-woocommerce.php:194
+#, php-format
+msgid "CheckoutWC requires WordPress %s or later."
+msgstr "يتطلب CheckoutWC WordPress %s أو إصدارًا أحدث."
+
+#. translators: %s - WordPress version.
+#: checkout-for-woocommerce.php:232
+#, php-format
+msgid "CheckoutWC requires WooCommerce %s or later."
+msgstr "يتطلب CheckoutWC WooCommerce %s أو أحدث."
+
+#: includes/API/AfterCheckoutBumpProductFormAPI.php:23
+#: includes/API/ModalOrderBumpProductFormAPI.php:174
+msgid "No thanks, just complete my order"
+msgstr "لا شكرا ، فقط أكمل طلبي"
+
+#: includes/API/AfterCheckoutBumpProductFormAPI.php:40
+msgid "Your order is almost complete..."
+msgstr "طلبك يكتمل تقريبًا ..."
+
+#: includes/API/AfterCheckoutBumpProductFormAPI.php:44
+msgid "Add this offer to your order and save!"
+msgstr "أضف هذا العرض إلى طلبك ووفر!"
+
+#: includes/API/AfterCheckoutBumpProductFormAPI.php:54
+msgid "Order Submitted"
+msgstr "الطلب المقدم"
+
+#: includes/API/AfterCheckoutBumpProductFormAPI.php:60
+msgid "Special Offer"
+msgstr "عرض خاص"
+
+#: includes/API/AfterCheckoutBumpProductFormAPI.php:66
+msgid "Order Received"
+msgstr "تم إستلام الطلب"
+
+#: includes/API/GetVariationFormAPI.php:25
+#: includes/API/ModalOrderBumpProductFormAPI.php:43
+msgid "Product not found"
+msgstr "لم يتم ايجاد منتج"
+
+#: includes/API/ModalOrderBumpProductFormAPI.php:39
+msgid "No thanks"
+msgstr "لا شكرا"
+
+#: includes/Action/LogInAction.php:37
 msgid ""
 "There was an error logging in. Please check your credentials and try again."
 msgstr ""
 "حدث خطأ أثناء تسجيل الدخول. يرجى التحقق من بيانات الاعتماد الخاصة بك والمحاولة "
 "مرة أخرى."
 
-#: includes/Action/SmartyStreetsAddressValidationAction.php:68
-#: includes/Features/SmartyStreets.php:114
+#: includes/Action/SmartyStreetsAddressValidationAction.php:67
+#: includes/Features/SmartyStreets.php:119
 msgid "Use Recommended"
 msgstr "يوصى باستخدامه"
 
-#: includes/Action/SmartyStreetsAddressValidationAction.php:69
-#: includes/Features/SmartyStreets.php:120
+#: includes/Action/SmartyStreetsAddressValidationAction.php:68
+#: includes/Features/SmartyStreets.php:125
 msgid "Use Your Address"
 msgstr "استخدم عنوانك"
 
-#: includes/Action/SmartyStreetsAddressValidationAction.php:78
+#: includes/Action/SmartyStreetsAddressValidationAction.php:77
 msgid "Reenter Address"
 msgstr "أعد إدخال العنوان"
 
-#: includes/Action/SmartyStreetsAddressValidationAction.php:79
+#: includes/Action/SmartyStreetsAddressValidationAction.php:78
 msgid "Use Existing Address"
 msgstr "استخدم العنوان الحالي"
 
-#: includes/Action/SmartyStreetsAddressValidationAction.php:147
-#: includes/Action/SmartyStreetsAddressValidationAction.php:193
-#: includes/Action/SmartyStreetsAddressValidationAction.php:246
-#: includes/Features/SmartyStreets.php:81
+#: includes/Action/SmartyStreetsAddressValidationAction.php:160
+#: includes/Action/SmartyStreetsAddressValidationAction.php:206
+#: includes/Action/SmartyStreetsAddressValidationAction.php:261
+#: includes/Features/SmartyStreets.php:86
 msgid "We are unable to verify your address."
 msgstr "نحن غير قادرين على التحقق من عنوانك."
 
 #. translators: %s is the postcode field label
-#: includes/Action/ValidateEmailDomainAction.php:36
+#: includes/Action/ValidateEmailDomainAction.php:35
 msgid "Email address contains invalid domain name."
 msgstr "يحتوي عنوان البريد الإلكتروني على اسم مجال غير صالح."
 
 #. translators: %s is the postcode field label
-#: includes/Action/ValidatePostcodeAction.php:34
+#: includes/Action/ValidatePostcodeAction.php:33
 #, php-format
 msgid "Please enter a valid %s."
 msgstr "الرجاء إدخال %s صالح."
 
-#: includes/AddressFieldsAugmenter.php:114
+#: includes/AddressFieldsAugmenter.php:124
 msgid "Full name"
 msgstr "الاسم الكامل"
 
-#: includes/AddressFieldsAugmenter.php:167
+#: includes/AddressFieldsAugmenter.php:177
 msgid "House number"
 msgstr "رقم الدار"
 
-#: includes/AddressFieldsAugmenter.php:179
+#: includes/AddressFieldsAugmenter.php:189
 msgid "Street name"
 msgstr "اسم الشارع"
 
-#: includes/Compatibility/Gateways/PayPalForWooCommerce.php:153
-#: sources/php/template-functions.php:708 sources/php/template-functions.php:1314
-#: sources/php/template-functions.php:2022
+#: includes/Admin/Notices/CompatibilityNotice.php:34
+msgid "Please deactivate to avoid problems with your checkout page."
+msgstr "يرجى إلغاء التنشيط لتجنب المشاكل مع صفحة الخروج الخاصة بك."
+
+#: includes/Compatibility/Gateways/PayPalForWooCommerce.php:157
+#: sources/php/template-functions.php:714 sources/php/template-functions.php:1320
+#: sources/php/template-functions.php:2028
 msgid "Billing address"
 msgstr "بيانات الزبون"
 
-#: includes/Compatibility/Gateways/PayPalForWooCommerce.php:319
+#: includes/Compatibility/Gateways/PayPalForWooCommerce.php:328
 msgid "Logged in with PayPal. Please continue your order below."
 msgstr "تم تسجيل الدخول باستخدام PayPal. يرجى متابعة طلبك أدناه."
 
 #. Plugin Name of the plugin/theme
-#: includes/Compatibility/Plugins/CartFlows.php:61
+#: includes/Compatibility/Plugins/CartFlows.php:62
 msgid "CheckoutWC"
 msgstr "الخروج"
+
+#: includes/Features/AbandonedCartRecovery.php:80
+msgid "You have been unsubscribed from our cart reminder emails."
+msgstr "لقد تم إلغاء اشتراكك من رسائل التذكير الإلكترونية الخاصة بسلة التسوق."
+
+#: includes/Features/AbandonedCartRecovery.php:697
+#: includes/Features/AbandonedCartRecovery.php:761
+msgid "This order was abandoned and subsequently recovered."
+msgstr "تم التخلي عن هذا الأمر واستعادته لاحقًا."
+
+#: includes/Features/FetchifyAddressAutocomplete.php:80
+msgid "Address Search"
+msgstr "البحث عن العنوان"
+
+#: includes/Features/FetchifyAddressAutocomplete.php:81
+msgid "Start with post/zip code or street"
+msgstr "ابدأ بالرمز البريدي أو الشارع"
 
 #: includes/Features/HideOptionalAddressFields.php:37
 msgid "Add Address Line 2"
@@ -102,144 +190,148 @@ msgstr "أضف سطر العنوان 2"
 msgid "Add Company"
 msgstr "إضافة شركة"
 
-#: includes/Features/OrderReviewStep.php:70
+#: includes/Features/OrderReviewStep.php:76
 msgid "Review"
 msgstr "مراجعة"
 
-#: includes/Features/Pickup.php:79
+#: includes/Features/Pickup.php:74
 msgid "Pick up"
 msgstr "الاستـلام"
 
-#: includes/Features/Pickup.php:93
+#: includes/Features/Pickup.php:88
 msgid "Ship"
 msgstr "شحن"
 
-#: includes/Features/Pickup.php:107
+#: includes/Features/Pickup.php:102
 msgid "Delivery method"
 msgstr "طريقة التوصيل"
 
-#: includes/Features/Pickup.php:169
+#: includes/Features/Pickup.php:164
 msgid "Pickup locations"
 msgstr "عنوان الاستلام"
 
-#: includes/Features/Pickup.php:397
+#: includes/Features/Pickup.php:414
 msgid "Pick up in store"
 msgstr "تلتقط في متجر"
 
-#: includes/Features/Pickup.php:413 includes/Managers/AssetManager.php:510
+#: includes/Features/Pickup.php:431 includes/Managers/AssetManager.php:630
 msgid "Pickup"
 msgstr "الإستلام"
 
-#: includes/Features/Pickup.php:470
+#: includes/Features/Pickup.php:471
+msgid "Pickup Location"
+msgstr "موقع الاستلام"
+
+#: includes/Features/Pickup.php:528
 msgid "Pickup instructions"
 msgstr "تعليمات الاستلام"
 
-#: includes/Features/Pickup.php:579
+#: includes/Features/Pickup.php:645
 msgid "Usually ready in 1 hour."
 msgstr "عادة ما تكون جاهزة في غضون ساعة واحدة."
 
-#: includes/Features/Pickup.php:580
+#: includes/Features/Pickup.php:646
 msgid "Usually ready in 2 hours."
 msgstr "عادة ما تكون جاهزة في غضون ساعتين."
 
-#: includes/Features/Pickup.php:581
+#: includes/Features/Pickup.php:647
 msgid "Usually ready in 4 hours."
 msgstr "عادة ما تكون جاهزة في غضون 4 ساعات."
 
-#: includes/Features/Pickup.php:582
+#: includes/Features/Pickup.php:648
 msgid "Usually ready in 24 hours."
 msgstr "عادة ما تكون جاهزة في غضون 24 ساعة."
 
-#: includes/Features/Pickup.php:583
+#: includes/Features/Pickup.php:649
 msgid "Usually ready in 2-4 days."
 msgstr "عادة ما تكون جاهزة في 2-4 أيام."
 
-#: includes/Features/Pickup.php:584
+#: includes/Features/Pickup.php:650
 msgid "Usually ready in 5+ days."
 msgstr "عادة ما تكون جاهزة في أكثر من 5 أيام."
 
-#: includes/Features/SideCart.php:170
+#: includes/Features/SideCart.php:215
 msgid "Close Cart"
 msgstr "إغلاق سلة المشتريات"
 
-#: includes/Features/SideCart.php:205 sources/php/template-functions.php:1520
+#: includes/Features/SideCart.php:252 sources/php/template-functions.php:1526
 msgid "Apply"
 msgstr "تطبيق"
 
-#: includes/Features/SideCart.php:219 sources/php/template-functions.php:1549
+#: includes/Features/SideCart.php:267 sources/php/template-functions.php:1555
 msgid "Have a promo code? Click here."
 msgstr "هل يمتلك الرمز الترويجي؟ انقر هنا."
 
-#: includes/Features/SideCart.php:240 sources/php/template-functions.php:1570
+#: includes/Features/SideCart.php:289 sources/php/template-functions.php:1576
 msgid "Promo Code"
 msgstr "کوبون الخصم"
 
-#: includes/Features/SideCart.php:248 sources/php/template-functions.php:1578
+#: includes/Features/SideCart.php:298 sources/php/template-functions.php:1584
 msgid "Enter Promo Code"
 msgstr "أدخل الرمز الترويجي"
 
-#: includes/Features/SideCart.php:288 includes/Features/SideCart.php:289
-#: sources/php/template-functions.php:2035
-#: sources/php/template-functions.php:2277
+#: includes/Features/SideCart.php:341 includes/Features/SideCart.php:342
+#: sources/php/template-functions.php:2041
+#: sources/php/template-functions.php:2284
 msgid "Shipping"
 msgstr "الشحن"
 
-#: includes/Features/SideCart.php:501
+#: includes/Features/SideCart.php:627
 msgid "Congrats! You get free standard shipping."
 msgstr "تهاني! تحصل على شحن قياسي مجاني."
 
 #. translators: %s is the amount remaining for free shipping
-#: includes/Features/SideCart.php:514
+#: includes/Features/SideCart.php:641
 #, php-format
 msgid "You're %s away from free shipping!"
 msgstr "أنت بعيد %s عن الشحن المجاني!"
 
-#: includes/Features/SmartyStreets.php:72
+#: includes/Features/SmartyStreets.php:77
 msgid "Use This Address"
 msgstr "استخدم هذا العنوان"
 
-#: includes/Features/SmartyStreets.php:77
+#: includes/Features/SmartyStreets.php:82
 msgid "Use recommended address instead?"
 msgstr "استخدم العنوان الموصى به بدلاً من ذلك؟"
 
-#: includes/Features/SmartyStreets.php:85
+#: includes/Features/SmartyStreets.php:90
 msgid "We're unable to verify your address, but found a close match."
 msgstr "لا يمكننا التحقق من عنوانك ، ولكن وجدنا تطابقًا وثيقًا."
 
-#: includes/Features/SmartyStreets.php:89
+#: includes/Features/SmartyStreets.php:94
 msgid "Please confirm you would like to use this address or try again."
 msgstr "يرجى تأكيد رغبتك في استخدام هذا العنوان أو المحاولة مرة أخرى."
 
-#: includes/Features/SmartyStreets.php:95
+#: includes/Features/SmartyStreets.php:100
 msgid "You Entered"
 msgstr "دخلت"
 
-#: includes/Features/SmartyStreets.php:105
+#: includes/Features/SmartyStreets.php:110
 msgid "Recommended"
 msgstr "موصى به"
 
-#: includes/Managers/AssetManager.php:499
+#: includes/Managers/AssetManager.php:611
 msgid "Please enter a valid phone number."
 msgstr ""
 "رجاءا أدخل رقما هاتفيا صحيحا، لا تنس أن تبدأ بـالرمز \"+\" متبوعا برقم هاتفك "
 "على الصيغة الدولية."
 
-#: includes/Managers/AssetManager.php:500
+#: includes/Managers/AssetManager.php:620
 msgid "Please enter your first and last name."
 msgstr ""
 "رجاءا أدخل رقما هاتفيا صحيحا، لا تنس أن تبدأ بـالرمز \"+\" متبوعا برقم هاتفك "
 "على الصيغة الدولية."
 
-#: includes/Managers/AssetManager.php:501 sources/php/template-functions.php:718
-#: sources/php/template-functions.php:2006
+#: includes/Managers/AssetManager.php:621 sources/php/template-functions.php:724
+#: sources/php/template-functions.php:2012
 msgid "Shipping address"
 msgstr "عنوان الشحن"
 
-#: includes/Managers/AssetManager.php:502
+#: includes/Managers/AssetManager.php:622
 msgid "Please enter a new quantity:"
 msgstr "الرجاء إدخال كمية جديدة:"
 
-#: includes/Managers/AssetManager.php:503
+#: includes/Managers/AssetManager.php:623
 msgid ""
 "3-digit security code usually found on the back of your card. American Express "
 "cards have a 4-digit code located on the front."
@@ -247,231 +339,240 @@ msgstr ""
 "رمز الحماية المكون من 3 أرقام يوجد عادةً خلف البطاقة. تحتوي بطاقات American "
 "Express على رمز مكون من 4 أرقام موجود في الأمام."
 
-#: includes/Managers/AssetManager.php:504
+#: includes/Managers/AssetManager.php:624
 msgid "Are you sure you want to remove this item from your cart?"
 msgstr "هل أنت متأكد أنك تريد إزالة هذا العنصر من سلة التسوق الخاصة بك؟"
 
-#: includes/Managers/AssetManager.php:509
+#: includes/Managers/AssetManager.php:629
 msgid "Please enter a valid postcode / ZIP."
 msgstr "الرجاء إدخال رمز بريدي صالح."
 
-#: sources/php/functions.php:192
+#: lib/sendwp-sdk/remote-install.php:84
+msgid "Something went wrong. SendWP was not installed correctly."
+msgstr "هناك خطأ ما. لم يتم تثبيت SendWP بشكل صحيح."
+
+#: sources/php/functions.php:194
 msgid "Ship to"
 msgstr "الشحن إلى"
 
-#: sources/php/functions.php:1122
+#: sources/php/functions.php:1113
 msgid "No shipping methods available"
 msgstr "لا توجد طرق شحن متاحة"
 
-#: sources/php/functions.php:1293
+#: sources/php/functions.php:1284
 msgid "Complete Order"
 msgstr "مكتملة"
 
-#: sources/php/functions.php:1353 sources/php/template-functions.php:1070
-#: sources/php/template-functions.php:1987
-#: sources/php/template-functions.php:2291
+#: sources/php/functions.php:1342 sources/php/template-functions.php:1077
+#: sources/php/template-functions.php:1993
+#: sources/php/template-functions.php:2298
 msgid "Payment"
 msgstr "الدفع"
 
-#: sources/php/functions.php:1378
+#: sources/php/functions.php:1367
 msgid "All transactions are secure and encrypted."
 msgstr "جميع المعاملات آمنة ومشفرة."
 
-#: sources/php/functions.php:1399
+#: sources/php/functions.php:1388
 msgid "Your order is free. No payment is required."
 msgstr "طلبك مجاني. لا يلزم الدفع."
 
-#: sources/php/functions.php:1444
+#: sources/php/functions.php:1433
 msgid "Same as shipping address"
 msgstr "نفس عنوان الشحن"
 
-#: sources/php/functions.php:1464
+#: sources/php/functions.php:1453
 msgid "Use a different billing address"
 msgstr "استخدم عنوان فاتورة مختلف"
 
-#: sources/php/functions.php:1631
+#: sources/php/functions.php:1636
 msgid "Return to cart"
 msgstr "الرجوع إلى عربة التسوق"
 
-#: sources/php/functions.php:1668
+#: sources/php/functions.php:1673
 msgid "Continue to shipping"
 msgstr "المواصلة إلى الشحن"
 
-#: sources/php/functions.php:1690
+#: sources/php/functions.php:1695
 msgid "Continue to payment"
 msgstr "الاستمرار في الدفع"
 
-#: sources/php/functions.php:1726
+#: sources/php/functions.php:1731
 msgid "Review order"
 msgstr "مراجعة الطلب"
 
-#: sources/php/functions.php:1746
+#: sources/php/functions.php:1751
 msgid "Return to information"
 msgstr "العودة إلى المعلومات"
 
-#: sources/php/functions.php:1766
+#: sources/php/functions.php:1771
 msgid "Return to shipping"
 msgstr "العودة إلى الشحن"
 
-#: sources/php/functions.php:1786
+#: sources/php/functions.php:1791
 msgid "Return to payment"
 msgstr "العودة إلى الدفع"
 
-#: sources/php/functions.php:2283
+#: sources/php/functions.php:2294
 msgid "Or"
 msgstr "او"
 
-#: sources/php/functions.php:2461
+#: sources/php/functions.php:2471
 msgid "Decrement"
 msgstr "إنقاص"
 
-#: sources/php/functions.php:2467
+#: sources/php/functions.php:2477
 msgid "Increment"
 msgstr "زيادة راتب"
 
-#: sources/php/template-functions.php:100
+#: sources/php/functions.php:3102
+msgid "Unsubscribe"
+msgstr "إلغاء الاشتراك"
+
+#: sources/php/template-functions.php:106
 msgid "Show order summary"
 msgstr "إظهار ملخص الطلب"
 
-#: sources/php/template-functions.php:117
+#: sources/php/template-functions.php:123
 msgid "Hide order summary"
 msgstr "إخفاء ملخص الطلب"
 
-#: sources/php/template-functions.php:263
+#: sources/php/template-functions.php:269
 msgid "Express checkout"
 msgstr "الدفع السريع"
 
-#: sources/php/template-functions.php:295 sources/php/template-functions.php:1969
-#: sources/php/template-functions.php:2262
+#: sources/php/template-functions.php:301 sources/php/template-functions.php:1975
+#: sources/php/template-functions.php:2269
 msgid "Information"
 msgstr "معلومات"
 
-#: sources/php/template-functions.php:314
+#: sources/php/template-functions.php:320
 msgid "Order review"
 msgstr "مراجعة الطلب"
 
-#: sources/php/template-functions.php:386
+#: sources/php/template-functions.php:392
 msgid "Already have an account with us?"
 msgstr "لديك بالفعل حساب لدينا؟"
 
-#: sources/php/template-functions.php:398
-msgid "Log in for a faster checkout experience."
-msgstr "تسجيل الدخول للحصول على تجربة دفع أسرع."
+#: sources/php/template-functions.php:404
+msgid "Log in."
+msgstr "تسجيل خروج."
 
 #. translators: %s: site name
-#: sources/php/template-functions.php:508
+#: sources/php/template-functions.php:514
 #, php-format
 msgid "Create %s shopping account."
 msgstr "إنشاء حساب تسوق٪ s.إنشاء حساب تسوق %s."
 
-#: sources/php/template-functions.php:520
+#: sources/php/template-functions.php:526
 msgid "If you do not have an account, we will create one for you."
 msgstr "إذا لم يكن لديك حساب ، فسننشئ حسابًا لك."
 
 #. translators: %1 is the customer's name, %2 is their email address
-#: sources/php/template-functions.php:552
+#: sources/php/template-functions.php:558
 #, php-format
 msgid "Welcome back, %1$s (%2$s)."
 msgstr "مرحبا بعودتك, %1$s (%2$s)."
 
-#: sources/php/template-functions.php:570
+#: sources/php/template-functions.php:576
 msgid "Log out."
 msgstr "تسجيل خروج."
 
-#: sources/php/template-functions.php:588
+#: sources/php/template-functions.php:594
 msgid "Welcome back"
 msgstr "أهلا بكم من جديد"
 
-#: sources/php/template-functions.php:592
+#: sources/php/template-functions.php:598
 msgid ""
 "It looks like you already have an account. Please enter your login details "
 "below."
 msgstr ""
 "يبدو أنه لديك حساب بالفعل. يرجى إدخال تفاصيل تسجيل الدخول الخاصة بك أدناه."
 
-#: sources/php/template-functions.php:595
+#: sources/php/template-functions.php:601
 msgid ""
 "If you have shopped with us before, please enter your login details below."
 msgstr ""
 "إذا كنت قد قمت بالتسوق معنا من قبل ، فيرجى إدخال تفاصيل تسجيل الدخول الخاصة بك "
 "أدناه."
 
-#: sources/php/template-functions.php:648
+#: sources/php/template-functions.php:654
 msgid "Or continue as guest"
 msgstr "أو تواصل كضيف"
 
-#: sources/php/template-functions.php:698 sources/php/template-functions.php:1999
+#: sources/php/template-functions.php:704 sources/php/template-functions.php:2005
 msgid "Billing and Shipping address"
 msgstr "عنوان الشحن البحري و دائرة الفواتير"
 
-#: sources/php/template-functions.php:924 sources/php/template-functions.php:966
-#: sources/php/template-functions.php:1022
+#: sources/php/template-functions.php:931 sources/php/template-functions.php:973
+#: sources/php/template-functions.php:1029
 msgid "Contact"
 msgstr "اتصال"
 
-#: sources/php/template-functions.php:932 sources/php/template-functions.php:948
-#: sources/php/template-functions.php:974 sources/php/template-functions.php:990
-#: sources/php/template-functions.php:1005
-#: sources/php/template-functions.php:1030
-#: sources/php/template-functions.php:1046
-#: sources/php/template-functions.php:1061
-#: sources/php/template-functions.php:1077
+#: sources/php/template-functions.php:939 sources/php/template-functions.php:955
+#: sources/php/template-functions.php:981 sources/php/template-functions.php:997
+#: sources/php/template-functions.php:1012
+#: sources/php/template-functions.php:1037
+#: sources/php/template-functions.php:1053
+#: sources/php/template-functions.php:1068
+#: sources/php/template-functions.php:1084
 msgid "Change"
 msgstr "تغيير"
 
-#: sources/php/template-functions.php:997 sources/php/template-functions.php:1053
+#: sources/php/template-functions.php:1004
+#: sources/php/template-functions.php:1060
 msgid "Method"
 msgstr "الطريقة"
 
-#: sources/php/template-functions.php:1209
+#: sources/php/template-functions.php:1216
 msgid "Shipping method"
 msgstr "طريقة الشحن"
 
-#: sources/php/template-functions.php:1335
+#: sources/php/template-functions.php:1341
 msgid "Select the address that matches your card or payment method."
 msgstr "حدد العنوان الذي يطابق بطاقتك أو طريقة الدفع."
 
-#: sources/php/template-functions.php:1533
+#: sources/php/template-functions.php:1539
 msgid "Promo code"
 msgstr "رمز ترويجي"
 
 #. translators: %s is the order number
-#: sources/php/template-functions.php:1736
+#: sources/php/template-functions.php:1742
 #, php-format
 msgid "Order %s"
 msgstr "طلب %s"
 
 #. translators: %s is the billing first name
-#: sources/php/template-functions.php:1749
+#: sources/php/template-functions.php:1755
 #, php-format
 msgid "Thank you %s!"
 msgstr "شكرا لك %s!"
 
-#: sources/php/template-functions.php:1853
+#: sources/php/template-functions.php:1859
 msgid "Order status"
 msgstr "حالة الطلب"
 
-#: sources/php/template-functions.php:1884
+#: sources/php/template-functions.php:1890
 msgid "Order updates"
 msgstr "تحديثات الطلب"
 
-#: sources/php/template-functions.php:1893
+#: sources/php/template-functions.php:1899
 msgid "You’ll get shipping and delivery updates by email."
 msgstr "ستحصل على تحديثات الشحن والتسليم عن طريق البريد الإلكتروني."
 
-#: sources/php/template-functions.php:1983
+#: sources/php/template-functions.php:1989
 msgid "Contact information"
 msgstr "معلومات الاتصال"
 
-#: sources/php/template-functions.php:2135
+#: sources/php/template-functions.php:2142
 msgid "Login"
 msgstr "تسجيل الدخول"
 
-#: sources/php/template-functions.php:2392
+#: sources/php/template-functions.php:2398
 msgid "Your Cart is Empty"
 msgstr "عربة التسوق فارغة"
 
-#: templates/futurist/functions.php:17 templates/glass/functions.php:38
+#: templates/futurist/functions.php:19 templates/glass/functions.php:40
 msgid "Your Cart"
 msgstr "عربة التسوق"
 
@@ -491,8 +592,8 @@ msgstr "الهدف"
 msgid "https://objectiv.co"
 msgstr "‫https://objectiv.co"
 
-#~ msgid "Address Verification"
-#~ msgstr "التحقق من العنوان"
+#~ msgid "Log in for a faster checkout experience."
+#~ msgstr "تسجيل الدخول للحصول على تجربة دفع أسرع."
 
 #~ msgid ""
 #~ "The shipping address you provided does not match the suggested address from "
@@ -619,9 +720,6 @@ msgstr "‫https://objectiv.co"
 
 #~ msgid "Enable / Disable"
 #~ msgstr "تمكين / تعطيل"
-
-#~ msgid "Use Checkout for WooCommerce Template"
-#~ msgstr "استخدم Checkout لـ WooCommerce Template"
 
 #~ msgid ""
 #~ "Enable or disable Checkout for WooCommerce theme. (NOTE: Theme is always "
@@ -901,9 +999,6 @@ msgstr "‫https://objectiv.co"
 #~ "تمكين قالب صفحة الشكر / استلام الطلب. يستخدم هذا القالب أيضًا عند عرض "
 #~ "الطلبات في حسابي."
 
-#~ msgid "Order Statuses"
-#~ msgstr "حالات ترتيب"
-
 #~ msgid "The statuses to show on the thank you page."
 #~ msgstr "الحالات التي تظهر في صفحة الشكر."
 
@@ -947,9 +1042,9 @@ msgstr "‫https://objectiv.co"
 #~ "developers.google.com/places/web-service/get-api-key\">Google Cloud "
 #~ "Platform Console</a>."
 #~ msgstr ""
-#~ "مفتاح واجهة برمجة تطبيقات Google. متوفر في <a target=\"_blank\" href="
-#~ "\"https://developers.google.com/places/web-service/get-api-key\">Google "
-#~ "Cloud Platform Console</a> ."
+#~ "مفتاح واجهة برمجة تطبيقات Google. متوفر في <a target=\"_blank\" "
+#~ "href=\"https://developers.google.com/places/web-service/get-api-"
+#~ "key\">Google Cloud Platform Console</a> ."
 
 #~ msgid "User Matching"
 #~ msgstr "مطابقة المستخدم"
@@ -975,8 +1070,8 @@ msgstr "‫https://objectiv.co"
 #, php-format
 #~ msgid ""
 #~ "Add PHP snippets to modify your checkout page here. If you have lots of "
-#~ "snippets, you may want to consider using <a target=\"_blank\" href=\"%s"
-#~ "\">Code Snippets</a>."
+#~ "snippets, you may want to consider using <a target=\"_blank\" "
+#~ "href=\"%s\">Code Snippets</a>."
 #~ msgstr ""
 #~ "أضف مقتطفات PHP لتعديل صفحة الخروج هنا. إذا كان لديك الكثير من القصاصات ، "
 #~ "فقد ترغب في استخدام <a target=\"_blank\" href=\"%s\">Code Snippets</a> ."
@@ -990,12 +1085,12 @@ msgstr "‫https://objectiv.co"
 #, php-format
 #~ msgid ""
 #~ "You can upgrade your license in <a target=\"_blank\" href=\"%1$s\">My "
-#~ "Account</a>. For help upgrading your license, <a target=\"_blank\" href="
-#~ "\"%2$s\">click here.</a>"
+#~ "Account</a>. For help upgrading your license, <a target=\"_blank\" "
+#~ "href=\"%2$s\">click here.</a>"
 #~ msgstr ""
 #~ "يمكنك ترقية ترخيصك في <a target=\"_blank\" href=\"%1$s\">حسابي</a> . "
-#~ "للمساعدة في ترقية الترخيص الخاص بك ، <a target=\"_blank\" href=\"%2$s"
-#~ "\">انقر هنا.</a>"
+#~ "للمساعدة في ترقية الترخيص الخاص بك ، <a target=\"_blank\" "
+#~ "href=\"%2$s\">انقر هنا.</a>"
 
 #~ msgid "Setting Overridden"
 #~ msgstr "تم تجاوز الإعداد"
@@ -1095,8 +1190,8 @@ msgstr "‫https://objectiv.co"
 #~ "You can find the answer to most questions in our <a href=\"https://kb."
 #~ "checkoutwc.com\" target=\"_blank\">knowledge base</a>."
 #~ msgstr ""
-#~ "يمكنك العثور على إجابة لمعظم الأسئلة في <a href=\"https://kb.checkoutwc.com"
-#~ "\" target=\"_blank\">قاعدة معارفنا</a> ."
+#~ "يمكنك العثور على إجابة لمعظم الأسئلة في <a href=\"https://kb.checkoutwc."
+#~ "com\" target=\"_blank\">قاعدة معارفنا</a> ."
 
 #~ msgid "Here are some popular guides:"
 #~ msgstr "إليك بعض الأدلة الشائعة:"
@@ -1132,9 +1227,6 @@ msgstr "‫https://objectiv.co"
 #~ msgid "<strong>%s</strong>: Warning incompatible plugins detected!"
 #~ msgstr "‫<strong>٪ s</strong> : تم الكشف عن مكونات إضافية غير متوافقة!"
 
-#~ msgid "Please deactivate these plugins to avoid problems with your checkout!"
-#~ msgstr "يرجى إلغاء تنشيط هذه المكونات الإضافية لتجنب حدوث مشكلات في الدفع!"
-
 #, php-format
 #~ msgid ""
 #~ "<strong>%s</strong>: Your license is valid and activated for this site but "
@@ -1150,8 +1242,8 @@ msgstr "‫https://objectiv.co"
 #, php-format
 #~ msgid ""
 #~ "<strong>%s</strong>: Your license key appears to have expired. Please "
-#~ "verify that your license key is valid or <a target=\"_blank\" href="
-#~ "\"https://www.checkoutwc.com/checkout/?edd_license_key=%s\">renew your "
+#~ "verify that your license key is valid or <a target=\"_blank\" "
+#~ "href=\"https://www.checkoutwc.com/checkout/?edd_license_key=%s\">renew your "
 #~ "license now</a> to restore full functionality."
 #~ msgstr ""
 #~ "‫<strong>٪ s</strong> : يبدو أن مفتاح الترخيص الخاص بك قد انتهت صلاحيته. "

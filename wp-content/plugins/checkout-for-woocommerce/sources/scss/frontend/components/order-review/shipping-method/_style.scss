@@ -38,23 +38,18 @@ ul.cfw-shipping-methods-list {
 
         border-radius: 0;
         border-bottom: 1px solid #ddd;
-        padding: 12px;
+        padding: 0 12px;
 
         .cfw-shipping-method-inner {
             display: flex;
             align-items: center;
-
-            > * {
-                //@media (min-width: 375px) {
-                //    margin-bottom: 0.5em;
-                //}
-            }
 
             input.shipping_method {
                 float: none;
             }
 
             label {
+                padding: 12px 0;
                 display: inline-flex;
                 cursor: pointer;
                 flex-grow: 1;

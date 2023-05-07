@@ -3,7 +3,7 @@ import AlertService from '../frontend/Services/AlertService';
 import DataService  from '../frontend/Services/DataService';
 
 export default function cfwValidateShippingTab(): Promise<any> {
-    return new Promise( ( resolve, reject ) => {
+    return new Promise<void>( ( resolve, reject ) => {
         jQuery( '#cfw-shipping-method .validate-required:visible' ).each( ( i, el ) => {
             const container = jQuery( el );
             const field = container.find( ':input' ).not( '[data-parsley-group]' );

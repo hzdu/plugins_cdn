@@ -2,17 +2,20 @@
 @import "~normalize.css/normalize.css";
 @import "components/template-loader-resets";
 
-// Grid
-@import "grid";
-
 // Variables
 @import "custom-properties";
+
+// Bootstrap Grid Mixins
+@import "grid-mixins";
 
 // Mixins
 @import "mixins";
 
 // Utility Classes
 @import "utility-classes";
+
+// Custom fonts
+@import "custom-fonts";
 
 // Components
 @import "components/document";
@@ -29,6 +32,7 @@
 @import "components/tooltip-labels";
 @import "components/cart-summary/trust-badges";
 @import "components/modals";
+@import "components/variation-modal";
 @import "components/cart-summary/style";
 @import "components/cart-summary/mobile-review";
 @import "components/cart-summary/cart";
@@ -152,6 +156,16 @@
 
     #cfw-payment-method .cfw-return-to-information-btn {
         display: block !important;
+    }
+}
+
+.cfw_cart_item_after_data {
+    margin-top: 0.5em;
+    display: flex;
+    align-items: center;
+
+    .cfw-edit-item-quantity-control-wrap {
+        margin-right: 7px;
     }
 }
 

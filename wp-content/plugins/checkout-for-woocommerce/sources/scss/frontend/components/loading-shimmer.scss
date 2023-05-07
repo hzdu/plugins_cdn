@@ -14,6 +14,7 @@
         border-radius: 5px;
         animation: shimmer 2s infinite linear;
         display: var(--cfw-loading-shimmer-display-mode);
+        backdrop-filter: var(--cfw-loading-shimmer-filter);
         z-index: 10000;
     }
 }
@@ -47,6 +48,7 @@
         display: var(--cfw-loading-shimmer-cart-item-quantity-display-mode);
     }
 
+    .cfw-cart-edit-item-variation,
     .cfw-cart-item-image-wrap,
     .cfw-edit-item-quantity-control-wrap,
     .cfw-cart-item-subtotal span,

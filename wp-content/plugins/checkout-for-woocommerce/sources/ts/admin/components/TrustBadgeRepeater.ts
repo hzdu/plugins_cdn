@@ -1,3 +1,5 @@
+import swal                    from 'sweetalert2/dist/sweetalert2';
+
 class TrustBadgeRepeater {
     constructor() {
         const templateRow = jQuery( '.cfw-admin-trust-badge-template-row' );
@@ -39,10 +41,21 @@ class TrustBadgeRepeater {
 
             const rowToRemove = jQuery( e.currentTarget ).parents( '.cfw-admin-trust-badge-row' );
 
-            // eslint-disable-next-line no-alert
-            if ( window.confirm( 'Are you sure you want to remove this trust badge?' ) ) {
-                rowToRemove.remove();
-            }
+            swal.fire( {
+                title: 'Confirm',
+                text: 'Are you sure you want to remove this trust badge?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Yes, remove!',
+                confirmButtonColor: '#4e9ae0',
+                customClass: {
+                    container: 'cfw-swal-container',
+                },
+            } ).then( ( result ) => {
+                if ( result.isConfirmed ) {
+                    rowToRemove.remove();
+                }
+            } );
         } );
     }
 }

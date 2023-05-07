@@ -52,12 +52,14 @@ class UpdateCheckoutAction extends Action {
 
                 if ( maybeValidJSON === null ) {
                     LoggingService.logError( 'Unable to fix malformed JSON' );
+                    LoggingService.logError( 'Response:', response );
                 } else if ( Action.isValidJSON( maybeValidJSON[ 0 ] ) ) {
                     LoggingService.logNotice( 'Fixed malformed JSON. Original:', response );
                     // eslint-disable-next-line prefer-destructuring
                     response = maybeValidJSON[ 0 ];
                 } else {
                     LoggingService.logError( 'Unable to fix malformed JSON' );
+                    LoggingService.logError( 'Response:', response );
                 }
 
                 return response;
@@ -77,17 +79,11 @@ class UpdateCheckoutAction extends Action {
     }
 
     public blockUI(): void {
-        jQuery( this.blockUISelector ).not( '.cfw-blocked' ).block( {
-            message: null,
-            overlayCSS: {
-                background: '#fff',
-                opacity: 0,
-            },
-        } ).addClass( 'cfw-blocked' );
+        jQuery( this.blockUISelector ).addClass( 'cfw-blocked' );
     }
 
     public unblockUI(): void {
-        jQuery( this.blockUISelector ).unblock().removeClass( 'cfw-blocked' );
+        jQuery( this.blockUISelector ).removeClass( 'cfw-blocked' );
     }
 
     /**

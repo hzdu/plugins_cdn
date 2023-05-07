@@ -15,12 +15,10 @@ class Pickup {
             this.showContent( e.target );
         } );
 
-        jQuery( window ).on( 'load', () => {
-            jQuery( '[name="cfw_delivery_method"]:checked' ).trigger( 'change' );
-        } );
+        jQuery( '[name="cfw_delivery_method"]:checked' ).trigger( 'change' );
 
         jQuery( document.body ).on( 'change', '[name="cfw_delivery_method"], [name="cfw_pickup_location"]', ( e ) => {
-            Main.instance.updateCheckoutService.triggerUpdateCheckout();
+            Main.instance.updateCheckoutService.queueUpdateCheckout();
         } );
     }
 
@@ -41,7 +39,7 @@ class Pickup {
             jQuery( '#cfw-pickup-location-wrap' ).show().find( ':input' ).prop( 'disabled', false );
 
             // Billing address
-            jQuery( '#shipping_dif_from_billing_radio' ).prop( 'checked', true );
+            jQuery( '#shipping_dif_from_billing_radio' ).prop( 'checked', true ).trigger( 'change' );
             jQuery( '#billing_same_as_shipping_radio' ).prop( 'disabled', true );
             jQuery( '#cfw-shipping-same-billing .cfw-radio-reveal-group' ).css( 'border', 'none' );
             jQuery( '#cfw-shipping-same-billing .cfw-radio-reveal-group .cfw-radio-reveal-li' ).css( 'border', 'none' );
@@ -55,6 +53,8 @@ class Pickup {
             const shippingMethodBreadcrumb = jQuery( 'li.cfw-shipping-method > a' );
             const oldLabel = shippingMethodBreadcrumb.text();
             shippingMethodBreadcrumb.text( DataService.getMessage( 'pickup_label' ) ).data( 'old_label', oldLabel );
+
+            jQuery( document.body ).addClass( 'cfw-hide-payment-request-buttons' );
         } else {
             // Shipping address
             jQuery( '#cfw-customer-info-address.shipping' ).show();
@@ -76,6 +76,8 @@ class Pickup {
             const shippingMethodBreadcrumb = jQuery( 'li.cfw-shipping-method > a' );
             const label = shippingMethodBreadcrumb.data( 'old_label' );
             shippingMethodBreadcrumb.text( label );
+
+            jQuery( document.body ).removeClass( 'cfw-hide-payment-request-buttons' );
         }
     }
 }
