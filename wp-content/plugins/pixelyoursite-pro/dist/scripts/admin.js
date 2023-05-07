@@ -403,7 +403,15 @@ jQuery( document ).ready(function($) {
     }
 
     updateBuilderUrl()
-
+    $body = $('body');
+    $body.on('change','.plate #pys_ga_use_server_api',function () {
+        if(this.checked == '1') {
+            $(this).parents('.plate').find('#pys_ga_server_access_api_token_0').removeAttr('disabled')
+        }
+        else {
+            $(this).parents('.plate').find('#pys_ga_server_access_api_token_0').attr('disabled', 'disabled')
+        }
+    })
 });
 
 
