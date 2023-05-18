@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Checkout for WooCommerce\n"
-"POT-Creation-Date: 2023-04-21 14:36-0400\n"
-"PO-Revision-Date: 2023-04-21 14:42-0400\n"
+"POT-Creation-Date: 2023-05-15 15:43-0400\n"
+"PO-Revision-Date: 2023-05-15 15:53-0400\n"
 "Last-Translator: Clifton Griffin <clif@checkoutwc.com>\n"
 "Language-Team: \n"
 "Language: pt\n"
@@ -21,7 +21,7 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 
-#: checkout-for-woocommerce.php:148
+#: checkout-for-woocommerce.php:147
 msgid ""
 "Your site is running an <strong>insecure version</strong> of PHP that is no "
 "longer supported. Please contact your web hosting provider to update your "
@@ -32,7 +32,7 @@ msgstr ""
 "atualizar sua versão PHP."
 
 #. translators: %s - checkoutwc.com URL for documentation with more details.
-#: checkout-for-woocommerce.php:154
+#: checkout-for-woocommerce.php:153
 #, php-format
 msgid ""
 "<strong>Note:</strong> CheckoutWC is disabled on your site until you fix the "
@@ -44,13 +44,13 @@ msgstr ""
 "noreferrer\">Precisa de ajuda? Clique aqui.</a>"
 
 #. translators: %s - WordPress version.
-#: checkout-for-woocommerce.php:194
+#: checkout-for-woocommerce.php:193
 #, php-format
 msgid "CheckoutWC requires WordPress %s or later."
 msgstr "O CheckoutWC requer WordPress %s ou posterior."
 
 #. translators: %s - WordPress version.
-#: checkout-for-woocommerce.php:232
+#: checkout-for-woocommerce.php:231
 #, php-format
 msgid "CheckoutWC requires WooCommerce %s or later."
 msgstr "CheckoutWC requer WooCommerce %s ou posterior."
@@ -150,9 +150,9 @@ msgstr ""
 "Por favor, desactivar para evitar problemas com a sua página de checkout."
 
 #: includes/Compatibility/Gateways/PayPalForWooCommerce.php:157
-#: sources/php/template-functions.php:714
-#: sources/php/template-functions.php:1320
-#: sources/php/template-functions.php:2028
+#: sources/php/template-functions.php:718
+#: sources/php/template-functions.php:1324
+#: sources/php/template-functions.php:2032
 msgid "Billing address"
 msgstr "Endereço de cobrança"
 
@@ -181,6 +181,14 @@ msgstr "Pesquisa de endereços"
 #: includes/Features/FetchifyAddressAutocomplete.php:81
 msgid "Start with post/zip code or street"
 msgstr "Comece com código postal ou rua"
+
+#: includes/Features/FetchifyAddressAutocomplete.php:86
+msgid "Search for your address"
+msgstr "Procurar o seu endereço"
+
+#: includes/Features/FetchifyAddressAutocomplete.php:87
+msgid "Or enter address manually."
+msgstr "Ou introduza o endereço manualmente."
 
 #: includes/Features/HideOptionalAddressFields.php:37
 msgid "Add Address Line 2"
@@ -214,7 +222,7 @@ msgstr "Locais de recolha"
 msgid "Pick up in store"
 msgstr "Recolher na loja"
 
-#: includes/Features/Pickup.php:431 includes/Managers/AssetManager.php:630
+#: includes/Features/Pickup.php:431 includes/Managers/AssetManager.php:632
 msgid "Pickup"
 msgstr "Pickup"
 
@@ -250,38 +258,38 @@ msgstr "Normalmente pronto em 2-4 dias."
 msgid "Usually ready in 5+ days."
 msgstr "Normalmente pronto em 5+ dias."
 
-#: includes/Features/SideCart.php:215
+#: includes/Features/SideCart.php:226
 msgid "Close Cart"
 msgstr "Fechar carrinho"
 
-#: includes/Features/SideCart.php:252 sources/php/template-functions.php:1526
+#: includes/Features/SideCart.php:263 sources/php/template-functions.php:1530
 msgid "Apply"
 msgstr "Aplicar"
 
-#: includes/Features/SideCart.php:267 sources/php/template-functions.php:1555
+#: includes/Features/SideCart.php:278 sources/php/template-functions.php:1559
 msgid "Have a promo code? Click here."
 msgstr "Tem um código promocional? Clique aqui."
 
-#: includes/Features/SideCart.php:289 sources/php/template-functions.php:1576
+#: includes/Features/SideCart.php:300 sources/php/template-functions.php:1580
 msgid "Promo Code"
 msgstr "Código Promocional"
 
-#: includes/Features/SideCart.php:298 sources/php/template-functions.php:1584
+#: includes/Features/SideCart.php:309 sources/php/template-functions.php:1588
 msgid "Enter Promo Code"
 msgstr "Insira o Código Promocional"
 
-#: includes/Features/SideCart.php:341 includes/Features/SideCart.php:342
-#: sources/php/template-functions.php:2041
-#: sources/php/template-functions.php:2284
+#: includes/Features/SideCart.php:352 includes/Features/SideCart.php:353
+#: sources/php/template-functions.php:2045
+#: sources/php/template-functions.php:2288
 msgid "Shipping"
 msgstr "Envio"
 
-#: includes/Features/SideCart.php:627
+#: includes/Features/SideCart.php:638
 msgid "Congrats! You get free standard shipping."
 msgstr "Parabéns! Você recebe frete padrão grátis."
 
 #. translators: %s is the amount remaining for free shipping
-#: includes/Features/SideCart.php:641
+#: includes/Features/SideCart.php:652
 #, php-format
 msgid "You're %s away from free shipping!"
 msgstr "Você está %s longe do transporte gratuito!"
@@ -314,25 +322,25 @@ msgstr "Você Entrou"
 msgid "Recommended"
 msgstr "Recomendado"
 
-#: includes/Managers/AssetManager.php:611
+#: includes/Managers/AssetManager.php:613
 msgid "Please enter a valid phone number."
 msgstr "Por favor, introduza um número de telefone válido."
 
-#: includes/Managers/AssetManager.php:620
+#: includes/Managers/AssetManager.php:622
 msgid "Please enter your first and last name."
 msgstr "Por favor, introduza o seu primeiro e último nome."
 
-#: includes/Managers/AssetManager.php:621
-#: sources/php/template-functions.php:724
-#: sources/php/template-functions.php:2012
+#: includes/Managers/AssetManager.php:623
+#: sources/php/template-functions.php:728
+#: sources/php/template-functions.php:2016
 msgid "Shipping address"
 msgstr "Endereço de entrega"
 
-#: includes/Managers/AssetManager.php:622
+#: includes/Managers/AssetManager.php:624
 msgid "Please enter a new quantity:"
 msgstr "Por favor introduza uma nova quantidade:"
 
-#: includes/Managers/AssetManager.php:623
+#: includes/Managers/AssetManager.php:625
 msgid ""
 "3-digit security code usually found on the back of your card. American "
 "Express cards have a 4-digit code located on the front."
@@ -341,11 +349,11 @@ msgstr ""
 "cartão. Os cartões American Express têm um código de 4 dígitos localizado na "
 "frente."
 
-#: includes/Managers/AssetManager.php:624
+#: includes/Managers/AssetManager.php:626
 msgid "Are you sure you want to remove this item from your cart?"
 msgstr "Tem a certeza que quer remover este item do seu carrinho?"
 
-#: includes/Managers/AssetManager.php:629
+#: includes/Managers/AssetManager.php:631
 msgid "Please enter a valid postcode / ZIP."
 msgstr "Por favor, introduza um código postal / ZIP válido."
 
@@ -365,9 +373,9 @@ msgstr "Não há métodos de envio disponíveis"
 msgid "Complete Order"
 msgstr "Completar Compra"
 
-#: sources/php/functions.php:1342 sources/php/template-functions.php:1077
-#: sources/php/template-functions.php:1993
-#: sources/php/template-functions.php:2298
+#: sources/php/functions.php:1342 sources/php/template-functions.php:1081
+#: sources/php/template-functions.php:1997
+#: sources/php/template-functions.php:2302
 msgid "Payment"
 msgstr "Pagamento"
 
@@ -439,53 +447,53 @@ msgstr "Mostrar Resumo do Pedido"
 msgid "Hide order summary"
 msgstr "Ocultar resumo do pedido"
 
-#: sources/php/template-functions.php:269
+#: sources/php/template-functions.php:273
 msgid "Express checkout"
 msgstr "Checkout expresso"
 
-#: sources/php/template-functions.php:301
-#: sources/php/template-functions.php:1975
-#: sources/php/template-functions.php:2269
+#: sources/php/template-functions.php:305
+#: sources/php/template-functions.php:1979
+#: sources/php/template-functions.php:2273
 msgid "Information"
 msgstr "Informações"
 
-#: sources/php/template-functions.php:320
+#: sources/php/template-functions.php:324
 msgid "Order review"
 msgstr "Revisão de pedidos"
 
-#: sources/php/template-functions.php:392
+#: sources/php/template-functions.php:396
 msgid "Already have an account with us?"
 msgstr "Já tem uma conta conosco?"
 
-#: sources/php/template-functions.php:404
+#: sources/php/template-functions.php:408
 msgid "Log in."
 msgstr "Entrar."
 
 #. translators: %s: site name
-#: sources/php/template-functions.php:514
+#: sources/php/template-functions.php:518
 #, php-format
 msgid "Create %s shopping account."
 msgstr "Crie %s conta de compras."
 
-#: sources/php/template-functions.php:526
+#: sources/php/template-functions.php:530
 msgid "If you do not have an account, we will create one for you."
 msgstr "Se você não tem uma conta, nós vamos criar um para você."
 
 #. translators: %1 is the customer's name, %2 is their email address
-#: sources/php/template-functions.php:558
+#: sources/php/template-functions.php:562
 #, php-format
 msgid "Welcome back, %1$s (%2$s)."
 msgstr "Bem-vindo de volta, %1$s (%2$s)."
 
-#: sources/php/template-functions.php:576
+#: sources/php/template-functions.php:580
 msgid "Log out."
 msgstr "Sair."
 
-#: sources/php/template-functions.php:594
+#: sources/php/template-functions.php:598
 msgid "Welcome back"
 msgstr "Bem-vindo(a) de volta"
 
-#: sources/php/template-functions.php:598
+#: sources/php/template-functions.php:602
 msgid ""
 "It looks like you already have an account. Please enter your login details "
 "below."
@@ -493,91 +501,91 @@ msgstr ""
 "Parece que você já tem uma conta. Por favor, digite seus dados de login "
 "abaixo."
 
-#: sources/php/template-functions.php:601
+#: sources/php/template-functions.php:605
 msgid ""
 "If you have shopped with us before, please enter your login details below."
 msgstr ""
 "Se você já fez compras conosco antes, por favor, digite seus dados de login "
 "abaixo."
 
-#: sources/php/template-functions.php:654
+#: sources/php/template-functions.php:658
 msgid "Or continue as guest"
 msgstr "Ou continuar como convidado"
 
-#: sources/php/template-functions.php:704
-#: sources/php/template-functions.php:2005
+#: sources/php/template-functions.php:708
+#: sources/php/template-functions.php:2009
 msgid "Billing and Shipping address"
 msgstr "Endereço para facturação e expedição"
 
-#: sources/php/template-functions.php:931
-#: sources/php/template-functions.php:973
-#: sources/php/template-functions.php:1029
+#: sources/php/template-functions.php:935
+#: sources/php/template-functions.php:977
+#: sources/php/template-functions.php:1033
 msgid "Contact"
 msgstr "Contato"
 
-#: sources/php/template-functions.php:939
-#: sources/php/template-functions.php:955
-#: sources/php/template-functions.php:981
-#: sources/php/template-functions.php:997
-#: sources/php/template-functions.php:1012
-#: sources/php/template-functions.php:1037
-#: sources/php/template-functions.php:1053
-#: sources/php/template-functions.php:1068
-#: sources/php/template-functions.php:1084
+#: sources/php/template-functions.php:943
+#: sources/php/template-functions.php:959
+#: sources/php/template-functions.php:985
+#: sources/php/template-functions.php:1001
+#: sources/php/template-functions.php:1016
+#: sources/php/template-functions.php:1041
+#: sources/php/template-functions.php:1057
+#: sources/php/template-functions.php:1072
+#: sources/php/template-functions.php:1088
 msgid "Change"
 msgstr "Alterar"
 
-#: sources/php/template-functions.php:1004
-#: sources/php/template-functions.php:1060
+#: sources/php/template-functions.php:1008
+#: sources/php/template-functions.php:1064
 msgid "Method"
 msgstr "Método"
 
-#: sources/php/template-functions.php:1216
+#: sources/php/template-functions.php:1220
 msgid "Shipping method"
 msgstr "Método de envio"
 
-#: sources/php/template-functions.php:1341
+#: sources/php/template-functions.php:1345
 msgid "Select the address that matches your card or payment method."
 msgstr ""
 "Selecione o endereço que corresponda ao seu cartão ou forma de pagamento."
 
-#: sources/php/template-functions.php:1539
+#: sources/php/template-functions.php:1543
 msgid "Promo code"
 msgstr "Código promocional"
 
 #. translators: %s is the order number
-#: sources/php/template-functions.php:1742
+#: sources/php/template-functions.php:1746
 #, php-format
 msgid "Order %s"
 msgstr "Pedido %s"
 
 #. translators: %s is the billing first name
-#: sources/php/template-functions.php:1755
+#: sources/php/template-functions.php:1759
 #, php-format
 msgid "Thank you %s!"
 msgstr "Obrigado %s!"
 
-#: sources/php/template-functions.php:1859
+#: sources/php/template-functions.php:1863
 msgid "Order status"
 msgstr "Status do Pedido"
 
-#: sources/php/template-functions.php:1890
+#: sources/php/template-functions.php:1894
 msgid "Order updates"
 msgstr "Atualizações de pedidos"
 
-#: sources/php/template-functions.php:1899
+#: sources/php/template-functions.php:1903
 msgid "You’ll get shipping and delivery updates by email."
 msgstr "Você receberá atualizações de envio e entrega por e-mail."
 
-#: sources/php/template-functions.php:1989
+#: sources/php/template-functions.php:1993
 msgid "Contact information"
 msgstr "Informação de contato"
 
-#: sources/php/template-functions.php:2142
+#: sources/php/template-functions.php:2146
 msgid "Login"
 msgstr "Entrar"
 
-#: sources/php/template-functions.php:2398
+#: sources/php/template-functions.php:2402
 msgid "Your Cart is Empty"
 msgstr "O seu carrinho está vazio"
 

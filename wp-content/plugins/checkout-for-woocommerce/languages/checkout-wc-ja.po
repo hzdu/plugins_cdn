@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Checkout for WooCommerce\n"
-"POT-Creation-Date: 2023-04-21 14:36-0400\n"
-"PO-Revision-Date: 2023-04-21 14:46-0400\n"
+"POT-Creation-Date: 2023-05-15 15:43-0400\n"
+"PO-Revision-Date: 2023-05-15 15:56-0400\n"
 "Last-Translator: Clifton Griffin <clif@checkoutwc.com>\n"
 "Language-Team: support@checkoutwc.com\n"
 "Language: ja_JP\n"
@@ -23,7 +23,7 @@ msgstr ""
 "X-Poedit-SearchPathExcluded-1: dist\n"
 "X-Poedit-SearchPathExcluded-2: vendor\n"
 
-#: checkout-for-woocommerce.php:148
+#: checkout-for-woocommerce.php:147
 msgid ""
 "Your site is running an <strong>insecure version</strong> of PHP that is no "
 "longer supported. Please contact your web hosting provider to update your "
@@ -34,7 +34,7 @@ msgstr ""
 "グプロバイダに連絡してください。"
 
 #. translators: %s - checkoutwc.com URL for documentation with more details.
-#: checkout-for-woocommerce.php:154
+#: checkout-for-woocommerce.php:153
 #, php-format
 msgid ""
 "<strong>Note:</strong> CheckoutWC is disabled on your site until you fix the "
@@ -46,13 +46,13 @@ msgstr ""
 "ヘルプが必要ですか？ここをクリックしてください。</a>"
 
 #. translators: %s - WordPress version.
-#: checkout-for-woocommerce.php:194
+#: checkout-for-woocommerce.php:193
 #, php-format
 msgid "CheckoutWC requires WordPress %s or later."
 msgstr "CheckoutWCはWordPress %s以降が必要です。"
 
 #. translators: %s - WordPress version.
-#: checkout-for-woocommerce.php:232
+#: checkout-for-woocommerce.php:231
 #, php-format
 msgid "CheckoutWC requires WooCommerce %s or later."
 msgstr "CheckoutWCは、WooCommerce %s以降が必要です。"
@@ -150,9 +150,9 @@ msgid "Please deactivate to avoid problems with your checkout page."
 msgstr "チェックアウトページの問題を回避するために、無効化してください。"
 
 #: includes/Compatibility/Gateways/PayPalForWooCommerce.php:157
-#: sources/php/template-functions.php:714
-#: sources/php/template-functions.php:1320
-#: sources/php/template-functions.php:2028
+#: sources/php/template-functions.php:718
+#: sources/php/template-functions.php:1324
+#: sources/php/template-functions.php:2032
 msgid "Billing address"
 msgstr "お客様情報"
 
@@ -181,6 +181,14 @@ msgstr "アドレス検索"
 #: includes/Features/FetchifyAddressAutocomplete.php:81
 msgid "Start with post/zip code or street"
 msgstr "郵便番号、郵便番号、または郵便番号から始めてください。"
+
+#: includes/Features/FetchifyAddressAutocomplete.php:86
+msgid "Search for your address"
+msgstr "住所を検索する"
+
+#: includes/Features/FetchifyAddressAutocomplete.php:87
+msgid "Or enter address manually."
+msgstr "または、アドレスを手入力します。"
 
 #: includes/Features/HideOptionalAddressFields.php:37
 msgid "Add Address Line 2"
@@ -214,7 +222,7 @@ msgstr "ピックアップの場所"
 msgid "Pick up in store"
 msgstr "店舗でのお受け取り"
 
-#: includes/Features/Pickup.php:431 includes/Managers/AssetManager.php:630
+#: includes/Features/Pickup.php:431 includes/Managers/AssetManager.php:632
 msgid "Pickup"
 msgstr "ピックアップ"
 
@@ -250,38 +258,38 @@ msgstr "通常2～4日で出来上がります。"
 msgid "Usually ready in 5+ days."
 msgstr "通常5日以上かかります。"
 
-#: includes/Features/SideCart.php:215
+#: includes/Features/SideCart.php:226
 msgid "Close Cart"
 msgstr "カートを閉じる"
 
-#: includes/Features/SideCart.php:252 sources/php/template-functions.php:1526
+#: includes/Features/SideCart.php:263 sources/php/template-functions.php:1530
 msgid "Apply"
 msgstr "許可"
 
-#: includes/Features/SideCart.php:267 sources/php/template-functions.php:1555
+#: includes/Features/SideCart.php:278 sources/php/template-functions.php:1559
 msgid "Have a promo code? Click here."
 msgstr "プロモコードをお持ちですか？ここをクリックしてください。"
 
-#: includes/Features/SideCart.php:289 sources/php/template-functions.php:1576
+#: includes/Features/SideCart.php:300 sources/php/template-functions.php:1580
 msgid "Promo Code"
 msgstr "プロモコード"
 
-#: includes/Features/SideCart.php:298 sources/php/template-functions.php:1584
+#: includes/Features/SideCart.php:309 sources/php/template-functions.php:1588
 msgid "Enter Promo Code"
 msgstr "プロモコードを入力してください"
 
-#: includes/Features/SideCart.php:341 includes/Features/SideCart.php:342
-#: sources/php/template-functions.php:2041
-#: sources/php/template-functions.php:2284
+#: includes/Features/SideCart.php:352 includes/Features/SideCart.php:353
+#: sources/php/template-functions.php:2045
+#: sources/php/template-functions.php:2288
 msgid "Shipping"
 msgstr "送料"
 
-#: includes/Features/SideCart.php:627
+#: includes/Features/SideCart.php:638
 msgid "Congrats! You get free standard shipping."
 msgstr "おめでとうございます。標準で送料が無料になります。"
 
 #. translators: %s is the amount remaining for free shipping
-#: includes/Features/SideCart.php:641
+#: includes/Features/SideCart.php:652
 #, php-format
 msgid "You're %s away from free shipping!"
 msgstr "送料無料まであと%sですね。"
@@ -310,25 +318,25 @@ msgstr "入力しました。"
 msgid "Recommended"
 msgstr "推奨"
 
-#: includes/Managers/AssetManager.php:611
+#: includes/Managers/AssetManager.php:613
 msgid "Please enter a valid phone number."
 msgstr "有効な電話番号を入力してください。"
 
-#: includes/Managers/AssetManager.php:620
+#: includes/Managers/AssetManager.php:622
 msgid "Please enter your first and last name."
 msgstr "姓と名を入力してください。"
 
-#: includes/Managers/AssetManager.php:621
-#: sources/php/template-functions.php:724
-#: sources/php/template-functions.php:2012
+#: includes/Managers/AssetManager.php:623
+#: sources/php/template-functions.php:728
+#: sources/php/template-functions.php:2016
 msgid "Shipping address"
 msgstr "お届け先住所"
 
-#: includes/Managers/AssetManager.php:622
+#: includes/Managers/AssetManager.php:624
 msgid "Please enter a new quantity:"
 msgstr "新しい数量を入力してください："
 
-#: includes/Managers/AssetManager.php:623
+#: includes/Managers/AssetManager.php:625
 msgid ""
 "3-digit security code usually found on the back of your card. American "
 "Express cards have a 4-digit code located on the front."
@@ -336,11 +344,11 @@ msgstr ""
 "通常、カードの裏面に記載されている3桁のセキュリティコード。アメリカン・エキス"
 "プレス・カードには4桁のコードが前面に記載されています。"
 
-#: includes/Managers/AssetManager.php:624
+#: includes/Managers/AssetManager.php:626
 msgid "Are you sure you want to remove this item from your cart?"
 msgstr "カートからこのアイテムを削除してもよろしいですか？"
 
-#: includes/Managers/AssetManager.php:629
+#: includes/Managers/AssetManager.php:631
 msgid "Please enter a valid postcode / ZIP."
 msgstr "有効な郵便番号を入力してください。"
 
@@ -360,9 +368,9 @@ msgstr "発送方法はありません。"
 msgid "Complete Order"
 msgstr "完全な注文"
 
-#: sources/php/functions.php:1342 sources/php/template-functions.php:1077
-#: sources/php/template-functions.php:1993
-#: sources/php/template-functions.php:2298
+#: sources/php/functions.php:1342 sources/php/template-functions.php:1081
+#: sources/php/template-functions.php:1997
+#: sources/php/template-functions.php:2302
 msgid "Payment"
 msgstr "支払い"
 
@@ -434,144 +442,144 @@ msgstr "注文の要約を表示する"
 msgid "Hide order summary"
 msgstr "注文の概要を隠す"
 
-#: sources/php/template-functions.php:269
+#: sources/php/template-functions.php:273
 msgid "Express checkout"
 msgstr "エクスプレスチェックアウト"
 
-#: sources/php/template-functions.php:301
-#: sources/php/template-functions.php:1975
-#: sources/php/template-functions.php:2269
+#: sources/php/template-functions.php:305
+#: sources/php/template-functions.php:1979
+#: sources/php/template-functions.php:2273
 msgid "Information"
 msgstr "インフォメーション"
 
-#: sources/php/template-functions.php:320
+#: sources/php/template-functions.php:324
 msgid "Order review"
 msgstr "注文レビュー"
 
-#: sources/php/template-functions.php:392
+#: sources/php/template-functions.php:396
 msgid "Already have an account with us?"
 msgstr "既に私たちと口座をお持ちですか？"
 
-#: sources/php/template-functions.php:404
+#: sources/php/template-functions.php:408
 msgid "Log in."
 msgstr "ログインして."
 
 #. translators: %s: site name
-#: sources/php/template-functions.php:514
+#: sources/php/template-functions.php:518
 #, php-format
 msgid "Create %s shopping account."
 msgstr "ショッピング アカウント %s を作成します。"
 
-#: sources/php/template-functions.php:526
+#: sources/php/template-functions.php:530
 msgid "If you do not have an account, we will create one for you."
 msgstr ""
 "あなたがアカウントを持っていない場合は、我々はあなたのために1つを作成します。"
 
 #. translators: %1 is the customer's name, %2 is their email address
-#: sources/php/template-functions.php:558
+#: sources/php/template-functions.php:562
 #, php-format
 msgid "Welcome back, %1$s (%2$s)."
 msgstr "ようこそ、%1$s（%2$s）。"
 
-#: sources/php/template-functions.php:576
+#: sources/php/template-functions.php:580
 msgid "Log out."
 msgstr "ログアウト."
 
-#: sources/php/template-functions.php:594
+#: sources/php/template-functions.php:598
 msgid "Welcome back"
 msgstr "ようこそ"
 
-#: sources/php/template-functions.php:598
+#: sources/php/template-functions.php:602
 msgid ""
 "It looks like you already have an account. Please enter your login details "
 "below."
 msgstr ""
 "すでにアカウントをお持ちのようです。以下にログイン情報を入力してください。"
 
-#: sources/php/template-functions.php:601
+#: sources/php/template-functions.php:605
 msgid ""
 "If you have shopped with us before, please enter your login details below."
 msgstr ""
 "以前に当店でお買い物をされたことがある方は、以下にログイン情報を入力してくだ"
 "さい。"
 
-#: sources/php/template-functions.php:654
+#: sources/php/template-functions.php:658
 msgid "Or continue as guest"
 msgstr "またはゲストとして継続"
 
-#: sources/php/template-functions.php:704
-#: sources/php/template-functions.php:2005
+#: sources/php/template-functions.php:708
+#: sources/php/template-functions.php:2009
 msgid "Billing and Shipping address"
 msgstr "請求先および配送先住所"
 
-#: sources/php/template-functions.php:931
-#: sources/php/template-functions.php:973
-#: sources/php/template-functions.php:1029
+#: sources/php/template-functions.php:935
+#: sources/php/template-functions.php:977
+#: sources/php/template-functions.php:1033
 msgid "Contact"
 msgstr "お問い合わせ"
 
-#: sources/php/template-functions.php:939
-#: sources/php/template-functions.php:955
-#: sources/php/template-functions.php:981
-#: sources/php/template-functions.php:997
-#: sources/php/template-functions.php:1012
-#: sources/php/template-functions.php:1037
-#: sources/php/template-functions.php:1053
-#: sources/php/template-functions.php:1068
-#: sources/php/template-functions.php:1084
+#: sources/php/template-functions.php:943
+#: sources/php/template-functions.php:959
+#: sources/php/template-functions.php:985
+#: sources/php/template-functions.php:1001
+#: sources/php/template-functions.php:1016
+#: sources/php/template-functions.php:1041
+#: sources/php/template-functions.php:1057
+#: sources/php/template-functions.php:1072
+#: sources/php/template-functions.php:1088
 msgid "Change"
 msgstr "変更"
 
-#: sources/php/template-functions.php:1004
-#: sources/php/template-functions.php:1060
+#: sources/php/template-functions.php:1008
+#: sources/php/template-functions.php:1064
 msgid "Method"
 msgstr "方法"
 
-#: sources/php/template-functions.php:1216
+#: sources/php/template-functions.php:1220
 msgid "Shipping method"
 msgstr "発送方法"
 
-#: sources/php/template-functions.php:1341
+#: sources/php/template-functions.php:1345
 msgid "Select the address that matches your card or payment method."
 msgstr "ご利用のカードまたはお支払い方法に合った住所を選択してください。"
 
-#: sources/php/template-functions.php:1539
+#: sources/php/template-functions.php:1543
 msgid "Promo code"
 msgstr "プロモコード"
 
 #. translators: %s is the order number
-#: sources/php/template-functions.php:1742
+#: sources/php/template-functions.php:1746
 #, php-format
 msgid "Order %s"
 msgstr "注文%s"
 
 #. translators: %s is the billing first name
-#: sources/php/template-functions.php:1755
+#: sources/php/template-functions.php:1759
 #, php-format
 msgid "Thank you %s!"
 msgstr "ありがとう、%s!"
 
-#: sources/php/template-functions.php:1859
+#: sources/php/template-functions.php:1863
 msgid "Order status"
 msgstr "注文ステータス"
 
-#: sources/php/template-functions.php:1890
+#: sources/php/template-functions.php:1894
 msgid "Order updates"
 msgstr "注文ステータスの更新"
 
-#: sources/php/template-functions.php:1899
+#: sources/php/template-functions.php:1903
 msgid "You’ll get shipping and delivery updates by email."
 msgstr "メールで配送と配送の最新情報を入手できます。"
 
-#: sources/php/template-functions.php:1989
+#: sources/php/template-functions.php:1993
 msgid "Contact information"
 msgstr "連絡先情報"
 
-#: sources/php/template-functions.php:2142
+#: sources/php/template-functions.php:2146
 msgid "Login"
 msgstr "ログイン"
 
-#: sources/php/template-functions.php:2398
+#: sources/php/template-functions.php:2402
 msgid "Your Cart is Empty"
 msgstr "カートは空です"
 

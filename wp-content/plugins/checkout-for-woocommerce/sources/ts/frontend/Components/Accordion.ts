@@ -1,41 +1,48 @@
-class Accordion {
-    private readonly _targetSelector;
+import DataService from '../Services/DataService';
 
-    /**
-     * Default selector is the class used for all radio reveal groups
-     * SO, when using you have to remember that .cfw-radio-reveal-group matches
-     * multiple parent containers for different accordions
-     *
-     * @param targetSelector
-     */
+class Accordion {
+    private readonly _targetSelector: string;
+
     constructor( targetSelector = '.cfw-radio-reveal-group' ) {
         this._targetSelector = targetSelector;
-
         this.setListeners();
     }
 
     setListeners(): void {
-        jQuery( document.body ).on( 'change', `${this._targetSelector} .cfw-radio-reveal-title-wrap :radio`, ( e ) => {
-            this.showContent( e.target );
+        const form = DataService.checkoutForm;
+        const targetSelectorRadio = `${this._targetSelector} .cfw-radio-reveal-title-wrap :radio`;
+        const targetSelector = this._targetSelector;
+
+        form.on( 'change', targetSelectorRadio, ( e ) => {
+            Accordion.showContent( jQuery( e.target ) );
         } );
 
-        // Page load
-        jQuery( `${this._targetSelector} .cfw-radio-reveal-title-wrap :radio:checked` ).each( ( index, element ) => {
-            this.showContent( element );
+        jQuery( document.body ).on( 'updated_checkout', () => {
+            jQuery( targetSelector ).each( ( index, element ) => {
+                Accordion.showContent( jQuery( element ).find( `${targetSelectorRadio}:checked` ).first() );
+            } );
+        } );
+
+        jQuery( document.body ).on( 'click', '.cfw-shipping-methods-list li, .cfw-radio-reveal-li', ( e ) => {
+            jQuery( e.currentTarget ).find( '.cfw-radio-reveal-title-wrap, .cfw-shipping-method-inner' ).find( ':radio:not(:checked)' ).prop( 'checked', true )
+                .trigger( 'change' );
         } );
     }
 
-    showContent( target ): void {
-        const radioButton = jQuery( target );
+    static showContent( target: JQuery<HTMLElement> ): void {
+        const radioButton = target;
+        const parentRow = radioButton.parents( '.cfw-radio-reveal-li' ).first();
+        const siblings = parentRow.siblings( '.cfw-radio-reveal-li' );
+        const content = siblings.find( '.cfw-radio-reveal-content:visible' );
 
-        if ( !radioButton.is( ':checked' ) ) {
-            return;
+        if ( radioButton.is( ':checked' ) ) {
+            siblings.removeClass( 'cfw-active' );
+            parentRow.addClass( 'cfw-active' );
+            content.slideUp( 300 );
+            parentRow.find( '.cfw-radio-reveal-content:hidden' ).slideDown( 300 );
+        } else {
+            parentRow.removeClass( 'cfw-active' );
         }
-
-        const parentRow = radioButton.parents( 'li' ).first();
-
-        parentRow.siblings( 'li' ).removeClass( 'cfw-active' );
-        parentRow.addClass( 'cfw-active' );
     }
 }
 

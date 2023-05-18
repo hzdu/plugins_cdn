@@ -10,6 +10,8 @@ import SettingsImporterButton  from './components/SettingsImporterButton';
 import TrustBadgeRepeater      from './components/TrustBadgeRepeater';
 
 declare const cfw_sendwp_remote_install: any;
+declare const cfw_acr_preview: any;
+declare const objectiv_cfw_admin: any;
 
 cfwDomReady( () => {
     /**
@@ -29,8 +31,8 @@ cfwDomReady( () => {
         changed = true;
     };
 
-    jQuery( document.body ).on( 'input keydown', '.cfw-tw', fieldChangedHandler  );
-    jQuery( document.body ).on( 'cfw_admin_field_changed', fieldChangedHandler  );
+    jQuery( document.body ).on( 'input keydown', '.cfw-tw', fieldChangedHandler );
+    jQuery( document.body ).on( 'cfw_admin_field_changed', fieldChangedHandler );
 
     window.addEventListener( 'beforeunload', beforeUnloadHandler );
 
@@ -301,5 +303,50 @@ cfwDomReady( () => {
 
     jQuery( document.body ).on( 'click', '#cfw_sendwp_install_button', ( e ) => {
         cfw_sendwp_remote_install();
+    } );
+
+    jQuery( document.body ).on( 'click', '#cfw_send_preview_button', ( e ) => {
+        e.preventDefault();
+
+        const email_address = jQuery( '#cfw_send_preview' ).val();
+        const email_id = jQuery( '#post_ID' ).val();
+
+        if ( email_address === '' ) {
+            alert( 'Please enter an email address.' );
+            return;
+        }
+
+        const data = {
+            action: 'cfw_acr_preview_email_send',
+            email_address,
+            email_id,
+            security: cfw_acr_preview.nonce,
+            dataType: 'json',
+        };
+
+        jQuery.post( objectiv_cfw_admin.ajax_url, data, ( response ) => {
+            // handle the response from wp_send_json_success
+            if ( response.success ) {
+                alert( 'Email sent successfully.' );
+            } else {
+                alert( response.data );
+            }
+        } );
+    } );
+
+    jQuery( '#cfw-remigrate-v7' ).on( 'click', ( e ) => {
+        // eslint-disable-next-line no-restricted-globals
+        const confirmation = confirm( 'Are you sure you want to remigrate your settings from v7? This cannot be undone.' );
+        if ( !confirmation ) {
+            e.preventDefault();
+        }
+    } );
+
+    jQuery( '#cfw-delete-acr-carts' ).on( 'click', ( e ) => {
+        // eslint-disable-next-line no-restricted-globals
+        const confirmation = confirm( 'Are you sure you want to clear all tracked carts and reset all recovery statistics? This cannot be undone.' );
+        if ( !confirmation ) {
+            e.preventDefault();
+        }
     } );
 } );

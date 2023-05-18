@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Checkout for WooCommerce\n"
-"POT-Creation-Date: 2023-04-21 14:36-0400\n"
-"PO-Revision-Date: 2023-04-21 14:44-0400\n"
+"POT-Creation-Date: 2023-05-15 15:43-0400\n"
+"PO-Revision-Date: 2023-05-15 15:54-0400\n"
 "Last-Translator: Clifton Griffin <clif@checkoutwc.com>\n"
 "Language-Team: \n"
 "Language: nl_NL\n"
@@ -21,7 +21,7 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 
-#: checkout-for-woocommerce.php:148
+#: checkout-for-woocommerce.php:147
 msgid ""
 "Your site is running an <strong>insecure version</strong> of PHP that is no "
 "longer supported. Please contact your web hosting provider to update your "
@@ -32,7 +32,7 @@ msgstr ""
 "PHP-versie bij te werken."
 
 #. translators: %s - checkoutwc.com URL for documentation with more details.
-#: checkout-for-woocommerce.php:154
+#: checkout-for-woocommerce.php:153
 #, php-format
 msgid ""
 "<strong>Note:</strong> CheckoutWC is disabled on your site until you fix the "
@@ -44,13 +44,13 @@ msgstr ""
 "noreferrer\">Hulp nodig? Klik hier.</a>"
 
 #. translators: %s - WordPress version.
-#: checkout-for-woocommerce.php:194
+#: checkout-for-woocommerce.php:193
 #, php-format
 msgid "CheckoutWC requires WordPress %s or later."
 msgstr "CheckoutWC vereist WordPress %s of hoger."
 
 #. translators: %s - WordPress version.
-#: checkout-for-woocommerce.php:232
+#: checkout-for-woocommerce.php:231
 #, php-format
 msgid "CheckoutWC requires WooCommerce %s or later."
 msgstr "CheckoutWC vereist WooCommerce %s of later."
@@ -150,9 +150,9 @@ msgstr ""
 "Gelieve te deactiveren om problemen met uw afrekeningspagina te vermijden."
 
 #: includes/Compatibility/Gateways/PayPalForWooCommerce.php:157
-#: sources/php/template-functions.php:714
-#: sources/php/template-functions.php:1320
-#: sources/php/template-functions.php:2028
+#: sources/php/template-functions.php:718
+#: sources/php/template-functions.php:1324
+#: sources/php/template-functions.php:2032
 msgid "Billing address"
 msgstr "Factuuradres"
 
@@ -181,6 +181,14 @@ msgstr "Adres zoeken"
 #: includes/Features/FetchifyAddressAutocomplete.php:81
 msgid "Start with post/zip code or street"
 msgstr "Begin met postcode of straat"
+
+#: includes/Features/FetchifyAddressAutocomplete.php:86
+msgid "Search for your address"
+msgstr "Uw adres zoeken"
+
+#: includes/Features/FetchifyAddressAutocomplete.php:87
+msgid "Or enter address manually."
+msgstr "Of voer het adres handmatig in."
 
 #: includes/Features/HideOptionalAddressFields.php:37
 msgid "Add Address Line 2"
@@ -214,7 +222,7 @@ msgstr "Ophaalpunten"
 msgid "Pick up in store"
 msgstr "Afhalen in de winkel"
 
-#: includes/Features/Pickup.php:431 includes/Managers/AssetManager.php:630
+#: includes/Features/Pickup.php:431 includes/Managers/AssetManager.php:632
 msgid "Pickup"
 msgstr "Afhalen"
 
@@ -250,38 +258,38 @@ msgstr "Meestal klaar in 2-4 dagen."
 msgid "Usually ready in 5+ days."
 msgstr "Meestal klaar in 5+ dagen."
 
-#: includes/Features/SideCart.php:215
+#: includes/Features/SideCart.php:226
 msgid "Close Cart"
 msgstr "Sluit winkelwagen"
 
-#: includes/Features/SideCart.php:252 sources/php/template-functions.php:1526
+#: includes/Features/SideCart.php:263 sources/php/template-functions.php:1530
 msgid "Apply"
 msgstr "Toepassen"
 
-#: includes/Features/SideCart.php:267 sources/php/template-functions.php:1555
+#: includes/Features/SideCart.php:278 sources/php/template-functions.php:1559
 msgid "Have a promo code? Click here."
 msgstr "Heb je een promo code? Klik hier."
 
-#: includes/Features/SideCart.php:289 sources/php/template-functions.php:1576
+#: includes/Features/SideCart.php:300 sources/php/template-functions.php:1580
 msgid "Promo Code"
 msgstr "Kortingscode"
 
-#: includes/Features/SideCart.php:298 sources/php/template-functions.php:1584
+#: includes/Features/SideCart.php:309 sources/php/template-functions.php:1588
 msgid "Enter Promo Code"
 msgstr "Voer de promotiecode in"
 
-#: includes/Features/SideCart.php:341 includes/Features/SideCart.php:342
-#: sources/php/template-functions.php:2041
-#: sources/php/template-functions.php:2284
+#: includes/Features/SideCart.php:352 includes/Features/SideCart.php:353
+#: sources/php/template-functions.php:2045
+#: sources/php/template-functions.php:2288
 msgid "Shipping"
 msgstr "Verzendkosten"
 
-#: includes/Features/SideCart.php:627
+#: includes/Features/SideCart.php:638
 msgid "Congrats! You get free standard shipping."
 msgstr "Gefeliciteerd Je krijgt gratis standaard verzending."
 
 #. translators: %s is the amount remaining for free shipping
-#: includes/Features/SideCart.php:641
+#: includes/Features/SideCart.php:652
 #, php-format
 msgid "You're %s away from free shipping!"
 msgstr "U bent %s verwijderd van gratis verzending!"
@@ -311,25 +319,25 @@ msgstr "Je bent binnengekomen"
 msgid "Recommended"
 msgstr "Aanbevolen"
 
-#: includes/Managers/AssetManager.php:611
+#: includes/Managers/AssetManager.php:613
 msgid "Please enter a valid phone number."
 msgstr "Voer een juist telefoonnummer in."
 
-#: includes/Managers/AssetManager.php:620
+#: includes/Managers/AssetManager.php:622
 msgid "Please enter your first and last name."
 msgstr "Vul uw voor- en achternaam in."
 
-#: includes/Managers/AssetManager.php:621
-#: sources/php/template-functions.php:724
-#: sources/php/template-functions.php:2012
+#: includes/Managers/AssetManager.php:623
+#: sources/php/template-functions.php:728
+#: sources/php/template-functions.php:2016
 msgid "Shipping address"
 msgstr "Verzendadres"
 
-#: includes/Managers/AssetManager.php:622
+#: includes/Managers/AssetManager.php:624
 msgid "Please enter a new quantity:"
 msgstr "Gelieve een nieuwe hoeveelheid in te voeren:"
 
-#: includes/Managers/AssetManager.php:623
+#: includes/Managers/AssetManager.php:625
 msgid ""
 "3-digit security code usually found on the back of your card. American "
 "Express cards have a 4-digit code located on the front."
@@ -337,11 +345,11 @@ msgstr ""
 "De 3-cijferige veiligheidscode staat meestal op de achterkant van uw kaart. "
 "American Express kaarten hebben een 4-cijferige code op de voorkant."
 
-#: includes/Managers/AssetManager.php:624
+#: includes/Managers/AssetManager.php:626
 msgid "Are you sure you want to remove this item from your cart?"
 msgstr "Weet u zeker dat u dit artikel uit uw winkelwagen wilt verwijderen?"
 
-#: includes/Managers/AssetManager.php:629
+#: includes/Managers/AssetManager.php:631
 msgid "Please enter a valid postcode / ZIP."
 msgstr "Voer een geldige postcode / ZIP in."
 
@@ -361,9 +369,9 @@ msgstr "Geen verzendmethoden beschikbaar"
 msgid "Complete Order"
 msgstr "Bestelling Afronden"
 
-#: sources/php/functions.php:1342 sources/php/template-functions.php:1077
-#: sources/php/template-functions.php:1993
-#: sources/php/template-functions.php:2298
+#: sources/php/functions.php:1342 sources/php/template-functions.php:1081
+#: sources/php/template-functions.php:1997
+#: sources/php/template-functions.php:2302
 msgid "Payment"
 msgstr "Betaling"
 
@@ -435,53 +443,53 @@ msgstr "Orderoverzicht weergeven"
 msgid "Hide order summary"
 msgstr "Samenvatting van de verbergingsvolgorde"
 
-#: sources/php/template-functions.php:269
+#: sources/php/template-functions.php:273
 msgid "Express checkout"
 msgstr "Snelle kassa"
 
-#: sources/php/template-functions.php:301
-#: sources/php/template-functions.php:1975
-#: sources/php/template-functions.php:2269
+#: sources/php/template-functions.php:305
+#: sources/php/template-functions.php:1979
+#: sources/php/template-functions.php:2273
 msgid "Information"
 msgstr "Informatie"
 
-#: sources/php/template-functions.php:320
+#: sources/php/template-functions.php:324
 msgid "Order review"
 msgstr "Order beoordeling"
 
-#: sources/php/template-functions.php:392
+#: sources/php/template-functions.php:396
 msgid "Already have an account with us?"
 msgstr "Heb je al een account?"
 
-#: sources/php/template-functions.php:404
+#: sources/php/template-functions.php:408
 msgid "Log in."
 msgstr "Inloggen."
 
 #. translators: %s: site name
-#: sources/php/template-functions.php:514
+#: sources/php/template-functions.php:518
 #, php-format
 msgid "Create %s shopping account."
 msgstr "Maak een %s winkel account aan."
 
-#: sources/php/template-functions.php:526
+#: sources/php/template-functions.php:530
 msgid "If you do not have an account, we will create one for you."
 msgstr "Als u geen account hebt, maken we er een voor u."
 
 #. translators: %1 is the customer's name, %2 is their email address
-#: sources/php/template-functions.php:558
+#: sources/php/template-functions.php:562
 #, php-format
 msgid "Welcome back, %1$s (%2$s)."
 msgstr "Welkom terug, %1$s (%2$s)."
 
-#: sources/php/template-functions.php:576
+#: sources/php/template-functions.php:580
 msgid "Log out."
 msgstr "Afmelden."
 
-#: sources/php/template-functions.php:594
+#: sources/php/template-functions.php:598
 msgid "Welcome back"
 msgstr "Welkom terug"
 
-#: sources/php/template-functions.php:598
+#: sources/php/template-functions.php:602
 msgid ""
 "It looks like you already have an account. Please enter your login details "
 "below."
@@ -489,90 +497,90 @@ msgstr ""
 "Het lijkt erop dat u al een account heeft. Voer hieronder uw inloggegevens "
 "in."
 
-#: sources/php/template-functions.php:601
+#: sources/php/template-functions.php:605
 msgid ""
 "If you have shopped with us before, please enter your login details below."
 msgstr ""
 "Als u al eerder bij ons heeft gewinkeld, vul dan hieronder uw inloggegevens "
 "in."
 
-#: sources/php/template-functions.php:654
+#: sources/php/template-functions.php:658
 msgid "Or continue as guest"
 msgstr "Of ga verder als gast"
 
-#: sources/php/template-functions.php:704
-#: sources/php/template-functions.php:2005
+#: sources/php/template-functions.php:708
+#: sources/php/template-functions.php:2009
 msgid "Billing and Shipping address"
 msgstr "Facturerings- en afleveradres"
 
-#: sources/php/template-functions.php:931
-#: sources/php/template-functions.php:973
-#: sources/php/template-functions.php:1029
+#: sources/php/template-functions.php:935
+#: sources/php/template-functions.php:977
+#: sources/php/template-functions.php:1033
 msgid "Contact"
 msgstr "Contact"
 
-#: sources/php/template-functions.php:939
-#: sources/php/template-functions.php:955
-#: sources/php/template-functions.php:981
-#: sources/php/template-functions.php:997
-#: sources/php/template-functions.php:1012
-#: sources/php/template-functions.php:1037
-#: sources/php/template-functions.php:1053
-#: sources/php/template-functions.php:1068
-#: sources/php/template-functions.php:1084
+#: sources/php/template-functions.php:943
+#: sources/php/template-functions.php:959
+#: sources/php/template-functions.php:985
+#: sources/php/template-functions.php:1001
+#: sources/php/template-functions.php:1016
+#: sources/php/template-functions.php:1041
+#: sources/php/template-functions.php:1057
+#: sources/php/template-functions.php:1072
+#: sources/php/template-functions.php:1088
 msgid "Change"
 msgstr "Wijzigen"
 
-#: sources/php/template-functions.php:1004
-#: sources/php/template-functions.php:1060
+#: sources/php/template-functions.php:1008
+#: sources/php/template-functions.php:1064
 msgid "Method"
 msgstr "Methode"
 
-#: sources/php/template-functions.php:1216
+#: sources/php/template-functions.php:1220
 msgid "Shipping method"
 msgstr "Verzendmethode"
 
-#: sources/php/template-functions.php:1341
+#: sources/php/template-functions.php:1345
 msgid "Select the address that matches your card or payment method."
 msgstr "Selecteer het adres dat overeenkomt met uw kaart of betaalmethode."
 
-#: sources/php/template-functions.php:1539
+#: sources/php/template-functions.php:1543
 msgid "Promo code"
 msgstr "Kortingscode"
 
 #. translators: %s is the order number
-#: sources/php/template-functions.php:1742
+#: sources/php/template-functions.php:1746
 #, php-format
 msgid "Order %s"
 msgstr "Bestelling %s"
 
 #. translators: %s is the billing first name
-#: sources/php/template-functions.php:1755
+#: sources/php/template-functions.php:1759
 #, php-format
 msgid "Thank you %s!"
 msgstr "Dank je wel %s!"
 
-#: sources/php/template-functions.php:1859
+#: sources/php/template-functions.php:1863
 msgid "Order status"
 msgstr "Status van bestelling"
 
-#: sources/php/template-functions.php:1890
+#: sources/php/template-functions.php:1894
 msgid "Order updates"
 msgstr "Bestelling updates"
 
-#: sources/php/template-functions.php:1899
+#: sources/php/template-functions.php:1903
 msgid "You’ll get shipping and delivery updates by email."
 msgstr "U krijgt per e-mail updates over verzending en levering."
 
-#: sources/php/template-functions.php:1989
+#: sources/php/template-functions.php:1993
 msgid "Contact information"
 msgstr "Contactinformatie"
 
-#: sources/php/template-functions.php:2142
+#: sources/php/template-functions.php:2146
 msgid "Login"
 msgstr "Inloggen"
 
-#: sources/php/template-functions.php:2398
+#: sources/php/template-functions.php:2402
 msgid "Your Cart is Empty"
 msgstr "Uw mandje is leeg"
 

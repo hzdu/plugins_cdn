@@ -28,7 +28,7 @@ class OrderBumpService {
             jQuery( document.body ).trigger( 'cfw_update_cart' );
         } );
 
-        DataService.checkoutForm && DataService.checkoutForm.on( 'checkout_place_order', this.maybeDisplayBumps.bind( this ) );
+        DataService.checkoutForm && DataService.checkoutForm.firstOn( 'checkout_place_order', this.maybeDisplayBumps.bind( this ) );
     }
 
     maybeDisplayBumps( event: Event ): boolean {

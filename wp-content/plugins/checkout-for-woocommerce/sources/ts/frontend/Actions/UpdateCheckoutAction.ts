@@ -107,105 +107,107 @@ class UpdateCheckoutAction extends Action {
             return;
         }
 
-        /**
-         * Save payment details to a temporary object
-         */
-        const paymentBoxInputsSelector = '.payment_box :input';
-        const paymentBoxInputs =  jQuery( paymentBoxInputsSelector );
-        const paymentDetails = {};
-        paymentBoxInputs.each( function () {
-            const ID = jQuery( this ).attr( 'id' );
-
-            if ( ID ) {
-                if ( jQuery.inArray( jQuery( this ).attr( 'type' ), [ 'checkbox', 'radio' ] ) !== -1 ) {
-                    paymentDetails[ ID ] = jQuery( this ).prop( 'checked' );
-                } else {
-                    paymentDetails[ ID ] = jQuery( this ).val();
-                }
-            }
-        } );
-
-        /**
-         * Update Fragments
-         *
-         * For our elements as well as those from other plugins
-         */
-        if ( resp.fragments ) {
-            jQuery.each( resp.fragments, ( key: any, value ) => {
-                // eslint-disable-next-line max-len
-                if ( !Object.keys( UpdateCheckoutAction._fragments ).length || UpdateCheckoutAction.cleanseFragments( UpdateCheckoutAction._fragments[ key ] ) !== UpdateCheckoutAction.cleanseFragments( value ) ) {
-                    /**
-                     * Make sure value is truthy
-                     *
-                     * Because if it's false (say for Amazon Pay) we don't want to replace anything
-                     */
-                    if ( typeof value === 'string' ) {
-                        jQuery( key ).replaceWith( value );
-                    }
-                }
-            } );
-
-            UpdateCheckoutAction._fragments = resp.fragments;
-        }
-
-        if ( !resp.show_shipping_tab ) {
-            jQuery( 'body' ).addClass( 'cfw-hide-shipping' );
-
-            // In case the current tab gets hidden
-            if ( Main.instance.tabService.getCurrentTab().is( ':hidden' ) ) {
-                TabService.go( Main.instance.tabService.getCurrentTab().prev().attr( 'id' ) );
-            }
-        } else {
-            jQuery( 'body' ).removeClass( 'cfw-hide-shipping' );
-        }
-
-        jQuery( '.cfw-continue-to-payment-btn' ).not( '.cfw-smartystreets-button' ).toggle( resp.has_valid_shipping_method );
-
-        /**
-         * Fill in the payment details if possible without overwriting data if set.
-         */
-        if ( !jQuery.isEmptyObject( paymentDetails ) ) {
-            jQuery( paymentBoxInputsSelector ).each( function () {
+        requestAnimationFrame( () => {
+            /**
+             * Save payment details to a temporary object
+             */
+            const paymentBoxInputsSelector = '.payment_box :input';
+            const paymentBoxInputs =  jQuery( paymentBoxInputsSelector );
+            const paymentDetails = {};
+            paymentBoxInputs.each( function () {
                 const ID = jQuery( this ).attr( 'id' );
-                const val = jQuery( this ).val();
 
                 if ( ID ) {
                     if ( jQuery.inArray( jQuery( this ).attr( 'type' ), [ 'checkbox', 'radio' ] ) !== -1 ) {
-                        jQuery( this ).prop( 'checked', paymentDetails[ ID ] ).trigger( 'change' );
-                    } else if ( val !== null && val.toString().length === 0 ) {
-                        jQuery( this ).val( paymentDetails[ ID ] ).trigger( 'change' );
+                        paymentDetails[ ID ] = jQuery( this ).prop( 'checked' );
+                    } else {
+                        paymentDetails[ ID ] = jQuery( this ).val();
                     }
                 }
             } );
-        }
 
-        const alerts = [];
+            /**
+             * Update Fragments
+             *
+             * For our elements as well as those from other plugins
+             */
+            if ( resp.fragments ) {
+                jQuery.each( resp.fragments, ( key: any, value ) => {
+                    // eslint-disable-next-line max-len
+                    if ( !Object.keys( UpdateCheckoutAction._fragments ).length || UpdateCheckoutAction.cleanseFragments( UpdateCheckoutAction._fragments[ key ] ) !== UpdateCheckoutAction.cleanseFragments( value ) ) {
+                        /**
+                         * Make sure value is truthy
+                         *
+                         * Because if it's false (say for Amazon Pay) we don't want to replace anything
+                         */
+                        if ( typeof value === 'string' ) {
+                            jQuery( key ).replaceWith( value );
+                        }
+                    }
+                } );
 
-        if ( resp.notices.success ) {
-            Object.keys( resp.notices.success ).forEach( ( key: any ) => {
-                alerts.push( new Alert( 'success', resp.notices.success[ key ].notice, 'cfw-alert-success', resp.notices.success[ key ].data.temporary ?? false ) );
-            } );
-        }
+                UpdateCheckoutAction._fragments = resp.fragments;
+            }
 
-        if ( resp.notices.notice ) {
-            Object.keys( resp.notices.notice ).forEach( ( key: any ) => {
-                alerts.push( new Alert( 'notice', resp.notices.notice[ key ].notice, 'cfw-alert-info', resp.notices.notice[ key ].data.temporary ?? false ) );
-            } );
-        }
+            if ( !resp.show_shipping_tab ) {
+                jQuery( 'body' ).addClass( 'cfw-hide-shipping' );
 
-        if ( resp.notices.error ) {
-            Object.keys( resp.notices.error ).forEach( ( key: any ) => {
-                alerts.push( new Alert( 'error', resp.notices.error[ key ].notice, 'cfw-alert-error', resp.notices.error[ key ].data.temporary ?? false ) );
-            } );
-        }
+                // In case the current tab gets hidden
+                if ( Main.instance.tabService.getCurrentTab().is( ':hidden' ) ) {
+                    TabService.go( Main.instance.tabService.getCurrentTab().prev().attr( 'id' ) );
+                }
+            } else {
+                jQuery( 'body' ).removeClass( 'cfw-hide-shipping' );
+            }
 
-        alerts.forEach( ( alert ) => { AlertService.queueAlert( alert ); } );
+            jQuery( '.cfw-continue-to-payment-btn' ).not( '.cfw-smartystreets-button' ).toggle( resp.has_valid_shipping_method );
 
-        // Fire finishing events
-        jQuery( document.body ).trigger( 'cfw_pre_updated_checkout', [ resp ] );
-        LoggingService.logEvent( 'Fired cfw_pre_updated_checkout event.' );
+            /**
+             * Fill in the payment details if possible without overwriting data if set.
+             */
+            if ( !jQuery.isEmptyObject( paymentDetails ) ) {
+                jQuery( paymentBoxInputsSelector ).each( function () {
+                    const ID = jQuery( this ).attr( 'id' );
+                    const val = jQuery( this ).val();
 
-        UpdateCheckoutService.triggerUpdatedCheckout( resp );
+                    if ( ID ) {
+                        if ( jQuery.inArray( jQuery( this ).attr( 'type' ), [ 'checkbox', 'radio' ] ) !== -1 ) {
+                            jQuery( this ).prop( 'checked', paymentDetails[ ID ] ).trigger( 'change' );
+                        } else if ( val !== null && val.toString().length === 0 ) {
+                            jQuery( this ).val( paymentDetails[ ID ] ).trigger( 'change' );
+                        }
+                    }
+                } );
+            }
+
+            const alerts = [];
+
+            if ( resp.notices.success ) {
+                Object.keys( resp.notices.success ).forEach( ( key: any ) => {
+                    alerts.push( new Alert( 'success', resp.notices.success[ key ].notice, 'cfw-alert-success', resp.notices.success[ key ].data.temporary ?? false ) );
+                } );
+            }
+
+            if ( resp.notices.notice ) {
+                Object.keys( resp.notices.notice ).forEach( ( key: any ) => {
+                    alerts.push( new Alert( 'notice', resp.notices.notice[ key ].notice, 'cfw-alert-info', resp.notices.notice[ key ].data.temporary ?? false ) );
+                } );
+            }
+
+            if ( resp.notices.error ) {
+                Object.keys( resp.notices.error ).forEach( ( key: any ) => {
+                    alerts.push( new Alert( 'error', resp.notices.error[ key ].notice, 'cfw-alert-error', resp.notices.error[ key ].data.temporary ?? false ) );
+                } );
+            }
+
+            alerts.forEach( ( alert ) => { AlertService.queueAlert( alert ); } );
+
+            // Fire finishing events
+            jQuery( document.body ).trigger( 'cfw_pre_updated_checkout', [ resp ] );
+            LoggingService.logEvent( 'Fired cfw_pre_updated_checkout event.' );
+
+            UpdateCheckoutService.triggerUpdatedCheckout( resp );
+        } );
     }
 
     /**
