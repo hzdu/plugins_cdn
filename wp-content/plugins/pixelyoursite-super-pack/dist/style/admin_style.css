@@ -1,6 +1,22 @@
-.pixel_conditions{
+.pys_flex_block
+{
+    display: flex;
+}
+.pys_flex_block .condition_search
+{
+    width: 100%;
+}
+#pys .btn.remove-conditions-row.hidden
+{
+    display: none;
+    visibility: hidden;
+}
+
+
+.pixel_conditions {
     display: flex;
     width: 100%;
+    margin: 10px 0;
 }
 .pixel_conditions > * {
     flex: 1;
@@ -43,3 +59,16 @@
     width: 100%;
 }
 
+#pys .pysselect2 ul {
+    margin-bottom:0px;
+}
+#pys .pysselect2-search {
+    width:auto;
+}
+#pys .pysselect2-container--default .pysselect2-selection--multiple .pysselect2-selection__choice__remove {
+    padding:5px;
+}
+#pys span.pysselect2.pysselect2-container {
+    width: 100%!important;
+    display: block;
+}

@@ -1,5 +1,5 @@
 jQuery(document).ready(function ($) {
-
+    $(".pys-pysselect2").each(function(){$(this).pysselect2({placeholder: $(this).data("placeholder")})})
     $(document).on('click', '.remove-row', function () {
         $(this).closest('.plate').remove();
     });
@@ -32,21 +32,35 @@ jQuery(document).ready(function ($) {
     $body.on('change','.pixel_info .is_fire_edd'  ,function () {
         updatePixelData($(this).parents('.pixel_info'),'is_fire_edd',this.checked)
     })
-
+    $body.on('click', '.remove-conditions-row', function () {
+        let pixelBlock = $(this).closest('.pixel_info');
+        $(this).closest('.pixel_conditions').remove();
+        pixelBlock.find('.pixel_conditions').first().trigger('condition_update');
+    });
     $body.on('condition_update','.pixel_conditions'  ,function () {
         let items = new Array();
-        let data = {};
 
-        $(this).find(".condition").each(function () {
 
-            let name = $( this ).data('name');
-            data[name] = $( this ).val()
-            if(name == "sub_id") {
-                data['sub_id_name'] = $( this ).parent().find('.view_input').text()
-            }
-
+        $(this).parent().find(".pixel_conditions:not(.hidden_pixel_conditions)").each(function () {
+            let data = {};
+            $(this).find(".condition").each(function () {
+                let name = $( this ).data('name');
+                data[name] = $( this ).val()
+                if(name == "sub_id") {
+                    data['sub_id_name'] = $( this ).parent().find('.view_input').text()
+                }
+            })
+            items.push(data)
         })
-        items.push(data)
+        console.log(items)
+        if(items.length == 1)
+        {
+            $(this).parent().find('.remove-conditions-row').addClass('hidden');
+        }
+        else
+        {
+            $(this).parent().find('.remove-conditions-row').removeClass('hidden');
+        }
         updatePixelData($(this).parents('.pixel_info'),'condition',items)
     })
 
@@ -82,7 +96,20 @@ jQuery(document).ready(function ($) {
 
         $input.val(JSON.stringify($data));
     }
-
+    $body.on('click','.pys_superpack_add_conditions_pixel_id',function (e) {
+        e.preventDefault();
+        let count = $(this).parents('.settings_content').find('.pixel_info').length -1
+        const elem = $(this).closest('.pixel_info').find('.hidden_pixel_conditions');
+        const lastElement = $(this).closest('.pixel_info').find('.pixel_conditions:last');
+        console.log(lastElement)
+        var $row = elem.clone()
+            .insertAfter(lastElement)
+            .removeClass('hidden_pixel_conditions')
+            .css('display', 'flex');
+        let value = elem.find('select.condition').val();
+        let parent = elem;
+        addCondition(parent,value)
+    });
     $('#pys_superpack_add_facebook_pixel_id').click(function (e) {
         e.preventDefault();
         let count = $(this).parents('.settings_content').find('.pixel_info').length -1
@@ -191,7 +218,7 @@ jQuery(document).ready(function ($) {
     $(document).on('change','.pixel_conditions .condition_select',function() {
         console.log("change", $(this).val())
         let value = $(this).val()
-        let parent = $(this).parents('.pixel_conditions');
+            let parent = $(this).parent();
         $(this).nextAll('select,div').remove()
         addCondition(parent,value)
 
@@ -242,7 +269,7 @@ jQuery(document).ready(function ($) {
 
     function addCondition(parent,value,defaultValue = false) {
         let nextCondition = conditions[value];
-
+        console.log(nextCondition)
         if(nextCondition && nextCondition.controls.type == "select_titled") {
             var select = '<select  class="condition_select condition" data-name="'+nextCondition.controls.name +'" >';
 
@@ -278,8 +305,8 @@ jQuery(document).ready(function ($) {
 
     function initConditional() {
         $('.pixel_conditions').each(function () {
-            let $parent = $(this);
-            let params =  $parent.data('params');
+            let $parent = $(this).find('.pys_flex_block');
+            let params =  $(this).data('params');
             params.forEach(function (item) {
                 $parent.find(".condition[data-name='name'] option[value='"+item.name+"']").prop('selected', true);
                 if(item.sub_name) {
