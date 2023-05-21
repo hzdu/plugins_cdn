@@ -54,10 +54,38 @@ function xProAccordion() {
 
                     }
 
+                })
+                
+            }
 
+            if ( config.faqSchema ) {
+
+                bricksQuerySelectorAll(container, '.x-accordion > .brxe-block').forEach((question) => {
+                    question.setAttribute('itemscope','')
+                    question.setAttribute('itemprop','mainEntity')
+                    question.setAttribute('itemtype','https://schema.org/Question')
                 })
 
+                bricksQuerySelectorAll(container, '.x-accordion_header > span').forEach((name) => {
+                    name.setAttribute('itemprop','name')
+                })
+
+                bricksQuerySelectorAll(container, '.x-accordion_content').forEach((answer) => {
+                    answer.setAttribute('itemscope','')
+                    answer.setAttribute('itemprop','acceptedAnswer')
+                    answer.setAttribute('itemtype','https://schema.org/Answer')
+                })
+
+                bricksQuerySelectorAll(container, '.x-accordion_content-inner').forEach((text) => {
+                    text.setAttribute('itemprop','text')
+                })
                 
+
+                bricksQuerySelectorAll(document, 'html').forEach((html) => {
+                    html.setAttribute('itemscope','')
+                    html.setAttribute('itemtype','https://schema.org/FAQPage')
+                })
+
             }
         
             bricksQuerySelectorAll(proAccordion, ".x-accordion_header").forEach((proAccordionHeader,index) => {
@@ -140,6 +168,7 @@ function xToggleAccordionItem(proAccordionHeader, config) {
     if ( 'true' !== proAccordionHeader.getAttribute('aria-expanded') ) {
         proAccordionHeader.setAttribute('aria-expanded', 'true')
         proAccordionHeader.nextSibling.xslideDown(config.duration)
+        window.dispatchEvent(new Event('resize'))
         if ( proAccordionHeader.nextSibling.querySelector('.x-read-more_content') ) {
          proAccordionHeader.nextSibling.querySelector('.x-read-more_content').style.maxHeight = "";
            setTimeout(() => {

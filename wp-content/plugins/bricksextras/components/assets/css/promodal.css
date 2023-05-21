@@ -59,6 +59,7 @@ component.x-modal .x-modal_backdrop {
 
 .x-modal_container {
     max-height: 100vh;
+    max-height: calc(100dvh - 40px);
     overflow-y: auto;
     box-sizing: border-box;
     position: relative;
@@ -67,6 +68,14 @@ component.x-modal .x-modal_backdrop {
     width: 600px;
     vertical-align: middle;
     pointer-events: auto;
+}
+
+@supports (padding-top: env(safe-area-inset-top)) {
+
+    .x-modal_container {
+        --safe-area-inset-bottom: env(safe-area-inset-bottom);
+        max-height: calc(100% + var(--safe-area-inset-bottom))!important;
+    }
 }
 
 .x-modal_content {

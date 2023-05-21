@@ -155,7 +155,15 @@ function xTableOfContents(){
       listItemClass: 'x-toc_list-item',
       activeListItemClass: 'x-toc_active-li',
     });
+
+    if ( 'enable' === elementConfig.conditionalDisplay ) {
     
+      if ( !document.querySelector(elementConfig.headingSelectors.toString().split(',').map(i => elementConfig.contentSelector + ' ' + i).join(", ") ) ) {
+          toc.remove()
+      }
+
+    }
+
 
   })
 

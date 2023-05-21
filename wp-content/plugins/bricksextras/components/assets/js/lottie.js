@@ -153,7 +153,7 @@ function xLottie(){
 
                 if ( 'hoverSelector' === config.trigger ) {
 
-                    document.querySelector(config.hoverSelector).addEventListener('mouseover', function(e){
+                    document.querySelector(config.hoverSelector).addEventListener('mouseenter', function(e){
 
                         lottieInstance.setDirection(1); 
                         lottieInstance.goToAndPlay(start)
@@ -162,7 +162,7 @@ function xLottie(){
 
                     if ( config.hoverReverse ) {
 
-                        document.querySelector(config.hoverSelector).addEventListener('mouseout', function(e){
+                        document.querySelector(config.hoverSelector).addEventListener('mouseleave', function(e){
 
                             lottieInstance.setDirection(-1); 
                             lottieInstance.play(); 

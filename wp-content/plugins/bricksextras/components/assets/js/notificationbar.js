@@ -14,7 +14,10 @@ function xNotificationBar(notification,config){
       // Current and last time in milliseconds
       let currentTime = new Date().getTime();
       let lastShownTime = localStorage && localStorage['x-' + notificationIdentifier + '-last-shown-time'] ? JSON.parse( localStorage['x-' + notificationIdentifier + '-last-shown-time'] ) : false;
-      let userDismissed = localStorage && localStorage['x-' + notificationIdentifier + '-dismissed'] ? true : false;
+      let userDismissed = localStorage && localStorage['x-' + notificationIdentifier + '-dismissed'] ? JSON.parse( localStorage['x-' + notificationIdentifier + '-dismissed'] ) : false;
+      var settingDays = parseFloat( config.show_again.options.days );
+      var settingHours = parseFloat( config.show_again.options.hours );
+      var settingDelay = settingDays + ( settingHours / 24 );
 
       /* maybe show notification */
       switch( config.show_again.type ) {
@@ -26,16 +29,32 @@ function xNotificationBar(notification,config){
           case 'manual':
             return;  
           case 'dismiss':
-            // if was dismissed, dont show again
-            if( userDismissed !== false ) return;
-            break;    
+            // if was dismissed, maybe show
+            if( userDismissed !== false ) {
+                var actualDays = ( currentTime - userDismissed ) / ( 60*60*24*1000 );
+                if( actualDays < settingDelay || (0 === settingDelay) ) {
+                    return;
+                }
+              break;
+            } else {
+                break;
+            }
+              
           case 'after':
-              var settingDays = parseInt( config.show_again.options.days );
-              var settingHours = parseInt( config.show_again.options.hours );
-              var settingDelay = settingDays + ( settingHours / 24 );
               var actualDays = ( currentTime - lastShownTime ) / ( 60*60*24*1000 );
               if( actualDays < settingDelay ) return;
               break;
+          case 'evergreen':
+            if ( notification.querySelector(".brxe-xcountdown") ) {
+                if ( localStorage && localStorage['x-countdown-' + notification.querySelector(".brxe-xcountdown").getAttribute('data-x-id') + '-end-times'] ) {
+                    let countdownEndTime = JSON.parse( localStorage['x-countdown-' + notification.querySelector(".brxe-xcountdown").getAttribute('data-x-id') + '-end-times'] );
+                    if (countdownEndTime - new Date().getTime() <= 0) {
+                        return;
+                    }
+                }
+                break;
+            }
+            
           default:
               //always show
               break;
@@ -63,7 +82,7 @@ function xCloseNotification(elementSelector) {
         notificationIdentifier = document.querySelector(elementSelector).id
     }
 
-    localStorage['x-' + notificationIdentifier + '-dismissed'] = 'true';
+    localStorage['x-' + notificationIdentifier + '-dismissed'] = JSON.stringify( new Date().getTime() )
 }
 
 function xShowNotification(elementSelector) {

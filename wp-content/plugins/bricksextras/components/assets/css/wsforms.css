@@ -3,6 +3,7 @@
     --xwsf-checkbox-spacing: 5px;
     --xwsf-grid-gutter: 20px;
     --xwsf-border-width: 2px;
+    --xwsf-focus-shadow: rgb(0 0 0 / 15%);
 }
 
 .brxe-xwsforms .wsf-form input[type=radio].wsf-field + label.wsf-label,
@@ -42,8 +43,30 @@
 .brxe-xwsforms input[type=text].wsf-field:focus, 
 .brxe-xwsforms input[type=url].wsf-field:focus, 
 .brxe-xwsforms select.wsf-field:focus, 
-.brxe-xwsforms textarea.wsf-field:focus {
-    box-shadow: none;
+.brxe-xwsforms textarea.wsf-field:focus,
+.brxe-xwsforms input[type=checkbox].wsf-field:focus + label.wsf-label:before,
+.brxe-xwsforms input[type=radio].wsf-field:focus + label.wsf-label:before,
+.brxe-xwsforms .wsf-form ul.wsf-group-tabs.wsf-steps > li > a:not(.wsf-tab-disabled):focus:before,
+.brxe-xwsforms input[type=checkbox].wsf-field.wsf-image:focus + label.wsf-label > img,
+.brxe-xwsforms input[type=radio].wsf-field.wsf-image:focus + label.wsf-label > img,
+.brxe-xwsforms input[type=range].wsf-field:focus::-webkit-slider-thumb {
+    box-shadow: 0 0 0 4px var(--xwsf-focus-shadow)!important;
+}
+
+.brxe-xwsforms input[type=radio].wsf-field:checked + label.wsf-label:after {
+    background: #fff;
+    transform: scale(.5);
+    border-radius: 100px;
+}
+
+.brxe-xwsforms input[type=checkbox].wsf-field:checked + label.wsf-label:after {
+    background: #fff;
+    mask-image: url("./checkmark.svg");
+    -webkit-mask-image: url("./checkmark.svg");
+    mask-repeat: no-repeat;
+    -webkit-mask-repeat: no-repeat;
+    mask-position: center;
+    -webkit-mask-position: center;
 }
 
 /*

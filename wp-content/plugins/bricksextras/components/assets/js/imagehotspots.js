@@ -8,7 +8,7 @@
         
         imageHotspot.querySelectorAll('.x-marker').forEach( marker => {
 
-            let instance = tippy(marker.querySelector('.x-marker_marker'), {
+            let instance = tippy(marker.querySelector('button.x-marker_marker'), {
                 content: marker.querySelector('.x-marker_popover-content'), 
                 allowHTML: true,     
                 interactive: true, 

@@ -239,6 +239,10 @@ function xLightbox(){
                     skin: config.reduceMotion,
                     lightboxHTML: lightboxHTML,
                     height: null == config.height ? 'auto' : config.height,
+                    plyr: {
+                        css: xDynamicLightbox.plyrDir + 'plyr.css', 
+                        js: xDynamicLightbox.plyrDir + 'plyr.js', 
+                    },
                     cssEfects: {
                         x_animation: { 
                             in: 'xLightboxIn', 

@@ -20,7 +20,7 @@ function xProSlider() {
 
       function onDirectionChange() {
 
-          bricksQuerySelectorAll(document, ".x-slider").forEach(function (slider) {
+          bricksQuerySelectorAll(document, "component.x-slider").forEach(function (slider) {
 
             if (slider) {
         
@@ -57,7 +57,7 @@ function xProSlider() {
       document.body.addEventListener('x_style_setting_changed', onDirectionChange)
       onDirectionChange()
 
-      return
+      //return
       
     }
 
@@ -65,7 +65,7 @@ function xProSlider() {
 
     const extrasSlider = function ( container ) {
 
-    bricksQuerySelectorAll(container, ".x-slider").forEach(function (slider,i) {
+    bricksQuerySelectorAll(container, ".x-slider:not(component)").forEach(function (slider,i) {
       
       const configAttr = slider.getAttribute('data-x-slider')
       const sliderConfig = configAttr ? JSON.parse(configAttr) : {}
@@ -512,14 +512,29 @@ function xProSlider() {
 
       }
 
+      if ( document.querySelector('body > .brx-body.iframe') ) {
+        if ( null != sliderConfig.rawConfig.autoScroll || false != sliderConfig.hashNav ) {
+          if ( !slider.classList.contains('is-initialized') ) {
+            xSplideInstance.mount( window.splide.Extensions );
+          }
+        } else {
+          if ( !slider.classList.contains('is-initialized') ) {
+            xSplideInstance.mount();
+          }
+        }
+
+      } else {
+        if ( null != sliderConfig.rawConfig.autoScroll || false != sliderConfig.hashNav ) {
+          xSplideInstance.mount( window.splide.Extensions );
+        } else {
+            xSplideInstance.mount();
+        }
+      }
+      
 
       
 
-      if ( null != sliderConfig.rawConfig.autoScroll || false != sliderConfig.hashNav ) {
-        xSplideInstance.mount( window.splide.Extensions );
-      } else {
-        xSplideInstance.mount();
-      }
+
 
       setTimeout(function () {
           window.xSlider.Instances[slider.dataset.xId] = xSplideInstance;

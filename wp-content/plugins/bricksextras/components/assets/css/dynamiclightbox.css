@@ -18,7 +18,9 @@
     --x-lightbox-close-translatex: 0;
     --x-lightbox-close-scale: 1;
     --x-lightbox-maxheight: 100vh;
-  }
+}
+
+
 
 .brx-body.iframe .brxe-xdynamiclightbox {
     transform: none!important;
@@ -67,6 +69,14 @@
 
 .glightbox-container .ginner-container {
     align-items: center;
+}
+
+@supports (padding-top: env(safe-area-inset-top)) {
+
+    .glightbox-container .ginner-container {
+        --safe-area-inset-bottom: env(safe-area-inset-bottom);
+        max-height: calc(100dvh + var(--safe-area-inset-bottom));
+    }
 }
 
 /* override mobile styling 

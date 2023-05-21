@@ -48,8 +48,6 @@
                     const content = config.dynamicContent ? '' : popover.querySelector('.x-popover_content-inner');
                     const finalElementSelector = config.dynamicContent ? elementSelector + '[data-tippy-content]' : elementSelector;
 
-                    console.log('finalElementSelector: ' + finalElementSelector);
-
                     tippyEl = config.elementSelector ? finalElementSelector : popover.querySelector('.x-popover_button')
                     tippyProps = {
                         content: content, 

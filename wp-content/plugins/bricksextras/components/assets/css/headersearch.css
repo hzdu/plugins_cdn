@@ -1,6 +1,7 @@
 :root {
     --x-header-slide-height: 0;
     --x-header-transiton: 300ms;
+    --x-headersearch-expand-width: 260px;
 }
 
 .brxe-xheadersearch {
@@ -107,6 +108,20 @@ button.x-header-search_toggle-close {
     outline: none;
 }
 
+.brxe-xheadersearch[data-type=expand] {
+    position: relative;
+}
+
+.brxe-xheadersearch[data-type=expand] .x-search-form {
+    position: absolute;
+    width: 0;
+    right: 0;
+    left: auto;
+}
+
+.brxe-xheadersearch[data-type=expand] .x-header-search_toggle-open[aria-expanded=true] + .x-search-form {
+    width: var(--x-headersearch-expand-width);
+}
 
 body [x-header-search_static] {
     position: static;

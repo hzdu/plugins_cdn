@@ -26,6 +26,7 @@ function xDynamicChart() {
             let lablesArray = [];
             let dataSetArray = [];
             let dataSetColors = [];
+            let dataPointColors = [];
             let queryLoop = false;
             let tickValue;
 
@@ -36,35 +37,69 @@ function xDynamicChart() {
             })
 
             /* dataset colors */
-            if ( dynamicChart.querySelectorAll('td.legend[data-set-color]').length > 0 ) {
 
-                const dataSetStyles = dynamicChart.querySelectorAll('td.legend')
+            if (!config.loopDataPoints) {
+                if ( dynamicChart.querySelectorAll('td.legend[data-set-color]').length > 0 ) {
 
-                if ( dataSetStyles.length > 0 ) {
-                    queryLoop = true;
+                    const dataSetStyles = dynamicChart.querySelectorAll('td.legend')
 
-                    dataSetStyles.forEach((dataSetStyle) => {
-                        if ( dataSetStyle.getAttribute('data-set-color') !== undefined )  {
-                            dataSetColors.push( dataSetStyle.getAttribute('data-set-color') )
-                        }
-                    })
+                    if ( dataSetStyles.length > 0 ) {
+                        queryLoop = true;
+
+                        dataSetStyles.forEach((dataSetStyle) => {
+                            if ( dataSetStyle.getAttribute('data-set-color') !== undefined )  {
+                                dataSetColors.push( dataSetStyle.getAttribute('data-set-color') )
+                            }
+                        })
+                    }
+
+                } else {
+
+                    let dataSetStyles = dynamicChart.querySelectorAll('li[data-x-chart-style]')
+
+                    if ( dataSetStyles.length > 0 ) {
+                        queryLoop = true;
+
+                        dataSetStyles.forEach((dataSetStyle,index) => {
+                            if ( JSON.parse(dataSetStyle.getAttribute('data-x-chart-style')).color !== undefined )  {
+                                dataSetColors.push( JSON.parse(dataSetStyle.getAttribute('data-x-chart-style')).color.hex )
+                            }
+                        })
+                    }
                 }
-
             } else {
 
-                let dataSetStyles = dynamicChart.querySelectorAll('li[data-x-chart-style]')
+                if ( dynamicChart.querySelectorAll('td[data-point-color]').length > 0 ) {
 
-                if ( dataSetStyles.length > 0 ) {
-                    queryLoop = true;
+                    const dataPointStyles = dynamicChart.querySelectorAll('td[data-point-color]')
 
-                    dataSetStyles.forEach((dataSetStyle,index) => {
-                        if ( JSON.parse(dataSetStyle.getAttribute('data-x-chart-style')).color !== undefined )  {
-                            dataSetColors.push( JSON.parse(dataSetStyle.getAttribute('data-x-chart-style')).color.hex )
-                        }
-                    })
+                    if ( dataPointStyles.length > 0 ) {
+
+                        dataPointStyles.forEach((dataPointStyle) => {
+                            if ( dataPointStyle.getAttribute('data-point-color') !== undefined )  {
+                                dataPointColors.push( dataPointStyle.getAttribute('data-point-color') )
+                            }
+                        })
+                    }
+
+                } else {
+
+                    let dataSetStyles = dynamicChart.querySelectorAll('li[data-x-chart-style]')
+
+                    if ( dataSetStyles.length > 0 ) {
+
+                        dataSetStyles.forEach((dataSetStyle,index) => {
+                            if ( JSON.parse(dataSetStyle.getAttribute('data-x-chart-style')).color !== undefined )  {
+                                dataPointColors.push( JSON.parse(dataSetStyle.getAttribute('data-x-chart-style')).color.hex )
+                            }
+                        })
+                    }
+
+                    console.log(dataPointColors)
+
                 }
-            }
 
+            }
 
             const tableRows = table.querySelectorAll('tbody tr')
 
@@ -89,7 +124,7 @@ function xDynamicChart() {
                         {
                             label: tableRowLegend ? tableRowLegend.innerHTML : '',
                             data: tableDataArray,
-                            backgroundColor: queryLoop ? dataSetColors[index] : backgroundColorArray,
+                            backgroundColor: queryLoop ? dataSetColors[index] : config.loopDataPoints ? dataPointColors : backgroundColorArray,
                             borderColor: queryLoop ? dataSetColors[index] : config.lineColor.rgb ? config.lineColor.rgb : ( config.lineColor.hex ? config.lineColor.hex : '#44889c' ),
                             
                         }
@@ -125,7 +160,6 @@ function xDynamicChart() {
                 },
                 ticks: {
                     color: config.xAxisTicksColor.rgb ? config.xAxisTicksColor.rgb : ( config.xAxisTicksColor.hex ? config.xAxisTicksColor.hex : '#222' ),
-                    //callback: value => `${value / 100} m`
                 },
                 grid: {
                     drawBorder: true,

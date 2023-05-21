@@ -19,6 +19,7 @@ function xSlideMenu(){
               var btn = document.createElement("button");
                   btn.setAttribute("aria-expanded", "false");
                   btn.setAttribute("class", "x-slide-menu_dropdown-icon");
+                  btn.setAttribute("aria-label", elementConfig.subMenuAriaLabel);
 
               menuHasChildren.append(btn)
 
