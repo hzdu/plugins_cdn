@@ -127,22 +127,89 @@ class UpdateCheckoutAction extends Action {
             } );
 
             /**
+             * Special edge case gateway handling
+             */
+            try {
+                const billingContainerID = '#cfw-billing-methods';
+                if ( resp.fragments && resp.fragments[ billingContainerID ] ) {
+                    const cachedElement = jQuery( UpdateCheckoutAction._fragments[ billingContainerID ] );
+                    const newElement = jQuery( resp.fragments[ billingContainerID ] );
+
+                    // Does our new element contain the total?
+                    const children = newElement.find( `[value*='${resp.total}'], [data-gateway*='${resp.total}']` );
+
+                    if ( children ) {
+                        children.each( function () {
+                            const child = jQuery( this );
+
+                            if ( !child.is( 'input' ) ) {
+                                return;
+                            }
+
+                            let selector = '';
+
+                            const childName = child.attr( 'name' );
+
+                            if ( childName ) {
+                                selector = `[name="${childName}"]`;
+                            } else {
+                                const className = UpdateCheckoutAction.getGatewayDataClass( child );
+
+                                if ( className ) {
+                                    selector = `.${className}`;
+                                }
+                            }
+
+                            if ( !selector ) {
+                                return;
+                            }
+
+                            const childCachedElement = cachedElement.find( selector );
+
+                            // Make sure the cached version has the same element
+                            if ( childCachedElement.length ) {
+                                // Remove the matching elements from both copies
+                                cachedElement.find( selector ).remove();
+                                newElement.find( selector ).remove();
+
+                                // Replace the billing container with a version that doesn't have the total containing elements
+                                resp.fragments[ billingContainerID ] = newElement.get( 0 ).outerHTML;
+
+                                // Add the total containing elements to the fragments as a new fragment
+                                resp.fragments[ selector ] = child.get( 0 ).outerHTML;
+
+                                // Also update the cached version
+                                UpdateCheckoutAction._fragments[ billingContainerID ] = cachedElement.get( 0 ).outerHTML;
+                            }
+                        } );
+                    }
+                }
+            } catch ( e ) {
+                LoggingService.logError( 'Unable to handle gateway edge case', e );
+            }
+
+            /**
              * Update Fragments
              *
              * For our elements as well as those from other plugins
              */
             if ( resp.fragments ) {
                 jQuery.each( resp.fragments, ( key: any, value ) => {
-                    // eslint-disable-next-line max-len
-                    if ( !Object.keys( UpdateCheckoutAction._fragments ).length || UpdateCheckoutAction.cleanseFragments( UpdateCheckoutAction._fragments[ key ] ) !== UpdateCheckoutAction.cleanseFragments( value ) ) {
-                        /**
-                         * Make sure value is truthy
-                         *
-                         * Because if it's false (say for Amazon Pay) we don't want to replace anything
-                         */
-                        if ( typeof value === 'string' ) {
-                            jQuery( key ).replaceWith( value );
+                    try {
+                        const cachedElement = jQuery( UpdateCheckoutAction._fragments[ key ] );
+                        const newElement = jQuery( value );
+
+                        const cachedCleansed = UpdateCheckoutAction.cleanseFragments( cachedElement.html() );
+                        const newCleansed = UpdateCheckoutAction.cleanseFragments( newElement.html() );
+
+                        if ( !Object.keys( UpdateCheckoutAction._fragments ).length || cachedCleansed !== newCleansed ) {
+                            if ( typeof value === 'string' ) {
+                                jQuery( key ).replaceWith( value );
+                            }
                         }
+                    } catch ( e ) {
+                        LoggingService.logError( 'Unable to replace element', { key, value } );
+                        LoggingService.logError( e );
                     }
                 } );
 
@@ -210,6 +277,16 @@ class UpdateCheckoutAction extends Action {
         } );
     }
 
+    static getGatewayDataClass( element: JQuery<HTMLElement> ): string {
+        const classes = jQuery( element ).attr( 'class' ).split( ' ' );
+        for ( let i = 0; i < classes.length; i++ ) {
+            if ( classes[ i ].endsWith( '_data' ) ) {
+                return classes[ i ];
+            }
+        }
+        return null; // Return null if no such class exists
+    }
+
     /**
      * @param xhr
      * @param textStatus
@@ -247,6 +324,8 @@ class UpdateCheckoutAction extends Action {
             .replace( /cfw-radio-reveal-li cfw-active/g, 'cfw-radio-reveal-li' )
             .replace( /cfw-radio-reveal-li ">/g, 'cfw-radio-reveal-li">' )
             .replace( /cfw-radio-reveal-content" >/g, 'cfw-radio-reveal-content">' )
+            .replace( /checked='checked'/g, '' )
+            .replace( /checked="checked"/g, '' )
             .replace( / /g, '' );
     }
 
