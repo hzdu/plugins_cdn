@@ -8,6 +8,10 @@ class EmailAutocompleteInput {
     private domain: string;
 
     constructor( options: EmailAutocompleteInputOptions ) {
+        if ( window.matchMedia( '(pointer:coarse)' ).matches ) {
+            return;
+        }
+
         this.options = {
             domains: [
                 'yahoo.com', 'hotmail.com', 'gmail.com', 'me.com', 'aol.com', 'mac.com', 'live.com', 'googlemail.com', 'msn.com', 'facebook.com', 'verizon.net', 'outlook.com', 'icloud.com',
@@ -35,6 +39,7 @@ class EmailAutocompleteInput {
         }
 
         const autoCompleteDomain = this.options.domains.find( ( d ) => d.startsWith( domain ) );
+
         if ( autoCompleteDomain ) {
             this.domain = autoCompleteDomain;
             const completedValue = `${email}@${this.domain}`;

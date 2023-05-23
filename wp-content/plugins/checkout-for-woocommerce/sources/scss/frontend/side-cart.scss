@@ -43,11 +43,7 @@ body.admin-bar {
 }
 
 $slick-font-family: "cfw-slick";
-$slick-loader-path: "images/";
-/*rtl:begin:ignore*/
-@import "~slick-carousel/slick/slick";
-@import "~slick-carousel/slick/slick-theme";
-/*rtl:end:ignore*/
+$slick-loader-path: "../images/";
 
 .slick-dotted.slick-slider {
     margin-bottom: 10px;
@@ -59,6 +55,12 @@ $slick-loader-path: "images/";
 @import "components/order-bump";
 
 #cfw-side-cart {
+    /*rtl:begin:ignore*/
+    /* These are copied because Slick uses .parent & selectors that cause issues when imported */
+    @import "components/slick";
+    @import "components/slick-theme";
+    /*rtl:end:ignore*/
+
     font-size: 16px;
     box-sizing: border-box;
     position: fixed;
