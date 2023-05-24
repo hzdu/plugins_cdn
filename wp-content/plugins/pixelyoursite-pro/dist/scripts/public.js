@@ -1127,30 +1127,33 @@ if (!String.prototype.trim) {
 
                 // Non-default binding used to avoid situations when some code in external js
                 // stopping events propagation, eg. returns false, and our handler will never called
-                $(document).onFirst('mouseover', triggers.join(','), function () {
+                document.addEventListener('mouseover', function(event) {
+                    var matchedElements = Array.from(document.querySelectorAll(triggers));
+                    if (matchedElements.includes(event.target)) {
+                        if (event.target.classList.contains('pys-mouse-over-' + eventId)) {
+                            return true;
+                        } else {
+                            event.target.classList.add('pys-mouse-over-' + eventId);
+                        }
 
-                    // do not fire event multiple times
-                    if ($(this).hasClass('pys-mouse-over-' + eventId)) {
-                        return true;
-                    } else {
-                        $(this).addClass('pys-mouse-over-' + eventId);
+                        Utils.fireTriggerEvent(eventId);
                     }
-
-                    Utils.fireTriggerEvent(eventId);
-
                 });
+
 
             },
 
             setupCSSClickEvents: function (eventId, triggers) {
-
                 // Non-default binding used to avoid situations when some code in external js
                 // stopping events propagation, eg. returns false, and our handler will never called
                 // add event to document to support dyn class
-                $(document).onFirst('click', triggers.join(','), function () {
-                    Utils.fireTriggerEvent(eventId);
-                });
-
+                document.addEventListener('click', function(event) {
+                    var matchedElements = Array.from(document.querySelectorAll(triggers));
+                    if (matchedElements.includes(event.target)) {
+                        console.log(event.target)
+                        Utils.fireTriggerEvent(eventId);
+                    }
+                }, true);
             },
 
             setupURLClickEvents: function () {
@@ -1160,20 +1163,20 @@ if (!String.prototype.trim) {
                 }
                 // Non-default binding used to avoid situations when some code in external js
                 // stopping events propagation, eg. returns false, and our handler will never called
-                $('a').onFirst('click', function (evt) {
-
-                    var url  = $(this).attr('href');
-                    if(url) {
-                        $.each(options.triggerEventTypes.url_click, function (eventId, triggers) {
-                            triggers.forEach(function (trigger) {
-                                if(Utils.compareUrl(url,trigger.value,trigger.rule)) {
-                                    Utils.fireTriggerEvent(eventId);
-                                }
-                            })
-                        });
+                document.addEventListener('click', function(event) {
+                    if (event.target.matches('a')) {
+                        var url = event.target.getAttribute('href');
+                        if (url) {
+                            Object.entries(options.triggerEventTypes.url_click).forEach(function ([eventId, triggers]) {
+                                triggers.forEach(function (trigger) {
+                                    if (Utils.compareUrl(url, trigger.value, trigger.rule)) {
+                                        Utils.fireTriggerEvent(eventId);
+                                    }
+                                });
+                            });
+                        }
                     }
-
-                });
+                }, true);
 
             },
 
