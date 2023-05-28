@@ -1,0 +1,1761 @@
+{
+    "key": "group_638315a281bf1",
+    "title": "Option Page",
+    "fields": [
+        {
+            "key": "field_63a6a4d97c8b6",
+            "label": "Typography",
+            "name": "",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_63a6a58831bbe",
+            "label": "Typography Variables",
+            "name": "brxc_typography_variables_repeater",
+            "aria-label": "",
+            "type": "repeater",
+            "instructions": "In the following repeater, you can add\/edit\/remove your typography variables. Each row requires a label, a min value, and a max value. The label is used to create your CSS variable like var(--label). The min value is set in Pixels and represents the default value applied when reaching the minimum viewport width set in the Setting tab. The max value is also set in Pixels and represents the default max value when reaching the maximum viewport width. Keep in mind that all the pixels values will be converted in REM on frontend.<br><strong>The default values are set according to the <a href=\"https:\/\/mui.com\/material-ui\/customization\/typography\/#responsive-font-sizes\">material UI font-size scale<\/a>.<\/strong>",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "typography-repeater",
+                "id": ""
+            },
+            "layout": "block",
+            "pagination": 0,
+            "min": 0,
+            "max": 0,
+            "collapsed": "field_63a6a58831bbf",
+            "button_label": "Add a new typography variable",
+            "rows_per_page": 20,
+            "sub_fields": [
+                {
+                    "key": "field_63a6a58831bbf",
+                    "label": "Label",
+                    "name": "brxc_typography_label",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "38",
+                        "class": "label",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_63a6a58831bbe"
+                },
+                {
+                    "key": "field_63a6a58831bc0",
+                    "label": "Min Value",
+                    "name": "brxc_typography_min_value",
+                    "aria-label": "",
+                    "type": "number",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "31",
+                        "class": "min-value",
+                        "id": ""
+                    },
+                    "default_value": 32,
+                    "min": 1,
+                    "max": "",
+                    "placeholder": "",
+                    "step": 1,
+                    "prepend": "",
+                    "append": "px",
+                    "parent_repeater": "field_63a6a58831bbe"
+                },
+                {
+                    "key": "field_63a844885697c",
+                    "label": "Max Value",
+                    "name": "brxc_typography_max_value",
+                    "aria-label": "",
+                    "type": "number",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "31",
+                        "class": "max-value",
+                        "id": ""
+                    },
+                    "default_value": 48,
+                    "min": 1,
+                    "max": "",
+                    "placeholder": "",
+                    "step": 1,
+                    "prepend": "",
+                    "append": "px",
+                    "parent_repeater": "field_63a6a58831bbe"
+                },
+                {
+                    "key": "field_63c79e51022d8",
+                    "label": "Preview",
+                    "name": "",
+                    "aria-label": "",
+                    "type": "message",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "100",
+                        "class": "preview",
+                        "id": ""
+                    },
+                    "message": "<div class=\"typography-preview\">Bricks is awesome.<\/div>",
+                    "new_lines": "wpautop",
+                    "esc_html": 0,
+                    "parent_repeater": "field_63a6a58831bbe"
+                }
+            ]
+        },
+        {
+            "key": "field_63a6a4d17c8b5",
+            "label": "Spacing",
+            "name": "",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_63a6a51731bbb",
+            "label": "Spacing Variables",
+            "name": "brxc_spacing_variables_repeater",
+            "aria-label": "",
+            "type": "repeater",
+            "instructions": "In the following repeater, you can add\/edit\/remove your spacing variables. Each row requires a label, a min value, and a max value. The label is used to create your CSS variable like var(--label). The min value is set in Pixels and represents the default value applied when reaching the minimum viewport width set in the Setting tab. The max value is also set in Pixels and represents the default max value when reaching the maximum viewport width. Keep in mind that all the pixels values will be converted in REM on frontend.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "spacing-repeater",
+                "id": ""
+            },
+            "layout": "block",
+            "pagination": 0,
+            "min": 0,
+            "max": 0,
+            "collapsed": "field_63a6a53f31bbc",
+            "button_label": "Add a new spacing variable",
+            "rows_per_page": 20,
+            "sub_fields": [
+                {
+                    "key": "field_63a6a53f31bbc",
+                    "label": "Label",
+                    "name": "brxc_spacing_label",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "38",
+                        "class": "label",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_63a6a51731bbb"
+                },
+                {
+                    "key": "field_63a6a55c31bbd",
+                    "label": "Min Value",
+                    "name": "brxc_spacing_min_value",
+                    "aria-label": "",
+                    "type": "number",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "31",
+                        "class": "min-value",
+                        "id": ""
+                    },
+                    "default_value": 10,
+                    "min": 1,
+                    "max": "",
+                    "placeholder": "",
+                    "step": 1,
+                    "prepend": "",
+                    "append": "px",
+                    "parent_repeater": "field_63a6a51731bbb"
+                },
+                {
+                    "key": "field_63a82e7791041",
+                    "label": "Max Value",
+                    "name": "brxc_spacing_max_value",
+                    "aria-label": "",
+                    "type": "number",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "31",
+                        "class": "max-value",
+                        "id": ""
+                    },
+                    "default_value": 20,
+                    "min": 1,
+                    "max": "",
+                    "placeholder": "",
+                    "step": 1,
+                    "prepend": "",
+                    "append": "px",
+                    "parent_repeater": "field_63a6a51731bbb"
+                },
+                {
+                    "key": "field_63c7dc4a42516",
+                    "label": "Preview",
+                    "name": "",
+                    "aria-label": "",
+                    "type": "message",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "100",
+                        "class": "preview",
+                        "id": ""
+                    },
+                    "message": "<div class=\"spacing-preview\">\r\n<div class=\"spacing-preview-1\"><\/div>\r\n<div class=\"spacing-preview-2\"><\/div>\r\n<\/div>",
+                    "new_lines": "wpautop",
+                    "esc_html": 0,
+                    "parent_repeater": "field_63a6a51731bbb"
+                }
+            ]
+        },
+        {
+            "key": "field_63c8f16e5e2ec",
+            "label": "Border-radius",
+            "name": "",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_63c8f17f5e2ed",
+            "label": "Border-radius Variables",
+            "name": "brxc_border_variables_repeater",
+            "aria-label": "",
+            "type": "repeater",
+            "instructions": "In the following repeater, you can add\/edit\/remove your spacing variables. Each row requires a label, a min value, and a max value. The label is used to create your CSS variable like var(--label). The min value is set in Pixels and represents the default value applied when reaching the minimum viewport width set in the Setting tab. The max value is also set in Pixels and represents the default max value when reaching the maximum viewport width. Keep in mind that all the pixels values will be converted in REM on frontend.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "border-repeater",
+                "id": ""
+            },
+            "layout": "block",
+            "pagination": 0,
+            "min": 0,
+            "max": 0,
+            "collapsed": "field_63a6a53f31bbc",
+            "button_label": "Add a new spacing variable",
+            "rows_per_page": 20,
+            "sub_fields": [
+                {
+                    "key": "field_63c8f17f5e2ee",
+                    "label": "Label",
+                    "name": "brxc_border_label",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "38",
+                        "class": "label",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_63c8f17f5e2ed"
+                },
+                {
+                    "key": "field_63c8f17f5e2ef",
+                    "label": "Min Value",
+                    "name": "brxc_border_min_value",
+                    "aria-label": "",
+                    "type": "number",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "31",
+                        "class": "min-value",
+                        "id": ""
+                    },
+                    "default_value": 10,
+                    "min": 1,
+                    "max": "",
+                    "placeholder": "",
+                    "step": 1,
+                    "prepend": "",
+                    "append": "px",
+                    "parent_repeater": "field_63c8f17f5e2ed"
+                },
+                {
+                    "key": "field_63c8f17f5e2f0",
+                    "label": "Max Value",
+                    "name": "brxc_border_max_value",
+                    "aria-label": "",
+                    "type": "number",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "31",
+                        "class": "max-value",
+                        "id": ""
+                    },
+                    "default_value": 20,
+                    "min": 1,
+                    "max": "",
+                    "placeholder": "",
+                    "step": 1,
+                    "prepend": "",
+                    "append": "px",
+                    "parent_repeater": "field_63c8f17f5e2ed"
+                },
+                {
+                    "key": "field_63c8f17f5e2f1",
+                    "label": "Preview",
+                    "name": "",
+                    "aria-label": "",
+                    "type": "message",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "100",
+                        "class": "preview",
+                        "id": ""
+                    },
+                    "message": "<div class=\"border-preview\">\r\n<\/div>",
+                    "new_lines": "wpautop",
+                    "esc_html": 0,
+                    "parent_repeater": "field_63c8f17f5e2ed"
+                }
+            ]
+        },
+        {
+            "key": "field_63a84218b5268",
+            "label": "Misc",
+            "name": "",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_63dd12891d1d9",
+            "label": "Misc Variables",
+            "name": "brxc_misc_variables_repeater",
+            "aria-label": "",
+            "type": "flexible_content",
+            "instructions": "In the following repeater, you can add\/edit\/remove your own variables. Each row requires a label and a value. The label is used to create your CSS variable like var(--label). The value has no default unit assigned - you can even add a nested CSS variable here. Sky is the limit!",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "misc-repeater",
+                "id": ""
+            },
+            "layouts": {
+                "layout_63dd12920c84c": {
+                    "key": "layout_63dd12920c84c",
+                    "name": "brxc_misc_fluid_variable",
+                    "label": "Fluid Variable",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_63dd12dd1d1dc",
+                            "label": "Label",
+                            "name": "brxc_misc_fluid_label",
+                            "aria-label": "",
+                            "type": "text",
+                            "instructions": "",
+                            "required": 1,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "label",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "maxlength": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": ""
+                        },
+                        {
+                            "key": "field_63dd12e61d1dd",
+                            "label": "Min Value",
+                            "name": "brxc_misc_fluid_min_value",
+                            "aria-label": "",
+                            "type": "number",
+                            "instructions": "",
+                            "required": 1,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "31",
+                                "class": "min-value",
+                                "id": ""
+                            },
+                            "default_value": 10,
+                            "min": 1,
+                            "max": "",
+                            "placeholder": "",
+                            "step": 1,
+                            "prepend": "",
+                            "append": "px"
+                        },
+                        {
+                            "key": "field_63dd12f21d1de",
+                            "label": "Max Value",
+                            "name": "brxc_misc_fluid_max_value",
+                            "aria-label": "",
+                            "type": "number",
+                            "instructions": "",
+                            "required": 1,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "31",
+                                "class": "max-value",
+                                "id": ""
+                            },
+                            "default_value": 20,
+                            "min": 1,
+                            "max": "",
+                            "placeholder": "",
+                            "step": 1,
+                            "prepend": "",
+                            "append": "px"
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                },
+                "layout_63dd13191d1e0": {
+                    "key": "layout_63dd13191d1e0",
+                    "name": "brxc_misc_static_variable",
+                    "label": "Static Variable",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_63dd13341d1e1",
+                            "label": "Label",
+                            "name": "brxc_misc_static_label",
+                            "aria-label": "",
+                            "type": "text",
+                            "instructions": "",
+                            "required": 1,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "maxlength": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": ""
+                        },
+                        {
+                            "key": "field_63dd135e1d1e2",
+                            "label": "Value",
+                            "name": "brxc_misc_static_value",
+                            "aria-label": "",
+                            "type": "text",
+                            "instructions": "",
+                            "required": 1,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "60",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "maxlength": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": ""
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                }
+            },
+            "min": "",
+            "max": "",
+            "button_label": "Add Misc Variable"
+        },
+        {
+            "key": "field_63b48c521b209",
+            "label": "Grids",
+            "name": "",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_63b48c6f1b20a",
+            "label": "Grid Classes",
+            "name": "brxc_grid_builder_repeater",
+            "aria-label": "",
+            "type": "repeater",
+            "instructions": "In the following repeater, you can add\/edit\/remove your spacing variables. Each row requires a label, a min value, and a max value. The label is used to create your CSS variable like var(--label). The min value is set in Pixels and represents the default value applied when reaching the minimum viewport width set earlier. The max value is also set in Pixels and represents the default max value when reaching the maximum viewport width. Keep in mind that all the pixels values will be converted in REM on frontend.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "grid-repeater",
+                "id": ""
+            },
+            "layout": "block",
+            "pagination": 0,
+            "min": 0,
+            "max": 0,
+            "collapsed": "field_63b48c6f1b20b",
+            "button_label": "Add a new grid class",
+            "rows_per_page": 20,
+            "sub_fields": [
+                {
+                    "key": "field_63b49e528fc9c",
+                    "label": "ID",
+                    "name": "brxc_grid_id",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "hidden",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_63b48c6f1b20a"
+                },
+                {
+                    "key": "field_63b48c6f1b20b",
+                    "label": "Class",
+                    "name": "brxc_grid_class",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "50",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": ".",
+                    "append": "",
+                    "parent_repeater": "field_63b48c6f1b20a"
+                },
+                {
+                    "key": "field_63b48d7e1b20e",
+                    "label": "Gap",
+                    "name": "brxc_grid_gap",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "50",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "2rem",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_63b48c6f1b20a"
+                },
+                {
+                    "key": "field_63b48c6f1b20c",
+                    "label": "Max N° of Cols",
+                    "name": "brxc_grid_max_col",
+                    "aria-label": "",
+                    "type": "number",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "50",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "min": 1,
+                    "max": "",
+                    "placeholder": "",
+                    "step": 1,
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_63b48c6f1b20a"
+                },
+                {
+                    "key": "field_63b48c6f1b20d",
+                    "label": "Min Col Width",
+                    "name": "brxc_grid_min_width",
+                    "aria-label": "",
+                    "type": "number",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "50",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "min": 0,
+                    "max": "",
+                    "placeholder": "",
+                    "step": 1,
+                    "prepend": "",
+                    "append": "px",
+                    "parent_repeater": "field_63b48c6f1b20a"
+                }
+            ]
+        },
+        {
+            "key": "field_63b4bd4816ac0",
+            "label": "Class Importer",
+            "name": "",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_63b4bd5c16ac1",
+            "label": "Import your Stylesheets",
+            "name": "brxc_class_importer_repeater",
+            "aria-label": "",
+            "type": "repeater",
+            "instructions": "In the following repeater, you can add\/edit\/remove your spacing variables. Each row requires a label, a min value, and a max value. The label is used to create your CSS variable like var(--label). The min value is set in Pixels and represents the default value applied when reaching the minimum viewport width set earlier. The max value is also set in Pixels and represents the default max value when reaching the maximum viewport width. Keep in mind that all the pixels values will be converted in REM on frontend.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "class-importer-repeater",
+                "id": ""
+            },
+            "layout": "block",
+            "pagination": 0,
+            "min": 0,
+            "max": 0,
+            "collapsed": "field_63b48c6f1b20b",
+            "button_label": "Add a new CSS file",
+            "rows_per_page": 20,
+            "sub_fields": [
+                {
+                    "key": "field_63b4bd5c16ac2",
+                    "label": "ID",
+                    "name": "brxc_class_importer_id",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "hidden",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_63b4bd5c16ac1"
+                },
+                {
+                    "key": "field_63b4bd5c16ac3",
+                    "label": "Label",
+                    "name": "brxc_class_importer_label",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "50",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_63b4bd5c16ac1"
+                },
+                {
+                    "key": "field_63b4bd5c16ac4",
+                    "label": "Version",
+                    "name": "brxc_class_importer_version",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "50",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "1.0.0",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_63b4bd5c16ac1"
+                },
+                {
+                    "key": "field_63b4bdf216ac7",
+                    "label": "CSS file",
+                    "name": "brxc_class_importer_file",
+                    "aria-label": "",
+                    "type": "file",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "100",
+                        "class": "",
+                        "id": ""
+                    },
+                    "return_format": "url",
+                    "library": "all",
+                    "min_size": "",
+                    "max_size": "",
+                    "mime_types": "css",
+                    "parent_repeater": "field_63b4bd5c16ac1"
+                }
+            ]
+        },
+        {
+            "key": "field_63d8cb54c801e",
+            "label": "Resources",
+            "name": "",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_63d8cb65c801f",
+            "label": "Resources",
+            "name": "brxc_resources_repeater",
+            "aria-label": "",
+            "type": "repeater",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "class-importer-repeater",
+                "id": ""
+            },
+            "layout": "block",
+            "pagination": 0,
+            "min": 0,
+            "max": 0,
+            "collapsed": "",
+            "button_label": "Add Row",
+            "rows_per_page": 20,
+            "sub_fields": [
+                {
+                    "key": "field_63d8cbb7c8020",
+                    "label": "Category",
+                    "name": "brxc_resources_category",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_63d8cb65c801f"
+                },
+                {
+                    "key": "field_63d8cbd8c8021",
+                    "label": "Gallery",
+                    "name": "brxc_resources_gallery",
+                    "aria-label": "",
+                    "type": "gallery",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "return_format": "array",
+                    "library": "all",
+                    "min": 1,
+                    "max": "",
+                    "min_width": "",
+                    "min_height": "",
+                    "min_size": "",
+                    "max_width": "",
+                    "max_height": "",
+                    "max_size": "",
+                    "mime_types": "",
+                    "insert": "append",
+                    "preview_size": "medium",
+                    "parent_repeater": "field_63d8cb65c801f"
+                }
+            ]
+        },
+        {
+            "key": "field_63a6a4b47c8b4",
+            "label": "Settings",
+            "name": "",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_63b3d88ee81cb",
+            "label": "Fluid Settings",
+            "name": "",
+            "aria-label": "",
+            "type": "accordion",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "open": 1,
+            "multi_expand": 1,
+            "endpoint": 0
+        },
+        {
+            "key": "field_63ab121136eb9",
+            "label": "Add a prefix to your global CSS variables",
+            "name": "brxc_global_prefix",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "The prefix will be automatically added to all your CSS variables. Example of variable generated with \"p1\" as prefix: --p1-gap-1.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "prefix-css",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_63a843db56979",
+            "label": "Base Font Size",
+            "name": "brxc_base_font_size",
+            "aria-label": "",
+            "type": "number",
+            "instructions": "Insert the base font-size you are using on the website. This field is required in order to calculate the correct REM values. Change this value if you know what you're doing!<br><strong>The default base font-size in Bricks is 10px.<\/strong>",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "base-font",
+                "id": ""
+            },
+            "default_value": 10,
+            "min": "",
+            "max": "",
+            "placeholder": "",
+            "step": 1,
+            "prepend": "",
+            "append": "px"
+        },
+        {
+            "key": "field_63a843f85697a",
+            "label": "Minimum Viewport Width",
+            "name": "brxc_min_vw",
+            "aria-label": "",
+            "type": "number",
+            "instructions": "Set the minimum viewport width where the default min value of the clamp function will apply. Above this value, the fluid formula will run until reaching the maximum viewport width.<br><strong>The default value is set to 360px.<\/strong>",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "min-viewport",
+                "id": ""
+            },
+            "default_value": 360,
+            "min": "",
+            "max": "",
+            "placeholder": "",
+            "step": 1,
+            "prepend": "",
+            "append": "px"
+        },
+        {
+            "key": "field_63a8440d5697b",
+            "label": "Maximum Viewport Width",
+            "name": "brxc_max_vw",
+            "aria-label": "",
+            "type": "number",
+            "instructions": "Set the maximum viewport width where the default max value of the clamp function will apply. Below this value, the fluid formula will run until reaching the minimum viewport width.<br><strong>The default value is set to 1600px.<\/strong>",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "max-viewport",
+                "id": ""
+            },
+            "default_value": 1600,
+            "min": "",
+            "max": "",
+            "placeholder": "",
+            "step": 1,
+            "prepend": "",
+            "append": "px"
+        },
+        {
+            "key": "field_63b3daadf4107",
+            "label": "Builder Elements",
+            "name": "",
+            "aria-label": "",
+            "type": "accordion",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "open": 1,
+            "multi_expand": 1,
+            "endpoint": 0
+        },
+        {
+            "key": "field_63aabb0ccebeb",
+            "label": "Enable \/ Disable Elements",
+            "name": "brxc_enable_elements",
+            "aria-label": "",
+            "type": "checkbox",
+            "instructions": "Uncheck an element to disable it completely from the whole website.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "darkmode-toggle": "Darkmode Toggle",
+                "darkmode-button": "Darkmode Button",
+                "color-swatch": "Color Swatch",
+                "preset-swatch": "Preset Swatch",
+                "theme-editor": "Theme Editor",
+                "style-guide": "Style Guide"
+            },
+            "default_value": [
+                "darkmode-toggle",
+                "darkmode-button",
+                "color-swatch",
+                "preset-swatch",
+                "theme-editor",
+                "style-guide"
+            ],
+            "return_format": "value",
+            "allow_custom": 0,
+            "layout": "vertical",
+            "toggle": 1,
+            "save_custom": 0
+        },
+        {
+            "key": "field_63c922908dff1",
+            "label": "Permissions",
+            "name": "",
+            "aria-label": "",
+            "type": "accordion",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "open": 1,
+            "multi_expand": 1,
+            "endpoint": 0
+        },
+        {
+            "key": "field_6388e73289b6a",
+            "label": "User Roles Permissions",
+            "name": "brxc_user_role_permissions",
+            "aria-label": "",
+            "type": "checkbox",
+            "instructions": "Select which roles should have access to your theme settings and color palettes.",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_638380c42dac1",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "administrator": "Administrator",
+                "editor": "Editor",
+                "author": "Author",
+                "contributor": "Contributor",
+                "subscriber": "Subscriber"
+            },
+            "default_value": [
+                "administrator",
+                "editor",
+                "author",
+                "contributor",
+                "subscriber"
+            ],
+            "return_format": "",
+            "allow_custom": 0,
+            "layout": "",
+            "toggle": 0,
+            "save_custom": 0
+        },
+        {
+            "key": "field_63b3dad502a80",
+            "label": "Frontend Playground",
+            "name": "",
+            "aria-label": "",
+            "type": "accordion",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "open": 1,
+            "multi_expand": 1,
+            "endpoint": 0
+        },
+        {
+            "key": "field_638380c42dac1",
+            "label": "Enable Frontend Playground",
+            "name": "brxc_enable_gui_on_frontend",
+            "aria-label": "",
+            "type": "true_false",
+            "instructions": "Disable this option to deactivate the frontend Playground on the whole site for all users",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 1,
+            "ui_on_text": "",
+            "ui_off_text": "",
+            "ui": 1
+        },
+        {
+            "key": "field_6399a2840185c",
+            "label": "Frontend Playground Theme",
+            "name": "brxc_frontend_gui_theme",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "Choose the Theme of the Frontend Playground",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_638380c42dac1",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "frontend-theme-select",
+                "id": ""
+            },
+            "choices": {
+                "dark": "Dark Theme",
+                "light": "Light Theme"
+            },
+            "default_value": "dark",
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": ""
+        },
+        {
+            "key": "field_63899284664e9",
+            "label": "Custom Post Types Permissions",
+            "name": "brxc_post_types_permissions",
+            "aria-label": "",
+            "type": "checkbox",
+            "instructions": "Enable the Frontend Playground on specific custom post types.",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_638380c42dac1",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "post": "post",
+                "page": "page",
+                "attachment": "attachment",
+                "bricks_template": "bricks_template"
+            },
+            "default_value": [
+                "post",
+                "page",
+                "attachment",
+                "bricks_template"
+            ],
+            "return_format": "value",
+            "allow_custom": 0,
+            "layout": "vertical",
+            "toggle": 0,
+            "save_custom": 0
+        },
+        {
+            "key": "field_63b3dc809484c",
+            "label": "Gutenberg Settings",
+            "name": "",
+            "aria-label": "",
+            "type": "accordion",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "open": 1,
+            "multi_expand": 1,
+            "endpoint": 0
+        },
+        {
+            "key": "field_63b3dc8b9484d",
+            "label": "Replace Gutenberg Color Palettes",
+            "name": "brxc_enable_gutenberg_sync",
+            "aria-label": "",
+            "type": "true_false",
+            "instructions": "When this option is checked, your bricks color palettes and the Gutenberg color palettes will be synched together. Uncheck this option if you don't plan to use your custom color palettes with Gutenberg.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 1,
+            "ui_on_text": "",
+            "ui_off_text": "",
+            "ui": 1
+        },
+        {
+            "key": "field_63b3ddc49484f",
+            "label": "Remove Default Gutenberg Presets",
+            "name": "brxc_remove_default_gutenberg_presets",
+            "aria-label": "",
+            "type": "true_false",
+            "instructions": "When this option is checked, the default Gutenberg presets CSS variables (like --wp--preset--color--black) won't be loaded on the frontend anymore.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 0,
+            "ui_on_text": "",
+            "ui_off_text": "",
+            "ui": 1
+        },
+        {
+            "key": "field_63db815cd73d3",
+            "label": "Builder Tweaks",
+            "name": "",
+            "aria-label": "",
+            "type": "accordion",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "open": 1,
+            "multi_expand": 1,
+            "endpoint": 0
+        },
+        {
+            "key": "field_63ccf551e8daf",
+            "label": "Reorder the global classes alphabetically",
+            "name": "brxc_reorder_global_classes",
+            "aria-label": "",
+            "type": "true_false",
+            "instructions": "Check this option if you want your global classes reordered alphabetically inside the Builder.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 1,
+            "ui_on_text": "",
+            "ui_off_text": "",
+            "ui": 1
+        },
+        {
+            "key": "field_63dcae7fa2a09",
+            "label": "Disable Styles on element ID level",
+            "name": "brxc_disable_id_styles",
+            "aria-label": "",
+            "type": "true_false",
+            "instructions": "Check this option if you want to disable the ability to style your elements on an ID level. In order to style your elements, you'll be forced to create a class and apply the styles on it.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 1,
+            "ui_on_text": "",
+            "ui_off_text": "",
+            "ui": 1
+        },
+        {
+            "key": "field_63d7deef7c81b",
+            "label": "Enable CSS Variables Picker",
+            "name": "brxc_enable_css_variables_picker",
+            "aria-label": "",
+            "type": "true_false",
+            "instructions": "When this option is checked, you'll see a new icon popping up on the relevant style fields inside the Bricks builder. When clicked on it, the script will open a modal where you can pick the CSS variable of your choice.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 1,
+            "ui_on_text": "",
+            "ui_off_text": "",
+            "ui": 1
+        },
+        {
+            "key": "field_63d7d82587108",
+            "label": "Enable Lorem Ipsum Generator",
+            "name": "brxc_enable_lorem_ipsum_generator",
+            "aria-label": "",
+            "type": "true_false",
+            "instructions": "When this option is checked, you'll see a new icon popping up on the relevant text\/textarea fields inside the Bricks builder. When clicked on it, the script will automatically generate dummy content for that specific field.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 1,
+            "ui_on_text": "",
+            "ui_off_text": "",
+            "ui": 1
+        },
+        {
+            "key": "field_63d651ddc5a6f",
+            "label": "Type of dummy content",
+            "name": "brxc_lorem_type",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "Choose between the classic Latin Lorem Ipsus text or the human-readable Website Ipsum created by <a href=\"https:\/\/websiteipsum.com\/\" target=\"_blank\">Kyle Van Deusen<\/a>",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_63d7d82587108",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "lorem": "Lorem Ipsum",
+                "human": "Human Readable Content"
+            },
+            "default_value": "lorem",
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": ""
+        },
+        {
+            "key": "field_63db8199d73d4",
+            "label": "Keyboard Shortcut: Open the CSS Variable modal",
+            "name": "brxc_shortcut_open_the_css_variable_modal",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "brxc-shortcode__input",
+                "id": ""
+            },
+            "default_value": "j",
+            "maxlength": 1,
+            "placeholder": "",
+            "prepend": "CTRL +",
+            "append": ""
+        },
+        {
+            "key": "field_63dba4f8f5056",
+            "label": "Keyboard Shortcut: Enable Grid Guides",
+            "name": "brxc_shortcut_grid_guides",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "brxc-shortcode__input",
+                "id": ""
+            },
+            "default_value": "i",
+            "maxlength": 1,
+            "placeholder": "",
+            "prepend": "CTRL +",
+            "append": ""
+        },
+        {
+            "key": "field_63dba4b8f5055",
+            "label": "Keyboard Shortcut: Enable X-Mode",
+            "name": "brxc_shortcut_xmode",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "brxc-shortcode__input",
+                "id": ""
+            },
+            "default_value": "j",
+            "maxlength": 1,
+            "placeholder": "",
+            "prepend": "CTRL +",
+            "append": ""
+        },
+        {
+            "key": "field_63dba510f5057",
+            "label": "Keyboard Shortcut: Enable Contrast Checker",
+            "name": "brxc_shortcut_contrast_checker",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "brxc-shortcode__input",
+                "id": ""
+            },
+            "default_value": "k",
+            "maxlength": 1,
+            "placeholder": "",
+            "prepend": "CTRL +",
+            "append": ""
+        },
+        {
+            "key": "field_63dba543f5058",
+            "label": "Keyboard Shortcut: Enable Darkmode",
+            "name": "brxc_shortcut_darkmode",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "brxc-shortcode__input",
+                "id": ""
+            },
+            "default_value": "z",
+            "maxlength": 1,
+            "placeholder": "",
+            "prepend": "CTRL +",
+            "append": ""
+        },
+        {
+            "key": "field_63dba55ff5059",
+            "label": "Keyboard Shortcut: Open the CSS Stylesheets Modal",
+            "name": "brxc_shortcut_stylesheet",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "brxc-shortcode__input",
+                "id": ""
+            },
+            "default_value": "l",
+            "maxlength": 1,
+            "placeholder": "",
+            "prepend": "CTRL +",
+            "append": ""
+        },
+        {
+            "key": "field_63dba59df505a",
+            "label": "Keyboard Shortcut: Open the Resources Modal",
+            "name": "brxc_shortcut_resources",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "brxc-shortcode__input",
+                "id": ""
+            },
+            "default_value": "x",
+            "maxlength": 1,
+            "placeholder": "",
+            "prepend": "CTRL +",
+            "append": ""
+        },
+        {
+            "key": "field_63df639314dd1",
+            "label": "Enable Strict Editor View",
+            "name": "brxc_enable_strict_editor_view",
+            "aria-label": "",
+            "type": "true_false",
+            "instructions": "When enabled for a specific user role, these users won't be able to modify any styles on the pages - including drag & drop spacing and advanced settings in the left panel",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 1,
+            "ui_on_text": "",
+            "ui_off_text": "",
+            "ui": 1
+        },
+        {
+            "key": "field_63e0ccbf3f5d0",
+            "label": "Enable the following elements on Strict Editor View",
+            "name": "brxc_enable_strict_editor_view_elements",
+            "aria-label": "",
+            "type": "checkbox",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_63df639314dd1",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "checkbox-3-col",
+                "id": ""
+            },
+            "choices": {
+                "heading": "Heading",
+                "text-basic": "Text basic",
+                "text": "Text",
+                "button": "Button",
+                "icon": "Icon",
+                "image": "Image",
+                "video": "Video",
+                "icon-box": "Icon box",
+                "social-icons": "Social icons",
+                "list": "List",
+                "accordion": "Accordion",
+                "accordion-nested": "Accordion nested",
+                "tabs": "Tabs",
+                "tabs-nested": "Tabs nested",
+                "animated-typing": "Animated typing",
+                "countdown": "Countdown",
+                "counter": "Counter",
+                "pricing-tables": "Pricing tables",
+                "progress-bar": "Progress bar",
+                "pie-chart": "Pie chart",
+                "team-members": "Team members",
+                "testimonials": "Testimonials",
+                "logo": "Logo",
+                "facebook-page": "Facebook page",
+                "image-gallery": "Image gallery",
+                "audio": "Audio",
+                "carousel": "Carousel",
+                "slider": "Slider",
+                "slider-nested": "Slider nested",
+                "svg": "Svg",
+                "nav-menu": "Nav menu",
+                "custom-title": "Custom title"
+            },
+            "default_value": [
+                "heading",
+                "text-basic",
+                "text",
+                "button",
+                "icon",
+                "image",
+                "video",
+                "icon-box",
+                "list"
+            ],
+            "return_format": "array",
+            "allow_custom": 0,
+            "layout": "vertical",
+            "toggle": 1,
+            "save_custom": 0
+        },
+        {
+            "key": "field_63b3daf302a81",
+            "label": "Misc",
+            "name": "",
+            "aria-label": "",
+            "type": "accordion",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "open": 1,
+            "multi_expand": 1,
+            "endpoint": 0
+        },
+        {
+            "key": "field_63a8765e6ceed",
+            "label": "Disable the \"Custom Fields\" menu item in your Dashboard",
+            "name": "brxc_disable_acf_menu_item",
+            "aria-label": "",
+            "type": "true_false",
+            "instructions": "If for some reason you prefer to hide the ACF menu item from your Dashboard, check this toggle.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 0,
+            "ui_on_text": "",
+            "ui_off_text": "",
+            "ui": 1
+        },
+        {
+            "key": "field_63ab55f50e545",
+            "label": "Remove all data when uninstalling the plugin",
+            "name": "brxc_remove_data_uninstall",
+            "aria-label": "",
+            "type": "true_false",
+            "instructions": "Check this toggle if you want to erase all the data from your database when uninstalling the plugin. This includes all your theme options, your color palettes, and your license.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 0,
+            "ui_on_text": "",
+            "ui_off_text": "",
+            "ui": 1
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "options_page",
+                "operator": "==",
+                "value": "bricks-advanced-themer"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "show_in_rest": 0,
+    "modified": 1675768979
+}

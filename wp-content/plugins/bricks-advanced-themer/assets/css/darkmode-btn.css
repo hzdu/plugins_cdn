@@ -1,0 +1,98 @@
+.brxe-brxc-darkmode-btn{
+  aspect-ratio: 1;
+ }
+
+.brxe-brxc-darkmode-btn label{
+  margin-bottom: 0;
+}
+
+.brxe-brxc-darkmode-btn .brxc-toggle-checkbox{
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.brxe-brxc-darkmode-btn .brxc-toggle-slot{
+  display: flex;
+  align-items: center;
+  position: relative;
+  border-radius: 100px;
+  background-color: #41414100;
+  transition: background-color 250ms;
+  border-color: #353d4e;
+  border-width: 2px;
+  border-style: solid;
+  cursor: pointer;
+  justify-content: center;
+  height: 2.5em;
+  width: 2.5em;
+  box-sizing: initial;
+}
+
+.brxe-brxc-darkmode-btn .brxc-toggle-checkbox:checked ~.brxc-toggle-slot {
+  background-color: #353d4e;
+}
+
+.brxe-brxc-darkmode-btn .brxc-sun-icon {
+  position: relative;
+  width: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.brxe-brxc-darkmode-btn .brxc-sun-icon-wrapper {
+  animation: 300ms slideUpSun ease-in-out forwards;
+}
+
+.brxe-brxc-darkmode-btn .brxc-toggle-checkbox ~ .brxc-toggle-slot .brxc-moon-icon-wrapper,
+.brxe-brxc-darkmode-btn .brxc-toggle-checkbox:checked ~ .brxc-toggle-slot .brxc-sun-icon-wrapper {
+  opacity: 0;
+  display: none;
+}
+
+.brxe-brxc-darkmode-btn .brxc-moon-icon {
+  fill: #ffffff;
+  scale: 150%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.brxe-brxc-darkmode-btn .brxc-toggle-checkbox:checked ~ .brxc-toggle-slot .brxc-moon-icon-wrapper {
+  animation: 300ms slideDownMoon ease-in-out forwards;
+  display: flex;
+  height: 2em;
+}
+
+@keyframes slideUpSun {
+  
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+    
+  }
+}
+
+@keyframes slideDownMoon {
+  
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+    
+  }
+}

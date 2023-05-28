@@ -1,0 +1,119 @@
+.brxe-brxc-darkmode-toggle{
+  --toggle-size: 33px;
+  --toggle-border: 0px;
+  --toggle-padding: 0px;
+  --toggle-final-size: calc(var(--toggle-size) - var(--toggle-padding) - calc(var(--toggle-border) * 2));
+  --sun-border-size: 3px;
+  --sun-border-color: #ffd64f;
+  --moon-border-size: 3px;
+  --moon-border-color: #ffffff;
+ }
+
+.brxe-brxc-darkmode-toggle label{
+  margin-bottom: 0;
+}
+
+.brxe-brxc-darkmode-toggle .brxc-toggle-checkbox{
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.brxe-brxc-darkmode-toggle .brxc-toggle-slot{
+  display: flex;
+  align-items: center;
+  position: relative;
+  height: var(--toggle-size);
+  width: 5em;
+  border-radius: 25px;
+  background-color: #41414100;
+  transition: background-color 250ms;
+  border-color: #353d4e;
+  border-width: 2px;
+  border-style: solid;
+  cursor: pointer;
+  box-sizing: initial;
+}
+
+.brxe-brxc-darkmode-toggle .brxc-toggle-checkbox:checked ~ .brxc-toggle-slot {
+  background-color: #353d4e;
+}
+
+.brxe-brxc-darkmode-toggle .brxc-toggle-button {
+  left: calc(100% + calc(var(--toggle-border) * 2) - var(--toggle-size) + calc(var(--toggle-padding) / 2));
+  position: absolute;
+  height: var(--toggle-final-size);
+  border-radius: 50%;
+  background-color: rgb(216, 135, 29);
+  box-shadow: inset 0px 0px 0px var(--sun-border-size) var(--sun-border-color);
+  transition: background-color 250ms, border-color 250ms, left 500ms cubic-bezier(.26,2,.46,.71);
+  aspect-ratio: 1;
+}
+
+.brxe-brxc-darkmode-toggle .brxc-toggle-checkbox:checked ~ .brxc-toggle-slot .brxc-toggle-button {
+  background-color: #485367;
+  box-shadow: inset 0px 0px 0px var(--moon-border-size) var(--moon-border-color);
+  left: calc(var(--toggle-padding) / 2);
+}
+
+.brxe-brxc-darkmode-toggle .brxc-sun-icon {
+  position: absolute;
+  width: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.brxe-brxc-darkmode-toggle .brxc-sun-icon-wrapper{
+  position: absolute;
+  height: 2em;
+  width: 2em;
+  opacity: 1;
+  transform: translate(0.2em, 0em);
+  transform-origin: 50% 50%;
+  transition: opacity 150ms, transform 500ms cubic-bezier(.26,2,.46,.71);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.brxe-brxc-darkmode-toggle .brxc-toggle-checkbox:checked ~ .brxc-toggle-slot .brxc-sun-icon-wrapper{
+  opacity: 0;
+  transform: translate(3em, 2em);
+}
+
+.brxe-brxc-darkmode-toggle .brxc-moon-icon{
+  position: absolute;
+  height: 2em;
+  width: 1.8em;
+  fill: #ffffff;
+  scale: 85%;
+  transform: translate(-125%, 0px);
+  transform-origin: 0% 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.brxe-brxc-darkmode-toggle .brxc-moon-icon-wrapper{
+  position: absolute;
+  right: 0;
+  height: 2em;
+  opacity: 0;
+  transform: translate(0, 2em);
+  transform-origin: 50% 50%;
+  transition: opacity 150ms, transform 500ms cubic-bezier(.26,2.5,.46,.71);
+}
+
+.brxe-brxc-darkmode-toggle .brxc-toggle-checkbox ~ .brxc-toggle-slot .brxc-moon-icon-wrapper {
+  opacity: 0;
+  display: flex;
+  transform: translate(0em, 2em);
+}
+.brxe-brxc-darkmode-toggle .brxc-toggle-checkbox:checked ~ .brxc-toggle-slot .brxc-moon-icon-wrapper {
+  opacity: 1;
+  display: flex;
+  transform: translate(0em, 0em);
+}

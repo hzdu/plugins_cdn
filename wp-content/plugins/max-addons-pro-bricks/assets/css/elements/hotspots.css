@@ -1,0 +1,123 @@
+/* Animations */
+@-webkit-keyframes mab-hotspot-heartbeat {
+  from {
+    transform: scale(1); }
+  to {
+    transform: scale(1.1); } }
+
+@keyframes mab-hotspot-heartbeat {
+  from {
+    transform: scale(1); }
+  to {
+    transform: scale(1.1); } }
+
+@-webkit-keyframes mab-hotspot-expand {
+  from {
+    transform: scale(0.5);
+    opacity: 1; }
+  to {
+    transform: scale(1.5);
+    opacity: 0; } }
+
+@keyframes mab-hotspot-expand {
+  from {
+    transform: scale(0.5);
+    opacity: 1; }
+  to {
+    transform: scale(1.5);
+    opacity: 0; } }
+
+.brxe-max-hotspots {
+  position: relative; }
+
+.mab-hotspot {
+  cursor: pointer;
+  position: absolute;
+  left: 30%;
+  top: 30%;
+  background: #000;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center; }
+
+.mab-hot-spot-image {
+  position: relative; }
+
+.mab-hotspot-content {
+  box-sizing: content-box;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  padding: 5px;
+  text-align: center; }
+
+.mab-hotspot-content:before {
+  z-index: -2;
+  content: "";
+  width: 100%;
+  height: 100%;
+  left: -5px;
+  top: -5px;
+  position: absolute;
+  padding: 5px;
+  box-sizing: content-box; }
+
+.mab-hotspot-content.hotspot-animation:hover:before {
+  animation: none; }
+
+.mab-hotspot-content.hotspot-animation .mab-hotspot-text {
+  z-index: 1; }
+
+.mab-hotspot-content {
+  background-color: #000;
+  border-radius: 50%;
+  color: #fff; }
+
+.mab-hotspot-icon {
+  position: relative; }
+
+.mab-hotspot-icon-wrap {
+  display: inline-flex;
+  width: 100%;
+  height: 100%;
+  vertical-align: middle;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%; }
+
+.mab-hotspot-icon-image {
+  display: inline-flex; }
+
+.mab-hotspot-icon-image img {
+  width: auto;
+  height: auto;
+  object-fit: cover;
+  border-radius: 50%; }
+
+.mab-hotspot-animation-heartbeat {
+  animation: mab-hotspot-heartbeat .7s infinite alternate;
+  animation-timing-function: ease; }
+
+.mab-hotspot-animation-expand:before {
+  animation: mab-hotspot-expand 2s infinite; }
+
+.mab-hotspot-animation-expand:before {
+  background-color: inherit;
+  content: '';
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: 0;
+  border-radius: 50%;
+  opacity: 0; }
+
+.mab-tooltip-content {
+  display: none; }
+  .tippy-content .mab-tooltip-content {
+    display: block; }
+
+.tippy-content {
+  font-weight: 400; }

@@ -1,0 +1,252 @@
+{
+    "key": "group_6389e81fa2085",
+    "title": "Color Palette Post Type",
+    "fields": [
+        {
+            "key": "field_63956fca26ebb",
+            "label": "Colors",
+            "name": "",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_6383d6f67641b",
+            "label": "Colors",
+            "name": "brxc_colors_repeater",
+            "aria-label": "",
+            "type": "repeater",
+            "instructions": "Add the colors to your palette here. Choose a unique name for each label in order to avoid CSS conflicts, or make sure to set a prefix value in the settings tab.",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "color-repeater",
+                "id": ""
+            },
+            "layout": "block",
+            "pagination": 0,
+            "min": 1,
+            "max": 0,
+            "collapsed": "",
+            "button_label": "Add Secondary Color",
+            "rows_per_page": 20,
+            "sub_fields": [
+                {
+                    "key": "field_638728339e15f",
+                    "label": "Label",
+                    "name": "brxc_color_label",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "40",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_6383d6f67641b"
+                },
+                {
+                    "key": "field_638344c95efcf",
+                    "label": "Color",
+                    "name": "brxc_color_hex",
+                    "aria-label": "",
+                    "type": "color_picker",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "60",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "enable_opacity": 0,
+                    "return_format": "string",
+                    "parent_repeater": "field_6383d6f67641b"
+                },
+                {
+                    "key": "field_63958c871e42e",
+                    "label": "ID",
+                    "name": "brxc_color_id",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "hidden",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_6383d6f67641b"
+                }
+            ]
+        },
+        {
+            "key": "field_63956fe226ebc",
+            "label": "Settings",
+            "name": "",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_639570d626ec1",
+            "label": "Add a prefix to your CSS variables",
+            "name": "brxc_variable_prefix",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "The prefix will be automatically added to all your colors (including shades). Example of variable generated with \"p1\" as prefix: --brxc-p1-primary-color.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "prefix-css",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_6395700626ebd",
+            "label": "Enable Shapes",
+            "name": "brxc_enable_shapes",
+            "aria-label": "",
+            "type": "true_false",
+            "instructions": "If this field is checked, the plugin will automatically generate 12 different shades for each color: 6 light and 6 dark variations. They will appear inside the Bricks builder.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 0,
+            "ui_on_text": "",
+            "ui_off_text": "",
+            "ui": 1
+        },
+        {
+            "key": "field_6395707d26ec0",
+            "label": "Enable Dark Mode",
+            "name": "brxc_enable_dark_mode",
+            "aria-label": "",
+            "type": "true_false",
+            "instructions": "Check this field if you plan to implement a dark mode on your website.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 0,
+            "ui_on_text": "",
+            "ui_off_text": "",
+            "ui": 1
+        },
+        {
+            "key": "field_63882c3f1215b",
+            "label": "Import dark mode colors (JSON)",
+            "name": "brxc_import_from_json",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "Paste here the JSON object generated by the export function of the frontend GUI.",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_6395707d26ec0",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "rows": "",
+            "placeholder": "",
+            "new_lines": ""
+        },
+        {
+            "key": "field_6395702f26ebe",
+            "label": "Color Palette Key",
+            "name": "brxc_color_palette_key",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "hidden",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "brxc_color_palette"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "show_in_rest": 0,
+    "modified": 1674085550
+}

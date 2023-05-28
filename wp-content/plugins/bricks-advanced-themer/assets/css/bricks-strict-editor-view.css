@@ -1,0 +1,140 @@
+#bricks-toolbar .logo img {
+    height: 16px;
+    width: 100%;
+    object-fit: contain;
+}
+
+#bricks-toolbar .group-wrapper.left {
+    min-width: 0px;
+}
+.bricks-preview-element-spacing{
+    pointer-events: none;
+}
+#bricks-toolbar li.structure,
+#bricks-toolbar li.reload-canvas,
+#bricks-toolbar li.manage-breakpoints,
+#bricks-structure,
+#bricks-panel-header .actions,
+.control-group{
+    display: none;
+}
+#bricks-preview.show-structure {
+    margin-right: 0 !important;
+}
+
+.control-group:has(div[data-controlkey]){
+    display: block;
+}
+.control-group:has(
+    div[data-controlkey="separatorHighlightContent"], 
+    div[data-controlkey="titleTag"], 
+    div[data-controlkey="tabs"],
+    div[data-controlkey="imagePosition"],
+    div[data-controlkey="initialSlide"],
+    div[data-controlkey="arrows"],
+    div[data-controlkey="dots"],
+    div[data-controlkey="slidesToShow"],
+    div[data-controlkey="initialSlide"],
+    div[data-controlkey="initialSlide"],
+    div[data-controlkey="initialSlide"],
+    div[data-controlkey="initialSlide"],
+    div[data-controlkey="initialSlide"],
+    div[data-controlkey="imageLightbox"],
+    div[data-controlkey="widgetSeparator"],
+    div[data-controlkey="typeSpeed"],
+    div[data-controlkey="autoplaySeparator"],
+    div[data-controlkey="paginationActiveSeparator"],
+    ){
+    display: none !important;
+}
+#bricks-panel-elements{
+    padding: 0 var(--builder-spacing)
+}
+#bricks-panel-elements #bricks-panel-header,
+#bricks-panel-elements #bricks-panel-elements-categories,
+#bricks-panel #bricks-panel-inner #bricks-panel-element-classes,
+.control.control-textarea .description,
+[data-control-key="showUnder"],
+[data-control-key="featuresIconSize"],
+[data-control-key="featuresIconPosition"],
+[data-control-key="footerSeparator"],
+[data-control-key="buttonWidth"],
+[data-control-key="buttonSize"],
+[data-control-key="buttonStyle"],
+[data-control-key="ribbonPosition"],
+[data-control-key="titleTag"], 
+[data-controlkey="hasLoop"],
+[data-controlkey="linkSeparator"],
+[data-controlkey="linksSeparator"],
+[data-controlkey="linkToSeparator"],
+[data-controlkey="link"],
+[data-controlkey="linkRel"],
+[data-controlkey="newTab"],
+[data-controlkey="url"],
+[data-controlkey="popupSeparator"],
+[data-controlkey="popupIconDisable"],
+[data-controlkey="popupIcon"],
+[data-controlkey="tag"],
+[data-controlkey="size"],
+[data-controlkey="circle"],
+[data-controlkey="outline"],
+[data-controlkey="type"],
+[data-controlkey="style"],
+[data-controlkey="layout"],
+[data-controlkey="alignmentSeparator"],
+[data-controlkey="image"] ~ *,
+[data-controlkey="showPercentage"],
+[data-controlkey="fieldSeparator"],
+[data-controlkey="duration"],
+[data-controlkey="brandColors"],
+[data-controlkey="mobileMenu"],
+[data-control-key]:has(.bricks-control-preview),
+[data-control-key].type-spacing,
+[data-control-key].type-justify-content,
+[data-control-key].type-link,
+[data-control=image] .placeholder-description,
+.dynamic-tag-picker-button,
+ul.controls:has([data-controlkey="trackColor"]) [data-controlkey="percent"] ~ [data-controlkey],
+ul.controls:has([data-controlkey="profilePhotos"]) [data-controlkey="href"] ~ [data-controlkey],
+ul.controls:has([data-controlkey="imageRatio"]) [data-controlkey="items"] ~ [data-controlkey],
+ul.controls:has([data-controlkey="mobileMenu"]) ~ ul.control-groups,
+[type="image-gallery"] [data-control="text"]:has(.has-dynamic-picker) {
+    display: none !important;
+}
+[data-control-key="icon"]:has(.bricks-control-preview){
+    display: block !important;
+}
+/*
+#bricks-panel-elements,
+#bricks-panel #bricks-panel-inner #bricks-panel-element-classes,
+#bricks-panel #bricks-panel-inner .bricks-panel-controls ul.controls li:not([data-controlkey="text"], [data-controlkey="image"], [data-controlkey="icon"], [data-control="editor"]){
+    display: none
+}
+
+[class*=brxe-].builder-active-element:not(.brxe-heading, .brxe-text-basic) {
+    outline: 0 !important;
+    outline-offset: 0 !important;
+}
+
+.brxe-section.brx-draggable.bricks-draggable-handle,
+.brxe-container.brx-draggable.bricks-draggable-handle,
+.brxe-block.brx-draggable.bricks-draggable-handle,
+.brxe-div.brx-draggable.bricks-draggable-handle {
+    pointer-events: none;
+}
+
+.brxe-section.brx-draggable.bricks-draggable-handle .brxe-heading,
+.brxe-section.brx-draggable.bricks-draggable-handle .brxe-text-basic,
+.brxe-container.brx-draggable.bricks-draggable-handle .brxe-heading,
+.brxe-container.brx-draggable.bricks-draggable-handle .brxe-text-basic,
+.brxe-block.brx-draggable.bricks-draggable-handle .brxe-heading,
+.brxe-block.brx-draggable.bricks-draggable-handle .brxe-text-basic,
+.brxe-div.brx-draggable.bricks-draggable-handle .brxe-heading,
+.brxe-div.brx-draggable.bricks-draggable-handle .brxe-text-basic
+{
+    pointer-events: auto;
+}
+*/
+.brx-draggable.bricks-draggable-handle {
+    pointer-events: none;
+}
