@@ -25,5 +25,12 @@
         }
       })
     }
+
+    // Support Porto Theme 	
+    jQuery(document).ajaxComplete((e, xhs, req) => {
+      try {
+        if (req.data.indexOf('action=porto_lazyload_menu') > -1) { init() }
+      } catch (e) {}
+    })
   });
 })();
