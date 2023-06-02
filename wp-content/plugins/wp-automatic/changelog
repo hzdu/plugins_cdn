@@ -1,3 +1,19 @@
+Version 3.71.0 (1 June 2023)
+NEW: Youtube post from playlist can now accept playlist URL instead of ID
+Fix: Twitter module back to work using the latest API v2
+Fix: Clickbank module updated to cope with changes from Clickbank side
+Fix: Price update feature now works for amazon.fr
+Fix: Careerjet full job description extraction now back to work
+NEW: Tutorial added to tutorials section on how to post to bbPress forums
+Improved: Youtube campaign UI improved by seprating options to post from playlist and channel
+Improved: FB now can change page type (Legacy/new page experience) without need to create a new campaign
+Improved: Run now button now display errors if any caused the process to fail
+Improved: Auto remove quotes from generated OpenAI titles 
+Improved: OpenAI prompt processing in post template now get cached in case of timeout errors, not repeat the same call
+Fix: Facebook campaigns now download images to the server as FB now expire images links
+Fix: Amazon set product description as excerpt now works for normal post type 
+
+
 Version 3.70.0 (12 May 2023)
 NEW: can now set _regular_price and _sale_price for WooCommerce products on custom fields section
 NEW: Amazon can now overwrite the sale price with the list price on custom fields section

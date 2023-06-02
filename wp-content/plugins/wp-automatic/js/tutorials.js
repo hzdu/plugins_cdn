@@ -268,6 +268,7 @@ const tutorials = {
       title:
         "How to post contentiously from a specific campaign at WordPress Automatic",
     },
+    {url:"https://valvepress.com/how-to-auto-post-to-wordpress-bbpress-forum-plugin/",title:"How to auto post to WordPress bbPress forum plugin"},
   ],
 };
 

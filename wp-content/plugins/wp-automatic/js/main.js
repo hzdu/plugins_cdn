@@ -612,6 +612,8 @@ jQuery(document).ready(function () {
       },
 
       error: function (one, two, three) {
+
+ 
         var four =
           ' If this error persists, please visit the plugin settings page and enable the option named "Disable register_shutdown_function". This could be a solution';
 
@@ -620,8 +622,11 @@ jQuery(document).ready(function () {
         jQuery("#wp-automatic-welcome-panel").remove();
         jQuery("#status-meta-boxes .inside").append(
           '<div style="display:none;margin-top:0;padding-top:10px;" dir="ltr" class="wp-automatic-welcome-panel" id="wp-automatic-welcome-panel"> ' +
+            "Status: " + one.status + "<br>" +
             two +
             " " +
+            "responseText: " + one.responseText + "<br>" +
+
             three +
             " " +
             four +
@@ -769,8 +774,8 @@ jQuery(document).ready(function () {
     return false;
   });
 
-  // fetch yt user playlists
-  jQuery("#yt_playlist_update").click(function () {
+  // fetch yt user playlists, removed from v > 3.70
+  jQuery("#yt_playlist_update_OLD").click(function () {
     jQuery(".spinner-playlist").show();
     jQuery.ajax({
       url: ajaxurl,
@@ -805,7 +810,7 @@ jQuery(document).ready(function () {
   });
 
   // Specify playlist trigger update
-  jQuery("#wp_automatic_playlist_opt").click(function () {
+  jQuery("#wp_automatic_playlist_opt_OLD").click(function () {
     if (jQuery(this).prop("checked") == true) {
       jQuery("#yt_playlist_update").trigger("click");
 
