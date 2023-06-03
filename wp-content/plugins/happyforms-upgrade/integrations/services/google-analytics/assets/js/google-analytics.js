@@ -20,7 +20,7 @@
 	};
 
 	GoogleAnalytics.prototype.bind = function() {
-		$( window ).on( 'unload', this.onUnload.bind( this ) );
+		$( window ).on( 'pagehide', this.onUnload.bind( this ) );
 	};
 
 	GoogleAnalytics.prototype.onUnload = function( e ) {

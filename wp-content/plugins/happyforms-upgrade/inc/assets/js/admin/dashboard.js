@@ -77,8 +77,8 @@
 	}
 
 	SendUserEmail.prototype.bind = function() {
-		this.$field = $( '#happyforms-message-send-email-field' );
-		this.$button = $( '#happyforms-message-send-email-submit' );
+		this.$field = $( '#happyforms-send-confirmation-email-field' );
+		this.$button = $( '#happyforms-send-confirmation-email-submit' );
 		this.$spinner = this.$button.prev();
 		this.$button.on( 'click', this.onClick.bind( this ) );
 		this.$field.on( 'keydown', this.onKeyDown.bind( this ) );
@@ -105,6 +105,51 @@
 	}
 
 	SendUserEmail.prototype.onSubmit = function( response ) {
+		this.$field.val( '' );
+		this.$spinner.css( 'visibility', 'hidden' );
+		this.$button.prop( 'disabled', false );
+
+		var status = response.success ? 'success' : 'error';
+
+		happyForms.dashboard.addNotice( status, response.data.message, true );
+		window.scrollTo( 0, 0 );
+	}
+
+	var SendOwnerEmail = function() {
+		this.$field = null;
+		this.$button = null;
+		this.$spinner = null;
+	}
+
+	SendOwnerEmail.prototype.bind = function() {
+		this.$field = $( '#happyforms-send-notification-email-field' );
+		this.$button = $( '#happyforms-send-notification-email-submit' );
+		this.$spinner = this.$button.prev();
+		this.$button.on( 'click', this.onClick.bind( this ) );
+		this.$field.on( 'keydown', this.onKeyDown.bind( this ) );
+	}
+
+	SendOwnerEmail.prototype.onClick = function( e ) {
+		e.preventDefault();
+
+		this.$button.prop( 'disabled', true );
+		this.$spinner.css( 'visibility', 'visible' );
+
+		var url = this.$button.attr( 'data-url' );
+		var email = this.$field.val();
+
+		$.post( url, { email: email }, this.onSubmit.bind( this ) );
+	}
+
+	SendOwnerEmail.prototype.onKeyDown = function( e ) {
+		if ( event.which == 13 || event.keyCode == 13 ) {
+			e.preventDefault();
+
+			this.$button.trigger( 'click' );
+		}
+	}
+
+	SendOwnerEmail.prototype.onSubmit = function( response ) {
 		this.$field.val( '' );
 		this.$spinner.css( 'visibility', 'hidden' );
 		this.$button.prop( 'disabled', false );
@@ -214,7 +259,7 @@
 
 		$tr.fadeOut( 350, function() {
 			var $tbody = $tr.parents( 'tbody' );
-			
+
 			$tr.remove();
 
 			if ( 0 === $tbody.children().length ) {
@@ -243,7 +288,7 @@
 		if ( 'unread' === statusFilter ) {
 			$tr.fadeOut( 350, function() {
 				var $tbody = $tr.parents( 'tbody' );
-				
+
 				$tr.remove();
 
 				if ( 0 === $tbody.children().length ) {
@@ -277,7 +322,7 @@
 		if ( 'read' === statusFilter ) {
 			$tr.fadeOut( 350, function() {
 				var $tbody = $tr.parents( 'tbody' );
-				
+
 				$tr.remove();
 
 				if ( 0 === $tbody.children().length ) {
@@ -331,7 +376,7 @@
 		var url = new URL( $target.attr( 'data-href' ) );
 		var currentUrl = new URL( window.location.href );
 		var statusFilter = currentUrl.searchParams.get( 'post_status' );
-		var notice = ( 
+		var notice = (
 			'trash' === statusFilter ?
 			settings.messageAdminNotices.noActivityTrash :
 			settings.messageAdminNotices.noActivity
@@ -347,7 +392,7 @@
 
 		$tr.fadeOut( 350, function() {
 			var $tbody = $tr.parents( 'tbody' );
-				
+
 			$tr.remove();
 
 			if ( 0 === $tbody.children().length ) {
@@ -375,7 +420,7 @@
 
 		$tr.fadeOut( 350, function() {
 			var $tbody = $tr.parents( 'tbody' );
-			
+
 			$tr.remove();
 
 			if ( 0 === $tbody.children().length ) {
@@ -402,10 +447,10 @@
 		} );
 
 		$( 'th, td', $tr ).css( 'backgroundColor', '#cceebb' );
-		
+
 		$tr.fadeOut( 350, function() {
 			var $originalRow = self.removedRows[postId];
-			
+
 			$tr.after( $originalRow );
 			$( 'th, td', $originalRow ).css( 'backgroundColor', '' );
 			$originalRow.fadeIn( 350 );
@@ -421,7 +466,7 @@
 		$( 'li.trash span.count' ).text( `(${ data.counters.trash })` );
 
 		var $unreadBadge = $( '.happyforms-pending-count' );
-		
+
 		$unreadBadge.hide();
 
 		if ( data.counters.unread > 0 ) {
@@ -483,6 +528,7 @@
 	var dashboardInit = happyForms.dashboard.init;
 
 	happyForms.dashboard.sendUserEmail = new SendUserEmail();
+	happyForms.dashboard.sendOwnerEmail = new SendOwnerEmail();
 	happyForms.dashboard.activityRowActions = new ActivityRowActions();
 	happyForms.dashboard.formTable = new FormTable();
 
@@ -490,6 +536,7 @@
 		dashboardInit.apply( this, arguments );
 
 		this.sendUserEmail.bind();
+		this.sendOwnerEmail.bind();
 		this.focusFirstResponseInput();
 		this.activityRowActions.bind();
 		this.formTable.bind();

@@ -50,6 +50,7 @@
 
 		onClick: function() {
 			$( 'input[type="file"]', this.$el ).trigger( 'focus' );
+		 	$( 'input[type="file"]', this.$el ).trigger('click');
 		},
 
 		initUploader: function() {

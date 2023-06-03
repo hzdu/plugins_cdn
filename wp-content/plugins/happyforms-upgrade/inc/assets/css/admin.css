@@ -644,7 +644,8 @@ body.post-type-happyforms-message #post-body .misc-pub-comment-status:before {
     margin: 0px !important;
 }
 
-#happyforms-message-send-email .inside {
+#happyforms-email-confirmation .inside,
+#happyforms-email-notification .inside {
     padding: 0;
 }
 
@@ -912,6 +913,16 @@ button.hf-hide-pw .dashicons {
 
 #happyforms-settings-screen .postbox-header .spinner {
     margin: 0;
+}
+
+#happyforms-settings-screen .widget-content label {
+     display: inline-block;
+     margin-bottom: 4px;
+}
+
+#happyforms-settings-screen .send-email-wrap {
+    display: block;
+    margin-top: 1em;
 }
 
 @keyframes happyforms-notice-fadeout {

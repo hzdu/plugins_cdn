@@ -79,6 +79,54 @@
 		} );
 	} );
 
+	$( document ).on( 'submit', '#happyforms-settings-screen form#hf-test-email', function( e ) {
+		e.preventDefault();
+
+		var $form    = $( e.target );
+		var $wrapper = $form.parent();
+		var $notices = $( '.happyforms-email-test-notices', $wrapper );
+		var $spinner = $( '.spinner', $wrapper );
+		var $submit  = $( 'input[type=submit]', $wrapper );
+
+		$submit.prop( 'disabled', false );
+		$form.trigger( 'happyforms.disable' );
+		$spinner.css( 'visibility', 'visible' );
+
+		$.post( ajaxurl, $form.serialize(), function( response ) {
+			$submit.removeAttr( 'disabled' );
+			$spinner.css( 'visibility', 'hidden' );
+
+			var data = response.data;
+
+			if ( data.hasOwnProperty( 'html' ) && data.html ) {
+				var $html = $( data.html );
+
+				if ( $( 'form', $html ).length ) {
+					$form.replaceWith( data.html );
+					$form = $( data.html );
+				}
+			}
+
+			if ( data.hasOwnProperty( 'message' ) && data.message ) {
+				var $notice = $( '<div />' ).addClass( 'notice' );
+
+				var $p = $( '<p />' );
+				$p.text( data.message ).appendTo( $notice );
+
+				if ( response.success ) {
+					$notice.addClass( 'notice-success' );
+				} else {
+					$notice.addClass( 'error' );
+				}
+
+				$notices.html( '' ).show();
+				$notice.appendTo( $notices );
+			}
+
+			$form.trigger( 'happyforms.enable' );
+		} );
+	} );
+
 	$( document ).on( 'click', '.hf-hide-pw', function( e ) {
 		e.preventDefault();
 
