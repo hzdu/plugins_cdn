@@ -2,7 +2,7 @@
  * Variation Swatches for WooCommerce - PRO
  *
  * Author: Emran Ahmed ( emran.bd.08@gmail.com )
- * Date: 4/13/2023, 3:16:23 AM
+ * Date: 6/2/2023, 10:59:40 PM
  * Released under the GPLv3 license.
  */
 /******/ (function() { // webpackBootstrap
@@ -128,8 +128,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         this.$information = this.$element.find('.wvs-archive-information');
         this.$wrapper = this.$element.closest(woo_variation_swatches_pro_options.archive_product_wrapper);
         this.$image = this.$wrapper.find(woo_variation_swatches_pro_options.archive_image_selector);
-        this.$cart_button = this.$wrapper.find(woo_variation_swatches_pro_options.archive_cart_button_selector);
-        this.$price = this.$wrapper.find('.price');
+        this.$cart_button = this.$wrapper.find(woo_variation_swatches_pro_options.archive_cart_button_selector); // use first price because Germanized plugin add second price after
+
+        this.$price = this.$wrapper.find('.price:first');
         this.$firstUL = this.$element.find('.variations ul:first'); // If loop_add_to_cart button available
 
         this.is_cart_button_available = this.$cart_button.length > 0; // this.$cart_button_html = this.$cart_button.clone().html();
@@ -962,9 +963,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 event.preventDefault();
                 $(this).trigger('click');
               }
-            });
+            }); // !woo_variation_swatches_pro_options.is_mobile &&
+            // woo_variation_swatches_pro_options.linkable_attribute_mobile
 
-            if (!woo_variation_swatches_pro_options.is_mobile && woo_variation_swatches_pro_options.enable_catalog_mode && 'hover' === woo_variation_swatches_pro_options.catalog_mode_trigger) {
+            if (woo_variation_swatches_pro_options.enable_catalog_mode && 'hover' === woo_variation_swatches_pro_options.catalog_mode_trigger) {
               if (_this11.threshold_max < _this11.total_children) {
                 $(element).on('mouseenter.wvs', 'li.variable-item:not(.radio-variable-item)', function () {
                   $(this).trigger('click');
@@ -978,6 +980,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
               if (woo_variation_swatches_pro_options.linkable_attribute) {
+                if (woo_variation_swatches_pro_options.is_mobile && !woo_variation_swatches_pro_options.linkable_attribute_mobile) {
+                  return true;
+                }
+
                 $(element).on('click.linkable', 'li.variable-item:not(.radio-variable-item)', function (event) {
                   if ('undefined' !== typeof event.originalEvent) {
                     var url = $(this).attr('data-url');
@@ -986,6 +992,38 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 });
               }
             }
+          });
+          this.$element.find('[data-wvstooltip]').each(function (i, element) {
+            $(element).on('mouseenter', function (event) {
+              var rect = element.getBoundingClientRect();
+              var tooltip = window.getComputedStyle(element, ':before');
+              var arrow = window.getComputedStyle(element, ':after');
+              var arrowHeight = parseInt(arrow.getPropertyValue('border-top-width'), 10);
+              var tooltipHeight = parseInt(tooltip.getPropertyValue('height'), 10);
+              var tooltipWidth = parseInt(tooltip.getPropertyValue('width'), 10);
+              var offset = 2;
+              var calculateTooltipPosition = tooltipHeight + arrowHeight + offset;
+              element.classList.toggle('wvs-tooltip-position-bottom', rect.top < calculateTooltipPosition); // --image-tip-ratio
+
+              var width = tooltipWidth / 2;
+              var position = rect.left + rect.width / 2; // Left
+
+              var left = width - position;
+              var isLeft = width > position;
+              var computedRight = width + position;
+              var isRight = document.body.clientWidth < computedRight;
+              var right = document.body.clientWidth - computedRight;
+              element.style.setProperty('--horizontal-position', "0px");
+
+              if (isLeft) {
+                element.style.setProperty('--horizontal-position', "".concat(left + offset, "px"));
+              }
+
+              if (isRight) {
+                element.style.setProperty('--horizontal-position', "".concat(right - offset, "px"));
+              } //
+
+            });
           });
         } // End ---
 
