@@ -1,0 +1,239 @@
+/**
+ * WP File Download
+ *
+ * We developed this code with our hearts and passion.
+ * We hope you found it useful, easy to understand and to customize.
+ * Otherwise, please feel free to contact us at contact@joomunited.com *
+ * @package WP File Download
+ * @copyright Copyright (C) 2013 JoomUnited (http://www.joomunited.com). All rights reserved.
+ * @copyright Copyright (C) 2013 Damien Barrère (http://www.crac-design.com). All rights reserved.
+ * @license GNU General Public License version 2 or later; http://www.gnu.org/licenses/gpl-2.0.html
+ */
+.wpdf_dropbox {
+    bottom: 0;
+    width: 100%;
+    height: 100px;
+    text-align: center;
+    margin: 10px;
+    margin-bottom: 0;
+}
+
+.wpdf_dropbox .message, #dropbox_version .message {
+    font-size: 1em;
+    display: block;
+    color: #666;
+    margin-top: 40px
+}
+
+#dropbox_version {
+    text-align: center;
+}
+
+.wpdf_dropbox:before {
+    border-radius: 3px 3px 0 0
+}
+
+.preview {
+    width: 200px;
+    height: 200px;
+    float: left;
+    position: relative;
+    text-align: center;
+    margin: 20px 0 0 20px
+}
+
+.preview img {
+    max-width: 180px;
+    max-height: 180px;
+    border: 3px solid #fff;
+    display: block;
+    box-shadow: 0 0 2px #000
+}
+
+.uploaded {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: url(../images/upload/check.png) no-repeat center center rgba(255, 255, 255, 0.5);
+    display: none
+}
+
+.wimg.done .uploaded {
+    display: block
+}
+
+.wimg.placeholder .progress {
+    position: relative;
+    width: 80%;
+    left: 0;
+    bottom: 40px;
+    margin: 0 auto
+}
+
+.wimg.done .progress .bar {
+    width: 100% !important
+}
+
+.wpdf_dropbox .hide {
+    display: none !important;
+}
+
+.wpdf_dropbox .button-primary {
+    background: #0085ba;
+    border-color: #0073aa #006799 #006799;
+    -webkit-box-shadow: 0 1px 0 #006799;
+    box-shadow: 0 1px 0 #006799;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 3px;
+    border-style: solid;
+    border-width: 1px;
+    line-height: 35px;
+}
+
+.wpdf_dropbox #upload_button {
+    height: auto;
+    width: 20%;
+    margin-top: 10px;
+    display: inline-block;
+    min-width: 180px;
+    padding: 10px 20px;
+    font-size: 15px;
+    line-height: 1;
+    cursor: pointer;
+}
+#upload_button:hover {
+    cursor: pointer;
+    color: #006799;
+    background: transparent;
+}
+.wpfd_process_full {
+    display: none;
+    bottom: -30px;
+    left: 0;
+    width: 100%;
+    height: 10px;
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+.wpfd_process_run {
+    width: 0%;
+    height: 10px;
+    background: #0073aa;
+    border-radius: 10px;
+}
+
+.wpfd_process_full.done {
+    display: none !important;
+}
+
+.wpreview.border {
+    border: 3px dashed #BBB;
+    padding: 0 10px;
+}
+
+.wpreview .file-upload-top {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.wpfd_process_pause.paused {
+    color: #2196f3;
+}
+
+.wpfd_process_cancel {
+    float: right;
+}
+
+.wpfd_process_pause {
+    text-align: right;
+    color: orangered;
+}
+
+.wpfd_process_pause, .wpfd_process_cancel {
+    margin-right: 5px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.wpfd-category-target-section {
+    text-align: left;
+    margin: 20px 0;
+    padding: 0 10px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.wpfd-category-target-section > p {
+    display: inline-block;
+    margin-right: 5px;
+    min-width: 180px;
+    width: 180px;
+}
+
+#wpfd-upload-category-target {
+    display: inline-block;
+    width: calc(100% - 205px);
+}
+
+#wpfd-upload-display-file-content {
+    margin: 20px 0;
+    padding: 20px;
+    border: 3px dashed #BBB;
+}
+
+#wpfd-upload-display-file-content .file {
+    margin: 5px 0;
+}
+
+#wpfd-upload-display-file-content > h4 {
+    margin: 15px 0;
+    padding: 0;
+}
+
+#wpfd-upload-display-file-content > ul {
+    padding: 0 25px;
+    margin: 5px 0;
+}
+
+#wpfd-upload-display-files {
+    margin: 20px 0;
+}
+
+.category-name-section h4 {
+    font-size: 18px;
+    font-weight: bold;
+    text-decoration: none;
+    text-align: left;
+    margin: 0;
+    padding: 0;
+    display: inline-block;
+}
+
+#wpfd-upload-display-files #wpfd-results {
+    margin: 20px 0;
+    padding: 0;
+}
+
+#wpfd-upload-messages {
+    width: 100%;
+    height: 25px;
+    margin: 0 0 15px 0;
+    text-align: center;
+    color: #28a745;
+}
+
+/**************************
+ * Login Form
+ **************************/
+.wpfd_upload_login_form form#loginform {
+    display: table;
+}
+.wpfd_upload_login_form label,
+.wpfd_upload_login_form input[type="text"],
+.wpfd_upload_login_form input[type="password"] {
+    display: table-row;
+}

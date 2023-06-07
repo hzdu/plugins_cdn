@@ -1,0 +1,56 @@
+.wfd-list-user {
+  padding: 12px;
+  .insert-box {
+    float: right;
+    margin-bottom: 15px;
+    margin-top: 9px;
+  }
+  .widefat {
+    input[type="checkbox"] {
+      height: 20px;
+      width: 20px;
+      margin-left: 10px;
+      &:checked:before {
+        margin: 0 0 0 -1px;
+        height: 20px;
+        width: 20px;
+      }
+    }
+    tbody {
+      word-wrap: break-word;
+    }
+
+  }
+  .button {
+    display: inline-block;
+    background: #f7f7f7;
+    border: 1px solid #ccc;
+    height: 28px;
+    margin: 0;
+    padding: 0 10px 1px;
+    color: #555;
+    font-size: 13px;
+    text-decoration: none;
+    line-height: 26px;
+    -webkit-appearance: none;
+    cursor: pointer;
+    white-space: nowrap;
+    vertical-align: top;
+    @include boxSizing(border-box);
+    @include borderRadius($small-radius);
+    @include boxShadow(0 1px 0 #ccc);
+  }
+}
+
+.field-user-wrapper {
+  position: relative;
+  .can-buttons {
+    position: absolute;
+    right: 6px;
+    top: 10px;
+  }
+}
+.field-user-wrapper .field-user-input-name {
+  margin-right: 2px;
+  margin-top: 0;
+}

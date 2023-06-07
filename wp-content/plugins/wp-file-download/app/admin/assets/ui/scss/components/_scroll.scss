@@ -1,0 +1,54 @@
+.ju-scroll {
+  @extend %scroll-y;
+}
+%scroll-left {
+  direction: rtl;
+}
+%scroll-y {
+  overflow-y: auto;
+  &::-webkit-scrollbar-track
+  {
+    background-color: transparent;
+    border-radius: 0;
+  }
+
+  &::-webkit-scrollbar
+  {
+    width: 7px;
+    background-color: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb
+  {
+    border-radius: 4px;
+    background-color: transparent;
+    -webkit-transition: all 1s linear;
+    transition: all 1s linear;
+  }
+  &:hover::-webkit-scrollbar-thumb {
+    background-color: #888888;
+  }
+}
+%scroll-x {
+  overflow-x: auto;
+  &::-webkit-scrollbar-track
+  {
+    background-color: transparent;
+    border-radius: 0;
+  }
+
+  &::-webkit-scrollbar
+  {
+    height: 2px;
+    background-color: #F5F5F5;
+    &:hover {
+      height: 5px;
+    }
+  }
+
+  &::-webkit-scrollbar-thumb
+  {
+    border-radius: 4px;
+    background-color: #888888;
+  }
+}

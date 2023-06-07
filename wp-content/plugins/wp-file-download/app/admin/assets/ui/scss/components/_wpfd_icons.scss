@@ -1,0 +1,97 @@
+@mixin backgroundImage($value) {
+  -webkit-background-image: url($value);
+  -o-background-image: url($value);
+  -moz-background-image: url($value);
+  background-image: url($value);
+}
+
+/* WPFD SVG Icons */
+[class^="wpfd-svg-icon"] {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  vertical-align: sub;
+  background-size: 100% 100%;
+  background-color: transparent;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+.wpfd-svg-icon-cut {
+  @include backgroundImage('../images/icon-cut.svg');
+}
+.wpfd-svg-icon-copy {
+  @include backgroundImage('../images/icon-copy.svg');
+}
+.wpfd-svg-icon-paste {
+  @include backgroundImage('../images/icon-paste.svg');
+}
+.wpfd-svg-icon-trash {
+  @include backgroundImage('../images/icon-trash.svg');
+}
+.wpfd-svg-icon-download {
+  @include backgroundImage('../images/icon-cloud-download.svg');
+}
+.wpfd-svg-icon-remove {
+  @include backgroundImage('../images/icon-remove.svg');
+}
+.wpfd-svg-icon-check-all {
+  @include backgroundImage('../images/icon-check-all.svg');
+}
+.wpfd-svg-icon-search {
+  @include backgroundImage('../images/icon-search.svg');
+}
+.wpfd-svg-icon-filter {
+  @include backgroundImage('../images/icon-filter.svg');
+}
+.wpfd-svg-icon-sync-dropbox {
+  @include backgroundImage('../images/icon-sync-dropbox.svg');
+}
+.wpfd-svg-icon-sync-googledrive {
+  @include backgroundImage('../images/icon-sync-google-drive.svg');
+}
+.wpfd-svg-icon-sync-onedrive {
+  @include backgroundImage('../images/icon-sync-onedrive.svg');
+}
+.wpfd-svg-icon-sync-loading {
+  @include backgroundImage('../images/icon-refresh.svg');
+}
+
+.wpfd-svg-icon-add-to-cart {
+  @include backgroundImage('../images/icon-add-to-cart.svg');
+}
+
+.wpfd-svg-icon-publish {
+  @include backgroundImage('../images/icon-publish.svg')
+}
+
+.wpfd-svg-icon-unpublish {
+  @include backgroundImage('../images/icon-unpublish.svg')
+}
+
+.wpfd-svg-icon-visibility {
+  @include backgroundImage('../images/icon-visibility.svg')
+}
+
+.wpfd-svg-icon-visibility-off {
+  @include backgroundImage('../images/icon-visibility-off.svg')
+}
+
+.wpfd-svg-icon-link {
+  @include backgroundImage('../images/icon-link.svg')
+}
+
+.wpfd-svg-icon-woocommerce {
+  @include backgroundImage('../images/icon-woocommerce.svg')
+}
+
+.wpfd-svg-icon-expired {
+  @include backgroundImage('../images/icon-expired.svg')
+}
+
+.wpfd-svg-icon-expiry-set {
+  @include backgroundImage('../images/icon-expiry-set.svg')
+}
+
+.wpfd-svg-icon-multiple-categories {
+  @include backgroundImage('../images/icon-multiplecategory.svg')
+}

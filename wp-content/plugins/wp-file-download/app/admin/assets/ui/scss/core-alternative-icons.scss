@@ -1,0 +1,14 @@
+@import 'components/variables';
+@import 'components/mixin';
+$file-icon-width: 50px;
+$file-icon-height: 70px;
+$file-icon-text-size: 1em;
+#preview {
+  .wpfd_alt_wrapper {
+    .wpfd_files_container {
+      .file {
+        @import 'components/files_icons';
+      }
+    }
+  }
+}

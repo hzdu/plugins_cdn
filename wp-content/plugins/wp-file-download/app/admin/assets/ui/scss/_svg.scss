@@ -1,0 +1,82 @@
+.ju-sm-text {
+  font-size: 10px;
+  letter-spacing: .5px;
+}
+
+.wpfd-scroll-wrapper {
+  margin-top: 20px;
+  border-radius: 10px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  &::-webkit-scrollbar {
+    width: 7px;
+    height: 7px;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #888;
+    -webkit-border-radius: 7px;
+    -moz-border-radius: 7px;
+    border-radius: 7px;
+
+    &:hover {
+      background: #4285f4;
+    }
+  }
+}
+#png {
+  .wpfd-scroll-wrapper {
+    max-height: calc(100vh - 32px - 60px - 40px - 210px);
+    margin-right: -7px;
+  }
+}
+#svg-icons-list {
+  .wpfd-scroll-wrapper {
+    max-height: calc(100vh - 32px - 60px - 40px - 210px);
+    margin-right: -7px;
+  }
+}
+#svg-icons-editor {
+  .wpfd-scroll-wrapper {
+    max-height: calc(100vh - 200px - 32px - 60px);
+  }
+}
+.original-set {
+  background: #E3E2E2;
+  padding: 10px;
+  overflow: hidden;
+  border-radius: 10px;
+}
+.wpfd-editor-preview {
+  .svg_placeholder {
+    flex-basis: 50%;
+    min-height: 200px;
+    justify-content: flex-end;
+    align-items: center;
+    display: flex;
+  }
+}
+.wpfd-editor-actions {
+  flex-basis: 200px;
+  flex-grow: 0;
+  align-items: center;
+  justify-content: center;
+  button {
+    margin-bottom: 5px;
+  }
+}
+.js-SvgResetOriginal-trigger.ju-button.gray-outline-button,
+.js-singleIconRestore-trigger.ju-button.gray-outline-button {
+  letter-spacing: 1px !important;
+  svg {
+    margin-right: 5px;
+  }
+}

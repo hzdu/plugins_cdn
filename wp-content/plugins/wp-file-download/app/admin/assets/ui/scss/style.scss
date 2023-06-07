@@ -1,0 +1,438 @@
+@import 'components/variables';
+@import 'components/mixin';
+
+%overlay {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: $white-color;
+  opacity: 0.12;
+  pointer-events: none;
+}
+
+%notice {
+  padding: 10px;
+  margin: 20px 20px 20px 0;
+  background-color: $white-color;
+  border-left: 5px solid #000;
+  @include boxShadow(0 1px 1px 0 rgba(0,0,0,.3));
+}
+
+.clearfix {
+  &:after, &:before {
+    content: '';
+    display: block;
+    clear: both;
+  }
+}
+
+.no-display {
+  display: none;
+}
+
+.hidden-item {
+  visibility: hidden;
+}
+
+// Tabs general styles
+.tabs {
+  display: flex;
+  position: relative;
+  overflow: hidden;
+  margin: 0 auto;
+  white-space: nowrap;
+  width: 100%;
+  background-color: $white-color;
+
+  .tab {
+    flex-grow: 1;
+    display: block;
+    text-align: center;
+    padding: 0;
+    margin: 0;
+    float: left;
+    text-transform: uppercase;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    letter-spacing: 0.8px;
+    min-width: 80px;
+    background-color: $cyan-color;
+
+    a {
+      text-decoration: none;
+      color: $white-color;
+      background-color: $cyan-color;
+      display: block;
+      width: 100%;
+      height: 100%;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      @include transition(color 0.3s ease);
+    }
+
+    &.disabled a {
+      cursor: default;
+      opacity: 0.6;
+    }
+  }
+
+  .indicator {
+    position: absolute;
+    bottom: 0;
+    height: 3px;
+    will-change: left, right;
+    background-color: $orange-color;
+  }
+}
+
+@import 'components/button';
+@import 'components/input';
+@import 'components/switch';
+@import 'components/checkbox';
+@import 'components/radio';
+
+
+// Notice on top
+.ju-notice-success {
+  @extend %notice;
+  border-left-color: #46b450;
+}
+
+.ju-notice-error {
+  @extend %notice;
+  border-left-color: #cc0000;
+}
+
+.ju-notice-close {
+  float: right;
+  color: #aaa;
+
+  &:hover {
+    color: #c00;
+    cursor: pointer;
+  }
+}
+
+
+
+@import 'components/ju_setting_option';
+
+// Label for settings option
+.ju-setting-label {
+  float: left;
+  display: inline-block;
+  min-width: calcRem(180px);
+  max-width: calc(100% - #{calcRem(180px)});
+  overflow: hidden;
+  white-space: nowrap;
+  -ms-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+  margin: 0;
+  line-height: calcRem(50px);
+  cursor: pointer;
+}
+
+// Main wrapper
+.ju-main-wrapper {
+  margin-left: -20px; // This will make the left panel settings come near wp menus
+  font-family: 'Roboto', sans-serif;
+
+  * {
+    @include boxSizing(border-box);
+  }
+
+  img {
+    max-width: 100%;
+  }
+  .ju-left-panel-toggle {
+    display: none;
+    position: fixed;
+    top: 120px;
+    left: 35px;
+    cursor: pointer;
+    background-color: $white-color;
+    width: auto;
+    height: auto;
+    padding: 25px 5px;
+    border: 1px solid #ddd;
+    opacity: 0.5;
+    z-index: 15;
+    @include borderRadius(0 25px 25px 0);
+    &:hover, &:focus {
+      opacity: 1;
+    }
+    .ju-left-panel-toggle-icon {
+      color: $orange-color;
+    }
+  }
+  // Style for left side panel
+  .ju-left-panel {
+    width: $panel-width;
+    height: 100%;
+    padding: calcRem(20px) 0;
+    background-image: linear-gradient(to bottom, #6465e2, #60c3ef);
+    position: fixed;
+    overflow-y: auto;
+    z-index: 15;
+    @include boxShadow(10px 20px 20px 0 rgba(186, 192, 213, 0.1));
+    // Left side logo
+    .ju-logo a {
+      display: block;
+      width: calcRem(230px);
+      height: calcRem(90px);
+      margin: auto;
+    }
+
+    // Search menus
+    .ju-menu-search {
+      margin: calcRem(20px) calcRem(10px);
+      padding: calcRem(10px) calcRem(5px);
+      border: none;
+      border-bottom: 1px solid #6294e9;
+      display: grid;
+      grid-template-columns: 10% 90%;
+      align-items: center;
+
+      .ju-menu-search-icon {
+        @include fontSize(20px);
+        color: $white-color;
+        vertical-align: text-bottom;
+      }
+
+      .ju-menu-search-input {
+        background: transparent;
+        color: $white-color;
+        border: none;
+        outline: none;
+        padding: 5px;
+        @include fontSize(18px);
+        @include boxShadow(none);
+
+        &::placeholder {
+          color: $white-color;
+          opacity: 0.5;
+        }
+      }
+    }
+
+    // Left side menu tabs
+    .tabs.ju-menu-tabs {
+      display: block;
+      background-color: transparent;
+      height: auto;
+      margin: calcRem(20px) 0;
+
+      li.tab {
+        float: none;
+        width: auto;
+        height: auto;
+        text-align: left;
+        position: relative;
+        line-height: normal;
+        background-color: transparent;
+
+        a.link-tab {
+          padding: calcRem(20px);
+          opacity: 0.7;
+          background-color: transparent;
+
+          &:hover:before {
+            @extend %overlay;
+          }
+
+          &:focus {
+            outline: none;
+            @include boxShadow(none);
+          }
+
+          &:after {
+            font-family: 'Material Icons';
+            @include fontSize(24px);
+            vertical-align: text-bottom;
+            position: absolute;
+            right: calcRem(15px);
+          }
+
+          &.with-submenus:not(.expanded):after {
+            content: '\e313';
+          }
+
+          &.active {
+            opacity: 1;
+            background-color: #4c79ca;
+
+            &.with-submenus.expanded {
+              &:after {
+                content: '\e316';
+              }
+
+              + .ju-submenu-tabs {
+                max-height: calcRem(2000px);
+              }
+            }
+
+            &:not(.expanded) {
+              background-color: transparent;
+
+              &:before {
+                @extend %overlay;
+              }
+            }
+          }
+        }
+
+        .ju-submenu-tabs {
+          display: block;
+          max-height: 0;
+          background-color: #4c79ca;
+          @include transition(max-height cubic-bezier(0.3, 1.1, 0.3, 1.1) 1s);
+
+          div.link-tab {
+            padding: calcRem(20px);
+            cursor: pointer;
+            color: #fff;
+            margin-left: calcRem(32px);
+            @include fontSize(16px);
+            opacity: 0.7;
+
+            &:hover:before {
+              @extend %overlay;
+            }
+
+            &.active {
+              opacity: 1;
+
+              &:before {
+                @extend %overlay;
+              }
+            }
+          }
+        }
+
+        .menu-tab-icon {
+          @include fontSize(22px);
+          vertical-align: sub;
+        }
+
+        .tab-title {
+          @include fontSize(16px);
+          margin-left: calcRem(5px);
+          display: inline-block;
+          max-width: 75%;
+          overflow: hidden;
+          -ms-text-overflow: ellipsis;
+          text-overflow: ellipsis;
+          vertical-align: text-bottom;
+        }
+      }
+
+      .indicator {
+        display: none;
+      }
+    }
+  }
+
+  // Style for right side panel
+  .ju-right-panel {
+    width: calc(100% - #{$panel-width});
+    padding: 0 calcRem(32px);
+    @include fontSize(14px);
+    margin-left: $panel-width;
+    background-color: #f3f6fa;
+
+    &:before {
+      content: '';
+      display: block;
+      clear: both;
+      padding: 1px 0 0 0;
+    }
+
+    // Top nav tabs
+    .ju-top-tabs-wrapper {
+      background-color: #fff;
+      margin: auto -#{calcRem(32px)};
+    }
+
+    .tabs.ju-top-tabs {
+      width: fit-content !important;
+
+      li.tab {
+        text-transform: capitalize;
+        min-width: calcRem(200px);
+        background-color: $white-color;
+
+        a.link-tab {
+          color: $heading-color;
+          opacity: .5;
+          background-color: $white-color;
+          font-weight: bold;
+          padding: calcRem(20px);
+          &.active {
+            color: $orange-color;
+            opacity: 1;
+            &:before {
+              content: '\f147';
+              font-family: 'dashicons';
+              @include fontSize(20px);
+              vertical-align: middle;
+            }
+          }
+          &:hover {
+            color: $orange-color;
+            opacity: 1;
+          }
+
+          &:focus {
+            @include boxShadow(none);
+          }
+        }
+      }
+
+      .indicator {
+        background-color: $orange-color;
+        z-index: 10;
+      }
+    }
+  }
+}
+
+.search-result {
+  outline: 1px solid $orange-color;
+  @include boxShadow(1px 1px 12px #ccc);
+}
+
+@media screen and (max-width: 960px) {
+  .ju-main-wrapper {
+      .ju-left-panel {
+        display: none;
+      }
+
+      .ju-right-panel {
+        width: 100%;
+        margin-left: 0;
+      }
+
+      .ju-left-panel-toggle {
+        display: block;
+      }
+  }
+}
+
+@media screen and (max-width: 782px) {
+  .ju-main-wrapper {
+    .ju-left-panel-toggle {
+      left:0;
+    }
+  }
+  .rtl {
+    .ju-main-wrapper {
+      .ju-left-panel-toggle {
+        right: 0;
+      }
+    }
+  }
+}

@@ -1,0 +1,39 @@
+ul.wpfd-tabs {
+  overflow: hidden;
+  margin: 0px;
+  padding: 0px;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+
+  li {
+    float: left;
+    list-style: none;
+    &.wpfd-tab {
+      padding: 4px 10px;
+      font-size: 0.8rem;
+      font-weight: bold;
+      text-decoration: none;
+      letter-spacing: 1px;
+    }
+
+    &.active {
+      color: #000;
+    }
+  }
+}
+
+.wpfd-tabs-wrapper {
+  width: auto;
+  margin: 0 auto;
+  .wpfd-tabs-content {
+    padding: 20px;
+  }
+
+  .wpfd-tab-content {
+    display: none;
+  }
+  .wpfd-tab-content.active {
+    display: block;
+  }
+}

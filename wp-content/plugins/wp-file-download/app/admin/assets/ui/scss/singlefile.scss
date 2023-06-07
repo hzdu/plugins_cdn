@@ -1,0 +1,81 @@
+@import 'components/mixin';
+.wpfd-single-file {
+  flex-basis: 100%;
+  background: transparent;
+  padding: 10px;
+  display: flex;
+  flex: auto;
+  flex-wrap: wrap;
+  z-index: 0;
+  position: relative;
+  &--icon {
+    flex-basis: 30%;
+    .wpfd-icon-placeholder {
+      background-repeat: no-repeat;
+      background-size: contain;
+    }
+  }
+  &--details {
+    flex-basis: 70%;
+  }
+  &--buttons {
+    display: flex;
+    margin: 20px 5px 20px 0;
+    flex-basis: 100%;
+    justify-content: left;
+  }
+
+  a.wpfd-single-file-button, a.added_to_cart {
+    float: left;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: space-between;
+    /*font-size: 1.5em;*/
+    text-transform: uppercase;
+    text-decoration: none;
+    /* Fix fliking */
+    transition-property: unset !important;
+    transition-duration: unset !important;
+    transition-timing-function: unset !important;
+    &.added {
+      display: none;
+    }
+    span {
+      width: 100%;
+      text-align: center;
+    }
+    svg,.wpfd-add-to-cart {
+      margin-left: 10px;
+    }
+    &:hover {
+      cursor: pointer;
+      text-decoration: none;
+    }
+    &:focus {
+      outline: unset !important;
+    }
+  }
+  .wpfd-file-content {
+    padding-left: 30px;
+    box-sizing: border-box;
+    &--title {
+      color: #878787;
+      margin-top: 0;
+      font-weight: 600;
+    }
+    &--description {
+      text-align: justify;
+      color: #B3B3B3;
+      font-size: 1.2em;
+      line-height: 1.3em;
+    }
+    &--meta {
+      margin: 0;
+      & > div {
+        color: #B3B3B3;
+        margin: 2px 0;
+      }
+    }
+  }
+}

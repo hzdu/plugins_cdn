@@ -1,0 +1,297 @@
+@import '../fonts/material-icons.min.css';
+@import '../fonts/wpfd-icons/wpfd-icons.css';
+@import 'components/mixin';
+@import 'components/variables';
+:root {font-size: $root-font-size;}
+//@media (min-width: 962px) {
+//  :root {font-size: 15px;}
+//}
+@media (max-width: 961px) {
+  :root {font-size: 14px;}
+}
+//@media (max-width: 1108px) {
+//  :root {font-size: 13px;}
+//}
+//@media (max-width: 1040px) {
+//  :root {font-size: 12px;}
+//}
+//@media (max-width: 991px) {
+//  :root {font-size: 10px;}
+//}
+@import 'components/layouts';
+
+@import 'components/reset';
+@import 'components/icons';
+@import 'components/wpfd_icons';
+
+@import 'components/scroll';
+
+@import 'components/button';
+@import 'components/input';
+@import 'components/select';
+@import 'components/switch';
+@import 'components/checkbox';
+@import 'components/radio';
+@import 'components/minicolors';
+@import 'components/modal';
+@import 'components/wpfd_modal';
+@import 'components/wpfd_tab';
+@import 'components/bootbox';
+
+@import 'components/left_column';
+@import 'components/center_column';
+@import 'components/right_column';
+
+@import 'components/progress_bar';
+@import 'components/wpfd_progress';
+@import 'components/list_user';
+@import 'components/statusbar';
+@import 'components/drop_overlay';
+@import 'components/flex_table';
+@import 'components/wpfd_flex';
+[class*="wpfd-icon-set-"].ext {
+  background-size: 100% !important;
+  text-indent: -9999px;
+  width: 40px;
+  height: 40px;
+}
+.wpfd_file_buttons button {
+  margin-right: 10px;
+  line-height: 20px;
+}
+.wpfd_alt_wrapper {
+  .file {
+    [class*="wpfd-icon-set-"].ext {
+      position: relative;
+      display: block;
+      float: left;
+      width: 50px;
+      height: 50px
+    }
+  }
+}
+.rtl {
+  #wpcontent {
+    padding-right: 0;
+  }
+  #wpreview .wpfd-toolbar-wrapper .wpfd-filter-file {
+    right: unset;
+    left: 90px;
+  }
+  .restableMenu {
+    float: left !important;
+    left: 15px;
+    right: unset !important;
+    .wpfd-flip {
+      float: left;
+    }
+  }
+  #wpreview .wpfd-toolbar-wrapper .wpfd-btn-toolbar {
+
+  }
+  .wpfd_file_buttons button {
+    margin-right: unset;
+    margin-left: 10px;
+  }
+}
+#preview .restableHideCols {
+  padding-top: 0;
+}
+#wpfd_ios_category_menu,
+#wpfd_ios_file_menu {
+  display: none;
+  visibility: hidden;
+}
+.wpfd_ios {
+  #wpfd_ios_category_menu,
+  #wpfd_ios_file_menu {
+    display: grid;
+    visibility: visible;
+    position: fixed;
+    z-index: 85;
+    background: #0073ab;
+    padding: 15px;
+    border-radius: 30px;
+    box-shadow: 0 0 11px -7px #888;
+  }
+  #wpfd_ios_category_menu {
+    bottom: 15px;
+    left: 15px;
+  }
+  #wpfd_ios_file_menu {
+    bottom: 15px;
+    right: 15px;
+  }
+}
+
+#fileparams {
+  .wpfdparams {
+    margin: 0 -10px;
+    input {
+      border-radius: 4px;
+      margin-left: 0;
+      margin-right: 0;
+    }
+  }
+  .wpfd-tool-box {
+    input {
+      margin-top: 5px !important;
+    }
+  }
+  .wpfd-field-file_multi_category {
+    .chzn-container-multi {
+      .chzn-choices {
+        li.search-field {
+          input[type="text"] {
+            padding: 0;
+          }
+        }
+      }
+    }
+  }
+}
+.wpfd_tbl {
+  .wpfd_row.editor {
+    .wpfd_cell {
+      padding: 10px 0;
+    }
+  }
+}
+#wpfd-core {
+  .wpfdparams {
+    .ju-settings-option {
+      flex-basis: calc(33.3333333333% - 40px);
+      padding: 0;
+      margin: 0 20px;
+    }
+    .control-group {
+      &:not(.category-control-group) {
+        flex-basis: calc(33.3333333333% - 40px);
+        padding: 0;
+        margin: 0 20px;
+      }
+    }
+    #fileversion {
+      flex: 0 1 calc(33.3333333333% - 45px);
+      margin: 25px 20px 10px 20px;
+    }
+  }
+  .wpfd-field-state {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .ju-switch-button {
+      .switch {
+        margin: 0.5rem 0;
+      }
+    }
+  }
+  .ju-settings-option {
+    .ju-setting-label {
+      line-height: 47px;
+    }
+    .chzn-container {
+      .chzn-choices {
+        li.search-choice {
+          width: calc(100% - 27px) !important;
+          .search-choice-close {
+            top: 50%;
+          }
+        }
+      }
+      .chzn-drop {
+        .chzn-results {
+          li {
+            line-height: 25px;
+          }
+        }
+      }
+    }
+    .tagit {
+      padding: 2.5px 15px;
+    }
+  }
+  #fileparams {
+    .wpfd-tool-box {
+      small {
+        line-height: 1.1;
+        padding-top: 0;
+        margin-top: -10px;
+        font-size: 10px;
+        color: #404852;
+      }
+    }
+    .ju-settings-option {
+      .ju-settings-toolbox {
+        .ju-button {
+          letter-spacing: 0;
+          min-width: 75px;
+          font-size: 13px;
+        }
+        .material-icons {
+          margin-top: 3px;
+        }
+      }
+      .ju-input {
+        margin-left: 0;
+        margin-right: 0;
+      }
+    }
+    .wpfd-field-file_tags {
+      ul.tagit {
+        li.tagit-choice {
+          margin: 10px 5px 10px 0;
+        }
+      }
+    }
+  }
+  .wpfd_row.editor {
+    border: 1px solid #123472;
+    border-top: none;
+  }
+  .wpfd_row.editing {
+    border: 1px solid #123472;
+    border-bottom: none;
+  }
+}
+@media only screen and (max-width: 1365px) {
+  #wpfd-core {
+    .wpfd-field-description {
+      flex-basis: calc(100% - 20px) !important;
+    }
+    .wpfdparams {
+      .control-group {
+        flex-basis: calc(100% - 20px) !important;
+        padding: 0px;
+      }
+      .ju-settings-option {
+        flex-basis: calc(100% - 20px) !important;
+        padding: 0px;
+      }
+      #fileversion {
+        flex-basis: calc(100% - 20px) !important;
+        padding: 0px;
+      }
+    }
+    .wpfd-field-social {
+      flex-basis: calc(100% - 20px) !important;
+      padding: 0px;
+    }
+  }
+}
+
+@media only screen and (max-width: 1365px) {
+  #wpfd-core {
+    .wpfdparams {
+      .wpfd_file_buttons {
+        button {
+          margin: 5px 15px;
+        }
+        input[type=submit] {
+          margin: 5px 15px;
+        }
+      }
+    }
+  }
+}
+@import 'components/contextmenu';

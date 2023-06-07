@@ -1,0 +1,74 @@
+div.wpb_wpfd_category_shortcode .wpb_element_title,
+div.wpb_wpfd_file_shortcode .wpb_element_title,
+div.wpb_wpfd_search_shortcode .wpb_element_title {
+  line-height: 32px;
+}
+
+.vc_wpfd_category_shortcode .wpfd-wpbakery-category a,
+.vc_wpfd_category_shortcode .wpfd-wpbakery-category button,
+.vc_wpfd_category_shortcode .wpfd-wpbakery-category input,
+.vc_wpfd_category_shortcode .wpfd-wpbakery-category .wpfd_checkbox,
+.vc_wpfd_category_shortcode .wpfd-wpbakery-category span:before,
+.vc_wpfd_category_shortcode .wpfd-wpbakery-category div.file,
+.vc_wpfd_search_shortcode .box-search-filter input,
+.vc_wpfd_search_shortcode .box-search-filter img,
+.vc_wpfd_search_shortcode .box-search-filter button,
+.vc_wpfd_search_shortcode .box-search-filter a,
+.vc_wpfd_search_shortcode .box-search-filter span,
+.vc_wpfd_search_shortcode .box-search-filter li,
+.vc_wpfd_search_shortcode .box-search-filter .tags-item,
+.vc_wpfd_file_shortcode .wpfd-wpbakery-single-file a,
+.vc_wpfd_file_shortcode .wpfd-wpbakery-single-file button,
+.vc_wpfd_file_shortcode .wpfd-wpbakery-single-file .wpfd-single-file--icon,
+.vc_wpfd_file_shortcode .wpfd-wpbakery-single-file h3 {
+  pointer-events: none !important;
+}
+
+input.wpfd_category_title[name="wpfd_category_title"],
+input.wpfd_file_title[name="wpfd_file_title"] {
+  pointer-events: none;
+  padding: 0;
+  border: none;
+  font-style: italic;
+}
+
+.wpfd-file-placeholder,
+.wpfd-category-placeholder {
+  position: relative;
+  text-align: center;
+  span {
+    @media screen and(min-width: 768px) {
+      display: block;
+      position: absolute;
+      bottom: 12px;
+      width: 100%;
+      left: 0;
+    }
+  }
+}
+
+.vc_wpfd_search_shortcode {
+  .box-btngroup-below,
+  .box-btngroup-below.searchboxClass {
+    border: none !important;
+    margin-top: 20px;
+  }
+  .chk-tags-filtering > ul {
+    padding: 20px 15px !important;
+    border: 1px solid #cccccc;
+    border-bottom: 1px solid #cccccc;
+    border-radius: 4px;
+  }
+}
+
+.wpfd-category-icon {
+  background-image: url(../images/wpfd_wpbakery_category.svg) !important;
+}
+
+.wpfd-file-icon {
+  background-image: url(../images/wpfd_wpbakery_file.svg) !important;
+}
+
+.wpfd-search-icon {
+  background-image: url(../images/wpfd_wpbakery_search.svg) !important;
+}

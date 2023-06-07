@@ -1,0 +1,214 @@
+.ReactModal__Overlay {
+  background-color: rgba(0, 0, 0, 0.7) !important;
+  animation: edit-post__fade-in-animation 0.2s ease-out 0s;
+  animation-fill-mode: forwards;
+  z-index: 999999999999;
+}
+
+.wpfd-divi-modal {
+  @import "wpfd-blocks";
+  @import "wpfd-blocks-icon";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  box-sizing: border-box;
+  margin: 0;
+  border: 1px solid #ddd;
+  background: #fff;
+  box-shadow: 0 3px 30px rgba(0, 0, 0, 0.2);
+  overflow: auto;
+  @media screen and (min-width: 600px) {
+    top: 50%;
+    right: auto;
+    bottom: auto;
+    left: 50%;
+    min-width: 360px;
+    max-width: calc(100% - 16px - 16px);
+    height: calc(100% - 60px - 60px);
+    max-height: calc(100% - 60px - 60px);
+    transform: translate(-50%, -50%);
+    animation: components-modal__appear-animation 0.1s ease-out;
+    animation-fill-mode: forwards;
+  }
+  > .wpfd-modal-container {
+    height: 100%;
+  }
+  .wpfd-modal-content {
+    width: 100%;
+    height: calc(100% - 84px);
+    max-height: calc(100% - 84px);
+  }
+  .icon-dropbox, .dropbox-icon {
+    background-image: url(../ui/images/icon-sync-dropbox.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 20px;
+    height: 20px;
+    width: 20px;
+    line-height: 20px;
+    display: inline-block;
+    vertical-align: middle;
+  }
+  .wpfd-modal-header {
+    box-sizing: border-box;
+    border-bottom: 1px solid #ddd;
+    padding: 0 24px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background: #fff;
+    align-items: center;
+    height: 60px;
+    z-index: 10;
+    position: relative;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    margin: 0 0 24px 0;
+    .modal-header-label {
+      font-size: 1rem;
+      font-weight: 600;
+      line-height: 1;
+      margin: 0 0 0 -24px;
+      padding: 0;
+    }
+    .wpfd-modal-button {
+      display: inline-flex;
+      text-decoration: none;
+      font-size: 13px;
+      margin: 0 -24px 0 0;
+      border: 0;
+      cursor: pointer;
+      -webkit-appearance: none;
+      background: none;
+      transition: box-shadow 0.1s linear;
+      height: 36px;
+      align-items: center;
+      box-sizing: border-box;
+      border-radius: 2px;
+      color: #1e1e1e;
+      position: relative;
+      left: 8px;
+      padding: 6px;
+      min-width: 36px;
+      justify-content: center;
+    }
+  }
+  .wpfd-file {
+    .file_info .file_title {
+      font-weight: 600;
+    }
+  }
+  .wpfd-category {
+    .wpfd-toggle-expand {
+      vertical-align: middle;
+      height: 20px;
+      margin-right: 2px;
+    }
+    .wpfd-category-name {
+      vertical-align: middle;
+    }
+    .dashicon {
+      vertical-align: middle;
+    }
+    .onedrive-icon, .googleDrive-icon, .onedrive-business-icon {
+      vertical-align: middle;
+    }
+  }
+  .wpfd-modal-content .wpfd-modal-right-panel {
+    flex-basis: calc(100% - 380px);
+  }
+  .onedrive_business-icon {
+    background: url(../ui/images/icon-sync-onedrive.svg) no-repeat center;
+    background-size: 20px;
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    display: inline-block;
+    vertical-align: middle;
+  }
+}
+
+.wpfd-file-module {
+  .wpfd-file-search {
+    display: flex;
+  }
+  .wpfd-file-search input {
+    box-shadow: 0 0 0 transparent;
+    border-radius: 4px;
+    border: 1px solid #7e8993;
+    color: #32373c;
+    padding: 0 8px;
+    min-height: 30px;
+    overflow: hidden;
+    overflow-wrap: break-word;
+    resize: none;
+    height: 32px;
+    background: #fff;
+    width: 100%;
+    line-height: 26px;
+    font-size: 16px;
+  }
+  .wpfd-browse-files {
+    display: inline-block;
+    text-decoration: none;
+    cursor: pointer;
+    text-align: center;
+    letter-spacing: 1px;
+    transition: all ease 0.5s;
+    vertical-align: middle;
+    -webkit-border-radius: 100px;
+    -moz-border-radius: 100px;
+    border-radius: 100px;
+    border: none;
+    outline: none;
+    font-size: 13px;
+    background-color: #2196f3;
+    font-weight: 500;
+    -webkit-font-smoothing: antialiased;
+    margin: auto 5px;
+    padding: 0 5px;
+    height: 32px;
+    color: #fff;
+    min-width: 110px;
+    line-height: 26px;
+  }
+}
+
+.divi-file-container {
+  position: relative;
+  text-align: center;
+  .divi-single-file-placeholder {
+    background: url(../images/file_download.svg) no-repeat scroll center center #fafafa;
+    height: 200px;
+    border-radius: 2px;
+    width: 100%;
+    background-size: 200px;
+  }
+  .file-message {
+    font-size: 13px;
+    text-align: center;
+    @media screen and (min-width: 768px) {
+      display: block;
+      position: absolute;
+      bottom: 10px;
+      width: 100%;
+      left: 0;
+    }
+  }
+  @import "../ui/scss/singlefile";
+  .wpfd-single-file--icon {
+    flex-basis: 144px;
+  }
+  .wpfd-single-file--details {
+    text-align: left;
+  }
+  .wpfd-loading-wrapper,
+  .wpfd-loading {
+    margin: 0 auto;
+    width: 70px;
+    height: 70px;
+  }
+}

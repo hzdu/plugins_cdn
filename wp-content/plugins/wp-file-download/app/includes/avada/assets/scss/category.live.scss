@@ -1,0 +1,48 @@
+.wpfd-avada-category {
+  .wpfd-file-placeholder,
+  .wpfd-category-placeholder {
+    position: relative;
+    text-align: center;
+    span {
+      @media screen and(min-width: 768px) {
+        display: block;
+        position: absolute;
+        bottom: 12px;
+        width: 100%;
+        left: 0;
+      }
+    }
+  }
+}
+
+.fusion-builder-live-editor {
+  .wpfd-avada-category a,
+  .wpfd-avada-category button,
+  .wpfd-avada-category input,
+  .wpfd-avada-category .wpfd_checkbox,
+  .wpfd-avada-category span:before,
+  .wpfd-avada-category div.file {
+    pointer-events: none !important;
+  }
+
+  .wpfd-avada-category .wpfd-foldertree {
+    //background-image: url(../../../../admin/assets/images/tree_theme_placeholder.svg);
+    background-image: url(../../wp-content/plugins/wp-file-download/app/admin/assets/images/tree_theme_placeholder.svg);
+    width: auto;
+    height: auto;
+    min-width: 20px;
+    min-height: 90px;
+    max-width: 30%;
+    background-position: top left 10%;
+    background-repeat: no-repeat;
+    background-color: transparent;
+    background-size: 90px auto;
+
+    > ul.jaofiletree {
+      display: none;
+    }
+  }
+
+
+}
+

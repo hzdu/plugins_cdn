@@ -1,0 +1,1057 @@
+@charset "UTF-8";
+/**
+ * WP File Download
+ *
+ * We developed this code with our hearts and passion.
+ * We hope you found it useful, easy to understand and to customize.
+ * Otherwise, please feel free to contact us at contact@joomunited.com *
+ * @package WP File Download
+ * @copyright Copyright (C) 2013 JoomUnited (http://www.joomunited.com). All rights reserved.
+ * @license GNU General Public License version 2 or later; http://www.gnu.org/licenses/gpl-2.0.html
+ */
+#et-boc .wpfd-content-preview ul.jaofiletree li.selected > a, .wpfd-content-preview ul.jaofiletree li.selected > a {
+  color: #3d3d3d;
+  font-weight: bold;
+}
+#et-boc .wpfd-content-preview ul.jaofiletree li.selected > .zmdi-folder, .wpfd-content-preview ul.jaofiletree li.selected > .zmdi-folder {
+  color: #3d3d3d;
+  font-weight: bold;
+}
+#et-boc .wpfd-content-preview ul.jaofiletree li.selected > .zmdi-folder:before, .wpfd-content-preview ul.jaofiletree li.selected > .zmdi-folder:before {
+  color: #3d3d3d;
+  font-weight: bold;
+}
+#et-boc .wpfd-content-preview ul.jaofiletree li.selected > .icon-open-close, .wpfd-content-preview ul.jaofiletree li.selected > .icon-open-close {
+  color: #3d3d3d;
+  font-weight: bold;
+}
+#et-boc .wpfd-content-preview ul.jaofiletree li.selected > .icon-open-close:before, .wpfd-content-preview ul.jaofiletree li.selected > .icon-open-close:before {
+  color: #3d3d3d;
+  font-weight: bold;
+}
+#et-boc .wpfd-content-preview a, .wpfd-content-preview a {
+  text-decoration: none !important;
+}
+#et-boc .wpfd-content-preview a:hover, .wpfd-content-preview a:hover {
+  text-decoration: none !important;
+}
+#et-boc .wpfd-content-preview a:focus, .wpfd-content-preview a:focus {
+  outline: none;
+}
+#et-boc .wpfd-content-preview .wpfd-categories, .wpfd-content-preview .wpfd-categories {
+  margin-bottom: 10px;
+}
+#et-boc .wpfd-content-preview .wpfd-categories .wpfdcategory_placeholder, .wpfd-content-preview .wpfd-categories .wpfdcategory_placeholder {
+  flex: 0 0 175px;
+  min-width: 175px;
+}
+#et-boc .wpfd-content-preview .wpfd_list, #et-boc .wpfd-content-preview .wpfd-categories, .wpfd-content-preview .wpfd_list, .wpfd-content-preview .wpfd-categories {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 0;
+}
+@media screen and (max-width: 420px) {
+  #et-boc .wpfd-content-preview .wpfd_list, #et-boc .wpfd-content-preview .wpfd-categories, .wpfd-content-preview .wpfd_list, .wpfd-content-preview .wpfd-categories {
+    justify-content: space-around;
+  }
+}
+#et-boc .wpfd-content-preview .file, .wpfd-content-preview .file {
+  display: inline-block;
+  position: relative;
+  color: #666 !important;
+  text-align: center;
+  word-wrap: break-word;
+  box-shadow: none;
+  width: 175px;
+  vertical-align: top;
+  box-sizing: border-box;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+#et-boc .wpfd-content-preview .file.wpfd-password-protection-form, .wpfd-content-preview .file.wpfd-password-protection-form {
+  min-height: 135px;
+  padding: 10px 5px;
+  font-size: 13px;
+  text-align: left;
+}
+#et-boc .wpfd-content-preview .file.wpfd-password-protection-form .wpfd-password-form, .wpfd-content-preview .file.wpfd-password-protection-form .wpfd-password-form {
+  margin-top: 10px;
+}
+#et-boc .wpfd-content-preview .file.wpfd-password-protection-form .password-type-and-submit-section, .wpfd-content-preview .file.wpfd-password-protection-form .password-type-and-submit-section {
+  max-width: 100%;
+}
+#et-boc .wpfd-content-preview .file.wpfd-password-protection-form .message-info, #et-boc .wpfd-content-preview .file.wpfd-password-protection-form .wpfd-password-submit, .wpfd-content-preview .file.wpfd-password-protection-form .message-info, .wpfd-content-preview .file.wpfd-password-protection-form .wpfd-password-submit {
+  display: none;
+}
+#et-boc .wpfd-content-preview .file.wpfd-password-protection-form .protected-title, #et-boc .wpfd-content-preview .file.wpfd-password-protection-form .wpfd-password-label, .wpfd-content-preview .file.wpfd-password-protection-form .protected-title, .wpfd-content-preview .file.wpfd-password-protection-form .wpfd-password-label {
+  font-size: 1em;
+  font-weight: bold;
+}
+#et-boc .wpfd-content-preview .file.wpfd-password-protection-form .protected-title, .wpfd-content-preview .file.wpfd-password-protection-form .protected-title {
+  max-width: 100%;
+  width: 100%;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+#et-boc .wpfd-content-preview .file.wpfd-password-protection-form .wpfd-password-value, .wpfd-content-preview .file.wpfd-password-protection-form .wpfd-password-value {
+  font-size: 1em;
+  margin: 5px 0 0 0;
+  padding: 5px 10px;
+  max-width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+#et-boc .wpfd-content-preview .file.wpfd-password-protection-form .wpfd-password-value:focus, .wpfd-content-preview .file.wpfd-password-protection-form .wpfd-password-value:focus {
+  outline: none;
+}
+#et-boc .wpfd-content-preview .file .dropblock, .wpfd-content-preview .file .dropblock {
+  position: relative;
+  box-sizing: border-box;
+}
+#et-boc .wpfd-content-preview .file .dropblock.wpfd-view-thumbnail, #et-boc .wpfd-content-preview .file .dropblock.wpfd-view-image-thumbnail, .wpfd-content-preview .file .dropblock.wpfd-view-thumbnail, .wpfd-content-preview .file .dropblock.wpfd-view-image-thumbnail {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: top center;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  margin-bottom: 5px;
+  height: 133px;
+  min-height: 133px;
+  overflow: hidden;
+}
+#et-boc .wpfd-content-preview .file .dropblock.wpfd-view-thumbnail .ext, #et-boc .wpfd-content-preview .file .dropblock.wpfd-view-image-thumbnail .ext, .wpfd-content-preview .file .dropblock.wpfd-view-thumbnail .ext, .wpfd-content-preview .file .dropblock.wpfd-view-image-thumbnail .ext {
+  background: transparent;
+  margin: 0 auto 15px auto;
+}
+#et-boc .wpfd-content-preview .file .dropblock.wpfd-view-thumbnail.contain, #et-boc .wpfd-content-preview .file .dropblock.wpfd-view-image-thumbnail.contain, .wpfd-content-preview .file .dropblock.wpfd-view-thumbnail.contain, .wpfd-content-preview .file .dropblock.wpfd-view-image-thumbnail.contain {
+  background-size: contain;
+  background-position: center;
+}
+#et-boc .wpfd-content-preview .file .dropblock.wpfd-view-default, .wpfd-content-preview .file .dropblock.wpfd-view-default {
+  height: 103px;
+  min-height: 103px;
+  margin: 0;
+}
+#et-boc .wpfd-content-preview .file .dropblock.wpfd-view-default .ext, .wpfd-content-preview .file .dropblock.wpfd-view-default .ext {
+  margin: 35px auto;
+}
+#et-boc .wpfd-content-preview .file .wpfd_checkbox, .wpfd-content-preview .file .wpfd_checkbox {
+  position: absolute;
+  left: 5px;
+  top: 5px;
+  z-index: 2;
+  height: 16px;
+  background-color: transparent;
+  display: inline-block;
+  text-align: left;
+  box-sizing: border-box;
+}
+#et-boc .wpfd-content-preview .file .wpfd_checkbox .cbox_file_download[type=checkbox], .wpfd-content-preview .file .wpfd_checkbox .cbox_file_download[type=checkbox] {
+  display: none;
+  -webkit-appearance: checkbox;
+  box-sizing: border-box;
+}
+#et-boc .wpfd-content-preview .file .wpfd_checkbox > span, .wpfd-content-preview .file .wpfd_checkbox > span {
+  width: 16px;
+  height: 16px;
+  line-height: 13px;
+  vertical-align: top;
+  margin: 0;
+  box-sizing: border-box;
+  display: inline-block;
+  font-size: 13px;
+}
+#et-boc .wpfd-content-preview .file .wpfd_checkbox > span:before, .wpfd-content-preview .file .wpfd_checkbox > span:before {
+  content: "";
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  margin: 0;
+  vertical-align: middle;
+  transition: 0.6s;
+  text-align: center;
+  background: #fff;
+  border: 1px solid #ccc;
+  color: #808080;
+  padding: 1px;
+  font-size: 13px;
+  box-sizing: border-box;
+}
+#et-boc .wpfd-content-preview .file .wpfd_checkbox > span:hover, #et-boc .wpfd-content-preview .file .wpfd_checkbox > span:focus, .wpfd-content-preview .file .wpfd_checkbox > span:hover, .wpfd-content-preview .file .wpfd_checkbox > span:focus {
+  cursor: pointer;
+}
+#et-boc .wpfd-content-preview .file .wpfd_checkbox > span:hover:before, .wpfd-content-preview .file .wpfd_checkbox > span:hover:before {
+  background-color: #efefef;
+}
+#et-boc .wpfd-content-preview .file .wpfd_checkbox .cbox_file_download:checked + span:before, .wpfd-content-preview .file .wpfd_checkbox .cbox_file_download:checked + span:before {
+  content: "✔";
+}
+#et-boc .wpfd-content-preview .wpfd-file-placeholder, .wpfd-content-preview .wpfd-file-placeholder {
+  height: 1px;
+  flex: 0 0 175px;
+  min-width: 175px;
+}
+#et-boc .wpfd-content-preview h2, .wpfd-content-preview h2 {
+  padding: 10px 0 0 0;
+  margin: 0 0 10px 0;
+  font-size: 18px;
+  color: #595959;
+}
+@media only screen and (max-width: 720px) {
+  #et-boc .wpfd-content-preview h2, .wpfd-content-preview h2 {
+    margin: 0 0 7px 0;
+    padding-top: 7px;
+  }
+}
+#et-boc .wpfd-content-preview .wpfd-file-link, .wpfd-content-preview .wpfd-file-link {
+  position: relative;
+  z-index: 1;
+}
+#et-boc .wpfd-content-preview .wpfd-file-link:hover, .wpfd-content-preview .wpfd-file-link:hover {
+  background: #fff;
+}
+#et-boc .wpfd-content-preview .wpfd-file-link .dropblock-footer-section, .wpfd-content-preview .wpfd-file-link .dropblock-footer-section {
+  padding: 5px 5px 5px 20px;
+  text-align: left;
+  font-size: 13px;
+  color: #333;
+  height: 35px;
+  box-sizing: border-box;
+  border-top: 1px solid #ccc;
+}
+@media screen and (max-width: 420px) {
+  #et-boc .wpfd-content-preview .wpfd-file-link .dropblock-footer-section, .wpfd-content-preview .wpfd-file-link .dropblock-footer-section {
+    padding-left: 5px;
+    text-align: center;
+  }
+}
+#et-boc .wpfd-content-preview .wpfd-file-link .dropblock-footer-section .ext, #et-boc .wpfd-content-preview .wpfd-file-link .dropblock-footer-section .droptitle, .wpfd-content-preview .wpfd-file-link .dropblock-footer-section .ext, .wpfd-content-preview .wpfd-file-link .dropblock-footer-section .droptitle {
+  display: inline-block;
+  vertical-align: middle;
+}
+#et-boc .wpfd-content-preview .wpfd-file-link .dropblock-footer-section .ext, .wpfd-content-preview .wpfd-file-link .dropblock-footer-section .ext {
+  width: 20px;
+  height: 20px;
+  margin-right: 5px;
+  background-size: cover;
+}
+#et-boc .wpfd-content-preview .wpfd-file-link .dropblock-footer-section .droptitle, .wpfd-content-preview .wpfd-file-link .dropblock-footer-section .droptitle {
+  font-family: Arial;
+  text-transform: none;
+  text-overflow: ellipsis;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  letter-spacing: normal;
+  max-width: calc(100% - 25px);
+  overflow: hidden;
+  white-space: nowrap;
+  box-sizing: border-box;
+}
+#et-boc .wpfd-content-preview .wpfdcategory.preview_category, .wpfd-content-preview .wpfdcategory.preview_category {
+  position: relative;
+  text-align: center;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  border-radius: 4px;
+  height: 130px;
+  min-height: 130px;
+  flex: 0 0 175px;
+  min-width: 175px;
+}
+#et-boc .wpfd-content-preview .wpfdcategory.preview_category:hover, .wpfd-content-preview .wpfdcategory.preview_category:hover {
+  background-color: #3e3294;
+}
+#et-boc .wpfd-content-preview .wpfdcategory.preview_category:hover > span, .wpfd-content-preview .wpfdcategory.preview_category:hover > span {
+  color: #fff;
+}
+#et-boc .wpfd-content-preview .wpfdcategory.preview_category:hover .wpfd-folder, .wpfd-content-preview .wpfdcategory.preview_category:hover .wpfd-folder {
+  background-color: #e6e1ef;
+}
+#et-boc .wpfd-content-preview .wpfdcategory.preview_category:hover .wpfd-folder:before, .wpfd-content-preview .wpfdcategory.preview_category:hover .wpfd-folder:before {
+  color: #3e3294;
+}
+#et-boc .wpfd-content-preview .wpfdcategory.preview_category > span, .wpfd-content-preview .wpfdcategory.preview_category > span {
+  width: 100%;
+  max-width: 100%;
+  text-align: center;
+  box-sizing: border-box;
+  font-size: 1em;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  letter-spacing: normal;
+  color: #091221;
+  padding: 0;
+  margin-top: 75px;
+}
+#et-boc .wpfd-content-preview .wpfdcategory.preview_category .wpfd-folder, .wpfd-content-preview .wpfdcategory.preview_category .wpfd-folder {
+  position: absolute;
+  top: 15px;
+  left: 50%;
+  right: 0;
+  transform: translate(-50%, 0);
+  color: #191166;
+  background-color: #e6e1ef;
+  border-radius: 50%;
+  padding: 15px;
+  margin: 0;
+  float: unset;
+  width: 60px;
+  height: 60px;
+  box-sizing: border-box;
+}
+#et-boc .wpfd-content-preview .wpfdcategory.preview_category .wpfd-folder:before, .wpfd-content-preview .wpfdcategory.preview_category .wpfd-folder:before {
+  font-size: 30px;
+}
+#et-boc .wpfd-content-preview .wpfdcategory.preview_category .wpfd-folder:after, .wpfd-content-preview .wpfdcategory.preview_category .wpfd-folder:after {
+  content: "__";
+  color: #fffffe;
+  position: absolute;
+  font-size: 13px;
+  display: block;
+  top: 13px;
+  transform: translateX(-50%);
+  left: 52%;
+}
+#et-boc .wpfd-content-preview .breadcrumbs.wpfd-breadcrumbs-preview, .wpfd-content-preview .breadcrumbs.wpfd-breadcrumbs-preview {
+  color: #333;
+}
+#et-boc .wpfd-content-preview .breadcrumbs.wpfd-breadcrumbs-preview > li > a,
+#et-boc .wpfd-content-preview .breadcrumbs.wpfd-breadcrumbs-preview > li > span, .wpfd-content-preview .breadcrumbs.wpfd-breadcrumbs-preview > li > a,
+.wpfd-content-preview .breadcrumbs.wpfd-breadcrumbs-preview > li > span {
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  letter-spacing: normal;
+  text-align: left;
+  color: #333;
+}
+
+a.wpfdcategory.catlink div.dropblock-footer-section {
+  font-size: 0.9em;
+  width: 115px;
+  text-overflow: ellipsis;
+}
+
+/*  preview box  */
+#wpfd-preview-box {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 100000;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: #FFF;
+  font-size: 13px;
+}
+#wpfd-preview-box a {
+  text-decoration: none;
+}
+#wpfd-preview-box .filecontent a {
+  font-size: 16px;
+  text-transform: none;
+  font-stretch: normal;
+  font-style: normal;
+  letter-spacing: normal;
+  text-align: left;
+  color: #b3b3b3;
+  font-weight: bold;
+  vertical-align: top;
+  display: inline-block !important;
+}
+#wpfd-preview-box div.wpfd-extra {
+  line-height: 18px;
+  font-size: 13px;
+  color: #b3b3b3;
+  padding-left: 85px;
+}
+#wpfd-preview-box div.wpfd-extra > div {
+  margin: 3px 0;
+  text-transform: none;
+  font-size: 1em;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.21;
+  letter-spacing: normal;
+  text-align: left;
+  color: #999999;
+}
+#wpfd-preview-box div.wpfd-extra > div > span, #wpfd-preview-box div.wpfd-extra > div > p {
+  display: inline-block;
+  text-transform: none;
+  font-size: 1em;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.21;
+  letter-spacing: normal;
+  text-align: left;
+  color: #999999;
+}
+#wpfd-preview-box div.wpfd-extra .file-desc p {
+  margin: 0;
+  padding: 0;
+}
+#wpfd-preview-box div.wpfd-extra .file-size {
+  margin-top: 15px;
+}
+#wpfd-preview-box .wpfd-close {
+  position: absolute;
+  top: 3px;
+  right: 3px;
+  height: 20px;
+  width: 20px;
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAQAAAC0NkA6AAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQfjCwsJES8LDFBaAAAA90lEQVRYw+3WTQqDMBCG4Zcm5AJCeyqvo+RAekMV3KSLorXiz6SOUkq+dcKTMWYYSElJSYEHOU682pFzjyUyahpKrGi1paShIouroiYQ6ESMpaQjEKhiqslpCELmTQQacjniJhu3GTtbKb/Fhc1WsKoQ3mAUc5jYZ1SIbUaNWGdUiSXGYLSJOdPi8bTaxJzp6c8gBmY4/1CTMgFg8GMNgR6PkW69aZ/lxz/XBRd/wS88f90GQ3Hmey/GtqLIrPcoNWa7Daow+532MCNr5ocYJ27mn0zUIDEdifbON2WiRqI7VcQn+HK4g4zq7DH1Vc3pA3dKSso/5gmAWxwDE0VxTgAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAxOS0xMS0xMVQwOToxNzoyNCswMDowMF30EfwAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMTktMTEtMTFUMDk6MTc6MjQrMDA6MDAsqalAAAAAAElFTkSuQmCC) center center no-repeat transparent;
+  background-size: cover;
+  z-index: 9999;
+}
+#wpfd-preview-box .dropblock {
+  min-width: 400px;
+  min-height: 150px;
+  display: inline-block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-left: -150px;
+  margin-top: -100px;
+  background: #FFF;
+  color: #8d8d8d;
+  padding: 15px 10px;
+  font-size: 13px;
+}
+@media screen and (min-width: 768px) {
+  #wpfd-preview-box .dropblock {
+    border-radius: 4px;
+  }
+}
+@media screen and (max-width: 420px) {
+  #wpfd-preview-box .dropblock {
+    left: 0 !important;
+    top: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    margin: 0 !important;
+    width: 100% !important;
+  }
+}
+#wpfd-preview-box .dropblock .filecontent {
+  float: left;
+  min-width: 350px;
+}
+#wpfd-preview-box .dropblock div.ext {
+  background-position: top left;
+  color: #fff;
+  float: left;
+  width: 70px;
+  position: relative;
+  margin-top: 0;
+  margin-right: 10px;
+}
+#wpfd-preview-box .dropblock div.ext[class*=wpfd-icon-set-] {
+  text-indent: -10072px;
+  width: 70px;
+  width: 70px;
+}
+#wpfd-preview-box .dropblock div.ext[class*=wpfd-icon-set-png] {
+  background-size: 100% !important;
+}
+#wpfd-preview-box .dropblock div.ext[class*=wpfd-icon-set-svg] {
+  background-size: 100% !important;
+}
+
+.wpfd-preview-box-loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 99999;
+  background: rgba(0, 0, 0, 0.8) url(../../../assets/images/theme/loadingfile.svg) center center no-repeat;
+}
+
+#et-boc .dropblock.icon-custom, .dropblock div.icon-custom {
+  height: 114px;
+  color: #fff;
+  max-width: 114px;
+  display: inline-block;
+  position: relative;
+}
+#et-boc .dropblock.icon-custom img, .dropblock div.icon-custom img {
+  width: 50px;
+  position: relative;
+  margin-top: 50%;
+}
+#et-boc .dropblock.ext[class*=wpfd-icon-set-], .dropblock div.ext[class*=wpfd-icon-set-] {
+  width: 70px;
+  height: 70px;
+  color: #fff;
+  position: relative;
+  margin: 15px auto;
+  text-indent: -999px;
+}
+#et-boc .dropblock.ext[class*=wpfd-icon-set-png], .dropblock div.ext[class*=wpfd-icon-set-png] {
+  background-size: 100% !important;
+}
+#et-boc .dropblock.ext[class*=wpfd-icon-set-svg], .dropblock div.ext[class*=wpfd-icon-set-svg] {
+  background-size: 100% !important;
+}
+#et-boc .dropblock.ext:not([class*=wpfd-icon-set-]), .dropblock div.ext:not([class*=wpfd-icon-set-]) {
+  height: 114px;
+  color: #fff;
+  background: transparent url(../../../assets/images/theme/neutral.png) no-repeat center center;
+  background-size: contain;
+  width: 70px;
+  display: inline-block;
+  position: relative;
+}
+#et-boc .dropblock.ext:not([class*=wpfd-icon-set-])[class*=ext-], .dropblock div.ext:not([class*=wpfd-icon-set-])[class*=ext-] {
+  color: transparent;
+}
+#et-boc .dropblock.ext:not([class*=wpfd-icon-set-]).ext-7z, .dropblock div.ext:not([class*=wpfd-icon-set-]).ext-7z {
+  background-image: url("../../../assets/images/theme/7z.png");
+}
+#et-boc .dropblock.ext:not([class*=wpfd-icon-set-]).ext-ace, .dropblock div.ext:not([class*=wpfd-icon-set-]).ext-ace {
+  background-image: url("../../../assets/images/theme/ace.png");
+}
+#et-boc .dropblock.ext:not([class*=wpfd-icon-set-]).ext-bz2, .dropblock div.ext:not([class*=wpfd-icon-set-]).ext-bz2 {
+  background-image: url("../../../assets/images/theme/bz2.png");
+}
+#et-boc .dropblock.ext:not([class*=wpfd-icon-set-]).ext-dmg, .dropblock div.ext:not([class*=wpfd-icon-set-]).ext-dmg {
+  background-image: url("../../../assets/images/theme/dmg.png");
+}
+#et-boc .dropblock.ext:not([class*=wpfd-icon-set-]).ext-gz, .dropblock div.ext:not([class*=wpfd-icon-set-]).ext-gz {
+  background-image: url("../../../assets/images/theme/gz.png");
+}
+#et-boc .dropblock.ext:not([class*=wpfd-icon-set-]).ext-rar, .dropblock div.ext:not([class*=wpfd-icon-set-]).ext-rar {
+  background-image: url("../../../assets/images/theme/rar.png");
+}
+#et-boc .dropblock.ext:not([class*=wpfd-icon-set-]).ext-tgz, .dropblock div.ext:not([class*=wpfd-icon-set-]).ext-tgz {
+  background-image: url("../../../assets/images/theme/tgz.png");
+}
+#et-boc .dropblock.ext:not([class*=wpfd-icon-set-]).ext-zip, .dropblock div.ext:not([class*=wpfd-icon-set-]).ext-zip {
+  background-image: url("../../../assets/images/theme/zip.png");
+}
+#et-boc .dropblock.ext:not([class*=wpfd-icon-set-]).ext-csv, .dropblock div.ext:not([class*=wpfd-icon-set-]).ext-csv {
+  background-image: url("../../../assets/images/theme/csv.png");
+}
+#et-boc .dropblock.ext:not([class*=wpfd-icon-set-]).ext-doc, .dropblock div.ext:not([class*=wpfd-icon-set-]).ext-doc {
+  background-image: url("../../../assets/images/theme/doc.png");
+}
+#et-boc .dropblock.ext:not([class*=wpfd-icon-set-]).ext-docx, .dropblock div.ext:not([class*=wpfd-icon-set-]).ext-docx {
+  background-image: url("../../../assets/images/theme/docx.png");
+}
+#et-boc .dropblock.ext:not([class*=wpfd-icon-set-]).ext-html, .dropblock div.ext:not([class*=wpfd-icon-set-]).ext-html {
+  background-image: url("../../../assets/images/theme/html.png");
+}
+#et-boc .dropblock.ext:not([class*=wpfd-icon-set-]).ext-key, .dropblock div.ext:not([class*=wpfd-icon-set-]).ext-key {
+  background-image: url("../../../assets/images/theme/key.png");
+}
+#et-boc .dropblock.ext:not([class*=wpfd-icon-set-]).ext-keynote, .dropblock div.ext:not([class*=wpfd-icon-set-]).ext-keynote {
+  background-image: url("../../../assets/images/theme/keynote.png");
+}
+#et-boc .dropblock.ext:not([class*=wpfd-icon-set-]).ext-odp, .dropblock div.ext:not([class*=wpfd-icon-set-]).ext-odp {
+  background-image: url("../../../assets/images/theme/odp.png");
+}
+#et-boc .dropblock.ext:not([class*=wpfd-icon-set-]).ext-ods, .dropblock div.ext:not([class*=wpfd-icon-set-]).ext-ods {
+  background-image: url("../../../assets/images/theme/ods.png");
+}
+#et-boc .dropblock.ext:not([class*=wpfd-icon-set-]).ext-odt, .dropblock div.ext:not([class*=wpfd-icon-set-]).ext-odt {
+  background-image: url("../../../assets/images/theme/odt.png");
+}
+#et-boc .dropblock.ext:not([class*=wpfd-icon-set-]).ext-pages, .dropblock div.ext:not([class*=wpfd-icon-set-]).ext-pages {
+  background-image: url("../../../assets/images/theme/pages.png");
+}
+#et-boc .dropblock.ext:not([class*=wpfd-icon-set-]).ext-pdf, .dropblock div.ext:not([class*=wpfd-icon-set-]).ext-pdf {
+  background-image: url("../../../assets/images/theme/pdf.png");
+}
+#et-boc .dropblock.ext:not([class*=wpfd-icon-set-]).ext-pps, .dropblock div.ext:not([class*=wpfd-icon-set-]).ext-pps {
+  background-image: url("../../../assets/images/theme/pps.png");
+}
+#et-boc .dropblock.ext:not([class*=wpfd-icon-set-]).ext-ppt, .dropblock div.ext:not([class*=wpfd-icon-set-]).ext-ppt {
+  background-image: url("../../../assets/images/theme/ppt.png");
+}
+#et-boc .dropblock.ext:not([class*=wpfd-icon-set-]).ext-pptx, .dropblock div.ext:not([class*=wpfd-icon-set-]).ext-pptx {
+  background-image: url("../../../assets/images/theme/pptx.png");
+}
+#et-boc .dropblock.ext:not([class*=wpfd-icon-set-]).ext-rtf, .dropblock div.ext:not([class*=wpfd-icon-set-]).ext-rtf {
+  background-image: url("../../../assets/images/theme/rtf.png");
+}
+#et-boc .dropblock.ext:not([class*=wpfd-icon-set-]).ext-tex, .dropblock div.ext:not([class*=wpfd-icon-set-]).ext-tex {
+  background-image: url("../../../assets/images/theme/tex.png");
+}
+#et-boc .dropblock.ext:not([class*=wpfd-icon-set-]).ext-txt, .dropblock div.ext:not([class*=wpfd-icon-set-]).ext-txt {
+  background-image: url("../../../assets/images/theme/txt.png");
+}
+#et-boc .dropblock.ext:not([class*=wpfd-icon-set-]).ext-xls, .dropblock div.ext:not([class*=wpfd-icon-set-]).ext-xls {
+  background-image: url("../../../assets/images/theme/xls.png");
+}
+#et-boc .dropblock.ext:not([class*=wpfd-icon-set-]).ext-xlsx, .dropblock div.ext:not([class*=wpfd-icon-set-]).ext-xlsx {
+  background-image: url("../../../assets/images/theme/xlsx.png");
+}
+#et-boc .dropblock.ext:not([class*=wpfd-icon-set-]).ext-xml, .dropblock div.ext:not([class*=wpfd-icon-set-]).ext-xml {
+  background-image: url("../../../assets/images/theme/xml.png");
+}
+#et-boc .dropblock.ext:not([class*=wpfd-icon-set-]).ext-bmp, .dropblock div.ext:not([class*=wpfd-icon-set-]).ext-bmp {
+  background-image: url("../../../assets/images/theme/bmp.png");
+}
+#et-boc .dropblock.ext:not([class*=wpfd-icon-set-]).ext-exif, .dropblock div.ext:not([class*=wpfd-icon-set-]).ext-exif {
+  background-image: url("../../../assets/images/theme/exif.png");
+}
+#et-boc .dropblock.ext:not([class*=wpfd-icon-set-]).ext-gif, .dropblock div.ext:not([class*=wpfd-icon-set-]).ext-gif {
+  background-image: url("../../../assets/images/theme/gif.png");
+}
+#et-boc .dropblock.ext:not([class*=wpfd-icon-set-]).ext-ico, .dropblock div.ext:not([class*=wpfd-icon-set-]).ext-ico {
+  background-image: url("../../../assets/images/theme/ico.png");
+}
+#et-boc .dropblock.ext:not([class*=wpfd-icon-set-]).ext-jpeg, .dropblock div.ext:not([class*=wpfd-icon-set-]).ext-jpeg {
+  background-image: url("../../../assets/images/theme/jpeg.png");
+}
+#et-boc .dropblock.ext:not([class*=wpfd-icon-set-]).ext-jpg, .dropblock div.ext:not([class*=wpfd-icon-set-]).ext-jpg {
+  background-image: url("../../../assets/images/theme/jpg.png");
+}
+#et-boc .dropblock.ext:not([class*=wpfd-icon-set-]).ext-png, .dropblock div.ext:not([class*=wpfd-icon-set-]).ext-png {
+  background-image: url("../../../assets/images/theme/png.png");
+}
+#et-boc .dropblock.ext:not([class*=wpfd-icon-set-]).ext-psd, .dropblock div.ext:not([class*=wpfd-icon-set-]).ext-psd {
+  background-image: url("../../../assets/images/theme/psd.png");
+}
+#et-boc .dropblock.ext:not([class*=wpfd-icon-set-]).ext-tif, .dropblock div.ext:not([class*=wpfd-icon-set-]).ext-tif {
+  background-image: url("../../../assets/images/theme/tif.png");
+}
+#et-boc .dropblock.ext:not([class*=wpfd-icon-set-]).ext-tiff, .dropblock div.ext:not([class*=wpfd-icon-set-]).ext-tiff {
+  background-image: url("../../../assets/images/theme/tiff.png");
+}
+#et-boc .dropblock.ext:not([class*=wpfd-icon-set-]).ext-aac, .dropblock div.ext:not([class*=wpfd-icon-set-]).ext-aac {
+  background-image: url("../../../assets/images/theme/aac.png");
+}
+#et-boc .dropblock.ext:not([class*=wpfd-icon-set-]).ext-aif, .dropblock div.ext:not([class*=wpfd-icon-set-]).ext-aif {
+  background-image: url("../../../assets/images/theme/aif.png");
+}
+#et-boc .dropblock.ext:not([class*=wpfd-icon-set-]).ext-aiff, .dropblock div.ext:not([class*=wpfd-icon-set-]).ext-aiff {
+  background-image: url("../../../assets/images/theme/aiff.png");
+}
+#et-boc .dropblock.ext:not([class*=wpfd-icon-set-]).ext-alac, .dropblock div.ext:not([class*=wpfd-icon-set-]).ext-alac {
+  background-image: url("../../../assets/images/theme/alac.png");
+}
+#et-boc .dropblock.ext:not([class*=wpfd-icon-set-]).ext-amr, .dropblock div.ext:not([class*=wpfd-icon-set-]).ext-amr {
+  background-image: url("../../../assets/images/theme/amr.png");
+}
+#et-boc .dropblock.ext:not([class*=wpfd-icon-set-]).ext-au, .dropblock div.ext:not([class*=wpfd-icon-set-]).ext-au {
+  background-image: url("../../../assets/images/theme/au.png");
+}
+#et-boc .dropblock.ext:not([class*=wpfd-icon-set-]).ext-cdda, .dropblock div.ext:not([class*=wpfd-icon-set-]).ext-cdda {
+  background-image: url("../../../assets/images/theme/cdda.png");
+}
+#et-boc .dropblock.ext:not([class*=wpfd-icon-set-]).ext-flac, .dropblock div.ext:not([class*=wpfd-icon-set-]).ext-flac {
+  background-image: url("../../../assets/images/theme/flac.png");
+}
+#et-boc .dropblock.ext:not([class*=wpfd-icon-set-]).ext-m3u, .dropblock div.ext:not([class*=wpfd-icon-set-]).ext-m3u {
+  background-image: url("../../../assets/images/theme/m3u.png");
+}
+#et-boc .dropblock.ext:not([class*=wpfd-icon-set-]).ext-m4a, .dropblock div.ext:not([class*=wpfd-icon-set-]).ext-m4a {
+  background-image: url("../../../assets/images/theme/m4a.png");
+}
+#et-boc .dropblock.ext:not([class*=wpfd-icon-set-]).ext-m4p, .dropblock div.ext:not([class*=wpfd-icon-set-]).ext-m4p {
+  background-image: url("../../../assets/images/theme/m4p.png");
+}
+#et-boc .dropblock.ext:not([class*=wpfd-icon-set-]).ext-mid, .dropblock div.ext:not([class*=wpfd-icon-set-]).ext-mid {
+  background-image: url("../../../assets/images/theme/mid.png");
+}
+#et-boc .dropblock.ext:not([class*=wpfd-icon-set-]).ext-mp3, .dropblock div.ext:not([class*=wpfd-icon-set-]).ext-mp3 {
+  background-image: url("../../../assets/images/theme/mp3.png");
+}
+#et-boc .dropblock.ext:not([class*=wpfd-icon-set-]).ext-mp4, .dropblock div.ext:not([class*=wpfd-icon-set-]).ext-mp4 {
+  background-image: url("../../../assets/images/theme/mp4.png");
+}
+#et-boc .dropblock.ext:not([class*=wpfd-icon-set-]).ext-mpa, .dropblock div.ext:not([class*=wpfd-icon-set-]).ext-mpa {
+  background-image: url("../../../assets/images/theme/mpa.png");
+}
+#et-boc .dropblock.ext:not([class*=wpfd-icon-set-]).ext-ogg, .dropblock div.ext:not([class*=wpfd-icon-set-]).ext-ogg {
+  background-image: url("../../../assets/images/theme/ogg.png");
+}
+#et-boc .dropblock.ext:not([class*=wpfd-icon-set-]).ext-pac, .dropblock div.ext:not([class*=wpfd-icon-set-]).ext-pac {
+  background-image: url("../../../assets/images/theme/pac.png");
+}
+#et-boc .dropblock.ext:not([class*=wpfd-icon-set-]).ext-ra, .dropblock div.ext:not([class*=wpfd-icon-set-]).ext-ra {
+  background-image: url("../../../assets/images/theme/ra.png");
+}
+#et-boc .dropblock.ext:not([class*=wpfd-icon-set-]).ext-wav, .dropblock div.ext:not([class*=wpfd-icon-set-]).ext-wav {
+  background-image: url("../../../assets/images/theme/wav.png");
+}
+#et-boc .dropblock.ext:not([class*=wpfd-icon-set-]).ext-wma, .dropblock div.ext:not([class*=wpfd-icon-set-]).ext-wma {
+  background-image: url("../../../assets/images/theme/wma.png");
+}
+#et-boc .dropblock.ext:not([class*=wpfd-icon-set-]).ext-3gp, .dropblock div.ext:not([class*=wpfd-icon-set-]).ext-3gp {
+  background-image: url("../../../assets/images/theme/3gp.png");
+}
+#et-boc .dropblock.ext:not([class*=wpfd-icon-set-]).ext-asf, .dropblock div.ext:not([class*=wpfd-icon-set-]).ext-asf {
+  background-image: url("../../../assets/images/theme/asf.png");
+}
+#et-boc .dropblock.ext:not([class*=wpfd-icon-set-]).ext-avi, .dropblock div.ext:not([class*=wpfd-icon-set-]).ext-avi {
+  background-image: url("../../../assets/images/theme/avi.png");
+}
+#et-boc .dropblock.ext:not([class*=wpfd-icon-set-]).ext-flv, .dropblock div.ext:not([class*=wpfd-icon-set-]).ext-flv {
+  background-image: url("../../../assets/images/theme/flv.png");
+}
+#et-boc .dropblock.ext:not([class*=wpfd-icon-set-]).ext-m4v, .dropblock div.ext:not([class*=wpfd-icon-set-]).ext-m4v {
+  background-image: url("../../../assets/images/theme/m4v.png");
+}
+#et-boc .dropblock.ext:not([class*=wpfd-icon-set-]).ext-mkv, .dropblock div.ext:not([class*=wpfd-icon-set-]).ext-mkv {
+  background-image: url("../../../assets/images/theme/mkv.png");
+}
+#et-boc .dropblock.ext:not([class*=wpfd-icon-set-]).ext-mov, .dropblock div.ext:not([class*=wpfd-icon-set-]).ext-mov {
+  background-image: url("../../../assets/images/theme/mov.png");
+}
+#et-boc .dropblock.ext:not([class*=wpfd-icon-set-]).ext-mpeg, .dropblock div.ext:not([class*=wpfd-icon-set-]).ext-mpeg {
+  background-image: url("../../../assets/images/theme/mpeg.png");
+}
+#et-boc .dropblock.ext:not([class*=wpfd-icon-set-]).ext-mpg, .dropblock div.ext:not([class*=wpfd-icon-set-]).ext-mpg {
+  background-image: url("../../../assets/images/theme/mpg.png");
+}
+#et-boc .dropblock.ext:not([class*=wpfd-icon-set-]).ext-rm, .dropblock div.ext:not([class*=wpfd-icon-set-]).ext-rm {
+  background-image: url("../../../assets/images/theme/rm.png");
+}
+#et-boc .dropblock.ext:not([class*=wpfd-icon-set-]).ext-swf, .dropblock div.ext:not([class*=wpfd-icon-set-]).ext-swf {
+  background-image: url("../../../assets/images/theme/swf.png");
+}
+#et-boc .dropblock.ext:not([class*=wpfd-icon-set-]).ext-vob, .dropblock div.ext:not([class*=wpfd-icon-set-]).ext-vob {
+  background-image: url("../../../assets/images/theme/vob.png");
+}
+#et-boc .dropblock.ext:not([class*=wpfd-icon-set-]).ext-wmv, .dropblock div.ext:not([class*=wpfd-icon-set-]).ext-wmv {
+  background-image: url("../../../assets/images/theme/wmv.png");
+}
+#et-boc .dropblock.ext:not([class*=wpfd-icon-set-]).ext-css, .dropblock div.ext:not([class*=wpfd-icon-set-]).ext-css {
+  background-image: url("../../../assets/images/theme/css.png");
+}
+#et-boc .dropblock.ext:not([class*=wpfd-icon-set-]).ext-img, .dropblock div.ext:not([class*=wpfd-icon-set-]).ext-img {
+  background-image: url("../../../assets/images/theme/img.png");
+}
+#et-boc .dropblock.ext:not([class*=wpfd-icon-set-]) .txt, .dropblock div.ext:not([class*=wpfd-icon-set-]) .txt {
+  position: absolute;
+  top: 48px;
+  left: 7px;
+  display: none;
+  width: 35px;
+  font-size: 17px;
+  font-weight: bold;
+  line-height: 16px;
+  text-align: center;
+  letter-spacing: -1px;
+  text-transform: uppercase;
+  font-family: arial, helvetica, sans-serif;
+}
+#et-boc .dropblock .droptitle, .dropblock div .droptitle {
+  text-align: center;
+}
+
+#wpfd-preview-box .dropblock h3 {
+  padding: 0 15px 0 25px;
+  margin: 0 0 0 60px;
+  word-wrap: break-word;
+  clear: none;
+  position: relative;
+  vertical-align: text-top;
+  font-size: 16px;
+  line-height: 13px;
+}
+#wpfd-preview-box .dropblock h3 .wpfd_checkbox {
+  margin: 0;
+  width: 16px;
+  height: 16px;
+  background-color: transparent;
+  display: none;
+  text-align: left;
+  box-sizing: border-box;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+#wpfd-preview-box .dropblock h3 .wpfd_checkbox .cbox_file_download[type=checkbox] {
+  display: none;
+  -webkit-appearance: checkbox;
+  box-sizing: border-box;
+}
+#wpfd-preview-box .dropblock h3 .wpfd_checkbox span {
+  width: 16px;
+  height: 16px;
+  line-height: 13px;
+  vertical-align: top;
+  margin: 0;
+  box-sizing: border-box;
+  display: inline-block;
+  font-size: 13px;
+}
+#wpfd-preview-box .dropblock h3 .wpfd_checkbox span:before {
+  content: "";
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  margin: 0;
+  vertical-align: middle;
+  transition: 0.6s;
+  text-align: center;
+  background: #fff;
+  border: 1px solid #808080;
+  color: #808080;
+  padding: 1px;
+  font-size: 13px;
+  box-sizing: border-box;
+}
+#wpfd-preview-box .dropblock h3 .wpfd_checkbox span:hover, #wpfd-preview-box .dropblock h3 .wpfd_checkbox span:focus {
+  cursor: pointer;
+}
+#wpfd-preview-box .dropblock h3 .wpfd_checkbox span:hover:before {
+  background-color: #efefef;
+}
+#wpfd-preview-box .dropblock h3 .wpfd_checkbox .cbox_file_download:checked + span:before {
+  content: "✔";
+}
+#wpfd-preview-box .dropblock h3 > a {
+  font-size: 16px;
+  display: inline-block;
+  line-height: 16px;
+  max-width: 500px;
+  vertical-align: text-top;
+  margin-top: -1px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  letter-spacing: normal;
+  text-align: left;
+  color: #808080;
+  text-transform: none;
+}
+#wpfd-preview-box .extra-downloadlink {
+  background: none;
+  padding: 0;
+  margin: 5px 0 0 0;
+  height: 30px;
+  text-align: right;
+  display: inline-block;
+  float: left;
+  width: 130px;
+}
+@media screen and (max-width: 420px) {
+  #wpfd-preview-box .extra-downloadlink {
+    width: 100%;
+    text-align: center;
+  }
+  #wpfd-preview-box .extra-downloadlink a {
+    margin-right: 10px;
+    display: inline-block !important;
+    float: unset !important;
+  }
+  #wpfd-preview-box .extra-downloadlink a.downloadlink {
+    margin-bottom: 0;
+  }
+  #wpfd-preview-box .extra-downloadlink a.openlink {
+    margin-top: 0;
+  }
+}
+#wpfd-preview-box .extra-downloadlink a {
+  border-radius: 8px;
+  font-size: 13px;
+  padding: 5px 15px;
+  text-align: center;
+  text-decoration: none;
+  box-sizing: border-box;
+  display: block;
+  width: 140px;
+  height: 32px;
+  float: right;
+  transition: all 0.2s ease;
+  line-height: 22px;
+}
+#wpfd-preview-box .extra-downloadlink a:hover {
+  box-shadow: 1px 1px 12px #ccc;
+}
+#wpfd-preview-box .extra-downloadlink a.downloadlink {
+  background-color: #75be5f;
+  border-color: #75be5f;
+  color: #fff;
+}
+@media screen and (min-width: 768px) {
+  #wpfd-preview-box .extra-downloadlink a.downloadlink {
+    margin: 23px 0 5px 0;
+  }
+}
+#wpfd-preview-box .dropblock .viewerlink {
+  text-align: right;
+  display: inline-block;
+  height: 30px;
+  padding: 0;
+  margin: 10px 0 0 10px;
+}
+#wpfd-preview-box .dropblock .viewerlink .openlink {
+  background-color: #fafafa;
+  border-color: #dadada;
+  border-radius: 15px;
+  color: #8f8f8f;
+  font-size: 13px;
+  margin-top: 10px;
+  padding: 5px 15px;
+  text-align: center;
+  text-decoration: none;
+  box-sizing: border-box;
+  display: block;
+  width: 120px;
+  height: 32px;
+  transition: all 0.2s ease;
+}
+#wpfd-preview-box .dropblock .viewerlink .openlink:hover {
+  box-shadow: 1px 1px 12px #ccc;
+}
+#wpfd-preview-box .dropblock .icon-custom {
+  display: block;
+  float: left;
+  max-width: 114px;
+  max-height: 114px;
+  margin-right: 5px;
+}
+
+#et-boc .wpfd-container-preview,
+.wpfd-container-preview {
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 50px;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+  position: relative;
+}
+#et-boc .wpfd-container-preview.with_foldertree,
+.wpfd-container-preview.with_foldertree {
+  float: left;
+  width: 70%;
+  margin: 0;
+}
+#et-boc .wpfd-container-preview .wpfd-categories,
+.wpfd-container-preview .wpfd-categories {
+  padding: 0;
+}
+#et-boc .wpfd-container-preview .wpfd-categories h2,
+.wpfd-container-preview .wpfd-categories h2 {
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  letter-spacing: normal;
+  text-align: left;
+  color: #2c2c2c;
+  text-transform: uppercase;
+  margin: 0 0 0 10px;
+  padding: 0;
+}
+#et-boc .wpfd-container-preview .wpfd-categories .backcategory .zmdi-chevron-left,
+.wpfd-container-preview .wpfd-categories .backcategory .zmdi-chevron-left {
+  vertical-align: middle;
+}
+
+.wpfd-content-preview .preview-download-category:hover,
+.wpfd-content-preview .preview-download-selected:hover {
+  cursor: pointer;
+  box-shadow: 1px 1px 0.6666666667em #ccc;
+}
+.wpfd-content-preview .preview-download-category:focus,
+.wpfd-content-preview .preview-download-selected:focus {
+  cursor: pointer;
+  background: #75be5f;
+  background-color: #75be5f !important;
+  border-color: #75be5f;
+}
+.wpfd-content-preview .preview-download-category .wpfd-download-category,
+.wpfd-content-preview .preview-download-selected .wpfd-download-category {
+  margin-left: 5px;
+  vertical-align: text-bottom;
+  font-size: 1.3em;
+  line-height: 18px;
+}
+.wpfd-content-preview .preview-download-category:hover {
+  cursor: pointer;
+}
+.wpfd-content-preview .preview-download-category.display-download-category {
+  display: none;
+}
+
+@media (max-width: 720px) {
+  .wpfd-container-preview.with_foldertree {
+    width: auto;
+    float: unset;
+  }
+
+  #wpfd-preview-box .dropblock {
+    min-height: 240px;
+    min-width: unset;
+  }
+  #wpfd-preview-box .dropblock .viewerlink {
+    margin: 0;
+  }
+}
+/* Right to left */
+.rtl .wpfd-content-preview {
+  direction: rtl;
+}
+.rtl .wpfd-content-preview .wpfd-categories .catlink span {
+  padding-right: 5px;
+  text-align: left;
+}
+.rtl .wpfd-content-preview .backcategory {
+  float: none;
+  right: unset;
+  left: 10px;
+}
+.rtl .wpfd-content-preview .backcategory .zmdi-chevron-left {
+  -moz-transform: scaleX(-1);
+  -o-transform: scaleX(-1);
+  -webkit-transform: scaleX(-1);
+  transform: scale(-1);
+  margin-left: 3px;
+}
+.rtl .wpfd-content-preview i.zmdi, .rtl .wpfd-content-preview .zmdi-folder, .rtl .wpfd-content-preview .zmdi-folder-open {
+  -moz-transform: scaleX(-1);
+  -o-transform: scaleX(-1);
+  -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
+  padding-left: 5px;
+}
+.rtl .wpfd-content-preview .icon-open-close {
+  -moz-transform: scaleX(-1);
+  -o-transform: scaleX(-1);
+  -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
+  float: right;
+}
+.rtl .wpfd-content-preview ul.jaofiletree:first-child {
+  margin-right: -10px !important;
+  margin-left: unset !important;
+}
+.rtl .wpfd-content-preview ul.jaofiletree li {
+  padding-right: 10px !important;
+  padding-left: unset !important;
+}
+.rtl #wpfd-preview-box .wpfd-content i.wpfd-preview,
+.rtl #wpfd-preview-box .wpfd-content i.wpfd-download {
+  text-align: left;
+  margin-left: unset;
+  margin-right: 10px;
+}
+.rtl #wpfd-preview-box .dropblock div.ext {
+  float: right;
+  margin-left: 10px;
+}
+.rtl #wpfd-preview-box .dropblock .filecontent {
+  float: right;
+}
+.rtl #wpfd-preview-box .dropblock .wpfd-extra {
+  overflow: hidden;
+  margin-right: 65px;
+  margin-left: unset;
+}
+.rtl #wpfd-preview-box .dropblock .wpfd-extra span {
+  float: right;
+  margin-left: 2px;
+}

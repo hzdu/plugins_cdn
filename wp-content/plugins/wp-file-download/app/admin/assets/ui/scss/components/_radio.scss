@@ -1,0 +1,21 @@
+// Radio box
+input.ju-radiobox {
+  border-color: #7d8a9a;
+  @include boxShadow(none);
+
+  &:checked {
+    border-color: $emerald-color;
+
+    &:before {
+      width: 10px;
+      height: 10px;
+      margin: 2px;
+      background-color: $emerald-color;
+    }
+  }
+
+  &:focus {
+    border-color: $emerald-color;
+    @include boxShadow(none);
+  }
+}
