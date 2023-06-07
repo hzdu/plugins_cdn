@@ -2,23 +2,23 @@
  * Common jquery plugins - used both in inner frame and main frame
  */
 module.exports = {
-	tcbShow: function ( display = 'block' ) {
+	tcbShow( display = 'block' ) {
 		return this.each( function () {
 			this.style.display = display;
 		} );
 	},
-	tcbHide: function () {
+	tcbHide() {
 		return this.each( function () {
 			this.style.display = 'none';
 		} );
 	},
-	tcbRemoveClass: function ( cls ) {
+	tcbRemoveClass( cls ) {
 		cls = cls.split( ' ' );
 		return this.each( function () {
 			this.classList.remove.apply( this.classList, cls );
 		} );
 	},
-	tcbAddClass: function ( cls ) {
+	tcbAddClass( cls ) {
 		cls = cls.split( ' ' );
 		return this.each( function () {
 			this.classList.add.apply( this.classList, cls );
@@ -26,11 +26,11 @@ module.exports = {
 	},
 	/**
 	 *
-	 * @param cls
+	 * @param           cls
 	 * @param {Boolean} atLeasOne check that at least one class exists if multiple classes are provided
 	 * @return {*|boolean}
 	 */
-	tcbHasClass: function ( cls, atLeasOne = false ) {
+	tcbHasClass( cls, atLeasOne = false ) {
 		if ( ! this.length ) {
 			return false;
 		}
@@ -43,7 +43,7 @@ module.exports = {
 		/* check if element has every class from the provided list */
 		return cls.every( item => this[ 0 ].classList.contains( item ) );
 	},
-	tcbToggleClass: function ( cls, state ) {
+	tcbToggleClass( cls, state ) {
 		let fn = false;
 		if ( typeof state !== 'undefined' ) {
 			fn = state ? 'add' : 'remove';

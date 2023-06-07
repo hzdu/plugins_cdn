@@ -3,13 +3,13 @@
 		<div class="tqb-structure-item-card-actions">
 			<# if ( ! item.get( 'has_running_test' ) ) { #>
 				<# if(item.get('type') === 'splash'){ #>
-					<a href="<?php echo Thrive_Quiz_Builder::VIDEO_PAGE_SPLASH; ?>" style="padding: 5px;" class='wistia-popover[height=450,playerColor=2bb914,width=800]'><span class='tvd-icon-play tqb-purple-icon'></span></a>
+					<a data-source="<?php echo Thrive_Quiz_Builder::VIDEO_PAGE_SPLASH; ?>" style="padding: 5px;" class='tvd-open-video'><span class='tvd-icon-play tqb-purple-icon'></span></a>
 				<# } #>
 				<# if(item.get('type') === 'optin'){ #>
-					<a href="<?php echo Thrive_Quiz_Builder::VIDEO_PAGE_OPTIN; ?>" style="padding: 5px;" class='wistia-popover[height=450,playerColor=2bb914,width=800]'><span class='tvd-icon-play tqb-purple-icon'></span></a>
+					<a data-source="<?php echo Thrive_Quiz_Builder::VIDEO_PAGE_OPTIN; ?>" style="padding: 5px;" class='tvd-open-video'><span class='tvd-icon-play tqb-purple-icon'></span></a>
 				<# } #>
 				<# if(item.get('type') === 'results'){ #>
-					<a href="<?php echo Thrive_Quiz_Builder::VIDEO_PAGE_RESULTS; ?>" style="padding: 5px;" class='wistia-popover[height=450,playerColor=2bb914,width=800]'><span class='tvd-icon-play tqb-purple-icon'></span></a>
+					<a data-source="<?php echo Thrive_Quiz_Builder::VIDEO_PAGE_RESULTS; ?>" style="padding: 5px;" class='tvd-open-video'><span class='tvd-icon-play tqb-purple-icon'></span></a>
 				<# } #>
 				<# if ( ! item.get( 'mandatory' ) ) { #>
 					<span class="tvd-icon-trash-o tvd-pointer tvd-inline-block tvd-right tqb-structure-item-card-delete"></span>

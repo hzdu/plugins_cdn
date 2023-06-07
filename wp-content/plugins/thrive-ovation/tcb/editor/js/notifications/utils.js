@@ -1,5 +1,5 @@
 module.exports = {
-	applyDefaultRules: function ( shouldSave ) {
+	applyDefaultRules( shouldSave ) {
 		const
 			iconSize = 27,
 			mobileIconSize = 24,
@@ -98,7 +98,7 @@ module.exports = {
 		}
 	},
 
-	initializeNotificationEditor: function ( displayedState ) {
+	initializeNotificationEditor( displayedState ) {
 		/* Do not allow the content to be edited when it is not in edit mode */
 		TVE.inner_$( `.notifications-content.notification-${displayedState}` ).children().addClass( 'tve-prevent-content-edit' );
 
@@ -119,10 +119,11 @@ module.exports = {
 
 	/**
 	 * Add current notification color to the main frame for the controls to properly display the current color
-	 * @param state
+	 *
+	 * @param  state
 	 * @private
 	 */
-	_updateMainFrameVars: function ( state ) {
+	_updateMainFrameVars( state ) {
 		const color = {
 			'success': 'rgb(74, 178, 93)',
 			'warning': 'rgb(243, 156, 15)',
@@ -134,7 +135,7 @@ module.exports = {
 	/**
 	 * Add corresponding link for the preview button
 	 *
-	 * @param state
+	 * @param  state
 	 */
 	updatePreviewLink: ( state = 'success' ) => {
 		const $previewButton = TVE.$( '.preview-content' );
@@ -147,8 +148,9 @@ module.exports = {
 		$previewButton.attr( 'href', previewLink.concat( `&notification-state=${state}` ) );
 	},
 
-	updateNotificationSidebarOptions: function ( isEditMode ) {
+	updateNotificationSidebarOptions( isEditMode ) {
 		const hiddenComponents = '#tve-layout-component,#tve-background-component,#tve-borders-component,#tve-shadow-component,#tve-responsive-component,#tve-styles-templates-component';
+
 		TVE.main.EditMode.$componentPanel.find( hiddenComponents ).toggle( isEditMode );
 		TVE.main.EditMode.$componentPanel.find( '#tve-notification-component .non-edit-mode-controls' ).toggle( ! isEditMode );
 		TVE.main.EditMode.$componentPanel.find( '#tve-notification-component .edit-mode-controls' ).toggle( isEditMode );

@@ -24,6 +24,7 @@ import MappingPairField from "@/components/fields/MappingPairField";
 import AutocompleteToggleField from "@/components/fields/AutocompleteToggleField";
 import SelectToggleField from "@/components/fields/SelectToggleField";
 import SwitchField from "@/components/fields/SwitchField";
+import NumberField from "@/components/fields/NumberField";
 import { setBrowserClass } from "@/utils/ui-fn";
 
 window.TAPAdmin = window.TAPAdmin || {};
@@ -66,6 +67,7 @@ const app = createApp( App )
 	.component( 'DoubleDropdownField', DoubleDropdownField )
 	.component( 'DateTimeField', DateTimeField )
 	.component( 'TagsField', TagsField )
+	.component( 'NumberField', NumberField )
 	.component( 'ActionTestField', ActionTestField )
 	.component( 'AutocompleteToggleField', AutocompleteToggleField )
 	.component( 'SelectToggleField', SelectToggleField )

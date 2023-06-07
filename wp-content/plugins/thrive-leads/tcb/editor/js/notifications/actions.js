@@ -37,7 +37,7 @@ module.exports = {
 		}
 	},
 
-	'tcb.element.focus': ( $element ) => {
+	'tcb.element.focus': $element => {
 		const isNotification = $element.is( TVE.identifier( 'notification' ) );
 		if ( isNotification ) {
 			/* Disable Margin Control for the Notification Element */
@@ -51,7 +51,7 @@ module.exports = {
 		TVE.main.$( '.tve-active-element' ).addClass( 'no-states' );
 	},
 
-	'tcb.after-insert': ( $element ) => {
+	'tcb.after-insert': $element => {
 		if ( $element.is( '.thrv-notification_message' ) ) {
 			$element.addClass( 'tcb-selector-no_save tcb-selector-no_clone' )
 		}
@@ -60,7 +60,7 @@ module.exports = {
 	},
 
 	/**
-	 * @param $element
+	 * @param  $element
 	 */
 	'tcb_after_cloud_template': $element => {
 		if ( $element.is( TVE.identifier( 'notification' ) ) ) {

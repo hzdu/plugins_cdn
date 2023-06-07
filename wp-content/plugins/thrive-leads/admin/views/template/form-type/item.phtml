@@ -10,7 +10,7 @@
 				    title="<?php echo __( 'Get PHP Code', 'thrive-leads' ) ?>"><?php echo __( 'Get PHP Code', 'thrive-leads' ) ?></a>)
 			<# } #>
 			<# if (form.get('video_link')) { #>
-				<a href="<#= form.get('video_link') #>" class="wistia-popover[height=450,playerColor=2bb914,width=800]"><span class="tvd-icon-play"></span></a>
+				<a data-source="<#= form.get('video_link') #>" class="tvd-open-video"><span class="tvd-icon-play"></span></a>
 			<# } #>
 		</span>
 	</div>

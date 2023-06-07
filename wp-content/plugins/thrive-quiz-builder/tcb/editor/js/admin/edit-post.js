@@ -1,5 +1,4 @@
 ( $ => {
-
 	const TCBYoastPlugin = require( './classes/tcb-yoast-plugin' ),
 		TCBRankMathPlugin = require( './classes/tcb-rankmath-plugin' ),
 		RankMathInstance = new TCBRankMathPlugin(),
@@ -23,6 +22,8 @@
 		}
 	} );
 
+	/**
+	 */
 	function show_loader() {
 		$( '#tcb-admin-page-loader' ).show();
 	}
@@ -51,8 +52,8 @@
 		} )
 		         .on( 'click', '#tcb2-show-wp-editor', function () {
 			         /**
-			          * Enable the hidden input that will disable TCB editor when saving the post
-			          */
+												 * Enable the hidden input that will disable TCB editor when saving the post
+												 */
 			         const $editlink = $document.find( '.tcb-enable-editor' ),
 				         $postbox = $editlink.closest( '.postbox' );
 
@@ -80,5 +81,4 @@
 			         } );
 		         } );
 	} );
-
 } )( jQuery );

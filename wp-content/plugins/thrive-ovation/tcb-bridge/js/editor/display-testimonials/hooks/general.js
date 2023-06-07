@@ -61,9 +61,6 @@ const content = require( '../content' ),
 				content.checkForDisplayTestimonialsSync( $article );
 			}
 
-			/* todo remove this after cloud templates are implemented because the layout will be applied from there, after the template is added */
-			TVE.PostList.layout.applyLayout( $element );
-
 			/* this is done only if there's an element that extends the display testimonials and is using masonry in the page */
 			setTimeout( () => {
 				TVE.PostList.layout.masonryRedo();
@@ -232,8 +229,8 @@ const content = require( '../content' ),
 		'tcb.post_list.device_change_selectors': selectors => `${selectors}, ${TVE.identifier( 'display_testimonials' )}`,
 		/**
 		 *
-		 * @param identifier
-		 * @returns {`${string}, ${string}`}
+		 * @param  identifier
+		 * @return {`${string}, ${string}`}
 		 */
 		'theme.post_list.identifier': identifier => `${identifier}, ${TVE.identifier( 'display_testimonials' )}`,
 	};

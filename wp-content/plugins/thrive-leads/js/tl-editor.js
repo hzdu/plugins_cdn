@@ -16,6 +16,7 @@ TL_Editor.views.ModalTemplates = TVE.modal.base.extend( {
 	initialize: function () {
 		/* Items templates */
 		TVE.modal.base.prototype.initialize.apply( this, arguments );
+		this.$error = this.$('.error-container');
 
 		this.$template_items = this.$( '.tl-set-list' );
 		this.$saved_templates_checkbox = this.$( '.saved-templates-checkbox' );
@@ -156,6 +157,10 @@ TL_Editor.views.ModalTemplates = TVE.modal.base.extend( {
 		var promises = [];
 		var self = this,
 			tpl = TVE.tpl( 'templates/item' );
+
+        if ( TVE.CONST.tl_templates_error.error ) {
+            this.$error.fadeIn( 200 ).html( TVE.tpl( 'inline-error' )( { error_message: TVE.CONST.tl_templates_error.error } ) );
+        }
 		if ( templates.length === 0 ) {
 			self.$template_items.append( 'No templates found' );
 		} else {

@@ -6,13 +6,14 @@
 
 		/**
 		 * Check if we're using the block editor
-		 * @returns {boolean}
+		 *
+		 * @return {boolean}
 		 */
-		isGutenbergActive: function () {
+		isGutenbergActive() {
 			return typeof wp !== 'undefined' && typeof wp.blocks !== 'undefined';
 		},
 
-		init: function () {
+		init() {
 			this.coreEditor = wp.data.select( 'core/editor' );
 			this.$gutenberg = $( '#editor' );
 			this.$architectNotificationContent = $( '#thrive-gutenberg-switch' ).html();
@@ -57,7 +58,7 @@
 				}, 1 );
 			} );
 		},
-		render: function () {
+		render() {
 			const $postTitle = this.$gutenberg.find( '.editor-post-title' ),
 				$wpContent = this.$gutenberg.find( EDITOR_SELECTORS ).not( $postTitle.closest( EDITOR_SELECTORS ) );
 			let shouldBindEvents = false;
@@ -76,15 +77,13 @@
 					this.$gutenberg.find( '.edit-post-header-toolbar' ).css( 'visibility', 'hidden' );
 					shouldBindEvents = true;
 				}
-			} else {
-				if ( ! $( '#thrive_preview_button' ).length ) {
-					this.$gutenberg.find( '.edit-post-header-toolbar' ).append( this.$architectLauncher );
-					this.$architectLauncher.on( 'click', function () {
-						$wpContent.hide();
-					} );
-					this.$gutenberg.find( '.edit-post-header-toolbar' ).css( 'visibility', 'visible' );
-					shouldBindEvents = true;
-				}
+			} else if ( ! $( '#thrive_preview_button' ).length ) {
+				this.$gutenberg.find( '.edit-post-header-toolbar' ).append( this.$architectLauncher );
+				this.$architectLauncher.on( 'click', function () {
+					$wpContent.hide();
+				} );
+				this.$gutenberg.find( '.edit-post-header-toolbar' ).css( 'visibility', 'visible' );
+				shouldBindEvents = true;
 			}
 
 			/* So we can use saved styles */
@@ -94,7 +93,7 @@
 			}
 		},
 
-		bindEvents: function () {
+		bindEvents() {
 			const self = this;
 			$( '#tcb2-show-wp-editor' ).on( 'click', function () {
 				const $editlink = self.$gutenberg.find( '.tcb-enable-editor' ),
@@ -138,7 +137,7 @@
 		/**
 		 * Fix block height once returning to gutenberg editor
 		 */
-		fixBlocksPreview: function () {
+		fixBlocksPreview() {
 			const blocks = document.querySelectorAll( '[data-type*="thrive"] iframe' ),
 				tveOuterHeight = function ( el ) {
 					if ( ! el ) {
@@ -202,5 +201,4 @@
 			} );
 		} );
 	} );
-
 }( jQuery ) );

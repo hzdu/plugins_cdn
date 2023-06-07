@@ -11,7 +11,9 @@
 		<h2 class="mt-25 mb-25"><?php echo __( 'Are you Sure you want to Overwrite your Existing Cache Settings?', 'thrive-theme' ); ?></h2>
 
 		<p class="mt-0 mb-30 ttd-normal"><?php printf( __( "If you continue, Thrive will automatically configure the caching plugin with the recommended settings. %sThis means that some of your existing settings may be lost" ), '<br>', 'thrive-theme' ); ?>.</p>
-
+		<# if ( this.model.get('tag') === 'sg-optimizer') { #>
+		<p class="mt-0 mb-30 ttd-normal"><?php echo __( "Some features like the Built-in Image Optimization or Dynamic & Object Caching only work on sites hosted on SiteGround", 'thrive-theme' ); ?>.</p>
+		<# } #>
 		<button class="ttd-btn blue empty click btn-w-250 mr-30" data-fn="cancelUpdateSettings"><?php echo __( 'No, cancel', 'thrive-theme' ); ?></button>
 		<button class="ttd-btn blue fill btn-w-250 click" data-fn="updateSettings"><?php echo __( 'Yes, configure the cache ', 'thrive-theme' ); ?></button>
 	</div>

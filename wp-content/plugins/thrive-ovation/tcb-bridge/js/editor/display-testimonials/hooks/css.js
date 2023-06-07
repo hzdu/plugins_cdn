@@ -48,12 +48,15 @@ const content = require( '../content' ),
 		'tcb.css.fallback_value': ( cssValue, rules, selector ) => {
 			if ( ! cssValue && TVE.state_manager.is_hover() && selector && rules === 'background-image' ) {
 				const isInsideTestimonialList = selector.includes( TVE.identifier( 'display_testimonials' ) ) ||
-				                                ( selector.includes( TVE.identifier( 'article' ) ) && utils.isInsideTestimonialsList() ),
-					dynamicBackgroundUrlPrefix = TVE.CONST.dynamic_background_url_prefix,
-					dynamicCss = TVE.inner_$( selector ).css( `${TVE.CONST.cssVarPrefix}background-image` );
+				                                ( selector.includes( TVE.identifier( 'article' ) ) && utils.isInsideTestimonialsList() );
 
-				if ( isInsideTestimonialList && dynamicCss && dynamicCss.includes( dynamicBackgroundUrlPrefix ) ) {
-					cssValue = dynamicCss.replace( 'var$', 'var' );
+				if ( isInsideTestimonialList ) {
+					const dynamicBackgroundUrlPrefix = TVE.CONST.dynamic_background_url_prefix,
+						dynamicCss = TVE.inner_$( selector ).css( `${TVE.CONST.cssVarPrefix}background-image` );
+
+					if ( dynamicCss && dynamicCss.includes( dynamicBackgroundUrlPrefix ) ) {
+						cssValue = dynamicCss.replace( 'var$', 'var' );
+					}
 				}
 			}
 
@@ -145,12 +148,6 @@ const content = require( '../content' ),
 				if ( prefix.indexOf( TVE.PostList.baseSelector ) !== -1 ) {
 					prefix = TVE.PostList.baseSelector + ' ' + prefix.replace( TVE.PostList.baseSelector, '' );
 				}
-			} else if ( $element.is( TVE.identifier( 'pagination_number_item' ) ) ) {
-				/* prefix the pagination selector css so it's unique to its pagination element */
-				const paginationDataCSS = TVE.CSS_Rule_Cache.uniq_id( $element.closest( TVE.identifier( 'pagination' ) ) );
-
-				/* add the pagination element data-css to the prefix */
-				prefix = prefix.trimStart() + `[data-css="${paginationDataCSS}"]${TVE.identifier( 'pagination' )} `;
 			}
 
 			return prefix;

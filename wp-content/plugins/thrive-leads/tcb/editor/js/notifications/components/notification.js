@@ -3,14 +3,14 @@ module.exports = TVE.Views.Base.component.extend( {
 		/* backwards compatibility stuff */
 		TVE.Editor_Page.editor.find( '.animated' ).removeClass( 'animated' );
 	},
-	controls_init: function ( controls ) {
+	controls_init( controls ) {
 		let startAnimation, displayAnimation, endAnimation;
 
 		/* Display Position Control  */
-		controls[ 'DisplayPosition' ].input = function ( $element, dom ) {
-			let positionAttribute = dom.getAttribute( 'data-value' ),
-				horizontalPosition = positionAttribute.split( '-' )[ 1 ];
-			const verticalPosition = positionAttribute.split( '-' )[ 0 ];
+		controls.DisplayPosition.input = function ( $element, dom ) {
+			const positionAttribute = dom.getAttribute( 'data-value' ),
+				verticalPosition = positionAttribute.split( '-' )[ 0 ];
+			let horizontalPosition = positionAttribute.split( '-' )[ 1 ];
 
 			if ( TVE.main.device === 'mobile' ) {
 				horizontalPosition = $element.attr( 'data-position' ).split( '-' )[ 1 ];
@@ -22,7 +22,7 @@ module.exports = TVE.Views.Base.component.extend( {
 			updateHorizontalSpacing( $element );
 		};
 
-		controls[ 'DisplayPosition' ].update = function ( $element ) {
+		controls.DisplayPosition.update = function ( $element ) {
 			let positionAttribute = $element.attr( 'data-position' );
 
 			this.$( '.items-9' ).removeClass( 'mobile' );
@@ -37,57 +37,57 @@ module.exports = TVE.Views.Base.component.extend( {
 		};
 
 		/* Vertical Spacing Control  */
-		controls[ 'VerticalSpacing' ].input = function ( $element, dom ) {
+		controls.VerticalSpacing.input = function ( $element, dom ) {
 			/* Only allow numerical values */
 			if ( isNaN( dom.value ) ) {
-				controls[ 'VerticalSpacing' ].setValue( 0 );
+				controls.VerticalSpacing.setValue( 0 );
 			}
 
 			const verticalPosition = $element.attr( 'data-position' ).split( '-' )[ 0 ];
 			$element.head_css( {[ verticalPosition ]: dom.value + 'px'}, false, `${TVE.identifier( 'notification' )}[data-position*="${verticalPosition}"]`, true, '' );
 		};
 
-		controls[ 'VerticalSpacing' ].update = function ( $element ) {
+		controls.VerticalSpacing.update = function ( $element ) {
 			updateVerticalSpacing( $element );
 		};
 
 		/* Horizontal Spacing Control  */
-		controls[ 'HorizontalSpacing' ].input = function ( $element, dom ) {
+		controls.HorizontalSpacing.input = function ( $element, dom ) {
 			/* Only allow numerical values */
 			if ( isNaN( dom.value ) ) {
-				controls[ 'VerticalSpacing' ].setValue( 0 );
+				controls.VerticalSpacing.setValue( 0 );
 			}
 
 			const horizontalPosition = $element.attr( 'data-position' ).split( '-' )[ 1 ];
 			$element.head_css( {[ horizontalPosition ]: dom.value + 'px'}, false, `${TVE.identifier( 'notification' )}[data-position*="${horizontalPosition}"]`, true, '' );
 		};
 
-		controls[ 'HorizontalSpacing' ].update = function ( $element ) {
+		controls.HorizontalSpacing.update = function ( $element ) {
 			updateHorizontalSpacing( $element );
 		};
 
 		/* Animation Direction Control  */
-		controls[ 'AnimationDirection' ].input = function ( $element, dom ) {
+		controls.AnimationDirection.input = function ( $element, dom ) {
 			$element.attr( 'data-animation', dom.value );
 			$element.toggleClass( 'tcb-animated', dom.value !== 'none' );
 
 			animateNotification( $element );
 		};
 
-		controls[ 'AnimationDirection' ].update = function ( $element ) {
+		controls.AnimationDirection.update = function ( $element ) {
 			this.setValue( $element.attr( 'data-animation' ) );
 		};
 
 		/* Animation Time Control  */
-		controls[ 'AnimationTime' ].input = function ( $element, dom ) {
+		controls.AnimationTime.input = function ( $element, dom ) {
 			$element.attr( 'data-timer', dom.value * 1000 );
 		};
 
-		controls[ 'AnimationTime' ].change = function ( $element ) {
+		controls.AnimationTime.change = function ( $element ) {
 			animateNotification( $element, true );
 		};
 
-		controls[ 'AnimationTime' ].update = function ( $element ) {
+		controls.AnimationTime.update = function ( $element ) {
 			let timerValue = $element.attr( 'data-timer' );
 
 			if ( timerValue < 0 ) {
@@ -98,12 +98,12 @@ module.exports = TVE.Views.Base.component.extend( {
 			this.setValue( timerValue );
 		};
 
-		controls[ 'VerticalPosition' ].applyStyles = function ( $element, dom ) {
+		controls.VerticalPosition.applyStyles = function ( $element, dom ) {
 			const state = $element.attr( 'data-state' );
 			$element.find( `.notifications-content.notification-${state}` ).css( 'justify-content', dom.getAttribute( 'data-value' ) );
 		};
 
-		controls[ 'VerticalPosition' ].update = function ( $element ) {
+		controls.VerticalPosition.update = function ( $element ) {
 			const state = $element.attr( 'data-state' );
 			let verticalPosition = $element.find( `.notifications-content.notification-${state}` ).css( 'justify-content' );
 			verticalPosition = verticalPosition === 'normal' ? 'flex-start' : verticalPosition;
@@ -111,16 +111,16 @@ module.exports = TVE.Views.Base.component.extend( {
 			this.setActive( verticalPosition );
 		};
 
-		controls[ 'MaximumWidth' ].input = function ( $element, dom ) {
+		controls.MaximumWidth.input = function ( $element, dom ) {
 			const state = $element.attr( 'data-state' );
 			this.applyElementCss( {'max-width': dom.value + 'px'}, $element.find( `.notifications-content.notification-${state}` ), '', '' )
 		};
 
-		controls[ 'MaximumWidth' ].update = function ( $element ) {
+		controls.MaximumWidth.update = function ( $element ) {
 			const state = $element.attr( 'data-state' );
 
-			let maxWidth = $element.find( `.notifications-content.notification-${state}` ).css( 'max-width' ).split( 'px' )[ 0 ],
-				width = $element.find( `.notifications-content.notification-${state}` ).css( 'width' ).split( 'px' )[ 0 ];
+			let maxWidth = $element.find( `.notifications-content.notification-${state}` ).css( 'max-width' ).split( 'px' )[ 0 ];
+			const width = $element.find( `.notifications-content.notification-${state}` ).css( 'width' ).split( 'px' )[ 0 ];
 
 			if ( maxWidth === 'none' ) {
 				maxWidth = width;
@@ -129,20 +129,21 @@ module.exports = TVE.Views.Base.component.extend( {
 			this.setValue( maxWidth );
 		};
 
-		controls[ 'MinimumHeight' ].input = function ( $element, dom ) {
+		controls.MinimumHeight.input = function ( $element, dom ) {
 			const state = $element.attr( 'data-state' );
 			this.applyElementCss( {'min-height': dom.value + 'px'}, $element.find( `.notifications-content.notification-${state}` ), '', '' )
 		};
 
-		controls[ 'MinimumHeight' ].update = function ( $element ) {
+		controls.MinimumHeight.update = function ( $element ) {
 			const state = $element.attr( 'data-state' );
 			this.setValue( $element.find( `.notifications-content.notification-${state}` ).css( 'min-height' ).split( 'px' )[ 0 ] );
 		};
 
 		/**
 		 * Animate the Notification in the editor (slide-out is only triggered by changing the AnimationTime value)
-		 * @param $element
-		 * @param animationCanStop
+		 *
+		 * @param  $element
+		 * @param  animationCanStop
 		 */
 		function animateNotification( $element, animationCanStop = false ) {
 			clearTimeouts();
@@ -191,7 +192,8 @@ module.exports = TVE.Views.Base.component.extend( {
 
 		/**
 		 * End the current Notification animation
-		 * @param $element
+		 *
+		 * @param  $element
 		 */
 		function stopNotificationAnimation( $element ) {
 			clearTimeouts();
@@ -223,45 +225,52 @@ module.exports = TVE.Views.Base.component.extend( {
 
 		/**
 		 * Set animation on the Notification Element
-		 * @param $element
+		 *
+		 * @param  $element
 		 */
 		function setAnimation( $element ) {
-			const animation = controls[ 'AnimationDirection' ].$el.find( '.tve-select' )[ 0 ].value;
+			const animation = controls.AnimationDirection.$el.find( '.tve-select' )[ 0 ].value;
 
 			if ( animation !== 'none' ) {
 				$element.attr( 'data-animation', animation );
 			}
 		}
 
+		/**
+		 * @param  $element
+		 */
 		function updateVerticalSpacing( $element ) {
 			const position = $element.attr( 'data-position' ).split( '-' ),
 				verticalPosition = position[ 0 ];
 
 			/* Vertical Spacing Control Update */
 			if ( [ 'top', 'bottom' ].includes( verticalPosition ) ) {
-				controls[ 'VerticalSpacing' ].$el.show();
-				controls[ 'VerticalSpacing' ].$el.find( '.input-label' ).text( `${verticalPosition} spacing` );
-				controls[ 'VerticalSpacing' ].setValue( $element.css( `${verticalPosition}` ).split( 'px' )[ 0 ] );
+				controls.VerticalSpacing.$el.show();
+				controls.VerticalSpacing.$el.find( '.input-label' ).text( `${verticalPosition} spacing` );
+				controls.VerticalSpacing.setValue( $element.css( `${verticalPosition}` ).split( 'px' )[ 0 ] );
 			} else {
-				controls[ 'VerticalSpacing' ].hide();
+				controls.VerticalSpacing.hide();
 			}
 		}
 
+		/**
+		 * @param  $element
+		 */
 		function updateHorizontalSpacing( $element ) {
 			const position = $element.attr( 'data-position' ).split( '-' ),
 				horizontalPosition = position[ 1 ];
 
 			/* Horizontal Spacing Control Update */
 			if ( ( [ 'left', 'right' ].includes( horizontalPosition ) ) && ( TVE.main.device !== 'mobile' ) ) {
-				controls[ 'HorizontalSpacing' ].$el.show();
-				controls[ 'HorizontalSpacing' ].setValue( $element.css( `${horizontalPosition}` ).split( 'px' )[ 0 ] );
+				controls.HorizontalSpacing.$el.show();
+				controls.HorizontalSpacing.setValue( $element.css( `${horizontalPosition}` ).split( 'px' )[ 0 ] );
 			} else {
-				controls[ 'HorizontalSpacing' ].hide();
+				controls.HorizontalSpacing.hide();
 			}
 		}
 	},
 
-	editNotifications: function () {
+	editNotifications() {
 		const $notificationWrapper = TVE.inner_$( TVE.identifier( 'notification' ) ),
 			currentState = $notificationWrapper.attr( 'data-state' ),
 			utils = require( '../utils' );
@@ -314,7 +323,7 @@ module.exports = TVE.Views.Base.component.extend( {
 					/* Add corresponding link for the preview button */
 					utils.updatePreviewLink( state );
 				},
-				state_change: ( state ) => {
+				state_change: state => {
 					$notificationWrapper.attr( 'data-state', state );
 
 					TVE.Components.notification.controls.VerticalPosition.update( $notificationWrapper );

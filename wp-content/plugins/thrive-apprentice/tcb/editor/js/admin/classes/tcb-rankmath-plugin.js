@@ -2,13 +2,6 @@ const TCBSeoPlugin = require( './tcb-seo-plugin' );
 
 module.exports = class TCBRankMathPlugin extends TCBSeoPlugin {
 	/**
-	 * Class constructor
-	 */
-	constructor() {
-		super();
-	}
-
-	/**
 	 * Init the custom fields
 	 */
 	init() {
@@ -30,6 +23,8 @@ module.exports = class TCBRankMathPlugin extends TCBSeoPlugin {
 
 	/**
 	 * Fetch Post Content from TCB
+	 *
+	 * @param  fetchedContent
 	 */
 	sendContent( fetchedContent ) {
 		if ( ! this.isEditedWithTar ) {
@@ -43,5 +38,4 @@ module.exports = class TCBRankMathPlugin extends TCBSeoPlugin {
 	afterFetch( response ) {
 		this.sendContent( response );
 	}
-}
-
+};

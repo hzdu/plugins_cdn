@@ -3,7 +3,7 @@
         <?php echo __('Add New Lead Group', 'thrive-leads') . '&nbsp;&nbsp;';
         global $tve_leads_help_videos;
         echo sprintf(
-            '<a href="%s" title="%s" class="tl-play-link wistia-popover[height=450,playerColor=2bb914,width=800]"><span class="tvd-icon-play"> </span></a>',
+            '<a data-source="%s" title="%s" class="tl-play-link tvd-open-video"><span class="tvd-icon-play"> </span></a>',
             $tve_leads_help_videos['LeadGroups'],
             __('Lead Groups', 'thrive-leads')
         );

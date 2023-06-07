@@ -1,10 +1,10 @@
 const typography = require( '../../main/views/components/typography' );
 
 module.exports = typography.extend( {
-	getTargetElement: function () {
+	getTargetElement() {
 		return TVE.ActiveElement.add( TVE.ActiveElement.find( '.tve_editable' ) ).not( '.tcb-el-group' );
 	},
-	controls_init: function ( controls ) {
+	controls_init( controls ) {
 		typography.prototype.controls_init.apply( this, Array.from( arguments ) );
 
 		controls.LineSpacing.getElement = function () {
@@ -18,7 +18,7 @@ module.exports = typography.extend( {
 				bottom: $element.css( 'padding-bottom' )
 			};
 		};
-		controls.LineSpacing.writeStyle = function ( css, $el ) {
+		controls.LineSpacing.writeStyle = function ( css ) {
 			this.applyElementCss( css, TVE.ActiveElement, '', '' );
 		};
 
@@ -27,7 +27,7 @@ module.exports = typography.extend( {
 			TVE.ActiveElement[ 0 ].style.setProperty( 'padding-bottom', '0px', 'important' );
 		} );
 	},
-	lineSpacingControl: function () {
+	lineSpacingControl() {
 		return require( '../../main/views/controls/text/line-spacing' );
 	},
 } );

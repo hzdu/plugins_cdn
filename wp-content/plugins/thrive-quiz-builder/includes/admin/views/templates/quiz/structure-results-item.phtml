@@ -5,8 +5,8 @@
 			<# if ( ! item.get( 'has_running_test' ) ) { #>
 
 				<# if(item.get('type') === 'results'){ #>
-					<a href="<?php echo Thrive_Quiz_Builder::VIDEO_PAGE_RESULTS; ?>" style="padding: 5px;" class='wistia-popover[height=450,playerColor=2bb914,width=800]'><span class='tvd-icon-play tqb-purple-icon'></span></a>
-					<a href="<?php echo Thrive_Quiz_Builder::VIDEO_PAGE_REDIRECT; ?>" style="padding: 5px;" class='wistia-popover[height=450,playerColor=2bb914,width=800]'><span class='tvd-icon-play tqb-purple-icon'></span></a>
+					<a data-source="<?php echo Thrive_Quiz_Builder::VIDEO_PAGE_RESULTS; ?>" style="padding: 5px;" class='tvd-open-video'><span class='tvd-icon-play tqb-purple-icon'></span></a>
+					<a data-source="<?php echo Thrive_Quiz_Builder::VIDEO_PAGE_REDIRECT; ?>" style="padding: 5px;" class='tvd-open-video'><span class='tvd-icon-play tqb-purple-icon'></span></a>
 				<# } #>
 
 				<# if ( ! item.get( 'mandatory' ) ) { #>

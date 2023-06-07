@@ -1499,7 +1499,8 @@
 
 		var _ = this;
 		//Dont slide if the cursor is inside the form fields and arrow keys are pressed
-		if ( ! event.target.tagName.match( 'TEXTAREA|INPUT|SELECT' ) ) {
+		//Do not move slides when editing an Image caption and using the left/right keys for navigating
+		if ( ! event.target.tagName.match( 'TEXTAREA|INPUT|SELECT' ) && ! $( event.target ).parents( '.wp-caption-text' ).length ) {
 			if ( event.keyCode === 37 && _.options.accessibility === true ) {
 				_.changeSlide( {
 					data: {

@@ -156,7 +156,7 @@ const content = require( './content' ),
 		 * @return {number} post id
 		 */
 		getArticleID( $element = TVE.ActiveElement ) {
-			return parseInt( $element.closest( TVE.identifier( 'article' ) ).attr( 'data-id' ) );
+			return parseInt( $element.closest( TVE.identifier( 'article' ) ).attr( 'data-id' ) ) || 0;
 		},
 		/**
 		 * Compute the query based on the types and items from modal
