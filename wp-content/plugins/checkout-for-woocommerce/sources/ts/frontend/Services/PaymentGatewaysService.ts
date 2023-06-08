@@ -44,7 +44,7 @@ class PaymentGatewaysService {
 
         if ( paymentMethods.length > 1 ) {
             // Hide open descriptions.
-            jQuery( `div.payment_box:not(".${checkedPaymentMethodId}")` ).filter( ':visible' ).slideUp( 0 );
+            jQuery( 'div.payment_box' ).not( `.${checkedPaymentMethodId}` ).filter( ':visible' ).slideUp( 0 );
         }
 
         paymentMethods.filter( ':checked' ).eq( 0 ).trigger( 'click' );

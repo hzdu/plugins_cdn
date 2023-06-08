@@ -13,7 +13,7 @@ class AfterCheckoutOrderBumpModal extends VariableProductFormModal {
         } );
 
         jQuery( document.body ).on( 'submit', 'form.cfw-modal-order-bump-form', this.handleBumpFormSubmit.bind( this )  );
-        jQuery( document.body  ).on( 'click', '.cfw-bump-reject', AfterCheckoutOrderBumpModal.handleRejection.bind( this ) );
+        jQuery( document.body  ).on( 'click', '.cfw-bump-reject', this.handleRejection.bind( this ) );
     }
 
     handleBumpFormSubmit = ( e: Event ): jqXHR => {
@@ -72,11 +72,21 @@ class AfterCheckoutOrderBumpModal extends VariableProductFormModal {
         ).always( () => {
             this.close();
 
+            if ( jQuery( document.body ).triggerHandler( 'cfw_after_checkout_bump_handle_add_to_cart' ) ) {
+                return;
+            }
+
             DataService.checkoutForm.trigger( 'submit' );
         } );
     }
 
-    static handleRejection(): void {
+    handleRejection(): void {
+        this.close();
+
+        if ( jQuery( document.body ).triggerHandler( 'cfw_after_checkout_bump_handle_rejection' ) ) {
+            return;
+        }
+
         DataService.checkoutForm.trigger( 'submit' );
     }
 }

@@ -60,6 +60,7 @@ class OrderBumpService {
 
         this.bumpDisplayed = true;
 
+        event.preventDefault();
         event.stopImmediatePropagation();
         return false;
     }

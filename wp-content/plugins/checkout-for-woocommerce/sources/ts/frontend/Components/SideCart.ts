@@ -10,6 +10,18 @@ class SideCart {
     }
 
     setTriggers(): void {
+        jQuery( document.body ).on( 'submit', '#cfw-side-cart-form', ( e ) => {
+            // Prevent enter key from submitting the form
+            e.preventDefault();
+        } );
+
+        // Prevent enter key on input with id #cfw-promo-code
+        jQuery( document.body ).on( 'keydown', '#cfw-promo-code', ( e ) => {
+            if ( e.key === 'Enter' ) {
+                e.preventDefault();
+            }
+        } );
+
         const additionalSideCartTriggerSelectors = DataService.getSetting( 'additional_side_cart_trigger_selectors' );
 
         if ( additionalSideCartTriggerSelectors ) {
@@ -20,14 +32,21 @@ class SideCart {
         jQuery( document.body ).on( 'click', '.menu-item a:has(.cfw-side-cart-open-trigger)', this.openCart.bind( this ) );
         jQuery( document.body ).on( 'click', '.cfw-side-cart-close-trigger, .cfw-side-cart-close-btn, #cfw-side-cart-overlay', this.closeCart.bind( this ) );
         jQuery( document.body ).on( 'added_to_cart', () => {
-            if ( DataService.getSetting( 'disable_side_cart_auto_open' ) ) {
-                this.shakeCartButton();
+            if ( !DataService.getSetting( 'disable_side_cart_auto_open' ) ) {
+                jQuery( '#cfw_empty_side_cart_message' ).hide();
+
+                this.openCart();
+
                 return;
             }
 
-            jQuery( '#cfw_empty_side_cart_message' ).hide();
+            if ( !DataService.getSetting( 'enable_floating_cart_button' ) ) {
+                return;
+            }
 
-            this.openCart();
+            jQuery( document.body  ).on( 'wc_fragments_loaded', () => {
+                this.shakeCartButton();
+            } );
         } );
         jQuery( document.body ).on( 'click', `a.wc-forward:contains(${DataService.getMessage( 'view_cart' )})`, this.openCart.bind( this ) );
         jQuery( document.body ).on( 'wc_fragments_loaded', this.initializeCart );

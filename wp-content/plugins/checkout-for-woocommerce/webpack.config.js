@@ -27,6 +27,14 @@ module.exports = {
         module: {
             rules: [
                 {
+                    test: /slick-carousel\/slick\/slick\.js/,
+                    use: [
+                        {
+                            loader: path.resolve( __dirname, './sources/js/_wrappedSlickLoader.js' ),
+                        },
+                    ],
+                },
+                {
                     test: /\.tsx?$/,
                     use: 'ts-loader',
                 },

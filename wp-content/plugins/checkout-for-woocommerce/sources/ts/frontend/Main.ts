@@ -6,6 +6,7 @@ import AmazonPay                                         from './Compatibility/G
 import BraintreeForWooCommerce                           from './Compatibility/Gateways/BraintreeForWooCommerce';
 import Braintree                                         from './Compatibility/Gateways/Braintree';
 import KlarnaCheckout                                    from './Compatibility/Gateways/KlarnaCheckout';
+import KlarnaPayments                                    from './Compatibility/Gateways/KlarnaPayments';
 import NMI                                               from './Compatibility/Gateways/NMI';
 import PayPalForWooCommerce                              from './Compatibility/Gateways/PayPalForWooCommerce';
 import PayPalPlusCw                                      from './Compatibility/Gateways/PayPalPlusCw';
@@ -110,6 +111,12 @@ class Main {
     private _paymentGatewaysService: PaymentGatewaysService;
 
     /**
+     * @type {OrderBumpService}
+     * @private
+     */
+    private _orderBumpService: OrderBumpService;
+
+    /**
      * @type boolean
      * @private
      */
@@ -208,7 +215,7 @@ class Main {
         new TooltipService();
         new OrderReviewStepService();
         new InternationalPhoneFieldService();
-        new OrderBumpService();
+        this.orderBumpService = new OrderBumpService();
 
         /**
          * Components
@@ -301,6 +308,7 @@ class Main {
             new CO2OK(),
             new EUVatNumber(),
             new KlarnaCheckout(),
+            new KlarnaPayments(),
             new MondialRelay(),
             new NIFPortugal(),
             new NLPostcodeChecker(),
@@ -445,6 +453,14 @@ class Main {
      */
     static get instance(): Main {
         return Main._instance;
+    }
+
+    get orderBumpService(): OrderBumpService {
+        return this._orderBumpService;
+    }
+
+    set orderBumpService( value: OrderBumpService ) {
+        this._orderBumpService = value;
     }
 }
 

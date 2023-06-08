@@ -9,11 +9,11 @@ class Accordion {
     }
 
     setListeners(): void {
-        const form = DataService.checkoutForm;
+        const container = jQuery( '#order_review, #cfw-order-review' ).first();
         const targetSelectorRadio = `${this._targetSelector} .cfw-radio-reveal-title-wrap :radio`;
         const targetSelector = this._targetSelector;
 
-        form.on( 'change', targetSelectorRadio, ( e ) => {
+        container.on( 'change', targetSelectorRadio, ( e ) => {
             Accordion.showContent( jQuery( e.target ) );
         } );
 
