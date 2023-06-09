@@ -1129,7 +1129,9 @@ if (!String.prototype.trim) {
                 // stopping events propagation, eg. returns false, and our handler will never called
                 document.addEventListener('mouseover', function(event) {
                     var matchedElements = Array.from(document.querySelectorAll(triggers));
-                    if (matchedElements.includes(event.target)) {
+                    var clickedElement = event.target;
+                    var closestMatch = clickedElement.closest(triggers);
+                    if (matchedElements.includes(clickedElement) || closestMatch){
                         if (event.target.classList.contains('pys-mouse-over-' + eventId)) {
                             return true;
                         } else {
@@ -1149,8 +1151,9 @@ if (!String.prototype.trim) {
                 // add event to document to support dyn class
                 document.addEventListener('click', function(event) {
                     var matchedElements = Array.from(document.querySelectorAll(triggers));
-                    if (matchedElements.includes(event.target)) {
-                        console.log(event.target)
+                    var clickedElement = event.target;
+                    var closestMatch = clickedElement.closest(triggers);
+                    if (matchedElements.includes(clickedElement) || closestMatch){
                         Utils.fireTriggerEvent(eventId);
                     }
                 }, true);
@@ -2757,6 +2760,7 @@ if (!String.prototype.trim) {
                 delete param.ecomm_prodid;
                 delete param.ecomm_pagetype;
                 delete param.ecomm_totalvalue;
+                delete param.non_interaction;
                 if(name === 'search') {
                     param['search'] = param.search_term;
                     delete param.search_term;
@@ -3019,7 +3023,7 @@ if (!String.prototype.trim) {
 
             },
 
-            onWooAddToCartOnButtonEvent: function (product_id) {
+            onWooAddToCartOnButtonEvent: function (product_id, prod_info = null) {
                 if(!options.dynamicEvents.woo_add_to_cart_on_button_click.hasOwnProperty(this.tag()))
                     return;
 
@@ -3028,6 +3032,17 @@ if (!String.prototype.trim) {
                         var event = Utils.clone(options.dynamicEvents.woo_add_to_cart_on_button_click[this.tag()]);
                         Utils.copyProperties(window.pysWooProductData[product_id]['ga'].params, event.params)
                         event.trackingIds = window.pysWooProductData[product_id]['ga']['trackingIds'];
+                        if(prod_info)
+                        {
+                            if(prod_info['pys_list_name_productlist_id'])
+                            {
+                                event.params.items[0]['item_list_id'] = prod_info['pys_list_name_productlist_id']
+                            }
+                            if(prod_info['pys_list_name_productlist_name'])
+                            {
+                                event.params.items[0]['item_list_name'] =prod_info['pys_list_name_productlist_name']
+                            }
+                        }
                         this.fireEvent(event.name, event);
                     }
                 }
@@ -3113,6 +3128,16 @@ if (!String.prototype.trim) {
             },
 
             onWooSelectContent: function (event) {
+                const select_prod_list = {};
+
+                if (event.params.items[0].item_list_name !== undefined) {
+                    select_prod_list.list_name = event.params.items[0].item_list_name;
+                }
+
+                if (event.params.items[0].item_list_id !== undefined) {
+                    select_prod_list.list_id = event.params.items[0].item_list_id;
+                }
+                Cookies.set('select_prod_list', select_prod_list, { expires: 1 });
                 this.fireEvent(event.name, event);
             },
 
@@ -4089,12 +4114,15 @@ if (!String.prototype.trim) {
 
                 // Loop, any kind of "simple" product, except external
                 $('.add_to_cart_button:not(.product_type_variable,.product_type_bundle,.single_add_to_cart_button)').on("click",function (e) {
-
+                    var $button = $(this);
+                    var $prod_info = $button.siblings('.pys_list_name_productdata').data();
+                    var product_id = $(this).data('product_id');
+                    Cookies.set('productlist', $prod_info, { expires: 1 })
                     var product_id = $(this).data('product_id');
 
                     if (typeof product_id !== 'undefined') {
                         Facebook.onWooAddToCartOnButtonEvent(product_id,$(this));
-                        Analytics.onWooAddToCartOnButtonEvent(product_id);
+                        Analytics.onWooAddToCartOnButtonEvent(product_id, $prod_info);
                         GAds.onWooAddToCartOnButtonEvent(product_id);
                         Pinterest.onWooAddToCartOnButtonEvent(product_id);
                         Bing.onWooAddToCartOnButtonEvent(product_id);
@@ -4109,7 +4137,9 @@ if (!String.prototype.trim) {
                 $('body').onFirst('click','button.single_add_to_cart_button,.single_add_to_cart_button',function (e) {
 
                     var $button = $(this);
-
+                    var $prod_info = $button.siblings('.pys_list_name_productdata').data();
+                    var product_id = $(this).data('product_id');
+                    Cookies.set('productlist', $prod_info, { expires: 1 })
                     if ($button.hasClass('disabled')) {
                         return;
                     }
@@ -4163,6 +4193,23 @@ if (!String.prototype.trim) {
                     TikTok.onWooAddToCartOnSingleEvent(product_id, qty, product_type, is_external, $form);
                 });
 
+            } else {
+                $('.add_to_cart_button:not(.product_type_variable,.product_type_bundle,.single_add_to_cart_button)').on("click",function (e) {
+                    var $button = $(this);
+                    var $prod_info = $button.siblings('.pys_list_name_productdata').data();
+                    var product_id = $(this).data('product_id');
+                    Cookies.set('productlist', $prod_info, { expires: 1 })
+                });
+
+                // Single Product
+                // tap try to https://stackoverflow.com/questions/30990967/on-tap-click-event-firing-twice-how-to-avoid-it
+                //  $(document) not work
+                $('body').onFirst('click','button.single_add_to_cart_button,.single_add_to_cart_button',function (e) {
+
+                    var $button = $(this);
+                    var $prod_info = $button.siblings('.pys_list_name_productdata').data();
+                    Cookies.set('productlist', $prod_info, { expires: 1 })
+                });
             }
 
             // WooCommerce Affiliate
