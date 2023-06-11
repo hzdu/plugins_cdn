@@ -19,8 +19,7 @@ class SettingsImporterButton {
                 },
             } ).then( ( result ) => {
                 if ( result.isConfirmed ) {
-                    importButton.off( 'click' );
-                    importButton.click();
+                    jQuery( e.currentTarget ).parents( 'form' ).submit();
                 }
             } );
         } );
