@@ -1,37 +1,12 @@
+// Disabling eslint here as we are moving to typescript and this file will soon be redundant
+/* eslint-disable jsdoc/valid-types */
 /**
  * @typedef {import('./billing').BillingData} BillingData
- * @typedef {import('./cart').CartShippingOption} CartShippingOption
  * @typedef {import('./shipping').ShippingAddress} CartShippingAddress
  * @typedef {import('./cart').CartData} CartData
  * @typedef {import('./checkout').CheckoutDispatchActions} CheckoutDispatchActions
  * @typedef {import('./add-to-cart-form').AddToCartFormDispatchActions} AddToCartFormDispatchActions
  * @typedef {import('./add-to-cart-form').AddToCartFormEventRegistration} AddToCartFormEventRegistration
- */
-
-/**
- * @typedef {Object} ShippingDataContext
- *
- * @property {ShippingErrorStatus}  shippingErrorStatus         The current shipping error status.
- * @property {Function}             dispatchErrorStatus         A function for dispatching a shipping rate error status.
- * @property {ShippingErrorTypes}   shippingErrorTypes          The error type constants for the shipping rate error
- *                                                              status.
- * @property {CartShippingOption[]} shippingRates               An array of available shipping rates.
- * @property {boolean}              shippingRatesLoading        Whether or not the shipping rates are being loaded.
- * @property {string[]}             selectedRates               The ids of the rates that are selected.
- * @property {function()}           setSelectedRates            Function for setting the selected rates.
- * @property {boolean}              isSelectingRate             True when rate is being selected.
- * @property {CartShippingAddress}  shippingAddress             The current set address for shipping.
- * @property {function(Object)}     setShippingAddress          Function for setting the shipping address.
- * @property {function()}           onShippingRateSuccess       Used to register a callback to be invoked when shipping
- *                                                              rates are retrieved.
- * @property {function()}           onShippingRateSelectSuccess Used to register a callback to be invoked when shipping
- *                                                              rate is selected.
- * @property {function()}           onShippingRateSelectFail    Used to register a callback to be invoked when shipping
- *                                                              rate is selected unsuccessfully
- * @property {function()}           onShippingRateFail          Used to register a callback to be invoked when there is
- *                                                              an error with retrieving shipping rates.
- * @property {boolean}              needsShipping               True if the cart has items requiring shipping.
- * @property {boolean}              hasCalculatedShipping       True if the cart has calculated shipping costs.
  */
 
 /**
@@ -139,15 +114,6 @@
  */
 
 /**
- * @typedef {Object} EditorDataContext
- *
- * @property {boolean} isEditor      Indicates whether in the editor context.
- * @property {number}  currentPostId The post ID being edited.
- * @property {Object}  previewData   Object containing preview data for the editor.
- * @property {function(string):Object} getPreviewData Get data by name.
- */
-
-/**
  * @typedef {Object} AddToCartFormContext
  *
  * @property {Object}                         product              The product object to add to the cart.
@@ -181,26 +147,26 @@
 /**
  * @typedef {Object} ValidationContextError
  *
- * @property {number} id Error ID.
- * @property {string} message Error message.
- * @property {boolean} hidden Error visibility.
+ * @property {number}  id      Error ID.
+ * @property {string}  message Error message.
+ * @property {boolean} hidden  Error visibility.
  *
  */
 
 /**
  * @typedef {Object} ValidationContext
  *
- * @property {(id:string)=>ValidationContextError} getValidationError     Return validation error for the given property.
- * @property {function(Object)}         setValidationErrors      Receive an object of properties and  error messages as
- *                                                               strings and adds to the validation error state.
- * @property {function(string)}         clearValidationError     Clears a validation error for the given property name.
- * @property {function()}               clearAllValidationErrors Clears all validation errors currently in state.
- * @property {function(string)}         getValidationErrorId     Returns the css id for the
- *                                                               validation error using the given inputId string.
- * @property {function(string)}         hideValidationError      Sets the hidden prop of a specific error to true.
- * @property {function(string)}         showValidationError      Sets the hidden prop of a specific error to false.
- * @property {function()}               showAllValidationErrors  Sets the hidden prop of all errors to false.
- * @property {boolean}                  hasValidationErrors      True if there is at least one error.
+ * @property {(id:string)=>ValidationContextError} getValidationError       Return validation error for the given property.
+ * @property {function(Object)}                    setValidationErrors      Receive an object of properties and  error messages as
+ *                                                                          strings and adds to the validation error state.
+ * @property {function(string)}                    clearValidationError     Clears a validation error for the given property name.
+ * @property {function()}                          clearAllValidationErrors Clears all validation errors currently in state.
+ * @property {function(string)}                    getValidationErrorId     Returns the css id for the
+ *                                                                          validation error using the given inputId string.
+ * @property {function(string)}                    hideValidationError      Sets the hidden prop of a specific error to true.
+ * @property {function(string)}                    showValidationError      Sets the hidden prop of a specific error to false.
+ * @property {function()}                          showAllValidationErrors  Sets the hidden prop of all errors to false.
+ * @property {boolean}                             hasValidationErrors      True if there is at least one error.
  */
 
 /**
@@ -209,18 +175,6 @@
  * @property {string} type   The type of notice.
  * @property {string} status The status of the notice.
  * @property {string} id     The id of the notice.
- */
-
-/**
- * @typedef NoticeContext
- *
- * @property {Array<StoreNoticeObject>}              notices              An array of notice objects.
- * @property {function(string,string,any):undefined} createNotice         Creates a notice for the given arguments.
- * @property {function(string, any):undefined}       createSnackbarNotice Creates a snackbar notice type.
- * @property {function(string,string=):undefined}    removeNotice         Removes a notice with the given id and context
- * @property {string}                                context              The current context identifier for the notice
- *                                                                        provider
- * @property {function(boolean):void}                setIsSuppressed      Consumers can use this setter to suppress
  */
 
 /**

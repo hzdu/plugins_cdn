@@ -6,14 +6,14 @@ import triggerFetch from '@wordpress/api-fetch';
 import { useEffect, useCallback, useState } from '@wordpress/element';
 import { decodeEntities } from '@wordpress/html-entities';
 import { triggerAddedToCartEvent } from '@woocommerce/base-utils';
+import { useDispatch, useSelect } from '@wordpress/data';
+import { VALIDATION_STORE_KEY } from '@woocommerce/block-data';
 
 /**
  * Internal dependencies
  */
 import { useAddToCartFormContext } from '../../form-state';
-import { useValidationContext } from '../../../validation';
 import { useStoreCart } from '../../../../hooks/cart/use-store-cart';
-import { useStoreNotices } from '../../../../hooks/use-store-notices';
 
 /**
  * FormSubmit.
@@ -30,17 +30,18 @@ const FormSubmit = () => {
 		isProcessing,
 		requestParams,
 	} = useAddToCartFormContext();
-	const {
-		hasValidationErrors,
-		showAllValidationErrors,
-	} = useValidationContext();
-	const { addErrorNotice, removeNotice } = useStoreNotices();
+	const { showAllValidationErrors } = useDispatch( VALIDATION_STORE_KEY );
+	const hasValidationErrors = useSelect( ( select ) => {
+		const store = select( VALIDATION_STORE_KEY );
+		return store.hasValidationErrors;
+	} );
+	const { createErrorNotice, removeNotice } = useDispatch( 'core/notices' );
 	const { receiveCart } = useStoreCart();
 	const [ isSubmitting, setIsSubmitting ] = useState( false );
 	const doSubmit = ! hasError && isProcessing;
 
 	const checkValidationContext = useCallback( () => {
-		if ( hasValidationErrors ) {
+		if ( hasValidationErrors() ) {
 			showAllValidationErrors();
 			return {
 				type: 'error',
@@ -51,10 +52,11 @@ const FormSubmit = () => {
 
 	// Subscribe to emitter before processing.
 	useEffect( () => {
-		const unsubscribeProcessing = eventRegistration.onAddToCartBeforeProcessing(
-			checkValidationContext,
-			0
-		);
+		const unsubscribeProcessing =
+			eventRegistration.onAddToCartBeforeProcessing(
+				checkValidationContext,
+				0
+			);
 		return () => {
 			unsubscribeProcessing();
 		};
@@ -63,7 +65,10 @@ const FormSubmit = () => {
 	// Triggers form submission to the API.
 	const submitFormCallback = useCallback( () => {
 		setIsSubmitting( true );
-		removeNotice( 'add-to-cart' );
+		removeNotice(
+			'add-to-cart',
+			`woocommerce/single-product/${ product?.id || 0 }`
+		);
 
 		const fetchData = {
 			id: product.id || 0,
@@ -87,20 +92,26 @@ const FormSubmit = () => {
 					if ( ! fetchResponse.ok ) {
 						// We received an error response.
 						if ( response.body && response.body.message ) {
-							addErrorNotice(
+							createErrorNotice(
 								decodeEntities( response.body.message ),
 								{
 									id: 'add-to-cart',
+									context: `woocommerce/single-product/${
+										product?.id || 0
+									}`,
 								}
 							);
 						} else {
-							addErrorNotice(
+							createErrorNotice(
 								__(
-									'Something went wrong. Please contact us to get assistance.',
+									'Something went wrong. Please contact us for assistance.',
 									'woocommerce'
 								),
 								{
 									id: 'add-to-cart',
+									context: `woocommerce/single-product/${
+										product?.id || 0
+									}`,
 								}
 							);
 						}
@@ -126,7 +137,7 @@ const FormSubmit = () => {
 			} );
 	}, [
 		product,
-		addErrorNotice,
+		createErrorNotice,
 		removeNotice,
 		receiveCart,
 		dispatchActions,

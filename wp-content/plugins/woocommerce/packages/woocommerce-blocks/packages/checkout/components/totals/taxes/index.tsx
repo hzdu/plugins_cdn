@@ -5,14 +5,13 @@ import classnames from 'classnames';
 import { __ } from '@wordpress/i18n';
 import { getSetting } from '@woocommerce/settings';
 import type { Currency } from '@woocommerce/price-format';
-import type { CartTotalsTaxLineItem } from '@woocommerce/type-defs/cart';
-import { ReactElement } from 'react';
+import type { CartTotalsTaxLineItem } from '@woocommerce/types';
+import type { ReactElement } from 'react';
 
 /**
  * Internal dependencies
  */
 import TotalsItem from '../item';
-import './style.scss';
 
 interface Values {
 	tax_lines: CartTotalsTaxLineItem[];
@@ -48,12 +47,7 @@ const TotalsTaxes = ( {
 
 	const itemisedTaxItems: ReactElement | null =
 		showItemisedTaxes && taxLines.length > 0 ? (
-			<div
-				className={ classnames(
-					'wc-block-components-totals-taxes',
-					className
-				) }
-			>
+			<>
 				{ taxLines.map( ( { name, rate, price }, i ) => {
 					const label = `${ name }${
 						showRateAfterTaxName ? ` ${ rate }` : ''
@@ -61,14 +55,17 @@ const TotalsTaxes = ( {
 					return (
 						<TotalsItem
 							key={ `tax-line-${ i }` }
-							className="wc-block-components-totals-taxes__grouped-rate"
+							className={ classnames(
+								'wc-block-components-totals-taxes',
+								className
+							) }
 							currency={ currency }
 							label={ label }
 							value={ parseInt( price, 10 ) }
 						/>
 					);
 				} ) }{ ' ' }
-			</div>
+			</>
 		) : null;
 
 	return showItemisedTaxes ? (

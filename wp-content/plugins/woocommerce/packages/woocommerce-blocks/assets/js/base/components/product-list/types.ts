@@ -1,8 +1,8 @@
 /**
  * External dependencies
  */
-import { ChangeEventHandler } from 'react';
-import { ProductResponseItem } from '@woocommerce/type-defs/product-response';
+import type { ChangeEventHandler } from 'react';
+import type { ProductResponseItem } from '@woocommerce/types';
 
 interface GenerateQueryProps {
 	sortValue: string;
@@ -37,9 +37,7 @@ export type TotalQuery = Pick< Query, 'catalog_visibility' >;
 
 export type GenerateQuery = ( props: GenerateQueryProps ) => Query;
 
-export type GetSortArgs = (
-	orderName: string
-) =>
+export type GetSortArgs = ( orderName: string ) =>
 	| {
 			orderby: string;
 			order: string;

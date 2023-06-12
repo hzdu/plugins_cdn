@@ -2,16 +2,16 @@
  * External dependencies
  */
 import { Icon, button } from '@wordpress/icons';
-import { registerFeaturePluginBlockType } from '@woocommerce/block-settings';
+import { registerBlockType } from '@wordpress/blocks';
+import type { BlockConfiguration } from '@wordpress/blocks';
 
 /**
  * Internal dependencies
  */
 import attributes from './attributes';
 import { Edit, Save } from './edit';
-import metadata from './block.json';
 
-registerFeaturePluginBlockType( metadata, {
+const blockConfig: BlockConfiguration = {
 	icon: {
 		src: (
 			<Icon
@@ -21,6 +21,8 @@ registerFeaturePluginBlockType( metadata, {
 		),
 	},
 	attributes,
-	edit: Edit,
 	save: Save,
-} );
+	edit: Edit,
+};
+
+registerBlockType( 'woocommerce/checkout-actions-block', blockConfig );

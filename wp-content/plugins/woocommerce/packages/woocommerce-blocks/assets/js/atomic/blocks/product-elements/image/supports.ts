@@ -1,14 +1,16 @@
+/* eslint-disable @wordpress/no-unsafe-wp-apis */
 /**
  * External dependencies
  */
 import { isFeaturePluginBuild } from '@woocommerce/block-settings';
+import { __experimentalGetSpacingClassesAndStyles as getSpacingClassesAndStyles } from '@wordpress/block-editor';
 
 /**
  * Internal dependencies
  */
-import { hasSpacingStyleSupport } from '../../../../utils/global-style';
 
 export const supports = {
+	html: false,
 	...( isFeaturePluginBuild() && {
 		__experimentalBorder: {
 			radius: true,
@@ -18,9 +20,10 @@ export const supports = {
 			fontSize: true,
 			__experimentalSkipSerialization: true,
 		},
-		...( hasSpacingStyleSupport() && {
+		...( typeof getSpacingClassesAndStyles === 'function' && {
 			spacing: {
 				margin: true,
+				padding: true,
 				__experimentalSkipSerialization: true,
 			},
 		} ),

@@ -28,10 +28,10 @@ import {
 /**
  * Component to handle edit mode of "Reviews by Category".
  *
- * @param {Object} props Incoming props for the component.
- * @param {Object} props.attributes Incoming block attributes.
+ * @param {Object}            props                Incoming props for the component.
+ * @param {Object}            props.attributes     Incoming block attributes.
  * @param {function(any):any} props.debouncedSpeak
- * @param {function(any):any} props.setAttributes Setter for block attributes.
+ * @param {function(any):any} props.setAttributes  Setter for block attributes.
  */
 const ReviewsByCategoryEditor = ( {
 	attributes,
@@ -94,7 +94,7 @@ const ReviewsByCategoryEditor = ( {
 			setAttributes( { editMode: false } );
 			debouncedSpeak(
 				__(
-					'Showing Reviews by Category block preview.',
+					'Now displaying a preview of the reviews for the products in the selected categories.',
 					'woocommerce'
 				)
 			);

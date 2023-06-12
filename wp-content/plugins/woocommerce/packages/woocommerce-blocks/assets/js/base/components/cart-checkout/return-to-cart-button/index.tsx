@@ -11,15 +11,19 @@ import { Icon, arrowLeft } from '@wordpress/icons';
 import './style.scss';
 
 interface ReturnToCartButtonProps {
-	link?: string;
+	link?: string | undefined;
 }
 
 const ReturnToCartButton = ( {
 	link,
-}: ReturnToCartButtonProps ): JSX.Element => {
+}: ReturnToCartButtonProps ): JSX.Element | null => {
+	const cartLink = link || CART_URL;
+	if ( ! cartLink ) {
+		return null;
+	}
 	return (
 		<a
-			href={ link || CART_URL }
+			href={ cartLink }
 			className="wc-block-components-checkout-return-to-cart-button"
 		>
 			<Icon icon={ arrowLeft } />

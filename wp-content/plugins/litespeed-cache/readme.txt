@@ -2,8 +2,8 @@
 Contributors: LiteSpeedTech
 Tags: caching, optimize, performance, pagespeed, core web vitals, seo, speed, image optimize, compress, object cache, redis, memcached, database cleaner
 Requires at least: 4.0
-Tested up to: 5.9.1
-Stable tag: 4.5.0.1
+Tested up to: 6.2
+Stable tag: 5.4
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl.html
 
@@ -249,6 +249,148 @@ For more detailed information about crawler setup, please see [the Crawler docum
 The vast majority of plugins and themes are compatible with LiteSpeed Cache. The most up-to-date compatibility information can be found [in our documentation](https://docs.litespeedtech.com/lscache/lscwp/thirdparty/)
 
 == Changelog ==
+
+= 5.4 - Apr 19 2023 =
+* **Image Optimize** Refactored DB storage for this feature.
+* **Image Optimize** Reduced DB table size.
+* **Image Optimize** Existing `img_optm` DB tables will have their data gradually transitioned to the new storage format with this update. Once an `img_optm` table is empty, it won't be used anymore.
+* **Media** Fixed PHP8 potential warning. (rafaelmcd)
+* **Page Optimize** Enabled WebP support for Googlebot User Agent.
+
+= 5.3.3 - Feb 22 2023 =
+* **Page Optimize** Excluded Jetpack stats JS.
+* **DB Optimize** Fixed DB Optm SQL for revision postmeta.
+* **Cache** Fixed an undefined array key warning.
+* **Purge** Prevented undefined array key warning when widgets are disabled.
+* **Object** Fixed dynamic property deprecation warnings.
+* **Admin** Safely redirect to homepage if referer is unknown.
+* **Activation** Check that item slug exists first.
+* **Cache** Prevented cache header to send globally if header part already closed.
+* **CSS** Improved string handling for CSS minifier.
+* **Debug** Fixed undefined array key warnings.
+* **Misc** Fixed implicit conversion in random string generation function `Str::rrand`.
+
+= 5.3.2 - Jan 10 2023 =
+* **Object** Fixed object cache lib incr, decr functions (thanks bdrbros/DANIEL) #516
+* **Database Optimize** Database optimizer now handles postmeta when cleaning revisions #515
+* **Cache** Made nocache the default for 4xx/5xx response codes.
+* **Cache** Default cache TTL settings removed for 403 response code, changed to 10 mins for 500 response code.
+* **GUI** Added a description for the redetect nodes function.
+* **GUI** Added a description for the refresh button sync function.
+
+= 5.3.1 - Dec 12 2022 =
+* **CLI** Presets feature is now usable from the CLI. (xLukii)
+* **CLI** Added 'import_remote' for litespeed-option to enable importing options from URLs. (xLukii)
+* **Cache** Added LiteSpeed headers to site health check for full page cache.
+* **Crawler* Fixed unauthorized crawler toggle operation. (#CVE-2022-46800)
+* **UCSS** Fixed a bug where items weren't added back to the UCSS queue after purging.
+* **Page Optimize** Fixed a bug where generated CSS would return 404 after upgrading via CLI.
+* **3rd** Fixed a bug where a WooCommerce session doesn't exist when checking cart, notices (Jason Levy/Gilles)
+* **GUI** Made LiteSpeed admin notice icon grayscale to avoid distraction. (martinsauter)
+* **GUI** Fixed RTL style for notification icon.
+* **API** Added a new hook `litespeed_optm_uri_exc` to exclude URI from page optimization.
+* **API** Excluded `.well-known` path from page optimization.
+
+= 5.3 - Oct 31 2022 =
+* 🌱**Presets** New `Presets` feature and menu item.
+* 🌱**UCSS** New option `UCSS File Excludes and Inline` to increase page score. (Ankit)
+* **UCSS** When UCSS is purged, automatically append URL to UCSS generation queue. (Ankit)
+* **Page Optimize** Removed a redundant `defer` attribute from Lazy Load image library usage. (#928019)
+* **Image Optimize** Dropped `Create WebP Versions` setting. Will automatically enable when `Image WebP Replacement` is activated.
+* **Cloud** Fixed a bug where internal updates were delayed for API keys.
+* **Cloud** Improved auto alias feature by waiting for second request from alias domain validation before removing a pending alias.
+* **Purge** Automatically Purge All when plugin auto update is done.
+* **Purge** Fixed a potential PHP8 error that occurred when removing unused widgets. (acsnaterse)
+* **Cache** Fixed an infinite 301 redirection caused by UTM-encoded link.
+* **CLI** Added syntax examples for values that include line breaks (xLukii)
+* **CLI** Purge requests will now be included with the original request to avoid potential CSS/JS 404 issues.
+* **ESI** Check all user roles for cache vary and page optimization excludes.
+* **GUI** Added a LiteSpeed icon to admin message banners to indicate the banners are from our plugin. (Michael D)
+* **Crawler** Fixed a cache-miss issue that occurred when Guest Mode was ON and WebP Replacement was OFF.
+* **3rd** Remove WooCommerce private cache.
+* **3rd** Removed LiteSpeed metabox from ACF field group edit page. (keepmovingdk)
+
+= 5.2.1 - Sep 7 2022 =
+* 🐞**Core** Fixed a fatal error that occurred when uninstalling. (#894556 Hostinger)
+* **Dash** Show partner info on the dashboard for partner-tier QC accounts.
+* **UCSS** Auto-purge UCSS on post update. (Ankit)
+* 🕸️**Crawler** Respect the `LITESPEED_CRAWLER_DISABLE_BLOCKLIST` constant for unexpected results too. (Abe)
+
+= 5.2 - Aug 17 2022 =
+* 🌱**UCSS** Added UCSS message queue to improve service quality and reliability
+* 🐞**VPI** Fixed conflict w/ image lazyload; used HTML before image lazyload to avoid invalid `data:base64` results.
+* **VPI** Changed VPI Cron default setting to OFF.
+* **VPI** Automatically resend requests when VPI result contains invalid `data:` image value.
+* **Conf** Fixed an issue with URI Excludes, where paths using both ^ and $ were not correctly excluded (Eric/Abe)
+* **Conf** Auto corrected `WP_CONTENT_URL` protocol if it was explicitly set to `http://`.
+* **Cloud** No longer sync the configuration to QUIC.cloud if configuration is unchanged.
+* **Cloud** Appended home_url value into synced configuration data for wp-content folder path correction.
+* 🕸️**Crawler** Improved compatibility with server `open_basedir` PHP setting limit when detecting load before crawling. (Tom Robak/mmieszalski)
+
+= 5.1 - Aug 1 2022 =
+* 🌱**Toolbox** Debug log can now show Purge/Crawler logs as well. (Tynan)
+* **UCSS** Prepared for future message queue.
+* **UCSS** Moved UCSS class to its own file.
+* **3rd** Added 3rd-party support for WC PDF Product Vouchers. (Tynan)
+* **Core** Fixed potential PHP warning when saving summary data. (Sarah Richardson)
+* **Purge** Purge can now clear the summary correctly. (Kevin)
+* **VPI** Added `queue_k` to API notification.
+
+= 5.0.1 - Jul 27 2022 =
+* 🐞**Cloud** Fixed a potential PHP error that could occur with the cloud service summary. (Bruno Cantuaria)
+* **3rd** Added Autoptimize back to compatibility list.
+
+= 5.0.0.1 - Jul 26 2022 =
+* 🔥🐞**Cloud** Fixed an issue with the cloud request timestamp update which causes a usage sync failure. (great thanks to Kevin)
+
+= 5.0 - Jul 25 2022 =
+* 🌱**VPI** Added Viewport Images feature to LiteSpeed Options metabox on Post Edit page.
+* 🌱**CDN** Added Auto CDN Setup feature for simple QUIC.cloud CDN setup. (Kevin)
+* 🌱**Page Optimize** Automatically cache remote CSS/JS files when fetching for optimization (Lauren)
+* 🌱**Cache** Added LiteSpeed Options for page-level cache control on Post Edit page. (denisgomesfranco)
+* 🌱**Cloud** Auto Alias feature.
+* 🌱**Debug** Added `Debug String Excludes` option. (Hanna)
+* 🌱**UCSS** Added `Purge this page - UCSS` option to Admin Bar dropdown menu. (Ankit)
+* 🌱**Guest** Added `litespeed_guest_off=1` URL query string parameter to bypass Guest Mode. (cbdfactum)
+* 🐞**Page Optimize** Fixed an issue where CSS anchors could be wrongly converted to a full path when minifying. (Tynan)
+* **Page Optimize** Bypass CCSS/UCSS generation when a self-crawled CSS resource returns a 404 code. (Abe)
+* **Object** Allow `LSCWP_OBJECT_CACHE` predefined to turn off Object Cache. (knutsp)
+* **Data** Fixed an issue where empty version tags in the database repeatedly toggled the upgrade banner and reset settings to default.
+* **Purge** Fixed an issue where the site's index page could be purged upon deletion of an unviewable post. (Kevin)
+* **Toolbox** Added `View site before optimization` button under `Debug` tab. (Ryan D)
+* **Admin** Switch to using the `DONOTCACHEPAGE` constant to indicated WP-Admin pages are not cacheable.
+* **Admin** Moved no-cache header to very beginning to avoid caching unexpected exits.
+* **Cloud** Added message queue service for VPI. (Abe)
+* **Cloud** Bypassed 503 error nodes from node redetection process. (Abe)
+* **Cloud** Fixed a failure to detect `out_of_quota`. (Lauren)
+* **Cloud** Added ability to display dismissable banners generated by QUIC.cloud.
+* 🕸️**Crawler** Added realtime load detection before crawl.
+* 🕸️**Crawler** Adjusted crawler behavior for Divi pages to allow for Divi's CCSS generation process. (miketemby)
+* 🕸️**API** PHP constant `LITESPEED_CRAWLER_DISABLE_BLOCKLIST` and filter `litespeed_crawler_disable_blocklist` to disable blocklist. (Tobolo)
+* **CDN** Automatically add a trailing slash to `CDN URL` and `Original URLs` if user didn't provide one. (Lucas)
+* **Cache** When a URL redirects to a URL with a query string, consider these as different for caching purposes. (Shivam)
+* **Media** Added ability to disable lazyload from the LiteSpeed Options metabox on Post Edit page.
+* **Media** Added new default values to `WebP Attribute to Replace` setting for WPBakery and Slider Revolution. (JibsouX)
+* **Image Optimize** Dropped redundant `Page Speed` user agent when serving WebP images. (serpentdriver)
+* **GUI** Fixed an issue where manually dismissable admin messages were instead being treated as one-time messages. (Tynan Beatty)
+* **GUI** Fixed an issue where subsequent admin alerts would overwrite existing alerts in the queue. (Kevin/Tynan)
+* **GUI** Updated time offset in log. (Ruikai #PR444 #PR445)
+* **GUI** Added `litespeed_media_ignore_remote_missing_sizes` API description.
+* **CCSS** Fixed an issue where CCSS was unexpectedly bypassed if `CSS Combine` was OFF and `UCSS Inline` was ON. (Ruikai)
+* **Debug** Added resposne headers to debug log. (Kevin)
+
+= 4.6 - Mar 29 2022 =
+* **Page Optimize** Improved compatibility for JS Delay.
+* 🐞**Page Optimize** Fixed an issue for network subsites that occurred when only CSS/JS Minify are enabled.
+* **Localization** Added query string compatibility for Resource URLs.
+* **Vary** Fixed a potential PHP warning when server variable `REQUEST_METHOD` is not detected.
+* **Cache** Guest Mode now respects Cache Excludes settings.
+* **GUI** Added warning notice when enabling `Localize Resources` feature; each localized JS resource requires thorough testing!
+* **GUI** Fixed a PHP Deprecated warning that occurred with the Mobile Cache User Agent setting on PHP v8.1+. (jrmora)
+* **Conf** Removed Google related scripts from default `Localization Files` value.
+* **Media** WordPress core Lazy Load feature is now automatically disabled when LiteSpeed Lazy Load Images option is enabled. (VR51 #Issue440)
+* 🐞**API** Filter `litespeed_ucss_per_pagetype` for UCSS now also applies to CSS Combine to avoid UCSS failure. (Ankit)
+* **API** Added a filter `litespeed_media_ignore_remote_missing_sizes` to disable auto detection for remote images that are missing dimensions. (Lucas)
 
 = 4.5.0.1 - Feb 24 2022 =
 * 🔥🐞**Media** Fixed an issue where lazy-loaded images would disappear when using custom CSS image loading effects.

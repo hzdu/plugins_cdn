@@ -3,7 +3,7 @@
  */
 import { decodeEntities } from '@wordpress/html-entities';
 import classnames from 'classnames';
-import { AnchorHTMLAttributes, HTMLAttributes } from 'react';
+import type { AnchorHTMLAttributes, HTMLAttributes } from 'react';
 
 /**
  * Internal dependencies
@@ -42,6 +42,7 @@ export const ProductName = ( {
 	disabled = false,
 	name,
 	permalink = '',
+	target,
 	rel,
 	style,
 	onClick,
@@ -65,7 +66,7 @@ export const ProductName = ( {
 		<a
 			className={ classes }
 			href={ permalink }
-			rel={ rel }
+			target={ target }
 			{ ...props }
 			dangerouslySetInnerHTML={ {
 				__html: decodeEntities( name ),

@@ -4,7 +4,7 @@
 import classNames from 'classnames';
 import Label from '@woocommerce/base-components/label';
 import { withInstanceId } from '@wordpress/compose';
-import { ChangeEventHandler } from 'react';
+import type { ChangeEventHandler } from 'react';
 
 /**
  * Internal dependencies
@@ -42,7 +42,12 @@ interface SortSelectProps {
 	/**
 	 * The selected value.
 	 */
-	value: string;
+	value?: string;
+
+	/**
+	 * Whether the select is read only.
+	 */
+	readOnly?: boolean;
 }
 
 /**
@@ -56,7 +61,7 @@ const SortSelect = ( {
 	onChange,
 	options,
 	screenReaderLabel,
-	value,
+	value = '',
 }: SortSelectProps ): JSX.Element => {
 	const selectId = `wc-block-components-sort-select__select-${ instanceId }`;
 

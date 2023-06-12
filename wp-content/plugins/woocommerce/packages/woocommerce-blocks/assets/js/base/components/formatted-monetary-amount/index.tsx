@@ -1,7 +1,8 @@
 /**
  * External dependencies
  */
-import NumberFormat, {
+import NumberFormat from 'react-number-format';
+import type {
 	NumberFormatValues,
 	NumberFormatProps,
 } from 'react-number-format';
@@ -23,7 +24,7 @@ interface FormattedMonetaryAmountProps
 	value: number | string; // Value of money amount.
 	currency: Currency | Record< string, never >; // Currency configuration object.
 	onValueChange?: ( unit: number ) => void; // Function to call when value changes.
-	style?: React.CSSProperties;
+	style?: React.CSSProperties | undefined;
 	renderText?: ( value: string ) => JSX.Element;
 }
 
@@ -34,14 +35,20 @@ const currencyToNumberFormat = (
 	currency: FormattedMonetaryAmountProps[ 'currency' ]
 ) => {
 	return {
-		thousandSeparator: currency.thousandSeparator,
-		decimalSeparator: currency.decimalSeparator,
-		decimalScale: currency.minorUnit,
+		thousandSeparator: currency?.thousandSeparator,
+		decimalSeparator: currency?.decimalSeparator,
 		fixedDecimalScale: true,
-		prefix: currency.prefix,
-		suffix: currency.suffix,
+		prefix: currency?.prefix,
+		suffix: currency?.suffix,
 		isNumericString: true,
 	};
+};
+
+type CustomFormattedMonetaryAmountProps = Omit<
+	FormattedMonetaryAmountProps,
+	'currency'
+> & {
+	currency: Currency | Record< string, never >;
 };
 
 /**
@@ -56,7 +63,7 @@ const FormattedMonetaryAmount = ( {
 	onValueChange,
 	displayType = 'text',
 	...props
-}: FormattedMonetaryAmountProps ): ReactElement | null => {
+}: CustomFormattedMonetaryAmountProps ): ReactElement | null => {
 	const value =
 		typeof rawValue === 'string' ? parseInt( rawValue, 10 ) : rawValue;
 
@@ -75,9 +82,11 @@ const FormattedMonetaryAmount = ( {
 		'wc-block-components-formatted-money-amount',
 		className
 	);
+	const decimalScale = props.decimalScale ?? currency?.minorUnit;
 	const numberFormatProps = {
 		...props,
 		...currencyToNumberFormat( currency ),
+		decimalScale,
 		value: undefined,
 		currency: undefined,
 		onValueChange: undefined,

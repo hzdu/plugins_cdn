@@ -14,7 +14,7 @@ import { useCheckoutBlockControlsContext } from '../../context';
 import {
 	useForcedLayout,
 	getAllowedBlocks,
-} from '../../../cart-checkout/shared';
+} from '../../../cart-checkout-shared';
 import './style.scss';
 
 export const Edit = ( {
@@ -24,6 +24,7 @@ export const Edit = ( {
 	clientId: string;
 	attributes: {
 		className?: string;
+		isPreview?: boolean;
 	};
 } ): JSX.Element => {
 	const blockProps = useBlockProps( {
@@ -34,13 +35,14 @@ export const Edit = ( {
 	} );
 	const allowedBlocks = getAllowedBlocks( innerBlockAreas.CHECKOUT_FIELDS );
 
-	const {
-		addressFieldControls: Controls,
-	} = useCheckoutBlockControlsContext();
+	const { addressFieldControls: Controls } =
+		useCheckoutBlockControlsContext();
 
-	const defaultTemplate = ( [
+	const defaultTemplate = [
 		[ 'woocommerce/checkout-express-payment-block', {}, [] ],
 		[ 'woocommerce/checkout-contact-information-block', {}, [] ],
+		[ 'woocommerce/checkout-shipping-method-block', {}, [] ],
+		[ 'woocommerce/checkout-pickup-options-block', {}, [] ],
 		[ 'woocommerce/checkout-shipping-address-block', {}, [] ],
 		[ 'woocommerce/checkout-billing-address-block', {}, [] ],
 		[ 'woocommerce/checkout-shipping-methods-block', {}, [] ],
@@ -48,7 +50,7 @@ export const Edit = ( {
 		[ 'woocommerce/checkout-order-note-block', {}, [] ],
 		[ 'woocommerce/checkout-terms-block', {}, [] ],
 		[ 'woocommerce/checkout-actions-block', {}, [] ],
-	].filter( Boolean ) as unknown ) as TemplateArray;
+	].filter( Boolean ) as unknown as TemplateArray;
 
 	useForcedLayout( {
 		clientId,

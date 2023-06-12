@@ -8,15 +8,15 @@ import type { Reducer } from 'redux';
  * Internal dependencies
  */
 import { ACTION_TYPES as types } from './action-types';
-import { defaultCartState, CartState } from '../default-states';
+import { defaultCartState, CartState } from './default-state';
 import { EMPTY_CART_ERRORS } from '../constants';
 import type { CartAction } from './actions';
 
 /**
  * Sub-reducer for cart items array.
  *
- * @param   {Array<CartItem>}  state   cartData.items state slice.
- * @param   {CartAction}  action  Action object.
+ * @param {Array<CartItem>} state  cartData.items state slice.
+ * @param {CartAction}      action Action object.
  */
 const cartItemsReducer = (
 	state: Array< CartItem > = [],
@@ -38,8 +38,8 @@ const cartItemsReducer = (
 /**
  * Reducer for receiving items related to the cart.
  *
- * @param   {CartState}  state   The current state in the store.
- * @param   {CartAction}  action  Action object.
+ * @param {CartState}  state  The current state in the store.
+ * @param {CartAction} action Action object.
  *
  * @return  {CartState}          New or existing state.
  */
@@ -48,15 +48,16 @@ const reducer: Reducer< CartState > = (
 	action: Partial< CartAction >
 ) => {
 	switch ( action.type ) {
-		case types.RECEIVE_ERROR:
-			if ( action.error ) {
-				state = {
-					...state,
-					errors: state.errors.concat( action.error ),
-				};
-			}
+		case types.SET_FULL_SHIPPING_ADDRESS_PUSHED:
+			state = {
+				...state,
+				metaData: {
+					...state.metaData,
+					fullShippingAddressPushed: action.fullShippingAddressPushed,
+				},
+			};
 			break;
-		case types.REPLACE_ERRORS:
+		case types.SET_ERROR_DATA:
 			if ( action.error ) {
 				state = {
 					...state,
@@ -64,7 +65,7 @@ const reducer: Reducer< CartState > = (
 				};
 			}
 			break;
-		case types.RECEIVE_CART:
+		case types.SET_CART_DATA:
 			if ( action.response ) {
 				state = {
 					...state,
@@ -87,14 +88,14 @@ const reducer: Reducer< CartState > = (
 				};
 			}
 			break;
-		case types.SET_BILLING_DATA:
+		case types.SET_BILLING_ADDRESS:
 			state = {
 				...state,
 				cartData: {
 					...state.cartData,
 					billingAddress: {
 						...state.cartData.billingAddress,
-						...action.billingData,
+						...action.billingAddress,
 					},
 				},
 			};

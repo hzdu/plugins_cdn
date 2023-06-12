@@ -13,11 +13,11 @@
 	position: relative;
 	.wp-block-woocommerce-checkout-totals-block {
 		width: 35%;
-		padding-left: percentage(math.div($gap-large, 1060px));
+		padding-left: math.percentage(math.div($gap-large, 1060px));
 	}
 	.wp-block-woocommerce-checkout-fields-block {
 		width: 65%;
-		padding-right: percentage(math.div($gap-largest, 1060px)); // ~1060px is the default width of the content area in Storefront.
+		padding-right: math.percentage(math.div($gap-largest, 1060px)); // ~1060px is the default width of the content area in Storefront.
 	}
 	.wp-block-woocommerce-checkout-totals-block,
 	.wp-block-woocommerce-checkout-fields-block {
@@ -57,6 +57,7 @@
 			}
 		}
 		.wc-block-components-totals-item,
+		.wc-block-components-totals-coupon-link,
 		.wc-block-components-panel {
 			padding-left: $gap;
 			padding-right: $gap;
@@ -77,6 +78,7 @@
 			padding: 0;
 			width: 100%;
 			.wc-block-components-totals-item,
+			.wc-block-components-totals-coupon-link,
 			.wc-block-components-panel {
 				padding-left: 0;
 				padding-right: 0;

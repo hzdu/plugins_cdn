@@ -4,12 +4,10 @@
 import type {
 	PaymentMethods,
 	PaymentMethodIcons as PaymentMethodIconsType,
-} from '@woocommerce/type-defs/payments';
+} from '@woocommerce/types';
 
 /**
  * Get the provider icons from payment methods data.
- *
- * @todo Refactor the Cart blocks to use getIconsFromPaymentMethods utility instead of the local copy.
  *
  * @param {PaymentMethods} paymentMethods Payment Method data
  * @return {PaymentMethodIconsType} Payment Method icons data.

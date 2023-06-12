@@ -4,8 +4,9 @@
 import classnames from 'classnames';
 import { withFilteredAttributes } from '@woocommerce/shared-hocs';
 import { FormStep } from '@woocommerce/base-components/cart-checkout';
-import { useCheckoutContext } from '@woocommerce/base-context';
 import { useCheckoutAddress } from '@woocommerce/base-context/hooks';
+import { useSelect } from '@wordpress/data';
+import { CHECKOUT_STORE_KEY } from '@woocommerce/block-data';
 
 /**
  * Internal dependencies
@@ -19,6 +20,7 @@ const FrontendBlock = ( {
 	showStepNumber,
 	children,
 	className,
+	shippingCostRequiresAddress = false,
 }: {
 	title: string;
 	description: string;
@@ -30,11 +32,14 @@ const FrontendBlock = ( {
 	showStepNumber: boolean;
 	children: JSX.Element;
 	className?: string;
+	shippingCostRequiresAddress: boolean;
 } ) => {
-	const { isProcessing: checkoutIsProcessing } = useCheckoutContext();
-	const { showShippingFields } = useCheckoutAddress();
+	const checkoutIsProcessing = useSelect( ( select ) =>
+		select( CHECKOUT_STORE_KEY ).isProcessing()
+	);
+	const { showShippingMethods } = useCheckoutAddress();
 
-	if ( ! showShippingFields ) {
+	if ( ! showShippingMethods ) {
 		return null;
 	}
 
@@ -50,7 +55,9 @@ const FrontendBlock = ( {
 			description={ description }
 			showStepNumber={ showStepNumber }
 		>
-			<Block />
+			<Block
+				shippingCostRequiresAddress={ shippingCostRequiresAddress }
+			/>
 			{ children }
 		</FormStep>
 	);

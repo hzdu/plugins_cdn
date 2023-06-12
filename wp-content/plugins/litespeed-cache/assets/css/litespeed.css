@@ -33,8 +33,119 @@
 
 
 /* =======================================
+   		  UTILITIES - toggle UI
+======================================= */
+
+input[type="checkbox"].litespeed-tiny-toggle {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+
+    -webkit-tap-highlight-color: transparent;
+
+    width: auto;
+    height: auto;
+    vertical-align: middle;
+    position: relative;
+    border: 0;
+    outline: 0;
+    cursor: pointer;
+    margin: 0 4px;
+    background: none;
+    box-shadow: none;
+}
+input[type="checkbox"].litespeed-tiny-toggle:focus {
+    box-shadow: none;
+}
+input[type="checkbox"].litespeed-tiny-toggle:after {
+    content: '';
+    font-size: 8px;
+    font-weight: 400;
+    line-height: 18px;
+    text-indent: -14px;
+    color: #ffffff;
+    width: 36px;
+    height: 18px;
+    display: inline-block;
+    background-color: #a7aaad;
+    border-radius: 72px;
+    box-shadow: 0 0 12px rgb(0 0 0 / 15%) inset;
+}
+input[type="checkbox"].litespeed-tiny-toggle:before {
+    content: '';
+    width: 14px;
+    height: 14px;
+    display: block;
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    margin: 0;
+    border-radius: 50%;
+    background-color: #ffffff;
+}
+
+input[type="checkbox"].litespeed-tiny-toggle:checked:before {
+    left: 20px;
+    margin: 0;
+    background-color: #ffffff;
+}
+
+input[type="checkbox"].litespeed-tiny-toggle,
+input[type="checkbox"].litespeed-tiny-toggle:before,
+input[type="checkbox"].litespeed-tiny-toggle:after,
+input[type="checkbox"].litespeed-tiny-toggle:checked:before,
+input[type="checkbox"].litespeed-tiny-toggle:checked:after {
+    transition: ease .15s;
+}
+input[type="checkbox"].litespeed-tiny-toggle:checked:after {
+    /*content: 'ON';*/
+    background-color: #2271b1;
+}
+
+.block-editor__container input[type="checkbox"].litespeed-tiny-toggle {
+	border: 0 !important;
+}
+.block-editor__container input[type="checkbox"].litespeed-tiny-toggle:before {
+	top: 5px;
+	left: 7px;
+}
+.block-editor__container input[type="checkbox"].litespeed-tiny-toggle:checked:before {
+	left: 23px;
+}
+
+/* =======================================
    		  UTILITIES - structure
 ======================================= */
+
+.litespeed_icon:before {
+	/* content: "\e900";
+    font-family: 'litespeedfont' !important; */
+	content: '';
+	background-image:url('../img/lscwp_grayscale_font-icon_22px.svg');
+	/* filter: grayscale(1); */
+	background-size: 22px;
+	background-repeat: no-repeat;
+	width: 22px;
+	height: 22px;
+	vertical-align: middle;
+	display: inline-block;
+	position: absolute;
+	left:5px;
+	top:8px;
+}
+
+.rtl .litespeed_icon:before {
+	left: initial;
+	right: 5px;
+}
+
+.litespeed_icon {
+	padding-left: 30px !important;
+}
+
+.rtl .litespeed_icon {
+	padding-right: 40px;
+}
 
 .litespeed-quic-icon {
 	background-image: url('../img/quic-cloud-icon-16x16.svg');
@@ -350,6 +461,18 @@ button.litespeed-form-action:hover {
 
 .litespeed-wrap {
 	margin: 10px 20px 0 2px;
+}
+
+.litespeed-wrap .nav-tab-wrapper {
+	display: flex;
+	flex-wrap: wrap-reverse;
+}
+
+.litespeed-wrap .nav-tab {
+	border-bottom-color: inherit;
+	border-bottom-style: solid;
+	border-bottom-width: 1px;
+	margin: 11px 10px -1px 0;
 }
 
 .litespeed-wrap .nav-tab-active {
@@ -2453,6 +2576,14 @@ g.litespeed-pie_info .litespeed-pie-done {
 }
 
 /* =======================================
+		VIEW - log view
+======================================= */
+
+.litespeed-log-view-wrapper {
+	margin: 1.5em 0;
+}
+
+/* =======================================
 			VIEW - dashboard
 ======================================= */
 
@@ -2588,6 +2719,33 @@ g.litespeed-pie_info .litespeed-pie-done {
 	margin-bottom: -0.55em !important;
 }
 
+.litespeed-postbox.litespeed-postbox-partner .inside {
+	margin: 11px 0;
+}
+
+.litespeed-dashboard-stats-wrapper .litespeed-postbox.litespeed-postbox-partner h3.litespeed-title {
+	color: #777;
+	font-weight: normal;
+	font-size: 13px;
+}
+
+.litespeed-postbox.litespeed-postbox-partner a {
+	font-size: 1.35rem;
+	font-weight: bold;
+	text-decoration: none;
+	margin-top: 5px;
+	max-width: 100%;
+	display: inline-block;
+}
+
+.litespeed-postbox.litespeed-postbox-partner a:hover {
+	text-decoration: underline;
+}
+
+.litespeed-postbox.litespeed-postbox-partner img {
+	max-width: 12rem;
+}
+
 .litespeed-dashboard-group .litespeed-postbox {
 	width: calc(25% - 20px);
 	display: flex;
@@ -2668,6 +2826,10 @@ g.litespeed-pie_info .litespeed-pie-done {
 	padding: 20px;
 	margin-bottom: 0px;
 	margin-top: 0;
+}
+
+.litespeed-postbox-footer a, a.litespeed-redetect {
+	text-decoration: none;
 }
 
 .litespeed-postbox .inside.litespeed-postbox-footer--compact {
@@ -3232,6 +3394,161 @@ a.litespeed-media-href svg:hover {
 	text-align: center;
 }
 
+
+/* =======================================
+	Comparison Cards - Presets
+======================================= */
+
+.litespeed-comparison-card {
+	box-sizing: border-box;
+}
+
+.litespeed-comparison-card-rec .litespeed-card-content>div.litespeed-card-body {
+	font-size: 14px;
+}
+
+.litespeed-comparison-card-rec .litespeed-card-action {
+	margin-bottom: 0.25rem;
+}
+
+.litespeed-comparison-card-rec h3 {
+	font-size: 20px;
+}
+
+.litespeed-card-content>div,
+.litespeed-card-action {
+	padding: 0.85rem 1.25rem;
+}
+
+.litespeed-card-header {
+	border-bottom: 1px solid #eee;
+	background: #f9fafc;
+}
+
+.litespeed-card-content>div.litespeed-card-body {
+	align-self: stretch;
+	justify-content: flex-end;
+	font-size: 15px;
+	padding-bottom: 0.5rem;
+	padding-top: 1rem;
+}
+
+.litespeed-card-content>div.litespeed-card-footer {
+	align-self: stretch;
+	justify-content: flex-end;
+	padding-bottom: 0;
+	padding-top: 0.25rem;
+
+}
+
+.litespeed-card-action {
+	justify-content: flex-end;
+}
+
+.litespeed-comparison-card ul {
+	padding-left: 20px;
+	list-style: none;
+	list-style-position: outside;
+	margin: 0;
+}
+
+.litespeed-comparison-card li {
+	margin-bottom: 0.5em;
+	line-height: 1.4;
+}
+
+.litespeed-comparison-card li:last-child {
+	margin-bottom: 0;
+}
+
+.litespeed-comparison-card ul li:before {
+	content: '✓';
+	margin-left: -1em;
+	margin-right: .350em;
+	color: #329c74;
+}
+
+@media screen and (max-width: 1279px) {
+	.litespeed-comparison-card {
+		margin: 0 0 -1px 0;
+	}
+}
+
+@media screen and (min-width: 640px) and (max-width: 1279px) {
+	.litespeed-comparison-cards {
+		max-width: 740px;
+	}
+
+	.litespeed-card-content {
+		display: flex;
+		flex-wrap: wrap;
+	}
+
+	.litespeed-card-content .litespeed-card-header {
+		width: 100%;
+	}
+
+	.litespeed-card-content>div.litespeed-card-body {
+		align-self: initial;
+		width: 50%;
+		box-sizing: border-box;
+	}
+
+	.litespeed-card-content>div.litespeed-card-footer {
+		width: 50%;
+		align-self: initial;
+		box-sizing: border-box;
+	}
+
+	.litespeed-card-content>div.litespeed-card-footer h4 {
+		margin-top: 1rem;
+	}
+}
+
+@media screen and (min-width: 1280px) {
+	.litespeed-comparison-cards {
+		display: flex;
+		margin: 3rem 0 2rem 0;
+		max-width: 1720px;
+	}
+
+	.litespeed-comparison-card {
+		width: 19%;
+		min-width: 0;
+		display: flex;
+		flex-direction: column;
+		margin-right: -1px;
+		justify-content: space-between;
+	}
+
+	.litespeed-comparison-card:first-child {
+		border-top-left-radius: 5px;
+		border-bottom-left-radius: 5px;
+		overflow: hidden;
+	}
+
+	.litespeed-comparison-card:last-child {
+		border-top-right-radius: 5px;
+		border-bottom-right-radius: 5px;
+		overflow: hidden;
+	}
+
+	.litespeed-comparison-card-rec {
+		width: 23%;
+		padding-top: 1rem;
+		padding-bottom: .75rem;
+		margin-top: -1rem;
+		margin-bottom: 0.25rem;
+		border-radius: 5px;
+		overflow: hidden;
+	}
+
+	.litespeed-comparison-card-rec .litespeed-card-header {
+		margin-top: -1rem;
+		padding-top: 1.75rem;
+		padding-bottom: 0.95rem;
+	}
+}
 
 /* =======================================
 		BALLOON PURE CSS TOOLTIPS

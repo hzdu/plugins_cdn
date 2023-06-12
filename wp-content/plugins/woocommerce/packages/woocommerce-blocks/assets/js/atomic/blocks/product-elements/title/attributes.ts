@@ -1,9 +1,10 @@
 /**
  * External dependencies
  */
+import type { BlockAttributes } from '@wordpress/blocks';
 import { isFeaturePluginBuild } from '@woocommerce/block-settings';
 
-let blockAttributes: Record< string, Record< string, unknown > > = {
+let blockAttributes: BlockAttributes = {
 	headingLevel: {
 		type: 'number',
 		default: 2,
@@ -11,6 +12,9 @@ let blockAttributes: Record< string, Record< string, unknown > > = {
 	showProductLink: {
 		type: 'boolean',
 		default: true,
+	},
+	linkTarget: {
+		type: 'string',
 	},
 	productId: {
 		type: 'number',
@@ -23,18 +27,6 @@ if ( isFeaturePluginBuild() ) {
 		...blockAttributes,
 		align: {
 			type: 'string',
-		},
-		color: {
-			type: 'string',
-		},
-		customColor: {
-			type: 'string',
-		},
-		fontSize: {
-			type: 'string',
-		},
-		customFontSize: {
-			type: 'number',
 		},
 	};
 }

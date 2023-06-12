@@ -34,7 +34,8 @@ export const FormStepBlock = ( {
 	const { title = '', description = '', showStepNumber = true } = attributes;
 	const blockProps = useBlockProps( {
 		className: classnames( 'wc-block-components-checkout-step', className, {
-			'wc-block-components-checkout-step--with-step-number': showStepNumber,
+			'wc-block-components-checkout-step--with-step-number':
+				showStepNumber,
 		} ),
 	} );
 	return (
@@ -65,6 +66,7 @@ export const FormStepBlock = ( {
 					className={ '' }
 					value={ title }
 					onChange={ ( value ) => setAttributes( { title: value } ) }
+					style={ { backgroundColor: 'transparent' } }
 				/>
 			</FormStepHeading>
 			<div className="wc-block-components-checkout-step__container">
@@ -85,6 +87,7 @@ export const FormStepBlock = ( {
 								description: value,
 							} )
 						}
+						style={ { backgroundColor: 'transparent' } }
 					/>
 				</p>
 				<div className="wc-block-components-checkout-step__content">

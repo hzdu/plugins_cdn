@@ -1,8 +1,11 @@
+/* eslint-disable @wordpress/no-unsafe-wp-apis */
 /**
  * External dependencies
  */
-import { registerBlockType, BlockConfiguration } from '@wordpress/blocks';
+import { registerBlockType } from '@wordpress/blocks';
+import type { BlockConfiguration } from '@wordpress/blocks';
 import { isFeaturePluginBuild } from '@woocommerce/block-settings';
+import { __experimentalGetSpacingClassesAndStyles } from '@wordpress/block-editor';
 
 /**
  * Internal dependencies
@@ -16,7 +19,6 @@ import {
 	BLOCK_DESCRIPTION as description,
 } from './constants';
 import { Save } from './save';
-import { hasSpacingStyleSupport } from '../../../../utils/global-style';
 
 const blockConfig: BlockConfiguration = {
 	...sharedConfig,
@@ -44,7 +46,8 @@ const blockConfig: BlockConfiguration = {
 				gradients: true,
 				__experimentalSkipSerialization: true,
 			},
-			...( hasSpacingStyleSupport() && {
+			...( typeof __experimentalGetSpacingClassesAndStyles ===
+				'function' && {
 				spacing: {
 					margin: true,
 					__experimentalSkipSerialization: true,
