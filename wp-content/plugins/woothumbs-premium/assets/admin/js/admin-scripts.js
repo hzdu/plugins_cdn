@@ -1,7 +1,10 @@
+/**
+ * WooThumbs - Admin Scripts.
+ */
 (function( $, document ) {
 
 	// variables
-	var cacheKey = 'data-jckwt-galleries';
+	var cacheKey  = 'data-jckwt-galleries';
 
 	/* on doc ready */
 	$( document ).ready( function() {
@@ -12,7 +15,8 @@
 
 	// local cache
 
-	var localCache = {
+	var image_galleries = {},
+		localCache = {
 		/**
 		 * timeout for cache in millis
 		 * @type {number}
@@ -40,11 +44,32 @@
 			if ( $.isFunction( callback ) ) {
 				callback( cachedData );
 			}
+		},
+		length: function( key ) {
+			return Object.keys( localCache.data[ key ].data ).length;
+		},
+		hasValidDataKeys: function( key, dataKeys ) {
+			if ( ! dataKeys ) {
+				return false;
+			 }
+
+			var valid = true;
+
+			for ( var i = 0; i < dataKeys.length; i++ ) {
+				if ( ! localCache.data[ key ] || ! localCache.data[ key ].data.hasOwnProperty( dataKeys[i] ) ) {
+					valid = false;
+					break;
+				}
+			}
+
+			return valid;
 		}
 	};
 
-	// ! Bulk Save Buttons
+	// set an empty object to store our variation galleries by id
+	localCache.set( cacheKey, {} );
 
+	// ! Bulk Save Buttons
 	function setup_bulk_save_buttons() {
 		$( '.saveVariationImages' ).on( 'click', function() {
 
@@ -85,7 +110,6 @@
 	}
 
 	// Update Selected Images
-
 	function selectedImgs( $tableCol ) {
 		// Get all selected images
 		var $selectedImgs = [],
@@ -100,52 +124,81 @@
 		input_changed( $gallery_field );
 	}
 
-	function triggerGalleryData() {
-		var $ImgUploadBtns = $( '.woocommerce_variations .upload_image_button' );
+	// Iterate over our collection of buttons and either mark the button
+	// as being ready if the images are already in the cache for this
+	// variation, or if they are not already cached, add them to the 
+	// cache and mark the button as ready.
+	function prepareUploadButtons( $img_upload_btns, gallery_data ) {
+		$img_upload_btns.each( function() {
+			var $upload_btn = $( this ),
+				var_id      = $upload_btn.attr( 'rel' );
 
-		// set an empty object to store our variation galleries by id
-		localCache.set( cacheKey, {} );
-
-		// loop through each upload image btn
-		$ImgUploadBtns.each( function() {
-			var $uploadBtn = $( this ),
-				varId = $uploadBtn.attr( 'rel' ),
-				galleries = {};
-
-			// if the cache is already set, get the current data
-			if ( localCache.exist( cacheKey ) ) {
-				galleries = localCache.get( cacheKey );
-			}
-
-			if ( typeof (galleries[ varId ]) !== "undefined" && galleries[ varId ] !== null ) {
+			if ( typeof ( image_galleries[ var_id ] ) !== "undefined" && image_galleries[ var_id ] !== null ) {
 				// this gallery has been loaded before, so
 				// trigger this button as ready
-				$( 'body' ).trigger( 'gallery_ready', [ $uploadBtn, varId ] );
+				$( 'body' ).trigger( 'gallery_ready', [ $upload_btn, var_id ] );
 			} else {
-				// Set up content to inset after variation Image
-				var ajaxargs = {
-					'action': 'admin_load_thumbnails',
-					'nonce': iconic_woothumbs_vars.nonce,
-					'varID': varId
-				};
+				// add our gallery to the galleries data
+				// and add it to the cache
+				image_galleries[ var_id ] = gallery_data[ var_id ];
+				localCache.set( cacheKey, image_galleries );
 
-				$.ajax( {
-					url: iconic_woothumbs_vars.ajaxurl,
-					data: ajaxargs,
-					context: this
-				} ).success( function( data ) {
-					// add our gallery to the galleries data
-					// and add it to the cache
-					galleries[ varId ] = data;
-					localCache.set( cacheKey, galleries );
-
-					// this gallery is now loaded, so,
-					// trigger this button as ready
-					$( 'body' ).trigger( 'gallery_ready', [ $uploadBtn, varId ] );
-
-				} );
+				// this gallery is now loaded, so,
+				// trigger this button as ready
+				$( 'body' ).trigger( 'gallery_ready', [ $upload_btn, var_id ] );
 			}
 		} );
+	}
+
+	function triggerGalleryData() {
+		var $img_upload_btns = $( '.woocommerce_variations .upload_image_button' ),
+			gallery_data = {},
+			var_ids = [];
+
+		// Build an array of all the current variation IDs
+		// that exist on this page of results.
+		$img_upload_btns.each( function() {
+			var_ids.push( $(this).attr( 'rel' ) );
+		});
+
+		// Abort if this is the initial page load,
+		// as the buttons don't exist in the DOM at
+		// this time.
+		if ( 0 === var_ids.length ) {
+			return;
+		}
+
+		// Cache hit or AJAX call.
+		if (
+			localCache.exist( cacheKey ) &&
+			localCache.length( cacheKey ) &&
+			localCache.hasValidDataKeys( cacheKey, var_ids )
+			) {
+			// If the cache key exists,
+			// the cache data object is not empty,
+			// and the cache data contains properties
+			// that all have valid data then we hit the cache.
+			gallery_data = localCache.get( cacheKey);
+			prepareUploadButtons( $img_upload_btns, gallery_data );
+		} else {
+			// Set up content to inset after variation Image
+			var ajax_args = {
+				'action': 'admin_load_thumbnails',
+				'nonce': iconic_woothumbs_vars.nonce,
+				'var_ids': JSON.stringify( var_ids )
+			};
+
+			$.ajax( {
+				url: iconic_woothumbs_vars.ajaxurl,
+				data: ajax_args,
+				context: this
+			} ).done( function( response ) {
+				if ( response.success ) {
+					gallery_data = JSON.parse( response.data );
+					prepareUploadButtons( $img_upload_btns, gallery_data );
+				}
+			} );
+		}
 
 		refreshGalleryHtml();
 	}
@@ -165,10 +218,26 @@
 
 				$( '.' + galleryWrapperClass ).remove();
 
+				var image_ids  = galleries[ varId ]['image_ids'],
+					images     = galleries[ varId ]['images'],
+					list_items = '';
+
+				for ( var key in images ) {
+					if (Object.hasOwnProperty.call(images, key)) {
+						list_items += '<li class="image" data-attachment_id="' + images[key]['id'] + '">' +
+						'<a href="#" class="wooThumbs-variation-image-delete" title="Remove image">' +
+						images[key]['html'] +
+						'</a></li>';
+					}
+				}
+
 				var $wooThumbs = '<div class="wooThumbs-wrapper ' + galleryWrapperClass + '">' +
-				                 '<h4>Additional Images</h4>' +
-				                 galleries[ varId ] +
-				                 '<a href="#" class="manage_wooThumbs button">Add Additional Images</a>' +
+				                 '<h4>Variation Images</h4>' +
+								 '<ul class="wooThumbs">' +
+				                 list_items +
+								 '</ul>' +
+								 '<input type="hidden" class="variation_image_gallery" name="variation_image_gallery[' + varId + ']" value="' + image_ids.join( ',' ) + '">' +
+				                 '<a href="#" class="manage_wooThumbs button">Add Variation Images</a>' +
 				                 '</div>';
 
 				$btn.after( $wooThumbs );
@@ -192,11 +261,16 @@
 
 		$( 'button.cancel-variation-changes, button.save-variation-changes' ).removeAttr( 'disabled' );
 
+		if ( localCache.exist( cacheKey ) ) {
+			galleries = localCache.get( cacheKey );
+			delete galleries[ $input.closest( '.upload_image' ).find( '.upload_image_button').attr('rel') ];
+			localCache.set( cacheKey, galleries );
+		}
+
 		$( '#variable_product_options' ).trigger( 'woocommerce_variations_input_changed' );
 	}
 
 	// Setup Variation Image Manager
-
 	function setup_variation_image_management() {
 		triggerGalleryData();
 
@@ -235,7 +309,7 @@
 
 						$wooThumbs.append(
 							'<li class="image" data-attachment_id="' + attachment.id + '">' +
-							'<a href="#" class="wooThumbs-variation-image-delete" title="Delete image"><img src="' + attachment.url + '" /></a>' +
+							'<a href="#" class="wooThumbs-variation-image-delete" title="Remove image"><img src="' + attachment.url + '" /></a>' +
 							'</li>'
 						);
 					}
@@ -293,7 +367,7 @@
 		$( document.body ).on( 'click', '.iconic-wt-upload-media', function( event ) {
 	
 			var $button = $( this ),
-				media_thumbnail_id = $button.data( 'image-id' );
+				media_thumbnail_id = $button.attr( 'data-image-id' );
 		
 			event.preventDefault();
 			
@@ -342,7 +416,7 @@
 	function setup_media_upload_for_product_and_library_page( ) {
 		$( document.body ).on( 'click', '.iconic-wt-upload-media', function( event ) {
 			var $button = $( this );
-				media_thumbnail_id = $button.data( 'image-id' );
+				media_thumbnail_id = $button.attr( 'data-image-id' );
 			
 			event.preventDefault();
 
@@ -373,8 +447,6 @@
 				},
 				multiple: false
 			} );
-
-			// wp.media.frames.iconic_woothumbs_media.on('all', function(e) { console.log( 'attach mp4', e); });
 
 			// When an image is selected, run a callback.
 			wp.media.frames.iconic_woothumbs_media.on( 'select', function() {

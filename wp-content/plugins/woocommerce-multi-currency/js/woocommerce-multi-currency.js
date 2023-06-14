@@ -1,27 +1,62 @@
 jQuery(document).ready(function ($) {
     'use strict';
-    $(document.body).on('updated_checkout', function (event, response) {
-        if (response.hasOwnProperty('wmc_update_checkout') && response.wmc_update_checkout) {
+
+    if (wooMultiCurrencyParams.currencyByPaymentImmediately) {
+
+        $(document.body).on('updated_checkout', function (event, response) {
+            if (typeof response === 'undefined') return;
+            if (response.hasOwnProperty('wmc_update_checkout') && response.wmc_update_checkout) {
+                $(document.body).trigger('update_checkout');
+            }
+        });
+
+        $(document.body).on('payment_method_selected', function (event, response) {
+            // let selectedPaymentMethod = $('.woocommerce-checkout input[name="payment_method"]:checked').val();
+            // if (selectedPaymentMethod === 'ppcp-gateway') {
             $(document.body).trigger('update_checkout');
+            // }
+        });
+    }
+
+    function getCookie(cname) {
+        var name = cname + "=";
+        var decodedCookie = decodeURIComponent(document.cookie);
+        var ca = decodedCookie.split(';');
+        for (var i = 0; i < ca.length; i++) {
+            var c = ca[i];
+            while (c.charAt(0) == ' ') {
+                c = c.substring(1);
+            }
+            if (c.indexOf(name) == 0) {
+                return c.substring(name.length, c.length);
+            }
         }
-    });
-    $(document.body).on('payment_method_selected', function (event, response) {
-        let selectedPaymentMethod = $('.woocommerce-checkout input[name="payment_method"]:checked').val();
-        if (selectedPaymentMethod === 'ppcp-gateway') {
-            $(document.body).trigger('update_checkout');
-        }
-    });
+        return "";
+    }
+
     window.woocommerce_multi_currency = {
         init: function () {
             this.design();
             this.checkPosition();
             this.click_to_expand();
-            if (wooMultiCurrencyParams.enableCacheCompatible === '1') {
-                this.cacheCompatible();
-                this.ajaxComplete();
-            }
+            this.cacheInit();
         },
 
+        cacheInit() {
+            if (wooMultiCurrencyParams.enableCacheCompatible === '1') {
+                this.cacheCompatible();
+                $(document).on('append.infiniteScroll', () => {
+                    this.cacheCompatible();
+                });
+            } else if (wooMultiCurrencyParams.enableCacheCompatible === '2') {
+                this.overrideSwitcher();
+                this.cacheCompatibleByJSON();
+
+                $(document).on('append.infiniteScroll', () => {
+                    this.cacheCompatibleByJSON();
+                });
+            }
+        },
         disableCurrentCurrencyLink() {
             $('.wmc-active a').on('click', function (e) {
                 e.preventDefault();
@@ -34,22 +69,37 @@ jQuery(document).ready(function ($) {
             if (windowsize <= 768) {
                 jQuery('.woocommerce-multi-currency.wmc-sidebar').on('click', function () {
                     jQuery(this).toggleClass('wmc-hover');
+                    let body_overflow = jQuery('html body').css("overflow");
                     if (jQuery(this).hasClass('wmc-hover')) {
                         jQuery('html').css({'overflow': 'hidden'});
                     } else {
-                        jQuery('html').css({'overflow': 'visible'});
+                        if ('clip' === body_overflow) {
+                            jQuery('html').css({'overflow': ''});
+                        } else {
+                            jQuery('html').css({'overflow': 'visible'});
+                        }
                     }
                 })
             } else {
                 /*replace hover with mouseenter mouseleave in some cases to work correctly*/
-                jQuery('.woocommerce-multi-currency.wmc-sidebar').on('mouseenter', function () {
-                    let $this = jQuery(this);
-                    $this.addClass('wmc-hover');
-                });
-                jQuery('.woocommerce-multi-currency.wmc-sidebar').on('mouseleave', function () {
-                    let $this = jQuery(this);
-                    $this.removeClass('wmc-hover');
-                })
+                let currencyBar = jQuery('.woocommerce-multi-currency.wmc-sidebar');
+
+                if (currencyBar.hasClass('wmc-collapse') && wooMultiCurrencyParams?.click_to_expand_currencies_bar) {
+                    currencyBar.on('click', function () {
+                        jQuery(this).toggleClass('wmc-hover');
+                    }).on('mouseleave', function () {
+                        jQuery(this).removeClass('wmc-hover');
+                    })
+                } else {
+                    currencyBar.on('mouseenter', function () {
+                        let $this = jQuery(this);
+                        $this.addClass('wmc-hover');
+                    }).on('mouseleave', function () {
+                        let $this = jQuery(this);
+                        $this.removeClass('wmc-hover');
+                    })
+                }
+
             }
         },
 
@@ -122,7 +172,7 @@ jQuery(document).ready(function ($) {
             $shortcodes.map(function () {
                 let $shortcode = $(this);
                 shortcodes.push({
-                    layout: $shortcode.data('layout'),
+                    layout: $shortcode.data('layout') ? $shortcode.data('layout') : 'default',
                     flag_size: $shortcode.data('flag_size'),
                     dropdown_icon: $shortcode.data('dropdown_icon'),
                     custom_format: $shortcode.data('custom_format'),
@@ -151,6 +201,10 @@ jQuery(document).ready(function ($) {
                     shortcodes: shortcodes,
                     wmc_current_url: $('.wmc-current-url').val(),
                     exchange: exchangePrice,
+                    extra_params: wooMultiCurrencyParams.extra_params,
+                },
+                xhrFields: {
+                    withCredentials: true
                 },
                 success(res) {
                     if (res.success) {
@@ -176,7 +230,12 @@ jQuery(document).ready(function ($) {
                             $(`.wmc-price-switcher .wmc-hidden`).removeClass('wmc-hidden');
                             $(`.wmc-price-switcher .wmc-currency[data-currency=${currentCurrency}]`).addClass('wmc-hidden');
 
+                            let $price_switcher = $('.wmc-price-switcher').not('.wmc-approximate-price-switcher');
+                            $price_switcher.find('.wmc-current-currency i').removeClass().addClass('vi-flag-64 flag-' + res.data.current_country);
+                            $price_switcher.find(`.wmc-hidden`).removeClass('wmc-hidden');
+                            $price_switcher.find(`.wmc-currency[data-currency=${currentCurrency}]`).addClass('wmc-hidden');
                             $(`select.wmc-nav option[data-currency=${currentCurrency}]`).prop('selected', true);
+                            $('body').removeClass(`woocommerce-multi-currency-${wooMultiCurrencyParams.current_currency}`).addClass(`woocommerce-multi-currency-${currentCurrency}`);
                         }
                         // woocommerce_multi_currency.disableCurrentCurrencyLink();
                         // if (typeof woocommerce_multi_currency_switcher !== 'undefined') {
@@ -184,6 +243,8 @@ jQuery(document).ready(function ($) {
                         // }
 
                         if (prices) {
+                            // $('.wmc-approximately').remove();
+
                             for (let id in prices) {
                                 $(`.wmc-cache-pid[data-wmc_product_id=${id}]`).replaceWith(prices[id]);
                             }
@@ -199,6 +260,8 @@ jQuery(document).ready(function ($) {
                                     $(form).data('product_variations', data);
                                 }
                             });
+
+                            $('.variations select').trigger('change.wc-variation-form');
                         }
 
                         if (exSc) {
@@ -212,12 +275,165 @@ jQuery(document).ready(function ($) {
             });
         },
 
-        ajaxComplete() {
-            $(document).on('append.infiniteScroll', () => {
-                this.cacheCompatible();
-            });
+        overrideSwitcher() {
+            let currentCurrency = getCookie('wmc_current_currency');
+            if (!currentCurrency) return;
+
+            {
+                $('.wmc-list-currencies .wmc-currency').removeClass('wmc-active');
+                $(`.wmc-list-currencies .wmc-currency[data-currency=${currentCurrency}]`).addClass('wmc-active');
+            }
+
+            //Plain horizontal
+            {
+                $('.woocommerce-multi-currency.wmc-shortcode.plain-horizontal .wmc-currency').removeClass('wmc-active');
+                $(`.woocommerce-multi-currency.wmc-shortcode.plain-horizontal .wmc-currency a[data-currency=${currentCurrency}]`).parent().addClass('wmc-active');
+            }
+
+            //Common Plain vertical
+            {
+                $('.woocommerce-multi-currency.wmc-shortcode.plain-vertical .wmc-currency').removeClass('wmc-hidden');
+                $(`.woocommerce-multi-currency.wmc-shortcode.plain-vertical .wmc-currency a[data-currency=${currentCurrency}]`).parent().addClass('wmc-hidden');
+            }
+
+            //Plain vertical
+            {
+                $('.woocommerce-multi-currency.wmc-shortcode.plain-vertical.layout0 .wmc-current-currency-code').text(currentCurrency);
+            }
+
+            //Layout4
+            {
+                let flagClass = $(`.woocommerce-multi-currency.wmc-shortcode.plain-vertical.layout4 .wmc-currency a[data-currency=${currentCurrency}] i`).attr('class');
+                $('.woocommerce-multi-currency.wmc-shortcode.plain-vertical.layout4 .wmc-current-currency i.wmc-current-flag').removeClass().addClass(flagClass);
+            }
+
+            //Layout5
+            {
+                let flagClass = $(`.woocommerce-multi-currency.wmc-shortcode.plain-vertical.layout5 .wmc-currency a[data-currency=${currentCurrency}] i`).attr('class');
+                $('.woocommerce-multi-currency.wmc-shortcode.plain-vertical.layout5 .wmc-current-currency i.wmc-current-flag').removeClass().addClass(flagClass);
+                let subCurrencyCode = $(`.woocommerce-multi-currency.wmc-shortcode.plain-vertical.layout5 .wmc-currency a[data-currency=${currentCurrency}] .wmc-sub-currency-code`).first().text();
+                $('.woocommerce-multi-currency.wmc-shortcode.plain-vertical.layout5 .wmc-current-currency .wmc-current-currency-code').text(subCurrencyCode);
+            }
+
+            //Layout6
+            {
+                $('.woocommerce-multi-currency.wmc-shortcode.plain-horizontal.layout6 .wmc-currency').removeClass('wmc-active');
+                $(`.woocommerce-multi-currency.wmc-shortcode.plain-horizontal.layout6 .wmc-currency a[data-currency=${currentCurrency}]`).parent().addClass('wmc-active');
+            }
+
+            //Layout7
+            {
+                let currencySymbol = $(`.woocommerce-multi-currency.wmc-shortcode.plain-vertical.vertical-currency-symbols .wmc-currency a[data-currency=${currentCurrency}]`).first().text();
+                $(`.woocommerce-multi-currency.wmc-shortcode.plain-vertical.vertical-currency-symbols .wmc-current-currency .wmc-current-currency-symbol`).text(currencySymbol);
+            }
+
+            //Layout8
+            {
+                let currencySymbol = $(`.woocommerce-multi-currency.wmc-shortcode.vertical-currency-symbols-circle .wmc-currency a[data-currency=${currentCurrency}]`).first().text();
+                $(`.woocommerce-multi-currency.wmc-shortcode.vertical-currency-symbols-circle .wmc-current-currency`).text(currencySymbol);
+            }
+
+            //Layout9
+            {
+                let beforeCurrentCurrency = true;
+                $('.woocommerce-multi-currency.wmc-shortcode.layout9 .wmc-currency').removeClass('wmc-current-currency wmc-active wmc-left wmc-right');
+                $('.woocommerce-multi-currency.wmc-shortcode.layout9 .wmc-currency').each(function (i, el) {
+                    let a = $(el).find('a');
+                    let dataCurrency = a.attr('data-currency');
+                    let symbol = a.text();
+
+                    symbol = symbol.replace(dataCurrency, '').trim();
+
+                    if (currentCurrency === dataCurrency) {
+                        $(el).css('z-index', 999);
+                        $(el).addClass('wmc-current-currency wmc-active');
+                        a.text(`${currentCurrency} ${symbol}`);
+                        beforeCurrentCurrency = false;
+                    } else {
+                        a.text(symbol);
+                        if (beforeCurrentCurrency) {
+                            $(el).addClass('wmc-left');
+                            $(el).css('z-index', i);
+                        } else {
+                            $(el).addClass('wmc-right');
+                            $(el).css('z-index', 99 - i);
+                        }
+                    }
+                });
+            }
+
+            //Layout10
+            {
+                let flagClass = $(`.woocommerce-multi-currency.wmc-shortcode.plain-vertical.layout10 .wmc-currency a[data-currency=${currentCurrency}] i`).attr('class');
+                $('.woocommerce-multi-currency.wmc-shortcode.plain-vertical.layout10 .wmc-current-currency i.wmc-current-flag').removeClass().addClass(flagClass);
+
+                let customFormat = $('.woocommerce-multi-currency.wmc-shortcode.plain-vertical.layout10').data('custom_format');
+                if (customFormat) {
+                    let subCurrencyName = $(`.woocommerce-multi-currency.wmc-shortcode.plain-vertical.layout10 .wmc-currency a[data-currency=${currentCurrency}] .wmc-sub-currency-name`).first().text();
+                    let subCurrencyCode = $(`.woocommerce-multi-currency.wmc-shortcode.plain-vertical.layout10 .wmc-currency a[data-currency=${currentCurrency}] .wmc-sub-currency-code`).first().text();
+                    let subCurrencySymbol = $(`.woocommerce-multi-currency.wmc-shortcode.plain-vertical.layout10 .wmc-currency a[data-currency=${currentCurrency}] .wmc-sub-currency-symbol`).first().text();
+                    $('.woocommerce-multi-currency.wmc-shortcode.plain-vertical.layout10 .wmc-current-currency .wmc-currency-name').text(`${subCurrencyName}`);
+                    $('.woocommerce-multi-currency.wmc-shortcode.plain-vertical.layout10 .wmc-current-currency .wmc-currency-code').text(`${subCurrencyCode}`);
+                    $('.woocommerce-multi-currency.wmc-shortcode.plain-vertical.layout10 .wmc-current-currency .wmc-currency-symbol').text(` ${subCurrencySymbol}`);
+                } else {
+                    let subCurrencyCode = $(`.woocommerce-multi-currency.wmc-shortcode.plain-vertical.layout10 .wmc-currency a[data-currency=${currentCurrency}] .wmc-sub-currency-name`).first().text();
+                    let subCurrencySymbol = $(`.woocommerce-multi-currency.wmc-shortcode.plain-vertical.layout10 .wmc-currency a[data-currency=${currentCurrency}] .wmc-sub-currency-symbol`).first().text();
+                    $('.woocommerce-multi-currency.wmc-shortcode.plain-vertical.layout10 .wmc-current-currency .wmc-text-currency-text').html(`(${subCurrencyCode})`);
+                    $('.woocommerce-multi-currency.wmc-shortcode.plain-vertical.layout10 .wmc-current-currency .wmc-text-currency-symbol').html(` ${subCurrencySymbol}`);
+                }
+            }
+
+            $('select.wmc-nav').val(currentCurrency);
+
+            {
+                $('.wmc-price-switcher .wmc-currency.wmc-hidden').removeClass('wmc-hidden');
+                $(`.wmc-price-switcher .wmc-currency[data-currency=${currentCurrency}]`).addClass('wmc-hidden');
+                let flagClass = $(`.wmc-price-switcher .wmc-currency[data-currency=${currentCurrency}] i`).attr('class');
+                $('.wmc-price-switcher .wmc-current-currency i').removeClass().addClass(flagClass);
+            }
+
+        },
+
+        cacheCompatibleByJSON() {
+            let currentCurrency = getCookie('wmc_current_currency');
+            if (!currentCurrency) {
+                setTimeout(function () {
+                    woocommerce_multi_currency.cacheCompatibleByJSON();
+                }, 1000);
+
+                return;
+            }
+
+            function overridePrice() {
+                $('.wmc-wc-price').each(function (i, el) {
+                    let listPrice = $(el).find('.wmc-price-cache-list').attr('data-wmc_price_cache');
+
+                    if (listPrice) {
+                        try {
+                            listPrice = JSON.parse(listPrice);
+                            let price = listPrice[currentCurrency];
+                            if (price) {
+                                $(el).after(price);
+                                $(el).remove();
+                            }
+                        } catch (e) {
+
+                        }
+                    }
+                });
+            }
+
+            overridePrice();
+
+            $('.variations_form').on('show_variation', function () {
+                overridePrice();
+            })
         }
     };
 
     woocommerce_multi_currency.init();
+    // Refresh when page is shown after back button (safari)
+    $(window).on('pageshow', function (e) {
+        woocommerce_multi_currency.cacheInit();
+    });
 });

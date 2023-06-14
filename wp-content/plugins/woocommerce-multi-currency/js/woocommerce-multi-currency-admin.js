@@ -409,7 +409,6 @@ jQuery(document).ready(function ($) {
         }
     });
 
-
     const positionSticky = function (val) {
         switch (val) {
             case 'top-left':
@@ -464,7 +463,7 @@ jQuery(document).ready(function ($) {
     }).trigger('change');
     $('select[name="woo_multi_currency_params[billing_shipping_currency]"]').on('change', function () {
         let $sync_currency = $('input[name="woo_multi_currency_params[sync_checkout_currency]"]').closest('tr');
-        if ($(this).val()==='0') {
+        if ($(this).val() === '0') {
             $sync_currency.fadeOut(200);
         } else {
             $sync_currency.fadeIn(200);
@@ -532,4 +531,18 @@ jQuery(document).ready(function ($) {
             }
         })
     }
+
+    $('.wmc-fixed-price').on('change', function () {
+        let checked = $(this).is(':checked');
+        $('.wmc-ignore-exchange-rate-row').toggle(checked);
+    }).trigger('change');
+
+    let click_to_expand_currencies_bar = $('.click-to-expand-currencies-bar');
+    $('.wmc-collapse-desktop').on('change', function () {
+        if ($(this).is(':checked')) {
+            click_to_expand_currencies_bar.show();
+        } else {
+            click_to_expand_currencies_bar.hide();
+        }
+    }).trigger('change');
 });

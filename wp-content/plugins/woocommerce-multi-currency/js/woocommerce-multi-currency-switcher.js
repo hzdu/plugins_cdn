@@ -25,7 +25,7 @@ jQuery(document).ready(function ($) {
     });
 });
 
-var woocommerce_multi_currency_switcher = {
+window.woocommerce_multi_currency_switcher = {
     use_session: 0,
     ajax_url: '',
     switch_by_js: '',
@@ -83,12 +83,26 @@ var woocommerce_multi_currency_switcher = {
             }
         })
     },
-
     setCookie: function (cname, cvalue, expire) {
         var d = new Date();
         d.setTime(d.getTime() + (expire * 1000));
         var expires = "expires=" + d.toUTCString();
         document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+    },
+    getCookie: function (cname) {
+        var name = cname + "=";
+        var decodedCookie = decodeURIComponent(document.cookie);
+        var ca = decodedCookie.split(';');
+        for (var i = 0; i < ca.length; i++) {
+            var c = ca[i];
+            while (c.charAt(0) == ' ') {
+                c = c.substring(1);
+            }
+            if (c.indexOf(name) == 0) {
+                return c.substring(name.length, c.length);
+            }
+        }
+        return "";
     },
     reload: function () {
         let url = new URL(window.location.href);
@@ -150,6 +164,7 @@ var wmcSwitchCurrency = function ($switcher) {
             } else {
                 woocommerce_multi_currency_switcher.setCookie('wmc_current_currency', currency, 86400);
                 woocommerce_multi_currency_switcher.setCookie('wmc_current_currency_old', currency, 86400);
+                jQuery(document.body).trigger('wmc_switch_currency_by_js_set_cookie', currency);
                 if (typeof wc_cart_fragments_params === 'undefined' || wc_cart_fragments_params === null) {
                 } else {
                     sessionStorage.removeItem(wc_cart_fragments_params.fragment_name);

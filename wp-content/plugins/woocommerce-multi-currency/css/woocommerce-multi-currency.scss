@@ -297,8 +297,12 @@
     -ms-transition: all .25s ease;
     -o-transition: all .25s ease;
     left: 0;
-    max-height: 90vh;
+    max-height: 60vh;
     overflow: auto;
+
+    &.wmc-show-up {
+      max-height: 30vh;
+    }
   }
 
   img {
@@ -316,6 +320,46 @@
       line-height: 2;
     }
   }
+}
+
+/*Scrollbar - firefox does not support scrollbar*/
+.woocommerce-multi-currency.wmc-shortcode[data-layout="plain_vertical"] .wmc-sub-currency::-webkit-scrollbar,
+.woocommerce-multi-currency.wmc-shortcode[data-layout="layout7"] .wmc-sub-currency::-webkit-scrollbar,
+.woocommerce-multi-currency.wmc-price-switcher .wmc-sub-currency::-webkit-scrollbar {
+  width: 7px;
+}
+
+.woocommerce-multi-currency.wmc-shortcode[data-layout="plain_vertical"] .wmc-sub-currency::-webkit-scrollbar-track,
+.woocommerce-multi-currency.wmc-shortcode[data-layout="layout7"] .wmc-sub-currency::-webkit-scrollbar-track,
+.woocommerce-multi-currency.wmc-price-switcher .wmc-sub-currency::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.woocommerce-multi-currency.wmc-shortcode[data-layout="plain_vertical"] .wmc-sub-currency::-webkit-scrollbar-thumb,
+.woocommerce-multi-currency.wmc-shortcode[data-layout="layout7"] .wmc-sub-currency::-webkit-scrollbar-thumb,
+.woocommerce-multi-currency.wmc-price-switcher .wmc-sub-currency::-webkit-scrollbar-thumb {
+  background: #cecece;
+  border-radius: 20px;
+}
+
+.woocommerce-multi-currency.wmc-shortcode[data-layout="plain_vertical"] .wmc-sub-currency::-webkit-scrollbar-thumb:hover,
+.woocommerce-multi-currency.wmc-shortcode[data-layout="layout7"] .wmc-sub-currency::-webkit-scrollbar-thumb:hover,
+.woocommerce-multi-currency.wmc-price-switcher .wmc-sub-currency::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+.woocommerce-multi-currency.wmc-shortcode[data-layout="plain_vertical"] .wmc-sub-currency,
+.woocommerce-multi-currency.wmc-shortcode[data-layout="layout4"] .wmc-sub-currency,
+.woocommerce-multi-currency.wmc-shortcode[data-layout="layout5"] .wmc-sub-currency,
+.woocommerce-multi-currency.wmc-shortcode[data-layout="layout7"] .wmc-sub-currency,
+.woocommerce-multi-currency.wmc-shortcode[data-layout="layout8"] .wmc-sub-currency {
+  max-height: 40vh;
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+  scrollbar-width: none; //Firefox only
+  height: fit-content;
 }
 
 .woocommerce-multi-currency.wmc-price-switcher {
@@ -482,7 +526,6 @@
       display: flex;
       font-weight: 700;
       border: 1px solid #e5e5e5;
-      line-height: 1;
       width: calc(100% + 2px);
     }
 
@@ -524,6 +567,7 @@
       -o-transition: all .25s ease;
       display: none;
       border-top: none;
+      z-index: 99;
 
       .wmc-currency.wmc-active {
         a {
@@ -569,11 +613,37 @@
   }
 }
 
+.woocommerce-multi-currency.wmc-shortcode.plain-vertical.layout4 {
+  .wmc-currency-wrapper {
+    .wmc-sub-currency {
+      &::-webkit-scrollbar {
+        width: 0;
+      }
+    }
+  }
+}
+
 .woocommerce-multi-currency.wmc-shortcode.plain-vertical.layout5 {
   .wmc-currency-wrapper {
     span.wmc-current-currency {
       span {
         padding: 0 5px;
+      }
+    }
+
+    .wmc-sub-currency {
+      &::-webkit-scrollbar {
+        width: 0;
+      }
+    }
+  }
+}
+
+.woocommerce-multi-currency.wmc-shortcode[data-layout="layout8"] {
+  .wmc-currency-wrapper {
+    .wmc-sub-currency {
+      &::-webkit-scrollbar {
+        width: 0;
       }
     }
   }
@@ -635,7 +705,7 @@
 
 .wmc-sub-currency {
   .wmc-hidden {
-    display: none;
+    display: none !important;
   }
 }
 
@@ -1056,7 +1126,7 @@
       }
     }
   }
-  .woocommerce-multi-currency.wmc-sidebar.wmc-hover {
+  .woocommerce-multi-currency.wmc-sidebar.wmc-hover, .woocommerce-multi-currency.wmc-sidebar.wmc-hover.wmc-mobile-no-collapse {
     .wmc-list-currencies {
       .wmc-sidebar-open {
         display: none;
@@ -1100,4 +1170,61 @@
 /*Remove duplicated regular price of LearnPress courses for some themes*/
 .course-origin-price + .origin-price {
   display: none;
+}
+
+.wmc-cache-loading {
+  .woocommerce-Price-amount.amount {
+    position: relative;
+
+    &:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #f0f0f0;
+    }
+
+    &:after {
+      content: '';
+      position: absolute;
+      top: 0;
+      width: 10px;
+      bottom: 0;
+      background-color: #fefefe;
+      opacity: 0.5;
+      left: 0;
+      filter: blur(1px);
+      animation: waiting_bar_effect 1s infinite;
+    }
+  }
+}
+
+
+@keyframes waiting_bar_effect {
+  0% {
+    left: 0;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+.wmc-convertor-row {
+  margin-bottom: 1em;
+
+  input, select {
+    line-height: 1.5;
+    padding: 7px;
+    width: 100%;
+  }
+}
+
+.wmc-currency-convertor-result {
+  font-weight: bold;
+}
+
+.woocommerce-shipping-destination {
+  clear: both;
 }

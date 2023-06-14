@@ -1,5 +1,11 @@
 (function( $, document ) {
 
+	window.iconic_woothumbs_plyr = {
+		'gallery': [],
+		'fullscreen': []
+	};
+	window.iconic_woothumbs_photoswipe = false;
+
 	var iconic_woothumbs = {
 		/**
 		 * Set up cache with common elements and vars
@@ -14,12 +20,12 @@
 			iconic_woothumbs.tpl = {};
 			iconic_woothumbs.products = {};
 			iconic_woothumbs.wishlist_adding = [];
-
 			iconic_woothumbs.vars.d = new Date();
 
 			// common elements
 			iconic_woothumbs.els.all_images_wrap = $( '.iconic-woothumbs-all-images-wrap' );
-			iconic_woothumbs.els.gallery = false;
+			iconic_woothumbs.els.images_wrap = $( '.iconic-woothumbs-images-wrap' );
+
 			iconic_woothumbs.els.video_template = $( '#iconic-woothumbs-video-template' );
 
 			// common vars
@@ -27,49 +33,79 @@
 			iconic_woothumbs.vars.media_touch_timer = false;
 			iconic_woothumbs.vars.window_resize_timeout = false;
 			iconic_woothumbs.vars.is_dragging_image_slide = false;
+			iconic_woothumbs.vars.is_slider_layout = ( 'slider' === iconic_woothumbs_vars.settings.display_general_layout );
+			iconic_woothumbs.vars.is_stacked_layout = ( 'stacked' === iconic_woothumbs_vars.settings.display_general_layout );
 			iconic_woothumbs.vars.is_rtl = iconic_woothumbs.is_true( iconic_woothumbs_vars.is_rtl );
+			iconic_woothumbs.vars.dedupe_images = iconic_woothumbs.is_true( iconic_woothumbs_vars.dedupe_images );
 			iconic_woothumbs.vars.images_are_vertical = iconic_woothumbs_vars.settings.carousel_general_mode === "vertical";
 			iconic_woothumbs.vars.thumbnails_are_vertical = iconic_woothumbs_vars.settings.navigation_thumbnails_position === "left" || iconic_woothumbs_vars.settings.navigation_thumbnails_position === "right";
+			iconic_woothumbs.vars.slide_class = 'iconic-woothumbs-images__slide';
 			iconic_woothumbs.vars.loading_class = "iconic-woothumbs-loading";
+			iconic_woothumbs.vars.fullscreen_loading_class = 'iconic-woothumbs-fullscreen-loading';
+			iconic_woothumbs.vars.media_playing_class = 'iconic-woothumbs-images-wrap--media-playing';
 			iconic_woothumbs.vars.reset_class = "iconic-woothumbs-reset";
 			iconic_woothumbs.vars.thumbnails_active_class = "iconic-woothumbs-thumbnails__slide--active";
 			iconic_woothumbs.vars.wishlist_adding_class = "iconic-woothumbs-wishlist-buttons--adding";
 			iconic_woothumbs.vars.wishlist_added_class = "iconic-woothumbs-wishlist-buttons--added";
 			iconic_woothumbs.vars.is_zoom_enabled = iconic_woothumbs.is_true( iconic_woothumbs_vars.settings.zoom_general_enable );
 			iconic_woothumbs.vars.is_fullscreen_enabled = iconic_woothumbs.is_true( iconic_woothumbs_vars.settings.fullscreen_general_enable );
+			iconic_woothumbs.vars.change_on_thumb_hover = iconic_woothumbs.is_true( iconic_woothumbs_vars.settings.navigation_thumbnails_change_on_thumb_hover );
+			iconic_woothumbs.vars.thumbnail_hover_timer = false;
 			iconic_woothumbs.vars.show_variation_trigger = "iconic_woothumbs_show_variation";
 			iconic_woothumbs.vars.loading_variation_trigger = "iconic_woothumbs_loading_variation";
+			iconic_woothumbs.vars.show_attribute_trigger = "iconic_woothumbs_show_attribute";
+			iconic_woothumbs.vars.loading_attribute_trigger = "iconic_woothumbs_loading_attribute";
 			iconic_woothumbs.vars.fullscreen_trigger = iconic_woothumbs.is_true( iconic_woothumbs_vars.settings.fullscreen_general_click_anywhere ) ? ".iconic-woothumbs-fullscreen, img" : ".iconic-woothumbs-fullscreen";
+			iconic_woothumbs.vars.photoswipe_container_class = '.iconic-woothumbs-pswp';
 			iconic_woothumbs.vars.play_trigger = ".iconic-woothumbs-play";
-			iconic_woothumbs.vars.media_controls_class = 'iconic-woothumbs-responsive-media__controls';
-			iconic_woothumbs.vars.play_button_class = 'iconic-woothumbs-icon-play-alt';
-			iconic_woothumbs.vars.pause_button_class = 'iconic-woothumbs-icon-pause';
-			iconic_woothumbs.vars.play_controls_class = 'iconic-woothumbs-responsive-media__controls--play';
-			iconic_woothumbs.vars.pause_controls_class = 'iconic-woothumbs-responsive-media__controls--pause';
 			iconic_woothumbs.vars.window_size = {
 				height: $( window ).height(),
 				width: $( window ).width()
 			};
-			iconic_woothumbs.vars.fullscreeen_flag = false;
+			iconic_woothumbs.vars.placeholder_img = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
+
+			// plyr specific settings
+			iconic_woothumbs.vars.plyr_gallery_type    = 'gallery';
+			iconic_woothumbs.vars.plyr_fullscreen_type = 'fullscreen';
+			iconic_woothumbs.vars.plyr_video_selector  = '.iconic-woothumbs-plyr:not(.plyr)';
+			iconic_woothumbs.vars.plyr_poster          = iconic_woothumbs.is_true( iconic_woothumbs_vars.settings.media_general_poster );
+			iconic_woothumbs.vars.plyr_loop            = iconic_woothumbs.is_true( iconic_woothumbs_vars.settings.media_general_loop );
+			iconic_woothumbs.vars.plyr_autoplay        = iconic_woothumbs.is_true( iconic_woothumbs_vars.settings.media_general_autoplay );
+			iconic_woothumbs.vars.plyr_controls        = iconic_woothumbs.is_true( iconic_woothumbs_vars.settings.media_general_controls );
+			iconic_woothumbs.vars.plyr_controls_list   = iconic_woothumbs_vars.settings.media_general_controls_list;
+			iconic_woothumbs.vars.plyr_tooltips        = iconic_woothumbs.is_true( iconic_woothumbs_vars.settings.display_general_icons_tooltips );
+
+			// svg icons
+			iconic_woothumbs.vars.icon_loading = JSON.parse( iconic_woothumbs_vars.icon_loading );
+			iconic_woothumbs.vars.icon_video = JSON.parse( iconic_woothumbs_vars.icon_video );
+			iconic_woothumbs.vars.icon_fullscreen = JSON.parse( iconic_woothumbs_vars.icon_fullscreen );
+			iconic_woothumbs.vars.icon_arrow_left = JSON.parse( iconic_woothumbs_vars.icon_arrow_left );
+			iconic_woothumbs.vars.icon_arrow_right = JSON.parse( iconic_woothumbs_vars.icon_arrow_right );
+			iconic_woothumbs.vars.icon_arrow_up = JSON.parse( iconic_woothumbs_vars.icon_arrow_up );
+			iconic_woothumbs.vars.icon_arrow_down = JSON.parse( iconic_woothumbs_vars.icon_arrow_down );
+			iconic_woothumbs.vars.icon_zoom = JSON.parse( iconic_woothumbs_vars.icon_zoom );
+			iconic_woothumbs.vars.icon_close = JSON.parse( iconic_woothumbs_vars.icon_close );
+			iconic_woothumbs.vars.icon_pswp_arrow_left = JSON.parse( iconic_woothumbs_vars.icon_pswp_arrow_left );
+			iconic_woothumbs.vars.icon_pswp_arrow_right = JSON.parse( iconic_woothumbs_vars.icon_pswp_arrow_right );
+			iconic_woothumbs.vars.icon_pswp_zoom = JSON.parse( iconic_woothumbs_vars.icon_pswp_zoom );
+			iconic_woothumbs.vars.icon_pswp_close = JSON.parse( iconic_woothumbs_vars.icon_pswp_close );
 
 			// common templates
-			iconic_woothumbs.tpl.prev_arrow = '<a href="javascript: void(0);" class="iconic-woothumbs-images__arrow iconic-woothumbs-images__arrow--prev"><i class="iconic-woothumbs-icon iconic-woothumbs-icon-left-open-mini"></i></a>';
-			iconic_woothumbs.tpl.next_arrow = '<a href="javascript: void(0);" class="iconic-woothumbs-images__arrow iconic-woothumbs-images__arrow--next"><i class="iconic-woothumbs-icon iconic-woothumbs-icon-right-open-mini"></i></a>';
+			iconic_woothumbs.tpl.prev_arrow = `<a href="javascript: void(0);" class="iconic-woothumbs-images__arrow iconic-woothumbs-images__arrow--prev">${iconic_woothumbs.vars.icon_arrow_left}</a>`;
+			iconic_woothumbs.tpl.next_arrow = `<a href="javascript: void(0);" class="iconic-woothumbs-images__arrow iconic-woothumbs-images__arrow--next">${iconic_woothumbs.vars.icon_arrow_right}</a>`;
 			iconic_woothumbs.tpl.prev_arrow_rtl = iconic_woothumbs.tpl.next_arrow;
 			iconic_woothumbs.tpl.next_arrow_rtl = iconic_woothumbs.tpl.prev_arrow;
 
-			iconic_woothumbs.tpl.fullscreen_button = '<a href="javascript: void(0);" class="iconic-woothumbs-fullscreen" data-iconic-woothumbs-tooltip="' + iconic_woothumbs_vars.text.fullscreen + '"><i class="iconic-woothumbs-icon iconic-woothumbs-icon-fullscreen"></i></a>';
-			iconic_woothumbs.tpl.play_button = '<a href="javascript: void(0);" class="iconic-woothumbs-play" data-iconic-woothumbs-tooltip="' + iconic_woothumbs_vars.text.video + '"><i class="iconic-woothumbs-icon iconic-woothumbs-icon-play"></i></a>';
-			iconic_woothumbs.tpl.temp_images_container = '<div class="iconic-woothumbs-temp"><div class="iconic-woothumbs-temp__images"></div><div class="iconic-woothumbs-icon iconic-woothumbs-temp__thumbnails"></div></div>';
-			iconic_woothumbs.tpl.image_slide = '<div class="iconic-woothumbs-images__slide"><img class="iconic-woothumbs-images__image no-lazyload" src="{{image_src}}" srcset="{{image_srcset}}" sizes="{{image_sizes}}" data-caption="{{image_caption}}" data-large_image="{{large_image_src}}" data-large_image_width="{{large_image_width}}" data-large_image_height="{{large_image_height}}" width="{{image_width}}" height="{{image_height}}" title="{{title}}" alt="{{alt}}" {{style}} {{data_src}}></div>';
-			iconic_woothumbs.tpl.media_slide = '<div class="iconic-woothumbs-images__slide">{{media_embed}}</div>';
-			iconic_woothumbs.tpl.thumbnail_slide = '<div class="iconic-woothumbs-thumbnails__slide {{slide_class}}" data-index="{{index}}"><div class="iconic-woothumbs-thumbnails__image-wrapper">{{play_icon}}<img class="iconic-woothumbs-thumbnails__image" src="{{image_src}}" srcset="{{image_srcset}}" sizes="{{image_sizes}}" title="{{title}}" alt="{{alt}}" width="{{image_width}}" height="{{image_height}}"></div></div>';
-			iconic_woothumbs.tpl.thumbnail_play_icon = '<div class="iconic-woothumbs-thumbnails__play-overlay"><i class="iconic-woothumbs-icon iconic-woothumbs-icon-play"></i></div>';
+			iconic_woothumbs.tpl.fullscreen_button = `<a href="javascript: void(0);" class="iconic-woothumbs-fullscreen" data-iconic-woothumbs-tooltip="${iconic_woothumbs_vars.text.fullscreen}">${iconic_woothumbs.vars.icon_fullscreen}</a>`;
+			iconic_woothumbs.tpl.play_button = `<a href="javascript: void(0);" class="iconic-woothumbs-play" data-iconic-woothumbs-tooltip="${iconic_woothumbs_vars.text.video}">${iconic_woothumbs.vars.icon_video}</a>`;
+			iconic_woothumbs.tpl.stacked_image_slide = `<div class="${iconic_woothumbs.vars.slide_class} {{slide_index_class}}" data-index="{{index}}"><img style="{{slide_aspect}}" class="iconic-woothumbs-images__image" src="{{image_lazy}}" srcset="{{image_srcset}}" sizes="{{image_sizes}}" data-caption="{{image_caption}}" data-large_image="{{large_image_src}}" data-large_image_width="{{large_image_width}}" data-large_image_height="{{large_image_height}}" width="{{image_width}}" height="{{image_height}}" title="{{title}}" alt="{{alt}}" loading="lazy"></div>`;
+			iconic_woothumbs.tpl.gallery_image_slide = `<div class="${iconic_woothumbs.vars.slide_class} {{slide_index_class}}" data-index="{{index}}"><img style="{{slide_aspect}}" class="iconic-woothumbs-images__image no-lazyload skip-lazy" src="${iconic_woothumbs.vars.placeholder_img}" data-lazy="{{image_lazy}}" data-srcset="{{image_srcset}}" data-sizes="{{image_sizes}}" data-caption="{{image_caption}}" data-large_image="{{large_image_src}}" data-large_image_width="{{large_image_width}}" data-large_image_height="{{large_image_height}}" width="{{image_width}}" height="{{image_height}}" title="{{title}}" alt="{{alt}}"></div>`;
+			iconic_woothumbs.tpl.media_slide = `<div class="${iconic_woothumbs.vars.slide_class} {{slide_index_class}}" style="{{slide_aspect}}" data-index="{{index}}">{{media_embed}}</div>`;
+			iconic_woothumbs.tpl.thumbnail_slide = '<div class="iconic-woothumbs-thumbnails__slide {{slide_class}}"  data-index="{{index}}"><div class="iconic-woothumbs-thumbnails__image-wrapper">{{play_icon}}<img style="{{slide_aspect}}" class="iconic-woothumbs-thumbnails__image {{lazy_classes}}" src="{{maybe_image_src}}" data-lazy="{{image_src}}" data-srcset="{{image_srcset}}" data-sizes="{{image_sizes}}" title="{{title}}" alt="{{alt}}" width="{{image_width}}" height="{{image_height}}" loading="{{lazy_type}}"></div></div>';
+			iconic_woothumbs.tpl.thumbnail_play_icon = `<div class="iconic-woothumbs-thumbnails__play-overlay">${iconic_woothumbs.vars.icon_video}</div>`;
 			iconic_woothumbs.tpl.photoswipe = wp.template( 'iconic-woothumbs-pswp' );
-			iconic_woothumbs.tpl.media = '<div class="iconic-woothumbs-fullscreen-video-wrapper iconic-woothumbs-fullscreen-video-wrapper--wide">{{media_embed}}</div>';
+			iconic_woothumbs.tpl.media = `<div class="iconic-woothumbs-fullscreen-video-wrapper iconic-woothumbs-fullscreen-video-wrapper--wide">{{media_embed}}</div>`;
 			iconic_woothumbs.tpl = $.extend(iconic_woothumbs.tpl, (iconic_woothumbs_vars.tpl !== undefined ? iconic_woothumbs_vars.tpl : [] ));
-
-			iconic_woothumbs.cache_run = true;
 
 			// Events for other plugins that need to trigger carousel
 			// initialisation should be listed here. These are then
@@ -83,18 +119,20 @@
 		/**
 		 * Run on window load ready
 		 */
-
-		on_load: function(e) {
+		 on_load: function(e) {
 			iconic_woothumbs.cache_run = false;
 			iconic_woothumbs.cache();
 
 			// Ensure that we only execute these functions once, either:
-			// 1. If the standard `load` event has been triggered once already.
+			// 1. If the standard `load` event has NOT already been triggered.
 			// 2. Any of the specified custom plugin events have fired.
-			if ( ! window.iconicWooThumbsLoaded || iconic_woothumbs.custom_init_events.indexOf( e.type ) ) {
+			if (
+				( ! window.iconicWooThumbsLoadFired && e.type === 'load' ) ||
+				-1 !== iconic_woothumbs.custom_init_events.indexOf( e.type )
+				) {
 				iconic_woothumbs.prepare_products();
 				iconic_woothumbs.init();
-				window.iconicWooThumbsLoaded = true;
+				window.iconicWooThumbsLoadFired = ( e.type === 'load' );
 			}
 		},
 
@@ -105,19 +143,29 @@
 		on_resize: function() {
 			iconic_woothumbs.cache();
 
+			var new_window = {
+				height: $( window ).height(),
+				width: $( window ).width()
+			};
+
 			clearTimeout( iconic_woothumbs.vars.window_resize_timeout );
 
 			iconic_woothumbs.vars.window_resize_timeout = setTimeout( function() {
-				var new_window = {
-					height: $( window ).height(),
-					width: $( window ).width()
-				};
-			
+				// Allow resize-end to fire the first time the resize
+				// event fires; this ensures that changing device 
+				// orientation and using responsive tools in the browser
+				// will still lead to the responsive layout logic firing.
+				if ( typeof iconic_woothumbs.vars.window_size.width === 'undefined' ) {
+					$( window ).trigger( 'resize-end' );
+				}
+
 				// Dont trigger resize-end event if it is a fullscreen change.
-				if (  iconic_woothumbs.vars.window_size.width !== new_window.width && ! iconic_woothumbs.vars.fullscreeen_flag ) {
+				if ( 
+					typeof iconic_woothumbs.vars.window_size.width !== 'undefined' &&
+					iconic_woothumbs.vars.window_size.width !== new_window.width
+				) {
 					iconic_woothumbs.vars.window_size.width = new_window.width;
 					iconic_woothumbs.vars.window_size.height = new_window.height;
-
 					$( window ).trigger( 'resize-end' );
 				}
 			}, 100 );
@@ -178,7 +226,7 @@
 					'thumbnails_wrap': $all_images_wrap.find( '.iconic-woothumbs-thumbnails-wrap' ),
 					'variations_form': $variations_form,
 					'variation_id_field': $variations_form ? $variations_form.find( 'input[name=variation_id]' ) : false,
-					'wishlist_buttons': $all_images_wrap.find( '.iconic-woothumbs-wishlist-buttons' ),
+					'wishlist_buttons': $all_images_wrap.find( '.iconic-woothumbs-images-wrap > .iconic-woothumbs-wishlist-buttons' ),
 					'play_button': $all_images_wrap.find( '.iconic-woothumbs-play' ),
 					'wishlist_add_button': $all_images_wrap.find( '.iconic-woothumbs-wishlist-buttons__add' ),
 					'wishlist_browse_button': $all_images_wrap.find( '.iconic-woothumbs-wishlist-buttons__browse' ),
@@ -207,48 +255,17 @@
 				iconic_woothumbs.setup_sliders( product_object );
 				iconic_woothumbs.watch_variations( product_object );
 				iconic_woothumbs.setup_zoom( product_object );
-				iconic_woothumbs.setup_fullscreen( product_object );
-				iconic_woothumbs.setup_video( product_object );
+				iconic_woothumbs.setup_fullscreen_open_triggers( product_object );
+				iconic_woothumbs.setup_video_play_triggers( product_object );
 				iconic_woothumbs.watch_yith_wishlist( product_object );
-				iconic_woothumbs.setup_media_controls( product_object );
+
+				if ( iconic_woothumbs.vars.is_stacked_layout ) {
+					iconic_woothumbs.setup_stacked_layout( product_object );
+				}
 			} );
 
 			iconic_woothumbs.setup_yith_wishlist();
 			iconic_woothumbs.setup_tooltips();
-		},
-
-		/**
-		 * Helper: Lazy load images to improve loading speed
-		 */
-
-		lazy_load_images: function( product_object ) {
-
-			var $images = product_object.images.find( 'img' );
-
-			if ( $images.length > 0 ) {
-				$images.each( function( index, el ) {
-					var $image = $( el ),
-						data_src = $image.attr( 'data-iconic-woothumbs-src' );
-
-					if ( typeof data_src !== "undefined" ) {
-						var $image_clone = $image.clone();
-
-						$image_clone
-							.attr( 'src', data_src ).css( { paddingTop: "", height: "" } )
-							.removeAttr( "data-iconic-woothumbs-src" );
-						$image.replaceWith( $image_clone );
-					}
-				} );
-			}
-
-			var $media = product_object.images.find( '.iconic-woothumbs-responsive-media' );
-
-			if ( $media.length > 0 ) {
-				$media.each( function( index, el ) {
-					$( el ).show();
-				} );
-			}
-
 		},
 
 		/**
@@ -267,7 +284,7 @@
 			args.arrows = (image_count > 1) ? iconic_woothumbs.is_true( iconic_woothumbs_vars.settings.navigation_general_controls ) : false;
 			args.infinite = (image_count > 1) ? iconic_woothumbs.is_true( iconic_woothumbs_vars.settings.carousel_general_infinite_loop ) : false;
 			args.touchMove = (image_count > 1) ? true : false;
-			args.adaptiveHeight = false;
+			args.adaptiveHeight = true;
 			args.autoplay = iconic_woothumbs.is_true( iconic_woothumbs_vars.settings.carousel_general_autoplay );
 			args.autoplaySpeed = parseInt( iconic_woothumbs_vars.settings.carousel_general_duration );
 			args.dots = iconic_woothumbs.is_true( iconic_woothumbs_vars.settings.navigation_bullets_enable );
@@ -276,6 +293,9 @@
 			args.respondTo = 'slider';
 			args.centerPadding = 0;
 			args.touchThreshold = iconic_woothumbs_vars.settings.carousel_general_main_slider_swipe_threshold;
+			args.lazyLoad = 'anticipated';
+			args.centerMode = true;
+			args.waitForAnimate = false;
 
 			if ( iconic_woothumbs.vars.images_are_vertical ) {
 				args.vertical = true;
@@ -287,8 +307,7 @@
 				args.rtl = iconic_woothumbs.vars.is_rtl;
 			}
 
-			return args;
-
+			return wp.hooks.applyFilters( 'iconic_woothumbs_image_slider_args', args );
 		},
 
 		/**
@@ -310,30 +329,22 @@
 			args.vertical = false;
 			args.centerMode = false;
 			args.swipeToSlide = true;
+			args.lazyLoad = 'anticipated';
+			args.waitForAnimate = false;
 
 			if ( iconic_woothumbs.vars.thumbnails_are_vertical ) {
 				args.vertical = true;
-			} else {
-				args.rtl = iconic_woothumbs.vars.is_rtl;
 			}
 
 			if ( iconic_woothumbs.is_below_breakpoint() && iconic_woothumbs.move_thumbnails_at_breakpoint() ) {
 				args.vertical = false;
 			}
 
-			return args;
-		},
-
-		/**
-		 * Toggle controls.
-		 */
-		toggle_controls: function( $current_slide, product_object ) {
-			if ( iconic_woothumbs.is_media( $current_slide ) ) {
-				iconic_woothumbs.hide_controls( product_object );
-			} else {
-				iconic_woothumbs.show_controls( product_object );
-				iconic_woothumbs.toggle_fullscreen_control( $current_slide, product_object );
+			if ( ! iconic_woothumbs.vars.thumbnails_are_vertical || ( iconic_woothumbs.is_below_breakpoint() && iconic_woothumbs.move_thumbnails_at_breakpoint() ) ) {
+				args.rtl = iconic_woothumbs.vars.is_rtl;
 			}
+
+			return wp.hooks.applyFilters( 'iconic_woothumbs_thumbnails_slider_args', args );
 		},
 
 		/**
@@ -343,25 +354,14 @@
 			var $current_image = $current_slide.find( 'img' ),
 				$fullscreen_button = product_object.all_images_wrap.find( iconic_woothumbs.vars.fullscreen_trigger ).not( 'img' );
 
-			if ( iconic_woothumbs.is_placeholder( $current_image ) ) {
+			if (
+				( ! $current_slide.find( '.iconic-woothumbs-standard-embed' ).length && iconic_woothumbs.is_media( $current_slide ) ) ||
+				iconic_woothumbs.is_placeholder( $current_image )
+			) {
 				$fullscreen_button.hide();
 			} else {
 				$fullscreen_button.show();
 			}
-		},
-
-		/**
-		 * Hide controls.
-		 */
-		hide_controls: function( product_object ) {
-			product_object.images_wrap.addClass( 'iconic-woothumbs-images-wrap--hide-controls' );
-		},
-
-		/**
-		 * Show controls.
-		 */
-		show_controls: function( product_object ) {
-			product_object.images_wrap.removeClass( 'iconic-woothumbs-images-wrap--hide-controls' );
 		},
 
 		/**
@@ -375,7 +375,7 @@
 				return false;
 			}
 
-			return src.indexOf( "placeholder.png" ) >= 0;
+			return src.indexOf( "woocommerce-placeholder" ) >= 0;
 
 		},
 
@@ -383,8 +383,7 @@
 		 * Helper: Is media?
 		 */
 		is_media: function( $slide ) {
-			var $media = $slide.find( 'iframe, video, object' );
-
+			var $media = $slide.find( 'iframe, video, object, .plyr' );
 			if ( $media.length > 0 ) {
 				return true;
 			}
@@ -398,7 +397,7 @@
 		 * @return int
 		 */
 		get_slides_to_show: function() {
-			return iconic_woothumbs.is_below_breakpoint() ? parseInt( iconic_woothumbs_vars.settings.responsive_general_thumbnails_count ) : parseInt( iconic_woothumbs_vars.settings.navigation_thumbnails_count );
+			return iconic_woothumbs.is_below_breakpoint() ? parseInt( iconic_woothumbs_vars.settings.mobile_general_thumbnails_count ) : parseInt( iconic_woothumbs_vars.settings.navigation_thumbnails_count );
 		},
 
 		/**
@@ -408,7 +407,6 @@
 		 * @return int
 		 */
 		get_thumbnail_count: function( product_object ) {
-
 			return product_object.thumbnails.find( '.iconic-woothumbs-thumbnails__slide' ).length;
 
 		},
@@ -442,15 +440,20 @@
 
 			// On init
 			product_object.images.on( 'init', function( event, slick ) {
-				var $current_slide = product_object.images.find( '.slick-active' ),
-					$current_image = $current_slide.find( 'img:first' );
+				var $current_slide = product_object.images.find( '.slick-slide.slick-current' ),
+					$current_image = $current_slide.find( 'img:first' ),
+					variation_id = parseInt( $( product_object.variation_id_field ).val() ),
+					currently_showing = parseInt( product_object.all_images_wrap.attr( 'data-showing' ) );
 
-				iconic_woothumbs.go_to_thumbnail( slick.currentSlide, product_object );
-
+				iconic_woothumbs.maybe_show_gallery_ui( $current_slide, product_object );
+				// Only go to the thumbnail if we are initialising without any variation state.
+				if ( variation_id && ! isNaN( variation_id ) && variation_id !== currently_showing && variation_id > 0 ) {
+					iconic_woothumbs.go_to_thumbnail( slick.currentSlide, product_object );
+				}
 				iconic_woothumbs.init_zoom( $current_image, product_object );
 				iconic_woothumbs.update_caption( $current_image, product_object );
-				iconic_woothumbs.toggle_controls( $current_slide, product_object );
 				iconic_woothumbs.reveal_slides( product_object );
+				iconic_woothumbs.plyr_autoplay_current_instance( iconic_woothumbs.vars.plyr_gallery_type, product_object );
 
 				$( window ).trigger( 'resize' );
 			} );
@@ -465,6 +468,7 @@
 			// On before slide change
 			product_object.images.on( 'beforeChange', function( event, slick, current_slide_index, next_slide_index ) {
 				iconic_woothumbs.go_to_thumbnail( next_slide_index, product_object );
+				iconic_woothumbs.plyr_pause_current_instance( iconic_woothumbs.vars.plyr_gallery_type, product_object );
 
 				if ( product_object.imagezoom ) {
 					product_object.imagezoom.destroy();
@@ -476,17 +480,47 @@
 				var $current_slide = iconic_woothumbs.get_slide_by_index( product_object, current_slide_index ),
 					$current_image = $current_slide.find( 'img:first' );
 
+				clearTimeout( iconic_woothumbs.vars.thumbnail_hover_timer );
+
+				iconic_woothumbs.maybe_show_gallery_ui( $current_slide, product_object );
 				iconic_woothumbs.init_zoom( $current_image, product_object );
 				iconic_woothumbs.update_caption( $current_image, product_object );
-				iconic_woothumbs.toggle_controls( $current_slide, product_object );
-				iconic_woothumbs.stop_media( product_object );
-				iconic_woothumbs.start_media( product_object );
+
+				if ( iconic_woothumbs.plyr_has_videos_of_type( iconic_woothumbs.vars.plyr_gallery_type,product_object ) ) {
+					iconic_woothumbs.plyr_autoplay_current_instance( iconic_woothumbs.vars.plyr_gallery_type, product_object );
+				}
 			} );
 
 			// setup stop auto
 			product_object.all_images_wrap.on( 'click', ".iconic-woothumbs-thumbnails__slide, .iconic-woothumbs-images__arrow, .iconic-woothumbs-zoom-prev, .iconic-woothumbs-zoom-next, .slick-dots button", function() {
 				product_object.images.slick( 'slickPause' );
 			} );
+
+			if ( iconic_woothumbs.vars.is_slider_layout ) {
+				// Prevent dragging when Plyr controls are being interacted with.
+				$( document ).on( 'mouseover', '.plyr__controls', function( event ) {
+					product_object.images.slick( 'setOption', 'draggable', false, false );
+
+				} );
+
+				$( document ).on( 'mouseout', '.plyr__controls', function( event ) {
+					product_object.images.slick( 'setOption', 'draggable', true, false );
+				} );
+			}
+		},
+
+		/**
+		 * Add a class to show the gallery UI depending
+		 * on whether then current slide contains media.
+		 *
+		 * @param $current_slide
+		 * @param product_object
+		 * @param show
+		 */
+		maybe_show_gallery_ui: function( $current_slide, product_object, show = false ) {
+			if ( show || ! $current_slide.find( '.plyr' ).length ) {
+				product_object.all_images_wrap.addClass( 'iconic-woothumbs-all-images-wrap--show-ui' );
+			}
 		},
 
 		/**
@@ -507,30 +541,41 @@
 			} );
 
 			// setup click thumbnail action
-			product_object.all_images_wrap.on( 'click', ".iconic-woothumbs-thumbnails__slide", function() {
-				if ( product_object.all_images_wrap.hasClass( iconic_woothumbs.vars.loading_class ) ) {
-					return;
-				}
+			if ( ! ( 'stacked' === iconic_woothumbs_vars.settings.navigation_thumbnails_type && iconic_woothumbs.vars.change_on_thumb_hover ) ) {
+				product_object.all_images_wrap.on( 'click', ".iconic-woothumbs-thumbnails__slide", function() {
+					if ( product_object.all_images_wrap.hasClass( iconic_woothumbs.vars.loading_class ) ) {
+						return;
+					}
 
-				if ( !product_object ) {
-					return;
-				}
+					if ( !product_object ) {
+						return;
+					}
 
-				var new_index = parseInt( $( this ).attr( 'data-index' ) );
+					var new_index = parseInt( $( this ).attr( 'data-index' ) );
 
-				iconic_woothumbs.set_active_thumbnail( product_object.thumbnails, new_index );
-				product_object.images.slick( 'slickGoTo', new_index );
-			} );
+					iconic_woothumbs.set_active_thumbnail( product_object.thumbnails, new_index );
+					product_object.images.slick( 'slickGoTo', new_index );
+				} );
+			}
 
 			// setup click thumbnail control action
 			product_object.all_images_wrap.on( 'click', ".iconic-woothumbs-thumbnails__control", function() {
-				if ( !product_object.all_images_wrap.hasClass( iconic_woothumbs.vars.loading_class ) ) {
+				if ( ! product_object.all_images_wrap.hasClass( iconic_woothumbs.vars.loading_class ) ) {
 					var dir = $( this ).attr( 'data-direction' );
 
 					if ( dir === "next" ) {
-						product_object.thumbnails.slick( 'slickNext' );
+						if ( iconic_woothumbs.vars.is_rtl ) {
+							product_object.thumbnails.slick( 'slickPrev' );
+						} else {
+							product_object.thumbnails.slick( 'slickNext' );
+						}
+
 					} else {
-						product_object.thumbnails.slick( 'slickPrev' );
+						if ( iconic_woothumbs.vars.is_rtl ) {
+							product_object.thumbnails.slick( 'slickNext' );
+						} else {
+							product_object.thumbnails.slick( 'slickPrev' );
+						}
 					}
 				}
 			} );
@@ -549,6 +594,26 @@
 		 */
 		reveal_thumbnails: function( product_object ) {
 			product_object.thumbnails_wrap.height( '' ).removeClass( 'iconic-woothumbs-thumbnails-wrap--hidden' );
+			setTimeout( function() {
+				iconic_woothumbs.set_thumbnail_controls_visibility( product_object );
+			}, 500 );
+		},
+
+		/**
+		 * Handle keydown navigation for the slider.
+		 *
+		 * event.data contains the product_object data.
+		 *
+		 * @param event
+		 */
+		slider_keydown_handler: function(e) {
+			if ( e.key === 'ArrowLeft' ) {
+				e.data.images.slick( 'slickPrev' );
+			}
+
+			if ( e.key === 'ArrowRight' ) {
+				e.data.images.slick( 'slickNext' );
+			}
 		},
 
 		/**
@@ -556,22 +621,41 @@
 		 *
 		 * @param product_object
 		 */
-		init_images: function( product_object ) {
-			if ( product_object.images.length <= 0 ) {
+		init_images: function( product_object, current_slide_index = 0 ) {
+			if ( ! iconic_woothumbs.vars.is_slider_layout || product_object.images.length <= 0 ) {
 				return;
 			}
 
-			iconic_woothumbs.maybe_resize_wrap( product_object );
-			product_object.images.not( '.slick-initialized' ).slick( iconic_woothumbs.images_slider_args( product_object ) );
+			var $slider = product_object.images.not( '.slick-initialized' );
 
-			// Refresh after images are loaded, again.
-			iconic_woothumbs.images_loaded( product_object.images, function() {
-				product_object.images.slick( 'slickSetOption', 'adaptiveHeight', true, true );
-				iconic_woothumbs.lazy_load_images( product_object );
-				product_object.images[ 0 ].slick.refresh();
-			} );
+			iconic_woothumbs.maybe_resize_wrap( product_object );
+
+			if ( iconic_woothumbs.plyr_has_videos_of_type(iconic_woothumbs.vars.plyr_gallery_type, product_object) ) {
+				product_object.all_images_wrap.addClass('iconic-woothumbs--has-video');
+				iconic_woothumbs.plyr_reset( iconic_woothumbs.vars.plyr_gallery_type, product_object );
+			}
+
+			if ( ! product_object.maintain_slide_index ) {
+				current_slide_index = 0;
+			}
+
+			$slider.slick( iconic_woothumbs.images_slider_args( product_object, current_slide_index ) );
+
+			// We must ensure that the previous handler has been removed
+			// before adding it again, otherwise once a variation/attribute
+			// takes place, multiple handlers will fire on keydown.
+			$( document ).off( 'keydown', iconic_woothumbs.slider_keydown_handler );
+			$( document ).on( 'keydown', product_object, iconic_woothumbs.slider_keydown_handler );
 
 			product_object.images_slider_data = product_object.images.length > 0;
+
+			/**
+			 * Remove lazy styling once lazy loaded.
+			 */
+			$slider.on( 'lazyLoaded', function( event, slick, image, imageSource ) {
+				$slider.slick( 'setPosition' );
+				$( image ).css( 'height', '' ).css( 'padding', '' );
+			} );
 		},
 
 		/**
@@ -613,8 +697,12 @@
 				return;
 			}
 
-			if ( !iconic_woothumbs.sliding_thumbnails_enabled() ) {
-				iconic_woothumbs.reveal_thumbnails( product_object );
+			if ( ! iconic_woothumbs.sliding_thumbnails_enabled() ) {
+				iconic_woothumbs.images_loaded( product_object.thumbnails, function () {
+					iconic_woothumbs.reveal_thumbnails( product_object );
+					iconic_woothumbs.add_thumbnail_hover_events( product_object );
+				} );
+
 				return;
 			}
 
@@ -623,10 +711,34 @@
 				product_object.thumbnails_slider_data = product_object.thumbnails.length > 0;
 				iconic_woothumbs.position_thumbnails( product_object );
 
+				if ( ! iconic_woothumbs.sliding_thumbnails_enabled() ) {
+					iconic_woothumbs.add_thumbnail_hover_events( product_object );
+				}
+
 				if ( typeof callback === 'function' ) {
 					callback();
 				}
 			} );
+		},
+
+		/**
+		 * Add thumbnail hover events
+		 *
+		 * @param product_object
+		 */
+		add_thumbnail_hover_events: function( product_object ) {
+			if ( iconic_woothumbs.vars.change_on_thumb_hover ) {
+				product_object.thumbnails.on( 'mouseenter', '.iconic-woothumbs-thumbnails__slide', function( e ) {
+					clearTimeout( iconic_woothumbs.vars.thumbnail_hover_timer );
+
+					var index = $( this ).data( 'index' );
+					iconic_woothumbs.vars.thumbnail_hover_timer = setTimeout( function() {
+						if ( index !== product_object.images.slick( 'slickCurrentSlide' ) ) {
+							product_object.images.slick( 'slickGoTo', index );
+						}
+					}, 500 );
+				});
+			}
 		},
 
 		/**
@@ -688,18 +800,14 @@
 		 */
 
 		has_thumbnails: function( product_object ) {
-
-			return (iconic_woothumbs.get_thumbnail_count( product_object ) > 0 || thumbnails) && (iconic_woothumbs_vars.settings.navigation_thumbnails_type === "sliding" || iconic_woothumbs_vars.settings.navigation_thumbnails_type === "stacked");
-
+			return (iconic_woothumbs.get_thumbnail_count( product_object ) > 0) && (iconic_woothumbs_vars.settings.navigation_thumbnails_type === "sliding" || iconic_woothumbs_vars.settings.navigation_thumbnails_type === "stacked");
 		},
 
 		/**
 		 * Helper: Are thumbnails enabled?
 		 */
 		thumbnails_enabled: function() {
-
-			return iconic_woothumbs.is_true( iconic_woothumbs_vars.settings.navigation_thumbnails_enable );
-
+			return iconic_woothumbs.is_true( iconic_woothumbs_vars.settings.navigation_thumbnails_enable ) && iconic_woothumbs.vars.is_slider_layout;
 		},
 
 		/**
@@ -707,9 +815,7 @@
 		 */
 
 		move_thumbnails_at_breakpoint: function() {
-
-			return iconic_woothumbs.is_true( iconic_woothumbs_vars.settings.responsive_general_thumbnails_below ) && iconic_woothumbs_vars.settings.navigation_thumbnails_position !== "below";
-
+			return iconic_woothumbs.is_true( iconic_woothumbs_vars.settings.mobile_general_thumbnails_below ) && iconic_woothumbs_vars.settings.navigation_thumbnails_position !== "below";
 		},
 
 		/**
@@ -718,7 +824,7 @@
 
 		is_below_breakpoint: function() {
 
-			return iconic_woothumbs.is_true( iconic_woothumbs_vars.settings.responsive_general_breakpoint_enable ) && iconic_woothumbs.viewport().width <= parseInt( iconic_woothumbs_vars.settings.responsive_general_breakpoint, 10 );
+			return iconic_woothumbs.is_true( iconic_woothumbs_vars.settings.mobile_general_breakpoint_enable ) && iconic_woothumbs.viewport().width <= parseInt( iconic_woothumbs_vars.settings.mobile_general_breakpoint, 10 );
 
 		},
 
@@ -765,10 +871,8 @@
 				product_object.images_wrap.after( product_object.thumbnails_wrap );
 				product_object.thumbnails_wrap.removeClass( 'iconic-woothumbs-thumbnails-wrap--vertical' ).addClass( 'iconic-woothumbs-thumbnails-wrap--horizontal' );
 
-				$next_controls.removeClass( 'iconic-woothumbs-thumbnails__control--down' ).addClass( 'iconic-woothumbs-thumbnails__control--right' )
-					.find( 'i' ).removeClass( 'iconic-woothumbs-icon-down-open-mini' ).addClass( 'iconic-woothumbs-icon-right-open-mini' );
-				$prev_controls.removeClass( 'iconic-woothumbs-thumbnails__control--up' ).addClass( 'iconic-woothumbs-thumbnails__control--left' )
-					.find( 'i' ).removeClass( 'iconic-woothumbs-icon-up-open-mini' ).addClass( 'iconic-woothumbs-icon-left-open-mini' );
+				$next_controls.removeClass( 'iconic-woothumbs-thumbnails__control--down' ).addClass( 'iconic-woothumbs-thumbnails__control--right' ).html( iconic_woothumbs.vars.icon_arrow_right );
+				$prev_controls.removeClass( 'iconic-woothumbs-thumbnails__control--up' ).addClass( 'iconic-woothumbs-thumbnails__control--left' ).html( iconic_woothumbs.vars.icon_arrow_left);
 
 				if ( product_object.thumbnails_slider_data && iconic_woothumbs.sliding_thumbnails_enabled() ) {
 					product_object.thumbnails.slick( 'slickSetOption', 'vertical', false ).removeClass( 'slick-vertical' );
@@ -785,13 +889,10 @@
 				}
 
 				if ( iconic_woothumbs_vars.settings.navigation_thumbnails_position === "left" || iconic_woothumbs_vars.settings.navigation_thumbnails_position === "right" ) {
-
 					product_object.thumbnails_wrap.removeClass( 'iconic-woothumbs-thumbnails-wrap--horizontal' ).addClass( 'iconic-woothumbs-thumbnails-wrap--vertical' );
 
-					$next_controls.removeClass( 'iconic-woothumbs-thumbnails__control--right' ).addClass( 'iconic-woothumbs-thumbnails__control--down' )
-						.find( 'i' ).removeClass( 'iconic-woothumbs-icon-right-open-mini' ).addClass( 'iconic-woothumbs-icon-down-open-mini' );
-					$prev_controls.removeClass( 'iconic-woothumbs-thumbnails__control--left' ).addClass( 'iconic-woothumbs-thumbnails__control--up' )
-						.find( 'i' ).removeClass( 'iconic-woothumbs-icon-left-open-mini' ).addClass( 'iconic-woothumbs-icon-up-open-mini' );
+					$next_controls.removeClass( 'iconic-woothumbs-thumbnails__control--right' ).addClass( 'iconic-woothumbs-thumbnails__control--down' ).html( iconic_woothumbs.vars.icon_arrow_down );
+					$prev_controls.removeClass( 'iconic-woothumbs-thumbnails__control--left' ).addClass( 'iconic-woothumbs-thumbnails__control--up' ).html( iconic_woothumbs.vars.icon_arrow_up );
 
 					if ( product_object.thumbnails_slider_data && iconic_woothumbs.sliding_thumbnails_enabled() ) {
 						product_object.thumbnails.slick( 'slickSetOption', 'vertical', true ).addClass( 'slick-vertical' );
@@ -810,9 +911,13 @@
 		 */
 
 		set_thumbnail_controls_visibility: function( product_object ) {
+			var $slick_track = product_object.thumbnails.find( '.slick-track' );
 
-			var $slick_track = product_object.thumbnails.find( '.slick-track' ),
-				track_position = null,
+			if ( ! $slick_track.length ) {
+				return;
+			}
+
+			var track_position = null,
 				track_size = null,
 				thumbnails_size = null,
 				end_position = null,
@@ -826,7 +931,6 @@
 				thumbnails_size = product_object.thumbnails.height();
 
 			} else {
-
 				track_position = $slick_track.position().left;
 				track_size = $slick_track.width();
 				thumbnails_size = product_object.thumbnails.width();
@@ -839,16 +943,13 @@
 			$next_controls.show();
 
 			if ( track_position <= 1 && track_position >= - 1 ) {
-
 				$prev_controls.hide();
 
 			} else if ( iconic_woothumbs.get_difference( track_position, end_position ) <= 5 ) {
-
 				$next_controls.hide();
 			}
 
 			if ( iconic_woothumbs.get_thumbnail_count( product_object ) <= iconic_woothumbs.get_slides_to_show() ) {
-
 				$prev_controls.hide();
 				$next_controls.hide();
 
@@ -890,13 +991,9 @@
 		 */
 
 		go_to_thumbnail: function( index, product_object ) {
-
 			if ( product_object.thumbnails_slider_data ) {
-
 				var thumbnail_index = iconic_woothumbs.get_thumbnail_index( index, product_object );
-
 				product_object.thumbnails.slick( 'slickGoTo', thumbnail_index );
-
 			}
 
 			iconic_woothumbs.set_active_thumbnail( product_object.thumbnails, index );
@@ -930,10 +1027,14 @@
 		get_last_thumbnail_index: function( product_object ) {
 
 			var thumbnail_count = iconic_woothumbs.get_thumbnail_count( product_object ),
-				last_slide_index = thumbnail_count - iconic_woothumbs_vars.settings.navigation_thumbnails_count;
+				thumbnail_settings_count = parseInt( iconic_woothumbs_vars.settings.navigation_thumbnails_count );
 
-			return last_slide_index;
+			// We need to use the responsive thumbnail count below the breakpoint.
+			if ( iconic_woothumbs.is_below_breakpoint() ) {
+				thumbnail_settings_count = parseInt( iconic_woothumbs_vars.settings.responsive_general_thumbnails_count );
+			}
 
+			return thumbnail_count - thumbnail_settings_count;
 		},
 
 		/**
@@ -943,22 +1044,67 @@
 		 */
 
 		watch_variations: function( product_object ) {
-			if ( !product_object.variations_form ) {
+			if ( ! product_object.variations_form ) {
 				return;
 			}
 
 			product_object.variation_id_field.on( 'change', function() {
 				var variation_id = parseInt( $( this ).val() ),
-					currently_showing = parseInt( product_object.all_images_wrap.attr( 'data-showing' ) );
+					selected_attribute_data = iconic_woothumbs.get_selected_attributes( product_object );
 
-				if ( ! isNaN( variation_id ) && variation_id !== currently_showing && variation_id > 0 ) {
+				if ( ! selected_attribute_data.count ) {
+					product_object.all_images_wrap.addClass( 'iconic-woothumbs-reset-required' );
+				}
+
+				if ( ! isNaN( variation_id ) && variation_id > 0 ) {
 					iconic_woothumbs.get_variation_data( product_object, variation_id );
+
+					if ( iconic_woothumbs.vars.is_stacked_layout ) {
+						iconic_woothumbs.init_stacked_zoom( product_object );
+					}
 				}
 			} );
 
+			product_object.variations_form.on( 'click', '.reset_variations', function(event) {
+				product_object.all_images_wrap.removeClass( iconic_woothumbs.vars.reset_class );
+			});
+
 			// on reset data trigger
-			product_object.variations_form.on( 'reset_data', function() {
+			product_object.variations_form.on( 'reset_data', function(event) {
+				// 0 is the default value of the field on page load, we've already
+				// loaded the gallery at this point.
+				var selected_attribute_data = iconic_woothumbs.get_selected_attributes( product_object ),
+					$attribute_selects = product_object.variations_form.filter(':visible').find('select[name^=attribute_]');
+
+				if (
+					product_object.all_images_wrap.hasClass( iconic_woothumbs.vars.reset_class ) &&
+					! product_object.all_images_wrap.hasClass( 'iconic-woothumbs-reset-required' ) &&
+					( ! selected_attribute_data.count || selected_attribute_data.count === $attribute_selects.length )
+				) {
+					return;
+				}
+
+				if (
+					"0" === $( product_object.variation_id_field ).val() &&
+					( ! selected_attribute_data.count || selected_attribute_data.count === $attribute_selects.length )
+				) {
+					return;
+				}
+
+				if (
+					product_object.all_images_wrap.hasClass( 'iconic-woothumbs-reset-required' ) ||
+					( selected_attribute_data.count && selected_attribute_data.count !== $attribute_selects.length )
+				) {
+					product_object.all_images_wrap.removeClass( iconic_woothumbs.vars.reset_class );
+				}
+
 				iconic_woothumbs.reset_images( product_object );
+
+				product_object.all_images_wrap.removeClass( 'iconic-woothumbs-reset-required' );
+
+				if ( iconic_woothumbs.vars.is_stacked_layout ) {
+					iconic_woothumbs.init_stacked_zoom( product_object );
+				}
 			} );
 
 			// on loading variation trigger
@@ -969,12 +1115,298 @@
 			// on show variation trigger
 			product_object.all_images_wrap.on( iconic_woothumbs.vars.show_variation_trigger, function( event, variation ) {
 				iconic_woothumbs.load_images( product_object, variation );
+
+				setTimeout( function() {
+					if ( iconic_woothumbs.vars.is_stacked_layout ) {
+						iconic_woothumbs.plyr_reset( iconic_woothumbs.vars.plyr_gallery_type, product_object );
+						iconic_woothumbs.init_stacked_zoom( product_object );
+					}
+					product_object.all_images_wrap.removeClass( iconic_woothumbs.vars.loading_class );
+				}, 100 );
 			} );
 
 			// Manually trigger the change to handle the default variations.
-			if( $( product_object.variation_id_field ).val() ) {
-				$( product_object.variation_id_field ).trigger( "change" );
+			var selected_attribute_data = iconic_woothumbs.get_selected_attributes( product_object ),
+				$attribute_selects = product_object.variations_form.filter(':visible').find('select[name^=attribute_]');
+
+			// Variations.
+			if ( $( product_object.variation_id_field ).val() ) {
+				$( product_object.variation_id_field ).trigger( 'change' );
 			}
+
+			// Attributes.
+			if ( selected_attribute_data.count && selected_attribute_data.count !== $attribute_selects.length ) {
+				product_object.variations_form.filter(':visible').trigger( 'change' );
+			}
+		},
+
+		/**
+		 * Get the default images, which may contain attribute images.
+		 *
+		 * @see reset_images
+		 * @param product_object
+		 */
+		get_no_variation_images_data: function( product_object ) {
+			var maintain_gallery_setting = parseInt( iconic_woothumbs_vars.settings.variations_settings_maintain_gallery ),
+				selected_attributes_data = iconic_woothumbs.get_selected_attributes( product_object ),
+				selected_attributes = selected_attributes_data.selected,
+				term_data = ( 'undefined' !== typeof window.iconic_woothumbs_attributes_data ) ? window.iconic_woothumbs_attributes_data : {},
+				attribute_images_data = [];
+
+			// Return the original image data if we have no term data
+			// or selected attributes.
+			if ( ! Object.keys( term_data ).length || ! Object.keys( selected_attributes ).length ) {
+				return product_object.default_images;
+			}
+
+			// Traverse the supplied data and build an array of the image objects
+			// that have been assigned to each attribute value.
+			var attributes_data = iconic_woothumbs.get_attribute_images_data( term_data, selected_attributes, attribute_images_data );
+			attribute_images_data = [ ...attribute_images_data, ...attributes_data ];
+
+			// Add default parent gallery images if the context allows it.
+			if (
+				product_object.default_images.length && maintain_gallery_setting === 1 ||
+				( product_object.default_images.length && maintain_gallery_setting === 2 && ! attributes_data.length )
+			) {
+				attribute_images_data = [ ...attribute_images_data, ...product_object.default_images ];
+			}
+
+			// If we have a script tag in the media embed of the first
+			// default image e.g. Product Configurator, ensure this is
+			// always the first image displayed in the gallery.
+			if (
+				product_object.default_images.length &&
+				( product_object.default_images[0].media_embed && -1 !== product_object.default_images[0].media_embed.indexOf( '<script' ) )
+			) {
+				attribute_images_data = [ product_object.default_images[0], ...attribute_images_data ];
+			}
+
+			if ( iconic_woothumbs.vars.dedupe_images ) {
+				attribute_images_data = iconic_woothumbs.dedupe_images_data( attribute_images_data );
+			}
+
+			// If we have nothing, return the default images.
+			if ( ! attribute_images_data.length && maintain_gallery_setting !== 0 ) {
+				return product_object.default_images;
+			}
+
+			// End result is a collection of images
+			// that will be structured in this order,
+			// assuming the respective data is present:
+			// - Attribute images
+			// - Default parent gallery images
+			return attribute_images_data;
+		},
+
+		/**
+		 * Return attribute images based on available term data
+		 * and selected attributes.
+		 *
+		 * @see get_no_variation_images_data
+		 * @param term_data
+		 * @param selected_attributes
+		 */
+		get_attribute_images_data: function( term_data, selected_attributes, attribute_images_data = false ) {
+			var data = ( attribute_images_data ) ? attribute_images_data : [];
+
+			// Traverse the supplied data and build an array of the image objects
+			// that have been assigned to each attribute value.
+			for ( var selected_attribute_key in selected_attributes ) {
+
+				if ( Object.hasOwnProperty.call( selected_attributes, selected_attribute_key ) ) {
+
+					if ( Object.hasOwnProperty.call( term_data, selected_attribute_key ) ) {
+						var selected_term_data = term_data[ selected_attribute_key ];
+
+						for ( var term_data_key in selected_term_data ) {
+
+							if ( Object.hasOwnProperty.call( selected_term_data, term_data_key ) ) {
+								var sanitized_term_data_key   = iconic_woothumbs.sanitize_string( term_data_key ),
+									sanitized_attribute_value = iconic_woothumbs.sanitize_string( selected_attributes[ selected_attribute_key ] );
+								
+								if ( sanitized_term_data_key === sanitized_attribute_value ) {
+									data = [ ...data, ...selected_term_data[ term_data_key ] ];
+								}
+
+								if ( term_data_key.toLowerCase() === 'any' ) {
+									data = [ ...data, ...selected_term_data.Any ];
+								}
+							}
+						}
+					}
+				}
+			}
+
+			// Add images assigned for all attributes.
+			if ( Object.hasOwnProperty.call( term_data, 'all' ) ) {
+				data = [ ...data, ...term_data.all.all ];
+			}
+
+			return data;
+		},
+
+		/**
+		 * Sanitize a string; mimicks sanitize_title.
+		 *
+		 * @param title
+		 */
+		sanitize_string: function( string ) {
+			if ( typeof string !== 'string' ) {
+				return string;
+			}
+			
+			var sanitized_string = string.normalize( 'NFD' ).replace(/[\u0300-\u036f]/g, '' ),
+				sanitized_string = sanitized_string.toLowerCase().replace( /[^\w\s-]/g, '-' ),
+				sanitized_string = sanitized_string.replace( /[\s_-]+/g, '-' ),
+				sanitized_string = sanitized_string.replace( /^-+|-+$/g, '' );
+
+			return sanitized_string;	
+		},
+
+		/**
+		 * Get the variation images, which may contain attribute images.
+		 *
+		 * @see reset_images
+		 * @param product_object
+		 */
+		 get_variation_images_data: function( product_object, variation_data ) {
+			var maintain_gallery_setting = parseInt( iconic_woothumbs_vars.settings.variations_settings_maintain_gallery ),
+				selected_attributes_data = iconic_woothumbs.get_selected_attributes( product_object ),
+				selected_attributes = selected_attributes_data.selected,
+				term_data = ( 'undefined' !== typeof window.iconic_woothumbs_attributes_data ) ? window.iconic_woothumbs_attributes_data : {},
+				variation_images_data = [],
+				default_image_urls    = [],
+				revised_variation_images_data = [],
+				parent_images_data = [];
+
+			// Return the original image data if we have no selected attributes.
+			if ( ! Object.keys( selected_attributes ).length ) {
+				return variation_data;
+			}
+
+			// If we have a script tag in the media embed of the first
+			// default image e.g. Product Configurator, ensure this is
+			// always the first image displayed in the gallery.
+			if (
+				product_object.default_images.length &&
+				( product_object.default_images[0].media_embed && -1 !== product_object.default_images[0].media_embed.indexOf( '<script' ) )
+			) {
+				variation_images_data = [ variation_data[0] ];
+			}
+
+			var attribute_images_data = [];
+			
+			if ( ( Object.keys( term_data ).length ) ) {
+				attribute_images_data = iconic_woothumbs.get_attribute_images_data( term_data, selected_attributes );
+			}
+
+			// If we have variation image data, build a new array
+			// of image data  that excludes those that relate to
+			// the parent gallery. This leaves us with an array of
+			// revised variation data that is actual variation
+			if ( variation_data.length && product_object.default_images.length && maintain_gallery_setting === 1 ) {
+				product_object.default_images.forEach( function( object ) {
+					default_image_urls.push( object.url );
+				} );
+
+				variation_data.forEach( function( object, index ) {
+					if ( Object.hasOwnProperty.call( object, 'url' ) ) {
+						if ( ! default_image_urls.includes( object.url ) ) {
+							revised_variation_images_data.push( object );
+						} else {
+							parent_images_data.push( object );
+						}
+					}
+				} );
+			} else {
+				revised_variation_images_data = variation_data;
+				parent_images_data = product_object.default_images;
+			}
+
+			// Add variation images; without default parent gallery images.
+			if ( revised_variation_images_data.length ) {
+				variation_images_data = [ ...variation_images_data, ...revised_variation_images_data ];
+			}
+
+			// Add attribute images.
+			if ( attribute_images_data.length ) {
+				variation_images_data = [ ...variation_images_data, ...attribute_images_data ];
+			}
+
+			// Add default parent gallery images if the context allows it.
+			if (
+				parent_images_data.length && maintain_gallery_setting === 1 ||
+				( parent_images_data.length && maintain_gallery_setting === 2 && ! revised_variation_images_data.length )
+			) {
+				variation_images_data = [ ...variation_images_data, ...parent_images_data ];
+			}
+
+			// If deduplication has not been disabled using the filter,
+			// remove duplicates; this means the earliest occurence of
+			// a particular image will be preserved.
+			if ( iconic_woothumbs.vars.dedupe_images ) {
+				variation_images_data = iconic_woothumbs.dedupe_images_data( variation_images_data );
+			}
+
+			if ( ! variation_images_data.length && maintain_gallery_setting !== 0 ) {
+				return product_object.default_images;
+			}
+
+			// End result is a collection of images
+			// that will be structured in this order,
+			// assuming the respective data is present:
+			// - Variation images (minus parent gallery images)
+			// - Attribute images
+			// - Default parent gallery images
+			return variation_images_data;
+		},
+
+		/**
+		 * De-duplicate a supplied array of image objects,
+		 * with the option to keep certain images regardless.
+		 *
+		 * @see get_variation_images_data
+		 * @see get_no_variation_images_data
+		 * @param images_data
+		 * @param keep_images_data
+		 */
+		dedupe_images_data: function( images_data ) {
+			var urls = [],
+				deduped_images_data = [];
+			images_data.forEach( function( image_object, images_data_index ) {
+				if (
+					Object.hasOwnProperty.call( image_object, 'url' ) &&
+					( ! urls.includes( image_object.url ) )
+				) {
+					urls.push( image_object.url );
+					deduped_images_data.push( image_object );
+				}
+			} );
+
+			return deduped_images_data;
+		},
+
+		/**
+		 * Get the currently selected variations form attributes
+		 *
+		 * @param product_object
+		 */
+		get_selected_attributes: function( product_object ) {
+			var selected_attributes = {};
+
+			if ( product_object.variations_form ) {
+				product_object.variations_form.filter(':visible').find( 'option:selected' ).each( function( index, element ) {
+					if ( $(element).val() ) {
+						selected_attributes[ $(element).parent().attr('id') ] = $(element).val();
+					}
+				});
+			}
+
+			return {
+				count: Object.keys(selected_attributes).length,
+				selected: selected_attributes,
+			};
 		},
 
 		/**
@@ -984,22 +1416,84 @@
 		 * @param variation
 		 */
 		load_images: function( product_object, variation ) {
-			if ( variation && typeof variation.jck_additional_images !== "undefined" ) {
-				var image_count = variation.jck_additional_images.length;
+			if ( typeof window.iconic_woothumbs_variations_data === 'undefined' ) {
+				return;
+			}
+
+			var variation_data = window.iconic_woothumbs_variations_data[ variation.variation_id ];
+
+			if ( variation && typeof variation_data !== 'undefined' ) {
+				var image_count = variation_data.length;
 
 				if ( image_count > 0 ) {
 					product_object.all_images_wrap
 						.attr( 'data-showing', variation.variation_id )
 						.removeClass( iconic_woothumbs.vars.reset_class );
 
-					iconic_woothumbs.replace_images( product_object, variation.jck_additional_images );
+					// Replace the WooCommerce variation data with the data
+					// that MAY have been modified with additional images etc.
+					//
+					// We're spreading the variation_data array here as we need
+					// to break the reference to the original data, given that
+					// it's going to be modified and returned.
+					variation_data = iconic_woothumbs.get_variation_images_data( product_object, [ ...variation_data ] );
+
+					// For the sake of the comparison, take the first image from the parent gallery images
+					// array and add it to the data to compare, if we have parent gallery images enabled.
+					var maintain_gallery_setting = parseInt( iconic_woothumbs_vars.settings.variations_settings_maintain_gallery ),
+						compared_variation_data = ( maintain_gallery_setting === 1  ) ? [ product_object.default_images[0], ...variation_data ] : [ ...variation_data ];
+
+					if ( variation_data && 
+						variation_data.length && 
+						! iconic_woothumbs.compare_variation_data( compared_variation_data, product_object.default_images ) && 
+						! iconic_woothumbs.compare_variation_data( compared_variation_data, product_object.last_replace_images ) ) {
+						product_object.last_replace_images = variation_data;
+						iconic_woothumbs.replace_images( product_object, variation_data );
+					} else {
+						product_object.all_images_wrap.removeClass( iconic_woothumbs.vars.loading_class );
+						iconic_woothumbs.reset_images( product_object );
+					}
 				} else {
-					product_object.all_images_wrap.removeClass( iconic_woothumbs.vars.loading_class );
 					iconic_woothumbs.reset_images( product_object );
+				}
+
+				if ( iconic_woothumbs.vars.is_stacked_layout ) {
+					iconic_woothumbs.init_stacked_zoom( product_object );
 				}
 			} else {
 				product_object.all_images_wrap.removeClass( iconic_woothumbs.vars.loading_class );
 			}
+		},
+		
+		/**
+		 * Compare two arrays of objects to see if they are identical.
+		 * 
+		 * @param arr1 
+		 * @param arr2  
+		 */
+		compare_variation_data: function( arr1, arr2 ) {
+			if ( ! arr1 || ! arr2 || arr1.length !== arr2.length ) {
+				return false;
+			}
+
+			for ( let i = 0; i < arr1.length; i++ ) {
+				const obj1 = arr1[i];
+				const obj2 = arr2[i];
+
+				if ( Object.keys( obj1 ).length !== Object.keys( obj2 ).length ) {
+					return false;
+				}
+
+				// Check if the title and url properties of the object properties are the same
+				for ( let prop in obj1 ) {
+					if ( ( 'title' === prop || 'url' === prop ) && obj1[prop] !== obj2[prop] ) {
+						return false;
+					}
+				}
+			}
+
+			// If we got here, the arrays are identical
+			return true;
 		},
 
 		/**
@@ -1010,66 +1504,70 @@
 		 * @param callback
 		 */
 		replace_images: function( product_object, images, callback ) {
+			var current_slide_index = ( iconic_woothumbs.vars.is_slider_layout ) ? product_object.images.slick( 'slickCurrentSlide' ) : false;
+			
+			// The requested slide index may not exist, so default to zero if this is the case.
+			current_slide_index = ( current_slide_index ) ? current_slide_index : 0;
+
 			iconic_woothumbs.remove_temporary_images();
 
 			var temp_images = iconic_woothumbs.create_temporary_images( images, product_object ),
-				current_slide_index = product_object.images.slick( 'slickCurrentSlide' ),
-				has_thumbnails = temp_images.thumbnails.children().length > 0,
-				thumbnails_html = temp_images.thumbnails.html(),
-				images_html = temp_images.images.html();
+				has_thumbnails = temp_images.thumbnails.length > 0;
 
-			// once images have loaded, place them into the appropriate sliders
-			iconic_woothumbs.images_loaded( temp_images.container, function() {
-				if ( product_object.images_slider_data ) {
-					product_object.images.slick( 'unslick' );
-					product_object.images.html( images_html );
-					iconic_woothumbs.init_images( product_object );
+			if ( product_object.images_slider_data ) {
+				product_object.images.slick( 'unslick' );
+				product_object.images.html( temp_images.images );
+				iconic_woothumbs.init_images( product_object, current_slide_index );
+			} else {
+				product_object.images.hide().html( temp_images.images ).fadeIn();
+			}
+
+			// If thumbnails are enabled
+			if ( iconic_woothumbs.thumbnails_enabled() ) {
+				product_object.thumbnails_wrap
+				.height( product_object.thumbnails_wrap.height() )
+				.addClass( 'iconic-woothumbs-thumbnails-wrap--hidden' );
+
+				if ( product_object.thumbnails_slider_data ) {
+					product_object.thumbnails.slick( 'unslick' );
+					delete product_object.thumbnails[ 0 ].slick;
+					product_object.thumbnails_slider_data = false;
 				}
 
-				// If thumbnails are enabled
-				if ( iconic_woothumbs.thumbnails_enabled() ) {
-					product_object.thumbnails_wrap
-						.height( product_object.thumbnails_wrap.height() )
-						.addClass( 'iconic-woothumbs-thumbnails-wrap--hidden' );
+				product_object.thumbnails.html( temp_images.thumbnails );
 
-					if ( product_object.thumbnails_slider_data ) {
-						product_object.thumbnails.slick( 'unslick' );
-						delete product_object.thumbnails[ 0 ].slick;
-						product_object.thumbnails_slider_data = false;
-					}
-
-					product_object.thumbnails.html( thumbnails_html );
-
-					if ( has_thumbnails && iconic_woothumbs.sliding_thumbnails_enabled() ) {
-						iconic_woothumbs.init_thumbnails( product_object );
-					} else {
-						iconic_woothumbs.reveal_thumbnails( product_object );
-					}
+				if ( has_thumbnails && iconic_woothumbs.sliding_thumbnails_enabled() ) {
+					iconic_woothumbs.init_thumbnails( product_object );
+				} else {
+					iconic_woothumbs.reveal_thumbnails( product_object );
 				}
 
 				// maintain slide index
-				var thumbnail_count = iconic_woothumbs.get_thumbnail_count( product_object );
-				if ( thumbnail_count > current_slide_index && product_object.maintain_slide_index && typeof current_slide_index !== "undefined" ) {
-					product_object.images.slick( 'slickGoTo', current_slide_index );
-					iconic_woothumbs.go_to_thumbnail( current_slide_index, product_object );
+				if ( iconic_woothumbs.vars.is_slider_layout && iconic_woothumbs.sliding_thumbnails_enabled() ) {
+					var thumbnail_count = iconic_woothumbs.get_thumbnail_count( product_object );
+
+					if ( thumbnail_count > current_slide_index && product_object.maintain_slide_index && typeof current_slide_index !== "undefined" ) {
+						setTimeout( function() {
+							iconic_woothumbs.go_to_thumbnail( current_slide_index, product_object );
+						}, 100 );
+					}
+
+					// Update slide count attribute
+					product_object.all_images_wrap.attr( 'data-slide-count', thumbnail_count );
 				}
+			}
 
-				// remove loading icon
-				product_object.all_images_wrap.removeClass( iconic_woothumbs.vars.loading_class );
-
-				iconic_woothumbs.remove_temporary_images();
-				iconic_woothumbs.setup_media_ended();
-
+			// A short delay is required to ensure that this is triggered
+			// when the page reloads after making selections, defaults are
+			// set, or query parameters are used.
+			setTimeout( function() {
 				product_object.all_images_wrap.trigger( 'iconic_woothumbs_images_loaded', [ product_object ] );
+			}, 50 );
 
-				// Update slide count attribute
-				product_object.all_images_wrap.attr( 'data-slide-count', thumbnail_count );
-
-				// run a callback, if required
-				if ( callback !== undefined ) {
-					callback();
-				}
-			} );
+			// run a callback, if required
+			if ( callback !== undefined ) {
+				callback();
+			}
 		},
 
 		/**
@@ -1085,62 +1583,111 @@
 		 * @param images parsed JSON
 		 */
 		create_temporary_images: function( images, product_object ) {
-			// add temp images container
-			$( 'body' ).append( $( iconic_woothumbs.tpl.temp_images_container ).css( { width: product_object.images.outerWidth() } ) );
-
 			var image_count = images.length,
 				temp_images = {
 					'container': $( '.iconic-woothumbs-temp' ),
-					'images': $( '.iconic-woothumbs-temp__images' ),
-					'thumbnails': $( '.iconic-woothumbs-temp__thumbnails' )
+					'images': '',
+					'thumbnails': ''
 				};
 
 			// loop through additional images
 			$.each( images, function( index, image_data ) {
-				// add images to temp div
-				var src = index === 0 ? image_data.src : "data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACwAAAAAAQABAAACAkQBADs=",
-					data_src = index === 0 ? false : 'data-iconic-woothumbs-src="' + image_data.src + '"',
-					aspect = index === 0 ? false : (image_data.src_h / image_data.src_w) * 100,
-					style = aspect ? 'style="padding-top: ' + aspect + '%; height: 0px;"' : "",
-					slide_html = '';
-
+				var global_aspect_ratio = product_object.all_images_wrap.attr( 'data-global-aspect-ratio' ),
+					slide_has_script = ( image_data.media_embed && -1 !== image_data.media_embed.indexOf( '<script' ) ),
+					slide_aspect_ratio = (
+						image_data.aspect &&
+						( ! global_aspect_ratio || iconic_woothumbs.vars.images_are_vertical || ( image_data.media_embed && ! slide_has_script ) )
+					) ? image_data.aspect : global_aspect_ratio,
+					inline_aspect_ratio = ( ! slide_has_script && slide_aspect_ratio ) ? `aspect-ratio: ${slide_aspect_ratio.replace( ':', '/' )};` : '',
+					slide_index_class = `${iconic_woothumbs.vars.slide_class}-${( index + 1 )}`;
+					
 				if ( image_data.media_embed ) {
-					slide_html = iconic_woothumbs.tpl.media_slide.replace( "{{media_embed}}", image_data.media_embed );
-				} else {
+					var media_slide_html = iconic_woothumbs.tpl.media_slide.replace( "{{media_embed}}", image_data.media_embed );
+						media_slide_html = media_slide_html.replace( '{{index}}', index )
+						.replace( '{{slide_aspect}}', inline_aspect_ratio )
+						.replace( '{{slide_index_class}}', slide_index_class );
 
-					var image_data_mapped = $.extend(image_data, { 
-						'image_srcset': image_data.srcset, 
-						'image_sizes': image_data.sizes, 
-						'image_caption': image_data.caption, 
-						'large_image_src': image_data.large_src, 
-						'large_image_width': image_data.large_src_w, 
-						'large_image_height': image_data.large_src_h, 
-						'image_width': image_data.src_w, 
-						'image_height': image_data.src_h, 
-						'alt': image_data.alt, 
+					// Clone the wishlist buttons, if they exist.
+					if ( product_object.wishlist_buttons.length > 0 ) {
+						media_slide_html = media_slide_html.replace( /<\/div>$/, product_object.wishlist_buttons.clone().prop( 'outerHTML' ) + '</div>' );
+					}
+
+					// Add the play button, if we have media.
+					if ( product_object.play_button.length > 0 && 0 === index ) {
+						media_slide_html = media_slide_html.replace( /<\/div>$/, `${iconic_woothumbs.tpl.play_button}</div>` );
+					}
+
+					// This replacement will never take place in addition to the
+					// previous replacement for the same slide.
+					if ( iconic_woothumbs.vars.is_stacked_layout && image_data.media_embed.includes( 'iconic-woothumbs-standard-embed' ) ) {
+						media_slide_html = media_slide_html.replace( /<\/div>$/, `${iconic_woothumbs.tpl.fullscreen_button}</div>` );
+					}
+
+					temp_images.images += media_slide_html;
+				} else {
+					var image_data_mapped = $.extend(image_data, {
+						'index': index,
+						'image_lazy': image_data.src,
+						'image_srcset': image_data.srcset,
+						'image_sizes': image_data.sizes,
+						'image_caption': image_data.caption,
+						'large_image_src': image_data.large_src,
+						'large_image_width': image_data.large_src_w,
+						'large_image_height': image_data.large_src_h,
+						'image_width': image_data.src_w,
+						'image_height': image_data.src_h,
+						'alt': image_data.alt,
 						'title': image_data.title,
+						'slide_aspect': inline_aspect_ratio,
+						'slide_index_class': slide_index_class
 					});
 
-					slide_html = Object.keys(image_data_mapped).reduce(function (str, key) { 
-						return str.replace('{{' + key + '}}', iconic_woothumbs.maybe_empty(image_data_mapped[key])); 
-						}, iconic_woothumbs.tpl.image_slide); 
-						
-					slide_html = slide_html 
-					.replace( /{{image_src}}/g, src ) 
-					.replace( "{{style}}", style ) 
-					.replace( "{{data_src}}", data_src );
-				}
+					// If the layout is stacked, we have to modify the HTML template to ensure
+					// the play and fullscreen icons are included if needed.
+					if ( iconic_woothumbs.vars.is_stacked_layout ) {
+						iconic_woothumbs.tpl.stacked_image_slide = `<div class="${iconic_woothumbs.vars.slide_class} {{slide_index_class}}" data-index="{{index}}"><img style="{{slide_aspect}}" class="iconic-woothumbs-images__image" src="{{image_lazy}}" srcset="{{image_srcset}}" sizes="{{image_sizes}}" data-caption="{{image_caption}}" data-large_image="{{large_image_src}}" data-large_image_width="{{large_image_width}}" data-large_image_height="{{large_image_height}}" width="{{image_width}}" height="{{image_height}}" title="{{title}}" alt="{{alt}}" loading="lazy">`;
 
-				temp_images.images.append( slide_html );
+						// Clone the wishlist buttons, if they exist.
+						if ( product_object.wishlist_buttons.length > 0 ) {
+							iconic_woothumbs.tpl.stacked_image_slide += product_object.wishlist_buttons.clone().prop( 'outerHTML' );
+						}
+
+						if ( product_object.play_button.length > 0 && 0 === index ) {
+							iconic_woothumbs.tpl.stacked_image_slide += iconic_woothumbs.tpl.play_button;
+						}
+
+						if ( iconic_woothumbs.vars.is_fullscreen_enabled ) {
+							iconic_woothumbs.tpl.stacked_image_slide += iconic_woothumbs.tpl.fullscreen_button;
+						}
+
+						iconic_woothumbs.tpl.stacked_image_slide += '</div>';
+					}
+
+					var image_template = iconic_woothumbs.vars.is_slider_layout ? iconic_woothumbs.tpl.gallery_image_slide :iconic_woothumbs.tpl.stacked_image_slide;
+
+					temp_images.images += Object.keys(image_data_mapped).reduce(function (str, key) {
+						return str.replace('{{' + key + '}}', iconic_woothumbs.maybe_empty(image_data_mapped[key]));
+						}, image_template);
+				}
 
 				// add thumbnails to temp div if thumbnails are enabled
 				if ( image_count > 1 && iconic_woothumbs.thumbnails_enabled() ) {
-					var play_icon = image_data.media_embed && image_data.no_media_icon !== true ? iconic_woothumbs.tpl.thumbnail_play_icon : '';
+					var placeholder_image = ( iconic_woothumbs.is_placeholder( image_data.src, true ) ) ? image_data.src : iconic_woothumbs.vars.placeholder_img,
+						play_icon = image_data.media_embed && image_data.no_media_icon !== true ? iconic_woothumbs.tpl.thumbnail_play_icon : '',
+						image_src = ( iconic_woothumbs.sliding_thumbnails_enabled() ) ? placeholder_image : image_data.gallery_thumbnail_src,
+						lazy_type = ( ! iconic_woothumbs.sliding_thumbnails_enabled() ) ? 'lazy' : '',
+						lazy_classes = ( iconic_woothumbs.sliding_thumbnails_enabled() ) ? 'no-lazyload skip-lazy' : '',
+						global_thumbs_aspect_ratio = product_object.all_images_wrap.attr( 'data-global-thumbs-aspect-ratio' ),
+						thumbnail_aspect_ratio = ( image_data.aspect && iconic_woothumbs.vars.images_are_vertical ) ? image_data.aspect : global_thumbs_aspect_ratio,
+						inline_thumb_aspect_ratio = ( thumbnail_aspect_ratio ) ? `aspect-ratio: ${thumbnail_aspect_ratio.replace( ':', '/' )};` : '';
 
 					var thumbnail_html =
 						iconic_woothumbs.tpl.thumbnail_slide
+							.replace( "{{lazy_type}}", lazy_type )
+							.replace( "{{lazy_classes}}", lazy_classes )
 							.replace( "{{play_icon}}", play_icon )
-							.replace( /{{image_src}}/g, image_data.gallery_thumbnail_src )
+							.replace( "{{maybe_image_src}}", image_src)
+							.replace( "{{image_src}}", image_data.gallery_thumbnail_src )
 							.replace( "{{image_srcset}}", iconic_woothumbs.maybe_empty( image_data.gallery_thumbnail_srcset ) )
 							.replace( "{{image_sizes}}", iconic_woothumbs.maybe_empty( image_data.gallery_thumbnail_sizes ) )
 							.replace( "{{index}}", index )
@@ -1148,9 +1695,11 @@
 							.replace( "{{image_height}}", iconic_woothumbs.maybe_empty( image_data.gallery_thumbnail_src_h ) )
 							.replace( "{{alt}}", image_data.alt )
 							.replace( "{{title}}", image_data.title )
-							.replace( "{{slide_class}}", index === 0 ? iconic_woothumbs.vars.thumbnails_active_class : "" );
+							.replace( "{{slide_class}}", index === 0 ? iconic_woothumbs.vars.thumbnails_active_class : "" )
+							.replace( '{{slide_aspect}}', inline_thumb_aspect_ratio );
 
-					temp_images.thumbnails.append( thumbnail_html );
+
+					temp_images.thumbnails += thumbnail_html;
 				}
 			} );
 
@@ -1158,10 +1707,10 @@
 			// amount that are meant to be displayed.
 			if ( product_object.thumbnails_slider_data && image_count !== 1 && image_count < iconic_woothumbs_vars.settings.navigation_thumbnails_count ) {
 				var empty_count = iconic_woothumbs_vars.settings.navigation_thumbnails_count - image_count;
-				i = 0;
+				var i = 0;
 
 				while ( i < empty_count ) {
-					temp_images.thumbnails.append( '<div></div>' );
+					temp_images.thumbnails += '<div></div>';
 					i ++;
 				}
 			}
@@ -1177,7 +1726,7 @@
 		 */
 		maybe_empty: function( value ) {
 
-			return value ? value : "";
+			return ( value || value === 0 ) ? value : "";
 
 		},
 
@@ -1186,9 +1735,11 @@
 		 *
 		 * @param product_object
 		 */
-
 		reset_images: function( product_object ) {
-			if ( product_object.all_images_wrap.hasClass( iconic_woothumbs.vars.reset_class ) || product_object.all_images_wrap.hasClass( iconic_woothumbs.vars.loading_class ) ) {
+			if (
+				product_object.all_images_wrap.hasClass( iconic_woothumbs.vars.reset_class ) ||
+				product_object.all_images_wrap.hasClass( iconic_woothumbs.vars.loading_class )
+			) {
 				return;
 			}
 
@@ -1199,7 +1750,29 @@
 			product_object.all_images_wrap.addClass( iconic_woothumbs.vars.reset_class );
 
 			// replace images
-			iconic_woothumbs.replace_images( product_object, product_object.default_images );
+			var replace_images = iconic_woothumbs.get_no_variation_images_data( product_object );
+
+			if (
+				replace_images.length &&
+				(
+					( ! product_object.last_replace_images && ! iconic_woothumbs.compare_variation_data( product_object.default_images, replace_images ) ) ||
+					( product_object.last_replace_images && ! iconic_woothumbs.compare_variation_data( product_object.last_replace_images, replace_images ) )
+				)
+			) {
+				iconic_woothumbs.replace_images( product_object, replace_images );
+				product_object.last_replace_images = replace_images;
+
+				setTimeout( function() {
+					if ( iconic_woothumbs.vars.is_stacked_layout ) {
+						iconic_woothumbs.plyr_reset( iconic_woothumbs.vars.plyr_gallery_type, product_object );
+						iconic_woothumbs.init_stacked_zoom( product_object );
+					}
+
+					product_object.all_images_wrap.removeClass( iconic_woothumbs.vars.loading_class );
+				}, 100 );
+			} else {
+				product_object.all_images_wrap.removeClass( iconic_woothumbs.vars.loading_class );
+			}
 		},
 
 		/**
@@ -1208,7 +1781,7 @@
 		 * @param product_object
 		 */
 		found_variation: function( product_object ) {
-			var variation_id = parseInt( product_object.variation_id_field.val() );
+			var variation_id = parseInt( $( product_object.variation_id_field ).val() );
 
 			return !isNaN( variation_id );
 		},
@@ -1224,24 +1797,19 @@
 
 			var variation_data = false;
 
-			// variation data available
-
 			if ( product_object.variations ) {
 
+				// variation data available
 				$.each( product_object.variations, function( index, variation ) {
 
 					if ( variation.variation_id === variation_id ) {
 						variation_data = variation;
 					}
-
 				} );
 
 				product_object.all_images_wrap.trigger( iconic_woothumbs.vars.show_variation_trigger, [ variation_data ] );
-
-				// variation data not available, look it up via ajax
-
 			} else {
-
+				// variation data not available, look it up via ajax
 				$.ajax( {
 					type: "GET",
 					url: iconic_woothumbs_vars.ajaxurl,
@@ -1254,129 +1822,147 @@
 						'product_id': product_object.product_id
 					},
 					success: function( response ) {
-
 						if ( response.success ) {
 							if ( response.variation ) {
 								variation_data = response.variation;
-
 								product_object.all_images_wrap.trigger( iconic_woothumbs.vars.show_variation_trigger, [ variation_data ] );
 							}
 						}
-
 					}
 				} );
-
 			}
 		},
 
 		/**
 		 * Trigger Photoswipe
 		 *
-		 * @param bool last_slide
+		 * @param product_object
+		 * @param $clicked_element
+		 * @param last_slide
+		 * @param parent_slide
 		 */
-		trigger_photoswipe: function( product_object, last_slide ) {
-
-			var $photoswipe_template = $( iconic_woothumbs.tpl.photoswipe() );
-
-			$( 'body' ).append( $photoswipe_template );
-
-			var $photoswipe_element = $( '.iconic-woothumbs-pswp' );
-
-			if ( $photoswipe_element.length <= 0 ) {
-				return;
-			}
-
+		trigger_photoswipe: function( product_object, $clicked_element, last_slide, parent_slide ) {
 			// build items array
-			var items = iconic_woothumbs.get_gallery_items( product_object );
+			var items = iconic_woothumbs.get_gallery_items( product_object ),
+				index = typeof items.index !== 'undefined' ? items.index : 0;
 
-			// define options (if needed)
-			var options = {
-				// optionName: 'option value'
-				// for example:
-				index: typeof last_slide === "undefined" ? items.index : items.items.length - 1, // start at first slide
-				shareEl: false,
-				closeOnScroll: false,
-				history: false,
-				showHideOpacity: true,
-				showAnimationDuration: 0
-			};
+			if (
+				iconic_woothumbs.vars.is_stacked_layout ||
+				$clicked_element.hasClass( 'iconic-woothumbs-images__image' ) ||
+				$clicked_element.hasClass( 'plyr__control' )
+			) {
+				var $clicked_element_parent = $clicked_element.closest( `.${iconic_woothumbs.vars.slide_class}` );
 
-			// Initializes and opens PhotoSwipe
-			iconic_woothumbs.els.gallery = new PhotoSwipe( $photoswipe_element[ 0 ], PhotoSwipeUI_Default, items.items, options );
+				if ( typeof parent_slide !== 'undefined' && parent_slide ) {
+					$clicked_element_parent = parent_slide;
+				}
 
-			iconic_woothumbs.els.gallery.init();
-
-			iconic_woothumbs.els.gallery.listen( 'beforeChange', function() {
-				iconic_woothumbs.stop_photoswipe_media();
-			} );
-
-			iconic_woothumbs.els.gallery.listen( 'close', function() {
-				setTimeout( function () {
-					$photoswipe_element.remove();
-				}, 50 );
-			} );
-		},
-
-		/**
-		 * Pause iframe video
-		 */
-		stop_photoswipe_media: function() {
-			var $media = $( '.iconic-woothumbs-fullscreen-video-wrapper iframe, .iconic-woothumbs-fullscreen-video-wrapper video' );
-
-			if ( $media.length <= 0 ) {
-				return;
+				index = ( $clicked_element_parent.data( 'slick-index' ) ) ? $clicked_element_parent.data( 'slick-index' ) : $clicked_element_parent.data( 'index' );
 			}
 
-			$media.each( function( index, media ) {
-				var $media_item = $( media );
+			var maybe_use_index = ( iconic_woothumbs.vars.is_stacked_layout || ( typeof last_slide === "undefined" || ! last_slide ) ),
+				animationDuration = 100,
+				options = {
+					mainClass: 'iconic-woothumbs-pswp',
+					dataSource: items.items,
+					index: ( maybe_use_index && true !== last_slide ) ? index : items.items.length - 1,
+					showHideAnimationType: 'fade',
+					showAnimationDuration: animationDuration,
+					hideAnimationDuration: animationDuration,
+					bgOpacity: 1,
+					arrowPrevSVG: iconic_woothumbs.vars.icon_pswp_arrow_left,
+					arrowNextSVG: iconic_woothumbs.vars.icon_pswp_arrow_right,
+					closeSVG: iconic_woothumbs.vars.icon_pswp_close,
+					zoomSVG: iconic_woothumbs.vars.icon_pswp_zoom,
+					paddingFn: (viewportSize, itemData, index) => {
+						var padding_x = viewportSize.x < 600 ? 0 : 60,
+							padding_y = 60;
 
-				if ( $media_item.is( 'iframe' ) ) {
-					$media_item.hide().attr( 'src', $media_item.attr( 'src' ) );
-					$media_item.load( function() {
-						$( this ).show();
+						return {
+							top: padding_y,
+							bottom: padding_y,
+							left: padding_x,
+							right: padding_x
+						};
+					}
+				};
+
+			window.iconic_woothumbs_photoswipe = new PhotoSwipe( options );
+
+			// Destroy the non-fullscreen gallery once the modal is open.
+			window.iconic_woothumbs_photoswipe.on( 'openingAnimationEnd', function( e ) {
+				iconic_woothumbs.plyr_destroy( iconic_woothumbs.vars.plyr_gallery_type );
+			});
+
+			// Ensure that Plyr's seek and range controls do not trigger
+			// the pointerDown event handler used for swiping/dragging.
+			window.iconic_woothumbs_photoswipe.on( 'pointerDown', function( e ) {
+				var $plyr_controls = $( e.originalEvent.target ).closest( '.plyr__controls' );
+
+				if ( $plyr_controls.length ) {
+					e.preventDefault();
+				}
+			});
+
+			// Pause media on slide change.
+			window.iconic_woothumbs_photoswipe.on( 'contentRemove', function( e ) {
+				iconic_woothumbs.plyr_pause_current_instance( iconic_woothumbs.vars.plyr_fullscreen_type, product_object );
+			});
+
+			// Initialise Plyr once the slide has received the DOM update.
+			window.iconic_woothumbs_photoswipe.on( 'contentActivate', function( data ) {
+				// A short delay is required before we can query the DOM
+				// in other methods, such as plyr_setup etc.
+				setTimeout( function() {
+					var has_plyr = $( data.content.element ).find( '.plyr' );
+
+					if ( has_plyr.length ) {
+						$( data.content.element ).find( '.iconic-woothumbs-loading-overlay' ).hide();
+					} else {
+						$( data.content.element ).find( '.iconic-woothumbs-loading-overlay' ).show();
+					}
+
+					if ( data.content.slide.isActive && ! has_plyr.length ) {
+						iconic_woothumbs.plyr_setup( iconic_woothumbs.vars.plyr_fullscreen_type, product_object );
+					}
+				}, 250 );
+			});
+
+			// Reset Plyr and/or remove classes on close.
+			window.iconic_woothumbs_photoswipe.on( 'close', function() {
+				if ( iconic_woothumbs.plyr_get_gallery_videos( product_object.images_wrap ) ) {
+					iconic_woothumbs.plyr_reset( iconic_woothumbs.vars.plyr_fullscreen_type,  product_object, iconic_woothumbs.vars.plyr_gallery_type );
+				}
+			});
+
+			// Register UI elements.
+			window.iconic_woothumbs_photoswipe.on( 'uiRegister', function() {
+				// Add caption if image title is enabled in WooThumbs' fullscreen settings.
+				if ( iconic_woothumbs.is_true( iconic_woothumbs_vars.settings.fullscreen_general_image_title ) ) {
+					window.iconic_woothumbs_photoswipe.ui.registerElement( {
+						name: 'caption',
+						order: 9,
+						isButton: false,
+						appendTo: 'root',
+						html: '',
+						onInit: ( el, pswp ) => {
+							pswp.on( 'change', () => {
+								var current_slide = pswp.currSlide.data;
+
+								if ( current_slide.caption && typeof current_slide.caption !== 'undefined' ) {
+									el.innerHTML = pswp.currSlide.data.caption;
+								} else if ( current_slide.title && current_slide.title !== 'undefined' ) {
+									el.innerHTML = current_slide.title;
+								} else {
+									el.innerHTML = '';
+								}
+							} );
+						}
 					} );
-				} else {
-					iconic_woothumbs.setup_media_ended();
-					iconic_woothumbs.pause_video( $media_item, true );
 				}
 			} );
-		},
 
-		/**
-		 * Pause a video.
-		 *
-		 * @param $video
-		 */
-		pause_video: function( $video, stop ) {
-			stop = stop || false;
-
-			var $video_item = $video.get( 0 ),
-				$button = $video.closest( '.iconic-woothumbs-responsive-media' ).find( '.' + iconic_woothumbs.vars.media_controls_class ),
-				$icon = $button.find( '.iconic-woothumbs-icon' );
-
-			$video.get( 0 ).pause();
-
-			if ( stop ) {
-				$video_item.load();
-
-				if ( $video_item.autoplay && $button.length > 0 ) {
-					$button.removeClass( iconic_woothumbs.vars.pause_controls_class );
-					$button.removeClass( iconic_woothumbs.vars.play_controls_class );
-					$icon.addClass( iconic_woothumbs.vars.pause_button_class );
-					$icon.removeClass( iconic_woothumbs.vars.play_button_class );
-
-					return;
-				}
-			}
-
-			if ( $button.length <= 0 ) {
-				return;
-			}
-
-			$button.removeClass( iconic_woothumbs.vars.pause_controls_class );
-			$button.addClass( iconic_woothumbs.vars.play_controls_class );
-			$icon.removeClass( iconic_woothumbs.vars.pause_button_class );
-			$icon.addClass( iconic_woothumbs.vars.play_button_class );
+			window.iconic_woothumbs_photoswipe.init();
 		},
 
 		/**
@@ -1384,13 +1970,16 @@
 		 *
 		 * @param product_object
 		 */
-		setup_fullscreen: function( product_object ) {
+		setup_fullscreen_open_triggers: function( product_object ) {
 			if ( !iconic_woothumbs.vars.is_fullscreen_enabled ) {
 				return;
 			}
 
 			product_object.images_wrap.on( 'click', iconic_woothumbs.vars.fullscreen_trigger, function() {
-				iconic_woothumbs.trigger_photoswipe( product_object );
+				iconic_woothumbs.plyr_destroy( iconic_woothumbs.vars.plyr_gallery_type )
+				.then( ( value ) => {
+					iconic_woothumbs.trigger_photoswipe( product_object, $( this ) );
+				} );
 			} );
 
 			if ( iconic_woothumbs.is_true( iconic_woothumbs_vars.settings.fullscreen_general_click_anywhere ) ) {
@@ -1404,16 +1993,37 @@
 		},
 
 		/**
-		 * Setup video
+		 * Setup video player triggers
 		 */
-		setup_video: function( product_object ) {
-
+		setup_video_play_triggers: function( product_object ) {
 			product_object.images_wrap.on( 'click touchstart', iconic_woothumbs.vars.play_trigger, function() {
-
-				iconic_woothumbs.trigger_photoswipe( product_object, true );
-
+				iconic_woothumbs.plyr_destroy(iconic_woothumbs.vars.plyr_gallery_type)
+				.then( ( value ) => {
+					iconic_woothumbs.trigger_photoswipe( product_object, $( this ), true );
+				})
+				.then( ( value ) => {
+					iconic_woothumbs.plyr_autoplay_current_instance( iconic_woothumbs.vars.plyr_fullscreen_type, product_object );
+				});
 			} );
+		},
 
+		/**
+		 * Setup anything required for Stacked layout.
+		 */
+		setup_stacked_layout: function( product_object ) {
+
+			// Initialise Plyr if we are not loading a pre-selected
+			// attribute or variation combination; either via form
+			// selections or query strings in the URL.
+			var selected_attribute_data = iconic_woothumbs.get_selected_attributes( product_object );
+
+			if (
+				iconic_woothumbs.plyr_has_videos_of_type( iconic_woothumbs.vars.plyr_gallery_type, product_object ) &&
+				! parseInt( $( product_object.variation_id_field ).val() ) &&
+				! selected_attribute_data.count
+			) {
+				iconic_woothumbs.plyr_setup( iconic_woothumbs.vars.plyr_gallery_type, product_object );
+			}
 		},
 
 		/**
@@ -1424,9 +2034,9 @@
 		 */
 
 		get_gallery_items: function( product_object ) {
-			var $slides = product_object.images.find( '.iconic-woothumbs-images__slide' ),
+			var $slides = product_object.images.find( `.${iconic_woothumbs.vars.slide_class}` ),
 				items = [],
-				index = product_object.images.slick( 'slickCurrentSlide' );
+				index = product_object.images_slider_data ? product_object.images.slick( 'slickCurrentSlide' ) : false;
 
 			if ( iconic_woothumbs.is_true( iconic_woothumbs_vars.settings.fullscreen_general_enable ) ) {
 				if ( $slides.length > 0 ) {
@@ -1438,11 +2048,15 @@
 						}
 
 						if ( iconic_woothumbs.is_media( $slide ) ) {
-							media_html = iconic_woothumbs.tpl.media.replace( "{{media_embed}}", $slide.html() );
+							var media_html = iconic_woothumbs.tpl.media.replace( "{{media_embed}}", $slide.html() );
 							var orientation = $slide.find('.iconic-woothumbs-responsive-media').data('orientation');
 
 							if ( orientation === 'tall' ) {
 								media_html = media_html.replace( '--wide', '--tall' );
+							}
+
+							if ( orientation === 'square' ) {
+								media_html = media_html.replace( '--wide', '--square' );
 							}
 
 							items.push( {
@@ -1462,13 +2076,12 @@
 							return;
 						}
 
-						var large_image_src = img.attr( 'data-large_image' ),
-							large_image_w = img.attr( 'data-large_image_width' ),
-							large_image_h = img.attr( 'data-large_image_height' ),
-							item = {
-								src: large_image_src,
-								w: large_image_w,
-								h: large_image_h
+						var item = {
+								src: img.attr( 'data-large_image' ),
+								width: img.attr( 'data-large_image_width' ),
+								height: img.attr( 'data-large_image_height' ),
+								caption: img.attr( 'data-caption' ),
+								alt: img.attr( 'alt' )
 							};
 
 						if ( iconic_woothumbs.is_true( iconic_woothumbs_vars.settings.fullscreen_general_image_title ) ) {
@@ -1514,7 +2127,6 @@
 			} );
 
 			product_object.all_images_wrap.on( 'touchend', '.iconic-woothumbs-images__image', function( e ) {
-
 				if ( !iconic_woothumbs.vars.is_dragging_image_slide ) {
 					e.preventDefault();
 					$( this ).click();
@@ -1538,8 +2150,24 @@
 				iconic_woothumbs.init_zoom( $active_img, product_object );
 			} );
 
-			iconic_woothumbs.vars.zoom_setup = true;
+			if ( iconic_woothumbs.vars.is_stacked_layout ) {
+				iconic_woothumbs.init_stacked_zoom( product_object );
+			}
 
+			iconic_woothumbs.vars.zoom_setup = true;
+		},
+
+		/**
+		 * Init Hover Zoom for Stacked images.
+		 *
+		 * @param product_object
+		 */
+		init_stacked_zoom: function( product_object ) {
+			var $stacked_images = product_object.images.find( `.${iconic_woothumbs.vars.slide_class} .iconic-woothumbs-images__image` );
+
+			$stacked_images.on( 'mouseenter', function(e) {
+				iconic_woothumbs.init_zoom( $(e.target), product_object );
+			});
 		},
 
 		/**
@@ -1554,7 +2182,7 @@
 				return;
 			}
 
-			var $parent_slide = $image.closest( '.iconic-woothumbs-images__slide' ),
+			var $parent_slide = $image.closest( `.${iconic_woothumbs.vars.slide_class}` ),
 				slide_image_width = $image.width(),
 				large_image = $image.attr( 'data-large_image' ),
 				large_image_width = parseInt( $image.attr( 'data-large_image_width' ) );
@@ -1580,11 +2208,17 @@
 				showDescription: false,
 				hoverIntent: iconic_woothumbs_vars.settings.zoom_general_zoom_type === "follow",
 				onShow: function() {
-					iconic_woothumbs.add_zoom_controls( product_object );
-					product_object.images.slick( 'slickPause' );
+					iconic_woothumbs.add_zoom_controls( product_object, $parent_slide );
+
+					if ( iconic_woothumbs.vars.is_slider_layout ) {
+						product_object.images.slick( 'slickPause' );
+					}
 				},
 				onHide: function() {
-					if ( iconic_woothumbs.is_true( iconic_woothumbs_vars.settings.carousel_general_autoplay ) ) {
+					if (
+						iconic_woothumbs.vars.is_slider_layout &&
+						iconic_woothumbs.is_true( iconic_woothumbs_vars.settings.carousel_general_autoplay )
+						) {
 						product_object.images.slick( 'slickPlay' );
 					}
 				}
@@ -1594,33 +2228,13 @@
 		},
 
 		/**
-		 * Destroy Hover Zoom
-		 *
-		 * @param product_object
-		 */
-
-		destroy_zoom: function( product_object ) {
-			var $current_zoom = product_object.images.find( '.currZoom' ),
-				zoom = $current_zoom.data( 'imagezoom' );
-
-			if ( zoom && typeof zoom !== "undefined" ) {
-
-				$current_zoom.removeClass( 'currZoom' );
-				zoom.destroy();
-
-			}
-
-			$( '.zm-viewer' ).remove();
-			$( '.zm-handler' ).remove();
-		},
-
-		/**
 		 * Add Zoom Controls
 		 *
 		 * @param product_object
+		 * @param parent_slide
 		 */
 
-		add_zoom_controls: function( product_object ) {
+		add_zoom_controls: function( product_object, parent_slide ) {
 
 			var $viewer = product_object.imagezoom.$viewer;
 
@@ -1630,40 +2244,65 @@
 					$viewer.addClass( 'iconic-woothumbs-tooltips-enabled' );
 				}
 
+				if ( product_object.all_images_wrap.hasClass( 'iconic-woothumbs-all-images-wrap--has-product-media' ) ) {
+					$viewer.addClass( 'iconic-woothumbs-has-product-media' );
+				}
+
 				$viewer.append( '<div class="iconic-woothumbs-zoom-controls"></div>' );
 
 				var $zoom_controls = $viewer.find( '.iconic-woothumbs-zoom-controls' );
 
-				if ( product_object.wishlist_buttons.length > 0 ) {
+				// Wishlists.
+				if (
+					( iconic_woothumbs.vars.is_slider_layout || ( iconic_woothumbs.vars.is_stacked_layout && $( parent_slide ).attr( 'data-index' ) === '0' ) ) &&
+					product_object.wishlist_buttons.length > 0
+				) {
 					$zoom_controls.append( product_object.wishlist_buttons.clone() );
 				}
 
-				if ( product_object.play_button.length > 0 ) {
+				// Product video.
+				if (
+					product_object.play_button.length > 0 &&
+					( ! iconic_woothumbs.vars.is_stacked_layout || ( iconic_woothumbs.vars.is_stacked_layout && 0 === parent_slide.data('index') ) )
+					) {
 					$zoom_controls.append( iconic_woothumbs.tpl.play_button );
 
 					$viewer.on( 'click', iconic_woothumbs.vars.play_trigger, function() {
-						iconic_woothumbs.trigger_photoswipe( product_object, true );
+						if ( iconic_woothumbs.plyr_has_videos_of_type( iconic_woothumbs.vars.plyr_gallery_type, product_object ) ) {
+							iconic_woothumbs.plyr_destroy(iconic_woothumbs.vars.plyr_gallery_type)
+							.then( (value) => {
+								iconic_woothumbs.trigger_photoswipe( product_object, $( this ), true );
+							})
+							.then( (value ) => {
+								iconic_woothumbs.plyr_autoplay_current_instance( iconic_woothumbs.vars.plyr_fullscreen_type, product_object );
+							});
+						} else {
+							iconic_woothumbs.trigger_photoswipe( product_object, $( this ), true );
+						}
 					} );
 				}
 
+				// Fullscreen.
 				if ( iconic_woothumbs.is_true( iconic_woothumbs_vars.settings.fullscreen_general_enable ) ) {
 					$zoom_controls.append( iconic_woothumbs.tpl.fullscreen_button );
 
 					$viewer.on( 'click', iconic_woothumbs.vars.fullscreen_trigger, function() {
-						iconic_woothumbs.trigger_photoswipe( product_object );
+						iconic_woothumbs.plyr_destroy(iconic_woothumbs.vars.plyr_gallery_type)
+						.then( (value) => {
+							iconic_woothumbs.trigger_photoswipe( product_object, $( this ), false, parent_slide );
+						});
 					} );
 				}
 
+				// Navigation arrows.
 				if ( iconic_woothumbs.is_true( iconic_woothumbs_vars.settings.navigation_general_controls ) && iconic_woothumbs.get_thumbnail_count( product_object ) > 1 ) {
 
-					var dir = iconic_woothumbs.vars.is_rtl ? 'slickNect' : 'slickPrev';
-
-					if ( !product_object.images_wrap.find( '.iconic-woothumbs-images__arrow--prev' ).hasClass( 'slick-disabled' ) ) {
-						$zoom_controls.append( '<a class="iconic-woothumbs-zoom-prev" href="javascript: void(0);"><i class="iconic-woothumbs-icon iconic-woothumbs-icon-left-open-mini"></i></a>' );
+					if ( ! product_object.images_wrap.find( '.iconic-woothumbs-images__arrow--prev' ).hasClass( 'slick-disabled' ) ) {
+						$zoom_controls.append( `<a class="iconic-woothumbs-zoom-prev" href="javascript: void(0);">${iconic_woothumbs.vars.icon_arrow_left}</a>` );
 					}
 
-					if ( !product_object.images_wrap.find( '.iconic-woothumbs-images__arrow--next' ).hasClass( 'slick-disabled' ) ) {
-						$zoom_controls.append( '<a class="iconic-woothumbs-zoom-next" href="javascript: void(0);"><i class="iconic-woothumbs-icon iconic-woothumbs-icon-right-open-mini"></i></a>' );
+					if ( ! product_object.images_wrap.find( '.iconic-woothumbs-images__arrow--next' ).hasClass( 'slick-disabled' ) ) {
+						$zoom_controls.append( `<a class="iconic-woothumbs-zoom-next" href="javascript: void(0);">${iconic_woothumbs.vars.icon_arrow_right}</a>` );
 					}
 
 					// Arrow nav
@@ -1685,6 +2324,7 @@
 
 				}
 
+				// Bullets.
 				if ( iconic_woothumbs.is_true( iconic_woothumbs_vars.settings.navigation_bullets_enable ) ) {
 
 					var $bullets = product_object.all_images_wrap.find( '.slick-dots' );
@@ -1766,31 +2406,25 @@
 		/**
 		 * Setup Tooltips
 		 */
-
 		setup_tooltips: function() {
-
 			if ( iconic_woothumbs.is_true( iconic_woothumbs_vars.settings.display_general_icons_tooltips ) ) {
-
 				$( '[data-iconic-woothumbs-tooltip]' ).each( function() {
 
 					var tooltip = $( this ).attr( 'data-iconic-woothumbs-tooltip' );
 
 					$( this ).tooltipster( {
 						content: tooltip,
-						debug: false
+						debug: false,
+						delay: 100,
 					} );
 				} );
-
 			}
-
 		},
 
 		/**
 		 * Update caption
 		 */
-
 		update_caption: function( $current_slide, product_object ) {
-
 			if ( product_object.caption.length <= 0 ) {
 				return;
 			}
@@ -1806,184 +2440,11 @@
 		},
 
 		/**
-		 * Stop media.
-		 */
-		stop_media: function( product_object ) {
-			var $media = product_object.images.find( 'iframe, video' );
-
-			if ( $media.length <= 0 ) {
-				return;
-			}
-
-			$media.each( function( index, media ) {
-				var $media_item = $( media ),
-					active = $media_item.closest( '.slick-active' ).length > 0;
-
-				if ( active ) {
-					return;
-				}
-
-				if ( $media_item.is( 'iframe' ) ) {
-					$media_item.attr( 'src', $( media ).attr( 'src' ) );
-				} else {
-					var paused = $media_item.get( 0 ).paused;
-
-					if ( !paused ) {
-						$media_item.data( 'playing', true );
-						$media_item.get( 0 ).pause();
-					}
-				}
-			} );
-		},
-
-		/**
-		 * Start video media (if it was playing before).
-		 */
-		start_media: function( product_object ) {
-			var $media = product_object.images.find( 'video' );
-
-			if ( $media.length <= 0 ) {
-				return;
-			}
-
-			$media.each( function( index, media ) {
-				var $media_item = $( media ),
-					active = $media_item.closest( '.slick-active' ).length > 0;
-
-				if ( !active || $media_item.data( 'playing' ) !== true ) {
-					return;
-				}
-
-				$media_item.get( 0 ).play();
-
-				// Seek video to 0 second the first time it is played. To fix
-				// the issue with Edge browser where video starts from 3 seconds
-				if ( ! $media_item.data( 'has-played' ) ) {
-					$media_item.get( 0 ).currentTime = 0;
-					$media_item.data( 'has-played', 1 );
-				}
-
-				// Remove now as it'll be added when sliding anyway
-				$media_item.data( 'playing', false );
-			} );
-		},
-
-		/**
-		 * Setup media controls.
-		 *
-		 * @param product_object
-		 */
-		setup_media_controls: function( product_object ) {
-			$( document.body ).on( 'click', '.' + iconic_woothumbs.vars.media_controls_class, function( e ) {
-				var $button = $( this ),
-					$media = $button.closest( '.iconic-woothumbs-responsive-media' ).find( 'video' ),
-					$icon = $button.find( '.iconic-woothumbs-icon' );
-
-				if ( $media.length <= 0 ) {
-					return;
-				}
-
-				// If the timestamp of the current controls event is the same as the previous
-				// event, this is a sign that we have a third party conflict causing a second
-				// trigger of the click handler, which causes the video to immediately pause
-				// once played. This caters for this and avoids having to spend considerable
-				// time investigating each and every cause.
-				if ( e.timeStamp === window.iconic_woothumbs_last_controls_event_timestamp ) {
-					return;
-				}
-
-				window.iconic_woothumbs_last_controls_event_timestamp = e.timeStamp;
-
-				$media_item = $media.get( 0 );
-
-				var playing = !$media_item.paused;
-
-				if ( playing ) {
-					iconic_woothumbs.pause_video( $media );
-				} else {
-					$button.removeClass( iconic_woothumbs.vars.play_controls_class );
-					$button.addClass( iconic_woothumbs.vars.pause_controls_class );
-					$icon.removeClass( iconic_woothumbs.vars.play_button_class );
-					$icon.addClass( iconic_woothumbs.vars.pause_button_class );
-					$media_item.play();
-				}
-			} );
-
-			// Add hover class.
-			$( document ).on( 'mouseover touchstart', '.iconic-woothumbs-responsive-media', function () {
-				$( this ).addClass( 'iconic-woothumbs-responsive-media--hover' );
-			});
-
-			// Remove hover class.
-			$( document ).on( 'mouseout ', '.iconic-woothumbs-responsive-media' , function() {
-				$( this ).removeClass( 'iconic-woothumbs-responsive-media--hover' );
-			} );
-
-			// Auto hide the controls after 1 second of mobile tap event.
-			// Since there is no mouseout event in mobile, we need to auto-hide controls.
-			jQuery(document).on( 'touchend', '.iconic-woothumbs-responsive-media' , function() {
-				if ( iconic_woothumbs.vars.media_touch_timer ) {
-					clearTimeout( iconic_woothumbs.vars.media_touch_timer );
-				}
-
-				iconic_woothumbs.vars.media_touch_timer = setTimeout( function() {
-					jQuery(".iconic-woothumbs-responsive-media").removeClass('iconic-woothumbs-responsive-media--hover');
-				}, 1000 );
-			});
-
-			iconic_woothumbs.setup_media_ended();
-		},
-
-		/**
-		 * Run code when embeded video ends.
-		 *
-		 * @param $images
-		 */
-		setup_media_ended: function() {
-			var $responsive_media = $( '.iconic-woothumbs-responsive-media' ).filter( function() {
-				return $( this ).data( 'iconic-onended-bound' ) !== true;
-			} );
-
-			if ( $responsive_media.length <= 0 ) {
-				return;
-			}
-
-			var $controls = $responsive_media.find( '.' + iconic_woothumbs.vars.media_controls_class );
-
-			if ( $controls.length <= 0 ) {
-				return;
-			}
-
-			var $media_items = $responsive_media.find( '.iconic-woothumbs-responsive-media__manual-embed' );
-
-			if ( $media_items.length <= 0 ) {
-				return;
-			}
-
-			$.each( $media_items, function( index, media_item ) {
-				var $media_item = $( media_item ),
-					$media = $media_item.get( 0 );
-
-				$media.onended = function() {
-					var $media = $( this ),
-						$button = $media.closest( '.iconic-woothumbs-responsive-media' ).find( '.' + iconic_woothumbs.vars.media_controls_class ),
-						$icon = $button.find( '.iconic-woothumbs-icon' );
-
-					$button.removeClass( iconic_woothumbs.vars.pause_controls_class );
-					$button.addClass( iconic_woothumbs.vars.play_controls_class );
-					$icon.removeClass( iconic_woothumbs.vars.pause_button_class );
-					$icon.addClass( iconic_woothumbs.vars.play_button_class );
-				};
-			} );
-
-			$responsive_media.data( 'iconic-onended-bound', true );
-		},
-
-		/**
 		 * Reveal slides.
 		 */
 		reveal_slides: function( product_object ) {
-			product_object.images.find( '.iconic-woothumbs-images__slide' ).show();
+			product_object.images.find( `.${iconic_woothumbs.vars.slide_class}` ).show();
+			product_object.all_images_wrap.removeClass( iconic_woothumbs.vars.loading_class );
 		},
 
 		/**
@@ -2042,36 +2503,441 @@
 		},
 
 		/**
-		 * On fullscreen change event.
+		 * Initialize Plyr instances for all videos
+		 * passed into the method.
+		 *
+		 * @param type
+		 * @param product_object
 		 */
-		on_fullscreenchange: function () {
-			iconic_woothumbs.vars.fullscreeen_flag = true;
+		plyr_setup: function( type, product_object ) {
+			var $videos = false;
 
-			// set the flag back to 'false' after a while.
-			setTimeout( function () {
-				iconic_woothumbs.vars.fullscreeen_flag = false;
-			}, 1000 );
+			// Empty our instance collections.
+			window.iconic_woothumbs_plyr.fullscreen = [];
+			window.iconic_woothumbs_plyr.gallery = [];
 
+			if ( iconic_woothumbs.vars.plyr_gallery_type === type ) {
+				$videos = iconic_woothumbs.plyr_get_gallery_videos( product_object.images_wrap );
+			} else if ( iconic_woothumbs.vars.plyr_fullscreen_type === type ) {
+				$videos = iconic_woothumbs.plyr_get_photoswipe_videos();
+			}
+
+			if ( ! $videos || 0 === $videos.length ) {
+				return;
+			}
+
+			$videos.each(function(index) {
+				var parent_slide      = $ (this ).closest( `.${iconic_woothumbs.vars.slide_class}` ),
+					poster_gallery    = $( this ).attr( 'data-poster-gallery' ),
+					poster_fullscreen = $( this ).attr( 'data-poster-fullscreen' ),
+					global_aspect     = product_object.all_images_wrap.attr( 'data-global-aspect-ratio' ),
+					aspect            = $( this ).attr( 'data-aspect-ratio' ),
+					// Slick does not support variable height slides in vertical mode,
+					// so we have to force one specific aspect for all videos.
+					aspect_ratio      = ( iconic_woothumbs.vars.images_are_vertical ) ? global_aspect : aspect,
+					controls          = ( iconic_woothumbs.vars.plyr_controls ) ? iconic_woothumbs.vars.plyr_controls_list : [],
+					config            = {
+						'ratio': aspect_ratio,
+						'loop': { 'active': iconic_woothumbs.vars.plyr_loop },
+						'controls': controls,
+						'clickToPlay': false,
+						'tooltips': {
+							'controls': iconic_woothumbs.vars.plyr_tooltips,
+							'seek': iconic_woothumbs.vars.plyr_tooltips
+						},
+						'youtube': {
+							'showinfo': 0,
+							'rel': 0,
+							'iv_load_policy': 3,
+							'modestbranding': 1,
+							'playsinline': 1,
+						},
+						'vimeo': {
+							'byline': 0,
+							'title': 0,
+							'portrait': 0,
+						},
+						iconUrl: iconic_woothumbs_vars.plyr_sprite_url
+					};
+
+				// Preload the poster images.
+				var preload = new Image();
+				preload.src = poster_gallery;
+
+				// Remove the fullscreen control if fullscreen is disabled.
+				if ( 'fullscreen' === type || ! iconic_woothumbs.vars.is_fullscreen_enabled ) {
+					config.controls = config.controls.filter( function( value, index, arr ) {
+						return value !== 'fullscreen';
+					});
+				}
+
+				// Add `gallery` context specific listeners.
+				if ( iconic_woothumbs.vars.plyr_gallery_type === type ) {
+					config.listeners = {
+						'fullscreen': function( e ) {
+							if ( iconic_woothumbs.vars.plyr_fullscreen_type === type ) {
+								return true;
+							}
+
+							e.preventDefault();
+
+							iconic_woothumbs.plyr_destroy( iconic_woothumbs.vars.plyr_gallery_type )
+							.then( ( value ) => {
+								iconic_woothumbs.trigger_photoswipe( product_object, $( $videos [index ] ), false, parent_slide );
+							} );
+
+							return false;
+						}
+					};
+				}
+
+				// Add `fullscreen` context specific listeners.
+				if ( iconic_woothumbs.vars.plyr_fullscreen_type === type ) {
+					config.listeners = {};
+				}
+
+				var player = new Plyr( $( this ), config );
+				window.iconic_woothumbs_plyr[ type ].push( player );
+
+				// Set the poster image.
+				if ( iconic_woothumbs.vars.plyr_poster ) {
+					var poster_image = ( 'gallery' === type ) ? poster_gallery : poster_fullscreen;
+					player.poster = poster_image;
+				}
+
+				// Pause all other videos except the one playing;
+				// this is better than stopping as the UI reflects
+				// that the video can be played again, and looks
+				// less buggy than the UI when stopped.
+				player.on( 'playing', ( event ) => {
+					$( event.target ).closest( '.iconic-woothumbs-all-images-wrap' ).addClass( iconic_woothumbs.vars.media_playing_class );
+					iconic_woothumbs.plyr_pause( type, event.detail.plyr );
+				} );
+
+				player.on( 'pause', ( event ) => {
+					setTimeout( function() {
+						$( event.target ).closest( '.iconic-woothumbs-all-images-wrap' ).removeClass( iconic_woothumbs.vars.media_playing_class );
+					}, 300 );
+				});
+
+				player.on( 'ended', ( event ) => {
+					setTimeout( function() {
+						$( event.target ).closest( '.iconic-woothumbs-all-images-wrap' ).removeClass( iconic_woothumbs.vars.media_playing_class );
+					}, 300 );
+				});
+
+				player.on( 'ready', ( event ) => {
+					iconic_woothumbs.plyr_ready_tasks( type, event, product_object );
+				} );
+			} );
+		},
+
+		/**
+		 * Fire logic when Plyr instances have been setup.
+		 *
+		 * @param type
+		 * @param event
+		 * @param product_object
+		 */
+		 plyr_ready_tasks: function( type, event, product_object ) {
+			// Slick specific logic.
+			if ( product_object.images.hasClass( 'slick-initialized' ) ) {
+				// Just to be safe, force Slick to re-calculate position.
+				product_object.images.slick('setPosition');
+
+				// Show the gallery UI when the first/current slide loads.
+				var plyr_ready_slide_index = $( event.target ).closest( `.${iconic_woothumbs.vars.slide_class}` ).attr( 'data-index' );
+
+				if ( parseInt( plyr_ready_slide_index ) === product_object.images.slick( 'slickCurrentSlide' ) ) {
+					var $current_slide = product_object.images.find( '.slick-slide.slick-current' );
+					iconic_woothumbs.maybe_show_gallery_ui( $current_slide, product_object, true );
+				}
+			}
+
+			if ( 'gallery' === type ) {
+				$( event.target ).closest( `.${iconic_woothumbs.vars.slide_class}` ).addClass( 'iconic-woothumbs-plyr-ready' );
+			} else {
+				$( event.target ).closest( '.iconic-woothumbs-fullscreen-video-wrapper' ).addClass( 'iconic-woothumbs-plyr-ready' );
+			}
+
+			setTimeout( function() {
+				if ( 'gallery' === type ) {
+					$( event.target ).closest( `.${iconic_woothumbs.vars.slide_class}` ).find( '.iconic-woothumbs-loading-overlay' ).hide();
+				} else {
+					$( event.target ).closest( '.iconic-woothumbs-fullscreen-video-wrapper' ).find( '.iconic-woothumbs-loading-overlay' ).hide();
+				}
+
+				// Maybe play the instance.
+				iconic_woothumbs.plyr_autoplay_current_instance( type, product_object );
+			}, 500 );
+		},
+
+		/**
+		 * Destroy all current Plyr instances in either the
+		 * `gallery` or `fullscreen` contexts.
+		 *
+		 * Due to the fact that the `destroy()` method executes
+		 * an async callback when the operation has completed,
+		 * we have to leverage a Promise here to ensure that
+		 * whatever we execute immediately after `destroy()` can
+		 * be done in the knowledge that all of the instances
+		 * have been properly destroyed.
+		 *
+		 * @param type
+		 */
+		  plyr_destroy: function( type ) {
+			return new Promise( function( resolve, reject ) {
+				if ( ! window.iconic_woothumbs_plyr || ! type || ! window.iconic_woothumbs_plyr[ type ].length ) {
+					resolve();
+				}
+
+				var destroy_counter = 0;
+
+				// Note: the plyr instance gets deleted from the
+				// window.iconic_woothumbs_plyr[type] array in the
+				// `plyr_setup` method.
+				function maybe_resolve() {
+					destroy_counter++;
+
+					if ( destroy_counter === window.iconic_woothumbs_plyr[ type ].length ) {
+						resolve();
+					}
+				}
+
+				window.iconic_woothumbs_plyr[ type ].forEach( function( plyr_instance, index ) {
+					plyr_instance.destroy( maybe_resolve );
+				});
+			});
+		},
+
+		/**
+		 * Destroy and Re-init Plyr instances in either the
+		 * `gallery` or `fullscreen` contexts.
+		 *
+		 * @param plyr_reset
+		 */
+		plyr_reset: function( type, product_object, new_type = false ) {
+			if ( ! type || ! product_object ) {
+				return;
+			}
+
+			var setup_type = ( new_type ) ? new_type : type;
+			iconic_woothumbs.plyr_destroy( type )
+			.then( iconic_woothumbs.plyr_setup( setup_type, product_object ) );
+		},
+
+		/**
+		 * Pause Plyr instances in either the
+		 * `gallery` or `fullscreen` contexts.
+		 *
+		 * @param type
+		 * @param playing_instance
+		 */
+		plyr_pause: function( type, playing_instance ) {
+			if ( ! window.iconic_woothumbs_plyr || ! window.iconic_woothumbs_plyr[ type ].length || ! type || ! playing_instance ) {
+				return false;
+			}
+
+			window.iconic_woothumbs_plyr[ type ].forEach( function( plyr_instance, index ) {
+				if ( playing_instance !== plyr_instance ) {
+					plyr_instance.pause();
+				}
+			} );
+
+			return true;
+		},
+
+		/**
+		 * Check to see if we have videos in either a
+		 * `gallery` or `fullscreen` context.
+		 *
+		 * @param type
+		 * @param product_object
+		 */
+		plyr_has_videos_of_type: function( type, product_object ) {
+			if ( ! type || ! product_object ) {
+				return false;
+			}
+
+			if ( iconic_woothumbs.vars.plyr_gallery_type === type ) {
+				var gallery_videos = iconic_woothumbs.plyr_get_gallery_videos( product_object.images_wrap );
+				return ( gallery_videos && gallery_videos.length );
+			} else if ( iconic_woothumbs.vars.plyr_fullscreen_type === type ) {
+				var photoswipe_videos = iconic_woothumbs.plyr_get_photoswipe_videos();
+				return ( photoswipe_videos && photoswipe_videos.length ) ;
+			} else {
+				return false;
+			}
+		},
+
+		/**
+		 * Get a video from a WooThumbs slide.
+		 *
+		 * @param container
+		 */
+		 plyr_get_gallery_videos: function( container ) {
+			if ( ! container ) {
+				return false;
+			}
+
+			var $video = $( container ).find( iconic_woothumbs.vars.plyr_video_selector );
+
+			return ( $video.length ) ? $video : false;
+		},
+
+		/**
+		 * Get a video from the current PhotoSwipe item.
+		 */
+		 plyr_get_photoswipe_videos: function() {
+			var $container = $( window.iconic_woothumbs_photoswipe.currSlide.holderElement );
+
+			if ( ! $container.length ) {
+				return false;
+			}
+
+			var $videos = $container.find( iconic_woothumbs.vars.plyr_video_selector );
+
+			return ( $videos.length ) ? $videos : false;
+		},
+
+		/**
+		 * Get the current instance of Plyr and
+		 * automatically PLAY it.
+		 *
+		 * For non-slider layouts this will play
+		 * the first instance only e.g. the first
+		 * video in a series of stacked slides.
+		 *
+		 * @param type
+		 * @param product_object
+		 */
+		plyr_autoplay_current_instance: function( type, product_object ) {
+			if ( ! iconic_woothumbs.vars.plyr_autoplay || ! type || ! product_object ) {
+				return;
+			}
+
+			var $container = iconic_woothumbs.plyr_get_instance_container( type,product_object );
+
+			if ( ! $container.length ) {
+				return;
+			}
+
+			var instance = iconic_woothumbs.plyr_pluck_instance( type, $container );
+
+			if ( ! instance ) {
+				return;
+			}
+
+			setTimeout( function() {
+				instance.muted = true; // We must mute before playblack for Chrome/Webkit autoplay.
+				instance.play();
+			}, 250 );
+		},
+
+		/**
+		 * Get the current instance of Plyr and
+		 * automatically STOP it.
+		 *
+		 * For non-slider layouts this will stop
+		 * the first instance only e.g. the first
+		 * video in a series of stacked slides.
+		 *
+		 * @param type
+		 * @param product_object
+		 */
+		plyr_pause_current_instance: function( type, product_object ) {
+			if ( ! type || ! product_object ) {
+				return;
+			}
+
+			var $container = iconic_woothumbs.plyr_get_instance_container( type, product_object );
+
+			if ( ! $container.length ) {
+				return;
+			}
+
+			var instance = iconic_woothumbs.plyr_pluck_instance( type, $container );
+
+			if ( ! instance ) {
+				return;
+			}
+
+			instance.pause();
+		},
+
+		/**
+		 * Pluck a plyr instance from a collection
+		 * based on a supplied DOM element.
+		 *
+		 * @param type
+		 * @param container
+		 */
+		plyr_pluck_instance: function( type, container ) {
+			if ( ! window.iconic_woothumbs_plyr || ! type || ! container ) {
+				return false;
+			}
+
+			var found_instance = false;
+
+			window.iconic_woothumbs_plyr[ type ].forEach( instance => {
+				for ( var key in instance ) {
+					if ( instance.hasOwnProperty( key ) && key === 'elements' ) {
+						if ( instance[ key ].container === container[0] ) {
+							found_instance = instance;
+						}
+					}
+				}
+			});
+
+			return found_instance;
+		},
+
+		/**
+		 * Get a container element associated with a
+		 * specific Plyr instance.
+		 *
+		 * @param type
+		 * @param product_object
+		 */
+		plyr_get_instance_container: function( type, product_object ) {
+			if ( ! type || ! product_object ) {
+				return false;
+			}
+
+			var $container;
+
+			if ( iconic_woothumbs.vars.plyr_gallery_type === type ) {
+				if ( iconic_woothumbs.vars.is_slider_layout ) {
+					$container = product_object.images.find( '.slick-current .plyr' );
+				} else {
+					// We only autoplay the first video, as that makes sense given that it
+					// will be associated with the featured image, and autoplaying multiple
+					// videos at once is very poor UX.
+					$container = product_object.images.find( '.plyr:first' );
+				}
+			} else if ( iconic_woothumbs.vars.plyr_fullscreen_type === type ) {
+				$container = $( window.iconic_woothumbs_photoswipe.currSlide.holderElement ).find( '.plyr' );
+			}
+
+			return $container;
 		}
-
 	};
 
-	$( window ).on( 'load', function(e) {
-		iconic_woothumbs.on_load(e);
-	});
-	$( 'body' ).on( 'jckqv_open', function(e) {
-		iconic_woothumbs.on_load(e);
-	});
+	$( window ).on( 'load', function( e ) {
+		iconic_woothumbs.on_load( e );
+	} );
+	$( 'body' ).on( 'jckqv_open', function( e ) {
+		iconic_woothumbs.on_load( e );
+	} );
 
 	// Compatibility with the "quick view" functionality provided
 	// by the JetWoo Popup plugin for Elementor.
-	$( window ).on( 'jet-popup/show-event/after-show', function(e) {
-		iconic_woothumbs.on_load(e);
-	});
+	$( window ).on( 'jet-popup/show-event/after-show', function( e ) {
+		iconic_woothumbs.on_load( e );
+	} );
 	$( window ).on( 'resize', iconic_woothumbs.on_resize );
-	$( document ).on( 'fullscreenchange webkitfullscreenchange', iconic_woothumbs.on_fullscreenchange );
-
 }( jQuery, document ));
+
 /*
 *	ImageZoom - Responsive jQuery Image Zoom Pluin
 *   version: 1.1.1
@@ -2366,7 +3232,6 @@ base.scale = scale;
 
 		base.changeImage = function(elementImgSrc,bigImgSrc)
 		{
-			//console.log(this.$el);
 			this.$el.attr('src',elementImgSrc);
 			this.isBigImageReady=-1;
 			this.options.bigImageSrc = typeof bigImgSrc ==='string'?bigImgSrc:elementImgSrc;
@@ -2400,7 +3265,6 @@ base.scale = scale;
 			{
 				window.clearTimeout(base.animateTimer);
 				base.animateTimer = null;
-				//console.log('clear timer');
 				return;
 			}
 			else

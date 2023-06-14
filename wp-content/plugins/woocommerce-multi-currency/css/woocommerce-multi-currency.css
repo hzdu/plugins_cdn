@@ -233,8 +233,11 @@
   -ms-transition: all 0.25s ease;
   -o-transition: all 0.25s ease;
   left: 0;
-  max-height: 90vh;
+  max-height: 60vh;
   overflow: auto;
+}
+.woocommerce-multi-currency.wmc-price-switcher .wmc-sub-currency.wmc-show-up {
+  max-height: 30vh;
 }
 .woocommerce-multi-currency.wmc-price-switcher img {
   display: inline-block;
@@ -248,6 +251,46 @@
 .woocommerce-multi-currency.wmc-price-switcher .wmc-currency a {
   display: flex;
   line-height: 2;
+}
+
+/*Scrollbar - firefox does not support scrollbar*/
+.woocommerce-multi-currency.wmc-shortcode[data-layout=plain_vertical] .wmc-sub-currency::-webkit-scrollbar,
+.woocommerce-multi-currency.wmc-shortcode[data-layout=layout7] .wmc-sub-currency::-webkit-scrollbar,
+.woocommerce-multi-currency.wmc-price-switcher .wmc-sub-currency::-webkit-scrollbar {
+  width: 7px;
+}
+
+.woocommerce-multi-currency.wmc-shortcode[data-layout=plain_vertical] .wmc-sub-currency::-webkit-scrollbar-track,
+.woocommerce-multi-currency.wmc-shortcode[data-layout=layout7] .wmc-sub-currency::-webkit-scrollbar-track,
+.woocommerce-multi-currency.wmc-price-switcher .wmc-sub-currency::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.woocommerce-multi-currency.wmc-shortcode[data-layout=plain_vertical] .wmc-sub-currency::-webkit-scrollbar-thumb,
+.woocommerce-multi-currency.wmc-shortcode[data-layout=layout7] .wmc-sub-currency::-webkit-scrollbar-thumb,
+.woocommerce-multi-currency.wmc-price-switcher .wmc-sub-currency::-webkit-scrollbar-thumb {
+  background: #cecece;
+  border-radius: 20px;
+}
+
+.woocommerce-multi-currency.wmc-shortcode[data-layout=plain_vertical] .wmc-sub-currency::-webkit-scrollbar-thumb:hover,
+.woocommerce-multi-currency.wmc-shortcode[data-layout=layout7] .wmc-sub-currency::-webkit-scrollbar-thumb:hover,
+.woocommerce-multi-currency.wmc-price-switcher .wmc-sub-currency::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+.woocommerce-multi-currency.wmc-shortcode[data-layout=plain_vertical] .wmc-sub-currency,
+.woocommerce-multi-currency.wmc-shortcode[data-layout=layout4] .wmc-sub-currency,
+.woocommerce-multi-currency.wmc-shortcode[data-layout=layout5] .wmc-sub-currency,
+.woocommerce-multi-currency.wmc-shortcode[data-layout=layout7] .wmc-sub-currency,
+.woocommerce-multi-currency.wmc-shortcode[data-layout=layout8] .wmc-sub-currency {
+  max-height: 40vh;
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+  scrollbar-width: none;
+  height: fit-content;
 }
 
 .woocommerce-multi-currency.wmc-price-switcher:not(.wmc-currency-trigger-click):hover .wmc-sub-currency {
@@ -365,7 +408,6 @@
   display: flex;
   font-weight: 700;
   border: 1px solid #e5e5e5;
-  line-height: 1;
   width: calc(100% + 2px);
 }
 .woocommerce-multi-currency.wmc-shortcode.plain-vertical .wmc-currency-wrapper .wmc-sub-currency {
@@ -381,6 +423,7 @@
   -o-transition: all 0.25s ease;
   display: none;
   border-top: none;
+  z-index: 99;
 }
 .woocommerce-multi-currency.wmc-shortcode.plain-vertical .wmc-currency-wrapper .wmc-sub-currency .wmc-currency {
   position: relative;
@@ -423,8 +466,19 @@
   display: block;
 }
 
+.woocommerce-multi-currency.wmc-shortcode.plain-vertical.layout4 .wmc-currency-wrapper .wmc-sub-currency::-webkit-scrollbar {
+  width: 0;
+}
+
 .woocommerce-multi-currency.wmc-shortcode.plain-vertical.layout5 .wmc-currency-wrapper span.wmc-current-currency span {
   padding: 0 5px;
+}
+.woocommerce-multi-currency.wmc-shortcode.plain-vertical.layout5 .wmc-currency-wrapper .wmc-sub-currency::-webkit-scrollbar {
+  width: 0;
+}
+
+.woocommerce-multi-currency.wmc-shortcode[data-layout=layout8] .wmc-currency-wrapper .wmc-sub-currency::-webkit-scrollbar {
+  width: 0;
 }
 
 .woocommerce-multi-currency.wmc-shortcode.plain-horizontal.layout6 .wmc-currency {
@@ -474,7 +528,7 @@
 }
 
 .wmc-sub-currency .wmc-hidden {
-  display: none;
+  display: none !important;
 }
 
 .woocommerce-multi-currency.layout10 .wmc-text {
@@ -773,7 +827,6 @@
     margin-left: auto;
     margin-right: auto;
   }
-
   .woocommerce-multi-currency.wmc-sidebar .wmc-title {
     margin-left: auto;
     margin-right: auto;
@@ -784,8 +837,7 @@
   .woocommerce-multi-currency.wmc-sidebar .wmc-list-currencies .wmc-sidebar-open {
     display: flex;
   }
-
-  .woocommerce-multi-currency.wmc-sidebar.wmc-hover {
+  .woocommerce-multi-currency.wmc-sidebar.wmc-hover, .woocommerce-multi-currency.wmc-sidebar.wmc-hover.wmc-mobile-no-collapse {
     width: 100%;
     top: 0;
     right: 0;
@@ -795,7 +847,7 @@
     padding: 10% 0;
     background: rgba(255, 255, 255, 0.8);
   }
-  .woocommerce-multi-currency.wmc-sidebar.wmc-hover .wmc-list-currencies {
+  .woocommerce-multi-currency.wmc-sidebar.wmc-hover .wmc-list-currencies, .woocommerce-multi-currency.wmc-sidebar.wmc-hover.wmc-mobile-no-collapse .wmc-list-currencies {
     overflow: auto;
     width: 100%;
     margin: 0 auto;
@@ -804,13 +856,12 @@
     top: 50%;
     max-height: 100%;
   }
-  .woocommerce-multi-currency.wmc-sidebar.wmc-hover .wmc-list-currencies .wmc-sidebar-open {
+  .woocommerce-multi-currency.wmc-sidebar.wmc-hover .wmc-list-currencies .wmc-sidebar-open, .woocommerce-multi-currency.wmc-sidebar.wmc-hover.wmc-mobile-no-collapse .wmc-list-currencies .wmc-sidebar-open {
     display: none;
   }
-  .woocommerce-multi-currency.wmc-sidebar.wmc-hover .wmc-list-currencies .wmc-currency {
+  .woocommerce-multi-currency.wmc-sidebar.wmc-hover .wmc-list-currencies .wmc-currency, .woocommerce-multi-currency.wmc-sidebar.wmc-hover.wmc-mobile-no-collapse .wmc-list-currencies .wmc-currency {
     display: flex;
   }
-
   .woocommerce-multi-currency.wmc-sidebar.wmc-mobile-no-collapse .wmc-list-currencies .wmc-currency {
     display: inline-block;
   }
@@ -821,6 +872,56 @@
 /*Remove duplicated regular price of LearnPress courses for some themes*/
 .course-origin-price + .origin-price {
   display: none;
+}
+
+.wmc-cache-loading .woocommerce-Price-amount.amount {
+  position: relative;
+}
+.wmc-cache-loading .woocommerce-Price-amount.amount:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #f0f0f0;
+}
+.wmc-cache-loading .woocommerce-Price-amount.amount:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  width: 10px;
+  bottom: 0;
+  background-color: #fefefe;
+  opacity: 0.5;
+  left: 0;
+  filter: blur(1px);
+  animation: waiting_bar_effect 1s infinite;
+}
+
+@keyframes waiting_bar_effect {
+  0% {
+    left: 0;
+  }
+  100% {
+    left: 100%;
+  }
+}
+.wmc-convertor-row {
+  margin-bottom: 1em;
+}
+.wmc-convertor-row input, .wmc-convertor-row select {
+  line-height: 1.5;
+  padding: 7px;
+  width: 100%;
+}
+
+.wmc-currency-convertor-result {
+  font-weight: bold;
+}
+
+.woocommerce-shipping-destination {
+  clear: both;
 }
 
 /*# sourceMappingURL=woocommerce-multi-currency.css.map */

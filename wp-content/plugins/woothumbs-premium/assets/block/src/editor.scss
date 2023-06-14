@@ -1,0 +1,121 @@
+/**
+ * Styles for the Editor.
+ */
+$iconic-black: #23282d;
+$iconic-white: #fff;
+$wp-grey: #757575;
+$wp-blue: #0085ba;
+
+.wp-block-iconic-woothumbs-block {
+	margin-bottom: 1.41575em;
+	margin-top: 0;
+
+	.iconic-woothumbs-block-editor-placeholder {
+		.iconic-woothumbs-block-editor-placeholder__heading,
+		.iconic-woothumbs-block-editor-placeholder__text {
+			display: none;
+		}
+	}
+
+	.iconic-woothumbs-block-editor-placeholder__image-wrap {
+		max-width: 300px;
+		margin: 0 auto;
+		position: relative;
+	}
+
+	.iconic-woothumbs-block-editor-placeholder__spinner-image {
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		margin: auto;
+	}
+
+	/* When the block is selected */
+	.iconic-woothumbs-block-editor-placeholder--selected {
+		border: 1px solid $iconic-black;
+		box-sizing: border-box;
+		color: $iconic-black;
+
+		.iconic-woothumbs-block-editor-placeholder__heading,
+		.iconic-woothumbs-block-editor-placeholder__text {
+			display: block;
+		}
+
+		.iconic-woothumbs-block-editor-placeholder__heading {
+			background-color: $iconic-black;
+			color: $iconic-white;
+			font-size: 1.25em;
+			font-weight: bold;
+			margin: 0 0 20px 0;
+			padding: 15px 20px;
+			text-align: center;
+		}
+
+		.iconic-woothumbs-block-editor-placeholder__text {
+			font-size: 0.8125em;
+			margin: 0;
+			padding: 13px 20px;
+			text-align: center;
+		}
+
+		.iconic-woothumbs-block-editor-placeholder__image-wrap {
+			box-sizing: border-box;
+		}
+
+		.iconic-woothumbs-block-editor-placeholder__image-wrap + .iconic-woothumbs-block-editor-placeholder__text:not(:last-child) {
+			padding-bottom: 0;
+		}
+
+		.iconic-woothumbs-block-editor-placeholder__base {
+			margin: 0 auto;
+			max-width: 500px;
+			padding: 0 20px 20px 20px;
+
+			.components-base-control__label {
+				text-align: center;
+				width: 100%;
+			}
+		}
+
+		.iconic-woothumbs-block-editor-placeholder__button-wrap {
+			text-align: center;
+		}
+	}
+
+	// React Select field.
+	.iconic-woothumbs-block-editor-placeholder__select {
+		border-radius: 2px;
+		width: 100%;
+
+		&__control {
+			margin-bottom: 20px;
+		}
+
+		&__control,
+		&__control:hover {
+			border-color: $wp-grey;
+		}
+
+		input[type="text"]:focus {
+			box-shadow: none;
+		}
+	}
+
+	.iconic-woothumbs-block-icon-cube {
+		display: inline-block;
+		fill: $iconic-white;
+		margin-right: 8px;
+		vertical-align: -3px;
+	}
+}
+
+.iconic-woothumbs-block-editor-settings-label {
+	width: 100%;
+}
+
+#iconic-woothumbs-block-editor-settings {
+	.components-base-control {
+		width: 100%;
+	}
+}

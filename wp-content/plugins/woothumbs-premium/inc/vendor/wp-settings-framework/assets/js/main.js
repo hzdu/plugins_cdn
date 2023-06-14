@@ -19,9 +19,14 @@
 			wpsf.tabs.watch();
 			wpsf.watch_submit();
 			wpsf.control_groups();
+			wpsf.setup_visual_radio_checkbox_field();
 			wpsf.importer.init();
 
-			$( document.body ).on( 'change', 'input, select, textarea', wpsf.control_groups );
+			$( document.body ).on( 
+				'change',
+				'input, select, textarea, .wpsf-visual-field input[type="radio"], .wpsf-visual-field input[type="checkbox"]', 
+				wpsf.control_groups
+			);
 		},
 
 		/**
@@ -56,12 +61,47 @@
 
 					e.preventDefault();
 				} );
+
+				$( '.wsf-internal-link' ).click( wpsf.tabs.follow_link );
 			},
 
 			/**
 			 * Is storage available.
 			 */
-			has_storage: 'undefined' !== typeof (Storage),
+			has_storage: 'undefined' !== typeof ( Storage ),
+			
+			/**
+			 * Handle click on the Internal link.
+			 * 
+			 * Format of link is #tab-id|field-id. Field-id can be skipped.
+			 * 
+			 * @param {*} e
+			 * @returns
+			 */
+			follow_link: function ( e ) {
+				e.preventDefault();
+				var href = $( this ).attr( 'href' );
+				var tab_id, parts, element_id;
+
+				if ( href.indexOf( '#tab-' ) != 0 ) {
+					return;
+				}
+
+				// has "|" i.e. element ID.
+				if ( href.indexOf( '|' ) > 0 ) {
+					parts = href.split( '|' );
+					tab_id = parts[ 0 ];
+					element_id = parts[ 1 ];
+				} else {
+					tab_id = href;
+				}
+
+				wpsf.tabs.set_active_tab( tab_id );
+
+				if ( element_id ) {
+					$('html, body').animate({scrollTop: $(`#${element_id}`).offset().top - 100 }, 'fast');
+				}
+			},
 
 			/**
 			 * Store tab ID.
@@ -82,6 +122,14 @@
 			 * @returns {boolean}
 			 */
 			get_tab_id: function() {
+				// If the tab id is specified in the URL hash, use that.
+				if ( window.location.hash ) {
+					// Check if hash is a tab.
+					if ( $( `.wpsf-nav a[href="${window.location.hash}"]` ).length ) {
+						return window.location.hash;
+					}
+				}
+
 				if ( !wpsf.tabs.has_storage ) {
 					return false;
 				}
@@ -152,8 +200,12 @@
 		setup_datepickers: function() {
 			$( document ).on( 'focus',  '.datepicker:not(.hasTimepicker)', function() {
 				var datepicker_args = $( this ).data( 'datepicker' );
-
+				// It throws an error if empty string is passed.
+				if ( '' === datepicker_args ) {
+					datepicker_args = {};
+				}
 				$( this ).datepicker( datepicker_args );
+
 			} );
 
 			// Empty altField if datepicker field is emptied.
@@ -299,11 +351,12 @@
 		control_groups: function() {
 			// If show if, hide by default.
 			$( '.show-if' ).each( function( index ) {
-				var element = $( this );
-				var parent_tag = element.parent().prop( 'nodeName' ).toLowerCase()
+				var element = $( this ),
+				    parent_tag = element.parent().prop( 'nodeName' ).toLowerCase();
 				
+
 				// Field.
-				if ( 'td' === parent_tag || 'label' === parent_tag ) {
+				if ( 'td' === parent_tag || 'label' === parent_tag || wpsf.is_visual_field( element ) ) {
 					element.closest( 'tr' ).hide();
 
 					wpsf.maybe_show_element( element, function() {
@@ -321,7 +374,7 @@
 				}
 
 				// Section.
-				if ( 'div' === parent_tag ) {
+				if ( 'div' === parent_tag && ! wpsf.is_visual_field( element ) ) {
 					element.prev().hide();
 					element.next().hide();
 					if ( element.next().hasClass( 'wpsf-section-description' ) ) {
@@ -340,11 +393,11 @@
 
 			// If hide if, show by default.
 			$( '.hide-if' ).each( function( index ) {
-				var element = $( this );
-				var parent_tag = element.parent().prop( 'nodeName' ).toLowerCase()
-				
+				var element = $( this ),
+				    parent_tag = element.parent().prop( 'nodeName' ).toLowerCase();
+
 				// Field.
-				if ( 'td' === parent_tag || 'label' === parent_tag ) {
+				if ( 'td' === parent_tag || 'label' === parent_tag || wpsf.is_visual_field( element ) ) {
 					element.closest( 'tr' ).show();
 
 					wpsf.maybe_hide_element( element, function() {
@@ -362,7 +415,7 @@
 				}
 
 				// Section.
-				if ( 'div' === parent_tag ) {
+				if ( 'div' === parent_tag && ! wpsf.is_visual_field( element ) ) {
 					element.prev().show();
 					element.next().show();
 					if ( element.next().hasClass( 'wpsf-section-description' ) ) {
@@ -378,6 +431,15 @@
 					} );
 				}
 			} );
+		},
+		
+		/**
+		 * Is the element part of a visual field?
+		 * 
+		 * @param {object} element Element.
+		 */
+		is_visual_field: function( element ) {
+			return element.parent().hasClass( 'wpsf-visual-field__item-footer' );
 		},
 
 		/**
@@ -469,7 +531,7 @@
 			var split = item.split( '===' );
 			var control = split[0];
 			var values = split[1].split( '||' );
-			var control_value = wpsf.get_controller_value( control );
+			var control_value = wpsf.get_controller_value( control, values );
 
 			if ( ! values.includes( control_value ) ) {
 				show = ! show;
@@ -481,14 +543,19 @@
 		/** 
 		 * Return the control value.
 		 */
-		get_controller_value: function( id ) {
+		get_controller_value: function( id, values ) {
 			var control = $( '#' + id );
-			
-			if ( 'checkbox' === control.attr( 'type' ) || 'radio' === control.attr( 'type' ) ) {
-				control = $( '#' + id + ':checked' );
+
+			// This may be an image_radio field.
+			if ( ! control.length && values.length ) {
+				control = $( '#' + id + '_' + values[0] );
 			}
 
-			var value = control.val();
+			if ( control.length && ( 'checkbox' === control.attr( 'type' ) || 'radio' === control.attr( 'type' ) ) ) {
+				control = ( control.is( ':checked' ) ) ? control : false;
+			}
+
+			var value = ( control.length ) ? control.val() : 'undefined';
 
 			if ( typeof value === 'undefined' ) {
 				value = '';
@@ -498,10 +565,42 @@
 		},
 
 		/**
+		 * Add checked class when radio button changes.
+		 */
+		setup_visual_radio_checkbox_field: function() {
+			var checked_class = 'wpsf-visual-field__item--checked';
+
+			$( document ).on( 'change', '.wpsf-visual-field input[type="radio"], .wpsf-visual-field input[type="checkbox"]', function() {
+				var $this = $( this ),
+					$list = $this.closest( '.wpsf-visual-field' ),
+					$list_item = $this.closest( '.wpsf-visual-field__item' ),
+					$checked = $list.find( '.' + checked_class ),
+					is_multi_select = $list.hasClass( 'wpsf-visual-field--image-checkboxes' );
+
+				if ( is_multi_select ) {
+					if ( $this.prop( 'checked' ) ) {
+						$list_item.addClass( checked_class );
+					} else {
+						$list_item.removeClass( checked_class );
+					}
+				} else {
+					$checked.removeClass( checked_class );
+					$list_item.addClass( checked_class );
+				}
+
+			} );
+		},
+
+		/**
 		 * Import related functions.
 		 */
 		importer: {
 			init: function () {
+
+				$( '.wpsf-import__button' ).click( function () {
+					$( this ).parent().find( '.wpsf-import__file_field' ).trigger( 'click' );
+				} );
+
 				$( ".wpsf-import__file_field" ).change( function ( e ) {
 					$this = $( this );
 					$td = $this.closest( 'td' );
@@ -575,6 +674,6 @@
 		}
 	};
 
-	$( document ).ready( wpsf.on_ready() );
+	$( document ).ready( wpsf.on_ready );
 
 }( jQuery, document ));

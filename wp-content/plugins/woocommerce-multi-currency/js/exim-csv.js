@@ -64,7 +64,7 @@ jQuery(document).ready(function ($) {
             processData: false,
             success: function (res) {
                 if (res.success) {
-                    if (res.data.percentage !== 100) {
+                    if (!res.data.finish) {
                         formData.append('pos', res.data.pos);
                         formData.append('row', res.data.row);
                         importCSV(formData);
