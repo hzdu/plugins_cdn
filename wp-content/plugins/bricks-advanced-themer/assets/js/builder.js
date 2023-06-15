@@ -13,6 +13,7 @@ const ADMINBRXC = {
     vueConfig: document.querySelector('.brx-body').__vue_app__.config,
     vueGlobalProp: document.querySelector('.brx-body').__vue_app__.config.globalProperties,
     cssVariables: [],
+    nestableElements: [],
     helpers: {
         // CSS Variables
         isCSSVariablesTabActive: function(option){
@@ -87,7 +88,7 @@ const ADMINBRXC = {
     },
     globalClasses: () => {
         let globalClasses = [];
-        if(bricksData["loadData"].hasOwnProperty("globalClasses")){
+        if(typeof bricksData["loadData"] !== "undefined" && bricksData["loadData"].hasOwnProperty("globalClasses")){
             bricksData["loadData"]["globalClasses"].forEach(el =>{
                 globalClasses.push(el['name']);
             })
@@ -158,7 +159,8 @@ const ADMINBRXC = {
                         '#_gridTemplateRows',
                         '#_gridAutoColumns',
                         '#_gridAutoRows',
-                        '#_objectPosition'
+                        '#_objectPosition',
+                        '[id^="raw-"]'
                     ]
                 }
             ],
@@ -339,7 +341,8 @@ const ADMINBRXC = {
         var currentFocus = 0;
         if (inp.dataset.autocomplete === "true") return;
         inp.setAttribute("data-autocomplete", "true");
-        inp.addEventListener("input", function(e) {
+        inp.addEventListener("keyup", function(e) {
+            if (e.keyCode == 40 || e.keyCode == 38 || e.keyCode == 13) return;
             var a, b, i, j, ul, val = this.value;
             closeAllLists();
             if (!val) { return false;}
@@ -356,7 +359,7 @@ const ADMINBRXC = {
                 b = document.createElement("li");
                 b.innerHTML += arr[i];
                 b.innerHTML += "<input type='hidden' value='" + arr[i] + "'>";
-                    b.addEventListener("click", function(e) {
+                b.addEventListener("click", function(e) {
                     inp.value = this.getElementsByTagName("input")[0].value;
                     const event = new Event('input', {
                         bubbles: true,
@@ -365,6 +368,26 @@ const ADMINBRXC = {
                     
                     inp.dispatchEvent(event);
                     closeAllLists();
+                });
+                b.addEventListener("mouseenter", function(e) {
+                    inp.setAttribute('data-autocomplete-initial', inp.value);
+                    inp.value = this.getElementsByTagName("input")[0].value;
+                    const event = new Event('input', {
+                        bubbles: false,
+                        cancelable: true,
+                    });
+                    
+                    inp.dispatchEvent(event);
+                });
+                b.addEventListener("mouseleave", function(e) {
+                    inp.value = inp.dataset.autocompleteInitial;
+                    const event = new Event('input', {
+                        bubbles: false,
+                        cancelable: true,
+                    });
+                    
+                    inp.dispatchEvent(event);
+                    inp.removeAttribute('data-autocomplete-initial');
                 });
                 ul.appendChild(b);
               }
@@ -381,9 +404,29 @@ const ADMINBRXC = {
             if (e.keyCode == 40) {
               currentFocus++;
               addActive(x);
+              const active = Array.from(x).find(el => el.classList.contains('selected'));
+              const value = active.querySelector('input[type="hidden"]').value;
+              inp.value = value;
+              const event = new Event('input', {
+                bubbles: false,
+                cancelable: true,
+              });
+            
+              inp.dispatchEvent(event);
+
             } else if (e.keyCode == 38) { 
               currentFocus--;
               addActive(x);
+              const active = Array.from(x).find(el => el.classList.contains('selected'));
+              const value = active.querySelector('input[type="hidden"]').value;
+              inp.value = value;
+              const event = new Event('input', {
+                bubbles: false,
+                cancelable: true,
+              });
+            
+              inp.dispatchEvent(event);
+
             } else if (e.keyCode == 13) {
               e.preventDefault();
               if (currentFocus > -1) {
@@ -444,7 +487,7 @@ const ADMINBRXC = {
         }
         return result;
     },
-    openModal: function(target, id){
+    openModal: function(target, id, focus = false){
         const self = this;
         const wrapper = document.querySelector(id);
         wrapper.classList.add('active');
@@ -452,6 +495,7 @@ const ADMINBRXC = {
         document.addEventListener('keydown', function(e) {
             (e.key === "Escape") ? self.closeModal(target, target.target, id) : '';
         });
+        if(focus) focus.focus()
 
         // Resize
         const inner = wrapper.querySelector(`.brxc-overlay__inner`);
@@ -516,7 +560,7 @@ const ADMINBRXC = {
             }
         });
     },
-    openPlainClassesModal: function(target, classes, id){
+    openPlainClassesModal: function(target, classes, id, focus = false){
         const self = this;
         const wrapper = document.querySelector(id);
         const finalClasses = []
@@ -529,6 +573,12 @@ const ADMINBRXC = {
         document.addEventListener('keydown', function(e) {
             (e.key === "Escape") ? self.closeModal(target, target.target, id) : '';
         });
+        setTimeout(() => {
+            focus.focus();
+            focus.setCursor(focus.lineCount(), 0);
+        }, 50)
+    
+
 
     },
     openAIModal: function(prefix, global = false, target, id){
@@ -556,7 +606,6 @@ const ADMINBRXC = {
                 });
                 target.dispatchEvent(event);
                 self.closeModal(target, target.target, id);
-                //self.showMessage('AI Content Inserted')
                 self.vueGlobalProp.$_showMessage('AI Content Inserted');
             })
             const replaceBtn = document.querySelector('#brxcopenAIOverlay #' + prefix + 'ReplaceContent');
@@ -569,7 +618,6 @@ const ADMINBRXC = {
                 });
                 target.dispatchEvent(event);
                 self.closeModal(target, target.target, id);
-                //self.showMessage('AI Content Inserted')
                 self.vueGlobalProp.$_showMessage('AI Content Inserted');
             })
 
@@ -670,6 +718,7 @@ const ADMINBRXC = {
     },
     importedClasses: function(){
         const self = this;
+        let settingsHaveChanged = false;
         let existingClassesId = [];
         const globalClasses = self.vueGlobalProp.$_state.globalClasses;
         const importedClasses = self.globalSettings.importedClasses;
@@ -686,6 +735,8 @@ const ADMINBRXC = {
             if (importedClassesToCreate.length > 0){
                 importedClassesToCreate.forEach( e => {
                     self.generateGlobalClass('brxc_imported_',e);
+                    settingsHaveChanged = true;
+
                 })
             }
         }
@@ -694,19 +745,27 @@ const ADMINBRXC = {
 
         for (let i = 0; i < globalClasses.length; i++) { 
             const obj = globalClasses[i]; 
-            const isImported = obj.name.includes('brxc_imported');  
-            isIncluded = importedClasses.includes(obj.name); 
+            const isImported = obj.id.includes('brxc_imported');  
+            const isIncluded = importedClasses.includes(obj.name);
             if (isImported && isIncluded) {
                 continue;
             } 
             if (isImported && !isIncluded) { 
-                self.vueGlobalProp.$_state.globalClasses.splice(i, 1); 
+                self.vueGlobalProp.$_state.globalClasses.splice(i, 1);
+                settingsHaveChanged = true;
                 i--; 
             }
-        } 
+        }
+
+        // Update DB
+        if (settingsHaveChanged === true) {
+            self.vueGlobalProp.$_state.unsavedChanges.push('globalClasses');
+            self.vueGlobalProp.$_state.unsavedChanges.push('globalClassesLocked')
+        }
     },
     importedGrids: function(){
         const self = this;
+        let settingsHaveChanged = false;
         let existingClassesId = [];
         const globalClasses = self.vueGlobalProp.$_state.globalClasses;
         const grids = self.globalSettings.gridClasses;
@@ -723,6 +782,7 @@ const ADMINBRXC = {
             if (gridsToCreate.length > 0){
                 gridsToCreate.forEach( e => {
                     self.generateGlobalClass('brxc_grid_', e);
+                    settingsHaveChanged = true;
                 })
             }
         }
@@ -731,16 +791,23 @@ const ADMINBRXC = {
 
         for (let i = 0; i < globalClasses.length; i++) { 
             const obj = globalClasses[i]; 
-            const isGrid = obj.name.includes('brxc_grid_');  
-            isIncluded = grids.includes(obj.name); 
+            const isGrid = obj.id.includes('brxc_grid_');  
+            const isIncluded = grids.includes(obj.name); 
             if (isGrid && isIncluded) {
                 continue;
             } 
             if (isGrid && !isIncluded) { 
-                self.vueGlobalProp.$_state.globalClasses.splice(i, 1); 
+                self.vueGlobalProp.$_state.globalClasses.splice(i, 1);
+                settingsHaveChanged = true;
                 i--; 
             }
-        } 
+        }
+
+        // Update DB
+        if (settingsHaveChanged === true) {
+            self.vueGlobalProp.$_state.unsavedChanges.push('globalClasses');
+            self.vueGlobalProp.$_state.unsavedChanges.push('globalClassesLocked')
+        }
 
         
     },
@@ -780,7 +847,7 @@ const ADMINBRXC = {
     resetClasses: function(target){
         const self = this;
         self.savePlainClasses(target, '');
-        if (self.vueGlobalProp.$_state.activeElement.settings.hasOwnProperty('_cssGlobalClasses')) delete self.vueGlobalProp.$_state.activeElement.settings._cssGlobalClasses;
+        if (typeof self.vueGlobalProp.$_state.activeElement.settings !== "undefined" && self.vueGlobalProp.$_state.activeElement.settings.hasOwnProperty('_cssGlobalClasses')) delete self.vueGlobalProp.$_state.activeElement.settings._cssGlobalClasses;
         self.closeModal(target, target.target, '#brxcPlainClassesOverlay');
         self.vueGlobalProp.$_showMessage('Classes reset successfully!');
     },
@@ -1559,12 +1626,19 @@ const ADMINBRXC = {
         li.appendChild(span);
         toolbar.insertBefore(li,insertBeforeEl);
     },
-    addIconToFields: (tag, classes, attr, attrValue, balloonText, balloonPosition, onClickFunction, dataUsed, htmlEl, target, appendMethod) => {
+    addIconToFields: (tag, classes, attrArr, balloonText, balloonPosition, onClickFunction, dataUsed, htmlEl, target, appendMethod) => {
         const li = document.createElement(tag);
         li.classList.add(...classes.split(' '));
         li.setAttribute('data-balloon', balloonText);
         li.setAttribute('data-balloon-pos',balloonPosition);
-        if (attr) li.setAttribute(attr, attrValue);
+        if(attrArr && attrArr.length > 0){
+            attrArr.forEach(attr => {
+                const label = attr[0];
+                const value = attr[1];
+                li.setAttribute(label, value);
+            })
+        }
+        // if (attr) li.setAttribute(attr, attrValue);
         li.setAttribute('onclick', onClickFunction);
         (dataUsed === true) ? li.setAttribute('data-used', 0) : '';
         li.innerHTML = htmlEl;
@@ -1578,8 +1652,6 @@ const ADMINBRXC = {
     },
     addDynamicVariableIcon: function() {
         const self = this;
-        if(self.vueGlobalProp.$_state.activePanel !== "element") return;
-
         setTimeout(() => {
             self.fields['CSSVariabe']['includedFields'].forEach(field => {
                 let elements;
@@ -1606,7 +1678,6 @@ const ADMINBRXC = {
                         'div',
                         'brxc-toggle-modal',
                         false,
-                        false,
                         'Select CSS Variable',
                         'top-right',
                         'ADMINBRXC.openModal(event.target.previousSibling, "#brxcVariableOverlay" )',
@@ -1617,7 +1688,7 @@ const ADMINBRXC = {
                     );
                 });
             });
-        }, 50);
+        }, 100);
     },
     setTextShortcutsWrapper: function(){
         const self = this;
@@ -1676,7 +1747,6 @@ const ADMINBRXC = {
                             'div',
                             'brxc-toggle-lorem',
                             false,
-                            false,
                             'Add Dummy Content',
                             'top-right',
                             'ADMINBRXC.addLorem(event.target.parentElement.parentElement.querySelector("textarea,input"), this)',
@@ -1721,7 +1791,6 @@ const ADMINBRXC = {
                     self.addIconToFields(
                         'div',
                         'brxc-toggle-ai',
-                        false,
                         false,
                         'Add AI Content',
                         'top-right',
@@ -1772,35 +1841,35 @@ const ADMINBRXC = {
             if(!self.vueGlobalProp.$_state.pseudoClasses.includes(':hover')) self.vueGlobalProp.$_state.pseudoClasses.push(':hover')
             const hoverIcon = document.querySelector('#bricks-panel-inner #bricks-panel-header ul.actions .brxc-header-icon__hover');
             if (!hoverIcon) {
-                wrapper ? self.addIconToFields('li','brxc-header-icon brxc-header-icon__hover', false, false, ':hover', 'bottom-right', 'ADMINBRXC.setHeaderState("li.brxc-header-icon__hover", ":hover");', true, '<span class="bricks-svg-wrapper"><i class="fas fa-arrow-pointer" title="fas fa-arrow-pointer"></i></span>', wrapper, 'child') : '';
+                wrapper ? self.addIconToFields('li','brxc-header-icon brxc-header-icon__hover', false, ':hover', 'bottom-right', 'ADMINBRXC.setHeaderState("li.brxc-header-icon__hover", ":hover");', true, '<span class="bricks-svg-wrapper"><i class="fas fa-arrow-pointer" title="fas fa-arrow-pointer"></i></span>', wrapper, 'child') : '';
             }
         }
         if (Object.values(self.globalSettings.shortcutsIcons).includes('before')){
             if(!self.vueGlobalProp.$_state.pseudoClasses.includes(':before')) self.vueGlobalProp.$_state.pseudoClasses.push(':before')
             const beforeIcon = document.querySelector('#bricks-panel-inner #bricks-panel-header ul.actions .brxc-header-icon__before');
             if (!beforeIcon) {
-                wrapper ? self.addIconToFields('li','brxc-header-icon brxc-header-icon__before', false, false, ':before', 'bottom-right', 'ADMINBRXC.setHeaderState("li.brxc-header-icon__before", ":before");', true, '<span class="bricks-svg-wrapper"><svg class="bricks-svg" viewBox="0 0 24 24"><path d="M5 20h14v-2H5v2zM19 9h-4V3H9v6H5l7 7 7-7z"></path></svg></span>', wrapper, 'child') : '';
+                wrapper ? self.addIconToFields('li','brxc-header-icon brxc-header-icon__before', false, ':before', 'bottom-right', 'ADMINBRXC.setHeaderState("li.brxc-header-icon__before", ":before");', true, '<span class="bricks-svg-wrapper"><svg class="bricks-svg" viewBox="0 0 24 24"><path d="M5 20h14v-2H5v2zM19 9h-4V3H9v6H5l7 7 7-7z"></path></svg></span>', wrapper, 'child') : '';
             }
         }
         if (Object.values(self.globalSettings.shortcutsIcons).includes('after')){
             if(!self.vueGlobalProp.$_state.pseudoClasses.includes(':after')) self.vueGlobalProp.$_state.pseudoClasses.push(':after')
             const afterIcon = document.querySelector('#bricks-panel-inner #bricks-panel-header ul.actions .brxc-header-icon__after');
             if (!afterIcon) {
-                wrapper ? self.addIconToFields('li','brxc-header-icon brxc-header-icon__after', false, false, ':after', 'bottom-right', 'ADMINBRXC.setHeaderState("li.brxc-header-icon__after", ":after");', true, '<span class="bricks-svg-wrapper"><svg class="bricks-svg" viewBox="0 0 24 24"><path d="M5 20h14v-2H5v2zM19 9h-4V3H9v6H5l7 7 7-7z"></path></svg></span>', wrapper, 'child') : '';
+                wrapper ? self.addIconToFields('li','brxc-header-icon brxc-header-icon__after', false, ':after', 'bottom-right', 'ADMINBRXC.setHeaderState("li.brxc-header-icon__after", ":after");', true, '<span class="bricks-svg-wrapper"><svg class="bricks-svg" viewBox="0 0 24 24"><path d="M5 20h14v-2H5v2zM19 9h-4V3H9v6H5l7 7 7-7z"></path></svg></span>', wrapper, 'child') : '';
             }
         }
         if (Object.values(self.globalSettings.shortcutsIcons).includes('active')){
             if(!self.vueGlobalProp.$_state.pseudoClasses.includes(':active')) self.vueGlobalProp.$_state.pseudoClasses.push(':active')
             const activeIcon = document.querySelector('#bricks-panel-inner #bricks-panel-header ul.actions .brxc-header-icon__active');
             if (!activeIcon) {
-                wrapper ? self.addIconToFields('li','brxc-header-icon brxc-header-icon__active', false, false, ':active', 'bottom-right', 'ADMINBRXC.setHeaderState("li.brxc-header-icon__active", ":active");', true, '<span class="bricks-svg-wrapper"><i class="fas fa-toggle-on" title="fas fa-toggle-on"></span>', wrapper, 'child') : '';
+                wrapper ? self.addIconToFields('li','brxc-header-icon brxc-header-icon__active', false, ':active', 'bottom-right', 'ADMINBRXC.setHeaderState("li.brxc-header-icon__active", ":active");', true, '<span class="bricks-svg-wrapper"><i class="fas fa-toggle-on" title="fas fa-toggle-on"></span>', wrapper, 'child') : '';
             }
         }
         if (Object.values(self.globalSettings.shortcutsIcons).includes('focus')){
             if(!self.vueGlobalProp.$_state.pseudoClasses.includes(':focus')) self.vueGlobalProp.$_state.pseudoClasses.push(':focus')
             const focusIcon = document.querySelector('#bricks-panel-inner #bricks-panel-header ul.actions .brxc-header-icon__focus');
             if (!focusIcon) {
-                wrapper ? self.addIconToFields('li','brxc-header-icon brxc-header-icon__focus', false, false, ':focus', 'bottom-right', 'ADMINBRXC.setHeaderState("li.brxc-header-icon__focus", ":focus");', true, '<span class="bricks-svg-wrapper"><i class="fas fa-crosshairs" title="fas fa-crosshairs"></span>', wrapper, 'child') : '';
+                wrapper ? self.addIconToFields('li','brxc-header-icon brxc-header-icon__focus', false, ':focus', 'bottom-right', 'ADMINBRXC.setHeaderState("li.brxc-header-icon__focus", ":focus");', true, '<span class="bricks-svg-wrapper"><i class="fas fa-crosshairs" title="fas fa-crosshairs"></span>', wrapper, 'child') : '';
             }
         }
     },
@@ -1836,7 +1905,7 @@ const ADMINBRXC = {
     //     if(Object.values(self.globalSettings.classFeatures)){
     //         const settingIcon = document.querySelector('#bricks-panel-inner #bricks-panel-header ul.actions .brxc-header-icon__setting');
     //         if (!settingIcon) {
-    //             wrapper ? self.addIconToFields('li','brxc-header-icon brxc-header-icon__setting', false, false, 'Filter Active Settings', 'bottom-right', 'ADMINBRXC.filterActiveSettings()', true, '<span class="bricks-svg-wrapper"><i class="fas fa-gear" title="fas fa-gear"></span>', wrapper, 'child') : '';
+    //             wrapper ? self.addIconToFields('li','brxc-header-icon brxc-header-icon__setting', false, 'Filter Active Settings', 'bottom-right', 'ADMINBRXC.filterActiveSettings()', true, '<span class="bricks-svg-wrapper"><i class="fas fa-gear" title="fas fa-gear"></span>', wrapper, 'child') : '';
     //         }
     //     }
     // },
@@ -1848,7 +1917,7 @@ const ADMINBRXC = {
         if(Object.values(self.globalSettings.classFeatures).includes("extend-classes")){
             const extendIcon = document.querySelector('#bricks-panel-inner #bricks-panel-header ul.actions .brxc-header-icon__extend');
             if (!extendIcon) {
-                wrapper ? self.addIconToFields('li','brxc-header-icon brxc-header-icon__extend', false, false, 'Extend Classes & Styles', 'bottom-right', 'ADMINBRXC.openExtendClassModal(event,"#brxcExtendModal")', true, '<span class="bricks-svg-wrapper"><svg xmlns="http://www.w3.org/2000/svg" class="bricks-svg" viewBox="0 96 960 960"><path d="M145 1022v-95h670v95H145Zm337-125L311 726l58-59 72 72V413l-72 72-58-59 171-171 172 171-59 59-72-72v326l72-72 59 59-172 171ZM145 225v-95h670v95H145Z"/></svg></span>', wrapper, 'child') : '';
+                wrapper ? self.addIconToFields('li','brxc-header-icon brxc-header-icon__extend', false, 'Extend Classes & Styles', 'bottom-right', 'ADMINBRXC.openExtendClassModal(event,"#brxcExtendModal")', true, '<span class="bricks-svg-wrapper"><svg xmlns="http://www.w3.org/2000/svg" class="bricks-svg" viewBox="0 96 960 960"><path d="M145 1022v-95h670v95H145Zm337-125L311 726l58-59 72 72V413l-72 72-58-59 171-171 172 171-59 59-72-72v326l72-72 59 59-172 171ZM145 225v-95h670v95H145Z"/></svg></span>', wrapper, 'child') : '';
             }
         }
     },
@@ -1860,7 +1929,7 @@ const ADMINBRXC = {
         if(Object.values(self.globalSettings.classFeatures).includes("find-and-replace")){
             const findReplaceIcon = document.querySelector('#bricks-panel-inner #bricks-panel-header ul.actions .brxc-header-icon__find-replace');
             if (!findReplaceIcon) {
-                wrapper ? self.addIconToFields('li','brxc-header-icon brxc-header-icon__find-replace', false, false, 'Find & Replace Styles', 'bottom-right', 'ADMINBRXC.openFindReplaceModal(event,false, "#brxcFindReplaceModal")', true, '<span class="bricks-svg-wrapper"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 96 960 960" class="bricks-svg"><path xmlns="http://www.w3.org/2000/svg" d="M138 484q18-110 103.838-182T440 230q75 0 133 30.5t98 82.5v-98h72v239H503v-71h100q-27-42-70.5-65T440 325q-72.187 0-130.093 43.5Q252 412 234 484h-96Zm674 492L615 780q-34 27-78 43.5T440.217 840Q367 840 308.5 813 250 786 209 734v93h-72V588h240v71H271q28.269 41.15 72.541 64.075Q387.812 746 440 746q72.102 0 127.444-44.853T642 588h96q-5 33-19 65.5T684 713l197 196-69 67Z"/></svg></span>', wrapper, 'child') : '';
+                wrapper ? self.addIconToFields('li','brxc-header-icon brxc-header-icon__find-replace', false, 'Find & Replace Styles', 'bottom-right', 'ADMINBRXC.openFindReplaceModal(event,false, "#brxcFindReplaceModal")', true, '<span class="bricks-svg-wrapper"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 96 960 960" class="bricks-svg"><path xmlns="http://www.w3.org/2000/svg" d="M138 484q18-110 103.838-182T440 230q75 0 133 30.5t98 82.5v-98h72v239H503v-71h100q-27-42-70.5-65T440 325q-72.187 0-130.093 43.5Q252 412 234 484h-96Zm674 492L615 780q-34 27-78 43.5T440.217 840Q367 840 308.5 813 250 786 209 734v93h-72V588h240v71H271q28.269 41.15 72.541 64.075Q387.812 746 440 746q72.102 0 127.444-44.853T642 588h96q-5 33-19 65.5T684 713l197 196-69 67Z"/></svg></span>', wrapper, 'child') : '';
             }
         }
     },
@@ -1870,10 +1939,10 @@ const ADMINBRXC = {
         const wrapper = document.querySelector('#bricks-panel-inner #bricks-panel-header ul.actions');
         if(!wrapper) return;
         const goToParentIcon = document.querySelector('#bricks-panel-inner #bricks-panel-header ul.actions .brxc-header-icon__parent');
-        if (goToParentIcon && self.vueGlobalProp.$_state.activeElement.hasOwnProperty('parent') && self.vueGlobalProp.$_state.activeElement.parent === 0) {
+        if (goToParentIcon && typeof self.vueGlobalProp.$_state.activeElement !== "undefined" && self.vueGlobalProp.$_state.activeElement.hasOwnProperty('parent') && self.vueGlobalProp.$_state.activeElement.parent === 0) {
             goToParentIcon.remove();
-        } else if (!goToParentIcon && self.vueGlobalProp.$_state.activeElement.hasOwnProperty('parent') && self.vueGlobalProp.$_state.activeElement.parent != 0) {
-            self.addIconToFields('li','brxc-header-icon brxc-header-icon__parent', false, false, 'Go to Parent Element', 'bottom-right', 'ADMINBRXC.goToParentElement()', true, '<span class="bricks-svg-wrapper"><i class="fas fa-arrow-turn-up" title="fas fa-arrow-turn-up"></span>', wrapper, 'child');
+        } else if (!goToParentIcon && typeof self.vueGlobalProp.$_state.activeElement !== "undefined" && self.vueGlobalProp.$_state.activeElement.hasOwnProperty('parent') && self.vueGlobalProp.$_state.activeElement.parent != 0) {
+            self.addIconToFields('li','brxc-header-icon brxc-header-icon__parent', false, 'Go to Parent Element', 'bottom-right', 'ADMINBRXC.goToParentElement()', true, '<span class="bricks-svg-wrapper"><i class="fas fa-arrow-turn-up" title="fas fa-arrow-turn-up"></span>', wrapper, 'child');
         }
     },
     goToParentElement: function(){
@@ -1942,29 +2011,31 @@ const ADMINBRXC = {
             const self = this;
             const activeElementID = '#brxe-' + activeId ;
             const active = x.document.querySelector(activeElementID);
-            const title = Array.from(document.querySelectorAll('div.bricks-control-popup > div.css-classes > h6')).find(el => el.textContent.includes('Other classes'));
+            const titleArr = document.querySelectorAll('div.bricks-control-popup > div.css-classes > h6');
+            if(titleArr.length < 1 ) return;
+            const title = titleArr[titleArr.length - 1];
             if(!title) return;
-            const ul = title.nextSibling;
+            const ul = title.nextElementSibling;
             const globalClasses = ul.querySelectorAll('li');
             globalClasses.forEach(singleClass => {
                 singleClass.onmouseenter = () => {    
                     const sClass = singleClass.querySelector('div.actions')
                     if (!sClass) return;
-                    const sibling = sClass.previousSibling;
+                    const sibling = sClass.previousElementSibling;
                     const name = sibling.textContent;      
                     active.classList.add(name.substring(1));
                 };
                 singleClass.onmouseleave = () => { 
                     const sClass = singleClass.querySelector('div.actions')
                     if (!singleClass) return;
-                    const sibling = sClass.previousSibling;
+                    const sibling = sClass.previousElementSibling;
                     const name = sibling.textContent;       
                     active.classList.remove(name.substring(1));
                 }
                 singleClass.onclick = () => { 
                     const sClass = singleClass.querySelector('div.actions')
                     if (!singleClass) return;
-                    const sibling = sClass.previousSibling;
+                    const sibling = sClass.previousElementSibling;
                     const name = sibling.textContent;       
                     active.classList.remove(name.substring(1));
                 }
@@ -2163,7 +2234,7 @@ const ADMINBRXC = {
      },
     codeMirrorOptions: (textarea) => {
         let builderTheme;
-        (bricksData["loadData"].hasOwnProperty("globalClasses") && bricksData["loadData"]['globalSettings'].hasOwnProperty("builderMode") && bricksData['loadData']['globalSettings']['builderMode'] === 'light') ? builderTheme = 'default' : builderTheme = 'one-dark';
+        (typeof bricksData["loadData"] !== "undefined" && bricksData["loadData"].hasOwnProperty("globalClasses") && bricksData["loadData"]['globalSettings'].hasOwnProperty("builderMode") && bricksData['loadData']['globalSettings']['builderMode'] === 'light') ? builderTheme = 'default' : builderTheme = 'one-dark';
         const obj = {
             value: textarea.value,
             mode: "css",
@@ -2410,7 +2481,7 @@ const ADMINBRXC = {
             self.vueGlobalProp.$_state.brxc.showLock = true
             self.lastElementId = self.vueGlobalProp.$_state.activeElement.id;
         }
-        const styleTab = Array.from(tabs.querySelectorAll('li')).find(el => el.textContent.includes('Style'));
+        const styleTab = tabs.querySelectorAll('li')[1];
         const icon = panel.querySelector('.disabled-style-icon');
         (icon) ? icon.remove() : '';
 
@@ -2422,7 +2493,7 @@ const ADMINBRXC = {
             panel.removeAttribute("data-has-class");
             self.vueGlobalProp.$_state.activePanelTab = "content";
             styleTab.classList.add('brxc-style-tab-disabled')
-            self.addIconToFields('div','disabled-style-icon', false, false, 'Click to unlock styling on ID level', 'top-right', false, false,  '<span class="bricks-svg-wrapper"><i class="fas fa-lock" title="fas fa-lock"></span>', tabs, 'child');
+            self.addIconToFields('div','disabled-style-icon', false, 'Click to unlock styling on ID level', 'top-right', false, false,  '<span class="bricks-svg-wrapper"><i class="fas fa-lock" title="fas fa-lock"></span>', tabs, 'child');
             const icon = panel.querySelector('.disabled-style-icon')
             icon.addEventListener('click', () =>{
                 self.vueGlobalProp.$_state.brxc.showLock = false;
@@ -2442,7 +2513,7 @@ const ADMINBRXC = {
             const icon = activeClasses.querySelector('.plain-classes-icon');
             if (icon) return;
 
-            self.addIconToFields('div','plain-classes-icon', false, false, 'Plain Classes', 'top-right', 'ADMINBRXC.openPlainClassesModal(event,document.querySelectorAll("#bricks-panel-element-classes ul.element-classes li span.name"), "#brxcPlainClassesOverlay" )', false,  "<span class='symbol counter'>P</span>", activeClasses, 'child');
+            self.addIconToFields('div','plain-classes-icon', false, 'Plain Classes', 'top-right', 'ADMINBRXC.openPlainClassesModal(event,document.querySelectorAll("#bricks-panel-element-classes ul.element-classes li span.name"), "#brxcPlainClassesOverlay", document.querySelector("#brxcPlainClassesOverlay .CodeMirror").CodeMirror )', false,  "<span class='symbol counter'>P</span>", activeClasses, 'child');
         }, 0);    
     },
     setCopyClassToClipboard: function(){
@@ -2457,7 +2528,7 @@ const ADMINBRXC = {
 
             if(!self.helpers.isClassActive()) return;
             
-            self.addIconToFields('div','copy-class-icon', false, false, 'Copy Class to Clipboard', 'top-right', `ADMINBRXC.copytoClipboardSimple('${self.vueGlobalProp.$_state.activeClass.name}','"${self.vueGlobalProp.$_state.activeClass.name}" successfully copied to clipboard')`, false,  '<span class="symbol counter"><i class="fas fa-clipboard"></i></span', activeClasses, 'child');
+            self.addIconToFields('div','copy-class-icon', false, 'Copy Class to Clipboard', 'top-right', `ADMINBRXC.copytoClipboardSimple('${self.vueGlobalProp.$_state.activeClass.name}','"${self.vueGlobalProp.$_state.activeClass.name}" successfully copied to clipboard')`, false,  '<span class="symbol counter"><i class="fas fa-clipboard"></i></span', activeClasses, 'child');
             const newIcon = activeClasses.querySelector('.copy-class-icon');
             newIcon.addEventListener('click', (e) => e.stopPropagation());
         }, 0); 
@@ -2475,7 +2546,7 @@ const ADMINBRXC = {
 
             if(!self.helpers.isClassActive()) return;
             
-            self.addIconToFields('div','clone-class-icon', false, false, 'Clone class', 'top-right', 'ADMINBRXC.cloneClass()', false,  '<span class="symbol counter"><i class="fa-solid fa-clone"></i></span', activeClasses, 'child');
+            self.addIconToFields('div','clone-class-icon', false, 'Clone class', 'top-right', 'ADMINBRXC.cloneClass()', false,  '<span class="symbol counter"><i class="fa-solid fa-clone"></i></span', activeClasses, 'child');
             const newIcon = activeClasses.querySelector('.clone-class-icon');
             newIcon.addEventListener('click', (e) => e.stopPropagation());
         }, 0); 
@@ -2493,7 +2564,7 @@ const ADMINBRXC = {
 
             if(self.helpers.isClassActive()) return;
             
-            self.addIconToFields('div','copy-id-to-class-icon', false, false, 'Export the styles to a class', 'top-right', 'ADMINBRXC.exportIDStylestoClass()', false,  "<span class='symbol counter'><i class='fas fa-file-export' title='fas fa-file-export'></i></span>", activeClasses, 'child');
+            self.addIconToFields('div','copy-id-to-class-icon', false, 'Export the styles to a class', 'top-right', 'ADMINBRXC.exportIDStylestoClass()', false,  "<span class='symbol counter'><i class='fas fa-file-export' title='fas fa-file-export'></i></span>", activeClasses, 'child');
             const newIcon = activeClasses.querySelector('.copy-id-to-class-icon');
             newIcon.addEventListener('click', (e) => e.stopPropagation());
         }, 0); 
@@ -2513,7 +2584,7 @@ const ADMINBRXC = {
 
             if (!self.helpers.isClassActive() || self.vueGlobalProp.$_isLocked(self.vueGlobalProp.$_state.activeClass.id)) return;
             
-            self.addIconToFields('div','copy-class-to-id-icon', false, false, 'Import styles from the ID element', 'top-right', '', false,  "<span class='symbol counter'><i class='fas fa-file-import' title='fas fa-file-import'></i></span>", activeClasses, 'child');
+            self.addIconToFields('div','copy-class-to-id-icon', false, 'Import styles from the ID element', 'top-right', '', false,  "<span class='symbol counter'><i class='fas fa-file-import' title='fas fa-file-import'></i></span>", activeClasses, 'child');
             const newIcon = activeClasses.querySelector('.copy-class-to-id-icon');
             newIcon.addEventListener('click', (e) => {
                 e.stopPropagation();
@@ -2543,35 +2614,28 @@ const ADMINBRXC = {
 
         const activeClass = els.querySelector('.active-class');
 
-        const inputHTML = `<div class="brxc-clone-class-wrapper"><input type="text" id="brxc-clone-class-input" size="999" autocomplete="off" spellcheck="false" placeholder="Type your class name here" value="${self.vueGlobalProp.$_state.activeClass.name}-new"><span class="bricks-svg-wrapper create" data-balloon="Clone class" data-balloon-pos="left"><!--?xml version="1.0" encoding="UTF-8"?--><svg version="1.1" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="bricks-svg"><path d="M362.7,64h-256c-23.7,0 -42.7,19.2 -42.7,42.7v298.7c0,23.5 19,42.7 42.7,42.7h298.7c23.5,0 42.7,-19.2 42.7,-42.7v-256l-85.4,-85.4Zm-106.7,341.3c-35.4,0 -64,-28.6 -64,-64c0,-35.4 28.6,-64 64,-64c35.4,0 64,28.6 64,64c0,35.4 -28.6,64 -64,64Zm64,-213.3h-213.3v-85.3h213.3v85.3Z" fill="currentColor"></path></svg></span><div>`
+        const inputHTML = `<div class="brxc-clone-class-wrapper"><input type="text" id="brxc-clone-class-input" size="999" autocomplete="off" spellcheck="false" placeholder="Type your class name here" value="${self.vueGlobalProp.$_state.activeClass.name}-new"><span class="bricks-svg-wrapper create" data-balloon="Clone class (SHIFT + ENTER)" data-balloon-pos="left"><!--?xml version="1.0" encoding="UTF-8"?--><svg version="1.1" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="bricks-svg"><path d="M362.7,64h-256c-23.7,0 -42.7,19.2 -42.7,42.7v298.7c0,23.5 19,42.7 42.7,42.7h298.7c23.5,0 42.7,-19.2 42.7,-42.7v-256l-85.4,-85.4Zm-106.7,341.3c-35.4,0 -64,-28.6 -64,-64c0,-35.4 28.6,-64 64,-64c35.4,0 64,28.6 64,64c0,35.4 -28.6,64 -64,64Zm64,-213.3h-213.3v-85.3h213.3v85.3Z" fill="currentColor"></path></svg></span><div>`
         activeClass.insertAdjacentHTML('afterend', inputHTML);
 
         const newWrapper = els.querySelector('.brxc-clone-class-wrapper')
         const newInput = newWrapper.querySelector('#brxc-clone-class-input');
         if(!newInput) return;
+        newInput.focus();
+        newInput.setSelectionRange(newInput.value.length, newInput.value.length)
 
         self.autocomplete(newInput, self.globalClasses(), false);
         const saveBtn = document.querySelector('.brxc-clone-class-wrapper .bricks-svg-wrapper.create')
-        saveBtn.addEventListener("click", function(event) {
 
+        function cloneClass(){
             // Create CSS Settings
             let settings 
-            (self.vueGlobalProp.$_state.activeClass.hasOwnProperty('settings')) ? settings = self.vueGlobalProp.$_state.activeClass.settings : settings = {};
-            // for (const [key, value] of Object.entries(self.vueGlobalProp.$_state.activeElement.settings)){
-            //     if( key === '_cssCustom'){
-            //         let id;
-            //         (self.vueGlobalProp.$_state.activeElement.settings.hasOwnProperty('_cssId')) ? id = '#' + self.vueGlobalProp.$_state.activeElement.settings._cssId : id = '#brxe-' + self.vueGlobalProp.$_state.activeElement.id;
-            //         settings[key] = value.replace(id, '.' + newInput.value.replace(/\s+/g, '-'))
-            //     } else if (self.helpers.isCSSControlKey(key)) {
-            //         settings[key] = value;
-            //     }
-            // }
+            (typeof self.vueGlobalProp.$_state.activeClass !== "undefined" && self.vueGlobalProp.$_state.activeClass.hasOwnProperty('settings')) ? settings = self.vueGlobalProp.$_state.activeClass.settings : settings = {};
             let isUnique = true;
             let idClass;
 
             const addClass = (id, message, newWrapper) =>{
                 // Add class to the element
-                if (self.vueGlobalProp.$_state.activeElement.settings.hasOwnProperty('_cssGlobalClasses')) {
+                if (typeof self.vueGlobalProp.$_state.activeElement.settings !== "undefined" && self.vueGlobalProp.$_state.activeElement.settings.hasOwnProperty('_cssGlobalClasses')) {
                     if (!self.vueGlobalProp.$_state.activeElement.settings._cssGlobalClasses.includes(id)) self.vueGlobalProp.$_state.activeElement.settings._cssGlobalClasses.push(id)
                 } else {
                     self.vueGlobalProp.$_state.activeElement.settings._cssGlobalClasses = [];
@@ -2609,6 +2673,14 @@ const ADMINBRXC = {
 
             self.vueGlobalProp.$_state.globalClasses.push(newGlobalClass);
             addClass(idClass, 'Class Successfully Created!', newWrapper)
+        }
+
+        saveBtn.addEventListener("click", function(event) {
+            cloneClass()
+        });
+
+        newInput.addEventListener('keyup', function(event) {
+            if (event.shiftKey && event.keyCode === 13) cloneClass();
         });
     },
     exportIDStylestoClass: function(){
@@ -2621,23 +2693,24 @@ const ADMINBRXC = {
 
         const activeClass = els.querySelector('.active-class');
 
-        const inputHTML = `<div class="brxc-copy-id-to-class-wrapper"><input type="text" id="brxc-copy-id-to-class-input" size="999" autocomplete="off" spellcheck="false" placeholder="Type your class name here"><span class="bricks-svg-wrapper create" data-balloon="Create/Update" data-balloon-pos="left"><!--?xml version="1.0" encoding="UTF-8"?--><svg version="1.1" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="bricks-svg"><path d="M362.7,64h-256c-23.7,0 -42.7,19.2 -42.7,42.7v298.7c0,23.5 19,42.7 42.7,42.7h298.7c23.5,0 42.7,-19.2 42.7,-42.7v-256l-85.4,-85.4Zm-106.7,341.3c-35.4,0 -64,-28.6 -64,-64c0,-35.4 28.6,-64 64,-64c35.4,0 64,28.6 64,64c0,35.4 -28.6,64 -64,64Zm64,-213.3h-213.3v-85.3h213.3v85.3Z" fill="currentColor"></path></svg></span><div>`
+        const inputHTML = `<div class="brxc-copy-id-to-class-wrapper"><input type="text" id="brxc-copy-id-to-class-input" size="999" autocomplete="off" spellcheck="false" placeholder="Type your class name here"><span class="bricks-svg-wrapper create" data-balloon="Create/Update (SHIFT + ENTER)" data-balloon-pos="left"><!--?xml version="1.0" encoding="UTF-8"?--><svg version="1.1" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="bricks-svg"><path d="M362.7,64h-256c-23.7,0 -42.7,19.2 -42.7,42.7v298.7c0,23.5 19,42.7 42.7,42.7h298.7c23.5,0 42.7,-19.2 42.7,-42.7v-256l-85.4,-85.4Zm-106.7,341.3c-35.4,0 -64,-28.6 -64,-64c0,-35.4 28.6,-64 64,-64c35.4,0 64,28.6 64,64c0,35.4 -28.6,64 -64,64Zm64,-213.3h-213.3v-85.3h213.3v85.3Z" fill="currentColor"></path></svg></span><div>`
         activeClass.insertAdjacentHTML('afterend', inputHTML);
 
         const newWrapper = els.querySelector('.brxc-copy-id-to-class-wrapper')
         const newInput = newWrapper.querySelector('#brxc-copy-id-to-class-input');
         if(!newInput) return;
+        newInput.focus();
 
         self.autocomplete(newInput, self.globalClasses(), false);
-        const saveBtn = document.querySelector('.brxc-copy-id-to-class-wrapper .bricks-svg-wrapper.create')
-        saveBtn.addEventListener("click", function(event) {
+        const saveBtn = document.querySelector('.brxc-copy-id-to-class-wrapper .bricks-svg-wrapper.create');
 
+        function exportSettings(){
             // Create CSS Settings
             const settings = {};
             for (const [key, value] of Object.entries(self.vueGlobalProp.$_state.activeElement.settings)){
                 if( key === '_cssCustom'){
                     let id;
-                    (self.vueGlobalProp.$_state.activeElement.settings.hasOwnProperty('_cssId')) ? id = '#' + self.vueGlobalProp.$_state.activeElement.settings._cssId : id = '#brxe-' + self.vueGlobalProp.$_state.activeElement.id;
+                    (typeof self.vueGlobalProp.$_state.activeElement.settings !== "undefined" && self.vueGlobalProp.$_state.activeElement.settings.hasOwnProperty('_cssId')) ? id = '#' + self.vueGlobalProp.$_state.activeElement.settings._cssId : id = '#brxe-' + self.vueGlobalProp.$_state.activeElement.id;
                     settings[key] = value.replace(id, '.' + newInput.value.replace(/\s+/g, '-'))
                 } else if (self.helpers.isCSSControlKey(key)) {
                     settings[key] = value;
@@ -2649,7 +2722,7 @@ const ADMINBRXC = {
 
             const addClass = (id, message, newWrapper) =>{
                 // Add class to the element
-                if (self.vueGlobalProp.$_state.activeElement.settings.hasOwnProperty('_cssGlobalClasses')) {
+                if (typeof self.vueGlobalProp.$_state.activeElement.settings !== "undefined" && self.vueGlobalProp.$_state.activeElement.settings.hasOwnProperty('_cssGlobalClasses')) {
                     if (!self.vueGlobalProp.$_state.activeElement.settings._cssGlobalClasses.includes(id)) self.vueGlobalProp.$_state.activeElement.settings._cssGlobalClasses.push(id)
                 } else {
                     self.vueGlobalProp.$_state.activeElement.settings._cssGlobalClasses = [];
@@ -2700,7 +2773,18 @@ const ADMINBRXC = {
 
             self.vueGlobalProp.$_state.globalClasses.push(newGlobalClass);
             addClass(idClass, 'Class Successfully Created!', newWrapper)
+        }
+
+        newInput.addEventListener('keyup', function(event) {
+            if (event.shiftKey && event.keyCode === 13) exportSettings();
         });
+
+        saveBtn.addEventListener('click', function(event) {
+                exportSettings()
+        });
+
+
+        
     },
     importIDStylestoClass: function(){
         const self = this;
@@ -2714,7 +2798,7 @@ const ADMINBRXC = {
 
             if( key === '_cssCustom'){
                 let id;
-                (self.vueGlobalProp.$_state.activeElement.settings.hasOwnProperty('_cssId')) ? id = '#' + self.vueGlobalProp.$_state.activeElement.settings._cssId : id = '#brxe-' + self.vueGlobalProp.$_state.activeElement.id;
+                (typeof self.vueGlobalProp.$_state.activeElement.settings !== "undefined" && self.vueGlobalProp.$_state.activeElement.settings.hasOwnProperty('_cssId')) ? id = '#' + self.vueGlobalProp.$_state.activeElement.settings._cssId : id = '#brxe-' + self.vueGlobalProp.$_state.activeElement.id;
                 settings[key] = value.replace(id, '.' + self.vueGlobalProp.$_activeClass._value.name);
             } else if (self.helpers.isCSSControlKey(key)) {
                 settings[key] = value;
@@ -2770,23 +2854,16 @@ const ADMINBRXC = {
                     });
                 });
             });
-        }, 50);
+        }, 100);
     },
-    closeStyleTabs: () => {
-        const tab = document.querySelector('.bricks-panel-controls ul.control-groups li.control-group.open .control-group-title');
-        if(!tab) return;
-        tab.dispatchEvent(new Event('click'));
-    },
+    previousTab: '',
     setActiveStyleTabs: function(){
         const self = this;
         const currentPanelTab = self.vueGlobalProp.$_state.activePanelTab;
-        if (currentPanelTab !== "style") return;
-        const tabWrapper = document.querySelector('#bricks-panel-tabs');
-        if (!tabWrapper) return;
-        const styleTab = Array.from(tabWrapper.querySelectorAll('li')).filter(item => item.textContent === "Style");
-        if(styleTab[0].dataset.listening) return;
-        styleTab[0].setAttribute('data-listening', true);
-        styleTab[0].setAttribute('onClick', 'ADMINBRXC.closeStyleTabs();');
+        if (currentPanelTab !== "style" || self.previousTab === currentPanelTab || self.vueGlobalProp.$_state.brxc.clickedOnLeftPanelShortcuts === true) return self.previousTab = currentPanelTab;
+        
+        self.vueGlobalProp.$_state.activePanelGroup = '';
+        self.previousTab = currentPanelTab;
     },
     setBorderAndBoxShadow: function(){
         const self = this;
@@ -2854,9 +2931,9 @@ const ADMINBRXC = {
         const wrapper = document.createElement("UL");
         wrapper.setAttribute("id", "bricks-panel-view");
         header.after(wrapper);
-        self.addIconToFields('li','brxc-header-icon brxc-header-icon__hover', false, false, '2-col', 'bottom-right', 'ADMINBRXC.setColumnNumber(2)', true, '<span class="bricks-svg-wrapper"><i class="ti-layout-column2-alt"></i></span>', wrapper, 'child');
-        self.addIconToFields('li','brxc-header-icon brxc-header-icon__hover', false, false, '3-col', 'bottom-right', 'ADMINBRXC.setColumnNumber(3)', true, '<span class="bricks-svg-wrapper"><i class="ti-layout-column3-alt"></i></span>', wrapper, 'child');
-        self.addIconToFields('li','brxc-header-icon brxc-header-icon__hover', false, false, '4-col', 'bottom-right', 'ADMINBRXC.setColumnNumber(4)', true, '<span class="bricks-svg-wrapper"><i class="ti-layout-column4-alt"></i></span>', wrapper, 'child');
+        self.addIconToFields('li','brxc-header-icon brxc-header-icon__hover', false, '2-col', 'bottom-right', 'ADMINBRXC.setColumnNumber(2)', true, '<span class="bricks-svg-wrapper"><i class="ti-layout-column2-alt"></i></span>', wrapper, 'child');
+        self.addIconToFields('li','brxc-header-icon brxc-header-icon__hover', false, '3-col', 'bottom-right', 'ADMINBRXC.setColumnNumber(3)', true, '<span class="bricks-svg-wrapper"><i class="ti-layout-column3-alt"></i></span>', wrapper, 'child');
+        self.addIconToFields('li','brxc-header-icon brxc-header-icon__hover', false, '4-col', 'bottom-right', 'ADMINBRXC.setColumnNumber(4)', true, '<span class="bricks-svg-wrapper"><i class="ti-layout-column4-alt"></i></span>', wrapper, 'child');
     },
     highlightClasses: function(){
         const self = this;
@@ -2925,6 +3002,16 @@ const ADMINBRXC = {
         els.forEach(el => el.classList.remove('active'));
         el.classList.add('active');
     },
+    hideInactivePanels: function(){
+        const self = this;
+        if(self.vueGlobalProp.$_state.activePanel !== "element") return;
+        const controlGroups = document.querySelector('.bricks-panel-controls ul.control-groups');
+        if(!controlGroups) return;
+        controlGroups.classList.remove('hidden-accordion-panels')
+        const activeGroup = Array.from(controlGroups.querySelectorAll('.control-group')).filter(el => el.classList.contains('open'));
+        if (activeGroup.length > 0 && self.vueGlobalProp.$_state.activePanelGroup !== "" && self.vueGlobalProp.$_state.activePanelTab === "style") controlGroups.classList.add('hidden-accordion-panels');
+
+    },
     panelShortcuts: function(){
         const self = this;
 
@@ -2948,14 +3035,17 @@ const ADMINBRXC = {
             activePanel.classList.add('active')
             return;
         }
-        (Object.values(self.globalSettings.shortcutsTabs).includes('layout')) ? wrapper += `<li data-panel="style" data-panel-group="_layout" data-balloon="Layout" data-balloon-pos="right" onClick="ADMINBRXC.panelSwitch(this)"><span class="bricks-svg-wrapper"><i class="fas fa-layer-group"></i></span></li>` : '';
-        (Object.values(self.globalSettings.shortcutsTabs).includes('typography')) ? wrapper += `<li data-panel="style" data-panel-group="_typography" data-balloon="Typography" data-balloon-pos="right" onClick="ADMINBRXC.panelSwitch(this)"><span class="bricks-svg-wrapper"><i class="fas fa-font"></i></span></li>` : '';
-        (Object.values(self.globalSettings.shortcutsTabs).includes('background')) ? wrapper += `<li data-panel="style" data-panel-group="_background" data-balloon="Background" data-balloon-pos="right" onClick="ADMINBRXC.panelSwitch(this)" ><span class="bricks-svg-wrapper"><i class="fas fa-image"></i></span></li>` : '';
-        (Object.values(self.globalSettings.shortcutsTabs).includes('borders')) ? wrapper += `<li data-panel="style" data-panel-group="_border" data-balloon="Border / Box Shadow" data-balloon-pos="right" onClick="ADMINBRXC.panelSwitch(this)"><span class="bricks-svg-wrapper"><i class="fas fa-border-all"></i></span></li>` : '';
-        (Object.values(self.globalSettings.shortcutsTabs).includes('gradient')) ? wrapper += `<li data-panel="style" data-panel-group="_gradient" data-balloon="Gradient / Overlay" data-balloon-pos="right" onClick="ADMINBRXC.panelSwitch(this)"><span class="bricks-svg-wrapper"><i class="fas fa-brush"></i></span></li>` : '';
-        (Object.values(self.globalSettings.shortcutsTabs).includes('transform')) ? wrapper += `<li data-panel="style" data-panel-group="_transform" data-balloon="Transform" data-balloon-pos="right" onClick="ADMINBRXC.panelSwitch(this)"><span class="bricks-svg-wrapper"><i class="fas fa-wand-magic-sparkles"></i></span></li>` : '';
-        (Object.values(self.globalSettings.shortcutsTabs).includes('css')) ? wrapper += `<li data-panel="style" data-panel-group="_css" data-balloon="CSS" data-balloon-pos="right" onClick="ADMINBRXC.panelSwitch(this)"><span class="bricks-svg-wrapper"><i class="fab fa-css3-alt"></i></span></li>` : '';
-        (Object.values(self.globalSettings.shortcutsTabs).includes('attributes')) ? wrapper += `<li data-panel="style" data-panel-group="_attributes" data-balloon="Attributes" data-balloon-pos="right" onClick="ADMINBRXC.panelSwitch(this)"><span class="bricks-svg-wrapper"><i class="fas fa-database"></i></span></li>` : '';
+        const controlGroups = bricksData.elements[self.vueGlobalProp.$_state.activeElement.name].controlGroups;
+    
+        (Object.values(self.globalSettings.shortcutsTabs).includes('layout') && typeof controlGroups !== "undefined" && controlGroups.hasOwnProperty('_layout')) ? wrapper += `<li data-panel="style" data-panel-group="_layout" data-balloon="Layout" data-balloon-pos="right" onClick="ADMINBRXC.panelSwitch(this)" onmouseenter="ADMINBRXC.vueGlobalProp.$_state.brxc.clickedOnLeftPanelShortcuts = true" onmouseleave="ADMINBRXC.vueGlobalProp.$_state.brxc.clickedOnLeftPanelShortcuts = false"><span class="bricks-svg-wrapper"><i class="fas fa-layer-group"></i></span></li>` : '';
+        (Object.values(self.globalSettings.shortcutsTabs).includes('typography') && typeof controlGroups !== "undefined" && controlGroups.hasOwnProperty('_typography')) ? wrapper += `<li data-panel="style" data-panel-group="_typography" data-balloon="Typography" data-balloon-pos="right" onClick="ADMINBRXC.panelSwitch(this)" onmouseenter="ADMINBRXC.vueGlobalProp.$_state.brxc.clickedOnLeftPanelShortcuts = true" onmouseleave="ADMINBRXC.vueGlobalProp.$_state.brxc.clickedOnLeftPanelShortcuts = false"><span class="bricks-svg-wrapper"><i class="fas fa-font"></i></span></li>` : '';
+        (Object.values(self.globalSettings.shortcutsTabs).includes('background') && typeof controlGroups !== "undefined" && controlGroups.hasOwnProperty('_background')) ? wrapper += `<li data-panel="style" data-panel-group="_background" data-balloon="Background" data-balloon-pos="right" onClick="ADMINBRXC.panelSwitch(this)" onmouseenter="ADMINBRXC.vueGlobalProp.$_state.brxc.clickedOnLeftPanelShortcuts = true" onmouseleave="ADMINBRXC.vueGlobalProp.$_state.brxc.clickedOnLeftPanelShortcuts = false" ><span class="bricks-svg-wrapper"><i class="fas fa-image"></i></span></li>` : '';
+        (Object.values(self.globalSettings.shortcutsTabs).includes('borders') && typeof controlGroups !== "undefined" && controlGroups.hasOwnProperty('_border')) ? wrapper += `<li data-panel="style" data-panel-group="_border" data-balloon="Border / Box Shadow" data-balloon-pos="right" onClick="ADMINBRXC.panelSwitch(this)" onmouseenter="ADMINBRXC.vueGlobalProp.$_state.brxc.clickedOnLeftPanelShortcuts = true" onmouseleave="ADMINBRXC.vueGlobalProp.$_state.brxc.clickedOnLeftPanelShortcuts = false"><span class="bricks-svg-wrapper"><i class="fas fa-border-all"></i></span></li>` : '';
+        (Object.values(self.globalSettings.shortcutsTabs).includes('gradient') && typeof controlGroups !== "undefined" && controlGroups.hasOwnProperty('_gradient')) ? wrapper += `<li data-panel="style" data-panel-group="_gradient" data-balloon="Gradient / Overlay" data-balloon-pos="right" onClick="ADMINBRXC.panelSwitch(this)" onmouseenter="ADMINBRXC.vueGlobalProp.$_state.brxc.clickedOnLeftPanelShortcuts = true" onmouseleave="ADMINBRXC.vueGlobalProp.$_state.brxc.clickedOnLeftPanelShortcuts = false"><span class="bricks-svg-wrapper"><i class="fas fa-brush"></i></span></li>` : '';
+        (Object.values(self.globalSettings.shortcutsTabs).includes('shapes') && typeof controlGroups !== "undefined" && controlGroups.hasOwnProperty('_shapes')) ? wrapper += `<li data-panel="style" data-panel-group="_shapes" data-balloon="Shape Dividers" data-balloon-pos="right" onClick="ADMINBRXC.panelSwitch(this)" onmouseenter="ADMINBRXC.vueGlobalProp.$_state.brxc.clickedOnLeftPanelShortcuts = true" onmouseleave="ADMINBRXC.vueGlobalProp.$_state.brxc.clickedOnLeftPanelShortcuts = false"><span class="bricks-svg-wrapper"><i class="fas fa-shapes"></i></span></li>` : '';
+        (Object.values(self.globalSettings.shortcutsTabs).includes('transform') && typeof controlGroups !== "undefined" && controlGroups.hasOwnProperty('_transform')) ? wrapper += `<li data-panel="style" data-panel-group="_transform" data-balloon="Transform" data-balloon-pos="right" onClick="ADMINBRXC.panelSwitch(this)" onmouseenter="ADMINBRXC.vueGlobalProp.$_state.brxc.clickedOnLeftPanelShortcuts = true" onmouseleave="ADMINBRXC.vueGlobalProp.$_state.brxc.clickedOnLeftPanelShortcuts = false"><span class="bricks-svg-wrapper"><i class="fas fa-wand-magic-sparkles"></i></span></li>` : '';
+        (Object.values(self.globalSettings.shortcutsTabs).includes('css') && typeof controlGroups !== "undefined" && controlGroups.hasOwnProperty('_css')) ? wrapper += `<li data-panel="style" data-panel-group="_css" data-balloon="CSS" data-balloon-pos="right" onClick="ADMINBRXC.panelSwitch(this)"><span class="bricks-svg-wrapper" onmouseenter="ADMINBRXC.vueGlobalProp.$_state.brxc.clickedOnLeftPanelShortcuts = true" onmouseleave="ADMINBRXC.vueGlobalProp.$_state.brxc.clickedOnLeftPanelShortcuts = false"><i class="fab fa-css3-alt"></i></span></li>` : '';
+        (Object.values(self.globalSettings.shortcutsTabs).includes('attributes') && typeof controlGroups !== "undefined" && controlGroups.hasOwnProperty('_attributes')) ? wrapper += `<li data-panel="style" data-panel-group="_attributes" data-balloon="Attributes" data-balloon-pos="right" onClick="ADMINBRXC.panelSwitch(this)" onmouseenter="ADMINBRXC.vueGlobalProp.$_state.brxc.clickedOnLeftPanelShortcuts = true" onmouseleave="ADMINBRXC.vueGlobalProp.$_state.brxc.clickedOnLeftPanelShortcuts = false"><span class="bricks-svg-wrapper"><i class="fas fa-database"></i></span></li>` : '';
         wrapper += `</div></div>`;
         panelHeader.insertAdjacentHTML('afterend', wrapper);
 
@@ -2968,37 +3058,49 @@ const ADMINBRXC = {
                 (active) ? active.classList.add('active') : '';
             } else if (self.vueGlobalProp.$_state.activePanelGroup) {
                 const active = Array.from(li).find(el => el.dataset.panelGroup === self.vueGlobalProp.$_state.activePanelGroup);
-                (active) ? active.classList.add('active') : '';
+                if(active){
+                    active.classList.add('active');
+                    active.addEventListener('click', () => {
+                        self.vueGlobalProp.$_state.activePanelGroup = '';
+                    })
+                }
             }
         }
+        
     },
 
-    panelShortcutsActive: function(){
+    panelShortcutsActive: function(changeBreakpoint){
         //indicator
-        const panel = document.querySelector('#bricks-panel-element');
-        if (panel.dataset.indicator === "true") return;
-        panel.setAttribute('data-indicator', 'true');
-        const indicators = panel.querySelectorAll('.bricks-panel-controls .control-group-title > .has-setting')
-        if(indicators.length < 1) {
+        //setTimeout(() => {
+        function calculateActiveTabs(){
+            const panel = document.querySelector('#bricks-panel-element');
+            const indicators = panel.querySelectorAll('.bricks-panel-controls .control-group-title > .has-setting')
+            if(indicators.length < 1) {
+                const leftTabs = panel.querySelectorAll('.brxce-panel-shortcut__container li');
+                if(leftTabs.length < 1) return;
+                leftTabs.forEach(el => {
+                    el.classList.remove('has-settings');
+                })
+                return;
+            }
+            const activeTabs = [];
+            indicators.forEach(el => {
+                activeTabs.push(el.nextElementSibling.textContent)
+            })
             const leftTabs = panel.querySelectorAll('.brxce-panel-shortcut__container li');
-            if(leftTabs.length < 1) return setTimeout(() => {panel.removeAttribute('data-indicator')}, 100);;
+            if(leftTabs.length < 1) return;
             leftTabs.forEach(el => {
                 el.classList.remove('has-settings');
+                if(activeTabs.includes(el.dataset.balloon) ) el.classList.add('has-settings');
             })
-            return setTimeout(() => {panel.removeAttribute('data-indicator')}, 100);;
         }
-        const activeTabs = [];
-        indicators.forEach(el => {
-            activeTabs.push(el.nextElementSibling.textContent)
-        })
-        const leftTabs = panel.querySelectorAll('.brxce-panel-shortcut__container li');
-        if(leftTabs.length < 1) return setTimeout(() => {panel.removeAttribute('data-indicator')}, 100);;
-        leftTabs.forEach(el => {
-            el.classList.remove('has-settings');
-            if(activeTabs.includes(el.dataset.balloon) ) el.classList.add('has-settings');
-        })
-
-        setTimeout(() => {panel.removeAttribute('data-indicator')}, 100);
+            
+        if(changeBreakpoint){
+            setTimeout(() => {calculateActiveTabs()}, 100)
+        } else {
+            calculateActiveTabs()
+        }
+        
     },
     structureElementHasStyle: function(){
         const self = this;
@@ -3049,7 +3151,6 @@ const ADMINBRXC = {
         } else if(self.helpers.isClassActive() && self.vueGlobalProp.$_state.activeClass.settings) {
             settings = self.vueGlobalProp.$_state.activeClass.settings
         } else {
-
             return;
         }
 
@@ -3106,7 +3207,7 @@ const ADMINBRXC = {
             classesIds.forEach((id) => {
                 const globalClass = self.vueGlobalProp.$_getGlobalClass(id);
     
-                if (globalClass.hasOwnProperty("settings")) {
+                if (typeof globalClass !== "undefined" && globalClass.hasOwnProperty("settings")) {
                     const settings = globalClass.settings;
     
                     for (const key in settings) {
@@ -3123,7 +3224,8 @@ const ADMINBRXC = {
         const activeElement = self.vueGlobalProp.$_state.activeElement;
         const state = self.vueGlobalProp.$_state;
     
-        if (!activeElement.hasOwnProperty("settings") ||
+        if (typeof activeElement == "undefined" ||
+            !activeElement.hasOwnProperty("settings") ||
             !activeElement.settings.hasOwnProperty("_cssGlobalClasses") ||
             (state.activeClass !== "" && 
             typeof state.activeClass !== "undefined" &&
@@ -3155,21 +3257,12 @@ const ADMINBRXC = {
     },
     breakpointIndicator: function(){
         const self = this;
-
         if(self.vueGlobalProp.$_state.activePanel !== "element") return;
 
         // Const
         const panel = document.querySelector("#bricks-panel-element");
         const groups = panel.querySelectorAll('.control-group');
 
-        function activeState(el){
-            el.classList.remove('active');
-
-            setTimeout(()=>{
-                if(self.vueGlobalProp.$_state.breakpointActive === el.dataset.device) el.classList.add('active');
-            }, 100)
-
-        }
         if(self.vueGlobalProp.$_state.brxc.breakpointActive) {
             self.vueGlobalProp.$_state.breakpointActive = self.vueGlobalProp.$_state.brxc.breakpointActive;
         }
@@ -3179,7 +3272,7 @@ const ADMINBRXC = {
         if (groups.length < 1) return;
         groups.forEach((group,index) => {
             self.vueGlobalProp.$_state.breakpoints.forEach(bp => {
-                const icon = group.querySelector('.brxc-group-icon.brxc-group-icon__' + bp.key);
+                const icon = group.querySelector(`.brxc-group-icon[data-device="${bp.key}"]`);
                 if(icon) icon.remove();
                 if(self.vueGlobalProp.$_state.brxc.groupBreakPointsValues[index].includes(bp.key)){
                     let svg = '<span class="bricks-svg-wrapper"><svg version="1.1" viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="bricks-svg"><path d="M27.744,2.5h-25.488c-0.968,0 -1.756,0.788 -1.756,1.755v17.489c0,0.968 0.788,1.755 1.756,1.755h12.244v3h-5.5c-0.276,0 -0.5,0.224 -0.5,0.5c0,0.276 0.224,0.5 0.5,0.5h12c0.276,0 0.5,-0.224 0.5,-0.5c0,-0.276 -0.224,-0.5 -0.5,-0.5h-5.5v-3h12.244c0.968,0 1.756,-0.788 1.756,-1.755v-17.489c0,-0.967 -0.788,-1.755 -1.756,-1.755Zm-1.244,18h-23v-15h23v15Z" fill="currentColor"></path></svg></span>';
@@ -3198,7 +3291,9 @@ const ADMINBRXC = {
                     if( bp.icon === "phone-portrait") {
                         svg = '<span class="bricks-svg-wrapper"><svg version="1.1" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="bricks-svg"><g stroke-linecap="round" stroke-width="32" stroke="currentColor" fill="none" stroke-linejoin="round"><path d="M176,496c-26.5094,0 -48,-21.4906 -48,-48v-384c0,-26.5094 21.4906,-48 48,-48h160c26.5094,0 48,21.4906 48,48v384c0,26.5094 -21.4906,48 -48,48Z"></path><path d="M176,16h24l-3.49691e-07,7.10543e-15c4.41828,-1.93129e-07 8,3.58172 8,8v0l1.7053e-13,2.41593e-06c1.33428e-06,8.83656 7.16345,16 16,16h64l-6.99382e-07,-1.42109e-14c8.83656,3.86258e-07 16,-7.16344 16,-16v0l1.13687e-13,1.20797e-06c-6.67141e-07,-4.41828 3.58172,-8 8,-8h24"></path></g></svg></span>';
                     }
-                    self.addIconToFields('li','brxc-group-icon brxc-group-icon__' + bp.key, 'data-device', bp.key , bp.label, 'top', false, true, svg, group.querySelector('.control-group-title'), 'child');
+                    let newClass = 'brxc-group-icon';
+                    if(self.vueGlobalProp.$_state.breakpointActive === bp.key) newClass = 'brxc-group-icon active';
+                    self.addIconToFields('li', newClass, [['data-device', bp.key]] , bp.label, 'top', false, true, svg, group.querySelector('.control-group-title'), 'child');
                 }
             })
  
@@ -3208,10 +3303,11 @@ const ADMINBRXC = {
         const groupIcons = panel.querySelectorAll('.brxc-group-icon');
         if(groupIcons.length < 1 ) return;
         groupIcons.forEach(el => {
-            activeState(el);
+            //activeState(el);
             el.addEventListener('click', (e) => {
                 e.preventDefault();
-                e.stopPropagation();
+                const parentGroup = e.target.closest('li.control-group');
+                if(parentGroup.classList.contains('open')) e.stopPropagation();
                 el.remove();
             })
             el.addEventListener('mouseenter', (e) => {
@@ -3224,7 +3320,20 @@ const ADMINBRXC = {
 
         // End of render
     },
+    setBreakpontIndicatorStatus: function(value){
+        const self = this;
+        if(self.vueGlobalProp.$_state.activePanel !== "element") return;
 
+        // Const
+        const panel = document.querySelector("#bricks-panel-element");
+        if(!panel) return;
+        const groupIcons = panel.querySelectorAll('.brxc-group-icon');
+        if (groupIcons.length < 1) return;
+        groupIcons.forEach(el => {
+            el.classList.remove('active');
+            if(value && el.dataset.device && value === el.dataset.device) el.classList.add('active');
+        })
+    },
     lockedClassIndicator: function(){
         const self = this;
         if(self.vueGlobalProp.$_state.activePanel !== "element") return;
@@ -3258,7 +3367,7 @@ const ADMINBRXC = {
     setTagInStructurePanel: function(id,tag){
         const self = this;
         const obj = self.vueGlobalProp.$_getElementObject(id);
-        if(!obj.hasOwnProperty('settings')) obj.settings = {};
+        if(typeof obj !== "undefined" && !obj.hasOwnProperty('settings')) obj.settings = {};
         obj.settings.tag = tag;
         setTimeout(() => self.showTagInStructurePanel(), 0);
     },
@@ -3317,10 +3426,10 @@ const ADMINBRXC = {
             if(oldBtn) oldBtn.remove();
             const obj = self.vueGlobalProp.$_getElementObject(el.dataset.id);
             let tag;
-            (obj.hasOwnProperty('settings') && obj.settings.hasOwnProperty('tag')) ? tag = obj.settings.tag : tag = bricksData.elements[obj.name].tag
+            (typeof obj !== "undefined" && obj.hasOwnProperty('settings') && obj.settings.hasOwnProperty('tag')) ? tag = obj.settings.tag : tag = bricksData.elements[obj.name].tag
             const title = el.querySelector('.title .icon')
             let options;
-            (bricksData.elements[obj.name].controls.hasOwnProperty('tag')) ? options = bricksData.elements[obj.name].controls.tag.options : options = false;
+            (typeof bricksData.elements[obj.name].controls !== "undefined" && bricksData.elements[obj.name].controls.hasOwnProperty('tag')) ? options = bricksData.elements[obj.name].controls.tag.options : options = false;
             createBtn(title, tag, options, el.dataset.id);
         })
 
@@ -3341,6 +3450,36 @@ const ADMINBRXC = {
     toggleTagDropdown: function(event){
         const dropdown = event.target.nextElementSibling;
         (dropdown.classList.contains('active')) ? dropdown.classList.remove('active') : dropdown.classList.add('active');
+    },
+    highlightNestableElements: function(){
+        const self = this;
+        const structurePanel = document.querySelector('#bricks-structure');
+        if(!structurePanel) return;
+        const els = structurePanel.querySelectorAll('#bricks-structure main .bricks-draggable-item');
+        if (els.length < 1) return;
+        els.forEach(el => {
+            el.removeAttribute('data-nestable');
+            if (self.nestableElements.includes(self.vueGlobalProp.$_getElementObject(el.dataset.id).name)) el.setAttribute('data-nestable', 'true');
+        })
+
+    },
+    highlightParentElements: function(){
+        const self = this;
+        const structurePanel = document.querySelector('#bricks-structure');
+        if(!structurePanel || typeof self.vueGlobalProp.$_state.activeElement == "undefined") return;
+        const els = structurePanel.querySelectorAll('#bricks-structure main .bricks-draggable-item');
+        if (els.length < 1) return;
+        const parents = []
+        function populateParent(child){
+            if (self.vueGlobalProp.$_getElementObject(child).parent === 0) return;
+            parents.push(self.vueGlobalProp.$_getElementObject(child).parent);
+            populateParent(self.vueGlobalProp.$_getElementObject(child).parent);
+        }
+        populateParent(self.vueGlobalProp.$_state.activeElement.id);
+        els.forEach(el => {
+            el.removeAttribute("data-parent");
+            if(parents.includes(el.dataset.id)) el.setAttribute("data-parent", true);
+        })
     },
     setBrxcStates: function(){
         const self = this;
@@ -3424,11 +3563,11 @@ const ADMINBRXC = {
     },
     runObserver: function() {
         const self = this;
-
         const panelInner = document.querySelector('#bricks-panel-inner');
         if (!panelInner) return;
 
         const observer = new MutationObserver(function(mutations) {
+            //console.log(self.vueGlobalProp.$_state.breakpointActive);
             if(self.vueGlobalProp.$_state.brxcRunningObserver === true) return;
             self.vueGlobalProp.$_state.brxcRunningObserver = true;
 
@@ -3438,7 +3577,8 @@ const ADMINBRXC = {
             if (self.helpers.isBuilderTweaksTabActive('structure-panel') ){
                 (Object.values(self.globalSettings.structurePanelIcons).includes("tags")) ? self.showTagInStructurePanel() : '';
                 (Object.values(self.globalSettings.structurePanelGeneralTweaks).includes("styles-and-classes-indicators")) ? self.structureElementHasStyle() : '';
-            }
+                (Object.values(self.globalSettings.structurePanelGeneralTweaks).includes("highlight-nestable-elements")) ? self.highlightNestableElements() : '';
+                (Object.values(self.globalSettings.structurePanelGeneralTweaks).includes("highlight-parent-elements")) ? self.highlightParentElements() :parent}
 
             // Classes
             if (self.helpers.isBuilderTweaksTabActive('classes-and-styles') ){
@@ -3480,8 +3620,9 @@ const ADMINBRXC = {
                 (Object.values(self.globalSettings.elementFeatures).includes("lorem-ipsum")) ? self.addDynamicLoremIcon() : '';
                 if (Object.values(self.globalSettings.elementFeatures).includes("tabs-shortcuts") && self.globalSettings.shortcutsTabs.length > 0) {
                     self.panelShortcuts();
-                    self.panelShortcutsActive();
+                    self.panelShortcutsActive(false);
                 }
+                (Object.values(self.globalSettings.elementFeatures).includes("hide-inactive-accordion-panel")) ? self.hideInactivePanels() : '';
             }
 
             // AI
@@ -3523,20 +3664,20 @@ const ADMINBRXC = {
             (e.metaKey && e.ctrlKey && e.key === self.globalSettings.keyboardShortcuts.xMode && Object.values(self.globalSettings.globalFeatures).includes('X-Mode')) ? self.XCode(document.querySelector('#bricks-toolbar li.x-mode')) : '';
             (e.metaKey && e.ctrlKey && e.key === self.globalSettings.keyboardShortcuts.contrastChecker && Object.values(self.globalSettings.globalFeatures).includes('ContrastChecker')) ? self.contrast(document.querySelector('#bricks-toolbar li.constrast')) : '';
             (e.metaKey && e.ctrlKey && e.key === self.globalSettings.keyboardShortcuts.darkmode && Object.values(self.globalSettings.globalFeatures).includes('Darkmode')) ? self.darkMode(document.querySelector('#bricks-toolbar li.darkmode')) : '';
-            (e.metaKey && e.ctrlKey && e.key === self.globalSettings.keyboardShortcuts.cssStylesheets && Object.values(self.globalSettings.globalFeatures).includes('AdvancedCSS')) ? self.openModal(false, "#brxcCSSOverlay") : '';
-            (e.metaKey && e.ctrlKey && e.key === self.globalSettings.keyboardShortcuts.resources && Object.values(self.globalSettings.globalFeatures).includes('Resources')) ? self.openModal(false, "#brxcResourcesOverlay") : '';
-            (e.metaKey && e.ctrlKey && e.key === self.globalSettings.keyboardShortcuts.openai && Object.values(self.globalSettings.globalFeatures).includes('GlobalAIPanel')) ? self.openModal(false, "#brxcGlobalOpenAIOverlay") : '';
-            (e.metaKey && e.ctrlKey && e.key === self.globalSettings.keyboardShortcuts.brickslabs && Object.values(self.globalSettings.globalFeatures).includes('BricksLabs')) ? self.openModal(false, "#brxcBricksLabsOverlay") : '';
+            (e.metaKey && e.ctrlKey && e.key === self.globalSettings.keyboardShortcuts.cssStylesheets && Object.values(self.globalSettings.generalCats.classesAndStyles).includes('advanced-css')) ? self.openModal(false, "#brxcCSSOverlay") : '';
+            (e.metaKey && e.ctrlKey && e.key === self.globalSettings.keyboardShortcuts.resources && Object.values(self.globalSettings.generalCats.extras).includes('resources')) ? self.openModal(false, "#brxcResourcesOverlay") : '';
+            (e.metaKey && e.ctrlKey && e.key === self.globalSettings.keyboardShortcuts.openai && self.helpers.isAIActive()) ? self.openModal(false, "#brxcGlobalOpenAIOverlay") : '';
+            (e.metaKey && e.ctrlKey && e.key === self.globalSettings.keyboardShortcuts.brickslabs && Object.values(self.globalSettings.generalCats.extras).includes('brickslabs')) ? self.openModal(false, "#brxcBricksLabsOverlay") : '';
         });
         x.document.addEventListener('keydown', function(e) {
             (e.metaKey && e.ctrlKey && !e.repeat && e.key === self.globalSettings.keyboardShortcuts.gridGuides && Object.values(self.globalSettings.globalFeatures).includes('GridGuide')) ? self.gridGuide(document.querySelector('#bricks-toolbar li.grid-guide')) : '';
             (e.metaKey && e.ctrlKey && e.key === self.globalSettings.keyboardShortcuts.xMode && Object.values(self.globalSettings.globalFeatures).includes('X-Mode')) ? self.XCode(document.querySelector('#bricks-toolbar li.x-mode')) : '';
             (e.metaKey && e.ctrlKey && e.key === self.globalSettings.keyboardShortcuts.contrastChecker && Object.values(self.globalSettings.globalFeatures).includes('ContrastChecker')) ? self.contrast(document.querySelector('#bricks-toolbar li.constrast')) : '';
             (e.metaKey && e.ctrlKey && e.key === self.globalSettings.keyboardShortcuts.darkmode && Object.values(self.globalSettings.globalFeatures).includes('Darkmode')) ? self.darkMode(document.querySelector('#bricks-toolbar li.darkmode')) : '';
-            (e.metaKey && e.ctrlKey && e.key === self.globalSettings.keyboardShortcuts.cssStylesheets && Object.values(self.globalSettings.globalFeatures).includes('AdvancedCSS')) ? self.openModal(false, "#brxcCSSOverlay") : '';
-            (e.metaKey && e.ctrlKey && e.key === self.globalSettings.keyboardShortcuts.resources && Object.values(self.globalSettings.globalFeatures).includes('Resources')) ? self.openModal(false, "#brxcResourcesOverlay") : '';
-            (e.metaKey && e.ctrlKey && e.key === self.globalSettings.keyboardShortcuts.openai && Object.values(self.globalSettings.globalFeatures).includes('GlobalAIPanel')) ? self.openModal(false, "#brxcGlobalOpenAIOverlay") : '';
-            (e.metaKey && e.ctrlKey && e.key === self.globalSettings.keyboardShortcuts.brickslabs && Object.values(self.globalSettings.globalFeatures).includes('BricksLabs')) ? self.openModal(false, "#brxcBricksLabsOverlay") : '';
+            (e.metaKey && e.ctrlKey && e.key === self.globalSettings.keyboardShortcuts.cssStylesheets && Object.values(self.globalSettings.generalCats.classesAndStyles).includes('advanced-css')) ? self.openModal(false, "#brxcCSSOverlay") : '';
+            (e.metaKey && e.ctrlKey && e.key === self.globalSettings.keyboardShortcuts.resources && Object.values(self.globalSettings.generalCats.extras).includes('resources')) ? self.openModal(false, "#brxcResourcesOverlay") : '';
+            (e.metaKey && e.ctrlKey && e.key === self.globalSettings.keyboardShortcuts.openai && self.helpers.isAIActive()) ? self.openModal(false, "#brxcGlobalOpenAIOverlay") : '';
+            (e.metaKey && e.ctrlKey && e.key === self.globalSettings.keyboardShortcuts.brickslabs && Object.values(self.globalSettings.generalCats.extras).includes('brickslabs')) ? self.openModal(false, "#brxcBricksLabsOverlay") : '';
         });
     },
     setDefaultPseudoClasses: function(){
@@ -3548,15 +3689,68 @@ const ADMINBRXC = {
             self.vueGlobalProp.$_state.pseudoClasses.push(pseudo);
         })
     },
+    colorConverter: function(obj){
+        const self = this;
+        const colors = [];
+        function getColors(object){
+            if(typeof object === "object"){
+                for(const [key,value] of Object.entries(object)){
+                    if(key === "hex" || key === "rgb" || key === "hsl" || key === "raw"){
+                        colors.push(value);
+                    } else {
+                        getColors(value); 
+                    }
+                }
+            } else if(Array.isArray(object)){
+                object.forEach(el => getColors(el))
+            }
+        }
+        getColors(obj)
+        const finalColors = [... new Set(colors)].sort();
+        console.log(finalColors);
+        
+    },
     findAndReplace: function(searchValue, replaceValue, property, element, position){
         const self = this;
         property = property.options[property.selectedIndex].value;
         element = element.options[element.selectedIndex].value;
         let content = self.vueGlobalProp.$_state.content;
+        let numChanges = 0;
+        
+
+        function replaceHexWithColor(obj, color) {
+            let hexFound = false;
+        
+            if (Array.isArray(obj)) {
+                for (let i = 0; i < obj.length; i++) {
+                    const result = replaceHexWithColor(obj[i], color);
+                    if (result.found) {
+                        obj[i] = result.newValue;
+                        hexFound = true;
+                    }
+                }
+            } else if (typeof obj === "object" && obj !== null) {
+                for (const key of Object.keys(obj)) {
+                    const result = replaceHexWithColor(obj[key], color);
+                    if (result.found) {
+                        obj[key] = result.newValue;
+                        hexFound = true;
+                    }
+                }
+        
+                if (obj.hasOwnProperty("hex") && obj.hex === searchValue) {
+                    obj = color;
+                    hexFound = true;
+                    numChanges++;
+                }
+            }
+        
+            return { found: hexFound, newValue: obj };
+        }
 
         function replaceColor(replaceColor){
             const palettes = self.vueGlobalProp.$_state.colorPalette;
-            let matchingColor = null;
+            let matchingColor = false;
             palettes.forEach(palette => {
                 palette.colors.forEach( color => {
                     for (const [key, value] of Object.entries(color)) {
@@ -3566,7 +3760,7 @@ const ADMINBRXC = {
                     }
                 })
             })
-            if (matchingColor) return matchingColor;
+            return matchingColor;
         }
         function replaceStyle(id){
             const color = replaceColor(replaceValue)
@@ -3575,23 +3769,19 @@ const ADMINBRXC = {
                     if (key === 'id' && value === id ) {
                         for (const [key, value] of Object.entries(content[i].settings)) {
                             if(!self.helpers.isCSSControlKey(key)) continue ;
-                            // Gradients
 
-                            if (property === "_gradient" && key === "_gradient"){
-                                if(content[i].settings[key].hasOwnProperty('colors')){
-                                    for(let i = 0; i < content[i].settings[key].colors; i++){
-                                        if (color) content[i].settings[key].colors[i] = color;
-                                    }
-
-                                }
-                            }
                             if(property === "all" || key === property) {
-                                // Colors
-                                if (typeof content[i].settings[key] === "object" && content[i].settings[key].hasOwnProperty('color')){
-                                    if (color) content[i].settings[key].color = color;
+                                // colors
+                                if(color){
+                                    const checkColor = replaceHexWithColor(content[i].settings, color);
                                 } else {
+                                    // other
+                                    const oldValue = content[i].settings[key];
                                     content[i].settings[key] = JSON.parse(JSON.stringify(value).replace(searchValue, replaceValue));
+
+                                    if (JSON.stringify(oldValue) != JSON.stringify(content[i].settings[key])) numChanges++;
                                 }
+
                             }
                         }
                     }
@@ -3678,7 +3868,11 @@ const ADMINBRXC = {
         }
 
         self.vueGlobalProp.$_state.content = content;
-        self.vueGlobalProp.$_showMessage('Styles correctly replaced!');
+        if(numChanges > 0 ){
+            self.vueGlobalProp.$_showMessage(`${numChanges} styles correctly replaced!`);
+        } else {
+            self.vueGlobalProp.$_showMessage(`No corresponding style has been found.`);
+        }
     },
     expandClass: function(type, property, category, position, erase){
         const self = this;
@@ -3708,7 +3902,7 @@ const ADMINBRXC = {
 
                         // classes
                         if (type === "Classes") {
-                            if (!content[i].settings.hasOwnProperty('_cssGlobalClasses') || erase === "true") content[i].settings._cssGlobalClasses = [];
+                            if (typeof content[i].settings !== "undefined" && !content[i].settings.hasOwnProperty('_cssGlobalClasses') || erase === "true") content[i].settings._cssGlobalClasses = [];
                             classes.forEach(el => {
                                 if (content[i].settings._cssGlobalClasses.includes(el)) return;
                                 content[i].settings._cssGlobalClasses.push(el);
@@ -3803,7 +3997,7 @@ const ADMINBRXC = {
         const globalClasses = self.vueGlobalProp.$_state.globalClasses;
         
         function composeClass(prefix, element){
-            (element.hasOwnProperty('label')) ? label = element.label.replace(/\s+/g, '-').toLowerCase() : label = element.name;
+            (typeof element !== "undefined" && element.hasOwnProperty('label')) ? label = element.label.replace(/\s+/g, '-').toLowerCase() : label = element.name;
             return `${prefix}${label}`;
         }
 
@@ -3844,7 +4038,7 @@ const ADMINBRXC = {
                 for (const [key, value] of Object.entries(element.settings)) {
                     if( key === '_cssCustom'){
                         let id;
-                        (element.settings.hasOwnProperty('_cssId')) ? id = '#' + element.settings._cssId : id = '#brxe-' + element.id;
+                        (typeof element.settings !== "undefined" && element.settings.hasOwnProperty('_cssId')) ? id = '#' + element.settings._cssId : id = '#brxe-' + element.id;
                         styles.push({[key]: value.replace(id, '.' + classname)});
                     } else if (self.helpers.isCSSControlKey(key)) {
                         styles.push({[key]: value});
@@ -3870,9 +4064,9 @@ const ADMINBRXC = {
             }
 
 
-            if (!element.hasOwnProperty('settings') || Object.getPrototypeOf(element.settings).length === 0) element.settings = {};
-            if (!element.settings.hasOwnProperty('_cssGlobalClasses')) element.settings._cssGlobalClasses = []
-            if (!element.settings._cssGlobalClasses.includes(newClassID)) element.settings._cssGlobalClasses.push(newClassID);
+            if (typeof element !== "undefined" && !element.hasOwnProperty('settings') || Object.getPrototypeOf(element.settings).length === 0) element.settings = {};
+            if (typeof element.settings !== "undefined" && !element.settings.hasOwnProperty('_cssGlobalClasses')) element.settings._cssGlobalClasses = []
+            if (typeof element.settings._cssGlobalClasses !== "undefined" && !element.settings._cssGlobalClasses.includes(newClassID)) element.settings._cssGlobalClasses.push(newClassID);
 
         }
         let styleExported = 0;
@@ -3894,12 +4088,171 @@ const ADMINBRXC = {
         activeEl.settings._display = 'none';
 
     },
+    showElement: function(){
+        const self = this;
+        const activeEl = self.vueGlobalProp.$_activeElement._value;
+        if(activeEl.hasOwnProperty('settings') && activeEl.settings.hasOwnProperty('_display')) delete activeEl.settings._display;
+    },
+    moveElement: function(position){
+        const self = this;
+
+        function move(arr, from, to, on = 1) {
+            return arr.splice(to, 0, ...arr.splice(from, on)), arr
+        }
+        const activeEl = self.vueGlobalProp.$_state.activeElement;
+        if(!activeEl) return;
+
+        let parentEl = activeEl.parent;
+
+        // Element is on root
+        if(parentEl === 0){
+            let content = self.vueGlobalProp.$_state.content;
+            const indexEl = content.indexOf(activeEl);
+
+            if (position === 'top'){
+
+                function findpreviousEl(index){
+                    if(!content[index - 1]) return;
+                    if(content[index - 1].parent === 0){
+                        return index - 1;
+                    } else {
+                        return findpreviousEl(index - 1);
+                    }
+                }
+                const previousElIndex = findpreviousEl(indexEl);
+                if(previousElIndex) content = move(content, indexEl, previousElIndex - 1, 1);
+
+            } else if (position === "left"){
+                return;
+
+            } else if (position === "right"){
+                function checkRootSiblings(index, direction){
+                    let tempIndex;
+                    if(direction === "backward" && index > 0 && content[index - 1]){
+                        tempIndex = index - 1;
+                    } else if (content[index + 1]) {
+                        tempIndex = index + 1;
+                        direction = "forward";
+                    } else {
+                        return;
+                    }
+
+                    const obj = content[tempIndex];
+
+                    if(obj.parent !== 0 || obj.id === activeEl.id) return checkRootSiblings(tempIndex, direction);
+
+                    const name = obj.name;
+                    const isNestable = bricksData.elements[name].nestable;
+
+                    if(!isNestable) return checkRootSiblings(tempIndex, direction);
+                    
+                    if(!Array.isArray(obj.children)) obj.children = [];
+                    if (direction === "forward") {
+                        obj.children.unshift(activeEl.id)
+                    } else {
+                        obj.children.push(activeEl.id)
+                    }
+                    activeEl.parent = obj.id;
+                }
+                checkRootSiblings(indexEl, "backward")
+    
+            } else if (position === "down"){
+                function findNextEl(index){
+                    if(!content[index + 1]) return;
+                    if(content[index + 1].parent === 0){
+                        return index + 1;
+                    } else {
+                        return findNextEl(index + 1);
+                    }
+                }
+                const nextElIndex = findNextEl(indexEl);
+                if(nextElIndex) content = move(content, indexEl, nextElIndex + 1, 1);
+            }
+            
+
+
+        // Element is nested inside the structure
+        } else {
+            const currentEl = activeEl.id;
+            let parentObj = self.vueGlobalProp.$_getElementObject(parentEl);
+            let parentChildren = parentObj.children;
+
+            if (position === 'top'){
+                let currentIndex = parentChildren.indexOf(currentEl);
+                const newChildren = move(parentChildren, currentIndex, currentIndex - 1, 1);
+                parentChildren = newChildren;
+    
+            } else if (position === "left"){
+                   
+                const grandFatherId = parentObj.parent;
+                const grandFatherObj = (grandFatherId !== 0) ? self.vueGlobalProp.$_getElementObject(grandFatherId) : false;
+                const grandFatherChildren = (grandFatherObj) ? grandFatherObj.children : false;
+    
+                // parent is on root
+                if(!grandFatherId){
+                    let content = self.vueGlobalProp.$_state.content;
+                    self.vueGlobalProp.$_state.content = move(content, content.indexOf(activeEl), content.indexOf(parentObj) + 1, 1)
+                    parentChildren.splice(parentChildren.indexOf(currentEl), 1);
+                    self.vueGlobalProp.$_state.activeElement.parent = 0;
+                } else {
+                    // has grandfather
+                    grandFatherChildren.push(currentEl);
+                    grandFatherObj.children = move(grandFatherChildren, grandFatherChildren.indexOf(currentEl), grandFatherChildren.indexOf(parentObj.id) + 1, 1);
+                    parentChildren.splice(parentChildren.indexOf(currentEl), 1);
+                    self.vueGlobalProp.$_state.activeElement.parent = grandFatherId;
+                }
+                
+            } else if (position === "right"){
+                const currentIndex = parentChildren.indexOf(currentEl);
+                
+                function checkRootSiblings(index, direction){
+                    let tempIndex;
+                    if(direction === "backward" && index > 0 && parentChildren[index - 1]){
+                        tempIndex = index - 1;
+                    } else if (parentChildren[index + 1]) {
+                        tempIndex = index + 1;
+                        direction = "forward";
+                    } else {
+                        return;
+                    }
+
+                    const obj = self.vueGlobalProp.$_getElementObject(parentChildren[tempIndex]);
+                    if(obj.id === currentEl) return checkRootSiblings(tempIndex, direction);
+
+                    const name = obj.name;
+                    const isNestable = bricksData.elements[name].nestable;
+
+                    if(!isNestable) return checkRootSiblings(tempIndex, direction);
+                    
+                    if(!Array.isArray(obj.children)) obj.children = [];
+                    parentChildren.splice(parentChildren.indexOf(currentEl), 1);
+                    activeEl.parent = obj.id;
+                    if (direction === "forward") {
+                        obj.children.unshift(currentEl)
+    
+                    } else {
+                        obj.children.push(currentEl)
+                    }
+                }
+                checkRootSiblings(currentIndex, "backward");
+    
+            } else if (position === "down"){
+                let currentIndex = parentChildren.indexOf(currentEl);
+                const newChildren = move(parentChildren, currentIndex, currentIndex + 1, 1);
+                parentChildren = newChildren;
+    
+            }
+
+        }
+        
+    },
     setContextualMenuItems: function(){
         const self = this;
         let contextualMenu = document.querySelector("#bricks-builder-context-menu").children[0].children[0];
         let icons = '';
-        if(self.helpers.isBuilderTweaksTabActive('classes-and-styles')){
+        if(self.helpers.isBuilderTweaksTabActive('structure-panel')){
             (Object.values(self.globalSettings.structurePanelContextualMenu).includes('hide-element')) ? icons += `<li id="hideElement" onClick='ADMINBRXC.hideElement()'>Hide Element</li>`: '';
+            (Object.values(self.globalSettings.structurePanelContextualMenu).includes('move-element')) ? icons += `<li id="moveElement"><span class="label">Move</span><div class="buttons"><span class="action" data-balloon="Indent Left" data-balloon-pos="top" onClick="ADMINBRXC.moveElement('left');"><i class="fas fa-arrow-left"></i></span><span class="action" data-balloon="Indent Right" data-balloon-pos="top" onClick="ADMINBRXC.moveElement('right');"><i class="fas fa-arrow-right"></i></span><span class="action" data-balloon="Move Up" data-balloon-pos="top" onClick="ADMINBRXC.moveElement('top');"><i class="fas fa-arrow-up"></i></span><span class="action" data-balloon="Move Down" data-balloon-pos="top-right" onClick="ADMINBRXC.moveElement('down');"><i class="fas fa-arrow-down"></i></span></div></li>`: '';
             (Object.values(self.globalSettings.structurePanelContextualMenu).includes('extend-classes-and-styles')) ? icons += `<li id="brxcExpandClasses" onClick='ADMINBRXC.openExtendClassModal(event,"#brxcExtendModal")'>Extend Classes & Styles</li>`: '';
             (Object.values(self.globalSettings.structurePanelContextualMenu).includes('find-and-replace-styles')) ? icons += `<li id="brxcFindandReplaceStyles" onClick='ADMINBRXC.openFindReplaceModal(event,false, "#brxcFindReplaceModal")'>Find & Replace Styles</li>`: '';
             (Object.values(self.globalSettings.structurePanelContextualMenu).includes('class-converter')) ? icons += `<li class="sep" id="brxcBEMConverter" onClick='document.querySelector("#brxcClassConverterOverlay #brxcClassConverterClassPrefix").value = "";ADMINBRXC.openModal(false, "#brxcClassConverterOverlay")';'>Class Converter</li>` : '';
@@ -3940,7 +4293,7 @@ const ADMINBRXC = {
             const el2 = value;
             allElements.push([el2.name,el2.label]);
             for (const [key, value] of Object.entries(bricksData.elements[el1].controls)) {
-                if (value.hasOwnProperty('css'))self.CSScontrolKeys.push(key)
+                if (typeof value !== "undefined" && value.hasOwnProperty('css'))self.CSScontrolKeys.push(key)
                 if (key.startsWith('_') && value.hasOwnProperty('css')) {
                     if(key === "_flexDirection"){
                         allControls.push([key,"Flex direction"]);
@@ -3952,10 +4305,10 @@ const ADMINBRXC = {
                         allControls.push([key,"Row gap (Colors)"]);
                     } else if(key === "_gridGap"){
                         allControls.push([key,"Grid gap"]);
-                    } else if(value.hasOwnProperty('label')) {
+                    } else if(typeof value !== "undefined" && value.hasOwnProperty('label')) {
                         allControls.push([key,value.label])
                     } else {
-                        allControls.push([key,value.type.charAt(0).toUpperCase() + value.type.slice(1)])
+                        (value.type) ? allControls.push([key,value.type.charAt(0).toUpperCase() + value.type.slice(1)]) : '';
                     }
                 }
             }
@@ -4149,6 +4502,7 @@ const ADMINBRXC = {
     alertMsg: function(autoremove = true, msg, delay){
         const wrapper = document.querySelector('#brxc-alert-message');
         let message = document.createElement('DIV');
+        message.setAttribute("id", "brxcAlertMessageContent");
         message.innerHTML = msg;
         setTimeout(() => {
             wrapper.appendChild(message);
@@ -4156,6 +4510,7 @@ const ADMINBRXC = {
         }, 
         setTimeout(() => {
             if(autoremove){
+                message = document.querySelector('#brxcAlertMessageContent');
                 message.remove();
                 wrapper.classList.remove('active');
             }
@@ -4166,17 +4521,184 @@ const ADMINBRXC = {
         const html = `<div id="brxc-alert-message"></div>"`;
         msg.insertAdjacentHTML("afterend", html);
     },
+    setStructurePanelKeyboardShortcuts: function(){
+        const self = this;
+        document.addEventListener('keydown', function(e) {
+            (e.shiftKey && e.key === "ArrowUp") ? self.moveElement('top') : '';
+            (e.shiftKey && e.key === "ArrowRight") ? self.moveElement('right') : '';
+            (e.shiftKey && e.key === "ArrowDown") ? self.moveElement('down') : '';
+            (e.shiftKey && e.key === "ArrowLeft") ? self.moveElement('left') : '';
+        });
+
+    },
     initStates: function(){
         const self = this;
         self.vueGlobalProp.$_state.brxcShowImportInput = false;
         self.vueGlobalProp.$_state.brxcShowLock = true;
         self.vueGlobalProp.$_state.brxc.tagsView = self.globalSettings.structurePanelTagDefaultView;
     },
+    initProxyObservers: function(){
+        const self = this;
+        const handler = {
+            set: function(target, key, value) {
+               //console.log(`Property '${key}' is changed from '${target[key]}' to '${value}'`);
+
+                // BreakpointActive changes
+                if (key === 'breakpointActive'){
+                    self.setBreakpontIndicatorStatus(value);
+                    self.panelShortcutsActive(true);
+                }
+                target[key] = value;
+              return true;
+            }
+          };
+          
+          const watchedData = new Proxy(self.vueGlobalProp.$_state, handler);
+          
+          self.vueGlobalProp.$_state = watchedData
+    },
+    populateNestableElements: function(){
+        const self = this;
+        for(const [key, value] of Object.entries(bricksData.elements)){
+            if(bricksData.elements[key].hasOwnProperty('nestableChildren') && bricksData.elements[key].nestableChildren !== null && key !== "section" ) self.nestableElements.push(key);
+        }        
+    },
+    disableMoveElement: function(){
+        const self = this;
+        const contextualMenu = document.querySelector('#bricks-builder-context-menu');
+        const left = contextualMenu.querySelector('span[data-balloon="Indent Left"]');
+        const right = contextualMenu.querySelector('span[data-balloon="Indent Right"]');
+        const up = contextualMenu.querySelector('span[data-balloon="Move Up"]');
+        const down = contextualMenu.querySelector('span[data-balloon="Move Down"]');
+
+        // disable indent left
+        left.classList.remove('disable');
+        if(typeof self.vueGlobalProp.$_state.activeElement !== "undefined" && self.vueGlobalProp.$_state.activeElement.parent === 0) left.classList.add('disable');
+
+        // disable indent right
+        right.classList.remove('disable');
+        if(typeof self.vueGlobalProp.$_state.activeElement !== "undefined" ) {
+            // element is on root
+            if(self.vueGlobalProp.$_state.activeElement.parent === 0){
+                let hasContainer = false
+                self.vueGlobalProp.$_state.content.forEach(el => {
+                    if(el.parent === 0 && el.id !== self.vueGlobalProp.$_state.activeElement.id && bricksData.elements[el.name].nestable === true) hasContainer = true;
+                })
+                if(!hasContainer) right.classList.add('disable');
+            // element is nested
+            } else {
+                const parent = self.vueGlobalProp.$_state.activeElement.parent;
+                const parentChildren = self.vueGlobalProp.$_getElementObject(parent).children;
+                let hasNestable = false;
+                parentChildren.forEach(el =>{
+                    if (el === self.vueGlobalProp.$_state.activeElement.id) return;
+                    if (bricksData.elements[self.vueGlobalProp.$_getElementObject(el).name].nestable === true) hasNestable = true;
+                })
+                if (hasNestable === false) right.classList.add('disable');
+            }
+        }
+        //disable move up & down
+        up.classList.remove('disable');
+        down.classList.remove('disable');
+        if(typeof self.vueGlobalProp.$_state.activeElement !== "undefined" ) {
+            // element is on root
+            if(self.vueGlobalProp.$_state.activeElement.parent === 0){
+                const content = self.vueGlobalProp.$_state.content;
+                const activeEl = self.vueGlobalProp.$_state.activeElement;
+                let hasPrevious = false;
+                let hasNext = false
+                for(let i = content.indexOf(activeEl); i < content.length; i++){
+                    if(content[i].parent === 0 && content[i].id !== activeEl.id) hasNext = true;
+                }
+                for(let i = content.indexOf(activeEl); i > -1; i--){
+                    if(content[i].parent === 0 && content[i].id !== activeEl.id) hasPrevious = true;
+                }
+                if(!hasPrevious) up.classList.add('disable');
+                if(!hasNext) down.classList.add('disable');
+
+            // element is nested
+            } else {
+                const parent = self.vueGlobalProp.$_state.activeElement.parent;
+                const parentChildren = self.vueGlobalProp.$_getElementObject(parent).children;
+                const currentIndex = parentChildren.indexOf(self.vueGlobalProp.$_state.activeElement.id);
+                if(!parentChildren[currentIndex - 1]) up.classList.add('disable');
+                if(!parentChildren[currentIndex + 1]) down.classList.add('disable');
+            }
+        }
+
+    },
+    showHideElement: function(){
+        const self = this;
+        const hideElement = document.querySelector('#hideElement');
+        const activeEl = self.vueGlobalProp.$_state.activeElement;
+        if (!hideElement || typeof activeEl === "undefined") return;
+        if(activeEl.hasOwnProperty('settings') && activeEl.settings.hasOwnProperty('_display') && activeEl.settings._display === "none") {
+            hideElement.textContent = "Show Element";
+            hideElement.setAttribute("onclick", "ADMINBRXC.showElement()");
+        } else {
+            hideElement.textContent = "Hide Element";
+            hideElement.setAttribute("onclick", "ADMINBRXC.hideElement()");
+        }
+    },
+    setDeleteWrapper: function(){
+        const self = this;
+        const contextualMenu = document.querySelector("#bricks-builder-context-menu");
+        const deleteIcon = contextualMenu.querySelector('li.delete');
+        if (!deleteIcon) return; 
+        const buttons = deleteIcon.querySelector('div.buttons');
+        if (buttons) buttons.remove();
+        if(typeof self.vueGlobalProp.$_state.activeElement === "undefined" || !self.vueGlobalProp.$_state.activeElement.hasOwnProperty('children') || !Array.isArray(self.vueGlobalProp.$_state.activeElement.children) || self.vueGlobalProp.$_state.activeElement.children.length < 1) return;
+        let icon = `<div class="buttons"><span class="action" data-balloon="Move Children Up" data-balloon-pos="top-right" onClick="ADMINBRXC.deleteWrapper(event);"><i class="fas fa-trash-can-arrow-up"></i></span></div>`;
+        deleteIcon.innerHTML += icon;
+    },
+    deleteWrapper: function(){
+        const self = this;
+        const activeEl = self.vueGlobalProp.$_state.activeElement;
+        if (typeof activeEl === "undefined" || !self.vueGlobalProp.$_state.activeElement.hasOwnProperty('children') || !Array.isArray(activeEl.children) || activeEl.children.length < 1)  return;
+        const parent = activeEl.parent;
+        const children = activeEl.children;
+        // Element is on root
+        if(parent === 0){
+            children.forEach(child => {
+                self.vueGlobalProp.$_getElementObject(child).parent = 0;
+            })
+            activeEl.children = [];
+        // Element is nested
+        } else {
+            let parentChildren = self.vueGlobalProp.$_getElementObject(parent).children;
+            children.forEach(child => {
+                self.vueGlobalProp.$_getElementObject(child).parent = parent;
+                parentChildren.push(child);
+            })
+            activeEl.children = [];
+            //self.vueGlobalProp.$_deleteElement(activeEl);
+
+        }
+    },
+    initContextualMenuObservers: function(){
+        const self = this
+        const contextualMenu = document.querySelector('#bricks-builder-context-menu');
+
+        const observer = new MutationObserver(function(mutation) {
+            //Contextual menu open
+            if(mutation[0].target.className === "show") {
+                if(self.helpers.isBuilderTweaksTabActive('structure-panel')){
+                    (Object.values(self.globalSettings.structurePanelContextualMenu).includes('move-element')) ? self.disableMoveElement() : '';
+                    (Object.values(self.globalSettings.structurePanelContextualMenu).includes('hide-element')) ? self.showHideElement() : '';
+                    (Object.values(self.globalSettings.structurePanelContextualMenu).includes('delete-wrapper')) ? self.setDeleteWrapper(): '';
+                }
+            }
+        });
+
+        observer.observe(contextualMenu, { subtree: true, childList: false, attributes: true, attributeFilter: ['class'] });
+    },
     init: function(){
         const self = this;
         self.vueGlobalProp.$_state.brxc = [];
         self.initStates();
         self.initObservers();
+        self.initProxyObservers();
+        self.initContextualMenuObservers();
         self.setIsotope();
         self.setCodeMirror();
         self.setControlsOptions();
@@ -4202,6 +4724,7 @@ const ADMINBRXC = {
             Object.values(self.globalSettings.structurePanelGeneralTweaks).includes('resizable-structure-panel') ? self.resizableStructurePanel() : '';
             Object.values(self.globalSettings.structurePanelGeneralTweaks).includes('new-element-shortcuts') && self.globalSettings.createElementsShortcuts.length>0 ? self.setRightShortcutCol() : '';
             Object.values(self.globalSettings.structurePanelGeneralTweaks).includes('styles-and-classes-indicators') ? self.setColorsforStructureIndicators() : '';
+            Object.values(self.globalSettings.structurePanelGeneralTweaks).includes("highlight-nestable-elements") ? self.populateNestableElements() : '';
 
         } 
 
@@ -4221,8 +4744,10 @@ const ADMINBRXC = {
 
         //// Keyboard Shortcuts
         if(self.helpers.isBuilderTweaksTabActive('keyboard-shortcuts')){
-            self.setKeyboardShortcuts();
+            Object.values(self.globalSettings.keyboardShortcuts.options).includes("move-element") ?self.setStructurePanelKeyboardShortcuts() : '';
+            Object.values(self.globalSettings.keyboardShortcuts.options).includes("open-at-modal") ? self.setKeyboardShortcuts() : '';
         }
+
     }
 }
 //ADMINBRXC.initPageCSS()
@@ -4230,11 +4755,17 @@ window.addEventListener('DOMContentLoaded', () => {
     ADMINBRXC.initToolbar();
 })
 window.addEventListener('load', () => {
-    if (ADMINBRXC.helpers.isClassesAndStylesTabActive('grids') === false ) {
-        ADMINBRXC.vueGlobalProp.$_state.globalClasses = ADMINBRXC.vueGlobalProp.$_state.globalClasses.filter(item => !item.id.startsWith("brxc_grid"));
+    if (ADMINBRXC.helpers.isClassesAndStylesTabActive('grids') === false && typeof ADMINBRXC.vueGlobalProp.$_state !== "undefined") {
+        if(ADMINBRXC.vueGlobalProp.$_state.hasOwnProperty('globalClasses')) ADMINBRXC.vueGlobalProp.$_state.globalClasses = Array.from(ADMINBRXC.vueGlobalProp.$_state.globalClasses).filter(item => !item.id.startsWith("brxc_grid"));
+        if(ADMINBRXC.vueGlobalProp.$_state.hasOwnProperty('globalClassesLocked')) ADMINBRXC.vueGlobalProp.$_state.globalClassesLocked = ADMINBRXC.vueGlobalProp.$_state.globalClassesLocked.filter(item => !item.startsWith("brxc_grid"));
+        if(Array.isArray(ADMINBRXC.vueGlobalProp.$_state.unsavedChanges)) ADMINBRXC.vueGlobalProp.$_state.unsavedChanges.push('globalClasses');
+        if(Array.isArray(ADMINBRXC.vueGlobalProp.$_state.unsavedChanges)) ADMINBRXC.vueGlobalProp.$_state.unsavedChanges.push('globalClassesLocked')
     }
-    if (ADMINBRXC.helpers.isClassesAndStylesTabActive('class-importer') === false ) {
-        ADMINBRXC.vueGlobalProp.$_state.globalClasses = ADMINBRXC.vueGlobalProp.$_state.globalClasses.filter(item => !item.id.startsWith("brxc_imported"));
+    if (ADMINBRXC.helpers.isClassesAndStylesTabActive('class-importer') === false && typeof ADMINBRXC.vueGlobalProp.$_state !== "undefined") {
+        if(ADMINBRXC.vueGlobalProp.$_state.hasOwnProperty('globalClasses')) ADMINBRXC.vueGlobalProp.$_state.globalClasses = ADMINBRXC.vueGlobalProp.$_state.globalClasses.filter(item => !item.id.startsWith("brxc_imported"));
+        if(ADMINBRXC.vueGlobalProp.$_state.hasOwnProperty('globalClassesLocked')) ADMINBRXC.vueGlobalProp.$_state.globalClassesLocked = ADMINBRXC.vueGlobalProp.$_state.globalClassesLocked.filter(item => !item.startsWith("brxc_imported"));
+        if(Array.isArray(ADMINBRXC.vueGlobalProp.$_state.unsavedChanges)) ADMINBRXC.vueGlobalProp.$_state.unsavedChanges.push('globalClasses');
+        if(Array.isArray(ADMINBRXC.vueGlobalProp.$_state.unsavedChanges)) ADMINBRXC.vueGlobalProp.$_state.unsavedChanges.push('globalClassesLocked')
     } 
 
     // Lock imported classes and grid
@@ -4245,9 +4776,11 @@ window.addEventListener('load', () => {
                 ADMINBRXC.vueGlobalProp.$_state.globalClassesLocked.push(el.id);
             }
         })
+        ADMINBRXC.vueGlobalProp.$_state.globalClassesLocked = [...new Set(ADMINBRXC.vueGlobalProp.$_state.globalClassesLocked)];
+        if(Array.isArray(ADMINBRXC.vueGlobalProp.$_state.unsavedChanges)) ADMINBRXC.vueGlobalProp.$_state.unsavedChanges.push('globalClassesLocked')
     } 
     
-    ADMINBRXC.vueGlobalProp.$_state.globalClassesLocked = [...new Set(ADMINBRXC.vueGlobalProp.$_state.globalClassesLocked)];
+ 
 
     ADMINBRXC.init()
     document.querySelectorAll('.brxc-overlay__wrapper').forEach(el => el.removeAttribute('style'));

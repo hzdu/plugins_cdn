@@ -15,9 +15,11 @@ jQuery(document).ready(function($){
     $('#brxcImportWrapper').append(form);
     const file = document.querySelector('#brxcImportFile');
     const submit = document.querySelector('#brxcImportSubmit');
-    file.addEventListener('change', () => {
-        (file.files.length) ? submit.classList.remove('button-disabled') : submit.classList.add('button-disabled');
-    })
+    if (file) {
+        file.addEventListener('change', () => {
+            (file.files.length) ? submit.classList.remove('button-disabled') : submit.classList.add('button-disabled');
+        })
+    }
 
     $('#brxcExportSettings').click(function(e) {
         e.preventDefault();

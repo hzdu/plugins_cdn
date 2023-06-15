@@ -120,7 +120,10 @@ body.admin-bar .bricks-panel,  body.admin-bar #bricks-preview,  body.admin-bar #
    background-color: var(--builder-gray-4);
    color: var(--builder-gray-f);
 }
-element.active .structure-item > .title .brxc-tag-btn-wrapper button.brxc-tag-btn,
+.element.active > .structure-item > .title .brxc-tag-btn-wrapper button.brxc-tag-btn {
+   background-color: var(--builder-bg-accent);
+   color: var(--builder-color-accent);
+}
 .structure-item:hover > .title .brxc-tag-btn-wrapper button.brxc-tag-btn {
    background-color: var(--builder-gray-5);
 }
@@ -140,6 +143,18 @@ button.brxc-tag-btn.orange {
    background-color: #ffa10020;
    color: var(--bricks-text-warning);
  }
+ #bricks-structure .element[data-nestable=true]:not(.active) > .structure-item .icon {
+   opacity: 1;
+ }
+ #bricks-structure .element[data-nestable=true] > .structure-item i {
+   color: var(--builder-color-highlight);
+ }
+ #bricks-structure .element[data-parent=true] > .structure-item{
+   background-color: #253543;
+ }
+ #bricks-structure .element[data-parent=true] > .structure-item:hover {
+   background-color: #304455;
+}
 /* #bricks-structure .element:hover > .structure-item .brxc-tag-btn-wrapper button.brxc-tag-btn,
 #bricks-structure .element.active > .structure-item .brxc-tag-btn-wrapper button.brxc-tag-btn{
    background-color: var(--builder-gray-5);
@@ -561,6 +576,15 @@ button.brxc-tag-btn.orange {
     color: var(--builder-color-accent);
  }
 
+ /*--------------------------------------
+Contextual menu
+--------------------------------------*/
+
+#bricks-builder-context-menu span.action.disable{
+   opacity: .3;
+   pointer-events: none;
+}
+
 /*--------------------------------------
 BricksLabs Panel
 --------------------------------------*/
@@ -628,15 +652,18 @@ li.breakpoint[data-styles="true"] {
 [data-controlkey][data-has-class-style="true"]{
    position: relative;
 }
-[data-controlkey][data-has-class-style="true"]:before{
+.bricks-panel-controls .has-setting{
+   z-index: 1;
+}
+[data-controlkey][data-has-class-style="true"] label span:before{
    content: '';
    background-color: var(--builder-color-highlight);
    border-radius: 50%;
    height: 4px;
    width: 4px;
    position: absolute;
-   left: 8px;
-   top: 14px;
+   left: -12px;
+   top: 8px;
 }
 [data-controlkey="_margin"][data-has-class-style="true"]:before,
 [data-controlkey="_padding"][data-has-class-style="true"]:before,
@@ -671,6 +698,9 @@ li.breakpoint[data-styles="true"] {
 .bricks-panel-controls .control-group-title .brxc-group-icon:hover,
 .bricks-panel-controls .control-group-title .brxc-group-icon.active {
     color: var(--builder-color-accent);
+}
+.bricks-panel-controls .control-group-title .brxc-group-icon.active {
+   background-color: var(--builder-bg-accent);
 }
 .bricks-panel-controls .control-group-title .brxc-group-icon .bricks-svg-wrapper{
    pointer-events: none;
@@ -1542,6 +1572,9 @@ span.symbol.counter:hover svg {
     position: absolute !important;
     right: 5px;
  }
+ .color-input [id^="raw-"] + .brxc-toggle-modal {
+   right: 30px;
+}
  
  .brxc-toggle-ai {
     aspect-ratio: 1;
@@ -1673,6 +1706,10 @@ span.symbol.counter:hover svg {
     min-height: unset;
     flex-direction: column;
     align-items: flex-start;
+    grid-column: 2/3;
+}
+#bricks-panel #bricks-panel-element #bricks-panel-sticky {
+   grid-column: 2/3;
 }
 
 #bricks-panel #bricks-panel-header .actions {
@@ -1795,12 +1832,13 @@ body.brxc-has-panel-shortcuts #bricks-panel-element > .brxce-panel-shortcut__wra
 }
 .brxce-panel-shortcut__container{
     position: sticky;
-    top: 0;
+    top: 0px;
 }
+
 .brxce-panel-shortcut__container li.has-settings:before {
    content: '';
    position: absolute;
-   right: 100%;
+   left: -7px;
    opacity: 0.5;
    border-width: 0px;
    padding: 15px 11px;
@@ -1808,17 +1846,7 @@ body.brxc-has-panel-shortcuts #bricks-panel-element > .brxce-panel-shortcut__wra
    height: 100%;
 }
 
-/*
-body .brxce-panel-shortcut__container li.has-settings:before {
-   border-bottom: 0;
-   width: 4px;
-   height: 4px;
-   background: var(--builder-color-accent);
-   padding: 0px;
-   left: 5px;
-   border-radius: 50%;
-}
-*/
+
 #bricks-structure .structure-item > .title{
    overflow: hidden;
    border-radius: var(--builder-border-radius);
@@ -1871,7 +1899,7 @@ body.brxc-has-panel-shortcuts #bricks-panel-element > .brxce-panel-shortcut__wra
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 16px;
+    padding: 16.5px;
     cursor: pointer;
     position: relative;
 }
@@ -1899,6 +1927,13 @@ body.brxc-has-panel-shortcuts #bricks-panel-element > .brxce-panel-shortcut__wra
 body.brxc-has-panel-shortcuts #bricks-panel-element > .brxce-panel-shortcut__wrapper li.active i,
 #bricks-structure[data-has-shortcuts-sidebar="true"] .brxce-panel-shortcut__wrapper li.active i{
     color:var(--builder-color-accent);
+}
+
+.bricks-panel-controls ul.control-groups.hidden-accordion-panels .control-group{
+   display: none;
+}
+.bricks-panel-controls ul.control-groups.hidden-accordion-panels .control-group.open{
+   display: block;
 }
 /*--------------------------------------
 Accordion
@@ -1941,7 +1976,7 @@ Accordion
     height: 14px;
     width: 14px;
     right: 0px;
-    top: 7px;
+    top: 4px;
     pointer-events: none;
     cursor: pointer;
   }
@@ -2092,21 +2127,21 @@ Plaster fix
  Light Theme
  --------------------------------------*/
  
- body[data-builder-mode="light"] .brxc-toggle-lorem,
+ /* body[data-builder-mode="light"] .brxc-toggle-lorem,
  body[data-builder-mode="light"] .brxc-toggle-ai {
     background-color: var(--builder-gray-c);
- }
+ } */
  
  body[data-builder-mode="light"] .brxc-toggle-lorem .lorem-wrapper .lorem-line {
     background-color: var(--builder-gray-4);
  }
  
  body[data-builder-mode="light"] .brxc-toggle-lorem:hover .lorem-wrapper .lorem-line {
-    background-color: var(--builder-gray-f);
+    background-color: var(--builder-color-accent);
  }
- body[data-builder-mode="light"] .brxc-toggle-ai:hover .ai-wrapper span.ai-text {
+ /* body[data-builder-mode="light"] .brxc-toggle-ai:hover .ai-wrapper span.ai-text {
     color: var(--builder-gray-f);
-}
+} */
  
  body[data-builder-mode="light"] .brxc-toggle-modal:hover span {
     color: var(--builder-gray-f);
@@ -2152,6 +2187,7 @@ Plaster fix
  
  body[data-builder-mode="light"] .brxc__text input,
 body[data-builder-mode="light"] .brxc-select select,
+body[data-builder-mode="light"] .brxc-select select *,
  body[data-builder-mode="light"] .brxc-overlay__wrapper .brxc-overlay__search-box input[type="search"] {
     background-color: var(--builder-gray-f);
     color: var(--builder-gray-1);
@@ -2312,11 +2348,13 @@ body[data-builder-mode="light"] .brxc-overlay__pannel-top--sticky {
     background-color: var(--builder-gray-e);
 }
 
-body[data-builder-mode="light"].brxc-has-panel-shortcuts #bricks-panel-element > .brxce-panel-shortcut__wrapper {
+body[data-builder-mode="light"].brxc-has-panel-shortcuts #bricks-panel-element > .brxce-panel-shortcut__wrapper,
+body[data-builder-mode="light"] #bricks-structure[data-has-shortcuts-sidebar="true"] .brxce-panel-shortcut__wrapper {
     background-color: var(--builder-bg-2);
 }
 body[data-builder-mode="light"].brxc-has-panel-shortcuts #bricks-panel-element > .brxce-panel-shortcut__wrapper li.active,
-body[data-builder-mode="light"].brxc-has-panel-shortcuts #bricks-panel-element > .brxce-panel-shortcut__wrapper li:hover {
+body[data-builder-mode="light"].brxc-has-panel-shortcuts #bricks-panel-element > .brxce-panel-shortcut__wrapper li:hover,
+body[data-builder-mode="light"] #bricks-structure[data-has-shortcuts-sidebar="true"] .brxce-panel-shortcut__wrapper li:hover {
     background-color: var(--builder-bg);
 }
 
@@ -2341,4 +2379,99 @@ body[data-builder-mode="light"] #brxcCSSOverlay .isotope-wrapper .brxc-overlay__
 
 body[data-builder-mode="light"] .isotope-wrapper .brxc-input__label {
    color: var(--builder-gray-3);
+}
+
+body[data-builder-mode="light"] .brxc-tag-btn-wrapper button.brxc-tag-btn {
+
+   background-color: var(--builder-gray-d);
+   color: var(--builder-gray-6);
+}
+body[data-builder-mode="light"] button.brxc-tag-btn.red, button.brxc-tag-btn.orange {
+   color: var(--builder-gray-9);
+}
+
+body[data-builder-mode="light"] .structure-item:hover > .title .brxc-tag-btn-wrapper button.brxc-tag-btn {
+   background-color: var(--builder-gray-c);
+}
+body[data-builder-mode="light"] .element.active > .structure-item > .title .brxc-tag-btn-wrapper button.brxc-tag-btn {
+   background-color: var(--builder-bg-accent);
+   color: var(--builder-color-accent);
+}
+body[data-builder-mode="light"] .bricks-panel-controls .control-group-title .brxc-group-icon {
+   background-color: var(--builder-gray-f);
+}
+body[data-builder-mode="light"] .bricks-panel-controls .control-group-title .brxc-group-icon:hover, 
+body[data-builder-mode="light"] .bricks-panel-controls .control-group-title .brxc-group-icon.active{
+   background-color: var(--builder-bg-accent);
+}
+body[data-builder-mode="light"] #bricks-structure .element[data-parent=true] > .structure-item{
+   background-color: #dcdde2;
+ }
+ body[data-builder-mode="light"] #bricks-structure .element[data-parent=true] > .structure-item:hover{
+   background-color: #d0d2da;
+ }
+
+
+
+/*--------------------------------------
+RTL
+--------------------------------------*/
+
+body.rtl .bricks-panel-controls .control-inline > [data-control="number"]{
+   position: relative;
+}
+body.rtl .brxc-toggle-modal {
+   left: 5px;
+}
+
+body.rtl[data-disable-styles="true"] .disabled-style-icon {
+   left: calc(25% + 40px);
+}
+
+body.rtl #brxcResizeBox {
+   right: -12px;
+}
+body.rtl #bricks-structure {
+   padding-right: 12px;
+   padding-left: 0;
+}
+body.rtl #bricks-structure .structure-item .title {
+   padding: 0 3px 0px 0px;
+}
+body.rtl #bricks-structure .structure-item .title>.icon {
+   margin-left: 3px;
+
+}
+body.rtl .brxc-copy-id-to-class-wrapper span.bricks-svg-wrapper.create, 
+body.rtl .brxc-clone-class-wrapper span.bricks-svg-wrapper.create {
+   left: 8px;
+}
+
+body.rtl [data-balloon-pos=left]:after {
+   right: -7px;
+   left: unset;
+}
+body.rtl [data-balloon-pos=left]:after,
+body.rtl [data-balloon-pos=left]:before {
+   top: 50%;
+   transform: translate(100%,-50%);
+}
+body.rtl [data-balloon-pos=left]:before {
+   right: 0;
+}
+body.rtl .brxc-tag-btn-wrapper button.brxc-tag-btn {
+   margin-left: 10px;
+   margin-right: 0;
+}
+
+body.rtl [data-controlkey][data-has-class-style="true"]:before {
+   right: 8px;
+}
+
+body.rtl span.bricks-svg-wrapper.arrow {
+   margin-right: auto;
+   margin-left: 0;
+}
+body.rtl .brxce-panel-shortcut__container li.has-settings:before {
+   right: 3px;
 }
