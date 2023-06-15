@@ -2923,10 +2923,16 @@ if (!String.prototype.trim) {
                 // configure tracking ids
 
                 options.ga.trackingIds.forEach(function (trackingId,index) {
-                    if(options.ga.isDebugEnabled.includes("index_"+index)) {
-                        config.debug_mode = true;
-                    } else {
-                        config.debug_mode = false;
+
+                    var obj = options.ga.isDebugEnabled;
+                    var searchValue = "index_"+index;
+                    config.debug_mode = false;
+
+                    for (var key in obj) {
+                        if (obj.hasOwnProperty(key) && obj[key] === searchValue) {
+                            config.debug_mode = true;
+                            break;
+                        }
                     }
                     if(isv4(trackingId)) {
                         if(options.ga.disableAdvertisingFeatures) {

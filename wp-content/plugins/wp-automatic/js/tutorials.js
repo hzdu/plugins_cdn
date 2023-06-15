@@ -7,6 +7,11 @@ const tutorials = {
       title: "How to use OpenAI GPT3 in WordPress",
       url: "https://www.youtube.com/watch?v=cBfhaq1-BuQ",
     },
+    {
+      url: "https://valvepress.com/how-to-increase-content-length-of-generated-openai-chatgpt-content-on-wordpress-automatic-plugin/",
+      title:
+        "How to increase content length of generated OpenAI ChatGPT content on WordPress Automatic plugin",
+    },
   ],
   Articles: [],
   Feeds: [
@@ -23,9 +28,15 @@ const tutorials = {
       title: "How to auto post Google News to WordPress",
     },
     { url: "https://youtu.be/vPTNRBcWvDY", title: "How to import Web Stories" },
-    {url:"https://valvepress.com/how-to-import-from-a-specific-category-in-an-rss-feed/",title:"How to import from a specific category in an RSS feed"},
-    {url:"https://valvepress.com/how-to-import-from-any-website-to-wordpress-in-multiple-languages/",title:"How to import from any website to WordPress in multiple languages"},
-  
+    {
+      url: "https://valvepress.com/how-to-import-from-a-specific-category-in-an-rss-feed/",
+      title: "How to import from a specific category in an RSS feed",
+    },
+    {
+      url: "https://valvepress.com/how-to-import-from-any-website-to-wordpress-in-multiple-languages/",
+      title:
+        "How to import from any website to WordPress in multiple languages",
+    },
   ],
   Amazon: [
     {
@@ -57,6 +68,11 @@ const tutorials = {
       url: "https://valvepress.com/how-to-import-amazon-products-from-a-specific-category-using-wordpress-automatic/",
       title:
         "How to import Amazon products from a specific category using WordPress Automatic",
+    },
+    {
+      url: "https://valvepress.com/how-to-import-amazon-products-that-are-on-sale-to-wordpress-and-skip-not-on-sale/",
+      title:
+        "How to import Amazon products that are on sale to WordPress and skip not on sale",
     },
   ],
   Aliexpress: [
@@ -225,7 +241,11 @@ const tutorials = {
       title: "How to import sitemap to WordPress posts",
     },
     { url: "https://youtu.be/vPTNRBcWvDY", title: "How to import Web Stories" },
-    {url:"https://valvepress.com/how-to-import-from-any-website-to-wordpress-in-multiple-languages/",title:"How to import from any website to WordPress in multiple languages"},
+    {
+      url: "https://valvepress.com/how-to-import-from-any-website-to-wordpress-in-multiple-languages/",
+      title:
+        "How to import from any website to WordPress in multiple languages",
+    },
   ],
   General: [
     {
@@ -234,15 +254,18 @@ const tutorials = {
     },
     {
       url: "https://valvepress.com/how-to-automatically-generate-yoast-rank-math-seo-description-using-openai-gpt/",
-      title: "How to automatically generate Yoast/Rank Math SEO description using OpenAI GPT",
+      title:
+        "How to automatically generate Yoast/Rank Math SEO description using OpenAI GPT",
     },
     {
       url: "https://valvepress.com/how-to-automatically-generate-wordpress-tags-using-openai-gpt-api/",
-      title: "How to automatically generate WordPress tags using OpenAI GPT API",
+      title:
+        "How to automatically generate WordPress tags using OpenAI GPT API",
     },
     {
       url: "https://valvepress.com/wordpress-internal-cron-job-work-may-need-setup-external-cron/",
-      title: "How to setup a cron job to run WordPress Automatic campaigns automatically",
+      title:
+        "How to setup a cron job to run WordPress Automatic campaigns automatically",
     },
 
     {
@@ -268,7 +291,10 @@ const tutorials = {
       title:
         "How to post contentiously from a specific campaign at WordPress Automatic",
     },
-    {url:"https://valvepress.com/how-to-auto-post-to-wordpress-bbpress-forum-plugin/",title:"How to auto post to WordPress bbPress forum plugin"},
+    {
+      url: "https://valvepress.com/how-to-auto-post-to-wordpress-bbpress-forum-plugin/",
+      title: "How to auto post to WordPress bbPress forum plugin",
+    },
   ],
 };
 
@@ -298,7 +324,7 @@ jQuery(document).ready(function ($) {
     //loop through the general tutorials
     general_tutorials.forEach((tutorial) => {
       //get the value of the select with id named camp_type and set as the html of the span with class module_name
-      jQuery(".module_name").html( jQuery('#camp_type option:selected').text() );
+      jQuery(".module_name").html(jQuery("#camp_type option:selected").text());
 
       //create the html
       const html = `<li><a href="${tutorial.url}" target="_blank">${tutorial.title}</a></li>`;
