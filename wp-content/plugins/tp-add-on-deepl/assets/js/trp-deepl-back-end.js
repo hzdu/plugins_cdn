@@ -1,4 +1,0 @@
-jQuery(document).on('trpInitFieldToggler', function() {
-    var deeplKey = TRP_Field_Toggler()
-        deeplKey.init('.trp-translation-engine', '#trp-deepl-key', 'deepl' )
-})

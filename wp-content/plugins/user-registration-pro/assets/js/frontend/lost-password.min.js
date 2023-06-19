@@ -1,1 +1,0 @@
-jQuery(function(t){t(".ur_lost_reset_password").on("submit",function(){t('input[type="submit"]',this).prop("disabled",!0)})});

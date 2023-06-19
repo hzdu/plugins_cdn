@@ -1,5 +1,0 @@
-/**
- * Divi module main 
- * 
- * @package
- */
