@@ -1,0 +1,124 @@
+/* Default CSS goes here */
+.sun-and-moon > :is(.moon, .sun, .sun-beams) {
+  transform-origin: center center;
+}
+.sun-and-moon > :is(.moon, .sun) {
+  fill: var(--o-icon-fill);
+  stroke: var(--o-icon-fill);
+}
+.o-scheme-switcher:is(:hover, :focus-visible) > .sun-and-moon > :is(.moon, .sun) {
+  fill: var(--o-icon-fill-hover);
+  stroke: var(--o-icon-fill-hover);
+}
+.sun-and-moon > .sun-beams {
+  stroke: var(--o-icon-fill);
+  stroke-width: 2px;
+}
+.sun-and-moon > .moon > circle {
+  transform: scale(0.8) translateX(10px);
+}
+.o-scheme-switcher:is(:hover, :focus-visible) .sun-and-moon > .sun-beams {
+  stroke: var(--o-icon-fill-hover);
+}
+[color-scheme="dark"] .sun-and-moon > .sun {
+  transform: scale(1.75);
+}
+[color-scheme="dark"] .sun-and-moon > .sun-beams {
+  opacity: 0;
+}
+[color-scheme="dark"] .sun-and-moon > .moon > circle {
+  transform: translate(-7px);
+}
+@supports (cx: 1) {
+  [color-scheme="dark"] .sun-and-moon > .moon > circle {
+    transform: translate(0);
+    cx: 17;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .sun-and-moon > .sun {
+    transition: transform 0.5s var(--o-ease-elastic-3);
+  }
+  .sun-and-moon > .sun-beams {
+    transition: transform 0.5s var(--o-ease-elastic-4),
+      opacity 0.5s var(--o-ease-3);
+  }
+  .sun-and-moon .moon > circle {
+    transition: transform 0.25s var(--o-ease-out-5);
+  }
+  @supports (cx: 1) {
+    .sun-and-moon .moon > circle {
+      transition: cx 0.25s var(--o-ease-out-5);
+    }
+  }
+  [color-scheme="dark"] .sun-and-moon > .sun {
+    transform: scale(1.75);
+    transition-timing-function: var(--o-ease-3);
+    transition-duration: 0.25s;
+  }
+  [color-scheme="dark"] .sun-and-moon > .sun-beams {
+    transform: rotate(-25deg);
+    transition-duration: 0.15s;
+  }
+  [color-scheme="dark"] .sun-and-moon > .moon > circle {
+    transition-delay: 0.25s;
+    transition-duration: 0.5s;
+  }
+  [color-scheme="dim"] .sun-and-moon > .sun {
+    transform: scale(1.2) translateY(38%);
+    transition-timing-function: var(--o-ease-elastic-3);
+    transition-duration: 0.25s;
+  }
+  [color-scheme="dim"] .sun-and-moon > .sun-beams {
+    transform: rotate(-45deg) scale(1) translate(-29%, 28%);
+    transition-timing-function: var(--o-ease-elastic-4);
+    stroke-width: 1px;
+    transition-duration: 0.15s;
+  }
+  [color-scheme="dim"] .sun-and-moon > .moon > circle {
+    transition-duration: 0s;
+  }
+  [color-scheme="colorful"] .sun-and-moon > .sun {
+    stroke: var(--o-text-1);
+    transform: scale(2) translate(15%, 15%);
+    transition-timing-function: var(--o-ease-elastic-3);
+    transition-duration: 0.25s;
+  }
+  [color-scheme="colorful"] .sun-and-moon > .sun-beams {
+    transform: rotate(0deg) scale(1) translateY(0);
+    opacity: 0;
+    transition-timing-function: var(--o-ease-elastic-4);
+    stroke-width: 2px;
+  }
+  [color-scheme="colorful"] .sun-and-moon > .moon > circle {
+    transform: scale(0.7) translate(-24%, 34%);
+    transition-timing-function: var(--o-ease-out-3);
+    transition-duration: 0.25s;
+  }
+}
+.o-scheme-switcher {
+  --o-icon-fill: var(--o-surface-3);
+  --o-icon-fill-hover: var(--o-surface-4);
+  background: none;
+  border: none;
+  padding: 0;
+  width: 1rem;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  cursor: pointer;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  outline-offset: 5px;
+}
+.o-scheme-switcher > svg {
+  inline-size: 100%;
+  block-size: 100%;
+  stroke-linecap: round;
+}
+@media (hover: none) {
+  .o-scheme-switcher {
+    --o-size: 48px;
+  }
+}
+

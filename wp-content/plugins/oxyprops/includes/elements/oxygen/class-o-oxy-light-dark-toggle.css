@@ -1,0 +1,111 @@
+/* Default CSS goes here */
+.sun-and-moon > :is(.moon, .sun, .sun-beams) {
+  transform-origin: center center;
+}
+.sun-and-moon > .moon > circle {
+  transform: translate(2px);
+}
+.sun-and-moon > :is(.moon, .sun) {
+  fill: var(--o_icon-fill);
+  stroke: var(--o_icon-fill);
+}
+.theme-toggle:is(:hover, :focus-visible) > .sun-and-moon > :is(.moon, .sun) {
+  fill: var(--o_icon-fill-hover);
+  stroke: var(--o_icon-fill-hover);
+}
+.sun-and-moon > .sun-beams {
+  stroke: var(--o_icon-fill);
+  stroke-width: 2px;
+}
+.theme-toggle:is(:hover, :focus-visible) .sun-and-moon > .sun-beams {
+  stroke: var(--o_icon-fill-hover);
+}
+[color-scheme="dark"] .sun-and-moon > .sun {
+  transform: scale(1.75);
+}
+[color-scheme="dark"] .sun-and-moon > .sun-beams {
+  opacity: 0;
+}
+[color-scheme="dark"] .sun-and-moon > .moon > circle {
+  transform: translate(-7px);
+}
+
+@supports (cx: 1) {
+  [color-scheme="dark"] .sun-and-moon > .moon > circle {
+    transform: translate(0);
+    cx: 17;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .sun-and-moon > .sun {
+    transition: transform 0.5s var(--o-ease-elastic-3);
+  }
+  .sun-and-moon > .sun-beams {
+    transition: transform 0.5s var(--o-ease-elastic-4),
+      opacity 0.5s var(--o-ease-3);
+  }
+  .sun-and-moon .moon > circle {
+    transition: transform 0.25s var(--o-ease-out-5);
+  }
+  @supports (cx: 1) {
+    .sun-and-moon .moon > circle {
+      transition: cx 0.25s var(--o-ease-out-5);
+    }
+  }
+  [color-scheme="dark"] .sun-and-moon > .sun {
+    transform: scale(1.75);
+    transition-timing-function: var(--o-ease-3);
+    transition-duration: 0.25s;
+  }
+  [color-scheme="dark"] .sun-and-moon > .sun-beams {
+    transform: rotate(-25deg);
+    transition-duration: 0.15s;
+  }
+  [color-scheme="dark"] .sun-and-moon > .moon > circle {
+    transition-delay: 0.25s;
+    transition-duration: 0.5s;
+  }
+}
+
+.theme-toggle {
+  --o_icon-fill-light: var(--o_fill-light, var(--o-surface-4));
+  --o_icon-fill-light-hover: var(--o_fill-light-hover, var(--o-brand-hover));
+  --o_icon-fill-dark: var(--o_fill-dark, var(--o_icon-fill-light));
+  --o_icon-fill-dark-hover: var(--o_fill-dark-hover, var(--o_icon-fill-light-hover));
+  --o_icon-fill: var(--o_icon-fill-light);
+  --o_icon-fill-hover: var(--o_icon-fill-light-hover);
+  background: none;
+  border: none;
+  padding: 0;
+  inline-size: var(--o_size, 1rem);
+  block-size: var(--o_size, 1rem);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  cursor: pointer;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  outline-offset: 5px;
+}
+
+[color-scheme="dark"] .theme-toggle {
+  --o_icon-fill: var(--o_icon-fill-dark);
+  --o_icon-fill-hover: var(--o_icon-fill-dark-hover);
+}
+
+.theme-toggle > svg {
+  inline-size: 100%;
+  block-size: 100%;
+  stroke-linecap: round;
+}
+
+@media (hover: none) {
+  .theme-toggle {
+    inline-size: var(--o_size-touch-screens, 3rem);
+    block-size: var(--o_size-touch-screens, 3rem);
+  }
+}
+
+.oxy-op-light-dark-toggle {
+  line-height: 0;
+}

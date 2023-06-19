@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkoxyprops=self.webpackChunkoxyprops||[]).push([[4834],{4834:function(s,e,n){n.r(e),n.d(e,{RegisterFonts:function(){return t}});const t=()=>{};e.default=t}}]);

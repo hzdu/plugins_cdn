@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkoxyprops=self.webpackChunkoxyprops||[]).push([[7374],{7374:function(i,n,t){t.r(n),t.d(n,{TextTags:function(){return a}});const a=[{tag:"a",initiallyHidden:!1},{tag:"abbr",initiallyHidden:!1},{tag:"b",initiallyHidden:!1},{tag:"bdi",initiallyHidden:!1},{tag:"bdo",initiallyHidden:!1}];n.default=a}}]);
