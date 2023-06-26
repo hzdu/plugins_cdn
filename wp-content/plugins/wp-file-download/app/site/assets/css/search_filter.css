@@ -7195,6 +7195,7 @@
   text-align: center;
   text-transform: uppercase;
   padding: 8px 40px;
+  box-shadow: unset;
 }
 #btnsearchbelow:hover, #btnsearchbelow:focus {
   cursor: pointer;
@@ -8612,9 +8613,16 @@ a.btnsearchbelow:hover {
   font-size: 14px;
   color: #444;
   background-color: #fff;
+  background-image: unset !important;
   border: 1px solid #ccc;
   display: inline-block;
   max-width: 80px;
+  margin: 0 !important;
+  padding: 5px !important;
+  -webkit-appearance: menulist;
+}
+.list-results:not(.themed) select#limit:hover, .list-results:not(.themed) select#limit:focus {
+  cursor: pointer;
 }
 .list-results:not(.themed) td.title, .list-results:not(.themed) td.created, .list-results:not(.themed) td.catname {
   vertical-align: middle;
@@ -8693,8 +8701,8 @@ a.btnsearchbelow:hover {
 .list-results .mediaTableMenu.showlist {
   width: auto;
   height: auto;
-  padding: 0;
-  border: 2px solid #ccc;
+  padding: 5px;
+  border: 1px solid #ccc;
   border-radius: 5px;
   background-color: #fff;
   position: absolute;
@@ -9368,7 +9376,7 @@ ul.tagit span.tagit-label {
   border-color: #75be5f;
 }
 .wpfd-search-result-download-files-section a.search-download-selected:hover {
-  box-shadow: 1px 1px 0.6666666667em #ccc;
+  box-shadow: 1px 1px 0.6666666667em #ccc !important;
 }
 .wpfd-search-result-download-files-section a.search-download-selected .wpfd-download-category {
   margin-left: 5px;
@@ -9814,6 +9822,9 @@ ul.tagit span.tagit-label {
   font-weight: 600;
   font-size: 15px !important;
   height: 49px;
+}
+.wpfd_search_input .txtfilename.wpfd-hide-cat-filter {
+  padding: 15px 0px 15px 40px !important;
 }
 
 .categories-filtering-selection {
@@ -10339,5 +10350,3 @@ ul.tagit span.tagit-label {
     right: 10px;
   }
 }
-
-/*# sourceMappingURL=search_filter.css.map */

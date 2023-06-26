@@ -307,6 +307,7 @@
   text-align: center;
   text-transform: uppercase;
   padding: 8px 40px;
+  box-shadow: unset;
   &:hover,
   &:focus {
     cursor: pointer;
@@ -1832,9 +1833,17 @@ a.btnsearchbelow:hover {
     font-size: 14px;
     color: #444;
     background-color: #fff;
+    background-image: unset !important;
     border: 1px solid #ccc;
     display: inline-block;
     max-width: 80px;
+    margin: 0 !important;
+    padding: 5px !important;
+    -webkit-appearance: menulist;
+    &:hover,
+    &:focus {
+      cursor: pointer;
+    }
   }
 
   td.title, td.created, td.catname {
@@ -1925,8 +1934,8 @@ a.btnsearchbelow:hover {
   .mediaTableMenu.showlist {
     width: auto;
     height: auto;
-    padding: 0;
-    border: 2px solid #ccc;
+    padding: 5px;
+    border: 1px solid #ccc;
     border-radius: 5px;
     background-color: #fff;
     position: absolute;
@@ -2404,7 +2413,7 @@ ul.tagit {
     border-color: #75be5f;
   }
   &:hover {
-    box-shadow: 1px 1px 0.6666666667em #ccc;
+    box-shadow: 1px 1px 0.6666666667em #ccc !important;
   }
   .wpfd-download-category {
     margin-left: 5px;
@@ -2814,6 +2823,9 @@ ul.tagit {
 		font-size: 15px!important;
         height: 49px;
 	}
+    .txtfilename.wpfd-hide-cat-filter {
+      padding: 15px 0px 15px 40px !important;
+    }
 }
 .categories-filtering-selection {
 	position: absolute;

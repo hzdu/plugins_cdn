@@ -161,7 +161,7 @@
       },
 
       onFileSaved: function(e, params, fileId, catId) {
-        var fileDiv = $('.wpfd_row.file[data-id-file='+fileId+']');
+        var fileDiv = $('.wpfd_row.file[data-id-file="'+fileId+'"]');
         if (fileDiv.length === 0) {
           return false;
         }

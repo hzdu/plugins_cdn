@@ -399,7 +399,7 @@ jQuery(document).ready(function ($) {
         var id_category = $('[name=id_category]').val();
         var currentCategory = $('li[data-id-category=' + id_category + ']');
         var typeCloud = currentCategory.data('type') || 'null';
-
+        typeCloud = typeCloud.toLowerCase();
         bootbox.dialog(
             _wpfd_text('Do you want to delete') + ' "' + $('li[data-id-category=' + id_category + '] > .dd-content span.title').text() + '" ?',
             [
@@ -461,13 +461,14 @@ jQuery(document).ready(function ($) {
         var currentCategory = $('#categorieslist li.active');
         var id_category = currentCategory.data('id-category');
         var typeCloud = currentCategory.data('type') || 'null';
+        typeCloud = typeCloud.toLowerCase();
         var title = $('li[data-id-category=' + id_category + '] > .dd-content span.title');
         var duplicateCatTitle = title.html();
         if (!id_category) {
             return;
         }
         var wpfdAjaxurl = wpfdajaxurl + "task=category.duplicate&id_category=" + id_category + "&title_category=" + duplicateCatTitle;
-        if (typeCloud === 'googleDrive') {
+        if (typeCloud === 'googledrive') {
             wpfdAjaxurl = wpfd_var.wpfdajaxurl + "?action=wpfdAddonDuplicateCategory&id_category=" + id_category + "&title_category=" + duplicateCatTitle;
         } else if (typeCloud === 'dropbox') {
             wpfdAjaxurl = wpfd_var.wpfdajaxurl + "?action=wpfdAddonDuplicateDropboxCategory&id_category=" + id_category + "&title_category=" + duplicateCatTitle;
@@ -1682,7 +1683,7 @@ jQuery(document).ready(function ($) {
         }
 
         if (data.weight_from !== '' && data.weight_to !== ''
-            && parseInt(data.weight_from) >= parseInt(data.weight_to)) {
+            && parseInt(data.weight_from) > parseInt(data.weight_to)) {
             bootbox.alert(_wpfd_text('Weight from must be less than weight to.'));
             return;
         }

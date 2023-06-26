@@ -1,0 +1,538 @@
+/**
+ * WP File Download Addon Style
+ *
+ * @package WP File Download Addon
+ * @author Joomunited
+ * @version 1.0.0
+ */
+
+#wpfdAddonmodal span.icon-googledrive, a#wpfdAddonlaunch span.icon-googledrive,
+#newcategory a.googleCreate span.googledrive-icon, #newcategory a.googleCreate:hover span.googledrive-icon {
+    background-image: url(../images/icon-sync-google-drive.svg);
+    background-repeat: no-repeat;
+    background-position: 0 0;
+    background-size: 20px;
+    height: 20px;
+    line-height: 20px;
+    width: 20px;
+    display: inline-block;
+    vertical-align: text-top;
+}
+
+#googleDriveModal {
+    width: 100%;
+}
+
+.icon-googledrive {
+    background-image: url(../images/icon-sync-google-drive.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 20px;
+    height: 20px;
+    line-height: 20px;
+    display: inline-block;
+    vertical-align: bottom;
+}
+
+#preview .wpfd_alt_wrapper .wpfd_categories_container .wpfd_cat_googleDrive:before {
+    content: '' !important;
+    width: 20px;
+    height: 20px;
+    background-image: url(../images/icon-sync-google-drive.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 20px;
+}
+/*#newcategory .dropdown-toggle {*/
+    /*width: 30px;*/
+    /*display: inline-block;*/
+    /*margin-top: 0;*/
+/*}*/
+
+/*#newcategory.dropdown .caret {*/
+    /*border-top-color: #fff;*/
+    /*margin-top: 10px !important;*/
+    /*border-width: 8px 6px 0 6px;*/
+/*}*/
+
+#wpfdAddonlaunch {
+    margin-top: 5px;
+}
+
+#newcategory a.button-primary {
+    padding-right: 20px
+}
+
+
+#ggconnect img {
+    vertical-align: middle;
+}
+
+#mybootstrap .icon-refresh {
+    vertical-align: sub !important
+}
+
+/*#mybootstrap #newcategory .dropdown-menu {*/
+    /*right: 0;*/
+    /*top: 110%;*/
+    /*left: auto;*/
+    /*padding: 0 0 0;*/
+    /*width: 100%;*/
+/*}*/
+
+/*#newcategory .dropdown-menu {*/
+    /*text-shadow: none;*/
+/*}*/
+
+/*#newcategory .dropdown-menu li {*/
+    /*margin: 0;*/
+/*}*/
+
+#wpfd-theme-cloud .control-label {
+    display: inline-block;
+    width: 150px;
+    vertical-align: top;
+    margin-top: 5px;
+}
+
+#wpfd-theme-cloud .controls {
+    display: inline-block;
+}
+
+#wpfd-theme-cloud .controls .largeInput {
+    width: 300px;
+}
+
+#wpfd-theme-cloud .control-group {
+    margin: 5px 0 5px 0;
+}
+
+.wpfdAddonparams .controls {
+    width: calc(100% - 150px);
+    width: -moz-calc(100% - 150px);
+    width: -webkit-calc(100% - 150px);
+}
+
+.wpfdAddonparams .controls .help-block {
+    font-size: smaller;
+    margin: 5px 0;
+}
+
+.wpfdAddonparams .controls .notice-block {
+    margin: 5px 0;
+    padding: 5px;
+    background-color: #FFF7E5;
+}
+
+.wpfdAddonparams .control-group-heading {
+    background-color: #23282D;
+    border-color: #bce8f1;
+    color: #eee;
+    margin: 15px 0 15px 0;
+}
+
+.wpfdAddonparams .control-group .button-save-cloud {
+    margin-bottom: 40px;
+}
+
+.wpfdAddonparams .control-heading {
+    color: #eee !important;
+}
+
+/* Dropbox */
+#wpfd-theme-dropbox .control-label {
+    display: inline-block;
+    width: 150px;
+    vertical-align: top;
+    margin-top: 5px;
+}
+
+#wpfd-theme-dropbox .controls {
+    display: inline-block;
+}
+
+#wpfd-theme-dropbox .controls .largeInput {
+    width: 300px;
+}
+
+#wpfd-theme-dropbox .control-group {
+    margin: 5px 0 5px 0;
+}
+.icon-dropbox{
+    background-image: url(../images/icon-sync-dropbox.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 20px;
+    height: 20px;
+    width: 20px;
+    line-height: 20px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+#preview .wpfd_alt_wrapper .wpfd_categories_container .wpfd_cat_dropbox:before {
+    content: '' !important;
+    width: 20px;
+    height: 20px;
+    background-image: url(../images/icon-sync-dropbox.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 20px;
+}
+/*.dropboxCreate .dropbox-icon {*/
+    /*background-image: url(../images/Dropbox-dark.png);*/
+    /*width: 16px !important;*/
+/*}*/
+
+p.help-block {
+    margin-bottom: 0;
+    margin-top: 5px;
+}
+
+/* One Drive */
+
+#wpfd-theme-onedrive .control-label,
+#wpfd-theme-onedrive-business .control-label {
+    display: inline-block;
+    width: 150px;
+    vertical-align: top;
+    margin-top: 5px;
+}
+
+#wpfd-theme-onedrive .controls,
+#wpfd-theme-onedrive-business .controls{
+    display: inline-block;
+}
+
+#wpfd-theme-onedrive .controls .largeInput,
+#wpfd-theme-onedrive-business .controls .largeInput {
+    width: 300px;
+}
+
+
+#wpfd-theme-onedrive .control-group,
+#wpfd-theme-onedrive-business .control-group {
+    margin: 5px 0 5px 0;
+}
+
+#onedrive_connect img, #onedrive_disconnect img,
+#onedrive_business_connect img, #onedrive_business_disconnect img {
+    height: 16px;
+}
+
+#preview .wpfd_alt_wrapper .wpfd_categories_container .wpfd_cat_onedrive:before {
+    content: '' !important;
+    width: 20px;
+    height: 20px;
+    background-image: url(../images/icon-sync-onedrive.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 20px;
+}
+.wpfd-sync-buttons {
+    display: flex;
+    flex-flow: row wrap;
+}
+
+#btn-sync-gg,
+#btn-sync-drop,
+#btn-sync-onedrive,
+#btn-sync-onedrive-business
+{
+    margin-top: 15px;
+    margin-right: 5px;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    flex: 1;
+    padding: 0;
+    min-width: 40px;
+}
+#btn-sync-gg [class^="wpfd-svg-icon"],
+#btn-sync-drop [class^="wpfd-svg-icon"],
+#btn-sync-onedrive [class^="wpfd-svg-icon"],
+#btn-sync-onedrive-business [class^="wpfd-svg-icon"]{
+    width: 20px;
+    height: 20px;
+    vertical-align: text-bottom;
+}
+.wpfd-sync-buttons a:last-child {
+    margin-right: 0 !important;
+}
+#wpfd-woocommerce-addon .controls-media-button {
+    display: flex;
+    justify-content: flex-end;
+}
+#wpfd-woocommerce-addon .ju-input.wm_path {
+    flex-basis: 300px;
+    border-top-right-radius: unset;
+    border-bottom-right-radius: unset;
+    border-right: unset;
+}
+#wm_select_media_button {
+    border-top-left-radius: unset;
+    border-bottom-left-radius: unset;
+    border-left: unset;
+    margin-left: -1px;
+    background: #2271b1;
+    color: #fff;
+    font-weight: bold;
+}
+.wpfd-modal-body progress[value] {
+    /* Reset the default appearance */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+
+    /* Get rid of default border in Firefox. */
+    border: none;
+
+    /* Dimensions */
+    width: 250px;
+    height: 20px;
+}
+.wpfd-modal-body progress[value]  {
+    /* Reset the default appearance */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+
+    /* Get rid of default border in Firefox. */
+    border: none;
+
+    /* Dimensions */
+    width: 100%;
+    height: 25px;
+
+    border-radius: 4px;
+    overflow: hidden;
+
+    /* For IE10 */
+    color: blue;
+}
+.wpfd-modal-body progress[value]::-webkit-progress-bar {
+    background-color: #eee;
+    border-radius: 2px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25) inset;
+}
+.wpfd-modal-body progress[value]::-webkit-progress-value {
+    background-image:
+            -webkit-linear-gradient(-45deg,
+            transparent 33%, rgba(0, 0, 0, .1) 33%,
+            rgba(0,0, 0, .1) 66%, transparent 66%),
+            -webkit-linear-gradient(top,
+            rgba(255, 255, 255, .25),
+            rgba(0, 0, 0, .25)),
+            -webkit-linear-gradient(left, #09c, #f44);
+
+    border-radius: 2px;
+    background-size: 35px 25px, 100% 100%, 100% 100%;
+
+    -webkit-animation: wpfd-animate-stripes 5s linear infinite;
+    animation: wpfd-animate-stripes 5s linear infinite;
+}
+.wpfd-modal-body progress[value]::-webkit-progress-value::after {
+    content: '';
+    width: 6px;
+    height: 6px;
+    position: absolute;
+    border-radius: 100%;
+    right: 7px;
+    top: 7px;
+    background-color: white;
+}
+.wpfd-modal-body progress[value]::-moz-progress-bar {
+    background-image:
+            -moz-linear-gradient(
+                    135deg,
+                    transparent 33%,
+                    rgba(0, 0, 0, 0.1) 33%,
+                    rgba(0, 0, 0, 0.1) 66%,
+                    transparent 66%
+            ),
+            -moz-linear-gradient(
+                    top,
+                    rgba(255, 255, 255, 0.25),
+                    rgba(0, 0, 0, 0.25)
+            ),
+            -moz-linear-gradient(
+                    left,
+                    #09c,
+                    #f44
+            );
+
+    border-radius: 2px;
+    background-size: 35px 25px, 100% 100%, 100% 100%;
+}
+
+.wpfd-modal-body .wpfd-tabs-wrapper .wpfd-tabs-content {
+    padding: 0 !important;
+}
+.wpfd-modal-body ul.wpfd-tabs {
+    justify-content: flex-start;
+}
+.wpfd-modal-body ul.wpfd-tabs .wpfd-tab {
+    margin-right: 5px;
+    border: 1px solid #ddd;
+    border-radius: 8px 8px 0 0;
+    border-bottom: 0;
+}
+.wpfd-modal-body ul.wpfd-tabs .wpfd-tab.active {
+    background: #ddd;
+}
+
+.wpfd-modal-body .progress-bar {
+    background-color: whiteSmoke;
+    border-radius: 2px;
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.25) inset;
+
+    width: 100%;
+    height: 25px;
+
+    position: relative;
+    display: block;
+}
+
+.wpfd-modal-body .progress-bar > span {
+    background-color: blue;
+    border-radius: 2px;
+
+    display: block;
+    text-indent: -9999px;
+}
+#wpfd_woocommerce_product_creation .wpfd-modal {
+    min-width: 600px;
+    left: 50%;
+    margin-left: 0;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#wpfd_woocommerce_product_creation .wpfd_row .wpfd_cell {
+    padding: 4px;
+    justify-content: flex-start;
+}
+#wpfd_woocommerce_product_creation .wpfd_row.head {
+    margin-top: 0;
+}
+#wpfd_woocommerce_product_creation .wpfd_row.head .wpfd_cell {
+    padding-top: 0;
+}
+[data-custom-action="file.create_product"] .dashicons {
+    padding: 0;
+    transition: unset;
+}
+#wpfd_woocommerce_product_creation [class*=wpfd-icon-set-].ext {
+    width: 20px;
+    height: 20px;
+}
+@media only screen and (max-width: 1366px) {
+    #wpfd_woocommerce_product_creation .wpfd-modal {
+        min-width: 60vw;
+    }
+}
+@media only screen and (max-width: 1024px) {
+    #wpfd_woocommerce_product_creation .wpfd-modal {
+        min-width: 70vw;
+    }
+}
+@media only screen and (max-width: 768px) {
+    #wpfd_woocommerce_product_creation .wpfd-modal {
+        min-width: 90vw;
+    }
+}
+@media only screen and (max-width: 640px) {
+    #wpfd_woocommerce_product_creation .wpfd-modal {
+        width: 100%;
+    }
+}
+#wpfd_product_general {
+    display: flex;
+}
+
+.wpfd_product_files_wrapper {
+    display: flex;
+    padding: 0 20px 0 0;
+    flex-basis: calc(40% - 20px);
+    min-width: calc(40% - 20px);
+}
+
+.product_general_main {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    align-content: flex-start;
+    padding-left: 20px;
+    border-left: 1px dashed rgba(221,221,221,.64);
+}
+
+
+
+#wpfd_woocommerce_product_creation .ju-settings-option {
+    margin-bottom: 10px;
+    width: 100%;
+}
+#wpfd_woocommerce_product_creation .ju-settings-option .ju-setting-label {
+    line-height: 2;
+    font-weight: bold;
+    font-size: 0.8rem;
+}
+#wpfd_woocommerce_product_creation .ju-settings-option input[type=text],
+#wpfd_woocommerce_product_creation .ju-settings-option input[type=number],
+#wpfd_woocommerce_product_creation .ju-settings-option select {
+    width: 100%;
+    line-height: 2.4;
+}
+#wpfd_woocommerce_product_creation .ju-settings-option select.ju-input:not(.ju-multiselect) {
+    margin: 0;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: linear-gradient(45deg, transparent 55%, gray 50%), linear-gradient(135deg, gray 50%, transparent 55%), linear-gradient(to right, #ccc, #ccc);
+    background-position: calc(100% - 15px) calc(50% + 0px), calc(100% - 10px) calc(50% + 0px), calc(100% - 30px) 6px;
+    background-size: 5px 5px, 5px 5px, 1px calc(100% - 10px);
+    background-repeat: no-repeat;
+    padding-right: 45px !important;
+}
+
+#wpfd_woocommerce_product_creation .ju-settings-option select.ju-input:not(.ju-multiselect):focus {
+    background-image: linear-gradient(45deg, #0073ab 50%, transparent 55%), linear-gradient(135deg, transparent 55%, #0073ab 50%), linear-gradient(to right, #0073ab, #0073ab);
+    background-position: calc(100% - 10px) calc(50% + 0px), calc(100% - 15px) calc(50% + 0px), calc(100% - 30px) 6px;
+    background-size: 5px 5px, 5px 5px, 1px calc(100% - 10px);
+    background-repeat: no-repeat;
+    outline: 0;
+}
+#wpfd_woocommerce_product_creation .wpfd_row {
+    min-height: 28px;
+}
+.product_files {
+    position: relative;
+    display: flex;
+}
+
+.wpfd_files_control {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-basis: 30px;
+    align-self: center;
+}
+.wpfd_files_control .ju-button.ju-v3-material {
+    padding: 4px 5px;
+    width: 25px;
+    min-width: unset;
+    border-radius: 4px;
+    text-align: center;
+    margin-bottom: 4px;
+}
+
+@-webkit-keyframes wpfd-animate-stripes {
+    100% { background-position: -100px 0px; }
+}
+
+@keyframes wpfd-animate-stripes {
+    100% { background-position: -100px 0px; }
+}
