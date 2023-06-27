@@ -1,0 +1,63 @@
+.mab-random-image {
+  width: auto; }
+
+.bricks-element-max-random-image figure {
+  margin: 0; }
+
+.mab-random-image img.bricks-lazy-hidden + figcaption {
+  display: none; }
+
+.mab-random-image {
+  display: inherit; }
+
+.mab-random-image.image-wrapper:before {
+  pointer-events: none; }
+
+.mab-random-image.image-overlay {
+  display: block;
+  position: relative;
+  cursor: zoom-in; }
+
+.mab-random-image.image-overlay:after {
+  position: absolute;
+  content: "";
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  pointer-events: none; }
+
+.mab-random-image .popup-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  z-index: 5;
+  top: 50%;
+  right: 50%;
+  font-size: 60px;
+  color: #fff;
+  line-height: inherit;
+  text-align: center;
+  transform: translate(50%, -50%);
+  pointer-events: none; }
+
+.mab-random-image .popup-icon.lightbox {
+  cursor: zoom-in;
+  pointer-events: none; }
+
+.mab-random-image .bricks-image-caption {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  min-width: 100px;
+  margin: 0;
+  padding: 12px 15px;
+  font-size: 1em;
+  color: #fff;
+  text-align: center;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.35) 70%, transparent); }
+
+.mab-random-image .bricks-image-caption.css-var {
+  bottom: var(--gutter);
+  width: calc(100% - var(--gutter)); }
