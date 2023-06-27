@@ -1,0 +1,97 @@
+.x-content-switcher_content {
+    width: 100%;
+}
+
+.x-content-switcher_content > * {
+    transition-property: opacity, visibility;
+    transition-timing-function: ease;
+    width: 100%;
+}
+
+.x-content-switcher {
+    position: relative;
+    width: 100%;
+}
+
+.x-content-switcher .x-content-switcher_content > *:nth-child(1) {
+    transition-property: visibility, opacity, transform;
+    position: relative;
+    opacity: 1;
+    visibility: visible;
+    width: 100%;
+    transform: none;
+    pointer-events: auto;
+}
+
+.x-content-switcher .x-content-switcher_content:not([data-x-switcher]) > *:nth-child(2)  {
+    transition-property: visibility,opacity, transform;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    visibility: hidden;
+    width: 100%;
+    pointer-events: none;
+}
+
+.x-content-switcher .x-content-switcher_toggled > *:nth-child(1) {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    visibility: hidden;
+    width: 100%;
+    pointer-events: none;
+}
+
+.x-content-switcher .x-content-switcher_toggled:not([data-x-switcher]) > *:nth-child(2) {
+    position: relative;
+    opacity: 1;
+    visibility: visible;
+    width: 100%;
+    transform: none;
+    pointer-events: auto;
+}
+
+.x-content-switcher_content[data-x-switcher^="1"] > *:not(:nth-child(1)), 
+.x-content-switcher_content[data-x-switcher^="2"] > *:not(:nth-child(2)), 
+.x-content-switcher_content[data-x-switcher^="3"] > *:not(:nth-child(3)), 
+.x-content-switcher_content[data-x-switcher^="4"] > *:not(:nth-child(4)), 
+.x-content-switcher_content[data-x-switcher^="5"] > *:not(:nth-child(5)), 
+.x-content-switcher_content[data-x-switcher^="6"] > *:not(:nth-child(6)), 
+.x-content-switcher_content[data-x-switcher^="7"] > *:not(:nth-child(7)), 
+.x-content-switcher_content[data-x-switcher^="8"] > *:not(:nth-child(8)), 
+.x-content-switcher_content[data-x-switcher^="9"] > *:not(:nth-child(9)), 
+.x-content-switcher_content[data-x-switcher^="10"] > *:not(:nth-child(10)), 
+.x-content-switcher_content[data-x-switcher^="11"] > *:not(:nth-child(11)), 
+.x-content-switcher_content[data-x-switcher^="12"] > *:not(:nth-child(12)), 
+.x-content-switcher_content[data-x-switcher^="13"] > *:not(:nth-child(13)) {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    visibility: hidden;
+    width: 100%;
+    pointer-events: none;
+}
+
+.x-content-switcher_hide > *:not(:first-child) {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    visibility: hidden;
+    width: 100%;
+    pointer-events: none;
+}
+
+.brx-body.iframe .x-content-switcher_content > *.editing,
+.brx-body.iframe .x-content-switcher_content:not(.x-content-switcher_hide) > * {
+    position: static!important;
+    opacity: 1!important;
+    visibility: visible!important;
+    width: 100%!important;
+    transform: none!important;
+    pointer-events: auto!important;
+}
+

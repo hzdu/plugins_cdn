@@ -1,0 +1,159 @@
+:root {
+        --x-pulse-duration: 2s;
+        --x-pulse-color: rgba(0,0,0,0.4);
+        --x-pulse-size: 1.2;
+        --x-pulse-pause: none;
+
+        --x-popover-transitionout: 300ms;
+        --x-popover-transitionin: 300ms;
+        --x-popover-translatex: 0;
+        --x-popover-translatey: 10px;
+        --x-popover-scale: .95;
+}
+
+.brxe-ximagehotspots {
+    position: relative;
+}
+
+.x-marker_marker {
+    background: transparent;
+    border: 500px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-size: inherit;
+    line-height: inherit;
+    border-radius: 500px;
+    -webkit-transform: translate(-50%,-50%);
+            transform: translate(-50%,-50%);
+}
+
+.x-marker_marker-inner {
+    padding: .5em 1em;
+    background: #fff;
+    z-index: 1;
+    position: relative;
+    border: 1px solid #eee;
+    display: inline-flex;
+    align-items: center;
+    white-space: nowrap;
+    border-radius: inherit;
+    border: none;
+}
+
+.x-marker_marker-icon {
+    display: flex;
+    font-size: 1.8em;
+}
+
+.x-marker_marker-title {
+    margin-left: 0.5em;
+}
+
+.x-marker_marker-title:only-child {
+    margin: 0;
+}
+
+.x-marker .tippy-box {
+    color: inherit;
+    background: transparent;
+}
+
+.x-marker .tippy-content {
+    padding: 20px;
+    background: #fff;
+    box-shadow: 0 10px 20px rgb(0 0 0 / 10%);
+    border-radius: 5px;
+}
+
+.x-marker .tippy-arrow {
+    color: #fff;
+    opacity: 1;
+    visibility: visible;
+}
+
+/* custom animation */
+
+
+.x-marker_marker[aria-expanded='true'] + .x-marker_popover .tippy-box[data-theme~='extras'] {
+    visibility: visible;
+    transition-duration: var(--x-popover-transitionin);
+}
+
+.x-marker_marker[aria-expanded='false'] + .x-marker_popover .tippy-box[data-theme~='extras'] {
+    opacity: 0;
+       
+}
+
+.tippy-box[data-animation='extras'][data-state='hidden'] {
+    opacity: 0;
+    transform: translate(var(--x-popover-translatex),var(--x-popover-translatey)) scale(var(--x-popover-scale));
+    transition-duration: var(--x-popover-transitionout);
+    transition-property: opacity, transform;
+}
+
+
+/* Pulsing Effect */
+
+.x-marker_marker::after,
+.x-marker_marker::before {
+        content: '';
+        display: block;
+        position: absolute;
+        pointer-events: none;
+        -webkit-animation: x-popover_pulse var(--x-pulse-duration) infinite;
+        animation: x-popover_pulse var(--x-pulse-duration) infinite;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: inherit;
+        -webkit-backface-visibility: hidden;
+        will-change: opacity, transform;
+        opacity: 0;
+        background: var(--x-pulse-color);
+}
+
+.x-marker_marker:hover::after,
+.x-marker_marker:hover::before,
+.x-marker_marker[aria-expanded='true']::after, 
+.x-marker_marker[aria-expanded='true']::before {
+    display: var(--x-pulse-pause);
+}
+
+.brxe-ximagehotspots[data-x-hotspots*=single] .x-marker_marker::after,
+.brxe-ximagehotspots[data-x-hotspots*=none] .x-marker_marker::after {
+    content: none;
+}
+
+.brxe-ximagehotspots[data-x-hotspots*=none] .x-marker_marker::before {
+    content: none;
+}
+
+.x-marker_marker::before {
+    animation-delay: calc(var(--x-pulse-duration)/4);
+    -webkit-animation-delay: calc(var(--x-pulse-duration)/4);
+}
+
+
+@keyframes x-popover_pulse {
+      0% {
+        opacity: .8;
+        transform: scale(1);
+      }
+      100% {
+        opacity: 0;
+        transform: scale(var(--x-pulse-size));
+      }
+    }
+
+    @-webkit-keyframes x-popover_pulse {
+      0% {
+        opacity: .8;
+        -webkit-transform: scale(1);
+      }
+      100% {
+        opacity: 0;
+        -webkit-transform: scale(var(--x-pulse-size));;
+      }
+    } 

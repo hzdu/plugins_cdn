@@ -1,0 +1,57 @@
+.x-accordion {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.x-accordion_content {
+    display: none;
+}
+
+:where(.x-accordion_content-inner) {
+    padding: 15px;
+}
+
+/* .x-accordion_header[aria-expanded=true] + .x-accordion_content {
+    display: flex;
+} */
+
+.x-accordion[data-x-accordion*=expandFirst] > .brxe-block:first-child .x-accordion_content {
+     display: flex;
+ }
+
+ .x-accordion[data-x-accordion*=expandAll] .x-accordion_content {
+    display: flex;
+ }
+
+ .x-accordion_header {
+    padding: 15px;
+    transition: all .15s ease;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+ }
+
+ .x-accordion_icon {
+    font-size: 1em;
+    transition: transform .15s ease;
+ }
+
+.x-accordion_header[aria-expanded=true] .brxe-icon {
+    transform: rotateX(180deg);
+}
+
+/* builder */
+
+.x-accordion:not([data-x-expand*=expandFirst]).x-accordion_builder-collapse .x-accordion_content {
+    display: none;
+}
+
+.x-accordion[data-x-expand*=expandFirst].x-accordion_builder-collapse > .brxe-block:not(:first-child) .x-accordion_content {
+    display: none!important;
+}
+
+.x-accordion[data-x-expand*=expandFirst].x-accordion_builder-collapse > .brxe-block:first-child .x-accordion_content {
+    display: flex!important;
+}
