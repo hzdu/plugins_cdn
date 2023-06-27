@@ -1,3 +1,25 @@
+## v1.8.0 (2023-06-26)
+
+### Feat
+
+- **oxy**: add emmet snippet demos
+- **all**: added media queries text-align classes
+- **oxy**: enhanced emmet and emmet context menu
+
+### Fix
+
+- **all**: switch to dynamic generated version for better cache management
+- **brx**: normalize doesn't set default size anymore on Bricks native menu carets
+- **all**: fix o-nopad and o-nomrg classes target property
+- **all**: list classes
+- **all**: typo in product base variable name
+
+## v1.7.0 (2023-06-17)
+
+### Feat
+
+- bump 1.7
+
 ## v1.6.2 (2023-06-17)
 
 ### Feat
