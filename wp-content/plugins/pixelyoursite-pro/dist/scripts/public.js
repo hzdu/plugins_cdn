@@ -802,7 +802,8 @@ if (!String.prototype.trim) {
             PRODUCT_VARIABLE : 1,
             PRODUCT_BUNDLE : 2,
             PRODUCT_GROUPED : 3,
-
+            utmTerms : utmTerms,
+            utmId : utmId,
             validateEmail: function (email) {
                 var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
                 return re.test(email);
@@ -1000,44 +1001,138 @@ if (!String.prototype.trim) {
                 let landing = window.location.href.split('?')[0];
                 try {
                     // save data for first visit
-                    if(Cookies.get('pys_first_visit') === undefined ) {
-                        Cookies.set('pys_first_visit', true, { expires: expires });
-                        Cookies.set('pysTrafficSource', getTrafficSource(), { expires: expires });
-                        Cookies.set('pys_landing_page',landing,{ expires: expires });
-                        $.each(utmTerms, function (index, name) {
-                            if (queryVars.hasOwnProperty(name)) {
-                                Cookies.set('pys_' + name, queryVars[name], { expires: expires });
-                            } else {
+                    if(Cookies.get('pys_first_visit') === undefined && (!options.cookie.disabled_all_cookie)) {
+
+                        if(!options.cookie.disabled_first_visit_cookie)
+                        {
+                            Cookies.set('pys_first_visit', true, { expires: expires });
+                        }
+                        else {
+                            Cookies.remove('pys_first_visit')
+                        }
+
+                        if(!options.cookie.disabled_trafficsource_cookie)
+                        {
+                            Cookies.set('pysTrafficSource', getTrafficSource(), { expires: expires });
+                        }
+                        else {
+                            Cookies.remove('pysTrafficSource')
+                        }
+
+                        if(!options.cookie.disabled_landing_page_cookie)
+                        {
+                            Cookies.set('pys_landing_page',landing,{ expires: expires });
+                        }
+                        else {
+                            Cookies.remove('pys_landing_page')
+                        }
+
+                        if(!options.cookie.disabled_utmTerms_cookie)
+                        {
+                            $.each(utmTerms, function (index, name) {
+                                if (queryVars.hasOwnProperty(name)) {
+                                    Cookies.set('pys_' + name, queryVars[name], { expires: expires });
+                                } else {
+                                    Cookies.remove('pys_' + name)
+                                }
+                            });
+                        }
+                        else {
+                            $.each(utmTerms, function (index, name) {
                                 Cookies.remove('pys_' + name)
-                            }
-                        });
-                        $.each(utmId,function(index,name) {
-                            if (queryVars.hasOwnProperty(name)) {
-                                Cookies.set('pys_' + name, queryVars[name], { expires: expires });
-                            } else {
+                            });
+                        }
+
+                        if(!options.cookie.disabled_utmId_cookie)
+                        {
+                            $.each(utmId,function(index,name) {
+                                if (queryVars.hasOwnProperty(name)) {
+                                    Cookies.set('pys_' + name, queryVars[name], { expires: expires });
+                                } else {
+                                    Cookies.remove('pys_' + name)
+                                }
+                            })
+                        }
+                        else {
+                            $.each(utmId, function (index, name) {
                                 Cookies.remove('pys_' + name)
-                            }
-                        })
+                            });
+                        }
+
                     }
 
                     // save data for last visit if it new session
-                    if(isNewSession) {
-                        Cookies.set('last_pysTrafficSource', getTrafficSource(), { expires: expires });
-                        $.each(utmTerms, function (index, name) {
-                            if (queryVars.hasOwnProperty(name)) {
-                                Cookies.set('last_pys_' + name, queryVars[name], { expires: expires });
-                            } else {
+                    if(isNewSession && (!options.cookie.disabled_all_cookie)) {
+                        if(!options.cookie.disabled_trafficsource_cookie)
+                        {
+                            Cookies.set('last_pysTrafficSource', getTrafficSource(), { expires: expires });
+                        }
+                        else {
+                            Cookies.remove('last_pysTrafficSource')
+                        }
+
+                        if(!options.cookie.disabled_landing_page_cookie)
+                        {
+                            Cookies.set('last_pys_landing_page',landing,{ expires: expires });
+                        }
+                        else {
+                            Cookies.remove('last_pys_landing_page')
+                        }
+
+                        if(!options.cookie.disabled_utmTerms_cookie)
+                        {
+                            $.each(utmTerms, function (index, name) {
+                                if (queryVars.hasOwnProperty(name)) {
+                                    Cookies.set('last_pys_' + name, queryVars[name], { expires: expires });
+                                } else {
+                                    Cookies.remove('last_pys_' + name)
+                                }
+                            });
+                        }
+                        else {
+                            $.each(utmTerms, function (index, name) {
                                 Cookies.remove('last_pys_' + name)
-                            }
+                            });
+                        }
+
+                        if(!options.cookie.disabled_utmId_cookie)
+                        {
+                            $.each(utmId,function(index,name) {
+                                if (queryVars.hasOwnProperty(name)) {
+                                    Cookies.set('last_pys_' + name, queryVars[name], { expires: expires });
+                                } else {
+                                    Cookies.remove('last_pys_' + name)
+                                }
+                            })
+                        }
+                        else {
+                            $.each(utmId, function (index, name) {
+                                Cookies.remove('last_pys_' + name)
+                            });
+                        }
+
+                    }
+                    if(options.cookie.disabled_all_cookie)
+                    {
+                        Cookies.remove('pys_first_visit')
+                        Cookies.remove('pysTrafficSource')
+                        Cookies.remove('pys_landing_page')
+                        Cookies.remove('last_pys_landing_page')
+                        Cookies.remove('last_pysTrafficSource')
+                        Cookies.remove('pys_start_session')
+                        Cookies.remove('pys_session_limit')
+                        $.each(Utils.utmTerms, function (index, name) {
+                            Cookies.remove('pys_' + name)
                         });
-                        $.each(utmId,function(index,name) {
-                            if (queryVars.hasOwnProperty(name)) {
-                                Cookies.set('last_pys_' + name, queryVars[name], { expires: expires });
-                            } else {
-                                Cookies.remove('last_pys_' + name)
-                            }
+                        $.each(Utils.utmId,function(index,name) {
+                            Cookies.remove('pys_' + name)
                         })
-                        Cookies.set('last_pys_landing_page',landing,{ expires: expires });
+                        $.each(Utils.utmTerms, function (index, name) {
+                            Cookies.remove('last_pys_' + name)
+                        });
+                        $.each(Utils.utmId,function(index,name) {
+                            Cookies.remove('last_pys_' + name)
+                        });
                     }
                 } catch (e) {
                     console.error(e);
@@ -1850,7 +1945,7 @@ if (!String.prototype.trim) {
                         consentApi.consent("http", "1P_JAR", ".google.com")
                             .then(GAds.loadPixel.bind(GAds), GAds.disable.bind(GAds));
                         consentApi.consent("http", "tt_webid_v2", ".tiktok.com")
-                            .then(TikTok.loadPixel.bind(GAds), TikTok.disable.bind(GAds));
+                            .then(TikTok.loadPixel.bind(TikTok), TikTok.disable.bind(TikTok));
                     }
                 }
 
@@ -1949,9 +2044,15 @@ if (!String.prototype.trim) {
                 if(lastName != null) {
                     data["last_name"] = lastName;
                 }
-                Cookies.set('pys_advanced_form_data', JSON.stringify(data),{ expires: 300 } );
-
+                if(!options.cookie.disabled_advanced_form_data_cookie)
+                {
+                    Cookies.set('pys_advanced_form_data', JSON.stringify(data),{ expires: 300 } );
+                }
+                else {
+                    Cookies.remove('pys_advanced_form_data')
+                }
                 GAds.updateEnhancedConversionData()
+
             },
 
             getAdvancedFormData: function () {
@@ -3608,33 +3709,49 @@ if (!String.prototype.trim) {
 
         var Pinterest = Utils.setupPinterestObject();
         var Bing = Utils.setupBingObject();
-        if((options.woo.enabled || options.edd.enabled) && (options.woo.enabled_save_data_to_orders || options.edd.enabled_save_data_to_orders))
+        if(options.hasOwnProperty('cookie'))
         {
-            Utils.manageCookies();
-        }
-        else
-        {
-            Cookies.remove('pys_first_visit')
-            Cookies.remove('pysTrafficSource')
-            Cookies.remove('pys_landing_page')
-            Cookies.remove('last_pys_landing_page')
-            Cookies.remove('last_pysTrafficSource')
-            Cookies.remove('pys_start_session')
-            Cookies.remove('pys_session_limit')
+            if(options.cookie.disabled_advanced_form_data_cookie || options.cookie.disabled_all_cookie)
+            {
+                Cookies.remove('pys_advanced_form_data')
+            }
+            if(options.cookie.disabled_landing_page_cookie || options.cookie.disabled_all_cookie)
+            {
+                Cookies.remove('pys_landing_page')
+                Cookies.remove('last_pys_landing_page')
+            }
+            if(options.cookie.disabled_trafficsource_cookie || options.cookie.disabled_all_cookie)
+            {
+                Cookies.remove('pysTrafficSource')
+                Cookies.remove('last_pysTrafficSource')
+            }
+            if(options.cookie.disabled_first_visit_cookie || options.cookie.disabled_all_cookie)
+            {
+                Cookies.remove('pys_first_visit')
 
-            $.each(Utils.utmTerms, function (index, name) {
-                Cookies.remove('pys_' + name)
-            });
-            $.each(Utils.utmId,function(index,name) {
-                Cookies.remove('pys_' + name)
-            })
-            $.each(Utils.utmTerms, function (index, name) {
-                Cookies.remove('last_pys_' + name)
-            });
-            $.each(Utils.utmId,function(index,name) {
-                Cookies.remove('last_pys_' + name)
-            });
+            }
+            if(options.cookie.disabled_utmTerms_cookie || options.cookie.disabled_all_cookie)
+            {
+                $.each(Utils.utmTerms, function (index, name) {
+                    Cookies.remove('pys_' + name)
+                });
+                $.each(Utils.utmTerms, function (index, name) {
+                    Cookies.remove('last_pys_' + name)
+                });
+            }
+            if(options.cookie.disabled_utmId_cookie || options.cookie.disabled_all_cookie)
+            {
+                $.each(Utils.utmId,function(index,name) {
+                    Cookies.remove('pys_' + name)
+                })
+                $.each(Utils.utmId,function(index,name) {
+                    Cookies.remove('last_pys_' + name)
+                });
+            }
         }
+
+
+        Utils.manageCookies();
 
         Utils.initializeRequestParams();
         Utils.setupGdprCallbacks();
@@ -4495,6 +4612,13 @@ if (!String.prototype.trim) {
                 if ($form.hasClass('wpcf7-form')) {
                     return;
                 }
+                // exclude Gravity forms
+                if ($form.attr('id') && $form.attr('id').includes('gform')) {
+                    var target = $form.attr('target');
+                    if (target && target.indexOf('gform_ajax_frame') !== -1) {
+                        return;
+                    }
+                }
                 // exclude Forminator forms
                 if ($form.hasClass('forminator-custom-form') || $form.hasClass('forminator_ajax')) {
                     return;
@@ -4518,7 +4642,7 @@ if (!String.prototype.trim) {
                 if(!options.enable_success_send_form) {
                     var params = {
                         form_id: $form.attr('id'),
-                        form_class: $form.attr('class'),
+                        form_class: $form.attr('class') ? $form.attr('class') : $form.attr('id'),
                         text: $form.find('[type="submit"]').is('input') ?
                             $form.find('[type="submit"]').val() : $form.find('[type="submit"]').text()
                     };
@@ -4574,6 +4698,41 @@ if (!String.prototype.trim) {
                 sendFormAction($(event.target), form_id);
             }
         }, false );
+
+
+        //GravityForm
+        jQuery(document).on('gform_confirmation_loaded', function(event, formId){
+            var form_id = formId;
+            var sendEventId = null;
+            var disabled_form_action = false;
+            if(options.triggerEventTypes.hasOwnProperty('gravity'))
+            {
+                key_event = Object.keys(options.triggerEventTypes.gravity)[0];
+                if(options.triggerEventTypes.gravity[key_event].hasOwnProperty('disabled_form_action'))
+                {
+                    disabled_form_action = options.triggerEventTypes.gravity[key_event].disabled_form_action;
+                }
+                $.each(options.triggerEventTypes.gravity, function (eventId, triggers) {
+                    $.each(triggers.forms, function (index, value) {
+                        if(value == form_id) {
+                            sendEventId=eventId;
+                        };
+                    });
+                });
+            }
+            if(sendEventId != null)
+            {
+                Utils.fireTriggerEvent(sendEventId);
+
+                if(!disabled_form_action)
+                {
+                    sendFormAction($(event.target), form_id);
+                }
+            }
+            else {
+                sendFormAction($(event.target), form_id);
+            }
+        });
         //Forminator
         $(document).on( 'forminator:form:submit:success', function( event ){
             var form_id = $(event.target).find('input[name="form_id"]').val();
