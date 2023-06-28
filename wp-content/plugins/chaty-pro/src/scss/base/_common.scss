@@ -1,0 +1,375 @@
+body {
+    @apply m-0 pb-12 bg-cht-gray-100
+}
+
+svg {
+    @apply inline
+}
+
+button.chaty-input-button,
+select.chaty-select,
+select.form-fonts {
+    color: #49687e;
+    display: flex;
+    align-items: center;
+    border: 1px solid #eaeff2;
+    font-family: Rubik, sans-serif;
+    font-size: 1rem;
+    padding: 0 16px;
+    background-color: #fff;
+    width: 100%;
+    outline: none;
+    cursor: pointer;
+    border-radius: 8px;
+    height: 45px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    transition: border-color 0.4s ease;
+    line-height: 45px;
+
+    &:focus {
+        box-shadow: none !important;
+        border: 1px solid #b78deb;
+    }
+}
+
+.country-list.chaty-select {
+    height: 40px !important;
+}
+
+.chaty-select:focus,
+.wp-core-ui select:focus,
+textarea:focus,
+input:focus {
+    border: 1px solid #b78deb;
+    box-shadow: none !important;
+    outline: 0;
+    border-color: #b78deb !important;
+}
+
+.group-control-wrap {
+    background: #f9fafb;
+    border: 1px solid #eaeff2;
+    border-radius: 8px;
+    margin-top: 10px;
+    width: 100%;
+    position: relative;
+}
+
+// move up contact form settings  
+#chaty-social-Contact_Us {
+    .device-agent-settings {
+        max-width: 95%;
+    }
+}
+
+
+#analytics_form {
+    input {
+        @apply border-cht-gray-150/60 border py-1.5 px-4 text-cht-gray-150;
+    }
+}
+
+.chaty-data-and-time-rules .remove-rules {
+    display: inline-block;
+}
+
+.testimonial-success-message {
+    @apply border-l-4 border-cht-green p-3 bg-cht-green/10 text-cht-green font-primary text-base
+}
+
+.testimonial-error-message {
+    @apply bg-[#FFE6E7] text-[#FF424D] font-primary text-base py-2 px-3 text-left rounded-lg;
+    .dashicons {
+        min-width: 25px;
+        height: 25px;
+        display: inline-block;
+        line-height: 27px;
+    }
+}
+
+.responsive-table,
+.analytics-table {
+    table {
+        thead {
+            tr:last-child {
+                td {
+                    &:first-child {
+                        @apply rounded-bl-lg;
+                    }
+
+                    &:last-child {
+                        @apply rounded-br-lg;
+                    }
+                }
+            }
+        }
+
+        tbody {
+            tr:last-child {
+                td {
+                    &:first-child {
+                        @apply rounded-bl-lg ;
+                    }
+
+                    &:last-child {
+                        @apply rounded-br-lg;
+                    }
+                }
+            }
+            
+            tr:first-child {
+                td {
+                    border-top: 0 !important;
+                }
+            }
+        }
+    }
+}
+
+.contact-form-leads-header + .responsive-table {
+    table {
+        tbody {
+            tr:first-child {
+                td {
+                    border-top: 0 !important;
+                }
+            }
+        }
+    }
+}
+
+.chaty-popup-input {
+    #widget_title {
+        @apply border border-cht-gray-150/50 px-5 py-1.5 w-full inline-block focus:border-cht-primary focus:outline-none mt-4;
+    }
+}
+
+
+.chaty-header {
+    padding: 8px 25px;
+    border-bottom: 1px solid #e5e7eb;
+
+    @include mobile {
+        padding: 10px 15px;
+    }
+
+    .chaty-app-tabs {
+        padding: 0 30px
+    }
+
+    li {
+        @apply w-full;
+        align-self: normal;
+
+        a::after {
+            content: '';
+            height: 2px;
+            position: absolute;
+            top: 22px;
+            z-index: 0;
+            @apply bg-cht-gray-150/40;
+        }
+
+        a:is(.active, .completed) {
+            &::after {
+                @apply bg-cht-primary;
+            }
+
+            .chaty-tabs-subheading {
+                @apply text-cht-primary;
+            }
+        }
+
+        &:nth-child(1) {
+            a {
+                &::after {
+                    width: 50%;
+                    right: 0;
+                }
+            }
+        }
+
+        &:nth-child(2) {
+            a {
+                &::after {
+                    width: 100%;
+                    right: 0;
+                }
+            }
+        }
+
+        &:nth-child(3) {
+            a {
+                &::after {
+                    width: 50%;
+                    left: 0;
+                }
+            }
+        }
+    }
+
+    .chaty-tab {
+        @apply font-primary text-cht-gray-150 relative pt-10 bg-white inline-block w-full px-4 rounded-lg text-center h-full;
+        font-size: 14px;
+        padding-bottom: 7px;
+
+        &::before {
+            display: inline-block;
+            width: 1.9rem;
+            content: '';
+            height: 1.9rem;
+            margin-bottom: 0.125rem;
+            border: 5px solid #fff;
+            border-radius: 50%;
+            position: absolute;
+            left: 50%;
+            z-index: 1;
+            transform: translate(-50%, -33px);
+            background-color: #83a1b7;
+        }
+
+        &.active {
+            @apply text-cht-primary
+        }
+
+        &:is(.active, .completed)::before {
+            @apply bg-cht-primary
+        }
+
+        &:hover {
+            @apply bg-cht-primary/20
+        }
+    }
+}
+
+
+.contact-form-leads-header {
+    @apply mb-5;
+
+    input:not([type="submit"]),
+    select {
+        @apply border rounded-lg px-5 py-1.5 inline-block;
+        height: auto !important;
+        min-width: 150px;
+        line-height: 26px !important;
+    }
+
+    form {
+        @apply flex items-center;
+    }
+
+    #search-submit,
+    #doaction {
+        padding: 10px 22px;
+        border: 0;
+        margin-left: 8px;
+        border-radius: 8px;
+    }
+}
+
+
+table {
+    [type='checkbox']:checked {
+        @apply text-cht-primary;
+
+        &::before {
+            content: '' !important
+        }
+    }
+}
+
+
+.agent-button-action {
+    margin-right: 10px;
+
+    svg {
+        margin-right: 5px;
+
+        path {
+            fill: #49687e;
+        }
+    }
+}
+
+.channels__agent-box,
+.chaty-settings {
+    a:not(.pro-btn) {
+        background-color: transparent;
+        display: inline-flex;
+        align-items: center;
+        color: #49687e;
+        border: 1px solid #c6d7e3;
+        box-shadow: none;
+        font-size: .75rem;
+        font-weight: 400;
+        height: 32px;
+        border-radius: 8px;
+        line-height: 100%;
+
+        @apply px-2 sm:px-3;
+
+        &:hover {
+            background-color: #edf3f6 !important;
+        }
+    }
+
+    &.enable a:not(.pro-btn) {
+        background-color: #f9f6fd;
+        border-color: #b78deb;
+        color: #b78deb;
+    }
+}
+
+.customize-agent-button, 
+.agent-channel-setting-button {
+    display: inline-flex;
+    align-items: center;
+    color: #49687e;
+    border: 1px solid #c6d7e3;
+    box-shadow: none;
+    font-size: 13px;
+    font-weight: 400;
+    height: 30px;
+    padding-left: 8px;
+    padding-right: 8px;
+    border-radius: 6px;
+    line-height: 100%;
+    column-gap: 5px;
+
+    &:hover {
+        background-color: #edf3f6 !important;
+    }
+
+    &.enable {
+        background-color: #f9f6fd;
+        border-color: #b78deb;
+        color: #b78deb;
+    }
+}
+
+.chaty-setting-col {
+
+    .chaty-title,
+    .pre-set-message-whatsapp {
+        border: 1px solid #c6d7e3;
+        color: #49687e;
+    }
+}
+
+.pending-message-items {
+    @apply hidden;
+    &.active {
+        @apply block;
+    }
+}
+
+.day-buttons + .not-pro #create-data-and-time-rule {
+    display: none;
+    pointer-events: none;
+}
+
+.show-remove-rules-btn .not-pro .create-rule {
+    display: none;
+}
