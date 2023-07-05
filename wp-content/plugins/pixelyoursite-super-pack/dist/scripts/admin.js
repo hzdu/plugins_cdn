@@ -8,8 +8,20 @@ jQuery(document).ready(function ($) {
     $body.on('change','.pixel_info .is_enable',function () {
         updatePixelData($(this).parents('.pixel_info'),'is_enable',this.checked)
     })
+    $body.on('change','.pixel_info .pys_ga_use_server_api',function () {
+        updatePixelData($(this).parents('.pixel_info'),'use_server_api',this.checked)
+        if(this.checked == '1') {
+            $(this).parents('.pixel_info').find('.server_access_api_token').removeAttr('disabled')
+        }
+        else {
+            $(this).parents('.pixel_info').find('.server_access_api_token').attr('disabled', 'disabled')
+        }
+    })
     $body.on('input','.pixel_info .pixel_id'  ,function () {
         updatePixelData($(this).parents('.pixel_info'),'pixel_id',$(this).val())
+    })
+    $body.on('input','.server_access_api_token'  ,function () {
+        updatePixelData($(this).parents('.pixel_info'),'server_access_api_token',$(this).val())
     })
     $body.on('input','.pixel_info .pixel_ext'  ,function () {
 
@@ -125,11 +137,16 @@ jQuery(document).ready(function ($) {
     $('#pys_superpack_add_ga_tracking_id').click(function (e) {
 
         e.preventDefault();
-
-        var $row = $('#pys_superpack_ga_tracking_id').clone()
-            .insertBefore('#pys_superpack_ga_tracking_id')
+        let count = $(this).parents('.settings_content').find('.pixel_info').length -1
+        var $row = $('#pys_superpack_ga_tracking_id').clone();
+        $row.find('#pixel_ga_is_enable').attr('id','pixel_ga_is_enable_'+count)
+        $row.find("label[for='pixel_ga_is_enable']").attr('for','pixel_ga_is_enable_'+count)
+        $row.find('#pys_ga_use_server_api').attr('id','pys_ga_use_server_api_'+count)
+        $row.find("label[for='pys_ga_use_server_api']").attr('for','pys_ga_use_server_api_'+count)
+        $row.insertBefore('#pys_superpack_ga_tracking_id')
             .attr('id', '')
             .css('display', 'block');
+
         updatePixelInputValue($row)
     });
 
@@ -147,7 +164,9 @@ jQuery(document).ready(function ($) {
 
     function updatePixelInputValue($pixel) {
         updatePixelData($pixel,'is_enable',$pixel.find('.is_enable')[0].checked)
+        updatePixelData($pixel,'use_server_api',$pixel.find('.pys_ga_use_server_api')[0].checked)
         updatePixelData($pixel,'pixel_id',$pixel.find('.pixel_id').val())
+        updatePixelData($pixel,'server_access_api_token',$pixel.find('.server_access_api_token').val())
         $pixel.find('.pixel_ext').each(function () {
             updatePixelData($pixel,'ext_'+$(this).data('ext'),$(this).val())
         })
