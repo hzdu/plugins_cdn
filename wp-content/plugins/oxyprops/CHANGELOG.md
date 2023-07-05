@@ -1,3 +1,14 @@
+## v1.9.0 (2023-07-04)
+
+### Feat
+
+- **all**: make a11y, cursors, position, scrollbars availabla as individual classes packs
+- **all**: add breakpoint responsive screen reader classes
+
+### Fix
+
+- **brx**: class pezview on tab and hover is working again
+
 ## v1.8.0 (2023-06-26)
 
 ### Feat
