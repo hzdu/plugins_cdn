@@ -2083,12 +2083,6 @@ if (!String.prototype.trim) {
                     if (options.debug) {
                         console.log('[TikTok] ' + name, params,"pixel_id",pixelId);
                     }
-
-                    if(options.tiktok.hasOwnProperty('advanced_matching')
-                        && Object.keys(options.tiktok.advanced_matching).length > 0) {
-                        ttq.instance(pixelId).identify(options.tiktok.advanced_matching)
-                    }
-
                     ttq.instance(pixelId).track(name,params)
                 });
         }
@@ -2108,7 +2102,6 @@ if (!String.prototype.trim) {
                 if (initialized || !this.isEnabled() || !Utils.consentGiven('tiktok')) {
                     return;
                 }
-
                 !function (w, d, t) {
                     w.TiktokAnalyticsObject=t;
                     var ttq=w[t]=w[t]||[];
@@ -2124,8 +2117,20 @@ if (!String.prototype.trim) {
                 }(window, document, 'ttq');
 
                 options.tiktok.pixelIds.forEach(function (pixelId) {
+
                     ttq.load(pixelId);
                     ttq.page();
+                    let advancedMatching = {};
+                    if(options.tiktok.hasOwnProperty('advanced_matching')
+                        && Object.keys(options.tiktok.advanced_matching).length > 0) {
+                        advancedMatching = options.tiktok.advanced_matching;
+                        if(!advancedMatching.hasOwnProperty("external_id")){
+                            if (Cookies.get('pbid')) {
+                                advancedMatching["external_id"] = Cookies.get('pbid');
+                            }
+                        }
+                        ttq.instance(pixelId).identify(advancedMatching)
+                    }
                 });
                 initialized = true;
 
@@ -2268,6 +2273,7 @@ if (!String.prototype.trim) {
         var configuredPixels = new Array();
         function fireEvent(name, event) {
 
+
             if(typeof window.pys_event_data_filter === "function" && window.pys_disable_event_filter(name,'facebook')) {
                 return;
             }
@@ -2298,12 +2304,13 @@ if (!String.prototype.trim) {
                         options.gdpr.consent_magic_integration_enabled ||
                         options.gdpr.cookie_law_info_integration_enabled;
                     // Update eventID
-                    if( options.facebook.ajaxForServerEvent || event.type !== "static") {
+
+                    if( options.ajaxForServerEvent || event.type !== "static") {
                         event.eventID = pys_generate_token(36);
                     }
 
                     // send event from server if they was bloc by gdpr or need send with delay
-                    if( options.facebook.ajaxForServerEvent || isApiDisabled || event.delay > 0 || event.type !== "static" ){
+                    if( options.ajaxForServerEvent || isApiDisabled || event.delay > 0 || event.type !== "static" ){
 
                         var json = {
                             action: 'pys_api_event',
@@ -2406,7 +2413,7 @@ if (!String.prototype.trim) {
                 if(options.facebook.serverApiEnabled && event.hasOwnProperty('eventID')) {
                     args.eventID = pixelId+event.eventID;
                 }
-                
+
                 Facebook.maybeInitPixel(pixelId);
                 fbq(actionType,pixelId, name, params,args);
             });
@@ -2515,6 +2522,11 @@ if (!String.prototype.trim) {
                     if(!advancedMatching.hasOwnProperty("ln")
                         && advancedMatchingForm.hasOwnProperty("last_name") && advancedMatchingForm["last_name"].length > 0) {
                         advancedMatching["ln"] = advancedMatchingForm["last_name"];
+                    }
+                    if(!advancedMatching.hasOwnProperty("external_id")){
+                        if (Cookies.get('pbid')) {
+                            advancedMatching["external_id"] = Cookies.get('pbid');
+                        }
                     }
 
                     if(Object.keys(advancedMatching).length > 0) {
@@ -3062,7 +3074,7 @@ if (!String.prototype.trim) {
                     {
                         gtag('config', trackingId, config);
                     }
-                    
+
                 });
 
                 initialized = true;
@@ -3692,6 +3704,10 @@ if (!String.prototype.trim) {
 
     $(document).ready(function () {
 
+        if(Cookies.get('form_track'))
+        {
+            Cookies.remove('form_track')
+        }
 
         if($("#pys_late_event").length > 0) {
             var events =  JSON.parse($("#pys_late_event").attr("dir"));
@@ -3711,6 +3727,10 @@ if (!String.prototype.trim) {
         var Bing = Utils.setupBingObject();
         if(options.hasOwnProperty('cookie'))
         {
+            if(options.cookie.externalID_disabled_by_api || options.cookie.disabled_all_cookie)
+            {
+                Cookies.remove('pbid')
+            }
             if(options.cookie.disabled_advanced_form_data_cookie || options.cookie.disabled_all_cookie)
             {
                 Cookies.remove('pys_advanced_form_data')
@@ -4666,6 +4686,12 @@ if (!String.prototype.trim) {
 
 
         }
+
+        jQuery(document).on('elementor/popup/show', function(event) {
+            for (var i = 0; i < jQuery(".wpcf7-form").length; i++) {
+                wpcf7.init(jQuery(".wpcf7-form")[i]);
+            }
+        });
         document.addEventListener( 'wpcf7mailsent', function( event ) {
             var form_id = event.detail.contactFormId;
             var sendEventId = null;
