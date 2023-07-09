@@ -1,0 +1,219 @@
+.ct-size-guide {
+	padding: 40px;
+	background: white;
+	max-width: 600px;
+	margin: 0 auto;
+	position: relative;
+}
+
+/* .ct-size-guide > div {
+	max-width: 520px !important;
+} */
+
+.ct-size-guide.ct_sg_tabbed {
+	padding: 0px;
+	max-width: 100%;
+}
+
+.ct-size-guide table {
+	width: 100%;
+}
+
+.ct-size-guide table td{
+	color: #000000;
+}
+
+.ct-size-guide table tr:nth-child(1n+1) {
+    color: #000000;
+}
+
+.ct_sg_tabbed .sg_content {
+	max-width: 100%;
+}
+
+.ct_table_caption {
+	font-size: small;
+	color: #808080;
+	font-style: italic;
+	margin-top: 10px;
+	margin-bottom: 0;
+}
+
+button.mfp-close {
+	position: absolute;
+}
+.ct-size-guide .sg_title {
+	margin-bottom: 50px;
+}
+h2.sg_title {
+	font-weight: 400;
+}
+
+.clearfix:before, .clearfix:after {
+	content: " ";
+	display: table;
+}
+
+.clearfix:after {
+	clear: both;
+}
+
+.sg_content h4 {
+	clear: none;
+}
+
+.ct_table_container .ct-table-hover{
+    background: #999999;
+}
+
+.ct_table_container .ct-table-cursor{
+    background: #2C72AD;
+    color: #FFFFFF;
+}
+
+/*responsive tables */
+
+@media only screen and (max-width: 800px) {
+
+	.ct-size-guide .ct_table_container {
+		overflow-x: auto;
+	}
+
+	.ct-size-guide .ct-size-guide--Responsive .cf:after {
+		visibility: hidden;
+		display: block;
+		font-size: 0;
+		content: " ";
+		clear: both;
+		height: 0;
+	}
+
+	.ct-size-guide * html .cf {
+		zoom: 1;
+	}
+
+	.ct-size-guide .ct-size-guide--Responsive *:first-child + html .cf {
+		zoom: 1;
+	}
+
+	.ct-size-guide .ct-size-guide--Responsive table {
+		width: 100%;
+		border-collapse: collapse;
+		border-spacing: 0;
+	}
+
+	.ct-size-guide .ct-size-guide--Responsive th,
+	.ct-size-guide .ct-size-guide--Responsive td {
+		margin: 0;
+		vertical-align: top;
+	}
+
+	.ct-size-guide .ct-size-guide--Responsive table {
+		display: block;
+		position: relative;
+		width: 100%;
+	}
+
+	.ct-size-guide .ct-size-guide--Responsive thead {
+		display: block;
+		float: left;
+	}
+
+	.ct-size-guide .ct-size-guide--Responsive tbody {
+		display: block;
+		width: auto;
+		position: relative;
+		overflow-x: auto;
+		white-space: nowrap;
+	}
+
+	.ct-size-guide .ct-size-guide--Responsive thead tr {
+		display: block;
+	}
+
+	.ct-size-guide .ct-size-guide--Responsive th {
+		display: block;
+	}
+
+	.ct-size-guide .ct-size-guide--Responsive tbody tr {
+		display: inline-block;
+		vertical-align: top;
+	}
+
+	.ct-size-guide .ct-size-guide--Responsive td {
+		display: block;
+		min-height: 1.25em;
+	}
+
+	/* sort out borders */
+	.ct-size-guide .ct-size-guide--Responsive th {
+		border: 0;
+	}
+
+	.ct-size-guide .ct-size-guide--Responsive td {
+		border: 0;
+	}
+
+	.ct-size-guide .ct-size-guide--Responsive tbody tr {
+		border: 0;
+	}
+
+	.ct-size-guide .ct-size-guide--Responsive th:last-child,
+	.ct-size-guide .ct-size-guide--Responsive td:last-child {
+		border: 0;
+	}
+
+	.ct-size-guide .ct-size-guide--Responsive{
+		position: relative;
+	}
+	.ct-size-guide .ct-size-guide--Responsive:after {
+		position: absolute;
+		bottom: -25px;
+		left: 5px;
+		display: inline-block;
+		font-family: 'Glyphicons Halflings';
+		font-style: normal;
+		font-weight: normal;
+		line-height: 1;
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
+		content: "\e120";
+	}
+
+	.ct_table_container .ct-size-guide--Responsive td{
+		padding: 5px;
+	}
+
+	.ct_table_container .ct-size-guide--Responsive + hr{
+		display: none;
+	}
+
+
+}
+/* Tabbing */
+.ct-size-guide .sizeGuideTabs {
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	margin-top: 20px;
+}
+.ct-size-guide .sizeGuideTabs .tab {
+	flex: 1;
+	text-align: center;
+	cursor: pointer;
+}
+.ct-size-guide .sizeGuideTabs .tab.active {
+	border-bottom: solid 1px;
+	font-weight: bold;
+}
+.ct-size-guide .sizeGuideTabContents .content {
+	padding-top: 10px;
+	display: none;
+}
+.ct-size-guide .sizeGuideTabContents .content.active {
+	display: block;
+}
+/* Hide sg button on variation price */
+.woocommerce-variation-price .button_sg {
+	display: none;
+}

@@ -1,0 +1,58 @@
+@font-face {
+	font-family: 'icomoon';
+	src:url('fonts/icomoon.eot?8alxhk');
+	src:url('fonts/icomoon.eot?#iefix8alxhk') format('embedded-opentype'),
+		url('fonts/icomoon.woff?8alxhk') format('woff'),
+		url('fonts/icomoon.ttf?8alxhk') format('truetype'),
+		url('fonts/icomoon.svg?8alxhk#icomoon') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'icomoon2';
+	src:  url('fonts/icomoon2.eot?xcoq05');
+	src:  url('fonts/icomoon2.eot?xcoq05#iefix') format('embedded-opentype'),
+	url('fonts/icomoon2.ttf?xcoq05') format('truetype'),
+	url('fonts/icomoon2.woff?xcoq05') format('woff'),
+	url('fonts/icomoon2.svg?xcoq05#icomoon') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'Glyphicons Halflings';
+	src: url('fonts/glyphicons-halflings-regular.eot');
+	src: url('fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'),
+	url('fonts/glyphicons-halflings-regular.woff') format('woff'),
+	url('fonts/glyphicons-halflings-regular.ttf') format('truetype'),
+	url('fonts/glyphicons-halflings-regular.svg#glyphicons-halflingsregular') format('svg');
+}
+.ct_single_size_table [class^="icon-"], .ct_single_size_table [class*=" icon-"] {
+	font-family: 'icomoon';
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+
+	/* Better Font Rendering =========== */
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+li#menu-posts-ct_size_guide .dashicons-admin-post:before, .dashicons-format-standard:before, #adminmenu #menu-posts-ct_size_guide div.wp-menu-image:before {
+    font-family: 'icomoon' !important;
+    content: '\f000' !important;
+    font-size: 15px;
+    padding-top: 9px;
+}
+
+.icon-plus:before {
+	content: "\ea0a";
+}
+.icon-minus:before {
+	content: "\ea0b";
+}
+.icon-tab:before {
+	content: "\ea45";
+}
