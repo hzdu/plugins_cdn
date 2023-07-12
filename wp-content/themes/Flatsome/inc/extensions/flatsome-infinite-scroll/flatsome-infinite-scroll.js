@@ -102,7 +102,7 @@
   $(function () {
     $(document.body).flatsomeInfiniteScroll()
 
-    $(document).on('facetwp-loaded', function () {
+    $(document).on('facetwp-loaded yith-wcan-ajax-filtered', function () {
       $(document.body).flatsomeInfiniteScroll()
     })
   })
