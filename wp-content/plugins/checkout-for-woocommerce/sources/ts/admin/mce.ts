@@ -27,6 +27,13 @@
                     },
                 },
                 {
+                    text: ( <any>window ).cfw_acr_replacement_codes.checkout_button,
+                    value: '{{checkout_button}}',
+                    onclick() {
+                        editor.insertContent( this.value() );
+                    },
+                },
+                {
                     text: ( <any>window ).cfw_acr_replacement_codes.customer_firstname,
                     value: '{{customer_firstname}}',
                     onclick() {

@@ -17,6 +17,8 @@ class Accordion {
             Accordion.showContent( jQuery( e.target ) );
         } );
 
+        jQuery( targetSelectorRadio ).trigger( 'change' );
+
         jQuery( document.body ).on( 'updated_checkout', () => {
             jQuery( targetSelector ).each( ( index, element ) => {
                 Accordion.showContent( jQuery( element ).find( `${targetSelectorRadio}:checked` ).first() );
@@ -24,8 +26,13 @@ class Accordion {
         } );
 
         jQuery( document.body ).on( 'click', '.cfw-shipping-methods-list li, .cfw-radio-reveal-li', ( e ) => {
+            if ( jQuery( e.target ).is( ':input' ) ) {
+                return;
+            }
+
             jQuery( e.currentTarget ).find( '.cfw-radio-reveal-title-wrap, .cfw-shipping-method-inner' ).find( ':radio:not(:checked)' ).prop( 'checked', true )
-                .trigger( 'change' );
+                .trigger( 'change' )
+                .trigger( 'click' );
         } );
     }
 

@@ -46,7 +46,7 @@ $slick-font-family: "cfw-slick";
 $slick-loader-path: "../images/";
 
 .slick-dotted.slick-slider {
-    margin-bottom: 10px;
+    margin-bottom: 1em !important;
 }
 
 // Requires grid
@@ -115,6 +115,10 @@ $slick-loader-path: "../images/";
         font-family: var(--cfw-heading-font-family) !important;
     }
 
+    .form-row {
+        padding: 5px !important;
+    }
+
     a:not(.cfw-primary-btn):not(.cfw-secondary-btn) {
         color: var(--cfw-body-link-color);
     }
@@ -130,6 +134,10 @@ $slick-loader-path: "../images/";
         padding: 1.5em 0;
         position: relative;
         background: inherit !important;
+
+        @include media-breakpoint-down(md) {
+            overflow: hidden scroll;
+        }
     }
 
     .cfw-side-cart-contents-header,
@@ -165,6 +173,11 @@ $slick-loader-path: "../images/";
     .cfw-side-cart-contents {
         flex-grow: 1;
         overflow-y: auto;
+
+        @include media-breakpoint-down(md) {
+            flex-grow: unset;
+            overflow-y: unset;
+        }
 
         h2 {
             margin-top: 2em;
@@ -279,6 +292,11 @@ $slick-loader-path: "../images/";
 
     .cfw-secondary-btn {
         line-height: normal;
+        padding: 0.4em;
+    }
+
+    .cfw-primary-btn {
+        padding: 0.6em;
     }
 
     .wc-proceed-to-checkout > *:not(:last-child) {
@@ -339,15 +357,16 @@ $slick-loader-path: "../images/";
     }
 
     .cfw-side-cart-coupon-wrap {
-        margin-bottom: 2em;
+        margin-bottom: 0.8em;
 
-        .form-row {
+        .form-row, .cfw-input-wrap {
             input[type="text"], input[type="tel"], input[type="email"], input[type="password"] {
-                font-size: 14px;
+                font-size: 14px !important;
             }
 
             .cfw-secondary-btn {
                 font-size: 14px;
+                padding: 0.82rem !important;
             }
         }
 
@@ -374,8 +393,8 @@ $slick-loader-path: "../images/";
         text-decoration: none;
     }
 
-    @include media-breakpoint-down(lg) {
-        width: 100%;
+    @include media-breakpoint-down(md) {
+        max-width: 100%;
     }
 }
 

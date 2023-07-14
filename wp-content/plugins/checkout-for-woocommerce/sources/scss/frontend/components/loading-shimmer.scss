@@ -2,7 +2,7 @@
     position: relative;
 
     > * {
-        visibility: hidden;
+        visibility: var(--cfw-blocked-visibility, hidden);
     }
 
     &:after {

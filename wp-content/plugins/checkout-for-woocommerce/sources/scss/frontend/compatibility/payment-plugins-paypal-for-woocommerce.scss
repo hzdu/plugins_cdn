@@ -1,3 +1,7 @@
-.checkoutwc .wc-ppcp-checkoutwc-express__container {
+#cfw-payment-request-buttons .wc-ppcp-checkoutwc-express__container {
     @include cfw-payment-request-button();
+
+    .wc-ppcp-checkoutwc-express__payment {
+        max-width: 140px !important;
+    }
 }

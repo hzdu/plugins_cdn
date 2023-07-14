@@ -69,7 +69,7 @@ class PaymentGatewaysService {
 
         // Humans only please
         if ( typeof e.originalEvent !== 'undefined' ) {
-            cfwUpdatePaymentMethod( paymentMethod );
+            ( <any>window ).cfw_update_payment_method_request_xhr = cfwUpdatePaymentMethod( paymentMethod );
         }
 
         const currentSelectedPaymentMethod = selectedPaymentMethod.attr( 'id' );

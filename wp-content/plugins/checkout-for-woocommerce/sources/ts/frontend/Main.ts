@@ -249,21 +249,31 @@ class Main {
         jQuery( document.body ).trigger( 'init_checkout' );
         LoggingService.logEvent( 'Fired init_checkout event.' );
 
+        jQuery( document.body ).on( 'cfw-add-overlay', () => {
+            CompleteOrderService.addOverlay( true );
+        } );
+
         jQuery( document.body ).on( 'cfw-remove-overlay', () => {
             DataService.checkoutForm.unblock();
         } );
 
-        jQuery( document.body ).on( 'cfw_update_cart', () => {
+        jQuery( document.body ).on( 'cfw_update_cart', ( e ) => {
             jQuery( '[name="cfw_update_cart"]' ).val( 'true' );
-            Main.instance.updateCheckoutService.queueUpdateCheckout();
+            Main.instance.updateCheckoutService.queueUpdateCheckout( e, {
+                update_shipping_method: false,
+            } );
         } );
 
-        jQuery( document.body ).on( 'cfw_order_bump_variation_added_to_cart', () => {
-            Main.instance.updateCheckoutService.queueUpdateCheckout();
+        jQuery( document.body ).on( 'cfw_order_bump_variation_added_to_cart', ( e ) => {
+            Main.instance.updateCheckoutService.queueUpdateCheckout( e, {
+                update_shipping_method: false,
+            } );
         } );
 
-        jQuery( document.body ).on( 'cfw_cart_item_variation_edited', () => {
-            Main.instance.updateCheckoutService.queueUpdateCheckout();
+        jQuery( document.body ).on( 'cfw_cart_item_variation_edited', ( e ) => {
+            Main.instance.updateCheckoutService.queueUpdateCheckout( e, {
+                update_shipping_method: false,
+            } );
         } );
 
         const expandCart = jQuery( '#cfw-expand-cart' );

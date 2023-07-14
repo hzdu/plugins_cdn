@@ -23,8 +23,8 @@ class UpdateCheckoutAction extends Action {
         this.blockUISelector = '#cfw-billing-methods, .cfw-review-pane, #cfw-cart-summary, #cfw-place-order, #cfw-payment-request-buttons, #cfw-mobile-total, .cfw-order-bumps, #cfw-shipping-methods';
     }
 
-    public load( data: any ): void {
-        this.blockUI();
+    public load( data: any, args: any = {} ): void {
+        this.blockUI( args.block_ui_selector ?? '' );
 
         if ( UpdateCheckoutAction.underlyingRequest !== null ) {
             UpdateCheckoutAction.underlyingRequest.abort();
@@ -78,12 +78,18 @@ class UpdateCheckoutAction extends Action {
         } );
     }
 
-    public blockUI(): void {
-        jQuery( this.blockUISelector ).addClass( 'cfw-blocked' );
+    public blockUI( selector = '' ): void {
+        let { blockUISelector } = this;
+
+        if ( selector !== '' ) {
+            blockUISelector = selector;
+        }
+
+        jQuery( blockUISelector ).addClass( 'cfw-blocked' );
     }
 
     public unblockUI(): void {
-        jQuery( this.blockUISelector ).removeClass( 'cfw-blocked' );
+        jQuery( '.cfw-blocked' ).removeClass( 'cfw-blocked' );
     }
 
     /**
@@ -164,28 +170,28 @@ class UpdateCheckoutAction extends Action {
                                 return;
                             }
 
-                            const childCachedElement = cachedElement.find( selector );
+                            // Remove the matching elements from both copies
+                            cachedElement.find( selector ).remove();
 
-                            // Make sure the cached version has the same element
-                            if ( childCachedElement.length ) {
-                                // Remove the matching elements from both copies
-                                cachedElement.find( selector ).remove();
-                                newElement.find( selector ).remove();
+                            // Add the new version to the checkout form
+                            newElement.find( selector ).appendTo( DataService.checkoutForm );
 
-                                // Replace the billing container with a version that doesn't have the total containing elements
-                                resp.fragments[ billingContainerID ] = newElement.get( 0 ).outerHTML;
+                            // Now remove it from the billing methods container
+                            newElement.find( selector ).remove();
 
-                                // Add the total containing elements to the fragments as a new fragment
-                                resp.fragments[ selector ] = child.get( 0 ).outerHTML;
+                            // Replace the billing container with a version that doesn't have the total containing elements
+                            resp.fragments[ billingContainerID ] = newElement.get( 0 ).outerHTML;
 
-                                // Also update the cached version
-                                UpdateCheckoutAction._fragments[ billingContainerID ] = cachedElement.get( 0 ).outerHTML;
-                            }
+                            // Add the total containing elements to the fragments as a new fragment
+                            resp.fragments[ selector ] = child.get( 0 ).outerHTML;
+
+                            // Also update the cached version
+                            UpdateCheckoutAction._fragments[ billingContainerID ] = cachedElement.get( 0 ).outerHTML;
                         } );
                     }
                 }
             } catch ( e ) {
-                LoggingService.logError( 'Unable to handle gateway edge case', e );
+                LoggingService.log( 'Unable to handle gateway edge case', e );
             }
 
             /**

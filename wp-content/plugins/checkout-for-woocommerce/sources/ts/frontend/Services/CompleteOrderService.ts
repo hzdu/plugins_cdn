@@ -56,8 +56,8 @@ class CompleteOrderService {
     /**
      * Adds a visual indicator that the checkout is doing something
      */
-    static addOverlay(): void {
-        if ( !jQuery( `#${TabService.paymentMethodTabId}:visible, #${TabService.orderReviewTabId}:visible` ).length ) {
+    static addOverlay( override = false ): void {
+        if ( !jQuery( `#${TabService.paymentMethodTabId}:visible, #${TabService.orderReviewTabId}:visible` ).length && !override ) {
             return;
         }
 

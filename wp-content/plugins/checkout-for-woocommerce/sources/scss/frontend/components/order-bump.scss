@@ -57,8 +57,10 @@
     display: block;
 }
 
-.cfw-order-bumps:not(.cfw-order-bumps-mobile):not(#cfw_order_bumps_above_express_checkout):not(#cfw_order_bumps_bottom_information_tab) {
-    @include media-breakpoint-down(lg) {
-        display: none;
+main.checkoutwc {
+    .cfw-order-bumps:not(.cfw-order-bumps-mobile):not(#cfw_order_bumps_above_express_checkout):not(#cfw_order_bumps_bottom_information_tab) {
+        @include media-breakpoint-down(lg) {
+            display: none;
+        }
     }
 }
