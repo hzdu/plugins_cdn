@@ -167,11 +167,11 @@
                             });
 
                             $.yith_license_animation( new_elem, spinner, 'addLine' );
-                            message.find('p.yith-licence-notice-message').html('#' + response.code + ': ' + response.activation_message);
+                            message.find('p.yith-licence-notice-message').html( response.activation_message );
                             message_wrapper.fadeIn();
                             licence_api();
                         } else if (false !== response) {
-                            message_license_key.text('#' + response.code + ': ' + response.error);
+                            message_license_key.text(response.error);
                             message_email.add(message_license_key).addClass('visible');
                             form.addClass('error');
                         } else {

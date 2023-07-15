@@ -71,6 +71,12 @@
     line-height : 1;
 }
 
+.yith-plugin-fw input[type=number],
+.woocommerce .yith-plugin-fw table.form-table input[type=number] {
+    width     : 70px;
+    min-width : 70px;
+}
+
 .woocommerce .yith-plugin-fw table.form-table input[type=text].wp-color-picker,
 .woocommerce .yith-plugin-fw table.form-table input[type=text].yith-plugin-fw-colorpicker,
 .yith-plugin-fw input[type=text].wp-color-picker,
@@ -136,12 +142,16 @@
     padding-top  : 6px;
     box-sizing   : border-box;
     text-align   : center;
-    background   : #f1f1f1;
+    background   : rgb(242, 245, 247);
 }
 
 .yit-icons-manager-list-wrapper {
-    margin     : 10px 0;
-    box-shadow : 0 0 0 1px #ddd;
+    margin        : 10px 0;
+    border-radius : var(--yith-field-border-radius);
+    border        : var(--yith-field-border);
+    box-shadow    : var(--yith-field-shadow);
+    background    : var(--yith-field-background);
+    overflow      : inherit;
 }
 
 ul.yit-icons-manager-list {
@@ -149,17 +159,19 @@ ul.yit-icons-manager-list {
     height     : 300px;
     overflow-y : scroll;
     margin     : 0;
+    display    : flex;
+    flex-wrap  : wrap;
+    gap        : 2px;
 }
 
 ul.yit-icons-manager-list li {
-    float       : left;
     width       : 30px;
     height      : 30px;
     padding-top : 6px;
     box-sizing  : border-box;
     text-align  : center;
-    background  : #f1f1f1;
-    margin      : 1px;
+    background  : rgba(203, 213, 225, .25);
+    margin      : 0;
     cursor      : pointer;
 }
 
@@ -226,6 +238,7 @@ ul.yit-icons-manager-list li.active {
 .yith-plugin-fw-onoff-container {
     display    : inline-block;
     text-align : left;
+    position   : relative;
 }
 
 .yith-plugin-fw-onoff-container input {
@@ -245,9 +258,7 @@ ul.yit-icons-manager-list li.active {
     transition    : all 0.3s;
 }
 
-
-.yith-plugin-fw-onoff-container input + span:before {
-    content       : '';
+.yith-plugin-fw-onoff-container input + span .yith-plugin-fw-onoff__handle {
     background    : #fff;
     width         : 16px;
     height        : 16px;
@@ -258,13 +269,19 @@ ul.yit-icons-manager-list li.active {
     transition    : all 0.3s;
 }
 
+.yith-plugin-fw-onoff__icon {
+    display      : none;
+    stroke       : currentColor;
+    stroke-width : 2;
+}
+
 .yith-plugin-fw-onoff-container input:checked + span,
 .yith-plugin-fw-onoff-container input.onoffchecked + span {
     background : #0073aa;
 }
 
-.yith-plugin-fw-onoff-container input:checked + span:before,
-.yith-plugin-fw-onoff-container input.onoffchecked + span:before {
+.yith-plugin-fw-onoff-container input:checked + span .yith-plugin-fw-onoff__handle,
+.yith-plugin-fw-onoff-container input.onoffchecked + span .yith-plugin-fw-onoff__handle {
     left : 18px;
 }
 
@@ -304,6 +321,10 @@ ul.yit-icons-manager-list li.active {
 .yith-plugin-fw-checkbox-array__row label small {
     display     : block;
     line-height : 2em;
+}
+
+.rtl .yith-plugin-fw-checkbox-array__row label {
+    margin : 0 10px 0 0 !important;
 }
 
 /* ------- Sidebar Layout ------- */
@@ -431,15 +452,44 @@ ul.yit-icons-manager-list li.active {
     box-sizing      : border-box;
     cursor          : pointer;
     transition      : all .3s;
-    border          : 2px solid #eee;
+    border          : var(--yith-field-border);
+    border-radius   : var(--yith-field-border-radius);
+    box-shadow      : var(--yith-field-shadow);
     display         : flex;
     flex-direction  : column;
     justify-content : space-between;
+    position        : relative;
+}
+
+.yith-plugin-fw-select-images__item__selected-icon {
+    position        : absolute;
+    top             : -8px;
+    right           : -8px;
+    display         : none;
+    align-items     : center;
+    justify-content : center;
+    width           : 20px;
+    height          : 20px;
+    border-radius   : 50%;
+    background      : var(--yith-primary);
+    color           : var(--yith-primary-text);
+    font-size       : 14px;
+}
+
+.yith-plugin-fw-select-images__item__selected-icon svg {
+    width        : 1em;
+    stroke       : currentColor;
+    stroke-width : 1px;
 }
 
 .yith-plugin-fw-select-images__item:hover,
 .yith-plugin-fw-select-images__item.yith-plugin-fw-select-images__item--selected {
-    border-color : #07bcce;
+    border-color : transparent;
+    box-shadow   : var(--yith-field-shadow), 0 0 0 2px var(--yith-primary);
+}
+
+.yith-plugin-fw-select-images__item--selected .yith-plugin-fw-select-images__item__selected-icon {
+    display : flex;
 }
 
 .yith-plugin-fw-select-images__item__label {
@@ -470,23 +520,21 @@ WordPress 5.3 with old panel fixes
 YITH UI
  ****************/
 .yith-plugin-fw-banner {
-    width         : 100%;
-    height        : 45px;
-    background    : #cfd9dd url(../images/banner-premium.png) no-repeat;
-    display       : flex;
-    align-items   : center;
-    padding-right : -23px;
+    width       : calc(100% - 35px);
+    height      : 45px;
+    background  : #cfd9dd url(../images/banner-premium.png) no-repeat;
+    display     : flex;
+    align-items : center;
 }
 
 .yith-plugin-fw-banner h1 {
-    text-transform : uppercase;
-    color          : #0c5777;
-    font-size      : 15px;
-    padding        : 0 0 0 110px;
-    font-weight    : 700;
-    text-align     : left;
-    display        : inline-block;
-    box-sizing     : border-box;
+    color       : #0c5777;
+    font-size   : 16px;
+    padding     : 0 0 0 110px;
+    font-weight : 700;
+    text-align  : left;
+    display     : inline-block;
+    box-sizing  : border-box;
 }
 
 .yith-plugin-fw-banner span {
@@ -506,7 +554,7 @@ YITH UI
 }
 
 .yith-plugin-fw-rate {
-    margin : 20px 0;
+    margin : 20px 35px 20px 0;
 }
 
 .yith-plugin-fw-rate .dashicons-star-filled {
@@ -526,63 +574,6 @@ YITH UI
 
 .yith-plugin-ui {
     font-family : -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-}
-
-.yith-plugin-ui #wpwrap h2.nav-tab-wrapper, .yith-plugin-ui #wpbody-content h2.nav-tab-wrapper {
-    margin-top : 10px;
-}
-
-.yith-plugin-ui .nav-tab {
-    background-color : #336374;
-    color            : #fff;
-    font-size        : 15px;
-    padding          : 7px 20px;
-    border           : 0;
-    margin           : 0 4px 0 0;
-    transition       : background-color 0.3s linear;
-    float            : none;
-    display          : inline-block;
-}
-
-.yith-plugin-ui .nav-tab.yith-premium {
-    background-color : #be421c;
-}
-
-.yith-plugin-ui .yith-nav-tab-wrapper .yith-plugin-fw-tab-element:hover > a.nav-tab:not(.nav-tab-active),
-.yith-plugin-ui .yith-nav-tab-wrapper .nav-tab:not(.nav-tab-active):hover {
-    background-color : #207a92;
-}
-
-.yith-plugin-ui .yith-nav-tab-wrapper .yith-plugin-fw-tab-element:hover > a.nav-tab.yith-premium:not(.nav-tab-active),
-.yith-plugin-ui .yith-nav-tab-wrapper .nav-tab.yith-premium:not(.nav-tab-active):hover {
-    background-color : #d24318;
-}
-
-.yith-plugin-ui .nav-tab-active,
-.yith-plugin-ui .nav-tab-active:hover,
-.yith-plugin-ui .nav-tab-active:focus,
-.yith-plugin-ui .nav-tab-active:focus:active {
-    background-color : #fff;
-    color            : #336374;
-    box-shadow       : 0 3px 0 -1px #fff;
-    border-bottom    : 0;
-}
-
-.yith-plugin-ui .nav-tab-active.yith-premium,
-.yith-plugin-ui .nav-tab-active.yith-premium:hover,
-.yith-plugin-ui .nav-tab-active.yith-premium:focus,
-.yith-plugin-ui .nav-tab-active.yith-premium:focus:active {
-    background-color : #fff;
-    color            : #be421c;
-    box-shadow       : none;
-}
-
-.yith-plugin-ui .yith-plugin-fw-tab-element:first-child .nav-tab-active {
-    border-left : 1px solid #ddd;
-}
-
-.yith-plugin-ui #plugin-fw-wc {
-    padding-top : 0px;
 }
 
 .yith-plugin-ui .form-table td {
@@ -605,47 +596,9 @@ YITH UI
     font-weight : 600;
 }
 
-.yith-plugin-ui span.description {
-    color       : #716269;
-    font-size   : 13px;
-    font-style  : normal;
-    font-weight : 400;
-    margin-top  : 15px;
-    margin-left : 0;
-}
-
-#wpwrap .yith-plugin-ui h2.nav-tab-wrapper, #wpbody-content .yith-plugin-ui h2.nav-tab-wrapper {
-    border           : 0;
-    border-bottom    : 1px solid #ddd;
-    margin-right     : 15px;
-    margin-bottom    : 0;
-    background-color : transparent;
-    padding-left     : 0;
-}
-
-.yith-plugin-ui #plugin-fw-wc table.form-table,
-.yith-plugin-ui #yith-plugin-fw-panel table.form-table,
-.yith-plugin-ui table.form-table {
-    border        : 1px solid #d8d8d8;
-    border-top    : 0;
-    margin-bottom : 40px;
-}
-
-.yith-plugin-ui #wpwrap h2.nav-tab-wrapper, .yith-plugin-ui #wpbody-content h2.nav-tab-wrapper {
-    background-color : transparent;
-    border           : 0;
-    text-transform   : none;
-    border-bottom    : 1px solid #ddd;
-}
-
 .yith-plugin-ui h2 {
-    color            : #2a8db0;
-    font-size        : 16px;
-    border           : 1px solid #d8d8d8;
-    border-bottom    : 0;
-    background-color : #fff;
-    padding          : 35px 20px;
-    margin           : 0px;
+    color     : #2a8db0;
+    font-size : 16px;
 }
 
 .yith-plugin-ui .yith-plugin-fw-custom-tab h2 {
@@ -653,24 +606,7 @@ YITH UI
     padding-left : 0;
 }
 
-.yith-plugin-ui #plugin-fw-wc table.form-table th, #yith-plugin-fw-panel table.form-table th.titledesc, .yith-plugin-ui #plugin-fw-wc table.form-table td, #yith-plugin-fw-panel table.form-table td.forminp {
-    padding : 30px 20px;
-}
-
-.yith-plugin-ui #plugin-fw-wc table.form-table tr.toggle-element-fixed td, #yith-plugin-fw-panel table.form-table tr.toggle-element-fixed td.forminp {
-    padding : 0 20px 30px;
-}
-
-.yith-plugin-ui #plugin-fw-wc h2 + div {
-    background     : #fff;
-    border-left    : 1px solid #d9d9d9;
-    border-right   : 1px solid #d9d9d9;
-    margin         : -20px 0 0 0;
-    padding-left   : 20px;
-    padding-bottom : 5px;
-}
-
-.yith-plugin-ui #plugin-fw-wc h2 + div p, .yith-plugin-ui p.info-box {
+.yith-plugin-ui p.info-box {
     background    : #f1f1f1;
     font-size     : 14px;
     font-weight   : 700;
@@ -680,7 +616,7 @@ YITH UI
     margin-bottom : 0;
 }
 
-.yith-plugin-ui #plugin-fw-wc h2 + div p:before, .yith-plugin-ui p.info-box:before {
+.yith-plugin-ui p.info-box:before {
     content      : "\e90e";
     font-family  : yith-icon;
     font-size    : 30px;
@@ -691,16 +627,20 @@ YITH UI
     margin-right : 15px;
 }
 
-.yith-plugin-ui h2:first-child {
-    border-top : 0;
-}
-
 /*** Icon ***/
 .yith-plugin-ui .yith-icon--right-overlay {
     position    : relative;
-    left        : -33px;
+    left        : auto;
+    top         : auto;
+    right       : auto;
+    bottom      : auto;
+    transform   : translateX(-33px);
     line-height : 36px;
     width       : 0;
+}
+
+.rtl .yith-plugin-ui .yith-icon--right-overlay {
+    transform : translateX(33px);
 }
 
 /*** General Input Style ***/
@@ -720,14 +660,36 @@ YITH UI
 .woocommerce.yith-plugin-fw-panel .yith-plugin-ui table.form-table textarea:not(.wp-editor-area),
 .woocommerce .yith-plugin-fw table.form-table input[type=password],
 .woocommerce.yith-plugin-fw-panel .yith-plugin-ui table.form-table input[type=number],
-.woocommerce.yith-plugin-fw-panel .yith-plugin-ui table.form-table input[type=text] {
-    border        : 1px solid #d8d8d8;
-    border-radius : 8px;
+.woocommerce.yith-plugin-fw-panel .yith-plugin-ui table.form-table input[type=text],
+.woocommerce.yith-plugin-fw-panel .yith-plugin-ui table.form-table input[type=email] {
+    border        : var(--yith-field-border);
+    border-radius : var(--yith-field-border-radius);
     padding       : 8px 10px;
-    height        : 38px;
+    height        : 40px;
     min-width     : 90px;
-    box-shadow    : none;
-    color         : #716269;
+    box-shadow    : var(--yith-field-shadow);
+    color         : var(--yith-content-text);
+}
+
+
+.yith-plugin-ui input::-webkit-input-placeholder {
+    color : var(--yith-field-placeholder-color);
+}
+
+.yith-plugin-ui input:-ms-input-placeholder {
+    color : var(--yith-field-placeholder-color);
+}
+
+.yith-plugin-ui input::-ms-input-placeholder {
+    color : var(--yith-field-placeholder-color);
+}
+
+.yith-plugin-ui input::placeholder {
+    color : var(--yith-field-placeholder-color);
+}
+
+.woocommerce.yith-plugin-fw-panel .yith-plugin-ui table.form-table input[type=number] {
+    min-width : 70px;
 }
 
 .yith-plugin-ui textarea:not(.wp-editor-area),
@@ -739,22 +701,25 @@ YITH UI
 .yith-plugin-ui input[type=text]:not(.select2-search__field).wp-color-picker,
 .yith-plugin-ui table.form-table input[type=text].wp-color-picker,
 .woocommerce.yith-plugin-fw-panel .yith-plugin-ui table.form-table input[type=text].wp-color-picker {
-    border    : 0;
-    height    : 30px;
-    max-width : 121px;
-    font-size : 11px;
-    padding   : 0;
+    border     : 0;
+    height     : 30px;
+    max-width  : 121px !important;
+    font-size  : 11px;
+    padding    : 0;
+    box-shadow : none;
 }
 
-.yith-plugin-ui .search-box input[name="s"] {
-    height : 35px;
+.yith-plugin-ui input[type=text]:not(.select2-search__field).wp-color-picker:focus,
+.yith-plugin-ui table.form-table input[type=text].wp-color-picker:focus,
+.woocommerce.yith-plugin-fw-panel .yith-plugin-ui table.form-table input[type=text].wp-color-picker:focus {
+    box-shadow : none;
 }
 
 .woocommerce.yith-plugin-fw-panel .yith-plugin-ui table.form-table input[type=text].small-text,
 .yith-plugin-ui input[type=text].small-text {
     width  : 100px;
     height : 25px;
-    border : 1px solid #d9d9d9;
+    border : var(--yith-field-border);
 }
 
 
@@ -768,24 +733,39 @@ YITH UI
 .woocommerce.yith-plugin-fw-panel .yith-plugin-ui table.form-table input[type=number]:focus,
 .yith-plugin-ui textarea:not(.wp-editor-area):focus,
 .woocommerce.yith-plugin-fw-panel .yith-plugin-ui table.form-table textarea:not(.wp-editor-area):focus {
-    border-color : #a7d9ec;
+    border-color : var(--yith-primary);
+    outline      : none;
+    box-shadow   : var(--yith-field-shadow), 0 0 0 1px var(--yith-primary);
 }
 
 .woocommerce .yith-plugin-ui table.form-table select,
 .woocommerce.yith-plugin-fw-panel .yith-plugin-ui table.form-table select,
-.yith-plugin-ui select {
+.yith-plugin-ui select,
+.yith-plugin-ui select:disabled {
     -webkit-appearance : none;
-    line-height        : 1.2em;
-    min-height         : 35px;
-    background         : #fff url("../images/arrow_down.svg") no-repeat right center;
-    background-size    : 35px 13px;
-    border-radius      : 8px;
-    padding-right      : 30px;
+    line-height        : 1.5em;
+    min-height         : 40px;
+    background         : #fff url("../images/select-indicator.svg") no-repeat right center;
+    background-size    : 33px 20px;
+    border-radius      : var(--yith-field-border-radius);
+    padding            : 8px 30px 8px 10px;
+    border             : var(--yith-field-border);
+    box-shadow         : var(--yith-field-shadow);
 }
 
-.yith-plugin-ui .form-table th {
-    width         : 200px;
-    padding-right : 50px;
+.yith-plugin-ui select:disabled {
+    background-color : #f7f8f9;
+}
+
+.yith-plugin-ui option:disabled {
+    color : #aaa;
+}
+
+.rtl.woocommerce .yith-plugin-ui table.form-table select,
+.rtl.woocommerce.yith-plugin-fw-panel .yith-plugin-ui table.form-table select,
+.rtl .yith-plugin-ui select,
+.rtl .yith-plugin-ui select:disabled {
+    background-position-x : left;
 }
 
 /** SELECT 2 **/
@@ -804,7 +784,12 @@ YITH UI
 .yith-plugin-ui .select2-container.select2-container--open .select2-selection--multiple {
     margin     : 0;
     border     : 0;
-    box-shadow : none;
+    box-shadow : none !important;
+}
+
+.yith-plugin-ui .select2-container .select2-selection--single {
+    height      : auto;
+    line-height : 1;
 }
 
 .yith-plugin-ui .select2-container .select2-selection--single .select2-selection__arrow {
@@ -813,16 +798,38 @@ YITH UI
 
 /* old panel*/
 
+.yith-plugin-fw-select2-container {
+    z-index : 9999999;
+}
+
 .yith-plugin-ui span.select2.select2-container.select2-container--default,
 span.select2.select2-container.select2-container--default.yith-plugin-fw-select2-container {
-    border        : 1px solid #d8d8d8;
-    border-radius : 8px;
+    border        : var(--yith-field-border);
+    border-radius : var(--yith-field-border-radius);
+    box-shadow    : var(--yith-field-shadow);
+    color         : var(--yith-content-text);
+    background    : var(--yith-field-background);
+}
+
+.yith-plugin-ui .select2-container--default .select2-selection--single .select2-selection__rendered,
+.yith-plugin-ui .select2-container--default .select2-selection--single .select2-selection__rendered:hover {
+    color       : var(--yith-content-text);
+    line-height : 30px;
+}
+
+.yith-plugin-ui .select2-container--default .select2-selection--single .select2-selection__placeholder {
+    color : var(--yith-field-placeholder-color);
 }
 
 .yith-plugin-ui span.select2.select2-container.select2-container--default:hover,
-.yith-plugin-ui span.select2.select2-container.select2-container--default:active,
-.yith-plugin-ui span.select2.select2-container.select2-container--default:focus {
-    border-color : #a7d9ec;
+.yith-plugin-ui span.select2.select2-container.select2-container--default:active {
+    border-color : var(--yith-field-border-color);
+}
+
+.yith-plugin-ui span.select2.select2-container.select2-container--default.select2-container--focus,
+.yith-plugin-ui span.select2.select2-container.select2-container--default.select2-container--open {
+    border-color : var(--yith-primary);
+    box-shadow   : var(--yith-field-shadow), 0 0 0 1px var(--yith-primary);
 }
 
 .yith-plugin-ui .select2-container--default .select2-selection--multiple .select2-selection__choice__remove {
@@ -839,12 +846,18 @@ span.select2.select2-container.select2-container--default.yith-plugin-fw-select2
 
 .yith-plugin-ui .select2-container--default .select2-selection--multiple .select2-selection__choice,
 .yith-plugin-ui .select2-selection__choice {
-    color            : #fff;
-    background-color : #4e8ba2;
-    border-radius    : 12px;
-    padding          : 3px 11px;
-    border-color     : #4e8ba2;
+    color            : #333;
+    background-color : rgba(0, 0, 0, 0.08);
+    border-radius    : 50px;
+    padding          : 1px 30px 1px 12px;
+    border-color     : #0000;
     font-size        : 13px;
+    max-width        : 100%;
+    box-sizing       : border-box;
+    position         : relative;
+    white-space      : nowrap;
+    overflow         : hidden;
+    text-overflow    : ellipsis;
 }
 
 .wc-wp-version-gte-53 .yith-plugin-ui .select2-container .select2-selection--single .select2-selection__arrow {
@@ -852,10 +865,20 @@ span.select2.select2-container.select2-container--default.yith-plugin-fw-select2
 }
 
 .yith-plugin-ui .select2-container--default .select2-selection--single .select2-selection__arrow:before {
-    content     : "\e900";
-    font-family : 'yith-icon' !important;
-    line-height : 36px;
-    color       : #d9d9d9;
+    content         : "";
+    background      : url(../images/select-indicator.svg) no-repeat right center;
+    background-size : 35px 20px;
+    width           : 38px;
+    height          : 38px;
+    display         : block;
+    position        : absolute;
+    top             : -1px;
+    right           : -1px;
+}
+
+.rtl .yith-plugin-ui .select2-container--default .select2-selection--single .select2-selection__arrow:before {
+    right : auto;
+    left  : -1px;
 }
 
 .yith-plugin-ui .select2-container--default .select2-selection--single .select2-selection__arrow b {
@@ -871,6 +894,7 @@ span.select2.select2-container.select2-container--default.yith-plugin-fw-select2
     margin-top    : 10px;
     border-radius : 8px;
     box-shadow    : 0 2px 4px 0 rgba(0, 0, 0, 0.12), 0 2px 10px 0 rgba(0, 0, 0, 0.12) !important;
+    border        : 0;
 }
 
 .yith-plugin-fw-select2-container.select2-container--open .select2-dropdown--above {
@@ -897,33 +921,45 @@ span.select2.select2-container.select2-container--default.yith-plugin-fw-select2
     border : 0;
 }
 
-.yith-plugin-fw-select2-container.select2-container--default .select2-results__option[data-selected=true] {
-    background-color : #fff;
+.yith-plugin-fw-select2-container.select2-container--default .select2-results__option--highlighted[aria-selected] {
+    background-color : #e2e8f0;
+    color            : inherit;
     outline          : none;
 }
 
-.yith-plugin-fw-select2-container.select2-container--default .select2-results__option--highlighted[aria-selected] {
-    background-color : #e8eff1;
-    color            : #4e8ba2;
+.yith-plugin-fw-select2-container.select2-container--default .select2-results__option[data-selected=true] {
+    background-color : var(--yith-primary);
+    color            : var(--yith-primary-text);
     outline          : none;
 }
 
 .yith-plugin-ui .select2-container--default .select2-selection--multiple .select2-selection__choice__remove,
 .yith-plugin-fw-panel .select2-container--default .select2-selection--multiple .select2-selection__choice__remove {
-    float        : right;
-    padding-left : 15px;
-    text-indent  : -9999px;
+    position      : absolute;
+    text-indent   : -9999px;
+    right         : 5px;
+    top           : 50%;
+    width         : 16px;
+    margin        : 0;
+    background    : rgba(0, 0, 0, 0.1);
+    border-radius : 50%;
+    height        : 16px;
+    padding       : 0;
+    transform     : translateY(-50%);
 }
 
 .yith-plugin-fw-panel .select2-container--default .select2-selection--multiple .select2-selection__choice__remove:after,
 .yith-plugin-ui .select2-container--default .select2-selection--multiple .select2-selection__choice__remove:after {
-    float       : right;
-    color       : #fff;
-    content     : "\e906";
+    position    : absolute;
+    color       : inherit;
+    content     : "\f117";
     font-family : 'yith-icon' !important;
     font-size   : 9px;
-    line-height : 21px;
+    line-height : 16px;
     text-indent : 0;
+    right       : 3px;
+    color       : #333;
+    font-weight : 400;
 }
 
 .yith-plugin-ui .select2-container .select2-selection--multiple,
@@ -946,9 +982,9 @@ span.select2.select2-container.select2-container--default.yith-plugin-fw-select2
 }
 
 .yith-plugin-ui input[type=text].select2-search__field {
-    border  : 0;
-    padding : 0;
-    height  : 30px;
+    border  : 0 !important;
+    padding : 0 !important;
+    height  : 30px !important;
 }
 
 .yith-plugin-ui .select2-container--default .select2-search--dropdown .select2-search__field,
@@ -966,8 +1002,10 @@ span.select2.select2-container.select2-container--default.yith-plugin-fw-select2
 /** RADIO BUTTON **/
 .yith-plugin-ui [type="radio"]:checked,
 .yith-plugin-ui [type="radio"]:not(:checked) {
-    position : absolute;
-    left     : -9999px;
+    position : absolute !important;
+    display  : block !important;
+    opacity  : 0 !important;
+    z-index  : -1;
 }
 
 .yith-plugin-ui [type="radio"]:checked + label,
@@ -977,8 +1015,6 @@ span.select2.select2-container.select2-container--default.yith-plugin-fw-select2
     cursor       : pointer;
     line-height  : 20px;
     display      : inline-block;
-    color        : #716269;
-    font-size    : 14px;
 }
 
 .yith-plugin-ui [type="radio"]:checked + label:before,
@@ -987,23 +1023,32 @@ span.select2.select2-container.select2-container--default.yith-plugin-fw-select2
     position      : absolute;
     left          : 0;
     top           : 0;
-    width         : 19px;
-    height        : 19px;
-    border        : 1px solid #d8d8d8;
-    border-radius : 100%;
+    width         : 16px;
+    height        : 16px;
+    border        : 1px solid var(--yith-field-border-color);
+    border-radius : 50%;
     background    : #fff;
+    box-sizing    : border-box;
+    margin        : 2px;
+    transition    : all .2s ease-in-out;
+
+}
+
+.yith-plugin-ui [type="radio"]:checked + label:before {
+    background   : var(--yith-primary);
+    border-color : transparent;
 }
 
 .yith-plugin-ui [type="radio"]:checked + label:after,
 .yith-plugin-ui [type="radio"]:not(:checked) + label:after {
     content            : '';
-    width              : 13px;
-    height             : 13px;
-    background         : #4e8ba2;
+    width              : 6px;
+    height             : 6px;
+    background         : #fff;
     position           : absolute;
-    top                : 4px;
-    left               : 4px;
-    border-radius      : 100%;
+    top                : 7px;
+    left               : 7px;
+    border-radius      : 50%;
     -webkit-transition : all 0.2s ease;
     transition         : all 0.2s ease;
 }
@@ -1020,22 +1065,60 @@ span.select2.select2-container.select2-container--default.yith-plugin-fw-select2
     transform         : scale(1);
 }
 
+.yith-plugin-ui [type="radio"]:focus + label:before,
+.yith-plugin-ui [type="radio"]:focus-visible + label:before {
+    box-shadow : 0 0 0 2px #fff, 0 0 0 4px var(--yith-primary);
+}
+
+.rtl .yith-plugin-ui [type="radio"]:checked + label,
+.rtl .yith-plugin-ui [type="radio"]:not(:checked) + label {
+    padding-left  : 0;
+    padding-right : 35px;
+}
+
+.rtl .yith-plugin-ui [type="radio"]:checked + label:before,
+.rtl .yith-plugin-ui [type="radio"]:not(:checked) + label:before {
+    left  : auto;
+    right : 0;
+}
+
+.rtl .yith-plugin-ui [type="radio"]:checked + label:after,
+.rtl .yith-plugin-ui [type="radio"]:not(:checked) + label:after {
+    left  : auto;
+    right : 7px;
+}
+
 /** CHECKBOX **/
 .yith-plugin-ui input[type="checkbox"] {
     -webkit-appearance : none;
     background-color   : #fff;
-    border             : 1px solid #d8d8d8;
+    border             : 1px solid var(--yith-field-border-color);
     box-shadow         : none;
-    width              : 18px;
-    height             : 18px;
+    width              : 16px;
+    height             : 16px;
     border-radius      : 3px;
     display            : inline-block;
     position           : relative;
 }
 
+.yith-plugin-ui input[type="checkbox"]:focus:after {
+    box-shadow    : 0 0 0 2px var(--yith-primary);
+    content       : '';
+    position      : absolute;
+    border-radius : 4px;
+    width         : 20px;
+    height        : 20px;
+    top           : -3px;
+    left          : -3px;
+}
+
 .yith-plugin-ui input[type="checkbox"]:checked {
-    background-color : #4e8ba2;
-    border-color     : #488197;
+    background-color    : var(--yith-primary);
+    border-color        : var(--yith-primary);
+    background-image    : url("data:image/svg+xml;charset=utf-8,%3Csvg viewBox='0 0 16 16' fill='%23fff' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12.207 4.793a1 1 0 0 1 0 1.414l-5 5a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L6.5 9.086l4.293-4.293a1 1 0 0 1 1.414 0z'/%3E%3C/svg%3E");
+    background-position : 50%;
+    background-repeat   : no-repeat;
+    background-size     : 100% 100%;
 }
 
 .yith-plugin-ui .forminp-checkbox span.description.inline {
@@ -1046,80 +1129,71 @@ span.select2.select2-container.select2-container--default.yith-plugin-fw-select2
     display : none;
 }
 
-.yith-plugin-ui input[type="checkbox"]:checked:after {
-    content     : "\e905";
-    font-family : 'yith-icon';
-    font-size   : 10px;
-    position    : absolute;
-    font-weight : 600;
-    top         : 8px;
-    left        : 3px;
-    color       : #fff;
-}
-
 /** ONOFF **/
 .yith-plugin-ui .yith-plugin-fw-onoff-container input[type="checkbox"] {
-    display : none;
+    display  : block;
+    position : absolute;
+    width    : 100%;
+    height   : 100%;
+    opacity  : 0;
+    z-index  : -1;
 }
 
 .yith-plugin-ui .yith-plugin-fw-onoff-container input + span {
-    border           : 1px solid #d8d8d8;
-    background-color : #fff;
-    width            : 60px;
+    border           : 1px solid #0000;
+    background-color : #e2e8f0;
+    width            : 44px;
     height           : 24px;
     line-height      : 14px;
     padding          : 4px;
     box-sizing       : border-box;
 }
 
-.yith-plugin-ui .yith-plugin-fw-onoff-container input + span:before {
-    background-color : #d8d8d8;
+.yith-plugin-ui .yith-plugin-fw-onoff-container input:focus + span,
+.yith-plugin-ui .yith-plugin-fw-onoff-container input:focus-visible + span {
+    box-shadow : 0 0 0 2px #fff, 0 0 0 4px #98aa36;
 }
 
-.yith-plugin-ui .yith-plugin-fw-onoff-container input + span:before {
-    width            : 13px;
-    height           : 13px;
-    top              : 5px;
-    left             : 6px;
-    background-color : #d8d8d8;
+.yith-plugin-ui .yith-plugin-fw-onoff__icon {
+    display : block;
 }
 
-.yith-plugin-ui .yith-plugin-fw-onoff-container input + span:after {
-    content      : attr(data-text-off);
-    height       : 14px;
-    font-size    : 12px;
-    font-weight  : 600;
-    padding-left : 18px;
-    color        : #979797;
-    display      : block;
-    white-space  : nowrap;
-    text-align   : center;
+.yith-plugin-ui .yith-plugin-fw-onoff__icon--on {
+    display : none;
+}
+
+.yith-plugin-ui .yith-plugin-fw-onoff-container input:checked + span .yith-plugin-fw-onoff__icon--on {
+    display : block;
+}
+
+.yith-plugin-ui .yith-plugin-fw-onoff-container input:checked + span .yith-plugin-fw-onoff__icon--off {
+    display : none;
+}
+
+.yith-plugin-ui .yith-plugin-fw-onoff-container input + span .yith-plugin-fw-onoff__handle {
+    width            : 20px;
+    height           : 20px;
+    top              : 1px;
+    left             : 1px;
+    background-color : #fff;
+    display          : inline-flex;
+    align-items      : center;
+    justify-content  : center;
+    color            : #94a3b8;
+    padding          : 5px;
+    box-sizing       : border-box;
+    box-shadow       : 0 1px 3px 0 rgba(0, 0, 0, .1), 0 1px 2px -1px rgba(0, 0, 0, .1);
 }
 
 .yith-plugin-ui .yith-plugin-fw-onoff-container input:checked + span,
 .yith-plugin-ui .yith-plugin-fw-onoff-container input.onoffchecked + span {
-    background-color : #fff;
-    border-color     : #98aa36;
-}
-
-.yith-plugin-ui .yith-plugin-fw-onoff-container input:checked + span:before,
-.yith-plugin-ui.yith-plugin-fw-onoff-container input.onoffchecked + span:before {
     background-color : #98aa36;
-    left             : 38px;
 }
 
-.yith-plugin-ui .yith-plugin-fw-onoff-container input:checked + span:after,
-.yith-plugin-ui.yith-plugin-fw-onoff-container input.onoffchecked + span:after {
-    content       : attr(data-text-on);
-    color         : #98aa36;
-    height        : 14px;
-    font-size     : 12px;
-    font-weight   : 600;
-    padding-left  : 0;
-    padding-right : 18px;
-    display       : block;
-    white-space   : nowrap;
-    text-align    : center;
+.yith-plugin-ui .yith-plugin-fw-onoff-container input:checked + span .yith-plugin-fw-onoff__handle,
+.yith-plugin-ui.yith-plugin-fw-onoff-container input.onoffchecked + span .yith-plugin-fw-onoff__handle {
+    color : #98aa36;
+    left  : 21px;
 }
 
 .yith-plugin-ui .yith-plugin-fw-onoff-container input + span {
@@ -1132,30 +1206,36 @@ DATEPICKER
  */
 .yith-plugin-ui .yith-plugin-fw-datepicker + .yith-icon-calendar,
 .yith-plugin-fw-datepicker + .yith-icon-calendar {
-    color     : #ccc;
+    color     : #94a3b8;
     font-size : 18px;
 }
 
+.yith-plugin-fw-datepicker-field-wrapper .yith-plugin-fw-datepicker + .yith-icon-calendar {
+    position : absolute;
+}
+
 div#ui-datepicker-div.yith-plugin-fw-datepicker-div {
-    border     : 0;
-    box-shadow : 0 2px 4px 0 rgba(0, 0, 0, 0.12), 0 2px 10px 0 rgba(0, 0, 0, 0.12) !important;
+    border      : 0;
+    box-shadow  : 0 2px 4px 0 rgba(0, 0, 0, 0.12), 0 2px 10px 0 rgba(0, 0, 0, 0.12) !important;
+    padding     : 0.8em;
+    font-family : inherit;
 }
 
 #ui-datepicker-div.yith-plugin-fw-datepicker-div .ui-datepicker-header.ui-widget-header {
-    background  : #4e8ba2;
-    color       : #fff;
-    font-size   : 11px;
+    background  : transparent;
+    color       : inherit;
+    font-size   : 15px;
     line-height : 25px;
     border      : 0;
     min-height  : 25px;
 }
 
 #ui-datepicker-div.yith-plugin-fw-datepicker-div .ui-datepicker-title {
-    line-height : 25px;
+    line-height : 36px;
 }
 
 #ui-datepicker-div.yith-plugin-fw-datepicker-div.ui-datepicker th {
-    color : #716269;
+    color : inherit;
 }
 
 #ui-datepicker-div.yith-plugin-fw-datepicker-div .ui-widget-header .ui-icon,
@@ -1201,9 +1281,13 @@ div#ui-datepicker-div.yith-plugin-fw-datepicker-div {
     content : '\e912';
 }
 
+#ui-datepicker-div.yith-plugin-fw-datepicker-div {
+    width : 300px;
+}
+
 #ui-datepicker-div.yith-plugin-fw-datepicker-div .ui-icon.ui-icon-circle-triangle-w:before {
     content     : "\e901";
-    color       : #fff;
+    color       : inherit;
     font-family : 'yith-icon';
     font-size   : 12px;
     font-weight : normal;
@@ -1213,7 +1297,7 @@ div#ui-datepicker-div.yith-plugin-fw-datepicker-div {
 
 #ui-datepicker-div.yith-plugin-fw-datepicker-div .ui-icon.ui-icon-circle-triangle-e:before {
     content     : "\e902";
-    color       : #fff;
+    color       : inherit;
     text-indent : 0;
     font-family : 'yith-icon';
     font-size   : 12px;
@@ -1227,8 +1311,9 @@ div#ui-datepicker-div.yith-plugin-fw-datepicker-div {
 #ui-datepicker-div.yith-plugin-fw-datepicker-div.ui-datepicker .ui-datepicker-next,
 #ui-datepicker-div.yith-plugin-fw-datepicker-div .ui-datepicker-prev.ui-datepicker-prev-hover,
 #ui-datepicker-div.yith-plugin-fw-datepicker-div .ui-datepicker-prev.ui-datepicker-next-hover {
-    top    : 1px;
-    cursor : pointer;
+    padding : 6px 8px;
+    top     : 1px;
+    cursor  : pointer;
 }
 
 #ui-datepicker-div.yith-plugin-fw-datepicker-div .ui-datepicker-prev.ui-datepicker-prev,
@@ -1242,15 +1327,16 @@ div#ui-datepicker-div.yith-plugin-fw-datepicker-div {
 }
 
 #ui-datepicker-div.yith-plugin-fw-datepicker-div.ui-datepicker table {
-    font-size : 10px;
+    font-size : 13px;
 }
 
 #ui-datepicker-div.yith-plugin-fw-datepicker-div .ui-state-default,
 #ui-datepicker-div.yith-plugin-fw-datepicker-div.ui-widget-content .ui-state-default,
 #ui-datepicker-div.yith-plugin-fw-datepicker-div .ui-widget-header .ui-state-default {
     background : #fff;
-    border     : 1px solid #d9d9d9;
-
+    border     : 1px solid transparent;
+    text-align : center;
+    padding    : 0.4em 0.2em;
 }
 
 #ui-datepicker-div.yith-plugin-fw-datepicker-div .ui-state-hover,
@@ -1259,15 +1345,32 @@ div#ui-datepicker-div.yith-plugin-fw-datepicker-div {
 #ui-datepicker-div.yith-plugin-fw-datepicker-div.ui-widget-content .ui-state-focus,
 #ui-datepicker-div.yith-plugin-fw-datepicker-div .ui-widget-header .ui-state-focus {
     background : #ebf1f3;
-    border     : 1px solid #bfd5dd;
+    border     : 1px solid transparent;
     outline    : none;
     box-shadow : none;
+}
+
+#ui-datepicker-div.yith-plugin-fw-datepicker-div .ui-state-default.ui-state-active {
+    background : var(--yith-primary);
+    color      : var(--yith-primary-text);
 }
 
 #ui-datepicker-div.yith-plugin-fw-datepicker-div .ui-widget-header .ui-state-hover,
 .woocommerce #ui-datepicker-div.yith-plugin-fw-datepicker-div .ui-state-focus {
     background : none;
     border     : 0;
+}
+
+.rtl #ui-datepicker-div.yith-plugin-fw-datepicker-div .ui-datepicker-prev.ui-datepicker-prev,
+.rtl #ui-datepicker-div.yith-plugin-fw-datepicker-div .ui-datepicker-prev.ui-datepicker-prev-hover {
+    left  : auto;
+    right : 5px;
+}
+
+.rtl #ui-datepicker-div.yith-plugin-fw-datepicker-div.ui-datepicker .ui-datepicker-next,
+.rtl #ui-datepicker-div.yith-plugin-fw-datepicker-div .ui-datepicker-next.ui-datepicker-next-hover {
+    right : auto;
+    left  : 1px;
 }
 
 /** colorpicker **/
@@ -1365,9 +1468,11 @@ div#ui-datepicker-div.yith-plugin-fw-datepicker-div {
 .yith-plugin-ui .wp-picker-container {
     width         : auto;
     display       : inline-block;
-    border        : 1px solid #d9d9d9;
-    border-radius : 8px;
     padding       : 5px;
+    border-radius : var(--yith-field-border-radius);
+    border        : var(--yith-field-border);
+    box-shadow    : var(--yith-field-shadow);
+    background    : var(--yith-field-background);
 }
 
 .yith-plugin-ui .iris-picker .iris-square-inner {
@@ -1772,13 +1877,6 @@ div#ui-datepicker-div.yith-plugin-fw-datepicker-div {
     margin         : 0;
 }
 
-.yith-plugin-ui span.description {
-    margin-top  : 10px;
-    line-height : 20px;
-    max-width   : 40%;
-    min-width   : min(100%, 360px);
-}
-
 .yith-plugin-fw-option-with-description {
     display        : table-cell;
     width          : 90%;
@@ -1812,12 +1910,18 @@ div#ui-datepicker-div.yith-plugin-fw-datepicker-div {
 }
 
 /** MULTI SELECT AND TEXT ARRAY INLINE STYLE **/
-.yith-plugin-ui .yith-plugin-fw-multi-select .yith-single-select,
-.yith-plugin-ui .yith-plugin-fw-text-array-inline .yith-single-text {
-    display      : inline-block;
-    width        : 30%;
-    margin-right : 3%;
-    max-width    : 400px;
+
+.yith-plugin-fw-multi-select,
+.yith-plugin-fw-text-array-inline {
+    display               : grid;
+    grid-gap              : 16px;
+    grid-template-columns : repeat( auto-fit, minmax(150px, 1fr) );
+    max-width             : 400px;
+}
+
+.yith-plugin-fw-multi-select .yith-single-select,
+.yith-plugin-fw-text-array-inline .yith-single-text {
+    width : 100%;
 }
 
 .yith-plugin-ui .yith-plugin-fw-multi-select .yith-single-select label,
@@ -1829,7 +1933,7 @@ div#ui-datepicker-div.yith-plugin-fw-datepicker-div {
 }
 
 .yith-plugin-ui .yith-plugin-fw-text-array-inline .yith-single-text input,
-.yith-plugin-ui .yith-plugin-fw-multi-select .yith-single-select select,
+.yith-plugin-ui .yith-plugin-fw-multi-select .yith-single-select select:not(.select2-hidden-accessible),
 .yith-plugin-ui .yith-plugin-fw-multi-select .yith-single-select span.select2 {
     width     : 100% !important;
     min-width : auto !important;
@@ -1891,18 +1995,18 @@ div#ui-datepicker-div.yith-plugin-fw-datepicker-div {
     width         : 100%;
     min-width     : 0;
     border-radius : 0;
-    border        : 1px solid #d8d8d8;
+    border        : var(--yith-field-border);
     border-left   : none;
     height        : 38px;
     text-align    : center;
     padding-right : 0;
 }
 
-.yith-plugin-fw-dimensions__dimension:first-child > input[type=number].yith-plugin-fw-dimensions__dimension__number,
+.yith-plugin-fw-dimen sions__dimension:first-child > input[type=number].yith-plugin-fw-dimensions__dimension__number,
 .woocommerce.yith-plugin-fw-panel .yith-plugin-ui .yith-plugin-fw-dimensions__dimension:first-child > input[type=number].yith-plugin-fw-dimensions__dimension__number,
 .yith-plugin-ui .yith-plugin-fw-dimensions__dimension:first-child > input[type=number].yith-plugin-fw-dimensions__dimension__number,
 .woocommerce .yith-plugin-fw table.form-table .yith-plugin-fw-dimensions__dimension:first-child > input[type=number].yith-plugin-fw-dimensions__dimension__number {
-    border-left   : 1px solid #d8d8d8;
+    border-left   : var(--yith-field-border);
     border-radius : 6px 0 0 6px;
 }
 
@@ -1951,6 +2055,23 @@ div#ui-datepicker-div.yith-plugin-fw-datepicker-div {
     border-color : #007694;
 }
 
+.rtl .yith-plugin-fw-dimensions__linked span {
+    border-radius : 6px 0 0 6px;
+}
+
+.rtl .yith-plugin-fw-dimensions__dimension:first-child > input[type=number].yith-plugin-fw-dimensions__dimension__number,
+.rtl.woocommerce.yith-plugin-fw-panel .yith-plugin-ui .yith-plugin-fw-dimensions__dimension:first-child > input[type=number].yith-plugin-fw-dimensions__dimension__number,
+.rtl .yith-plugin-ui .yith-plugin-fw-dimensions__dimension:first-child > input[type=number].yith-plugin-fw-dimensions__dimension__number,
+.rtl.woocommerce .yith-plugin-fw table.form-table .yith-plugin-fw-dimensions__dimension:first-child > input[type=number].yith-plugin-fw-dimensions__dimension__number {
+    border-radius : 0 6px 6px 0;
+}
+
+.rtl .yith-plugin-fw-dimensions__dimension:last-child > input[type=number].yith-plugin-fw-dimensions__dimension__number,
+.rtl.woocommerce.yith-plugin-fw-panel .yith-plugin-ui .yith-plugin-fw-dimensions__dimension:last-child > input[type=number].yith-plugin-fw-dimensions__dimension__number,
+.rtl .yith-plugin-ui .yith-plugin-fw-dimensions__dimension:last-child > input[type=number].yith-plugin-fw-dimensions__dimension__number {
+    border-radius : 6px 0 0 6px;
+}
+
 /**
  * Image dimensions
  */
@@ -1962,30 +2083,279 @@ div#ui-datepicker-div.yith-plugin-fw-datepicker-div {
 }
 
 .yith-plugin-ui .yith-plugin-fw-image-dimensions label {
-    display         : block;
-    font-size       : 11px;
-    font-weight     : 600;
-    text-transform  : uppercase;
-    margin          : 0 0 10px 0;
+    display        : block;
+    font-size      : 11px;
+    font-weight    : 600;
+    text-transform : uppercase;
+    margin         : 0 0 10px 0;
 }
+
+/**
+ * File
+ */
+
+.yith-plugin-fw-file {
+    position        : relative;
+    width           : 100%;
+    max-width       : 400px;
+    border          : 1px dashed var(--yith-field-border-color);
+    background      : rgba(203, 213, 225, .25);
+    padding         : 30px;
+    cursor          : pointer;
+    display         : flex;
+    justify-content : center;
+    align-items     : center;
+    box-sizing      : border-box;
+}
+
+.yith-plugin-fw-file__field {
+    cursor   : pointer;
+    position : absolute;
+    opacity  : 0;
+    top      : 0;
+    right    : 0;
+    bottom   : 0;
+    left     : 0;
+    z-index  : 10;
+}
+
+.yith-plugin-fw-file__preview {
+    display         : flex;
+    width           : 100%;
+    align-items     : center;
+    background      : #fff;
+    padding         : 16px;
+    justify-content : center;
+}
+
+.yith-plugin-fw-file__preview__icon {
+    flex         : 0 0 24px;
+    margin-right : 8px;
+}
+
+.yith-plugin-fw-file.yith-plugin-fw--is-dragging {
+    border-color : var(--yith-primary);
+}
+
+.yith-plugin-fw-file.yith-plugin-fw--is-dragging:before {
+    content                 : '';
+    position                : absolute;
+    top                     : 0;
+    left                    : 0;
+    width                   : 100%;
+    height                  : 100%;
+    background              : rgba(0, 121, 176, .4);
+    z-index                 : 1;
+    backdrop-filter         : blur(3px);
+    -webkit-backdrop-filter : blur(3px);
+    animation               : yith-plugin-fw-fade-in .3s forwards;
+}
+
+.yith-plugin-fw-file:not(.yith-plugin-fw--filled) .yith-plugin-fw-file__preview {
+    display : none;
+}
+
+.yith-plugin-fw-file.yith-plugin-fw--filled .yith-plugin-fw-file__message {
+    display : none;
+}
+
+/**
+ * Media
+ */
+
+.yith-plugin-fw-media {
+    max-width  : 400px;
+    background : var(--yith-field-background);
+}
+
+.yith-plugin-fw-media.yith-plugin-fw-media--has-tabs {
+    border        : 1px solid var(--yith-field-border-color);
+    border-radius : var(--yith-field-border-radius);
+    box-shadow    : var(--yith-field-shadow);
+}
+
+.yith-plugin-fw-media__tabs {
+    display         : flex;
+    align-items     : center;
+    justify-content : space-between;
+}
+
+.yith-plugin-fw-media__tab {
+    flex            : 1;
+    display         : flex;
+    align-items     : center;
+    justify-content : center;
+    padding         : 12px 24px;
+    border-radius   : var(--yith-field-border-radius);
+    border          : 1px solid var(--yith-field-border-color);
+    background      : rgba(203, 213, 225, .25);
+    margin          : -1px;
+    cursor          : pointer;
+}
+
+.yith-plugin-fw-media__tab:hover {
+    color : var(--yith-link);
+}
+
+.yith-plugin-fw-media__tab--active {
+    color       : var(--yith-link);
+    font-weight : 500;
+    border      : none;
+    background  : transparent;
+    cursor      : default;
+}
+
+.yith-plugin-fw-media__tab__icon {
+    width        : 20px;
+    margin-right : 8px;
+}
+
+.rtl .yith-plugin-fw-media__tab__icon {
+    margin-right : 0;
+    margin-left  : 8px;
+}
+
+.yith-plugin-fw-media.yith-plugin-fw-media--has-tabs .yith-plugin-fw-media__content {
+    padding : 24px;
+}
+
+.yith-plugin-fw-media__preview {
+    position        : relative;
+    padding         : 30px;
+    border          : 1px dashed var(--yith-field-border-color);
+    background      : rgba(203, 213, 225, .25);
+    display         : flex;
+    align-items     : center;
+    justify-content : center;
+}
+
+.yith-plugin-fw-media__preview__file {
+    display         : flex;
+    width           : 100%;
+    align-items     : center;
+    background      : #fff;
+    padding         : 16px;
+    justify-content : center;
+}
+
+.yith-plugin-fw-media__preview:not([data-type=image]) .yith-plugin-fw-media__preview__image,
+.yith-plugin-fw-media__preview:not([data-type=file]) .yith-plugin-fw-media__preview__file,
+.yith-plugin-fw-media__preview:not([data-type=upload]) .yith-plugin-fw-media__preview__upload {
+    display : none;
+}
+
+.yith-plugin-fw-media__preview.yith-plugin-fw--is-dragging {
+    border-color : var(--yith-link);
+}
+
+.yith-plugin-fw-media__preview.yith-plugin-fw--is-loading {
+    border-color : transparent;
+}
+
+.yith-plugin-fw-media__preview.yith-plugin-fw--is-dragging:before,
+.yith-plugin-fw-media__preview.yith-plugin-fw--is-loading:before {
+    content                 : '';
+    position                : absolute;
+    top                     : 0;
+    left                    : 0;
+    width                   : 100%;
+    height                  : 100%;
+    background              : rgba(0, 121, 176, .4);
+    z-index                 : 998;
+    backdrop-filter         : blur(3px);
+    -webkit-backdrop-filter : blur(3px);
+    animation               : yith-plugin-fw-fade-in .3s forwards;
+}
+
+.yith-plugin-fw-media__preview.yith-plugin-fw--is-loading:before {
+    background : rgba(0, 121, 176, .7);
+}
+
+.yith-plugin-fw-media__preview.yith-plugin-fw--is-loading:after {
+    content          : '';
+    position         : absolute;
+    top              : calc(50% - 12px);
+    left             : calc(50% - 12px);
+    width            : 24px;
+    height           : 24px;
+    border-radius    : 50%;
+    z-index          : 999;
+    border           : 3px solid #fff;
+    border-top-color : transparent;
+    animation        : rotation .8s infinite linear;
+}
+
+.yith-plugin-fw-media__preview__dropzone {
+    position   : absolute;
+    top        : 0;
+    left       : 0;
+    width      : 100%;
+    height     : 100%;
+    background : transparent;
+    z-index    : 999;
+    visibility : hidden;
+    opacity    : 0;
+}
+
+.yith-plugin-fw--dropzone-active .yith-plugin-fw-media__preview__dropzone {
+    visibility : visible;
+    opacity    : 1;
+}
+
+.yith-plugin-fw-media__preview__file__icon {
+    flex         : 0 0 24px;
+    margin-right : 8px;
+}
+
+.yith-plugin-fw-media__preview__actions {
+    position : absolute;
+    top      : 7px;
+    right    : 7px;
+    display  : flex;
+}
+
+.yith-plugin-fw-media__preview[data-type=upload] .yith-plugin-fw-media__preview__actions {
+    display : none;
+}
+
+.yith-plugin-fw-media__preview__action {
+    font-size   : 15px;
+    margin-left : 8px;
+    cursor      : pointer;
+}
+
+.yith-plugin-fw-media__preview__action--delete {
+    color : var(--yith-delete);
+}
+
+.yith-plugin-fw-media__preview__image {
+    max-width      : 100%;
+    pointer-events : none;
+}
+
+.yith-plugin-fw-media .yith-plugin-fw__notice {
+    margin : 0 24px 24px;
+}
+
 
 /**
  * Copy to clipboard
  */
 .yith-plugin-fw-copy-to-clipboard {
     background    : #ffffff;
-    border-radius : 8px;
-    border        : 1px solid #d8d8d8;
+    border-radius : var(--yith-field-border-radius);
+    border        : var(--yith-field-border);
     display       : flex;
     align-items   : center;
     padding       : 0 12px;
     max-width     : 400px;
     box-sizing    : border-box;
+    box-shadow    : var(--yith-field-shadow);
 }
 
 .yith-plugin-fw-copy-to-clipboard.yith-plugin-fw-copy-to-clipboard--readonly {
-    background : #f1f1f1;
-    border     : 1px dashed #cccccc;
+    background   : rgba(203, 213, 225, .25);
+    border-style : dashed;
 }
 
 .yith-plugin-fw-copy-to-clipboard__field-wrap {
@@ -2012,20 +2382,22 @@ div#ui-datepicker-div.yith-plugin-fw-datepicker-div {
 .yith-plugin-fw-copy-to-clipboard input[type=text].yith-plugin-fw-copy-to-clipboard__field,
 .yith-plugin-fw.yith-plugin-ui .yith-plugin-fw-copy-to-clipboard input[type=text].yith-plugin-fw-copy-to-clipboard__field,
 .yith-plugin-fw-panel .yith-plugin-ui table.form-table input[type=text].yith-plugin-fw-copy-to-clipboard__field,
-.woocommerce.yith-plugin-fw-panel .yith-plugin-ui table.form-table input[type=text].yith-plugin-fw-copy-to-clipboard__field {
+.woocommerce.yith-plugin-fw-panel .yith-plugin-ui table.form-table input[type=text].yith-plugin-fw-copy-to-clipboard__field,
+.yith-plugin-fw__panel__content__page--options .yith-plugin-fw-copy-to-clipboard__field-wrap input[type=text].yith-plugin-fw-copy-to-clipboard__field {
     height        : 38px;
     width         : 100%;
     background    : transparent;
     padding       : 0 10px 0 0;
     border        : 0;
     border-radius : 0;
-    box-shadow    : none;
-    outline       : none;
+    box-shadow    : none !important;
+    outline       : none !important;
+    min-width     : 0;
 }
 
 .yith-plugin-fw-copy-to-clipboard.yith-plugin-fw-copy-to-clipboard--readonly input[type=text].yith-plugin-fw-copy-to-clipboard__field,
 .woocommerce.yith-plugin-fw-panel .yith-plugin-ui table.form-table .yith-plugin-fw-copy-to-clipboard--readonly input[type=text].yith-plugin-fw-copy-to-clipboard__field {
-    color  : #999;
+    color  : #6c7a8b;
     cursor : default;
 }
 
@@ -2053,6 +2425,11 @@ div#ui-datepicker-div.yith-plugin-fw-datepicker-div {
 .yith-plugin-fw-copy-to-clipboard__copy__icon {
     margin-right : 4px;
     font-size    : 14px;
+}
+
+.rtl .yith-plugin-fw-copy-to-clipboard__copy__icon {
+    margin-right : 0;
+    margin-left  : 4px;
 }
 
 /** OVERRIDE WOOCOMMERCE CLASSES FOR 5.3 */
@@ -2178,18 +2555,6 @@ div#ui-datepicker-div.yith-plugin-fw-datepicker-div {
         padding : 20px 20px;
     }
 
-    .yith-plugin-ui [type="radio"]:checked + label:before, .yith-plugin-ui [type="radio"]:not(:checked) + label:before {
-        width  : 14px;
-        height : 14px;
-    }
-
-    .yith-plugin-ui [type="radio"]:checked + label:after, .yith-plugin-ui [type="radio"]:not(:checked) + label:after {
-        width  : 10px;
-        height : 10px;
-        top    : 3px;
-        left   : 3px;
-    }
-
     .yith-plugin-ui [type="radio"]:checked + label, .yith-plugin-ui [type="radio"]:not(:checked) + label {
         padding-left : 25px;
     }
@@ -2207,35 +2572,6 @@ div#ui-datepicker-div.yith-plugin-fw-datepicker-div {
     .yith-plugin-ui #plugin-fw-wc table.form-table td,
     #yith-plugin-fw-panel table.form-table td.forminp {
         padding : 15px 20px;
-    }
-
-    .yith-plugin-ui .yith-plugin-fw-onoff-container input + span {
-        width   : 48px;
-        height  : 20px;
-        padding : 2px;
-    }
-
-    .yith-plugin-ui .yith-plugin-fw-onoff-container input + span:before {
-        top    : 4px;
-        left   : 3px;
-        width  : 10px;
-        height : 10px;
-    }
-
-    .yith-plugin-ui .yith-plugin-fw-onoff-container input:checked + span:before, .yith-plugin-ui.yith-plugin-fw-onoff-container input.onoffchecked + span:before {
-        left : 30px;
-    }
-
-    .yith-plugin-ui .yith-plugin-fw-onoff-container input:checked + span:after, .yith-plugin-ui.yith-plugin-fw-onoff-container input.onoffchecked + span:after {
-        font-size     : 11px;
-        padding-right : 12px;
-        margin-top    : 0;
-    }
-
-    .yith-plugin-ui .yith-plugin-fw-onoff-container input + span:after {
-        font-size    : 11px;
-        padding-left : 12px;
-        margin-top   : 0;
     }
 
     .yith-plugin-fw .select2-container .select2-selection--single .select2-selection__rendered {

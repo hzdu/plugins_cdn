@@ -1,28 +1,255 @@
-/* globals yith_framework_fw_fields, wp */
+/* globals yith_framework_fw_fields, wp, yith */
 ( function ( $ ) {
+
+	/* Upload */
+	var uploadHandler = {
+		selectors         : {
+			imgPreview  : '.yith-plugin-fw-upload-img-preview',
+			uploadButton: '.yith-plugin-fw-upload-button',
+			imgUrl      : '.yith-plugin-fw-upload-img-url',
+			resetButton : '.yith-plugin-fw-upload-button-reset'
+		},
+		onImageChange     : function () {
+			var url        = $( this ).val(),
+				imageRegex = new RegExp( "(http|ftp|https)://[a-zA-Z0-9@?^=%&amp;:/~+#-_.]*.(gif|jpg|jpeg|png|ico|svg)" ),
+				preview    = $( this ).parent().find( uploadHandler.selectors.imgPreview ).first();
+
+			if ( preview.length < 1 ) {
+				preview = $( this ).parent().parent().find( uploadHandler.selectors.imgPreview ).first();
+			}
+
+			if ( imageRegex.test( url ) ) {
+				preview.html( '<img src="' + url + '" style="max-width:100px; max-height:100px;" />' );
+			} else {
+				preview.html( '' );
+			}
+		},
+		onButtonClick     : function ( e ) {
+			e.preventDefault();
+
+			var button = $( this ),
+				custom_uploader,
+				id     = button.attr( 'id' ).replace( /-button$/, '' ).replace( /(\[|\])/g, '\\$1' );
+
+			// If the uploader object has already been created, reopen the dialog
+			if ( custom_uploader ) {
+				custom_uploader.open();
+				return;
+			}
+
+			var custom_uploader_states = [
+				new wp.media.controller.Library(
+					{
+						library   : wp.media.query(),
+						multiple  : false,
+						title     : 'Choose Image',
+						priority  : 20,
+						filterable: 'uploaded'
+					}
+				)
+			];
+
+			// Create the media frame.
+			custom_uploader = wp.media.frames.downloadable_file = wp.media(
+				{
+					// Set the title of the modal.
+					title   : 'Choose Image',
+					library : {
+						type: ''
+					},
+					button  : {
+						text: 'Choose Image'
+					},
+					multiple: false,
+					states  : custom_uploader_states
+				}
+			);
+
+			// When a file is selected, grab the URL and set it as the text field's value
+			custom_uploader.on( 'select', function () {
+				var attachment      = custom_uploader.state().get( 'selection' ).first().toJSON(),
+					attachmentField = $( "#" + id + "-yith-attachment-id" );
+
+				$( "#" + id ).val( attachment.url );
+				// Save the id of the selected element to an element which name is the same with a suffix "-yith-attachment-id"
+				if ( attachmentField.length ) {
+					attachmentField.val( attachment.id );
+				}
+				uploadHandler.triggerImageChange();
+			} );
+
+			custom_uploader.open();
+		},
+		onResetClick      : function () {
+			var button        = $( this ),
+				id            = button.attr( 'id' ).replace( /(\[|\])/g, '\\$1' ),
+				input_id      = button.attr( 'id' ).replace( /-button-reset$/, '' ).replace( /(\[|\])/g, '\\$1' ),
+				default_value = $( '#' + id ).data( 'default' );
+
+			$( "#" + input_id ).val( default_value );
+			uploadHandler.triggerImageChange();
+		},
+		triggerImageChange: function () {
+			$( uploadHandler.selectors.imgUrl ).trigger( 'change' );
+		},
+		initOnce          : function () {
+			if ( typeof wp !== 'undefined' && typeof wp.media !== 'undefined' ) {
+				$( document ).on( 'change', uploadHandler.selectors.imgUrl, uploadHandler.onImageChange );
+
+				$( document ).on( 'click', uploadHandler.selectors.uploadButton, uploadHandler.onButtonClick );
+
+				$( document ).on( 'click', uploadHandler.selectors.resetButton, uploadHandler.onResetClick );
+			}
+		}
+	};
+
+	uploadHandler.initOnce();
+
+	var imageGallery = {
+		selectors: {
+			gallery       : '.yith-plugin-fw-image-gallery',
+			notInitGallery: '.yith-plugin-fw-image-gallery:not(.yith-plugin-fw-image-gallery--initialized)',
+			button        : '.yith-plugin-fw-image-gallery .image-gallery-button',
+			slideWrapper  : 'ul.slides-wrapper'
+		},
+		initOnce : function () {
+			if ( typeof wp !== 'undefined' && typeof wp.media !== 'undefined' ) {
+				$( document ).on( 'click', imageGallery.selectors.button, function ( e ) {
+					var button               = $( this ),
+						gallery              = button.closest( imageGallery.selectors.gallery ),
+						imageGalleryIDsField = gallery.find( '.image_gallery_ids' ),
+						attachmentIDs        = imageGalleryIDsField.val(),
+						wrapper              = gallery.find( 'ul.slides-wrapper' );
+
+					// Create the media frame.
+					var imageGalleryFrame = wp.media.frames.image_gallery = wp.media(
+						{
+							// Set the title of the modal.
+							title : button.data( 'choose' ),
+							button: {
+								text: button.data( 'update' )
+							},
+							states: [
+								new wp.media.controller.Library(
+									{
+										title     : button.data( 'choose' ),
+										filterable: 'all',
+										multiple  : true
+									}
+								)
+							]
+						}
+					);
+
+					// When an image is selected, run a callback.
+					imageGalleryFrame.on( 'select', function () {
+						var selection = imageGalleryFrame.state().get( 'selection' );
+						selection.map( function ( attachment ) {
+							attachment = attachment.toJSON();
+
+							if ( attachment.id ) {
+								attachmentIDs           = attachmentIDs ? attachmentIDs + "," + attachment.id : attachment.id;
+								var attachmentImageData = attachment.sizes.thumbnail || attachment.sizes.medium || attachment.sizes.large || attachment.sizes.full;
+								wrapper.append( '<li class="image" data-attachment_id="' + attachment.id + '"><img src="' + attachmentImageData.url + '"/><ul class="actions"><li><a href="#" class="delete" title="' + button.data( 'delete' ) + '">x</a></li></ul></li>' );
+							}
+						} );
+
+						imageGalleryIDsField.val( attachmentIDs );
+						imageGalleryIDsField.trigger( 'change' );
+					} );
+
+					imageGalleryFrame.open();
+
+				} );
+			}
+		},
+		init     : function () {
+			if ( typeof wp !== 'undefined' && typeof wp.media !== 'undefined' ) {
+				$( imageGallery.selectors.notInitGallery ).each( function () {
+					$( this ).addClass( 'yith-plugin-fw-image-gallery--initialized' );
+					var slideWrappers = $( this ).find( imageGallery.selectors.slideWrapper );
+
+					// Image ordering
+					slideWrappers.each( function () {
+						var currentSlideWrapper = $( this );
+						currentSlideWrapper.sortable( {
+														  items               : 'li.image',
+														  cursor              : 'move',
+														  scrollSensitivity   : 40,
+														  forcePlaceholderSize: true,
+														  forceHelperSize     : false,
+														  helper              : 'clone',
+														  opacity             : 0.65,
+														  start               : function ( event, ui ) {
+															  ui.item.css( 'background-color', '#f6f6f6' );
+														  },
+														  stop                : function ( event, ui ) {
+															  ui.item.removeAttr( 'style' );
+														  },
+														  update              : function ( event, ui ) {
+															  var attachment_ids = '';
+
+															  currentSlideWrapper.find( 'li.image' ).css( 'cursor', 'default' ).each( function () {
+																  var attachment_id = $( this ).attr( 'data-attachment_id' );
+																  attachment_ids    = attachment_ids + attachment_id + ',';
+															  } );
+
+															  currentSlideWrapper.closest( imageGallery.selectors.gallery ).find( '.image_gallery_ids' ).val( attachment_ids );
+														  }
+													  } );
+					} );
+
+					// Remove images
+					slideWrappers.on( 'click', 'a.delete', function ( e ) {
+						e.preventDefault();
+						var _wrapper              = $( this ).closest( imageGallery.selectors.gallery ),
+							_slideWrapper         = _wrapper.find( 'ul.slides-wrapper' ),
+							_imageGalleryIDsField = _wrapper.find( '.image_gallery_ids' ),
+							_attachmentIDs        = '';
+
+						$( this ).closest( 'li.image' ).remove();
+
+						_slideWrapper.find( 'li.image' ).css( 'cursor', 'default' ).each( function () {
+							var attachment_id = $( this ).attr( 'data-attachment_id' );
+							_attachmentIDs    = _attachmentIDs + attachment_id + ',';
+						} );
+
+						_imageGalleryIDsField.val( _attachmentIDs );
+					} );
+				} )
+			}
+		}
+	};
+	imageGallery.initOnce();
+
+
+	// Codemirror.
+	$( function () {
+		var codemirrorInit = function () {
+			if ( typeof wp !== 'undefined' && typeof wp.codeEditor !== 'undefined' ) {
+				$( '.codemirror:not(.codemirror--initialized)' ).each( function () {
+					var settings = $( this ).data( 'settings' ),
+						editor   = wp.codeEditor.initialize( $( this ), settings );
+
+					$( this ).addClass( 'codemirror--initialized' );
+					$( this ).data( 'codemirrorInstance', editor );
+				} );
+			}
+		};
+		$( document ).on( 'yith-plugin-fw-codemirror-init', codemirrorInit ).trigger( 'yith-plugin-fw-codemirror-init' );
+	} );
+
 	var yith_fields_init = function () {
-		var $datepicker   = $( '.yith-plugin-fw-datepicker' ),
-			$colorpicker  = $( '.yith-plugin-fw-colorpicker' ),
-			$upload       = {
-				imgPreviewHandler  : '.yith-plugin-fw-upload-img-preview',
-				uploadButtonHandler: '.yith-plugin-fw-upload-button',
-				imgUrlHandler      : '.yith-plugin-fw-upload-img-url',
-				resetButtonHandler : '.yith-plugin-fw-upload-button-reset',
-				imgUrl             : $( '.yith-plugin-fw-upload-img-url' )
-			},
-			$wpAddMedia   = $( '.add_media' ),
-			$imageGallery = {
-				rootSelector  : '.yith-plugin-fw-image-gallery',
-				buttonSelector: '.yith-plugin-fw-image-gallery .image-gallery-button',
-				sliderWrapper : $( '.yith-plugin-fw-image-gallery ul.slides-wrapper' )
-			},
-			$sidebars     = $( '.yith-plugin-fw-sidebar-layout' ),
-			$slider       = $( '.yith-plugin-fw-slider-container .ui-slider-horizontal' ),
-			$icons        = $( '.yit-icons-manager-wrapper' ),
-			$checkgroup   = $( ".yith-plugin-ui td.forminp-checkbox" );
+		var $datepicker  = $( '.yith-plugin-fw-datepicker:not(.yith-plugin-fw-datepicker--initialized)' ),
+			$colorpicker = $( '.yith-plugin-fw-colorpicker:not(.yith-plugin-fw-colorpicker--initialized)' ),
+			$sidebars    = $( '.yith-plugin-fw-sidebar-layout:not(.yith-plugin-fw-sidebar-layout--initialized)' ),
+			$slider      = $( '.yith-plugin-fw-slider-container:not(.yith-plugin-fw-slider-container--initialized)' ),
+			$icons       = $( '.yit-icons-manager-wrapper:not(.yit-icons-manager-wrapper--initialized)' );
 
 		/* Datepicker */
 		$datepicker.each( function () {
+			$( this ).addClass( 'yith-plugin-fw-datepicker--initialized' );
+
 			var currentDatePicker = $( this ),
 				args              = currentDatePicker.data(),
 				icon              = currentDatePicker.next( '.yith-icon-calendar' );
@@ -45,19 +272,22 @@
 		} );
 
 		/* Colorpicker */
-		$colorpicker.wpColorPicker( {
-										palettes: false,
-										width   : 200,
-										mode    : 'hsl',
-										clear   : function () {
-											var input = $( this );
-											input.val( input.data( 'default-color' ) );
-											input.change();
-										}
-									} );
-
-
 		$colorpicker.each( function () {
+			$( this ).addClass( 'yith-plugin-fw-colorpicker--initialized' );
+
+			$( this ).wpColorPicker(
+				{
+					palettes: false,
+					width   : 200,
+					mode    : 'hsl',
+					clear   : function () {
+						var input = $( this );
+						input.val( input.data( 'default-color' ) );
+						input.trigger( 'change' );
+					}
+				}
+			);
+
 			var select_label = $( this ).data( 'variations-label' ),
 				wrap_main1   = $( this ).closest( '.yith-plugin-fw-colorpicker-field-wrapper' ),
 				wrap_main2   = $( this ).closest( '.yith-single-colorpicker' ),
@@ -69,206 +299,22 @@
 
 			if ( !wrap1.find( '.wp-picker-default-custom' ).length ) {
 				var button = $( '<span/>' ).attr( {
-													  class: "wp-picker-default-custom"
+													  class: 'wp-picker-default-custom'
 												  } );
 				wrap1.find( '.wp-picker-default' ).wrap( button );
 			}
 
 			if ( !wrap2.find( '.wp-picker-default-custom' ).length ) {
 				var button = $( '<span/>' ).attr( {
-													  class: "wp-picker-default-custom"
+													  class: 'wp-picker-default-custom'
 												  } );
 				wrap2.find( '.wp-picker-default' ).wrap( button );
 			}
 		} );
 
-
-		/* Upload */
-		if ( typeof wp !== 'undefined' && typeof wp.media !== 'undefined' ) {
-			var _custom_media = true;
-			// preview
-			$upload.imgUrl.change( function () {
-				var url     = $( this ).val(),
-					re      = new RegExp( "(http|ftp|https)://[a-zA-Z0-9@?^=%&amp;:/~+#-_.]*.(gif|jpg|jpeg|png|ico|svg)" ),
-					preview = $( this ).parent().find( $upload.imgPreviewHandler ).first();
-
-				if ( preview.length < 1 ) {
-					preview = $( this ).parent().parent().find( $upload.imgPreviewHandler ).first();
-				}
-
-				if ( re.test( url ) ) {
-					preview.html( '<img src="' + url + '" style="max-width:100px; max-height:100px;" />' );
-				} else {
-					preview.html( '' );
-				}
-			} ).trigger( 'change' );
-
-			$( document ).on( 'click', $upload.uploadButtonHandler, function ( e ) {
-				e.preventDefault();
-
-				var t  = $( this ),
-					custom_uploader,
-					id = t.attr( 'id' ).replace( /-button$/, '' ).replace( /(\[|\])/g, '\\$1' );
-
-				//If the uploader object has already been created, reopen the dialog
-				if ( custom_uploader ) {
-					custom_uploader.open();
-					return;
-				}
-
-				var custom_uploader_states = [
-					// Main states.
-					new wp.media.controller.Library( {
-														 library   : wp.media.query(),
-														 multiple  : false,
-														 title     : 'Choose Image',
-														 priority  : 20,
-														 filterable: 'uploaded'
-													 } )
-				];
-
-				// Create the media frame.
-				custom_uploader = wp.media.frames.downloadable_file = wp.media( {
-																					// Set the title of the modal.
-																					title   : 'Choose Image',
-																					library : {
-																						type: ''
-																					},
-																					button  : {
-																						text: 'Choose Image'
-																					},
-																					multiple: false,
-																					states  : custom_uploader_states
-																				} );
-
-				//When a file is selected, grab the URL and set it as the text field's value
-				custom_uploader.on( 'select', function () {
-					var attachment = custom_uploader.state().get( 'selection' ).first().toJSON();
-
-					$( "#" + id ).val( attachment.url );
-					// Save the id of the selected element to an element which name is the same with a suffix "-yith-attachment-id"
-					if ( $( "#" + id + "-yith-attachment-id" ) ) {
-						$( "#" + id + "-yith-attachment-id" ).val( attachment.id );
-					}
-					$upload.imgUrl.trigger( 'change' );
-				} );
-
-				//Open the uploader dialog
-				custom_uploader.open();
-			} );
-
-			$( document ).on( 'click', $upload.resetButtonHandler, function ( e ) {
-				var t             = $( this ),
-					id            = t.attr( 'id' ).replace( /(\[|\])/g, '\\$1' ),
-					input_id      = t.attr( 'id' ).replace( /-button-reset$/, '' ).replace( /(\[|\])/g, '\\$1' ),
-					default_value = $( '#' + id ).data( 'default' );
-
-				$( "#" + input_id ).val( default_value );
-				$upload.imgUrl.trigger( 'change' );
-			} );
-		}
-
-		$wpAddMedia.on( 'click', function () {
-			_custom_media = false;
-		} );
-
-		/* Image Gallery */
-		if ( typeof wp !== 'undefined' && typeof wp.media !== 'undefined' ) {
-			$( document ).on( 'click', $imageGallery.buttonSelector, function ( e ) {
-				var $t                      = $( this ),
-					$container              = $t.closest( $imageGallery.rootSelector ),
-					$image_gallery_ids      = $container.find( '.image_gallery_ids' ),
-					attachment_ids          = $image_gallery_ids.val(),
-					$gallery_images_wrapper = $container.find( 'ul.slides-wrapper' );
-
-				// Create the media frame.
-				var image_gallery_frame = wp.media.frames.image_gallery = wp.media( {
-																						// Set the title of the modal.
-																						title : $t.data( 'choose' ),
-																						button: {
-																							text: $t.data( 'update' )
-																						},
-																						states: [
-																							new wp.media.controller.Library( {
-																																 title     : $t.data( 'choose' ),
-																																 filterable: 'all',
-																																 multiple  : true
-																															 } )
-																						]
-																					} );
-
-				// When an image is selected, run a callback.
-				image_gallery_frame.on( 'select', function () {
-					var selection = image_gallery_frame.state().get( 'selection' );
-					selection.map( function ( attachment ) {
-						attachment = attachment.toJSON();
-
-						if ( attachment.id ) {
-							attachment_ids = attachment_ids ? attachment_ids + "," + attachment.id : attachment.id;
-							$gallery_images_wrapper.append( '<li class="image" data-attachment_id="' + attachment.id + '"><img src="' + attachment.sizes.thumbnail.url + '"/><ul class="actions"><li><a href="#" class="delete" title="' + $t.data( 'delete' ) + '">x</a></li></ul></li>' );
-						}
-					} );
-
-					$image_gallery_ids.val( attachment_ids );
-					$image_gallery_ids.trigger( 'change' );
-				} );
-
-				image_gallery_frame.open();
-
-			} );
-
-			// Image ordering
-			$imageGallery.sliderWrapper.each( function () {
-				var $t = $( this );
-				$t.sortable( {
-								 items               : 'li.image',
-								 cursor              : 'move',
-								 scrollSensitivity   : 40,
-								 forcePlaceholderSize: true,
-								 forceHelperSize     : false,
-								 helper              : 'clone',
-								 opacity             : 0.65,
-								 start               : function ( event, ui ) {
-									 ui.item.css( 'background-color', '#f6f6f6' );
-								 },
-								 stop                : function ( event, ui ) {
-									 ui.item.removeAttr( 'style' );
-								 },
-								 update              : function ( event, ui ) {
-									 var attachment_ids = '';
-
-									 $t.find( 'li.image' ).css( 'cursor', 'default' ).each( function () {
-										 var attachment_id = $( this ).attr( 'data-attachment_id' );
-										 attachment_ids    = attachment_ids + attachment_id + ',';
-									 } );
-
-									 $t.closest( $imageGallery.rootSelector ).find( '.image_gallery_ids' ).val( attachment_ids );
-								 }
-							 } );
-			} );
-
-			// Remove images
-			$imageGallery.sliderWrapper.on( 'click', 'a.delete', function ( e ) {
-				e.preventDefault();
-				var $wrapper           = $( this ).closest( $imageGallery.rootSelector ),
-					$gallery           = $wrapper.find( 'ul.slides-wrapper' ),
-					$image_gallery_ids = $wrapper.find( '.image_gallery_ids' ),
-					attachment_ids     = '';
-
-				$( this ).closest( 'li.image' ).remove();
-
-				$gallery.find( 'li.image' ).css( 'cursor', 'default' ).each( function () {
-					var attachment_id = $( this ).attr( 'data-attachment_id' );
-					attachment_ids    = attachment_ids + attachment_id + ',';
-				} );
-
-				$image_gallery_ids.val( attachment_ids );
-			} );
-		}
-
-
 		/* Sidebars */
 		$sidebars.each( function () {
+			$( this ).addClass( 'yith-plugin-fw-sidebar-layout--initialized' );
 			var $images = $( this ).find( 'img' );
 			$images.on( 'click', function () {
 				var $container = $( this ).closest( '.yith-plugin-fw-sidebar-layout' ),
@@ -304,13 +350,15 @@
 
 		/* Slider */
 		$slider.each( function () {
-			var val      = $( this ).data( 'val' ),
-				minValue = $( this ).data( 'min' ),
-				maxValue = $( this ).data( 'max' ),
-				step     = $( this ).data( 'step' ),
-				labels   = $( this ).data( 'labels' );
+			$( this ).addClass( 'yith-plugin-fw-slider-container--initialized' );
+			var theSlider = $( this ).find( '.ui-slider-horizontal' ),
+				val       = theSlider.data( 'val' ),
+				minValue  = theSlider.data( 'min' ),
+				maxValue  = theSlider.data( 'max' ),
+				step      = theSlider.data( 'step' ),
+				labels    = theSlider.data( 'labels' );
 
-			$( this ).slider( {
+			theSlider.slider( {
 								  value: val,
 								  min  : minValue,
 								  max  : maxValue,
@@ -330,35 +378,8 @@
 							  } );
 		} );
 
-		// Codemirror.
-		$( function () {
-			var codemirrorInit = function () {
-				if ( typeof wp !== 'undefined' && typeof wp.codeEditor !== 'undefined' ) {
-					$( '.codemirror:not(.codemirror--initialized)' ).each( function () {
-						var settings = $( this ).data( 'settings' ),
-							editor   = wp.codeEditor.initialize( $( this ), settings );
-
-						$( this ).addClass( 'codemirror--initialized' );
-						$( this ).data( 'codemirrorInstance', editor );
-					} );
-				}
-			};
-			$( document ).on( 'yith-plugin-fw-codemirror-init', codemirrorInit ).trigger( 'yith-plugin-fw-codemirror-init' );
-		} );
-
-		/* Select All - Deselect All */
-		$( document ).on( 'click', '.yith-plugin-fw-select-all', function () {
-			var $targetSelect = $( '#' + $( this ).data( 'select-id' ) );
-			$targetSelect.find( 'option' ).prop( 'selected', true ).trigger( 'change' );
-		} );
-
-		$( document ).on( 'click', '.yith-plugin-fw-deselect-all', function () {
-			var $targetSelect = $( '#' + $( this ).data( 'select-id' ) );
-			$targetSelect.find( 'option' ).prop( 'selected', false ).trigger( 'change' );
-		} );
-
-
 		$icons.each( function () {
+			$( this ).addClass( 'yit-icons-manager-wrapper--initialized' );
 			var $container = $( this ),
 				$preview   = $container.find( '.yit-icons-manager-icon-preview' ).first(),
 				$text      = $container.find( '.yit-icons-manager-icon-text' );
@@ -386,23 +407,6 @@
 			} );
 		} );
 
-		/** Select Images */
-		$( document ).on( 'click', '.yith-plugin-fw-select-images__item', function () {
-			var item    = $( this ),
-				key     = item.data( 'key' ),
-				wrapper = item.closest( '.yith-plugin-fw-select-images__wrapper' ),
-				items   = wrapper.find( '.yith-plugin-fw-select-images__item' ),
-				select  = wrapper.find( 'select' ).first();
-
-			if ( select.length ) {
-				select.val( key ).trigger( 'yith_select_images_value_changed' ).trigger( 'change' );
-				items.removeClass( 'yith-plugin-fw-select-images__item--selected' );
-				item.addClass( 'yith-plugin-fw-select-images__item--selected' );
-			}
-		} );
-
-		$( document.body ).trigger( 'wc-enhanced-select-init' );
-
 		$( document ).find( '.ui-sortable .yith-toggle-elements' ).sortable(
 			{
 				cursor              : 'move',
@@ -426,10 +430,40 @@
 			}
 		);
 
+		$( document.body ).trigger( 'wc-enhanced-select-init' );
 		$( document.body ).trigger( 'yith-framework-enhanced-select-init' );
+		$( document ).trigger( 'yith-plugin-fw-codemirror-init' );
+		uploadHandler.triggerImageChange();
+		imageGallery.init();
 	};
 
 	$( document ).on( 'yith_fields_init', yith_fields_init ).trigger( 'yith_fields_init' );
+
+	/** Select Images */
+	$( document ).on( 'click', '.yith-plugin-fw-select-images__item', function () {
+		var item    = $( this ),
+			key     = item.data( 'key' ),
+			wrapper = item.closest( '.yith-plugin-fw-select-images__wrapper' ),
+			items   = wrapper.find( '.yith-plugin-fw-select-images__item' ),
+			select  = wrapper.find( 'select' ).first();
+
+		if ( select.length ) {
+			select.val( key ).trigger( 'yith_select_images_value_changed' ).trigger( 'change' );
+			items.removeClass( 'yith-plugin-fw-select-images__item--selected' );
+			item.addClass( 'yith-plugin-fw-select-images__item--selected' );
+		}
+	} );
+
+	/* Select All - Deselect All */
+	$( document ).on( 'click', '.yith-plugin-fw-select-all', function () {
+		var $targetSelect = $( '#' + $( this ).data( 'select-id' ) );
+		$targetSelect.find( 'option' ).prop( 'selected', true ).trigger( 'change' );
+	} );
+
+	$( document ).on( 'click', '.yith-plugin-fw-deselect-all', function () {
+		var $targetSelect = $( '#' + $( this ).data( 'select-id' ) );
+		$targetSelect.find( 'option' ).prop( 'selected', false ).trigger( 'change' );
+	} );
 
 	/* on-off */
 	$( document ).on( 'click', '.yith-plugin-fw-onoff-container span', function () {
@@ -450,7 +484,6 @@
 		} else {
 			$( this ).attr( 'value', 'no' ).removeClass( 'onoffchecked' );
 		}
-		$( this ).trigger( 'change' );
 	} );
 
 
@@ -568,11 +601,12 @@
 	};
 
 	$( document ).on( 'click', '.yith-toggle-title', function ( event ) {
-		var _toggle  = $( event.target ),
-			_section = _toggle.closest( '.yith-toggle-row' ),
-			_content = _section.find( '.yith-toggle-content' );
+		var _toggle       = $( event.target ),
+			_section      = _toggle.closest( '.yith-toggle-row' ),
+			_content      = _section.find( '.yith-toggle-content' ),
+			_isOnOffClick = !!_toggle.closest( '.yith-toggle-onoff' ).length;
 
-		if ( _toggle.hasClass( 'yith-plugin-fw-onoff' ) || _toggle.hasClass( 'yith-icon-drag' ) ) {
+		if ( _isOnOffClick || _toggle.hasClass( 'yith-icon-drag' ) ) {
 			return false;
 		}
 
@@ -758,6 +792,24 @@
 			$( '.select2-results' ).closest( '.select2-container' ).addClass( 'yith-plugin-fw-select2-container' );
 		}
 	} );
+
+	/**
+	 * Select2 - focus on search field when opened and the select is not multiple.
+	 * For multiple select this is already handled by select2.
+	 */
+	$( document ).on( 'select2:open', function ( e ) {
+		if ( !e.target.multiple ) {
+			setTimeout(
+				function () {
+					var select2SearchField = document.querySelector( '.yith-plugin-fw-select2-container .select2-search__field' );
+					select2SearchField && select2SearchField.focus();
+				},
+				50
+			);
+		}
+	} );
+
+
 	/**
 	 * Dimensions
 	 */
@@ -925,6 +977,7 @@
 				};
 
 				options.closeAfterConfirm = false;
+				options.confirmButtonLoadingAfterConfirm = true;
 
 				yith.ui.confirm( options );
 
@@ -946,5 +999,376 @@
 			}
 		);
 	} ).trigger( 'yith-plugin-fw-tips-init' );
+
+	/**
+	 * Tabs
+	 */
+	$( document ).on( 'yith-plugin-fw-tabs-init', function () {
+		$( '.yith-plugin-fw__tabs:not(.yith-plugin-fw__tabs--initialized)' ).each( function () {
+			var tabsContainer         = $( this ),
+				additionalActiveClass = tabsContainer.data( 'tab-additional-active-class' ) || false,
+				allHandlers           = tabsContainer.find( '.yith-plugin-fw__tab__handler' ),
+				firstTabHandler       = tabsContainer.find( '.yith-plugin-fw__tab__handler' ).first(),
+				allPanelIds           = allHandlers.get().map( function ( _current ) {
+					return _current.getAttribute( 'href' );
+				} ).filter( function ( _current ) {
+					return !!_current;
+				} ).join( ', ' ),
+				allPanels             = $( allPanelIds ),
+				showTab               = function ( tabHandler ) {
+					var tab       = tabHandler.parent( '.yith-plugin-fw__tab' ),
+						otherTabs = tab.siblings( '.yith-plugin-fw__tab' ),
+						panelId   = tabHandler.attr( 'href' );
+
+					tab.addClass( 'yith-plugin-fw__tab--active' );
+					!!additionalActiveClass && tab.addClass( additionalActiveClass );
+					otherTabs.removeClass( 'yith-plugin-fw__tab--active' );
+					!!additionalActiveClass && otherTabs.removeClass( additionalActiveClass );
+
+					allPanels.hide();
+					$( panelId ).show();
+				},
+				handleTabClick        = function ( e ) {
+					e.preventDefault();
+					var currentTabHandler = $( this ),
+						tab               = currentTabHandler.parent( '.yith-plugin-fw__tab' ),
+						isActive          = tab.hasClass( 'yith-plugin-fw__tab--active' );
+
+					if ( !isActive ) {
+						showTab( currentTabHandler );
+					}
+				};
+
+			tabsContainer.addClass( 'yith-plugin-fw__tabs--initialized' );
+			tabsContainer.on( 'click', '.yith-plugin-fw__tab__handler', handleTabClick );
+
+			!!firstTabHandler.length && showTab( firstTabHandler );
+		} );
+	} ).trigger( 'yith-plugin-fw-tabs-init' );
+
+	/**
+	 * Dismissible Notices
+	 */
+	$( document ).on( 'click', '.yith-plugin-fw__notice__dismiss', function () {
+		$( this ).closest( '.yith-plugin-fw__notice' ).fadeOut( 300 );
+	} );
+
+	/**
+	 * Media field
+	 */
+	( function () {
+		var isDragging = false,
+			uploader   = {
+				instance: null,
+				wrapper : null,
+				init    : function ( wrapper ) {
+					uploader.wrapper = wrapper;
+
+					if ( !uploader.instance ) {
+						var mediaUploaderStates = [
+							new wp.media.controller.Library(
+								{
+									library   : wp.media.query(),
+									multiple  : false,
+									priority  : 20,
+									filterable: 'uploaded'
+								}
+							)
+						];
+
+						uploader.instance = wp.media.frames.downloadable_file = wp.media(
+							{
+								library : { type: '' },
+								multiple: false,
+								states  : mediaUploaderStates
+							}
+						);
+
+						// When a file is selected, grab the URL and set it as the text field's value.
+						uploader.instance.on( 'select', function () {
+							var attachment = uploader.instance.state().get( 'selection' ).first().toJSON();
+
+							triggerMediaChange( uploader.wrapper, attachment );
+						} );
+					}
+				},
+				open    : function ( wrapper ) {
+					uploader.init( wrapper );
+					uploader.instance.open();
+				},
+				destroy : function () {
+					uploader.instance = null;
+				}
+			};
+
+		/**
+		 * Get the wrapper of the media field.
+		 * @param element JQuery element or dom element.
+		 * @returns {*}
+		 */
+		function getWrapper( element ) {
+			return $( element ).closest( '.yith-plugin-fw-media' );
+		}
+
+		/**
+		 * Trigger the Media file change.
+		 * @param wrapper
+		 * @param media
+		 */
+		function triggerMediaChange( wrapper, media ) {
+			var preview         = wrapper.find( '.yith-plugin-fw-media__preview' ),
+				previewImage    = preview.find( '.yith-plugin-fw-media__preview__image' ),
+				previewFileName = preview.find( '.yith-plugin-fw-media__preview__file__name' ),
+				urlField        = wrapper.find( '.yith-plugin-fw-media__url-value' ),
+				idField         = wrapper.find( '.yith-plugin-fw-media__id-value' );
+
+			if ( !media ) {
+				urlField.length && urlField.val( '' );
+				idField.length && idField.val( '' );
+				previewImage.attr( 'src', '' );
+				preview.attr( 'data-type', 'upload' );
+			} else {
+				if ( typeof media.url !== 'undefined' && urlField.length ) {
+					urlField.val( media.url );
+				}
+
+				if ( typeof media.id !== 'undefined' && idField.length ) {
+					idField.val( media.id );
+				}
+
+				if ( typeof media.url !== 'undefined' ) {
+					var isImage   = new RegExp( '(jpg|jpeg|png|gif|ico|svg|jpe|webp)$' ).test( media.url ),
+						mediaType = isImage ? 'image' : 'file';
+
+					preview.attr( 'data-type', mediaType );
+					if ( 'image' === mediaType ) {
+						previewImage.attr( 'src', media.url );
+					} else {
+						var filename = media.url.substring( media.url.lastIndexOf( '/' ) + 1 );
+						previewFileName.html( filename );
+					}
+				}
+			}
+		}
+
+		/**
+		 * Handle click on tab handler to switch between tabs.
+		 * @param event
+		 */
+		function onTabHandlerClick( event ) {
+			var handler         = $( event.target ).closest( '.yith-plugin-fw-media__tab' ),
+				wrapper         = getWrapper( handler ),
+				tabs            = wrapper.find( '.yith-plugin-fw-media__tab' ),
+				contentElements = wrapper.find( '.yith-plugin-fw-media__content > *' ),
+				tabSelector     = handler.data( 'tab-selector' ),
+				activeElement   = wrapper.find( tabSelector );
+
+			tabs.removeClass( 'yith-plugin-fw-media__tab--active' );
+			handler.addClass( 'yith-plugin-fw-media__tab--active' );
+
+			contentElements.hide();
+			activeElement.show();
+		}
+
+		/**
+		 * Handler fired when clicking on the delete media icon.
+		 * @param event
+		 */
+		function onDeleteMedia( event ) {
+			var wrapper = getWrapper( event.target );
+			triggerMediaChange( wrapper, false );
+		}
+
+		/**
+		 * Handler fired when manually changing the file URL in the URL field.
+		 * @param event
+		 */
+		function onImageChange( event ) {
+			var field   = $( event.target ),
+				wrapper = getWrapper( field );
+			triggerMediaChange( wrapper, { url: field.val(), id: '' } );
+		}
+
+		function onDragEnter( event ) {
+			event.preventDefault();
+
+			if ( !event.dataTransfer ) {
+				event.dataTransfer = event.originalEvent.dataTransfer;
+			}
+
+			event.dataTransfer.dropEffect = "copy";
+			$( this ).closest( '.yith-plugin-fw-media__preview' ).addClass( 'yith-plugin-fw--is-dragging' );
+		}
+
+		function onDragOver( event ) {
+			event.preventDefault();
+		}
+
+		function onDragLeave() {
+			$( this ).closest( '.yith-plugin-fw-media__preview' ).removeClass( 'yith-plugin-fw--is-dragging' );
+		}
+
+		/**
+		 * Add error notice.
+		 * @param wrapper
+		 * @param message
+		 */
+		function addErrorNotice( wrapper, message ) {
+			var errorNotice = $( '<div>' );
+			errorNotice.addClass( ['yith-plugin-fw__notice', 'yith-plugin-fw__notice--error', 'yith-plugin-fw-animate__appear-from-top', 'yith-plugin-fw--inline'] );
+			errorNotice.html( message );
+			errorNotice.append( $( '<span class="yith-plugin-fw__notice__dismiss"></span>' ) );
+
+			wrapper.append( errorNotice );
+		}
+
+		function onDrop( event ) {
+			event.preventDefault();
+
+			var preview = $( this ).closest( '.yith-plugin-fw-media__preview' );
+
+			preview.removeClass( 'yith-plugin-fw--is-dragging' );
+			preview.addClass( 'yith-plugin-fw--is-loading' );
+
+			if ( !event.dataTransfer ) {
+				event.dataTransfer = event.originalEvent.dataTransfer;
+			}
+
+			var files        = event.dataTransfer.files,
+				wrapper      = getWrapper( event.target ),
+				errorNotices = wrapper.find( '.yith-plugin-fw__notice' ),
+				onFinish     = function () {
+					preview.removeClass( 'yith-plugin-fw--is-loading' );
+				};
+
+			errorNotices.remove();
+
+			if ( files.length > 1 ) {
+				files = files[ 0 ];
+			}
+
+			if ( !files.length ) {
+				addErrorNotice( wrapper, yith_framework_fw_fields.i18n.noFileError );
+				onFinish();
+			} else if ( 'mediaUtils' in wp && 'uploadMedia' in wp.mediaUtils ) {
+				wp.mediaUtils.uploadMedia(
+					{
+						filesList   : files,
+						onFileChange: function ( data ) {
+							// Check for the ID, since uploadMedia triggers onFileChange at the start with a temporary blob URL to allow previewing it before uploading.
+							if ( data && data.length && data[ 0 ] && 'id' in data[ 0 ] ) {
+								triggerMediaChange( wrapper, data[ 0 ] );
+								onFinish();
+
+								// To allow re-loading media files on the next opening of the uploader.
+								uploader.destroy();
+							}
+						},
+						onError     : function ( data ) {
+							console.error( data );
+							onFinish();
+							addErrorNotice( wrapper, data.message );
+						}
+					}
+				);
+			} else {
+				addErrorNotice( wrapper, yith_framework_fw_fields.i18n.cannotDropError );
+				onFinish();
+			}
+
+			maybeDragEnd();
+		}
+
+		function onUploadClick( e ) {
+			e.preventDefault();
+
+			var button  = $( this ),
+				wrapper = getWrapper( button );
+
+			uploader.open( wrapper );
+		}
+
+		$( document )
+			.on( 'change', '.yith-plugin-fw-media__url-value', onImageChange )
+			.on( 'click', '.yith-plugin-fw-media__preview__upload__link, .yith-plugin-fw-media__preview__action--edit', onUploadClick )
+			.on( 'click', '.yith-plugin-fw-media__preview__action--delete', onDeleteMedia )
+			.on( 'click', '.yith-plugin-fw-media__tab', onTabHandlerClick )
+			.on( 'dragenter', '.yith-plugin-fw-media__preview__dropzone', onDragEnter )
+			.on( 'dragover', '.yith-plugin-fw-media__preview__dropzone', onDragOver )
+			.on( 'dragleave', '.yith-plugin-fw-media__preview__dropzone', onDragLeave )
+			.on( 'drop', '.yith-plugin-fw-media__preview__dropzone', onDrop );
+
+		function maybeDragStart() {
+			if ( isDragging ) {
+				return;
+			}
+
+			isDragging = true;
+
+			document.addEventListener( 'dragend', maybeDragEnd );
+			document.addEventListener( 'mousemove', maybeDragEnd );
+
+			document.body.classList.add( 'yith-plugin-fw--dropzone-active' );
+		}
+
+		function maybeDragEnd() {
+			if ( !isDragging ) {
+				return;
+			}
+
+			isDragging = false;
+
+			document.removeEventListener( 'dragend', maybeDragEnd );
+			document.removeEventListener( 'mousemove', maybeDragEnd );
+
+			document.body.classList.remove( 'yith-plugin-fw--dropzone-active' );
+		}
+
+		document.addEventListener( 'dragenter', maybeDragStart );
+
+	} )();
+
+	/**
+	 * File field.
+	 */
+	( function () {
+		/**
+		 * Get the wrapper of the file field.
+		 * @param element JQuery element or dom element.
+		 * @returns {*}
+		 */
+		function getWrapper( element ) {
+			return $( element ).closest( '.yith-plugin-fw-file' );
+		}
+
+		function onDragOver() {
+			getWrapper( this ).addClass( 'yith-plugin-fw--is-dragging' );
+		}
+
+		function onDragLeave() {
+			getWrapper( this ).addClass( 'yith-plugin-fw--is-dragging' );
+		}
+
+		function onChange() {
+			var wrapper = getWrapper( this ),
+				name    = wrapper.find( '.yith-plugin-fw-file__preview__name' ),
+				file    = this.files.length ? this.files[ 0 ] : false;
+
+			wrapper.removeClass( 'yith-plugin-fw--is-dragging' );
+			if ( file ) {
+				name.html( file.name );
+				wrapper.addClass( 'yith-plugin-fw--filled' );
+			} else {
+				wrapper.removeClass( 'yith-plugin-fw--filled' );
+			}
+		}
+
+		$( document )
+			.on( 'dragover', '.yith-plugin-fw-file', onDragOver )
+			.on( 'dragleave', '.yith-plugin-fw-file', onDragLeave )
+			.on( 'change', '.yith-plugin-fw-file__field', onChange );
+
+
+	} )();
 
 } )( jQuery );
