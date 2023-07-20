@@ -1,5 +1,6 @@
 import noStyleAttributes from '../../../utils/no-style-attributes';
 import GlobalStylePicker from '../../../components/global-style-picker';
+import { getCompatibilityWarning } from '../../../components/global-style-picker/utils';
 
 /**
  * WordPress Dependencies
@@ -71,6 +72,7 @@ function addAttributes( settings ) {
 const withGlobalStyleControls = createHigherOrderComponent( ( BlockEdit ) => ( props ) => {
 	const {
 		name,
+		attributes,
 	} = props;
 
 	if ( ! allowedBlocks.includes( name ) ) {
@@ -88,6 +90,22 @@ const withGlobalStyleControls = createHigherOrderComponent( ( BlockEdit ) => ( p
 
 	if ( ids ) {
 		Object.keys( ids ).forEach( ( globalId ) => {
+			const compatibilityNotice = getCompatibilityWarning( {
+				name,
+				globalStyleId: ids[ globalId ],
+				hasButtonContainer: attributes.hasButtonContainer,
+				useInnerContainer: attributes.useInnerContainer,
+			} );
+
+			// Don't show the Global Style if it's incompatible with the current block.
+			if (
+				compatibilityNotice &&
+				! generateBlocksPro.showIncompatibleGlobalStyles &&
+				attributes.globalStyleId !== ids[ globalId ] // We still need to show the option if the user already has it saved.
+			) {
+				return;
+			}
+
 			let styleLabel = ids[ globalId ];
 
 			if (
@@ -197,7 +215,7 @@ function filterCSS( attributes, props ) {
 			advBackgrounds: 'useAdvBackgrounds',
 		};
 
-		const newAttrs = Object.assign( {}, attributes );
+		const newAttrs = Object.assign( { globalBlockVersion: globalAttrs.blockVersion }, attributes );
 
 		if ( ! globalAttrs.sizing ) {
 			globalAttrs.sizing = {};
@@ -206,20 +224,20 @@ function filterCSS( attributes, props ) {
 		Object.keys( globalAttrs ).forEach( ( attribute ) => {
 			let hasValue = !! attributes[ attribute ] || 0 === attributes[ attribute ];
 
-			if ( Array.isArray( attributes[ attribute ] ) ) {
-				hasValue = attributes[ attribute ].length > 0;
-			}
-
-			if ( 'object' === typeof attributes[ attribute ] ) {
-				hasValue = Object.keys( attributes[ attribute ] ).length;
-			}
-
 			// Make sure the option is turned on using its toggle.
 			if ( attribute in toggledAttributes ) {
 				hasValue = !! attributes[ toggledAttributes[ attribute ] ];
 			}
 
-			if ( ! noStyleAttributes.includes( attribute ) && ( ! hasValue || attributes[ attribute ] === generateBlocksDefaults[ defaultBlockName ][ attribute ] ) ) {
+			if (
+				! noStyleAttributes.includes( attribute ) &&
+				(
+					! hasValue ||
+					attributes[ attribute ] === generateBlocksDefaults[ defaultBlockName ][ attribute ] ||
+					'object' === typeof attributes[ attribute ] ||
+					Array.isArray( attributes[ attribute ] )
+				)
+			) {
 				// Migrate old button layout.
 				if ( 'button' === defaultBlockName && ( ! globalAttrs.blockVersion || globalAttrs?.blockVersion < 3 ) ) {
 					globalAttrs.display = 'inline-flex';
@@ -259,7 +277,22 @@ function filterCSS( attributes, props ) {
 					}
 				}
 
-				newAttrs[ attribute ] = globalAttrs[ attribute ];
+				if ( Array.isArray( attributes[ attribute ] ) ) {
+					newAttrs[ attribute ] = [
+						...globalAttrs[ attribute ],
+						...attributes[ attribute ],
+					];
+				} else if ( 'object' === typeof attributes[ attribute ] ) {
+					// Remove empty values from the object so they don't overwrite the global style.
+					const objectValues = Object.fromEntries( Object.entries( attributes[ attribute ] ).filter( ( [ , value ] ) => value || 0 === value ) );
+
+					newAttrs[ attribute ] = {
+						...globalAttrs[ attribute ],
+						...objectValues,
+					};
+				} else {
+					newAttrs[ attribute ] = globalAttrs[ attribute ];
+				}
 			}
 		} );
 

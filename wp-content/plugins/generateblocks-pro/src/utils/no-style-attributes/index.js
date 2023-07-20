@@ -72,6 +72,7 @@ const noStyleAttributes = applyFilters(
 		'useInnerContainer',
 		'buttonType',
 		'iconLocation',
+		'blockLabel',
 	],
 );
 

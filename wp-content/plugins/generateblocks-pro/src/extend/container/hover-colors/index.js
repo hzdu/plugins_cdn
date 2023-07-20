@@ -24,6 +24,14 @@ import {
 	PanelBody,
 } from '@wordpress/components';
 
+function shouldShowCurrentColors( props ) {
+	return applyFilters(
+		'generateblocks.editor.addContainerCurrentColors',
+		false,
+		props
+	);
+}
+
 /**
  * Add custom attribute for mobile visibility.
  *
@@ -97,11 +105,7 @@ function addColorItems( items, props ) {
 		},
 	];
 
-	const addCurrentColors = applyFilters(
-		'generateblocks.editor.addContainerCurrentColors',
-		false,
-		props
-	);
+	const addCurrentColors = shouldShowCurrentColors( props );
 
 	if ( addCurrentColors ) {
 		newItems.push(
@@ -412,6 +416,38 @@ function addMainCSS( css, props, name ) {
 
 	return css;
 }
+
+function addBorderCurrent( context, props ) {
+	const {
+		name,
+	} = props;
+
+	if ( 'generateblocks/container' !== name ) {
+		return context;
+	}
+
+	const addCurrentColors = shouldShowCurrentColors( props );
+
+	if ( addCurrentColors ) {
+		const existingColors = context.supports.borders.borderColors;
+
+		if ( ! existingColors.some( ( e ) => 'Current' === e.state ) ) {
+			context.supports.borders.borderColors.push( {
+				state: 'Current',
+				tooltip: __( 'Border Current', 'generateblocks' ),
+				alpha: true,
+			} );
+		}
+	}
+
+	return context;
+}
+
+addFilter(
+	'generateblocks.editor.blockContext',
+	'generateblocks/container-context/add-current-border-color',
+	addBorderCurrent
+);
 
 addFilter(
 	'blocks.registerBlockType',

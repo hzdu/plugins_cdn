@@ -1,15 +1,15 @@
-# Copyright (C) 2022 Tom Usborne
+# Copyright (C) 2023 Tom Usborne
 # This file is distributed under the GPL2+.
 msgid ""
 msgstr ""
-"Project-Id-Version: GenerateBlocks Pro 1.4.0\n"
+"Project-Id-Version: GenerateBlocks Pro 1.6.0-alpha.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/generateblocks-pro\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2022-12-05T22:36:47+00:00\n"
+"POT-Creation-Date: 2023-06-10T03:01:21+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.6.0\n"
 "X-Domain: generateblocks-pro\n"
@@ -110,7 +110,7 @@ msgstr ""
 #: includes/class-local-templates.php:65
 #: includes/class-local-templates.php:67
 #: includes/class-local-templates.php:117
-#: dist/blocks.js:15
+#: dist/blocks.js:17
 msgid "Local Patterns"
 msgstr ""
 
@@ -623,6 +623,10 @@ msgid "Icon"
 msgstr ""
 
 #: dist/blocks.js:1
+msgid "Accordion Content"
+msgstr ""
+
+#: dist/blocks.js:1
 msgid "Effects"
 msgstr ""
 
@@ -653,6 +657,7 @@ msgid "Transition (%s)"
 msgstr ""
 
 #: dist/blocks.js:5
+#: dist/blocks.js:17
 msgid "Transition"
 msgstr ""
 
@@ -741,6 +746,22 @@ msgid "This will remove all styling from this block."
 msgstr ""
 
 #: dist/blocks.js:13
+msgid "This Global Style is a Button block inside the \"Buttons\" block and may not work with this standalone Button."
+msgstr ""
+
+#: dist/blocks.js:13
+msgid "This Global Style is a standalone Button and may not work with this Button block inside the \"Buttons\" block."
+msgstr ""
+
+#: dist/blocks.js:13
+msgid "This Global Style is using the legacy layout system and may not work with this Container block."
+msgstr ""
+
+#: dist/blocks.js:13
+msgid "This Global Style is using the new layout system and may not work with this Container block."
+msgstr ""
+
+#: dist/blocks.js:13
 msgid "Global Style"
 msgstr ""
 
@@ -797,7 +818,11 @@ msgid "Border Color"
 msgstr ""
 
 #: dist/blocks.js:13
-msgid "This makes your Element Tag a link element. It uses valid HTML5 coding but will break if you add interative elements (links or buttons) inside the container."
+msgid "Current"
+msgstr ""
+
+#: dist/blocks.js:13
+msgid "This makes your Element Tag a link element. It uses valid HTML5 coding but will break if you add interactive elements (links or buttons) inside the container."
 msgstr ""
 
 #: dist/blocks.js:13
@@ -958,50 +983,155 @@ msgid "Select value property"
 msgstr ""
 
 #: dist/blocks.js:15
+msgid "Remove Tab Item & Button"
+msgstr ""
+
+#: dist/blocks.js:15
+msgid "Remove Tab Button & Item"
+msgstr ""
+
+#: dist/blocks.js:15
+msgid "Add Tab Item"
+msgstr ""
+
+#: dist/blocks.js:15
+msgid "You can use this button to add new tab items."
+msgstr ""
+
+#: dist/blocks.js:15
+msgid "Select…"
+msgstr ""
+
+#. translators: Tab number
+#: dist/blocks.js:17
+msgid "Tab %s"
+msgstr ""
+
+#: dist/blocks.js:17
+msgid "Default opened tab"
+msgstr ""
+
+#: dist/blocks.js:17
+msgid "None"
+msgstr ""
+
+#: dist/blocks.js:17
+msgid "Fade"
+msgstr ""
+
+#: dist/blocks.js:17
+msgid "Sync tab item styles"
+msgstr ""
+
+#: dist/blocks.js:17
+msgid "Tab button type"
+msgstr ""
+
+#: dist/blocks.js:17
+msgid "Button"
+msgstr ""
+
+#: dist/blocks.js:17
+msgid "Container"
+msgstr ""
+
+#: dist/blocks.js:17
+msgid "Tabs"
+msgstr ""
+
+#: dist/blocks.js:17
+msgid "Choose a tab layout to start with."
+msgstr ""
+
+#: dist/blocks.js:17
+msgid "Horizontal Tabs"
+msgstr ""
+
+#: dist/blocks.js:17
+msgid "Vertical Tabs"
+msgstr ""
+
+#: dist/blocks.js:17
+msgid "Button Tabs"
+msgstr ""
+
+#: dist/blocks.js:17
+msgid "Build a series of tabs using our Container and Button blocks."
+msgstr ""
+
+#: dist/blocks.js:17
+msgid "Add Accordion Item"
+msgstr ""
+
+#: dist/blocks.js:17
+msgid "You can use this button to add new accordion items."
+msgstr ""
+
+#: dist/blocks.js:17
+msgid "Sync accordion item styles"
+msgstr ""
+
+#: dist/blocks.js:17
+msgid "Slide"
+msgstr ""
+
+#: dist/blocks.js:17
+msgid "Accordion title type"
+msgstr ""
+
+#: dist/blocks.js:17
+msgid "Item open by default"
+msgstr ""
+
+#: dist/blocks.js:17
+msgid "Build accordions using our Container and Button blocks."
+msgstr ""
+
+#: dist/blocks.js:17
 msgid "Select Category"
 msgstr ""
 
-#: dist/blocks.js:15
+#: dist/blocks.js:17
 msgid "Blocks"
 msgstr ""
 
-#: dist/blocks.js:15
+#: dist/blocks.js:17
 msgid "Patterns"
 msgstr ""
 
-#: dist/blocks.js:15
+#: dist/blocks.js:17
 msgid "No patterns found."
 msgstr ""
 
-#: dist/blocks.js:15
-#: dist/blocks.js:21
+#: dist/blocks.js:17
+#: dist/blocks.js:23
 msgid "Add Template"
 msgstr ""
 
 #. translators: Number of templates.
-#: dist/blocks.js:17
+#: dist/blocks.js:19
 msgid "Patterns: %s"
 msgstr ""
 
 #. translators: GenerateBlocks version number
-#: dist/blocks.js:19
+#: dist/blocks.js:21
 msgid "Requires GenerateBlocks %s"
 msgstr ""
 
 #. translators: GenerateBlocks Pro version number
-#: dist/blocks.js:21
+#: dist/blocks.js:23
 msgid "Requires GenerateBlocks Pro %s"
 msgstr ""
 
-#: dist/blocks.js:21
+#: dist/blocks.js:23
 msgid "Pattern Library"
 msgstr ""
 
-#: dist/blocks.js:21
+#: dist/blocks.js:23
 msgid "Insert pre-built patterns directly into your content."
 msgstr ""
 
-#: dist/blocks.js:21
+#: dist/blocks.js:23
 msgid "Open Pattern Library"
 msgstr ""
 
@@ -1026,7 +1156,7 @@ msgid "Enter your license key here…"
 msgstr ""
 
 #: dist/dashboard.js:1
-msgid "Get alpha and beta updates directly to your Dashboard."
+msgid "Receive alpha, beta, and release candidate updates. This should only be used on staging/development websites."
 msgstr ""
 
 #: dist/dashboard.js:1

@@ -128,6 +128,12 @@ function AccordionSettingsPanel( content, props ) {
 							// }
 						} }
 					/>
+
+					<ToggleControl
+						label={ __( 'Enable FAQ schema', 'generateblocks' ) }
+						checked={ !! attributes.faqSchema }
+						onChange={ ( value ) => setAttributes( { faqSchema: value } ) }
+					/>
 				</>
 			}
 

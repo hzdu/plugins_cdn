@@ -34,6 +34,10 @@ const attributes = ( settings ) => {
 					type: 'string',
 					default: 'button',
 				},
+				faqSchema: {
+					type: 'boolean',
+					default: false,
+				},
 			}
 		);
 
@@ -41,6 +45,7 @@ const attributes = ( settings ) => {
 			settings.providesContext, {
 				'generateblocks-pro/accordionItemOpen': 'accordionItemOpen',
 				'generateblocks-pro/accordionTransition': 'accordionTransition',
+				'generateblocks-pro/faqSchema': 'faqSchema',
 			},
 		);
 
@@ -48,6 +53,7 @@ const attributes = ( settings ) => {
 			...settings.usesContext,
 			'generateblocks-pro/accordionItemOpen',
 			'generateblocks-pro/accordionTransition',
+			'generateblocks-pro/faqSchema',
 		];
 	}
 
@@ -61,9 +67,16 @@ const attributes = ( settings ) => {
 			}
 		);
 
+		settings.providesContext = Object.assign(
+			settings.providesContext, {
+				'generateblocks-pro/faqSchema': 'faqSchema',
+			},
+		);
+
 		settings.usesContext = [
 			...settings.usesContext,
 			'generateblocks-pro/accordionItemOpen',
+			'generateblocks-pro/faqSchema',
 		];
 	}
 
