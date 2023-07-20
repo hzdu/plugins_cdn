@@ -1,0 +1,134 @@
+
+.xt_wooqv-active {
+	&:not(.xt_wooqv-is-inline) {
+
+		#wpadminbar{
+			display:none;
+		}
+
+		overflow: hidden !important;
+		height: initial !important;
+		body {
+			overflow: hidden !important;
+			height: initial !important;
+		}
+	}
+}
+
+#xt_wooqv {
+
+	*, *::after, *::before {
+		@include box-sizing(border-box);
+	}
+
+	> div::after,
+	> div::before {
+		content: '';
+	}
+
+	position: fixed;
+	overflow:hidden;
+	display: block;
+	visibility: hidden;
+	width: $mobile-slider-width;
+	max-height: 100vh;
+	-webkit-backface-visibility: hidden;
+	backface-visibility: hidden;
+	will-change: left, top, width, height;
+	z-index: -1;
+
+	@include box-sizing(border-box);
+	@include clearfix;
+
+	/* Force Hardware Acceleration in WebKit */
+	@include transform(translateZ(0));
+
+	&.xt_wooqv-is-visible {
+		/* class added when user clicks on .xt_wooqv-trigger */
+		visibility: visible;
+		z-index: 90100;
+	}
+
+	&.xt_wooqv-animate-width {
+		/* class added at the end of the first zoom-in animation */
+		background-color: $color-4;
+		box-shadow: 0 0 30px rgba(#000, .2);
+		transition: box-shadow .3s;
+	}
+
+	.xt_wooqv-product {
+		width: 100% !important;
+		height: 100% !important;
+		padding: 0!important;
+		margin: 0!important;
+
+		p {
+			a {
+				color: $color-2;
+				text-decoration: none;
+			}
+		}
+	}
+
+	@include MQ_MIN(L) {
+
+		width: $default-max-quick-width;
+
+		.xt_wooqv-product {
+			position: relative!important;
+		}
+
+	}
+
+	@include MQ_MAX(M) {
+
+		& {
+			top: 0 !important;
+			left: 0 !important;
+			width: 100vw !important;
+			height: 100% !important;
+			max-height: initial !important;
+			background-color: $color-4;
+		}
+
+		.xt_wooqv-product {
+			overflow: scroll;
+			position: inherit!important;
+		}
+
+		&.xt_wooqv-add-content .xt_wooqv-product:after {
+			content: '';
+			position: fixed;
+			bottom: 0;
+			left: 0;
+			width: 100%;
+			height: calc(2.5em + 40px);
+			@include gradient();
+			z-index: 1;
+
+			.xt_wooqv-mobile-bar-visible &{
+				bottom: 114px;
+			}
+		}
+
+
+	}
+
+	a.woocommerce-review-link {
+		display: none;
+	}
+
+
+}
+
+
+/* Fixes */
+.woocommerce #xt_wooqv div.product form.cart .variations_button {
+	clear: inherit;
+	display: inherit;
+	padding: inherit;
+}
+
+body.single-product .xt_wooqv-more-info{
+	display:none!important;
+}

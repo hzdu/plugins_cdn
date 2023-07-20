@@ -1,0 +1,388 @@
+
+.xt_wooqv-slider-wrapper {
+
+	position: relative;
+	display: block;
+	float: none;
+	width: $mobile-slider-width;
+	height: $mobile-slider-height;
+	overflow: hidden;
+	z-index: 1;
+	max-height: 100vh;
+	
+	&.ontop {
+		position: absolute;
+		top: 0;
+		left: 0;
+	}
+
+	@include clearfix;
+
+	> * {
+		transition: transform 0.3s, opacity 0.3s;
+	}
+
+	.xt_wooqv-height-overflow #xt_wooqv & {
+		max-height: calc(100vh - #{$modal-offset}) !important;
+	}
+
+	.xt_wooqv-add-content & > *{
+
+		transform: translate3d(0, 0, 0);
+		opacity:1;
+
+		@include MQ_MIN(L) {
+
+			html.xt_wooqv-loading & {
+
+				transform: translate3d(-80%, 0, 0);
+				opacity: 0;
+			}
+		}
+
+		@include MQ_MAX(M) {
+
+			html.xt_wooqv-loading & {
+
+				transform: translate3d(0, -80%, 0);
+				opacity: 0;
+			}
+		}
+	}
+
+	.lSSlideOuter,
+	.lSSlideWrapper {
+		height: 100%!important;
+		padding: 0 !important;
+	}
+
+	.lSGallery {
+		position: absolute;
+		width: 100%;
+		z-index: 1000;
+		opacity: 0;
+		padding: 0!important;
+		margin:0!important;
+
+		li {
+
+			border-radius: 0 !important;
+			position: relative;
+			margin: 0!important;
+			padding:0!important;
+			list-style: none!important;
+
+			a{
+				display:block;
+				position: relative;
+				max-width: 100%;
+				max-height: 100%;
+				outline: none;
+			}
+
+			img {
+				border-radius: 0;
+				height: auto;
+				width: 100%;
+			}
+
+
+			a:after {
+				content: '';
+				position: absolute;
+				width: 100%;
+				height: 100%;
+				border-width: 5px;
+				border-style: solid;
+				border-color: rgba(164, 100, 151, 0.8);
+				top: 0;
+				left: 0;
+				transform: scale(0);
+				opacity: 0;
+				transition: transform 0.3s, opacity 0.3s;
+			}
+
+			.xt_wooqv-ready &.active a:after {
+				transform: scale(1);
+				opacity: 1;
+			}
+
+			.xt_wooqv-grayscale-transition & {
+				filter: grayscale(100%);
+				transition: filter 0.5s;
+
+				&.active {
+					filter: grayscale(0%);
+					transition: filter 0.5s 0.2s;
+				}
+			}
+
+
+			.xt_wooqv-thumb-nav-circled & img {
+				border-radius: 100%;
+			}
+		}
+	}
+
+	.lSAction {
+
+		.lSPrev,
+		.lSNext {
+			margin-top: 0 !important;
+			opacity: 0;
+			transition: color 0.5s, transform 0.5s, opacity 0.5s !important;
+			background: none;
+			display: block;
+			font-size: 40px;
+			width: inherit;
+			height: inherit;
+			cursor: pointer;
+
+			span {
+				display: inline-block;
+			}
+		}
+
+	}
+
+
+	.lSSlideOuter{
+
+		&:not(.vertical)  {
+
+			.lSGallery {
+				transition: bottom 0.5s, transform 0.5s, opacity 0.5s !important;
+				left: 0;
+				bottom: -20%;
+			}
+
+			.lSAction{
+
+				.lSPrev {
+					transform: translateY(-50%) translateX(-100%);
+				}
+
+				.lSNext {
+					transform: translateY(-50%) translateX(100%);
+
+					span {
+						transform: rotate(-180deg);
+					}
+				}
+			}
+		}
+
+		&.vertical {
+
+			.lSGallery {
+				transition: left 0.5s, transform 0.5s, opacity 0.5s !important;
+				left: -20%;
+			}
+
+			.lSAction{
+
+				a{
+					left:initial;
+					right: 10px;
+					top: 50%;
+					bottom: initial;
+				}
+				.lSPrev {
+
+					transform: translateY(-200%);
+
+					span {
+						transform: rotate(90deg);
+					}
+				}
+
+				.lSNext {
+
+					transform: translateY(100%);
+
+					span {
+						transform: rotate(-90deg);
+					}
+				}
+			}
+		}
+
+	}
+
+	@include MQ_MIN(L) {
+
+		width: $desktop-slider-width;
+		height: $desktop-slider-height;
+		display: inline-block;
+		float: left;
+	}
+
+
+	@include MQ_MAX(XS) {
+		#xt_wooqv & {
+			max-height: 35% !important;
+		}
+	}
+
+	@include MQ_MAX(M) {
+
+		#xt_wooqv & {
+
+			width: 100vw !important;
+			height: 55vh;
+			max-height: initial !important;
+		}
+
+		#xt_wooqv & .xt_wooqv-slider {
+
+			li {
+				width: 100vw !important;
+				height: 55vh;
+			}
+		}
+	}
+
+}
+
+// Show slider arrows once content loaded
+.xt_wooqv-ready {
+
+	.xt_wooqv-add-content .xt_wooqv-slider-wrapper:hover {
+
+		.lSSlideOuter {
+
+			&:not(.vertical) {
+
+				.lSAction {
+					.lSPrev,
+					.lSNext {
+						transform: translateY(-50%) translateX(0) !important;
+						opacity: 1;
+					}
+				}
+			}
+
+			&.vertical {
+
+				.lSAction {
+					.lSPrev,
+					.lSNext {
+						opacity: 1;
+					}
+
+					.lSPrev {
+						transform: translateY(calc(-100% - 5px)) translateX(0) !important;
+					}
+
+					.lSNext {
+						transform: translateY(5px) translateX(0) !important;
+					}
+				}
+			}
+		}
+
+	}
+
+	// show slider thumbs on hover
+	.xt_wooqv-add-content:not(.xt_wooqv-thumbs-visible-onhover) .xt_wooqv-slider-wrapper,
+	.xt_wooqv-add-content.xt_wooqv-thumbs-visible-onhover:not(.xt_wooqv-preview-gallery) .xt_wooqv-slider-wrapper:hover,
+	.xt_wooqv-add-content.xt_wooqv-thumbs-visible-onhover.xt_wooqv-preview-gallery .xt_wooqv-slider-wrapper {
+
+		.lSSlideOuter {
+			.lSGallery {
+				opacity: 1;
+			}
+
+			&:not(.vertical) {
+				.lSGallery {
+					bottom: -1px;
+				}
+			}
+
+			&.vertical {
+				.lSGallery {
+					left: -1px;
+				}
+			}
+		}
+	}
+
+	.xt_wooqv-slider-wrapper {
+		opacity: 0.7;
+		transition: opacity 1s, visibility 0s;
+	}
+
+	.xt_wooqv-add-content .xt_wooqv-slider-wrapper {
+		visibility: visible;
+		opacity: 1;
+	}
+}
+
+
+.xt_wooqv-slider {
+	float: left;
+	list-style: none;
+	margin: 0!important;
+	padding: 0!important;
+	height: 100%;
+	position: initial !important;
+	width: 100%;
+
+	li {
+
+		background-position: top center;
+		background-size: cover;
+		background-repeat: no-repeat;
+		opacity: 0;
+		max-height: 100vh;
+		padding: 0!important;
+		margin:0!important;
+		list-style: none!important;
+
+		&.lslide.active,
+		&:not(.lslide):not(.clone),
+		.xt_wooqv-ready & {
+			opacity: 1;
+		}
+
+		img {
+			display: none;
+		}
+
+		iframe {
+			object-fit: cover;
+			width:100%;
+			height: 100%;
+		}
+
+		.xt_wooqv-lightbox-enabled &.lslide{
+
+			cursor: zoom-in;
+		}
+
+		.xt_wooqv-grayscale-transition &.lslide {
+			filter: grayscale(100%);
+			transition: filter 0.5s, opacity 0.3s;
+
+			&.active {
+				filter: grayscale(0);
+				transition: filter 0.5s 0.2s, opacity 0.3s 0.1s;
+			}
+		}
+
+		.xt_wooqv-height-overflow #xt_wooqv & {
+			max-height: calc(100vh - #{$modal-offset}) !important;
+		}
+
+		@include MQ_MIN(L) {
+
+
+			& {
+				width: $desktop-slider-width;
+				height: $desktop-slider-height;
+			}
+		}
+
+	}
+
+}

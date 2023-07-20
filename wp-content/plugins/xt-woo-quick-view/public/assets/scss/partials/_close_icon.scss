@@ -1,0 +1,76 @@
+.xt_wooqv-close-icon {
+	position: absolute;
+	top: 15px;
+	right: 20px;
+	display: inline-block;
+	z-index: 100;
+	cursor: pointer;
+
+	/* image replacement */
+	overflow: hidden;
+	white-space: nowrap;
+	visibility: hidden;
+	transform: scale(0);
+	transition: transform .3s 0s, visibility 0s .3s;
+
+	.xt_wooqv-add-content & {
+		visibility: visible;
+		transform: scale(1);
+		transition: transform .3s 0s, visibility 0s 0s;
+	}
+
+	.xt_wooqv-is-light-bg & {
+
+		color: rgba(0, 0, 0, 0.8);
+
+		.xtfw-no-touchevents &:hover {
+			color: #000000;
+		}
+	}
+
+	.xt_wooqv-is-dark-bg & {
+
+		color: rgba(255, 255, 255, 0.8);
+
+		.xtfw-no-touchevents &:hover {
+			color: #ffffff;
+		}
+
+	}
+
+	@include MQ_MIN(L) {
+		.xtfw-no-touchevents &:hover {
+			transform: scale(1.1);
+		}
+
+		&.xt_wooqv-close-icon-mobile{
+			display:none;
+		}
+	}
+
+	@include MQ_MAX(M) {
+
+		&{
+			top: 15px;
+			right: 15px;
+			width:40px;
+			height:40px;
+			font-size:20px;
+			background-color: #fff;
+			border-radius: 100%;
+			transform-origin: right top;
+
+			&:before{
+				top: 50%;
+				left: 50%;
+				transform: translateX(-50%) translateY(-50%);
+				position: absolute;
+			}
+		}
+
+		&.xt_wooqv-close-icon-desktop{
+			display:none;
+		}
+	}
+
+}

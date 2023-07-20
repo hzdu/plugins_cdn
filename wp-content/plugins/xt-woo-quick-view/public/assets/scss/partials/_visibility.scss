@@ -1,0 +1,23 @@
+.xt_wooqv-show-on-tablet-desktop,
+.xt_wooqv-show-on-desktop-only{
+	display:none;
+}
+
+@include MQ_MIN(M) {
+	.xt_wooqv-show-on-mobile-only{
+		display:none;
+	}
+	.xt_wooqv-show-on-tablet-mobile,
+	.xt_wooqv-show-on-tablet-desktop{
+		display:initial;
+	}
+}
+
+@include MQ_MIN(L) {
+	.xt_wooqv-show-on-tablet-mobile{
+		display:none;
+	}
+	.xt_wooqv-show-on-desktop-only{
+		display:initial;
+	}
+}

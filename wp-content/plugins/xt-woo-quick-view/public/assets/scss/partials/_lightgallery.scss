@@ -1,0 +1,33 @@
+.xt_wooqv-ready {
+
+	.lg-on {
+		#xt_woofc,
+		.xt_wooqv-nav {
+			opacity: 0!important;
+			transition:opacity 0.5s!important;
+		}
+	}
+
+	.lg-backdrop{
+		z-index: 99999;
+	}
+
+	.lg-outer{
+		z-index: 99999;
+	}
+
+	.lg-actions .lg-next,
+	.lg-actions .lg-prev{
+		background: none;
+		box-shadow: none;
+		&:before,
+		&:after{
+			display:none;
+			content: initial;
+		}
+	}
+
+	.lg-actions .lg-next{
+		transform: rotate(-180deg);
+	}
+}

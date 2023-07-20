@@ -1,0 +1,70 @@
+.xt_wooqv-default {
+
+
+	@include MQ_MIN(L) {
+
+		&.xt_wooqv-is-light-overlay {
+
+			.xt_wooqv-nav {
+				.xt_wooqv-prev,
+				.xt_wooqv-next {
+
+					color: rgba(0, 0, 0, 0.8);
+
+					&:hover {
+						color: #000000;
+					}
+				}
+			}
+		}
+
+		&.xt_wooqv-is-dark-overlay {
+
+			.xt_wooqv-nav {
+				.xt_wooqv-prev,
+				.xt_wooqv-next {
+
+					color: rgba(255, 255, 255, 0.8);
+
+					&:hover {
+						color: #ffffff;
+					}
+				}
+			}
+		}
+
+		.xt_wooqv-nav {
+
+			position: fixed;
+			top:0;
+			left:0;
+			width: 100%;
+			height: 100%;
+			visibility: hidden;
+			opacity: 0;
+			z-index: 90001;
+
+			.xt_wooqv-prev {
+				left: 30px;
+			}
+
+			.xt_wooqv-next {
+				right: 30px;
+			}
+
+			.xt_wooqv-prev,
+			.xt_wooqv-next {
+
+				top: 50%;
+				transform: translateY(-50%);
+			}
+
+			.xt_wooqv-active &{
+				visibility: visible;
+				opacity: 1;
+			}
+
+		}
+	}
+
+}
