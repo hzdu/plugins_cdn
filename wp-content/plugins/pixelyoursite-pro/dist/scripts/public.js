@@ -3047,6 +3047,10 @@ if (!String.prototype.trim) {
                             break;
                         }
                     }
+                    if(!config.debug_mode)
+                    {
+                        delete config.debug_mode;
+                    }
                     if(isv4(trackingId)) {
                         if(options.ga.disableAdvertisingFeatures) {
                             config.allow_google_signals = false
@@ -4758,6 +4762,7 @@ if (!String.prototype.trim) {
             else {
                 sendFormAction($(event.target), form_id);
             }
+            jQuery(document).off('gform_confirmation_loaded');
         });
         //Forminator
         $(document).on( 'forminator:form:submit:success', function( event ){
