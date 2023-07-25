@@ -1,1 +1,5685 @@
-class BricksIntersect{constructor(e={}){let t=e.element||!1,r=e.callback||!1,i=!e.hasOwnProperty("once")||e.once,s=!!e.hasOwnProperty("trigger")&&e.trigger;if("IntersectionObserver"in window){let n=!0,o=new IntersectionObserver(((e,o)=>{e.forEach((e=>{if("leaveView"===s?!e.isIntersecting:e.isIntersecting){if(n&&"leaveView"===s)return void(n=!1);t&&r&&r(e.target),i&&o.unobserve(e.target)}}))}),{threshold:e.threshold||0,root:e.root||null,rootMargin:e?.rootMargin||"0px"});t instanceof Element&&o.observe(t)}else{let e=!1,i=()=>{!1===e&&(e=!0,t.getBoundingClientRect().top<=window.innerHeight&&t.getBoundingClientRect().bottom>=0&&"none"!==window.getComputedStyle(t).display&&t&&r&&r(t),e=!1)};i(),document.addEventListener("scroll",i),window.addEventListener("resize",i),window.addEventListener("orientationchange",i)}}}function BricksIsInViewport(e){const t=e.getBoundingClientRect();return t.top>=0&&t.left>=0&&t.bottom<=(window.innerHeight||document.documentElement.clientHeight)&&t.right<=(window.innerWidth||document.documentElement.clientWidth)}function bricksQuerySelectorAll(e,t){if(Array.isArray(t)){let r=[];return t.forEach((t=>{r=r.concat(Array.prototype.slice.apply(e.querySelectorAll(t)))})),r}return Array.prototype.slice.apply(e.querySelectorAll(t))}const bricksUtils={subscribeEvents:(e,t,r)=>{t.forEach((t=>{e.addEventListener(t,(e=>{r(e)}))}))}};class BricksFunction{_customRun=null;_customEachElement=null;_customListenerHandler=null;_customAddEventListeners=null;_settings={};_initializedElements=new Set;constructor(e){const t={parentNode:document,selector:"",subscribeEvents:["bricks/ajax/pagination/completed","bricks/ajax/load_page/completed"],forceReinit:!1,frontEndOnly:!1,windowVariableCheck:[],additionalActions:[]};Object.assign(t,e),this._settings=t,this._customRun=e?.run??null,this._customEachElement=e?.eachElement??null,this._customListenerHandler=e?.listenerHandler??null,this._customAddEventListeners=e?.addEventListeners??null,this.cleanUpInitElements=this.cleanUpInitElements.bind(this),this.run=this.run.bind(this),this.eachElement=this.eachElement.bind(this),this.listenerHandler=this.listenerHandler.bind(this),this.addEventListeners=this.addEventListeners.bind(this),document.addEventListener("DOMContentLoaded",(()=>{if(this.addEventListeners(),this._settings.additionalActions.length)for(const e of this._settings.additionalActions)"function"==typeof e&&e.call(this)}))}functionCanRun(){if(this._settings.frontEndOnly&&!document.body.classList.contains("bricks-is-frontend"))return!1;if(this._settings.windowVariableCheck.length)for(const e of this._settings.windowVariableCheck)if(!window[e])return!1;return!0}cleanUpInitElements(){for(const e of this._initializedElements)e.isConnected||this._initializedElements.delete(e)}eachElement(e){this._customEachElement&&"function"==typeof this._customEachElement&&this._customEachElement.call(this,e)}run(e){if(!this.functionCanRun())return;if(this.cleanUpInitElements(),this._customRun&&"function"==typeof this._customRun)return void this._customRun.call(this,e);const t=Object.assign({},this._settings);e&&Object.keys(e).forEach((r=>{t.hasOwnProperty(r)&&(t[r]=e[r])}));const r=bricksQuerySelectorAll(t.parentNode,t.selector);r.length&&r.forEach(((e,r)=>{if(t.forceReinit){if("function"==typeof t.forceReinit?t.forceReinit.call(this,e,r):t.forceReinit)return void this.eachElement(e,r)}if(this._initializedElements.has(e)){const t=Array.from(this._initializedElements).find((t=>t===e));t.isConnected||(this._initializedElements.delete(t),this._initializedElements.add(e,r),this.eachElement(e,r))}else this._initializedElements.add(e),this.eachElement(e,r)}))}listenerHandler(e){this._customListenerHandler&&"function"==typeof this._customListenerHandler?this._customListenerHandler.call(this,e):e?.type&&(e.type,this.run())}addEventListeners(){this.functionCanRun()&&(this._customAddEventListeners&&"function"==typeof this._customAddEventListeners?this._customAddEventListeners.call(this):this._settings.subscribeEvents.length&&bricksUtils.subscribeEvents(document,this._settings.subscribeEvents,this.listenerHandler))}}const bricksLazyLoadFn=new BricksFunction({parentNode:document,selector:".bricks-lazy-hidden",eachElement:e=>{const t=window.bricksData.offsetLazyLoad||300;new BricksIntersect({element:e,callback:e=>{(e=>{if(e.classList.add("wait"),e.dataset.src&&(e.src=e.dataset.src,delete e.dataset.src),e.dataset.sizes&&(e.sizes=e.dataset.sizes,delete e.dataset.sizes),e.dataset.srcset&&(e.srcset=e.dataset.srcset,delete e.dataset.srcset),e.dataset.style){let t=e.getAttribute("style")||"";t+=e.dataset.style,e.setAttribute("style",t),e.classList.contains("splide__slide")||delete e.dataset.style}e.classList.remove("bricks-lazy-hidden"),e.classList.remove("wait"),e.classList.contains("bricks-lazy-load-isotope")&&bricksIsotope()})(e)},rootMargin:`${t}px`})},listenerHandler:e=>{setTimeout((()=>{bricksLazyLoadFn.run()}),100)}});function bricksLazyLoad(){bricksLazyLoadFn.run()}const bricksAnimationFn=new BricksFunction({parentNode:document,selector:".brx-animated",removeAfterMs:3e3,eachElement:e=>{new BricksIntersect({element:e,callback:e=>{let t=e.dataset.animation;t&&(e.classList.add(`brx-animate-${t}`),e.removeAttribute("data-animation"),e.addEventListener("animationend",(()=>{if(e.classList.remove(`brx-animate-${t}`),e.classList.contains("brx-popup-content")&&t.includes("Out")){const t=e.closest(".brx-popup");t&&bricksClosePopup(t)}}),{once:!0}))}})},run:e=>{const t=bricksAnimationFn,r=e?.elementsToAnimate||bricksQuerySelectorAll(t._settings.parentNode,t._settings.selector);t.removeAfterMs=e?.removeAfterMs||t.removeAfterMs,r.forEach((e=>{t.eachElement(e)}))}});function bricksAnimation(){bricksAnimationFn.run()}const bricksInitQueryLoopInstancesFn=new BricksFunction({parentNode:document,selector:".brx-query-trail",subscribeEvents:["bricks/ajax/load_page/completed"],eachElement:e=>{const t=e.dataset?.observerMargin||"1px",r=e.dataset.queryElementId,i=e.dataset.queryVars,s=e?.classList.contains("bricks-isotope-sizer"),n=e?.classList.contains("brx-infinite-scroll");window.bricksData.queryLoopInstances[r]={page:e.dataset.page,maxPages:e.dataset.maxPages,queryVars:i,observerMargin:t,infiniteScroll:n,isPostsElement:s};let o=s?e.previousElementSibling:Array.from(document.querySelectorAll(`.brxe-${r}:not(.brx-popup)`)).pop();s||e.remove(),o&&n&&(o.dataset.queryElementId=r,new BricksIntersect({element:o,callback:e=>bricksQueryLoadPage(e),once:1,rootMargin:t}))}});function bricksInitQueryLoopInstances(){bricksInitQueryLoopInstancesFn.run()}function bricksQueryLoadPage(e){return new Promise((function(t,r){const i=e.dataset.queryElementId,s=window.bricksData.queryLoopInstances?.[i];if(!s||s?.isLoading)return;let n=parseInt(s.page||1)+1;const o=parseInt(s.maxPages||1);if(n>o)return delete window.bricksData.queryLoopInstances[i],void t({page:n,maxPages:o});window.bricksData.queryLoopInstances[i].isLoading=1;let a={postId:window.bricksData.postId,queryElementId:i,queryVars:s.queryVars,page:n,nonce:window.bricksData.nonce};const c=window.bricksData.restApiUrl.concat("load_query_page");let l=new XMLHttpRequest;l.open("POST",c,!0),l.setRequestHeader("Content-Type","application/json; charset=UTF-8"),l.setRequestHeader("X-WP-Nonce",window.bricksData.wpRestNonce),l.onreadystatechange=function(){if(l.readyState===XMLHttpRequest.DONE){var r=l.status;if(0===r||r>=200&&r<400){let t=JSON.parse(l.response);const r=t?.html||!1,s=t?.styles||!1,o=t?.popups||!1;r&&e.insertAdjacentHTML("afterend",r),o&&document.body.insertAdjacentHTML("beforeend",o),s&&document.body.insertAdjacentHTML("beforeend",s),window.bricksData.queryLoopInstances[i].page=n}window.bricksData.queryLoopInstances[i].isLoading=0,t({page:n,maxPages:o}),setTimeout((()=>{s.isPostsElement?newQueryTrail=e.parentNode.querySelector(".bricks-isotope-sizer").previousElementSibling:newQueryTrail=Array.from(document.querySelectorAll(`.brxe-${i}:not(.brx-popup)`)).pop(),document.dispatchEvent(new CustomEvent("bricks/ajax/load_page/completed",{detail:{queryTrailElement:newQueryTrail,queryId:i}})),s.infiniteScroll&&(newQueryTrail.dataset.queryElementId=i,BricksIsInViewport(newQueryTrail)?bricksQueryLoadPage(newQueryTrail):new BricksIntersect({element:newQueryTrail,callback:e=>bricksQueryLoadPage(e),once:!0,rootMargin:s.observerMargin}))}),250)}},l.send(JSON.stringify(a))}))}const bricksQueryPaginationFn=new BricksFunction({parentNode:document,selector:".brx-ajax-pagination a",subscribeEvents:["bricks/ajax/pagination/completed"],eachElement:e=>{e.dataset?.ajaxPagination||(e.dataset.ajaxPagination=1,e.addEventListener("click",(function(e){const t=e.currentTarget,r=t.getAttribute("href"),i=t.closest(".brx-ajax-pagination"),s=i?.dataset?.queryElementId,n=document.querySelector(`.brxe-${s}`);if(!n)return;e.preventDefault();let o=new XMLHttpRequest;o.open("GET",r,!0),o.responseType="document",o.onload=function(){if(this.readyState===XMLHttpRequest.DONE){var e=this.status;if(0===e||e>=200&&e<400){const e=this.responseXML,t=n.parentNode,o=document.createElement("div");o.style.display="none",n.insertAdjacentElement("beforebegin",o);t.querySelectorAll(`.brxe-${s}:not(.brx-popup)`).forEach((e=>e.remove()));e.querySelectorAll(`.brxe-${s}:not(.brx-popup)`).forEach((e=>o.insertAdjacentElement("beforebegin",e))),o.remove();document.querySelectorAll(`.brx-popup[data-popup-loop="${s}"]`).forEach((e=>e.remove()));e.querySelectorAll(`.brx-popup[data-popup-loop="${s}"]`).forEach((e=>document.body.insertAdjacentElement("beforeend",e)));const a=e.querySelector("#bricks-frontend-inline-inline-css"),c=document.querySelector("#bricks-frontend-inline-inline-css");c&&a&&c.replaceWith(a);const l=e.querySelector("#bricks-dynamic-data-inline-css"),d=document.querySelector("#bricks-dynamic-data-inline-css");d&&l&&d.replaceWith(l);const u=e.querySelector(`.brx-ajax-pagination[data-query-element-id="${s}"]`);i.replaceWith(u),document.dispatchEvent(new CustomEvent("bricks/ajax/pagination/completed",{detail:{queryId:s}})),window.history.pushState({},"",r)}}},o.send()})))}});function bricksQueryPagination(){bricksQueryPaginationFn.run()}function bricksStickyHeader(){let e=document.querySelector("#brx-header.sticky");if(!e)return;let t,r,i=document.querySelector(".bricks-site-logo"),s=-1,n=e.hasAttribute("data-slide-up-after")?e.getAttribute("data-slide-up-after"):0;i&&(t=i.getAttribute("data-bricks-logo"),r=i.getAttribute("data-bricks-logo-inverse"));const o=()=>{let o=window.pageYOffset;o>0?(e.classList.add("scrolling"),i&&r&&(i.src=r,i.srcset="")):(e.classList.remove("scrolling"),i&&r&&(i.src=t)),n&&(o>s&&s>=0?o>n&&e.classList.add("slide-up"):e.classList.remove("slide-up")),s=o};window.addEventListener("scroll",o),o()}function bricksOnePageNavigation(){let e=document.getElementById("bricks-one-page-navigation");if(!bricksIsFrontend||!e)return;let t=bricksQuerySelectorAll(document,"#brx-content > *"),r=[],i="",s="",n="";function o(){let e=window.scrollY;r.forEach((t=>{let r=document.getElementById(t),i=r.offsetTop,s=i+r.offsetHeight;e>=i-1&&e<s-1?document.querySelector(`.bricks-one-page-${t}`).classList.add("active"):document.querySelector(`.bricks-one-page-${t}`).classList.remove("active")}))}t&&(t.forEach((t=>{i=t.getAttribute("id"),i&&(r.push(i),n=document.createElement("li"),s=document.createElement("a"),s.classList.add(`bricks-one-page-${i}`),s.setAttribute("href",`#${i}`),n.appendChild(s),e.appendChild(n))})),window.addEventListener("load",o),window.addEventListener("resize",o),document.addEventListener("scroll",o))}function bricksSearchToggle(){bricksQuerySelectorAll(document,".brxe-search").forEach((e=>{let t=e.querySelector(".toggle"),r=e.querySelector(".bricks-search-overlay");if(!t||!r)return;let i=r.previousElementSibling;document.addEventListener("keyup",(e=>{if("Escape"===e.key){"visible"===window.getComputedStyle(r).visibility&&(r.classList.remove("show"),i.focus(),i.setAttribute("aria-expanded",!1))}})),t.addEventListener("click",(()=>{r.classList.toggle("show"),t.setAttribute("aria-expanded","false"===t.getAttribute("aria-expanded")),setTimeout((()=>{e.querySelector("input[type=search]").focus()}),200)})),r.querySelector(".close").addEventListener("click",(()=>{r.classList.remove("show"),i.focus(),i.setAttribute("aria-expanded",!1)}))}))}const bricksAlertDismissFn=new BricksFunction({parentNode:document,selector:".brxe-alert svg",subscribeEvents:["bricks/ajax/pagination/completed","bricks/ajax/load_page/completed"],eachElement:e=>{e.addEventListener("click",(()=>{e.closest(".brxe-alert").remove()}))}});function bricksAlertDismiss(){bricksAlertDismissFn.run()}const bricksTabsFn=new BricksFunction({parentNode:document,selector:".brxe-tabs, .brxe-tabs-nested",subscribeEvents:["bricks/ajax/pagination/completed","bricks/ajax/load_page/completed"],eachElement:e=>{let t=bricksQuerySelectorAll(e,".tab-title");t.forEach(((r,i)=>{0===i&&r.classList.add("brx-open");let s=bricksQuerySelectorAll(e,".tab-pane");s.forEach(((e,t)=>{0===t&&e.classList.add("brx-open")})),r.addEventListener("click",(()=>{t.forEach(((e,t)=>{t===i?r.classList.add("brx-open"):e.classList.remove("brx-open")})),s.forEach(((e,t)=>{t===i?e.classList.add("brx-open"):e.classList.remove("brx-open")}))}))}))}});function bricksTabs(){bricksTabsFn.run()}const bricksVideoOverlayClickDetectorFn=new BricksFunction({parentNode:document,selector:".bricks-video-overlay, .bricks-video-overlay-icon, .bricks-video-preview-image",subscribeEvents:["bricks/ajax/pagination/completed","bricks/ajax/load_page/completed"],frontEndOnly:!0,eachElement:e=>{e.addEventListener("click",(e=>{let t=e.target.closest(".brxe-video");if(!t)return;const r=t.querySelector(".bricks-video-preview-image");if(r){const e=document.createElement("iframe");[...r.attributes].forEach((t=>{"class"!==t.name&&"style"!==t.name&&("data-iframe-src"!==t.name?e.setAttribute(t.name,t.value):e.setAttribute("src",t.value))})),r.replaceWith(e)}const i=t.querySelector("iframe");i&&i.getAttribute("src")&&(i.src+="&autoplay=1");const s=t.querySelector("video");s&&s.play()}))}});function bricksVideoOverlayClickDetector(){bricksVideoOverlayClickDetectorFn.run()}const bricksBackgroundVideoInitFn=new BricksFunction({parentNode:document,selector:".bricks-background-video-wrapper",subscribeEvents:["bricks/ajax/pagination/completed","bricks/ajax/load_page/completed"],forceReinit:(e,t)=>!bricksIsFrontend,eachElement:e=>{if(e.classList.contains("loaded")||e.querySelector("iframe"))return;let t=e.getAttribute("data-background-video-url"),r=e.getAttribute("data-background-video-scale"),i=!1;if(!t)return;let s,n=e.getAttribute("data-background-video-ratio")||"16:9",o=parseInt(n.split(":")[0]||16),a=parseInt(n.split(":")[1]||9);if(-1!==t.indexOf("youtube.com")){i=!0;let e=t.lastIndexOf("="),r=t.slice(e+1);t+=`?origin=${window.location.origin}`,t+="&rel=0",t+="&autoplay=1",t+="&mute=1",t+="&widgetid=1",t+="&controls=0",t+="&showinfo=0",t+="&modestbranding=1",t+="&cc_load_policy=0",t+="&iv_load_policy=3",t+="&autohide=0",t+="&loop=1",t+=`&playlist=${r}`,t+="&enablejsapi=1",t=t.replace("watch?v=","embed/")}-1!==t.indexOf("vimeo.com")&&(i=!0,t+="?background=1",t+="&byline=0",t+="&portrait=0",t+="&title=0",-1===t.indexOf("player.vimeo.com/video")&&(t=t.replace("vimeo.com","player.vimeo.com/video"))),i?(s=document.createElement("iframe"),s.setAttribute("width",640),s.setAttribute("height",360),s.setAttribute("src",t),s.setAttribute("allow","autoplay"),s.setAttribute("allowfullscreen",1),e.removeChild(e.querySelector("video"))):s=e.querySelector("video"),r&&(s.style.transform=`translate(-50%, -50%) scale(${r})`),bricksIsFrontend?e.classList.contains("bricks-lazy-video")&&new BricksIntersect({element:e,callback:e=>{e.classList.remove("bricks-lazy-video"),i?e.appendChild(s):s.src=t}}):i?e.appendChild(s):s.src=t,e.classList.add("loaded"),new ResizeObserver((t=>{for(let r of t){let t;if(r.contentBoxSize){t=(Array.isArray(r.contentBoxSize)?r.contentBoxSize[0]:r.contentBoxSize).inlineSize}else t=r.contentRect.width;let i=e.clientHeight,n=t*a/o;n<i&&(n=i,t=i*o/a),s.style.width=`${t}px`,s.style.height=`${n}px`}})).observe(e)}});function bricksBackgroundVideoInit(){bricksBackgroundVideoInitFn.run()}const bricksPhotoswipeFn=new BricksFunction({parentNode:document,selector:".bricks-lightbox",windowVariableCheck:["PhotoSwipeLightbox"],eachElement:e=>{let t=e,r="A"===e.tagName?"":"a",i=e.getAttribute("data-pswp-id");i&&(r=bricksQuerySelectorAll(document,`[data-pswp-id="${i}"]`));let s={mainClass:"brx",gallery:t,counter:!t.classList.contains("brxe-carousel"),children:r,pswpModule:PhotoSwipe5,closeSVG:'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>'};const n=new PhotoSwipeLightbox(s);if(n.on("itemData",(t=>{let r=document.querySelector(".pswp__container"),i=e.getAttribute("data-pswp-video-url"),s=e.getAttribute("data-pswp-width"),n=e.getAttribute("data-pswp-height");if(s&&(s.includes("%")||s.includes("vw"))&&(s=window.innerWidth*(parseInt(s)/100)),n&&(n.includes("%")||n.includes("vh"))&&(n=window.innerHeight*(parseInt(n)/100)),s||(s=1280),n&&720!=n||(n=Math.round(s/16*9)),!r&&i){let e=bricksGetLightboxVideoNode(i);t.itemData={html:e.outerHTML,width:s,height:n}}})),n.on("contentAppend",(({content:e})=>{if(e.element){let t=e.element.querySelector("video");t&&t.play()}})),t.classList.contains("brxe-carousel")){let e=t.getAttribute("data-script-id");bricksData.swiperInstances?.[e]?.loopedSlides&&(n.addFilter("numItems",((e,t)=>{if(t.gallery){let r=0;t.gallery.classList.contains("brxe-carousel")&&(r=t.gallery.querySelectorAll(".swiper-slide-duplicate").length),e=e>r?e-r:e}return e})),n.addFilter("clickedIndex",((t,r)=>{let i=r.target.closest(".swiper-slide");if(i){let r=bricksData.swiperInstances[e].slides.map(((e,t)=>({slide:e,index:t}))).filter(Boolean);if(r.length){let e=parseInt(i.dataset.swiperSlideIndex),s=r.filter((t=>t.slide.dataset.swiperSlideIndex==e));s.length&&(t=s[0].index)}}return t})))}n.init()}});function bricksPhotoswipe(){bricksPhotoswipeFn.run()}function bricksGetLightboxVideoNode(e){if(e){hasContent=!0;let t=!1;if(-1!==e.indexOf("youtube.com")&&(t=!0,e=e.replace("watch?v=","embed/"),e+="?autoplay=1",e+="&rel=0"),-1!==e.indexOf("vimeo.com")&&(t=!0,-1===e.indexOf("player.vimeo.com/video")&&(e=e.replace("vimeo.com","player.vimeo.com/video")),e+="?autoplay=1"),t){let t=document.createElement("iframe");return t.setAttribute("src",e),t.setAttribute("allow","autoplay"),t.setAttribute("allowfullscreen",1),t}let r=document.createElement("video");return r.setAttribute("src",e),r.setAttribute("controls",1),r.setAttribute("playsinline",1),r}}const bricksAccordionFn=new BricksFunction({parentNode:document,selector:".brxe-accordion, .brxe-accordion-nested",eachElement:e=>{let t=(e,t=200)=>{e.style.transitionProperty="height, margin, padding",e.style.transitionDuration=`${t}ms`,e.style.height=`${e.offsetHeight}px`,e.offsetHeight,e.style.overflow="hidden",e.style.height=0,e.style.paddingTop=0,e.style.paddingBottom=0,e.style.marginTop=0,e.style.marginBottom=0,window.setTimeout((()=>{e.style.display="none",e.style.removeProperty("height"),e.style.removeProperty("padding-top"),e.style.removeProperty("padding-bottom"),e.style.removeProperty("margin-top"),e.style.removeProperty("margin-bottom"),e.style.removeProperty("overflow"),e.style.removeProperty("transition-duration"),e.style.removeProperty("transition-property")}),t)},r=(e,r=200)=>"none"===window.getComputedStyle(e).display?((e,t=200)=>{e.style.removeProperty("display");let r=window.getComputedStyle(e).display;"none"===r&&(r="block"),e.style.display=r;let i=e.offsetHeight;e.style.overflow="hidden",e.style.height=0,e.style.paddingTop=0,e.style.paddingBottom=0,e.style.marginTop=0,e.style.marginBottom=0,e.offsetHeight,e.style.transitionProperty="height, margin, padding",e.style.transitionDuration=`${t}ms`,e.style.height=`${i}px`,e.style.removeProperty("padding-top"),e.style.removeProperty("padding-bottom"),e.style.removeProperty("margin-top"),e.style.removeProperty("margin-bottom"),window.setTimeout((()=>{e.style.removeProperty("height"),e.style.removeProperty("overflow"),e.style.removeProperty("transition-duration"),e.style.removeProperty("transition-property")}),t)})(e,r):t(e,r),i=Array.from(e.children),s=e.hasAttribute("data-transition")?isNaN(e.dataset.transition)?0:e.dataset.transition:200;i=i.filter((e=>e.classList.contains("brxe-section")||e.classList.contains("brxe-container")||e.classList.contains("brxe-block")||e.classList.contains("brxe-div")||e.classList.contains("accordion-item"))),i.forEach(((i,n)=>{0===n&&e.dataset.scriptArgs?.includes("expandFirstItem")&&i.classList.add("brx-open"),i.classList.contains("listening")||(i.classList.add("listening"),i.addEventListener("click",(i=>{i.stopPropagation();let n=i.target.closest(".accordion-title-wrapper");if(!n)return;let o=n.parentNode;if(!o)return;let a=o.querySelector(".accordion-content-wrapper");if(a){if(!e.dataset.scriptArgs?.includes("independentToggle")){let r=e.querySelector(".brx-open");if(r){let e=r.querySelector(".accordion-content-wrapper");e&&e!==a&&(r.classList.remove("brx-open"),t(e,s))}}r(a,s),o.classList.toggle("brx-open")}})))}))}});function bricksAccordion(){bricksAccordionFn.run()}const bricksAnimatedTypingFn=new BricksFunction({parentNode:document,selector:".brxe-animated-typing",windowVariableCheck:["Typed"],eachElement:e=>{let t,r=e.dataset.scriptId;try{t=JSON.parse(e.dataset.scriptArgs)}catch(e){return!1}let i=e.querySelector(".typed");i&&(window.bricksData.animatedTypingInstances[r]&&window.bricksData.animatedTypingInstances[r].destroy(),t.hasOwnProperty("strings")&&t.strings&&(Array.isArray(t.strings)&&!t.strings.toString()||(window.bricksData.animatedTypingInstances[r]=new Typed(i,t))))}});function bricksAnimatedTyping(){bricksAnimatedTypingFn.run()}const bricksAudioFn=new BricksFunction({parentNode:document,selector:".brxe-audio",windowVariableCheck:["MediaElementPlayer"],eachElement:e=>{let t=e.querySelector("audio");if(t){new MediaElementPlayer(t)}}});function bricksAudio(){bricksAudioFn.run()}const bricksCountdownFn=new BricksFunction({parentNode:document,selector:".brxe-countdown",eachElement:e=>{countdown=(e,t,r)=>{let i=6e4*(("+"===t.timezone[3]?1:-1)*(60*parseInt(t.timezone.substring(4,6))+parseInt(t.timezone.substring(7,9)))),s=6e4*-(new Date).getTimezoneOffset(),n=t.date.replace(" ","T"),o=new Date(n).getTime()+s-i-(new Date).getTime();if(o<=0){if(clearInterval(e.dataset.bricksCountdownId),"hide"===t.action)return void(e.innerHTML="");if("text"===t.action)return void(e.innerHTML=t.actionText)}r&&(e.innerHTML="",t.fields.forEach((t=>{if(!t.format)return;let r=document.createElement("div");if(r.classList.add("field"),t.prefix){let e=document.createElement("span");e.classList.add("prefix"),e.innerHTML=t.prefix,r.appendChild(e)}let i=document.createElement("span");if(i.classList.add("format"),r.appendChild(i),t.suffix){let e=document.createElement("span");e.classList.add("suffix"),e.innerHTML=t.suffix,r.appendChild(e)}e.appendChild(r)})));let a=bricksQuerySelectorAll(e,".field"),c=Math.floor(o/864e5),l=Math.floor(o%864e5/36e5),d=Math.floor(o%36e5/6e4),u=Math.floor(o%6e4/1e3);t.fields.forEach(((e,t)=>{if(!e.format)return;let r=e.format.toLowerCase();r.includes("%d")?(e.format.includes("%D")&&c<=9&&(c=`0${c}`),a[t].querySelector(".format").innerHTML=r.replace("%d",o<=0?0:c)):r.includes("%h")?(e.format.includes("%H")&&l<=9&&(l=`0${l}`),a[t].querySelector(".format").innerHTML=r.replace("%h",o<=0?0:l)):r.includes("%m")?(e.format.includes("%M")&&d<=9&&(d=`0${d}`),a[t].querySelector(".format").innerHTML=r.replace("%m",o<=0?0:d)):r.includes("%s")&&(e.format.includes("%S")&&u<=9&&(u=`0${u}`),a[t].querySelector(".format").innerHTML=r.replace("%s",o<=0?0:u))}))};let t=e.dataset.bricksCountdownOptions;try{t=JSON.parse(t)}catch(e){return!1}if(t.hasOwnProperty("date")&&t.hasOwnProperty("fields")){let r=e.dataset.bricksCountdownId;r&&clearInterval(r),countdown(e,t,!0),r=setInterval(countdown,1e3,e,t,!1),e.dataset.bricksCountdownId=r}}});function bricksCountdown(){bricksCountdownFn.run()}const bricksCounterFn=new BricksFunction({parentNode:document,selector:".brxe-counter",subscribeEvents:["bricks/popup/open","bricks/ajax/pagination/completed","bricks/ajax/load_page/completed"],forceReinit:(e,t)=>e.closest(".brx-popup"),eachElement:e=>{let t=e.dataset.bricksCounterOptions;try{t=JSON.parse(t)}catch(e){return!1}let r=e.querySelector(".count"),i=t.hasOwnProperty("countFrom")?parseInt(t.countFrom):0,s=t.hasOwnProperty("countTo")?parseInt(t.countTo):100,n=t.hasOwnProperty("duration")?parseInt(t.duration):1e3;n<500&&(n=500);let o=n/(s-i),a=1;o<4&&(a=Math.ceil(4/o),o=4);let c=()=>{let e=r.innerText.replace(/\D/g,"");e=isNaN(e)?i:parseInt(e);let n=e+a<s?e+a:s;if(e>=s)return clearInterval(r.dataset.counterId),void delete r.dataset.counterId;r.innerText=t.thousands?n.toLocaleString():n},l=()=>{r.innerText=i,null==r.dataset.counterId&&(r.dataset.counterId=setInterval(c,o))},d=r.closest(".brx-popup");d?d.classList.contains("hide")||l():new BricksIntersect({element:e,callback:l})},listenerHandler:e=>{if(e?.type)if("bricks/popup/open"===e.type){let t={parentNode:e.details?.popupElement?e.details.popupElement:document};bricksCounterFn.run(t)}else bricksCounterFn.run()}});function bricksCounter(){bricksCounterFn.run()}const bricksFormFn=new BricksFunction({parentNode:document,selector:".brxe-form",eachElement:e=>{let t=e.getAttribute("data-element-id");bricksQuerySelectorAll(e,'input[type="checkbox"]').forEach((t=>{t.required&&t.addEventListener("click",(r=>{let i=t.getAttribute("name"),s=bricksQuerySelectorAll(e,`input[name="${i}"]`),n=!1;s.forEach((e=>{!0===e.checked&&(n=!0)})),n?s.forEach((e=>{e.required=!1})):s.forEach((e=>{e.required=!0}))}))})),bricksQuerySelectorAll(e,".flatpickr").forEach((e=>{let t=e.dataset.bricksDatepickerOptions;t&&(t=JSON.parse(t),t.disableMobile=!0,t.onReady=(e,t,r)=>{let i=r.altInput.previousElementSibling?r.altInput.previousElementSibling.getAttribute("aria-label"):"Date";r.altInput.setAttribute("aria-label",i||"Date")},flatpickr(e,t))}));let r={};bricksQuerySelectorAll(e,"input[type=file]").forEach((t=>{let i=t.getAttribute("data-files-ref"),s=t.getAttribute("data-maxsize")||!1,n=t.getAttribute("data-limit")||!1;s=!!s&&1024*parseInt(s)*1024,t.addEventListener("change",(o=>{let a=o.target.files,c=a.length,l=t.getAttribute("name");if(!c)return;let d=e.querySelector(`.file-result[data-files-ref="${i}"]`);for(let e=0;e<c;e++){let t=a[e],i=!1,o=d.cloneNode(!0);if(n&&r.hasOwnProperty(l)&&r[l].length>=n&&(i="limit"),s&&t.size>s&&(i="size"),i)o.classList.add("danger"),o.innerHTML=o.getAttribute(`data-error-${i}`).replace("%s",t.name),setTimeout((()=>{o.remove()}),5e3);else{r.hasOwnProperty(l)||(r[l]=[]),r[l].push(t),o.classList.add("show");let e=o.querySelector(".text"),i=o.querySelector(".remove");e.innerHTML=t.name,i.setAttribute("data-name",t.name),i.setAttribute("data-field",l),i.addEventListener("click",(e=>{let t=e.target.getAttribute("data-name"),i=e.target.getAttribute("data-field"),s=r[i];for(let e=0;e<s.length;e++)if(s[e].name===t){r[l].splice(e,1);break}o.remove()}))}d.parentNode.insertBefore(o,d.nextSibling)}}))})),e.addEventListener("submit",(i=>{if(i.preventDefault(),!bricksIsFrontend)return;let s=document.getElementById(`recaptcha-${t}`),n=e.querySelector(".recaptcha-error");if(!s)return void bricksSubmitForm(t,e,r,null);let o=s.getAttribute("data-key");if(o)try{grecaptcha.ready((()=>{try{grecaptcha.execute(o,{action:"bricks_form_submit"}).then((i=>{n.classList.remove("show"),bricksSubmitForm(t,e,r,i)})).catch((t=>{n.classList.add("show"),e.querySelector(".alert").innerText=`Google reCaptcha ${t}`}))}catch(t){n.classList.add("show"),e.querySelector(".alert").innerText=`Google reCaptcha ${t}`}}))}catch(t){n.classList.add("show"),e.querySelector(".alert").innerText=`Google reCaptcha ${t}`}else n.classList.add("show")}))}});function bricksForm(){bricksFormFn.run()}function bricksSubmitForm(e,t,r,i){let s=t.querySelector("button[type=submit]");s.classList.add("sending");let n=new FormData(t);n.append("action","bricks_form_submit"),n.append("postId",window.bricksData.postId),n.append("formId",e),n.append("recaptchaToken",i||""),n.append("nonce",window.bricksData.nonce),n.append("referrer",location.toString());for(let e in r)r[e].forEach((t=>{n.append(`${e}[]`,t,t.name)}));let o=window.bricksData.ajaxUrl,a=new XMLHttpRequest;a.open("POST",o,!0),a.onreadystatechange=function(){let e=(e=>{try{return JSON.parse(e)}catch(e){return null}})(a.response);if(window.bricksData.debug&&console.warn("bricks_form_submit",a,e),!e)return;!e.success||"mailchimp"!==e.data?.action&&"sendgrid"!==e.data?.action||(window.dataLayer=window.dataLayer||[],window.dataLayer.push({event:"bricksNewsletterSignup"})),e.success&&e.data?.redirectTo&&setTimeout((()=>{window.location.href=e.data.redirectTo}),parseInt(e.data?.redirectTimeout)||0),t.querySelector(".message")&&t.querySelector(".message").remove();let i=document.createElement("div");i.classList.add("message");let n=document.createElement("div");if(n.classList.add("text"),e.data?.message)if(e.data.message?.errors){let t=e.data.message.errors;Object.keys(t).forEach((e=>{n.innerHTML+=t[e][0]+"<br>"}))}else n.innerHTML=e.data.message;if(i.appendChild(n),e.data?.info){let t=document.createElement("div"),r=document.createElement("div");r.innerHTML=e.data.info.join("<br>"),i.appendChild(t),t.appendChild(r)}else i.classList.add(e.data.type);if(t.appendChild(i),s.classList.remove("sending"),e.success){t.reset(),r={};let e=bricksQuerySelectorAll(t,".file-result");null!==e&&e.forEach((e=>{e.remove()}))}},a.send(n)}const bricksIsotopeFn=new BricksFunction({parentNode:document,selector:".bricks-layout-wrapper.isotope",forceReinit:!0,windowVariableCheck:["Isotope"],eachElement:e=>{let t={itemSelector:".bricks-layout-item",percentPosition:!0},r=e.getAttribute("data-layout");"grid"===r?(t.layoutMode="fitRows",t.fitRows={gutter:".bricks-gutter-sizer"}):"masonry"!==r&&"metro"!==r||(t.masonry={columnWidth:".bricks-isotope-sizer",gutter:".bricks-gutter-sizer"});let i=new Isotope(e,t),s=e.parentNode.querySelector(".bricks-isotope-filters");s&&s.addEventListener("click",(e=>{let t=e.target.getAttribute("data-filter"),r=s.querySelector("li.active");t&&bricksIsFrontend&&(r&&r.classList.remove("active"),e.target.classList.add("active"),i.arrange({filter:t}))}))}});function bricksIsotope(){bricksIsotopeFn.run()}const bricksMapFn=new BricksFunction({parentNode:document,selector:".brxe-map",eachElement:(e,t)=>{setTimeout((()=>{let t=(()=>{let t=e.dataset.bricksMapOptions;if(!t)return!1;try{return JSON.parse(t)}catch(e){return!1}})();if(!t)return;let r=Array.isArray(t?.addresses)?t.addresses:[{address:"Berlin, Germany"}],i=[],s={};t?.marker&&(s.icon={url:t.marker},t?.markerHeight&&t?.markerWidth&&(s.icon.scaledSize=new google.maps.Size(parseInt(t.markerWidth),parseInt(t.markerHeight))));let n={};t?.markerActive&&(n={url:t.markerActive},t?.markerActiveHeight&&t?.markerActiveWidth&&(n.scaledSize=new google.maps.Size(parseInt(t.markerActiveWidth),parseInt(t.markerActiveHeight))));let o=[],a=new google.maps.LatLngBounds,c="auto";t.draggable?t.scrollwheel&&t.draggable?c="cooperative":!t.scrollwheel&&t.draggable&&(c="greedy"):c="none",t.disableDefaultUI&&(t.fullscreenControl=!1,t.mapTypeControl=!1,t.streetViewControl=!1,t.zoomControl=!1);let l=t.zoom?parseInt(t.zoom):12,d={zoom:l,gestureHandling:c,fullscreenControl:t.fullscreenControl,mapTypeControl:t.mapTypeControl,streetViewControl:t.streetViewControl,zoomControl:t.zoomControl,disableDefaultUI:t.disableDefaultUI};t.zoomControl&&(t?.maxZoom&&(d.maxZoom=parseInt(t.maxZoom)),t?.minZoom&&(d.minZoom=parseInt(t.minZoom)));let u=new google.maps.Map(e,d);for(let e=0;e<r.length;e++){let t=r[e];if(t?.latitude&&t?.longitude)b(t,{lat:parseFloat(t.latitude),lng:parseFloat(t.longitude)});else if(t?.address){(new google.maps.Geocoder).geocode({address:t.address},p(t))}}function p(e){return(t,r)=>{if("OK"!==r)return void console.warn("Geocode error:",r);let i=t[0].geometry.location;b(e,i)}}function b(e,t){s.map=u,s.position=t;let c=new google.maps.Marker(s);if(c.setMap(u),i.push(c),google.maps.event.addListener(c,"click",(()=>{!function(e){s?.icon&&i.forEach((e=>{e.setIcon(s.icon)}));o.forEach((e=>{e.hide()})),n?.url&&c.setIcon(n);let l="",d=e?.infoTitle||!1,p=e?.infoSubtitle||!1,b=e?.infoOpeningHours||!1,m=e?.infoImages||{};Array.isArray(m)||(m=Array.isArray(m?.images)?m.images:[]);d&&(l+=`<h3 class="title">${d}</h3>`);p&&(l+=`<p class="subtitle">${p}</p>`);b&&(l+='<ul class="content">',b=b.split("\n"),b.length&&b.forEach((e=>{l+=`<li>${e}</li>`})),l+="</ul>");m.length&&(l+='<ul class="images bricks-lightbox">',m.forEach((t=>{l+="<li>",t.thumbnail&&t.src&&(l+=`<a\n\t\t\t\t\t\t\t\t\tdata-pswp-src="${t.src}"\n\t\t\t\t\t\t\t\t\tdata-pswp-width="${t?.width||376}"\n\t\t\t\t\t\t\t\t\tdata-pswp-height="${t?.height||376}"\n\t\t\t\t\t\t\t\t\tdata-pswp-id="${e.id}">`,l+=`<img src="${t.thumbnail}"/>`,l+="</a>"),l+="</li>"})),l+="</ul>");if(l){let i=parseInt(e?.infoWidth)||300,n={content:l,disableAutoPan:!0,pixelOffset:new google.maps.Size(0,0),alignBottom:!1,infoBoxClearance:new google.maps.Size(20,20),enableEventPropagation:!1,zIndex:1001,boxStyle:{opacity:1,zIndex:999,top:0,left:0,width:`${i}px`}};void 0!==window.jQuery&&(n.closeBoxURL="",n.content+='<span class="close">×</span>');let d=new InfoBox(n);d.open(u,c),o.push(d),setTimeout((()=>{let e=d.div_.offsetHeight,t=u.getProjection().fromLatLngToPoint(c.getPosition()),r=u.getProjection().fromPointToLatLng(new google.maps.Point(t.x,t.y-e*function(){let e=u.getCenter(),t=u.getZoom(),r=1,i=u.getProjection().fromLatLngToPoint(new google.maps.LatLng(e.lat()-r/Math.pow(2,t),e.lng()-r/Math.pow(2,t))),s=u.getProjection().fromLatLngToPoint(new google.maps.LatLng(e.lat()+r/Math.pow(2,t),e.lng()+r/Math.pow(2,t)));return Math.abs(s.x-i.x)}()/2));u.panTo(r)}),100),google.maps.event.addListener(d,"domready",(e=>{m.length&&bricksPhotoswipe(),void 0!==window.jQuery&&jQuery(".close").on("click",(()=>{d.close(),s?.icon&&c.setIcon(s.icon),r.length>1&&(a.extend(t),u.fitBounds(a),u.panToBounds(a))}))}))}}(e)})),a.extend(t),u.fitBounds(a),u.panToBounds(a),1===r.length){let e=google.maps.event.addListener(u,"idle",(()=>{u.setZoom(l),google.maps.event.removeListener(e)}))}}if(t?.type&&u.setMapTypeId(t.type),t?.style)if("custom"===t.style&&t?.customStyle){let e=JSON.stringify(t.customStyle);u.setOptions({styles:JSON.parse(e)})}else window.bricksData&&window.bricksData.mapStyles[t.style]&&u.setOptions({styles:JSON.parse(window.bricksData.mapStyles[t.style].style)})}),1e3*t)}});function bricksMap(){bricksMapFn.run()}const bricksPieChartFn=new BricksFunction({parentNode:document,selector:".brxe-pie-chart",windowVariableCheck:["EasyPieChart"],eachElement:e=>{new BricksIntersect({element:e,callback:e=>{let t=e.getElementsByTagName("canvas");t.length&&t[0].remove(),new EasyPieChart(e,{size:e.dataset.size&&e.dataset.size>0?e.dataset.size:160,lineWidth:e.dataset.lineWidth,barColor:e.dataset.barColor,trackColor:e.dataset.trackColor,lineCap:e.dataset.lineCap,scaleColor:e.dataset.scaleColor,scaleLength:e.dataset.scaleLength,rotate:0})},threshold:1})}});function bricksPieChart(){bricksPieChartFn.run()}const bricksPricingTablesFn=new BricksFunction({parentNode:document,selector:".brxe-pricing-tables",eachElement:e=>{let t=bricksQuerySelectorAll(e,".tab"),r=bricksQuerySelectorAll(e,".pricing-table");t.forEach((e=>{e.classList.contains("listening")||(e.classList.add("listening"),e.addEventListener("click",(()=>{e.classList.contains("active")||(r.forEach((e=>{e.classList.toggle("active")})),t.forEach((e=>{e.classList.remove("active")})),e.classList.add("active"))})))}))}});function bricksPricingTables(){bricksPricingTablesFn.run()}const bricksProgressBarFn=new BricksFunction({parentNode:document,selector:".brxe-progress-bar .bar span",eachElement:e=>{new BricksIntersect({element:e,callback:()=>{e.dataset.width&&setTimeout((()=>{e.style.width=e.dataset.width}),"slow")},threshold:1})}});function bricksProgressBar(){bricksProgressBarFn.run()}const bricksSplideFn=new BricksFunction({parentNode:document,selector:".brxe-slider-nested.splide",windowVariableCheck:["Splide"],forceReinit:(e,t)=>!bricksIsFrontend,eachElement:e=>{let t=bricksQuerySelectorAll(e,[".splide__list > .brxe-container",".splide__list > .brxe-block",".splide__list > .brxe-div"]);t.forEach((e=>{e.classList.add("splide__slide"),e.dataset.id=e.id}));let r=e.dataset.scriptId;window.bricksData.splideInstances.hasOwnProperty(r)&&window.bricksData.splideInstances[r].destroy();let i=new Splide(e);i.mount(),window.bricksData.splideInstances[r]=i,t.forEach(((t,r)=>{if(t.dataset.id){t.id=t.dataset.id;let i=e.querySelector(".splide__pagination");if(i){let e=i.querySelector(`li:nth-child(${r+1}) .splide__pagination__page`);e&&e.setAttribute("aria-controls",t.id)}}if(!t.classList.contains("bricks-lazy-hidden")){let e=t.getAttribute("style")||"";t.dataset.style&&(e+=t.dataset.style,t.setAttribute("style",e))}}))}});function bricksSplide(){bricksSplideFn.run()}const bricksSwiperFn=new BricksFunction({parentNode:document,selector:".bricks-swiper-container",windowVariableCheck:["Swiper"],forceReinit:(e,t)=>!bricksIsFrontend,eachElement:e=>{let t;try{t=JSON.parse(e.dataset.scriptArgs)}catch(r){console.warn("bricksSwiper: Error parsing JSON of data-script-args",e),t={}}let r=e.classList.contains("[class*=brxe-]")?e:e.closest("[class*=brxe-]");if(!r)return;bricksQuerySelectorAll(e,[".splide__list > .brxe-container",".splide__list > .brxe-block",".splide__list > .brxe-div"]).forEach((e=>e.classList.add("swiper-slide")));let i=r.dataset.scriptId,s=window.bricksData.swiperInstances.hasOwnProperty(i)?window.bricksData.swiperInstances[i]:void 0;s&&s.destroy(),t.observer=!1,t.observeParents=!0,t.resizeObserver=!0,t.slidesToShow=t.hasOwnProperty("slidesToShow")?t.slidesToShow:1,t.slidesPerGroup=t.hasOwnProperty("slidesPerGroup")?t.slidesPerGroup:1,t.speed=t.hasOwnProperty("speed")?parseInt(t.speed):300,t.effect=t.hasOwnProperty("effect")?t.effect:"slide",t.spaceBetween=t.hasOwnProperty("spaceBetween")?t.spaceBetween:0,t.initialSlide=t.hasOwnProperty("initialSlide")?t.initialSlide:0,t.keyboard={enabled:bricksIsFrontend,onlyInViewport:!0},t.watchOverflow=!0,t.hasOwnProperty("effect")&&"flip"===t.effect&&(t.flipEffect={slideShadows:!1}),t.hasOwnProperty("effect")&&"fade"===t.effect&&(t.fadeEffect={crossFade:!0}),t.navigation&&(t.navigation={prevEl:r.querySelector(".bricks-swiper-button-prev"),nextEl:r.querySelector(".bricks-swiper-button-next")}),t.pagination&&(t.pagination={el:r.querySelector(".swiper-pagination"),type:"bullets",clickable:!0},1==t.dynamicBullets&&(delete t.dynamicBullets,t.pagination.dynamicBullets=!0)),s=new Swiper(e,t),window.bricksData.swiperInstances[i]=s}});function bricksSwiper(){bricksSwiperFn.run()}const bricksVideoFn=new BricksFunction({parentNode:document,selector:".brxe-video",eachElement:e=>{bricksIsFrontend&&e.addEventListener("click",(()=>{let t=e.querySelector(".bricks-video-overlay"),r=e.querySelector(".bricks-video-overlay-icon");t&&t.remove(),r&&r.remove()}));let t=e.querySelector("video");if(t){if(window.hasOwnProperty("Plyr")){let t=e.dataset.scriptId,r=e.querySelector(".bricks-plyr"),i=window.bricksData?.videoInstances?.[t]||void 0;i&&i.destroy(),r&&(i=new Plyr(r)),window.bricksData.videoInstances[t]=i}t.setAttribute("playsinline",!0)}}});function bricksVideo(){bricksVideoFn.run()}function bricksFacebookSDK(){if(!document.querySelector(".brxe-facebook-page"))return;let e=window.bricksData.hasOwnProperty("locale")?window.bricksData.locale:"en_US",t=window.bricksData.hasOwnProperty("facebookAppId")?window.bricksData.facebookAppId:null,r=`https://connect.facebook.net/${e}/sdk.js`,i=new XMLHttpRequest;i.open("GET",r),i.onreadystatechange=function(){if(4==this.readyState&&200==this.status){let e=document.createElement("script");e.type="text/javascript",e.id="bricks-facebook-page-sdk",e.appendChild(document.createTextNode(i.responseText)),document.body.appendChild(e),FB.init({appId:t,version:"v3.3",xfbml:!0})}},i.send()}const bricksPrettifyFn=new BricksFunction({parentNode:document,selector:".prettyprint.prettyprinted",run:()=>{if(!window.hasOwnProperty("PR"))return;PR.prettyPrint();let e=bricksQuerySelectorAll(document,".prettyprint.prettyprinted");!bricksIsFrontend&&e.length&&e.forEach((e=>{e.classList.remove("prettyprinted"),PR.prettyPrint()}))}});function bricksPrettify(){bricksPrettifyFn.run()}function bricksSkipLinks(){let e=bricksQuerySelectorAll(document,".skip-link");e&&e.forEach((e=>{e.addEventListener("click",(t=>{t.preventDefault();let r=document.getElementById(e.href.split("#")[1]);r&&(r.setAttribute("tabindex","-1"),r.addEventListener("blur",(()=>{r.removeAttribute("tabindex")}),{once:!0}),r.focus())}))}))}const bricksInteractionsFn=new BricksFunction({parentNode:document,selector:"[data-interactions]",frontEndOnly:!0,eachElement:e=>{let t=[];try{t=JSON.parse(e.dataset.interactions)}catch(e){return console.info("error:bricksInteractions",e),!1}let r=e.dataset?.interactionId||!1;t&&r&&t.forEach((t=>{let i=!1;if(t?.trigger){if("scroll"===t.trigger){let e=0;if(t?.scrollOffset)if(e=t?.scrollOffset.replace("px",""),e.includes("%")){e=Math.max(document.body.scrollHeight,document.documentElement.scrollHeight,document.body.offsetHeight,document.documentElement.offsetHeight,document.body.clientHeight,document.documentElement.clientHeight)/100*parseInt(e)}else e.includes("vh")&&(e=window.innerHeight/100*parseInt(e));t.scrollOffset=e}else"mouseleaveWindow"===t.trigger&&(t.trigger="mouseleave",i=!0);if("loadMore"===t.action){const r=t?.loadMoreQuery;window.bricksData.queryLoopInstances?.[r]||(e.style.display="none")}if(e)switch(t.el=e,t.groupId=i?"document":r,window.bricksData?.interactions||(window.bricksData.interactions=[]),window.bricksData.interactions.push(t),t.trigger){case"click":case"mouseover":case"mouseenter":case"mouseleave":case"focus":case"blur":(i?document.documentElement:e).addEventListener(t.trigger,bricksInteractionCallback,{once:t?.runOnce});break;case"contentLoaded":let r=t?.delay||0;r&&r.includes("ms")?r=parseInt(r):r&&r.includes("s")&&(r=1e3*parseFloat(r)),setTimeout((()=>{bricksInteractionCallbackExecution(e,t)}),r);break;case"enterView":case"leaveView":new BricksIntersect({element:e,callback:e=>bricksInteractionCallbackExecution(e,t),once:t?.runOnce,trigger:t?.trigger});break;case"showPopup":case"hidePopup":let s="showPopup"===t.trigger?"bricks/popup/open":"bricks/popup/close";document.addEventListener(s,(r=>{let i=r.detail?.popupElement||!1;if(!i||i!==e)return;let s=window.bricksData.interactions.findIndex((e=>e===t));-1!==s&&(t?.runOnce&&window.bricksData.interactions.splice(s,1),bricksInteractionCallbackExecution(e,t))}))}}}))}});function bricksInteractions(){bricksInteractionsFn.run()}function bricksPopups(){window.bricksPopupsData={initialized:[]},document.addEventListener("bricks/popup/open",(e=>{const t=e.detail?.popupElement||!1;if(t&&(setTimeout((()=>{let e=bricksGetFocusables(t);if(e.length){let t=e[0],r=e[e.length-1];e[0].focus(),document.addEventListener("keydown",(function(e){"Tab"===e.key&&(e.shiftKey?document.activeElement===t&&(r.focus(),e.preventDefault()):document.activeElement===r&&(t.focus(),e.preventDefault()))}),{once:!0})}}),100),bricksIsFrontend&&!window.bricksPopupsData.initialized.includes(t))){let e=t.dataset?.popupCloseOn||"backdrop-esc";e.includes("esc")&&document.addEventListener("keyup",(function(e){"Escape"===e.key&&bricksClosePopup(t)})),e.includes("backdrop")&&document.addEventListener("click",(e=>{e.target.classList.contains("brx-popup-backdrop")&&bricksClosePopup(t)})),window.bricksPopupsData.initialized.push(t)}}))}function bricksScrollInteractions(){clearTimeout(bricksScrollTimeout),bricksScrollTimeout=setTimeout((()=>{let e=Array.isArray(window.bricksData?.interactions)?window.bricksData.interactions:[],t=window.scrollY,r=[];e.forEach(((e,i)=>{"scroll"===e?.trigger&&t>=e.scrollOffset&&(bricksInteractionCallbackExecution(e.el,e),e?.runOnce&&r.push(i))})),r.forEach((e=>{window.bricksData.interactions.splice(e,1)}))}),100)}function bricksInteractionCallback(e){if("click"===e?.type){if("A"===e.target.tagName&&"#"!==e.target.getAttribute("href")&&e.target.getAttribute("href")?.startsWith("#"))return;e.preventDefault()}const t=e?.currentTarget?.dataset?.interactionId||"document";window.bricksData.interactions.filter((e=>e.groupId===t)).forEach((t=>{t?.trigger===e.type&&bricksInteractionCallbackExecution(t.el,t)}))}function bricksInteractionCallbackExecution(e,t){const r=t?.target||"self";let i;if(bricksInteractionCheckConditions(t)){switch(r){case"custom":t?.targetSelector&&(i=bricksQuerySelectorAll(document,t.targetSelector));break;case"popup":if(t?.templateId){const r=e.dataset?.interactionLoop||!1;if(r){const s=e.dataset?.interactionLoopIndex||0;i=bricksQuerySelectorAll(document,`.brx-popup[data-popup-id="${t.templateId}"][data-popup-loop="${r}"][data-popup-loop-index="${s}"]`)}i&&i.length||(i=bricksQuerySelectorAll(document,`.brx-popup[data-popup-id="${t.templateId}"]`))}break;default:i=e}if(i)switch(i=Array.isArray(i)?i:[i],t?.action){case"show":case"hide":i.forEach((e=>{e?.classList.contains("brx-popup")?"show"===t.action?bricksOpenPopup(e):"hide"===t.action&&bricksClosePopup(e):"hide"===t.action?e.style.display="none":"none"===e.style.display?e.style.display=null:e.style.display="block"}));break;case"setAttribute":case"removeAttribute":case"toggleAttribute":const r=t?.actionAttributeKey;r&&i.forEach((e=>{let i=t?.actionAttributeValue||"";if("class"===r){(i?i.split(" "):[]).forEach((r=>{"setAttribute"===t.action?e.classList.add(r):"removeAttribute"===t.action?e.classList.remove(r):e.classList.toggle(r)}))}else"setAttribute"===t.action?e.setAttribute(r,i):"removeAttribute"===t.action||e.hasAttribute(r)?e.removeAttribute(r):e.setAttribute(r,i)}));break;case"storageAdd":case"storageRemove":case"storageCount":const s=t?.storageType,n=t?.actionAttributeKey,o=t.hasOwnProperty("actionAttributeValue")?t.actionAttributeValue:0;if(s&&n)if("storageAdd"===t.action)bricksStorageSetItem(s,n,o);else if("storageRemove"===t.action)bricksStorageRemoveItem(s,n);else if("storageCount"===t.action){let e=bricksStorageGetItem(s,n);e=e?parseInt(e):0,bricksStorageSetItem(s,n,e+1)}break;case"startAnimation":const a=t?.animationType;a&&i.forEach((e=>{let r=1e3,i=e?.classList.contains("brx-popup");if(i&&(e=e.querySelector(".brx-popup-content")),t?.animationDuration&&(e.style.animationDuration=t.animationDuration,t.animationDuration.includes("ms")?r=parseInt(t.animationDuration):t.animationDuration.includes("s")&&(r=1e3*parseFloat(t.animationDuration))),t?.animationDelay&&(e.style.animationDelay=t.animationDelay,t.animationDelay.includes("ms")?r+=parseInt(t.animationDelay):t.animationDelay.includes("s")&&(r+=1e3*parseFloat(t.animationDelay))),i&&"showPopup"!==t.trigger&&"hidePopup"!==t.trigger){let t=e.parentNode;a.includes("Out")||bricksOpenPopup(t,r)}e.classList.add("brx-animated"),e.setAttribute("data-animation",a),bricksAnimationFn.run({elementsToAnimate:[e],removeAfterMs:r})}));break;case"loadMore":const c=t?.loadMoreQuery,l=window.bricksData.queryLoopInstances?.[c];if(!l)return;const d=l.isPostsElement?document.querySelector(`.bricks-isotope-sizer[data-query-element-id="${c}"]`)?.previousElementSibling:Array.from(document.querySelectorAll(`.brxe-${c}:not(.brx-popup)`)).pop();d&&(e.classList.contains("is-loading")||(e.classList.add("is-loading"),d.dataset.queryElementId=c,bricksQueryLoadPage(d).then((t=>{e.classList.remove("is-loading"),t?.page>=t?.maxPages&&(e.style.display="none")}))))}}}function bricksOpenPopup(e,t=0){if(!bricksIsFrontend)return;let r;if(e&&(e.nodeType===Node.ELEMENT_NODE?r=e:e&&(r=document.querySelector(`.brx-popup[data-popup-id="${e}"]`))),!r)return;const i=r.dataset.popupId;if(bricksPopupCheckLimit(r)){r.classList.remove("hide"),r.dataset.popupBodyScroll||document.body.classList.add("no-scroll"),bricksSetVh();const e=new CustomEvent("bricks/popup/open",{detail:{popupId:i,popupElement:r}});document.dispatchEvent(e),setTimeout((()=>{bricksCounter()}),t),bricksPopupCounter(r)}}function bricksClosePopup(e){if(!bricksIsFrontend)return;let t;if(e&&(e.nodeType===Node.ELEMENT_NODE?t=e:e&&(t=document.querySelector(`.brx-popup[data-popup-id="${e}"]`))),!t)return;const r=t.dataset.popupId;t.classList.add("hide"),t.dataset.popupBodyScroll||document.body.classList.remove("no-scroll");const i=new CustomEvent("bricks/popup/close",{detail:{popupId:r,popupElement:t}});document.dispatchEvent(i)}function bricksPopupCheckLimit(e){let t=e?.dataset?.popupLimits,r=e?.dataset?.popupId;if(!t)return!0;try{t=JSON.parse(t)}catch(e){return console.info("error:bricksPopupCheckLimit",e),!0}let i=!1;return Object.entries(t).forEach((([e,t])=>{let s=bricksStorageGetItem(e,`brx_popup_${r}_total`);s=s?parseInt(s):0,i=i||s>=t})),!i}function bricksPopupCounter(e){let t=e?.dataset?.popupLimits,r=e?.dataset?.popupId;if(t){try{t=JSON.parse(t)}catch(e){return console.info("error:bricksPopupCounter",e),!0}Object.entries(t).forEach((([e,t])=>{let i=bricksStorageGetItem(e,`brx_popup_${r}_total`);i=i?parseInt(i):0,bricksStorageSetItem(e,`brx_popup_${r}_total`,i+1)}))}}function bricksInteractionCheckConditions(e){if(!Array.isArray(e?.interactionConditions))return!0;let t=e?.interactionConditionsRelation||"and",r="and"===t;const i=e=>isNaN(e)?0:parseFloat(e);return e.interactionConditions.forEach((e=>{let s=e?.conditionType,n=e?.storageKey||!1,o=!1;if(s&&n){let t=e?.storageCompare||"exists",r=e?.storageCompareValue,a=bricksStorageGetItem(s,n);switch(t){case"exists":o=null!==a;break;case"notExists":o=null===a;break;case"==":o=a==r;break;case"!=":o=a!=r;break;case">=":o=i(a)>=i(r);break;case"<=":o=i(a)<=i(r);break;case">":o=i(a)>i(r);break;case"<":o=i(a)<i(r)}}else o=!0;r="and"===t?r&&o:r||o})),r}function bricksStorageGetItem(e,t){if(!t)return;let r;try{switch(e){case"windowStorage":r=window.hasOwnProperty(t)?window[t]:null;break;case"sessionStorage":r=sessionStorage.getItem(t);break;case"localStorage":r=localStorage.getItem(t)}}catch(e){console.info("error:bricksStorageGetItem",e)}return r}function bricksStorageSetItem(e,t,r){if(t)try{switch(e){case"windowStorage":window[t]=r;break;case"sessionStorage":sessionStorage.setItem(t,r);break;case"localStorage":localStorage.setItem(t,r)}}catch(e){console.info("error:bricksStorageSetItem",e)}}function bricksStorageRemoveItem(e,t){if(t)try{switch(e){case"windowStorage":delete window[t];break;case"sessionStorage":sessionStorage.removeItem(t);break;case"localStorage":localStorage.removeItem(t)}}catch(e){console.info("error:bricksStorageRemoveItem",e)}}function bricksNavNested(){if(!bricksIsFrontend)return;let e=new MutationObserver((e=>{e.forEach((e=>{if("attributes"===e.type&&"class"===e.attributeName){let t=e.target;if(t.classList.contains("brx-open")){bricksSetVh(),document.body.classList.add("no-scroll");let e=t.querySelector(".brx-nav-nested-items button.brxe-toggle");if(e)setTimeout((()=>{e.classList.add("is-active"),e.setAttribute("aria-expanded",!0),e.focus()}),10);else{let e=bricksGetFocusables(t);e.length&&e[0].focus()}}else{document.body.classList.remove("no-scroll");let e=t.dataset.toggleScriptId,r=document.querySelector(`button[data-script-id="${e}"]`);r&&(r.setAttribute("aria-expanded",!1),r.classList.remove("is-active"),r.focus())}}}))})),t=bricksQuerySelectorAll(document,".brxe-nav-nested");t.length&&(t.forEach((t=>{e.observe(t,{attributes:!0,attributeFilter:["class"]})})),document.addEventListener("keyup",(e=>{"Escape"===e.key&&bricksNavNestedClose()})),document.addEventListener("click",(e=>{let t=e.target.closest(".brxe-nav-nested"),r=e.target.closest(".brxe-toggle");t||r||bricksNavNestedClose()})))}function bricksNavNestedClose(){bricksQuerySelectorAll(document,".brxe-nav-nested.brx-open").forEach((e=>{e.classList.add("brx-closing"),setTimeout((()=>{e.classList.remove("brx-closing"),e.classList.remove("brx-open")}),200)}))}function bricksOffcanvas(){if(!bricksIsFrontend)return;let e=bricksQuerySelectorAll(document,".brxe-offcanvas");if(!e.length)return;let t=new MutationObserver((e=>{e.forEach((e=>{if("attributes"===e.type&&"class"===e.attributeName){let t=e.target,r=t.querySelector(".brx-offcanvas-inner"),i=r?i=1e3*parseFloat(window.getComputedStyle(r).getPropertyValue("transition-duration")):200;if(t.classList.contains("brx-open")){if(bricksSetVh(),"offset"===t.dataset.effect&&r){let e=t.getAttribute("data-direction"),i=window.getComputedStyle(r).getPropertyValue("transition");document.body.style.margin="0",document.body.style.transition=i.replace("transform","margin"),"top"===e?document.body.style.marginTop=`${r.offsetHeight}px`:"bottom"===e?document.body.style.marginTop=`-${r.offsetHeight}px`:"left"===e?(document.body.style.marginLeft=`${r.offsetWidth}px`,document.body.style.overflowX="hidden"):"right"===e&&(document.body.style.marginLeft=`-${r.offsetWidth}px`,document.body.style.overflowX="hidden")}t.dataset.noScroll&&document.body.classList.add("no-scroll");let e=bricksGetFocusables(t);e.length&&e[0].focus();let i=t.querySelector(".brx-offcanvas-inner > button.brxe-toggle");i&&(i.classList.add("is-active"),i.setAttribute("aria-expanded",!0))}else{t.style.visibility="visible";let e=t.dataset.toggleScriptId,r=document.querySelector(`button[data-script-id="${e}"]`);r&&(r.setAttribute("aria-expanded",!1),r.classList.remove("is-active"),r.focus()),"offset"===t.dataset.effect&&(document.body.style.marginTop&&(document.body.style.margin="0"),setTimeout((()=>{document.body.style.margin=null,document.body.style.overflow=null,document.body.style.transition=null}),i)),setTimeout((()=>{t.style.visibility=null,t.dataset.noScroll&&(document.body.classList.remove("no-scroll"),bricksSubmenuPosition())}),i)}}}))}));e.forEach((e=>{t.observe(e,{attributes:!0,attributeFilter:["class"]});let r=e.querySelector(".brx-offcanvas-backdrop");r&&r.addEventListener("click",(e=>{bricksOffcanvasClose()}))})),document.addEventListener("keyup",(e=>{"Escape"===e.key&&bricksOffcanvasClose()}))}function bricksOffcanvasClose(){bricksQuerySelectorAll(document,".brxe-offcanvas.brx-open").forEach((e=>{e.classList.remove("brx-open")}))}function bricksToggleDisplay(){let e=bricksQuerySelectorAll(document,".brxe-toggle");e.length&&e.forEach((e=>{if(e.closest(".brx-nav-nested-items")&&!e.parentNode.classList.contains("brx-nav-nested-items")&&!e.parentNode.classList.contains("brx-toggle-div")){"none"===window.getComputedStyle(e).display?e.parentNode.style.display="none":e.parentNode.style.display=null}}))}function bricksToggle(){if(!bricksIsFrontend)return;let e=bricksQuerySelectorAll(document,".brxe-toggle");e.length&&(bricksToggleDisplay(),e.forEach((e=>{e.addEventListener("click",(t=>{t.preventDefault();let r=e.dataset?.selector||".brxe-offcanvas",i=e.dataset?.attribute||"class",s=e.dataset?.value||"brx-open",n=!!r&&document.querySelector(r);if(n||(n=e.closest(".brxe-nav-nested")),n||(n=e.closest(".brxe-offcanvas")),!n)return;document.querySelector(".brx-has-megamenu")&&(t.target.closest('[data-effect="offset"]')||bricksSubmenuPosition(0)),e.dataset.scriptId&&!n.dataset.toggleScriptId&&(n.dataset.toggleScriptId=e.dataset.scriptId);let o="true"===e.getAttribute("aria-expanded");e.setAttribute("aria-expanded",!o),e.classList.toggle("is-active"),"class"===i?e.closest(".brxe-nav-nested")&&"brx-open"===s&&n.classList.contains("brx-open")?(n.classList.add("brx-closing"),setTimeout((()=>{n.classList.remove("brx-closing"),n.classList.remove("brx-open")}),200)):n.classList.toggle(s):n.getAttribute(i)?n.removeAttribute(i):n.setAttribute(i,s);let a=bricksGetFocusables(n);a.length&&a[0].focus()}))})))}function bricksSubmenuToggle(e,t="toggle"){let r=!!e.parentNode.classList.contains("brx-submenu-toggle")&&e.parentNode.parentNode;if(r){if(e.closest(".brx-has-multilevel")){let e=r.parentNode.closest(".active");e&&!e.classList.contains("brx-has-megamenu")&&e.classList.remove("active"),setTimeout((()=>{let e=r.querySelector("ul")||r.querySelector(".brx-dropdown-content");if(e){let t=bricksGetFocusables(e);t.length&&t[0].focus()}}),100)}"add"===t?(r.classList.add("open"),r.classList.add("active")):"remove"===t?(r.classList.remove("open"),r.classList.remove("active")):r.classList.toggle("open"),e.setAttribute("aria-expanded",r.classList.contains("open"))}}function bricksSubmenuListeners(){let e=bricksQuerySelectorAll(document,".bricks-nav-menu .menu-item-has-children"),t=bricksQuerySelectorAll(document,".brxe-dropdown");e=e.concat(t),e.forEach((e=>{e.closest("[data-static]")||e.closest(".brx-has-multilevel")||e.classList.contains("active")||(e.addEventListener("mouseenter",(function(t){if(e.closest(".show-mobile-menu")||e.closest(".brxe-nav-nested.brx-open"))return;if("click"===e.getAttribute("data-toggle"))return;let r=t.target.querySelector('[aria-expanded="false"]');r&&bricksSubmenuToggle(r)})),e.addEventListener("mouseleave",(function(t){if(e.closest(".show-mobile-menu")||e.closest(".brxe-nav-nested.brx-open"))return;if("click"===e.getAttribute("data-toggle"))return;let r=t.target.querySelector('[aria-expanded="true"]');if(r){let e=r.closest(".menu-item");if(e||(e=r.closest(".brxe-dropdown")),e&&e.classList.contains("active"))return;bricksSubmenuToggle(r)}})))})),document.addEventListener("keyup",(function(e){if("Escape"===e.key){let t=e.target.closest(".open"),r=e.target.closest(".brx-has-multilevel");if(t&&!r){let e=t.querySelector(".brx-submenu-toggle button[aria-expanded]");e&&(bricksSubmenuToggle(e,"remove"),e&&e.focus())}else{bricksQuerySelectorAll(document,'.brx-submenu-toggle > button[aria-expanded="true"]').forEach((e=>{e&&bricksSubmenuToggle(e,"remove")}))}}else"Tab"!==e.key||e.shiftKey||setTimeout((()=>{bricksQuerySelectorAll(document,'[aria-expanded="true"]').forEach((e=>{let t=e.closest(".menu-item");t||(t=e.closest(".brxe-dropdown")),(t&&!t.contains(document.activeElement)||"BODY"===document.activeElement.tagName)&&bricksSubmenuToggle(e)}))}),0)})),document.addEventListener("click",(e=>{let t="A"===e.target.nodeName&&e.target.hasAttribute("href")?e.target.getAttribute("href"):"";if(t){if(!t.startsWith("#"))return;if("#"===t)e.preventDefault();else{e.target.closest(".brxe-offcanvas")&&bricksOffcanvasClose()}}let r=e.target.closest(".brx-submenu-toggle");if(r){let t="hover",i=r.closest("[data-toggle]");i&&(t=i.getAttribute("data-toggle")),r.closest(".brxe-nav-menu.show-mobile-menu")&&(t="click"),r.closest(".brxe-nav-nested.brx-open")&&(t="click");let s="hover"===t?e.target.closest("[aria-expanded]"):r.querySelector("button[aria-expanded]");if(0===e.detail&&0===e.screenX&&0===e.screenY||"click"===t||"both"===t||(s=null),s){bricksSubmenuToggle(s);let e=r.parentNode;e.classList.toggle("active"),setTimeout((()=>{e.classList.contains("active")&&e.classList.add("open"),s.setAttribute("aria-expanded",e.classList.contains("open"))}),0)}}bricksQuerySelectorAll(document,'.brx-submenu-toggle > button[aria-expanded="true"]').forEach((t=>{let r=t.closest("li");r||(r=t.closest(".brxe-dropdown")),r&&!r.contains(e.target)&&(bricksSubmenuToggle(t),r.classList.remove("active"))}))}))}function bricksSubmenuPosition(e=0){setTimeout((()=>{let e=document.body.clientWidth;bricksQuerySelectorAll(document,".brx-submenu-toggle").forEach((t=>{let r=t.parentNode,i=r.querySelector(".brx-megamenu")||r.querySelector(".brx-dropdown-content")||r.querySelector("ul");if(i.querySelector('[aria-current="page"]')&&t.classList.add("aria-current"),!r.hasAttribute("data-static")&&i)if(r.classList.contains("brx-has-megamenu")){let e=r.offsetLeft+1;e&&(i.style.left=`-${e}px`);let t=!!r.dataset.megaMenu&&document.querySelector(r.dataset.megaMenu);if(t){let r=t.getBoundingClientRect();i.style.left=`-${e-r.left}px`,i.style.minWidth=`${r.width}px`}else i.style.minWidth=`${document.body.clientWidth}px`}else{i.classList.contains("brx-multilevel-overflow-right")&&i.classList.remove("brx-multilevel-overflow-right"),i.classList.contains("brx-submenu-overflow-right")&&i.classList.remove("brx-submenu-overflow-right"),i.classList.contains("brx-sub-submenu-overflow-right")&&i.classList.remove("brx-sub-submenu-overflow-right");let t=i.getBoundingClientRect(),s=t.width,n=t.right,o=Math.ceil(t.left);if(s>e)i.style.left=`-${o}px`,i.style.minWidth=`${e}px`;else if(n>e){let e=i.closest(".brx-has-multilevel"),t=!r.parentNode.closest(".menu-item")&&!r.parentNode.closest(".brxe-dropdown");e?i.classList.add("brx-multilevel-overflow-right"):t?i.classList.add("brx-submenu-overflow-right"):i.classList.add("brx-sub-submenu-overflow-right")}else o<0&&(i.style.left="100%",i.style.right="auto")}}))}),e)}function bricksMultilevelMenu(){bricksQuerySelectorAll(document,".brxe-nav-nested.multilevel").forEach((e=>{let t=e.getAttribute("data-back-text");e.querySelectorAll(".brxe-dropdown").forEach((e=>{e.classList.add("brx-has-multilevel"),e.setAttribute("data-toggle","click"),e.setAttribute("data-back-text",t)}))})),bricksQuerySelectorAll(document,".brx-has-multilevel").forEach((e=>{let t=e.getAttribute("data-back-text")||"Back";bricksQuerySelectorAll(e,"ul").forEach(((e,r)=>{if(0===r)return;let i=document.createElement("a");i.classList.add("brx-multilevel-back"),i.setAttribute("href","#"),i.innerText=t;let s=document.createElement("li");s.classList.add("menu-item"),s.appendChild(i),e.insertBefore(s,e.firstChild),i.addEventListener("click",(function(e){e.preventDefault();let t=e.target.closest(".active");if(t){t.classList.remove("open"),t.classList.remove("active");let e=t.querySelector(".brx-submenu-toggle > button");e&&e.setAttribute("aria-expanded",!1);let r=t.parentNode.closest(".open");if(r){r.classList.add("active");let e=r.querySelector("ul");if(e){let t=bricksGetFocusables(e);t.length&&t[0].focus()}}}}))}))}))}function bricksNavMenuMobile(){let e=bricksQuerySelectorAll(document,".bricks-mobile-menu-toggle");if(!e.length)return;let t=new MutationObserver((e=>{bricksSetVh(),e.forEach((e=>{e.target.classList.contains("show-mobile-menu")?document.body.classList.add("no-scroll"):document.body.classList.remove("no-scroll")}))}));e.forEach((e=>{let r=e.closest(".brxe-nav-menu");t.observe(r,{attributes:!0,attributeFilter:["class"]})})),document.addEventListener("click",(e=>{if(mobileMenuToggle=e.target.closest(".bricks-mobile-menu-toggle"),mobileMenuToggle){let e=mobileMenuToggle.closest(".brxe-nav-menu");e.classList.toggle("show-mobile-menu");let t=e.classList.contains("show-mobile-menu");mobileMenuToggle.setAttribute("aria-expanded",t),t&&setTimeout((()=>{let t=bricksGetFocusables(e.querySelector(".bricks-mobile-menu-wrapper"));t.length&&t[0].focus()}),10)}})),document.addEventListener("click",(e=>{let t=e.target.closest(".brxe-nav-menu");if(t)if(e.target.classList.contains("bricks-mobile-menu-overlay"))t.classList.remove("show-mobile-menu"),t.querySelector(".bricks-mobile-menu-toggle").setAttribute("aria-expanded",!1);else if(e.target.closest(".bricks-mobile-menu-wrapper")){let r="A"===e.target.tagName?e.target.getAttribute("href"):"";r.length>1&&r.includes("#")&&(t.classList.remove("show-mobile-menu"),t.querySelector(".bricks-mobile-menu-toggle").setAttribute("aria-expanded",!1))}})),document.addEventListener("keyup",(e=>{if("Escape"===e.key){let e=document.querySelector(".brxe-nav-menu.show-mobile-menu");if(e){e.classList.remove("show-mobile-menu");let t=e.querySelector("bricks-mobile-menu-toggle");t&&(t.setAttribute("aria-expanded",!1),setTimeout((()=>{t.focus()}),10))}}}))}function bricksGetFocusables(e){let t=e.querySelectorAll('a[href], button, input, textarea, select, details, [tabindex]:not([tabindex="-1"])');return Array.prototype.filter.call(t,(e=>"none"!==window.getComputedStyle(e).display))}const bricksPauseMediaFn=new BricksFunction({parentNode:document,selector:'video, audio, iframe[src*="youtube"], iframe[src*="vimeo"]',subscribeEvents:["bricks/popup/close"],forceReinit:!0,eachElement:e=>{if("VIDEO"!==e.tagName&&"AUDIO"!==e.tagName||!e.pause||"function"!=typeof e.pause){if("IFRAME"===e.tagName){let t=e.getAttribute("src"),r=t.includes("youtube"),i=r?{event:"command",func:"pauseVideo",args:""}:{method:"pause"};if(t.includes("vimeo")||r)return void e.contentWindow.postMessage(JSON.stringify(i),"*")}}else e.pause()},listenerHandler:e=>{if(e?.type&&"bricks/popup/close"===e.type){let t=e?.detail?.popupElement;t&&bricksPauseMediaFn.run({parentNode:t})}}});function bricksSetVh(){const e=.01*window.innerHeight;document.documentElement.style.setProperty("--bricks-vh",`${e}px`)}let bricksIsFrontend,bricksScrollTimeout,bricksTimeouts={};document.addEventListener("DOMContentLoaded",(e=>{bricksIsFrontend=document.body.classList.contains("bricks-is-frontend"),bricksMultilevelMenu(),bricksNavMenuMobile(),bricksStickyHeader(),bricksOnePageNavigation(),bricksSkipLinks(),bricksFacebookSDK(),bricksSearchToggle(),bricksPopups(),bricksSwiper(),bricksSplide(),bricksPhotoswipe(),bricksPrettify(),bricksAccordion(),bricksAnimatedTyping(),bricksAudio(),bricksCountdown(),bricksCounter(),bricksIsotope(),bricksPricingTables(),bricksVideo(),bricksLazyLoad(),bricksAnimation(),bricksPieChart(),bricksProgressBar(),bricksForm(),bricksInitQueryLoopInstances(),bricksQueryPagination(),bricksInteractions(),bricksAlertDismiss(),bricksTabs(),bricksVideoOverlayClickDetector(),bricksBackgroundVideoInit(),bricksNavNested(),bricksOffcanvas(),bricksToggle(),bricksSubmenuListeners(),bricksSubmenuPosition(250),window.addEventListener("resize",(()=>{Object.keys(bricksTimeouts).forEach((e=>{clearTimeout(bricksTimeouts[e])})),bricksIsFrontend?bricksTimeouts.bricksVh=setTimeout(bricksSetVh,250):(bricksTimeouts.bricksSwiper=setTimeout(bricksSwiper,250),bricksTimeouts.bricksSplide=setTimeout(bricksSplide,250)),bricksTimeouts.bricksSubmenuPosition=setTimeout(bricksSubmenuPosition,250),bricksTimeouts.bricksToggleDisplay=setTimeout(bricksToggleDisplay,100)})),setTimeout((()=>{(Array.isArray(window.bricksData?.interactions)?window.bricksData.interactions:[]).find((e=>"scroll"===e?.trigger))&&document.addEventListener("scroll",bricksScrollInteractions)}),100)}));
+/**
+ * Scroll into view via IntersectionObserver
+ *
+ * Fallback for IE9+ included.
+ */
+class BricksIntersect {
+	constructor(options = {}) {
+		let element = options.element || false
+		let callback = options.callback || false
+		let runOnce = options.hasOwnProperty('once') ? options.once : true
+		let trigger = options.hasOwnProperty('trigger') ? options.trigger : false
+
+		// Create Intersection Observer
+		if ('IntersectionObserver' in window) {
+			let initialObserve = true
+			let observerInstance = new IntersectionObserver(
+				(entries, observer) => {
+					entries.forEach((entry) => {
+						// Check if element is intersecting based on trigger type
+						let bricksIsIntersecting =
+							trigger === 'leaveView' ? !entry.isIntersecting : entry.isIntersecting
+
+						if (bricksIsIntersecting) {
+							// Skip initial observe if trigger is 'leaveView', as it will always be true if element is not visible
+							if (initialObserve && trigger === 'leaveView') {
+								initialObserve = false
+
+								return
+							}
+
+							// Run callback function
+							if (element && callback) {
+								callback(entry.target)
+							}
+
+							// Run only once: Stop observing element
+							if (runOnce) {
+								observer.unobserve(entry.target)
+							}
+						}
+					})
+				},
+				{
+					threshold: options.threshold || 0,
+					root: options.root || null,
+					rootMargin: options?.rootMargin || '0px'
+				}
+			)
+
+			// Start observer
+			if (element instanceof Element) {
+				observerInstance.observe(element)
+			}
+		}
+
+		// Fallback: Internet Explorer 9+
+		else {
+			let active = false
+
+			let ieIntersectObserver = () => {
+				if (active === false) {
+					active = true
+
+					if (
+						element.getBoundingClientRect().top <= window.innerHeight &&
+						element.getBoundingClientRect().bottom >= 0 &&
+						window.getComputedStyle(element).display !== 'none'
+					) {
+						// Run callback function
+						if (element && callback) {
+							callback(element)
+						}
+					}
+
+					active = false
+				}
+			}
+
+			// Init IE intersect observer fallback function
+			ieIntersectObserver()
+
+			document.addEventListener('scroll', ieIntersectObserver)
+			window.addEventListener('resize', ieIntersectObserver)
+			window.addEventListener('orientationchange', ieIntersectObserver)
+		}
+	}
+}
+
+/**
+ * Check if element is in the viewport
+ *
+ * @since 1.5
+ *
+ * @param {Element} element
+ * @returns {boolean}
+ */
+function BricksIsInViewport(element) {
+	const rect = element.getBoundingClientRect()
+	return (
+		rect.top >= 0 &&
+		rect.left >= 0 &&
+		rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+		rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+	)
+}
+
+/**
+ * Convert foundNodeList to array (as IE does not support forEach loop on NodeList)
+ *
+ * @param {Element} parentNode Node to search within.
+ * @param {array, string} selector CSS selector(s) to search for.
+ *
+ * @returns {array}
+ */
+function bricksQuerySelectorAll(parentNode, selector) {
+	// Multiple selectors
+	if (Array.isArray(selector)) {
+		let nodes = []
+
+		selector.forEach((sel) => {
+			nodes = nodes.concat(Array.prototype.slice.apply(parentNode.querySelectorAll(sel)))
+		})
+
+		return nodes
+	}
+
+	// One selector (string)
+	return Array.prototype.slice.apply(parentNode.querySelectorAll(selector))
+}
+
+/**
+ * Bricks Utilities functions
+ *
+ * @since 1.8
+ */
+
+const bricksUtils = {
+	/**
+	 * Subscribe to multiple events
+	 * @param {*} object Example: document, window, element
+	 * @param {*} eventNames Array of event names
+	 * @param {*} callback
+	 */
+	subscribeEvents: (object, eventNames, callback) => {
+		eventNames.forEach((eventName) => {
+			object.addEventListener(eventName, (event) => {
+				callback(event)
+			})
+		})
+	}
+}
+
+/**
+ * BricksFunction class
+ *
+ * @since 1.8
+ */
+class BricksFunction {
+	// Store custom functions on class init
+	_customRun = null
+	_customEachElement = null
+	_customListenerHandler = null
+	_customAddEventListeners = null
+
+	// Store default settings
+	_settings = {}
+
+	// Store initialized elements
+	_initializedElements = new Set()
+
+	constructor(options) {
+		// Default settings
+		const defaultSettings = {
+			parentNode: document,
+			selector: '',
+			subscribeEvents: ['bricks/ajax/pagination/completed', 'bricks/ajax/load_page/completed'],
+			forceReinit: false,
+			frontEndOnly: false,
+			windowVariableCheck: [],
+			additionalActions: []
+		}
+
+		// Merge options with default settings when init the class
+		Object.assign(defaultSettings, options)
+
+		// Set default settings as class properties
+		this._settings = defaultSettings
+
+		// Assign custom functions if any (these functions are overrideable on class init)
+		this._customRun = options?.run ?? null
+		this._customEachElement = options?.eachElement ?? null
+		this._customListenerHandler = options?.listenerHandler ?? null
+		this._customAddEventListeners = options?.addEventListeners ?? null
+
+		// Bind functions to class
+		this.cleanUpInitElements = this.cleanUpInitElements.bind(this)
+		this.run = this.run.bind(this)
+		this.eachElement = this.eachElement.bind(this)
+		this.listenerHandler = this.listenerHandler.bind(this)
+		this.addEventListeners = this.addEventListeners.bind(this)
+
+		document.addEventListener('DOMContentLoaded', () => {
+			// Add event listeners (only add once)
+			this.addEventListeners()
+
+			// Run additional actions: Not define as a function to avoid overriding (no functionCanRun check here)
+			if (this._settings.additionalActions.length) {
+				for (const action of this._settings.additionalActions) {
+					// Check if action is a function
+					if (typeof action === 'function') {
+						action.call(this)
+					}
+				}
+			}
+		})
+	}
+
+	/**
+	 * Helper: Based on window variable and frontEndOnly setting, check if function can run
+	 */
+	functionCanRun() {
+		// Check: frontEndOnly is set and we are not in the front end
+		if (this._settings.frontEndOnly) {
+			// Can't use bricksIsFrontend here as this function is called before 'bricksIsFrontend' is set (and this is inside a class)
+			if (!document.body.classList.contains('bricks-is-frontend')) {
+				return false
+			}
+		}
+
+		// Check: Does required window variables exist
+		if (this._settings.windowVariableCheck.length) {
+			for (const variable of this._settings.windowVariableCheck) {
+				if (!window[variable]) {
+					return false
+				}
+			}
+		}
+
+		return true
+	}
+
+	/**
+	 * Helper: Clean up initialized elements set: Remove elements that are no longer in the DOM
+	 */
+	cleanUpInitElements() {
+		// Remove elements from _initializedElements if they are no longer in the DOM
+		for (const element of this._initializedElements) {
+			if (!element.isConnected) {
+				this._initializedElements.delete(element)
+			}
+		}
+	}
+
+	/**
+	 * Run logic on each element
+	 */
+	eachElement(element) {
+		// Execute custom _customEachElement function if defined in constructor
+		if (this._customEachElement && typeof this._customEachElement === 'function') {
+			this._customEachElement.call(this, element)
+			return
+		}
+
+		// Default customEachElement function: Do nothing
+	}
+
+	/**
+	 * Entry point:
+	 * Using functionCanRun as a guard, clean up initialized elements.
+	 * By default, find all elements based on parent node and selector, and run the eachElement function on each element.
+	 */
+	run(customSettings) {
+		if (!this.functionCanRun()) {
+			return
+		}
+
+		// Must run cleanUpInitElements before custom run function
+		this.cleanUpInitElements()
+
+		// Execute custom run function if defined in constructor
+		if (this._customRun && typeof this._customRun === 'function') {
+			this._customRun.call(this, customSettings)
+			return
+		}
+
+		// Default run function
+
+		// Clone settings (to avoid modifying them)
+		const currentSettings = Object.assign({}, this._settings)
+
+		// Set custom settings to current settings
+		if (customSettings) {
+			Object.keys(customSettings).forEach((key) => {
+				if (currentSettings.hasOwnProperty(key)) {
+					currentSettings[key] = customSettings[key]
+				}
+			})
+		}
+
+		const elementInstances = bricksQuerySelectorAll(
+			currentSettings.parentNode,
+			currentSettings.selector
+		)
+
+		// Exit if no element found
+		if (!elementInstances.length) {
+			return
+		}
+
+		elementInstances.forEach((element, index) => {
+			// Store the element in the _initializedElements set
+			// forceReinit, ignore the set and run the eachElement function
+			if (currentSettings.forceReinit) {
+				// If forceReinit is a callback, run it
+				const reinit =
+					typeof currentSettings.forceReinit === 'function'
+						? currentSettings.forceReinit.call(this, element, index)
+						: currentSettings.forceReinit
+
+				if (reinit) {
+					this.eachElement(element, index)
+					// Continue to next element
+					return
+				}
+			}
+
+			// Check if the element is already initialized
+			if (!this._initializedElements.has(element)) {
+				// Add element to initialized elements set
+				this._initializedElements.add(element)
+
+				// Run eachElement function
+				this.eachElement(element, index)
+			} else {
+				// Maybe the element inside the set is not the same as the current element, so we need to check
+				// Get the element from the set
+				const elementFromSet = Array.from(this._initializedElements).find((el) => el === element)
+
+				// If it is not connected, remove it from the set and run the eachElement function
+				if (!elementFromSet.isConnected) {
+					this._initializedElements.delete(elementFromSet)
+					// Add element to initialized elements set
+					this._initializedElements.add(element, index)
+					this.eachElement(element, index)
+				}
+			}
+		})
+	}
+
+	/**
+	 * Once subscribed to events, run the listenerHandler function
+	 * By default, we will change the parent node based on the event type, and execute the run function again
+	 */
+	listenerHandler(event) {
+		// Execute custom listenerHandler function if defined in constructor
+		if (this._customListenerHandler && typeof this._customListenerHandler === 'function') {
+			this._customListenerHandler.call(this, event)
+			return
+		}
+
+		// Default listenerHandler function
+		if (event?.type) {
+			switch (event.type) {
+				// Can add more cases here if needed for different events
+				// Maybe can change the parent node or selector based on the event type
+
+				default:
+					this.run()
+					break
+			}
+		}
+	}
+
+	/**
+	 * By default, subscribe to events defined in the settings, and set listenerHandler as the callback
+	 * Using functionCanRun as a guard
+	 */
+	addEventListeners() {
+		if (!this.functionCanRun()) {
+			return
+		}
+
+		// Execute custom addEventListeners function if defined in constructor
+		if (this._customAddEventListeners && typeof this._customAddEventListeners === 'function') {
+			this._customAddEventListeners.call(this)
+			return
+		}
+
+		// Default addEventListeners function
+		if (this._settings.subscribeEvents.length) {
+			bricksUtils.subscribeEvents(document, this._settings.subscribeEvents, this.listenerHandler)
+		}
+	}
+}
+
+/**
+ * Frontend: Lazy load when target element enters viewport
+ *
+ * Video lazy load via bricksBackgroundVideoInit()
+ *
+ * https://developers.google.com/web/fundamentals/performance/lazy-loading-guidance/images-and-video/
+ */
+const bricksLazyLoadFn = new BricksFunction({
+	parentNode: document,
+	selector: '.bricks-lazy-hidden',
+	eachElement: (el) => {
+		// Lazy Load function
+		let lazyLoad = (el) => {
+			// Replace element attributes by setting 'src' with 'data-src'
+
+			// Show base64 preloader SVG
+			el.classList.add('wait')
+
+			// Image
+			if (el.dataset.src) {
+				el.src = el.dataset.src
+				delete el.dataset.src
+			}
+
+			// Image (data-sizes @since 1.5.1 due to W3 Validator error)
+			if (el.dataset.sizes) {
+				el.sizes = el.dataset.sizes
+				delete el.dataset.sizes
+			}
+
+			if (el.dataset.srcset) {
+				el.srcset = el.dataset.srcset
+				delete el.dataset.srcset
+			}
+
+			// Background image (e.g. slider)
+			if (el.dataset.style) {
+				let style = el.getAttribute('style') || ''
+				style += el.dataset.style
+				el.setAttribute('style', style)
+
+				// Keep 'data-style' attribute for when splide.js re-initializes on window resize, etc. (@since 1.5)
+				if (!el.classList.contains('splide__slide')) {
+					delete el.dataset.style
+				}
+			}
+
+			el.classList.remove('bricks-lazy-hidden')
+			el.classList.remove('wait')
+
+			if (el.classList.contains('bricks-lazy-load-isotope')) {
+				bricksIsotope()
+			}
+		}
+
+		// Lazy load offet: 300px default (customisable via Bricks setting 'offsetLazyLoad')
+		const rootMargin = window.bricksData.offsetLazyLoad || 300
+
+		new BricksIntersect({
+			element: el,
+			callback: (el) => {
+				lazyLoad(el)
+			},
+			rootMargin: `${rootMargin}px`
+		})
+	},
+	listenerHandler: (event) => {
+		// No need to change parentNode, but need some delay to allow for new elements to be added to the DOM (e.g. swiper, carousel, testimonial, etc.)
+		setTimeout(() => {
+			bricksLazyLoadFn.run()
+		}, 100)
+	}
+})
+
+function bricksLazyLoad() {
+	bricksLazyLoadFn.run()
+}
+
+/**
+ * Animate.css element animation
+ */
+const bricksAnimationFn = new BricksFunction({
+	parentNode: document,
+	selector: '.brx-animated',
+	removeAfterMs: 3000, // removeAfterMs not used anymore (@since 1.8)
+	eachElement: (el) => {
+		new BricksIntersect({
+			element: el,
+			callback: (el) => {
+				let animation = el.dataset.animation
+				if (animation) {
+					// Start animation
+					el.classList.add(`brx-animate-${animation}`)
+
+					// Remove attribute to prevent hiding element after "in" animations (see _animate.scss)
+					el.removeAttribute('data-animation')
+
+					// Remove animation class on 'animationend' event instead of setTimeout below (@since 1.8)
+					el.addEventListener(
+						'animationend',
+						() => {
+							el.classList.remove(`brx-animate-${animation}`)
+
+							// If this is .brx-popup-content, and animation includes 'Out', execute bricksClosePopup() after animation
+							if (el.classList.contains('brx-popup-content') && animation.includes('Out')) {
+								const popupNode = el.closest('.brx-popup')
+								if (popupNode) {
+									bricksClosePopup(popupNode)
+								}
+							}
+
+							// animationId = data-interaction-id
+							const animationId = el.dataset.interactionId
+
+							if (animationId) {
+								// @since 1.8.4 - Trigger custom event for bricks/animation/end/{animationId}, provide element
+								const bricksAnimationEvent = new CustomEvent(
+									`bricks/animation/end/${animationId}`,
+									{ detail: { el } }
+								)
+								document.dispatchEvent(bricksAnimationEvent)
+							}
+						},
+						{ once: true }
+					)
+				}
+			}
+		})
+	},
+	run: (customSettings) => {
+		const self = bricksAnimationFn
+
+		// Use customSettings.elementsToAnimate if defined
+		const elementsToAnimate =
+			customSettings?.elementsToAnimate ||
+			bricksQuerySelectorAll(self._settings.parentNode, self._settings.selector)
+
+		// Use customSettings.removeAfterMs if defined
+		self.removeAfterMs = customSettings?.removeAfterMs || self.removeAfterMs
+
+		elementsToAnimate.forEach((el) => {
+			self.eachElement(el)
+		})
+	}
+})
+
+function bricksAnimation() {
+	bricksAnimationFn.run()
+}
+
+/**
+ * Populate the queries instances variable to be used for infinite scroll and load more
+ *
+ * @since 1.6
+ */
+const bricksInitQueryLoopInstancesFn = new BricksFunction({
+	parentNode: document,
+	selector: '.brx-query-trail',
+	subscribeEvents: ['bricks/ajax/load_page/completed'],
+	eachElement: (el) => {
+		const observerMargin = el.dataset?.observerMargin || '1px' // 0px doesn't trigger properly every time
+		const queryElementId = el.dataset.queryElementId
+		const queryVars = el.dataset.queryVars
+		const isPostsElement = el?.classList.contains('bricks-isotope-sizer')
+		const isInfiniteScroll = el?.classList.contains('brx-infinite-scroll')
+
+		window.bricksData.queryLoopInstances[queryElementId] = {
+			page: el.dataset.page,
+			maxPages: el.dataset.maxPages,
+			queryVars,
+			observerMargin,
+			infiniteScroll: isInfiniteScroll,
+			isPostsElement: isPostsElement
+		}
+
+		// If posts element, the query trail is the isotope sizer; For the Query Loop the trail is the last loop element
+		// @since 1.7.1 - exclude popup elements
+		let queryTrail = isPostsElement
+			? el.previousElementSibling
+			: Array.from(document.querySelectorAll(`.brxe-${queryElementId}:not(.brx-popup)`)).pop()
+
+		// Remove the trail in case it is not a Posts element
+		if (!isPostsElement) {
+			el.remove()
+		}
+
+		if (queryTrail && isInfiniteScroll) {
+			queryTrail.dataset.queryElementId = queryElementId
+
+			new BricksIntersect({
+				element: queryTrail,
+				callback: (el) => bricksQueryLoadPage(el),
+				once: 1,
+				rootMargin: observerMargin
+			})
+		}
+	}
+})
+
+function bricksInitQueryLoopInstances() {
+	bricksInitQueryLoopInstancesFn.run()
+}
+
+/**
+ * Bricks query load page elements
+ *
+ * @since 1.5
+ */
+function bricksQueryLoadPage(el) {
+	return new Promise(function (resolve, reject) {
+		const queryElementId = el.dataset.queryElementId
+
+		const queryInfo = window.bricksData.queryLoopInstances?.[queryElementId]
+
+		if (!queryInfo || queryInfo?.isLoading) {
+			return
+		}
+
+		let page = parseInt(queryInfo.page || 1) + 1
+		const maxPages = parseInt(queryInfo.maxPages || 1)
+
+		if (page > maxPages) {
+			delete window.bricksData.queryLoopInstances[queryElementId]
+			resolve({ page, maxPages })
+			return
+		}
+
+		// Set isLoading flag
+		window.bricksData.queryLoopInstances[queryElementId].isLoading = 1
+
+		let queryData = {
+			postId: window.bricksData.postId,
+			queryElementId: queryElementId,
+			queryVars: queryInfo.queryVars,
+			page: page,
+			nonce: window.bricksData.nonce
+		}
+
+		const url = window.bricksData.restApiUrl.concat('load_query_page')
+
+		let xhr = new XMLHttpRequest()
+		xhr.open('POST', url, true)
+		xhr.setRequestHeader('Content-Type', 'application/json; charset=UTF-8')
+		xhr.setRequestHeader('X-WP-Nonce', window.bricksData.wpRestNonce)
+
+		// Successful response
+		xhr.onreadystatechange = function () {
+			if (xhr.readyState === XMLHttpRequest.DONE) {
+				var status = xhr.status
+
+				// Success
+				if (status === 0 || (status >= 200 && status < 400)) {
+					let res = JSON.parse(xhr.response)
+
+					const html = res?.html || false
+					const styles = res?.styles || false
+
+					// Popups HTML (@since 1.7.1)
+					const popups = res?.popups || false
+
+					if (html) {
+						el.insertAdjacentHTML('afterend', html)
+					}
+
+					if (popups) {
+						// Add popups HTML at the end of the body (@since 1.7.1)
+						document.body.insertAdjacentHTML('beforeend', popups)
+					}
+
+					if (styles) {
+						// Add the page styles at the end of body
+						document.body.insertAdjacentHTML('beforeend', styles)
+					}
+
+					// Update Page on query info
+					window.bricksData.queryLoopInstances[queryElementId].page = page
+				}
+
+				// Reset isLoading flag
+				window.bricksData.queryLoopInstances[queryElementId].isLoading = 0
+
+				resolve({ page, maxPages })
+
+				setTimeout(() => {
+					// Set the new query trail (Posts element)
+					if (queryInfo.isPostsElement) {
+						newQueryTrail =
+							el.parentNode.querySelector('.bricks-isotope-sizer').previousElementSibling
+					}
+
+					// Query Loop, @since 1.7.1 - exclude popup elements from the query trail
+					else {
+						newQueryTrail = Array.from(
+							document.querySelectorAll(`.brxe-${queryElementId}:not(.brx-popup)`)
+						).pop()
+					}
+
+					// Emit event
+					document.dispatchEvent(
+						new CustomEvent('bricks/ajax/load_page/completed', {
+							detail: { queryTrailElement: newQueryTrail, queryId: queryElementId }
+						})
+					)
+
+					// Is infinite scroll?
+					if (queryInfo.infiniteScroll) {
+						newQueryTrail.dataset.queryElementId = queryElementId
+
+						// Check if the query trail is still visible, if yes, triggers the next page
+						if (BricksIsInViewport(newQueryTrail)) {
+							bricksQueryLoadPage(newQueryTrail)
+						}
+
+						// Add a new observer
+						else {
+							new BricksIntersect({
+								element: newQueryTrail,
+								callback: (el) => bricksQueryLoadPage(el),
+								once: true,
+								rootMargin: queryInfo.observerMargin
+							})
+						}
+					}
+				}, 250)
+			}
+		}
+
+		xhr.send(JSON.stringify(queryData))
+	})
+}
+
+/**
+ * Bricks query pagination elements (AJAX)
+ *
+ * @since 1.5
+ */
+const bricksQueryPaginationFn = new BricksFunction({
+	parentNode: document,
+	selector: '.brx-ajax-pagination a',
+	subscribeEvents: ['bricks/ajax/pagination/completed'],
+	eachElement: (el) => {
+		if (!el.dataset?.ajaxPagination) {
+			el.dataset.ajaxPagination = 1
+			el.addEventListener('click', function (e) {
+				const targetEl = e.currentTarget
+				const href = targetEl.getAttribute('href')
+				const targetPaginationEl = targetEl.closest('.brx-ajax-pagination')
+				const queryId = targetPaginationEl?.dataset?.queryElementId
+
+				// Check if there is any element
+				const firstLoopElement = document.querySelector(`.brxe-${queryId}`)
+
+				if (!firstLoopElement) {
+					return
+				}
+
+				e.preventDefault()
+
+				let xhr = new XMLHttpRequest()
+				xhr.open('GET', href, true)
+				xhr.responseType = 'document'
+
+				xhr.onload = function () {
+					if (this.readyState === XMLHttpRequest.DONE) {
+						var status = this.status
+
+						// Success
+						if (status === 0 || (status >= 200 && status < 400)) {
+							const response = this.responseXML
+
+							const loopWrapper = firstLoopElement.parentNode
+
+							// Add a marker in the DOM so we know where to add the new looped elements
+							const listPlaceholder = document.createElement('div')
+							listPlaceholder.style.display = 'none'
+
+							// Insert the list placeholder before the first loop element
+							firstLoopElement.insertAdjacentElement('beforebegin', listPlaceholder)
+
+							// Remove old page elements, @since 1.7.1 - exclude popup elements
+							const oldLoopNodes = loopWrapper.querySelectorAll(`.brxe-${queryId}:not(.brx-popup)`)
+							oldLoopNodes.forEach((el) => el.remove())
+
+							// Add new page elements, @since 1.7.1 - exclude popup elements
+							const newLoopNodes = response.querySelectorAll(`.brxe-${queryId}:not(.brx-popup)`)
+							newLoopNodes.forEach((el) => listPlaceholder.insertAdjacentElement('beforebegin', el))
+
+							// Remove marker
+							listPlaceholder.remove()
+
+							// @since 1.7.1 - Remove old query looping popup elements
+							const oldLoopPopupNodes = document.querySelectorAll(
+								`.brx-popup[data-popup-loop="${queryId}"]`
+							)
+							oldLoopPopupNodes.forEach((el) => el.remove())
+
+							// @since 1.7.1 - Add new query looping popup elements before body end
+							const newLoopPopupNodes = response.querySelectorAll(
+								`.brx-popup[data-popup-loop="${queryId}"]`
+							)
+
+							newLoopPopupNodes.forEach((el) =>
+								document.body.insertAdjacentElement('beforeend', el)
+							)
+
+							// Replace #bricks-frontend-inline-inline-css - support looping dynamic styles (@since 1.8)
+							const newInlineStyle = response.querySelector('#bricks-frontend-inline-inline-css')
+							const oldInlineStyle = document.querySelector('#bricks-frontend-inline-inline-css')
+							if (oldInlineStyle && newInlineStyle) {
+								oldInlineStyle.replaceWith(newInlineStyle)
+							}
+
+							// Replace #bricks-dynamic-data-inline-css - support looping dynamic styles (@since 1.8)
+							// Use for AJAX pagination
+							const newDynamicStyle = response.querySelector('#bricks-dynamic-data-inline-css')
+							const oldDynamicStyle = document.querySelector('#bricks-dynamic-data-inline-css')
+							if (oldDynamicStyle && newDynamicStyle) {
+								oldDynamicStyle.replaceWith(newDynamicStyle)
+							}
+
+							// Replace the pagination element
+							const sourcePagination = response.querySelector(
+								`.brx-ajax-pagination[data-query-element-id="${queryId}"]`
+							)
+							targetPaginationEl.replaceWith(sourcePagination)
+
+							// @since 1.8 - Emit event
+							document.dispatchEvent(
+								new CustomEvent('bricks/ajax/pagination/completed', { detail: { queryId } })
+							)
+
+							// Update the history
+							window.history.pushState({}, '', href)
+						}
+					}
+				}
+
+				// targetQueryTrailEl.classList.add('is-loading')
+
+				xhr.send()
+			})
+		}
+	}
+})
+
+function bricksQueryPagination() {
+	bricksQueryPaginationFn.run()
+}
+
+function bricksStickyHeader() {
+	let stickHeaderEl = document.querySelector('#brx-header.sticky')
+
+	if (!stickHeaderEl) {
+		return
+	}
+
+	let logo = document.querySelector('.bricks-site-logo')
+	let logoDefault
+	let logoInverse
+	let lastScrolled = -1 // -1 to make sure that the first time bricksStickyHeaderOnScroll() runs it doesn't slide up
+	let headerSlideUpAfter = stickHeaderEl.hasAttribute('data-slide-up-after')
+		? stickHeaderEl.getAttribute('data-slide-up-after')
+		: 0
+
+	if (logo) {
+		logoDefault = logo.getAttribute('data-bricks-logo')
+		logoInverse = logo.getAttribute('data-bricks-logo-inverse')
+	}
+
+	const bricksStickyHeaderOnScroll = () => {
+		let scrolled = window.pageYOffset
+
+		if (scrolled > 0) {
+			stickHeaderEl.classList.add('scrolling')
+
+			if (logo && logoInverse && logo.src !== logoInverse) {
+				logo.src = logoInverse
+				logo.srcset = ''
+			}
+		} else {
+			stickHeaderEl.classList.remove('scrolling')
+
+			if (logo && logoDefault && logo.src !== logoDefault) {
+				logo.src = logoDefault
+			}
+		}
+
+		// Slide up
+		if (headerSlideUpAfter) {
+			if (scrolled > lastScrolled && lastScrolled >= 0) {
+				// Scolling down
+				if (scrolled > headerSlideUpAfter) {
+					stickHeaderEl.classList.add('slide-up')
+				}
+			} else {
+				// Scrolling up
+				stickHeaderEl.classList.remove('slide-up')
+			}
+		}
+
+		lastScrolled = scrolled
+	}
+
+	// Set sticky header logo inverse & slide up
+	window.addEventListener('scroll', bricksStickyHeaderOnScroll)
+
+	// Run it once on page load to set the .scrolling class if page is aready scrolled down
+	bricksStickyHeaderOnScroll()
+}
+
+/**
+ * Frontend: One Page Navigation (in builder via dynamic Vue component)
+ */
+function bricksOnePageNavigation() {
+	let onePageNavigationWrapper = document.getElementById('bricks-one-page-navigation')
+
+	if (!bricksIsFrontend || !onePageNavigationWrapper) {
+		return
+	}
+
+	let rootElements = bricksQuerySelectorAll(document, '#brx-content > *')
+	let elementIds = []
+	let elementId = ''
+	let onePageLink = ''
+	let onePageItem = ''
+
+	if (!rootElements) {
+		return
+	}
+
+	rootElements.forEach((element) => {
+		elementId = element.getAttribute('id')
+
+		if (!elementId) {
+			return
+		}
+
+		elementIds.push(elementId)
+		onePageItem = document.createElement('li')
+		onePageLink = document.createElement('a')
+		onePageLink.classList.add(`bricks-one-page-${elementId}`)
+		onePageLink.setAttribute('href', `#${elementId}`)
+
+		onePageItem.appendChild(onePageLink)
+		onePageNavigationWrapper.appendChild(onePageItem)
+	})
+
+	function onePageScroll() {
+		let scrolled = window.scrollY
+
+		elementIds.forEach((elementId) => {
+			let element = document.getElementById(elementId)
+			let elementTop = element.offsetTop
+			let elementBottom = elementTop + element.offsetHeight
+
+			if (scrolled >= elementTop - 1 && scrolled < elementBottom - 1) {
+				document.querySelector(`.bricks-one-page-${elementId}`).classList.add('active')
+			} else {
+				document.querySelector(`.bricks-one-page-${elementId}`).classList.remove('active')
+			}
+		})
+	}
+
+	// Add load, resize, scroll event listeners
+	window.addEventListener('load', onePageScroll)
+	window.addEventListener('resize', onePageScroll)
+	document.addEventListener('scroll', onePageScroll)
+}
+
+/**
+ * Search element: Toggle overlay search
+ */
+function bricksSearchToggle() {
+	let searchElements = bricksQuerySelectorAll(document, '.brxe-search')
+
+	searchElements.forEach((searchElement) => {
+		let toggle = searchElement.querySelector('.toggle')
+		let overlay = searchElement.querySelector('.bricks-search-overlay')
+
+		if (!toggle || !overlay) {
+			return
+		}
+
+		let searchInputOrIcon = overlay.previousElementSibling
+
+		document.addEventListener('keyup', (e) => {
+			if (e.key === 'Escape') {
+				// Close search overlay on ESC key if visible (offsetParent not working on fixed positioned node)
+				let overlayStyles = window.getComputedStyle(overlay)
+
+				if (overlayStyles.visibility === 'visible') {
+					overlay.classList.remove('show')
+					searchInputOrIcon.focus()
+					searchInputOrIcon.setAttribute('aria-expanded', false)
+				}
+			}
+		})
+
+		toggle.addEventListener('click', () => {
+			overlay.classList.toggle('show')
+
+			toggle.setAttribute('aria-expanded', toggle.getAttribute('aria-expanded') === 'false')
+
+			setTimeout(() => {
+				searchElement.querySelector('input[type=search]').focus()
+			}, 200)
+		})
+
+		overlay.querySelector('.close').addEventListener('click', () => {
+			overlay.classList.remove('show')
+			searchInputOrIcon.focus()
+			searchInputOrIcon.setAttribute('aria-expanded', false)
+		})
+	})
+}
+
+/**
+ * Dismiss alert element
+ */
+const bricksAlertDismissFn = new BricksFunction({
+	parentNode: document,
+	selector: '.brxe-alert svg',
+	subscribeEvents: ['bricks/ajax/pagination/completed', 'bricks/ajax/load_page/completed'],
+	eachElement: (dismissable) => {
+		dismissable.addEventListener('click', () => {
+			let alertEl = dismissable.closest('.brxe-alert')
+			alertEl.remove()
+		})
+	}
+})
+
+function bricksAlertDismiss() {
+	bricksAlertDismissFn.run()
+}
+
+/**
+ * Element: Tabs
+ */
+const bricksTabsFn = new BricksFunction({
+	parentNode: document,
+	selector: '.brxe-tabs, .brxe-tabs-nested',
+	subscribeEvents: ['bricks/ajax/pagination/completed', 'bricks/ajax/load_page/completed'],
+	eachElement: (tabElement) => {
+		let titles = bricksQuerySelectorAll(tabElement, '.tab-title')
+
+		titles.forEach((title, index) => {
+			// Set first title to open
+			if (index === 0) {
+				title.classList.add('brx-open')
+			}
+
+			let panes = bricksQuerySelectorAll(tabElement, '.tab-pane')
+
+			// Set first content to open
+			panes.forEach((content, index) => {
+				if (index === 0) {
+					content.classList.add('brx-open')
+				}
+			})
+
+			// Create tab title click listener
+			title.addEventListener('click', () => {
+				titles.forEach((t, i) => {
+					// Add .brx-open to tab title
+					if (i === index) {
+						title.classList.add('brx-open')
+					}
+
+					// Remove .brx-open from other title
+					else {
+						t.classList.remove('brx-open')
+					}
+				})
+
+				panes.forEach((pane, i) => {
+					// Add .brx-open to tab content
+					if (i === index) {
+						pane.classList.add('brx-open')
+					}
+
+					// Remove .brx-open from other conten
+					else {
+						pane.classList.remove('brx-open')
+					}
+				})
+			})
+		})
+	}
+})
+
+function bricksTabs() {
+	bricksTabsFn.run()
+}
+
+/**
+ * Element - Video: Play video on overlay, icon click or thumbnail preview click
+ */
+const bricksVideoOverlayClickDetectorFn = new BricksFunction({
+	parentNode: document,
+	selector: '.bricks-video-overlay, .bricks-video-overlay-icon, .bricks-video-preview-image',
+	subscribeEvents: ['bricks/ajax/pagination/completed', 'bricks/ajax/load_page/completed'],
+	frontEndOnly: true,
+	eachElement: (overlay) => {
+		overlay.addEventListener('click', (e) => {
+			let videoWrapper = e.target.closest('.brxe-video')
+
+			if (!videoWrapper) {
+				return
+			}
+
+			// STEP: Convert thumbnail preview into iframe
+
+			// Get thumbnail preview element
+			const thumbnailPreviewElement = videoWrapper.querySelector('.bricks-video-preview-image')
+
+			if (thumbnailPreviewElement) {
+				// Convert thumbnail preview into iframe together with all attributes (youtube/vimeo)
+				const iframeElement = document.createElement('iframe')
+				const attributes = [...thumbnailPreviewElement.attributes]
+				attributes.forEach((attr) => {
+					// Skip the class attribute and style attribute
+					if (attr.name === 'class' || attr.name === 'style') {
+						return
+					}
+
+					// Change the data-src attribute to src
+					if (attr.name === 'data-iframe-src') {
+						iframeElement.setAttribute('src', attr.value)
+						return
+					}
+
+					// Add all other attributes to the iframe element
+					iframeElement.setAttribute(attr.name, attr.value)
+				})
+
+				thumbnailPreviewElement.replaceWith(iframeElement)
+			}
+
+			// STEP: Start iframe/video
+
+			// Get iframe element (video type: YouTube, Vimeo)
+			const iframeElement = videoWrapper.querySelector('iframe')
+
+			if (iframeElement && iframeElement.getAttribute('src')) {
+				iframeElement.src += '&autoplay=1'
+			}
+
+			// Get <video> element (video type: media, file URL)
+			const videoElement = videoWrapper.querySelector('video')
+
+			if (videoElement) {
+				videoElement.play()
+			}
+		})
+	}
+})
+function bricksVideoOverlayClickDetector() {
+	bricksVideoOverlayClickDetectorFn.run()
+}
+
+/**
+ * Background video (supported: YouTube and file URLs)
+ */
+const bricksBackgroundVideoInitFn = new BricksFunction({
+	parentNode: document,
+	selector: '.bricks-background-video-wrapper',
+	subscribeEvents: ['bricks/ajax/pagination/completed', 'bricks/ajax/load_page/completed'],
+	forceReinit: (element, index) => {
+		// Builder: Force reinit as the URL parameter is not yet set (@since 1.8)
+		return !bricksIsFrontend
+	},
+	eachElement: (videoWrapper) => {
+		if (videoWrapper.classList.contains('loaded') || videoWrapper.querySelector('iframe')) {
+			return
+		}
+
+		let videoUrl = videoWrapper.getAttribute('data-background-video-url')
+		let videoScale = videoWrapper.getAttribute('data-background-video-scale')
+
+		let startTime = videoWrapper.getAttribute('data-background-video-start')
+		let endTime = videoWrapper.getAttribute('data-background-video-end')
+		let videoLoop = videoWrapper.getAttribute('data-background-video-loop')
+
+		let playOnMobile = videoWrapper.getAttribute('data-background-video-play-on-mobile')
+		let mobileBreakpoint = parseInt(
+			videoWrapper.getAttribute('data-background-video-mobile-breakpoint')
+		)
+
+		/**
+		 * Disable video on mobile if playOnMobile is not set
+		 *
+		 * Mobile breakpoint: Mobile portrait (478px)
+		 *
+		 * NOTE: Provide setting for mobile breakpoint?
+		 *
+		 * @since 1.8.4
+		 */
+		if (!playOnMobile && window.innerWidth < mobileBreakpoint) {
+			return
+		}
+
+		if (!videoUrl) {
+			return
+		}
+
+		let isIframe = false // YouTube and Vimeo iframe embed
+		let videoId
+
+		let videoAspectRatio = videoWrapper.getAttribute('data-background-video-ratio') || '16:9'
+		let videoAspectRatioX = parseInt(videoAspectRatio.split(':')[0] || 16)
+		let videoAspectRatioY = parseInt(videoAspectRatio.split(':')[1] || 9)
+
+		/**
+		 * YouTube embed
+		 * NOTE: Error "Failed to execute 'postMessage' on 'DOMWindow'" when origin is not HTTPS
+		 * Adding 'host' or 'origin' do not fix this error.
+		 */
+		if (videoUrl.indexOf('youtube.com') !== -1) {
+			isIframe = true
+
+			if (videoUrl.indexOf('watch?v=') !== -1) {
+				let videoIdIndex = videoUrl.lastIndexOf('=')
+				videoId = videoUrl.slice(videoIdIndex + 1)
+			} else if (videoUrl.indexOf('embed/') !== -1) {
+				let videoIdIndex = videoUrl.lastIndexOf('/')
+				videoId = videoUrl.slice(videoIdIndex + 1)
+			}
+
+			// Transform YouTube video URL into valid embed URL
+			videoUrl = videoUrl.replace('watch?v=', 'embed/')
+		}
+
+		/**
+		 * Vimeo embed
+		 *
+		 * https://help.vimeo.com/hc/en-us/articles/360001494447-Using-Player-Parameters
+		 */
+
+		if (videoUrl.indexOf('vimeo.com') !== -1) {
+			isIframe = true
+
+			videoUrl += '?background=1'
+			videoUrl += '&byline=0'
+			videoUrl += '&portrait=0'
+			videoUrl += '&title=0'
+
+			// Transform Vimeo video URL into valid embed URL
+			if (videoUrl.indexOf('player.vimeo.com/video') === -1) {
+				videoUrl = videoUrl.replace('vimeo.com', 'player.vimeo.com/video')
+			}
+		}
+
+		let videoElement
+
+		if (isIframe) {
+			// Check if YouTube API script is already added
+			if (!document.querySelector('script[src="https://www.youtube.com/iframe_api"]')) {
+				// Create script tag for YouTube IFrame API
+				let tag = document.createElement('script')
+
+				// Set source to YouTube IFrame API URL
+				tag.src = 'https://www.youtube.com/iframe_api'
+
+				// Find the first script tag on your page
+				let firstScriptTag = document.getElementsByTagName('script')[0]
+
+				// Insert new script tag before the first script tag
+				firstScriptTag.parentNode.insertBefore(tag, firstScriptTag)
+			}
+
+			videoElement = document.createElement('div')
+
+			// Remove <video> element (present in the DOM due to Chrome compatibility)
+			videoWrapper.removeChild(videoWrapper.querySelector('video'))
+
+			// Append videoElement to the videoWrapper before initializing the player
+			videoWrapper.appendChild(videoElement)
+
+			// Wait for YouTube IFrame Player API to load
+			let playerCheckInterval = setInterval(function () {
+				if (window.YT && YT.Player) {
+					clearInterval(playerCheckInterval)
+
+					let player = new YT.Player(videoElement, {
+						width: '640',
+						height: '360',
+						videoId: videoId,
+						playerVars: {
+							autoplay: 1,
+							controls: 0,
+							start: startTime || undefined,
+							end: endTime || undefined,
+							mute: 1,
+							rel: 0,
+							showinfo: 0,
+							modestbranding: 1,
+							cc_load_policy: 0,
+							iv_load_policy: 3,
+							autohide: 0,
+							loop: startTime || endTime ? 0 : videoLoop, // Disable native loop if startTime or endTime is set
+							playlist: videoId
+						},
+						events: {
+							onReady: function (event) {
+								// If videoLoop is enabled and startTime or endTime is set
+								if (videoLoop && (startTime || endTime)) {
+									setInterval(function () {
+										// If the player is not buffering or unstarted
+										if (
+											[YT.PlayerState.BUFFERING, YT.PlayerState.UNSTARTED].indexOf(
+												player.getPlayerState()
+											) === -1
+										) {
+											// Prepare the flag to determine if the video needs to be restarted
+											let shouldRestart = false
+
+											if (endTime) {
+												// If the current time is past the end time
+												shouldRestart = player.getCurrentTime() >= endTime
+											}
+
+											// If the video needs to be restarted, seek to the start time
+											if (shouldRestart) {
+												player.seekTo(startTime || 0, true)
+											}
+										}
+									}, 100)
+								}
+							},
+							onStateChange: function (event) {
+								if (videoLoop && !endTime && startTime) {
+									if (event.data === YT.PlayerState.ENDED) {
+										player.seekTo(startTime || 0, true)
+									}
+								}
+							}
+						}
+					})
+				}
+			}, 100)
+		} else {
+			// Get the video element (present in the DOM due to Chrome compatibility)
+			videoElement = videoWrapper.querySelector('video')
+		}
+
+		if (videoScale) {
+			videoElement.style.transform = `translate(-50%, -50%) scale(${videoScale})`
+		}
+
+		// Frontend: Lazy load video
+		if (bricksIsFrontend) {
+			if (videoWrapper.classList.contains('bricks-lazy-video')) {
+				new BricksIntersect({
+					element: videoWrapper,
+					callback: (el) => {
+						el.classList.remove('bricks-lazy-video')
+
+						if (isIframe) {
+							el.appendChild(videoElement)
+						} else {
+							videoElement.src = videoUrl
+						}
+					}
+				})
+			}
+		} else {
+			if (isIframe) {
+				videoWrapper.appendChild(videoElement)
+			} else {
+				videoElement.src = videoUrl
+			}
+		}
+
+		videoWrapper.classList.add('loaded')
+
+		let resizeObserver = new ResizeObserver((entries) => {
+			for (let entry of entries) {
+				let videoWidth
+
+				if (entry.contentBoxSize) {
+					// Firefox implements `contentBoxSize` as a single content rect, rather than an array
+					let contentBoxSize = Array.isArray(entry.contentBoxSize)
+						? entry.contentBoxSize[0]
+						: entry.contentBoxSize
+					videoWidth = contentBoxSize.inlineSize
+				} else {
+					videoWidth = entry.contentRect.width
+				}
+
+				let elementHeight = videoWrapper.clientHeight
+
+				let videoHeight = (videoWidth * videoAspectRatioY) / videoAspectRatioX
+
+				if (videoHeight < elementHeight) {
+					videoHeight = elementHeight
+					videoWidth = (elementHeight * videoAspectRatioX) / videoAspectRatioY
+				}
+
+				videoElement.style.width = `${videoWidth}px`
+				videoElement.style.height = `${videoHeight}px`
+			}
+		})
+
+		resizeObserver.observe(videoWrapper)
+	}
+})
+
+function bricksBackgroundVideoInit() {
+	bricksBackgroundVideoInitFn.run()
+}
+
+/**
+ * Photoswipe 5 lightbox
+ *
+ * For accessibility reasons the <a> is required by default: https://photoswipe.com/getting-started/#required-html-markup
+ * If you want to use different markup there is a domItemData filter: https://photoswipe.com/data-sources/#custom-html-markup
+ *
+ * @since 1.8
+ */
+const bricksPhotoswipeFn = new BricksFunction({
+	parentNode: document,
+	selector: '.bricks-lightbox',
+	windowVariableCheck: ['PhotoSwipeLightbox'],
+	eachElement: (lightboxElement) => {
+		let gallery = lightboxElement
+		let children = lightboxElement.tagName === 'A' ? '' : 'a'
+		let lightboxId = lightboxElement.getAttribute('data-pswp-id')
+
+		// Can be set to 'none' to avoid jumpy animation between different aspect ratios (@since 1.8.4)
+		let animationType = lightboxElement.getAttribute('data-animation-type') || 'zoom'
+
+		// Get all lightbox elements with the same ID (@since 1.7.2)
+		if (lightboxId) {
+			children = bricksQuerySelectorAll(document, `[data-pswp-id="${lightboxId}"]`)
+		}
+
+		// https://photoswipe.com/styling/
+		let closeSVG =
+			'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>'
+
+		let options = {
+			mainClass: 'brx', // To distinguish from Photoswipe 4 (used on single product page by Woo core)
+			gallery: gallery,
+			counter: !gallery.classList.contains('brxe-carousel'), // Hide wrong carousel count for carousel loop (due to swiperJS-generated slide duplicates)
+			children: children,
+			pswpModule: PhotoSwipe5,
+			closeSVG: closeSVG,
+			showHideAnimationType: animationType
+		}
+
+		const lightbox = new PhotoSwipeLightbox(options)
+
+		/**
+		 * Lightbox video (not supported in Photoswipe natively)
+		 *
+		 * Supported units: px, %, vw, vh
+		 *
+		 * Generate HTML for YouTube, Vimeo, and <video> embeds.
+		 *
+		 * https://photoswipe.com/data-sources/
+		 */
+		lightbox.on('itemData', (e) => {
+			let photoswipeInitialised = document.querySelector('.pswp__container')
+			let videoUrl = lightboxElement.getAttribute('data-pswp-video-url')
+			let width = lightboxElement.getAttribute('data-pswp-width')
+			let height = lightboxElement.getAttribute('data-pswp-height')
+
+			// width in '%' or 'vh'
+			if (width && (width.includes('%') || width.includes('vw'))) {
+				width = window.innerWidth * (parseInt(width) / 100)
+			}
+
+			// height in '%' or 'vw'
+			if (height && (height.includes('%') || height.includes('vh'))) {
+				height = window.innerHeight * (parseInt(height) / 100)
+			}
+
+			// Default width: 1280px
+			if (!width) {
+				width = 1280
+			}
+
+			// Auto-height (16:9)
+			if (!height || height == 720) {
+				height = Math.round((width / 16) * 9)
+			}
+
+			if (!photoswipeInitialised && videoUrl) {
+				let html = bricksGetLightboxVideoNode(videoUrl)
+
+				e.itemData = {
+					html: html.outerHTML, // Convert DOM node to HTML string
+					width: width,
+					height: height
+				}
+			}
+		})
+
+		// Content added to the DOM: Autoplay <video> after lightbox is opened
+		lightbox.on('contentAppend', ({ content }) => {
+			if (content.element) {
+				let photoswipeVideo = content.element.querySelector('video')
+
+				if (photoswipeVideo) {
+					photoswipeVideo.play()
+				}
+			}
+		})
+
+		// Fix 'loop' type carousel element requires double clicks on last slide (due to swiperJS-generated slide duplicates)
+		if (gallery.classList.contains('brxe-carousel')) {
+			let swiperId = gallery.getAttribute('data-script-id')
+
+			// Correct the number of items as swiperJS duplicates slides with 'loop' setting enabled
+			if (bricksData.swiperInstances?.[swiperId]?.loopedSlides) {
+				// https://photoswipe.com/filters/#numitems
+				lightbox.addFilter('numItems', (numItems, dataSource) => {
+					// Lightbox has no children: Return original numItems
+					if (dataSource.gallery) {
+						let duplicateSlides = 0
+
+						if (dataSource.gallery.classList.contains('brxe-carousel')) {
+							// Carousel
+							duplicateSlides =
+								dataSource.gallery.querySelectorAll('.swiper-slide-duplicate').length
+						}
+						// Something wrong if duplicateSlides more than original numItems, so return original numItems
+						numItems = numItems > duplicateSlides ? numItems - duplicateSlides : numItems
+					}
+
+					return numItems
+				})
+
+				// Modify 'clickedIndex' as 'numItems' has been modified
+				lightbox.addFilter('clickedIndex', (clickedIndex, e) => {
+					let currentSlide = e.target.closest('.swiper-slide')
+
+					if (currentSlide) {
+						// Store all slides in an array
+						let tempArr = bricksData.swiperInstances[swiperId].slides
+							.map((slide, index) => {
+								return { slide, index }
+							})
+							.filter(Boolean)
+
+						if (tempArr.length) {
+							// Current clicked swiper slide index from data-swiper-slide-index attribute
+							let currentSwiperSlideIndex = parseInt(currentSlide.dataset.swiperSlideIndex)
+
+							// Find first result whehre data-swiper-slide-index is equal to currentSlideIndex as numItems changed
+							let simulateSlide = tempArr.filter(
+								(x) => x.slide.dataset.swiperSlideIndex == currentSwiperSlideIndex
+							)
+
+							if (simulateSlide.length) {
+								// Get the index of the first result
+								clickedIndex = simulateSlide[0].index
+							}
+						}
+					}
+
+					return clickedIndex
+				})
+			}
+		}
+
+		lightbox.init()
+	}
+})
+
+function bricksPhotoswipe() {
+	bricksPhotoswipeFn.run()
+}
+
+/**
+ * Return iframe or video DOM node for lightbox video
+ *
+ * @param {string} videoUrl
+ *
+ * @returns iframe or video DOM node
+ *
+ * @since 1.7.2
+ */
+function bricksGetLightboxVideoNode(videoUrl) {
+	if (videoUrl) {
+		hasContent = true
+
+		let isIframe = false // For YouTube and Vimeo embeds
+
+		if (videoUrl.indexOf('youtube.com') !== -1) {
+			isIframe = true
+
+			// Transform YouTube video URL into valid embed URL
+			videoUrl = videoUrl.replace('watch?v=', 'embed/')
+
+			videoUrl += '?autoplay=1'
+			videoUrl += '&rel=0'
+		}
+
+		if (videoUrl.indexOf('vimeo.com') !== -1) {
+			isIframe = true
+
+			// Transform Vimeo video URL into valid embed URL
+			if (videoUrl.indexOf('player.vimeo.com/video') === -1) {
+				videoUrl = videoUrl.replace('vimeo.com', 'player.vimeo.com/video')
+			}
+
+			videoUrl += '?autoplay=1'
+		}
+
+		if (isIframe) {
+			// Create <iframe> for YouTube/Vimeo video
+			let iframeElement = document.createElement('iframe')
+
+			iframeElement.setAttribute('src', videoUrl)
+			iframeElement.setAttribute('allow', 'autoplay')
+			iframeElement.setAttribute('allowfullscreen', 1)
+
+			return iframeElement
+		}
+
+		// Create <video> element (trigger autoplay in Photoswipe)
+		let videoElement = document.createElement('video')
+		videoElement.setAttribute('src', videoUrl)
+		videoElement.setAttribute('controls', 1)
+		videoElement.setAttribute('playsinline', 1)
+
+		return videoElement
+	}
+}
+
+/**
+ * Element: Accordion
+ */
+const bricksAccordionFn = new BricksFunction({
+	parentNode: document,
+	selector: '.brxe-accordion, .brxe-accordion-nested',
+	eachElement: (accordion) => {
+		let slideUp = (target, duration = 200) => {
+			target.style.transitionProperty = 'height, margin, padding'
+			target.style.transitionDuration = `${duration}ms`
+			target.style.height = `${target.offsetHeight}px`
+			target.offsetHeight
+			target.style.overflow = 'hidden'
+			target.style.height = 0
+			target.style.paddingTop = 0
+			target.style.paddingBottom = 0
+			target.style.marginTop = 0
+			target.style.marginBottom = 0
+
+			window.setTimeout(() => {
+				target.style.display = 'none'
+				target.style.removeProperty('height')
+				target.style.removeProperty('padding-top')
+				target.style.removeProperty('padding-bottom')
+				target.style.removeProperty('margin-top')
+				target.style.removeProperty('margin-bottom')
+				target.style.removeProperty('overflow')
+				target.style.removeProperty('transition-duration')
+				target.style.removeProperty('transition-property')
+			}, duration)
+		}
+
+		let slideDown = (target, duration = 200) => {
+			target.style.removeProperty('display')
+
+			let display = window.getComputedStyle(target).display
+
+			if (display === 'none') {
+				display = 'block'
+			}
+
+			target.style.display = display
+
+			let height = target.offsetHeight
+
+			target.style.overflow = 'hidden'
+			target.style.height = 0
+			target.style.paddingTop = 0
+			target.style.paddingBottom = 0
+			target.style.marginTop = 0
+			target.style.marginBottom = 0
+			target.offsetHeight
+			target.style.transitionProperty = 'height, margin, padding'
+			target.style.transitionDuration = `${duration}ms`
+			target.style.height = `${height}px`
+			target.style.removeProperty('padding-top')
+			target.style.removeProperty('padding-bottom')
+			target.style.removeProperty('margin-top')
+			target.style.removeProperty('margin-bottom')
+
+			window.setTimeout(() => {
+				target.style.removeProperty('height')
+				target.style.removeProperty('overflow')
+				target.style.removeProperty('transition-duration')
+				target.style.removeProperty('transition-property')
+			}, duration)
+		}
+
+		let slideToggle = (target, duration = 200) => {
+			if (window.getComputedStyle(target).display === 'none') {
+				return slideDown(target, duration)
+			} else {
+				return slideUp(target, duration)
+			}
+		}
+
+		let items = Array.from(accordion.children)
+		let duration = accordion.hasAttribute('data-transition')
+			? isNaN(accordion.dataset.transition)
+				? 0
+				: accordion.dataset.transition
+			: 200
+
+		// Only recognise nestables as accordion items
+		items = items.filter(
+			(item) =>
+				item.classList.contains('brxe-section') ||
+				item.classList.contains('brxe-container') ||
+				item.classList.contains('brxe-block') ||
+				item.classList.contains('brxe-div') ||
+				item.classList.contains('accordion-item')
+		)
+
+		items.forEach((item, index) => {
+			// Expand first item: Check data-script-args
+			if (index === 0 && accordion.dataset.scriptArgs?.includes('expandFirstItem')) {
+				item.classList.add('brx-open')
+			}
+
+			if (item.classList.contains('listening')) {
+				return
+			}
+
+			// Ensure click event listener is only added once
+			item.classList.add('listening')
+
+			/**
+			 * Init title click listener
+			 *
+			 * Listen on accordion item also allows to re-run script in builder without having to setup any custom destroy()
+			 */
+			item.addEventListener('click', (e) => {
+				let title = e.target.closest('.accordion-title-wrapper')
+
+				if (!title) {
+					return
+				}
+
+				let item = title.parentNode
+
+				if (!item) {
+					return
+				}
+
+				let content = item.querySelector('.accordion-content-wrapper')
+
+				if (!content) {
+					return
+				}
+
+				e.stopPropagation()
+
+				// No independent toggle: slideUp .open item (if it's currently not open)
+				if (!accordion.dataset.scriptArgs?.includes('independentToggle')) {
+					let openItem = accordion.querySelector('.brx-open')
+
+					if (openItem) {
+						let openContent = openItem.querySelector('.accordion-content-wrapper')
+
+						if (openContent && openContent !== content) {
+							openItem.classList.remove('brx-open')
+
+							slideUp(openContent, duration)
+						}
+					}
+				}
+
+				// slideToggle target accordion content
+				slideToggle(content, duration)
+				item.classList.toggle('brx-open')
+			})
+		})
+	}
+})
+
+function bricksAccordion() {
+	bricksAccordionFn.run()
+}
+
+/**
+ * Element: Animated Typing
+ */
+const bricksAnimatedTypingFn = new BricksFunction({
+	parentNode: document,
+	selector: '.brxe-animated-typing',
+	windowVariableCheck: ['Typed'],
+	eachElement: (element) => {
+		let scriptId = element.dataset.scriptId
+		let scriptArgs
+
+		try {
+			scriptArgs = JSON.parse(element.dataset.scriptArgs)
+		} catch (e) {
+			return false
+		}
+
+		let typedElement = element.querySelector('.typed')
+
+		if (!typedElement) {
+			return
+		}
+
+		if (window.bricksData.animatedTypingInstances[scriptId]) {
+			window.bricksData.animatedTypingInstances[scriptId].destroy()
+		}
+
+		if (!scriptArgs.hasOwnProperty('strings') || !scriptArgs.strings) {
+			return
+		}
+
+		if (Array.isArray(scriptArgs.strings) && !scriptArgs.strings.toString()) {
+			return
+		}
+
+		window.bricksData.animatedTypingInstances[scriptId] = new Typed(typedElement, scriptArgs)
+	}
+})
+
+function bricksAnimatedTyping() {
+	bricksAnimatedTypingFn.run()
+}
+
+/**
+ * Element: Audio
+ */
+const bricksAudioFn = new BricksFunction({
+	parentNode: document,
+	selector: '.brxe-audio',
+	windowVariableCheck: ['MediaElementPlayer'],
+	eachElement: (element) => {
+		let audioElement = element.querySelector('audio')
+
+		if (audioElement) {
+			let mediaElementPlayer = new MediaElementPlayer(audioElement)
+		}
+	}
+})
+function bricksAudio() {
+	bricksAudioFn.run()
+}
+
+/**
+ * Element: Countdown
+ */
+const bricksCountdownFn = new BricksFunction({
+	parentNode: document,
+	selector: '.brxe-countdown',
+	eachElement: (element) => {
+		// Countdown logic
+		countdown = (element, settings, init) => {
+			// STEP: Get timezone from settings
+			let timezoneSign = settings.timezone[3] === '+' ? 1 : -1
+			let timezoneHours = parseInt(settings.timezone.substring(4, 6))
+			let timezoneMinutes = parseInt(settings.timezone.substring(7, 9))
+
+			// Convert hours and minutes to minutes
+			let countdownCreatorTimezone = timezoneSign * (timezoneHours * 60 + timezoneMinutes)
+
+			// Convert timezone to milliseconds
+			let countdownCreatorTimezoneMs = countdownCreatorTimezone * 60000
+
+			// Get timezone offset of visitor in minutes
+			let viewerOffsetMinutes = new Date().getTimezoneOffset()
+
+			// Convert to millisecond and flip the sign here because getTimezoneOffset() returns the offset with an opposite sign
+			let viewerOffsetMs = -viewerOffsetMinutes * 60000
+
+			let date = settings.date.replace(' ', 'T') // Replace needed for iOS Safari (NaN)
+
+			// Get time of the target date in milliseconds
+			let targetDate = new Date(date).getTime()
+
+			// STEP: Adjust the target date for the visitors' timezone offset and the timezone setting offset
+			let targetDateAdjusted = targetDate + viewerOffsetMs - countdownCreatorTimezoneMs
+
+			// Get current date and time in UTC milliseconds
+			let now = new Date().getTime()
+
+			// Calculate the difference in milliseconds
+			let diff = targetDateAdjusted - now
+
+			// Countdown date reached
+			if (diff <= 0) {
+				// Stop countdown
+				clearInterval(element.dataset.bricksCountdownId)
+
+				if (settings.action === 'hide') {
+					element.innerHTML = ''
+					return
+				} else if (settings.action === 'text') {
+					element.innerHTML = settings.actionText
+					return
+				}
+			}
+
+			// Add HTML nodes for each field (spans: .prefix, .format, .suffix)
+			if (init) {
+				// Builder: Remove HTML from previous instance
+				element.innerHTML = ''
+
+				settings.fields.forEach((field) => {
+					if (!field.format) {
+						return
+					}
+
+					let fieldNode = document.createElement('div')
+					fieldNode.classList.add('field')
+
+					if (field.prefix) {
+						let prefixNode = document.createElement('span')
+						prefixNode.classList.add('prefix')
+						prefixNode.innerHTML = field.prefix
+						fieldNode.appendChild(prefixNode)
+					}
+
+					let formatNode = document.createElement('span')
+					formatNode.classList.add('format')
+					fieldNode.appendChild(formatNode)
+
+					if (field.suffix) {
+						let suffixNode = document.createElement('span')
+						suffixNode.classList.add('suffix')
+						suffixNode.innerHTML = field.suffix
+						fieldNode.appendChild(suffixNode)
+					}
+
+					element.appendChild(fieldNode)
+				})
+			}
+
+			let fieldNodes = bricksQuerySelectorAll(element, '.field')
+
+			let days = Math.floor(diff / (1000 * 60 * 60 * 24))
+			let hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
+			let minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60))
+			let seconds = Math.floor((diff % (1000 * 60)) / 1000)
+
+			settings.fields.forEach((field, index) => {
+				if (!field.format) {
+					return
+				}
+
+				let format = field.format.toLowerCase()
+
+				// Add leading zero if format is uppercase & one digit (e.g. %D and value less than 10)
+
+				// DAYS
+				if (format.includes('%d')) {
+					if (field.format.includes('%D')) {
+						days <= 9 ? (days = `0${days}`) : days
+					}
+
+					fieldNodes[index].querySelector('.format').innerHTML = format.replace(
+						'%d',
+						diff <= 0 ? 0 : days
+					)
+				}
+
+				// HOURS
+				else if (format.includes('%h')) {
+					if (field.format.includes('%H')) {
+						hours <= 9 ? (hours = `0${hours}`) : hours
+					}
+
+					fieldNodes[index].querySelector('.format').innerHTML = format.replace(
+						'%h',
+						diff <= 0 ? 0 : hours
+					)
+				}
+
+				// MINUTES
+				else if (format.includes('%m')) {
+					if (field.format.includes('%M')) {
+						minutes <= 9 ? (minutes = `0${minutes}`) : minutes
+					}
+
+					fieldNodes[index].querySelector('.format').innerHTML = format.replace(
+						'%m',
+						diff <= 0 ? 0 : minutes
+					)
+				}
+
+				// SECONDS
+				else if (format.includes('%s')) {
+					if (field.format.includes('%S')) {
+						seconds <= 9 ? (seconds = `0${seconds}`) : seconds
+					}
+
+					fieldNodes[index].querySelector('.format').innerHTML = format.replace(
+						'%s',
+						diff <= 0 ? 0 : seconds
+					)
+				}
+			})
+		}
+
+		let settings = element.dataset.bricksCountdownOptions
+
+		try {
+			settings = JSON.parse(settings)
+		} catch (e) {
+			return false
+		}
+
+		if (settings.hasOwnProperty('date') && settings.hasOwnProperty('fields')) {
+			// Get existing countdownId
+			let countdownId = element.dataset.bricksCountdownId
+
+			// Destroy existing instance by clearing the interval
+			if (countdownId) {
+				clearInterval(countdownId)
+			}
+
+			// Init countdown
+			countdown(element, settings, true)
+
+			// Call countdown every second (= 1000ms)
+			countdownId = setInterval(countdown, 1000, element, settings, false)
+
+			element.dataset.bricksCountdownId = countdownId
+		}
+	}
+})
+
+function bricksCountdown() {
+	bricksCountdownFn.run()
+}
+
+/**
+ * Element: Counter
+ * With custom run function, because we need to forceReinit only for counter inside popup
+ */
+const bricksCounterFn = new BricksFunction({
+	parentNode: document,
+	selector: '.brxe-counter',
+	subscribeEvents: [
+		'bricks/popup/open',
+		'bricks/ajax/pagination/completed',
+		'bricks/ajax/load_page/completed'
+	],
+	forceReinit: (element, index) => {
+		// Force reinit if counter is inside popup
+		return element.closest('.brx-popup')
+	},
+	eachElement: (element) => {
+		let settings = element.dataset.bricksCounterOptions
+
+		try {
+			settings = JSON.parse(settings)
+		} catch (e) {
+			return false
+		}
+
+		let countNode = element.querySelector('.count')
+		let countFrom = settings.hasOwnProperty('countFrom') ? parseInt(settings.countFrom) : 0
+		let countTo = settings.hasOwnProperty('countTo') ? parseInt(settings.countTo) : 100
+		let durationInMs = settings.hasOwnProperty('duration') ? parseInt(settings.duration) : 1000
+
+		// Min. duration: 500ms
+		if (durationInMs < 500) {
+			durationInMs = 500
+		}
+
+		let diff = countTo - countFrom
+		let timeout = durationInMs / diff
+		let incrementBy = 1
+
+		// Min. timeout: 4ms
+		if (timeout < 4) {
+			incrementBy = Math.ceil(4 / timeout)
+			timeout = 4
+		}
+
+		// Vanilla JS countUp function
+		let countUp = () => {
+			// Get current count (locale string back to number)
+			let count = countNode.innerText.replace(/\D/g, '')
+			count = isNaN(count) ? countFrom : parseInt(count)
+
+			// Calculate new count: Make sure we don't run over max. count
+			let newCount = count + incrementBy < countTo ? count + incrementBy : countTo
+
+			// countTo reached yet: Stop interval
+			if (count >= countTo) {
+				clearInterval(countNode.dataset.counterId)
+				delete countNode.dataset.counterId
+				return
+			}
+
+			countNode.innerText = settings.thousands ? newCount.toLocaleString() : newCount
+		}
+
+		let callback = () => {
+			// Reset count
+			countNode.innerText = countFrom
+
+			// Interval not yet running: Start interval
+			if (countNode.dataset.counterId == undefined) {
+				countNode.dataset.counterId = setInterval(countUp, timeout)
+			}
+		}
+
+		// Run countUp() when popup is open (has no .hide class)
+		let popup = countNode.closest('.brx-popup')
+		if (popup) {
+			if (!popup.classList.contains('hide')) {
+				callback()
+			}
+		}
+
+		// Run countUp() when element enters viewport
+		else {
+			new BricksIntersect({
+				element: element,
+				callback: callback
+			})
+		}
+	},
+	listenerHandler: (event) => {
+		if (event?.type) {
+			switch (event.type) {
+				case 'bricks/popup/open':
+					// Change parentNode to the opened popup
+					let settings = {
+						parentNode: event.details?.popupElement ? event.details.popupElement : document
+					}
+					bricksCounterFn.run(settings)
+					break
+				default:
+					bricksCounterFn.run()
+					break
+			}
+		}
+	}
+})
+
+function bricksCounter() {
+	bricksCounterFn.run()
+}
+
+/**
+ * Element: Form
+ *
+ * Init recaptcha explicit on Google reCAPTCHA callback.
+ */
+const bricksFormFn = new BricksFunction({
+	parentNode: document,
+	selector: '.brxe-form',
+	eachElement: (form) => {
+		let elementId = form.getAttribute('data-element-id')
+
+		// Validate required checkboxes
+		let checkboxes = bricksQuerySelectorAll(form, 'input[type="checkbox"]')
+
+		checkboxes.forEach((checkbox) => {
+			if (checkbox.required) {
+				checkbox.addEventListener('click', (event) => {
+					let cbName = checkbox.getAttribute('name')
+					let group = bricksQuerySelectorAll(form, `input[name="${cbName}"]`)
+
+					let atLeastOneChecked = false
+					group.forEach((item) => {
+						if (item.checked === true) {
+							atLeastOneChecked = true
+						}
+					})
+
+					if (atLeastOneChecked) {
+						group.forEach((item) => {
+							item.required = false
+						})
+					} else {
+						group.forEach((item) => {
+							item.required = true
+						})
+					}
+				})
+			}
+		})
+
+		// Init datepicker
+		let flatpickrElements = bricksQuerySelectorAll(form, '.flatpickr')
+
+		flatpickrElements.forEach((flatpickrElement) => {
+			let flatpickrOptions = flatpickrElement.dataset.bricksDatepickerOptions
+
+			if (flatpickrOptions) {
+				flatpickrOptions = JSON.parse(flatpickrOptions)
+
+				// Disable native mobile date input as it looks different from all other fields
+				// @since 1.7 (https://flatpickr.js.org/mobile-support/)
+				flatpickrOptions.disableMobile = true
+
+				flatpickrOptions.onReady = (a, b, fp) => {
+					let ariaLabel = fp.altInput.previousElementSibling
+						? fp.altInput.previousElementSibling.getAttribute('aria-label')
+						: 'Date'
+					fp.altInput.setAttribute('aria-label', ariaLabel || 'Date')
+				}
+
+				flatpickr(flatpickrElement, flatpickrOptions)
+			}
+		})
+
+		// Init file input, to validate files on user selection
+		let files = {}
+		let fileInputInstances = bricksQuerySelectorAll(form, 'input[type=file]')
+
+		fileInputInstances.forEach((input) => {
+			let inputRef = input.getAttribute('data-files-ref')
+			let maxSize = input.getAttribute('data-maxsize') || false
+			let maxLength = input.getAttribute('data-limit') || false
+
+			maxSize = maxSize ? parseInt(maxSize) * 1024 * 1024 : false
+
+			input.addEventListener('change', (e) => {
+				let fileList = e.target.files
+				let fileListLength = fileList.length
+				let inputName = input.getAttribute('name')
+
+				if (!fileListLength) {
+					return
+				}
+
+				let fileResultEl = form.querySelector(`.file-result[data-files-ref="${inputRef}"]`)
+
+				for (let i = 0; i < fileListLength; i++) {
+					let file = fileList[i]
+					let error = false
+
+					// Populate upload HTML
+					let resultEl = fileResultEl.cloneNode(true)
+
+					// Erorro: Max. number of files exceeded
+					if (
+						maxLength &&
+						files.hasOwnProperty(inputName) &&
+						files[inputName].length >= maxLength
+					) {
+						error = 'limit'
+					}
+
+					// Error: File exceeds size limit
+					if (maxSize && file.size > maxSize) {
+						error = 'size'
+					}
+
+					if (error) {
+						resultEl.classList.add('danger')
+						resultEl.innerHTML = resultEl
+							.getAttribute(`data-error-${error}`)
+							.replace('%s', file.name)
+
+						setTimeout(() => {
+							resultEl.remove()
+						}, 5000)
+					}
+
+					// Add file
+					else {
+						if (!files.hasOwnProperty(inputName)) {
+							files[inputName] = []
+						}
+
+						files[inputName].push(file)
+
+						resultEl.classList.add('show')
+
+						let resultText = resultEl.querySelector('.text')
+						let resultRemove = resultEl.querySelector('.remove')
+
+						resultText.innerHTML = file.name
+						resultRemove.setAttribute('data-name', file.name)
+						resultRemove.setAttribute('data-field', inputName)
+
+						// Remove file listener
+						resultRemove.addEventListener('click', (e) => {
+							let fileName = e.target.getAttribute('data-name')
+							let fieldName = e.target.getAttribute('data-field')
+							let fieldFiles = files[fieldName]
+
+							for (let k = 0; k < fieldFiles.length; k++) {
+								if (fieldFiles[k].name === fileName) {
+									files[inputName].splice(k, 1)
+									break
+								}
+							}
+
+							resultEl.remove()
+						})
+					}
+
+					// Add result
+					fileResultEl.parentNode.insertBefore(resultEl, fileResultEl.nextSibling)
+				}
+			})
+		})
+
+		// Form submit
+		form.addEventListener('submit', (event) => {
+			event.preventDefault()
+
+			if (!bricksIsFrontend) {
+				return
+			}
+
+			// Recaptcha
+			let recaptchaElement = document.getElementById(`recaptcha-${elementId}`)
+			let recaptchaErrorEl = form.querySelector('.recaptcha-error')
+
+			if (!recaptchaElement) {
+				bricksSubmitForm(elementId, form, files, null)
+
+				return
+			}
+
+			let recaptchaSiteKey = recaptchaElement.getAttribute('data-key')
+
+			if (!recaptchaSiteKey) {
+				recaptchaErrorEl.classList.add('show')
+
+				return
+			}
+
+			try {
+				grecaptcha.ready(() => {
+					try {
+						grecaptcha
+							.execute(recaptchaSiteKey, { action: 'bricks_form_submit' })
+							.then((token) => {
+								recaptchaErrorEl.classList.remove('show')
+
+								bricksSubmitForm(elementId, form, files, token)
+							})
+							.catch((error) => {
+								recaptchaErrorEl.classList.add('show')
+								form.querySelector('.alert').innerText = `Google reCaptcha ${error}`
+							})
+					} catch (error) {
+						recaptchaErrorEl.classList.add('show')
+						form.querySelector('.alert').innerText = `Google reCaptcha ${error}`
+					}
+				})
+			} catch (error) {
+				recaptchaErrorEl.classList.add('show')
+				form.querySelector('.alert').innerText = `Google reCaptcha ${error}`
+			}
+		})
+	}
+})
+
+function bricksForm() {
+	bricksFormFn.run()
+}
+
+function bricksSubmitForm(elementId, form, files, recaptchaToken) {
+	let submitButton = form.querySelector('button[type=submit]')
+	submitButton.classList.add('sending')
+
+	let formData = new FormData(form)
+	formData.append('action', 'bricks_form_submit') // Do not remove this
+	formData.append('postId', window.bricksData.postId)
+	formData.append('formId', elementId)
+	formData.append('recaptchaToken', recaptchaToken || '')
+	formData.append('nonce', window.bricksData.nonce)
+	formData.append('referrer', location.toString())
+
+	// Append files
+	for (let inputName in files) {
+		files[inputName].forEach((file) => {
+			formData.append(`${inputName}[]`, file, file.name)
+		})
+	}
+
+	let url = window.bricksData.ajaxUrl
+	let xhr = new XMLHttpRequest()
+
+	xhr.open('POST', url, true)
+
+	// Successful response
+	xhr.onreadystatechange = function () {
+		let getResponse = (data) => {
+			try {
+				return JSON.parse(data)
+			} catch (e) {
+				return null
+			}
+		}
+
+		let res = getResponse(xhr.response)
+
+		if (window.bricksData.debug) {
+			console.warn('bricks_form_submit', xhr, res)
+		}
+
+		if (!res) {
+			return
+		}
+
+		// Google Tag Manager: Newsletter signup (action: 'mailchimp' or 'sendgrid')
+		if (res.success && (res.data?.action === 'mailchimp' || res.data?.action === 'sendgrid')) {
+			window.dataLayer = window.dataLayer || []
+			window.dataLayer.push({ event: 'bricksNewsletterSignup' })
+		}
+
+		// Check: Redirect after successful form submit
+		if (res.success && res.data?.redirectTo) {
+			setTimeout(() => {
+				window.location.href = res.data.redirectTo
+			}, parseInt(res.data?.redirectTimeout) || 0)
+		}
+
+		// Generate form submit message HTML
+		if (form.querySelector('.message')) {
+			form.querySelector('.message').remove()
+		}
+
+		let messageEl = document.createElement('div')
+		messageEl.classList.add('message')
+
+		let messageText = document.createElement('div')
+		messageText.classList.add('text')
+
+		// Show form response message
+		if (res.data?.message) {
+			if (res.data.message?.errors) {
+				// User login/registration errors
+				let errors = res.data.message.errors
+				let errorKeys = Object.keys(errors)
+
+				errorKeys.forEach((errorKey) => {
+					messageText.innerHTML += errors[errorKey][0] + '<br>'
+				})
+			} else {
+				messageText.innerHTML = res.data.message
+			}
+		}
+
+		messageEl.appendChild(messageText)
+
+		if (res.data?.info) {
+			let submitInfoInner = document.createElement('div')
+
+			let submitInfoText = document.createElement('div')
+			submitInfoText.innerHTML = res.data.info.join('<br>')
+
+			messageEl.appendChild(submitInfoInner)
+			submitInfoInner.appendChild(submitInfoText)
+		} else {
+			messageEl.classList.add(res.data.type)
+		}
+
+		form.appendChild(messageEl)
+
+		submitButton.classList.remove('sending')
+
+		// Clear form data
+		if (res.success) {
+			form.reset()
+			files = {}
+
+			let fileResults = bricksQuerySelectorAll(form, '.file-result')
+
+			if (fileResults !== null) {
+				fileResults.forEach((resultEl) => {
+					resultEl.remove()
+				})
+			}
+		}
+	}
+
+	xhr.send(formData)
+}
+
+/**
+ * IsotopeJS (Image Gallery & Posts)
+ */
+const bricksIsotopeFn = new BricksFunction({
+	parentNode: document,
+	selector: '.bricks-layout-wrapper.isotope',
+	forceReinit: true,
+	windowVariableCheck: ['Isotope'],
+	eachElement: (el) => {
+		let options = {
+			itemSelector: '.bricks-layout-item',
+			percentPosition: true
+		}
+
+		let layout = el.getAttribute('data-layout')
+
+		if (layout === 'grid') {
+			options.layoutMode = 'fitRows'
+			options.fitRows = {
+				gutter: '.bricks-gutter-sizer'
+			}
+		} else if (layout === 'masonry' || layout === 'metro') {
+			options.masonry = {
+				columnWidth: '.bricks-isotope-sizer',
+				gutter: '.bricks-gutter-sizer'
+			}
+		}
+
+		let isotopeInstance = new Isotope(el, options)
+
+		// Isotope filtering (https://isotope.metafizzy.co/filtering.html)
+		// TODO Make it work on grid & list layout as well (those don't have .isotope class)
+		let filters = el.parentNode.querySelector('.bricks-isotope-filters')
+
+		if (filters) {
+			filters.addEventListener('click', (e) => {
+				let filterValue = e.target.getAttribute('data-filter')
+				let activeFilter = filters.querySelector('li.active')
+
+				if (!filterValue || !bricksIsFrontend) {
+					return
+				}
+
+				if (activeFilter) {
+					activeFilter.classList.remove('active')
+				}
+
+				e.target.classList.add('active')
+
+				// Example: https://codepen.io/desandro/pen/BgcCD
+				isotopeInstance.arrange({
+					filter: filterValue
+				})
+			})
+		}
+	}
+})
+function bricksIsotope() {
+	bricksIsotopeFn.run()
+}
+
+/**
+ * Element: Map
+ *
+ * Init maps explicit on Google Maps callback.
+ */
+const bricksMapFn = new BricksFunction({
+	parentNode: document,
+	selector: '.brxe-map',
+	eachElement: (mapEl, index) => {
+		/**
+		 * Set 1000ms timeout to request next map (to avoid hitting query limits)
+		 *
+		 * https://developers.google.com/maps/premium/previous-licenses/articles/usage-limits)
+		 */
+		setTimeout(() => {
+			let settings = (() => {
+				let mapOptions = mapEl.dataset.bricksMapOptions
+
+				if (!mapOptions) {
+					return false
+				}
+
+				try {
+					return JSON.parse(mapOptions)
+				} catch (e) {
+					return false
+				}
+			})(mapEl)
+
+			if (!settings) {
+				return
+			}
+
+			let addresses = Array.isArray(settings?.addresses)
+				? settings.addresses
+				: [{ address: 'Berlin, Germany' }]
+			let markers = []
+			let markerDefault = {}
+
+			// Custom marker
+			if (settings?.marker) {
+				markerDefault.icon = {
+					url: settings.marker
+				}
+
+				if (settings?.markerHeight && settings?.markerWidth) {
+					markerDefault.icon.scaledSize = new google.maps.Size(
+						parseInt(settings.markerWidth),
+						parseInt(settings.markerHeight)
+					)
+				}
+			}
+
+			// Custom marker active
+			let markerActive = {}
+
+			if (settings?.markerActive) {
+				markerActive = {
+					url: settings.markerActive
+				}
+
+				if (settings?.markerActiveHeight && settings?.markerActiveWidth) {
+					markerActive.scaledSize = new google.maps.Size(
+						parseInt(settings.markerActiveWidth),
+						parseInt(settings.markerActiveHeight)
+					)
+				}
+			}
+
+			let infoBoxes = []
+			let bounds = new google.maps.LatLngBounds()
+
+			// 'gestureHandling' combines 'scrollwheel' and 'draggable' (which are deprecated)
+			let gestureHandling = 'auto'
+
+			if (!settings.draggable) {
+				gestureHandling = 'none'
+			} else if (settings.scrollwheel && settings.draggable) {
+				gestureHandling = 'cooperative'
+			} else if (!settings.scrollwheel && settings.draggable) {
+				gestureHandling = 'greedy'
+			}
+
+			if (settings.disableDefaultUI) {
+				settings.fullscreenControl = false
+				settings.mapTypeControl = false
+				settings.streetViewControl = false
+				settings.zoomControl = false
+			}
+
+			// https://developers.google.com/maps/documentation/javascript/reference/map#MapOptions
+			let zoom = settings.zoom ? parseInt(settings.zoom) : 12
+			let mapOptions = {
+				zoom: zoom,
+				// scrollwheel: settings.scrollwheel,
+				// draggable: settings.draggable,
+				gestureHandling: gestureHandling,
+				fullscreenControl: settings.fullscreenControl,
+				mapTypeControl: settings.mapTypeControl,
+				streetViewControl: settings.streetViewControl,
+				zoomControl: settings.zoomControl,
+				disableDefaultUI: settings.disableDefaultUI
+			}
+
+			if (settings.zoomControl) {
+				if (settings?.maxZoom) {
+					mapOptions.maxZoom = parseInt(settings.maxZoom)
+				}
+
+				if (settings?.minZoom) {
+					mapOptions.minZoom = parseInt(settings.minZoom)
+				}
+			}
+
+			let map = new google.maps.Map(mapEl, mapOptions)
+
+			// Loop through all addresses to set markers, infoBoxes, bounds etc.
+			for (let i = 0; i < addresses.length; i++) {
+				let addressObj = addresses[i]
+
+				// Render marker with Latitude/Longitude
+				if (addressObj?.latitude && addressObj?.longitude) {
+					renderMapMarker(addressObj, {
+						lat: parseFloat(addressObj.latitude),
+						lng: parseFloat(addressObj.longitude)
+					})
+				}
+				// Run Geocoding function to convert address into coordinates (use closure to pass additional variables)
+				else if (addressObj?.address) {
+					let geocoder = new google.maps.Geocoder()
+
+					geocoder.geocode({ address: addressObj.address }, geocodeCallback(addressObj))
+				}
+			}
+
+			function geocodeCallback(addressObj) {
+				let geocodeCallback = (results, status) => {
+					// Skip geocode response on error
+					if (status !== 'OK') {
+						console.warn('Geocode error:', status)
+						return
+					}
+
+					let position = results[0].geometry.location
+					renderMapMarker(addressObj, position)
+				}
+
+				return geocodeCallback
+			}
+
+			function renderMapMarker(addressObj, position) {
+				markerDefault.map = map
+				markerDefault.position = position
+
+				let marker = new google.maps.Marker(markerDefault)
+				marker.setMap(map)
+				markers.push(marker)
+
+				google.maps.event.addListener(marker, 'click', () => {
+					onMarkerClick(addressObj)
+				})
+
+				function onMarkerClick(addressObj) {
+					// First close all markers and infoBoxes
+					if (markerDefault?.icon) {
+						markers.forEach((marker) => {
+							marker.setIcon(markerDefault.icon)
+						})
+					}
+
+					infoBoxes.forEach((infoBox) => {
+						infoBox.hide()
+					})
+
+					// Set custom active marker on marker click
+					if (markerActive?.url) {
+						marker.setIcon(markerActive)
+					}
+
+					// Open infoBox (better styleable than infoWindow) on marker click
+					// http://htmlpreview.github.io/?http://github.com/googlemaps/v3-utility-library/blob/master/infobox/docs/reference.html
+					let infoboxContent = ''
+					let infoTitle = addressObj?.infoTitle || false
+					let infoSubtitle = addressObj?.infoSubtitle || false
+					let infoOpeningHours = addressObj?.infoOpeningHours || false
+					let infoImages = addressObj?.infoImages || {}
+
+					if (!Array.isArray(infoImages)) {
+						infoImages = Array.isArray(infoImages?.images) ? infoImages.images : []
+					}
+
+					if (infoTitle) {
+						infoboxContent += `<h3 class="title">${infoTitle}</h3>`
+					}
+
+					if (infoSubtitle) {
+						infoboxContent += `<p class="subtitle">${infoSubtitle}</p>`
+					}
+
+					if (infoOpeningHours) {
+						infoboxContent += '<ul class="content">'
+						infoOpeningHours = infoOpeningHours.split('\n')
+
+						if (infoOpeningHours.length) {
+							infoOpeningHours.forEach((infoOpeningHour) => {
+								infoboxContent += `<li>${infoOpeningHour}</li>`
+							})
+						}
+
+						infoboxContent += '</ul>'
+					}
+
+					if (infoImages.length) {
+						infoboxContent += '<ul class="images bricks-lightbox">'
+
+						infoImages.forEach((image) => {
+							infoboxContent += '<li>'
+
+							if (image.thumbnail && image.src) {
+								infoboxContent += `<a
+									data-pswp-src="${image.src}"
+									data-pswp-width="${image?.width || 376}"
+									data-pswp-height="${image?.height || 376}"
+									data-pswp-id="${addressObj.id}">`
+								infoboxContent += `<img src="${image.thumbnail}"/>`
+								infoboxContent += '</a>'
+							}
+
+							infoboxContent += '</li>'
+						})
+
+						infoboxContent += '</ul>'
+					}
+
+					if (infoboxContent) {
+						let infoBoxWidth = parseInt(addressObj?.infoWidth) || 300
+						let infoBoxOptions = {
+							// minWidth: infoBoxWidth,
+							// maxWidth: infoBoxWidth,
+							content: infoboxContent,
+							disableAutoPan: true,
+							pixelOffset: new google.maps.Size(0, 0),
+							alignBottom: false,
+							infoBoxClearance: new google.maps.Size(20, 20),
+							enableEventPropagation: false,
+							zIndex: 1001,
+							boxStyle: {
+								opacity: 1,
+								zIndex: 999,
+								top: 0,
+								left: 0,
+								width: `${infoBoxWidth}px`
+							}
+						}
+
+						if (typeof window.jQuery != 'undefined') {
+							infoBoxOptions.closeBoxURL = ''
+							infoBoxOptions.content += '<span class="close">×</span>'
+						}
+
+						let infoBox = new InfoBox(infoBoxOptions)
+
+						infoBox.open(map, marker)
+						infoBoxes.push(infoBox)
+
+						// Center infoBox on map (small timeout required to allow infoBox to render)
+						setTimeout(() => {
+							let infoBoxHeight = infoBox.div_.offsetHeight
+							let projectedPosition = map.getProjection().fromLatLngToPoint(marker.getPosition())
+							let infoBoxCenter = map
+								.getProjection()
+								.fromPointToLatLng(
+									new google.maps.Point(
+										projectedPosition.x,
+										projectedPosition.y - (infoBoxHeight * getLongitudePerPixel()) / 2
+									)
+								)
+							map.panTo(infoBoxCenter)
+						}, 100)
+
+						google.maps.event.addListener(infoBox, 'domready', (e) => {
+							if (infoImages.length) {
+								bricksPhotoswipe()
+							}
+
+							// Close infoBox icon listener
+							if (typeof window.jQuery != 'undefined') {
+								jQuery('.close').on('click', () => {
+									infoBox.close()
+
+									if (markerDefault?.icon) {
+										marker.setIcon(markerDefault.icon)
+									}
+
+									if (addresses.length > 1) {
+										bounds.extend(position)
+										map.fitBounds(bounds)
+										map.panToBounds(bounds)
+									}
+								})
+							}
+						})
+					}
+				}
+
+				// Get longitude per pixel based on current Zoom (for infoBox centering)
+				function getLongitudePerPixel() {
+					let latLng = map.getCenter()
+					let zoom = map.getZoom()
+					let pixelDistance = 1
+					let point1 = map
+						.getProjection()
+						.fromLatLngToPoint(
+							new google.maps.LatLng(
+								latLng.lat() - pixelDistance / Math.pow(2, zoom),
+								latLng.lng() - pixelDistance / Math.pow(2, zoom)
+							)
+						)
+					let point2 = map
+						.getProjection()
+						.fromLatLngToPoint(
+							new google.maps.LatLng(
+								latLng.lat() + pixelDistance / Math.pow(2, zoom),
+								latLng.lng() + pixelDistance / Math.pow(2, zoom)
+							)
+						)
+					return Math.abs(point2.x - point1.x)
+				}
+
+				bounds.extend(position)
+				map.fitBounds(bounds)
+				map.panToBounds(bounds)
+
+				// var mapPosition = marker.getPosition()
+				// map.setCenter(mapPosition)
+
+				// Set zoom once map is idle: As fitBounds overrules zoom (since 1.5.1)
+				if (addresses.length === 1) {
+					let mapIdleListener = google.maps.event.addListener(map, 'idle', () => {
+						map.setZoom(zoom)
+						google.maps.event.removeListener(mapIdleListener)
+					})
+				}
+			}
+
+			// Set map type
+			if (settings?.type) {
+				map.setMapTypeId(settings.type)
+			}
+
+			// Set map style
+			if (settings?.style) {
+				// Custom map style
+				if (settings.style === 'custom' && settings?.customStyle) {
+					let mapStyle = JSON.stringify(settings.customStyle)
+
+					map.setOptions({
+						styles: JSON.parse(mapStyle)
+					})
+				}
+
+				// Predefined map style
+				else if (window.bricksData && window.bricksData.mapStyles[settings.style]) {
+					map.setOptions({
+						styles: JSON.parse(window.bricksData.mapStyles[settings.style].style)
+					})
+				}
+			}
+		}, index * 1000)
+	}
+})
+function bricksMap() {
+	bricksMapFn.run()
+}
+
+/**
+ * Element: Pie Chart
+ */
+const bricksPieChartFn = new BricksFunction({
+	parentNode: document,
+	selector: '.brxe-pie-chart',
+	windowVariableCheck: ['EasyPieChart'],
+	eachElement: (element) => {
+		new BricksIntersect({
+			element: element,
+			callback: (el) => {
+				// HTMLCollection of canvas (grab first one)
+				let canvas = el.getElementsByTagName('canvas')
+
+				// Remove canvas first, before EasyPieChart init
+				if (canvas.length) {
+					canvas[0].remove()
+				}
+
+				new EasyPieChart(el, {
+					size: el.dataset.size && el.dataset.size > 0 ? el.dataset.size : 160,
+					lineWidth: el.dataset.lineWidth,
+					barColor: el.dataset.barColor,
+					trackColor: el.dataset.trackColor,
+					lineCap: el.dataset.lineCap,
+					scaleColor: el.dataset.scaleColor,
+					scaleLength: el.dataset.scaleLength,
+					rotate: 0
+				})
+			},
+			threshold: 1
+		})
+	}
+})
+
+function bricksPieChart() {
+	bricksPieChartFn.run()
+}
+
+/**
+ * Element: Pricing Tables (Pricing toggle)
+ */
+const bricksPricingTablesFn = new BricksFunction({
+	parentNode: document,
+	selector: '.brxe-pricing-tables',
+	eachElement: (element) => {
+		let tabs = bricksQuerySelectorAll(element, '.tab')
+		let pricingTables = bricksQuerySelectorAll(element, '.pricing-table')
+
+		tabs.forEach((tab) => {
+			if (tab.classList.contains('listening')) {
+				return
+			}
+
+			tab.classList.add('listening')
+
+			tab.addEventListener('click', () => {
+				// Return if selected tab is .active
+				if (tab.classList.contains('active')) {
+					return
+				}
+
+				// Toggle pricing table .active
+				pricingTables.forEach((pricingTable) => {
+					pricingTable.classList.toggle('active')
+				})
+
+				// Toggle .active tab
+				tabs.forEach((tab) => {
+					tab.classList.remove('active')
+				})
+
+				tab.classList.add('active')
+			})
+		})
+	}
+})
+
+function bricksPricingTables() {
+	bricksPricingTablesFn.run()
+}
+
+/**
+ * Element: Progress Bar (animate fill-up bar)
+ */
+const bricksProgressBarFn = new BricksFunction({
+	parentNode: document,
+	selector: '.brxe-progress-bar .bar span',
+	eachElement: (bar) => {
+		new BricksIntersect({
+			element: bar,
+			callback: () => {
+				if (bar.dataset.width) {
+					setTimeout(() => {
+						bar.style.width = bar.dataset.width
+					}, 'slow')
+				}
+			},
+			threshold: 1
+		})
+	}
+})
+
+function bricksProgressBar() {
+	bricksProgressBarFn.run()
+}
+
+/**
+ * SplideJS: For all nestable elements
+ *
+ * @since 1.5
+ */
+const bricksSplideFn = new BricksFunction({
+	parentNode: document,
+	selector: '.brxe-slider-nested.splide',
+	windowVariableCheck: ['Splide'],
+	forceReinit: (element, index) => {
+		// Allow Force reinit inside Builder (@since 1.8.2)
+		return !bricksIsFrontend
+	},
+	eachElement: (splideElement) => {
+		// Add .splide__slide to individual slide (perfect for in/builder)
+		let slides = bricksQuerySelectorAll(splideElement, [
+			'.splide__list > .brxe-container',
+			'.splide__list > .brxe-block',
+			'.splide__list > .brxe-div'
+		])
+
+		slides.forEach((slide) => {
+			slide.classList.add('splide__slide')
+			slide.dataset.id = slide.id
+		})
+
+		let scriptId = splideElement.dataset.scriptId
+
+		// Destroy existing splideJS instance
+		if (window.bricksData.splideInstances.hasOwnProperty(scriptId)) {
+			window.bricksData.splideInstances[scriptId].destroy()
+		}
+
+		// Init & mount splideJS
+		let splideInstance = new Splide(splideElement)
+
+		// https://splidejs.com/guides/apis/#go
+		splideInstance.mount()
+
+		// Store splideJS instance in bricksData to destroy and re-init
+		window.bricksData.splideInstances[scriptId] = splideInstance
+
+		// NOTE: To ensure Bricks element ID is used (important also for builder), and not the randomly by splide generated ID (see: slide.js:mount())
+		// Improvement: Tweak CSS selector for 'bricksSplide' elements to use #parent.id > .{slide-class}
+		slides.forEach((slide, index) => {
+			if (slide.dataset.id) {
+				slide.id = slide.dataset.id
+
+				// Set 'aria-controls' value to slide.id
+				let pagination = splideElement.querySelector('.splide__pagination')
+
+				if (pagination) {
+					let paginationButton = pagination.querySelector(
+						`li:nth-child(${index + 1}) .splide__pagination__page`
+					)
+
+					if (paginationButton) {
+						paginationButton.setAttribute('aria-controls', slide.id)
+					}
+				}
+			}
+
+			// Get & set background-image added via lazy load through 'data-style' attribute inside query loop (@since 1.5)
+			if (!slide.classList.contains('bricks-lazy-hidden')) {
+				let style = slide.getAttribute('style') || ''
+
+				if (slide.dataset.style) {
+					style += slide.dataset.style
+					slide.setAttribute('style', style)
+				}
+			}
+		})
+	}
+})
+
+function bricksSplide() {
+	bricksSplideFn.run()
+}
+
+/**
+ * SwiperJS touch slider: Carousel, Slider, Testimonials
+ */
+const bricksSwiperFn = new BricksFunction({
+	parentNode: document,
+	selector: '.bricks-swiper-container',
+	windowVariableCheck: ['Swiper'],
+	forceReinit: (element, index) => {
+		// Allow Force reinit inside Builder (@since 1.8.2)
+		return !bricksIsFrontend
+	},
+	eachElement: (swiperElement) => {
+		let scriptArgs
+
+		try {
+			scriptArgs = JSON.parse(swiperElement.dataset.scriptArgs)
+		} catch (e) {
+			console.warn('bricksSwiper: Error parsing JSON of data-script-args', swiperElement)
+
+			scriptArgs = {}
+		}
+
+		let element = swiperElement.classList.contains('[class*=brxe-]')
+			? swiperElement
+			: swiperElement.closest('[class*=brxe-]')
+
+		if (!element) {
+			return
+		}
+
+		// @since 1.5: Nestable elements: Add .swiper-slide to individual slide (perfect for in/builder)
+		let slides = bricksQuerySelectorAll(swiperElement, [
+			'.splide__list > .brxe-container',
+			'.splide__list > .brxe-block',
+			'.splide__list > .brxe-div'
+		])
+
+		slides.forEach((slide) => slide.classList.add('swiper-slide'))
+
+		let scriptId = element.dataset.scriptId
+
+		let swiperInstance = window.bricksData.swiperInstances.hasOwnProperty(scriptId)
+			? window.bricksData.swiperInstances[scriptId]
+			: undefined
+
+		if (swiperInstance) {
+			swiperInstance.destroy()
+		}
+
+		scriptArgs.observer = false // Not working and not necessary (= set to false)
+		scriptArgs.observeParents = true
+		scriptArgs.resizeObserver = true
+
+		// Defaults
+		scriptArgs.slidesToShow = scriptArgs.hasOwnProperty('slidesToShow')
+			? scriptArgs.slidesToShow
+			: 1
+		scriptArgs.slidesPerGroup = scriptArgs.hasOwnProperty('slidesPerGroup')
+			? scriptArgs.slidesPerGroup
+			: 1
+		scriptArgs.speed = scriptArgs.hasOwnProperty('speed') ? parseInt(scriptArgs.speed) : 300
+		scriptArgs.effect = scriptArgs.hasOwnProperty('effect') ? scriptArgs.effect : 'slide'
+		scriptArgs.spaceBetween = scriptArgs.hasOwnProperty('spaceBetween')
+			? scriptArgs.spaceBetween
+			: 0
+		scriptArgs.initialSlide = scriptArgs.hasOwnProperty('initialSlide')
+			? scriptArgs.initialSlide
+			: 0
+
+		// Enable keyboard control when in viewport (only on frontend as it messes with contenteditable in builder)
+		scriptArgs.keyboard = {
+			enabled: bricksIsFrontend,
+			onlyInViewport: true
+		}
+
+		// Disabled & hide navigation buttons when there are not enough slides for sliding
+		scriptArgs.watchOverflow = true
+
+		// Effect: Flip
+		if (scriptArgs.hasOwnProperty('effect') && scriptArgs.effect === 'flip') {
+			scriptArgs.flipEffect = {
+				slideShadows: false
+			}
+		}
+
+		// Set crossFade to true to avoid seeing content behind or underneath slide (https://swiperjs.com/swiper-api#fade-effect)
+		if (scriptArgs.hasOwnProperty('effect') && scriptArgs.effect === 'fade') {
+			scriptArgs.fadeEffect = { crossFade: true }
+		}
+
+		// Arrows
+		if (scriptArgs.navigation) {
+			scriptArgs.navigation = {
+				prevEl: element.querySelector('.bricks-swiper-button-prev'),
+				nextEl: element.querySelector('.bricks-swiper-button-next')
+			}
+		}
+
+		// Dots
+		if (scriptArgs.pagination) {
+			scriptArgs.pagination = {
+				el: element.querySelector('.swiper-pagination'),
+				type: 'bullets',
+				clickable: true
+			}
+
+			if (scriptArgs.dynamicBullets == true) {
+				delete scriptArgs.dynamicBullets
+
+				scriptArgs.pagination.dynamicBullets = true
+				// scriptArgs.pagination.dynamicMainBullets = 1
+			}
+		}
+
+		swiperInstance = new Swiper(swiperElement, scriptArgs)
+
+		// Store swiper instance in bricksData to destroy and re-init
+		window.bricksData.swiperInstances[scriptId] = swiperInstance
+	}
+})
+
+function bricksSwiper() {
+	bricksSwiperFn.run()
+}
+
+/**
+ * Element: Video (YouTube, Vimeo, File URL)
+ */
+const bricksVideoFn = new BricksFunction({
+	parentNode: document,
+	selector: '.brxe-video',
+	eachElement: (element) => {
+		// Remove overlay & icon
+		if (bricksIsFrontend) {
+			element.addEventListener('click', () => {
+				let videoOverlay = element.querySelector('.bricks-video-overlay')
+				let videoOverlayIcon = element.querySelector('.bricks-video-overlay-icon')
+
+				if (videoOverlay) {
+					videoOverlay.remove()
+				}
+
+				if (videoOverlayIcon) {
+					videoOverlayIcon.remove()
+				}
+			})
+		}
+
+		// 'video' HTML (videoType: media, file, meta)
+		let videoElement = element.querySelector('video')
+
+		if (!videoElement) {
+			return
+		}
+
+		// Init custom HTML5 <video> player (https://plyr.io)
+		if (window.hasOwnProperty('Plyr')) {
+			let elementId = element.dataset.scriptId
+			let video = element.querySelector('.bricks-plyr')
+			let player = window.bricksData?.videoInstances?.[elementId] || undefined
+
+			if (player) {
+				player.destroy()
+			}
+
+			if (video) {
+				// 'autoplay' only runs if video is 'muted'
+				player = new Plyr(video)
+			}
+
+			window.bricksData.videoInstances[elementId] = player
+		}
+
+		// Necessary for autoplaying in iOS (https://webkit.org/blog/6784/new-video-policies-for-ios/)
+		videoElement.setAttribute('playsinline', true)
+	}
+})
+function bricksVideo() {
+	bricksVideoFn.run()
+}
+
+/**
+ * Load Facebook SDK & render Facebook widgets
+ *
+ * https://developers.facebook.com/docs/javascript/reference/FB.init/v3.3
+ *
+ * @since 1.4 Use XMLHttpRequest instead of jquery.ajax()
+ */
+
+function bricksFacebookSDK() {
+	// Return: Page has no Facebook Page element
+	let facebookPageElement = document.querySelector('.brxe-facebook-page')
+
+	if (!facebookPageElement) {
+		return
+	}
+
+	let locale = window.bricksData.hasOwnProperty('locale') ? window.bricksData.locale : 'en_US'
+	let facebookAppId = window.bricksData.hasOwnProperty('facebookAppId')
+		? window.bricksData.facebookAppId
+		: null
+	let facebookSdkUrl = `https://connect.facebook.net/${locale}/sdk.js`
+
+	let xhr = new XMLHttpRequest()
+	xhr.open('GET', facebookSdkUrl)
+
+	// Successful response: Create & add FB script to DOM and run function to generate Facebook Page HTML
+	xhr.onreadystatechange = function () {
+		if (this.readyState == 4 && this.status == 200) {
+			let fbScript = document.createElement('script')
+			fbScript.type = 'text/javascript'
+			fbScript.id = 'bricks-facebook-page-sdk'
+			fbScript.appendChild(document.createTextNode(xhr.responseText))
+			document.body.appendChild(fbScript)
+
+			FB.init({
+				appId: facebookAppId,
+				version: 'v3.3',
+				xfbml: true // render
+			})
+		}
+	}
+
+	xhr.send()
+}
+
+/**
+ * Prettify <pre> and <code> HTML tags
+ *
+ * https://github.com/googlearchive/code-prettify
+ */
+const bricksPrettifyFn = new BricksFunction({
+	parentNode: document,
+	selector: '.prettyprint.prettyprinted',
+	run: () => {
+		if (!window.hasOwnProperty('PR')) {
+			return
+		}
+
+		PR.prettyPrint()
+
+		// Builder: Re-init prettify
+		let prettyprinted = bricksQuerySelectorAll(document, '.prettyprint.prettyprinted')
+
+		if (!bricksIsFrontend && prettyprinted.length) {
+			prettyprinted.forEach((prettyprint) => {
+				prettyprint.classList.remove('prettyprinted')
+				PR.prettyPrint()
+			})
+		}
+	}
+})
+
+function bricksPrettify() {
+	bricksPrettifyFn.run()
+}
+
+/**
+ * Improve a11y keyboard navigation by making sure after skipping to the content, the next tab hit continues down the content
+ *
+ * https://axesslab.com/skip-links/
+ */
+function bricksSkipLinks() {
+	let skipLinks = bricksQuerySelectorAll(document, '.skip-link')
+
+	if (!skipLinks) {
+		return
+	}
+
+	skipLinks.forEach((link) => {
+		link.addEventListener('click', (e) => {
+			e.preventDefault()
+
+			let toElement = document.getElementById(link.href.split('#')[1])
+
+			if (toElement) {
+				toElement.setAttribute('tabindex', '-1')
+
+				toElement.addEventListener(
+					'blur',
+					() => {
+						toElement.removeAttribute('tabindex')
+					},
+					{ once: true }
+				)
+
+				toElement.focus()
+			}
+		})
+	})
+}
+
+/**
+ * Bind element interactions to elements (frontend only)
+ *
+ * @since 1.6
+ */
+const bricksInteractionsFn = new BricksFunction({
+	parentNode: document,
+	selector: '[data-interactions]',
+	frontEndOnly: true,
+	eachElement: (sourceEl) => {
+		let interactions = []
+
+		try {
+			interactions = JSON.parse(sourceEl.dataset.interactions)
+		} catch (e) {
+			console.info('error:bricksInteractions', e)
+			return false
+		}
+
+		let interactionGroupId = sourceEl.dataset?.interactionId || false
+
+		if (!interactions || !interactionGroupId) {
+			return
+		}
+
+		interactions.forEach((interaction) => {
+			let bindToDocument = false
+
+			if (!interaction?.trigger) {
+				return
+			}
+
+			// trigger: 'click', 'mouseover', 'scroll', etc.
+			if (interaction.trigger === 'scroll') {
+				let scrollOffset = 0
+
+				if (interaction?.scrollOffset) {
+					scrollOffset = interaction?.scrollOffset.replace('px', '')
+
+					if (scrollOffset.includes('%')) {
+						let documentHeight = Math.max(
+							document.body.scrollHeight,
+							document.documentElement.scrollHeight,
+							document.body.offsetHeight,
+							document.documentElement.offsetHeight,
+							document.body.clientHeight,
+							document.documentElement.clientHeight
+						)
+
+						scrollOffset = (documentHeight / 100) * parseInt(scrollOffset)
+					} else if (scrollOffset.includes('vh')) {
+						scrollOffset = (window.innerHeight / 100) * parseInt(scrollOffset)
+					}
+				}
+
+				interaction.scrollOffset = scrollOffset
+			} else if (interaction.trigger === 'mouseleaveWindow') {
+				interaction.trigger = 'mouseleave'
+				bindToDocument = true
+			}
+
+			// 'loadMore': Check if query trail exist. If not: remove the "Load More" element
+			if (interaction.action === 'loadMore') {
+				const queryId = interaction?.loadMoreQuery
+
+				if (!window.bricksData.queryLoopInstances?.[queryId]) {
+					// Hide the element (@since 1.8.2), previously it was removed
+					sourceEl.style.display = 'none'
+				}
+			}
+
+			// Return: No more sourceEl
+			if (!sourceEl) {
+				return
+			}
+
+			// STEP: store the source element
+			interaction.el = sourceEl
+
+			// STEP: Interaction group Id
+			interaction.groupId = bindToDocument ? 'document' : interactionGroupId
+
+			// STEP: Store interaction
+			if (!window.bricksData?.interactions) {
+				window.bricksData.interactions = []
+			}
+
+			window.bricksData.interactions.push(interaction)
+
+			// STEP: Create interaction event listeners
+			switch (interaction.trigger) {
+				case 'click':
+				case 'mouseover':
+				case 'mouseenter':
+				case 'mouseleave':
+				case 'focus':
+				case 'blur':
+					let attachEl = bindToDocument ? document.documentElement : sourceEl
+
+					attachEl.addEventListener(interaction.trigger, bricksInteractionCallback, {
+						once: interaction?.runOnce
+					})
+					break
+
+				// @since 1.8.4
+				case 'animationEnd':
+					let targetAnimationId = interaction?.animationId || false
+
+					// Target animation not set: Find last previous animation interaction (action is 'startAnimation'), and must be in the same interaction group
+					if (!targetAnimationId) {
+						let previousInteraction = window.bricksData.interactions.filter((int) => {
+							return (
+								int.groupId === interactionGroupId &&
+								int.action === 'startAnimation' &&
+								int.id !== interaction.id
+							)
+						})
+
+						if (previousInteraction.length) {
+							targetAnimationId = previousInteraction[previousInteraction.length - 1].id
+						}
+					}
+
+					// @since 1.8.4 - Listen to `bricks/animation/end/${animationId}`
+					if (targetAnimationId && targetAnimationId !== interaction.id) {
+						document.addEventListener(
+							`bricks/animation/end/${targetAnimationId}`,
+							(evt) => {
+								bricksInteractionCallbackExecution(sourceEl, interaction)
+							},
+							{
+								once: interaction?.runOnce
+							}
+						)
+					}
+					break
+
+				case 'contentLoaded':
+					let delay = interaction?.delay || 0
+
+					if (delay && delay.includes('ms')) {
+						delay = parseInt(delay)
+					} else if (delay && delay.includes('s')) {
+						delay = parseFloat(delay) * 1000
+					}
+
+					setTimeout(() => {
+						bricksInteractionCallbackExecution(sourceEl, interaction)
+					}, delay)
+					break
+
+				case 'enterView':
+					new BricksIntersect({
+						element: sourceEl,
+						callback: (sourceEl) => bricksInteractionCallbackExecution(sourceEl, interaction),
+						once: interaction?.runOnce,
+						trigger: interaction?.trigger
+					})
+					break
+
+				/**
+				 * Don't use rootMargin
+				 *
+				 * Because if element has enterView & leaveView interactions, the leaveView will be ignored when scrolling up
+				 *
+				 * @see #38ve0he
+				 *
+				 * @since 1.6.2
+				 */
+				case 'leaveView':
+					new BricksIntersect({
+						element: sourceEl,
+						callback: (sourceEl) => bricksInteractionCallbackExecution(sourceEl, interaction),
+						once: interaction?.runOnce,
+						trigger: interaction?.trigger
+					})
+					break
+
+				/**
+				 * Show/Hide popup trigger
+				 * @since 1.8.2
+				 */
+				case 'showPopup':
+				case 'hidePopup':
+					let listenEvent =
+						interaction.trigger === 'showPopup' ? 'bricks/popup/open' : 'bricks/popup/close'
+					document.addEventListener(listenEvent, (event) => {
+						let popupElement = event.detail?.popupElement || false
+
+						// Only run if this popup is the sourceEl
+						if (!popupElement || popupElement !== sourceEl) {
+							return
+						}
+
+						// STEP: Handle runOnce - As we are listening to a specific popup event, we cannot set once: true on addEventListener
+
+						// Get interaction from window.bricksData.interactions
+						let interactionIndex = window.bricksData.interactions.findIndex((interactionPool) => {
+							return interactionPool === interaction
+						})
+
+						// If interactionIndex is not found, return
+						if (interactionIndex === -1) {
+							return
+						}
+
+						// Remove interaction from window.bricksData.interactions after running the callback
+						if (interaction?.runOnce) {
+							window.bricksData.interactions.splice(interactionIndex, 1)
+						}
+
+						// STEP: Execute callback
+						bricksInteractionCallbackExecution(sourceEl, interaction)
+					})
+					break
+			}
+		})
+	}
+})
+
+function bricksInteractions() {
+	bricksInteractionsFn.run()
+}
+
+/**
+ * Popups
+ *
+ * @since 1.6
+ */
+function bricksPopups() {
+	/**
+	 * Store popup elements that are already listening to close event (click popup overlay or ESC key)
+	 *
+	 * To prevent multiple initialization for the same popup
+	 *
+	 * Not used anymore as the event registered but not removed, we should remove the event listener when popup is closed (@since 1.8.4)
+	 */
+	// window.bricksPopupsData = {
+	// 	initialized: []
+	// }
+
+	/**
+	 * Popup Focus Trap
+	 *
+	 * @since 1.8.4
+	 */
+	const popupFocusTrap = (event, popupElement) => {
+		if (event.key === 'Tab') {
+			event.preventDefault()
+
+			const focusableElements = bricksGetFocusables(popupElement)
+
+			if (!focusableElements.length) {
+				return
+			}
+
+			const focusedIndex = focusableElements.indexOf(document.activeElement)
+			const nextIndex = event.shiftKey ? focusedIndex - 1 : focusedIndex + 1
+			const nextElement = focusableElements[nextIndex]
+
+			if (nextElement) {
+				nextElement.focus()
+			} else {
+				focusableElements[0].focus()
+			}
+		}
+	}
+
+	const escClosePopup = (event, popupElement) => {
+		if (event.key === 'Escape') {
+			bricksClosePopup(popupElement)
+		}
+	}
+
+	const backdropClosePopup = (event, popupElement) => {
+		if (event.target.classList.contains('brx-popup-backdrop')) {
+			bricksClosePopup(popupElement)
+		}
+	}
+
+	/**
+	 * Listen to document bricks/popup/open event
+	 *
+	 * event.detail.popupElement: Popup element
+	 * event.detail.popupId: Popup id
+	 *
+	 * @since 1.7.1
+	 */
+	document.addEventListener('bricks/popup/open', (event) => {
+		// STEP: Get popup element
+		const popupElement = event.detail?.popupElement || false
+
+		if (!popupElement) {
+			return
+		}
+
+		if (bricksIsFrontend) {
+			// STEP: Autofocus on first focusable element inside popup (@since 1.8.4)
+			if (!popupElement.dataset?.popupDisableAutoFocus) {
+				let focusableElements = bricksGetFocusables(popupElement)
+
+				if (focusableElements.length) {
+					focusableElements[0].focus()
+				}
+			}
+
+			// STEP: Scroll to top of popup content (@since 1.8.4)
+			if (popupElement.dataset?.popupScrollToTop) {
+				popupElement.querySelector('.brx-popup-content')?.scrollTo(0, 0)
+			}
+
+			// STEP: Add focus trap - Not allowing to tab outside popup
+			const focusTrapEventHandler = (event) => popupFocusTrap(event, popupElement)
+
+			document.addEventListener('keydown', focusTrapEventHandler)
+
+			// Remove the focus trap event listener when popup is closed
+			document.addEventListener('bricks/popup/close', () => {
+				document.removeEventListener('keydown', focusTrapEventHandler)
+			})
+
+			// STEP: Add close event listeners for popup
+			const popupCloseOn = popupElement.dataset?.popupCloseOn || 'backdrop-esc'
+
+			if (popupCloseOn.includes('esc')) {
+				// STEP: Listen for ESC key pressed to close popup
+				const escEventHandler = (event) => escClosePopup(event, popupElement)
+
+				document.addEventListener('keyup', escEventHandler)
+
+				// Remove the ESC event listener when popup is closed
+				document.addEventListener('bricks/popup/close', () => {
+					document.removeEventListener('keyup', escEventHandler)
+				})
+			}
+
+			if (popupCloseOn.includes('backdrop')) {
+				// STEP: Listen for click outside popup to close popup
+				const backdropEventHandler = (event) => backdropClosePopup(event, popupElement)
+
+				document.addEventListener('click', backdropEventHandler)
+
+				// Remove the backdrop event listener when popup is closed
+				document.addEventListener('bricks/popup/close', () => {
+					document.removeEventListener('click', backdropEventHandler)
+				})
+			}
+		}
+	})
+}
+
+/**
+ * Scroll interaction listener (debounce: 100ms)
+ *
+ * @since 1.6
+ */
+function bricksScrollInteractions() {
+	clearTimeout(bricksScrollTimeout)
+
+	bricksScrollTimeout = setTimeout(() => {
+		// Get scroll interactions anew on every scroll (new interactions could have been added via AJAX pagination or infinite scroll)
+		let interactions = Array.isArray(window.bricksData?.interactions)
+			? window.bricksData.interactions
+			: []
+		let scrolled = window.scrollY
+		let runOnceIndexToRemove = []
+
+		interactions.forEach((interaction, index) => {
+			// Skip non-scroll interactions
+			if (interaction?.trigger !== 'scroll') {
+				return
+			}
+
+			if (scrolled >= interaction.scrollOffset) {
+				bricksInteractionCallbackExecution(interaction.el, interaction)
+
+				if (interaction?.runOnce) {
+					runOnceIndexToRemove.push(index)
+				}
+			}
+		})
+
+		// Remove interaction from window.bricksData.interactions after looping over all interactions (@since 1.8.1)
+		runOnceIndexToRemove.forEach((indexToRemove) => {
+			window.bricksData.interactions.splice(indexToRemove, 1)
+		})
+	}, 100)
+}
+
+/**
+ * Interactions callback
+ *
+ * @since 1.6
+ */
+function bricksInteractionCallback(event) {
+	// Possible improvement: Add "Don't add e.preventDefault() to clikc interaction"
+	if (event?.type === 'click') {
+		// Return: Don't run interaction when clicking on an anchor link (except for # itself)
+		if (
+			event.target.tagName === 'A' &&
+			event.target.getAttribute('href') !== '#' &&
+			event.target.getAttribute('href')?.startsWith('#')
+		) {
+			return
+		}
+
+		event.preventDefault()
+	}
+
+	const interactionGroupId = event?.currentTarget?.dataset?.interactionId || 'document'
+
+	window.bricksData.interactions
+		.filter((interaction) => interaction.groupId === interactionGroupId)
+		.forEach((interaction) => {
+			if (interaction?.trigger === event.type) {
+				bricksInteractionCallbackExecution(interaction.el, interaction)
+			}
+		})
+}
+
+/**
+ * Interaction action execution
+ *
+ * @since 1.6
+ */
+function bricksInteractionCallbackExecution(sourceEl, config) {
+	const targetMode = config?.target || 'self'
+
+	let target
+
+	// Return: Interaction condition not fulfilled
+	if (!bricksInteractionCheckConditions(config)) {
+		return
+	}
+
+	switch (targetMode) {
+		case 'custom':
+			if (config?.targetSelector) {
+				target = bricksQuerySelectorAll(document, config.targetSelector)
+			}
+			break
+
+		case 'popup':
+			if (config?.templateId) {
+				// Target looping popup by matching data-interaction-loop-id with data-popup-loop-id (@since 1.8.4)
+				const uniqueId = sourceEl.dataset?.interactionLoopId || false
+
+				if (uniqueId) {
+					target = bricksQuerySelectorAll(document, `.brx-popup[data-popup-loop-id="${uniqueId}"]`)
+				}
+
+				// If no popup found, try to find popup by data-popup-id
+				if (!target || !target.length) {
+					target = bricksQuerySelectorAll(
+						document,
+						`.brx-popup[data-popup-id="${config.templateId}"]`
+					)
+				}
+			}
+			break
+
+		default:
+			target = sourceEl // = self
+	}
+
+	if (!target) {
+		return
+	}
+
+	target = Array.isArray(target) ? target : [target]
+
+	switch (config?.action) {
+		case 'show':
+		case 'hide':
+			target.forEach((el) => {
+				// Popup
+				if (el?.classList.contains('brx-popup')) {
+					if (config.action === 'show') {
+						bricksOpenPopup(el)
+					} else if (config.action === 'hide') {
+						bricksClosePopup(el)
+					}
+				}
+
+				// Regular element
+				else {
+					// Hide
+					if (config.action === 'hide') {
+						el.style.display = 'none'
+					}
+
+					// Show (remove display: none & only set display: block as a fallback)
+					else {
+						if (el.style.display === 'none') {
+							el.style.display = null
+						} else {
+							el.style.display = 'block'
+						}
+					}
+				}
+			})
+			break
+
+		case 'setAttribute':
+		case 'removeAttribute':
+		case 'toggleAttribute':
+			const attributeKey = config?.actionAttributeKey
+
+			if (attributeKey) {
+				target.forEach((el) => {
+					let attributeValue = config?.actionAttributeValue || ''
+
+					// Attribute 'class'
+					if (attributeKey === 'class') {
+						let classNames = attributeValue ? attributeValue.split(' ') : []
+
+						classNames.forEach((className) => {
+							if (config.action === 'setAttribute') {
+								el.classList.add(className)
+							} else if (config.action === 'removeAttribute') {
+								el.classList.remove(className)
+							} else {
+								el.classList.toggle(className)
+							}
+						})
+					}
+
+					// All other attributes
+					else {
+						if (config.action === 'setAttribute') {
+							el.setAttribute(attributeKey, attributeValue)
+						} else if (config.action === 'removeAttribute') {
+							el.removeAttribute(attributeKey)
+						} else {
+							// Toggle attribute
+							if (el.hasAttribute(attributeKey)) {
+								el.removeAttribute(attributeKey)
+							} else {
+								el.setAttribute(attributeKey, attributeValue)
+							}
+						}
+					}
+				})
+			}
+			break
+
+		case 'storageAdd':
+		case 'storageRemove':
+		case 'storageCount':
+			const storageType = config?.storageType
+			const storageKey = config?.actionAttributeKey
+			const storageValue = config.hasOwnProperty('actionAttributeValue')
+				? config.actionAttributeValue
+				: 0
+
+			if (storageType && storageKey) {
+				if (config.action === 'storageAdd') {
+					bricksStorageSetItem(storageType, storageKey, storageValue)
+				} else if (config.action === 'storageRemove') {
+					bricksStorageRemoveItem(storageType, storageKey)
+				} else if (config.action === 'storageCount') {
+					let counter = bricksStorageGetItem(storageType, storageKey)
+
+					counter = counter ? parseInt(counter) : 0
+
+					bricksStorageSetItem(storageType, storageKey, counter + 1)
+				}
+			}
+			break
+
+		case 'startAnimation':
+			const animationType = config?.animationType
+
+			if (animationType) {
+				target.forEach((el) => {
+					// Default animation duration: 1s
+					let removeAnimationAfterMs = 1000
+					let isPopup = el?.classList.contains('brx-popup')
+
+					// Apply animation to popup content (@since 1.8)
+					if (isPopup) {
+						el = el.querySelector('.brx-popup-content')
+					}
+
+					// Get custom animation-duration
+					if (config?.animationDuration) {
+						el.style.animationDuration = config.animationDuration
+
+						if (config.animationDuration.includes('ms')) {
+							removeAnimationAfterMs = parseInt(config.animationDuration)
+						} else if (config.animationDuration.includes('s')) {
+							removeAnimationAfterMs = parseFloat(config.animationDuration) * 1000
+						}
+					}
+
+					// Get custom animation-delay
+					if (config?.animationDelay) {
+						el.style.animationDelay = config.animationDelay
+
+						if (config.animationDelay.includes('ms')) {
+							removeAnimationAfterMs += parseInt(config.animationDelay)
+						} else if (config.animationDelay.includes('s')) {
+							removeAnimationAfterMs += parseFloat(config.animationDelay) * 1000
+						}
+					}
+
+					// Animate popup (@since 1.7 - Popup use removeAnimationAfterMs for setTimeout duration)
+					if (isPopup) {
+						let popupNode = el.parentNode // el = .brx-popup-content
+						// Avoid recursive error (@since 1.8.4)
+						if (popupNode !== sourceEl) {
+							// Animate: open popup (if animationType includes 'In')
+							if (animationType.includes('In')) {
+								bricksOpenPopup(popupNode, removeAnimationAfterMs)
+							}
+						}
+					}
+
+					el.classList.add('brx-animated')
+
+					el.setAttribute('data-animation', animationType)
+
+					el.setAttribute('data-interaction-id', config.id || '')
+
+					// Remove animation class after animation duration + delay to run again
+					bricksAnimationFn.run({
+						elementsToAnimate: [el],
+						removeAfterMs: removeAnimationAfterMs
+					})
+				})
+			}
+			break
+
+		case 'loadMore':
+			const queryId = config?.loadMoreQuery
+
+			const queryConfig = window.bricksData.queryLoopInstances?.[queryId]
+
+			if (!queryConfig) {
+				return
+			}
+
+			// @since 1.7.1 - exclude popup from query trail
+			const queryTrail = queryConfig.isPostsElement
+				? document.querySelector(`.bricks-isotope-sizer[data-query-element-id="${queryId}"]`)
+						?.previousElementSibling
+				: Array.from(document.querySelectorAll(`.brxe-${queryId}:not(.brx-popup)`)).pop()
+
+			if (queryTrail) {
+				if (!sourceEl.classList.contains('is-loading')) {
+					// Add "is-loading" class to the source element so we could style some spinner animation
+					sourceEl.classList.add('is-loading')
+
+					// Add the query ID to the trail so that the load page could fetch the query config
+					queryTrail.dataset.queryElementId = queryId
+
+					bricksQueryLoadPage(queryTrail).then((data) => {
+						sourceEl.classList.remove('is-loading')
+
+						// Remove the load more "button"
+						if (data?.page >= data?.maxPages) {
+							// Hide the element (@since 1.8.2), previously it was removed
+							sourceEl.style.display = 'none'
+						}
+					})
+				}
+			}
+			break
+	}
+}
+
+/**
+ * Open Bricks popup (frontend only)
+ *
+ * @param {obj} object Popup element node or popup ID
+ *
+ * @since 1.7.1
+ */
+function bricksOpenPopup(object, timeout = 0) {
+	if (!bricksIsFrontend) {
+		return
+	}
+
+	let popupElement
+
+	// Check: Popup is element node OR popup ID
+	if (object) {
+		if (object.nodeType === Node.ELEMENT_NODE) {
+			popupElement = object
+		}
+
+		// Check: object is the popup ID
+		else if (object) {
+			popupElement = document.querySelector(`.brx-popup[data-popup-id="${object}"]`)
+		}
+	}
+
+	// Fallback: Get first popup on the page
+	// else {popupElement = document.querySelector(`.brx-popup[data-popup-id]`)}
+
+	if (!popupElement) {
+		return
+	}
+
+	const popupId = popupElement.dataset.popupId
+
+	// Check if the popup show limits are met
+	if (bricksPopupCheckLimit(popupElement)) {
+		// Show popup
+		popupElement.classList.remove('hide')
+
+		// @since 1.7.1 - Add "no-scroll" class to the body if 'data-popup-body-scroll' is not set
+		if (!popupElement.dataset.popupBodyScroll) {
+			document.body.classList.add('no-scroll')
+		}
+
+		// Set popup height to viewport height (@since 1.8.2)
+		bricksSetVh()
+
+		// @since 1.7.1 - Trigger custom event for the "bricks/popup/open" trigger, Provide the popup ID and the popup element
+		const showPopupEvent = new CustomEvent('bricks/popup/open', {
+			detail: { popupId, popupElement }
+		})
+
+		document.dispatchEvent(showPopupEvent)
+
+		// Run counter after timeout animation finishes (delay + duration)
+		setTimeout(() => {
+			bricksCounter()
+		}, timeout)
+
+		// Store the number of times this popup was shown
+		bricksPopupCounter(popupElement)
+	}
+}
+
+/**
+ * Close Bricks popup (frontend only)
+ *
+ * @param object Popup element node or popup ID
+ *
+ * @since 1.7.1
+ */
+function bricksClosePopup(object) {
+	if (!bricksIsFrontend) {
+		return
+	}
+
+	let popupElement
+
+	// Check: Popup is element node OR popup ID
+	if (object) {
+		if (object.nodeType === Node.ELEMENT_NODE) {
+			popupElement = object
+		}
+
+		// Check: object is the popup ID
+		else if (object) {
+			popupElement = document.querySelector(`.brx-popup[data-popup-id="${object}"]`)
+		}
+	}
+
+	// Fallback: Get first popup on the page
+	// else {popupElement = document.querySelector(`.brx-popup[data-popup-id]`)}
+
+	if (!popupElement) {
+		return
+	}
+
+	const popupId = popupElement.dataset.popupId
+
+	popupElement.classList.add('hide')
+
+	// @since 1.7.1 - Remove "no-scroll" class to the body if 'data-popup-body-scroll' is not set
+	if (!popupElement.dataset.popupBodyScroll) {
+		document.body.classList.remove('no-scroll')
+	}
+
+	// @since 1.7.1 - Trigger custom event for the "bricks/popup/close" trigger, Provide the popup ID and the popup element
+	const hidePopupEvent = new CustomEvent('bricks/popup/close', {
+		detail: { popupId, popupElement }
+	})
+
+	document.dispatchEvent(hidePopupEvent)
+}
+
+/**
+ * Popups: Check show up limits
+ *
+ * true:  ok
+ * false: limit overflow
+ *
+ * NOTE: Limits are stored in "brx_popup_${popupId}_total"
+ *
+ * @since 1.6
+ */
+function bricksPopupCheckLimit(element) {
+	let limits = element?.dataset?.popupLimits
+	let popupId = element?.dataset?.popupId
+
+	if (!limits) {
+		return true
+	}
+
+	try {
+		limits = JSON.parse(limits)
+	} catch (e) {
+		console.info('error:bricksPopupCheckLimit', e)
+		return true
+	}
+
+	let overflow = false
+
+	Object.entries(limits).forEach(([key, value]) => {
+		let counter = bricksStorageGetItem(key, `brx_popup_${popupId}_total`)
+		counter = counter ? parseInt(counter) : 0
+		overflow = overflow || counter >= value
+	})
+
+	return !overflow
+}
+
+/**
+ * Popups: Store how many times popup was displayed
+ *
+ * NOTE: limits are stored in "brx_popup_${popupId}_total"
+ *
+ * @since 1.6
+ */
+function bricksPopupCounter(element) {
+	let limits = element?.dataset?.popupLimits
+	let popupId = element?.dataset?.popupId
+
+	if (!limits) {
+		return
+	}
+
+	try {
+		limits = JSON.parse(limits)
+	} catch (e) {
+		console.info('error:bricksPopupCounter', e)
+		return true
+	}
+
+	Object.entries(limits).forEach(([key, value]) => {
+		let counter = bricksStorageGetItem(key, `brx_popup_${popupId}_total`)
+
+		counter = counter ? parseInt(counter) : 0
+
+		bricksStorageSetItem(key, `brx_popup_${popupId}_total`, counter + 1)
+	})
+}
+
+/**
+ * Check interactions conditions
+ *
+ * @since 1.6
+ */
+function bricksInteractionCheckConditions(config) {
+	// STEP: No conditions
+	if (!Array.isArray(config?.interactionConditions)) {
+		return true
+	}
+
+	let relation = config?.interactionConditionsRelation || 'and'
+
+	// Start with true if relation is 'and', false otherwise ('or')
+	let runInteraction = relation === 'and'
+
+	/**
+	 * Convert storage value to number to be used in >=, <=, >, < conditions
+	 *
+	 * @see #862j9fr6y
+	 *
+	 * @since 1.7.1
+	 */
+	const convertToNumber = (value) => (!isNaN(value) ? parseFloat(value) : 0)
+
+	// STEP: Check the interaction conditions
+	config.interactionConditions.forEach((condition) => {
+		let conditionType = condition?.conditionType
+		let storageKey = condition?.storageKey || false
+		let runCondition = false
+
+		if (conditionType && storageKey) {
+			let storageCompare = condition?.storageCompare || 'exists'
+			let storageCompareValue = condition?.storageCompareValue
+
+			let storageValue = bricksStorageGetItem(conditionType, storageKey)
+
+			switch (storageCompare) {
+				case 'exists':
+					runCondition = storageValue !== null
+					break
+
+				case 'notExists':
+					runCondition = storageValue === null
+					break
+
+				case '==':
+					runCondition = storageValue == storageCompareValue
+					break
+
+				case '!=':
+					runCondition = storageValue != storageCompareValue
+					break
+
+				case '>=':
+					runCondition = convertToNumber(storageValue) >= convertToNumber(storageCompareValue)
+					break
+
+				case '<=':
+					runCondition = convertToNumber(storageValue) <= convertToNumber(storageCompareValue)
+					break
+
+				case '>':
+					runCondition = convertToNumber(storageValue) > convertToNumber(storageCompareValue)
+					break
+
+				case '<':
+					runCondition = convertToNumber(storageValue) < convertToNumber(storageCompareValue)
+					break
+			}
+		} else {
+			runCondition = true
+		}
+
+		runInteraction =
+			relation === 'and' ? runInteraction && runCondition : runInteraction || runCondition
+	})
+
+	return runInteraction
+}
+
+/**
+ * Storage helper function to get value stored under a specific key
+ *
+ * @since 1.6
+ */
+function bricksStorageGetItem(type, key) {
+	if (!key) {
+		return
+	}
+
+	let value
+
+	try {
+		switch (type) {
+			// Per page load
+			case 'windowStorage':
+				value = window.hasOwnProperty(key) ? window[key] : null
+				break
+
+			// Per session
+			case 'sessionStorage':
+				value = sessionStorage.getItem(key)
+				break
+
+			// Across sessions
+			case 'localStorage':
+				value = localStorage.getItem(key)
+				break
+		}
+	} catch (e) {
+		console.info('error:bricksStorageGetItem', e)
+	}
+
+	return value
+}
+
+/**
+ * Storage helper function to set value for a specific storage key
+ *
+ * @since 1.6
+ */
+function bricksStorageSetItem(type, key, value) {
+	if (!key) {
+		return
+	}
+
+	try {
+		switch (type) {
+			case 'windowStorage':
+				window[key] = value
+				break
+
+			case 'sessionStorage':
+				sessionStorage.setItem(key, value)
+				break
+
+			case 'localStorage':
+				localStorage.setItem(key, value)
+				break
+		}
+	} catch (e) {
+		console.info('error:bricksStorageSetItem', e)
+	}
+}
+
+/**
+ * Storage helper function to remove a specific storage key
+ *
+ * @since 1.6
+ */
+function bricksStorageRemoveItem(type, key) {
+	if (!key) {
+		return
+	}
+
+	try {
+		switch (type) {
+			case 'windowStorage':
+				delete window[key]
+				break
+
+			case 'sessionStorage':
+				sessionStorage.removeItem(key)
+				break
+
+			case 'localStorage':
+				localStorage.removeItem(key)
+				break
+		}
+	} catch (e) {
+		console.info('error:bricksStorageRemoveItem', e)
+	}
+}
+
+/**
+ * Nav nested
+ *
+ * Mobile menu toggle
+ *
+ * Listeners:
+ * - press ESC key to close .brx-nav-nested-items & auto-focus on mobile menu toggle
+ * - press ENTER or SPACE to open .brxe-nav-nested-inner
+ *
+ * NOTE: Mobile menu toggle via .brx-toggle-div listener
+ *
+ * @since 1.8
+ */
+function bricksNavNested() {
+	// Return: Builder has its own logic for showing the brx-nav-nested-items while editing
+	if (!bricksIsFrontend) {
+		return
+	}
+
+	let navNestedObserver = new MutationObserver((mutations) => {
+		mutations.forEach((mutation) => {
+			if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
+				let navNested = mutation.target
+
+				// STEP: Open navNested
+				if (navNested.classList.contains('brx-open')) {
+					// Set popup height to viewport height (@since 1.8.2)
+					bricksSetVh() // Nav nested mobile menu uses 'top' & 'bottom' 0 instead of 100vh, though
+
+					// Add class to body to prevent scrolling
+					document.body.classList.add('no-scroll')
+
+					// Close toggle inside navNested is open
+					let toggleInside = navNested.querySelector('.brx-nav-nested-items button.brxe-toggle')
+
+					if (toggleInside) {
+						setTimeout(() => {
+							toggleInside.classList.add('is-active')
+							toggleInside.setAttribute('aria-expanded', true)
+							toggleInside.focus()
+						}, 10)
+					}
+
+					// Auto-focus on first focusable element inside .brx-nav-nested
+					else {
+						let focusableElements = bricksGetFocusables(navNested)
+
+						if (focusableElements.length) {
+							focusableElements[0].focus()
+						}
+					}
+				}
+
+				// STEP: Close nav nested
+				else {
+					// Remove class to body to prevent scrolling
+					document.body.classList.remove('no-scroll')
+
+					// Focus on toggle element that opened the nav nested ([data-toggle-script-id])
+					let toggleScriptId = navNested.dataset.toggleScriptId
+					let toggleNode = document.querySelector(`button[data-script-id="${toggleScriptId}"]`)
+
+					if (toggleNode) {
+						toggleNode.setAttribute('aria-expanded', false)
+						toggleNode.classList.remove('is-active')
+						toggleNode.focus()
+					}
+				}
+			}
+		})
+	})
+
+	let navNestedElements = bricksQuerySelectorAll(document, '.brxe-nav-nested')
+
+	if (!navNestedElements.length) {
+		return
+	}
+
+	// STEP: Observe class list changes on .brxe-nav-nested
+	navNestedElements.forEach((navNested) => {
+		navNestedObserver.observe(navNested, {
+			attributes: true,
+			attributeFilter: ['class']
+		})
+	})
+
+	// STEP: ESC key pressed: Close mobile menu
+	document.addEventListener('keyup', (e) => {
+		if (e.key === 'Escape') {
+			bricksNavNestedClose()
+		}
+	})
+
+	// STEP: Click outside of .brxe-nav-nested && not on a toggle: Close mobile menu
+	document.addEventListener('click', (e) => {
+		let navNested = e.target.closest('.brxe-nav-nested')
+		let clickOnToggle = e.target.closest('.brxe-toggle')
+
+		if (!navNested && !clickOnToggle) {
+			bricksNavNestedClose()
+		}
+	})
+}
+
+/**
+ * Nav nested: Close mobile menu
+ */
+function bricksNavNestedClose() {
+	let navNestedOpen = bricksQuerySelectorAll(document, '.brxe-nav-nested.brx-open')
+
+	navNestedOpen.forEach((navNested) => {
+		navNested.classList.add('brx-closing')
+
+		// Close .brx-open after 200ms to prevent mobile menu styles from unsetting while mobile menu fades out
+		setTimeout(() => {
+			navNested.classList.remove('brx-closing')
+			navNested.classList.remove('brx-open')
+		}, 200)
+	})
+}
+
+/**
+ * Offcanvas element
+ *
+ * - Show by adding .show (click on toggle)
+ * - Close by removeing .show (backdrop click/ESC key press)
+ *
+ * @since 1.8
+ */
+function bricksOffcanvas() {
+	if (!bricksIsFrontend) {
+		return
+	}
+
+	let offcanvasElements = bricksQuerySelectorAll(document, '.brxe-offcanvas')
+
+	if (!offcanvasElements.length) {
+		return
+	}
+
+	let offcanvasObserver = new MutationObserver((mutations) => {
+		mutations.forEach((mutation) => {
+			if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
+				let offcanvas = mutation.target
+				let inner = offcanvas.querySelector('.brx-offcanvas-inner')
+				let transitionDuration = inner
+					? (transitionDuration =
+							parseFloat(window.getComputedStyle(inner).getPropertyValue('transition-duration')) *
+							1000)
+					: 200
+
+				// STEP: Open offcanvas
+				if (offcanvas.classList.contains('brx-open')) {
+					// Set popup height to viewport height (@since 1.8.2)
+					bricksSetVh()
+
+					// Offset body by height/width of offcanvas
+					if (offcanvas.dataset.effect === 'offset') {
+						if (inner) {
+							// Get CSS transition value of .brx-offcanvas-inner
+							let direction = offcanvas.getAttribute('data-direction')
+							let transition = window.getComputedStyle(inner).getPropertyValue('transition')
+
+							document.body.style.margin = '0'
+							document.body.style.transition = transition.replace('transform', 'margin')
+
+							// Offset body by height/width of offcanvas
+
+							// Horizontal (top/bottom)
+							if (direction === 'top') {
+								document.body.style.marginTop = `${inner.offsetHeight}px`
+							} else if (direction === 'bottom') {
+								document.body.style.marginTop = `-${inner.offsetHeight}px`
+							}
+
+							// Vertical (left/right)
+							else if (direction === 'left') {
+								document.body.style.marginLeft = `${inner.offsetWidth}px`
+								document.body.style.overflowX = 'hidden'
+							} else if (direction === 'right') {
+								document.body.style.marginLeft = `-${inner.offsetWidth}px`
+								document.body.style.overflowX = 'hidden'
+							}
+						}
+					}
+
+					// Disable body scroll
+					if (offcanvas.dataset.noScroll) {
+						document.body.classList.add('no-scroll')
+					}
+
+					// Auto-focus on first focusable element inside .brx-offcanvas
+					let focusableElements = bricksGetFocusables(offcanvas)
+
+					if (focusableElements.length) {
+						focusableElements[0].focus()
+					}
+
+					// Toggle inside offcanvas is open
+					let offcanvasToggle = offcanvas.querySelector('.brx-offcanvas-inner > button.brxe-toggle')
+
+					if (offcanvasToggle) {
+						offcanvasToggle.classList.add('is-active')
+						offcanvasToggle.setAttribute('aria-expanded', true)
+					}
+				}
+
+				// STEP: Close offcanvas
+				else {
+					// Keep offcanvas visible until closing transition is finished (don't use class to prevent infinite MutationObserver loop)
+					offcanvas.style.visibility = 'visible'
+
+					// Focus on toggle element that opened the offcanvas ([data-toggle-script-id])
+					let toggleScriptId = offcanvas.dataset.toggleScriptId
+					let toggleNode = document.querySelector(`button[data-script-id="${toggleScriptId}"]`)
+
+					if (toggleNode) {
+						toggleNode.setAttribute('aria-expanded', false)
+						toggleNode.classList.remove('is-active')
+						toggleNode.focus()
+					}
+
+					if (offcanvas.dataset.effect === 'offset') {
+						if (document.body.style.marginTop) {
+							document.body.style.margin = '0'
+						}
+
+						setTimeout(() => {
+							document.body.style.margin = null
+							document.body.style.overflow = null
+							document.body.style.transition = null
+						}, transitionDuration)
+					}
+
+					setTimeout(() => {
+						// Set visibility back to hidden by removing the inline style
+						offcanvas.style.visibility = null
+
+						// Re-enable body scroll
+						if (offcanvas.dataset.noScroll) {
+							document.body.classList.remove('no-scroll')
+							bricksSubmenuPosition()
+						}
+					}, transitionDuration)
+				}
+			}
+		})
+	})
+
+	offcanvasElements.forEach((offcanvas) => {
+		// STEP: Observe class list changes on .brxe-offcanvas
+		offcanvasObserver.observe(offcanvas, {
+			attributes: true,
+			attributeFilter: ['class']
+		})
+
+		// STEP: Close offcanvas when clicking on backdrop
+		let backdrop = offcanvas.querySelector('.brx-offcanvas-backdrop')
+
+		if (backdrop) {
+			backdrop.addEventListener('click', (e) => {
+				bricksOffcanvasClose()
+			})
+		}
+	})
+
+	// STEP: ESC key pressed: Close offcanvas & focus on offcanvas toggle button
+	document.addEventListener('keyup', (e) => {
+		if (e.key === 'Escape') {
+			bricksOffcanvasClose()
+		}
+	})
+}
+
+/**
+ * Close all open offcanvas elements
+ *
+ * @since 1.8
+ */
+function bricksOffcanvasClose() {
+	let openOffcanvasElements = bricksQuerySelectorAll(document, '.brxe-offcanvas.brx-open')
+
+	openOffcanvasElements.forEach((openOffcanvas) => {
+		openOffcanvas.classList.remove('brx-open')
+	})
+}
+
+/**
+ * Toggle mobile menu open inside "Div" inside .brx-nav-nested-items
+ *
+ * Set diplay on div according to toggle display (initially and on window resize).
+ *
+ * @since 1.8
+ */
+function bricksToggleDisplay() {
+	let toggleElements = bricksQuerySelectorAll(document, '.brxe-toggle')
+
+	if (!toggleElements.length) {
+		return
+	}
+
+	toggleElements.forEach((toggle) => {
+		// Mobile menu close toggle inside 'div' inside .brx-nav-nested-items: Hide div
+		if (
+			toggle.closest('.brx-nav-nested-items') &&
+			!toggle.parentNode.classList.contains('brx-nav-nested-items') &&
+			!toggle.parentNode.classList.contains('brx-toggle-div')
+		) {
+			// Hide parent div if toggle is hidden
+			let toggleStyles = window.getComputedStyle(toggle)
+
+			if (toggleStyles.display === 'none') {
+				toggle.parentNode.style.display = 'none'
+			} else {
+				toggle.parentNode.style.display = null
+			}
+		}
+	})
+}
+
+/**
+ * Toggle element
+ *
+ * Default toggles:
+ *
+ * - Nav nested mobile menu (.brxe-nav-nested)
+ * - Offcanvas element (.brxe-offcanvas)
+ *
+ * @since 1.8
+ */
+function bricksToggle() {
+	if (!bricksIsFrontend) {
+		return
+	}
+
+	let toggleElements = bricksQuerySelectorAll(document, '.brxe-toggle')
+
+	if (!toggleElements.length) {
+		return
+	}
+
+	bricksToggleDisplay()
+
+	toggleElements.forEach((toggle) => {
+		toggle.addEventListener('click', (e) => {
+			e.preventDefault()
+
+			// Toggle selector, attribute, and value
+			let toggleSelector = toggle.dataset?.selector || '.brxe-offcanvas'
+			let toggleAttribute = toggle.dataset?.attribute || 'class'
+			let toggleValue = toggle.dataset?.value || 'brx-open'
+			let toggleElement = toggleSelector ? document.querySelector(toggleSelector) : false
+
+			// Element: nav-nested
+			if (!toggleElement) {
+				toggleElement = toggle.closest('.brxe-nav-nested')
+			}
+
+			// Element: offcanvas
+			if (!toggleElement) {
+				toggleElement = toggle.closest('.brxe-offcanvas')
+			}
+
+			if (!toggleElement) {
+				return
+			}
+
+			// Re-calculcate mega menu position & width to prevent scrollbars
+			if (document.querySelector('.brx-has-megamenu')) {
+				// If not close toggle inside offcanvas with offset effect
+				if (!e.target.closest('[data-effect="offset"]')) {
+					bricksSubmenuPosition(0)
+				}
+			}
+
+			// STEP: Set data-toggle-script-id as selector to focus back to toggle when closing via ESC key
+			if (toggle.dataset.scriptId && !toggleElement.dataset.toggleScriptId) {
+				toggleElement.dataset.toggleScriptId = toggle.dataset.scriptId
+			}
+
+			// STEP: Toggle 'aria-expanded' & .is-active on the toggle
+			let expanded = toggle.getAttribute('aria-expanded') === 'true'
+			toggle.setAttribute('aria-expanded', !expanded)
+			toggle.classList.toggle('is-active')
+
+			// STEP: Toggle class OR other attribute
+			if (toggleAttribute === 'class') {
+				// Close .brx-open after 200ms to prevent mobile menu styles from unsetting while mobile menu fades out
+				if (
+					toggle.closest('.brxe-nav-nested') &&
+					toggleValue === 'brx-open' &&
+					toggleElement.classList.contains('brx-open')
+				) {
+					toggleElement.classList.add('brx-closing')
+					setTimeout(() => {
+						toggleElement.classList.remove('brx-closing')
+						toggleElement.classList.remove('brx-open')
+					}, 200)
+				} else {
+					toggleElement.classList.toggle(toggleValue)
+				}
+			} else {
+				if (toggleElement.getAttribute(toggleAttribute)) {
+					toggleElement.removeAttribute(toggleAttribute)
+				} else {
+					toggleElement.setAttribute(toggleAttribute, toggleValue)
+				}
+			}
+
+			// STEP: Focus on first focusable element inside target
+			let focusableElements = bricksGetFocusables(toggleElement)
+
+			if (focusableElements.length) {
+				focusableElements[0].focus()
+			}
+		})
+	})
+}
+
+/**
+ * Toggle sub menu: Nav menu, Dropdown
+ *
+ * Toggle:
+ * - click on dropdown toggle
+ * - press ENTER key
+ * - press SPACE key
+ *
+ * Hide:
+ * - click outside dropdown
+ * - click on another dropdown toggle
+ * - press ESC key
+ * - press TAB key to tab out of dropdown
+ *
+ * Not added:
+ * - press ARROR UP/DOWN key to navigate dropdown items (prevents page scroll)
+ *
+ * @since 1.8
+ */
+function bricksSubmenuToggle(toggle, action = 'toggle') {
+	// Menu item: Parent of .brx-submenu-toggle (@since 1.8 to allow usage of non 'li' HTML tag on dropdown element)
+	let menuItem = toggle.parentNode.classList.contains('brx-submenu-toggle')
+		? toggle.parentNode.parentNode
+		: false
+
+	// Return: No menu item found
+	if (!menuItem) {
+		return
+	}
+
+	// STEP: Multilevel menu
+	let multilevel = toggle.closest('.brx-has-multilevel')
+
+	if (multilevel) {
+		// Hide currently active parent menu item (if it's not a megamenu)
+		let activeMenuItem = menuItem.parentNode.closest('.active')
+		if (activeMenuItem && !activeMenuItem.classList.contains('brx-has-megamenu')) {
+			activeMenuItem.classList.remove('active')
+		}
+
+		// Focus on first focusable element in submenu (small timoute required)
+		setTimeout(() => {
+			let submenu = menuItem.querySelector('ul') || menuItem.querySelector('.brx-dropdown-content')
+			if (submenu) {
+				let focusables = bricksGetFocusables(submenu)
+				if (focusables.length) {
+					focusables[0].focus()
+				}
+			}
+		}, 100)
+	}
+
+	// add, remove, toggle .open class (& add/remove .active class)
+	if (action === 'add') {
+		menuItem.classList.add('open')
+		menuItem.classList.add('active')
+	} else if (action === 'remove') {
+		menuItem.classList.remove('open')
+		menuItem.classList.remove('active')
+	} else {
+		menuItem.classList.toggle('open')
+	}
+
+	// Set 'aria-expanded'
+	toggle.setAttribute('aria-expanded', menuItem.classList.contains('open'))
+
+	// Re-position submenu on every toggle
+	// bricksSubmenuPosition(100)
+}
+
+/**
+ *
+ * Sub menu event listeners (Nav menu, Dropdown)
+ *
+ * mouseenter: Open submenu
+ * mouseleave: Close submenu
+ * Escape key pressed: Close all open sub menus outside non-active element
+ * Click outside submenu: Close all open sub menus
+ *
+ * @since 1.8
+ */
+function bricksSubmenuListeners() {
+	// STEP: Toggle submenu on mouseenter & mouseleave (desktop menu only)
+	let submenuItems = bricksQuerySelectorAll(document, '.bricks-nav-menu .menu-item-has-children')
+
+	// Include Dropdown elements
+	let dropdownMenuItems = bricksQuerySelectorAll(document, '.brxe-dropdown')
+	submenuItems = submenuItems.concat(dropdownMenuItems)
+
+	submenuItems.forEach((submenuItem) => {
+		// Skip mouse listeners: Static, Multilevel, active menu item
+		let skipMouseListeners =
+			submenuItem.closest('[data-static]') ||
+			submenuItem.closest('.brx-has-multilevel') ||
+			submenuItem.classList.contains('active')
+
+		if (skipMouseListeners) {
+			return
+		}
+
+		// Open submenu on mouseenter
+		submenuItem.addEventListener('mouseenter', function (e) {
+			// Return: Mobile menu (Nav menu, Nav nested)
+			if (
+				submenuItem.closest('.show-mobile-menu') ||
+				submenuItem.closest('.brxe-nav-nested.brx-open')
+			) {
+				return
+			}
+
+			// Return: Toggle on "click"
+			if (submenuItem.getAttribute('data-toggle') === 'click') {
+				return
+			}
+
+			let toggle = e.target.querySelector('[aria-expanded="false"]')
+
+			if (toggle) {
+				bricksSubmenuToggle(toggle)
+			}
+		})
+
+		// Close submenu on mouseleave
+		submenuItem.addEventListener('mouseleave', function (e) {
+			// Skip mobile menu (Nav menu, Nav nested)
+			if (
+				submenuItem.closest('.show-mobile-menu') ||
+				submenuItem.closest('.brxe-nav-nested.brx-open')
+			) {
+				return
+			}
+
+			// Return: Toggle on "click"
+			if (submenuItem.getAttribute('data-toggle') === 'click') {
+				return
+			}
+
+			let toggle = e.target.querySelector('[aria-expanded="true"]')
+
+			if (toggle) {
+				// Return: If submenu is .active (opened manually via toggle click)
+				let menuItem = toggle.closest('.menu-item')
+
+				if (!menuItem) {
+					menuItem = toggle.closest('.brxe-dropdown')
+				}
+
+				if (menuItem && menuItem.classList.contains('active')) {
+					return
+				}
+
+				bricksSubmenuToggle(toggle)
+			}
+		})
+	})
+
+	document.addEventListener('keyup', function (e) {
+		if (e.key === 'Escape') {
+			// STEP: Hide closest submenu & focus on parent
+			let openSubmenu = e.target.closest('.open')
+			let multilevel = e.target.closest('.brx-has-multilevel')
+
+			if (openSubmenu && !multilevel) {
+				let toggle = openSubmenu.querySelector('.brx-submenu-toggle button[aria-expanded]')
+
+				if (toggle) {
+					bricksSubmenuToggle(toggle, 'remove')
+
+					// Focus on parent
+					if (toggle) {
+						toggle.focus()
+					}
+				}
+			}
+
+			// STEP: Close all open submenus (multilevel)
+			else {
+				let openSubmenuToggles = bricksQuerySelectorAll(
+					document,
+					'.brx-submenu-toggle > button[aria-expanded="true"]'
+				)
+
+				openSubmenuToggles.forEach((toggle) => {
+					if (toggle) {
+						bricksSubmenuToggle(toggle, 'remove')
+					}
+				})
+			}
+		}
+
+		// STEP: Tabbed out of menu item: Close menu item (if it does not contain the active element)
+		else if (e.key === 'Tab' && !e.shiftKey) {
+			setTimeout(() => {
+				let openToggles = bricksQuerySelectorAll(document, '[aria-expanded="true"]')
+
+				// NOTE: Can't listen to tabbing out of window (in case there is no focusable element after the last open submenu on the page)
+				openToggles.forEach((toggle) => {
+					let menuItem = toggle.closest('.menu-item')
+
+					if (!menuItem) {
+						menuItem = toggle.closest('.brxe-dropdown')
+					}
+
+					if (
+						(menuItem && !menuItem.contains(document.activeElement)) ||
+						document.activeElement.tagName === 'BODY'
+					) {
+						bricksSubmenuToggle(toggle)
+					}
+				})
+			}, 0)
+		}
+	})
+
+	document.addEventListener('click', (e) => {
+		let linkUrl =
+			e.target.nodeName === 'A' && e.target.hasAttribute('href')
+				? e.target.getAttribute('href')
+				: ''
+
+		if (linkUrl) {
+			// Return: Link URL does not contain hash (#)
+			if (!linkUrl.includes('#')) {
+				return
+			}
+
+			// Prevent default on anchor link (#)
+			if (linkUrl === '#') {
+				e.preventDefault()
+			}
+
+			// Click on section anchor link (e.g. #section)
+			else {
+				// Inside offcanvas: Close offcanvas
+				let offcanvas = e.target.closest('.brxe-offcanvas')
+				if (offcanvas) {
+					bricksOffcanvasClose()
+				}
+
+				// Inside mobile menu: Close mobile menu (@since 1.8.4)
+				else {
+					let isMobileMenu = e.target.closest('.brxe-nav-nested.brx-open')
+					if (isMobileMenu) {
+						bricksNavNestedClose()
+
+						// Scroll to anchor link (after 200ms when mobile menu is closed)
+						let element = document.querySelector(linkUrl)
+
+						if (element) {
+							setTimeout(() => {
+								element.scrollIntoView()
+							}, 200)
+						}
+					}
+				}
+			}
+		}
+
+		// STEP: Toggle submenu button click (default) OR entire .brx-submenu-toggle on click (if 'toggleOn' set to: click, or both)
+		let submenuToggle = e.target.closest('.brx-submenu-toggle')
+		if (submenuToggle) {
+			let toggleOn = 'hover'
+
+			let toggleOnNode = submenuToggle.closest('[data-toggle]')
+			if (toggleOnNode) {
+				toggleOn = toggleOnNode.getAttribute('data-toggle')
+			}
+
+			// Nav menu: Toggle on entire .brx-submenu-toggle click
+			if (submenuToggle.closest('.brxe-nav-menu.show-mobile-menu')) {
+				toggleOn = 'click'
+			}
+
+			// Nav nested: Toggle on entire .brx-submenu-toggle click
+			if (submenuToggle.closest('.brxe-nav-nested.brx-open')) {
+				toggleOn = 'click'
+			}
+
+			let toggleButton =
+				toggleOn === 'hover'
+					? e.target.closest('[aria-expanded]')
+					: submenuToggle.querySelector('button[aria-expanded]')
+
+			/**
+			 * Return: Toggle on set to "hover"
+			 *
+			 * @sinc 1.8.4: Remove e.screenX = 0 && e.screenY = 0 check as not working in Safari
+			 */
+			let isKeyboardEvent = e.detail === 0
+			if (!isKeyboardEvent && toggleOn !== 'click' && toggleOn !== 'both') {
+				toggleButton = null
+			}
+
+			if (toggleButton) {
+				bricksSubmenuToggle(toggleButton)
+
+				// Set .open & active & aria-expanded in case toggle was already .open on mouseenter
+				let menuItem = submenuToggle.parentNode
+				menuItem.classList.toggle('active')
+
+				setTimeout(() => {
+					if (menuItem.classList.contains('active')) {
+						menuItem.classList.add('open')
+					}
+
+					toggleButton.setAttribute('aria-expanded', menuItem.classList.contains('open'))
+				}, 0)
+			}
+		}
+
+		// STEP: Click outside submenu: Close open sub menus
+		let openSubmenuButtons = bricksQuerySelectorAll(
+			document,
+			'.brx-submenu-toggle > button[aria-expanded="true"]'
+		)
+
+		openSubmenuButtons.forEach((toggleButton) => {
+			let menuItem = toggleButton.closest('li')
+
+			if (!menuItem) {
+				menuItem = toggleButton.closest('.brxe-dropdown')
+			}
+
+			if (!menuItem || menuItem.contains(e.target)) {
+				return
+			}
+
+			bricksSubmenuToggle(toggleButton)
+			menuItem.classList.remove('active')
+		})
+	})
+}
+
+/**
+ * Submenu position (re-run on window resize)
+ *
+ * Mega menu: Nav menu (Bricks template) & Dropdown.
+ * Re-position submenu in case of viewport overflow.
+ *
+ * @param {number} timeout Timeout in ms before calculating submenu position.
+ *
+ * @since 1.8
+ */
+function bricksSubmenuPosition(timeout = 0) {
+	setTimeout(() => {
+		let docWidth = document.body.clientWidth // document width without scrollbar
+		let submenuToggles = bricksQuerySelectorAll(document, '.brx-submenu-toggle')
+
+		submenuToggles.forEach((submenuToggle) => {
+			let menuItem = submenuToggle.parentNode
+			let submenu =
+				menuItem.querySelector('.brx-megamenu') ||
+				menuItem.querySelector('.brx-dropdown-content') ||
+				menuItem.querySelector('ul')
+
+			// Submenu has aria-current="page" menu item: Add .aria-current to toplevel .brx-submenu-toggle
+			if (submenu.querySelector('[aria-current="page"]')) {
+				submenuToggle.classList.add('aria-current')
+			}
+
+			// Skip: Static submenu (e.g. Dropdown inside Offcanvas)
+			if (menuItem.hasAttribute('data-static')) {
+				return
+			}
+
+			// Skip: Submenu not found
+			if (!submenu) {
+				return
+			}
+
+			// STEP: Mega menu
+			let hasMegamenu = menuItem.classList.contains('brx-has-megamenu')
+
+			if (hasMegamenu) {
+				let offsetLeft = menuItem.offsetLeft + 1 // + 1px to prevent horizontal scrollbar (@since 1.8)
+				if (offsetLeft) {
+					submenu.style.left = `-${offsetLeft}px`
+				}
+
+				// Set 'left' & 'min-width' of custom selector
+				let megaMenuWidthNode = menuItem.dataset.megaMenu
+					? document.querySelector(menuItem.dataset.megaMenu)
+					: false
+
+				if (megaMenuWidthNode) {
+					let megaMenuWidthNodeRect = megaMenuWidthNode.getBoundingClientRect()
+					submenu.style.left = `-${offsetLeft - megaMenuWidthNodeRect.left}px`
+					submenu.style.minWidth = `${megaMenuWidthNodeRect.width}px`
+				}
+
+				// Default: Cover entire body width
+				else {
+					submenu.style.minWidth = `${document.body.clientWidth}px`
+				}
+			}
+
+			// STEP: Default submenu
+			else {
+				// Remove overflow class to reapply logic on window resize
+				if (submenu.classList.contains('brx-multilevel-overflow-right')) {
+					submenu.classList.remove('brx-multilevel-overflow-right')
+				}
+
+				if (submenu.classList.contains('brx-submenu-overflow-right')) {
+					submenu.classList.remove('brx-submenu-overflow-right')
+				}
+
+				if (submenu.classList.contains('brx-sub-submenu-overflow-right')) {
+					submenu.classList.remove('brx-sub-submenu-overflow-right')
+				}
+
+				// STEP: Re-position in case of viewport overflow
+				let submenuRect = submenu.getBoundingClientRect()
+				let submenuWidth = submenuRect.width
+				let submenuRight = submenuRect.right
+				let submenuLeft = Math.ceil(submenuRect.left)
+
+				// STEP: Submenu wider than viewport: Set submenu to viewport width
+				if (submenuWidth > docWidth) {
+					submenu.style.left = `-${submenuLeft}px`
+					submenu.style.minWidth = `${docWidth}px`
+				}
+
+				// STEP: Dropdown content overflows viewport to the right: Re-position to prevent horizontal scrollbar
+				else if (submenuRight > docWidth) {
+					let multilevel = submenu.closest('.brx-has-multilevel')
+					let isToplevel =
+						!menuItem.parentNode.closest('.menu-item') &&
+						!menuItem.parentNode.closest('.brxe-dropdown')
+
+					// Top level of multilevel menu: Position all menus to the right
+					if (multilevel) {
+						submenu.classList.add('brx-multilevel-overflow-right')
+					}
+
+					// Default submenu
+					else {
+						if (isToplevel) {
+							submenu.classList.add('brx-submenu-overflow-right')
+						} else {
+							submenu.classList.add('brx-sub-submenu-overflow-right')
+						}
+					}
+				}
+
+				// STEP: Dropdown content overflows viewport on the left (RTL)
+				else if (submenuLeft < 0) {
+					submenu.style.left = '100%'
+					submenu.style.right = 'auto'
+				}
+			}
+		})
+	}, timeout)
+}
+
+/**
+ * Multi level menu item: "Nav menu" OR "Dropdown" element
+ *
+ * Add 'back' text to multilevel submenus & click listeners.
+ *
+ * @since 1.8
+ */
+function bricksMultilevelMenu() {
+	// STEP: Nav nested: Multilevel enabled
+	let navNestedElements = bricksQuerySelectorAll(document, '.brxe-nav-nested.multilevel')
+
+	navNestedElements.forEach((navNested) => {
+		let backText = navNested.getAttribute('data-back-text')
+		let dropdowns = navNested.querySelectorAll('.brxe-dropdown')
+
+		dropdowns.forEach((dropdown) => {
+			dropdown.classList.add('brx-has-multilevel')
+			dropdown.setAttribute('data-toggle', 'click')
+			dropdown.setAttribute('data-back-text', backText)
+		})
+	})
+
+	// STEP: Create "back" HTML & listeners
+	let multilevelItems = bricksQuerySelectorAll(document, '.brx-has-multilevel')
+
+	multilevelItems.forEach((menuItem) => {
+		let backText = menuItem.getAttribute('data-back-text') || 'Back'
+		let submenus = bricksQuerySelectorAll(menuItem, 'ul')
+
+		submenus.forEach((submenu, index) => {
+			// Return on top level menu item
+			if (index === 0) {
+				return
+			}
+
+			// Add back list item as first submenu node: li > a.brx-multilevel-back
+			let backLink = document.createElement('a')
+			backLink.classList.add('brx-multilevel-back')
+			backLink.setAttribute('href', '#')
+			backLink.innerText = backText
+
+			let backListItem = document.createElement('li')
+			backListItem.classList.add('menu-item')
+			backListItem.appendChild(backLink)
+
+			submenu.insertBefore(backListItem, submenu.firstChild)
+
+			// Listener to click on back link
+			backLink.addEventListener('click', function (e) {
+				e.preventDefault()
+
+				// Hide current submenu
+				let activeMenuItem = e.target.closest('.active')
+				if (activeMenuItem) {
+					activeMenuItem.classList.remove('open')
+					activeMenuItem.classList.remove('active')
+
+					// Set: aria-label="false"
+					let submenuToggle = activeMenuItem.querySelector('.brx-submenu-toggle > button')
+					if (submenuToggle) {
+						submenuToggle.setAttribute('aria-expanded', false)
+					}
+
+					// Set parent menu item to active
+					let parentMenuItem = activeMenuItem.parentNode.closest('.open')
+					if (parentMenuItem) {
+						parentMenuItem.classList.add('active')
+
+						let parentSubmenu = parentMenuItem.querySelector('ul')
+						if (parentSubmenu) {
+							// Focus on first focusable element in parent menu item
+							let focusables = bricksGetFocusables(parentSubmenu)
+							if (focusables.length) {
+								focusables[0].focus()
+							}
+						}
+					}
+				}
+			})
+		})
+	})
+}
+
+/**
+ * Nav menu: Open/close mobile menu
+ *
+ * Open/close: Click on mobile menu hamburger
+ * Close: Click on mobile menu overlay OR press ESC key
+ */
+function bricksNavMenuMobile() {
+	let toggles = bricksQuerySelectorAll(document, '.bricks-mobile-menu-toggle')
+
+	if (!toggles.length) {
+		return
+	}
+
+	// STEP: Observe mobile menu toggle via MutationObserver (.show-mobile-menu class)
+	let navMenuObserver = new MutationObserver((mutations) => {
+		// Set popup height to viewport height (@since 1.8.2)
+		bricksSetVh()
+
+		mutations.forEach((mutation) => {
+			// Add/remove .no-scroll body class
+			if (mutation.target.classList.contains('show-mobile-menu')) {
+				document.body.classList.add('no-scroll')
+			} else {
+				document.body.classList.remove('no-scroll')
+			}
+		})
+	})
+
+	// STEP: Observe class list changes on .brxe-nav-nested
+	toggles.forEach((toggle) => {
+		let navMenu = toggle.closest('.brxe-nav-menu')
+		navMenuObserver.observe(navMenu, {
+			attributes: true,
+			attributeFilter: ['class']
+		})
+	})
+
+	// STEP: Toggle mobile menu (click on hamburger)
+	document.addEventListener('click', (e) => {
+		mobileMenuToggle = e.target.closest('.bricks-mobile-menu-toggle')
+
+		if (mobileMenuToggle) {
+			// Toggle mobile menu
+			let navMenu = mobileMenuToggle.closest('.brxe-nav-menu')
+			navMenu.classList.toggle('show-mobile-menu')
+
+			// Toggle aria-expanded
+			let expanded = navMenu.classList.contains('show-mobile-menu')
+			mobileMenuToggle.setAttribute('aria-expanded', expanded)
+
+			// Auto-focus first focusable element in mobile menu
+			if (expanded) {
+				setTimeout(() => {
+					let navMenuMobile = navMenu.querySelector('.bricks-mobile-menu-wrapper')
+					let focusableElements = bricksGetFocusables(navMenuMobile)
+
+					if (focusableElements.length) {
+						focusableElements[0].focus()
+					}
+				}, 10)
+			}
+		}
+	})
+
+	// STEP: Close mobile menu: Click on mobile menu overlay OR section anchor link was clicked (e.g. #section)
+	document.addEventListener('click', (e) => {
+		let navMenu = e.target.closest('.brxe-nav-menu')
+
+		if (!navMenu) {
+			return
+		}
+
+		// Click on overlay: Close mobile menu
+		if (e.target.classList.contains('bricks-mobile-menu-overlay')) {
+			navMenu.classList.remove('show-mobile-menu')
+
+			// Toggle aria-expanded
+			navMenu.querySelector('.bricks-mobile-menu-toggle').setAttribute('aria-expanded', false)
+		}
+
+		// Click on anchor link: Close mobile menu
+		else if (e.target.closest('.bricks-mobile-menu-wrapper')) {
+			let navLinkUrl = e.target.tagName === 'A' ? e.target.getAttribute('href') : ''
+
+			// Close section link click (e.g.: #portfolio)
+			if (navLinkUrl.length > 1 && navLinkUrl.includes('#')) {
+				navMenu.classList.remove('show-mobile-menu')
+
+				// Toggle aria-expanded
+				navMenu.querySelector('.bricks-mobile-menu-toggle').setAttribute('aria-expanded', false)
+			}
+		}
+	})
+
+	// STEP: ESC key pressed: Close mobile menu & focus on mobile menu toggle button
+	document.addEventListener('keyup', (e) => {
+		if (e.key === 'Escape') {
+			let openMobileMenu = document.querySelector('.brxe-nav-menu.show-mobile-menu')
+
+			if (openMobileMenu) {
+				openMobileMenu.classList.remove('show-mobile-menu')
+
+				let toggle = openMobileMenu.querySelector('bricks-mobile-menu-toggle')
+
+				if (toggle) {
+					toggle.setAttribute('aria-expanded', false)
+
+					setTimeout(() => {
+						toggle.focus()
+					}, 10)
+				}
+			}
+		}
+	})
+}
+
+/**
+ * Helper function to get all focusable elements to auto-focus on (accessibility)
+ *
+ * @since 1.8
+ */
+function bricksGetFocusables(node) {
+	let focusableElements = node.querySelectorAll(
+		'a[href], button, input, textarea, select, details, [tabindex]:not([tabindex="-1"])'
+	)
+
+	// Filter out elements with display: none
+	return Array.prototype.filter.call(focusableElements, (element) => {
+		return window.getComputedStyle(element).display !== 'none'
+	})
+}
+
+/**
+ * Pause audio/video when popup is closed
+ *
+ * bricksPauseMediaFn.run() pauses all audio & video.
+ *
+ * @since 1.8
+ */
+const bricksPauseMediaFn = new BricksFunction({
+	parentNode: document,
+	selector: 'video, audio, iframe[src*="youtube"], iframe[src*="vimeo"]',
+	subscribeEvents: ['bricks/popup/close'],
+	forceReinit: true,
+	eachElement: (element) => {
+		// STEP: Pause video or audio
+		if (
+			(element.tagName === 'VIDEO' || element.tagName === 'AUDIO') &&
+			element.pause &&
+			typeof element.pause === 'function'
+		) {
+			element.pause()
+			// Continue next element
+			return
+		}
+
+		// STEP: Pause YouTube or Vimeo video
+		if (element.tagName === 'IFRAME') {
+			let src = element.getAttribute('src')
+			let isYoutube = src.includes('youtube')
+			let isVimeo = src.includes('vimeo')
+			let command = isYoutube
+				? { event: 'command', func: 'pauseVideo', args: '' }
+				: { method: 'pause' }
+
+			if (isVimeo || isYoutube) {
+				// Note that if the youtube video is not enableJSAPI, we can't pause it
+				element.contentWindow.postMessage(JSON.stringify(command), '*')
+				// Continue next element
+				return
+			}
+		}
+	},
+	listenerHandler: (event) => {
+		if (event?.type) {
+			switch (event.type) {
+				case 'bricks/popup/close':
+					let popupElement = event?.detail?.popupElement
+					if (popupElement) {
+						bricksPauseMediaFn.run({ parentNode: popupElement })
+					}
+					break
+			}
+		}
+	}
+})
+
+/**
+ * Set viewport height CSS variable: --bricks-vh
+ *
+ * Used in popup to cover viewport correctly on mobile devices.
+ *
+ * @since 1.8.2
+ */
+function bricksSetVh() {
+	const vh = window.innerHeight * 0.01
+
+	// Set var on documentElement (<html>)
+	document.documentElement.style.setProperty('--bricks-vh', `${vh}px`)
+}
+
+/**
+ * Enqueue custom scripts
+ */
+let bricksIsFrontend
+let bricksScrollTimeout
+let bricksTimeouts = {}
+
+document.addEventListener('DOMContentLoaded', (event) => {
+	bricksIsFrontend = document.body.classList.contains('bricks-is-frontend')
+
+	// Nav menu & Dropdown (@since 1.8)
+	bricksMultilevelMenu()
+	bricksNavMenuMobile()
+
+	bricksStickyHeader()
+	bricksOnePageNavigation()
+	bricksSkipLinks()
+	bricksFacebookSDK()
+	bricksSearchToggle()
+	bricksPopups()
+
+	bricksSwiper() // Sequence matters: before bricksSplide()
+	bricksSplide() // Sequence matters: after bricksSwiper()
+
+	// Run after bricksSwiper() & bricksSplide() as those need to generate required duplicate nodes first
+	bricksPhotoswipe()
+
+	bricksPrettify()
+	bricksAccordion()
+	bricksAnimatedTyping()
+	bricksAudio()
+	bricksCountdown()
+	bricksCounter()
+	bricksIsotope()
+	bricksPricingTables()
+	bricksVideo()
+	bricksLazyLoad()
+	bricksAnimation()
+	bricksPieChart()
+	bricksProgressBar()
+	bricksForm()
+	bricksInitQueryLoopInstances()
+	bricksQueryPagination()
+	bricksInteractions()
+	bricksAlertDismiss()
+	bricksTabs()
+	bricksVideoOverlayClickDetector()
+	bricksBackgroundVideoInit()
+
+	bricksNavNested()
+	bricksOffcanvas()
+	bricksToggle()
+
+	// After bricksNavNested() ran (added .brx-has-multilevel)
+	bricksSubmenuListeners()
+	bricksSubmenuPosition(250)
+
+	/**
+	 * Debounce
+	 *
+	 * Use timeout object to allow for individual clearTimeout() calls.
+	 *
+	 * @since 1.8
+	 */
+	window.addEventListener('resize', () => {
+		Object.keys(bricksTimeouts).forEach((key) => {
+			clearTimeout(bricksTimeouts[key])
+		})
+
+		// Frontend: 1vh calculation based on window.innerHeight (for mobile devices)
+		if (bricksIsFrontend) {
+			bricksTimeouts.bricksVh = setTimeout(bricksSetVh, 250)
+		}
+
+		// Builder: Re-init swiperJS on window resize for switching between breakpoints, etc.
+		else {
+			bricksTimeouts.bricksSwiper = setTimeout(bricksSwiper, 250)
+			bricksTimeouts.bricksSplide = setTimeout(bricksSplide, 250)
+		}
+
+		// Re-calculate left position on window resize with debounce (@since 1.8)
+		bricksTimeouts.bricksSubmenuPosition = setTimeout(bricksSubmenuPosition, 250)
+
+		// Set mobile menu open toggle parent div display according to toggle display
+		bricksTimeouts.bricksToggleDisplay = setTimeout(bricksToggleDisplay, 100)
+	})
+
+	/**
+	 * Separate event registration from bricksInteractionsFn
+	 *
+	 * 100ms timeout to ensure bricksInteractionsFn has been initialized & set window.bricksData.interactions
+	 *
+	 * @since 1.8
+	 */
+	setTimeout(() => {
+		let interactions = Array.isArray(window.bricksData?.interactions)
+			? window.bricksData.interactions
+			: []
+
+		// Scroll interaction(s) found: Listen to scroll event
+		if (interactions.find((interaction) => interaction?.trigger === 'scroll')) {
+			document.addEventListener('scroll', bricksScrollInteractions)
+		}
+	}, 100)
+})

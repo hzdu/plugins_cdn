@@ -7,7 +7,7 @@ function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableTo
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
 function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
-function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e44) { throw _e44; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e45) { didErr = true; err = _e45; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
+function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e2) { throw _e2; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e3) { didErr = true; err = _e3; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
 function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -16,64 +16,153 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return _typeof(key) === "symbol" ? key : String(key); }
 function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (_typeof(res) !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+/**
+ * Scroll into view via IntersectionObserver
+ *
+ * Fallback for IE9+ included.
+ */
 var BricksIntersect = /*#__PURE__*/_createClass(function BricksIntersect() {
-  var e = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
   _classCallCheck(this, BricksIntersect);
-  var t = e.element || !1,
-    r = e.callback || !1,
-    i = !e.hasOwnProperty("once") || e.once,
-    s = !!e.hasOwnProperty("trigger") && e.trigger;
-  if ("IntersectionObserver" in window) {
-    var n = !0,
-      o = new IntersectionObserver(function (e, o) {
-        e.forEach(function (e) {
-          if ("leaveView" === s ? !e.isIntersecting : e.isIntersecting) {
-            if (n && "leaveView" === s) return void (n = !1);
-            t && r && r(e.target), i && o.unobserve(e.target);
+  var element = options.element || false;
+  var callback = options.callback || false;
+  var runOnce = options.hasOwnProperty('once') ? options.once : true;
+  var trigger = options.hasOwnProperty('trigger') ? options.trigger : false;
+
+  // Create Intersection Observer
+  if ('IntersectionObserver' in window) {
+    var initialObserve = true;
+    var observerInstance = new IntersectionObserver(function (entries, observer) {
+      entries.forEach(function (entry) {
+        // Check if element is intersecting based on trigger type
+        var bricksIsIntersecting = trigger === 'leaveView' ? !entry.isIntersecting : entry.isIntersecting;
+        if (bricksIsIntersecting) {
+          // Skip initial observe if trigger is 'leaveView', as it will always be true if element is not visible
+          if (initialObserve && trigger === 'leaveView') {
+            initialObserve = false;
+            return;
           }
-        });
-      }, {
-        threshold: e.threshold || 0,
-        root: e.root || null,
-        rootMargin: (e === null || e === void 0 ? void 0 : e.rootMargin) || "0px"
+
+          // Run callback function
+          if (element && callback) {
+            callback(entry.target);
+          }
+
+          // Run only once: Stop observing element
+          if (runOnce) {
+            observer.unobserve(entry.target);
+          }
+        }
       });
-    t instanceof Element && o.observe(t);
-  } else {
-    var _e = !1,
-      _i = function _i() {
-        !1 === _e && (_e = !0, t.getBoundingClientRect().top <= window.innerHeight && t.getBoundingClientRect().bottom >= 0 && "none" !== window.getComputedStyle(t).display && t && r && r(t), _e = !1);
-      };
-    _i(), document.addEventListener("scroll", _i), window.addEventListener("resize", _i), window.addEventListener("orientationchange", _i);
+    }, {
+      threshold: options.threshold || 0,
+      root: options.root || null,
+      rootMargin: (options === null || options === void 0 ? void 0 : options.rootMargin) || '0px'
+    });
+
+    // Start observer
+    if (element instanceof Element) {
+      observerInstance.observe(element);
+    }
+  }
+
+  // Fallback: Internet Explorer 9+
+  else {
+    var active = false;
+    var ieIntersectObserver = function ieIntersectObserver() {
+      if (active === false) {
+        active = true;
+        if (element.getBoundingClientRect().top <= window.innerHeight && element.getBoundingClientRect().bottom >= 0 && window.getComputedStyle(element).display !== 'none') {
+          // Run callback function
+          if (element && callback) {
+            callback(element);
+          }
+        }
+        active = false;
+      }
+    };
+
+    // Init IE intersect observer fallback function
+    ieIntersectObserver();
+    document.addEventListener('scroll', ieIntersectObserver);
+    window.addEventListener('resize', ieIntersectObserver);
+    window.addEventListener('orientationchange', ieIntersectObserver);
   }
 });
-function BricksIsInViewport(e) {
-  var t = e.getBoundingClientRect();
-  return t.top >= 0 && t.left >= 0 && t.bottom <= (window.innerHeight || document.documentElement.clientHeight) && t.right <= (window.innerWidth || document.documentElement.clientWidth);
+/**
+ * Check if element is in the viewport
+ *
+ * @since 1.5
+ *
+ * @param {Element} element
+ * @returns {boolean}
+ */
+function BricksIsInViewport(element) {
+  var rect = element.getBoundingClientRect();
+  return rect.top >= 0 && rect.left >= 0 && rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) && rect.right <= (window.innerWidth || document.documentElement.clientWidth);
 }
-function bricksQuerySelectorAll(e, t) {
-  if (Array.isArray(t)) {
-    var r = [];
-    return t.forEach(function (t) {
-      r = r.concat(Array.prototype.slice.apply(e.querySelectorAll(t)));
-    }), r;
+
+/**
+ * Convert foundNodeList to array (as IE does not support forEach loop on NodeList)
+ *
+ * @param {Element} parentNode Node to search within.
+ * @param {array, string} selector CSS selector(s) to search for.
+ *
+ * @returns {array}
+ */
+function bricksQuerySelectorAll(parentNode, selector) {
+  // Multiple selectors
+  if (Array.isArray(selector)) {
+    var nodes = [];
+    selector.forEach(function (sel) {
+      nodes = nodes.concat(Array.prototype.slice.apply(parentNode.querySelectorAll(sel)));
+    });
+    return nodes;
   }
-  return Array.prototype.slice.apply(e.querySelectorAll(t));
+
+  // One selector (string)
+  return Array.prototype.slice.apply(parentNode.querySelectorAll(selector));
 }
+
+/**
+ * Bricks Utilities functions
+ *
+ * @since 1.8
+ */
+
 var bricksUtils = {
-  subscribeEvents: function subscribeEvents(e, t, r) {
-    t.forEach(function (t) {
-      e.addEventListener(t, function (e) {
-        r(e);
+  /**
+   * Subscribe to multiple events
+   * @param {*} object Example: document, window, element
+   * @param {*} eventNames Array of event names
+   * @param {*} callback
+   */
+  subscribeEvents: function subscribeEvents(object, eventNames, callback) {
+    eventNames.forEach(function (eventName) {
+      object.addEventListener(eventName, function (event) {
+        callback(event);
       });
     });
   }
 };
+
+/**
+ * BricksFunction class
+ *
+ * @since 1.8
+ */
 var BricksFunction = /*#__PURE__*/function () {
-  function BricksFunction(e) {
-    var _e$run,
-      _e$eachElement,
-      _e$listenerHandler,
-      _e$addEventListeners,
+  // Store custom functions on class init
+
+  // Store default settings
+
+  // Store initialized elements
+
+  function BricksFunction(options) {
+    var _options$run,
+      _options$eachElement,
+      _options$listenerHand,
+      _options$addEventList,
       _this = this;
     _classCallCheck(this, BricksFunction);
     _defineProperty(this, "_customRun", null);
@@ -82,23 +171,50 @@ var BricksFunction = /*#__PURE__*/function () {
     _defineProperty(this, "_customAddEventListeners", null);
     _defineProperty(this, "_settings", {});
     _defineProperty(this, "_initializedElements", new Set());
-    var t = {
+    // Default settings
+    var defaultSettings = {
       parentNode: document,
-      selector: "",
-      subscribeEvents: ["bricks/ajax/pagination/completed", "bricks/ajax/load_page/completed"],
-      forceReinit: !1,
-      frontEndOnly: !1,
+      selector: '',
+      subscribeEvents: ['bricks/ajax/pagination/completed', 'bricks/ajax/load_page/completed'],
+      forceReinit: false,
+      frontEndOnly: false,
       windowVariableCheck: [],
       additionalActions: []
     };
-    Object.assign(t, e), this._settings = t, this._customRun = (_e$run = e === null || e === void 0 ? void 0 : e.run) !== null && _e$run !== void 0 ? _e$run : null, this._customEachElement = (_e$eachElement = e === null || e === void 0 ? void 0 : e.eachElement) !== null && _e$eachElement !== void 0 ? _e$eachElement : null, this._customListenerHandler = (_e$listenerHandler = e === null || e === void 0 ? void 0 : e.listenerHandler) !== null && _e$listenerHandler !== void 0 ? _e$listenerHandler : null, this._customAddEventListeners = (_e$addEventListeners = e === null || e === void 0 ? void 0 : e.addEventListeners) !== null && _e$addEventListeners !== void 0 ? _e$addEventListeners : null, this.cleanUpInitElements = this.cleanUpInitElements.bind(this), this.run = this.run.bind(this), this.eachElement = this.eachElement.bind(this), this.listenerHandler = this.listenerHandler.bind(this), this.addEventListeners = this.addEventListeners.bind(this), document.addEventListener("DOMContentLoaded", function () {
-      if (_this.addEventListeners(), _this._settings.additionalActions.length) {
+
+    // Merge options with default settings when init the class
+    Object.assign(defaultSettings, options);
+
+    // Set default settings as class properties
+    this._settings = defaultSettings;
+
+    // Assign custom functions if any (these functions are overrideable on class init)
+    this._customRun = (_options$run = options === null || options === void 0 ? void 0 : options.run) !== null && _options$run !== void 0 ? _options$run : null;
+    this._customEachElement = (_options$eachElement = options === null || options === void 0 ? void 0 : options.eachElement) !== null && _options$eachElement !== void 0 ? _options$eachElement : null;
+    this._customListenerHandler = (_options$listenerHand = options === null || options === void 0 ? void 0 : options.listenerHandler) !== null && _options$listenerHand !== void 0 ? _options$listenerHand : null;
+    this._customAddEventListeners = (_options$addEventList = options === null || options === void 0 ? void 0 : options.addEventListeners) !== null && _options$addEventList !== void 0 ? _options$addEventList : null;
+
+    // Bind functions to class
+    this.cleanUpInitElements = this.cleanUpInitElements.bind(this);
+    this.run = this.run.bind(this);
+    this.eachElement = this.eachElement.bind(this);
+    this.listenerHandler = this.listenerHandler.bind(this);
+    this.addEventListeners = this.addEventListeners.bind(this);
+    document.addEventListener('DOMContentLoaded', function () {
+      // Add event listeners (only add once)
+      _this.addEventListeners();
+
+      // Run additional actions: Not define as a function to avoid overriding (no functionCanRun check here)
+      if (_this._settings.additionalActions.length) {
         var _iterator = _createForOfIteratorHelper(_this._settings.additionalActions),
           _step;
         try {
           for (_iterator.s(); !(_step = _iterator.n()).done;) {
-            var _e2 = _step.value;
-            "function" == typeof _e2 && _e2.call(_this);
+            var action = _step.value;
+            // Check if action is a function
+            if (typeof action === 'function') {
+              action.call(_this);
+            }
           }
         } catch (err) {
           _iterator.e(err);
@@ -108,17 +224,31 @@ var BricksFunction = /*#__PURE__*/function () {
       }
     });
   }
+
+  /**
+   * Helper: Based on window variable and frontEndOnly setting, check if function can run
+   */
   _createClass(BricksFunction, [{
     key: "functionCanRun",
     value: function functionCanRun() {
-      if (this._settings.frontEndOnly && !document.body.classList.contains("bricks-is-frontend")) return !1;
+      // Check: frontEndOnly is set and we are not in the front end
+      if (this._settings.frontEndOnly) {
+        // Can't use bricksIsFrontend here as this function is called before 'bricksIsFrontend' is set (and this is inside a class)
+        if (!document.body.classList.contains('bricks-is-frontend')) {
+          return false;
+        }
+      }
+
+      // Check: Does required window variables exist
       if (this._settings.windowVariableCheck.length) {
         var _iterator2 = _createForOfIteratorHelper(this._settings.windowVariableCheck),
           _step2;
         try {
           for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
-            var e = _step2.value;
-            if (!window[e]) return !1;
+            var variable = _step2.value;
+            if (!window[variable]) {
+              return false;
+            }
           }
         } catch (err) {
           _iterator2.e(err);
@@ -126,17 +256,24 @@ var BricksFunction = /*#__PURE__*/function () {
           _iterator2.f();
         }
       }
-      return !0;
+      return true;
     }
+
+    /**
+     * Helper: Clean up initialized elements set: Remove elements that are no longer in the DOM
+     */
   }, {
     key: "cleanUpInitElements",
     value: function cleanUpInitElements() {
+      // Remove elements from _initializedElements if they are no longer in the DOM
       var _iterator3 = _createForOfIteratorHelper(this._initializedElements),
         _step3;
       try {
         for (_iterator3.s(); !(_step3 = _iterator3.n()).done;) {
-          var e = _step3.value;
-          e.isConnected || this._initializedElements["delete"](e);
+          var element = _step3.value;
+          if (!element.isConnected) {
+            this._initializedElements["delete"](element);
+          }
         }
       } catch (err) {
         _iterator3.e(err);
@@ -144,67 +281,216 @@ var BricksFunction = /*#__PURE__*/function () {
         _iterator3.f();
       }
     }
+
+    /**
+     * Run logic on each element
+     */
   }, {
     key: "eachElement",
-    value: function eachElement(e) {
-      this._customEachElement && "function" == typeof this._customEachElement && this._customEachElement.call(this, e);
+    value: function eachElement(element) {
+      // Execute custom _customEachElement function if defined in constructor
+      if (this._customEachElement && typeof this._customEachElement === 'function') {
+        this._customEachElement.call(this, element);
+        return;
+      }
+
+      // Default customEachElement function: Do nothing
     }
+
+    /**
+     * Entry point:
+     * Using functionCanRun as a guard, clean up initialized elements.
+     * By default, find all elements based on parent node and selector, and run the eachElement function on each element.
+     */
   }, {
     key: "run",
-    value: function run(e) {
+    value: function run(customSettings) {
       var _this2 = this;
-      if (!this.functionCanRun()) return;
-      if (this.cleanUpInitElements(), this._customRun && "function" == typeof this._customRun) return void this._customRun.call(this, e);
-      var t = Object.assign({}, this._settings);
-      e && Object.keys(e).forEach(function (r) {
-        t.hasOwnProperty(r) && (t[r] = e[r]);
-      });
-      var r = bricksQuerySelectorAll(t.parentNode, t.selector);
-      r.length && r.forEach(function (e, r) {
-        if (t.forceReinit) {
-          if ("function" == typeof t.forceReinit ? t.forceReinit.call(_this2, e, r) : t.forceReinit) return void _this2.eachElement(e, r);
+      if (!this.functionCanRun()) {
+        return;
+      }
+
+      // Must run cleanUpInitElements before custom run function
+      this.cleanUpInitElements();
+
+      // Execute custom run function if defined in constructor
+      if (this._customRun && typeof this._customRun === 'function') {
+        this._customRun.call(this, customSettings);
+        return;
+      }
+
+      // Default run function
+
+      // Clone settings (to avoid modifying them)
+      var currentSettings = Object.assign({}, this._settings);
+
+      // Set custom settings to current settings
+      if (customSettings) {
+        Object.keys(customSettings).forEach(function (key) {
+          if (currentSettings.hasOwnProperty(key)) {
+            currentSettings[key] = customSettings[key];
+          }
+        });
+      }
+      var elementInstances = bricksQuerySelectorAll(currentSettings.parentNode, currentSettings.selector);
+
+      // Exit if no element found
+      if (!elementInstances.length) {
+        return;
+      }
+      elementInstances.forEach(function (element, index) {
+        // Store the element in the _initializedElements set
+        // forceReinit, ignore the set and run the eachElement function
+        if (currentSettings.forceReinit) {
+          // If forceReinit is a callback, run it
+          var reinit = typeof currentSettings.forceReinit === 'function' ? currentSettings.forceReinit.call(_this2, element, index) : currentSettings.forceReinit;
+          if (reinit) {
+            _this2.eachElement(element, index);
+            // Continue to next element
+            return;
+          }
         }
-        if (_this2._initializedElements.has(e)) {
-          var _t = Array.from(_this2._initializedElements).find(function (t) {
-            return t === e;
+
+        // Check if the element is already initialized
+        if (!_this2._initializedElements.has(element)) {
+          // Add element to initialized elements set
+          _this2._initializedElements.add(element);
+
+          // Run eachElement function
+          _this2.eachElement(element, index);
+        } else {
+          // Maybe the element inside the set is not the same as the current element, so we need to check
+          // Get the element from the set
+          var elementFromSet = Array.from(_this2._initializedElements).find(function (el) {
+            return el === element;
           });
-          _t.isConnected || (_this2._initializedElements["delete"](_t), _this2._initializedElements.add(e, r), _this2.eachElement(e, r));
-        } else _this2._initializedElements.add(e), _this2.eachElement(e, r);
+
+          // If it is not connected, remove it from the set and run the eachElement function
+          if (!elementFromSet.isConnected) {
+            _this2._initializedElements["delete"](elementFromSet);
+            // Add element to initialized elements set
+            _this2._initializedElements.add(element, index);
+            _this2.eachElement(element, index);
+          }
+        }
       });
     }
+
+    /**
+     * Once subscribed to events, run the listenerHandler function
+     * By default, we will change the parent node based on the event type, and execute the run function again
+     */
   }, {
     key: "listenerHandler",
-    value: function listenerHandler(e) {
-      this._customListenerHandler && "function" == typeof this._customListenerHandler ? this._customListenerHandler.call(this, e) : (e === null || e === void 0 ? void 0 : e.type) && (e.type, this.run());
+    value: function listenerHandler(event) {
+      // Execute custom listenerHandler function if defined in constructor
+      if (this._customListenerHandler && typeof this._customListenerHandler === 'function') {
+        this._customListenerHandler.call(this, event);
+        return;
+      }
+
+      // Default listenerHandler function
+      if (event !== null && event !== void 0 && event.type) {
+        switch (event.type) {
+          // Can add more cases here if needed for different events
+          // Maybe can change the parent node or selector based on the event type
+
+          default:
+            this.run();
+            break;
+        }
+      }
     }
+
+    /**
+     * By default, subscribe to events defined in the settings, and set listenerHandler as the callback
+     * Using functionCanRun as a guard
+     */
   }, {
     key: "addEventListeners",
     value: function addEventListeners() {
-      this.functionCanRun() && (this._customAddEventListeners && "function" == typeof this._customAddEventListeners ? this._customAddEventListeners.call(this) : this._settings.subscribeEvents.length && bricksUtils.subscribeEvents(document, this._settings.subscribeEvents, this.listenerHandler));
+      if (!this.functionCanRun()) {
+        return;
+      }
+
+      // Execute custom addEventListeners function if defined in constructor
+      if (this._customAddEventListeners && typeof this._customAddEventListeners === 'function') {
+        this._customAddEventListeners.call(this);
+        return;
+      }
+
+      // Default addEventListeners function
+      if (this._settings.subscribeEvents.length) {
+        bricksUtils.subscribeEvents(document, this._settings.subscribeEvents, this.listenerHandler);
+      }
     }
   }]);
   return BricksFunction;
 }();
+/**
+ * Frontend: Lazy load when target element enters viewport
+ *
+ * Video lazy load via bricksBackgroundVideoInit()
+ *
+ * https://developers.google.com/web/fundamentals/performance/lazy-loading-guidance/images-and-video/
+ */
 var bricksLazyLoadFn = new BricksFunction({
   parentNode: document,
-  selector: ".bricks-lazy-hidden",
-  eachElement: function eachElement(e) {
-    var t = window.bricksData.offsetLazyLoad || 300;
+  selector: '.bricks-lazy-hidden',
+  eachElement: function eachElement(el) {
+    // Lazy Load function
+    var lazyLoad = function lazyLoad(el) {
+      // Replace element attributes by setting 'src' with 'data-src'
+
+      // Show base64 preloader SVG
+      el.classList.add('wait');
+
+      // Image
+      if (el.dataset.src) {
+        el.src = el.dataset.src;
+        delete el.dataset.src;
+      }
+
+      // Image (data-sizes @since 1.5.1 due to W3 Validator error)
+      if (el.dataset.sizes) {
+        el.sizes = el.dataset.sizes;
+        delete el.dataset.sizes;
+      }
+      if (el.dataset.srcset) {
+        el.srcset = el.dataset.srcset;
+        delete el.dataset.srcset;
+      }
+
+      // Background image (e.g. slider)
+      if (el.dataset.style) {
+        var style = el.getAttribute('style') || '';
+        style += el.dataset.style;
+        el.setAttribute('style', style);
+
+        // Keep 'data-style' attribute for when splide.js re-initializes on window resize, etc. (@since 1.5)
+        if (!el.classList.contains('splide__slide')) {
+          delete el.dataset.style;
+        }
+      }
+      el.classList.remove('bricks-lazy-hidden');
+      el.classList.remove('wait');
+      if (el.classList.contains('bricks-lazy-load-isotope')) {
+        bricksIsotope();
+      }
+    };
+
+    // Lazy load offet: 300px default (customisable via Bricks setting 'offsetLazyLoad')
+    var rootMargin = window.bricksData.offsetLazyLoad || 300;
     new BricksIntersect({
-      element: e,
-      callback: function callback(e) {
-        (function (e) {
-          if (e.classList.add("wait"), e.dataset.src && (e.src = e.dataset.src, delete e.dataset.src), e.dataset.sizes && (e.sizes = e.dataset.sizes, delete e.dataset.sizes), e.dataset.srcset && (e.srcset = e.dataset.srcset, delete e.dataset.srcset), e.dataset.style) {
-            var _t2 = e.getAttribute("style") || "";
-            _t2 += e.dataset.style, e.setAttribute("style", _t2), e.classList.contains("splide__slide") || delete e.dataset.style;
-          }
-          e.classList.remove("bricks-lazy-hidden"), e.classList.remove("wait"), e.classList.contains("bricks-lazy-load-isotope") && bricksIsotope();
-        })(e);
+      element: el,
+      callback: function callback(el) {
+        lazyLoad(el);
       },
-      rootMargin: "".concat(t, "px")
+      rootMargin: "".concat(rootMargin, "px")
     });
   },
-  listenerHandler: function listenerHandler(e) {
+  listenerHandler: function listenerHandler(event) {
+    // No need to change parentNode, but need some delay to allow for new elements to be added to the DOM (e.g. swiper, carousel, testimonial, etc.)
     setTimeout(function () {
       bricksLazyLoadFn.run();
     }, 100);
@@ -213,265 +499,561 @@ var bricksLazyLoadFn = new BricksFunction({
 function bricksLazyLoad() {
   bricksLazyLoadFn.run();
 }
+
+/**
+ * Animate.css element animation
+ */
 var bricksAnimationFn = new BricksFunction({
   parentNode: document,
-  selector: ".brx-animated",
-  removeAfterMs: 3e3,
-  eachElement: function eachElement(e) {
+  selector: '.brx-animated',
+  removeAfterMs: 3000,
+  // removeAfterMs not used anymore (@since 1.8)
+  eachElement: function eachElement(el) {
     new BricksIntersect({
-      element: e,
-      callback: function callback(e) {
-        var t = e.dataset.animation;
-        t && (e.classList.add("brx-animate-".concat(t)), e.removeAttribute("data-animation"), e.addEventListener("animationend", function () {
-          if (e.classList.remove("brx-animate-".concat(t)), e.classList.contains("brx-popup-content") && t.includes("Out")) {
-            var _t3 = e.closest(".brx-popup");
-            _t3 && bricksClosePopup(_t3);
-          }
-        }, {
-          once: !0
-        }));
+      element: el,
+      callback: function callback(el) {
+        var animation = el.dataset.animation;
+        if (animation) {
+          // Start animation
+          el.classList.add("brx-animate-".concat(animation));
+
+          // Remove attribute to prevent hiding element after "in" animations (see _animate.scss)
+          el.removeAttribute('data-animation');
+
+          // Remove animation class on 'animationend' event instead of setTimeout below (@since 1.8)
+          el.addEventListener('animationend', function () {
+            el.classList.remove("brx-animate-".concat(animation));
+
+            // If this is .brx-popup-content, and animation includes 'Out', execute bricksClosePopup() after animation
+            if (el.classList.contains('brx-popup-content') && animation.includes('Out')) {
+              var popupNode = el.closest('.brx-popup');
+              if (popupNode) {
+                bricksClosePopup(popupNode);
+              }
+            }
+
+            // animationId = data-interaction-id
+            var animationId = el.dataset.interactionId;
+            if (animationId) {
+              // @since 1.8.4 - Trigger custom event for bricks/animation/end/{animationId}, provide element
+              var bricksAnimationEvent = new CustomEvent("bricks/animation/end/".concat(animationId), {
+                detail: {
+                  el: el
+                }
+              });
+              document.dispatchEvent(bricksAnimationEvent);
+            }
+          }, {
+            once: true
+          });
+        }
       }
     });
   },
-  run: function run(e) {
-    var t = bricksAnimationFn,
-      r = (e === null || e === void 0 ? void 0 : e.elementsToAnimate) || bricksQuerySelectorAll(t._settings.parentNode, t._settings.selector);
-    t.removeAfterMs = (e === null || e === void 0 ? void 0 : e.removeAfterMs) || t.removeAfterMs, r.forEach(function (e) {
-      t.eachElement(e);
+  run: function run(customSettings) {
+    var self = bricksAnimationFn;
+
+    // Use customSettings.elementsToAnimate if defined
+    var elementsToAnimate = (customSettings === null || customSettings === void 0 ? void 0 : customSettings.elementsToAnimate) || bricksQuerySelectorAll(self._settings.parentNode, self._settings.selector);
+
+    // Use customSettings.removeAfterMs if defined
+    self.removeAfterMs = (customSettings === null || customSettings === void 0 ? void 0 : customSettings.removeAfterMs) || self.removeAfterMs;
+    elementsToAnimate.forEach(function (el) {
+      self.eachElement(el);
     });
   }
 });
 function bricksAnimation() {
   bricksAnimationFn.run();
 }
+
+/**
+ * Populate the queries instances variable to be used for infinite scroll and load more
+ *
+ * @since 1.6
+ */
 var bricksInitQueryLoopInstancesFn = new BricksFunction({
   parentNode: document,
-  selector: ".brx-query-trail",
-  subscribeEvents: ["bricks/ajax/load_page/completed"],
-  eachElement: function eachElement(e) {
-    var _e$dataset;
-    var t = ((_e$dataset = e.dataset) === null || _e$dataset === void 0 ? void 0 : _e$dataset.observerMargin) || "1px",
-      r = e.dataset.queryElementId,
-      i = e.dataset.queryVars,
-      s = e === null || e === void 0 ? void 0 : e.classList.contains("bricks-isotope-sizer"),
-      n = e === null || e === void 0 ? void 0 : e.classList.contains("brx-infinite-scroll");
-    window.bricksData.queryLoopInstances[r] = {
-      page: e.dataset.page,
-      maxPages: e.dataset.maxPages,
-      queryVars: i,
-      observerMargin: t,
-      infiniteScroll: n,
-      isPostsElement: s
+  selector: '.brx-query-trail',
+  subscribeEvents: ['bricks/ajax/load_page/completed'],
+  eachElement: function eachElement(el) {
+    var _el$dataset;
+    var observerMargin = ((_el$dataset = el.dataset) === null || _el$dataset === void 0 ? void 0 : _el$dataset.observerMargin) || '1px'; // 0px doesn't trigger properly every time
+    var queryElementId = el.dataset.queryElementId;
+    var queryVars = el.dataset.queryVars;
+    var isPostsElement = el === null || el === void 0 ? void 0 : el.classList.contains('bricks-isotope-sizer');
+    var isInfiniteScroll = el === null || el === void 0 ? void 0 : el.classList.contains('brx-infinite-scroll');
+    window.bricksData.queryLoopInstances[queryElementId] = {
+      page: el.dataset.page,
+      maxPages: el.dataset.maxPages,
+      queryVars: queryVars,
+      observerMargin: observerMargin,
+      infiniteScroll: isInfiniteScroll,
+      isPostsElement: isPostsElement
     };
-    var o = s ? e.previousElementSibling : Array.from(document.querySelectorAll(".brxe-".concat(r, ":not(.brx-popup)"))).pop();
-    s || e.remove(), o && n && (o.dataset.queryElementId = r, new BricksIntersect({
-      element: o,
-      callback: function callback(e) {
-        return bricksQueryLoadPage(e);
-      },
-      once: 1,
-      rootMargin: t
-    }));
+
+    // If posts element, the query trail is the isotope sizer; For the Query Loop the trail is the last loop element
+    // @since 1.7.1 - exclude popup elements
+    var queryTrail = isPostsElement ? el.previousElementSibling : Array.from(document.querySelectorAll(".brxe-".concat(queryElementId, ":not(.brx-popup)"))).pop();
+
+    // Remove the trail in case it is not a Posts element
+    if (!isPostsElement) {
+      el.remove();
+    }
+    if (queryTrail && isInfiniteScroll) {
+      queryTrail.dataset.queryElementId = queryElementId;
+      new BricksIntersect({
+        element: queryTrail,
+        callback: function callback(el) {
+          return bricksQueryLoadPage(el);
+        },
+        once: 1,
+        rootMargin: observerMargin
+      });
+    }
   }
 });
 function bricksInitQueryLoopInstances() {
   bricksInitQueryLoopInstancesFn.run();
 }
-function bricksQueryLoadPage(e) {
-  return new Promise(function (t, r) {
+
+/**
+ * Bricks query load page elements
+ *
+ * @since 1.5
+ */
+function bricksQueryLoadPage(el) {
+  return new Promise(function (resolve, reject) {
     var _window$bricksData$qu;
-    var i = e.dataset.queryElementId,
-      s = (_window$bricksData$qu = window.bricksData.queryLoopInstances) === null || _window$bricksData$qu === void 0 ? void 0 : _window$bricksData$qu[i];
-    if (!s || s !== null && s !== void 0 && s.isLoading) return;
-    var n = parseInt(s.page || 1) + 1;
-    var o = parseInt(s.maxPages || 1);
-    if (n > o) return delete window.bricksData.queryLoopInstances[i], void t({
-      page: n,
-      maxPages: o
-    });
-    window.bricksData.queryLoopInstances[i].isLoading = 1;
-    var a = {
+    var queryElementId = el.dataset.queryElementId;
+    var queryInfo = (_window$bricksData$qu = window.bricksData.queryLoopInstances) === null || _window$bricksData$qu === void 0 ? void 0 : _window$bricksData$qu[queryElementId];
+    if (!queryInfo || queryInfo !== null && queryInfo !== void 0 && queryInfo.isLoading) {
+      return;
+    }
+    var page = parseInt(queryInfo.page || 1) + 1;
+    var maxPages = parseInt(queryInfo.maxPages || 1);
+    if (page > maxPages) {
+      delete window.bricksData.queryLoopInstances[queryElementId];
+      resolve({
+        page: page,
+        maxPages: maxPages
+      });
+      return;
+    }
+
+    // Set isLoading flag
+    window.bricksData.queryLoopInstances[queryElementId].isLoading = 1;
+    var queryData = {
       postId: window.bricksData.postId,
-      queryElementId: i,
-      queryVars: s.queryVars,
-      page: n,
+      queryElementId: queryElementId,
+      queryVars: queryInfo.queryVars,
+      page: page,
       nonce: window.bricksData.nonce
     };
-    var c = window.bricksData.restApiUrl.concat("load_query_page");
-    var l = new XMLHttpRequest();
-    l.open("POST", c, !0), l.setRequestHeader("Content-Type", "application/json; charset=UTF-8"), l.setRequestHeader("X-WP-Nonce", window.bricksData.wpRestNonce), l.onreadystatechange = function () {
-      if (l.readyState === XMLHttpRequest.DONE) {
-        var r = l.status;
-        if (0 === r || r >= 200 && r < 400) {
-          var _t4 = JSON.parse(l.response);
-          var _r = (_t4 === null || _t4 === void 0 ? void 0 : _t4.html) || !1,
-            _s = (_t4 === null || _t4 === void 0 ? void 0 : _t4.styles) || !1,
-            _o = (_t4 === null || _t4 === void 0 ? void 0 : _t4.popups) || !1;
-          _r && e.insertAdjacentHTML("afterend", _r), _o && document.body.insertAdjacentHTML("beforeend", _o), _s && document.body.insertAdjacentHTML("beforeend", _s), window.bricksData.queryLoopInstances[i].page = n;
+    var url = window.bricksData.restApiUrl.concat('load_query_page');
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', url, true);
+    xhr.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
+    xhr.setRequestHeader('X-WP-Nonce', window.bricksData.wpRestNonce);
+
+    // Successful response
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState === XMLHttpRequest.DONE) {
+        var status = xhr.status;
+
+        // Success
+        if (status === 0 || status >= 200 && status < 400) {
+          var res = JSON.parse(xhr.response);
+          var html = (res === null || res === void 0 ? void 0 : res.html) || false;
+          var styles = (res === null || res === void 0 ? void 0 : res.styles) || false;
+
+          // Popups HTML (@since 1.7.1)
+          var popups = (res === null || res === void 0 ? void 0 : res.popups) || false;
+          if (html) {
+            el.insertAdjacentHTML('afterend', html);
+          }
+          if (popups) {
+            // Add popups HTML at the end of the body (@since 1.7.1)
+            document.body.insertAdjacentHTML('beforeend', popups);
+          }
+          if (styles) {
+            // Add the page styles at the end of body
+            document.body.insertAdjacentHTML('beforeend', styles);
+          }
+
+          // Update Page on query info
+          window.bricksData.queryLoopInstances[queryElementId].page = page;
         }
-        window.bricksData.queryLoopInstances[i].isLoading = 0, t({
-          page: n,
-          maxPages: o
-        }), setTimeout(function () {
-          s.isPostsElement ? newQueryTrail = e.parentNode.querySelector(".bricks-isotope-sizer").previousElementSibling : newQueryTrail = Array.from(document.querySelectorAll(".brxe-".concat(i, ":not(.brx-popup)"))).pop(), document.dispatchEvent(new CustomEvent("bricks/ajax/load_page/completed", {
+
+        // Reset isLoading flag
+        window.bricksData.queryLoopInstances[queryElementId].isLoading = 0;
+        resolve({
+          page: page,
+          maxPages: maxPages
+        });
+        setTimeout(function () {
+          // Set the new query trail (Posts element)
+          if (queryInfo.isPostsElement) {
+            newQueryTrail = el.parentNode.querySelector('.bricks-isotope-sizer').previousElementSibling;
+          }
+
+          // Query Loop, @since 1.7.1 - exclude popup elements from the query trail
+          else {
+            newQueryTrail = Array.from(document.querySelectorAll(".brxe-".concat(queryElementId, ":not(.brx-popup)"))).pop();
+          }
+
+          // Emit event
+          document.dispatchEvent(new CustomEvent('bricks/ajax/load_page/completed', {
             detail: {
               queryTrailElement: newQueryTrail,
-              queryId: i
+              queryId: queryElementId
             }
-          })), s.infiniteScroll && (newQueryTrail.dataset.queryElementId = i, BricksIsInViewport(newQueryTrail) ? bricksQueryLoadPage(newQueryTrail) : new BricksIntersect({
-            element: newQueryTrail,
-            callback: function callback(e) {
-              return bricksQueryLoadPage(e);
-            },
-            once: !0,
-            rootMargin: s.observerMargin
           }));
+
+          // Is infinite scroll?
+          if (queryInfo.infiniteScroll) {
+            newQueryTrail.dataset.queryElementId = queryElementId;
+
+            // Check if the query trail is still visible, if yes, triggers the next page
+            if (BricksIsInViewport(newQueryTrail)) {
+              bricksQueryLoadPage(newQueryTrail);
+            }
+
+            // Add a new observer
+            else {
+              new BricksIntersect({
+                element: newQueryTrail,
+                callback: function callback(el) {
+                  return bricksQueryLoadPage(el);
+                },
+                once: true,
+                rootMargin: queryInfo.observerMargin
+              });
+            }
+          }
         }, 250);
       }
-    }, l.send(JSON.stringify(a));
+    };
+    xhr.send(JSON.stringify(queryData));
   });
 }
+
+/**
+ * Bricks query pagination elements (AJAX)
+ *
+ * @since 1.5
+ */
 var bricksQueryPaginationFn = new BricksFunction({
   parentNode: document,
-  selector: ".brx-ajax-pagination a",
-  subscribeEvents: ["bricks/ajax/pagination/completed"],
-  eachElement: function eachElement(e) {
-    var _e$dataset2;
-    ((_e$dataset2 = e.dataset) === null || _e$dataset2 === void 0 ? void 0 : _e$dataset2.ajaxPagination) || (e.dataset.ajaxPagination = 1, e.addEventListener("click", function (e) {
-      var _i$dataset;
-      var t = e.currentTarget,
-        r = t.getAttribute("href"),
-        i = t.closest(".brx-ajax-pagination"),
-        s = i === null || i === void 0 ? void 0 : (_i$dataset = i.dataset) === null || _i$dataset === void 0 ? void 0 : _i$dataset.queryElementId,
-        n = document.querySelector(".brxe-".concat(s));
-      if (!n) return;
-      e.preventDefault();
-      var o = new XMLHttpRequest();
-      o.open("GET", r, !0), o.responseType = "document", o.onload = function () {
-        if (this.readyState === XMLHttpRequest.DONE) {
-          var e = this.status;
-          if (0 === e || e >= 200 && e < 400) {
-            var _e3 = this.responseXML,
-              _t5 = n.parentNode,
-              _o2 = document.createElement("div");
-            _o2.style.display = "none", n.insertAdjacentElement("beforebegin", _o2);
-            _t5.querySelectorAll(".brxe-".concat(s, ":not(.brx-popup)")).forEach(function (e) {
-              return e.remove();
-            });
-            _e3.querySelectorAll(".brxe-".concat(s, ":not(.brx-popup)")).forEach(function (e) {
-              return _o2.insertAdjacentElement("beforebegin", e);
-            }), _o2.remove();
-            document.querySelectorAll(".brx-popup[data-popup-loop=\"".concat(s, "\"]")).forEach(function (e) {
-              return e.remove();
-            });
-            _e3.querySelectorAll(".brx-popup[data-popup-loop=\"".concat(s, "\"]")).forEach(function (e) {
-              return document.body.insertAdjacentElement("beforeend", e);
-            });
-            var a = _e3.querySelector("#bricks-frontend-inline-inline-css"),
-              c = document.querySelector("#bricks-frontend-inline-inline-css");
-            c && a && c.replaceWith(a);
-            var l = _e3.querySelector("#bricks-dynamic-data-inline-css"),
-              d = document.querySelector("#bricks-dynamic-data-inline-css");
-            d && l && d.replaceWith(l);
-            var u = _e3.querySelector(".brx-ajax-pagination[data-query-element-id=\"".concat(s, "\"]"));
-            i.replaceWith(u), document.dispatchEvent(new CustomEvent("bricks/ajax/pagination/completed", {
-              detail: {
-                queryId: s
-              }
-            })), window.history.pushState({}, "", r);
-          }
+  selector: '.brx-ajax-pagination a',
+  subscribeEvents: ['bricks/ajax/pagination/completed'],
+  eachElement: function eachElement(el) {
+    var _el$dataset2;
+    if (!((_el$dataset2 = el.dataset) !== null && _el$dataset2 !== void 0 && _el$dataset2.ajaxPagination)) {
+      el.dataset.ajaxPagination = 1;
+      el.addEventListener('click', function (e) {
+        var _targetPaginationEl$d;
+        var targetEl = e.currentTarget;
+        var href = targetEl.getAttribute('href');
+        var targetPaginationEl = targetEl.closest('.brx-ajax-pagination');
+        var queryId = targetPaginationEl === null || targetPaginationEl === void 0 ? void 0 : (_targetPaginationEl$d = targetPaginationEl.dataset) === null || _targetPaginationEl$d === void 0 ? void 0 : _targetPaginationEl$d.queryElementId;
+
+        // Check if there is any element
+        var firstLoopElement = document.querySelector(".brxe-".concat(queryId));
+        if (!firstLoopElement) {
+          return;
         }
-      }, o.send();
-    }));
+        e.preventDefault();
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', href, true);
+        xhr.responseType = 'document';
+        xhr.onload = function () {
+          if (this.readyState === XMLHttpRequest.DONE) {
+            var status = this.status;
+
+            // Success
+            if (status === 0 || status >= 200 && status < 400) {
+              var response = this.responseXML;
+              var loopWrapper = firstLoopElement.parentNode;
+
+              // Add a marker in the DOM so we know where to add the new looped elements
+              var listPlaceholder = document.createElement('div');
+              listPlaceholder.style.display = 'none';
+
+              // Insert the list placeholder before the first loop element
+              firstLoopElement.insertAdjacentElement('beforebegin', listPlaceholder);
+
+              // Remove old page elements, @since 1.7.1 - exclude popup elements
+              var oldLoopNodes = loopWrapper.querySelectorAll(".brxe-".concat(queryId, ":not(.brx-popup)"));
+              oldLoopNodes.forEach(function (el) {
+                return el.remove();
+              });
+
+              // Add new page elements, @since 1.7.1 - exclude popup elements
+              var newLoopNodes = response.querySelectorAll(".brxe-".concat(queryId, ":not(.brx-popup)"));
+              newLoopNodes.forEach(function (el) {
+                return listPlaceholder.insertAdjacentElement('beforebegin', el);
+              });
+
+              // Remove marker
+              listPlaceholder.remove();
+
+              // @since 1.7.1 - Remove old query looping popup elements
+              var oldLoopPopupNodes = document.querySelectorAll(".brx-popup[data-popup-loop=\"".concat(queryId, "\"]"));
+              oldLoopPopupNodes.forEach(function (el) {
+                return el.remove();
+              });
+
+              // @since 1.7.1 - Add new query looping popup elements before body end
+              var newLoopPopupNodes = response.querySelectorAll(".brx-popup[data-popup-loop=\"".concat(queryId, "\"]"));
+              newLoopPopupNodes.forEach(function (el) {
+                return document.body.insertAdjacentElement('beforeend', el);
+              });
+
+              // Replace #bricks-frontend-inline-inline-css - support looping dynamic styles (@since 1.8)
+              var newInlineStyle = response.querySelector('#bricks-frontend-inline-inline-css');
+              var oldInlineStyle = document.querySelector('#bricks-frontend-inline-inline-css');
+              if (oldInlineStyle && newInlineStyle) {
+                oldInlineStyle.replaceWith(newInlineStyle);
+              }
+
+              // Replace #bricks-dynamic-data-inline-css - support looping dynamic styles (@since 1.8)
+              // Use for AJAX pagination
+              var newDynamicStyle = response.querySelector('#bricks-dynamic-data-inline-css');
+              var oldDynamicStyle = document.querySelector('#bricks-dynamic-data-inline-css');
+              if (oldDynamicStyle && newDynamicStyle) {
+                oldDynamicStyle.replaceWith(newDynamicStyle);
+              }
+
+              // Replace the pagination element
+              var sourcePagination = response.querySelector(".brx-ajax-pagination[data-query-element-id=\"".concat(queryId, "\"]"));
+              targetPaginationEl.replaceWith(sourcePagination);
+
+              // @since 1.8 - Emit event
+              document.dispatchEvent(new CustomEvent('bricks/ajax/pagination/completed', {
+                detail: {
+                  queryId: queryId
+                }
+              }));
+
+              // Update the history
+              window.history.pushState({}, '', href);
+            }
+          }
+        };
+
+        // targetQueryTrailEl.classList.add('is-loading')
+
+        xhr.send();
+      });
+    }
   }
 });
 function bricksQueryPagination() {
   bricksQueryPaginationFn.run();
 }
 function bricksStickyHeader() {
-  var e = document.querySelector("#brx-header.sticky");
-  if (!e) return;
-  var t,
-    r,
-    i = document.querySelector(".bricks-site-logo"),
-    s = -1,
-    n = e.hasAttribute("data-slide-up-after") ? e.getAttribute("data-slide-up-after") : 0;
-  i && (t = i.getAttribute("data-bricks-logo"), r = i.getAttribute("data-bricks-logo-inverse"));
-  var o = function o() {
-    var o = window.pageYOffset;
-    o > 0 ? (e.classList.add("scrolling"), i && r && (i.src = r, i.srcset = "")) : (e.classList.remove("scrolling"), i && r && (i.src = t)), n && (o > s && s >= 0 ? o > n && e.classList.add("slide-up") : e.classList.remove("slide-up")), s = o;
+  var stickHeaderEl = document.querySelector('#brx-header.sticky');
+  if (!stickHeaderEl) {
+    return;
+  }
+  var logo = document.querySelector('.bricks-site-logo');
+  var logoDefault;
+  var logoInverse;
+  var lastScrolled = -1; // -1 to make sure that the first time bricksStickyHeaderOnScroll() runs it doesn't slide up
+  var headerSlideUpAfter = stickHeaderEl.hasAttribute('data-slide-up-after') ? stickHeaderEl.getAttribute('data-slide-up-after') : 0;
+  if (logo) {
+    logoDefault = logo.getAttribute('data-bricks-logo');
+    logoInverse = logo.getAttribute('data-bricks-logo-inverse');
+  }
+  var bricksStickyHeaderOnScroll = function bricksStickyHeaderOnScroll() {
+    var scrolled = window.pageYOffset;
+    if (scrolled > 0) {
+      stickHeaderEl.classList.add('scrolling');
+      if (logo && logoInverse && logo.src !== logoInverse) {
+        logo.src = logoInverse;
+        logo.srcset = '';
+      }
+    } else {
+      stickHeaderEl.classList.remove('scrolling');
+      if (logo && logoDefault && logo.src !== logoDefault) {
+        logo.src = logoDefault;
+      }
+    }
+
+    // Slide up
+    if (headerSlideUpAfter) {
+      if (scrolled > lastScrolled && lastScrolled >= 0) {
+        // Scolling down
+        if (scrolled > headerSlideUpAfter) {
+          stickHeaderEl.classList.add('slide-up');
+        }
+      } else {
+        // Scrolling up
+        stickHeaderEl.classList.remove('slide-up');
+      }
+    }
+    lastScrolled = scrolled;
   };
-  window.addEventListener("scroll", o), o();
+
+  // Set sticky header logo inverse & slide up
+  window.addEventListener('scroll', bricksStickyHeaderOnScroll);
+
+  // Run it once on page load to set the .scrolling class if page is aready scrolled down
+  bricksStickyHeaderOnScroll();
 }
+
+/**
+ * Frontend: One Page Navigation (in builder via dynamic Vue component)
+ */
 function bricksOnePageNavigation() {
-  var e = document.getElementById("bricks-one-page-navigation");
-  if (!bricksIsFrontend || !e) return;
-  var t = bricksQuerySelectorAll(document, "#brx-content > *"),
-    r = [],
-    i = "",
-    s = "",
-    n = "";
-  function o() {
-    var e = window.scrollY;
-    r.forEach(function (t) {
-      var r = document.getElementById(t),
-        i = r.offsetTop,
-        s = i + r.offsetHeight;
-      e >= i - 1 && e < s - 1 ? document.querySelector(".bricks-one-page-".concat(t)).classList.add("active") : document.querySelector(".bricks-one-page-".concat(t)).classList.remove("active");
+  var onePageNavigationWrapper = document.getElementById('bricks-one-page-navigation');
+  if (!bricksIsFrontend || !onePageNavigationWrapper) {
+    return;
+  }
+  var rootElements = bricksQuerySelectorAll(document, '#brx-content > *');
+  var elementIds = [];
+  var elementId = '';
+  var onePageLink = '';
+  var onePageItem = '';
+  if (!rootElements) {
+    return;
+  }
+  rootElements.forEach(function (element) {
+    elementId = element.getAttribute('id');
+    if (!elementId) {
+      return;
+    }
+    elementIds.push(elementId);
+    onePageItem = document.createElement('li');
+    onePageLink = document.createElement('a');
+    onePageLink.classList.add("bricks-one-page-".concat(elementId));
+    onePageLink.setAttribute('href', "#".concat(elementId));
+    onePageItem.appendChild(onePageLink);
+    onePageNavigationWrapper.appendChild(onePageItem);
+  });
+  function onePageScroll() {
+    var scrolled = window.scrollY;
+    elementIds.forEach(function (elementId) {
+      var element = document.getElementById(elementId);
+      var elementTop = element.offsetTop;
+      var elementBottom = elementTop + element.offsetHeight;
+      if (scrolled >= elementTop - 1 && scrolled < elementBottom - 1) {
+        document.querySelector(".bricks-one-page-".concat(elementId)).classList.add('active');
+      } else {
+        document.querySelector(".bricks-one-page-".concat(elementId)).classList.remove('active');
+      }
     });
   }
-  t && (t.forEach(function (t) {
-    i = t.getAttribute("id"), i && (r.push(i), n = document.createElement("li"), s = document.createElement("a"), s.classList.add("bricks-one-page-".concat(i)), s.setAttribute("href", "#".concat(i)), n.appendChild(s), e.appendChild(n));
-  }), window.addEventListener("load", o), window.addEventListener("resize", o), document.addEventListener("scroll", o));
+
+  // Add load, resize, scroll event listeners
+  window.addEventListener('load', onePageScroll);
+  window.addEventListener('resize', onePageScroll);
+  document.addEventListener('scroll', onePageScroll);
 }
+
+/**
+ * Search element: Toggle overlay search
+ */
 function bricksSearchToggle() {
-  bricksQuerySelectorAll(document, ".brxe-search").forEach(function (e) {
-    var t = e.querySelector(".toggle"),
-      r = e.querySelector(".bricks-search-overlay");
-    if (!t || !r) return;
-    var i = r.previousElementSibling;
-    document.addEventListener("keyup", function (e) {
-      if ("Escape" === e.key) {
-        "visible" === window.getComputedStyle(r).visibility && (r.classList.remove("show"), i.focus(), i.setAttribute("aria-expanded", !1));
+  var searchElements = bricksQuerySelectorAll(document, '.brxe-search');
+  searchElements.forEach(function (searchElement) {
+    var toggle = searchElement.querySelector('.toggle');
+    var overlay = searchElement.querySelector('.bricks-search-overlay');
+    if (!toggle || !overlay) {
+      return;
+    }
+    var searchInputOrIcon = overlay.previousElementSibling;
+    document.addEventListener('keyup', function (e) {
+      if (e.key === 'Escape') {
+        // Close search overlay on ESC key if visible (offsetParent not working on fixed positioned node)
+        var overlayStyles = window.getComputedStyle(overlay);
+        if (overlayStyles.visibility === 'visible') {
+          overlay.classList.remove('show');
+          searchInputOrIcon.focus();
+          searchInputOrIcon.setAttribute('aria-expanded', false);
+        }
       }
-    }), t.addEventListener("click", function () {
-      r.classList.toggle("show"), t.setAttribute("aria-expanded", "false" === t.getAttribute("aria-expanded")), setTimeout(function () {
-        e.querySelector("input[type=search]").focus();
+    });
+    toggle.addEventListener('click', function () {
+      overlay.classList.toggle('show');
+      toggle.setAttribute('aria-expanded', toggle.getAttribute('aria-expanded') === 'false');
+      setTimeout(function () {
+        searchElement.querySelector('input[type=search]').focus();
       }, 200);
-    }), r.querySelector(".close").addEventListener("click", function () {
-      r.classList.remove("show"), i.focus(), i.setAttribute("aria-expanded", !1);
+    });
+    overlay.querySelector('.close').addEventListener('click', function () {
+      overlay.classList.remove('show');
+      searchInputOrIcon.focus();
+      searchInputOrIcon.setAttribute('aria-expanded', false);
     });
   });
 }
+
+/**
+ * Dismiss alert element
+ */
 var bricksAlertDismissFn = new BricksFunction({
   parentNode: document,
-  selector: ".brxe-alert svg",
-  subscribeEvents: ["bricks/ajax/pagination/completed", "bricks/ajax/load_page/completed"],
-  eachElement: function eachElement(e) {
-    e.addEventListener("click", function () {
-      e.closest(".brxe-alert").remove();
+  selector: '.brxe-alert svg',
+  subscribeEvents: ['bricks/ajax/pagination/completed', 'bricks/ajax/load_page/completed'],
+  eachElement: function eachElement(dismissable) {
+    dismissable.addEventListener('click', function () {
+      var alertEl = dismissable.closest('.brxe-alert');
+      alertEl.remove();
     });
   }
 });
 function bricksAlertDismiss() {
   bricksAlertDismissFn.run();
 }
+
+/**
+ * Element: Tabs
+ */
 var bricksTabsFn = new BricksFunction({
   parentNode: document,
-  selector: ".brxe-tabs, .brxe-tabs-nested",
-  subscribeEvents: ["bricks/ajax/pagination/completed", "bricks/ajax/load_page/completed"],
-  eachElement: function eachElement(e) {
-    var t = bricksQuerySelectorAll(e, ".tab-title");
-    t.forEach(function (r, i) {
-      0 === i && r.classList.add("brx-open");
-      var s = bricksQuerySelectorAll(e, ".tab-pane");
-      s.forEach(function (e, t) {
-        0 === t && e.classList.add("brx-open");
-      }), r.addEventListener("click", function () {
-        t.forEach(function (e, t) {
-          t === i ? r.classList.add("brx-open") : e.classList.remove("brx-open");
-        }), s.forEach(function (e, t) {
-          t === i ? e.classList.add("brx-open") : e.classList.remove("brx-open");
+  selector: '.brxe-tabs, .brxe-tabs-nested',
+  subscribeEvents: ['bricks/ajax/pagination/completed', 'bricks/ajax/load_page/completed'],
+  eachElement: function eachElement(tabElement) {
+    var titles = bricksQuerySelectorAll(tabElement, '.tab-title');
+    titles.forEach(function (title, index) {
+      // Set first title to open
+      if (index === 0) {
+        title.classList.add('brx-open');
+      }
+      var panes = bricksQuerySelectorAll(tabElement, '.tab-pane');
+
+      // Set first content to open
+      panes.forEach(function (content, index) {
+        if (index === 0) {
+          content.classList.add('brx-open');
+        }
+      });
+
+      // Create tab title click listener
+      title.addEventListener('click', function () {
+        titles.forEach(function (t, i) {
+          // Add .brx-open to tab title
+          if (i === index) {
+            title.classList.add('brx-open');
+          }
+
+          // Remove .brx-open from other title
+          else {
+            t.classList.remove('brx-open');
+          }
+        });
+        panes.forEach(function (pane, i) {
+          // Add .brx-open to tab content
+          if (i === index) {
+            pane.classList.add('brx-open');
+          }
+
+          // Remove .brx-open from other conten
+          else {
+            pane.classList.remove('brx-open');
+          }
         });
       });
     });
@@ -480,699 +1062,1616 @@ var bricksTabsFn = new BricksFunction({
 function bricksTabs() {
   bricksTabsFn.run();
 }
+
+/**
+ * Element - Video: Play video on overlay, icon click or thumbnail preview click
+ */
 var bricksVideoOverlayClickDetectorFn = new BricksFunction({
   parentNode: document,
-  selector: ".bricks-video-overlay, .bricks-video-overlay-icon, .bricks-video-preview-image",
-  subscribeEvents: ["bricks/ajax/pagination/completed", "bricks/ajax/load_page/completed"],
-  frontEndOnly: !0,
-  eachElement: function eachElement(e) {
-    e.addEventListener("click", function (e) {
-      var t = e.target.closest(".brxe-video");
-      if (!t) return;
-      var r = t.querySelector(".bricks-video-preview-image");
-      if (r) {
-        var _e4 = document.createElement("iframe");
-        _toConsumableArray(r.attributes).forEach(function (t) {
-          "class" !== t.name && "style" !== t.name && ("data-iframe-src" !== t.name ? _e4.setAttribute(t.name, t.value) : _e4.setAttribute("src", t.value));
-        }), r.replaceWith(_e4);
+  selector: '.bricks-video-overlay, .bricks-video-overlay-icon, .bricks-video-preview-image',
+  subscribeEvents: ['bricks/ajax/pagination/completed', 'bricks/ajax/load_page/completed'],
+  frontEndOnly: true,
+  eachElement: function eachElement(overlay) {
+    overlay.addEventListener('click', function (e) {
+      var videoWrapper = e.target.closest('.brxe-video');
+      if (!videoWrapper) {
+        return;
       }
-      var i = t.querySelector("iframe");
-      i && i.getAttribute("src") && (i.src += "&autoplay=1");
-      var s = t.querySelector("video");
-      s && s.play();
+
+      // STEP: Convert thumbnail preview into iframe
+
+      // Get thumbnail preview element
+      var thumbnailPreviewElement = videoWrapper.querySelector('.bricks-video-preview-image');
+      if (thumbnailPreviewElement) {
+        // Convert thumbnail preview into iframe together with all attributes (youtube/vimeo)
+        var _iframeElement = document.createElement('iframe');
+        var attributes = _toConsumableArray(thumbnailPreviewElement.attributes);
+        attributes.forEach(function (attr) {
+          // Skip the class attribute and style attribute
+          if (attr.name === 'class' || attr.name === 'style') {
+            return;
+          }
+
+          // Change the data-src attribute to src
+          if (attr.name === 'data-iframe-src') {
+            _iframeElement.setAttribute('src', attr.value);
+            return;
+          }
+
+          // Add all other attributes to the iframe element
+          _iframeElement.setAttribute(attr.name, attr.value);
+        });
+        thumbnailPreviewElement.replaceWith(_iframeElement);
+      }
+
+      // STEP: Start iframe/video
+
+      // Get iframe element (video type: YouTube, Vimeo)
+      var iframeElement = videoWrapper.querySelector('iframe');
+      if (iframeElement && iframeElement.getAttribute('src')) {
+        iframeElement.src += '&autoplay=1';
+      }
+
+      // Get <video> element (video type: media, file URL)
+      var videoElement = videoWrapper.querySelector('video');
+      if (videoElement) {
+        videoElement.play();
+      }
     });
   }
 });
 function bricksVideoOverlayClickDetector() {
   bricksVideoOverlayClickDetectorFn.run();
 }
+
+/**
+ * Background video (supported: YouTube and file URLs)
+ */
 var bricksBackgroundVideoInitFn = new BricksFunction({
   parentNode: document,
-  selector: ".bricks-background-video-wrapper",
-  subscribeEvents: ["bricks/ajax/pagination/completed", "bricks/ajax/load_page/completed"],
-  forceReinit: function forceReinit(e, t) {
+  selector: '.bricks-background-video-wrapper',
+  subscribeEvents: ['bricks/ajax/pagination/completed', 'bricks/ajax/load_page/completed'],
+  forceReinit: function forceReinit(element, index) {
+    // Builder: Force reinit as the URL parameter is not yet set (@since 1.8)
     return !bricksIsFrontend;
   },
-  eachElement: function eachElement(e) {
-    if (e.classList.contains("loaded") || e.querySelector("iframe")) return;
-    var t = e.getAttribute("data-background-video-url"),
-      r = e.getAttribute("data-background-video-scale"),
-      i = !1;
-    if (!t) return;
-    var s,
-      n = e.getAttribute("data-background-video-ratio") || "16:9",
-      o = parseInt(n.split(":")[0] || 16),
-      a = parseInt(n.split(":")[1] || 9);
-    if (-1 !== t.indexOf("youtube.com")) {
-      i = !0;
-      var _e5 = t.lastIndexOf("="),
-        _r2 = t.slice(_e5 + 1);
-      t += "?origin=".concat(window.location.origin), t += "&rel=0", t += "&autoplay=1", t += "&mute=1", t += "&widgetid=1", t += "&controls=0", t += "&showinfo=0", t += "&modestbranding=1", t += "&cc_load_policy=0", t += "&iv_load_policy=3", t += "&autohide=0", t += "&loop=1", t += "&playlist=".concat(_r2), t += "&enablejsapi=1", t = t.replace("watch?v=", "embed/");
+  eachElement: function eachElement(videoWrapper) {
+    if (videoWrapper.classList.contains('loaded') || videoWrapper.querySelector('iframe')) {
+      return;
     }
-    -1 !== t.indexOf("vimeo.com") && (i = !0, t += "?background=1", t += "&byline=0", t += "&portrait=0", t += "&title=0", -1 === t.indexOf("player.vimeo.com/video") && (t = t.replace("vimeo.com", "player.vimeo.com/video"))), i ? (s = document.createElement("iframe"), s.setAttribute("width", 640), s.setAttribute("height", 360), s.setAttribute("src", t), s.setAttribute("allow", "autoplay"), s.setAttribute("allowfullscreen", 1), e.removeChild(e.querySelector("video"))) : s = e.querySelector("video"), r && (s.style.transform = "translate(-50%, -50%) scale(".concat(r, ")")), bricksIsFrontend ? e.classList.contains("bricks-lazy-video") && new BricksIntersect({
-      element: e,
-      callback: function callback(e) {
-        e.classList.remove("bricks-lazy-video"), i ? e.appendChild(s) : s.src = t;
+    var videoUrl = videoWrapper.getAttribute('data-background-video-url');
+    var videoScale = videoWrapper.getAttribute('data-background-video-scale');
+    var startTime = videoWrapper.getAttribute('data-background-video-start');
+    var endTime = videoWrapper.getAttribute('data-background-video-end');
+    var videoLoop = videoWrapper.getAttribute('data-background-video-loop');
+    var playOnMobile = videoWrapper.getAttribute('data-background-video-play-on-mobile');
+    var mobileBreakpoint = parseInt(videoWrapper.getAttribute('data-background-video-mobile-breakpoint'));
+
+    /**
+     * Disable video on mobile if playOnMobile is not set
+     *
+     * Mobile breakpoint: Mobile portrait (478px)
+     *
+     * NOTE: Provide setting for mobile breakpoint?
+     *
+     * @since 1.8.4
+     */
+    if (!playOnMobile && window.innerWidth < mobileBreakpoint) {
+      return;
+    }
+    if (!videoUrl) {
+      return;
+    }
+    var isIframe = false; // YouTube and Vimeo iframe embed
+    var videoId;
+    var videoAspectRatio = videoWrapper.getAttribute('data-background-video-ratio') || '16:9';
+    var videoAspectRatioX = parseInt(videoAspectRatio.split(':')[0] || 16);
+    var videoAspectRatioY = parseInt(videoAspectRatio.split(':')[1] || 9);
+
+    /**
+     * YouTube embed
+     * NOTE: Error "Failed to execute 'postMessage' on 'DOMWindow'" when origin is not HTTPS
+     * Adding 'host' or 'origin' do not fix this error.
+     */
+    if (videoUrl.indexOf('youtube.com') !== -1) {
+      isIframe = true;
+      if (videoUrl.indexOf('watch?v=') !== -1) {
+        var videoIdIndex = videoUrl.lastIndexOf('=');
+        videoId = videoUrl.slice(videoIdIndex + 1);
+      } else if (videoUrl.indexOf('embed/') !== -1) {
+        var _videoIdIndex = videoUrl.lastIndexOf('/');
+        videoId = videoUrl.slice(_videoIdIndex + 1);
       }
-    }) : i ? e.appendChild(s) : s.src = t, e.classList.add("loaded"), new ResizeObserver(function (t) {
-      var _iterator4 = _createForOfIteratorHelper(t),
+
+      // Transform YouTube video URL into valid embed URL
+      videoUrl = videoUrl.replace('watch?v=', 'embed/');
+    }
+
+    /**
+     * Vimeo embed
+     *
+     * https://help.vimeo.com/hc/en-us/articles/360001494447-Using-Player-Parameters
+     */
+
+    if (videoUrl.indexOf('vimeo.com') !== -1) {
+      isIframe = true;
+      videoUrl += '?background=1';
+      videoUrl += '&byline=0';
+      videoUrl += '&portrait=0';
+      videoUrl += '&title=0';
+
+      // Transform Vimeo video URL into valid embed URL
+      if (videoUrl.indexOf('player.vimeo.com/video') === -1) {
+        videoUrl = videoUrl.replace('vimeo.com', 'player.vimeo.com/video');
+      }
+    }
+    var videoElement;
+    if (isIframe) {
+      // Check if YouTube API script is already added
+      if (!document.querySelector('script[src="https://www.youtube.com/iframe_api"]')) {
+        // Create script tag for YouTube IFrame API
+        var tag = document.createElement('script');
+
+        // Set source to YouTube IFrame API URL
+        tag.src = 'https://www.youtube.com/iframe_api';
+
+        // Find the first script tag on your page
+        var firstScriptTag = document.getElementsByTagName('script')[0];
+
+        // Insert new script tag before the first script tag
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+      }
+      videoElement = document.createElement('div');
+
+      // Remove <video> element (present in the DOM due to Chrome compatibility)
+      videoWrapper.removeChild(videoWrapper.querySelector('video'));
+
+      // Append videoElement to the videoWrapper before initializing the player
+      videoWrapper.appendChild(videoElement);
+
+      // Wait for YouTube IFrame Player API to load
+      var playerCheckInterval = setInterval(function () {
+        if (window.YT && YT.Player) {
+          clearInterval(playerCheckInterval);
+          var player = new YT.Player(videoElement, {
+            width: '640',
+            height: '360',
+            videoId: videoId,
+            playerVars: {
+              autoplay: 1,
+              controls: 0,
+              start: startTime || undefined,
+              end: endTime || undefined,
+              mute: 1,
+              rel: 0,
+              showinfo: 0,
+              modestbranding: 1,
+              cc_load_policy: 0,
+              iv_load_policy: 3,
+              autohide: 0,
+              loop: startTime || endTime ? 0 : videoLoop,
+              // Disable native loop if startTime or endTime is set
+              playlist: videoId
+            },
+            events: {
+              onReady: function onReady(event) {
+                // If videoLoop is enabled and startTime or endTime is set
+                if (videoLoop && (startTime || endTime)) {
+                  setInterval(function () {
+                    // If the player is not buffering or unstarted
+                    if ([YT.PlayerState.BUFFERING, YT.PlayerState.UNSTARTED].indexOf(player.getPlayerState()) === -1) {
+                      // Prepare the flag to determine if the video needs to be restarted
+                      var shouldRestart = false;
+                      if (endTime) {
+                        // If the current time is past the end time
+                        shouldRestart = player.getCurrentTime() >= endTime;
+                      }
+
+                      // If the video needs to be restarted, seek to the start time
+                      if (shouldRestart) {
+                        player.seekTo(startTime || 0, true);
+                      }
+                    }
+                  }, 100);
+                }
+              },
+              onStateChange: function onStateChange(event) {
+                if (videoLoop && !endTime && startTime) {
+                  if (event.data === YT.PlayerState.ENDED) {
+                    player.seekTo(startTime || 0, true);
+                  }
+                }
+              }
+            }
+          });
+        }
+      }, 100);
+    } else {
+      // Get the video element (present in the DOM due to Chrome compatibility)
+      videoElement = videoWrapper.querySelector('video');
+    }
+    if (videoScale) {
+      videoElement.style.transform = "translate(-50%, -50%) scale(".concat(videoScale, ")");
+    }
+
+    // Frontend: Lazy load video
+    if (bricksIsFrontend) {
+      if (videoWrapper.classList.contains('bricks-lazy-video')) {
+        new BricksIntersect({
+          element: videoWrapper,
+          callback: function callback(el) {
+            el.classList.remove('bricks-lazy-video');
+            if (isIframe) {
+              el.appendChild(videoElement);
+            } else {
+              videoElement.src = videoUrl;
+            }
+          }
+        });
+      }
+    } else {
+      if (isIframe) {
+        videoWrapper.appendChild(videoElement);
+      } else {
+        videoElement.src = videoUrl;
+      }
+    }
+    videoWrapper.classList.add('loaded');
+    var resizeObserver = new ResizeObserver(function (entries) {
+      var _iterator4 = _createForOfIteratorHelper(entries),
         _step4;
       try {
         for (_iterator4.s(); !(_step4 = _iterator4.n()).done;) {
-          var _r3 = _step4.value;
-          var _t6 = void 0;
-          if (_r3.contentBoxSize) {
-            _t6 = (Array.isArray(_r3.contentBoxSize) ? _r3.contentBoxSize[0] : _r3.contentBoxSize).inlineSize;
-          } else _t6 = _r3.contentRect.width;
-          var _i2 = e.clientHeight,
-            _n = _t6 * a / o;
-          _n < _i2 && (_n = _i2, _t6 = _i2 * o / a), s.style.width = "".concat(_t6, "px"), s.style.height = "".concat(_n, "px");
+          var entry = _step4.value;
+          var videoWidth = void 0;
+          if (entry.contentBoxSize) {
+            // Firefox implements `contentBoxSize` as a single content rect, rather than an array
+            var contentBoxSize = Array.isArray(entry.contentBoxSize) ? entry.contentBoxSize[0] : entry.contentBoxSize;
+            videoWidth = contentBoxSize.inlineSize;
+          } else {
+            videoWidth = entry.contentRect.width;
+          }
+          var elementHeight = videoWrapper.clientHeight;
+          var videoHeight = videoWidth * videoAspectRatioY / videoAspectRatioX;
+          if (videoHeight < elementHeight) {
+            videoHeight = elementHeight;
+            videoWidth = elementHeight * videoAspectRatioX / videoAspectRatioY;
+          }
+          videoElement.style.width = "".concat(videoWidth, "px");
+          videoElement.style.height = "".concat(videoHeight, "px");
         }
       } catch (err) {
         _iterator4.e(err);
       } finally {
         _iterator4.f();
       }
-    }).observe(e);
+    });
+    resizeObserver.observe(videoWrapper);
   }
 });
 function bricksBackgroundVideoInit() {
   bricksBackgroundVideoInitFn.run();
 }
+
+/**
+ * Photoswipe 5 lightbox
+ *
+ * For accessibility reasons the <a> is required by default: https://photoswipe.com/getting-started/#required-html-markup
+ * If you want to use different markup there is a domItemData filter: https://photoswipe.com/data-sources/#custom-html-markup
+ *
+ * @since 1.8
+ */
 var bricksPhotoswipeFn = new BricksFunction({
   parentNode: document,
-  selector: ".bricks-lightbox",
-  windowVariableCheck: ["PhotoSwipeLightbox"],
-  eachElement: function eachElement(e) {
-    var t = e,
-      r = "A" === e.tagName ? "" : "a",
-      i = e.getAttribute("data-pswp-id");
-    i && (r = bricksQuerySelectorAll(document, "[data-pswp-id=\"".concat(i, "\"]")));
-    var s = {
-      mainClass: "brx",
-      gallery: t,
-      counter: !t.classList.contains("brxe-carousel"),
-      children: r,
+  selector: '.bricks-lightbox',
+  windowVariableCheck: ['PhotoSwipeLightbox'],
+  eachElement: function eachElement(lightboxElement) {
+    var gallery = lightboxElement;
+    var children = lightboxElement.tagName === 'A' ? '' : 'a';
+    var lightboxId = lightboxElement.getAttribute('data-pswp-id');
+
+    // Can be set to 'none' to avoid jumpy animation between different aspect ratios (@since 1.8.4)
+    var animationType = lightboxElement.getAttribute('data-animation-type') || 'zoom';
+
+    // Get all lightbox elements with the same ID (@since 1.7.2)
+    if (lightboxId) {
+      children = bricksQuerySelectorAll(document, "[data-pswp-id=\"".concat(lightboxId, "\"]"));
+    }
+
+    // https://photoswipe.com/styling/
+    var closeSVG = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>';
+    var options = {
+      mainClass: 'brx',
+      // To distinguish from Photoswipe 4 (used on single product page by Woo core)
+      gallery: gallery,
+      counter: !gallery.classList.contains('brxe-carousel'),
+      // Hide wrong carousel count for carousel loop (due to swiperJS-generated slide duplicates)
+      children: children,
       pswpModule: PhotoSwipe5,
-      closeSVG: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>'
+      closeSVG: closeSVG,
+      showHideAnimationType: animationType
     };
-    var n = new PhotoSwipeLightbox(s);
-    if (n.on("itemData", function (t) {
-      var r = document.querySelector(".pswp__container"),
-        i = e.getAttribute("data-pswp-video-url"),
-        s = e.getAttribute("data-pswp-width"),
-        n = e.getAttribute("data-pswp-height");
-      if (s && (s.includes("%") || s.includes("vw")) && (s = window.innerWidth * (parseInt(s) / 100)), n && (n.includes("%") || n.includes("vh")) && (n = window.innerHeight * (parseInt(n) / 100)), s || (s = 1280), n && 720 != n || (n = Math.round(s / 16 * 9)), !r && i) {
-        var _e6 = bricksGetLightboxVideoNode(i);
-        t.itemData = {
-          html: _e6.outerHTML,
-          width: s,
-          height: n
+    var lightbox = new PhotoSwipeLightbox(options);
+
+    /**
+     * Lightbox video (not supported in Photoswipe natively)
+     *
+     * Supported units: px, %, vw, vh
+     *
+     * Generate HTML for YouTube, Vimeo, and <video> embeds.
+     *
+     * https://photoswipe.com/data-sources/
+     */
+    lightbox.on('itemData', function (e) {
+      var photoswipeInitialised = document.querySelector('.pswp__container');
+      var videoUrl = lightboxElement.getAttribute('data-pswp-video-url');
+      var width = lightboxElement.getAttribute('data-pswp-width');
+      var height = lightboxElement.getAttribute('data-pswp-height');
+
+      // width in '%' or 'vh'
+      if (width && (width.includes('%') || width.includes('vw'))) {
+        width = window.innerWidth * (parseInt(width) / 100);
+      }
+
+      // height in '%' or 'vw'
+      if (height && (height.includes('%') || height.includes('vh'))) {
+        height = window.innerHeight * (parseInt(height) / 100);
+      }
+
+      // Default width: 1280px
+      if (!width) {
+        width = 1280;
+      }
+
+      // Auto-height (16:9)
+      if (!height || height == 720) {
+        height = Math.round(width / 16 * 9);
+      }
+      if (!photoswipeInitialised && videoUrl) {
+        var html = bricksGetLightboxVideoNode(videoUrl);
+        e.itemData = {
+          html: html.outerHTML,
+          // Convert DOM node to HTML string
+          width: width,
+          height: height
         };
       }
-    }), n.on("contentAppend", function (_ref) {
-      var e = _ref.content;
-      if (e.element) {
-        var _t7 = e.element.querySelector("video");
-        _t7 && _t7.play();
+    });
+
+    // Content added to the DOM: Autoplay <video> after lightbox is opened
+    lightbox.on('contentAppend', function (_ref) {
+      var content = _ref.content;
+      if (content.element) {
+        var photoswipeVideo = content.element.querySelector('video');
+        if (photoswipeVideo) {
+          photoswipeVideo.play();
+        }
       }
-    }), t.classList.contains("brxe-carousel")) {
+    });
+
+    // Fix 'loop' type carousel element requires double clicks on last slide (due to swiperJS-generated slide duplicates)
+    if (gallery.classList.contains('brxe-carousel')) {
       var _bricksData$swiperIns, _bricksData$swiperIns2;
-      var _e7 = t.getAttribute("data-script-id");
-      ((_bricksData$swiperIns = bricksData.swiperInstances) === null || _bricksData$swiperIns === void 0 ? void 0 : (_bricksData$swiperIns2 = _bricksData$swiperIns[_e7]) === null || _bricksData$swiperIns2 === void 0 ? void 0 : _bricksData$swiperIns2.loopedSlides) && (n.addFilter("numItems", function (e, t) {
-        if (t.gallery) {
-          var _r4 = 0;
-          t.gallery.classList.contains("brxe-carousel") && (_r4 = t.gallery.querySelectorAll(".swiper-slide-duplicate").length), e = e > _r4 ? e - _r4 : e;
-        }
-        return e;
-      }), n.addFilter("clickedIndex", function (t, r) {
-        var i = r.target.closest(".swiper-slide");
-        if (i) {
-          var _r5 = bricksData.swiperInstances[_e7].slides.map(function (e, t) {
-            return {
-              slide: e,
-              index: t
-            };
-          }).filter(Boolean);
-          if (_r5.length) {
-            var _e8 = parseInt(i.dataset.swiperSlideIndex),
-              _s2 = _r5.filter(function (t) {
-                return t.slide.dataset.swiperSlideIndex == _e8;
-              });
-            _s2.length && (t = _s2[0].index);
+      var swiperId = gallery.getAttribute('data-script-id');
+
+      // Correct the number of items as swiperJS duplicates slides with 'loop' setting enabled
+      if ((_bricksData$swiperIns = bricksData.swiperInstances) !== null && _bricksData$swiperIns !== void 0 && (_bricksData$swiperIns2 = _bricksData$swiperIns[swiperId]) !== null && _bricksData$swiperIns2 !== void 0 && _bricksData$swiperIns2.loopedSlides) {
+        // https://photoswipe.com/filters/#numitems
+        lightbox.addFilter('numItems', function (numItems, dataSource) {
+          // Lightbox has no children: Return original numItems
+          if (dataSource.gallery) {
+            var duplicateSlides = 0;
+            if (dataSource.gallery.classList.contains('brxe-carousel')) {
+              // Carousel
+              duplicateSlides = dataSource.gallery.querySelectorAll('.swiper-slide-duplicate').length;
+            }
+            // Something wrong if duplicateSlides more than original numItems, so return original numItems
+            numItems = numItems > duplicateSlides ? numItems - duplicateSlides : numItems;
           }
-        }
-        return t;
-      }));
+          return numItems;
+        });
+
+        // Modify 'clickedIndex' as 'numItems' has been modified
+        lightbox.addFilter('clickedIndex', function (clickedIndex, e) {
+          var currentSlide = e.target.closest('.swiper-slide');
+          if (currentSlide) {
+            // Store all slides in an array
+            var tempArr = bricksData.swiperInstances[swiperId].slides.map(function (slide, index) {
+              return {
+                slide: slide,
+                index: index
+              };
+            }).filter(Boolean);
+            if (tempArr.length) {
+              // Current clicked swiper slide index from data-swiper-slide-index attribute
+              var currentSwiperSlideIndex = parseInt(currentSlide.dataset.swiperSlideIndex);
+
+              // Find first result whehre data-swiper-slide-index is equal to currentSlideIndex as numItems changed
+              var simulateSlide = tempArr.filter(function (x) {
+                return x.slide.dataset.swiperSlideIndex == currentSwiperSlideIndex;
+              });
+              if (simulateSlide.length) {
+                // Get the index of the first result
+                clickedIndex = simulateSlide[0].index;
+              }
+            }
+          }
+          return clickedIndex;
+        });
+      }
     }
-    n.init();
+    lightbox.init();
   }
 });
 function bricksPhotoswipe() {
   bricksPhotoswipeFn.run();
 }
-function bricksGetLightboxVideoNode(e) {
-  if (e) {
-    hasContent = !0;
-    var t = !1;
-    if (-1 !== e.indexOf("youtube.com") && (t = !0, e = e.replace("watch?v=", "embed/"), e += "?autoplay=1", e += "&rel=0"), -1 !== e.indexOf("vimeo.com") && (t = !0, -1 === e.indexOf("player.vimeo.com/video") && (e = e.replace("vimeo.com", "player.vimeo.com/video")), e += "?autoplay=1"), t) {
-      var _t8 = document.createElement("iframe");
-      return _t8.setAttribute("src", e), _t8.setAttribute("allow", "autoplay"), _t8.setAttribute("allowfullscreen", 1), _t8;
+
+/**
+ * Return iframe or video DOM node for lightbox video
+ *
+ * @param {string} videoUrl
+ *
+ * @returns iframe or video DOM node
+ *
+ * @since 1.7.2
+ */
+function bricksGetLightboxVideoNode(videoUrl) {
+  if (videoUrl) {
+    hasContent = true;
+    var isIframe = false; // For YouTube and Vimeo embeds
+
+    if (videoUrl.indexOf('youtube.com') !== -1) {
+      isIframe = true;
+
+      // Transform YouTube video URL into valid embed URL
+      videoUrl = videoUrl.replace('watch?v=', 'embed/');
+      videoUrl += '?autoplay=1';
+      videoUrl += '&rel=0';
     }
-    var r = document.createElement("video");
-    return r.setAttribute("src", e), r.setAttribute("controls", 1), r.setAttribute("playsinline", 1), r;
+    if (videoUrl.indexOf('vimeo.com') !== -1) {
+      isIframe = true;
+
+      // Transform Vimeo video URL into valid embed URL
+      if (videoUrl.indexOf('player.vimeo.com/video') === -1) {
+        videoUrl = videoUrl.replace('vimeo.com', 'player.vimeo.com/video');
+      }
+      videoUrl += '?autoplay=1';
+    }
+    if (isIframe) {
+      // Create <iframe> for YouTube/Vimeo video
+      var iframeElement = document.createElement('iframe');
+      iframeElement.setAttribute('src', videoUrl);
+      iframeElement.setAttribute('allow', 'autoplay');
+      iframeElement.setAttribute('allowfullscreen', 1);
+      return iframeElement;
+    }
+
+    // Create <video> element (trigger autoplay in Photoswipe)
+    var videoElement = document.createElement('video');
+    videoElement.setAttribute('src', videoUrl);
+    videoElement.setAttribute('controls', 1);
+    videoElement.setAttribute('playsinline', 1);
+    return videoElement;
   }
 }
+
+/**
+ * Element: Accordion
+ */
 var bricksAccordionFn = new BricksFunction({
   parentNode: document,
-  selector: ".brxe-accordion, .brxe-accordion-nested",
-  eachElement: function eachElement(e) {
-    var t = function t(e) {
-        var t = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 200;
-        e.style.transitionProperty = "height, margin, padding", e.style.transitionDuration = "".concat(t, "ms"), e.style.height = "".concat(e.offsetHeight, "px"), e.offsetHeight, e.style.overflow = "hidden", e.style.height = 0, e.style.paddingTop = 0, e.style.paddingBottom = 0, e.style.marginTop = 0, e.style.marginBottom = 0, window.setTimeout(function () {
-          e.style.display = "none", e.style.removeProperty("height"), e.style.removeProperty("padding-top"), e.style.removeProperty("padding-bottom"), e.style.removeProperty("margin-top"), e.style.removeProperty("margin-bottom"), e.style.removeProperty("overflow"), e.style.removeProperty("transition-duration"), e.style.removeProperty("transition-property");
-        }, t);
-      },
-      r = function r(e) {
-        var r = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 200;
-        return "none" === window.getComputedStyle(e).display ? function (e) {
-          var t = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 200;
-          e.style.removeProperty("display");
-          var r = window.getComputedStyle(e).display;
-          "none" === r && (r = "block"), e.style.display = r;
-          var i = e.offsetHeight;
-          e.style.overflow = "hidden", e.style.height = 0, e.style.paddingTop = 0, e.style.paddingBottom = 0, e.style.marginTop = 0, e.style.marginBottom = 0, e.offsetHeight, e.style.transitionProperty = "height, margin, padding", e.style.transitionDuration = "".concat(t, "ms"), e.style.height = "".concat(i, "px"), e.style.removeProperty("padding-top"), e.style.removeProperty("padding-bottom"), e.style.removeProperty("margin-top"), e.style.removeProperty("margin-bottom"), window.setTimeout(function () {
-            e.style.removeProperty("height"), e.style.removeProperty("overflow"), e.style.removeProperty("transition-duration"), e.style.removeProperty("transition-property");
-          }, t);
-        }(e, r) : t(e, r);
-      },
-      i = Array.from(e.children),
-      s = e.hasAttribute("data-transition") ? isNaN(e.dataset.transition) ? 0 : e.dataset.transition : 200;
-    i = i.filter(function (e) {
-      return e.classList.contains("brxe-section") || e.classList.contains("brxe-container") || e.classList.contains("brxe-block") || e.classList.contains("brxe-div") || e.classList.contains("accordion-item");
-    }), i.forEach(function (i, n) {
-      var _e$dataset$scriptArgs;
-      0 === n && (_e$dataset$scriptArgs = e.dataset.scriptArgs) !== null && _e$dataset$scriptArgs !== void 0 && _e$dataset$scriptArgs.includes("expandFirstItem") && i.classList.add("brx-open"), i.classList.contains("listening") || (i.classList.add("listening"), i.addEventListener("click", function (i) {
-        i.stopPropagation();
-        var n = i.target.closest(".accordion-title-wrapper");
-        if (!n) return;
-        var o = n.parentNode;
-        if (!o) return;
-        var a = o.querySelector(".accordion-content-wrapper");
-        if (a) {
-          var _e$dataset$scriptArgs2;
-          if (!((_e$dataset$scriptArgs2 = e.dataset.scriptArgs) !== null && _e$dataset$scriptArgs2 !== void 0 && _e$dataset$scriptArgs2.includes("independentToggle"))) {
-            var _r6 = e.querySelector(".brx-open");
-            if (_r6) {
-              var _e9 = _r6.querySelector(".accordion-content-wrapper");
-              _e9 && _e9 !== a && (_r6.classList.remove("brx-open"), t(_e9, s));
+  selector: '.brxe-accordion, .brxe-accordion-nested',
+  eachElement: function eachElement(accordion) {
+    var slideUp = function slideUp(target) {
+      var duration = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 200;
+      target.style.transitionProperty = 'height, margin, padding';
+      target.style.transitionDuration = "".concat(duration, "ms");
+      target.style.height = "".concat(target.offsetHeight, "px");
+      target.offsetHeight;
+      target.style.overflow = 'hidden';
+      target.style.height = 0;
+      target.style.paddingTop = 0;
+      target.style.paddingBottom = 0;
+      target.style.marginTop = 0;
+      target.style.marginBottom = 0;
+      window.setTimeout(function () {
+        target.style.display = 'none';
+        target.style.removeProperty('height');
+        target.style.removeProperty('padding-top');
+        target.style.removeProperty('padding-bottom');
+        target.style.removeProperty('margin-top');
+        target.style.removeProperty('margin-bottom');
+        target.style.removeProperty('overflow');
+        target.style.removeProperty('transition-duration');
+        target.style.removeProperty('transition-property');
+      }, duration);
+    };
+    var slideDown = function slideDown(target) {
+      var duration = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 200;
+      target.style.removeProperty('display');
+      var display = window.getComputedStyle(target).display;
+      if (display === 'none') {
+        display = 'block';
+      }
+      target.style.display = display;
+      var height = target.offsetHeight;
+      target.style.overflow = 'hidden';
+      target.style.height = 0;
+      target.style.paddingTop = 0;
+      target.style.paddingBottom = 0;
+      target.style.marginTop = 0;
+      target.style.marginBottom = 0;
+      target.offsetHeight;
+      target.style.transitionProperty = 'height, margin, padding';
+      target.style.transitionDuration = "".concat(duration, "ms");
+      target.style.height = "".concat(height, "px");
+      target.style.removeProperty('padding-top');
+      target.style.removeProperty('padding-bottom');
+      target.style.removeProperty('margin-top');
+      target.style.removeProperty('margin-bottom');
+      window.setTimeout(function () {
+        target.style.removeProperty('height');
+        target.style.removeProperty('overflow');
+        target.style.removeProperty('transition-duration');
+        target.style.removeProperty('transition-property');
+      }, duration);
+    };
+    var slideToggle = function slideToggle(target) {
+      var duration = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 200;
+      if (window.getComputedStyle(target).display === 'none') {
+        return slideDown(target, duration);
+      } else {
+        return slideUp(target, duration);
+      }
+    };
+    var items = Array.from(accordion.children);
+    var duration = accordion.hasAttribute('data-transition') ? isNaN(accordion.dataset.transition) ? 0 : accordion.dataset.transition : 200;
+
+    // Only recognise nestables as accordion items
+    items = items.filter(function (item) {
+      return item.classList.contains('brxe-section') || item.classList.contains('brxe-container') || item.classList.contains('brxe-block') || item.classList.contains('brxe-div') || item.classList.contains('accordion-item');
+    });
+    items.forEach(function (item, index) {
+      var _accordion$dataset$sc;
+      // Expand first item: Check data-script-args
+      if (index === 0 && (_accordion$dataset$sc = accordion.dataset.scriptArgs) !== null && _accordion$dataset$sc !== void 0 && _accordion$dataset$sc.includes('expandFirstItem')) {
+        item.classList.add('brx-open');
+      }
+      if (item.classList.contains('listening')) {
+        return;
+      }
+
+      // Ensure click event listener is only added once
+      item.classList.add('listening');
+
+      /**
+       * Init title click listener
+       *
+       * Listen on accordion item also allows to re-run script in builder without having to setup any custom destroy()
+       */
+      item.addEventListener('click', function (e) {
+        var _accordion$dataset$sc2;
+        var title = e.target.closest('.accordion-title-wrapper');
+        if (!title) {
+          return;
+        }
+        var item = title.parentNode;
+        if (!item) {
+          return;
+        }
+        var content = item.querySelector('.accordion-content-wrapper');
+        if (!content) {
+          return;
+        }
+        e.stopPropagation();
+
+        // No independent toggle: slideUp .open item (if it's currently not open)
+        if (!((_accordion$dataset$sc2 = accordion.dataset.scriptArgs) !== null && _accordion$dataset$sc2 !== void 0 && _accordion$dataset$sc2.includes('independentToggle'))) {
+          var openItem = accordion.querySelector('.brx-open');
+          if (openItem) {
+            var openContent = openItem.querySelector('.accordion-content-wrapper');
+            if (openContent && openContent !== content) {
+              openItem.classList.remove('brx-open');
+              slideUp(openContent, duration);
             }
           }
-          r(a, s), o.classList.toggle("brx-open");
         }
-      }));
+
+        // slideToggle target accordion content
+        slideToggle(content, duration);
+        item.classList.toggle('brx-open');
+      });
     });
   }
 });
 function bricksAccordion() {
   bricksAccordionFn.run();
 }
+
+/**
+ * Element: Animated Typing
+ */
 var bricksAnimatedTypingFn = new BricksFunction({
   parentNode: document,
-  selector: ".brxe-animated-typing",
-  windowVariableCheck: ["Typed"],
-  eachElement: function eachElement(e) {
-    var t,
-      r = e.dataset.scriptId;
+  selector: '.brxe-animated-typing',
+  windowVariableCheck: ['Typed'],
+  eachElement: function eachElement(element) {
+    var scriptId = element.dataset.scriptId;
+    var scriptArgs;
     try {
-      t = JSON.parse(e.dataset.scriptArgs);
+      scriptArgs = JSON.parse(element.dataset.scriptArgs);
     } catch (e) {
-      return !1;
+      return false;
     }
-    var i = e.querySelector(".typed");
-    i && (window.bricksData.animatedTypingInstances[r] && window.bricksData.animatedTypingInstances[r].destroy(), t.hasOwnProperty("strings") && t.strings && (Array.isArray(t.strings) && !t.strings.toString() || (window.bricksData.animatedTypingInstances[r] = new Typed(i, t))));
+    var typedElement = element.querySelector('.typed');
+    if (!typedElement) {
+      return;
+    }
+    if (window.bricksData.animatedTypingInstances[scriptId]) {
+      window.bricksData.animatedTypingInstances[scriptId].destroy();
+    }
+    if (!scriptArgs.hasOwnProperty('strings') || !scriptArgs.strings) {
+      return;
+    }
+    if (Array.isArray(scriptArgs.strings) && !scriptArgs.strings.toString()) {
+      return;
+    }
+    window.bricksData.animatedTypingInstances[scriptId] = new Typed(typedElement, scriptArgs);
   }
 });
 function bricksAnimatedTyping() {
   bricksAnimatedTypingFn.run();
 }
+
+/**
+ * Element: Audio
+ */
 var bricksAudioFn = new BricksFunction({
   parentNode: document,
-  selector: ".brxe-audio",
-  windowVariableCheck: ["MediaElementPlayer"],
-  eachElement: function eachElement(e) {
-    var t = e.querySelector("audio");
-    if (t) {
-      new MediaElementPlayer(t);
+  selector: '.brxe-audio',
+  windowVariableCheck: ['MediaElementPlayer'],
+  eachElement: function eachElement(element) {
+    var audioElement = element.querySelector('audio');
+    if (audioElement) {
+      var mediaElementPlayer = new MediaElementPlayer(audioElement);
     }
   }
 });
 function bricksAudio() {
   bricksAudioFn.run();
 }
+
+/**
+ * Element: Countdown
+ */
 var bricksCountdownFn = new BricksFunction({
   parentNode: document,
-  selector: ".brxe-countdown",
-  eachElement: function eachElement(e) {
-    countdown = function countdown(e, t, r) {
-      var i = 6e4 * (("+" === t.timezone[3] ? 1 : -1) * (60 * parseInt(t.timezone.substring(4, 6)) + parseInt(t.timezone.substring(7, 9)))),
-        s = 6e4 * -new Date().getTimezoneOffset(),
-        n = t.date.replace(" ", "T"),
-        o = new Date(n).getTime() + s - i - new Date().getTime();
-      if (o <= 0) {
-        if (clearInterval(e.dataset.bricksCountdownId), "hide" === t.action) return void (e.innerHTML = "");
-        if ("text" === t.action) return void (e.innerHTML = t.actionText);
+  selector: '.brxe-countdown',
+  eachElement: function eachElement(element) {
+    // Countdown logic
+    countdown = function countdown(element, settings, init) {
+      // STEP: Get timezone from settings
+      var timezoneSign = settings.timezone[3] === '+' ? 1 : -1;
+      var timezoneHours = parseInt(settings.timezone.substring(4, 6));
+      var timezoneMinutes = parseInt(settings.timezone.substring(7, 9));
+
+      // Convert hours and minutes to minutes
+      var countdownCreatorTimezone = timezoneSign * (timezoneHours * 60 + timezoneMinutes);
+
+      // Convert timezone to milliseconds
+      var countdownCreatorTimezoneMs = countdownCreatorTimezone * 60000;
+
+      // Get timezone offset of visitor in minutes
+      var viewerOffsetMinutes = new Date().getTimezoneOffset();
+
+      // Convert to millisecond and flip the sign here because getTimezoneOffset() returns the offset with an opposite sign
+      var viewerOffsetMs = -viewerOffsetMinutes * 60000;
+      var date = settings.date.replace(' ', 'T'); // Replace needed for iOS Safari (NaN)
+
+      // Get time of the target date in milliseconds
+      var targetDate = new Date(date).getTime();
+
+      // STEP: Adjust the target date for the visitors' timezone offset and the timezone setting offset
+      var targetDateAdjusted = targetDate + viewerOffsetMs - countdownCreatorTimezoneMs;
+
+      // Get current date and time in UTC milliseconds
+      var now = new Date().getTime();
+
+      // Calculate the difference in milliseconds
+      var diff = targetDateAdjusted - now;
+
+      // Countdown date reached
+      if (diff <= 0) {
+        // Stop countdown
+        clearInterval(element.dataset.bricksCountdownId);
+        if (settings.action === 'hide') {
+          element.innerHTML = '';
+          return;
+        } else if (settings.action === 'text') {
+          element.innerHTML = settings.actionText;
+          return;
+        }
       }
-      r && (e.innerHTML = "", t.fields.forEach(function (t) {
-        if (!t.format) return;
-        var r = document.createElement("div");
-        if (r.classList.add("field"), t.prefix) {
-          var _e10 = document.createElement("span");
-          _e10.classList.add("prefix"), _e10.innerHTML = t.prefix, r.appendChild(_e10);
+
+      // Add HTML nodes for each field (spans: .prefix, .format, .suffix)
+      if (init) {
+        // Builder: Remove HTML from previous instance
+        element.innerHTML = '';
+        settings.fields.forEach(function (field) {
+          if (!field.format) {
+            return;
+          }
+          var fieldNode = document.createElement('div');
+          fieldNode.classList.add('field');
+          if (field.prefix) {
+            var prefixNode = document.createElement('span');
+            prefixNode.classList.add('prefix');
+            prefixNode.innerHTML = field.prefix;
+            fieldNode.appendChild(prefixNode);
+          }
+          var formatNode = document.createElement('span');
+          formatNode.classList.add('format');
+          fieldNode.appendChild(formatNode);
+          if (field.suffix) {
+            var suffixNode = document.createElement('span');
+            suffixNode.classList.add('suffix');
+            suffixNode.innerHTML = field.suffix;
+            fieldNode.appendChild(suffixNode);
+          }
+          element.appendChild(fieldNode);
+        });
+      }
+      var fieldNodes = bricksQuerySelectorAll(element, '.field');
+      var days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      var hours = Math.floor(diff % (1000 * 60 * 60 * 24) / (1000 * 60 * 60));
+      var minutes = Math.floor(diff % (1000 * 60 * 60) / (1000 * 60));
+      var seconds = Math.floor(diff % (1000 * 60) / 1000);
+      settings.fields.forEach(function (field, index) {
+        if (!field.format) {
+          return;
         }
-        var i = document.createElement("span");
-        if (i.classList.add("format"), r.appendChild(i), t.suffix) {
-          var _e11 = document.createElement("span");
-          _e11.classList.add("suffix"), _e11.innerHTML = t.suffix, r.appendChild(_e11);
+        var format = field.format.toLowerCase();
+
+        // Add leading zero if format is uppercase & one digit (e.g. %D and value less than 10)
+
+        // DAYS
+        if (format.includes('%d')) {
+          if (field.format.includes('%D')) {
+            days <= 9 ? days = "0".concat(days) : days;
+          }
+          fieldNodes[index].querySelector('.format').innerHTML = format.replace('%d', diff <= 0 ? 0 : days);
         }
-        e.appendChild(r);
-      }));
-      var a = bricksQuerySelectorAll(e, ".field"),
-        c = Math.floor(o / 864e5),
-        l = Math.floor(o % 864e5 / 36e5),
-        d = Math.floor(o % 36e5 / 6e4),
-        u = Math.floor(o % 6e4 / 1e3);
-      t.fields.forEach(function (e, t) {
-        if (!e.format) return;
-        var r = e.format.toLowerCase();
-        r.includes("%d") ? (e.format.includes("%D") && c <= 9 && (c = "0".concat(c)), a[t].querySelector(".format").innerHTML = r.replace("%d", o <= 0 ? 0 : c)) : r.includes("%h") ? (e.format.includes("%H") && l <= 9 && (l = "0".concat(l)), a[t].querySelector(".format").innerHTML = r.replace("%h", o <= 0 ? 0 : l)) : r.includes("%m") ? (e.format.includes("%M") && d <= 9 && (d = "0".concat(d)), a[t].querySelector(".format").innerHTML = r.replace("%m", o <= 0 ? 0 : d)) : r.includes("%s") && (e.format.includes("%S") && u <= 9 && (u = "0".concat(u)), a[t].querySelector(".format").innerHTML = r.replace("%s", o <= 0 ? 0 : u));
+
+        // HOURS
+        else if (format.includes('%h')) {
+          if (field.format.includes('%H')) {
+            hours <= 9 ? hours = "0".concat(hours) : hours;
+          }
+          fieldNodes[index].querySelector('.format').innerHTML = format.replace('%h', diff <= 0 ? 0 : hours);
+        }
+
+        // MINUTES
+        else if (format.includes('%m')) {
+          if (field.format.includes('%M')) {
+            minutes <= 9 ? minutes = "0".concat(minutes) : minutes;
+          }
+          fieldNodes[index].querySelector('.format').innerHTML = format.replace('%m', diff <= 0 ? 0 : minutes);
+        }
+
+        // SECONDS
+        else if (format.includes('%s')) {
+          if (field.format.includes('%S')) {
+            seconds <= 9 ? seconds = "0".concat(seconds) : seconds;
+          }
+          fieldNodes[index].querySelector('.format').innerHTML = format.replace('%s', diff <= 0 ? 0 : seconds);
+        }
       });
     };
-    var t = e.dataset.bricksCountdownOptions;
+    var settings = element.dataset.bricksCountdownOptions;
     try {
-      t = JSON.parse(t);
+      settings = JSON.parse(settings);
     } catch (e) {
-      return !1;
+      return false;
     }
-    if (t.hasOwnProperty("date") && t.hasOwnProperty("fields")) {
-      var r = e.dataset.bricksCountdownId;
-      r && clearInterval(r), countdown(e, t, !0), r = setInterval(countdown, 1e3, e, t, !1), e.dataset.bricksCountdownId = r;
+    if (settings.hasOwnProperty('date') && settings.hasOwnProperty('fields')) {
+      // Get existing countdownId
+      var countdownId = element.dataset.bricksCountdownId;
+
+      // Destroy existing instance by clearing the interval
+      if (countdownId) {
+        clearInterval(countdownId);
+      }
+
+      // Init countdown
+      countdown(element, settings, true);
+
+      // Call countdown every second (= 1000ms)
+      countdownId = setInterval(countdown, 1000, element, settings, false);
+      element.dataset.bricksCountdownId = countdownId;
     }
   }
 });
 function bricksCountdown() {
   bricksCountdownFn.run();
 }
+
+/**
+ * Element: Counter
+ * With custom run function, because we need to forceReinit only for counter inside popup
+ */
 var bricksCounterFn = new BricksFunction({
   parentNode: document,
-  selector: ".brxe-counter",
-  subscribeEvents: ["bricks/popup/open", "bricks/ajax/pagination/completed", "bricks/ajax/load_page/completed"],
-  forceReinit: function forceReinit(e, t) {
-    return e.closest(".brx-popup");
+  selector: '.brxe-counter',
+  subscribeEvents: ['bricks/popup/open', 'bricks/ajax/pagination/completed', 'bricks/ajax/load_page/completed'],
+  forceReinit: function forceReinit(element, index) {
+    // Force reinit if counter is inside popup
+    return element.closest('.brx-popup');
   },
-  eachElement: function eachElement(e) {
-    var t = e.dataset.bricksCounterOptions;
+  eachElement: function eachElement(element) {
+    var settings = element.dataset.bricksCounterOptions;
     try {
-      t = JSON.parse(t);
+      settings = JSON.parse(settings);
     } catch (e) {
-      return !1;
+      return false;
     }
-    var r = e.querySelector(".count"),
-      i = t.hasOwnProperty("countFrom") ? parseInt(t.countFrom) : 0,
-      s = t.hasOwnProperty("countTo") ? parseInt(t.countTo) : 100,
-      n = t.hasOwnProperty("duration") ? parseInt(t.duration) : 1e3;
-    n < 500 && (n = 500);
-    var o = n / (s - i),
-      a = 1;
-    o < 4 && (a = Math.ceil(4 / o), o = 4);
-    var c = function c() {
-        var e = r.innerText.replace(/\D/g, "");
-        e = isNaN(e) ? i : parseInt(e);
-        var n = e + a < s ? e + a : s;
-        if (e >= s) return clearInterval(r.dataset.counterId), void delete r.dataset.counterId;
-        r.innerText = t.thousands ? n.toLocaleString() : n;
-      },
-      l = function l() {
-        r.innerText = i, null == r.dataset.counterId && (r.dataset.counterId = setInterval(c, o));
-      },
-      d = r.closest(".brx-popup");
-    d ? d.classList.contains("hide") || l() : new BricksIntersect({
-      element: e,
-      callback: l
-    });
+    var countNode = element.querySelector('.count');
+    var countFrom = settings.hasOwnProperty('countFrom') ? parseInt(settings.countFrom) : 0;
+    var countTo = settings.hasOwnProperty('countTo') ? parseInt(settings.countTo) : 100;
+    var durationInMs = settings.hasOwnProperty('duration') ? parseInt(settings.duration) : 1000;
+
+    // Min. duration: 500ms
+    if (durationInMs < 500) {
+      durationInMs = 500;
+    }
+    var diff = countTo - countFrom;
+    var timeout = durationInMs / diff;
+    var incrementBy = 1;
+
+    // Min. timeout: 4ms
+    if (timeout < 4) {
+      incrementBy = Math.ceil(4 / timeout);
+      timeout = 4;
+    }
+
+    // Vanilla JS countUp function
+    var countUp = function countUp() {
+      // Get current count (locale string back to number)
+      var count = countNode.innerText.replace(/\D/g, '');
+      count = isNaN(count) ? countFrom : parseInt(count);
+
+      // Calculate new count: Make sure we don't run over max. count
+      var newCount = count + incrementBy < countTo ? count + incrementBy : countTo;
+
+      // countTo reached yet: Stop interval
+      if (count >= countTo) {
+        clearInterval(countNode.dataset.counterId);
+        delete countNode.dataset.counterId;
+        return;
+      }
+      countNode.innerText = settings.thousands ? newCount.toLocaleString() : newCount;
+    };
+    var callback = function callback() {
+      // Reset count
+      countNode.innerText = countFrom;
+
+      // Interval not yet running: Start interval
+      if (countNode.dataset.counterId == undefined) {
+        countNode.dataset.counterId = setInterval(countUp, timeout);
+      }
+    };
+
+    // Run countUp() when popup is open (has no .hide class)
+    var popup = countNode.closest('.brx-popup');
+    if (popup) {
+      if (!popup.classList.contains('hide')) {
+        callback();
+      }
+    }
+
+    // Run countUp() when element enters viewport
+    else {
+      new BricksIntersect({
+        element: element,
+        callback: callback
+      });
+    }
   },
-  listenerHandler: function listenerHandler(e) {
-    if (e !== null && e !== void 0 && e.type) if ("bricks/popup/open" === e.type) {
-      var _e$details;
-      var t = {
-        parentNode: (_e$details = e.details) !== null && _e$details !== void 0 && _e$details.popupElement ? e.details.popupElement : document
-      };
-      bricksCounterFn.run(t);
-    } else bricksCounterFn.run();
+  listenerHandler: function listenerHandler(event) {
+    var _event$details;
+    if (event !== null && event !== void 0 && event.type) {
+      switch (event.type) {
+        case 'bricks/popup/open':
+          // Change parentNode to the opened popup
+          var settings = {
+            parentNode: (_event$details = event.details) !== null && _event$details !== void 0 && _event$details.popupElement ? event.details.popupElement : document
+          };
+          bricksCounterFn.run(settings);
+          break;
+        default:
+          bricksCounterFn.run();
+          break;
+      }
+    }
   }
 });
 function bricksCounter() {
   bricksCounterFn.run();
 }
+
+/**
+ * Element: Form
+ *
+ * Init recaptcha explicit on Google reCAPTCHA callback.
+ */
 var bricksFormFn = new BricksFunction({
   parentNode: document,
-  selector: ".brxe-form",
-  eachElement: function eachElement(e) {
-    var t = e.getAttribute("data-element-id");
-    bricksQuerySelectorAll(e, 'input[type="checkbox"]').forEach(function (t) {
-      t.required && t.addEventListener("click", function (r) {
-        var i = t.getAttribute("name"),
-          s = bricksQuerySelectorAll(e, "input[name=\"".concat(i, "\"]")),
-          n = !1;
-        s.forEach(function (e) {
-          !0 === e.checked && (n = !0);
-        }), n ? s.forEach(function (e) {
-          e.required = !1;
-        }) : s.forEach(function (e) {
-          e.required = !0;
-        });
-      });
-    }), bricksQuerySelectorAll(e, ".flatpickr").forEach(function (e) {
-      var t = e.dataset.bricksDatepickerOptions;
-      t && (t = JSON.parse(t), t.disableMobile = !0, t.onReady = function (e, t, r) {
-        var i = r.altInput.previousElementSibling ? r.altInput.previousElementSibling.getAttribute("aria-label") : "Date";
-        r.altInput.setAttribute("aria-label", i || "Date");
-      }, flatpickr(e, t));
-    });
-    var r = {};
-    bricksQuerySelectorAll(e, "input[type=file]").forEach(function (t) {
-      var i = t.getAttribute("data-files-ref"),
-        s = t.getAttribute("data-maxsize") || !1,
-        n = t.getAttribute("data-limit") || !1;
-      s = !!s && 1024 * parseInt(s) * 1024, t.addEventListener("change", function (o) {
-        var a = o.target.files,
-          c = a.length,
-          l = t.getAttribute("name");
-        if (!c) return;
-        var d = e.querySelector(".file-result[data-files-ref=\"".concat(i, "\"]"));
-        var _loop = function _loop() {
-          var t = a[_e12],
-            i = !1,
-            o = d.cloneNode(!0);
-          if (n && r.hasOwnProperty(l) && r[l].length >= n && (i = "limit"), s && t.size > s && (i = "size"), i) o.classList.add("danger"), o.innerHTML = o.getAttribute("data-error-".concat(i)).replace("%s", t.name), setTimeout(function () {
-            o.remove();
-          }, 5e3);else {
-            r.hasOwnProperty(l) || (r[l] = []), r[l].push(t), o.classList.add("show");
-            var _e13 = o.querySelector(".text"),
-              _i3 = o.querySelector(".remove");
-            _e13.innerHTML = t.name, _i3.setAttribute("data-name", t.name), _i3.setAttribute("data-field", l), _i3.addEventListener("click", function (e) {
-              var t = e.target.getAttribute("data-name"),
-                i = e.target.getAttribute("data-field"),
-                s = r[i];
-              for (var _e14 = 0; _e14 < s.length; _e14++) if (s[_e14].name === t) {
-                r[l].splice(_e14, 1);
-                break;
-              }
-              o.remove();
+  selector: '.brxe-form',
+  eachElement: function eachElement(form) {
+    var elementId = form.getAttribute('data-element-id');
+
+    // Validate required checkboxes
+    var checkboxes = bricksQuerySelectorAll(form, 'input[type="checkbox"]');
+    checkboxes.forEach(function (checkbox) {
+      if (checkbox.required) {
+        checkbox.addEventListener('click', function (event) {
+          var cbName = checkbox.getAttribute('name');
+          var group = bricksQuerySelectorAll(form, "input[name=\"".concat(cbName, "\"]"));
+          var atLeastOneChecked = false;
+          group.forEach(function (item) {
+            if (item.checked === true) {
+              atLeastOneChecked = true;
+            }
+          });
+          if (atLeastOneChecked) {
+            group.forEach(function (item) {
+              item.required = false;
+            });
+          } else {
+            group.forEach(function (item) {
+              item.required = true;
             });
           }
-          d.parentNode.insertBefore(o, d.nextSibling);
+        });
+      }
+    });
+
+    // Init datepicker
+    var flatpickrElements = bricksQuerySelectorAll(form, '.flatpickr');
+    flatpickrElements.forEach(function (flatpickrElement) {
+      var flatpickrOptions = flatpickrElement.dataset.bricksDatepickerOptions;
+      if (flatpickrOptions) {
+        flatpickrOptions = JSON.parse(flatpickrOptions);
+
+        // Disable native mobile date input as it looks different from all other fields
+        // @since 1.7 (https://flatpickr.js.org/mobile-support/)
+        flatpickrOptions.disableMobile = true;
+        flatpickrOptions.onReady = function (a, b, fp) {
+          var ariaLabel = fp.altInput.previousElementSibling ? fp.altInput.previousElementSibling.getAttribute('aria-label') : 'Date';
+          fp.altInput.setAttribute('aria-label', ariaLabel || 'Date');
         };
-        for (var _e12 = 0; _e12 < c; _e12++) {
+        flatpickr(flatpickrElement, flatpickrOptions);
+      }
+    });
+
+    // Init file input, to validate files on user selection
+    var files = {};
+    var fileInputInstances = bricksQuerySelectorAll(form, 'input[type=file]');
+    fileInputInstances.forEach(function (input) {
+      var inputRef = input.getAttribute('data-files-ref');
+      var maxSize = input.getAttribute('data-maxsize') || false;
+      var maxLength = input.getAttribute('data-limit') || false;
+      maxSize = maxSize ? parseInt(maxSize) * 1024 * 1024 : false;
+      input.addEventListener('change', function (e) {
+        var fileList = e.target.files;
+        var fileListLength = fileList.length;
+        var inputName = input.getAttribute('name');
+        if (!fileListLength) {
+          return;
+        }
+        var fileResultEl = form.querySelector(".file-result[data-files-ref=\"".concat(inputRef, "\"]"));
+        var _loop = function _loop() {
+          var file = fileList[i];
+          var error = false;
+
+          // Populate upload HTML
+          var resultEl = fileResultEl.cloneNode(true);
+
+          // Erorro: Max. number of files exceeded
+          if (maxLength && files.hasOwnProperty(inputName) && files[inputName].length >= maxLength) {
+            error = 'limit';
+          }
+
+          // Error: File exceeds size limit
+          if (maxSize && file.size > maxSize) {
+            error = 'size';
+          }
+          if (error) {
+            resultEl.classList.add('danger');
+            resultEl.innerHTML = resultEl.getAttribute("data-error-".concat(error)).replace('%s', file.name);
+            setTimeout(function () {
+              resultEl.remove();
+            }, 5000);
+          }
+
+          // Add file
+          else {
+            if (!files.hasOwnProperty(inputName)) {
+              files[inputName] = [];
+            }
+            files[inputName].push(file);
+            resultEl.classList.add('show');
+            var resultText = resultEl.querySelector('.text');
+            var resultRemove = resultEl.querySelector('.remove');
+            resultText.innerHTML = file.name;
+            resultRemove.setAttribute('data-name', file.name);
+            resultRemove.setAttribute('data-field', inputName);
+
+            // Remove file listener
+            resultRemove.addEventListener('click', function (e) {
+              var fileName = e.target.getAttribute('data-name');
+              var fieldName = e.target.getAttribute('data-field');
+              var fieldFiles = files[fieldName];
+              for (var k = 0; k < fieldFiles.length; k++) {
+                if (fieldFiles[k].name === fileName) {
+                  files[inputName].splice(k, 1);
+                  break;
+                }
+              }
+              resultEl.remove();
+            });
+          }
+
+          // Add result
+          fileResultEl.parentNode.insertBefore(resultEl, fileResultEl.nextSibling);
+        };
+        for (var i = 0; i < fileListLength; i++) {
           _loop();
         }
       });
-    }), e.addEventListener("submit", function (i) {
-      if (i.preventDefault(), !bricksIsFrontend) return;
-      var s = document.getElementById("recaptcha-".concat(t)),
-        n = e.querySelector(".recaptcha-error");
-      if (!s) return void bricksSubmitForm(t, e, r, null);
-      var o = s.getAttribute("data-key");
-      if (o) try {
+    });
+
+    // Form submit
+    form.addEventListener('submit', function (event) {
+      event.preventDefault();
+      if (!bricksIsFrontend) {
+        return;
+      }
+
+      // Recaptcha
+      var recaptchaElement = document.getElementById("recaptcha-".concat(elementId));
+      var recaptchaErrorEl = form.querySelector('.recaptcha-error');
+      if (!recaptchaElement) {
+        bricksSubmitForm(elementId, form, files, null);
+        return;
+      }
+      var recaptchaSiteKey = recaptchaElement.getAttribute('data-key');
+      if (!recaptchaSiteKey) {
+        recaptchaErrorEl.classList.add('show');
+        return;
+      }
+      try {
         grecaptcha.ready(function () {
           try {
-            grecaptcha.execute(o, {
-              action: "bricks_form_submit"
-            }).then(function (i) {
-              n.classList.remove("show"), bricksSubmitForm(t, e, r, i);
-            })["catch"](function (t) {
-              n.classList.add("show"), e.querySelector(".alert").innerText = "Google reCaptcha ".concat(t);
+            grecaptcha.execute(recaptchaSiteKey, {
+              action: 'bricks_form_submit'
+            }).then(function (token) {
+              recaptchaErrorEl.classList.remove('show');
+              bricksSubmitForm(elementId, form, files, token);
+            })["catch"](function (error) {
+              recaptchaErrorEl.classList.add('show');
+              form.querySelector('.alert').innerText = "Google reCaptcha ".concat(error);
             });
-          } catch (t) {
-            n.classList.add("show"), e.querySelector(".alert").innerText = "Google reCaptcha ".concat(t);
+          } catch (error) {
+            recaptchaErrorEl.classList.add('show');
+            form.querySelector('.alert').innerText = "Google reCaptcha ".concat(error);
           }
         });
-      } catch (t) {
-        n.classList.add("show"), e.querySelector(".alert").innerText = "Google reCaptcha ".concat(t);
-      } else n.classList.add("show");
+      } catch (error) {
+        recaptchaErrorEl.classList.add('show');
+        form.querySelector('.alert').innerText = "Google reCaptcha ".concat(error);
+      }
     });
   }
 });
 function bricksForm() {
   bricksFormFn.run();
 }
-function bricksSubmitForm(e, t, r, i) {
-  var s = t.querySelector("button[type=submit]");
-  s.classList.add("sending");
-  var n = new FormData(t);
-  n.append("action", "bricks_form_submit"), n.append("postId", window.bricksData.postId), n.append("formId", e), n.append("recaptchaToken", i || ""), n.append("nonce", window.bricksData.nonce), n.append("referrer", location.toString());
-  var _loop2 = function _loop2(_e15) {
-    r[_e15].forEach(function (t) {
-      n.append("".concat(_e15, "[]"), t, t.name);
+function bricksSubmitForm(elementId, form, files, recaptchaToken) {
+  var submitButton = form.querySelector('button[type=submit]');
+  submitButton.classList.add('sending');
+  var formData = new FormData(form);
+  formData.append('action', 'bricks_form_submit'); // Do not remove this
+  formData.append('postId', window.bricksData.postId);
+  formData.append('formId', elementId);
+  formData.append('recaptchaToken', recaptchaToken || '');
+  formData.append('nonce', window.bricksData.nonce);
+  formData.append('referrer', location.toString());
+
+  // Append files
+  var _loop2 = function _loop2(inputName) {
+    files[inputName].forEach(function (file) {
+      formData.append("".concat(inputName, "[]"), file, file.name);
     });
   };
-  for (var _e15 in r) {
-    _loop2(_e15);
+  for (var inputName in files) {
+    _loop2(inputName);
   }
-  var o = window.bricksData.ajaxUrl,
-    a = new XMLHttpRequest();
-  a.open("POST", o, !0), a.onreadystatechange = function () {
-    var _e$data, _e$data2, _e$data3, _e$data4, _e$data5, _e$data$message, _e$data6;
-    var e = function (e) {
+  var url = window.bricksData.ajaxUrl;
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', url, true);
+
+  // Successful response
+  xhr.onreadystatechange = function () {
+    var _res$data, _res$data2, _res$data3, _res$data5, _res$data6;
+    var getResponse = function getResponse(data) {
       try {
-        return JSON.parse(e);
+        return JSON.parse(data);
       } catch (e) {
         return null;
       }
-    }(a.response);
-    if (window.bricksData.debug && console.warn("bricks_form_submit", a, e), !e) return;
-    !e.success || "mailchimp" !== ((_e$data = e.data) === null || _e$data === void 0 ? void 0 : _e$data.action) && "sendgrid" !== ((_e$data2 = e.data) === null || _e$data2 === void 0 ? void 0 : _e$data2.action) || (window.dataLayer = window.dataLayer || [], window.dataLayer.push({
-      event: "bricksNewsletterSignup"
-    })), e.success && (_e$data3 = e.data) !== null && _e$data3 !== void 0 && _e$data3.redirectTo && setTimeout(function () {
-      window.location.href = e.data.redirectTo;
-    }, parseInt((_e$data4 = e.data) === null || _e$data4 === void 0 ? void 0 : _e$data4.redirectTimeout) || 0), t.querySelector(".message") && t.querySelector(".message").remove();
-    var i = document.createElement("div");
-    i.classList.add("message");
-    var n = document.createElement("div");
-    if (n.classList.add("text"), (_e$data5 = e.data) !== null && _e$data5 !== void 0 && _e$data5.message) if ((_e$data$message = e.data.message) !== null && _e$data$message !== void 0 && _e$data$message.errors) {
-      var _t9 = e.data.message.errors;
-      Object.keys(_t9).forEach(function (e) {
-        n.innerHTML += _t9[e][0] + "<br>";
-      });
-    } else n.innerHTML = e.data.message;
-    if (i.appendChild(n), (_e$data6 = e.data) !== null && _e$data6 !== void 0 && _e$data6.info) {
-      var _t10 = document.createElement("div"),
-        _r7 = document.createElement("div");
-      _r7.innerHTML = e.data.info.join("<br>"), i.appendChild(_t10), _t10.appendChild(_r7);
-    } else i.classList.add(e.data.type);
-    if (t.appendChild(i), s.classList.remove("sending"), e.success) {
-      t.reset(), r = {};
-      var _e16 = bricksQuerySelectorAll(t, ".file-result");
-      null !== _e16 && _e16.forEach(function (e) {
-        e.remove();
+    };
+    var res = getResponse(xhr.response);
+    if (window.bricksData.debug) {
+      console.warn('bricks_form_submit', xhr, res);
+    }
+    if (!res) {
+      return;
+    }
+
+    // Google Tag Manager: Newsletter signup (action: 'mailchimp' or 'sendgrid')
+    if (res.success && (((_res$data = res.data) === null || _res$data === void 0 ? void 0 : _res$data.action) === 'mailchimp' || ((_res$data2 = res.data) === null || _res$data2 === void 0 ? void 0 : _res$data2.action) === 'sendgrid')) {
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+        event: 'bricksNewsletterSignup'
       });
     }
-  }, a.send(n);
+
+    // Check: Redirect after successful form submit
+    if (res.success && (_res$data3 = res.data) !== null && _res$data3 !== void 0 && _res$data3.redirectTo) {
+      var _res$data4;
+      setTimeout(function () {
+        window.location.href = res.data.redirectTo;
+      }, parseInt((_res$data4 = res.data) === null || _res$data4 === void 0 ? void 0 : _res$data4.redirectTimeout) || 0);
+    }
+
+    // Generate form submit message HTML
+    if (form.querySelector('.message')) {
+      form.querySelector('.message').remove();
+    }
+    var messageEl = document.createElement('div');
+    messageEl.classList.add('message');
+    var messageText = document.createElement('div');
+    messageText.classList.add('text');
+
+    // Show form response message
+    if ((_res$data5 = res.data) !== null && _res$data5 !== void 0 && _res$data5.message) {
+      var _res$data$message;
+      if ((_res$data$message = res.data.message) !== null && _res$data$message !== void 0 && _res$data$message.errors) {
+        // User login/registration errors
+        var errors = res.data.message.errors;
+        var errorKeys = Object.keys(errors);
+        errorKeys.forEach(function (errorKey) {
+          messageText.innerHTML += errors[errorKey][0] + '<br>';
+        });
+      } else {
+        messageText.innerHTML = res.data.message;
+      }
+    }
+    messageEl.appendChild(messageText);
+    if ((_res$data6 = res.data) !== null && _res$data6 !== void 0 && _res$data6.info) {
+      var submitInfoInner = document.createElement('div');
+      var submitInfoText = document.createElement('div');
+      submitInfoText.innerHTML = res.data.info.join('<br>');
+      messageEl.appendChild(submitInfoInner);
+      submitInfoInner.appendChild(submitInfoText);
+    } else {
+      messageEl.classList.add(res.data.type);
+    }
+    form.appendChild(messageEl);
+    submitButton.classList.remove('sending');
+
+    // Clear form data
+    if (res.success) {
+      form.reset();
+      files = {};
+      var fileResults = bricksQuerySelectorAll(form, '.file-result');
+      if (fileResults !== null) {
+        fileResults.forEach(function (resultEl) {
+          resultEl.remove();
+        });
+      }
+    }
+  };
+  xhr.send(formData);
 }
+
+/**
+ * IsotopeJS (Image Gallery & Posts)
+ */
 var bricksIsotopeFn = new BricksFunction({
   parentNode: document,
-  selector: ".bricks-layout-wrapper.isotope",
-  forceReinit: !0,
-  windowVariableCheck: ["Isotope"],
-  eachElement: function eachElement(e) {
-    var t = {
-        itemSelector: ".bricks-layout-item",
-        percentPosition: !0
-      },
-      r = e.getAttribute("data-layout");
-    "grid" === r ? (t.layoutMode = "fitRows", t.fitRows = {
-      gutter: ".bricks-gutter-sizer"
-    }) : "masonry" !== r && "metro" !== r || (t.masonry = {
-      columnWidth: ".bricks-isotope-sizer",
-      gutter: ".bricks-gutter-sizer"
-    });
-    var i = new Isotope(e, t),
-      s = e.parentNode.querySelector(".bricks-isotope-filters");
-    s && s.addEventListener("click", function (e) {
-      var t = e.target.getAttribute("data-filter"),
-        r = s.querySelector("li.active");
-      t && bricksIsFrontend && (r && r.classList.remove("active"), e.target.classList.add("active"), i.arrange({
-        filter: t
-      }));
-    });
+  selector: '.bricks-layout-wrapper.isotope',
+  forceReinit: true,
+  windowVariableCheck: ['Isotope'],
+  eachElement: function eachElement(el) {
+    var options = {
+      itemSelector: '.bricks-layout-item',
+      percentPosition: true
+    };
+    var layout = el.getAttribute('data-layout');
+    if (layout === 'grid') {
+      options.layoutMode = 'fitRows';
+      options.fitRows = {
+        gutter: '.bricks-gutter-sizer'
+      };
+    } else if (layout === 'masonry' || layout === 'metro') {
+      options.masonry = {
+        columnWidth: '.bricks-isotope-sizer',
+        gutter: '.bricks-gutter-sizer'
+      };
+    }
+    var isotopeInstance = new Isotope(el, options);
+
+    // Isotope filtering (https://isotope.metafizzy.co/filtering.html)
+    // TODO Make it work on grid & list layout as well (those don't have .isotope class)
+    var filters = el.parentNode.querySelector('.bricks-isotope-filters');
+    if (filters) {
+      filters.addEventListener('click', function (e) {
+        var filterValue = e.target.getAttribute('data-filter');
+        var activeFilter = filters.querySelector('li.active');
+        if (!filterValue || !bricksIsFrontend) {
+          return;
+        }
+        if (activeFilter) {
+          activeFilter.classList.remove('active');
+        }
+        e.target.classList.add('active');
+
+        // Example: https://codepen.io/desandro/pen/BgcCD
+        isotopeInstance.arrange({
+          filter: filterValue
+        });
+      });
+    }
   }
 });
 function bricksIsotope() {
   bricksIsotopeFn.run();
 }
+
+/**
+ * Element: Map
+ *
+ * Init maps explicit on Google Maps callback.
+ */
 var bricksMapFn = new BricksFunction({
   parentNode: document,
-  selector: ".brxe-map",
-  eachElement: function eachElement(e, t) {
+  selector: '.brxe-map',
+  eachElement: function eachElement(mapEl, index) {
+    /**
+     * Set 1000ms timeout to request next map (to avoid hitting query limits)
+     *
+     * https://developers.google.com/maps/premium/previous-licenses/articles/usage-limits)
+     */
     setTimeout(function () {
-      var t = function () {
-        var t = e.dataset.bricksMapOptions;
-        if (!t) return !1;
+      var settings = function () {
+        var mapOptions = mapEl.dataset.bricksMapOptions;
+        if (!mapOptions) {
+          return false;
+        }
         try {
-          return JSON.parse(t);
+          return JSON.parse(mapOptions);
         } catch (e) {
-          return !1;
+          return false;
         }
-      }();
-      if (!t) return;
-      var r = Array.isArray(t === null || t === void 0 ? void 0 : t.addresses) ? t.addresses : [{
-          address: "Berlin, Germany"
-        }],
-        i = [],
-        s = {};
-      (t === null || t === void 0 ? void 0 : t.marker) && (s.icon = {
-        url: t.marker
-      }, (t === null || t === void 0 ? void 0 : t.markerHeight) && (t === null || t === void 0 ? void 0 : t.markerWidth) && (s.icon.scaledSize = new google.maps.Size(parseInt(t.markerWidth), parseInt(t.markerHeight))));
-      var n = {};
-      (t === null || t === void 0 ? void 0 : t.markerActive) && (n = {
-        url: t.markerActive
-      }, (t === null || t === void 0 ? void 0 : t.markerActiveHeight) && (t === null || t === void 0 ? void 0 : t.markerActiveWidth) && (n.scaledSize = new google.maps.Size(parseInt(t.markerActiveWidth), parseInt(t.markerActiveHeight))));
-      var o = [],
-        a = new google.maps.LatLngBounds(),
-        c = "auto";
-      t.draggable ? t.scrollwheel && t.draggable ? c = "cooperative" : !t.scrollwheel && t.draggable && (c = "greedy") : c = "none", t.disableDefaultUI && (t.fullscreenControl = !1, t.mapTypeControl = !1, t.streetViewControl = !1, t.zoomControl = !1);
-      var l = t.zoom ? parseInt(t.zoom) : 12,
-        d = {
-          zoom: l,
-          gestureHandling: c,
-          fullscreenControl: t.fullscreenControl,
-          mapTypeControl: t.mapTypeControl,
-          streetViewControl: t.streetViewControl,
-          zoomControl: t.zoomControl,
-          disableDefaultUI: t.disableDefaultUI
+      }(mapEl);
+      if (!settings) {
+        return;
+      }
+      var addresses = Array.isArray(settings === null || settings === void 0 ? void 0 : settings.addresses) ? settings.addresses : [{
+        address: 'Berlin, Germany'
+      }];
+      var markers = [];
+      var markerDefault = {};
+
+      // Custom marker
+      if (settings !== null && settings !== void 0 && settings.marker) {
+        markerDefault.icon = {
+          url: settings.marker
         };
-      t.zoomControl && (t !== null && t !== void 0 && t.maxZoom && (d.maxZoom = parseInt(t.maxZoom)), (t === null || t === void 0 ? void 0 : t.minZoom) && (d.minZoom = parseInt(t.minZoom)));
-      var u = new google.maps.Map(e, d);
-      for (var _e17 = 0; _e17 < r.length; _e17++) {
-        var _t11 = r[_e17];
-        if (_t11 !== null && _t11 !== void 0 && _t11.latitude && _t11 !== null && _t11 !== void 0 && _t11.longitude) b(_t11, {
-          lat: parseFloat(_t11.latitude),
-          lng: parseFloat(_t11.longitude)
-        });else if (_t11 !== null && _t11 !== void 0 && _t11.address) {
-          new google.maps.Geocoder().geocode({
-            address: _t11.address
-          }, p(_t11));
+        if (settings !== null && settings !== void 0 && settings.markerHeight && settings !== null && settings !== void 0 && settings.markerWidth) {
+          markerDefault.icon.scaledSize = new google.maps.Size(parseInt(settings.markerWidth), parseInt(settings.markerHeight));
         }
       }
-      function p(e) {
-        return function (t, r) {
-          if ("OK" !== r) return void console.warn("Geocode error:", r);
-          var i = t[0].geometry.location;
-          b(e, i);
+
+      // Custom marker active
+      var markerActive = {};
+      if (settings !== null && settings !== void 0 && settings.markerActive) {
+        markerActive = {
+          url: settings.markerActive
         };
+        if (settings !== null && settings !== void 0 && settings.markerActiveHeight && settings !== null && settings !== void 0 && settings.markerActiveWidth) {
+          markerActive.scaledSize = new google.maps.Size(parseInt(settings.markerActiveWidth), parseInt(settings.markerActiveHeight));
+        }
       }
-      function b(e, t) {
-        s.map = u, s.position = t;
-        var c = new google.maps.Marker(s);
-        if (c.setMap(u), i.push(c), google.maps.event.addListener(c, "click", function () {
-          !function (e) {
-            var _n2, _m;
-            (s === null || s === void 0 ? void 0 : s.icon) && i.forEach(function (e) {
-              e.setIcon(s.icon);
+      var infoBoxes = [];
+      var bounds = new google.maps.LatLngBounds();
+
+      // 'gestureHandling' combines 'scrollwheel' and 'draggable' (which are deprecated)
+      var gestureHandling = 'auto';
+      if (!settings.draggable) {
+        gestureHandling = 'none';
+      } else if (settings.scrollwheel && settings.draggable) {
+        gestureHandling = 'cooperative';
+      } else if (!settings.scrollwheel && settings.draggable) {
+        gestureHandling = 'greedy';
+      }
+      if (settings.disableDefaultUI) {
+        settings.fullscreenControl = false;
+        settings.mapTypeControl = false;
+        settings.streetViewControl = false;
+        settings.zoomControl = false;
+      }
+
+      // https://developers.google.com/maps/documentation/javascript/reference/map#MapOptions
+      var zoom = settings.zoom ? parseInt(settings.zoom) : 12;
+      var mapOptions = {
+        zoom: zoom,
+        // scrollwheel: settings.scrollwheel,
+        // draggable: settings.draggable,
+        gestureHandling: gestureHandling,
+        fullscreenControl: settings.fullscreenControl,
+        mapTypeControl: settings.mapTypeControl,
+        streetViewControl: settings.streetViewControl,
+        zoomControl: settings.zoomControl,
+        disableDefaultUI: settings.disableDefaultUI
+      };
+      if (settings.zoomControl) {
+        if (settings !== null && settings !== void 0 && settings.maxZoom) {
+          mapOptions.maxZoom = parseInt(settings.maxZoom);
+        }
+        if (settings !== null && settings !== void 0 && settings.minZoom) {
+          mapOptions.minZoom = parseInt(settings.minZoom);
+        }
+      }
+      var map = new google.maps.Map(mapEl, mapOptions);
+
+      // Loop through all addresses to set markers, infoBoxes, bounds etc.
+      for (var i = 0; i < addresses.length; i++) {
+        var addressObj = addresses[i];
+
+        // Render marker with Latitude/Longitude
+        if (addressObj !== null && addressObj !== void 0 && addressObj.latitude && addressObj !== null && addressObj !== void 0 && addressObj.longitude) {
+          renderMapMarker(addressObj, {
+            lat: parseFloat(addressObj.latitude),
+            lng: parseFloat(addressObj.longitude)
+          });
+        }
+        // Run Geocoding function to convert address into coordinates (use closure to pass additional variables)
+        else if (addressObj !== null && addressObj !== void 0 && addressObj.address) {
+          var geocoder = new google.maps.Geocoder();
+          geocoder.geocode({
+            address: addressObj.address
+          }, geocodeCallback(addressObj));
+        }
+      }
+      function geocodeCallback(addressObj) {
+        var geocodeCallback = function geocodeCallback(results, status) {
+          // Skip geocode response on error
+          if (status !== 'OK') {
+            console.warn('Geocode error:', status);
+            return;
+          }
+          var position = results[0].geometry.location;
+          renderMapMarker(addressObj, position);
+        };
+        return geocodeCallback;
+      }
+      function renderMapMarker(addressObj, position) {
+        markerDefault.map = map;
+        markerDefault.position = position;
+        var marker = new google.maps.Marker(markerDefault);
+        marker.setMap(map);
+        markers.push(marker);
+        google.maps.event.addListener(marker, 'click', function () {
+          onMarkerClick(addressObj);
+        });
+        function onMarkerClick(addressObj) {
+          var _markerActive;
+          // First close all markers and infoBoxes
+          if (markerDefault !== null && markerDefault !== void 0 && markerDefault.icon) {
+            markers.forEach(function (marker) {
+              marker.setIcon(markerDefault.icon);
             });
-            o.forEach(function (e) {
-              e.hide();
-            }), ((_n2 = n) === null || _n2 === void 0 ? void 0 : _n2.url) && c.setIcon(n);
-            var l = "",
-              d = (e === null || e === void 0 ? void 0 : e.infoTitle) || !1,
-              p = (e === null || e === void 0 ? void 0 : e.infoSubtitle) || !1,
-              b = (e === null || e === void 0 ? void 0 : e.infoOpeningHours) || !1,
-              m = (e === null || e === void 0 ? void 0 : e.infoImages) || {};
-            Array.isArray(m) || (m = Array.isArray((_m = m) === null || _m === void 0 ? void 0 : _m.images) ? m.images : []);
-            d && (l += "<h3 class=\"title\">".concat(d, "</h3>"));
-            p && (l += "<p class=\"subtitle\">".concat(p, "</p>"));
-            b && (l += '<ul class="content">', b = b.split("\n"), b.length && b.forEach(function (e) {
-              l += "<li>".concat(e, "</li>");
-            }), l += "</ul>");
-            m.length && (l += '<ul class="images bricks-lightbox">', m.forEach(function (t) {
-              l += "<li>", t.thumbnail && t.src && (l += "<a\n\t\t\t\t\t\t\t\t\tdata-pswp-src=\"".concat(t.src, "\"\n\t\t\t\t\t\t\t\t\tdata-pswp-width=\"").concat((t === null || t === void 0 ? void 0 : t.width) || 376, "\"\n\t\t\t\t\t\t\t\t\tdata-pswp-height=\"").concat((t === null || t === void 0 ? void 0 : t.height) || 376, "\"\n\t\t\t\t\t\t\t\t\tdata-pswp-id=\"").concat(e.id, "\">"), l += "<img src=\"".concat(t.thumbnail, "\"/>"), l += "</a>"), l += "</li>";
-            }), l += "</ul>");
-            if (l) {
-              var _i4 = parseInt(e === null || e === void 0 ? void 0 : e.infoWidth) || 300,
-                _n3 = {
-                  content: l,
-                  disableAutoPan: !0,
-                  pixelOffset: new google.maps.Size(0, 0),
-                  alignBottom: !1,
-                  infoBoxClearance: new google.maps.Size(20, 20),
-                  enableEventPropagation: !1,
-                  zIndex: 1001,
-                  boxStyle: {
-                    opacity: 1,
-                    zIndex: 999,
-                    top: 0,
-                    left: 0,
-                    width: "".concat(_i4, "px")
-                  }
-                };
-              void 0 !== window.jQuery && (_n3.closeBoxURL = "", _n3.content += '<span class="close">×</span>');
-              var _d = new InfoBox(_n3);
-              _d.open(u, c), o.push(_d), setTimeout(function () {
-                var e = _d.div_.offsetHeight,
-                  t = u.getProjection().fromLatLngToPoint(c.getPosition()),
-                  r = u.getProjection().fromPointToLatLng(new google.maps.Point(t.x, t.y - e * function () {
-                    var e = u.getCenter(),
-                      t = u.getZoom(),
-                      r = 1,
-                      i = u.getProjection().fromLatLngToPoint(new google.maps.LatLng(e.lat() - r / Math.pow(2, t), e.lng() - r / Math.pow(2, t))),
-                      s = u.getProjection().fromLatLngToPoint(new google.maps.LatLng(e.lat() + r / Math.pow(2, t), e.lng() + r / Math.pow(2, t)));
-                    return Math.abs(s.x - i.x);
-                  }() / 2));
-                u.panTo(r);
-              }, 100), google.maps.event.addListener(_d, "domready", function (e) {
-                m.length && bricksPhotoswipe(), void 0 !== window.jQuery && jQuery(".close").on("click", function () {
-                  _d.close(), s !== null && s !== void 0 && s.icon && c.setIcon(s.icon), r.length > 1 && (a.extend(t), u.fitBounds(a), u.panToBounds(a));
-                });
+          }
+          infoBoxes.forEach(function (infoBox) {
+            infoBox.hide();
+          });
+
+          // Set custom active marker on marker click
+          if ((_markerActive = markerActive) !== null && _markerActive !== void 0 && _markerActive.url) {
+            marker.setIcon(markerActive);
+          }
+
+          // Open infoBox (better styleable than infoWindow) on marker click
+          // http://htmlpreview.github.io/?http://github.com/googlemaps/v3-utility-library/blob/master/infobox/docs/reference.html
+          var infoboxContent = '';
+          var infoTitle = (addressObj === null || addressObj === void 0 ? void 0 : addressObj.infoTitle) || false;
+          var infoSubtitle = (addressObj === null || addressObj === void 0 ? void 0 : addressObj.infoSubtitle) || false;
+          var infoOpeningHours = (addressObj === null || addressObj === void 0 ? void 0 : addressObj.infoOpeningHours) || false;
+          var infoImages = (addressObj === null || addressObj === void 0 ? void 0 : addressObj.infoImages) || {};
+          if (!Array.isArray(infoImages)) {
+            var _infoImages;
+            infoImages = Array.isArray((_infoImages = infoImages) === null || _infoImages === void 0 ? void 0 : _infoImages.images) ? infoImages.images : [];
+          }
+          if (infoTitle) {
+            infoboxContent += "<h3 class=\"title\">".concat(infoTitle, "</h3>");
+          }
+          if (infoSubtitle) {
+            infoboxContent += "<p class=\"subtitle\">".concat(infoSubtitle, "</p>");
+          }
+          if (infoOpeningHours) {
+            infoboxContent += '<ul class="content">';
+            infoOpeningHours = infoOpeningHours.split('\n');
+            if (infoOpeningHours.length) {
+              infoOpeningHours.forEach(function (infoOpeningHour) {
+                infoboxContent += "<li>".concat(infoOpeningHour, "</li>");
               });
             }
-          }(e);
-        }), a.extend(t), u.fitBounds(a), u.panToBounds(a), 1 === r.length) {
-          var _e18 = google.maps.event.addListener(u, "idle", function () {
-            u.setZoom(l), google.maps.event.removeListener(_e18);
+            infoboxContent += '</ul>';
+          }
+          if (infoImages.length) {
+            infoboxContent += '<ul class="images bricks-lightbox">';
+            infoImages.forEach(function (image) {
+              infoboxContent += '<li>';
+              if (image.thumbnail && image.src) {
+                infoboxContent += "<a\n\t\t\t\t\t\t\t\t\tdata-pswp-src=\"".concat(image.src, "\"\n\t\t\t\t\t\t\t\t\tdata-pswp-width=\"").concat((image === null || image === void 0 ? void 0 : image.width) || 376, "\"\n\t\t\t\t\t\t\t\t\tdata-pswp-height=\"").concat((image === null || image === void 0 ? void 0 : image.height) || 376, "\"\n\t\t\t\t\t\t\t\t\tdata-pswp-id=\"").concat(addressObj.id, "\">");
+                infoboxContent += "<img src=\"".concat(image.thumbnail, "\"/>");
+                infoboxContent += '</a>';
+              }
+              infoboxContent += '</li>';
+            });
+            infoboxContent += '</ul>';
+          }
+          if (infoboxContent) {
+            var infoBoxWidth = parseInt(addressObj === null || addressObj === void 0 ? void 0 : addressObj.infoWidth) || 300;
+            var infoBoxOptions = {
+              // minWidth: infoBoxWidth,
+              // maxWidth: infoBoxWidth,
+              content: infoboxContent,
+              disableAutoPan: true,
+              pixelOffset: new google.maps.Size(0, 0),
+              alignBottom: false,
+              infoBoxClearance: new google.maps.Size(20, 20),
+              enableEventPropagation: false,
+              zIndex: 1001,
+              boxStyle: {
+                opacity: 1,
+                zIndex: 999,
+                top: 0,
+                left: 0,
+                width: "".concat(infoBoxWidth, "px")
+              }
+            };
+            if (typeof window.jQuery != 'undefined') {
+              infoBoxOptions.closeBoxURL = '';
+              infoBoxOptions.content += '<span class="close">×</span>';
+            }
+            var infoBox = new InfoBox(infoBoxOptions);
+            infoBox.open(map, marker);
+            infoBoxes.push(infoBox);
+
+            // Center infoBox on map (small timeout required to allow infoBox to render)
+            setTimeout(function () {
+              var infoBoxHeight = infoBox.div_.offsetHeight;
+              var projectedPosition = map.getProjection().fromLatLngToPoint(marker.getPosition());
+              var infoBoxCenter = map.getProjection().fromPointToLatLng(new google.maps.Point(projectedPosition.x, projectedPosition.y - infoBoxHeight * getLongitudePerPixel() / 2));
+              map.panTo(infoBoxCenter);
+            }, 100);
+            google.maps.event.addListener(infoBox, 'domready', function (e) {
+              if (infoImages.length) {
+                bricksPhotoswipe();
+              }
+
+              // Close infoBox icon listener
+              if (typeof window.jQuery != 'undefined') {
+                jQuery('.close').on('click', function () {
+                  infoBox.close();
+                  if (markerDefault !== null && markerDefault !== void 0 && markerDefault.icon) {
+                    marker.setIcon(markerDefault.icon);
+                  }
+                  if (addresses.length > 1) {
+                    bounds.extend(position);
+                    map.fitBounds(bounds);
+                    map.panToBounds(bounds);
+                  }
+                });
+              }
+            });
+          }
+        }
+
+        // Get longitude per pixel based on current Zoom (for infoBox centering)
+        function getLongitudePerPixel() {
+          var latLng = map.getCenter();
+          var zoom = map.getZoom();
+          var pixelDistance = 1;
+          var point1 = map.getProjection().fromLatLngToPoint(new google.maps.LatLng(latLng.lat() - pixelDistance / Math.pow(2, zoom), latLng.lng() - pixelDistance / Math.pow(2, zoom)));
+          var point2 = map.getProjection().fromLatLngToPoint(new google.maps.LatLng(latLng.lat() + pixelDistance / Math.pow(2, zoom), latLng.lng() + pixelDistance / Math.pow(2, zoom)));
+          return Math.abs(point2.x - point1.x);
+        }
+        bounds.extend(position);
+        map.fitBounds(bounds);
+        map.panToBounds(bounds);
+
+        // var mapPosition = marker.getPosition()
+        // map.setCenter(mapPosition)
+
+        // Set zoom once map is idle: As fitBounds overrules zoom (since 1.5.1)
+        if (addresses.length === 1) {
+          var mapIdleListener = google.maps.event.addListener(map, 'idle', function () {
+            map.setZoom(zoom);
+            google.maps.event.removeListener(mapIdleListener);
           });
         }
       }
-      if (t !== null && t !== void 0 && t.type && u.setMapTypeId(t.type), t !== null && t !== void 0 && t.style) if ("custom" === t.style && t !== null && t !== void 0 && t.customStyle) {
-        var _e19 = JSON.stringify(t.customStyle);
-        u.setOptions({
-          styles: JSON.parse(_e19)
-        });
-      } else window.bricksData && window.bricksData.mapStyles[t.style] && u.setOptions({
-        styles: JSON.parse(window.bricksData.mapStyles[t.style].style)
-      });
-    }, 1e3 * t);
+
+      // Set map type
+      if (settings !== null && settings !== void 0 && settings.type) {
+        map.setMapTypeId(settings.type);
+      }
+
+      // Set map style
+      if (settings !== null && settings !== void 0 && settings.style) {
+        // Custom map style
+        if (settings.style === 'custom' && settings !== null && settings !== void 0 && settings.customStyle) {
+          var mapStyle = JSON.stringify(settings.customStyle);
+          map.setOptions({
+            styles: JSON.parse(mapStyle)
+          });
+        }
+
+        // Predefined map style
+        else if (window.bricksData && window.bricksData.mapStyles[settings.style]) {
+          map.setOptions({
+            styles: JSON.parse(window.bricksData.mapStyles[settings.style].style)
+          });
+        }
+      }
+    }, index * 1000);
   }
 });
 function bricksMap() {
   bricksMapFn.run();
 }
+
+/**
+ * Element: Pie Chart
+ */
 var bricksPieChartFn = new BricksFunction({
   parentNode: document,
-  selector: ".brxe-pie-chart",
-  windowVariableCheck: ["EasyPieChart"],
-  eachElement: function eachElement(e) {
+  selector: '.brxe-pie-chart',
+  windowVariableCheck: ['EasyPieChart'],
+  eachElement: function eachElement(element) {
     new BricksIntersect({
-      element: e,
-      callback: function callback(e) {
-        var t = e.getElementsByTagName("canvas");
-        t.length && t[0].remove(), new EasyPieChart(e, {
-          size: e.dataset.size && e.dataset.size > 0 ? e.dataset.size : 160,
-          lineWidth: e.dataset.lineWidth,
-          barColor: e.dataset.barColor,
-          trackColor: e.dataset.trackColor,
-          lineCap: e.dataset.lineCap,
-          scaleColor: e.dataset.scaleColor,
-          scaleLength: e.dataset.scaleLength,
+      element: element,
+      callback: function callback(el) {
+        // HTMLCollection of canvas (grab first one)
+        var canvas = el.getElementsByTagName('canvas');
+
+        // Remove canvas first, before EasyPieChart init
+        if (canvas.length) {
+          canvas[0].remove();
+        }
+        new EasyPieChart(el, {
+          size: el.dataset.size && el.dataset.size > 0 ? el.dataset.size : 160,
+          lineWidth: el.dataset.lineWidth,
+          barColor: el.dataset.barColor,
+          trackColor: el.dataset.trackColor,
+          lineCap: el.dataset.lineCap,
+          scaleColor: el.dataset.scaleColor,
+          scaleLength: el.dataset.scaleLength,
           rotate: 0
         });
       },
@@ -1183,36 +2682,60 @@ var bricksPieChartFn = new BricksFunction({
 function bricksPieChart() {
   bricksPieChartFn.run();
 }
+
+/**
+ * Element: Pricing Tables (Pricing toggle)
+ */
 var bricksPricingTablesFn = new BricksFunction({
   parentNode: document,
-  selector: ".brxe-pricing-tables",
-  eachElement: function eachElement(e) {
-    var t = bricksQuerySelectorAll(e, ".tab"),
-      r = bricksQuerySelectorAll(e, ".pricing-table");
-    t.forEach(function (e) {
-      e.classList.contains("listening") || (e.classList.add("listening"), e.addEventListener("click", function () {
-        e.classList.contains("active") || (r.forEach(function (e) {
-          e.classList.toggle("active");
-        }), t.forEach(function (e) {
-          e.classList.remove("active");
-        }), e.classList.add("active"));
-      }));
+  selector: '.brxe-pricing-tables',
+  eachElement: function eachElement(element) {
+    var tabs = bricksQuerySelectorAll(element, '.tab');
+    var pricingTables = bricksQuerySelectorAll(element, '.pricing-table');
+    tabs.forEach(function (tab) {
+      if (tab.classList.contains('listening')) {
+        return;
+      }
+      tab.classList.add('listening');
+      tab.addEventListener('click', function () {
+        // Return if selected tab is .active
+        if (tab.classList.contains('active')) {
+          return;
+        }
+
+        // Toggle pricing table .active
+        pricingTables.forEach(function (pricingTable) {
+          pricingTable.classList.toggle('active');
+        });
+
+        // Toggle .active tab
+        tabs.forEach(function (tab) {
+          tab.classList.remove('active');
+        });
+        tab.classList.add('active');
+      });
     });
   }
 });
 function bricksPricingTables() {
   bricksPricingTablesFn.run();
 }
+
+/**
+ * Element: Progress Bar (animate fill-up bar)
+ */
 var bricksProgressBarFn = new BricksFunction({
   parentNode: document,
-  selector: ".brxe-progress-bar .bar span",
-  eachElement: function eachElement(e) {
+  selector: '.brxe-progress-bar .bar span',
+  eachElement: function eachElement(bar) {
     new BricksIntersect({
-      element: e,
+      element: bar,
       callback: function callback() {
-        e.dataset.width && setTimeout(function () {
-          e.style.width = e.dataset.width;
-        }, "slow");
+        if (bar.dataset.width) {
+          setTimeout(function () {
+            bar.style.width = bar.dataset.width;
+          }, 'slow');
+        }
       },
       threshold: 1
     });
@@ -1221,33 +2744,66 @@ var bricksProgressBarFn = new BricksFunction({
 function bricksProgressBar() {
   bricksProgressBarFn.run();
 }
+
+/**
+ * SplideJS: For all nestable elements
+ *
+ * @since 1.5
+ */
 var bricksSplideFn = new BricksFunction({
   parentNode: document,
-  selector: ".brxe-slider-nested.splide",
-  windowVariableCheck: ["Splide"],
-  forceReinit: function forceReinit(e, t) {
+  selector: '.brxe-slider-nested.splide',
+  windowVariableCheck: ['Splide'],
+  forceReinit: function forceReinit(element, index) {
+    // Allow Force reinit inside Builder (@since 1.8.2)
     return !bricksIsFrontend;
   },
-  eachElement: function eachElement(e) {
-    var t = bricksQuerySelectorAll(e, [".splide__list > .brxe-container", ".splide__list > .brxe-block", ".splide__list > .brxe-div"]);
-    t.forEach(function (e) {
-      e.classList.add("splide__slide"), e.dataset.id = e.id;
+  eachElement: function eachElement(splideElement) {
+    // Add .splide__slide to individual slide (perfect for in/builder)
+    var slides = bricksQuerySelectorAll(splideElement, ['.splide__list > .brxe-container', '.splide__list > .brxe-block', '.splide__list > .brxe-div']);
+    slides.forEach(function (slide) {
+      slide.classList.add('splide__slide');
+      slide.dataset.id = slide.id;
     });
-    var r = e.dataset.scriptId;
-    window.bricksData.splideInstances.hasOwnProperty(r) && window.bricksData.splideInstances[r].destroy();
-    var i = new Splide(e);
-    i.mount(), window.bricksData.splideInstances[r] = i, t.forEach(function (t, r) {
-      if (t.dataset.id) {
-        t.id = t.dataset.id;
-        var _i5 = e.querySelector(".splide__pagination");
-        if (_i5) {
-          var _e20 = _i5.querySelector("li:nth-child(".concat(r + 1, ") .splide__pagination__page"));
-          _e20 && _e20.setAttribute("aria-controls", t.id);
+    var scriptId = splideElement.dataset.scriptId;
+
+    // Destroy existing splideJS instance
+    if (window.bricksData.splideInstances.hasOwnProperty(scriptId)) {
+      window.bricksData.splideInstances[scriptId].destroy();
+    }
+
+    // Init & mount splideJS
+    var splideInstance = new Splide(splideElement);
+
+    // https://splidejs.com/guides/apis/#go
+    splideInstance.mount();
+
+    // Store splideJS instance in bricksData to destroy and re-init
+    window.bricksData.splideInstances[scriptId] = splideInstance;
+
+    // NOTE: To ensure Bricks element ID is used (important also for builder), and not the randomly by splide generated ID (see: slide.js:mount())
+    // Improvement: Tweak CSS selector for 'bricksSplide' elements to use #parent.id > .{slide-class}
+    slides.forEach(function (slide, index) {
+      if (slide.dataset.id) {
+        slide.id = slide.dataset.id;
+
+        // Set 'aria-controls' value to slide.id
+        var pagination = splideElement.querySelector('.splide__pagination');
+        if (pagination) {
+          var paginationButton = pagination.querySelector("li:nth-child(".concat(index + 1, ") .splide__pagination__page"));
+          if (paginationButton) {
+            paginationButton.setAttribute('aria-controls', slide.id);
+          }
         }
       }
-      if (!t.classList.contains("bricks-lazy-hidden")) {
-        var _e21 = t.getAttribute("style") || "";
-        t.dataset.style && (_e21 += t.dataset.style, t.setAttribute("style", _e21));
+
+      // Get & set background-image added via lazy load through 'data-style' attribute inside query loop (@since 1.5)
+      if (!slide.classList.contains('bricks-lazy-hidden')) {
+        var style = slide.getAttribute('style') || '';
+        if (slide.dataset.style) {
+          style += slide.dataset.style;
+          slide.setAttribute('style', style);
+        }
       }
     });
   }
@@ -1255,188 +2811,443 @@ var bricksSplideFn = new BricksFunction({
 function bricksSplide() {
   bricksSplideFn.run();
 }
+
+/**
+ * SwiperJS touch slider: Carousel, Slider, Testimonials
+ */
 var bricksSwiperFn = new BricksFunction({
   parentNode: document,
-  selector: ".bricks-swiper-container",
-  windowVariableCheck: ["Swiper"],
-  forceReinit: function forceReinit(e, t) {
+  selector: '.bricks-swiper-container',
+  windowVariableCheck: ['Swiper'],
+  forceReinit: function forceReinit(element, index) {
+    // Allow Force reinit inside Builder (@since 1.8.2)
     return !bricksIsFrontend;
   },
-  eachElement: function eachElement(e) {
-    var t;
+  eachElement: function eachElement(swiperElement) {
+    var scriptArgs;
     try {
-      t = JSON.parse(e.dataset.scriptArgs);
-    } catch (r) {
-      console.warn("bricksSwiper: Error parsing JSON of data-script-args", e), t = {};
+      scriptArgs = JSON.parse(swiperElement.dataset.scriptArgs);
+    } catch (e) {
+      console.warn('bricksSwiper: Error parsing JSON of data-script-args', swiperElement);
+      scriptArgs = {};
     }
-    var r = e.classList.contains("[class*=brxe-]") ? e : e.closest("[class*=brxe-]");
-    if (!r) return;
-    bricksQuerySelectorAll(e, [".splide__list > .brxe-container", ".splide__list > .brxe-block", ".splide__list > .brxe-div"]).forEach(function (e) {
-      return e.classList.add("swiper-slide");
+    var element = swiperElement.classList.contains('[class*=brxe-]') ? swiperElement : swiperElement.closest('[class*=brxe-]');
+    if (!element) {
+      return;
+    }
+
+    // @since 1.5: Nestable elements: Add .swiper-slide to individual slide (perfect for in/builder)
+    var slides = bricksQuerySelectorAll(swiperElement, ['.splide__list > .brxe-container', '.splide__list > .brxe-block', '.splide__list > .brxe-div']);
+    slides.forEach(function (slide) {
+      return slide.classList.add('swiper-slide');
     });
-    var i = r.dataset.scriptId,
-      s = window.bricksData.swiperInstances.hasOwnProperty(i) ? window.bricksData.swiperInstances[i] : void 0;
-    s && s.destroy(), t.observer = !1, t.observeParents = !0, t.resizeObserver = !0, t.slidesToShow = t.hasOwnProperty("slidesToShow") ? t.slidesToShow : 1, t.slidesPerGroup = t.hasOwnProperty("slidesPerGroup") ? t.slidesPerGroup : 1, t.speed = t.hasOwnProperty("speed") ? parseInt(t.speed) : 300, t.effect = t.hasOwnProperty("effect") ? t.effect : "slide", t.spaceBetween = t.hasOwnProperty("spaceBetween") ? t.spaceBetween : 0, t.initialSlide = t.hasOwnProperty("initialSlide") ? t.initialSlide : 0, t.keyboard = {
+    var scriptId = element.dataset.scriptId;
+    var swiperInstance = window.bricksData.swiperInstances.hasOwnProperty(scriptId) ? window.bricksData.swiperInstances[scriptId] : undefined;
+    if (swiperInstance) {
+      swiperInstance.destroy();
+    }
+    scriptArgs.observer = false; // Not working and not necessary (= set to false)
+    scriptArgs.observeParents = true;
+    scriptArgs.resizeObserver = true;
+
+    // Defaults
+    scriptArgs.slidesToShow = scriptArgs.hasOwnProperty('slidesToShow') ? scriptArgs.slidesToShow : 1;
+    scriptArgs.slidesPerGroup = scriptArgs.hasOwnProperty('slidesPerGroup') ? scriptArgs.slidesPerGroup : 1;
+    scriptArgs.speed = scriptArgs.hasOwnProperty('speed') ? parseInt(scriptArgs.speed) : 300;
+    scriptArgs.effect = scriptArgs.hasOwnProperty('effect') ? scriptArgs.effect : 'slide';
+    scriptArgs.spaceBetween = scriptArgs.hasOwnProperty('spaceBetween') ? scriptArgs.spaceBetween : 0;
+    scriptArgs.initialSlide = scriptArgs.hasOwnProperty('initialSlide') ? scriptArgs.initialSlide : 0;
+
+    // Enable keyboard control when in viewport (only on frontend as it messes with contenteditable in builder)
+    scriptArgs.keyboard = {
       enabled: bricksIsFrontend,
-      onlyInViewport: !0
-    }, t.watchOverflow = !0, t.hasOwnProperty("effect") && "flip" === t.effect && (t.flipEffect = {
-      slideShadows: !1
-    }), t.hasOwnProperty("effect") && "fade" === t.effect && (t.fadeEffect = {
-      crossFade: !0
-    }), t.navigation && (t.navigation = {
-      prevEl: r.querySelector(".bricks-swiper-button-prev"),
-      nextEl: r.querySelector(".bricks-swiper-button-next")
-    }), t.pagination && (t.pagination = {
-      el: r.querySelector(".swiper-pagination"),
-      type: "bullets",
-      clickable: !0
-    }, 1 == t.dynamicBullets && (delete t.dynamicBullets, t.pagination.dynamicBullets = !0)), s = new Swiper(e, t), window.bricksData.swiperInstances[i] = s;
+      onlyInViewport: true
+    };
+
+    // Disabled & hide navigation buttons when there are not enough slides for sliding
+    scriptArgs.watchOverflow = true;
+
+    // Effect: Flip
+    if (scriptArgs.hasOwnProperty('effect') && scriptArgs.effect === 'flip') {
+      scriptArgs.flipEffect = {
+        slideShadows: false
+      };
+    }
+
+    // Set crossFade to true to avoid seeing content behind or underneath slide (https://swiperjs.com/swiper-api#fade-effect)
+    if (scriptArgs.hasOwnProperty('effect') && scriptArgs.effect === 'fade') {
+      scriptArgs.fadeEffect = {
+        crossFade: true
+      };
+    }
+
+    // Arrows
+    if (scriptArgs.navigation) {
+      scriptArgs.navigation = {
+        prevEl: element.querySelector('.bricks-swiper-button-prev'),
+        nextEl: element.querySelector('.bricks-swiper-button-next')
+      };
+    }
+
+    // Dots
+    if (scriptArgs.pagination) {
+      scriptArgs.pagination = {
+        el: element.querySelector('.swiper-pagination'),
+        type: 'bullets',
+        clickable: true
+      };
+      if (scriptArgs.dynamicBullets == true) {
+        delete scriptArgs.dynamicBullets;
+        scriptArgs.pagination.dynamicBullets = true;
+        // scriptArgs.pagination.dynamicMainBullets = 1
+      }
+    }
+
+    swiperInstance = new Swiper(swiperElement, scriptArgs);
+
+    // Store swiper instance in bricksData to destroy and re-init
+    window.bricksData.swiperInstances[scriptId] = swiperInstance;
   }
 });
 function bricksSwiper() {
   bricksSwiperFn.run();
 }
+
+/**
+ * Element: Video (YouTube, Vimeo, File URL)
+ */
 var bricksVideoFn = new BricksFunction({
   parentNode: document,
-  selector: ".brxe-video",
-  eachElement: function eachElement(e) {
-    bricksIsFrontend && e.addEventListener("click", function () {
-      var t = e.querySelector(".bricks-video-overlay"),
-        r = e.querySelector(".bricks-video-overlay-icon");
-      t && t.remove(), r && r.remove();
-    });
-    var t = e.querySelector("video");
-    if (t) {
-      if (window.hasOwnProperty("Plyr")) {
-        var _window$bricksData, _window$bricksData$vi;
-        var _t12 = e.dataset.scriptId,
-          r = e.querySelector(".bricks-plyr"),
-          i = ((_window$bricksData = window.bricksData) === null || _window$bricksData === void 0 ? void 0 : (_window$bricksData$vi = _window$bricksData.videoInstances) === null || _window$bricksData$vi === void 0 ? void 0 : _window$bricksData$vi[_t12]) || void 0;
-        i && i.destroy(), r && (i = new Plyr(r)), window.bricksData.videoInstances[_t12] = i;
-      }
-      t.setAttribute("playsinline", !0);
+  selector: '.brxe-video',
+  eachElement: function eachElement(element) {
+    // Remove overlay & icon
+    if (bricksIsFrontend) {
+      element.addEventListener('click', function () {
+        var videoOverlay = element.querySelector('.bricks-video-overlay');
+        var videoOverlayIcon = element.querySelector('.bricks-video-overlay-icon');
+        if (videoOverlay) {
+          videoOverlay.remove();
+        }
+        if (videoOverlayIcon) {
+          videoOverlayIcon.remove();
+        }
+      });
     }
+
+    // 'video' HTML (videoType: media, file, meta)
+    var videoElement = element.querySelector('video');
+    if (!videoElement) {
+      return;
+    }
+
+    // Init custom HTML5 <video> player (https://plyr.io)
+    if (window.hasOwnProperty('Plyr')) {
+      var _window$bricksData, _window$bricksData$vi;
+      var elementId = element.dataset.scriptId;
+      var video = element.querySelector('.bricks-plyr');
+      var player = ((_window$bricksData = window.bricksData) === null || _window$bricksData === void 0 ? void 0 : (_window$bricksData$vi = _window$bricksData.videoInstances) === null || _window$bricksData$vi === void 0 ? void 0 : _window$bricksData$vi[elementId]) || undefined;
+      if (player) {
+        player.destroy();
+      }
+      if (video) {
+        // 'autoplay' only runs if video is 'muted'
+        player = new Plyr(video);
+      }
+      window.bricksData.videoInstances[elementId] = player;
+    }
+
+    // Necessary for autoplaying in iOS (https://webkit.org/blog/6784/new-video-policies-for-ios/)
+    videoElement.setAttribute('playsinline', true);
   }
 });
 function bricksVideo() {
   bricksVideoFn.run();
 }
+
+/**
+ * Load Facebook SDK & render Facebook widgets
+ *
+ * https://developers.facebook.com/docs/javascript/reference/FB.init/v3.3
+ *
+ * @since 1.4 Use XMLHttpRequest instead of jquery.ajax()
+ */
+
 function bricksFacebookSDK() {
-  if (!document.querySelector(".brxe-facebook-page")) return;
-  var e = window.bricksData.hasOwnProperty("locale") ? window.bricksData.locale : "en_US",
-    t = window.bricksData.hasOwnProperty("facebookAppId") ? window.bricksData.facebookAppId : null,
-    r = "https://connect.facebook.net/".concat(e, "/sdk.js"),
-    i = new XMLHttpRequest();
-  i.open("GET", r), i.onreadystatechange = function () {
-    if (4 == this.readyState && 200 == this.status) {
-      var _e22 = document.createElement("script");
-      _e22.type = "text/javascript", _e22.id = "bricks-facebook-page-sdk", _e22.appendChild(document.createTextNode(i.responseText)), document.body.appendChild(_e22), FB.init({
-        appId: t,
-        version: "v3.3",
-        xfbml: !0
+  // Return: Page has no Facebook Page element
+  var facebookPageElement = document.querySelector('.brxe-facebook-page');
+  if (!facebookPageElement) {
+    return;
+  }
+  var locale = window.bricksData.hasOwnProperty('locale') ? window.bricksData.locale : 'en_US';
+  var facebookAppId = window.bricksData.hasOwnProperty('facebookAppId') ? window.bricksData.facebookAppId : null;
+  var facebookSdkUrl = "https://connect.facebook.net/".concat(locale, "/sdk.js");
+  var xhr = new XMLHttpRequest();
+  xhr.open('GET', facebookSdkUrl);
+
+  // Successful response: Create & add FB script to DOM and run function to generate Facebook Page HTML
+  xhr.onreadystatechange = function () {
+    if (this.readyState == 4 && this.status == 200) {
+      var fbScript = document.createElement('script');
+      fbScript.type = 'text/javascript';
+      fbScript.id = 'bricks-facebook-page-sdk';
+      fbScript.appendChild(document.createTextNode(xhr.responseText));
+      document.body.appendChild(fbScript);
+      FB.init({
+        appId: facebookAppId,
+        version: 'v3.3',
+        xfbml: true // render
       });
     }
-  }, i.send();
+  };
+
+  xhr.send();
 }
+
+/**
+ * Prettify <pre> and <code> HTML tags
+ *
+ * https://github.com/googlearchive/code-prettify
+ */
 var bricksPrettifyFn = new BricksFunction({
   parentNode: document,
-  selector: ".prettyprint.prettyprinted",
+  selector: '.prettyprint.prettyprinted',
   run: function run() {
-    if (!window.hasOwnProperty("PR")) return;
+    if (!window.hasOwnProperty('PR')) {
+      return;
+    }
     PR.prettyPrint();
-    var e = bricksQuerySelectorAll(document, ".prettyprint.prettyprinted");
-    !bricksIsFrontend && e.length && e.forEach(function (e) {
-      e.classList.remove("prettyprinted"), PR.prettyPrint();
-    });
+
+    // Builder: Re-init prettify
+    var prettyprinted = bricksQuerySelectorAll(document, '.prettyprint.prettyprinted');
+    if (!bricksIsFrontend && prettyprinted.length) {
+      prettyprinted.forEach(function (prettyprint) {
+        prettyprint.classList.remove('prettyprinted');
+        PR.prettyPrint();
+      });
+    }
   }
 });
 function bricksPrettify() {
   bricksPrettifyFn.run();
 }
+
+/**
+ * Improve a11y keyboard navigation by making sure after skipping to the content, the next tab hit continues down the content
+ *
+ * https://axesslab.com/skip-links/
+ */
 function bricksSkipLinks() {
-  var e = bricksQuerySelectorAll(document, ".skip-link");
-  e && e.forEach(function (e) {
-    e.addEventListener("click", function (t) {
-      t.preventDefault();
-      var r = document.getElementById(e.href.split("#")[1]);
-      r && (r.setAttribute("tabindex", "-1"), r.addEventListener("blur", function () {
-        r.removeAttribute("tabindex");
-      }, {
-        once: !0
-      }), r.focus());
+  var skipLinks = bricksQuerySelectorAll(document, '.skip-link');
+  if (!skipLinks) {
+    return;
+  }
+  skipLinks.forEach(function (link) {
+    link.addEventListener('click', function (e) {
+      e.preventDefault();
+      var toElement = document.getElementById(link.href.split('#')[1]);
+      if (toElement) {
+        toElement.setAttribute('tabindex', '-1');
+        toElement.addEventListener('blur', function () {
+          toElement.removeAttribute('tabindex');
+        }, {
+          once: true
+        });
+        toElement.focus();
+      }
     });
   });
 }
+
+/**
+ * Bind element interactions to elements (frontend only)
+ *
+ * @since 1.6
+ */
 var bricksInteractionsFn = new BricksFunction({
   parentNode: document,
-  selector: "[data-interactions]",
-  frontEndOnly: !0,
-  eachElement: function eachElement(e) {
-    var _e$dataset3;
-    var t = [];
+  selector: '[data-interactions]',
+  frontEndOnly: true,
+  eachElement: function eachElement(sourceEl) {
+    var _sourceEl$dataset;
+    var interactions = [];
     try {
-      t = JSON.parse(e.dataset.interactions);
+      interactions = JSON.parse(sourceEl.dataset.interactions);
     } catch (e) {
-      return console.info("error:bricksInteractions", e), !1;
+      console.info('error:bricksInteractions', e);
+      return false;
     }
-    var r = ((_e$dataset3 = e.dataset) === null || _e$dataset3 === void 0 ? void 0 : _e$dataset3.interactionId) || !1;
-    t && r && t.forEach(function (t) {
-      var i = !1;
-      if (t !== null && t !== void 0 && t.trigger) {
-        var _window$bricksData2;
-        if ("scroll" === t.trigger) {
-          var _e23 = 0;
-          if (t !== null && t !== void 0 && t.scrollOffset) if (_e23 = t === null || t === void 0 ? void 0 : t.scrollOffset.replace("px", ""), _e23.includes("%")) {
-            _e23 = Math.max(document.body.scrollHeight, document.documentElement.scrollHeight, document.body.offsetHeight, document.documentElement.offsetHeight, document.body.clientHeight, document.documentElement.clientHeight) / 100 * parseInt(_e23);
-          } else _e23.includes("vh") && (_e23 = window.innerHeight / 100 * parseInt(_e23));
-          t.scrollOffset = _e23;
-        } else "mouseleaveWindow" === t.trigger && (t.trigger = "mouseleave", i = !0);
-        if ("loadMore" === t.action) {
-          var _window$bricksData$qu2;
-          var _r8 = t === null || t === void 0 ? void 0 : t.loadMoreQuery;
-          ((_window$bricksData$qu2 = window.bricksData.queryLoopInstances) === null || _window$bricksData$qu2 === void 0 ? void 0 : _window$bricksData$qu2[_r8]) || (e.style.display = "none");
+    var interactionGroupId = ((_sourceEl$dataset = sourceEl.dataset) === null || _sourceEl$dataset === void 0 ? void 0 : _sourceEl$dataset.interactionId) || false;
+    if (!interactions || !interactionGroupId) {
+      return;
+    }
+    interactions.forEach(function (interaction) {
+      var _window$bricksData2;
+      var bindToDocument = false;
+      if (!(interaction !== null && interaction !== void 0 && interaction.trigger)) {
+        return;
+      }
+
+      // trigger: 'click', 'mouseover', 'scroll', etc.
+      if (interaction.trigger === 'scroll') {
+        var scrollOffset = 0;
+        if (interaction !== null && interaction !== void 0 && interaction.scrollOffset) {
+          scrollOffset = interaction === null || interaction === void 0 ? void 0 : interaction.scrollOffset.replace('px', '');
+          if (scrollOffset.includes('%')) {
+            var documentHeight = Math.max(document.body.scrollHeight, document.documentElement.scrollHeight, document.body.offsetHeight, document.documentElement.offsetHeight, document.body.clientHeight, document.documentElement.clientHeight);
+            scrollOffset = documentHeight / 100 * parseInt(scrollOffset);
+          } else if (scrollOffset.includes('vh')) {
+            scrollOffset = window.innerHeight / 100 * parseInt(scrollOffset);
+          }
         }
-        if (e) switch (t.el = e, t.groupId = i ? "document" : r, (_window$bricksData2 = window.bricksData) !== null && _window$bricksData2 !== void 0 && _window$bricksData2.interactions || (window.bricksData.interactions = []), window.bricksData.interactions.push(t), t.trigger) {
-          case "click":
-          case "mouseover":
-          case "mouseenter":
-          case "mouseleave":
-          case "focus":
-          case "blur":
-            (i ? document.documentElement : e).addEventListener(t.trigger, bricksInteractionCallback, {
-              once: t === null || t === void 0 ? void 0 : t.runOnce
-            });
-            break;
-          case "contentLoaded":
-            var _r9 = (t === null || t === void 0 ? void 0 : t.delay) || 0;
-            _r9 && _r9.includes("ms") ? _r9 = parseInt(_r9) : _r9 && _r9.includes("s") && (_r9 = 1e3 * parseFloat(_r9)), setTimeout(function () {
-              bricksInteractionCallbackExecution(e, t);
-            }, _r9);
-            break;
-          case "enterView":
-          case "leaveView":
-            new BricksIntersect({
-              element: e,
-              callback: function callback(e) {
-                return bricksInteractionCallbackExecution(e, t);
-              },
-              once: t === null || t === void 0 ? void 0 : t.runOnce,
-              trigger: t === null || t === void 0 ? void 0 : t.trigger
-            });
-            break;
-          case "showPopup":
-          case "hidePopup":
-            var s = "showPopup" === t.trigger ? "bricks/popup/open" : "bricks/popup/close";
-            document.addEventListener(s, function (r) {
-              var _r$detail;
-              var i = ((_r$detail = r.detail) === null || _r$detail === void 0 ? void 0 : _r$detail.popupElement) || !1;
-              if (!i || i !== e) return;
-              var s = window.bricksData.interactions.findIndex(function (e) {
-                return e === t;
-              });
-              -1 !== s && (t !== null && t !== void 0 && t.runOnce && window.bricksData.interactions.splice(s, 1), bricksInteractionCallbackExecution(e, t));
-            });
+        interaction.scrollOffset = scrollOffset;
+      } else if (interaction.trigger === 'mouseleaveWindow') {
+        interaction.trigger = 'mouseleave';
+        bindToDocument = true;
+      }
+
+      // 'loadMore': Check if query trail exist. If not: remove the "Load More" element
+      if (interaction.action === 'loadMore') {
+        var _window$bricksData$qu2;
+        var queryId = interaction === null || interaction === void 0 ? void 0 : interaction.loadMoreQuery;
+        if (!((_window$bricksData$qu2 = window.bricksData.queryLoopInstances) !== null && _window$bricksData$qu2 !== void 0 && _window$bricksData$qu2[queryId])) {
+          // Hide the element (@since 1.8.2), previously it was removed
+          sourceEl.style.display = 'none';
         }
+      }
+
+      // Return: No more sourceEl
+      if (!sourceEl) {
+        return;
+      }
+
+      // STEP: store the source element
+      interaction.el = sourceEl;
+
+      // STEP: Interaction group Id
+      interaction.groupId = bindToDocument ? 'document' : interactionGroupId;
+
+      // STEP: Store interaction
+      if (!((_window$bricksData2 = window.bricksData) !== null && _window$bricksData2 !== void 0 && _window$bricksData2.interactions)) {
+        window.bricksData.interactions = [];
+      }
+      window.bricksData.interactions.push(interaction);
+
+      // STEP: Create interaction event listeners
+      switch (interaction.trigger) {
+        case 'click':
+        case 'mouseover':
+        case 'mouseenter':
+        case 'mouseleave':
+        case 'focus':
+        case 'blur':
+          var attachEl = bindToDocument ? document.documentElement : sourceEl;
+          attachEl.addEventListener(interaction.trigger, bricksInteractionCallback, {
+            once: interaction === null || interaction === void 0 ? void 0 : interaction.runOnce
+          });
+          break;
+
+        // @since 1.8.4
+        case 'animationEnd':
+          var targetAnimationId = (interaction === null || interaction === void 0 ? void 0 : interaction.animationId) || false;
+
+          // Target animation not set: Find last previous animation interaction (action is 'startAnimation'), and must be in the same interaction group
+          if (!targetAnimationId) {
+            var previousInteraction = window.bricksData.interactions.filter(function (_int) {
+              return _int.groupId === interactionGroupId && _int.action === 'startAnimation' && _int.id !== interaction.id;
+            });
+            if (previousInteraction.length) {
+              targetAnimationId = previousInteraction[previousInteraction.length - 1].id;
+            }
+          }
+
+          // @since 1.8.4 - Listen to `bricks/animation/end/${animationId}`
+          if (targetAnimationId && targetAnimationId !== interaction.id) {
+            document.addEventListener("bricks/animation/end/".concat(targetAnimationId), function (evt) {
+              bricksInteractionCallbackExecution(sourceEl, interaction);
+            }, {
+              once: interaction === null || interaction === void 0 ? void 0 : interaction.runOnce
+            });
+          }
+          break;
+        case 'contentLoaded':
+          var delay = (interaction === null || interaction === void 0 ? void 0 : interaction.delay) || 0;
+          if (delay && delay.includes('ms')) {
+            delay = parseInt(delay);
+          } else if (delay && delay.includes('s')) {
+            delay = parseFloat(delay) * 1000;
+          }
+          setTimeout(function () {
+            bricksInteractionCallbackExecution(sourceEl, interaction);
+          }, delay);
+          break;
+        case 'enterView':
+          new BricksIntersect({
+            element: sourceEl,
+            callback: function callback(sourceEl) {
+              return bricksInteractionCallbackExecution(sourceEl, interaction);
+            },
+            once: interaction === null || interaction === void 0 ? void 0 : interaction.runOnce,
+            trigger: interaction === null || interaction === void 0 ? void 0 : interaction.trigger
+          });
+          break;
+
+        /**
+         * Don't use rootMargin
+         *
+         * Because if element has enterView & leaveView interactions, the leaveView will be ignored when scrolling up
+         *
+         * @see #38ve0he
+         *
+         * @since 1.6.2
+         */
+        case 'leaveView':
+          new BricksIntersect({
+            element: sourceEl,
+            callback: function callback(sourceEl) {
+              return bricksInteractionCallbackExecution(sourceEl, interaction);
+            },
+            once: interaction === null || interaction === void 0 ? void 0 : interaction.runOnce,
+            trigger: interaction === null || interaction === void 0 ? void 0 : interaction.trigger
+          });
+          break;
+
+        /**
+         * Show/Hide popup trigger
+         * @since 1.8.2
+         */
+        case 'showPopup':
+        case 'hidePopup':
+          var listenEvent = interaction.trigger === 'showPopup' ? 'bricks/popup/open' : 'bricks/popup/close';
+          document.addEventListener(listenEvent, function (event) {
+            var _event$detail;
+            var popupElement = ((_event$detail = event.detail) === null || _event$detail === void 0 ? void 0 : _event$detail.popupElement) || false;
+
+            // Only run if this popup is the sourceEl
+            if (!popupElement || popupElement !== sourceEl) {
+              return;
+            }
+
+            // STEP: Handle runOnce - As we are listening to a specific popup event, we cannot set once: true on addEventListener
+
+            // Get interaction from window.bricksData.interactions
+            var interactionIndex = window.bricksData.interactions.findIndex(function (interactionPool) {
+              return interactionPool === interaction;
+            });
+
+            // If interactionIndex is not found, return
+            if (interactionIndex === -1) {
+              return;
+            }
+
+            // Remove interaction from window.bricksData.interactions after running the callback
+            if (interaction !== null && interaction !== void 0 && interaction.runOnce) {
+              window.bricksData.interactions.splice(interactionIndex, 1);
+            }
+
+            // STEP: Execute callback
+            bricksInteractionCallbackExecution(sourceEl, interaction);
+          });
+          break;
       }
     });
   }
@@ -1444,575 +3255,1580 @@ var bricksInteractionsFn = new BricksFunction({
 function bricksInteractions() {
   bricksInteractionsFn.run();
 }
+
+/**
+ * Popups
+ *
+ * @since 1.6
+ */
 function bricksPopups() {
-  window.bricksPopupsData = {
-    initialized: []
-  }, document.addEventListener("bricks/popup/open", function (e) {
-    var _e$detail;
-    var t = ((_e$detail = e.detail) === null || _e$detail === void 0 ? void 0 : _e$detail.popupElement) || !1;
-    if (t && (setTimeout(function () {
-      var e = bricksGetFocusables(t);
-      if (e.length) {
-        var _t13 = e[0],
-          r = e[e.length - 1];
-        e[0].focus(), document.addEventListener("keydown", function (e) {
-          "Tab" === e.key && (e.shiftKey ? document.activeElement === _t13 && (r.focus(), e.preventDefault()) : document.activeElement === r && (_t13.focus(), e.preventDefault()));
-        }, {
-          once: !0
+  /**
+   * Store popup elements that are already listening to close event (click popup overlay or ESC key)
+   *
+   * To prevent multiple initialization for the same popup
+   *
+   * Not used anymore as the event registered but not removed, we should remove the event listener when popup is closed (@since 1.8.4)
+   */
+  // window.bricksPopupsData = {
+  // 	initialized: []
+  // }
+
+  /**
+   * Popup Focus Trap
+   *
+   * @since 1.8.4
+   */
+  var popupFocusTrap = function popupFocusTrap(event, popupElement) {
+    if (event.key === 'Tab') {
+      event.preventDefault();
+      var focusableElements = bricksGetFocusables(popupElement);
+      if (!focusableElements.length) {
+        return;
+      }
+      var focusedIndex = focusableElements.indexOf(document.activeElement);
+      var nextIndex = event.shiftKey ? focusedIndex - 1 : focusedIndex + 1;
+      var nextElement = focusableElements[nextIndex];
+      if (nextElement) {
+        nextElement.focus();
+      } else {
+        focusableElements[0].focus();
+      }
+    }
+  };
+  var escClosePopup = function escClosePopup(event, popupElement) {
+    if (event.key === 'Escape') {
+      bricksClosePopup(popupElement);
+    }
+  };
+  var backdropClosePopup = function backdropClosePopup(event, popupElement) {
+    if (event.target.classList.contains('brx-popup-backdrop')) {
+      bricksClosePopup(popupElement);
+    }
+  };
+
+  /**
+   * Listen to document bricks/popup/open event
+   *
+   * event.detail.popupElement: Popup element
+   * event.detail.popupId: Popup id
+   *
+   * @since 1.7.1
+   */
+  document.addEventListener('bricks/popup/open', function (event) {
+    var _event$detail2;
+    // STEP: Get popup element
+    var popupElement = ((_event$detail2 = event.detail) === null || _event$detail2 === void 0 ? void 0 : _event$detail2.popupElement) || false;
+    if (!popupElement) {
+      return;
+    }
+    if (bricksIsFrontend) {
+      var _popupElement$dataset, _popupElement$dataset2, _popupElement$dataset3;
+      // STEP: Autofocus on first focusable element inside popup (@since 1.8.4)
+      if (!((_popupElement$dataset = popupElement.dataset) !== null && _popupElement$dataset !== void 0 && _popupElement$dataset.popupDisableAutoFocus)) {
+        var focusableElements = bricksGetFocusables(popupElement);
+        if (focusableElements.length) {
+          focusableElements[0].focus();
+        }
+      }
+
+      // STEP: Scroll to top of popup content (@since 1.8.4)
+      if ((_popupElement$dataset2 = popupElement.dataset) !== null && _popupElement$dataset2 !== void 0 && _popupElement$dataset2.popupScrollToTop) {
+        var _popupElement$querySe;
+        (_popupElement$querySe = popupElement.querySelector('.brx-popup-content')) === null || _popupElement$querySe === void 0 ? void 0 : _popupElement$querySe.scrollTo(0, 0);
+      }
+
+      // STEP: Add focus trap - Not allowing to tab outside popup
+      var focusTrapEventHandler = function focusTrapEventHandler(event) {
+        return popupFocusTrap(event, popupElement);
+      };
+      document.addEventListener('keydown', focusTrapEventHandler);
+
+      // Remove the focus trap event listener when popup is closed
+      document.addEventListener('bricks/popup/close', function () {
+        document.removeEventListener('keydown', focusTrapEventHandler);
+      });
+
+      // STEP: Add close event listeners for popup
+      var popupCloseOn = ((_popupElement$dataset3 = popupElement.dataset) === null || _popupElement$dataset3 === void 0 ? void 0 : _popupElement$dataset3.popupCloseOn) || 'backdrop-esc';
+      if (popupCloseOn.includes('esc')) {
+        // STEP: Listen for ESC key pressed to close popup
+        var escEventHandler = function escEventHandler(event) {
+          return escClosePopup(event, popupElement);
+        };
+        document.addEventListener('keyup', escEventHandler);
+
+        // Remove the ESC event listener when popup is closed
+        document.addEventListener('bricks/popup/close', function () {
+          document.removeEventListener('keyup', escEventHandler);
         });
       }
-    }, 100), bricksIsFrontend && !window.bricksPopupsData.initialized.includes(t))) {
-      var _t$dataset;
-      var _e24 = ((_t$dataset = t.dataset) === null || _t$dataset === void 0 ? void 0 : _t$dataset.popupCloseOn) || "backdrop-esc";
-      _e24.includes("esc") && document.addEventListener("keyup", function (e) {
-        "Escape" === e.key && bricksClosePopup(t);
-      }), _e24.includes("backdrop") && document.addEventListener("click", function (e) {
-        e.target.classList.contains("brx-popup-backdrop") && bricksClosePopup(t);
-      }), window.bricksPopupsData.initialized.push(t);
+      if (popupCloseOn.includes('backdrop')) {
+        // STEP: Listen for click outside popup to close popup
+        var backdropEventHandler = function backdropEventHandler(event) {
+          return backdropClosePopup(event, popupElement);
+        };
+        document.addEventListener('click', backdropEventHandler);
+
+        // Remove the backdrop event listener when popup is closed
+        document.addEventListener('bricks/popup/close', function () {
+          document.removeEventListener('click', backdropEventHandler);
+        });
+      }
     }
   });
 }
+
+/**
+ * Scroll interaction listener (debounce: 100ms)
+ *
+ * @since 1.6
+ */
 function bricksScrollInteractions() {
-  clearTimeout(bricksScrollTimeout), bricksScrollTimeout = setTimeout(function () {
+  clearTimeout(bricksScrollTimeout);
+  bricksScrollTimeout = setTimeout(function () {
     var _window$bricksData3;
-    var e = Array.isArray((_window$bricksData3 = window.bricksData) === null || _window$bricksData3 === void 0 ? void 0 : _window$bricksData3.interactions) ? window.bricksData.interactions : [],
-      t = window.scrollY,
-      r = [];
-    e.forEach(function (e, i) {
-      "scroll" === (e === null || e === void 0 ? void 0 : e.trigger) && t >= e.scrollOffset && (bricksInteractionCallbackExecution(e.el, e), (e === null || e === void 0 ? void 0 : e.runOnce) && r.push(i));
-    }), r.forEach(function (e) {
-      window.bricksData.interactions.splice(e, 1);
+    // Get scroll interactions anew on every scroll (new interactions could have been added via AJAX pagination or infinite scroll)
+    var interactions = Array.isArray((_window$bricksData3 = window.bricksData) === null || _window$bricksData3 === void 0 ? void 0 : _window$bricksData3.interactions) ? window.bricksData.interactions : [];
+    var scrolled = window.scrollY;
+    var runOnceIndexToRemove = [];
+    interactions.forEach(function (interaction, index) {
+      // Skip non-scroll interactions
+      if ((interaction === null || interaction === void 0 ? void 0 : interaction.trigger) !== 'scroll') {
+        return;
+      }
+      if (scrolled >= interaction.scrollOffset) {
+        bricksInteractionCallbackExecution(interaction.el, interaction);
+        if (interaction !== null && interaction !== void 0 && interaction.runOnce) {
+          runOnceIndexToRemove.push(index);
+        }
+      }
+    });
+
+    // Remove interaction from window.bricksData.interactions after looping over all interactions (@since 1.8.1)
+    runOnceIndexToRemove.forEach(function (indexToRemove) {
+      window.bricksData.interactions.splice(indexToRemove, 1);
     });
   }, 100);
 }
-function bricksInteractionCallback(e) {
-  var _e$currentTarget, _e$currentTarget$data;
-  if ("click" === (e === null || e === void 0 ? void 0 : e.type)) {
-    var _e$target$getAttribut;
-    if ("A" === e.target.tagName && "#" !== e.target.getAttribute("href") && (_e$target$getAttribut = e.target.getAttribute("href")) !== null && _e$target$getAttribut !== void 0 && _e$target$getAttribut.startsWith("#")) return;
-    e.preventDefault();
+
+/**
+ * Interactions callback
+ *
+ * @since 1.6
+ */
+function bricksInteractionCallback(event) {
+  var _event$currentTarget, _event$currentTarget$;
+  // Possible improvement: Add "Don't add e.preventDefault() to clikc interaction"
+  if ((event === null || event === void 0 ? void 0 : event.type) === 'click') {
+    var _event$target$getAttr;
+    // Return: Don't run interaction when clicking on an anchor link (except for # itself)
+    if (event.target.tagName === 'A' && event.target.getAttribute('href') !== '#' && (_event$target$getAttr = event.target.getAttribute('href')) !== null && _event$target$getAttr !== void 0 && _event$target$getAttr.startsWith('#')) {
+      return;
+    }
+    event.preventDefault();
   }
-  var t = (e === null || e === void 0 ? void 0 : (_e$currentTarget = e.currentTarget) === null || _e$currentTarget === void 0 ? void 0 : (_e$currentTarget$data = _e$currentTarget.dataset) === null || _e$currentTarget$data === void 0 ? void 0 : _e$currentTarget$data.interactionId) || "document";
-  window.bricksData.interactions.filter(function (e) {
-    return e.groupId === t;
-  }).forEach(function (t) {
-    (t === null || t === void 0 ? void 0 : t.trigger) === e.type && bricksInteractionCallbackExecution(t.el, t);
+  var interactionGroupId = (event === null || event === void 0 ? void 0 : (_event$currentTarget = event.currentTarget) === null || _event$currentTarget === void 0 ? void 0 : (_event$currentTarget$ = _event$currentTarget.dataset) === null || _event$currentTarget$ === void 0 ? void 0 : _event$currentTarget$.interactionId) || 'document';
+  window.bricksData.interactions.filter(function (interaction) {
+    return interaction.groupId === interactionGroupId;
+  }).forEach(function (interaction) {
+    if ((interaction === null || interaction === void 0 ? void 0 : interaction.trigger) === event.type) {
+      bricksInteractionCallbackExecution(interaction.el, interaction);
+    }
   });
 }
-function bricksInteractionCallbackExecution(e, t) {
+
+/**
+ * Interaction action execution
+ *
+ * @since 1.6
+ */
+function bricksInteractionCallbackExecution(sourceEl, config) {
   var _window$bricksData$qu3, _document$querySelect;
-  var r = (t === null || t === void 0 ? void 0 : t.target) || "self";
-  var i;
-  if (bricksInteractionCheckConditions(t)) {
-    switch (r) {
-      case "custom":
-        (t === null || t === void 0 ? void 0 : t.targetSelector) && (i = bricksQuerySelectorAll(document, t.targetSelector));
-        break;
-      case "popup":
-        if (t !== null && t !== void 0 && t.templateId) {
-          var _e$dataset4;
-          var _r10 = ((_e$dataset4 = e.dataset) === null || _e$dataset4 === void 0 ? void 0 : _e$dataset4.interactionLoop) || !1;
-          if (_r10) {
-            var _e$dataset5;
-            var s = ((_e$dataset5 = e.dataset) === null || _e$dataset5 === void 0 ? void 0 : _e$dataset5.interactionLoopIndex) || 0;
-            i = bricksQuerySelectorAll(document, ".brx-popup[data-popup-id=\"".concat(t.templateId, "\"][data-popup-loop=\"").concat(_r10, "\"][data-popup-loop-index=\"").concat(s, "\"]"));
-          }
-          i && i.length || (i = bricksQuerySelectorAll(document, ".brx-popup[data-popup-id=\"".concat(t.templateId, "\"]")));
-        }
-        break;
-      default:
-        i = e;
-    }
-    if (i) switch (i = Array.isArray(i) ? i : [i], t === null || t === void 0 ? void 0 : t.action) {
-      case "show":
-      case "hide":
-        i.forEach(function (e) {
-          e !== null && e !== void 0 && e.classList.contains("brx-popup") ? "show" === t.action ? bricksOpenPopup(e) : "hide" === t.action && bricksClosePopup(e) : "hide" === t.action ? e.style.display = "none" : "none" === e.style.display ? e.style.display = null : e.style.display = "block";
-        });
-        break;
-      case "setAttribute":
-      case "removeAttribute":
-      case "toggleAttribute":
-        var _r11 = t === null || t === void 0 ? void 0 : t.actionAttributeKey;
-        _r11 && i.forEach(function (e) {
-          var i = (t === null || t === void 0 ? void 0 : t.actionAttributeValue) || "";
-          if ("class" === _r11) {
-            (i ? i.split(" ") : []).forEach(function (r) {
-              "setAttribute" === t.action ? e.classList.add(r) : "removeAttribute" === t.action ? e.classList.remove(r) : e.classList.toggle(r);
-            });
-          } else "setAttribute" === t.action ? e.setAttribute(_r11, i) : "removeAttribute" === t.action || e.hasAttribute(_r11) ? e.removeAttribute(_r11) : e.setAttribute(_r11, i);
-        });
-        break;
-      case "storageAdd":
-      case "storageRemove":
-      case "storageCount":
-        var _s3 = t === null || t === void 0 ? void 0 : t.storageType,
-          n = t === null || t === void 0 ? void 0 : t.actionAttributeKey,
-          o = t.hasOwnProperty("actionAttributeValue") ? t.actionAttributeValue : 0;
-        if (_s3 && n) if ("storageAdd" === t.action) bricksStorageSetItem(_s3, n, o);else if ("storageRemove" === t.action) bricksStorageRemoveItem(_s3, n);else if ("storageCount" === t.action) {
-          var _e25 = bricksStorageGetItem(_s3, n);
-          _e25 = _e25 ? parseInt(_e25) : 0, bricksStorageSetItem(_s3, n, _e25 + 1);
-        }
-        break;
-      case "startAnimation":
-        var a = t === null || t === void 0 ? void 0 : t.animationType;
-        a && i.forEach(function (e) {
-          var _e26;
-          var r = 1e3,
-            i = (_e26 = e) === null || _e26 === void 0 ? void 0 : _e26.classList.contains("brx-popup");
-          if (i && (e = e.querySelector(".brx-popup-content")), t !== null && t !== void 0 && t.animationDuration && (e.style.animationDuration = t.animationDuration, t.animationDuration.includes("ms") ? r = parseInt(t.animationDuration) : t.animationDuration.includes("s") && (r = 1e3 * parseFloat(t.animationDuration))), t !== null && t !== void 0 && t.animationDelay && (e.style.animationDelay = t.animationDelay, t.animationDelay.includes("ms") ? r += parseInt(t.animationDelay) : t.animationDelay.includes("s") && (r += 1e3 * parseFloat(t.animationDelay))), i && "showPopup" !== t.trigger && "hidePopup" !== t.trigger) {
-            var _t14 = e.parentNode;
-            a.includes("Out") || bricksOpenPopup(_t14, r);
-          }
-          e.classList.add("brx-animated"), e.setAttribute("data-animation", a), bricksAnimationFn.run({
-            elementsToAnimate: [e],
-            removeAfterMs: r
-          });
-        });
-        break;
-      case "loadMore":
-        var c = t === null || t === void 0 ? void 0 : t.loadMoreQuery,
-          l = (_window$bricksData$qu3 = window.bricksData.queryLoopInstances) === null || _window$bricksData$qu3 === void 0 ? void 0 : _window$bricksData$qu3[c];
-        if (!l) return;
-        var d = l.isPostsElement ? (_document$querySelect = document.querySelector(".bricks-isotope-sizer[data-query-element-id=\"".concat(c, "\"]"))) === null || _document$querySelect === void 0 ? void 0 : _document$querySelect.previousElementSibling : Array.from(document.querySelectorAll(".brxe-".concat(c, ":not(.brx-popup)"))).pop();
-        d && (e.classList.contains("is-loading") || (e.classList.add("is-loading"), d.dataset.queryElementId = c, bricksQueryLoadPage(d).then(function (t) {
-          e.classList.remove("is-loading"), (t === null || t === void 0 ? void 0 : t.page) >= (t === null || t === void 0 ? void 0 : t.maxPages) && (e.style.display = "none");
-        })));
-    }
+  var targetMode = (config === null || config === void 0 ? void 0 : config.target) || 'self';
+  var target;
+
+  // Return: Interaction condition not fulfilled
+  if (!bricksInteractionCheckConditions(config)) {
+    return;
   }
-}
-function bricksOpenPopup(e) {
-  var t = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
-  if (!bricksIsFrontend) return;
-  var r;
-  if (e && (e.nodeType === Node.ELEMENT_NODE ? r = e : e && (r = document.querySelector(".brx-popup[data-popup-id=\"".concat(e, "\"]")))), !r) return;
-  var i = r.dataset.popupId;
-  if (bricksPopupCheckLimit(r)) {
-    r.classList.remove("hide"), r.dataset.popupBodyScroll || document.body.classList.add("no-scroll"), bricksSetVh();
-    var _e27 = new CustomEvent("bricks/popup/open", {
-      detail: {
-        popupId: i,
-        popupElement: r
+  switch (targetMode) {
+    case 'custom':
+      if (config !== null && config !== void 0 && config.targetSelector) {
+        target = bricksQuerySelectorAll(document, config.targetSelector);
       }
-    });
-    document.dispatchEvent(_e27), setTimeout(function () {
-      bricksCounter();
-    }, t), bricksPopupCounter(r);
-  }
-}
-function bricksClosePopup(e) {
-  if (!bricksIsFrontend) return;
-  var t;
-  if (e && (e.nodeType === Node.ELEMENT_NODE ? t = e : e && (t = document.querySelector(".brx-popup[data-popup-id=\"".concat(e, "\"]")))), !t) return;
-  var r = t.dataset.popupId;
-  t.classList.add("hide"), t.dataset.popupBodyScroll || document.body.classList.remove("no-scroll");
-  var i = new CustomEvent("bricks/popup/close", {
-    detail: {
-      popupId: r,
-      popupElement: t
-    }
-  });
-  document.dispatchEvent(i);
-}
-function bricksPopupCheckLimit(e) {
-  var _e$dataset6, _e$dataset7;
-  var t = e === null || e === void 0 ? void 0 : (_e$dataset6 = e.dataset) === null || _e$dataset6 === void 0 ? void 0 : _e$dataset6.popupLimits,
-    r = e === null || e === void 0 ? void 0 : (_e$dataset7 = e.dataset) === null || _e$dataset7 === void 0 ? void 0 : _e$dataset7.popupId;
-  if (!t) return !0;
-  try {
-    t = JSON.parse(t);
-  } catch (e) {
-    return console.info("error:bricksPopupCheckLimit", e), !0;
-  }
-  var i = !1;
-  return Object.entries(t).forEach(function (_ref2) {
-    var _ref3 = _slicedToArray(_ref2, 2),
-      e = _ref3[0],
-      t = _ref3[1];
-    var s = bricksStorageGetItem(e, "brx_popup_".concat(r, "_total"));
-    s = s ? parseInt(s) : 0, i = i || s >= t;
-  }), !i;
-}
-function bricksPopupCounter(e) {
-  var _e$dataset8, _e$dataset9;
-  var t = e === null || e === void 0 ? void 0 : (_e$dataset8 = e.dataset) === null || _e$dataset8 === void 0 ? void 0 : _e$dataset8.popupLimits,
-    r = e === null || e === void 0 ? void 0 : (_e$dataset9 = e.dataset) === null || _e$dataset9 === void 0 ? void 0 : _e$dataset9.popupId;
-  if (t) {
-    try {
-      t = JSON.parse(t);
-    } catch (e) {
-      return console.info("error:bricksPopupCounter", e), !0;
-    }
-    Object.entries(t).forEach(function (_ref4) {
-      var _ref5 = _slicedToArray(_ref4, 2),
-        e = _ref5[0],
-        t = _ref5[1];
-      var i = bricksStorageGetItem(e, "brx_popup_".concat(r, "_total"));
-      i = i ? parseInt(i) : 0, bricksStorageSetItem(e, "brx_popup_".concat(r, "_total"), i + 1);
-    });
-  }
-}
-function bricksInteractionCheckConditions(e) {
-  if (!Array.isArray(e === null || e === void 0 ? void 0 : e.interactionConditions)) return !0;
-  var t = (e === null || e === void 0 ? void 0 : e.interactionConditionsRelation) || "and",
-    r = "and" === t;
-  var i = function i(e) {
-    return isNaN(e) ? 0 : parseFloat(e);
-  };
-  return e.interactionConditions.forEach(function (e) {
-    var s = e === null || e === void 0 ? void 0 : e.conditionType,
-      n = (e === null || e === void 0 ? void 0 : e.storageKey) || !1,
-      o = !1;
-    if (s && n) {
-      var _t15 = (e === null || e === void 0 ? void 0 : e.storageCompare) || "exists",
-        _r12 = e === null || e === void 0 ? void 0 : e.storageCompareValue,
-        a = bricksStorageGetItem(s, n);
-      switch (_t15) {
-        case "exists":
-          o = null !== a;
-          break;
-        case "notExists":
-          o = null === a;
-          break;
-        case "==":
-          o = a == _r12;
-          break;
-        case "!=":
-          o = a != _r12;
-          break;
-        case ">=":
-          o = i(a) >= i(_r12);
-          break;
-        case "<=":
-          o = i(a) <= i(_r12);
-          break;
-        case ">":
-          o = i(a) > i(_r12);
-          break;
-        case "<":
-          o = i(a) < i(_r12);
+      break;
+    case 'popup':
+      if (config !== null && config !== void 0 && config.templateId) {
+        var _sourceEl$dataset2;
+        // Target looping popup by matching data-interaction-loop-id with data-popup-loop-id (@since 1.8.4)
+        var uniqueId = ((_sourceEl$dataset2 = sourceEl.dataset) === null || _sourceEl$dataset2 === void 0 ? void 0 : _sourceEl$dataset2.interactionLoopId) || false;
+        if (uniqueId) {
+          target = bricksQuerySelectorAll(document, ".brx-popup[data-popup-loop-id=\"".concat(uniqueId, "\"]"));
+        }
+
+        // If no popup found, try to find popup by data-popup-id
+        if (!target || !target.length) {
+          target = bricksQuerySelectorAll(document, ".brx-popup[data-popup-id=\"".concat(config.templateId, "\"]"));
+        }
       }
-    } else o = !0;
-    r = "and" === t ? r && o : r || o;
-  }), r;
-}
-function bricksStorageGetItem(e, t) {
-  if (!t) return;
-  var r;
-  try {
-    switch (e) {
-      case "windowStorage":
-        r = window.hasOwnProperty(t) ? window[t] : null;
-        break;
-      case "sessionStorage":
-        r = sessionStorage.getItem(t);
-        break;
-      case "localStorage":
-        r = localStorage.getItem(t);
-    }
-  } catch (e) {
-    console.info("error:bricksStorageGetItem", e);
+      break;
+    default:
+      target = sourceEl;
+    // = self
   }
-  return r;
-}
-function bricksStorageSetItem(e, t, r) {
-  if (t) try {
-    switch (e) {
-      case "windowStorage":
-        window[t] = r;
-        break;
-      case "sessionStorage":
-        sessionStorage.setItem(t, r);
-        break;
-      case "localStorage":
-        localStorage.setItem(t, r);
-    }
-  } catch (e) {
-    console.info("error:bricksStorageSetItem", e);
+
+  if (!target) {
+    return;
   }
-}
-function bricksStorageRemoveItem(e, t) {
-  if (t) try {
-    switch (e) {
-      case "windowStorage":
-        delete window[t];
-        break;
-      case "sessionStorage":
-        sessionStorage.removeItem(t);
-        break;
-      case "localStorage":
-        localStorage.removeItem(t);
-    }
-  } catch (e) {
-    console.info("error:bricksStorageRemoveItem", e);
-  }
-}
-function bricksNavNested() {
-  if (!bricksIsFrontend) return;
-  var e = new MutationObserver(function (e) {
-      e.forEach(function (e) {
-        if ("attributes" === e.type && "class" === e.attributeName) {
-          var _t16 = e.target;
-          if (_t16.classList.contains("brx-open")) {
-            bricksSetVh(), document.body.classList.add("no-scroll");
-            var _e28 = _t16.querySelector(".brx-nav-nested-items button.brxe-toggle");
-            if (_e28) setTimeout(function () {
-              _e28.classList.add("is-active"), _e28.setAttribute("aria-expanded", !0), _e28.focus();
-            }, 10);else {
-              var _e29 = bricksGetFocusables(_t16);
-              _e29.length && _e29[0].focus();
+  target = Array.isArray(target) ? target : [target];
+  switch (config === null || config === void 0 ? void 0 : config.action) {
+    case 'show':
+    case 'hide':
+      target.forEach(function (el) {
+        // Popup
+        if (el !== null && el !== void 0 && el.classList.contains('brx-popup')) {
+          if (config.action === 'show') {
+            bricksOpenPopup(el);
+          } else if (config.action === 'hide') {
+            bricksClosePopup(el);
+          }
+        }
+
+        // Regular element
+        else {
+          // Hide
+          if (config.action === 'hide') {
+            el.style.display = 'none';
+          }
+
+          // Show (remove display: none & only set display: block as a fallback)
+          else {
+            if (el.style.display === 'none') {
+              el.style.display = null;
+            } else {
+              el.style.display = 'block';
             }
-          } else {
-            document.body.classList.remove("no-scroll");
-            var _e30 = _t16.dataset.toggleScriptId,
-              r = document.querySelector("button[data-script-id=\"".concat(_e30, "\"]"));
-            r && (r.setAttribute("aria-expanded", !1), r.classList.remove("is-active"), r.focus());
           }
         }
       });
-    }),
-    t = bricksQuerySelectorAll(document, ".brxe-nav-nested");
-  t.length && (t.forEach(function (t) {
-    e.observe(t, {
-      attributes: !0,
-      attributeFilter: ["class"]
-    });
-  }), document.addEventListener("keyup", function (e) {
-    "Escape" === e.key && bricksNavNestedClose();
-  }), document.addEventListener("click", function (e) {
-    var t = e.target.closest(".brxe-nav-nested"),
-      r = e.target.closest(".brxe-toggle");
-    t || r || bricksNavNestedClose();
-  }));
+      break;
+    case 'setAttribute':
+    case 'removeAttribute':
+    case 'toggleAttribute':
+      var attributeKey = config === null || config === void 0 ? void 0 : config.actionAttributeKey;
+      if (attributeKey) {
+        target.forEach(function (el) {
+          var attributeValue = (config === null || config === void 0 ? void 0 : config.actionAttributeValue) || '';
+
+          // Attribute 'class'
+          if (attributeKey === 'class') {
+            var classNames = attributeValue ? attributeValue.split(' ') : [];
+            classNames.forEach(function (className) {
+              if (config.action === 'setAttribute') {
+                el.classList.add(className);
+              } else if (config.action === 'removeAttribute') {
+                el.classList.remove(className);
+              } else {
+                el.classList.toggle(className);
+              }
+            });
+          }
+
+          // All other attributes
+          else {
+            if (config.action === 'setAttribute') {
+              el.setAttribute(attributeKey, attributeValue);
+            } else if (config.action === 'removeAttribute') {
+              el.removeAttribute(attributeKey);
+            } else {
+              // Toggle attribute
+              if (el.hasAttribute(attributeKey)) {
+                el.removeAttribute(attributeKey);
+              } else {
+                el.setAttribute(attributeKey, attributeValue);
+              }
+            }
+          }
+        });
+      }
+      break;
+    case 'storageAdd':
+    case 'storageRemove':
+    case 'storageCount':
+      var storageType = config === null || config === void 0 ? void 0 : config.storageType;
+      var storageKey = config === null || config === void 0 ? void 0 : config.actionAttributeKey;
+      var storageValue = config.hasOwnProperty('actionAttributeValue') ? config.actionAttributeValue : 0;
+      if (storageType && storageKey) {
+        if (config.action === 'storageAdd') {
+          bricksStorageSetItem(storageType, storageKey, storageValue);
+        } else if (config.action === 'storageRemove') {
+          bricksStorageRemoveItem(storageType, storageKey);
+        } else if (config.action === 'storageCount') {
+          var counter = bricksStorageGetItem(storageType, storageKey);
+          counter = counter ? parseInt(counter) : 0;
+          bricksStorageSetItem(storageType, storageKey, counter + 1);
+        }
+      }
+      break;
+    case 'startAnimation':
+      var animationType = config === null || config === void 0 ? void 0 : config.animationType;
+      if (animationType) {
+        target.forEach(function (el) {
+          var _el;
+          // Default animation duration: 1s
+          var removeAnimationAfterMs = 1000;
+          var isPopup = (_el = el) === null || _el === void 0 ? void 0 : _el.classList.contains('brx-popup');
+
+          // Apply animation to popup content (@since 1.8)
+          if (isPopup) {
+            el = el.querySelector('.brx-popup-content');
+          }
+
+          // Get custom animation-duration
+          if (config !== null && config !== void 0 && config.animationDuration) {
+            el.style.animationDuration = config.animationDuration;
+            if (config.animationDuration.includes('ms')) {
+              removeAnimationAfterMs = parseInt(config.animationDuration);
+            } else if (config.animationDuration.includes('s')) {
+              removeAnimationAfterMs = parseFloat(config.animationDuration) * 1000;
+            }
+          }
+
+          // Get custom animation-delay
+          if (config !== null && config !== void 0 && config.animationDelay) {
+            el.style.animationDelay = config.animationDelay;
+            if (config.animationDelay.includes('ms')) {
+              removeAnimationAfterMs += parseInt(config.animationDelay);
+            } else if (config.animationDelay.includes('s')) {
+              removeAnimationAfterMs += parseFloat(config.animationDelay) * 1000;
+            }
+          }
+
+          // Animate popup (@since 1.7 - Popup use removeAnimationAfterMs for setTimeout duration)
+          if (isPopup) {
+            var popupNode = el.parentNode; // el = .brx-popup-content
+            // Avoid recursive error (@since 1.8.4)
+            if (popupNode !== sourceEl) {
+              // Animate: open popup (if animationType includes 'In')
+              if (animationType.includes('In')) {
+                bricksOpenPopup(popupNode, removeAnimationAfterMs);
+              }
+            }
+          }
+          el.classList.add('brx-animated');
+          el.setAttribute('data-animation', animationType);
+          el.setAttribute('data-interaction-id', config.id || '');
+
+          // Remove animation class after animation duration + delay to run again
+          bricksAnimationFn.run({
+            elementsToAnimate: [el],
+            removeAfterMs: removeAnimationAfterMs
+          });
+        });
+      }
+      break;
+    case 'loadMore':
+      var queryId = config === null || config === void 0 ? void 0 : config.loadMoreQuery;
+      var queryConfig = (_window$bricksData$qu3 = window.bricksData.queryLoopInstances) === null || _window$bricksData$qu3 === void 0 ? void 0 : _window$bricksData$qu3[queryId];
+      if (!queryConfig) {
+        return;
+      }
+
+      // @since 1.7.1 - exclude popup from query trail
+      var queryTrail = queryConfig.isPostsElement ? (_document$querySelect = document.querySelector(".bricks-isotope-sizer[data-query-element-id=\"".concat(queryId, "\"]"))) === null || _document$querySelect === void 0 ? void 0 : _document$querySelect.previousElementSibling : Array.from(document.querySelectorAll(".brxe-".concat(queryId, ":not(.brx-popup)"))).pop();
+      if (queryTrail) {
+        if (!sourceEl.classList.contains('is-loading')) {
+          // Add "is-loading" class to the source element so we could style some spinner animation
+          sourceEl.classList.add('is-loading');
+
+          // Add the query ID to the trail so that the load page could fetch the query config
+          queryTrail.dataset.queryElementId = queryId;
+          bricksQueryLoadPage(queryTrail).then(function (data) {
+            sourceEl.classList.remove('is-loading');
+
+            // Remove the load more "button"
+            if ((data === null || data === void 0 ? void 0 : data.page) >= (data === null || data === void 0 ? void 0 : data.maxPages)) {
+              // Hide the element (@since 1.8.2), previously it was removed
+              sourceEl.style.display = 'none';
+            }
+          });
+        }
+      }
+      break;
+  }
 }
+
+/**
+ * Open Bricks popup (frontend only)
+ *
+ * @param {obj} object Popup element node or popup ID
+ *
+ * @since 1.7.1
+ */
+function bricksOpenPopup(object) {
+  var timeout = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
+  if (!bricksIsFrontend) {
+    return;
+  }
+  var popupElement;
+
+  // Check: Popup is element node OR popup ID
+  if (object) {
+    if (object.nodeType === Node.ELEMENT_NODE) {
+      popupElement = object;
+    }
+
+    // Check: object is the popup ID
+    else if (object) {
+      popupElement = document.querySelector(".brx-popup[data-popup-id=\"".concat(object, "\"]"));
+    }
+  }
+
+  // Fallback: Get first popup on the page
+  // else {popupElement = document.querySelector(`.brx-popup[data-popup-id]`)}
+
+  if (!popupElement) {
+    return;
+  }
+  var popupId = popupElement.dataset.popupId;
+
+  // Check if the popup show limits are met
+  if (bricksPopupCheckLimit(popupElement)) {
+    // Show popup
+    popupElement.classList.remove('hide');
+
+    // @since 1.7.1 - Add "no-scroll" class to the body if 'data-popup-body-scroll' is not set
+    if (!popupElement.dataset.popupBodyScroll) {
+      document.body.classList.add('no-scroll');
+    }
+
+    // Set popup height to viewport height (@since 1.8.2)
+    bricksSetVh();
+
+    // @since 1.7.1 - Trigger custom event for the "bricks/popup/open" trigger, Provide the popup ID and the popup element
+    var showPopupEvent = new CustomEvent('bricks/popup/open', {
+      detail: {
+        popupId: popupId,
+        popupElement: popupElement
+      }
+    });
+    document.dispatchEvent(showPopupEvent);
+
+    // Run counter after timeout animation finishes (delay + duration)
+    setTimeout(function () {
+      bricksCounter();
+    }, timeout);
+
+    // Store the number of times this popup was shown
+    bricksPopupCounter(popupElement);
+  }
+}
+
+/**
+ * Close Bricks popup (frontend only)
+ *
+ * @param object Popup element node or popup ID
+ *
+ * @since 1.7.1
+ */
+function bricksClosePopup(object) {
+  if (!bricksIsFrontend) {
+    return;
+  }
+  var popupElement;
+
+  // Check: Popup is element node OR popup ID
+  if (object) {
+    if (object.nodeType === Node.ELEMENT_NODE) {
+      popupElement = object;
+    }
+
+    // Check: object is the popup ID
+    else if (object) {
+      popupElement = document.querySelector(".brx-popup[data-popup-id=\"".concat(object, "\"]"));
+    }
+  }
+
+  // Fallback: Get first popup on the page
+  // else {popupElement = document.querySelector(`.brx-popup[data-popup-id]`)}
+
+  if (!popupElement) {
+    return;
+  }
+  var popupId = popupElement.dataset.popupId;
+  popupElement.classList.add('hide');
+
+  // @since 1.7.1 - Remove "no-scroll" class to the body if 'data-popup-body-scroll' is not set
+  if (!popupElement.dataset.popupBodyScroll) {
+    document.body.classList.remove('no-scroll');
+  }
+
+  // @since 1.7.1 - Trigger custom event for the "bricks/popup/close" trigger, Provide the popup ID and the popup element
+  var hidePopupEvent = new CustomEvent('bricks/popup/close', {
+    detail: {
+      popupId: popupId,
+      popupElement: popupElement
+    }
+  });
+  document.dispatchEvent(hidePopupEvent);
+}
+
+/**
+ * Popups: Check show up limits
+ *
+ * true:  ok
+ * false: limit overflow
+ *
+ * NOTE: Limits are stored in "brx_popup_${popupId}_total"
+ *
+ * @since 1.6
+ */
+function bricksPopupCheckLimit(element) {
+  var _element$dataset, _element$dataset2;
+  var limits = element === null || element === void 0 ? void 0 : (_element$dataset = element.dataset) === null || _element$dataset === void 0 ? void 0 : _element$dataset.popupLimits;
+  var popupId = element === null || element === void 0 ? void 0 : (_element$dataset2 = element.dataset) === null || _element$dataset2 === void 0 ? void 0 : _element$dataset2.popupId;
+  if (!limits) {
+    return true;
+  }
+  try {
+    limits = JSON.parse(limits);
+  } catch (e) {
+    console.info('error:bricksPopupCheckLimit', e);
+    return true;
+  }
+  var overflow = false;
+  Object.entries(limits).forEach(function (_ref2) {
+    var _ref3 = _slicedToArray(_ref2, 2),
+      key = _ref3[0],
+      value = _ref3[1];
+    var counter = bricksStorageGetItem(key, "brx_popup_".concat(popupId, "_total"));
+    counter = counter ? parseInt(counter) : 0;
+    overflow = overflow || counter >= value;
+  });
+  return !overflow;
+}
+
+/**
+ * Popups: Store how many times popup was displayed
+ *
+ * NOTE: limits are stored in "brx_popup_${popupId}_total"
+ *
+ * @since 1.6
+ */
+function bricksPopupCounter(element) {
+  var _element$dataset3, _element$dataset4;
+  var limits = element === null || element === void 0 ? void 0 : (_element$dataset3 = element.dataset) === null || _element$dataset3 === void 0 ? void 0 : _element$dataset3.popupLimits;
+  var popupId = element === null || element === void 0 ? void 0 : (_element$dataset4 = element.dataset) === null || _element$dataset4 === void 0 ? void 0 : _element$dataset4.popupId;
+  if (!limits) {
+    return;
+  }
+  try {
+    limits = JSON.parse(limits);
+  } catch (e) {
+    console.info('error:bricksPopupCounter', e);
+    return true;
+  }
+  Object.entries(limits).forEach(function (_ref4) {
+    var _ref5 = _slicedToArray(_ref4, 2),
+      key = _ref5[0],
+      value = _ref5[1];
+    var counter = bricksStorageGetItem(key, "brx_popup_".concat(popupId, "_total"));
+    counter = counter ? parseInt(counter) : 0;
+    bricksStorageSetItem(key, "brx_popup_".concat(popupId, "_total"), counter + 1);
+  });
+}
+
+/**
+ * Check interactions conditions
+ *
+ * @since 1.6
+ */
+function bricksInteractionCheckConditions(config) {
+  // STEP: No conditions
+  if (!Array.isArray(config === null || config === void 0 ? void 0 : config.interactionConditions)) {
+    return true;
+  }
+  var relation = (config === null || config === void 0 ? void 0 : config.interactionConditionsRelation) || 'and';
+
+  // Start with true if relation is 'and', false otherwise ('or')
+  var runInteraction = relation === 'and';
+
+  /**
+   * Convert storage value to number to be used in >=, <=, >, < conditions
+   *
+   * @see #862j9fr6y
+   *
+   * @since 1.7.1
+   */
+  var convertToNumber = function convertToNumber(value) {
+    return !isNaN(value) ? parseFloat(value) : 0;
+  };
+
+  // STEP: Check the interaction conditions
+  config.interactionConditions.forEach(function (condition) {
+    var conditionType = condition === null || condition === void 0 ? void 0 : condition.conditionType;
+    var storageKey = (condition === null || condition === void 0 ? void 0 : condition.storageKey) || false;
+    var runCondition = false;
+    if (conditionType && storageKey) {
+      var storageCompare = (condition === null || condition === void 0 ? void 0 : condition.storageCompare) || 'exists';
+      var storageCompareValue = condition === null || condition === void 0 ? void 0 : condition.storageCompareValue;
+      var storageValue = bricksStorageGetItem(conditionType, storageKey);
+      switch (storageCompare) {
+        case 'exists':
+          runCondition = storageValue !== null;
+          break;
+        case 'notExists':
+          runCondition = storageValue === null;
+          break;
+        case '==':
+          runCondition = storageValue == storageCompareValue;
+          break;
+        case '!=':
+          runCondition = storageValue != storageCompareValue;
+          break;
+        case '>=':
+          runCondition = convertToNumber(storageValue) >= convertToNumber(storageCompareValue);
+          break;
+        case '<=':
+          runCondition = convertToNumber(storageValue) <= convertToNumber(storageCompareValue);
+          break;
+        case '>':
+          runCondition = convertToNumber(storageValue) > convertToNumber(storageCompareValue);
+          break;
+        case '<':
+          runCondition = convertToNumber(storageValue) < convertToNumber(storageCompareValue);
+          break;
+      }
+    } else {
+      runCondition = true;
+    }
+    runInteraction = relation === 'and' ? runInteraction && runCondition : runInteraction || runCondition;
+  });
+  return runInteraction;
+}
+
+/**
+ * Storage helper function to get value stored under a specific key
+ *
+ * @since 1.6
+ */
+function bricksStorageGetItem(type, key) {
+  if (!key) {
+    return;
+  }
+  var value;
+  try {
+    switch (type) {
+      // Per page load
+      case 'windowStorage':
+        value = window.hasOwnProperty(key) ? window[key] : null;
+        break;
+
+      // Per session
+      case 'sessionStorage':
+        value = sessionStorage.getItem(key);
+        break;
+
+      // Across sessions
+      case 'localStorage':
+        value = localStorage.getItem(key);
+        break;
+    }
+  } catch (e) {
+    console.info('error:bricksStorageGetItem', e);
+  }
+  return value;
+}
+
+/**
+ * Storage helper function to set value for a specific storage key
+ *
+ * @since 1.6
+ */
+function bricksStorageSetItem(type, key, value) {
+  if (!key) {
+    return;
+  }
+  try {
+    switch (type) {
+      case 'windowStorage':
+        window[key] = value;
+        break;
+      case 'sessionStorage':
+        sessionStorage.setItem(key, value);
+        break;
+      case 'localStorage':
+        localStorage.setItem(key, value);
+        break;
+    }
+  } catch (e) {
+    console.info('error:bricksStorageSetItem', e);
+  }
+}
+
+/**
+ * Storage helper function to remove a specific storage key
+ *
+ * @since 1.6
+ */
+function bricksStorageRemoveItem(type, key) {
+  if (!key) {
+    return;
+  }
+  try {
+    switch (type) {
+      case 'windowStorage':
+        delete window[key];
+        break;
+      case 'sessionStorage':
+        sessionStorage.removeItem(key);
+        break;
+      case 'localStorage':
+        localStorage.removeItem(key);
+        break;
+    }
+  } catch (e) {
+    console.info('error:bricksStorageRemoveItem', e);
+  }
+}
+
+/**
+ * Nav nested
+ *
+ * Mobile menu toggle
+ *
+ * Listeners:
+ * - press ESC key to close .brx-nav-nested-items & auto-focus on mobile menu toggle
+ * - press ENTER or SPACE to open .brxe-nav-nested-inner
+ *
+ * NOTE: Mobile menu toggle via .brx-toggle-div listener
+ *
+ * @since 1.8
+ */
+function bricksNavNested() {
+  // Return: Builder has its own logic for showing the brx-nav-nested-items while editing
+  if (!bricksIsFrontend) {
+    return;
+  }
+  var navNestedObserver = new MutationObserver(function (mutations) {
+    mutations.forEach(function (mutation) {
+      if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
+        var navNested = mutation.target;
+
+        // STEP: Open navNested
+        if (navNested.classList.contains('brx-open')) {
+          // Set popup height to viewport height (@since 1.8.2)
+          bricksSetVh(); // Nav nested mobile menu uses 'top' & 'bottom' 0 instead of 100vh, though
+
+          // Add class to body to prevent scrolling
+          document.body.classList.add('no-scroll');
+
+          // Close toggle inside navNested is open
+          var toggleInside = navNested.querySelector('.brx-nav-nested-items button.brxe-toggle');
+          if (toggleInside) {
+            setTimeout(function () {
+              toggleInside.classList.add('is-active');
+              toggleInside.setAttribute('aria-expanded', true);
+              toggleInside.focus();
+            }, 10);
+          }
+
+          // Auto-focus on first focusable element inside .brx-nav-nested
+          else {
+            var focusableElements = bricksGetFocusables(navNested);
+            if (focusableElements.length) {
+              focusableElements[0].focus();
+            }
+          }
+        }
+
+        // STEP: Close nav nested
+        else {
+          // Remove class to body to prevent scrolling
+          document.body.classList.remove('no-scroll');
+
+          // Focus on toggle element that opened the nav nested ([data-toggle-script-id])
+          var toggleScriptId = navNested.dataset.toggleScriptId;
+          var toggleNode = document.querySelector("button[data-script-id=\"".concat(toggleScriptId, "\"]"));
+          if (toggleNode) {
+            toggleNode.setAttribute('aria-expanded', false);
+            toggleNode.classList.remove('is-active');
+            toggleNode.focus();
+          }
+        }
+      }
+    });
+  });
+  var navNestedElements = bricksQuerySelectorAll(document, '.brxe-nav-nested');
+  if (!navNestedElements.length) {
+    return;
+  }
+
+  // STEP: Observe class list changes on .brxe-nav-nested
+  navNestedElements.forEach(function (navNested) {
+    navNestedObserver.observe(navNested, {
+      attributes: true,
+      attributeFilter: ['class']
+    });
+  });
+
+  // STEP: ESC key pressed: Close mobile menu
+  document.addEventListener('keyup', function (e) {
+    if (e.key === 'Escape') {
+      bricksNavNestedClose();
+    }
+  });
+
+  // STEP: Click outside of .brxe-nav-nested && not on a toggle: Close mobile menu
+  document.addEventListener('click', function (e) {
+    var navNested = e.target.closest('.brxe-nav-nested');
+    var clickOnToggle = e.target.closest('.brxe-toggle');
+    if (!navNested && !clickOnToggle) {
+      bricksNavNestedClose();
+    }
+  });
+}
+
+/**
+ * Nav nested: Close mobile menu
+ */
 function bricksNavNestedClose() {
-  bricksQuerySelectorAll(document, ".brxe-nav-nested.brx-open").forEach(function (e) {
-    e.classList.add("brx-closing"), setTimeout(function () {
-      e.classList.remove("brx-closing"), e.classList.remove("brx-open");
+  var navNestedOpen = bricksQuerySelectorAll(document, '.brxe-nav-nested.brx-open');
+  navNestedOpen.forEach(function (navNested) {
+    navNested.classList.add('brx-closing');
+
+    // Close .brx-open after 200ms to prevent mobile menu styles from unsetting while mobile menu fades out
+    setTimeout(function () {
+      navNested.classList.remove('brx-closing');
+      navNested.classList.remove('brx-open');
     }, 200);
   });
 }
+
+/**
+ * Offcanvas element
+ *
+ * - Show by adding .show (click on toggle)
+ * - Close by removeing .show (backdrop click/ESC key press)
+ *
+ * @since 1.8
+ */
 function bricksOffcanvas() {
-  if (!bricksIsFrontend) return;
-  var e = bricksQuerySelectorAll(document, ".brxe-offcanvas");
-  if (!e.length) return;
-  var t = new MutationObserver(function (e) {
-    e.forEach(function (e) {
-      if ("attributes" === e.type && "class" === e.attributeName) {
-        var _t17 = e.target,
-          r = _t17.querySelector(".brx-offcanvas-inner"),
-          i = r ? i = 1e3 * parseFloat(window.getComputedStyle(r).getPropertyValue("transition-duration")) : 200;
-        if (_t17.classList.contains("brx-open")) {
-          if (bricksSetVh(), "offset" === _t17.dataset.effect && r) {
-            var _e31 = _t17.getAttribute("data-direction"),
-              _i6 = window.getComputedStyle(r).getPropertyValue("transition");
-            document.body.style.margin = "0", document.body.style.transition = _i6.replace("transform", "margin"), "top" === _e31 ? document.body.style.marginTop = "".concat(r.offsetHeight, "px") : "bottom" === _e31 ? document.body.style.marginTop = "-".concat(r.offsetHeight, "px") : "left" === _e31 ? (document.body.style.marginLeft = "".concat(r.offsetWidth, "px"), document.body.style.overflowX = "hidden") : "right" === _e31 && (document.body.style.marginLeft = "-".concat(r.offsetWidth, "px"), document.body.style.overflowX = "hidden");
-          }
-          _t17.dataset.noScroll && document.body.classList.add("no-scroll");
-          var _e32 = bricksGetFocusables(_t17);
-          _e32.length && _e32[0].focus();
-          var _i7 = _t17.querySelector(".brx-offcanvas-inner > button.brxe-toggle");
-          _i7 && (_i7.classList.add("is-active"), _i7.setAttribute("aria-expanded", !0));
-        } else {
-          _t17.style.visibility = "visible";
-          var _e33 = _t17.dataset.toggleScriptId,
-            _r13 = document.querySelector("button[data-script-id=\"".concat(_e33, "\"]"));
-          _r13 && (_r13.setAttribute("aria-expanded", !1), _r13.classList.remove("is-active"), _r13.focus()), "offset" === _t17.dataset.effect && (document.body.style.marginTop && (document.body.style.margin = "0"), setTimeout(function () {
-            document.body.style.margin = null, document.body.style.overflow = null, document.body.style.transition = null;
-          }, i)), setTimeout(function () {
-            _t17.style.visibility = null, _t17.dataset.noScroll && (document.body.classList.remove("no-scroll"), bricksSubmenuPosition());
-          }, i);
-        }
-      }
-    });
-  });
-  e.forEach(function (e) {
-    t.observe(e, {
-      attributes: !0,
-      attributeFilter: ["class"]
-    });
-    var r = e.querySelector(".brx-offcanvas-backdrop");
-    r && r.addEventListener("click", function (e) {
-      bricksOffcanvasClose();
-    });
-  }), document.addEventListener("keyup", function (e) {
-    "Escape" === e.key && bricksOffcanvasClose();
-  });
-}
-function bricksOffcanvasClose() {
-  bricksQuerySelectorAll(document, ".brxe-offcanvas.brx-open").forEach(function (e) {
-    e.classList.remove("brx-open");
-  });
-}
-function bricksToggleDisplay() {
-  var e = bricksQuerySelectorAll(document, ".brxe-toggle");
-  e.length && e.forEach(function (e) {
-    if (e.closest(".brx-nav-nested-items") && !e.parentNode.classList.contains("brx-nav-nested-items") && !e.parentNode.classList.contains("brx-toggle-div")) {
-      "none" === window.getComputedStyle(e).display ? e.parentNode.style.display = "none" : e.parentNode.style.display = null;
-    }
-  });
-}
-function bricksToggle() {
-  if (!bricksIsFrontend) return;
-  var e = bricksQuerySelectorAll(document, ".brxe-toggle");
-  e.length && (bricksToggleDisplay(), e.forEach(function (e) {
-    e.addEventListener("click", function (t) {
-      var _e$dataset10, _e$dataset11, _e$dataset12;
-      t.preventDefault();
-      var r = ((_e$dataset10 = e.dataset) === null || _e$dataset10 === void 0 ? void 0 : _e$dataset10.selector) || ".brxe-offcanvas",
-        i = ((_e$dataset11 = e.dataset) === null || _e$dataset11 === void 0 ? void 0 : _e$dataset11.attribute) || "class",
-        s = ((_e$dataset12 = e.dataset) === null || _e$dataset12 === void 0 ? void 0 : _e$dataset12.value) || "brx-open",
-        n = !!r && document.querySelector(r);
-      if (n || (n = e.closest(".brxe-nav-nested")), n || (n = e.closest(".brxe-offcanvas")), !n) return;
-      document.querySelector(".brx-has-megamenu") && (t.target.closest('[data-effect="offset"]') || bricksSubmenuPosition(0)), e.dataset.scriptId && !n.dataset.toggleScriptId && (n.dataset.toggleScriptId = e.dataset.scriptId);
-      var o = "true" === e.getAttribute("aria-expanded");
-      e.setAttribute("aria-expanded", !o), e.classList.toggle("is-active"), "class" === i ? e.closest(".brxe-nav-nested") && "brx-open" === s && n.classList.contains("brx-open") ? (n.classList.add("brx-closing"), setTimeout(function () {
-        n.classList.remove("brx-closing"), n.classList.remove("brx-open");
-      }, 200)) : n.classList.toggle(s) : n.getAttribute(i) ? n.removeAttribute(i) : n.setAttribute(i, s);
-      var a = bricksGetFocusables(n);
-      a.length && a[0].focus();
-    });
-  }));
-}
-function bricksSubmenuToggle(e) {
-  var t = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "toggle";
-  var r = !!e.parentNode.classList.contains("brx-submenu-toggle") && e.parentNode.parentNode;
-  if (r) {
-    if (e.closest(".brx-has-multilevel")) {
-      var _e34 = r.parentNode.closest(".active");
-      _e34 && !_e34.classList.contains("brx-has-megamenu") && _e34.classList.remove("active"), setTimeout(function () {
-        var e = r.querySelector("ul") || r.querySelector(".brx-dropdown-content");
-        if (e) {
-          var _t18 = bricksGetFocusables(e);
-          _t18.length && _t18[0].focus();
-        }
-      }, 100);
-    }
-    "add" === t ? (r.classList.add("open"), r.classList.add("active")) : "remove" === t ? (r.classList.remove("open"), r.classList.remove("active")) : r.classList.toggle("open"), e.setAttribute("aria-expanded", r.classList.contains("open"));
+  if (!bricksIsFrontend) {
+    return;
   }
-}
-function bricksSubmenuListeners() {
-  var e = bricksQuerySelectorAll(document, ".bricks-nav-menu .menu-item-has-children"),
-    t = bricksQuerySelectorAll(document, ".brxe-dropdown");
-  e = e.concat(t), e.forEach(function (e) {
-    e.closest("[data-static]") || e.closest(".brx-has-multilevel") || e.classList.contains("active") || (e.addEventListener("mouseenter", function (t) {
-      if (e.closest(".show-mobile-menu") || e.closest(".brxe-nav-nested.brx-open")) return;
-      if ("click" === e.getAttribute("data-toggle")) return;
-      var r = t.target.querySelector('[aria-expanded="false"]');
-      r && bricksSubmenuToggle(r);
-    }), e.addEventListener("mouseleave", function (t) {
-      if (e.closest(".show-mobile-menu") || e.closest(".brxe-nav-nested.brx-open")) return;
-      if ("click" === e.getAttribute("data-toggle")) return;
-      var r = t.target.querySelector('[aria-expanded="true"]');
-      if (r) {
-        var _e35 = r.closest(".menu-item");
-        if (_e35 || (_e35 = r.closest(".brxe-dropdown")), _e35 && _e35.classList.contains("active")) return;
-        bricksSubmenuToggle(r);
+  var offcanvasElements = bricksQuerySelectorAll(document, '.brxe-offcanvas');
+  if (!offcanvasElements.length) {
+    return;
+  }
+  var offcanvasObserver = new MutationObserver(function (mutations) {
+    mutations.forEach(function (mutation) {
+      if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
+        var offcanvas = mutation.target;
+        var inner = offcanvas.querySelector('.brx-offcanvas-inner');
+        var transitionDuration = inner ? transitionDuration = parseFloat(window.getComputedStyle(inner).getPropertyValue('transition-duration')) * 1000 : 200;
+
+        // STEP: Open offcanvas
+        if (offcanvas.classList.contains('brx-open')) {
+          // Set popup height to viewport height (@since 1.8.2)
+          bricksSetVh();
+
+          // Offset body by height/width of offcanvas
+          if (offcanvas.dataset.effect === 'offset') {
+            if (inner) {
+              // Get CSS transition value of .brx-offcanvas-inner
+              var direction = offcanvas.getAttribute('data-direction');
+              var transition = window.getComputedStyle(inner).getPropertyValue('transition');
+              document.body.style.margin = '0';
+              document.body.style.transition = transition.replace('transform', 'margin');
+
+              // Offset body by height/width of offcanvas
+
+              // Horizontal (top/bottom)
+              if (direction === 'top') {
+                document.body.style.marginTop = "".concat(inner.offsetHeight, "px");
+              } else if (direction === 'bottom') {
+                document.body.style.marginTop = "-".concat(inner.offsetHeight, "px");
+              }
+
+              // Vertical (left/right)
+              else if (direction === 'left') {
+                document.body.style.marginLeft = "".concat(inner.offsetWidth, "px");
+                document.body.style.overflowX = 'hidden';
+              } else if (direction === 'right') {
+                document.body.style.marginLeft = "-".concat(inner.offsetWidth, "px");
+                document.body.style.overflowX = 'hidden';
+              }
+            }
+          }
+
+          // Disable body scroll
+          if (offcanvas.dataset.noScroll) {
+            document.body.classList.add('no-scroll');
+          }
+
+          // Auto-focus on first focusable element inside .brx-offcanvas
+          var focusableElements = bricksGetFocusables(offcanvas);
+          if (focusableElements.length) {
+            focusableElements[0].focus();
+          }
+
+          // Toggle inside offcanvas is open
+          var offcanvasToggle = offcanvas.querySelector('.brx-offcanvas-inner > button.brxe-toggle');
+          if (offcanvasToggle) {
+            offcanvasToggle.classList.add('is-active');
+            offcanvasToggle.setAttribute('aria-expanded', true);
+          }
+        }
+
+        // STEP: Close offcanvas
+        else {
+          // Keep offcanvas visible until closing transition is finished (don't use class to prevent infinite MutationObserver loop)
+          offcanvas.style.visibility = 'visible';
+
+          // Focus on toggle element that opened the offcanvas ([data-toggle-script-id])
+          var toggleScriptId = offcanvas.dataset.toggleScriptId;
+          var toggleNode = document.querySelector("button[data-script-id=\"".concat(toggleScriptId, "\"]"));
+          if (toggleNode) {
+            toggleNode.setAttribute('aria-expanded', false);
+            toggleNode.classList.remove('is-active');
+            toggleNode.focus();
+          }
+          if (offcanvas.dataset.effect === 'offset') {
+            if (document.body.style.marginTop) {
+              document.body.style.margin = '0';
+            }
+            setTimeout(function () {
+              document.body.style.margin = null;
+              document.body.style.overflow = null;
+              document.body.style.transition = null;
+            }, transitionDuration);
+          }
+          setTimeout(function () {
+            // Set visibility back to hidden by removing the inline style
+            offcanvas.style.visibility = null;
+
+            // Re-enable body scroll
+            if (offcanvas.dataset.noScroll) {
+              document.body.classList.remove('no-scroll');
+              bricksSubmenuPosition();
+            }
+          }, transitionDuration);
+        }
       }
-    }));
-  }), document.addEventListener("keyup", function (e) {
-    if ("Escape" === e.key) {
-      var _t19 = e.target.closest(".open"),
-        r = e.target.closest(".brx-has-multilevel");
-      if (_t19 && !r) {
-        var _e36 = _t19.querySelector(".brx-submenu-toggle button[aria-expanded]");
-        _e36 && (bricksSubmenuToggle(_e36, "remove"), _e36 && _e36.focus());
+    });
+  });
+  offcanvasElements.forEach(function (offcanvas) {
+    // STEP: Observe class list changes on .brxe-offcanvas
+    offcanvasObserver.observe(offcanvas, {
+      attributes: true,
+      attributeFilter: ['class']
+    });
+
+    // STEP: Close offcanvas when clicking on backdrop
+    var backdrop = offcanvas.querySelector('.brx-offcanvas-backdrop');
+    if (backdrop) {
+      backdrop.addEventListener('click', function (e) {
+        bricksOffcanvasClose();
+      });
+    }
+  });
+
+  // STEP: ESC key pressed: Close offcanvas & focus on offcanvas toggle button
+  document.addEventListener('keyup', function (e) {
+    if (e.key === 'Escape') {
+      bricksOffcanvasClose();
+    }
+  });
+}
+
+/**
+ * Close all open offcanvas elements
+ *
+ * @since 1.8
+ */
+function bricksOffcanvasClose() {
+  var openOffcanvasElements = bricksQuerySelectorAll(document, '.brxe-offcanvas.brx-open');
+  openOffcanvasElements.forEach(function (openOffcanvas) {
+    openOffcanvas.classList.remove('brx-open');
+  });
+}
+
+/**
+ * Toggle mobile menu open inside "Div" inside .brx-nav-nested-items
+ *
+ * Set diplay on div according to toggle display (initially and on window resize).
+ *
+ * @since 1.8
+ */
+function bricksToggleDisplay() {
+  var toggleElements = bricksQuerySelectorAll(document, '.brxe-toggle');
+  if (!toggleElements.length) {
+    return;
+  }
+  toggleElements.forEach(function (toggle) {
+    // Mobile menu close toggle inside 'div' inside .brx-nav-nested-items: Hide div
+    if (toggle.closest('.brx-nav-nested-items') && !toggle.parentNode.classList.contains('brx-nav-nested-items') && !toggle.parentNode.classList.contains('brx-toggle-div')) {
+      // Hide parent div if toggle is hidden
+      var toggleStyles = window.getComputedStyle(toggle);
+      if (toggleStyles.display === 'none') {
+        toggle.parentNode.style.display = 'none';
       } else {
-        bricksQuerySelectorAll(document, '.brx-submenu-toggle > button[aria-expanded="true"]').forEach(function (e) {
-          e && bricksSubmenuToggle(e, "remove");
+        toggle.parentNode.style.display = null;
+      }
+    }
+  });
+}
+
+/**
+ * Toggle element
+ *
+ * Default toggles:
+ *
+ * - Nav nested mobile menu (.brxe-nav-nested)
+ * - Offcanvas element (.brxe-offcanvas)
+ *
+ * @since 1.8
+ */
+function bricksToggle() {
+  if (!bricksIsFrontend) {
+    return;
+  }
+  var toggleElements = bricksQuerySelectorAll(document, '.brxe-toggle');
+  if (!toggleElements.length) {
+    return;
+  }
+  bricksToggleDisplay();
+  toggleElements.forEach(function (toggle) {
+    toggle.addEventListener('click', function (e) {
+      var _toggle$dataset, _toggle$dataset2, _toggle$dataset3;
+      e.preventDefault();
+
+      // Toggle selector, attribute, and value
+      var toggleSelector = ((_toggle$dataset = toggle.dataset) === null || _toggle$dataset === void 0 ? void 0 : _toggle$dataset.selector) || '.brxe-offcanvas';
+      var toggleAttribute = ((_toggle$dataset2 = toggle.dataset) === null || _toggle$dataset2 === void 0 ? void 0 : _toggle$dataset2.attribute) || 'class';
+      var toggleValue = ((_toggle$dataset3 = toggle.dataset) === null || _toggle$dataset3 === void 0 ? void 0 : _toggle$dataset3.value) || 'brx-open';
+      var toggleElement = toggleSelector ? document.querySelector(toggleSelector) : false;
+
+      // Element: nav-nested
+      if (!toggleElement) {
+        toggleElement = toggle.closest('.brxe-nav-nested');
+      }
+
+      // Element: offcanvas
+      if (!toggleElement) {
+        toggleElement = toggle.closest('.brxe-offcanvas');
+      }
+      if (!toggleElement) {
+        return;
+      }
+
+      // Re-calculcate mega menu position & width to prevent scrollbars
+      if (document.querySelector('.brx-has-megamenu')) {
+        // If not close toggle inside offcanvas with offset effect
+        if (!e.target.closest('[data-effect="offset"]')) {
+          bricksSubmenuPosition(0);
+        }
+      }
+
+      // STEP: Set data-toggle-script-id as selector to focus back to toggle when closing via ESC key
+      if (toggle.dataset.scriptId && !toggleElement.dataset.toggleScriptId) {
+        toggleElement.dataset.toggleScriptId = toggle.dataset.scriptId;
+      }
+
+      // STEP: Toggle 'aria-expanded' & .is-active on the toggle
+      var expanded = toggle.getAttribute('aria-expanded') === 'true';
+      toggle.setAttribute('aria-expanded', !expanded);
+      toggle.classList.toggle('is-active');
+
+      // STEP: Toggle class OR other attribute
+      if (toggleAttribute === 'class') {
+        // Close .brx-open after 200ms to prevent mobile menu styles from unsetting while mobile menu fades out
+        if (toggle.closest('.brxe-nav-nested') && toggleValue === 'brx-open' && toggleElement.classList.contains('brx-open')) {
+          toggleElement.classList.add('brx-closing');
+          setTimeout(function () {
+            toggleElement.classList.remove('brx-closing');
+            toggleElement.classList.remove('brx-open');
+          }, 200);
+        } else {
+          toggleElement.classList.toggle(toggleValue);
+        }
+      } else {
+        if (toggleElement.getAttribute(toggleAttribute)) {
+          toggleElement.removeAttribute(toggleAttribute);
+        } else {
+          toggleElement.setAttribute(toggleAttribute, toggleValue);
+        }
+      }
+
+      // STEP: Focus on first focusable element inside target
+      var focusableElements = bricksGetFocusables(toggleElement);
+      if (focusableElements.length) {
+        focusableElements[0].focus();
+      }
+    });
+  });
+}
+
+/**
+ * Toggle sub menu: Nav menu, Dropdown
+ *
+ * Toggle:
+ * - click on dropdown toggle
+ * - press ENTER key
+ * - press SPACE key
+ *
+ * Hide:
+ * - click outside dropdown
+ * - click on another dropdown toggle
+ * - press ESC key
+ * - press TAB key to tab out of dropdown
+ *
+ * Not added:
+ * - press ARROR UP/DOWN key to navigate dropdown items (prevents page scroll)
+ *
+ * @since 1.8
+ */
+function bricksSubmenuToggle(toggle) {
+  var action = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'toggle';
+  // Menu item: Parent of .brx-submenu-toggle (@since 1.8 to allow usage of non 'li' HTML tag on dropdown element)
+  var menuItem = toggle.parentNode.classList.contains('brx-submenu-toggle') ? toggle.parentNode.parentNode : false;
+
+  // Return: No menu item found
+  if (!menuItem) {
+    return;
+  }
+
+  // STEP: Multilevel menu
+  var multilevel = toggle.closest('.brx-has-multilevel');
+  if (multilevel) {
+    // Hide currently active parent menu item (if it's not a megamenu)
+    var activeMenuItem = menuItem.parentNode.closest('.active');
+    if (activeMenuItem && !activeMenuItem.classList.contains('brx-has-megamenu')) {
+      activeMenuItem.classList.remove('active');
+    }
+
+    // Focus on first focusable element in submenu (small timoute required)
+    setTimeout(function () {
+      var submenu = menuItem.querySelector('ul') || menuItem.querySelector('.brx-dropdown-content');
+      if (submenu) {
+        var focusables = bricksGetFocusables(submenu);
+        if (focusables.length) {
+          focusables[0].focus();
+        }
+      }
+    }, 100);
+  }
+
+  // add, remove, toggle .open class (& add/remove .active class)
+  if (action === 'add') {
+    menuItem.classList.add('open');
+    menuItem.classList.add('active');
+  } else if (action === 'remove') {
+    menuItem.classList.remove('open');
+    menuItem.classList.remove('active');
+  } else {
+    menuItem.classList.toggle('open');
+  }
+
+  // Set 'aria-expanded'
+  toggle.setAttribute('aria-expanded', menuItem.classList.contains('open'));
+
+  // Re-position submenu on every toggle
+  // bricksSubmenuPosition(100)
+}
+
+/**
+ *
+ * Sub menu event listeners (Nav menu, Dropdown)
+ *
+ * mouseenter: Open submenu
+ * mouseleave: Close submenu
+ * Escape key pressed: Close all open sub menus outside non-active element
+ * Click outside submenu: Close all open sub menus
+ *
+ * @since 1.8
+ */
+function bricksSubmenuListeners() {
+  // STEP: Toggle submenu on mouseenter & mouseleave (desktop menu only)
+  var submenuItems = bricksQuerySelectorAll(document, '.bricks-nav-menu .menu-item-has-children');
+
+  // Include Dropdown elements
+  var dropdownMenuItems = bricksQuerySelectorAll(document, '.brxe-dropdown');
+  submenuItems = submenuItems.concat(dropdownMenuItems);
+  submenuItems.forEach(function (submenuItem) {
+    // Skip mouse listeners: Static, Multilevel, active menu item
+    var skipMouseListeners = submenuItem.closest('[data-static]') || submenuItem.closest('.brx-has-multilevel') || submenuItem.classList.contains('active');
+    if (skipMouseListeners) {
+      return;
+    }
+
+    // Open submenu on mouseenter
+    submenuItem.addEventListener('mouseenter', function (e) {
+      // Return: Mobile menu (Nav menu, Nav nested)
+      if (submenuItem.closest('.show-mobile-menu') || submenuItem.closest('.brxe-nav-nested.brx-open')) {
+        return;
+      }
+
+      // Return: Toggle on "click"
+      if (submenuItem.getAttribute('data-toggle') === 'click') {
+        return;
+      }
+      var toggle = e.target.querySelector('[aria-expanded="false"]');
+      if (toggle) {
+        bricksSubmenuToggle(toggle);
+      }
+    });
+
+    // Close submenu on mouseleave
+    submenuItem.addEventListener('mouseleave', function (e) {
+      // Skip mobile menu (Nav menu, Nav nested)
+      if (submenuItem.closest('.show-mobile-menu') || submenuItem.closest('.brxe-nav-nested.brx-open')) {
+        return;
+      }
+
+      // Return: Toggle on "click"
+      if (submenuItem.getAttribute('data-toggle') === 'click') {
+        return;
+      }
+      var toggle = e.target.querySelector('[aria-expanded="true"]');
+      if (toggle) {
+        // Return: If submenu is .active (opened manually via toggle click)
+        var menuItem = toggle.closest('.menu-item');
+        if (!menuItem) {
+          menuItem = toggle.closest('.brxe-dropdown');
+        }
+        if (menuItem && menuItem.classList.contains('active')) {
+          return;
+        }
+        bricksSubmenuToggle(toggle);
+      }
+    });
+  });
+  document.addEventListener('keyup', function (e) {
+    if (e.key === 'Escape') {
+      // STEP: Hide closest submenu & focus on parent
+      var openSubmenu = e.target.closest('.open');
+      var multilevel = e.target.closest('.brx-has-multilevel');
+      if (openSubmenu && !multilevel) {
+        var toggle = openSubmenu.querySelector('.brx-submenu-toggle button[aria-expanded]');
+        if (toggle) {
+          bricksSubmenuToggle(toggle, 'remove');
+
+          // Focus on parent
+          if (toggle) {
+            toggle.focus();
+          }
+        }
+      }
+
+      // STEP: Close all open submenus (multilevel)
+      else {
+        var openSubmenuToggles = bricksQuerySelectorAll(document, '.brx-submenu-toggle > button[aria-expanded="true"]');
+        openSubmenuToggles.forEach(function (toggle) {
+          if (toggle) {
+            bricksSubmenuToggle(toggle, 'remove');
+          }
         });
       }
-    } else "Tab" !== e.key || e.shiftKey || setTimeout(function () {
-      bricksQuerySelectorAll(document, '[aria-expanded="true"]').forEach(function (e) {
-        var t = e.closest(".menu-item");
-        t || (t = e.closest(".brxe-dropdown")), (t && !t.contains(document.activeElement) || "BODY" === document.activeElement.tagName) && bricksSubmenuToggle(e);
-      });
-    }, 0);
-  }), document.addEventListener("click", function (e) {
-    var t = "A" === e.target.nodeName && e.target.hasAttribute("href") ? e.target.getAttribute("href") : "";
-    if (t) {
-      if (!t.startsWith("#")) return;
-      if ("#" === t) e.preventDefault();else {
-        e.target.closest(".brxe-offcanvas") && bricksOffcanvasClose();
+    }
+
+    // STEP: Tabbed out of menu item: Close menu item (if it does not contain the active element)
+    else if (e.key === 'Tab' && !e.shiftKey) {
+      setTimeout(function () {
+        var openToggles = bricksQuerySelectorAll(document, '[aria-expanded="true"]');
+
+        // NOTE: Can't listen to tabbing out of window (in case there is no focusable element after the last open submenu on the page)
+        openToggles.forEach(function (toggle) {
+          var menuItem = toggle.closest('.menu-item');
+          if (!menuItem) {
+            menuItem = toggle.closest('.brxe-dropdown');
+          }
+          if (menuItem && !menuItem.contains(document.activeElement) || document.activeElement.tagName === 'BODY') {
+            bricksSubmenuToggle(toggle);
+          }
+        });
+      }, 0);
+    }
+  });
+  document.addEventListener('click', function (e) {
+    var linkUrl = e.target.nodeName === 'A' && e.target.hasAttribute('href') ? e.target.getAttribute('href') : '';
+    if (linkUrl) {
+      // Return: Link URL does not contain hash (#)
+      if (!linkUrl.includes('#')) {
+        return;
+      }
+
+      // Prevent default on anchor link (#)
+      if (linkUrl === '#') {
+        e.preventDefault();
+      }
+
+      // Click on section anchor link (e.g. #section)
+      else {
+        // Inside offcanvas: Close offcanvas
+        var offcanvas = e.target.closest('.brxe-offcanvas');
+        if (offcanvas) {
+          bricksOffcanvasClose();
+        }
+
+        // Inside mobile menu: Close mobile menu (@since 1.8.4)
+        else {
+          var isMobileMenu = e.target.closest('.brxe-nav-nested.brx-open');
+          if (isMobileMenu) {
+            bricksNavNestedClose();
+
+            // Scroll to anchor link (after 200ms when mobile menu is closed)
+            var element = document.querySelector(linkUrl);
+            if (element) {
+              setTimeout(function () {
+                element.scrollIntoView();
+              }, 200);
+            }
+          }
+        }
       }
     }
-    var r = e.target.closest(".brx-submenu-toggle");
-    if (r) {
-      var _t20 = "hover",
-        i = r.closest("[data-toggle]");
-      i && (_t20 = i.getAttribute("data-toggle")), r.closest(".brxe-nav-menu.show-mobile-menu") && (_t20 = "click"), r.closest(".brxe-nav-nested.brx-open") && (_t20 = "click");
-      var s = "hover" === _t20 ? e.target.closest("[aria-expanded]") : r.querySelector("button[aria-expanded]");
-      if (0 === e.detail && 0 === e.screenX && 0 === e.screenY || "click" === _t20 || "both" === _t20 || (s = null), s) {
-        bricksSubmenuToggle(s);
-        var _e37 = r.parentNode;
-        _e37.classList.toggle("active"), setTimeout(function () {
-          _e37.classList.contains("active") && _e37.classList.add("open"), s.setAttribute("aria-expanded", _e37.classList.contains("open"));
+
+    // STEP: Toggle submenu button click (default) OR entire .brx-submenu-toggle on click (if 'toggleOn' set to: click, or both)
+    var submenuToggle = e.target.closest('.brx-submenu-toggle');
+    if (submenuToggle) {
+      var toggleOn = 'hover';
+      var toggleOnNode = submenuToggle.closest('[data-toggle]');
+      if (toggleOnNode) {
+        toggleOn = toggleOnNode.getAttribute('data-toggle');
+      }
+
+      // Nav menu: Toggle on entire .brx-submenu-toggle click
+      if (submenuToggle.closest('.brxe-nav-menu.show-mobile-menu')) {
+        toggleOn = 'click';
+      }
+
+      // Nav nested: Toggle on entire .brx-submenu-toggle click
+      if (submenuToggle.closest('.brxe-nav-nested.brx-open')) {
+        toggleOn = 'click';
+      }
+      var toggleButton = toggleOn === 'hover' ? e.target.closest('[aria-expanded]') : submenuToggle.querySelector('button[aria-expanded]');
+
+      /**
+       * Return: Toggle on set to "hover"
+       *
+       * @sinc 1.8.4: Remove e.screenX = 0 && e.screenY = 0 check as not working in Safari
+       */
+      var isKeyboardEvent = e.detail === 0;
+      if (!isKeyboardEvent && toggleOn !== 'click' && toggleOn !== 'both') {
+        toggleButton = null;
+      }
+      if (toggleButton) {
+        bricksSubmenuToggle(toggleButton);
+
+        // Set .open & active & aria-expanded in case toggle was already .open on mouseenter
+        var menuItem = submenuToggle.parentNode;
+        menuItem.classList.toggle('active');
+        setTimeout(function () {
+          if (menuItem.classList.contains('active')) {
+            menuItem.classList.add('open');
+          }
+          toggleButton.setAttribute('aria-expanded', menuItem.classList.contains('open'));
         }, 0);
       }
     }
-    bricksQuerySelectorAll(document, '.brx-submenu-toggle > button[aria-expanded="true"]').forEach(function (t) {
-      var r = t.closest("li");
-      r || (r = t.closest(".brxe-dropdown")), r && !r.contains(e.target) && (bricksSubmenuToggle(t), r.classList.remove("active"));
+
+    // STEP: Click outside submenu: Close open sub menus
+    var openSubmenuButtons = bricksQuerySelectorAll(document, '.brx-submenu-toggle > button[aria-expanded="true"]');
+    openSubmenuButtons.forEach(function (toggleButton) {
+      var menuItem = toggleButton.closest('li');
+      if (!menuItem) {
+        menuItem = toggleButton.closest('.brxe-dropdown');
+      }
+      if (!menuItem || menuItem.contains(e.target)) {
+        return;
+      }
+      bricksSubmenuToggle(toggleButton);
+      menuItem.classList.remove('active');
     });
   });
 }
+
+/**
+ * Submenu position (re-run on window resize)
+ *
+ * Mega menu: Nav menu (Bricks template) & Dropdown.
+ * Re-position submenu in case of viewport overflow.
+ *
+ * @param {number} timeout Timeout in ms before calculating submenu position.
+ *
+ * @since 1.8
+ */
 function bricksSubmenuPosition() {
-  var e = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
+  var timeout = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
   setTimeout(function () {
-    var e = document.body.clientWidth;
-    bricksQuerySelectorAll(document, ".brx-submenu-toggle").forEach(function (t) {
-      var r = t.parentNode,
-        i = r.querySelector(".brx-megamenu") || r.querySelector(".brx-dropdown-content") || r.querySelector("ul");
-      if (i.querySelector('[aria-current="page"]') && t.classList.add("aria-current"), !r.hasAttribute("data-static") && i) if (r.classList.contains("brx-has-megamenu")) {
-        var _e38 = r.offsetLeft + 1;
-        _e38 && (i.style.left = "-".concat(_e38, "px"));
-        var _t21 = !!r.dataset.megaMenu && document.querySelector(r.dataset.megaMenu);
-        if (_t21) {
-          var _r14 = _t21.getBoundingClientRect();
-          i.style.left = "-".concat(_e38 - _r14.left, "px"), i.style.minWidth = "".concat(_r14.width, "px");
-        } else i.style.minWidth = "".concat(document.body.clientWidth, "px");
-      } else {
-        i.classList.contains("brx-multilevel-overflow-right") && i.classList.remove("brx-multilevel-overflow-right"), i.classList.contains("brx-submenu-overflow-right") && i.classList.remove("brx-submenu-overflow-right"), i.classList.contains("brx-sub-submenu-overflow-right") && i.classList.remove("brx-sub-submenu-overflow-right");
-        var _t22 = i.getBoundingClientRect(),
-          s = _t22.width,
-          n = _t22.right,
-          o = Math.ceil(_t22.left);
-        if (s > e) i.style.left = "-".concat(o, "px"), i.style.minWidth = "".concat(e, "px");else if (n > e) {
-          var _e39 = i.closest(".brx-has-multilevel"),
-            _t23 = !r.parentNode.closest(".menu-item") && !r.parentNode.closest(".brxe-dropdown");
-          _e39 ? i.classList.add("brx-multilevel-overflow-right") : _t23 ? i.classList.add("brx-submenu-overflow-right") : i.classList.add("brx-sub-submenu-overflow-right");
-        } else o < 0 && (i.style.left = "100%", i.style.right = "auto");
+    var docWidth = document.body.clientWidth; // document width without scrollbar
+    var submenuToggles = bricksQuerySelectorAll(document, '.brx-submenu-toggle');
+    submenuToggles.forEach(function (submenuToggle) {
+      var menuItem = submenuToggle.parentNode;
+      var submenu = menuItem.querySelector('.brx-megamenu') || menuItem.querySelector('.brx-dropdown-content') || menuItem.querySelector('ul');
+
+      // Submenu has aria-current="page" menu item: Add .aria-current to toplevel .brx-submenu-toggle
+      if (submenu.querySelector('[aria-current="page"]')) {
+        submenuToggle.classList.add('aria-current');
+      }
+
+      // Skip: Static submenu (e.g. Dropdown inside Offcanvas)
+      if (menuItem.hasAttribute('data-static')) {
+        return;
+      }
+
+      // Skip: Submenu not found
+      if (!submenu) {
+        return;
+      }
+
+      // STEP: Mega menu
+      var hasMegamenu = menuItem.classList.contains('brx-has-megamenu');
+      if (hasMegamenu) {
+        var offsetLeft = menuItem.offsetLeft + 1; // + 1px to prevent horizontal scrollbar (@since 1.8)
+        if (offsetLeft) {
+          submenu.style.left = "-".concat(offsetLeft, "px");
+        }
+
+        // Set 'left' & 'min-width' of custom selector
+        var megaMenuWidthNode = menuItem.dataset.megaMenu ? document.querySelector(menuItem.dataset.megaMenu) : false;
+        if (megaMenuWidthNode) {
+          var megaMenuWidthNodeRect = megaMenuWidthNode.getBoundingClientRect();
+          submenu.style.left = "-".concat(offsetLeft - megaMenuWidthNodeRect.left, "px");
+          submenu.style.minWidth = "".concat(megaMenuWidthNodeRect.width, "px");
+        }
+
+        // Default: Cover entire body width
+        else {
+          submenu.style.minWidth = "".concat(document.body.clientWidth, "px");
+        }
+      }
+
+      // STEP: Default submenu
+      else {
+        // Remove overflow class to reapply logic on window resize
+        if (submenu.classList.contains('brx-multilevel-overflow-right')) {
+          submenu.classList.remove('brx-multilevel-overflow-right');
+        }
+        if (submenu.classList.contains('brx-submenu-overflow-right')) {
+          submenu.classList.remove('brx-submenu-overflow-right');
+        }
+        if (submenu.classList.contains('brx-sub-submenu-overflow-right')) {
+          submenu.classList.remove('brx-sub-submenu-overflow-right');
+        }
+
+        // STEP: Re-position in case of viewport overflow
+        var submenuRect = submenu.getBoundingClientRect();
+        var submenuWidth = submenuRect.width;
+        var submenuRight = submenuRect.right;
+        var submenuLeft = Math.ceil(submenuRect.left);
+
+        // STEP: Submenu wider than viewport: Set submenu to viewport width
+        if (submenuWidth > docWidth) {
+          submenu.style.left = "-".concat(submenuLeft, "px");
+          submenu.style.minWidth = "".concat(docWidth, "px");
+        }
+
+        // STEP: Dropdown content overflows viewport to the right: Re-position to prevent horizontal scrollbar
+        else if (submenuRight > docWidth) {
+          var multilevel = submenu.closest('.brx-has-multilevel');
+          var isToplevel = !menuItem.parentNode.closest('.menu-item') && !menuItem.parentNode.closest('.brxe-dropdown');
+
+          // Top level of multilevel menu: Position all menus to the right
+          if (multilevel) {
+            submenu.classList.add('brx-multilevel-overflow-right');
+          }
+
+          // Default submenu
+          else {
+            if (isToplevel) {
+              submenu.classList.add('brx-submenu-overflow-right');
+            } else {
+              submenu.classList.add('brx-sub-submenu-overflow-right');
+            }
+          }
+        }
+
+        // STEP: Dropdown content overflows viewport on the left (RTL)
+        else if (submenuLeft < 0) {
+          submenu.style.left = '100%';
+          submenu.style.right = 'auto';
+        }
       }
     });
-  }, e);
+  }, timeout);
 }
+
+/**
+ * Multi level menu item: "Nav menu" OR "Dropdown" element
+ *
+ * Add 'back' text to multilevel submenus & click listeners.
+ *
+ * @since 1.8
+ */
 function bricksMultilevelMenu() {
-  bricksQuerySelectorAll(document, ".brxe-nav-nested.multilevel").forEach(function (e) {
-    var t = e.getAttribute("data-back-text");
-    e.querySelectorAll(".brxe-dropdown").forEach(function (e) {
-      e.classList.add("brx-has-multilevel"), e.setAttribute("data-toggle", "click"), e.setAttribute("data-back-text", t);
+  // STEP: Nav nested: Multilevel enabled
+  var navNestedElements = bricksQuerySelectorAll(document, '.brxe-nav-nested.multilevel');
+  navNestedElements.forEach(function (navNested) {
+    var backText = navNested.getAttribute('data-back-text');
+    var dropdowns = navNested.querySelectorAll('.brxe-dropdown');
+    dropdowns.forEach(function (dropdown) {
+      dropdown.classList.add('brx-has-multilevel');
+      dropdown.setAttribute('data-toggle', 'click');
+      dropdown.setAttribute('data-back-text', backText);
     });
-  }), bricksQuerySelectorAll(document, ".brx-has-multilevel").forEach(function (e) {
-    var t = e.getAttribute("data-back-text") || "Back";
-    bricksQuerySelectorAll(e, "ul").forEach(function (e, r) {
-      if (0 === r) return;
-      var i = document.createElement("a");
-      i.classList.add("brx-multilevel-back"), i.setAttribute("href", "#"), i.innerText = t;
-      var s = document.createElement("li");
-      s.classList.add("menu-item"), s.appendChild(i), e.insertBefore(s, e.firstChild), i.addEventListener("click", function (e) {
+  });
+
+  // STEP: Create "back" HTML & listeners
+  var multilevelItems = bricksQuerySelectorAll(document, '.brx-has-multilevel');
+  multilevelItems.forEach(function (menuItem) {
+    var backText = menuItem.getAttribute('data-back-text') || 'Back';
+    var submenus = bricksQuerySelectorAll(menuItem, 'ul');
+    submenus.forEach(function (submenu, index) {
+      // Return on top level menu item
+      if (index === 0) {
+        return;
+      }
+
+      // Add back list item as first submenu node: li > a.brx-multilevel-back
+      var backLink = document.createElement('a');
+      backLink.classList.add('brx-multilevel-back');
+      backLink.setAttribute('href', '#');
+      backLink.innerText = backText;
+      var backListItem = document.createElement('li');
+      backListItem.classList.add('menu-item');
+      backListItem.appendChild(backLink);
+      submenu.insertBefore(backListItem, submenu.firstChild);
+
+      // Listener to click on back link
+      backLink.addEventListener('click', function (e) {
         e.preventDefault();
-        var t = e.target.closest(".active");
-        if (t) {
-          t.classList.remove("open"), t.classList.remove("active");
-          var _e40 = t.querySelector(".brx-submenu-toggle > button");
-          _e40 && _e40.setAttribute("aria-expanded", !1);
-          var _r15 = t.parentNode.closest(".open");
-          if (_r15) {
-            _r15.classList.add("active");
-            var _e41 = _r15.querySelector("ul");
-            if (_e41) {
-              var _t24 = bricksGetFocusables(_e41);
-              _t24.length && _t24[0].focus();
+
+        // Hide current submenu
+        var activeMenuItem = e.target.closest('.active');
+        if (activeMenuItem) {
+          activeMenuItem.classList.remove('open');
+          activeMenuItem.classList.remove('active');
+
+          // Set: aria-label="false"
+          var submenuToggle = activeMenuItem.querySelector('.brx-submenu-toggle > button');
+          if (submenuToggle) {
+            submenuToggle.setAttribute('aria-expanded', false);
+          }
+
+          // Set parent menu item to active
+          var parentMenuItem = activeMenuItem.parentNode.closest('.open');
+          if (parentMenuItem) {
+            parentMenuItem.classList.add('active');
+            var parentSubmenu = parentMenuItem.querySelector('ul');
+            if (parentSubmenu) {
+              // Focus on first focusable element in parent menu item
+              var focusables = bricksGetFocusables(parentSubmenu);
+              if (focusables.length) {
+                focusables[0].focus();
+              }
             }
           }
         }
@@ -2020,102 +4836,297 @@ function bricksMultilevelMenu() {
     });
   });
 }
+
+/**
+ * Nav menu: Open/close mobile menu
+ *
+ * Open/close: Click on mobile menu hamburger
+ * Close: Click on mobile menu overlay OR press ESC key
+ */
 function bricksNavMenuMobile() {
-  var e = bricksQuerySelectorAll(document, ".bricks-mobile-menu-toggle");
-  if (!e.length) return;
-  var t = new MutationObserver(function (e) {
-    bricksSetVh(), e.forEach(function (e) {
-      e.target.classList.contains("show-mobile-menu") ? document.body.classList.add("no-scroll") : document.body.classList.remove("no-scroll");
+  var toggles = bricksQuerySelectorAll(document, '.bricks-mobile-menu-toggle');
+  if (!toggles.length) {
+    return;
+  }
+
+  // STEP: Observe mobile menu toggle via MutationObserver (.show-mobile-menu class)
+  var navMenuObserver = new MutationObserver(function (mutations) {
+    // Set popup height to viewport height (@since 1.8.2)
+    bricksSetVh();
+    mutations.forEach(function (mutation) {
+      // Add/remove .no-scroll body class
+      if (mutation.target.classList.contains('show-mobile-menu')) {
+        document.body.classList.add('no-scroll');
+      } else {
+        document.body.classList.remove('no-scroll');
+      }
     });
   });
-  e.forEach(function (e) {
-    var r = e.closest(".brxe-nav-menu");
-    t.observe(r, {
-      attributes: !0,
-      attributeFilter: ["class"]
+
+  // STEP: Observe class list changes on .brxe-nav-nested
+  toggles.forEach(function (toggle) {
+    var navMenu = toggle.closest('.brxe-nav-menu');
+    navMenuObserver.observe(navMenu, {
+      attributes: true,
+      attributeFilter: ['class']
     });
-  }), document.addEventListener("click", function (e) {
-    if (mobileMenuToggle = e.target.closest(".bricks-mobile-menu-toggle"), mobileMenuToggle) {
-      var _e42 = mobileMenuToggle.closest(".brxe-nav-menu");
-      _e42.classList.toggle("show-mobile-menu");
-      var _t25 = _e42.classList.contains("show-mobile-menu");
-      mobileMenuToggle.setAttribute("aria-expanded", _t25), _t25 && setTimeout(function () {
-        var t = bricksGetFocusables(_e42.querySelector(".bricks-mobile-menu-wrapper"));
-        t.length && t[0].focus();
-      }, 10);
+  });
+
+  // STEP: Toggle mobile menu (click on hamburger)
+  document.addEventListener('click', function (e) {
+    mobileMenuToggle = e.target.closest('.bricks-mobile-menu-toggle');
+    if (mobileMenuToggle) {
+      // Toggle mobile menu
+      var navMenu = mobileMenuToggle.closest('.brxe-nav-menu');
+      navMenu.classList.toggle('show-mobile-menu');
+
+      // Toggle aria-expanded
+      var expanded = navMenu.classList.contains('show-mobile-menu');
+      mobileMenuToggle.setAttribute('aria-expanded', expanded);
+
+      // Auto-focus first focusable element in mobile menu
+      if (expanded) {
+        setTimeout(function () {
+          var navMenuMobile = navMenu.querySelector('.bricks-mobile-menu-wrapper');
+          var focusableElements = bricksGetFocusables(navMenuMobile);
+          if (focusableElements.length) {
+            focusableElements[0].focus();
+          }
+        }, 10);
+      }
     }
-  }), document.addEventListener("click", function (e) {
-    var t = e.target.closest(".brxe-nav-menu");
-    if (t) if (e.target.classList.contains("bricks-mobile-menu-overlay")) t.classList.remove("show-mobile-menu"), t.querySelector(".bricks-mobile-menu-toggle").setAttribute("aria-expanded", !1);else if (e.target.closest(".bricks-mobile-menu-wrapper")) {
-      var r = "A" === e.target.tagName ? e.target.getAttribute("href") : "";
-      r.length > 1 && r.includes("#") && (t.classList.remove("show-mobile-menu"), t.querySelector(".bricks-mobile-menu-toggle").setAttribute("aria-expanded", !1));
+  });
+
+  // STEP: Close mobile menu: Click on mobile menu overlay OR section anchor link was clicked (e.g. #section)
+  document.addEventListener('click', function (e) {
+    var navMenu = e.target.closest('.brxe-nav-menu');
+    if (!navMenu) {
+      return;
     }
-  }), document.addEventListener("keyup", function (e) {
-    if ("Escape" === e.key) {
-      var _e43 = document.querySelector(".brxe-nav-menu.show-mobile-menu");
-      if (_e43) {
-        _e43.classList.remove("show-mobile-menu");
-        var _t26 = _e43.querySelector("bricks-mobile-menu-toggle");
-        _t26 && (_t26.setAttribute("aria-expanded", !1), setTimeout(function () {
-          _t26.focus();
-        }, 10));
+
+    // Click on overlay: Close mobile menu
+    if (e.target.classList.contains('bricks-mobile-menu-overlay')) {
+      navMenu.classList.remove('show-mobile-menu');
+
+      // Toggle aria-expanded
+      navMenu.querySelector('.bricks-mobile-menu-toggle').setAttribute('aria-expanded', false);
+    }
+
+    // Click on anchor link: Close mobile menu
+    else if (e.target.closest('.bricks-mobile-menu-wrapper')) {
+      var navLinkUrl = e.target.tagName === 'A' ? e.target.getAttribute('href') : '';
+
+      // Close section link click (e.g.: #portfolio)
+      if (navLinkUrl.length > 1 && navLinkUrl.includes('#')) {
+        navMenu.classList.remove('show-mobile-menu');
+
+        // Toggle aria-expanded
+        navMenu.querySelector('.bricks-mobile-menu-toggle').setAttribute('aria-expanded', false);
+      }
+    }
+  });
+
+  // STEP: ESC key pressed: Close mobile menu & focus on mobile menu toggle button
+  document.addEventListener('keyup', function (e) {
+    if (e.key === 'Escape') {
+      var openMobileMenu = document.querySelector('.brxe-nav-menu.show-mobile-menu');
+      if (openMobileMenu) {
+        openMobileMenu.classList.remove('show-mobile-menu');
+        var toggle = openMobileMenu.querySelector('bricks-mobile-menu-toggle');
+        if (toggle) {
+          toggle.setAttribute('aria-expanded', false);
+          setTimeout(function () {
+            toggle.focus();
+          }, 10);
+        }
       }
     }
   });
 }
-function bricksGetFocusables(e) {
-  var t = e.querySelectorAll('a[href], button, input, textarea, select, details, [tabindex]:not([tabindex="-1"])');
-  return Array.prototype.filter.call(t, function (e) {
-    return "none" !== window.getComputedStyle(e).display;
+
+/**
+ * Helper function to get all focusable elements to auto-focus on (accessibility)
+ *
+ * @since 1.8
+ */
+function bricksGetFocusables(node) {
+  var focusableElements = node.querySelectorAll('a[href], button, input, textarea, select, details, [tabindex]:not([tabindex="-1"])');
+
+  // Filter out elements with display: none
+  return Array.prototype.filter.call(focusableElements, function (element) {
+    return window.getComputedStyle(element).display !== 'none';
   });
 }
+
+/**
+ * Pause audio/video when popup is closed
+ *
+ * bricksPauseMediaFn.run() pauses all audio & video.
+ *
+ * @since 1.8
+ */
 var bricksPauseMediaFn = new BricksFunction({
   parentNode: document,
   selector: 'video, audio, iframe[src*="youtube"], iframe[src*="vimeo"]',
-  subscribeEvents: ["bricks/popup/close"],
-  forceReinit: !0,
-  eachElement: function eachElement(e) {
-    if ("VIDEO" !== e.tagName && "AUDIO" !== e.tagName || !e.pause || "function" != typeof e.pause) {
-      if ("IFRAME" === e.tagName) {
-        var t = e.getAttribute("src"),
-          r = t.includes("youtube"),
-          i = r ? {
-            event: "command",
-            func: "pauseVideo",
-            args: ""
-          } : {
-            method: "pause"
-          };
-        if (t.includes("vimeo") || r) return void e.contentWindow.postMessage(JSON.stringify(i), "*");
+  subscribeEvents: ['bricks/popup/close'],
+  forceReinit: true,
+  eachElement: function eachElement(element) {
+    // STEP: Pause video or audio
+    if ((element.tagName === 'VIDEO' || element.tagName === 'AUDIO') && element.pause && typeof element.pause === 'function') {
+      element.pause();
+      // Continue next element
+      return;
+    }
+
+    // STEP: Pause YouTube or Vimeo video
+    if (element.tagName === 'IFRAME') {
+      var src = element.getAttribute('src');
+      var isYoutube = src.includes('youtube');
+      var isVimeo = src.includes('vimeo');
+      var command = isYoutube ? {
+        event: 'command',
+        func: 'pauseVideo',
+        args: ''
+      } : {
+        method: 'pause'
+      };
+      if (isVimeo || isYoutube) {
+        // Note that if the youtube video is not enableJSAPI, we can't pause it
+        element.contentWindow.postMessage(JSON.stringify(command), '*');
+        // Continue next element
+        return;
       }
-    } else e.pause();
+    }
   },
-  listenerHandler: function listenerHandler(e) {
-    if (e !== null && e !== void 0 && e.type && "bricks/popup/close" === e.type) {
-      var _e$detail2;
-      var t = e === null || e === void 0 ? void 0 : (_e$detail2 = e.detail) === null || _e$detail2 === void 0 ? void 0 : _e$detail2.popupElement;
-      t && bricksPauseMediaFn.run({
-        parentNode: t
-      });
+  listenerHandler: function listenerHandler(event) {
+    var _event$detail3;
+    if (event !== null && event !== void 0 && event.type) {
+      switch (event.type) {
+        case 'bricks/popup/close':
+          var popupElement = event === null || event === void 0 ? void 0 : (_event$detail3 = event.detail) === null || _event$detail3 === void 0 ? void 0 : _event$detail3.popupElement;
+          if (popupElement) {
+            bricksPauseMediaFn.run({
+              parentNode: popupElement
+            });
+          }
+          break;
+      }
     }
   }
 });
+
+/**
+ * Set viewport height CSS variable: --bricks-vh
+ *
+ * Used in popup to cover viewport correctly on mobile devices.
+ *
+ * @since 1.8.2
+ */
 function bricksSetVh() {
-  var e = .01 * window.innerHeight;
-  document.documentElement.style.setProperty("--bricks-vh", "".concat(e, "px"));
+  var vh = window.innerHeight * 0.01;
+
+  // Set var on documentElement (<html>)
+  document.documentElement.style.setProperty('--bricks-vh', "".concat(vh, "px"));
 }
-var bricksIsFrontend,
-  bricksScrollTimeout,
-  bricksTimeouts = {};
-document.addEventListener("DOMContentLoaded", function (e) {
-  bricksIsFrontend = document.body.classList.contains("bricks-is-frontend"), bricksMultilevelMenu(), bricksNavMenuMobile(), bricksStickyHeader(), bricksOnePageNavigation(), bricksSkipLinks(), bricksFacebookSDK(), bricksSearchToggle(), bricksPopups(), bricksSwiper(), bricksSplide(), bricksPhotoswipe(), bricksPrettify(), bricksAccordion(), bricksAnimatedTyping(), bricksAudio(), bricksCountdown(), bricksCounter(), bricksIsotope(), bricksPricingTables(), bricksVideo(), bricksLazyLoad(), bricksAnimation(), bricksPieChart(), bricksProgressBar(), bricksForm(), bricksInitQueryLoopInstances(), bricksQueryPagination(), bricksInteractions(), bricksAlertDismiss(), bricksTabs(), bricksVideoOverlayClickDetector(), bricksBackgroundVideoInit(), bricksNavNested(), bricksOffcanvas(), bricksToggle(), bricksSubmenuListeners(), bricksSubmenuPosition(250), window.addEventListener("resize", function () {
-    Object.keys(bricksTimeouts).forEach(function (e) {
-      clearTimeout(bricksTimeouts[e]);
-    }), bricksIsFrontend ? bricksTimeouts.bricksVh = setTimeout(bricksSetVh, 250) : (bricksTimeouts.bricksSwiper = setTimeout(bricksSwiper, 250), bricksTimeouts.bricksSplide = setTimeout(bricksSplide, 250)), bricksTimeouts.bricksSubmenuPosition = setTimeout(bricksSubmenuPosition, 250), bricksTimeouts.bricksToggleDisplay = setTimeout(bricksToggleDisplay, 100);
-  }), setTimeout(function () {
+
+/**
+ * Enqueue custom scripts
+ */
+var bricksIsFrontend;
+var bricksScrollTimeout;
+var bricksTimeouts = {};
+document.addEventListener('DOMContentLoaded', function (event) {
+  bricksIsFrontend = document.body.classList.contains('bricks-is-frontend');
+
+  // Nav menu & Dropdown (@since 1.8)
+  bricksMultilevelMenu();
+  bricksNavMenuMobile();
+  bricksStickyHeader();
+  bricksOnePageNavigation();
+  bricksSkipLinks();
+  bricksFacebookSDK();
+  bricksSearchToggle();
+  bricksPopups();
+  bricksSwiper(); // Sequence matters: before bricksSplide()
+  bricksSplide(); // Sequence matters: after bricksSwiper()
+
+  // Run after bricksSwiper() & bricksSplide() as those need to generate required duplicate nodes first
+  bricksPhotoswipe();
+  bricksPrettify();
+  bricksAccordion();
+  bricksAnimatedTyping();
+  bricksAudio();
+  bricksCountdown();
+  bricksCounter();
+  bricksIsotope();
+  bricksPricingTables();
+  bricksVideo();
+  bricksLazyLoad();
+  bricksAnimation();
+  bricksPieChart();
+  bricksProgressBar();
+  bricksForm();
+  bricksInitQueryLoopInstances();
+  bricksQueryPagination();
+  bricksInteractions();
+  bricksAlertDismiss();
+  bricksTabs();
+  bricksVideoOverlayClickDetector();
+  bricksBackgroundVideoInit();
+  bricksNavNested();
+  bricksOffcanvas();
+  bricksToggle();
+
+  // After bricksNavNested() ran (added .brx-has-multilevel)
+  bricksSubmenuListeners();
+  bricksSubmenuPosition(250);
+
+  /**
+   * Debounce
+   *
+   * Use timeout object to allow for individual clearTimeout() calls.
+   *
+   * @since 1.8
+   */
+  window.addEventListener('resize', function () {
+    Object.keys(bricksTimeouts).forEach(function (key) {
+      clearTimeout(bricksTimeouts[key]);
+    });
+
+    // Frontend: 1vh calculation based on window.innerHeight (for mobile devices)
+    if (bricksIsFrontend) {
+      bricksTimeouts.bricksVh = setTimeout(bricksSetVh, 250);
+    }
+
+    // Builder: Re-init swiperJS on window resize for switching between breakpoints, etc.
+    else {
+      bricksTimeouts.bricksSwiper = setTimeout(bricksSwiper, 250);
+      bricksTimeouts.bricksSplide = setTimeout(bricksSplide, 250);
+    }
+
+    // Re-calculate left position on window resize with debounce (@since 1.8)
+    bricksTimeouts.bricksSubmenuPosition = setTimeout(bricksSubmenuPosition, 250);
+
+    // Set mobile menu open toggle parent div display according to toggle display
+    bricksTimeouts.bricksToggleDisplay = setTimeout(bricksToggleDisplay, 100);
+  });
+
+  /**
+   * Separate event registration from bricksInteractionsFn
+   *
+   * 100ms timeout to ensure bricksInteractionsFn has been initialized & set window.bricksData.interactions
+   *
+   * @since 1.8
+   */
+  setTimeout(function () {
     var _window$bricksData4;
-    (Array.isArray((_window$bricksData4 = window.bricksData) === null || _window$bricksData4 === void 0 ? void 0 : _window$bricksData4.interactions) ? window.bricksData.interactions : []).find(function (e) {
-      return "scroll" === (e === null || e === void 0 ? void 0 : e.trigger);
-    }) && document.addEventListener("scroll", bricksScrollInteractions);
+    var interactions = Array.isArray((_window$bricksData4 = window.bricksData) === null || _window$bricksData4 === void 0 ? void 0 : _window$bricksData4.interactions) ? window.bricksData.interactions : [];
+
+    // Scroll interaction(s) found: Listen to scroll event
+    if (interactions.find(function (interaction) {
+      return (interaction === null || interaction === void 0 ? void 0 : interaction.trigger) === 'scroll';
+    })) {
+      document.addEventListener('scroll', bricksScrollInteractions);
+    }
   }, 100);
 });
