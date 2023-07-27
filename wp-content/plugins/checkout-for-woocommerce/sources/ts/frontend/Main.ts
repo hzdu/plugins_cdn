@@ -1,3 +1,4 @@
+import cfwValidatePaymentTab                             from '../functions/cfwValidatePaymentTab';
 import cfwValidateShippingTab                            from '../functions/cfwValidateShippingTab';
 import AccountValidation                                 from './AccountValidation';
 import AmazonPayLegacy                                   from './Compatibility/Gateways/AmazonPayLegacy';
@@ -184,6 +185,7 @@ class Main {
         const validationService = new ValidationService();
         validationService.addValidatorFactory( 'cfw-customer-info', accountValidation.getValidatorFactory() );
         validationService.addValidatorFactory( 'cfw-shipping-method', cfwValidateShippingTab );
+        validationService.addValidatorFactory( 'cfw-payment-method', cfwValidatePaymentTab );
 
         new BillingAddressSyncService();
         new FieldPersistenceService( checkoutFormElement );

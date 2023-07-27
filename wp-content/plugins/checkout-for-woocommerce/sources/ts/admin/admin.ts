@@ -83,7 +83,7 @@ cfwDomReady( () => {
     /**
      * Toggled Field Sections
      */
-    new FieldToggler( '#cfw_checkbox_enable_cart_editing', '#cart_edit_empty_cart_redirect, #cfw_checkbox_allow_checkout_cart_item_variation_changes' );
+    new FieldToggler( '#cfw_checkbox_enable_cart_editing', '#cart_edit_empty_cart_redirect, #cfw_checkbox_allow_checkout_cart_item_variation_changes, #cfw_checkbox_show_item_remove_button' );
     new FieldToggler( '#cfw_checkbox_enable_thank_you_page', '#cfw_checkbox_enable_map_embed, #thank_you_order_statuses, #cfw_checkbox_override_view_order_template' );
     new FieldToggler( '#cfw_checkbox_enable_trust_badges', '#trust_badges_title, .cfw-admin-trust-badge-row:not(.cfw-admin-trust-badge-template-row), .cfw-admin-add-trust-badge-row-button, [name="_cfw__setting[trust_badge_position][string]"]' );
     new FieldToggler( '#cfw_checkbox_enable_smartystreets_integration', '#smartystreets_auth_id, #smartystreets_auth_token' );

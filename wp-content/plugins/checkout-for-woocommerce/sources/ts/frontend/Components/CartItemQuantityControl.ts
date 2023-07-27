@@ -4,6 +4,7 @@ class CartItemQuantityControl {
     constructor() {
         this.setQuantityStepperTriggers();
         this.setQuantityPromptTriggers();
+        this.setItemRemoveLinkTriggers();
     }
 
     setQuantityStepperTriggers(): void {
@@ -78,6 +79,22 @@ class CartItemQuantityControl {
                 }
             }
         } );
+    }
+
+    setItemRemoveLinkTriggers() {
+        jQuery( document.body ).on( 'click', '.cfw-remove-item-button', this.removeItem.bind( this ) );
+    }
+
+    removeItem( event: Event ): void {
+        event.preventDefault();
+
+        const inputElement = jQuery( event.currentTarget ).parents( '.cart-item-row' ).find( '.cfw-edit-item-quantity-value' );
+
+        if ( inputElement && ( <any>window ).confirm( DataService.getMessage( 'delete_confirm_message' ) ) ) {
+            inputElement.val( 0 );
+
+            CartItemQuantityControl.triggerCartUpdate( inputElement );
+        }
     }
 
     static triggerCartUpdate( element?: JQuery ): void {

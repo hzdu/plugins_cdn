@@ -89,3 +89,24 @@
         }
     }
 }
+
+.cfw-cart-item-subtotal {
+    position: relative;
+}
+
+.cfw-remove-item-button {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif !important;
+    opacity: 0;
+    position: absolute;
+    top: 1em;
+    right: 0;
+    font-size: 0.9em;
+    color: var(--cfw-cart-summary-text-color) !important;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+tr:hover .cfw-remove-item-button {
+    opacity: 1;
+}
