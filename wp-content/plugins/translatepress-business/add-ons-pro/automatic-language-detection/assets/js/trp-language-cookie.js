@@ -233,10 +233,9 @@ function TRP_IN_Determine_Language(){
     }
 
     this.ls_select_language = function(){
-
-        // todo
-        var no_text_current_language = document.querySelector('.trp-ls-shortcode-current-language');
-        var no_text_popup_select_current_language = document.querySelector('.trp-ls-shortcode-current-language');
+        
+        var no_text_current_language = document.querySelector('.trp_ald_ls_container .trp-ls-shortcode-current-language');
+        var no_text_popup_select_current_language = document.querySelector('.trp_ald_ls_container .trp-ls-shortcode-current-language');
         var popup_change_button = document.getElementById("trp_ald_popup_change_language");
         var button_change_language_no_text_popup = document.getElementById('trp_ald_no_text_popup_change_language');
         jQuery('.trp-ald-popup-select').click(function ( item ) {

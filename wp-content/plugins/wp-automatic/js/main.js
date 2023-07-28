@@ -461,6 +461,14 @@ jQuery(document).ready(function () {
       var inputs = jQuery('input[name="cg_rd_page"]').validator({
         effect: "labelMate",
       });
+    
+    } else if (jQuery("#camp_type").val() == "telegram") {
+      jQuery('input[name="cg_te_page"]').attr("required", "required");
+      jQuery('textarea[name="camp_keys"]').removeAttr("required");
+      var inputs = jQuery('input[name="cg_te_page"]').validator({
+        effect: "labelMate",
+      });
+    
     } else {
       jQuery('textarea[name="feeds"]').removeAttr("required");
       jQuery('textarea[name="camp_keys"]').attr("required", "required");
