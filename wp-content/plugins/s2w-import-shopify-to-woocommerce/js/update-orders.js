@@ -12,6 +12,22 @@ jQuery(document).ready(function ($) {
         });
     }
 
+    $('#s2w-update-order-options-domain').on('change',function(){
+        let this_checked = $(this).prop('checked');
+        if(this_checked){
+            $('.s2w-update-order-options-content-body-row:not(".s2w-update-compa-w2s")')
+                .addClass('s2w_disabled')
+                .find('input')
+                .prop( "checked", false )
+                .prop('disabled',true);
+        }else{
+            $('.s2w-update-order-options-content-body-row:not(".s2w-update-compa-w2s")')
+                .removeClass('s2w_disabled')
+                .find('input')
+                .prop('disabled',false);
+        }
+    });
+
     let update_order_options = s2w_params_admin_update_orders.update_order_options;
     let update_order_options_show = s2w_params_admin_update_orders.update_order_options_show;
     let button_update_single = $('.s2w-update-order-options-button-update-single');

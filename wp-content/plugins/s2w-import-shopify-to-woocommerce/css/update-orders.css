@@ -197,12 +197,18 @@ tr:hover span.s2w-button.s2w-shopify-order-id {
     display: flex;
     flex-direction: row;
     align-items: center;
+    flex-wrap: wrap;
 }
-
+.s2w-update-order-options-container .s2w-update-order-options-content .s2w-update-order-options-content-body .s2w-update-order-options-content-body-row .s2w-update-order-options-option-wrap .s2w-option-description{
+    width: 100%;
+}
 .s2w-update-order-options-container .s2w-update-order-options-content .s2w-update-order-options-content-body .s2w-update-order-options-content-body-row {
     display: flex;
     padding-top: 20px;
     width: 50%;
+}
+.s2w-update-order-options-container .s2w-update-order-options-content .s2w-update-order-options-content-body .s2w-update-order-options-content-body-row.s2w_disabled {
+    opacity: 0.5;
 }
 .s2w-update-order-options-container .s2w-update-order-options-content .s2w-update-order-options-content-body-1 {
     padding: 20px;

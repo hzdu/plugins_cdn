@@ -12,6 +12,19 @@ jQuery(document).ready(function ($) {
         });
     }
 
+    $('#s2w-update-product-options-domain').on('change',function(){
+        let this_checked = $(this).prop('checked');
+        if(this_checked){
+            $('.s2w-update-product-options-content-body-row:not(".s2w-update-compa-w2s")')
+                .addClass('s2w_disabled')
+                .find('input')
+                .prop( "checked", false )
+                .prop('disabled',true);
+        }else{
+            $('.s2w-update-product-options-content-body-row:not(".s2w-update-compa-w2s")').removeClass('s2w_disabled').find('input').prop('disabled',false);
+        }
+    });
+
     let update_product_options = s2w_params_admin_update_products.update_product_options;
     let update_product_options_show = s2w_params_admin_update_products.update_product_options_show;
     let button_update_single = $('.s2w-update-product-options-button-update-single');
