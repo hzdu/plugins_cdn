@@ -1,0 +1,36 @@
+:root {
+    --x-xray-color: #999;
+}
+
+.brx-body.iframe .brxe-xshortcodewrapper > div:last-child:not([class]):not([id]),
+.brx-body.iframe .brxe-xslidemenu > div:last-child:not([class]):not([id]) {
+    display: none;
+}
+
+.brx-body.iframe [data-x-hide=true],
+.brx-body.iframe .x_hide_in_builder {
+    display: none!important;
+}
+
+.extras-x-ray:not(.bricks-is-previewing) #brx-content,
+.extras-x-ray:not(.bricks-is-previewing) #brx-header, 
+.extras-x-ray:not(.bricks-is-previewing) #brx-footer,
+.extras-x-ray:not(.bricks-is-previewing) .bricks-preview-element-spacing,
+.extras-x-ray:not(.bricks-is-previewing) #bricks-css-grid-layout .cell:before {
+    /* filter: grayscale(1); */
+}
+
+.extras-x-ray:not(.bricks-is-previewing) #brx-content *:not(.builder-active-element):not(.placeholder-title),
+.extras-x-ray:not(.bricks-is-previewing) #brx-header *:not(.builder-active-element):not(.placeholder-title),
+.extras-x-ray:not(.bricks-is-previewing) #brx-footer *:not(.builder-active-element):not(.placeholder-title) {
+    outline: 1px solid var(--x-xray-color)!important;
+}
+
+.extras-x-ray:not(.bricks-is-previewing) .bricks-preview-element-spacing {
+    color: #333;
+}
+
+.extras-x-ray:not(.bricks-is-previewing) .bricks-preview-element-spacing:before {
+    background-color: #888;
+}
+

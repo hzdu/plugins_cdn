@@ -1,0 +1,38 @@
+[data-x-progress] {
+    width: 100%;
+    z-index: 20;
+    height: 4px;
+}
+
+[data-x-progress*=positionTop] {
+    top: 0;
+    bottom: auto;
+    position: fixed;
+}
+
+.admin-bar [data-x-progress*=positionTop] {
+    margin-top: var(--wp-admin--admin-bar--height);
+}
+
+[data-x-progress*=positionBottom] {
+    top: auto;
+    bottom: 0;
+    position: fixed;
+}
+
+.x-reading-progress-bar_progress {
+    height: 100%;
+    background-color: red;
+    width: 0;
+    will-change: width;
+}
+
+/* builder */
+
+.x-reading-progress-bar[class*=brxe-].builder-active-element {
+    outline-width: 1px!important;
+}
+
+component.x-reading-progress-bar .x-reading-progress-bar_progress {
+    width: 70%;
+}

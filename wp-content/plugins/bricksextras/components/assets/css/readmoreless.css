@@ -1,0 +1,89 @@
+.brxe-xreadmoreless {
+    display: flex;
+    flex-direction: column;
+}
+
+.x-read-more_fade {
+    --x-mask-start: 40%;
+    --x-mask-end: 90%;
+    --x-read-more-rotate: 180deg;
+}
+
+.x-read-more_content {
+    max-height: 200px;
+    overflow: hidden;
+}
+
+.x-read-more_fade .x-read-more_content {
+    -webkit-mask-image: linear-gradient(to bottom, black var(--x-mask-start), transparent var(--x-mask-end));
+    mask-image: linear-gradient(to bottom, black var(--x-mask-start), transparent var(--x-mask-end));
+}
+
+.x-read-more_fade .x-read-more_content.x-read-more_expand {
+    -webkit-mask-image: linear-gradient(to bottom, black 100%, transparent 100%);
+    mask-image: linear-gradient(to bottom, black 100%, transparent 100%);
+}
+
+.x-read-more_fade .x-read-more_content.x-read-more_builder-expand {
+    -webkit-mask-image: linear-gradient(to bottom, black 100%, transparent 100%);
+    mask-image: linear-gradient(to bottom, black 100%, transparent 100%);
+}
+
+.x-read-more_content.x-read-more_builder-expand {
+    max-height: none!important;
+}
+
+.x-read-more_link {
+    background: none;
+    outline: none;
+    border: none;
+    box-shadow: none;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    -webkit-animation: x-read-more_fade 300ms;
+    animation: x-read-more_fade 300ms;
+    visibility: hidden;
+    align-self: center;
+}
+
+.x-read-more_link + .x-read-more_link {
+    display: none;
+}
+
+.x-read-more_link-icon {
+    margin-left: 5px;
+}
+
+.x-read-more_content.x-read-more_expand + .x-read-more_link .x-read-more_link-icon i,
+.x-read-more_content.x-read-more_expand + .x-read-more_link .x-read-more_link-icon svg {
+    transform: rotate(var(--x-read-more-rotate));
+    -webkit-transform: rotate(var(--x-read-more-rotate));
+}
+
+[data-readmore] + .x-read-more_link {
+    visibility: visible;
+}
+
+.brx-body.iframe .x-read-more_link {
+    visibility: visible;
+}
+
+@keyframes x-read-more_fade {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+@-webkit-keyframes x-read-more_fade {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}

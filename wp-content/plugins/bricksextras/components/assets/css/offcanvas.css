@@ -1,0 +1,232 @@
+:root {
+    --x-offcanvas-duration: 300ms;
+}
+
+.x-offcanvas_inner {    
+    background: #fff;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    position: fixed;
+    height: 100vh;
+    max-width: 100%;
+    width: 300px;
+    overflow-x: hidden;
+    top: 0;
+    left: 0;
+    padding: 30px;
+    z-index: 1000;
+    pointer-events: auto;
+    display: none;
+}
+
+.x-offcanvas_ready {
+    -webkit-transition: -webkit-transform var(--x-offcanvas-duration) cubic-bezier(0.77,0,0.175,1),box-shadow var(--x-offcanvas-duration) cubic-bezier(0.77,0,0.175,1);
+    transition: transform var(--x-offcanvas-duration) cubic-bezier(0.77,0,0.175,1),box-shadow var(--x-offcanvas-duration) cubic-bezier(0.77,0,0.175,1),opacity var(--x-offcanvas-duration) cubic-bezier(0.77,0,0.175,1);
+    -o-transition: -o-transform var(--x-offcanvas-duration) cubic-bezier(0.77,0,0.175,1),box-shadow var(--x-offcanvas-duration) cubic-bezier(0.77,0,0.175,1);
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+}
+
+.x-offcanvas_backdrop {
+    background: rgba(0,0,0,.5);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0;
+    visibility: hidden;
+    -webkit-transition: all var(--x-offcanvas-duration) cubic-bezier(0.77,0,0.175,1);
+    -o-transition: all var(--x-offcanvas-duration) cubic-bezier(0.77,0,0.175,1);
+    transition: all var(--x-offcanvas-duration) cubic-bezier(0.77,0,0.175,1);
+    pointer-events: auto;
+    z-index: 1000;
+    display: none;
+}
+
+.x-offcanvas_ready + .x-offcanvas_backdrop {
+    display: block;
+}
+
+.x-offcanvas_inner {
+    z-index: 1001;
+}
+
+.x-offcanvas_inner[aria-hidden="false"] + .x-offcanvas_backdrop {
+    opacity: 1;
+    visibility: visible;
+}
+
+.x-offcanvas_inner.x-offcanvas_left {
+    left: 0;
+    right: auto;
+    height: 100vh!important;
+}
+
+.x-offcanvas_inner.x-offcanvas_left[aria-hidden="true"] {
+    transform: translateX(-100%);
+    -webkit-transform: translateX(-100%);
+}
+
+.x-offcanvas_inner.x-offcanvas_right {
+    right: 0;
+    left: auto;
+    height: 100vh!important;
+}
+
+.x-offcanvas_inner.x-offcanvas_right[aria-hidden="true"] {
+    transform: translateX(100%);
+    -webkit-transform: translateX(100%);
+}
+
+.x-offcanvas_inner.x-offcanvas_top {
+    top: 0;
+    bottom: auto;
+    right: 0;
+    left: 0;
+    width: 100%!important;
+}
+
+.x-offcanvas_inner.x-offcanvas_top[aria-hidden="true"] {
+    transform: translateY(-100%);
+    -webkit-transform: translateY(-100%);
+}
+
+.x-offcanvas_inner.x-offcanvas_bottom {
+    top: auto;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    width: 100%!important;
+}
+
+.x-offcanvas_inner.x-offcanvas_bottom[aria-hidden="true"] {
+    transform: translateY(100%);
+    -webkit-transform: translateY(100%);
+}
+
+body.admin-bar .x-offcanvas_backdrop {
+    margin-top: var(--wp-admin--admin-bar--height);
+}
+
+body.bricks-is-frontend .x-offcanvas_inner:focus {
+    outline: none;
+}
+
+.admin-bar .x-offcanvas_inner {
+    margin-top: var(--wp-admin--admin-bar--height);
+}
+
+.x-offcanvas_inner > div {
+    max-width: 100%;
+}
+
+html[class*="x-offcanvas_prevent-scroll"],
+html[class*="x-offcanvas_prevent-scroll"] > body {
+    overflow: hidden;
+}
+
+.x-offcanvas_inner[aria-hidden="true"][data-type="fade"] {
+    opacity: 0;
+    visibility: hidden;
+    transform: none!important;
+    transition: all var(--x-offcanvas-duration) cubic-bezier(0.77,0,0.175,1)
+}
+
+.x-offcanvas_inner[aria-hidden="false"][data-type="fade"] {
+    opacity: 1;
+    visibility: visible;
+    transform: none!important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .x-offcanvas[data-x-offcanvas*=notransition] .x-offcanvas_backdrop,
+    .x-offcanvas[data-x-offcanvas*=notransition] .x-offcanvas_inner {
+        transition: none;
+    }
+    
+    .x-offcanvas[data-x-offcanvas*=fade] .x-offcanvas_inner[aria-hidden="true"] {
+      opacity: 0;
+      visibility: hidden;
+      transform: none!important;
+    }
+
+    .x-offcanvas[data-x-offcanvas*=fade].x-offcanvas_inner[aria-hidden="false"] {
+        opacity: 1;
+        visibility: visible;
+        transform: none!important;
+    }
+}
+
+
+@supports (padding-top: env(safe-area-inset-top)) {
+    .x-offcanvas_inner.x-offcanvas_left {
+      --safe-area-inset-bottom: env(safe-area-inset-bottom);
+      height: calc(100% + var(--safe-area-inset-bottom))!important;
+    }
+
+    .x-offcanvas_inner.x-offcanvas_right {
+        --safe-area-inset-bottom: env(safe-area-inset-bottom);
+        height: calc(100% + var(--safe-area-inset-bottom))!important;
+      }
+
+  }
+
+
+.admin-bar .x-offcanvas_inner.x-offcanvas_left {
+    left: 0;
+    right: auto;
+    height: auto!important;
+    bottom: 0;
+}
+
+.admin-bar .x-offcanvas_inner.x-offcanvas_right {
+    right: 0;
+    left: auto;
+    height: auto!important;
+    bottom: 0;
+}
+
+
+/* builder */
+
+component.x-offcanvas,
+.x-offcanvas[data-id] {
+    transform: none!important;
+}
+
+component.x-offcanvas.is-empty {
+    min-width: 0;
+    min-height: 0;
+}
+
+component > .x-offcanvas_inner,
+.x-offcanvas[data-id] .x-offcanvas_inner {
+    display: flex;
+}
+
+component > .x-offcanvas_backdrop,
+.x-offcanvas[data-id] .x-offcanvas_backdrop {
+    display: block;
+}
+
+.brx-body.iframe .x-offcanvas_inner {
+    transform: none;
+}
+
+.brx-body.iframe div[data-x-offcanvas]:not([data-id]) {
+    display: none;
+}
+
+.brx-body.iframe .x-offcanvas > div:nth-child(3) {  
+    display: none;
+}
+
+.brx-body.iframe .x-offcanvas_backdrop {
+    opacity: 1;
+    visibility: visible;
+}

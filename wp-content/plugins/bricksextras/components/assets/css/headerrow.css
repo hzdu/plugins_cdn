@@ -1,0 +1,20 @@
+
+
+.brxe-xheaderrow {
+    display: flex;
+    transition-property: height,opacity,transform,background,color;
+    transition-duration: var(--x-header-transition);
+    width: 100%;
+}
+
+#bricks-blank-canvas .actions {
+  z-index: 100;
+}
+
+.x-header_wrap.brx-draggable.is-empty {
+  min-height: 40px;
+}
+
+.brxe-xheaderrow[data-x-overlay=show] {
+  display: none;
+}

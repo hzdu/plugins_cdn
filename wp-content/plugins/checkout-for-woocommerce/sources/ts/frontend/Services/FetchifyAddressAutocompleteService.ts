@@ -91,6 +91,10 @@ class FetchifyAddressAutocompleteService {
             town: `${prefix}_city`,
             postcode: `${prefix}_postcode`,
             country: `${prefix}_country`,
+            placeholders: true,
+            texts: {
+                default_placeholder: DataService.getMessage( 'fetchify_default_placeholder' ),
+            },
         }, { onResultSelected } );
 
         if (

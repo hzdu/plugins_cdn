@@ -1,0 +1,79 @@
+[data-x-calendar] {
+    width: 100%;
+}
+
+.x-calendar {
+    --fc-small-font-size: 0.85em;
+    --fc-page-bg-color: #fff;
+    --fc-neutral-bg-color: hsla(0,0%,82%,0.3);
+    --fc-neutral-text-color: grey;
+    --fc-border-color: #ddd;
+    --fc-button-text-color: #1a252f;
+    --fc-button-text-color-active: #fff;
+    --fc-button-bg-color: transparent;
+    --fc-button-border-color: #2c3e50;
+    --fc-button-hover-bg-color: #1e2b37;
+    --fc-button-hover-border-color: #1a252f;
+    --fc-button-active-bg-color: #1a252f;
+    --fc-button-active-border-color: #151e27;
+    --fc-event-bg-color: #1a252f;
+    --fc-event-border-color: #1a252f;
+    --fc-event-text-color: #fff;
+    --fc-event-selected-overlay-color: rgba(0,0,0,0.25);
+    --fc-more-link-bg-color: #d0d0d0;
+    --fc-more-link-text-color: inherit;
+    --fc-event-resizer-thickness: 8px;
+    --fc-event-resizer-dot-total-width: 8px;
+    --fc-event-resizer-dot-border-width: 1px;
+    --fc-non-business-color: hsla(0,0%,84%,0.3);
+    --fc-bg-event-color: #8fdf82;
+    --fc-bg-event-opacity: 0.3;
+    --fc-highlight-color: rgba(188,232,241,0.3);
+    --fc-today-bg-color: rgba(230,230,230,0.5);
+    --fc-now-indicator-color: red;
+}
+
+.fc .fc-view-harness {
+    width: 100%;
+}
+
+.fc .fc-button {
+    line-height: 1.2;
+}
+
+.fc .fc-button-primary:hover {
+    background-color: unset;
+    border-color: unset;
+    color: unset;
+}
+
+.fc .fc-button-primary:not(:disabled).fc-button-active, 
+.fc .fc-button-primary:not(:disabled):active {
+    background-color: var(--fc-button-active-bg-color);
+    border-color: var(--fc-button-active-border-color);
+    color: var(--fc-button-text-color-active);
+}
+
+/*
+td.fc-day.fc-day-thu.fc-day-today.fc-daygrid-day {
+    background: none;
+}
+
+button.fc-next-button.fc-button.fc-button-primary,
+.fc .fc-button-primary,.fc .fc-button-primary:not(:disabled).fc-button-active, .fc .fc-button-primary:not(:disabled):active {
+    background: none!important;
+    color: #222;
+}
+
+.fc-daygrid-event-dot {
+    display: none;
+}
+
+.fc-event-time {
+    display: none;
+}
+    
+*/
+    
+   
+    

@@ -1,0 +1,100 @@
+:root {
+    --x-ff-gap: 15px;
+}
+
+.brxe-xfluentform .fluentform input[type=checkbox], 
+.brxe-xfluentform .fluentform input[type=radio] {
+    width: auto
+}
+
+[data-x-fluent-form*=smartUI] .ff-el-group input[type=checkbox]::after,
+[data-x-fluent-form*=smartUI] .ff-el-group input[type=radio]::after {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    transition: background-color 0.3s ease;
+}
+
+[data-x-fluent-form*=smartUI] .ff-el-group input[type=checkbox]:checked::after, 
+[data-x-fluent-form*=smartUI] .ff-el-group input[type=radio]:checked::after, 
+[data-x-fluent-form*=smartUI] .ff-el-group .ff_item_selected input[type=checkbox]::after,
+[data-x-fluent-form*=smartUI] .ff-el-group .ff_item_selected input[type=radio]::after {
+    background-color: #111;
+}
+
+
+[data-x-fluent-form*=smartUI] .ff-el-group input[type=radio],
+[data-x-fluent-form*=smartUI] .ff-el-group input[type=checkbox] {
+    appearance: none ;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    border-style: solid;
+    border-width: 0;
+    outline: 0;
+    display: inline-block;
+    min-width: 1px;
+    width: 15px;
+    height: 15px;
+    background: #ddd;
+    margin-right: 5px;
+    padding: 3px;
+    vertical-align: middle;
+}
+
+.brxe-xfluentform[data-x-fluent-form*=smartUI] .ff-el-group input[type=radio],
+.brxe-xfluentform[data-x-fluent-form*=smartUI] .ff-el-group input[type=radio]:checked::after, 
+.brxe-xfluentform[data-x-fluent-form*=smartUI] .ff-el-group .ff_item_selected input[type=radio]::after {
+    border-radius: 100px;
+}
+
+.brxe-xfluentform .frm-fluent-form > .ff-el-group:last-child {
+    margin-bottom: 0;
+}
+
+.brxe-xfluentform .fluentform .ff-el-tc {
+    display: block;
+}
+
+.brxe-xfluentform .fluentform .ff_upload_btn.ff-btn {
+    display: inline-block;
+}
+
+.brxe-xfluentform .fluentform .ff-el-progress-bar {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.brxe-xfluentform .ff-el-phone.ff_el_with_extended_validation {
+    padding-left: 55px!important;
+}
+
+.brxe-xfluentform select.ff-el-form-control:not([size]):not([multiple]) {
+    height: auto;
+}
+
+@media (min-width: 768px) {
+    .brxe-xfluentform .frm-fluent-form .ff-t-cell:first-of-type {
+        padding-left: 0!important;
+    }
+    .brxe-xfluentform .frm-fluent-form .ff-t-cell:last-of-type {
+        padding-right: 0!important;
+    }
+}
+
+.brxe-xfluentform .ff-el-repeat-buttons-list svg {
+    height: 1em;
+    width: 1em;
+    font-size: 20px;
+}
+
+@media (min-width: 768px) {
+    .brxe-xfluentform .frm-fluent-form .ff-t-container {
+        display: flex;
+        gap: var(--x-ff-gap);
+        width: 100%;
+    }
+}

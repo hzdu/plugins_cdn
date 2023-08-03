@@ -1,0 +1,182 @@
+:root {
+    --x-cursor-text-scale: 10;
+    --x-cursor-trail-scale: 3;
+    --x-cursor-transition: 500ms;
+    --x-cursor-text-start: 0.7;
+    --x-cursor-trail-start: 1;
+    --x-cursor-text-end: 0;
+    --x-cursor-trail-down: 0.8;
+    --x-cursor-text-down: 0.3;
+    --x-cursor-display: block;
+}
+
+.x-interactive-cursor {
+    visibility: hidden;
+}
+
+.x-interactive-cursor.x-cursor_ready {
+    visibility: visible;
+}
+
+.extras-inside-lightbox .x-interactive-cursor {
+    display: none;
+}
+
+.x-cursor_ball {
+    position: fixed;
+    top: 300px;
+    left: 300px;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    z-index: 100001;
+    pointer-events: none;
+    -webkit-transform: translate3d(-50%, -50%,0);
+            transform: translate3d(-50%, -50%,0);
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    text-align: center;
+}
+
+.x-cursor_trail {
+    background-color: rgba(56,56,56,0.05);
+    position: fixed;
+    top: 300px;
+    left: 300px;
+    width: 320px;
+    height: 320px;
+    border-radius: 50%;
+    z-index: 10000;
+    pointer-events: none;
+    -webkit-transform: translate3d(-50%, -50%,0) scale(calc(var(--x-cursor-trail-start)/10));
+            transform: translate3d(-50%, -50%,0) scale(calc(var(--x-cursor-trail-start)/10));
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-transition: opacity var(--x-cursor-transition) ease, -webkit-transform var(--x-cursor-transition) ease;
+    transition: opacity var(--x-cursor-transition) ease, -webkit-transform var(--x-cursor-transition) ease;
+    will-change: transform,opacity;
+}
+
+[data-x-cursor] {
+    color: #fff;
+    font-size: 14px;
+}
+
+
+.x-cursor_text {
+    opacity: 0;
+    -webkit-transition: all var(--x-cursor-transition) ease;
+    transition: all var(--x-cursor-transition) ease;
+}
+
+.x-cursor_text-visible .x-cursor_text {
+    opacity: 1;
+}
+
+.x-cursor_mousedown .x-cursor_text,
+.x-cursor_text-visible.x-cursor_mousedown .x-cursor_text {
+    opacity: 0;
+}
+
+.x-cursor_ball::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    border-radius: 50%;
+    right: 0;
+    background-color: rgba(56, 76, 255, 0.88);
+    z-index: -1;
+    -webkit-transform: translateZ(0) scale(calc(var(--x-cursor-text-start)/10));
+            transform: translateZ(0) scale(calc(var(--x-cursor-text-start)/10));
+    -webkit-transition: opacity var(--x-cursor-transition) ease, -webkit-transform var(--x-cursor-transition) ease;
+    transition: opacity var(--x-cursor-transition) ease, -webkit-transform var(--x-cursor-transition) ease;
+    transition: transform var(--x-cursor-transition) ease, opacity var(--x-cursor-transition) ease;
+    transition: transform var(--x-cursor-transition) ease, opacity var(--x-cursor-transition) ease, -webkit-transform var(--x-cursor-transition) ease;
+    will-change: transform,opacity;
+}
+
+.x-cursor_trail-grow .x-cursor_trail {
+    -webkit-transform: translate3d(-50%, -50%,0) scale(calc(var(--x-cursor-trail-scale)/10));
+            transform: translate3d(-50%, -50%,0) scale(calc(var(--x-cursor-trail-scale)/10));
+}
+
+.x-cursor_trail-grow .x-cursor_ball::after {
+    -webkit-transform: translateZ(0) scale(calc(var(--x-cursor-text-end)/10));
+            transform: translateZ(0) scale(calc(var(--x-cursor-text-end)/10));
+}
+
+.x-cursor_grow .x-cursor_ball::after,
+.x-cursor_text-visible .x-cursor_ball::after {
+    -webkit-transform: translateZ(0) scale(calc(var(--x-cursor-text-scale)/10));
+            transform: translateZ(0) scale(calc(var(--x-cursor-text-scale)/10));
+}
+
+.x-cursor_grow .x-cursor_trail,
+.x-cursor_text-visible .x-cursor_trail {
+    -webkit-transform: translate3d(-50%, -50%,0) scale(0);
+            transform: translate3d(-50%, -50%,0) scale(0);
+}
+
+.x-cursor_mousedown .x-cursor_ball::after {
+    -webkit-transform: translateZ(0) scale(calc(var(--x-cursor-text-down)/10));
+            transform: translateZ(0) scale(calc(var(--x-cursor-text-down)/10));
+}
+
+.x-cursor_mousedown .x-cursor_trail {
+    -webkit-transform: translate3d(-50%, -50%,0) scale(calc(var(--x-cursor-trail-down)/10));
+            transform: translate3d(-50%, -50%,0) scale(calc(var(--x-cursor-trail-down)/10));
+}
+
+
+.x-cursor_text {
+    z-index: 10;
+}
+
+.x-cursor_offpage .x-cursor_ball::after,
+.x-cursor_iframe .x-cursor_ball::after {
+    opacity: 0;
+    -webkit-transform: scale(0);
+            transform: scale(0);
+}
+
+.x-cursor_offpage .x-cursor_trail,
+.x-cursor_iframe .x-cursor_trail {
+    opacity: 0;
+    -webkit-transform: translate3d(-50%, -50%,0) scale(0);
+            transform: translate3d(-50%, -50%,0) scale(0);
+}
+
+.brx-body.iframe .x-interactive-cursor {
+    position: fixed;
+    height: 100vh;
+    width: 100%;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    top: 0;
+    z-index: 999999;
+}
+
+.brx-body.iframe .x-cursor_ball,
+.brx-body.iframe .x-cursor_trail {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+}

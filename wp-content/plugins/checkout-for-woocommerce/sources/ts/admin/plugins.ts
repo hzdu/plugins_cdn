@@ -3,7 +3,7 @@ import { cfwDomReady }         from '../_functions';
 declare let cfwAdminPluginsScreenData: any;
 
 cfwDomReady( () => {
-    const deactivationAnchor = jQuery( 'tr[data-slug="checkoutwc"] .deactivate a' );
+    const deactivationAnchor = jQuery( 'tr[data-slug="checkoutwc"] .deactivate a, tr[data-slug="checkout-for-woocommerce"] .deactivate a' ).first();
     const deactivateUrl = deactivationAnchor.attr( 'href' );
 
     const modal = deactivationAnchor.modaal( {
