@@ -1198,6 +1198,18 @@ ul.happyforms-parts-list li[data-part-type="media"] .happyforms-parts-list-item-
  background-image: url(../svg/icons/media.svg);
 }
 
+ul.happyforms-parts-list li[data-part-type="image"] .happyforms-parts-list-item-title:before {
+ background-image: url(../svg/icons/image.svg);
+}
+
+ul.happyforms-parts-list li[data-part-type="video"] .happyforms-parts-list-item-title:before {
+ background-image: url(../svg/icons/video.svg);
+}
+
+ul.happyforms-parts-list li[data-part-type="audio"] .happyforms-parts-list-item-title:before {
+ background-image: url(../svg/icons/audio.svg);
+}
+
 ul.happyforms-parts-list li[data-part-type="divider"] .happyforms-parts-list-item-title:before {
   background-image: url(../svg/icons/separator.svg);
 }
@@ -1642,6 +1654,10 @@ div.label-field-group {
     line-height: 1.5;
 }
 
+ul.happyforms-parts-list li[data-part-type="media"] {
+  display: none;
+}
+
 /**
  *
  * Rich text part
@@ -1665,7 +1681,7 @@ ul.happyforms-parts-list li[data-part-type="rank_order"] {
  * Poll field
  *
  */
-ul.happyforms-parts-list li[data-part-type="poll"] {
+ul.happyforms-parts-list li[data-part-type="poll"], {
   display: none;
 }
 
@@ -1877,7 +1893,8 @@ img.happyforms-upload-preview {
   display: inline-block;
 }
 
-.happyforms-widget[data-part-type="media"] .happyforms-upload-actions button {
+.happyforms-widget[data-part-type="media"] .happyforms-upload-actions button,
+.happyforms-widget[data-part-type="image"] .happyforms-upload-actions button {
   width: 100%;
 }
 
