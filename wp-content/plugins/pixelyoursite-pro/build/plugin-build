@@ -1,0 +1,86 @@
+#!/usr/bin/env php
+<?php
+//https://github.com/deliciousbrains/wp-plugin-build
+
+
+
+$build_cfg_dir = getcwd();
+$parent_dir = dirname( $build_cfg_dir );
+
+// Defaults - override in config.php
+$src_dir = $parent_dir;
+$zip_dir = $build_cfg_dir;
+$tmp_dir = "$build_cfg_dir/tmp";
+$cleanup = true;
+
+$config_file = "$build_cfg_dir/config.php";
+if ( ! file_exists( $config_file ) ) {
+	echo "Could not find the config.php file in the current folder.\n";
+	exit;
+}
+
+include $config_file;
+
+if ( ! isset( $plugin_slug ) ) {
+	$plugin_slug = basename( $src_dir );
+}
+
+$dest_dir = "$tmp_dir/$plugin_slug";
+
+if ( ! isset( $main_plugin_file ) ) {
+	$main_plugin_file = "$src_dir/$plugin_slug.php";
+}
+
+if ( !file_exists( $main_plugin_file ) ) {
+	echo "Cannot find main plugin file $main_plugin_file.\n";
+	exit;
+}
+
+
+`rm -Rf "$dest_dir" 2>/dev/null`;
+
+if ( ! is_dir( $tmp_dir ) ) {
+	mkdir( $tmp_dir );
+}
+
+mkdir( $dest_dir );
+
+$filter_file = "$build_cfg_dir/filter";
+
+// Use this hook to override the default filter file
+$filter_hook = "$build_cfg_dir/filter.php";
+if ( file_exists( $filter_hook ) ) {
+	include $filter_hook;
+}
+
+`rsync -r --filter=". $filter_file" "$src_dir"/* "$dest_dir"`;
+
+chdir( $tmp_dir );
+
+// Use this hook to do anything before we zip up
+$pre_zip_hook = "$build_cfg_dir/pre-zip.php";
+if ( file_exists( $pre_zip_hook ) ) {
+	include $pre_zip_hook;
+}
+
+if ( ! isset( $zip_name ) ) {
+	$zip_name = "$plugin_slug.zip";
+} else {
+	$zip_name = "$zip_name.zip";
+}
+
+if ( file_exists( $zip_dir . '/' . $zip_name ) ) {
+	echo "\nRemoving existing zip: " . $zip_dir . '/' . $zip_name . "\n\n" ;
+	// Ensure we don't add files to an existing zip
+	unlink( $zip_dir . '/' . $zip_name );
+}
+
+echo `zip -r $zip_name $plugin_slug -x "*.DS_Store"`;
+
+if ( $zip_dir != $tmp_dir ) {
+	`mv $zip_name "$zip_dir"/`;
+}
+
+if ( $cleanup ) {
+	`rm -Rf "$dest_dir"`;
+}

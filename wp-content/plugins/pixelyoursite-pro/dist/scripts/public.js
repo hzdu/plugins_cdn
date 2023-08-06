@@ -78,7 +78,7 @@ if (!String.prototype.trim) {
     if (options.debug) {
         console.log('PYS:', options);
     }
-
+    var firstVisit = false;
 
 
     var dummyPinterest = function () {
@@ -198,9 +198,16 @@ if (!String.prototype.trim) {
         var Bing = dummyBing;
 
         var gtag_loaded = false;
+
         let isNewSession = checkSession();
 
-
+        if(isNewSession){
+            let duration = options.last_visit_duration * 60000
+            var now = new Date();
+            now.setTime(now.getTime() + duration);
+            Cookies.set('pys_session_limit', true,{ expires: now })
+            Cookies.set('pys_start_session', true)
+        }
         function loadPixels() {
 
             if (!options.gdpr.all_disabled_by_api) {
@@ -627,13 +634,10 @@ if (!String.prototype.trim) {
         }
 
         function checkSession() {
-            let duration = options.last_visit_duration * 60000
+
             if( Cookies.get('pys_start_session') === undefined ||
                 Cookies.get('pys_session_limit') === undefined) {
-                var now = new Date();
-                now.setTime(now.getTime() + duration);
-                Cookies.set('pys_session_limit', true,{ expires: now })
-                Cookies.set('pys_start_session', true)
+                firstVisit = true;
                 return true
             }
             return false
@@ -804,6 +808,47 @@ if (!String.prototype.trim) {
             PRODUCT_GROUPED : 3,
             utmTerms : utmTerms,
             utmId : utmId,
+            isNewSession: checkSession(),
+            hideMatchingPixel: function(pixelValue, slug) {
+                if(!firstVisit) return false;
+                if(Cookies.get('hide_tag_'+pixelValue))
+                {
+                    return true;
+                }
+                var hide = false;
+                const url_parts = window.location.href;
+                const url_params = new URLSearchParams(window.location.search);
+                const matchingPixels = [];
+                $.each(getPixelBySlag(slug).getHidePixel(), function (index, hide_info) {
+
+                    if (hide_info.pixel === pixelValue) {
+                        for (const item of hide_info.hide_tag_contain) {
+                            if (item) {
+                                let hideTagTimeInHours = hide_info.hide_tag_time;
+                                let hideTagTimeInMilliseconds = hideTagTimeInHours * 60 * 60 * 1000;
+                                let currentTimeInMilliseconds = new Date().getTime();
+                                let expiresTimeInMilliseconds = currentTimeInMilliseconds + hideTagTimeInMilliseconds;
+                                const itemValue = item.split('=');
+                                const key = itemValue[0];
+                                const value = itemValue[1];
+
+                                if (value !== undefined) {
+                                    if (url_params.get(key) === value) {
+                                        Cookies.set('hide_tag_'+pixelValue, true, { expires: new Date(expiresTimeInMilliseconds) });
+                                        hide = true;
+                                        break;
+                                    }
+                                } else if (url_params.get(key) !== null) {
+                                    Cookies.set('hide_tag_'+pixelValue, true, { expires: new Date(expiresTimeInMilliseconds) });
+                                    hide = true;
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                });
+                return hide;
+            },
             validateEmail: function (email) {
                 var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
                 return re.test(email);
@@ -973,7 +1018,7 @@ if (!String.prototype.trim) {
              */
             initVimeoAPI: function () {
 
-              
+
                 $(document).ready(function () {
 
                     var potentialVideos = Utils.getTagsAsArray('iframe').concat(Utils.getTagsAsArray('embed'));
@@ -2077,12 +2122,26 @@ if (!String.prototype.trim) {
             if(typeof window.pys_event_data_filter === "function" && window.pys_disable_event_filter(name,'tiktok')) {
                 return;
             }
-            var params = Utils.copyProperties(event.params, {});
 
-                event.pixelIds.forEach(function(pixelId){
+            var data = event.params;
+
+            var ids = event.pixelIds.filter(function (pixelId) {
+                return !Utils.hideMatchingPixel(pixelId, 'tiktok');
+            })
+            var params = {};
+            Utils.copyProperties(data, params);
+
+
+
+            params.eventID = event.eventID;
+            if(ids.length > 0){
+                TikTok.fireEventAPI(name, event, params);
+            }
+            ids.forEach(function(pixelId){
                     if (options.debug) {
                         console.log('[TikTok] ' + name, params,"pixel_id",pixelId);
                     }
+
                     ttq.instance(pixelId).track(name,params)
                 });
         }
@@ -2094,6 +2153,13 @@ if (!String.prototype.trim) {
             isEnabled: function () {
                 return options.hasOwnProperty('tiktok');
             },
+            getHidePixel: function(){
+                if(this.isEnabled() && options.tiktok.hasOwnProperty('hide_pixels'))
+                {
+                    return options.tiktok.hide_pixels;
+                }
+                return [];
+            },
             disable: function () {
                 initialized = false;
             },
@@ -2102,24 +2168,47 @@ if (!String.prototype.trim) {
                 if (initialized || !this.isEnabled() || !Utils.consentGiven('tiktok')) {
                     return;
                 }
-                !function (w, d, t) {
-                    w.TiktokAnalyticsObject=t;
-                    var ttq=w[t]=w[t]||[];
-                    ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie"];
-                    ttq.setAndDefer=function(t,e){t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}};
-                    for(var i=0;i<ttq.methods.length;i++)
-                        ttq.setAndDefer(ttq,ttq.methods[i]);
-                    ttq.instance=function(t){for(var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n]);return e};
-                    ttq.load=function(e,n){var i="https://analytics.tiktok.com/i18n/pixel/events.js";ttq._i=ttq._i||{},ttq._i[e]=[],ttq._i[e]._u=i,ttq._t=ttq._t||{},ttq._t[e]=+new Date,ttq._o=ttq._o||{},ttq._o[e]=n||{};var o=document.createElement("script");o.type="text/javascript",o.async=!0,o.src=i+"?sdkid="+e+"&lib="+t;var a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(o,a)};
+                for (var i = 0; i < options.tiktok.pixelIds.length; i++) {
+                    var trackingId = options.tiktok.pixelIds[i];
+                    if (!Utils.hideMatchingPixel(trackingId, 'tiktok')) {
+                        !function (w, d, t) {
+                            w.TiktokAnalyticsObject=t;
+                            var ttq=w[t]=w[t]||[];
+                            ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie"];
+                            ttq.setAndDefer=function(t,e){t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}};
+                            for(var i=0;i<ttq.methods.length;i++)
+                                ttq.setAndDefer(ttq,ttq.methods[i]);
+                            ttq.instance=function(t){for(var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n]);return e};
+                            ttq.load=function(e,n){var i="https://analytics.tiktok.com/i18n/pixel/events.js";ttq._i=ttq._i||{},ttq._i[e]=[],ttq._i[e]._u=i,ttq._t=ttq._t||{},ttq._t[e]=+new Date,ttq._o=ttq._o||{},ttq._o[e]=n||{};var o=document.createElement("script");o.type="text/javascript",o.async=!0,o.src=i+"?sdkid="+e+"&lib="+t;var a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(o,a)};
 
-                    //ttq.load('C60QSCQRVDG9JAKNPK2G');
-                    //ttq.page();
-                }(window, document, 'ttq');
+                            //ttq.load('C60QSCQRVDG9JAKNPK2G');
+                            //ttq.page();
+                        }(window, document, 'ttq');
+                        break; // Прерываем выполнение цикла, если загрузили тег
+                    }
+                }
 
-                options.tiktok.pixelIds.forEach(function (pixelId) {
+
+                var ids = options.tiktok.pixelIds.filter(function (pixelId) {
+                    return !Utils.hideMatchingPixel(pixelId, 'tiktok');
+                })
+                ids.forEach(function (pixelId) {
+
+                    var fire_params = {};
+                    if(options.staticEvents.hasOwnProperty('tiktok') && options.staticEvents.tiktok.hasOwnProperty('init_event') && Object.keys(options.staticEvents.tiktok.init_event).length > 0 ) {
+                        options.staticEvents.tiktok.init_event.forEach(function ( e ) {
+                            if ( e.name == 'PageView' ) {
+                                Utils.copyProperties(e.params, fire_params);
+                                fire_params.eventID = e.eventID;
+                                e.fired = true;
+
+                                TikTok.fireEventAPI('PageView', e, fire_params);
+                            }
+                        })
+                    }
 
                     ttq.load(pixelId);
-                    ttq.page();
+                    ttq.page(fire_params);
                     let advancedMatching = {};
                     if(options.tiktok.hasOwnProperty('advanced_matching')
                         && Object.keys(options.tiktok.advanced_matching).length > 0) {
@@ -2129,6 +2218,7 @@ if (!String.prototype.trim) {
                                 advancedMatching["external_id"] = Cookies.get('pbid');
                             }
                         }
+
                         ttq.instance(pixelId).identify(advancedMatching)
                     }
                 });
@@ -2155,6 +2245,85 @@ if (!String.prototype.trim) {
                     }, data.delay * 1000, name, data);
                 }
                 return true;
+            },
+
+            fireEventAPI: function (name, event, params) {
+
+                var ids = event.pixelIds.filter(function (pixelId) {
+                    return !Utils.hideMatchingPixel(pixelId, 'tiktok');
+                })
+                var notCachedEventsIds = new Array();
+                var isAddToCartFromJs =  options.woo.hasOwnProperty("addToCartCatchMethod")
+                    && options.woo.addToCartCatchMethod === "add_cart_js";
+                if(!isAddToCartFromJs) {
+                    notCachedEventsIds.push('woo_add_to_cart_on_button_click')
+                }
+
+                if(options.tiktok.serverApiEnabled) {
+                    if(!notCachedEventsIds.includes(event.e_id)) {
+
+                        var isApiDisabled = options.gdpr.all_disabled_by_api ||
+                            options.gdpr.tiktok_disabled_by_api ||
+                            options.gdpr.cookiebot_integration_enabled ||
+                            options.gdpr.cookie_notice_integration_enabled ||
+                            options.gdpr.consent_magic_integration_enabled ||
+                            options.gdpr.cookie_law_info_integration_enabled;
+                        // Update eventID
+
+                        if( event.eventID.length == 0 && ( options.ajaxForServerEvent || event.type !== "static" ) ) {
+                            event.eventID = pys_generate_token(36);
+                        }
+
+                        // send event from server if they were block by gdpr or need send with delay
+                        if( options.ajaxForServerEvent || isApiDisabled || event.delay > 0 || event.type !== "static" ){
+
+                            var json = {
+                                action: 'pys_tiktok_api_event',
+                                pixel: TikTok.tag(),
+                                event: name,
+                                ids: ids,
+                                data:params,
+                                url:window.location.href,
+                                eventID:event.eventID,
+                                ajax_event:options.ajax_event
+                            };
+
+                            if(event.hasOwnProperty('woo_order')) {
+                                json['woo_order'] = event.woo_order;
+                            }
+
+                            if(event.hasOwnProperty('edd_order')) {
+                                json['edd_order'] = event.edd_order;
+                            }
+                            if(event.e_id === "automatic_event_internal_link"
+                                || event.e_id === "automatic_event_outbound_link"
+                                || name == 'PageView'
+                            ) {
+                                setTimeout(function(){
+                                    jQuery.ajax( {
+                                        type: 'POST',
+                                        url: options.ajaxUrl,
+                                        data: json,
+                                        headers: {
+                                            'Cache-Control': 'no-cache'
+                                        },
+                                        success: function(){},
+                                    });
+                                },500)
+                            } else {
+                                jQuery.ajax( {
+                                    type: 'POST',
+                                    url: options.ajaxUrl,
+                                    data: json,
+                                    headers: {
+                                        'Cache-Control': 'no-cache'
+                                    },
+                                    success: function(){},
+                                });
+                            }
+                        }
+                    }
+                }
             },
 
             onClickEvent: function (event) {
@@ -2236,7 +2405,7 @@ if (!String.prototype.trim) {
                     }
 
                 }
-            }
+            },
         }
     }(options);
 
@@ -2271,6 +2440,7 @@ if (!String.prototype.trim) {
         }
         var initialized = false;
         var configuredPixels = new Array();
+
         function fireEvent(name, event) {
 
 
@@ -2279,7 +2449,10 @@ if (!String.prototype.trim) {
             }
 
             var data = event.params;
-            var ids = event.pixelIds;
+            var ids = event.pixelIds.filter(function (pixelId) {
+                return !Utils.hideMatchingPixel(pixelId, 'facebook');
+            });
+
             var actionType = defaultEventTypes.includes(name) ? 'trackSingle' : 'trackSingleCustom';
 
             var params = {};
@@ -2430,7 +2603,13 @@ if (!String.prototype.trim) {
             isEnabled: function () {
                 return options.hasOwnProperty('facebook');
             },
-
+            getHidePixel: function(){
+                if(this.isEnabled() && options.facebook.hasOwnProperty('hide_pixels'))
+                {
+                    return options.facebook.hide_pixels;
+                }
+                return [];
+            },
             initEventIdCookies: function (key) {
                 var ids = {};
                 ids[key] = pys_generate_token(36)
@@ -2490,8 +2669,11 @@ if (!String.prototype.trim) {
                 }(window,
                     document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
 
+                var ids = options.facebook.pixelIds.filter(function (pixelId) {
+                    return !Utils.hideMatchingPixel(pixelId, 'facebook');
+                });
                 // initialize default pixel
-                options.facebook.pixelIds.forEach(function (pixelId) {
+                ids.forEach(function (pixelId) {
                     Facebook.maybeInitPixel(pixelId);
                 });
                 initialized = true;
@@ -2539,7 +2721,7 @@ if (!String.prototype.trim) {
 
                 if(configuredPixels.includes(pixelId)) return;
 
-                if (options.facebook.removeMetadata) {
+                if (options.facebook.removeMetadata || Utils.hideMatchingPixel(pixelId, this.tag())) {
                     fbq('set', 'autoConfig', false, pixelId);
                 }
                 let advancedMatching = Facebook.advancedMatching();
@@ -2816,12 +2998,16 @@ if (!String.prototype.trim) {
          * @param name
          * @param data
          */
-        function fireEvent(name, data) {
+        function fireEvent(name, event) {
             if(typeof window.pys_event_data_filter === "function" && window.pys_disable_event_filter(name,'ga')) {
                 return;
             }
 
-            var eventParams = Utils.copyProperties(data.params, {});
+            var eventParams = event.params;
+            var data = event.params;
+            var ids = event.trackingIds.filter(function (pixelId) {
+                return !Utils.hideMatchingPixel(pixelId, 'ga');
+            })
             Utils.copyProperties(Utils.getRequestParams(), eventParams);
 
             var _fireEvent = function (tracking_id,name,params) {
@@ -2835,7 +3021,7 @@ if (!String.prototype.trim) {
 
             };
 
-            data.trackingIds.forEach(function (tracking_id) {
+            ids.forEach(function (tracking_id) {
                 var copyParams = Utils.copyProperties(eventParams, {}); // copy params because mapParamsTov4 can modify it
                 var params = mapParamsTov4(tracking_id,name,copyParams)
                 _fireEvent(tracking_id, name, params);
@@ -2983,7 +3169,13 @@ if (!String.prototype.trim) {
             isEnabled: function () {
                 return options.hasOwnProperty('ga');
             },
-
+            getHidePixel: function(){
+                if(this.isEnabled() && options.ga.hasOwnProperty('hide_pixels'))
+                {
+                    return options.ga.hide_pixels;
+                }
+                return [];
+            },
             disable: function () {
                 initialized = false;
             },
@@ -2994,7 +3186,14 @@ if (!String.prototype.trim) {
                     return;
                 }
 
-                Utils.loadGoogleTag(options.ga.trackingIds[0]);
+
+                for (var i = 0; i < options.ga.trackingIds.length; i++) {
+                    var trackingId = options.ga.trackingIds[i];
+                    if (!Utils.hideMatchingPixel(trackingId, 'ga')) {
+                        Utils.loadGoogleTag(trackingId);
+                        break; // Прерываем выполнение цикла, если загрузили тег
+                    }
+                }
 
                 var cd = {
                     'dimension1': 'event_hour',
@@ -3031,11 +3230,11 @@ if (!String.prototype.trim) {
                     };
                 }
 
+                var ids = options.ga.trackingIds.filter(function (pixelId) {
+                    return !Utils.hideMatchingPixel(pixelId, 'ga');
+                });
 
-
-                // configure tracking ids
-
-                options.ga.trackingIds.forEach(function (trackingId,index) {
+                ids.forEach(function (trackingId,index) {
 
                     var obj = options.ga.isDebugEnabled;
                     var searchValue = "index_"+index;
@@ -3359,9 +3558,14 @@ if (!String.prototype.trim) {
             }
 
             var _params = Utils.copyProperties(data.params,{});
-            var ids = data.ids;
-
+            var ids = data.ids.filter(function (pixelId) {
+                return !Utils.hideMatchingPixel(pixelId, 'google_ads');
+            });
+            var coversionIds = data.conversion_ids.filter(function (conversion_id) {
+                return !Utils.hideMatchingPixel(conversion_id, 'google_ads');
+            });
             var conversion_labels = data.conversion_labels;
+
             Utils.copyProperties(Utils.getRequestParams(), _params);
             var _fireEvent = function (conversion_id,event_name) {
 
@@ -3388,7 +3592,7 @@ if (!String.prototype.trim) {
                 });
             } else { // if normal event have conversion_label or custom without conversion_label
 
-                data.conversion_ids.forEach(function (conversion_id) { // send main event
+                coversionIds.forEach(function (conversion_id) { // send main event
                     _fireEvent(conversion_id,name);
                 });
 
@@ -3427,7 +3631,13 @@ if (!String.prototype.trim) {
             isEnabled: function () {
                 return options.hasOwnProperty('google_ads');
             },
-
+            getHidePixel: function(){
+                if(this.isEnabled() && options.google_ads.hasOwnProperty('hide_pixels'))
+                {
+                    return options.google_ads.hide_pixels;
+                }
+                return [];
+            },
             disable: function () {
                 initialized = false;
             },
@@ -3450,10 +3660,18 @@ if (!String.prototype.trim) {
                     return;
                 }
 
-                Utils.loadGoogleTag(options.google_ads.conversion_ids[0]);
-
+                for (var i = 0; i < options.google_ads.conversion_ids.length; i++) {
+                    var trackingId = options.google_ads.conversion_ids[i];
+                    if (!Utils.hideMatchingPixel(trackingId, 'google_ads')) {
+                        Utils.loadGoogleTag(trackingId);
+                        break; // Прерываем выполнение цикла, если загрузили тег
+                    }
+                }
+                var ids = options.google_ads.conversion_ids.filter(function (pixelId) {
+                    return !Utils.hideMatchingPixel(pixelId, 'google_ads');
+                });
                 // configure conversion ids
-                options.google_ads.conversion_ids.forEach(function (conversion_id,index) {
+                ids.forEach(function (conversion_id,index) {
 
                     gtag('config', conversion_id);
 
