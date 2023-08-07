@@ -362,6 +362,11 @@
                             .prop('checked', false)
                             .parent('label').removeClass('wpacu_plugin_unload_rule_input_checked');
 
+                        // Remove highlight for unload logged-in via role
+                        $('.wpacu_plugin_unload_logged_in_via_role[data-wpacu-plugin-path="' + wpacuPluginPath + '"]')
+                            .prop('checked', false)
+                            .parent('label').removeClass('wpacu_plugin_unload_rule_input_checked');
+
                         // Remove highlight for unload via RegEx
                         $('.wpacu_plugin_unload_regex_option[data-wpacu-plugin-path="' + wpacuPluginPath + '"]')
                             .prop('checked', false)
@@ -554,6 +559,38 @@
                     }
                 });
 
+                // Plugin: Unload if the user is logged-in and has the specified role(s)
+                $('.wpacu_plugin_unload_logged_in_via_role').on('click change', function () {
+                    let wpacuPluginPath = $(this).attr('data-wpacu-plugin-path');
+
+                    if ($(this).prop('checked')) {
+                        $(this).parent('label').addClass('wpacu_plugin_unload_rule_input_checked');
+
+                        // Show unload via roles list
+                        $('.wpacu_plugin_unload_logged_in_via_role_select_wrap[data-wpacu-plugin-path="' + wpacuPluginPath + '"]')
+                            .removeClass('wpacu_hide')
+                            .find('select')
+                            .addClass('wpacu_chosen_select')
+                            .chosen({'width': '100%'});
+
+                        // Show load exception area
+                        $.fn.wpAssetCleanUpPro().showPluginLoadExceptionArea(wpacuPluginPath);
+
+                        // Uncheck Site-Wide Rule
+                        $('.wpacu_plugin_unload_site_wide[data-wpacu-plugin-path="' + wpacuPluginPath + '"]')
+                            .prop('checked', false)
+                            .parent('label').removeClass('wpacu_plugin_unload_rule_input_checked');
+                    } else {
+                        // Hide unload logged-in via role drop-down area
+                        $('.wpacu_plugin_unload_logged_in_via_role_select_wrap[data-wpacu-plugin-path="' + wpacuPluginPath + '"]').addClass('wpacu_hide');
+
+                        $(this).parent('label').removeClass('wpacu_plugin_unload_rule_input_checked');
+
+                        // Hide load exception area (if no other unload rules are set)
+                        $.fn.wpAssetCleanUpPro().hidePluginLoadExceptionArea(wpacuPluginPath);
+                    }
+                });
+
                 // Plugin: Make exception to load via RegEx (clicked)
                 $('.wpacu_plugin_load_exception_regex_option').on('click', function () {
                     let wpacuPluginPath = $(this).attr('data-wpacu-plugin-path');
@@ -613,6 +650,22 @@
                     }
                 });
 
+                // Plugin: Make exception to load it via the user role
+                $('.wpacu_plugin_load_logged_in_via_role').on('click change', function () {
+                    let wpacuPluginPath = $(this).attr('data-wpacu-plugin-path');
+
+                    if ($(this).prop('checked')) {
+                        // Show unload logged-in via role drop-down
+                        $('.wpacu_plugin_load_logged_in_via_role_select_wrap[data-wpacu-plugin-path="' + wpacuPluginPath + '"]')
+                            .removeClass('wpacu_hide')
+                            .find('select')
+                            .addClass('wpacu_chosen_select')
+                            .chosen({'width': '100%'});
+                    } else {
+                        $('.wpacu_plugin_load_logged_in_via_role_select_wrap[data-wpacu-plugin-path="' + wpacuPluginPath + '"]').addClass('wpacu_hide');
+                    }
+                });
+
                 // This is related to alerts
                 $(document).on('wpacu_plugin_row_show_hide_load_exceptions_area', function(e, wpacuPluginPath) {
                     $.fn.wpAssetCleanUpPro().hidePluginLoadExceptionArea(wpacuPluginPath);
@@ -651,6 +704,8 @@
                         if ($maybeChosenSelects.length > 0) {
                             $maybeChosenSelects.chosen('destroy').chosen({'width': 'auto'});
                         }
+
+                        $.fn.wpAssetCleanUp().wpacuTriggerAdjustTextAreaHeightAllTextareas();
                     }
 
                     $.fn.wpAssetCleanUpPro().wpacuAjaxUpdateAllAreaPluginsRowState(newPluginAreaState, wpacuAllAreaPlugins, managePluginsInArea, $areaWrap, $currentClickedElement);
@@ -683,6 +738,8 @@
                         if ($maybeChosenSelect.length > 0) {
                             $maybeChosenSelect.chosen('destroy').chosen({'width': '100%'});
                         }
+
+                        $.fn.wpAssetCleanUp().wpacuTriggerAdjustTextAreaHeightAllTextareas();
                     }
 
                     // AJAX Call here to remember the state for this plugin
@@ -1828,6 +1885,7 @@ jQuery(document).ready(function($) {
                     $.fn.wpAssetCleanUp().wpacuAdjustTextareaHeight(el, minHeight);
                 });
             },
+
             wpacuAdjustTextareaHeight: function(el, minHeight) {
                 /* Source: http://bdadam.com/blog/automatically-adapting-the-height-textarea.html */
                 // compute the height difference which is caused by border and outline

@@ -2164,6 +2164,28 @@ body.wp-admin .go-pro-link-no-style .wpacu-tooltip {
   color: #52af00;
   font: normal 24px/1 dashicons;
 }
+.wpacu-form-table .wpacu-fancy-radio.wpacu-locked input[type=radio] {
+  opacity: 0.3;
+}
+.wpacu-form-table .wpacu-fancy-radio.wpacu-locked input[type=radio]:before {
+  content: "";
+  font-family: "Dashicons", Arial, "Times New Roman", "Bitstream Charter", Times, serif;
+  position: absolute;
+  font-size: 17px;
+  top: 2px;
+  right: 0;
+  z-index: 1000;
+}
+.wpacu-form-table .wpacu-fancy-radio.wpacu-disabled-status input[type=radio]:checked {
+  border: 1px solid #cc0000;
+}
+.wpacu-form-table .wpacu-fancy-radio.wpacu-disabled-status input[type=radio]:checked:before {
+  background: #cc0000;
+  color: #cc0000;
+}
+.wpacu-form-table .wpacu-fancy-radio.wpacu-disabled-status input[type=radio]:hover {
+  border: 1px solid #cc0000;
+}
 .wpacu-form-table .wpacu-fancy-radio input[type=radio] {
   -webkit-border-radius: 50%;
   /* Chrome, Safari, Opera */
@@ -2174,6 +2196,18 @@ body.wp-admin .go-pro-link-no-style .wpacu-tooltip {
   height: 20px;
   width: 20px;
   margin: 2px 0 0 0;
+}
+.wpacu-form-table .wpacu-fancy-radio input[type=radio].wpacu-locked {
+  opacity: 0.3;
+}
+.wpacu-form-table .wpacu-fancy-radio input[type=radio].wpacu-locked:before {
+  content: "";
+  font-family: "Dashicons", Arial, "Times New Roman", "Bitstream Charter", Times, serif;
+  position: absolute;
+  font-size: 17px;
+  top: 2px;
+  right: 0;
+  z-index: 1000;
 }
 .wpacu-form-table .wpacu-fancy-radio input[type=radio].wpacu-disabled-status:checked {
   border: 1px solid #cc0000;

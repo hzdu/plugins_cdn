@@ -105,6 +105,11 @@ const tutorials = {
       url: "https://valvepress.com/how-to-display-videos-as-a-grid-in-wordpress/",
       title: "How to display videos as a grid in WordPress",
     },
+    {
+      url: "https://valvepress.com/how-to-auto-post-recent-videos-from-a-youtube-channel-to-wordpress/",
+      title:
+        "How to auto post recent videos from a Youtube channel to WordPress",
+    },
   ],
   Vimeo: [
     {
@@ -243,13 +248,18 @@ const tutorials = {
     { url: "https://youtu.be/vPTNRBcWvDY", title: "How to import Web Stories" },
     {
       url: "https://valvepress.com/how-to-import-from-any-website-to-wordpress-in-multiple-languages/",
-      title: "How to import from any website to WordPress in multiple languages",
+      title:
+        "How to import from any website to WordPress in multiple languages",
     },
     {
       url: "https://valvepress.com/how-to-auto-post-from-google-trends-to-wordpress-posts/",
       title: "How to auto post from Google Trends to WordPress posts",
     },
-    {url:"https://valvepress.com/how-to-auto-post-from-google-realtime-search-trends-to-wordpress-posts/",title:"How to auto post from Google Realtime search trends to WordPress posts?"}
+    {
+      url: "https://valvepress.com/how-to-auto-post-from-google-realtime-search-trends-to-wordpress-posts/",
+      title:
+        "How to auto post from Google Realtime search trends to WordPress posts?",
+    },
   ],
   General: [
     {
