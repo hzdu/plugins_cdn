@@ -48,19 +48,23 @@ jQuery(document).ready(function($) {
 
 		var rowCount = $(this).prop('rel');
 
+		if(rowCount < 1) {
+			$(this).closest('.perfmatters-input-row-wrapper').find('.perfmatters-input-row').addClass('perfmatters-opened').show();
+		}
+		else {
+			var $container = $(this).closest('.perfmatters-input-row-wrapper').find('.perfmatters-input-row-container');
+			var $clonedRow = $container.find('.perfmatters-input-row').last().clone();
+
+			$clonedRow.addClass('perfmatters-opened');
+			$clonedRow.find(':text, select').val('');
+			$clonedRow.find(':checkbox').prop('checked', false);
+
+			perfmattersUpdateRowCount($clonedRow, rowCount);
+
+			$container.append($clonedRow);
+		}
 		rowCount++;
 
-		var $container = $(this).closest('.perfmatters-input-row-wrapper').find('.perfmatters-input-row-container');
-
-		var $clonedRow = $container.find('.perfmatters-input-row').last().clone();
-
-		$clonedRow.find(':text, select').val('');
-		$clonedRow.find(':checkbox').prop('checked', false);
-
-		perfmattersUpdateRowCount($clonedRow, rowCount);
-
-		$container.append($clonedRow);
-		
 		$(this).prop('rel', rowCount);
 	});
 
@@ -71,19 +75,35 @@ jQuery(document).ready(function($) {
 		var siblings = $(this).closest('.perfmatters-input-row').siblings();
 		var $addButton = $(this).closest('.perfmatters-input-row-wrapper').find('.perfmatters-add-input-row');
 
-		if($addButton.prop('rel') == 0) {
+		if($addButton.prop('rel') == 1) {
 			$row = $(this).closest('.perfmatters-input-row');
 			$row.find(':text, select').val('');
 			$row.find(':checkbox').prop("checked", false);
+			$row.hide();
 		}
 		else {
 			$(this).closest('.perfmatters-input-row').remove();
-			$addButton.prop('rel', $addButton.prop('rel') - 1);
 		}
+
+		$addButton.prop('rel', $addButton.prop('rel') - 1);
 		
 		siblings.each(function(i) {
 			perfmattersUpdateRowCount(this, i);
 		});
+	});
+
+	//expand input row
+	$('.perfmatters-input-row-wrapper').on('click', '.perfmatters-expand-input-row', function(ev) {
+		ev.preventDefault();
+
+		$row = $(this).closest('.perfmatters-input-row');
+
+		if($row.hasClass('perfmatters-opened')) {
+			$row.removeClass('perfmatters-opened');
+		}
+		else {
+			$row.addClass('perfmatters-opened');
+		}
 	});
 
 	//quick exclusions
