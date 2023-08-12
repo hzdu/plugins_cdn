@@ -1,5 +1,6 @@
 jQuery(document).ready(function ($) {
     $(".pys-pysselect2").each(function(){$(this).pysselect2({placeholder: $(this).data("placeholder")})})
+    $(".pys-condition-pysselect2:not(#pixel_facebook_hide_conditions, #pixel_ga_hide_conditions, #pixel_ads_hide_conditions, #pixel_facebook_hide_url_conditions, #pixel_ga_hide_url_conditions, #pixel_ads_hide_url_conditions)").each(function(){$(this).pysselect2({placeholder: $(this).data("placeholder"), tags: true})})
     $(document).on('click', '.remove-row', function () {
         $(this).closest('.plate').remove();
     });
@@ -92,6 +93,23 @@ jQuery(document).ready(function ($) {
 
     })
 
+    $body.on('change','.pixel_info .is-hide',function () {
+        updatePixelData($(this).parents('.pixel_info'),'is_hide',this.checked)
+    })
+    $body.on('change', '.hide-conditions' ,function (e) {
+        const selectedValues = $(this).val();
+        updatePixelData($(this).parents('.pixel_info'),'hide_condition',selectedValues)
+    })
+    $body.on('change', '.hide-time' ,function (e) {
+        updatePixelData($(this).parents('.pixel_info'),'hide_time',$(this).val())
+    })
+    $body.on('change','.pixel_info .is-hide-url',function () {
+        updatePixelData($(this).parents('.pixel_info'),'is_hide_url',this.checked)
+    })
+    $body.on('change', '.hide-conditions-url' ,function (e) {
+        const selectedValues = $(this).val();
+        updatePixelData($(this).parents('.pixel_info'),'hide_condition_url',selectedValues)
+    })
     function updatePixelData($parent,key,value){
 
         $input = $parent.find('> input')
@@ -131,6 +149,21 @@ jQuery(document).ready(function ($) {
             .css('display', 'block');
         $row.find('#pixel_facebook_is_enable').attr('id','pixel_facebook_is_enable_'+count)
         $row.find("label[for='pixel_facebook_is_enable']").attr('for','pixel_facebook_is_enable_'+count)
+
+        $row.find('#pixel_facebook_is_hide').attr('id','pixel_facebook_is_hide_'+count)
+        $row.find("label[for='pixel_facebook_is_hide']").attr('for','pixel_facebook_is_hide_'+count)
+
+        $row.find('#pixel_facebook_is_hide_url').attr('id','pixel_facebook_is_hide_url_'+count)
+        $row.find("label[for='pixel_facebook_is_hide_url']").attr('for','pixel_facebook_is_hide_url_'+count)
+
+
+        $row.find('#pixel_facebook_hide_conditions').attr('id','pixel_facebook_hide_conditions_'+count)
+
+        $('#pixel_facebook_hide_conditions_'+count).pysselect2({placeholder: $('#pixel_facebook_hide_conditions_'+count).data("placeholder"), tags: true});
+
+        $row.find('#pixel_facebook_hide_url_conditions').attr('id','pixel_facebook_hide_url_conditions_'+count)
+
+        $('#pixel_facebook_hide_url_conditions_'+count).pysselect2({placeholder: $('#pixel_facebook_hide_url_conditions_'+count).data("placeholder"), tags: true});
         updatePixelInputValue($row)
     });
 
@@ -147,17 +180,49 @@ jQuery(document).ready(function ($) {
             .attr('id', '')
             .css('display', 'block');
 
+        $row.find('#pixel_ga_is_hide').attr('id','pixel_ga_is_hide_'+count)
+        $row.find("label[for='pixel_ga_is_hide']").attr('for','pixel_ga_is_hide_'+count)
+
+        $row.find('#pixel_ga_is_hide_url').attr('id','pixel_ga_is_hide_url_'+count)
+        $row.find("label[for='pixel_ga_is_hide_url']").attr('for','pixel_ga_is_hide_url_'+count)
+
+
+        $row.find('#pixel_ga_hide_conditions').attr('id','pixel_ga_hide_conditions_'+count)
+
+        $('#pixel_ga_hide_conditions_'+count).pysselect2({placeholder: $('#pixel_ga_hide_conditions_'+count).data("placeholder"), tags: true});
+
+        $row.find('#pixel_ga_hide_url_conditions').attr('id','pixel_ga_hide_url_conditions_'+count)
+
+        $('#pixel_ga_hide_url_conditions_'+count).pysselect2({placeholder: $('#pixel_ga_hide_url_conditions_'+count).data("placeholder"), tags: true});
         updatePixelInputValue($row)
     });
 
     $('#pys_superpack_add_google_ads_id').click(function (e) {
 
         e.preventDefault();
-
-        var $row = $('#pys_superpack_google_ads_id').clone()
-            .insertBefore('#pys_superpack_google_ads_id')
+        let count = $(this).parents('.settings_content').find('.pixel_info').length -1
+        var $row = $('#pys_superpack_google_ads_id').clone();
+        $row.find('#pixel_ads_is_enable').attr('id','pixel_ads_is_enable_'+count)
+        $row.find("label[for='pixel_ads_is_enable']").attr('for','pixel_ads_is_enable_'+count)
+        $row.insertBefore('#pys_superpack_google_ads_id')
             .attr('id', '')
             .css('display', 'block');
+
+        $row.find('#pixel_ads_is_hide').attr('id','pixel_ads_is_hide_'+count)
+        $row.find("label[for='pixel_ads_is_hide']").attr('for','pixel_ads_is_hide_'+count)
+
+        $row.find('#pixel_ads_is_hide_url').attr('id','pixel_ads_is_hide_url_'+count)
+        $row.find("label[for='pixel_ads_is_hide_url']").attr('for','pixel_ads_is_hide_url_'+count)
+
+
+        $row.find('#pixel_ads_hide_conditions').attr('id','pixel_ads_hide_conditions_'+count)
+
+        $('#pixel_ads_hide_conditions_'+count).pysselect2({placeholder: $('#pixel_ads_hide_conditions_'+count).data("placeholder"), tags: true});
+
+        $row.find('#pixel_ads_hide_url_conditions').attr('id','pixel_ads_hide_url_conditions_'+count)
+
+        $('#pixel_ads_hide_url_conditions_'+count).pysselect2({placeholder: $('#pixel_ads_hide_url_conditions_'+count).data("placeholder"), tags: true});
+
         updatePixelInputValue($row)
 
     });
