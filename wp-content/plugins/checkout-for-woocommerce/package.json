@@ -1,6 +1,6 @@
 {
     "name": "checkout-for-woocommerce",
-    "version": "8.2.5",
+    "version": "8.2.6",
     "description": "### Development installation instructions",
     "scripts": {
         "build_dev": "./bin/build-dev.sh",
@@ -9,7 +9,7 @@
         "production-travis": "cross-env CFW_TRAVIS=1 webpack --config webpack.prod.js",
         "watch": "npm run dev -- --watch",
         "test": "node tests/e2e-tests/cypress-runner.js",
-        "composer_install": "composer install --no-dev",
+        "composer_install": "composer install --no-dev --ignore-platform-reqs",
         "composer_install_dev": "composer install",
         "min_php_version_test": "./vendor/bin/phpcs -p . --standard=PHPCompatibility --runtime-set testVersion 7.1 --extensions=php,inc,lib --ignore=node_modules/*,dist/*,vendor/kint-php/*,vendor/squizlabs/php_codesniffer/*,vendor/phpcompatibility/*,vendor/sebastian/*,vendor/phpdocumentor/*,vendor/phpunit/*,vendor/doctrine/*,vendor/nikic/php-parser/*,tests/*",
         "max_php_version_test": "./vendor/bin/phpcs -p . --standard=PHPCompatibility --runtime-set testVersion 8.1 --extensions=php,inc,lib --ignore=node_modules/*,dist/*,vendor/kint-php/*,vendor/squizlabs/php_codesniffer/*,vendor/phpcompatibility/*,vendor/sebastian/*,vendor/phpdocumentor/*,vendor/phpunit/*,vendor/doctrine/*,vendor/nikic/php-parser/*,tests/*",

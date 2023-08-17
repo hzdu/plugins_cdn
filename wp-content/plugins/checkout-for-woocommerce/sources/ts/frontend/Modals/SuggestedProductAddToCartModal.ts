@@ -10,6 +10,8 @@ class SuggestedProductAddToCartModal extends VariableProductFormModal {
         } );
 
         jQuery( document.body ).on( 'submit', `#${this.id}-content-wrapper form.cfw-product-form-modal.variable`, this.handleBumpFormSubmit.bind( this )  );
+        jQuery( document.body ).on( 'woocommerce_variation_has_changed', 'form.cfw-product-form-modal', this.syncPrice.bind( this )  );
+        jQuery( document.body ).on( 'wc_variation_form', 'form.cfw-product-form-modal', this.syncPrice.bind( this )  );
     }
 
     handleBumpFormSubmit = ( e: Event ): jqXHR => {
@@ -68,6 +70,16 @@ class SuggestedProductAddToCartModal extends VariableProductFormModal {
         ).always( () => {
             this.close();
         } );
+    }
+
+    syncPrice( e: Event ): void {
+        const form = jQuery( e.currentTarget );
+
+        const updatedPrice = form.find( '.single_variation_wrap .woocommerce-variation-price' ).html();
+
+        if ( updatedPrice ) {
+            form.find( '.cfw-product-form-modal-price' ).html( updatedPrice );
+        }
     }
 }
 

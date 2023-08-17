@@ -37,7 +37,8 @@ class VariableProductFormModal extends AbstractComposableModal  {
     }
 
     afterOpen(): void {
-        jQuery( `#${this.id}-content-wrapper form.cfw-product-form-modal.variable` ).wc_variation_form();
+        const form = jQuery( `#${this.id}-content-wrapper form.cfw-product-form-modal.variable` );
+        form.wc_variation_form();
     }
 }
 

@@ -504,8 +504,8 @@ const bricksAnimationFn = new BricksFunction({
 								}
 							}
 
-							// animationId = data-interaction-id
-							const animationId = el.dataset.interactionId
+							// animationId = data-animation-id
+							const animationId = el.dataset?.animationId
 
 							if (animationId) {
 								// @since 1.8.4 - Trigger custom event for bricks/animation/end/{animationId}, provide element
@@ -1036,15 +1036,22 @@ const bricksTabsFn = new BricksFunction({
 	selector: '.brxe-tabs, .brxe-tabs-nested',
 	subscribeEvents: ['bricks/ajax/pagination/completed', 'bricks/ajax/load_page/completed'],
 	eachElement: (tabElement) => {
-		let titles = bricksQuerySelectorAll(tabElement, '.tab-title')
+<<<<<<< HEAD
+		let tabMenu = tabElement.querySelector('.tab-menu')
+		let tabContent = tabElement.querySelector('.tab-content')
+
+		if (!tabMenu || !tabContent) {
+			return
+		}
+
+		let titles = Array.from(tabMenu.children)
+		let panes = Array.from(tabContent.children)
 
 		titles.forEach((title, index) => {
 			// Set first title to open
 			if (index === 0) {
 				title.classList.add('brx-open')
 			}
-
-			let panes = bricksQuerySelectorAll(tabElement, '.tab-pane')
 
 			// Set first content to open
 			panes.forEach((content, index) => {
@@ -1053,6 +1060,15 @@ const bricksTabsFn = new BricksFunction({
 				}
 			})
 
+=======
+		let titles = bricksQuerySelectorAll(tabElement, '.tab-title')
+		let openAnchorId = tabElement.dataset.scriptArgs?.includes('openAnchorId')
+		let hash = window.location.hash ? window.location.hash : ''
+		let activeIndex = 0
+
+		titles.forEach((title, index) => {
+			let anchorId = title.dataset.anchorId ? `#${title.dataset.anchorId}` : ''
+>>>>>>> improve/#862jy7jtk-open-tabs-or-accordion-via-anchor-link
 			// Create tab title click listener
 			title.addEventListener('click', () => {
 				titles.forEach((t, i) => {
@@ -1078,8 +1094,35 @@ const bricksTabsFn = new BricksFunction({
 						pane.classList.remove('brx-open')
 					}
 				})
+
+				// Update URL hash (@since 1.8.2)
+				if (anchorId) {
+					window.location.hash = anchorId
+				} else {
+					// Remove hash from URL
+					history.pushState('', document.title, window.location.pathname + window.location.search)
+				}
 			})
 		})
+
+		// URL hash & openAnchorId found
+		if (hash && openAnchorId) {
+			// Get the index of the tab title that matches the hash
+			let tempIndex = titles.findIndex((x) => x.dataset.anchorId === hash.replace('#', ''))
+			activeIndex = tempIndex !== -1 ? tempIndex : 0
+		}
+
+		// Set title to open
+		if (titles[activeIndex]) {
+			titles[activeIndex].classList.add('brx-open')
+		}
+
+		let panes = bricksQuerySelectorAll(tabElement, '.tab-pane')
+
+		// Set content to open
+		if (panes[activeIndex]) {
+			panes[activeIndex].classList.add('brx-open')
+		}
 	}
 })
 
@@ -1165,53 +1208,62 @@ const bricksBackgroundVideoInitFn = new BricksFunction({
 		return !bricksIsFrontend
 	},
 	eachElement: (videoWrapper) => {
-		if (videoWrapper.classList.contains('loaded') || videoWrapper.querySelector('iframe')) {
+		if (videoWrapper.classList.contains('loaded')) {
 			return
 		}
 
+		let videoId
 		let videoUrl = videoWrapper.getAttribute('data-background-video-url')
-		let videoScale = videoWrapper.getAttribute('data-background-video-scale')
 
-		let startTime = videoWrapper.getAttribute('data-background-video-start')
-		let endTime = videoWrapper.getAttribute('data-background-video-end')
-		let videoLoop = videoWrapper.getAttribute('data-background-video-loop')
-
-		let playOnMobile = videoWrapper.getAttribute('data-background-video-play-on-mobile')
-		let mobileBreakpoint = parseInt(
-			videoWrapper.getAttribute('data-background-video-mobile-breakpoint')
-		)
-
-		/**
-		 * Disable video on mobile if playOnMobile is not set
-		 *
-		 * Mobile breakpoint: Mobile portrait (478px)
-		 *
-		 * NOTE: Provide setting for mobile breakpoint?
-		 *
-		 * @since 1.8.4
-		 */
-		if (!playOnMobile && window.innerWidth < mobileBreakpoint) {
-			return
-		}
-
+		// Return: No videoUrl provided
 		if (!videoUrl) {
 			return
 		}
 
-		let isIframe = false // YouTube and Vimeo iframe embed
-		let videoId
+		/**
+		 * STEP: Start playing video on breakpoint and up
+		 *
+		 * Setting 'videoPlayBreakpoint' stored in data attribute 'data-background-video-show-at-breakpoint'.
+		 *
+		 * @since 1.8.5
+		 */
+		let videoPlayBreakpoint = parseInt(
+			videoWrapper.getAttribute('data-background-video-show-at-breakpoint')
+		)
 
+		// Return: Viewport width is smaller than breakpoint width
+		if (videoPlayBreakpoint && window.innerWidth < videoPlayBreakpoint) {
+			return
+		}
+
+		let videoScale = videoWrapper.getAttribute('data-background-video-scale')
 		let videoAspectRatio = videoWrapper.getAttribute('data-background-video-ratio') || '16:9'
 		let videoAspectRatioX = parseInt(videoAspectRatio.split(':')[0] || 16)
 		let videoAspectRatioY = parseInt(videoAspectRatio.split(':')[1] || 9)
 
+		let startTime = parseInt(videoWrapper.getAttribute('data-background-video-start')) || 0
+		let endTime = parseInt(videoWrapper.getAttribute('data-background-video-end')) || 0
+		let videoLoop = videoWrapper.getAttribute('data-background-video-loop') == 1
+
+		// End time must be greater than start time: If not, don't use it
+		if (endTime < startTime) {
+			endTime = 0
+		}
+
+		let isIframe = false // YouTube and Vimeo iframe embed
+		let isYoutube = false
+		let isVimeo = false
+
 		/**
 		 * YouTube embed
+		 *
 		 * NOTE: Error "Failed to execute 'postMessage' on 'DOMWindow'" when origin is not HTTPS
-		 * Adding 'host' or 'origin' do not fix this error.
+		 *
+		 * Adding 'host' or 'origin' does not fix this error.
 		 */
 		if (videoUrl.indexOf('youtube.com') !== -1) {
 			isIframe = true
+			isYoutube = true
 
 			if (videoUrl.indexOf('watch?v=') !== -1) {
 				let videoIdIndex = videoUrl.lastIndexOf('=')
@@ -1230,14 +1282,9 @@ const bricksBackgroundVideoInitFn = new BricksFunction({
 		 *
 		 * https://help.vimeo.com/hc/en-us/articles/360001494447-Using-Player-Parameters
 		 */
-
 		if (videoUrl.indexOf('vimeo.com') !== -1) {
 			isIframe = true
-
-			videoUrl += '?background=1'
-			videoUrl += '&byline=0'
-			videoUrl += '&portrait=0'
-			videoUrl += '&title=0'
+			isVimeo = true
 
 			// Transform Vimeo video URL into valid embed URL
 			if (videoUrl.indexOf('player.vimeo.com/video') === -1) {
@@ -1247,102 +1294,260 @@ const bricksBackgroundVideoInitFn = new BricksFunction({
 
 		let videoElement
 
+		// STEP: YouTuvbe and Vimeo <iframe> embed
 		if (isIframe) {
-			// Check if YouTube API script is already added
-			if (!document.querySelector('script[src="https://www.youtube.com/iframe_api"]')) {
-				// Create script tag for YouTube IFrame API
-				let tag = document.createElement('script')
+			if (isYoutube) {
+				// Check if YouTube API script is already added
+				if (!document.querySelector('script[src="https://www.youtube.com/iframe_api"]')) {
+					// Create script tag for YouTube IFrame API
+					let tag = document.createElement('script')
 
-				// Set source to YouTube IFrame API URL
-				tag.src = 'https://www.youtube.com/iframe_api'
+					// Set source to YouTube IFrame API URL
+					tag.src = 'https://www.youtube.com/iframe_api'
 
-				// Find the first script tag on your page
-				let firstScriptTag = document.getElementsByTagName('script')[0]
+					// Find the first script tag on your page
+					let firstScriptTag = document.getElementsByTagName('script')[0]
 
-				// Insert new script tag before the first script tag
-				firstScriptTag.parentNode.insertBefore(tag, firstScriptTag)
-			}
+					// Insert new script tag before the first script tag
+					firstScriptTag.parentNode.insertBefore(tag, firstScriptTag)
+				}
 
-			videoElement = document.createElement('div')
+				videoElement = document.createElement('div')
 
-			// Remove <video> element (present in the DOM due to Chrome compatibility)
-			videoWrapper.removeChild(videoWrapper.querySelector('video'))
+				// Remove <video> element (present in the DOM due to Chrome compatibility)
+				if (bricksIsFrontend && videoWrapper.querySelector('video')) {
+					videoWrapper.removeChild(videoWrapper.querySelector('video'))
+				}
 
-			// Append videoElement to the videoWrapper before initializing the player
-			videoWrapper.appendChild(videoElement)
+				// Append videoElement to the videoWrapper before initializing the player
+				videoWrapper.appendChild(videoElement)
 
-			// Wait for YouTube IFrame Player API to load
-			let playerCheckInterval = setInterval(function () {
-				if (window.YT && YT.Player) {
-					clearInterval(playerCheckInterval)
+				// Wait for YouTube IFrame Player API to load
+				let playerCheckInterval = setInterval(function () {
+					if (window.YT && YT.Player) {
+						clearInterval(playerCheckInterval)
 
-					let player = new YT.Player(videoElement, {
-						width: '640',
-						height: '360',
-						videoId: videoId,
-						playerVars: {
-							autoplay: 1,
-							controls: 0,
-							start: startTime || undefined,
-							end: endTime || undefined,
-							mute: 1,
-							rel: 0,
-							showinfo: 0,
-							modestbranding: 1,
-							cc_load_policy: 0,
-							iv_load_policy: 3,
-							autohide: 0,
-							loop: startTime || endTime ? 0 : videoLoop, // Disable native loop if startTime or endTime is set
-							playlist: videoId
-						},
-						events: {
-							onReady: function (event) {
-								// If videoLoop is enabled and startTime or endTime is set
-								if (videoLoop && (startTime || endTime)) {
-									setInterval(function () {
-										// If the player is not buffering or unstarted
-										if (
-											[YT.PlayerState.BUFFERING, YT.PlayerState.UNSTARTED].indexOf(
-												player.getPlayerState()
-											) === -1
-										) {
-											// Prepare the flag to determine if the video needs to be restarted
-											let shouldRestart = false
-
-											if (endTime) {
-												// If the current time is past the end time
-												shouldRestart = player.getCurrentTime() >= endTime
-											}
-
-											// If the video needs to be restarted, seek to the start time
-											if (shouldRestart) {
-												player.seekTo(startTime || 0, true)
-											}
-										}
-									}, 100)
-								}
+						let player = new YT.Player(videoElement, {
+							width: '640',
+							height: '360',
+							videoId: videoId,
+							playerVars: {
+								autoplay: 1,
+								controls: 0,
+								start: startTime || undefined,
+								// end: endTime || undefined, // Check endTime manually below to pause video instead of stopping it
+								mute: 1,
+								rel: 0,
+								showinfo: 0,
+								modestbranding: 1,
+								cc_load_policy: 0,
+								iv_load_policy: 3,
+								autohide: 0,
+								loop: 0, // Handle loop manually below according to startTime & endTime
+								playlist: videoId,
+								enablejsapi: 1
 							},
-							onStateChange: function (event) {
-								if (videoLoop && !endTime && startTime) {
-									if (event.data === YT.PlayerState.ENDED) {
-										player.seekTo(startTime || 0, true)
+							events: {
+								onReady: function (event) {
+									// Check every second if video endTime is reached
+									if (endTime) {
+										let endTimeCheckInterval = setInterval(function () {
+											if (player.getCurrentTime() >= endTime) {
+												// Loop or pause video
+												if (videoLoop) {
+													player.seekTo(startTime || 0, true)
+												} else {
+													player.pauseVideo()
+													clearInterval(endTimeCheckInterval)
+												}
+											}
+										}, 1000)
+									}
+								},
+
+								onStateChange: function (event) {
+									if (videoLoop) {
+										// Video ended naturally: Restart at start time
+										if (event.data == YT.PlayerState.ENDED) {
+											player.seekTo(startTime || 0, true)
+										}
 									}
 								}
 							}
-						}
-					})
+						})
+					}
+				}, 100)
+			}
+
+			if (isVimeo) {
+				// Check if Vimeo Player API script is already added
+				if (!document.querySelector('script[src="https://player.vimeo.com/api/player.js"]')) {
+					// STEP: Create script tag for Vimeo Player API
+					let tag = document.createElement('script')
+
+					// Set source to Vimeo Player API URL
+					tag.src = 'https://player.vimeo.com/api/player.js'
+
+					// Find the first script tag on page
+					let firstScriptTag = document.getElementsByTagName('script')[0]
+
+					// Insert new script tag before the first script tag
+					firstScriptTag.parentNode.insertBefore(tag, firstScriptTag)
 				}
-			}, 100)
-		} else {
-			// Get the video element (present in the DOM due to Chrome compatibility)
+
+				// Remove <video> element (present in the DOM due to Chrome compatibility)
+				if (bricksIsFrontend && videoWrapper.querySelector('video')) {
+					videoWrapper.removeChild(videoWrapper.querySelector('video'))
+				}
+
+				// Create a div for the Vimeo player
+				videoElement = document.createElement('div')
+
+				// Append videoElement to the videoWrapper before initializing the player
+				videoWrapper.appendChild(videoElement)
+
+				// Extract Vimeo video ID
+				const vimeoVideoId = videoUrl.split('/').pop()
+
+				// Wait for Vimeo Player API to load
+				let playerCheckInterval = setInterval(function () {
+					if (window.Vimeo && Vimeo.Player) {
+						clearInterval(playerCheckInterval)
+
+						// STEP: Initialize new Vimeo Player
+						let player = new Vimeo.Player(videoElement, {
+							id: vimeoVideoId,
+							width: 640,
+							autoplay: true,
+							controls: false,
+							background: true,
+							loop: videoLoop && !startTime // Handle loop manually if startTime set (as loop set to true always starts video at 0 sec)
+						})
+
+						// Player is loaded: Start the video at the startTime
+						if (startTime) {
+							player.on('loaded', function () {
+								player.setCurrentTime(startTime)
+							})
+						}
+
+						// EndTime reached: Pause or loop video
+						if (endTime) {
+							player.on('timeupdate', function (data) {
+								if (data.seconds >= endTime) {
+									if (videoLoop) {
+										player.setCurrentTime(startTime || 0)
+										player.play()
+									} else {
+										player.pause()
+									}
+								}
+							})
+						}
+
+						// End of video reached
+						player.on('ended', () => {
+							// Restart video at startTime
+							if (videoLoop) {
+								player.setCurrentTime(startTime || 0).then(function (seconds) {
+									player.play()
+								})
+							}
+						})
+					}
+				}, 100)
+			}
+		}
+
+		// STEP: Get the <video> element (present in the DOM due to Chrome compatibility)
+		else {
 			videoElement = videoWrapper.querySelector('video')
+
+			if (videoElement) {
+				let elementId = videoElement.closest('[data-script-id]')?.getAttribute('data-script-id')
+
+				// Play once: Remove 'loop' attribute
+				if (!videoLoop) {
+					videoElement.removeAttribute('loop')
+				} else if (!videoElement.hasAttribute('loop')) {
+					videoElement.setAttribute('loop', '')
+				}
+
+				// Re-init startTime in builder
+				if (!bricksIsFrontend) {
+					videoElement.currentTime = startTime || 0
+				}
+
+				if (!window.bricksData.videoInstances?.[elementId]) {
+					window.bricksData.videoInstances[elementId] = {}
+				}
+
+				// Store on window to update in builder :)
+				window.bricksData.videoInstances[elementId].startTime = startTime
+				window.bricksData.videoInstances[elementId].endTime = endTime
+				window.bricksData.videoInstances[elementId].videoLoop = videoLoop
+
+				// Set custom start time & play video
+				let loadedmetadata = function () {
+					if (window.bricksData.videoInstances[elementId].startTime) {
+						this.currentTime = window.bricksData.videoInstances[elementId].startTime
+						this.play()
+					}
+				}
+
+				// Current playback time is greater than or equal to end time OR video duration
+				let timeupdate = function () {
+					// NOTE: media controller position changes ever 15 to 250ms (we use 250ms)
+					if (
+						this.currentTime >=
+						(window.bricksData.videoInstances[elementId].endTime || this.duration) - 0.25
+					) {
+						// Loop disabled: Pause video
+						if (window.bricksData.videoInstances[elementId].videoLoop) {
+							// Reset to start time
+							this.currentTime = window.bricksData.videoInstances[elementId].startTime
+
+							// Video is not playing: Play it
+							if (videoElement.paused) {
+								this.play()
+							}
+						} else {
+							this.pause()
+						}
+					}
+				}
+
+				// Set custom start time & play video
+				let ended = function () {
+					if (
+						window.bricksData.videoInstances[elementId].videoLoop &&
+						window.bricksData.videoInstances[elementId].startTime
+					) {
+						this.currentTime = window.bricksData.videoInstances[elementId].startTime
+						this.play()
+					}
+				}
+
+				/**
+				 * Custom start and/or end time set
+				 *
+				 * Add event listeners to the video element (if not already added; check via .listening class)
+				 */
+				if (!videoElement.classList.contains('listening') && (startTime || endTime)) {
+					videoElement.classList.add('listening')
+
+					videoElement.addEventListener('loadedmetadata', loadedmetadata)
+					videoElement.addEventListener('timeupdate', timeupdate)
+					videoElement.addEventListener('ended', ended)
+				}
+			}
 		}
 
 		if (videoScale) {
 			videoElement.style.transform = `translate(-50%, -50%) scale(${videoScale})`
 		}
 
-		// Frontend: Lazy load video
+		// STEP: Lazy load video (frontend only)
 		if (bricksIsFrontend) {
 			if (videoWrapper.classList.contains('bricks-lazy-video')) {
 				new BricksIntersect({
@@ -1643,6 +1848,9 @@ const bricksAccordionFn = new BricksFunction({
 			target.style.marginTop = 0
 			target.style.marginBottom = 0
 
+			// Get the accordion item, target is the .accordion-content-wrapper
+			let item = target.parentNode
+
 			window.setTimeout(() => {
 				target.style.display = 'none'
 				target.style.removeProperty('height')
@@ -1653,6 +1861,8 @@ const bricksAccordionFn = new BricksFunction({
 				target.style.removeProperty('overflow')
 				target.style.removeProperty('transition-duration')
 				target.style.removeProperty('transition-property')
+
+				item.classList.remove('brx-open')
 			}, duration)
 		}
 
@@ -1684,11 +1894,16 @@ const bricksAccordionFn = new BricksFunction({
 			target.style.removeProperty('margin-top')
 			target.style.removeProperty('margin-bottom')
 
+			// Get the accordion item, target is the .accordion-content-wrapper
+			let item = target.parentNode
+
 			window.setTimeout(() => {
 				target.style.removeProperty('height')
 				target.style.removeProperty('overflow')
 				target.style.removeProperty('transition-duration')
 				target.style.removeProperty('transition-property')
+
+				item.classList.add('brx-open')
 			}, duration)
 		}
 
@@ -1706,6 +1921,11 @@ const bricksAccordionFn = new BricksFunction({
 				? 0
 				: accordion.dataset.transition
 			: 200
+		let expandFirstItem = accordion.dataset.scriptArgs?.includes('expandFirstItem')
+		let expandAnchorId = accordion.dataset.scriptArgs?.includes('expandAnchorId')
+		let independentToggle = accordion.dataset.scriptArgs?.includes('independentToggle')
+
+		let hash = window.location.hash || '' // Hash with # prefix
 
 		// Only recognise nestables as accordion items
 		items = items.filter(
@@ -1718,8 +1938,14 @@ const bricksAccordionFn = new BricksFunction({
 		)
 
 		items.forEach((item, index) => {
-			// Expand first item: Check data-script-args
-			if (index === 0 && accordion.dataset.scriptArgs?.includes('expandFirstItem')) {
+			// Expand first item
+			if (index === 0 && expandFirstItem) {
+				item.classList.add('brx-open')
+			}
+
+			// Expand anchor ID: Anchor ID matches current hash (@since 1.8.6)
+			let anchorId = item.dataset.anchorId ? `#${item.dataset.anchorId}` : ''
+			if (expandAnchorId && anchorId && anchorId === hash) {
 				item.classList.add('brx-open')
 			}
 
@@ -1757,23 +1983,33 @@ const bricksAccordionFn = new BricksFunction({
 				e.stopPropagation()
 
 				// No independent toggle: slideUp .open item (if it's currently not open)
-				if (!accordion.dataset.scriptArgs?.includes('independentToggle')) {
-					let openItem = accordion.querySelector('.brx-open')
+				if (!independentToggle) {
+					let openItems = accordion.querySelectorAll('.brx-open')
 
-					if (openItem) {
-						let openContent = openItem.querySelector('.accordion-content-wrapper')
+					if (openItems.length) {
+						openItems.forEach((openItem) => {
+							let openContent = openItem.querySelector('.accordion-content-wrapper')
 
-						if (openContent && openContent !== content) {
-							openItem.classList.remove('brx-open')
-
-							slideUp(openContent, duration)
-						}
+							if (openContent && openContent !== content) {
+								slideUp(openContent, duration)
+							}
+						})
 					}
+				}
+
+				// Check if item is currently going to be opened (must be captured before slideToggle)
+				let openingItem = !item.classList.contains('brx-open')
+
+				// Update URL hash (@since 1.8.6)
+				if (anchorId && openingItem) {
+					window.location.hash = anchorId
+				} else {
+					// Remove hash from URL
+					history.pushState('', document.title, window.location.pathname + window.location.search)
 				}
 
 				// slideToggle target accordion content
 				slideToggle(content, duration)
-				item.classList.toggle('brx-open')
 			})
 		})
 	}
@@ -1806,7 +2042,15 @@ const bricksAnimatedTypingFn = new BricksFunction({
 			return
 		}
 
-		if (window.bricksData.animatedTypingInstances[scriptId]) {
+		/**
+		 * Destroy typing animation
+		 *
+		 * @since 1.8.5: If not inside a splideJS slider (#862jz1gtn)
+		 */
+		if (
+			window.bricksData.animatedTypingInstances[scriptId] &&
+			!element.closest('.brxe-slider-nested.splide')
+		) {
 			window.bricksData.animatedTypingInstances[scriptId].destroy()
 		}
 
@@ -1843,6 +2087,43 @@ const bricksAudioFn = new BricksFunction({
 })
 function bricksAudio() {
 	bricksAudioFn.run()
+}
+
+/**
+ * Element: Post Reading Time (of #brx-content text)
+ *
+ * @since 1.8.5
+ */
+const bricksPostReadingTimeFn = new BricksFunction({
+	parentNode: document,
+	selector: '.brxe-post-reading-time',
+	eachElement: (element) => {
+		let contentSelector = element.dataset.contentSelector || '.brxe-post-content'
+		let content = document.querySelector(contentSelector)
+
+		// Fallback to #brx-content
+		if (!content) {
+			content = document.querySelector('#brx-content')
+		}
+
+		if (!content) {
+			return
+		}
+
+		let wordsPerMinute = element.getAttribute('data-wpm') || 200
+		let prefix = element.getAttribute('data-prefix') || ''
+		let suffix = element.getAttribute('data-suffix') || ''
+
+		let articleText = content.textContent
+		let wordCount = articleText.split(' ').length
+		let readingTime = Math.ceil(wordCount / parseInt(wordsPerMinute))
+
+		element.textContent = prefix + readingTime + suffix
+	}
+})
+
+function bricksPostReadingTime() {
+	bricksPostReadingTimeFn.run()
 }
 
 /**
@@ -2142,6 +2423,112 @@ const bricksCounterFn = new BricksFunction({
 
 function bricksCounter() {
 	bricksCounterFn.run()
+}
+
+/**
+ * Element: Post Table of Contents (tocbot)
+ *
+ * @since 1.8.5
+ */
+const bricksTableOfContentsFn = new BricksFunction({
+	parentNode: document,
+	selector: '.brxe-post-toc',
+	eachElement: (toc) => {
+		let scriptId = toc.dataset.scriptId
+
+		// Destroy existing tocbot instance
+		if (window.bricksData.tocbotInstances[scriptId]) {
+			tocbot.destroy()
+		}
+
+		// STEP: Create IDs for each heading in the content (if heading has no 'id')
+		let contentSelector = toc.dataset.contentSelector || '.brxe-post-content'
+		let content = document.querySelector(contentSelector)
+
+		// Fallback to #brx-content
+		if (!content) {
+			content = document.querySelector('#brx-content')
+		}
+
+		if (!content) {
+			return
+		}
+
+		let headingSelectors = toc.dataset.headingSelectors || 'h2, h3'
+		let headings = content.querySelectorAll(headingSelectors)
+		let headingMap = {}
+
+		headings.forEach((heading) => {
+			let id =
+				heading?.id ||
+				heading.textContent
+					.trim()
+					.toLowerCase()
+					.normalize('NFD') // Remove accents
+					.replace(/[\u0300-\u036f]/g, '') // Remove accents
+					.split(' ')
+					.join('-')
+					.replace(/[!@#$%^&*():=]/gi, '') // Remove special characters
+					.replace(/\//gi, '-') // Remove special characters
+
+			headingMap[id] = !isNaN(headingMap[id]) ? ++headingMap[id] : 0
+
+			if (headingMap[id]) {
+				heading.id = id + '-' + headingMap[id]
+			} else {
+				heading.id = id
+			}
+		})
+
+		headingsOffset = parseInt(toc.dataset.headingsOffset) || 0
+
+		// STEP: tocbot options (https://tscanlin.github.io/tocbot/#api)
+		let options = {
+			tocSelector: '.brxe-post-toc',
+			contentSelector: contentSelector,
+			headingSelector: headingSelectors,
+			ignoreSelector: toc.dataset.ignoreSelector || '.toc-ignore',
+			hasInnerContainers: false,
+			linkClass: 'toc-link',
+			extraLinkClasses: '',
+			activeLinkClass: 'is-active-link',
+			listClass: 'toc-list',
+			extraListClasses: '',
+			isCollapsedClass: 'is-collapsed',
+			collapsibleClass: 'is-collapsible',
+			listItemClass: 'toc-list-item',
+			activeListItemClass: 'is-active-li',
+			collapseDepth: toc.dataset.collapseInactive ? 0 : 6,
+			scrollSmooth: true,
+			scrollSmoothOffset: headingsOffset ? -headingsOffset : 0,
+			headingsOffset: headingsOffset,
+			throttleTimeout: 0,
+			positionFixedSelector: null,
+			positionFixedClass: 'is-position-fixed',
+			fixedSidebarOffset: 'auto',
+			includeHtml: false,
+			includeTitleTags: false,
+			orderedList: false, // TODO: Add "Numbered" setting
+			scrollContainer: null,
+			skipRendering: false,
+			headingLabelCallback: false,
+			ignoreHiddenElements: false,
+			headingObjectCallback: null,
+			basePath: '',
+			disableTocScrollSync: false,
+			tocScrollOffset: 0
+		}
+
+		// Init tocbot
+		tocbot.init(options)
+
+		// Store tocbot instance in bricksData to destroy and re-init
+		window.bricksData.tocbotInstances[scriptId] = tocbot
+	}
+})
+
+function bricksTableOfContents() {
+	bricksTableOfContentsFn.run()
 }
 
 /**
@@ -2997,6 +3384,44 @@ function bricksPricingTables() {
 }
 
 /**
+ * Element: Post Reading Progress Bar
+ *
+ * @since 1.8.5
+ */
+const bricksPostReadingProgressBarFn = new BricksFunction({
+	parentNode: document,
+	selector: '.brxe-post-reading-progress-bar',
+	eachElement: (element) => {
+		// Get content element
+		let contentEl = element.dataset.contentSelector
+			? document.querySelector(element.dataset.contentSelector)
+			: false
+
+		window.addEventListener('scroll', () => {
+			// Scrolled from document top
+			let scrolled = window.scrollY
+
+			// Document height minus the visible part of the window
+			let height = document.documentElement.scrollHeight - document.documentElement.clientHeight
+
+			// STEP: Calculate scroll position of specific element
+			if (contentEl) {
+				let rect = contentEl.getBoundingClientRect()
+				height = rect.height
+				scrolled = rect.top > 0 ? 0 : -rect.top
+			}
+
+			// Calculate the percentage of the document or contentEl that has been scrolled from the top
+			element.setAttribute('value', Math.ceil((scrolled / height) * 100))
+		})
+	}
+})
+
+function bricksPostReadingProgressBar() {
+	bricksPostReadingProgressBarFn.run()
+}
+
+/**
  * Element: Progress Bar (animate fill-up bar)
  */
 const bricksProgressBarFn = new BricksFunction({
@@ -3684,12 +4109,13 @@ function bricksPopups() {
 		// STEP: Get popup element
 		const popupElement = event.detail?.popupElement || false
 
-		if (!popupElement) {
+		if (!popupElement || !bricksIsFrontend) {
 			return
 		}
 
-		if (bricksIsFrontend) {
-			// STEP: Autofocus on first focusable element inside popup (@since 1.8.4)
+		// Timeout is necessary to allow popup to be fully rendered & focusable (e.g. opening animation set)
+		setTimeout(() => {
+			//STEP: Autofocus on first focusable element inside popup (@since 1.8.4)
 			if (!popupElement.dataset?.popupDisableAutoFocus) {
 				let focusableElements = bricksGetFocusables(popupElement)
 
@@ -3702,43 +4128,43 @@ function bricksPopups() {
 			if (popupElement.dataset?.popupScrollToTop) {
 				popupElement.querySelector('.brx-popup-content')?.scrollTo(0, 0)
 			}
+		}, 100)
 
-			// STEP: Add focus trap - Not allowing to tab outside popup
-			const focusTrapEventHandler = (event) => popupFocusTrap(event, popupElement)
+		// STEP: Add focus trap - Not allowing to tab outside popup
+		const focusTrapEventHandler = (event) => popupFocusTrap(event, popupElement)
 
-			document.addEventListener('keydown', focusTrapEventHandler)
+		document.addEventListener('keydown', focusTrapEventHandler)
 
-			// Remove the focus trap event listener when popup is closed
+		// Remove the focus trap event listener when popup is closed
+		document.addEventListener('bricks/popup/close', () => {
+			document.removeEventListener('keydown', focusTrapEventHandler)
+		})
+
+		// STEP: Add close event listeners for popup
+		const popupCloseOn = popupElement.dataset?.popupCloseOn || 'backdrop-esc'
+
+		if (popupCloseOn.includes('esc')) {
+			// STEP: Listen for ESC key pressed to close popup
+			const escEventHandler = (event) => escClosePopup(event, popupElement)
+
+			document.addEventListener('keyup', escEventHandler)
+
+			// Remove the ESC event listener when popup is closed
 			document.addEventListener('bricks/popup/close', () => {
-				document.removeEventListener('keydown', focusTrapEventHandler)
+				document.removeEventListener('keyup', escEventHandler)
 			})
+		}
 
-			// STEP: Add close event listeners for popup
-			const popupCloseOn = popupElement.dataset?.popupCloseOn || 'backdrop-esc'
+		if (popupCloseOn.includes('backdrop')) {
+			// STEP: Listen for click outside popup to close popup
+			const backdropEventHandler = (event) => backdropClosePopup(event, popupElement)
 
-			if (popupCloseOn.includes('esc')) {
-				// STEP: Listen for ESC key pressed to close popup
-				const escEventHandler = (event) => escClosePopup(event, popupElement)
+			document.addEventListener('click', backdropEventHandler)
 
-				document.addEventListener('keyup', escEventHandler)
-
-				// Remove the ESC event listener when popup is closed
-				document.addEventListener('bricks/popup/close', () => {
-					document.removeEventListener('keyup', escEventHandler)
-				})
-			}
-
-			if (popupCloseOn.includes('backdrop')) {
-				// STEP: Listen for click outside popup to close popup
-				const backdropEventHandler = (event) => backdropClosePopup(event, popupElement)
-
-				document.addEventListener('click', backdropEventHandler)
-
-				// Remove the backdrop event listener when popup is closed
-				document.addEventListener('bricks/popup/close', () => {
-					document.removeEventListener('click', backdropEventHandler)
-				})
-			}
+			// Remove the backdrop event listener when popup is closed
+			document.addEventListener('bricks/popup/close', () => {
+				document.removeEventListener('click', backdropEventHandler)
+			})
 		}
 	})
 }
@@ -3789,7 +4215,7 @@ function bricksScrollInteractions() {
 function bricksInteractionCallback(event) {
 	// Possible improvement: Add "Don't add e.preventDefault() to clikc interaction"
 	if (event?.type === 'click') {
-		// Return: Don't run interaction when clicking on an anchor link (except for # itself)
+		// Return: Don't run interaction when clicking on an anchor ID (except for # itself)
 		if (
 			event.target.tagName === 'A' &&
 			event.target.getAttribute('href') !== '#' &&
@@ -3821,7 +4247,6 @@ function bricksInteractionCallbackExecution(sourceEl, config) {
 	const targetMode = config?.target || 'self'
 
 	let target
-
 	// Return: Interaction condition not fulfilled
 	if (!bricksInteractionCheckConditions(config)) {
 		return
@@ -3836,14 +4261,15 @@ function bricksInteractionCallbackExecution(sourceEl, config) {
 
 		case 'popup':
 			if (config?.templateId) {
-				// Target looping popup by matching data-interaction-loop-id with data-popup-loop-id (@since 1.8.4)
-				const uniqueId = sourceEl.dataset?.interactionLoopId || false
-
-				if (uniqueId) {
-					target = bricksQuerySelectorAll(document, `.brx-popup[data-popup-loop-id="${uniqueId}"]`)
+				// Target looping popup by matching 'data-interaction-loop-id' with 'data-popup-loop-id' + templateId (@since 1.8.4)
+				if (sourceEl.dataset?.interactionLoopId) {
+					target = bricksQuerySelectorAll(
+						document,
+						`.brx-popup[data-popup-id="${config.templateId}"][data-popup-loop-id="${sourceEl.dataset.interactionLoopId}"]`
+					)
 				}
 
-				// If no popup found, try to find popup by data-popup-id
+				// No popup found: Try finding popup by 'data-popup-id'
 				if (!target || !target.length) {
 					target = bricksQuerySelectorAll(
 						document,
@@ -3998,15 +4424,18 @@ function bricksInteractionCallbackExecution(sourceEl, config) {
 						}
 					}
 
-					// Animate popup (@since 1.7 - Popup use removeAnimationAfterMs for setTimeout duration)
-					if (isPopup) {
+					/**
+					 * Animate popup
+					 *
+					 * @since 1.7 - Popup use removeAnimationAfterMs for setTimeout duration)
+					 * @since 1.8.5 - Check config.trigger to avoid recursive error (#866aqzzwf)
+					 */
+					if (isPopup && config.trigger !== 'showPopup' && config.trigger !== 'hidePopup') {
 						let popupNode = el.parentNode // el = .brx-popup-content
-						// Avoid recursive error (@since 1.8.4)
-						if (popupNode !== sourceEl) {
-							// Animate: open popup (if animationType includes 'In')
-							if (animationType.includes('In')) {
-								bricksOpenPopup(popupNode, removeAnimationAfterMs)
-							}
+
+						// Animate: open popup (if animationType includes 'In')
+						if (animationType.includes('In')) {
+							bricksOpenPopup(popupNode, removeAnimationAfterMs)
 						}
 					}
 
@@ -4014,7 +4443,7 @@ function bricksInteractionCallbackExecution(sourceEl, config) {
 
 					el.setAttribute('data-animation', animationType)
 
-					el.setAttribute('data-interaction-id', config.id || '')
+					el.setAttribute('data-animation-id', config.id || '')
 
 					// Remove animation class after animation duration + delay to run again
 					bricksAnimationFn.run({
@@ -5065,12 +5494,21 @@ function bricksSubmenuListeners() {
 				return
 			}
 
+<<<<<<< HEAD
 			// Prevent default on anchor link (#)
 			if (linkUrl === '#') {
 				e.preventDefault()
 			}
 
 			// Click on section anchor link (e.g. #section)
+=======
+			// Prevent default on anchor ID (#)
+			else if (linkUrl === '#') {
+				e.preventDefault()
+			}
+
+			// Click on section anchor ID (e.g. #section) inside offcanvas: Close offcanvas
+>>>>>>> improve/#862jy7jtk-open-tabs-or-accordion-via-anchor-link
 			else {
 				// Inside offcanvas: Close offcanvas
 				let offcanvas = e.target.closest('.brxe-offcanvas')
@@ -5441,7 +5879,7 @@ function bricksNavMenuMobile() {
 		}
 	})
 
-	// STEP: Close mobile menu: Click on mobile menu overlay OR section anchor link was clicked (e.g. #section)
+	// STEP: Close mobile menu: Click on mobile menu overlay OR section anchor ID was clicked (e.g. #section)
 	document.addEventListener('click', (e) => {
 		let navMenu = e.target.closest('.brxe-nav-menu')
 
@@ -5457,7 +5895,7 @@ function bricksNavMenuMobile() {
 			navMenu.querySelector('.bricks-mobile-menu-toggle').setAttribute('aria-expanded', false)
 		}
 
-		// Click on anchor link: Close mobile menu
+		// Click on anchor ID: Close mobile menu
 		else if (e.target.closest('.bricks-mobile-menu-wrapper')) {
 			let navLinkUrl = e.target.tagName === 'A' ? e.target.getAttribute('href') : ''
 
@@ -5611,12 +6049,14 @@ document.addEventListener('DOMContentLoaded', (event) => {
 	bricksAudio()
 	bricksCountdown()
 	bricksCounter()
+	bricksTableOfContents()
 	bricksIsotope()
 	bricksPricingTables()
 	bricksVideo()
 	bricksLazyLoad()
 	bricksAnimation()
 	bricksPieChart()
+	bricksPostReadingProgressBar()
 	bricksProgressBar()
 	bricksForm()
 	bricksInitQueryLoopInstances()
@@ -5626,6 +6066,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 	bricksTabs()
 	bricksVideoOverlayClickDetector()
 	bricksBackgroundVideoInit()
+	bricksPostReadingTime()
 
 	bricksNavNested()
 	bricksOffcanvas()
@@ -5663,6 +6104,9 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
 		// Set mobile menu open toggle parent div display according to toggle display
 		bricksTimeouts.bricksToggleDisplay = setTimeout(bricksToggleDisplay, 100)
+
+		// NOTE: Just for reference. Not in use (@since 1.8.5)
+		// bricksTimeouts.bricksBackgroundVideo = setTimeout(bricksBackgroundVideoInit, 100)
 	})
 
 	/**

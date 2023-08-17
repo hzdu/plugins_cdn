@@ -17,6 +17,8 @@ class ChoosableVariationOrderBumpModal extends VariableProductFormModal {
         this.event = e;
 
         jQuery( document.body ).on( 'submit', 'form.cfw-modal-order-bump-form', this.handleBumpFormSubmit.bind( this )  );
+        jQuery( document.body ).on( 'woocommerce_variation_has_changed', 'form.cfw-modal-order-bump-form', this.syncPrice.bind( this )  );
+        jQuery( document.body ).on( 'wc_variation_form', 'form.cfw-modal-order-bump-form', this.syncPrice.bind( this )  );
         jQuery( document.body  ).on( 'click', '.cfw-bump-reject', this.handleRejection.bind( this ) );
     }
 
@@ -76,6 +78,16 @@ class ChoosableVariationOrderBumpModal extends VariableProductFormModal {
         ).always( () => {
             this.close();
         } );
+    }
+
+    syncPrice( e: Event ): void {
+        const form = jQuery( e.currentTarget );
+
+        const updatedPrice = form.find( '.single_variation_wrap .woocommerce-variation-price' ).html();
+
+        if ( updatedPrice ) {
+            form.find( '.cfw-product-form-modal-price' ).html( updatedPrice );
+        }
     }
 
     handleRejection(): void {
