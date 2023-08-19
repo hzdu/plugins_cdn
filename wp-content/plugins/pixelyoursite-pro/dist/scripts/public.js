@@ -1591,6 +1591,15 @@ if (!String.prototype.trim) {
                                 options.gdpr.pinterest_disabled_by_api = res.data.pinterest_disabled_by_api;
                                 options.gdpr.bing_disabled_by_api = res.data.bing_disabled_by_api;
 
+                                options.cookie.externalID_disabled_by_api = res.data.externalID_disabled_by_api;
+                                options.cookie.disabled_all_cookie = res.data.disabled_all_cookie;
+                                options.cookie.disabled_advanced_form_data_cookie = res.data.disabled_advanced_form_data_cookie;
+                                options.cookie.disabled_landing_page_cookie = res.data.disabled_landing_page_cookie;
+                                options.cookie.disabled_first_visit_cookie = res.data.disabled_first_visit_cookie;
+                                options.cookie.disabled_trafficsource_cookie = res.data.disabled_trafficsource_cookie;
+                                options.cookie.disabled_utmTerms_cookie = res.data.disabled_utmTerms_cookie;
+                                options.cookie.disabled_utmId_cookie = res.data.disabled_utmId_cookie;
+
                             }
 
                             loadPixels();
@@ -3556,15 +3565,17 @@ if (!String.prototype.trim) {
             if(typeof window.pys_event_data_filter === "function" && window.pys_disable_event_filter(event_name,'google_ads')) {
                 return;
             }
-
             var _params = Utils.copyProperties(data.params,{});
             var ids = data.ids.filter(function (pixelId) {
                 return !Utils.hideMatchingPixel(pixelId, 'google_ads');
             });
-            var coversionIds = data.conversion_ids.filter(function (conversion_id) {
+            var coversionIds = data.hasOwnProperty('conversion_ids') ? data.conversion_ids.filter(function (conversion_id) {
                 return !Utils.hideMatchingPixel(conversion_id, 'google_ads');
-            });
-            var conversion_labels = data.conversion_labels;
+            }) : [];
+            var conversion_labels = data.hasOwnProperty('conversion_labels') ? data.conversion_labels.filter(function (conversion_label) {
+                conversion_id = conversion_label.split('/')[0];
+                return !Utils.hideMatchingPixel(conversion_id, 'google_ads');
+            }) : [];
 
             Utils.copyProperties(Utils.getRequestParams(), _params);
             var _fireEvent = function (conversion_id,event_name) {
