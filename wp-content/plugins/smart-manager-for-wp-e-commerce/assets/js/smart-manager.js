@@ -216,6 +216,7 @@ Smart_Manager.prototype.init = function() {
 
 		this.sm_nonce = this.sm_dashboards['sm_nonce'];
 		delete this.sm_dashboards['sm_nonce'];
+		this.sm_is_woo79 = (sm_beta_params.hasOwnProperty('SM_IS_WOO79')) ? sm_beta_params.SM_IS_WOO79 : '';
 	}
 	
 	window.smart_manager.setDashboardDisplayName();
@@ -483,14 +484,14 @@ Smart_Manager.prototype.loadNavBar = function() {
 
 	jQuery('#sm_nav_bar #sm_nav_bar_right').append(`<div class="sm_nav_bar_links">
 					<div>
-						<a href="admin.php?page=smart-manager&landing-page=sm-faqs" target="_blank" title="${_x('Docs', 'tooltip', 'smart-manager-for-wp-e-commerce')}">
+						<a href="admin.php?page=smart-manager&landing-page=sm-faqs" class="sm_docs_settings_link" target="_blank" title="${_x('Docs', 'tooltip', 'smart-manager-for-wp-e-commerce')}">
 							<svg stroke="currentColor" fill="none" viewBox="0 0 24 24">
 								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
 							</svg>
 						</a>
 					</div>
 					<div id="sm_nav_bar_settings_btn" title="${_x('Settings', 'tooltip', 'smart-manager-for-wp-e-commerce')}" style="cursor:pointer; ">
-						<a id="sm_general_settings" href="#" title="${_x('General settings', 'tooltip', 'smart-manager-for-wp-e-commerce')}">
+						<a id="sm_general_settings" class="sm_docs_settings_link" href="#" title="${_x('General settings', 'tooltip', 'smart-manager-for-wp-e-commerce')}">
 							<svg stroke="currentColor" fill="none" viewBox="0 0 24 24">
 								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
 								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
@@ -3379,7 +3380,9 @@ Smart_Manager.prototype.getKeyID = function() {
         case ('undefined' !== typeof window.smart_manager.taxonomyDashboards[window.smart_manager.dashboard_key]):
 			return 'terms_term_id'
 		case ('user' === window.smart_manager.dashboard_key):
-			return 'users_id' 
+			return 'users_id'
+		case (['shop_order', 'shop_subscription'].includes(window.smart_manager.dashboard_key) && "undefined" !== typeof(window.smart_manager.sm_is_woo79) && ('true' === window.smart_manager.sm_is_woo79)):
+			return 'wc_orders_id' 
 		default:
 			return 'posts_id';
 	}

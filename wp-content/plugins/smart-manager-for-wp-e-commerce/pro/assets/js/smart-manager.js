@@ -441,8 +441,8 @@ Smart_Manager.prototype.generateCsvExport = function() {
                             SM_IS_WOO30: window.smart_manager.sm_is_woo30,
                             sort_params: (window.smart_manager.currentDashboardModel.hasOwnProperty('sort_params') ) ? window.smart_manager.currentDashboardModel.sort_params : '',
                             table_model: (window.smart_manager.currentDashboardModel.hasOwnProperty('tables') ) ? window.smart_manager.currentDashboardModel.tables : '',
-                            search_text: window.smart_manager.simpleSearchText,
-                            advanced_search_query: JSON.stringify(window.smart_manager.advancedSearchQuery),
+                            search_text: (window.smart_manager.searchType == 'simple') ? window.smart_manager.simpleSearchText : '',
+						    advanced_search_query: JSON.stringify((window.smart_manager.searchType != 'simple') ? window.smart_manager.advancedSearchQuery : []),
                             is_taxonomy: window.smart_manager.isTaxonomyDashboard() || 0,
                             storewide_option: (true === window.smart_manager.exportStore) ? 'entire_store' : '',
                             selected_ids: (window.smart_manager.getSelectedKeyIds()) ? JSON.stringify(window.smart_manager.getSelectedKeyIds()) : '',
@@ -456,7 +456,7 @@ Smart_Manager.prototype.generateCsvExport = function() {
         params['active_module'] = (window.smart_manager.viewPostTypes.hasOwnProperty(viewSlug)) ? window.smart_manager.viewPostTypes[viewSlug] : window.smart_manager.dashboard_key;
     }
 
-    let export_url = window.smart_manager.sm_ajax_url + '&cmd='+ params['cmd'] +'&active_module='+ params['active_module'] +'&security='+ params['security'] +'&pro='+ params['pro'] +'&SM_IS_WOO30='+ params['SM_IS_WOO30'] +'&is_taxonomy='+ params['is_taxonomy'] +'&sort_params='+ encodeURIComponent(JSON.stringify(params['sort_params'])) +'&table_model='+ encodeURIComponent(JSON.stringify(params['table_model'])) +'&advanced_search_query='+ encodeURIComponent(JSON.stringify(window.smart_manager.advancedSearchQuery))+'&search_text='+ params['search_text'] + '&storewide_option=' + params['storewide_option'] + '&selected_ids=' + params['selected_ids'];
+    let export_url = window.smart_manager.sm_ajax_url + '&cmd='+ params['cmd'] +'&active_module='+ params['active_module'] +'&security='+ params['security'] +'&pro='+ params['pro'] +'&SM_IS_WOO30='+ params['SM_IS_WOO30'] +'&is_taxonomy='+ params['is_taxonomy'] +'&sort_params='+ encodeURIComponent(JSON.stringify(params['sort_params'])) +'&table_model='+ encodeURIComponent(JSON.stringify(params['table_model'])) +'&advanced_search_query='+params['advanced_search_query']+'&search_text='+ params['search_text'] + '&storewide_option=' + params['storewide_option'] + '&selected_ids=' + params['selected_ids'];
     export_url += ( window.smart_manager.date_params.hasOwnProperty('date_filter_params') ) ? '&date_filter_params='+ window.smart_manager.date_params['date_filter_params'] : '';
     export_url += ( window.smart_manager.date_params.hasOwnProperty('date_filter_query') ) ? '&date_filter_query='+ window.smart_manager.date_params['date_filter_query'] : '';
     
@@ -464,7 +464,7 @@ Smart_Manager.prototype.generateCsvExport = function() {
         export_url += '&is_view='+params['is_view']+'&active_view='+params['active_view'];
     }
 
-    window.location = export_url;
+    setTimeout(()=>{window.location = export_url},500);
 }
 
 // ========================================================================
@@ -489,10 +489,11 @@ Smart_Manager.prototype.printInvoice = function() {
                         SM_IS_WOO30: window.smart_manager.sm_is_woo30,
                         SM_IS_WOO22: window.smart_manager.sm_id_woo22,
                         SM_IS_WOO21: window.smart_manager.sm_is_woo21,
-                        search_text: window.smart_manager.simpleSearchText
+                        search_text: (window.smart_manager.searchType == 'simple') ? window.smart_manager.simpleSearchText : '',
+						advanced_search_query: JSON.stringify((window.smart_manager.searchType != 'simple') ? window.smart_manager.advancedSearchQuery : [])
                     };
 
-    let url = window.smart_manager.sm_ajax_url + '&cmd='+ params.data['cmd'] +'&active_module='+ params.data['active_module'] +'&security='+ params.data['security'] +'&pro='+ params.data['pro'] +'&SM_IS_WOO30='+ params.data['SM_IS_WOO30'] +'&SM_IS_WOO30='+ params.data['SM_IS_WOO30'] +'&sort_params='+ encodeURIComponent(JSON.stringify(params.data['sort_params'])) +'&table_model='+ encodeURIComponent(JSON.stringify(params.data['table_model'])) +'&advanced_search_query='+ encodeURIComponent(JSON.stringify(window.smart_manager.advancedSearchQuery)) +'&search_text='+ params.data['search_text'] + '&selected_ids=' + params.data['selected_ids'];
+    let url = window.smart_manager.sm_ajax_url + '&cmd='+ params.data['cmd'] +'&active_module='+ params.data['active_module'] +'&security='+ params.data['security'] +'&pro='+ params.data['pro'] +'&SM_IS_WOO30='+ params.data['SM_IS_WOO30'] +'&SM_IS_WOO30='+ params.data['SM_IS_WOO30'] +'&sort_params='+ encodeURIComponent(JSON.stringify(params.data['sort_params'])) +'&table_model='+ encodeURIComponent(JSON.stringify(params.data['table_model'])) +'&advanced_search_query='+ params.data['advanced_search_query'] +'&search_text='+ params.data['search_text'] + '&selected_ids=' + params.data['selected_ids'];
     params.call_url = url;
     params.data_type = 'html';
 
@@ -545,7 +546,7 @@ Smart_Manager.prototype.duplicateRecords = function() {
 
         params.showLoader = false;
 
-        if( window.smart_manager.simpleSearchText != '' || window.smart_manager.advancedSearchQuery.length > 0 ) {
+        if(window.smart_manager.isFilteredData()) {
             params.data.filteredResults = 1;
         }
 
@@ -785,7 +786,7 @@ Smart_Manager.prototype.processBatchUpdate = function() {
     // Code for passing tasks params 
     params.data = ("undefined" !== typeof(window.smart_manager.addTasksParams) && "function" === typeof(window.smart_manager.addTasksParams) && 1 == window.smart_manager.sm_beta_pro) ? window.smart_manager.addTasksParams(params.data) : params.data;
     params.showLoader = false;
-    if( (window.smart_manager.simpleSearchText != '' && window.smart_manager.searchType == 'simple') || (window.smart_manager.advancedSearchQuery.length > 0 && window.smart_manager.searchType != 'simple') ) {
+    if(window.smart_manager.isFilteredData()) {
         params.data.filteredResults = 1;
     }
     window.smart_manager.send_request(params, function(response) {});
@@ -1432,7 +1433,7 @@ Smart_Manager.prototype.deleteAndUndoRecords = function(params = {}){
         }
     },1);
     params.showLoader = false;
-    if('' !== window.smart_manager.simpleSearchText || window.smart_manager.advancedSearchQuery.length > 0){
+    if(window.smart_manager.isFilteredData()){
         params.data.filteredResults = 1;
     }
     window.smart_manager.send_request(params,function(response){});
@@ -1467,6 +1468,7 @@ Smart_Manager.prototype.taskActionsModal = function(args = {}){
         }
         params.content = _x('Are you sure you want to '+paramsContent+' ', 'modal content', 'smart-manager-for-wp-e-commerce') + '<strong>'+ args.btnText.toLowerCase() + '</strong>?';
         if(window.smart_manager.selectedRows.length > 0 || window.smart_manager.loadedTotalRecords){
+            params.btnParams.hideOnYes = false;
             window.smart_manager.showConfirmDialog(params);
         } else{
             window.smart_manager.notification = {message: _x('No task to '+paramsContent, 'warning', 'smart-manager-for-wp-e-commerce')}
