@@ -1,5 +1,3 @@
-import DataService from '../Services/DataService';
-
 class Accordion {
     private readonly _targetSelector: string;
 
@@ -17,7 +15,7 @@ class Accordion {
             Accordion.showContent( jQuery( e.target ) );
         } );
 
-        jQuery( targetSelectorRadio ).trigger( 'change' );
+        jQuery( targetSelectorRadio ).filter( ':checked' ).trigger( 'change' );
 
         jQuery( document.body ).on( 'updated_checkout', () => {
             jQuery( targetSelector ).each( ( index, element ) => {

@@ -11,6 +11,7 @@ import KlarnaPayments                                    from './Compatibility/G
 import NMI                                               from './Compatibility/Gateways/NMI';
 import PayPalForWooCommerce                              from './Compatibility/Gateways/PayPalForWooCommerce';
 import PayPalPlusCw                                      from './Compatibility/Gateways/PayPalPlusCw';
+import PaymentPluginsPayPal                              from './Compatibility/Gateways/PaymentPluginsPayPal';
 import Square                                            from './Compatibility/Gateways/Square';
 import Stripe                                            from './Compatibility/Gateways/Stripe';
 import WooCommercePensoPay                               from './Compatibility/Gateways/WooCommercePensoPay';
@@ -343,6 +344,7 @@ class Main {
             new MyShipper(),
             new ExtraCheckoutFieldsBrazil(),
             new NMI(),
+            new PaymentPluginsPayPal(),
         ].forEach( ( compat ) => compat.maybeLoad() );
     }
 

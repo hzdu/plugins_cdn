@@ -38,6 +38,7 @@ class CompleteOrderAction extends Action {
             }
         } catch ( err ) {
             jQuery( document.body ).trigger( 'cfw_complete_order_failure' );
+            LoggingService.logEvent( 'Fired cfw_complete_order_failure event.' );
 
             // Reload page
             if ( resp.reload === true ) {

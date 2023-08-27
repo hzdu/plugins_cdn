@@ -57,7 +57,7 @@ class FetchifyAddressAutocompleteService {
         jQuery( `#${prefix}_country_field` ).parents( '.cfw-input-wrap-row' ).slideDown( 300 );
         jQuery( `#${prefix}_state_field` ).parents( '.cfw-input-wrap-row' ).slideDown( 300 );
         jQuery( `#${prefix}_company_field` ).parents( '.cfw-input-wrap-row' ).slideDown( 300, () => {
-            jQuery( `#${prefix}_address_1` ).focus();
+            jQuery( `#${prefix}_address_1` ).trigger( 'focus' );
         } );
 
         jQuery( `.woocommerce-${prefix}-fields` ).find( '.cfw-fetchify-enter-address-manually' ).hide();

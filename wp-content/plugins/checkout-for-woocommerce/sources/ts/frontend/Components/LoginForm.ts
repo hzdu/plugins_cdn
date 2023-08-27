@@ -82,7 +82,7 @@ class LoginForm {
                     username.val( emailValue );
 
                     setTimeout( () => {
-                        jQuery( '#cfw_login_password' ).get( 0 ).focus();
+                        jQuery( '#cfw_login_password' ).trigger( 'focus' );
                     }, 200 );
                 }
             },
