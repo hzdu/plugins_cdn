@@ -39,7 +39,7 @@ var WpFcStatics = {
 		var self = this;
 
 		//jQuery("#buy-image-credit-link").click(function(){
-		jQuery("#wpfc-optimized-statics-credit").click(function(){
+		jQuery("#wpfc-optimized-statics-credit").closest("h1").click(function(){
 
 			Wpfc_New_Dialog.dialog("wpfc-modal-buy-crdit", {
 				finish: function(e){
@@ -290,18 +290,15 @@ var WpFcStatics = {
 					   "naw": [
 							   {"key": "la", "time":0,"flag":"us","location":"Los Ang","color":"red", "url":"https://la.wpfastestcache.com"},
 					   		   {"key": "dal", "time":0,"flag":"us","location":"Dallas","color":"red", "url":"https://dallas.wpfastestcache.com"},
-					   		   {"key": "nev", "time":0,"flag":"us","location":"Nevada","color":"red", "url":"https://nevada.wpfastestcache.com"},
-					   		   {"key": "fremont", "time":0,"flag":"us","location":"Fremont","color":"red", "url":"https://fremont.wpfastestcache.com"},
+					   		   {"key": "nev", "time":0,"flag":"us","location":"Nevada","color":"red", "url":"https://nevada.wpfastestcache.com"}
 					   		 ],
 					   	"nae": [
 							   {"key": "dc", "time":0,"flag":"us","location":"New York","color":"red", "url":"https://dc.wpfastestcache.com"},
-					   		   {"key": "chic", "time":0,"flag":"us","location":"Chicago","color":"red", "url":"https://chicago.wpfastestcache.com"},
 							   {"key": "stlo", "time":0,"flag":"us","location":"St. Louis","color":"red", "url":"https://stlouis.wpfastestcache.com"},
 					   		 ],
 
 					   "euw": [
 					   		   {"key": "fran", "time":0,"flag":"de","location":"Frankfurt","color":"red", "url":"https://frankfurt.wpfastestcache.com"},
-					   		   {"key": "france", "time":0,"flag":"de","location":"France","color":"red", "url":"https://fr.wpfastestcache.com"},
 							   {"key": "it", "time":0,"flag":"it","location":"Italy","color":"red", "url":"https://it.wpfastestcache.com"},
 							   {"key": "nl", "time":0,"flag":"nl","location":"Holland","color":"red", "url":"https://nl.wpfastestcache.com"},
 							   {"key": "de", "time":0,"flag":"de","location":"Nuremberg","color":"red", "url":"https://nuremberg.wpfastestcache.com"},
@@ -364,9 +361,9 @@ var WpFcStatics = {
 				}, 1000);
 			}
 		}else{
-			self.wpfc_get_server_time(servers.naw);
-			self.wpfc_get_server_time(servers.euw);
-			self.wpfc_get_server_time(servers.as);
+			setTimeout(function(){
+				alert("Empty Country Code!");
+			}, 1000);
 		}
 
 
@@ -453,13 +450,21 @@ var WpFcStatics = {
 						set_loading_bar(data.percentage);
 
 						if(data.percentage == 100){
-							self.update_statics(function(){
-								set_loading_bar(0);
 
+							if(id){
 								if(recursive){
 									self.optimize_image(self, false, true, false);
 								}
-							});
+							}else{
+								self.update_statics(function(){
+									set_loading_bar(0);
+
+									if(recursive){
+										self.optimize_image(self, false, true, false);
+									}
+								});
+							}
+
 						}else{
 							if(recursive){
 								self.optimize_image(self, data.id, true, false);
@@ -521,7 +526,7 @@ var WpFcStatics = {
 	},
 	update_statics: function(callback){
 		var self = this;
-		var credit = false;
+		var credit = true;
 		var str_callback = false;
 
 		jQuery("[id^='wpfc-optimized-statics-']").addClass("wpfc-loading-statics");
@@ -539,7 +544,7 @@ var WpFcStatics = {
 			type: 'GET', 
 			url: self.ajax_url,
 			dataType : "json",
-			data : {"action": "wpfc_statics_ajax_request", "credit" : credit},
+			data : {"action": "wpfc_statics_ajax_request", "credit" : 99999},
 			cache: false, 
 			success: function(data){
 				if(callback){ callback(); }

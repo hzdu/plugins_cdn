@@ -6,13 +6,14 @@ var Wpfc_Lazyload = {
 		Wpfc_Lazyload.set_source();
 
 		window.addEventListener('load', function(){
-			window.addEventListener("DOMSubtreeModified", function(e){
+			let observer = new MutationObserver(mutationRecords => {
 				Wpfc_Lazyload.osl = Wpfc_Lazyload.sources.length;Wpfc_Lazyload.set_source();
 				if(Wpfc_Lazyload.sources.length > Wpfc_Lazyload.osl){Wpfc_Lazyload.load_sources(false);}
-			},false);
-			
+			});
+			observer.observe(document.getElementsByTagName("html")[0], {childList: true, attributes: true, subtree: true, attributeFilter: ["src"], attributeOldValue: false, characterDataOldValue: false});
 			Wpfcll.load_sources(true);
 		});
+
 		window.addEventListener('scroll', function(){Wpfc_Lazyload.scroll=true;Wpfc_Lazyload.load_sources(false);});
 		window.addEventListener('resize', function(){Wpfc_Lazyload.scroll=true;Wpfc_Lazyload.load_sources(false);});
 		window.addEventListener('click', function(){Wpfc_Lazyload.scroll=true;Wpfc_Lazyload.load_sources(false);});
