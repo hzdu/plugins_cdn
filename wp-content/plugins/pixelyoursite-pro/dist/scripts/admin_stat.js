@@ -328,7 +328,7 @@
                 let url = $(this).attr("href")
                 url +="&time="+time
                 url +="&per_page="+pysStatGlobal.perPage
-                url +="&data_model="+$(".pys_visit_model").val()
+                url +="&data_model="+$("#select_visit_model").val()
                 if( time == "custom") {
                     url +="&time_start="+util.toFormat(pysStatGlobal.startDate,util.dateFormat)
                     url +="&time_end="+ util.toFormat(pysStatGlobal.endDate,util.dateFormat)
@@ -344,7 +344,7 @@
                 url +="&title="+$(this).text().trim()
                 url +="&time="+time
                 url +="&per_page="+pysStatGlobal.perPage
-                url +="&data_model="+$(".pys_visit_model").val()
+                url +="&data_model="+$("#select_visit_model").val()
                 if( time == "custom") {
                     url +="&time_start="+util.toFormat(pysStatGlobal.startDate,util.dateFormat)
                     url +="&time_end="+ util.toFormat(pysStatGlobal.endDate,util.dateFormat)
@@ -363,7 +363,7 @@
                 }
 
             })
-            $(".pys_visit_model").on("change",function () {
+            $("#select_visit_model").on("change",function () {
                 pysStatGlobal.loadGlobalData(1)
             })
             $(".pys_stat .COG_custom_report_button_block button.button").on("click",function (e) {
@@ -391,6 +391,19 @@
 
             })
 
+            $(".global_data .all_report").on("click",function () {
+
+                $(".global_data .report_form input[name='cog']").val(pysStatGlobal.cog);
+                $(".global_data .report_form input[name='label']").val(jQuery(".pys_stat_info th.title").text())
+                $(".global_data .report_form input[name='type']").val(type)
+                $(".global_data .report_form input[name='start_date']").val(util.toFormat(pysStatGlobal.startDate,util.dateFormat))
+                $(".global_data .report_form input[name='end_date']").val(util.toFormat(pysStatGlobal.endDate,util.dateFormat))
+                $(".global_data .report_form input[name='filter_type']").val($(".pys_stats_filters .active").data("type"))
+                $(".global_data .report_form input[name='model']").val($("#select_visit_model").val())
+                $(".global_data .report_form input[name='export_type']").val('all')
+                $(".global_data .report_form").submit()
+            })
+
             $(".global_data .report").on("click",function () {
 
                 $(".global_data .report_form input[name='cog']").val(pysStatGlobal.cog);
@@ -399,7 +412,8 @@
                 $(".global_data .report_form input[name='start_date']").val(util.toFormat(pysStatGlobal.startDate,util.dateFormat))
                 $(".global_data .report_form input[name='end_date']").val(util.toFormat(pysStatGlobal.endDate,util.dateFormat))
                 $(".global_data .report_form input[name='filter_type']").val($(".pys_stats_filters .active").data("type"))
-                $(".global_data .report_form input[name='model']").val($(".pys_visit_model").val())
+                $(".global_data .report_form input[name='model']").val($("#select_visit_model").val())
+                $(".global_data .report_form input[name='export_type']").val('current')
                 $(".global_data .report_form").submit()
             })
         },
@@ -422,7 +436,7 @@
 
         loadGlobalData: function (page) {
 
-            let model = $(".pys_visit_model").val()
+            let model = $("#select_visit_model").val()
             let order_by = $(".global_data .pys_stat_info .active").data("order")
             let startDate = util.toFormat(pysStatGlobal.startDate,util.dateFormat)
             let endDate = util.toFormat(pysStatGlobal.endDate,util.dateFormat)
@@ -453,15 +467,16 @@
                         } else {
                             $(".pys_stat").removeClass('showInfoBlock');
                             navigation.loaded()
+                            console.log(msg)
                             pysStatGlobal.data = msg.data.items
                             pysStatGlobal.max = msg.data.max
                             pysStatGlobal.page = page
                             chart.showGrossChart(msg.data.items, startDate, endDate, order_by)
                             singleTable.head = [
                                 {
-                                    title: "",
+                                    title: msg.data.colName,
                                     isSortable: false,
-                                    slug: "",
+                                    slug: "title",
                                     isDefault: false,
                                 },
                                 {
@@ -800,7 +815,7 @@
                 {
                     title:"",
                     isSortable:false,
-                    slug:"",
+                    slug:"title",
                     isDefault:false,
                 },
                 {
@@ -942,11 +957,11 @@
         fillHead: function () {
             let head = "<thead><tr>"
             singleTable.head.forEach(function (item) {
-                let cl = ""
+                let cl = item.slug == 'title' ? 'title' :'';
                 let html = ""
 
                 if(item.isSortable) {
-                    cl = "sortable"
+                    cl += " sortable"
                     if(item.isDefault) {
                         cl += " active"
                         html = ' <i class="fa fa-sort-desc"></i>'

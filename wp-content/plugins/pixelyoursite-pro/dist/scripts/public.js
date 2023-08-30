@@ -1041,6 +1041,40 @@ if (!String.prototype.trim) {
             },
 
             manageCookies: function () {
+                if (options.gdpr.ajax_enabled && !options.gdpr.consent_magic_integration_enabled) {
+
+                    // retrieves actual PYS GDPR filters values which allow to avoid cache issues
+                    $.get({
+                        url: options.ajaxUrl,
+                        dataType: 'json',
+                        data: {
+                            action: 'pys_get_gdpr_filters_values'
+                        },
+                        success: function (res) {
+
+                            if (res.success) {
+
+                                options.gdpr.all_disabled_by_api = res.data.all_disabled_by_api;
+                                options.gdpr.facebook_disabled_by_api = res.data.facebook_disabled_by_api;
+                                options.gdpr.tiktok_disabled_by_api = res.data.tiktok_disabled_by_api;
+                                options.gdpr.analytics_disabled_by_api = res.data.analytics_disabled_by_api;
+                                options.gdpr.google_ads_disabled_by_api = res.data.google_ads_disabled_by_api;
+                                options.gdpr.pinterest_disabled_by_api = res.data.pinterest_disabled_by_api;
+                                options.gdpr.bing_disabled_by_api = res.data.bing_disabled_by_api;
+
+                                options.cookie.externalID_disabled_by_api = res.data.externalID_disabled_by_api;
+                                options.cookie.disabled_all_cookie = res.data.disabled_all_cookie;
+                                options.cookie.disabled_advanced_form_data_cookie = res.data.disabled_advanced_form_data_cookie;
+                                options.cookie.disabled_landing_page_cookie = res.data.disabled_landing_page_cookie;
+                                options.cookie.disabled_first_visit_cookie = res.data.disabled_first_visit_cookie;
+                                options.cookie.disabled_trafficsource_cookie = res.data.disabled_trafficsource_cookie;
+                                options.cookie.disabled_utmTerms_cookie = res.data.disabled_utmTerms_cookie;
+                                options.cookie.disabled_utmId_cookie = res.data.disabled_utmId_cookie;
+
+                            }
+                        }
+                    });
+                }
                 let expires = parseInt(options.cookie_duration); //  days
                 let queryVars = getQueryVars();
                 let landing = window.location.href.split('?')[0];
@@ -2203,21 +2237,8 @@ if (!String.prototype.trim) {
                 })
                 ids.forEach(function (pixelId) {
 
-                    var fire_params = {};
-                    if(options.staticEvents.hasOwnProperty('tiktok') && options.staticEvents.tiktok.hasOwnProperty('init_event') && Object.keys(options.staticEvents.tiktok.init_event).length > 0 ) {
-                        options.staticEvents.tiktok.init_event.forEach(function ( e ) {
-                            if ( e.name == 'PageView' ) {
-                                Utils.copyProperties(e.params, fire_params);
-                                fire_params.eventID = e.eventID;
-                                e.fired = true;
-
-                                TikTok.fireEventAPI('PageView', e, fire_params);
-                            }
-                        })
-                    }
-
                     ttq.load(pixelId);
-                    ttq.page(fire_params);
+                    ttq.page();
                     let advancedMatching = {};
                     if(options.tiktok.hasOwnProperty('advanced_matching')
                         && Object.keys(options.tiktok.advanced_matching).length > 0) {
