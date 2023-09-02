@@ -159,11 +159,13 @@ class ParsleyService implements FieldValidationRefresher {
                 const fieldIsHiddenAndNotOnActiveTab = ( !onActiveTab && fieldInstance.$element.is( ':hidden' ) );
                 const fieldContainerIsHidden = fieldInstance.$element.parents( '.form-row' ).hasClass( 'hidden' );
                 const fieldIsAHiddenIconicDeliverySlotsField = fieldInstance.$element.parents( '#jckwds-fields' ).css( 'display' ) === 'none';
+                const fieldIsDisabled = fieldInstance.$element.is( ':disabled' );
+                const fieldIsReadOnly = fieldInstance.$element.is( '[readonly]' );
 
-                if ( fieldIsHiddenAndNotOnActiveTab && !fieldContainerIsHidden && !fieldIsAHiddenIconicDeliverySlotsField ) {
+                if ( fieldIsHiddenAndNotOnActiveTab && !fieldIsDisabled && !fieldIsReadOnly && !fieldContainerIsHidden && !fieldIsAHiddenIconicDeliverySlotsField ) {
                     // Display alert: %s is a required field
-                    const error = DataService.getMessage( 'required_field' );
-                    const fieldLabel = jQuery( fieldInstance.$element ).parents( '.cfw-input-wrap-row' ).find( 'label' ).text()
+                    const error = DataService.getMessage( 'generic_field_validation_error_message' );
+                    const fieldLabel = jQuery( fieldInstance.$element ).parents( '.cfw-input-wrap' ).find( 'label' ).text()
                         .replace( '*', '' );
                     const message = error.replace( '%s', fieldLabel.trim() );
 
@@ -172,7 +174,7 @@ class ParsleyService implements FieldValidationRefresher {
                     AlertService.showAlerts();
                 }
 
-                if ( fieldContainerIsHidden || fieldIsHiddenAndOnActiveTab || fieldIsAHiddenIconicDeliverySlotsField ) {
+                if ( fieldIsDisabled || fieldIsReadOnly || fieldContainerIsHidden || fieldIsHiddenAndOnActiveTab || fieldIsAHiddenIconicDeliverySlotsField ) {
                     LoggingService.log( 'Bypassing Parsley validation for field below.', false, fieldInstance.$element );
                     LoggingService.log( `Reason fieldIsHiddenAndOnActiveTab: ${fieldIsHiddenAndOnActiveTab ? 'true' : 'false'}` );
                     LoggingService.log( `Reason fieldContainerIsHidden: ${fieldContainerIsHidden ? 'true' : 'false'}` );

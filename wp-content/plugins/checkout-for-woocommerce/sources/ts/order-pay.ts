@@ -63,6 +63,28 @@ class OrderPay {
                 // Remove the animation blocker
                 jQuery( document.body ).removeClass( 'cfw-preload' );
             } );
+
+            if ( typeof ( <any>window ).ownid === 'function' ) {
+                jQuery( 'a.cfw-password-toggle' ).css( 'top', '-2px' );
+                ( <any>window ).ownid( 'destroy', 'login' );
+                ( <any>window ).ownid( 'login', {
+                    loginIdField: document.getElementById( 'login' ),
+                    passwordField: document.getElementById( 'password' ),
+                    onError: ( error ) => {
+                        LoggingService.logError( `CheckoutWC: Problem loading OwnID on Order Pay page: ${error}` );
+                    },
+                    onLogin( data ) {
+                        const req = new XMLHttpRequest();
+                        req.open( 'POST', '/wp-json/ownid/v1/login-with-jwt', true );
+                        req.setRequestHeader( 'Content-type', 'application/x-www-form-urlencoded' );
+                        req.onload = function () {
+                            // do something to response
+                            window.location.reload();
+                        };
+                        req.send( `jwt=${data.token}` );
+                    },
+                } );
+            }
         } );
     }
 }

@@ -19,6 +19,7 @@ abstract class Action {
         this.id = id;
 
         LoggingService.log( `Running ${this.id} action. ☄️` );
+        jQuery( document.body ).trigger( `cfw_pre_${this.id}_action` );
     }
 
     /**

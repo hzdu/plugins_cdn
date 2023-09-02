@@ -253,7 +253,7 @@ class Main {
         LoggingService.logEvent( 'Fired init_checkout event.' );
 
         jQuery( document.body ).on( 'cfw-add-overlay', () => {
-            CompleteOrderService.addOverlay( true );
+            CompleteOrderService.addOverlay();
         } );
 
         jQuery( document.body ).on( 'cfw-remove-overlay', () => {

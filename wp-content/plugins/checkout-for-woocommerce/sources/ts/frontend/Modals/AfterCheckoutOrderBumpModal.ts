@@ -1,7 +1,9 @@
-import cfwAjax                 from '../../functions/cfwAjax';
-import DataService             from '../Services/DataService';
-import jqXHR = JQuery.jqXHR;
+import cfwAjax                  from '../../functions/cfwAjax';
+import Main                     from '../Main';
+import CompleteOrderService     from '../Services/CompleteOrderService';
+import DataService              from '../Services/DataService';
 import VariableProductFormModal from './VariableProductFormModal';
+import jqXHR = JQuery.jqXHR;
 
 class AfterCheckoutOrderBumpModal extends VariableProductFormModal {
     constructor( content: string, args: any = {} ) {
