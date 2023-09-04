@@ -287,6 +287,9 @@ jQuery(function($) {
 	    }
 	    else {
 	    	var form = $(this).closest('form');
+	    	form.find('.CodeMirror').each(function() {
+			    this.CodeMirror.save();
+			});
 	    	formData.append('form', form.serialize());
 	    }
 
