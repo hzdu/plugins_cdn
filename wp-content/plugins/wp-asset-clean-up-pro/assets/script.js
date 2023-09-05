@@ -91,14 +91,14 @@
                     }
 
                     // Was a rule set, but it's not the site-wide one? Hide the make exception area
-                    if (!$(this).parents('ul').find('.wpacu_script_attr_rule_global').is(':checked')) {
+                    if (! $(this).parents('ul').find('.wpacu_script_attr_rule_global').is(':checked')) {
                         $(this).parents('ul').find('.wpacu-script-attr-make-exception').addClass('wpacu_hide');
                     }
                 });
 
                 // Media Query Load Values
                 $(document).on('change', '.wpacu-screen-size-load', function (e) {
-                    let wpacuMediaQueriesLoadEnable = $(this).val(),
+                    let wpacuMediaQueriesLoadEnableCustom = ($(this).val() === '1'),
                         wpacuHandle = $(this).attr('data-handle'),
                         wpacuAssetType,
                         $wpacuHandleMediaQueriesLoadFieldArea,
@@ -118,7 +118,7 @@
                     }
 
                     $wpacuMediaQueryTextArea = $wpacuHandleMediaQueriesLoadFieldArea.find(':input');
-                    if (wpacuMediaQueriesLoadEnable) {
+                    if (wpacuMediaQueriesLoadEnableCustom) {
                         if ($(this)[0].hasAttribute('data-wpacu-show-parent-alert')) {
                             let wpacuWarningNotification = wpacu_object.parent_asset_media_query_load_alert.replace('[asset_type]', wpacuAssetType);
 
@@ -139,7 +139,7 @@
                         //console.log('TextArea should be hidden.');
                         $wpacuHandleMediaQueriesLoadFieldArea.removeClass('wpacu-is-visible');
 
-                        // Was the area hidden without any textarea value and the value was null on page load?
+                        // Was the area hidden without any textarea value, and the value was null on a page load?
                         // Mark it as disabled (save total sent inputs for PHP processing)
                         // If there's ONLY space added (could be by mistake) to the textarea, ignore it as it's irrelevant
                         if (typeof($wpacuMediaQueryTextArea.val()) !== 'undefined' && $wpacuMediaQueryTextArea.val() !== null && $wpacuMediaQueryTextArea.val().trim() === '' && $wpacuMediaQueryTextArea.attr('data-wpacu-is-empty-on-page-load') === 'true') {
@@ -201,9 +201,20 @@
                         // Media Query Load
                         if ($(this).hasClass('wpacu-screen-size-load')) {
                             let dataHandle = $(this).attr('data-handle');
-                            let textareaMediaQueryEl = '#wpacu_handle_media_query_load_style_' + dataHandle;
+                            let selectMediaQueryEl = '#wpacu_handle_media_query_load_select_style_' + dataHandle;
+                            let textareaMediaQueryEl = '#wpacu_handle_media_query_load_textarea_style_' + dataHandle;
 
-                            if (typeof($(textareaMediaQueryEl)) !== 'undefined' && $(textareaMediaQueryEl).val() !== null && $(textareaMediaQueryEl).length > 0 && ! $(textareaMediaQueryEl).val()) {
+                            let selectMediaQueryStatusOne = typeof($(selectMediaQueryEl)) !== 'undefined' &&
+                                $(selectMediaQueryEl).val() !== null &&
+                                $(selectMediaQueryEl).length > 0 &&
+                                ($(selectMediaQueryEl).val() === 1);
+
+                            let textareaMediaQueryExistsWithoutValue = typeof($(textareaMediaQueryEl)) !== 'undefined' &&
+                                $(textareaMediaQueryEl).val() !== null &&
+                                $(textareaMediaQueryEl).length > 0 &&
+                                ! $(textareaMediaQueryEl).val();
+
+                            if ( selectMediaQueryStatusOne && textareaMediaQueryExistsWithoutValue ) {
                                 let $thisEl = $(this);
                                 $thisEl.prop('disabled', 'disabled');
 
@@ -1072,7 +1083,12 @@ jQuery(document).ready(function($) {
                             return false;
                         }
 
-                        if ($(this).hasClass('wpacu_global_unload') || $(this).hasClass('wpacu_post_type_unload')) {
+                        if ($(this).hasClass('wpacu_global_unload') ||
+                            $(this).hasClass('wpacu_post_type_unload')
+                            // [wpacu_pro]
+                            || $(this).hasClass('wpacu_taxonomy_unload')
+                            // [/wpacu_pro]
+                        ) {
                             /*
                              * Clicked: "Unload site-wide" (.wpacu_global_unload) or "Unload on all posts of the same [post_type]" (.wpacu_post_type_unload)
                              */
@@ -1665,6 +1681,10 @@ jQuery(document).ready(function($) {
                         'wpacu_nonce':        wpacu_object.wpacu_ajax_get_loaded_assets_nonce,
                         'time_r':             new Date().getTime()
                     };
+
+                    if ($('#wpacu_manage_singular_page_assets').length > 0) { // e.g. /wp-admin/admin.php?page=wpassetcleanup_assets_manager
+                        dataGetLoadedAssets['is_for_singular'] = true;
+                    }
 
                     $.post(wpacu_object.ajax_url, dataGetLoadedAssets, function (response) {
                         if (!response) {

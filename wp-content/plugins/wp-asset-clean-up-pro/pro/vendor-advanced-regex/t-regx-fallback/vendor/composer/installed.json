@@ -1,23 +1,18 @@
 {
-    "_readme": [
-        "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
-        "This file is @generated automatically"
-    ],
-    "content-hash": "2a96f553e29117a2c2bc660734cf5078",
     "packages": [
         {
             "name": "matthiasmullie/minify",
-            "version": "1.3.71",
+            "version": "1.3.66",
+            "version_normalized": "1.3.66.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/matthiasmullie/minify.git",
-                "reference": "ae42a47d7fecc1fbb7277b2f2d84c37a33edc3b1"
+                "reference": "45fd3b0f1dfa2c965857c6d4a470bea52adc31a6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/matthiasmullie/minify/zipball/ae42a47d7fecc1fbb7277b2f2d84c37a33edc3b1",
-                "reference": "ae42a47d7fecc1fbb7277b2f2d84c37a33edc3b1",
+                "url": "https://api.github.com/repos/matthiasmullie/minify/zipball/45fd3b0f1dfa2c965857c6d4a470bea52adc31a6",
+                "reference": "45fd3b0f1dfa2c965857c6d4a470bea52adc31a6",
                 "shasum": ""
             },
             "require": {
@@ -26,19 +21,20 @@
                 "php": ">=5.3.0"
             },
             "require-dev": {
-                "friendsofphp/php-cs-fixer": ">=2.0",
-                "matthiasmullie/scrapbook": ">=1.3",
-                "phpunit/phpunit": ">=4.8",
-                "squizlabs/php_codesniffer": ">=3.0"
+                "friendsofphp/php-cs-fixer": "~2.0",
+                "matthiasmullie/scrapbook": "dev-master",
+                "phpunit/phpunit": ">=4.8"
             },
             "suggest": {
                 "psr/cache-implementation": "Cache implementation to use with Minify::cache"
             },
+            "time": "2021-01-06T15:18:10+00:00",
             "bin": [
                 "bin/minifycss",
                 "bin/minifyjs"
             ],
             "type": "library",
+            "installation-source": "source",
             "autoload": {
                 "psr-4": {
                     "MatthiasMullieWpacu\\Minify\\": "src/"
@@ -52,12 +48,12 @@
                 {
                     "name": "Matthias Mullie",
                     "email": "minify@mullie.eu",
-                    "homepage": "https://www.mullie.eu",
+                    "homepage": "http://www.mullie.eu",
                     "role": "Developer"
                 }
             ],
             "description": "CSS & JavaScript minifier, in PHP. Removes whitespace, strips comments, combines files (incl. @import statements and small assets in CSS files), and optimizes/shortens a few common programming patterns.",
-            "homepage": "https://github.com/matthiasmullie/minify",
+            "homepage": "http://www.minifier.org",
             "keywords": [
                 "JS",
                 "css",
@@ -67,19 +63,28 @@
             ],
             "support": {
                 "issues": "https://github.com/matthiasmullie/minify/issues",
-                "source": "https://github.com/matthiasmullie/minify/tree/1.3.71"
+                "source": "https://github.com/matthiasmullie/minify/tree/1.3.66"
             },
             "funding": [
                 {
-                    "url": "https://github.com/matthiasmullie",
+                    "url": "https://github.com/[user1",
+                    "type": "github"
+                },
+                {
+                    "url": "https://github.com/matthiasmullie] # Replace with up to 4 GitHub Sponsors-enabled usernames e.g.",
+                    "type": "github"
+                },
+                {
+                    "url": "https://github.com/user2",
                     "type": "github"
                 }
             ],
-            "time": "2023-04-25T20:33:03+00:00"
+            "install-path": "../matthiasmullie/minify"
         },
         {
             "name": "matthiasmullie/path-converter",
             "version": "1.1.3",
+            "version_normalized": "1.1.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/matthiasmullie/path-converter.git",
@@ -98,7 +103,9 @@
             "require-dev": {
                 "phpunit/phpunit": "~4.8"
             },
+            "time": "2019-02-05T23:41:09+00:00",
             "type": "library",
+            "installation-source": "dist",
             "autoload": {
                 "psr-4": {
                     "MatthiasMullieWpacu\\PathConverter\\": "src/"
@@ -124,15 +131,12 @@
                 "paths",
                 "relative"
             ],
-            "support": {
-                "issues": "https://github.com/matthiasmullie/path-converter/issues",
-                "source": "https://github.com/matthiasmullie/path-converter/tree/1.1.3"
-            },
-            "time": "2019-02-05T23:41:09+00:00"
+            "install-path": "../matthiasmullie/path-converter"
         },
         {
             "name": "psr/cache",
             "version": "1.0.1",
+            "version_normalized": "1.0.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-fig/cache.git",
@@ -147,12 +151,14 @@
             "require": {
                 "php": ">=5.3.0"
             },
+            "time": "2016-08-06T20:24:11+00:00",
             "type": "library",
             "extra": {
                 "branch-alias": {
                     "dev-master": "1.0.x-dev"
                 }
             },
+            "installation-source": "dist",
             "autoload": {
                 "psr-4": {
                     "Psr\\Cache\\": "src/"
@@ -174,22 +180,51 @@
                 "psr",
                 "psr-6"
             ],
-            "support": {
-                "source": "https://github.com/php-fig/cache/tree/master"
+            "install-path": "../psr/cache"
+        },
+        {
+            "name": "rawr/t-regx",
+            "version": "dev-master-php-5.6",
+            "version_normalized": "dev-master-php-5.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/T-Regx/T-Regx.git",
+                "reference": "63d069742a63b860eb905e8fe5b27f779e899b84"
             },
-            "time": "2016-08-06T20:24:11+00:00"
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/T-Regx/T-Regx/zipball/63d069742a63b860eb905e8fe5b27f779e899b84",
+                "reference": "63d069742a63b860eb905e8fe5b27f779e899b84",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.6.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^5.0"
+            },
+            "time": "2018-03-03T03:45:30+00:00",
+            "type": "library",
+            "installation-source": "source",
+            "autoload": {
+                "files": [
+                    "helper/helper.php",
+                    "test/DataProviders.php",
+                    "test/Warnings.php",
+                    "test/ClassWithToString.php"
+                ],
+                "psr-0": {
+                    "CleanRegex\\": "src",
+                    "SafeRegex\\": "src",
+                    "CleanRegex\\Test\\": "test",
+                    "SafeRegex\\Test\\": "test"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "description": "The most advanced PHP regexp library. Clean, descriptive wrapper functions enhancing PCRE extension methods.",
+            "install-path": "../rawr/t-regx"
         }
     ],
-    "packages-dev": [],
-    "aliases": [],
-    "minimum-stability": "stable",
-    "stability-flags": [],
-    "prefer-stable": false,
-    "prefer-lowest": false,
-    "platform": {
-        "php": ">=5.6.0",
-        "ext-pcre": "*"
-    },
-    "platform-dev": [],
-    "plugin-api-version": "2.0.0"
+    "dev": true,
+    "dev-package-names": []
 }

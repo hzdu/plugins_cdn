@@ -1,0 +1,93 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "fc4f76baa243bd4b185c2f80d335e74d",
+    "packages": [
+        {
+            "name": "rawr/t-regx",
+            "version": "v0.9.10",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/T-Regx/T-Regx.git",
+                "reference": "00c75c37f9183629adde75c9002b136609870798"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/T-Regx/T-Regx/zipball/00c75c37f9183629adde75c9002b136609870798",
+                "reference": "00c75c37f9183629adde75c9002b136609870798",
+                "shasum": ""
+            },
+            "require": {
+                "ext-mbstring": "*",
+                "php": ">=7.1.0"
+            },
+            "require-dev": {
+                "kelunik/fqn-check": "^0.1.3",
+                "php-coveralls/php-coveralls": "^2.0",
+                "phpunit/phpunit": "^9.0 || ^8.0 || ^7.5",
+                "rawr/cross-data-providers": "^2.1"
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "helper/helper.php"
+                ],
+                "psr-4": {
+                    "TRegx\\": "src/TRegx"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "The most advanced PHP regexp library. Clean, descriptive wrapper functions enhancing PCRE extension methods.",
+            "keywords": [
+                "OOP",
+                "PCRE",
+                "TDD",
+                "automatic delimiters",
+                "clean",
+                "delimiters",
+                "expression",
+                "php",
+                "preg",
+                "preg_match",
+                "preg_match_all",
+                "preg_quote",
+                "preg_replace",
+                "preg_replace_callback",
+                "prepared patterns",
+                "regex",
+                "regexp",
+                "regular",
+                "t-regx"
+            ],
+            "support": {
+                "issues": "https://github.com/T-Regx/T-Regx/issues",
+                "source": "https://github.com/T-Regx/T-Regx/tree/v0.9.10"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/Danon",
+                    "type": "github"
+                }
+            ],
+            "time": "2020-09-22T20:55:22+00:00"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": [],
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": {
+        "php": ">=5.6.0",
+        "ext-pcre": "*"
+    },
+    "platform-dev": [],
+    "plugin-api-version": "2.0.0"
+}
