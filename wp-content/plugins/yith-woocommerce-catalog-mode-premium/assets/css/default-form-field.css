@@ -1,0 +1,212 @@
+.ywctm-default-form__popup_wrapper {
+	display: none;
+}
+
+.ui-dialog.ui-widget.ui-widget-content.ui-corner-all.ui-front.ywctm-default-form-popup.ui-dialog-buttons.ui-draggable.ui-resizable {
+	border-radius: 15px;
+	box-shadow: none;
+}
+
+.ywctm-default-form-popup .ui-dialog-titlebar.ui-widget-header.ui-corner-all.ui-helper-clearfix.ui-draggable-handle {
+	border: 0;
+	background: #fff;
+}
+
+.ywctm-default-form-popup,
+.ywctm-default-form-popup button,
+.ywctm-default-form-popup input,
+.ywctm-default-form-popup select {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+	font-size: 1em;
+}
+
+.ywctm-default-form-popup .label {
+	text-align: left;
+	min-width: 110px;
+	padding: 10px 0;
+}
+
+.ywctm-default-form-popup th, .ywctm-default-form__form_row td {
+	padding: 10px 0;
+}
+
+.ywctm-default-form-popup .ui-button.ui-dialog-titlebar-close {
+	margin-top: 10px;
+	color: #bbb;
+	right: 10px;
+	top: -2px;
+}
+
+.ywctm-default-form-popup select,
+.ywctm-default-form-popup input {
+	border-radius: 3px;
+	border: 1px solid #bbb;
+	width: 100%;
+	height: 35px;
+	color: #111;
+	font-weight: 500;
+}
+
+.ywctm-default-form-popup span.select2.select2-container {
+	width: 100% !important;
+}
+
+.ywctm-default-form-popup .ui-dialog-title {
+	color: #007694;
+	font-size: 16px;
+	font-weight: 500;
+	margin-left: 5px;
+}
+
+.ywctm-default-form-popup table {
+	width: 100%;
+	margin: 0 auto;
+	padding: 0 10px;
+}
+
+.ywctm-default-form-popup.ui-dialog .ui-dialog-buttonpane {
+	border: 0;
+	padding: 0 10px;
+}
+
+.ywctm-default-form-popup.ui-dialog .ui-dialog-buttonpane .ui-dialog-buttonset {
+	width: 100%;
+	text-align: center;
+	float: none;
+	padding: 0 10px;
+	box-sizing: border-box;
+}
+
+.ywctm-default-form-popup.ui-dialog .ui-dialog-buttonpane .ui-dialog-buttonset button {
+	width: 100%;
+	margin: 0 auto;
+	height: 35px;
+	margin-bottom: 20px;
+}
+
+.ywctm-default-form td {
+	position: relative;
+	padding: 12px 20px !important;
+}
+
+.ywctm-default-form table {
+	border: 2px solid #f1f1f1;
+	margin: 20px 0;
+	padding: 0;
+	border-collapse: collapse;
+}
+
+.ywctm-default-form table th {
+	border: 0;
+	padding: 15px 20px !important;
+	font-size: 13px;
+	font-weight: 600;
+}
+
+.ywctm-default-form table tbody tr:nth-child(odd) {
+	background-color: #f1f1f1;
+}
+
+.ywctm-default-form table tbody tr:nth-child(odd):hover,
+.ywctm-default-form table tbody tr:hover {
+	background-color: #e7f0f6;
+}
+
+.ywctm-default-form td > .actions {
+	display: none;
+	padding: 0;
+	margin: 0;
+	position: absolute;
+	top: 50%;
+	bottom: 50%;
+	left: 0;
+	right: 0;
+	min-width: 140px;
+	z-index: 10;
+}
+
+.ywctm-default-form tr:hover td > .actions {
+	display: flex;
+	align-items: center;
+}
+
+.ywctm-default-form .actions li {
+	margin: 0 3px;
+	width: 30px;
+	height: 30px;
+	background-color: #fff;
+	border-radius: 50%;
+	text-align: center;
+	line-height: 30px;
+	box-shadow: 3px 3px 4px 0 rgba(0, 0, 0, 0.2);
+	color: #20659d;
+}
+
+.ywctm-default-form .actions li:hover {
+	cursor: pointer;
+	box-shadow: 1px 1px 2px 0 rgba(0, 0, 0, 0.2);
+}
+
+.ywctm-default-form .field_required {
+	background: url("../images/icon-tick.svg") no-repeat center center transparent;
+	width: 20px;
+	height: 20px;
+}
+
+#yith_form_fields_table .field-exists,
+#yith_form_fields_table .required {
+	border-color: red;
+}
+
+button.yith-save-button.ui-button.ui-widget.ui-state-default.ui-corner-all.ui-button-text-only.disabled {
+	background: #ccc !important;
+	color: #000 !important;
+	text-shadow: none !important;
+}
+
+.ywctm-default-form__popup_wrapper textarea#description {
+	width: 100%;
+}
+
+.ywctm-default-form__confirm .ui-widget-content p {
+	padding: 15px;
+	font-size: 13px;
+}
+
+.ywctm-default-form-popup.ui-dialog.ywctm-default-form__confirm button.yith-confirm,
+.ywctm-default-form-popup.ui-dialog.ywctm-default-form__confirm button.yith-close {
+	width: 45%;
+	margin: 0 2.5% 20px;
+}
+
+.ywctm-default-form-popup.ui-dialog.ywctm-default-form__confirm button.yith-close {
+	border: 1px solid #007694;
+	background-color: #fff;
+	color: #007694;
+	transition: all ease-in-out 0.3s;
+}
+
+.ywctm-default-form-popup.ui-dialog.ywctm-default-form__confirm button.yith-confirm:hover,
+.ywctm-default-form-popup.ui-dialog.ywctm-default-form__confirm button.yith-close:hover {
+	filter: brightness(0.9);
+}
+
+.ywctm-default-form-popup.ui-dialog .ui-widget-header .ui-icon,
+.ui-state-highlight {
+	display: none;
+}
+
+.description.required,
+.description.field-exists {
+	display: none;
+	color: red;
+	padding: 5px 0;
+}
+
+:root {
+	--dragged-item-width: 100%;
+}
+
+.ui-sortable-helper td {
+	width: calc(var(--dragged-item-width) / 6);
+}
