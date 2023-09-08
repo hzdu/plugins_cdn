@@ -279,7 +279,7 @@ jQuery(document).on('sm_dashboard_change', '#sm_editor_grid', function() {
 
 	jQuery('#edit_attributes_taxonomy_list').find('option[value="'+ taxonomySelected +'"]').prop('disabled', true);
 
-	if( taxonomySelected !== "custom" ) {
+	if(taxonomySelected && ("custom" !== taxonomySelected)){
 		attrType = ( typeof(window.smart_manager.prodAttributeActualValues) != 'undefined' && typeof(window.smart_manager.prodAttributeActualValues[taxonomySelected]) != 'undefined' && window.smart_manager.prodAttributeActualValues[taxonomySelected].hasOwnProperty('type') ) ? window.smart_manager.prodAttributeActualValues[taxonomySelected].type : '';
 		attrVal = ( typeof(window.smart_manager.prodAttributeActualValues) != 'undefined' && typeof(window.smart_manager.prodAttributeActualValues[taxonomySelected]) != 'undefined' && window.smart_manager.prodAttributeActualValues[taxonomySelected].hasOwnProperty('val') ) ? window.smart_manager.prodAttributeActualValues[taxonomySelected].val : '';
 		isTaxonomy = 1;

@@ -483,17 +483,20 @@ Smart_Manager.prototype.printInvoice = function() {
                         active_module: window.smart_manager.dashboard_key,
                         security: window.smart_manager.sm_nonce,
                         pro: true,
-                        selected_ids: JSON.stringify(window.smart_manager.getSelectedKeyIds()),
                         sort_params: (window.smart_manager.currentDashboardModel.hasOwnProperty('sort_params') ) ? window.smart_manager.currentDashboardModel.sort_params : '',
                         table_model: (window.smart_manager.currentDashboardModel.hasOwnProperty('tables') ) ? window.smart_manager.currentDashboardModel.tables : '',
                         SM_IS_WOO30: window.smart_manager.sm_is_woo30,
                         SM_IS_WOO22: window.smart_manager.sm_id_woo22,
                         SM_IS_WOO21: window.smart_manager.sm_is_woo21,
                         search_text: (window.smart_manager.searchType == 'simple') ? window.smart_manager.simpleSearchText : '',
-						advanced_search_query: JSON.stringify((window.smart_manager.searchType != 'simple') ? window.smart_manager.advancedSearchQuery : [])
+						advanced_search_query: JSON.stringify((window.smart_manager.searchType != 'simple') ? window.smart_manager.advancedSearchQuery : []),
+                        storewide_option: (true === window.smart_manager.selectAll) ? 'entire_store' : '',
+                        selected_ids: (window.smart_manager.getSelectedKeyIds()) ? JSON.stringify(window.smart_manager.getSelectedKeyIds()) : ''
                     };
 
-    let url = window.smart_manager.sm_ajax_url + '&cmd='+ params.data['cmd'] +'&active_module='+ params.data['active_module'] +'&security='+ params.data['security'] +'&pro='+ params.data['pro'] +'&SM_IS_WOO30='+ params.data['SM_IS_WOO30'] +'&SM_IS_WOO30='+ params.data['SM_IS_WOO30'] +'&sort_params='+ encodeURIComponent(JSON.stringify(params.data['sort_params'])) +'&table_model='+ encodeURIComponent(JSON.stringify(params.data['table_model'])) +'&advanced_search_query='+ params.data['advanced_search_query'] +'&search_text='+ params.data['search_text'] + '&selected_ids=' + params.data['selected_ids'];
+    let url = window.smart_manager.sm_ajax_url + '&cmd='+ params.data['cmd'] +'&active_module='+ params.data['active_module'] +'&security='+ params.data['security'] +'&pro='+ params.data['pro'] +'&SM_IS_WOO30='+ params.data['SM_IS_WOO30'] +'&SM_IS_WOO30='+ params.data['SM_IS_WOO30'] +'&sort_params='+ encodeURIComponent(JSON.stringify(params.data['sort_params'])) +'&table_model='+ encodeURIComponent(JSON.stringify(params.data['table_model'])) +'&advanced_search_query='+ params.data['advanced_search_query'] +'&search_text='+ params.data['search_text'] + '&storewide_option=' + params.data['storewide_option'] + '&selected_ids=' + params.data['selected_ids'];
+
+    url += (window.smart_manager.isFilteredData()) ? '&filteredResults=1' : '';
     params.call_url = url;
     params.data_type = 'html';
 

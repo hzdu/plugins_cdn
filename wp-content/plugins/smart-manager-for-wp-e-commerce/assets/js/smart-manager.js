@@ -238,6 +238,7 @@ Smart_Manager.prototype.init = function() {
 	this.isRefreshingLoadedPage = false;
 	this.editedColumnTitles = {};
 	this.isViewAuthor = false;
+	this.searchSwitchClicked = false;
 
 	//Function to set all the states on unload
 	window.onbeforeunload = function (evt) { 
@@ -411,27 +412,27 @@ Smart_Manager.prototype.loadNavBar = function() {
 			window.smart_manager.dashboard_select_options += (options != '') ? '<optgroup label="'+_x('Recently used views', 'dashboard option groups', 'smart-manager-for-wp-e-commerce')+' ('+window.smart_manager.recentViews.length+')">'+options+'</optgroup>' : '';
 		}
 
-		// Code for rendering all remmaining dashboards
+		// Code for rendering all remaining dashboards
 		if(Object.keys(window.smart_manager.sm_dashboards).length > 0){
 				window.smart_manager.createOptGroups({'parent': recentDashboards,
 					'child': window.smart_manager.sm_dashboards,
-					'label': _x('All post types', 'dashboard option groups', 'smart-manager-for-wp-e-commerce'),
+					'label': _x('Other post types', 'dashboard option groups', 'smart-manager-for-wp-e-commerce'),
 					'is_recently_accessed': false
 				});
 		}
 
-		// Code for rendering all remmaining taxonomy dashboards
+		// Code for rendering all remaining taxonomy dashboards
 		if(Object.keys(window.smart_manager.taxonomyDashboards).length > 0){
 			window.smart_manager.createOptGroups({'parent': recentTaxonomyDashboards,
 				'child': window.smart_manager.taxonomyDashboards,
-				'label': _x('All taxonomies', 'dashboard option groups', 'smart-manager-for-wp-e-commerce'),
+				'label': _x('Other taxonomies', 'dashboard option groups', 'smart-manager-for-wp-e-commerce'),
 				'is_recently_accessed': false
 			});
 		}
 
-		// Code for rendering all remmaining views
+		// Code for rendering all remaining views
 		if(Object.keys(window.smart_manager.sm_views).length > 0){
-			window.smart_manager.dashboard_select_options += '<optgroup label="'+_x('All saved views', 'dashboard option groups', 'smart-manager-for-wp-e-commerce')+' ('+(Object.keys(window.smart_manager.sm_views).length - window.smart_manager.recentViews.length)+')">';
+			window.smart_manager.dashboard_select_options += '<optgroup label="'+_x('Other saved views', 'dashboard option groups', 'smart-manager-for-wp-e-commerce')+' ('+(Object.keys(window.smart_manager.sm_views).length - window.smart_manager.recentViews.length)+')">';
 			Object.keys(window.smart_manager.sm_views).map((key) => {
 				if(!window.smart_manager.recentViews.includes(key) && window.smart_manager.viewPostTypes.hasOwnProperty(key)){
 					window.smart_manager.dashboard_select_options += '<option value="'+window.smart_manager.viewPostTypes[key]+'" '+ ((key == window.smart_manager.dashboard_key) ? "selected" : "") +'>'+window.smart_manager.sm_views[key]+'</option>';
@@ -480,7 +481,7 @@ Smart_Manager.prototype.loadNavBar = function() {
 
 	jQuery('#sm_nav_bar .sm_beta_left').append(navBar);
 	jQuery('#sm_dashboard_select').empty().append(window.smart_manager.dashboard_select_options);
-	jQuery('#sm_dashboard_select').select2({ width: '15em', dropdownCssClass: 'sm_beta_dashboard_select', dropdownParent: jQuery('#sm_nav_bar') });
+	jQuery('#sm_dashboard_select').select2({ width: '20em', dropdownCssClass: 'sm_beta_dashboard_select', dropdownParent: jQuery('#sm_nav_bar') });
 
 	jQuery('#sm_nav_bar #sm_nav_bar_right').append(`<div class="sm_nav_bar_links">
 					<div>
@@ -2316,16 +2317,23 @@ Smart_Manager.prototype.event_handler = function() {
 		})			
 	})
 
-	.off( 'change', '#search_switch').on( 'change', '#search_switch' ,function(){ //request for handling switch search types
+	.off( 'click', '#search_switch').on( 'click', '#search_switch' ,function(){ //Added for setting click flag for handling for custom views
+		window.smart_manager.searchSwitchClicked = true
+	})
+
+	.off( 'change', '#search_switch').on( 'change', '#search_switch' ,function(e){ //request for handling switch search types
+		//Code for showing notice for custom views
+		if((window.smart_manager.isViewContainSearchParams) && (window.smart_manager.searchSwitchClicked) && typeof (window.smart_manager.showNotification) !== "undefined" && typeof (window.smart_manager.	showNotification) === "function" ) {
+			e.target.checked = ! e.target.checked
+			window.smart_manager.searchSwitchClicked = false
+			window.smart_manager.notification = {message: _x('Cannot switch search when using Custom Views', 'search switch notice for custom views', 'smart-manager-for-wp-e-commerce'),hideDelay: window.smart_manager.notificationHideDelayInMs}
+			window.smart_manager.showNotification()
+			return
+		}
 
 		let switchSearchType = jQuery(this).attr('switchSearchType'),
 			title = jQuery("label[for='"+ jQuery(this).attr("id") +"']").attr('title'),
 			content = '';
-
-		// if(window.smart_manager.clearSearchOnSwitch){
-		// 	window.smart_manager.advancedSearchQuery = new Array();
-		// 	window.smart_manager.simpleSearchText = '';
-		// }
 
 		jQuery(this).attr('switchSearchType', window.smart_manager.searchType);
 		jQuery("label[for='"+ jQuery(this).attr("id") +"']").attr('title', title.replace(String(switchSearchType).capitalize(), String(window.smart_manager.searchType).capitalize()));
@@ -2358,8 +2366,15 @@ Smart_Manager.prototype.event_handler = function() {
 	.off( 'keyup', '#sm_simple_search_box').on( 'keyup', '#sm_simple_search_box' ,function(){ //request for handling simple search
 		clearTimeout(window.smart_manager.searchTimeoutId);
 		window.smart_manager.searchTimeoutId = setTimeout(function () {
-			window.smart_manager.simpleSearchText = jQuery('#sm_simple_search_box').val();
-			window.smart_manager.refresh();
+			//Code for showing notice for custom views
+			if((window.smart_manager.isViewContainSearchParams) && typeof (window.smart_manager.showNotification) !== "undefined" && typeof (window.smart_manager.	showNotification) === "function" ) {
+				window.smart_manager.notification = {message: _x('Search string cannot be edited when using Custom Views', 'simple search notice for custom views', 'smart-manager-for-wp-e-commerce'),hideDelay: window.smart_manager.notificationHideDelayInMs}
+            	window.smart_manager.showNotification()
+				jQuery('#sm_simple_search_box').val(window.smart_manager.simpleSearchText)
+			} else {
+				window.smart_manager.simpleSearchText = jQuery('#sm_simple_search_box').val();
+				window.smart_manager.refresh();
+			}
 		}, 1000);
 	})
 
