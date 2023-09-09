@@ -92,7 +92,7 @@ class GoogleAddressAutocompleteService {
                 const stateField = jQuery( `#${prefix}state` );
 
                 const noFuzzySearchNeeded = !stateField.is( 'select' ) || stateField.find( `option[value="${state}"]` ).length;
-                const stateValue          = noFuzzySearchNeeded ? state : stateField.find( `option:contains(${state})` ).val();
+                const stateValue          = noFuzzySearchNeeded ? state : stateField.find( `option:contains(${state.replace( "'", '’' )})` ).val();
 
                 stateField.val( stateValue );
 

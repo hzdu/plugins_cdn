@@ -27,6 +27,12 @@ class AfterCheckoutOrderBumpModal extends VariableProductFormModal {
         const productData = form.serializeArray();
         let hasProductId = false;
 
+        const openBump: AfterCheckoutOrderBumpModal = DataService.getRuntimeParameter( 'open_after_checkout_bump' );
+
+        if ( openBump ) {
+            openBump.close();
+        }
+
         // Check for woocommerce custom quantity code
         // https://docs.woocommerce.com/document/override-loop-template-and-show-quantities-next-to-add-to-cart-buttons/
         jQuery.each( productData, ( key, formItem ) => {

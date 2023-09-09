@@ -2501,7 +2501,6 @@ if (!String.prototype.trim) {
                 } else if(!notCachedEventsIds.includes(event.e_id)) {
                     var isApiDisabled = options.gdpr.all_disabled_by_api ||
                         options.gdpr.facebook_disabled_by_api ||
-                        options.gdpr.tiktok_disabled_by_api ||
                         options.gdpr.cookiebot_integration_enabled ||
                         options.gdpr.cookie_notice_integration_enabled ||
                         options.gdpr.consent_magic_integration_enabled ||

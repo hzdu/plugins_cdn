@@ -134,6 +134,7 @@ cfwDomReady( () => {
      * Image Pickers
      */
     new ImagePicker( '.cfw-admin-image-picker-button' );
+    new ImagePicker( '.cfw-admin-side-cart-logo-picker-button' );
 
     /**
      * Trust Badge Repeater

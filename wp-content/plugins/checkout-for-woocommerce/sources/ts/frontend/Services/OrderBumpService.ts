@@ -1,6 +1,8 @@
 import AfterCheckoutOrderBumpModal          from '../Modals/AfterCheckoutOrderBumpModal';
 import ChoosableVariationOrderBumpModal     from '../Modals/ChoosableVariationOrderBumpModal';
+import CompleteOrderService                 from './CompleteOrderService';
 import DataService                          from './DataService';
+import LoggingService                       from './LoggingService';
 
 class OrderBumpService {
     protected modal: AfterCheckoutOrderBumpModal;
@@ -43,6 +45,8 @@ class OrderBumpService {
             return true;
         }
 
+        CompleteOrderService.addOverlay();
+
         // Foreach bump
         Object.keys( bumps ).forEach( ( bumpId ) => {
             jQuery.ajax( {
@@ -51,8 +55,13 @@ class OrderBumpService {
                 beforeSend( xhr ) {
                     xhr.setRequestHeader( 'X-WP-Nonce', ( <any>window ).wpApiSettings.nonce );
                 },
+                error( xhr, status, error ) {
+                    LoggingService.logError( 'Could not load order bump product form.', error );
+                    return true;
+                },
                 success( data ) {
                     this.modal = new AfterCheckoutOrderBumpModal( data.html ?? 'Could not load product.' );
+                    DataService.setRuntimeParameter( 'open_after_checkout_bump', this.modal );
                     this.modal.open();
                 },
             } );
