@@ -1,0 +1,42 @@
+/* CSS for WC Lottery admin elements */
+
+.post-type-product .ui-timepicker-div .ui-widget-header { margin-bottom: 8px; }
+.post-type-product .ui-timepicker-div dl { text-align: left; }
+.post-type-product .ui-timepicker-div dl dt { float: left; clear:left; padding: 0 0 0 5px; }
+.post-type-product .ui-timepicker-div dl dd { margin: 0 10px 10px 45%; }
+.post-type-product .ui-timepicker-div td { font-size: 90%; }
+.post-type-product .ui-tpicker-grid-label { background: none; border: none; margin: 0; padding: 0; }
+.post-type-product .ui-timepicker-rtl{ direction: rtl; }
+.post-type-product .ui-timepicker-rtl dl { text-align: right; padding: 0 5px 0 0; }
+.post-type-product .ui-timepicker-rtl dl dt{ float: right; clear: right; }
+.post-type-product .ui-timepicker-rtl dl dd { margin: 0 45% 10px 10px; }
+table.wp-list-table .column-lottery {width:46px; text-align: center;}
+table.wp-list-table td.column-lottery img{padding: 0.2em;border-radius: 50%;}
+table.wp-list-table td.column-lottery img{background-color:#7ad03a; }
+table.wp-list-table .column-lottery img.finished{background-color: #de9e0c;}
+table.wp-list-table .column-lottery img.fail{background-color: #d54e21;}
+table.wp-list-table .column-lottery img.order {background-color: transparent;-webkit-box-shadow: inset 0 1px 0 #fff, 0 1px 0 rgba(0,0,0,.08);box-shadow: inset 0 1px 0 #fff, 0 1px 0 rgba(0,0,0,.08); border:1px solid #cccccc; padding:0.3em}
+.lottery-table {width: 100%}
+.reminder-status .error{color:#B81C23}
+.reminder-status .ok{color:#85AD74}
+.woocommerce ul.wc-tabs li.lottery_tab a:before,  #woocommerce-product-data ul.wc-tabs li.lottery_tab a:before{display: none;} 
+.lottery-table .actions {width:50px; text-align: center;}
+.lottery-table th {text-align: left}
+.lottery-table tr.deleted{background: #bd393a;}
+.lottery-table tr:hover{background: rgba(0,0,0,0.2)}
+.icon-woo-lottery{background: url(../images/lottery.png) center no-repeat;}
+
+._lottery_multiple_winner_per_user_field{display: none;}
+
+
+table.wp-list-table span.product-type.lottery:before{
+	content: "";background: url(../images/lottery.png) center no-repeat;
+}
+.column-product_type {position: relative}
+.lottery-status {background-color: #7ad03a; width: 0.5em; height: 0.5em; border-radius: 50%; display: inline-block; position: absolute; left: 6px; top: 4px; }
+.lottery-status.finished  {background-color: #de9e0c;}
+.lottery-status.fail  {background-color: #d54e21;}
+
+.lottery_tab_options a:before {background: url(../images/lottery.png) center center no-repeat; display: inline-block !important; width: 14px; height: 14px; content: ' ' !important; background-size: cover; }
+.relist_lottery_dates_fields{display: none;}
+.extend_lottery_dates_fields{display: none;}
