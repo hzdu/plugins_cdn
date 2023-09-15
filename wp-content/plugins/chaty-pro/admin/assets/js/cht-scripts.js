@@ -200,6 +200,25 @@ jQuery( function($) {
 
     $(document).ready(function () {
 
+        $(document).on("click", ".field-setting-col:not(.hide-label-setting) .field-label", function(e){
+            e.preventDefault();
+            $(this).closest(".label-flex").toggleClass("input-active");
+        });
+
+        $(document).on("click", ".chaty-switch-toggle", function(){
+            setTimeout(function(){
+                $(".chaty-field-setting").each(function(){
+                    if($(this).is(":checked")) {
+                        $(this).closest(".field-setting-col").find(".field-settings").addClass("active");
+                        $(this).closest(".field-setting-col").removeClass("hide-label-setting");
+                    } else {
+                        $(this).closest(".field-setting-col").find(".field-settings").removeClass("active");
+                        $(this).closest(".field-setting-col").addClass("hide-label-setting");
+                    }
+                });
+            },100);
+        });
+
         $(document).on("click", ".select-cta-fa-icon", function(e){
             //e.preventDefault();
             $("#chat-image-icon").removeClass("active");
@@ -331,7 +350,13 @@ jQuery( function($) {
                 } else {
                     iframeData.contents().find('.mce-content-body').append(" "+inputText);
                 }
-            } else {
+            } else if($(this).closest(".custom-input-tags").length) {
+                inputText = $.trim($.trim($(this).closest(".custom-input-tags").find(".add-custom-tags").val()) + " "+ "\n"+ inputText);
+                $(this).closest(".custom-input-tags").find(".add-custom-tags").val(inputText);
+            } else if($(this).closest(".email-body-content").length) {
+                inputText = $.trim($.trim($(this).closest(".email-body-content").find(".custom-email-body").val()) + "\n"+ inputText);
+                $(this).closest(".email-body-content").find(".custom-email-body").val(inputText);
+            } else if($(this).closest(".form-horizontal__item").length) {
                 inputText = $.trim($.trim($(this).closest(".form-horizontal__item").find(".add-properties").val()) + " "+ inputText);
                 $(this).closest(".form-horizontal__item").find(".add-properties").val(inputText);
             }
@@ -371,17 +396,7 @@ jQuery( function($) {
 
         var whatsAppInput = [];
 
-        $(document).on("click", ".chaty-switch-toggle", function(){
-            setTimeout(function(){
-                $(".chaty-field-setting").each(function(){
-                    if($(this).is(":checked")) {
-                        $(this).closest(".field-setting-col").find(".field-settings").addClass("active");
-                    } else {
-                        $(this).closest(".field-setting-col").find(".field-settings").removeClass("active");
-                    }
-                });
-            },100);
-        });
+
 
         $(document).on("change", ".chaty-close_form_after-setting", function(){
             setTimeout(function(){
@@ -486,6 +501,14 @@ jQuery( function($) {
                 $(this).closest(".form-field-setting-col").find(".captcha-settings").addClass("active");
             } else {
                 $(this).closest(".form-field-setting-col").find(".captcha-settings").removeClass("active");
+            }
+        });
+
+        $(document).on("click", ".email-content-switch", function(e){
+            if($(this).is(":checked")) {
+                $(".email-body-content").addClass("active");
+            } else {
+                $(".email-body-content").removeClass("active");
             }
         });
 
@@ -1294,6 +1317,10 @@ jQuery(document).ready(function () {
         $parent.removeClass('show-remove-rules-btn')
     })
 
+    jQuery("select#cht_widget_language").on("change", function(){
+        jQuery(".page-url-title").text(jQuery("select#cht_widget_language option:selected").data("url"));
+    });
+
     jQuery("#create-rule").on("click", function () {
         appendHtml = pageOptionContent.replace(/__count__/g, totalPageOptions, pageOptionContent);
         jQuery(".chaty-page-options").append(appendHtml);
@@ -1348,6 +1375,12 @@ jQuery(document).ready(function () {
             }
         }
         jQuery("#url_"+totalPageOptions+"_option").SumoSelect();
+
+        if(jQuery("select#cht_widget_language").length) {
+            console.log(jQuery("select#cht_widget_language option:selected").data("url"));
+            jQuery(".page-url-title").text(jQuery("select#cht_widget_language option:selected").data("url"));
+        }
+
         totalPageOptions++;
     });
 
@@ -1546,6 +1579,10 @@ jQuery(document).ready(function () {
     jQuery(document).ready(function(){
         set_wp_editor();
 
+        if(jQuery("select#cht_widget_language").length) {
+            jQuery(".page-url-title").text(jQuery("select#cht_widget_language option:selected").data("url"));
+        }
+
         if(jQuery(".toast-message").length) {
             jQuery(".toast-message").addClass("active");
 
@@ -1635,7 +1672,7 @@ jQuery(document).ready(function () {
             jQuery(this).closest(".url-content").find(".url-setting-option").removeClass("active");
             jQuery(this).closest(".url-content").find("."+thisVal+"-option").addClass("active");
         }
-        jQuery(this).closest(".url-content").find(".chaty-url").text(newURL);
+        //jQuery(this).closest(".url-content").find(".chaty-url").text(newURL);
     });
 
     jQuery(".chaty-settings.cls-btn a, .close-btn-set").on("click", function (e) {

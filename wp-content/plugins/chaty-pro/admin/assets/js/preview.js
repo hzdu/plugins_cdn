@@ -151,19 +151,19 @@ jQuery(document).ready(function(){
     });
 
     jQuery(document).on("keyup", "#cht_social_message_Contact_Us_form_title", function(){
-        jQuery(".csaas-contact-form-title").text(jQuery(this).val());
+        jQuery(".csaas-contact-form-title").text(jQuery(this).val().toHtmlEntities());
     });
 
     jQuery(document).on("keyup", "#button_text_for_Contact_Us", function(){
-        jQuery("#csaas-submit-button-0").text(jQuery(this).val());
+        jQuery("#csaas-submit-button-0").text(jQuery(this).val().toHtmlEntities());
     });
 
     jQuery(document).on("keyup", "#cta_heading_text", function(){
-        jQuery(".csaas-view-header").text(jQuery(this).val());
+        jQuery(".csaas-view-header").text(jQuery(this).val().toHtmlEntities());
     });
 
     jQuery(document).on("keyup", "#cta_body_text", function(){
-        jQuery(".csaas-top-content").text(jQuery(this).val());
+        jQuery(".csaas-top-content").text(jQuery(this).val().toHtmlEntities());
     });
 
     jQuery(document).on("change", ".form-field-setting-col input[type='text']", function(){
@@ -272,7 +272,7 @@ function change_custom_preview() {
         jQuery("#chaty_attention_effect, .test_textarea").attr("disabled", true);
         jQuery("#chaty_attention_effect option:first-child").text("Doesn't apply for the open state");
         if(jQuery(".test_textarea").val() != "Doesn't apply for the open state") {
-            jQuery(".test_textarea").attr("data-value", jQuery(".test_textarea").val());
+            jQuery(".test_textarea").attr("data-value", jQuery(".test_textarea").val().toHtmlEntities());
         }
         jQuery(".test_textarea").val("Doesn't apply for the open state");
         jQuery("#cht_number_of_messages").attr("disabled", true);
@@ -388,17 +388,19 @@ function change_custom_preview() {
                 jQuery("#csaas-widget-0 .csaas-i-trigger .csaas-channel").addClass("single");
 
                 jQuery("#csaas-widget-0 .csaas-widget").addClass("has-single");
-                var ctaText = jQuery(".test_textarea").val();if(!isEmpty(ctaText)) {
+                var ctaText = jQuery(".test_textarea").val().toHtmlEntities();
+                if(!isEmpty(ctaText)) {
                     ctaText = htmlDecode(ctaText);
                 }
+                console.log(ctaText);
                 if(!isEmpty(ctaText)) {
                     jQuery("#csaas-widget-0 .csaas-tooltip").removeClass("csaas-tooltip");
-                    jQuery("#csaas-widget-0 .csaas-i-trigger .csaas-channel").attr("data-hover", ctaText);
+                    jQuery("#csaas-widget-0 .csaas-i-trigger .csaas-channel").attr("data-hover", ctaText.toHtmlEntities());
                     jQuery("#csaas-widget-0 .csaas-i-trigger .csaas-channel").addClass("active").addClass("csaas-tooltip").addClass(toolTipPosition);
                     jQuery("#csaas-widget-0 .csaas-i-trigger .csaas-channel").addClass("active").addClass("csaas-tooltip").addClass("pos-"+toolTipPosition);
 
-                    jQuery("#csaas-widget-0 .csaas-i-trigger .csaas-channel").append("<span class='on-hover-text'>"+ctaText+"</span>").addClass("active").addClass("has-on-hover");
-                    jQuery("#csaas-widget-0 .csaas-i-trigger .csaas-channel a").append("<span class='on-hover-text'>"+ctaText+"</span>").addClass("has-on-hover");
+                    jQuery("#csaas-widget-0 .csaas-i-trigger .csaas-channel").append("<span class='on-hover-text'>"+ctaText.toHtmlEntities()+"</span>").addClass("active").addClass("has-on-hover");
+                    jQuery("#csaas-widget-0 .csaas-i-trigger .csaas-channel a").append("<span class='on-hover-text'>"+ctaText.toHtmlEntities()+"</span>").addClass("has-on-hover");
                 }
             } else {
                 for(i=0; i<previewChannelList.length; i++) {
@@ -451,7 +453,7 @@ function change_custom_preview() {
                 }
 
                 if(!isEmpty(ctaText)) {
-                    ctaText = htmlDecode(ctaText);
+                    ctaText = ctaText.toHtmlEntities();
                 }
 
                 var widgetButton = '<div class="csaas-channel csaas-cta-main has-on-hover csaas-tooltip '+ctaToolTipPosition+' active" data-widget="0" >' +
@@ -531,10 +533,9 @@ function change_custom_preview() {
             advanceCustomCSS += "#csaas-widget-0 .csaas-channels .csaas-channel .csaas-custom-icon {display:block; width: "+widgetSize+"px; height: "+widgetSize+"px; line-height: "+widgetSize+"px; font-size: "+parseInt(widgetSize/2)+"px; }";
             advanceCustomCSS += "#csaas-widget-0 .csaas-channels .csaas-channel button {width: "+widgetSize+"px; height: "+widgetSize+"px; }";
             advanceCustomCSS += "#csaas-widget-0 .csaas-channels .csaas-channel .csaas-svg {width: "+widgetSize+"px; height: "+widgetSize+"px; }";
-            advanceCustomCSS += "#csaas-widget-0 .csaas-channels .csaas-channel button .fa-icon i {line-height: "+widgetSize+"px; font-size: "+(parseInt(widgetSize/2))+"px; }";
             advanceCustomCSS += "#csaas-widget-0 .csaas-channels .csaas-channel .custom-agent-image {width: "+widgetSize+"px; height: "+widgetSize+"px; }";
             advanceCustomCSS += "#csaas-widget-0 .csaas-channels .csaas-channel .facustom-icon {width: "+widgetSize+"px; height: "+widgetSize+"px; }";
-            advanceCustomCSS += "#csaas-widget-0 .cszaas-channels .csaas-channel .custom-agent-image img {width: "+widgetSize+"px; height: "+widgetSize+"px; }";
+            advanceCustomCSS += "#csaas-widget-0 .csaas-channels .csaas-channel .custom-agent-image img {width: "+widgetSize+"px; height: "+widgetSize+"px; }";
             advanceCustomCSS += "#csaas-widget-0 .csaas-channels .csaas-channel .csaas-svg img {width: "+widgetSize+"px; height: "+widgetSize+"px; }";
             advanceCustomCSS += "#csaas-widget-0 .csaas-channels .csaas-channel .csaas-svg .csaas-custom-channel-icon {width: "+widgetSize+"px; height: "+widgetSize+"px; line-height: "+widgetSize+"px; display: block; font-size:"+(parseInt(widgetSize/2))+"px; }";
 
@@ -585,6 +586,10 @@ function change_custom_preview() {
             jQuery("#custom-css").html("<style>"+advanceCustomCSS+"</style>");
             jQuery(".csaas-outer-forms, .csaas-chat-view").show();
             jQuery(".csaas-outer-forms, .csaas-chat-view").addClass(widgetPosition);
+
+            if(jQuery("#cht_widget_font").val() != "") {
+                jQuery("#csaas-widget-0").css("font-family", jQuery("#cht_widget_font").val());
+            }
         }
     }
 
@@ -735,10 +740,10 @@ function createAgentList(channel, widgetId) {
     formHtml += "<div role='button' class='csaas-close-agent-list'><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 330 330' xmlns:v='https://vecta.io/nano'><path d='M325.607 79.393c-5.857-5.857-15.355-5.858-21.213.001l-139.39 139.393L25.607 79.393c-5.857-5.857-15.355-5.858-21.213.001s-5.858 15.355 0 21.213l150.004 150a15 15 0 0 0 21.212-.001l149.996-150c5.859-5.857 5.859-15.355.001-21.213z'/></svg></div>";
     formHtml += "<div class='csaas-agent-header agent-info-"+widgetId+"-"+channel+"'>";
     if(!isEmpty(jQuery("#cht_social_agent_title_"+channel).val())) {
-        formHtml += "<div class='agent-main-header'>"+jQuery("#cht_social_agent_title_"+channel).val()+"</div>";
+        formHtml += "<div class='agent-main-header'>"+jQuery("#cht_social_agent_title_"+channel).val().toHtmlEntities()+"</div>";
     }
     if(!isEmpty(jQuery("#cht_social_agent_sub_title_"+channel).val())) {
-        formHtml += "<div class='agent-sub-header'>"+jQuery("#cht_social_agent_sub_title_"+channel).val()+"</div>";
+        formHtml += "<div class='agent-sub-header'>"+jQuery("#cht_social_agent_sub_title_"+channel).val().toHtmlEntities()+"</div>";
     }
     formHtml += "</div>";
     if(jQuery("#chaty-social-"+channel+" .chaty-agent-list .agent-list .agent-channel-setting").length) {
@@ -753,7 +758,7 @@ function createAgentList(channel, widgetId) {
             } else {
                 agentIcon = "<div class='chaty-icon'>" + agentIcon + "</div>";
             }
-            var agentLink = getAgentURL(channel, widgetId, thisIndex, agentIcon, jQuery("#agent-" + channel + "-" + thisIndex + " .chaty-agent-name").val());
+            var agentLink = getAgentURL(channel, widgetId, thisIndex, agentIcon, jQuery("#agent-" + channel + "-" + thisIndex + " .chaty-agent-name").val().toHtmlEntities());
             formHtml += "<div class='csaas-agent agent-info-" + widgetId + "-" + channel + " agent-info-" + thisIndex + "'>" + agentLink + "</div>";
             //}
         });
@@ -815,11 +820,30 @@ function getChannelURL(channel, channelIcon, toolTipPosition, widgetId) {
         }
     }
     if(!jQuery("#chaty-social-"+channel).hasClass("has-agent-view")) {
-        return "<a href='javascript:;' class='csaas-tooltip " + toolTipPosition + extraClass + "' data-form='csaas-form-" + widgetId + "-" + channel + "' data-hover='" + jQuery("#chaty-social-" + channel + " .chaty-title").val() + "'>" + channelIcon + "</a>";
+        return "<a href='javascript:;' class='csaas-tooltip " + toolTipPosition + extraClass + "' data-form='csaas-form-" + widgetId + "-" + channel + "' data-hover='" + jQuery("#chaty-social-" + channel + " .chaty-title").val().toHtmlEntities() + "'>" + channelIcon + "</a>";
     } else {
-        return "<a href='javascript:;' class='csaas-tooltip " + toolTipPosition + extraClass + "' data-form='csaas-form-" + widgetId + "-" + channel + "' data-hover='" + jQuery("#cht_social_agent_text_" + channel ).val() + "'>" + channelIcon + "</a>";
+        return "<a href='javascript:;' class='csaas-tooltip " + toolTipPosition + extraClass + "' data-form='csaas-form-" + widgetId + "-" + channel + "' data-hover='" + jQuery("#cht_social_agent_text_" + channel ).val().toHtmlEntities() + "'>" + channelIcon + "</a>";
     }
 }
+
+/**
+ * Convert a string to HTML entities
+ */
+String.prototype.toHtmlEntities = function() {
+    return this.replace(/./gm, function(s) {
+        // return "&#" + s.charCodeAt(0) + ";";
+        return (s.match(/[a-z0-9\s]+/i)) ? s : "&#" + s.charCodeAt(0) + ";";
+    });
+};
+
+/**
+ * Create string from HTML entities
+ */
+String.fromHtmlEntities = function(string) {
+    return (string+"").replace(/&#\d+;/gm,function(s) {
+        return String.fromCharCode(s.match(/\d+/gm)[0]);
+    })
+};
 
 function startMakingContactForm(channel, widgetId) {
     var formHtml = "";
@@ -830,27 +854,27 @@ function startMakingContactForm(channel, widgetId) {
     formHtml += "<div role='button' class='close-csaas-form'><div class='csaas-close-button'></div></div>";
     //formHtml += "<form class='csaas-ajax-contact-form' id='csaas-ajax-contact-form-"+widgetIndex+"' method='post' data-channel='"+channel+"' data-widget='"+widgetId+"' >";
     formHtml += "<div class='csaas-contact-form-body'>";
-    formHtml += "<div class='csaas-contact-form-title'>"+jQuery("#cht_social_message_"+channel+"_form_title").val()+"</div>";
+    formHtml += "<div class='csaas-contact-form-title'>"+jQuery("#cht_social_message_"+channel+"_form_title").val().toHtmlEntities()+"</div>";
     formHtml += "<div class='csaas-contact-inputs'>";
 
     if(jQuery("#field_for_Contact_Us_name").is(":checked")) {
         formHtml += "<div class='csaas-contact-input'>";
-        formHtml += "<input type='text' readonly class='csaas-input-field' placeholder='" + jQuery("#placeholder_for_Contact_Us_name").val() + "' />";
+        formHtml += "<input type='text' readonly class='csaas-input-field' placeholder='" + jQuery("#placeholder_for_Contact_Us_name").val().toHtmlEntities() + "' />";
         formHtml += "</div>";
     }
     if(jQuery("#field_for_Contact_Us_email").is(":checked")) {
         formHtml += "<div class='csaas-contact-input'>";
-        formHtml += "<input type='text' readonly class='csaas-input-field' placeholder='" + jQuery("#placeholder_for_Contact_Us_email").val() + "' />";
+        formHtml += "<input type='text' readonly class='csaas-input-field' placeholder='" + jQuery("#placeholder_for_Contact_Us_email").val().toHtmlEntities() + "' />";
         formHtml += "</div>";
     }
     if(jQuery("#field_for_Contact_Us_phone").is(":checked")) {
         formHtml += "<div class='csaas-contact-input'>";
-        formHtml += "<input type='text' readonly class='csaas-input-field' placeholder='" + jQuery("#placeholder_for_Contact_Us_phone").val() + "' />";
+        formHtml += "<input type='text' readonly class='csaas-input-field' placeholder='" + jQuery("#placeholder_for_Contact_Us_phone").val().toHtmlEntities() + "' />";
         formHtml += "</div>";
     }
     if(jQuery("#field_for_Contact_Us_message").is(":checked")) {
         formHtml += "<div class='csaas-contact-input'>";
-        formHtml += "<textarea type='text' readonly class='csaas-textarea-field' placeholder='" + jQuery("#placeholder_for_Contact_Us_message").val() + "' ></textarea>";
+        formHtml += "<textarea type='text' readonly class='csaas-textarea-field' placeholder='" + jQuery("#placeholder_for_Contact_Us_message").val().toHtmlEntities() + "' ></textarea>";
         formHtml += "</div>";
     }
     /*$.each(channel.contact_fields, function (key, contactField) {
@@ -863,7 +887,7 @@ function startMakingContactForm(channel, widgetId) {
         }
         formHtml += "</div>";
     });*/
-    formHtml += "<div class='csaas-contact-form-button'><button type='submit' id='csaas-submit-button-"+widgetId+"' class='csaas-submit-button'>"+jQuery("#button_text_for_"+channel).val()+"</button></div>";
+    formHtml += "<div class='csaas-contact-form-button'><button type='submit' id='csaas-submit-button-"+widgetId+"' class='csaas-submit-button'>"+jQuery("#button_text_for_"+channel).val().toHtmlEntities()+"</button></div>";
     formHtml += "</div>"; // csaas-contact-inputs
     formHtml += "</div>"; // csaas-contact-form-body
     //formHtml += "</form>";
@@ -916,7 +940,7 @@ function startMakingWhatsAppPopup(channel, widgetId) {
     formHtml += "</div>";
     jQuery(".chaty-preview").append(formHtml);
     jQuery("#csaas-form-"+widgetId+"-"+channel+" .csaas-whatsapp-message").html(jQuery(".chaty-whatsapp-setting-textarea").val());
-    var preSetMessage = jQuery(".pre-set-message-whatsapp").val();
+    var preSetMessage = jQuery(".pre-set-message-whatsapp").val().toHtmlEntities();
     if(!isEmpty(channel.pre_set_message)) {
         jQuery("#csaas-form-"+widgetId+"-"+channel+" .csass-whatsapp-input").val(preSetMessage);
     }

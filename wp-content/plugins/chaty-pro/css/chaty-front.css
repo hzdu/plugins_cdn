@@ -744,20 +744,21 @@
 }
 
 .chaty-whatsapp-button button, .chaty-whatsapp-button button:focus, .chaty-whatsapp-button button:hover {
-    line-height: 48px;
-    text-align: center;
+    line-height: 48px !important;
+    text-align: center !important;
     float: right;
-    height: 48px;
-    width: 48px;
-    padding: 8px 10px 8px 15px;
+    height: 48px !important;
+    width: 48px !important;
+    padding: 8px 10px 8px 15px !important;
     background: #25d366 !important;
-    border-radius: 24px;
-    outline: 0;
-    box-shadow: none;
-    border: none;
-    cursor: pointer;
-    margin: 0;
-    text-decoration: none
+    border-radius: 24px !important;
+    outline: none !important;
+    box-shadow: none !important;
+    cursor: pointer !important;
+    margin: 0 !important;
+    text-decoration: none !important;
+    border: none !important;
+    min-width: 1px !important;
 }
 
 .chaty-whatsapp-data {
@@ -1010,8 +1011,18 @@
 }
 
 .chaty-contact-input {
-    display: flex
+    display: block;
 }
+
+.chaty-contact-input label.chaty-form-label {
+    font-size: 14px;
+    margin: 0;
+    padding: 0 0 4px 0;
+    line-height: 20px;
+    display: flex;
+    color: #28303d;
+}
+
 
 .chaty-contact-input + .chaty-contact-input {
     margin: 12px 0 0
@@ -1296,4 +1307,16 @@ span.chaty-loader span.dashicons {
 span.chaty-loader.active {
     display: inline-block;
     vertical-align: baseline;
+}
+
+.chaty-i-trigger.single-channel > .chaty-channel > .on-hover-text {
+    display: none !important;
+}
+html[dir="rtl"] .csaas-tooltip,
+html[dir="rtl"] .on-hover-text,
+html[dir="rtl"] .chaty-input-field,
+html[dir="rtl"] .chaty-submit-button,
+html[dir="rtl"] .chaty-whatsapp-message,
+html[dir="rtl"] .csaas-tooltip:after {
+    direction: rtl;
 }

@@ -276,9 +276,9 @@
         });
 
         /* track google analytics event */
-        $(document).on("click", ".chaty-channel.has-gae", function (e) {
+        $(document).on("click", ".chaty-channel a.has-gae", function (e) {
             e.stopPropagation();
-            var widgetChannel = $(this).data("channel");
+            var widgetChannel = $(this).closest(".chaty-channel").data("channel");
             if (widgetChannel !== undefined && widgetChannel != "" && widgetChannel != null) {
                 if (window.hasOwnProperty("gtag")) {
                     gtag("event", "chaty_" + widgetChannel, {
@@ -296,6 +296,12 @@
                     })
                 }
             }
+        });
+
+        $(document).on("mouseover", ".chaty-widget.has-single .chaty-channel a.has-on-hover[data-hover]", function () {
+            $(this).find(".on-hover-text").html($(this).data("hover"));
+        }).on("mouseleave", ".chaty-widget.has-single .chaty-channel a.has-on-hover[data-text]", function () {
+            $(this).find(".on-hover-text").html($(this).data("text"));
         });
 
         $(document).on("submit", ".whatsapp-chaty-form.has-form-gae", function(){
@@ -505,8 +511,7 @@
             });
             if (inputErrorCounter == 0) {
                 var $form = $(this);
-                $(".chaty-contact-submit-btn").attr("disabled", true);
-                console.log("#chaty-submit-button-"+ $form.data("index"))
+                $(".chaty-submit-button").attr("disabled", true);
                 $("#chaty-submit-button-"+ $form.data("index") + " .chaty-loader").addClass("active");
                 jQuery.ajax({
                     url: chaty_settings.ajax_url,
@@ -521,6 +526,8 @@
                         widget: $form.data("index"),
                         ref_url: window.location.href,
                         token: googleV3Token,
+                        page_id: chaty_settings.page_id,
+                        page_title: getPageTitle(),
                         v2token: $form.find(".g-recaptcha-response").length ? $form.find(".g-recaptcha-response").val() : ""
                     },
                     type: 'post',
@@ -534,7 +541,7 @@
                         }
                         $(".chaty-ajax-error-message").remove();
                         $(".chaty-ajax-success-message").remove();
-                        $(".chaty-contact-submit-btn").attr("disabled", false);
+                        $(".chaty-submit-button").attr("disabled", false);
                         if (response.status == 1) {
                             $("#chaty-submit-button-"+ $form.data("index") + " .chaty-loader").removeClass("active");
                             $(".chaty-contact-inputs").append("<div class='chaty-ajax-success-message'>" + response.message + "</div>");
@@ -760,12 +767,14 @@
 
                                 $("#chaty-widget-" + widgetRecord.id + " .chaty-i-trigger .chaty-channel").append("<span class='on-hover-text'>"+ctaText+"</span>").addClass("active").addClass("has-on-hover");
                                 $("#chaty-widget-" + widgetRecord.id + " .chaty-i-trigger .chaty-channel a").append("<span class='on-hover-text'>"+ctaText+"</span>").addClass("has-on-hover");
+                                $("#chaty-widget-" + widgetRecord.id + " .chaty-i-trigger .chaty-channel a").attr("data-text", ctaText);
                             } else {
                                 $("#chaty-widget-" + widgetRecord.id + " .chaty-i-trigger .chaty-channel a").append("<span class='on-hover-text'>"+ctaText+"</span>").removeClass("active").addClass("has-on-hover");
                             }
                         }
                         if (widgetRecord.settings.show_cta == "all_time") {
                             $("#chaty-widget-" + widgetRecord.id + " .chaty-i-trigger .chaty-tooltip").append("<span class='on-hover-text'>"+ctaText+"</span>").addClass("active").addClass("has-on-hover");
+                            $("#chaty-widget-" + widgetRecord.id + " .chaty-i-trigger.single-channel .chaty-channel a").attr("data-text", ctaText);
                         }
 
                         var channel = channelSetting;
@@ -889,9 +898,9 @@
 
                     /* checking for google analytics */
                     if (isTrue(widgetRecord.settings.is_google_analytics_enabled)) {
-                        $("#chaty-widget-" + widgetRecord.id + " .chaty-channel-list .chaty-channel").addClass("has-gae");
-                        $("#chaty-form-" + widgetRecord.id + "-chaty-chat-view .chaty-channel").addClass("has-gae");
-                        $("#chaty-widget-" + widgetRecord.id + " .chaty-i-trigger.single-channel .chaty-channel").addClass("has-gae");
+                        $("#chaty-widget-" + widgetRecord.id + " .chaty-channel-list .chaty-channel > a").addClass("has-gae");
+                        $("#chaty-form-" + widgetRecord.id + "-chaty-chat-view .chaty-channel > a").addClass("has-gae");
+                        $("#chaty-widget-" + widgetRecord.id + " .chaty-i-trigger.single-channel .chaty-channel > a").addClass("has-gae");
 
                         $(".chaty-outer-forms.chaty-whatsapp-form.chaty-form-" + widgetRecord.id + " form.add-analytics").addClass("form-google-analytics");
                         $(".whatsapp-chaty-form-" + widgetRecord.id).addClass("has-form-gae");
@@ -1106,6 +1115,15 @@
                 if (key == (widgetData.length - 1)) {
 
                 }
+
+                if($(".chaty-sms-channel").length) {
+                    $(".chaty-sms-channel").each(function(){
+                        var thisLink = $(this).attr("href");
+                        thisLink = thisLink.replace(/{title}/g, getPageTitle());
+                        thisLink = thisLink.replace(/{url}/g, window.location.href);
+                        $(this).attr("href", thisLink);
+                    });
+                }
             });
             if (!$("#custom-advance-chaty-css").length) {
                 $("head").append("<style id='custom-advance-chaty-css'></style>");
@@ -1117,6 +1135,11 @@
         }
         removeEmptyTooltip();
         checkForchatyTriggers();
+    }
+
+
+    function getPageTitle() {
+        return $("title").length?$("title").text():"";
     }
 
 
@@ -1787,7 +1810,8 @@
             channel.target = "";
             channel.url = "javascript:;";
         }
-        return "<a href='" + channel.url + "' " + onClickFn + " target='" + channel.target + "' rel='nofollow noopener' aria-label='" + ariaLabel + "' class='chaty-tooltip pos-" + toolTipPosition + extraClass + "' data-form='chaty-form-" + widgetId + "-" + channel.channel_type + "' data-hover='" + channel.hover_text + "'>" + channelIcon + "</a>";
+        console.log(channel.hover_text);
+        return "<a href='" + channel.url + "' " + onClickFn + " target='" + channel.target + "' rel='nofollow noopener' aria-label='" + ariaLabel + "' class='chaty-tooltip chaty-"+(channel.channel_type).toLowerCase()+"-channel pos-" + toolTipPosition + extraClass + "' data-form='chaty-form-" + widgetId + "-" + channel.channel_type + "' data-hover='" + channel.hover_text + "'>" + channelIcon + "</a>";
     }
 
     function startMakingContactForm(channel, widgetId) {
@@ -1808,8 +1832,18 @@
             formHtml += "<div class='chaty-contact-input'>";
             var isRequired = isTrue(contactField.is_required) ? "is-required" : "";
             if (contactField.type == "textarea") {
+                if(!isEmpty(contactField.title)) {
+                    formHtml += "<label class='chaty-form-label' for='" + contactField.field + "-" + widgetId + "'>"+contactField.title+"</label>";
+                } else {
+                    formHtml += "<label class='sr-only' for='" + contactField.field + "-" + widgetId + "'>"+contactField.field+"</label>";
+                }
                 formHtml += "<textarea type='" + contactField.type + "' class='chaty-textarea-field " + isRequired + " field-" + contactField.field + "' placeholder='" + contactField.placeholder + "' name='" + contactField.field + "' id='" + contactField.field + "-" + widgetId + "' ></textarea>"
             } else {
+                if(!isEmpty(contactField.title)) {
+                    formHtml += "<label class='chaty-form-label' for='" + contactField.field + "-" + widgetId + "'>"+contactField.title+"</label>";
+                } else {
+                    formHtml += "<label class='sr-only' for='" + contactField.field + "-" + widgetId + "'>"+contactField.field+"</label>";
+                }
                 formHtml += "<input type='" + contactField.type + "' class='chaty-input-field " + isRequired + " field-" + contactField.field + "' placeholder='" + contactField.placeholder + "' name='" + contactField.field + "' id='" + contactField.field + "-" + widgetId + "' />"
             }
             formHtml += "</div>";
