@@ -1044,9 +1044,7 @@ Smart_Manager.prototype.set_data = function(response) {
 			}
 			
 			if( window.smart_manager.page > 1 ) {
-			
 				window.smart_manager.showLoader(false);
-
 				let lastRowIndex = window.smart_manager.currentDashboardData.length;
 
 				let idsIndex = {};
@@ -1057,12 +1055,11 @@ Smart_Manager.prototype.set_data = function(response) {
 						idsIndex[id] = key
 					}
 				})
-
 				//if no matchingids then replace else push/concat
 				if(Object.keys(idsIndex).length > 0) {
 					res.items.map((data, key) => {
 						let id = (data[idKey]) ? data[idKey] : ''
-						if(idsIndex[id]){
+						if(0 <= idsIndex[id]){
 							window.smart_manager.currentDashboardData[idsIndex[id]] = data;
 						} else {
 							window.smart_manager.currentDashboardData.push(data)
@@ -2084,7 +2081,7 @@ Smart_Manager.prototype.loadGrid = function() {
 					multiselect_chkbox_list += '</ul>';
 
 				window.smart_manager.modal = {
-					title: _x('Category', 'modal title', 'smart-manager-for-wp-e-commerce'),
+					title: _x((col.key || 'Taxonomy'), 'modal title', 'smart-manager-for-wp-e-commerce'),
 					content: multiselect_chkbox_list,
 					autoHide: false,
 					cta: {
@@ -3196,12 +3193,13 @@ Smart_Manager.prototype.saveData = function(){
 					// Code to get modified page nos.
 					let modifiedPageNumbers = new Set()
 					window.smart_manager.modifiedRows.map((rowNo) => {
-						modifiedPageNumbers.add(Math.ceil((rowNo/window.smart_manager.limit)))
+						modifiedPageNumbers.add(Math.ceil(((rowNo+1)/window.smart_manager.limit)))
 					})
 					window.smart_manager.dirtyRowColIds = {};
 					window.smart_manager.editedData = {};
 					window.smart_manager.modifiedRows = new Array();
 					modifiedPageNumbers.forEach(r => window.smart_manager.getData({refreshPage: r}));
+					window.smart_manager.isRefreshingLoadedPage = false;
 				}
 				window.smart_manager.hot.render();
 				window.smart_manager.notification = {message: msg}
