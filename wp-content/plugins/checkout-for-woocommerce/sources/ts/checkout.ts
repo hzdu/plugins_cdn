@@ -13,7 +13,7 @@ cfwDomReady( () => {
     const tabContainerEl = jQuery( data.elements.tabContainerElId );
 
     // Allow users to add their own Typescript Compatibility classes
-    jQuery( document.body ).trigger( 'cfw_checkout_before_load' );
+    jQuery( document ).trigger( 'cfw_checkout_before_load' );
     LoggingService.logEvent( 'Fired cfw_checkout_before_load event.' );
 
     // Init runtime params

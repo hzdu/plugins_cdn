@@ -1,3 +1,4 @@
+import DataService            from '../Services/DataService';
 import EmailAutocompleteInput from './EmailAutocompleteInput';
 
 class FormField {
@@ -7,7 +8,7 @@ class FormField {
         this.processFieldLabels();
 
         jQuery( document.body ).on( 'keyup change', '.cfw-input-wrap :input', ( e ) => {
-            this.maybeAddFloatClass( jQuery( e.target ) );
+            FormField.maybeAddFloatClass( jQuery( e.target ) );
         } );
 
         // Handle fields after dynamic refreshes
@@ -44,9 +45,20 @@ class FormField {
         };
 
         new EmailAutocompleteInput( options );
+
+        // Trim email field on change
+        DataService.checkoutForm.on( 'change', '#billing_email', ( e ) => {
+            const emailField = jQuery( '#billing_email' );
+
+            if ( !emailField.length ) {
+                return;
+            }
+
+            emailField.val( e.target.value.trim() );
+        } );
     }
 
-    maybeAddFloatClass( element: any ): void {
+    static maybeAddFloatClass( element: any ): void {
         const parentElement = jQuery( element ).parents( '.cfw-input-wrap' );
 
         if ( !parentElement.find( '.cfw-floatable-label' ).length ) {
@@ -66,7 +78,7 @@ class FormField {
 
     processFieldLabels(): void {
         jQuery( '.cfw-input-wrap :input' ).each( ( index, element ) => {
-            this.maybeAddFloatClass( element );
+            FormField.maybeAddFloatClass( element );
         } );
     }
 

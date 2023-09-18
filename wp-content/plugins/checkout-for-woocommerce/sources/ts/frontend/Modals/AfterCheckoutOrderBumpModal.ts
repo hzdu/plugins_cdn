@@ -1,7 +1,6 @@
 import cfwAjax                  from '../../functions/cfwAjax';
-import Main                     from '../Main';
-import CompleteOrderService     from '../Services/CompleteOrderService';
 import DataService              from '../Services/DataService';
+import OrderBumpService         from '../Services/OrderBumpService';
 import VariableProductFormModal from './VariableProductFormModal';
 import jqXHR = JQuery.jqXHR;
 
@@ -76,20 +75,30 @@ class AfterCheckoutOrderBumpModal extends VariableProductFormModal {
         } ).done(
             ( resp ) => {
                 jQuery( document.body ).trigger( 'cfw_order_bump_variation_added_to_cart', [ resp ] );
+
+                if ( OrderBumpService.displayNextAfterCheckoutSubmitBump() ) {
+                    return;
+                }
+
+                if ( jQuery( document.body ).triggerHandler( 'cfw_after_checkout_bump_handle_add_to_cart' ) ) {
+                    return;
+                }
+
+                DataService.checkoutForm.trigger( 'submit' );
             },
         ).always( () => {
             this.close();
-
-            if ( jQuery( document.body ).triggerHandler( 'cfw_after_checkout_bump_handle_add_to_cart' ) ) {
-                return;
-            }
-
+        } ).fail( ( resp ) => {
             DataService.checkoutForm.trigger( 'submit' );
         } );
     }
 
     handleRejection(): void {
         this.close();
+
+        if ( OrderBumpService.displayNextAfterCheckoutSubmitBump() ) {
+            return;
+        }
 
         if ( jQuery( document.body ).triggerHandler( 'cfw_after_checkout_bump_handle_rejection' ) ) {
             return;

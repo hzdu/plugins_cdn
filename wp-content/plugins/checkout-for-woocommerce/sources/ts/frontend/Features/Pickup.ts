@@ -1,3 +1,4 @@
+import getWPHooks               from '../../functions/getWPHooks';
 import Main                     from '../Main';
 import DataService              from '../Services/DataService';
 
@@ -12,7 +13,7 @@ class Pickup {
 
     setTriggers(): void {
         jQuery( document.body ).on( 'change', '[name="cfw_delivery_method"]', ( e ) => {
-            this.showContent( e.target );
+            Pickup.showContent( e.target );
         } );
 
         jQuery( '[name="cfw_delivery_method"]:checked' ).trigger( 'change' );
@@ -20,9 +21,17 @@ class Pickup {
         jQuery( document.body ).on( 'change', '[name="cfw_delivery_method"], [name="cfw_pickup_location"]', ( e ) => {
             Main.instance.updateCheckoutService.queueUpdateCheckout();
         } );
+
+        getWPHooks().addFilter( 'cfw_js_suppress_smarty_address_validation', 'cfw', ( value ) => {
+            if ( jQuery( '[name="cfw_delivery_method"]:checked' ).val() === 'pickup' ) {
+                return true;
+            }
+
+            return value;
+        } );
     }
 
-    showContent( target ): void {
+    static showContent( target: any ): void {
         const radioButton = jQuery( target );
 
         if ( radioButton.val() === 'pickup' && DataService.getSetting( 'hide_pickup_methods' ) ) {

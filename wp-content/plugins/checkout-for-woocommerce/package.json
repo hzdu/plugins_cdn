@@ -1,6 +1,6 @@
 {
     "name": "checkout-for-woocommerce",
-    "version": "8.2.10",
+    "version": "8.2.13",
     "description": "### Development installation instructions",
     "scripts": {
         "build_dev": "./bin/build-dev.sh",
@@ -17,7 +17,8 @@
         "tailwind": "npx tailwind --output './sources/scss/admin/tailwind.css' --watch",
         "build": "wp-scripts build",
         "start": "cross-env NODE_ENV=development wp-scripts start",
-        "build_and_zip": "cross-env NODE_ENV=production wp-scripts build --config webpack.prod.js"
+        "build_and_zip": "cross-env NODE_ENV=production wp-scripts build --config webpack.prod.js",
+        "preinstall": "npx npm-force-resolutions"
     },
     "browserslist": [
         "> 1%",
@@ -49,7 +50,7 @@
         "@types/svgo": "^3.0.0",
         "@typescript-eslint/eslint-plugin": "^4.33.0",
         "@typescript-eslint/parser": "^4.33.0",
-        "@wordpress/scripts": "^25.4.0",
+        "@wordpress/scripts": "^26.12.0",
         "ajv": "^8.8.0",
         "autoprefixer": "^10.4.14",
         "clean-webpack-plugin": "^4.0.0",
@@ -93,7 +94,8 @@
         "webpack-rtl-plugin": "git+https://github.com/Objectivco/webpack-rtl-plugin.git#webpack-5-support",
         "webpack-shell-plugin-next": "^2.3.1",
         "wordpress-enqueue-chunks-webpack-plugin": "git+https://github.com/Objectivco/wordpress-enqueue-chunks-webpack-plugin.git#v1.0.1",
-        "wp-types": "^3.62.0"
+        "wp-types": "^3.62.0",
+        "npm-force-resolutions": "0.0.10"
     },
     "dependencies": {
         "@fontsource/inter": "^4.5.15",
@@ -102,10 +104,10 @@
         "@heroicons/react": "^2.0.16",
         "@popperjs/core": "^2.11.6",
         "@tailwindcss/forms": "^0.5.3",
-        "@wordpress/api-fetch": "^6.26.0",
-        "@wordpress/components": "^23.6.0",
-        "@wordpress/hooks": "^3.27.0",
-        "bootstrap": "5.3.0-alpha1",
+        "@wordpress/api-fetch": "^6.38.0",
+        "@wordpress/components": "^25.7.0",
+        "@wordpress/hooks": "^3.41.0",
+        "bootstrap": "5.3.1",
         "cfwselectwoo": "^1.0.10",
         "debounce": "^1.2.1",
         "delete-empty": "^2.0.0",

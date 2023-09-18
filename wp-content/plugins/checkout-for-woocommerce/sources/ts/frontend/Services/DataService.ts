@@ -27,6 +27,10 @@ class DataService {
         return cfwEventData.data[ key ] ?? false;
     }
 
+    static updateData( key: string, value: any ): void {
+        cfwEventData.data[ key ] = value;
+    }
+
     static getMessage( messageKey: string ): string {
         if ( cfwEventData.messages[ messageKey ] ) {
             return cfwEventData.messages[ messageKey ];

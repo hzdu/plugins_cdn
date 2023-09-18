@@ -1,5 +1,5 @@
-import Main          from '../../Main';
-import Compatibility from '../Compatibility';
+import OrderBumpService from '../../Services/OrderBumpService';
+import Compatibility    from '../Compatibility';
 
 class KlarnaPayments extends Compatibility {
     constructor() {
@@ -12,7 +12,7 @@ class KlarnaPayments extends Compatibility {
                 return;
             }
 
-            Main.instance.orderBumpService.maybeDisplayBumps( e as unknown as Event );
+            OrderBumpService.maybeDisplayAfterCheckoutSubmitBumps( e as unknown as Event );
         } );
 
         jQuery( document.body ).on( 'cfw_after_checkout_bump_handle_rejection cfw_after_checkout_bump_handle_add_to_cart', ( e ) => {
@@ -23,6 +23,14 @@ class KlarnaPayments extends Compatibility {
             jQuery( document.body ).find( 'input#place_order, button#place_order' ).first().trigger( 'click' );
 
             return true;
+        } );
+
+        jQuery( document.body ).firstOn( 'updated_checkout', () => {
+            if ( KlarnaPayments.isKlarnaPaymentsSelected() ) {
+                return;
+            }
+
+            jQuery( 'li.wc_payment_method' ).not( '.cfw-active' ).find( '.payment_box' ).hide();
         } );
     }
 

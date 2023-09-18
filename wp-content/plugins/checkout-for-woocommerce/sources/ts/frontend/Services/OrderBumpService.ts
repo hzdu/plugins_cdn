@@ -7,8 +7,6 @@ import LoggingService                       from './LoggingService';
 class OrderBumpService {
     protected modal: AfterCheckoutOrderBumpModal;
 
-    protected bumpDisplayed = false;
-
     constructor() {
         this.setListeners();
     }
@@ -30,16 +28,15 @@ class OrderBumpService {
             jQuery( document.body ).trigger( 'cfw_update_cart' );
         } );
 
-        DataService.checkoutForm && DataService.checkoutForm.firstOn( 'checkout_place_order', this.maybeDisplayBumps.bind( this ) );
-    }
-
-    maybeDisplayBumps( event: Event ): boolean {
-        if ( this.bumpDisplayed ) {
-            return true;
+        if ( typeof DataService.checkoutForm === 'undefined' || !DataService.checkoutForm || !DataService.checkoutForm.length ) {
+            return;
         }
 
+        DataService.checkoutForm.firstOn( 'checkout_place_order', OrderBumpService.maybeDisplayAfterCheckoutSubmitBumps.bind( this ) );
+    }
+
+    static maybeDisplayAfterCheckoutSubmitBumps( event: Event ): boolean {
         const bumps = DataService.getData( 'after_checkout_bumps' );
-        const apiRoot = ( <any>window ).wpApiSettings.root;
 
         if ( !Object.keys( bumps ).length ) {
             return true;
@@ -47,31 +44,45 @@ class OrderBumpService {
 
         CompleteOrderService.addOverlay();
 
-        // Foreach bump
-        Object.keys( bumps ).forEach( ( bumpId ) => {
-            jQuery.ajax( {
-                url: `${apiRoot}checkoutwc/v1/order-bump-upsell-product-form/${bumpId}`,
-                method: 'GET',
-                beforeSend( xhr ) {
-                    xhr.setRequestHeader( 'X-WP-Nonce', ( <any>window ).wpApiSettings.nonce );
-                },
-                error( xhr, status, error ) {
-                    LoggingService.logError( 'Could not load order bump product form.', error );
-                    return true;
-                },
-                success( data ) {
-                    this.modal = new AfterCheckoutOrderBumpModal( data.html ?? 'Could not load product.' );
-                    DataService.setRuntimeParameter( 'open_after_checkout_bump', this.modal );
-                    this.modal.open();
-                },
-            } );
-        } );
-
-        this.bumpDisplayed = true;
+        OrderBumpService.displayNextAfterCheckoutSubmitBump();
 
         event.preventDefault();
         event.stopImmediatePropagation();
         return false;
+    }
+
+    static displayNextAfterCheckoutSubmitBump(): boolean {
+        const apiRoot = ( <any>window ).wpApiSettings.root;
+
+        const bumps: Record<string, unknown> = DataService.getData( 'after_checkout_bumps' );
+
+        if ( !Object.keys( bumps ).length ) {
+            return false;
+        }
+
+        const bumpId = Object.keys( bumps )[ 0 ];
+        delete bumps[ bumpId ];
+
+        DataService.updateData( 'after_checkout_bumps', bumps );
+
+        // Foreach bump
+        jQuery.ajax( {
+            url: `${apiRoot}checkoutwc/v1/order-bump-upsell-product-form/${bumpId}`,
+            method: 'GET',
+            beforeSend( xhr ) {
+                xhr.setRequestHeader( 'X-WP-Nonce', ( <any>window ).wpApiSettings.nonce );
+            },
+            error( xhr, status, error ) {
+                LoggingService.logError( 'Could not load order bump product form.', error );
+            },
+            success( data ) {
+                const modal = new AfterCheckoutOrderBumpModal( data.html ?? 'Could not load product.' );
+                DataService.setRuntimeParameter( 'open_after_checkout_bump', modal );
+                modal.open();
+            },
+        } );
+
+        return true;
     }
 }
 

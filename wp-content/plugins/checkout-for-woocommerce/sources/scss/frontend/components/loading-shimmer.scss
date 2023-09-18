@@ -1,5 +1,6 @@
 @mixin cfw-shimmer-content( $top_bottom_margin: 0, $top: 0 ) {
     position: relative;
+    pointer-events: none;
 
     > * {
         visibility: var(--cfw-blocked-visibility, hidden);
@@ -96,6 +97,11 @@
 }
 
 #cfw-place-order.cfw-blocked button {
+    border: none;
+    @include cfw-shimmer-content();
+}
+
+.cfw-next-tab.cfw-blocked {
     border: none;
     @include cfw-shimmer-content();
 }

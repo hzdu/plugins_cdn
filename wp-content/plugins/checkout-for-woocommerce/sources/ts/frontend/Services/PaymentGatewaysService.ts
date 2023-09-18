@@ -1,6 +1,9 @@
 import cfwUpdatePaymentMethod from '../../functions/cfwUpdatePaymentMethod';
+import getWPHooks             from '../../functions/getWPHooks';
 import LoggingService         from './LoggingService';
 import ClickEvent = JQuery.ClickEvent;
+
+declare let wp: any;
 
 class PaymentGatewaysService {
     private _selectedGateway: any = false;
@@ -36,7 +39,7 @@ class PaymentGatewaysService {
         }
 
         // If there are none selected, select the first.
-        if ( paymentMethods.filter( ':checked' ).length === 0 ) {
+        if ( getWPHooks().applyFilters( 'cfw_js_ensure_selected_payment_method', paymentMethods.filter( ':checked' ).length === 0 ) ) {
             paymentMethods.eq( 0 ).prop( 'checked', true );
         }
 
