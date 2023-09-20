@@ -469,8 +469,18 @@ if (!String.prototype.trim) {
                             var event = Utils.clone(options.dynamicEvents.automatic_event_video[pixels[i]]);
                             event.params["progress"] = key
                             Utils.copyProperties(params, event.params)
-                            Utils.copyProperties(Utils.getRequestParams(), event.params);
-                            getPixelBySlag(pixels[i]).onWatchVideo(event);
+                            if ( pixels[i] === 'tiktok' ) {
+                                var time_trigger = event.automatic_event_video_trigger;
+                                if ( currentTime >= marks[time_trigger] && event.fired !== true ) {
+                                    getPixelBySlag(pixels[i]).onWatchVideo(event);
+
+                                    //tiktok watch video fire once
+                                    options.dynamicEvents.automatic_event_video[pixels[i]].fired = true;
+                                }
+                            } else {
+                                Utils.copyProperties(Utils.getRequestParams(), event.params);
+                                getPixelBySlag(pixels[i]).onWatchVideo(event);
+                            }
                         }
                     }
 
@@ -587,9 +597,20 @@ if (!String.prototype.trim) {
                             for (var i = 0; i < pixels.length; i++) {
                                 var event = Utils.clone(options.dynamicEvents.automatic_event_video[pixels[i]]);
                                 event.params["progress"] = key
-                                Utils.copyProperties(params, event.params,);
-                                Utils.copyProperties(Utils.getRequestParams(), event.params);
-                                getPixelBySlag(pixels[i]).onWatchVideo(event);
+                                Utils.copyProperties(params, event.params);
+
+                                if ( pixels[i] === 'tiktok' ) {
+                                    var time_trigger = event.automatic_event_video_trigger;
+                                    if ( seconds >= player.pysMarks[time_trigger] && event.fired !== true ) {
+                                        getPixelBySlag(pixels[i]).onWatchVideo(event);
+
+                                        //tiktok watch video fire once
+                                        options.dynamicEvents.automatic_event_video[pixels[i]].fired = true;
+                                    }
+                                } else {
+                                    Utils.copyProperties(Utils.getRequestParams(), event.params);
+                                    getPixelBySlag(pixels[i]).onWatchVideo(event);
+                                }
                             }
                         }
 
@@ -2174,8 +2195,6 @@ if (!String.prototype.trim) {
             var params = {};
             Utils.copyProperties(data, params);
 
-
-
             params.eventID = event.eventID;
             if(ids.length > 0){
                 TikTok.fireEventAPI(name, event, params);
@@ -2434,6 +2453,36 @@ if (!String.prototype.trim) {
                         }
                     }
 
+                }
+            },
+
+            onPageScroll: function (event) {
+                if (initialized && this.isEnabled()) {
+                    this.fireEvent(event.name, event);
+                }
+            },
+
+            onWatchVideo: function (event) {
+                if (initialized && this.isEnabled() && !event.fired) {
+                    this.fireEvent(event.name, event);
+                }
+            },
+
+            onCommentEvent: function (event) {
+                if (initialized && this.isEnabled()) {
+                    this.fireEvent(event.name, event);
+                }
+            },
+
+            onAdSenseEvent: function (event) {
+                if (initialized && this.isEnabled()) {
+                    this.fireEvent(event.name, event);
+                }
+            },
+
+            onTime: function (event) {
+                if (initialized && this.isEnabled()) {
+                    this.fireEvent(event.name, event);
                 }
             },
         }
@@ -4193,7 +4242,9 @@ if (!String.prototype.trim) {
                             var pixels = Object.keys(options.dynamicEvents.automatic_event_email_link);
                             for(var i = 0;i<pixels.length;i++) {
                                 var event = Utils.clone(options.dynamicEvents.automatic_event_email_link[pixels[i]]);
-                                Utils.copyProperties(Utils.getRequestParams(), event.params);
+                                if ( pixels[i] !== 'tiktok') {
+                                    Utils.copyProperties(Utils.getRequestParams(), event.params);
+                                }
                                 getPixelBySlag(pixels[i]).fireEvent(event.name, event);
                             }
                         }
@@ -4207,7 +4258,9 @@ if (!String.prototype.trim) {
                             var pixels = Object.keys(options.dynamicEvents.automatic_event_tel_link);
                             for(var i = 0;i<pixels.length;i++) {
                                 var event = Utils.clone(options.dynamicEvents.automatic_event_tel_link[pixels[i]]);
-                                Utils.copyProperties(Utils.getRequestParams(), event.params);
+                                if ( pixels[i] !== 'tiktok') {
+                                    Utils.copyProperties(Utils.getRequestParams(), event.params);
+                                }
                                 getPixelBySlag(pixels[i]).fireEvent(event.name, event);
                             }
                         }
@@ -4318,7 +4371,9 @@ if (!String.prototype.trim) {
                             var pixels = Object.keys(options.dynamicEvents.automatic_event_adsense);
                             for (var i = 0; i < pixels.length; i++) {
                                 var event = Utils.clone(options.dynamicEvents.automatic_event_adsense[pixels[i]]);
-                                Utils.copyProperties(Utils.getRequestParams(), event.params);
+                                if ( pixels[i] !== 'tiktok') {
+                                    Utils.copyProperties(Utils.getRequestParams(), event.params);
+                                }
                                 getPixelBySlag(pixels[i]).onAdSenseEvent(event);
                             }
                         }
@@ -4394,7 +4449,9 @@ if (!String.prototype.trim) {
                         var scroll = Math.round(docHeight * event.scroll_percent / 100)// convert % to absolute positions
 
                         if(scroll < $(window).scrollTop()) {
-                            Utils.copyProperties(Utils.getRequestParams(), event.params);
+                            if ( pixels[i] !== 'tiktok') {
+                                Utils.copyProperties(Utils.getRequestParams(), event.params);
+                            }
                             getPixelBySlag(pixels[i]).onPageScroll(event);
                             isFired = true
                         }
@@ -4414,7 +4471,9 @@ if (!String.prototype.trim) {
             setTimeout(function(){
                 for(var i = 0;i<pixels.length;i++) {
                     var event = Utils.clone(options.dynamicEvents.automatic_event_time_on_page[pixels[i]]);
-                    Utils.copyProperties(Utils.getRequestParams(), event.params);
+                    if ( pixels[i] !== 'tiktok') {
+                        Utils.copyProperties(Utils.getRequestParams(), event.params);
+                    }
                     getPixelBySlag(pixels[i]).onTime(event);
                 }
             },time*1000);
@@ -4851,7 +4910,9 @@ if (!String.prototype.trim) {
                     var pixels = Object.keys(options.dynamicEvents.automatic_event_comment);
                     for (var i = 0; i < pixels.length; i++) {
                         var event = Utils.clone(options.dynamicEvents.automatic_event_comment[pixels[i]]);
-                        Utils.copyProperties(Utils.getRequestParams(), event.params);
+                        if ( pixels[i] !== 'tiktok') {
+                            Utils.copyProperties(Utils.getRequestParams(), event.params);
+                        }
                         getPixelBySlag(pixels[i]).onCommentEvent(event);
                     }
                 }
