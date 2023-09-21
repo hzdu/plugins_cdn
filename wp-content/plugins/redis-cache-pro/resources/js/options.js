@@ -28,13 +28,15 @@ jQuery.extend(window.objectcache, {
                         xhr.setRequestHeader('X-WP-Nonce', objectcache.rest.nonce);
                     },
                 })
-                .done(function () {
+                .done(function (data, status, xhr) {
+                    objectcache.rest.nonce = xhr.getResponseHeader('X-WP-Nonce') ?? objectcache.rest.nonce;
+
                     window.objectcache.options.addAdminNotice({
                         message: 'Settings saved.',
                         class: 'notice-success',
                     });
                 })
-                .error(function (error) {
+                .fail(function (error) {
                     var message = 'Request failed (' + error.status + ').';
 
                     if (error.responseJSON && error.responseJSON.message) {

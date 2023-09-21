@@ -45,6 +45,11 @@
     padding-left: 20px;
 }
 
+#wpcontent .objectcache\:navbar + #wpbody {
+    margin-top: 0;
+    padding-top: 0;
+}
+
 @media screen and (max-width: 600px) {
     .objectcache\:navbar {
         display: none;
@@ -83,13 +88,6 @@
 
 .objectcache\:chart .apexcharts-tooltip {
     visibility: hidden;
-    top: 0 !important;
-    background: rgba(254, 255, 228, .75) !important;
-    box-shadow: none;
-    border-radius: 0;
-    border: none !important;
-    padding: 6px;
-    font-size: 12px;
 }
 
 .objectcache\:chart:hover .apexcharts-tooltip {
@@ -104,13 +102,6 @@
 .objectcache\:chart .apexcharts-yaxis-label {
     font-size: 10px;
     fill: #646970;
-}
-
-.objectcache\:chart .apexcharts-tooltip-marker {
-    margin-right: 2px;
-    display: inline-block;
-    width: 8px;
-    height: 8px;
 }
 
 .apexcharts-gridlines-horizontal line:last-child,
@@ -211,12 +202,32 @@ body.js .is-unix-socket .hide-if-unix-socket {
     padding-right: 10px;
 }
 
-#objectcache_flushlog .inside {
+@media screen and (min-width: 783px) {
+    #objectcache_groups .objectcache\:flush-group {
+        display: none;
+    }
+}
+
+#objectcache_groups .objectcache\:flush-group {
+    margin-left: .25em;
+}
+
+#objectcache_groups .busy .objectcache\:flush-group {
+    display: none !important;
+}
+
+#objectcache_groups tr:hover .objectcache\:flush-group {
+    display: inline;
+}
+
+#objectcache_flushlog .inside,
+#objectcache_groupflushlog .inside {
     margin: 0;
     padding: 0;
 }
 
-#objectcache_flushlog .inset {
+#objectcache_flushlog .inset,
+#objectcache_groupflushlog .inset {
     margin: 8px 12px 12px 12px;
 }
 

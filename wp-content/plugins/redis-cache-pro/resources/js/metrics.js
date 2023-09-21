@@ -6,7 +6,7 @@ window.addEventListener('load', function () {
 jQuery.extend(window.objectcache, {
     analytics: {
         charts: {},
-        comboCharts: window.objectcache.comboCharts,
+        comboCharts: window.objectcache.comboCharts || [],
         options: {
             series: [],
             annotations: {
@@ -22,22 +22,28 @@ jQuery.extend(window.objectcache, {
             legend: {
                 show: false,
             },
-            grid: {
-                padding: {
-                    top: -8,
-                    right: 0,
-                    left: 0,
-                    bottom: -26,
-                }
-            },
             fill: {
                 type: 'solid',
                 opacity: 0.1,
+            },
+            title: {
+                text: undefined,
+                floating: true,
+                offsetY: 8,
+                style: {
+                    fontSize: '13px',
+                    fontWeight: 'normal',
+                    color: '#646970',
+                },
             },
             noData: {
                 text: 'Loading cache analytics...',
                 align: 'center',
                 verticalAlign: 'middle',
+                style: {
+                    fontSize: '13px',
+                    color: '#646970',
+                },
             },
             xaxis: {
                 type: 'datetime',
@@ -90,6 +96,11 @@ jQuery.extend(window.objectcache, {
             }
 
             var metricsGroup = screenOptions.querySelector('.metrics-prefs');
+
+            if (! metricsGroup) {
+                return;
+            }
+
             metricsGroup.classList.remove('hidden');
 
             screenOptions.querySelectorAll(
@@ -134,11 +145,16 @@ jQuery.extend(window.objectcache, {
                 }
             })(id);
 
+            var href = el.dataset.href;
+            var minimal = !! el.dataset.minimal;
+            var title = el.dataset.title;
+
             return new ApexCharts(el, Object.assign(this.options, {
                 chart: {
                     id: id,
                     type: 'area',
                     group: 'analytics',
+                    height: minimal ? '100px' : 'auto',
                     parentHeightOffset: 0,
                     toolbar: {
                         show: false,
@@ -149,8 +165,23 @@ jQuery.extend(window.objectcache, {
                     zoom: {
                         enabled: false,
                     },
+                    sparkline: {
+                        enabled: minimal,
+                    },
+                    events: {
+                        click: function () {
+                            if (minimal && href) {
+                                window.location.assign(href);
+                            }
+                        },
+                    },
                 },
                 colors: [color],
+                grid: {
+                    padding: minimal
+                        ? { top: 10, right: 0, left: 0, bottom: -1 }
+                        : { top: -8, right: 0, left: 0, bottom: -26 },
+                },
                 markers: {
                     strokeColors: color,
                     colors: [color],
@@ -159,6 +190,12 @@ jQuery.extend(window.objectcache, {
                         sizeOffset: 3,
                     },
                 },
+                title: Object.assign(this.options.title, {
+                    text: (minimal ? title : undefined),
+                }),
+                noData: Object.assign(this.options.noData, {
+                    offsetY: (minimal ? -13 : -10),
+                }),
                 tooltip: {
                     marker: {
                         show: false,
@@ -176,7 +213,7 @@ jQuery.extend(window.objectcache, {
                     labels: {
                         offsetX: -5,
                         offsetY: -5,
-                        align: 'left',
+                        align: minimal ? undefined : 'left',
                         formatter: this.formatLabel.bind({ id: id, type: type, compact: true }),
                     },
                     min: 0,
@@ -199,6 +236,9 @@ jQuery.extend(window.objectcache, {
                 }
             })(id);
 
+            var href = el.dataset.href;
+            var minimal = !! el.dataset.minimal;
+            var title = el.dataset.title;
             var type = types[function() { for (var key in types) return key; }()];
 
             return new ApexCharts(el, Object.assign(this.options, {
@@ -206,6 +246,7 @@ jQuery.extend(window.objectcache, {
                     id: id,
                     type: 'line',
                     group: 'analytics',
+                    height: minimal ? '100px' : 'auto',
                     parentHeightOffset: 0,
                     toolbar: {
                         show: false,
@@ -216,8 +257,23 @@ jQuery.extend(window.objectcache, {
                     zoom: {
                         enabled: false,
                     },
+                    sparkline: {
+                        enabled: minimal,
+                    },
+                    events: {
+                        click: function () {
+                            if (minimal && href) {
+                                window.location.assign(href);
+                            }
+                        },
+                    },
                 },
                 colors: colors,
+                grid: {
+                    padding: minimal
+                        ? { top: 10, right: 0, left: 0, bottom: -1 }
+                        : { top: 0, right: 0, left: 0, bottom: -27 },
+                },
                 fill: {
                     type: 'solid',
                     opacity: [0.1, 1, 1],
@@ -229,6 +285,12 @@ jQuery.extend(window.objectcache, {
                     },
                     colors: colors,
                 },
+                title: Object.assign(this.options.title, {
+                    text: (minimal ? title : undefined),
+                }),
+                noData: Object.assign(this.options.noData, {
+                    offsetY: (minimal ? -13 : -10),
+                }),
                 tooltip: {
                     marker: {
                         show: true,
@@ -246,7 +308,7 @@ jQuery.extend(window.objectcache, {
                     labels: {
                         offsetX: -5,
                         offsetY: -5,
-                        align: 'left',
+                        align: minimal ? undefined : 'left',
                         formatter: this.formatLabel.bind({ id: id, type: type, compact: true }),
                     },
                     min: 0,
@@ -296,7 +358,7 @@ jQuery.extend(window.objectcache, {
                 this.charts[chart]
                     .updateSeries(series)
                     .then(function (chart) {
-                        if (chart.annotations) {
+                        if (! chart.w.config.chart.sparkline.enabled && chart.annotations) {
                             chart.removeAnnotation('now');
 
                             chart.addXaxisAnnotation({
@@ -350,7 +412,7 @@ jQuery.extend(window.objectcache, {
                 this.charts[chart]
                     .updateSeries(series)
                     .then(function (chart) {
-                        if (chart.annotations) {
+                        if (! chart.w.config.chart.sparkline.enabled && chart.annotations) {
                             chart.removeAnnotation('now');
 
                             chart.addXaxisAnnotation({
@@ -402,10 +464,12 @@ jQuery.extend(window.objectcache, {
                         xhr.setRequestHeader('X-WP-Nonce', objectcache.rest.nonce);
                     },
                 })
-                .done(
-                    this.updateCharts.bind(this)
-                )
-                .error(function (error) {
+                .done(function (data, status, xhr) {
+                    objectcache.rest.nonce = xhr.getResponseHeader('X-WP-Nonce') ?? objectcache.rest.nonce;
+
+                    this.updateCharts(data)
+                }.bind(this))
+                .fail(function (error) {
                     console.log(error);
 
                     objectcache.analytics.updateChartsMessage('Unable to load cache analytics');
@@ -439,6 +503,10 @@ jQuery.extend(window.objectcache, {
 
             if (this.id === 'ms-cache-avg') {
                 return value.toFixed(2) + ' ms';
+            }
+
+            if (this.type === 'throughput') {
+                return Math.round(value) + ' op/s';
             }
 
             if (this.type === 'integer') {
@@ -503,7 +571,7 @@ jQuery.extend(window.objectcache, {
             var time = w.config.series[0].data[dataPointIndex].date_display.time;
 
             return '<div class="objectcache:chart-tooltip">' +
-                '<div><small>' + date + '</small></div>' +
+                (w.config.chart.sparkline.enabled ? '' : '<div><small>' + date + '</small></div>') +
                 '<div><strong>' + time + '</strong></div>' +
                 values.join('') +
             '</div>';

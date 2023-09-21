@@ -4,6 +4,31 @@
     padding: 0;
 }
 
+#dashboard_objectcache .handle-settings {
+    color: #787c82;
+    width: 36px;
+    height: 36px;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: none;
+    cursor: pointer;
+}
+
+#dashboard_objectcache .handle-settings .settings-indicator::before {
+    position: relative;
+    top: 0.13rem;
+    width: 20px;
+    height: 20px;
+    color: inherit;
+    content: "\f108";
+    display: inline-block;
+    font: normal 20px/1 dashicons;
+    text-decoration: none;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
 .objectcache\:overview-widget {
     padding: 0 12px;
 }
@@ -98,4 +123,30 @@
     line-height: 21px;
     box-decoration-break: clone;
     -webkit-box-decoration-break: clone;
+}
+
+.objectcache\:widget-charts {
+    background: #f5f5f5;
+}
+
+.objectcache\:widget-charts .objectcache\:chart {
+    border-top: 1px solid #eee;
+    cursor: pointer;
+}
+
+.objectcache\:chart .apexcharts-tooltip {
+    top: 0 !important;
+    background: rgba(254, 255, 228, .75) !important;
+    box-shadow: none;
+    border-radius: 0;
+    border: none !important;
+    padding: 6px;
+    font-size: 12px;
+}
+
+.objectcache\:chart .apexcharts-tooltip-marker {
+    display: inline-block;
+    margin-right: 2px;
+    width: 8px;
+    height: 8px;
 }

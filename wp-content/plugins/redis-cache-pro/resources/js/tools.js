@@ -19,7 +19,9 @@ jQuery.extend(window.objectcache, {
                         xhr.setRequestHeader('X-WP-Nonce', objectcache.rest.nonce);
                     },
                 })
-                .done(function (data) {
+                .done(function (data, status, xhr) {
+                    objectcache.rest.nonce = xhr.getResponseHeader('X-WP-Nonce') ?? objectcache.rest.nonce;
+
                     var widget = document.querySelector('.objectcache\\:latency-widget');
 
                     var table = widget.querySelector('table');
@@ -50,7 +52,7 @@ jQuery.extend(window.objectcache, {
 
                     document.querySelector('.objectcache\\:latency-widget table').innerHTML = content;
                 })
-                .error(function (error) {
+                .fail(function (error) {
                     var widget = document.querySelector('.objectcache\\:latency-widget');
 
                     var table = widget.querySelector('table');
@@ -78,6 +80,9 @@ jQuery.extend(window.objectcache, {
         init: function () {
             document.querySelector('.objectcache\\:groups-widget button')
                 .addEventListener('click', window.objectcache.groups.fetchData);
+
+            document.querySelector('.objectcache\\:groups-widget')
+                .addEventListener('click', window.objectcache.groups.flushGroup);
 
             if (! ClipboardJS.isSupported()) {
                 return;
@@ -140,7 +145,9 @@ jQuery.extend(window.objectcache, {
                         xhr.setRequestHeader('X-WP-Nonce', objectcache.rest.nonce);
                     },
                 })
-                .done(function (data) {
+                .done(function (data, status, xhr) {
+                    objectcache.rest.nonce = xhr.getResponseHeader('X-WP-Nonce') ?? objectcache.rest.nonce;
+
                     var info = widget.querySelector('p:first-child');
                     info && widget.removeChild(info);
 
@@ -162,10 +169,14 @@ jQuery.extend(window.objectcache, {
 
                     if (data.length) {
                         title.textContent = title.dataset.label + ' (' + data.length + ')';
+                        title.dataset.count = data.length;
 
                         data.forEach(function (item) {
                             content += '<tr title="' + item.count + ' objects found in `' + escapeHtml(item.group) + '` group">';
-                            content += '  <td data-group="' + item.group + '">' + escapeHtml(item.group) + '</td>';
+                            content += '  <td data-group="' + item.group + '">';
+                            content += '    <span class="group-name">' + escapeHtml(item.group) + '</span>';
+                            content += '    <button class="objectcache:flush-group button-link">Flush</button>';
+                            content += '  </td>';
                             content += '  <td>';
                             content += '    <strong>' + item.count + '</strong>';
                             content += '  </td>';
@@ -181,7 +192,7 @@ jQuery.extend(window.objectcache, {
 
                     table.innerHTML = content;
                 })
-                .error(function (error) {
+                .fail(function (error) {
                     var container = widget.querySelector('.error');
 
                     if (! container) {
@@ -203,14 +214,79 @@ jQuery.extend(window.objectcache, {
                     button.classList.remove('disabled');
                 });
         },
+
+        flushGroup: function (event) {
+            event.preventDefault();
+
+            if (! event.target.classList.contains('objectcache:flush-group')) {
+                return;
+            }
+
+            var table = event.target.closest('table');
+
+            if (table.classList.contains('busy')) {
+                return;
+            }
+
+            table.classList.add('busy');
+
+            event.target.disabled = true;
+
+            var groupLabel = event.target.previousElementSibling;
+
+            groupLabel.classList.remove('error');
+            groupLabel.textContent = 'Flushing...';
+
+            jQuery
+                .ajax({
+                    type: 'DELETE',
+                    url: objectcache.rest.url + 'objectcache/v1/groups',
+                    data: {
+                        group: event.target.parentElement.dataset.group,
+                    },
+                    beforeSend: function (xhr) {
+                        xhr.setRequestHeader('X-WP-Nonce', objectcache.rest.nonce);
+                    },
+                })
+                .done(function(data, status, xhr) {
+                    objectcache.rest.nonce = xhr.getResponseHeader('X-WP-Nonce') ?? objectcache.rest.nonce;
+
+                    var title = document.querySelector('#objectcache_groups .hndle');
+                    title.dataset.count = title.dataset.count - 1;
+
+                    title.textContent = title.dataset.label + ' (' + title.dataset.count + ')';
+
+                    event.target.closest('tr').remove();
+                })
+                .fail(function (error) {
+                    groupLabel.classList.add('error');
+
+                    if (error.responseJSON && error.responseJSON.message) {
+                        groupLabel.textContent = error.responseJSON.message;
+                    } else {
+                        groupLabel.textContent = 'Request failed (' + error.status + ').';
+                    }
+
+                    setTimeout(function() {
+                        groupLabel.classList.remove('error');
+                        groupLabel.textContent = groupLabel.parentElement.dataset.group;
+                    }, 3000);
+                })
+                .always(function () {
+                    table.classList.remove('busy');
+                    event.target.disabled = false;
+                });
+        }
     },
 
     flushlog: {
         init: function () {
-            var input = document.querySelector('.objectcache\\:flushlog-widget input');
+            var inputs = document.querySelectorAll('.objectcache\\:flushlog-widget input');
 
-            if (input) {
-                input.addEventListener('click', window.objectcache.flushlog.save);
+            if (inputs) {
+                for (var i = 0; i < inputs.length; i++) {
+                    inputs[i].addEventListener('click', window.objectcache.flushlog.save);
+                }
             }
         },
 
@@ -222,13 +298,13 @@ jQuery.extend(window.objectcache, {
                     type: 'POST',
                     url: objectcache.rest.url + 'objectcache/v1/options',
                     data: {
-                        flushlog: event.target.checked ? 1 : 0,
+                        [event.target.name]: event.target.checked ? 1 : 0,
                     },
                     beforeSend: function (xhr) {
                         xhr.setRequestHeader('X-WP-Nonce', objectcache.rest.nonce);
                     },
                 })
-                .error(function (error) {
+                .fail(function (error) {
                     if (error.responseJSON && error.responseJSON.message) {
                         window.alert(error.responseJSON.message);
                     } else {
