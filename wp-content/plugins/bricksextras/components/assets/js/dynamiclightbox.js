@@ -44,7 +44,7 @@ function xLightbox(){
 
             
             let lightboxHTML = `
-                <div id="glightbox-body" class="glightbox-container">
+                <div id="glightbox-body" class="glightbox-container" data-lenis-prevent>
                     <div class="gloader visible"></div>
                     <div class="goverlay"></div>
                     <div class="gcontainer">
@@ -68,7 +68,7 @@ function xLightbox(){
                 }
 
                 lightboxHTML = `
-                    <div id=glightbox-body class="glightbox-container glightbox-container-id ` + wrapperClass +` ">
+                    <div id=glightbox-body class="glightbox-container glightbox-container-id ` + wrapperClass +` " data-lenis-prevent>
                         <div id="` + wrapperID + `" class="glightbox-wrapper">
                             <div class="gloader visible"></div>
                             <div class="goverlay"></div>
@@ -483,6 +483,12 @@ function xLightbox(){
 
                         if ( slideNode.querySelector('.brxe-xslidemenu') ) {
                             doExtrasSlideMenu(slideNode)
+                        }
+
+                        /* tabs */
+                        if ( slideNode.querySelector('.brxe-xtabs') ) {
+                            doExtrasTabs(slideNode)
+                            window.dispatchEvent(new Event('resize'))
                         }
 
                         /* close if hashlink */

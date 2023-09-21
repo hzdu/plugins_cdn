@@ -59,6 +59,11 @@ document.addEventListener("DOMContentLoaded", (e) => {
                         if ( typeof doExtrasPopover == 'function') {
                             doExtrasPopover(container)
                         }
+
+                         /* tabs */
+                        if (typeof doExtrasTabs == 'function') {
+                            doExtrasTabs(container)
+                        }
                     
                     }
 

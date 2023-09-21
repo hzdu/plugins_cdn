@@ -159,6 +159,7 @@ function xTableOfContents(container){
     if ( 'enable' === elementConfig.conditionalDisplay ) {
     
       if ( !document.querySelector(elementConfig.headingSelectors.toString().split(',').map(i => elementConfig.contentSelector + ' ' + i).join(", ") ) ) {
+          toc.dispatchEvent(new Event('x_toc:empty'))
           toc.remove()
       }
 

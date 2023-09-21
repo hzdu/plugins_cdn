@@ -48,6 +48,11 @@ document.addEventListener( 'jet-smart-filters/inited', function( initEvent ) {
                 if (typeof doExtrasPopover == 'function') {
                     doExtrasPopover(container)
                 }
+
+                 /* tabs */
+                if (typeof doExtrasTabs == 'function') {
+                    doExtrasTabs(container)
+                }
             
         } );
 

@@ -156,6 +156,7 @@ function xOpenOffCanvas(elementID) {
   document.getElementById(elementID).querySelector(".x-offcanvas_inner").removeAttribute('inert')
   xOffCanvasMoveFocus(elementID)
   document.getElementById(elementID).dispatchEvent(new Event('x_offcanvas:open'))  
+  
 }
 
 function xOffCanvasCloseBurger(elementID) {
@@ -164,7 +165,9 @@ function xOffCanvasCloseBurger(elementID) {
       
       setTimeout(() => {
         clickTrigger.setAttribute('aria-expanded', 'false')
-        clickTrigger.querySelector(".x-hamburger-box").classList.remove("is-active")
+        if ( clickTrigger.querySelector(".x-hamburger-box") ) {
+          clickTrigger.querySelector(".x-hamburger-box").classList.remove("is-active")
+        }
       }, 5)
       
     }
@@ -219,6 +222,39 @@ document.addEventListener("DOMContentLoaded",function(e){
       }
 
       xOffCanvas(offcanvas, xOffCanvasConfig(offcanvas.id))
+
+      /* force readmore to resize */
+      if (offcanvas.querySelector('.brxe-xreadmoreless')) {
+
+        offcanvas.addEventListener("x_offcanvas:open", () => {
+
+            offcanvas.querySelectorAll('.brxe-xreadmoreless').forEach(readMore => {
+                
+                if ( readMore.classList.contains('x-read-more_ready') ) { return; }
+
+                readMore.style.opacity = 0;
+
+                readMore.querySelector('.x-read-more_content').style.removeProperty('height')
+                readMore.querySelector('.x-read-more_content').style.removeProperty('max-height')
+                readMore.querySelector('.x-read-more_content').classList.remove('x-read-more_not-collapsable')
+
+                setTimeout(function() {
+                    if (readMore.hasAttribute('data-x-fade')) {
+                        readMore.classList.add('x-read-more_fade');
+                    }
+                    window.dispatchEvent(new Event('resize'))
+
+                    doExtrasReadmore(offcanvas)
+                    readMore.style.opacity = 1;
+                    readMore.classList.add('x-read-more_ready');
+
+                }, 100)
+
+            })
+
+        })
+
+    }
 
     })
 

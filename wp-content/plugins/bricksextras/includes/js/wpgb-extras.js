@@ -52,7 +52,10 @@ window.WP_Grid_Builder && WP_Grid_Builder.on('init', function(wpgb) {
                 window.dispatchEvent(new Event('resize'))
             }
 
-            
+             /* tabs */
+             if (typeof doExtrasTabs == 'function') {
+                doExtrasTabs(container)
+            }
 
         })
 

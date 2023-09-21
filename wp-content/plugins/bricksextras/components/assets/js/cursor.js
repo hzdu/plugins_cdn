@@ -90,7 +90,10 @@ function xCursor() {
                     })
                 })
 
-                document.querySelectorAll( 'iframe' ).forEach(iframe => {
+                let removeCursorSelectors = cursor.getAttribute('data-x-remove-cursor');
+                removeCursorSelectors = removeCursorSelectors + ', iframe, stripe-pricing-table';
+
+                document.querySelectorAll( removeCursorSelectors ).forEach(iframe => {
                     iframe.addEventListener("mouseover", function () {
                         cursor.classList.add("x-cursor_iframe")
                     })

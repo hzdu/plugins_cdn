@@ -134,7 +134,7 @@ function xProSlider() {
 
      
       // controls
-      container.querySelectorAll( '.x-slider-control' ).forEach(function (sliderControl) {
+      container.querySelectorAll( '.x-slider-control:not(component)' ).forEach(function (sliderControl) {
 
         const sliderControlConfig = sliderControl.getAttribute('data-x-slider-control')
         const controlConfig = sliderControlConfig ? JSON.parse(sliderControlConfig) : {}
@@ -544,6 +544,14 @@ function xProSlider() {
        })
       }
 
+      xSplideInstance.on( 'intersection:out', function ( entry ) {
+        setTimeout(() => {
+          if (xSplideInstance.Components.AutoScroll) {
+            xSplideInstance.Components.AutoScroll.pause()
+          }
+        }, 20);
+      } );
+
       /* overflow (conditional slider) */
 
       if (sliderConfig.conditional) {
@@ -594,11 +602,36 @@ function xProSlider() {
         }
 
       } else {
-        if ( null != sliderConfig.rawConfig.autoScroll || false != sliderConfig.hashNav ) {
-          xSplideInstance.mount( window.splide.Extensions );
-        } else {
-            xSplideInstance.mount();
+
+        let newExtentionsObject = {};
+
+        if ( null != window.splide) {
+
+          let customAutoScroll  = window.splide.Extensions.AutoScroll
+          let customURLHash  = window.splide.Extensions.URLHash
+          let customIntersection  = window.splide.Extensions.Intersection
+
+          if ( null != sliderConfig.rawConfig.autoScroll ) {
+            newExtentionsObject.AutoScroll = customAutoScroll
+          }
+          
+          if ( null !=  sliderConfig.rawConfig.intersection ) {
+            newExtentionsObject.Intersection = customIntersection
+          } 
+          
+          if (false != sliderConfig.hashNav ) {
+            newExtentionsObject.URLHash = customURLHash
+          } 
+
         }
+
+        if ( null == sliderConfig.rawConfig.autoScroll && null == sliderConfig.rawConfig.intersection && false == sliderConfig.hashNav  ) {
+          xSplideInstance.mount();
+        } else {
+          xSplideInstance.mount( newExtentionsObject );
+        }
+
+
       }
       
 

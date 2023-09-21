@@ -69,12 +69,18 @@ function xExtrasBuilder() {
                     } else {
                         accordionContent.xslideUp('300');
                     }
+                    if (e.target.closest('.x-accordion_item')) {
+                        e.target.closest('.x-accordion_item').classList.remove('x-accordion_item-active')
+                    }
                 } else {
                     e.target.setAttribute('aria-expanded', 'true')
                     if (typeof xslideDown !== 'function') {
                         accordionContent.style.display = 'flex'
                     } else {
                         accordionContent.xslideDown('300')
+                    }
+                    if (e.target.closest('.x-accordion_item')) {
+                        e.target.closest('.x-accordion_item').classList.add('x-accordion_item-active')
                     }
                     
                 }

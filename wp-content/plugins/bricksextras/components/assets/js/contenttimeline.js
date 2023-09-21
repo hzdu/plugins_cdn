@@ -141,7 +141,6 @@ function xContentTimeline() {
             currentScrollPos = window.scrollY;
 
             document.querySelectorAll('.brxe-xcontenttimeline[data-x-horizontal="false"]').forEach( timeline => {
-                console.log('set line position resize')
                 setLinePosition(timeline,currentScrollPos,'resize')
             })
 

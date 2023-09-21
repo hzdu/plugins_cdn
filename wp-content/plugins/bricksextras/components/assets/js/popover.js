@@ -63,6 +63,8 @@
                         theme: 'extras',     
                         touch: true, 
                         interactiveDebounce: 50,
+                        followCursor: 'false' === config.followCursor ? false : config.followCursor,
+                        delay: config.delay,
                         moveTransition: 'transform ' + config.moveTransition + 'ms ease-out', 
                         offset: [ config.offsetSkidding , config.offsetDistance], 
                         onShow(instance) {
@@ -83,6 +85,10 @@
 
                 let xTippyInstance = tippy(tippyEl,tippyProps);
                 window.xTippy.Instances[popover.dataset.xId] = xTippyInstance;
+
+                if ( config.multipleTriggers && !document.querySelector('body > .brx-body.iframe') ) {
+                    const singleton = tippy.createSingleton(xTippyInstance, tippyProps);
+                }
                 
 
                 popover.addEventListener('x_popover:show', () => {
