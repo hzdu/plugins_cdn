@@ -2503,7 +2503,7 @@ Smart_Manager.prototype.event_handler = function() {
 				}
 			}
 			if( !isBackgroundProcessRunning ) {
-				params.btnParams.hideOnYes = false;
+				params.btnParams.hideOnYes = (window.smart_manager.sm_beta_pro == 1) ? false : true;
 				window.smart_manager.showConfirmDialog(params);
 			}
 		}
