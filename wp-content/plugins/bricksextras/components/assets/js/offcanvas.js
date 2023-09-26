@@ -262,6 +262,20 @@ document.addEventListener("DOMContentLoaded",function(e){
 
   extrasOffCanvas(document);
 
+  function xOffCanvasAJAX(e) {
+
+    if (typeof e.detail.queryId === 'undefined') {
+        return;
+    }
+
+    if ( document.querySelector('.brxe-' + e.detail.queryId) ) {
+      extrasOffCanvas(document.querySelector('.brxe-' + e.detail.queryId).parentElement, true);
+    }
+  }
+
+  document.addEventListener("bricks/ajax/load_page/completed", xOffCanvasAJAX)
+  document.addEventListener("bricks/ajax/pagination/completed", xOffCanvasAJAX)
+
   // Expose function
   window.doExtrasOffCanvas = extrasOffCanvas;
 

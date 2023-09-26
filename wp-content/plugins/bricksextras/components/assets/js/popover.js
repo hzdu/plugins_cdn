@@ -145,6 +145,20 @@
 
     extrasPopover(document);
 
+    function xPopoverAjax(e) {
+
+        if (typeof e.detail.queryId === 'undefined') {
+            return;
+        }
+
+        if ( document.querySelector('.brxe-' + e.detail.queryId) ) {
+            extrasPopover(document.querySelector('.brxe-' + e.detail.queryId).parentElement);
+        }
+   }
+   
+   document.addEventListener("bricks/ajax/load_page/completed", xPopoverAjax)
+   document.addEventListener("bricks/ajax/pagination/completed", xPopoverAjax)
+
     // Expose function
     window.doExtrasPopover = extrasPopover;
 

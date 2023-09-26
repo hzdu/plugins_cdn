@@ -625,6 +625,10 @@ function xProSlider() {
 
         }
 
+        if ( slider.querySelector('.splide__pagination') ) {
+          slider.querySelector('.splide__pagination').innerHTML = "";
+        }
+
         if ( null == sliderConfig.rawConfig.autoScroll && null == sliderConfig.rawConfig.intersection && false == sliderConfig.hashNav  ) {
           xSplideInstance.mount();
         } else {
@@ -831,6 +835,21 @@ function xProSlider() {
   }
 
   extrasSlider(document);
+
+  function xSliderAJAX(e) {
+
+    if (typeof e.detail.queryId === 'undefined') {
+      return;
+    }
+
+    if ( document.querySelector('.brxe-' + e.detail.queryId) ) {
+      extrasSlider(document.querySelector('.brxe-' + e.detail.queryId).parentElement);
+    }
+
+  }
+
+  document.addEventListener("bricks/ajax/load_page/completed", xSliderAJAX)
+  document.addEventListener("bricks/ajax/pagination/completed", xSliderAJAX)
 
   // Expose function
   window.doExtrasSlider = extrasSlider;

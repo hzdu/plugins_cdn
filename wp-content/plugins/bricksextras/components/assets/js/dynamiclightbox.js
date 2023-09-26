@@ -630,6 +630,20 @@ function xLightbox(){
 
     extrasLightbox(document, ajax = false);
 
+    function xLightboxAJAX(e) {
+
+        if (typeof e.detail.queryId === 'undefined') {
+            return;
+        }
+
+        if ( document.querySelector('.brxe-' + e.detail.queryId) ) {
+            extrasLightbox(document.querySelector('.brxe-' + e.detail.queryId).parentElement, true);
+        }
+   }
+   
+   document.addEventListener("bricks/ajax/load_page/completed", xLightboxAJAX)
+   document.addEventListener("bricks/ajax/pagination/completed", xLightboxAJAX)
+
     // Expose function
     window.doExtrasLightbox = extrasLightbox;
 
@@ -639,23 +653,6 @@ function xLightbox(){
 document.addEventListener("DOMContentLoaded",function(e){
 
     bricksIsFrontend&&xLightbox()
-
-    const open = window.XMLHttpRequest.prototype.open;
-
-    function XMLOpenReplacement() {
-        this.addEventListener("load", function () {
-            let current_url = new URL(this.responseURL);
-            if (current_url.pathname.includes("/load_query_page")) {
-                window.dispatchEvent(new Event('x_infinite_scroll_load'))
-            }
-        });
-        return open.apply(this, arguments);
-    }
-    window.XMLHttpRequest.prototype.open = XMLOpenReplacement;
-
-    window.addEventListener('x_infinite_scroll_load', (e) => { 
-      doExtrasLightbox(document)
-    }, false);
     
 
 });

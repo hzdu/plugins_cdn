@@ -100,6 +100,20 @@ function xSocialShare() {
 
     extrasSocialShare(document);
 
+    function xSocialShareAjax(e) {
+
+        if (typeof e.detail.queryId === 'undefined') {
+            return;
+        }
+
+        if ( document.querySelector('.brxe-' + e.detail.queryId) ) {
+            extrasSocialShare(document.querySelector('.brxe-' + e.detail.queryId).parentElement);
+        }
+      }
+      
+      document.addEventListener("bricks/ajax/load_page/completed", xSocialShareAjax)
+      document.addEventListener("bricks/ajax/pagination/completed", xSocialShareAjax)
+
     // Expose function
     window.doExtrasSocialShare = extrasSocialShare;
 

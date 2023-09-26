@@ -1,6 +1,8 @@
 function xLottie(){
 
-    document.querySelectorAll('.brxe-xlottie').forEach( xlottie => {
+    const extrasLottie = function ( container ) {
+
+    container.querySelectorAll('.brxe-xlottie').forEach( xlottie => {
 
         if ( !document.querySelector('body > .brx-body.iframe') ) {
 
@@ -192,6 +194,27 @@ function xLottie(){
         }
 
     })
+
+    }
+
+    extrasLottie(document);
+
+    function xLottieAJAX(e) {
+
+        if (typeof e.detail.queryId === 'undefined') {
+            return;
+        }
+
+        if ( document.querySelector('.brxe-' + e.detail.queryId) ) {
+            extrasLottie(document.querySelector('.brxe-' + e.detail.queryId).parentElement);
+        }
+   }
+   
+   document.addEventListener("bricks/ajax/load_page/completed", xLottieAJAX)
+   document.addEventListener("bricks/ajax/pagination/completed", xLottieAJAX)
+
+    // Expose function
+    window.doExtrasLottie = extrasLottie;
 
 }
 

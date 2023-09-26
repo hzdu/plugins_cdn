@@ -473,6 +473,20 @@ document.addEventListener("DOMContentLoaded",function(e){
 
     extrasModal(document);
 
+    function xModalAjax(e) {
+
+      if (typeof e.detail.queryId === 'undefined') {
+        return;
+    }
+
+      if ( document.querySelector('.brxe-' + e.detail.queryId) ) {
+        extrasModal(document.querySelector('.brxe-' + e.detail.queryId).parentElement);
+      }
+    }
+    
+    document.addEventListener("bricks/ajax/load_page/completed", xModalAjax)
+    document.addEventListener("bricks/ajax/pagination/completed", xModalAjax)
+
     // Expose function
     window.doExtrasModal = extrasModal;
 

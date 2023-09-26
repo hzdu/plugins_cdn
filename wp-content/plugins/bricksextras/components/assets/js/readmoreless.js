@@ -705,6 +705,33 @@ function xReadMoreLess(){
 
     extrasReadmore(document);
 
+    function xReadMoreJAX(e) {
+
+      if (typeof e.detail.queryId === 'undefined') {
+          return;
+      }
+
+      let queryLoopEl = document.querySelector('.brxe-' + e.detail.queryId);
+
+      if (!queryLoopEl) return;
+
+      if ( queryLoopEl.parentElement ) {
+
+        queryLoopEl.parentElement.querySelectorAll('.x-read-more_content:not([id])').forEach(readMore => {
+          if (readMore.closest('.brxe-' + e.detail.queryId)) {
+            extrasReadmore(readMore.closest('.brxe-' + e.detail.queryId));
+          }
+        })
+
+      }
+
+    }
+  
+    document.addEventListener("bricks/ajax/load_page/completed", xReadMoreJAX)
+    document.addEventListener("bricks/ajax/pagination/completed", xReadMoreJAX)
+
+    
+
     // Expose function
     window.doExtrasReadmore = extrasReadmore;
 

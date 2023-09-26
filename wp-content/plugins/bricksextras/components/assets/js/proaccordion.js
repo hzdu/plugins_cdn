@@ -134,6 +134,21 @@ function xProAccordion() {
 
     extrasAccordion(document);
 
+    function xAccordionAJAX(e) {
+
+        if (typeof e.detail.queryId === 'undefined') {
+            return;
+        }
+
+         if ( document.querySelector('.brxe-' + e.detail.queryId) ) {
+            extrasAccordion(document.querySelector('.brxe-' + e.detail.queryId).parentElement);
+         }
+    }
+    
+    document.addEventListener("bricks/ajax/load_page/completed", xAccordionAJAX)
+    document.addEventListener("bricks/ajax/pagination/completed", xAccordionAJAX)
+    
+
     // Expose function
     window.doExtrasAccordion = extrasAccordion;
 

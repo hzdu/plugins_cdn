@@ -57,6 +57,11 @@ window.WP_Grid_Builder && WP_Grid_Builder.on('init', function(wpgb) {
                 doExtrasTabs(container)
             }
 
+            /* lottie */
+            if (typeof doExtrasLottie == 'function') {
+                doExtrasLottie(container)
+            }
+
         })
 
     })

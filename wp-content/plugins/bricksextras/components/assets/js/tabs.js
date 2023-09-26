@@ -635,9 +635,22 @@ function xTabs() {
 
     extrasTabs(document);
 
+    function xTabsAjax(e) {
+
+        if (typeof e.detail.queryId === 'undefined') {
+            return;
+        }
+
+        if ( document.querySelector('.brxe-' + e.detail.queryId) ) {
+            extrasTabs(document.querySelector('.brxe-' + e.detail.queryId).parentElement);
+        }
+      }
+      
+      document.addEventListener("bricks/ajax/load_page/completed", xTabsAjax)
+      document.addEventListener("bricks/ajax/pagination/completed", xTabsAjax)
+
     // Expose function
     window.doExtrasTabs = extrasTabs;
-
     
 
 }

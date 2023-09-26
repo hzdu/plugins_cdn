@@ -53,6 +53,11 @@ document.addEventListener( 'jet-smart-filters/inited', function( initEvent ) {
                 if (typeof doExtrasTabs == 'function') {
                     doExtrasTabs(container)
                 }
+
+                /* lottie */
+                if (typeof doExtrasLottie == 'function') {
+                    doExtrasLottie(container)
+                }
             
         } );
 

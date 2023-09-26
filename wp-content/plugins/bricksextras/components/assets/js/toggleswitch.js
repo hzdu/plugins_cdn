@@ -13,8 +13,10 @@ function xToggleSwitch(){
         }
 
     }
+
+    const extrasToggleSwitch = function ( container ) {
   
-    document.querySelectorAll(".x-toggle-switch").forEach((toggleSwitch) => {
+    container.querySelectorAll(".x-toggle-switch").forEach((toggleSwitch) => {
 
         const configAttr = toggleSwitch.getAttribute('data-x-switch')
         const elementConfig = configAttr ? JSON.parse(configAttr) : {}
@@ -26,7 +28,7 @@ function xToggleSwitch(){
         if (!contentSwitcherSelector) {
             contentSwitchers = toggleSwitch.closest('section').querySelectorAll('.x-content-switcher_content')    
         } else {
-            contentSwitchers = document.querySelectorAll(contentSwitcherSelector + ' .x-content-switcher_content')
+            contentSwitchers = container.querySelectorAll(contentSwitcherSelector + ' .x-content-switcher_content')
         }
 
         contentSwitchers.forEach((contentSwitcher) => {
@@ -84,7 +86,7 @@ function xToggleSwitch(){
                 if (!contentSwitcherSelector) {
                     contentSwitchers = event.target.closest('section').querySelectorAll('.x-content-switcher_content')    
                 } else {
-                    contentSwitchers = document.querySelectorAll(contentSwitcherSelector + ' .x-content-switcher_content')
+                    contentSwitchers = container.querySelectorAll(contentSwitcherSelector + ' .x-content-switcher_content')
                 }
         
                 contentSwitchers.forEach((contentSwitcher) => {
@@ -166,7 +168,7 @@ function xToggleSwitch(){
                 if (!contentSwitcherSelector) {
                     contentSwitchers = event.target.closest('section').querySelectorAll('.x-content-switcher_content')    
                 } else {
-                    contentSwitchers = document.querySelectorAll(contentSwitcherSelector + ' .x-content-switcher_content')
+                    contentSwitchers = container.querySelectorAll(contentSwitcherSelector + ' .x-content-switcher_content')
                 }
         
                 const toggleID = event.target.closest('.x-toggle-switch').getAttribute('data-script-id');
@@ -204,6 +206,27 @@ function xToggleSwitch(){
         }
 
     })
+
+    }
+
+    extrasToggleSwitch(document);
+
+    function xToggleSwitchAjax(e) {
+
+        if (typeof e.detail.queryId === 'undefined') {
+            return;
+        }
+
+        if ( document.querySelector('.brxe-' + e.detail.queryId) ) {
+            extrasToggleSwitch(document.querySelector('.brxe-' + e.detail.queryId).parentElement);
+        }
+      }
+      
+      document.addEventListener("bricks/ajax/load_page/completed", xToggleSwitchAjax)
+      document.addEventListener("bricks/ajax/pagination/completed", xToggleSwitchAjax)
+
+    // Expose function
+    window.doExtrasToggleSwitch = extrasToggleSwitch;
 
 }
 

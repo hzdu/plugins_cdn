@@ -64,6 +64,11 @@ document.addEventListener("DOMContentLoaded", (e) => {
                         if (typeof doExtrasTabs == 'function') {
                             doExtrasTabs(container)
                         }
+
+                        /* lottie */
+                        if (typeof doExtrasLottie == 'function') {
+                            doExtrasLottie(container)
+                        }
                     
                     }
 
