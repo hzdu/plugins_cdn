@@ -1,4 +1,5 @@
 import cfwAjax                  from '../../functions/cfwAjax';
+import DataService              from '../Services/DataService';
 import VariableProductFormModal from './VariableProductFormModal';
 import ClickEvent = JQuery.ClickEvent;
 
@@ -29,8 +30,8 @@ class UpdateVariableCartItemModal extends VariableProductFormModal {
                     this.close();
                 } );
             },
-            confirm_button_text: 'Update',
-            confirm_cancel_button_text: 'Cancel',
+            confirm_button_text: DataService.getMessage( 'update_cart_item_variation_button' ),
+            confirm_cancel_button_text: DataService.getMessage( 'cancel_button_label' ),
         } );
     }
 }
