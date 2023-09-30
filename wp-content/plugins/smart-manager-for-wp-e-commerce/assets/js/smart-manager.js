@@ -625,6 +625,7 @@ Smart_Manager.prototype.loadNavBar = function() {
 	}
 
 	jQuery('#sm_top_bar').trigger('sm_top_bar_loaded');
+	window.smart_manager.toggleTopBar();
 }
 
 String.prototype.capitalize = function() {
@@ -2260,7 +2261,8 @@ Smart_Manager.prototype.event_handler = function() {
 			if('undefined' !== typeof(window.smart_manager.displayTasks) && 'function' === typeof(window.smart_manager.displayTasks)){
 				window.smart_manager.displayTasks({dashboardChange: true});
 			}
-		    	window.smart_manager.setDashboardDisplayName();
+			window.smart_manager.toggleTopBar();
+		    window.smart_manager.setDashboardDisplayName();
 			window.smart_manager.load_dashboard(); 
 		} else {
 			jQuery(this).val(window.smart_manager.current_selected_dashboard);
@@ -3388,7 +3390,7 @@ Smart_Manager.prototype.isTaxonomyDashboard = function() {
 // Function to get keyId for the dashboard
 Smart_Manager.prototype.getKeyID = function() {
 	switch (true){
-		case ("undefined" !== typeof(window.smart_manager.isTasksEnabled) && "function" === typeof(window.smart_manager.isTasksEnabled) && (1 === window.smart_manager.isTasksEnabled())):
+		case ("undefined" !== typeof(window.smart_manager.isTasksEnabled) && "function" === typeof(window.smart_manager.isTasksEnabled) && (1 === window.smart_manager.isTasksEnabled()) || ('product_stock_log' === window.smart_manager.dashboard_key)):
 			return 'sm_tasks_id'
         case ('undefined' !== typeof window.smart_manager.taxonomyDashboards[window.smart_manager.dashboard_key]):
 			return 'terms_term_id'
@@ -4018,6 +4020,10 @@ jQuery.widget('ui.dialog', jQuery.extend({}, jQuery.ui.dialog.prototype, {
 	// Function to detect if filtered data or not
 	Smart_Manager.prototype.isFilteredData = function(){
 		return (('simple' === window.smart_manager.searchType && window.smart_manager.simpleSearchText !== '') || ('simple' !== window.smart_manager.searchType && window.smart_manager.advancedSearchQuery.length > 0))
+	}
+	// Function to toggle top bar in case of product stock log dashboard.
+	Smart_Manager.prototype.toggleTopBar = function(){
+		('product_stock_log' === window.smart_manager.dashboard_key) ? jQuery('#sm_top_bar').toggle(false) : jQuery('#sm_top_bar').toggle(true);
 	}
 
 	// Register an alias for datetime

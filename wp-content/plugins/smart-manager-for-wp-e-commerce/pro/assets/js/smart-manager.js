@@ -526,7 +526,7 @@ Smart_Manager.prototype.duplicateRecords = function() {
         window.smart_manager.showProgressDialog(_x('Duplicate Records', 'progressbar modal title', 'smart-manager-for-wp-e-commerce')); 
 
         if( typeof (sa_sm_background_process_heartbeat) !== "undefined" && typeof (sa_sm_background_process_heartbeat) === "function" ) {
-            sa_sm_background_process_heartbeat(5000);
+            sa_sm_background_process_heartbeat(1000, 'duplicate');
         }
 
     } ,1);
@@ -762,7 +762,7 @@ Smart_Manager.prototype.processBatchUpdate = function() {
             window.smart_manager.showProgressDialog(_x('Bulk Edit', 'progressbar modal title', 'smart-manager-for-wp-e-commerce')); 
 
             if( typeof (sa_sm_background_process_heartbeat) !== "undefined" && typeof (sa_sm_background_process_heartbeat) === "function" ) {
-                sa_sm_background_process_heartbeat(5000, 'bulk_edit');
+                sa_sm_background_process_heartbeat(1000, 'bulk_edit');
             }
         }
     ,1);
@@ -1414,6 +1414,7 @@ Smart_Manager.prototype.deleteAndUndoRecords = function(params = {}){
         SM_IS_WOO21: (window.smart_manager.sm_is_woo21) ? window.smart_manager.sm_is_woo21 : ''
     };
     let processName = '', tasksParams = ['undo','delete'];
+    let currentProcessName = '';
     if(tasksParams.includes(params['cmd'])){
         params.data.isTasks = 1;
     }
@@ -1421,18 +1422,21 @@ Smart_Manager.prototype.deleteAndUndoRecords = function(params = {}){
         case 'delete_all':
             processName = _x('Delete Records','progressbar modal title','smart-manager-for-wp-e-commerce');
             params.data.deletePermanently = (params.hasOwnProperty('args') && (params.args.hasOwnProperty('deletePermanently'))) ? params.args.deletePermanently : 0;
+            currentProcessName = (params.data.deletePermanently) ? 'delete_permanently' : 'move_to_trash';
             break;
         case 'undo':
             processName = _x('Undo Tasks','progressbar modal title','smart-manager-for-wp-e-commerce');
+            currentProcessName = 'undo';
             break;
         case 'delete':
             processName = _x('Delete Tasks','progressbar modal title','smart-manager-for-wp-e-commerce');
+            currentProcessName = 'delete';
             break;
     }
     setTimeout(function(){ 
         window.smart_manager.showProgressDialog(processName); 
         if("undefined" !== typeof(sa_sm_background_process_heartbeat) && "function" === typeof(sa_sm_background_process_heartbeat)){
-            sa_sm_background_process_heartbeat(5000);
+            sa_sm_background_process_heartbeat(1000, currentProcessName);
         }
     },1);
     params.showLoader = false;
