@@ -38,7 +38,8 @@
 /* header */
 #perfmatters-admin-header {
   margin-bottom: 10px;
-  width: 227px;
+  width: 220px;
+  min-width: 220px;
 }
 #perfmatters-logo-bar {
   display: flex;
@@ -46,9 +47,10 @@
 }
 #perfmatters-logo {
   display: flex;
-  height: 30px; 
+  max-height: 30px;
   margin: 10px auto;
   overflow: visible;
+  width: 100%;
 }
 #perfmatters-menu-toggle {
   display: none;
@@ -178,6 +180,28 @@
   line-height: 24px;
   color: #fff;
   opacity: 0.5;
+}
+#perfmatters-admin #perfmatters-cta {
+  display: flex; 
+  align-items: center; 
+  background: #e8f1ff; 
+  padding: 10px; 
+  border-color: #4A89DD; 
+  color: #4A89DD; 
+  margin-top: 15px; 
+  text-decoration: none;
+  box-shadow: none;
+}
+#perfmatters-cta-close {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  padding: 2px;
+  font-size: 15px;
+  line-height: 20px;
+}
+#perfmatters-cta-close:hover {
+  color: #282E34;
 }
 
 /* inputs */

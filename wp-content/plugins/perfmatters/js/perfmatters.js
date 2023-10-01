@@ -222,6 +222,24 @@ jQuery(document).ready(function($) {
 			container.addClass('pm-hide-advanced');
 		}
 	});
+
+	//close cta
+	$('#perfmatters-cta-close').click(function(e) {
+		
+		e.preventDefault();
+
+		$('#perfmatters-cta').hide();
+
+		 //ajax request
+		$.ajax({
+	        type: "POST",
+	        url: PERFMATTERS.ajaxurl,
+	        data: {
+	        	action: 'perfmatters_close_cta',
+	        	nonce: PERFMATTERS.nonce
+	        }
+	    });
+	});
 });
 
 //update row count for given input row attributes
@@ -275,7 +293,7 @@ jQuery(function($) {
 
 	    //setup form data
 	    var formData = new FormData();
-	    formData.append('action', action);
+	    formData.append('action', 'perfmatters_' + action);
 	    formData.append('nonce', PERFMATTERS.nonce);
 
 	    //additional setup
