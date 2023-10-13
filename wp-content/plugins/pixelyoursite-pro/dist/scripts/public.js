@@ -1062,6 +1062,7 @@ if (!String.prototype.trim) {
             },
 
             manageCookies: function () {
+
                 if (options.gdpr.ajax_enabled && !options.gdpr.consent_magic_integration_enabled) {
 
                     // retrieves actual PYS GDPR filters values which allow to avoid cache issues
@@ -1654,9 +1655,7 @@ if (!String.prototype.trim) {
                                 options.cookie.disabled_trafficsource_cookie = res.data.disabled_trafficsource_cookie;
                                 options.cookie.disabled_utmTerms_cookie = res.data.disabled_utmTerms_cookie;
                                 options.cookie.disabled_utmId_cookie = res.data.disabled_utmId_cookie;
-
                             }
-
                             loadPixels();
 
                         }
@@ -2263,9 +2262,13 @@ if (!String.prototype.trim) {
                         && Object.keys(options.tiktok.advanced_matching).length > 0) {
                         advancedMatching = options.tiktok.advanced_matching;
                         if(!advancedMatching.hasOwnProperty("external_id")){
-                            if (Cookies.get('pbid')) {
-                                advancedMatching["external_id"] = Cookies.get('pbid');
+                            if (Cookies.get('pbid') || (options.hasOwnProperty('pbid') && options.pbid)) {
+                                advancedMatching["external_id"] = Cookies.get('pbid') ? Cookies.get('pbid') : options.pbid;
                             }
+                        }
+                        else if(advancedMatching.external_id != Cookies.get('pbid'))
+                        {
+                            advancedMatching["external_id"] = Cookies.get('pbid') ? Cookies.get('pbid') : advancedMatching.external_id;
                         }
 
                         ttq.instance(pixelId).identify(advancedMatching)
@@ -2784,9 +2787,13 @@ if (!String.prototype.trim) {
                         advancedMatching["ln"] = advancedMatchingForm["last_name"];
                     }
                     if(!advancedMatching.hasOwnProperty("external_id")){
-                        if (Cookies.get('pbid')) {
-                            advancedMatching["external_id"] = Cookies.get('pbid');
+                        if (Cookies.get('pbid') || (options.hasOwnProperty('pbid') && options.pbid)) {
+                            advancedMatching["external_id"] = Cookies.get('pbid') ? Cookies.get('pbid') : options.pbid;
                         }
+                    }
+                    else if(advancedMatching.external_id != Cookies.get('pbid'))
+                    {
+                        advancedMatching["external_id"] = Cookies.get('pbid') ? Cookies.get('pbid') : advancedMatching.external_id;
                     }
 
                     if(Object.keys(advancedMatching).length > 0) {
@@ -5303,7 +5310,21 @@ if (!String.prototype.trim) {
 
 
 }(jQuery, pysOptions);
-
+if (pysOptions.ajaxForServerEvent && !Cookies.get('pbid')) {
+    jQuery.ajax({
+        url: pysOptions.ajaxUrl,
+        dataType: 'json',
+        data: {
+            action: 'pys_get_pbid'
+        },
+        success: function (res) {
+            if (res.data && res.data.pbid != false) {
+                Cookies.set('pbid', res.data.pbid);
+                pysOptions.pbid = res.data.pbid;
+            }
+        }
+    });
+}
 function pys_generate_token(length){
     //edit the token allowed characters
     var a = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890".split("");
