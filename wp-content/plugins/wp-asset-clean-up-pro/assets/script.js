@@ -284,11 +284,31 @@
                 let hardcodedRowTarget = '[data-is-hardcoded-asset="true"]';
 
                 if ($(hardcodedRowTarget).length > 0) {
-                    $.each($(hardcodedRowTarget), function (index, value) {
-                        $.fn.wpAssetCleanUpPro().updateHardcodedDataHiddenFieldStatus($(this));
+                    let hardcodedAssetsTrAreas = document.querySelectorAll(hardcodedRowTarget + ' .wpacu_asset_size_area');
+
+                    let wpacuObserverHardcodedAssets = new ResizeObserver(entries => {
+                        for (let entry of entries) {
+                            let wpacuAssetSizeArea = entry.target;
+
+                            if ($(entry.target.parentNode).attr('data-wpacu-row-status') === 'contracted') {
+                                wpacuAssetSizeArea.classList.add('wpacu_prepend_sign_before');
+                            } else {
+                                wpacuAssetSizeArea.classList.remove('wpacu_prepend_sign_before');
+                            }
+                        }
                     });
 
-                    $(hardcodedRowTarget).on('click', '.wpacu_unload_rule_input', function () {
+                    hardcodedAssetsTrAreas.forEach(entry => {
+                            wpacuObserverHardcodedAssets.observe(entry);
+                        }
+                    );
+
+                    $.each($(hardcodedRowTarget), function (index, value) {
+                        $.fn.wpAssetCleanUpPro().updateHardcodedDataHiddenFieldStatus($(this));
+
+                        });
+
+                    $(hardcodedRowTarget).on('change', ':input', function () {
                         // If all three checkboxes () are off, mark the hidden input with the hardcoded data as hidden to have fewer inputs submitted
                         // This is good in case there are only 1000 maximum fields set for the maximum post fields that can be sent (php.ini)
                         $.fn.wpAssetCleanUpPro().updateHardcodedDataHiddenFieldStatus($(this).parents('[data-is-hardcoded-asset]'));
@@ -311,7 +331,11 @@
                     return;
                 }
 
-                if ($parentTr.find('.wpacu_unload_rule_input:checked').length > 0 || $parentTr.hasClass('wpacu_not_load')) {
+                if (  $parentTr.find('.wpacu_unload_rule_input:checked').length > 0 ||
+                      $parentTr.find('.wpacu_load_exception:checked').length > 0 ||
+                    ( $parentTr.find('select[data-wpacu-input="position-select"]').length > 0 && ($parentTr.find('select[data-wpacu-input="position-select"]').val() === 'head' || $parentTr.find('select[data-wpacu-input="position-select"]').val() === 'body') ) ||
+                    ( $parentTr.find('select[data-wpacu-input="preload"]').length > 0 && ($parentTr.find('select[data-wpacu-input="preload"]').val() !== 'basic' || $parentTr.find('select[data-wpacu-input="preload"]').val() !== 'async') ) ||
+                      $parentTr.hasClass('wpacu_not_load') ) {
                     // A rule is set
                     $('#' + hardcodedAssetGeneratedHandle + '_hardcoded_data').prop('disabled', false);
                 } else {
@@ -1673,6 +1697,7 @@ jQuery(document).ready(function($) {
 
                         // [wpacu_pro]
                         $.fn.wpAssetCleanUpPro().wpacuTriggerChosenForTaxDd();
+                        $.fn.wpAssetCleanUpPro().triggerForHardcodedAssets();
                         // [/wpacu_pro]
 
                         $.fn.wpAssetCleanUp().wpacuCheckSourcesFor404Errors();
@@ -1790,6 +1815,7 @@ jQuery(document).ready(function($) {
                             setTimeout(function () {
                                 // [wpacu_pro]
                                 $.fn.wpAssetCleanUpPro().wpacuTriggerChosenForTaxDd();
+                                $.fn.wpAssetCleanUpPro().triggerForHardcodedAssets();
                                 // [/wpacu_pro]
 
                                 $.fn.wpAssetCleanUp().wpacuCheckSourcesFor404Errors();
@@ -1827,7 +1853,7 @@ jQuery(document).ready(function($) {
                 $.post(wpacu_object.ajax_url, dataGetLoadedHardcodedAssets, function (response) {
                     let $mainJQuerySelector = '#wpacu-assets-collapsible-wrap-hardcoded-list';
 
-                    if (!response) {
+                    if ( ! response ) {
                         return;
                     }
 
@@ -1839,8 +1865,7 @@ jQuery(document).ready(function($) {
                     let responseJson = JSON.parse(response);
 
                     $($mainJQuerySelector).find('> .wpacu-assets-collapsible-content').html(responseJson.output);
-                    $($mainJQuerySelector).find('a.wpacu-assets-collapsible')
-                        .append(' &#10141; Total: ' + parseInt(responseJson.total_hardcoded_assets));
+                    $($mainJQuerySelector).find('a.wpacu-assets-collapsible').append(responseJson.after_hardcoded_title);
 
                     // [wpacu_pro]
                     $.fn.wpAssetCleanUpPro().wpacuTriggerChosenForTaxDd();
@@ -2140,15 +2165,21 @@ jQuery(document).ready(function($) {
                     }
                 });
 
-                if ( $('#wpacu-allow-manage-assets-to-select-list-area').length > 0
-                    && ( ! $('#wpacu-allow-manage-assets-to-select-list-area').hasClass('wpacu_hide') ) ) {
+                if (  $('#wpacu-allow-manage-assets-to-select-list-area').length > 0 &&
+                    ! $('#wpacu-allow-manage-assets-to-select-list-area').hasClass('wpacu_hide') &&
+                      $('#wpacu-allow-manage-assets-to-select-list').hasClass('wpacu_chosen_can_be_later_enabled')
+                ) {
                     setTimeout(function() { jQuery('#wpacu-allow-manage-assets-to-select-list').chosen(); }, 200);
                 }
 
                 $('#wpacu-allow-manage-assets-to-select').on('click change', function() {
                     if ($(this).val() === 'chosen') {
                         $('#wpacu-allow-manage-assets-to-select-list-area').removeClass('wpacu_hide');
-                        setTimeout(function() { jQuery('#wpacu-allow-manage-assets-to-select-list').chosen(); }, 200);
+                        setTimeout(function() {
+                            if (jQuery('#wpacu-allow-manage-assets-to-select-list').hasClass('wpacu_chosen_can_be_later_enabled')) {
+                                jQuery('#wpacu-allow-manage-assets-to-select-list').chosen();
+                            }
+                        }, 200);
                     } else {
                         $('#wpacu-allow-manage-assets-to-select-list-area').addClass('wpacu_hide');
                     }
