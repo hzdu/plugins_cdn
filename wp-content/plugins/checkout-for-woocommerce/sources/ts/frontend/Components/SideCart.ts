@@ -61,7 +61,7 @@ class SideCart {
             jQuery( '#cfw_empty_side_cart_message' ).hide();
 
             jQuery( document.body ).trigger( 'wc_fragment_refresh' );
-            jQuery( document.body ).trigger( 'added_to_cart', [ resp.fragments, resp.cart_hash ] );
+            jQuery( document.body ).trigger( 'added_to_cart', [ resp.fragments, resp.cart_hash, jQuery( e.target ) ] );
             jQuery( document.body ).trigger( 'updated_cart_totals' );
         } );
 
