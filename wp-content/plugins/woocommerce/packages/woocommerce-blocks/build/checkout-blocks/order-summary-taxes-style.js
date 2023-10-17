@@ -1,1 +1,1 @@
-(window.webpackWcBlocksJsonp=window.webpackWcBlocksJsonp||[]).push([[55],{942:function(t,c,e){"use strict";e.r(c);var s=e(67),i=e(506),o=e(505);c.default=Object(s.withFilteredAttributes)(o.a)(i.a)}}]);
+(window.webpackWcBlocksJsonp=window.webpackWcBlocksJsonp||[]).push([[55],{972:function(t,c,e){"use strict";e.r(c);var s=e(61),i=e(525),o=e(524);c.default=Object(s.withFilteredAttributes)(o.a)(i.a)}}]);
