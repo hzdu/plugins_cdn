@@ -1,0 +1,196 @@
+@import "../../../css/forms";
+
+.ame-box-dimensions-control {
+	display: flex;
+	flex-wrap: wrap;
+
+	//Don't stretch flex items vertically.
+	align-items: flex-start;
+
+	//Put the label text below the input.
+	.ame-single-box-dimension {
+		margin: 0;
+
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+
+	.ame-box-dimension-label {
+		//Match the color WP uses for form input descriptions.
+		color: #646970;
+		//Smaller!
+		font-size: 13px;
+
+		//With the smaller font size, the label text is too close to the input.
+		//Add a bit of a margin. Note that the !important is required to override
+		//WP core styles that already use !important for labels.
+		margin: 1px 0 0 0 !important;
+	}
+
+	//Darken the label color when the input is focused.
+	input:focus ~ .ame-box-dimension-label {
+		color: inherit;
+	}
+
+	.ame-single-box-dimension {
+		@include ame-invalid-input-styles;
+	}
+
+	//Style this as an input group. The existing input group classes won't work
+	//because this control has a nested hierarchy of elements.
+	.ame-single-box-dimension {
+		input {
+			margin-right: 0;
+			border-top-right-radius: 0;
+			border-bottom-right-radius: 0;
+		}
+
+		&:not(:first-child) {
+			input {
+				margin-left: -1px;
+				border-top-left-radius: 0;
+				border-bottom-left-radius: 0;
+			}
+		}
+	}
+
+	.ame-box-dimensions-unit-selector {
+		margin-left: -1px;
+		border-top-left-radius: 0;
+		border-bottom-left-radius: 0;
+	}
+
+	//WordPress highlights focused inputs by adding a colorful shadow. By default,
+	//this shadow would be partially hidden because the inputs overlap.
+	//Let's make it visible by temporarily increasing the z-index of the focused input.
+	input, select {
+		&:focus {
+			z-index: 2;
+		}
+	}
+
+	.ame-box-dimensions-link-button {
+		//Center the Dashicon vertically.
+		display: flex;
+		align-items: center;
+
+		margin-left: 4px;
+	}
+}
+
+//A more compact layout for the customizer.
+.ame-ac-control .ame-box-dimensions-control {
+	flex-wrap: nowrap;
+	width: 100%;
+
+	.ame-single-box-dimension {
+		//Set a specific base width for all sides to prevent "Bottom" from being wider
+		//than others because it has a longer label.
+		width: 3em;
+
+		flex-grow: 1;
+		flex-shrink: 1;
+
+		input {
+			//Required to prevent the inputs from expanding the container.
+			width: 100%;
+			box-sizing: border-box;
+		}
+
+		/*
+		Unfortunately, the negative margin trick doesn't work well with fractional widths
+		that can be generated when shrinking the inputs, so we'll hide a border instead.
+
+		In this case, hide the right border and not the left one because of the left-to-right
+		rendering order. It appears that when you have two adjacent elements with fractional
+		width, sometimes the second element will partially overlap the first one, so the right
+		border of the first element would be effectively hidden anyway.
+		 */
+		&:not(:first-child) {
+			input {
+				margin-left: 0;
+			}
+		}
+
+
+		&:not(:last-child) {
+			input {
+				border-right-style: none;
+			}
+		}
+	}
+
+	.ame-box-dimensions-link-button {
+		margin-left: 0;
+		border-top-left-radius: 0;
+		border-bottom-left-radius: 0;
+
+	}
+
+	.ame-box-dimensions-unit-selector {
+		margin-right: 0;
+		border-top-right-radius: 0;
+		border-bottom-right-radius: 0;
+		border-right-style: none;
+	}
+
+	//Border radius controls: Replace text labels with visual indicators for different corners.
+	$indicatorSize: 0.6em;
+	$indicatorRadius: $indicatorSize;
+	$activeCornerWidth: 4px;
+
+	.ame-box-dimension-topLeft,
+	.ame-box-dimension-topRight,
+	.ame-box-dimension-bottomLeft,
+	.ame-box-dimension-bottomRight {
+		.ame-box-dimension-label {
+			//Hide the label text.
+			.ame-box-dimension-label-text {
+				position: absolute;
+				text-indent: -1000em;
+				width: 1px;
+				height: 1px;
+				padding: 0;
+				margin: -1px;
+				overflow: hidden;
+				clip: rect(0, 0, 0, 0);
+				border: 0;
+			}
+
+			//Create a box that will have one rounded corner.
+			&::before {
+				display: inline-block;
+				content: '';
+				width: $indicatorSize;
+				height: $indicatorSize;
+				margin-top: 2px;
+
+				color: #777;
+				opacity: 0.8;
+
+				border: 2px solid currentColor;
+			}
+		}
+	}
+
+	//Generate corner rounding styles for all 4 corners.
+	$verticals: (top, bottom);
+	$horizontals: (left, right);
+
+	@function ucFirst($string) {
+		@return to-upper-case(str-slice($string, 1, 1)) + str-slice($string, 2);
+	}
+
+	@each $vertical in $verticals {
+		@each $horizontal in $horizontals {
+			.ame-box-dimension-#{$vertical}#{ucFirst($horizontal)} {
+				.ame-box-dimension-label::before {
+					border-#{$vertical}-#{$horizontal}-radius: $indicatorRadius;
+					border-#{$vertical}-width: $activeCornerWidth;
+					border-#{$horizontal}-width: $activeCornerWidth;
+				}
+			}
+		}
+	}
+}

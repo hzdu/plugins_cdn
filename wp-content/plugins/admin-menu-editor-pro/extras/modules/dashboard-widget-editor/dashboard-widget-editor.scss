@@ -1,0 +1,356 @@
+@import "../../../css/boxes";
+
+$widgetBorderColor: $amePostboxBorderColor;
+$widgetBottomMargin: 10px;
+
+#ame-dashboard-widget-editor #ws_actor_selector {
+	margin-top: 6px;
+}
+
+#ame-dashboard-widget-main-area {
+	max-width: 100%;
+	//background: cornflowerblue;
+
+	display: flex;
+	flex-direction: row;
+}
+
+#ame-widget-editor-sidebar {
+	align-self: flex-start;
+	margin-left: 10px;
+
+	.postbox {
+		//Let's make the boxes a big smaller.
+		min-width: 240px;
+
+		.hndle {
+			cursor: initial; //These boxes are not actually draggable.
+		}
+
+		.inside {
+			margin-bottom: 0;
+		}
+
+		ul {
+			margin-top: 0.5em;
+			margin-bottom: 0;
+		}
+
+		select {
+			min-width: 80%;
+		}
+
+		&:last-of-type {
+			margin-bottom: 0;
+		}
+	}
+
+	.ame-widget-editor-box-subheading {
+		margin-bottom: 0.5em;
+	}
+
+	.ame-widget-preview-column-choices {
+		label {
+			padding-right: 0.8em;
+		}
+	}
+}
+
+#ame-dashboard-widgets {
+	min-width: 600px;
+	width: 600px;
+	flex-shrink: 1;
+
+	display: grid;
+	grid-template-columns: 1fr;
+
+	padding: 10px 8px 10px 8px;
+	margin: 2px 0 0 0;
+	gap: 16px; //The dashboard has 16px gaps, but 8px could also work here as it's consistent with the widget padding.
+
+	&.ame-widget-preview-columns-1 {
+		grid-template-columns: 1fr;
+	}
+
+	@for $i from 2 through 4 {
+		&.ame-widget-preview-columns-#{$i} {
+			grid-template-columns: repeat(#{$i}, 1fr);
+			width: 400px * $i;
+		}
+	}
+}
+
+#ame-major-widget-actions {
+	padding: 10px 8px;
+	margin: 2px 0 0 0;
+	width: 150px;
+
+	input.button.button-primary {
+		margin-top: 0;
+		margin-bottom: 21px;
+	}
+
+	input.button {
+		width: 100%;
+		margin-top: 4px;
+	}
+
+	#ame-export-widgets {
+		margin-top: 12px;
+	}
+}
+
+#ame-dashboard-widgets,
+#ame-major-widget-actions {
+	box-sizing: border-box;
+
+	background: white;
+	border: 1px solid $widgetBorderColor;
+	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.04);
+}
+
+.ame-widget-preview-column {
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+}
+
+.ame-widget-area {
+	display: flex;
+	flex-direction: column;
+}
+
+.ame-widget-area-header {
+	color: #646970;
+	padding-bottom: 4px;
+}
+
+.ame-dashboard-widget-collection {
+	min-width: 10%;
+	max-width: 100%;
+	min-height: 4em;
+
+	display: flex;
+	flex-direction: column;
+	align-items: stretch;
+	gap: $widgetBottomMargin;
+}
+
+.ame-empty-dashboard-widget-collection {
+	$outlineWidth: 3px;
+	outline: $outlineWidth dashed #c3c4c7;
+	outline-offset: -$outlineWidth;
+}
+
+.ame-dashboard-widget {
+	margin: 0;
+	position: relative;
+	box-sizing: border-box;
+
+	&:last-child {
+		margin-bottom: 0;
+	}
+}
+
+$titleActionWidth: 40px;
+$titlePadding: 15px;
+
+.ame-widget-top {
+	position: relative;
+	background: #fafafa;
+	color: #23282D;
+
+	font-size: 13px;
+	font-weight: 600;
+	line-height: 1.4em;
+
+	border: 1px solid $widgetBorderColor;
+	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.04);
+
+	.ame-widget-title {
+		display: flex;
+		padding-left: $titlePadding;
+		align-items: center;
+	}
+
+	h3 {
+		padding: $titlePadding $titlePadding ($titlePadding + 1px) 0;
+		margin: 0;
+		flex-grow: 1;
+
+		font-size: 1em;
+		line-height: 1;
+
+		white-space: nowrap;
+		text-overflow: ellipsis;
+		overflow: hidden;
+	}
+
+	.ame-widget-title-action {
+		position: absolute;
+		top: 0;
+		right: 0;
+		bottom: 0;
+
+		width: $titleActionWidth;
+		height: 100%;
+
+		cursor: pointer;
+		text-align: center;
+
+		text-decoration: none;
+		outline: none;
+		color: #72777c;
+
+		&:before {
+			display: inline-block;
+			content: '\f140'; //downward triangle
+			font: normal 20px/1 dashicons;
+			vertical-align: middle;
+		}
+
+		&:after {
+			display: inline-block;
+			content: "";
+			vertical-align: middle;
+			height: 100%;
+		}
+
+		&:hover {
+			color: #23282d;
+		}
+	}
+
+	body.rtl & .ame-widget-title-action {
+		left: 0;
+		right: auto;
+	}
+
+	.ame-widget-access-checkbox {
+		margin: 0 9px 0 0;
+		flex-grow: 0;
+	}
+
+	.ame-widget-flags {
+		position: absolute;
+		right: $titleActionWidth;
+		top: 0;
+		bottom: 0;
+		height: 100%;
+		text-align: right;
+
+		&::after {
+			display: inline-block;
+			content: "";
+			vertical-align: middle;
+			height: 100%;
+		}
+	}
+
+	$flagSize: 20px;
+
+	.ame-widget-flag {
+		height: $flagSize;
+		width: $flagSize;
+		display: inline-block;
+		vertical-align: middle;
+
+		&::after {
+			display: inline-block;
+			width: $flagSize;
+			height: $flagSize;
+			font: normal 20px/1 dashicons;
+			vertical-align: baseline;
+			color: #666;
+		}
+	}
+}
+
+.ame-movable-dashboard-widget {
+	.ame-widget-top h3 {
+		cursor: move;
+	}
+}
+
+.ame-missing-widget-flag::after {
+	content: '\f225';
+}
+
+.ame-widget-properties {
+	display: none;
+	background: white;
+
+	padding: 15px;
+
+	border: 1px solid $widgetBorderColor;
+	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.04);
+
+	border-top: none;
+
+	ame-widget-property {
+		display: block;
+		padding: 0;
+		margin-bottom: 1em;
+	}
+
+	.ame-widget-property-name {
+		display: inline-block;
+	}
+
+	input[type="text"].ame-widget-property-value,
+	input[type="url"].ame-widget-property-value,
+	select.ame-widget-property-value,
+	textarea.ame-widget-property-value {
+		width: 100%;
+	}
+
+	a.ame-delete-widget:hover {
+		color: #f00;
+		text-decoration: none;
+		border: none;
+	}
+}
+
+.ame-open-dashboard-widget {
+	.ame-widget-properties {
+		display: block;
+	}
+
+	.ame-widget-title-action:before {
+		content: '\f142'; //upward triangle
+	}
+
+	.ame-widget-top {
+		box-shadow: none;
+	}
+}
+
+//Placeholder for widget being moved (dragged).
+.ame-widget-move-placeholder {
+	//Use an outline instead of a border so that the placeholder doesn't affect
+	//the layout. For some reason, jQuery UI seems to set the size of the *content*
+	//box even when box-sizing is set to "border-box", so adding a border would
+	//increase the effective height and width of the placeholder.
+	outline: 1px dashed #666;
+	outline-offset: -1px;
+}
+
+@import "../../../css/indeterminate-checkbox";
+
+.ame-widget-access-checkbox,
+input[type="checkbox"].ame-widget-access-checkbox,
+#ame-widget-editor-sidebar input[type="checkbox"] {
+	@include ame-indeterminate-checkbox;
+}
+
+/*
+ * Import dialog
+ */
+
+#ame-import-panel {
+	min-height: 70px;
+}
+
+#ame-import-file-selector {
+	max-width: 100%;
+}

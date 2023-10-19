@@ -1,0 +1,79 @@
+#ws-ame-menu-style-settings {
+  padding: 0;
+}
+#ws-ame-menu-style-settings .ws_dialog_buttons {
+  flex-shrink: 0;
+  flex-grow: 0;
+  padding: 8px;
+  margin-top: 0;
+  border-top: 1px solid #dcdcde;
+  background: #fcfcfc;
+}
+
+#ws-ame-ms-dialog-wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+#ws-ame-ms-dialog-content {
+  flex-shrink: 1;
+  flex-grow: 1;
+  min-height: 100px;
+}
+
+#ws-ame-ms-preview-box-container {
+  display: inline-block;
+  margin: 0 12px;
+  line-height: 28px;
+}
+
+/*
+Position the style dialog relative to the admin menu and the edges of the screen,
+overriding the default jQuery UI dialog positioning.
+
+The "ws-ame-menu-style-dialog" class is added by using the "classes" option when
+creating the dialog.
+ */
+.ws-ame-menu-style-dialog {
+  --menu-based-offset: calc(var(--ame-ms-menu-width, 160px) + 10px);
+  --available-width: calc(100vw - var(--menu-based-offset) - 30px);
+  --dialog-width: max(min(var(--available-width), 810px), 200px);
+  --centering-based-offset: calc((100vw - var(--dialog-width)) / 2);
+  --dialog-left: max(var(--centering-based-offset), var(--menu-based-offset), 0px);
+  position: fixed !important;
+  bottom: 30px !important;
+  top: calc(var(--wp-admin--admin-bar--height, 32px) + 10px) !important;
+  left: var(--dialog-left) !important;
+  width: var(--dialog-width) !important;
+  height: auto !important;
+  display: flex;
+  flex-direction: column;
+}
+.ws-ame-menu-style-dialog .ui-dialog-titlebar {
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+.ws-ame-menu-style-dialog .ui-dialog-content {
+  flex-grow: 1;
+  flex-shrink: 1;
+}
+
+.ui-widget-overlay.ame-ms-dialog-overlay {
+  background-color: transparent;
+  --left-offset: calc(var(--ame-ms-menu-width, 160px) + 20px);
+  background-image: linear-gradient(to right, transparent 0, transparent var(--left-offset), rgba(0, 0, 0, 0.7) var(--left-offset));
+  opacity: 1;
+}
+.ui-widget-overlay.ame-ms-dialog-overlay:before {
+  content: "";
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: var(--left-offset);
+  height: 100%;
+  cursor: not-allowed;
+}
+
+/*# sourceMappingURL=menu-styler.css.map */

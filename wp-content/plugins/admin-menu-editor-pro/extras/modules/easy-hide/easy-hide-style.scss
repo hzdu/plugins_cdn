@@ -1,0 +1,411 @@
+@use "../../cat-nav";
+@import "../../../css/indeterminate-checkbox";
+@import "../../../css/boxes";
+
+$crossMarkColor: #D81536;
+$expectedAdminBarHeight: 32px;
+$itemContainerPadding: 12px;
+
+$headingTopMargin: 1.5em;
+$headingFontSize: 1.3em;
+
+#ws_ame_editor_heading {
+	float: none;
+}
+
+#ws_actor_selector_container {
+	margin-bottom: 8px;
+}
+
+#ame-easy-hide-ui {
+	display: flex;
+	border: 1px solid $amePostboxBorderColor;
+}
+
+#ame-eh-category-container {
+	flex-basis: 220px;
+	flex-grow: 0;
+	max-width: 220px;
+
+	background: #f8f8f8;
+	border-right: 1px solid $amePostboxBorderColor;
+
+	padding-top: 6px;
+}
+
+#ame-eh-content-area {
+	flex-grow: 1;
+	display: flex;
+	flex-direction: column;
+}
+
+#ame-eh-view-toolbar {
+	flex-grow: 0;
+	display: flex;
+
+	align-items: center;
+
+	padding: 10px 12px;
+
+	background: #fcfcfc;
+	border-bottom: 1px solid #ddd;
+}
+
+//region Search box
+
+#ame-eh-search-container {
+	position: relative;
+	min-width: 250px;
+	max-width: 100%;
+}
+
+$clearButtonHPadding: 0.3em;
+
+#ame-eh-search-query {
+	position: relative;
+	width: 100%;
+	appearance: none;
+
+	//Make space for the clear button. The button width is the width
+	//of the Dashicon (20px) plus some padding.
+	padding-right: calc(#{$clearButtonHPadding} * 2 + 20px);
+}
+
+.ame-eh-clear-search-box {
+	position: absolute;
+	top: 0;
+	right: 0;
+	height: 100%;
+
+	border: none;
+	padding: 0 $clearButtonHPadding;
+
+	background: none;
+	cursor: pointer;
+
+	color: #888;
+
+	&:hover {
+		color: #444;
+	}
+}
+
+//endregion
+
+#ame-eh-item-container {
+	flex-grow: 1;
+	padding: 0 $itemContainerPadding $itemContainerPadding $itemContainerPadding;
+
+	background: #fff;
+
+	input[type=checkbox] {
+		@include ame-indeterminate-checkbox($crossMarkColor);
+	}
+}
+
+input[type=checkbox].ame-eh-negative-box {
+	&:checked:before {
+		content: '\1F7AC';
+		//See Wikipedia for other "X" marks:
+		//https://en.wikipedia.org/wiki/X_mark
+
+		font-weight: bold;
+		font-size: 15px;
+		line-height: 1rem;
+
+		color: $crossMarkColor;
+		//background: rgba(100, 100, 200, 0.3);
+
+		float: left;
+		display: inline-block;
+		vertical-align: middle;
+
+		width: 1rem;
+		height: 1rem;
+
+		margin: -1px;
+		margin-left: -1.5px;
+	}
+}
+
+@media screen and (max-width: 782px) {
+	input[type=checkbox].ame-eh-negative-box {
+		&:checked:before {
+			$boxSize: 1.5625rem;
+			height: $boxSize;
+			width: $boxSize;
+			line-height: $boxSize;
+			font-size: 18px;
+		}
+	}
+}
+
+.ame-eh-item {
+	padding: 0;
+	margin: 0;
+
+	font-size: 14px;
+	line-height: 1.65;
+}
+
+.ame-eh-item-self {
+	//padding: 3px 0 3px 0;
+}
+
+.ame-eh-item-list {
+	margin: 0;
+	padding: 0;
+
+	/*
+	Ideally, I'd like to avoid inserting a column break after an item that has
+	any children, but nothing I've tried has worked. The "orphans" and "widows"
+	properties seem to have no effect in nested lists. The following CSS also doesn't
+	seem to work, at least not with the current HTML structure. I've left it here
+	in case future browsers start treating lists better.
+	*/
+	li:first-child {
+		break-after: avoid;
+	}
+
+	li:last-child {
+		break-before: avoid;
+	}
+}
+
+.ame-eh-item > .ame-eh-item-list {
+	margin-left: 1.7em;
+}
+
+.ame-eh-search-highlight {
+	background-color: #ffff00;
+}
+
+.ame-eh-category-heading {
+	background: #fcfcfc;
+
+	border-top: 1px solid #ddd;
+	border-bottom: 1px solid #ddd;
+
+	padding: 0.4em $itemContainerPadding 0.6em $itemContainerPadding;
+	margin: $headingTopMargin (-$itemContainerPadding) 0.70em (-$itemContainerPadding);
+
+	font-size: $headingFontSize;
+}
+
+//region Category navigation
+
+.ame-eh-category-list {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+
+	li {
+		margin: 0;
+		padding: 0;
+	}
+}
+
+.ame-eh-cat-nav-item {
+	padding: 4px 8px 4px;
+
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+}
+
+.ame-eh-cat-label {
+
+}
+
+//endregion
+
+table.ame-eh-category-table-view {
+	th, td {
+		//Right border.
+		box-shadow: inset -1px 0 0 rgba(0, 0, 0, 0.1);
+
+		&:last-child {
+			box-shadow: none;
+		}
+	}
+
+	tbody th {
+		text-align: left;
+	}
+
+	input[type=checkbox] {
+		vertical-align: middle;
+		margin: -0.25rem 0.25rem 0 -1px;
+	}
+
+	td {
+		text-align: center;
+
+		input[type=checkbox] {
+			margin-right: 0;
+		}
+
+		label {
+			box-sizing: border-box;
+			display: block;
+			width: 100%;
+		}
+	}
+
+	.ame-eh-table-corner-cell {
+		border-bottom: none;
+	}
+
+	tbody tr:hover {
+		th, td {
+			background-color: cat-nav.$catNavHoverColor;
+		}
+	}
+
+	.ame-eh-hovered-column {
+		background-color: cat-nav.$catNavHoverColor;
+	}
+
+	//Fixed table header.
+	thead th {
+		position: sticky;
+		top: $expectedAdminBarHeight; //Leave room for the WordPress Toolbar.
+		background: white; //Avoid text overlap; better for readability.
+	}
+
+	//The first column doesn't have any header text, so that cell doesn't
+	//need to be sticky.
+	thead th:first-child {
+		position: unset;
+	}
+}
+
+.ame-eh-category-subtitle {
+	color: #888;
+	font-size: 0.95em;
+	font-family: Consolas, Monaco, monospace;
+	line-height: 1;
+
+	&::before {
+		content: "(";
+	}
+
+	&::after {
+		content: ")";
+	}
+}
+
+.ame-eh-lazy-category {
+	min-height: 100px;
+	outline: 1px dashed $amePostboxBorderColor;
+
+	padding-bottom: 0.5rem;
+	margin-bottom: 1rem;
+}
+
+//region Save buttons
+#ame-eh-side-save-button {
+	margin-top: 50px;
+	padding: 8px 8px;
+	border-top: 1px solid #dcdcde;
+
+	position: sticky;
+	top: $expectedAdminBarHeight;
+}
+
+$topSaveButtonContainerWidth: 130px;
+
+#ame-easy-hide #ws_actor_selector_container {
+	margin-right: $topSaveButtonContainerWidth;
+}
+
+#ame-eh-top-save-button {
+	float: right;
+	box-sizing: border-box;
+	width: $topSaveButtonContainerWidth - 1px;
+	text-align: right;
+	padding-left: 10px;
+
+	input[type="submit"] {
+		//Align the button with the text in the actor selector. This is not exactly
+		//correct because the line heights are different and the selector has a nested
+		//structure that uses different units for margins and padding.
+		margin-top: 7px;
+
+		max-width: $topSaveButtonContainerWidth - 1px;
+		margin-bottom: 5px;
+	}
+}
+
+//endregion
+
+//region Variable number of columns
+
+@for $columnCount from 2 through 3 {
+	.ame-eh-item-columns-#{$columnCount} .ame-eh-columns-allowed {
+		.ame-eh-category-items > .ame-eh-item-list {
+			column-count: $columnCount;
+		}
+	}
+}
+
+#ame-eh-column-selector {
+	margin-left: auto;
+
+	display: flex;
+	align-items: center;
+}
+
+.ame-eh-column-option-list {
+	margin-left: 0.4em;
+	display: flex;
+
+	.ame-eh-column-option {
+		&:not(:first-child) {
+			border-left-style: none;
+		}
+
+		&:not(:first-child,:last-child) {
+			border-radius: 0;
+		}
+
+		&:first-child {
+			border-top-right-radius: 0;
+			border-bottom-right-radius: 0;
+		}
+
+		&:last-child {
+			border-top-left-radius: 0;
+			border-bottom-left-radius: 0;
+		}
+
+		&.ame-eh-selected-column-option {
+			background: cat-nav.$catNavSelectedColor;
+			color: #222;
+		}
+	}
+}
+
+//endregion
+
+.ame-eh-selected-cat > .ame-eh-category-item-wrap .ame-eh-category-heading {
+	margin-top: 0;
+	border-top-color: #fff;
+	background: #f8f8f8;
+}
+
+.ame-eh-is-root-category > .ame-eh-category-item-wrap .ame-eh-category-heading {
+	background: transparent;
+	border-top-style: none;
+	border-bottom: none;
+
+	$rootFontSize: 1.1em;
+	font-size: $rootFontSize;
+	font-weight: normal;
+
+	margin-top: 0;
+
+	//Pull the next heading up. Because the font sizes are different, the em-based
+	//measurements need to be scaled up proportionally. Let's add a safety factor, too.
+	margin-bottom: (-($headingTopMargin * ($headingFontSize / $rootFontSize)) + 0.01em);
+}

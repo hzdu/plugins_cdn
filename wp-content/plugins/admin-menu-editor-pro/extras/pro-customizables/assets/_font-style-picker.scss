@@ -1,0 +1,82 @@
+@use "sass:math";
+
+$buttonMargin: 0.4em;
+
+.ame-font-style-control {
+	input[type="checkbox"], input[type="radio"] {
+		//Hide but leave interactive.
+		position: absolute;
+		left: -9999em;
+		overflow: hidden;
+		clip: rect(0, 0, 0, 0);
+		margin: -1px;
+	}
+
+	.ame-font-style-control-choice {
+		//Unfortunately, WP already uses "!important" when setting label margins,
+		//so we have to use it to override the default margin.
+		margin: 0 $buttonMargin 0 0 !important;
+
+		&:last-of-type {
+			margin-right: 0 !important;
+		}
+	}
+
+	$buttonFontSize: 15px;
+	$buttonLineHeight: 2;
+
+	.button {
+		user-select: none;
+		font-size: $buttonFontSize;
+		line-height: $buttonLineHeight;
+
+		text-align: center;
+		min-width: 42px; //To match the width of the "italic" button when using Dashicons.
+		//color: #50575e;
+
+		//Vertically align Dashicons inside the button.
+		.dashicons {
+			line-height: $buttonLineHeight * $buttonFontSize;
+		}
+	}
+
+	input:checked ~ .button {
+		//Match the "active" button state in WordPress.
+		//Not actually necessary as long as our JS is loaded.
+		background-color: #dcdcde;
+		/*color: #135e96;
+		border-color: #0a4b78;
+		box-shadow: inset 0 2px 5px -3px #0a4b78;*/
+
+		/*
+		//TinyMCE active button style.
+		border-color: #50575e;
+		box-shadow: inset 0 2px 5px -3px rgba(0, 0, 0, 0.3);
+		*/
+	}
+
+	.ame-font-sample {
+		font-weight: 600;
+	}
+
+	.ame-font-style-null-choice {
+		display: none;
+	}
+
+	//Make the strikethrough button icon bigger.
+	.dashicons-editor-strikethrough {
+		$sizeIncrease: 5px;
+		font-size: 20px + $sizeIncrease;
+		&:before {
+			//Pull it back to the center.
+			margin-left: -1 * math.floor($sizeIncrease / 2);
+		}
+	}
+}
+
+.ame-ac-control .ame-font-style-control {
+	display: flex;
+	flex-wrap: wrap;
+	width: 100%;
+	row-gap: $buttonMargin;
+}

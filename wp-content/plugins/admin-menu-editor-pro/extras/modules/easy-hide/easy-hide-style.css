@@ -1,0 +1,376 @@
+@charset "UTF-8";
+.ame-cat-nav-item {
+  cursor: pointer;
+  margin: 0;
+}
+
+.ame-cat-nav-item:hover {
+  background-color: #E5F3FF;
+}
+
+.ame-selected-cat-nav-item {
+  background-color: #CCE8FF;
+  box-shadow: 0px -1px 0px 0px #99D1FF, 0px 1px 0px 0px #99D1FF;
+}
+.ame-selected-cat-nav-item:hover {
+  background-color: #CCE8FF;
+}
+
+.ame-cat-nav-item.ame-cat-nav-level-2 {
+  padding-left: 0px;
+}
+
+.ame-cat-nav-item.ame-cat-nav-level-3 {
+  padding-left: 13px;
+}
+
+.ame-cat-nav-item.ame-cat-nav-level-4 {
+  padding-left: 26px;
+}
+
+.ame-cat-nav-item.ame-cat-nav-level-5 {
+  padding-left: 39px;
+}
+
+.ame-cat-nav-toggle {
+  visibility: hidden;
+  display: inline-block;
+  box-sizing: border-box;
+  max-height: 100%;
+  width: 20px;
+  text-align: right;
+  vertical-align: middle;
+  margin-right: 0.3em;
+}
+.ame-cat-nav-toggle:after {
+  font-family: dashicons, sans-serif;
+  content: "\f345";
+}
+.ame-cat-nav-toggle:hover {
+  color: #3ECEF9;
+}
+
+.ame-cat-nav-is-expanded > .ame-cat-nav-toggle:after {
+  content: "\f347";
+}
+
+.ame-cat-nav-has-children > .ame-cat-nav-toggle {
+  visibility: visible;
+}
+
+#ws_ame_editor_heading {
+  float: none;
+}
+
+#ws_actor_selector_container {
+  margin-bottom: 8px;
+}
+
+#ame-easy-hide-ui {
+  display: flex;
+  border: 1px solid #ccd0d4;
+}
+
+#ame-eh-category-container {
+  flex-basis: 220px;
+  flex-grow: 0;
+  max-width: 220px;
+  background: #f8f8f8;
+  border-right: 1px solid #ccd0d4;
+  padding-top: 6px;
+}
+
+#ame-eh-content-area {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+#ame-eh-view-toolbar {
+  flex-grow: 0;
+  display: flex;
+  align-items: center;
+  padding: 10px 12px;
+  background: #fcfcfc;
+  border-bottom: 1px solid #ddd;
+}
+
+#ame-eh-search-container {
+  position: relative;
+  min-width: 250px;
+  max-width: 100%;
+}
+
+#ame-eh-search-query {
+  position: relative;
+  width: 100%;
+  appearance: none;
+  padding-right: calc(0.3em * 2 + 20px);
+}
+
+.ame-eh-clear-search-box {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  border: none;
+  padding: 0 0.3em;
+  background: none;
+  cursor: pointer;
+  color: #888;
+}
+.ame-eh-clear-search-box:hover {
+  color: #444;
+}
+
+#ame-eh-item-container {
+  flex-grow: 1;
+  padding: 0 12px 12px 12px;
+  background: #fff;
+}
+#ame-eh-item-container input[type=checkbox]:indeterminate:before {
+  content: "■";
+  color: #D81536;
+  margin: -3px 0 0 -1px;
+  font: 400 14px/1 dashicons;
+  float: left;
+  display: inline-block;
+  vertical-align: middle;
+  width: 16px;
+  -webkit-font-smoothing: antialiased;
+}
+@media screen and (max-width: 782px) {
+  #ame-eh-item-container input[type=checkbox]:indeterminate:before {
+    height: 1.5625rem;
+    width: 1.5625rem;
+    line-height: 1.5625rem;
+    margin: -1px;
+    font-size: 18px;
+    font-family: unset;
+    font-weight: normal;
+  }
+}
+
+input[type=checkbox].ame-eh-negative-box:checked:before {
+  content: "🞬";
+  font-weight: bold;
+  font-size: 15px;
+  line-height: 1rem;
+  color: #D81536;
+  float: left;
+  display: inline-block;
+  vertical-align: middle;
+  width: 1rem;
+  height: 1rem;
+  margin: -1px;
+  margin-left: -1.5px;
+}
+
+@media screen and (max-width: 782px) {
+  input[type=checkbox].ame-eh-negative-box:checked:before {
+    height: 1.5625rem;
+    width: 1.5625rem;
+    line-height: 1.5625rem;
+    font-size: 18px;
+  }
+}
+.ame-eh-item {
+  padding: 0;
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.65;
+}
+
+.ame-eh-item-list {
+  margin: 0;
+  padding: 0;
+  /*
+  Ideally, I'd like to avoid inserting a column break after an item that has
+  any children, but nothing I've tried has worked. The "orphans" and "widows"
+  properties seem to have no effect in nested lists. The following CSS also doesn't
+  seem to work, at least not with the current HTML structure. I've left it here
+  in case future browsers start treating lists better.
+  */
+}
+.ame-eh-item-list li:first-child {
+  break-after: avoid;
+}
+.ame-eh-item-list li:last-child {
+  break-before: avoid;
+}
+
+.ame-eh-item > .ame-eh-item-list {
+  margin-left: 1.7em;
+}
+
+.ame-eh-search-highlight {
+  background-color: #ffff00;
+}
+
+.ame-eh-category-heading {
+  background: #fcfcfc;
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  padding: 0.4em 12px 0.6em 12px;
+  margin: 1.5em -12px 0.7em -12px;
+  font-size: 1.3em;
+}
+
+.ame-eh-category-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.ame-eh-category-list li {
+  margin: 0;
+  padding: 0;
+}
+
+.ame-eh-cat-nav-item {
+  padding: 4px 8px 4px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+table.ame-eh-category-table-view th, table.ame-eh-category-table-view td {
+  box-shadow: inset -1px 0 0 rgba(0, 0, 0, 0.1);
+}
+table.ame-eh-category-table-view th:last-child, table.ame-eh-category-table-view td:last-child {
+  box-shadow: none;
+}
+table.ame-eh-category-table-view tbody th {
+  text-align: left;
+}
+table.ame-eh-category-table-view input[type=checkbox] {
+  vertical-align: middle;
+  margin: -0.25rem 0.25rem 0 -1px;
+}
+table.ame-eh-category-table-view td {
+  text-align: center;
+}
+table.ame-eh-category-table-view td input[type=checkbox] {
+  margin-right: 0;
+}
+table.ame-eh-category-table-view td label {
+  box-sizing: border-box;
+  display: block;
+  width: 100%;
+}
+table.ame-eh-category-table-view .ame-eh-table-corner-cell {
+  border-bottom: none;
+}
+table.ame-eh-category-table-view tbody tr:hover th, table.ame-eh-category-table-view tbody tr:hover td {
+  background-color: #E5F3FF;
+}
+table.ame-eh-category-table-view .ame-eh-hovered-column {
+  background-color: #E5F3FF;
+}
+table.ame-eh-category-table-view thead th {
+  position: sticky;
+  top: 32px;
+  background: white;
+}
+table.ame-eh-category-table-view thead th:first-child {
+  position: unset;
+}
+
+.ame-eh-category-subtitle {
+  color: #888;
+  font-size: 0.95em;
+  font-family: Consolas, Monaco, monospace;
+  line-height: 1;
+}
+.ame-eh-category-subtitle::before {
+  content: "(";
+}
+.ame-eh-category-subtitle::after {
+  content: ")";
+}
+
+.ame-eh-lazy-category {
+  min-height: 100px;
+  outline: 1px dashed #ccd0d4;
+  padding-bottom: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+#ame-eh-side-save-button {
+  margin-top: 50px;
+  padding: 8px 8px;
+  border-top: 1px solid #dcdcde;
+  position: sticky;
+  top: 32px;
+}
+
+#ame-easy-hide #ws_actor_selector_container {
+  margin-right: 130px;
+}
+
+#ame-eh-top-save-button {
+  float: right;
+  box-sizing: border-box;
+  width: 129px;
+  text-align: right;
+  padding-left: 10px;
+}
+#ame-eh-top-save-button input[type=submit] {
+  margin-top: 7px;
+  max-width: 129px;
+  margin-bottom: 5px;
+}
+
+.ame-eh-item-columns-2 .ame-eh-columns-allowed .ame-eh-category-items > .ame-eh-item-list {
+  column-count: 2;
+}
+
+.ame-eh-item-columns-3 .ame-eh-columns-allowed .ame-eh-category-items > .ame-eh-item-list {
+  column-count: 3;
+}
+
+#ame-eh-column-selector {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+}
+
+.ame-eh-column-option-list {
+  margin-left: 0.4em;
+  display: flex;
+}
+.ame-eh-column-option-list .ame-eh-column-option:not(:first-child) {
+  border-left-style: none;
+}
+.ame-eh-column-option-list .ame-eh-column-option:not(:first-child, :last-child) {
+  border-radius: 0;
+}
+.ame-eh-column-option-list .ame-eh-column-option:first-child {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+.ame-eh-column-option-list .ame-eh-column-option:last-child {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.ame-eh-column-option-list .ame-eh-column-option.ame-eh-selected-column-option {
+  background: #CCE8FF;
+  color: #222;
+}
+
+.ame-eh-selected-cat > .ame-eh-category-item-wrap .ame-eh-category-heading {
+  margin-top: 0;
+  border-top-color: #fff;
+  background: #f8f8f8;
+}
+
+.ame-eh-is-root-category > .ame-eh-category-item-wrap .ame-eh-category-heading {
+  background: transparent;
+  border-top-style: none;
+  border-bottom: none;
+  font-size: 1.1em;
+  font-weight: normal;
+  margin-top: 0;
+  margin-bottom: -1.7627272727em;
+}
+
+/*# sourceMappingURL=easy-hide-style.css.map */

@@ -1,0 +1,132 @@
+@use "sass:math";
+
+.ame-background-position-control {
+	$buttonHeight: 38px;
+	$iconHeight: 20px; //The default height of a Dashicon.
+	$iconWidth: 20px;
+	$buttonBorderWidth: 1px;
+	$controlBorderRadius: 3px;
+
+	position: relative;
+
+	span.button {
+		position: relative;
+		height: $buttonHeight;
+		line-height: $buttonHeight;
+		border-radius: 0;
+		margin: 0 -1px 0 0;
+	}
+
+	.dashicons {
+		height: $iconHeight;
+		position: relative;
+		vertical-align: top;
+		margin-top: ($buttonHeight - $iconHeight) / 2 - $buttonBorderWidth;
+	}
+
+	.ame-background-position-output {
+		margin-bottom: 0.6em;
+	}
+
+	.ame-bps-center {
+		//Size should be an even number to allow proper vertical centering.
+		$dotSize: math.min($iconHeight, 10px);
+
+		display: inline-block;
+		width: $iconWidth;
+		height: $dotSize+1px;
+		text-align: center;
+		margin-top: ($buttonHeight - $dotSize) / 2 - $buttonBorderWidth;
+
+		&:before {
+			display: inline-block;
+			width: $dotSize;
+			height: $dotSize;
+			content: " ";
+			border-radius: 50%;
+			background-color: currentColor;
+			vertical-align: top;
+		}
+	}
+
+	.ame-background-position-group {
+		margin-bottom: -1px;
+	}
+
+	.ame-background-position-group.ame-background-position-group {
+		label {
+			margin: 0 !important;
+			padding: 0;
+		}
+	}
+
+	//Rotate corner arrows to diagonal positions and give corner buttons one rounded corner.
+	.ame-background-position-group:first-child {
+		label:first-child {
+			.dashicons {
+				transform: rotate(45deg);
+			}
+
+			.button {
+				border-top-left-radius: $controlBorderRadius;
+			}
+		}
+
+		label:last-child {
+			.dashicons {
+				transform: rotate(-45deg);
+			}
+
+			.button {
+				border-top-right-radius: $controlBorderRadius;
+			}
+		}
+	}
+
+	.ame-background-position-group:last-child {
+		label:first-child {
+			.dashicons {
+				transform: rotate(-45deg);
+			}
+
+			.button {
+				border-bottom-left-radius: $controlBorderRadius;
+			}
+		}
+
+		label:last-child {
+			.dashicons {
+				transform: rotate(45deg);
+			}
+
+			.button {
+				border-bottom-right-radius: $controlBorderRadius;
+			}
+		}
+	}
+
+	//Hide the radio buttons but leave them functional.
+	input[type="radio"] {
+		position: absolute;
+		left: -9999em;
+		overflow: hidden;
+		clip: rect(0, 0, 0, 0);
+		margin: -1px;
+	}
+
+	//Selected option
+	input[type="radio"]:checked ~ .button {
+		//Colors chosen to match Customizer.
+		background: #f0f0f1;
+		border-color: #8c8f94;
+		box-shadow: inset 0 2px 5px -3px rgba(0, 0, 0, 0.51);
+		z-index: 1;
+
+		color: #1d2327;
+
+		//Alternatively, this also looks nice, but the dark-to-light transition
+		//is too abrupt and creates a "flash" effect:
+		/*background: Highlight;
+		color: HighlightText;*/
+	}
+}

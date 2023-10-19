@@ -1,0 +1,82 @@
+.ame-mc-preset-dropdown {
+	margin-right: 6px;
+}
+
+a.ame-mc-delete-color-preset {
+	font-size: 14px;
+
+	text-decoration: none;
+	color: #A00;
+
+	&:hover {
+		color: #F00;
+	}
+}
+
+.ame-tp-section-children .ame-mc-color-presets-group {
+	padding-bottom: 8px;
+	border-bottom: 1px solid #eee;
+}
+
+/*
+ Scroll the color list, not the entire section. The header (the preset dropdown)
+ and the footer (the "Show advanced options" link) should be visible at all times.
+ */
+.ame-tp-section.ame-mc-color-section {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+
+	> .ame-tp-section-children {
+		min-height: 100px;
+		flex-shrink: 1;
+		flex-grow: 1;
+
+		display: flex;
+		flex-direction: column;
+
+		.ame-mc-color-presets-group, .ame-mc-color-toggle-group {
+			flex-grow: 0;
+			flex-shrink: 0;
+		}
+
+		.ame-mc-color-toggle-group {
+
+		}
+
+		.ame-mc-color-group {
+			overflow-y: auto;
+			min-height: 100px;
+			flex-grow: 1;
+		}
+	}
+}
+
+#ws-ame-mc-menu-color-settings {
+	//Hide the sidebar in the color dialog.
+	.ame-tp-tabs {
+		display: none;
+	}
+	//The section title is not needed because there is only one section.
+	.ame-tp-section-title {
+		display: none;
+	}
+
+	//Fixed height for the color list.
+	.ame-mc-color-group {
+		height: 460px;
+	}
+
+	.ame-tp-content, .ame-tp-section {
+		padding: 0;
+	}
+
+	.ame-mc-color-toggle-group {
+		margin-bottom: 0;
+	}
+
+	#ws-ame-mc-apply-colors-to-all {
+		margin-left: 5px;
+		float: left;
+	}
+}

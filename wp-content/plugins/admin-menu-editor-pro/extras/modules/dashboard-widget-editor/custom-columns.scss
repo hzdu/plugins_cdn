@@ -1,0 +1,107 @@
+@use 'sass:map';
+@use "sass:list";
+
+@function make-column-selectors($from, $to) {
+	$column-selectors: ();
+	@for $i from $from through $to {
+		$selector: "#wpbody-content #dashboard-widgets #postbox-container-#{$i}";
+		$column-selectors: list.append($column-selectors, $selector, 'comma');
+	}
+	@return $column-selectors;
+}
+
+@mixin split-columns($n) {
+	//First column width, other columns width.
+	$widths: (
+			1: [100%, 100%],
+			2: [49.5%, 50.5%],
+			3: [33%, 33.5%],
+			4: [25%, 25%]
+	);
+
+	#wpbody-content #dashboard-widgets #postbox-container-1 {
+		width: nth(map.get($widths, $n), 1);
+		float: left;
+	}
+
+	//Other columns have the same width, second in the list.
+	$other-columns: make-column-selectors(2, 4);
+	#{$other-columns} {
+		width: nth(map.get($widths, $n), 2);
+	}
+
+	@if ($n == 1) or ($n == 4) {
+		//All columns are floated left.
+		#wpbody-content #dashboard-widgets #postbox-container-2,
+		#wpbody-content #dashboard-widgets #postbox-container-3,
+		#wpbody-content #dashboard-widgets #postbox-container-4 {
+			float: left;
+		}
+	} @else if $n < 4 {
+		//Columns up to n-1 are floated left, the rest are floated right.
+		$left-columns: make-column-selectors(2, $n - 1);
+		#{$left-columns} {
+			float: left;
+		}
+
+		$right-columns: make-column-selectors($n, 4);
+		#{$right-columns} {
+			float: right;
+		}
+	}
+
+	$fully-visible-columns: make-column-selectors(1, $n);
+	#{$fully-visible-columns} {
+		//Restore the dashed outline for empty columns.
+		.empty-container {
+			outline: 3px dashed #c3c4c7;
+			height: 250px;
+			min-height: 100px;
+		}
+	}
+	//Show a darker outline when dragging widgets.
+	&.is-dragging-metaboxes {
+		#{$fully-visible-columns} {
+			.meta-box-sortables {
+				outline: 3px dashed #646970;
+				display: flow-root;
+			}
+		}
+	}
+
+	@if $n < 4 {
+		$remaining-columns: make-column-selectors($n + 1, 4);
+		#{$remaining-columns} {
+			//Remove the dashed outline.
+			.empty-container {
+				outline: none;
+				height: 0;
+				min-height: 0;
+				margin-bottom: 0;
+			}
+
+			//Remove the text.
+			.empty-container:after {
+				display: none;
+			}
+		}
+	}
+}
+
+
+.ame-de-override-columns-1 {
+	@include split-columns(1);
+}
+
+.ame-de-override-columns-2 {
+	@include split-columns(2);
+}
+
+.ame-de-override-columns-3 {
+	@include split-columns(3);
+}
+
+.ame-de-override-columns-4 {
+	@include split-columns(4);
+}
+

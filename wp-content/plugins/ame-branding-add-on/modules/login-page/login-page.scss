@@ -1,0 +1,40 @@
+@import "../../assets/image-selector";
+
+#ame-background-position-selector {
+	margin-top: 0.5em;
+	border-spacing: 0;
+	border-collapse: collapse;
+
+	td {
+		margin: 0;
+		padding: 0;
+		border: 2px solid silver;
+		text-align: center;
+		background: #fafafa;
+
+		&.ame-selected-background-position {
+			background: Highlight;
+		}
+
+		input {
+			margin-right: 0;
+		}
+
+		label {
+			padding: 8px 10px;
+			margin: 0 !important;
+		}
+	}
+}
+
+#ame-login-page-settings {
+	//Automatically resize CodeMirror to fit the contents.
+	.CodeMirror {
+		height: auto;
+	}
+	.CodeMirror-scroll {
+		overflow-y: hidden;
+		overflow-x: auto;
+		min-height: 100px;
+	}
+}
