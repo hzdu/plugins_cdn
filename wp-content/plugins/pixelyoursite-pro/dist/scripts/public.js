@@ -5318,9 +5318,15 @@ if (pysOptions.ajaxForServerEvent && !Cookies.get('pbid')) {
             action: 'pys_get_pbid'
         },
         success: function (res) {
-            if (res.data && res.data.pbid != false) {
-                Cookies.set('pbid', res.data.pbid);
-                pysOptions.pbid = res.data.pbid;
+            if (res.data && res.data.pbid != false && pysOptions.send_external_id) {
+                var expires = parseInt(pysOptions.external_id_expire || 180);
+                Cookies.set('pbid', res.data.pbid, { expires: expires, path: '/' });
+                if(pysOptions.hasOwnProperty('facebook')) {
+                    pysOptions.facebook.advancedMatching.external_id = res.data.pbid;
+                }
+                if(pysOptions.hasOwnProperty('tiktok')){
+                    pysOptions.tiktok.advanced_matching.external_id = res.data.pbid;
+                }
             }
         }
     });
