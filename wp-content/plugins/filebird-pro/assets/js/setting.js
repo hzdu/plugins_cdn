@@ -49,6 +49,7 @@ jQuery(document).ready(function () {
           dataType: "json",
           contentType: "application/json",
           url: fbv_data.json_url + "/fb-get-old-data",
+          cache: false,
           method: "POST",
           headers: {
             "X-WP-Nonce": fbv_data.rest_nonce,
@@ -70,6 +71,7 @@ jQuery(document).ready(function () {
             contentType: "application/json",
             url: fbv_data.json_url + "/fb-insert-old-data",
             method: "POST",
+            cache: false,
             headers: {
               "X-WP-Nonce": fbv_data.rest_nonce,
               "X-HTTP-Method-Override": "POST",
@@ -104,6 +106,7 @@ jQuery(document).ready(function () {
       .ajax({
         dataType: "json",
         contentType: "application/json",
+        cache: false,
         url: fbv_data.json_url + "/fb-wipe-old-data",
         method: "POST",
         headers: {
@@ -134,6 +137,7 @@ jQuery(document).ready(function () {
       .ajax({
         dataType: "json",
         contentType: "application/json",
+        cache: false,
         url: fbv_data.json_url + "/fb-wipe-clear-all-data",
         method: "POST",
         headers: {
@@ -159,6 +163,7 @@ jQuery(document).ready(function () {
       .ajax({
         dataType: "json",
         contentType: "application/json",
+        cache: false,
         type: "post",
         url: fbv_data.json_url + "/fb-no-thanks",
         headers: {
@@ -231,6 +236,7 @@ jQuery(document).ready(function () {
       .ajax({
         dataType: "json",
         contentType: "application/json",
+        cache: false,
         type: "post",
         url: fbv_data.json_url + "/fbv-api",
         data: JSON.stringify({
@@ -264,6 +270,7 @@ jQuery(document).ready(function () {
           dataType: "json",
           url: window.ajaxurl,
           type: "post",
+          cache: false,
           data: {
             action: "fbv_first_folder_notice",
             nonce: window.fbv_data.nonce,
@@ -335,6 +342,7 @@ jQuery(document).ready(function () {
           beforeSend: function () {
             // $this.addClass("updating-message");
           },
+          cache: false,
           data: fileUpload,
           headers: {
             "X-WP-Nonce": fbv_data.rest_nonce,
@@ -396,6 +404,7 @@ jQuery(document).ready(function () {
       .ajax({
         dataType: "json",
         contentType: "application/json",
+        cache: false,
         type: "get",
         url: fbv_data.json_url + "/export-csv",
         headers: {
@@ -453,6 +462,7 @@ jQuery(document).ready(function () {
               beforeSend: function () {
                 $this.addClass("updating-message");
               },
+              cache: false,
               data: fileUpload,
               headers: {
                 "X-WP-Nonce": fbv_data.rest_nonce,
@@ -523,6 +533,7 @@ jQuery(document).ready(function () {
                     action: "fbv_deactivate_license",
                     nonce: fbv_data.deactivate_license_nonce,
                   },
+                  cache: false,
                 })
                 .done(function (res) {
                   e.target.classList.remove("updating-message", "disabled");
@@ -596,6 +607,7 @@ jQuery(document).ready(function () {
           folderPerUser: !!formData.get("njt_fbv_folder_per_user"),
           showBreadCrumb: !!formData.get("showBreadCrumb"),
         },
+        cache: false,
         beforeSend: function () {
           $this.classList.add("updating-message");
         },
@@ -626,6 +638,7 @@ jQuery(document).ready(function () {
           method: "POST",
           dataType: "json",
           contentType: "application/json",
+          cache: false,
           // data: JSON.stringify({
           //   generateAll,
           // }),
@@ -690,6 +703,7 @@ jQuery(document).ready(function () {
             })
             .get(),
         },
+        cache: false,
         beforeSend: function () {
           $this.classList.add("updating-message");
         },
@@ -714,6 +728,7 @@ jQuery(document).ready(function () {
           action: "fbv_sync_wpml",
           nonce: window.fbv_data.nonce,
         },
+        cache: false,
       })
       .then((res) => {
         jQuery(this).next().text(res.message);
