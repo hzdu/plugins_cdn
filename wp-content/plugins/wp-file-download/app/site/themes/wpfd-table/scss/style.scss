@@ -40,11 +40,24 @@ $image-theme-path: '../../../assets/images/theme' !default;
   tr, td, thead, tbody, th {
     border: none;
   }
+  .list-results:not(.themed) {
+    table tr td:first-child {
+      border-left: unset;
+    }
+    table tr td:last-child {
+      border-right: unset;
+    }
+  }
+  .wpfd-theme-rows {
+    th.wpfd-last-col-table {
+      min-width: 120px;
+    }
+  }
   a {
     text-decoration: none !important;
     border-bottom: 0;
     box-shadow: none;
-    &.wpfd_downloadlink {
+    &.wpfd_downloadlink:not(.downloadlink) {
       color: #999999;
       text-transform: none;
     }
@@ -203,6 +216,9 @@ $image-theme-path: '../../../assets/images/theme' !default;
         margin: -16px 0 0 0 !important;
       }
     }
+    &.is_downloaded {
+      background-color: #eeeeee;
+    }
   }
   table {
     max-width: 100%;
@@ -218,6 +234,7 @@ $image-theme-path: '../../../assets/images/theme' !default;
     color: #999999;
     border: unset !important;
     margin: 0 !important;
+    border-spacing: unset !important;
     td {
       padding: 15px 0 15px 10px;
       line-height: 20px;
@@ -385,13 +402,15 @@ $image-theme-path: '../../../assets/images/theme' !default;
   }
   .icon-custom {
     img {
-      width: 35px;
+      width: 40px;
       display: inline-block;
-      padding-left: 8px;
+      padding-left: 0;
+      vertical-align: middle;
+      margin-right: 5px;
+      border-radius: 4px;
     }
     .icon-custom-title {
-      margin-left: 3px;
-      vertical-align: top;
+      vertical-align: middle;
     }
   }
   span.ext[class*='wpfd-icon-set-'] {
@@ -712,6 +731,45 @@ $image-theme-path: '../../../assets/images/theme' !default;
       ul.jaofiletree li {
         padding-right: 10px !important;
         padding-left: unset !important;
+      }
+    }
+  }
+}
+
+/* pagination */
+.wpfd-pagination {
+  .page-numbers {
+    margin: 6px;
+    display: inline-block;
+  }
+  a.page-numbers {
+    cursor: pointer;
+    color: #046bd2;
+  }
+  .page-numbers.current {
+    color: #000;
+  }
+}
+
+#et-boc .wpfd-content.wpfd-content-table,
+.wpfd-content.wpfd-content-table {
+  + .wpfd-pagination {
+    text-align: center;
+    padding: 5px;
+  }
+  &.wpfdcontent_table_folder_tree {
+    @media screen and (min-width: 720px) {
+      + .wpfd-pagination {
+        width: 70%;
+        margin-left: 0;
+        float: right;
+      }
+    }
+    @media screen and (max-width: 720px) {
+      + .wpfd-pagination {
+        text-align: center;
+        padding: 5px 5px 5px 15px;
+        margin-left: 25px;
       }
     }
   }

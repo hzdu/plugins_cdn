@@ -841,7 +841,7 @@
 .ju-main-wrapper .ju-right-panel .ju-content-wrapper form .ju-button[type=submit] {
   clear: both;
   display: block;
-  margin: 0 1.5625rem;
+  margin: 0 0.9375rem;
 }
 .ju-main-wrapper .ju-right-panel .ju-content-wrapper form .controls-editor {
   width: 100%;
@@ -1495,12 +1495,7 @@
   color: #c00;
 }
 
-.wpfd-cache-lifetime label {
-  font-weight: 400!important;
-}
-
-.wpfd-process-switcher,
-.wpfd-cache-lifetime {
+.wpfd-process-switcher {
   clear: both;
 }
 .wpfd-process-switcher.hide {
@@ -1533,6 +1528,52 @@
   height: 1.875rem;
   margin-top: -0.1875rem;
   background: transparent url("../images/icon-indexing.svg") no-repeat;
+}
+
+.wpfd-cache-lifetime {
+  clear: both;
+}
+.wpfd-cache-lifetime label {
+  font-weight: 400 !important;
+}
+
+#search_theme_setting {
+  clear: both;
+}
+#search_theme_setting ul {
+  list-style: none;
+}
+#search_theme_setting ul li.wpfd-sortable-item {
+  cursor: move;
+  margin-bottom: 5px;
+  padding: 10px;
+  color: #404852;
+  background-color: #f0f0f1;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  line-height: 1.53125rem;
+}
+#search_theme_setting ul li.wpfd-sortable-item label {
+  text-transform: capitalize;
+}
+#search_theme_setting ul li.wpfd-sortable-item .ju-switch-button {
+  margin-right: 0;
+}
+#search_theme_setting ul li.wpfd-sortable-item .ju-switch-button label.switch {
+  height: 25px;
+  width: 45px;
+  margin: 0;
+}
+#search_theme_setting ul li.wpfd-sortable-item .ju-switch-button label.switch .slider:before {
+  height: 21px !important;
+  width: 21px !important;
+}
+
+.ju-right-panel .ju-switch-button {
+  margin-right: 0 !important;
+}
+.ju-right-panel .ju-switch-button label.switch {
+  margin-right: 0 !important;
 }
 
 #wpfd-theme-cloud,
@@ -2035,3 +2076,345 @@ label[for=onedriveBusinessSyncMethod] + .ju-radio-group label {
   font-weight: bold;
   white-space: nowrap;
 }
+
+#wpfd-server_sync .ju-settings-option {
+  width: calc(50% - 40px);
+}
+#wpfd-server_sync .ju-settings-option.full-width {
+  width: calc(100% - 3.125rem);
+}
+#wpfd-server_sync .wpfd-full-width {
+  width: 100%;
+  clear: both;
+}
+#wpfd-server_sync .wpfd-note-admin-setting {
+  font-weight: bold;
+  letter-spacing: 0.03125rem;
+  color: #404852;
+  padding-right: 0.625rem;
+  font-size: 14px;
+  font-style: italic;
+}
+#wpfd-server_sync .wpfd-input-inline {
+  display: inline-block;
+  float: left;
+  width: calc(50% - 15px);
+}
+@media screen and (max-width: 420px) {
+  #wpfd-server_sync .wpfd-input-inline {
+    width: 100%;
+    margin: 2px 0;
+  }
+}
+#wpfd-server_sync .wpfd-input-inline:first-child {
+  margin: 0 15px 0 0;
+}
+#wpfd-server_sync .wpfd-input-inline:nth-child(2) {
+  margin: 0 0 0 15px;
+}
+#wpfd-server_sync .wpfd_sync_btn {
+  margin: 10px 0;
+}
+@media screen and (max-width: 420px) {
+  #wpfd-server_sync .wpfd_sync_btn {
+    margin: 2px 0;
+  }
+}
+#wpfd-server_sync .wpfd_btn_delete_sync {
+  display: none;
+}
+#wpfd-server_sync #wpfd-list-folder-sync-table {
+  padding: 0;
+}
+#wpfd-server_sync #wpfd-list-folder-sync-table .wpfd-list-folder-sync {
+  text-align: left;
+  border: 0;
+}
+#wpfd-server_sync #wpfd-list-folder-sync-table .wpfd-list-folder-sync th {
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #404852;
+}
+#wpfd-server_sync #wpfd-list-folder-sync-table .wpfd-list-folder-sync th:first-child {
+  width: 1%;
+  padding-left: 20px;
+}
+#wpfd-server_sync #wpfd-list-folder-sync-table .wpfd-list-folder-sync th:nth-child(2) {
+  width: 49%;
+}
+#wpfd-server_sync #wpfd-list-folder-sync-table .wpfd-list-folder-sync th:nth-child(3) {
+  width: calc(50% - 300px);
+  padding-left: 0;
+}
+#wpfd-server_sync #wpfd-list-folder-sync-table .wpfd-list-folder-sync th:last-child {
+  width: 300px;
+}
+#wpfd-server_sync #wpfd-list-folder-sync-table .wpfd-list-folder-sync tr td {
+  vertical-align: middle;
+}
+#wpfd-server_sync #wpfd-list-folder-sync-table .wpfd-list-folder-sync tr td:first-child {
+  padding-left: 20px;
+}
+#wpfd-server_sync #wpfd-list-folder-sync-table .wpfd-list-folder-sync tr td:nth-child(3) {
+  padding-left: 0;
+}
+#wpfd-server_sync #wpfd-list-folder-sync-table .wpfd-list-folder-sync tr td:last-child {
+  float: right;
+  padding-right: 20px;
+}
+#wpfd-server_sync .ju-button-sm {
+  min-width: 6.25rem;
+  padding: 5px 10px;
+  margin: 2px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px !important;
+  letter-spacing: 0 !important;
+  -webkit-box-shadow: unset !important;
+  -moz-box-shadow: unset !important;
+  box-shadow: unset !important;
+  -webkit-border-radius: 4px !important;
+  -moz-border-radius: 4px !important;
+  border-radius: 4px !important;
+}
+#wpfd-server_sync .add-syncftp-queue {
+  margin-right: 5px;
+}
+#wpfd-server_sync .media_checkbox {
+  border: 2px solid #49bf88 !important;
+  height: 18px !important;
+  width: 18px !important;
+  background: #fff;
+  box-shadow: none !important;
+  margin: 0;
+}
+#wpfd-server_sync .media_checkbox:checked:before {
+  content: "";
+  display: block;
+  width: 18px;
+  height: 18px;
+  background-image: url("../images/check.svg");
+  background-size: 11px;
+  background-color: #49bf88;
+  background-repeat: no-repeat;
+  background-position: center;
+  box-sizing: border-box;
+  border-radius: 2px;
+  margin: -2px;
+  color: #fff;
+}
+#wpfd-server_sync .wpfd_spinner {
+  background: url("../images/spinner.gif") no-repeat;
+  background-size: 20px 20px;
+  float: right;
+  vertical-align: middle;
+  opacity: 0.7;
+  filter: alpha(opacity=70);
+  width: 20px;
+  height: 20px;
+  display: none;
+  margin: 0 0 0 5px !important;
+}
+#wpfd-server_sync #wpfd_foldertree_sync, #wpfd-server_sync #wpfd_localfoldertree_sync {
+  width: 50%;
+  display: inline-block;
+  margin: 10px 0 20px 0;
+  vertical-align: middle;
+  max-height: 650px;
+  overflow: auto;
+  float: left;
+}
+@media screen and (max-width: 500px) {
+  #wpfd-server_sync #wpfd_foldertree_sync, #wpfd-server_sync #wpfd_localfoldertree_sync {
+    width: calc(100% - 3.125rem);
+  }
+}
+#wpfd-server_sync #wpfd_foldertree_sync {
+  padding-right: 35px;
+}
+#wpfd-server_sync #wpfd_localfoldertree_sync {
+  padding-left: 35px;
+}
+#wpfd-server_sync #wpfd_localfoldertree_sync p {
+  font-size: 16px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #404852;
+  margin-top: 10px;
+  margin-bottom: 0;
+}
+#wpfd-server_sync #wpfd_localfoldertree_sync ul.jaofiletree li.directory.closed ul {
+  display: none;
+}
+#wpfd-server_sync #wpfd_localfoldertree_sync .wpfd-folder-toggle {
+  cursor: pointer;
+}
+#wpfd-server_sync ul.jaofiletree {
+  font-size: 12px;
+  line-height: 18px;
+  padding: 0;
+  margin: 0;
+}
+#wpfd-server_sync ul.jaofiletree li.file {
+  display: none;
+}
+#wpfd-server_sync ul.jaofiletree li.drive {
+  background: unset;
+  padding-left: 0;
+}
+#wpfd-server_sync ul.jaofiletree li.drive > a {
+  font-size: 16px;
+  vertical-align: middle;
+  font-weight: 700;
+  color: #404852;
+  text-transform: uppercase;
+  font-family: "Nunito Sans", sans-serif;
+}
+#wpfd-server_sync ul.jaofiletree li.drive > input {
+  margin-right: 15px !important;
+}
+#wpfd-server_sync ul.jaofiletree li.wait a {
+  position: relative;
+}
+#wpfd-server_sync ul.jaofiletree li.wait a:before {
+  content: "";
+  position: absolute;
+  right: -25px;
+  top: -1px;
+  display: block;
+  background: url("../../images/jao/spinner.gif") center center no-repeat;
+  width: 18px;
+  height: 18px;
+  background-size: 18px;
+}
+#wpfd-server_sync ul.jaofiletree li.folder_disabled > input {
+  background-color: #ccc;
+  pointer-events: unset !important;
+  cursor: default;
+}
+#wpfd-server_sync ul.jaofiletree li ul.jaofiletree li.directory-parent {
+  margin: 13px 16px;
+}
+#wpfd-server_sync ul.jaofiletree a {
+  font-size: 14px;
+  font-style: normal;
+  font-stretch: normal;
+  letter-spacing: 0.5px;
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+  min-width: 2px;
+  min-height: 1px;
+  line-height: unset;
+  vertical-align: middle;
+}
+@media screen and (max-width: 420px) {
+  #wpfd-server_sync ul.jaofiletree a {
+    margin-top: 1px;
+  }
+}
+#wpfd-server_sync li.directory {
+  background-position: left 51px top 0;
+  background-color: transparent;
+  margin: 13px 15px 13px 0;
+  list-style: none;
+  white-space: normal;
+  padding: 0 0 0 20px;
+  min-width: 280px;
+  box-sizing: border-box;
+  display: block;
+  background-size: 18px;
+}
+@media screen and (max-width: 420px) {
+  #wpfd-server_sync li.directory {
+    margin: 13px 0;
+    background-position: left 45px top 0;
+    min-width: 260px;
+  }
+}
+#wpfd-server_sync li.directory.wait {
+  background-image: url("../../images/jao/folder.png");
+}
+#wpfd-server_sync li.directory.directory-parent {
+  background-position: left 75px top 5px;
+  margin: 7px 0;
+}
+#wpfd-server_sync li.directory.directory-no-arrow {
+  margin-left: 24px !important;
+}
+#wpfd-server_sync li.directory input[type=checkbox] {
+  width: 18px;
+  height: 18px;
+  line-height: 14px;
+  border-radius: 2px;
+  border: solid 2px #49bf88;
+  margin: 0 40px 0 0;
+  color: #fff;
+  background-color: #fff;
+  padding: 0 !important;
+  box-sizing: border-box;
+  box-shadow: unset;
+  outline: none;
+  display: inline-block;
+  vertical-align: middle;
+}
+#wpfd-server_sync li.directory input[type=checkbox]:checked:before {
+  content: "";
+  display: block;
+  width: 18px;
+  height: 18px;
+  background-image: url("../images/check.svg");
+  background-size: 11px;
+  background-color: #49bf88;
+  background-repeat: no-repeat;
+  background-position: center;
+  box-sizing: border-box;
+  border-radius: 2px;
+  margin: -2px;
+  color: #fff;
+}
+@media screen and (max-width: 420px) {
+  #wpfd-server_sync li.directory input[type=checkbox] {
+    margin-right: 32px;
+  }
+}
+#wpfd-server_sync li.directory.closed .wpfd-arrow {
+  transform: rotate(-90deg);
+  height: 29px;
+}
+#wpfd-server_sync li.directory .wpfd-arrow {
+  transition: 0.1s ease-in-out;
+}
+
+.wpfd-gritter-warning {
+  background-color: #FFD700;
+  color: #333;
+  border: 1px solid #FFD700;
+}
+.wpfd-gritter-warning .gritter-title {
+  font-weight: bold;
+}
+.wpfd-gritter-warning .gritter-close {
+  color: #333;
+}
+.wpfd-gritter-warning .gritter-item p {
+  margin: 0;
+}
+
+.wpfd-gritter-successfull {
+  background-color: #4CAF50;
+  color: #fff;
+  border: 1px solid #4CAF50;
+}
+.wpfd-gritter-successfull .gritter-title {
+  font-weight: bold;
+}
+.wpfd-gritter-successfull .gritter-close {
+  color: #fff;
+}
+.wpfd-gritter-successfull .gritter-item p {
+  margin: 0;
+}
+
+/*# sourceMappingURL=configuration.css.map */

@@ -50,7 +50,7 @@
       var singleButtonOptions = $('.wpfd-single-button--options .labels label:contains("' + searchKey + '")').closest('.wpfd-option')
       var labels = $('.ju-option-group label:contains("' + searchKey + '")').closest('.wpfd-card');
       var searchParent = searchResult.closest('.ju-content-wrapper');
-      var searchSub = searchResult.closest('.tab-content');
+      var searchSub = searchResult.closest('.ju-content-wrapper');
       var tabID = [], subID = [];
 
       searchResult.addClass('search-result');

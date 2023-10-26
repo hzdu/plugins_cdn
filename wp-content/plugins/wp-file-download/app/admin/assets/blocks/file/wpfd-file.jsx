@@ -97,10 +97,13 @@
 
       setAttributes({
         selectedFileCatId: file.term_id,
-        selectedFileId: file.id,
+        selectedFileId: String(file.id),
         selectedFileName: fileName,
         shortCode: shortCode
       })
+
+      this.initLoadFile(file.id, file.term_id);
+
       this.setState({selectedFile: file, filename: fileName, isOpenModal: false, shortcode: shortCode})
     }
 
@@ -165,6 +168,25 @@
             })
           })
       }, 500)
+    }
+
+    initLoadFile(id, term_id) {
+      const {setAttributes} = this.props;
+      const wpfdCategoriesHTML = `${ajaxurl}?action=wpfd&task=file.preview&wpfd_file_id=${id}&wpfd_cat_id=${term_id}`
+      fetch(wpfdCategoriesHTML)
+      .then(res => res.json())
+      .then(
+        (result) => {
+          if (result.status) {
+            setAttributes({
+              filePreview: result.html
+            });
+          }
+        },
+        // errors
+        (error) => {
+        }
+      );
     }
 
     fetchFiles(categoryId) {
@@ -241,7 +263,7 @@
       }
     }
     componentDidMount() {
-      const {shortCode, selectedFileName, isPreview} = this.props.attributes
+      const {shortCode, selectedFileName, isPreview, selectedFileId, selectedFileCatId} = this.props.attributes
       if (isPreview) {
         this.setState({preview: true})
       } else {
@@ -249,10 +271,15 @@
           this.setState({shortcode: shortCode, filename: selectedFileName})
         }
       }
+
+      if(typeof(selectedFileId) != 'undefined' && typeof(selectedFileCatId) != 'undefined') {
+        this.initLoadFile(selectedFileId, selectedFileCatId);
+      }
     }
     render() {
       const {categoriesList, filename, filesList, fileHoverId, categorySelectedId, shortcode, isOpenModal, loading, fileClasses, fileLoading, preview} = this.state
-      const {className} = this.props
+      const {className, attributes} = this.props
+      const {filePreview} = attributes
       return (
           preview ?
               <img alt={__('WP File Download File', 'wpfd')} width='100%' src={previewImageData}/>
@@ -282,7 +309,7 @@
                     </Fragment>
                   </div>
                   {filename !== '' &&
-                  <div className="wpfd-selected-file-name">{__('FILE NAME', 'wpfd')}:<span>{filename}</span></div>
+                  <div className="wpfd-selected-file-name" dangerouslySetInnerHTML={{ __html: filePreview || '' }} />
                   }
                 </div>
                 {isOpenModal &&
@@ -322,8 +349,6 @@
                                             {category.level < 16 && haveChild &&
                                             <span
                                                 className={'wpfd-toggle-expand'}
-                                                //onClick={this.toggleCategories}
-                                                // onClick={() => this.fetchFiles(category.term_id)}
                                             />
                                             }
                                             {category.cloudType === category.term_id || category.cloudType === false
@@ -333,7 +358,6 @@
 
                                             <span
                                                 className={'wpfd-category-name'}
-                                                // onClick={() => this.fetchFiles(category.term_id)}
                                             >
                                   {category.name}
                                 </span>
@@ -371,7 +395,7 @@
                                             <div className={extClass}><span
                                                 className={'txt'}>{file.ext}</span></div>
                                             <div className={'file_info'}>
-                                              <h3 className={'file_title'}>{file.name}</h3>
+                                              <h3 className={'file_title'}>{file.title}</h3>
                                               <span
                                                   className={'file_size'}><strong>{__('Size:', 'wpfd')}</strong> {file.size}</span>
                                               <span
@@ -448,7 +472,7 @@
         type: 'number'
       },
       selectedFileId: {
-        type: 'number'
+        type: 'string'
       },
       selectedFileName: {
         type: 'string'

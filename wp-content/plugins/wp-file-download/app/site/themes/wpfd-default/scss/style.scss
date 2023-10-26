@@ -129,6 +129,9 @@ $image-theme-path: '../../../assets/images/theme' !default;
         margin-bottom: 0 !important;
         border: none;
       }
+      &.is_downloaded {
+        background-color: #eeeeee;
+      }
       input.cbox_file_download {
         &:focus {
           outline: unset;
@@ -257,8 +260,8 @@ $image-theme-path: '../../../assets/images/theme' !default;
       }
     }
     > img {
-      width: em(50);
-      margin-right: em(15);
+      width: 70px;
+      margin-right: 0;
       float: left;
       position: relative;
     }
@@ -538,6 +541,44 @@ $image-theme-path: '../../../assets/images/theme' !default;
       li {
         padding-right: 10px !important;
         padding-left: unset !important;
+      }
+    }
+  }
+}
+
+/* pagination */
+.wpfd-pagination {
+  .page-numbers {
+    margin: 6px;
+    display: inline-block;
+  }
+  a.page-numbers {
+    cursor: pointer;
+    color: #046bd2;
+  }
+  .page-numbers.current {
+    color: #000;
+  }
+}
+#et-boc .wpfd-content.wpfd-content-default,
+.wpfd-content.wpfd-content-default {
+  + .wpfd-pagination {
+    padding: 5px;
+    text-align: center;
+  }
+  &.wpfd_contentdefault_foldertree {
+    @media screen and (min-width: 720px) {
+      + .wpfd-pagination {
+        width: 70%;
+        margin-left: 0;
+        float: right;
+      }
+    }
+    @media screen and (max-width: 720px) {
+      + .wpfd-pagination {
+        text-align: center;
+        padding: 5px 5px 5px 15px;
+        margin-left: 25px;
       }
     }
   }

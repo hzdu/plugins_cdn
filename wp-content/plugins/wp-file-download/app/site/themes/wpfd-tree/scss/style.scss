@@ -19,6 +19,11 @@ $image-theme-path: '../../../assets/images/theme' !default;
   ul li.directory + .ext {
       margin-top: 5px !important;
   }
+  .wpfd-results {
+    ul li.ext {
+      text-align: left;
+    }
+  }
   a {
     text-decoration: none !important;
     border-bottom: 0;
@@ -46,11 +51,11 @@ $image-theme-path: '../../../assets/images/theme' !default;
     }
   }
   h2 {
-    background: #fff;
-    padding: 10px 15px;
-    margin: 0 0 10px 0;
-    word-wrap: break-word;
-    font-size: 20px;
+    //background: #fff;
+    //padding: 10px 15px;
+    //margin: 0 0 10px 0;
+    //word-wrap: break-word;
+    //font-size: 20px;
   }
   ul {
     list-style: none !important;
@@ -117,6 +122,24 @@ $image-theme-path: '../../../assets/images/theme' !default;
     li {
       color: #2c2c2c;
     }
+  }
+
+  .wpfd-category-theme-title {
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    letter-spacing: normal;
+    text-align: left;
+    color: #2c2c2c;
+    text-transform: uppercase;
+    font-size: 1.25em;
+    padding: 0;
+    margin: 0;
+    clear: both;
+  }
+
+  .wpfd-tree-categories-files {
+    clear: both;
   }
 
   .icon-open-close {
@@ -214,6 +237,9 @@ $image-theme-path: '../../../assets/images/theme' !default;
         line-height: 32px;
         margin: 0;
         list-style: inherit;
+        &.is_downloaded {
+          background-color: #eeeeee;
+        }
         a {
           margin-left: 7px;
           text-transform: none;
@@ -346,13 +372,13 @@ $image-theme-path: '../../../assets/images/theme' !default;
     }
     .wpfd-file {
       &.ext {
-        width: 16px;
+        width: 26px;
         height: 26px;
         display: inline-flex;
         vertical-align: middle;
       }
       img {
-        width: 16px;
+        width: 26px;
         display: inline-block;
         vertical-align: middle;
       }
@@ -427,6 +453,9 @@ $image-theme-path: '../../../assets/images/theme' !default;
       max-width: 70px;
       max-height: 70px;
       margin-right: 5px;
+      img {
+        max-width: 100%;
+      }
     }
     div.ext[class*='wpfd-icon-set-'] {
       width: 70px;

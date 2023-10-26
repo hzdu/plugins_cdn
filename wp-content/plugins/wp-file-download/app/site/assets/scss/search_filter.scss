@@ -141,8 +141,13 @@
     &.file_download {
       border-top-right-radius: 4px;
       border-bottom-right-radius: 4px;
-      padding-right: 6px;
-      text-align: right;
+      text-align: left;
+      max-width: 200px;
+      width: 200px;
+      display: block;
+      margin: 0 0 0 auto;
+      padding: 0 6px 0 0;
+      box-sizing: border-box;
     }
   }
 
@@ -160,6 +165,7 @@
     padding: 3px 10px;
     border-radius: 100px;
     min-width: 90px;
+    width: 90px;
     max-width: 120px;
     height: auto;
     display: inline-block;
@@ -168,6 +174,7 @@
     background-color: #ececec;
     margin-top: 5px;
     margin-bottom: 5px;
+    box-sizing: border-box;
 
     &:hover,
     &:focus {
@@ -184,12 +191,14 @@
     margin: 5px 5px 5px 0;
     border-radius: 100px;
     min-width: 90px;
+    width: 90px;
     max-width: 120px;
     height: auto;
     display: inline-block;
     text-align: center;
     font-size: 16px;
     background-color: #76bc58;
+    box-sizing: border-box;
 
     &:hover,
     &:focus {
@@ -526,7 +535,7 @@ button.applyBtn:focus {
 }
 
 .tagit-autocomplete {
-  max-width: 130px !important;
+  width: fit-content !important;
   list-style: unset !important;
   padding: 0 !important;
 
@@ -663,7 +672,7 @@ button.applyBtn:focus {
         text-decoration: none;
         padding: 0 5px 0 2px;
         font-size: 1.1em;
-        margin: 0;
+        margin: 0 0 0 -20px;
         color: inherit;
         background-color: #fff;
         white-space: nowrap;
@@ -744,15 +753,13 @@ button.applyBtn:focus {
 
       li.cate-item.checked:after,
       li.cate-item.choosed:after {
-        position: absolute;
-        transform: translateY(-50%);
-        top: 50%;
-        right: 4px;
         content: "";
-        display: block;
-        width: 18px;
-        height: 18px;
-        background: transparent url(../../../admin/assets/ui/images/icon-check-mark-search.svg) no-repeat center;
+        position: absolute;
+  		top: 0;
+  		right: 0;
+        width: 26px;
+        height: 26px;
+        background: #666 url(../../../admin/assets/ui/images/icon-check-mark-search.svg) no-repeat center;
         background-size: 1.2em;
         z-index: 1;
       }
@@ -1194,6 +1201,10 @@ div.only-file.input-group {
     }
   }
 
+  .wpfd-pagination {
+    text-align: center;
+  }
+
   .wpfd-num {
     .pull-right {
       padding-right: 0;
@@ -1329,6 +1340,7 @@ a#btnsearch {
         background: #fff;
         z-index: 9;
         padding: 0 !important;
+        margin: 0;
         li {
           color: #444;
           text-transform: uppercase;
@@ -1356,9 +1368,11 @@ a#btnsearch {
             text-align: center;
             .chzn-search-input {
               font-size: 14px;
-              padding-left: 10px;
+              padding: 0 0 0 15px;
               border: unset !important;
               box-shadow: unset !important;
+              min-height: 35px!important;
+              margin: 0;
             }
           }
           .search-choice + .search-field {
@@ -1477,19 +1491,20 @@ a#btnsearch {
 
   .top {
     .pull-right {
-      height: 28px;
-      float: right;
-      width: auto;
+      float: unset !important;
       padding: 15px;
       background: unset;
+      vertical-align: middle;
+      margin-left: 10px;
+      display: inline-block;
     }
 
     .pull-left {
       margin: 0;
-      float: left;
-      width: auto;
+      float: unset !important;
       padding: 15px;
       background: unset;
+      display: inline-block;
 
       .filter-lab {
         margin: 0;
@@ -1613,7 +1628,7 @@ a.btnsearchbelow:hover {
     }
 
     th {
-      padding: 18px 0 18px 5px;
+      padding: 18px 0 18px 12px;
       line-height: 18px;
       text-align: left;
     }
@@ -1647,7 +1662,7 @@ a.btnsearchbelow:hover {
     }
 
     tr td {
-      padding: 12px 0 12px 5px;
+      padding: 12px 0 12px 12px;
       text-align: left;
       border: none;
       border-top: 1px solid #ccc !important;
@@ -1707,6 +1722,13 @@ a.btnsearchbelow:hover {
       }
     }
 
+    tr td.file_category {
+      .wpfd-results-tooltip {
+        &[data-hasqtip] {
+          cursor: pointer;
+        }
+      }
+    }
 
     tr td:first-child {
       padding-left: 12px;
@@ -1785,7 +1807,7 @@ a.btnsearchbelow:hover {
         border: 0;
 
         th {
-          width: 1%;
+          width: fit-content;
           border-top: 1px solid #ccc;
           border-bottom: 1px solid #ccc;
           border-left: 0;
@@ -1827,6 +1849,7 @@ a.btnsearchbelow:hover {
 
   .limit.pull-right {
     padding: 10px;
+    min-width: 160px;
   }
 
   select#limit {
@@ -1840,6 +1863,7 @@ a.btnsearchbelow:hover {
     margin: 0 !important;
     padding: 5px !important;
     -webkit-appearance: menulist;
+    outline: none !important;
     &:hover,
     &:focus {
       cursor: pointer;
@@ -1876,6 +1900,10 @@ a.btnsearchbelow:hover {
 }
 .list-results {
   position: relative;
+  .mediaMenuOption {
+    padding-left: 0px!important;
+    width: 20px!important;
+  }
   .mediaTableMenu {
     display: block;
     box-shadow: none !important;
@@ -1884,9 +1912,9 @@ a.btnsearchbelow:hover {
     width: 20px;
     height: 20px;
     border: 0;
-    margin: 0 18px 0 auto;
+    margin: 0;
     text-align: center;
-
+    float: right;
     > ul {
       text-decoration: none;
       list-style-position: outside;
@@ -2135,11 +2163,10 @@ ul.tagit {
   }
 }
 
-
 .toggle-arrow-up-alt,
 .toggle-arrow-down-alt {
-  width: 26px;
-  height: 26px;
+  width: 28px;
+  height: 28px;
   display: block;
   cursor: pointer;
   border: 1px solid #ccc;
@@ -3071,6 +3098,7 @@ ul.tagit {
 						background: transparent;
                         height: 35px!important;
                         line-height: 35px!important;
+                        margin: 0;
 						li.search-choice {
 							background: #fff;
                             padding: 5px 20px 5px 5px;
@@ -3088,6 +3116,7 @@ ul.tagit {
 						}
 						li.search-field {
 							width: auto;
+                            line-height: 35px!important;
 						}
 					}
 				}
@@ -3159,9 +3188,9 @@ ul.tagit {
 		}
 	}
 	.top {
+      padding: 10px 0;
 		.pull-right {
 			padding: 0;
-			display: none !important;
 		}
 	}
 }

@@ -821,6 +821,8 @@ jQuery(document).ready(function ($) {
                                 //Wpfd.updatePreview(workingCategory);
                                 fileSelected.each(function() {
                                     $(this).removeClass('unpublished');
+                                    $(this).removeClass('isPending');
+                                    $(this).find('.wpfd-pending-btn').remove();
                                     $(this).find('.wpfd-svg-icon-visibility-off').remove();
                                 });
                             }
@@ -1592,23 +1594,6 @@ jQuery(document).ready(function ($) {
                 $('[name="search[weight][to_unit]"]').attr('disabled', false);
                 return;
             }
-            var cloudType = $('[data-id-category="'+categoryId+'"]').data('type');
-
-            if (cloudType) {
-                // Disable type, size on search field
-                $('[name="search[extension]"]').attr('disabled', true);
-                $('[name="search[weight][from]"]').attr('disabled', true);
-                $('[name="search[weight][from_unit]"]').attr('disabled', true);
-                $('[name="search[weight][to]"]').attr('disabled', true);
-                $('[name="search[weight][to_unit]"]').attr('disabled', true);
-            } else {
-                // Enable type, size on search field
-                $('[name="search[extension]"]').attr('disabled', false);
-                $('[name="search[weight][from]"]').attr('disabled', false);
-                $('[name="search[weight][from_unit]"]').attr('disabled', false);
-                $('[name="search[weight][to]"]').attr('disabled', false);
-                $('[name="search[weight][to_unit]"]').attr('disabled', false);
-            }
         });
         $(document).on('click', '.js-search-submit', searchFilesV2);
         $(document).on('keyup', '[name="search[query]"]', function(e) {
@@ -1629,17 +1614,23 @@ jQuery(document).ready(function ($) {
             weight_from: $('[name="search[weight][from]"]').val(),
             weight_from_unit: $('[name="search[weight][from_unit]"]').val(),
             weight_to: $('[name="search[weight][to]"]').val(),
-            weight_to_unit: $('[name="search[weight][to_unit]"]').val()
+            weight_to_unit: $('[name="search[weight][to_unit]"]').val(),
+            waiting_for_approval: $('[name="search[waiting_for_approval]"]').is(':checked')
         };
 
         if (parseInt(data.catid) === 0 && data.created_date === ''
             && data.file_type === '' && data.keyword === '' && data.updated_date === ''
-            && data.weight_from === '' && data.weight_to === '') {
+            && data.weight_from === '' && data.weight_to === '' && !data.waiting_for_approval) {
             bootbox.alert(_wpfd_text('Filter is not empty.'));
             return;
         }
 
         if (data.weight_from !== '') {
+            if (!$.isNumeric(data.weight_from)) {
+                bootbox.alert(_wpfd_text('The weight from is not valid.'));
+                return;
+            }
+
             if (parseInt(data.weight_from) < 0) {
                 bootbox.alert(_wpfd_text('Weight from is positive integer.'));
                 return;
@@ -1661,6 +1652,11 @@ jQuery(document).ready(function ($) {
             }
         }
         if (data.weight_to !== '') {
+            if (!$.isNumeric(data.weight_to)) {
+                bootbox.alert(_wpfd_text('The weight to is not valid.'));
+                return;
+            }
+
             if (parseInt(data.weight_to) < 0) {
                 bootbox.alert(_wpfd_text('Weight to is positive integer.'));
                 return;
@@ -1688,12 +1684,27 @@ jQuery(document).ready(function ($) {
             return;
         }
 
+        var $fileTypeSupports = $('.wpfd-admin-search-file-types').val().split(',');
+        var $fileTypes = data.file_type.split(',');
+        $fileTypes.forEach(function ($type) {
+            $type = $.trim($type);
+            if ($type !== '' && $.inArray($type, $fileTypeSupports) === -1) {
+                bootbox.alert(_wpfd_text('This file type not supports.'));
+                return;
+            }
+        });
+
         // Send request
         $.ajax({
             url: wpfdajaxurl + "task=files.findFiles&format=raw",
             method: 'POST',
             data: data,
+            beforeSend: function () {
+                $('#preview').empty();
+                $('#loader').show();
+            },
             success: function(response) {
+                $('#loader').hide();
                 $('#preview').html($(response));
                 Wpfd.is_search_result = true;
                 $('#preview .restable').restable({
@@ -1707,7 +1718,6 @@ jQuery(document).ready(function ($) {
                 initDeleteBtn();
 
                 initFiles();
-
 
                 $('#wpreview').unbind();
                 // initDropbox($('#wpreview'));
@@ -1723,11 +1733,150 @@ jQuery(document).ready(function ($) {
                         loadGalleryParams();
                     }
                 }
+
+                // Pending file icon
+                var $pendingButton = $('<button class="wpfd-pending-btn">'+ wpfd_admin.file_waiting_for_approval +'</button>');
+                var row = $('#preview .file.isPending');
+                $('.title', row).prepend($pendingButton);
+
                 rloading('#wpreview');
                 $('#wpfd-core #wpreview').trigger('wpfd_admin_search');
             }
         });
     }
+    function wpfdValidateAdminSearchFiles() {
+        // File type validate
+        if ($('.wpfd-admin-search-file-types').length) {
+            var $fileTypeSupports = $('.wpfd-admin-search-file-types').val().split(',');
+            $('input[name="search[extension]"]').on('input', function () {
+                var $fileTypeVal = $(this).val().replace(/\./g, '').split(',');
+                var $length = $(this).val().length;
+
+                if ($length >= 2) {
+                    $fileTypeVal.forEach(function ($type) {
+                        $type = $.trim($type);
+                        setTimeout(function () {
+                            if($type !== '' && $.inArray($type, $fileTypeSupports) === -1) {
+                                var message = '<span class="wpfd-admin-search-message-file-types">'+ wpfd_admin.msg_admin_search_file_type_support +'</span>';
+                                $('.wpfd-admin-search-file-type-message').html(message).fadeIn(300);
+                            } else {
+                                $('.wpfd-admin-search-file-type-message').html('').fadeOut(300);
+                            }
+                        }, 800);
+                    });
+                } else {
+                    $('.wpfd-admin-search-file-type-message').html('').fadeOut(300);
+                }
+            });
+        }
+
+        // Create date validate
+        // $('input[name="search[created_date]"]').on('input change', function (e) {
+        //         var $createDateVal = $(this).val();
+        //         var $isdate = true;
+        //
+        //         if ($createDateVal.indexOf('-') !== -1) {
+        //             var dates = $createDateVal.split('-');
+        //             dates.forEach(function (date) {
+        //                 if (date !== '' && !$.isNumeric(date)) {
+        //                     $isdate = false;
+        //                 }
+        //             });
+        //         } else if ($createDateVal.indexOf('/')) {
+        //             var dates = $createDateVal.split('/');
+        //             dates.forEach(function (date) {
+        //                 if (date !== '' && !$.isNumeric(date)) {
+        //                     $isdate = false;
+        //                 }
+        //             });
+        //         } else {
+        //             if ($createDateVal !== '' && !$.isNumeric($createDateVal)) {
+        //                 $isdate = false;
+        //             }
+        //         }
+        //
+        //         if (!$isdate) {
+        //             var message = '<span class="wpfd-admin-search-message-create-date">'+ wpfd_admin.msg_admin_search_date +'</span>';
+        //             $('.wpfd-admin-search-create-date-message').html(message).fadeIn(300);
+        //         } else {
+        //             $('.wpfd-admin-search-create-date-message').html('').fadeOut(300);
+        //         }
+        // });
+
+        // Update date validate
+        // $('input[name="search[updated_date]"]').on('input change', function () {
+        //         var $updateDateVal = $(this).val();
+        //         var $isdate = true;
+        //         if ($updateDateVal.indexOf('-') !== -1) {
+        //             var dates = $updateDateVal.split('-');
+        //             dates.forEach(function (date) {
+        //                 if (date !== '' && !$.isNumeric(date)) {
+        //                     $isdate = false;
+        //                 }
+        //             });
+        //         } else if ($updateDateVal.indexOf('/')) {
+        //             var dates = $updateDateVal.split('/');
+        //             dates.forEach(function (date) {
+        //                 if (date !== '' && !$.isNumeric(date)) {
+        //                     $isdate = false;
+        //                 }
+        //             });
+        //         } else {
+        //             if ($updateDateVal !== '' && !$.isNumeric($updateDateVal)) {
+        //                 $isdate = false;
+        //             }
+        //         }
+        //
+        //         if (!$isdate) {
+        //             var message = '<span class="wpfd-admin-search-message-update-date">'+ wpfd_admin.msg_admin_search_date +'</span>';
+        //             $('.wpfd-admin-search-update-date-message').html(message).fadeIn(300);
+        //         } else {
+        //             $('.wpfd-admin-search-update-date-message').html('').fadeOut(300);
+        //         }
+        // });
+
+        // Date time validate
+        $('input[name="search[created_date]"], input[name="search[updated_date]"]').on('keydown', function (event) {
+            var $key = event.keyCode || event.CharCode;
+
+            // Detect backspace or del key
+            if ($key != 8 && $key != 46) {
+                return false;
+            }
+        });
+
+        // Weight from validate
+        $('input[name="search[weight][from]"]').on('keydown', function (event) {
+            var $key = event.keyCode || event.CharCode;
+            if ($key === 187 || $key === 189) {
+                setTimeout(function () {
+                    var message = '<span class="wpfd-admin-search-message-weight-from">'+ wpfd_admin.msg_admin_search_weight +'</span>';
+                    $('.wpfd-admin-search-weight-from-message').html(message).show().fadeOut(3000);
+                    $('input[name="search[weight][from]"]').val('');
+                    return false;
+                }, 500);
+            } else {
+                $('.wpfd-admin-search-weight-from-message').html('').fadeOut(300);
+            }
+        });
+
+        // Weight to validate
+        $('input[name="search[weight][to]"]').on('keydown', function (event) {
+            var $key = event.keyCode || event.CharCode;
+            if ($key === 187 || $key === 189) {
+                setTimeout(function () {
+                    var message = '<span class="wpfd-admin-search-message-weight-to">'+ wpfd_admin.msg_admin_search_weight +'</span>';
+                    $('.wpfd-admin-search-weight-to-message').html(message).show().fadeOut(3000);
+                    $('input[name="search[weight][to]"]').val('');
+                    return false;
+                }, 500);
+            } else {
+                $('.wpfd-admin-search-weight-to-message').html('').fadeOut(300);
+            }
+        });
+    }
+    wpfdValidateAdminSearchFiles();
+    
     function searchFiles(keyword, filter_catid = 0, ordering, ordering_dir) {
         if (typeof(filter_catid) === "undefined" || filter_catid === null) {
             filter_catid = $('#wpfd_filter_catid').val();
@@ -2244,6 +2393,32 @@ jQuery(document).ready(function ($) {
                     newFileData += key + '=' + value + '&';
                 });
 
+                // Correct file renaming
+                var stopEditing = false;
+                if ($('#fileparams .wpfdparams input[name="title"]').length) {
+                    var correctFileName = $('#fileparams .wpfdparams input[name="title"]').val();
+                    if (!isCloudCategory()) {
+                        var excludeChars = new Array('"', '/', '\\');
+                    } else {
+                        var excludeChars = new Array('"', '*', ':','<', '>', '?', '/', '\\', '|');
+                    }
+                    excludeChars.forEach(function (char) {
+                        if (correctFileName.indexOf(char) !== -1) {
+                            stopEditing = true;
+                            if (!isCloudCategory()) {
+                                bootbox.alert(wpfd_admin.msg_rename_file);
+                            } else {
+                                bootbox.alert(wpfd_admin.msg_rename_file_cloud);
+                            }
+                            return false;
+                        }
+                    });
+                }
+
+                if (stopEditing) {
+                    return;
+                }
+
                 $.ajax({
                     url: wpfdajaxurl + "task=file.save&id=" + id_file + "&idCategory=" + idCategory + "&idRefCategory=" + idRefCategory,
                     method: "POST",
@@ -2325,6 +2500,7 @@ jQuery(document).ready(function ($) {
 
         $('.media-clear.file').on('click', function () {
             $('#file_custom_icon').val('');
+            $('#file_custom_icon_preview').val('');
         });
 
         $('#file_multi_category_old').parent().hide();
@@ -2382,6 +2558,9 @@ jQuery(document).ready(function ($) {
                         $('#file_custom_icon').val(attachment.sizes.full.url.substring(attachment.sizes.full.url.indexOf(contentUrl)));
                     }
                 }
+
+                // Custom icon for preview file
+                $('#file_custom_icon_preview').val(attachment.sizes.full.url.substring(attachment.sizes.full.url.indexOf('uploads')));
             });
             //Open the uploader dialog
             select_media.open();
@@ -4249,6 +4428,9 @@ function insertElementorFile() {
     id_file = jQuery('.file.selected').data('id-file');
     name_file = jQuery('.file.selected .title').text();
     id_category = jQuery('input[name=id_category]').val();
+    if (id_category == '' || id_category == 0) {
+        id_category = jQuery('.file.selected').data('catid-file');
+    }
     jQuery('.elementor-control.wpfd-file-id-controls input[data-setting="wpfd_file_id"]', window.parent.document).val(id_file);
     jQuery('.elementor-control.wpfd-category-id-controls input[data-setting="wpfd_category_id"]', window.parent.document).val(id_category);
     jQuery('.elementor-control.wpfd-file-name-controls input[data-setting="wpfd_file_name"]', window.parent.document).val(name_file);

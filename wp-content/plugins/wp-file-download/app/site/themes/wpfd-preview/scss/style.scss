@@ -59,7 +59,7 @@ $preview_bgcolor: #191166;
     flex-wrap: wrap;
     justify-content: flex-start;
     gap: 0;
-    @media screen and(max-width: 420px) {
+    @media screen and (max-width: 420px) {
       justify-content: space-around;
     }
   }
@@ -113,6 +113,9 @@ $preview_bgcolor: #191166;
         }
       }
     }
+    &.is_downloaded {
+      background-color: #eeeeee;
+    }
     .dropblock {
       position: relative;
       box-sizing: border-box;
@@ -130,6 +133,9 @@ $preview_bgcolor: #191166;
         .ext {
           background: transparent;
           margin: 0 auto 15px auto;
+        }
+        .icon-custom {
+          display: none;
         }
         &.contain {
           background-size: contain;
@@ -231,7 +237,7 @@ $preview_bgcolor: #191166;
       height: 35px;
       box-sizing: border-box;
       border-top: 1px solid #ccc;
-      @media screen and(max-width: 420px) {
+      @media screen and (max-width: 420px) {
         padding-left: 5px;
         text-align: center;
       }
@@ -257,6 +263,7 @@ $preview_bgcolor: #191166;
         overflow: hidden;
         white-space: nowrap;
         box-sizing: border-box;
+        line-height: 20px;
       }
     }
   }
@@ -435,10 +442,10 @@ a.wpfdcategory.catlink div.dropblock-footer-section {
     color: #8d8d8d;
     padding: 15px 10px;
     font-size: 13px;
-    @media screen and(min-width: 768px) {
+    @media screen and (min-width: 768px) {
       border-radius: 4px;
     }
-    @media screen and(max-width: 420px) {
+    @media screen and (max-width: 420px) {
       left: 0 !important;
       top: 0 !important;
       right: 0 !important;
@@ -492,15 +499,16 @@ a.wpfdcategory.catlink div.dropblock-footer-section {
 
 #et-boc .dropblock, .dropblock div {
   &.icon-custom {
-    height: 114px;
+    height: 70px;
     color: #fff;
     max-width: 114px;
-    display: inline-block;
+    display: block;
     position: relative;
+    margin: 35px auto;
     img {
-      width: 50px;
+      width: 70px;
       position: relative;
-      margin-top: 50%;
+      margin-top: 0;
     }
   }
   &.ext[class*='wpfd-icon-set-'] {
@@ -552,6 +560,15 @@ a.wpfdcategory.catlink div.dropblock-footer-section {
   }
   .droptitle {
     text-align: center;
+  }
+}
+
+.wpfd-download-box .dropblock div.icon-custom {
+  display: inline-block;
+  height: 114px;
+  margin: 0;
+  img {
+    margin: 0;
   }
 }
 
@@ -651,7 +668,7 @@ a.wpfdcategory.catlink div.dropblock-footer-section {
     display: inline-block;
     float: left;
     width: 130px;
-    @media screen and(max-width: 420px) {
+    @media screen and (max-width: 420px) {
       width: 100%;
       text-align: center;
       a {
@@ -687,7 +704,7 @@ a.wpfdcategory.catlink div.dropblock-footer-section {
       background-color: #75be5f;
       border-color: #75be5f;
       color: #fff;
-      @media screen and(min-width: 768px) {
+      @media screen and (min-width: 768px) {
         margin: 23px 0 5px 0;
       }
     }
@@ -883,6 +900,44 @@ a.wpfdcategory.catlink div.dropblock-footer-section {
           float: right;
           margin-left: 2px;
         }
+      }
+    }
+  }
+}
+
+/* pagination */
+.wpfd-pagination {
+  .page-numbers {
+    margin: 6px;
+    display: inline-block;
+  }
+  a.page-numbers {
+    cursor: pointer;
+    color: #046bd2;
+  }
+  .page-numbers.current {
+    color: #000;
+  }
+}
+#et-boc .wpfd-content.wpfd-content-preview,
+.wpfd-content.wpfd-content-preview {
+  + .wpfd-pagination {
+    text-align: center;
+    padding: 5px;
+  }
+  &.wpfdcontent_preview_folder_tree {
+    @media screen and (min-width: 720px) {
+      + .wpfd-pagination {
+        width: 70%;
+        margin-left: 0;
+        float: right;
+      }
+    }
+    @media screen and (max-width: 720px) {
+      + .wpfd-pagination {
+        text-align: center;
+        padding: 5px 5px 5px 15px;
+        margin-left: 25px;
       }
     }
   }

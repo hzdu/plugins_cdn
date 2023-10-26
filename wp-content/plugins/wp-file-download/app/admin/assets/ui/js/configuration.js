@@ -9,6 +9,7 @@
         $(document).on('change', '#upload_cattegory_id', this.upload_shortcode);
         $(document).on('change', '#upload_config .switch input[name="ref_display_upload_category_files"]', this.upload_form_with_display_files);
         $(document).on('change', '.switch input[name="ref_revision_pattern_enabled"]', this.toggleRevisionPatternInput);
+        $(document).on('change', 'select[name="theme"]', this.wpfdCloneThemeRootTypes);
         var revision_enabled = $('#revision_pattern_enabled').val();
         if (parseInt(revision_enabled) === 0) {
           $('input[name="revision_pattern"]').parent().hide();
@@ -61,9 +62,25 @@
         if (stt_storage.length) {
           stt_storage.parent().addClass('ju-settings-stt-storage');
         }
+
+        $("#wpfd-sortable-list").sortable({
+          update: function(event, ui) {
+            var sortedList = getWpfdSortedList();
+            $('#wpfd-sorted-list').val(sortedList.toString());
+            wpfd_configuration.search_shortcode();
+          }
+        });
+        $("#wpfd-sortable-list").disableSelection();
+        this.wpfdServerFolderSync();
       },
       toggleRevisionPatternInput: function(e) {
         $('input[name="revision_pattern"]').parent().slideToggle();
+      },
+      wpfdCloneThemeRootTypes: function(e) {
+        var $theme = $('select[name="theme"]').val();
+        var $rootThemeType = $('select[name="theme"] option[value="'+ $theme +'"]').data('root_theme_type')
+            ? $('select[name="theme"] option[value="'+ $theme +'"]').data('root_theme_type') : 'none';
+        $('input[name="clone_theme_root_theme_type"]').val($rootThemeType);
       },
       statisticsStorageChanged: function(e) {
         var $this = $(this);
@@ -94,13 +111,24 @@
             weight_filter = $('#weight_filter'),
             file_per_page = $('#file_per_page'),
             search_theme = $('#search_theme'),
+            search_theme_col = $('#wpfd-sorted-list'),
             search_category_id = $('#search_category_id'),
             ref_exclude_category_id = $('#ref_exclude_category_id'),
+            show_filters = $('#show_filters'),
+            show_pagination = $('#show_search_pagination'),
             search_shortcode_input = $('#shortcode_value');
         var catId = '';
         if (search_category_id.length > 0 && search_category_id.val() !== '') {
           catId = ' catid="' + search_category_id.val() + '"';
         }
+
+        if (search_theme.length && (search_theme.val() === '' || search_theme.val() === 'table')) {
+          $('#search_theme_setting').parent().show();
+        } else {
+          $('#search_theme_setting').parent().hide();
+        }
+        var sortedList = getWpfdSortedList();
+        search_theme_col.val(sortedList.toString());
 
         var excludeIds = '';
         if (ref_exclude_category_id.length > 0 && ref_exclude_category_id.val() !== '') {
@@ -112,9 +140,12 @@
           }
         }
 
-        var shortcode = '[wpfd_search' + catId + excludeIds +' cat_filter="' + cat.val() + '" tag_filter="' + tag.val() + '" display_tag="' + display_tag.val() + '" create_filter="' + create_filter.val() + '" update_filter="' + update_filter.val() + '" type_filter="' + type_filter.val() + '" weight_filter="' + weight_filter.val() + '" file_per_page="' + file_per_page.val() + '"';
+        var shortcode = '[wpfd_search' + catId + excludeIds +' cat_filter="' + cat.val() + '" tag_filter="' + tag.val() + '" display_tag="' + display_tag.val() + '" create_filter="' + create_filter.val() + '" update_filter="' + update_filter.val() + '" type_filter="' + type_filter.val() + '" weight_filter="' + weight_filter.val() + '" file_per_page="' + file_per_page.val() + '"' + ' show_filters="' + show_filters.val() + '" show_pagination="'+ show_pagination.val() +'" ';
         if (search_theme.length && search_theme.val() !== '') {
           shortcode += ' theme="' + search_theme.val() + '"';
+        }
+        if (search_theme.length && (search_theme.val() === '' || search_theme.val() === 'table')) {
+          shortcode += ' theme_column="' + search_theme_col.val() + '"';
         }
         shortcode += ']';
         $(search_shortcode_input).val(shortcode);
@@ -606,9 +637,10 @@
               html    += '<button title="Close" type="button" id="wpfd-close-category-disc" class="wpfd-close">×</button>';
               html    += '<div class="tree-category-view">';
               html    += '<div class="tree-categories wpfd-no-margin wpfd-no-padding">';
-              html    += '<ul>';
-              html    += '<li>No category found!</li>';
-              html    += '</ul>';
+              html    += '<h3 class="import-title wpfd-category-disc-title">' + wpfd_admin.import_target_category + '</h3>';
+              html    += '<select id="wpfd-select-category" class="inputbox input-block-level ju-input wpfd-select-category">';
+              html    += '<option value="">ROOT</option>';
+              html    += '</select>';
               html    += '</div>';
               html    += '</div>';
               html    += '</div>';
@@ -778,6 +810,258 @@
         if (access_message_val.length && access_message_contents.length && access_message_val.val() === '') {
           access_message_val.val(access_message_contents.val());
         }
+      },
+      wpfdServerFolderSync: function () {
+        /**
+         * Add to list folder sync
+         */
+        $('.wpfd_btn_add_sync').on('click', function () {
+            var folder_ftp = $('.dir_name_ftp').val();
+            var folder_category = $('.dir_name_category_id').val();
+            var url = wpfdajaxurl;
+            if (url.indexOf('wpfd') === -1) {
+              url = wpfdajaxurl + "?action=wpfd&"
+            }
+            if (folder_ftp != '' && folder_category != '') {
+              $.ajax({
+                  type: "POST",
+                  url: url + 'task=Config.wpfdAddFolderSync',
+                  dataType: 'json',
+                  data: {
+                    wpfd_security: wpfd_var.wpfdsecurity,
+                    folder_ftp: folder_ftp,
+                    folder_category: folder_category
+                  },
+                  success: function (response) {
+                    if (response.status) {
+                      var tr = '<tr data-ftp="'+ response.folder_ftp +'" data-id="' + response.folder_category + '">';
+                      tr += '<td><input class="media_checkbox check-sync-item" id="cb-select-' + response.folder_category + '" type="checkbox" name="post[]" value="' + response.folder_category + '"></td>';
+                      tr += '<td>' + response.folder_ftp + '</td>';
+                      tr += '<td>' + $('.dir_name_categories').val() + '</td>';
+                      tr += '<td>';
+                      tr += '<button class="ju-button orange-outline-button ju-button-sm ju-button-inline add-syncftp-queue" type="button">'+ wpfd_admin.add_to_queue +'<span class="wpfd_spinner"></span></button>';
+                      tr += '<button class="ju-button orange-outline-button ju-button-sm ju-button-inline delete-syncftp-item" type="button">'+ wpfd_admin.delete +'</button>';
+                      tr += '</td>';
+                      tr += '</tr>';
+                      if (!$('.wpfd-list-folder-sync').find('tr[data-id="' + response.folder_category + '"]').length) {
+                        $('.wpfd-list-folder-sync').append(tr);
+                        $('.wpfd-list-folder-sync').parent().show();
+                        $.gritter.add({text: response.msg, class_name: 'wpfd-gritter-successfull'});
+                      }
+                    } else {
+                      $.gritter.add({text: response.msg, class_name: 'wpfd-gritter-warning'});
+                    }
+                  }
+              });
+            } else {
+              if (folder_ftp == '' && folder_category == '') {
+                $.gritter.add({text: 'PLease seleact a folder and category', class_name: 'wpfd-gritter-warning'});
+                return true;
+              }
+              if (folder_ftp == '') {
+                $.gritter.add({text: 'PLease seleact a folder', class_name: 'wpfd-gritter-warning'});
+                return true;
+              }
+              if (folder_category == '') {
+                $.gritter.add({text: 'PLease seleact a category', class_name: 'wpfd-gritter-warning'});
+                return true;
+              }
+            }
+        });
+
+        /**
+         * Remove to list folder sync
+         */
+        $('.wpfd_btn_delete_sync').on('click', function () {
+          var list = [];
+          $('[id^="cb-select-"]:checked').each(function (i, $this) {
+            if ($($this).val() !== "on") {
+              list.push($($this).val());
+            }
+          });
+
+          wpfd_configuration.popup({
+            type: 'confirm',
+            content: wpfd_admin.msg_ask_delete_sync_queue,
+            onConfirm: function() {
+              removeSyncItems(list);
+            },
+            onCancel: function() {},
+          });
+        });
+
+        $(document).on('click', '.delete-syncftp-item', function () {
+          var list = [];
+          list.push($(this).closest('tr').data('id'));
+
+          wpfd_configuration.popup({
+          type: 'confirm',
+          content: wpfd_admin.msg_ask_delete_sync_queue,
+            onConfirm: function() {
+              removeSyncItems(list);
+            },
+            onCancel: function() {},
+          });
+        });
+        
+        var removeSyncItems = function (list) {
+          if (!list.length) {
+            return;
+          }
+          var url = wpfdajaxurl;
+          if (url.indexOf('wpfd') === -1) {
+            url = wpfdajaxurl + "?action=wpfd&"
+          }
+          $.ajax({
+            type: "POST",
+            url: url + 'task=Config.wpfdRemoveFolderSync',
+            dataType: 'json',
+            data: {
+              wpfd_security: wpfd_var.wpfdsecurity,
+              key: list.toString()
+            },
+            success: function (response) {
+              if (response !== false && response.status) {
+                $.each(response.keys, function (i, v) {
+                  $('.wpfd-list-folder-sync').find('tr[data-id="' + v + '"]').remove();
+                });
+                if ($('.delete-syncftp-item').length == 0) {
+                  $('.wpfd-list-folder-sync').parent().hide();
+                  $('.wpfd_btn_delete_sync').hide();
+                }
+                $.gritter.add({text: response.msg, class_name: 'wpfd-gritter-successfull'});
+              }
+            }
+          });
+        };
+
+        /**
+         * Check all list sync media
+         */
+        $(document).on('click', '#cb-select-all-sync-items, .check-sync-item', function () {
+          if ($(this).hasClass('cb-select-all-sync-items')) {
+            if ($(this).is(':checked')) {
+              $('.wpfd-list-folder-sync').find('[id^="cb-select-"]').prop('checked', true);
+            } else {
+              $('.wpfd-list-folder-sync').find('[id^="cb-select-"]').prop('checked', false);
+            }
+          }
+
+          if ($(this).hasClass('check-sync-item')) {
+            if (!$(this).is(':checked')) {
+              $('.wpfd-list-folder-sync').find('#cb-select-all-sync-items').prop('checked', false);
+            }
+          }
+
+          if (!$('.check-sync-item:checked').length) {
+            $('.wpfd_btn_delete_sync').hide();
+          } else {
+            $('.wpfd_btn_delete_sync').show();
+          }
+        });
+
+        /**
+         * Add queue folder sync
+         */
+        $(document).on('click', '.add-syncftp-queue', function () {
+          var $this = $(this);
+          var directory = $this.closest('tr').data('ftp');
+          var folder_id = $this.closest('tr').data('id');
+          var url = wpfdajaxurl;
+          if (url.indexOf('wpfd') === -1) {
+            url = wpfdajaxurl + "?action=wpfd&"
+          }
+          $.ajax({
+            type: "POST",
+            url: url + 'task=Config.wpfdAddQueueFolderSync',
+            dataType: 'json',
+            data: {
+              wpfd_security: wpfd_var.wpfdsecurity,
+              directory: directory,
+              folder_id: folder_id
+            },
+            beforeSend: function() {
+              $this.find('.wpfd_spinner').show();
+            },
+            success: function (response) {
+              if (response.status) {
+                $this.find('.wpfd_spinner').hide();
+                $.gritter.add({text: response.msg, class_name: 'wpfd-gritter-successfull'});
+              } else {
+                $this.find('.wpfd_spinner').hide();
+                $.gritter.add({text: response.msg, class_name: 'wpfd-gritter-warning'});
+              }
+            }
+          });
+        });
+      },
+      popup: function(options) {
+        var $options = $.extend({
+          title: '',
+          showHeader: true,
+          showClose: false,
+          type: 'confirm',
+          content: '',
+          close: 'Close',
+          onConfirm: function() {},
+          onCancel: function() {}
+        }, options);
+
+        var modal = $('<div id="wpfd-modal-wrapper" class="wpfd-modal"></div>').hide();
+        var backdrop = $('<div class="wpfd-modal-backdrop fade in"></div>');
+        backdrop.on('click', {options: $options}, function(e) {
+          modal.remove();
+          this.remove();
+          var options = e.data.options;
+          options.onCancel.call();
+        });
+        if ($options.showHeader) {
+
+          var modalHeader = $('<div class="wpfd-modal-header"></div>');
+          var closeButton = $('<button type="button" class="close" data-dismiss="modal" aria-label="' + $options.close + '"><span aria-hidden="true">&times;</span></button>');
+          if ($options.showClose) {
+            modalHeader.prepend(closeButton);
+            modalHeader.find('.close').on('click', {options: $options}, function(e) {
+              modal.remove();
+              backdrop.remove();
+              var options = e.data.options;
+              options.onCancel.call();
+            });
+          }
+          modalHeader.prepend($("<h4>" + $options.title + "</h4>"));
+
+          modal.prepend(modalHeader);
+        }
+        var modalContent = $('<div class="wpfd-modal-body"></div>');
+        modalContent.html($options.content);
+        modal.append(modalContent);
+        var modalFooter = $('<div class="wpfd-modal-footer"></div>');
+
+        if ($options.type === 'confirm') {
+          var cancel = $('<button class="ju-button ju-rect-button ju-link-button">Cancel</button>');
+          cancel.on('click', {options: $options}, function(e) {
+            modal.remove();
+            backdrop.remove();
+            var options = e.data.options;
+            options.onCancel.call();
+          });
+
+          var confirm = $('<button class="ju-button ju-rect-button ju-material-button">Confirm</button>');
+          confirm.on('click', {options: $options}, function(e) {
+            modal.remove();
+            backdrop.remove();
+            var options = e.data.options;
+            options.onConfirm.call();
+          });
+
+          modalFooter.prepend(confirm);
+          modalFooter.prepend(cancel);
+        }
+        modal.append(modalFooter);
+        modal.show();
+
+        $('body').append(backdrop);
+        $('body').append(modal);
       }
     };
 
@@ -1241,6 +1525,18 @@
       $('.cancel-btn').on('click', function () {
         $('.save-message-error').remove();
       });
+    }
+
+    function getWpfdSortedList() {
+      var sortedList = [];
+      $("#wpfd-sortable-list li").each(function() {
+        var value = $(this).data("value");
+        var itemChecked = $(this).find('input[type="hidden"]').val();
+        if (parseInt(itemChecked) === 1) {
+          sortedList.push(value);
+        }
+      });
+      return sortedList;
     }
   });
 })(jQuery);

@@ -4,6 +4,7 @@ jQuery(document).ready(function ($) {
     var videoTypes = ['m4a', 'mp4', 'webm', 'ogg', 'ogv', 'flv'];
     var audioTypes = ['mp3', 'wav', 'wma', 'm4a'];
     var imageTypes = ['jpg', 'png', 'gif', 'jpeg', 'jpe', 'bmp', 'ico', 'tiff', 'tif', 'svg', 'svgz'];
+    var previewServerTypes = ['ai', 'csv', 'doc', 'docx', 'html', 'json', 'odp', 'ods', 'pdf', 'ppt', 'pptx', 'rtf', 'sketch', 'xd', 'xls', 'xlsx', 'xml', 'jpg', 'png', 'gif', 'jpeg'];
     (wpfdColorboxInit = function () {
         // $('.wpfdlightbox').colorbox({iframe:true, innerWidth:'90%', innerHeight:'90%',maxWidth:'90%',maxHeight:'90%'});
         $('.wpfdlightbox').each(function () {
@@ -42,16 +43,84 @@ jQuery(document).ready(function ($) {
                     html += '<source src="' + downloadLink + '" type="audio/' + filetype + '">';
                     html += ' <p class="vjs-no-js">Your browser does not support the <code>audio</code> element.</p></audio>';
                 } else if (imageTypes.indexOf(filetype) > -1) { //is image
-                    html += '<img src="' + downloadLink + '" class="video-js vjs-default-skin" id="player-' + fileid + '" /> ';
+                    if (previewLink.includes('file.preview') || previewLink.includes('/previews/') || previewLink.includes('/uploads/')) {
+                        html += '<div style="display: block; width: 100%; height: 90vh; overflow-y: auto; position: relative">';
+                        html += '<img src="' + previewLink + '" class="video-js vjs-default-skin" id="player-' + fileid + '" /> ';
+                        if ((previewLink.includes('file.preview') || previewLink.includes('/previews/') || previewLink.includes('/uploads/')) && previewServerTypes.indexOf(filetype) > -1) {
+                            if ($(this).parents('.file').length) {
+                                // Default, table themes
+                                var previewLinkDownload = $(this).parents('.file').find('.wpfd_file_preview_link_download').val();
+                                var extensions = $(this).parents('.file').find('.wpfd_file_preview_link_download').data('fileicons');
+                                html += '<div class="wpfd_file_preview_download_container images">';
+                                html += '<div class="'+ extensions +'"><span class="txt"></span></div>';
+                                html += '<a class="title wpfd_downloadlink" href="'+ previewLinkDownload +'" data-id="'+ fileid +'" data-catid="'+ catid +'">'+ wpfdcolorbox.wpfd_download_file_attached_preview +'</a>';
+                                html += '</div>';
+                            } else if ($(this).parents('.wpfd-single-file').length) {
+                                // Single file template
+                                var previewLinkDownload = $(this).parents('.wpfd-single-file').find('.wpfd_file_preview_link_download').val();
+                                var extensions = $(this).parents('.wpfd-single-file').find('.wpfd_file_preview_link_download').data('fileicons');
+
+                                if (typeof (previewLinkDownload) !== 'undefined') {
+                                    html += '<div class="wpfd_file_preview_download_container images">';
+                                    html += '<div class="'+ extensions +'"><span class="txt"></span></div>';
+                                    html += '<a class="title wpfd_downloadlink" href="'+ previewLinkDownload +'" data-id="'+ fileid +'" data-catid="'+ catid +'">'+ wpfdcolorbox.wpfd_download_file_attached_preview +'</a>';
+                                    html += '</div>';
+                                }
+                            } else {
+                                // Others
+                                var previewLinkDownload = $(this).parents('.wpfd-download-box').find('.wpfd_file_preview_link_download').val();
+                                var extensions = $('.dropblock .filecontent .ext').length ? $('.dropblock .filecontent .ext').attr("class") : 'ext ext-' + filetype + ' ' + wpfdcolorbox.wpfd_file_icon_set;
+
+                                html += '<div class="wpfd_file_preview_download_container images">';
+                                html += '<div class="'+ extensions +'"><span class="txt"></span></div>';
+                                html += '<a class="title wpfd_downloadlink" href="'+ previewLinkDownload +'" data-id="'+ fileid +'" data-catid="'+ catid +'">'+ wpfdcolorbox.wpfd_download_file_attached_preview +'</a>';
+                                html += '</div>';
+                            }
+                        }
+                        html += '</div>'
+                    } else {
+                        html += '<img src="' + downloadLink + '" class="video-js vjs-default-skin" style="width: 100%; height: 90vh" id="player-' + fileid + '" /> ';
+                    }
                 } else if (videoTypes.indexOf(filetype) > -1) {
                     html += '<video width="1000" height="1000"  class="video-js vjs-default-skin" id="player-' + fileid + '" controls="controls" preload="auto" autoplay="true">';
                     html += '<p class="vjs-no-js">Your browser does not support the <code>video</code> element.</p>';
                     html += '<source src="' + downloadLink + '" type="video/'+filetype+'">';
                     html += '</video>';
-                } else if (previewLink.includes('file.preview') || previewLink.includes('/previews/') || previewLink.includes('/watermark/')) {
-                    html += '<div style="display: block; width: 100%; height: 90vh; overflow-y: auto">';
+                } else if (previewLink.includes('file.preview') || previewLink.includes('/previews/') || previewLink.includes('/watermark/') || previewLink.includes('/uploads/')) {
+                    var previewClass = !previewLink.includes('/uploads/') ? 'wpfd_file_previewer_servers' : '';
+                    html += '<div class="' + previewClass + '" style="display: block; width: 100%; height: 90vh; overflow-y: auto; position: relative">';
                     html += '<img src="' + previewLink + '" class="video-js vjs-default-skin" id="player-' + fileid + '" /> ';
-                    html += '</div>'
+                    if ((previewLink.includes('file.preview') || previewLink.includes('/previews/') || previewLink.includes('/uploads/')) && previewServerTypes.indexOf(filetype) > -1) {
+                        if ($(this).parents('.file').length) {
+                            // Default, table themes
+                            var previewLinkDownload = $(this).parents('.file').find('.wpfd_file_preview_link_download').val();
+                            var extensions = $(this).parents('.file').find('.wpfd_file_preview_link_download').data('fileicons');
+                            html += '<div class="wpfd_file_preview_download_container">';
+                            html += '<div class="'+ extensions +'"><span class="txt"></span></div>';
+                            html += '<a class="title wpfd_downloadlink" href="'+ previewLinkDownload +'" data-id="'+ fileid +'" data-catid="'+ catid +'">'+ wpfdcolorbox.wpfd_download_file_attached_preview +'</a>';
+                            html += '</div>';
+                        } else if ($(this).parents('.wpfd-single-file').length) {
+                            // Single file template
+                            var previewLinkDownload = $(this).parents('.wpfd-single-file').find('.wpfd_file_preview_link_download').val();
+                            var extensions = $(this).parents('.wpfd-single-file').find('.wpfd_file_preview_link_download').data('fileicons');
+                            if (typeof (previewLinkDownload) !== 'undefined') {
+                                html += '<div class="wpfd_file_preview_download_container">';
+                                html += '<div class="'+ extensions +'"><span class="txt"></span></div>';
+                                html += '<a class="title wpfd_downloadlink" href="'+ previewLinkDownload +'" data-id="'+ fileid +'" data-catid="'+ catid +'">'+ wpfdcolorbox.wpfd_download_file_attached_preview +'</a>';
+                                html += '</div>';
+                            }
+                        } else {
+                            // Others
+                            var previewLinkDownload = $(this).parents('.wpfd-download-box').find('.wpfd_file_preview_link_download').val();
+                            var extensions = $('.dropblock .filecontent .ext').length ? $('.dropblock .filecontent .ext').attr("class") : 'ext ext-' + filetype + ' ' + wpfdcolorbox.wpfd_file_icon_set;
+
+                            html += '<div class="wpfd_file_preview_download_container">';
+                            html += '<div class="'+ extensions +'"><span class="txt"></span></div>';
+                            html += '<a class="title wpfd_downloadlink" href="'+ previewLinkDownload +'" data-id="'+ fileid +'" data-catid="'+ catid +'">'+ wpfdcolorbox.wpfd_download_file_attached_preview +'</a>';
+                            html += '</div>';
+                        }
+                    }
+                    html += '</div>';
                 } else { //other type
                     viewlink = $(this).attr('href');
                     //googleViewer = 'https://docs.google.com/viewer?url='+ encodeURIComponent(encodeURI(viewlink))+'&embedded=true';
@@ -116,7 +185,7 @@ jQuery(document).ready(function ($) {
                 });
 
                 //player
-                if (imageTypes.indexOf(filetype) > -1 || previewLink.includes('file.preview') || previewLink.includes('/previews/')) { //is image
+                if (imageTypes.indexOf(filetype) > -1 || previewLink.includes('file.preview') || previewLink.includes('/previews/') || previewLink.includes('/uploads/')) { //is image
                     new_img = new Image();
                     new_img.onload = function () {
                         var img_width = this.width,
@@ -145,9 +214,8 @@ jQuery(document).ready(function ($) {
                             clearTimeout(loading);
                         });
                         pBox.show();
-
                     }
-                    if (previewLink.includes('file.preview') || previewLink.includes('/previews/')) {
+                    if (previewLink.includes('file.preview') || previewLink.includes('/previews/') || previewLink.includes('/uploads/')) {
                         new_img.src = previewLink;
                     } else {
                         new_img.src = downloadLink;
@@ -228,9 +296,61 @@ jQuery(document).ready(function ($) {
                         pBox.show();
                     })
                 }
+
+                wpfdDownloadFiles();
+
+                // Display downloaded file(s) below file preview mode
+                wpfdPreviewFileDisplayDownloadedFiles();
             });
         });
     })();
+
+    function wpfdPreviewFileDisplayDownloadedFiles() {
+        var fileDownload = $('.wpfd-content .file');
+        var linkDownload = $('.dropblock .wpfd_downloadlink');
+        var user_login_id = wpfdparams.wpfd_user_login_id;
+
+        // Handle download file(s), show downloaded file(s) immediately
+        if (linkDownload.length) {
+            linkDownload.on('click', function () {
+                var fileId = $(this).attr('data-id');
+                var isDownloadedFile = localStorage.getItem('wpfd_downloaded_file_' + user_login_id + '_' + fileId);
+                if (isDownloadedFile === null) {
+                    localStorage.setItem('wpfd_downloaded_file_' + user_login_id + '_' + fileId, 'yes');
+                    $(this).parents('.file').addClass('is_downloaded');
+                    $('.wpfd-content .file[data-id="'+ fileId +'"]').addClass('is_downloaded');
+                    $('.wpfd-content .wpfd-file-link[data-id="'+ fileId +'"]').parents('.file').addClass('is_downloaded');
+                    $('.wpfd-content .wpfd-file-link[data-id="'+ fileId +'"]').parents('li.ext').addClass('is_downloaded');
+                }
+            });
+        }
+
+        // Display downloaded files on refresh/reload page
+        if (fileDownload.length) {
+            fileDownload.each(function () {
+                var id = $(this).data('id');
+                var isFileDownload = localStorage.getItem('wpfd_downloaded_file_' + user_login_id + '_' + id);
+                if (isFileDownload) {
+                    $(this).addClass('is_downloaded');
+                }
+            });
+        }
+    }
+
+    function wpfdDownloadFiles() {
+        $('.wpfd_file_preview_download_container.images .wpfd_downloadlink').on('click', function (event) {
+            event.preventDefault();
+            var fileId = $(this).data('id');
+            var categoryId = $(this).data('catid');
+            var cloudType = $(this).data('type') ? $(this).data('type') : 'default';
+
+            if (!fileId || !categoryId) {
+                return false;
+            }
+
+            window.location.href = wpfdparams.site_url + "?wpfd_action=wpfd_download_file&wpfd_file_id=" + fileId + "&wpfd_category_id=" + categoryId + "&cloudType=" + cloudType;
+        });
+    }
 
     centerDropblock = function (fileid, margin_top, margin_left) {
 

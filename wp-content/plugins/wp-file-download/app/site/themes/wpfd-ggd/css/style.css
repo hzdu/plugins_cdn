@@ -178,6 +178,9 @@
 #et-boc .wpfd-content-ggd .file.wpfd-password-protection-form .wpfd-password-value:focus, .wpfd-content-ggd .file.wpfd-password-protection-form .wpfd-password-value:focus {
   outline: none;
 }
+#et-boc .wpfd-content-ggd .file.is_downloaded, .wpfd-content-ggd .file.is_downloaded {
+  background-color: #eeeeee;
+}
 #et-boc .wpfd-content-ggd h2, .wpfd-content-ggd h2 {
   padding: 10px 0 0 0;
   margin: 0 0 10px 0;
@@ -364,16 +367,17 @@ a.wpfdcategory.catlink div.droptitle {
 }
 
 #et-boc .dropblock.icon-custom, .dropblock div.icon-custom {
-  height: 114px;
+  height: 70px;
   color: #fff;
   max-width: 114px;
   display: inline-block;
   position: relative;
+  margin: 15px auto;
 }
 #et-boc .dropblock.icon-custom img, .dropblock div.icon-custom img {
-  width: 50px;
+  width: 70px;
   position: relative;
-  margin-top: 50%;
+  margin-top: 0;
 }
 #et-boc .dropblock.ext[class*=wpfd-icon-set-], .dropblock div.ext[class*=wpfd-icon-set-] {
   width: 70px;
@@ -636,6 +640,14 @@ a.wpfdcategory.catlink div.droptitle {
 }
 #et-boc .dropblock .droptitle, .dropblock div .droptitle {
   text-align: center;
+}
+
+.wpfd-download-box .dropblock div.icon-custom {
+  height: 114px;
+  margin: 0;
+}
+.wpfd-download-box .dropblock div.icon-custom img {
+  margin: 0;
 }
 
 #wpfd-ggd-box .dropblock h3 {
@@ -933,4 +945,39 @@ a.wpfdcategory.catlink div.droptitle {
 .rtl #wpfd-ggd-box .dropblock .wpfd-extra span {
   float: right;
   margin-left: 2px;
+}
+
+/* pagination */
+.wpfd-pagination .page-numbers {
+  margin: 6px;
+  display: inline-block;
+}
+.wpfd-pagination a.page-numbers {
+  cursor: pointer;
+  color: #046bd2;
+}
+.wpfd-pagination .page-numbers.current {
+  color: #000;
+}
+
+#et-boc .wpfd-content.wpfd-content-ggd + .wpfd-pagination,
+.wpfd-content.wpfd-content-ggd + .wpfd-pagination {
+  text-align: center;
+  padding: 5px;
+}
+@media screen and (min-width: 720px) {
+  #et-boc .wpfd-content.wpfd-content-ggd.wpfdcontent_ggd_folder_tree + .wpfd-pagination,
+  .wpfd-content.wpfd-content-ggd.wpfdcontent_ggd_folder_tree + .wpfd-pagination {
+    width: 70%;
+    margin-left: 0;
+    float: right;
+  }
+}
+@media screen and (max-width: 720px) {
+  #et-boc .wpfd-content.wpfd-content-ggd.wpfdcontent_ggd_folder_tree + .wpfd-pagination,
+  .wpfd-content.wpfd-content-ggd.wpfdcontent_ggd_folder_tree + .wpfd-pagination {
+    text-align: center;
+    padding: 5px 5px 5px 15px;
+    margin-left: 25px;
+  }
 }

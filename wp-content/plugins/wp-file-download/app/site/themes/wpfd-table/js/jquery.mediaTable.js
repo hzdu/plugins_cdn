@@ -186,15 +186,28 @@ http://www.consulenza-web.com/2012/01/mediatable-jquery-plugin/
 				var	val 	= $checkbox.val(),  // this equals the header's ID, i.e. "company"
 					cols 	= wdg.$table.find("#" + val + ", [headers="+ val +"]"); // so we can easily find the matching header (id="company") and cells (headers="company")
 
-
 				if ( $checkbox.is(":checked")) {
 					cols.show();
-
+					cols.removeClass('wpfd-col-hidden');
 				} else {
 					cols.hide();
-
+					cols.addClass('wpfd-col-hidden')
 				};
 
+				var wpfdTable = $('.wpfd-container table.wpfd-search-result');
+	            wpfdTable.each(function() {
+	                var visibleRow = $(this).find('thead tr');
+	                visibleRow.each(function() {
+	                    var visibleColumn = $(this).find('th.optional:not(.wpfd-col-hidden)');
+	                    visibleColumn.each(function() {
+	                        if ($(this).is(visibleColumn.last())) {
+	                            $(this).addClass('wpfd-last-col-table');
+	                        } else {
+	                            $(this).removeClass('wpfd-last-col-table');
+	                        }
+	                    })
+	                })
+	            })
 			};
 
 			var updateCheck = function() {

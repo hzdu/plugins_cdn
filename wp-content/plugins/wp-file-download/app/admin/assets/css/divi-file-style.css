@@ -73,12 +73,13 @@
   -moz-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
 }
-.wpfd-divi-modal .wpfd-category-block, .wpfd-divi-modal .wpfd-file-block {
+.wpfd-divi-modal .wpfd-category-block, .wpfd-divi-modal .wpfd-file-block, .wpfd-divi-modal .wpfd-search-block {
   z-index: 21 !important;
 }
 .wpfd-divi-modal .wpfd-category-block .wpfd-category-search,
 .wpfd-divi-modal .wpfd-category-block .wpfd-file-search, .wpfd-divi-modal .wpfd-file-block .wpfd-category-search,
-.wpfd-divi-modal .wpfd-file-block .wpfd-file-search {
+.wpfd-divi-modal .wpfd-file-block .wpfd-file-search, .wpfd-divi-modal .wpfd-search-block .wpfd-category-search,
+.wpfd-divi-modal .wpfd-search-block .wpfd-file-search {
   display: flex;
   flex-direction: row;
   padding: 14px;
@@ -88,7 +89,8 @@
 }
 .wpfd-divi-modal .wpfd-category-block .wpfd-category-search label,
 .wpfd-divi-modal .wpfd-category-block .wpfd-file-search label, .wpfd-divi-modal .wpfd-file-block .wpfd-category-search label,
-.wpfd-divi-modal .wpfd-file-block .wpfd-file-search label {
+.wpfd-divi-modal .wpfd-file-block .wpfd-file-search label, .wpfd-divi-modal .wpfd-search-block .wpfd-category-search label,
+.wpfd-divi-modal .wpfd-search-block .wpfd-file-search label {
   display: flex;
   align-items: center;
   margin-right: 8px;
@@ -97,14 +99,17 @@
 }
 .wpfd-divi-modal .wpfd-category-block .wpfd-category-search label .dashicon,
 .wpfd-divi-modal .wpfd-category-block .wpfd-file-search label .dashicon, .wpfd-divi-modal .wpfd-file-block .wpfd-category-search label .dashicon,
-.wpfd-divi-modal .wpfd-file-block .wpfd-file-search label .dashicon {
+.wpfd-divi-modal .wpfd-file-block .wpfd-file-search label .dashicon, .wpfd-divi-modal .wpfd-search-block .wpfd-category-search label .dashicon,
+.wpfd-divi-modal .wpfd-search-block .wpfd-file-search label .dashicon {
   margin-right: 8px;
 }
 .wpfd-divi-modal .wpfd-category-block .wpfd-category-search textarea, .wpfd-divi-modal .wpfd-category-block .wpfd-category-search input,
 .wpfd-divi-modal .wpfd-category-block .wpfd-file-search textarea,
 .wpfd-divi-modal .wpfd-category-block .wpfd-file-search input, .wpfd-divi-modal .wpfd-file-block .wpfd-category-search textarea, .wpfd-divi-modal .wpfd-file-block .wpfd-category-search input,
 .wpfd-divi-modal .wpfd-file-block .wpfd-file-search textarea,
-.wpfd-divi-modal .wpfd-file-block .wpfd-file-search input {
+.wpfd-divi-modal .wpfd-file-block .wpfd-file-search input, .wpfd-divi-modal .wpfd-search-block .wpfd-category-search textarea, .wpfd-divi-modal .wpfd-search-block .wpfd-category-search input,
+.wpfd-divi-modal .wpfd-search-block .wpfd-file-search textarea,
+.wpfd-divi-modal .wpfd-search-block .wpfd-file-search input {
   overflow: hidden;
   overflow-wrap: break-word;
   resize: none;
@@ -114,24 +119,16 @@
   line-height: 26px;
   font-size: 16px;
 }
-.wpfd-divi-modal .wpfd-category-block .wpfd-selected-category-name,
-.wpfd-divi-modal .wpfd-category-block .wpfd-selected-file-name, .wpfd-divi-modal .wpfd-file-block .wpfd-selected-category-name,
-.wpfd-divi-modal .wpfd-file-block .wpfd-selected-file-name {
-  background: #f8f9f9;
-  text-align: left;
-  font-size: 14px;
-  font-weight: bold;
-  line-height: 20px;
-  padding: 30px 14px;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+.wpfd-divi-modal .wpfd-category-block .wpfd-selected-category a,
+.wpfd-divi-modal .wpfd-category-block .wpfd-selected-file-name a, .wpfd-divi-modal .wpfd-file-block .wpfd-selected-category a,
+.wpfd-divi-modal .wpfd-file-block .wpfd-selected-file-name a, .wpfd-divi-modal .wpfd-search-block .wpfd-selected-category a,
+.wpfd-divi-modal .wpfd-search-block .wpfd-selected-file-name a {
+  pointer-events: none;
 }
-.wpfd-divi-modal .wpfd-category-block .wpfd-selected-category-name span,
-.wpfd-divi-modal .wpfd-category-block .wpfd-selected-file-name span, .wpfd-divi-modal .wpfd-file-block .wpfd-selected-category-name span,
-.wpfd-divi-modal .wpfd-file-block .wpfd-selected-file-name span {
-  margin-left: 4px;
-  font-weight: bold;
+.wpfd-divi-modal .wpfd-category-block .wpfd-selected-category .jaofiletree li.wait, .wpfd-divi-modal .wpfd-file-block .wpfd-selected-category .jaofiletree li.wait, .wpfd-divi-modal .wpfd-search-block .wpfd-selected-category .jaofiletree li.wait {
+  display: none;
 }
-.wpfd-divi-modal .wpfd-category-block .categories-dropdown, .wpfd-divi-modal .wpfd-file-block .categories-dropdown {
+.wpfd-divi-modal .wpfd-category-block .categories-dropdown, .wpfd-divi-modal .wpfd-file-block .categories-dropdown, .wpfd-divi-modal .wpfd-search-block .categories-dropdown {
   display: block;
   position: absolute;
   top: 49px;
@@ -145,28 +142,28 @@
   font-weight: 600;
   box-shadow: 0 0 15px -5px #000;
 }
-.wpfd-divi-modal .wpfd-category-block .categories-dropdown ul, .wpfd-divi-modal .wpfd-file-block .categories-dropdown ul {
+.wpfd-divi-modal .wpfd-category-block .categories-dropdown ul, .wpfd-divi-modal .wpfd-file-block .categories-dropdown ul, .wpfd-divi-modal .wpfd-search-block .categories-dropdown ul {
   list-style: none !important;
   margin: 0 !important;
 }
-.wpfd-divi-modal .wpfd-category-block .categories-dropdown li:hover, .wpfd-divi-modal .wpfd-file-block .categories-dropdown li:hover {
+.wpfd-divi-modal .wpfd-category-block .categories-dropdown li:hover, .wpfd-divi-modal .wpfd-file-block .categories-dropdown li:hover, .wpfd-divi-modal .wpfd-search-block .categories-dropdown li:hover {
   cursor: pointer;
 }
-.wpfd-divi-modal .wpfd-category-block .categories-dropdown .wpfd-category .wpfd-toggle-expand, .wpfd-divi-modal .wpfd-file-block .categories-dropdown .wpfd-category .wpfd-toggle-expand {
+.wpfd-divi-modal .wpfd-category-block .categories-dropdown .wpfd-category .wpfd-toggle-expand, .wpfd-divi-modal .wpfd-file-block .categories-dropdown .wpfd-category .wpfd-toggle-expand, .wpfd-divi-modal .wpfd-search-block .categories-dropdown .wpfd-category .wpfd-toggle-expand {
   height: 22px;
 }
-.wpfd-divi-modal .wpfd-category-block .wpfd-browse-files, .wpfd-divi-modal .wpfd-file-block .wpfd-browse-files {
+.wpfd-divi-modal .wpfd-category-block .wpfd-browse-files, .wpfd-divi-modal .wpfd-file-block .wpfd-browse-files, .wpfd-divi-modal .wpfd-search-block .wpfd-browse-files {
   margin: auto 5px;
   padding: 0px 13px;
   height: 32px;
   color: #fff;
 }
-.wpfd-divi-modal .wpfd-category-block .wpfd-browse-files.ju-material-button, .wpfd-divi-modal .wpfd-file-block .wpfd-browse-files.ju-material-button {
+.wpfd-divi-modal .wpfd-category-block .wpfd-browse-files.ju-material-button, .wpfd-divi-modal .wpfd-file-block .wpfd-browse-files.ju-material-button, .wpfd-divi-modal .wpfd-search-block .wpfd-browse-files.ju-material-button {
   -webkit-border-radius: 0;
   -moz-border-radius: 0;
   border-radius: 0;
 }
-.wpfd-divi-modal .wpfd-category-block .wpfd-browse-files.ju-material-button:hover, .wpfd-divi-modal .wpfd-category-block .wpfd-browse-files.ju-material-button:focus:enabled, .wpfd-divi-modal .wpfd-file-block .wpfd-browse-files.ju-material-button:hover, .wpfd-divi-modal .wpfd-file-block .wpfd-browse-files.ju-material-button:focus:enabled {
+.wpfd-divi-modal .wpfd-category-block .wpfd-browse-files.ju-material-button:hover, .wpfd-divi-modal .wpfd-category-block .wpfd-browse-files.ju-material-button:focus:enabled, .wpfd-divi-modal .wpfd-file-block .wpfd-browse-files.ju-material-button:hover, .wpfd-divi-modal .wpfd-file-block .wpfd-browse-files.ju-material-button:focus:enabled, .wpfd-divi-modal .wpfd-search-block .wpfd-browse-files.ju-material-button:hover, .wpfd-divi-modal .wpfd-search-block .wpfd-browse-files.ju-material-button:focus:enabled {
   background-color: #2196f3;
   -webkit-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
   -moz-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
@@ -384,6 +381,9 @@
 .wpfd-divi-modal .onedrive-business-icon {
   background: url(../ui/images/icon-sync-onedrive.svg) no-repeat center;
   background-size: 20px;
+}
+.wpfd-divi-modal .wpfd-search-block-setting {
+  padding: 16px;
 }
 @media (min-width: 1600px) and (max-width: 1900px) {
   .wpfd-divi-modal .wpfd-files-wrapper .wpfd-file {
@@ -1176,7 +1176,7 @@
   justify-content: space-between;
   /*font-size: 1.5em;*/
   text-transform: uppercase;
-  text-decoration: none;
+  text-decoration: none !important;
   /* Fix fliking */
   transition-property: unset !important;
   transition-duration: unset !important;

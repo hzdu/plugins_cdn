@@ -18,6 +18,7 @@ class Search extends Component {
             updateDateFilter: '1',
             typeFilter: '1',
             weightFilter: '1',
+            minimizeFilters: '1',
             pageFilter: '20',
             searchShortCode: '',
             searchLoading: true,
@@ -33,8 +34,9 @@ class Search extends Component {
         let updateDateFilter    = (this.props.update_date_filter === 'on') ? '1' : '0';
         let typeFilter          = (this.props.type_filter === 'on') ? '1' : '0';
         let weightFilter        = (this.props.weight_filter === 'on') ? '1' : '0';
+        let minimizeFilters    = (this.props.minimize_filters === 'on') ? '1' : '0';
         let pageFilter          = this.props.per_page_filter;
-        this.fetSearchShortcode(categoryFilter, tagFilter, tagAs, creationDateFilter, updateDateFilter, typeFilter, weightFilter, pageFilter);
+        this.fetSearchShortcode(categoryFilter, tagFilter, tagAs, creationDateFilter, updateDateFilter, typeFilter, weightFilter, minimizeFilters, pageFilter);
 
     }
 
@@ -46,18 +48,19 @@ class Search extends Component {
         const updateDateFilter    = (this.props.update_date_filter === 'on') ? '1' : '0';
         const typeFilter          = (this.props.type_filter === 'on') ? '1' : '0';
         const weightFilter        = (this.props.weight_filter === 'on') ? '1' : '0';
+        const minimizeFilters     = (this.props.minimize_filters === 'on') ? '1' : '0';
         const pageFilter          = this.props.per_page_filter;
         if (this.state.categoryFilter.toString() !== categoryFilter.toString() || this.state.tagFilter.toString() !== tagFilter.toString()
             || this.state.tagAs.toString() !== tagAs.toString() || this.state.creationDateFilter.toString() !== creationDateFilter.toString()
             || this.state.updateDateFilter.toString() !== updateDateFilter.toString() || this.state.pageFilter.toString() !== pageFilter.toString()
-            || this.state.typeFilter.toString() !== typeFilter.toString() || this.state.weightFilter.toString() !== weightFilter.toString()) {
-            this.fetSearchShortcode(categoryFilter, tagFilter, tagAs, creationDateFilter, updateDateFilter, typeFilter, weightFilter, pageFilter);
+            || this.state.typeFilter.toString() !== typeFilter.toString() || this.state.weightFilter.toString() !== weightFilter.toString() || this.state.minimizeFilters.toString() !== minimizeFilters.toString()) {
+            this.fetSearchShortcode(categoryFilter, tagFilter, tagAs, creationDateFilter, updateDateFilter, typeFilter, weightFilter, minimizeFilters, pageFilter);
         }
     }
 
-    fetSearchShortcode(categoryFilter, tagFilter, tagAs, creationDateFilter, updateDateFilter, typeFilter, weightFilter, pageFilter) {
+    fetSearchShortcode(categoryFilter, tagFilter, tagAs, creationDateFilter, updateDateFilter, typeFilter, weightFilter, minimizeFilters, pageFilter) {
         let loading = this.state.searchLoading;
-        const url   = window.et_fb_options.ajaxurl + "?action=wpfd&task=category.callSearchShortcode&categoryFilter=" + categoryFilter + "&tagFilter=" + tagFilter + "&tagAs=" + tagAs + "&creationDateFilter=" + creationDateFilter + "&updateDateFilter=" + updateDateFilter + "&typeFilter="+ typeFilter +"&weightFilter="+ weightFilter +"&pageFilter=" + pageFilter;
+        const url   = window.et_fb_options.ajaxurl + "?action=wpfd&task=category.callSearchShortcode&categoryFilter=" + categoryFilter + "&tagFilter=" + tagFilter + "&tagAs=" + tagAs + "&creationDateFilter=" + creationDateFilter + "&updateDateFilter=" + updateDateFilter + "&typeFilter="+ typeFilter +"&weightFilter="+ weightFilter +"&pageFilter=" + pageFilter + "&minimizeFilters=" + minimizeFilters;
         if (!loading) {
             this.setState({
                 searchLoading: true
@@ -75,6 +78,7 @@ class Search extends Component {
                         updateDateFilter: updateDateFilter,
                         typeFilter: typeFilter,
                         weightFilter: weightFilter,
+                        minimizeFilters: minimizeFilters,
                         pageFilter: pageFilter,
                         searchShortCode: result.data,
                         searchLoading: false

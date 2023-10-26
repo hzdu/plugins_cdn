@@ -203,6 +203,9 @@ body.toplevel_page_wpfd #wpfd-core .mCS-dark.mCSB_scrollTools .mCSB_dragger .mCS
   height: calc(100vh - 32px);
   overflow: hidden;
 }
+#pwrapper.plus {
+  height: calc(100vh + 350px);
+}
 #pwrapper .has-wpfd {
   position: unset;
   margin-top: 0;
@@ -3124,6 +3127,43 @@ ul.wpfd-tabs li.active {
   align-items: center;
   flex: 1;
 }
+.search-row .search-input.search-input-file-type {
+  flex-wrap: wrap;
+}
+.search-row .search-input.search-input-file-type .wpfd-admin-search-file-type-message {
+  flex-basis: 100%;
+  margin-top: 5px;
+}
+.search-row .search-input.search-input-create-date {
+  flex-wrap: wrap;
+}
+.search-row .search-input.search-input-create-date .wpfd-admin-search-create-date-message {
+  flex-basis: 100%;
+  margin-top: 5px;
+}
+.search-row .search-input.search-input-update-date {
+  flex-wrap: wrap;
+}
+.search-row .search-input.search-input-update-date .wpfd-admin-search-update-date-message {
+  flex-basis: 100%;
+  margin-top: 5px;
+}
+.search-row .search-input.search-input-weight-from {
+  position: relative;
+}
+.search-row .search-input.search-input-weight-from .wpfd-admin-search-weight-from-message {
+  position: absolute;
+  bottom: -20px;
+  left: 0;
+}
+.search-row .search-input.search-input-weight-to {
+  position: relative;
+}
+.search-row .search-input.search-input-weight-to .wpfd-admin-search-weight-to-message {
+  position: absolute;
+  bottom: -20px;
+  left: 0;
+}
 .search-row .search-input .half {
   display: flex;
   flex-wrap: wrap;
@@ -3151,6 +3191,15 @@ ul.wpfd-tabs li.active {
 }
 .search-row select {
   max-width: unset;
+}
+.search-row .search-waiting-approval-checkbox {
+  margin: 0 5px 0 0;
+  vertical-align: middle;
+  box-sizing: border-box;
+}
+.search-row .search-waiting-approval-label {
+  margin: 0;
+  vertical-align: middle;
 }
 
 @media only screen and (max-width: 767px) {
@@ -5159,5 +5208,3 @@ ul.wpfd-tabs li.active {
   padding: 10px 15px !important;
   min-width: unset;
 }
-
-/*# sourceMappingURL=core.css.map */

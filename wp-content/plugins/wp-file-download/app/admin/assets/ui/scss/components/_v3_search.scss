@@ -150,6 +150,43 @@
     display: flex;
     align-items: center;
     flex: 1;
+    &.search-input-file-type {
+      flex-wrap: wrap;
+      .wpfd-admin-search-file-type-message {
+        flex-basis: 100%;
+        margin-top: 5px;
+      }
+    }
+    &.search-input-create-date {
+      flex-wrap: wrap;
+      .wpfd-admin-search-create-date-message {
+        flex-basis: 100%;
+        margin-top: 5px;
+      }
+    }
+    &.search-input-update-date {
+      flex-wrap: wrap;
+      .wpfd-admin-search-update-date-message {
+        flex-basis: 100%;
+        margin-top: 5px;
+      }
+    }
+    &.search-input-weight-from {
+      position: relative;
+      .wpfd-admin-search-weight-from-message {
+        position: absolute;
+        bottom: -20px;
+        left: 0;
+      }
+    }
+    &.search-input-weight-to {
+      position: relative;
+      .wpfd-admin-search-weight-to-message {
+        position: absolute;
+        bottom: -20px;
+        left: 0;
+      }
+    }
     .half {
       display: flex;
       flex-wrap: wrap;
@@ -174,6 +211,15 @@
   }
   select {
     max-width: unset;
+  }
+  .search-waiting-approval-checkbox {
+    margin: 0 5px 0 0;
+    vertical-align: middle;
+    box-sizing: border-box;
+  }
+  .search-waiting-approval-label {
+    margin: 0;
+    vertical-align: middle;
   }
 }
 

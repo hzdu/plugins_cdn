@@ -33,14 +33,6 @@ ul.head-category {
   line-height: 1.5;
 }
 
-/* pagination */
-.wpfd-pagination .page-numbers {
-  margin: 6px;
-}
-.wpfd-pagination a.page-numbers {
-  cursor: pointer;
-}
-
 /* left folder tree */
 .wpfd-container {
   display: -webkit-flex;
@@ -295,6 +287,12 @@ ul.head-category {
 #et-boc .wpfd-content .zmdi, .wpfd-content .zmdi {
   font-family: Material-Design-Iconic-Font !important;
 }
+#et-boc .wpfd-content .wpfd-results #et-boc .wpfd-content, #et-boc .wpfd-content .wpfd-results .wpfd-content, .wpfd-content .wpfd-results #et-boc .wpfd-content, .wpfd-content .wpfd-results .wpfd-content {
+  padding: 0;
+}
+#et-boc .wpfd-content .wpfd-results .wpfd_list .file h3 a, .wpfd-content .wpfd-results .wpfd_list .file h3 a {
+  display: block;
+}
 #et-boc .wpfd-content .wpfd-categories h2::before, #et-boc .wpfd-content .wpfd-categories h2::after, .wpfd-content .wpfd-categories h2::before, .wpfd-content .wpfd-categories h2::after {
   display: none;
 }
@@ -530,16 +528,16 @@ ul.head-category {
   margin-bottom: 2px;
 }
 #et-boc .wpfd-content .backcategory, .wpfd-content .backcategory {
-  position: absolute;
-  top: 0;
-  right: 10px;
   margin: 5px 0 5px 5px;
   font-size: 14px;
   color: #8f8f8f;
   padding: 0;
-  display: flex;
+  display: block;
   height: 14px;
   line-height: 14px;
+  float: right;
+  width: 100%;
+  text-align: right;
 }
 #et-boc .wpfd-content .backcategory:hover, .wpfd-content .backcategory:hover {
   box-shadow: none;
@@ -559,51 +557,43 @@ ul.head-category {
   line-height: 14px;
   height: 14px;
 }
-#et-boc .wpfd-content.wpfd-content-default + .wpfd-pagination, .wpfd-content.wpfd-content-default + .wpfd-pagination {
-  padding: 5px;
-  text-align: center;
-}
-@media screen and (min-width: 720px) {
-  #et-boc .wpfd-content.wpfd-content-default.wpfd_contentdefault_foldertree + .wpfd-pagination, .wpfd-content.wpfd-content-default.wpfd_contentdefault_foldertree + .wpfd-pagination {
-    width: 70%;
-    margin-left: 0;
-    float: right;
-  }
-}
-@media screen and (max-width: 720px) {
-  #et-boc .wpfd-content.wpfd-content-default.wpfd_contentdefault_foldertree + .wpfd-pagination, .wpfd-content.wpfd-content-default.wpfd_contentdefault_foldertree + .wpfd-pagination {
-    text-align: center;
-    padding: 5px 5px 5px 15px;
-    margin-left: 25px;
-  }
-}
-#et-boc .wpfd-content.wpfd-content-ggd + .wpfd-pagination, .wpfd-content.wpfd-content-ggd + .wpfd-pagination {
-  text-align: center;
-  padding: 5px;
-}
-@media screen and (min-width: 720px) {
-  #et-boc .wpfd-content.wpfd-content-ggd.wpfdcontent_ggd_folder_tree + .wpfd-pagination, .wpfd-content.wpfd-content-ggd.wpfdcontent_ggd_folder_tree + .wpfd-pagination {
-    width: 70%;
-    margin-left: 0;
-    float: right;
-  }
-}
-#et-boc .wpfd-content.wpfd-content-table + .wpfd-pagination, .wpfd-content.wpfd-content-table + .wpfd-pagination {
-  text-align: center;
-  padding: 5px;
-}
-@media screen and (min-width: 720px) {
-  #et-boc .wpfd-content.wpfd-content-table.wpfdcontent_table_folder_tree + .wpfd-pagination, .wpfd-content.wpfd-content-table.wpfdcontent_table_folder_tree + .wpfd-pagination {
-    width: 70%;
-    margin-left: 0;
-    float: right;
-  }
-}
 
 /* other */
 #wpfd-dropblock-close {
   position: absolute;
   right: -30px;
+}
+
+#wpfd-box-player .dropblock .wpfd_file_preview_download_container {
+  padding: 10px 15px 10px 0;
+  box-sizing: border-box;
+  background-color: #fff;
+  color: #ccc;
+  text-align: right;
+  width: 100%;
+  display: block;
+  max-width: 100%;
+}
+#wpfd-box-player .dropblock .wpfd_file_preview_download_container .ext {
+  margin: 0 5px 0 0;
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  vertical-align: middle;
+  background-size: 100%;
+}
+#wpfd-box-player .dropblock .wpfd_file_preview_download_container .title {
+  display: inline-block;
+  margin: 0;
+  vertical-align: middle;
+  color: #808080;
+  text-decoration: none;
+}
+#wpfd-box-player .dropblock .wpfd_file_previewer_servers .wpfd_file_preview_download_container {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  z-index: 9999;
 }
 
 .dropblock #wpfd-dropblock-close .dashicons {
@@ -715,4 +705,12 @@ ul.head-category {
 
 .wpfd-open-tree + .with_foldertree > .wpfd-categories h2 {
   margin-left: 25px;
+}
+
+.wpfd-all-file-category .wpfd_checkbox {
+  display: none !important;
+}
+
+.wpfd-container table.wpfd-search-result thead th.wpfd-last-col-table {
+  padding: 15px 32px 15px 10px !important;
 }

@@ -17,6 +17,8 @@ jQuery(document).ready(function ($) {
     var preview_tree = $('.wpfd-foldertree-preview');
     var preview_root_cat = $('.wpfd-content-preview').data('category');
     var preview_subcategories_hover_color_list = {};
+    var allCategoriesBreadcrumbs = '<li><a class="catlink" data-idcat="all_0" href="javascript:void(0);">' + wpfdparams.translates.wpfd_all_categories + '</a></li>';
+    var allCategoriesDividerBreadcrumbs = '<li><a class="catlink" data-idcat="all_0" href="javascript:void(0);">' + wpfdparams.translates.wpfd_all_categories + '</a><span class="divider"> &gt; </span></li>';
     if (window.wpfdAjax === undefined) {
         window.wpfdAjax = {};
     }
@@ -173,6 +175,13 @@ jQuery(document).ready(function ($) {
                 }
                 box.empty();
                 box.prepend(html);
+                box.attr('data-id', fileid);
+                box.attr('data-catid', categoryid);
+                box.attr('class', 'wpfd-preview-box wpfd-download-box');
+                if (typeof (file.file.ext) !== 'undefined') {
+                    box.attr('data-type', file.file.ext);
+                    box.addClass(file.file.ext);
+                }
                 box.click(function (e) {
                     if ($(e.target).is('#wpfd-preview-box')) {
                         box.hide();
@@ -183,6 +192,12 @@ jQuery(document).ready(function ($) {
                         }
                     });
                 });
+
+                if (typeof (file.file.linkdownload) !== 'undefined') {
+                    var previewLinkDownload = '<input type="hidden" class="wpfd_file_preview_link_download" value="'+ file.file.linkdownload +'" data-filetitle="'+ file.file.post_title +'" />';
+                    box.prepend(previewLinkDownload);
+                }
+
                 $('#wpfd-preview-box .wpfd-close').click(function (e) {
                     e.preventDefault();
                     box.hide();
@@ -207,6 +222,10 @@ jQuery(document).ready(function ($) {
                     dropblock.css('left', '');
                 }
 
+                if (dropblock && typeof (file.file.ID) !== 'undefined') {
+                    dropblock.attr('data-id', file.file.ID);
+                }
+
                 if (typeof wpfdColorboxInit !== 'undefined') {
                     wpfdColorboxInit();
                 }
@@ -218,6 +237,9 @@ jQuery(document).ready(function ($) {
                     var link = $(this).attr('href');
                     window.location.href = link;
                 });
+
+                wpfdPreviewDisplayDownloadedFiles();
+                wpfdPreviewDownloadFiles();
             });
         });
     }
@@ -252,19 +274,47 @@ jQuery(document).ready(function ($) {
             dataType: "json",
             cache: true,
             beforeSend: function () {
+                if (container.find('.wpfd-form-search-file-category').length) {
+                    container.find('.wpfd-form-search-file-category').remove();
+                }
+
                 if (wpfdPreviewCategoriesLocalCache.exist(previewCategoriesAjaxUrl)) {
                     var triggerPreviewCategories = wpfdPreviewCategoriesLocalCache.get(previewCategoriesAjaxUrl);
                     wpfdPreviewCategoriesLocalCacheTrigger(triggerPreviewCategories, sourcecat, page, pathname, catid, container, view_empty_subcategories);
-
                     return false;
                 }
-
                 return true;
             }
         }).done(function (categories) {
-
             // Set categories trigger
             wpfdPreviewCategoriesLocalCache.set(previewCategoriesAjaxUrl, categories);
+
+            // Search file in category section
+            var $displayFileSearch = $(".wpfd-content-preview[data-category=" + sourcecat + "]").find('.wpfd_root_category_display_file_search');
+            if ($displayFileSearch.length) {
+                var $themeName = container.find('.wpfd_root_category_theme').val();
+                var $searchContent = '<form action="" id="adminForm-'+ categories.category.term_id +'" class="wpfd-adminForm wpfd-form-search-file-category" name="adminForm" method="post">' +
+                    '<div id="loader" style="display:none; text-align: center">' +
+                    '<img src="'+ wpfdparams.wpfd_plugin_url +'/app/site/assets/images/searchloader.svg" style="margin: 0 auto"/>' +
+                    '</div>' +
+                    '<div class="box-search-filter wpfd-category-search-section">' +
+                    '<div class="searchSection">' +
+                    '<div class="only-file input-group clearfix wpfd_search_input" id="Search_container">' +
+                    '<img src="'+ wpfdparams.wpfd_plugin_url +'/app/site/assets/images/search-24.svg" class="material-icons wpfd-icon-search wpfd-search-file-category-icon" />' +
+                    '<input type="text" class="pull-left required txtfilename" name="q" id="txtfilename" autocomplete="off" placeholder="'+ wpfdparams.translates.msg_search_file_category_placeholder +'" value="" />' +
+                    '</div>' +
+                    '<button id="btnsearchbelow" class="btnsearchbelow wpfd-btnsearchbelow" type="button">'+ wpfdparams.translates.msg_search_file_category_search +'</button>' +
+                    '</div>' +
+                    '<input type="hidden" id="filter_catid" class="chzn-select filter_catid" name="catid" value="'+ categories.category.correctConvertCategoryId +'" data-cattype="" data-slug="" />' +
+                    '<input type="hidden" name="theme" value="'+ $themeName +'">' +
+                    '<input type="hidden" name="limit" value="15">' +
+                    '<div id="wpfd-results" class="wpfd-results list-results"></div>' +
+                    '</div>' +
+                    '</form>';
+
+                container.prepend($searchContent);
+                wpfdPreviewSearchFileCategoryHandle();
+            }
 
             if (page !== null && page !== undefined) {
                 window.history.pushState('', document.title, pathname + '#' + sourcecat + '-' + catid + '-' + categories.category.slug + '-p' + page);
@@ -280,6 +330,9 @@ jQuery(document).ready(function ($) {
                 $(".wpfd-content-preview[data-category=" + sourcecat + "] .wpfd-container-preview").prepend(html);
             }
             if (categories.category.breadcrumbs !== undefined) {
+                if (sourcecat.toString() === 'all_0' && catid.toString() !== 'all_0' && parseInt(catid) !== 0) {
+                    categories.category.breadcrumbs = allCategoriesDividerBreadcrumbs + categories.category.breadcrumbs;
+                }
                 $(".wpfd-content-preview[data-category=" + sourcecat + "] .breadcrumbs").html(categories.category.breadcrumbs);
             }
             for (var i = 0; i < categories.categories.length; i++) {
@@ -350,7 +403,7 @@ jQuery(document).ready(function ($) {
             beforeSend: function () {
                 if (wpfdPreviewFilesLocalCache.exist(previewFilesAjaxUrl)) {
                     var previewTriggerFiles = wpfdPreviewFilesLocalCache.get(previewFilesAjaxUrl);
-                    wpfdPreviewFilesLocalCacheTrigger(previewTriggerFiles, sourcecat, view_empty_files);
+                    wpfdPreviewFilesLocalCacheTrigger(previewTriggerFiles, sourcecat, view_empty_files, previewFilesAjaxUrl);
 
                     return false;
                 }
@@ -588,6 +641,10 @@ jQuery(document).ready(function ($) {
 
                                 // Call list files
                                 if (currentContainer.parent('.wpfd-upload-form').length) {
+                                    // Refresh uploaded files on caching
+                                    if (wpfdPreviewFilesLocalCache.exist(previewFilesAjaxUrl)) {
+                                        wpfdPreviewFilesLocalCache.remove(previewFilesAjaxUrl);
+                                    }
                                     var preview_sourcecat = currentContainer.parents('.wpfd-content.wpfd-content-multi').data('category');
                                     var current_category  = currentContainer.parents('.wpfd-content.wpfd-content-multi').find('#current_category_' + preview_sourcecat).val();
                                     load(preview_sourcecat, current_category);
@@ -634,6 +691,9 @@ jQuery(document).ready(function ($) {
                 view_empty_files.val(content.files.length);
                 wpfd_view_fire_empty_category_message(sourcecat);
             }
+
+            wpfdPreviewDisplayDownloadedFiles();
+            wpfdPreviewDownloadFiles();
         });
 
         $(document).trigger('wpfd:category-loaded');
@@ -655,7 +715,16 @@ jQuery(document).ready(function ($) {
         }
 
         var html = '';
+
+        if (preview_topCat.toString() === 'all_0' && catid.toString() !== 'all_0' && parseInt(catid) !== 0) {
+            html = allCategoriesDividerBreadcrumbs;
+        }
+
         for (var i = 0; i < links.length; i++) {
+            if (parseInt(links[i].term_id) === 0) {
+                continue;
+            }
+
             if (i < links.length - 1) {
                 html += '<li><a class="catlink" data-idcat="' + links[i].term_id + '" href="javascript:void(0)">';
                 html += links[i].name + '</a><span class="divider"> &gt; </span></li>';
@@ -663,6 +732,7 @@ jQuery(document).ready(function ($) {
                 html += '<li><span>' + links[i].name + '</span></li>';
             }
         }
+
         $(".wpfd-content-preview[data-category=" + preview_topCat + "] .wpfd-breadcrumbs-preview li").remove();
         $(".wpfd-content-preview[data-category=" + preview_topCat + "] .wpfd-breadcrumbs-preview").append(html);
 
@@ -744,8 +814,8 @@ jQuery(document).ready(function ($) {
 
                 window.history.pushState('', document.title, pathname + '#' + current_sourcecat + '-' + category + '-' + category_slug + '-p' + page_number);
 
-                $(".wpfd-content-preview[data-category=" + current_sourcecat + "] .wpfd-container-preview .wpfd_list").remove();
-                $(".wpfd-content-preview[data-category=" + current_sourcecat + "] .wpfd-container-preview").append($('#wpfd-loading-wrap').html());
+                $(".wpfd-content-preview[data-category=" + current_sourcecat + "] .wpfd-container-preview:not(wpfd-results .wpfd-container-preview) .wpfd_list").remove();
+                $(".wpfd-content-preview[data-category=" + current_sourcecat + "] .wpfd-container-preview:not(wpfd-results .wpfd-container-preview)").append($('#wpfd-loading-wrap').html());
 
                 var params = $.param({
                     task: 'files.display',
@@ -774,16 +844,16 @@ jQuery(document).ready(function ($) {
                     var template = Handlebars.compile(sourcefiles);
                     var html = template(content);
 
-                    if ($(".wpfd-content-preview[data-category=" + current_sourcecat + "] .wpfd-container-preview .wpfd-upload-form").length) {
-                        $(".wpfd-content-preview[data-category=" + current_sourcecat + "] .wpfd-container-preview .wpfd-upload-form").before(html);
+                    if ($(".wpfd-content-preview[data-category=" + current_sourcecat + "] .wpfd-container-preview:not(wpfd-results .wpfd-container-preview) .wpfd-upload-form").length) {
+                        $(".wpfd-content-preview[data-category=" + current_sourcecat + "] .wpfd-container-preview:not(wpfd-results .wpfd-container-preview) .wpfd-upload-form").before(html);
                     } else {
-                        $(".wpfd-content-preview[data-category=" + current_sourcecat + "] .wpfd-container-preview").append(html);
+                        $(".wpfd-content-preview[data-category=" + current_sourcecat + "] .wpfd-container-preview:not(wpfd-results .wpfd-container-preview)").append(html);
                     }
                     initClickFile();
                     // View files
                     if (typeof (content.fileview) !== 'undefined' && content.fileview.length) {
                         content.fileview.forEach(function (viewFile) {
-                            var preview_dropblock = $(".wpfd-content-preview[data-category=" + sourcecat + "] .wpfd-container-preview .wpfd-file-link[data-id='"+ viewFile.id +"'] .dropblock");
+                            var preview_dropblock = $(".wpfd-content-preview[data-category=" + sourcecat + "] .wpfd-container-preview:not(wpfd-results .wpfd-container-preview) .wpfd-file-link[data-id='"+ viewFile.id +"'] .dropblock");
                             if (viewFile.view === true) {
                                 preview_dropblock.css({'background-image': 'url('+ viewFile.link +')'});
                                 preview_dropblock.addClass(viewFile.view_class);
@@ -792,8 +862,19 @@ jQuery(document).ready(function ($) {
                             }
                         });
                     }
+                    // File password security
+                    if (typeof (content.filepasswords) !== 'undefined') {
+                        $.each(content.filepasswords, function( file_id, pw_form ) {
+                            var protected_file = $(".wpfd-content-preview[data-category=" + sourcecat + "] .wpfd-container-preview").find('.wpfd-file-link[data-id="' + file_id + '"]').parent();
+                            protected_file.empty();
+                            protected_file.addClass('wpfd-password-protection-form');
+                            protected_file.append(pw_form);
+                        });
+                    }
                     preview_init_pagination(wrap.next('.wpfd-pagination'));
-                    wpfd_remove_loading($(".wpfd-content-preview[data-category=" + current_sourcecat + "] .wpfd-container-preview"));
+                    wpfd_remove_loading($(".wpfd-content-preview[data-category=" + current_sourcecat + "] .wpfd-container-preview:not(wpfd-results .wpfd-container-preview)"));
+                    wpfdPreviewDisplayDownloadedFiles();
+                    wpfdPreviewDownloadFiles();
                 });
             }
         });
@@ -891,6 +972,32 @@ jQuery(document).ready(function ($) {
     }
 
     function wpfdPreviewCategoriesLocalCacheTrigger(triggerPreviewCategories, sourcecat, page, pathname, catid, container, view_empty_subcategories) {
+        var $displayFileSearch = $(".wpfd-content-preview[data-category=" + sourcecat + "]").find('.wpfd_root_category_display_file_search');
+        if ($displayFileSearch.length) {
+            var $themeName = $(".wpfd-content-preview[data-category=" + sourcecat + "]").find('.wpfd_root_category_theme').val();
+            var $searchContent = '<form action="" id="adminForm-'+ triggerPreviewCategories.category.term_id +'" class="wpfd-adminForm wpfd-form-search-file-category" name="adminForm" method="post">' +
+                '<div id="loader" style="display:none; text-align: center">' +
+                '<img src="'+ wpfdparams.wpfd_plugin_url +'/app/site/assets/images/searchloader.svg" style="margin: 0 auto"/>' +
+                '</div>' +
+                '<div class="box-search-filter wpfd-category-search-section">' +
+                '<div class="searchSection">' +
+                '<div class="only-file input-group clearfix wpfd_search_input" id="Search_container">' +
+                '<img src="'+ wpfdparams.wpfd_plugin_url +'/app/site/assets/images/search-24.svg" class="material-icons wpfd-icon-search wpfd-search-file-category-icon" />' +
+                '<input type="text" class="pull-left required txtfilename" name="q" id="txtfilename" autocomplete="off" placeholder="'+ wpfdparams.translates.msg_search_file_category_placeholder +'" value="" />' +
+                '</div>' +
+                '<button id="btnsearchbelow" class="btnsearchbelow wpfd-btnsearchbelow" type="button">'+ wpfdparams.translates.msg_search_file_category_search +'</button>' +
+                '</div>' +
+                '<input type="hidden" id="filter_catid" class="chzn-select filter_catid" name="catid" value="'+ triggerPreviewCategories.category.correctConvertCategoryId +'" data-cattype="" data-slug="" />' +
+                '<input type="hidden" name="theme" value="'+ $themeName +'">' +
+                '<input type="hidden" name="limit" value="15">' +
+                '<div id="wpfd-results" class="wpfd-results list-results"></div>' +
+                '</div>' +
+                '</form>';
+
+            $(".wpfd-content-preview[data-category=" + sourcecat + "]").prepend($searchContent);
+            wpfdPreviewSearchFileCategoryHandle();
+        }
+
         if (page !== null && page !== undefined) {
             window.history.pushState('', document.title, pathname + '#' + sourcecat + '-' + catid + '-' + triggerPreviewCategories.category.slug + '-p' + page);
         } else {
@@ -952,7 +1059,7 @@ jQuery(document).ready(function ($) {
         }
     }
 
-    function wpfdPreviewFilesLocalCacheTrigger(previewTriggerFiles, sourcecat, view_empty_files) {
+    function wpfdPreviewFilesLocalCacheTrigger(previewTriggerFiles, sourcecat, view_empty_files, previewFilesAjaxUrl) {
         if (previewTriggerFiles.files.length) {
             $(".wpfd-content-preview.wpfd-content-multi[data-category=" + sourcecat + "]  .preview-download-category").removeClass("display-download-category");
         } else {
@@ -1175,6 +1282,10 @@ jQuery(document).ready(function ($) {
 
                             // Call list files
                             if (currentContainer.parent('.wpfd-upload-form').length) {
+                                // Refresh uploaded files on caching
+                                if (wpfdPreviewFilesLocalCache.exist(previewFilesAjaxUrl)) {
+                                    wpfdPreviewFilesLocalCache.remove(previewFilesAjaxUrl);
+                                }
                                 var preview_sourcecat = currentContainer.parents('.wpfd-content.wpfd-content-multi').data('category');
                                 var current_category  = currentContainer.parents('.wpfd-content.wpfd-content-multi').find('#current_category_' + preview_sourcecat).val();
                                 load(preview_sourcecat, current_category);
@@ -1221,7 +1332,185 @@ jQuery(document).ready(function ($) {
             view_empty_files.val(previewTriggerFiles.files.length);
             wpfd_view_fire_empty_category_message(sourcecat);
         }
+
+        wpfdPreviewDisplayDownloadedFiles();
+        wpfdPreviewDownloadFiles();
     }
+
+    // Search file category
+    function wpfdPreviewCategoryAjaxSearch(element, ordering, direction, pushState = true) {
+        var $ = jQuery;
+        var sform = element;
+        var $key = $(sform).find('input[name=q]').val();
+        var $placeholder = $(sform).find('input[name=q]').attr('placeholder');
+
+        // Avoid conflict key search
+        if ($key.toString() === $placeholder.toString()) {
+            $key = '';
+        }
+
+        // Get the form data
+        var formData = {
+            'q': $key,
+            'catid': $(sform).find('[name=catid]').val(),
+            'theme': $(sform).find('[name=theme]').val(),
+            'limit': $(sform).find('[name=limit]').val()
+        };
+
+        formData = cleanObj(formData);
+
+        if (jQuery.isEmptyObject(formData) ||
+            (typeof (formData.q) === 'undefined' &&
+                typeof (formData.catid) !== 'undefined' &&
+                parseInt(formData.catid) === 0)) {
+            $(element).find(".txtfilename").focus();
+            return false;
+        }
+
+        if ((typeof ordering !== 'undefined') && ordering) formData.ordering = ordering;
+        if ((typeof direction !== 'undefined') && direction) formData.dir = direction;
+
+        // Pagination
+        if (pushState) {
+            var filter_url = jQuery.param(formData);
+            var currentUrl = window.location.search;
+            var pushUrl;
+            if (typeof URLSearchParams !== 'undefined') {
+                var currentFilters = new URLSearchParams(currentUrl.substring(1));
+                Object.keys(formData).forEach(function (key) {
+                    if (currentFilters.has(key)) {
+                        currentFilters.delete(key);
+                    }
+                });
+                if (currentUrl.substring(1) === '?' && currentFilters.toString() !== '') {
+                    pushUrl = currentFilters.toString() + '&' + filter_url;
+
+                } else {
+                    pushUrl = '?' + filter_url;
+                }
+
+                window.history.pushState(formData, "", pushUrl);
+            }
+        }
+
+        $.ajax({
+            method: "POST",
+            url: wpfdparams.wpfdajaxurl + "task=search.display",
+            data: formData,
+            beforeSend: function () {
+                $(element).find(".wpfd-results").html('');
+                $(element).find(".wpfd-results").prepend($(element).find("#loader").clone().show());
+            },
+            success: function (result) {
+                $(element).find(".wpfd_search_file_suggestion").html('');
+                $(element).find(".wpfd_search_file_suggestion").fadeOut(300);
+
+                $(element).find(".wpfd-results").html(result);
+                $(element).find(".wpfd-results .wpfd-container-preview").addClass('wpfd-container-preview-search');
+                if ($(element).find(".wpfd-results .wpfd-form-search-file-category").length) {
+                    $(element).find(".wpfd-results .wpfd-form-search-file-category").remove();
+                }
+                wpfdPreviewInitSorting();
+                if (typeof wpfdColorboxInit !== 'undefined') {
+                    wpfdColorboxInit();
+                }
+            }
+        });
+    }
+
+    // Sort initial
+    function wpfdPreviewInitSorting() {
+        jQuery('.orderingCol').click(function (e) {
+            e.preventDefault();
+            var ordering = jQuery(this).data('ordering');
+            var direction = jQuery(this).data('direction');
+            wpfdPreviewCategoryAjaxSearch(ordering, direction);
+        });
+
+        jQuery(".list-results #limit").change(function (e) {
+            e.preventDefault();
+            jQuery('input[name="limit"]').val(jQuery(this).val());
+            var formID = '#' + jQuery(this).closest('form').attr('id');
+            wpfdPreviewCategoryAjaxSearch(formID);
+            return false;
+        });
+    }
+
+    function wpfdPreviewSearchFileCategoryHandle() {
+        $(".wpfd-content .wpfd-adminForm").submit(function (e) {
+            e.preventDefault();
+            return false;
+        });
+
+        $('.wpfd-content .txtfilename').on('keyup', function(e) {
+            var $this = $(this);
+            if (e.keyCode === 13 || e.which === 13 || e.key === 'Enter')
+            {
+                e.preventDefault();
+
+                if ($this.val() === '') {
+                    return;
+                }
+
+                var formID = '#' + $this.closest('form').attr('id');
+                wpfdPreviewCategoryAjaxSearch(formID);
+
+                return;
+            }
+        });
+
+        // Ajax filters
+        $(".wpfd-content .btnsearchbelow").on('click', function (e) {
+            e.preventDefault();
+            var formID = '#' + $(this).closest('form').attr('id');
+            wpfdPreviewCategoryAjaxSearch(formID);
+            return false;
+        });
+    }
+    wpfdPreviewSearchFileCategoryHandle();
+
+    function wpfdPreviewDisplayDownloadedFiles() {
+        var fileDownload = $('.wpfd-content.wpfd-content-preview .file');
+        var linkDownload = $('.dropblock .wpfd_downloadlink');
+        var user_login_id = wpfdparams.wpfd_user_login_id;
+        if (linkDownload.length) {
+            linkDownload.on('click', function () {
+                var fileId = $(this).parents('.dropblock').data('id');
+                var isDownloadedFile = localStorage.getItem('wpfd_downloaded_file_' + user_login_id + '_' + fileId);
+                if (isDownloadedFile === null) {
+                    localStorage.setItem('wpfd_downloaded_file_' + user_login_id + '_' + fileId, 'yes');
+                    $('.wpfd-file-link[data-id="'+ fileId +'"]').parents('.file').addClass('is_downloaded');
+                }
+            });
+        }
+
+        if (fileDownload.length) {
+            fileDownload.each(function () {
+                var id = $(this).find('.wpfd-file-link').data('id');
+                var isFileDownload = localStorage.getItem('wpfd_downloaded_file_' + user_login_id + '_' + id);
+                if (isFileDownload) {
+                    $(this).addClass('is_downloaded');
+                }
+            });
+        }
+    }
+    wpfdPreviewDisplayDownloadedFiles();
+
+    function wpfdPreviewDownloadFiles() {
+        $('.wpfd-preview-box.png .wpfd_downloadlink, .wpfd-preview-box.jpg .wpfd_downloadlink, .wpfd-preview-box.jpeg .wpfd_downloadlink, .wpfd-preview-box.gif .wpfd_downloadlink').on('click', function (event) {
+            event.preventDefault();
+            var fileId = $(this).parents('.wpfd-preview-box').attr('data-id');
+            var categoryId = $(this).parents('.wpfd-preview-box').attr('data-catid');
+            var cloudType = $('.wpfd-content-preview').find('.wpfd_root_category_type').val();
+
+            if (!fileId || !categoryId) {
+                return false;
+            }
+
+            window.location.href = wpfdparams.site_url + "?wpfd_action=wpfd_download_file&wpfd_file_id=" + fileId + "&wpfd_category_id=" + categoryId + "&cloudType=" + cloudType;
+        });
+    }
+    wpfdPreviewDownloadFiles();
 });
 
 // Preview categories local cache

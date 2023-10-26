@@ -19,6 +19,7 @@
       'onclick'         : function(elem,type,file){},
       'oncheck'         : function(elem,checked,type,file){},
       'expanded'        : false,
+      'expandedParent'  : false,
       'usecheckboxes'   : true, //can be true files dirs or false
       'expandSpeed'     : 0,
       'collapseSpeed'   : 0,
@@ -35,6 +36,9 @@
             $this = $(this);
             $.extend(options,o);
             $(this).data('jaofiletree', $.extend({}, options));
+            if (typeof wpfdparams !== 'undefined' && wpfdparams.hasOwnProperty('allow_category_tree_parent_expanded')) {
+                options.expandedParent = parseInt(wpfdparams.allow_category_tree_parent_expanded) === 1 ? true : false;
+            }
             // if(options.showroot!=''){
             //
             //     $this.html('<ul class="jaofiletree"><li class="drive directory collapsed selected">'+
@@ -86,7 +90,7 @@
                 if (typeof datas.data !== 'undefined' && datas.data) {
                     var tree = buildtree(datas.data, true, dir);
                     $this.html(tree);
-                    if (!options.expanded) {
+                    if (options.expandedParent) {
                         setTimeout(function() {
                             if ($('.icon-open-close[data-parent_id=0]').length) {
                                 $this.find('.icon-open-close[data-parent_id=0]').click();
@@ -194,6 +198,10 @@
 
     setevents = function($this){
         var options = $this.data('jaofiletree');
+        var allow_category_tree_click_scroll_up = false;
+        if (typeof wpfdparams !== 'undefined' && wpfdparams.hasOwnProperty('allow_category_tree_click_scroll_up')) {
+            allow_category_tree_click_scroll_up = parseInt(wpfdparams.allow_category_tree_click_scroll_up) === 1 ? true : false;
+        }
         $this.find('li a, li .icon-open-close').unbind('click');
         //Bind userdefined function on click an element
         $this.find('li.directory a').bind('click', function(e) {
@@ -217,6 +225,12 @@
                 }, 1000)
             }
 
+            if (allow_category_tree_click_scroll_up) {
+                var offsetTop = $(this).closest(".wpfd-content").offset().top - 200;
+                $('html, body').animate({
+                    scrollTop: offsetTop
+                }, 1000);
+            }
 
             return false;
         });

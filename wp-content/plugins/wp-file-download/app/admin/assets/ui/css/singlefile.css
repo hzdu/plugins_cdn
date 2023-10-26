@@ -32,7 +32,7 @@
   justify-content: space-between;
   /*font-size: 1.5em;*/
   text-transform: uppercase;
-  text-decoration: none;
+  text-decoration: none !important;
   /* Fix fliking */
   transition-property: unset !important;
   transition-duration: unset !important;
@@ -76,13 +76,4 @@
 .wpfd-single-file .wpfd-file-content--meta > div {
   color: #B3B3B3;
   margin: 2px 0;
-}
-
-
-@media screen and (max-width: 420px) {
-  .wpfd-single-file--buttons {
-    max-width: 100%;
-    flex-direction: row;
-    flex-wrap: wrap;
-  }
 }

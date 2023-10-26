@@ -53,6 +53,7 @@
               $('[name="search[weight][from_unit]"]').val('b');
               $('[name="search[weight][to]"]').val('');
               $('[name="search[weight][to_unit]"]').val('b');
+              $('[name="search[waiting_for_approval]"]').prop('checked', false);
               return false;
           });
         $('.scroller_wrapper_inner').mCustomScrollbar({ // document: http://manos.malihu.gr/jquery-custom-content-scroller/
@@ -168,7 +169,7 @@
 
         // Update title
         if (params.hasOwnProperty('title')) {
-          fileDiv.find('.title').text(params.title);
+          fileDiv.find('.title').text(params.title.replace(/\\/g, ''));
         }
         // Update filesize
         if (params.hasOwnProperty('size')) {
@@ -201,6 +202,12 @@
             fileDiv.removeClass('unpublished');
           } else {
             fileDiv.addClass('unpublished');
+            var fileClass = fileDiv.attr('class');
+            if (fileClass.indexOf('isPending') !== -1) {
+              // Pending file icon
+              var $pendingButton = $('<button class="wpfd-pending-btn">'+ wpfd_admin.file_waiting_for_approval +'</button>');
+              fileDiv.find('.title').prepend($pendingButton);
+            }
           }
         }
         // Icons
@@ -415,7 +422,7 @@
           $('.wpfd_row.editor').addClass('file_version_drag_drop');
         });
         // Add pending icon
-        var $pendingButton = $('<button class="wpfd-pending-btn">Waiting for approval</button>');
+        var $pendingButton = $('<button class="wpfd-pending-btn">' + wpfd_admin.file_waiting_for_approval + '</button>');
         var row = $('.isPending');
         $('.title', row).prepend($pendingButton);
 

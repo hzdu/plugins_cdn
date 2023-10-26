@@ -70,7 +70,7 @@
     }
 
     componentDidMount() {
-      const {shortcode, selectedCatName, isPreview} = this.props.attributes
+      const {shortcode, selectedCatName, isPreview, selectedCategoryId} = this.props.attributes
       if (isPreview) {
         this.setState({preview: true})
       } else {
@@ -81,6 +81,10 @@
         if (shortcode) {
           this.setState({showInput: false, searchText: shortcode, selectedCatName: selectedCatName})
         }
+      }
+
+      if(typeof(selectedCategoryId) != 'undefined') {
+        this.initLoadCategories(selectedCategoryId);
       }
     }
 
@@ -97,10 +101,31 @@
       if (categoriesList.length === 0 && showCategoryList) {
         this.fetchCategories()
       }
-
-      // if (this.constructor.checkAttrChanged(prevProps.attributes, attributes)) {
-      //   this.fetchCategories()
-      // }
+      jQuery(document).ready(function() {
+        var wpfd_tree = jQuery('.wpfd-foldertree');
+        if(wpfd_tree.length) {
+          wpfd_tree.each(function () {
+            var curTheme = jQuery(this).closest('.wpfd-content').find('.wpfd_root_category_theme').val();
+            var wpfd_topCat = jQuery(this).parents('.wpfd-content-'+curTheme+'.wpfd-content-multi').data('category');
+            jQuery(this).jaofiletree({
+                script: `${ajaxurl}?juwpfisadmin=false&action=wpfd&task=categories.getCats`,
+                usecheckboxes: false,
+                root: wpfd_topCat,
+                expanded: false
+            });
+          })
+        }
+        var wpfd_subcategory = jQuery('.wpfd-content a.wpfdcategory');
+        if (wpfd_subcategory.length) {
+          wpfd_subcategory.each(function () {
+            var curTheme = jQuery(this).closest('.wpfd-content').find('.wpfd_root_category_theme').val();
+            jQuery(this).addClass(curTheme+'_category');
+          })
+        }
+        if(jQuery('.wpfd-category-block').length && !jQuery('.categories-dropdown').length) {
+          jQuery('.wpfd-category-block').removeClass('wpfd-category-block-selected');
+        }
+      });
     }
 
     handleClickOutside(event) {
@@ -121,6 +146,27 @@
       return (
         selectedCategoryId !== prevSelectedCategoryId
       )
+    }
+
+    initLoadCategories(id) {
+      if (parseInt(id) !== 0) {
+        const {setAttributes} = this.props;
+        const wpfdCategoriesHTML = `${ajaxurl}?action=wpfd&task=category.preview&wpfd_category_id=${id}`
+        fetch(wpfdCategoriesHTML)
+        .then(res => res.json())
+        .then(
+          (result) => {
+            if (result.status) {
+              setAttributes({
+                catPreview: result.html 
+              });
+            }
+          },
+          // errors
+          (error) => {
+          }
+        );
+      }
     }
 
     fetchCategories(showList = true) {
@@ -156,6 +202,9 @@
                 showInput: showList,
                 showCategoryList: showList,
               })
+              if(jQuery('.categories-dropdown').length) {
+                jQuery('.categories-dropdown').closest('.wpfd-category-block').addClass('wpfd-category-block-selected');
+              }
             }
           })
           .catch(function (error) {
@@ -173,6 +222,8 @@
       const shortCode = `[wpfd_category id="${id}"]`
 
       setAttributes({selectedCategoryId: id, shortcode: shortCode, catName: catname})
+
+      this.initLoadCategories(id);
 
       this.setState({selectedCatId: id, showCategoryList: false, searchText: shortCode, selectedCatName: catname, showInput: false})
     }
@@ -205,7 +256,7 @@
     render() {
       const {categoriesList, searchText, selectedCatName, showCategoryList, showInput, loading, preview} = this.state
       const {attributes, className} = this.props
-      const {shortcode, selectedCategoryId, catName} = attributes
+      const {shortcode, selectedCategoryId, catName, catPreview} = attributes
       let filteredCategoriesList;
       let categoriesIds = [];
       let filterCategoryResults = [];
@@ -340,11 +391,13 @@
                                                       }
 
                                                       <span className={'wpfd-category-name'}>
-                                  {category.name}
-                                </span>
+                                                        {category.name}
+                                                      </span>
+                                                      {category.cloudType === false &&
                                                       <span className={'wpfd-category-count'}>
-                                  {`(${category.count})`}
-                                </span>
+                                                        {`(${category.count})`}
+                                                      </span>
+                                                      }
                                                     </li>
                                                 )
                                               })
@@ -389,9 +442,8 @@
                           </Fragment>
                     }
                   </div>
-                  {catName !== '' && selectedCategoryId && showInput === false &&
-                  <div className="wpfd-selected-category-name">{__('FILE CATEGORY', 'wpfd')}:<span>{catName}</span>
-                  </div>
+                  {catName !== '' && selectedCategoryId && showInput === false && 
+                  <div className="wpfd-selected-category" dangerouslySetInnerHTML={{ __html: catPreview || '' }} />
                   }
                 </div>
               </div>

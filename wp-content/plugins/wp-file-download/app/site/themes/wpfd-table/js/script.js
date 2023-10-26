@@ -11,10 +11,11 @@
  */
 
 jQuery(document).ready(function ($) {
-
     var table_tree = $('.wpfd-foldertree-table');
     var table_hash = window.location.hash;
     var table_root_cat = $('.wpfd-content-table').data('category');
+    var allCategoriesBreadcrumbs = '<li><a class="catlink" data-idcat="all_0" href="javascript:void(0);">' + wpfdparams.translates.wpfd_all_categories + '</a></li>';
+    var allCategoriesDividerBreadcrumbs = '<li><a class="catlink" data-idcat="all_0" href="javascript:void(0);">' + wpfdparams.translates.wpfd_all_categories + '</a><span class="divider"> &gt; </span></li>';
     var table_cParents = {};
     if (window.wpfdAjax === undefined) {
         window.wpfdAjax = {};
@@ -183,13 +184,16 @@ jQuery(document).ready(function ($) {
             dataType: "json",
             cache: true,
             beforeSend: function () {
+                if (container.find('.wpfd-form-search-file-category').length) {
+                    container.find('.wpfd-form-search-file-category').remove();
+                }
+
                 if (wpfdTableCategoriesLocalCache.exist(tableCategoriesAjaxUrl)) {
                     var tableTriggerCategories = wpfdTableCategoriesLocalCache.get(tableCategoriesAjaxUrl);
                     wpfdTableCategoriesLocalCacheTrigger(tableTriggerCategories, sourcecat, page, pathname, catid, container, table_empty_subcategories, table_empty_files);
                     if ($(".wpfd-content-multi[data-category=" + sourcecat + "] .wpfd-loading-message-section").length) {
                         $(".wpfd-content-multi[data-category=" + sourcecat + "] .wpfd-loading-message-section").remove();
                     }
-
                     return false;
                 }
 
@@ -201,6 +205,33 @@ jQuery(document).ready(function ($) {
             }
             // Set table categories cache
             wpfdTableCategoriesLocalCache.set(tableCategoriesAjaxUrl, categories);
+
+            // Search file in category section
+            var $displayFileSearch = container.find('.wpfd_root_category_display_file_search');
+            if ($displayFileSearch.length) {
+                var $themeName = container.find('.wpfd_root_category_theme').val();
+                var $searchContent = '<form action="" id="adminForm-'+ categories.category.term_id +'" class="wpfd-adminForm wpfd-form-search-file-category" name="adminForm" method="post">' +
+                    '<div id="loader" style="display:none; text-align: center">' +
+                    '<img src="'+ wpfdparams.wpfd_plugin_url +'/app/site/assets/images/searchloader.svg" style="margin: 0 auto"/>' +
+                    '</div>' +
+                    '<div class="box-search-filter wpfd-category-search-section">' +
+                    '<div class="searchSection">' +
+                    '<div class="only-file input-group clearfix wpfd_search_input" id="Search_container">' +
+                    '<img src="'+ wpfdparams.wpfd_plugin_url +'/app/site/assets/images/search-24.svg" class="material-icons wpfd-icon-search wpfd-search-file-category-icon" />' +
+                    '<input type="text" class="pull-left required txtfilename" name="q" id="txtfilename" autocomplete="off" placeholder="'+ wpfdparams.translates.msg_search_file_category_placeholder +'" value="" />' +
+                    '</div>' +
+                    '<button id="btnsearchbelow" class="btnsearchbelow wpfd-btnsearchbelow" type="button">'+ wpfdparams.translates.msg_search_file_category_search +'</button>' +
+                    '</div>' +
+                    '<input type="hidden" id="filter_catid" class="chzn-select filter_catid" name="catid" value="'+ categories.category.correctConvertCategoryId +'" data-cattype="" data-slug="" />' +
+                    '<input type="hidden" name="theme" value="'+ $themeName +'">' +
+                    '<input type="hidden" name="limit" value="15">' +
+                    '<div id="wpfd-results" class="wpfd-results list-results"></div>' +
+                    '</div>' +
+                    '</form>';
+
+                container.prepend($searchContent);
+                wpfdTableSearchFileCategoryHandle();
+            }
 
             if (page !== null && page !== undefined) {
                 window.history.pushState('', document.title, pathname + '#' + sourcecat + '-' + catid + '-' + categories.category.slug + '-p' + page);
@@ -216,6 +247,9 @@ jQuery(document).ready(function ($) {
                 $(".wpfd-content-multi[data-category=" + sourcecat + "] .wpfd-categories").replaceWith(html);
             }
             if (categories.category.breadcrumbs !== undefined) {
+                if (sourcecat.toString() === 'all_0' && catid.toString() !== 'all_0' && parseInt(catid) !== 0) {
+                    categories.category.breadcrumbs = allCategoriesDividerBreadcrumbs + categories.category.breadcrumbs;
+                }
                 $(".wpfd-content-multi[data-category=" + sourcecat + "] .breadcrumbs").html(categories.category.breadcrumbs);
             }
             if (table_tree.length) {
@@ -275,7 +309,7 @@ jQuery(document).ready(function ($) {
                 beforeSend: function () {
                     if (wpfdTableFilesLocalCache.exist(tableFilesAjaxUrl)) {
                         var tableFilesTrigger = wpfdTableFilesLocalCache.get(tableFilesAjaxUrl);
-                        wpfdTableFilesLocalCacheTrigger(tableFilesTrigger, sourcecat, table_empty_files, container, categories, catid);
+                        wpfdTableFilesLocalCacheTrigger(tableFilesTrigger, sourcecat, table_empty_files, container, categories, catid, tableFilesAjaxUrl);
                         if ($(".wpfd-content-multi[data-category=" + sourcecat + "] .wpfd-loading-message-section").length) {
                             $(".wpfd-content-multi[data-category=" + sourcecat + "] .wpfd-loading-message-section").remove();
                         }
@@ -531,6 +565,10 @@ jQuery(document).ready(function ($) {
 
                                         // Call list files
                                         if (currentContainer.parent('.wpfd-upload-form').length) {
+                                            // Refresh uploaded files on caching
+                                            if (wpfdTableFilesLocalCache.exist(tableFilesAjaxUrl)) {
+                                                wpfdTableFilesLocalCache.remove(tableFilesAjaxUrl);
+                                            }
                                             var table_sourcecat   = currentContainer.parents('.wpfd-content.wpfd-content-multi').data('category');
                                             var current_category  = currentContainer.parents('.wpfd-content.wpfd-content-multi').find('#current_category_' + table_sourcecat).val();
                                             table_load(table_sourcecat, current_category);
@@ -597,6 +635,9 @@ jQuery(document).ready(function ($) {
                     container.find(".mediaTableWrapper .wpfd-table thead").css({'display': 'none'});
                     container.find(".mediaTableWrapper .mediaTableMenu").css({'display': 'none'});
                 }
+
+                wpfdTableDisplayDownloadedFiles();
+                wpfdTableDownloadFiles();
             });
 
         });
@@ -622,15 +663,31 @@ jQuery(document).ready(function ($) {
         }
 
         var html = '';
+
+        if (sourcecat.toString() === 'all_0' && catid.toString() !== 'all_0' && parseInt(catid) !== 0) {
+            html = allCategoriesDividerBreadcrumbs;
+        } else if ((sourcecat.toString() === 'all_0' && catid.toString() === 'all_0')
+            || (sourcecat.toString() === 'all_0' && parseInt(catid) === 0)) {
+            html = allCategoriesBreadcrumbs;
+        }
+
         for (var i = 0; i < links.length; i++) {
+            if (parseInt(links[i].term_id) === 0) {
+                continue;
+            }
+
             if (i < links.length - 1) {
+                if (links[i].parent.toString() === 'undefined') {
+                    continue;
+                }
                 html += '<li><a class="catlink" data-idcat="' + links[i].term_id + '" href="javascript:void(0)">' + links[i].name + '</a><span class="divider"> &gt; </span></li>';
             } else {
                 html += '<li><span>' + links[i].name + '</span></li>';
             }
         }
+
         $(".wpfd-content-table[data-category=" + sourcecat + "] .wpfd-breadcrumbs-table li").remove();
-        $(".wpfd-content-table[data-category=" + sourcecat + "] .wpfd-breadcrumbs-table").append(html);
+        $(".wpfd-content-table[data-category=" + sourcecat + "] .wpfd-breadcrumbs-table").html(html);
         $(".wpfd-content-table[data-category=" + sourcecat + "] .table-download-category").attr('href', category.linkdownload_cat);
     }
 
@@ -701,8 +758,8 @@ jQuery(document).ready(function ($) {
 
                 window.history.pushState('', document.title, pathname + '#' + current_sourcecat + '-' + category + '-' + category_slug + '-p' + page_number);
 
-                $(".wpfd-content-multi[data-category=" + current_sourcecat + "] table tbody tr:not(.topheader)").remove();
-                $(".wpfd-content-multi[data-category=" + current_sourcecat + "] table").after($('#wpfd-loading-wrap').html());
+                $(".wpfd-content-multi[data-category=" + current_sourcecat + "] table:not(.wpfd-results .wpfd-table) tbody tr:not(.topheader)").remove();
+                $(".wpfd-content-multi[data-category=" + current_sourcecat + "] table:not(.wpfd-results .wpfd-table)").after($('#wpfd-loading-wrap').html());
                 var params = $.param({
                     task: 'files.display',
                     view: 'files',
@@ -722,7 +779,6 @@ jQuery(document).ready(function ($) {
                         $('html, body').animate({scrollTop: wrap.offset().top}, 'fast');
                     }
                 }).done(function (content) {
-
                     delete content.category;
                     wrap.next('.wpfd-pagination').remove();
                     wrap.after(content.pagination);
@@ -730,15 +786,26 @@ jQuery(document).ready(function ($) {
                     var tpltable_source = wrap.parents().find("#wpfd-template-table-" + current_sourcecat).html();
                     var template_table = Handlebars.compile(tpltable_source);
                     var html = template_table(content);
-                    $(".wpfd-content-multi[data-category=" + current_sourcecat + "] table tbody").append(html);
-                    $(".wpfd-content-multi[data-category=" + current_sourcecat + "] table tbody").trigger('change');
+                    $(".wpfd-content-multi[data-category=" + current_sourcecat + "] table:not(.wpfd-results .wpfd-table) tbody").append(html);
+                    $(".wpfd-content-multi[data-category=" + current_sourcecat + "] table:not(.wpfd-results .wpfd-table) tbody").trigger('change');
                     $(".wpfd-content-multi[data-category=" + current_sourcecat + "] .mediaTableMenu").find('input').trigger('change');
+
+                    if (typeof (content.filepasswords) !== 'undefined') {
+                        $.each(content.filepasswords, function( file_id, pw_form ) {
+                            var content_form = '<td class="full-width">' + pw_form + '</td>';
+                            $(".wpfd-content-multi[data-category=" + current_sourcecat + "]").find('.file[data-id="' + file_id + '"]').empty();
+                            $(".wpfd-content-multi[data-category=" + current_sourcecat + "]").find('.file[data-id="' + file_id + '"]').addClass('wpfd-password-protection-form');
+                            $(".wpfd-content-multi[data-category=" + current_sourcecat + "]").find('.file[data-id="' + file_id + '"]').append(content_form);
+                        });
+                    }
 
                     if (typeof wpfdColorboxInit !== 'undefined') {
                         wpfdColorboxInit();
                     }
                     table_init_pagination(wrap.next('.wpfd-pagination'));
                     wpfd_remove_loading($(".wpfd-content-multi"));
+                    wpfdTableDisplayDownloadedFiles();
+                    wpfdTableDownloadFiles();
                 });
             }
 
@@ -805,6 +872,32 @@ jQuery(document).ready(function ($) {
     }
 
     function wpfdTableCategoriesLocalCacheTrigger(tableTriggerCategories, sourcecat, page, pathname, catid, container, table_empty_subcategories, table_empty_files) {
+        var $displayFileSearch = container.find('.wpfd_root_category_display_file_search');
+        if ($displayFileSearch.length) {
+            var $themeName = $(".wpfd-content-multi[data-category=" + sourcecat + "]").find('.wpfd_root_category_theme').val();
+            var $searchContent = '<form action="" id="adminForm-'+ tableTriggerCategories.category.term_id +'" class="wpfd-adminForm wpfd-form-search-file-category" name="adminForm" method="post">' +
+                '<div id="loader" style="display:none; text-align: center">' +
+                '<img src="'+ wpfdparams.wpfd_plugin_url +'/app/site/assets/images/searchloader.svg" style="margin: 0 auto"/>' +
+                '</div>' +
+                '<div class="box-search-filter wpfd-category-search-section">' +
+                '<div class="searchSection">' +
+                '<div class="only-file input-group clearfix wpfd_search_input" id="Search_container">' +
+                '<img src="'+ wpfdparams.wpfd_plugin_url +'/app/site/assets/images/search-24.svg" class="material-icons wpfd-icon-search wpfd-search-file-category-icon" />' +
+                '<input type="text" class="pull-left required txtfilename" name="q" id="txtfilename" autocomplete="off" placeholder="'+ wpfdparams.translates.msg_search_file_category_placeholder +'" value="" />' +
+                '</div>' +
+                '<button id="btnsearchbelow" class="btnsearchbelow wpfd-btnsearchbelow" type="button">'+ wpfdparams.translates.msg_search_file_category_search +'</button>' +
+                '</div>' +
+                '<input type="hidden" id="filter_catid" class="chzn-select filter_catid" name="catid" value="'+ tableTriggerCategories.category.correctConvertCategoryId +'" data-cattype="" data-slug="" />' +
+                '<input type="hidden" name="theme" value="'+ $themeName +'">' +
+                '<input type="hidden" name="limit" value="15">' +
+                '<div id="wpfd-results" class="wpfd-results list-results"></div>' +
+                '</div>' +
+                '</form>';
+
+            $(".wpfd-content-multi[data-category=" + sourcecat + "]").prepend($searchContent);
+            wpfdTableSearchFileCategoryHandle();
+        }
+
         if (page !== null && page !== undefined) {
             window.history.pushState('', document.title, pathname + '#' + sourcecat + '-' + catid + '-' + tableTriggerCategories.category.slug + '-p' + page);
         } else {
@@ -878,7 +971,7 @@ jQuery(document).ready(function ($) {
             beforeSend: function () {
                 if (wpfdTableFilesLocalCache.exist(tableFilesAjaxUrl)) {
                     var tableFilesTrigger = wpfdTableFilesLocalCache.get(tableFilesAjaxUrl);
-                    wpfdTableFilesLocalCacheTrigger(tableFilesTrigger, sourcecat, table_empty_files, container, tableTriggerCategories, catid);
+                    wpfdTableFilesLocalCacheTrigger(tableFilesTrigger, sourcecat, table_empty_files, container, tableTriggerCategories, catid, tableFilesAjaxUrl);
 
                     return false;
                 }
@@ -1129,6 +1222,10 @@ jQuery(document).ready(function ($) {
 
                                     // Call list files
                                     if (currentContainer.parent('.wpfd-upload-form').length) {
+                                        // Refresh uploaded files on caching
+                                        if (wpfdTableFilesLocalCache.exist(tableFilesAjaxUrl)) {
+                                            wpfdTableFilesLocalCache.remove(tableFilesAjaxUrl);
+                                        }
                                         var table_sourcecat   = currentContainer.parents('.wpfd-content.wpfd-content-multi').data('category');
                                         var current_category  = currentContainer.parents('.wpfd-content.wpfd-content-multi').find('#current_category_' + table_sourcecat).val();
                                         table_load(table_sourcecat, current_category);
@@ -1185,10 +1282,13 @@ jQuery(document).ready(function ($) {
                 $(".wpfd-content-multi[data-category=" + sourcecat + "] .table-download-category").attr('href', '#');
                 $(".wpfd-content-multi[data-category=" + sourcecat + "] .wpfdcategory").hide();
             }
+
+            wpfdTableDisplayDownloadedFiles();
+            wpfdTableDownloadFiles();
         });
     }
 
-    function wpfdTableFilesLocalCacheTrigger(tableFilesTrigger, sourcecat, table_empty_files, container, categories, catid) {
+    function wpfdTableFilesLocalCacheTrigger(tableFilesTrigger, sourcecat, table_empty_files, container, categories, catid, tableFilesAjaxUrl) {
         if (typeof (tableFilesTrigger.categoryPassword) !== 'undefined' && tableFilesTrigger.categoryPassword.length) {
             $(".wpfd-content-multi[data-category=" + sourcecat + "] .wpfd-container-table .category-pw-form").remove();
             var category_pwf = '<div class="category-pw-form">' + tableFilesTrigger.categoryPassword + '</div>';
@@ -1427,6 +1527,10 @@ jQuery(document).ready(function ($) {
 
                                 // Call list files
                                 if (currentContainer.parent('.wpfd-upload-form').length) {
+                                    // Refresh uploaded files on caching
+                                    if (wpfdTableFilesLocalCache.exist(tableFilesAjaxUrl)) {
+                                        wpfdTableFilesLocalCache.remove(tableFilesAjaxUrl);
+                                    }
                                     var table_sourcecat   = currentContainer.parents('.wpfd-content.wpfd-content-multi').data('category');
                                     var current_category  = currentContainer.parents('.wpfd-content.wpfd-content-multi').find('#current_category_' + table_sourcecat).val();
                                     table_load(table_sourcecat, current_category);
@@ -1492,6 +1596,446 @@ jQuery(document).ready(function ($) {
             $(".wpfd-content-multi[data-category=" + sourcecat + "]").find(".wpfd-container-table").addClass("wpfd-table-hidden");
             $(".wpfd-content-multi[data-category=" + sourcecat + "]").find(".mediaTableWrapper .mediaTableMenu").css({'display': 'none'});
         }
+
+        wpfdTableDisplayDownloadedFiles();
+        wpfdTableDownloadFiles();
+    }
+
+    // Search file category
+    function wpfdTableCategoryAjaxSearch(element, ordering, direction, pushState = true) {
+        var $ = jQuery;
+        var sform = element;
+        var $key = $(sform).find('input[name=q]').val();
+        var $placeholder = $(sform).find('input[name=q]').attr('placeholder');
+
+        // Avoid conflict key search
+        if ($key.toString() === $placeholder.toString()) {
+            $key = '';
+        }
+
+        // Get the form data
+        var formData = {
+            'q': $key,
+            'catid': $(sform).find('[name=catid]').val(),
+            'theme': $(sform).find('[name=theme]').val(),
+            'limit': $(sform).find('[name=limit]').val(),
+            'theme_column': $(sform).find('[name=theme_column]').val()
+        };
+
+        formData = cleanObj(formData);
+
+        if (jQuery.isEmptyObject(formData) ||
+            (typeof (formData.q) === 'undefined' &&
+                typeof (formData.catid) !== 'undefined' &&
+                parseInt(formData.catid) === 0)) {
+            $(element).find(".txtfilename").focus();
+            return false;
+        }
+
+        if ((typeof ordering !== 'undefined') && ordering) formData.ordering = ordering;
+        if ((typeof direction !== 'undefined') && direction) formData.dir = direction;
+
+        // Pagination
+        if (pushState) {
+            var filter_url = jQuery.param(formData);
+            var currentUrl = window.location.search;
+            var pushUrl;
+            if (typeof URLSearchParams !== 'undefined') {
+                var currentFilters = new URLSearchParams(currentUrl.substring(1));
+                Object.keys(formData).forEach(function (key) {
+                    if (currentFilters.has(key)) {
+                        currentFilters.delete(key);
+                    }
+                });
+                if (currentUrl.substring(1) === '?' && currentFilters.toString() !== '') {
+                    pushUrl = currentFilters.toString() + '&' + filter_url;
+
+                } else {
+                    pushUrl = '?' + filter_url;
+                }
+
+                window.history.pushState(formData, "", pushUrl);
+            }
+        }
+
+        $.ajax({
+            method: "POST",
+            url: wpfdparams.wpfdajaxurl + "task=search.display",
+            data: formData,
+            beforeSend: function () {
+                $(element).find(".wpfd-results").html('');
+                $(element).find(".wpfd-results").prepend($(element).find("#loader").clone().show());
+            },
+            success: function (result) {
+                $(element).find(".wpfd_search_file_suggestion").html('');
+                $(element).find(".wpfd_search_file_suggestion").fadeOut(300);
+
+                $(element).find(".wpfd-results").html(result);
+                $(element).find(".wpfd-results .wpfd-table").addClass('wpfd-table-search');
+                if ($(element).find(".wpfd-results .wpfd-form-search-file-category").length) {
+                    $(element).find(".wpfd-results .wpfd-form-search-file-category").remove();
+                }
+                wpfdTableInitSorting();
+                if (typeof wpfdColorboxInit !== 'undefined') {
+                    wpfdColorboxInit();
+                }
+            }
+        });
+    }
+
+    // Sort initial
+    function wpfdTableInitSorting() {
+        jQuery('.orderingCol').click(function (e) {
+            e.preventDefault();
+            var ordering = jQuery(this).data('ordering');
+            var direction = jQuery(this).data('direction');
+            wpfdTableCategoryAjaxSearch(ordering, direction);
+        });
+
+        jQuery(".list-results #limit").change(function (e) {
+            e.preventDefault();
+            jQuery('input[name="limit"]').val(jQuery(this).val());
+            var formID = '#' + jQuery(this).closest('form').attr('id');
+            wpfdTableCategoryAjaxSearch(formID);
+            return false;
+        });
+    }
+
+    function wpfdTableSearchFileCategoryHandle() {
+        $(".wpfd-content .wpfd-adminForm").submit(function (e) {
+            e.preventDefault();
+            return false;
+        });
+
+        $('.wpfd-content .txtfilename').on('keyup', function(e) {
+            var $this = $(this);
+            if (e.keyCode === 13 || e.which === 13 || e.key === 'Enter')
+            {
+                e.preventDefault();
+
+                if ($this.val() === '') {
+                    return;
+                }
+
+                var formID = '#' + $this.closest('form').attr('id');
+                wpfdTableCategoryAjaxSearch(formID);
+
+                return;
+            }
+        });
+
+        // Ajax filters
+        $(".wpfd-content .btnsearchbelow").on('click', function (e) {
+            e.preventDefault();
+            var formID = '#' + $(this).closest('form').attr('id');
+            wpfdTableCategoryAjaxSearch(formID);
+            return false;
+        });
+    }
+    wpfdTableSearchFileCategoryHandle();
+
+    function wpfdTableDisplayDownloadedFiles() {
+        var fileDownload = $('.wpfd-content.wpfd-content-table .file');
+        var linkDownload = $('.wpfd-content.wpfd-content-table .wpfd_downloadlink');
+        var user_login_id = wpfdparams.wpfd_user_login_id;
+        if (linkDownload.length) {
+            linkDownload.on('click', function () {
+                var fileId = $(this).parents('.file').data('id');
+                var isDownloadedFile = localStorage.getItem('wpfd_downloaded_file_' + user_login_id + '_' + fileId);
+                if (isDownloadedFile === null) {
+                    localStorage.setItem('wpfd_downloaded_file_' + user_login_id + '_' + fileId, 'yes');
+                    $(this).parents('.file').addClass('is_downloaded');
+                }
+            });
+        }
+
+        if (fileDownload.length) {
+            fileDownload.each(function () {
+                var id = $(this).data('id');
+                var isFileDownload = localStorage.getItem('wpfd_downloaded_file_' + user_login_id + '_' + id);
+                if (isFileDownload) {
+                    $(this).addClass('is_downloaded');
+                }
+            });
+        }
+    }
+    wpfdTableDisplayDownloadedFiles();
+
+    function wpfdTableDownloadFiles() {
+        $('.file.png .wpfd_downloadlink, .file.jpg .wpfd_downloadlink, .file.jpeg .wpfd_downloadlink, .file.gif .wpfd_downloadlink').on('click', function (event) {
+            event.preventDefault();
+            var fileId = $(this).parents('.file').data('id');
+            var categoryId = $(this).parents('.file').data('catid');
+            var cloudType = $(this).parents('.wpfd-content-table').find('.wpfd_root_category_type').val();
+
+            if (!fileId || !categoryId) {
+                return false;
+            }
+
+            window.location.href = wpfdparams.site_url + "?wpfd_action=wpfd_download_file&wpfd_file_id=" + fileId + "&wpfd_category_id=" + categoryId + "&cloudType=" + cloudType;
+        });
+    }
+    wpfdTableDownloadFiles();
+
+    function wpfdTableInitDefaultOption() {
+        var $           = jQuery;
+        var checkitem   = $('.wpfdTableMenu .media-item');
+        var showList    = [];
+        if (checkitem.length) {
+            checkitem.each(function () {
+                if ($(this).prop("checked") == true) {
+                    showList.push($(this).val());
+                }
+            });
+            if (showList.length > 0) {
+                jQuery("#total-media-list").val(showList.join(","));
+            } else {
+                jQuery("#total-media-list").val("");
+            }
+            var desc = "";
+            var category = "";
+            var ver = "";
+            var size = "";
+            var hits = "";
+            var dateadd = "";
+            var download = "";
+            for(var i = 0; i<showList.length;i++) {
+                if(showList[i] == "Description" ) {
+                    desc = "Description";
+                }
+                if(showList[i] == "Category" ) {
+                    category = "Category";
+                }
+                if(showList[i] == "Version") {
+                    ver = "Version";
+                }
+                if(showList[i] == "Size") {
+                    size = "Size";
+                }
+                if(showList[i] == "Hits") {
+                    hits = "Hits";
+                }
+                if(showList[i] == "Date added") {
+                    dateadd = "Date added";
+                }
+                if(showList[i] == "Download") {
+                    download = "Download";
+                }
+            }
+            if(desc === "Description") {
+                jQuery(".file_desc").removeClass('filehidden');
+            } else {
+                jQuery(".file_desc").addClass('filehidden');
+            }
+            if(category === "Category") {
+                jQuery(".file_category").removeClass('filehidden');
+            } else {
+                jQuery(".file_category").addClass('filehidden');
+            }
+            if (ver === "Version") {
+                jQuery(".file_version").removeClass('filehidden');
+            } else {
+                jQuery(".file_version").addClass('filehidden');
+            }
+            if (size === "Size") {
+                jQuery(".file_size").removeClass('filehidden');
+            } else {
+                jQuery(".file_size").addClass('filehidden');
+            }
+            if (hits === "Hits") {
+                jQuery(".file_hits").removeClass('filehidden');
+            } else {
+                jQuery(".file_hits").addClass('filehidden');
+            }
+            if (dateadd === "Date added") {
+                jQuery(".file_created").removeClass('filehidden');
+            } else {
+                jQuery(".file_created").addClass('filehidden');
+            }
+            if (download === "Download") {
+                jQuery(".file_download_tbl").removeClass('filehidden');
+            } else {
+                jQuery(".file_download_tbl").addClass('filehidden');
+            }
+
+            var wpfdTable = $('.wpfd-results table.wpfd-search-result');
+            wpfdTable.each(function() {
+                var visibleRow = $(this).find('tbody tr');
+                visibleRow.each(function() {
+                    var visibleColumn = $(this).find('td:not(.filehidden)');
+                    visibleColumn.each(function() {
+                        if ($(this).is(visibleColumn.last())) {
+                            $(this).attr('colspan', 2);
+                        } else {
+                            $(this).attr('colspan', 1);
+                        }
+                    })
+                })
+            })
+        }
+
+    }
+    function wpfdTableInitUploadDefaultOption(container) {
+        var $           = jQuery;
+        var checkitem   = $(".file-upload-content[data-container='" + container + "'] .wpfdTableMenu .media-item");
+        var showList    = [];
+        checkitem.each(function () {
+            if ($(this).prop("checked") == true) {
+                showList.push($(this).val());
+            }
+        });
+        if (showList.length > 0) {
+            jQuery(".file-upload-content[data-container='" + container + "'] #total-media-list").val(showList.join(","));
+        } else {
+            jQuery(".file-upload-content[data-container='" + container + "'] #total-media-list").val("");
+        }
+        var desc        = "";
+        var category    = "";
+        var ver         = "";
+        var size        = "";
+        var hits        = "";
+        var dateadd     = "";
+        var download    = "";
+        for(var i = 0; i<showList.length;i++) {
+            if(showList[i] == "Description" ) {
+                desc = "Description";
+            }
+            if(showList[i] == "Category") {
+                category = "Category";
+            }
+            if(showList[i] == "Version") {
+                ver = "Version";
+            }
+            if(showList[i] == "Size") {
+                size = "Size";
+            }
+            if(showList[i] == "Hits") {
+                hits = "Hits";
+            }
+            if(showList[i] == "Date added") {
+                dateadd = "Date added";
+            }
+            if(showList[i] == "Download") {
+                download = "Download";
+            }
+        }
+        if(desc === "Description") {
+            jQuery(".file-upload-content[data-container='" + container + "'] .file_desc").removeClass('filehidden');
+        } else {
+            jQuery(".file-upload-content[data-container='" + container + "'] .file_desc").addClass('filehidden');
+        }
+        if(category === "Category") {
+            jQuery(".file-upload-content[data-container='" + container + "'] .file_category").removeClass('filehidden');
+        } else {
+            jQuery(".file-upload-content[data-container='" + container + "'] .file_category").addClass('filehidden');
+        }
+        if (ver === "Version") {
+            jQuery(".file-upload-content[data-container='" + container + "'] .file_version").removeClass('filehidden');
+        } else {
+            jQuery(".file-upload-content[data-container='" + container + "'] .file_version").addClass('filehidden');
+        }
+        if (size === "Size") {
+            jQuery(".file-upload-content[data-container='" + container + "'] .file_size").removeClass('filehidden');
+        } else {
+            jQuery(".file-upload-content[data-container='" + container + "'] .file_size").addClass('filehidden');
+        }
+        if (hits === "Hits") {
+            jQuery(".file-upload-content[data-container='" + container + "'] .file_hits").removeClass('filehidden');
+        } else {
+            jQuery(".file-upload-content[data-container='" + container + "'] .file_hits").addClass('filehidden');
+        }
+        if (dateadd === "Date added") {
+            jQuery(".file-upload-content[data-container='" + container + "'] .file_created").removeClass('filehidden');
+        } else {
+            jQuery(".file-upload-content[data-container='" + container + "'] .file_created").addClass('filehidden');
+        }
+        if (download === "Download") {
+            jQuery(".file-upload-content[data-container='" + container + "'] .file_download_tbl").removeClass('filehidden');
+        } else {
+            jQuery(".file-upload-content[data-container='" + container + "'] .file_download_tbl").addClass('filehidden');
+        }
+    }
+    function wpfdTableShowViewOption() {
+        var $         = jQuery;
+        var checkitem = $('.wpfdTableMenu .media-item');
+        $(document).on("click", ".wpfdTableMenu", function() {
+            $(this).addClass('showlist');
+            $(document).on("click", checkitem, function() {
+                if (!$(this).parents('.file-upload-content').length) {
+                    wpfdTableInitDefaultOption();
+                    if($(".list-results .file_desc").hasClass("filehidden") && $(".list-results .file_created").hasClass("filehidden") ) {
+                        $(".list-results .file_download_tbl").addClass("file_download_inline");
+                    } else {
+                        $(".list-results .file_download_tbl").removeClass("file_download_inline");
+                    }
+                    var checkall = $(".list-results .table thead th");
+                    if(!checkall.hasClass("filehidden")) {
+                        $(".list-results .file_title").addClass("adv_file_tt");
+                    } else {
+                        $(".list-results .file_title").removeClass("adv_file_tt");
+                    }
+                } else {
+                    var container = $(this).parents('.file-upload-content').data('container');
+                    wpfdTableInitUploadDefaultOption(container);
+                    if($(".file-upload-content[data-container='" + container + "'] .list-results .file_desc").hasClass("filehidden") && $(".file-upload-content[data-container='" + container + "'] .list-results .file_created").hasClass("filehidden") ) {
+                        $(".file-upload-content[data-container='" + container + "'] .list-results .file_download_tbl").addClass("file_download_inline");
+                    } else {
+                        $(".file-upload-content[data-container='" + container + "'] .list-results .file_download_tbl").removeClass("file_download_inline");
+                    }
+                    var checkall = $(".file-upload-content[data-container='" + container + "'] .list-results .table thead th");
+                    if(!checkall.hasClass("filehidden")) {
+                        $(".file-upload-content[data-container='" + container + "'] .list-results .file_title").addClass("adv_file_tt");
+                    } else {
+                        $(".file-upload-content[data-container='" + container + "'] .list-results .file_title").removeClass("adv_file_tt");
+                    }
+                }
+            });
+
+            $(document).mouseup(e => {
+                if (!$(".wpfdTableMenu").is(e.target)
+                    && $(".wpfdTableMenu").has(e.target).length === 0)
+                {
+                    $(".wpfdTableMenu").removeClass('showlist');
+                }
+            });
+
+            // Close media option when clicking outside
+            $(document).mouseup(function(e)
+            {
+                var container = $(".wpfd-content.wpfd-content-table .mediaTableMenu");
+
+                // if the target of the click isn't the container nor a descendant of the container
+                if (!container.is(e.target) && container.has(e.target).length === 0)
+                {
+                    container.hide();
+                    container.addClass('mediaTableMenuClosed');
+                }
+            });
+        });
+    }
+    wpfdTableInitDefaultOption();
+    wpfdTableShowViewOption();
+    if (jQuery('.wpfd-results-tooltip').length) {
+        jQuery('.wpfd-results-tooltip').qtip({
+            content: {
+                attr: 'title',
+            },
+            position: {
+                my: 'bottom left',
+                at: 'top left',
+            },
+            style: {
+                tip: {
+                    corner: true,
+                },
+                classes: 'wpfd-qtip qtip-rounded wpfd-qtip-dashboard',
+            },
+            show: 'mouseover',
+            hide: {
+                fixed: true,
+                delay: 10,
+            }
+        });
     }
 });
 
