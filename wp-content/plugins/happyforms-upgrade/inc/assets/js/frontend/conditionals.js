@@ -144,7 +144,7 @@
 			} );
 
 			results.forEach( function( result ) {
-				this.applyThen( result.result, result.condition.then, formID );
+				this.applyThen( result, formID );
 
 				$( '[data-happyforms-type="select"]', $form ).each( function() {
 					$( 'select', $( this ) ).val( $( this ).data( 'originalValue' ) );
@@ -221,23 +221,33 @@
 		return $option;
 	}
 
-	Conditionals.prototype.applyThen = function( result, then, formID ) {
-		var callback = this.callbacks[then.cb];
+	Conditionals.prototype.applyThen = function( result, formID ) {
+		var thenCb = result.condition.then.cb;
+		var callback = this.callbacks[ thenCb ];
+		var then = result.condition.then;
 		
 		if ( ! callback ) {
 			return;
 		}
 
-		if ( 'show' === then.cb || 'hide' === then.cb || 'set' === then.cb ) {
-			var $part = this.getPartByID( then.key, formID );
-			
-			callback.call( this, $part, result, then );
-			$part.attr( this.visitedAttribute, true );
-		} else if ( 'show_option' === then.cb || 'hide_option' === then.cb ) {
-			var $option = this.getOptionByID( then.key, formID );
-			
-			callback.call( this, $option, result, then );
-			$option.attr( this.visitedAttribute, true );
+		switch( thenCb ) {
+			case 'show':
+			case 'hide':
+			case 'set':
+				var $part = this.getPartByID( then.key, formID );
+
+				callback.call( this, formID, $part, result );
+				$part.attr( this.visitedAttribute, true );
+				break;
+			case 'show_option':
+			case 'hide_option':
+				var $option = this.getOptionByID( then.key, formID );
+
+				callback.call( this, $option, result.result, then );
+				$option.attr( this.visitedAttribute, true );
+				break;
+			default:
+				break;
 		}
 	};
 
@@ -313,42 +323,55 @@
 		return clause;
 	};
 
-	Conditionals.prototype.callbacks.show = function( $part, result, then ) {
-		if ( ! $part.is( '[data-happyforms-type="select"]' ) ) {
-			var $previouslyChecked = $( 'input[type="radio"]:checked, input[type="checkbox"]:checked', $part );
+	Conditionals.prototype.isParentHidden = function ( condition, formID ) {
+		var $partParent = this.getPartByID( condition.if[0].key, formID );
 
+		if ( $partParent ) {
+			return $partParent.is( ':hidden' );
+		}
+
+		return false;
+	}
+
+	Conditionals.prototype.callbacks.show = function( formID, $part, result) {
+		if ( this.isParentHidden ( result.condition, formID ) ) {
+			$part.hide();
+			return;
+		}
+
+		if ( ! $part.is( '[data-happyforms-type="select"]' ) ) {
 			if ( ! $part.attr( this.visitedAttribute ) ) {
-				$previouslyChecked.prop( 'checked', false );
 				$part.hide();
 			}
 
-			if ( result ) {
-				$previouslyChecked.prop( 'checked', true );
+			if ( result.result ) {
 				$part.show();
 			}
 		} else {
 			var previousValue = $( ':selected', $part ).val();
 
 			if ( ! $part.attr( this.visitedAttribute ) ) {
-				$part.data( 'originalValue', '' );
 				$part.hide();
 			}
 
-			if ( result ) {
-				$part.data( 'originalValue', previousValue );
+			if ( result.result ) {
 				$part.show();
 			}
 		}
 	};
 
-	Conditionals.prototype.callbacks.hide = function( $part, result, then ) {
+	Conditionals.prototype.callbacks.hide = function( formID, $part, result ) {
+		if ( this.isParentHidden ( result.condition, formID ) ) {
+			$part.hide();
+			return;
+		}
+
 		if ( ! $part.is( '[data-happyforms-type="select"]' ) ) {
 			if ( ! $part.attr( this.visitedAttribute ) ) {
 				$part.show();
 			}
 
-			if ( result ) {
-				$( 'input[type="radio"]:checked, input[type="checkbox"]:checked', $part ).prop( 'checked', false );
+			if ( result.result ) {
 				$part.hide();
 			}
 		} else {
@@ -356,8 +379,7 @@
 				$part.show();
 			}
 
-			if ( result ) {
-				$part.data( 'originalValue', '' );
+			if ( result.result ) {
 				$part.hide();
 			}
 		}
@@ -366,11 +388,11 @@
 	Conditionals.prototype.callbacks.set = function( $part, result, then ) {
 		var data = {};
 
-		if ( result ) {
-			data.value = then.args[0];
+		if ( result.result ) {
+			data.value = result.condition.then.args[0];
 		}
 
-		if ( ! $part.attr( this.visitedAttribute ) || result ) {
+		if ( ! $part.attr( this.visitedAttribute ) || result.result ) {
 			$part.trigger( 'condition-update', data );
 		}
 	};

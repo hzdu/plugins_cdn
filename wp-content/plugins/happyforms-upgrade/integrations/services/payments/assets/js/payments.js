@@ -55,6 +55,8 @@
 
 			$( 'strong', this.$price ).text( formattedPrice );
 			$( 'input', this.$price ).val( this.price );
+
+			this.$price.trigger( 'price-updated', data );
 		},
 
 		onPriceConditionUpdate: function( e, data ) {

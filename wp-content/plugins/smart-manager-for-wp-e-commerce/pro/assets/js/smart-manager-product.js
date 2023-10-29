@@ -30,26 +30,14 @@ jQuery(document).on('smart_manager_post_load_grid','#sm_editor_grid', function()
 					}
 				}
 			})
-
-			window.smart_manager.column_names_batch_update['custom/product_attributes']['actions'] = attributesActions
+			window.smart_manager.column_names_batch_update['custom/product_attributes']['actions'] = Object.assign(window.smart_manager.batch_update_actions['multilist'], {copy_from: _x('copy from', 'Bulk Edit option for WooCommerce product attribute', 'smart-manager-for-wp-e-commerce')});
+			[ 'set_to', 'copy_from_field' ].forEach(prop => delete window.smart_manager.column_names_batch_update['custom/product_attributes']['actions'][prop])
+			window.smart_manager.column_names_batch_update['custom/product_attributes']['additionalValues'] = attributesActions
 			window.smart_manager.column_names_batch_update['custom/product_attributes']['values'] = attributesValues
-
-
-			window.smart_manager.column_names_batch_update['custom/product_attributes_add'] = JSON.parse( JSON.stringify( attrObj ) );
-			window.smart_manager.column_names_batch_update['custom/product_attributes_add']['name'] = _x('Add Attribute', 'Bulk Edit option for WooCommerce product attribute', 'smart-manager-for-wp-e-commerce');
-			window.smart_manager.column_names_batch_update['custom/product_attributes_add']['title'] = window.smart_manager.column_names_batch_update['custom/product_attributes_add']['name'];
-			window.smart_manager.column_names_batch_update['custom/product_attributes_add']['type'] = 'dropdown';
-
-			if( !window.smart_manager.column_names_batch_update['custom/product_attributes_add']['values'].hasOwnProperty('custom') ) {
-				window.smart_manager.column_names_batch_update['custom/product_attributes_add']['actions']['custom'] = 'Custom';
+			window.smart_manager.column_names_batch_update['custom/product_attributes']['type'] = 'dropdown';
+			if(!window.smart_manager.column_names_batch_update['custom/product_attributes']['additionalValues'].hasOwnProperty('custom')) {
+				window.smart_manager.column_names_batch_update['custom/product_attributes']['additionalValues']['custom'] = 'Custom';
 			}
-
-			window.smart_manager.column_names_batch_update['custom/product_attributes_remove'] = JSON.parse( JSON.stringify( attrObj ) );
-			window.smart_manager.column_names_batch_update['custom/product_attributes_remove']['name'] = _x('Remove Attribute', 'Bulk Edit option for WooCommerce product attribute', 'smart-manager-for-wp-e-commerce');
-			window.smart_manager.column_names_batch_update['custom/product_attributes_remove']['title'] = window.smart_manager.column_names_batch_update['custom/product_attributes_remove']['name'];
-			window.smart_manager.column_names_batch_update['custom/product_attributes_remove']['type'] = 'dropdown';
-
-			delete window.smart_manager.column_names_batch_update['custom/product_attributes'];
 		}
 
 		//Code for handling Product Category
@@ -138,7 +126,7 @@ jQuery(document).on('smart_manager_post_load_grid','#sm_editor_grid', function()
 		jQuery("#batchmod_sm_editor_grid").css('width','640px');
 	}
 
-	if( selectedField == 'custom/product_attributes_add' || selectedField == 'custom/product_attributes_remove' ) {
+	if( selectedField == 'custom/product_attributes' ) {
 		window.smart_manager.batch_update_action_options_default = '<option value="" disabled selected>'+_x('Select Attribute', 'bulk edit default action for WooCommerce product attribute', 'smart-manager-for-wp-e-commerce')+'</option>';
 
 		if( Object.keys(colVal).length > 0 ) {
@@ -190,7 +178,7 @@ jQuery(document).on('smart_manager_post_load_grid','#sm_editor_grid', function()
 		jQuery("#batchmod_sm_editor_grid").css('width','640px');
 	}
 
-    if( selectedField == 'custom/product_attributes_add' || selectedField == 'custom/product_attributes_remove' ) {
+    if( selectedField == 'custom/product_attributes' ) {
 
     	if( selectedAction != 'custom' ) { //code for handling action for non-custom attribute
 

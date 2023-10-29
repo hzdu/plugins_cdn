@@ -3333,6 +3333,10 @@ Smart_Manager.prototype.refreshDashboardStates = function() {
 //Function to handle the state apply at regular intervals
 Smart_Manager.prototype.updateState = function(refreshParams = {}){
 	let viewSlug = window.smart_manager.getViewSlug(window.smart_manager.dashboardName);
+	if(1 == window.smart_manager.sm_beta_pro && viewSlug && !refreshParams.updateView){ //Added for skipping `save_state` when simply switching from custom views dashboards
+		window.smart_manager.refresh();
+		return;
+	}
 	// do not refresh the states if view
 	if("undefined" !== typeof(window.smart_manager.refreshDashboardStates) && "function" === typeof(window.smart_manager.refreshDashboardStates)){
 		window.smart_manager.refreshDashboardStates(); //refreshing the dashboard states
