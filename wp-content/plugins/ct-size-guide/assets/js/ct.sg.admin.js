@@ -104,3 +104,30 @@ jQuery(document).ready(function () {
     } ).change();
 
 });
+jQuery(document).ready(($)=>{
+    document.querySelectorAll(".ct-sg-metabox__search").forEach((search)=>{
+        const box = search.parentNode;
+        const checkboxes = box.querySelectorAll('.ct-sgp-checkboxes .ct-sgp-checkbox');
+        const searchInput = search.querySelector('.ct-sg-metabox__search-input');
+        searchInput.addEventListener('keyup', ()=>{
+            let value = searchInput.value;
+            console.log(value)
+            let regex = new RegExp(value, 'gi');
+            checkboxes.forEach((checkbox)=>{
+                let name = checkbox.querySelector('.ct-sgp-checkbox__name');
+                let hide = true;
+                if (!name) {
+                    return;
+                }
+                if (regex.test(name.innerText)) {
+                    hide = false;
+                }
+                if (hide) {
+                    checkbox.style.display = "none";
+                } else {
+                    checkbox.style.display = "block";
+                }
+            })
+        })
+    })
+})

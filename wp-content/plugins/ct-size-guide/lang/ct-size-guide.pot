@@ -2,9 +2,9 @@
 # This file is distributed under the same license as the createIT Size Guide Plugin package.
 msgid ""
 msgstr ""
-"Project-Id-Version: createIT Size Guide Plugin 4.0\n"
+"Project-Id-Version: createIT Size Guide Plugin 4.2\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/support/plugin/ct-size-guide\n"
-"POT-Creation-Date: 2023-07-06 14:31:28+00:00\n"
+"POT-Creation-Date: 2023-10-27 10:53:46+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -12,6 +12,10 @@ msgstr ""
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
+
+#: ctSizeGuideAdmin.php:9
+msgid "Search"
+msgstr ""
 
 #: ctSizeGuideCPT.php:24 ctSizeGuideCPT.php:26
 msgid "Size guides"
@@ -101,41 +105,45 @@ msgstr ""
 msgid "Hide size guide from this product"
 msgstr ""
 
-#: ctSizeGuideDisplay.php:259 ctSizeGuideDisplay.php:453
-#: ctSizeGuideDisplay.php:501 ctSizeGuideDisplay.php:503
+#: ctSizeGuideDisplay.php:258 ctSizeGuideDisplay.php:455
+#: ctSizeGuideDisplay.php:504 ctSizeGuideDisplay.php:506
 msgid "Size Guide"
 msgstr ""
 
-#: ctSizeGuideDisplay.php:630
+#: ctSizeGuideDisplay.php:633
 msgid "Product has no SizeGuide, and has no default SizeGuide on its categories or tags (only admin can see this)"
 msgstr ""
 
-#: ctSizeGuidePlugin.php:85
+#: ctSizeGuidePlugin.php:97
 msgid "createIT Size Guide Plugin"
 msgstr ""
 
-#: ctSizeGuidePlugin.php:85
+#: ctSizeGuidePlugin.php:97
 msgid "WooCommerce Plugin must be installed and activated in order to use this plugin."
 msgstr ""
 
-#: ctSizeGuidePlugin.php:111
+#: ctSizeGuidePlugin.php:125
 msgid "Settings"
 msgstr ""
 
-#: ctSizeGuidePlugin.php:112
+#: ctSizeGuidePlugin.php:126
 msgid "Docs"
 msgstr ""
 
-#: ctSizeGuidePlugin.php:142 ctSizeGuideSettings.php:75
+#: ctSizeGuidePlugin.php:156 ctSizeGuideSettings.php:75
 msgid "Minimalistic"
 msgstr ""
 
-#: ctSizeGuidePlugin.php:143 ctSizeGuideSettings.php:76
+#: ctSizeGuidePlugin.php:157 ctSizeGuideSettings.php:76
 msgid "Classic"
 msgstr ""
 
-#: ctSizeGuidePlugin.php:144 ctSizeGuideSettings.php:77
+#: ctSizeGuidePlugin.php:158 ctSizeGuideSettings.php:77
 msgid "Modern"
+msgstr ""
+
+#: ctSizeGuideProducts.php:23
+msgid "Choose products"
 msgstr ""
 
 #: ctSizeGuideSettings.php:61 ctSizeGuideTable.php:141
@@ -230,11 +238,11 @@ msgstr ""
 msgid "Button/link align"
 msgstr ""
 
-#: ctSizeGuideSettings.php:176 ctSizeGuideTable.php:413
+#: ctSizeGuideSettings.php:176 ctSizeGuideTable.php:414
 msgid "Left"
 msgstr ""
 
-#: ctSizeGuideSettings.php:177 ctSizeGuideTable.php:414
+#: ctSizeGuideSettings.php:177 ctSizeGuideTable.php:415
 msgid "Right"
 msgstr ""
 
@@ -242,7 +250,7 @@ msgstr ""
 msgid "Button/link clearing"
 msgstr ""
 
-#: ctSizeGuideSettings.php:182 ctSizeGuideTable.php:433
+#: ctSizeGuideSettings.php:182 ctSizeGuideTable.php:434
 msgid "Allow floating elements on the sides of the link/button?"
 msgstr ""
 
@@ -262,7 +270,7 @@ msgstr ""
 msgid "Icon to accompany text in button, type: icon_sg"
 msgstr ""
 
-#: ctSizeGuideSettings.php:206 ctSizeGuideTable.php:581
+#: ctSizeGuideSettings.php:206 ctSizeGuideTable.php:582
 msgid "Margin left"
 msgstr ""
 
@@ -270,7 +278,7 @@ msgstr ""
 msgid "Enter the left margin of the link/button"
 msgstr ""
 
-#: ctSizeGuideSettings.php:215 ctSizeGuideTable.php:587
+#: ctSizeGuideSettings.php:215 ctSizeGuideTable.php:588
 msgid "Margin top"
 msgstr ""
 
@@ -278,7 +286,7 @@ msgstr ""
 msgid "Enter the top margin of the link/button"
 msgstr ""
 
-#: ctSizeGuideSettings.php:224 ctSizeGuideTable.php:593
+#: ctSizeGuideSettings.php:224 ctSizeGuideTable.php:594
 msgid "Margin right"
 msgstr ""
 
@@ -286,7 +294,7 @@ msgstr ""
 msgid "Enter the right margin of the link/button"
 msgstr ""
 
-#: ctSizeGuideSettings.php:233 ctSizeGuideTable.php:599
+#: ctSizeGuideSettings.php:233 ctSizeGuideTable.php:600
 msgid "Margin bottom"
 msgstr ""
 
@@ -302,7 +310,7 @@ msgstr ""
 msgid "Click to pick the color of the popup background overlay"
 msgstr ""
 
-#: ctSizeGuideSettings.php:250 ctSizeGuideTable.php:690
+#: ctSizeGuideSettings.php:250 ctSizeGuideTable.php:691
 msgid "Padding left"
 msgstr ""
 
@@ -310,7 +318,7 @@ msgstr ""
 msgid "Enter the left padding of the content in the popup window"
 msgstr ""
 
-#: ctSizeGuideSettings.php:259 ctSizeGuideTable.php:696
+#: ctSizeGuideSettings.php:259 ctSizeGuideTable.php:697
 msgid "Padding top"
 msgstr ""
 
@@ -318,7 +326,7 @@ msgstr ""
 msgid "Enter the top padding of the content in the popup window"
 msgstr ""
 
-#: ctSizeGuideSettings.php:268 ctSizeGuideTable.php:702
+#: ctSizeGuideSettings.php:268 ctSizeGuideTable.php:703
 msgid "Padding right"
 msgstr ""
 
@@ -326,7 +334,7 @@ msgstr ""
 msgid "Enter the right padding of the content in the popup window"
 msgstr ""
 
-#: ctSizeGuideSettings.php:277 ctSizeGuideTable.php:708
+#: ctSizeGuideSettings.php:277 ctSizeGuideTable.php:709
 msgid "Padding bottom"
 msgstr ""
 
@@ -395,8 +403,8 @@ msgid "Remove Table"
 msgstr ""
 
 #: ctSizeGuideTable.php:171 ctSizeGuideTable.php:185 ctSizeGuideTable.php:205
-#: ctSizeGuideTable.php:274 ctSizeGuideTable.php:331 ctSizeGuideTable.php:412
-#: ctSizeGuideTable.php:629
+#: ctSizeGuideTable.php:274 ctSizeGuideTable.php:332 ctSizeGuideTable.php:413
+#: ctSizeGuideTable.php:630
 msgid "Use global settings"
 msgstr ""
 
@@ -408,8 +416,8 @@ msgstr ""
 msgid "Button/link hook priority:"
 msgstr ""
 
-#: ctSizeGuideTable.php:206 ctSizeGuideTable.php:332 ctSizeGuideTable.php:521
-#: ctSizeGuideTable.php:630
+#: ctSizeGuideTable.php:206 ctSizeGuideTable.php:333 ctSizeGuideTable.php:522
+#: ctSizeGuideTable.php:631
 msgid "Use individual settings"
 msgstr ""
 
@@ -429,11 +437,11 @@ msgstr ""
 msgid "Tab Multiple Table:"
 msgstr ""
 
-#: ctSizeGuideTable.php:275 ctSizeGuideTable.php:430
+#: ctSizeGuideTable.php:275 ctSizeGuideTable.php:431
 msgid "Yes"
 msgstr ""
 
-#: ctSizeGuideTable.php:276 ctSizeGuideTable.php:432
+#: ctSizeGuideTable.php:276 ctSizeGuideTable.php:433
 msgid "No"
 msgstr ""
 
@@ -445,91 +453,91 @@ msgstr ""
 msgid "Tabs order"
 msgstr ""
 
-#: ctSizeGuideTable.php:298
+#: ctSizeGuideTable.php:299
 msgid "Choose tabs order when using multiple tabs"
 msgstr ""
 
-#: ctSizeGuideTable.php:326
+#: ctSizeGuideTable.php:327
 msgid "Button/link label:"
 msgstr ""
 
-#: ctSizeGuideTable.php:334
+#: ctSizeGuideTable.php:335
 msgid "Chose whether to use global or individual option to display name of the size guide button/link's label."
 msgstr ""
 
-#: ctSizeGuideTable.php:379 ctSizeGuideTable.php:395
+#: ctSizeGuideTable.php:380 ctSizeGuideTable.php:396
 msgid "Individual label:"
 msgstr ""
 
-#: ctSizeGuideTable.php:385 ctSizeGuideTable.php:401
+#: ctSizeGuideTable.php:386 ctSizeGuideTable.php:402
 msgid "Type button/link label."
 msgstr ""
 
-#: ctSizeGuideTable.php:408
+#: ctSizeGuideTable.php:409
 msgid "Button/link align:"
 msgstr ""
 
-#: ctSizeGuideTable.php:421
+#: ctSizeGuideTable.php:422
 msgid "Button/link clearing:"
 msgstr ""
 
-#: ctSizeGuideTable.php:427
+#: ctSizeGuideTable.php:428
 msgid ""
 "Use global\n"
 "                    settings"
 msgstr ""
 
-#: ctSizeGuideTable.php:440
+#: ctSizeGuideTable.php:441
 msgid "Button class:"
 msgstr ""
 
-#: ctSizeGuideTable.php:446
+#: ctSizeGuideTable.php:447
 msgid ""
 "Use\n"
 "                        global settings"
 msgstr ""
 
-#: ctSizeGuideTable.php:454
+#: ctSizeGuideTable.php:455
 msgid ""
 "Chose whether to use global or individual option to set custom class of the size guide\n"
 "                        button."
 msgstr ""
 
-#: ctSizeGuideTable.php:499
+#: ctSizeGuideTable.php:500
 msgid "Individual class:"
 msgstr ""
 
-#: ctSizeGuideTable.php:505
+#: ctSizeGuideTable.php:506
 msgid "Add a custom class to the button. Default class which we use is button_sg"
 msgstr ""
 
-#: ctSizeGuideTable.php:512
+#: ctSizeGuideTable.php:513
 msgid "Margins of the link/button:"
 msgstr ""
 
-#: ctSizeGuideTable.php:518
+#: ctSizeGuideTable.php:519
 msgid ""
 "Use\n"
 "                    global settings"
 msgstr ""
 
-#: ctSizeGuideTable.php:523
+#: ctSizeGuideTable.php:524
 msgid "Chose whether to use global or individual option to set button/link margins."
 msgstr ""
 
-#: ctSizeGuideTable.php:613
+#: ctSizeGuideTable.php:614
 msgid "Popup overlay color:"
 msgstr ""
 
-#: ctSizeGuideTable.php:617
+#: ctSizeGuideTable.php:618
 msgid "Click to pick the color of the popup background overlay. Get global option by clicking clear and update"
 msgstr ""
 
-#: ctSizeGuideTable.php:624
+#: ctSizeGuideTable.php:625
 msgid "Popup window content paddings:"
 msgstr ""
 
-#: ctSizeGuideTable.php:632
+#: ctSizeGuideTable.php:633
 msgid "Chose whether to use global or individual option to set popup window content paddings."
 msgstr ""
 
