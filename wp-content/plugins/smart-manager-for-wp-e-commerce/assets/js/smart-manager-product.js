@@ -53,6 +53,7 @@ jQuery(document).on('sm_dashboard_change', '#sm_editor_grid', function() {
 		
 		window.smart_manager.showVariationsHtml(); //Call to function for 'show variations' checkbox
 		window.smart_manager.showImportButtonHtml(); //Call to function for 'import CSV' button
+		window.smart_manager.changeExportButtonHtml(); //Call to function for 'export CSV' button
 
 		// ,'posts_post_status'
 		let variationsDisabledColumns = new Array('posts_post_title','posts_post_date','posts_post_date_gmt','posts_post_modified','posts_post_modified_gmt','posts_post_content','posts_post_excerpt','posts_post_password','terms_product_cat','postmeta_meta_key__default_attributes_meta_value__default_attributes','custom_product_attributes','terms_product_type','terms_product_visibility','terms_product_visibility_featured','postmeta_meta_key__wc_mmax_prd_opt_enable_meta_value__wc_mmax_prd_opt_enable','postmeta_meta_key__wc_mmax_min_meta_value__wc_mmax_min','postmeta_meta_key__wc_mmax_max_meta_value__wc_mmax_max','postmeta_meta_key_allow_combination_meta_value_allow_combination','postmeta_meta_key_minimum_allowed_quantity_meta_value_minimum_allowed_quantity','postmeta_meta_key_maximum_allowed_quantity_meta_value_maximum_allowed_quantity','postmeta_meta_key_group_of_quantity_meta_value_group_of_quantity','postmeta_meta_key_min_quantity_meta_value_min_quantity','postmeta_meta_key_max_quantity_meta_value_max_quantity','postmeta_meta_key_minmax_do_not_count_meta_value_minmax_do_not_count','postmeta_meta_key_minmax_cart_exclude_meta_value_minmax_cart_exclude','postmeta_meta_key_minmax_category_group_of_exclude_meta_value_minmax_category_group_of_exclude');
@@ -320,6 +321,19 @@ jQuery(document).on('sm_dashboard_change', '#sm_editor_grid', function() {
 
 	window.smart_manager.prodAttrDisplayIndex++;
 })
+// Code for handling the export records functionality
+.off( 'click', ".sm_top_bar_action_btns .sm_beta_dropdown_content a").on( 'click', ".sm_top_bar_action_btns .sm_beta_dropdown_content a", function(e){
+	if(window.smart_manager.dashboard_key === 'product'){
+		window.smart_manager.stockCols = ['sm_export_selected_stock_cols', 'sm_export_entire_store_stock_cols'];
+		window.smart_manager.visibleCols = ['sm_export_selected_visible_cols', 'sm_export_entire_store_visible_cols'];
+		if(window.smart_manager.sm_beta_pro == 0){
+			window.smart_manager.selectNotification = (jQuery(this).attr('id') === 'sm_export_selected_stock_cols') ? true : false;
+			window.smart_manager.exportCSVActions = window.smart_manager.stockCols;
+		}else{
+			window.smart_manager.exportCSVActions = window.smart_manager.stockCols.concat(window.smart_manager.visibleCols);
+		}
+	}
+})
 //Function to handle Product Attribute Inline Edit
 Smart_Manager.prototype.prodAttributeInlineEdit = function(params){
 	if('undefined' === typeof(window.smart_manager.editedAttribueSlugs)){
@@ -456,4 +470,28 @@ Smart_Manager.prototype.showVariationsHtml = function() {
 
 		window.smart_manager.refresh();
 	});
+}
+
+//Function to change 'export csv' button HTML
+Smart_Manager.prototype.changeExportButtonHtml = function() {
+	if(document.getElementById('sm_export_csv') !== null){
+		document.getElementById('sm_export_csv').innerHTML = '<a id="sm_export_selected_stock_cols" href="#">'+_x('Selected Records - Stock Columns', 'export button', 'smart-manager-for-wp-e-commerce')+'</a>'+
+		'<a id="sm_export_selected_visible_cols" href="#">'+_x('Selected Records - Visible Columns', 'export button', 'smart-manager-for-wp-e-commerce')+'</a>'+
+		'<a id="sm_export_entire_store_stock_cols" class="sm_entire_store" href="#">'+_x('Entire Store - Stock Columns', 'export button', 'smart-manager-for-wp-e-commerce')+'</a>'+
+		'<a id="sm_export_entire_store_visible_cols" class="sm_entire_store" href="#">'+_x('Entire Store - Visible Columns', 'export button', 'smart-manager-for-wp-e-commerce')+'</a>';
+	}
+}
+Smart_Manager.prototype.setExportButtonHTML = function() {
+	if(window.smart_manager.dashboard_key === 'product'){
+		if(document.getElementById('sm_export_entire_store_stock_cols') !== null){
+			document.getElementById('sm_export_entire_store_stock_cols').innerHTML = (window.smart_manager.isFilteredData()) ? _x('All Items In Search Results - Stock Columns', 'export button', 'smart-manager-for-wp-e-commerce') : _x('Entire Store - Stock Columns', 'export button', 'smart-manager-for-wp-e-commerce');
+		}
+		if(document.getElementById('sm_export_entire_store_visible_cols') !== null){
+		    document.getElementById('sm_export_entire_store_visible_cols').innerHTML = (window.smart_manager.isFilteredData()) ? _x('All Items In Search Results - Visible Columns', 'export button', 'smart-manager-for-wp-e-commerce') : _x('Entire Store - Visible Columns', 'export button', 'smart-manager-for-wp-e-commerce');
+		}
+	} else {
+		if(document.getElementById('sm_export_entire_store') !== null){
+		    document.getElementById('sm_export_entire_store').innerHTML = (window.smart_manager.isFilteredData()) ? _x('All Items In Search Results', 'export button', 'smart-manager-for-wp-e-commerce') : _x('Entire Store', 'export button', 'smart-manager-for-wp-e-commerce');
+		}
+	}
 }

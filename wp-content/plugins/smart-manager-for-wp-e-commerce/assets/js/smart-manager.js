@@ -234,11 +234,16 @@ Smart_Manager.prototype.init = function() {
 	this.updatedTitle = '';
 	this.updatedEditedData = {};
 	this.selectedAllTasks = false;
-	this.exportStore = false;
+	this.exportStore = '';
 	this.isRefreshingLoadedPage = false;
 	this.editedColumnTitles = {};
 	this.isViewAuthor = false;
 	this.searchSwitchClicked = false;
+	this.columnsToBeExported = 'visible';
+	this.selectNotification = (this.sm_beta_pro == 1) ? true: false;
+	this.stockCols = [];
+	this.visibleCols = [];
+	this.exportCSVActions = ['sm_export_selected_records', 'sm_export_entire_store'];
 
 	//Function to set all the states on unload
 	window.onbeforeunload = function (evt) { 
@@ -264,6 +269,7 @@ Smart_Manager.prototype.init = function() {
 	window.smart_manager.load_dashboard();
 	window.smart_manager.event_handler();
 	window.smart_manager.loadNavBar();
+	window.smart_manager.exportButtonHtml();
 
 	//Code for setting rowHeight CSS variable
 	let r = document.querySelector(':root');
@@ -562,9 +568,7 @@ Smart_Manager.prototype.loadNavBar = function() {
 										'<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m.75 12l3 3m0 0l3-3m-3 3v-6m-1.5-9H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />'+
 									'</svg>'+
 									'<span>'+_x('Export CSV', 'button', 'smart-manager-for-wp-e-commerce')+'</span>'+
-									'<div class="sm_beta_dropdown_content">'+
-										'<a id="sm_export_selected" href="#">'+_x('Selected Records', 'export button', 'smart-manager-for-wp-e-commerce')+'</a>'+
-										'<a id="sm_export_entire_store" class="sm_entire_store" href="#">'+_x('Entire Store', 'export button', 'smart-manager-for-wp-e-commerce')+'</a>'+
+									'<div class="sm_beta_dropdown_content" id="sm_export_csv">'+
 									'</div>'+
 								'</div>'+
 							'</div>'+
@@ -970,7 +974,7 @@ Smart_Manager.prototype.setDashboardModel = function (response) {
 		if ( "undefined" !== typeof (window.smart_manager.refreshColumnsTitleAttribute) && "function" === typeof (window.smart_manager.refreshColumnsTitleAttribute) ) {
 			window.smart_manager.refreshColumnsTitleAttribute();
 		}
-
+		window.smart_manager.exportButtonHtml();
 		jQuery('#sm_editor_grid').trigger( 'smart_manager_post_load_grid' ); //custom trigger
 	}
 }
@@ -1085,7 +1089,7 @@ Smart_Manager.prototype.set_data = function(response) {
 				}
 			} else {
 				window.smart_manager.currentDashboardData = ( window.smart_manager.totalRecords > 0 ) ? res.items : [];
-				document.getElementById('sm_export_entire_store').innerHTML = (window.smart_manager.isFilteredData()) ? _x('All Items In Search Results', 'export button', 'smart-manager-for-wp-e-commerce') : _x('Entire Store', 'export button', 'smart-manager-for-wp-e-commerce')
+				window.smart_manager.setExportButtonHTML();
 				document.getElementById('sm_beta_dup_entire_store').innerHTML = (window.smart_manager.isFilteredData()) ? _x('All Items In Search Results', 'duplicate button', 'smart-manager-for-wp-e-commerce') : _x('Entire Store', 'duplicate button', 'smart-manager-for-wp-e-commerce')
 				
 			}
@@ -2146,6 +2150,8 @@ Smart_Manager.prototype.reset = function( fullReset = false ){
 	window.smart_manager.processContent = '';
 	window.smart_manager.updatedTitle = '';
 	window.smart_manager.editedColumnTitles = {};
+	window.smart_manager.exportCSVActions = ['sm_export_selected_records', 'sm_export_entire_store'];
+	window.smart_manager.selectNotification = (this.sm_beta_pro == 1) ? true : false;
 
 	if(window.smart_manager.hot){
 		if(window.smart_manager.hot.selection){
@@ -2645,13 +2651,22 @@ Smart_Manager.prototype.event_handler = function() {
 		if( jQuery(this).parents('div#del_sm_editor_grid').length > 0 || jQuery(this).parents('div#sm_custom_views').length > 0 ) {
 			return;
 		}
+		let params = {},
+		isBackgroundProcessRunning = window.smart_manager.backgroundProcessRunningNotification(false);
+		params.btnParams = {};
+		params.title = _x('Attention!', 'modal title', 'smart-manager-for-wp-e-commerce');
+		if(0 === window.smart_manager.selectedRows.length && !window.smart_manager.selectAll && window.smart_manager.selectNotification && className !== 'sm_entire_store'){
+			window.smart_manager.notification = {message: _x('Please select a record', 'notification', 'smart-manager-for-wp-e-commerce')}
+			window.smart_manager.showNotification()
+		} else if(window.smart_manager.exportCSVActions && 'undefined' !== typeof(id) && id && window.smart_manager.exportCSVActions.includes(id) && !isBackgroundProcessRunning){ //code for handling export CSV functionality.
+			if("undefined" !== typeof(window.smart_manager.getExportCsv) && "function" === typeof(window.smart_manager.getExportCsv) && params && btnText){
+				window.smart_manager.getExportCsv({'params':params,'id':id,'btnText':btnText});
+			}
+		}
+
 		if(1 == window.smart_manager.sm_beta_pro){
 			if('undefined' !== typeof(id) && id){
 					if(window.smart_manager.selectedRows.length > 0 || window.smart_manager.selectAll || 'sm_entire_store' === className){
-						let params = {},
-							isBackgroundProcessRunning = window.smart_manager.backgroundProcessRunningNotification(false);
-						    params.btnParams = {};
-						    params.title = _x('Attention!', 'modal title', 'smart-manager-for-wp-e-commerce');
 						if( id == 'batch_update_sm_editor_grid' && !isBackgroundProcessRunning ) { //code for handling batch update functionality
 							// window.smart_manager.createBatchUpdateDialog();
 							if ( typeof (window.smart_manager.showPannelDialog) !== "undefined" && typeof (window.smart_manager.showPannelDialog) === "function" ) {
@@ -2678,15 +2693,7 @@ Smart_Manager.prototype.event_handler = function() {
 							if ( typeof (window.smart_manager.printInvoice) !== "undefined" && typeof (window.smart_manager.printInvoice) === "function" ) {
 								window.smart_manager.printInvoice();
 							}
-						}else if(('sm_export_entire_store' === id || 'sm_export_selected'=== id) && !isBackgroundProcessRunning){ //code for handling export CSV functionality.
-							if("undefined" !== typeof(window.smart_manager.getExportCsv) && "function" === typeof(window.smart_manager.getExportCsv) && params && btnText){
-								window.smart_manager.getExportCsv({'params':params,'id':id,'btnText':btnText});
-							}
 						}
-
-					} else if(0 === window.smart_manager.selectedRows.length && !window.smart_manager.selectAll && 'sm_entire_store' !== className) {
-						window.smart_manager.notification = {message: _x('Please select a record', 'notification', 'smart-manager-for-wp-e-commerce')}
-						window.smart_manager.showNotification()
 					}
 			}
 			
@@ -2694,11 +2701,12 @@ Smart_Manager.prototype.event_handler = function() {
 
 			if( typeof(id) != 'undefined' ) {
 
-				if( id != 'sm_beta_dup_entire_store' && id != 'sm_beta_dup_selected' ) {
+				if(!['sm_beta_dup_entire_store', 'sm_beta_dup_selected'].includes(id) && (window.smart_manager.stockCols && !window.smart_manager.stockCols.includes(id))) {
 					
 					let description = sprintf(_x('You can change/update multiple fields of the entire store OR for selected items using the Bulk Edit feature. Refer to this doc on %s or watch the video below.', 'modal description', 'smart-manager-for-wp-e-commerce'), '<a href="https://www.storeapps.org/docs/sm-how-to-use-batch-update/?utm_source=sm&utm_medium=in_app&utm_campaign=view_docs" target="_blank">'+_x('how to do bulk edit', 'modal description', 'smart-manager-for-wp-e-commerce')+'</a>');
-
-					if( 'sm_export_selected' === id || 'sm_export_entire_store' === id ) {
+					title = ( ( id == 'batch_update_sm_editor_grid' ) ? btnText + ' - <span style="color: red;">'+_x('Biggest Time Saver', 'modal title', 'smart-manager-for-wp-e-commerce')+' </span>' : btnText ) + sprintf(_x('(Only in %s)', 'modal title', 'smart-manager-for-wp-e-commerce'), '<a href="'+ window.smart_manager.pricingPageURL +'" target="_blank">'+_x('Pro', 'modal title', 'smart-manager-for-wp-e-commerce')+'</a>');
+					if((id !== 'batch_update_sm_editor_grid') && window.smart_manager.exportCSVActions){
+						title = _x('Export CSV of ', 'modal title', 'smart-manager-for-wp-e-commerce') + btnText;
 						description = _x('You can export selected/all records OR filtered records (using Simple Search or Advanced Search) by simply clicking on the Export CSV button at the bottom right of the grid.', 'modal description', 'smart-manager-for-wp-e-commerce');
 					}
 
@@ -2706,9 +2714,6 @@ Smart_Manager.prototype.event_handler = function() {
 									'<p style="font-size:1.2em;margin:1em;">'+description+'</p>'+
 									'<div style="height:17rem;"><iframe width="100%" height="100%" src="https://www.youtube.com/embed/'+ ( ( id == 'batch_update_sm_editor_grid' ) ? 'COXCuX2rFrk' : 'GMgysSQw7_g' ) +'" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>'+
 								'</div>'
-
-					title = ( ( id == 'batch_update_sm_editor_grid' ) ? btnText + ' - <span style="color: red;">'+_x('Biggest Time Saver', 'modal title', 'smart-manager-for-wp-e-commerce')+' </span>' : btnText ) + sprintf(_x('(Only in %s)', 'modal title', 'smart-manager-for-wp-e-commerce'), '<a href="'+ window.smart_manager.pricingPageURL +'" target="_blank">'+_x('Pro', 'modal title', 'smart-manager-for-wp-e-commerce')+'</a>');
-
 					window.smart_manager.modal = {
 						title: title,
 						content: content,
@@ -2725,7 +2730,7 @@ Smart_Manager.prototype.event_handler = function() {
 					}
 					window.smart_manager.showModal()
 
-				} else {
+				} else if(['sm_beta_dup_entire_store', 'sm_beta_dup_selected'].includes(id)) {
 					window.smart_manager.notification = {message: sprintf(_x('Duplicate Records (Only in %s)', 'notification', 'smart-manager-for-wp-e-commerce'), '<a href="'+ window.smart_manager.pricingPageURL +'" target="_blank">'+_x('Pro', 'notification', 'smart-manager-for-wp-e-commerce')+'</a>'),hideDelay: window.smart_manager.notificationHideDelayInMs}
 					window.smart_manager.showNotification()
 				}
@@ -3425,6 +3430,13 @@ Smart_Manager.prototype.saveSettings = function(settings = {}){
 	});
 };
 
+// Function to change export CSV button text.
+Smart_Manager.prototype.exportButtonHtml = function() {
+	if(document.getElementById('sm_export_csv') !== null){
+		document.getElementById('sm_export_csv').innerHTML = '<a id="sm_export_selected_records" href="#">'+_x('Selected Records', 'export button', 'smart-manager-for-wp-e-commerce')+'</a>'+'<a id="sm_export_entire_store" class="sm_entire_store" href="#">'+_x('Entire Store', 'export button', 'smart-manager-for-wp-e-commerce')+'</a>';
+	}
+}
+
 if(typeof window.smart_manager === 'undefined'){
 	window.smart_manager = new Smart_Manager();
 }
@@ -4030,6 +4042,62 @@ jQuery.widget('ui.dialog', jQuery.extend({}, jQuery.ui.dialog.prototype, {
 		('product_stock_log' === window.smart_manager.dashboard_key) ? jQuery('#sm_top_bar').toggle(false) : jQuery('#sm_top_bar').toggle(true);
 	}
 
+	// Function for displaying warning modal before doing export csv
+	Smart_Manager.prototype.getExportCsv = function(args){
+	    if(!args || !((Object.keys(args)).every(arg => args.hasOwnProperty(arg)))){
+	        return;
+	    }
+	    args.params.content = _x('Are you sure you want to export the ','modal content','smart-manager-for-wp-e-commerce') + args.btnText + '?';
+	    if("undefined" !== typeof(window.smart_manager.generateCsvExport) && "function" === typeof(window.smart_manager.generateCsvExport)){
+	        args.params.btnParams.yesCallback = window.smart_manager.generateCsvExport;
+	    }
+	    window.smart_manager.exportStore = (['sm_export_entire_store_stock_cols', 'sm_export_entire_store_visible_cols', 'sm_export_entire_store'].includes(args.id)) ? (args.id === 'sm_export_entire_store_stock_cols' ? 'entire_store_stock_cols' : 'entire_store') : '';
+	    window.smart_manager.columnsToBeExported = (window.smart_manager.stockCols && window.smart_manager.stockCols.includes(args.id)) ? 'stock' : 'visible';
+	    if("undefined" !== typeof(window.smart_manager.showConfirmDialog) && "function" === typeof(window.smart_manager.showConfirmDialog)){
+	        window.smart_manager.showConfirmDialog(args.params);
+	    }   
+	}
+
+	// ========================================================================
+	// EXPORT CSV
+	// ========================================================================
+
+	Smart_Manager.prototype.generateCsvExport = function() {
+
+	    let params = {
+	                            cmd: 'get_export_csv',
+	                            active_module: window.smart_manager.dashboard_key,
+	                            security: window.smart_manager.sm_nonce,
+	                            pro: true,
+	                            SM_IS_WOO30: window.smart_manager.sm_is_woo30,
+	                            sort_params: (window.smart_manager.currentDashboardModel.hasOwnProperty('sort_params') ) ? window.smart_manager.currentDashboardModel.sort_params : '',
+	                            table_model: (window.smart_manager.currentDashboardModel.hasOwnProperty('tables') ) ? window.smart_manager.currentDashboardModel.tables : '',
+	                            search_text: (window.smart_manager.searchType == 'simple') ? window.smart_manager.simpleSearchText : '',
+							    advanced_search_query: JSON.stringify((window.smart_manager.searchType != 'simple') ? window.smart_manager.advancedSearchQuery : []),
+	                            is_taxonomy: window.smart_manager.isTaxonomyDashboard() || 0,
+	                            storewide_option: window.smart_manager.exportStore || '',
+	                            selected_ids: (window.smart_manager.getSelectedKeyIds()) ? JSON.stringify(window.smart_manager.getSelectedKeyIds()) : '',
+	                            columnsToBeExported: window.smart_manager.columnsToBeExported || ''
+	                          };
+	    //Code for handling views
+	    let viewSlug = window.smart_manager.getViewSlug(window.smart_manager.dashboardName);
+	    
+	    if(viewSlug){
+	        params['is_view'] = 1;
+	        params['active_view'] = viewSlug;
+	        params['active_module'] = (window.smart_manager.viewPostTypes.hasOwnProperty(viewSlug)) ? window.smart_manager.viewPostTypes[viewSlug] : window.smart_manager.dashboard_key;
+	    }
+
+	    let export_url = window.smart_manager.sm_ajax_url + '&cmd='+ params['cmd'] +'&active_module='+ params['active_module'] +'&security='+ params['security'] +'&pro='+ params['pro'] +'&SM_IS_WOO30='+ params['SM_IS_WOO30'] +'&is_taxonomy='+ params['is_taxonomy'] +'&sort_params='+ encodeURIComponent(JSON.stringify(params['sort_params'])) +'&table_model='+ encodeURIComponent(JSON.stringify(params['table_model'])) +'&advanced_search_query='+params['advanced_search_query']+'&search_text='+ params['search_text'] + '&storewide_option=' + params['storewide_option'] + '&selected_ids=' + params['selected_ids'] + '&columnsToBeExported=' + params['columnsToBeExported'];
+	    export_url += ( window.smart_manager.date_params && window.smart_manager.date_params.hasOwnProperty('date_filter_params') ) ? '&date_filter_params='+ window.smart_manager.date_params['date_filter_params'] : '';
+	    export_url += ( window.smart_manager.date_params && window.smart_manager.date_params.hasOwnProperty('date_filter_query') ) ? '&date_filter_query='+ window.smart_manager.date_params['date_filter_query'] : '';
+	    
+	    if(viewSlug){
+	        export_url += '&is_view='+params['is_view']+'&active_view='+params['active_view'];
+	    }
+
+	    setTimeout(()=>{window.location = export_url},500);
+	}
 	// Register an alias for datetime
 	Handsontable.cellTypes.registerCellType('sm.datetime', {
 		editor: dateTimeEditor,
