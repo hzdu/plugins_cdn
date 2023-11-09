@@ -1,9 +1,9 @@
 /* global wp */
-(function () {
+;(function () {
   var el = wp.element.createElement
   var useDispatch = wp.data.useDispatch
-  var InnerBlocks = wp.blockEditor.InnerBlocks
   var registerBlockType = wp.blocks.registerBlockType
+  var useBlockProps = wp.blockEditor.useBlockProps || function (props) { return props; }
 
   function FlatsomeIcon (props) {
     return el(
@@ -29,66 +29,43 @@
     }
   }
 
-  function DefaultBlockEdit () {
+  function Placeholder () {
     var editor = useDispatch('core/editor')
+    var blockProps = useBlockProps()
 
-    return el(
-      wp.components.Placeholder,
-      {
-        icon: el(FlatsomeIcon, { width: 21, height: 21 }),
-        label: 'UX Builder content',
-        instructions: 'This content can only be edited in UX Builder.'
-      },
+    return el('div', blockProps, [
       el(
-        wp.components.Button,
+        wp.components.Placeholder,
         {
-          variant: 'secondary',
-          onFocus: function (e) {
-            e.stopPropagation()
-          },
-          onClick: function () {
-            editor.savePost().then(gotoUxBuilder)
-          }
+          key: 'placeholder',
+          icon: el(FlatsomeIcon, { width: 21, height: 21 }),
+          label: 'UX Builder content',
+          instructions: 'This content can only be edited in UX Builder.'
         },
-        'Edit with UX Builder'
+        el(
+          wp.components.Button,
+          {
+            variant: 'secondary',
+            onFocus: function (e) {
+              e.stopPropagation()
+            },
+            onClick: function () {
+              editor.savePost().then(gotoUxBuilder)
+            }
+          },
+          'Edit with UX Builder'
+        )
       )
-    )
+    ])
   }
 
-  function DefaultBlockSaveInnerBlocks () {
-    return el(InnerBlocks.Content)
-  }
-
-  function DefaultBlockSaveRawHTML (props) {
+  function SaveRawHTML (props) {
     return el(wp.element.RawHTML, {}, props.attributes.content)
   }
 
-  for (var name in window.flatsomeBlockSettings) {
-    if (window.flatsomeBlockSettings.hasOwnProperty(name)) {
-      var data = window.flatsomeBlockSettings[name]
-
-      registerBlockType(name, {
-        title: 'UX Builder content',
-        description: 'This block contains content created with UX Builder.',
-        category: 'common',
-        attributes: data.attributes,
-        supports: Object.assign({}, {
-          html: false,
-          align: false,
-          anchor: false,
-          reusable: false,
-          inserter: false,
-          alignWide: false,
-          className: false,
-          customClassName: false,
-          defaultStylePicker: false
-        }, data.supports),
-        icon: FlatsomeIcon,
-        edit: DefaultBlockEdit,
-        save: name === 'flatsome/uxbuilder'
-          ? DefaultBlockSaveRawHTML
-          : DefaultBlockSaveInnerBlocks
-      })
-    }
-  }
+  registerBlockType('flatsome/uxbuilder', {
+    icon: FlatsomeIcon,
+    edit: Placeholder,
+    save: SaveRawHTML
+  })
 }())
