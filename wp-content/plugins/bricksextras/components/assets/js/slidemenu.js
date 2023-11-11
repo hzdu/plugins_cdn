@@ -1,11 +1,13 @@
 function xSlideMenu(){
 
+
     let extrasSlideMenu = function ( container ) {
 
       container.querySelectorAll('.brxe-xslidemenu').forEach( slideMenu => {
 
           const configAttr = slideMenu.getAttribute('data-x-slide-menu')
           const elementConfig = configAttr ? JSON.parse(configAttr) : {}
+          let inBuilder = document.querySelector('.brx-body.iframe');
 
           let speedAnimation = elementConfig.slideDuration;
 
@@ -36,12 +38,7 @@ function xSlideMenu(){
                   
                   this.setAttribute("aria-expanded", "true" === this.getAttribute("aria-expanded") ? "false" : "true" );
                   
-                  if (typeof jQuery === 'undefined') {
-                    parent.lastElementChild.xslideToggle(speedAnimation)
-                  } else {
-                    jQuery(parent.lastElementChild).slideToggle( parseInt(elementConfig.slideDuration) )
-                  }
-                  
+                  parent.lastElementChild.xslideToggle(speedAnimation)
       
                   let allSiblings = Array.from(parent.parentElement.children).filter(sibling => sibling.textContent !== parent.textContent);
       
@@ -49,11 +46,7 @@ function xSlideMenu(){
       
                       if (dropDownSibling.classList.contains('menu-item-has-children') ){
                         
-                          if (typeof jQuery === 'undefined') {
-                            dropDownSibling.lastElementChild.xslideUp(speedAnimation)
-                          } else {
-                            jQuery(dropDownSibling.lastElementChild).slideUp( parseInt(elementConfig.slideDuration) )
-                          }
+                          dropDownSibling.lastElementChild.xslideUp(speedAnimation)
       
                           dropDownSibling.children[0].lastElementChild.setAttribute("aria-expanded", "false")
                       }
@@ -75,26 +68,74 @@ function xSlideMenu(){
 
           })
 
+          if (null != elementConfig.clickSelector && document.querySelectorAll(elementConfig.clickSelector).length) {
+
+            slideMenu.querySelectorAll('.menu-item:not(.menu-item-has-children) > a[href*="#"]').forEach( menuHashLink => {
+
+              if (inBuilder) {return}
+              menuHashLink.addEventListener('click', function(e) {
+                document.querySelector(elementConfig.clickSelector).click()
+              })
+            })
+
+          }
+
         })
 
           if (null != elementConfig.clickSelector && document.querySelectorAll(elementConfig.clickSelector).length) {
 
-              document.querySelectorAll(elementConfig.clickSelector).forEach(trigger => {
+              let slideMenuOpen = false;
 
-                      trigger.addEventListener('click', function(e) {
+              if (!inBuilder) {
+                document.querySelectorAll(elementConfig.clickSelector).forEach(trigger => {
 
-                        e.preventDefault()
-                        e.stopPropagation()
+                        trigger.addEventListener('click', function(e) {
 
-                        if (typeof jQuery === 'undefined') {
-                          slideMenu.xslideToggle(speedAnimation)
-                        } else {
-                          jQuery(slideMenu).slideToggle( parseInt(elementConfig.slideDuration) )
-                        }
+                          e.preventDefault()
+                          e.stopPropagation()
 
-                    })
+                          if ( !slideMenuOpen ) { slideMenuOpen = true; } 
+                          else {  slideMenuOpen = false;  }
 
-              })
+                          if ( slideMenuOpen ) {
+                            /* opening */
+                            slideMenu.classList.add('x-slide-menu_open');
+                            xOpenSlideMenu(slideMenu.getAttribute('data-x-id'))
+                            slideMenu.dispatchEvent(new Event('x_slide_menu:expand'))
+
+                            document.addEventListener('keydown', xEscClickCloseSlideMenu);
+                            document.addEventListener('click', xEscClickCloseSlideMenu);
+
+                          } 
+                          
+                          /* closing */
+                          else {
+                            slideMenu.classList.remove('x-slide-menu_open');
+                            xCloseSlideMenu(slideMenu.getAttribute('data-x-id'))
+                            slideMenu.dispatchEvent(new Event('x_slide_menu:collapse'))
+
+                            document.removeEventListener('keydown', xEscClickCloseSlideMenu);
+                            document.removeEventListener('click', xEscClickCloseSlideMenu);
+                          }
+
+
+                      })
+
+                })
+              }
+
+              function xEscClickCloseSlideMenu(e) {
+
+                if((e.key === "Escape" || e.key === "Esc")){
+                  document.querySelector(elementConfig.clickSelector).click()
+                  return;
+                }
+            
+                if (! e.target.closest('.x-slide-menu_open') && ! e.target.closest(elementConfig.clickSelector) ) {
+                  document.querySelector(elementConfig.clickSelector).click()
+                }
+            
+              }
       
           }
 
@@ -102,10 +143,35 @@ function xSlideMenu(){
 
   }
 
+  function xOpenSlideMenu(elementIdentifier) {
+
+    const element = document.querySelector('.brxe-xslidemenu[data-x-id="' + elementIdentifier + '"]');
+    if (!element) { return; }
+    const configAttr = element.getAttribute('data-x-slide-menu');
+    const elementConfig = configAttr ? JSON.parse(configAttr) : {}
+    element.xslideDown(elementConfig.slideDuration)
+
+  }
+
+  function xCloseSlideMenu(elementIdentifier) {
+
+    const element = document.querySelector('.brxe-xslidemenu[data-x-id="' + elementIdentifier + '"]');
+    if (!element) { return; }
+    const configAttr = element.getAttribute('data-x-slide-menu');
+    const elementConfig = configAttr ? JSON.parse(configAttr) : {}
+
+    element.xslideUp(elementConfig.slideDuration)
+
+  }
+
+  
+
   extrasSlideMenu(document);
                 
-  // Expose function
+  // Expose functions
   window.doExtrasSlideMenu = extrasSlideMenu;
+  window.xOpenSlideMenu = xOpenSlideMenu
+  window.xCloseSlideMenu = xCloseSlideMenu
 
 }
 

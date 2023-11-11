@@ -327,7 +327,7 @@ jQuery(document).on('sm_dashboard_change', '#sm_editor_grid', function() {
 		window.smart_manager.stockCols = ['sm_export_selected_stock_cols', 'sm_export_entire_store_stock_cols'];
 		window.smart_manager.visibleCols = ['sm_export_selected_visible_cols', 'sm_export_entire_store_visible_cols'];
 		if(window.smart_manager.sm_beta_pro == 0){
-			window.smart_manager.selectNotification = (jQuery(this).attr('id') === 'sm_export_selected_stock_cols') ? true : false;
+			window.smart_manager.recordSelectNotification= (jQuery(this).attr('id') === 'sm_export_selected_stock_cols') ? true : false;
 			window.smart_manager.exportCSVActions = window.smart_manager.stockCols;
 		}else{
 			window.smart_manager.exportCSVActions = window.smart_manager.stockCols.concat(window.smart_manager.visibleCols);
@@ -488,10 +488,6 @@ Smart_Manager.prototype.setExportButtonHTML = function() {
 		}
 		if(document.getElementById('sm_export_entire_store_visible_cols') !== null){
 		    document.getElementById('sm_export_entire_store_visible_cols').innerHTML = (window.smart_manager.isFilteredData()) ? _x('All Items In Search Results - Visible Columns', 'export button', 'smart-manager-for-wp-e-commerce') : _x('Entire Store - Visible Columns', 'export button', 'smart-manager-for-wp-e-commerce');
-		}
-	} else {
-		if(document.getElementById('sm_export_entire_store') !== null){
-		    document.getElementById('sm_export_entire_store').innerHTML = (window.smart_manager.isFilteredData()) ? _x('All Items In Search Results', 'export button', 'smart-manager-for-wp-e-commerce') : _x('Entire Store', 'export button', 'smart-manager-for-wp-e-commerce');
 		}
 	}
 }

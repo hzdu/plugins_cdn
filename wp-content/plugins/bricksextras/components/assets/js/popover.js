@@ -68,14 +68,21 @@
                         moveTransition: 'transform ' + config.moveTransition + 'ms ease-out', 
                         offset: [ config.offsetSkidding , config.offsetDistance], 
                         onShow(instance) {
+                            tippy.hideAll({exclude: instance})
                             setTimeout(() => {
                                 if( typeof bricksLazyLoad === "function" ){
                                     bricksLazyLoad()
                                 }
                             }, 50)
+                            popover.addEventListener('keydown', function(e) {
+                                if((e.key === "Escape" || e.key === "Esc")){
+                                    instance.hide();
+                                }
+                            });
                         },
                         onShown() {
                             popover.dispatchEvent(new Event('x_popover:show'))
+                            
                         },
                         onHide() {
                             popover.dispatchEvent(new Event('x_popover:hide'))

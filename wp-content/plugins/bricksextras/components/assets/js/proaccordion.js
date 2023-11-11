@@ -6,44 +6,98 @@ function xProAccordion() {
 
     const extrasAccordion = function ( container ) {
 
-        bricksQuerySelectorAll(container, ".x-accordion").forEach((proAccordion) => {
+        container.querySelectorAll(".x-accordion").forEach((proAccordion) => {
 
             const config = xProAccordionConfig(proAccordion);
             const identifier = proAccordion.getAttribute('data-x-id')
-
-            bricksQuerySelectorAll(proAccordion, ".x-accordion_item").forEach((proAccordionItem,index) => {
-
-                if (!proAccordionItem.id) {
-                    if ( proAccordion.id ) {
-                        proAccordionItem.id = proAccordion.id + '-' + (index + 1);
-                    }
-                    
-                }
-
-            })
+            let loopIndex
 
             if ( config.hashLink ) {
+
+                const proAccordionItems = proAccordion.childNodes;
+                [...proAccordionItems].forEach((proAccordionItem,index) => {
+
+                    if ( !proAccordionItem.id ) {
+
+                        loopIndex = typeof config.loopIndex !== "undefined" ? config.loopIndex + '_' : '';
+
+                        if ( proAccordion.parentElement && proAccordion.parentElement.closest('.x-accordion') ) {
+                            if ('' === loopIndex) {
+                                proAccordionItem.id = proAccordion.id + '-' + loopIndex + (index + 1);
+                            } else {
+                                if ( proAccordion.parentElement.closest('.x-accordion').parentElement.closest('.x-accordion') ) {
+                                    proAccordionItem.id = proAccordion.parentElement.closest('.x-accordion').parentElement.closest('.x-accordion').id + '-' + loopIndex + (index + 1);
+                                } else {
+                                    proAccordionItem.id = proAccordion.parentElement.closest('.x-accordion').id + '-' + loopIndex + (index + 1);
+                                }
+                            }
+                        } 
+
+                        else {
+                            proAccordionItem.id = proAccordion.id + '-' + loopIndex + (index + 1);
+                        }
+                    }
+
+                })
+
                 if(location.hash != null && location.hash != ""){
 
+                    let depth = 0;
+                    let delay = 0;
+
                     setTimeout(() => {
-                        if ( proAccordion.querySelector(location.hash) ) {
-                            
-                            window.scrollTo({
-                                top: proAccordion.querySelector(location.hash).offsetTop - config.scrollOffset,
-                                left: 0,
-                                behavior: 'smooth'
-                            });
-                            
-                            if ( proAccordion.querySelector(location.hash).classList.contains('x-accordion_item') ) {
-                                if ( document.querySelector(location.hash).querySelector('.x-accordion_header') ) {
-                                    xOpenAccordionItem(document.querySelector(location.hash).querySelector('.x-accordion_header'),xProAccordionConfig(proAccordion)) 
+                        if ( document.querySelector(location.hash) ) {
+
+                            let item = document.querySelector(location.hash);
+
+                            if ( item.closest(".x-accordion").parentElement.closest(".x-accordion") ) {
+                                depth = 1;
+                                if ( item.closest(".x-accordion").parentElement.closest(".x-accordion").parentElement.closest(".x-accordion") ) {
+                                    depth = 2;
                                 }
+                            }
+                          
+                            
+                            if ( document.querySelector(location.hash).classList.contains('x-accordion_item') ) {
+
+                                if ( document.querySelector(location.hash).querySelector('.x-accordion_header') ) {
+
+                                    if (1 === depth) {
+                                        xOpenAccordionItem(document.querySelector(location.hash).parentElement.closest('.x-accordion_item').querySelector('.x-accordion_header'),xProAccordionConfig(proAccordion)) 
+                                        delay = 50
+                                    }
+                                    else if (2 === depth) {
+                                        xOpenAccordionItem(document.querySelector(location.hash).parentElement.closest('.x-accordion_item').parentElement.closest('.x-accordion_item').querySelector('.x-accordion_header'),xProAccordionConfig(proAccordion)) 
+                                        setTimeout(() => {
+                                            xOpenAccordionItem(document.querySelector(location.hash).parentElement.closest('.x-accordion_item').querySelector('.x-accordion_header'),xProAccordionConfig(proAccordion))
+                                        }, 50)    
+                                        delay = 100
+                                    }
+
+                                    setTimeout(() => {
+                                        xOpenAccordionItem(document.querySelector(location.hash).querySelector('.x-accordion_header'),xProAccordionConfig(proAccordion)) 
+                                    }, delay)  
+                                }
+
                             } else {
                                 xOpenAccordionItem(document.querySelector(location.hash),xProAccordionConfig(proAccordion)) 
                             }
                             
                         }
+
+                        setTimeout(() => {
+                            if ( document.querySelector(location.hash) ) {
+                                window.scrollTo({
+                                    top: document.querySelector(location.hash).offsetTop - config.scrollOffset,
+                                    left: 0,
+                                    behavior: 'smooth'
+                                });
+                            }
+                        }, 100)    
+
                     }, 50)      
+
+                    
                 }
 
                 bricksQuerySelectorAll(container, [".x-accordion_link",".x-accordion_link > a"]).forEach((proAccordionLink) => {
@@ -75,20 +129,25 @@ function xProAccordion() {
                 
             }
 
-            
+            const proAccordionHeaders = [];
+            proAccordion.querySelectorAll(".x-accordion_header").forEach(proAccordionHeader => {
+                if ( proAccordion === proAccordionHeader.closest(".x-accordion") ) {
+                    proAccordionHeaders.push(proAccordionHeader);
+                }
+            })
         
-            bricksQuerySelectorAll(proAccordion, ".x-accordion_header").forEach((proAccordionHeader,index) => {
+            proAccordionHeaders.forEach((proAccordionHeader,index) => {
 
                 let proAccordionContent = null != proAccordionHeader.nextSibling ? proAccordionHeader.nextSibling : proAccordionHeader.closest('.x-accordion_item') ? proAccordionHeader.closest('.x-accordion_item').querySelector('.x-accordion_content') ? proAccordionHeader.closest('.x-accordion_item').querySelector('.x-accordion_content') : false : false;
 
                 
-                if (!proAccordionHeader.id) {
+                if (!proAccordionHeader.id || proAccordionHeader.id.startsWith('x-accordion_header_')) {
                     proAccordionHeader.id = 'x-accordion_header_' + identifier + '_' + index
                 }
 
                 if (proAccordionContent) {
 
-                    if (!proAccordionContent.id) {
+                    if (!proAccordionContent.id || proAccordionContent.id.startsWith('x-accordion_content_')) {
                         proAccordionContent.id = 'x-accordion_content_' + identifier + '_' + index
                     }
 

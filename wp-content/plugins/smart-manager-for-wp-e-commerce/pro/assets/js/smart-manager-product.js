@@ -30,7 +30,7 @@ jQuery(document).on('smart_manager_post_load_grid','#sm_editor_grid', function()
 					}
 				}
 			})
-			window.smart_manager.column_names_batch_update['custom/product_attributes']['actions'] = Object.assign(window.smart_manager.batch_update_actions['multilist'], {copy_from: _x('copy from', 'Bulk Edit option for WooCommerce product attribute', 'smart-manager-for-wp-e-commerce')});
+			window.smart_manager.column_names_batch_update['custom/product_attributes']['actions'] = {...window.smart_manager.batch_update_actions['multilist'], ...{copy_from: _x('copy from', 'Bulk Edit option for WooCommerce product attribute', 'smart-manager-for-wp-e-commerce')}};
 			[ 'set_to', 'copy_from_field' ].forEach(prop => delete window.smart_manager.column_names_batch_update['custom/product_attributes']['actions'][prop])
 			window.smart_manager.column_names_batch_update['custom/product_attributes']['additionalValues'] = attributesActions
 			window.smart_manager.column_names_batch_update['custom/product_attributes']['values'] = attributesValues

@@ -10,11 +10,7 @@ function xTabsToggleAccordionItem(tabsToggle,config, customduration = true) {
             let siblingAccordionContent = null != siblingAccordionHeader.nextElementSibling ? siblingAccordionHeader.nextElementSibling : siblingAccordionHeader.closest('.x-tabs_content-item').querySelector('.x-tabs_panel')
             if (siblingAccordionHeader != tabsToggle ) {
                 siblingAccordionHeader.setAttribute('aria-expanded', 'false')
-                if (typeof jQuery === 'undefined') {
-                    siblingAccordionContent.xslideUp(duration)
-                } else {
-                    jQuery(siblingAccordionContent).slideUp( duration )
-                }
+                siblingAccordionContent.xslideUp(duration)
             }
         })
 
@@ -26,11 +22,7 @@ function xTabsToggleAccordionItem(tabsToggle,config, customduration = true) {
         if ( accordionContent ) {
             if ( 'true' !== tabsToggle.getAttribute('aria-expanded') ) {
                 tabsToggle.setAttribute('aria-expanded', 'true')
-                if (typeof jQuery === 'undefined') {
-                    accordionContent.xslideDown(duration)
-                } else {
-                    jQuery(accordionContent).slideDown( duration )
-                }
+                accordionContent.xslideDown(duration)
                 
                 window.dispatchEvent(new Event('resize'))
                 if ( accordionContent.querySelector('.x-read-more_content') ) {
@@ -47,11 +39,7 @@ function xTabsToggleAccordionItem(tabsToggle,config, customduration = true) {
 
                 if (!document.querySelector('body > .brx-body.iframe')) { /* simplify for inside builder */
                     tabsToggle.setAttribute('aria-expanded', 'false')
-                    if (typeof jQuery === 'undefined') {
-                        accordionContent.xslideUp(duration)
-                    } else {
-                        jQuery(accordionContent).slideUp( duration )
-                    }
+                    accordionContent.xslideUp(duration)
                     tabsToggle.dispatchEvent(new Event('x_tabs_accordion:collapse'))
                 }
             }
@@ -162,7 +150,7 @@ function xTabsAllClicks(e) {
             index = [...e.target.closest('.x-tabs_tab').parentElement.children].indexOf(e.target.closest('.x-tabs_tab'))
         }
 
-        xTabsSelectTab(e.target.closest('.x-tabs_tab'),index, true, 'true' === config.animatedTabs, config.tabUnselect, config.adaptiveHeight);
+        xTabsSelectTab(e.target.closest('.x-tabs_tab'),index, false, 'true' === config.animatedTabs, config.tabUnselect, config.adaptiveHeight);
     } 
     
     if ( e.target.closest('.x-tabs_toggle') ) {
@@ -592,11 +580,7 @@ function xTabs() {
                         if ( 0 === index && config.expandFirstItem) {
                             tabsToggle.setAttribute('aria-expanded', 'true')
                             if (proTabs.classList.contains('x-tabs-mobile') ) {
-                                if (typeof jQuery === 'undefined') {
-                                    accordionContent.xslideDown(0)
-                                } else {
-                                    jQuery(accordionContent).slideDown( 0 )
-                                }
+                                accordionContent.xslideDown(0)
                                 
                             }
                         } else {

@@ -62,6 +62,21 @@ window.WP_Grid_Builder && WP_Grid_Builder.on('init', function(wpgb) {
                 doExtrasLottie(container)
             }
 
+            /* media player */
+            if (typeof doExtrasMediaPlayer == 'function') {
+                doExtrasMediaPlayer(container)
+            }
+
+            /* copy to clipboard */
+            if (typeof doExtrasCopyToClipBoard == 'function') {
+                doExtrasCopyToClipBoard(container)
+            }
+            if (typeof doExtrasCopyToClipBoardPopover == 'function') {
+                doExtrasCopyToClipBoardPopover(container)
+            }
+            
+            
+
         })
 
     })

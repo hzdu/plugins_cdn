@@ -42,7 +42,7 @@
             readMore.querySelector('.x-read-more_content').style.removeProperty('height')
             readMore.querySelector('.x-read-more_content').style.removeProperty('max-height')
             readMore.querySelector('.x-read-more_content').classList.remove('x-read-more_not-collapsable')
-            
+
             setTimeout(function(){
             if ( readMore.hasAttribute('data-x-fade') ) {
               readMore.classList.add('x-read-more_fade');
@@ -55,7 +55,7 @@
             }, 100)
 
          })
-         
+
         }
 
         el.querySelectorAll('[data-x-modal-close]').forEach(closeBtn => {
@@ -64,7 +64,7 @@
             if ( e.currentTarget.classList.contains('x-modal_backdrop') ) {
               if(e.target !== e.currentTarget) return;
             }
-           
+
             xCloseModal(el.id)
           })
         })
@@ -123,14 +123,14 @@
         let delayed = null != value.options.delay ? value.options.delay : 0
 
         if ( 'pageLoad' === value.type ) {
-            
+
           window.addEventListener('load', function() {
-            
+
             setTimeout(function(){
               if ( false === modalShown || false === config.show_once ) { 
                 maybeShowModal(el.id, config.rawConfig);
               }
-            
+
             }, value.options.delay);
 
           });
@@ -158,7 +158,7 @@
             e.preventDefault();
 
               el.addEventListener("x_modal:close", function() {
-                
+
                 document.querySelectorAll(value.options.selector).forEach(clickTrigger => {
                   if ( clickTrigger.classList.contains('brxe-xburgertrigger') ) {
 
@@ -235,7 +235,7 @@
           window.ontouchmove = resetTimer; 
           window.onclick = resetTimer;
           window.onkeydown = resetTimer;   
-          
+
           window.addEventListener('scroll', resetTimer, true);
 
           function resetTimer() {
@@ -288,7 +288,7 @@
             waiting = true;
 
             setTimeout(() => {
-							
+
               scrollTop = ~~(window.pageYOffset);
 
             if (scrollTop >= parseInt( value.options.scrollAmount ) ) {
@@ -303,7 +303,7 @@
 				}, 100); /* run maximum every 100ms */
 
           }
-          
+
           document.addEventListener('scroll', pageScrollModal)
 
         }
@@ -311,7 +311,7 @@
         if ( 'scrolled_to_element' === value.type ) {
 
           if ( document.querySelector(value.options.selector) ) {
-          
+
             const observer = new IntersectionObserver(function (entries, observer) {
 
                 entries.forEach((entry) => {
@@ -326,11 +326,11 @@
                       observer.unobserve(entry.target);
                     }
                   } 
-                  
+
                 });
 
               });
-            
+
               observer.observe(document.querySelector(value.options.selector));
 
             }
@@ -364,7 +364,7 @@
                 if ( false === modalShown || false === config.show_once ) { 
                   maybeShowModal(el.id, config.rawConfig);
                 }
-              
+
               }, value.options.delay);
 
             }
@@ -378,7 +378,7 @@
 
       }
 
-      
+
       function xProModalConfig(element, extraData = {}) {
         const configAttr = element.getAttribute('data-x-modal')
         const elementConfig = configAttr ? JSON.parse(configAttr) : {}
@@ -415,7 +415,7 @@
         }    
 
         return elementConfig
-    
+
     }
 
 
@@ -447,7 +447,7 @@
 
 
 document.addEventListener("DOMContentLoaded",function(e){
-    
+
     if (!bricksIsFrontend) {
         return;
     }
@@ -483,7 +483,7 @@ document.addEventListener("DOMContentLoaded",function(e){
         extrasModal(document.querySelector('.brxe-' + e.detail.queryId).parentElement);
       }
     }
-    
+
     document.addEventListener("bricks/ajax/load_page/completed", xModalAjax)
     document.addEventListener("bricks/ajax/pagination/completed", xModalAjax)
 

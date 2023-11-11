@@ -219,6 +219,10 @@ function xLightbox(){
                         if ( '' != linkSelector.getAttribute('href') ) {
                             linkSelector.setAttribute('data-x-lightbox-link', lightboxLinkIdentifier)
                         } 
+
+                        if ( linkSelector.querySelector('.bricks-image-caption') ) {
+                            linkSelector.setAttribute('data-description',linkSelector.querySelector('.bricks-image-caption').innerHTML );
+                        }
                     })
 
                 } else {
@@ -277,6 +281,9 @@ function xLightbox(){
                     plyr: {
                         css: xDynamicLightbox.plyrDir + 'plyr.css', 
                         js: xDynamicLightbox.plyrDir + 'plyr.js', 
+                        config: {
+                            iconUrl: xDynamicLightbox.plyrDir + 'plyr.svg', 
+                        }
                     },
                     cssEfects: {
                         x_animation: { 
@@ -304,8 +311,10 @@ function xLightbox(){
                         if ( null != config.galleryImages ) {
 
                             config.galleryImages.forEach((galleryImage) => {
+
                                 galleryArray.push( { 
-                                    "href": galleryImage[0]
+                                    "href": galleryImage[0][0],
+                                    'description': galleryImage[1]
                                 } );
                             })
 
@@ -489,6 +498,21 @@ function xLightbox(){
                         if ( slideNode.querySelector('.brxe-xtabs') ) {
                             doExtrasTabs(slideNode)
                             window.dispatchEvent(new Event('resize'))
+                        }
+
+                        /* media player */
+                        if ( slideNode.querySelector('.brxe-xmediaplayer') ) {
+                            doExtrasMediaPlayer(slideNode)
+                        }
+
+                         /* copy to clipboard */
+                         if ( slideNode.querySelector('.brxe-xcopytoclipboard') ) {
+                            if (typeof doExtrasCopyToClipBoard == 'function') {
+                                doExtrasCopyToClipBoard(slideNode)
+                            }
+                            if (typeof doExtrasCopyToClipBoardPopover == 'function') {
+                                doExtrasCopyToClipBoardPopover(slideNode)
+                            }
                         }
 
                         /* close if hashlink */

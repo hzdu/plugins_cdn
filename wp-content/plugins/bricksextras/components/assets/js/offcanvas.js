@@ -6,6 +6,8 @@ function xOffCanvas(offcanvas, elementConfig) {
    let insideLoop = false;
    let loopContainer;
 
+   let previousFocus;
+
     if ( null != elementConfig.isLooping ) {
        loopContainer = offcanvas.closest('.brxe-' + elementConfig.isLooping)
     } else {
@@ -20,18 +22,18 @@ function xOffCanvas(offcanvas, elementConfig) {
       offcanvasInner.classList.add("x-offcanvas_ready")
     }, "300")
 
-    if ('false' != elementConfig.autoAriaControl) {
+    if ('false' != elementConfig.autoAriaControl && '' !== elementConfig.clickTrigger) {
       document.querySelectorAll(elementConfig.clickTrigger).forEach((clickTrigger) => {
         clickTrigger.setAttribute('aria-controls', offcanvasInner.id)
         clickTrigger.setAttribute('aria-expanded', 'false')
       });
     }
 
-    function toggleOffcanvas() {
+    function toggleOffcanvas(previousFocus) {
       if ('true' == offcanvas.querySelector(".x-offcanvas_inner").getAttribute('aria-hidden')) {
         xOpenOffCanvas(offcanvasID)
       } else {
-        xCloseOffCanvas(offcanvasID)
+        xCloseOffCanvas(offcanvasID,previousFocus)
       }
     }
 
@@ -39,7 +41,7 @@ function xOffCanvas(offcanvas, elementConfig) {
 
       document.addEventListener('keydown', function(e) {
         if((e.key === "Escape" || e.key === "Esc")){
-          xCloseOffCanvas(offcanvasID)
+          xCloseOffCanvas(offcanvasID,previousFocus)
         }
       });
 
@@ -64,13 +66,16 @@ function xOffCanvas(offcanvas, elementConfig) {
 
     if ('false' != elementConfig.backdropClose && offcanvas.querySelector(".x-offcanvas_backdrop") ) {
       offcanvas.querySelector(".x-offcanvas_backdrop").addEventListener('click', () => {
-        xCloseOffCanvas(offcanvasID)
+        xCloseOffCanvas(offcanvasID,previousFocus)
         });
     }
      
+    if ( '' !== elementConfig.clickTrigger ) {
      loopContainer.querySelectorAll(elementConfig.clickTrigger).forEach((clickTrigger) => {
           
           clickTrigger.addEventListener('click', () => {
+
+            previousFocus = clickTrigger;
 
             if ( clickTrigger.classList.contains('brxe-xlottie') ) {
               if ( 'true' === clickTrigger.getAttribute('aria-expanded' ) ) {
@@ -80,7 +85,7 @@ function xOffCanvas(offcanvas, elementConfig) {
               }
             }
 
-            toggleOffcanvas()
+            toggleOffcanvas(previousFocus)
 
             if ('true' === elementConfig.syncBurgers) {
 
@@ -107,6 +112,7 @@ function xOffCanvas(offcanvas, elementConfig) {
 
           });
         });
+      }
 
         if ( 'true' !== elementConfig.disableHashlink ) {
 
@@ -115,7 +121,7 @@ function xOffCanvas(offcanvas, elementConfig) {
             if ( ! hashLink.parentElement.classList.contains('menu-item-has-children') ) {
              
               hashLink.addEventListener('click', e => {
-                xCloseOffCanvas(offcanvasID)
+                xCloseOffCanvas(offcanvasID,previousFocus)
               })
 
             }
@@ -126,7 +132,8 @@ function xOffCanvas(offcanvas, elementConfig) {
 
 }
 
-function xCloseOffCanvas(elementID) {
+function xCloseOffCanvas(elementID, previousFocus = null) {
+  if ( document.getElementById(elementID).querySelector(".x-offcanvas_inner").hasAttribute('inert' ) ) { return }
   document.getElementById(elementID).querySelector(".x-offcanvas_inner").setAttribute('inert', '')
   document.getElementById(elementID).dispatchEvent(new Event('x_offcanvas:close'))
   xOffCanvasCloseBurger(elementID)
@@ -150,6 +157,11 @@ function xCloseOffCanvas(elementID) {
   document.getElementById(elementID).querySelectorAll('form').forEach(form => {  
     form.reset();
   });
+
+  if (null != previousFocus) { 
+    previousFocus.focus()
+  }
+
 }
 
 function xOpenOffCanvas(elementID) {

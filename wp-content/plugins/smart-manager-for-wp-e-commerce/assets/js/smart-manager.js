@@ -221,7 +221,9 @@ Smart_Manager.prototype.init = function() {
 	
 	window.smart_manager.setDashboardDisplayName();
 
-	this.loadMoreBtnHtml = "<button id='sm_editor_grid_load_items' style='height:2em;border: 1px solid #5850ec;background-color: white;border-radius: 3px;cursor: pointer;line-height: 17px;color: #5850ec;padding: 0 0.5em;'>"+ sprintf(_x('Load More %s', 'bottom bar button', 'smart-manager-for-wp-e-commerce'), "<span>"+window.smart_manager.dashboardDisplayName+"</span>")+"</button>"
+	this.loadMoreBtnHtml = "<button id='sm_editor_grid_load_items' style='height:2em;border: 1px solid #5850ec;background-color: white;border-radius: 3px;cursor: pointer;line-height: 17px;color: #5850ec;padding: 0 0.5em;'>"+ sprintf(
+		/* translators: %s: dashboard display name */
+		_x('Load More %s', 'bottom bar button', 'smart-manager-for-wp-e-commerce'), "<span>"+window.smart_manager.dashboardDisplayName+"</span>")+"</button>"
 
 	this.container = document.getElementById('sm_editor_grid');
 
@@ -240,7 +242,7 @@ Smart_Manager.prototype.init = function() {
 	this.isViewAuthor = false;
 	this.searchSwitchClicked = false;
 	this.columnsToBeExported = 'visible';
-	this.selectNotification = (this.sm_beta_pro == 1) ? true: false;
+	this.recordSelectNotification = (this.sm_beta_pro == 1) ? true: false;
 	this.stockCols = [];
 	this.visibleCols = [];
 	this.exportCSVActions = ['sm_export_selected_records', 'sm_export_entire_store'];
@@ -332,7 +334,9 @@ Smart_Manager.prototype.load_dashboard = function() {
 			window.smart_manager.getData();
 		} else {
 			jQuery("#sm_dashboard_select").val(window.smart_manager.current_selected_dashboard);
-			window.smart_manager.notification = {message: sprintf(_x('For managing %s, %s %s version', 'modal content', 'smart-manager-for-wp-e-commerce'), window.smart_manager.dashboardDisplayName, window.smart_manager.sm_success_msg, '<a href="' + window.smart_manager.pricingPageURL + '" target="_blank">'+_x('Pro', 'modal content', 'smart-manager-for-wp-e-commerce')+'</a>'),hideDelay: window.smart_manager.notificationHideDelayInMs}
+			window.smart_manager.notification = {message: sprintf(
+				/* translators: %1$s: dashboard display name %2$s: success message %3$s: pricing page link */
+				_x('For managing %1$s, %2$s %3$s version', 'modal content', 'smart-manager-for-wp-e-commerce'), window.smart_manager.dashboardDisplayName, window.smart_manager.sm_success_msg, '<a href="' + window.smart_manager.pricingPageURL + '" target="_blank">'+_x('Pro', 'modal content', 'smart-manager-for-wp-e-commerce')+'</a>'),hideDelay: window.smart_manager.notificationHideDelayInMs}
 			window.smart_manager.showNotification()
 		}
 	} else {
@@ -375,7 +379,9 @@ Smart_Manager.prototype.loadNavBar = function() {
 
 	window.smart_manager.simpleSearchContent = "<input type='text' id='sm_simple_search_box' placeholder='"+_x('Type to search...', 'placeholder', 'smart-manager-for-wp-e-commerce')+"'value='"+window.smart_manager.simpleSearchText+"'>";
 	window.smart_manager.advancedSearchContent = '<div id="sm_advanced_search" title="'+_x('Click to add/edit condition', 'tooltip', 'smart-manager-for-wp-e-commerce')+'">'+
-													'<div id="sm_advanced_search_content">'+ sprintf(_x('%d condition%s', 'search conditions', 'smart-manager-for-wp-e-commerce'), window.smart_manager.advancedSearchRuleCount, ((window.smart_manager.advancedSearchRuleCount > 1) ? _x('s', 'search conditions', 'smart-manager-for-wp-e-commerce') : ''))+'</div>'+
+													'<div id="sm_advanced_search_content">'+ sprintf(
+														/* translators: %1$d: Advanced search rule count %2$s: search conditions */
+														_x('%1$d condition%2$s', 'search conditions', 'smart-manager-for-wp-e-commerce'), window.smart_manager.advancedSearchRuleCount, ((window.smart_manager.advancedSearchRuleCount > 1) ? _x('s', 'search conditions', 'smart-manager-for-wp-e-commerce') : ''))+'</div>'+
 													'<div id="sm_advanced_search_icon">'+
 														'<span class="dashicons dashicons-edit-large"></span>'+
 													'</div>'+
@@ -480,7 +486,11 @@ Smart_Manager.prototype.loadNavBar = function() {
 						"</div>"+
 					"</div>"+
 					"<div id='sm_top_bar_advanced_search'>"+
-						"<div id='search_switch_container'> <input type='checkbox' id='search_switch' switchSearchType='"+ switchSearchType.toLowerCase() +"' /><label title='"+ sprintf(_x('Switch to %s', 'tooltip', 'smart-manager-for-wp-e-commerce'), switchSearchType) +"' for='search_switch'> "+ sprintf(_x('%s Search', 'search type', 'smart-manager-for-wp-e-commerce'), switchSearchType)+"</label></div>"+
+						"<div id='search_switch_container'> <input type='checkbox' id='search_switch' switchSearchType='"+ switchSearchType.toLowerCase() +"' /><label title='"+ sprintf(
+							/* translators: %s: search type */
+							_x('Switch to %s', 'tooltip', 'smart-manager-for-wp-e-commerce'), switchSearchType) +"' for='search_switch'> "+ sprintf(
+								/* translators: %s: search type */
+								_x('%s Search', 'search type', 'smart-manager-for-wp-e-commerce'), switchSearchType)+"</label></div>"+
 						// "<div id='search_switch_lbl'> "+ sprintf(_x('%s Search', 'search type', 'smart-manager-for-wp-e-commerce'), String(switchSearchType).capitalize())+"</div>"+
 					"</div>"+
 				"</div>";
@@ -692,7 +702,9 @@ Smart_Manager.prototype.initialize_advanced_search = function() {
 																						};
 		}
 	});
-	jQuery('#sm_advanced_search_content').html( sprintf(_x('%d condition%s', 'search conditions', 'smart-manager-for-wp-e-commerce'), window.smart_manager.advancedSearchRuleCount, ((window.smart_manager.advancedSearchRuleCount > 1) ? _x('s', 'search conditions', 'smart-manager-for-wp-e-commerce') : '')) )
+	jQuery('#sm_advanced_search_content').html( sprintf(
+		/* translators: %1$d: Advanced search rule count %2$s: search conditions */
+		_x('%1$d condition%2$s', 'search conditions', 'smart-manager-for-wp-e-commerce'), window.smart_manager.advancedSearchRuleCount, ((window.smart_manager.advancedSearchRuleCount > 1) ? _x('s', 'search conditions', 'smart-manager-for-wp-e-commerce') : '')) )
 }
 
 Smart_Manager.prototype.showLoader = function( is_show = true ) {
@@ -1089,6 +1101,9 @@ Smart_Manager.prototype.set_data = function(response) {
 				}
 			} else {
 				window.smart_manager.currentDashboardData = ( window.smart_manager.totalRecords > 0 ) ? res.items : [];
+				if(document.getElementById('sm_export_entire_store') !== null){
+					document.getElementById('sm_export_entire_store').innerHTML = (window.smart_manager.isFilteredData()) ? _x('All Items In Search Results', 'export button', 'smart-manager-for-wp-e-commerce') : _x('Entire Store', 'export button', 'smart-manager-for-wp-e-commerce');
+				}
 				window.smart_manager.setExportButtonHTML();
 				document.getElementById('sm_beta_dup_entire_store').innerHTML = (window.smart_manager.isFilteredData()) ? _x('All Items In Search Results', 'duplicate button', 'smart-manager-for-wp-e-commerce') : _x('Entire Store', 'duplicate button', 'smart-manager-for-wp-e-commerce')
 				
@@ -1153,14 +1168,18 @@ Smart_Manager.prototype.set_data = function(response) {
 				jQuery('#sm_editor_grid_load_items').addClass('sm-ui-state-disabled');
 	
 				jQuery('#sm_bottom_bar_right #sm_beta_display_records').hide();
-				jQuery('#sm_bottom_bar_right #sm_beta_load_more_records').text(sprintf(_x('No %s Found', 'bottom bar status', 'smart-manager-for-wp-e-commerce'), window.smart_manager.dashboardDisplayName));
+				jQuery('#sm_bottom_bar_right #sm_beta_load_more_records').text(sprintf(
+					/* translators: %s: dashboard display name */
+					_x('No %s Found', 'bottom bar status', 'smart-manager-for-wp-e-commerce'), window.smart_manager.dashboardDisplayName));
 		} else {
 			if( window.smart_manager.currentDashboardData.length >= window.smart_manager.totalRecords ) {
 				jQuery('#sm_editor_grid_load_items').attr('disabled','disabled');
 				jQuery('#sm_editor_grid_load_items').addClass('sm-ui-state-disabled');
 	
 				jQuery('#sm_bottom_bar_right #sm_beta_display_records').hide();
-				jQuery('#sm_bottom_bar_right #sm_beta_load_more_records').text(sprintf(_x('%d %s loaded', 'bottom bar status', 'smart-manager-for-wp-e-commerce'), window.smart_manager.displayTotalRecords, window.smart_manager.dashboardDisplayName));
+				jQuery('#sm_bottom_bar_right #sm_beta_load_more_records').text(sprintf(
+					/* translators: %1$d: number of display records %2$s: dashboard display name */
+					_x('%1$d %2$s loaded', 'bottom bar status', 'smart-manager-for-wp-e-commerce'), window.smart_manager.displayTotalRecords, window.smart_manager.dashboardDisplayName));
 	
 			} else {
 				jQuery('#sm_bottom_bar_right #sm_beta_display_records').show();
@@ -1178,7 +1197,11 @@ Smart_Manager.prototype.set_data = function(response) {
 
 //Function to refresh the bottom bar of grid
 Smart_Manager.prototype.refreshBottomBar = function() {
-	let msg = ( window.smart_manager.currentDashboardData.length > 0 ) ? sprintf(_x('%d of %d %s loaded', 'bottom bar status', 'smart-manager-for-wp-e-commerce'), window.smart_manager.loadedTotalRecords, window.smart_manager.displayTotalRecords, window.smart_manager.dashboardDisplayName) : sprintf(_x('No %s Found', 'bottom bar status', 'smart-manager-for-wp-e-commerce'), window.smart_manager.dashboardDisplayName);
+	let msg = ( window.smart_manager.currentDashboardData.length > 0 ) ? sprintf(
+		/* translators: %1$d: number of total records %2$d: number of display records %3$s: dashboard display name */
+		_x('%1$d of %2$d %3$s loaded', 'bottom bar status', 'smart-manager-for-wp-e-commerce'), window.smart_manager.loadedTotalRecords, window.smart_manager.displayTotalRecords, window.smart_manager.dashboardDisplayName) : sprintf(
+			/* translators: %s: dashboard display name */
+			_x('No %s Found', 'bottom bar status', 'smart-manager-for-wp-e-commerce'), window.smart_manager.dashboardDisplayName);
 	jQuery('#sm_bottom_bar_right #sm_beta_display_records').html(msg);
 }
 
@@ -2151,7 +2174,7 @@ Smart_Manager.prototype.reset = function( fullReset = false ){
 	window.smart_manager.updatedTitle = '';
 	window.smart_manager.editedColumnTitles = {};
 	window.smart_manager.exportCSVActions = ['sm_export_selected_records', 'sm_export_entire_store'];
-	window.smart_manager.selectNotification = (this.sm_beta_pro == 1) ? true : false;
+	window.smart_manager.recordSelectNotification = (this.sm_beta_pro == 1) ? true : false;
 
 	if(window.smart_manager.hot){
 		if(window.smart_manager.hot.selection){
@@ -2272,7 +2295,9 @@ Smart_Manager.prototype.event_handler = function() {
 			window.smart_manager.load_dashboard(); 
 		} else {
 			jQuery(this).val(window.smart_manager.current_selected_dashboard);
-			window.smart_manager.notification = {message: sprintf(_x('For managing %s, %s %s version', 'modal content', 'smart-manager-for-wp-e-commerce'), sm_selected_dashboard_title, window.smart_manager.sm_success_msg, '<a href="' + window.smart_manager.pricingPageURL + '" target="_blank">'+_x('Pro', 'modal content', 'smart-manager-for-wp-e-commerce')+'</a>'), hideDelay: window.smart_manager.notificationHideDelayInMs}
+			window.smart_manager.notification = {message: sprintf(
+				/* translators: %1$s: dashboard display name %2$s: success message %3$s: pricing page link */
+				_x('For managing %1$s, %2$s %3$s version', 'modal content', 'smart-manager-for-wp-e-commerce'), sm_selected_dashboard_title, window.smart_manager.sm_success_msg, '<a href="' + window.smart_manager.pricingPageURL + '" target="_blank">'+_x('Pro', 'modal content', 'smart-manager-for-wp-e-commerce')+'</a>'), hideDelay: window.smart_manager.notificationHideDelayInMs}
 			window.smart_manager.showNotification()
 		}
 		
@@ -2479,11 +2504,17 @@ Smart_Manager.prototype.event_handler = function() {
 				params.height = 170;
 			}
 
-			let selected_text = '<span style="font-size: 1.2em;">'+sprintf(_x('Are you sure you want to %s', 'modal content', 'smart-manager-for-wp-e-commerce'), '<strong>'+ actionText +' '+_x('the selected','modal content', 'smart-manager-for-wp-e-commerce')+'</strong>'+' ') + ( ( window.smart_manager.selectedRows.length > 1 ) ? _x('records', 'modal content', 'smart-manager-for-wp-e-commerce') : _x('record', 'modal content', 'smart-manager-for-wp-e-commerce') ) + '?</span>';
-			let all_text      = '<span style="font-size: 1.2em;">'+sprintf(_x('Are you sure you want to %s the %s?', 'modal content', 'smart-manager-for-wp-e-commerce'),'<strong>'+ actionText +' '+_x('all', 'modal content', 'smart-manager-for-wp-e-commerce')+'</strong>', window.smart_manager.dashboardDisplayName)+ '</span>';
+			let selected_text = '<span style="font-size: 1.2em;">'+sprintf(
+				/* translators: %s: action name */
+				_x('Are you sure you want to %s', 'modal content', 'smart-manager-for-wp-e-commerce'), '<strong>'+ actionText +' '+_x('the selected','modal content', 'smart-manager-for-wp-e-commerce')+'</strong>'+' ') + ( ( window.smart_manager.selectedRows.length > 1 ) ? _x('records', 'modal content', 'smart-manager-for-wp-e-commerce') : _x('record', 'modal content', 'smart-manager-for-wp-e-commerce') ) + '?</span>';
+			let all_text      = '<span style="font-size: 1.2em;">'+sprintf(
+				/* translators: %1$s: action name %2$s: dashboard display name */
+				_x('Are you sure you want to %1$s the %2$s?', 'modal content', 'smart-manager-for-wp-e-commerce'),'<strong>'+ actionText +' '+_x('all', 'modal content', 'smart-manager-for-wp-e-commerce')+'</strong>', window.smart_manager.dashboardDisplayName)+ '</span>';
 
 			if (window.smart_manager.isFilteredData()){
-				all_text = '<span style="font-size: 1.2em;">'+sprintf(_x('Are you sure you want to %s?', 'modal content', 'smart-manager-for-wp-e-commerce'),'<strong>'+ actionText +' '+_x('all items in search results', 'modal content', 'smart-manager-for-wp-e-commerce')+'</strong>')+ '</span>';
+				all_text = '<span style="font-size: 1.2em;">'+sprintf(
+					/* translators: %s: action name */
+					_x('Are you sure you want to %s?', 'modal content', 'smart-manager-for-wp-e-commerce'),'<strong>'+ actionText +' '+_x('all items in search results', 'modal content', 'smart-manager-for-wp-e-commerce')+'</strong>')+ '</span>';
 			}
 
 			params.btnParams.yesCallbackParams = {};
@@ -2552,7 +2583,9 @@ Smart_Manager.prototype.event_handler = function() {
 				window.smart_manager.smToggleFullScreen( element );    
 			}
 		} else {
-			window.smart_manager.notification = {message: sprintf(_x('This feature is available only in the %s version', 'modal content', 'smart-manager-for-wp-e-commerce'), '<a href="' + window.smart_manager.pricingPageURL + '" target="_blank">'+_x('Pro', 'modal content', 'smart-manager-for-wp-e-commerce')+'</a>'),hideDelay: window.smart_manager.notificationHideDelayInMs}
+			window.smart_manager.notification = {message: sprintf(
+				/* translators: %s: pricing page link */
+				_x('This feature is available only in the %s version', 'modal content', 'smart-manager-for-wp-e-commerce'), '<a href="' + window.smart_manager.pricingPageURL + '" target="_blank">'+_x('Pro', 'modal content', 'smart-manager-for-wp-e-commerce')+'</a>'),hideDelay: window.smart_manager.notificationHideDelayInMs}
 			window.smart_manager.showNotification()
 		}
 		
@@ -2587,8 +2620,12 @@ Smart_Manager.prototype.event_handler = function() {
 	//Code for add record functionality
 	.off( 'click', "#add_sm_editor_grid").on( 'click', "#add_sm_editor_grid", function(){
 		window.smart_manager.modal = {
-			title:  sprintf(_x('Add %s(s)', 'modal title', 'smart-manager-for-wp-e-commerce'), window.smart_manager.dashboardDisplayName),
-			content: '<div style="font-size:1.2em;margin:1em;"> <div style="margin-bottom:1em;">'+sprintf(_x('Enter how many new %s(s) to create!', 'modal content', 'smart-manager-for-wp-e-commerce'), window.smart_manager.dashboardDisplayName)+'</div> <input type="number" id="sm_beta_add_record_count" min="1" value="1" style="width:5em;"></div>',
+			title:  sprintf(
+				/* translators: %s: dashboard display name */
+				_x('Add %s(s)', 'modal title', 'smart-manager-for-wp-e-commerce'), window.smart_manager.dashboardDisplayName),
+			content: '<div style="font-size:1.2em;margin:1em;"> <div style="margin-bottom:1em;">'+sprintf(
+				/* translators: %s: dashboard display name */
+				_x('Enter how many new %s(s) to create!', 'modal content', 'smart-manager-for-wp-e-commerce'), window.smart_manager.dashboardDisplayName)+'</div> <input type="number" id="sm_beta_add_record_count" min="1" value="1" style="width:5em;"></div>',
 			autoHide: false,
 			cta: {
 				title: _x('Create', 'button', 'smart-manager-for-wp-e-commerce'),
@@ -2614,7 +2651,9 @@ Smart_Manager.prototype.event_handler = function() {
 				window.smart_manager.createUpdateViewDialog(action);
 			}
 		}  else {
-			window.smart_manager.notification = {message: sprintf(_x('Custom Views avialable (Only in %s)', 'notification', 'smart-manager-for-wp-e-commerce'), '<a href="'+ window.smart_manager.pricingPageURL +'" target="_blank">'+_x('Pro', 'notification', 'smart-manager-for-wp-e-commerce')+'</a>'),hideDelay: window.smart_manager.notificationHideDelayInMs}
+			window.smart_manager.notification = {message: sprintf(
+				/* translators: %s: pricing page link */
+				_x('Custom Views avialable (Only in %s)', 'notification', 'smart-manager-for-wp-e-commerce'), '<a href="'+ window.smart_manager.pricingPageURL +'" target="_blank">'+_x('Pro', 'notification', 'smart-manager-for-wp-e-commerce')+'</a>'),hideDelay: window.smart_manager.notificationHideDelayInMs}
 			window.smart_manager.showNotification()
 		}
 		
@@ -2637,7 +2676,9 @@ Smart_Manager.prototype.event_handler = function() {
 			
 			window.smart_manager.showConfirmDialog(params);
 		}  else {
-			window.smart_manager.notification = {message: sprintf(_x('Custom Views avialable (Only in %s)', 'notification', 'smart-manager-for-wp-e-commerce'), '<a href="'+ window.smart_manager.pricingPageURL +'" target="_blank">'+_x('Pro', 'notification', 'smart-manager-for-wp-e-commerce')+'</a>'),hideDelay: window.smart_manager.notificationHideDelayInMs}
+			window.smart_manager.notification = {message: sprintf(
+				/* translators: %s: pricing page link */
+				_x('Custom Views avialable (Only in %s)', 'notification', 'smart-manager-for-wp-e-commerce'), '<a href="'+ window.smart_manager.pricingPageURL +'" target="_blank">'+_x('Pro', 'notification', 'smart-manager-for-wp-e-commerce')+'</a>'),hideDelay: window.smart_manager.notificationHideDelayInMs}
 			window.smart_manager.showNotification()
 		}
 	})
@@ -2655,7 +2696,7 @@ Smart_Manager.prototype.event_handler = function() {
 		isBackgroundProcessRunning = window.smart_manager.backgroundProcessRunningNotification(false);
 		params.btnParams = {};
 		params.title = _x('Attention!', 'modal title', 'smart-manager-for-wp-e-commerce');
-		if(0 === window.smart_manager.selectedRows.length && !window.smart_manager.selectAll && window.smart_manager.selectNotification && className !== 'sm_entire_store'){
+		if(0 === window.smart_manager.selectedRows.length && !window.smart_manager.selectAll && window.smart_manager.recordSelectNotification && className !== 'sm_entire_store'){
 			window.smart_manager.notification = {message: _x('Please select a record', 'notification', 'smart-manager-for-wp-e-commerce')}
 			window.smart_manager.showNotification()
 		} else if(window.smart_manager.exportCSVActions && 'undefined' !== typeof(id) && id && window.smart_manager.exportCSVActions.includes(id) && !isBackgroundProcessRunning){ //code for handling export CSV functionality.
@@ -2703,8 +2744,12 @@ Smart_Manager.prototype.event_handler = function() {
 
 				if(!['sm_beta_dup_entire_store', 'sm_beta_dup_selected'].includes(id) && (window.smart_manager.stockCols && !window.smart_manager.stockCols.includes(id))) {
 					
-					let description = sprintf(_x('You can change/update multiple fields of the entire store OR for selected items using the Bulk Edit feature. Refer to this doc on %s or watch the video below.', 'modal description', 'smart-manager-for-wp-e-commerce'), '<a href="https://www.storeapps.org/docs/sm-how-to-use-batch-update/?utm_source=sm&utm_medium=in_app&utm_campaign=view_docs" target="_blank">'+_x('how to do bulk edit', 'modal description', 'smart-manager-for-wp-e-commerce')+'</a>');
-					title = ( ( id == 'batch_update_sm_editor_grid' ) ? btnText + ' - <span style="color: red;">'+_x('Biggest Time Saver', 'modal title', 'smart-manager-for-wp-e-commerce')+' </span>' : btnText ) + sprintf(_x('(Only in %s)', 'modal title', 'smart-manager-for-wp-e-commerce'), '<a href="'+ window.smart_manager.pricingPageURL +'" target="_blank">'+_x('Pro', 'modal title', 'smart-manager-for-wp-e-commerce')+'</a>');
+					let description = sprintf(
+						/* translators: %s: Bulk Edit doc link */
+						_x('You can change/update multiple fields of the entire store OR for selected items using the Bulk Edit feature. Refer to this doc on %s or watch the video below.', 'modal description', 'smart-manager-for-wp-e-commerce'), '<a href="https://www.storeapps.org/docs/sm-how-to-use-batch-update/?utm_source=sm&utm_medium=in_app&utm_campaign=view_docs" target="_blank">'+_x('how to do bulk edit', 'modal description', 'smart-manager-for-wp-e-commerce')+'</a>');
+					title = ( ( id == 'batch_update_sm_editor_grid' ) ? btnText + ' - <span style="color: red;">'+_x('Biggest Time Saver', 'modal title', 'smart-manager-for-wp-e-commerce')+' </span>' : btnText ) + sprintf(
+						/* translators: %s: pricing page link */
+						_x('(Only in %s)', 'modal title', 'smart-manager-for-wp-e-commerce'), '<a href="'+ window.smart_manager.pricingPageURL +'" target="_blank">'+_x('Pro', 'modal title', 'smart-manager-for-wp-e-commerce')+'</a>');
 					if((id !== 'batch_update_sm_editor_grid') && window.smart_manager.exportCSVActions){
 						title = _x('Export CSV of ', 'modal title', 'smart-manager-for-wp-e-commerce') + btnText;
 						description = _x('You can export selected/all records OR filtered records (using Simple Search or Advanced Search) by simply clicking on the Export CSV button at the bottom right of the grid.', 'modal description', 'smart-manager-for-wp-e-commerce');
@@ -2731,11 +2776,15 @@ Smart_Manager.prototype.event_handler = function() {
 					window.smart_manager.showModal()
 
 				} else if(['sm_beta_dup_entire_store', 'sm_beta_dup_selected'].includes(id)) {
-					window.smart_manager.notification = {message: sprintf(_x('Duplicate Records (Only in %s)', 'notification', 'smart-manager-for-wp-e-commerce'), '<a href="'+ window.smart_manager.pricingPageURL +'" target="_blank">'+_x('Pro', 'notification', 'smart-manager-for-wp-e-commerce')+'</a>'),hideDelay: window.smart_manager.notificationHideDelayInMs}
+					window.smart_manager.notification = {message: sprintf(
+						/* translators: %s: pricing page link */
+						_x('Duplicate Records (Only in %s)', 'notification', 'smart-manager-for-wp-e-commerce'), '<a href="'+ window.smart_manager.pricingPageURL +'" target="_blank">'+_x('Pro', 'notification', 'smart-manager-for-wp-e-commerce')+'</a>'),hideDelay: window.smart_manager.notificationHideDelayInMs}
 					window.smart_manager.showNotification()
 				}
 			} else {
-				window.smart_manager.notification = {message: sprintf(_x('This feature is available only in the %s version', 'modal content', 'smart-manager-for-wp-e-commerce'), '<a href="' + window.smart_manager.pricingPageURL + '" target="_blank">'+_x('Pro', 'modal content', 'smart-manager-for-wp-e-commerce')+'</a>'),hideDelay: window.smart_manager.notificationHideDelayInMs}
+				window.smart_manager.notification = {message: sprintf(
+					/* translators: %s: pricing page link */
+					_x('This feature is available only in the %s version', 'modal content', 'smart-manager-for-wp-e-commerce'), '<a href="' + window.smart_manager.pricingPageURL + '" target="_blank">'+_x('Pro', 'modal content', 'smart-manager-for-wp-e-commerce')+'</a>'),hideDelay: window.smart_manager.notificationHideDelayInMs}
 		    	window.smart_manager.showNotification()
 			}
 		}
@@ -2783,7 +2832,9 @@ Smart_Manager.prototype.event_handler = function() {
 		jQuery('#sm_editor_grid').trigger('sm_show_tasks_change');
 		if(0 == window.smart_manager.sm_beta_pro){
 			jQuery("#sm_show_tasks").prop('checked', false);
-			window.smart_manager.notification = {message: sprintf(_x('This feature is available only in the %s version','modal content', 'smart-manager-for-wp-e-commerce'),'<a href="' + window.smart_manager.pricingPageURL + '" target="_blank">'+_x('Pro','modal content','smart-manager-for-wp-e-commerce')+'</a>'),hideDelay: window.smart_manager.notificationHideDelayInMs}
+			window.smart_manager.notification = {message: sprintf(
+				/* translators: %s: pricing page link */
+				_x('This feature is available only in the %s version','modal content', 'smart-manager-for-wp-e-commerce'),'<a href="' + window.smart_manager.pricingPageURL + '" target="_blank">'+_x('Pro','modal content','smart-manager-for-wp-e-commerce')+'</a>'),hideDelay: window.smart_manager.notificationHideDelayInMs}
 			window.smart_manager.showNotification()
 		}
 	})
@@ -2791,7 +2842,9 @@ Smart_Manager.prototype.event_handler = function() {
 		if (window.smart_manager.sm_beta_pro == 1 && 'undefined' !== typeof(window.smart_manager.displayColumnTitleEditor) && 'function' === typeof(window.smart_manager.displayColumnTitleEditor)) {
 			window.smart_manager.displayColumnTitleEditor(e);
 		} else {
-			window.smart_manager.notification = {message: sprintf(_x('This feature is available only in the %s version', 'modal content', 'smart-manager-for-wp-e-commerce'), '<a href="' + window.smart_manager.pricingPageURL + '" target="_blank">'+_x('Pro', 'modal content', 'smart-manager-for-wp-e-commerce')+'</a>'),hideDelay: window.smart_manager.notificationHideDelayInMs}
+			window.smart_manager.notification = {message: sprintf(
+				/* translators: %s: pricing page link */
+				_x('This feature is available only in the %s version', 'modal content', 'smart-manager-for-wp-e-commerce'), '<a href="' + window.smart_manager.pricingPageURL + '" target="_blank">'+_x('Pro', 'modal content', 'smart-manager-for-wp-e-commerce')+'</a>'),hideDelay: window.smart_manager.notificationHideDelayInMs}
 			window.smart_manager.showNotification()
 		}
 	})
@@ -2886,7 +2939,9 @@ Smart_Manager.prototype.createColumnVisibilityDialog = function() {
 					'<ul class="unstyled-list"> '+
 						'<li> '+_x('Drag the enabled columns to the right to disable them and vise-versa. Drag the columns top or bottom to rearrange their position in the grid.', 'columns settings description', 'smart-manager-for-wp-e-commerce')+
 						'</li> '+
-						'<li style="margin-top: 1em;"> '+sprintf(_x('Click %s to reset the Columns order to default.', 'columns settings description', 'smart-manager-for-wp-e-commerce'), '<a href="#" id="sm_reset_state" style="cursor:pointer;">'+_x('here', 'columns settings description', 'smart-manager-for-wp-e-commerce')+'</a>')+
+						'<li style="margin-top: 1em;"> '+sprintf(
+							/* translators: %s: reset columns link */
+							_x('Click %s to reset the Columns order to default.', 'columns settings description', 'smart-manager-for-wp-e-commerce'), '<a href="#" id="sm_reset_state" style="cursor:pointer;">'+_x('here', 'columns settings description', 'smart-manager-for-wp-e-commerce')+'</a>')+
 						'</li> '+
 						'<li> '+
 							'<div class="sm-sorter-section"> '+
@@ -3255,7 +3310,9 @@ Smart_Manager.prototype.showNotificationDialog = function( title = '', content =
 
 	window.smart_manager.modal = {
 									title: ( title ) ? title : _x('Note', 'modal title', 'smart-manager-for-wp-e-commerce'),
-									content: ( content ) ? content : sprintf(_x('This feature is available only in the %s version', 'modal content', 'smart-manager-for-wp-e-commerce'), '<a href="' + window.smart_manager.pricingPageURL + '" target="_blank">'+_x('Pro', 'modal content', 'smart-manager-for-wp-e-commerce')+'</a>'),
+									content: ( content ) ? content : sprintf(
+										/* translators: %s: pricing page link */
+										_x('This feature is available only in the %s version', 'modal content', 'smart-manager-for-wp-e-commerce'), '<a href="' + window.smart_manager.pricingPageURL + '" target="_blank">'+_x('Pro', 'modal content', 'smart-manager-for-wp-e-commerce')+'</a>'),
 									autoHide: ( dlgparams.hasOwnProperty('autoHide') ) ? dlgparams.autoHide : false
 								}
 	window.smart_manager.showModal()	

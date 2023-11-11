@@ -10,6 +10,8 @@ component.x-slider {
     --x-slider-overflow-right: inset( -100vw 0 -100vw -100vw );
     --x-slider-overflow-none: none;
     --x-slider-overflow: var(--x-slider-overflow-none);
+    --x-slider-mask-edge: 10%;
+    --x-slider-mask-edge-slope: 2;
 }
 
 .brx-body.iframe .x-slider.splide {
@@ -167,6 +169,10 @@ component.x-slider {
 .x-slider_builder.splide--rtl > .splide__track > .splide__list > .x-slider_slide  {
     width: var(--xslidesize);
     height: auto;
+}
+
+.x-slider_builder {
+    height: 100%;
 }
  
 .x-slider_slide > * {
@@ -341,6 +347,20 @@ component.x-slider {
     margin-right: 0!important;
     width: 100%;
 }
+
+.x-slider[data-x-slider*=edgeEffect] > .splide__track:not(.splide__track--ttb),
+.x-slider.edgeEffect > .x-slider_builder:not(.splide--ttb) > .splide__track {
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, rgba(0,0,0.5) calc(var(--x-slider-mask-edge) / var(--x-slider-mask-edge-slope)), black var(--x-slider-mask-edge), black calc(100% - var(--x-slider-mask-edge)), rgba(0,0,0.5) calc(100% - var(--x-slider-mask-edge) / var(--x-slider-mask-edge-slope)), transparent 100%);
+    mask-image: linear-gradient(to right, transparent 0%, rgba(0,0,0.5) calc(var(--x-slider-mask-edge) / var(--x-slider-mask-edge-slope)), black var(--x-slider-mask-edge), black calc(100% - var(--x-slider-mask-edge)), rgba(0,0,0.5) calc(100% - var(--x-slider-mask-edge) / var(--x-slider-mask-edge-slope)), transparent 100%);
+}
+
+.x-slider[data-x-slider*=edgeEffect] > .splide__track.splide__track--ttb,
+.x-slider.edgeEffect > .x-slider_builder.splide--ttb > .splide__track {
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, rgba(0,0,0.5) calc(var(--x-slider-mask-edge) / var(--x-slider-mask-edge-slope)), black var(--x-slider-mask-edge), black calc(100% - var(--x-slider-mask-edge)), rgba(0,0,0.5) calc(100% - var(--x-slider-mask-edge) / var(--x-slider-mask-edge-slope)), transparent 100%);
+    mask-image: linear-gradient(to bottom, transparent 0%, rgba(0,0,0.5) calc(var(--x-slider-mask-edge) / var(--x-slider-mask-edge-slope)), black var(--x-slider-mask-edge), black calc(100% - var(--x-slider-mask-edge)), rgba(0,0,0.5) calc(100% - var(--x-slider-mask-edge) / var(--x-slider-mask-edge-slope)), transparent 100%);
+}
+
+
 
 /* adaptive height */
 
