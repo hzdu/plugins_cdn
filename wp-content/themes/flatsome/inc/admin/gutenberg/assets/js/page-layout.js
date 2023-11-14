@@ -9,7 +9,7 @@ wp.domReady(function () {
       var dispatch = wp.data.useDispatch('core/editor')
       var selected = wp.data.useSelect(function (select) {
         var store = select('core/editor')
-        var meta = store.getEditedPostAttribute('meta')
+        var meta = store.getEditedPostAttribute('meta') || {}
         return {
           postType: store.getCurrentPostType(),
           footer: meta._footer || 'normal'
