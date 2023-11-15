@@ -7,6 +7,7 @@ import AlertService                                    from './frontend/Services
 import DataService                                     from './frontend/Services/DataService';
 import LoggingService                                  from './frontend/Services/LoggingService';
 import PaymentGatewaysService                          from './frontend/Services/PaymentGatewaysService';
+import cfwGetWPHooks                                   from './functions/cfwGetWPHooks';
 
 // eslint-disable-next-line import/prefer-default-export
 class OrderPay {
@@ -21,6 +22,8 @@ class OrderPay {
             new AddressInternationalizationService();
             new PaymentGatewaysService();
             new StorePolicyModals();
+
+            ( window as any ).cfwGetWPHooks = cfwGetWPHooks;
 
             // Alert Service
             const alertContainer = DataService.getElement( 'alertContainerId' );

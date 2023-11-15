@@ -61,7 +61,7 @@ class InternationalPhoneFieldService {
             utilsScript: `${DataService.getCheckoutParam( 'dist_path' )}/js/utils.js`,
             onlyCountries: Object.keys( prefix === 'shipping' ? shippingCountries : allowedCountries ),
             allowDropdown: DataService.getSetting( 'allow_international_phone_field_country_dropdown' ),
-            autoPlaceholder: 'aggressive',
+            autoPlaceholder: DataService.getSetting( 'international_phone_field_placeholder_mode' ),
             formatOnDisplay: false,
         } );
 

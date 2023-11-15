@@ -222,13 +222,21 @@ $slick-loader-path: "../images/";
         border-collapse: collapse;
 
         tr {
-            td, th {
-                padding: 10px 0;
-            }
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
         }
 
         tr.order-total {
+            align-items: baseline;
             border-top: 2px solid #000;
+
+            .includes_tax {
+                color: #666;
+                display: block;
+                font-weight: 400;
+                margin-top: 10px;
+            }
         }
     }
 

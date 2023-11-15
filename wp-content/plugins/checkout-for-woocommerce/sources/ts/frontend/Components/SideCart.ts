@@ -50,7 +50,6 @@ class SideCart {
         } );
         jQuery( document.body ).on( 'click', `a.wc-forward:contains(${DataService.getMessage( 'view_cart' )})`, this.openCart.bind( this ) );
         jQuery( document.body ).on( 'wc_fragments_loaded', this.initializeCart );
-        jQuery( document.body ).on( 'click', '.cfw-remove-item-button', this.removeItem.bind( this ) );
         jQuery( document.body ).on( 'cfw_update_cart', this.processCartUpdates.bind( this ) );
         jQuery( document.body ).on( 'cfw_suggested_variable_product_added_to_cart cfw_order_bump_variation_added_to_cart', ( e, resp ) => {
             if ( typeof resp !== 'object' ) {
@@ -167,18 +166,6 @@ class SideCart {
         }
         jQuery( 'body' ).removeClass( 'cfw-side-cart-open' ).addClass( 'cfw-side-cart-close' );
         jQuery( '.cfw-side-cart-floating-button' ).attr( 'aria-expanded', 'false' );
-    }
-
-    removeItem( event: Event ): void {
-        event.preventDefault();
-
-        const inputElement = jQuery( event.currentTarget ).parents( '.cart-item-row' ).find( '.cfw-edit-item-quantity-value' );
-
-        if ( inputElement ) {
-            inputElement.val( 0 );
-
-            CartItemQuantityControl.triggerCartUpdate( inputElement );
-        }
     }
 
     processCartUpdates( event: any, element?: JQuery ): void {

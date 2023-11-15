@@ -1,3 +1,4 @@
+import cfwGetWPHooks         from '../../functions/cfwGetWPHooks';
 import DataService           from '../Services/DataService';
 
 class CartItemQuantityControl {
@@ -63,6 +64,10 @@ class CartItemQuantityControl {
     }
 
     setQuantityPromptTriggers(): void {
+        if ( cfwGetWPHooks().applyFilters( 'cfw_js_disable_cart_quantity_prompt', DataService.getSetting( 'disable_cart_quantity_prompt' ) ) ) {
+            return;
+        }
+
         jQuery( document.body ).on( 'click', '.cfw-quantity-bulk-edit', ( event ) => {
             const element = jQuery( event.currentTarget );
             const response = ( <any>window ).prompt( DataService.getMessage( 'quantity_prompt_message' ), element.data( 'quantity' ) );
@@ -85,16 +90,24 @@ class CartItemQuantityControl {
         jQuery( document.body ).on( 'click', '.cfw-remove-item-button', this.removeItem.bind( this ) );
     }
 
-    removeItem( event: Event ): void {
+    removeItem( event: Event ): boolean {
         event.preventDefault();
 
         const inputElement = jQuery( event.currentTarget ).parents( '.cart-item-row' ).find( '.cfw-edit-item-quantity-value' );
 
-        if ( inputElement && ( <any>window ).confirm( DataService.getMessage( 'delete_confirm_message' ) ) ) {
+        if ( !inputElement.length ) {
+            return false;
+        }
+
+        const userResponse = ( <any>window ).confirm( DataService.getMessage( 'delete_confirm_message' ) );
+
+        if ( userResponse ) {
             inputElement.val( 0 );
 
             CartItemQuantityControl.triggerCartUpdate( inputElement );
         }
+
+        return false;
     }
 
     static triggerCartUpdate( element?: JQuery ): void {

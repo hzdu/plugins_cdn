@@ -1,6 +1,6 @@
-import getWPHooks               from '../../functions/getWPHooks';
-import Main                     from '../Main';
-import DataService              from '../Services/DataService';
+import cfwGetWPHooks               from '../../functions/cfwGetWPHooks';
+import Main                        from '../Main';
+import DataService                 from '../Services/DataService';
 
 class Pickup {
     public constructor() {
@@ -22,7 +22,7 @@ class Pickup {
             Main.instance.updateCheckoutService.queueUpdateCheckout();
         } );
 
-        getWPHooks().addFilter( 'cfw_js_suppress_smarty_address_validation', 'cfw', ( value ) => {
+        cfwGetWPHooks().addFilter( 'cfw_js_suppress_smarty_address_validation', 'cfw', ( value ) => {
             if ( jQuery( '[name="cfw_delivery_method"]:checked' ).val() === 'pickup' ) {
                 return true;
             }

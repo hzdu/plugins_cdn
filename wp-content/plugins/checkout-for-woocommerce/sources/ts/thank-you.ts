@@ -2,6 +2,7 @@ import { cfwDomReady }        from './_functions';
 import StorePolicyModals      from './frontend/Components/StorePolicyModals';
 import DataService            from './frontend/Services/DataService';
 import MapEmbedService        from './frontend/Services/MapEmbedService';
+import cfwGetWPHooks          from './functions/cfwGetWPHooks';
 
 class ThankYou {
     constructor() {
@@ -28,6 +29,8 @@ class ThankYou {
                 // Remove the animation blocker
                 jQuery( document.body ).removeClass( 'cfw-preload' );
             } );
+
+            ( window as any ).cfwGetWPHooks = cfwGetWPHooks;
         } );
     }
 }

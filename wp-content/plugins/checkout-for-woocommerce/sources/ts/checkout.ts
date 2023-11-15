@@ -2,6 +2,7 @@ import { cfwDomReady, cfwDefineScrollToNotices } from './_functions';
 import Main                                      from './frontend/Main';
 import DataService                               from './frontend/Services/DataService';
 import LoggingService                            from './frontend/Services/LoggingService';
+import cfwGetWPHooks                             from './functions/cfwGetWPHooks';
 
 declare let cfwEventData: any;
 
@@ -22,6 +23,8 @@ cfwDomReady( () => {
     DataService.checkoutForm = formEl;
 
     cfwDefineScrollToNotices();
+
+    ( window as any ).cfwGetWPHooks = cfwGetWPHooks;
 
     // Kick it off!
     new Main( formEl, alertContainerEl, tabContainerEl, breadcrumbEl, data.settings );

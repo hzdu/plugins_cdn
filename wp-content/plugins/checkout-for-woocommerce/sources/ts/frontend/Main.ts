@@ -8,6 +8,7 @@ import BraintreeForWooCommerce                           from './Compatibility/G
 import Braintree                                         from './Compatibility/Gateways/Braintree';
 import KlarnaCheckout                                    from './Compatibility/Gateways/KlarnaCheckout';
 import KlarnaPayments                                    from './Compatibility/Gateways/KlarnaPayments';
+import Mercado                                           from './Compatibility/Gateways/Mercado';
 import NMI                                               from './Compatibility/Gateways/NMI';
 import PayPalForWooCommerce                              from './Compatibility/Gateways/PayPalForWooCommerce';
 import PayPalPlusCw                                      from './Compatibility/Gateways/PayPalPlusCw';
@@ -345,6 +346,7 @@ class Main {
             new ExtraCheckoutFieldsBrazil(),
             new NMI(),
             new PaymentPluginsPayPal(),
+            new Mercado(),
         ].forEach( ( compat ) => compat.maybeLoad() );
     }
 

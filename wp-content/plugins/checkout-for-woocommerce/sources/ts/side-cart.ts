@@ -4,6 +4,7 @@ import CartItemQuantityControl     from './frontend/Components/CartItemQuantityC
 import SideCart                    from './frontend/Components/SideCart';
 import EditVariableCartItemService from './frontend/Services/EditVariableCartItemService';
 import OrderBumpService            from './frontend/Services/OrderBumpService';
+import cfwGetWPHooks               from './functions/cfwGetWPHooks';
 
 cfwDomReady( () => {
     new CartItemQuantityControl();
@@ -11,4 +12,6 @@ cfwDomReady( () => {
     new SideCart();
     new OrderBumpService();
     new EditVariableCartItemService();
+
+    ( window as any ).cfwGetWPHooks = cfwGetWPHooks;
 } );
