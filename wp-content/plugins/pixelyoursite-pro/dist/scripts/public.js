@@ -1542,7 +1542,7 @@ if (!String.prototype.trim) {
                 return true;
             },
 
-            fireStaticEvents: function (pixel) {
+            fireStaticEvents: function (pixel, timeout = 0) {
 
                 if (options.staticEvents.hasOwnProperty(pixel)) {
 
@@ -1572,21 +1572,24 @@ if (!String.prototype.trim) {
 
                             if (!event.fired && Utils.isEventInTimeWindow(event.name,event,'static_' + pixel+"_")) {
 
-
                                 var fired = false;
 
                                 // fire event
-                                getPixelBySlag(pixel).fireEvent(event.name, event);
+                                if ( pixel === 'tiktok' ) {
+                                    setTimeout(function() {
+                                        getPixelBySlag(pixel).fireEvent(event.name, event);
+                                    }, timeout * 500);
+                                    timeout++;
+                                } else {
+                                    getPixelBySlag(pixel).fireEvent(event.name, event);
+                                }
 
                                 // prevent event double event firing
                                 event.fired = fired;
                             }
-
                         });
                     });
-
                 }
-
             },
 
             /**
@@ -2277,9 +2280,10 @@ if (!String.prototype.trim) {
                 initialized = true;
 
                 if (options.staticEvents.hasOwnProperty('tiktok')) {
-                    setTimeout(function () {
-                        Utils.fireStaticEvents('tiktok');
-                    }, 1500)
+                    var timeout = 1;
+                    setTimeout(function (timeout) {
+                        Utils.fireStaticEvents('tiktok', timeout);
+                    }, 1500, timeout)
                 }
             },
 
