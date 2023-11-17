@@ -3500,7 +3500,9 @@ if(typeof window.smart_manager === 'undefined'){
 
 //Events to be handled on document ready
 jQuery(document).ready(function() {
-	window.smart_manager.init();
+	if('#!/pricing' != document.location.hash){
+		window.smart_manager.init();
+	}
 });
 
 jQuery.widget('ui.dialog', jQuery.extend({}, jQuery.ui.dialog.prototype, { 

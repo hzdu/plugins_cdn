@@ -34,11 +34,24 @@ class VariableProductFormModal extends AbstractComposableModal  {
         super( content, {
             ...args,
         } );
+
+        jQuery( document.body ).on( 'woocommerce_variation_has_changed', '.cfw-modaal form', this.syncPrice.bind( this )  );
+        jQuery( document.body ).on( 'wc_variation_form', '.cfw-modaal form', this.syncPrice.bind( this )  );
     }
 
     afterOpen(): void {
         const form = jQuery( `#${this.id}-content-wrapper form.cfw-product-form-modal.variable` );
         form.wc_variation_form();
+    }
+
+    syncPrice( e: Event ): void {
+        const form = jQuery( e.currentTarget );
+
+        const updatedPrice = form.find( '.single_variation_wrap .woocommerce-variation-price' ).html();
+
+        if ( updatedPrice ) {
+            form.find( '.cfw-product-form-modal-price' ).html( updatedPrice );
+        }
     }
 }
 

@@ -1,5 +1,4 @@
 import UpdateVariableCartItemModal from '../Modals/UpdateVariableCartItemModal';
-import DataService                 from './DataService';
 
 class EditVariableCartItemService {
     constructor() {

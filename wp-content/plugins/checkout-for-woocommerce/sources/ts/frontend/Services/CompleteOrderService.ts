@@ -1,8 +1,8 @@
+import cfwAddOverlay       from '../../functions/cfwAddOverlay';
 import CompleteOrderAction from '../Actions/CompleteOrderAction';
 import Main                from '../Main';
 import DataService         from './DataService';
 import LoggingService      from './LoggingService';
-import TabService          from './TabService';
 
 class CompleteOrderService {
     constructor() {
@@ -18,13 +18,13 @@ class CompleteOrderService {
     }
 
     setCompleteOrderListener(): void {
-        DataService.checkoutForm.on( 'submit', this.completeOrderSubmitHandler.bind( this ) );
+        DataService.checkoutForm.on( 'submit', CompleteOrderService.completeOrderSubmitHandler.bind( this ) );
     }
 
     /**
      * Kick off complete order
      */
-    completeOrderSubmitHandler(): boolean {
+    static completeOrderSubmitHandler(): boolean {
         // Prevent any update checkout calls from spawning
         Main.instance.updateCheckoutService.resetUpdateCheckoutTimer();
 
@@ -39,7 +39,7 @@ class CompleteOrderService {
         if ( DataService.checkoutForm.triggerHandler( 'checkout_place_order', [ DataService.checkoutForm ] ) !== false && DataService.checkoutForm.triggerHandler( `checkout_place_order_${DataService.checkoutForm.find( 'input[name="payment_method"]:checked' ).val()}`, [ DataService.checkoutForm ] ) !== false ) {
             DataService.checkoutForm.addClass( 'processing' );
 
-            CompleteOrderService.addOverlay();
+            cfwAddOverlay();
 
             new CompleteOrderAction().load( DataService.checkoutForm.serialize() );
         } else {
@@ -51,26 +51,6 @@ class CompleteOrderService {
          * briefly appears during a successful order
          */
         return false;
-    }
-
-    /**
-     * Adds a visual indicator that the checkout is doing something
-     */
-    static addOverlay(): void {
-        const { checkoutForm } = DataService;
-        const formData = checkoutForm.data();
-
-        if ( formData[ 'blockUI.isBlocked' ] === 1 ) {
-            return;
-        }
-
-        checkoutForm.block( {
-            message: null,
-            overlayCSS: {
-                background: '#fff',
-                opacity: 0.6,
-            },
-        } );
     }
 }
 

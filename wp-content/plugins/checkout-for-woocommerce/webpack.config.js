@@ -14,11 +14,13 @@ const MiniCssExtractPlugin = require( 'mini-css-extract-plugin' );
 const CopyPlugin = require( 'copy-webpack-plugin' );
 const WebpackRTLPlugin = require( 'webpack-rtl-plugin' );
 const { resolve } = require( 'path' );
+const { BundleAnalyzerPlugin } = require( 'webpack-bundle-analyzer' );
 
 const sourcesDir = './sources';
 
 module.exports = {
     ...defaultConfig,
+    // stats: 'verbose',
     ...{
         output: {
             path: resolve( process.cwd(), 'build' ),
@@ -84,6 +86,9 @@ module.exports = {
             selectwoo: [
                 require.resolve( 'cfwselectwoo/dist/js/selectWoo.full.js' ),
                 require.resolve( 'cfwselectwoo/dist/css/selectWoo.css' ),
+            ],
+            slick: [
+                require.resolve( 'slick-carousel/slick/slick.js' ),
             ],
             checkout: {
                 import: [
@@ -240,7 +245,6 @@ module.exports = {
             'side-cart': {
                 import: [
                     require.resolve( 'modaal/dist/js/modaal.min' ),
-                    require.resolve( 'slick-carousel/slick/slick.js' ),
                     `${sourcesDir}/ts/side-cart.ts`,
                     `${sourcesDir}/scss/frontend/side-cart.scss`,
                 ],
@@ -300,6 +304,7 @@ module.exports = {
             new WebpackRTLPlugin( {
                 filename: 'css/[name]-rtl.css',
             } ),
+            // new BundleAnalyzerPlugin(),
         ],
         optimization: {
             ...defaultConfig.optimization,

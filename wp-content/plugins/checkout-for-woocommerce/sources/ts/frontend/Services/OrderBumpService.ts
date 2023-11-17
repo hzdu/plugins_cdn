@@ -1,3 +1,4 @@
+import cfwAddOverlay                        from '../../functions/cfwAddOverlay';
 import AfterCheckoutOrderBumpModal          from '../Modals/AfterCheckoutOrderBumpModal';
 import ChoosableVariationOrderBumpModal     from '../Modals/ChoosableVariationOrderBumpModal';
 import CompleteOrderService                 from './CompleteOrderService';
@@ -42,7 +43,7 @@ class OrderBumpService {
             return true;
         }
 
-        CompleteOrderService.addOverlay();
+        cfwAddOverlay();
 
         OrderBumpService.displayNextAfterCheckoutSubmitBump();
 

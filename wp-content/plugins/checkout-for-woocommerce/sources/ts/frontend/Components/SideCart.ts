@@ -2,7 +2,6 @@ import cfwAjax                        from '../../functions/cfwAjax';
 import UpdateSideCart                 from '../Actions/UpdateSideCart';
 import SuggestedProductAddToCartModal from '../Modals/SuggestedProductAddToCartModal';
 import DataService                    from '../Services/DataService';
-import CartItemQuantityControl        from './CartItemQuantityControl';
 
 class SideCart {
     constructor() {

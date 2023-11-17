@@ -1,3 +1,4 @@
+import cfwAddOverlay                                     from '../functions/cfwAddOverlay';
 import cfwValidatePaymentTab                             from '../functions/cfwValidatePaymentTab';
 import cfwValidateShippingTab                            from '../functions/cfwValidateShippingTab';
 import AccountValidation                                 from './AccountValidation';
@@ -152,7 +153,7 @@ class Main {
      * @param {AjaxInfo} ajaxInfo
      * @param {any} settings
      */
-    constructor( checkoutFormElement: any, alertContainer: any, tabContainerElement, breadCrumbElement, settings: any ) {
+    constructor( checkoutFormElement: any, alertContainer: any, tabContainerElement: any, breadCrumbElement: any, settings: any ) {
         if ( !Main._instance ) {
             Main._instance = this;
         }
@@ -254,7 +255,7 @@ class Main {
         LoggingService.logEvent( 'Fired init_checkout event.' );
 
         jQuery( document.body ).on( 'cfw-add-overlay', () => {
-            CompleteOrderService.addOverlay();
+            cfwAddOverlay();
         } );
 
         jQuery( document.body ).on( 'cfw-remove-overlay', () => {
