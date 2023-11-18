@@ -100,6 +100,10 @@ class SideCart {
         } );
 
         jQuery( window ).on( 'load wc_fragments_refreshed wc_fragments_loaded', () => {
+            if ( !DataService.getSetting( 'enable_side_cart_suggested_products' ) ) {
+                return;
+            }
+
             // @ts-ignore
             jQuery( '.cfw-suggested-products' ).not( '.slick-initialized' ).slick( {
                 dots: true,
