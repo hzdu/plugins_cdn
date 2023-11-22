@@ -1,13 +1,13 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: WPForms Lite 1.8.5.1\n"
+"Project-Id-Version: WPForms Lite 1.8.5.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wpforms-lite\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2023-11-13T15:11:05+00:00\n"
+"POT-Creation-Date: 2023-11-20T18:30:40+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.6.0\n"
 "X-Domain: wpforms-lite\n"
@@ -20,7 +20,7 @@ msgstr ""
 #: includes/admin/class-menu.php:137
 #: includes/class-form.php:125
 #: includes/integrations.php:41
-#: src/Emails/Templates/General.php:93
+#: src/Emails/Templates/General.php:94
 #: src/Integrations/Divi/Divi.php:225
 #: src/Integrations/Divi/WPFormsSelector.php:35
 #: src/Integrations/Elementor/Widget.php:41
@@ -3017,26 +3017,26 @@ msgstr ""
 
 #: includes/emails/class-emails.php:590
 #: src/Admin/Education/Fields.php:101
-#: src/Emails/Notifications.php:508
+#: src/Emails/Notifications.php:570
 msgid "Page Break"
 msgstr ""
 
 #: includes/emails/class-emails.php:598
-#: src/Emails/Notifications.php:518
+#: src/Emails/Notifications.php:580
 msgid "HTML / Code Block"
 msgstr ""
 
 #: includes/emails/class-emails.php:606
 #: includes/integrations.php:44
 #: src/Admin/Education/Fields.php:125
-#: src/Emails/Notifications.php:528
+#: src/Emails/Notifications.php:590
 msgid "Content"
 msgstr ""
 
 #: includes/emails/class-emails.php:619
 #: includes/emails/class-emails.php:664
-#: src/Emails/Notifications.php:372
-#: src/Emails/Notifications.php:439
+#: src/Emails/Notifications.php:420
+#: src/Emails/Notifications.php:500
 #: src/SmartTags/SmartTag/FieldHtmlId.php:38
 msgid "(empty)"
 msgstr ""
@@ -3049,7 +3049,7 @@ msgid "Field ID #%d"
 msgstr ""
 
 #: includes/emails/class-emails.php:681
-#: src/Emails/Notifications.php:331
+#: src/Emails/Notifications.php:367
 msgid "An empty form was submitted."
 msgstr ""
 
@@ -3152,7 +3152,7 @@ msgstr ""
 #: includes/fields/class-base.php:1502
 #: includes/fields/class-base.php:1659
 #: includes/fields/class-select.php:309
-#: src/Emails/Notifications.php:722
+#: src/Emails/Notifications.php:817
 #: src/Forms/Fields/PaymentSelect/Field.php:286
 msgid "Modern"
 msgstr ""
@@ -3160,7 +3160,7 @@ msgstr ""
 #: includes/fields/class-base.php:1503
 #: includes/fields/class-base.php:1660
 #: includes/fields/class-select.php:308
-#: src/Emails/Notifications.php:712
+#: src/Emails/Notifications.php:807
 #: src/Forms/Fields/PaymentSelect/Field.php:285
 msgid "Classic"
 msgstr ""
@@ -8230,23 +8230,23 @@ msgid "You cannot send emails with WPForms\\Emails\\Mailer until init/admin_init
 msgstr ""
 
 #. translators: %1$d - field ID.
-#: src/Emails/Notifications.php:659
+#: src/Emails/Notifications.php:754
 msgid "Field ID #%1$d"
 msgstr ""
 
-#: src/Emails/Notifications.php:717
+#: src/Emails/Notifications.php:812
 msgid "Compact"
 msgstr ""
 
-#: src/Emails/Notifications.php:727
+#: src/Emails/Notifications.php:822
 msgid "Elegant"
 msgstr ""
 
-#: src/Emails/Notifications.php:732
+#: src/Emails/Notifications.php:827
 msgid "Tech"
 msgstr ""
 
-#: src/Emails/Notifications.php:737
+#: src/Emails/Notifications.php:832
 msgid "Plain Text"
 msgstr ""
 
@@ -10947,10 +10947,10 @@ msgstr ""
 msgid "Solve common email deliverability issues for good. <a href=\"%1$s\" target=\"%2$s\" rel=\"noopener noreferrer\">Get WP Mail SMTP!</a>"
 msgstr ""
 
-#. translators: %1$s - link to the site.
-#: templates/emails/classic-footer.php:22
-#: templates/emails/compact-footer.php:22
-msgid "Sent from %1$s"
+#. translators: %1$s - site URL; %2$s - site title.
+#: templates/emails/classic-footer.php:26
+#: templates/emails/compact-footer.php:26
+msgid "Sent from <a href=\"%1$s\">%2$s</a>"
 msgstr ""
 
 #: templates/emails/summary-body-plain.php:20

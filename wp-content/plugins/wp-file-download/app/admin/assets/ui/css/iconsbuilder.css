@@ -1051,7 +1051,7 @@ li.wpfd-icon.addition-icon:hover {
 }
 
 .flex-half {
-  flex-basis: calc(50% - 40px);
+  flex-basis: 50%;
   flex-grow: 0;
   padding: 0 20px;
 }
@@ -1217,8 +1217,11 @@ li.wpfd-icon.addition-icon:hover {
 .ju-option-group {
   margin-bottom: 15px;
 }
-.ju-option-group[data-id=link_on_icon] {
-  margin-top: 27px;
+.ju-option-group[data-id=ju_preview_icon] {
+  margin-top: 27px!important;
+}
+.ju-option-group[data-id=ju_preview_icon] .wpfd-label {
+  margin-bottom: 0!important;
 }
 .ju-option-group .wpfd-toolbar {
   float: right;

@@ -3,7 +3,7 @@
     margin-top: 30px;
 }
 
-#wpdesk_tracker_connect .wpdesk-logo {
+#wpdesk_tracker_connect span.wpdesk-logo {
     background-image: url(../images/logo.png);
     background-repeat: no-repeat;
     background-size: 215px 62px;
@@ -14,10 +14,14 @@
 }
 
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-    #wpdesk_tracker_connect .wpdesk-logo {
+    #wpdesk_tracker_connect span.wpdesk-logo {
         background-image: url(../images/logo@2x.png);
         background-size: 215px 62px;
     }
+}
+
+#wpdesk_tracker_connect img.logo {
+    width: 215px;
 }
 
 #wpdesk_tracker_connect .message p {

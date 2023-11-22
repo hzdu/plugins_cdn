@@ -176,6 +176,8 @@ const WPFormsEntriesExport = window.WPFormsEntriesExport || ( function( document
 				// Render cached payment fields checkboxes.
 				app.renderFields( app.formsCache[ vars.formID ].paymentFields, true );
 
+				app.handleSearchFields( app.formsCache[ vars.formID ].fields, app.formsCache[ vars.formID ].paymentFields );
+
 				app.optionsFields( app.formsCache[ vars.formID ].dynamicColumns );
 				app.addDynamicColumnsNotice( app.formsCache[ vars.formID ].dynamicColumnsNotice );
 			}
@@ -224,6 +226,8 @@ const WPFormsEntriesExport = window.WPFormsEntriesExport || ( function( document
 						if ( res.data.dynamic_columns ) {
 							app.addDynamicColumnsNotice( res.data.dynamic_columns_notice );
 						}
+
+						app.handleSearchFields( res.data.fields, res.data.payment_fields );
 
 						app.formsCache[ vars.formID ] = {
 							fields: res.data.fields,
@@ -490,8 +494,6 @@ const WPFormsEntriesExport = window.WPFormsEntriesExport || ( function( document
 
 			if ( fieldsKeys.length === 0 ) {
 				html.checkboxes = '<span>' + i18n.error_form_empty + '</span>';
-				el.$dateSection.addClass( 'hidden' );
-				el.$searchSection.addClass( 'hidden' );
 			} else {
 				html.checkboxes += '<label class="wpforms-toggle-all"><input type="checkbox" checked> ' + i18n.label_select_all + '</label>';
 
@@ -525,6 +527,24 @@ const WPFormsEntriesExport = window.WPFormsEntriesExport || ( function( document
 
 			el.$searchField.find( 'optgroup:first-child option:not(:first-child)' ).remove();
 			el.$searchField.find( 'optgroup:first-child' ).append( html.options );
+		},
+
+		/**
+		 * Hide date and search sections if there are no fields.
+		 *
+		 * @since 1.8.5.2
+		 *
+		 * @param {Object} formFields    Form fields.
+		 * @param {Object} paymentFields Payment fields.
+		 */
+		handleSearchFields( formFields, paymentFields ) {
+			const formFieldsCount = Object.keys( formFields ).length;
+			const paymentFieldsCount = Object.keys( paymentFields ).length;
+
+			if ( formFieldsCount === 0 && paymentFieldsCount === 0 ) {
+				el.$dateSection.addClass( 'hidden' );
+				el.$searchSection.addClass( 'hidden' );
+			}
 		},
 
 		/**

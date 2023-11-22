@@ -66,15 +66,22 @@
 								field_value, fields_conditional_logic_action, value, match);
 
 							var fcf_field_to_hide = $('#' + index + '_field');
+							let is_field_required = $(fcf_field_to_hide).hasClass('validate-required') || $(fcf_field_to_hide).hasClass('had-validate-required');
 							if (hidden) {
 								$(fcf_field_to_hide).hide();
 								$(fcf_field_to_hide).removeClass('validate-required');
 								$(fcf_field_to_hide).find('input,textarea,select').attr('disabled', true);
 								$(fcf_field_to_hide).addClass('fcf-hidden-field');
+								if (is_field_required) {
+									$(fcf_field_to_hide).addClass('had-validate-required');
+								}
 							} else {
 								$(fcf_field_to_hide).show();
 								$(fcf_field_to_hide).find('input,textarea,select').attr('disabled', false);
 								$(fcf_field_to_hide).removeClass('fcf-hidden-field');
+								if (is_field_required) {
+									$(fcf_field_to_hide).addClass('validate-required');
+								}
 							}
 						}
 

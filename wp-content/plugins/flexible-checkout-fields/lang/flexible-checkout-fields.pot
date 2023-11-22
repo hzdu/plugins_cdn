@@ -2,24 +2,24 @@
 # This file is distributed under the same license as the Flexible Checkout Fields plugin.
 msgid ""
 msgstr ""
-"Project-Id-Version: Flexible Checkout Fields 3.5.9\n"
+"Project-Id-Version: Flexible Checkout Fields 3.5.18\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/flexible-checkout-fields\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2023-05-23T14:38:45+00:00\n"
+"POT-Creation-Date: 2023-11-09T15:12:12+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"X-Generator: WP-CLI 2.4.0\n"
+"X-Generator: WP-CLI 2.8.1\n"
 "X-Domain: flexible-checkout-fields\n"
 
 #. Plugin Name of the plugin
-#: classes/settings.php:26
-#: classes/settings.php:29
-#: classes/settings.php:32
-#: classes/settings.php:36
-#: classes/settings.php:40
+#: classes/settings.php:31
+#: classes/settings.php:34
+#: classes/settings.php:37
+#: classes/settings.php:41
+#: classes/settings.php:45
 #: templates/views/admin-page.php:19
 msgid "Flexible Checkout Fields"
 msgstr ""
@@ -44,77 +44,75 @@ msgstr ""
 msgid "Additional Information"
 msgstr ""
 
-#: classes/filed-validation.php:89
+#: classes/filed-validation.php:90
 #: src/Settings/Option/ValidationOption.php:47
 #: src/Settings/Option/ValidationPostcodeOption.php:15
 #: src/Settings/Option/ValidationWcOption.php:15
 msgid "Default"
 msgstr ""
 
-#: classes/filed-validation.php:90
+#: classes/filed-validation.php:91
 #: src/Settings/Option/ValidationPostcodeOption.php:16
 #: src/Settings/Option/ValidationWcOption.php:16
 msgid "None"
 msgstr ""
 
-#: classes/filed-validation.php:91
+#: classes/filed-validation.php:92
 msgid "Email"
 msgstr ""
 
-#: classes/filed-validation.php:92
+#: classes/filed-validation.php:93
 #: src/Field/Type/PhoneType.php:51
 #: src/Settings/Option/ValidationPostcodeOption.php:18
 #: src/Settings/Option/ValidationWcOption.php:18
 msgid "Phone"
 msgstr ""
 
-#: classes/filed-validation.php:95
+#: classes/filed-validation.php:96
 #: src/Settings/Option/ValidationPostcodeOption.php:19
 msgid "Postcode"
 msgstr ""
 
-#: classes/plugin.php:299
+#: classes/plugin.php:311
 #: src/Settings/Menu.php:68
 msgid "Billing"
 msgstr ""
 
-#: classes/plugin.php:306
+#: classes/plugin.php:318
 #: src/Settings/Menu.php:69
 msgid "Shipping"
 msgstr ""
 
-#: classes/plugin.php:313
+#: classes/plugin.php:325
 #: src/Settings/Menu.php:70
 msgid "Order"
 msgstr ""
 
-#: classes/plugin.php:868
+#: classes/plugin.php:880
 msgid "Uploading file..."
 msgstr ""
 
-#: classes/plugin.php:941
+#: classes/plugin.php:953
 #: src/Settings/Menu.php:33
-#: vendor_prefixed/wpdesk/wp-wpdesk-helper/src/Page/SettingsPage.php:46
 msgid "Settings"
 msgstr ""
 
-#: classes/plugin.php:942
+#: classes/plugin.php:954
 msgid "Docs"
 msgstr ""
 
-#: classes/plugin.php:943
-msgid "Support"
-msgstr ""
-
-#: classes/plugin.php:947
-msgid "Upgrade"
+#: classes/plugin.php:961
+#: src/Settings/Option/SettingSectionsAdvOption.php:37
+msgid "Upgrade to PRO"
 msgstr ""
 
 #: classes/tracker.php:326
+#: vendor_prefixed/wpdesk/wp-wpdesk-tracker/src/PSR/WPDesk/Tracker/PluginActionLinks.php:50
 msgid "Opt-in"
 msgstr ""
 
 #: classes/tracker.php:330
+#: vendor_prefixed/wpdesk/wp-wpdesk-tracker/src/PSR/WPDesk/Tracker/PluginActionLinks.php:53
 msgid "Opt-out"
 msgstr ""
 
@@ -382,13 +380,9 @@ msgstr ""
 msgid "Add a fixed or percentage price to the field and set the tax on this price."
 msgstr ""
 
-#: src/Settings/Option/SettingSectionsAdvOption.php:37
-msgid "Upgrade to PRO"
-msgstr ""
-
 #. translators: %1$s: anchor opening tag, %2$s: anchor closing tag
 #: src/Settings/Option/ValidationInfoOption.php:42
-msgid "You can to add custom validation in the functions.php file. %1$sRead more%2$s"
+msgid "You can add custom validation in the functions.php file. %1$sRead more%2$s"
 msgstr ""
 
 #: src/Settings/Option/ValidationOption.php:39
@@ -704,7 +698,7 @@ msgstr ""
 
 #. translators: %$1s: love icon, %$2s: anchor opening tag, %$3s: anchor closing tag, %$4s: anchor opening tag, %$5s: anchor closing tag
 #: templates/views/admin-page.php:65
-msgid "Created with %1$s by Rangers from %2$sWP Desk%3$s - if you like FCF %4$srate us%5$s"
+msgid "Created with %1$s by Sailors from %2$sWP Desk%3$s - if you like FCF %4$srate us%5$s"
 msgstr ""
 
 #: vendor_prefixed/wpdesk/ltv-dashboard-widget/src/DashboardWidget.php:18
@@ -752,7 +746,6 @@ msgid "Info"
 msgstr ""
 
 #: vendor_prefixed/wpdesk/wp-logs/src/deprecated/wpdesk-logger.php:59
-#: vendor_prefixed/wpdesk/wp-wpdesk-helper/src/Integration/LogsIntegration.php:36
 msgid "Debug"
 msgstr ""
 
@@ -813,180 +806,73 @@ msgstr ""
 msgid "Skip and Deactivate"
 msgstr ""
 
-#: vendor_prefixed/wpdesk/wp-wpdesk-helper/src/HelperRemoveNotice.php:43
-msgid "We recommend to <a href=\"%s\">deactivate and remove</a> the \"WP Desk Helper\" plugin as it is no longer required by WP Desk plugins"
+#: vendor_prefixed/wpdesk/wp-wpdesk-tracker/src/PSR/WPDesk/Tracker/OptOut.php:41
+msgid "You successfully opted out of collecting usage data by %1$s. If you change your mind, you can always opt in later in the plugin's quick links."
 msgstr ""
 
-#: vendor_prefixed/wpdesk/wp-wpdesk-helper/src/HelperRemoveNotice.php:56
-msgid "We recommend to <a href=\"%s\">remove</a> the \"WP Desk Helper\" plugin as it is no longer required by WP Desk plugins"
-msgstr ""
-
-#: vendor_prefixed/wpdesk/wp-wpdesk-helper/src/Integration/LogsIntegration.php:37
-msgid "WP Desk Debug Log"
-msgstr ""
-
-#: vendor_prefixed/wpdesk/wp-wpdesk-helper/src/Integration/LogsIntegration.php:60
-#: vendor_prefixed/wpdesk/wp-wpdesk-helper/src/Integration/TrackerIntegration.php:71
-msgid "Enable"
-msgstr ""
-
-#: vendor_prefixed/wpdesk/wp-wpdesk-helper/src/Integration/LogsIntegration.php:64
-msgid "Writes error log to %s."
-msgstr ""
-
-#. Translators: link.
-#: vendor_prefixed/wpdesk/wp-wpdesk-helper/src/Integration/LogsIntegration.php:92
-msgid "WP Desk Debug Log is enabled. %1$sPlease disable it after testing%2$s."
-msgstr ""
-
-#: vendor_prefixed/wpdesk/wp-wpdesk-helper/src/Integration/TrackerIntegration.php:51
-msgid "Plugin usage tracking"
-msgstr ""
-
-#: vendor_prefixed/wpdesk/wp-wpdesk-helper/src/Integration/TrackerIntegration.php:52
-msgid "Allow WP Desk to track plugin usage"
-msgstr ""
-
-#: vendor_prefixed/wpdesk/wp-wpdesk-helper/src/Integration/TrackerIntegration.php:76
-msgid "No sensitive data is tracked, %sread more%s."
-msgstr ""
-
-#: vendor_prefixed/wpdesk/wp-wpdesk-helper/src/Page/LibraryDebugPage.php:29
-msgid "Library report"
-msgstr ""
-
-#: vendor_prefixed/wpdesk/wp-wpdesk-helper/src/Page/SettingsPage.php:58
-msgid "WP Desk Helper Settings"
-msgstr ""
-
-#: vendor_prefixed/wpdesk/wp-wpdesk-helper/src/UpgradeSoonNotice.php:66
-msgid "The PHP version your shop is currently using is deprecated. We highly advise to upgrade it to at least %s since the support for this one will be dropped soon."
-msgstr ""
-
-#: vendor_prefixed/wpdesk/wp-wpdesk-helper/src/UpgradeSoonNotice.php:69
-msgid "The WooCommerce version your shop is currently using is deprecated. We highly advise to upgrade it to at least %s since the support for this one will be dropped soon."
-msgstr ""
-
-#: vendor_prefixed/wpdesk/wp-wpdesk-helper/src/UpgradeSoonNotice.php:72
-msgid "The WordPress version your shop is currently using is deprecated. We highly advise to upgrade it to at least %s since the support for this one will be dropped soon."
-msgstr ""
-
-#: vendor_prefixed/wpdesk/wp-wpdesk-license/src/ApiManager/class-wc-api-manager.php:209
-msgid " <a target='_blank' href='%s'>Enter a valid subscription key for automatic updates.</a>"
-msgstr ""
-
-#: vendor_prefixed/wpdesk/wp-wpdesk-license/src/Page/License/Action/LicenseActivation.php:132
-msgid "Connection failed to the Subscription Key API server. Try again later."
-msgstr ""
-
-#: vendor_prefixed/wpdesk/wp-wpdesk-license/src/Page/License/Action/LicenseActivation.php:141
-msgid "Plugin activated. "
-msgstr ""
-
-#: vendor_prefixed/wpdesk/wp-wpdesk-license/src/Page/License/Action/LicenseDeactivation.php:31
-msgid "Plugin subscription deactivated. "
-msgstr ""
-
-#: vendor_prefixed/wpdesk/wp-wpdesk-license/src/Page/License/views/class-wpdesk-helper-list-table.php:27
-msgid "No WP Desk plugins found."
-msgstr ""
-
-#: vendor_prefixed/wpdesk/wp-wpdesk-license/src/Page/License/views/class-wpdesk-helper-list-table.php:39
-msgid "Plugin"
-msgstr ""
-
-#: vendor_prefixed/wpdesk/wp-wpdesk-license/src/Page/License/views/class-wpdesk-helper-list-table.php:39
-msgid "Subscription Status"
-msgstr ""
-
-#: vendor_prefixed/wpdesk/wp-wpdesk-license/src/Page/License/views/class-wpdesk-helper-list-table.php:39
-msgid "Subscription Data"
-msgstr ""
-
-#: vendor_prefixed/wpdesk/wp-wpdesk-license/src/Page/License/views/class-wpdesk-helper-list-table.php:56
-msgid "Deactivated"
-msgstr ""
-
-#: vendor_prefixed/wpdesk/wp-wpdesk-license/src/Page/License/views/class-wpdesk-helper-list-table.php:58
-msgid "Activated"
-msgstr ""
-
-#: vendor_prefixed/wpdesk/wp-wpdesk-license/src/Page/License/views/license-actions.php:14
-msgid "Key:"
-msgstr ""
-
-#: vendor_prefixed/wpdesk/wp-wpdesk-license/src/Page/License/views/license-actions.php:25
-msgid "Email:"
-msgstr ""
-
-#: vendor_prefixed/wpdesk/wp-wpdesk-license/src/Page/License/views/license-actions.php:41
-msgid "Activate"
-msgstr ""
-
-#: vendor_prefixed/wpdesk/wp-wpdesk-license/src/Page/License/views/license-actions.php:47
-msgid "Deactivate"
-msgstr ""
-
-#: vendor_prefixed/wpdesk/wp-wpdesk-license/src/Page/License/views/licenses.php:27
-msgid "WP Desk Subscriptions"
-msgstr ""
-
-#: vendor_prefixed/wpdesk/wp-wpdesk-license/src/Page/License/views/licenses.php:37
-msgid "Get your subscription keys <a href=\"%s\" target=\"_blank\">here</a>. You can activate/deactivate API keys <strong>unlimited times on different domains</strong> as long as you have an active subscription."
-msgstr ""
-
-#: vendor_prefixed/wpdesk/wp-wpdesk-license/src/Page/LicensePage.php:41
-msgid "Subscriptions"
-msgstr ""
-
+#: vendor_prefixed/wpdesk/wp-wpdesk-tracker/src/PSR/WPDesk/Tracker/views/tracker-connect.php:23
 #: vendor_prefixed/wpdesk/wp-wpdesk-tracker/src/views/tracker-connect.php:15
 #: vendor_prefixed/wpdesk/wp-wpdesk-tracker/src/views/tracker-notice.php:19
 msgid "Hey %s,"
 msgstr ""
 
+#: vendor_prefixed/wpdesk/wp-wpdesk-tracker/src/PSR/WPDesk/Tracker/views/tracker-connect.php:26
 #: vendor_prefixed/wpdesk/wp-wpdesk-tracker/src/views/tracker-connect.php:18
 msgid "Please help us improve our plugins! If you opt-in, we will collect some non-sensitive data and usage information anonymously. If you skip this, that's okay! All plugins will work just fine."
 msgstr ""
 
+#: vendor_prefixed/wpdesk/wp-wpdesk-tracker/src/PSR/WPDesk/Tracker/views/tracker-connect.php:35
 #: vendor_prefixed/wpdesk/wp-wpdesk-tracker/src/views/tracker-connect.php:27
 msgid "Allow & Continue &rarr;"
 msgstr ""
 
+#: vendor_prefixed/wpdesk/wp-wpdesk-tracker/src/PSR/WPDesk/Tracker/views/tracker-connect.php:40
 #: vendor_prefixed/wpdesk/wp-wpdesk-tracker/src/views/tracker-connect.php:32
 msgid "Skip"
 msgstr ""
 
+#: vendor_prefixed/wpdesk/wp-wpdesk-tracker/src/PSR/WPDesk/Tracker/views/tracker-connect.php:47
 #: vendor_prefixed/wpdesk/wp-wpdesk-tracker/src/views/tracker-connect.php:39
 msgid "What permissions are being granted?"
 msgstr ""
 
+#: vendor_prefixed/wpdesk/wp-wpdesk-tracker/src/PSR/WPDesk/Tracker/views/tracker-connect.php:56
 #: vendor_prefixed/wpdesk/wp-wpdesk-tracker/src/views/tracker-connect.php:48
 msgid "Your Site Overview"
 msgstr ""
 
+#: vendor_prefixed/wpdesk/wp-wpdesk-tracker/src/PSR/WPDesk/Tracker/views/tracker-connect.php:59
 #: vendor_prefixed/wpdesk/wp-wpdesk-tracker/src/views/tracker-connect.php:51
 msgid "WP version, PHP info"
 msgstr ""
 
+#: vendor_prefixed/wpdesk/wp-wpdesk-tracker/src/PSR/WPDesk/Tracker/views/tracker-connect.php:67
 #: vendor_prefixed/wpdesk/wp-wpdesk-tracker/src/views/tracker-connect.php:59
 msgid "Plugin Usage"
 msgstr ""
 
-#: vendor_prefixed/wpdesk/wp-wpdesk-tracker/src/views/tracker-connect.php:62
-msgid "Current settings and usage information of WP Desk plugins"
+#: vendor_prefixed/wpdesk/wp-wpdesk-tracker/src/PSR/WPDesk/Tracker/views/tracker-connect.php:70
+msgid "Current settings and usage information of %1$s plugins"
 msgstr ""
 
+#: vendor_prefixed/wpdesk/wp-wpdesk-tracker/src/PSR/WPDesk/Tracker/views/tracker-connect.php:78
 #: vendor_prefixed/wpdesk/wp-wpdesk-tracker/src/views/tracker-connect.php:70
 msgid "Your Store Overview"
 msgstr ""
 
+#: vendor_prefixed/wpdesk/wp-wpdesk-tracker/src/PSR/WPDesk/Tracker/views/tracker-connect.php:81
 #: vendor_prefixed/wpdesk/wp-wpdesk-tracker/src/views/tracker-connect.php:73
 msgid "Anonymized and non-sensitive store usage information"
 msgstr ""
 
+#: vendor_prefixed/wpdesk/wp-wpdesk-tracker/src/PSR/WPDesk/Tracker/views/tracker-connect.php:91
 #: vendor_prefixed/wpdesk/wp-wpdesk-tracker/src/views/tracker-connect.php:83
 #: vendor_prefixed/wpdesk/wp-wpdesk-tracker/src/views/tracker-notice.php:27
 msgid "Find out more &raquo;"
+msgstr ""
+
+#: vendor_prefixed/wpdesk/wp-wpdesk-tracker/src/views/tracker-connect.php:62
+msgid "Current settings and usage information of WP Desk plugins"
 msgstr ""
 
 #: vendor_prefixed/wpdesk/wp-wpdesk-tracker/src/views/tracker-deactivate.php:11
