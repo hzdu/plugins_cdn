@@ -1,24 +1,22 @@
 /*!
- * Variation Swatches for WooCommerce 
- * 
- * Author: Emran Ahmed ( emran.bd.08@gmail.com ) 
- * Date: 6/23/2022, 8:34:29 PM
+ * Variation Swatches for WooCommerce
+ *
+ * Author: Emran Ahmed ( emran.bd.08@gmail.com )
+ * Date: 11/21/2023, 2:00:07 PM
  * Released under the GPLv3 license.
  */
 .button.button-danger {
-  color: #FFFFFF;
-  background-color: #AF2D2B;
-  border-color: #A62D2B;
-  -webkit-box-shadow: 0 1px 0 #A72D2B;
-          box-shadow: 0 1px 0 #A72D2B;
-  vertical-align: top;
-}
-.button.button-danger:hover, .button.button-danger:focus, .button.button-danger:active, .button.button-danger.active {
-  color: #FFFFFF;
-  background: #C9302C;
+  color: var(--wc-primary-text);
+  background-color: var(--wc-red);
+  border-color: var(--wc-red);
 }
 
-[data-dependency]:not(.dependency-show) {
+.woo_variation_swatches_tab.pro-inactive a {
+  color: var(--wc-primary-text);
+  background-color: var(--wc-blue);
+}
+
+[data-gwp_dependency]:not(.dependency-show) {
   display: none !important;
 }
 
@@ -42,7 +40,7 @@
 .wvs-go-pro-action-link > a {
   font-weight: bold;
   text-transform: capitalize;
-  color: #9c27b0;
+  color: var(--wc-primary);
   text-shadow: 1px 1px 1px #eee;
 }
 
@@ -57,9 +55,40 @@
   border-radius: 2px;
 }
 
-.woo-variation-swatches-pro_tab.pro-inactive a {
-  background-color: var(--wc-primary);
-  color: var(--wc-content-bg);
+.woo_variation_swatches_product_label_settings.column-woo_variation_swatches_product_label_settings {
+  vertical-align: middle;
+}
+.woo_variation_swatches_product_label_settings.column-woo_variation_swatches_product_label_settings span {
+  font-size: 1rem;
+  color: var(--wp-admin-theme-color);
+}
+
+table.wp-list-table span.wvs-info {
+  display: block;
+  text-indent: -9999px;
+  position: relative;
+  height: 1em;
+  width: 1em;
+  margin: 0 auto;
+}
+
+table.wp-list-table span.wvs-info::before {
+  font-family: Dashicons;
+  speak: never;
+  font-weight: 400;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  margin: 0;
+  text-indent: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  content: "\f339";
 }
 
 #woo-variation-swatches-tutorials-wrapper {
@@ -184,13 +213,13 @@
   border-color: #5D5E61;
 }
 #woo-variation-swatches-tutorials-wrapper .tutorial-description-wrapper .tutorial-buttons .button.button-pro {
-  background-color: #39B54A;
-  color: #FFFFFF;
-  border: 1px solid #39B54A;
+  background-color: var(--wc-blue);
+  color: var(--wc-content-bg);
+  border: 1px solid var(--wc-blue);
 }
 #woo-variation-swatches-tutorials-wrapper .tutorial-description-wrapper .tutorial-buttons .button.button-pro:hover {
-  background: #3FC851;
-  border-color: #3FC851;
+  background: var(--wc-blue);
+  border-color: var(--wc-blue);
 }
 
 .woo-variation-swatches-group-table-list tbody > :nth-child(odd) {
@@ -199,7 +228,7 @@
 
 .woo-variation-swatches-group-section-wrapper .woocommerce-BlankState-message::before {
   font-family: "Dashicons";
-  content: "\F307";
+  content: "\f307";
 }
 
 .woo-variation-swatches-variation-product-options-wrapper {
@@ -216,6 +245,9 @@
   margin: 10px;
 }
 .woo-variation-swatches-variation-product-options-wrapper #saved-message {
+  display: none;
+}
+.woo-variation-swatches-variation-product-options-wrapper #individual-swatches-info.swatches-info-hide {
   display: none;
 }
 .woo-variation-swatches-variation-product-options-wrapper h4 {

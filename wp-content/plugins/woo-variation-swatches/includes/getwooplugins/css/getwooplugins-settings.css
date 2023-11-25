@@ -1,10 +1,30 @@
-[data-dependency]:not(.dependency-show) {
+.select2-results__option--highlighted {
+    --wp-admin-theme-color                : #007CBA;
+    --wp-admin-theme-color--rgb           : 0, 124, 186;
+    --wp-admin-theme-color-darker-10      : #006BA1;
+    --wp-admin-theme-color-darker-10--rgb : 0, 107, 161;
+    --wp-admin-theme-color-darker-20      : #005A87;
+    --wp-admin-theme-color-darker-20--rgb : 0, 90, 135;
+    --wp-admin-border-width-focus         : 2px
+    }
+
+@media (-webkit-min-device-pixel-ratio : 2), (min-resolution : 192dpi) {
+    .select2-results__option--highlighted {
+        --wp-admin-border-width-focus : 1.5px;
+        }
+    }
+
+[data-gwp_dependency]:not(.dependency-show) {
     display : none !important;
     }
 
 .getwooplugins-settings-wrapper h2 {
     font-size     : 1.3em;
     margin-bottom : 10px;
+    }
+
+.getwooplugins-settings-wrapper nav.getwooplugins-nav-tab-wrapper {
+    margin : 1.5em 0 1em;
     }
 
 .getwooplugins-settings-content-wrapper.has-sidebar {
@@ -52,11 +72,10 @@
         }
     }
 
-
 .gwp-go-pro-action-link > a {
     font-weight    : bold;
     text-transform : capitalize;
-    color          : #9C27B0;
+    color          : var(--wc-red);
     text-shadow    : 1px 1px 1px #EEEEEE;
     }
 
@@ -66,15 +85,202 @@
     }
 
 .getwooplugins-admin-form-table {
+    margin        : 0;
+    position      : relative;
+    table-layout  : fixed;
     margin-top    : 15px;
     background    : #FFFFFF;
     border-radius : 2px;
     box-shadow    : 0 0 0 1px rgba(0, 0, 0, 0.07), 0 1px 1px rgba(0, 0, 0, 0.04);
     }
 
-.getwooplugins-admin-form-table .woocommerce-help-tip {
-    position : relative !important;
-    margin   : -3px 0 0 5px !important;
+.getwooplugins-admin-form-table .forminp-radio ul {
+    margin : 0
+    }
+
+.getwooplugins-admin-form-table .forminp-radio ul li {
+    line-height : 1.4em
+    }
+
+.getwooplugins-admin-form-table input[type=email],
+.getwooplugins-admin-form-table input[type=number],
+.getwooplugins-admin-form-table input[type=text] {
+    height : auto
+    }
+
+.getwooplugins-admin-form-table textarea.input-text {
+    height    : 100%;
+    min-width : 150px;
+    display   : block
+    }
+
+.getwooplugins-admin-form-table input.regular-input,
+.getwooplugins-admin-form-table input[type=date],
+.getwooplugins-admin-form-table input[type=datetime-local],
+.getwooplugins-admin-form-table input[type=datetime],
+.getwooplugins-admin-form-table input[type=email],
+.getwooplugins-admin-form-table input[type=number],
+.getwooplugins-admin-form-table input[type=password],
+.getwooplugins-admin-form-table input[type=tel],
+.getwooplugins-admin-form-table input[type=text],
+.getwooplugins-admin-form-table input[type=time],
+.getwooplugins-admin-form-table input[type=url],
+.getwooplugins-admin-form-table input[type=week],
+.getwooplugins-admin-form-table textarea {
+    width          : 400px;
+    margin         : 0;
+    padding        : 3px 6px;
+    box-sizing     : border-box;
+    vertical-align : top
+    }
+
+.getwooplugins-admin-form-table input[type=date],
+.getwooplugins-admin-form-table input[type=datetime-local],
+.getwooplugins-admin-form-table input[type=tel],
+.getwooplugins-admin-form-table input[type=time],
+.getwooplugins-admin-form-table input[type=week] {
+    width : 200px
+    }
+
+.getwooplugins-admin-form-table select {
+    width          : 400px;
+    margin         : 0;
+    box-sizing     : border-box;
+    line-height    : 32px;
+    vertical-align : top
+    }
+
+.getwooplugins-admin-form-table input[size] {
+    width : auto !important
+    }
+
+
+.getwooplugins-admin-form-table textarea.wide-input {
+    width : 100%
+    }
+
+.getwooplugins-admin-form-table .getwooplugins-help-tip {
+    padding        : 0;
+    margin         : 0 0 0 5px !important;
+    vertical-align : middle;
+    cursor         : help;
+    line-height    : 1
+    }
+
+
+.getwooplugins-help-tip {
+    color          : #666666;
+    display        : inline-block;
+    font-size      : 1.1em;
+    font-style     : normal;
+    height         : 16px;
+    line-height    : 16px;
+    position       : relative;
+    vertical-align : middle;
+    width          : 16px;
+    margin         : 0 0 0 5px !important;
+    }
+
+.getwooplugins-help-tip::after {
+    font-family            : dashicons;
+    speak                  : never;
+    font-weight            : 400;
+    font-variant           : normal;
+    text-transform         : none;
+    line-height            : 1;
+    -webkit-font-smoothing : antialiased;
+    margin                 : 0;
+    text-indent            : 0;
+    position               : absolute;
+    top                    : 0;
+    left                   : 0;
+    width                  : 100%;
+    height                 : 100%;
+    text-align             : center;
+    content                : "\f348";
+    cursor                 : help;
+    }
+
+/***/
+
+#tiptip_holder {
+    display  : none;
+    z-index  : 8675309;
+    position : absolute;
+    top      : 0;
+    left     : 0
+    }
+
+#tiptip_holder.tip_top {
+    padding-bottom : 5px
+    }
+
+#tiptip_holder.tip_top #tiptip_arrow_inner {
+    margin-top       : -7px;
+    margin-left      : -6px;
+    border-top-color : #333333
+    }
+
+#tiptip_holder.tip_bottom {
+    padding-top : 5px
+    }
+
+#tiptip_holder.tip_bottom #tiptip_arrow_inner {
+    margin-top          : -5px;
+    margin-left         : -6px;
+    border-bottom-color : #333333
+    }
+
+#tiptip_holder.tip_right {
+    padding-left : 5px
+    }
+
+#tiptip_holder.tip_right #tiptip_arrow_inner {
+    margin-top         : -6px;
+    margin-left        : -5px;
+    border-right-color : #333333
+    }
+
+#tiptip_holder.tip_left {
+    padding-right : 5px
+    }
+
+#tiptip_holder.tip_left #tiptip_arrow_inner {
+    margin-top        : -6px;
+    margin-left       : -7px;
+    border-left-color : #333333
+    }
+
+#tiptip_content, .chart-tooltip, .wc_error_tip {
+    color         : #FFFFFF;
+    font-size     : .8em;
+    max-width     : 150px;
+    background    : #333333;
+    text-align    : center;
+    border-radius : 3px;
+    padding       : .618em 1em;
+    box-shadow    : 0 1px 3px rgba(0, 0, 0, .2)
+    }
+
+#tiptip_content code, .chart-tooltip code, .wc_error_tip code {
+    padding    : 1px;
+    background : #888888
+    }
+
+#tiptip_arrow, #tiptip_arrow_inner {
+    position     : absolute;
+    border-color : transparent;
+    border-style : solid;
+    border-width : 6px;
+    height       : 0;
+    width        : 0
+    }
+
+/***/
+
+h2 .getwooplugins-help-tip {
+    margin-top  : -5px;
+    margin-left : .25em
     }
 
 .getwooplugins-admin-form-table tr:nth-child(even) {
@@ -184,10 +390,12 @@
     pointer-events : none;
     }
 
-.getwooplugins-admin-form-table .is-new th label::after {
+.getwooplugins-admin-form-table .is-new th label::after,
+.getwooplugins-admin-form-table .is-classic th label::after {
     content                    : "";
     position                   : absolute;
     left                       : -20px;
+    right                      : auto;
     top                        : -20px;
     color                      : #FFFFFF;
     font-size                  : 8px;
@@ -198,9 +406,12 @@
     border-bottom-right-radius : 5px;
     }
 
-.rtl .getwooplugins-admin-form-table .is-new th label::after {
+.rtl .getwooplugins-admin-form-table .is-new th label::after,
+.rtl .getwooplugins-admin-form-table .is-classic th label::after {
     right : -10px;
     left  : auto;
+    border-bottom-left-radius : 5px;
+    border-bottom-right-radius : 0;
     }
 
 /*.getwooplugins-admin-form-table .is-pro th label::before {
@@ -237,7 +448,7 @@
     }
 
 
-.getwooplugins-admin-form-table .woocommerce-help-tip::after{
+.getwooplugins-admin-form-table .woocommerce-help-tip::after {
     content : "\f348";
     /*content : "\f14c";*/
     /*content : "\f348";*/
@@ -253,10 +464,12 @@
 
 .getwooplugins-admin-form-table .is-pro th .pro-modal::after {
     content : "\f160";
+    cursor  : pointer;
     }
 
 .getwooplugins-admin-form-table .help-preview th .help-modal::after {
     content : "\f223";
+    cursor  : pointer;
     /*content : "\f504";*/
     }
 
@@ -270,6 +483,11 @@
 .getwooplugins-admin-form-table .is-new th label::after {
     content    : 'NEW';
     background : #2196F3;
+    }
+
+.getwooplugins-admin-form-table .is-classic th label::after {
+    content    : 'Classic';
+    background : #666666;
     }
 
 /*.getwooplugins-admin-form-table .is-new.help-preview th label::after {
@@ -412,8 +630,9 @@
     }
 
 .rtl .gwp-backbone-modal-main .gwp-backbone-modal-header .modal-close-link {
-    right : auto;
-    left  : 0
+    right        : auto;
+    left         : 0;
+    border-right : 1px solid #DDDDDD;
     }
 
 .gwp-backbone-modal-main .gwp-backbone-modal-header .modal-close-link::before {
@@ -520,6 +739,10 @@
     line-height : 23px;
     }
 
+.rtl .gwp-backbone-modal-main footer .inner {
+    text-align : left;
+    }
+
 .gwp-backbone-modal-main footer .inner .button {
     margin-bottom : 0;
     }
@@ -527,6 +750,10 @@
 .gwp-backbone-modal-main footer .inner .gwp-action-button-group {
     display : inline-block;
     float   : left;
+    }
+
+.rtl .gwp-backbone-modal-main footer .inner .gwp-action-button-group {
+    float : right;
     }
 
 .gwp-backbone-modal-main footer .inner .button.button-large {
@@ -537,8 +764,11 @@
     display     : inline-block;
     }
 
-/** FEEDBACK */
+.rtl .gwp-backbone-modal-main footer .inner .button.button-large {
+    margin-right : 10px;
+    }
 
+/** FEEDBACK */
 .gwp-backbone-modal.gwp-deactive-feedback-dialog article {
     padding  : 1.5em;
     overflow : auto;
@@ -563,6 +793,11 @@
     box-shadow : none;
     }
 
+.rtl .gwp-backbone-modal .gwp-feedback-dialog-form-body .feedback-dialog-form-body .feedback-dialog-input {
+    float  : right;
+    margin : 0 0 0 10px;
+    }
+
 .gwp-backbone-modal .gwp-feedback-dialog-form-body .feedback-dialog-form-body .feedback-text {
     margin           : 10px 0 0 25px;
     padding          : 5px;
@@ -571,6 +806,10 @@
     background-color : #FFFFFF;
     width            : 92%;
     display          : none;
+    }
+
+.rtl .gwp-backbone-modal .gwp-feedback-dialog-form-body .feedback-dialog-form-body .feedback-text {
+    margin : 10px 25px 0 0;
     }
 
 .gwp-backbone-modal .gwp-feedback-dialog-form-body .feedback-dialog-form-body .feedback-alert {
@@ -605,6 +844,10 @@
     float            : left;
     }
 
+.rtl .gwp-backbone-modal footer .feedback-dialog-form-button-send {
+    float : right;
+    }
+
 .gwp-backbone-modal footer .feedback-dialog-form-button-send:hover {
     background : #389DB1;
     }
@@ -624,6 +867,10 @@
     padding         : 10px 0;
     outline         : 0;
     text-decoration : none;
+    }
+
+.rtl .gwp-backbone-modal footer .feedback-dialog-form-button-skip {
+    float : left;
     }
 
 .gwp-backbone-modal footer .feedback-dialog-form-button-skip:focus {

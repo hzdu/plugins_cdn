@@ -187,7 +187,7 @@
 }(jQuery, Backbone, _))
 
 const GWPAdminHelper = (($) => {
-    class GWPAdminHelper {
+    return class GWPAdminHelper {
 
         static ResetPopupData(pluginslug) {
             let id      = `#gwp-plugin-deactivate-feedback-dialog-wrapper-${pluginslug}`
@@ -241,21 +241,21 @@ const GWPAdminHelper = (($) => {
         }
 
     }
-
-    return GWPAdminHelper
 })(jQuery);
 
 (function ($, params, wp) {
     $(function () {
 
         // Color picker with alpha support
-        $('.color-picker-alpha').wpColorPicker({
-            change : function (event, ui) {
-                window.onbeforeunload = function () {
-                    return params.i18n_nav_warning
-                }
-            },
-        })
+        if ($().wpColorPicker) {
+            $('.color-picker-alpha').wpColorPicker({
+                change : function (event, ui) {
+                    window.onbeforeunload = function () {
+                        return params.i18n_nav_warning
+                    }
+                },
+            })
+        }
 
         // Edit prompt
         $(function () {
@@ -277,7 +277,11 @@ const GWPAdminHelper = (($) => {
 
         $(document.body).on('init_tooltips', function () {
 
-            $('.tips, .help_tip, .woocommerce-help-tip').tipTip({
+            if (!jQuery().tipTip) {
+                return false;
+            }
+
+            $('.tips, .help_tip, .woocommerce-help-tip, .getwooplugins-help-tip').tipTip({
                 'attribute' : 'data-tip',
                 'fadeIn'    : 50,
                 'fadeOut'   : 50,
@@ -308,10 +312,11 @@ const GWPAdminHelper = (($) => {
 
         try {
             $(document.body).on('init_form_field_dependency', function () {
-                $('[data-dependency]').GWPFormFieldDependency()
+                $('[data-gwp_dependency]').GWPFormFieldDependency()
             }).trigger('init_form_field_dependency')
 
-        } catch (err) {
+        }
+        catch (err) {
             // If failed (conflict?) log the error but don't stop other scripts breaking.
             window.console.log(err);
         }

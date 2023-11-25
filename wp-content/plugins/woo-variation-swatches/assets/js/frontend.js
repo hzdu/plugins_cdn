@@ -1,104 +1,25 @@
 /*!
- * Variation Swatches for WooCommerce 
- * 
- * Author: Emran Ahmed ( emran.bd.08@gmail.com ) 
- * Date: 6/23/2022, 8:34:29 PM
+ * Variation Swatches for WooCommerce
+ *
+ * Author: Emran Ahmed ( emran.bd.08@gmail.com )
+ * Date: 11/21/2023, 2:00:07 PM
  * Released under the GPLv3 license.
  */
-/******/ (function(modules) { // webpackBootstrap
-/******/ 	// The module cache
-/******/ 	var installedModules = {};
-/******/
-/******/ 	// The require function
-/******/ 	function __webpack_require__(moduleId) {
-/******/
-/******/ 		// Check if module is in cache
-/******/ 		if(installedModules[moduleId]) {
-/******/ 			return installedModules[moduleId].exports;
-/******/ 		}
-/******/ 		// Create a new module (and put it into the cache)
-/******/ 		var module = installedModules[moduleId] = {
-/******/ 			i: moduleId,
-/******/ 			l: false,
-/******/ 			exports: {}
-/******/ 		};
-/******/
-/******/ 		// Execute the module function
-/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
-/******/
-/******/ 		// Flag the module as loaded
-/******/ 		module.l = true;
-/******/
-/******/ 		// Return the exports of the module
-/******/ 		return module.exports;
-/******/ 	}
-/******/
-/******/
-/******/ 	// expose the modules object (__webpack_modules__)
-/******/ 	__webpack_require__.m = modules;
-/******/
-/******/ 	// expose the module cache
-/******/ 	__webpack_require__.c = installedModules;
-/******/
-/******/ 	// define getter function for harmony exports
-/******/ 	__webpack_require__.d = function(exports, name, getter) {
-/******/ 		if(!__webpack_require__.o(exports, name)) {
-/******/ 			Object.defineProperty(exports, name, { enumerable: true, get: getter });
-/******/ 		}
-/******/ 	};
-/******/
-/******/ 	// define __esModule on exports
-/******/ 	__webpack_require__.r = function(exports) {
-/******/ 		if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
-/******/ 			Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
-/******/ 		}
-/******/ 		Object.defineProperty(exports, '__esModule', { value: true });
-/******/ 	};
-/******/
-/******/ 	// create a fake namespace object
-/******/ 	// mode & 1: value is a module id, require it
-/******/ 	// mode & 2: merge all properties of value into the ns
-/******/ 	// mode & 4: return value when already ns object
-/******/ 	// mode & 8|1: behave like require
-/******/ 	__webpack_require__.t = function(value, mode) {
-/******/ 		if(mode & 1) value = __webpack_require__(value);
-/******/ 		if(mode & 8) return value;
-/******/ 		if((mode & 4) && typeof value === 'object' && value && value.__esModule) return value;
-/******/ 		var ns = Object.create(null);
-/******/ 		__webpack_require__.r(ns);
-/******/ 		Object.defineProperty(ns, 'default', { enumerable: true, value: value });
-/******/ 		if(mode & 2 && typeof value != 'string') for(var key in value) __webpack_require__.d(ns, key, function(key) { return value[key]; }.bind(null, key));
-/******/ 		return ns;
-/******/ 	};
-/******/
-/******/ 	// getDefaultExport function for compatibility with non-harmony modules
-/******/ 	__webpack_require__.n = function(module) {
-/******/ 		var getter = module && module.__esModule ?
-/******/ 			function getDefault() { return module['default']; } :
-/******/ 			function getModuleExports() { return module; };
-/******/ 		__webpack_require__.d(getter, 'a', getter);
-/******/ 		return getter;
-/******/ 	};
-/******/
-/******/ 	// Object.prototype.hasOwnProperty.call
-/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
-/******/
-/******/ 	// __webpack_public_path__
-/******/ 	__webpack_require__.p = "/";
-/******/
-/******/
-/******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 1);
-/******/ })
-/************************************************************************/
-/******/ ({
-
-/***/ "./src/js/WooVariationSwatches.js":
-/***/ (function(module, exports) {
-
-function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+/******/ (function() { // webpackBootstrap
+var __webpack_exports__ = {};
+// This entry need to be wrapped in an IIFE because it need to be isolated against other entry modules.
+!function() {
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 
 function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e2) { throw _e2; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e3) { didErr = true; err = _e3; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
@@ -112,33 +33,57 @@ function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Sy
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 // ================================================================
 // WooCommerce Variation Swatches
-
-/*global _, wc_add_to_cart_variation_params, woo_variation_swatches_options */
 // ================================================================
+
+/*global wp, _, wc_add_to_cart_variation_params, woo_variation_swatches_options */
 (function (window) {
   'use strict';
 
+  var isWooVariationSwatchesAPIRequest = function isWooVariationSwatchesAPIRequest(options) {
+    return !!options.path && options.path.indexOf('woo-variation-swatches') !== -1 || !!options.url && options.url.indexOf('woo-variation-swatches') !== -1;
+  };
+
+  window.createMiddlewareForExtraQueryParams = function () {
+    var args = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+    return function (options, next) {
+      if (isWooVariationSwatchesAPIRequest(options) && Object.keys(args).length > 0) {
+        for (var _i = 0, _Object$entries = Object.entries(args); _i < _Object$entries.length; _i++) {
+          var _Object$entries$_i = _slicedToArray(_Object$entries[_i], 2),
+              key = _Object$entries$_i[0],
+              value = _Object$entries$_i[1];
+
+          if (typeof options.url === 'string' && !wp.url.hasQueryArg(options.url, key)) {
+            options.url = wp.url.addQueryArgs(options.url, _defineProperty({}, key, value));
+          }
+
+          if (typeof options.path === 'string' && !wp.url.hasQueryArg(options.path, key)) {
+            options.path = wp.url.addQueryArgs(options.path, _defineProperty({}, key, value));
+          }
+        }
+      }
+
+      return next(options);
+    };
+  };
+  /*
+  wp.apiFetch.use((options, next) =>  createMiddlewareForExtraQueryParams({'lang':'en'}));
+  */
+
+
   var Plugin = function ($) {
     return /*#__PURE__*/function () {
-      function _class2(element, options) {
+      function _class2(element, options, name) {
         _classCallCheck(this, _class2);
 
         _defineProperty(this, "defaults", {});
 
         // Assign
-        this._element = element;
+        this.name = name;
+        this.element = element;
         this.$element = $(element);
-        this._config = $.extend(true, {}, this.defaults, options);
+        this.settings = $.extend(true, {}, this.defaults, options);
         this.product_variations = this.$element.data('product_variations') || [];
         this.is_ajax_variation = this.product_variations.length < 1;
         this.product_id = this.$element.data('product_id');
@@ -378,7 +323,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 } // $(this).trigger('focus') // Mobile tooltip
 
 
-                $(this).trigger('wvs-selected-item', [value, select, self._element]); // Custom Event for li
+                $(this).trigger('wvs-selected-item', [value, select, self.$element]); // Custom Event for li
               }); // Radio
 
               $(element).on('change.wvs', 'input.variable-item-radio-input:radio', function (event) {
@@ -410,6 +355,37 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             $(this).parent().removeClass('enabled-display-limit-mode enabled-catalog-display-limit-mode');
             $(this).remove();
           });
+          this.$element.find('[data-wvstooltip]').each(function (i, element) {
+            $(element).on('mouseenter', function (event) {
+              var rect = element.getBoundingClientRect();
+              var tooltip = window.getComputedStyle(element, ':before');
+              var arrow = window.getComputedStyle(element, ':after');
+              var arrowHeight = parseInt(arrow.getPropertyValue('border-top-width'), 10);
+              var tooltipHeight = parseInt(tooltip.getPropertyValue('height'), 10);
+              var tooltipWidth = parseInt(tooltip.getPropertyValue('width'), 10);
+              var offset = 2;
+              var calculateTooltipPosition = tooltipHeight + arrowHeight + offset;
+              element.classList.toggle('wvs-tooltip-position-bottom', rect.top < calculateTooltipPosition);
+              var width = tooltipWidth / 2;
+              var position = rect.left + rect.width / 2; // Left
+
+              var left = width - position;
+              var isLeft = width > position;
+              var computedRight = width + position;
+              var isRight = document.body.clientWidth < computedRight;
+              var right = document.body.clientWidth - computedRight;
+              element.style.setProperty('--horizontal-position', "0px");
+
+              if (isLeft) {
+                element.style.setProperty('--horizontal-position', "".concat(left + offset, "px"));
+              }
+
+              if (isRight) {
+                element.style.setProperty('--horizontal-position', "".concat(right - offset, "px"));
+              } //
+
+            });
+          });
         }
       }, {
         key: "update",
@@ -430,7 +406,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
           if (woo_variation_swatches_options.show_variation_stock) {
             var max_stock_label = parseInt(woo_variation_swatches_options.stock_label_threshold, 10);
-            this.$element.on('wvs-selected-item.wc-variation-form', function () {
+            this.$element.on('wvs-selected-item.wvs', function (event) {
               var attributes = _this5.getChosenAttributes();
 
               var variations = _this5.findStockVariations(_this5.product_variations, attributes);
@@ -455,7 +431,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 });
               }
             });
-            this.$element.on('hide_variation.wc-variation-form', function () {
+            this.$element.on('hide_variation.wvs', function () {
               _this5.resetStockInfo();
             });
           }
@@ -495,10 +471,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         value: function findStockVariations(allVariations, selectedAttributes) {
           var found = [];
 
-          for (var _i = 0, _Object$entries = Object.entries(selectedAttributes.data); _i < _Object$entries.length; _i++) {
-            var _Object$entries$_i = _slicedToArray(_Object$entries[_i], 2),
-                attribute_name = _Object$entries$_i[0],
-                attribute_value = _Object$entries$_i[1];
+          for (var _i2 = 0, _Object$entries2 = Object.entries(selectedAttributes.data); _i2 < _Object$entries2.length; _i2++) {
+            var _Object$entries2$_i = _slicedToArray(_Object$entries2[_i2], 2),
+                attribute_name = _Object$entries2$_i[0],
+                attribute_value = _Object$entries2$_i[1];
 
             if (attribute_value.length === 0) {
               var values = this.$element.find("ul[data-attribute_name='".concat(attribute_name, "']")).data('attribute_values') || [];
@@ -566,6 +542,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
           return match;
         }
+      }, {
+        key: "destroy",
+        value: function destroy() {
+          this.$element.removeClass('wvs-loaded');
+          this.$element.removeData(this.name);
+        }
       }]);
 
       return _class2;
@@ -587,7 +569,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           var data = $element.data(PluginName);
 
           if (!data) {
-            data = new ClassName($element, $.extend({}, options));
+            data = new ClassName($element, $.extend({}, options), PluginName);
             $element.data(PluginName, data);
           }
 
@@ -629,35 +611,41 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
   jQueryPlugin('WooVariationSwatches', Plugin);
 })(window);
-
-/***/ }),
-
-/***/ "./src/js/frontend.js":
-/***/ (function(module, exports) {
-
+}();
+// This entry need to be wrapped in an IIFE because it need to be isolated against other entry modules.
+!function() {
+/*global wp, _, wc_add_to_cart_variation_params, woo_variation_swatches_options */
 jQuery(function ($) {
   try {
-    $(document.body).on('woo_variation_swatches_init', function () {
+    $(document).on('woo_variation_swatches_init', function () {
       $('.variations_form:not(.wvs-loaded)').WooVariationSwatches(); // Any custom product with .woo_variation_swatches_variations_form class to support
 
       $('.woo_variation_swatches_variations_form:not(.wvs-loaded)').WooVariationSwatches(); // Yith Composite Product
 
       $('.ywcp_inner_selected_container:not(.wvs-loaded)').WooVariationSwatches();
-    }).trigger('woo_variation_swatches_init');
+    }); //.trigger('woo_variation_swatches_init')
   } catch (err) {
     // If failed (conflict?) log the error but don't stop other scripts breaking.
     window.console.log('Variation Swatches:', err);
   } // Init WooVariationSwatches after wc_variation_form script loaded.
 
 
-  $(document.body).on('wc_variation_form.wvs', function (event) {
-    $(document.body).trigger('woo_variation_swatches_init');
+  $(document).on('wc_variation_form.wvs', function (event) {
+    $(document).trigger('woo_variation_swatches_init');
+  }); // Try to cover global ajax data complete
+
+  $(document).ajaxComplete(function (event, request, settings) {
+    _.delay(function () {
+      $('.variations_form:not(.wvs-loaded)').each(function () {
+        $(this).wc_variation_form();
+      });
+    }, 1000);
   }); // Composite Product Load
   // JS API: https://docs.woocommerce.com/document/composite-products/composite-products-js-api-reference/
 
   $(document.body).on('wc-composite-initializing', '.composite_data', function (event, composite) {
     composite.actions.add_action('component_options_state_changed', function (self) {
-      $(self.$component_content).find('.variations_form').removeClass('wvs-loaded wvs-pro-loaded');
+      $(self.$component_content).find('.variations_form').WooVariationSwatches('destroy');
     });
     /* composite.actions.add_action('active_scenarios_updated', (self) => {
        console.log('active_scenarios_updated')
@@ -665,16 +653,6 @@ jQuery(function ($) {
      })*/
   });
 });
-
-/***/ }),
-
-/***/ 1:
-/***/ (function(module, exports, __webpack_require__) {
-
-__webpack_require__("./src/js/WooVariationSwatches.js");
-module.exports = __webpack_require__("./src/js/frontend.js");
-
-
-/***/ })
-
-/******/ });
+}();
+/******/ })()
+;
