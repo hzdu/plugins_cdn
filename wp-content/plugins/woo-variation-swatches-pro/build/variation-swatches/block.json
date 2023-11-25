@@ -1,0 +1,33 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "getwooplugins/variation-swatches",
+  "version": "1.0.0",
+  "title": "Variation Swatches",
+  "category": "getwooplugins",
+  "icon": "image-filter",
+  "description": "Variation Swatches for WooCommerce Block",
+  "ancestor": [
+    "woocommerce/all-products",
+    "core/post-template",
+    "woocommerce/product-template"
+  ],
+  "usesContext": [
+    "query",
+    "queryId",
+    "postId"
+  ],
+  "attributes": {
+    "textAlign": {
+      "type": "string",
+      "default": "center"
+    }
+  },
+  "supports": {
+    "html": false
+  },
+  "textdomain": "woo-variation-swatches-pro",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "render": "file:./render.php"
+}
