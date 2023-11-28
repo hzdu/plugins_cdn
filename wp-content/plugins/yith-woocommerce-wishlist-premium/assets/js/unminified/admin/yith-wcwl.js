@@ -1,7 +1,7 @@
 /**
  * Admin YITH WooCommerce Wishlist JS
  *
- * @author YITH
+ * @author YITH <plugins@yithemes.com>
  * @package YITH WooCommerce Wishlist
  * @version 3.0.0
  */
@@ -23,7 +23,7 @@ jQuery( function( $ ) {
                     return;
                 }
 
-                var target = elem.closest('tr');
+                var target = elem.closest( '.yith-plugin-fw__panel__option' );
 
                 if (!target.length) {
                     return;
@@ -31,12 +31,9 @@ jQuery( function( $ ) {
 
                 if( val ){
                     target.show().fadeTo("slow", 1);
-                }
-                else{
+                } else{
                     target.is( ':visible' ) ? target.fadeTo("slow", 0, function(){ target.hide() }) : target.css('opacity', 0).hide();
                 }
-
-                // val ? target.removeClass('yith-disabled') : target.addClass('yith-disabled');
             });
 
             if (typeof complete != 'undefined') {
@@ -44,349 +41,6 @@ jQuery( function( $ ) {
             }
         }).change();
     };
-
-    /* === PROMOTION WIZARD HANDLER === */
-
-    var Wizard = function( el, args ){
-            var self = this;
-
-            self.settings = {};
-
-            self.modal = null;
-
-            self._init = function(){
-                self.settings = $.extend( {
-                    template: el.data('template'),
-                    template_data: {},
-                    container: '.yith-wcwl-wizard-modal',
-                    events: {}
-                }, args );
-
-                if( typeof self.settings.events['init'] === 'function' ){
-                    self.settings.events.init( el, args );
-                }
-
-                self._initOpener();
-            };
-
-            self._initOpener = function(){
-                el.on( 'click', function( ev ){
-                    var t = $(this),
-                        settings = self.settings.template_data;
-
-                    ev.preventDefault();
-
-                    // init opener-specific template data
-                    if( typeof settings === 'function' ){
-                        settings = ( settings )( t );
-                    }
-
-                    t.WCBackboneModal({
-                        template: self.settings.template,
-                        variable: settings
-                    });
-
-                    var container = $( self.settings.container );
-
-                    self._initEditor( container );
-                    self._initEnhancedSelect( container );
-                    self._initTabs( container );
-                    self._initSteps( container );
-                    self._initOptions( container, settings );
-                    self._initEvents( container, self.settings.events );
-                } );
-            };
-
-            self._initEditor = function( modal ){
-                modal.find( '.with-editor' ).each( function(){
-                    var t = $(this),
-                        id = t.attr('id');
-
-                    // Destroy any existing editor so that it can be re-initialized when popup opens.
-                    if ( tinymce.get( id ) ) {
-                        restoreTextMode = tinymce.get( id ).isHidden();
-                        wp.editor.remove( id );
-                    }
-
-                    wp.editor.initialize( id, {
-                        tinymce: {
-                            wpautop: true,
-                            init_instance_callback: function (editor) {
-                                editor.on('Change', function (e) {
-                                    t.val( editor.getContent() ).change();
-                                });
-                            }
-                        },
-                        quicktags: true,
-                        mediaButtons: true
-                    } );
-                } )
-            };
-
-            self._initEnhancedSelect = function( modal ){
-                $(document.body).trigger( 'wc-enhanced-select-init' );
-            };
-
-            self._initTabs = function( modal ){
-                modal.find( '.tabs' ).on( 'click', 'a', function( ev ){
-                    var t = $(this),
-                        ul = t.closest('ul'),
-                        a = ul.find( 'a' ),
-                        p = ul.parent(),
-                        tabs = p.find( '.tab' ),
-                        target = t.data( 'target' ),
-                        tab = $( target ),
-                        changed = false;
-
-                    ev.preventDefault();
-
-                    if( ! t.hasClass( 'active' ) ){
-                        changed = true;
-                    }
-
-                    a.attr( 'aria-selected', 'false' ).removeClass( 'active' );
-                    t.attr( 'aria-selected', 'true' ).addClass( 'active' );
-
-                    tabs.attr( 'aria-expanded', 'false' ).removeClass( 'active' ).hide();
-                    tab.attr( 'aria-expanded', 'true' ).addClass( 'active' ).show();
-
-                    if( changed ){
-                        t.trigger( 'tabChange' );
-                    }
-                } );
-            };
-
-            self._initOptions = function( modal, values ){
-                $.each( values, function( i, v ){
-                    var field = modal.find( '[name="' + i + '"]' );
-
-                    if( ! field.length || v === field.val() ){
-                        return;
-                    }
-
-                    if( field.is( 'select' ) && ! field.find( 'option[value="' + v + '"]' ).length ){
-                        field.append( '<option value="' + v + '" selected="selected">' + v + ' </option>' );
-                    }
-                    else {
-                        field.val(v);
-                    }
-                } );
-            };
-
-            self._initSteps = function( modal ){
-                // show only first step by default
-                modal.find( '.step' ).hide().first().show();
-
-                // init continue button
-                modal.find( '.continue-button' ).on( 'click', function( ev ){
-                    var t = $(this),
-                        current_step = t.closest( '.step' ),
-                        next_step = current_step.next( '.step' );
-
-                    ev.preventDefault();
-
-                    if( next_step.length ) {
-                        self._changeStep( modal, current_step, next_step );
-                    }
-                } );
-
-                // init back button
-                modal.find( '.back-button' ).on( 'click', function( ev ){
-                    var t = $(this),
-                        current_step = t.closest( '.step' ),
-                        prev_step = current_step.prev( '.step' );
-
-                    ev.preventDefault();
-
-                    if( prev_step.length ) {
-                        self._changeStep( modal, current_step, prev_step );
-                    }
-                } );
-            };
-
-            self._initEvents = function( modal, events ){
-                if( typeof self.settings.events['open'] === 'function' ){
-                    self.settings.events.open( el, modal );
-                }
-
-                $.each( events, function( i, v ){
-                    var target = null;
-
-                    // exclude general events
-                    if( i === 'init' || i === 'open' ){
-                        return;
-                    }
-
-                    // tab events
-                    else if( i === 'tabChange' ){
-                        target = modal.find( '.tabs' );
-                    }
-
-                    // step events
-                    else if( i === 'stepChange' ){
-                        target = modal.find( '.step' );
-                    }
-
-                    // input changes
-                    else{
-                        target = modal.find( ':input' );
-                    }
-
-                    target.on( i, function( ev ){
-                        return ( v )( $(this), modal, ev );
-                    } );
-                } );
-            };
-
-            self._changeStep = function( modal, current, next ){
-                current.animate( {
-                    opacity: 0
-                }, {
-                    duration: 200,
-                    complete: function(){
-                       var modalContent = modal.find( 'article' ),
-                            modalContentWidth = modalContent.outerWidth(),
-                            modalContentHeight = modalContent.outerHeight();
-
-                        // calculate step size
-                        modalContent.outerWidth( 'auto' );
-                        modalContent.outerHeight( 'auto' );
-
-                        current.hide();
-                        next.show();
-
-                        var nextWidth = next.outerWidth(),
-                            nextHeight = next.outerHeight();
-
-                        next.hide();
-                        current.css( 'opacity', 1 );
-
-                        // fix modal size
-                        modalContent.outerWidth( modalContentWidth );
-                        modalContent.outerHeight( modalContentHeight );
-
-                        modalContent.animate( {
-                            width: nextWidth,
-                            height: nextHeight
-                        }, {
-                            duration: 200,
-                            complete: function(){
-                                next.fadeIn( 200 );
-                            }
-                        } );
-                    }
-                } );
-
-                next.trigger( 'stepChange' );
-            };
-
-            self._init();
-        },
-        updatePreviewXHR = null,
-        updatePreview = function( el, modal, ev ){
-            var preview = modal.find( '.email-preview' ),
-                template = modal.find('#template').val();
-
-            if( updatePreviewXHR ){
-                updatePreviewXHR.abort();
-            }
-
-            updatePreviewXHR = $.ajax( {
-                url: ajaxurl + '?action=preview_promotion_email&_wpnonce=' + yith_wcwl.nonce.preview_promotion_email,
-                data: modal.find('form').serialize(),
-                method: 'POST',
-                beforeSend: function(){
-                    preview.block({
-                        message: null,
-                        overlayCSS: {
-                            background: 'transparent',
-                            opacity: 0.6
-                        }
-                    });
-                },
-                complete: function(){
-                    preview.unblock();
-                },
-                success: function( data ){
-                    preview.removeClass( 'html plain' ).addClass( template ).find('.no-interactions').html( data );
-                }
-            } );
-        },
-        getPromotionWizardData = function(){
-            return {
-                template: 'yith-wcwl-promotion-wizard',
-                template_data: function( el ){
-                    var data;
-
-                    if( el.hasClass( 'restore-draft' ) ) {
-                        data = el.data( 'draft' );
-                    }
-                    else{
-                        data = $.extend( data, {
-                            product_id: el.data('product_id'),
-                            user_id   : el.data('user_id')
-                        } );
-                    }
-
-                    return data;
-                },
-                events: {
-                    change: updatePreview,
-                    open: function( el, modal, ev ){
-                        modal.find( '#content_html-tmce' ).click();
-                        updatePreview( el, modal, ev );
-                    },
-                    tabChange: function( el, modal, ev ){
-                        modal.find( '#template' ).val( el.find( '.active' ).data( 'template' ) );
-                        updatePreview( el, modal, ev );
-                    },
-                    stepChange: function( el, modal, ev ){
-                        var counter = el.find( '.receivers-count' ),
-                            additional_info = el.find( '.show-on-long-queue' ),
-                            threshold = additional_info.data('threshold');
-
-                        if( ! counter.length ){
-                            return;
-                        }
-
-                        $.ajax({
-                            url: ajaxurl + '?action=calculate_promotion_email_receivers&_wpnonce=' + yith_wcwl.nonce.calculate_promotion_email_receivers,
-                            data: modal.find('form').serialize(),
-                            method: 'post',
-                            beforeSend: function(){
-                                counter.css( 'opacity', 0.3 );
-
-                                if( additional_info.length ){
-                                    additional_info.hide();
-                                }
-                            },
-                            complete: function(){
-                                counter.css( 'opacity', 1 );
-                            },
-                            success: function( data ){
-                                if( typeof data.label === 'undefined' ){
-                                    return;
-                                }
-
-                                counter.html( data.label );
-
-                                if( additional_info.length && typeof data.count !== 'undefined' && data.count > threshold ){
-                                    additional_info.show();
-                                }
-                            }
-                        });
-                    }
-                }
-            }
-        };
-
-    $.fn.wizard = function ( args ) {
-        var t = $(this),
-            w = new Wizard( t, args );
-    };
-
-    $('.create-promotion').wizard( getPromotionWizardData() );
-    $('.restore-draft').wizard( getPromotionWizardData() );
 
     /* === UTILITY FUNCTIONS === */
 
@@ -446,9 +100,9 @@ jQuery( function( $ ) {
             v = t.val();
 
         if ('shortcode' === v) {
-            t.parent().next().find('.addon').show();
+            t.parent().parent().next().find('.addon').show();
         } else {
-            t.parent().next().find('.addon').hide();
+            t.parent().parent().next().find('.addon').hide();
         }
     }).change();
 
@@ -489,27 +143,11 @@ jQuery( function( $ ) {
         });
     } );
 
-    disable_wishlist_for_unauthenticated_users.dependency([
-        '#yith_wcwl_enable_multi_wishlist_for_unauthenticated_users-yes'
-    ], function(){
-        return isRadioNo( disable_wishlist_for_unauthenticated_users ) && isChecked( multi_wishlist_enable );
-    }, function(){
-        enable_multi_wishlist_for_unauthenticated_users.change();
-    } );
-
-    multi_wishlist_enable.dependency([
-        '#yith_wcwl_enable_multi_wishlist_for_unauthenticated_users-yes'
-    ], function(){
-        return isRadioNo( disable_wishlist_for_unauthenticated_users ) && isChecked( multi_wishlist_enable );
-    }, function(){
-        enable_multi_wishlist_for_unauthenticated_users.change();
-    } );
-
-    enable_multi_wishlist_for_unauthenticated_users.dependency([
+	multi_wishlist_enable.dependency([
         '#yith_wcwl_show_login_notice',
         '#yith_wcwl_login_anchor_text'
     ], function(){
-        return isChecked( multi_wishlist_enable ) && isRadioNo( disable_wishlist_for_unauthenticated_users ) && isRadioNo( enable_multi_wishlist_for_unauthenticated_users );
+		return isChecked( multi_wishlist_enable ) && isRadioNo( enable_multi_wishlist_for_unauthenticated_users );
     });
 
     modal_enable.dependency([
@@ -753,4 +391,56 @@ jQuery( function( $ ) {
             }
         } ).change();
     } );
+
+	// Email settings actions
+	$( document ).on( 'click', '.toggle-settings', function( e ){
+		e.preventDefault();
+		$( this ).closest( '.yith-wcwl-row' ).toggleClass( 'active' );
+		const target = $( this ).data( 'target' );
+		$( '#'+target ).slideToggle();
+	} )
+
+	$( document ).on( 'click', '.yith-wcwl-save-settings', function( e ){
+		e.preventDefault();
+		$( this ).closest( 'form' ).find( '.wp-switch-editor.switch-html' ).trigger('click');
+		const email_key = $( this.closest( '.email-settings' ) ).attr( 'id' );
+		const data = {
+			'action' : 'yith_wcwl_save_email_settings',
+			'params' : $( this ).closest( 'form' ).serialize(),
+			'email_key'    : email_key,
+		}
+		$.ajax( {
+			type    : "POST",
+			data    : data,
+			url     : ajaxurl,
+			success : function ( response ) {
+				const row_active = $( '.yith-wcwl-row.active' );
+				row_active.find( '.email-settings' ).slideToggle();
+				row_active.toggleClass( 'active' );
+			},
+		});
+	} )
+
+	$( document ).on( 'change', '#yith-wcwl-email-status', function(){
+
+		const data = {
+			'action'    : 'yith_wcwl_save_mail_status',
+			'enabled'   : $(this).val(),
+			'email_key' : $(this).closest('.yith-plugin-fw-onoff-container ').data('email_key'),
+		}
+
+		$.ajax( {
+			type    : "POST",
+			data    : data,
+			url     : ajaxurl,
+			success : function ( response ) {
+				console.log('Email status updated');
+			}
+		});
+
+	} )
+
+	$( '#popular-filter .tablenav #post-query-submit' ).on( 'click', function( e ) {
+		window.onbeforeunload = null;
+	} );
 } );

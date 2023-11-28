@@ -1,7 +1,7 @@
 /**
  * Main YITH WooCommerce Wishlist JS
  *
- * @author YITH
+ * @author YITH <plugins@yithemes.com>
  * @package YITH WooCommerce Wishlist
  * @version 3.0.0
  */
@@ -534,6 +534,8 @@ jQuery( function( $ ){
 
         t.on( 'yith_wcwl_reload_fragments', load_fragments );
 
+        t.on( 'yith_wcwl_reload_after_ajax', init_handling_after_ajax );
+
         t.on( 'yith_infs_added_elem', function( ev, elem ){
             load_fragments( {
                 container: elem,
@@ -587,6 +589,22 @@ jQuery( function( $ ){
 
     } ).trigger('yith_wcwl_init');
 
+    // Avoid pressing the enter key in the qty input.
+    $( 'form#yith-wcwl-form .wishlist_table .product-quantity input' ).on( 'keypress', function( e ) {
+        if ( e.keyCode == '13' ) {
+            e.preventDefault();
+            return false;
+        }
+    });
+
+	// Move the Add to Wishlist button under the gallery
+	$( document ).ready(function() {
+		if( yith_wcwl_l10n.yith_wcwl_button_position === 'thumbnails' ) {
+            $( '.woocommerce-product-gallery + div.yith-wcwl-add-to-wishlist' ).appendTo( '.woocommerce-product-gallery' );
+		}
+	});
+
+
     /* === INIT FUNCTIONS === */
 
     /**
@@ -620,6 +638,7 @@ jQuery( function( $ ){
             opacity               : 0.8,
             deeplinking           : false,
             overlay_gallery       : false,
+            keyboard_shortcuts    : false,
             default_width         : 500,
             changepicturecallback : function(){
                 init_select_box();
@@ -1118,6 +1137,8 @@ jQuery( function( $ ){
             else{
                 container.find( '#new_wishlist_selector' ).remove();
             }
+
+            $(document).trigger( 'yith_wcwl_tab_selected', [ tab, target ] );
         } );
 
         $(document).on( 'change', '.wishlist-select', function(){
@@ -1538,6 +1559,10 @@ jQuery( function( $ ){
             else{
                 try {
                     $.prettyPhoto.close();
+
+                    if ( yith_wcwl_l10n.redirect_after_ask_estimate ) {
+                        window.location.replace( yith_wcwl_l10n.ask_estimate_redirect_url );
+                    }
                 }
                 catch( e ){ /* do nothing, no popup to close */ }
             }

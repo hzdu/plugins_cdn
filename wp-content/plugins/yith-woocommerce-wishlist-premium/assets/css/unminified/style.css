@@ -1,7 +1,7 @@
 /**
  * Main YITH WooCommerce Wishlist CSS
  *
- * @author YITH
+ * @author YITH <plugins@yithemes.com>
  * @package YITH WooCommerce Wishlist
  * @version 3.0.0
  */
@@ -103,7 +103,7 @@ select.selectBox.change-wishlist{
     width: auto!important;
 }
 
-/* === 3. PRETTY PHOTO STYLE === */
+/* === 2. PRETTY PHOTO STYLE === */
 
 .yith-wcwl-with-pretty-photo{
     overflow: hidden;
@@ -496,6 +496,11 @@ p.wishlist-empty{
     max-width: 2em;
 }
 
+.wishlist_table .product-add-to-cart .variations_form,
+.wishlist_table .product-add-to-cart.yith_wccl_is_custom .variations_form .variations {
+    margin: 15px 0;
+}
+
 .wishlist_table .price-variation{
     display: block;
 }
@@ -836,6 +841,10 @@ div.product .woocommerce-price-and-add .single_add_to_wishlist.button {
     margin: 0;
     box-shadow: none;
     text-shadow: none;
+}
+
+.add-to-wishlist-before_image {
+    position: relative;
 }
 
 .add-to-wishlist-before_image .yith-wcwl-add-to-wishlist {
@@ -1424,6 +1433,7 @@ table.wishlist_manage_table tfoot td{
     left: 0;
     background: #fff;
     padding: 25px 40px;
+    min-width: 280px;
     display: none;
 
     -webkit-box-shadow: 0 0 15px rgba(0,0,0,.3);
