@@ -91,25 +91,6 @@ WPMailSMTP.Admin.Settings.Pro = WPMailSMTP.Admin.Settings.Pro || ( function( doc
 			app.multisite.bindActions();
 			app.webhooks.bindActions();
 			app.additionalConnections.bindActions();
-
-			// Email Log Importer dismiss admin notice.
-			$( document ).on( 'click', '.notice-wp_mail_logging_importer .notice-dismiss', function( e ) {
-				e.preventDefault();
-
-				var $notice = $( this ).parent( '.notice' );
-
-				if ( $notice.length <= 0 || ! $notice.data( 'nonce' ) ) {
-					return;
-				}
-
-				$.post(
-					ajaxurl,
-					{
-						action: 'wp_mail_smtp_wp_mail_logging_importer_notice_dismiss',
-						nonce: $notice.data( 'nonce' )
-					}
-				);
-			} );
 		},
 
 		/**
@@ -668,7 +649,6 @@ WPMailSMTP.Admin.Settings.Pro = WPMailSMTP.Admin.Settings.Pro || ( function( doc
 							'task': 'identity_delete',
 							'connection_id': wp_mail_smtp_pro.connection_id,
 							'mailer': 'amazonses',
-							'type': type,
 							'value': value,
 							'nonce': nonce,
 						},
@@ -1094,7 +1074,6 @@ WPMailSMTP.Admin.Settings.Pro = WPMailSMTP.Admin.Settings.Pro || ( function( doc
 			bindActions: function() {
 
 				$( document ).on( 'click', '.js-wp-mail-smtp-delete-additional-connection', this.processConnectionDelete );
-				$( document ).on( 'click', '.js-wp-mail-smtp-switch-additional-connection-with-primary', this.processConnectionSwitchWithPrimary );
 			},
 
 			/**
@@ -1129,44 +1108,6 @@ WPMailSMTP.Admin.Settings.Pro = WPMailSMTP.Admin.Settings.Pro || ( function( doc
 					buttons: {
 						confirm: {
 							text: wp_mail_smtp_pro.text_yes_delete,
-							btnClass: 'btn-confirm',
-							keys: [ 'enter' ],
-							action: function() {
-								window.location = $self.attr( 'href' );
-							}
-						},
-						cancel: {
-							text: wp_mail_smtp_pro.text_cancel,
-							btnClass: 'btn-cancel',
-						}
-					}
-				} );
-			},
-
-			/**
-			 * Process the click on switch with primary connection link.
-			 *
-			 * @since 3.10.0
-			 *
-			 * @param {object} event jQuery event.
-			 */
-			processConnectionSwitchWithPrimary: function( event ) {
-
-				event.preventDefault();
-
-				var $self = $( this );
-
-				$.confirm( {
-					backgroundDismiss: false,
-					escapeKey: true,
-					animationBounce: 1,
-					type: 'orange',
-					icon: app.getModalIcon( 'exclamation-circle-solid-orange' ),
-					title: wp_mail_smtp_pro.text_heads_up_title,
-					content: wp_mail_smtp_pro.text_switch_witch_primary_connection,
-					buttons: {
-						confirm: {
-							text: wp_mail_smtp_pro.text_yes,
 							btnClass: 'btn-confirm',
 							keys: [ 'enter' ],
 							action: function() {
