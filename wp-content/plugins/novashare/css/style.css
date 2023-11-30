@@ -97,7 +97,7 @@ body a.ns-button {
 /* Social Network Defaults
 /************************************************************/
 .ns-button.twitter {
-  --ns-button-color: #1DA1F2;
+  --ns-button-color: #000;
 }
 .ns-button.facebook {
   --ns-button-color: #3b5998;
@@ -204,6 +204,9 @@ body a.ns-button {
 .ns-button.line {
   --ns-button-color: #00B900;
 }
+.ns-button.mastodon {
+  --ns-button-color: #6364FF;
+}
 .ns-button.messenger {
   --ns-button-color: #0078FF;
 }
@@ -255,7 +258,7 @@ body a.ns-button {
 .ns-button.youtube {
   --ns-button-color: #FF0000;
 }
-.ns-button.angellist, .ns-button.applemusic, .ns-button.codepen, .ns-button.digg, .ns-button.steam, .ns-button.tiktok {
+.ns-button.angellist, .ns-button.applemusic, .ns-button.codepen, .ns-button.digg, .ns-button.steam, .ns-button.threads, .ns-button.tiktok {
   --ns-button-color: #000;
 }
 
@@ -463,3 +466,4 @@ body .ns-button .ns-button-block.ns-inverse, body .ns-button:hover .ns-button-bl
     display: none !important;
   }
 }
+.wp-block {} /* fix for enqueuing in fullsite editor iframe

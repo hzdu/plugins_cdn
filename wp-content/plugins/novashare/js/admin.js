@@ -43,35 +43,23 @@
 		}
 
 		//tab-content display
-		$('#novashare-menu .novashare-subnav a').click(function(e) {
-			e.preventDefault();
+		$('#novashare-menu > a').click(function(e) {
+			//e.preventDefault();
 
-			//go to options section from another tab
-			var url = new URL(window.location.href);
-			if(url.searchParams.has('tab')) {
-				url.searchParams.delete('tab');
-				window.location = url.href + '#' + $(this).attr('rel');
-				return;
-			}
-						
-			//get displaying tab content jQuery selector
-			var active_tab = $('#novashare-menu .novashare-subnav a.active');		
-						
-			//find actived navigation and remove 'active' css
+			$('.novashare-button-message').hide();
+
+
+			var active_tab = $(this).closest('#novashare-menu').find('a.active');	
+			var selected = $(this).attr('rel');
+
 			active_tab.removeClass('active');
+			$('#' + active_tab.attr('rel')).removeClass('active');
 						
-			//add 'active' css into clicked navigation
 			$(this).addClass('active');
+			$('#' + selected).addClass('active');
 
-			//var selected_tab_id = $(this).attr('rel');
-			$('#novashare-options-form').attr('action', "options.php" + "#" + $(this).attr('rel'));
-						
-			//hide displaying tab content
-			$(active_tab.attr('href')).addClass('hide');
-						
-			//show target tab content
-			$($(this).attr('href')).removeClass('hide');
-
+			$('#novashare-options-form').attr('data-ns-option', selected.split('-')[0]);
+			
 			$('#novashare-admin .CodeMirror').each(function(i, el) {
 			    el.CodeMirror.refresh();
 			});
@@ -403,3 +391,116 @@
 	}
 
 }(jQuery));
+
+jQuery(function($) {
+
+	var nsActionButtonTimeouts = [];
+
+	//action button press
+	$('button[data-ns-action]').click(function(e) {
+
+		e.preventDefault();
+
+		//confirmation dialog
+		var confirmation = $(this).attr('data-ns-confirmation');
+		if(confirmation && !confirm(confirmation)) {
+			return;
+		}
+
+		//assign variables
+		var action = $(this).attr('data-ns-action');
+		var button = $(this);
+		var container = $(this).closest('.novashare-button-container');
+		var text = container.find('.novashare-button-text');
+		var spinner = container.find('.novashare-button-spinner');
+		var message = container.find('.novashare-button-message');
+
+		//reset message
+		message.html('');
+		message.removeClass('novashare-error');
+	 	clearTimeout(nsActionButtonTimeouts[action]);
+
+	 	//switch to spinner
+	    $(this).attr('disabled', true);
+	    text.hide();
+	    spinner.css('display', 'block');
+
+	    //setup form data
+	    var formData = new FormData();
+	    formData.append('action', 'novashare_' + action);
+	    formData.append('nonce', NOVASHARE.nonce);
+
+	    //additional setup
+	    if(action == 'import_settings') {
+    		formData.append('novashare_import_settings_file', document.getElementById('novashare-import-settings-file').files[0]);
+	    }
+	    else {
+	    	var form = $(this).closest('form');
+	    	form.find('.CodeMirror').each(function() {
+			    this.CodeMirror.save();
+			});
+	    	formData.append('form', form.serialize());
+	    }
+
+	    //ajax request
+		$.ajax({
+	        type: "POST",
+	        url: NOVASHARE.ajaxurl,
+	        data: formData,
+	        processData: false,
+       		contentType: false
+	    })
+	    .done(function(r) {
+
+	    	//add message error class
+	    	if(!r.success) {
+	    		message.addClass('novashare-error');
+	    	}
+
+	    	//export settings
+	    	if(action == 'export_settings' && r.data.export) {
+	    		var blob = new Blob([r.data.export], {
+			        type: 'application/json'
+		      	});
+			    var link = document.createElement('a');
+			    link.href = window.URL.createObjectURL(blob);
+
+			    var d = new Date();
+				var month = d.getMonth()+1;
+				var day = d.getDate();
+				var dateString = d.getFullYear() + '-' + (month<10 ? '0' : '') + month + '-' + (day<10 ? '0' : '') + day;
+
+			    link.download = 'novashare-settings-export-' + dateString + '.json';
+			    link.click();
+	    	}
+		})
+		.fail(function(r) {
+			message.addClass('novashare-error');
+			message.html(NOVASHARE.strings.failed);
+		})
+		.always(function(r) {
+
+			console.log(r);
+			
+			//show response message
+			if(r.data && r.data.message) {
+				message.html(r.data.message);
+			}
+			message.fadeIn();
+			clearTimeout(nsActionButtonTimeouts[action]);
+			nsActionButtonTimeouts[action] = setTimeout(function() {
+				message.fadeOut();
+			}, 2500);
+
+			//re-enable button
+			button.attr('disabled', false);
+			text.show();
+	       	spinner.css('display', 'none');
+
+	       	//reload page
+	       	if(r.data && r.data.reload) {
+	       		location.reload();
+	       	}
+		})
+	});
+});

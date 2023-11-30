@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", function() {
 	novashareButtons.forEach(function(button) {
 
 		//ignore non network buttons
-		if(button.matches('.email, .sms, .print, .copy, .subscribe, .share')) {
+		if(button.matches('.email, .sms, .print, .copy, .mastodon, .subscribe, .share')) {
 			return;
 		}
 

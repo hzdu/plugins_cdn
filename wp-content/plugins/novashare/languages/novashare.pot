@@ -2,8 +2,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Novashare\n"
-"POT-Creation-Date: 2023-04-18 13:28-0700\n"
-"PO-Revision-Date: 2023-04-18 13:27-0700\n"
+"POT-Creation-Date: 2023-10-18 22:10-0700\n"
+"PO-Revision-Date: 2023-10-18 21:29-0700\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -54,48 +54,44 @@ msgstr ""
 msgid "Error"
 msgstr ""
 
-#: inc/admin.php:33
-msgid "Network"
-msgstr ""
-
-#: inc/admin.php:38
-msgid "Options"
-msgstr ""
-
-#: inc/admin.php:40 inc/settings.php:13
+#: inc/admin.php:33 inc/settings.php:13
 msgid "Inline Content"
 msgstr ""
 
-#: inc/admin.php:41 inc/settings.php:461
+#: inc/admin.php:34 inc/settings.php:494
 msgid "Floating Bar"
 msgstr ""
 
-#: inc/admin.php:42 inc/settings.php:995
+#: inc/admin.php:35 inc/settings.php:1061
 msgid "Share Button"
 msgstr ""
 
-#: inc/admin.php:43 inc/click_to_tweet.php:133 inc/settings.php:1128
-#: inc/settings.php:1162 js/blocks.js:31 novashare.php:304
-msgid "Click to Tweet"
+#: inc/admin.php:36 inc/click_to_tweet.php:133 inc/settings.php:1194
+#: inc/settings.php:1228 js/blocks.js:31 novashare.php:323
+msgid "Click to Post"
 msgstr ""
 
-#: inc/admin.php:44 inc/settings.php:1244
+#: inc/admin.php:37 inc/settings.php:1310
 msgid "Pinterest"
 msgstr ""
 
-#: inc/admin.php:45 inc/settings.php:1392
+#: inc/admin.php:38 inc/settings.php:1488
 msgid "Configuration"
 msgstr ""
 
-#: inc/admin.php:49 inc/settings.php:1866
+#: inc/admin.php:44 inc/settings.php:1951
 msgid "Tools"
+msgstr ""
+
+#: inc/admin.php:49
+msgid "Network"
 msgstr ""
 
 #: inc/admin.php:54 inc/license.php:67
 msgid "License"
 msgstr ""
 
-#: inc/admin.php:58 inc/support.php:5 novashare.php:386
+#: inc/admin.php:58 inc/support.php:5 novashare.php:408
 msgid "Support"
 msgstr ""
 
@@ -103,56 +99,80 @@ msgstr ""
 msgid "Version"
 msgstr ""
 
-#: inc/functions.php:238
-msgid "Subscribe"
+#: inc/admin.php:134
+msgid "Save Changes"
 msgstr ""
 
-#: inc/functions.php:1105
-msgid "URL Copied"
+#: inc/classes/Ajax.php:33
+msgid "Settings saved."
 msgstr ""
 
-#: inc/functions.php:1154
-msgid "SHARES"
-msgstr ""
-
-#: inc/functions.php:1154
-msgid "SHARE"
-msgstr ""
-
-#: inc/functions.php:1194 inc/settings.php:1026
-msgid "Share to..."
-msgstr ""
-
-#: inc/functions.php:1421
-msgid "Share counts purged."
-msgstr ""
-
-#: inc/functions.php:1424
-msgid "Share counts not purged."
-msgstr ""
-
-#: inc/functions.php:1441
-msgid "Short links purged."
-msgstr ""
-
-#: inc/functions.php:1444
-msgid "Short links not purged."
-msgstr ""
-
-#: inc/functions.php:1463
+#: inc/classes/Ajax.php:49
 msgid "Successfully restored default options."
 msgstr ""
 
-#: inc/functions.php:1495
+#: inc/classes/Ajax.php:65
+msgid "Settings exported."
+msgstr ""
+
+#: inc/classes/Ajax.php:82
 msgid "No import file given."
 msgstr ""
 
-#: inc/functions.php:1503
+#: inc/classes/Ajax.php:91
 msgid "Please upload a valid .json file."
 msgstr ""
 
-#: inc/functions.php:1518
+#: inc/classes/Ajax.php:107
 msgid "Successfully imported Novashare settings."
+msgstr ""
+
+#: inc/classes/Ajax.php:128
+msgid "Share counts purged."
+msgstr ""
+
+#: inc/classes/Ajax.php:133
+msgid "Share counts not purged."
+msgstr ""
+
+#: inc/classes/Ajax.php:151
+msgid "Short links purged."
+msgstr ""
+
+#: inc/classes/Ajax.php:157
+msgid "Short links not purged."
+msgstr ""
+
+#: inc/classes/Ajax.php:168
+msgid "Permission denied."
+msgstr ""
+
+#: inc/classes/Ajax.php:175
+msgid "Nonce is invalid."
+msgstr ""
+
+#: inc/functions.php:244
+msgid "Subscribe"
+msgstr ""
+
+#: inc/functions.php:1061
+msgid "URL Copied"
+msgstr ""
+
+#: inc/functions.php:1232 js/blocks-share.js:381
+msgid "SHARES"
+msgstr ""
+
+#: inc/functions.php:1232
+msgid "SHARE"
+msgstr ""
+
+#: inc/functions.php:1252 inc/settings.php:1092
+msgid "Share to..."
+msgstr ""
+
+#: inc/functions.php:1274
+msgid "Your Mastodon Instance"
 msgstr ""
 
 #: inc/functions_network.php:18
@@ -171,7 +191,7 @@ msgstr ""
 msgid "Choose a subsite that you want to pull default settings from."
 msgstr ""
 
-#: inc/functions_network.php:42 inc/settings.php:1873
+#: inc/functions_network.php:42 inc/settings.php:1958
 msgid "Clean Uninstall"
 msgstr ""
 
@@ -200,7 +220,7 @@ msgstr ""
 
 #: inc/functions_pinterest.php:76 inc/functions_pinterest.php:82
 #: inc/functions_pinterest.php:176 inc/functions_pinterest.php:178
-#: inc/meta.php:104 inc/meta.php:110 js/blocks-pinterest.js:154
+#: inc/meta.php:108 inc/meta.php:114 js/blocks-pinterest.js:154
 #: js/blocks-pinterest.js:163
 msgid "Deprecated"
 msgstr ""
@@ -220,11 +240,11 @@ msgstr ""
 msgid "Disable Pinning"
 msgstr ""
 
-#: inc/functions_pinterest.php:331
+#: inc/functions_pinterest.php:334
 msgid "Pin"
 msgstr ""
 
-#: inc/functions_pinterest.php:524
+#: inc/functions_pinterest.php:527
 msgid "Hidden Image"
 msgstr ""
 
@@ -286,117 +306,117 @@ msgstr ""
 msgid "Lifetime"
 msgstr ""
 
-#: inc/meta.php:26
+#: inc/meta.php:30
 msgid "Details"
 msgstr ""
 
-#: inc/meta.php:27 inc/settings.php:1764
+#: inc/meta.php:31 inc/settings.php:1849
 msgid "Share Count Recovery"
 msgstr ""
 
-#: inc/meta.php:53
+#: inc/meta.php:57
 msgid "Social Media Image"
 msgstr ""
 
-#: inc/meta.php:57
+#: inc/meta.php:61
 msgid "Upload an image for social media."
 msgstr ""
 
-#: inc/meta.php:60 inc/meta.php:95 inc/settings.php:2104
+#: inc/meta.php:64 inc/meta.php:99 inc/settings.php:2185
 msgid "Select an Image"
 msgstr ""
 
-#: inc/meta.php:60 inc/meta.php:95 inc/settings.php:2104
+#: inc/meta.php:64 inc/meta.php:99 inc/settings.php:2185
 msgid "Upload"
 msgstr ""
 
-#: inc/meta.php:66
+#: inc/meta.php:70
 msgid "Social Media Title"
 msgstr ""
 
-#: inc/meta.php:67
+#: inc/meta.php:71
 msgid "Write a custom title for social media."
 msgstr ""
 
-#: inc/meta.php:72
+#: inc/meta.php:76
 msgid "Social Media Description"
 msgstr ""
 
-#: inc/meta.php:73
+#: inc/meta.php:77
 msgid "Write a custom description for social media."
 msgstr ""
 
-#: inc/meta.php:88
+#: inc/meta.php:92
 msgid "Pinterest Image"
 msgstr ""
 
-#: inc/meta.php:92
+#: inc/meta.php:96
 msgid "Upload an image for Pinterest."
 msgstr ""
 
-#: inc/meta.php:104
+#: inc/meta.php:108
 msgid "Pinterest Title"
 msgstr ""
 
-#: inc/meta.php:105
+#: inc/meta.php:109
 msgid "Write a custom title for Pinterest."
 msgstr ""
 
-#: inc/meta.php:110
+#: inc/meta.php:114
 msgid "Pinterest Description"
 msgstr ""
 
-#: inc/meta.php:111
+#: inc/meta.php:115
 msgid "Write a custom description for Pinterest."
 msgstr ""
 
-#: inc/meta.php:118
+#: inc/meta.php:122
 msgid "Pinterest Hidden Images"
 msgstr ""
 
-#: inc/meta.php:138
+#: inc/meta.php:142
 msgid "Select Images"
 msgstr ""
 
-#: inc/meta.php:138
+#: inc/meta.php:142
 msgid "Add Images"
 msgstr ""
 
-#: inc/meta.php:152
+#: inc/meta.php:156
 msgid "Hide Inline Content"
 msgstr ""
 
-#: inc/meta.php:158
+#: inc/meta.php:162
 msgid "Hide Floating Bar"
 msgstr ""
 
-#: inc/meta.php:164
+#: inc/meta.php:168
 msgid "Disable Image Pins"
 msgstr ""
 
-#: inc/meta.php:178
+#: inc/meta.php:182
 msgid "Refresh Share Counts"
 msgstr ""
 
-#: inc/meta.php:184 inc/meta.php:223 inc/settings.php:2267
+#: inc/meta.php:188 inc/meta.php:227 inc/settings.php:2348
 msgid "View Documentation"
 msgstr ""
 
-#: inc/meta.php:196
+#: inc/meta.php:200
 msgid ""
 "Add previous URLs to recover social share counts. For example, changing a "
 "slug on a URL."
 msgstr ""
 
-#: inc/meta.php:210 js/admin.js:325
+#: inc/meta.php:214 js/admin.js:313
 msgid "Remove"
 msgstr ""
 
-#: inc/meta.php:220
+#: inc/meta.php:224
 msgid "Add URL"
 msgstr ""
 
-#: inc/meta.php:226
+#: inc/meta.php:230
 msgid "You've reached the maximum amount of recovery URLs."
 msgstr ""
 
@@ -444,7 +464,7 @@ msgid ""
 "Disabled"
 msgstr ""
 
-#: inc/settings.php:32 inc/settings.php:480 inc/settings.php:1000
+#: inc/settings.php:32 inc/settings.php:513 inc/settings.php:1066
 msgid "Social Networks"
 msgstr ""
 
@@ -452,14 +472,14 @@ msgstr ""
 msgid ""
 "Choose which inline social share buttons to display. Click on a square to "
 "enable or disable that specific network. Drag and drop squares to arrange "
-"the order in which they will display. Default: Twitter, Facebook, LinkedIn"
+"the order in which they will display. Default: X, Facebook, LinkedIn"
 msgstr ""
 
-#: inc/settings.php:44 inc/settings.php:492
+#: inc/settings.php:44 inc/settings.php:525 js/blocks-share.js:584
 msgid "Display"
 msgstr ""
 
-#: inc/settings.php:49 inc/settings.php:497 inc/settings.php:1301
+#: inc/settings.php:49 inc/settings.php:530 inc/settings.php:1367
 msgid "Post Types"
 msgstr ""
 
@@ -476,7 +496,7 @@ msgstr ""
 msgid "Show your inline social share buttons in post feeds. Default: Disabled"
 msgstr ""
 
-#: inc/settings.php:77 inc/settings.php:555 inc/settings.php:1316
+#: inc/settings.php:77 inc/settings.php:588 inc/settings.php:1382
 msgid "Button Position"
 msgstr ""
 
@@ -492,7 +512,7 @@ msgstr ""
 msgid "Above and Below Content"
 msgstr ""
 
-#: inc/settings.php:89 inc/settings.php:565
+#: inc/settings.php:89 inc/settings.php:598
 msgid "Don't Add to Content (shortcode)"
 msgstr ""
 
@@ -502,7 +522,7 @@ msgid ""
 "Content"
 msgstr ""
 
-#: inc/settings.php:98 inc/settings.php:593
+#: inc/settings.php:98 inc/settings.php:626 js/blocks-share.js:588
 msgid "Mobile Breakpoint"
 msgstr ""
 
@@ -512,7 +532,7 @@ msgid ""
 "occur. Default: 1200px"
 msgstr ""
 
-#: inc/settings.php:116 inc/settings.php:611
+#: inc/settings.php:116 inc/settings.php:644 js/blocks-share.js:600
 msgid "Hide Above Breakpoint"
 msgstr ""
 
@@ -522,7 +542,7 @@ msgid ""
 "than your mobile breakpoint. Default: Disabled"
 msgstr ""
 
-#: inc/settings.php:130 inc/settings.php:625
+#: inc/settings.php:130 inc/settings.php:658 js/blocks-share.js:609
 msgid "Hide Below Breakpoint"
 msgstr ""
 
@@ -532,35 +552,38 @@ msgid ""
 "narrower than your mobile breakpoint. Default: Disabled"
 msgstr ""
 
-#: inc/settings.php:142 inc/settings.php:725 inc/settings.php:1062
+#: inc/settings.php:142 inc/settings.php:758 inc/settings.php:1128
 msgid "Design"
 msgstr ""
 
-#: inc/settings.php:147 inc/settings.php:730 inc/settings.php:1067
+#: inc/settings.php:147 inc/settings.php:763 inc/settings.php:1133
+#: js/blocks-share.js:397
 msgid "Button Style"
 msgstr ""
 
-#: inc/settings.php:156 inc/settings.php:739 inc/settings.php:1076
+#: inc/settings.php:156 inc/settings.php:772 inc/settings.php:1142
+#: js/blocks-share.js:404
 msgid "Solid"
 msgstr ""
 
-#: inc/settings.php:157 inc/settings.php:740 inc/settings.php:1077
+#: inc/settings.php:157 inc/settings.php:773 inc/settings.php:1143
+#: js/blocks-share.js:407
 msgid "Inverse"
 msgstr ""
 
-#: inc/settings.php:158 inc/settings.php:1078
+#: inc/settings.php:158 inc/settings.php:1144 js/blocks-share.js:410
 msgid "Bordered Label"
 msgstr ""
 
-#: inc/settings.php:159 inc/settings.php:1079
+#: inc/settings.php:159 inc/settings.php:1145 js/blocks-share.js:413
 msgid "Bordered Button"
 msgstr ""
 
-#: inc/settings.php:160 inc/settings.php:1080
+#: inc/settings.php:160 inc/settings.php:1146 js/blocks-share.js:416
 msgid "Minimal Label"
 msgstr ""
 
-#: inc/settings.php:161 inc/settings.php:1081
+#: inc/settings.php:161 inc/settings.php:1147 js/blocks-share.js:419
 msgid "Minimal"
 msgstr ""
 
@@ -568,35 +591,35 @@ msgstr ""
 msgid "Change the style of your inline social share buttons. Default: Solid"
 msgstr ""
 
-#: inc/settings.php:170
+#: inc/settings.php:170 js/blocks-share.js:425
 msgid "Button Layout"
 msgstr ""
 
-#: inc/settings.php:179
+#: inc/settings.php:179 js/blocks-share.js:432
 msgid "Auto Width"
 msgstr ""
 
-#: inc/settings.php:180
+#: inc/settings.php:180 js/blocks-share.js:435
 msgid "1 Column"
 msgstr ""
 
-#: inc/settings.php:181
+#: inc/settings.php:181 js/blocks-share.js:438
 msgid "2 Columns"
 msgstr ""
 
-#: inc/settings.php:182
+#: inc/settings.php:182 js/blocks-share.js:441
 msgid "3 Columns"
 msgstr ""
 
-#: inc/settings.php:183
+#: inc/settings.php:183 js/blocks-share.js:444
 msgid "4 Columns"
 msgstr ""
 
-#: inc/settings.php:184
+#: inc/settings.php:184 js/blocks-share.js:447
 msgid "5 Columns"
 msgstr ""
 
-#: inc/settings.php:185
+#: inc/settings.php:185 js/blocks-share.js:450
 msgid "6 Columns"
 msgstr ""
 
@@ -604,20 +627,20 @@ msgstr ""
 msgid "Change the layout of your inline social share buttons."
 msgstr ""
 
-#: inc/settings.php:194 inc/settings.php:574 inc/widget.php:88
+#: inc/settings.php:194 inc/settings.php:607 inc/widget.php:88
 msgid "Button Alignment"
 msgstr ""
 
-#: inc/settings.php:203 inc/settings.php:583 inc/settings.php:1180
-#: inc/widget.php:90 js/blocks.js:115 novashare.php:322
+#: inc/settings.php:203 inc/settings.php:616 inc/settings.php:1246
+#: inc/widget.php:90 js/blocks.js:115 novashare.php:341
 msgid "Left"
 msgstr ""
 
-#: inc/settings.php:204 inc/settings.php:584 inc/widget.php:91
+#: inc/settings.php:204 inc/settings.php:617 inc/widget.php:91
 msgid "Right"
 msgstr ""
 
-#: inc/settings.php:205 inc/settings.php:1329 inc/widget.php:92
+#: inc/settings.php:205 inc/settings.php:1395 inc/widget.php:92
 msgid "Center"
 msgstr ""
 
@@ -625,21 +648,23 @@ msgstr ""
 msgid "Choose how to align your inline social share buttons. Default: Left"
 msgstr ""
 
-#: inc/settings.php:215 inc/settings.php:749 inc/settings.php:1090
-#: inc/widget.php:103 js/blocks-follow.js:196
+#: inc/settings.php:215 inc/settings.php:782 inc/settings.php:1156
+#: inc/widget.php:103 js/blocks-follow.js:196 js/blocks-share.js:489
 msgid "Button Size"
 msgstr ""
 
-#: inc/settings.php:224 inc/settings.php:758 inc/settings.php:1099
+#: inc/settings.php:224 inc/settings.php:791 inc/settings.php:1165
+#: js/blocks-share.js:497
 msgid "Small"
 msgstr ""
 
-#: inc/settings.php:225 inc/settings.php:759 inc/settings.php:1100
-#: inc/settings.php:1603 inc/settings.php:1610
+#: inc/settings.php:225 inc/settings.php:792 inc/settings.php:1166
+#: inc/settings.php:1686 inc/settings.php:1693 js/blocks-share.js:504
 msgid "Medium"
 msgstr ""
 
-#: inc/settings.php:226 inc/settings.php:760 inc/settings.php:1101
+#: inc/settings.php:226 inc/settings.php:793 inc/settings.php:1167
+#: js/blocks-share.js:511
 msgid "Large"
 msgstr ""
 
@@ -647,23 +672,27 @@ msgstr ""
 msgid "Change the size of your inline social share buttons. Default: Medium"
 msgstr ""
 
-#: inc/settings.php:235 inc/settings.php:769 inc/settings.php:1110
-#: inc/settings.php:1339 inc/widget.php:75 js/blocks-follow.js:138
+#: inc/settings.php:235 inc/settings.php:802 inc/settings.php:1176
+#: inc/settings.php:1405 inc/widget.php:75 js/blocks-follow.js:138
+#: js/blocks-share.js:516
 msgid "Button Shape"
 msgstr ""
 
-#: inc/settings.php:244 inc/settings.php:778 inc/settings.php:1119
-#: inc/settings.php:1348 inc/widget.php:77 js/blocks-follow.js:146
+#: inc/settings.php:244 inc/settings.php:811 inc/settings.php:1185
+#: inc/settings.php:1414 inc/widget.php:77 js/blocks-follow.js:146
+#: js/blocks-share.js:524
 msgid "Squared"
 msgstr ""
 
-#: inc/settings.php:245 inc/settings.php:779 inc/settings.php:1120
-#: inc/settings.php:1349 inc/widget.php:78 js/blocks-follow.js:153
+#: inc/settings.php:245 inc/settings.php:812 inc/settings.php:1186
+#: inc/settings.php:1415 inc/widget.php:78 js/blocks-follow.js:153
+#: js/blocks-share.js:531
 msgid "Rounded"
 msgstr ""
 
-#: inc/settings.php:246 inc/settings.php:780 inc/settings.php:1121
-#: inc/settings.php:1350 inc/widget.php:79 js/blocks-follow.js:160
+#: inc/settings.php:246 inc/settings.php:813 inc/settings.php:1187
+#: inc/settings.php:1416 inc/widget.php:79 js/blocks-follow.js:160
+#: js/blocks-share.js:538
 msgid "Circular"
 msgstr ""
 
@@ -671,8 +700,8 @@ msgstr ""
 msgid "Change the shape of your inline social share buttons. Default: Squared"
 msgstr ""
 
-#: inc/settings.php:255 inc/settings.php:789 inc/widget.php:121
-#: js/blocks-follow.js:235
+#: inc/settings.php:255 inc/settings.php:822 inc/settings.php:1426
+#: inc/widget.php:121 js/blocks-follow.js:235 js/blocks-share.js:567
 msgid "Button Color"
 msgstr ""
 
@@ -680,8 +709,8 @@ msgstr ""
 msgid "Change the background color of your inline social share buttons."
 msgstr ""
 
-#: inc/settings.php:270 inc/settings.php:804 inc/widget.php:127
-#: js/blocks-follow.js:240
+#: inc/settings.php:270 inc/settings.php:837 inc/widget.php:127
+#: js/blocks-follow.js:240 js/blocks-share.js:568
 msgid "Button Hover Color"
 msgstr ""
 
@@ -689,351 +718,374 @@ msgstr ""
 msgid "Change the hover background color of your inline social share buttons."
 msgstr ""
 
-#: inc/settings.php:285 inc/settings.php:819
+#: inc/settings.php:285 inc/settings.php:852 inc/settings.php:1441
+#: inc/widget.php:133 js/blocks-follow.js:245 js/blocks-share.js:569
+msgid "Icon Color"
+msgstr ""
+
+#: inc/settings.php:293
+msgid "Change the icon color of your inline social share buttons."
+msgstr ""
+
+#: inc/settings.php:301 inc/settings.php:868 inc/widget.php:139
+#: js/blocks-follow.js:250 js/blocks-share.js:570
+msgid "Icon Hover Color"
+msgstr ""
+
+#: inc/settings.php:309
+msgid "Change the hover icon color of your inline social share buttons."
+msgstr ""
+
+#: inc/settings.php:317 inc/settings.php:884 js/blocks-share.js:575
 msgid "Inverse on Hover"
 msgstr ""
 
-#: inc/settings.php:292 inc/settings.php:826
+#: inc/settings.php:324 inc/settings.php:891
 msgid ""
 "Swap to an inverse button style on hover. This function will add additional "
 "inline JavaScript to any page where Novashare buttons are present."
 msgstr ""
 
-#: inc/settings.php:299 inc/settings.php:833 inc/widget.php:112
-#: js/blocks-follow.js:208
+#: inc/settings.php:332 inc/settings.php:899 inc/widget.php:112
+#: js/blocks-follow.js:208 js/blocks-share.js:544
 msgid "Button Margin"
 msgstr ""
 
-#: inc/settings.php:308
+#: inc/settings.php:341
 msgid ""
 "Change the margin in pixels (px) around your inline social social share "
 "buttons."
 msgstr ""
 
-#: inc/settings.php:315
+#: inc/settings.php:348 js/blocks-share.js:556
 msgid "Show Labels"
 msgstr ""
 
-#: inc/settings.php:323
+#: inc/settings.php:356
 msgid ""
 "Display network labels on your inline social share buttons. Default: Disabled"
 msgstr ""
 
-#: inc/settings.php:330
+#: inc/settings.php:363
 msgid "Hide Labels on Mobile"
 msgstr ""
 
-#: inc/settings.php:338
+#: inc/settings.php:371
 msgid ""
 "Hide network labels on your inline social share buttons on mobile. Default: "
 "Disabled"
 msgstr ""
 
-#: inc/settings.php:343 inc/settings.php:927 inc/settings.php:1573
+#: inc/settings.php:376 inc/settings.php:993 inc/settings.php:1656
+#: js/blocks-share.js:617
 msgid "Share Counts"
 msgstr ""
 
-#: inc/settings.php:348 inc/settings.php:932
+#: inc/settings.php:381 inc/settings.php:998 js/blocks-share.js:621
 msgid "Total Share Count"
 msgstr ""
 
-#: inc/settings.php:356
+#: inc/settings.php:389
 msgid ""
 "Display the total share count with your inline social share buttons. "
 "Default: Enabled"
 msgstr ""
 
-#: inc/settings.php:363 inc/settings.php:947
+#: inc/settings.php:396 inc/settings.php:1013 js/blocks-share.js:632
 msgid "Total Share Count Position"
 msgstr ""
 
-#: inc/settings.php:372 inc/settings.php:956
+#: inc/settings.php:405 inc/settings.php:1022 js/blocks-share.js:640
 msgid "Before"
 msgstr ""
 
-#: inc/settings.php:373 inc/settings.php:957
+#: inc/settings.php:406 inc/settings.php:1023 js/blocks-share.js:647
 msgid "After"
 msgstr ""
 
-#: inc/settings.php:376
+#: inc/settings.php:409
 msgid ""
 "Change the position of your inline total share count display. Default: After"
 msgstr ""
 
-#: inc/settings.php:383 inc/settings.php:967
+#: inc/settings.php:416 inc/settings.php:1033 js/blocks-share.js:651
 msgid "Total Share Count Color"
 msgstr ""
 
-#: inc/settings.php:392
+#: inc/settings.php:425
 msgid "Change the text color of your inline total share count display."
 msgstr ""
 
-#: inc/settings.php:399 inc/settings.php:983
+#: inc/settings.php:432 inc/settings.php:1049 js/blocks-share.js:659
 msgid "Network Share Counts"
 msgstr ""
 
-#: inc/settings.php:406 inc/settings.php:990
+#: inc/settings.php:439 inc/settings.php:1056
 msgid ""
 "Display individual network share counts when hovering over each button. "
 "Default: Enabled"
 msgstr ""
 
-#: inc/settings.php:411 inc/settings.php:1012
+#: inc/settings.php:444 inc/settings.php:1078 js/blocks-share.js:668
 msgid "Call to Action"
 msgstr ""
 
-#: inc/settings.php:416 inc/settings.php:1017
+#: inc/settings.php:449 inc/settings.php:1083 js/blocks-share.js:672
 msgid "Text"
 msgstr ""
 
-#: inc/settings.php:425
+#: inc/settings.php:458
 msgid ""
 "Set the call to action text displayed above your inline social share buttons."
 msgstr ""
 
-#: inc/settings.php:432
+#: inc/settings.php:465 js/blocks-share.js:681
 msgid "Font Size"
 msgstr ""
 
-#: inc/settings.php:441
+#: inc/settings.php:474
 msgid "Change the font size of your call to action text."
 msgstr ""
 
-#: inc/settings.php:448 inc/settings.php:1049
+#: inc/settings.php:481 inc/settings.php:1115 js/blocks-share.js:696
 msgid "Font Color"
 msgstr ""
 
-#: inc/settings.php:456
+#: inc/settings.php:489
 msgid "Change the color of your call to action text."
 msgstr ""
 
-#: inc/settings.php:466
+#: inc/settings.php:499
 msgid "Enable Floating Bar"
 msgstr ""
 
-#: inc/settings.php:473
+#: inc/settings.php:506
 msgid "Display social share buttons on a floating bar. Default: Disabled"
 msgstr ""
 
-#: inc/settings.php:487
+#: inc/settings.php:520
 msgid ""
 "Choose which floating social share buttons to display. Click on a square to "
 "enable or disable that specific network. Drag and drop squares to arrange "
-"the order in which they will display. Default: Twitter, Facebook, LinkedIn"
+"the order in which they will display. Default: X, Facebook, LinkedIn"
 msgstr ""
 
-#: inc/settings.php:504
+#: inc/settings.php:537
 msgid ""
 "Choose which post types display floating social share buttons. Default: Posts"
 msgstr ""
 
-#: inc/settings.php:511
+#: inc/settings.php:544
 msgid "Show on Posts Page"
 msgstr ""
 
-#: inc/settings.php:518
+#: inc/settings.php:551
 msgid ""
 "Show your floating social share buttons on your posts page. Default: Disabled"
 msgstr ""
 
-#: inc/settings.php:525
+#: inc/settings.php:558
 msgid "Show on Archives"
 msgstr ""
 
-#: inc/settings.php:532
+#: inc/settings.php:565
 msgid ""
 "Show your floating social share buttons on archive pages. Share counts are "
 "not supported on archives. Default: Disabled"
 msgstr ""
 
-#: inc/settings.php:540
+#: inc/settings.php:573
 msgid "Show on Homepage"
 msgstr ""
 
-#: inc/settings.php:547
+#: inc/settings.php:580
 msgid ""
 "Show your floating social share buttons on your homepage. Default: Disabled"
 msgstr ""
 
-#: inc/settings.php:564 inc/settings.php:1142 inc/settings.php:1419
+#: inc/settings.php:597 inc/settings.php:1208 inc/settings.php:1515
 msgid "Default"
 msgstr ""
 
-#: inc/settings.php:567
+#: inc/settings.php:600
 msgid "Choose where to display your floating social share buttons."
 msgstr ""
 
-#: inc/settings.php:586
+#: inc/settings.php:619
 msgid "Choose how to align your floating social share buttons. Default: Left"
 msgstr ""
 
-#: inc/settings.php:604
+#: inc/settings.php:637
 msgid ""
 "Set the width in pixels (px) where you want the floating mobile breakpoint "
 "to occur. Default: 1200px"
 msgstr ""
 
-#: inc/settings.php:618
+#: inc/settings.php:651
 msgid ""
 "Hide your floating social share buttons when the browser’s viewport is wider "
 "than your mobile breakpoint. Default: Disabled"
 msgstr ""
 
-#: inc/settings.php:633
+#: inc/settings.php:666
 msgid ""
 "Hide your floating social share buttons when the browser’s viewport is "
 "narrower than your mobile breakpoint. Default: Disabled"
 msgstr ""
 
-#: inc/settings.php:640
+#: inc/settings.php:673
 msgid "Top Offset"
 msgstr ""
 
-#: inc/settings.php:651
+#: inc/settings.php:684
 msgid ""
 "Change the offset in pixels (px) or percentage (%) that your floating social "
 "share button container will be from the top of the screen."
 msgstr ""
 
-#: inc/settings.php:658
+#: inc/settings.php:691
 msgid "Edge Offset"
 msgstr ""
 
-#: inc/settings.php:667
+#: inc/settings.php:700
 msgid ""
 "Change the offset in pixels (px) that your floating social share button "
 "container will be from the edge of the screen."
 msgstr ""
 
-#: inc/settings.php:674
+#: inc/settings.php:707
 msgid "Show on Scroll"
 msgstr ""
 
-#: inc/settings.php:682
+#: inc/settings.php:715
 msgid ""
 "Wait to show your floating social share buttons until the user has scrolled "
 "past a specific point on the page."
 msgstr ""
 
-#: inc/settings.php:689
+#: inc/settings.php:722
 msgid "Show on Scroll Location"
 msgstr ""
 
-#: inc/settings.php:699
+#: inc/settings.php:732
 msgid "Desktop Only"
 msgstr ""
 
-#: inc/settings.php:700
+#: inc/settings.php:733
 msgid "Mobile Only"
 msgstr ""
 
-#: inc/settings.php:703
+#: inc/settings.php:736
 msgid "Choose what devices are set to only show on scroll."
 msgstr ""
 
-#: inc/settings.php:710
+#: inc/settings.php:743
 msgid "Scroll Threshold"
 msgstr ""
 
-#: inc/settings.php:720
+#: inc/settings.php:753
 msgid "Change the point that show on scroll is triggered. px or %"
 msgstr ""
 
-#: inc/settings.php:742
+#: inc/settings.php:775
 msgid "Change the style of your floating social share buttons. Default: Solid"
 msgstr ""
 
-#: inc/settings.php:762
+#: inc/settings.php:795
 msgid "Change the size of your floating social share buttons. Default: Medium"
 msgstr ""
 
-#: inc/settings.php:782
+#: inc/settings.php:815
 msgid ""
 "Change the shape of your floating social share buttons. Default: Squared"
 msgstr ""
 
-#: inc/settings.php:797
+#: inc/settings.php:830
 msgid "Change the background color of your floating social share buttons."
 msgstr ""
 
-#: inc/settings.php:812
+#: inc/settings.php:845
 msgid ""
 "Change the hover background color of your floating social share buttons."
 msgstr ""
 
-#: inc/settings.php:842
+#: inc/settings.php:860 inc/settings.php:876
+msgid "Change the icon color of your floating social share buttons."
+msgstr ""
+
+#: inc/settings.php:908
 msgid ""
 "Change the margin in pixels (px) around your floating social social share "
 "buttons."
 msgstr ""
 
-#: inc/settings.php:847
+#: inc/settings.php:913
 msgid "Mobile"
 msgstr ""
 
-#: inc/settings.php:852
+#: inc/settings.php:918
 msgid "Max Width"
 msgstr ""
 
-#: inc/settings.php:863
+#: inc/settings.php:929
 msgid ""
 "Set the max width in pixels (px) up to where the floating social share "
 "buttons should display on mobile."
 msgstr ""
 
-#: inc/settings.php:870 inc/settings.php:1034
+#: inc/settings.php:936 inc/settings.php:1100
 msgid "Background Color"
 msgstr ""
 
-#: inc/settings.php:878
+#: inc/settings.php:944
 msgid ""
 "Change the background color of the floating social share button container on "
 "mobile."
 msgstr ""
 
-#: inc/settings.php:885
+#: inc/settings.php:951
 msgid "Background Padding"
 msgstr ""
 
-#: inc/settings.php:894
+#: inc/settings.php:960
 msgid "Change the padding around your floating social share buttons."
 msgstr ""
 
-#: inc/settings.php:901
+#: inc/settings.php:967
 msgid "Fill Available Space"
 msgstr ""
 
-#: inc/settings.php:908
+#: inc/settings.php:974
 msgid ""
 "Allow your floating social share buttons to expand to fill the container."
 msgstr ""
 
-#: inc/settings.php:915
+#: inc/settings.php:981
 msgid "Hide Total Share Count"
 msgstr ""
 
-#: inc/settings.php:922
+#: inc/settings.php:988
 msgid ""
 "Hide the total share count from your floating social share buttons on mobile."
 msgstr ""
 
-#: inc/settings.php:940
+#: inc/settings.php:1006
 msgid ""
 "Display the total share count with your floating social share buttons. "
 "Default: Enabled"
 msgstr ""
 
-#: inc/settings.php:960
+#: inc/settings.php:1026
 msgid ""
 "Change the position of your floating total share count display. Default: "
 "After"
 msgstr ""
 
-#: inc/settings.php:976
+#: inc/settings.php:1042
 msgid "Change the text color of your floating bar total share count display."
 msgstr ""
 
-#: inc/settings.php:1007
+#: inc/settings.php:1073
 msgid ""
 "Choose which social share buttons to display when the share button is "
 "clicked. Click on a square to enable or disable that specific network. Drag "
@@ -1041,604 +1093,601 @@ msgid ""
 "All Networks"
 msgstr ""
 
-#: inc/settings.php:1027
+#: inc/settings.php:1093
 msgid "Change the call to action text displayed in your share button window."
 msgstr ""
 
-#: inc/settings.php:1042
+#: inc/settings.php:1108
 msgid ""
 "Change the background color of the call to action in your share button "
 "window."
 msgstr ""
 
-#: inc/settings.php:1057
+#: inc/settings.php:1123
 msgid ""
 "Change the font color of the call to action in your share button window."
 msgstr ""
 
-#: inc/settings.php:1083
+#: inc/settings.php:1149
 msgid ""
 "Change the style of your share button window social share buttons. Default: "
 "Solid"
 msgstr ""
 
-#: inc/settings.php:1103
+#: inc/settings.php:1169
 msgid ""
 "Change the size of your share button window social share buttons. Default: "
 "Medium"
 msgstr ""
 
-#: inc/settings.php:1123
+#: inc/settings.php:1189
 msgid ""
 "Change the shape of your share button window social share buttons. Default: "
 "Squared"
 msgstr ""
 
-#: inc/settings.php:1133 js/blocks.js:89 novashare.php:310
+#: inc/settings.php:1199 js/blocks.js:89 novashare.php:329
 msgid "Theme"
 msgstr ""
 
-#: inc/settings.php:1143
+#: inc/settings.php:1209
 msgid "Simple"
 msgstr ""
 
-#: inc/settings.php:1144
+#: inc/settings.php:1210
 msgid "Simple Alternate"
 msgstr ""
 
-#: inc/settings.php:1146
-msgid "Change the visual style of your click to tweet boxes."
+#: inc/settings.php:1212
+msgid "Change the visual style of your click to post boxes."
 msgstr ""
 
-#: inc/settings.php:1153 js/blocks.js:103 novashare.php:317
+#: inc/settings.php:1219 js/blocks.js:103 novashare.php:336
 msgid "Call to Action Text"
 msgstr ""
 
-#: inc/settings.php:1163
+#: inc/settings.php:1229
 msgid ""
-"Change the default call to action text displayed on your click to tweet "
-"boxes."
+"Change the default call to action text displayed on your click to post boxes."
 msgstr ""
 
-#: inc/settings.php:1170 js/blocks.js:112 novashare.php:319
+#: inc/settings.php:1236 js/blocks.js:112 novashare.php:338
 msgid "Call to Action Position"
 msgstr ""
 
-#: inc/settings.php:1179 js/blocks.js:114 novashare.php:321
+#: inc/settings.php:1245 js/blocks.js:114 novashare.php:340
 msgid "Right (Default)"
 msgstr ""
 
-#: inc/settings.php:1182
+#: inc/settings.php:1248
 msgid ""
 "Change the position of your call to action text displayed on your click to "
-"tweet boxes."
+"post boxes."
 msgstr ""
 
-#: inc/settings.php:1189 js/blocks.js:125
+#: inc/settings.php:1255 js/blocks.js:125
 msgid "Remove URL"
 msgstr ""
 
-#: inc/settings.php:1196
+#: inc/settings.php:1262
 msgid ""
-"Change the default status of the remove url option on your click to tweet "
+"Change the default status of the remove url option on your click to post "
 "boxes."
 msgstr ""
 
-#: inc/settings.php:1203 js/blocks.js:134 novashare.php:330
+#: inc/settings.php:1269 js/blocks.js:134 novashare.php:349
 msgid "Remove Username"
 msgstr ""
 
-#: inc/settings.php:1210
+#: inc/settings.php:1276
 msgid ""
 "Change the default status of the remove username option on your click to "
-"tweet boxes."
+"post boxes."
 msgstr ""
 
-#: inc/settings.php:1217 js/blocks.js:143 novashare.php:334
+#: inc/settings.php:1283 js/blocks.js:143 novashare.php:353
 msgid "Hide Hashtags"
 msgstr ""
 
-#: inc/settings.php:1224
+#: inc/settings.php:1290
 msgid ""
-"Change the default status of the hide hashtags option on your click to tweet "
+"Change the default status of the hide hashtags option on your click to post "
 "boxes."
 msgstr ""
 
-#: inc/settings.php:1231 js/blocks.js:152 novashare.php:337
+#: inc/settings.php:1297 js/blocks.js:152 novashare.php:356
 msgid "Accent Color"
 msgstr ""
 
-#: inc/settings.php:1239
-msgid "Change the default accent color used on your click to tweet boxes."
+#: inc/settings.php:1305
+msgid "Change the default accent color used on your click to post boxes."
 msgstr ""
 
-#: inc/settings.php:1249
+#: inc/settings.php:1315
 msgid "Share Button Behavior"
 msgstr ""
 
-#: inc/settings.php:1258
+#: inc/settings.php:1324
 msgid "Share Post Image"
 msgstr ""
 
-#: inc/settings.php:1259
+#: inc/settings.php:1325
 msgid "Show Pinterest Images"
 msgstr ""
 
-#: inc/settings.php:1260
+#: inc/settings.php:1326
 msgid "Show All Pinnable Images"
 msgstr ""
 
-#: inc/settings.php:1262
+#: inc/settings.php:1328
 msgid ""
 "Change what happens when the Pinterest share button is clicked. Default: "
 "Share Post Image"
 msgstr ""
 
-#: inc/settings.php:1269
+#: inc/settings.php:1335
 msgid "Enable Image Attributes"
 msgstr ""
 
-#: inc/settings.php:1277
+#: inc/settings.php:1343
 msgid ""
 "Allow for control of Pinterest-specific image attributes throughout the "
 "plugin, even if image pins are not enabled. Default: Disabled"
 msgstr ""
 
-#: inc/settings.php:1281
+#: inc/settings.php:1347
 msgid "Image Pins"
 msgstr ""
 
-#: inc/settings.php:1286
+#: inc/settings.php:1352
 msgid "Enable Image Pins"
 msgstr ""
 
-#: inc/settings.php:1294
+#: inc/settings.php:1360
 msgid ""
 "Show Pinterest pin buttons when hovering over images in your content. "
 "Default: Disabled"
 msgstr ""
 
-#: inc/settings.php:1309
+#: inc/settings.php:1375
 msgid "Choose which post types display Pinterest image pins."
 msgstr ""
 
-#: inc/settings.php:1325
+#: inc/settings.php:1391
 msgid "Top Left"
 msgstr ""
 
-#: inc/settings.php:1326
+#: inc/settings.php:1392
 msgid "Top Right"
 msgstr ""
 
-#: inc/settings.php:1327
+#: inc/settings.php:1393
 msgid "Bottom Left"
 msgstr ""
 
-#: inc/settings.php:1328
+#: inc/settings.php:1394
 msgid "Bottom Right"
 msgstr ""
 
-#: inc/settings.php:1332
+#: inc/settings.php:1398
 msgid ""
 "Choose where on the image to display your Pinterest image pin buttons. "
 "Default: Top Left"
 msgstr ""
 
-#: inc/settings.php:1353
+#: inc/settings.php:1419
 msgid "Change the shape of your Pinterest image pin buttons. Default: Squared"
 msgstr ""
 
-#: inc/settings.php:1360
+#: inc/settings.php:1434
+msgid "Change the background color of your Pinterest image pin buttons."
+msgstr ""
+
+#: inc/settings.php:1449
+msgid "Change the icon color of your Pinterest image pin buttons."
+msgstr ""
+
+#: inc/settings.php:1456
 msgid "Hide Button Labels"
 msgstr ""
 
-#: inc/settings.php:1369
+#: inc/settings.php:1465
 msgid "Hide the labels on your Pinterest image pin buttons. Default: Disabled"
 msgstr ""
 
-#: inc/settings.php:1376
+#: inc/settings.php:1472
 msgid "Excluded Images"
 msgstr ""
 
-#: inc/settings.php:1387
+#: inc/settings.php:1483
 msgid ""
 "Exclude specific images from getting pins applied. Exclude an image by "
 "adding the source URL (example.png) or by adding any unique portion of its "
 "attribute string (class=\"example\"). Format: one per line"
 msgstr ""
 
-#: inc/settings.php:1397
-msgid "Enable Twitter Counts"
+#: inc/settings.php:1493
+msgid "Enable X Counts"
 msgstr ""
 
-#: inc/settings.php:1404
+#: inc/settings.php:1500
 msgid ""
-"Request and store Twitter share counts using a third party service. Default: "
+"Request and store X share counts using a third party service. Default: "
 "Disabled"
 msgstr ""
 
-#: inc/settings.php:1411
-msgid "Twitter Count Service"
-msgstr ""
-
-#: inc/settings.php:1423
-msgid "Choose which service to use to pull Twitter share counts."
-msgstr ""
-
-#: inc/settings.php:1430
-msgid "Twitter Username"
-msgstr ""
-
-#: inc/settings.php:1439
-msgid "novashare"
-msgstr ""
-
-#: inc/settings.php:1440
-msgid "The username used when sharing content to Twitter."
-msgstr ""
-
-#: inc/settings.php:1447
-msgid "Facebook App ID"
-msgstr ""
-
-#: inc/settings.php:1455
-msgid "The Facebook App ID from your Facebook Developer Application."
-msgstr ""
-
-#: inc/settings.php:1462
-msgid "Facebook App Secret"
-msgstr ""
-
-#: inc/settings.php:1470
-msgid "The Facebook App Secret from your Facebook Developer Application."
-msgstr ""
-
-#: inc/settings.php:1477
-msgid "Subscribe Link"
-msgstr ""
-
-#: inc/settings.php:1486
-msgid "The URL used for your subscribe button."
-msgstr ""
-
-#: inc/settings.php:1493
-msgid "Global Styles"
-msgstr ""
-
-#: inc/settings.php:1499
-msgid ""
-"Enqueue stylesheet globally to allow for use of shortcodes and widgets in "
-"custom templates. Default: Disabled"
-msgstr ""
-
-#: inc/settings.php:1506
-msgid "Custom CSS"
-msgstr ""
-
-#: inc/settings.php:1514
-msgid "Add custom CSS to only load when needed."
+#: inc/settings.php:1507
+msgid "X Count Service"
 msgstr ""
 
 #: inc/settings.php:1519
+msgid "Choose which service to use to pull X share counts."
+msgstr ""
+
+#: inc/settings.php:1526
+msgid "X Username"
+msgstr ""
+
+#: inc/settings.php:1535
+msgid "novashare"
+msgstr ""
+
+#: inc/settings.php:1536
+msgid "The username used when sharing content to X."
+msgstr ""
+
+#: inc/settings.php:1543
+msgid "Facebook App ID"
+msgstr ""
+
+#: inc/settings.php:1551
+msgid "The Facebook App ID from your Facebook Developer Application."
+msgstr ""
+
+#: inc/settings.php:1558
+msgid "Facebook App Secret"
+msgstr ""
+
+#: inc/settings.php:1566
+msgid "The Facebook App Secret from your Facebook Developer Application."
+msgstr ""
+
+#: inc/settings.php:1573
+msgid "Subscribe Link"
+msgstr ""
+
+#: inc/settings.php:1582
+msgid "The URL used for your subscribe button."
+msgstr ""
+
+#: inc/settings.php:1589
+msgid "Custom CSS"
+msgstr ""
+
+#: inc/settings.php:1597
+msgid "Add custom CSS to only load when needed."
+msgstr ""
+
+#: inc/settings.php:1602
 msgid "Meta"
 msgstr ""
 
-#: inc/settings.php:1525
+#: inc/settings.php:1608
 msgid ""
 "A compatible SEO plugin is active. Meta and open graph data that is not "
 "specific to Novashare will be handled there."
 msgstr ""
 
-#: inc/settings.php:1534
+#: inc/settings.php:1617
 msgid "Enable Open Graph"
 msgstr ""
 
-#: inc/settings.php:1540
+#: inc/settings.php:1623
 #, php-format
 msgid ""
 "Print out open graph meta tags with Novashare in the %s section of your "
 "site. Default: Enabled"
 msgstr ""
 
-#: inc/settings.php:1547
+#: inc/settings.php:1630
 msgid "Hide Meta Box"
 msgstr ""
 
-#: inc/settings.php:1553
+#: inc/settings.php:1636
 msgid "Hide Novashare meta box in the WordPress editor. Default: Disabled"
 msgstr ""
 
-#: inc/settings.php:1560
+#: inc/settings.php:1643
 msgid "Default Social Image"
 msgstr ""
 
-#: inc/settings.php:1567
+#: inc/settings.php:1650
 msgid ""
 "Add a default image that will be used for share links and meta tags if no "
 "post specific images are found."
 msgstr ""
 
-#: inc/settings.php:1578
+#: inc/settings.php:1661
 msgid "Minimum Share Count"
 msgstr ""
 
-#: inc/settings.php:1587
+#: inc/settings.php:1670
 msgid ""
 "Set a minimum total share count threshold to reach before share counts are "
 "displayed."
 msgstr ""
 
-#: inc/settings.php:1594
+#: inc/settings.php:1677
 msgid "Share Counts Refresh Rate"
 msgstr ""
 
-#: inc/settings.php:1602 inc/settings.php:1609
+#: inc/settings.php:1685 inc/settings.php:1692
 msgid "High"
 msgstr ""
 
-#: inc/settings.php:1604 inc/settings.php:1611
+#: inc/settings.php:1687 inc/settings.php:1694
 msgid "Low"
 msgstr ""
 
-#: inc/settings.php:1606
+#: inc/settings.php:1689
 msgid ""
 "Adjust the rate at which your social share counts are refreshed based on the "
 "modified date. Default: High"
 msgstr ""
 
-#: inc/settings.php:1608
+#: inc/settings.php:1691
 msgid "Modified"
 msgstr ""
 
-#: inc/settings.php:1608
+#: inc/settings.php:1691
 msgid "days"
 msgstr ""
 
-#: inc/settings.php:1609 inc/settings.php:1610 inc/settings.php:1611
+#: inc/settings.php:1692 inc/settings.php:1693 inc/settings.php:1694
 msgid "hours"
 msgstr ""
 
-#: inc/settings.php:1619 inc/settings.php:1626
+#: inc/settings.php:1702 inc/settings.php:1710
 msgid "Purge Share Counts"
 msgstr ""
 
-#: inc/settings.php:1627
+#: inc/settings.php:1711
 msgid ""
 "Are you sure? This will delete all existing share count data for all posts "
 "from the database."
 msgstr ""
 
-#: inc/settings.php:1628
+#: inc/settings.php:1712
 msgid "Permanently delete all existing share counts from your database."
 msgstr ""
 
-#: inc/settings.php:1633
+#: inc/settings.php:1717
 msgid "Google Analytics"
 msgstr ""
 
-#: inc/settings.php:1638
+#: inc/settings.php:1722
 msgid "Enable UTM Tracking"
 msgstr ""
 
-#: inc/settings.php:1645
+#: inc/settings.php:1729
 msgid "Add UTM parameters to social sharing links."
 msgstr ""
 
-#: inc/settings.php:1652
+#: inc/settings.php:1736
 msgid "Campaign UTM Source"
 msgstr ""
 
-#: inc/settings.php:1661
+#: inc/settings.php:1745
 msgid ""
 "The value of the UTM source parameter added to your social sharing links. "
 "Use {{network}} to dynamically populate the value with the relative social "
 "network. Default: {{network}}"
 msgstr ""
 
-#: inc/settings.php:1668
+#: inc/settings.php:1752
 msgid "Campaign UTM Medium"
 msgstr ""
 
-#: inc/settings.php:1677
+#: inc/settings.php:1761
 msgid ""
 "The value of the UTM medium parameter added to your social sharing links. "
 "Default: social"
 msgstr ""
 
-#: inc/settings.php:1684
+#: inc/settings.php:1768
 msgid "Campaign UTM Name"
 msgstr ""
 
-#: inc/settings.php:1693
+#: inc/settings.php:1777
 msgid ""
 "The value of the UTM name parameter added to your social sharing links. "
 "Default: novashare"
 msgstr ""
 
-#: inc/settings.php:1698
+#: inc/settings.php:1782
 msgid "Link Shortening"
 msgstr ""
 
-#: inc/settings.php:1703
+#: inc/settings.php:1787
 msgid "Enable Bitly"
 msgstr ""
 
-#: inc/settings.php:1710
+#: inc/settings.php:1794
 msgid "Generate Bitly short links for all share URLs."
 msgstr ""
 
-#: inc/settings.php:1717
+#: inc/settings.php:1801
 msgid "Generic Access Token"
 msgstr ""
 
-#: inc/settings.php:1726
+#: inc/settings.php:1810
 msgid "The Generic Access Token from your Bitly account."
 msgstr ""
 
-#: inc/settings.php:1733
+#: inc/settings.php:1817
 msgid "Group"
 msgstr ""
 
-#: inc/settings.php:1742
+#: inc/settings.php:1826
 msgid ""
 "The group from your Bitly account used to generate and store short links. "
 "Non-enterprise users will only have one default group."
 msgstr ""
 
-#: inc/settings.php:1749 inc/settings.php:1756
+#: inc/settings.php:1833 inc/settings.php:1841
 msgid "Purge Short Links"
 msgstr ""
 
-#: inc/settings.php:1758
+#: inc/settings.php:1843
 msgid ""
 "Are you sure? This will delete all existing short links from the database."
 msgstr ""
 
-#: inc/settings.php:1759
+#: inc/settings.php:1844
 msgid "Permanently delete all existing short links from your database."
 msgstr ""
 
-#: inc/settings.php:1769
+#: inc/settings.php:1854
 msgid "Combine HTTP & HTTPS"
 msgstr ""
 
-#: inc/settings.php:1775
+#: inc/settings.php:1860
 msgid ""
 "Combine share counts for HTTP and HTTPS URLs for networks that store them "
 "separately. This will double the amount of API calls for those networks."
 msgstr ""
 
-#: inc/settings.php:1782
+#: inc/settings.php:1867
 msgid "Recover Previous Permalinks"
 msgstr ""
 
-#: inc/settings.php:1789
+#: inc/settings.php:1874
 msgid "Recover share counts for a previous permalink structure."
 msgstr ""
 
-#: inc/settings.php:1796
+#: inc/settings.php:1881
 msgid "Previous Permalink Structure"
 msgstr ""
 
-#: inc/settings.php:1804
+#: inc/settings.php:1889
 msgid "Select a Structure"
 msgstr ""
 
-#: inc/settings.php:1805
+#: inc/settings.php:1890
 msgid "Plain"
 msgstr ""
 
-#: inc/settings.php:1806
+#: inc/settings.php:1891
 msgid "Day and name"
 msgstr ""
 
-#: inc/settings.php:1807
+#: inc/settings.php:1892
 msgid "Month and name"
 msgstr ""
 
-#: inc/settings.php:1808
+#: inc/settings.php:1893
 msgid "Numeric"
 msgstr ""
 
-#: inc/settings.php:1809
+#: inc/settings.php:1894
 msgid "Post name"
 msgstr ""
 
-#: inc/settings.php:1810
+#: inc/settings.php:1895
 msgid "Custom Structure"
 msgstr ""
 
-#: inc/settings.php:1813
+#: inc/settings.php:1898
 msgid "The permalink structure used to recover share counts."
 msgstr ""
 
-#: inc/settings.php:1820
+#: inc/settings.php:1905
 msgid "Custom Permalink Structure"
 msgstr ""
 
-#: inc/settings.php:1828
+#: inc/settings.php:1913
 msgid ""
 "If you are recovering share counts for a custom permalink structure, please "
 "provide that structure here."
 msgstr ""
 
-#: inc/settings.php:1836
+#: inc/settings.php:1921
 msgid "Recover Previous Domain"
 msgstr ""
 
-#: inc/settings.php:1843
+#: inc/settings.php:1928
 msgid "Recover share counts for a previous domain."
 msgstr ""
 
-#: inc/settings.php:1850
+#: inc/settings.php:1935
 msgid "Previous Domain"
 msgstr ""
 
-#: inc/settings.php:1859
+#: inc/settings.php:1944
 msgid "The domain used to recover share counts."
 msgstr ""
 
-#: inc/settings.php:1880
+#: inc/settings.php:1965
 msgid ""
 "Permanently delete all Novashare data from your database when the plugin is "
 "uninstalled."
 msgstr ""
 
-#: inc/settings.php:1888
+#: inc/settings.php:1973
 msgid "Accessibility Mode"
 msgstr ""
 
-#: inc/settings.php:1896
+#: inc/settings.php:1981
 msgid ""
 "Disable the use of visual UI elements in the plugin settings such as "
 "checkbox toggles and hovering tooltips."
 msgstr ""
 
-#: inc/settings.php:1903 inc/settings.php:1910
+#: inc/settings.php:1988 inc/settings.php:1996
 msgid "Restore Default Options"
 msgstr ""
 
-#: inc/settings.php:1911
+#: inc/settings.php:1997
 msgid ""
 "Are you sure? This will remove all existing plugin options and restore them "
 "to their default states."
 msgstr ""
 
-#: inc/settings.php:1913
+#: inc/settings.php:1999
 msgid "Restore all plugin options to their default settings."
 msgstr ""
 
-#: inc/settings.php:1920
+#: inc/settings.php:2006
 msgid "Export Settings"
 msgstr ""
 
-#: inc/settings.php:1927
+#: inc/settings.php:2014
 msgid "Export Plugin Settings"
 msgstr ""
 
-#: inc/settings.php:1929
+#: inc/settings.php:2016
 msgid ""
 "Export your Novashare settings for this site as a .json file. This lets you "
 "easily import the configuration into another site."
 msgstr ""
 
-#: inc/settings.php:1936
+#: inc/settings.php:2023
 msgid "Import Settings"
 msgstr ""
 
-#: inc/settings.php:1941
+#: inc/settings.php:2028
 msgid "Import Novashare settings from an exported .json file."
 msgstr ""
 
-#: inc/settings.php:2101
+#: inc/settings.php:2182
 msgid "Upload an image."
 msgstr ""
 
-#: inc/settings.php:2221
+#: inc/settings.php:2302
 msgid "Import Plugin Settings"
 msgstr ""
 
-#: inc/settings.php:2246
+#: inc/settings.php:2327
 #, php-format
 msgid "Click %s to view documentation."
 msgstr ""
@@ -1719,14 +1768,6 @@ msgstr ""
 msgid "Title"
 msgstr ""
 
-#: inc/widget.php:133 js/blocks-follow.js:245
-msgid "Icon Color"
-msgstr ""
-
-#: inc/widget.php:139 js/blocks-follow.js:250
-msgid "Icon Hover Color"
-msgstr ""
-
 #: inc/widget.php:146 js/blocks-follow.js:220
 msgid "Open Links in New Tab"
 msgstr ""
@@ -1751,15 +1792,15 @@ msgstr ""
 msgid "Username"
 msgstr ""
 
-#: js/admin.js:382
+#: js/admin.js:370
 msgid "Characters"
 msgstr ""
 
-#: js/admin.js:385
+#: js/admin.js:373
 msgid "Character"
 msgstr ""
 
-#: js/admin.js:389
+#: js/admin.js:377
 msgid "Remaining"
 msgstr ""
 
@@ -1771,31 +1812,32 @@ msgstr ""
 msgid "Add follow buttons for your social network profiles."
 msgstr ""
 
-#: js/blocks-follow.js:122
+#: js/blocks-follow.js:122 js/blocks-share.js:331
 msgid "Add Networks"
 msgstr ""
 
-#: js/blocks-follow.js:135 js/blocks.js:85 novashare.php:374
+#: js/blocks-follow.js:135 js/blocks-share.js:393 js/blocks.js:85
+#: novashare.php:396
 msgid "Settings"
 msgstr ""
 
-#: js/blocks-follow.js:165
+#: js/blocks-follow.js:165 js/blocks-share.js:457
 msgid "Alignment"
 msgstr ""
 
-#: js/blocks-follow.js:230
+#: js/blocks-follow.js:230 js/blocks-share.js:565
 msgid "Colors"
 msgstr ""
 
-#: js/blocks-follow.js:315
+#: js/blocks-follow.js:315 js/blocks-share.js:748
 msgid "Follow Network"
 msgstr ""
 
-#: js/blocks-follow.js:316
+#: js/blocks-follow.js:316 js/blocks-share.js:749
 msgid "Add an icon linking to a social network profile."
 msgstr ""
 
-#: js/blocks-follow.js:384
+#: js/blocks-follow.js:387
 msgid "Apply"
 msgstr ""
 
@@ -1815,59 +1857,75 @@ msgstr ""
 msgid "Remove image"
 msgstr ""
 
+#: js/blocks-share.js:102 js/blocks-share.js:327
+msgid "Share Buttons"
+msgstr ""
+
+#: js/blocks-share.js:103
+msgid "Add share buttons for your social network profiles."
+msgstr ""
+
+#: js/blocks-share.js:650 js/blocks-share.js:693
+msgid "Color"
+msgstr ""
+
 #: js/blocks.js:32
-msgid "Add a tweet box."
+msgid "Add an X post box."
 msgstr ""
 
 #: js/blocks.js:91
 msgid "Default (Accent Background)"
 msgstr ""
 
-#: js/blocks.js:92 novashare.php:313
+#: js/blocks.js:92 novashare.php:332
 msgid "Simple (Transparent Background)"
 msgstr ""
 
-#: js/blocks.js:93 novashare.php:314
+#: js/blocks.js:93 novashare.php:333
 msgid "Simple Alternate (Gray Background)"
 msgstr ""
 
-#: js/blocks.js:275 novashare.php:338
+#: js/blocks.js:275 novashare.php:357
 msgid "Characters Remaining"
 msgstr ""
 
-#: novashare.php:305
-msgid "Click to Tweet Shortcode"
+#: novashare.php:100
+msgid "Action failed."
 msgstr ""
 
-#: novashare.php:306
+#: novashare.php:324
+msgid "Click to Post Shortcode"
+msgstr ""
+
+#: novashare.php:325
 msgid "Insert Shortcode"
 msgstr ""
 
-#: novashare.php:308
-msgid "Tweet"
-msgstr ""
-
-#: novashare.php:312
-msgid "Default (Blue Background)"
-msgstr ""
-
-#: novashare.php:326
-msgid "Remove Post URL"
-msgstr ""
-
 #: novashare.php:327
-msgid "The URL of the current post will not be added to the tweet."
+msgid "Post"
 msgstr ""
 
 #: novashare.php:331
-msgid "The Twitter username saved in Novashare will not be added to the tweet."
+msgid "Default (Black Background)"
 msgstr ""
 
-#: novashare.php:335
+#: novashare.php:345
+msgid "Remove Post URL"
+msgstr ""
+
+#: novashare.php:346
+msgid "The current URL will not be added to the post."
+msgstr ""
+
+#: novashare.php:350
+msgid "The X username saved in Novashare will not be added to the post."
+msgstr ""
+
+#: novashare.php:354
 msgid "Trailing hashtags will be hidden from the display box."
 msgstr ""
 
-#: novashare.php:400
+#: novashare.php:422
 msgid "Enter valid license key for automatic updates."
 msgstr ""
 

@@ -368,6 +368,9 @@
 						   	 		case 'skype':
 								    	return 'myusername';
 							   	 		break;
+							   	 	case 'threads':
+								    	return 'myusername';
+							   	 		break;
 						   	 		case 'line':
 								    	return 'mylineid';
 							   	 		break;

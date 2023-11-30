@@ -10,7 +10,7 @@
 
 		//click to tweet button
 		editor.addButton('novashare_click_to_tweet', {
-			icon 	: 'novashare-ctt-icon dashicons-twitter',
+			icon 	: 'novashare-ctt-icon',
 			tooltip : 'Novashare ' + novashare.translations.ctt.tooltip,
 			cmd     : 'novashare_click_to_tweet'
 		});
