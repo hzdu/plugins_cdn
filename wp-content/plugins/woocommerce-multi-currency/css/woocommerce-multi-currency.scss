@@ -577,6 +577,17 @@
     }
   }
 
+  &.wmc-dropdown-direction-top {
+
+    .wmc-currency-wrapper {
+
+      .wmc-sub-currency {
+        bottom: 100%;
+        top: unset;
+      }
+    }
+  }
+
   a {
     white-space: nowrap;
   }
@@ -1125,6 +1136,8 @@
         display: flex;
       }
     }
+
+    background: unset;
   }
   .woocommerce-multi-currency.wmc-sidebar.wmc-hover, .woocommerce-multi-currency.wmc-sidebar.wmc-hover.wmc-mobile-no-collapse {
     .wmc-list-currencies {

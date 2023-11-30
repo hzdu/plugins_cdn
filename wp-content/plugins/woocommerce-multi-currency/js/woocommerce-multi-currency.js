@@ -73,6 +73,10 @@ jQuery(document).ready(function ($) {
                     if (jQuery(this).hasClass('wmc-hover')) {
                         jQuery('html').css({'overflow': 'hidden'});
                     } else {
+                        jQuery('.woocommerce-multi-currency.wmc-sidebar').css('display', 'none');
+                        setTimeout(function () {
+                            jQuery('.woocommerce-multi-currency.wmc-sidebar').css('display', 'initial');
+                        }, 100);
                         if ('clip' === body_overflow) {
                             jQuery('html').css({'overflow': ''});
                         } else {
@@ -176,6 +180,7 @@ jQuery(document).ready(function ($) {
                     flag_size: $shortcode.data('flag_size'),
                     dropdown_icon: $shortcode.data('dropdown_icon'),
                     custom_format: $shortcode.data('custom_format'),
+                    direction: $shortcode.data('direction'),
                 });
             });
             if (pids.length) pids = [...new Set(pids)]; //remove duplicate element

@@ -537,6 +537,15 @@ jQuery(document).ready(function ($) {
         $('.wmc-ignore-exchange-rate-row').toggle(checked);
     }).trigger('change');
 
+    $('select[name="woo_multi_currency_params[finance_api]"]').on('change', function () {
+        let val = $(this).val();
+        if ('4' === val) {
+            $('.wmc-wise-api-token').show();
+        } else {
+            $('.wmc-wise-api-token').hide();
+        }
+    }).trigger('change');
+
     let click_to_expand_currencies_bar = $('.click-to-expand-currencies-bar');
     $('.wmc-collapse-desktop').on('change', function () {
         if ($(this).is(':checked')) {
