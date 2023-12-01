@@ -1,0 +1,242 @@
+/* Name: Template 07 */
+
+body.login {
+	background-blend-mode: var( --wlm3login_bgblend, none );
+	background-image: var( --wlm3login_bgimage, url(../../../../../../../?wlm3img=me-assets-bg24-full.png) );
+	background-color: var( --wlm3login_bgcolor, #CEE5E3 );	
+	background-repeat: var( --wlm3login_bgrepeat, repeat );
+	background-position: var( --wlm3login_bgposition, top right );
+	background-size: var( --wlm3login_bgsize, 256px 256px );
+}
+
+body.login div.wishlistmember-loginform {
+	padding: 0;
+	margin: var( --wlm3login_loginbox_position, 0 auto );
+	width: var( --wlm3login_loginbox_width, 400px );
+	/*background-image: var( --wlm3login_loginbox_bgimage, linear-gradient(180deg, #3DE3D7 0%, #00C8D9 100%));*/
+	background-color: var( --wlm3login_loginbox_bgcolor, #3DE3D7 );
+	color: var( --wlm3login_loginbox_fgcolor );
+	font-size: var( --wlm3login_loginbox_fontsize, 14px );
+	box-shadow: 0px 12px 35px rgba(56, 103, 250, 0.20);
+
+	/* begin: vertical centering of login box */
+	position: relative;
+	top: 50%;
+	transform: translateY(-50%);
+	/* end: vertical centering of login box */
+
+}
+
+body.login div#login {
+	width: 100%;
+}
+
+body.login div#login h1 {
+	padding: 24px 0;
+}
+body.login div#login h1 a {
+	background-image: var( --wlm3login_logo, url(../../../../../../../wp-admin/images/w-logo-blue.png) );
+	background-size: contain;
+	height: var( --wlm3login_logo_height, 84px );
+	max-height: 84px;
+	width: 100%;
+	margin: 0;
+}
+
+body.login div#login div#login_error,
+body.login div#login p.message {
+	box-shadow: none;
+	border: none;
+	border-left: 4px solid #EE5454;
+	background: #eee;
+	font-size: 16px;
+	padding: 24px;
+	margin: 0 20px 20px;
+}
+body.login div#login p.message {
+	border-left: 4px solid #136bda;
+}
+
+body.login div#login form#lostpasswordform,
+body.login div#login form#loginform {
+	background-color: var( --wlm3login_loginform_bgcolor, #ffffff );
+	margin-top: 0;
+	margin-bottom: 20px;
+	padding: 0;
+}
+body.login div#login form#loginform > p,
+body.login div#login form#lostpasswordform > p,
+body.login div#login form#loginform > .user-pass-wrap {
+	margin: 24px;
+}
+body.login div#login form#loginform p label {
+	font-size: 100%;
+}
+
+body.login div#login form#loginform input,
+body.login div#login form#lostpasswordform input {
+	padding: 12px;
+	/*border: none;*/
+	box-shadow: none;
+	/*border-bottom: 1px solid #E1E1E1;*/
+	position: relative;
+}
+body.login div#login form#lostpasswordform input#user_login,
+body.login div#login form#loginform input#user_login {
+	font-size: var( --wlm3login_loginbox_fld_fontsize, 24px );
+	background-color: var( --wlm3login_loginbox_fld_bgcolor, #fff );
+	color: var( --wlm3login_loginbox_fld_fgcolor, #444444 );
+
+	border-width: var( --wlm3login_loginbox_fld_bordersize, 1px );
+	border-color: var( --wlm3login_loginbox_fld_bordercolor, #E1E1E1 );
+	border-radius: var( --wlm3login_loginbox_fld_roundness, 0 );	
+}
+
+body.login div#login form#loginform input#user_pass {
+	font-size: var( --wlm3login_loginbox_fld_fontsize, 24px );
+	background-color: var( --wlm3login_loginbox_fld_bgcolor, #fff );
+	color: var( --wlm3login_loginbox_fld_fgcolor, #444444 );
+
+	border-width: var( --wlm3login_loginbox_fld_bordersize, 1px );
+	border-color: var( --wlm3login_loginbox_fld_bordercolor, #E1E1E1 );
+	border-radius: var( --wlm3login_loginbox_fld_roundness, 0 );
+}
+
+body.login div#login form#loginform p.forgetmenot {
+	float: none;
+	padding: 6px;
+}
+body.login div#login form#loginform p.forgetmenot label {
+	font-size: 85.7%
+}
+body.login div#login form#loginform p.forgetmenot input#rememberme {
+	border: 1px solid #E1E1E1;
+}
+
+body.login div#login form#loginform p.submit,
+body.login div#login form#lostpasswordform p.submit {
+	background: #eee;
+	padding: 24px;
+	margin: 0;
+}
+
+body.login div#login form#lostpasswordform p.submit input#wp-submit,
+body.login div#login form#loginform p.submit input#wp-submit {
+	font-size: var( --wlm3login_loginbox_btn_fontsize, 16px );
+	background-color: var( --wlm3login_loginbox_btn_bgcolor, transparent );
+	/*background-image: var( --wlm3login_bgimage, linear-gradient(180deg, #EE5454 0%, #EF7F7F 0.01%, #F36969 100%));*/
+	color: var( --wlm3login_loginbox_btn_fgcolor, #717171 );
+	font-weight: bold;
+	display: block;
+	padding: 0 24px;
+	height: 52px;
+	border-width: var( --wlm3login_loginbox_btn_bordersize, 3px );
+	border-color: var( --wlm3login_loginbox_btn_bordercolor, #02C9D9 );
+	border-radius: var( --wlm3login_loginbox_btn_roundness, 100px );
+	width: auto;
+	margin: 0 auto;
+	float: none;
+	text-transform: uppercase;
+	text-shadow: none;
+}
+
+body.login div#login form#lostpasswordform p.submit input#wp-submit:hover,
+body.login div#login form#loginform p.submit input#wp-submit:hover {
+	background-color: var( --wlm3login_loginform_bgcolor, #00C8D9 );
+	/*background-image: var( --wlm3login_bgimage, linear-gradient(180deg, #3DE3D7 0%, #00C8D9 100%));*/
+	border-width: var( --wlm3login_loginbox_btn_bordersize, 0 );
+	color: var( --wlm3login_loginbox_btn_fgcolor, #fff );
+}
+
+body.login div#login p#nav {
+	float: none;
+}
+
+body.login div#login p#backtoblog {
+	float: none;
+}
+
+body.login div#login p#nav,
+body.login div#login p#backtoblog {
+	/*font-size: 92.9%;*/
+	text-align: center;
+	margin: 0;
+	padding: 0 12px;
+}
+body.login div#login p#nav a,
+body.login div#login p#backtoblog a {
+	color: var( --wlm3login_loginbox_fgcolor, #777 );
+	font-size: 100%;
+	text-decoration: underline;
+}
+
+body.login div#login p#nav a:hover,
+body.login div#login p#backtoblog a:hover  {
+	text-decoration: none;
+}
+
+body.login div#login p#backtoblog {
+	/*font-size: 92.9%;*/
+}
+
+/* Change Autocomplete styles in Chrome*/
+body.login div#login form#loginform input:-webkit-autofill,
+body.login div#login form#loginform input:-webkit-autofill:hover, 
+body.login div#login form#loginform input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  -webkit-text-fill-color: #333;
+  -webkit-box-shadow: 0 0 0px 1000px rgba(250, 56, 207, 0.5) inset;
+  box-shadow: 0 0 0px 1000px white inset;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+.login .button.wp-hide-pw {
+	margin-top: 10px;
+}
+
+/*Interim Login*/
+body.interim-login div#login {
+	background-repeat: repeat;
+	border: none;
+	border-radius: 0;
+	width: auto!important;
+	transform: none;
+	padding: 0;
+}
+
+body.interim-login div#login h1 {
+	padding: 10px 0 0;
+}
+
+body.interim-login div#login p.message {
+	margin: 12px;
+}
+
+body.interim-login div#login h1 a {
+	width: 50%;
+	margin: 0 auto;
+	height: var( --wlm3login_logo_height, 60px );
+}
+body.interim-login div#login form#lostpasswordform, 
+body.interim-login div#login form#loginform {
+	margin: 0;
+	border-radius: 0;
+	box-shadow: none;
+}
+
+body.interim-login div#login form#loginform > p, 
+body.interim-login div#login form#lostpasswordform > p, 
+body.interim-login div#login form#loginform > .user-pass-wrap {
+	margin: 24px;
+}
+
+@media screen and (max-width: 782px) {
+	.wishlistmember-loginform .language-switcher .button {
+		margin-bottom: 0;
+	}
+}

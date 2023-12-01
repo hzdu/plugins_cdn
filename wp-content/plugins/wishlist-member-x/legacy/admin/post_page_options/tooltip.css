@@ -1,0 +1,27 @@
+.ui-tooltip.wishlist-member-tooltip {
+	z-index: 9999999999;
+	border-radius: 5px;
+	background: #000000;
+	color: #ffffff;
+	font-weight: 400;
+	max-width: 250px;
+}
+
+.ui-tooltip.wishlist-member-tooltip .ui-tooltip-content {
+  position: relative;
+	font-size: 14px;
+	line-height: 18px;
+	padding: 0.75rem 1rem;
+}
+
+.ui-tooltip.wishlist-member-tooltip .ui-tooltip-content::after {
+  content: '';
+  position: absolute;
+  border-style: solid;
+  display: block;
+  width: 0;
+	top: calc(50% - 10px);
+  left: -8px;
+  border-color: transparent #000000;
+  border-width: 8px 8px 8px 0;
+}

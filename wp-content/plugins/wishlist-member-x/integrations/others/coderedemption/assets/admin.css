@@ -1,0 +1,79 @@
+/* hide/show campaign modal sections based on whether it's new or existing */
+#thirdparty-provider-container-coderedemption #coderedemption-campaign-modal.modal.new-campaign .edit-only,
+#thirdparty-provider-container-coderedemption #coderedemption-campaign-modal.modal.edit-campaign .new-only {
+  display: none;
+}
+
+/* hide/show table header/footer based on tbody */
+#thirdparty-provider-container-coderedemption #coderedemption-lists-table table tbody:empty ~ thead,
+#thirdparty-provider-container-coderedemption #coderedemption-lists-table table tbody:not(:empty) ~ tfoot tr:first-child {
+  display: none;
+}
+#thirdparty-provider-container-coderedemption #coderedemption-lists-table td.campaign-description {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden; 
+  max-width:1px
+}
+#thirdparty-provider-container-coderedemption #coderedemption-lists-table .toggle-coderedemption-status.coderedemption-inactive {
+	color: #DBE4EE;
+}
+
+
+/* hide delete button for first action */
+#actions-tbody tr:first-child .-action-del-btn {
+  display: none !important;
+}
+
+/* hide/show table header for search results based on tbody */
+#coderedemption-code-search-results tbody:empty ~ thead {
+  display: none;
+}
+
+/* hide/show appropriate code status */
+#coderedemption-code-search-results td.code-status span {
+  display: none;
+}
+#coderedemption-code-search-results tr.code-status-0 td.code-status span.code-status-0,
+#coderedemption-code-search-results tr.code-status-1 td.code-status span.code-status-1,
+#coderedemption-code-search-results tr.code-status-2 td.code-status span.code-status-2 {
+  display: inline;
+}
+
+/* hide/show appropriate code actions based on status  */
+#coderedemption-code-search-results .btn-group-action a {
+  display: none
+}
+#coderedemption-code-search-results tr.code-status-0 .btn-group-action a.-code-del-btn,
+#coderedemption-code-search-results tr.code-status-1 .btn-group-action a.-code-cancel-btn,
+#coderedemption-code-search-results tr.code-status-1 .btn-group-action a.-code-user-btn,
+#coderedemption-code-search-results tr.code-status-2 .btn-group-action a.-code-user-btn,
+#coderedemption-code-search-results tr.code-status-2 .btn-group-action a.-code-uncancel-btn {
+  display: inline-block;
+}
+
+/* hide save & close button for new campaigns */
+#coderedemption-campaign-modal.new-campaign .save-button.-close {
+  display: none !important;
+}
+
+/* hide tabs that are needed when there are 0 codes */
+#coderedemption-campaign-modal[data-campaign-codes="0"] .hide-on-0-codes {
+  display: none;
+}
+
+#coderedemption-code-search-results-wrapper {
+  max-height: 280px;
+  overflow: auto;
+  margin: 0 0 1em 0;
+  padding: 0;
+}
+
+#coderedemption-code-search-results thead tr th {
+  position: sticky;
+  top: 0;
+}
+
+.select2-results__options[role="tree"][id$="-hide-payperposts-results"] [role="group"]:not(:first-child) {
+  display: none;
+}

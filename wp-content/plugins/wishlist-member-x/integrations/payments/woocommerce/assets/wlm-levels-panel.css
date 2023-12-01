@@ -1,0 +1,40 @@
+.woo-tab-links {
+	color: #888;
+	font-weight: bold;
+	display: inline-block;
+	padding: 4px 9px 0px;
+	text-decoration: none;
+}
+
+.woo-tab-links.active {
+	color: #444;
+	text-decoration: underline;
+}
+
+.woo-tabs:not(.active) {
+	display: none;
+}
+
+/* hide table header if tbody is empty */
+.woo-category-pricing tbody:empty~thead,
+.woo-product-pricing tbody:empty~thead {
+	display: none;
+}
+
+/* show percent sign to the right of the price if discount is percentage */
+#wlm4woo-level-category-pricing:not([data-pricing-type="percentage-discount"]) div.form-group .input-group-append,
+#wlm4woo-level-product-pricing:not([data-pricing-type="percentage-discount"]) div.form-group .input-group-append {
+	display: none;
+}
+
+/* show pricing details if only if a product is selected */
+#wlm4woo-level-category-pricing:not(.category-selected) div#wlm4woo-level-category-pricing-details,
+#wlm4woo-level-product-pricing:not(.product-selected) div#wlm4woo-level-product-pricing-details {
+	display: none;
+}
+
+/* hide configured products from dropdown  */
+#select2-wlm4woo-category-id-results .select2-results__option[aria-disabled=true],
+#select2-wlm4woo-product-id-results .select2-results__option[aria-disabled=true] {
+	display: none;
+}

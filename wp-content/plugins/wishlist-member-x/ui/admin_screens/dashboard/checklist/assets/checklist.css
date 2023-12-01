@@ -1,0 +1,54 @@
+a[href="#membership-success-checklist"] {
+	text-decoration: none;
+}
+a[href="#membership-success-checklist"]:not(.collapsed) .wlm-icons.-down,
+a[href="#membership-success-checklist"].collapsed .wlm-icons.-up{
+	display: none;
+}
+h4.checklist-item {
+	padding-left: 2px;
+	padding-top: 4px;
+	border: 1px solid transparent;
+}
+h4.checklist-item:not(.checklist-done) .checklist-checkbox .checklist-done {
+	display: none;
+}
+h4.checklist-item:not(.checklist-archived) .checklist-restore {
+	display: none;
+}
+h4.checklist-item.checklist-archived .checklist-archive {
+	display: none;
+}
+h4.checklist-item.checklist-done > span:first-of-type{
+	text-decoration: line-through;
+}
+h4.checklist-item.checklist-archived > span:first-of-type {
+	opacity: 0.7;
+}
+#license-key.-is-highlighted,
+#wlm-checklist-panel.-is-saving,
+h4.checklist-item.-is-saving {
+	border: 1px solid #15C384;
+	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1) inset, 0 0 6px #15C384;
+}
+.checklist-group:not(.-has-items) h4 {
+	display: none;
+}
+.checklist-group ~ .checklist-group.-has-items {
+	padding-top: 1em;
+	border-top: 1px solid #eee;
+}
+.checklist-group h4[data-toggle="collapse"]:not(.collapsed) .wlm-icons.-down,
+.checklist-group h4[data-toggle="collapse"].collapsed .wlm-icons.-up{
+	display: none;
+}
+.checklist-group.checklist-done,
+.checklist-group.checklist-archived {
+	cursor: pointer;
+}
+
+.checklist-checkbox-disabled,
+.checklist-checkbox-disabled:hover {
+	background: #ddd !important;
+	opacity: 1 !important;
+}
