@@ -1,0 +1,93 @@
+.tf-field.tf-field-imageselect {
+  margin: 0;
+}
+
+.tf-image-seletor-items {
+  margin-right: 10px;
+  margin-bottom: 10px;
+  figure {
+    img {
+      border-radius: 8px;
+      margin-bottom: 10px;
+    }
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0px 10px 20px rgba(75, 26, 0, 0.05);
+    padding: 10px;
+    cursor: pointer;
+    position: relative;
+    margin: 0;
+    border: 2px solid transparent;
+    user-select: none;
+    transition: all 0.2s;
+    input {
+      display: none;
+    }
+    .tf-image-seletor-card-info {
+      font-style: normal;
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 20px;
+      color: #665f5c;
+    }
+  }
+  &.tf-active figure {
+    border-color: transparent;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    border: 2px solid #e9570a;
+    box-shadow: 0 0 20px #ddd;
+  }
+}
+
+.tf-field-imageselect.imageset-inline {
+  .tf-image-seletor-wrap {
+    display: flex;
+    column-gap: 4px;
+    .tf-image-seletor-items {
+      figure img {
+        padding: 5px;
+        border-radius: 8px;
+      }
+    }
+  }
+}
+
+.tf-field-imageselect.ins-layout-options-imageset {
+  .tf-fieldset {
+    .tf-image-seletor-wrap {
+      .tf-image-seletor-items {
+        width: 100px;
+        img {
+          width: 100%;
+        }
+      }
+    }
+  }
+}
+
+.tf-field-imageselect.ins-layout-options-imageset200 {
+  .tf-fieldset {
+    .tf-image-seletor-wrap {
+      .tf-image-seletor-items {
+        width: 203px;
+        img {
+          width: 100%;
+        }
+      }
+    }
+  }
+}
+
+.tf-field-imageselect.ins-layout-options-imageset300 {
+  .tf-fieldset {
+    .tf-image-seletor-wrap {
+      .tf-image-seletor-items {
+        width: 281px;
+        img {
+          width: 100%;
+        }
+      }
+    }
+  }
+}

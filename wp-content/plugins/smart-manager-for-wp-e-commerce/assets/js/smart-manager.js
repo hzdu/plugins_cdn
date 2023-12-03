@@ -246,6 +246,9 @@ Smart_Manager.prototype.init = function() {
 	this.stockCols = [];
 	this.visibleCols = [];
 	this.exportCSVActions = ['sm_export_selected_records', 'sm_export_entire_store'];
+	this.scheduledActionContent = '';
+	this.isScheduled = false;
+	this.scheduledActionAdminUrl = (sm_beta_params.scheduled_action_admin_url) ? sm_beta_params.scheduled_action_admin_url : '';
 
 	//Function to set all the states on unload
 	window.onbeforeunload = function (evt) { 
@@ -2175,6 +2178,8 @@ Smart_Manager.prototype.reset = function( fullReset = false ){
 	window.smart_manager.editedColumnTitles = {};
 	window.smart_manager.exportCSVActions = ['sm_export_selected_records', 'sm_export_entire_store'];
 	window.smart_manager.recordSelectNotification = (this.sm_beta_pro == 1) ? true : false;
+	window.smart_manager.scheduledActionContent = '';
+	window.smart_manager.isScheduled = false;
 
 	if(window.smart_manager.hot){
 		if(window.smart_manager.hot.selection){
@@ -3914,9 +3919,12 @@ jQuery.widget('ui.dialog', jQuery.extend({}, jQuery.ui.dialog.prototype, {
 			return Object.assign(params,{isTasks: (window.smart_manager.isTasksEnabled()) ? 1 : 0});
 		}else if('batch_update' !== params['cmd'] && params.hasOwnProperty('edited_data')){
 			params.updatedEditedData = ((window.smart_manager.updatedEditedData) && (Object.values(window.smart_manager.updatedEditedData).length > 0)) ? JSON.stringify(window.smart_manager.updatedEditedData) : params['edited_data'];
-		} 
+		}
 		return Object.assign(params,{isTasks: (window.smart_manager.isTasksEnabled()) ? 1 : 0,
 			title: (window.smart_manager.updatedTitle) ? window.smart_manager.updatedTitle : window.smart_manager.processContent,
+			isScheduled: window.smart_manager.isScheduled,
+			scheduledFor: (window.smart_manager.isScheduled) ? jQuery("#schedule_for").val() : '0000-00-00 00:00:00',
+			scheduledActionAdminUrl: (window.smart_manager.isScheduled) ? window.smart_manager.scheduledActionAdminUrl : '' 
 		});
 	}
 	// For getting edited column name

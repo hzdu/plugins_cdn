@@ -1,0 +1,113 @@
+// RTL Compatibility
+body.rtl {
+  .ins-cart-coupon {
+    .coupon {
+      flex-direction: row-reverse !important;
+    }
+  }
+}
+
+// Divi Theme Compatibility
+.theme-Divi {
+  .ins-up-sells {
+    .ins-sell-add-to-cart {
+      border: none !important;
+      font-size: 16px !important;
+      line-height: 1.3 !important;
+      color: var(--ins_checkout_theme) !important;
+      &:after {
+        font-size: 18px;
+        line-height: 1.3 !important;
+      }
+    }
+  }
+}
+// Blocksy Theme Compatibility
+.ins-cart-item-quantity {
+  .ct-increase,
+  .ct-decrease {
+    display: none !important;
+  }
+  div.quantity[data-type] input[type="number"] {
+    padding: 0px !important;
+  }
+}
+
+// Woodmart Theme Compatibility
+.theme-woodmart {
+  .ins-product-sell-carousel .owl-nav {
+    display: none;
+    visibility: hidden;
+  }
+  .ins-cart-coupon .coupon button {
+    padding: 0 !important;
+  }
+  .ins-cart-inner.shipping .woocommerce-billing-fields > div p input,
+  .ins-cart-inner.shipping .woocommerce-billing-fields > div p select {
+    height: auto !important;
+  }
+  .ins-cart-inner.shipping .woocommerce-billing-fields > div p textarea {
+    min-height: auto !important;
+  }
+}
+// OceanWP Theme Compatibility
+.theme-oceanwp {
+  .ins-cart-item-quantity .quantity {
+    min-width: 34px !important;
+  }
+  .ins-cart-inner.shipping .woocommerce-billing-fields > div p select {
+    height: auto !important;
+    min-height: auto !important;
+  }
+}
+
+// Betheme Theme Compatibility
+.theme-betheme {
+  .ins-step-icon,
+  .ins-step-title {
+    display: inline-block;
+    line-height: 46px !important;
+  }
+  .ins-checkout-steps-wrap > div {
+    padding: 0px !important;
+  }
+  .ins-cart-item-quantity .quantity {
+    width: 34px !important;
+  }
+  .woocommerce .quantity .qty {
+    padding: 0 !important;
+  }
+  .ins-checkout-modern .plus.ins-cart-plus,
+  .ins-checkout-modern .minus.ins-cart-minus {
+    display: block !important;
+    visibility: visible;
+  }
+  .ins-cart-inner.shipping .woocommerce-billing-fields > div p,
+  .ins-cart-inner.shipping .woocommerce-shipping-fields > div p {
+    flex-basis: calc(100% / 2 - 14px) !important;
+  }
+  .ins-cart-inner.shipping .woocommerce-billing-fields > div p textarea {
+    width: 100% !important;
+  }
+  .ins-payment-wrap .ins-cart-content-wrap {
+    width: auto !important;
+  }
+}
+
+// Avada Theme Compatibility
+.theme-Avada {
+  .ins-checkout-layout.popup .woocommerce-cart-form {
+    display: block !important;
+  }
+  .ins-checkout-modern.popup .ins-checkout-layout.popup {
+    max-width: 50%;
+  }
+}
+
+@media (max-width: 1140px) {
+  .theme-Avada {
+    .ins-checkout-modern.popup .ins-checkout-layout.popup {
+      max-width: 80% !important;
+    }
+  }
+}

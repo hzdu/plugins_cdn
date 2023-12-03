@@ -1,0 +1,337 @@
+input:focus {
+  box-shadow: 0 0 0 2px #db5209 !important;
+}
+
+.tf-field {
+  padding: 12px 0;
+
+  @media #{$max991} {
+    width: 100% !important;
+  }
+
+  .tf-field-label {
+    display: block;
+    font-style: normal;
+    margin-bottom: 3px;
+    font-weight: 600;
+    font-size: 16px;
+    color: #000;
+    display: flex !important;
+    align-items: center;
+    line-height: 20px;
+
+    .tf-csf-badge {
+      margin-left: 13px;
+      .tf-pro {
+        display: inline-block;
+        color: #fff;
+        padding: 3px 10px 3px 10px;
+        border-radius: 3px;
+        text-align: center;
+        margin: 5px 0 0 0;
+        font-size: 12px;
+        font-weight: 600;
+        line-height: 13px;
+        background: #b30000;
+        background-color: #f44336 !important;
+        margin: 0;
+      }
+
+      .tf-upcoming {
+        background-color: #006600 !important;
+        margin: 0;
+      }
+    }
+  }
+
+  &.tf-field-disable {
+    user-select: none;
+    opacity: 0.6;
+  }
+  .tf-fieldset {
+    font-style: normal;
+    font-size: 14px;
+    margin-top: 15px;
+    // a {
+    //   font-style: normal;
+    //   font-weight: 600;
+    // }
+  }
+
+  .tf-field-sub-title {
+    color: #87888b;
+    font-size: 14px;
+    margin-bottom: 0px;
+    display: block;
+  }
+}
+.tf-field.tf-field-heading {
+  .tf-fieldset {
+    margin-top: 0px;
+  }
+}
+.tf-taxonomy-metabox {
+  .tf-field {
+    padding: 12px 0;
+  }
+}
+
+.tf-inline-list {
+  display: inline-block;
+}
+
+.tf-depend-hidden {
+  display: block;
+}
+
+.tf-depend-hidden.tf-depend-on {
+  display: none;
+}
+/*
+Button
+*/
+.tf-admin-btn {
+  display: inline-flex;
+  @include align-items(center);
+  background-color: #fff;
+  color: #db5209;
+  padding: 10px 25px;
+  border: 1px solid #db5209;
+  border-radius: 4px;
+  font-weight: 500;
+  text-decoration: none;
+  cursor: pointer;
+  font-size: 16px;
+  @include transition(all, 0.3s);
+
+  i {
+    margin-right: 8px;
+    font-size: 18px;
+  }
+
+  &:hover {
+    background-color: #db5209;
+    color: #fff;
+  }
+
+  &.tf-btn-secondary {
+    background-color: #db5209;
+    border-color: #db5209;
+    color: #fff;
+    font-weight: 600;
+
+    &:hover {
+      background-color: #db5209;
+      border-color: #db5209;
+      color: #fff;
+    }
+  }
+
+  //disabled
+  &.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+}
+.tf-btn {
+  font-size: 1rem;
+  color: #fff;
+  background-color: #003c79;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -ms-border-radius: 5px;
+  transition: all 0.4s ease;
+  -webkit-transition: all 0.4s ease;
+  -moz-transition: all 0.4s ease;
+  -ms-transition: all 0.4s ease;
+  display: inline-block;
+  padding: 5px 20px;
+  font-weight: 500;
+  text-decoration: none;
+  line-height: 2.1875rem;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  &:hover {
+    background-color: #002f5e;
+    color: #fff;
+    border: none;
+    box-shadow: none !important;
+    outline: none;
+  }
+}
+
+.tf-link-btn {
+  display: inline-flex;
+  @include align-items(center);
+  background-color: transparent;
+  padding: 10px 25px;
+  border: none;
+  border-radius: 0;
+  font-weight: 500;
+  text-decoration: underline;
+  cursor: pointer;
+  font-size: 16px;
+  color: #003c79;
+
+  i {
+    margin-right: 8px;
+    font-size: 18px;
+  }
+}
+
+/*
+Custom Modal
+*/
+.tf-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999999;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  outline: 0;
+  visibility: hidden;
+  opacity: 0;
+  @include scale(0.7);
+  @include transition(all, 0.3s, ease-in-out);
+
+  &.tf-modal-show {
+    opacity: 1;
+    visibility: visible;
+    transform: scale(1);
+  }
+
+  .tf-modal-dialog {
+    @include flexbox();
+    @include align-items(center);
+    min-height: calc(100% - 40px);
+    max-width: 100%;
+    margin: 20px auto;
+    position: relative;
+    pointer-events: none;
+
+    @media #{$min576} {
+      min-height: calc(100% - 40px);
+    }
+  }
+
+  .tf-modal-content {
+    position: relative;
+    @include flexbox();
+    @include flex-direction(column);
+    width: 80%;
+    max-width: 1080px;
+    pointer-events: auto;
+    background-color: #fef2eb;
+    outline: 0;
+    margin: 0 auto;
+    border-radius: 10px;
+    padding: 30px;
+    overflow: hidden;
+  }
+
+  .tf-modal-close {
+    color: #003162;
+    cursor: pointer;
+    font-size: 22px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    @include transition(all, 0.3s, ease-in-out);
+
+    &:hover {
+      @include rotate(180);
+    }
+  }
+}
+
+/* Switch Field Custom Style
+*  @Class Name checkout_form_field_status
+*/
+
+.tf-field-switch {
+  &.checkout_form_field_status {
+    text-align: center;
+    width: 49.5% !important;
+
+    label {
+      justify-content: center;
+    }
+
+    .tf-fieldset {
+      label {
+        width: 64px;
+
+        input:checked + .tf-switch-slider {
+          background-color: #db5209;
+          border-color: transparent;
+          &::before {
+            background-color: #fcf9f7;
+          }
+        }
+
+        .tf-switch-slider {
+          background-color: transparent;
+          border: 1px solid #140701;
+          &::before {
+            top: 3px;
+            border-radius: 24px;
+            background-color: #140701;
+            box-shadow: 0px 0px 8px rgba(27, 25, 25, 0.3);
+            transition: all 0.4s ease-in-out;
+          }
+          span {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+}
+
+.tf-field-inline {
+  display: inline-block;
+}
+
+.tf-field-switch {
+  &.checkout_form_field_required {
+    text-align: center;
+    width: 49.5% !important;
+
+    label {
+      justify-content: center;
+    }
+
+    .tf-fieldset {
+      label {
+        width: 64px;
+
+        input:checked + .tf-switch-slider {
+          background-color: #db5209;
+          border-color: transparent;
+          &::before {
+            background-color: #fcf9f7;
+          }
+        }
+
+        .tf-switch-slider {
+          background-color: transparent;
+          border: 1px solid #140701;
+          &::before {
+            top: 3px;
+            border-radius: 24px;
+            background-color: #140701;
+            box-shadow: 0px 0px 8px rgba(27, 25, 25, 0.3);
+            transition: all 0.4s ease-in-out;
+          }
+          span {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+}
