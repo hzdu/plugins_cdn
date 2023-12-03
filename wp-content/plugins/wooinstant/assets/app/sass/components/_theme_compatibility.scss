@@ -1,0 +1,33 @@
+// Divi Theme Compatibility
+.theme-Divi {
+    .ins-up-sells {
+        .ins-sell-add-to-cart {
+            border: none!important;
+            font-size: 16px!important;
+            line-height: 1.3!important;
+            color: var(--ins_checkout_theme) !important;
+            &:after {
+                font-size: 18px;
+                line-height: 1.3 !important;
+            }
+        } 
+    }
+}
+
+// OceanWP Fly Cart
+.woocommerce ul.products .product{
+    overflow: inherit;
+}
+
+// Blocksy Theme Compatibility
+.ins-cart-item-quantity{
+    .ct-increase, .ct-decrease {
+        display: none !important;
+      }
+      div.quantity[data-type] input[type="number"] {
+        padding: 0px !important;
+      }
+    
+}
+
+ 

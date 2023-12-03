@@ -1,0 +1,91 @@
+/* Single Step */
+
+.ins-checkout-popup {
+  &.ins-single-layout-step {
+    position: fixed !important;
+    .ins-checkout-layout {
+      &.ins-single-layout-step {
+        @media (max-width: 1240px) {
+          width: var(--ins_panel_width_1200) !important;
+        }
+        @media (max-width: 1024px) {
+          width: var(--ins_panel_width_1024) !important;
+        }
+        @media (max-width: 767px) {
+          width: var(--ins_panel_width_767) !important;
+        }
+        @media (max-width: 575px) {
+          width: 100% !important;
+        }
+
+        .ins-click-to-show {
+          &.popupcart {
+            display: none !important;
+          }
+        }
+
+        .ins-single-layout-wrap {
+          .woocommerce-cart-form {
+            display: block;
+            padding: 0 !important;
+          }
+        }
+      }
+    }
+    .ins-checkout-layout {
+      &.ins-single-layout-step {
+        .woocommerce-cart-form {
+          margin-bottom: 0;
+          .ins-checkout-body {
+            overflow: hidden;
+          }
+          .ins-cart-footer-content {
+            margin-bottom: 15px !important;
+          }
+        }
+
+        .ins-checkout {
+          .ins-cart-inner {
+            display: block !important;
+            margin-bottom: 0px;
+
+            &.payment {
+              .ins_single_layout_btn {
+                left: 0;
+                width: 100% !important;
+                padding: 0px !important;
+                position: relative !important;
+              }
+            }
+
+            #customer_details {
+              margin-bottom: 0 !important;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.ins-single-layout-wrap {
+  overflow: auto;
+  height: 100% !important;
+
+  // Hide checkout when cart empty
+  .ins_single_layout_checkout_area.hide {
+    display: none !important;
+  }
+}
+
+.ins-checkout-popup.ins-single-layout-step.popup {
+  .ins-cart-inner {
+    #customer_details {
+      display: block !important;
+    }
+  }
+}
+
+.ins-checkout-modern.ins-single-layout-step .ins-checkout-layout.popup {
+  width: var(--ins_panel_width_1200) !important;
+}

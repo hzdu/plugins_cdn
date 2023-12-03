@@ -1,0 +1,145 @@
+/* Error message */
+
+.ins-error-message {
+  position: absolute;
+  left: 3px;
+  bottom: -16px;
+  font-size: 12px;
+  line-height: 12px;
+  color: #da281c !important;
+}
+
+.ins-invalid-required input {
+  border: 1px solid #da281c !important;
+  background-color: #ffeceb !important;
+}
+
+.woocommerce-billing-fields,
+.woocommerce-shipping-fields {
+  margin-bottom: 20px;
+}
+.woocommerce-checkout #payment ul.payment_methods {
+  border-bottom: 1px solid transparent !important;
+}
+
+/* Error message */
+
+/* Cross sales */
+.ins-card-cross-sell {
+  display: none;
+  &.active {
+    display: block !important;
+  }
+}
+.ins-checkout-layout-3.popup .ins-content {
+  height: calc(100% - 157px) !important;
+}
+.ins-cross-sells {
+  margin: 16px 0;
+}
+.ins-cross-sell {
+  display: flex;
+  gap: 16px;
+  flex-direction: row;
+}
+.ins-checkout-layout.popup {
+  .ins-cross-sell {
+    flex-direction: column;
+  }
+}
+.ins-product-sell-carousel {
+  margin-bottom: 16px;
+
+  &.owl-hidden {
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+}
+
+.ins-single-product-sell {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  background-color: $card;
+  padding: 10px;
+  border-radius: 5px;
+  position: relative;
+  width: 100%;
+  .ins-sell-content {
+    width: 100%;
+  }
+}
+
+.ins-single-product-sell-img img {
+  height: 75px !important;
+  width: auto;
+  object-fit: cover;
+}
+
+.ins-sell-content h3 {
+  font-size: 16px;
+  margin: 0;
+  font-weight: 600;
+  color: $s_shade;
+}
+
+.ins-sell-content-meta {
+  .woocommerce-Price-amount.amount {
+    font-size: 15px !important;
+    font-weight: 600;
+  }
+
+  a {
+    margin: 0 !important;
+    margin-left: 0px;
+    padding: 0 !important;
+    background-color: transparent !important;
+    margin-left: 15px !important;
+    text-decoration: underline !important;
+    color: $s_shade !important;
+    font-weight: 400;
+    float: right !important;
+    // position: absolute !important;
+    right: 16px;
+    bottom: 16px;
+    font-size: 14px !important;
+    width: 100%;
+    text-align: right;
+
+    &:hover {
+      background-color: transparent;
+    }
+  }
+
+  .added_to_cart {
+    display: none !important;
+  }
+}
+
+.ins-cross-sell-title {
+  font-size: 20px !important;
+  font-weight: 600;
+  margin-bottom: 8px !important;
+}
+
+/* Cross sales */
+
+/* PopUp CSS */
+
+.ins-checkout-modern.popup {
+  #customer_details {
+    display: flex;
+    gap: 17px;
+
+    > div {
+      width: 100%;
+    }
+  }
+
+  .ins-payment-wrap > div {
+    width: 100%;
+  }
+}
+
+/* PopUp CSS */
