@@ -180,7 +180,7 @@
 	    		html+='<tr valign="top"><th scope="row" class="titledesc"><label for="mwb_wpr_membership_expiration">'+mwb_wpr.Exp_period+'</label></th><td class="forminp forminp-text"><input type="number" min="1" value="" name="mwb_wpr_membership_expiration_'+count+'"id="mwb_wpr_membership_expiration_'+count+'" class="input-text"><select id="mwb_wpr_membership_expiration_days_'+count+'" name="mwb_wpr_membership_expiration_days_'+count+'"><option value="days">'+mwb_wpr.Days+'</option><option value="weeks">'+mwb_wpr.Weeks+'</option><option value="months">'+mwb_wpr.Months+'</option><option value="years">'+mwb_wpr.Years+'</option>';
 	    		html+='<tr valign="top"><th scope="row" class="titledesc"><label for="mwb_wpr_membership_category_list">'+mwb_wpr.Categ_text+'</label></th><td class="forminp forminp-text"><select id="mwb_wpr_membership_category_list_'+count+'" required="true" class="mwb_wpr_common_class_categ" data-id="'+count+'" multiple="multiple" name="mwb_wpr_membership_category_list_'+count+'[]">'+cat_options+'</select></td></tr>';
 	    		html+='<tr valign="top"><th scope="row" class="titledesc"><label for="mwb_wpr_membership_product_list">'+mwb_wpr.Prod_text+'</label></th><td class="forminp forminp-text"><select id="mwb_wpr_membership_product_list_'+count+'" multiple="multiple" name="mwb_wpr_membership_product_list_'+count+'[]"></select></td></tr>';
-	    		html+='<tr valign="top"><th scope="row" class="titledesc"><label for="mwb_wpr_membership_discount">'+mwb_wpr.Discounttext+'</label></th><td class="forminp forminp-text"><label for="mwb_wpr_membership_discount"><input type="number" min="1" value="" name="mwb_wpr_membership_discount_'+count+'" id="mwb_wpr_membership_discount_'+count+'" class="input-text" required></label></td><input type = "hidden" value="'+count+'" name="hidden_count"></tr></table></div>';
+	    		html+='<tr valign="top"><th scope="row" class="titledesc"><label for="mwb_wpr_membership_discount">'+mwb_wpr.Discounttext+'</label></th><td class="forminp forminp-text"><label for="mwb_wpr_membership_discount"><input type="number" min="1" max="100" value="" name="mwb_wpr_membership_discount_'+count+'" id="mwb_wpr_membership_discount_'+count+'" class="input-text" required></label></td><input type = "hidden" value="'+count+'" name="hidden_count"></tr></table></div>';
 	    		$('.parent_of_div').append(html);
 	    		$('#mwb_wpr_parent_repeatable_'+count+'').find('#mwb_wpr_membership_category_list_'+count).select2();
 	    		$('#mwb_wpr_parent_repeatable_'+count+'').find('#mwb_wpr_membership_product_list_'+count).select2();
@@ -653,6 +653,51 @@ var check_validation_setting = function(){
 				console.log(response);
 			}
 		});
+	});
+
+	// This function is used to Preview csv data before importing csv file.
+	jQuery(document).on('click', '#mwb_wpr_preview_csv_file_data', function(){
+		
+		jQuery('.mwb_wpr_preview_csv_loader').show();
+		jQuery('.mwb_preview_csv_main_wrapper').hide();
+		var form_data = new FormData( jQuery('form#mainform')[0] );
+		form_data.append( 'action', 'mwb_wpr_preview_csv_data_action' );
+		form_data.append( 'mwb_nonce', mwb_wpr.mwb_wpr_nonce );
+		form_data.append( 'start_limit', 80 );
+		form_data.append( 'end_limit', 80 );
+
+		jQuery.ajax({
+			method      : 'POST',
+			url         : mwb_wpr.ajaxurl,
+			data        : form_data,
+			contentType : false,
+			processData : false,
+			success     : function( response ){
+				jQuery('.mwb_wpr_preview_csv_loader').hide();
+				if ( false === response.result ) {
+					alert( response.msg );
+				} else if ( 'undefined' === response.result ) {
+					alert( response.msg );
+				} else {
+					jQuery('.mwb_preview_csv_main_wrapper').show();
+					jQuery('.mwb_wpr_show_preview_data').html(response);
+				}
+			},
+			error : function( error ) {
+				jQuery('.mwb_wpr_preview_csv_loader').hide();
+				alert('Invalid File');
+			},
+		});
+	});
+
+	// Close preview modal.
+	jQuery(document).on('click', '.mwb-csv-close-btn', function(){
+		jQuery('.mwb_preview_csv_main_wrapper').hide();
+	});
+
+	// closing saved success msg.
+	jQuery(document).on('click', '.notice-dismiss', function(){
+		jQuery('.notice-success').hide();
 	});
 
 } ( jQuery ) );

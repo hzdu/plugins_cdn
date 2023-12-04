@@ -41,61 +41,30 @@
 {
   color: green;
 }
-.mwb_wpr_wrapper_button .twitter-share-button {
-  background: #3399ff none repeat scroll 0 0;
-  border-radius: 5px;
-  color: #ffffff;
-  font-size: 12px;
-  padding: 1px 12px;
-  text-decoration: none;
-  vertical-align: top;
-  display: inline-block;
+
+.mwb_wpr_wrapper_button {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
-.mwb_wpr_wrapper_button  .fb-share-button {
- background: #4867AA none repeat scroll 0 0;
- border-radius: 5px;
- color: #fff;
- padding: 1px 12px;
- font-size: 12px;
- text-decoration: none;
- vertical-align: top;
+
+.mwb_wpr_wrapper_button a.mwb_wpr_common_class{
+  text-decoration: none!important;
+ }
+
+.mwb_wpr_wrapper_button a.mwb_wpr_common_class:focus{
+  outline: none;
 }
-.mwb_wpr_btn .twitter-share-button > img {
- display: inline-block;
- margin-right: 4px;
- margin-top: 3px;
- vertical-align: top;
- width: 19px;
+
+.mwb_wpr_common_class img{
+ width: 26px;
+ height: auto;
 }
-.mwb_wpr_wrapper_button .google{
- display: inline-block; 
- vertical-align: top;
+
+.mwb_wpr_wrapper_button #fb-root{
+  display: none;
 }
-.mwb_wpr_wrapper_button .mwb_wpr_common_class {
- display: inline-block;
- margin: 0 7px;
-}
-.mwb_wpr_wrapper_button .mwb_wpr_mail_button {
-  background-color: #575757;
-  border-radius: 3px;
-  display: inline-block;
-  height: 21px;
-  padding: 0;
-  text-align: center;
-  vertical-align: top;
-  width: 50px;
-  box-shadow: none;
-}
-.mwb_wpr_wrapper_button .mwb_wpr_mail_button img {
- box-shadow: none;
- display: inline-block;
- margin: 3px auto 0;
- vertical-align: top;
- width: 18px;
-}
-.mwb_wpr_wrapper_button .mwb_wpr_mail_button .mwb_wpr_common_class {
- margin-left: 12px;
-}
+
 .button-primary.woocommerce-save-button.mwb_wpr_save_changes {
  background: #ebe9eb none repeat scroll 0 0;
  color: #515151 ;
@@ -157,11 +126,20 @@
   float: left;
   padding: 6px;
 }
-#mwb_wpr_copy {
-  float: left;
-  max-width: 384px;
-  width: 100%;
+
+.mwb_wpr_refrral_code_copy {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin:0 0 10px;
 }
+
+.mwb_wpr_refrral_code_copy p#mwb_wpr_copy {
+  width: 100%;
+  margin: 0;
+}
+
+
 #mwb_wpr_copy code {
  background: #ebe9eb none repeat scroll 0 0;
  display: block;
@@ -419,6 +397,11 @@ html,body{
   display: inline-block;
   opacity: 1;
 }
+
+.mwb_wpr_each_section .mwb_wpr_btn_copy:focus {
+  outline: none;
+}
+
 .mwb_ways_to_gain_points_section .mwb_wpr_each_section {
   white-space: pre-line;
 }
@@ -684,6 +667,7 @@ input#mwb_cart_points_apply {
 .wps_wpr_main_custom_coupon__wrapper {
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
 }
 
 form#mwb_wpr_membership input[type=submit] {
@@ -710,6 +694,39 @@ form#points_form .wps_wpr_main_custom_coupon__wrapper input[type=number] {
   max-width: 600px;
 }
 
+#mwb_wpr_redeem_points_amount {
+  max-width: 200px;
+}
+
+div#mwb_wpr_wallet_redeem_buttons {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-top: 10px;
+    gap: 10px;
+}
+
+div#mwb_wpr_wallet_enter_points {
+    margin-top: 10px;
+}
+
+#mwb_wpr_show_wallet_messages_while_transfer {
+  font-weight: 600;
+}
+
+.mwb_points_transfer_wallet {
+  display: none;
+  vertical-align: middle;
+  width: 24px;
+  height: auto;
+  margin-left: 5px;
+}
+
+.mwb_button_and_image_wrapper {
+  display: flex;
+  align-items: center;
+}
+
 @media only screen and (max-width: 768px) {
   .mwb_wpr_table_view_log th,
   .mwb_wpr_common_table td {
@@ -720,5 +737,18 @@ form#points_form .wps_wpr_main_custom_coupon__wrapper input[type=number] {
   .view-log-Activity {
     font-size: 14px;
     line-height: 21px;
+  }
+}
+
+@media screen and (max-width: 580px){
+  #mwb_wpr_wallet_redeem_buttons #mwb_wpr_redeem_points_amount {
+    width: 100%;
+    max-width: 100%;
+  }
+  form#points_form .wps_wpr_main_custom_coupon__wrapper input[type=number] {
+    max-width: 100%;
+  }
+  #mwb_wpr_wallet_redeem_buttons #mwb_wpr_transfer_points_to_wallet {
+    width: 100%;
   }
 }

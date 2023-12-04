@@ -391,4 +391,63 @@
 		$node.removeClass( 'processing' ).unblock();
 	};
 
+	// +++++ wallet compatibility transfer points to wallet. ++++++
+
+	jQuery(document).on('click', '#mwb_wpr_transfer_points_to_wallet', function(){
+		
+		// get enter points and user id.
+		var user_id                      = jQuery(this).data( 'id' );
+		var mwb_wpr_redeem_points_amount = jQuery('#mwb_wpr_redeem_points_amount').val().trim();
+		mwb_wpr_redeem_points_amount     = parseFloat( mwb_wpr_redeem_points_amount );
+		
+		// show loader and disable redeem button.
+		jQuery('#mwb_wpr_show_wallet_messages_while_transfer').html('');
+		jQuery(this).prop('disabled', true);
+		jQuery('.mwb_points_transfer_wallet').show();
+
+		// check if values is less than zero.
+		if ( mwb_wpr_redeem_points_amount > 0 ) {
+
+			var data = {
+				'action'              : 'mwb_wpr_points_to_wallet_transfer',
+				'nonce'               : mwb_wpr.mwb_wpr_nonce,
+				'mwb_transfer_points' : mwb_wpr_redeem_points_amount,
+				'user_id'             : user_id,
+			};
+
+			jQuery.ajax({
+				method  : 'POST',
+				url     : mwb_wpr.ajaxurl,
+				data    : data,
+				success : function( response ) {
+					// hide loader and enable redeem button.
+					jQuery('.mwb_points_transfer_wallet').hide();
+					jQuery('#mwb_wpr_transfer_points_to_wallet').prop('disabled', false);
+
+					// if response is true than show success msg.
+					if ( true == response.result ) {
+
+						jQuery('#mwb_wpr_show_wallet_messages_while_transfer').css('color', 'green');
+						jQuery('#mwb_wpr_show_wallet_messages_while_transfer').html(response.message);
+					} else {
+
+						jQuery('#mwb_wpr_show_wallet_messages_while_transfer').css('color', 'red');
+						jQuery('#mwb_wpr_show_wallet_messages_while_transfer').html(response.message);
+					}
+				},
+				error   : function( error ) {
+					console.log( error );
+				},
+			});
+		} else {
+
+			// if value is null then hide loader, enbale button and show alert message.
+			jQuery('.mwb_points_transfer_wallet').hide();
+			jQuery('#mwb_wpr_transfer_points_to_wallet').prop('disabled', false);
+			jQuery('#mwb_wpr_show_wallet_messages_while_transfer').css('color', 'red');
+			jQuery('#mwb_wpr_show_wallet_messages_while_transfer').html(mwb_wpr.mwb_wallet_invalid_msg);
+		}
+
+	});
+
 } ( jQuery ) );
