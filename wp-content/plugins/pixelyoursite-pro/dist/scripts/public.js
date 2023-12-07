@@ -80,6 +80,7 @@ if (!String.prototype.trim) {
     }
     var firstVisit = false;
 
+    var isTrackEventForGA = [];
 
     var dummyPinterest = function () {
 
@@ -201,7 +202,7 @@ if (!String.prototype.trim) {
 
         let isNewSession = checkSession();
 
-        if(isNewSession){
+        if(isNewSession && !options.cookie.disabled_all_cookie && !options.cookie.disabled_start_session_cookie) {
             let duration = options.last_visit_duration * 60000
             var now = new Date();
             now.setTime(now.getTime() + duration);
@@ -734,10 +735,13 @@ if (!String.prototype.trim) {
             if(options.visit_data_model === "last_visit") {
                 name = "last_pys_landing_page"
             }
-            if(Cookies.get(name) === 'undefined') {
-                return "";
-            } else {
+            if(Cookies.get(name) && Cookies.get(name) !== "undefined") {
                 return Cookies.get(name);
+            }
+            else if(options.hasOwnProperty("tracking_analytics") && options.tracking_analytics.TrafficLanding){
+                return options.tracking_analytics.TrafficLanding;
+            } else{
+                return "";
             }
         }
         function getTrafficSourceValue() {
@@ -745,10 +749,13 @@ if (!String.prototype.trim) {
             if(options.visit_data_model === "last_visit") {
                 name = "last_pysTrafficSource"
             }
-            if(Cookies.get(name) === 'undefined') {
-                return "";
-            } else {
+            if(Cookies.get(name) && Cookies.get(name) !== "undefined") {
                 return Cookies.get(name);
+            }
+            else if(options.hasOwnProperty("tracking_analytics") && options.tracking_analytics.TrafficSource){
+                return options.tracking_analytics.TrafficSource;
+            } else{
+                return "";
             }
         }
 
@@ -762,6 +769,9 @@ if (!String.prototype.trim) {
                 $.each(utmId, function (index, name) {
                     if (Cookies.get(cookiePrefix + name)) {
                         terms[name] = Cookies.get(cookiePrefix + name)
+                    }
+                    else if(options.hasOwnProperty("tracking_analytics") && options.tracking_analytics.TrafficUtmsId[name]) {
+                        terms[name] = filterEmails(options.tracking_analytics.TrafficUtmsId[name])
                     }
                 });
                 return terms;
@@ -785,6 +795,9 @@ if (!String.prototype.trim) {
                     if (Cookies.get(cookiePrefix + name)) {
                         let value = Cookies.get(cookiePrefix + name);
                         terms[name] = filterEmails(value); // do not allow email in request params (Issue #70)
+                    }
+                    else if(options.hasOwnProperty("tracking_analytics") && options.tracking_analytics.TrafficUtms[name]) {
+                        terms[name] = filterEmails(options.tracking_analytics.TrafficUtms[name])
                     }
                 });
 
@@ -2106,10 +2119,10 @@ if (!String.prototype.trim) {
                 });
 
                 var dateTime = getDateTime();
-                var landing = Cookies.get('pys_landing_page');
-                var lastLanding = Cookies.get('last_pys_landing_page');
-                var trafic = Cookies.get('pysTrafficSource');
-                var lastTrafic = Cookies.get('last_pysTrafficSource');
+                var landing = getLandingPageValue();
+                var lastLanding = getLandingPageValue();
+                var trafic = getTrafficSourceValue();
+                var lastTrafic = getTrafficSourceValue();
 
                 var $form = null;
                 if($('body').hasClass('woocommerce-checkout')) {
@@ -2197,7 +2210,7 @@ if (!String.prototype.trim) {
             var params = {};
             Utils.copyProperties(data, params);
 
-            params.eventID = event.eventID;
+            params.event_id = event.event_id;
             if(ids.length > 0){
                 TikTok.fireEventAPI(name, event, params);
             }
@@ -2340,7 +2353,7 @@ if (!String.prototype.trim) {
                                 ids: ids,
                                 data:params,
                                 url:window.location.href,
-                                eventID:event.eventID,
+                                event_id:event.event_id,
                                 ajax_event:options.ajax_event
                             };
 
@@ -2524,6 +2537,7 @@ if (!String.prototype.trim) {
         if(!isAddToCartFromJs) {
             notCachedEventsIds.push('woo_add_to_cart_on_button_click')
         }
+
         var initialized = false;
         var configuredPixels = new Array();
 
@@ -2549,9 +2563,6 @@ if (!String.prototype.trim) {
 
             if(options.facebook.serverApiEnabled) {
                 if(event.e_id === "woo_remove_from_cart" ) {
-                    Facebook.updateEventId(event.name);
-                    event.eventID = Facebook.getEventId(event.name);
-                } else if(isAddToCartFromJs && event.e_id === "woo_add_to_cart_on_button_click" ) {
                     Facebook.updateEventId(event.name);
                     event.eventID = Facebook.getEventId(event.name);
                 } else if(!notCachedEventsIds.includes(event.e_id)) {
@@ -3109,12 +3120,27 @@ if (!String.prototype.trim) {
                 gtag('event', name, params);
 
             };
+            if(options.ga.hasOwnProperty('unifyGA4') && options.ga.unifyGA4){
 
-            ids.forEach(function (tracking_id) {
-                var copyParams = Utils.copyProperties(eventParams, {}); // copy params because mapParamsTov4 can modify it
-                var params = mapParamsTov4(tracking_id,name,copyParams)
-                _fireEvent(tracking_id, name, params);
-            });
+                    var copyParams = Utils.copyProperties(eventParams, {}); // copy params because mapParamsTov4 can modify it
+                    if(event.hasOwnProperty("unify")){
+                        var params = mapParamsToUnifyGA(name,copyParams)
+                    }
+                    else {
+                        var params = mapParamsTov4(ids,name,copyParams)
+                    }
+
+                    _fireEvent(ids, name, params);
+                    isTrackEventForGA.push(name);
+            }
+            else {
+                ids.forEach(function (tracking_id) {
+                    var copyParams = Utils.copyProperties(eventParams, {}); // copy params because mapParamsTov4 can modify it
+                    var params = mapParamsTov4(tracking_id,name,copyParams)
+                    _fireEvent(tracking_id, name, params);
+                });
+            }
+
 
         }
 
@@ -3135,24 +3161,106 @@ if (!String.prototype.trim) {
 
         }
 
+        function mapParamsToUnifyGA(name,param){
+            switch (name) {
+                case 'OutboundClick':
+                case 'InternalClick': {
+                    let params = {
+                        event_category: "Key Actions",
+                        event_action: name,
+                        non_interaction: param.non_interaction,
+                    }
+                    if(param.hasOwnProperty("target_url")) {
+                        params['event_label'] = param.target_url
+                    }
+                    if(options.trackTrafficSource) {
+                        params['traffic_source'] = param.traffic_source
+                    }
+                    return params;
+                }
+
+                case 'AdSense' :
+                case 'Comment' :
+                case 'login' :
+                case 'sign_up' :
+                case 'EmailClick' :
+                case 'TelClick' : {
+                    let params = {
+                        event_category: "Key Actions",
+                        event_action: name,
+                        non_interaction: param.non_interaction,
+                    }
+                    return params;
+                }
+                case 'Form' : {
+                    let params = {
+                        event_category: "Key Actions",
+                        event_action: name,
+                        non_interaction: param.non_interaction,
+                    }
+                    var formClass = (typeof param.form_class != 'undefined') ? 'class: ' + param.form_class : '';
+                    if(formClass != "") {
+                        params["event_label"] = formClass;
+                    }
+                    return params;
+                }
+                case 'Download' : {
+                    let params = {
+                        event_category: "Key Actions",
+                        event_action: name,
+                        event_label: param.download_name,
+                        non_interaction: param.non_interaction,
+                    }
+                    return params;
+                }
+                case 'TimeOnPage' :
+                case 'PageScroll' : {
+                    let params = {
+                        event_category: "Key Actions",
+                        event_action: name,
+                        event_label: document.title,
+                        non_interaction: param.non_interaction,
+                    }
+                    return params;
+                }
+                case 'search' : {
+                    let params = {
+                        event_category: "Key Actions",
+                        event_action: name,
+                        event_label: param.search_term,
+                        non_interaction: param.non_interaction,
+                    }
+                    return params;
+                }
+            }
+            return param;
+        }
         function mapParamsTov4(tag,name,param) {
             //GA4 automatically collects a number of parameters for all events
+            var hasGA4Tag = false;
             delete param.page_title;
             delete param.event_url;
             delete param.landing_page;
+
             // end
-            if(isv4(tag)) {
+            if (Array.isArray(tag)) {
+                hasGA4Tag = tag.some(function (element) {
+                    return isv4(element);
+                });
+            } else if(isv4(tag)) {
+                // tag является строкой и соответствует GA4
+                hasGA4Tag = true;
+            }
+            if(hasGA4Tag) {
                 delete param.traffic_source;
                 delete param.event_category;
                 delete param.event_label;
                 delete param.ecomm_prodid;
                 delete param.ecomm_pagetype;
                 delete param.ecomm_totalvalue;
-                delete param.non_interaction;
                 if(name === 'search') {
                     param['search'] = param.search_term;
                     delete param.search_term;
-                    delete param.non_interaction;
                     delete param.dynx_itemid;
                     delete param.dynx_pagetype;
                     delete param.dynx_totalvalue;
@@ -3165,7 +3273,6 @@ if (!String.prototype.trim) {
                         let params = {
                             event_category: "Key Actions",
                             event_action: name,
-                            non_interaction: param.non_interaction,
                         }
                         if(param.hasOwnProperty("target_url")) {
                             params['event_label'] = param.target_url
@@ -3185,7 +3292,6 @@ if (!String.prototype.trim) {
                         let params = {
                             event_category: "Key Actions",
                             event_action: name,
-                              non_interaction: param.non_interaction,
                         }
                         return params;
                     }
@@ -3193,7 +3299,6 @@ if (!String.prototype.trim) {
                         let params = {
                             event_category: "Key Actions",
                             event_action: name,
-                              non_interaction: param.non_interaction,
                         }
                         var formClass = (typeof param.form_class != 'undefined') ? 'class: ' + param.form_class : '';
                         if(formClass != "") {
@@ -3206,7 +3311,6 @@ if (!String.prototype.trim) {
                             event_category: "Key Actions",
                             event_action: name,
                             event_label: param.download_name,
-                              non_interaction: param.non_interaction,
                         }
                         return params;
                     }
@@ -3216,7 +3320,6 @@ if (!String.prototype.trim) {
                             event_category: "Key Actions",
                             event_action: name,
                             event_label: document.title,
-                              non_interaction: param.non_interaction,
                         }
                         return params;
                     }
@@ -3225,7 +3328,6 @@ if (!String.prototype.trim) {
                             event_category: "Key Actions",
                             event_action: name,
                             event_label: param.search_term,
-                              non_interaction: param.non_interaction,
                         }
                         return params;
                     }
@@ -3302,8 +3404,6 @@ if (!String.prototype.trim) {
                 }
 
                 var config = {
-                    'link_attribution': options.ga.enhanceLinkAttr,
-                    'anonymize_ip': options.ga.anonimizeIP,
                     'custom_map': cd
                 };
 
@@ -3340,9 +3440,6 @@ if (!String.prototype.trim) {
                         delete config.debug_mode;
                     }
                     if(isv4(trackingId)) {
-                        if(options.ga.disableAdvertisingFeatures) {
-                            config.allow_google_signals = false
-                        }
                         if(options.ga.disableAdvertisingPersonalization) {
                             config.allow_ad_personalization_signals = false
                         }
@@ -3641,7 +3738,6 @@ if (!String.prototype.trim) {
          * @link: https://developers.google.com/gtagjs/reference/parameter
          */
         function fireEvent(name, data) {
-
             if(typeof window.pys_event_data_filter === "function" && window.pys_disable_event_filter(event_name,'google_ads')) {
                 return;
             }
@@ -3672,25 +3768,64 @@ if (!String.prototype.trim) {
                 if (options.debug) {
                     console.log('[Google Ads #' + conversion_id + '] ' + event_name, params);
                 }
-
                 gtag('event', event_name, params);
 
+
             };
+            if(options.hasOwnProperty('ga') && options.ga.hasOwnProperty('unifyGA4') && options.ga.unifyGA4){
+                if (conversion_labels.length > 0) {
+                    ids = conversion_labels;
+                    if(!isTrackEventForGA.includes(name)){
+                        _fireEvent(ids, name);
+                    }
+                }
+                else {
+                    if(ids.length && options.google_ads.woo_conversion_track && options.google_ads.woo_conversion_track == 'conversion')
+                    {
+                        _fireEvent(ids, "conversion");
+                    }
+                    if (name == 'purchase') {
+                        if (ids.length && options.google_ads.woo_conversion_track && options.google_ads.woo_conversion_track == 'purchase') {
+                            ids = ids;
+                        } else {
+                            ids = coversionIds
+                        }
+                    } else {
+                        ids = coversionIds;
+                    }
+                    if(!isTrackEventForGA.includes(name)){
+                        _fireEvent(ids, name);
+                    }
+                }
 
-            if(conversion_labels.length > 0) {  // if custom event have conversion_label
-                conversion_labels.forEach(function (conversion_id) {
-                    _fireEvent(conversion_id,name);
-                });
-            } else { // if normal event have conversion_label or custom without conversion_label
-
-                coversionIds.forEach(function (conversion_id) { // send main event
-                    _fireEvent(conversion_id,name);
-                });
-
-                if (ids.length) {
-                    ids.forEach(function (conversion_id) {  // send conversion event next to main(not use for custom events)
-                        _fireEvent(conversion_id,"conversion");
+            }
+            else {
+                if (conversion_labels.length > 0) {  // if custom event have conversion_label
+                    conversion_labels.forEach(function (conversion_id) {
+                        _fireEvent(conversion_id, name);
                     });
+                } else { // if normal event have conversion_label or custom without conversion_label
+
+                    if (ids.length && options.google_ads.woo_conversion_track && options.google_ads.woo_conversion_track == 'conversion') {
+                        ids.forEach(function (conversion_id) {  // send conversion event next to main(not use for custom events)
+                            _fireEvent(conversion_id, "conversion");
+                        });
+                    }
+                    if (name == 'purchase') {
+                        if (ids.length && options.google_ads.woo_conversion_track && options.google_ads.woo_conversion_track == 'purchase') {
+                            ids.forEach(function (conversion_id) {  // send conversion event next to main(not use for custom events)
+                                _fireEvent(conversion_id, name);
+                            });
+                        } else {
+                            coversionIds.forEach(function (conversion_id) { // send main event
+                                _fireEvent(conversion_id, name);
+                            });
+                        }
+                    } else {
+                        coversionIds.forEach(function (conversion_id) { // send main event
+                            _fireEvent(conversion_id, name);
+                        });
+                    }
                 }
             }
         }

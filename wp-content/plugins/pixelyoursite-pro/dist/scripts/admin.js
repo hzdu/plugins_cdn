@@ -13,7 +13,16 @@ jQuery(document).ready(function(c){function n(e){var t=c("#"+e.data("target"));e
 
 
 jQuery( document ).ready(function($) {
+    function enable_merged_ga(){
+        $("#pys_event_ga_ads_enabled").is(":checked")?$("#merged_analytics_panel").show():$("#merged_analytics_panel").hide()
+    }
+    enable_merged_ga();
+    $("#pys_event_ga_ads_enabled").on('click',function(){enable_merged_ga()})
 
+
+    function check_custom_action_merged(){
+        "_custom"===$("#pys_event_ga_ads_event_action").val() ? $("#pys_event_ga_ads_custom_event_action").css("visibility","visible"):$("#pys_event_ga_ads_custom_event_action").css("visibility","hidden")
+    }
 
     checkStepActive();
     calculateStepsNums();
@@ -66,10 +75,9 @@ jQuery( document ).ready(function($) {
         updatePostEventFields();
     });
 
-    $(".action_old,.action_g4").on('change',function () {
+    $(".action_old,.action_g4,.action_merged_g4").on('change',function () {
         var value = $(this).val();
-        $(".ga-custom-param-list").html("");
-        $(".ga-param-list").html("");
+        $(".ga-param-list, .ga-ads-param-list").html("");
 
         for(i=0;i<ga_fields.length;i++){
             if(ga_fields[i].name == value) {
@@ -79,6 +87,12 @@ jQuery( document ).ready(function($) {
                             '<div class="col-4">' +
                                 '<input type="text" name="pys[event][ga_params]['+el+']" class="form-control">' +
                             '</div>' +
+                        ' </div>');
+                    $(".ga-ads-param-list").append('<div class="row mb-3 ga_ads_param">\n' +
+                        '<label class="col-5 control-label">'+el+'</label>' +
+                        '<div class="col-4">' +
+                        '<input type="text" name="pys[event][ga_ads_params]['+el+']" class="form-control">' +
+                        '</div>' +
                         ' </div>');
                 });
                 break;
@@ -92,7 +106,34 @@ jQuery( document ).ready(function($) {
         }
         updateGAActionSelector();
     })
-    updateGAActionSelector();
+
+    if($(".action_merged_g4").length > 0) {
+        var value = $('.action_merged_g4').val();
+        if($(".ga-ads-param-list .ga_ads_param").length == 0) {
+            for(i=0;i<ga_fields.length;i++){
+                if(ga_fields[i].name == value) {
+                    ga_fields[i].fields.forEach(function(el){
+                        $(".ga-ads-param-list").append('<div class="row mb-3 ga_ads_param">\n' +
+                            '<label class="col-5 control-label">'+el+'</label>' +
+                            '<div class="col-4">' +
+                            '<input type="text" name="pys[event][ga_ads_params]['+el+']" class="form-control">' +
+                            '</div>' +
+                            ' </div>');
+                    });
+                    break;
+                }
+            }
+        };
+
+
+
+        if($('option:selected', this).attr('group') == "Retail/Ecommerce") {
+            $(".ga_woo_info").attr('style',"display: block");
+        } else {
+            $(".ga_woo_info").attr('style',"display: none");
+        }
+        updateGAActionSelector();
+    };
 
     function updateGAActionSelector() {
         if($('.action_g4').length > 0) {
@@ -105,6 +146,13 @@ jQuery( document ).ready(function($) {
                 $('#ga-custom-action_g4').css('display','block');
             } else {
                 $('#ga-custom-action_g4').css('display','none')
+            }
+        }
+        if($('.action_merged_g4').length > 0) {
+            if($('.action_merged_g4').val() === "_custom" || $('.action_merged_g4').val() === "CustomEvent") {
+                $('#ga-ads-custom-action_g4').css('display','block');
+            } else {
+                $('#ga-ads-custom-action_g4').css('display','none')
             }
         }
 
@@ -137,6 +185,32 @@ jQuery( document ).ready(function($) {
                         '</div>' +
                     '</div>' +
                 '</div>' +
+            '</div>');
+    });
+
+    $('.add-ga-ads-custom-parameter').on('click',function(){
+        var index = $(".ga-ads-custom-param-list .ga-ads-custom-param").length + 1;
+        $(".ga-ads-custom-param-list").append('<div class="row mt-3 ga-ads-custom-param" data-param_id="'+index+'">' +
+            '<div class="col">' +
+            '<div class="row">' +
+            '<div class="col-1"></div>' +
+            '<div class="col-4">' +
+            '<input type="text" placeholder="Enter name" class="form-control custom-param-name"' +
+            ' name="pys[event][ga_ads_custom_params]['+index+'][name]"' +
+            ' value="">' +
+            '</div>' +
+            '<div class="col-4">' +
+            '<input type="text" placeholder="Enter value" class="form-control custom-param-value"' +
+            ' name="pys[event][ga_ads_custom_params]['+index+'][value]"' +
+            ' value="">' +
+            '</div>' +
+            '<div class="col-2">' +
+            '<button type="button" class="btn btn-sm remove-row">' +
+            '<i class="fa fa-trash-o" aria-hidden="true"></i>' +
+            '</button>' +
+            '</div>' +
+            '</div>' +
+            '</div>' +
             '</div>');
     });
 
@@ -203,29 +277,45 @@ jQuery( document ).ready(function($) {
         }
     }
     function updateGAFields() {
-        if($("#pys_event_ga_pixel_id").val()
-            && $("#pys_event_ga_pixel_id").val().indexOf('G') === 0) {
-            $('.col.g4').css('display','block');
-            $('.col.old_g').css('display','none');
-            $('.action_old').attr('name','')
-            $('.action_g4').attr('name','pys[event][ga_event_action]')
-            $('#ga-custom-action_old input').attr('name','')
-            $('#ga-custom-action_g4 input').attr('name','pys[event][ga_custom_event_action]')
+        var allValues = $("#pys_ga_pixel_id_event option").map(function() {
+            return $(this).val();
+        }).get();
+        var selectedValues = $("#pys_ga_pixel_id_event").val();
+
+        var hasAWElement = selectedValues && (selectedValues.some(value => value.startsWith('AW')) || (selectedValues.includes('all') && allValues.some(value => value.startsWith('AW'))));
+        if (hasAWElement) {
+            $('.conversion_label').css('display', 'flex');
         } else {
-            $('.col.g4').css('display','none');
-            $('.col.old_g').css('display','block');
-            $('.action_g4').attr('name','')
-            $('.action_old').attr('name','pys[event][ga_event_action]')
-            $('#ga-custom-action_old input').attr('name','pys[event][ga_custom_event_action]')
-            $('#ga-custom-action_g4 input').attr('name','')
+            $('.conversion_label').hide();
         }
 
     }
-    if($("#pys_event_ga_pixel_id").length >0) {
-        $("#pys_event_ga_pixel_id").on('change',function () {
+    if($("#pys_ga_pixel_id_event").length >0) {
+        $("#pys_ga_pixel_id_event").on('change',function () {
             updateGAFields()
         })
         updateGAFields();
+    }
+
+    function updateGAADSFields() {
+        var allValues = $("#pys_ga_ads_pixel_id_event option").map(function() {
+            return $(this).val();
+        }).get();
+        var selectedValues = $("#pys_ga_ads_pixel_id_event").val();
+
+        var hasAWElement = selectedValues && (selectedValues.some(value => value.startsWith('AW')) || (selectedValues.includes('all') && allValues.some(value => value.startsWith('AW'))));
+        if (hasAWElement) {
+            $('.conversion_label').css('display', 'flex');
+        } else {
+            $('.conversion_label').hide();
+        }
+
+    }
+    if($("#pys_ga_ads_pixel_id_event").length >0) {
+        $("#pys_ga_ads_pixel_id_event").on('change',function () {
+            updateGAADSFields()
+        })
+        updateGAADSFields();
     }
 
 
