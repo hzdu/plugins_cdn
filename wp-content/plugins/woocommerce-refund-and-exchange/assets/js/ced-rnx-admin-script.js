@@ -150,6 +150,7 @@ jQuery(document).ready(function(){
 			});
 		}
 	});	
+	console.log(global_rnx.wallet);
 
 	
 	jQuery("#ced_rnx_refund_left_amount").click(function(){
@@ -171,6 +172,7 @@ jQuery(document).ready(function(){
 			dataType :'json',	
 			success: function(response) 
 			{
+
 				jQuery(".ced_rnx_return_loader").hide();
 				jQuery(this).removeAttr('disabled');
 				if((global_rnx.wallet == "1" && response.refund_method == 'manual_method') || global_rnx.wallet != "1")

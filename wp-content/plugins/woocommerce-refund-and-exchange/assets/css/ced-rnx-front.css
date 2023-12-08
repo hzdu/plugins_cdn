@@ -41,6 +41,23 @@
     cursor: unset!important;
 }
 
+.add_field_input_div {
+    position: relative;
+    margin: 10px 0;
+}
+
+.add_field_input_div .ced_rnx_delete_field {
+    position: absolute;
+    right: -20px;
+    top: 50%;
+    transform: translate(0, -50%);
+    line-height: 1;
+    cursor: pointer;
+}
+.regenerate_coupon_code_image{
+    display: none;
+}
+
 .ced_rnx_exchnaged_product_remove .remove {
     margin: 0 auto;
     color: red!important;
@@ -626,11 +643,6 @@ div.mwb_order_msg_single_attachment a .mwb_order_msg_attachment_thumbnail {
 
 /* 09-APR-2020 */
 
-.mwb-order-msg-attachment-wrapper {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
 
 .mwb_order_add_msg_form .mwb-order-heading {
     background-color: #dadada;
@@ -667,9 +679,8 @@ div.mwb_order_msg_single_attachment a .mwb_order_msg_attachment_thumbnail {
 }
 
 .mwb-order-msg-btn {
-    margin-top: 15px;
-    text-align: right;
     width: 100%;
+    margin-top: 5px;
 }
 
 #mwb_order_msg_attachment {
@@ -710,10 +721,10 @@ div.mwb_order_msg_single_attachment a .mwb_order_msg_attachment_thumbnail {
     }
 }
 
-.mwb_rma_flex {
+/* .mwb_rma_flex {
     display: flex;
     flex-wrap: wrap;
-}
+} */
 
 .lower_wrapper .mwb_rma__column>div {
     margin-bottom: 20px;
@@ -864,4 +875,19 @@ input#ced_rnx_exhange_shop {
         right: 0;
         top: 0;
     }
+}
+.ced_rnx_disable_image{
+    margin: auto;
+}
+input[name="ced_rnx_new_return_request"] {
+ margin-top: 15px !important;
+}
+.avada-order-details form{
+    display: inline-block;
+}
+.wps_rnx_view_order {
+    margin-left: 5px !important;
+}
+.ced_rnx_prod_img img {
+    margin: auto;
 }

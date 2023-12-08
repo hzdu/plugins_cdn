@@ -230,25 +230,63 @@ jQuery(document).ready(function(){
 	jQuery(".ced_rnx_return_request_morefiles").click(function(){
 		var count = jQuery(this).data('count');
 		var max   = jQuery(this).data('max');
-		var html = '<br/><input type="file" class="input-text ced_rnx_return_request_files" name="ced_rnx_return_request_files[]">';
+		var html = '<div class="add_field_input_div"><input type="file" class="input-text ced_rnx_return_request_files" name="ced_rnx_return_request_files[]"><span class="ced_rnx_delete_field">X</span><br></div>';
 		if (count < max) {
 			jQuery("#ced_rnx_return_request_files").append(html);
 			jQuery(document).find(".ced_rnx_return_request_morefiles").data('count', count+1);
 		}
+		if ( count+1 == max ) {
+			jQuery(this).hide();
+		}
+		
+	});
+
+	// delete file field on the refund request form.
+	jQuery( document ).on( 'click', '.ced_rnx_delete_field', function(){
+		var count = jQuery(document).find('.wps_rma_return_request_morefiles').data( 'count' );
+		jQuery(document).find('.ced_rnx_return_request_morefiles').data( 'count', count - 1 );
+		jQuery(this).parent( '.add_field_input_div' ).remove();
+	});
+
+	//hide add more for exchange and refund.
+	jQuery(document).ready(function(){
+
+		jQuery(".ced_rnx_return_request_morefiles").click(function(){
+
+			var count = jQuery('.ced_rnx_return_request_morefiles').data('count');
+			var max = jQuery('.ced_rnx_return_request_morefiles').data('max');
+			if ( count == max ){
+				
+				jQuery(".ced_rnx_return_request_morefiles").hide();
+			}
+		});
+
+		jQuery(".ced_rnx_exchange_request_morefiles").click(function(){
+
+			var count = jQuery('.ced_rnx_exchange_request_morefiles').data('count');
+			var max   = jQuery('.ced_rnx_exchange_request_morefiles').data('max');
+			if ( count == max ){
+				
+				jQuery(".ced_rnx_exchange_request_morefiles").hide();
+			}
+
+		});
+
 	});
 
 	//Add more files to attachment on exchange
 	jQuery(".ced_rnx_exchange_request_morefiles").click(function(){
 		var count = jQuery(this).data('count');
 		var max   = jQuery(this).data('max');
-		var html = '<br/><input type="file" class="input-text ced_rnx_exchange_request_files" name="ced_rnx_exchange_request_files[]">';
+		var html = '<div class="add_field_input_div"><input type="file" class="input-text ced_rnx_exchange_request_files" name="ced_rnx_exchange_request_files[]"><span class="ced_rnx_delete_field">X</span><br></div>';
 		if (count < max) {
 			jQuery("#ced_rnx_exchange_request_files").append(html);
 			jQuery(document).find(".ced_rnx_exchange_request_morefiles").data('count', count+1);
 		}
 	});
 	
-	jQuery('#ced_rnx_coupon_regenertor').click(function(){
+	jQuery('#ced_rnx_coupon_regenertor').click(function(e){
+		e.preventDefault();
 		var id = jQuery(this).data('id');
 		jQuery('.regenerate_coupon_code_image').css('display' , 'inline-block');
 		jQuery.ajax({
@@ -659,7 +697,7 @@ jQuery(document).ready(function(){
 
 				current.removeClass('loading');
 				current.addClass('added');
-				current.parent().html('<button data-price="'+price+'" data-quantity="'+quantity+'" data-product_id="'+product_id+'" data-product_sku="'+product_sku+'" class="ced_rnx_add_to_exchanged_detail button alt added" tabindex="0">'+global_rnx.exchange_text+'</button><a class="button" href="'+response.url+'">'+response.message+'</a>');
+				current.parent().html('<button data-price="'+price+'" data-quantity="'+quantity+'" data-product_id="'+product_id+'" data-product_sku="'+product_sku+'" class="ced_rnx_add_to_exchanged_detail button alt added" tabindex="0">'+global_rnx.exchange_text+'</button><a class="button wps_rnx_view_order" href="'+response.url+'">'+response.message+'</a>');
 			}
 		});
 	});
@@ -843,23 +881,23 @@ jQuery(document).ready(function(){
 				{
 					if(global_rnx.ced_rnx_exchange_variation_enable == true)
 						{	jQuery('.ced_rnx_exchange_notification_choose_product ').hide();
-					jQuery('#ced_rnx_variation_list').html('');
-					jQuery('#ced_rnx_variation_list').html('<h4><Strong>'+global_rnx.ced_rnx_exchnage_with_same_product_text+'<Strong></h4>');
-					jQuery(".ced_rnx_exchange_column").each(function(){
-						if(jQuery(this).find("td:eq(0)").children('.ced_rnx_exchange_product').is(':checked')){
-							var product_name = jQuery(this).find("td:eq(1)").children('.ced_rnx_product_title').children('a').html();
-							var product_url = jQuery(this).find("td:eq(1)").children('.ced_rnx_product_title').children('a').attr('href');
-							var clone = jQuery(this).find("td:eq(1)").clone().appendTo("#ced_rnx_variation_list");
-							product_name = product_name.split('-');
-							product_name = product_name[0];
-							product_url = product_url.split('?');
-							product_url = product_url[0];
-							clone.find('.ced_rnx_product_title a').html(product_name);
-							clone.wrap('<a href="'+product_url+'"></a><br>');
-							jQuery('.ced_rnx_exchange_note').append('<a href="'+product_url+'"><strong>'+product_name+'<strong></a><br>');
-							}
+							jQuery('#ced_rnx_variation_list').html('');
+							jQuery('#ced_rnx_variation_list').html('<h4><Strong>'+global_rnx.ced_rnx_exchnage_with_same_product_text+'<Strong></h4>');
+							jQuery(".ced_rnx_exchange_column").each(function(){
+								if(jQuery(this).find("td:eq(0)").children('.ced_rnx_exchange_product').is(':checked')){
+									var product_name = jQuery(this).find("td:eq(1)").children('.ced_rnx_product_title').children('a').html();
+									var product_url = jQuery(this).find("td:eq(1)").children('.ced_rnx_product_title').children('a').attr('href');
+									var clone = jQuery(this).find("td:eq(1)").clone().appendTo("#ced_rnx_variation_list");
+									product_name = product_name.split('-');
+									product_name = product_name[0];
+									product_url = product_url.split('?');
+									product_url = product_url[0];
+									// clone.find('.ced_rnx_product_title a').html(product_name);
+									// clone.wrap('<a href="'+product_url+'"></a><br>');
+									// jQuery('.ced_rnx_exchange_note').append('<a href="'+product_url+'"><strong>'+product_name+'<strong></a><br>');
+								}
 						});
-				}
+					}
 				else
 				{
 					jQuery('.ced_rnx_exchange_notification_choose_product').show();
@@ -964,7 +1002,7 @@ jQuery(document).ready(function(){
 			{
 				current.removeClass('loading');
 				current.addClass('added');
-				current.parent().html('<button class="ced_rnx_add_to_exchanged_detail_variable button alt" data-product_id="'+product_id+'"> '+global_rnx.exchange_text+' </button><a class="button" href="'+response.url+'">'+response.message+'</a>');
+				current.parent().html('<button class="ced_rnx_add_to_exchanged_detail_variable button alt" data-product_id="'+product_id+'"> '+global_rnx.exchange_text+' </button><a class="button wps_rnx_view_order" href="'+response.url+'">'+response.message+'</a>');
 			}
 		});
 	});
