@@ -249,6 +249,7 @@ Smart_Manager.prototype.init = function() {
 	this.scheduledActionContent = '';
 	this.isScheduled = false;
 	this.scheduledActionAdminUrl = (sm_beta_params.scheduled_action_admin_url) ? sm_beta_params.scheduled_action_admin_url : '';
+	this.scheduledFor = '0000-00-00 00:00:00';
 
 	//Function to set all the states on unload
 	window.onbeforeunload = function (evt) { 
@@ -3923,7 +3924,7 @@ jQuery.widget('ui.dialog', jQuery.extend({}, jQuery.ui.dialog.prototype, {
 		return Object.assign(params,{isTasks: (window.smart_manager.isTasksEnabled()) ? 1 : 0,
 			title: (window.smart_manager.updatedTitle) ? window.smart_manager.updatedTitle : window.smart_manager.processContent,
 			isScheduled: window.smart_manager.isScheduled,
-			scheduledFor: (window.smart_manager.isScheduled) ? jQuery("#schedule_for").val() : '0000-00-00 00:00:00',
+			scheduledFor: (window.smart_manager.isScheduled) ? window.smart_manager.scheduledFor : '0000-00-00 00:00:00',
 			scheduledActionAdminUrl: (window.smart_manager.isScheduled) ? window.smart_manager.scheduledActionAdminUrl : '' 
 		});
 	}
@@ -4164,6 +4165,19 @@ jQuery.widget('ui.dialog', jQuery.extend({}, jQuery.ui.dialog.prototype, {
 	    }
 
 	    setTimeout(()=>{window.location = export_url},500);
+	}
+	// Function for hiding modal
+	Smart_Manager.prototype.hideModal = function() {
+		setTimeout(() => {
+			try{
+				window.smart_manager.modal = {}
+				if(typeof (window.smart_manager.showPannelDialog) !== "undefined" && typeof (window.smart_manager.showPannelDialog) === "function" && typeof (window.smart_manager.getDefaultRoute) !== "undefined" && typeof (window.smart_manager.getDefaultRoute) === "function"){
+					window.smart_manager.showPannelDialog('',window.smart_manager.getDefaultRoute(true))
+				}
+			} catch(e){
+				SMErrorHandler.log('Exception occurred in hideModal:: ', e)
+			}
+		},200)
 	}
 	// Register an alias for datetime
 	Handsontable.cellTypes.registerCellType('sm.datetime', {

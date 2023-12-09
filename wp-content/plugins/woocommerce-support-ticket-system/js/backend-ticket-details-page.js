@@ -3,9 +3,16 @@ jQuery(document).ready(function()
 {
 	jQuery(document).on('click', '.wcsts_delete_message_button', wcsts_delete_selected_message);
 	jQuery(document).on('click', '.wcsts_delete_attachment_button', wcsts_delete_selected_attachment);
-	wcst_manage_accordion();
+	wcsts_manage_accordion();
+	wcsts_init_select2();
 });
-function wcst_manage_accordion()
+function wcsts_init_select2()
+{
+	jQuery('.wcsts_select2').select2({
+		width: '100px'
+	});
+}
+function wcsts_manage_accordion()
 {
 	var acc = document.getElementsByClassName("wcsts_accordion");
 	var i;

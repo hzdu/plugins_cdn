@@ -476,11 +476,10 @@ Smart_Manager.prototype.printInvoice = function() {
 // ========================================================================
 
 Smart_Manager.prototype.duplicateRecords = function() {
-
-    if( window.smart_manager.duplicateStore === false && window.smart_manager.selectedRows.length == 0 && !window.smart_manager.selectAll ) {
+    if( !window.smart_manager.duplicateStore && window.smart_manager.selectedRows.length == 0 && !window.smart_manager.selectAll ) {
         return;
     }
-
+    window.smart_manager.selectAll = (window.smart_manager.duplicateStore || window.smart_manager.selectAll) ? true : false;
     setTimeout( function() { 
 
         window.smart_manager.showProgressDialog(_x('Duplicate Records', 'progressbar modal title', 'smart-manager-for-wp-e-commerce')); 
@@ -497,7 +496,7 @@ Smart_Manager.prototype.duplicateRecords = function() {
                         active_module: window.smart_manager.dashboard_key,
                         security: window.smart_manager.sm_nonce,
                         pro: true,
-                        storewide_option: ( window.smart_manager.duplicateStore === true ) ? 'entire_store' : '',
+                        storewide_option: (window.smart_manager.selectAll) ? 'entire_store' : '',
                         selected_ids: JSON.stringify(window.smart_manager.getSelectedKeyIds()),
                         table_model: (window.smart_manager.currentDashboardModel.hasOwnProperty('tables') ) ? window.smart_manager.currentDashboardModel.tables : '',
                         active_module_title: window.smart_manager.dashboardName,
@@ -719,6 +718,7 @@ Smart_Manager.prototype.processBatchUpdate = function() {
 
     let actions = (ruleGroups[0].hasOwnProperty('rules')) ? ruleGroups[0].rules : [];
     let updateAll = (ruleMeta.hasOwnProperty('updateAll')) ? ruleMeta.updateAll : false;
+    window.smart_manager.selectAll = (updateAll || window.smart_manager.selectAll) ? true : false;
     if(!window.smart_manager.isScheduled){
         setTimeout( function() { 
             window.smart_manager.showProgressDialog(_x('Bulk Edit', 'progressbar modal title', 'smart-manager-for-wp-e-commerce')); 
@@ -739,7 +739,7 @@ Smart_Manager.prototype.processBatchUpdate = function() {
         active_module: window.smart_manager.dashboard_key,
         security: window.smart_manager.sm_nonce,
         pro: true,
-        storewide_option: ( updateAll == true ) ? 'entire_store' : '',
+        storewide_option: (window.smart_manager.selectAll) ? 'entire_store' : '',
         selected_ids: JSON.stringify(window.smart_manager.getSelectedKeyIds()),
         batch_update_actions: JSON.stringify(actions),
         active_module_title: window.smart_manager.dashboardName,
@@ -758,8 +758,7 @@ Smart_Manager.prototype.processBatchUpdate = function() {
     window.smart_manager.send_request(params, function(response) {
         if(window.smart_manager.isScheduled){
             window.smart_manager.refresh();
-            window.smart_manager.notification = {message: response,hideDelay:25000}
-            window.smart_manager.notification.status = 'success'
+            window.smart_manager.notification = {message: response,hideDelay:25000,status:'success'}
             window.smart_manager.showNotification()
         }
     });
@@ -1364,7 +1363,10 @@ Smart_Manager.prototype.showTitleModal = function(params = {}) {
             closeModalOnClick: params.hasOwnProperty('btnParams') ? ((params.btnParams.hasOwnProperty('hideOnYes')) ? params.btnParams.hideOnYes : true) : true,
             callback: function(){
                 if(window.smart_manager.isScheduled){
-                    if(!(jQuery("#schedule_for").val())){
+                    if("undefined" !== typeof(window.smart_manager.scheduledForVal) && "function" === typeof(window.smart_manager.scheduledForVal)){
+                        window.smart_manager.scheduledForVal();
+                    }
+                    if(!(window.smart_manager.scheduledFor)){
                         window.smart_manager.notification = {message: _x('Please select your desired date & time for scheduling an action.', 'notification', 'smart-manager-for-wp-e-commerce')}
                         window.smart_manager.showNotification()
                         return;
@@ -1393,15 +1395,16 @@ Smart_Manager.prototype.showTitleModal = function(params = {}) {
 }
 // Function to handle records deletion, tasks undo and deletion of tasks records
 Smart_Manager.prototype.deleteAndUndoRecords = function(params = {}){
-    if(!params || (0 === Object.keys(params).length) || (false === params.hasOwnProperty('cmd')) || !params['cmd'] || ((0 === window.smart_manager.selectedRows.length && !window.smart_manager.selectAll) && (false === window.smart_manager.selectedAllTasks))){
+    if(!params || (0 === Object.keys(params).length) || (false === params.hasOwnProperty('cmd')) || !params['cmd'] || ((0 === window.smart_manager.selectedRows.length && !window.smart_manager.selectAll) && (!window.smart_manager.selectedAllTasks))){
         return;
     }
+    window.smart_manager.selectAll = (window.smart_manager.selectedAllTasks || window.smart_manager.selectAll) ? true : false;
     params.data = {
         cmd:params['cmd'],
         active_module: window.smart_manager.dashboard_key,
         security: window.smart_manager.sm_nonce,
         selected_ids: JSON.stringify(window.smart_manager.getSelectedKeyIds().sort(function(a, b){return b-a})),
-        storewide_option: (true === window.smart_manager.selectAll || true === window.smart_manager.selectedAllTasks) ? 'entire_store' : '',
+        storewide_option: (window.smart_manager.selectAll) ? 'entire_store' : '',
         active_module_title: window.smart_manager.dashboardName,
         backgroundProcessRunningMessage: window.smart_manager.backgroundProcessRunningMessage,
         pro: true,
@@ -1501,13 +1504,26 @@ Smart_Manager.prototype.displayColumnTitleEditor = function(e){
 
 // Function for scheduling bulk edit
 Smart_Manager.prototype.showScheduleModal = function(params = {}) {
-    if(!params || !((Object.keys(params)).every(param => params.hasOwnProperty(param)))){
+    if(!params || Object.keys(params).length === 0){
         return;
     }
     let description = sprintf(
         /* translators: %s: schedule actions modal description */
         _x('Schedule actions at your convenient date and time.','modal description','smart-manager-for-wp-e-commerce'), '<strong>'+_x('Schedule Actions','modal description','smart-manager-for-wp-e-commerce')+'</strong>');
-        let scheduledForContent = '<div class="flex items-center mb-6"><label>'+_x('Schedule For','modal title','smart-manager-for-wp-e-commerce')+'</label><input type="text" id="schedule_for" placeholder="YYYY-MM-DD HH:MM:SS" class="sm_bulk_edit_content"/></div><div class="mb-3">'+_x( "Check all scheduled actions <a target='_blank' href="+window.smart_manager.scheduledActionAdminUrl+">here</a>.", 'scheduled action list', 'smart-manager-for-e-commerce' )+'</div><div style="font-size: 1.2em;"><small><i><strong>'+_x('Note: ', 'modal description', 'smart-manager-for-wp-e-commerce')+'</strong>'+_x('Scheduled actions follow timezone of your site. Avoid overlaps to prevent delays.','modal description','smart-manager-for-wp-e-commerce')+'</i></small></div>';
+       let scheduledForContent = `<div class="flex items-center mb-6"><label>${_x('Schedule For','modal title','smart-manager-for-wp-e-commerce')}</label><input type="text" id="scheduled_for" placeholder="YYYY-MM-DD HH:MM:SS" class="sm_bulk_edit_content"/></div>${window.smart_manager.scheduledActionAdminUrl
+        ? `
+          <div class="mb-3">
+            ${_x(
+              `Check all scheduled actions <a target='_blank' href=${window.smart_manager.scheduledActionAdminUrl}>here</a>.`,
+              'scheduled action list',
+              'smart-manager-for-e-commerce'
+            )}
+          </div>
+        `
+        : ''}<div style="font-size: 1.2em;"><small><i><strong>${_x('Note: ', 'modal description', 'smart-manager-for-wp-e-commerce')}</strong>${_x('Scheduled actions follow timezone of your site. Avoid overlaps to prevent delays.','modal description','smart-manager-for-wp-e-commerce')}</i></small></div>`;
+
+
+
     window.smart_manager.scheduledActionContent = '<div id="show_modal_content"><div style="padding-bottom: 1em; color: #6b7280!important;">'+description+'</div>'+scheduledForContent+'</div>';
             
     window.smart_manager.modal = {
@@ -1520,7 +1536,10 @@ Smart_Manager.prototype.showScheduleModal = function(params = {}) {
             closeModalOnClick: params.hasOwnProperty('btnParams') ? ((params.btnParams.hasOwnProperty('hideOnYes')) ? params.btnParams.hideOnYes : true) : true,
             callback: function(){
                 if(window.smart_manager.isScheduled){
-                    if(!(jQuery("#schedule_for").val())){
+                    if("undefined" !== typeof(window.smart_manager.scheduledForVal) && "function" === typeof(window.smart_manager.scheduledForVal)){
+                        window.smart_manager.scheduledForVal();
+                    }
+                    if(!(window.smart_manager.scheduledFor)){
                         window.smart_manager.notification = {message: _x('Please select your desired date & time for scheduling an action.', 'notification', 'smart-manager-for-wp-e-commerce')}
                         window.smart_manager.showNotification()
                         return;
@@ -1550,10 +1569,10 @@ Smart_Manager.prototype.showScheduleModal = function(params = {}) {
         window.smart_manager.showModal()
     }
 }
-// Function for initializing datepicker for schdule bulk edit
+// Function for initializing datepicker for schedule bulk edit
 Smart_Manager.prototype.scheduleDatePicker = function() {
     if(window.smart_manager.scheduledActionContent){
-        jQuery('#schedule_for').Zebra_DatePicker({
+        jQuery('#scheduled_for').Zebra_DatePicker({
         format: 'Y-m-d H:i:s',
         show_icon: false,
         show_select_today: false,
@@ -1563,16 +1582,7 @@ Smart_Manager.prototype.scheduleDatePicker = function() {
     .attr('placeholder','YYYY-MM-DD HH:MM:SS')
     }
 }
-// Function for hiding modal
-Smart_Manager.prototype.hideModal = function() {
-    setTimeout(() => {
-        try{
-            window.smart_manager.modal = {}
-            if(typeof (window.smart_manager.showPannelDialog) !== "undefined" && typeof (window.smart_manager.showPannelDialog) === "function" && typeof (window.smart_manager.getDefaultRoute) !== "undefined" && typeof (window.smart_manager.getDefaultRoute) === "function"){
-                window.smart_manager.showPannelDialog('',window.smart_manager.getDefaultRoute(true))
-            }
-        } catch(e){
-            SMErrorHandler.log('In Modal close:: ', e)
-        }
-    },200)
+// Function for getting scheduled for value
+Smart_Manager.prototype.scheduledForVal = function() {
+    window.smart_manager.scheduledFor = jQuery("#scheduled_for").val();
 }

@@ -104,12 +104,20 @@ class SideCart {
                 return;
             }
 
-            // @ts-ignore
-            jQuery( '.cfw-suggested-products' ).not( '.slick-initialized' ).slick( {
+            let options = {
                 dots: true,
                 arrows: false,
-                rtl: DataService.getCheckoutParam( 'is_rtl' ),
-            } );
+                rtl: false,
+            };
+
+            if ( DataService.getCheckoutParam( 'is_rtl' ) ) {
+                options = {
+                    ...options,
+                    rtl: true,
+                };
+            }
+
+            jQuery( '.cfw-suggested-products' ).not( '.slick-initialized' ).slick( options );
         } );
 
         jQuery( document.body ).on( 'click', '.cfw-suggested-product-add-to-cart', ( e ) => {

@@ -1669,9 +1669,9 @@ div[aria-describedby="sm_inline_dialog"] {
 	border-left: 1px solid #d9d9d9 !important;
 }
 
-#edit_product_attributes button, #edit_product_attributes input, #edit_product_attributes select, #edit_product_attributes .chosen-container, #sm_view_name, #sm_beta_add_record_count, .sm_bulk_edit_content, #sm_add_title{
-	border: 1px solid #d2d6dc !important;
-	padding: 0 10px !important;
+#edit_product_attributes button, #edit_product_attributes input, #edit_product_attributes select, #edit_product_attributes .chosen-container, #sm_view_name, #sm_beta_add_record_count{
+	border: 1px solid #d2d6dc;
+	padding: 0 10px;
 }
 
 #edit_product_attributes .chosen-container{
@@ -1707,7 +1707,7 @@ div[aria-describedby="sm_inline_dialog"] {
 .sm_beta_dashboard_select li{
 	margin-bottom: 0px !important;
 }
-input#schedule_for{
+input#scheduled_for{
 	width: 100%;
 	margin-left: 1.4em;
 }
@@ -1761,4 +1761,8 @@ input#sm_add_title{
 }
 .task_title{
 	margin-right: 3.5em;
+}
+.sm_bulk_edit_content, #sm_add_title{
+	border: 1px solid #d2d6dc !important;
+	padding: 0 10px !important;
 }
