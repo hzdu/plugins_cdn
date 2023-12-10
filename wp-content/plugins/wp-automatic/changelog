@@ -1,3 +1,71 @@
+Version 3.77.4 (7 December 2023)
+Fix: Facebook group posts import now back to work after recent changes
+NEW: Tutorial aded on how to set post template 
+
+Version 3.77.3 (3 December 2023)
+Fix: Load multi-paged content Feeds/multi-scraper caused the campaign to fail, now sorted
+
+Version 3.77.2 (3 December 2023)
+Fix: Facebook back to work after recent changes from Facebook side
+Fix: Vimeo search index now reset after reaching 10k result
+Fix: Selected categories now get saved correctly
+Improved: Clicbank now uses the new HTTPS affiliate link format 
+
+
+Version 3.77.1 (01 December 2023)
+Fix: Fatal error casued by the previous version sorted out
+
+Version 3.77.0 (30 November 2023)
+Fix: Facebook back to work after recent changes
+Fix: Featured image now get extracted from original content after removal from an OpenAI prompt
+Fix: Amazon now can import book author name
+Fix: eBay all images extraction now back to work
+
+Version 3.76.0 (7 November 2023)
+NEW: upgraded OpenAI 3.5 turbo model to the latest version gpt-3.5-turbo-1106
+NEW: Added new OpenAI model gpt-4-1106-preview
+NEW: Integration with Internal Link Juicer plugin for automatic internal links, a new tutorail added to the tutorials section 
+Fix: Multi-scrper 404 feed error posts now sorted
+Improved: Timeout increased for OpenAI calls to 300 seconds to cope with slow calls
+Fix: Amazon import from best sellers pages now back to work
+Fix: Amazon product price extraction for Electronics now back to work
+Fix: Auto hyperlink keywords now support non latin characters
+
+Version 3.75.0 (19 October 2023)
+NEW: Feeds/multi-page scraper option to import multi-page posts
+NEW: OpenAI option to use a fine tuned model 
+NEW: OpenAI option to remove H1 from the generated content
+NEW: Feeds/multi-scraper now auto fix noscript lazyloding images
+NEW: Feeds/multi-scraper new tag [source_url_decoded] to return the source URL decoded
+NEW: new tag [title_words_as_slug] to return the title words as slug
+NEW: Feeds/multi-scraper campaign can now auto extract tags from source post Schema tags
+Improved: OpenAI campaigns now auto remove unecessary HTML tags like html & body from generated content
+Fix: Amazon will not set the _sale_price if the product is not on sale
+Fix: Multi-scraper campaign now deletes generated .xml containing found links if found empty
+Improved: Campaigns page now do not list all multi-scraper fixed links
+
+
+Version 3.74.1 (12 September 2023)
+NEW: Now you can add multiple OpenAI API keys and the plugin will rotate between them
+NEW: Tiktok option to remove @user from the post content 
+NEW: Tiktok option to remove music used from the post content 
+NEW: Feeds/Multi-scraper can now extract a speicfic part before or after another text (tutorial added)
+NEW: Bulk option to Deactivate and Activate selected campaigns
+Fix: Tiktok now remove music from generated title
+Fix: Amazon price extraction algorithm updated to cope with new changes
+Fix: fix of critical error when loading all campaigns page
+Fix: campaigns processing algorithm updated to correct memory limit issue when too many campaigns
+Improved: Feeds/Multi-scraper category extraction algorithm improved to detect cats in span inside a tags
+Improved: Feeds/Multi-scraper post from specific links now auto fill the first link for visusal selector
+
+Version 3.74.0 (26 August 2023)
+NEW: Telegram support, now you can auto-post from Telegram to WordPress posts
+NEW: Images to Gallery option now can add galleries in Classic old format or Gutenberg blocks
+Fix: Feeds/Multi-scraper now add required JS scripts for Instagram/Tiktok embeds if missing
+Fix: Amazon product features extraction now back to work
+Fix: Multi-scraper can now load items feed even if the server/cloudFlare blocked the request
+Fix: Amazon Post item even if there is already a posted one from another campaign now works
+
 Version 3.73.1 (4 August 2023)
 Fix: AliExpress back to work again after changes from AliExpress side
 NEW: tutorial added on how to auto post recent videos from Youtube channel

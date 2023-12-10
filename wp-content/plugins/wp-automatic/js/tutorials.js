@@ -37,6 +37,16 @@ const tutorials = {
       title:
         "How to import from any website to WordPress in multiple languages",
     },
+    {
+      url: "https://valvepress.com/how-to-extract-a-substring-before-or-after-a-specific-string-in-wordpress-automatic-plugin/",
+      title:
+        "How to extract a substring before or after a specific string in WordPress Automatic plugin",
+    },
+    {
+      url: "https://valvepress.com/how-to-categorize-wordpress-posts-using-chatgpt-automatically-trick/",
+      title:
+        "How to categorize WordPress posts using ChatGPT automatically [Trick]",
+    },
   ],
   Amazon: [
     {
@@ -212,11 +222,22 @@ const tutorials = {
       url: "https://www.youtube.com/watch?v=Cd2ODdH9Zpw",
     },
   ],
-  Careerjet: [],
+  Careerjet: [
+    {
+      title: "How to import from Careerjet to WordPress",
+      url: "https://valvepress.com/how-to-auto-post-from-careerjet-to-wordpress-posts-careerjet-to-wordpress-plugin/",
+    },
+  ],
   Single: [
     {
       title: "How to import from a single page to WordPress post",
       url: "https://www.youtube.com/watch?v=zxM8CGRSi_w",
+    },
+  ],
+  telegram: [
+    {
+      title: "How to import from Telegram to WordPress",
+      url: "https://valvepress.com/how-to-import-from-telegram-to-wordpress-posts-automatically/",
     },
   ],
   Multi: [
@@ -259,6 +280,20 @@ const tutorials = {
       url: "https://valvepress.com/how-to-auto-post-from-google-realtime-search-trends-to-wordpress-posts/",
       title:
         "How to auto post from Google Realtime search trends to WordPress posts?",
+    },
+    {
+      url: "https://valvepress.com/how-to-extract-a-substring-before-or-after-a-specific-string-in-wordpress-automatic-plugin/",
+      title:
+        "How to extract a substring before or after a specific string in WordPress Automatic plugin",
+    },
+    {
+      url: "https://valvepress.com/how-to-categorize-wordpress-posts-using-chatgpt-automatically-trick/",
+      title:
+        "How to categorize WordPress posts using ChatGPT automatically [Trick]",
+    },
+    {
+      url: "https://valvepress.com/how-to-auto-post-links-from-google-sheets-to-wordpress-posts/",
+      title: "How to auto post links from Google Sheets to WordPress posts",
     },
   ],
   General: [
@@ -309,6 +344,12 @@ const tutorials = {
       url: "https://valvepress.com/how-to-auto-post-to-wordpress-bbpress-forum-plugin/",
       title: "How to auto post to WordPress bbPress forum plugin",
     },
+    {
+      url: "https://valvepress.com/how-to-integrate-wordpress-automatic-plugin-with-internal-link-juicer-for-automatic-internal-links/",
+      title:
+        "How to integrate WordPress Automatic plugin with Internal Link Juicer for automatic internal links",
+    },
+    {url: "https://valvepress.com/how-to-set-the-post-template-for-posts-generated-using-wordpress-automatic-plugin/", title: "How to set the post template for posts generated using WordPress Automatic plugin"},
   ],
 };
 
