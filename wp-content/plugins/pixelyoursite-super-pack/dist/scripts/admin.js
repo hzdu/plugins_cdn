@@ -53,7 +53,6 @@ jQuery(document).ready(function ($) {
     $body.on('condition_update','.pixel_conditions'  ,function () {
         let items = new Array();
 
-
         $(this).parent().find(".pixel_conditions:not(.hidden_pixel_conditions)").each(function () {
             let data = {};
             $(this).find(".condition").each(function () {
@@ -65,7 +64,6 @@ jQuery(document).ready(function ($) {
             })
             items.push(data)
         })
-        console.log(items)
         if(items.length == 1)
         {
             $(this).parent().find('.remove-conditions-row').addClass('hidden');
@@ -194,6 +192,10 @@ jQuery(document).ready(function ($) {
         $row.find('#pixel_ga_hide_url_conditions').attr('id','pixel_ga_hide_url_conditions_'+count)
 
         $('#pixel_ga_hide_url_conditions_'+count).pysselect2({placeholder: $('#pixel_ga_hide_url_conditions_'+count).data("placeholder"), tags: true});
+
+        updatePixelData($row,'use_server_api',$row.find('.pys_ga_use_server_api')[0].checked)
+        updatePixelData($row,'server_access_api_token',$row.find('.server_access_api_token').val())
+
         updatePixelInputValue($row)
     });
 
@@ -229,9 +231,7 @@ jQuery(document).ready(function ($) {
 
     function updatePixelInputValue($pixel) {
         updatePixelData($pixel,'is_enable',$pixel.find('.is_enable')[0].checked)
-        updatePixelData($pixel,'use_server_api',$pixel.find('.pys_ga_use_server_api')[0].checked)
         updatePixelData($pixel,'pixel_id',$pixel.find('.pixel_id').val())
-        updatePixelData($pixel,'server_access_api_token',$pixel.find('.server_access_api_token').val())
         $pixel.find('.pixel_ext').each(function () {
             updatePixelData($pixel,'ext_'+$(this).data('ext'),$(this).val())
         })
@@ -298,16 +298,16 @@ jQuery(document).ready(function ($) {
 
 
     // pixel conditions
-
     $(document).on('change','.pixel_conditions .condition_select',function() {
-        console.log("change", $(this).val())
-        let value = $(this).val()
-            let parent = $(this).parent();
+        let value = $(this).val();
+        let parent = $(this).parent();
+
+        $(this).nextAll('.pys-pysselect2').pysselect2( 'destroy' );
         $(this).nextAll('select,div').remove()
-        addCondition(parent,value)
 
-
+        addCondition(parent,value);
     });
+
     $(document).on('click','.pixel_conditions .condition_search .view_input',function () {
         $(this).toggleClass('open')
     });
@@ -353,9 +353,8 @@ jQuery(document).ready(function ($) {
 
     function addCondition(parent,value,defaultValue = false) {
         let nextCondition = conditions[value];
-        console.log(nextCondition)
         if(nextCondition && nextCondition.controls.type == "select_titled") {
-            var select = '<select  class="condition_select condition" data-name="'+nextCondition.controls.name +'" >';
+            let select = '<select  class="condition_select condition" data-name="'+nextCondition.controls.name +'" >';
 
             if(value != 'woocommerce' && value != "edd") {
                 select +=' <option value="all">'  +nextCondition.all_label + '</option>';
@@ -375,6 +374,21 @@ jQuery(document).ready(function ($) {
             parent.append(select)
 
         }
+
+        if(nextCondition && nextCondition.controls.type == "select_titled_array") {
+            let select = '<select  class="condition_select condition pys-pysselect2" multiple data-name="'+nextCondition.controls.name +'" >';
+
+            nextCondition.controls.options.forEach(function (option){
+                if ( typeof defaultValue == 'object' ) {
+                    select += '<option value="' + option['item'] + '" '+ (defaultValue.includes(option['item']) ? 'selected="selected"':"") + '">' + option['title'] + '</option>';
+                } else {
+                    select += '<option value="' + option['item'] + '">' + option['title'] + '</option>';
+                }
+            });
+            parent.append(select);
+            parent.find(".pys-pysselect2").each(function(){$(this).pysselect2({multiple: true})})
+        }
+
         if(nextCondition && nextCondition.controls.type == "search") {
             var search = '<div class="condition_search" data-conditional='+value+'>' +
                 '<input class="input_value condition" type="hidden" data-name="'+nextCondition.controls.name +'"'+ (defaultValue ? 'value="'+defaultValue.value+'"' : '') +' >' +
@@ -384,6 +398,7 @@ jQuery(document).ready(function ($) {
             parent.append(search)
 
         }
+
         parent.trigger('condition_update')
     }
 
@@ -399,10 +414,10 @@ jQuery(document).ready(function ($) {
                         addCondition($parent,item.sub_name,{label:item.sub_id_name,value:item.sub_id})
                     }
                 }
-
-
+                if(item.options) {
+                    addCondition($parent,item.name,item.options)
+                }
             });
-
         })
     }
 
