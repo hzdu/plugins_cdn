@@ -1,0 +1,134 @@
+.wcqt-menu
+{
+	opacity: 0;
+}
+.wcqt-left-wrapper, .wcqt-right-wrapper 
+{
+	display:inline-block;
+	width: 47%;
+	margin-right: 3%;
+	vertical-align: top;
+}
+.woocommerce-cart-form.wcqt-contact-form 
+{
+	background: #f5f5f5;
+	padding: 25px;
+	overflow: hidden;
+}
+@media screen and (max-width:900px) 
+{
+	.wcqt-left-wrapper, .wcqt-right-wrapper 
+	{
+	  width: 100%;
+	}
+}
+.wcqt_before_input_field_container, .wcqt_after_input_field_container
+{
+	width: 100%;
+}
+.wcqt_input_field_container
+{
+	display: inline-block;
+	vertical-align: top;
+	margin-bottom: 5px;
+	margin-right: 5px;
+}
+.wcqt_input_field 
+{
+	width: 100%;
+}
+label
+{
+	font-weight: bold;
+	display: block;
+}
+input.wcqt_input_field:required 
+{
+	/* border-color: red; */
+}
+label.wcqt_input_field_label_required:after 
+{
+    content:" *";
+    color: red;
+ }
+ .wcqt-form-row::after, .wcqt-form-row::before, .wcqt-form-row::after, .wcqt-form-row::before {
+	content: " ";
+	display: table;
+	clear: both;
+}
+.wcqt-form-row {
+	padding: 3px;
+	margin: 0 0 6px;
+}
+p.wcqt-form-row-first 
+{
+	float: left;
+	width: 47%;
+	overflow: visible;
+}
+p.wcqt-form-row-last
+{
+	width: 47%;
+	overflow: visible;
+}
+p.wcqt-form-row-wide 
+{
+	width: 94%;
+	float: left;
+	overflow: visible;
+	display: block;
+}
+button.wcqt-submit-form.button 
+{
+	margin-top: 25px;
+	margin-bottom: 25px;
+}
+.wcqt-success 
+{
+	background: green;
+	padding: 10px;
+	color: white;
+	font-weight: bold;
+	margin: 10px 0px 10px 0px;
+	width: 94%;
+}
+.wcqt-error 
+{
+	background: #ee3d3d;
+	padding: 10px;
+	color: white;
+	font-weight: bold;
+	margin: 10px 0px 10px 0px;
+	width: 94%;
+}
+.wcqt-top-wrapper, .wcqt-bottom-wrapper
+{
+	margin-bottom: 20px;
+}
+form.wcqt-quote-product-form {
+	margin-top: 27px;
+}
+/* table */
+table.wcqt-quote-table
+{
+	border-top: none !important;
+	border-left: none !important;
+	border-right: none !important;
+	border-bottom: none !important;
+}
+table.wcqt-quote-table td, table.wcqt-quote-table th, .shop_table tr
+{
+	border-top: none !important;
+	border-left: none !important;
+	border-right: none !important;
+	border-bottom: solid #dedede 1px !important;
+	padding: 22px 12px 22px 0px !important;
+}
+table.wcqt-quote-table td.actions, table.wcqt-quote-table tr.actions-row
+{
+	border-bottom: none !important;
+}
+table.wcqt-quote-table td.product-thumbnail img
+{
+	max-width: 60%;
+}

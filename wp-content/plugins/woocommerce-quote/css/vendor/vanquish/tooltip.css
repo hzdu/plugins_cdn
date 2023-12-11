@@ -1,0 +1,27 @@
+a.wpufa_tooltip {outline:none; }
+a.wpufa_tooltip strong { font-weight:bold;}
+a.wpufa_tooltip:hover {text-decoration:none;} 
+a.wpufa_tooltip span {
+    z-index:10;
+	display:none; 
+	padding:20px;
+    margin-top:10px; 
+    width:600px;
+	font-weight: 500;
+	font-size: 16px;
+	line-height: 1.4;
+}
+a.wpufa_tooltip:hover span{
+	display: block;
+	position: absolute;
+	color: #0a4b78;
+	background: #f8f8f8;
+	overflow: hidden;
+	width: auto;
+}
+/*CSS3 extras*/
+a.wpufa_tooltip span
+{
+   border-radius: 3px;
+   box-shadow: 1px 1px 2px 0px #888; 
+}

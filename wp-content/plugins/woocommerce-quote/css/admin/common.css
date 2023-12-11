@@ -1,0 +1,325 @@
+@import url('https://fonts.googleapis.com/css?family=Libre+Baskerville');
+@import url('https://fonts.googleapis.com/css?family=Raleway:400,700');
+
+/* //rplc: wcqt */
+.spinner
+{
+	float:none;
+	width:auto;
+	height:auto;
+	padding:10px 0 10px 50px;
+}
+.white-box 
+{
+	background-color: white;
+	padding: 15px 15px 15px 15px;
+	overflow: auto;
+}
+.wcqt_inline_block
+{
+	display: inline-block;
+	margin-right: 30px;
+	margin-bottom: 5px;
+	background: #f9f9f9;
+	padding: 20px;
+	border-radius: 3px;	
+}
+label
+{
+	display:block;
+	clear:both;
+	font-weight:bold;
+}
+.wcqt_option_group
+{
+	display: inline-block;
+	background: #f8f8f8;
+	padding: 20px;
+	margin-bottom: 20px;
+	border-radius: 3px;
+	margin-right: 10px;
+	vertical-align: top;
+}
+.wcqt_one_third
+{
+	width: 30%;
+	min-height: 160px;
+}
+.wcqt_half
+{
+	width: 45%;
+	min-height: 160px;
+}
+.wcqt_full
+{
+	width: 93%;
+	min-height: 160px;
+}
+.wcqt_company_option_description
+{
+	font-size: 14px;
+	margin-bottom: 30px;
+}
+.wcqt_general_option_description
+{
+	font-size: 14px;
+	margin-bottom: 10px;
+	font-weight: normal;
+	margin-right: 20px;
+}
+.wcqt_no_margin_top
+{
+	margin-top: 0px !important;
+}
+.wcqt_section_title 
+{
+	margin-top: 50px;
+	margin-bottom: 20px;
+	font-size: 25px;
+	padding: 7px;
+	color: white;
+	background: #2980b9;
+	color: white;
+	padding: 10px;
+	border-radius: 3px;
+	padding: 20px;
+}
+.wcqt_checkbox_container
+{
+	display: inline-block;
+	width: 260px;
+	font-weight: bold;
+}
+.wcqt_currency_checkbox_text
+{
+	font-size: 12px;
+}
+.wcqt_input_label
+{
+	margin-bottom: 10px;
+	margin-top: 20px;
+	display: block;
+}
+.wcqt_label
+{
+	font-weight: bold;
+	display: inline-block;
+	margin-left: 5px;
+}
+.wcqt_input_label.required::after, .wcqt_label.required::after {
+	content: " *";
+	color: red;
+}
+.wcqt_email_message
+{
+	display: block;
+	width: 400px;
+	height: 150px;	
+}
+
+input.wcqt-text-input
+{
+	width: 100%;
+}
+.wcqt_checkbox_container_auto_width
+{
+	display: inline-block;
+	margin-right: 10px;
+	font-weight: bold;
+}
+label 
+{
+	font-size: 15px;
+	margin-bottom: 5px;
+}
+h3 
+{
+	font-size: 1.8em;
+	margin-top: 40px;
+	margin-bottom: 20px;
+	color: #2980b9;
+	display: block;
+	clear: both;
+}
+h4 {
+	font-size: 1.4em;
+	margin-top: 30px;
+	margin-bottom: 20px;
+	color: #2980b9;
+	display: block;
+	clear: both;
+}
+.white-box p, .white-box li, #wcqt_shortcode_container,
+#wcqt_main_container
+{
+	margin-top: 10px;
+	margin-bottom:10px;
+	font-family: 'Raleway', sans-serif;
+	font-size: 15px;
+}
+.wcqt_info
+{
+	padding: 20px;
+	border: 1px solid #2980b9;
+	border-radius: 3px;
+	margin-bottom: 20px;
+}
+.wcqt_info p
+{
+	
+}
+.wcqt_info h3
+{
+	font-style: italic;
+	margin-top: 0px;
+}
+/* Cards/blocks */
+.wcqt_float_left 
+{
+	display: inline-block;
+}
+.wcqt_master_related
+{
+	display: block;
+	border: 1px solid #d3d3d3;
+	padding: 20px;
+	margin-top: 20px;
+	margin-bottom: 30px;
+}
+.half_block_container label:first-child, .half_block_fixed_container label:first-child, .one_third_block_container label:first-child 
+{
+	margin-top: 0px;
+}
+.full_container
+{
+	vertical-align: top;
+	display: inline-block;
+	margin-right: 40px;
+	margin-bottom: 10px;
+	width: 89%;
+	
+	margin-top: 20px;
+	background: #f8f8f8;
+	padding: 20px;
+	border-radius: 3px;
+	min-height: 110px;
+}
+.half_block_fixed_container
+{
+	vertical-align: top;
+	display: inline-block;
+	margin-right: 40px;
+	margin-bottom: 10px;
+	width: 42%;
+	
+	margin-top: 20px;
+	background: #f8f8f8;
+	padding: 20px;
+	border-radius: 3px;
+	min-height: 110px;
+}
+.half_block_container
+{
+	vertical-align: top;
+	display: inline-block;
+	margin-right: 40px;
+	margin-bottom: 10px;
+	max-width: 42%;
+	
+	margin-top: 20px;
+	background: #f8f8f8;
+	padding: 20px;
+	border-radius: 3px;
+	min-height: 110px;
+}
+.one_third_block_container
+{
+	vertical-align: top;
+	display: inline-block;
+	margin-right: 20px;
+	margin-bottom: 10px;
+	width: 27%;
+	
+	margin-top: 20px;
+	background: #f8f8f8;
+	padding: 20px;
+	border-radius: 3px;
+	min-height: 110px;
+}
+
+/* Default UI Override */
+.wp-core-ui .button-primary:hover {
+	background: #3498db none repeat scroll 0 0;
+	border-color: #3498db;
+	box-shadow: none;
+	font-weight: bold;
+}
+ .wp-core-ui .button-primary:disabled, .wp-core-ui .button-primary[disabled]
+{
+	background: #7dc5f5 !important;
+	border-color: #7dc5f5 !important;
+	color: #f8f6f7 !important;
+}
+.wp-core-ui .button-primary, .wp-core-ui .button-primary.focus, .wp-core-ui .button-primary:focus {
+	background: #2980b9 none repeat scroll 0 0;
+	border-color: #2980b9;
+	box-shadow: none;
+	font-weight: bold;
+	text-shadow: none;
+}
+/* Delete button */
+.wp-core-ui .button.button-delete {
+	background: #c0392b none repeat scroll 0 0;
+	border-color: #c0392b;
+	box-shadow: none;
+	font-weight: bold;
+	color: #fff;
+}
+.wp-core-ui .button.button-delete, .wp-core-ui .button.button-delete.focus, .wp-core-ui .button.button-delete:focus {
+	background: #c0392b none repeat scroll 0 0;
+	border-color: #c0392b;
+	box-shadow: none;
+	font-weight: bold;
+	text-shadow: none;
+	color: #fff;
+}
+.wp-core-ui .button.button-delete:hover {
+	background: #e74c3c none repeat scroll 0 0;
+	border-color: #e74c3c;
+	box-shadow: none;
+	color: #fff;
+	font-weight: bold;
+}
+ .wp-core-ui .button.button-delete:disabled, .wp-core-ui .button.button-delete[disabled]
+{
+	background: #e38f86 !important;
+	border-color: #e38f86 !important;
+	color: #fff !important;
+}
+/* duplicate field button */
+.wp-core-ui .duplicate_field.button-secondary, 
+.wp-core-ui .duplicate_field.button-secondary.focus, 
+.wp-core-ui .duplicate_field.button-secondary, 
+.wp-core-ui .duplicate_field.button-secondary:focus
+{
+	background: #39597E none repeat scroll 0 0;
+    border-color: #39597E;
+    box-shadow: none;
+	font-weight: bold;
+	color:white;
+	margin-bottom:10px;
+	display:inline-block;
+	margin-right: 10x;
+	
+}
+.wp-core-ui .duplicate_field.button-secondary:hover
+{
+	background: #446CB3  none repeat scroll 0 0;
+    border-color: #446CB3  ;
+    box-shadow: none;
+    font-weight: bold;
+	color:white;
+	margin-bottom:10px;
+	display:inline-block;
+	margin-right: 10x;
+}
