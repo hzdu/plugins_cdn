@@ -134,8 +134,12 @@ jQuery(document).ready(function ($) {
         var hash_category_id = hasha[1];
         var hash_sourcecat = hasha[0];
 
+        if (hash_sourcecat.toString() === 'all_0' && parseInt(hash_category_id) === 0) {
+            hash_category_id = 'all_0';
+        }
+
         if (parseInt(hash_category_id) > 0 || hash_category_id === 'all_0') {
-            if (hash_category_id == 'all_0') {
+            if (hash_sourcecat.toString() !== 'all_0' && hash_category_id == 'all_0') {
                 hash_category_id = 0;
             }
             setTimeout(function () {
@@ -232,7 +236,7 @@ jQuery(document).ready(function ($) {
             }
 
             if (categories.category.breadcrumbs !== undefined) {
-                if (sourcecat.toString() === 'all_0' && catid.toString() !== 'all_0') {
+                if (sourcecat.toString() === 'all_0' && catid.toString() !== 'all_0' && parseInt(catid) !== 0) {
                     categories.category.breadcrumbs = allCategoriesDividerBreadcrumbs + categories.category.breadcrumbs;
                 }
                 $(".wpfd-content-multi[data-category=" + sourcecat + "] .breadcrumbs").html(categories.category.breadcrumbs);

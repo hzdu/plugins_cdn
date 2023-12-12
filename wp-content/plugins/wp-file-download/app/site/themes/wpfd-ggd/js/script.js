@@ -327,6 +327,9 @@ jQuery(document).ready(function ($) {
             if (sourcecategories) {
                 var template = Handlebars.compile(sourcecategories);
                 var html = template(categories);
+                if ($(".wpfd-content-ggd[data-category=" + sourcecat + "] .wpfd-categories").length) {
+                    $(".wpfd-content-ggd[data-category=" + sourcecat + "] .wpfd-categories").remove();
+                }
                 $(".wpfd-content-ggd[data-category=" + sourcecat + "] .wpfd-container-ggd").prepend(html);
             }
             if (categories.category.breadcrumbs !== undefined) {
@@ -430,9 +433,13 @@ jQuery(document).ready(function ($) {
                     $(".wpfd-content-ggd.wpfd-content-multi[data-category=" + sourcecat + "]  .ggd-download-category").addClass("display-download-category");
                 }
 
+                if (sourcecat.toString() === 'all_0') {
+                    $(".wpfd-content-ggd[data-category=" + sourcecat + "]").parent().find('.wpfd-pagination').remove();
+                }
+
                 $(".wpfd-content-ggd[data-category=" + sourcecat + "]").after(content.pagination);
                 delete content.pagination;
-                var sourcefiles = $(".wpfd-content-ggd.wpfd-content-multi[data-category=" + sourcecat + "]  .wpfd-template-files").html();
+                var sourcefiles = $(".wpfd-content-ggd.wpfd-content-multi[data-category=" + sourcecat + "] .wpfd-template-files").html();
                 var template = Handlebars.compile(sourcefiles);
                 var html = template(content);
                 html = $('<textarea/>').html(html).val();

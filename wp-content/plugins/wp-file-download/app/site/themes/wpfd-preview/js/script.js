@@ -245,6 +245,7 @@ jQuery(document).ready(function ($) {
     }
 
     function load(sourcecat, catid, page) {
+        console.log('ok');
         $(document).trigger('wpfd:category-loading');
         var pathname = window.location.href.replace(window.location.hash, '');
         var container = $(".wpfd-content-preview.wpfd-content-multi[data-category=" + sourcecat + "]");
@@ -327,6 +328,9 @@ jQuery(document).ready(function ($) {
             if (sourcecategories) {
                 var template = Handlebars.compile(sourcecategories);
                 var html = template(categories);
+                if ($(".wpfd-content-preview[data-category=" + sourcecat + "] .wpfd-categories").length) {
+                    $(".wpfd-content-preview[data-category=" + sourcecat + "] .wpfd-categories").remove();
+                }
                 $(".wpfd-content-preview[data-category=" + sourcecat + "] .wpfd-container-preview").prepend(html);
             }
             if (categories.category.breadcrumbs !== undefined) {
@@ -424,9 +428,13 @@ jQuery(document).ready(function ($) {
                 $(".wpfd-content-preview.wpfd-content-multi[data-category=" + sourcecat + "]  .preview-download-category").addClass("display-download-category");
             }
 
+            if (sourcecat.toString() === 'all_0') {
+                $(".wpfd-content-preview[data-category=" + sourcecat + "]").parent().find('.wpfd-pagination').remove();
+            }
+
             $(".wpfd-content-preview[data-category=" + sourcecat + "]").after(content.pagination);
             delete content.pagination;
-            var sourcefiles = $(".wpfd-content-preview.wpfd-content-multi[data-category=" + sourcecat + "]  .wpfd-template-files").html();
+            var sourcefiles = $(".wpfd-content-preview.wpfd-content-multi[data-category=" + sourcecat + "] .wpfd-template-files").html();
             var template = Handlebars.compile(sourcefiles);
             var html = template(content);
             html = $('<textarea/>').html(html).val();

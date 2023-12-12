@@ -331,6 +331,10 @@ jQuery(document).ready(function ($) {
 
             window.history.pushState('', document.title, pathname + '#' + sourcecat + '-' + category + '-' + categories.category.slug);
 
+            if (typeof (sourcecategories) === 'undefined') {
+                sourcecategories = $('#wpfd-template-tree-categories').html();
+            }
+
             var template = Handlebars.compile(sourcecategories);
             var html = template(categories);
 
@@ -443,6 +447,10 @@ jQuery(document).ready(function ($) {
                     if ($(".wpfd-content-tree[data-category=" + sourcecat + "] .tree-download-category").hasClass('tree-download-category-password-protection')) {
                         $(".wpfd-content-tree[data-category=" + sourcecat + "] .tree-download-category").removeClass('tree-download-category-password-protection');
                         $(".wpfd-content-tree[data-category=" + sourcecat + "] .tree-download-category").show();
+                    }
+
+                    if (typeof (sourcefiles) === 'undefined') {
+                        sourcefiles = $("#wpfd-template-tree-files").html();
                     }
 
                     var template = Handlebars.compile(sourcefiles);

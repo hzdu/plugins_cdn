@@ -341,6 +341,11 @@ jQuery(document).ready(function ($) {
                     } else {
                         container.find(".table-download-category").addClass("display-download-category");
                     }
+
+                    if (sourcecat.toString() === 'all_0') {
+                        $(".wpfd-content-multi[data-category=" + sourcecat + "]").parent().find('.wpfd-pagination').remove();
+                    }
+
                     $(".wpfd-content-multi[data-category=" + sourcecat + "]").after(content.pagination);
                     delete content.pagination;
 
