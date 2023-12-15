@@ -76,6 +76,7 @@
 			//global variables
 			var count_status;
 			var chars_remaining;
+			var defaultTheme = (!props.attributes.theme && !novashare.click_to_tweet?.theme) || props.attributes.theme == 'default' ? true : false;
 		 
 			return (
 				el(Fragment, {},
@@ -88,7 +89,8 @@
 							el(SelectControl, {
 								label: __('Theme', 'novashare'),
 								options : [
-									{ label: __('Default (Accent Background)', 'novashare'), value: '' },
+									{ label: __('Global', 'novashare'), value: '' },
+									{ label: __('Default (Accent Background)', 'novashare'), value: 'default' },
 									{ label: __('Simple (Transparent Background)', 'novashare'), value: 'simple' },
 									{ label: __('Simple Alternate (Gray Background)', 'novashare'), value: 'simple-alt' },
 								],
@@ -111,6 +113,7 @@
 							el(SelectControl, {
 								label: __('Call to Action Position', 'novashare'),
 								options : [
+									{ label: __('Global', 'novashare'), value: '' },
 									{ label: __('Right (Default)', 'novashare'), value: '' },
 									{ label: __('Left', 'novashare'), value: 'left' },
 								],
@@ -191,7 +194,7 @@
 						})(), 
 						style: {
 							backgroundColor: (() => {
-								if(!props.attributes.theme && !novashare.click_to_tweet?.theme) {
+								if(defaultTheme) {
 									return props.attributes.accent_color;
 								}
 							})(),
@@ -218,7 +221,7 @@
 							el('span', { className: 'ns-ctt-cta',
 								style: {
 									color: (() => {
-										if(props.attributes.theme || novashare.click_to_tweet?.theme) {
+										if(!defaultTheme) {
 											return props.attributes.accent_color;
 										}
 									})(),

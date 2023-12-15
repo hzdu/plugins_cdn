@@ -349,6 +349,24 @@
 		if($codemirror.length) {
 			wp.codeEditor.initialize($codemirror, cm_settings);
 		}
+
+		//close cta
+		$('#novashare-cta-close').click(function(e) {
+			
+			e.preventDefault();
+
+			$('#novashare-cta').hide();
+
+			 //ajax request
+			$.ajax({
+		        type: "POST",
+		        url: NOVASHARE.ajaxurl,
+		        data: {
+		        	action: 'novashare_close_cta',
+		        	nonce: NOVASHARE.nonce
+		        }
+		    });
+		});
 	});
 
 	//function to update details character count
