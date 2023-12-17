@@ -87,8 +87,12 @@
 	HappyformsCoupon.prototype.onPriceUpdate = function ( e, data ) {
 		var $coupon = this.$coupon;
 
-		if ( this.$price.val() == this.$coupon.data( 'price' ) ) {
-			this.$price.val( this.$coupon.data( 'discounted' ) );
+		if ( 0 == $coupon.length ) {
+			return;
+		}
+
+		if ( this.$price.val() == this.$coupon.data( 'price' ) && '' != this.$coupon.data( 'discounted' ) ) {
+				this.$price.val( this.$coupon.data( 'discounted' ) );
 		} else {
 			this.$coupon.data( 'price', this.$price.val() )
 

@@ -325,7 +325,6 @@
 
 	Conditionals.prototype.isParentHidden = function ( condition, formID ) {
 		var $partParent = this.getPartByID( condition.if[0].key, formID );
-
 		if ( $partParent ) {
 			return $partParent.is( ':hidden' );
 		}
@@ -334,11 +333,6 @@
 	}
 
 	Conditionals.prototype.callbacks.show = function( formID, $part, result) {
-		if ( this.isParentHidden ( result.condition, formID ) ) {
-			$part.hide();
-			return;
-		}
-
 		if ( ! $part.is( '[data-happyforms-type="select"]' ) ) {
 			if ( ! $part.attr( this.visitedAttribute ) ) {
 				$part.hide();
@@ -361,11 +355,6 @@
 	};
 
 	Conditionals.prototype.callbacks.hide = function( formID, $part, result ) {
-		if ( this.isParentHidden ( result.condition, formID ) ) {
-			$part.hide();
-			return;
-		}
-
 		if ( ! $part.is( '[data-happyforms-type="select"]' ) ) {
 			if ( ! $part.attr( this.visitedAttribute ) ) {
 				$part.show();
@@ -385,7 +374,7 @@
 		}
 	};
 
-	Conditionals.prototype.callbacks.set = function( $part, result, then ) {
+	Conditionals.prototype.callbacks.set = function( formId, $part, result ) {
 		var data = {};
 
 		if ( result.result ) {

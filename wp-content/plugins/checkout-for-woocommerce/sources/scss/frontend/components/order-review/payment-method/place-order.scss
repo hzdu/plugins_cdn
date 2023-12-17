@@ -8,6 +8,10 @@
 }
 
 #cfw-place-order button {
+    width: 100%;
+}
+
+#cfw-place-order button:not(.gpay-button) {
     @include cfw-primary-button();
 }
 
