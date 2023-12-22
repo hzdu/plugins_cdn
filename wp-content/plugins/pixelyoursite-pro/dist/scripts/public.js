@@ -3105,7 +3105,8 @@ if (!String.prototype.trim) {
 
             var eventParams = event.params;
             var data = event.params;
-            var ids = event.trackingIds.filter(function (pixelId) {
+            var valuesArray = Object.values(event.trackingIds);
+            var ids = valuesArray.filter(function (pixelId) {
                 return !Utils.hideMatchingPixel(pixelId, 'ga');
             })
             Utils.copyProperties(Utils.getRequestParams(), eventParams);
