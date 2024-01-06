@@ -2278,11 +2278,11 @@ if (!String.prototype.trim) {
                         && Object.keys(options.tiktok.advanced_matching).length > 0) {
                         advancedMatching = options.tiktok.advanced_matching;
                         if(!advancedMatching.hasOwnProperty("external_id")){
-                            if (Cookies.get('pbid') || (options.hasOwnProperty('pbid') && options.pbid)) {
-                                advancedMatching["external_id"] = Cookies.get('pbid') ? Cookies.get('pbid') : options.pbid;
+                            if (Cookies.get('pbid')) {
+                                advancedMatching["external_id"] = Cookies.get('pbid');
                             }
                         }
-                        else if(advancedMatching.external_id != Cookies.get('pbid'))
+                        else if(advancedMatching.hasOwnProperty("external_id") && advancedMatching.external_id != Cookies.get('pbid'))
                         {
                             advancedMatching["external_id"] = Cookies.get('pbid') ? Cookies.get('pbid') : advancedMatching.external_id;
                         }
@@ -2802,11 +2802,11 @@ if (!String.prototype.trim) {
                         advancedMatching["ln"] = advancedMatchingForm["last_name"];
                     }
                     if(!advancedMatching.hasOwnProperty("external_id")){
-                        if (Cookies.get('pbid') || (options.hasOwnProperty('pbid') && options.pbid)) {
-                            advancedMatching["external_id"] = Cookies.get('pbid') ? Cookies.get('pbid') : options.pbid;
+                        if (Cookies.get('pbid')) {
+                            advancedMatching["external_id"] = Cookies.get('pbid');
                         }
                     }
-                    else if(advancedMatching.external_id != Cookies.get('pbid'))
+                    else if(advancedMatching.hasOwnProperty("external_id") && advancedMatching.external_id != Cookies.get('pbid'))
                     {
                         advancedMatching["external_id"] = Cookies.get('pbid') ? Cookies.get('pbid') : advancedMatching.external_id;
                     }
@@ -5461,12 +5461,6 @@ if (pysOptions.ajaxForServerEvent && !Cookies.get('pbid')) {
             if (res.data && res.data.pbid != false && pysOptions.send_external_id) {
                 var expires = parseInt(pysOptions.external_id_expire || 180);
                 Cookies.set('pbid', res.data.pbid, { expires: expires, path: '/' });
-                if(pysOptions.hasOwnProperty('facebook')) {
-                    pysOptions.facebook.advancedMatching.external_id = res.data.pbid;
-                }
-                if(pysOptions.hasOwnProperty('tiktok')){
-                    pysOptions.tiktok.advanced_matching.external_id = res.data.pbid;
-                }
             }
         }
     });
