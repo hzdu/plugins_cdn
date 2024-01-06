@@ -2381,6 +2381,9 @@ ul.wpfd-tabs li.active {
   font-size: 24px;
   margin-right: 5px;
 }
+#wpfd-categories-col .ju-dropdown-wrapper.hasCloud:hover .ju-dropdown-menu li a .wpfd-folder.wpfd-aws-icon, #wpfd-categories-col .ju-dropdown-wrapper.hasCloud:hover .ju-dropdown-menu li button .wpfd-folder.wpfd-aws-icon, #wpfd-categories-col .ju-dropdown-wrapper.hasCloud:hover .ju-dropdown-menu li .button .wpfd-folder.wpfd-aws-icon {
+  font-size: 14px !important;
+}
 #wpfd-categories-col .ju-dropdown-wrapper.hasCloud:hover .ju-dropdown-menu li a:hover, #wpfd-categories-col .ju-dropdown-wrapper.hasCloud:hover .ju-dropdown-menu li button:hover, #wpfd-categories-col .ju-dropdown-wrapper.hasCloud:hover .ju-dropdown-menu li .button:hover {
   background: rgba(0, 0, 0, 0.05);
   -webkit-border-radius: 0;
@@ -2805,6 +2808,10 @@ ul.wpfd-tabs li.active {
   font-size: 24px;
   font-weight: normal;
   vertical-align: middle;
+}
+.dd3-handle .wpfd-aws-icon {
+  font-size: 14px !important;
+  top: 12px !important;
 }
 .dd3-handle:hover {
   background: #32373C;
@@ -3906,6 +3913,9 @@ ul.wpfd-tabs li.active {
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
   border-radius: 4px;
+}
+#wpfd-core .ju-input[name=s3_file_name] {
+  background-color: #f0f0f1;
 }
 #wpfd-core .minicolors-sprite {
   background-image: url(../../images/jquery.minicolors.png);
@@ -5208,3 +5218,5 @@ ul.wpfd-tabs li.active {
   padding: 10px 15px !important;
   min-width: unset;
 }
+
+/*# sourceMappingURL=core.css.map */

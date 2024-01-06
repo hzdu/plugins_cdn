@@ -40,7 +40,7 @@ class File extends Component {
 
     fetFileShortcode(file_id, category_id) {
         const self = this;
-        const url = window.et_fb_options.ajaxurl + `?action=wpfd&task=file.callFileShortcode&file_id=${file_id}&category_id=${category_id}`;
+        const url = window.et_fb_options.ajaxurl + `?action=wpfd&task=file.callFileShortcode&file_id=${encodeURIComponent(file_id)}&category_id=${category_id}`;
         if (file_id && category_id) {
             setTimeout(function () {
                 if (!self.state.fileLoading) {
@@ -83,7 +83,7 @@ class File extends Component {
 
         const loadingIcon = (
             <svg className={'wpfd-loading'} width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"
-                 viewBox="0 0 100 100" preserveAspectRatio="xMidYMid">
+                 viewBox="0 0 100 100" preserveAspectRatio="xMidYMid">icon
                 <g transform="translate(25 50)">
                     <circle cx="0" cy="0" r="10" fill="#cfcfcf" transform="scale(0.590851 0.590851)">
                         <animateTransform attributeName="transform" type="scale" begin="-0.8666666666666667s" calcMode="spline"

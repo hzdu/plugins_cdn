@@ -35,6 +35,9 @@ jQuery(document).ready(function ($) {
                     while (fileid.indexOf(':') > -1) {
                         fileid = fileid.replace(':', '-');
                     }
+                    while (fileid.indexOf('.'+$(this).data('file-type')) > -1) {
+                        fileid = fileid.replace(/[^a-zA-Z0-9]+/g, '-');
+                    }
                 }
                 html = '<div class="dropblock">';
                 html +=' <a href="#" id="wpfd-dropblock-close"><span class="dashicons dashicons-dismiss"></span></a>';

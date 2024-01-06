@@ -93,6 +93,9 @@
     setSelectedFile(file) {
       const {setAttributes} = this.props
       let fileName = file.name.replace('[', '&amp;#91;').replace(']', '&amp;#93;');
+      if(file.categoryFrom == 'aws') {
+        file.id = decodeURIComponent(file.id);
+      }
       const shortCode = `[wpfd_single_file id="${file.id}" catid="${file.term_id}" name="${fileName}"]`
 
       setAttributes({

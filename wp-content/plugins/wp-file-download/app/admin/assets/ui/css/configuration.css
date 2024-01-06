@@ -726,6 +726,16 @@
   color: #5f879b;
   font-weight: 600;
   letter-spacing: 0.7px;
+  width: 100%;
+}
+.ju-main-wrapper .ju-right-panel .ju-content-wrapper .ju-settings-option .ju-settings-error-message {
+  padding: 0.9375rem 0;
+  float: left;
+  text-align: left;
+  color: #f00;
+  font-weight: 600;
+  letter-spacing: 0.7px;
+  display: none;
 }
 .ju-main-wrapper .ju-right-panel .ju-content-wrapper .ju-settings-option .ju-radio-group {
   display: inline-block;
@@ -1372,7 +1382,7 @@
 }
 @media screen and (max-width: 1400px) {
   .ju-main-wrapper .ju-right-panel .ju-content-wrapper .ju-settings-option {
-    width: calc(100% - 3.125rem);
+    width: calc(100% - 3.125rem) !important;
   }
 }
 .ju-main-wrapper .ju-right-panel .ju-top-tabs-wrapper {
@@ -1579,30 +1589,67 @@
 #wpfd-theme-cloud,
 #wpfd-theme-dropbox,
 #wpfd-theme-onedrive,
-#wpfd-theme-onedrive-business {
+#wpfd-theme-onedrive-business,
+#wpfd-theme-aws {
   margin-top: 1.5625rem;
 }
 #wpfd-theme-cloud .ju-heading,
 #wpfd-theme-dropbox .ju-heading,
 #wpfd-theme-onedrive .ju-heading,
-#wpfd-theme-onedrive-business .ju-heading {
+#wpfd-theme-onedrive-business .ju-heading,
+#wpfd-theme-aws .ju-heading {
   display: inline-block;
   float: left;
   font-size: 1.75rem;
+  margin: 0 15px;
+}
+#wpfd-theme-cloud .ju-settings-option,
+#wpfd-theme-dropbox .ju-settings-option,
+#wpfd-theme-onedrive .ju-settings-option,
+#wpfd-theme-onedrive-business .ju-settings-option,
+#wpfd-theme-aws .ju-settings-option {
+  width: calc(50% - 40px);
+}
+#wpfd-theme-cloud .ju-settings-option.full-width,
+#wpfd-theme-dropbox .ju-settings-option.full-width,
+#wpfd-theme-onedrive .ju-settings-option.full-width,
+#wpfd-theme-onedrive-business .ju-settings-option.full-width,
+#wpfd-theme-aws .ju-settings-option.full-width {
+  width: calc(100% - 3.125rem);
+}
+#wpfd-theme-cloud .ju-radiobox,
+#wpfd-theme-dropbox .ju-radiobox,
+#wpfd-theme-onedrive .ju-radiobox,
+#wpfd-theme-onedrive-business .ju-radiobox,
+#wpfd-theme-aws .ju-radiobox {
+  width: 16px;
+  height: 16px;
+}
+@media screen and (max-width: 430px) {
+  #wpfd-theme-cloud .ju-button,
+  #wpfd-theme-dropbox .ju-button,
+  #wpfd-theme-onedrive .ju-button,
+  #wpfd-theme-onedrive-business .ju-button,
+  #wpfd-theme-aws .ju-button {
+    letter-spacing: 0.5px;
+    padding: 5px;
+  }
 }
 
 #wpfd-btnconnect-ggd,
 #wpfd-btnconnect-dropbox,
 #wpfd-btnconnect-onedrive,
-#wpfd-btnconnect-onedrive-business {
-  padding: 0 25px;
+#wpfd-btnconnect-onedrive-business,
+#wpfd-btnconnect-aws {
+  padding: 0 35px;
   float: right;
 }
 
 label[for=googleSyncMethod] + .ju-radio-group,
 label[for=dropboxSyncMethod] + .ju-radio-group,
 label[for=onedriveSyncMethod] + .ju-radio-group,
-label[for=onedriveBusinessSyncMethod] + .ju-radio-group {
+label[for=onedriveBusinessSyncMethod] + .ju-radio-group,
+label[for=awsSyncMethod] + .ju-radio-group {
   width: 100%;
   text-align: center;
   display: flex !important;
@@ -1611,7 +1658,8 @@ label[for=onedriveBusinessSyncMethod] + .ju-radio-group {
 label[for=googleSyncMethod] + .ju-radio-group label,
 label[for=dropboxSyncMethod] + .ju-radio-group label,
 label[for=onedriveSyncMethod] + .ju-radio-group label,
-label[for=onedriveBusinessSyncMethod] + .ju-radio-group label {
+label[for=onedriveBusinessSyncMethod] + .ju-radio-group label,
+label[for=awsSyncMethod] + .ju-radio-group label {
   flex: 1;
   line-height: 3.125rem;
 }
@@ -1626,9 +1674,21 @@ label[for=onedriveBusinessSyncMethod] + .ju-radio-group label {
 .ggd-documentation,
 .dropbox-documentation,
 .onedrive-documentation,
-.onedrive-business-documentation {
+.onedrive-business-documentation,
+.aws-documentation {
   margin-left: 0.625rem;
   margin-top: 0.0625rem;
+}
+@media screen and (max-width: 1285px) {
+  .ggd-documentation,
+  .dropbox-documentation,
+  .onedrive-documentation,
+  .onedrive-business-documentation,
+  .aws-documentation {
+    margin-left: 15px;
+    margin-top: 10px;
+    clear: both;
+  }
 }
 
 .ju-settings-pre {
@@ -1660,6 +1720,24 @@ label[for=onedriveBusinessSyncMethod] + .ju-radio-group label {
   border-radius: 0 4px 4px 0;
 }
 .wpfd-float-message .wpfd-alert-message {
+  display: inline-block;
+  margin-right: 5px;
+}
+
+.wpfd-aws-error-message {
+  text-align: left;
+  color: #f90900;
+  background: rgb(255, 255, 255);
+  clear: both;
+  border-left: 5px solid #f90900;
+  width: calc(100% - 3.125rem);
+  padding: 0.625rem 1.25rem;
+  margin: 0 0.9375rem 1.25rem 0.9375rem;
+  -webkit-border-radius: 0 4px 4px 0;
+  -moz-border-radius: 0 4px 4px 0;
+  border-radius: 0 4px 4px 0;
+}
+.wpfd-aws-error-message .wpfd-alert-message {
   display: inline-block;
   margin-right: 5px;
 }
@@ -2415,6 +2493,136 @@ label[for=onedriveBusinessSyncMethod] + .ju-radio-group label {
 }
 .wpfd-gritter-successfull .gritter-item p {
   margin: 0;
+}
+
+.wpfd-important-note {
+  background-color: #ff8c00;
+  margin-top: 5px;
+}
+.wpfd-important-note .ju-settings-important-note {
+  color: #fff !important;
+}
+.wpfd-important-note .ju-settings-important-note h3 {
+  color: #fff !important;
+  margin: 0;
+}
+.wpfd-important-note .ju-settings-important-note p {
+  margin: 5px 0;
+}
+
+.buckets_wrap {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 10px;
+  row-gap: 10px;
+  clear: both;
+}
+
+.current_bucket, .current_bucket_region {
+  background: #eee;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.msg-no-bucket {
+  display: none;
+}
+
+.spinner-delete-bucket {
+  margin: 4px;
+  display: none;
+}
+
+.wpfd-aws3-select-bucket .btn-select-bucket {
+  background-color: transparent;
+  color: #000;
+  padding: 10px 15px;
+  min-width: 0;
+  border: 1px solid #9fabba;
+  text-transform: uppercase;
+  display: inline-block;
+  text-decoration: none;
+  cursor: pointer;
+  text-align: center;
+  letter-spacing: 2px;
+  transition: all ease 0.5s;
+  -webkit-border-radius: 40px;
+  -moz-border-radius: 40px;
+  border-radius: 4px;
+  font-family: "Roboto", sans-serif;
+}
+
+.bucket-selected .btn-select-bucket {
+  text-transform: uppercase;
+  color: #f28f40;
+  font-weight: bold;
+}
+.bucket-selected .btn-select-bucket:before {
+  content: "\f147";
+  font-family: "dashicons";
+  font-size: 20px;
+  vertical-align: middle;
+}
+.bucket-selected .delete-bucket {
+  display: none;
+}
+
+.wpfd_width_100 {
+  width: 100%;
+  max-width: 100%;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.table-list-buckets table thead tr th {
+  border-bottom: #ddd 1px solid;
+  font-size: 15px;
+}
+.table-list-buckets table tr {
+  height: 60px;
+}
+.table-list-buckets table tr td {
+  border-bottom: #ddd 1px solid;
+  word-break: break-all;
+}
+
+#manage-bucket {
+  width: 60%;
+  max-width: 60%;
+  margin: 0 auto;
+  max-height: 650px;
+  background: #f3f6fa;
+  padding: 20px;
+  box-sizing: border-box;
+  overflow: auto;
+}
+#manage-bucket input, #manage-bucket select {
+  height: 45px;
+  border-radius: 4px;
+  margin: 0;
+  font-size: 14px;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: 0.7px;
+  color: #404852;
+  font-family: "Roboto", sans-serif;
+}
+#manage-bucket .ju-settings-error-message {
+  color: #f00;
+  font-weight: 600;
+  letter-spacing: 0.7px;
+}
+#manage-bucket .delete-bucket {
+  cursor: pointer;
+}
+#manage-bucket .select-bucket-spinner {
+  visibility: visible;
+  margin: 10px;
+}
+#manage-bucket .action-aws-btn {
+  margin-top: 1.3em;
 }
 
 /*# sourceMappingURL=configuration.css.map */

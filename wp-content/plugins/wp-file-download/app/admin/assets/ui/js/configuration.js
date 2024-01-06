@@ -72,6 +72,7 @@
         });
         $("#wpfd-sortable-list").disableSelection();
         this.wpfdServerFolderSync();
+        $(document).on('click', '#aws_connect', this.wpfdConnectAws);
       },
       toggleRevisionPatternInput: function(e) {
         $('input[name="revision_pattern"]').parent().slideToggle();
@@ -1062,7 +1063,17 @@
 
         $('body').append(backdrop);
         $('body').append(modal);
-      }
+      },
+      wpfdConnectAws: function () {
+        var url = wpfd_var.wpfdajaxurl + "?action=wpfdAddonConnectAws";
+        $.ajax({
+          url: url,
+          method: 'POST',
+          success: function (response) {
+            window.location.reload();
+          }
+        })
+      },
     };
 
     // Search indexer
@@ -1538,5 +1549,180 @@
       });
       return sortedList;
     }
+
+    $('.new-bucket-name').on('input', function () {
+      var bucket = $(this).val();
+      if (bucket.indexOf(' ') !== -1) {
+        $('#manage-bucket .ju-settings-error-message').html(wpfd_configuration_vars.aws_bucket_error_msg1);
+      } else {
+        var re = /^[a-z0-9][a-z0-9\-\.]{2,62}$/;
+        if (!re.test(bucket)) {
+          $('#manage-bucket .ju-settings-error-message').html(wpfd_configuration_vars.aws_bucket_error_msg);
+        } else {
+          $('#manage-bucket .ju-settings-error-message').html('');
+        }
+      }
+    });
+
+    $('#wpfd-cloud-config #amazon_s3 .wpfdAddonparams').on('submit', function () {
+      var bucket_name = $('input[name="awsBucketName"]').val();
+      if (bucket_name === '') {
+          return false;
+      }
+
+      if (bucket_name.indexOf(' ') !== -1) {
+          return false;
+      } else {
+          var re = /^[a-z0-9][a-z0-9\-\.]{2,62}$/;
+          if (!re.test(bucket_name)) {
+              return false;
+          }
+      }
+
+      return true;
+    })
+
+    $('.wpfd-aws3-manage-bucket').magnificPopup({
+        type: 'inline',
+        midClick: true // Allow opening popup on middle mouse click. Always set it to true if you don't provide alternative source in href.
+    });
+    $('.cancel-bucket-btn').on('click', function () {
+        $.magnificPopup.close();
+    });
+    $(document).on('click', '.btn-select-bucket', function () {
+      var $this = $(this);
+      if ($this.closest('tr').hasClass('bucket-selected')) {
+        return;
+      }
+      var bucket = $this.closest('tr').data('bucket');
+      var url = wpfd_var.wpfdajaxurl + "?action=wpfdAddonSelectBucket";
+      $.ajax({
+        url: url,
+        method: 'POST',
+        data: {
+          bucket: bucket
+        },
+        beforeSend: function () {
+          if (!$('.select-bucket-spinner').length) {
+            $this.closest('td').append('<span class="spinner select-bucket-spinner"></span>');
+          }
+        },
+        success: function (res) {
+          if (res.success) {
+            $('.select-bucket-spinner').remove();
+            $('.current_bucket').text(bucket);
+            $('.current_bucket_region').text(res.region_name);
+            $('input[name="awsBucketName"]').val(bucket);
+            $('input[name="awsRegion"]').val(res.region);
+            $('.row_bucket').removeClass('bucket-selected').addClass('wpfd-aws3-select-bucket');
+            $('.row_bucket .btn-select-bucket').text('selected bucket');
+            $this.closest('.row_bucket').addClass('bucket-selected').removeClass('wpfd-aws3-select-bucket');
+            $this.closest('.row_bucket').find('.btn-select-bucket').text('selected bucket');
+            $.magnificPopup.close();
+          } else {
+            if (res.msg !== "undefined") {
+              alert(res.msg);
+              $('.select-bucket-spinner').remove();
+            }
+          }
+        }
+      });
+    });
+    $(document).on('click', '.delete-bucket', function (e) {
+      e.preventDefault();
+      var $that = $(e.target);
+      var $this = $(this);
+      if (confirm(_wpfd_text('Are you sure') + '?')) {
+        if ($this.closest('tr').hasClass('bucket-selected')) {
+          return;
+        }
+        var bucket_name = $this.data('bucket');
+        $this.closest('tr').find('.spinner-delete-bucket').show();
+        var url = wpfd_var.wpfdajaxurl + "?action=wpfdAddonDeleteBucket";
+        $.ajax({
+          url: url,
+          method: 'POST',
+          data: {
+            bucket: bucket_name,
+          },
+          success: function (res) {
+            if (res.success) {
+              $this.closest('tr').remove();
+              $('.wpfd-aws3_buckets_list .bucket-option[value="' + bucket_name + '"]').remove();
+              if (!$('.table-list-buckets tbody tr').length) {
+                $('.msg-no-bucket').addClass('show');
+              } else {
+                $('.msg-no-bucket').removeClass('show');
+              }
+            } else {
+              if (typeof res.msg !== "undefined") {
+                alert(res.msg);
+              }
+            }
+          }
+        });
+      }
+      return false;
+    });
+
+    function getListBuckets() {
+      var url = wpfd_var.wpfdajaxurl + "?action=wpfdAddonGetListBucket";
+      $.ajax({
+        url: url,
+        method: 'POST',
+        beforeSend: function() {
+          $('#manage-bucket').addClass('loading');
+        },
+        success: function (res) {
+          $('#manage-bucket').removeClass('loading');
+          if (res.success) {
+            $('.table-list-buckets table tbody').html(res.html);
+          }
+        }
+      });
+    }
+    $('.create-bucket-btn').on('click', function () {
+      var bucket_name = $('.new-bucket-name').val();
+      var region = $('.new-bucket-region').val();
+      if (bucket_name === '') {
+        return;
+      }
+
+      if (bucket_name.indexOf(' ') !== -1) {
+        return;
+      } else {
+        var re = /^[a-z0-9][a-z0-9\-\.]{2,62}$/;
+        if (!re.test(bucket_name)) {
+          return;
+        }
+      }
+      var url = wpfd_var.wpfdajaxurl + "?action=wpfdAddonCreateBucket";
+      $.ajax({
+        url: url,
+        method: 'POST',
+        data: {
+          bucket: bucket_name,
+          region: region
+        },
+        beforeSend: function () {
+          $('.create-bucket-spinner').show().css('visibility', 'visible');
+        },
+        success: function (res) {
+          $('.create-bucket-spinner').hide();
+          if (!res.success) {
+            $('#manage-bucket .ju-settings-error-message').html(res.msg);
+          } else {
+            $('.wpfd-aws3_buckets_list').append('<option class="bucket-option" value="' + bucket_name + '">' + bucket_name + '</option>');
+            if (!$('.table-list-buckets tbody tr').length) {
+              $('.msg-no-bucket').addClass('show');
+            } else {
+              $('.msg-no-bucket').removeClass('show');
+            }
+            $('.new-bucket-name').val('');
+            getListBuckets();
+          }
+        }
+      });
+    });
   });
 })(jQuery);

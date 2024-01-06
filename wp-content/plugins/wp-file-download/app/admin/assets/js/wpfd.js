@@ -420,6 +420,8 @@ jQuery(document).ready(function ($) {
                             wpfdAjaxurl = wpfd_var.wpfdajaxurl + "?action=wpfdAddonDeleteOneDriveCategory&id_category=" + id_category
                         } else if (typeCloud === 'onedrive_business') {
                             wpfdAjaxurl = wpfd_var.wpfdajaxurl + "?action=wpfdAddonDeleteOneDriveBusinessCategory&id_category=" + id_category
+                        } else if (typeCloud === 'aws') {
+                            wpfdAjaxurl = wpfd_var.wpfdajaxurl + "?action=wpfdAddonDeleteAwsCategory&id_category=" + id_category
                         }
                         $.ajax({
                             url: wpfdAjaxurl,
@@ -476,6 +478,8 @@ jQuery(document).ready(function ($) {
             wpfdAjaxurl = wpfd_var.wpfdajaxurl + "?action=wpfdAddonDuplicateOneDriveCategory&id_category=" + id_category + "&title_category=" + duplicateCatTitle;
         } else if (typeCloud === 'onedrive_business') {
             wpfdAjaxurl = wpfd_var.wpfdajaxurl + "?action=wpfdAddonDuplicateOneDriveBusinessCategory&id_category=" + id_category + "&title_category=" + duplicateCatTitle;
+        } else if (typeCloud === 'aws') {
+            wpfdAjaxurl = wpfd_var.wpfdajaxurl + "?action=wpfdAddonDuplicateAwsCategory&id_category=" + id_category + "&title_category=" + duplicateCatTitle;
         }
 
         $.ajax({
@@ -686,6 +690,7 @@ jQuery(document).ready(function ($) {
                     iFile = 0;
                     while (selectedFiles.length > 0) {
                         id_file = selectedFiles.pop();
+                        id_file = encodeURIComponent(id_file);
                         $.ajax({
                             url: wpfdajaxurl + "task=" + lastAction + "&id_category=" + cat_target + '&active_category=' + copySourceCat + '&id_file=' + id_file,
                             type: "POST",
@@ -738,7 +743,7 @@ jQuery(document).ready(function ($) {
 
                                 while (selectedFilesInfos.length > 0) {
                                     filesInfos = selectedFilesInfos.pop();
-                                    id_file = filesInfos.fileId;
+                                    id_file = encodeURIComponent(filesInfos.fileId);
                                     catIdRef = filesInfos.catIdRef;
                                     confirmDeleteWooFiles = false;
 
@@ -762,7 +767,7 @@ jQuery(document).ready(function ($) {
                                         }
                                     });
 
-                                    $('.file[data-id-file="' + id_file + '"]').fadeOut(500, function () {
+                                    $('.file[data-id-file="' + decodeURIComponent(id_file) + '"]').fadeOut(500, function () {
                                         $(this).remove();
                                     });
                                 }
@@ -885,7 +890,7 @@ jQuery(document).ready(function ($) {
                 // Insert params to next row
                 $('<div class="wpfd_row editor"><div class="wpfd_cell span_full dploadingcontainer"><div class="dploading"></div></div></div></div>').insertAfter(fileDiv);
                 // Load file params?
-                id_file = fileDiv.data('id-file'),
+                id_file = fileDiv.attr('data-id-file'),
                     catid_file = fileDiv.data('catid-file'),
                     title = fileDiv.find('.title').first().text(),
                     is_remoteurl = fileDiv.hasClass('is-remote-url'),
@@ -1450,7 +1455,8 @@ jQuery(document).ready(function ($) {
             if ($('.dd3-item.active > .dd3-handle  > i.onedrive-icon').length > 0 ||
                 $('.dd3-item.active > .dd3-handle  > i.onedrive-business-icon').length > 0 ||
                 $('.dd3-item.active > .dd3-handle  > i.google-drive-icon').length > 0 ||
-                $('.dd3-item.active > .dd3-handle  > i.dropbox-icon').length > 0
+                $('.dd3-item.active > .dd3-handle  > i.dropbox-icon').length > 0 ||
+                $('.dd3-item.active > .dd3-handle  > i.wpfd-aws-icon').length > 0
             ) {
                 return true;
             }
@@ -2369,6 +2375,13 @@ jQuery(document).ready(function ($) {
                 var idRefCategory = jQuery('.file[data-id-file="' + id_file + '"]').data('catid-file');
                 // id_file = jQuery('.file.selected').data('id-file');
                 var fileData = $('#fileparams .wpfdparams').serialize();
+                var old_title = title;
+                var old_idFile = id_file;
+                var fileAws = false;
+
+                if (wpfd_var && wpfd_var.wpfd_aws_categories && wpfd_var.wpfd_aws_categories[idRefCategory] !== undefined) {
+                    fileAws = true;
+                }
 
                 fileData = unserialize(fileData);
                 resetFileParamsCheck();
@@ -2419,6 +2432,10 @@ jQuery(document).ready(function ($) {
                     return;
                 }
 
+                if (fileAws === true) {
+                    id_file = encodeURIComponent(id_file);
+                }
+
                 $.ajax({
                     url: wpfdajaxurl + "task=file.save&id=" + id_file + "&idCategory=" + idCategory + "&idRefCategory=" + idRefCategory,
                     method: "POST",
@@ -2435,7 +2452,12 @@ jQuery(document).ready(function ($) {
                         $('.gritter-item-wrapper ').remove();
                         $.gritter.add({text: wpfd_admin.msg_save_file});
                         // Live update the form and file row
+                        if (fileAws === true) {
+                            id_file = decodeURIComponent(id_file);
+                        }
+
                         $(document).trigger('wpfd_file_save_success', [result.datas, id_file, idCategory]);
+                        
                         $('.wpfd_row').removeClass('editing');
                         $('#preview').sortable('refresh');
                         $('#preview').sortable('enable');
@@ -2975,6 +2997,57 @@ jQuery(document).ready(function ($) {
 
         return false;
     });
+    /**
+     * Click to Sync with AWS
+     */
+    Wpfd.syncAws = function(callback) {
+        wpfd_status.addStatusLine('Synching Amazon S3...');
+        $.ajax({
+            url: wpfd_var.wpfdajaxurl + '?action=awsSync',
+            success: function (data) {
+                $('.gritter-item-wrapper ').remove();
+                $.gritter.add({text: wpfd_admin.msg_google_drive_sync_done});
+                //window.location.reload();
+                awsInterval = setInterval(function() {
+                    $.ajax({
+                        url: wpfd_var.wpfdajaxurl + '?action=aws_sync_status',
+                        success: function(response) {
+                            if (response.success) {
+                                if (response.total === 0) {
+                                    clearInterval(awsInterval);
+                                    callback();
+                                    // Queue stoped. Prompt user reload page or not?
+                                    bootbox.dialog(
+                                        wpfd_admin.msg_promtp_sync_reload_page,
+                                        [
+                                            {
+                                                "label": _wpfd_text('Cancel')
+                                            },
+                                            {
+                                                "label": _wpfd_text('Confirm'),
+                                                "callback": function () {
+                                                    window.location.reload()
+                                                }
+                                            }
+                                        ]
+                                    );
+
+                                }
+                            }
+                        }
+                    });
+                }, 2000);
+            }
+        });
+    };
+    $('#btn-sync-aws').on('click', function (e) {
+        e.preventDefault();
+        var $btn = $(this).button('loading');
+        Wpfd.syncAws(function() {
+            $btn.button('complete');
+        });
+        return false;
+    });
 
     /**
      * Click on new category btn
@@ -3002,6 +3075,8 @@ jQuery(document).ready(function ($) {
                 type = 'onedrive';
             } else if ($newCategoryButton.hasClass('onedriveBusinessCreate')) {
                 type = 'onedrive_business';
+            } else if ($newCategoryButton.hasClass('awsCreate')) {
+                type = 'aws';
             } else {
                 type = 'wordpress';
             }
@@ -3039,6 +3114,11 @@ jQuery(document).ready(function ($) {
                 icon = '<i class="onedrive-business-icon wpfd-folder wpfd-liga">onedrive</i>';
                 default_new_category_name = wpfd_admin.new_onedrive_business_category_name;
                 break;
+            case 'aws':
+                addCategoryAjaxUrl = wpfd_var.wpfdajaxurl + "?action=wpfdAddonAddAwsCategory&type=" + type;
+                icon = '<i class="wpfd-aws-icon wpfd-folder wpfd-liga"></i>';
+                default_new_category_name = wpfd_admin.new_aws_category_name;
+                break;
             case 'wordpress':
             default:
                 addCategoryAjaxUrl = wpfdajaxurl + "task=category.addCategory";
@@ -3055,7 +3135,10 @@ jQuery(document).ready(function ($) {
             $.ajax({
                 url: addCategoryAjaxUrl,
                 type: 'POST',
-                data: {parentId: parentId, name: new_name}
+                data: {parentId: parentId, name: new_name},
+                beforeSend: function () {
+                    $.gritter.add({text: wpfd_admin.msg_adding_category});
+                }
             }).done(function (data) {
                 var result = jQuery.parseJSON(data);
                 if (result.response === true) {
@@ -3932,6 +4015,7 @@ jQuery(document).ready(function ($) {
                 var isDropboxItem = $(e).find('div.dd3-handle i.dropbox-icon').length;
                 var isOneDriveItem = $(e).find('div.dd3-handle i.onedrive-icon').length;
                 var isOneDriveBusinessItem = $(e).find('div.dd3-handle i.onedrive-business-icon').length;
+                var isAwsItem = $(e).find('div.dd3-handle i.wpfd-aws-icon').length;
                 var itemChangeType = 'default';
                 if (isCloudItem > 0) {
                     itemChangeType = 'googleDrive';
@@ -3941,6 +4025,10 @@ jQuery(document).ready(function ($) {
                     itemChangeType = 'onedrive';
                 } else if (isOneDriveBusinessItem > 0) {
                     itemChangeType = 'onedrive_business';
+                } else if (isOneDriveBusinessItem > 0) {
+                    itemChangeType = 'onedrive_business';
+                } else if (isAwsItem > 0) {
+                    itemChangeType = 'aws';
                 }
 
                 pk = $(e).data('id-category');

@@ -110,6 +110,8 @@
             newCategoryAjaxUrl = wpfd_var.wpfdajaxurl + "?action=wpfdAddonAddOneDriveCategory&type=" + wpfd_alt.$currentCategory.type;
           } else if (wpfd_alt.$currentCategory.type === 'onedrive_business') {
             newCategoryAjaxUrl = wpfd_var.wpfdajaxurl + "?action=wpfdAddonAddOneDriveBusinessCategory&type=" + wpfd_alt.$currentCategory.type;
+          } else if (wpfd_alt.$currentCategory.type === 'aws') {
+            newCategoryAjaxUrl = wpfd_var.wpfdajaxurl + "?action=wpfdAddonAddAwsCategory&type=" + wpfd_alt.$currentCategory.type;
           } else if (wpfd_alt.$currentCategory.type === 'wordpress') {
             newCategoryAjaxUrl = wpfdajaxurl + "task=category.addCategory";
           }
@@ -121,6 +123,9 @@
             url: newCategoryAjaxUrl,
             type: 'POST',
             data: {name: name, parentId: wpfd_alt.$currentCategory.id},
+            beforeSend: function () {
+                $.gritter.add({text: wpfd_admin.msg_adding_category});
+            }
           })
             .done(function (data) {
               var result = jQuery.parseJSON(data);
@@ -135,6 +140,8 @@
                   icon = '<i class="onedrive-icon"></i>';
                 } else if (wpfd_alt.$currentCategory.type === 'onedrive_business') {
                   icon = '<i class="onedrive-business-icon"></i>';
+                } else if (wpfd_alt.$currentCategory.type === 'aws') {
+                  icon = '<i class="wpfd-aws-icon"></i>';
                 }
                 var newCategoryId = result.datas.id_category;
                 var link = '';

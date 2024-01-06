@@ -10,6 +10,18 @@
     font-display: block;
 }
 
+@font-face {
+  font-family: 'wpfdawsicon';
+  src:  url('wpfdaws.eot?t9i2xj');
+  src:  url('wpfdaws.eot?t9i2xj#iefix') format('embedded-opentype'),
+    url('wpfdaws.ttf?t9i2xj') format('truetype'),
+    url('wpfdaws.woff?t9i2xj') format('woff'),
+    url('wpfdaws.svg?t9i2xj#wpfdaws') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
 .wpfd-liga {
     /* use !important to prevent issues with browser extensions that change fonts */
     font-family: 'wpfdicon' !important;
@@ -36,6 +48,9 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
+.wpfd-liga.wpfd-aws-icon {
+    font-family: 'wpfdawsicon' !important;
+}
 
 .wpfd-icon-dropbox:before {
     content: "\e900";
@@ -48,4 +63,7 @@
 }
 .wpfd-icon-google-drive:before {
     content: "\e902";
+}
+.wpfd-aws-icon:before {
+  content: "\e903";
 }

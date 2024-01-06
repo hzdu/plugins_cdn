@@ -14,7 +14,7 @@
                 $(document).on('change', 'input[type="radio"][name="dropboxSyncMethod"]', this.dropboxSyncMethodChange);
                 $(document).on('change', 'input[type="radio"][name="onedriveSyncMethod"]', this.onedriveSyncMethodChange);
                 $(document).on('change', 'input[type="radio"][name="onedriveBusinessSyncMethod"]', this.onedriveBusinessSyncMethodChange);
-                $(document).on('click', '#gg_disconnect, #drop_disconnect, #onedrive_disconnect, #onedrive_business_disconnect', this.promptConnect);
+                $(document).on('click', '#gg_disconnect, #drop_disconnect, #onedrive_disconnect, #onedrive_business_disconnect, #aws_disconnect', this.promptConnect);
                 $('input[type="radio"][name="googleSyncMethod"]:checked, input[type="radio"][name="dropboxSyncMethod"]:checked, input[type="radio"][name="onedriveSyncMethod"]:checked, input[type="radio"][name="onedriveBusinessSyncMethod"]:checked').trigger('change');
                 $("#wpfdAddonlaunch").leanModal();
                 $(".wpfd_dropboxBaseFolderId").on('change', function (e) {
@@ -108,9 +108,11 @@
                 $("#wpfd-btnconnect-dropbox").insertAfter($('#wpfd-theme-dropbox .ju-heading'));
                 $("#wpfd-btnconnect-onedrive").insertAfter($('#wpfd-theme-onedrive .ju-heading'));
                 $("#wpfd-btnconnect-onedrive-business").insertAfter($('#wpfd-theme-onedrive-business .ju-heading'));
+                $("#wpfd-btnconnect-aws").insertAfter($('#wpfd-theme-aws .ju-heading'));
 
                 // Move push notification button
                 $(".wpfd-float-message").insertAfter($('#wpfd-btnconnect-ggd'));
+                $(".wpfd-aws-error-message").insertAfter($('#wpfd-btnconnect-aws'));
                 $("#wpfd-btnpush-ggd").insertAfter($('#wpfd-btnconnect-ggd'));
                 $("#wpfd-btnpush-onedrive-business").insertAfter($('#wpfd-btnconnect-onedrive-business'));
 

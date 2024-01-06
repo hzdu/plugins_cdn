@@ -35,9 +35,9 @@
   letter-spacing: 2px;
   transition: all ease 0.5s;
   vertical-align: middle;
-  -webkit-border-radius: 100px;
-  -moz-border-radius: 100px;
-  border-radius: 100px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
   font-size: 14px;
 }
 .wpfd-divi-modal .wpfd-button:focus {
@@ -65,13 +65,17 @@
   text-transform: uppercase;
   cursor: pointer;
   font-size: 14px;
-  background-color: #2196f3;
+  background-color: #0073ab;
   color: #fff;
 }
 .wpfd-divi-modal .wpfd-material-button:hover {
   -webkit-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
   -moz-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+  background-color: #006b9e;
+}
+.wpfd-divi-modal .wpfd-category-block-selected {
+  height: 260px;
 }
 .wpfd-divi-modal .wpfd-category-block, .wpfd-divi-modal .wpfd-file-block, .wpfd-divi-modal .wpfd-search-block {
   z-index: 21 !important;
@@ -361,7 +365,7 @@
   opacity: 1;
   transition-delay: 0s;
 }
-.wpfd-divi-modal .onedrive-icon, .wpfd-divi-modal .googleDrive-icon, .wpfd-divi-modal .onedrive-business-icon {
+.wpfd-divi-modal .onedrive-icon, .wpfd-divi-modal .googleDrive-icon, .wpfd-divi-modal .onedrive-business-icon, .wpfd-divi-modal .dropbox-icon, .wpfd-divi-modal .aws-icon {
   width: 20px;
   height: 20px;
   line-height: 20px;
@@ -377,9 +381,12 @@
   background: url(../ui/images/icon-sync-google-drive.svg) no-repeat center;
   background-size: 20px;
 }
-.wpfd-divi-modal .onedrive-icon,
-.wpfd-divi-modal .onedrive-business-icon {
-  background: url(../ui/images/icon-sync-onedrive.svg) no-repeat center;
+.wpfd-divi-modal .dropbox-icon {
+  background: url(../ui/images/icon-sync-dropbox.svg) no-repeat center;
+  background-size: 20px;
+}
+.wpfd-divi-modal .aws-icon {
+  background: url(../ui/images/icon-sync-aws.svg) no-repeat center;
   background-size: 20px;
 }
 .wpfd-divi-modal .wpfd-search-block-setting {
@@ -1233,3 +1240,5 @@
   width: 70px;
   height: 70px;
 }
+
+/*# sourceMappingURL=divi-file-style.css.map */

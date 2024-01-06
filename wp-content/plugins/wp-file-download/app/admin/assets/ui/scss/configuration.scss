@@ -111,6 +111,16 @@
           color: $setting-help-color;
           font-weight: 600;
           letter-spacing: .7px;
+          width: 100%;
+        }
+        .ju-settings-error-message {
+          padding: calcRem(15px) 0;
+          float: left;
+          text-align: left;
+          color: #f00;
+          font-weight: 600;
+          letter-spacing: .7px;
+          display: none;
         }
 
         .ju-radio-group {
@@ -737,7 +747,7 @@
         }
 
         @media screen and (max-width: 1400px) {
-          width: calc(100% - 3.125rem);
+          width: calc(100% - 3.125rem)!important;
         }
       }
     }
@@ -943,32 +953,54 @@
   }
 }
 
+#wpfd-cloud-config {
+  @media screen and (max-width: 1400px) {
+
+  }
+}
+
 #wpfd-theme-cloud,
 #wpfd-theme-dropbox,
 #wpfd-theme-onedrive,
-#wpfd-theme-onedrive-business {
+#wpfd-theme-onedrive-business,
+#wpfd-theme-aws {
   margin-top: calcRem(25px);
   .ju-heading {
-    //width: 50%;
     display: inline-block;
     float: left;
     font-size: calcRem(28px);
+    margin: 0 15px;
+  }
+  .ju-settings-option {
+    &.full-width {
+      width: calc(100% - 3.125rem);
+    }
+    width: calc(50% - 40px);
+  }
+  .ju-radiobox {
+    width: 16px;
+    height: 16px;
+  }
+  .ju-button {
+    @media screen and (max-width: 430px) {
+      letter-spacing: 0.5px;
+      padding: 5px;
+    }
   }
 }
 #wpfd-btnconnect-ggd,
 #wpfd-btnconnect-dropbox,
 #wpfd-btnconnect-onedrive,
-#wpfd-btnconnect-onedrive-business {
-  padding: 0 25px;
+#wpfd-btnconnect-onedrive-business,
+#wpfd-btnconnect-aws {
+  padding: 0 35px;
   float: right;
-  //width: calc(50% - #{calcRem(50px)});
-  //text-align: right;
-  //margin: calcRem(15px) 0;
 }
 label[for="googleSyncMethod"],
 label[for="dropboxSyncMethod"],
 label[for="onedriveSyncMethod"],
-label[for="onedriveBusinessSyncMethod"]{
+label[for="onedriveBusinessSyncMethod"],
+label[for="awsSyncMethod"] {
   + .ju-radio-group {
     width: 100%;
     text-align: center;
@@ -989,9 +1021,15 @@ label[for="onedriveBusinessSyncMethod"]{
 .ggd-documentation,
 .dropbox-documentation,
 .onedrive-documentation,
-.onedrive-business-documentation{
+.onedrive-business-documentation,
+.aws-documentation {
   margin-left: calcRem(10px);
   margin-top: calcRem(1px);
+  @media screen and (max-width: 1285px) {
+    margin-left: 15px;
+    margin-top: 10px;
+    clear: both;
+  }
 }
 .ju-settings-pre {
   display: block;
@@ -1012,6 +1050,21 @@ label[for="onedriveBusinessSyncMethod"]{
   background: rgb(255, 255, 255);
   clear: both;
   border-left: 5px solid rgb(255, 160, 0);
+  width: calc(100% - #{calcRem(50px)});
+  padding: calcRem(10px) calcRem(20px);
+  margin: 0 calcRem(15px) calcRem(20px) calcRem(15px);
+  @include borderRadius(0 $small-radius $small-radius 0);
+  .wpfd-alert-message {
+    display: inline-block;
+    margin-right: 5px;
+  }
+}
+.wpfd-aws-error-message {
+  text-align: left;
+  color: #f90900;
+  background: rgb(255, 255, 255);
+  clear: both;
+  border-left: 5px solid #f90900;
   width: calc(100% - #{calcRem(50px)});
   padding: calcRem(10px) calcRem(20px);
   margin: 0 calcRem(15px) calcRem(20px) calcRem(15px);
@@ -1714,5 +1767,138 @@ label[for="onedriveBusinessSyncMethod"]{
   }
   .gritter-item p {
     margin: 0;
+  }
+}
+
+.wpfd-important-note {
+  background-color: #ff8c00;
+  margin-top: 5px;
+  .ju-settings-important-note {
+    h3 {
+      color: #fff!important;
+      margin: 0;
+    }
+    p {
+      margin: 5px 0;
+    }
+    color: #fff!important;
+  }
+}
+.buckets_wrap {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 10px;
+  row-gap: 10px;
+  clear: both;
+}
+.current_bucket, .current_bucket_region {
+  background: #eee;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+}
+.msg-no-bucket {
+  display: none;
+}
+.spinner-delete-bucket {
+  margin: 4px;
+  display: none;
+}
+.wpfd-aws3-select-bucket .btn-select-bucket {
+  background-color: transparent;
+  color: #000;
+  padding: 10px 15px;
+  min-width: 0;
+  border: 1px solid #9fabba;
+  text-transform: uppercase;
+  display: inline-block;
+  text-decoration: none;
+  cursor: pointer;
+  text-align: center;
+  letter-spacing: 2px;
+  transition: all ease 0.5s;
+  -webkit-border-radius: 40px;
+  -moz-border-radius: 40px;
+  border-radius: 4px;
+  font-family: 'Roboto', sans-serif;
+}
+.bucket-selected {
+  .btn-select-bucket {
+    text-transform: uppercase;
+    color: #f28f40;
+    font-weight: bold;
+  }
+  .btn-select-bucket {
+    &:before{
+      content: '\f147';
+      font-family: 'dashicons';
+      font-size: 20px;
+      vertical-align: middle;
+    }
+  }
+  .delete-bucket {
+    display: none;
+  }
+}
+.wpfd_width_100 {
+  width: 100%;
+  max-width: 100%;
+  margin-left: 0;
+  margin-right: 0;
+}
+.table-list-buckets {
+  table {
+    thead {
+      tr {
+        th {
+          border-bottom: #ddd 1px solid;
+          font-size: 15px;
+        }
+      }
+    }
+    tr {
+      height: 60px;
+      td {
+        border-bottom: #ddd 1px solid;
+        word-break: break-all;
+      }
+    }
+  }
+}
+#manage-bucket {
+  width: 60%;
+  max-width: 60%;
+  margin: 0 auto;
+  max-height: 650px;
+  background: #f3f6fa;
+  padding: 20px;
+  box-sizing: border-box;
+  overflow: auto;
+  input, select {
+    height: 45px;
+    border-radius: 4px;
+    margin: 0;
+    font-size: 14px;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: 0.7px;
+    color: #404852;
+    font-family: 'Roboto', sans-serif;
+  }
+  .ju-settings-error-message {
+    color: #f00;
+    font-weight: 600;
+    letter-spacing: .7px;
+  }
+  .delete-bucket {
+    cursor: pointer;
+  }
+  .select-bucket-spinner {
+    visibility: visible;
+    margin: 10px;
+  }
+  .action-aws-btn {
+    margin-top: 1.3em;
   }
 }

@@ -54,7 +54,8 @@
     background: rgba(34, 145, 240, 0.1);
     color: #2291f0;
 }
-.wpfd-category-module .wpfd-category:hover .dashicon, .wpfd-category-module .wpfd-category.active .dashicon {
+.wpfd-category-module .wpfd-category:hover .dashicon, .wpfd-category-module .wpfd-category.active .dashicon,
+.wpfd-category-module .wpfd-category:hover .wpfd-cloud-icon path, .wpfd-category-module .wpfd-category.active .wpfd-cloud-icon path {
     fill: #2291f0;
 }
 .wpfd-category-module .wpfd-category .dashicon {
@@ -91,36 +92,7 @@
     display: inline-block;
     vertical-align: middle;
 }
-.wpfd-category-module .onedrive-icon,
-.wpfd-category-module .googleDrive-icon,
-.wpfd-category-module .onedrive-business-icon {
-    width: 20px;
-    height: 20px;
-    line-height: 20px;
-    display: inline-block;
-    vertical-align: text-top;
-}
-.wpfd-category-module .googleDrive-icon {
-    background: url(../../images/icon-sync-google-drive.svg) no-repeat center;
-    background-size: 20px;
-}
-.wpfd-category-module .dropbox-icon {
-    background-image: url(../../images/icon-sync-dropbox.svg);
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: 20px;
-    height: 20px;
-    width: 20px;
-    line-height: 20px;
-    display: inline-block;
-    vertical-align: middle;
-}
-.wpfd-category-module .onedrive-icon,
-.wpfd-category-module .onedrive-business-icon {
-    background-image: url(../../images/icon-sync-onedrive.svg) !important;
-    background-repeat: no-repeat;
-    background-position: center !important;
-    background-size: 20px;
+.wpfd-category-module .wpfd-cloud-icon{
     width: 20px;
     height: 20px;
     line-height: 20px;

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 return [
     // The application registered on Microsoft Azure to run the functional test
     // suite.
@@ -31,6 +33,16 @@ return [
 
     // The password of the account.
     'PASSWORD' => '',
+
+    // The group ID to use when running relevant test cases.
+    //
+    // These tests will be skipped if not set.
+    'GROUP_ID' => '',
+
+    // The site ID to use when running relevant test cases.
+    //
+    // These tests will be skipped if not set.
+    'SITE_ID' => '',
 
     // The email address to send invites to when running relevant test cases.
     //

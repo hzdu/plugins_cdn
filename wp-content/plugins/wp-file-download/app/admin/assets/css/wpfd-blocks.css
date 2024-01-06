@@ -52,9 +52,11 @@
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
   background-color: #006b9e;
 }
+
 .wpfd-category-block-selected {
   height: 260px;
 }
+
 .wpfd-category-block, .wpfd-file-block, .wpfd-search-block {
   z-index: 21 !important;
 }
@@ -353,7 +355,7 @@
   transition-delay: 0s;
 }
 
-.onedrive-icon, .googleDrive-icon, .onedrive-business-icon, .dropbox-icon {
+.onedrive-icon, .googleDrive-icon, .onedrive-business-icon, .dropbox-icon, .aws-icon {
   width: 20px;
   height: 20px;
   line-height: 20px;
@@ -374,6 +376,11 @@
 
 .dropbox-icon {
   background: url(../ui/images/icon-sync-dropbox.svg) no-repeat center;
+  background-size: 20px;
+}
+
+.aws-icon {
+  background: url(../ui/images/icon-sync-aws.svg) no-repeat center;
   background-size: 20px;
 }
 

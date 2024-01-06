@@ -269,7 +269,8 @@
     background: rgba(34, 145, 240, 0.1);
     color: #2291f0;
 }
-.wpfd-divi-modal .wpfd-category:hover .dashicon, .wpfd-divi-modal .wpfd-category.active .dashicon {
+.wpfd-divi-modal .wpfd-category:hover .dashicon, .wpfd-divi-modal .wpfd-category.active .dashicon,
+.wpfd-divi-modal .wpfd-category:hover .wpfd-cloud-icon path, .wpfd-divi-modal .wpfd-category.active .wpfd-cloud-icon path {
     fill: #2291f0;
 }
 .wpfd-divi-modal .wpfd-category .wpfd-category-name {
@@ -417,26 +418,12 @@
     opacity: 1;
     transition-delay: 0s;
 }
-.wpfd-divi-modal .onedrive-icon, .wpfd-divi-modal .googleDrive-icon, .wpfd-divi-modal .onedrive-business-icon {
+.wpfd-divi-modal .wpfd-cloud-icon {
     width: 20px;
     height: 20px;
     line-height: 20px;
     display: inline-block;
     vertical-align: text-top;
-}
-.wpfd-divi-modal .onedrive-icon,
-.wpfd-divi-modal .onedrive-business-icon {
-    background: url(../../images/icon-sync-onedrive.svg) no-repeat center;
-    background-size: 20px;
-}
-.wpfd-divi-modal .googleDrive-icon {
-    background: url(../../images/icon-sync-google-drive.svg) no-repeat center;
-    background-size: 20px;
-}
-.wpfd-divi-modal .onedrive-icon,
-.wpfd-divi-modal .onedrive-business-icon {
-    background: url(../../images/icon-sync-onedrive.svg) no-repeat center;
-    background-size: 20px;
 }
 @media (min-width: 1600px) and (max-width: 1900px) {
     .wpfd-divi-modal .wpfd-files-wrapper .wpfd-file {
@@ -1041,17 +1028,6 @@
     height: calc(100% - 84px);
     max-height: calc(100% - 84px);
 }
-.wpfd-divi-modal .icon-dropbox, .wpfd-divi-modal .dropbox-icon {
-    background-image: url(../../images/icon-sync-dropbox.svg);
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: 20px;
-    height: 20px;
-    width: 20px;
-    line-height: 20px;
-    display: inline-block;
-    vertical-align: middle;
-}
 .wpfd-divi-modal .wpfd-modal-header {
     box-sizing: border-box;
     border-bottom: 1px solid #ddd;
@@ -1111,20 +1087,11 @@
 .wpfd-divi-modal .wpfd-category .dashicon {
     vertical-align: middle;
 }
-.wpfd-divi-modal .wpfd-category .onedrive-icon, .wpfd-divi-modal .wpfd-category .googleDrive-icon, .wpfd-divi-modal .wpfd-category .onedrive-business-icon {
+.wpfd-divi-modal .wpfd-category .wpfd-cloud-icon {
     vertical-align: middle;
 }
 .wpfd-divi-modal .wpfd-modal-content .wpfd-modal-right-panel {
     flex-basis: calc(100% - 380px);
-}
-.wpfd-divi-modal .onedrive_business-icon {
-    background: url(../../images/icon-sync-onedrive.svg) no-repeat center;
-    background-size: 20px;
-    width: 20px;
-    height: 20px;
-    line-height: 20px;
-    display: inline-block;
-    vertical-align: middle;
 }
 
 .wpfd-file-module .wpfd-file-search {

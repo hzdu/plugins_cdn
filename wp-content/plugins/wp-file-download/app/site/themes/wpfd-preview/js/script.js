@@ -294,6 +294,11 @@ jQuery(document).ready(function ($) {
             var $displayFileSearch = $(".wpfd-content-preview[data-category=" + sourcecat + "]").find('.wpfd_root_category_display_file_search');
             if ($displayFileSearch.length) {
                 var $themeName = container.find('.wpfd_root_category_theme').val();
+
+                if (typeof (categories.category.correctConvertCategoryId) === 'undefined') {
+                    categories.category.correctConvertCategoryId = 0;
+                }
+
                 var $searchContent = '<form action="" id="adminForm-'+ categories.category.term_id +'" class="wpfd-adminForm wpfd-form-search-file-category" name="adminForm" method="post">' +
                     '<div id="loader" style="display:none; text-align: center">' +
                     '<img src="'+ wpfdparams.wpfd_plugin_url +'/app/site/assets/images/searchloader.svg" style="margin: 0 auto"/>' +
@@ -983,6 +988,11 @@ jQuery(document).ready(function ($) {
         var $displayFileSearch = $(".wpfd-content-preview[data-category=" + sourcecat + "]").find('.wpfd_root_category_display_file_search');
         if ($displayFileSearch.length) {
             var $themeName = $(".wpfd-content-preview[data-category=" + sourcecat + "]").find('.wpfd_root_category_theme').val();
+
+            if (typeof (triggerPreviewCategories.category.correctConvertCategoryId) === 'undefined') {
+                triggerPreviewCategories.category.correctConvertCategoryId = 0;
+            }
+
             var $searchContent = '<form action="" id="adminForm-'+ triggerPreviewCategories.category.term_id +'" class="wpfd-adminForm wpfd-form-search-file-category" name="adminForm" method="post">' +
                 '<div id="loader" style="display:none; text-align: center">' +
                 '<img src="'+ wpfdparams.wpfd_plugin_url +'/app/site/assets/images/searchloader.svg" style="margin: 0 auto"/>' +

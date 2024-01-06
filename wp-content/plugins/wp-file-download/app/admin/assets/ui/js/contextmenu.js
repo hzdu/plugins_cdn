@@ -457,6 +457,11 @@ jQuery(function($) {
           $(document).trigger('wpfd_dropbox_sync_completed');
         });
       },
+      aws_sync: function(e) {
+        Wpfd.syncAws(function() {
+          $(document).trigger('wpfd_aws_sync_completed');
+        });
+      }
     },
     folder: {
       new: function(e) {
