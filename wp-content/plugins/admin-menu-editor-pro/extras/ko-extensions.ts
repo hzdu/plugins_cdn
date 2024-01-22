@@ -1,7 +1,7 @@
 /// <reference path="../js/common.d.ts" />
 /// <reference path="../js/knockout.d.ts" />
 /// <reference path="../js/jquery.d.ts" />
-/// <reference path="../js/lodash-3.10.d.ts" />
+/// <reference types="@types/lodash" />
 
 declare var wsAmeLodash: _.LoDashStatic;
 
@@ -502,6 +502,7 @@ ko.bindingHandlers.readonly = {
 			{
 				onValue: true,
 				offValue: false,
+				checked: ko.pureComputed(() => false)
 			}
 		);
 		parsed.onValue = ko.unwrap(parsed.onValue);

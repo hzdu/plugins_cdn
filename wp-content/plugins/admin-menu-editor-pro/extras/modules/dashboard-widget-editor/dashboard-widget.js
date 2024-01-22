@@ -1,6 +1,6 @@
 "use strict";
 /// <reference path="../../../js/knockout.d.ts" />
-/// <reference path="../../../js/lodash-3.10.d.ts" />
+/// <reference types="@types/lodash" />
 /// <reference path="dashboard-widget-editor.ts" />
 /// <reference path="../../../js/common.d.ts" />
 class AmeDashboardWidget {
@@ -13,6 +13,11 @@ class AmeDashboardWidget {
         this.canBeMoved = true;
         this.propertyTemplate = '';
         this.widgetType = null;
+        //"grantAccess" must always be an object. In PHP, it's an associative array, which
+        //is converted to a plain array if it's empty.
+        if (AmeDashboardWidget._.isArray(settings['grantAccess'])) {
+            settings['grantAccess'] = {};
+        }
         this.rawProperties = settings;
         this.widgetEditor = widgetEditor;
         this.id = settings['id'];

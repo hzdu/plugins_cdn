@@ -37,7 +37,7 @@ window.AmeSelectUsersDialog = (function($, _) {
 		}
 
 		//The list should stay sorted by username.
-		var index = _.sortedIndex(selectedUsers, user, 'userLogin');
+		var index = _.sortedIndexBy(selectedUsers, user, 'userLogin');
 		selectedUsers.splice(index, 0, user);
 
 		//Add a new row at the same index.
@@ -106,7 +106,7 @@ window.AmeSelectUsersDialog = (function($, _) {
 
 					if (_.has(response, 'users')) {
 						//Add new results to loaded users.
-						var userIndex = _.indexBy(loadedUsers, 'userLogin');
+						var userIndex = _.keyBy(loadedUsers, 'userLogin');
 						_.forEach(response.users, function(userDetails) {
 							if (!userIndex.hasOwnProperty(userDetails.user_login)) {
 								loadedUsers.push(actorManager.createUserFromProperties(userDetails));
@@ -125,11 +125,12 @@ window.AmeSelectUsersDialog = (function($, _) {
 
 	function updateSearchResults() {
 		loadedUsers = _(loadedUsers)
-			.forEach(function(user) {
+			.map(function(user) {
 				//Update search score.
 				user.searchScore = calculateSearchScore(user, searchQuery, searchKeywords);
+				return user;
 			})
-			.sortByOrder(['searchScore', 'userLogin'], ['desc', 'asc'])
+			.orderBy(['searchScore', 'userLogin'], ['desc', 'asc'])
 			.take(maxLoadedUsers) //Conserve memory and keep searches fast.
 			.value();
 
@@ -170,7 +171,7 @@ window.AmeSelectUsersDialog = (function($, _) {
 		var haystack = user.userLogin.toLowerCase() + '\n' + user.getDisplayName().toLowerCase();
 		if (haystack.indexOf(query) >= 0) {
 			return 2;
-		} else if (_.all(keywords, function(keyword) { return (haystack.indexOf(keyword) >= 0);	})) {
+		} else if (_.every(keywords, function(keyword) { return (haystack.indexOf(keyword) >= 0);	})) {
 			return 1;
 		}
 		return 0;
@@ -333,7 +334,7 @@ window.AmeSelectUsersDialog = (function($, _) {
 		//The save button.
 		$dialog.find('#ws_ame_save_visible_users').on('click', function() {
 			if (saveCallback) {
-				saveCallback(selectedUsers, _.pluck(selectedUsers, 'userLogin'));
+				saveCallback(selectedUsers, _.map(selectedUsers, 'userLogin'));
 			}
 			$dialog.dialog('close');
 		});
@@ -346,7 +347,7 @@ window.AmeSelectUsersDialog = (function($, _) {
 
 	return {
 		/**
-		 * @param {Object} options
+		 * @param {{currentUserLogin: String, save: Function, visibleUsers: String[], users: Object<String, IAmeUser>, actorManager: AmeActorManagerInterface}} options
 		 * @param {String} options.currentUserLogin
 		 * @param {Boolean} [options.alwaysIncludeCurrentUser]
 		 * @param {Function} options.save
@@ -413,7 +414,7 @@ window.AmeVisibleUserDialog = (function($, _) {
 		 * @param {String} options.currentUserLogin
 		 * @param {Function} options.save
 		 * @param {String[]} options.visibleUsers
-		 * @param {Object.<String, IAmeUser>} options.users
+		 * @param {Record<String, IAmeUser>} options.users
 		 * @param {AmeActorManagerInterface} options.actorManager
 		 */
 		open: function(options) {

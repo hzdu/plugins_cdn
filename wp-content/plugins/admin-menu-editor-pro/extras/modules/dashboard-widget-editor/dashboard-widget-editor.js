@@ -3,7 +3,7 @@
 /// <reference path="../../../js/jquery.d.ts" />
 /// <reference path="../../../js/jqueryui.d.ts" />
 /// <reference path="../../../js/jquery.form.d.ts" />
-/// <reference path="../../../js/lodash-3.10.d.ts" />
+/// <reference types="@types/lodash" />
 /// <reference path="./dashboard-widget.ts" />
 /// <reference path="../../../modules/actor-selector/actor-selector.ts" />
 let ameWidgetEditor;
@@ -271,7 +271,7 @@ class AmeDashboardWidgetEditor {
             },
             widgets: [],
             welcomePanel: {
-                grantAccess: _.pick((_b = (_a = this.welcomePanel) === null || _a === void 0 ? void 0 : _a.grantAccess.getAll()) !== null && _b !== void 0 ? _b : {}, function (hasAccess, actorId) {
+                grantAccess: _.pickBy((_b = (_a = this.welcomePanel) === null || _a === void 0 ? void 0 : _a.grantAccess.getAll()) !== null && _b !== void 0 ? _b : {}, function (hasAccess, actorId) {
                     if (typeof actorId === 'undefined') {
                         return false; //This should never happen in practice.
                     }

@@ -1,6 +1,6 @@
 "use strict";
 ///<reference path="../../js/jquery.d.ts"/>
-///<reference path="../../js/lodash-3.10.d.ts"/>
+/// <reference types="@types/lodash" />
 ///<reference path="../../js/common.d.ts"/>
 //Idea: Maybe code generator that generates both TS/KO stuff and PHP classes with validation?
 class AmePlainMenuHeadingSettings {
@@ -218,7 +218,7 @@ class AmeMenuHeadingSettingsScreen {
                 .countBy(function (menu) {
                 return $(menu).css('fontSize');
             })
-                .pairs()
+                .toPairs()
                 .sortBy(1)
                 .last()
                 .value();

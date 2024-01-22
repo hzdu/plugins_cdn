@@ -1,9 +1,9 @@
 /// <reference path="../../../js/common.d.ts" />
 /// <reference path="../../../js/knockout.d.ts" />
 /// <reference path="../../../modules/actor-selector/actor-selector.ts" />
-/// <reference path="../../../js/lodash-3.10.d.ts" />
+/// <reference types="@types/lodash" />
 /// <reference path="../../../js/lazyload.d.ts" />
-/// <reference path="../../../ajax-wrapper/ajax-action-wrapper.d.ts" />
+/// <reference path="../../../vendor/yahnis-elsts/ajax-wrapper/ajax-action-wrapper.d.ts" />
 /// <reference path="./eh-preferences.d.ts" />
 
 'use strict';
@@ -32,6 +32,7 @@ namespace AmeEasyHide {
 			columnCategory: string
 		},
 		subtitle?: string
+		tooltip?: string;
 	}
 
 	class Category {
@@ -79,7 +80,8 @@ namespace AmeEasyHide {
 			public readonly initialSortOrder: SortOrder = SortOrder.SORT_ALPHA,
 			public readonly itemSortOrder: SortOrder = SortOrder.SORT_INSERTION,
 			private readonly priority: number = Category.DEFAULT_PRIORITY,
-			public readonly subtitle: string | null = null
+			public readonly subtitle: string | null = null,
+			public readonly tooltip: string | null = null
 		) {
 			Category.counter++;
 			this.safeElementId = 'ame-eh-category-n-' + Category.counter;
@@ -157,7 +159,7 @@ namespace AmeEasyHide {
 						if (item.parent === null) {
 							return true;
 						} else {
-							return !_.contains(item.parent.categories, this);
+							return !_.includes(item.parent.categories, this);
 						}
 					})
 					.value();
@@ -359,7 +361,8 @@ namespace AmeEasyHide {
 				props.sort ?? SortOrder.SORT_ALPHA,
 				props.itemSort ?? SortOrder.SORT_INSERTION,
 				props.priority ?? Category.DEFAULT_PRIORITY,
-				props.subtitle ?? null
+				props.subtitle ?? null,
+				props.tooltip ?? null
 			);
 		}
 	}
@@ -767,7 +770,7 @@ namespace AmeEasyHide {
 
 			if (keywords.length > 0) {
 				const haystack = item.label.toLowerCase();
-				const matchesKeywords = _.all(
+				const matchesKeywords = _.every(
 					keywords,
 					keyword => (haystack.indexOf(keyword) >= 0)
 				);
@@ -1032,7 +1035,7 @@ namespace AmeEasyHide {
 					}
 
 					return category.isExpanded();
-				}).pluck('id').value();
+				}).map('id').value();
 
 				return result as string[]; //TypeScript can't infer that the item type is string.
 			}).extend({rateLimit: {timeout: 100, method: 'notifyWhenChangesStop'}});
@@ -1053,7 +1056,7 @@ namespace AmeEasyHide {
 			//placeholders below the bottom of the viewport.
 			_(this.rootCategory.sortedSubcategories()).take(2).forEach(function (c) {
 				c.shouldRenderContent(true);
-			}).commit();
+			});
 
 			//Always render the selected category.
 			this.selectedCategory()?.shouldRenderContent(true);

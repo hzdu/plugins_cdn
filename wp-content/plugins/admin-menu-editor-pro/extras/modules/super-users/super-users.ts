@@ -1,7 +1,7 @@
 /// <reference path="../../../js/knockout.d.ts" />
 /// <reference path="../../../js/jquery.d.ts" />
 /// <reference path="../../../js/jquery.biscuit.d.ts" />
-/// <reference path="../../../js/lodash-3.10.d.ts" />
+/// <reference types="@types/lodash" />
 /// <reference path="../../../modules/actor-selector/actor-selector.ts" />
 
 declare var wsAmeSuperUserSettings: Object;
@@ -62,7 +62,7 @@ class AmeSuperUsers {
 	public selectHiddenUsers() {
 		AmeSelectUsersDialog.open({
 			selectedUsers: AmeSuperUsers._.map(this.superUsers(), 'userLogin'),
-			users: AmeSuperUsers._.indexBy(this.superUsers(), 'userLogin'),
+			users: AmeSuperUsers._.keyBy(this.superUsers(), 'userLogin'),
 			actorManager: AmeActors,
 
 			currentUserLogin: this.currentUserLogin,

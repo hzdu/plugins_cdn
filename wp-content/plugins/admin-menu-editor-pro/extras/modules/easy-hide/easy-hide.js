@@ -1,9 +1,9 @@
 /// <reference path="../../../js/common.d.ts" />
 /// <reference path="../../../js/knockout.d.ts" />
 /// <reference path="../../../modules/actor-selector/actor-selector.ts" />
-/// <reference path="../../../js/lodash-3.10.d.ts" />
+/// <reference types="@types/lodash" />
 /// <reference path="../../../js/lazyload.d.ts" />
-/// <reference path="../../../ajax-wrapper/ajax-action-wrapper.d.ts" />
+/// <reference path="../../../vendor/yahnis-elsts/ajax-wrapper/ajax-action-wrapper.d.ts" />
 /// <reference path="./eh-preferences.d.ts" />
 'use strict';
 let ameEasyHideModel = null;
@@ -16,7 +16,7 @@ var AmeEasyHide;
         SortOrder[SortOrder["SORT_INSERTION"] = 1] = "SORT_INSERTION";
     })(SortOrder || (SortOrder = {}));
     class Category {
-        constructor(id, label, parent = null, invertItemState = false, filterState = null, initialSortOrder = SortOrder.SORT_ALPHA, itemSortOrder = SortOrder.SORT_INSERTION, priority = Category.DEFAULT_PRIORITY, subtitle = null) {
+        constructor(id, label, parent = null, invertItemState = false, filterState = null, initialSortOrder = SortOrder.SORT_ALPHA, itemSortOrder = SortOrder.SORT_INSERTION, priority = Category.DEFAULT_PRIORITY, subtitle = null, tooltip = null) {
             this.id = id;
             this.label = label;
             this.parent = parent;
@@ -25,6 +25,7 @@ var AmeEasyHide;
             this.itemSortOrder = itemSortOrder;
             this.priority = priority;
             this.subtitle = subtitle;
+            this.tooltip = tooltip;
             this.containsSelectedCategory = ko.observable(false);
             this.isStandardRenderingEnabled = ko.observable(true);
             this.tableViewEnabled = false;
@@ -96,7 +97,7 @@ var AmeEasyHide;
                         return true;
                     }
                     else {
-                        return !_.contains(item.parent.categories, this);
+                        return !_.includes(item.parent.categories, this);
                     }
                 })
                     .value();
@@ -265,8 +266,8 @@ var AmeEasyHide;
             return this.cachedParentList;
         }
         static fromProps(props, parent = null, filterState = null) {
-            var _a, _b, _c, _d, _e;
-            return new Category(props.id, props.label, parent, (_a = props.invertItemState) !== null && _a !== void 0 ? _a : false, filterState, (_b = props.sort) !== null && _b !== void 0 ? _b : SortOrder.SORT_ALPHA, (_c = props.itemSort) !== null && _c !== void 0 ? _c : SortOrder.SORT_INSERTION, (_d = props.priority) !== null && _d !== void 0 ? _d : Category.DEFAULT_PRIORITY, (_e = props.subtitle) !== null && _e !== void 0 ? _e : null);
+            var _a, _b, _c, _d, _e, _f;
+            return new Category(props.id, props.label, parent, (_a = props.invertItemState) !== null && _a !== void 0 ? _a : false, filterState, (_b = props.sort) !== null && _b !== void 0 ? _b : SortOrder.SORT_ALPHA, (_c = props.itemSort) !== null && _c !== void 0 ? _c : SortOrder.SORT_INSERTION, (_d = props.priority) !== null && _d !== void 0 ? _d : Category.DEFAULT_PRIORITY, (_e = props.subtitle) !== null && _e !== void 0 ? _e : null, (_f = props.tooltip) !== null && _f !== void 0 ? _f : null);
         }
     }
     Category.DEFAULT_PRIORITY = 10;
@@ -505,7 +506,7 @@ var AmeEasyHide;
             const keywords = this.searchKeywords();
             if (keywords.length > 0) {
                 const haystack = item.label.toLowerCase();
-                const matchesKeywords = _.all(keywords, keyword => (haystack.indexOf(keyword) >= 0));
+                const matchesKeywords = _.every(keywords, keyword => (haystack.indexOf(keyword) >= 0));
                 if (!matchesKeywords) {
                     return false;
                 }
@@ -684,7 +685,7 @@ var AmeEasyHide;
                         return false;
                     }
                     return category.isExpanded();
-                }).pluck('id').value();
+                }).map('id').value();
                 return result; //TypeScript can't infer that the item type is string.
             }).extend({ rateLimit: { timeout: 100, method: 'notifyWhenChangesStop' } });
             expandedCategories.subscribe((newValue) => {
@@ -699,7 +700,7 @@ var AmeEasyHide;
             //placeholders below the bottom of the viewport.
             _(this.rootCategory.sortedSubcategories()).take(2).forEach(function (c) {
                 c.shouldRenderContent(true);
-            }).commit();
+            });
             //Always render the selected category.
             (_b = this.selectedCategory()) === null || _b === void 0 ? void 0 : _b.shouldRenderContent(true);
             this.selectedCategoryId = ko.pureComputed(() => {

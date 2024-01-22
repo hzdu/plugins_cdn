@@ -2,7 +2,7 @@
 	"type": "module",
 	"devDependencies": {
 		"@types/nightwatch": "^2.3.23",
-		"chromedriver": "^117.0.3",
+		"chromedriver": "^120.0.1",
 		"nightwatch": "^3.2.0",
 		"ts-loader": "^9.4.2",
 		"ts-node": "^10.9.1",
@@ -15,5 +15,8 @@
 		"build": "webpack --config webpack.config.js",
 		"package": "npm run build && pwsh -File build/package-plugin.ps1",
 		"postinstall": "del /q /s /f node_modules\\.cache\\webpack"
+	},
+	"dependencies": {
+		"@types/lodash": "^4.14.202"
 	}
 }

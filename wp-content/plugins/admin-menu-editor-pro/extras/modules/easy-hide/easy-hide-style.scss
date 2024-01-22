@@ -1,3 +1,4 @@
+@use "sass:math";
 @use "../../cat-nav";
 @import "../../../css/indeterminate-checkbox";
 @import "../../../css/boxes";
@@ -6,8 +7,12 @@ $crossMarkColor: #D81536;
 $expectedAdminBarHeight: 32px;
 $itemContainerPadding: 12px;
 
+@function pxToRem($px, $baseSize: 16) {
+	@return math.div($px, $baseSize) * 1rem;
+}
+
 $headingTopMargin: 1.5em;
-$headingFontSize: 1.3em;
+$headingFontSize: pxToRem(17);
 
 #ws_ame_editor_heading {
 	float: none;
@@ -180,16 +185,30 @@ input[type=checkbox].ame-eh-negative-box {
 	background-color: #ffff00;
 }
 
+.ame-eh-category-tooltip {
+	color: #888;
+
+	&:hover {
+		color: #333;
+	}
+}
+
 .ame-eh-category-heading {
 	background: #fcfcfc;
 
 	border-top: 1px solid #ddd;
 	border-bottom: 1px solid #ddd;
 
-	padding: 0.4em $itemContainerPadding 0.6em $itemContainerPadding;
-	margin: $headingTopMargin (-$itemContainerPadding) 0.70em (-$itemContainerPadding);
+	padding: pxToRem(7) $itemContainerPadding pxToRem(10) $itemContainerPadding;
+	margin: $headingTopMargin (-$itemContainerPadding) pxToRem(12) (-$itemContainerPadding);
 
 	font-size: $headingFontSize;
+
+	.ame-eh-category-tooltip {
+		line-height: $headingFontSize;
+		height: $headingFontSize;
+		vertical-align: -3px; //Align the tooltip with the heading text. Such a hack.
+	}
 }
 
 //region Category navigation
@@ -407,5 +426,5 @@ $topSaveButtonContainerWidth: 130px;
 
 	//Pull the next heading up. Because the font sizes are different, the em-based
 	//measurements need to be scaled up proportionally. Let's add a safety factor, too.
-	margin-bottom: (-($headingTopMargin * ($headingFontSize / $rootFontSize)) + 0.01em);
+	margin-bottom: (-($headingTopMargin * ($headingFontSize / $rootFontSize)) + 0.01rem);
 }

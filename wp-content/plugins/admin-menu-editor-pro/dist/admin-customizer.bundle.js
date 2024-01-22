@@ -4098,7 +4098,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _zod_lib_index_js__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../zod/lib/index.js */ "./extras/zod/lib/index.js");
 
 /// <reference path="../../../js/common.d.ts" />
-/// <reference path="../../../js/lodash-3.10.d.ts" />
+/// <reference types="@types/lodash" />
 /// <reference path="../../jszip/jszip.d.ts" />
 
 
@@ -5536,6 +5536,7 @@ var AmeAdminCustomizer;
             //Update menu states.
             this.importActionEnabled.notifySubscribers(this.importActionEnabled());
             this.discardChangesActionEnabled.notifySubscribers(this.discardChangesActionEnabled());
+            this.downloadThemeActionEnabled.notifySubscribers(this.downloadThemeActionEnabled());
             //Get the file picker.
             this.$importFileInput = jQuery('#ame-ac-import-admin-theme-file', rootElement);
         }
@@ -5640,6 +5641,7 @@ var AmeAdminCustomizer;
         }
         actionOpenDownloadDialog() {
             if (!this.downloadThemeActionEnabled()) {
+                alert('Currently disabled because there are no changes to download.');
                 return;
             }
             this.openMetadataDialog(MetadataDialogMode.Download);

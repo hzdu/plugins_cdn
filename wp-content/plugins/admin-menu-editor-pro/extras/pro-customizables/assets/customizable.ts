@@ -1,7 +1,7 @@
 'use strict';
 
 /// <reference path="../../../js/common.d.ts" />
-/// <reference path="../../../js/lodash-3.10.d.ts" />
+/// <reference types="@types/lodash" />
 
 declare var wsAmeLodash: _.LoDashStatic;
 
@@ -131,7 +131,7 @@ export namespace AmeCustomizable {
 			}
 
 			//Add the error(s) only if there is no existing error with the same code.
-			const existingCodes = _.indexBy(this.validationErrors(), 'code');
+			const existingCodes = _.keyBy(this.validationErrors(), 'code');
 			for (const error of errors) {
 				if ((typeof error.code === 'undefined') || !existingCodes.hasOwnProperty(error.code)) {
 					this.validationErrors.push(error);

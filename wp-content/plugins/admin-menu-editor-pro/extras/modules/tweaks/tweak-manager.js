@@ -1,7 +1,7 @@
 "use strict";
 /// <reference path="../../../js/knockout.d.ts" />
 /// <reference path="../../../js/jquery.d.ts" />
-/// <reference path="../../../js/lodash-3.10.d.ts" />
+/// <reference types="@types/lodash" />
 /// <reference path="../../../modules/actor-selector/actor-selector.ts" />
 /// <reference path="../../../js/jquery.biscuit.d.ts" />
 /// <reference path="../../ko-extensions.ts" />
@@ -398,11 +398,26 @@ class AmeTweakItem extends AmeCompositeNode {
 }
 class AmeTweakSection {
     constructor(properties) {
+        this.description = '';
         this.footerTemplateName = null;
         this.id = properties.id;
         this.label = properties.label;
         this.isOpen = ko.observable(true);
         this.tweaks = ko.observableArray([]);
+        if (properties.description) {
+            this.description = properties.description;
+            //Add <br> tags to line breaks. This will look better in the tooltip.
+            this.descriptionHtml = properties.description.replace(/\n/g, '<br>\n');
+        }
+        else {
+            this.descriptionHtml = '';
+        }
+        if (this.id.length > 0) {
+            this.htmlId = 'twm-section_' + this.id;
+        }
+        else {
+            this.htmlId = '';
+        }
     }
     addTweak(tweak) {
         this.tweaks.push(tweak);
@@ -446,7 +461,7 @@ class AmeTweakManagerModule {
             }
         });
         //Sort sections by priority, then by label.
-        let sectionData = _.sortByAll(scriptData.sections, ['priority', 'label']);
+        let sectionData = _.sortBy(scriptData.sections, ['priority', 'label']);
         //Register sections.
         _.forEach(sectionData, (properties) => {
             let section = new AmeTweakSection(properties);
@@ -489,7 +504,7 @@ class AmeTweakManagerModule {
                 return result;
             },
             write: (sectionIds) => {
-                const openSections = _.indexBy(sectionIds);
+                const openSections = _.keyBy(sectionIds);
                 _.forEach(this.sections, section => {
                     section.isOpen(openSections.hasOwnProperty(section.id));
                 });
@@ -508,7 +523,13 @@ class AmeTweakManagerModule {
             this.openSectionIds(initialState);
         }
         else {
-            this.openSectionIds([_.first(this.sections).id]);
+            const firstSection = _.head(this.sections);
+            if (firstSection) {
+                this.openSectionIds([firstSection.id]);
+            }
+            else {
+                this.openSectionIds([]);
+            }
         }
         this.openSectionIds.subscribe((sectionIds) => {
             jQuery.cookie(AmeTweakManagerModule.openSectionCookieName, ko.toJSON(sectionIds), { expires: 90 });
@@ -524,7 +545,7 @@ class AmeTweakManagerModule {
         this.isSaving(true);
         const _ = wsAmeLodash;
         let data = {
-            'tweaks': _.indexBy(_.invoke(this.tweaksById, 'toJs'), 'id'),
+            'tweaks': _.keyBy(_.invokeMap(this.tweaksById, 'toJs'), 'id'),
             'lastUserTweakSuffix': this.lastUserTweakSuffix
         };
         this.settingsData(ko.toJSON(data));
@@ -660,8 +681,34 @@ class AmeEditAdminCssDialog {
         this.isOpen(true);
     }
 }
-jQuery(function () {
-    ameTweakManager = new AmeTweakManagerModule(wsTweakManagerData);
-    ko.applyBindings(ameTweakManager, document.getElementById('ame-tweak-manager'));
-});
+{
+    let isTwmInitialized = false;
+    function wsAmeInitTweakManager() {
+        if (isTwmInitialized) {
+            return;
+        }
+        const rootNode = document.getElementById('ame-tweak-manager');
+        if (!rootNode) {
+            return;
+        }
+        ameTweakManager = new AmeTweakManagerModule(wsTweakManagerData);
+        ko.applyBindings(ameTweakManager, rootNode);
+        isTwmInitialized = true;
+    }
+    //Try to initialize the tweak manager as soon as possible so that tweak sections
+    //can be targeted by #hash links.
+    wsAmeInitTweakManager();
+    jQuery(function () {
+        //Alternatively, we can wait until the document is ready.
+        wsAmeInitTweakManager();
+        //Init tooltips.
+        if (typeof jQuery['qtip'] !== 'undefined') {
+            jQuery('#ame-tweak-manager .ws_tooltip_trigger').qtip({
+                style: {
+                    classes: 'qtip qtip-rounded ws_tooltip_node'
+                }
+            });
+        }
+    });
+}
 //# sourceMappingURL=tweak-manager.js.map

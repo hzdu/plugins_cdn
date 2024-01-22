@@ -207,13 +207,25 @@ input[type=checkbox].ame-eh-negative-box:checked:before {
   background-color: #ffff00;
 }
 
+.ame-eh-category-tooltip {
+  color: #888;
+}
+.ame-eh-category-tooltip:hover {
+  color: #333;
+}
+
 .ame-eh-category-heading {
   background: #fcfcfc;
   border-top: 1px solid #ddd;
   border-bottom: 1px solid #ddd;
-  padding: 0.4em 12px 0.6em 12px;
-  margin: 1.5em -12px 0.7em -12px;
-  font-size: 1.3em;
+  padding: 0.4375rem 12px 0.625rem 12px;
+  margin: 1.5em -12px 0.75rem -12px;
+  font-size: 1.0625rem;
+}
+.ame-eh-category-heading .ame-eh-category-tooltip {
+  line-height: 1.0625rem;
+  height: 1.0625rem;
+  vertical-align: -3px;
 }
 
 .ame-eh-category-list {
@@ -370,7 +382,7 @@ table.ame-eh-category-table-view thead th:first-child {
   font-size: 1.1em;
   font-weight: normal;
   margin-top: 0;
-  margin-bottom: -1.7627272727em;
+  margin-bottom: -1.4388636364rem;
 }
 
 /*# sourceMappingURL=easy-hide-style.css.map */

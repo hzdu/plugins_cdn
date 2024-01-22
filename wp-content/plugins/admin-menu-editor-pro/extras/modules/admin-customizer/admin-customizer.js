@@ -1,6 +1,6 @@
 'use strict';
 /// <reference path="../../../js/common.d.ts" />
-/// <reference path="../../../js/lodash-3.10.d.ts" />
+/// <reference types="@types/lodash" />
 /// <reference path="../../jszip/jszip.d.ts" />
 import { AmeCustomizable } from '../../pro-customizables/assets/customizable.js';
 import { registerBaseComponents } from '../../pro-customizables/ko-components/ame-components.js';
@@ -1438,6 +1438,7 @@ export var AmeAdminCustomizer;
             //Update menu states.
             this.importActionEnabled.notifySubscribers(this.importActionEnabled());
             this.discardChangesActionEnabled.notifySubscribers(this.discardChangesActionEnabled());
+            this.downloadThemeActionEnabled.notifySubscribers(this.downloadThemeActionEnabled());
             //Get the file picker.
             this.$importFileInput = jQuery('#ame-ac-import-admin-theme-file', rootElement);
         }
@@ -1542,6 +1543,7 @@ export var AmeAdminCustomizer;
         }
         actionOpenDownloadDialog() {
             if (!this.downloadThemeActionEnabled()) {
+                alert('Currently disabled because there are no changes to download.');
                 return;
             }
             this.openMetadataDialog(MetadataDialogMode.Download);

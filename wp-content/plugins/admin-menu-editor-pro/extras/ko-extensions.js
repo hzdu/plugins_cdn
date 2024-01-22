@@ -2,7 +2,7 @@
 /// <reference path="../js/common.d.ts" />
 /// <reference path="../js/knockout.d.ts" />
 /// <reference path="../js/jquery.d.ts" />
-/// <reference path="../js/lodash-3.10.d.ts" />
+/// <reference types="@types/lodash" />
 class AmeBaseKnockoutDialog {
     constructor() {
         this.isOpen = ko.observable(false);
@@ -405,6 +405,7 @@ ko.bindingHandlers.readonly = {
         let parsed = wsAmeLodash.defaults(ko.unwrap(options), {
             onValue: true,
             offValue: false,
+            checked: ko.pureComputed(() => false)
         });
         parsed.onValue = ko.unwrap(parsed.onValue);
         parsed.offValue = ko.unwrap(parsed.offValue);

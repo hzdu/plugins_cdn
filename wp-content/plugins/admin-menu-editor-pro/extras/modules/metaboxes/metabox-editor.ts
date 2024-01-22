@@ -1,4 +1,4 @@
-/// <reference path="../../../js/lodash-3.10.d.ts" />
+/// <reference types="@types/lodash" />
 /// <reference path="../../../js/knockout.d.ts" />
 /// <reference path="../../../modules/actor-selector/actor-selector.ts" />
 /// <reference path="../../../js/common.d.ts" />
@@ -37,28 +37,8 @@ class AmeMetaBoxEditor {
 
 	constructor(settings: MetaBoxEditorSettings, forceRefreshUrl: string) {
 		this.actorSelector = new AmeActorSelector(AmeActors, true);
-
-		//Wrap the selected actor in a computed observable so that it can be used with Knockout.
-		let _selectedActor = ko.observable<IAmeActor | null>(
-			this.actorSelector.selectedActor
-				? AmeActors.getActor(this.actorSelector.selectedActor)
-				: null
-		);
-		this.selectedActor = ko.computed({
-			read: function () {
-				return _selectedActor();
-			},
-			write: (newActor) => {
-				this.actorSelector.setSelectedActor(newActor ? newActor.getId() : null);
-			}
-		});
-		this.actorSelector.onChange((newSelectedActorId: string | null) => {
-			if (newSelectedActorId === null) {
-				_selectedActor(null);
-			} else {
-				_selectedActor(AmeActors.getActor(newSelectedActorId));
-			}
-		});
+		this.actorSelector.setSelectedActorFromUrl();
+		this.selectedActor = this.actorSelector.createActorObservable(ko);
 
 		this.screens = ko.observableArray(AmeMetaBoxEditor._.map(
 			settings.screens,
@@ -187,6 +167,16 @@ class AmeMetaBox {
 
 		const _ = AmeMetaBox._;
 		this.metaBoxEditor = metaBoxEditor;
+
+		//"grantAccess" and "defaultVisibility" may be incorrectly JSON-encoded as arrays
+		//when they are empty. Leaving them as arrays could prevent us from correctly
+		//serializing them later, so let's convert them to objects.
+		const potentialArrays = ['grantAccess', 'defaultVisibility'];
+		_.forEach(potentialArrays, (key) => {
+			if (_.isArray(settings[key])) {
+				settings[key] = {};
+			}
+		});
 		this.initialProperties = settings;
 
 		if (settings['parentCollectionKey']) {

@@ -1,6 +1,6 @@
 "use strict";
 /// <reference path="../../../js/knockout.d.ts" />
-/// <reference path="../../../js/lodash-3.10.d.ts" />
+/// <reference types="@types/lodash" />
 /// <reference path="../../../js/common.d.ts" />
 /// <reference path="../../../js/actor-manager.ts" />
 /// <reference path="../../../js/jquery.d.ts" />
@@ -329,7 +329,7 @@ class RexUser extends RexBaseActor {
     }
     toJs() {
         const _ = wsAmeLodash;
-        let roles = _.invoke(this.roles(), 'name');
+        let roles = _.invokeMap(this.roles(), 'name');
         return {
             userId: this.userId,
             userLogin: this.userLogin,
@@ -339,7 +339,7 @@ class RexUser extends RexBaseActor {
         };
     }
     getRoleIds() {
-        return wsAmeLodash.map(this.roles(), 'name');
+        return wsAmeLodash.invokeMap(this.roles(), 'name');
     }
 }
 class RexCategory {
@@ -1426,7 +1426,7 @@ class RexUserPreferences {
         if (_.isArray(initialPreferences)) {
             initialPreferences = {};
         }
-        this.preferenceObservables = _.mapValues(initialPreferences, ko.observable, ko);
+        this.preferenceObservables = _.mapValues(initialPreferences, value => ko.observable(value));
         this.preferenceCount = ko.observable(_.size(this.preferenceObservables));
         this.collapsedCategories = new RexCollapsedCategorySet(_.get(initialPreferences, 'collapsedCategories', []));
         this.plainPreferences = ko.computed(() => {
@@ -1515,6 +1515,7 @@ class RexCollapsedCategorySet {
         return this.items();
     }
 }
+const EditableRoleDefaultStrategy = 'auto';
 class RexBaseDialog {
     constructor() {
         this.isOpen = ko.observable(false);
@@ -1596,7 +1597,7 @@ class RexDeleteCapDialog extends RexBaseDialog {
                     .filter(function (item) {
                     return item.isSelected();
                 })
-                    .pluck('capability')
+                    .map('capability')
                     .value();
                 //Note: We could remove confirmation if we get an "Undo" feature.
                 const noun = (selectedCapabilities.length === 1) ? 'capability' : 'capabilities';
@@ -1708,7 +1709,7 @@ class RexAddCapabilityDialog extends RexBaseDialog {
                 return newCapabilityName();
             },
             write: (value) => {
-                value = _.trimRight(value);
+                value = _.trimEnd(value);
                 //Validate and sanitize the capability name.
                 let state = this.validationState, message = this.validationMessage;
                 //WP API allows completely arbitrary capability names, but this plugin forbids some characters
@@ -1946,9 +1947,10 @@ class RexDeleteRoleDialog extends RexBaseDialog {
         const _ = wsAmeLodash;
         let rolesToDelete = this.getSelectedRoles();
         //Warn about the dangers of deleting built-in roles.
-        let selectedBuiltInRoles = _.filter(rolesToDelete, _.method('isBuiltIn'));
+        let selectedBuiltInRoles = _.filter(rolesToDelete, r => r.isBuiltIn());
         if (selectedBuiltInRoles.length > 0) {
-            const warning = 'Caution: Deleting default roles like ' + _.first(selectedBuiltInRoles).displayName()
+            const firstRole = _.head(selectedBuiltInRoles);
+            const warning = 'Caution: Deleting default roles like ' + ((firstRole === null || firstRole === void 0 ? void 0 : firstRole.displayName()) || '[none]')
                 + ' can prevent you from using certain plugins. This is because some plugins look for specific'
                 + ' role names to determine if a user is allowed to access the plugin.'
                 + '\nDelete ' + selectedBuiltInRoles.length + ' default role(s)?';
@@ -2021,7 +2023,7 @@ class RexRenameRoleDialog extends RexBaseDialog {
             this.selectedRole(selectedActor);
         }
         else {
-            this.selectedRole(_.first(this.editor.roles()));
+            this.selectedRole(_.head(this.editor.roles()) || null);
         }
     }
     onConfirm() {
@@ -2073,6 +2075,13 @@ class RexEagerObservableStringSet {
         }
         return this.items[item];
     }
+    isEmpty() {
+        const _ = wsAmeLodash;
+        //Note: every() returns true for empty collections.
+        return _.every(this.items, (isInSet) => {
+            return !isInSet();
+        });
+    }
     getAsObject(fillValue) {
         const _ = wsAmeLodash;
         let output = {};
@@ -2086,7 +2095,7 @@ class RexEagerObservableStringSet {
 }
 class RexObservableEditableRoleSettings {
     constructor() {
-        this.strategy = ko.observable('auto');
+        this.strategy = ko.observable(EditableRoleDefaultStrategy);
         this.userDefinedList = new RexEagerObservableStringSet();
     }
     toPlainObject() {
@@ -2098,6 +2107,12 @@ class RexObservableEditableRoleSettings {
             strategy: this.strategy(),
             userDefinedList: roleList
         };
+    }
+    /**
+     * Are there any enabled items in the user-defined list?
+     */
+    hasUserDefinedList() {
+        return !this.userDefinedList.isEmpty();
     }
 }
 class RexUserRoleModule {
@@ -2213,6 +2228,11 @@ class RexEditableRolesDialog extends RexBaseDialog {
         super();
         this.selectedActor = ko.observable(null);
         this.actorSettings = {};
+        this.defaultStrategyByActor = {
+            //Administrators are allowed to edit all roles by default, so set
+            //the strategy to "none" (leave unchanged).
+            'role:administrator': 'none',
+        };
         this.editor = editor;
         this.visibleActors = ko.observableArray([]);
         this.options.minWidth = 600;
@@ -2238,8 +2258,13 @@ class RexEditableRolesDialog extends RexBaseDialog {
             }
             const actorId = selectedActor.getId();
             if (!this.actorSettings.hasOwnProperty(actorId)) {
-                //This should never happen; the dictionary should be initialized when opening the dialog.
-                this.actorSettings[actorId] = new RexObservableEditableRoleSettings();
+                //This will happen when an actor doesn't have any custom settings.
+                const defaultSettings = new RexObservableEditableRoleSettings();
+                //Does this actor have a different default?
+                if (this.defaultStrategyByActor.hasOwnProperty(actorId)) {
+                    defaultSettings.strategy(this.defaultStrategyByActor[actorId]);
+                }
+                this.actorSettings[actorId] = defaultSettings;
             }
             return this.actorSettings[actorId];
         });
@@ -2290,7 +2315,7 @@ class RexEditableRolesDialog extends RexBaseDialog {
             this.selectedActor(selectedActor);
         }
         else {
-            this.selectedActor(_.first(this.editor.roles()));
+            this.selectedActor(_.head(this.editor.roles()) || null);
         }
     }
     onConfirm() {
@@ -2298,11 +2323,15 @@ class RexEditableRolesDialog extends RexBaseDialog {
         const _ = wsAmeLodash;
         let settings = this.editor.actorEditableRoles;
         _.forEach(this.actorSettings, (observableSettings, actorId) => {
+            var _a;
             if (typeof actorId === 'undefined') {
                 throw new Error('Actor ID is undefined. This should never happen.');
             }
-            if (observableSettings.strategy() === 'auto') {
-                //"auto" is the default, so we don't need to store anything.
+            const strategy = observableSettings.strategy();
+            const defaultStrategyForActor = (_a = this.defaultStrategyByActor[actorId]) !== null && _a !== void 0 ? _a : EditableRoleDefaultStrategy;
+            if ((strategy === defaultStrategyForActor) && !observableSettings.hasUserDefinedList()) {
+                //This actor has the default strategy and the user hasn't selected any roles in
+                //the user-defined list, so we don't need to store anything.
                 delete settings[actorId];
             }
             else {
@@ -2357,7 +2386,7 @@ class RexRoleEditor {
         this.inheritanceOverrideEnabled = preferences.getObservable('inheritanceOverrideEnabled', false);
         //Remember and restore the selected view mode.
         let viewModeId = preferences.getObservable('categoryVewMode', 'hierarchy');
-        let initialViewMode = _.find(this.categoryViewOptions, 'id', viewModeId());
+        let initialViewMode = _.find(this.categoryViewOptions, _.matchesProperty('id', viewModeId()));
         if (!initialViewMode) {
             initialViewMode = RexRoleEditor.hierarchyView;
         }
@@ -2486,7 +2515,7 @@ class RexRoleEditor {
         const coreCategory = RexCategory.fromJs(data.coreCategory, this);
         this.rootCategory.addSubcategory(coreCategory);
         const postTypeCategory = new RexPostTypeContainerCategory('Post Types', this, 'postTypes');
-        this.postTypes = _.indexBy(data.postTypes, 'name');
+        this.postTypes = _.keyBy(data.postTypes, 'name');
         _.forEach(this.postTypes, (details, id) => {
             if (typeof id === 'undefined') {
                 throw new Error('Undefined post type ID. This should never happen.');
@@ -2675,7 +2704,7 @@ class RexRoleEditor {
         const keywords = this.searchKeywords(), capabilityName = capability.name;
         if (keywords.length > 0) {
             const haystack = capabilityName.toLowerCase();
-            const matchesKeywords = wsAmeLodash.all(keywords, function (keyword) {
+            const matchesKeywords = wsAmeLodash.every(keywords, function (keyword) {
                 return haystack.indexOf(keyword) >= 0;
             });
             if (!matchesKeywords) {
@@ -2789,7 +2818,7 @@ class RexRoleEditor {
         return RexUser.fromAmeUserProperties(properties, this);
     }
     getRoles() {
-        return wsAmeLodash.indexBy(this.roles(), function (role) {
+        return wsAmeLodash.keyBy(this.roles(), function (role) {
             return role.name();
         });
     }
@@ -2807,7 +2836,7 @@ class RexRoleEditor {
         return null;
     }
     getUsers() {
-        return wsAmeLodash.indexBy(this.users(), 'userLogin');
+        return wsAmeLodash.keyBy(this.users(), 'userLogin');
     }
     isInSelectedCategory(capabilityName) {
         let caps = this.capsInSelectedCategory();
@@ -2894,9 +2923,9 @@ class RexRoleEditor {
         this.isSaving(true);
         const _ = wsAmeLodash;
         let data = {
-            'roles': _.invoke(this.roles(), 'toJs'),
-            'users': _.invoke(this.users(), 'toJs'),
-            'trashedRoles': _.invoke(this.trashedRoles(), 'toJs'),
+            'roles': _.invokeMap(this.roles(), 'toJs'),
+            'users': _.invokeMap(this.users(), 'toJs'),
+            'trashedRoles': _.invokeMap(this.trashedRoles(), 'toJs'),
             'userDefinedCaps': _.keys(this.userDefinedCapabilities),
             'editableRoles': this.actorEditableRoles
         };

@@ -133,7 +133,7 @@ jQuery(function ($) {
             for (const presetName of Object.keys(colorPresets)) {
                 //Remove empty string values (i.e. no color selected). This also
                 //covers nulls and empty arrays/objects, but that shouldn't happen.
-                colorPresets[presetName] = _.omit(colorPresets[presetName], _.isEmpty);
+                colorPresets[presetName] = _.omitBy(colorPresets[presetName], _.isEmpty);
                 //Remove the preset if it's empty.
                 if (_.isEmpty(colorPresets[presetName])) {
                     delete colorPresets[presetName];

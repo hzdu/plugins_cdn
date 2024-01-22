@@ -11,7 +11,7 @@
 }
 
 #rex-content-container,
-#rex-action-sidebar {
+#rex-main-buttons {
   border: 1px solid #ccd0d4;
   background: #fff;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.04);
@@ -30,11 +30,35 @@
   flex-grow: 0;
   flex-shrink: 0;
   align-self: flex-start;
-  margin-left: 15px;
-  padding: 10px 8px;
+  display: flex;
+  flex-direction: column;
+  margin: 0 0 0 15px;
+}
+#rex-action-sidebar.metabox-holder {
+  padding-top: 0;
 }
 #rex-action-sidebar .rex-action-separator {
   height: 10px;
+}
+
+#rex-main-buttons {
+  padding: 10px 8px;
+}
+
+#rex-main-buttons,
+#rex-related-widget {
+  min-width: unset;
+  margin: 0;
+}
+
+#rex-related-widget {
+  margin-top: 15px;
+}
+#rex-related-widget .hndle {
+  cursor: initial;
+}
+#rex-related-widget .ws-ame-postbox-content {
+  margin-bottom: 0;
 }
 
 #rex-category-sidebar {

@@ -109,7 +109,7 @@ var AmeCustomizable;
                 return;
             }
             //Add the error(s) only if there is no existing error with the same code.
-            const existingCodes = _.indexBy(this.validationErrors(), 'code');
+            const existingCodes = _.keyBy(this.validationErrors(), 'code');
             for (const error of errors) {
                 if ((typeof error.code === 'undefined') || !existingCodes.hasOwnProperty(error.code)) {
                     this.validationErrors.push(error);

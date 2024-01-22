@@ -1,5 +1,5 @@
 ///<reference path="../../js/jquery.d.ts"/>
-///<reference path="../../js/lodash-3.10.d.ts"/>
+/// <reference types="@types/lodash" />
 ///<reference path="../../js/common.d.ts"/>
 
 declare var wsAmeLodash: _.LoDashStatic;
@@ -298,7 +298,7 @@ class AmeMenuHeadingSettingsScreen {
 				.countBy(function (menu: HTMLElement) {
 					return $(menu).css('fontSize');
 				})
-				.pairs()
+				.toPairs()
 				.sortBy(1)
 				.last()
 				.value();
