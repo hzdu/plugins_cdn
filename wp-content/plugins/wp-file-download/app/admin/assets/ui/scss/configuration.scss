@@ -222,6 +222,12 @@
         .ju-settings-right-panel {
           float: right;
         }
+        &.ju-settings-option-container-separate-section {
+          > .ju-settings-left-panel,
+          > .ju-settings-right-panel {
+            margin-top: 30px;
+          }
+        }
       }
       form {
         clear: both;
@@ -410,7 +416,7 @@
           vertical-align: middle;
           max-height: 650px;
           overflow: auto;
-          @media screen and (max-width: 420px) {
+          @media screen and (max-width: 450px) {
             width: 100%;
             overflow: auto;
           }
@@ -469,7 +475,7 @@
             min-height: 1px;
             line-height: unset;
             vertical-align: middle;
-            @media screen and (max-width: 420px) {
+            @media screen and (max-width: 450px) {
               margin-top: 1px;
             }
           }
@@ -486,7 +492,7 @@
           display: block;
           line-height: 0;
           background-size: 18px;
-          @media screen and (max-width: 420px) {
+          @media screen and (max-width: 450px) {
             margin: 13px 0;
             background-position: left 45px top 0;
             min-width: 260px;
@@ -521,7 +527,7 @@
               margin: -2px;
               color: #fff;
             }
-            @media screen and (max-width: 420px) {
+            @media screen and (max-width: 450px) {
               margin-right: 32px;
             }
           }
@@ -625,14 +631,14 @@
                 width: 50%;
               }
             }
-            @media screen and (max-width: 420px) {
+            @media screen and (max-width: 450px) {
               width: 100%;
               max-width: 100%;
               margin-right: unset;
               box-sizing: border-box;
             }
           }
-          @media screen and (max-width: 420px) {
+          @media screen and (max-width: 450px) {
             width: 100%;
             max-width: 100%;
             margin-right: unset;
@@ -907,6 +913,17 @@
   clear: both;
   label {
     font-weight: 400!important;
+  }
+}
+
+.wpfd-email-per-category-section {
+  display: inline-block;
+  margin: 4px 0;
+  vertical-align: middle;
+  @media screen and (max-width: 1024px) {
+    width: 100%;
+    clear: both;
+    text-align: left;
   }
 }
 
@@ -1394,6 +1411,137 @@ label[for="awsSyncMethod"] {
   }
 }
 
+#wpfd_email_category_listing {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 999999;
+  position: fixed;
+  outline: none !important;
+  -webkit-backface-visibility: hidden;
+  overflow: hidden auto;
+  display: none;
+  &.show {
+    display: inline-block;
+  }
+  .wpfd-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    background: #0b0b0b;
+    opacity: 0.8;
+    z-index: 1044;
+  }
+  .wpfd-export-container,
+  .categories-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    padding: 0 8px;
+    box-sizing: border-box;
+    &:before {
+      content: '';
+      display: inline-block;
+      height: 100%;
+      vertical-align: middle;
+    }
+  }
+  .wpfd-email-content {
+    position: fixed;
+    display: block;
+    vertical-align: middle;
+    text-align: left;
+    z-index: 9999999;
+    cursor: auto;
+    width: 90%;
+    height: 90vh;
+    background: #fff;
+    border-radius: 5px;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    margin: 0;
+    box-sizing: border-box;
+  }
+  .white-popup {
+    position: relative;
+    background: #fff;
+    max-width: 100%;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    padding: 20px;
+    border-radius: 5px;
+  }
+  .save_email_folders {
+    border-radius: 40px !important;
+    min-width: auto !important;
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+    padding: 10px 20px;
+  }
+  .spinner {
+    background: url(../images/import-export-loading.gif) no-repeat;
+    background-size: 20px 20px;
+    display: inline-block;
+    visibility: hidden;
+    float: right;
+    vertical-align: middle;
+    opacity: .7;
+    width: 20px;
+    height: 20px;
+    margin: 4px 10px 0;
+    cursor: auto;
+  }
+  .wpfd-close {
+    width: 44px;
+    height: 44px;
+    line-height: 44px;
+    position: absolute;
+    top: -22px;
+    right: -22px;
+    text-decoration: none;
+    text-align: center;
+    font-style: normal;
+    font-size: 28px;
+    overflow: visible;
+    cursor: pointer;
+    border: 0;
+    -webkit-appearance: none;
+    display: block;
+    outline: none;
+    padding: 0;
+    box-shadow: none;
+    touch-action: manipulation;
+    border-radius: 50px;
+    background: #000;
+    color: #fff;
+    z-index: 99999999;
+    opacity: 1;
+  }
+  .wpfd-preloader {
+    color: #ccc;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    text-align: center;
+    margin-top: -0.8em;
+    left: 8px;
+    right: 8px;
+    z-index: 1044;
+    display: none;
+  }
+}
+
 #wpfd-server-import-options {
   margin: 25px 0;
 }
@@ -1448,7 +1596,7 @@ label[for="awsSyncMethod"] {
     display: inline-block;
     float: left;
     width: calc(50% - 15px);
-    @media screen and (max-width: 420px) {
+    @media screen and (max-width: 450px) {
       width: 100%;
       margin: 2px 0;
     }
@@ -1461,7 +1609,7 @@ label[for="awsSyncMethod"] {
   }
   .wpfd_sync_btn {
     margin: 10px 0;
-    @media screen and (max-width: 420px) {
+    @media screen and (max-width: 450px) {
       margin: 2px 0;
     }
   }
@@ -1664,7 +1812,7 @@ label[for="awsSyncMethod"] {
       min-height: 1px;
       line-height: unset;
       vertical-align: middle;
-      @media screen and (max-width: 420px) {
+      @media screen and (max-width: 450px) {
         margin-top: 1px;
       }
     }
@@ -1680,7 +1828,7 @@ label[for="awsSyncMethod"] {
     box-sizing: border-box;
     display: block;
     background-size: 18px;
-    @media screen and (max-width: 420px) {
+    @media screen and (max-width: 450px) {
       margin: 13px 0;
       background-position: left 45px top 0;
       min-width: 260px;
@@ -1725,7 +1873,7 @@ label[for="awsSyncMethod"] {
         margin: -2px;
         color: #fff;
       }
-      @media screen and (max-width: 420px) {
+      @media screen and (max-width: 450px) {
         margin-right: 32px;
       }
     }
@@ -1738,6 +1886,334 @@ label[for="awsSyncMethod"] {
     .wpfd-arrow {
       transition: 0.1s ease-in-out;
     }
+  }
+}
+
+#wpfd_email_category_listing {
+  padding-left: 35px;
+  p {
+    font-size: 16px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #404852;
+    margin-top: 10px;
+    margin-bottom: 0;
+  }
+  ul.jaofiletree {
+    li.directory.closed {
+      ul {
+        display: none;
+      }
+    }
+  }
+  ul.jaofiletree {
+    font-size: 12px;
+    line-height: 18px;
+    padding: 0;
+    margin: 0;
+    li {
+      &.file {
+        display: none;
+      }
+      &.drive {
+        background: unset;
+        padding-left: 0;
+        > a {
+          font-size: 16px;
+          vertical-align: middle;
+          font-weight: 700;
+          color: #404852;
+          text-transform: uppercase;
+          font-family: "Nunito Sans", sans-serif;
+        }
+        > input {
+          margin-right: 15px !important;
+        }
+      }
+      &.wait {
+        a {
+          position: relative;
+          &:before {
+            content: '';
+            position: absolute;
+            right: -25px;
+            top: -1px;
+            display: block;
+            background: url('../../images/jao/spinner.gif') center center no-repeat;
+            width: 18px;
+            height: 18px;
+            background-size: 18px;
+          }
+        }
+      }
+      &.folder_disabled {
+        > input {
+          background-color: #ccc;
+          pointer-events: unset !important;
+          cursor: default;
+        }
+      }
+      ul.jaofiletree {
+        li.directory-parent {
+          margin: 13px 16px;
+        }
+      }
+    }
+    a {
+      font-size: 14px;
+      font-style: normal;
+      font-stretch: normal;
+      letter-spacing: 0.5px;
+      display: inline-block;
+      margin: 0;
+      padding: 0;
+      min-width: 2px;
+      min-height: 1px;
+      line-height: unset;
+      vertical-align: middle;
+      @media screen and (max-width: 450px) {
+        margin-top: 1px;
+        display: inline;
+      }
+    }
+  }
+  .wpfd-folder-toggle {
+    cursor: pointer;
+    @media screen and (max-width: 450px) {
+      line-height: 25px;
+    }
+  }
+  li.directory {
+    background-position: left 51px top 0;
+    background-color: transparent;
+    margin: 13px 15px 13px 0;
+    list-style: none;
+    white-space: normal;
+    padding: 0 0 0 20px;
+    min-width: 280px;
+    box-sizing: border-box;
+    display: block;
+    background-size: 18px;
+    @media screen and (max-width: 450px) {
+      margin: 13px 0;
+      background-position: left 45px top 3px;
+      min-width: 260px;
+    }
+    &.wait{
+      background-image: url('../../images/jao/folder.png');
+    }
+    &.directory-parent {
+      background-position: left 75px top 5px;
+      margin: 7px 0;
+      @media screen and (max-width: 450px) {
+        background-position: left 70px top 5px;
+      }
+    }
+    &.directory-no-arrow {
+      margin-left: 24px!important;
+    }
+    input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      line-height: 14px;
+      border-radius: 2px;
+      border: solid 2px #49bf88;
+      margin: 0 40px 0 0;
+      color: #fff;
+      background-color: #fff;
+      padding: 0 !important;
+      box-sizing: border-box;
+      box-shadow: unset;
+      outline: none;
+      display: inline-block;
+      vertical-align: middle;
+      &:checked:before {
+        content: "";
+        display: block;
+        width: 18px;
+        height: 18px;
+        background-image: url("../images/check.svg");
+        background-size: 11px;
+        background-color: #49bf88;
+        background-repeat: no-repeat;
+        background-position: center;
+        box-sizing: border-box;
+        border-radius: 2px;
+        margin: -2px;
+        color: #fff;
+      }
+      @media screen and (max-width: 450px) {
+        margin-right: 32px;
+      }
+    }
+    &.closed {
+      .wpfd-arrow {
+        transform: rotate(-90deg);
+        height: 29px;
+      }
+    }
+    .wpfd-arrow {
+      transition: 0.1s ease-in-out;
+    }
+  }
+  .dir_name_category,
+  .email_per_category {
+    margin: 20px 0;
+    max-width: 50%;
+    width: calc(50% - 10px);
+    min-width: 250px;
+    min-height: 40px;
+    display: inline-block;
+    @media screen and (max-width: 450px) {
+      width: 100%;
+      max-width: 100%;
+    }
+  }
+  .dir_name_category {
+    margin: 20px 20px 20px 0;
+  }
+  .email_per_category {
+    background: #f0f0f1;
+    @media screen and (max-width: 450px) {
+      margin-top: 10px;
+    }
+  }
+  .email_tree_folders {
+    width: 100%;
+    max-height: 100%;
+    overflow: auto;
+    padding: 5px;
+    box-sizing: border-box;
+  }
+
+  .wpfd-email-added-categories-section {
+    padding: 0;
+    margin: 60px 0 20px 0;
+    width: 100%;
+    max-width: 100%;
+    overflow: auto;
+    .wpfd-list-folder-sync {
+      text-align: left;
+      border: 0;
+      th {
+        font-weight: bold;
+        text-transform: uppercase;
+        color: #404852;
+        &:first-child {
+          width: 1%;
+          padding-left: 20px;
+        }
+        &:nth-child(2) {
+          width: 49%;
+        }
+        &:nth-child(3) {
+          width: calc(50% - 300px);
+          padding-left: 0;
+        }
+        &:last-child {
+          width: 300px;
+        }
+      }
+      tr {
+        td {
+          vertical-align: middle;
+          &:first-child {
+            padding-left: 20px;
+          }
+          &:nth-child(3) {
+            padding-left: 0;
+          }
+          &:last-child {
+            float: right;
+            padding-right: 20px;
+          }
+        }
+      }
+    }
+  }
+
+  .wpfd-email-category-list {
+    border-radius: 5px;
+    .cb-heading {
+      width: 10px;
+      max-width: 20px;
+    }
+
+    .action-heading {
+      max-width: 300px;
+      width: 250px;
+      min-width: 250px;
+    }
+
+    .category-heading {
+      min-width: 150px;
+    }
+
+    th {
+      font-weight: bold;
+    }
+
+    td {
+      vertical-align: middle;
+    }
+
+    th input,
+    td input {
+      margin: 0;
+    }
+
+    .edit-category-email-record {
+      margin-right: 5px;
+      border: 1px solid #9fabba;
+      color: #000;
+    }
+
+    .edit-category-email-record,
+    .delete-category-email-record {
+      min-width: 90px;
+      padding: 7px 25px;
+    }
+
+    .media_checkbox {
+      border: 2px solid #49bf88 !important;
+      height: 18px !important;
+      width: 18px !important;
+      background: #fff;
+      box-shadow: none !important;
+      margin: 0;
+      &:checked:before {
+        content: "";
+        display: block;
+        width: 18px;
+        height: 18px;
+        background-image: url("../images/check.svg");
+        background-size: 11px;
+        background-color: #49bf88;
+        background-repeat: no-repeat;
+        background-position: center;
+        box-sizing: border-box;
+        border-radius: 2px;
+        margin: -2px;
+        color: #fff;
+      }
+    }
+    .wpfd_spinner {
+      background: url("../images/spinner.gif") no-repeat;
+      background-size: 20px 20px;
+      float: right;
+      vertical-align: middle;
+      opacity: 0.7;
+      filter: alpha(opacity=70);
+      width: 20px;
+      height: 20px;
+      display: none;
+      margin: 0 0 0 5px !important;
+    }
+  }
+
+  #wpfd_email_categories {
+    max-height: 320px;
+    overflow: auto;
   }
 }
 
@@ -1767,6 +2243,11 @@ label[for="awsSyncMethod"] {
   }
   .gritter-item p {
     margin: 0;
+  }
+}
+.gritter-item-wrapper {
+  .gritter-close {
+    display: inline !important;
   }
 }
 

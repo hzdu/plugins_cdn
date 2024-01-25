@@ -59,6 +59,8 @@ $preview_bgcolor: #191166;
     flex-wrap: wrap;
     justify-content: flex-start;
     gap: 0;
+    width: 100%;
+    max-width: 100%;
     @media screen and (max-width: 450px) {
       justify-content: space-around;
     }
@@ -456,6 +458,7 @@ a.wpfdcategory.catlink div.dropblock-footer-section {
     .filecontent {
       float: left;
       min-width: 350px;
+      max-width: calc(100% - 150px);
     }
     div.ext {
       background-position: top left;
@@ -467,7 +470,6 @@ a.wpfdcategory.catlink div.dropblock-footer-section {
       margin-right: 10px;
       &[class*='wpfd-icon-set-'] {
         text-indent: -10072px;
-        width: 70px;
         width: 70px;
       }
       &[class*='wpfd-icon-set-png'] {

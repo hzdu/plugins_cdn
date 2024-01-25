@@ -35,6 +35,7 @@ jQuery(document).ready(function ($) {
     $body.on('change','.pixel_info .is_fire_signal'  ,function () {
         updatePixelData($(this).parents('.pixel_info'),'is_fire_signal',this.checked)
     })
+
     $body.on('change','.pixel_info .is_fire_woo'  ,function () {
         updatePixelData($(this).parents('.pixel_info'),'is_fire_woo',this.checked)
     })
@@ -240,6 +241,7 @@ jQuery(document).ready(function ($) {
         })
 
         updatePixelData($pixel,'is_fire_signal',$pixel.find('.is_fire_signal')[0].checked)
+
         let $isFireWoo = $pixel.find('.is_fire_woo')
         if($isFireWoo.length > 0) {
             updatePixelData($pixel,'is_fire_woo',$isFireWoo[0].checked)

@@ -443,7 +443,15 @@ jQuery(document).ready(function ($) {
                                     $('#insertcategory').hide();
                                 }
                                 $('.gritter-item-wrapper ').remove();
-                                $.gritter.add({text: wpfd_admin.msg_remove_category});
+
+                                // Delete email per category
+                                $.ajax({
+                                    url: wpfdajaxurl + "task=config.wpfdEmailPerCategoryDeleteRecord&id_category=" + id_category,
+                                    type: 'POST',
+                                    data: {security: wpfd_var.wpfdsecurity},
+                                }).done(function (res) {
+                                    $.gritter.add({text: wpfd_admin.msg_remove_category});
+                                });
                             } else {
                                 title.html(deleteCatTitle);
                                 bootbox.alert(result.response);

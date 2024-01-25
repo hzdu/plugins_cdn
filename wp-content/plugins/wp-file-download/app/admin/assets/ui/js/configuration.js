@@ -18,7 +18,6 @@
         }
         this.showDisplayFilesOption();
         $(document).on('change input', '#ref_statistics_storage_times, #ref_statistics_storage_duration', this.statisticsStorageChanged);
-        // $(document).on('click', '.shortcode-copy', this.copy);
         this.search_shortcode();
         $(document).on('click', '.ju-toggle', this.toggle);
         $(document).on('input', '.ju-role-search-input', this.search_roles);
@@ -73,9 +72,534 @@
         $("#wpfd-sortable-list").disableSelection();
         this.wpfdServerFolderSync();
         $(document).on('click', '#aws_connect', this.wpfdConnectAws);
+        this.wpfdEmailPerCategoryListing();
+        $(document).on('change', '.switch input[name="ref_notify_per_category"]', this.wpfdDisplayEditButton);
+        $(document).on('click', '#wpfd_email_per_category_editing', this.wpfdEmailPerCategoryEditing);
+        $(document).on('click', '.wpfd-email-editing-close', this.wpfdEmailPerCategoryClose);
+        $(document).on('click', '#wpfd_email_category_add_btn', this.wpfdEmailPerCategoryAddNewRecord);
+        $(document).on('click', '#all_records', this.wpfdEmailPerCategorySelectAllRecords);
+        $(document).on('click', '#wpfd_delete_all_email_category_btn', this.wpfdEmailPerCategoryDeleteAllRecords);
+        $(document).on('click', '.delete-category-email-record', this.wpfdEmailPerCategoryDeleteSelectedRecord);
+        $(document).on('click', '.wpfd-email-category-list input.check-category-item', this.wpfdEmailPerCategoryRecordSelection);
+        $(document).on('click', '#wpfd_email_categories input.media_checkbox', this.wpfdEmailPerCategorySelection);
+        $(document).on('click', '.wpfd-email-category-list .edit-category-email-record', this.wpfdEmailPerCategoryRecordEditing);
+        $(document).on('click', '#wpfd_email_category_save_btn', this.wpfdEmailPerCategoryRecordSaving);
+
+        $('.ju-settings-option.wpfd-field-notify_add_event').parents('.ju-settings-option-container').addClass('ju-settings-option-container-separate-section');
+
+        // Submit email configurations
+        $('#notifications_config').submit(function(e){
+          var sender_email = $('input[name="notify_sender_email"]').val().split(',');
+          var add_event_email = $('input[name="notify_add_event_email"]').val().split(',');
+          var edit_event_email = $('input[name="notify_edit_event_email"]').val().split(',');
+          var delete_event_email = $('input[name="notify_delete_event_email"]').val().split(',');
+          var download_event_email = $('input[name="notify_download_event_email"]').val().split(',');
+          var sender_email_valid = true;
+          var add_email_valid = true;
+          var edit_email_valid = true;
+          var delete_email_valid = true;
+          var download_email_valid = true;
+
+          // Sender email verify
+          sender_email.forEach(function (em) {
+            var new_email = em.replace(/\s/g, '');
+
+            var $checked = wpfd_configuration.wpfdEmailvalidate(new_email);
+
+            if (!$checked) {
+              sender_email_valid = false;
+            }
+          });
+
+          // Added email verify
+          add_event_email.forEach(function (em) {
+            var new_email = em.replace(/\s/g, '');
+
+            var $checked = wpfd_configuration.wpfdEmailvalidate(new_email);
+
+            if (!$checked) {
+              add_email_valid = false;
+            }
+          });
+
+          // Edit email verify
+          edit_event_email.forEach(function (em) {
+            var new_email = em.replace(/\s/g, '');
+
+            var $checked = wpfd_configuration.wpfdEmailvalidate(new_email);
+
+            if (!$checked) {
+              edit_email_valid = false;
+            }
+          });
+
+          // Delete email verify
+          delete_event_email.forEach(function (em) {
+            var new_email = em.replace(/\s/g, '');
+
+            var $checked = wpfd_configuration.wpfdEmailvalidate(new_email);
+
+            if (!$checked) {
+              delete_email_valid = false;
+            }
+          });
+
+          // Download email verify
+          download_event_email.forEach(function (em) {
+            var new_email = em.replace(/\s/g, '');
+
+            var $checked = wpfd_configuration.wpfdEmailvalidate(new_email);
+
+            if (!$checked) {
+              download_email_valid = false;
+            }
+          });
+
+          if (!sender_email_valid) {
+            $.gritter.add({text: 'The sender email is not valid'});
+            e.preventDefault();
+            $('input[name="notify_sender_email"]').focus();
+            return false;
+          }
+
+          if ($('input[name="notify_add_event_email"]').val() !== '' && !add_email_valid) {
+            $.gritter.add({text: 'The added email is not valid'});
+            e.preventDefault();
+            $('input[name="notify_add_event_email"]').focus();
+            return false;
+          }
+
+          if ($('input[name="notify_edit_event_email"]').val() !== '' && !edit_email_valid) {
+            $.gritter.add({text: 'The edit email is not valid'});
+            e.preventDefault();
+            $('input[name="notify_edit_event_email"]').focus();
+            return false;
+          }
+
+          if ($('input[name="notify_delete_event_email"]').val() !== '' && !delete_email_valid) {
+            $.gritter.add({text: 'The delete email is not valid'});
+            e.preventDefault();
+            $('input[name="notify_delete_event_email"]').focus();
+            return false;
+          }
+
+          if ($('input[name="notify_download_event_email"]').val() !== '' && !download_email_valid) {
+            $.gritter.add({text: 'The download email is not valid'});
+            e.preventDefault();
+            $('input[name="notify_download_event_email"]').focus();
+            return false;
+          }
+
+        });
       },
       toggleRevisionPatternInput: function(e) {
         $('input[name="revision_pattern"]').parent().slideToggle();
+      },
+      wpfdDisplayEditButton: function(e) {
+        $('.wpfd-email-per-category-section').slideToggle();
+      },
+      wpfdEmailPerCategoryListing: function(e) {
+        var html = '<div id="wpfd_email_category_listing" class="has-category">';
+        html    += '<div class="wpfd-email-wrap">';
+        html    += '<div class="wpfd-email-container">';
+        html    += '<div class="wpfd-preloader">Loading...</div>';
+        html    += '<div class="wpfd-overlay"></div>';
+        html    += '<div class="wpfd-email-content">';
+        html    += '<div id="open_email_tree_folders" class="white-popup">';
+        html    += '<span class="spinner save_email_folders_spinner" style="display: none"></span>';
+        html    += '<button title="Close (Esc)" type="button" class="wpfd-close wpfd-email-editing-close">×</button>';
+        html    += '<div class="email_tree_folders">';
+        html    += '<div id="wpfd_email_categories" class="wpfd-folder-tree wpfd-no-margin wpfd-no-padding"></div>';
+        html    += '<input class="ju-input inputbox input-block-level wpfd-input-inline dir_name_category" type="text" name="dir_name_category" readonly="" data-id_category="0" placeholder="Selected category..." value="">';
+        html    += '<input class="ju-input inputbox input-block-level wpfd-input-inline email_per_category" type="text" name="email_per_category" placeholder="Email..." value="">';
+        html    += '<div class="wpfd-email-action-button-section"><button type="button" id="wpfd_email_category_add_btn" class="ju-button orange-outline-button ju-button-inline wpfd_email_category_add_btn" style="margin-right: 5px;">'+ wpfd_admin.email_per_category_add +'</button><button type="button" id="wpfd_email_category_save_btn" class="ju-button orange-outline-button ju-button-inline wpfd_email_category_save_btn" style="display: none; margin-right: 5px;">'+ wpfd_admin.email_per_category_save +'</button><button type="button" id="wpfd_delete_all_email_category_btn" class="ju-button orange-outline-button ju-button-inline wpfd_delete_all_email_category_btn" style="display: none">'+ wpfd_admin.email_per_category_delete_selected +'</button></div>';
+        html    += '<div class="wpfd-email-added-categories-section" style="display: none;">';
+        html    += '<table class="table striped widefat wpfd-email-category-list">';
+        html    += '<thead>';
+        html    += '<tr>';
+        html    += '<th class="cb-heading"><label for="cb-select-all-category-item"></label><input id="all_records" class="media_checkbox all_records" type="checkbox"></th>';
+        html    += '<th class="category-heading">'+ wpfd_admin.email_per_category_wp_file_download_category_label +'</th>';
+        html    += '<th class="email-heading">'+ wpfd_admin.email_per_category_emails_label +'</th>';
+        html    += '<th class="action-heading">'+ wpfd_admin.email_per_category_actions_label +'</th>';
+        html    += '</tr>';
+        html    += '</thead>';
+        html    += '<tbody>';
+        html    += '</tbody>';
+        html    += '</table>';
+        html    += '</div>';
+        html    += '</div>';
+        html    += '</div>';
+        // End wpfd-email-content
+        html    += '</div>';
+        html    += '</div>';
+        html    += '</div>';
+        html    += '</div>';
+
+        $('body').append(html);
+
+        // Get all records
+        var url = wpfdajaxurl;
+
+        if (url.indexOf('wpfd') === -1) {
+          url = wpfdajaxurl + "?action=wpfd&"
+        }
+
+        $.ajax({
+          type: "POST",
+          url: url + 'task=Config.wpfdEmailPerCategoryGetAllRecords',
+          dataType: 'json',
+          success: function (response) {
+            if (response.success && response.data) {
+              var list = '';
+              $.each(response.data, function (i, v) {
+                var tr = '<tr data-id="' + i + '">';
+                tr += '<td><input class="media_checkbox check-category-item" id="cb-select-' + i + '" type="checkbox" name="post[]" value="' + i + '"></td>';
+                tr += '<td class="category-record">' + v.location + '</td>';
+                tr += '<td class="email-record">' + v.emails.join(', ') + '</td>';
+                tr += '<td>';
+                tr += '<button class="ju-button orange-outline-button ju-button-sm ju-button-inline edit-category-email-record" type="button">'+ wpfd_admin.edit +'</button>';
+                tr += '<button class="ju-button orange-outline-button ju-button-sm ju-button-inline delete-category-email-record" type="button">'+ wpfd_admin.delete +'</button>';
+                tr += '</td>';
+                tr += '</tr>';
+                list += tr;
+              });
+
+              $('.wpfd-email-category-list tbody').append(list);
+              $('.wpfd-email-added-categories-section').show();
+            }
+          }
+        });
+      },
+      wpfdEmailPerCategoryEditing: function(e) {
+        $('#wpfd_email_category_listing').show();
+      },
+      wpfdEmailPerCategoryClose: function(e) {
+        $('#wpfd_email_category_listing').hide();
+      },
+      wpfdEmailPerCategoryAddNewRecord: function(e) {
+        var category_id = $('.dir_name_category').attr('data-id_category');
+        var category_name = $('.dir_name_category').val();
+        var emails = $('.email_per_category').val();
+        var email_listing = emails.split(',');
+        var clean_email_listing = [];
+        var exists_email = false;
+        var is_valid_email = true;
+
+        // Regular expression for basic email validation
+        var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        email_listing.forEach(function (em) {
+          var new_email = em.replace(/\s/g, '');
+
+          if (clean_email_listing.includes(new_email)) {
+            exists_email = true;
+          }
+
+          if (!emailRegex.test(new_email)) {
+            is_valid_email = false;
+          }
+
+          clean_email_listing.push(new_email);
+        });
+
+        if (exists_email) {
+          $.gritter.add({text: 'The email already exists', class_name: ''});
+          return true;
+        }
+
+        if (!is_valid_email) {
+          $.gritter.add({text: 'The email is not valid', class_name: ''});
+          return true;
+        }
+
+        var url = wpfdajaxurl;
+
+        if (url.indexOf('wpfd') === -1) {
+          url = wpfdajaxurl + "?action=wpfd&"
+        }
+
+        var selectedCategories = [];
+        $('.wpfd-email-category-list tbody tr').each(function () {
+          var selected_category_id = $(this).attr('data-id');
+          selectedCategories.push(selected_category_id);
+        });
+
+        if ($.inArray(category_id, selectedCategories) !== -1) {
+          $.gritter.add({text: 'The selected category already exists', class_name: ''});
+          return true;
+        }
+
+        if (parseInt(category_id) !== 0 && category_name !== '' && emails !== '') {
+          $.ajax({
+            type: "POST",
+            url: url + 'task=Config.wpfdAddEmailPerCategory',
+            dataType: 'json',
+            data: {
+              category_id: category_id,
+              category_name: category_name,
+              category_emails: email_listing
+            },
+            success: function (response) {
+              if (response.success) {
+                var tr = '<tr data-id="' + category_id + '">';
+                tr += '<td><input class="media_checkbox check-category-item" id="cb-select-' + category_id + '" type="checkbox" name="post[]" value="' + category_id + '"></td>';
+                tr += '<td class="category-record">' + category_name + '</td>';
+                tr += '<td class="email-record">' + emails + '</td>';
+                tr += '<td>';
+                tr += '<button class="ju-button orange-outline-button ju-button-sm ju-button-inline edit-category-email-record" type="button">'+ wpfd_admin.edit +'</button>';
+                tr += '<button class="ju-button orange-outline-button ju-button-sm ju-button-inline delete-category-email-record" type="button">'+ wpfd_admin.delete +'</button>';
+                tr += '</td>';
+                tr += '</tr>';
+                $('.wpfd-email-category-list tbody').prepend(tr);
+                $('.wpfd-email-added-categories-section').show();
+                $.gritter.add({text: 'The selected category added with success', class_name: ''});
+              } else {
+                $.gritter.add({text: 'Failed to add the selected category', class_name: ''});
+              }
+            }
+          });
+        } else {
+          if (category_name == '' && emails == '') {
+            $.gritter.add({text: 'Please choose category and email', class_name: ''});
+            return true;
+          }
+          if (category_name == '') {
+            $.gritter.add({text: 'Please choose a category', class_name: ''});
+            return true;
+          }
+          if (emails == '') {
+            $.gritter.add({text: 'Please choose an email', class_name: ''});
+            return true;
+          }
+        }
+      },
+      wpfdEmailPerCategorySelectAllRecords: function(e) {
+        var selected = $(this).prop('checked');
+        if (selected) {
+          $('.wpfd-email-category-list td input.check-category-item').prop('checked', true);
+          $('#wpfd_delete_all_email_category_btn').show();
+        } else {
+          $('.wpfd-email-category-list td input.check-category-item').prop('checked', false);
+          $('#wpfd_delete_all_email_category_btn').hide();
+        }
+      },
+      wpfdEmailPerCategoryDeleteAllRecords: function(e) {
+        var url = wpfdajaxurl;
+
+        if (url.indexOf('wpfd') === -1) {
+          url = wpfdajaxurl + "?action=wpfd&"
+        }
+
+        var selected_categories = [];
+        $('.wpfd-email-category-list tbody tr').each(function () {
+          var selected_category_id = $(this).attr('data-id');
+          var checked = $(this).find('input.check-category-item').prop('checked');
+          if (checked) {
+            selected_categories.push(selected_category_id);
+          }
+        });
+
+        wpfd_configuration.popup({
+          type: 'confirm',
+          content: wpfd_admin.msg_ask_delete_email_per_category_record,
+          onConfirm: function() {
+            $.ajax({
+              type: "POST",
+              url: url + 'task=Config.wpfdEmailPerCategoryDeleteAllRecords',
+              dataType: 'json',
+              data: {
+                selected_categories: selected_categories
+              },
+              success: function (response) {
+                if (response.success) {
+                  var $show = false;
+                  selected_categories.forEach(function (selected_row_id) {
+                    $('.wpfd-email-category-list tbody').find('tr[data-id="'+ selected_row_id +'"]').remove();
+                  });
+                  $('.wpfd-email-added-categories-section').show();
+                  $('.wpfd-email-category-list .check-category-item').each(function (e) {
+                    if ($(this).prop('checked') === true) {
+                      $show = true;
+                    }
+                  });
+
+                  if (!$show) {
+                    $('#wpfd_delete_all_email_category_btn').hide();
+                  }
+                  $.gritter.add({text: 'All records have been deleted with success', class_name: ''});
+                } else {
+                  $.gritter.add({text: 'Failed to delete all records', class_name: ''});
+                }
+              }
+            });
+          },
+          onCancel: function() {},
+        });
+      },
+      wpfdEmailPerCategoryDeleteSelectedRecord: function(e) {
+        var category_id = $(this).parents('tr').attr('data-id');
+
+        if (typeof (category_id) === 'undefined' || parseInt(category_id) === 0) {
+          $.gritter.add({text: 'Please select a record', class_name: ''});
+          return true;
+        }
+
+        wpfd_configuration.popup({
+          type: 'confirm',
+          content: wpfd_admin.msg_ask_delete_email_per_category_record,
+          onConfirm: function() {
+            var url = wpfdajaxurl;
+
+            if (url.indexOf('wpfd') === -1) {
+              url = wpfdajaxurl + "?action=wpfd&"
+            }
+
+            $.ajax({
+              type: "POST",
+              url: url + 'task=Config.wpfdEmailPerCategoryDeleteSelectedRecord',
+              dataType: 'json',
+              data: {
+                category_id: category_id
+              },
+              success: function (response) {
+                if (response.success) {
+                  var $show = false;
+                  $('.wpfd-email-category-list tbody tr[data-id="'+ category_id +'"]').remove();
+                  $('.wpfd-email-added-categories-section').show();
+                  $('.wpfd-email-category-list .check-category-item').each(function (e) {
+                    if ($(this).prop('checked') === true) {
+                      $show = true;
+                    }
+                  });
+
+                  if (!$show) {
+                    $('#wpfd_delete_all_email_category_btn').hide();
+                  }
+
+                  $.gritter.add({text: 'The record has been deleted with success', class_name: ''});
+                } else {
+                  $.gritter.add({text: 'Failed to delete the record', class_name: ''});
+                }
+              }
+            });
+          },
+          onCancel: function() {},
+        });
+      },
+      wpfdEmailPerCategoryRecordSelection: function(e) {
+        if ($(this).prop('checked') === true) {
+          $('#wpfd_delete_all_email_category_btn').show();
+        } else {
+          var $show = false;
+          $('.wpfd-email-category-list .check-category-item').each(function (e) {
+            if ($(this).prop('checked') === true) {
+              $show = true;
+            }
+          });
+
+          if (!$show) {
+            $('#wpfd_delete_all_email_category_btn').hide();
+          }
+        }
+      },
+      wpfdEmailPerCategorySelection: function(e) {
+        $('#wpfd_email_category_add_btn').show();
+        $('#wpfd_email_category_save_btn').hide();
+      },
+      wpfdEmailPerCategoryRecordEditing: function(e) {
+        var edit_category_id = $(this).parents('tr').attr('data-id');
+        var edit_category_name = $(this).parents('tr').find('.category-record').text();
+        var edit_category_emails = $(this).parents('tr').find('.email-record').text();
+
+        $('#wpfd_email_categories input.media_checkbox').prop('checked', false);
+        $('input.dir_name_category').val(edit_category_name);
+        $('input.dir_name_category').attr('data-id_category', edit_category_id);
+        $('input.email_per_category').val(edit_category_emails);
+        $('#wpfd_email_category_add_btn').hide();
+        $('#wpfd_email_category_save_btn').show();
+        $('input.email_per_category').focus();
+      },
+      wpfdEmailPerCategoryRecordSaving: function(e) {
+        var category_id = $('.dir_name_category').attr('data-id_category');
+        var category_name = $('.dir_name_category').val();
+        var emails = $('.email_per_category').val();
+        var email_listing = emails.split(',');
+        var clean_email_listing = [];
+        var exists_email = false;
+        var is_valid_email = true;
+
+        // Regular expression for basic email validation
+        var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        email_listing.forEach(function (em) {
+          var new_email = em.replace(/\s/g, '');
+
+          if (clean_email_listing.includes(new_email)) {
+            exists_email = true;
+          }
+
+          if (!emailRegex.test(new_email)) {
+            is_valid_email = false;
+          }
+
+          clean_email_listing.push(new_email);
+        });
+
+        if (exists_email) {
+          $.gritter.add({text: 'The email already exists', class_name: ''});
+          return true;
+        }
+
+        if (!is_valid_email) {
+          $.gritter.add({text: 'The email is not valid', class_name: ''});
+          return true;
+        }
+
+        var url = wpfdajaxurl;
+
+        if (url.indexOf('wpfd') === -1) {
+          url = wpfdajaxurl + "?action=wpfd&"
+        }
+
+        if (parseInt(category_id) !== 0 && category_name !== '' && emails !== '') {
+          $.ajax({
+            type: "POST",
+            url: url + 'task=Config.wpfdEmailPerCategoryRecordEditing',
+            dataType: 'json',
+            data: {
+              category_id: category_id,
+              category_name: category_name,
+              category_emails: clean_email_listing
+            },
+            success: function (response) {
+              if (response.success) {
+                $('.wpfd-email-category-list tr[data-id="'+ category_id +'"] .email-record').empty().text(emails);
+                $('.wpfd-email-added-categories-section').show();
+                $.gritter.add({text: 'The selected category edited with success', class_name: ''});
+              } else {
+                $.gritter.add({text: 'Failed to edit the selected category', class_name: ''});
+              }
+            }
+          });
+        } else {
+          if (emails == '') {
+            $.gritter.add({text: 'The email is not empty', class_name: ''});
+            return true;
+          }
+        }
+      },
+      wpfdEmailvalidate: function(email) {
+        var valid_email = true;
+
+        // Regular expression for basic email validation
+        var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        var new_email = email.replace(/\s/g, '');
+
+        if (!emailRegex.test(new_email)) {
+          valid_email = false;
+        }
+
+        return valid_email;
       },
       wpfdCloneThemeRootTypes: function(e) {
         var $theme = $('select[name="theme"]').val();
@@ -817,57 +1341,57 @@
          * Add to list folder sync
          */
         $('.wpfd_btn_add_sync').on('click', function () {
-            var folder_ftp = $('.dir_name_ftp').val();
-            var folder_category = $('.dir_name_category_id').val();
-            var url = wpfdajaxurl;
-            if (url.indexOf('wpfd') === -1) {
-              url = wpfdajaxurl + "?action=wpfd&"
-            }
-            if (folder_ftp != '' && folder_category != '') {
-              $.ajax({
-                  type: "POST",
-                  url: url + 'task=Config.wpfdAddFolderSync',
-                  dataType: 'json',
-                  data: {
-                    wpfd_security: wpfd_var.wpfdsecurity,
-                    folder_ftp: folder_ftp,
-                    folder_category: folder_category
-                  },
-                  success: function (response) {
-                    if (response.status) {
-                      var tr = '<tr data-ftp="'+ response.folder_ftp +'" data-id="' + response.folder_category + '">';
-                      tr += '<td><input class="media_checkbox check-sync-item" id="cb-select-' + response.folder_category + '" type="checkbox" name="post[]" value="' + response.folder_category + '"></td>';
-                      tr += '<td>' + response.folder_ftp + '</td>';
-                      tr += '<td>' + $('.dir_name_categories').val() + '</td>';
-                      tr += '<td>';
-                      tr += '<button class="ju-button orange-outline-button ju-button-sm ju-button-inline add-syncftp-queue" type="button">'+ wpfd_admin.add_to_queue +'<span class="wpfd_spinner"></span></button>';
-                      tr += '<button class="ju-button orange-outline-button ju-button-sm ju-button-inline delete-syncftp-item" type="button">'+ wpfd_admin.delete +'</button>';
-                      tr += '</td>';
-                      tr += '</tr>';
-                      if (!$('.wpfd-list-folder-sync').find('tr[data-id="' + response.folder_category + '"]').length) {
-                        $('.wpfd-list-folder-sync').append(tr);
-                        $('.wpfd-list-folder-sync').parent().show();
-                        $.gritter.add({text: response.msg, class_name: 'wpfd-gritter-successfull'});
-                      }
-                    } else {
-                      $.gritter.add({text: response.msg, class_name: 'wpfd-gritter-warning'});
-                    }
+          var folder_ftp = $('.dir_name_ftp').val();
+          var folder_category = $('.dir_name_category_id').val();
+          var url = wpfdajaxurl;
+          if (url.indexOf('wpfd') === -1) {
+            url = wpfdajaxurl + "?action=wpfd&"
+          }
+          if (folder_ftp != '' && folder_category != '') {
+            $.ajax({
+              type: "POST",
+              url: url + 'task=Config.wpfdAddFolderSync',
+              dataType: 'json',
+              data: {
+                wpfd_security: wpfd_var.wpfdsecurity,
+                folder_ftp: folder_ftp,
+                folder_category: folder_category
+              },
+              success: function (response) {
+                if (response.status) {
+                  var tr = '<tr data-ftp="'+ response.folder_ftp +'" data-id="' + response.folder_category + '">';
+                  tr += '<td><input class="media_checkbox check-sync-item" id="cb-select-' + response.folder_category + '" type="checkbox" name="post[]" value="' + response.folder_category + '"></td>';
+                  tr += '<td>' + response.folder_ftp + '</td>';
+                  tr += '<td>' + $('.dir_name_categories').val() + '</td>';
+                  tr += '<td>';
+                  tr += '<button class="ju-button orange-outline-button ju-button-sm ju-button-inline add-syncftp-queue" type="button">'+ wpfd_admin.add_to_queue +'<span class="wpfd_spinner"></span></button>';
+                  tr += '<button class="ju-button orange-outline-button ju-button-sm ju-button-inline delete-syncftp-item" type="button">'+ wpfd_admin.delete +'</button>';
+                  tr += '</td>';
+                  tr += '</tr>';
+                  if (!$('.wpfd-list-folder-sync').find('tr[data-id="' + response.folder_category + '"]').length) {
+                    $('.wpfd-list-folder-sync').append(tr);
+                    $('.wpfd-list-folder-sync').parent().show();
+                    $.gritter.add({text: response.msg, class_name: 'wpfd-gritter-successfull'});
                   }
-              });
-            } else {
-              if (folder_ftp == '' && folder_category == '') {
-                $.gritter.add({text: 'PLease seleact a folder and category', class_name: 'wpfd-gritter-warning'});
-                return true;
+                } else {
+                  $.gritter.add({text: response.msg, class_name: 'wpfd-gritter-warning'});
+                }
               }
-              if (folder_ftp == '') {
-                $.gritter.add({text: 'PLease seleact a folder', class_name: 'wpfd-gritter-warning'});
-                return true;
-              }
-              if (folder_category == '') {
-                $.gritter.add({text: 'PLease seleact a category', class_name: 'wpfd-gritter-warning'});
-                return true;
-              }
+            });
+          } else {
+            if (folder_ftp == '' && folder_category == '') {
+              $.gritter.add({text: 'PLease seleact a folder and category', class_name: 'wpfd-gritter-warning'});
+              return true;
             }
+            if (folder_ftp == '') {
+              $.gritter.add({text: 'PLease seleact a folder', class_name: 'wpfd-gritter-warning'});
+              return true;
+            }
+            if (folder_category == '') {
+              $.gritter.add({text: 'PLease seleact a category', class_name: 'wpfd-gritter-warning'});
+              return true;
+            }
+          }
         });
 
         /**
@@ -896,15 +1420,15 @@
           list.push($(this).closest('tr').data('id'));
 
           wpfd_configuration.popup({
-          type: 'confirm',
-          content: wpfd_admin.msg_ask_delete_sync_queue,
+            type: 'confirm',
+            content: wpfd_admin.msg_ask_delete_sync_queue,
             onConfirm: function() {
               removeSyncItems(list);
             },
             onCancel: function() {},
           });
         });
-        
+
         var removeSyncItems = function (list) {
           if (!list.length) {
             return;
@@ -1567,27 +2091,27 @@
     $('#wpfd-cloud-config #amazon_s3 .wpfdAddonparams').on('submit', function () {
       var bucket_name = $('input[name="awsBucketName"]').val();
       if (bucket_name === '') {
-          return false;
+        return false;
       }
 
       if (bucket_name.indexOf(' ') !== -1) {
-          return false;
+        return false;
       } else {
-          var re = /^[a-z0-9][a-z0-9\-\.]{2,62}$/;
-          if (!re.test(bucket_name)) {
-              return false;
-          }
+        var re = /^[a-z0-9][a-z0-9\-\.]{2,62}$/;
+        if (!re.test(bucket_name)) {
+          return false;
+        }
       }
 
       return true;
     })
 
     $('.wpfd-aws3-manage-bucket').magnificPopup({
-        type: 'inline',
-        midClick: true // Allow opening popup on middle mouse click. Always set it to true if you don't provide alternative source in href.
+      type: 'inline',
+      midClick: true // Allow opening popup on middle mouse click. Always set it to true if you don't provide alternative source in href.
     });
     $('.cancel-bucket-btn').on('click', function () {
-        $.magnificPopup.close();
+      $.magnificPopup.close();
     });
     $(document).on('click', '.btn-select-bucket', function () {
       var $this = $(this);

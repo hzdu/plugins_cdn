@@ -531,7 +531,7 @@ input[type=range]:focus + .rangeslider .rangeslider__handle {
   position: fixed;
   top: 30%;
   left: 50%;
-  z-index: 100020;
+  z-index: 9999999;
   width: 560px;
   margin-left: -280px;
   background-color: #ffffff;
@@ -579,7 +579,7 @@ input[type=range]:focus + .rangeslider .rangeslider__handle {
   transition: color 1s linear;
 }
 .wpfd-modal-header .close:hover {
-  color: black;
+  color: rgb(0, 0, 0);
 }
 .wpfd-modal-header .close:focus, .wpfd-modal-header .close:active {
   outline: unset;
@@ -1051,7 +1051,7 @@ li.wpfd-icon.addition-icon:hover {
 }
 
 .flex-half {
-  flex-basis: 50%;
+  flex-basis: calc(50% - 40px);
   flex-grow: 0;
   padding: 0 20px;
 }
@@ -1217,11 +1217,8 @@ li.wpfd-icon.addition-icon:hover {
 .ju-option-group {
   margin-bottom: 15px;
 }
-.ju-option-group[data-id=ju_preview_icon] {
-  margin-top: 27px!important;
-}
-.ju-option-group[data-id=ju_preview_icon] .wpfd-label {
-  margin-bottom: 0!important;
+.ju-option-group[data-id=link_on_icon] {
+  margin-top: 27px;
 }
 .ju-option-group .wpfd-toolbar {
   float: right;
@@ -1747,8 +1744,7 @@ ul.svg-icons-list li:hover svg:hover path[fill=none], ul.svg-icons-list li:hover
   transition: 0.15s ease-out;
 }
 .wpfd-switch-input:checked + .wpfd-switch-label-on ~ .wpfd-switch-selection {
-  left: 100px;
-  /* Note: left: 50% doesn't transition in WebKit */
+  left: 100px; /* Note: left: 50% doesn't transition in WebKit */
 }
 
 .wpfd-loading {

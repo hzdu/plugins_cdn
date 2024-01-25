@@ -50,6 +50,8 @@
   flex-wrap: wrap;
   justify-content: flex-start;
   gap: 0;
+  width: 100%;
+  max-width: 100%;
 }
 @media screen and (max-width: 450px) {
   #et-boc .wpfd-content-preview .wpfd_list, #et-boc .wpfd-content-preview .wpfd-categories, .wpfd-content-preview .wpfd_list, .wpfd-content-preview .wpfd-categories {
@@ -450,6 +452,7 @@ a.wpfdcategory.catlink div.dropblock-footer-section {
 #wpfd-preview-box .dropblock .filecontent {
   float: left;
   min-width: 350px;
+  max-width: calc(100% - 150px);
 }
 #wpfd-preview-box .dropblock div.ext {
   background-position: top left;
@@ -462,7 +465,6 @@ a.wpfdcategory.catlink div.dropblock-footer-section {
 }
 #wpfd-preview-box .dropblock div.ext[class*=wpfd-icon-set-] {
   text-indent: -10072px;
-  width: 70px;
   width: 70px;
 }
 #wpfd-preview-box .dropblock div.ext[class*=wpfd-icon-set-png] {
@@ -1106,5 +1108,3 @@ a.wpfdcategory.catlink div.dropblock-footer-section {
     margin-left: 25px;
   }
 }
-
-/*# sourceMappingURL=style.css.map */
