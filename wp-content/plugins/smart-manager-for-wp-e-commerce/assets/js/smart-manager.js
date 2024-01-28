@@ -3097,11 +3097,12 @@ Smart_Manager.prototype.processColumnVisibility = function() {
 
 		//code to trigger update state ajax call
 		if ( "undefined" !== typeof (window.smart_manager.updateState) && "function" === typeof (window.smart_manager.updateState) ) {
-			let params = { refreshDataModel : true, async: false };
+			let params = { refreshDataModel : true, async: true };
 			if(window.smart_manager.isViewAuthor){
 				params.updateView = true
 			}
 			window.smart_manager.isColumnModelUpdated = true
+			window.smart_manager.showLoader();
 			window.smart_manager.updateState(params); //refreshing the dashboard states
 
 			if ( "undefined" !== typeof (window.smart_manager.refreshColumnsTitleAttribute) && "function" === typeof (window.smart_manager.refreshColumnsTitleAttribute) ) {
