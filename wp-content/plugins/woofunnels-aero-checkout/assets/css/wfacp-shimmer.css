@@ -166,7 +166,7 @@ body .wfacp_mini_cart_start_h .wfacp_product_subs_details {
 .wfacp_anim_active .product-name strong.product-quantity,
 .wfacp_anim_active .wfacp_coupon_msg .woocommerce-error,
 #shipping_method li.wfacp_no_shipping span,
-.wfacp_anim_active .wfacp_mini_cart_start_h .wfacp_product_subs_details {
+.wfacp_anim_active .wfacp_mini_cart_start_h .wfacp_product_subs_details{
     position: relative;
 }
 
@@ -210,7 +210,8 @@ body .wfacp_mini_cart_start_h .wfacp_product_subs_details {
 .wfacp_anim_active .wfacp_order_summary_container table:not(.wfacp_mini_cart_items) tr:not(.cart_item) td:last-child span.woocommerce-Price-amount.amount:after,
 .wfacp_anim_active .wfacp_order_summary_container table:not(.wfacp_mini_cart_items) tr:not(.cart_item).shipping_total_fee td:last-child span:after,
 .wfacp_anim_active .wfacp_order_summary_container table:not(.wfacp_mini_cart_items) tr:not(.cart_item).cart-discount td:last-child span:after,
-.wfacp_anim_active .wfacp_mini_cart_start_h .wfacp_product_subs_details:after {
+.wfacp_anim_active .wfacp_mini_cart_start_h .wfacp_product_subs_details:after,
+.wfacp_anim_active .wfacp_main_form #wfacp_checkout_form #shipping_calculator_field .wfacp_no_shipping_found ul:after{
     animation: shimmer 2s linear infinite;
     background: linear-gradient(to right, #eff1f3 4%, #e2e2e2 25%, #eff1f3 36%);
     background-size: 1000px 100%;
@@ -222,9 +223,8 @@ body .wfacp_mini_cart_start_h .wfacp_product_subs_details {
     top: 0;
     bottom: 0;
     left: 0;
-    z-index: 10000;
+    z-index: 999;
 }
-
 
 .wfacp-row.wfacp_coupon_row {
     position: relative;

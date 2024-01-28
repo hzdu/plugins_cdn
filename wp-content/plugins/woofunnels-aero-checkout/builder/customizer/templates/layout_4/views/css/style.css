@@ -597,7 +597,7 @@ h1.has-image.product-title {
 }
 
 .wfacp-comm-title h4 span {
-    color: #ff0000;
+    color: #e15334;
     display: inline-block;
 }
 
@@ -1129,9 +1129,12 @@ body .wfacp_main_form .select2-container .select2-selection--single .select2-sel
     width: 100%;
     font-family: inherit;
     min-height: 48px;
+    border-radius:4px;
 }
 
-
+body .wfacp_main_form.woocommerce input[type=checkbox]{
+    border-radius:4px;
+}
 body .wfacp-form-control-wrapper .select2-container .select2-selection--single {
     height: auto;
     padding: 0;
@@ -1485,12 +1488,12 @@ p.wfacp-checkout-email .woocommerce-input-wrapper .input-text.wfacp-form-control
 
 }
 
-.wfacp-inside .wfacp-form-control-wrapper.wfacp-anim-wrap label.wfacp-form-control-label {
+body #wfacp-sec-wrapper .wfacp-inside .wfacp-form-control-wrapper.wfacp-anim-wrap label.wfacp-form-control-label {
     font-size: 12px;
 }
 
-.wfacp-form-control-wrapper.wfacp-anim-wrap label.wfacp-form-control-label {
-    top: -10px;
+body #wfacp-sec-wrapper  .wfacp-form-control-wrapper.wfacp-anim-wrap label.wfacp-form-control-label {
+    top: -10px !important;
     background: #fcfcfc;
     bottom: auto;
     margin-top: 0;
@@ -1715,7 +1718,7 @@ input.input-text:focus {
 }
 
 .wfacp_err_message {
-    color: #ff0000;
+    color: #e15334;
 }
 
 .woocommerce-error {
@@ -1724,7 +1727,7 @@ input.input-text:focus {
 
 .woocommerce-error::before {
     content: '\e016';
-    color: #ff0000;
+    color: #e15334;
 }
 
 
@@ -2795,23 +2798,12 @@ body.wfacp_main_wrapper .wc-amazon-payments-advanced-populated .create-account p
 }
 
 
-body .wfacp_main_form.woocommerce #wfacp_checkout_form .woocommerce-error,
-body .wfacp_main_form.woocommerce #wfacp_checkout_form .woocommerce-message {
-    margin-bottom: 15px;
-    padding: 1em;
-    position: relative;
-    background-color: #f7f6f7;
-    color: #515151;
-    border-top: 3px solid #b81c23;
-    width: auto;
-}
-
 body .wfacp_main_form.woocommerce #wfacp_checkout_form .woocommerce-message {
     border-top-color: #8fae1b;
 }
 
 .wfacp_main_form .woocommerce-error li {
-    color: #ff0000;
+    color: #e15334;
 }
 
 body .wfacp_main_form .woocommerce-input-wrapper select.wfacp-form-control {
@@ -2834,7 +2826,7 @@ body .wfacp_main_form .wfacp_woocommerce_form_coupon .wfacp-coupon-section .wfac
 }
 
 body .wfacp_main_form .woocommerce-invalid-email .woocommerce-input-wrapper .wfacp-form-control {
-    border-bottom-color: #d50000;
+    border-bottom-color: #e15334;
 }
 
 body .wfacp_main_form .wfacp_woocommerce_form_coupon .wfacp-coupon-section .woocommerce-info .wfacp_showcoupon,
@@ -2875,7 +2867,7 @@ body .wfacp_main_form .aelia_wc_eu_vat_assistant.wfacp-col-left-third label.wfac
 body .wfacp_main_form .aelia_wc_eu_vat_assistant.wfacp-col-left-third label.wfacp-form-control-label,
 body .wfacp_main_form .aelia_wc_eu_vat_assistant.wfacp-col-two-third label.wfacp-form-control-label {
     bottom: auto;
-    top: 12.5px;
+    top: 12px;
     margin-top: 0;
     margin-bottom: 0;
     line-height: 20px;
@@ -3353,7 +3345,7 @@ body .wfacp_main_form .woocommerce-error{
 }
 
 body .wfacp_main_form .woocommerce-error {
-    border-color: #ff0000;
+    border-color: #e15334;
 }
 
 body .wfacp_main_form .wfacp-message,

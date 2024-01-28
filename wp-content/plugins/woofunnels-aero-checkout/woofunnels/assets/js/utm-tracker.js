@@ -1,5 +1,5 @@
 /*global wffnUtm */
-var wffnUtm_terms = ["utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content", "flt", "timezone", "is_mobile", "browser", "fbclid","gclid","referrer"], wffnCookieManage = {
+var wffnUtm_terms = wffnUtm.cookieKeys, wffnCookieManage = {
     setCookie: function (e, o, t) {
         var r = new Date();
         r.setTime(r.getTime() + 24 * t * 60 * 60 * 1e3);
@@ -61,6 +61,8 @@ function wffnDefaultEvent(result) {
 
     result.flt = wffnGetAdminTime();
     result.referrer = document.referrer.indexOf(window.location.hostname) === -1 ? document.referrer : '';
+    result.fl_url =  ( typeof window.location.pathname !== "undefined" ) ? window.location.pathname : '/';
+
     let getDevice = wffnDetectDevice();
     if (typeof getDevice !== "undefined" && getDevice !== "") {
         if (typeof getDevice.browser.name !== "undefined") {
@@ -74,14 +76,19 @@ function wffnDefaultEvent(result) {
 }
 
 /** get wp admin current time*/
-function wffnGetAdminTime() {
+function wffnGetAdminTime( getEpochTime = false ) {
     let getTime = new Date();
     let userOffset = getTime.getTimezoneOffset();
     let adminOffset = parseFloat(wffnUtm.utc_offset);
-    /** add user offset for reach utc time ) **/
+    /** add user offset for reach utc time **/
     getTime.setMinutes(getTime.getMinutes() + (userOffset));
-    /** add admin offset for reach admin time ) **/
+    /** add admin offset for reach admin time **/
     getTime.setMinutes(getTime.getMinutes() + (adminOffset));
+
+    if (true === getEpochTime) {
+        /** get time in seconds **/
+        return Math.round( getTime.getTime() / 1000 );
+    }
     return getTime.getFullYear() + '-' + (getTime.getMonth() + 1) + '-' + getTime.getDate() + ' ' + getTime.getHours() + ':' + getTime.getMinutes() + ':' + getTime.getSeconds();
 }
 
@@ -115,7 +122,6 @@ function wffnManageCookies() {
 
 
     try {
-
         var source = wffnGetTrafficSource();
         if (source !== 'direct') {
             wffnCookieManage.setCookie('wffn_traffic_source', source, 2);
@@ -127,12 +133,19 @@ function wffnManageCookies() {
 
 
         for (var k in wffnUtm_terms) {
-            if (wffnCookieManage.getCookie('wffn_' + wffnUtm_terms[k]) === '' && Object.prototype.hasOwnProperty.call(queryVars, wffnUtm_terms[k])) {
-
-                wffnCookieManage.setCookie('wffn_' + wffnUtm_terms[k], queryVars[wffnUtm_terms[k]], 2);
+            if (Object.prototype.hasOwnProperty.call(queryVars, wffnUtm_terms[k])) {
+                /**
+                 * restricted override cookies for user journey
+                 */
+                if (['flt', 'fl_url', 'referrer'].indexOf(wffnUtm_terms[k]) !== -1) {
+                    if ( 'undefined' !== typeof wffnCookieManage && '' === wffnCookieManage.getCookie('wffn_' + wffnUtm_terms[k])) {
+                        wffnCookieManage.setCookie('wffn_' + wffnUtm_terms[k], queryVars[wffnUtm_terms[k]], 2);
+                    }
+                } else if ('' !== wffnUtm_terms[k]) {
+                    wffnCookieManage.setCookie('wffn_' + wffnUtm_terms[k], queryVars[wffnUtm_terms[k]], 2);
+                }
             }
         }
-
 
     } catch (e) {
         console.log(e);
@@ -151,16 +164,10 @@ function wffnGetUTMs() {
         var terms = {};
         var queryVars = wffnGetQueryVars();
 
-        /** exclude parameter for utm event **/
-        var excludeArray = ["flt", "timezone", "is_mobile", "browser", "fbclid","gclid", "referrer"];
         for (var k in wffnUtm_terms) {
+            if (wffnCookieManage.getCookie('wffn_' + wffnUtm_terms[k]) === '' && Object.prototype.hasOwnProperty.call(queryVars, wffnUtm_terms[k])) {
 
-            if( excludeArray.indexOf(wffnUtm_terms[k]) === -1 ) {
-                if (wffnCookieManage.getCookie('wffn_' + wffnUtm_terms[k])) {
-                    terms[wffnUtm_terms[k]] = wffnCookieManage.getCookie('wffn_' + wffnUtm_terms[k]);
-                } else if (Object.prototype.hasOwnProperty.call(queryVars, wffnUtm_terms[k])) {
-                    terms[wffnUtm_terms[k]] = queryVars[wffnUtm_terms[k]];
-                }
+                wffnCookieManage.setCookie('wffn_' + wffnUtm_terms[k], queryVars[wffnUtm_terms[k]], 2);
             }
         }
         return terms;

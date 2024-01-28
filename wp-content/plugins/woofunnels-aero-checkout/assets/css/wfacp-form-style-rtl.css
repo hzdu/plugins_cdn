@@ -245,6 +245,7 @@ body #wfacp-e-form .wfacp_main_form.woocommerce .woocommerce-message, body #wfac
     border-right: 2px solid #d0011b;
     border-left: none !important;
     text-align: right;
+    padding: 5px 24px 5px 12px;
 }
 
 #wfacp-e-form .wfacp_main_form.woocommerce form.woocommerce-form.woocommerce-form-login.login label.woocommerce-form__label.woocommerce-form__label-for-checkbox.inline {
@@ -1240,6 +1241,28 @@ body #wfacp-e-form .iti--separate-dial-code .iti__selected-dial-code {
     margin-left: 0px;
     margin-right: 5px;
 }
+
+
+.wfacp_mini_cart_start_h .wfacp_mini_cart_elementor .cart_item .product-quantity .value-button.wfacp_decrease_item, body .cart_item .product-quantity .value-button.wfacp_decrease_item, body .wfacp_main_form #product_switching_field.wfacp-product-switch-panel .value-button.wfacp_decrease_item {
+
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+
+    border-top-right-radius: 6px;
+    border-bottom-right-radius: 6px;
+}
+
+.wfacp_mini_cart_start_h .wfacp_mini_cart_elementor .cart_item .product-quantity .value-button.wfacp_increase_item, body .cart_item .product-quantity .value-button.wfacp_increase_item, body .wfacp_main_form #product_switching_field.wfacp-product-switch-panel .value-button.wfacp_increase_item {
+
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+
+    border-top-left-radius: 6px;
+    border-bottom-left-radius: 6px;
+}
+
+
+
 @media (min-width: 768px)and (max-width: 1024px) {
     #wfacp-e-form .wfacp-terms-footer span.woocommerce-terms-and-conditions-checkbox-text {
         text-align: right;
