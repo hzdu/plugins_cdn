@@ -320,7 +320,9 @@
 			network: { type: "string" },
 			buttonShape: { type: "string" },
 			newTab: { type: "boolean" },
-			link: { type: "string" }
+			link: { type: "string" },
+			customSVG: { type: "string" },
+			buttonColor: { type: "string" },
 		},
 	  	usesContext: ['buttonShape', 'buttonSize', 'newTab', 'buttonColor', 'iconColor', 'buttonHoverColor', 'iconHoverColor'],
 
@@ -394,6 +396,40 @@
 	 		return (
 				el(Fragment, {},
 
+					(() => { 
+
+						if(props.attributes.network !== 'custom') {
+							return;
+						}
+
+						return el(InspectorControls, {},
+							el(PanelBody, { title: __('Settings', 'novashare'), className: 'novashare-block-settings', initialOpen: true },
+
+								//new tab
+								el(TextControl, {
+									label: __('Icon SVG HTML', 'novashare'),
+									onChange: (value) => {
+										props.setAttributes({ customSVG: value });
+									},
+									value: props.attributes.customSVG,
+									placeholder: '<svg>...</svg>'
+								}),
+							),
+
+							//colors
+							el(PanelColorSettings, {
+								title: __('Colors', 'novashare'),
+								colorSettings: [
+									{
+										value: props.attributes.buttonColor,
+										onChange: (color) => props.setAttributes({ buttonColor: color }),
+										label: __('Button Color', 'novashare')
+									}
+								]
+							})
+						)
+					})(),
+
 					//print block in editor
 					el('a', (useBlockProps)({
 						onMouseOver: hoverSwap, 
@@ -404,6 +440,7 @@
 						className: props.attributes.network + ' ns-button ns-follow-button', 
 						style: {
 							margin: '0',
+							textDecoration: 'none',
 							width: props.context['buttonSize'],
 							height: props.context['buttonSize'],
 							minWidth: props.context['buttonSize']
@@ -412,13 +449,46 @@
 							el('span', { 
 								className: 'ns-button-icon ns-button-block', 
 								style: { 
-									backgroundColor: props.context['buttonColor'], 
+									backgroundColor: (() => {
+										if(props.context['buttonColor']) {
+											return props.context['buttonColor'];
+										}
+										if(props.attributes.buttonColor) {
+											return props.attributes.buttonColor;
+										}
+									})(), 
 									color: props.context['iconColor'],
 									width: props.context['buttonSize'],
 									height: props.context['buttonSize'],
 									minWidth: props.context['buttonSize']
 								}},
-								networkIcons[props.attributes.network]
+								(() => {
+									if(props.attributes.customSVG && props.attributes.customSVG !== '') {
+										var iconViewBox = props.attributes.customSVG.match(/viewBox="(.*?)"/);
+										var iconPaths = props.attributes.customSVG.matchAll(/d="(.*?)"/g);
+
+										if(iconViewBox && iconPaths) {
+
+									        var customIcon = el('svg', { 
+													fill: 'currentColor',
+													viewBox: iconViewBox[1]
+												},
+												(() => {
+													var paths = [];
+													for(const match of iconPaths) {
+													  	paths.push(el('path', { 
+															d: match[1]
+														}));
+													}
+													return paths;
+							
+												})()
+											);
+											return customIcon;
+										}
+									}
+									return networkIcons[props.attributes.network];
+								})()
 							),
 						),
 						el(networkLinkPopover)
