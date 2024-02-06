@@ -1,0 +1,21 @@
+@import "../../assets/image-selector";
+
+.ame-page-title-tags {
+	margin-bottom: 0;
+
+	li {
+		float: left;
+		margin-right: 5px;
+	}
+}
+
+.ame-page-title-tags::after {
+	content: "";
+	display: block;
+	clear: both;
+}
+
+.ame-page-title-examples li {
+	margin-left: 1em;
+	list-style: disc outside;
+}

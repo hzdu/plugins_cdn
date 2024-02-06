@@ -1,0 +1,207 @@
+
+/**
+ * WooCommerce Additional Variation Images And Swatches Pro
+ *
+ * This source file is subject to the GNU General Public License v3.0
+ * that is bundled with this package in the file license.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://www.gnu.org/licenses/gpl-3.0.html
+ * 
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to support@innovativewp.org so we can send you a copy immediately.
+ *
+ * @author    InnovativeWP
+ * @copyright Copyright (c) 2021, InnovativeWP.
+ * @license   http://www.gnu.org/licenses/gpl-3.0.html GNU General Public License v3.0
+ */
+
+.veb-variation-gallery-wrapper .veb-variation-gallery-images {
+  margin: 0;
+  padding: 0;
+}
+.veb-variation-gallery-wrapper .veb-variation-gallery-images li {
+  cursor: pointer !important;
+}
+.veb-variation-gallery-wrapper .veb-variation-gallery-images li.video {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.veb-variation-gallery-wrapper .veb-variation-gallery-images li.video::after {
+  content: "\f148";
+  -webkit-transform: scaleX(-1);
+      -ms-transform: scaleX(-1);
+          transform: scaleX(-1);
+  position: absolute;
+  font-family: dashicons;
+  background-color: transparent;
+  font-size: 30px;
+  color: #ffffff;
+  margin: 0;
+  padding: 0;
+  line-height: 1;
+}
+.veb-variation-gallery-wrapper .veb-variation-gallery-images li.video::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  opacity: 0.2;
+  margin: 0;
+  padding: 0;
+}
+
+.veb_variation_gallery_media_video_popup_link {
+  position: absolute;
+  text-decoration: none;
+  margin-top: -30px;
+  right: 20px;
+  background-color: #FFFFFF;
+}
+
+.edit-attachment-frame .veb_variation_gallery_media_video_popup_link {
+  margin-top: -30px;
+  right: 10px;
+}
+
+.compat-field-veb_variation_gallery_media_video input {
+  padding-right: 20px !important;
+}
+
+.media-frame-content.iwp-media-frame-modify > .attachments-browser .media-sidebar > .compat-item {
+  display: none;
+}
+
+.iwp-admin-video-preview #set-post-thumbnail {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.iwp-admin-video-preview #set-post-thumbnail::after {
+  content: "\f148";
+  -webkit-transform: scaleX(-1);
+      -ms-transform: scaleX(-1);
+          transform: scaleX(-1);
+  position: absolute;
+  font-family: dashicons;
+  background-color: transparent;
+  font-size: 50px;
+  color: #ffffff;
+  margin: 0;
+  padding: 0;
+  line-height: 1;
+}
+.iwp-admin-video-preview #set-post-thumbnail::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  opacity: 0.2;
+  margin: 0;
+  padding: 0;
+}
+
+#product_images_container .product_images .video {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+#product_images_container .product_images .video::after {
+  content: "\f148";
+  -webkit-transform: scaleX(-1);
+      -ms-transform: scaleX(-1);
+          transform: scaleX(-1);
+  position: absolute;
+  font-family: dashicons;
+  background-color: transparent;
+  font-size: 30px;
+  color: #ffffff;
+  margin: 0;
+  padding: 0;
+  line-height: 1;
+}
+#product_images_container .product_images .video::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  opacity: 0.2;
+  margin: 0;
+  padding: 0;
+}
+
+.iwp-attachment-preview.iwp-video .iwp-thumbnail-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.iwp-attachment-preview.iwp-video .iwp-thumbnail-container::after {
+  content: "\f148";
+  -webkit-transform: scaleX(-1);
+      -ms-transform: scaleX(-1);
+          transform: scaleX(-1);
+  position: absolute;
+  font-family: dashicons;
+  background-color: transparent;
+  font-size: 30px;
+  color: #ffffff;
+  margin: 0;
+  padding: 0;
+  line-height: 1;
+}
+.iwp-attachment-preview.iwp-video .iwp-thumbnail-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  opacity: 0.2;
+  margin: 0;
+  padding: 0;
+}
+.iwp-attachment-preview.iwp-video .iwp-thumbnail-container::after {
+  z-index: 1;
+  top: calc(50% - 15px);
+}
+.iwp-attachment-preview.iwp-video .iwp-thumbnail-container::before {
+  z-index: 1;
+}

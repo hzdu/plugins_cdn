@@ -1,0 +1,66 @@
+.checkoutwc {
+    #cfw-smarty-modal-title {
+        text-align: center;
+        font-size: 2em;
+    }
+
+    #cfw-smarty-modal-subtitle {
+        text-align: center;
+        font-size: 1em;
+    }
+
+    .cfw-smartystreets-user-address, .cfw-smartystreets-suggested-address {
+        margin-bottom: 2em;
+    }
+
+    .cfw-smartystreets-option-wrap {
+        margin: 2em 0;
+
+        label {
+            font-weight: bold;
+        }
+    }
+
+    .cfw-smartystreets-user-address-button {
+        display: block;
+        padding: 19px 15px;
+    }
+
+    .cfw-smartystreets-button {
+        width: 100%;
+        text-align: center;
+    }
+
+    // Shipping step hidden
+    &.cfw-hide-shipping {
+        .cfw-smartystreets-user-address-button.cfw-continue-to-payment-btn,
+        .cfw-smartystreets-suggested-address-button.cfw-continue-to-payment-btn {
+            display: inline-block;
+        }
+
+        .cfw-smartystreets-user-address-button.cfw-continue-to-shipping-btn,
+        .cfw-smartystreets-suggested-address-button.cfw-continue-to-shipping-btn {
+            display: none;
+        }
+    }
+
+    // Shipping step NOT hidden
+    &:not(.cfw-hide-shipping) {
+        .cfw-smartystreets-user-address-button.cfw-continue-to-payment-btn,
+        .cfw-smartystreets-suggested-address-button.cfw-continue-to-payment-btn {
+            display: none;
+        }
+
+        .cfw-smartystreets-user-address-button.cfw-continue-to-shipping-btn,
+        .cfw-smartystreets-suggested-address-button.cfw-continue-to-shipping-btn {
+            display: inline-block;
+        }
+    }
+
+    .cfw-smartystreets-hide-buttons {
+        .cfw-smartystreets-button {
+            display: none !important;
+        }
+    }
+}
+

@@ -1,0 +1,55 @@
+{
+    "name": "krizalys/onedrive-php-sdk",
+    "description": "OneDrive SDK for PHP.",
+    "homepage": "https://github.com/krizalys/onedrive-php-sdk",
+    "license": "BSD-3-Clause",
+    "prefer-stable": true,
+    "keywords": [
+        "krizalys",
+        "onedrive",
+        "php",
+        "sdk"
+    ],
+    "authors": [
+        {
+            "name": "Christophe Vidal",
+            "homepage": "http://www.krizalys.com/"
+        }
+    ],
+    "support": {
+        "email": "support@krizalys.com",
+        "issues": "https://github.com/krizalys/onedrive-php-sdk/issues",
+        "wiki": "https://github.com/krizalys/onedrive-php-sdk/wiki",
+        "source": "https://github.com/krizalys/onedrive-php-sdk"
+    },
+    "require": {
+        "php": "^7.3 | ^8.0",
+        "guzzlehttp/guzzle": ">=6.3.3",
+        "guzzlehttp/psr7": "^1.7 | ^2.4",
+        "microsoft/microsoft-graph": "^1.7.0"
+    },
+    "require-dev": {
+        "brianium/paratest": "^6.0.0",
+        "php-webdriver/webdriver": "^1.7.0",
+        "phpunit/phpunit": "^9.0.0",
+        "symfony/process": "^4.0.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Krizalys\\Onedrive\\": "src/"
+        }
+    },
+    "scripts": {
+        "test:functional": "vendor/bin/phpunit --configuration test --testsuite 'Functional tests' --bootstrap test/functional/bootstrap.php",
+        "test:functional:parallel": "vendor/bin/paratest --functional --configuration test --testsuite 'Functional tests' --bootstrap test/functional/bootstrap.php test/functional/KrizalysOnedriveTest.php & vendor/bin/paratest --functional --configuration test --testsuite 'Functional tests' --bootstrap test/functional/bootstrap.php test/functional/ClientTest.php & vendor/bin/paratest --functional --configuration test --testsuite 'Functional tests' --bootstrap test/functional/bootstrap.php test/functional/Proxy/DriveProxyTest.php & vendor/bin/paratest --functional --configuration test --testsuite 'Functional tests' --bootstrap test/functional/bootstrap.php test/functional/Proxy/DriveItemProxyTest.php & wait",
+        "test:unit": "vendor/bin/phpunit --configuration test --testsuite 'Unit tests' --bootstrap test/unit/bootstrap.php",
+        "test:unit:coverage": "vendor/bin/phpunit --configuration test --testsuite 'Unit tests' --bootstrap test/unit/bootstrap.php --coverage-clover coverage.xml",
+        "test:unit:coverage:parallel": "vendor/bin/paratest --configuration test --testsuite 'Unit tests' --bootstrap test/unit/bootstrap.php --coverage-clover coverage.xml",
+        "test:unit:parallel": "vendor/bin/paratest --configuration test --testsuite 'Unit tests' --bootstrap test/unit/bootstrap.php"
+    },
+    "config": {
+        "platform": {
+            "ext-zip": "1.12.5"
+        }
+    }
+}

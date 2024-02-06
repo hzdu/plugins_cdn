@@ -1,0 +1,204 @@
+@font-face {
+    font-family: 'virtual-review';
+    src: url('../fonts/virtual-review.eot?o6jttq');
+    src: url('../fonts/virtual-review.eot?o6jttq#iefix') format('embedded-opentype'),
+    url('../fonts/virtual-review.ttf?o6jttq') format('truetype'),
+    url('../fonts/virtual-review.woff?o6jttq') format('woff'),
+    url('../fonts/virtual-review.svg?o6jttq#virtual-review') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+[class^="wvr-icon-"], [class*=" wvr-icon-"] {
+    /* use !important to prevent issues with browser extensions that change fonts */
+    font-family: 'virtual-review' !important;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.wvr-icon-shopping-bag:before {
+    content: "\e900";
+}
+
+.wvr-icon-no-icon:before {
+    content: "\e901";
+    color: #666;
+}
+
+.wvr-icon-cart-arrow-down:before {
+    content: "\e902";
+}
+
+.wvr-icon-credit-card:before {
+    content: "\e93f";
+}
+
+.wvr-icon-currency-dollar:before {
+    content: "\e903";
+}
+
+.wvr-icon-location-shopping:before {
+    content: "\e904";
+}
+
+.wvr-icon-bin:before {
+    content: "\e9ad";
+}
+
+.wvr-icon-cross:before {
+    content: "\ea0f";
+}
+
+.wvr-icon-bin {
+    padding-left: 3px;
+    font-size: 20px;
+}
+
+.wvr-comments-group {
+    display: flex;
+}
+
+.wvr-product-purchased {
+    display: inline-block;
+    font-size: 0.85rem;
+    margin-right: 5px;
+    padding: 0 7px;
+    border-radius: 20px;
+    white-space: nowrap;
+    vertical-align: top;
+}
+
+.wvr-purchased-format {
+    font-size: 18px;
+}
+
+.wvr-icon-purchased {
+    vertical-align: top;
+}
+
+.wvr-customer-pick {
+    white-space: nowrap;
+    overflow-x: scroll;
+    width: 100%;
+    /*border-radius: 20px;*/
+}
+
+.wvr-customer-select {
+    border: 1px solid #eeeeee;
+    margin: unset;
+    width: 100%;
+    font-weight: normal !important;
+    padding: 5px !important;
+}
+
+.wvr-customer-sample-cmt {
+    margin-bottom: 10px;
+}
+
+.wvr-select-sample-cmt {
+    font-weight: normal;
+    padding: 2px 10px;
+    margin: 5px;
+    border-radius: 15px;
+    display: inline;
+    border: none;
+    background-color: #f0f0f0;
+    color: black;
+}
+
+.wvr-select-sample-cmt:hover {
+    background-color: #ff7311;
+    color: white;
+}
+
+.wvr-desktop-style .wvr-clear-comment {
+    line-height: 1.5 !important;
+}
+
+.wvr-clear-comment:hover {
+    color: red;
+}
+
+.wvr-product-bought {
+    font-weight: normal;
+    font-size: 90%;
+    color: #777777;
+}
+
+.comment-text > .meta, .comment-text > .description > p {
+    margin-bottom: 0.5em;
+}
+
+.wvr-select-qty-cmt {
+    margin: 0;
+    padding: 0;
+}
+
+.wvr-ordered {
+    background-image: url("../img/ordered.svg");
+    background-repeat: no-repeat;
+    padding: 0.7em;
+    margin-right: 0.5em;
+    display: inline-block;
+    position: relative;
+    top: 0.2em;
+}
+
+.wvr-note {
+    font-style: italic;
+    color: #7a7a7a;
+    margin: 1%;
+}
+
+.wvr-emoji {
+    position: relative;
+}
+
+.wvr-emoji-remote {
+    padding: 0.8em;
+    background-image: url("../img/emoji.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    margin-left: 0.3em;
+    height: fit-content;
+}
+
+.wvr-emoji-remote:hover {
+    background-image: url("../img/emoji_hover.svg");
+}
+
+.wvr-emoji-table {
+    display: none;
+    position: absolute;
+    z-index: 1;
+    width: 12em !important;
+    height: 7em !important;
+    top: 3em;
+    right: -2em;
+    border-radius: 5px;
+    padding: 0.5em;
+    box-shadow: 2px 2px 5px grey;
+}
+
+.wvr-emoji-table > tbody > tr > td {
+    padding: 1px !important;
+    border: none !important;
+}
+
+.wvr-note-label {
+    padding-top: 8px;
+    font-size: 0.9rem;
+    color: #9b9b9b;
+}
+
+.wvr-select-sample-cmt:hover {
+    cursor: pointer;
+}

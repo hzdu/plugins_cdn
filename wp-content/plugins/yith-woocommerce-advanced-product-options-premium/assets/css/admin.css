@@ -1,0 +1,281 @@
+
+@font-face {
+	font-family: 'icomoon';
+	src:  url('../fonts/icomoon.eot?jygorh');
+	src:  url('../fonts/icomoon.eot?jygorh#iefix') format('embedded-opentype'),
+		url('../fonts/icomoon.ttf?jygorh') format('truetype'),
+		url('../fonts/icomoon.woff?jygorh') format('woff'),
+		url('../fonts/icomoon.svg?jygorh#icomoon') format('svg');
+	font-weight: normal;
+	font-style: normal;
+	font-display: block;
+}
+
+[class^="wapo-icon-"], [class*=" wapo-icon-"] {
+	font-family: 'icomoon' !important;
+	speak: never;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+.wapo-icon-checkbox:before { content: "\e90c"; }
+.wapo-icon-color:before { content: "\e90b"; }
+.wapo-icon-colorpicker:before { content: "\e90e"; }
+.wapo-icon-date:before { content: "\e90d"; }
+.wapo-icon-file:before { content: "\e901"; }
+.wapo-icon-html_heading:before { content: "\e905"; }
+.wapo-icon-html_separator:before { content: "\e904"; }
+.wapo-icon-html_text:before { content: "\e903"; }
+.wapo-icon-label:before { content: "\e909"; }
+.wapo-icon-number:before { content: "\e908"; }
+.wapo-icon-product:before { content: "\e907"; }
+.wapo-icon-radio:before { content: "\e906"; }
+.wapo-icon-select:before { content: "\e900"; }
+.wapo-icon-text:before { content: "\e90a"; }
+.wapo-icon-textarea:before { content: "\e902"; }
+
+
+/* ADD-ONS 2.0 */
+
+#wpbody-content { position: relative; }
+
+#plugin-fw-wc.yith-wapo .yith-plugin-fw-panel-custom-tab-container { padding-top: 40px; margin: 0; }
+#plugin-fw-wc.yith-wapo .list-table-title h2 { border: 0; padding: 20px 20px 40px 0px; display: inline-block; }
+
+/*
+ *	BLOCKS
+ */
+
+#plugin-fw-wc #yith_wapo_panel_blocks #empty-state { padding: 150px 0px; text-align: center; }
+#plugin-fw-wc #yith_wapo_panel_blocks #empty-state img { height: 45px; }
+
+#plugin-fw-wc #yith_wapo_panel_blocks table.form-table { border: 2px solid #efefef; }
+#plugin-fw-wc #yith_wapo_panel_blocks table.form-table tr th { border: 0; padding: 15px 20px; }
+#plugin-fw-wc #yith_wapo_panel_blocks table.form-table tr td { padding: 20px; }
+#plugin-fw-wc #yith_wapo_panel_blocks table.form-table tr:hover td { background-color: #f0f6fb; }
+#plugin-fw-wc #yith_wapo_panel_blocks table.form-table tr .name { text-align: left; }
+#plugin-fw-wc #yith_wapo_panel_blocks table.form-table tr .name a { font-size: 13px; font-weight: bold; }
+#plugin-fw-wc #yith_wapo_panel_blocks table.form-table tr .name a:hover { text-decoration: underline; }
+#plugin-fw-wc #yith_wapo_panel_blocks table.form-table tr th.priority { width: 20vh; }
+#plugin-fw-wc #yith_wapo_panel_blocks table.form-table tr th.active { width: 300px; }
+#plugin-fw-wc #yith_wapo_panel_blocks table.form-table tr .active { text-align: right; position: relative; }
+#plugin-fw-wc #yith_wapo_panel_blocks table.form-table tr .active .actions { margin-top: -20px; position: absolute; top: 50%; right: 100px; white-space: nowrap; z-index: 9; }
+#plugin-fw-wc #yith_wapo_panel_blocks table.form-table tr:hover .active .actions { display: inline-block !important; }
+/*
+#plugin-fw-wc #yith_wapo_panel_blocks table.form-table tr .active .actions a { width: 35px; height: 35px; line-height: 35px; border: 2px solid #d9e6f1; border-radius: 50%; text-align: center; display: inline-block; }
+#plugin-fw-wc #yith_wapo_panel_blocks table.form-table tr .active .actions a:hover { border: 2px solid #2271b1 }
+#plugin-fw-wc #yith_wapo_panel_blocks table.form-table tr .active .actions a.edit { background: #fff url('../img/icon-edit.png') center no-repeat; background-size: 40%; }
+#plugin-fw-wc #yith_wapo_panel_blocks table.form-table tr .active .actions a.duplicate { background: #fff url('../img/icon-duplicate.png') center no-repeat; background-size: 40%; }
+#plugin-fw-wc #yith_wapo_panel_blocks table.form-table tr .active .actions a.remove { background: #fff url('../img/icon-remove.png') center no-repeat; background-size: 40%; }
+#plugin-fw-wc #yith_wapo_panel_blocks table.form-table tr .active .actions a.move { background: #fff url('../img/icon-move.png') center no-repeat; background-size: 40%; cursor: move; }
+*/
+
+/*
+ *	BLOCK
+ */
+
+#plugin-fw-wc #yith-wapo-panel-block form:after { content: ''; display: block; clear: both; }
+#plugin-fw-wc #yith-wapo-panel-block form .field-wrap { margin-bottom: 40px; clear: both; }
+#plugin-fw-wc #yith-wapo-panel-block form .field-wrap:after { content: ''; display: block; clear: both; }
+#plugin-fw-wc #yith-wapo-panel-block form .field-wrap > label { width: 150px; padding: 10px 20px 0px 0px; float: left; }
+#plugin-fw-wc #yith-wapo-panel-block form .field-wrap .field { float: left; }
+#plugin-fw-wc #yith-wapo-panel-block form .field-wrap .field #block-name { height: 38px; padding: 8px 10px; }
+#plugin-fw-wc #yith-wapo-panel-block form .field-wrap .field input:not('.yith-plugin-fw-select-all') { width: 200px; height: 50px; }
+
+#plugin-fw-wc #yith-wapo-panel-block form > .field-wrap label { float: none; position: absolute; }
+#plugin-fw-wc #yith-wapo-panel-block form > .field-wrap .field { margin-left: 170px; float: none; }
+
+#plugin-fw-wc #yith-wapo-panel-block form #addons-tabs {  }
+#plugin-fw-wc #yith-wapo-panel-block form #addons-tabs a { color: #aaa; padding: 20px 30px; font-weight: bold; text-decoration: none; display: inline-block; }
+#plugin-fw-wc #yith-wapo-panel-block form #addons-tabs a:hover,
+#plugin-fw-wc #yith-wapo-panel-block form #addons-tabs a.selected { color: #0073aa; border-bottom: 3px solid #0073aa; }
+
+#plugin-fw-wc #yith-wapo-panel-block form #addons-tab {  }
+#plugin-fw-wc #yith-wapo-panel-block form #addons-tab #block-addons { background-color: #f2f2f2; padding: 40px 30px; }
+#plugin-fw-wc #yith-wapo-panel-block form #addons-tab #block-addons-container{ background-color: #fff; border: 1px solid #dedede; padding: 40px 20px; text-align: center; }
+#plugin-fw-wc #yith-wapo-panel-block form #addons-tab #block-addons .yith-add-button { padding: 10px 40px; margin: 20px 0px 0px 0px; }
+#plugin-fw-wc #yith-wapo-panel-block form #addons-tab #block-addons ul { margin: 0px 0px 20px 0px; }
+#plugin-fw-wc #yith-wapo-panel-block form #addons-tab #block-addons ul li { background-color: #fff; height: 70px; line-height: 70px; border: 1px solid #e6eaeb; text-align: left; position: relative; }
+#plugin-fw-wc #yith-wapo-panel-block form #addons-tab #block-addons ul li span.addon-icon { width: 70px; height: 30px; line-height: 30px; color: #5788a3; background-color: #f4f4f4; padding: 20px 0px; margin-right: 20px; text-align: center; float: left; }
+#plugin-fw-wc #yith-wapo-panel-block form #addons-tab #block-addons ul li span.addon-icon .wapo-icon { font-size: 30px; }
+
+#plugin-fw-wc #yith-wapo-panel-block form #addons-tab #block-addons ul li span.addon-icon.html_heading,
+#plugin-fw-wc #yith-wapo-panel-block form #addons-tab #block-addons ul li span.addon-icon.textarea,
+#plugin-fw-wc #yith-wapo-panel-block form #addons-tab #block-addons ul li span.addon-icon.label,
+#plugin-fw-wc #yith-wapo-panel-block form #addons-tab #block-addons ul li span.addon-icon.number { height: 20px; line-height: 20px; padding: 25px 0px; }
+#plugin-fw-wc #yith-wapo-panel-block form #addons-tab #block-addons ul li span.addon-icon.html_heading > span,
+#plugin-fw-wc #yith-wapo-panel-block form #addons-tab #block-addons ul li span.addon-icon.textarea > span,
+#plugin-fw-wc #yith-wapo-panel-block form #addons-tab #block-addons ul li span.addon-icon.label > span,
+#plugin-fw-wc #yith-wapo-panel-block form #addons-tab #block-addons ul li span.addon-icon.text > span,
+#plugin-fw-wc #yith-wapo-panel-block form #addons-tab #block-addons ul li span.addon-icon.number > span { font-size: 20px; }
+
+#plugin-fw-wc #yith-wapo-panel-block form #addons-tab #block-addons ul li span.addon-icon.html_text,
+#plugin-fw-wc #yith-wapo-panel-block form #addons-tab #block-addons ul li span.addon-icon.text,
+#plugin-fw-wc #yith-wapo-panel-block form #addons-tab #block-addons ul li span.addon-icon.select { height: 16px; line-height: 16px; padding: 27px 0px; }
+#plugin-fw-wc #yith-wapo-panel-block form #addons-tab #block-addons ul li span.addon-icon.html_text > span,
+#plugin-fw-wc #yith-wapo-panel-block form #addons-tab #block-addons ul li span.addon-icon.text > span,
+#plugin-fw-wc #yith-wapo-panel-block form #addons-tab #block-addons ul li span.addon-icon.select > span { font-size: 16px; }
+
+#plugin-fw-wc #yith-wapo-panel-block form #addons-tab #block-addons ul li span.addon-name a { font-weight: bold; text-decoration: none; }
+#plugin-fw-wc #yith-wapo-panel-block form #addons-tab #block-addons ul li span.addon-name a:hover { text-decoration: underline; }
+#plugin-fw-wc #yith-wapo-panel-block form #addons-tab #block-addons ul li span.addon-onoff { margin-right: 20px; float: right; }
+
+#plugin-fw-wc #yith-wapo-panel-block form #addons-tab #block-addons ul li span.addon-actions { margin-top: -35px; position: absolute; top: 50%; right: 100px; white-space: nowrap; z-index: 9; }
+#plugin-fw-wc #yith-wapo-panel-block form #addons-tab #block-addons ul li:hover span.addon-actions { display: block !important; }
+
+#plugin-fw-wc #yith-wapo-panel-block form #addons-tab #block-rules { border: 1px solid #dedede; padding: 40px 30px; }
+
+/*
+ *	OVERLAY
+ */
+
+#plugin-fw-wc #yith-wapo-addon-overlay #addon-editor .wp-picker-holder { border: 1px solid #ddd; position: absolute; }
+
+#plugin-fw-wc #yith-wapo-addon-overlay { background-color: rgba(19,40,58,.6); position: absolute; top: 0; right: 0; bottom: -200px; left: -20px; overflow-y: scroll; position: absolute; z-index: 10; }
+#plugin-fw-wc #yith-wapo-addon-overlay #addon-editor { background-color: #fff; max-width: 1000px; border-radius: 15px; padding: 50px 10px 10px 40px; margin: 150px auto; position: relative; }
+#plugin-fw-wc #yith-wapo-addon-overlay #addon-editor #close-popup { color: #aaa; padding: 5px; font-size: 20px; position: absolute; top: 15px; right: 15px; cursor: pointer; }
+#plugin-fw-wc #yith-wapo-addon-overlay #addon-editor #close-popup img { width: 14px; height: 14px; }
+#plugin-fw-wc #yith-wapo-addon-overlay #addon-editor h3 { padding: 0; margin-bottom: 30px; }
+#plugin-fw-wc #yith-wapo-addon-overlay #addon-editor .types { padding: 0; margin-bottom: 20px; }
+#plugin-fw-wc #yith-wapo-addon-overlay #addon-editor .types:after { content: ''; display: block; clear: both; }
+#plugin-fw-wc #yith-wapo-addon-overlay #addon-editor .types a.type { color: #222; width: 133px; border: 1px solid #eee; padding: 20px 0px; margin: 0px 30px 30px 0px; font-size: 14px; text-align: center; text-decoration: none; display: block; float: left; position: relative; -webkit-box-shadow: 0px 0px 10px 10px rgba(238,238,238,0.5); -moz-box-shadow: 0px 0px 10px 10px rgba(238,238,238,0.5); box-shadow: 0px 0px 10px 10px rgba(238,238,238,0.5); }
+#plugin-fw-wc #yith-wapo-addon-overlay #addon-editor .types a.type:not(.disabled):hover { color: #4589a6; border: 1px solid #b0d1f6; box-shadow: 0 0 6px #4589a6; transform: scale(1.07, 1.07); }
+#plugin-fw-wc #yith-wapo-addon-overlay #addon-editor .types a.type.disabled { cursor: default; }
+#plugin-fw-wc #yith-wapo-addon-overlay #addon-editor .types a.type.disabled * { opacity: 0.3; cursor: default; }
+#plugin-fw-wc #yith-wapo-addon-overlay #addon-editor .types a.type .premium-badge { margin-left: -52.5px; position: absolute; top: -5px; left: 50%; opacity: 1; display: none; }
+#plugin-fw-wc #yith-wapo-addon-overlay #addon-editor .types a.type.disabled .premium-badge { display: block; }
+#plugin-fw-wc #yith-wapo-addon-overlay #addon-editor .types a.type .icon { height: 30px; padding: 10px 0px; margin-bottom: 10px; text-align: center; }
+#plugin-fw-wc #yith-wapo-addon-overlay #addon-editor .types a.type .icon .wapo-icon { color: #505050; font-size: 30px; }
+#plugin-fw-wc #yith-wapo-addon-overlay #addon-editor .types a.type .icon.html_text,
+#plugin-fw-wc #yith-wapo-addon-overlay #addon-editor .types a.type .icon.text,
+#plugin-fw-wc #yith-wapo-addon-overlay #addon-editor .types a.type .icon.number,
+#plugin-fw-wc #yith-wapo-addon-overlay #addon-editor .types a.type .icon.select { height: 20px; padding: 15px 0px; }
+#plugin-fw-wc #yith-wapo-addon-overlay #addon-editor .types a.type .icon.html_text > span,
+#plugin-fw-wc #yith-wapo-addon-overlay #addon-editor .types a.type .icon.text > span,
+#plugin-fw-wc #yith-wapo-addon-overlay #addon-editor .types a.type .icon.number > span,
+#plugin-fw-wc #yith-wapo-addon-overlay #addon-editor .types a.type .icon.select > span { font-size: 20px; }
+#plugin-fw-wc #yith-wapo-addon-overlay #addon-editor .types a.type:not(.disabled):hover .wapo-icon { color: #5788a3; }
+#plugin-fw-wc #yith-wapo-addon-overlay #addon-editor .types a.type > span { height: 17px; display: block; }
+
+#plugin-fw-wc #yith-wapo-addon-overlay #addon-editor form h3 { color: #0073aa; }
+
+#plugin-fw-wc #yith-wapo-addon-overlay #addon-editor form #addon-tabs {  }
+#plugin-fw-wc #yith-wapo-addon-overlay #addon-editor form #addon-tabs a { color: #aaa; padding: 20px 25px; font-weight: bold; text-decoration: none; display: inline-block; text-transform: uppercase; }
+#plugin-fw-wc #yith-wapo-addon-overlay #addon-editor form #addon-tabs a:hover,
+#plugin-fw-wc #yith-wapo-addon-overlay #addon-editor form #addon-tabs a.selected { color: #0073aa; border-bottom: 4px solid #0e87b8; }
+
+#plugin-fw-wc #yith-wapo-addon-overlay #addon-editor form #addon-container { border: 1px solid #dedede; padding: 20px; margin: 0px 30px 30px 0px; }
+#plugin-fw-wc #yith-wapo-addon-overlay #addon-editor form #addon-container #tab-options-list {  }
+#plugin-fw-wc #yith-wapo-addon-overlay #addon-editor form #addon-container #tab-options-list button { height: 35px; }
+#plugin-fw-wc #yith-wapo-addon-overlay #addon-editor form #addon-container #tab-options-list .yith-plugin-fw-upload-container input { margin-right: 5px; float: left; }
+#plugin-fw-wc #yith-wapo-addon-overlay #addon-editor form #addon-container #tab-options-list #add-new-option { color: #0073aa; border: 1px solid #dedede; padding: 30px 0px; font-weight: bold; text-align: center; cursor: pointer; }
+#plugin-fw-wc #yith-wapo-addon-overlay #addon-editor form #addon-container #tab-options-list #add-new-option:hover { background-color: #f0f6fb; }
+#plugin-fw-wc #yith-wapo-addon-overlay #addon-editor form #addon-container #tab-options-list .option { min-height: 58px; border: 1px solid #dedede; padding: 20px 20px 0px 20px; margin-bottom: 20px; }
+#plugin-fw-wc #yith-wapo-addon-overlay #addon-editor form #addon-container #tab-options-list .option .title { color: #0073aa; height: 18px; padding: 30px 20px; margin: -20px; font-weight: bold; cursor: pointer; }
+#plugin-fw-wc #yith-wapo-addon-overlay #addon-editor form #addon-container #tab-options-list .option .title:hover { background-color: #f0f6fb; }
+#plugin-fw-wc #yith-wapo-addon-overlay #addon-editor form #addon-container #tab-options-list .option .title span.icon { width: 20px; height: 16px; background: url('../img/icon-arrow-bot.png') left center no-repeat; background-size: 50%; display: block; float: left; }
+#plugin-fw-wc #yith-wapo-addon-overlay #addon-editor form #addon-container #tab-options-list .option.open .title span.icon { background: url('../img/icon-arrow-top.png') left center no-repeat; background-size: 50%; }
+#plugin-fw-wc #yith-wapo-addon-overlay #addon-editor form #addon-container #tab-options-list .option .actions { float: right; display: none; }
+#plugin-fw-wc #yith-wapo-addon-overlay #addon-editor form #addon-container #tab-options-list .option:hover .actions { display: block; }
+
+#plugin-fw-wc #yith-wapo-addon-overlay #addon-editor form #addon-container #tab-options-list .option .fields { border-top: 1px solid #dedede; padding: 30px 0px; margin-top: 20px; display: none; }
+#plugin-fw-wc #yith-wapo-addon-overlay #addon-editor form #addon-container #tab-options-list .option.open .fields { display: block; }
+
+#plugin-fw-wc #yith-wapo-addon-overlay #addon-editor form #addon-container #tab-options-list .option .fields .col-left { width: 50%; float: left; }
+#plugin-fw-wc #yith-wapo-addon-overlay #addon-editor form #addon-container #tab-options-list .option .fields .col-right { width: 50%; float: left; }
+
+#plugin-fw-wc #yith-wapo-addon-overlay #addon-editor form #addon-container #tab-options-list .option .fields .col-right .yith-plugin-fw-upload-img-preview { display: none; }
+#plugin-fw-wc #yith-wapo-addon-overlay #addon-editor form #addon-container #tab-options-list .option .fields .col-right .yith-plugin-fw-upload-img-url { width: 170px; max-width: 170px; margin-right: 5px; float: left; }
+#plugin-fw-wc #yith-wapo-addon-overlay #addon-editor form #addon-container #tab-options-list .option .fields .col-right .yith-plugin-fw-upload-field-wrapper button { height: 35px; }
+#plugin-fw-wc #yith-wapo-addon-overlay #addon-editor form #addon-container #tab-options-list .option .fields .col-right .yith-plugin-fw-upload-field-wrapper button.yith-plugin-fw-upload-button-reset { display: none; }
+
+#plugin-fw-wc #yith-wapo-addon-overlay #addon-editor form #addon-container #tab-options-list .option .fields .field-wrap { margin-bottom: 30px; }
+#plugin-fw-wc #yith-wapo-addon-overlay #addon-editor form #addon-container #tab-options-list .option .fields a { font-weight: bold; text-decoration: none; }
+#plugin-fw-wc #yith-wapo-addon-overlay #addon-editor form #addon-container #tab-options-list .option .fields label { line-height: 15px; width: 100px; margin: 0; }
+#plugin-fw-wc #yith-wapo-addon-overlay #addon-editor form #addon-container #tab-options-list .option .fields .field { max-width: 750px; margin-right: 10px; }
+#plugin-fw-wc #yith-wapo-addon-overlay #addon-editor form #addon-container #tab-options-list .option .fields .field small { margin: -17px 0px 0px 4px; font-size: 10px; position: absolute; }
+#plugin-fw-wc #yith-wapo-addon-overlay #addon-editor form #addon-container #tab-options-list .option .fields .field input { width: 280px; height: 37px; line-height: 35px; border-radius: 0; }
+#plugin-fw-wc #yith-wapo-addon-overlay #addon-editor form #addon-container #tab-options-list .option .fields .field textarea { width: 280px; max-height: 100px; min-height: 38px; height: 38px; line-height: 19px; border-radius: 0; }
+#plugin-fw-wc #yith-wapo-addon-overlay #addon-editor form #addon-container #tab-options-list .option .fields .field input.mini { width: 134px; }
+#plugin-fw-wc #yith-wapo-addon-overlay #addon-editor form #addon-container #tab-options-list .option .fields .field input.micro { width: 100px; }
+#plugin-fw-wc #yith-wapo-addon-overlay #addon-editor form #addon-container #tab-options-list .option .fields .field.datepicker-micro input { width: 134px; }
+#plugin-fw-wc #yith-wapo-addon-overlay #addon-editor form #addon-container #tab-options-list .option .fields .field input.wp-picker-default { width: 35px; height: 20px; }
+#plugin-fw-wc #yith-wapo-addon-overlay #addon-editor form #addon-container #tab-options-list .option .fields .field select { width: 280px; height: 35px; border-radius: 0; border: 1px solid #d8d8d8; }
+#plugin-fw-wc #yith-wapo-addon-overlay #addon-editor form #addon-container #tab-options-list .option .fields .field select.mini { width: 200px; }
+#plugin-fw-wc #yith-wapo-addon-overlay #addon-editor form #addon-container #tab-options-list .option .fields .field select.micro { width: 100px; }
+#plugin-fw-wc #yith-wapo-addon-overlay #addon-editor form #addon-container #tab-options-list .option .fields .field span.yith-icon { line-height: 25px; }
+#plugin-fw-wc #yith-wapo-addon-overlay #addon-editor form #addon-container #tab-options-list .option .fields .field .wp-picker-container button { width: 25px; height: 25px; min-height: 25px; }
+#plugin-fw-wc #yith-wapo-addon-overlay #addon-editor form #addon-container #tab-options-list .option .fields .field.multi-color { width: 400px; }
+#plugin-fw-wc #yith-wapo-addon-overlay #addon-editor form #addon-container #tab-options-list .option .fields .field.multi-color .yith-plugin-fw-colorpicker-field-wrapper { margin-right: 10px; float: left; }
+
+#plugin-fw-wc #yith-wapo-addon-overlay #addon-editor form #addon-container #tab-options-list .option .fields .yith-plugin-fw-onoff-container { margin-top: 7px; }
+
+/* ADDON - CONDITIONAL LOGIC */
+#plugin-fw-wc #yith-wapo-addon-overlay #addon-editor form #addon-container #tab-conditional-logic {}
+#plugin-fw-wc #yith-wapo-addon-overlay #addon-editor form #addon-container #tab-conditional-logic .field > span { padding: 0px 10px; }
+#plugin-fw-wc #yith-wapo-addon-overlay #addon-editor form #addon-container #tab-conditional-logic .field > span.description { padding: 0; }
+#plugin-fw-wc #yith-wapo-addon-overlay #addon-editor form #addon-container #tab-conditional-logic .yith-plugin-fw-select-field-wrapper { display: inline-block; }
+#plugin-fw-wc #yith-wapo-addon-overlay #addon-editor form #addon-container #tab-conditional-logic .yith-plugin-fw-select-field-wrapper select { width: 150px; }
+#plugin-fw-wc #yith-wapo-addon-overlay #addon-editor form #addon-container #tab-conditional-logic .yith-plugin-fw-select-field-wrapper select#addon-conditional-rule-addon { width: 200px; }
+#plugin-fw-wc #yith-wapo-addon-overlay #addon-editor form #addon-container #tab-conditional-logic #conditional-display-rules .field { float: none; }
+#plugin-fw-wc #yith-wapo-addon-overlay #addon-editor form #addon-container #tab-conditional-logic #conditional-rules { margin: 20px 0px 0px 0px; }
+#plugin-fw-wc #yith-wapo-addon-overlay #addon-editor form #addon-container #tab-conditional-logic #conditional-rules .field.rule { margin-bottom: 20px; clear: both; }
+#plugin-fw-wc #yith-wapo-addon-overlay #addon-editor form #addon-container #tab-conditional-logic #add-conditional-rule { clear: both; }
+
+/* ADDON - ADVANCED SETTINGS */
+#plugin-fw-wc #yith-wapo-addon-overlay #addon-editor form #addon-container #tab-advanced-settings .field-wrap #min-max-rules { margin-left: 0; }
+#plugin-fw-wc #yith-wapo-addon-overlay #addon-editor form #addon-container #tab-advanced-settings .field-wrap #min-max-rules .field.rule { width: 100%; margin-bottom: 10px; }
+#plugin-fw-wc #yith-wapo-addon-overlay #addon-editor form #addon-container #tab-advanced-settings .field-wrap #min-max-rules .field.rule .yith-plugin-fw-select-field-wrapper .select2-container { width: 11em !important; }
+#plugin-fw-wc #yith-wapo-addon-overlay #addon-editor form #addon-container #tab-advanced-settings .field-wrap #min-max-rules .field.rule .yith-plugin-fw-select-field-wrapper { width: 150px; margin-right: 4px; float: left; }
+#plugin-fw-wc #yith-wapo-addon-overlay #addon-editor form #addon-container #tab-advanced-settings .field-wrap #min-max-rules .field.rule .yith-plugin-fw-select-field-wrapper select { width: 100%; height: 45px; border: 1px solid #d8d8d8; }
+#plugin-fw-wc #yith-wapo-addon-overlay #addon-editor form #addon-container #tab-advanced-settings .field-wrap #min-max-rules .field.rule .yith-plugin-fw-number-field-wrapper { width: 60px; margin-right: 10px; float: left; }
+#plugin-fw-wc #yith-wapo-addon-overlay #addon-editor form #addon-container #tab-advanced-settings .field-wrap #min-max-rules .field.rule .yith-plugin-fw-number-field-wrapper input { width: 100%; min-width: 0; }
+#plugin-fw-wc #yith-wapo-addon-overlay #addon-editor form #addon-container #tab-advanced-settings .field-wrap #min-max-rules .field.rule .description { min-width: 0; height: 50px; line-height: 45px; margin-top: 0; display: inline-block; }
+#plugin-fw-wc #yith-wapo-addon-overlay #addon-editor form #addon-container #tab-advanced-settings .field-wrap #min-max-rules #add-min-max-rule { clear: both; }
+
+#plugin-fw-wc #yith-wapo-addon-overlay form .field-wrap .field input#addon-min-max-value { height: 36px; }
+#plugin-fw-wc #yith-wapo-addon-overlay #min-max-rules .min-max-rule:first-of-type .delete-min-max-rule{ display: none; }
+
+#plugin-fw-wc #yith-wapo-addon-overlay #addon-editor-buttons { background-color: #f1f1f1; border-radius: 0px 0px 20px 20px; padding: 30px; margin: 0 -10px -50px -40px; text-align: right; }
+#plugin-fw-wc #yith-wapo-addon-overlay #addon-editor-buttons button { padding: 10px 50px; text-transform: capitalize; font-size: 12px; }
+#plugin-fw-wc #yith-wapo-addon-overlay #addon-editor-buttons button.button-secondary { background-color: transparent; color: #007694; border: 1px solid #007694; }
+
+#plugin-fw-wc #yith-wapo-addon-overlay form:after { content: ''; display: block; clear: both; }
+#plugin-fw-wc #yith-wapo-addon-overlay form .field-wrap { padding-left: 160px; margin-bottom: 40px; clear: both; position: relative; }
+#plugin-fw-wc #yith-wapo-addon-overlay form .field-wrap:after { content: ''; display: block; clear: both; }
+#plugin-fw-wc #yith-wapo-addon-overlay form .field-wrap > label { width: 130px; padding: 7px 20px 0px 0px; position: absolute; left: 0; }
+#plugin-fw-wc #yith-wapo-addon-overlay form .field-wrap .field { float: left; }
+#plugin-fw-wc #yith-wapo-addon-overlay form #tab-options-list #addon_options .option { background-color: #ffffff; }
+#plugin-fw-wc #yith-wapo-addon-overlay form #tab-options-list #addon_options .title .addon-name{
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 80%;
+}
+#plugin-fw-wc #yith-wapo-addon-overlay form #tab-options-list .option .field-wrap { padding-left: 120px; }
+#plugin-fw-wc #yith-wapo-addon-overlay form .field-wrap .field input { width: 220px; height: 45px; border-radius: 5px; }
+#plugin-fw-wc #yith-wapo-addon-overlay form .field-wrap .field .yith-plugin-fw-dimensions input { width: 100%; height: 38px; border-radius: 0; }
+#plugin-fw-wc #yith-wapo-addon-overlay form .field-wrap .field select { width: 220px; height: 45px; border-radius: 5px; border: 1px solid #d8d8d8; }
+#plugin-fw-wc #yith-wapo-addon-overlay form .field-wrap .field .colorpicker label { display: none; }
+#plugin-fw-wc #yith-wapo-addon-overlay form .field-wrap .field .wp-picker-container { border-radius: 5px; padding: 0px 5px; }
+#plugin-fw-wc #yith-wapo-addon-overlay form .field-wrap .field .wp-picker-container input { width: 100px; }
+#plugin-fw-wc #yith-wapo-addon-overlay form .field-wrap .field .description { max-width: none; display: block; }
+
+
+
+#plugin-fw-wc.yith-wapo #yith-wapo-panel-block form #save-button { padding: 30px 0px 10px 0px; }
+
+/*
+ *	DEBUG
+ */
+
+#plugin-fw-wc #yith-wapo-panel-debug > div:after { content: ''; display: block; clear: both; }
+#plugin-fw-wc #yith-wapo-panel-debug .field-wrap { margin-bottom: 40px; clear: both; }
+#plugin-fw-wc #yith-wapo-panel-debug .field-wrap:after { content: ''; display: block; clear: both; }
+#plugin-fw-wc #yith-wapo-panel-debug .field-wrap > label { width: 150px; padding: 10px 20px 0px 0px; float: left; }
+#plugin-fw-wc #yith-wapo-panel-debug .field-wrap .field { float: left; }

@@ -1,0 +1,14 @@
+{
+  "name": "flying-press",
+  "description": "FlyingPress",
+  "scripts": {
+    "minify-core": "microbundle -i assets/core.js -o assets/core.min.js --no-pkg-main -f umd --no-sourcemap",
+    "build": "cd .. && zip -r flying-press.zip flying-press -x '*node_modules*' '*.git*'",
+    "format": "prettier src/** --write"
+  },
+  "devDependencies": {
+    "@prettier/plugin-php": "^0.19.2",
+    "microbundle": "^0.15.1",
+    "prettier": "^2.8.1"
+  }
+}

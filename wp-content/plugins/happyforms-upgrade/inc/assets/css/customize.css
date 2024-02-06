@@ -1,0 +1,801 @@
+/**
+ *
+ * General
+ *
+ */
+#customize-control-captcha {
+  display: none;
+}
+
+.has-recaptcha-integration #customize-control-captcha,
+.has-recaptchav3-integration #customize-control-captcha {
+  display: block;
+}
+
+#customize-control-active_email_service,
+#customize-control-alert_email_reply_to {
+  display: none;
+}
+
+#customize-control-receive_email_alerts.checked ~ #customize-control-owner_attach_pdf.checked ~ .happyforms-nested-settings[data-trigger=owner_attach_pdf],
+#customize-control-send_confirmation_email.checked ~ #customize-control-attach_pdf.checked ~ .happyforms-nested-settings[data-trigger=attach_pdf],
+.has-recaptcha-integration #customize-control-captcha.checked ~ .happyforms-nested-settings[data-trigger=captcha],
+#customize-control-password_protect.checked ~ .happyforms-nested-settings[data-trigger=password_protect],
+#customize-control-unique_id.checked ~ .happyforms-nested-settings[data-trigger=unique_id],
+.happyforms-email-view.abandoned-resume-response-expire #customize-control-abandoned_resume_send_alert_email.checked ~ .happyforms-nested-settings[data-trigger=abandoned_resume_send_alert_email],
+#customize-control-preview_before_submit.checked ~ .happyforms-nested-settings[data-trigger=preview_before_submit],
+#customize-control-schedule_visibility.checked ~ .happyforms-nested-settings[data-trigger=schedule_visibility],
+#customize-control-block_emails.checked ~ .happyforms-nested-settings[data-trigger=block_emails],
+#customize-control-block_language.checked ~ .happyforms-nested-settings[data-trigger=block_language],
+.has-email #customize-control-restrict_user_entries.checked ~ .happyforms-nested-settings[data-trigger=restrict_user_entries],
+.has-email #customize-control-active_email_service,
+.has-email #customize-control-active_email_service[data-value=active-campaign] ~ .happyforms-nested-settings[data-trigger=active-campaign],
+.has-email #customize-control-active_email_service[data-value=aweber] ~ .happyforms-nested-settings[data-trigger=aweber],
+.has-email #customize-control-active_email_service[data-value=constant-contact] ~ .happyforms-nested-settings[data-trigger=constant-contact],
+.has-email #customize-control-active_email_service[data-value=convertkit] ~ .happyforms-nested-settings[data-trigger=convertkit],
+.has-email #customize-control-active_email_service[data-value=mailchimp] ~ .happyforms-nested-settings[data-trigger=mailchimp],
+.has-email #customize-control-active_email_service[data-value=mailerlite] ~ .happyforms-nested-settings[data-trigger=mailerlite],
+.has-email #customize-control-active_email_service[data-value=mailpoet] ~ .happyforms-nested-settings[data-trigger=mailpoet],
+.has-email #customize-control-active_email_service[data-value=sendfox] ~ .happyforms-nested-settings[data-trigger=sendfox],
+.has-email #customize-control-active_email_service[data-value=sendgrid] ~ .happyforms-nested-settings[data-trigger=sendgrid],
+.has-email #customize-control-active_email_service[data-value=sendinblue] ~ .happyforms-nested-settings[data-trigger=sendinblue],
+.has-email #customize-control-active_email_service[data-value=emailoctopus] ~ .happyforms-nested-settings[data-trigger=emailoctopus],
+.has-email #customize-control-active_email_service[data-value=drip] ~ .happyforms-nested-settings[data-trigger=drip],
+.has-email #customize-control-sendinblue_subscribe_status[data-value=""] ~ #customize-control-sendinblue_double_opt_in.checked ~ .happyforms-nested-settings[data-trigger=sendinblue_double_opt_in],
+.has-email #customize-control-alert_email_reply_to,
+#customize-control-submission_redirect_notice,
+#customize-control-redirect_now_link {
+  display: block;
+}
+
+#customize-control-mailerlite_subscribe_status ~ div.customize-control,
+#customize-control-sendfox_subscribe_status ~ div.customize-control,
+#customize-control-mailpoet_subscribe_status ~ div.customize-control,
+#customize-control-convertkit_subscribe_status ~ div.customize-control,
+#customize-control-constant_contact_subscribe_status ~ div.customize-control,
+#customize-control-aweber_subscribe_status ~ div.customize-control,
+#customize-control-active_campaign_subscribe_status ~ div.customize-control,
+#customize-control-mailchimp_subscribe_status ~ div.customize-control,
+#customize-control-sendgrid_subscribe_status ~ div.customize-control,
+#customize-control-sendinblue_subscribe_status ~ div.customize-control,
+#customize-control-sendinblue_list,
+#customize-control-sendinblue_list_unsubscribe,
+#customize-control-emailoctopus_subscribe_status ~ div.customize-control,
+#customize-control-drip_subscribe_status ~ div.customize-control {
+  display: none;
+}
+
+#customize-control-sendinblue_subscribe_status[data-value=""] ~ #customize-control-sendinblue_list,
+#customize-control-sendinblue_subscribe_status[data-value=""] ~ #customize-control-sendinblue_double_opt_in,
+#customize-control-sendinblue_subscribe_status[data-value="unsubscribe"] ~ #customize-control-sendinblue_list_unsubscribe,
+#customize-control-mailerlite_subscribe_status[data-value=""] ~ #customize-control-mailerlite_group,
+#customize-control-mailerlite_subscribe_status[data-value="unsubscribe"] ~ #customize-control-mailerlite_group_unsubscribe,
+#customize-control-sendfox_subscribe_status[data-value=""] ~ #customize-control-sendfox_list,
+#customize-control-sendfox_subscribe_status[data-value="unsubscribe"] ~ #customize-control-sendfox_list_unsubscribe,
+#customize-control-mailpoet_subscribe_status[data-value=""] ~ #customize-control-mailpoet_list,
+#customize-control-mailpoet_subscribe_status[data-value=""] ~ #customize-control-mailpoet_send_confirmation_email,
+#customize-control-mailpoet_subscribe_status[data-value="unsubscribe"] ~ #customize-control-mailpoet_list_unsubscribe,
+#customize-control-convertkit_subscribe_status[data-value=""] ~ #customize-control-convertkit_form,
+#customize-control-convertkit_subscribe_status[data-value=""] ~ #customize-control-convertkit_tags,
+#customize-control-convertkit_subscribe_status[data-value="unsubscribe"] ~ #customize-control-convertkit_tags_unsubscribe,
+#customize-control-constant_contact_subscribe_status[data-value=""] ~ #customize-control-constant_contact_list,
+#customize-control-constant_contact_subscribe_status[data-value="unsubscribe"] ~ #customize-control-constant_contact_list_unsubscribe,
+#customize-control-aweber_subscribe_status[data-value=""] ~ #customize-control-aweber_list,
+#customize-control-aweber_subscribe_status[data-value=""] ~ #customize-control-aweber_tags,
+#customize-control-aweber_subscribe_status[data-value="unsubscribe"] ~ #customize-control-aweber_list_unsubscribe,
+#customize-control-aweber_subscribe_status[data-value="unsubscribe"] ~ #customize-control-aweber_tags_unsubscribe,
+#customize-control-active_campaign_subscribe_status[data-value=""] ~ #customize-control-active_campaign_list,
+#customize-control-active_campaign_subscribe_status[data-value=""] ~ #customize-control-active_campaign_tags,
+#customize-control-active_campaign_subscribe_status[data-value="unsubscribe"] ~ #customize-control-active_campaign_list_unsubscribe,
+#customize-control-active_campaign_subscribe_status[data-value="unsubscribe"] ~ #customize-control-active_campaign_tags_unsubscribe,
+#customize-control-mailchimp_subscribe_status[data-value=""] ~ #customize-control-mailchimp_list,
+#customize-control-mailchimp_subscribe_status[data-value=""] ~ #customize-control-mailchimp_groups,
+#customize-control-mailchimp_subscribe_status[data-value=""] ~ #customize-control-mailchimp_tags,
+#customize-control-mailchimp_subscribe_status[data-value=""] ~ #customize-control-mailchimp_double_opt_in,
+#customize-control-mailchimp_subscribe_status[data-value="unsubscribe"] ~ #customize-control-mailchimp_list_unsubscribe,
+#customize-control-mailchimp_subscribe_status[data-value="unsubscribe"] ~ #customize-control-mailchimp_groups_unsubscribe,
+#customize-control-mailchimp_subscribe_status[data-value="unsubscribe"] ~ #customize-control-mailchimp_tags_unsubscribe,
+#customize-control-sendgrid_subscribe_status[data-value=""] ~ #customize-control-sendgrid_list,
+#customize-control-sendgrid_subscribe_status[data-value="unsubscribe"] ~ #customize-control-sendgrid_list_unsubscribe,
+#customize-control-emailoctopus_subscribe_status[data-value=""] ~ #customize-control-emailoctopus_list,
+#customize-control-emailoctopus_subscribe_status[data-value="unsubscribe"] ~ #customize-control-emailoctopus_list_unsubscribe,
+#customize-control-emailoctopus_subscribe_status[data-value=""] ~ #customize-control-emailoctopus_tags,
+#customize-control-emailoctopus_subscribe_status[data-value="unsubscribe"] ~ #customize-control-emailoctopus_tags_unsubscribe,
+#customize-control-drip_subscribe_status[data-value=""] ~ #customize-control-drip_list,
+#customize-control-drip_subscribe_status[data-value=""] ~ #customize-control-drip_tags,
+#customize-control-drip_subscribe_status[data-value="unsubscribe"] ~ #customize-control-drip_list_unsubscribe,
+#customize-control-drip_subscribe_status[data-value="unsubscribe"] ~ #customize-control-drip_tags_unsubscribe {
+  display: block;
+}
+
+.has-0-parts #customize-control-shuffle_parts,
+.has-1-parts #customize-control-shuffle_parts {
+  display: none;
+}
+
+ .happyforms-nested-settings[data-trigger=unique_id] {
+   margin-bottom: 12px;
+ }
+
+ .happyforms-nested-settings[data-trigger=unique_id]:after {
+   content: '';
+   display: table;
+   clear: both;
+ }
+
+ .happyforms-nested-settings {
+   padding-bottom: 5px;
+ }
+
+ .happyforms-nested-settings > p:last-child {
+   margin-bottom: 0;
+ }
+
+.happyforms-setup-view .customize-control[id*='customize-control-pdf_']:not(#customize-control-pdf_footer_message),
+.happyforms-setup-view .customize-control[id*='customize-control-abandoned_response_']:not(#customize-control-abandoned_response_expire),
+.happyforms-setup-view .customize-control#customize-control-abandoned_resume_save_button,
+.happyforms-setup-view .customize-control#customize-control-abandoned_resume_response_expire,
+.happyforms-email-view .customize-control#customize-control-abandoned_resume_send_alert_email.checked,
+.happyforms-setup-view .customize-control[id*='customize-control-abandoned_resume_email_']:not(#customize-control-abandoned_resume_email_content),
+.happyforms-setup-view .customize-control[id*='customize-control-unique_id_start_from'],
+.happyforms-setup-view .customize-control[id*='customize-control-max_entries']:not(#customize-control-max_entries_per_user),
+.happyforms-setup-view .customize-control[id*='customize-control-password']:not(#customize-control-password_protect):not(#customize-control-password_submit_button_label),
+.happyforms-setup-view #customize-control-scheduled_message,
+.happyforms-setup-view .customize-control[id*='mailchimp_']:not(#customize-control-mailchimp_tags) {
+  padding-bottom: 5px;
+  border-bottom: 0;
+}
+
+.happyforms-part-item-limit-submission-settings {
+  margin-top: 5px;
+}
+
+/**
+ *
+ * Date part
+ *
+ */
+ul.happyforms-parts-list li[data-part-type="date"] .happyforms-parts-list-item-title:before {
+  background-image: url(../../../core/assets/svg/icons/date-time.svg);
+}
+
+/**
+ *
+ * Title part
+ *
+ */
+ul.happyforms-parts-list li[data-part-type="title"] .happyforms-parts-list-item-title:before {
+  background-image: url(../../../core/assets/svg/icons/title.svg);
+}
+
+ul.happyforms-parts-list li[data-part-type="title"] {
+  display: none;
+}
+
+.has-title ul.happyforms-parts-list li[data-part-type="title"] {
+  display: block;
+}
+
+/**
+ *
+ * Legal part
+ *
+ */
+ul.happyforms-parts-list li[data-part-type="legal"] .happyforms-parts-list-item-title:before {
+  background-image: url(../../../core/assets/svg/icons/consent-choice.svg);
+}
+
+/**
+ *
+ * Signature part
+ *
+ */
+ul.happyforms-parts-list li[data-part-type="signature"] .happyforms-parts-list-item-title:before {
+  background-image: url(../../../core/assets/svg/icons/signature.svg);
+}
+
+/**
+ *
+ * Scrollable terms part
+ *
+ */
+ul.happyforms-parts-list li[data-part-type="scrollable_terms"] .happyforms-parts-list-item-title:before {
+  background-image: url(../../../core/assets/svg/icons/scrollable-terms.svg);
+}
+
+.happyforms-part-widget[data-part-type="placeholder"] .wp-switch-editor,
+.happyforms-part-widget[data-part-type="toggletip"] .wp-switch-editor,
+.happyforms-part-widget[data-part-type="scrollable_terms"] .wp-switch-editor {
+  display: none;
+}
+
+/**
+ *
+ * Rating part
+ *
+ */
+ul.happyforms-parts-list li[data-part-type="rating"] .happyforms-parts-list-item-title:before {
+  background-image: url(../../../core/assets/svg/icons/rate.svg);
+}
+
+/**
+ *
+ * Scale part
+ *
+ */
+ul.happyforms-parts-list li[data-part-type="scale"] .happyforms-parts-list-item-title:before {
+  background-image: url(../../../core/assets/svg/icons/slider.svg);
+}
+
+/**
+ *
+ * Rank Order part
+ *
+ */
+ul.happyforms-parts-list li[data-part-type="rank_order"] .happyforms-parts-list-item-title:before {
+  background-image: url(../../../core/assets/svg/icons/rank.svg);
+}
+
+/**
+ *
+ * Phone part
+ *
+ */
+ul.happyforms-parts-list li[data-part-type="phone"] .happyforms-parts-list-item-title:before {
+  background-image: url(../../../core/assets/svg/icons/phone.svg);
+}
+
+/**
+ *
+ * Table part
+ *
+ */
+ul.happyforms-parts-list li[data-part-type="table"] .happyforms-parts-list-item-title:before {
+  background-image: url(../../../core/assets/svg/icons/matrix.svg);
+}
+
+/**
+ *
+ * Narrative part
+ *
+ */
+ul.happyforms-parts-list li[data-part-type="narrative"] .happyforms-parts-list-item-title:before {
+  background-image: url(../../../core/assets/svg/icons/story.svg);
+}
+
+/**
+ *
+ * Rich text part
+ *
+ */
+ul.happyforms-parts-list li[data-part-type="rich_text"] {
+  display: none;
+}
+
+/**
+ *
+ * Consent choice part
+ *
+ */
+ul.happyforms-parts-list li[data-part-type="legal"] {
+  display: none;
+}
+
+/**
+ *
+ * Scale part
+ *
+ */
+ul.happyforms-parts-list li[data-part-type="likert_scale"] {
+  display: none;
+}
+
+/**
+ *
+ * Attachment part
+ *
+ */
+ul.happyforms-parts-list li[data-part-type="attachment"] .happyforms-parts-list-item-title:before {
+  background-image: url(../../../core/assets/svg/icons/file-upload.svg);
+}
+
+/**
+ *
+ * Email integration part
+ *
+ */
+ ul.happyforms-parts-list li[data-part-type="email_integration"] .happyforms-parts-list-item-title:before {
+  background-image: url(../../../core/assets/svg/icons/opt-in-choice.svg);
+}
+
+.has-email_integration-part ul.happyforms-parts-list li[data-part-type="email_integration"] {
+  cursor: default;
+  opacity: 0.6;
+}
+
+/**
+ *
+ * Payment part
+ *
+ */
+ ul.happyforms-parts-list li[data-part-type="payments"] {
+   display: block;
+ }
+
+ .has-payments-part ul.happyforms-parts-list li[data-part-type="payments"] {
+   cursor: default;
+   opacity: 0.6;
+ }
+
+ ul.happyforms-parts-list li[data-part-type="payments"] .happyforms-parts-list-item-title:before {
+   background-image: url(../../../core/assets/svg/icons/payment.svg);
+ }
+
+#customize-controls span.happyforms-file-extensions,
+#customize-controls .happyforms-hide-file-extensions {
+  display: none;
+}
+
+#customize-control-attachment {
+  display: none;
+}
+
+ /**
+  *
+  * Modal forms
+  *
+  */
+ #customize-control-overlay {
+   display: none;
+ }
+
+ .happyforms-style-view.has-overlay #customize-control-overlay {
+   display: block;
+ }
+
+ #customize-control-captcha_theme {
+   display: none;
+ }
+
+ .happyforms-style-view.has-recaptcha #customize-control-captcha_theme {
+   display: block;
+ }
+
+ .happyforms-datetime-controls-label {
+   overflow: hidden;
+   line-height: 24px;
+   margin-top: 7px;
+   margin-bottom: 4px;
+ }
+
+ .happyforms-datetime-controls-label label {
+   float: left;
+   margin-bottom: 0;
+ }
+
+ .happyforms-datetime-controls-label a {
+   float: right;
+ }
+
+ .happyforms-datetime-controls-label a:focus,
+ .happyforms-datetime-controls-label a:active {
+   box-shadow: none;
+ }
+
+ .happyforms-datetime-controls {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+ }
+
+ .happyforms-datetime-component.date {
+   flex-basis: 42%;
+ }
+
+ .happyforms-datetime-component.time,
+ .happyforms-datetime-component.period {
+   flex-basis: 28%;
+ }
+
+ .happyforms-reset-password {
+   display: inline-block;
+   font-size: 14px;
+ }
+
+ .happyforms-reset-password:after {
+   content: "\f463";
+   position: relative;
+   top: 5px;
+   padding-left: 5px;
+   font-family: dashicons;
+   display: inline-block;
+   font-size: 18px;
+   color: #444;
+ }
+
+ .happyforms-reset-password + .customize-password-field-wrap {
+   display: none;
+   margin-top: 10px;
+ }
+
+ /**
+  *
+  * Page Break part
+  *
+  */
+ ul.happyforms-parts-list li[data-part-type="page_break"] .happyforms-parts-list-item-title:before {
+   background-image: url(../../../core/assets/svg/icons/page-break.svg);
+ }
+
+ /**
+  *
+  * Multi step
+  *
+  */
+ .happyforms-widget.no-sortable .happyforms-part-widget-top {
+   cursor: default;
+ }
+
+ /**
+  *
+  * Progress Bar
+  *
+  */
+  #customize-control-progress_bar {
+   display: none;
+ }
+
+ .happyforms-style-view.has-progress-bar #customize-control-progress_bar,
+ .happyforms-style-view.has-progress-bar #customize-control-multistep {
+   display: block;
+ }
+
+ /**
+  *
+  * Goal link
+  *
+  */
+ #customize-control-goal_page {
+   display: none;
+ }
+
+ #customize-control-has_goal_page.checked ~ #customize-control-goal_page {
+   display: block;
+ }
+
+ /**
+  *
+  * Poll
+  *
+  */
+ .happyforms-style-view #customize-control-poll {
+   display: none;
+ }
+
+ .happyforms-style-view.has-poll #customize-control-poll {
+   display: block;
+ }
+
+ .happyforms-customize-part-include_in_pdf {
+   display: none;
+ }
+
+ .happyforms-stack-view.has-pdf .happyforms-customize-part-include_in_pdf {
+   display: block;
+ }
+
+ #customize-control-pdf_custom_email_copy {
+   padding-bottom: 15px;
+   border-bottom: 1px solid #ccc;
+ }
+
+ /**
+  *
+  * Conditionals
+  *
+  */
+.happyforms-setup-logic-wrap fieldset {
+  margin-bottom: 5px;
+  padding-bottom: 5px;
+}
+
+.happyforms-setup-logic-wrap .no-parts {
+  margin-top: 5px;
+  margin-bottom: 0;
+  padding: 0;
+}
+
+a.happyforms-form-part-logic,
+a.happyforms-item-logic {
+  float: right;
+}
+
+a.happyforms-form-part-logic:before,
+a.happyforms-item-logic:before {
+  position: relative;
+  top: 2px;
+  display: inline-block;
+  content: "\f346";
+  font-family: dashicons;
+}
+
+a.happyforms-form-part-logic.opened:before,
+a.happyforms-item-logic.opened:before {
+  content: "\f342";
+}
+
+.happyforms-part-settings-logic-view h3 {
+  display: none;
+}
+
+.happyforms-part-logic-wrap select,
+.happyforms-setup-logic-wrap select,
+.happyforms-setup-logic-wrap input[type=text],
+.happyforms-part-settings-logic-view select,
+.happyforms-part-settings-logic-view input[type=text],
+.happyforms-part-choice-logic-wrap select {
+  margin-bottom: 5px;
+}
+
+.happyforms-part-logic-wrap button,
+.happyforms-setup-logic-wrap button,
+.happyforms-part-settings-logic-view button,
+.happyforms-part-choice-logic-wrap button {
+  width: 100%;
+  margin-top: 10px !important;
+  margin-bottom: 10px !important;
+}
+
+.happyforms-setup-view .happyforms-setup-logic-wrap button,
+.happyforms-email-view .happyforms-setup-logic-wrap button,
+.happyforms-messages-view .happyforms-setup-logic-wrap button,
+.happyforms-widget[data-part-type="payments"] .happyforms-part-settings-logic-view button {
+  width: auto;
+  float: right;
+}
+
+.happyforms-widget[data-part-type="payments"] .happyforms-part-settings-logic-view {
+  float: left;
+  width: 100%;
+  margin-top: -8px;
+}
+
+.happyforms-widget[data-part-type="payments"] .happyforms-part-settings-logic-view button {
+  margin-top: 5px !important;
+  margin-bottom: 9px !important;
+}
+
+.happyforms-widget[data-part-type="payments"] p.description {
+  margin-bottom: 15px;
+}
+
+.happyforms-setup-view .happyforms-setup-logic-wrap button:after,
+.happyforms-email-view .happyforms-setup-logic-wrap button:after {
+  content: '';
+  display: table;
+  clear: both;
+}
+
+.happyforms-setup-logic-wrap button {
+  margin-top: 5px !important;
+}
+
+.happyforms-conditional__delete {
+  margin-top: 0;
+  text-align: center;
+}
+
+a.happyforms-conditional__delete {
+  color: #d63638;
+}
+
+a.happyforms-conditional__delete:hover {
+  color: #d63638;
+}
+
+.happyforms-setup-logic-wrap p {
+  margin: 0 0 5px;
+}
+
+.happyforms-conditional__select-trigger {
+  -webkit-appearance: menulist;
+  -moz-appearance: menulist;
+  appearance: menulist;
+  background-color: #fff;
+  color: #000;
+}
+
+.happyforms-conditional__row {
+  position: relative;
+}
+
+.happyforms-conditional__group {
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid #eee;
+  background-color: #fdfdfd;
+}
+
+.happyforms-setup-view .happyforms-conditional__group,
+.happyforms-email-view .happyforms-conditional__group,
+.happyforms-messages-view .happyforms-conditional__group {
+  background-color: #fdfdfd;
+  border: 1px solid #ccc;
+}
+
+.happyforms-conditional__group:last-of-type {
+  margin-bottom: 0;
+}
+
+.happyforms-conditional__tools {
+  float: right;
+}
+
+button.happyforms-conditional__add {
+  margin-bottom: 5px !important;
+}
+
+.happyforms-conditional__select-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+}
+
+.happyforms-part-widget .mce-tinymce {
+  border: 0 !important;
+}
+
+.happyforms-part-widget .wp-editor-container {
+  border-color: #e5e5e5;
+}
+
+.happyforms-media__confirmation_email_content .attachment-details .edit-attachment,
+.happyforms-media__confirmation_email_content .attachment-details [data-setting=title],
+.happyforms-media__confirmation_email_content .attachment-details [data-setting=caption],
+.happyforms-media__confirmation_email_content .attachment-details [data-setting=description],
+.happyforms-media-edit-minimal .embed-media-settings fieldset.setting-group,
+.happyforms-media-edit-minimal .embed-media-settings .setting.extra-classes,
+.happyforms-media-edit-minimal .embed-media-settings .setting.link-class-name,
+.happyforms-media-edit-minimal .embed-media-settings .setting.link-rel,
+.happyforms-media-edit-minimal .embed-media-settings .setting.link-target,
+.happyforms-media-edit-minimal .embed-media-settings .setting.caption {
+  display: none;
+}
+
+.happyforms-editor-media-minimal .mce-inline-toolbar-grp .mce-btn-group .mce-btn:nth-child(1),
+.happyforms-editor-media-minimal .mce-inline-toolbar-grp .mce-btn-group .mce-btn:nth-child(2),
+.happyforms-editor-media-minimal .mce-inline-toolbar-grp .mce-btn-group .mce-btn:nth-child(3),
+.happyforms-editor-media-minimal .mce-inline-toolbar-grp .mce-btn-group .mce-btn:nth-child(4) {
+  display: none;
+}
+
+#customize-control-abandoned_resume_email_content .wp-editor-tabs {
+  visibility: hidden;
+}
+
+
+.happyforms-media__abandoned_resume_email_content .attachment-details .edit-attachment,
+.happyforms-media__abandoned_resume_email_content .attachment-details [data-setting=title],
+.happyforms-media__abandoned_resume_email_content .attachment-details [data-setting=caption],
+.happyforms-media__abandoned_resume_email_content .attachment-details [data-setting=description] {
+  display: none;
+}
+
+.happyforms-payments-control {
+  display: none;
+}
+
+.has-payments-part .happyforms-payments-control {
+  display: block;
+}
+
+#customize-control-restrict_user_entries,
+#customize-control-no_results_label {
+  display: none;
+}
+
+.has-email #customize-control-restrict_user_entries,
+.has-email-part #customize-control-restrict_user_entries {
+  display: block;
+}
+
+.happyforms-widget[data-part-type="media"] .happyforms-media-upload label {
+  display: inline-block;
+  margin-bottom: 3px;
+}
+
+.happyforms-widget[data-part-type="media"] label:after {
+  content: ':';
+}
+
+.happyforms-widget[data-part-type="media"] .happyforms-media-upload {
+  margin-bottom: 1em;
+}
+
+.happyforms-widget[data-part-type="media"] .happyforms-upload-actions button {
+  width: 100%;
+}
+
+.is-scheduled #customize-control-scheduled_message,
+.has-show-voting #customize-control-show_results_label,
+.has-show-voting #customize-control-back_to_poll_label,
+.is-restrict-users #customize-control-max_entries_per_user_message,
+.has-search-not-found #customize-control-no_results_label,
+.has-limit-answer #customize-control-max_answer_message {
+  display: block;
+}
+
+/**
+ *
+ * Blanks field part
+ *
+ */
+ul.happyforms-parts-list li[data-part-type="narrative"] {
+ display: none;
+}
+
+
+#customize-control-validate_with_disallowed_keys.customize-control-checkbox.checked ~ #customize-control-block_emails.customize-control-checkbox,
+#customize-control-validate_with_disallowed_keys.customize-control-checkbox.checked ~ #customize-control-block_language.customize-control-checkbox,
+#customize-control-validate_with_disallowed_keys.customize-control-checkbox.checked ~ [data-trigger=block_emails].customize-control-group.happyforms-nested-settings,
+#customize-control-validate_with_disallowed_keys.customize-control-checkbox.checked ~ [data-trigger=block_language].customize-control-group.happyforms-nested-settings {
+  display:  none !important;
+}
+
+.happyforms-widget[data-part-type="page_break"].last-of-type .happyforms-goto_next_page {
+  display: none;
+}
+
+.happyforms-part-widget .happyforms-file-types-wrap {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+}
+
+.happyforms-part-widget .happyforms-file-types-wrap label[for]::after {
+  content: "";
+  flex: auto;
+}
+
+.happyforms-part-widget .happyforms-file-types-wrap label.happyforms-file-type-checkbox-label {
+  flex: 0 1 25%;
+  padding: 5px 5px 5px 0px;
+  box-sizing: border-box;
+}
+
+ul.happyforms-parts-list li[data-part-type="table"],
+ul.happyforms-parts-list li[data-part-type="address"] {
+  display: none;
+ }
+
+@media only screen and (min-width: 885px) and (max-width: 1080px) {
+  .happyforms-part-widget .happyforms-file-types-wrap label.happyforms-file-type-checkbox-label {
+    flex: 0 1 33.3333%;
+  }
+}
+
+@media only screen and (min-width: 601px) and (max-width: 885px) {
+  .happyforms-part-widget .happyforms-file-types-wrap label.happyforms-file-type-checkbox-label {
+    flex: 0 1 50%;
+  }
+}
+.happyforms-stack-view .customize-control [data-part-type="toggletip"] div.label-group input[data-bind='label'] {
+  width: 100%;
+}
+
+ ul.happyforms-parts-list li[data-part-type="toggletip"] .happyforms-parts-list-item-title:before {
+   background-image: url(../../../core/assets/svg/icons/toggletip.svg);
+ }
+
+/* Deprecated message fields */
+#customize-control-scheduled_message,
+#customize-control-max_entries_per_user_message,
+#customize-control-show_results_label,
+#customize-control-back_to_poll_label,
+#customize-control-restrict_user_entries,
+#customize-control-no_results_label {
+  display: none;
+}

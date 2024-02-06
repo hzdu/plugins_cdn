@@ -1,0 +1,24 @@
+#cfw-totals-list {
+    tr {
+        th, td {
+            font-weight: 400;
+        }
+    }
+    table {
+        tr.order-total, tr.recurring-totals {
+            margin-top: 2em;
+            padding: 2em 0;
+            border-top: 1px solid currentColor;
+
+            th, td {
+                font-weight: 600;
+                font-size: 1.1em;
+                color: var(--cfw-cart-summary-text-color-contrast);
+            }
+        }
+    }
+
+    .first-payment-date {
+        color: var(--cfw-cart-summary-text-color) !important;
+    }
+}

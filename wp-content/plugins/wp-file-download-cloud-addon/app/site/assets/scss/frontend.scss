@@ -1,0 +1,92 @@
+@mixin backgroundImage($value) {
+  -webkit-background-image: url($value);
+  -o-background-image: url($value);
+  -moz-background-image: url($value);
+  background-image: url($value);
+}
+
+/* WPFD SVG Icons */
+[class^="wpfd-svg-icon"] {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  vertical-align: sub;
+  background-size: 100% 100%;
+  background-color: transparent;
+  background-repeat: no-repeat;
+  background-position: center center;
+  margin-left: 5px;
+  margin-top: 2px;
+}
+
+.wpfd-svg-icon-add-to-cart {
+  @include backgroundImage('../img/icon-add-to-cart.svg');
+}
+.wpfd_downloadlink.added + .added_to_cart {
+  &::after {
+    content: '';
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    vertical-align: sub;
+    background-size: 100% 100%;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-position: center center;
+    margin-left: 10px;
+    margin-top: 0;
+    @include backgroundImage('../img/icon-add-to-cart.svg');
+  }
+}
+.wpfd-single-file {
+
+}
+.wpfd_single_footer {
+  margin-top: 5px;
+  .wpfd_single_add_to_cart {
+    min-width: 120px;
+    display: inline-block;
+    border-radius: 20px;
+    background: #34a3f2;
+    text-align: center;
+    padding: 3px 15px;
+    font-size: .8em;
+  }
+  a.added_to_cart {
+    min-width: 120px;
+    display: inline-block;
+    border-radius: 20px;
+    background: #ff8726;
+    text-align: center;
+    padding: 3px 15px;
+    font-size: .8em;
+    &::after {
+      vertical-align: middle !important;
+      margin-left: 5px !important;
+    }
+  }
+  a.wpfd_single_view_product {
+    min-width: 120px;
+    display: inline-block;
+    border-radius: 20px;
+    background: #e5edf3;
+    text-align: center;
+    padding: 3px 15px;
+    font-size: .8em;
+    color: #444 !important;
+  }
+}
+
+#wpfd-results {
+ .added_to_cart {
+   background: orange;
+   color: white;
+   display: inline-block;
+   font-size: 0 !important;
+   vertical-align: top;
+   &::after {
+      margin: 0 !important;
+     vertical-align: middle;
+   }
+ }
+}

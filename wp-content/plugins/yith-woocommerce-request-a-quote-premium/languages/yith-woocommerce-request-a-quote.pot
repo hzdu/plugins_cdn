@@ -1,0 +1,4664 @@
+# Copyright (C) 2023 YITH
+# This file is distributed under the same license as the YITH Request a Quote for WooCommerce Premium plugin.
+msgid ""
+msgstr ""
+"Project-Id-Version: YITH Request a Quote for WooCommerce Premium 4.17.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/yith-woocommerce-request-a-quote\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2023-09-07T07:39:09+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.7.1\n"
+"X-Domain: yith-woocommerce-request-a-quote\n"
+
+#. Plugin Name of the plugin
+msgid "YITH Request a Quote for WooCommerce Premium"
+msgstr ""
+
+#. Plugin URI of the plugin
+msgid "https://yithemes.com/themes/plugins/yith-woocommerce-request-a-quote"
+msgstr ""
+
+#. Description of the plugin
+msgid "<code><strong>YITH Request a Quote for WooCommerce</strong></code> lets your customers ask for an estimate of a list of products they are interested in. It allows hiding prices and/or the \"Add to cart\" button so that your customers can request a quote on every product page. <a href=\"https://yithemes.com/\" target=\"_blank\">Get more plugins for your e-commerce shop on <strong>YITH</strong></a>."
+msgstr ""
+
+#. Author of the plugin
+msgid "YITH"
+msgstr ""
+
+#. Author URI of the plugin
+msgid "https://yithemes.com/"
+msgstr ""
+
+#: includes/admin/class.ywraq-exclusions-list-table.php:51
+msgid "Remove"
+msgstr ""
+
+#: includes/admin/class.ywraq-exclusions-list-table.php:70
+#: includes/admin/class.ywraq-request-list-table.php:388
+msgid "Filter"
+msgstr ""
+
+#: includes/admin/class.ywraq-exclusions-list-table.php:90
+msgid "All types"
+msgstr ""
+
+#: includes/admin/class.ywraq-exclusions-list-table.php:91
+#: includes/class.yith-request-quote-admin.php:795
+msgid "Products"
+msgstr ""
+
+#: includes/admin/class.ywraq-exclusions-list-table.php:92
+msgid "Categories"
+msgstr ""
+
+#: includes/admin/class.ywraq-exclusions-list-table.php:93
+msgid "Tags"
+msgstr ""
+
+#: includes/admin/class.ywraq-exclusions-list-table.php:134
+#: views/panel/types/default-form.php:318
+msgctxt "Tip to delete the product inside the exclusion list "
+msgid "Delete"
+msgstr ""
+
+#: includes/admin/class.ywraq-exclusions-list-table.php:197
+#: includes/admin/class.ywraq-request-list-table.php:214
+#: includes/admin/class.ywraq-request-list-table.php:249
+msgid "Delete"
+msgstr ""
+
+#: includes/admin/class.ywraq-exclusions-list-table.php:211
+#: plugin-options/metabox/ywraq-metabox-order.php:157
+#: views/panel/types/customer-request.php:27
+msgid "Name"
+msgstr ""
+
+#: includes/admin/class.ywraq-exclusions-list-table.php:212
+msgid "Type"
+msgstr ""
+
+#: includes/admin/class.ywraq-exclusions-list-table.php:410
+#: templates/emails/quote-table.php:34
+#: templates/emails/request-quote-table.php:61
+#: templates/pdf/preview-list/preview-list.php:154
+#: templates/pdf/quote-table-div.php:58
+#: templates/pdf/quote-table.php:58
+#: templates/request-quote-table.php:89
+#: templates/request-quote-table.php:155
+#: templates/request-quote-table.php:305
+#: views/panel/custom-tabs/ywraq-exclusions-table.php:88
+msgid "Product"
+msgstr ""
+
+#: includes/admin/class.ywraq-exclusions-list-table.php:411
+#: views/panel/custom-tabs/ywraq-exclusions-table.php:90
+msgid "Category"
+msgstr ""
+
+#: includes/admin/class.ywraq-exclusions-list-table.php:412
+#: views/panel/custom-tabs/ywraq-exclusions-table.php:92
+msgid "Tag"
+msgstr ""
+
+#: includes/admin/class.ywraq-request-list-table.php:53
+msgid "Order"
+msgstr ""
+
+#: includes/admin/class.ywraq-request-list-table.php:54
+#: templates/myaccount/my-quotes.php:61
+#: templates/myaccount/my-quotes.php:98
+#: includes/builders/gutenberg/src/blocks/ywraq-quote-date/index.js:10
+msgid "Date"
+msgstr ""
+
+#: includes/admin/class.ywraq-request-list-table.php:55
+#: includes/class.yith-request-quote-admin.php:789
+#: templates/myaccount/my-quotes.php:112
+msgid "Status"
+msgstr ""
+
+#: includes/admin/class.ywraq-request-list-table.php:56
+#: includes/builders/class-ywraq-pdf-template-builder.php:394
+#: includes/class.yith-request-quote-admin.php:798
+#: templates/myaccount/my-quotes.php:63
+#: templates/myaccount/my-quotes.php:102
+#: templates/request-quote-table.php:464
+msgid "Total"
+msgstr ""
+
+#: includes/admin/class.ywraq-request-list-table.php:168
+msgid "Edit"
+msgstr ""
+
+#: includes/admin/class.ywraq-request-list-table.php:178
+msgid "Change status to New"
+msgstr ""
+
+#: includes/admin/class.ywraq-request-list-table.php:190
+msgid "Change status to Pending"
+msgstr ""
+
+#: includes/admin/class.ywraq-request-list-table.php:202
+msgid "Change status to Expired"
+msgstr ""
+
+#: includes/admin/class.ywraq-request-list-table.php:217
+#: includes/admin/cpt/class-ywraq-editor-pdf-template.php:544
+#: includes/class.yith-request-quote-assets.php:90
+msgid "Confirm delete"
+msgstr ""
+
+#: includes/admin/class.ywraq-request-list-table.php:218
+msgid "Are you sure you want to delete this item?"
+msgstr ""
+
+#. translators: %s is the title of the post object.
+#: includes/admin/class.ywraq-request-list-table.php:218
+#: includes/admin/cpt/class-ywraq-editor-pdf-template.php:546
+#: includes/class.yith-request-quote-assets.php:91
+msgid "This action cannot be undone and you will not be able to recover this data."
+msgstr ""
+
+#: includes/admin/class.ywraq-request-list-table.php:219
+#: includes/admin/cpt/class-ywraq-editor-pdf-template.php:548
+#: includes/class.yith-request-quote-assets.php:92
+msgctxt "Delete confirmation action"
+msgid "Yes, delete"
+msgstr ""
+
+#: includes/admin/class.ywraq-request-list-table.php:220
+#: includes/admin/cpt/class-ywraq-editor-pdf-template.php:547
+#: includes/class.yith-request-quote-assets.php:93
+#: templates/emails/plain/request-quote-customer.php:91
+#: templates/emails/plain/request-quote.php:91
+msgid "No"
+msgstr ""
+
+#: includes/admin/class.ywraq-request-list-table.php:246
+msgid "Change status to New Quote"
+msgstr ""
+
+#: includes/admin/class.ywraq-request-list-table.php:247
+msgid "Change status to Pending Quote"
+msgstr ""
+
+#: includes/admin/class.ywraq-request-list-table.php:248
+msgid "Change status to Expired Quote"
+msgstr ""
+
+#: includes/admin/class.ywraq-request-list-table.php:318
+msgid "All statuses"
+msgstr ""
+
+#: includes/admin/class.ywraq-request-list-table.php:356
+msgid "Filter by registered customers"
+msgstr ""
+
+#. translators: placeholder time human-readable time difference.
+#: includes/admin/class.ywraq-request-list-table.php:479
+msgctxt "human-readable time difference"
+msgid "%s ago"
+msgstr ""
+
+#: includes/admin/class.ywraq-request-list-table.php:481
+msgid "M j, Y"
+msgstr ""
+
+#: includes/admin/cpt/abstract-class-ywraq-editor.php:330
+msgid "Options"
+msgstr ""
+
+#: includes/admin/cpt/class-ywraq-editor-pdf-template.php:448
+msgctxt "Message that appears when a post is updated"
+msgid "Template updated."
+msgstr ""
+
+#: includes/admin/cpt/class-ywraq-editor-pdf-template.php:449
+msgctxt "Message that appears when a post is published"
+msgid "Template published."
+msgstr ""
+
+#. translators: number of templates deleted.
+#: includes/admin/cpt/class-ywraq-editor-pdf-template.php:479
+msgid "%s template permanently deleted."
+msgid_plural "%s templates permanently deleted."
+msgstr[0] ""
+msgstr[1] ""
+
+#: includes/admin/cpt/class-ywraq-editor-pdf-template.php:528
+msgid "Duplicate"
+msgstr ""
+
+#: includes/admin/cpt/class-ywraq-editor-pdf-template.php:539
+msgctxt "Post action"
+msgid "Delete"
+msgstr ""
+
+#. translators: %s is the title of the post object.
+#: includes/admin/cpt/class-ywraq-editor-pdf-template.php:546
+msgctxt "translators: %s is the title of the post object"
+msgid "Are you sure you want to delete \"%s\"?"
+msgstr ""
+
+#: includes/admin/cpt/class-ywraq-editor-pdf-template.php:571
+msgctxt "label of the default pdf template"
+msgid "In use"
+msgstr ""
+
+#: includes/admin/cpt/class-ywraq-editor-pdf-template.php:573
+msgctxt "label of the button to set the pdf template as default"
+msgid "Use it"
+msgstr ""
+
+#: includes/admin/cpt/class-ywraq-editor-pdf-template.php:638
+msgid "Back to templates list"
+msgstr ""
+
+#: includes/builders/class-ywraq-pdf-template-builder.php:322
+#: includes/compatibility/yith-woocommerce-composite-products.php:231
+#: includes/compatibility/yith-woocommerce-composite-products.php:381
+#: includes/compatibility/yith-woocommerce-composite-products.php:504
+#: templates/emails/plain/quote-table.php:28
+#: templates/emails/plain/request-quote-table.php:30
+#: templates/emails/quote-table.php:164
+#: templates/emails/request-quote-table.php:158
+#: templates/myaccount/view-quote.php:236
+#: templates/pdf/builder/quote-table.php:51
+#: templates/pdf/preview-list/preview-list.php:350
+#: templates/pdf/quote-table-div.php:94
+#: templates/pdf/quote-table.php:106
+#: templates/quote-preview.php:120
+#: templates/request-quote-table.php:310
+msgid " SKU:"
+msgstr ""
+
+#: includes/builders/class-ywraq-pdf-template-builder.php:386
+#: templates/emails/quote-table.php:51
+#: templates/emails/request-quote-table.php:78
+#: templates/pdf/preview-list/preview-list.php:171
+#: templates/pdf/quote-table-div.php:68
+#: templates/pdf/quote-table.php:76
+#: templates/request-quote-table.php:97
+#: templates/request-quote-table.php:216
+msgid "Subtotal"
+msgstr ""
+
+#: includes/builders/class-ywraq-pdf-template-builder.php:390
+#: plugin-options/request/page-options.php:110
+msgid "Taxes"
+msgstr ""
+
+#: includes/builders/wc-blocks/src/Payments/Integrations/YwraqQuote.php:41
+#: includes/class.yith-request-quote-gateway.php:40
+#: includes/class.yith-request-quote-gateway.php:41
+msgid "YITH Request a Quote"
+msgstr ""
+
+#: includes/builders/wc-blocks/src/Payments/Integrations/YwraqQuote.php:42
+#: includes/class.yith-request-quote-gateway.php:42
+msgid "Allows to request a quote at checkout."
+msgstr ""
+
+#: includes/class-yith-request-quote-cart.php:90
+#: includes/class.yith-request-quote-assets.php:176
+#: plugin-options/general-options.php:171
+#: plugin-options/general/settings-options.php:161
+msgid "or ask for a quote"
+msgstr ""
+
+#: includes/class-yith-ywraq-post-types.php:91
+msgctxt "Post Type General Name"
+msgid "PDF Templates"
+msgstr ""
+
+#: includes/class-yith-ywraq-post-types.php:92
+msgctxt "Post Type Singular Name"
+msgid "PDF Template"
+msgstr ""
+
+#: includes/class-yith-ywraq-post-types.php:93
+msgid "PDF Template"
+msgstr ""
+
+#: includes/class-yith-ywraq-post-types.php:94
+msgid "+ Add new template"
+msgstr ""
+
+#: includes/class-yith-ywraq-post-types.php:95
+msgid "New template"
+msgstr ""
+
+#: includes/class-yith-ywraq-post-types.php:96
+msgid "Edit template"
+msgstr ""
+
+#: includes/class-yith-ywraq-post-types.php:97
+msgid "View template"
+msgstr ""
+
+#: includes/class-yith-ywraq-post-types.php:98
+msgid "Search template"
+msgstr ""
+
+#: includes/class-yith-ywraq-post-types.php:99
+msgid "Not found"
+msgstr ""
+
+#: includes/class-yith-ywraq-post-types.php:100
+msgid "Not found in Trash"
+msgstr ""
+
+#: includes/class-yith-ywraq-post-types.php:318
+msgctxt "name of the pdf default template"
+msgid "Simple template"
+msgstr ""
+
+#: includes/class-yith-ywraq-post-types.php:332
+msgid "Simple template"
+msgstr ""
+
+#: includes/class.yith-request-quote-admin.php:115
+msgctxt "Add a post display state for RAQ page"
+msgid "Request a Quote Page"
+msgstr ""
+
+#: includes/class.yith-request-quote-admin.php:225
+msgid "Quote Requests"
+msgstr ""
+
+#: includes/class.yith-request-quote-admin.php:227
+msgid "A table with all the quote requests generated in your shop."
+msgstr ""
+
+#: includes/class.yith-request-quote-admin.php:230
+#: plugin-options/general/settings-options.php:22
+msgid "General Options"
+msgstr ""
+
+#: includes/class.yith-request-quote-admin.php:232
+msgid "Configure the plugin's general settings."
+msgstr ""
+
+#: includes/class.yith-request-quote-admin.php:235
+msgid "Customization"
+msgstr ""
+
+#: includes/class.yith-request-quote-admin.php:237
+msgid "Configure style options to customize the buttons and labels."
+msgstr ""
+
+#: includes/class.yith-request-quote-admin.php:240
+msgid "\"Request Quote\" Page"
+msgstr ""
+
+#: includes/class.yith-request-quote-admin.php:244
+msgid "Quote Options"
+msgstr ""
+
+#: includes/class.yith-request-quote-admin.php:248
+msgid "Exclusion List"
+msgstr ""
+
+#: includes/class.yith-request-quote-admin.php:250
+msgid "Add products, categories, or tags to the Exclusion List to define the products where to show the \"Add to quote\" button."
+msgstr ""
+
+#: includes/class.yith-request-quote-admin.php:283
+msgctxt "[HELP TAB] Video title"
+msgid "Check this video to learn how to enable a <b>\"Request a quote\"</b> system in your shop:"
+msgstr ""
+
+#: includes/class.yith-request-quote-admin.php:303
+msgctxt "[YOUR STORE TOOLS TAB] Description for plugin YITH WooCommerce Wishlist"
+msgid "Allow your customers to create lists of products they want and share them with family and friends."
+msgstr ""
+
+#: includes/class.yith-request-quote-admin.php:311
+msgctxt "[YOUR STORE TOOLS TAB] Description for plugin YITH WooCommerce Gift Cards"
+msgid "Sell gift cards in your shop to increase your earnings and attract new customers."
+msgstr ""
+
+#: includes/class.yith-request-quote-admin.php:319
+msgctxt "[YOUR STORE TOOLS TAB] Description for plugin YITH WooCommerce Ajax Product Filter"
+msgid "Help your customers to easily find the products they are looking for and improve the user experience of your shop."
+msgstr ""
+
+#: includes/class.yith-request-quote-admin.php:327
+msgctxt "[YOUR STORE TOOLS TAB] Description for plugin YITH Bookings"
+msgid "Enable a booking/appointment system to manage renting or booking of services, rooms, houses, cars, accommodation facilities and so on."
+msgstr ""
+
+#: includes/class.yith-request-quote-admin.php:335
+msgctxt "[YOUR STORE TOOLS TAB] Description for plugin YITH WooCommerce Product Add-Ons"
+msgid "Add paid or free advanced options to your product pages using fields like radio buttons, checkboxes, drop-downs, custom text inputs, and more."
+msgstr ""
+
+#: includes/class.yith-request-quote-admin.php:343
+msgctxt "[YOUR STORE TOOLS TAB] Description for plugin YITH WooCommerce Dynamic Pricing and Discounts"
+msgid "Increase conversions through dynamic discounts and price rules, and build powerful and targeted offers."
+msgstr ""
+
+#: includes/class.yith-request-quote-admin.php:351
+msgctxt "[YOUR STORE TOOLS TAB] Description for plugin YITH WooCommerce Customize My Account"
+msgid "Customize the My Account page of your customers by creating custom sections with promotions and ad-hoc content based on your needs."
+msgstr ""
+
+#: includes/class.yith-request-quote-admin.php:359
+msgctxt "[YOUR STORE TOOLS TAB] Description for plugin Recover Abandoned Cart"
+msgid "Contact users who have added products to the cart without completing the order and try to recover lost sales."
+msgstr ""
+
+#: includes/class.yith-request-quote-admin.php:462
+msgctxt "page_slug"
+msgid "request-quote"
+msgstr ""
+
+#: includes/class.yith-request-quote-admin.php:463
+msgctxt "Request a quote page name"
+msgid "Request a Quote"
+msgstr ""
+
+#. translators: %s is the plugin name.
+#: includes/class.yith-request-quote-admin.php:544
+msgid "WooCommerce coupon system has been disabled. In order to make %s work correctly, you have to enable coupons."
+msgstr ""
+
+#: includes/class.yith-request-quote-admin.php:549
+msgid "Enable the use of coupons"
+msgstr ""
+
+#: includes/class.yith-request-quote-admin.php:576
+msgid "The template 'request-quote-form.php' that you've override in your theme was deprecated since version 2.0 and will be ignored."
+msgstr ""
+
+#: includes/class.yith-request-quote-admin.php:785
+msgid "Quote ID"
+msgstr ""
+
+#: includes/class.yith-request-quote-admin.php:786
+msgid "Quote Number"
+msgstr ""
+
+#: includes/class.yith-request-quote-admin.php:787
+msgid "Quote Date"
+msgstr ""
+
+#: includes/class.yith-request-quote-admin.php:788
+msgid "Quote Expired Date"
+msgstr ""
+
+#: includes/class.yith-request-quote-admin.php:790
+msgid "Customer ID"
+msgstr ""
+
+#: includes/class.yith-request-quote-admin.php:791
+msgid "Customer Name"
+msgstr ""
+
+#: includes/class.yith-request-quote-admin.php:792
+msgid "Customer Email"
+msgstr ""
+
+#: includes/class.yith-request-quote-admin.php:793
+msgid "Customer Message"
+msgstr ""
+
+#: includes/class.yith-request-quote-admin.php:794
+msgid "Additional Email field"
+msgstr ""
+
+#: includes/class.yith-request-quote-admin.php:796
+msgid "Currency"
+msgstr ""
+
+#: includes/class.yith-request-quote-admin.php:797
+msgid "Prices Include tax"
+msgstr ""
+
+#: includes/class.yith-request-quote-admin.php:799
+msgid "Total Tax"
+msgstr ""
+
+#: includes/class.yith-request-quote-admin.php:800
+msgid "Order Shipping"
+msgstr ""
+
+#: includes/class.yith-request-quote-admin.php:801
+msgid "Order Shipping Tax"
+msgstr ""
+
+#: includes/class.yith-request-quote-admin.php:802
+msgid "Discount"
+msgstr ""
+
+#: includes/class.yith-request-quote-admin.php:803
+msgid "Discount Tax"
+msgstr ""
+
+#: includes/class.yith-request-quote-admin.php:804
+msgid "Billing Country"
+msgstr ""
+
+#: includes/class.yith-request-quote-admin.php:805
+msgid "Billing First Name"
+msgstr ""
+
+#: includes/class.yith-request-quote-admin.php:806
+msgid "Billing Last Name"
+msgstr ""
+
+#: includes/class.yith-request-quote-admin.php:807
+msgid "Billing Company"
+msgstr ""
+
+#: includes/class.yith-request-quote-admin.php:808
+msgid "Billing Address 1"
+msgstr ""
+
+#: includes/class.yith-request-quote-admin.php:809
+msgid "Billing Address 2"
+msgstr ""
+
+#: includes/class.yith-request-quote-admin.php:810
+msgid "Billing City"
+msgstr ""
+
+#: includes/class.yith-request-quote-admin.php:811
+msgid "Billing State"
+msgstr ""
+
+#: includes/class.yith-request-quote-admin.php:812
+msgid "Billing Postcode"
+msgstr ""
+
+#: includes/class.yith-request-quote-admin.php:813
+msgid "Billing Email"
+msgstr ""
+
+#: includes/class.yith-request-quote-admin.php:814
+#: plugin-options/metabox/ywraq-metabox-order.php:66
+msgid "Billing Phone"
+msgstr ""
+
+#: includes/class.yith-request-quote-admin.php:815
+msgid "Shipping Country"
+msgstr ""
+
+#: includes/class.yith-request-quote-admin.php:816
+msgid "Shipping First Name"
+msgstr ""
+
+#: includes/class.yith-request-quote-admin.php:817
+msgid "Shipping Last Name"
+msgstr ""
+
+#: includes/class.yith-request-quote-admin.php:818
+msgid "Shipping Company"
+msgstr ""
+
+#: includes/class.yith-request-quote-admin.php:819
+msgid "Shipping Address 1"
+msgstr ""
+
+#: includes/class.yith-request-quote-admin.php:820
+msgid "Shipping Address 2"
+msgstr ""
+
+#: includes/class.yith-request-quote-admin.php:821
+msgid "Shipping City"
+msgstr ""
+
+#: includes/class.yith-request-quote-admin.php:822
+msgid "Shipping State"
+msgstr ""
+
+#: includes/class.yith-request-quote-admin.php:823
+msgid "Shipping Postcode"
+msgstr ""
+
+#: includes/class.yith-request-quote-assets.php:88
+msgctxt "Error displayed when the field is empty"
+msgid "The field is required"
+msgstr ""
+
+#: includes/class.yith-request-quote-assets.php:91
+msgid "Are you sure you want to delete the selected items?"
+msgstr ""
+
+#: includes/class.yith-request-quote-assets.php:109
+msgid "Add exclusion in list"
+msgstr ""
+
+#: includes/class.yith-request-quote-assets.php:110
+msgid "Add exclusion to list"
+msgstr ""
+
+#: includes/class.yith-request-quote-assets.php:111
+#: includes/forms/default/yit-plugin-default-form.php:103
+msgctxt "Label button of a dialog popup"
+msgid "Continue"
+msgstr ""
+
+#: includes/class.yith-request-quote-assets.php:112
+#: includes/forms/default/yit-plugin-default-form.php:104
+msgctxt "Label button of a dialog popup"
+msgid "Cancel"
+msgstr ""
+
+#: includes/class.yith-request-quote-assets.php:164
+msgid "Set at least the quantity for a product"
+msgstr ""
+
+#: includes/class.yith-request-quote-assets.php:165
+msgid "Please select some product options before adding this product to your quote list."
+msgstr ""
+
+#: includes/class.yith-request-quote-assets.php:166
+msgid "This Variation is Out of Stock, please select another one."
+msgstr ""
+
+#: includes/class.yith-request-quote-assets.php:210
+#: includes/forms/default/yit-plugin-default-form.php:101
+msgid "Add field to form"
+msgstr ""
+
+#: includes/class.yith-request-quote-assets.php:211
+#: templates/emails/plain/request-quote-customer.php:91
+#: templates/emails/plain/request-quote.php:91
+msgid "Yes"
+msgstr ""
+
+#: includes/class.yith-request-quote-frontend.php:113
+msgctxt "default label to ask the same quote on My Account page"
+msgid "Request the quote again"
+msgstr ""
+
+#: includes/class.yith-request-quote-frontend.php:207
+#: plugin-options/request/page-options.php:220
+#: templates/request-quote-table.php:488
+msgid "Clear List"
+msgstr ""
+
+#: includes/class.yith-request-quote-frontend.php:223
+msgid "Request a Quote"
+msgstr ""
+
+#: includes/class.yith-request-quote-gateway.php:96
+#: includes/class.yith-ywraq-order-request.php:360
+#: includes/compatibility/yith-woocommerce-product-vendors.php:131
+msgid "This quote has been submitted from the checkout page."
+msgstr ""
+
+#: includes/class.yith-request-quote-my-account.php:104
+#: includes/class.yith-request-quote-my-account.php:197
+msgid "Quotes"
+msgstr ""
+
+#. translators: $%s quote number
+#. translators: Quote number.
+#: includes/class.yith-request-quote-my-account.php:185
+#: templates/pdf/quote-header.php:160
+msgid "Quote #%s"
+msgstr ""
+
+#: includes/class.yith-request-quote-premium.php:500
+msgid "Error: Invalid request. Try again!"
+msgstr ""
+
+#: includes/class.yith-request-quote-premium.php:776
+msgid "You must be logged in to access this page"
+msgstr ""
+
+#: includes/class.yith-request-quote-privacy-dpa.php:39
+msgid "While you visit our site, we'll track:"
+msgstr ""
+
+#: includes/class.yith-request-quote-privacy-dpa.php:41
+msgid "Products added to the quote list: these products will be used to offer you our best price."
+msgstr ""
+
+#: includes/class.yith-request-quote-privacy-dpa.php:42
+msgid "All fields in the quote request form: name, email and message content."
+msgstr ""
+
+#: includes/class.yith-request-quote-privacy-dpa.php:44
+msgid "Note: you should add here all the fields that appear in the quote request form."
+msgstr ""
+
+#: includes/class.yith-request-quote-privacy-dpa.php:45
+msgid "We'll also use cookies to keep track of request a quote list while you're browsing our site."
+msgstr ""
+
+#: includes/class.yith-request-quote-privacy-dpa.php:46
+msgid "Note: you may want to further detail your cookie policy, and link to that section from here."
+msgstr ""
+
+#: includes/class.yith-request-quote-privacy-dpa.php:47
+msgid "Send you information about your request:"
+msgstr ""
+
+#: includes/class.yith-request-quote-privacy-dpa.php:48
+msgid "The answer to your quote request."
+msgstr ""
+
+#: includes/class.yith-request-quote-privacy-dpa.php:49
+msgid "Note: all the fields in the quote request that have been filled by the user will be saved in the order details, so, they will be subject to WooCommerce plugin Privacy Policy."
+msgstr ""
+
+#: includes/class.yith-request-quote-privacy-dpa.php:52
+msgid "Members of our team have access to the information you provide us. For example, both Administrators and Shop Managers can access:"
+msgstr ""
+
+#: includes/class.yith-request-quote-privacy-dpa.php:54
+msgid "- the quote request you've submitted through our store."
+msgstr ""
+
+#: includes/class.yith-request-quote-privacy-dpa.php:55
+msgid "- data entered in the quote request form."
+msgstr ""
+
+#: includes/class.yith-request-quote-privacy-dpa.php:57
+msgid "Our team members have access to this information to send you the best offer."
+msgstr ""
+
+#: includes/class.yith-request-quote-privacy.php:174
+msgid "Request a quote - Customer Name"
+msgstr ""
+
+#: includes/class.yith-request-quote-privacy.php:175
+msgid "Request a quote - Customer Email"
+msgstr ""
+
+#: includes/class.yith-request-quote-privacy.php:176
+msgid "Request a quote - Customer Message"
+msgstr ""
+
+#: includes/class.yith-request-quote-privacy.php:177
+msgid "Request a quote - Email Content"
+msgstr ""
+
+#: includes/class.yith-request-quote.php:545
+#: includes/functions.yith-request-quote.php:327
+msgid "Product already in the list."
+msgstr ""
+
+#: includes/class.yith-request-quote.php:847
+msgid "Error occurred while adding product to Request a Quote list."
+msgstr ""
+
+#: includes/class.yith-request-quote.php:1063
+msgid "This product is not quotable."
+msgstr ""
+
+#: includes/class.yith-request-quote.php:1165
+msgid "Please enter a name"
+msgstr ""
+
+#: includes/class.yith-request-quote.php:1169
+msgid "Please enter a valid email"
+msgstr ""
+
+#: includes/class.yith-request-quote.php:1173
+msgid "An account is already registered with your email address. Please login."
+msgstr ""
+
+#. translators: placeholder label of field.
+#: includes/class.yith-request-quote.php:1178
+#: includes/class.yith-request-quote.php:1185
+#: includes/class.yith-request-quote.php:1192
+msgid "Please enter a value for %s"
+msgstr ""
+
+#: includes/class.yith-request-quote.php:1198
+#: includes/forms/default/class.yith-ywraq-default-form.php:552
+msgid "Please check the captcha form."
+msgstr ""
+
+#: includes/class.yith-request-quote.php:1318
+msgid "There was a problem sending your request. Please try again."
+msgstr ""
+
+#: includes/class.yith-ywraq-cron.php:132
+msgid "YITH Request a Quote for WooCommerce Cron"
+msgstr ""
+
+#: includes/class.yith-ywraq-cron.php:190
+msgid "Quote expired."
+msgstr ""
+
+#: includes/class.yith-ywraq-order-request.php:231
+#: plugin-options/metabox/ywraq-metabox-order.php:135
+#: plugin-options/quote/settings-options.php:24
+msgid "Quote options"
+msgstr ""
+
+#: includes/class.yith-ywraq-order-request.php:301
+msgid "The discount has been removed because you have changed the quote contents."
+msgstr ""
+
+#: includes/class.yith-ywraq-order-request.php:786
+#: includes/class.yith-ywraq-order-request.php:860
+#: includes/class.yith-ywraq-order-request.php:884
+msgid "New Quote Request"
+msgstr ""
+
+#. translators: %s: count
+#: includes/class.yith-ywraq-order-request.php:792
+msgid "New Quote Request <span class=\"count\">(%s)</span>"
+msgid_plural "New Quote Requests <span class=\"count\">(%s)</span>"
+msgstr[0] ""
+msgstr[1] ""
+
+#: includes/class.yith-ywraq-order-request.php:799
+#: includes/class.yith-ywraq-order-request.php:861
+#: includes/class.yith-ywraq-order-request.php:885
+msgid "Pending Quote"
+msgstr ""
+
+#. translators: %s: count
+#: includes/class.yith-ywraq-order-request.php:805
+msgid "Pending Quote <span class=\"count\">(%s)</span>"
+msgid_plural "Pending Quote <span class=\"count\">(%s)</span>"
+msgstr[0] ""
+msgstr[1] ""
+
+#: includes/class.yith-ywraq-order-request.php:812
+#: includes/class.yith-ywraq-order-request.php:862
+#: includes/class.yith-ywraq-order-request.php:886
+msgid "Expired Quote"
+msgstr ""
+
+#. translators: %s: count
+#: includes/class.yith-ywraq-order-request.php:818
+msgid "Expired Quote <span class=\"count\">(%s)</span>"
+msgid_plural "Expired Quotes <span class=\"count\">(%s)</span>"
+msgstr[0] ""
+msgstr[1] ""
+
+#: includes/class.yith-ywraq-order-request.php:825
+#: includes/class.yith-ywraq-order-request.php:863
+#: includes/class.yith-ywraq-order-request.php:887
+msgid "Accepted Quote"
+msgstr ""
+
+#. translators: %s: count
+#: includes/class.yith-ywraq-order-request.php:831
+msgid "Accepted Quote <span class=\"count\">(%s)</span>"
+msgid_plural "Accepted Quote <span class=\"count\">(%s)</span>"
+msgstr[0] ""
+msgstr[1] ""
+
+#: includes/class.yith-ywraq-order-request.php:838
+#: includes/class.yith-ywraq-order-request.php:864
+#: includes/class.yith-ywraq-order-request.php:888
+msgid "Rejected Quote"
+msgstr ""
+
+#. translators: %s: count
+#: includes/class.yith-ywraq-order-request.php:844
+msgid "Rejected Quote <span class=\"count\">(%s)</span>"
+msgid_plural "Rejected Quote <span class=\"count\">(%s)</span>"
+msgstr[0] ""
+msgstr[1] ""
+
+#. translators: %d Error message
+#: includes/class.yith-ywraq-order-request.php:1088
+msgid "Error %d: Unable to create the order. Please try again."
+msgstr ""
+
+#: includes/class.yith-ywraq-order-request.php:1467
+msgid "Send the Quote"
+msgstr ""
+
+#. translators: %s: url
+#: includes/class.yith-ywraq-order-request.php:1490
+#: includes/class.yith-ywraq-order-request.php:1514
+msgid "<a href=\"%s\" class=\"page-title-action ywraq-add-new-quote-button\">Add a new Quote</a>"
+msgstr ""
+
+#: includes/class.yith-ywraq-order-request.php:1684
+msgid "An error occurred creating your request. Please try again."
+msgstr ""
+
+#: includes/class.yith-ywraq-order-request.php:1767
+#: includes/class.yith-ywraq-order-request.php:1799
+#: includes/class.yith-ywraq-order-request.php:1822
+msgid "An error occurred. Please, contact site administrator"
+msgstr ""
+
+#: includes/class.yith-ywraq-order-request.php:1832
+#: includes/functions.yith-request-quote.php:521
+msgid "rejected"
+msgstr ""
+
+#: includes/class.yith-ywraq-order-request.php:1917
+msgid "Discount:"
+msgstr ""
+
+#: includes/class.yith-ywraq-order-request.php:1956
+msgid "You do not have permission to read the quote"
+msgstr ""
+
+#. translators: %d order id
+#: includes/class.yith-ywraq-order-request.php:2012
+msgid "Quote n. %d has been rejected and is not available"
+msgstr ""
+
+#. translators: %d order id
+#: includes/class.yith-ywraq-order-request.php:2016
+#: includes/class.yith-ywraq-order-request.php:2031
+msgid "Quote n. %d has expired and is not available"
+msgstr ""
+
+#. translators: %d order id
+#: includes/class.yith-ywraq-order-request.php:2020
+msgid "Quote n. %1$d can't be accepted because its status is: %2$s"
+msgstr ""
+
+#. translators: %d order id
+#: includes/class.yith-ywraq-order-request.php:2028
+msgid "Quote n. %d has been rejected"
+msgstr ""
+
+#. translators: %d order id
+#: includes/class.yith-ywraq-order-request.php:2034
+msgid "Quote n. %1$d can't be rejected because its status is: %2$s"
+msgstr ""
+
+#. translators: %d order id
+#: includes/class.yith-ywraq-order-request.php:2062
+msgid "The quote n. %d has been rejected"
+msgstr ""
+
+#: includes/class.yith-ywraq-order-request.php:2106
+msgid "Discount removed successfully."
+msgstr ""
+
+#: includes/class.yith-ywraq-order-request.php:2428
+msgid "It's not possible to add products to the cart since you have already accepted a quote."
+msgstr ""
+
+#: includes/class.yith-ywraq-order-request.php:2447
+msgid "It's not possible change the quantity since you have already accepted a quote."
+msgstr ""
+
+#: includes/class.yith-ywraq-order-request.php:2577
+msgid "Please, fill your billing address before proceeding with the payment"
+msgstr ""
+
+#: includes/class.yith-ywraq-order-request.php:2588
+msgid "Please, fill your shipping address before proceeding with the payment"
+msgstr ""
+
+#: includes/class.yith-ywraq-order-request.php:2608
+msgid "Please, fill the form before proceeding with the payment."
+msgstr ""
+
+#: includes/class.yith-ywraq-order-request.php:2727
+msgid "This product cannot be purchased."
+msgstr ""
+
+#: includes/class.yith-ywraq-shortcodes.php:131
+#: includes/forms/default/class.yith-ywraq-default-form.php:895
+#: plugin-options/request/page-options.php:86
+msgid "Send the request"
+msgstr ""
+
+#: includes/class.yith-ywraq-shortcodes.php:155
+#: templates/myaccount/view-quote.php:39
+msgid "This Quote doesn't exist."
+msgstr ""
+
+#: includes/class.yith-ywraq-shortcodes.php:160
+#: templates/myaccount/view-quote.php:86
+msgid "You do not have permission to read the quote."
+msgstr ""
+
+#: includes/class.yith-ywraq-shortcodes.php:187
+#: plugin-options/customization-options.php:356
+#: plugin-options/general/button-label-options.php:330
+#: plugin-options/gutenberg/blocks.php:192
+msgid "Add to quote"
+msgstr ""
+
+#: includes/class.yith-ywraq-shortcodes.php:241
+#: includes/class.yith-ywraq-shortcodes.php:348
+#: includes/widgets/class.yith-ywraq-mini-list-quote-widget.php:59
+#: includes/widgets/class.yith-ywraq-mini-list-quote-widget.php:150
+#: plugin-options/gutenberg/blocks.php:117
+msgid "item"
+msgstr ""
+
+#: includes/class.yith-ywraq-shortcodes.php:242
+#: includes/class.yith-ywraq-shortcodes.php:349
+#: includes/widgets/class.yith-ywraq-mini-list-quote-widget.php:60
+#: includes/widgets/class.yith-ywraq-mini-list-quote-widget.php:151
+#: plugin-options/gutenberg/blocks.php:122
+msgid "items"
+msgstr ""
+
+#: includes/class.yith-ywraq-shortcodes.php:316
+#: includes/class.yith-ywraq-shortcodes.php:347
+#: includes/widgets/class.yith-ywraq-list-quote-widget.php:132
+#: includes/widgets/class.yith-ywraq-mini-list-quote-widget.php:58
+#: includes/widgets/class.yith-ywraq-mini-list-quote-widget.php:149
+#: plugin-options/gutenberg/blocks.php:49
+#: plugin-options/gutenberg/blocks.php:112
+msgid "Quote List"
+msgstr ""
+
+#: includes/class.yith-ywraq-shortcodes.php:321
+#: includes/class.yith-ywraq-shortcodes.php:355
+#: includes/widgets/class.yith-ywraq-list-quote-widget.php:62
+#: includes/widgets/class.yith-ywraq-mini-list-quote-widget.php:61
+#: plugin-options/gutenberg/blocks.php:54
+#: plugin-options/gutenberg/blocks.php:127
+msgid "View list"
+msgstr ""
+
+#: includes/class.yith-ywraq-shortcodes.php:439
+msgid "It is not possible to show the preview of the selected form."
+msgstr ""
+
+#: includes/compatibility/yith-woocommerce-advanced-product-options.php:407
+#: templates/pdf/preview-list/preview-list.php:227
+#: templates/request-quote-table.php:171
+msgctxt "Integration: product add-ons attachment"
+msgid "Attached file"
+msgstr ""
+
+#: includes/compatibility/yith-woocommerce-advanced-product-options.php:1026
+#: includes/compatibility/yith-woocommerce-advanced-product-options.php:1112
+msgctxt "notice on admin order item meta"
+msgid "Individually sold add-on"
+msgstr ""
+
+#: includes/compatibility/yith-woocommerce-advanced-product-options.php:1153
+msgctxt "notice on admin order item meta"
+msgid "* Sold invidually"
+msgstr ""
+
+#: includes/compatibility/yith-woocommerce-composite-products.php:301
+#: includes/compatibility/yith-woocommerce-composite-products.php:307
+#: includes/compatibility/yith-woocommerce-composite-products.php:622
+#: includes/compatibility/yith-woocommerce-composite-products.php:628
+msgid "Option subtotal: "
+msgstr ""
+
+#: includes/compatibility/yith-woocommerce-composite-products.php:678
+msgctxt "Integration composite product: cart price advice"
+msgid "Base Price:"
+msgstr ""
+
+#: includes/compatibility/yith-woocommerce-composite-products.php:689
+msgctxt "Integration - Composite product subtotal"
+msgid "Options subtotal"
+msgstr ""
+
+#. translators: 1. deposit value 2. total amount.
+#: includes/compatibility/yith-woocommerce-deposits-and-down-payments.php:85
+msgctxt "1. deposit value 2. total amount."
+msgid "%1$s (of %2$s)"
+msgstr ""
+
+#: includes/compatibility/yith-woocommerce-deposits-and-down-payments.php:87
+msgid "Pay now:"
+msgstr ""
+
+#: includes/compatibility/yith-woocommerce-deposits-and-down-payments.php:310
+msgid "Enable Deposit"
+msgstr ""
+
+#: includes/compatibility/yith-woocommerce-deposits-and-down-payments.php:317
+msgid "Deposit Rate"
+msgstr ""
+
+#: includes/compatibility/yith-woocommerce-deposits-and-down-payments.php:319
+msgid "Percentage of product total price required as deposit"
+msgstr ""
+
+#: includes/emails/class.yith-ywraq-quote-status.php:30
+msgid "[YITH Request a Quote] Accepted/rejected Quote"
+msgstr ""
+
+#: includes/emails/class.yith-ywraq-quote-status.php:31
+msgid "This email is sent when a user clicks on \"Accept/Reject\" button in a Proposal"
+msgstr ""
+
+#: includes/emails/class.yith-ywraq-quote-status.php:33
+msgid "Request a quote"
+msgstr ""
+
+#: includes/emails/class.yith-ywraq-quote-status.php:34
+msgid "[Answer to quote request]"
+msgstr ""
+
+#: includes/emails/class.yith-ywraq-quote-status.php:202
+#: includes/emails/class.yith-ywraq-send-email-request-quote-customer.php:259
+#: includes/emails/class.yith-ywraq-send-email-request-quote.php:253
+#: includes/emails/class.yith-ywraq-send-quote-reminder-accept.php:274
+#: includes/emails/class.yith-ywraq-send-quote-reminder.php:273
+#: includes/emails/class.yith-ywraq-send-quote.php:287
+msgid "Enable/Disable"
+msgstr ""
+
+#: includes/emails/class.yith-ywraq-quote-status.php:204
+#: includes/emails/class.yith-ywraq-send-email-request-quote-customer.php:261
+#: includes/emails/class.yith-ywraq-send-email-request-quote.php:255
+#: includes/emails/class.yith-ywraq-send-quote-reminder-accept.php:276
+#: includes/emails/class.yith-ywraq-send-quote-reminder.php:275
+#: includes/emails/class.yith-ywraq-send-quote.php:289
+msgid "Enable this email notification"
+msgstr ""
+
+#: includes/emails/class.yith-ywraq-quote-status.php:208
+#: includes/emails/class.yith-ywraq-send-email-request-quote-customer.php:265
+#: includes/emails/class.yith-ywraq-send-email-request-quote.php:259
+#: includes/emails/class.yith-ywraq-send-quote-reminder-accept.php:291
+#: includes/emails/class.yith-ywraq-send-quote-reminder.php:290
+#: includes/emails/class.yith-ywraq-send-quote.php:293
+msgid "\"From\" Name"
+msgstr ""
+
+#: includes/emails/class.yith-ywraq-quote-status.php:215
+#: includes/emails/class.yith-ywraq-send-email-request-quote-customer.php:272
+#: includes/emails/class.yith-ywraq-send-email-request-quote.php:266
+#: includes/emails/class.yith-ywraq-send-quote-reminder-accept.php:298
+#: includes/emails/class.yith-ywraq-send-quote-reminder.php:297
+#: includes/emails/class.yith-ywraq-send-quote.php:300
+msgid "\"From\" Email Address"
+msgstr ""
+
+#: includes/emails/class.yith-ywraq-quote-status.php:222
+#: includes/emails/class.yith-ywraq-send-email-request-quote-customer.php:279
+#: includes/emails/class.yith-ywraq-send-email-request-quote.php:273
+#: includes/emails/class.yith-ywraq-send-quote-reminder-accept.php:305
+#: includes/emails/class.yith-ywraq-send-quote-reminder.php:304
+#: includes/emails/class.yith-ywraq-send-quote.php:307
+msgid "Subject"
+msgstr ""
+
+#. translators:placeholder is default subject.
+#: includes/emails/class.yith-ywraq-quote-status.php:225
+msgid "This field lets you edit email subject line. Leave it blank to use default subject text: <code>%s</code>. You can use {quote_number} as a placeholder that will show the quote number in the quote."
+msgstr ""
+
+#: includes/emails/class.yith-ywraq-quote-status.php:230
+#: includes/emails/class.yith-ywraq-send-email-request-quote.php:281
+msgid "Recipient(s)"
+msgstr ""
+
+#. translators:placeholder is default recipients.
+#. translators:placeholder is default recipient email.
+#: includes/emails/class.yith-ywraq-quote-status.php:233
+#: includes/emails/class.yith-ywraq-send-email-request-quote.php:284
+msgid "Enter recipients (separated by commas) for this email. Defaults to <code>%s</code>"
+msgstr ""
+
+#: includes/emails/class.yith-ywraq-quote-status.php:238
+#: includes/emails/class.yith-ywraq-send-email-request-quote.php:289
+msgid "Send CC copy"
+msgstr ""
+
+#: includes/emails/class.yith-ywraq-quote-status.php:240
+#: includes/emails/class.yith-ywraq-send-email-request-quote.php:291
+msgid "Send a carbon copy to the user."
+msgstr ""
+
+#: includes/emails/class.yith-ywraq-quote-status.php:244
+#: includes/emails/class.yith-ywraq-send-email-request-quote-customer.php:300
+#: includes/emails/class.yith-ywraq-send-email-request-quote.php:295
+#: includes/emails/class.yith-ywraq-send-quote-reminder-accept.php:326
+#: includes/emails/class.yith-ywraq-send-quote-reminder.php:325
+#: includes/emails/class.yith-ywraq-send-quote.php:329
+msgid "Email Heading"
+msgstr ""
+
+#. translators:placeholder is default heading.
+#: includes/emails/class.yith-ywraq-quote-status.php:247
+#: includes/emails/class.yith-ywraq-send-email-request-quote-customer.php:303
+#: includes/emails/class.yith-ywraq-send-email-request-quote.php:298
+#: includes/emails/class.yith-ywraq-send-quote-reminder-accept.php:329
+#: includes/emails/class.yith-ywraq-send-quote-reminder.php:328
+#: includes/emails/class.yith-ywraq-send-quote.php:332
+msgid "This field lets you change the main heading in email notification. Leave it blank to use default heading type: <code>%s</code>."
+msgstr ""
+
+#: includes/emails/class.yith-ywraq-quote-status.php:252
+#: includes/emails/class.yith-ywraq-send-email-request-quote-customer.php:308
+#: includes/emails/class.yith-ywraq-send-email-request-quote.php:303
+#: includes/emails/class.yith-ywraq-send-quote-reminder-accept.php:340
+#: includes/emails/class.yith-ywraq-send-quote-reminder.php:339
+#: includes/emails/class.yith-ywraq-send-quote.php:343
+msgid "Email Description"
+msgstr ""
+
+#: includes/emails/class.yith-ywraq-quote-status.php:255
+msgid ""
+"Hi,\n"
+"\t\t\t\t\tYou have received a request for a quote. The request is the following:"
+msgstr ""
+
+#: includes/emails/class.yith-ywraq-quote-status.php:262
+#: includes/emails/class.yith-ywraq-send-email-request-quote-customer.php:318
+#: includes/emails/class.yith-ywraq-send-email-request-quote.php:325
+#: includes/emails/class.yith-ywraq-send-quote-reminder-accept.php:350
+#: includes/emails/class.yith-ywraq-send-quote-reminder.php:349
+#: includes/emails/class.yith-ywraq-send-quote.php:351
+msgid "Email type"
+msgstr ""
+
+#: includes/emails/class.yith-ywraq-quote-status.php:264
+#: includes/emails/class.yith-ywraq-send-email-request-quote-customer.php:320
+#: includes/emails/class.yith-ywraq-send-email-request-quote.php:327
+#: includes/emails/class.yith-ywraq-send-quote-reminder-accept.php:352
+#: includes/emails/class.yith-ywraq-send-quote-reminder.php:351
+#: includes/emails/class.yith-ywraq-send-quote.php:353
+msgid "Choose email format."
+msgstr ""
+
+#: includes/emails/class.yith-ywraq-send-email-request-quote-customer.php:30
+msgid "[YITH Request a Quote] Confirmation email for the customer"
+msgstr ""
+
+#: includes/emails/class.yith-ywraq-send-email-request-quote-customer.php:31
+msgid "This email is sent as confirmation when a user clicks on \"Request a quote\" button"
+msgstr ""
+
+#: includes/emails/class.yith-ywraq-send-email-request-quote-customer.php:33
+#: includes/emails/class.yith-ywraq-send-email-request-quote.php:33
+#: templates/emails/request-quote-table.php:48
+msgid "Quote request"
+msgstr ""
+
+#: includes/emails/class.yith-ywraq-send-email-request-quote-customer.php:34
+#: includes/emails/class.yith-ywraq-send-email-request-quote.php:34
+msgid "[Quote request]"
+msgstr ""
+
+#. translators:placeholder is default subject.
+#: includes/emails/class.yith-ywraq-send-email-request-quote-customer.php:282
+#: includes/emails/class.yith-ywraq-send-email-request-quote.php:276
+msgid "This field lets you edit email subject line. Leave it blank to use default subject text: <code>%s</code>. You can use {quote_number} as a placeholder that will show the quote number in the quote,<br>{quote_user} to show the customer's name, {quote_email} to show the customer's email"
+msgstr ""
+
+#: includes/emails/class.yith-ywraq-send-email-request-quote-customer.php:287
+#: includes/emails/class.yith-ywraq-send-quote-reminder-accept.php:313
+#: includes/emails/class.yith-ywraq-send-quote-reminder.php:312
+#: includes/emails/class.yith-ywraq-send-quote.php:322
+msgid "Bcc Recipient(s)"
+msgstr ""
+
+#: includes/emails/class.yith-ywraq-send-email-request-quote-customer.php:289
+#: includes/emails/class.yith-ywraq-send-quote-reminder-accept.php:315
+#: includes/emails/class.yith-ywraq-send-quote-reminder.php:314
+msgid "Enter further recipients (separated by commas) for this email. By default the email is sent to the customer."
+msgstr ""
+
+#: includes/emails/class.yith-ywraq-send-email-request-quote-customer.php:294
+msgid "Enter additional recipients"
+msgstr ""
+
+#: includes/emails/class.yith-ywraq-send-email-request-quote-customer.php:296
+#: includes/emails/class.yith-ywraq-send-quote-reminder-accept.php:322
+#: includes/emails/class.yith-ywraq-send-quote-reminder.php:321
+#: includes/emails/class.yith-ywraq-send-quote.php:318
+msgid "Send a blind carbon copy to the administrator"
+msgstr ""
+
+#: includes/emails/class.yith-ywraq-send-email-request-quote-customer.php:311
+msgid ""
+"Hi {customer_name}, \n"
+"\t\t\t\t\tYou have sent a quote request for the following products:"
+msgstr ""
+
+#: includes/emails/class.yith-ywraq-send-email-request-quote.php:30
+msgid "[YITH Request a Quote] Email to request a quote"
+msgstr ""
+
+#: includes/emails/class.yith-ywraq-send-email-request-quote.php:31
+msgid "This email is sent when a user clicks on \"Request a quote\" button"
+msgstr ""
+
+#: includes/emails/class.yith-ywraq-send-email-request-quote.php:131
+msgid "There was a problem sending your request. Please try again...."
+msgstr ""
+
+#: includes/emails/class.yith-ywraq-send-email-request-quote.php:306
+msgid ""
+"Hi,\n"
+"\t\t\t\t\t\tYou have received a request for a quote. The request is the following:"
+msgstr ""
+
+#: includes/emails/class.yith-ywraq-send-email-request-quote.php:313
+msgid "Link to quote request details to be shown in \"Request a Quote\" email"
+msgstr ""
+
+#: includes/emails/class.yith-ywraq-send-email-request-quote.php:319
+msgid "Quote request details"
+msgstr ""
+
+#: includes/emails/class.yith-ywraq-send-email-request-quote.php:320
+msgid "Quote creation page (admin)"
+msgstr ""
+
+#: includes/emails/class.yith-ywraq-send-quote-reminder-accept.php:37
+msgid "[YITH Request a Quote] Reminder: pending quote"
+msgstr ""
+
+#: includes/emails/class.yith-ywraq-send-quote-reminder-accept.php:38
+msgid "This email is sent when the customer does not respond to the quote within x days."
+msgstr ""
+
+#: includes/emails/class.yith-ywraq-send-quote-reminder-accept.php:40
+#: includes/emails/class.yith-ywraq-send-quote-reminder-accept.php:41
+msgid "Reminder: you have a pending quote"
+msgstr ""
+
+#: includes/emails/class.yith-ywraq-send-quote-reminder-accept.php:280
+msgid "Days (to pass) after the quote has been sent: "
+msgstr ""
+
+#: includes/emails/class.yith-ywraq-send-quote-reminder-accept.php:282
+msgid "Choose when to send this follow up e-mail."
+msgstr ""
+
+#: includes/emails/class.yith-ywraq-send-quote-reminder-accept.php:287
+msgctxt "additional info inside the email option"
+msgid "days after the quote creation"
+msgstr ""
+
+#. translators:placeholder is default subject.
+#: includes/emails/class.yith-ywraq-send-quote-reminder-accept.php:308
+#: includes/emails/class.yith-ywraq-send-quote-reminder.php:307
+#: includes/emails/class.yith-ywraq-send-quote.php:310
+msgid "This field lets you modify the email subject line. Leave it blank to use the default subject text: <code>%s</code>. You can use {quote_number} as a placeholder that will show the quote number in the quote."
+msgstr ""
+
+#: includes/emails/class.yith-ywraq-send-quote-reminder-accept.php:320
+#: includes/emails/class.yith-ywraq-send-quote-reminder.php:319
+#: includes/emails/class.yith-ywraq-send-quote.php:316
+msgid "Send BCC copy"
+msgstr ""
+
+#: includes/emails/class.yith-ywraq-send-quote-reminder-accept.php:334
+#: includes/emails/class.yith-ywraq-send-quote-reminder.php:333
+#: includes/emails/class.yith-ywraq-send-quote.php:337
+msgid "Email Title"
+msgstr ""
+
+#: includes/emails/class.yith-ywraq-send-quote-reminder-accept.php:343
+msgid ""
+"Hi {customer_name},\n"
+"\t\t\t\t\tWe are contacting you because you have a pending quote on our shop. Don't forget it! Our best proposal is the following:"
+msgstr ""
+
+#: includes/emails/class.yith-ywraq-send-quote-reminder.php:30
+msgid "[YITH Request a Quote] Reminder: expiring quote"
+msgstr ""
+
+#: includes/emails/class.yith-ywraq-send-quote-reminder.php:31
+msgid "This email is sent when to the customer when the quote is going to expire."
+msgstr ""
+
+#: includes/emails/class.yith-ywraq-send-quote-reminder.php:33
+#: includes/emails/class.yith-ywraq-send-quote-reminder.php:34
+msgid "Reminder: expiring quote"
+msgstr ""
+
+#: includes/emails/class.yith-ywraq-send-quote-reminder.php:279
+msgid "Send this email: "
+msgstr ""
+
+#: includes/emails/class.yith-ywraq-send-quote-reminder.php:281
+msgid "Choose when to send this reminder."
+msgstr ""
+
+#: includes/emails/class.yith-ywraq-send-quote-reminder.php:286
+msgctxt "additional info inside the email option"
+msgid "days before the quote expiration"
+msgstr ""
+
+#: includes/emails/class.yith-ywraq-send-quote-reminder.php:342
+msgid ""
+"Hi {customer_name},\n"
+"\t\t\t\t\tWe are contacting you because our quote is about to expire, and soon our offer will no longer be available. Our proposal is the following:"
+msgstr ""
+
+#: includes/emails/class.yith-ywraq-send-quote.php:31
+msgid "[YITH Request a Quote] Email with Quote"
+msgstr ""
+
+#: includes/emails/class.yith-ywraq-send-quote.php:32
+msgid "This email is sent when an administrator performs the action \"Send the quote\" from Order Editor"
+msgstr ""
+
+#: includes/emails/class.yith-ywraq-send-quote.php:34
+msgid "A quote for you"
+msgstr ""
+
+#: includes/emails/class.yith-ywraq-send-quote.php:35
+msgid "[Quote]"
+msgstr ""
+
+#: includes/emails/class.yith-ywraq-send-quote.php:324
+msgid "Enter further recipients (separated by commas) for this email. By default email to the admin"
+msgstr ""
+
+#: includes/emails/class.yith-ywraq-send-quote.php:340
+msgid "Quote"
+msgstr ""
+
+#: includes/emails/class.yith-ywraq-send-quote.php:346
+msgid ""
+"Hi {customer_name},\n"
+"\t\t\t\t\tYou have received this email because you sent a quote request to our shop. The response to your request is the following:"
+msgstr ""
+
+#: includes/forms/contact-form-7/class.yith-ywraq-contact-form-7.php:145
+msgid "Contact Form 7"
+msgstr ""
+
+#: includes/forms/contact-form-7/class.yith-ywraq-contact-form-7.php:162
+#: includes/forms/gravity-forms/ywraq-gravity-form-addons.php:787
+#: includes/forms/ninja-forms/ywraq-ninja-forms.php:192
+#: includes/forms/wpforms/ywraq-wpforms.php:165
+msgid "Create form"
+msgstr ""
+
+#: includes/forms/contact-form-7/class.yith-ywraq-contact-form-7.php:162
+#: includes/forms/gravity-forms/ywraq-gravity-form-addons.php:787
+#: includes/forms/ninja-forms/ywraq-ninja-forms.php:192
+#: includes/forms/wpforms/ywraq-wpforms.php:165
+msgid "Edit form"
+msgstr ""
+
+#: includes/forms/contact-form-7/class.yith-ywraq-contact-form-7.php:170
+#: includes/forms/contact-form-7/class.yith-ywraq-contact-form-7.php:187
+#: includes/forms/gravity-forms/ywraq-gravity-form-addons.php:795
+#: includes/forms/gravity-forms/ywraq-gravity-form-addons.php:812
+#: includes/forms/ninja-forms/ywraq-ninja-forms.php:200
+#: includes/forms/ninja-forms/ywraq-ninja-forms.php:217
+#: includes/forms/wpforms/ywraq-wpforms.php:173
+#: includes/forms/wpforms/ywraq-wpforms.php:190
+msgid "Form to display"
+msgstr ""
+
+#: includes/forms/contact-form-7/class.yith-ywraq-contact-form-7.php:173
+#: includes/forms/contact-form-7/class.yith-ywraq-contact-form-7.php:190
+#: includes/forms/gravity-forms/ywraq-gravity-form-addons.php:798
+#: includes/forms/gravity-forms/ywraq-gravity-form-addons.php:815
+#: includes/forms/ninja-forms/ywraq-ninja-forms.php:203
+#: includes/forms/ninja-forms/ywraq-ninja-forms.php:220
+#: includes/forms/wpforms/ywraq-wpforms.php:176
+#: includes/forms/wpforms/ywraq-wpforms.php:193
+#: includes/forms/yit-contact-form/class.yith-ywraq-yit-contact-form.php:124
+msgid "Choose the form to display"
+msgstr ""
+
+#: includes/forms/contact-form-7/functions.yith-ywraq-contact-form-7.php:52
+#: includes/forms/yit-contact-form/class.yith-ywraq-yit-contact-form.php:92
+msgid "Plugin not activated or not installed"
+msgstr ""
+
+#: includes/forms/contact-form-7/functions.yith-ywraq-contact-form-7.php:63
+#: includes/forms/gravity-forms/ywraq-gravity-form-addons.php:703
+#: includes/forms/ninja-forms/ywraq-ninja-forms.php:261
+#: includes/forms/wpforms/ywraq-wpforms.php:149
+#: includes/forms/yit-contact-form/class.yith-ywraq-yit-contact-form.php:108
+msgid "No contact form found"
+msgstr ""
+
+#: includes/forms/default/class.yith-ywraq-default-form.php:114
+msgid "Default Form"
+msgstr ""
+
+#: includes/forms/default/class.yith-ywraq-default-form.php:225
+msgid "This is a required field."
+msgstr ""
+
+#: includes/forms/default/class.yith-ywraq-default-form.php:226
+msgid "The mail you have entered seems to be wrong."
+msgstr ""
+
+#: includes/forms/default/class.yith-ywraq-default-form.php:227
+msgid "The file is greater than "
+msgstr ""
+
+#: includes/forms/default/class.yith-ywraq-default-form.php:228
+msgid "This file type is unsupported. Valid extensions: "
+msgstr ""
+
+#: includes/forms/default/class.yith-ywraq-default-form.php:264
+#: includes/forms/default/class.yith-ywraq-default-form.php:306
+#: includes/forms/default/class.yith-ywraq-default-form.php:341
+#: includes/forms/default/class.yith-ywraq-default-form.php:374
+#: includes/forms/default/class.yith-ywraq-default-form.php:406
+msgid "required"
+msgstr ""
+
+#. translators: 1. label.
+#. translators: Placeholder is the label of field.
+#: includes/forms/default/class.yith-ywraq-default-form.php:768
+#: includes/forms/default/class.yith-ywraq-default-form.php:860
+msgid "%s is required."
+msgstr ""
+
+#. translators: 1. label.
+#: includes/forms/default/class.yith-ywraq-default-form.php:778
+msgid " %s needs a valid email address."
+msgstr ""
+
+#. translators: 1. label.
+#: includes/forms/default/class.yith-ywraq-default-form.php:784
+msgid " %s is not a valid phone number."
+msgstr ""
+
+#. translators: 1. label 2. max file size.
+#: includes/forms/default/class.yith-ywraq-default-form.php:791
+msgid " %1$s is greater than %2$s."
+msgstr ""
+
+#: includes/forms/default/class.yith-ywraq-default-form.php:980
+#: templates/emails/plain/request-quote.php:99
+#: templates/emails/request-quote.php:177
+msgid "Accepted"
+msgstr ""
+
+#: includes/forms/default/class.yith-ywraq-default-form.php:980
+#: templates/emails/plain/request-quote.php:99
+#: templates/emails/request-quote.php:177
+msgid "Not Accepted"
+msgstr ""
+
+#: includes/forms/default/functions.yith-ywraq-default-form.php:38
+#: includes/forms/wpforms/ywraq-wpforms.php:228
+msgid "First Name"
+msgstr ""
+
+#: includes/forms/default/functions.yith-ywraq-default-form.php:49
+msgid "Last Name"
+msgstr ""
+
+#: includes/forms/default/functions.yith-ywraq-default-form.php:59
+#: includes/forms/default/functions.yith-ywraq-default-form.php:300
+#: views/panel/types/customer-request.php:33
+msgid "Email"
+msgstr ""
+
+#: includes/forms/default/functions.yith-ywraq-default-form.php:70
+#: includes/forms/gravity-forms/ywraq-gravity-form-addons.php:639
+#: views/panel/types/customer-request.php:41
+msgid "Message"
+msgstr ""
+
+#: includes/forms/default/functions.yith-ywraq-default-form.php:298
+msgid "No validation"
+msgstr ""
+
+#: includes/forms/default/functions.yith-ywraq-default-form.php:299
+#: includes/forms/gravity-forms/ywraq-gravity-form-addons.php:647
+msgid "Phone"
+msgstr ""
+
+#: includes/forms/default/functions.yith-ywraq-default-form.php:301
+msgid "File"
+msgstr ""
+
+#: includes/forms/default/functions.yith-ywraq-default-form.php:318
+msgid "First"
+msgstr ""
+
+#: includes/forms/default/functions.yith-ywraq-default-form.php:319
+msgid "Last"
+msgstr ""
+
+#: includes/forms/default/functions.yith-ywraq-default-form.php:320
+msgid "Wide"
+msgstr ""
+
+#: includes/forms/default/functions.yith-ywraq-default-form.php:336
+#: includes/forms/default/yit-plugin-default-form.php:317
+msgctxt "Text field"
+msgid "Text"
+msgstr ""
+
+#: includes/forms/default/functions.yith-ywraq-default-form.php:337
+#: includes/forms/default/yit-plugin-default-form.php:318
+msgctxt "Email field"
+msgid "Email"
+msgstr ""
+
+#: includes/forms/default/functions.yith-ywraq-default-form.php:338
+#: includes/forms/default/yit-plugin-default-form.php:319
+msgctxt "Phone number field"
+msgid "Phone"
+msgstr ""
+
+#: includes/forms/default/functions.yith-ywraq-default-form.php:339
+#: includes/forms/default/yit-plugin-default-form.php:320
+msgctxt "Textarea field"
+msgid "Textarea"
+msgstr ""
+
+#: includes/forms/default/functions.yith-ywraq-default-form.php:340
+#: includes/forms/default/yit-plugin-default-form.php:321
+msgctxt "Radio button field"
+msgid "Radio"
+msgstr ""
+
+#: includes/forms/default/functions.yith-ywraq-default-form.php:341
+#: includes/forms/default/yit-plugin-default-form.php:322
+msgctxt "Checkbox field"
+msgid "Checkbox"
+msgstr ""
+
+#: includes/forms/default/functions.yith-ywraq-default-form.php:342
+#: includes/forms/default/yit-plugin-default-form.php:323
+msgctxt "Select field"
+msgid "Select"
+msgstr ""
+
+#: includes/forms/default/functions.yith-ywraq-default-form.php:343
+#: includes/forms/default/yit-plugin-default-form.php:324
+msgctxt "Select field for country"
+msgid "Country"
+msgstr ""
+
+#: includes/forms/default/functions.yith-ywraq-default-form.php:344
+#: includes/forms/default/yit-plugin-default-form.php:325
+msgctxt "Field for State"
+msgid "State"
+msgstr ""
+
+#: includes/forms/default/functions.yith-ywraq-default-form.php:345
+msgctxt "Input file field"
+msgid "Upload"
+msgstr ""
+
+#: includes/forms/default/functions.yith-ywraq-default-form.php:346
+msgctxt "Multiselect field"
+msgid "Multi select"
+msgstr ""
+
+#: includes/forms/default/functions.yith-ywraq-default-form.php:347
+msgctxt "Date field"
+msgid "Date"
+msgstr ""
+
+#: includes/forms/default/functions.yith-ywraq-default-form.php:348
+msgctxt "Time field"
+msgid "Time"
+msgstr ""
+
+#: includes/forms/default/functions.yith-ywraq-default-form.php:349
+msgctxt "Field to add the Acceptance on form"
+msgid "Acceptance"
+msgstr ""
+
+#: includes/forms/default/functions.yith-ywraq-default-form.php:350
+msgctxt "Field to add an heading to the form"
+msgid "Heading"
+msgstr ""
+
+#: includes/forms/default/yit-plugin-default-form.php:99
+#: views/panel/types/default-form.php:217
+msgid "Add field"
+msgstr ""
+
+#: includes/forms/default/yit-plugin-default-form.php:100
+msgid "Edit field"
+msgstr ""
+
+#: includes/forms/default/yit-plugin-default-form.php:102
+msgid "Save form field"
+msgstr ""
+
+#: includes/forms/gravity-forms/ywraq-gravity-form-addons.php:236
+msgid "YITH Quote List"
+msgstr ""
+
+#: includes/forms/gravity-forms/ywraq-gravity-form-addons.php:534
+#: includes/forms/gravity-forms/ywraq-gravity-form-addons.php:614
+msgid "YITH Request a Quote for WooCommerce Settings"
+msgstr ""
+
+#: includes/forms/gravity-forms/ywraq-gravity-form-addons.php:538
+msgid "This is the tooltip"
+msgstr ""
+
+#: includes/forms/gravity-forms/ywraq-gravity-form-addons.php:539
+msgid "This is the label"
+msgstr ""
+
+#: includes/forms/gravity-forms/ywraq-gravity-form-addons.php:560
+msgid "Choose the field"
+msgstr ""
+
+#: includes/forms/gravity-forms/ywraq-gravity-form-addons.php:617
+msgid "Name of user *"
+msgstr ""
+
+#: includes/forms/gravity-forms/ywraq-gravity-form-addons.php:620
+msgid "Choose what field should be used for the name"
+msgstr ""
+
+#: includes/forms/gravity-forms/ywraq-gravity-form-addons.php:624
+msgid "Company Name"
+msgstr ""
+
+#: includes/forms/gravity-forms/ywraq-gravity-form-addons.php:627
+msgid "Choose what field should be used for the Company Name"
+msgstr ""
+
+#: includes/forms/gravity-forms/ywraq-gravity-form-addons.php:631
+msgid "Email of user *"
+msgstr ""
+
+#: includes/forms/gravity-forms/ywraq-gravity-form-addons.php:634
+msgid "Choose what field should be used for the email"
+msgstr ""
+
+#: includes/forms/gravity-forms/ywraq-gravity-form-addons.php:642
+msgid "Choose what field should be used for the message"
+msgstr ""
+
+#: includes/forms/gravity-forms/ywraq-gravity-form-addons.php:650
+msgid "Choose what field should be used for the Phone"
+msgstr ""
+
+#: includes/forms/gravity-forms/ywraq-gravity-form-addons.php:655
+#: plugin-options/metabox/ywraq-metabox-order.php:62
+msgid "Billing Address"
+msgstr ""
+
+#: includes/forms/gravity-forms/ywraq-gravity-form-addons.php:658
+msgid "Choose what field should be used for the Address"
+msgstr ""
+
+#: includes/forms/gravity-forms/ywraq-gravity-form-addons.php:663
+msgid "Shipping Address"
+msgstr ""
+
+#: includes/forms/gravity-forms/ywraq-gravity-form-addons.php:666
+msgid "Choose what field should be used for the Shipping Address"
+msgstr ""
+
+#: includes/forms/gravity-forms/ywraq-gravity-form-addons.php:670
+msgid "Product List"
+msgstr ""
+
+#: includes/forms/gravity-forms/ywraq-gravity-form-addons.php:673
+msgid "Choose what field should be used for the Product List"
+msgstr ""
+
+#: includes/forms/gravity-forms/ywraq-gravity-form-addons.php:690
+msgid "Plugin Gravity Forms not activated or not installed"
+msgstr ""
+
+#: includes/forms/gravity-forms/ywraq-gravity-form-addons.php:771
+msgid "Gravity Forms"
+msgstr ""
+
+#: includes/forms/ninja-forms/ywraq-ninja-forms-tag.php:48
+msgctxt "Ninja form tag to add the request quote list inside the email"
+msgid "List Table"
+msgstr ""
+
+#: includes/forms/ninja-forms/ywraq-ninja-forms.php:141
+msgctxt "Connect fields to WooCommerce fields"
+msgid "Connect to"
+msgstr ""
+
+#: includes/forms/ninja-forms/ywraq-ninja-forms.php:276
+msgid "Ninja Forms"
+msgstr ""
+
+#: includes/forms/ninja-forms/ywraq-ninja-forms.php:373
+#: includes/forms/wpforms/ywraq-wpforms.php:499
+msgid "Guest"
+msgstr ""
+
+#: includes/forms/wpforms/ywraq-wpforms.php:123
+msgid "WPForms"
+msgstr ""
+
+#. translators: placeholder is the name of the field.
+#: includes/forms/wpforms/ywraq-wpforms.php:234
+msgctxt "placeholder is the name of the field"
+msgid "Connect %s to a WooCommerce field"
+msgstr ""
+
+#: includes/forms/wpforms/ywraq-wpforms.php:235
+msgctxt "description of field in wpforms integration"
+msgid "Connect a WooCommerce field: the information entered by customers on the Request a Quote page will automatically fill the billing and shipping fields in the quote order."
+msgstr ""
+
+#: includes/forms/wpforms/ywraq-wpforms.php:273
+msgid "Connect Last Name to WooCommerce field"
+msgstr ""
+
+#: includes/forms/wpforms/ywraq-wpforms.php:347
+msgctxt "add a new smart tag to wpform email editor"
+msgid "YITH Request a Quote for WooCommerce: List of products"
+msgstr ""
+
+#: includes/forms/yit-contact-form/class.yith-ywraq-yit-contact-form.php:73
+msgid "YIT Contact Form"
+msgstr ""
+
+#: includes/forms/yit-contact-form/class.yith-ywraq-yit-contact-form.php:190
+msgid "An error has occurred. Please, contact site administrator."
+msgstr ""
+
+#: includes/functions.yith-request-quote.php:291
+msgid "Product added to the list!"
+msgstr ""
+
+#: includes/functions.yith-request-quote.php:303
+#: plugin-options/customization-options.php:383
+#: plugin-options/general/button-label-options.php:357
+msgid "Browse the list"
+msgstr ""
+
+#: includes/functions.yith-request-quote.php:315
+msgid "Add to Quote"
+msgstr ""
+
+#: includes/functions.yith-request-quote.php:339
+#: plugin-options/quote/settings-options.php:161
+msgid "Accept"
+msgstr ""
+
+#: includes/functions.yith-request-quote.php:351
+#: plugin-options/quote/settings-options.php:196
+msgid "Reject"
+msgstr ""
+
+#: includes/functions.yith-request-quote.php:503
+msgid "new"
+msgstr ""
+
+#: includes/functions.yith-request-quote.php:509
+msgid "pending"
+msgstr ""
+
+#: includes/functions.yith-request-quote.php:515
+msgid "expired"
+msgstr ""
+
+#: includes/functions.yith-request-quote.php:527
+msgid "accepted"
+msgstr ""
+
+#: includes/functions.yith-request-quote.php:981
+msgid "Your list is empty, add products to the list to send a request"
+msgstr ""
+
+#: includes/functions.yith-request-quote.php:1393
+msgid "Billing"
+msgstr ""
+
+#: includes/functions.yith-request-quote.php:1400
+msgid "Shipping"
+msgstr ""
+
+#: includes/functions.yith-request-quote.php:1404
+msgid "Order Comments"
+msgstr ""
+
+#: includes/functions.yith-request-quote.php:1972
+msgid "Pay Now"
+msgstr ""
+
+#: includes/functions.yith-request-quote.php:1995
+msgctxt "default label to order the same products on My Account page"
+msgid "Order again"
+msgstr ""
+
+#: includes/functions.yith-request-quote.php:2039
+msgctxt "default label to ask the same quote on My Account page"
+msgid "Ask again a quote"
+msgstr ""
+
+#: includes/widgets/class.yith-ywraq-list-quote-widget.php:31
+#: includes/widgets/class.yith-ywraq-mini-list-quote-widget.php:30
+msgid "Show products added to your list"
+msgstr ""
+
+#: includes/widgets/class.yith-ywraq-list-quote-widget.php:33
+msgid "YITH Request a Quote for WooCommerce List"
+msgstr ""
+
+#: includes/widgets/class.yith-ywraq-list-quote-widget.php:133
+#: includes/widgets/class.yith-ywraq-mini-list-quote-widget.php:152
+msgid "View quote list"
+msgstr ""
+
+#: includes/widgets/class.yith-ywraq-list-quote-widget.php:147
+#: includes/widgets/class.yith-ywraq-mini-list-quote-widget.php:173
+msgid "Title:"
+msgstr ""
+
+#: includes/widgets/class.yith-ywraq-list-quote-widget.php:155
+#: includes/widgets/class.yith-ywraq-mini-list-quote-widget.php:198
+msgid "Button Label:"
+msgstr ""
+
+#: includes/widgets/class.yith-ywraq-list-quote-widget.php:167
+#: includes/widgets/class.yith-ywraq-mini-list-quote-widget.php:219
+msgid "Show Thumbnail"
+msgstr ""
+
+#: includes/widgets/class.yith-ywraq-list-quote-widget.php:176
+#: includes/widgets/class.yith-ywraq-mini-list-quote-widget.php:228
+msgid "Show Price"
+msgstr ""
+
+#: includes/widgets/class.yith-ywraq-list-quote-widget.php:185
+#: includes/widgets/class.yith-ywraq-mini-list-quote-widget.php:237
+msgid "Show Quantity"
+msgstr ""
+
+#: includes/widgets/class.yith-ywraq-list-quote-widget.php:194
+#: includes/widgets/class.yith-ywraq-mini-list-quote-widget.php:246
+msgid "Show Variations"
+msgstr ""
+
+#: includes/widgets/class.yith-ywraq-mini-list-quote-widget.php:32
+msgid "YITH WooCommerce Mini Request a Quote List"
+msgstr ""
+
+#: includes/widgets/class.yith-ywraq-mini-list-quote-widget.php:181
+msgid "Item Name:"
+msgstr ""
+
+#: includes/widgets/class.yith-ywraq-mini-list-quote-widget.php:189
+msgid "Item Plural Name:"
+msgstr ""
+
+#: includes/widgets/class.yith-ywraq-mini-list-quote-widget.php:210
+msgid "Show widget title inside"
+msgstr ""
+
+#: includes/widgets/class.yith-ywraq-mini-list-quote-widget.php:254
+msgid "Open Quote page on mobile"
+msgstr ""
+
+#. translators: %s is the plugin name.
+#: init.php:75
+msgid "%s is enabled but not effective. It requires WooCommerce in order to work."
+msgstr ""
+
+#: plugin-options/customization-options.php:98
+msgid "\"Add to quote\" button"
+msgstr ""
+
+#: plugin-options/customization-options.php:103
+#: plugin-options/general/button-label-options.php:104
+msgid "\"Add to quote\" style"
+msgstr ""
+
+#: plugin-options/customization-options.php:104
+#: plugin-options/general/button-label-options.php:105
+msgid "Choose the style for the \"Add to quote\" button or link."
+msgstr ""
+
+#: plugin-options/customization-options.php:109
+#: plugin-options/customization-options.php:173
+#: plugin-options/customization-options.php:237
+#: plugin-options/customization-options.php:292
+#: plugin-options/general/button-label-options.php:110
+#: plugin-options/general/button-label-options.php:165
+#: plugin-options/general/button-label-options.php:220
+#: plugin-options/general/button-label-options.php:275
+#: plugin-options/gutenberg/blocks.php:204
+msgid "Button"
+msgstr ""
+
+#: plugin-options/customization-options.php:110
+#: plugin-options/customization-options.php:174
+#: plugin-options/customization-options.php:238
+#: plugin-options/customization-options.php:293
+#: plugin-options/general/button-label-options.php:111
+#: plugin-options/general/button-label-options.php:166
+#: plugin-options/general/button-label-options.php:221
+#: plugin-options/general/button-label-options.php:276
+#: plugin-options/gutenberg/blocks.php:205
+msgid "Text Link"
+msgstr ""
+
+#: plugin-options/customization-options.php:115
+#: plugin-options/general/button-label-options.php:116
+msgid "\"Add to quote\" colors"
+msgstr ""
+
+#: plugin-options/customization-options.php:122
+#: plugin-options/customization-options.php:186
+#: plugin-options/customization-options.php:250
+#: plugin-options/customization-options.php:305
+#: plugin-options/general/button-label-options.php:123
+#: plugin-options/general/button-label-options.php:178
+#: plugin-options/general/button-label-options.php:233
+#: plugin-options/general/button-label-options.php:288
+msgid "Background"
+msgstr ""
+
+#: plugin-options/customization-options.php:127
+#: plugin-options/customization-options.php:191
+#: plugin-options/customization-options.php:255
+#: plugin-options/customization-options.php:310
+#: plugin-options/general/button-label-options.php:128
+#: plugin-options/general/button-label-options.php:183
+#: plugin-options/general/button-label-options.php:238
+#: plugin-options/general/button-label-options.php:293
+msgid "Background hover"
+msgstr ""
+
+#: plugin-options/customization-options.php:132
+#: plugin-options/customization-options.php:196
+#: plugin-options/customization-options.php:260
+#: plugin-options/customization-options.php:315
+#: plugin-options/general/button-label-options.php:133
+#: plugin-options/general/button-label-options.php:188
+#: plugin-options/general/button-label-options.php:243
+#: plugin-options/general/button-label-options.php:298
+msgid "Border"
+msgstr ""
+
+#: plugin-options/customization-options.php:137
+#: plugin-options/customization-options.php:201
+#: plugin-options/customization-options.php:265
+#: plugin-options/customization-options.php:320
+#: plugin-options/general/button-label-options.php:138
+#: plugin-options/general/button-label-options.php:193
+#: plugin-options/general/button-label-options.php:248
+#: plugin-options/general/button-label-options.php:303
+msgid "Border hover"
+msgstr ""
+
+#: plugin-options/customization-options.php:142
+#: plugin-options/customization-options.php:206
+#: plugin-options/customization-options.php:270
+#: plugin-options/customization-options.php:325
+#: plugin-options/general/button-label-options.php:143
+#: plugin-options/general/button-label-options.php:198
+#: plugin-options/general/button-label-options.php:253
+#: plugin-options/general/button-label-options.php:308
+msgid "Text"
+msgstr ""
+
+#: plugin-options/customization-options.php:147
+#: plugin-options/customization-options.php:211
+#: plugin-options/customization-options.php:275
+#: plugin-options/customization-options.php:330
+#: plugin-options/general/button-label-options.php:148
+#: plugin-options/general/button-label-options.php:203
+#: plugin-options/general/button-label-options.php:258
+#: plugin-options/general/button-label-options.php:313
+msgid "Text Hover"
+msgstr ""
+
+#: plugin-options/customization-options.php:162
+msgid "\"Request a quote\" button"
+msgstr ""
+
+#: plugin-options/customization-options.php:167
+#: plugin-options/general/button-label-options.php:159
+msgid "\"Request a quote\" style"
+msgstr ""
+
+#: plugin-options/customization-options.php:168
+#: plugin-options/general/button-label-options.php:160
+msgid "Choose the style for the \"Request a quote\" button or link."
+msgstr ""
+
+#: plugin-options/customization-options.php:179
+#: plugin-options/general/button-label-options.php:171
+msgid "\"Request a quote\" colors"
+msgstr ""
+
+#: plugin-options/customization-options.php:226
+msgid "Accept, pay &amp; reject options"
+msgstr ""
+
+#: plugin-options/customization-options.php:231
+#: plugin-options/general/button-label-options.php:214
+msgid "\"Accept and Pay\" style"
+msgstr ""
+
+#: plugin-options/customization-options.php:232
+#: plugin-options/general/button-label-options.php:215
+msgid "Choose the style for the \"Accept and Pay\" button or link."
+msgstr ""
+
+#: plugin-options/customization-options.php:243
+#: plugin-options/general/button-label-options.php:226
+msgid "\"Accept and Pay\" colors"
+msgstr ""
+
+#: plugin-options/customization-options.php:286
+#: plugin-options/general/button-label-options.php:269
+msgid "\"Reject\" style"
+msgstr ""
+
+#: plugin-options/customization-options.php:287
+#: plugin-options/general/button-label-options.php:270
+msgid "Choose the style for the \"Reject\" button or link."
+msgstr ""
+
+#: plugin-options/customization-options.php:298
+#: plugin-options/general/button-label-options.php:281
+msgid "\"Reject\" colors"
+msgstr ""
+
+#: plugin-options/customization-options.php:345
+msgid "Labels"
+msgstr ""
+
+#: plugin-options/customization-options.php:350
+#: plugin-options/general/button-label-options.php:324
+msgid "\"Add to Quote\" label"
+msgstr ""
+
+#: plugin-options/customization-options.php:351
+#: plugin-options/general/button-label-options.php:325
+msgid "Enter the label to show within the \"Add to quote\" button on a single product page."
+msgstr ""
+
+#: plugin-options/customization-options.php:359
+#: plugin-options/general/button-label-options.php:333
+msgid "\"Product added to the list\" label"
+msgstr ""
+
+#: plugin-options/customization-options.php:360
+#: plugin-options/general/button-label-options.php:334
+msgid "Enter the label to show when a product is added to a quote list."
+msgstr ""
+
+#: plugin-options/customization-options.php:365
+#: plugin-options/general/button-label-options.php:339
+msgid "Product added to the list"
+msgstr ""
+
+#: plugin-options/customization-options.php:368
+#: plugin-options/general/button-label-options.php:342
+msgid "\"Product already in the list\" label"
+msgstr ""
+
+#: plugin-options/customization-options.php:369
+#: plugin-options/general/button-label-options.php:343
+msgid "Enter the label to show when a product is already in the quote request list."
+msgstr ""
+
+#: plugin-options/customization-options.php:374
+#: plugin-options/general/button-label-options.php:348
+msgid "This product is already in your quote request list."
+msgstr ""
+
+#: plugin-options/customization-options.php:377
+#: plugin-options/general/button-label-options.php:351
+msgid "\"Browse the list\" label"
+msgstr ""
+
+#: plugin-options/customization-options.php:378
+#: plugin-options/general/button-label-options.php:352
+msgid "Enter the text to show in the link that redirects users to the quote request list."
+msgstr ""
+
+#: plugin-options/customization-options.php:390
+#: plugin-options/general-options.php:129
+msgid "Other options"
+msgstr ""
+
+#: plugin-options/customization-options.php:395
+#: plugin-options/general/button-label-options.php:360
+msgid "Loader style"
+msgstr ""
+
+#: plugin-options/customization-options.php:396
+#: plugin-options/general/button-label-options.php:361
+msgid "Choose to use the default loader or upload a custom one."
+msgstr ""
+
+#: plugin-options/customization-options.php:401
+#: plugin-options/customization-options.php:425
+#: plugin-options/general/button-label-options.php:366
+#: plugin-options/general/button-label-options.php:391
+#: plugin-options/request/form-options.php:36
+msgid "Default"
+msgstr ""
+
+#: plugin-options/customization-options.php:402
+#: plugin-options/general/button-label-options.php:367
+msgid "Upload a custom loader"
+msgstr ""
+
+#: plugin-options/customization-options.php:407
+#: plugin-options/general/button-label-options.php:372
+msgid "Loader"
+msgstr ""
+
+#: plugin-options/customization-options.php:408
+#: plugin-options/general/button-label-options.php:373
+msgid "Upload a custom loader."
+msgstr ""
+
+#: plugin-options/customization-options.php:419
+#: plugin-options/general/button-label-options.php:385
+msgctxt "option name to change the icon of mini quote widget"
+msgid "Widget icon"
+msgstr ""
+
+#: plugin-options/customization-options.php:420
+#: plugin-options/general/button-label-options.php:386
+msgctxt "option description to change the icon of mini quote widget"
+msgid "Upload a custom icon for the mini widget."
+msgstr ""
+
+#: plugin-options/customization-options.php:426
+#: plugin-options/general/button-label-options.php:392
+msgid "Upload a custom icon"
+msgstr ""
+
+#: plugin-options/customization-options.php:431
+#: plugin-options/general/button-label-options.php:397
+msgid "Upload icon"
+msgstr ""
+
+#: plugin-options/customization-options.php:432
+#: plugin-options/general/button-label-options.php:398
+msgid "Upload the custom icon you want to use for the mini widget."
+msgstr ""
+
+#: plugin-options/customization-options.php:442
+#: plugin-options/general/button-label-options.php:408
+msgid "Enable AJAX Loading"
+msgstr ""
+
+#: plugin-options/customization-options.php:443
+#: plugin-options/general/button-label-options.php:409
+msgid "Load any cacheable quote item via AJAX"
+msgstr ""
+
+#: plugin-options/general-options.php:23
+msgid "\"Add to quote\" options"
+msgstr ""
+
+#: plugin-options/general-options.php:28
+#: plugin-options/general/settings-options.php:27
+msgid "Show \"Add to quote\" button to:"
+msgstr ""
+
+#: plugin-options/general-options.php:29
+#: plugin-options/general/settings-options.php:28
+msgid "Choose to show the quote button to all users or only to logged or guest users."
+msgstr ""
+
+#: plugin-options/general-options.php:34
+#: plugin-options/general/settings-options.php:33
+msgid "All users"
+msgstr ""
+
+#: plugin-options/general-options.php:35
+#: plugin-options/general/settings-options.php:34
+msgid "Only specific user roles"
+msgstr ""
+
+#: plugin-options/general-options.php:36
+#: plugin-options/general/settings-options.php:35
+msgid "Only logged users"
+msgstr ""
+
+#: plugin-options/general-options.php:37
+#: plugin-options/general/settings-options.php:36
+msgid "Only guest users"
+msgstr ""
+
+#: plugin-options/general-options.php:42
+#: plugin-options/general/settings-options.php:41
+msgid "Choose user roles"
+msgstr ""
+
+#: plugin-options/general-options.php:43
+#: plugin-options/general/settings-options.php:42
+msgid "Choose the user roles that can see the \"Add to quote\" button."
+msgstr ""
+
+#: plugin-options/general-options.php:52
+#: plugin-options/general/settings-options.php:51
+msgid "Choose a role"
+msgstr ""
+
+#: plugin-options/general-options.php:60
+#: plugin-options/general/settings-options.php:59
+msgid "Show \"Add to quote\" on:"
+msgstr ""
+
+#: plugin-options/general-options.php:61
+#: plugin-options/general/settings-options.php:60
+msgid "Choose how to manage the Exclusion List: if you choose \"All products\" then all products will show the \"Add to quote\" button. If you choose \"Products in the Exclusion List only\" then only those added to the list will display \"Add to quote\"."
+msgstr ""
+
+#: plugin-options/general-options.php:66
+#: plugin-options/general/settings-options.php:65
+msgid "All products (except the ones in the Exclusion List)"
+msgstr ""
+
+#: plugin-options/general-options.php:67
+#: plugin-options/general/settings-options.php:66
+msgid "Products in the Exclusion List only."
+msgstr ""
+
+#: plugin-options/general-options.php:72
+#: plugin-options/general/settings-options.php:71
+msgid "\"Add to quote\" on out of stock products:"
+msgstr ""
+
+#: plugin-options/general-options.php:73
+#: plugin-options/general/settings-options.php:72
+msgid "Choose how to manage the \"Add to quote\" button on out of stock products."
+msgstr ""
+
+#: plugin-options/general-options.php:78
+#: plugin-options/general/settings-options.php:77
+msgid "Show \"Add to quote\" in all products (also out of stock)"
+msgstr ""
+
+#: plugin-options/general-options.php:79
+#: plugin-options/general/settings-options.php:78
+msgid "Show \"Add to quote\" only on out of stock products"
+msgstr ""
+
+#: plugin-options/general-options.php:80
+#: plugin-options/general/settings-options.php:79
+msgid "Hide \"Add to quote\" on out of stock products"
+msgstr ""
+
+#: plugin-options/general-options.php:85
+#: plugin-options/general/settings-options.php:84
+msgid "Show \"Add to quote\" on single product pages"
+msgstr ""
+
+#: plugin-options/general-options.php:86
+#: plugin-options/general/settings-options.php:85
+msgid "Enable to show the \"Add to quote\" button on single product pages."
+msgstr ""
+
+#: plugin-options/general-options.php:93
+#: plugin-options/general/settings-options.php:92
+msgid "\"Add to quote\" position on single product page"
+msgstr ""
+
+#: plugin-options/general-options.php:94
+#: plugin-options/general/settings-options.php:93
+msgid "Choose where to show the \"Add to quote\" button on single product pages."
+msgstr ""
+
+#: plugin-options/general-options.php:99
+#: plugin-options/general/settings-options.php:98
+msgid "Inline with \"Add to cart\""
+msgstr ""
+
+#: plugin-options/general-options.php:100
+#: plugin-options/general/settings-options.php:99
+msgid "Underneath \"Add to cart\" button"
+msgstr ""
+
+#: plugin-options/general-options.php:109
+#: plugin-options/general/settings-options.php:124
+msgid "Show \"Add to quote\" in other WooCommerce pages"
+msgstr ""
+
+#: plugin-options/general-options.php:110
+#: plugin-options/general/settings-options.php:125
+msgid "Enable to show the \"Add to quote\" button in category pages, shop pages, etc."
+msgstr ""
+
+#: plugin-options/general-options.php:117
+#: plugin-options/general/settings-options.php:132
+msgid "Show \"Add to quote\" in WooCommerce Blocks"
+msgstr ""
+
+#: plugin-options/general-options.php:118
+#: plugin-options/general/settings-options.php:133
+msgid "Enable to show the \"Add to quote\" button in WooCommerce Gutenberg Blocks."
+msgstr ""
+
+#: plugin-options/general-options.php:134
+#: plugin-options/general/settings-options.php:108
+msgid "Hide \"Add to cart\" buttons"
+msgstr ""
+
+#: plugin-options/general-options.php:135
+#: plugin-options/general/settings-options.php:109
+msgid "Enable to hide the \"Add to cart\" buttons on all products."
+msgstr ""
+
+#: plugin-options/general-options.php:142
+#: plugin-options/general/settings-options.php:116
+msgid "Hide prices"
+msgstr ""
+
+#: plugin-options/general-options.php:143
+#: plugin-options/general/settings-options.php:117
+msgid "Enable to hide prices on all products."
+msgstr ""
+
+#: plugin-options/general-options.php:150
+#: plugin-options/general/settings-options.php:140
+msgid "Show \"Ask quote\" on the Cart page"
+msgstr ""
+
+#: plugin-options/general-options.php:151
+#: plugin-options/general/settings-options.php:141
+msgid "Enable to show the \"Ask quote\" button on the Cart page. This option allows users to convert the cart content into a quote request."
+msgstr ""
+
+#: plugin-options/general-options.php:158
+#: plugin-options/general/settings-options.php:148
+msgid "Show \"Ask quote\" on the Checkout page"
+msgstr ""
+
+#: plugin-options/general-options.php:159
+#: plugin-options/general/settings-options.php:149
+msgid "Enable to show the \"Ask quote\" button on the Checkout page. We suggest enabling this option only if users are not automatically directed to the quote page."
+msgstr ""
+
+#: plugin-options/general-options.php:166
+#: plugin-options/general/settings-options.php:156
+msgid "\"Ask quote\" button label"
+msgstr ""
+
+#: plugin-options/general-options.php:167
+#: plugin-options/general/settings-options.php:157
+msgid "Enter the label for the \"Ask quote\" button on the Cart and Checkout pages."
+msgstr ""
+
+#: plugin-options/general-options.php:175
+#: plugin-options/general/settings-options.php:165
+msgid "After clicking on \"Add to quote\" the user:"
+msgstr ""
+
+#: plugin-options/general-options.php:176
+#: plugin-options/general/settings-options.php:166
+msgid "Choose what happens after the user clicks on the \"Add to quote\" button."
+msgstr ""
+
+#: plugin-options/general-options.php:181
+#: plugin-options/general/settings-options.php:171
+msgid "Sees a link to access the quote request list"
+msgstr ""
+
+#: plugin-options/general-options.php:182
+#: plugin-options/general/settings-options.php:172
+msgid "Is automatically redirected to the quote request list."
+msgstr ""
+
+#: plugin-options/general/button-label-options.php:99
+msgid "Button & Labels"
+msgstr ""
+
+#: plugin-options/gutenberg/blocks.php:35
+msgctxt "[gutenberg]: block name"
+msgid "Widget Quote List"
+msgstr ""
+
+#: plugin-options/gutenberg/blocks.php:36
+#: plugin-options/gutenberg/blocks.php:99
+msgctxt "[gutenberg]: block description"
+msgid "Show products added to your list."
+msgstr ""
+
+#: plugin-options/gutenberg/blocks.php:42
+#: plugin-options/gutenberg/blocks.php:105
+msgctxt "[gutenberg]: keywords"
+msgid "Quote"
+msgstr ""
+
+#: plugin-options/gutenberg/blocks.php:43
+msgctxt "[gutenberg]: keywords"
+msgid "Quote Widget"
+msgstr ""
+
+#: plugin-options/gutenberg/blocks.php:48
+#: plugin-options/gutenberg/blocks.php:111
+msgctxt "[gutenberg]: title of widget"
+msgid "Title"
+msgstr ""
+
+#: plugin-options/gutenberg/blocks.php:53
+#: plugin-options/gutenberg/blocks.php:126
+msgctxt "[gutenberg]: label of button"
+msgid "Button Label"
+msgstr ""
+
+#: plugin-options/gutenberg/blocks.php:58
+#: plugin-options/gutenberg/blocks.php:140
+msgctxt "[gutenberg]: show or hide the thumbnail"
+msgid "Show Thumbnail"
+msgstr ""
+
+#: plugin-options/gutenberg/blocks.php:61
+#: plugin-options/gutenberg/blocks.php:143
+msgctxt "[gutenberg]: Help to show thumbnail"
+msgid "Show it"
+msgstr ""
+
+#: plugin-options/gutenberg/blocks.php:62
+#: plugin-options/gutenberg/blocks.php:144
+msgctxt "[gutenberg]: Help to hide thumbnail"
+msgid "Hide it"
+msgstr ""
+
+#: plugin-options/gutenberg/blocks.php:67
+#: plugin-options/gutenberg/blocks.php:149
+msgctxt "[gutenberg]: show or hide the price"
+msgid "Show Price"
+msgstr ""
+
+#: plugin-options/gutenberg/blocks.php:70
+#: plugin-options/gutenberg/blocks.php:152
+msgctxt "[gutenberg]: Help to show price"
+msgid "Show it"
+msgstr ""
+
+#: plugin-options/gutenberg/blocks.php:71
+#: plugin-options/gutenberg/blocks.php:153
+msgctxt "[gutenberg]: Help to hide price"
+msgid "Hide it"
+msgstr ""
+
+#: plugin-options/gutenberg/blocks.php:76
+#: plugin-options/gutenberg/blocks.php:158
+msgctxt "[gutenberg]: show or hide the quantity"
+msgid "Show Quantity"
+msgstr ""
+
+#: plugin-options/gutenberg/blocks.php:79
+#: plugin-options/gutenberg/blocks.php:161
+msgctxt "[gutenberg]: Help to show quantity"
+msgid "Show it"
+msgstr ""
+
+#: plugin-options/gutenberg/blocks.php:80
+#: plugin-options/gutenberg/blocks.php:162
+msgctxt "[gutenberg]: Help to hide quantity"
+msgid "Hide it"
+msgstr ""
+
+#: plugin-options/gutenberg/blocks.php:85
+#: plugin-options/gutenberg/blocks.php:167
+msgctxt "[gutenberg]: show or hide the variations"
+msgid "Show Variations"
+msgstr ""
+
+#: plugin-options/gutenberg/blocks.php:88
+#: plugin-options/gutenberg/blocks.php:170
+msgctxt "[gutenberg]: Help to show variations"
+msgid "Show it"
+msgstr ""
+
+#: plugin-options/gutenberg/blocks.php:89
+#: plugin-options/gutenberg/blocks.php:171
+msgctxt "[gutenberg]: Help to hide variations"
+msgid "Hide it"
+msgstr ""
+
+#: plugin-options/gutenberg/blocks.php:98
+msgctxt "[gutenberg]: block name"
+msgid "Mini Widget Quote List"
+msgstr ""
+
+#: plugin-options/gutenberg/blocks.php:106
+msgctxt "[gutenberg]: keywords"
+msgid "Mini Quote Widget"
+msgstr ""
+
+#: plugin-options/gutenberg/blocks.php:116
+msgctxt "[gutenberg]: title of widget"
+msgid "Item name"
+msgstr ""
+
+#: plugin-options/gutenberg/blocks.php:121
+msgctxt "[gutenberg]: title of widget"
+msgid "Item plural name"
+msgstr ""
+
+#: plugin-options/gutenberg/blocks.php:131
+msgctxt "[gutenberg]: Choose whether to show the title inside (visible when the widget is open) or outside next to the item counter (visible when it is collapsed)."
+msgid "Show widget title inside"
+msgstr ""
+
+#: plugin-options/gutenberg/blocks.php:134
+msgctxt "[gutenberg]: Help to set title position"
+msgid "Show the title inside the widget dropdown"
+msgstr ""
+
+#: plugin-options/gutenberg/blocks.php:135
+msgctxt "[gutenberg]: Help to set the title position"
+msgid "Show the title outside next to the item counter"
+msgstr ""
+
+#: plugin-options/gutenberg/blocks.php:178
+msgctxt "[gutenberg]: block name"
+msgid "Quote button"
+msgstr ""
+
+#: plugin-options/gutenberg/blocks.php:179
+msgctxt "[gutenberg]: block description"
+msgid "Show the quote button of a product"
+msgstr ""
+
+#: plugin-options/gutenberg/blocks.php:185
+msgctxt "[gutenberg]: keywords"
+msgid "Button Quote"
+msgstr ""
+
+#: plugin-options/gutenberg/blocks.php:186
+msgctxt "[gutenberg]: keywords"
+msgid "Quote request"
+msgstr ""
+
+#: plugin-options/gutenberg/blocks.php:191
+msgctxt "[gutenberg]: title of widget"
+msgid "Label"
+msgstr ""
+
+#: plugin-options/gutenberg/blocks.php:196
+msgctxt "[gutenberg]: title of widget"
+msgid "Product id"
+msgstr ""
+
+#: plugin-options/gutenberg/blocks.php:201
+msgctxt "[gutenberg]: title of widget"
+msgid "Style button"
+msgstr ""
+
+#: plugin-options/gutenberg/blocks.php:210
+msgctxt "[gutenberg]: title of widget"
+msgid "Color"
+msgstr ""
+
+#: plugin-options/gutenberg/blocks.php:219
+msgctxt "[gutenberg]: title of widget"
+msgid "Color on hover"
+msgstr ""
+
+#: plugin-options/gutenberg/blocks.php:228
+msgctxt "[gutenberg]: title of widget"
+msgid "Background color"
+msgstr ""
+
+#: plugin-options/gutenberg/blocks.php:237
+msgctxt "[gutenberg]: title of widget"
+msgid "Background color on hover"
+msgstr ""
+
+#: plugin-options/metabox/pdf-template-options.php:18
+msgid "Template title"
+msgstr ""
+
+#: plugin-options/metabox/pdf-template-options.php:21
+msgid "Enter a title for this template."
+msgstr ""
+
+#: plugin-options/metabox/ywraq-metabox-order.php:70
+msgid "Billing Vat"
+msgstr ""
+
+#: plugin-options/metabox/ywraq-metabox-order.php:141
+msgid "Settings"
+msgstr ""
+
+#: plugin-options/metabox/ywraq-metabox-order.php:151
+msgid "Customer's request:"
+msgstr ""
+
+#: plugin-options/metabox/ywraq-metabox-order.php:171
+msgid "Additional email content"
+msgstr ""
+
+#: plugin-options/metabox/ywraq-metabox-order.php:180
+#: plugin-options/metabox/ywraq-metabox-order.php:188
+#: plugin-options/metabox/ywraq-metabox-order.php:196
+msgid "Customer's additional field"
+msgstr ""
+
+#: plugin-options/metabox/ywraq-metabox-order.php:206
+msgid "Quote general options"
+msgstr ""
+
+#: plugin-options/metabox/ywraq-metabox-order.php:211
+msgid "Show custom text in email content"
+msgstr ""
+
+#: plugin-options/metabox/ywraq-metabox-order.php:213
+msgid "Enable to add custom messages to the default email template."
+msgstr ""
+
+#: plugin-options/metabox/ywraq-metabox-order.php:219
+msgid "Custom text before product list:"
+msgstr ""
+
+#: plugin-options/metabox/ywraq-metabox-order.php:221
+msgid "Enter a custom message to show before the product list in the quote email."
+msgstr ""
+
+#: plugin-options/metabox/ywraq-metabox-order.php:231
+msgid "Custom text after product list:"
+msgstr ""
+
+#: plugin-options/metabox/ywraq-metabox-order.php:233
+msgid "Enter a custom message to show after the product list in the quote email."
+msgstr ""
+
+#: plugin-options/metabox/ywraq-metabox-order.php:243
+msgid "Upload an optional Attachment"
+msgstr ""
+
+#: plugin-options/metabox/ywraq-metabox-order.php:245
+msgid "Upload a file to attach to the quote email."
+msgstr ""
+
+#: plugin-options/metabox/ywraq-metabox-order.php:252
+msgid "Set a specific expiry date for this quote"
+msgstr ""
+
+#: plugin-options/metabox/ywraq-metabox-order.php:256
+msgid "Enable if you want to set a specific expiry date for this quote."
+msgstr ""
+
+#: plugin-options/metabox/ywraq-metabox-order.php:257
+msgid "This will override the \"Quote options\" settings."
+msgstr ""
+
+#: plugin-options/metabox/ywraq-metabox-order.php:264
+msgid "This quote will expire on"
+msgstr ""
+
+#: plugin-options/metabox/ywraq-metabox-order.php:265
+msgid "Choose an expiry date for this quote."
+msgstr ""
+
+#: plugin-options/metabox/ywraq-metabox-order.php:276
+msgid "Message to show in \"My account > Quote detail\""
+msgstr ""
+
+#: plugin-options/metabox/ywraq-metabox-order.php:278
+msgid "Enter an optional message to show in the customer's  \"My account > Quote detail\" page."
+msgstr ""
+
+#: plugin-options/metabox/ywraq-metabox-order.php:284
+msgid "Quote payment options"
+msgstr ""
+
+#: plugin-options/metabox/ywraq-metabox-order.php:289
+msgid "Override quote payment options"
+msgstr ""
+
+#: plugin-options/metabox/ywraq-metabox-order.php:291
+msgid "Enable to set specific quote payment options for this quote. It will override the quote payment options in the general settings."
+msgstr ""
+
+#: plugin-options/metabox/ywraq-metabox-order.php:297
+#: plugin-options/quote/payment-options.php:28
+msgid "Redirect the user to \"Pay for Quote\" page"
+msgstr ""
+
+#: plugin-options/metabox/ywraq-metabox-order.php:301
+msgid "If billing and shipping fields are filled, you can send the customer to \"Pay for Quote\" Page."
+msgstr ""
+
+#: plugin-options/metabox/ywraq-metabox-order.php:302
+#: plugin-options/quote/payment-options.php:32
+msgid "In this page, neither billing nor shipping information will be requested."
+msgstr ""
+
+#: plugin-options/metabox/ywraq-metabox-order.php:303
+msgid "If billing and shipping are empty, the user will be redirect to the default Checkout page."
+msgstr ""
+
+#: plugin-options/metabox/ywraq-metabox-order.php:314
+msgid "Override checkout fields with the billing and shipping info of this order"
+msgstr ""
+
+#: plugin-options/metabox/ywraq-metabox-order.php:317
+msgid "Choose whether to override the billing and shipping checkout fields of this order."
+msgstr ""
+
+#: plugin-options/metabox/ywraq-metabox-order.php:320
+#: plugin-options/quote/payment-options.php:49
+msgid "Do not override billing and shipping info"
+msgstr ""
+
+#: plugin-options/metabox/ywraq-metabox-order.php:321
+#: plugin-options/quote/payment-options.php:50
+msgid "Override billing and shipping info"
+msgstr ""
+
+#: plugin-options/metabox/ywraq-metabox-order.php:322
+#: plugin-options/quote/payment-options.php:51
+msgid "Override billing info"
+msgstr ""
+
+#: plugin-options/metabox/ywraq-metabox-order.php:323
+#: plugin-options/quote/payment-options.php:52
+msgid "Override shipping info"
+msgstr ""
+
+#: plugin-options/metabox/ywraq-metabox-order.php:333
+#: plugin-options/quote/payment-options.php:56
+msgid "Override shipping costs"
+msgstr ""
+
+#: plugin-options/metabox/ywraq-metabox-order.php:335
+msgid "Enable if you want to apply the shipping costs applied in this quote and not the default shipping."
+msgstr ""
+
+#: plugin-options/metabox/ywraq-metabox-order.php:345
+#: plugin-options/quote/payment-options.php:65
+msgid "Lock the editing of checkout fields"
+msgstr ""
+
+#: plugin-options/metabox/ywraq-metabox-order.php:347
+msgid "If enabled, the customer will be not able to edit the checkout fields."
+msgstr ""
+
+#: plugin-options/metabox/ywraq-metabox-order.php:360
+msgid "Set an expiration date for this quote"
+msgstr ""
+
+#: plugin-options/metabox/ywraq-metabox-order.php:378
+msgid "Check quote before sending"
+msgstr ""
+
+#: plugin-options/metabox/ywraq-metabox-order.php:384
+msgid "Send a test email to:"
+msgstr ""
+
+#: plugin-options/metabox/ywraq-metabox-order.php:385
+msgid "The email has been sent."
+msgstr ""
+
+#: plugin-options/metabox/ywraq-metabox-order.php:385
+msgid "Please add a valid email address."
+msgstr ""
+
+#: plugin-options/metabox/ywraq-metabox-order.php:386
+msgid "Send a test email to check the content of the quote before sending it to the customer."
+msgstr ""
+
+#: plugin-options/metabox/ywraq-metabox-order.php:396
+msgid "Send email"
+msgstr ""
+
+#: plugin-options/metabox/ywraq-metabox-order.php:409
+msgid "See a PDF preview"
+msgstr ""
+
+#: plugin-options/metabox/ywraq-metabox-order.php:410
+msgid "Click to see a PDF preview of this quote."
+msgstr ""
+
+#: plugin-options/metabox/ywraq-metabox-order.php:413
+msgid "PDF preview"
+msgstr ""
+
+#: plugin-options/metabox/ywraq-metabox-order.php:427
+msgid "Send Quote"
+msgstr ""
+
+#: plugin-options/quote-options.php:26
+msgctxt "Admin title of tab"
+msgid "Quote Options"
+msgstr ""
+
+#: plugin-options/quote-options.php:27
+msgid "Configure the quote options settings."
+msgstr ""
+
+#: plugin-options/quote-options.php:30
+msgctxt "Admin title of tab"
+msgid "Quote PDF"
+msgstr ""
+
+#: plugin-options/quote-options.php:31
+msgid "Configure the quote PDF settings."
+msgstr ""
+
+#: plugin-options/quote-options.php:34
+msgctxt "Admin title of tab"
+msgid "Quote PDF Templates"
+msgstr ""
+
+#: plugin-options/quote-options.php:35
+msgid "Create and manage quote templates that your customers can download as PDFs."
+msgstr ""
+
+#: plugin-options/quote-options.php:38
+msgctxt "Admin title of tab"
+msgid "Quotes in My Account"
+msgstr ""
+
+#: plugin-options/quote-options.php:39
+msgid "Configure the quote endpoint settings."
+msgstr ""
+
+#: plugin-options/quote-options.php:42
+msgctxt "Admin title of tab"
+msgid "Quote Payment"
+msgstr ""
+
+#: plugin-options/quote-options.php:43
+msgid "Configure the quote payment settings."
+msgstr ""
+
+#: plugin-options/quote/endpoint-options.php:22
+msgid "Quote options in \"My Account\""
+msgstr ""
+
+#: plugin-options/quote/endpoint-options.php:27
+msgid "Quotes endpoint label"
+msgstr ""
+
+#: plugin-options/quote/endpoint-options.php:28
+msgid "Enter the text to identify the \"Quotes\" endpoint in the user's \"My Account\" page."
+msgstr ""
+
+#: plugin-options/quote/endpoint-options.php:33
+msgctxt "Endpoint label on My account"
+msgid "Quotes"
+msgstr ""
+
+#: plugin-options/quote/endpoint-options.php:36
+msgid "Additional label for the \"New quote requests\" status"
+msgstr ""
+
+#: plugin-options/quote/endpoint-options.php:37
+msgid "Enter an optional text to show near the \"New quote request\" status."
+msgstr ""
+
+#: plugin-options/quote/endpoint-options.php:41
+#: templates/myaccount/view-quote.php:109
+#: templates/quote-preview.php:59
+msgctxt "Endpoint label on My account"
+msgid "You will get a quote soon!"
+msgstr ""
+
+#: plugin-options/quote/endpoint-options.php:44
+msgid "Default text to show in all new quotes requests"
+msgstr ""
+
+#: plugin-options/quote/endpoint-options.php:45
+msgid "Enter an additional text to show in My Account, in all new quotes."
+msgstr ""
+
+#: plugin-options/quote/endpoint-options.php:50
+msgid ""
+"Hi, and thank you for your request.\n"
+"We usually reply to all quote requests in 3 working days.\n"
+"Feel free to contact our Customer Service if you need additional info or help.\n"
+"\n"
+"Regards,\n"
+"Site name staff"
+msgstr ""
+
+#: plugin-options/quote/endpoint-options.php:61
+msgid "Hide product prices in all new quote details"
+msgstr ""
+
+#: plugin-options/quote/endpoint-options.php:62
+msgid "Enable to hide the product prices in the new quote requests in \"My Account\"."
+msgstr ""
+
+#: plugin-options/quote/endpoint-options.php:69
+msgid "Show \"Order again\" button"
+msgstr ""
+
+#: plugin-options/quote/endpoint-options.php:70
+msgid "Enable to show the \"Order again\" button in \"My Account\"."
+msgstr ""
+
+#: plugin-options/quote/endpoint-options.php:77
+msgid "\"Order again\" label"
+msgstr ""
+
+#: plugin-options/quote/endpoint-options.php:78
+#: plugin-options/quote/settings-options.php:152
+#: plugin-options/quote/settings-options.php:187
+#: plugin-options/request/page-options.php:192
+#: plugin-options/request/page-options.php:212
+#: plugin-options/request/page-options.php:241
+msgid "Enter the button's label."
+msgstr ""
+
+#: plugin-options/quote/endpoint-options.php:87
+msgid "Order again"
+msgstr ""
+
+#: plugin-options/quote/endpoint-options.php:90
+msgid "Show \"Ask new quote\""
+msgstr ""
+
+#: plugin-options/quote/endpoint-options.php:91
+msgid "Enable to allow users to \"Ask new quote\" for the same list of products from their quotes list."
+msgstr ""
+
+#: plugin-options/quote/endpoint-options.php:98
+msgid "\"Ask new quote\" label"
+msgstr ""
+
+#: plugin-options/quote/endpoint-options.php:99
+msgid "Enter the text to show."
+msgstr ""
+
+#: plugin-options/quote/endpoint-options.php:108
+msgctxt "label of button to add ask a new quote for the same products"
+msgid "Ask a new quote"
+msgstr ""
+
+#: plugin-options/quote/payment-options.php:22
+#: plugin-options/quote/settings-options.php:215
+msgid "Quote payment"
+msgstr ""
+
+#: plugin-options/quote/payment-options.php:23
+msgid "These options apply to all new quote requests, but can be overridden on the quote detail page."
+msgstr ""
+
+#: plugin-options/quote/payment-options.php:31
+msgid "If billing and shipping fields are filled, you can send the customer to the \"Pay for Quote\" Page."
+msgstr ""
+
+#: plugin-options/quote/payment-options.php:33
+msgid "If billing and shipping are empty, the user will be redirected to the default Checkout page."
+msgstr ""
+
+#: plugin-options/quote/payment-options.php:41
+msgid "Override checkout fields with the billing and shipping info of all orders"
+msgstr ""
+
+#: plugin-options/quote/payment-options.php:46
+msgid "Choose whether to override the billing and shipping checkout fields of all orders."
+msgstr ""
+
+#: plugin-options/quote/payment-options.php:60
+msgid "Enable if you want to apply the shipping costs applied in the quote, and not the default shipping costs."
+msgstr ""
+
+#: plugin-options/quote/payment-options.php:69
+msgid "If enabled, the customer can not edit the checkout fields."
+msgstr ""
+
+#: plugin-options/quote/pdf-options.php:20
+msgctxt "Admin notice"
+msgid "In order to use the PDF builder you need to install Gutenberg and update WordPress to the last version."
+msgstr ""
+
+#: plugin-options/quote/pdf-options.php:24
+msgid "Quote PDF"
+msgstr ""
+
+#: plugin-options/quote/pdf-options.php:29
+msgid "Allow quotes to be downloaded as PDF"
+msgstr ""
+
+#: plugin-options/quote/pdf-options.php:30
+msgid "If enabled, users can download the quote in a PDF version from \"My Account\"."
+msgstr ""
+
+#: plugin-options/quote/pdf-options.php:37
+msgid "PDF file name"
+msgstr ""
+
+#: plugin-options/quote/pdf-options.php:39
+msgid "Enter a name to identify the PDF quote. Customers will see this name when they download or open the file. It is possible to use %quote_number% to use the number of the quote and %rand% to add a random number."
+msgstr ""
+
+#: plugin-options/quote/pdf-options.php:52
+msgid "Hide product list in the email content when a PDF quote is attached"
+msgstr ""
+
+#: plugin-options/quote/pdf-options.php:53
+msgid "Hide product list in the content if the PDF version is attached to the email."
+msgstr ""
+
+#: plugin-options/quote/pdf-options.php:64
+msgid "Attach a PDF version to the quote email"
+msgstr ""
+
+#: plugin-options/quote/pdf-options.php:65
+msgid "If enabled, users can download a PDF version of the quotes."
+msgstr ""
+
+#: plugin-options/quote/pdf-options.php:80
+msgid "PDF quote templates"
+msgstr ""
+
+#: plugin-options/quote/pdf-options.php:85
+msgid "PDF template to use"
+msgstr ""
+
+#: plugin-options/quote/pdf-options.php:88
+msgid "Choose if you want to use the default template included in the plugin, or if you want to enable the templates builder to create a custom template for your quotes."
+msgstr ""
+
+#: plugin-options/quote/pdf-options.php:91
+msgctxt "part of a sentence in the option \"PDF template to use\" "
+msgid "Note:"
+msgstr ""
+
+#: plugin-options/quote/pdf-options.php:92
+msgctxt "part of a sentence in the option \"PDF template to use\" "
+msgid "to enable the builder you need to enable Gutenberg."
+msgstr ""
+
+#: plugin-options/quote/pdf-options.php:98
+msgid "Use the default template"
+msgstr ""
+
+#: plugin-options/quote/pdf-options.php:99
+msgid "Create and choose a custom template"
+msgstr ""
+
+#: plugin-options/quote/pdf-options.php:108
+msgctxt "Admin option label"
+msgid "Choose template"
+msgstr ""
+
+#: plugin-options/quote/pdf-options.php:109
+msgid "Choose which template to use by default for your PDF Quotes. You can create unlimited templates in the Quote Template tab."
+msgstr ""
+
+#: plugin-options/quote/pdf-options.php:120
+msgid "PDF layout based on a"
+msgstr ""
+
+#: plugin-options/quote/pdf-options.php:122
+msgid "Table allows adding content to the HTML table."
+msgstr ""
+
+#: plugin-options/quote/pdf-options.php:123
+msgid "DIV replaces the HTML table with DIVs (use this to avoid some issues with pagination)."
+msgstr ""
+
+#: plugin-options/quote/pdf-options.php:128
+msgid "Table"
+msgstr ""
+
+#: plugin-options/quote/pdf-options.php:129
+msgid "DIV"
+msgstr ""
+
+#: plugin-options/quote/pdf-options.php:138
+#: plugin-options/request/page-options.php:252
+msgid "Logo"
+msgstr ""
+
+#: plugin-options/quote/pdf-options.php:139
+#: plugin-options/request/page-options.php:253
+msgid "Upload a logo to identify your shop in the PDF file."
+msgstr ""
+
+#: plugin-options/quote/pdf-options.php:149
+msgid "Sender info text in PDF quote"
+msgstr ""
+
+#: plugin-options/quote/pdf-options.php:150
+msgid "Enter the sender information that will be shown in the PDF quote."
+msgstr ""
+
+#: plugin-options/quote/pdf-options.php:161
+msgid "Show quote author"
+msgstr ""
+
+#: plugin-options/quote/pdf-options.php:162
+msgid "Enable to show information about the user that sent the quote."
+msgstr ""
+
+#: plugin-options/quote/pdf-options.php:173
+msgid "In product table show this info:"
+msgstr ""
+
+#: plugin-options/quote/pdf-options.php:174
+msgid "Choose the information to show in the product list."
+msgstr ""
+
+#: plugin-options/quote/pdf-options.php:183
+msgctxt "show all fields"
+msgid "All"
+msgstr ""
+
+#: plugin-options/quote/pdf-options.php:203
+msgid "Hide \"Total Price\" row"
+msgstr ""
+
+#: plugin-options/quote/pdf-options.php:204
+msgid "Enable to hide the \"Total Price\" row in the product list."
+msgstr ""
+
+#: plugin-options/quote/pdf-options.php:215
+msgid "Show \"Accept | Reject\" links"
+msgstr ""
+
+#: plugin-options/quote/pdf-options.php:217
+msgid "Enable to add the link to accept or reject the quote into the PDF."
+msgstr ""
+
+#: plugin-options/quote/pdf-options.php:218
+msgid "To show both links be sure to enable also the option in \"Quote option\" tab."
+msgstr ""
+
+#: plugin-options/quote/pdf-options.php:229
+msgid "Optional text in PDF quote footer"
+msgstr ""
+
+#: plugin-options/quote/pdf-options.php:230
+msgid "Enter an additional text content to show in the footer area of the PDF Quote."
+msgstr ""
+
+#: plugin-options/quote/pdf-options.php:241
+msgid "Enable pagination in PDF"
+msgstr ""
+
+#: plugin-options/quote/pdf-options.php:242
+msgid "Enable to add pagination numbers at the end of the PDF quote, if the quote has more pages."
+msgstr ""
+
+#: plugin-options/quote/settings-options.php:29
+msgctxt "Admin quote options name"
+msgid "When a user sends a quote request"
+msgstr ""
+
+#: plugin-options/quote/settings-options.php:30
+msgctxt "Admin quote options description"
+msgid "Choose to automatically generate an order when a new quote request is received or to only receive a notification email and manage the quote manually."
+msgstr ""
+
+#: plugin-options/quote/settings-options.php:35
+msgctxt "Admin quote options radio option"
+msgid "Save the request as an order with status \"New quote request\" and send an email to the site admin (Recommended)"
+msgstr ""
+
+#: plugin-options/quote/settings-options.php:36
+msgctxt "Admin quote options radio option"
+msgid "Only send an email to the site admin"
+msgstr ""
+
+#: plugin-options/quote/settings-options.php:41
+msgid "Set an expiry time for quotes"
+msgstr ""
+
+#: plugin-options/quote/settings-options.php:42
+msgid "Enable if you want to set an expiry time for all quotes sent."
+msgstr ""
+
+#: plugin-options/quote/settings-options.php:49
+msgid "All quotes will expire after"
+msgstr ""
+
+#: plugin-options/quote/settings-options.php:50
+msgid "Choose after how many days quotes will expire."
+msgstr ""
+
+#: plugin-options/quote/settings-options.php:64
+msgid "days"
+msgstr ""
+
+#: plugin-options/quote/settings-options.php:73
+msgid "Strikethrough on original prices on discounted quote"
+msgstr ""
+
+#: plugin-options/quote/settings-options.php:74
+msgid "Enable to show the original price with a strikethrough if a discounted price is shown on all quotes."
+msgstr ""
+
+#: plugin-options/quote/settings-options.php:81
+msgid "Add default shipping fee to quote"
+msgstr ""
+
+#: plugin-options/quote/settings-options.php:82
+msgid "Enable to add default shipping cost to the quote."
+msgstr ""
+
+#: plugin-options/quote/settings-options.php:89
+msgid "Enable the option to add multiple shipping costs"
+msgstr ""
+
+#: plugin-options/quote/settings-options.php:90
+msgid "If enabled, it will be possible to manually add more shipping costs by the admin which will show as a total at checkout."
+msgstr ""
+
+#: plugin-options/quote/settings-options.php:97
+msgid "Generate and send quotes automatically"
+msgstr ""
+
+#: plugin-options/quote/settings-options.php:98
+msgid "Enable to send an automatic quote with product prices. This option is useful if you hide prices in your shop and want to send a quote with all prices only to users that sends a quote request."
+msgstr ""
+
+#: plugin-options/quote/settings-options.php:105
+msgid "Send automatically the quote after"
+msgstr ""
+
+#: plugin-options/quote/settings-options.php:106
+msgid "Choose when to send the quote automatically."
+msgstr ""
+
+#: plugin-options/quote/settings-options.php:121
+msgid "Minutes"
+msgstr ""
+
+#: plugin-options/quote/settings-options.php:122
+msgid "Hours"
+msgstr ""
+
+#: plugin-options/quote/settings-options.php:123
+msgid "Days"
+msgstr ""
+
+#: plugin-options/quote/settings-options.php:138
+msgid "Accept / Reject options"
+msgstr ""
+
+#: plugin-options/quote/settings-options.php:143
+msgid "Show \"Accept\" button on quote"
+msgstr ""
+
+#: plugin-options/quote/settings-options.php:144
+msgid "Enable to show the \"Accept\" button in the email received by the user and in \"My Account\" page."
+msgstr ""
+
+#: plugin-options/quote/settings-options.php:151
+msgid "\"Accept\" label"
+msgstr ""
+
+#: plugin-options/quote/settings-options.php:164
+msgid "Redirect after accepting quote:"
+msgstr ""
+
+#: plugin-options/quote/settings-options.php:165
+msgid "Choose to which page the user will be redirected after clicking the \"Accept\" link."
+msgstr ""
+
+#: plugin-options/quote/settings-options.php:178
+msgid "Show \"Reject\" button on quote"
+msgstr ""
+
+#: plugin-options/quote/settings-options.php:179
+msgid "Enable to show the \"Reject\" button in the email received by the user and in \"My Account\" page."
+msgstr ""
+
+#: plugin-options/quote/settings-options.php:186
+msgid "\"Reject\" label"
+msgstr ""
+
+#: plugin-options/quote/settings-options.php:199
+msgid "Block cart content after accepting a quote"
+msgstr ""
+
+#: plugin-options/quote/settings-options.php:200
+msgid "If enabled, the user that accepts a quote can't add additional products to the cart or change items quantity."
+msgstr ""
+
+#: plugin-options/quote/settings-options.php:220
+msgctxt "Admin quote options name"
+msgid "Quote payment preference"
+msgstr ""
+
+#: plugin-options/quote/settings-options.php:221
+msgctxt "Admin quote options description"
+msgid "Choose which payment methods to accept for quote payments. You can allow all gateways enabled in WooCommerce or only specific ones."
+msgstr ""
+
+#: plugin-options/quote/settings-options.php:226
+msgctxt "Admin quote options radio option"
+msgid "Through any enabled WooCommerce payment gateways"
+msgstr ""
+
+#: plugin-options/quote/settings-options.php:227
+msgctxt "Admin quote options radio option"
+msgid "Only through specific payment methods"
+msgstr ""
+
+#: plugin-options/quote/settings-options.php:232
+msgid "Accepted quote payment gateways"
+msgstr ""
+
+#. translators: html tags.
+#: plugin-options/quote/settings-options.php:234
+msgctxt "Placeholder is an html tag"
+msgid "Choose the payment methods to accept for quote payment. %sLeave empty if the user can pay using all payment methods that are enabled in the store."
+msgstr ""
+
+#: plugin-options/request-options.php:26
+msgctxt "Admin title of tab"
+msgid "Page Options"
+msgstr ""
+
+#: plugin-options/request-options.php:27
+msgid "Configure the \"Request a quote\" page settings."
+msgstr ""
+
+#: plugin-options/request-options.php:30
+msgctxt "Admin title of tab"
+msgid "Form Options"
+msgstr ""
+
+#: plugin-options/request-options.php:31
+msgid "Configure the \"Request a quote\" form settings."
+msgstr ""
+
+#: plugin-options/request/form-options.php:22
+msgid "\"Request a quote\" form"
+msgstr ""
+
+#: plugin-options/request/form-options.php:27
+msgid "Choose the form to show in \"Request a quote\" page"
+msgstr ""
+
+#: plugin-options/request/form-options.php:28
+msgid "Choose the form to show to request quote details. You can also add Contact Form 7, Gravity Form, Ninja forms or WPForms, which must be installed and activated."
+msgstr ""
+
+#: plugin-options/request/form-options.php:57
+msgctxt "Admin options title"
+msgid "Default form fields"
+msgstr ""
+
+#: plugin-options/request/form-options.php:73
+msgctxt "Admin options title"
+msgid "Default form options"
+msgstr ""
+
+#: plugin-options/request/form-options.php:78
+msgid "User registration"
+msgstr ""
+
+#: plugin-options/request/form-options.php:79
+msgid "Choose whether to register the user or make this optional."
+msgstr ""
+
+#: plugin-options/request/form-options.php:84
+msgid "Don't show a registration option in this form"
+msgstr ""
+
+#: plugin-options/request/form-options.php:85
+msgid "Show an optional checkbox to allow registration"
+msgstr ""
+
+#: plugin-options/request/form-options.php:86
+msgid "Force user registration"
+msgstr ""
+
+#: plugin-options/request/form-options.php:96
+msgid "Add a reCAPTCHA to the default form"
+msgstr ""
+
+#. translators: html tags.
+#: plugin-options/request/form-options.php:98
+msgctxt "string with placeholder do not translate or remove it"
+msgid "Enable to add reCAPTCHA option in default form. %1$s To start using reCAPTCHA, you need to %2$s sign up for an API key %3$s pair for your site."
+msgstr ""
+
+#: plugin-options/request/form-options.php:111
+msgid "Choose the reCAPTCHA version"
+msgstr ""
+
+#: plugin-options/request/form-options.php:112
+msgid "Select the reCAPTCHA version."
+msgstr ""
+
+#: plugin-options/request/form-options.php:117
+msgctxt "reCAPTCHA version in admin options"
+msgid "v2"
+msgstr ""
+
+#: plugin-options/request/form-options.php:118
+msgctxt "reCAPTCHA version in admin options"
+msgid "v3 - Invisible"
+msgstr ""
+
+#: plugin-options/request/form-options.php:128
+msgid "Site key"
+msgstr ""
+
+#: plugin-options/request/form-options.php:129
+msgid "Enter the reCAPTCHA site key"
+msgstr ""
+
+#: plugin-options/request/form-options.php:142
+msgid "Secret key"
+msgstr ""
+
+#: plugin-options/request/form-options.php:143
+msgid "Enter reCAPTCHA secret key"
+msgstr ""
+
+#: plugin-options/request/form-options.php:156
+msgid "Autocomplete Form"
+msgstr ""
+
+#: plugin-options/request/form-options.php:157
+msgid "If enabled, the fields connected to WooCommerce will be filled automatically."
+msgstr ""
+
+#: plugin-options/request/form-options.php:169
+msgid "Date picker format"
+msgstr ""
+
+#: plugin-options/request/form-options.php:170
+msgid "Choose the format for the date picker in the default form."
+msgstr ""
+
+#: plugin-options/request/form-options.php:183
+msgid "Time picker format"
+msgstr ""
+
+#: plugin-options/request/form-options.php:184
+msgid "Choose the format for the time picker in default form."
+msgstr ""
+
+#: plugin-options/request/page-options.php:22
+msgid "\"Request quote\" page options"
+msgstr ""
+
+#: plugin-options/request/page-options.php:27
+msgid "\"Request a quote\" page"
+msgstr ""
+
+#: plugin-options/request/page-options.php:30
+msgid "Choose from this list the page on which users will see the list of products added to the quote and send the request."
+msgstr ""
+
+#: plugin-options/request/page-options.php:31
+msgid "Please note: if you choose a page different from the default one (request quote) you need to insert"
+msgstr ""
+
+#: plugin-options/request/page-options.php:32
+msgid "in the page the following shortcode: [yith_ywraq_request_quote] "
+msgstr ""
+
+#: plugin-options/request/page-options.php:46
+msgctxt "part of the string (or Create a page) inside admin panel"
+msgid "or"
+msgstr ""
+
+#: plugin-options/request/page-options.php:48
+msgid "Create a page"
+msgstr ""
+
+#: plugin-options/request/page-options.php:52
+msgid "Page Layout"
+msgstr ""
+
+#: plugin-options/request/page-options.php:53
+msgid "Choose the layout for \"Request a quote\" page."
+msgstr ""
+
+#: plugin-options/request/page-options.php:58
+msgid "Product list on left side, form on right side"
+msgstr ""
+
+#: plugin-options/request/page-options.php:59
+msgid "Product list above, form below"
+msgstr ""
+
+#: plugin-options/request/page-options.php:68
+msgid "Form options"
+msgstr ""
+
+#: plugin-options/request/page-options.php:73
+msgid "Show form even with empty list"
+msgstr ""
+
+#: plugin-options/request/page-options.php:74
+msgid "Enable to show the form in request quote page also with an empty list of products."
+msgstr ""
+
+#: plugin-options/request/page-options.php:81
+msgid "Title before form"
+msgstr ""
+
+#: plugin-options/request/page-options.php:82
+msgid "Enter an optional title to show above the form."
+msgstr ""
+
+#: plugin-options/request/page-options.php:93
+msgid "Product table"
+msgstr ""
+
+#: plugin-options/request/page-options.php:98
+msgid "In product table, show:"
+msgstr ""
+
+#: plugin-options/request/page-options.php:99
+msgid "Choose which info to show in the product table."
+msgstr ""
+
+#: plugin-options/request/page-options.php:104
+msgid "Product images"
+msgstr ""
+
+#: plugin-options/request/page-options.php:105
+msgid "Product prices"
+msgstr ""
+
+#: plugin-options/request/page-options.php:106
+msgid "Product SKU"
+msgstr ""
+
+#: plugin-options/request/page-options.php:107
+#: templates/pdf/preview-list/preview-list.php:159
+#: templates/pdf/quote-table-div.php:65
+#: templates/pdf/quote-table.php:70
+#: templates/request-quote-table.php:94
+#: templates/request-quote-table.php:210
+#: templates/request-quote-table.php:401
+msgid "Quantity"
+msgstr ""
+
+#: plugin-options/request/page-options.php:108
+msgid "Total amount of single products"
+msgstr ""
+
+#: plugin-options/request/page-options.php:109
+msgid "Total amount of all products"
+msgstr ""
+
+#: plugin-options/request/page-options.php:119
+msgid "\"Return to shop\" options"
+msgstr ""
+
+#: plugin-options/request/page-options.php:124
+msgid "Show \"Return to Shop\" button"
+msgstr ""
+
+#: plugin-options/request/page-options.php:125
+msgid "Enable to show the \"Return to shop\" button."
+msgstr ""
+
+#: plugin-options/request/page-options.php:132
+msgid "\"Return to Shop\" label"
+msgstr ""
+
+#: plugin-options/request/page-options.php:133
+#: plugin-options/request/page-options.php:298
+msgid "Enter the button's label"
+msgstr ""
+
+#: plugin-options/request/page-options.php:142
+#: plugin-options/request/page-options.php:306
+msgid "Return to Shop"
+msgstr ""
+
+#: plugin-options/request/page-options.php:145
+#: plugin-options/request/page-options.php:309
+msgid "\"Return to Shop\" URL"
+msgstr ""
+
+#: plugin-options/request/page-options.php:146
+#: plugin-options/request/page-options.php:310
+msgid "Choose the URL to assign to the button."
+msgstr ""
+
+#: plugin-options/request/page-options.php:151
+#: plugin-options/request/page-options.php:315
+msgid "WooCommerce Shop page"
+msgstr ""
+
+#: plugin-options/request/page-options.php:152
+#: plugin-options/request/page-options.php:316
+msgid "Custom URL"
+msgstr ""
+
+#: plugin-options/request/page-options.php:162
+#: plugin-options/request/page-options.php:326
+msgid "Enter the URL to assign to the button."
+msgstr ""
+
+#: plugin-options/request/page-options.php:178
+msgid "\"Update &amp; clear list\" options"
+msgstr ""
+
+#: plugin-options/request/page-options.php:183
+msgid "Show \"Update List\" button"
+msgstr ""
+
+#: plugin-options/request/page-options.php:184
+msgid "Enable to show the \"Update list\" button."
+msgstr ""
+
+#: plugin-options/request/page-options.php:191
+msgid "\"Update List\" label"
+msgstr ""
+
+#: plugin-options/request/page-options.php:200
+msgid "Update List"
+msgstr ""
+
+#: plugin-options/request/page-options.php:203
+msgid "Show \"Clear list\" button"
+msgstr ""
+
+#: plugin-options/request/page-options.php:204
+msgid "Enable to show the \"Clear list\" button."
+msgstr ""
+
+#: plugin-options/request/page-options.php:211
+msgid "\"Clear List\" label"
+msgstr ""
+
+#: plugin-options/request/page-options.php:227
+msgid "PDF options"
+msgstr ""
+
+#: plugin-options/request/page-options.php:232
+msgid "Show \"View PDF\" button"
+msgstr ""
+
+#: plugin-options/request/page-options.php:233
+msgid "Enable to allow users to download the products list in a PDF file."
+msgstr ""
+
+#: plugin-options/request/page-options.php:240
+msgid "\"View PDF\" label"
+msgstr ""
+
+#: plugin-options/request/page-options.php:249
+msgctxt "Admin option label for button to make a PDF on Request a quote page"
+msgid "View PDF"
+msgstr ""
+
+#: plugin-options/request/page-options.php:267
+msgid "Request sending"
+msgstr ""
+
+#: plugin-options/request/page-options.php:272
+msgid "After request sending, show:"
+msgstr ""
+
+#: plugin-options/request/page-options.php:273
+msgid "Choose what to show after a quote request has been sent."
+msgstr ""
+
+#: plugin-options/request/page-options.php:278
+msgid "A simple text message"
+msgstr ""
+
+#: plugin-options/request/page-options.php:279
+msgid "A detail page of quote request"
+msgstr ""
+
+#: plugin-options/request/page-options.php:280
+msgid "A specific \"Thank you\" page"
+msgstr ""
+
+#: plugin-options/request/page-options.php:285
+msgid "Text to show after request sending"
+msgstr ""
+
+#: plugin-options/request/page-options.php:286
+msgid "Choose what message to show to the user after the request is sent. It is possible to use %quote_number% to show the link to the quote details."
+msgstr ""
+
+#: plugin-options/request/page-options.php:290
+msgid "Your request has been sent successfully. You can see details at: %quote_number%"
+msgstr ""
+
+#: plugin-options/request/page-options.php:297
+msgid "\"Return to shop\" label after request sending"
+msgstr ""
+
+#: plugin-options/request/page-options.php:338
+msgid "Choose the \"Thank you\" page"
+msgstr ""
+
+#: plugin-options/request/page-options.php:339
+msgid "Choose the page to show to the user after the request is sent."
+msgstr ""
+
+#: templates/cart/request-quote-on-cart.php:2
+msgctxt "title of the popup on cart page"
+msgid "Request a Quote"
+msgstr ""
+
+#. translators: number of quote.
+#: templates/emails/change-status.php:32
+msgid "The Proposal # %s has been accepted"
+msgstr ""
+
+#. translators: number of quote.
+#: templates/emails/change-status.php:39
+msgid "The Proposal # %s has been rejected."
+msgstr ""
+
+#: templates/emails/change-status.php:45
+#: templates/emails/request-quote-customer.php:90
+#: templates/emails/request-quote.php:74
+msgid "You can see details here:"
+msgstr ""
+
+#: templates/emails/customer-details.php:25
+#: templates/emails/plain/quote-reminder-accept.php:90
+#: templates/emails/plain/quote-reminder.php:90
+#: templates/emails/plain/quote.php:90
+#: templates/emails/plain/request-quote.php:38
+#: templates/emails/request-quote.php:82
+#: templates/myaccount/view-quote.php:391
+#: templates/quote-preview.php:225
+msgid "Customer's details"
+msgstr ""
+
+#: templates/emails/customer-details.php:29
+#: templates/emails/plain/quote-reminder-accept.php:92
+#: templates/emails/plain/quote-reminder.php:92
+#: templates/emails/plain/quote.php:92
+#: templates/emails/plain/request-quote-customer.php:40
+#: templates/emails/plain/request-quote.php:40
+#: templates/myaccount/view-quote.php:428
+#: templates/quote-preview.php:251
+msgid "Name:"
+msgstr ""
+
+#: templates/emails/customer-details.php:35
+#: templates/emails/plain/quote-reminder-accept.php:129
+#: templates/emails/plain/quote-reminder.php:129
+#: templates/emails/plain/quote.php:129
+#: templates/emails/plain/request-quote-customer.php:42
+#: templates/emails/plain/request-quote.php:42
+#: templates/myaccount/view-quote.php:462
+#: templates/quote-preview.php:283
+msgid "Email:"
+msgstr ""
+
+#: templates/emails/customer-details.php:41
+#: templates/emails/plain/quote-reminder-accept.php:138
+#: templates/emails/plain/quote-reminder.php:138
+#: templates/emails/plain/quote.php:138
+msgid "Billing VAT:"
+msgstr ""
+
+#: templates/emails/customer-details.php:47
+#: templates/emails/plain/quote-reminder-accept.php:133
+#: templates/emails/plain/quote-reminder.php:133
+#: templates/emails/plain/quote.php:133
+msgid "Billing Phone:"
+msgstr ""
+
+#. translators: number of quote .
+#: templates/emails/plain/change-status.php:25
+msgid "The Proposal #%d has been accepted"
+msgstr ""
+
+#. translators: number of quote and reason .
+#: templates/emails/plain/change-status.php:28
+msgid "The Proposal #%1$d has been rejected. %2$s"
+msgstr ""
+
+#. translators: email title and quote number.
+#. translators: Email title and number of quote.
+#: templates/emails/plain/quote-reminder-accept.php:19
+#: templates/emails/plain/quote-reminder.php:19
+#: templates/emails/plain/quote.php:19
+msgid "%1$s n. %2$d"
+msgstr ""
+
+#. translators: date of quote.
+#. translators: Request a quote date.
+#: templates/emails/plain/quote-reminder-accept.php:23
+#: templates/emails/plain/quote-reminder.php:23
+#: templates/emails/plain/quote.php:23
+msgid "Request date: %s"
+msgstr ""
+
+#. translators: expiration date of quote.
+#. translators: Expiration date.
+#: templates/emails/plain/quote-reminder-accept.php:27
+#: templates/emails/plain/quote-reminder.php:27
+#: templates/emails/plain/quote.php:27
+msgid "Expiration date: %s"
+msgstr ""
+
+#: templates/emails/plain/quote-reminder-accept.php:96
+#: templates/emails/plain/quote-reminder.php:96
+#: templates/emails/plain/quote.php:96
+#: templates/myaccount/view-quote.php:431
+#: templates/quote-preview.php:254
+msgid "Company:"
+msgstr ""
+
+#: templates/emails/plain/quote-reminder-accept.php:100
+#: templates/emails/plain/quote-reminder.php:100
+#: templates/emails/plain/quote.php:100
+#: templates/myaccount/view-quote.php:437
+#: templates/quote-preview.php:259
+msgid "Address:"
+msgstr ""
+
+#: templates/emails/plain/quote-reminder-accept.php:104
+#: templates/emails/plain/quote-reminder.php:104
+#: templates/emails/plain/quote.php:104
+#: templates/myaccount/view-quote.php:441
+#: templates/quote-preview.php:263
+msgid "City:"
+msgstr ""
+
+#: templates/emails/plain/quote-reminder-accept.php:108
+#: templates/emails/plain/quote-reminder.php:108
+#: templates/emails/plain/quote.php:108
+#: templates/myaccount/view-quote.php:445
+#: templates/quote-preview.php:267
+msgid "Postcode:"
+msgstr ""
+
+#: templates/emails/plain/quote-reminder-accept.php:118
+#: templates/emails/plain/quote-reminder.php:118
+#: templates/emails/plain/quote.php:118
+msgid "State:"
+msgstr ""
+
+#: templates/emails/plain/quote-reminder-accept.php:125
+#: templates/emails/plain/quote-reminder.php:125
+#: templates/emails/plain/quote.php:125
+#: templates/myaccount/view-quote.php:458
+#: templates/quote-preview.php:279
+msgid "Country:"
+msgstr ""
+
+#: templates/emails/plain/request-quote-customer.php:33
+#: templates/emails/request-quote-customer.php:97
+msgid "Your message"
+msgstr ""
+
+#: templates/emails/plain/request-quote-customer.php:38
+#: templates/emails/request-quote-customer.php:101
+msgid "Your details"
+msgstr ""
+
+#: templates/emails/plain/request-quote-customer.php:105
+#: templates/emails/plain/request-quote.php:110
+#: templates/emails/request-quote.php:200
+msgid "Customer's additional fields"
+msgstr ""
+
+#: templates/emails/plain/request-quote.php:33
+#: templates/emails/request-quote.php:79
+msgid "Customer's message"
+msgstr ""
+
+#: templates/emails/quote-reminder-accept.php:133
+#: templates/emails/quote-reminder.php:139
+#: templates/emails/quote.php:133
+msgid "Request date"
+msgstr ""
+
+#: templates/emails/quote-reminder-accept.php:138
+#: templates/emails/quote-reminder.php:144
+#: templates/emails/quote.php:141
+#: templates/pdf/quote-header.php:147
+msgid "Expiration date"
+msgstr ""
+
+#: templates/emails/quote-table.php:42
+#: templates/emails/request-quote-table.php:69
+msgid "Qty"
+msgstr ""
+
+#: templates/emails/quote.php:80
+msgid "%1$s n. %2$s"
+msgstr ""
+
+#: templates/emails/request-quote-customer.php:210
+msgid "Your additional fields"
+msgstr ""
+
+#: templates/emails/request-quote-table.php:44
+msgid "Request"
+msgstr ""
+
+#: templates/emails/request-quote-table.php:297
+#: templates/pdf/preview-list/preview-list.php:465
+#: templates/request-quote-table.php:461
+msgid "Total:"
+msgstr ""
+
+#: templates/emails/request-quote-table.php:306
+#: templates/pdf/preview-list/preview-list.php:471
+#: templates/request-quote-table.php:468
+msgid "includes"
+msgstr ""
+
+#: templates/myaccount/my-quotes.php:49
+msgid "My Quotes"
+msgstr ""
+
+#: templates/myaccount/my-quotes.php:58
+#: includes/builders/gutenberg/src/blocks/ywraq-quote-number/index.js:10
+msgid "Quote number"
+msgstr ""
+
+#: templates/myaccount/my-quotes.php:93
+msgid "Order Number"
+msgstr ""
+
+#: templates/myaccount/my-quotes.php:141
+msgid "No quote request available."
+msgstr ""
+
+#: templates/myaccount/view-quote.php:92
+#: templates/quote-preview.php:29
+msgid "This Quote was deleted by administrator."
+msgstr ""
+
+#: templates/myaccount/view-quote.php:113
+msgid "Pay now"
+msgstr ""
+
+#: templates/myaccount/view-quote.php:119
+msgid "< Back to quote list"
+msgstr ""
+
+#. translators: Number of quote.
+#: templates/myaccount/view-quote.php:126
+msgid "Quote #%s details"
+msgstr ""
+
+#: templates/myaccount/view-quote.php:132
+#: templates/quote-preview.php:78
+msgid "PDF"
+msgstr ""
+
+#: templates/myaccount/view-quote.php:138
+#: templates/quote-preview.php:83
+msgid "Request date:"
+msgstr ""
+
+#: templates/myaccount/view-quote.php:144
+#: templates/quote-preview.php:86
+msgid "Status:"
+msgstr ""
+
+#: templates/myaccount/view-quote.php:152
+#: templates/quote-preview.php:91
+msgid "Quote expires on:"
+msgstr ""
+
+#: templates/myaccount/view-quote.php:160
+msgid "Customer reason:"
+msgstr ""
+
+#: templates/myaccount/view-quote.php:171
+#: templates/quote-preview.php:99
+msgid "Product in your request"
+msgid_plural "Products in your request"
+msgstr[0] ""
+msgstr[1] ""
+
+#: templates/myaccount/view-quote.php:173
+#: templates/quote-preview.php:101
+msgid "Quote Total"
+msgstr ""
+
+#: templates/myaccount/view-quote.php:362
+msgid "Reject Quote."
+msgstr ""
+
+#. translators: Quote number.
+#: templates/myaccount/view-quote.php:367
+msgctxt "The placeholder is the quote number"
+msgid "You are about to reject the quote #%s."
+msgstr ""
+
+#: templates/myaccount/view-quote.php:370
+#: templates/request-quote-message.php:45
+msgid "Please feel free to enter here your reason or provide us your feedback:"
+msgstr ""
+
+#: templates/myaccount/view-quote.php:380
+#: templates/request-quote-message.php:48
+msgid "Reject the quote"
+msgstr ""
+
+#: templates/myaccount/view-quote.php:452
+#: templates/quote-preview.php:274
+msgid "State/Province:"
+msgstr ""
+
+#: templates/myaccount/view-quote.php:467
+#: templates/quote-preview.php:287
+msgid "Telephone:"
+msgstr ""
+
+#: templates/myaccount/view-quote.php:471
+#: templates/quote-preview.php:291
+msgid "VAT:"
+msgstr ""
+
+#: templates/myaccount/view-quote.php:501
+#: templates/quote-preview.php:320
+msgid "Message:"
+msgstr ""
+
+#: templates/myaccount/view-quote.php:510
+#: templates/quote-preview.php:329
+msgid "Admin reply:"
+msgstr ""
+
+#: templates/pdf/preview-list/preview-list.php:36
+msgid "Products in your quote list:"
+msgstr ""
+
+#: templates/pdf/preview-list/preview-list.php:165
+#: templates/pdf/quote-table-div.php:62
+#: templates/pdf/quote-table.php:64
+msgid "Unit Price"
+msgstr ""
+
+#: templates/pdf/quote-footer.php:26
+msgid "Page"
+msgstr ""
+
+#: templates/pdf/quote-header.php:79
+msgid "From"
+msgstr ""
+
+#: templates/pdf/quote-header.php:110
+msgid "Customer"
+msgstr ""
+
+#: templates/pdf/quote-header.php:137
+msgid "Date created"
+msgstr ""
+
+#. translators: number of quote.
+#: templates/quote-preview.php:68
+msgid "Quote #%d details"
+msgstr ""
+
+#: templates/request-quote-default-form.php:79
+msgid "Create an account?"
+msgstr ""
+
+#: templates/request-quote-default-form.php:125
+msgid "Send Your Request"
+msgstr ""
+
+#. translators: quote number.
+#: templates/request-quote-message.php:34
+msgid "You are about to reject the quote #%d"
+msgstr ""
+
+#: templates/request-quote-table.php:91
+#: templates/request-quote-table.php:202
+#: templates/request-quote-table.php:392
+#: templates/request-quote-table.php:429
+msgid "Price"
+msgstr ""
+
+#: templates/request-quote-table.php:277
+#: templates/widgets/mini-quote-list.php:131
+#: templates/widgets/quote-list.php:72
+msgid "Remove this item"
+msgstr ""
+
+#: templates/request-quote-table.php:493
+msgctxt "Admin option label for button to make a PDF on Request a quote page"
+msgid "PDF"
+msgstr ""
+
+#: templates/request-quote.php:36
+msgid "You do not have access to this page"
+msgstr ""
+
+#: templates/widgets/mini-quote-list.php:95
+#: templates/widgets/quote-list.php:39
+msgid "No products in the list"
+msgstr ""
+
+#: views/panel/custom-tabs/ywraq-exclusions-table.php:45
+msgid "+ Add exclusion"
+msgstr ""
+
+#: views/panel/custom-tabs/ywraq-exclusions-table.php:53
+msgctxt "Text showed when the list of quotes is empty."
+msgid "You don't have any exclusion yet."
+msgstr ""
+
+#: views/panel/custom-tabs/ywraq-exclusions-table.php:55
+msgctxt "Text showed when the list of quotes is empty."
+msgid "Click on \"Add exclusion\" button to exclude a product, a category or a tag!"
+msgstr ""
+
+#: views/panel/custom-tabs/ywraq-exclusions-table.php:72
+msgid "Remove item"
+msgstr ""
+
+#: views/panel/custom-tabs/ywraq-exclusions-table.php:74
+msgid "This item will be removed from the list."
+msgstr ""
+
+#: views/panel/custom-tabs/ywraq-exclusions-table.php:76
+#: views/panel/types/default-form.php:377
+#: views/panel/types/default-form.php:384
+msgid "Do you wish to continue?"
+msgstr ""
+
+#: views/panel/custom-tabs/ywraq-exclusions-table.php:84
+msgid "Exclusion type"
+msgstr ""
+
+#: views/panel/custom-tabs/ywraq-exclusions-table.php:95
+msgid "Choose if you want to add a product, a category or a tag."
+msgstr ""
+
+#: views/panel/custom-tabs/ywraq-exclusions-table.php:99
+msgid "Choose products to add"
+msgstr ""
+
+#: views/panel/custom-tabs/ywraq-exclusions-table.php:108
+msgid "Search product..."
+msgstr ""
+
+#: views/panel/custom-tabs/ywraq-exclusions-table.php:115
+msgid "Choose the products to add to the exclusion list"
+msgstr ""
+
+#: views/panel/custom-tabs/ywraq-exclusions-table.php:119
+msgid "Choose categories to add"
+msgstr ""
+
+#: views/panel/custom-tabs/ywraq-exclusions-table.php:128
+msgid "Search category..."
+msgstr ""
+
+#: views/panel/custom-tabs/ywraq-exclusions-table.php:135
+msgid "Choose the categories to add to the exclusion list"
+msgstr ""
+
+#: views/panel/custom-tabs/ywraq-exclusions-table.php:139
+msgid "Choose tags to add"
+msgstr ""
+
+#: views/panel/custom-tabs/ywraq-exclusions-table.php:148
+msgid "Search tag..."
+msgstr ""
+
+#: views/panel/custom-tabs/ywraq-exclusions-table.php:155
+msgid "Choose the tags to add to the exclusion list"
+msgstr ""
+
+#: views/panel/custom-tabs/ywraq-request-list-table.php:41
+msgid "+ Add quote"
+msgstr ""
+
+#: views/panel/custom-tabs/ywraq-request-list-table.php:43
+msgid "Export CSV"
+msgstr ""
+
+#: views/panel/custom-tabs/ywraq-request-list-table.php:52
+msgctxt "Text showed when the list of quotes is empty."
+msgid "You don't have any request yet."
+msgstr ""
+
+#: views/panel/custom-tabs/ywraq-request-list-table.php:54
+msgctxt "Text showed when the list of quotes is empty."
+msgid "But don't worry, your request will appear here soon!"
+msgstr ""
+
+#: views/panel/types/default-form.php:30
+msgctxt "Default form column"
+msgid "Name"
+msgstr ""
+
+#: views/panel/types/default-form.php:36
+msgctxt "Default form column"
+msgid "Type"
+msgstr ""
+
+#: views/panel/types/default-form.php:45
+msgctxt "Default form column"
+msgid "ID"
+msgstr ""
+
+#: views/panel/types/default-form.php:60
+msgctxt "Default form column"
+msgid "Class"
+msgstr ""
+
+#: views/panel/types/default-form.php:61
+#: views/panel/types/default-form.php:74
+msgctxt "Default form description"
+msgid "Separate classes with commas."
+msgstr ""
+
+#: views/panel/types/default-form.php:67
+msgctxt "Default form column"
+msgid "Label"
+msgstr ""
+
+#: views/panel/types/default-form.php:73
+msgctxt "Default form column"
+msgid "Label Class"
+msgstr ""
+
+#: views/panel/types/default-form.php:80
+msgctxt "Default form column"
+msgid "Placeholder"
+msgstr ""
+
+#: views/panel/types/default-form.php:90
+msgctxt "Default form column"
+msgid "Description"
+msgstr ""
+
+#: views/panel/types/default-form.php:91
+msgctxt "Default form description"
+msgid "You can use the shortcode [terms] and [privacy_policy]"
+msgstr ""
+
+#: views/panel/types/default-form.php:103
+msgctxt "Default form column"
+msgid "Allowed extensions"
+msgstr ""
+
+#: views/panel/types/default-form.php:104
+msgctxt "Default form description"
+msgid "Add a list of allowed extensions comma separated."
+msgstr ""
+
+#: views/panel/types/default-form.php:115
+msgctxt "Default form column"
+msgid "Max filesize (MB):"
+msgstr ""
+
+#: views/panel/types/default-form.php:116
+msgctxt "Default form description"
+msgid "Add the max file size of upload file."
+msgstr ""
+
+#: views/panel/types/default-form.php:127
+msgctxt "Default form column"
+msgid "Position"
+msgstr ""
+
+#: views/panel/types/default-form.php:136
+msgctxt "Default form column"
+msgid "Connect to"
+msgstr ""
+
+#: views/panel/types/default-form.php:148
+msgctxt "Default form column"
+msgid "Options"
+msgstr ""
+
+#: views/panel/types/default-form.php:160
+msgctxt "Default form column"
+msgid "Validation"
+msgstr ""
+
+#: views/panel/types/default-form.php:172
+msgctxt "Default form column"
+msgid "Required"
+msgstr ""
+
+#: views/panel/types/default-form.php:183
+msgctxt "Default form column"
+msgid "Checked"
+msgstr ""
+
+#: views/panel/types/default-form.php:193
+msgctxt "Default form column"
+msgid "Activate"
+msgstr ""
+
+#: views/panel/types/default-form.php:219
+msgid "Restore Default"
+msgstr ""
+
+#: views/panel/types/default-form.php:302
+msgctxt "Tip to edit the field inside the default form"
+msgid "Edit"
+msgstr ""
+
+#: views/panel/types/default-form.php:309
+msgctxt "Tip to clone the field inside the default form"
+msgid "Duplicate"
+msgstr ""
+
+#: views/panel/types/default-form.php:327
+msgctxt "Tip to sort the field inside the default form"
+msgid "Sort"
+msgstr ""
+
+#: views/panel/types/default-form.php:373
+msgid "Remove field"
+msgstr ""
+
+#: views/panel/types/default-form.php:375
+msgid "This field will be removed from the form."
+msgstr ""
+
+#: views/panel/types/default-form.php:380
+msgid "Restore default"
+msgstr ""
+
+#: views/panel/types/default-form.php:382
+msgid "All fields will be removed from the form and will be replaced with the default form fields."
+msgstr ""
+
+#: views/panel/types/default-form.php:464
+msgctxt "text of link to add a new option"
+msgid "+ Add new option"
+msgstr ""
+
+#: views/panel/types/default-form.php:486
+msgid "This field is already defined"
+msgstr ""
+
+#: views/panel/types/default-form.php:489
+msgid "This field is required"
+msgstr ""
+
+#: includes/builders/gutenberg/src/blocks/margin-padding/edit.js:49
+msgid "Dimensions"
+msgstr ""
+
+#: includes/builders/gutenberg/src/blocks/margin-padding/edit.js:54
+msgid "Margin"
+msgstr ""
+
+#: includes/builders/gutenberg/src/blocks/margin-padding/edit.js:63
+msgid "Padding"
+msgstr ""
+
+#: includes/builders/gutenberg/src/blocks/separator/block-styles.js:4
+msgid "Dotted"
+msgstr ""
+
+#: includes/builders/gutenberg/src/blocks/separator/block-styles.js:9
+msgid "Dashed"
+msgstr ""
+
+#: includes/builders/gutenberg/src/blocks/separator/edit.js:50
+msgid "Height"
+msgstr ""
+
+#: includes/builders/gutenberg/src/blocks/ywraq-customer-info/index.js:10
+msgid "Customer info"
+msgstr ""
+
+#: includes/builders/gutenberg/src/blocks/ywraq-customer-info/index.js:11
+msgid "Add the information about the customer who requested the quote. Placeholders available:"
+msgstr ""
+
+#: includes/builders/gutenberg/src/blocks/ywraq-products-table/edit.js:78
+msgid "Product Table settings"
+msgstr ""
+
+#: includes/builders/gutenberg/src/blocks/ywraq-products-table/edit.js:83
+msgid "Show product thumbnail"
+msgstr ""
+
+#: includes/builders/gutenberg/src/blocks/ywraq-products-table/edit.js:90
+msgid "Show product name"
+msgstr ""
+
+#: includes/builders/gutenberg/src/blocks/ywraq-products-table/edit.js:96
+msgid "Show product SKU with the product name"
+msgstr ""
+
+#: includes/builders/gutenberg/src/blocks/ywraq-products-table/edit.js:103
+msgid "Show quantity"
+msgstr ""
+
+#: includes/builders/gutenberg/src/blocks/ywraq-products-table/edit.js:108
+msgid "Show price"
+msgstr ""
+
+#: includes/builders/gutenberg/src/blocks/ywraq-products-table/edit.js:115
+msgid "Show total"
+msgstr ""
+
+#: includes/builders/gutenberg/src/blocks/ywraq-products-table/edit.js:124
+msgid "Titles"
+msgstr ""
+
+#: includes/builders/gutenberg/src/blocks/ywraq-products-table/edit.js:128
+#: includes/builders/gutenberg/src/blocks/ywraq-products-table/edit.js:162
+#: includes/builders/gutenberg/src/blocks/ywraq-products-totals/edit.js:37
+#: includes/builders/gutenberg/src/blocks/ywraq-products-totals/edit.js:69
+#: includes/builders/gutenberg/src/blocks/ywraq-products-totals/edit.js:91
+#: includes/builders/gutenberg/src/blocks/ywraq-quote-buttons/edit.js:70
+msgid "Color"
+msgstr ""
+
+#: includes/builders/gutenberg/src/blocks/ywraq-products-table/edit.js:133
+#: includes/builders/gutenberg/src/blocks/ywraq-products-table/edit.js:167
+msgid "Border color"
+msgstr ""
+
+#: includes/builders/gutenberg/src/blocks/ywraq-products-table/edit.js:158
+msgid "Items"
+msgstr ""
+
+#: includes/builders/gutenberg/src/blocks/ywraq-products-table/index.js:9
+msgid "Product Table"
+msgstr ""
+
+#: includes/builders/gutenberg/src/blocks/ywraq-products-table/index.js:10
+msgid "Add the product table inside the template."
+msgstr ""
+
+#: includes/builders/gutenberg/src/blocks/ywraq-products-totals/edit.js:33
+msgid "Table settings"
+msgstr ""
+
+#: includes/builders/gutenberg/src/blocks/ywraq-products-totals/edit.js:45
+#: includes/builders/gutenberg/src/blocks/ywraq-quote-buttons/edit.js:75
+msgid "Background color"
+msgstr ""
+
+#: includes/builders/gutenberg/src/blocks/ywraq-products-totals/edit.js:65
+msgid "Subtotal labels"
+msgstr ""
+
+#: includes/builders/gutenberg/src/blocks/ywraq-products-totals/edit.js:87
+msgid "Total settings"
+msgstr ""
+
+#: includes/builders/gutenberg/src/blocks/ywraq-products-totals/index.js:9
+msgid "Total Table"
+msgstr ""
+
+#: includes/builders/gutenberg/src/blocks/ywraq-products-totals/index.js:10
+msgid "Add the total table inside the template."
+msgstr ""
+
+#: includes/builders/gutenberg/src/blocks/ywraq-quote-buttons/edit.js:57
+msgid "Quote Buttons settings"
+msgstr ""
+
+#: includes/builders/gutenberg/src/blocks/ywraq-quote-buttons/edit.js:61
+msgid "Accept quote"
+msgstr ""
+
+#: includes/builders/gutenberg/src/blocks/ywraq-quote-buttons/edit.js:62
+msgid "Reject quote"
+msgstr ""
+
+#: includes/builders/gutenberg/src/blocks/ywraq-quote-buttons/edit.js:66
+msgid "Button settings"
+msgstr ""
+
+#: includes/builders/gutenberg/src/blocks/ywraq-quote-buttons/edit.js:82
+msgid "Border radius"
+msgstr ""
+
+#: includes/builders/gutenberg/src/blocks/ywraq-quote-buttons/index.js:10
+msgid "Accept | Reject buttons"
+msgstr ""
+
+#: includes/builders/gutenberg/src/blocks/ywraq-quote-buttons/index.js:11
+msgid "Add buttons to accept or reject the quote."
+msgstr ""
+
+#: includes/builders/gutenberg/src/blocks/ywraq-quote-date/edit.js:46
+msgid "Quote Date type"
+msgstr ""
+
+#: includes/builders/gutenberg/src/blocks/ywraq-quote-date/edit.js:52
+msgctxt "Builder pdf template: description option"
+msgid "Choose the data information to display."
+msgstr ""
+
+#: includes/builders/gutenberg/src/blocks/ywraq-quote-date/edit.js:58
+msgctxt "Builder pdf template: option"
+msgid "Quote creation date"
+msgstr ""
+
+#: includes/builders/gutenberg/src/blocks/ywraq-quote-date/edit.js:62
+msgctxt "Builder pdf template: option"
+msgid "Expiring date"
+msgstr ""
+
+#: includes/builders/gutenberg/src/blocks/ywraq-quote-date/edit.js:66
+msgctxt "Builder pdf template: option"
+msgid "Current date"
+msgstr ""
+
+#: includes/builders/gutenberg/src/blocks/ywraq-quote-date/index.js:11
+msgid "Add the information about the date of the quote."
+msgstr ""
+
+#: includes/builders/gutenberg/src/blocks/ywraq-quote-number/index.js:11
+msgid "Add the number of the quote. Use the placeholder {{quote_number}} to show the quote number."
+msgstr ""
+
+#: includes/builders/gutenberg/src/components/QuoteItem/index.js:51
+msgid "SKU:"
+msgstr ""
+
+#: includes/builders/gutenberg/src/meta/custom-postmeta.js:36
+msgctxt "Builder pdf template - Label Footer option"
+msgid "Footer"
+msgstr ""
+
+#: includes/builders/gutenberg/src/meta/custom-postmeta.js:38
+msgctxt "Builder pdf template - Description Footer option"
+msgid "Use {PAGENO} to show the number of the page."
+msgstr ""
+
+#: includes/builders/gutenberg/src/pdf-templates/template-list/index.js:214
+msgid "Enter your licence key"
+msgstr ""
+
+#: includes/builders/gutenberg/src/pdf-templates/template-list/index.js:217
+msgid "to unlock 8 quote templates with different designs and styles"
+msgstr ""

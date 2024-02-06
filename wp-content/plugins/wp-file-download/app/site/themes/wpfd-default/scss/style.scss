@@ -1,0 +1,587 @@
+/**
+ * WP File Download
+ *
+ * We developed this code with our hearts and passion.
+ * We hope you found it useful, easy to understand and to customize.
+ * Otherwise, please feel free to contact us at contact@joomunited.com *
+ * @package WP File Download
+ * @copyright Copyright (C) 2013 JoomUnited (http://www.joomunited.com). All rights reserved.
+ * @copyright Copyright (C) 2013 Damien Barrère (http://www.crac-design.com). All rights reserved.
+ * @license GNU General Public License version 2 or later; http://www.gnu.org/licenses/gpl-2.0.html
+ */
+$default-font-size: 18; // Default value for calculating em
+$image-theme-path: '../../../assets/images/theme' !default;
+
+@function em($pixels, $context: $default-font-size) {
+  @if (unitless($pixels)) {
+    $pixels: $pixels * 1px;
+  }
+
+  @if (unitless($context)) {
+    $context: $context * 1px;
+  }
+
+  @return $pixels / $context * 1em;
+}
+#et-boc .wpfd-content-default, .wpfd-content-default {
+  h2 {
+    padding: em(10) 0 0 0;
+    margin: 0 0 em(10) 0;
+    @media only screen and (max-width: 720px) {
+      margin: 0 0 em(7) 0;
+      padding-top: em(7);
+    }
+    font-size: em(18);
+    color: #595959;
+  }
+  a {
+    text-decoration: none !important;
+    border-bottom: 0;
+    box-shadow: none;
+    color: #444;
+    transition: all 0.2s ease;
+    &:hover {
+      box-shadow: 1px 1px em(12) #ccc;
+    }
+  }
+  .wpfd-container {
+    flex-flow: row;
+    .wpfd-foldertree {
+      ul.jaofiletree {
+        li {
+          margin: 0 0 10px 0 !important;
+        }
+        li.selected {
+          > a {
+            color: #3d3d3d;
+            font-weight: bold;
+          }
+          > .zmdi-folder {
+            color: #3d3d3d;
+            font-weight: bold;
+            &:before {
+              color: #3d3d3d;
+              font-weight: bold;
+            }
+          }
+          > .icon-open-close {
+            color: #3d3d3d;
+            font-weight: bold;
+            &:before {
+              color: #3d3d3d;
+              font-weight: bold;
+            }
+          }
+        }
+        a {
+          color: #666666;
+          font-weight: normal;
+          font-stretch: normal;
+          font-style: normal;
+          letter-spacing: normal;
+          text-align: left;
+        }
+        .zmdi-folder,
+        .zmdi-folder-open,
+        .icon-open-close {
+          color: #888888;
+        }
+        .zmdi-folder {
+          margin-top: 1px;
+          margin-right: 8px;
+        }
+      }
+    }
+  }
+  .wpfd_list {
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    flex: auto;
+    flex-wrap: wrap;
+    width: 100%;
+    max-width: 100%;
+    .file {
+      font-size: 13px;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      background: #ffffff;
+      min-height: em(70);
+      min-width: 350px;
+      padding: 15px;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+      width: calc(50% - 20px);
+      float: left;
+      box-sizing: border-box;
+      flex-grow: 1;
+
+      @media only screen and (max-width: 720px) {
+        min-width: unset;
+      }
+      &.flex_span {
+        height: 1px;
+        background: transparent !important;
+        min-height: 1px !important;
+        max-height: 1px !important;
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
+        margin-top: 0 !important;
+        margin-bottom: 0 !important;
+        border: none;
+      }
+      &.is_downloaded {
+        background-color: #eeeeee;
+      }
+      input.cbox_file_download {
+        &:focus {
+          outline: unset;
+        }
+      }
+      //clear: both;
+      &.wpfd-password-protection-form {
+        display: block;
+        color: #999999;
+        font-size: 13px;
+        .protected-title {
+          color: #808080;
+          font-weight: bold;
+          font-size: 1em;
+        }
+        .wpfd-password-label {
+          color: #808080;
+          font-size: 1em;
+        }
+        .password-title {
+          margin-top: 10px;
+        }
+        .password-type-and-submit-section {
+          width: 100%;
+        }
+        .wpfd-password-value {
+          width: calc(100% - 65px);
+          padding: 5px 10px;
+          box-sizing: border-box;
+          margin: 0;
+          display: inline-block;
+          font-size: 13px;
+          vertical-align: middle;
+          min-height: 38px;
+          border: 1px solid #cccccc;
+          border-radius: 4px;
+          &:focus {
+            outline: none;
+          }
+        }
+        .wpfd-password-submit {
+          width: 55px;
+          font-size: 13px;
+          padding: 5px;
+          box-sizing: border-box;
+          display: inline-block;
+          margin: 0 0 0 1px;
+          min-height: 38px;
+          vertical-align: middle;
+          border-radius: 4px;
+          background-color: #28303d;
+          color: #d1e4dd;
+          &:hover {
+            box-shadow: 1px 1px em(12) #ccc;
+            background-color: #28303d;
+            border-color: #28303d;
+            color: #d1e4dd;
+          }
+          &:focus {
+            outline: none;
+          }
+        }
+        .message-info {
+          font-size: 1em;
+          margin: 5px 0;
+        }
+      }
+    }
+  }
+  .filecontent > div {
+    &.ext[class*='wpfd-icon-set-'] {
+      height: 70px;
+      width: 70px;
+      float: left;
+      color: #fff;
+      position: relative;
+      top: 0;
+      text-indent: -999999999px;
+      @media screen and (max-width: 450px) {
+        display: block;
+        float: unset;
+        margin: 0 auto 20px auto;
+      }
+    }
+    &.ext[class*='wpfd-icon-set-png'] {
+      background-size: 100% !important;
+    }
+    &.ext[class*='wpfd-icon-set-svg'] {
+      background-size: 100% !important;
+    }
+    &.ext:not([class*='wpfd-icon-set-']) {
+      height: em(100);
+      width: em(75);
+      margin-right: em(15);
+      float: left;
+      background: url(#{$image-theme-path}/neutral.png) top center transparent no-repeat;
+      background-size: contain;
+      color: #fff;
+      position: relative;
+      top: 0;
+      @media screen and (max-width: 450px) {
+        margin-bottom: 10px;
+      }
+      &[class*='ext-'] {
+        color: transparent;
+      }
+      $defaultExtensions: (7z,ace,bz2,dmg,gz,rar,tgz,zip,csv,doc,docx,html,key,keynote,odp,ods,odt,pages,pdf,pps,ppt,pptx,rtf,tex,txt,xls,xlsx,xml,bmp,exif,gif,ico,jpeg,jpg,png,psd,tif,tiff,aac,aif,aiff,alac,amr,au,cdda,flac,m3u,m4a,m4p,mid,mp3,mp4,mpa,ogg,pac,ra,wav,wma,3gp,asf,avi,flv,m4v,mkv,mov,mpeg,mpg,rm,swf,vob,wmv,css,img);
+      @each $extension in $defaultExtensions {
+        &.ext-#{$extension} {
+          background-image: url('#{$image-theme-path}/#{$extension}.png');
+        }
+      }
+      .txt {
+        position: absolute;
+        top: em(48);
+        left: em(7);
+        display: block;
+        width: em(35);
+        font-size: em(17);
+        font-weight: bold;
+        line-height: em(16);
+        text-align: center;
+        letter-spacing: -1px;
+        text-transform: uppercase;
+        font-family: arial, helvetica, sans-serif !important;
+      }
+    }
+    > img {
+      width: 70px;
+      margin-right: 0;
+      float: left;
+      position: relative;
+    }
+  }
+}
+
+#et-boc .wpfd-content-default .wpfd_list .file,
+.wpfd-content-default .wpfd_list .file {
+  @media only screen and (max-width: 762px) and (min-width: 641px) {
+    display: block;
+    //width: auto;
+    flex: unset;
+  }
+  @media only screen and (max-width: 720px) and (min-width: 300px) {
+    width: auto;
+  }
+  @media only screen and (max-width: 450px) {
+    display: block;
+    width: auto;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+  .filecontent {
+    margin-left: 0;
+    width: 70%;
+    @media only screen and (max-width: 762px) and (min-width: 641px) {
+      width: 100%;
+    }
+    @media only screen and (max-width: 450px) {
+      width: 100%;
+    }
+  }
+  .file-right {
+    margin: 0 auto;
+    text-align: center;
+    width: 43%;
+    min-width: 115px;
+    padding-left: 5px;
+    @media only screen and (max-width: 762px) and (min-width: 641px) {
+      padding-top: em(10);
+      width: 100%;
+      clear: both;
+    }
+    @media only screen and (max-width: 450px) {
+      padding-top: 20px;
+      padding-bottom: 10px;
+      width: 100%;
+      clear: both;
+    }
+    .downloadlink {
+      @media screen and (min-width: 768px) {
+        margin: 23px 0 5px 0;
+      }
+
+    }
+    .openlink {
+      margin-top: 10px;
+    }
+  }
+  .openlink img {
+    margin: auto;
+  }
+  .downloadlink:hover {
+    box-shadow: 1px 1px em(12) #ccc;
+  }
+  h3 {
+    font-size: 1.2em;
+    line-height: em(22);
+    padding-top: 0;
+    margin: 0 0 em(10) 0;
+    clear: none;
+    word-wrap: break-word;
+    text-transform: none;
+    overflow: hidden;
+    a {
+      font-weight: bold;
+      font-stretch: normal;
+      font-style: normal;
+      letter-spacing: normal;
+      text-align: left;
+      color: #808080;
+      text-transform: none;
+      vertical-align: text-top;
+      font-size: 16px;
+      line-height: 16px;
+    }
+  }
+  .file-xinfo {
+    margin-left: em(90);
+    text-transform: none;
+    overflow: hidden;
+    font-size: 1em;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.21;
+    letter-spacing: normal;
+    text-align: left;
+    color: #999999;
+    padding: 15px 0 0 25px;
+    @media screen and (max-width: 450px) {
+      margin-left: 0;
+    }
+    .file-desc {
+      margin: -15px 0 15px 0;
+      p {
+        margin: 0;
+      }
+    }
+    .file-size,
+    .file-hits,
+    .file-dated {
+      margin: 3px 0;
+    }
+
+    > div {
+      > span {
+        margin: 0 5px 0  0;
+        display: inline-block;
+        font-size: 1em;
+      }
+    }
+
+  }
+  .filecontent {
+    font-size: 1em;
+    line-height: 1.2;
+    h3 {
+      padding: 0 0 0 25px;
+      margin: 0 0 5px 0;
+      vertical-align: top;
+      position: relative;
+      font-size: 16px;
+      line-height: 16px;
+      a:hover {
+        box-shadow: none;
+      }
+      @media screen and (max-width: 450px) {
+        width: 100%;
+        text-align: center;
+        box-sizing: border-box;
+        padding: 0;
+        margin-bottom: 10px;
+        > .wpfd_checkbox, > a {
+          display: inline-block;
+          vertical-align: middle;
+        }
+        > .wpfd_checkbox {
+          position: unset;
+          margin-right: 5px;
+        }
+      }
+    }
+  }
+}
+
+#et-boc .wpfd-container-default,
+.wpfd-container-default {
+  box-sizing: border-box;
+  padding: 0;
+  min-height: 50px;
+  -webkit-overflow-scrolling: touch;
+  position: relative;
+  .wpfd-categories {
+    padding: 0;
+  }
+  .wpfd-categories h2 {
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    letter-spacing: normal;
+    text-align: left;
+    color: #2c2c2c;
+    text-transform: uppercase;
+    font-size: 1.25em;
+    padding: 0;
+    margin: 0 0 0 10px;
+  }
+
+}
+#et-boc .wpfd-container-default:not(.with_foldertree),
+.wpfd-container-default:not(.with_foldertree) {
+  width: 100%;
+}
+.wpfd-content-default {
+  .default-download-category {
+    &.display-download-category {
+      display: none;
+    }
+  }
+  .default-download-category:hover {
+    cursor: pointer;
+  }
+}
+
+@media (max-width: 720px) {
+  .wpfd-content-default {
+
+    &.wpfd-content .wpfd-flex-container {
+      display: block;
+    }
+
+    .wpfd_list {
+      .file {
+        -webkit-flex: 0 !important;
+        -ms-flex: 0 !important;
+        flex: 0 !important;
+      }
+
+      -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+      flex-direction: column;
+    }
+  }
+}
+
+/* Right to left */
+.rtl {
+  .wpfd-content-default {
+    direction: rtl;
+    .wpfd-categories {
+      .catlink {
+        span {
+          padding-right: 5px;
+          text-align: left;
+        }
+      }
+    }
+    i.wpfd-preview, i.wpfd-download {
+      padding-right: 5px;
+    }
+    .filecontent > div.ext {
+      float: right;
+      margin-right: unset;
+      margin-left: 15px;
+    }
+    .file .file-xinfo {
+      overflow: hidden;
+      margin-right: 65px;
+      margin-left: unset;
+      span {
+        float: right;
+        margin-left: 2px;
+      }
+    }
+    .backcategory {
+      float: none;
+      right: unset;
+      left: 10px;
+      .zmdi-chevron-left {
+        -moz-transform: scaleX(-1);
+        -o-transform: scaleX(-1);
+        -webkit-transform: scaleX(-1);
+        transform: scale(-1);
+        margin-left: 3px;
+       }
+    }
+    i.zmdi, .zmdi-folder, .zmdi-folder-open {
+      -moz-transform: scaleX(-1);
+      -o-transform: scaleX(-1);
+      -webkit-transform: scaleX(-1);
+      transform: scaleX(-1);
+      padding-left: 5px;
+    }
+    .icon-open-close {
+      -moz-transform: scaleX(-1);
+      -o-transform: scaleX(-1);
+      -webkit-transform: scaleX(-1);
+      transform: scaleX(-1);
+      float: right;
+    }
+    ul.jaofiletree {
+      &:first-child {
+        margin-right: -10px !important;
+        margin-left: unset !important;
+      }
+      li {
+        padding-right: 10px !important;
+        padding-left: unset !important;
+      }
+    }
+  }
+}
+
+/* pagination */
+.wpfd-pagination {
+  .page-numbers {
+    margin: 6px;
+    display: inline-block;
+  }
+  a.page-numbers {
+    cursor: pointer;
+    color: #046bd2;
+  }
+  .page-numbers.current {
+    color: #000;
+  }
+}
+#et-boc .wpfd-content.wpfd-content-default,
+.wpfd-content.wpfd-content-default {
+  + .wpfd-pagination {
+    padding: 5px;
+    text-align: center;
+  }
+  &.wpfd_contentdefault_foldertree {
+    @media screen and (min-width: 720px) {
+      + .wpfd-pagination {
+        width: 70%;
+        margin-left: 0;
+        float: right;
+      }
+    }
+    @media screen and (max-width: 720px) {
+      + .wpfd-pagination {
+        text-align: center;
+        padding: 5px 5px 5px 15px;
+        margin-left: 25px;
+      }
+    }
+  }
+}

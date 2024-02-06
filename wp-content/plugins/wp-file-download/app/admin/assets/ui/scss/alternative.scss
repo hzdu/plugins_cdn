@@ -1,0 +1,328 @@
+$alt-category-width: 25%;
+$alt-category-margin: 10;
+$alt-category-v-padding: 15;
+$alt-category-h-padding: 25;
+$alt-category-icon-size: 20;
+$alt-category-icon-margin-right: 5;
+$alt-category-icon-color: #888888;
+$alt-category-font-color: #404852;
+
+$alt-file-box-padding: 20;
+$alt-file-box-margin: 10;
+
+@import 'components/mixin';
+@import 'components/variables';
+
+#wpreview {
+  .wpfd-toolbar-wrapper {
+    .wpfd-filter-file {
+      right: 10px;
+    }
+    #wpfd_alt_filter,
+    .wpfd-flip {
+      display: block;
+      height: 20px;
+      width: 20px;
+      cursor: pointer;
+      float: right;
+      margin-left: 15px;
+      color: #7296a8;
+    }
+    .wpfd-flip {
+      -webkit-transition: transform .5s linear;
+      -moz-transition: transform .5s linear;
+      -ms-transition: transform .5s linear;
+      -o-transition: transform .5s linear;
+      transition: transform .5s linear;
+    }
+    .wpfd-filter-box {
+      width: 100px;
+      position: absolute;
+      top: 25px;
+      background: #fff;
+      padding: 15px;
+      @include boxShadow(0 0 7px -1px #ddd);
+    }
+  }
+
+}
+#preview {
+  margin-top: 0 !important;
+  .wpfd_alt_wrapper {
+    padding: 25px;
+    .wpfd_files_container {
+      display: flex;
+      flex-flow: row wrap;
+      .file {
+        margin: #{$alt-file-box-margin}px;
+        flex: 0 1 calc(50% - #{($alt-file-box-margin + $alt-file-box-padding)*2}px);
+        max-width: calc(50% - #{($alt-file-box-margin + $alt-file-box-padding)*2}px);
+        @media only screen and (max-width: 768px) {
+          flex-basis: calc(#{100% / 1} - #{($alt-file-box-margin + $alt-file-box-padding)*2}px);
+          max-width: calc(#{100% / 1} - #{($alt-file-box-margin + $alt-file-box-padding)*2}px);
+        }
+        position: relative;
+        background: #fff;
+        padding: #{$alt-file-box-padding}px;
+        @include borderRadius($small-radius);
+        @include boxShadow(20px 20px 58px -35px #111);
+        @include boxSizing(content-box);
+        &:nth-child(even) {
+          //margin-right: 0px;
+        }
+        &.selected {
+          @include boxShadow(0 0 0 1px #ff8726);
+        }
+        $file-title-color: #404852;
+        $file-title-size: 14px;
+        $file-icon-width: 50px;
+        $file-icon-height: 70px;
+        $file-icon-text-size: 1em;
+        $file-info-h-margin: 10px;
+        $file-info-color: #7296a8;
+        $file-info-size: 11px;
+        .file_info {
+          display: block;
+          width: calc(100% - #{$file-icon-width + $file-info-h-margin * 2});
+          margin: 0 10px;
+          color: $file-info-color;
+          font-size: $file-info-size;
+          float: left;
+          &:after {
+            clear:both;
+          }
+
+          .file_title {
+            color: $file-title-color;
+            font-size: $file-title-size;
+            margin: 0;
+            @include textTruncate();
+            padding-bottom: 10px;
+            line-height: 1;
+          }
+          span {
+            width: 100%;
+            display: block;
+          }
+        }
+        &.cuted .file_toolbox {
+          z-index: 3;
+        }
+        .file_toolbox {
+          $file-menu-toolbox-size: 20px;
+          position: absolute;
+          top: 10px;
+          right: 10px;
+          display: block;
+          width: $file-menu-toolbox-size;
+          height: $file-menu-toolbox-size;
+          background: transparent url(../images/icon-file-menu.svg) no-repeat;
+          background-position: 50%;
+          overflow: unset;
+          .file_menu {
+            display: none;
+          }
+          &:hover {
+            cursor: pointer;
+            .file_menu {
+              $file-menu-width: 78px;
+              $file-menu-background: #ffffff;
+              $file-menu-v-padding: 15px;
+              $file-menu-h-padding: 10px;
+              $file-menu-border-width: 1px;
+              $file-menu-border-color: #5F879B;
+              display: block;
+              width: $file-menu-width;
+              z-index: 1;
+              background: $file-menu-background;
+              border: $file-menu-border-width solid $file-menu-border-color;
+              padding: $file-menu-h-padding $file-menu-v-padding;
+              margin: 0;
+              text-align: left;
+              position: absolute;
+              left: -#{($file-menu-width + $file-menu-v-padding*2 + $file-menu-border-width*2 - $file-menu-toolbox-size)/2 };
+              top: 30px;
+              cursor: pointer;
+              @include borderRadius($small-radius);
+              &:after {
+                content: "";
+                width: $file-menu-toolbox-size;
+                height: $file-menu-toolbox-size;
+                display: block;
+                position: absolute;
+                z-index: 2;
+                top: 0 - $file-menu-toolbox-size/2;
+                border: $file-menu-border-width solid $file-menu-border-color;
+                border-bottom: 0;
+                border-right: 0;
+                background: $file-menu-background;
+                @include transform(rotate(45deg) translateY(-104%) translateX(96%));
+              }
+              li {
+                line-height: 25px;
+                color: $file-menu-border-color;
+                @include transition(all .2s ease-in-out);
+                &:hover {
+                  @include transform(scale(1.2));
+                  cursor: pointer;
+                }
+              }
+            }
+          }
+        }
+        .ju-button {
+          padding: 5px 10px;
+          @include fontSize(11px);
+          min-width: fit-content;
+          min-width: -moz-min-content;
+          min-width: -webkit-min-content;
+          margin-top: 15px;
+          text-transform: capitalize;
+          .material-icons {
+            font-size: 1.4em;
+            vertical-align: sub;
+          }
+          &:hover {
+            cursor: pointer;
+          }
+        }
+        &.isWoocommerce {
+          .goProducts {
+            position: absolute;
+            bottom: #{$alt-file-box-margin + 15}px;
+            left: #{$alt-file-box-margin + 15}px;
+
+            display: block;
+            width: 36px;
+            height: 18px;
+            padding: 2px 4px;
+
+            background: $woocommerce-bg-color;
+            border: 0;
+            border-radius: $small-radius;
+            font-size: 0.9em;
+            line-height: 15px;
+            color: #fff;
+            text-align: center;
+            font-weight: bold;
+            &:focus, &:hover, &:active {
+              outline: none;
+            }
+            &:hover {
+              cursor: pointer;
+            }
+          }
+        }
+        &.isPending {
+          .wpfd-pending-btn {
+            position: absolute;
+            bottom: #{$alt-file-box-margin + 15}px;
+            left: #{$alt-file-box-margin + 15}px;
+
+            display: block;
+            min-width: 115px;
+            height: 18px;
+            padding: 2px 4px;
+
+            background: $file-pending-bg-color;
+            border: 0;
+            border-radius: $small-radius;
+            font-size: 0.9em;
+            line-height: 15px;
+            color: #fff;
+            text-align: center;
+            font-weight: bold;
+            &:focus, &:hover, &:active {
+              outline: none;
+            }
+            &:hover {
+              cursor: pointer;
+              box-shadow: unset;
+            }
+          }
+        }
+      }
+      .file.highlight {
+        border: 1px dashed #1d6cb0;
+        background: transparent;
+        margin: 9px;
+        td {
+          display: block;
+          border: none;
+        }
+      }
+
+    }
+    .wpfd_categories_container {
+      display: flex;
+      flex-flow: row wrap;
+      .flex-span {
+        $alt-category-flex-span-width: $alt-category-h-padding * 2 + $alt-category-icon-size + $alt-category-icon-margin-right + $alt-category-width + $alt-category-margin * 2;
+        flex: 1 0 #{$alt-category-flex-span-width}px;
+        width: #{$alt-category-flex-span-width}px;
+        padding: 0;
+        margin: 0;
+        height: 1px;
+      }
+      .wpfd_cat {
+        position: relative;
+        padding: $alt-category-v-padding*1px $alt-category-h-padding*1px $alt-category-v-padding*1px #{$alt-category-h-padding + $alt-category-icon-size + $alt-category-icon-margin-right}px;
+        background: #fff;
+        margin: #{$alt-category-margin}px;
+        box-shadow: 5px 5px 13px -10px #111;
+        font-weight: 700;
+        @include textTruncate();
+        @include borderRadius($small-radius);
+        color: $alt-category-font-color;
+        $flex-basis: #{$alt-category-h-padding + $alt-category-h-padding + $alt-category-icon-size + $alt-category-icon-margin-right + $alt-category-margin*2}px;
+        flex: 0 1 calc(#{$alt-category-width} - #{$flex-basis});
+        @media only screen and (max-width: 1024px) {
+          flex-basis: calc(#{100% / 3} - #{$flex-basis});
+        }
+        @media only screen and (max-width: 800px) {
+          flex-basis: calc(#{100% / 2} - #{$flex-basis});
+        }
+        @media only screen and (max-width: 768px) {
+          flex-basis: calc(#{100% / 1} - #{$flex-basis});
+        }
+        &:before {
+          font-family: "Material Icons";
+          content: "folder";
+          display: block;
+          position: absolute;
+          left: $alt-category-h-padding*1px;
+          top: calc(50% - #{$alt-category-icon-size/2});
+          text-align: center;
+          text-indent: 0;
+          color: $alt-category-icon-color;
+          font-size: $alt-category-icon-size*1px;
+          font-weight: normal;
+          line-height: 1;
+          white-space: nowrap;
+          word-wrap: normal;
+          direction: ltr;
+          vertical-align: middle;
+          -webkit-font-feature-settings: "liga";
+          -webkit-font-smoothing: antialiased;
+          width: $alt-category-icon-size*1px;
+          height: $alt-category-icon-size*1px;
+        }
+        &.wpfd_new_category:after {
+          display: block;
+          content: "+";
+          font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+          font-size: 15px;
+          color: #ffffff;
+          position: absolute;
+          top: calc(50% - #{$alt-category-icon-size/2}px);
+          left: #{$alt-category-h-padding + $alt-category-icon-size/4}px;
+          width: $alt-category-icon-size*1px;
+          height: $alt-category-icon-size*1px;
+        }
+        &:hover {
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}

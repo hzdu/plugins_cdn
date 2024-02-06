@@ -1,0 +1,52 @@
+.wpb_el_type_wpfd_file,
+.vc_column[data-vc-shortcode-param-name="wpfd_file_title"] {
+  position: relative;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-bottom: 40px;
+  > .wpb_element_label {
+    min-width: 85px;
+    max-width: 220px;
+    margin-right: 10px;
+    display: inline-block;
+  }
+  > .edit_form_line {
+    max-width: calc(100% - 230px);
+    min-width: calc(100% - 95px);
+    display: inline-block;
+  }
+  .vc_description {
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin-top: 2px;
+  }
+}
+
+#wpfd-wpbakery-choose-file-section {
+  .choose-file-icon:before {
+    content: '';
+    display: block;
+    background-image: url(../../../../admin/assets/images/wpfd_choose_file_icon.svg);
+    width: auto;
+    height: auto;
+    min-width: 20px;
+    min-height: 20px;
+    background-size: 20px;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+  > span {
+    margin-right: 10px;
+    display: inline-block;
+  }
+  .wpfdwpbakeryfilelaunch {
+    vertical-align: baseline;
+    display: inline-block;
+  }
+  .choose-file-icon {
+    vertical-align: top;
+    display: inline-block;
+    margin-top: 4px;
+  }
+}

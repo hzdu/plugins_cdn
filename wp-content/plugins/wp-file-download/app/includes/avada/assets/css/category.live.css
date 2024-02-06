@@ -1,0 +1,39 @@
+.wpfd-avada-category .wpfd-file-placeholder,
+.wpfd-avada-category .wpfd-category-placeholder {
+  position: relative;
+  text-align: center;
+}
+@media screen and (min-width: 768px) {
+  .wpfd-avada-category .wpfd-file-placeholder span,
+.wpfd-avada-category .wpfd-category-placeholder span {
+    display: block;
+    position: absolute;
+    bottom: 12px;
+    width: 100%;
+    left: 0;
+  }
+}
+
+.fusion-builder-live-editor .wpfd-avada-category a,
+.fusion-builder-live-editor .wpfd-avada-category button,
+.fusion-builder-live-editor .wpfd-avada-category input,
+.fusion-builder-live-editor .wpfd-avada-category .wpfd_checkbox,
+.fusion-builder-live-editor .wpfd-avada-category span:before,
+.fusion-builder-live-editor .wpfd-avada-category div.file {
+  pointer-events: none !important;
+}
+.fusion-builder-live-editor .wpfd-avada-category .wpfd-foldertree {
+  background-image: url(../../wp-content/plugins/wp-file-download/app/admin/assets/images/tree_theme_placeholder.svg);
+  width: auto;
+  height: auto;
+  min-width: 20px;
+  min-height: 90px;
+  max-width: 30%;
+  background-position: top left 10%;
+  background-repeat: no-repeat;
+  background-color: transparent;
+  background-size: 90px auto;
+}
+.fusion-builder-live-editor .wpfd-avada-category .wpfd-foldertree > ul.jaofiletree {
+  display: none;
+}

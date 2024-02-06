@@ -1,0 +1,35 @@
+{
+	"commonPrefix": "AmeEh",
+	"allowAjaxUpdate": true,
+	"phpOutputFileName": "eh-preferences.php",
+	"jsOutputFileName": "eh-preferences.js",
+	"items": [
+		{
+			"name": "isExplanationHidden",
+			"storageKey": "ws_ame_eh_hide_info",
+			"type": "integer",
+			"defaultValue": 0,
+			"minimum": 0,
+			"maximum": 1
+		},
+		{
+			"name": "UserPreferences",
+			"storageKey": "ws_ame_eh_prefs",
+			"type": "object",
+			"properties": {
+				"numberOfColumns": {
+					"type": "integer",
+					"nullable": true,
+					"defaultValue": 1,
+					"minimum": 1,
+					"maximum": 3
+				},
+				"csExpandedCategories": {
+					"type": "string",
+					"defaultValue": "",
+					"maxLength": 1000
+				}
+			}
+		}
+	]
+}

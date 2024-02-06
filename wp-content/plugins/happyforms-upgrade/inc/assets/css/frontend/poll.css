@@ -1,0 +1,103 @@
+:root {
+  /* colors */
+  --happyforms-poll-bar-color: #e8e8e8;
+  --happyforms-poll-link-color: #000000;
+  --happyforms-poll-winner-color: #000000;
+}
+
+.happyforms-poll-row {
+  margin-bottom: 15px;
+}
+.happyforms-styles .happyforms-poll-row {
+  font-size: 16px;
+  font-size: var(--happyforms-part-value-font-size);
+}
+.happyforms-form--part-border-radius-square .happyforms-poll-row {
+  border-radius: 0;
+}
+.happyforms-form--part-border-radius-pill .happyforms-poll-row {
+  border-radius: 25px;
+}
+.happyforms-poll-row__header {
+  display: flex;
+  flex-flow: row wrap;
+  font-size: 16px;
+  font-size: var(--happyforms-part-value-font-size);
+  color: #000;
+  color: var(--happyforms-part-value-font-size);
+}
+.happyforms-poll-row__label {
+  flex: 0 1 70%;
+}
+.happyforms-poll-row__votes {
+  flex: 1;
+}
+.happyforms-poll-row__track {
+  width: 100%;
+  margin: 0 0 5px;
+}
+.happyforms-poll-row__bar {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-end;
+  align-items: center;
+  height: 40px;
+  border-radius: 6px;
+  background-color: #e8e8e8;
+}
+.happyforms-poll-row__bar--winner {
+  background-color: #000;
+}
+.happyforms-styles .happyforms-poll-row__bar {
+  background-color: var(--happyforms-poll-bar-color);
+}
+.happyforms-styles .happyforms-poll-row__bar--winner {
+  background-color: var(--happyforms-poll-winner-color);
+}
+.happyforms-poll-results {
+  display: none;
+}
+.happyforms-part--poll.show-results .happyforms-poll-results {
+  display: block;
+  width: 100%;
+}
+.happyforms-part--poll.show-results .happyforms-poll-voting {
+  display: none;
+}
+.happyforms-poll-voting {
+  width: 100%;
+}
+.happyforms-poll__links {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  margin-top: 10px;
+}
+.happyforms-styles .happyforms-poll__links button {
+  display: inline-flex;
+  align-items: center;
+  justify-self: flex-end;
+  font-weight: normal;
+  font-size: 16px;
+  font-size: var(--happyforms-part-value-font-size);
+  border: 0;
+  box-shadow: none;
+}
+.happyforms-poll__links svg {
+  display: inline-block;
+  width: 18px;
+  margin-right: 5px;
+  fill: currentColor;
+}
+.happyforms-poll__total-votes {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  min-width: 30px;
+  margin-right: 10px;
+}
+.happyforms-styles .happyforms-poll__total-votes {
+  line-height: 1;
+  font-size: 16px;
+  font-size: var(--happyforms-part-value-font-size);
+}

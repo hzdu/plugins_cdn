@@ -1,0 +1,101 @@
+:root {
+    --x-popover-transitionout: 300ms;
+    --x-popover-transitionin: 300ms;
+    --x-popover-translatex: 0;
+    --x-popover-translatey: 10px;
+    --x-popover-scale: .95;
+    --x-popover-background: #fff;
+}
+
+.x-popover {
+    position: relative;
+}
+
+.x-popover[data-x-popover*=elementSelector] .x-popover_button {
+    display: none;
+}
+
+.x-popover_button {
+    padding: 10px;
+    background-color: transparent;
+    box-shadow: none;
+    border: none;
+}
+
+.x-popover_content {
+    position: absolute;
+    visibility: hidden;
+}
+
+[data-tippy-root] + [data-tippy-root] {
+    display: none;
+}
+
+.x-popover .tippy-box {
+    color: inherit;
+    background: transparent;
+    transform: translateZ(0);
+}
+
+[data-tippy-content] {
+    cursor: pointer;
+}
+
+.x-popover .tippy-content {
+    padding: 20px;
+    background: var(--x-popover-background);
+    box-shadow: 0 10px 20px rgb(0 0 0 / 10%);
+    border-radius: 5px;
+}
+
+.x-popover .tippy-arrow {
+    color: var(--x-popover-background);
+    opacity: 1;
+    visibility: visible;
+}
+
+/* custom animation */
+
+
+.x-popover_button[aria-expanded='true'] + .x-popover_content .tippy-box[data-theme~='extras'] {
+    visibility: visible;
+    transition-duration: var(--x-popover-transitionin);
+}
+
+.x-popover_button[aria-expanded='false'] + .x-popover_content .tippy-box[data-theme~='extras'] {
+    opacity: 0;
+    transform: translate(var(--x-popover-translatex),var(--x-popover-translatey)) scale(var(--x-popover-scale));
+    transition-duration: var(--x-popover-transitionout);
+    transition-property: opacity, transform;
+}
+
+.tippy-box[data-animation='extras'][data-state='hidden'] {
+    opacity: 0;
+    transform: translate(var(--x-popover-translatex),var(--x-popover-translatey)) scale(var(--x-popover-scale));
+    transition-duration: var(--x-popover-transitionout);
+    transition-property: opacity, transform;
+}
+
+
+/* workaround for nesting */
+
+[aria-expanded="false"] + [data-tippy-root] {
+    opacity: 0;
+    visibility: hidden;
+}
+
+[data-tippy-root] {
+    position: absolute;
+}
+
+.brx-body.iframe .x-popover[data-x-popover*=elementSelector] .x-popover_button {
+    display: flex;
+}
+
+.brx-body.iframe .x-popover[data-x-popover*=elementSelector][data-x-popover*=hide] .x-popover_button {
+    display: none;
+}
+
+.x-popover_button:nth-last-child(5) {
+    display: none;
+}

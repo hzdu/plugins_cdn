@@ -1,0 +1,842 @@
+/*-----------------------------------
+        Like Dislike button
+-----------------------------------*/
+.children .rx_vote_filter{
+    display: none;
+}
+.rx_vote_filter{
+    clear: both;
+    overflow: hidden;
+    display: flex;
+    justify-content: space-between;
+}
+.rx_vote_filter .rx-review-share a:focus{
+    outline-color: transparent;
+}
+/* .rx_vote_filter .wc_rx_btns{
+	display: none;
+} */
+.vote_selected i{
+    color: #4caf50;
+}
+
+.no_vote_selected i{
+    color: #be0008;
+}
+
+.rx_helpful{
+    margin-left: auto;
+}
+
+.rx_review_vote_icon{
+    display: flex;
+    float: right;
+}
+.rx_review_vote_icon p{
+    font-size: 14px;
+    margin-top: 4px;
+}
+.rx_review_vote_icon .like_dislike_val{
+    margin-right: 10px;
+    font-size: 14px;
+}
+.rx_review_vote_icon .like{
+    width: 30px;
+    height: 30px;
+    padding: 0;
+    border-width: 1px;
+    font-size: 15px;
+    background-color: transparent;
+    border: none !important;
+}
+.rx_review_vote_icon .like:focus{
+    outline: none;
+}
+.rx_review_vote_icon .dislike{
+    width: 30px;
+    height: 30px;
+    padding: 0;
+    border-width: 1px;
+    font-size: 15px;
+    background-color: transparent;
+}
+.rx_review_vote_icon .dislike:focus{
+    outline: none;
+}
+.rx_review_vote_icon i{
+    margin: 0;
+}
+.user_log_in{
+    display: none;
+}
+.user_log_in_block{
+    display: block;
+}
+
+/*-----*/
+.lb-nav a.lb-prev:focus,
+.lb-nav a.lb-next:focus{
+    outline-color: transparent;
+}
+
+/*----------------------------
+    Vertical Bar
+------------------------------*/
+.vertical{
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+.vertical .progress-bar {
+    float: left;
+    height: 110px;
+    width: 35px;
+    position: relative;
+    margin-right: 10px;
+    box-shadow: none;
+    overflow: visible;
+    margin-bottom: 0;
+}
+
+.vertical .progress-track {
+    position: relative;
+    width: 18px;
+    height: 100%;
+    margin-left: 5px;
+    background-color: #f7f7f7;
+    cursor: pointer;
+}
+
+.vertical .progress-fill {
+    position: relative;
+    background:#2f4fff;
+    height: 50%;
+    width: 18px;
+    color: #fff;
+    text-align: center;
+    font-size: 13px;
+    line-height: 20px;
+    writing-mode: vertical-rl;
+    letter-spacing: 0.02em;
+}
+.vertical .vertical_bar_label{
+    font-size: 16px;
+    color: #1a1a1a;
+    writing-mode: vertical-rl;
+    position: absolute;
+    right: 26px;
+    margin: 0;
+    bottom: 5px;
+    text-transform: capitalize;
+    letter-spacing: 0.02em;
+}
+/*----------------------------------------------
+	Review replay from admin
+------------------------------------------------*/
+.commentlist .review{
+    margin-bottom: 5px !important;
+    padding: 15px 5px !important;
+}
+.rx_photo_review_list .children{
+    background-color: #f9f1f1 ;
+    margin: 0;
+    padding: 5px 30px;
+    padding-right: 0px;
+}
+
+.rx_photo_review_list .children li{
+    list-style: none;
+    position: relative;
+}
+
+.rx_photo_review_list .children li:before {
+    content:'\25B2';
+    position: absolute;
+    top: -25px;
+    color: #f7f7f7 ;
+    font-size: 22px;
+}
+.commentlist .review .rx_review_reply_meta,
+.rx-review-listing .rx-review-content .rx_review_reply_meta{
+    display: none;
+}
+.rx_photo_review_list .children li .rx_review_item-meta{
+    display: none;
+}
+.rx_photo_review_list .children li .rx_review_reply_meta .rx_review_item-meta_date i{
+    padding-right: 3px;
+}
+.rx_photo_review_list .children li .rx_review_reply_meta .rx_review_item-meta_date,
+.rx_photo_review_list .children li .rx_review_reply_meta .rx_review_item-meta_date i{
+    color: #e40831;
+    font-size: 14px;
+    float: right;
+    margin: 5px 0;
+}
+
+.rx_photo_review_list .children li .rx_photo_review_item-content .rx_star_rating{
+    display: none;
+}
+.rx_photo_review_list .children li .rx_review_vote_icon{
+    display: none;
+}
+
+.children .rx_review_reply_meta{
+    display: block !important;
+}
+
+.rx_add_review .review_anonymouse_label,
+.rx_edit_review .review_anonymouse_label{
+    /* margin-bottom: 20px; */
+}
+
+.rx_anonymouse_section{
+    max-width: 50%;
+}
+
+.review_anonymouse_label {
+    position: relative;
+    cursor: pointer;
+    display: flex !important;
+    font-size: 14px;
+    margin-bottom: 10px;
+    line-height: 20px;
+}
+
+.review_anonymouse_label input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.review_anonymouse_icon {
+    position: relative;
+    display: inline-block;
+    top: 3px;
+    height: 13px;
+    width: 13px;
+    margin-right: 5px;
+    border-radius: 3px;
+    border: 2px solid #797979;
+}
+
+.review_anonymouse_label input:checked + .review_anonymouse_icon:after {
+    display: block;
+}
+
+.review_anonymouse_label .review_anonymouse_icon:after {
+    content: "";
+    position: absolute;
+    display: none;
+    left: 2px;
+    top: 0;
+    width: 4px;
+    height: 7px;
+    border: solid #797979;
+    border-width: 0 2px 2px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+/*********************************
+*
+*      Social sharing icons
+*
+**********************************/
+.rx_vote_filter .rx-review-share{
+    display: flex;
+    height: 36px;
+}
+.rx_vote_filter{
+    padding-top: 15px;
+}
+.rx_vote_filter .rx-review-share .rx-share-icon{
+    color:#6d6d6d;
+    border: 1px solid;
+    border-radius: 3px;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+.rx_vote_filter .rx-review-share .rx-share-icon:hover{
+    color: #fff;
+}
+.rx_vote_filter .rx-review-share .rx-share-icon:hover i{
+    color: #fff !important;
+}
+.rx_vote_filter .rx-review-share .rx-share-icon .fa-share-alt{
+    font-size: 12px;
+    margin-right: 4px;
+}
+.rx_vote_filter .rx-review-share .rx-share-icon .fa-sort-down{
+    margin-left: 5px;
+    border-left: 1px solid #6d6d6d;
+    line-height: 24px;
+    padding-left: 5px;
+}
+.rx_vote_filter .wc_rx_btns ul{
+    margin: 0;
+    list-style: none;
+    border-radius: 3px;
+    overflow: hidden;
+}
+.rx_vote_filter .wc_rx_btns ul li{
+    background-color: #ddd;
+    text-align: center;
+    padding: 5px 10px;
+    border-radius: 10px;
+    color: #fff;
+    float: left;
+    margin-left: 5px;
+    height: 35px;
+    width: 40px;
+}
+.rx_vote_filter .wc_rx_btns ul .facebook{
+    background-color: #3b5898;
+}
+.rx_vote_filter .wc_rx_btns ul .twitter{
+    background-color: #1ea2f2;
+}
+.rx-review-share ul li a i{
+    color: #fff;
+    font-size: 18px;
+    padding: 5px 0;
+    font-family: FontAwesome;
+    font-weight: 500;
+}
+.rx-share-icon{
+    font-size: 14px;
+}
+.children div.wc_rx_btns.default-theme{
+    display: none;
+}
+
+.social-links .wc_rx_btns ul{
+    display: inline-block;
+    margin: 0;
+    list-style: none;
+    border-radius: 3px;
+    overflow: hidden;
+    padding: 0 !important;
+}
+.social-links .wc_rx_btns ul li{
+    display: inline-block;
+    margin: 8px 15px 0 0;
+}
+.social-links .wc_rx_btns ul li a svg .st0{
+    fill: #B7B7B8;
+}
+.children div.wc_rx_btns.default-theme{
+    display: none;
+}
+
+.social-links .wc_rx_btns ul li a{
+    margin-right: 0px;
+}
+
+/*-------------------------------------------------
+    Product rating type two
+---------------------------------------------------*/
+.reviewx-thumbs-rating {
+    font-family: "FontAwesome";
+}
+
+.reviewx-thumbs-rating > fieldset{
+    border: none;
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+    background-color: transparent !important;
+}
+
+.reviewx-thumbs-rating > fieldset > div{
+    border: none;
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+    background-color: transparent;
+}
+
+.reviewx-thumbs-rating > fieldset > .rx_thumbs_up_icon{
+    margin-right: 15px;
+}
+
+.reviewx-thumbs-rating > fieldset > div:not(:checked) > input {
+    position: absolute;
+    clip: rect(0, 0, 0, 0);
+}
+
+.reviewx-thumbs-rating > fieldset > div:not(:checked) > label {
+    float: right;
+    overflow: hidden;
+    white-space: nowrap;
+    cursor: pointer;
+    padding: 5px;
+}
+.reviewx-thumbs-rating label svg #rx_dislike{
+    fill: #6f6f6f;
+}
+.reviewx-thumbs-rating input[type="radio"]:checked + label svg,
+.reviewx-thumbs-rating input[type="radio"]:checked + label svg #rx_dislike path{
+    fill: #ffb439;
+}
+.reviewx-thumbs-rating fieldset label svg{
+    fill: #D1D7DD;
+}
+.reviewx-thumbs-rating label svg #rx_dislike path{
+    fill: #D1D7DD;
+}
+.reviewx-thumbs-rating > fieldset > div > label:active {
+    position: relative;
+}
+
+
+/*-------------------------------------------------
+    Product rating type three
+---------------------------------------------------*/
+.reviewx-face-rating > fieldset {
+    border: none;
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+    background-color: transparent !important;
+}
+
+.reviewx-face-rating > fieldset > div {
+    position: relative;
+    border: none;
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+    background-color: transparent;
+}
+
+.reviewx-face-rating > fieldset > div:not(:checked) > input {
+    position: absolute;
+    clip: rect(0, 0, 0, 0);
+}
+
+.reviewx-face-rating > fieldset > div:not(:checked) > label {
+    float: right;
+    overflow: hidden;
+    white-space: nowrap;
+    cursor: pointer;
+    font-size: 22px;
+    color: #dd9933;
+    padding: 5px;
+    border-radius: 5px;
+    line-height: 0;
+}
+
+.reviewx-face-rating fieldset input[type="radio"]:checked + label .happy_st0,
+.reviewx-face-rating fieldset input[type="radio"]:checked + label .st1{
+    fill: #ffb439;
+    -webkit-transition: width 0.6s ease;
+    -o-transition: width 0.6s ease;
+    transition: width 0.6s ease
+}
+
+.reviewx-face-rating fieldset input[type="radio"]:checked + label .happy_st1,
+.reviewx-face-rating fieldset input[type="radio"]:checked + label .sad_st0{
+    fill: #fff;
+    -webkit-transition: width 0.6s ease;
+    -o-transition: width 0.6s ease;
+    transition: width 0.6s ease
+}
+
+.reviewx-face-rating fieldset input[type="radio"]:checked + label .sad_st1{
+    fill: #ffb439 !important;
+    -webkit-transition: width 0.6s ease;
+    -o-transition: width 0.6s ease;
+    transition: width 0.6s ease
+}
+
+/* .reviewx-face-rating fieldset input[type="radio"]:checked + label .st0{
+    fill: #f6f6f6;
+    -webkit-transition: width 0.6s ease;
+    -o-transition: width 0.6s ease;
+    transition: width 0.6s ease
+} */
+
+.reviewx_radio svg{
+    width: 35px;
+    height: 35px;
+}
+
+.reviewx-face-rating > fieldset > div:not(:checked) > label:hover,
+.reviewx-face-rating > fieldset > div:not(:checked) > label:hover ~ label {
+    color: #dd9933;
+}
+
+.reviewx-face-rating > fieldset > div > label:active {
+    position: relative;
+}
+
+.reviewx-face-rating svg{
+    border-radius: 50%;
+    box-shadow: 0 0 4px 0 #c3c3c3;
+    border: 2px solid #ddd;
+    padding: 3px;
+    margin-top: 8px;
+}
+
+/*-----------------------------
+	Template style two
+--------------------------------*/
+.rx_template_style_2 .children{
+    margin-bottom: 20px;
+}
+
+.rx_photo_review_list .children .fa-star,
+.rx_template_style_2 .children .review-rating{
+    display: none;
+}
+.rx-review-content .review-video img{
+    height: 70px;
+    margin-right: 20px !important;
+}
+.children .rx-review-listing .rx-thumb{
+    display: none !important;
+}
+.children .rx-review-content .review-text p{
+    margin: 0;
+}
+.children .rx-review-listing{
+    border-bottom: none;
+    padding: 0;
+    margin: 0;
+}
+.rx_vote_filter .rx_review_vote_icon i{
+    color: #666;
+    border: none !important;
+}
+
+/*---------------------------------
+	Share review
+----------------------------------*/
+.rx-video-note-span{
+    font-weight: 600;
+    font-style: normal;
+}
+
+.rx-note-video{
+    font-style: italic;
+    margin: 10px 0 20px 0 !important;
+    font-size: 13px;
+}
+
+#rx-note-edit-external-video,
+#rx-note-external-video{
+    display: none;
+}
+
+#rx-edit-video-preview{
+    display: none;
+    margin-right: 20px;
+}
+
+.rx-review-list-top-wrapper{
+    width:100%;
+}
+
+.rx-review-list-top-wrapper .rx_star_rating{
+    float:left;
+}
+
+.rx-review-list-top-wrapper .rx_admin_highlighter{
+    cursor: pointer;
+    float: right;
+    font-size: 10px;
+    padding: 1px 4px;
+    background: #7850ce;
+    font-weight: 600;
+    border: 1px solid #7850ce;
+    border-radius:6px;
+    color: #fff;
+}
+
+.rx-admin-reply{
+    font-size: 14px;
+    margin-top: 4px;
+    margin-right: 5px;
+    cursor: pointer;
+}
+.rx-admin-reply-area{
+    width: 100%;
+}
+.rx-admin-edit-reply-area,
+.rx-admin-reply-area{
+    display: block;
+    padding: 5px;
+    margin-top: 10px;
+    background: #fff;
+    border: 1px solid #f7f7f7;
+    border-radius: 6px;
+}
+
+.rx-admin-edit-reply-area{
+    margin-left: 107px;
+}
+.rx-admin-reply-area .admin-reply-form-title{
+    font-size: 14px;
+}
+.rx-admin-edit-reply-area .comment-form-comment{
+    margin-top: 0;
+}
+
+.rx-admin-edit-reply-area p,
+.rx-admin-reply-area p{
+    margin-bottom: 10px;
+}
+.rx_listing .rx_review_block .rx_body .rx-admin-reply-area .comment-form-comment{
+    margin-bottom: 0;
+    padding: 5px 15px;
+}
+.rx_listing .rx_review_block .rx_body .rx-admin-reply-area .comment-form-comment textarea,
+.rx-admin-edit-reply-area .comment-form-comment textarea{
+    width: 100%;
+    background-color: #F5F6F9;
+    box-shadow: none;
+    border: 1px solid #EBEBF3;
+    border-radius: 3px;
+    font-size: 14px;
+    margin-top: 5px;
+}
+.rx-admin-edit-reply-area .admin-reply-form-title{
+    font-size: 14px;
+}
+.rx-admin-edit-reply-area .comment-form-comment,
+.rx-admin-edit-reply-area .form-submit,
+.rx-admin-reply-area .comment-form-comment,
+.rx-admin-reply-area .form-submit
+{
+    padding:10px;
+    padding-bottom: 0;
+    text-transform: capitalize;
+    position: relative;
+}
+
+.rx-admin-edit-reply-area .form-submit .admin-review-edit-reply,
+.rx-admin-reply-area .form-submit .admin-review-reply{
+    color: #fff;
+    text-transform: capitalize;
+    padding: 7px 30px;
+    text-transform: capitalize !important;
+    letter-spacing: 0;
+    min-width: auto;
+    box-shadow: none;
+    border-radius: 5px;
+}
+
+.rx-admin-edit-reply-area .form-submit .cancel-admin-edit-reply,
+.rx-admin-reply-area .form-submit .cancel-admin-reply{
+    background-color: #eeeeee;
+    border: 1px solid #eeeeee;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 14px;
+    display: inline-block;
+    text-align: center;
+    white-space: nowrap;
+    transition: color .15s;
+    color: #333;
+    text-transform: capitalize;
+    border-radius: .25rem;
+    padding: 5px 30px !important;
+    min-width: 100px !important;
+    margin-right: 5px;
+    cursor: pointer;
+    line-height: 25px;
+}
+
+.rx-admin-reply-area .form-submit .cancel-admin-reply:hover{
+    color: #333 !important;
+}
+
+.rx-review-listing .rx-admin-reply-area{
+    margin-left: 0;
+}
+
+.rx_listing .rx_review_block .rx_body .admin-reply-form-title{
+    margin-bottom: 5px;
+    font-weight: 600;
+    border:none !important;
+    background: none !important;
+    color: #9B9B9B !important;
+}
+
+.admin-reply-delete-icon{
+    cursor: pointer;
+    float:right;
+    margin-right: 5px;
+    font-size: 15px;
+}
+
+.admin-reply-edit-icon{
+    cursor: pointer;
+    float:right;
+    margin-right: 10px;
+    font-size: 15px;
+}
+.admin-reply-delete-icon svg,
+.admin-reply-edit-icon svg{
+    height: 15px;
+    width: 15px;
+    fill: #000;
+}
+.admin-reply-loader {
+    display: none;
+    position: absolute;
+    /* top: 50%; */
+    /* left: 50%; */
+    height: 15px;
+    width: 15px;
+    margin: 2px 0 0 -17px;
+    border: 2px rgba(0, 0, 0, 0.25) solid;
+    border-top: 2px #fff solid;
+    border-right: 2px #fff solid;
+    border-bottom: 2px #fff solid;
+    border-radius: 50%;
+    -webkit-animation: spin3 1s infinite linear;
+    animation: spin3 1s infinite linear;
+}
+
+@-webkit-keyframes spin3 {
+    from {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    to {
+        -webkit-transform: rotate(359deg);
+        transform: rotate(359deg);
+    }
+}
+@keyframes spin3 {
+    from {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    to {
+        -webkit-transform: rotate(359deg);
+        transform: rotate(359deg);
+        -webkit-transform: rotate(359deg);
+        transform: rotate(359deg);
+    }
+}
+
+.rx_template_one .commentlist .review{
+    padding: 10px 5px !important;
+    margin-bottom: 30px !important;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.rx_template_one .commentlist .bypostauthor{
+    border:none !important;
+}
+
+.rx_template_one .rx-review-listing{
+    border:none;
+    margin-bottom: 0;
+}
+
+.rx_photo_review_list .children{
+    margin: 0;
+    padding: 5px 30px;
+    padding-right: 0px;
+    padding-left: 60px;
+    background: transparent;
+}
+
+.rx_photo_review_list .children li{
+    background-color: #f7f7f7;
+    padding-left: 20px;
+}
+
+.rx_template_one .children li{
+    padding: 10px 20px !important;
+}
+
+.rx_tooltip{
+    position:absolute;
+    background-color:#eeeefe;
+    border: 1px solid #aaaaca;
+    border-radius: 4px;
+    font-size: smaller;
+    text-align: center;
+    padding:4px;
+    width: 140px;
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
+    -moz-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
+    -webkit-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
+    right: 5px;
+}
+
+.rx_tooltip::after{
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #aaaaca transparent transparent transparent;
+}
+
+.rx_listing .children{
+    display: block !important;
+}
+
+.rx-review-status-notice{
+    display:none;
+    margin-right: 5px;
+    font-style: italic;
+    font-weight: 600;
+    color: #ff9800;
+}
+
+.rx-review-status-notice svg{
+    vertical-align: text-top;
+    fill: #ff9800;
+}
+
+/*----------------------------------------------
+        Theme compatibility
+----------------------------------------------*/
+.theme-oshin .review_anonymouse_label .review_anonymouse_icon:after{
+    left: 3px;
+    top: 0px;
+}
+
+/*--------theme shopkeeper--------*/
+.theme-shopkeeper input[type=checkbox]{
+    width: 0 !important;
+}
+.theme-shopkeeper label{
+    margin-top: 0;
+}
+.theme-shopkeeper label>[type=checkbox]{
+    margin-right: 0;
+}
+.theme-shopkeeper [type=checkbox]{
+    margin: 0;
+}
+/*--------------------------------------------------------
+	Responsive Section
+----------------------------------------------------------*/
+@media (max-width: 767px){
+    .rx_anonymouse_section {
+        max-width: 100%;
+    }
+}
+
+#non-logged-rx-upload-video{
+    display: none;
+}
+.rx_listing .rx_review_block .rx_body .rx_varified .rx_varified_user{
+    margin-right: 20px !important;
+}

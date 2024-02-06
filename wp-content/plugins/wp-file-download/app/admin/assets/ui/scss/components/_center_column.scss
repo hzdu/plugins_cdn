@@ -1,0 +1,281 @@
+$toolbar-height: 80px;
+$toolbar-background: #ffffff;
+$toolbar-font: 'Nunito Sans', sans-serif;
+
+$table-header-height: 50px;
+$table-row-height: 30px;
+@import 'mixin';
+
+#wpreview {
+  font-family: $toolbar-font;
+  padding: 0;
+  position: relative;
+}
+
+.preview-top {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  flex-wrap: wrap;
+}
+.wpfd_no_file {
+  @include fontSize(16px);
+  font-weight: bold;
+  text-align: center;
+  color: #313131;
+}
+.wpfd-categories-filter {
+  margin: 10px auto;
+  border: 1px solid #707070;
+  border-radius: $small-radius;
+  background: #fff;
+
+  input[type="text"] {
+    border: 0;
+    padding: 6px 0;
+    @include fontSize(12px);
+    color: #32373c;
+    &:focus {
+      outline: none;
+      border: none;
+      @include boxShadow(unset);
+    }
+  }
+}
+@import 'v3_search';
+.wpfd-insert-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  justify-self: flex-start;
+  order: 1;
+  flex-grow: 1;
+}
+
+.wpfd_tbl_toolbox {
+  position: fixed;
+  top: 130px;
+  right: -160px;
+  display: flex;
+  align-items: flex-start;
+  z-index: 81;
+  @include boxShadow(0 10px 30px 0 rgba(160, 166, 190, .5));
+  justify-content: flex-start;
+  background: #fff;
+  border-radius: 4px 0 0 4px;
+  padding: 20px;
+  width: 120px;
+  @include transition(right .5s ease-in-out);
+  &.toolbox_open {
+    right: 0;
+  }
+  ul {
+    margin: 0;
+  }
+  .material-icons {
+    background: #fff;
+    padding: 5px 0 5px 5px;
+    border-radius: 20px 0 0 20px;
+    @include boxShadow(-2px 2px 6px -4px rgba(0, 0, 0, .4));
+    justify-content: space-between;
+    color: #7296a8;
+    cursor: pointer;
+    position: absolute;
+    left: -29px;
+    top: 10px;
+  }
+}
+
+#preview {
+  margin: 0 auto;
+  //min-height: 200px;
+  position: relative;
+  padding: 10px 0 220px 0;
+  //margin-top: -$toolbar-height;
+  //overflow: hidden;
+  //@extend %scroll-x;
+  .restableHideCols {
+    padding-top: $toolbar-height - 10px;
+  }
+  &.no-wpfd {
+    padding-bottom: 0;
+  }
+  .file {
+    position: relative;
+    color: #313131;
+    font-size: 12px;
+
+    .fileicon-wrapper {
+      display: flex;
+      align-items: center;
+    }
+
+    .filestatus-wrapper {
+      display: flex;
+      padding-left: 10px;
+
+      i[class^="wpfd-"] {
+        padding: 0 2px;
+        width: 20px;
+        height: 20px;
+      }
+    }
+
+
+    &.ui-sortable-helper {
+      > div {
+      }
+    }
+    > div {
+      vertical-align: middle;
+      overflow: hidden;
+      -o-text-overflow: ellipsis;
+      /* pour Opera 9 */
+      text-overflow: ellipsis;
+      /* pour le reste du monde */
+    }
+    > td {
+      &.fileicon {
+        width: 1%;
+      }
+      &.title {
+        font-weight: bold;
+      }
+      &.size {
+        font-size: 1em;
+        font-weight: bold;
+        color: #64a5f0;
+      }
+    }
+    &.isWoocommerce > .title {
+      position: relative;
+      .goProducts {
+        position: absolute;
+        height: 18px;
+        padding: 2px 4px;
+        display: block;
+        left: 5px;
+        background: $woocommerce-bg-color;
+        border-radius: $small-radius;
+        border: 0;
+        font-size: 0.9em;
+        line-height: 15px;
+        color: #fff;
+        top: 50%;
+        transform: translateY(-50%);
+        &:focus, &:hover, &:active {
+          outline: none;
+        }
+        &:hover {
+          cursor: pointer;
+          @include boxShadow(1px 1px 12px #444);
+        }
+      }
+    }
+    &.isPending > .title {
+      position: relative;
+      .wpfd-pending-btn {
+        position: absolute;
+        min-width: 115px;
+        height: 18px;
+        padding: 2px 4px;
+        display: block;
+        left: 5px;
+        background: $file-pending-bg-color;
+        border-radius: $small-radius;
+        border: 0;
+        font-size: 0.9em;
+        line-height: 15px;
+        color: #fff;
+        top: 50%;
+        transform: translateY(-50%);
+        &:focus, &:hover, &:active {
+          outline: none;
+        }
+        &:hover {
+          cursor: pointer;
+          box-shadow: unset;
+        }
+      }
+    }
+    &.is-expired,
+    &.unpublished {
+      opacity: 0.7;
+    }
+  }
+  .hiddenCol {
+    display: none;
+  }
+}
+
+#file_dropbox {
+  height: 220px;
+  margin: 0;
+  .message {
+    font-weight: bold;
+    color: #6a8ba5;
+    margin-bottom: 25px;
+    padding-top: 80px;
+    &:before {
+      position: absolute;
+      top: 20px;
+      width: 100%;
+      height: 100px;
+      content: '';
+      display: block;
+      background: transparent url(../images/icon-dropbox.svg) no-repeat center;
+    }
+  }
+}
+
+#wpfd-core {
+  #upload_button, #add_remote_file {
+    @include boxShadow(unset);
+    &:hover {
+      @include boxShadow(0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12));
+    }
+  }
+}
+
+#file-handle.wpfd_draged_file {
+  display: flex;
+  align-items: center;
+  max-height: calcRem(40px);
+  background: $v4-color;
+  border: unset;
+  padding: 5px 25px;
+  @include boxShadow(0 0 38px -2px #ccc);
+  .filename {
+    width: calc(100% - 35px);
+    padding-left: 10px;
+    display: inline-block;
+  }
+  .ext {
+    background: url('../images/icon-file.svg') no-repeat;
+    width: 25px;
+    height: 25px;
+    background-size: 25px;
+    position: relative;
+    text-align: center;
+    display: inline-block;
+    .txt {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0px;
+      font-size: 6px;
+      color: $v4-color;
+    }
+  }
+  .fCount {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    background: $v4-color;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    line-height: 20px;
+    border-radius: 50%;
+  }
+}

@@ -1,0 +1,81 @@
+@keyframes wpo-spinner {
+	to {transform: rotate(360deg);}
+}
+.wpo-spinner:after {
+	content: '';
+	box-sizing: border-box;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	right: auto;
+	width: 16px;
+	height: 16px;
+	margin-top: -8px;
+	margin-left: -8px;
+	border-radius: 50%;
+	border: 2px solid #ccc;
+	border-top-color: rgb(204, 204, 204);
+	border-top-color: #000;
+	animation: wpo-spinner .5s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+}
+.wpo-license-registration-toggle.wpo-spinner:after {
+	right: -16px;
+	left: auto;
+	width: 12px;
+	height: 12px;
+	margin-top: -6px;
+	margin-left: -6px;
+}
+.wpo-update-helper .license-state.wpo-spinner{
+	color: rgba(0,0,0,0);
+}
+.wpo-update-helper .ajax-waiting .state-indicator {
+	background: none !important;
+}
+.wpo-license-registration-toggle {
+	cursor: pointer;
+	position: relative;
+}
+.wpo-update-helper input.wpo-license-key {
+	padding: 0 8px;
+	line-height: 2;
+	min-height: 30px;
+}
+.wpo-update-helper span.state-indicator {
+	display: inline-block;
+	padding: 2px;
+	line-height: 15px;
+	border: 1px solid #dfdfdf;
+	border-radius: 5px;
+	margin-right: 5px;
+}
+.wpo-update-helper .license-state {
+	position: relative;
+	padding: 0 10px;
+}
+.wpo-update-helper .wpo-license-status-valid .state-indicator {
+	color: green;
+	background-color: #e8f8cb;
+}
+.wpo-update-helper .wpo-license-status-expired .state-indicator {
+	color: #666;
+	background-color: #f8f2cb;
+}
+.wpo-update-helper .wpo-license-status-invalid .state-indicator,
+.wpo-update-helper .wpo-license-status-incomplete .state-indicator {
+	color: red;
+	background-color: #ffeaea;
+}
+.wpo-update-helper span.wpo-license-state{
+	margin: 0 10px;
+}
+.wpo-update-helper span.button {
+	padding: 2px 15px !important;
+	height: 35px !important;
+}
+.wpo-update-helper div.activation-toggle-message {
+	margin-top: 10px;
+	padding: 10px;
+	border: 1px solid #dfdfdf;
+	background: #fafafa;
+}

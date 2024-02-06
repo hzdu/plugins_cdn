@@ -1,0 +1,38 @@
+.before .test>ul , 
+.test>ul2{
+    box-shadow: 0 4px 6px transparent;
+}
+.before .test>ul , .test>ul2{
+    box-shadow: 0 4px 6px transparent;
+}
+.before .test>ul , .test>ul2{
+   /* padding: 0px 0px;*/
+    margin: 0;
+    list-style: none;
+}
+@media only screen and (min-width:1024px) {
+    .navigation>li.menu-item-has-children>ul{
+        padding: 0px 0px;
+        margin: 0;
+        list-style: none;
+    }
+    header.fixed .navigation>li.menu-item-has-children>ul{
+        top: 47px;
+    }
+}
+.after .test>ul , .test>ul2:hover(9){
+    padding: 0px 0px;
+}
+
+
+@keyframes pulsate_2_animation {
+0% {
+    transform: scale(1);
+}
+50% {
+    transform: scale(1.07);
+}
+100% {
+    transform: scale(1);
+}
+}

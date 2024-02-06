@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.0/phpunit.xsd"
+  colors="true"
+>
+  <php>
+    <ini name="error_reporting" value="E_ALL" />
+  </php>
+
+  <testsuites>
+    <testsuite name="Functional tests">
+      <directory>functional</directory>
+    </testsuite>
+    <testsuite name="Unit tests">
+      <directory>unit</directory>
+    </testsuite>
+  </testsuites>
+
+  <coverage>
+    <include>
+      <directory>../src</directory>
+    </include>
+    <exclude>
+      <directory>functional</directory>
+      <directory>unit</directory>
+    </exclude>
+  </coverage>
+</phpunit>

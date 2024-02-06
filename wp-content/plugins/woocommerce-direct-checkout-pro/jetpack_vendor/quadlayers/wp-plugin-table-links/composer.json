@@ -1,0 +1,35 @@
+{
+	"name": "quadlayers/wp-plugin-table-links",
+	"description": "WP Plugin Table Links",
+	"keywords": [
+		"WordPress",
+		"Admin",
+		"Plugin",
+		"Links"
+	],
+	"type": "jetpack-library",
+	"license": "GPL-3.0",
+	"authors": [
+		{
+			"name": "QuadLayers",
+			"email": "noreply@quadlayers.com"
+		}
+	],
+	"minimum-stability": "stable",
+	"config": {
+		"platform": {
+			"php": "7.3.0"
+		}
+	},
+	"autoload": {
+		"psr-4": {
+			"QuadLayers\\WP_Plugin_Table_Links\\": "src/"
+		}
+	},
+	"extra": {
+		"textdomain": "wp-plugin-table-links"
+	},
+	"require": {
+		"php": ">=7.1.0"
+	}
+}

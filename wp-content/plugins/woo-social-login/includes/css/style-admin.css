@@ -1,0 +1,651 @@
+.woo-slg-social-none {
+	display:none !important;
+}
+
+/***************** CSS for Social Login Reports Page ******************/
+.woo-slg-network-activated {
+	height: 25px;
+	width: 25px;
+}
+.woo-slg-drag-drop-menu {
+	height: 10px;
+	width: 10px;
+}
+td.woo-slg-netowrk-facebook {
+	color: #3a5a98;
+}
+td.woo-slg-netowrk-twitter {
+	color: #58a8dc
+}
+td.woo-slg-netowrk-googleplus {
+	color: #4285f4;
+}
+td.woo-slg-netowrk-linkedin {
+	color: #007bb6
+}
+td.woo-slg-netowrk-yahoo {
+	color: #a381bb;
+}
+td.woo-slg-netowrk-foursquare {
+	color: #fa4778
+}
+td.woo-slg-netowrk-vk {
+	color: #4c75a3
+}
+td.woo-slg-netowrk-paypal {
+	color: #012069;
+}
+.widefat .woo-slg-table-col {
+	line-height: 1.4;
+	padding: 8px 10px 1px;
+}
+.widefat .ui-sortable tr:nth-child(even) {
+	background: #e9e9e9;
+}
+.widefat .ui-sortable tr:nth-child(odd) {
+	background: #FFF
+}
+.widefat .ui-sortable td[class^="woo-slg-netowrk-"], .widefat .ui-sortable td:nth-child(5){
+	font-family: sans-serif;
+	font-weight: bolder;
+	font-size: 15px;
+}
+
+/***************** CSS for Social Login Page Starts ******************/
+.woo-slg-social-submit {
+	margin:15px 0 0 0 !important;
+}
+.woo-slg-sortable tbody td{
+	cursor:move !important;
+}
+.woo-slg-social-chart-container{
+	text-align: center;
+	margin: 30px 0 0;
+	margin:auto;
+	width: 100%;
+	max-width: 650px;
+}
+/***************** CSS for Social Login Page Ends******************/
+
+/********** CSS for Shortcode Popup Starts ***********/
+.woo-slg-popup-content{
+    margin: 0 auto 10px;
+    min-height: 370px;
+    display: none;
+	position: fixed;
+	border: 1px solid #555555;
+	top: 12%;
+	text-align: left;
+	left: 17%;
+	width: 800px;
+	max-width: 90%;
+	padding: 20px 35px;
+	background: none repeat scroll 0 0 #FFFFFF;
+	z-index:999999;
+	overflow: auto;
+	font: 12px "Lucida Grande",Verdana,Arial,sans-serif;
+	box-shadow: 0 4px 30px #000000;
+	color: #000000;
+	overflow: hidden;
+}
+.woo-slg-popup-content .description {
+	margin-left: 0px !important
+}
+.woo-slg-popup-overlay {
+	display: none;
+	background-color: #000000;
+    height: 100%;
+    left: 0;
+    opacity: 0.75;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1001;
+}
+.woo-slg-header-title {
+    float: left;
+    padding: 6px 10px 0;
+}
+.woo-slg-popup-close {
+ 	float: right;
+    padding: 6px 10px 0;
+    text-align: right;
+}
+.woo-slg-header {
+    position: relative;
+    background-color: #222222;
+    color: #CFCFCF;
+    height: 27px;
+    left: -35px;
+    right: -35px;
+    top: -20px;
+    width: 109%;
+    width: calc( 100% + 70px );
+}
+.woo-slg-popup table.form-table {
+	margin : 15px;
+	width: 80%;
+}
+#woo_slg_shortcode_error {
+	color: red;
+}
+#woo_slg_insert_container {
+	margin: 15px;
+
+}
+#woo_slg_shortcode_error,
+#woo_slg_insert_container,
+.woo-slg-shortcodes-options {
+ 	display: block;
+}
+/***************** CSS for Shortcode Popup Ends******************/
+.woo-slg-linked-provider-image{
+	margin-right:10px;
+}
+.woo-slg-not-rec {
+	color: red;
+}
+.woo-slg-warning-message {
+	font-style: italic;
+}
+.woocommerce-message p.submit input.woo-slg-sys-log-button{
+	background: #bb77ae;
+    border-color: #a36597;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.25), 0 1px 0 #a36597;
+    color: #fff;
+    text-shadow: 0 -1px 1px #a36597, 1px 0 1px #a36597, 0 1px 1px #a36597, -1px 0 1px #a36597;
+    display: inline-block;
+}
+.woocommerce-message p.submit input.woo-slg-sys-log-button:hover{
+	background: #a36597;
+    border-color: #a36597;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.25), 0 1px 0 #a36597;
+}
+.woo-slg-hide{
+	display:none;
+}
+tr.woo-slg-setting-seperator {
+	color: #0e7ca8;
+}
+tr.woo-slg-setting-seperator td{
+	font-size: 20px;
+}
+
+.wpw-verification-method{
+	margin-right: 10px;
+}
+/** New*/
+.woo-slg-sortable .reg-count-label{ font-size: 18px;font-weight: bold; }
+.woo-slg-sortable .col-network{text-align: center;}
+.woo-slg-sortable .col-register-count,
+.woo-slg-sortable .col-status,
+.woo-slg-sortable .col-setting{text-align: center;width: 25%;}
+
+.woo-slg-sortable .ui-sortable .woo-slg-table-col,
+.woo-slg-sortable .ui-sortable .ui-sortable-handle{text-align: center;}
+.woo-slg-sortable .ui-sortable .ui-sortable-handle{margin: 0 auto;}
+
+/* New on 19-3-2018 */
+.woo-slg-tab-content { display: none; }
+.woo-slg-tab-content.woo-slg-selected-tab { display: block; }
+.woo-slg-save-btn {float: right;}
+.wslg-select { min-width: 200px; }
+.woo-slg-content-section .nav-tab { line-height: 0; }
+.woo-slg-wpweb-logo { float: left; margin: 0 10px 0 0; }
+.wooslg-settings-meta-box label { vertical-align: top !important; }
+.woo-slg-tab-content ul { margin: 0; }
+.woo-slg-content-section h2 .nav-tab > img { max-height: 24px; }
+
+.woo-slg-remove-custom-hook{
+	margin-left: 2px;
+	padding: 3px !important;
+	border: 1px solid red;
+	background: #e7320d;
+	color: white;
+	border-radius: 2px;
+	cursor: pointer;
+}
+.inside .woo_vou_tooltip {
+        width: 30px;
+        display: inline-block;
+        position: relative	;
+}
+
+.woo-slg-show-on-small{ display: none !important; }
+
+@media (max-width: 1100px) {
+	.woo-slg-popup-content{
+		width: 700px;
+		left: 20%;
+	}
+}
+@media (max-width: 991px) {
+	.woo-slg-popup-content{
+		width: 500px;
+		left: 20%;
+	}
+}
+@media (max-width: 781px) {
+	.wp-list-table .is-expanded td:not(.hidden) {
+		overflow:visible
+	}
+	table.wp-list-table.woo-slg-sortable.widefat tbody.ui-sortable tr.can-drag td.woo-slg-table-col.ui-sortable-handle:nth-child(1) {
+		display: table-cell !important;
+		width: 35px !important;
+		padding-top: 15px;
+	}
+	table.wp-list-table.woo-slg-sortable.widefat tbody.ui-sortable tr td.woo-slg-table-col:nth-child(1) {
+		display: table-cell !important;
+		width: 35px !important;
+		padding-top: 15px;
+	}
+	.wp-list-table.woo-slg-sortable td.woo-slg-social-none.ui-sortable-handle {
+		display: none !important;
+	}
+	.woo-slg-table-col +
+	.woo-slg-drag-drop-menu {
+		height: 15px;
+		width: 15px;
+	}
+	.wp-list-table tr:not(.inline-edit-row):not(.no-items) td:not(.column-primary)::before {
+		width:60%;
+		text-align:left
+	}
+
+	table.wp-list-table.woo-slg-sortable td.column-primary{
+		padding-right: 30px;
+	}
+	table.wp-list-table.woo-slg-sortable .toggle-row{
+		width: 30px;
+	}
+	td.woo-slg-table-col.column-primary .button{
+		vertical-align: top;
+		line-height: 31px;
+		min-height: 32px;
+		font-size: 14px;
+		margin-left: 5px;
+		font-weight: 400;
+		padding: 0 10px;
+	}
+
+	.woo-slg-show-on-small{ display: inline-block !important; }
+	.woo-slg-hide-on-small{ display: none !important; }
+	.wrap .wp-list-table .is-expanded .woo-slg-hide-on-small{ display: none !important; }
+	.woo-slg-content-section input[type="checkbox"],
+	.woo-slg-content-section input[type="radio"] {
+		margin-top: 0;
+		margin-bottom: 0;
+		vertical-align: middle;
+	}
+	.woo-slg-upload-file-button{ margin-top: 5px !important; }
+	.woo-slg-popup table.form-table{
+		width: 100%;
+		margin: 0;
+	}
+	#woo_slg_insert_container{ margin: 15px 0; }
+	.woo-slg-popup-content{
+		top: 5%;
+		left: 15px;
+		right: 15px;
+		max-width: calc(100% - 30px );
+		box-sizing: border-box;
+		padding: 20px;
+		max-height: 90vh;
+		overflow-y: auto;
+	}
+	.woo-slg-header{
+		left: -20px;
+		right: -20px;
+    	width: calc( 100% + 40px );
+	}
+}
+@media screen and (max-width:991px) and (min-width:768px){
+	.wp-list-table tr:not(.inline-edit-row):not(.no-items) td:not(.column-primary)::before {
+	    width: 80%;
+	    text-align: left;
+	    left: 232px;
+	}
+	.wp-list-table tr:not(.inline-edit-row):not(.no-items) td.column-primary ~ td:not(.check-column) {
+    	padding: 3px 8px 3px 25%;
+	}
+}
+
+@media (max-width: 767px) {
+    .postbox table.form-table {
+        width: 100%;
+        table-layout: fixed;
+    }
+    #woo_vou_voucher span.select2.select2-container.select2-container--default {
+        width: 100% !important;
+        min-width: 100% !important;
+    }
+    div#woo_vou_voucher ul.woo-vou-add-tabination li {
+    	width: 100%;
+	}
+	.form-field._woo_vou_enable_field label {
+	    width: 100% !important;
+	}
+	li#toplevel_page_woo-social-login .wp-menu-name {
+    	padding: 0;
+	}
+	.wp-list-table .toggle-row:before {
+		top: 3px;
+	}
+
+	#woo_vou_voucher .description {
+	    margin: 0 !important;
+	}
+	#woo_vou_voucher input[type="checkbox"]{
+	    width: 25px !important;
+	}
+	#woo-vou-multi-checkbox-instance input[type="checkbox"]{
+		width: 23% !important;
+	}
+	div#woo_vou_voucher div span.description {
+    	padding-top: 7px !important;
+	}
+	.woo-vou-popup table.form-table.woo-vou-voucher-voucher-redeem-table td:first-child {
+    	width: 100%;
+	}
+	a.button.button-secondary.button-large.woo-vou-pdf-preview-button{
+		padding: 6px 14px !important;
+	    
+	    font-size: 14px;
+	    vertical-align: middle;
+	    height: auto;
+	    margin-bottom: 0;
+	    line-height: normal;
+	    margin-top: 7px;
+	}
+	.woo_vou_tooltip .woo_vou_main_buttons div {
+	    margin-bottom: 12px;
+	}
+	
+	td .woo-vou-meta-radio-label{
+		width: 83%;
+	    display: inline-block;
+	    margin-bottom: 21px;
+	}
+    td .woo-vou-meta-radio{
+    	margin-bottom: 15px;
+    }
+    .inside {
+    	overflow: scroll;
+	}
+	.form-table span.description {
+	    margin: 0;
+	}
+	#profile-page .description.woo-vou-description{
+		display: block;
+	}
+	.description.woo-vou-description{
+		padding: 4px
+	}
+	.form-table,
+	.wp-list-table {
+    	table-layout: fixed;
+	}
+	#profile-page .form-table textarea {
+	    max-width:100%;
+	    width: 100%;
+	}
+	
+	#woo_vou_voucher .woo-vou-multi-check-box-wrapper .woo-vou-multi-checkbox-instance .woo-vou-meta-multi-checkbox-label{
+		padding-left: 38px;
+	}
+	#woo_vou_voucher ._woo_vou_enable_pdf_preview_field.vou_clearfix,
+	._woo_vou_enable_multiple_pdf_field.vou_clearfix {
+    	padding: 5px !important;
+	}
+	#woo_vou_voucher ._woo_vou_vendor_user_field{
+		padding: 5px;
+	}
+	#woo_vou_voucher .woo-vou-meta-repeat {
+	    width: 90%;
+	    position: relative;
+	    left: 0;
+	    margin-left: 5px;
+	}
+	span.description[data-field-type="vendor"]{
+		padding: 5px !important;
+	}
+	#woo_vou_voucher ._woo_vou_vendor_user_field span.select2.select2-container.select2-container--default{
+		width: 100% !important;
+		min-width: 100% !important;
+	}
+	.woo-vou-popup-content.woo-vou-import-content{
+	    position: fixed !important;
+	    top: 10% !important;
+	    left: 50% !important;
+	    width: 90%;
+	    transform: translateX(-50%);
+	}
+	.woo-vou-popup-content.woo-vou-purchased-codes-popup, .woo-vou-popup-content.woo-vou-used-codes-popup, .woo-vou-popup-content.woo-vou-unused-codes-popup {
+	    position: fixed !important;
+	    top: 10% !important;
+	    left: 50% !important;
+	    width: 90% !important;
+	    transform: translateX(-50%);
+	}
+	#woo_vou_voucher .woo-vou-popup-content{
+		position: fixed !important;
+	    top: 10% !important;
+	    left: 50% !important;
+	    width: 90% !important;
+	    transform: translateX(-50%) !important;
+	}
+	.woo-vou-purchased-codes-popup table.form-table th.voucher_code,
+	.woo-vou-used-codes-popup table.form-table th.voucher_code {
+    	width:auto !important;
+	}
+	#woo_vou_voucher ._woo_vou_exp_type_field .select2 {
+	    min-width: 100% !important;
+	    display: block;
+	}
+	 #woo_vou_voucher ._woo_vou_using_type_field.vou_clearfix,
+	 #woo_vou_voucher ._woo_vou_enable_coupon_code_field.vou_clearfix{
+	 	padding: 5px !important;
+	 }
+	#woo_vou_voucher label{
+		width: 100% !important;
+	}
+	.recipient-detail-wrap,
+	.pdf-template-recipient-detail-wrap,
+	._woo_vou_recipient_delivery_label_field {
+    	margin-left: 5px !important;
+	}
+	.woocommerce_options_panel input[type=text] {
+	    width: 96% !important;
+	    float: left;
+	}
+	.form-field._woo_vou_recipient_name_is_required_field{
+		display: block !important;
+	}
+	/*For Builder elements*/
+	
+	
+	/*For Builder elements*/
+	.woo_vou_controls .text_column .woo_vou_text {
+    	margin: 0 0;
+	}
+	.auto-fold #wpcontent {
+	    padding: 0 10px !important;
+	}
+	#woo_vou_voucher div.woo-vou-multi-check-box-wrapper {
+		width: 100% !important;
+		float: unset !important;
+		padding: 5px;
+	}
+	#woo_vou_voucher div.woo-vou-multi-checkbox-instance {
+		display: inline-block;
+		width: 50%;
+	}
+	#woocommerce-product-data .hndle label:first-child {
+		margin: 0 0 10px;
+		display: inline-block;
+		border-right: 0;
+	}
+	.select2-container{
+		width: 100% !important;
+	}
+	.wrap {
+     margin-right: 0 !important;
+	}
+	.form-table#fieldset-billing td{
+		padding-right: 0 !important;
+	}
+	#woo_vou_voucher #woocommerce-product-data .hndle label:first-child {
+	    margin: 0 0 10px;
+	    display: inline-block;
+	    border-right: 0 !important;
+	}
+	#woo_vou_voucher ._woo_vou_sec_vendor_users_field {
+	    width: 96%;
+	}
+	#postcustomstuff table#newmeta select, #postcustomstuff table#newmeta textarea {
+	    width: 96%;
+	    margin: 4px;
+	}
+	#order_data .order_data_column .form-field .hour, #order_data .order_data_column .form-field .minute {
+    	width: 18% !important;
+	}
+	#order_data {
+    	padding: 23px 15px 12px !important;
+	}
+	.select2-dropdown.select2-dropdown--below{
+		width: 100%;
+	}
+	.woo-vou-popup table.form-table input[type="text"], .woo-vou-popup table.form-table select {
+	    width: 36%;
+	    float: left;
+	    margin-bottom: 15px;
+	    height: auto;
+	}
+	.wp-list-table.woo-slg-sortable .ui-sortable tr:last-child .woo-slg-social-none{
+		display: none !important;
+	}
+	#woo_vou_voucher ._woo_vou_used_codes_field .description {
+	    float: unset;
+	}
+	.inside .woo_vou_tooltip {
+        margin-bottom:10px;
+        z-index:unset;
+        position:unset;
+    }
+	.woo_vou_builder_area {
+	    padding: 50px !important;
+	    line-height: normal;
+	}
+    .woo_vou_tooltip:hover span {
+	    margin-left: 0px !important;
+	    transform: translateX(-50%);
+	    left: 50% !important;
+	}
+	
+	#woo_vou_voucher .form-field._woo_vou_enable_field label,
+	#woo_vou_voucher .form-field._woo_vou_enable_pdf_template_selection_field label,
+	#woo_vou_voucher .form-field._woo_vou_enable_recipient_name_field label,
+	#woo_vou_voucher .form-field[data-field-type="recipient"] label{
+	    width: 128px !important;
+	    float: left;
+	}
+	iframe[title="Rich Text Area. Press Alt-Shift-H for help."]{
+    	height: auto !important;
+	}
+}
+
+@media (max-width:575px){
+	.wooslg-settings-meta-box{ margin-bottom: 15px; }
+}
+@media screen and (min-width:725px) and (max-width:767px){
+    td .woo-vou-meta-radio-label {
+        width: 94%;
+    }
+}
+@media screen and (min-width:450px) and (max-width:724px){
+    td .woo-vou-meta-radio-label {
+        width: 90%;
+    }
+}
+@media screen and (max-width:414px){
+	.wp-list-table tr:not(.inline-edit-row):not(.no-items) td:not(.column-primary)::before {
+	    left: 56px;
+	}
+}
+@media screen and (max-width:375px){
+	.wp-list-table tr:not(.inline-edit-row):not(.no-items) td:not(.column-primary)::before {
+	    left: 37px;
+	}
+}
+/* 10 dec, 2018 */
+.woo_slg_mail_settings_show_rows{
+    display: table-row;
+}
+.woo_slg_mail_settings_hide_rows{
+    display: none;
+}
+
+/* 31 Dec, 2018 */
+.woo-slg-error-box {
+    background: #eeeeee;
+    padding: 4px 10px 7px !important;
+    border: 1px solid #e0e0e0;
+}
+.woo-slg-error.info{
+	padding: 5px 0px 5px 30px;
+	margin: 10px 0px 0px 0px;
+	background-color:#FFEBE8;
+	border-color:#CCC;
+	border-radius: 3px 3px 3px 3px;
+	border-style: solid;
+	border-width: 1px;
+	position: relative;
+}
+.woo-slg-error.info.grey{
+	background-color:#F6F6F6 !important;
+}
+.woo-slg-error.info:before{
+	content: " ";
+	background: url(../images/ico-info.png);
+	width: 16px;
+	height: 16px;
+	background-size: 16px;
+	display: block;
+	background-repeat: no-repeat;
+	background-position: center;
+	position: absolute;
+	left: 8px;
+	top: 51%;
+	transform: translateY(-50%);
+}
+.woo-slg-error.info ul{
+	vertical-align: middle;
+	margin-top: 5px;
+}
+.postbox .hndle .woo-slg-vertical-top{
+	vertical-align: top;
+}
+.woo-slg-hide-section{
+  display: none;
+}
+
+/* 11 Nov, 2019 */
+/* 10 dec, 2018 */
+.woo_slg_mail_otp_settings_show_rows{
+    display: table-row;
+}
+.woo_slg_mail_otp_settings_hide_rows{
+    display: none;
+}
+.select2-dropdown{ z-index: 999999; }
+#adminmenu a.menu-top.toplevel_page_woo-social-login{
+	height: auto !important;
+}
+/* for meta-box-sortables WP Version 5.5.1 */
+#wpbody-content .content.woo-slg-content-section .woo-slg-content .metabox-holder .meta-box-sortables .postbox > .handlediv{
+    float: right;
+}
+#wpbody-content .content.woo-slg-content-section .woo-slg-content .meta-box-sortables .postbox .hndle, 
+#wpbody-content .content.woo-slg-content-section .woo-slg-content .meta-box-sortables .stuffbox .hndle{
+    border-bottom: 1px solid #ccd0d4; 
+}

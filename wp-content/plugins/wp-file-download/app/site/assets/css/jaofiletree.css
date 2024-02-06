@@ -1,0 +1,151 @@
+#jao {
+    padding: 10px;
+}
+
+ul.jaofiletree {
+    font-size: 16px;
+    line-height: 20px !important;
+    padding: 0 !important;
+    margin: 10px 0 0 0 !important;
+}
+
+ul.jaofiletree li {
+    list-style: none;
+    padding: 0 !important;
+    padding-left: 15px !important;
+    margin: 10px 0 !important;
+    white-space: nowrap;
+    line-height: 1;
+    vertical-align: middle;
+}
+
+ul.jaofiletree li.expanded .icon-open-close:before {
+    margin-left: -1px;
+}
+
+ul.jaofiletree li.collapsed .icon-open-close:before {
+    margin-left: 1px;
+}
+ul.jaofiletree .zmdi-folder,
+ul.jaofiletree .zmdi-folder-open {
+    margin-right: 10px;
+}
+
+ul.jaofiletree a {
+    font-family: arial;
+    color: #666;
+    text-decoration: none;
+    box-shadow: none;
+    display: inline-block;
+    padding: 0 2px;
+    font-size: 16px;
+    text-transform: none;
+    line-height: 22px;
+    vertical-align: top;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    letter-spacing: normal;
+    text-align: left;
+}
+
+ul.jaofiletree a:hover {
+    font-weight: bold;
+}
+
+ul.jaofiletree li.drive > a,
+ul.jaofiletree li.selected > a {
+    font-weight: bold;
+}
+
+.jaofiletree li.directory .icon-open-close:before {
+    position: relative;
+    top: 0px;
+    display: inline-block;
+    font-family: Material-Design-Iconic-Font;
+    font-size: 17px;
+}
+
+.icon-open-close {
+    width: 16px;
+    height: 22px;
+    display: inline-block;
+    margin-right: 0;
+    position: relative;
+    text-align: center;
+}
+
+.icon-open-close:hover {
+    cursor: pointer;
+}
+
+.jaofiletree li.zmdi-perm-media {
+    font-size: 14px
+}
+
+.jaofiletree .zmdi-folder,
+.jaofiletree .zmdi-folder-open {
+    font-size: 22px;
+    color: #888888;
+    font-weight: bold;
+    margin-right: 5px;
+}
+
+/*. jaofiletree li.drive { background: url(../images/jao/drive.png) left top no-repeat; } */
+
+.jaofiletree li.file {
+    background: url(../images/jao/file.png) left top no-repeat;
+}
+
+.jaofiletree li.wait {
+    background: url(../images/jao/spinner.gif) left top no-repeat;
+}
+
+.jaofiletree li.directory .icon-open-close:before {
+    position: relative;
+    top: 0px;
+    display: inline-block;
+    font-family: Material-Design-Iconic-Font;
+    font-size: 17px;
+}
+
+.jaofiletree li.directory.expanded .icon-open-close:before {
+    content: '\f2f2';
+    font-size: 22px;
+}
+
+.jaofiletree li.directory.collapsed .icon-open-close:before {
+    content: '\f2f6';
+    color: #888;
+    font-size: 22px;
+}
+
+.jaofiletree li.directory.selected {
+    color: #888888;
+}
+
+.jaofiletree li.directory.selected > a {
+    color: darkgray ;
+    font-weight: bold;
+}
+
+.jaofiletree li.directory.selected > .zmdi-folder {
+    color: darkgray;
+}
+.jaofiletree li.directory.selected > .zmdi-folder:before {
+    color: darkgray;
+}
+
+.jaofiletree li.directory.selected > .icon-open-close:before {
+    color: darkgray;
+}
+
+.jaofiletree li.directory.collapsed .icon-open-close:hover:before {
+    content: '\f2f6';
+    color: #555;
+    font-size: 22px;
+}
+
+.jaofiletree .scrolly {
+    overflow: auto;
+}

@@ -1,0 +1,2357 @@
+[
+    {
+        "key": "group_57c4404468513",
+        "title": "WooCommerce Support Ticket - Details",
+        "fields": [
+            {
+                "key": "field_57c4405283c7e",
+                "label": "Status",
+                "name": "wcsts_status",
+                "aria-label": "",
+                "type": "select",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "50",
+                    "class": "",
+                    "id": ""
+                },
+                "multiple": 0,
+                "allow_null": 0,
+                "choices": {
+                    "open": "Open",
+                    "in_progress": "In Progress",
+                    "closed": "Closed",
+                    "5UamyE07B7": "Custom 2"
+                },
+                "default_value": [
+                    "open"
+                ],
+                "ui": 0,
+                "ajax": 0,
+                "placeholder": "",
+                "return_format": "value"
+            },
+            {
+                "key": "field_57c443580e386",
+                "label": "Priority",
+                "name": "wcsts_priority",
+                "aria-label": "",
+                "type": "taxonomy",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "50",
+                    "class": "",
+                    "id": ""
+                },
+                "taxonomy": "wcsts_ticket_priority",
+                "field_type": "select",
+                "multiple": 0,
+                "allow_null": 0,
+                "return_format": "object",
+                "add_term": 1,
+                "load_terms": 1,
+                "save_terms": 1,
+                "bidirectional_target": []
+            },
+            {
+                "key": "field_57c461c618678",
+                "label": "Open date",
+                "name": "wcsts_open_status_date",
+                "aria-label": "",
+                "type": "date_time_picker",
+                "instructions": "If left empty, the system will automatically fill with the \"now\" date.",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "display_format": "F j, Y g:i a",
+                "return_format": "F j, Y g:i a",
+                "first_day": 1
+            },
+            {
+                "key": "field_57c459a2d89fb",
+                "label": "Closed date",
+                "name": "wcsts_closed_status_date",
+                "aria-label": "",
+                "type": "date_time_picker",
+                "instructions": "If left empty, the system will automatically fill with the \"now\" date.",
+                "required": 0,
+                "conditional_logic": [
+                    [
+                        {
+                            "field": "field_57c4405283c7e",
+                            "operator": "==",
+                            "value": "closed"
+                        }
+                    ]
+                ],
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "display_format": "F j, Y g:i a",
+                "return_format": "F j, Y g:i a",
+                "first_day": 1
+            },
+            {
+                "key": "field_57d2730d39654",
+                "label": "Email notification recipients override",
+                "name": "wcst_notification_recipients_override",
+                "aria-label": "",
+                "type": "text",
+                "instructions": "<p>By default admin email notifications are sent to the site admin email address (or the custom recipients configured on <strong>Ticket System Options<\/strong> menu).<\/p>\r\n<p>To override those settings specify new recipients in the following text area (in case of multiple recipients, separate them by comma). In this way the notifications will be sent only to the following email addresses.<\/p>",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "placeholder": "admin@yoursite.com, shop_manager@yoursite.com",
+                "prepend": "",
+                "append": "",
+                "maxlength": ""
+            }
+        ],
+        "location": [
+            [
+                {
+                    "param": "post_type",
+                    "operator": "==",
+                    "value": "wcsts_ticket"
+                }
+            ]
+        ],
+        "menu_order": 0,
+        "position": "side",
+        "style": "default",
+        "label_placement": "top",
+        "instruction_placement": "label",
+        "hide_on_screen": "",
+        "active": true,
+        "description": "",
+        "show_in_rest": false
+    },
+    {
+        "key": "group_5900cce22558c",
+        "title": "WooCommerce Support Ticket - Text: Topics",
+        "fields": [
+            {
+                "key": "field_57d5a07f74548",
+                "label": "Order ticket - Subject type",
+                "name": "wcsts_order_ticket_subject_type",
+                "aria-label": "",
+                "type": "select",
+                "instructions": "Ticket subject can be a text input where the user can type text or can be chosen between a set of topic defined by the admin.",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "multiple": 0,
+                "allow_null": 0,
+                "choices": {
+                    "text_input": "Text input",
+                    "admin_defined_topics": "Admin defined topics"
+                },
+                "default_value": [
+                    "text_input"
+                ],
+                "ui": 0,
+                "ajax": 0,
+                "placeholder": "",
+                "return_format": "value"
+            },
+            {
+                "key": "field_57d65ce6ebe3e",
+                "label": "Order ticket - Subject topics",
+                "name": "wcsts_order_ticket_subject_topics",
+                "aria-label": "",
+                "type": "repeater",
+                "instructions": "",
+                "required": 1,
+                "conditional_logic": [
+                    [
+                        {
+                            "field": "field_57d5a07f74548",
+                            "operator": "==",
+                            "value": "admin_defined_topics"
+                        }
+                    ]
+                ],
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "collapsed": "field_57d65d31ebe3f",
+                "min": 1,
+                "max": 0,
+                "layout": "row",
+                "button_label": "Add Topic",
+                "sub_fields": [
+                    {
+                        "key": "field_57d65d31ebe3f",
+                        "label": "Topic",
+                        "name": "wcsts_topic",
+                        "aria-label": "",
+                        "type": "text",
+                        "instructions": "Type the topic text",
+                        "required": 1,
+                        "conditional_logic": 0,
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "default_value": "",
+                        "maxlength": "",
+                        "placeholder": "",
+                        "prepend": "",
+                        "append": "",
+                        "parent_repeater": "field_57d65ce6ebe3e"
+                    },
+                    {
+                        "key": "field_5f86e657f3ff3",
+                        "label": "Email recipient",
+                        "name": "wcsts_topic_email_recipient",
+                        "aria-label": "",
+                        "type": "text",
+                        "instructions": "For each topic you can set specific <strong>admin notitifcation recipients<\/strong> (in case of multiple recipients, separate them by comma). In this way the admin notifications will be sent to the specied email addresses. The user notification will be normally sent to the user email address.",
+                        "required": 0,
+                        "conditional_logic": 0,
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "default_value": "",
+                        "placeholder": "email1@domain.com, email2@domain.com",
+                        "prepend": "",
+                        "append": "",
+                        "maxlength": "",
+                        "parent_repeater": "field_57d65ce6ebe3e"
+                    }
+                ],
+                "rows_per_page": 20
+            },
+            {
+                "key": "field_57d65d8eebe40",
+                "label": "User ticket - Subject type",
+                "name": "wcsts_user_ticket_subject_type",
+                "aria-label": "",
+                "type": "select",
+                "instructions": "Ticket subject can be a text input where the user can type text or can be chosen between a set of topic defined by the admin.",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "multiple": 0,
+                "allow_null": 0,
+                "choices": {
+                    "text_input": "Text input",
+                    "admin_defined_topics": "Admin defined topics"
+                },
+                "default_value": [
+                    "text_input"
+                ],
+                "ui": 0,
+                "ajax": 0,
+                "placeholder": "",
+                "return_format": "value"
+            },
+            {
+                "key": "field_57d65da7ebe41",
+                "label": "User ticket - Subject topics",
+                "name": "wcsts_user_ticket_subject_topics",
+                "aria-label": "",
+                "type": "repeater",
+                "instructions": "",
+                "required": 1,
+                "conditional_logic": [
+                    [
+                        {
+                            "field": "field_57d65d8eebe40",
+                            "operator": "==",
+                            "value": "admin_defined_topics"
+                        }
+                    ]
+                ],
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "collapsed": "field_57d65da7ebe42",
+                "min": 1,
+                "max": 0,
+                "layout": "row",
+                "button_label": "Add Topic",
+                "sub_fields": [
+                    {
+                        "key": "field_57d65da7ebe42",
+                        "label": "Topic",
+                        "name": "wcsts_topic",
+                        "aria-label": "",
+                        "type": "text",
+                        "instructions": "",
+                        "required": 1,
+                        "conditional_logic": 0,
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "default_value": "",
+                        "maxlength": "",
+                        "placeholder": "",
+                        "prepend": "",
+                        "append": "",
+                        "parent_repeater": "field_57d65da7ebe41"
+                    },
+                    {
+                        "key": "field_5f86e6f9f3ff4",
+                        "label": "Email recipient",
+                        "name": "wcsts_topic_email_recipient",
+                        "aria-label": "",
+                        "type": "text",
+                        "instructions": "For each topic you can set specific <strong>admin notitifcation recipients<\/strong> (in case of multiple recipients, separate them by comma). In this way the admin notifications will be sent to the specied email addresses. The user notification will be normally sent to the user email address.",
+                        "required": 0,
+                        "conditional_logic": 0,
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "default_value": "",
+                        "placeholder": "email1@domain.com, email2@domain.com",
+                        "prepend": "",
+                        "append": "",
+                        "maxlength": "",
+                        "parent_repeater": "field_57d65da7ebe41"
+                    }
+                ],
+                "rows_per_page": 20
+            },
+            {
+                "key": "field_5901f5a24401b",
+                "label": "Automatic ticket - Subject topic",
+                "name": "wcsts_automatic_ticket_subject_topic",
+                "aria-label": "",
+                "type": "text",
+                "instructions": "This is the subject for ticket automatically created when order hits the selected statuses. It works only if the special <strong>Automatic ticket<\/strong> option has been enabled.",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "placeholder": "",
+                "prepend": "",
+                "append": "",
+                "maxlength": ""
+            }
+        ],
+        "location": [
+            [
+                {
+                    "param": "options_page",
+                    "operator": "==",
+                    "value": "acf-options-ticket-system-texts"
+                }
+            ]
+        ],
+        "menu_order": 0,
+        "position": "normal",
+        "style": "default",
+        "label_placement": "top",
+        "instruction_placement": "label",
+        "hide_on_screen": "",
+        "active": true,
+        "description": "",
+        "show_in_rest": false
+    },
+    {
+        "key": "group_57c444e52816c",
+        "title": "WooCommerce Support Ticket - Type",
+        "fields": [
+            {
+                "key": "field_57d65bfe5027a",
+                "label": "Ticket type",
+                "name": "wcsts_ticket_type",
+                "aria-label": "",
+                "type": "select",
+                "instructions": "Tickets can be Order, User o Pay per ticket type.",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "choices": {
+                    "order": "Order ticket",
+                    "user": "User ticket",
+                    "ppt": "Pay per ticket"
+                },
+                "default_value": [],
+                "allow_null": 0,
+                "multiple": 0,
+                "ui": 0,
+                "ajax": 0,
+                "return_format": "value",
+                "placeholder": ""
+            },
+            {
+                "key": "field_57c444629da86",
+                "label": "Associated order",
+                "name": "wcsts_associated_order",
+                "aria-label": "",
+                "type": "post_object",
+                "instructions": "",
+                "required": 1,
+                "conditional_logic": [
+                    [
+                        {
+                            "field": "field_57d65bfe5027a",
+                            "operator": "==",
+                            "value": "order"
+                        },
+                        {
+                            "field": "field_57d65bfe5027a",
+                            "operator": ">",
+                            "value": "20"
+                        }
+                    ]
+                ],
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "post_type": [
+                    "shop_order"
+                ],
+                "post_status": "",
+                "taxonomy": "",
+                "return_format": "id",
+                "multiple": 0,
+                "allow_null": 0,
+                "bidirectional": 0,
+                "ui": 1,
+                "bidirectional_target": []
+            },
+            {
+                "key": "field_57d65c825027b",
+                "label": "Associated user",
+                "name": "wcsts_associated_user",
+                "aria-label": "",
+                "type": "user",
+                "instructions": "",
+                "required": 1,
+                "conditional_logic": [
+                    [
+                        {
+                            "field": "field_57d65bfe5027a",
+                            "operator": "==",
+                            "value": "user"
+                        }
+                    ],
+                    [
+                        {
+                            "field": "field_57d65bfe5027a",
+                            "operator": "==",
+                            "value": "ppt"
+                        }
+                    ]
+                ],
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "role": "",
+                "allow_null": 0,
+                "multiple": 0,
+                "return_format": "array",
+                "bidirectional_target": []
+            }
+        ],
+        "location": [
+            [
+                {
+                    "param": "post_type",
+                    "operator": "==",
+                    "value": "wcsts_ticket"
+                }
+            ]
+        ],
+        "menu_order": 0,
+        "position": "acf_after_title",
+        "style": "default",
+        "label_placement": "top",
+        "instruction_placement": "label",
+        "hide_on_screen": "",
+        "active": true,
+        "description": "",
+        "show_in_rest": 0
+    },
+    {
+        "key": "group_57cd9e7e25c38",
+        "title": "WooCommerce Support Ticket – Options: System",
+        "fields": [
+            {
+                "key": "field_57cd9dd76709c",
+                "label": "Subject lenght",
+                "name": "wcsts_subject_lenght",
+                "aria-label": "",
+                "type": "number",
+                "instructions": "Max lenght for the Ticket subject.",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "33",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": 100,
+                "placeholder": "Default value: 100",
+                "prepend": "",
+                "append": "",
+                "min": 1,
+                "max": "",
+                "step": 1
+            },
+            {
+                "key": "field_57cd9e3e6709d",
+                "label": "Message maximum length",
+                "name": "wcsts_message_lenght",
+                "aria-label": "",
+                "type": "number",
+                "instructions": "Ticket message lenght.",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "33",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": 500,
+                "placeholder": "Default value: 500",
+                "prepend": "",
+                "append": "",
+                "min": 1,
+                "max": "",
+                "step": 1
+            },
+            {
+                "key": "field_62037f4b3d6f0",
+                "label": "Message minimum length",
+                "name": "wcsts_message_min_lenght",
+                "aria-label": "",
+                "type": "number",
+                "instructions": "Ticket minimum message lenght. Leave 0 for no limit.",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "34",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": 0,
+                "placeholder": "Default value: 0",
+                "prepend": "",
+                "append": "",
+                "min": 0,
+                "max": "",
+                "step": 1
+            },
+            {
+                "key": "field_57cda0182d364",
+                "label": "Select which roles can view tickets in Admin area",
+                "name": "wcsts_roles_can_manage_ticket_system",
+                "aria-label": "",
+                "type": "role_selector",
+                "instructions": "<p>Select which roles can view tickets. If none is select only the <strong>Shop Manager<\/strong> and <strong>Administrator<\/strong> will be able to manage tickets.<\/p>",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "50",
+                    "class": "",
+                    "id": ""
+                },
+                "return_value": "name",
+                "allowed_roles": "",
+                "field_type": "checkbox"
+            },
+            {
+                "key": "field_58877a24272d1",
+                "label": "Display all tickets to non Administrator users (admin area)",
+                "name": "wcsts_ticket_visibility",
+                "aria-label": "",
+                "type": "select",
+                "instructions": "<p>Choose if in the admin area the <strong>non-Administrator<\/strong> accounts can see all the submitted tickets or only the ones assigned by the <strong>Administrator(s)<\/strong>.<\/p>",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "50",
+                    "class": "",
+                    "id": ""
+                },
+                "choices": {
+                    "all_tickets": "All tickets",
+                    "only_assigned": "Only assigned tickets"
+                },
+                "default_value": [],
+                "allow_null": 0,
+                "multiple": 0,
+                "ui": 0,
+                "ajax": 0,
+                "return_format": "value",
+                "placeholder": ""
+            },
+            {
+                "key": "field_588c682cae593",
+                "label": "Display ticket status on frontend",
+                "name": "wcsts_display_ticket_status_on_frontend",
+                "aria-label": "",
+                "type": "select",
+                "instructions": "By default the ticket status is used only for internal tracking purpose. Optionally you can display ticket current status in the frontend in order to give more feedback to the user.",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "50",
+                    "class": "",
+                    "id": ""
+                },
+                "choices": {
+                    "no": "No",
+                    "yes": "Yes"
+                },
+                "default_value": [],
+                "allow_null": 0,
+                "multiple": 0,
+                "ui": 0,
+                "ajax": 0,
+                "return_format": "value",
+                "placeholder": ""
+            },
+            {
+                "key": "field_590c2eb3c826d",
+                "label": "Display ticket priority selector on frontend",
+                "name": "wcsts_display_ticket_priority_selector_on_frontend",
+                "aria-label": "",
+                "type": "select",
+                "instructions": "By default the ticket priority is used only for internal tracking purpose. Optionally you can display ticket status selector in the frontend in order to allow the user to assign a priority to the just created ticket.",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "50",
+                    "class": "",
+                    "id": ""
+                },
+                "choices": {
+                    "no": "No",
+                    "yes": "Yes"
+                },
+                "default_value": [],
+                "allow_null": 0,
+                "multiple": 0,
+                "ui": 0,
+                "ajax": 0,
+                "return_format": "value",
+                "placeholder": ""
+            },
+            {
+                "key": "field_58c6c0b7c608a",
+                "label": "Enable Tiny mce editor for ticket message area on frontend",
+                "name": "wcsts_frontend_use_tiny_mce",
+                "aria-label": "",
+                "type": "true_false",
+                "instructions": "This option will enable the Tiny MCE editor for ticket input areas. This will allow your customer to enter a more rich texts.",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "50",
+                    "class": "",
+                    "id": ""
+                },
+                "message": "",
+                "default_value": 0,
+                "ui": 1,
+                "ui_on_text": "",
+                "ui_off_text": ""
+            },
+            {
+                "key": "field_590072b5263f0",
+                "label": "Ticket area pagination",
+                "name": "wcsts_ticket_area_pagination",
+                "aria-label": "",
+                "type": "number",
+                "instructions": "Number of tickets displayed per page in the ticket area.",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "50",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": 10,
+                "placeholder": "Default value: 10",
+                "prepend": "",
+                "append": "",
+                "min": 1,
+                "max": "",
+                "step": 1
+            },
+            {
+                "key": "field_627e20e0ace86",
+                "label": "New ticket opening - Time interval before a new ticket can be opened (seconds)",
+                "name": "wcsts_new_ticket_post_time_interval",
+                "aria-label": "",
+                "type": "number",
+                "instructions": "By default, the user can open new tickets without time limitations. Via this option, you can restrict the user to open a new ticket only after X seconds had passed before the last ticket was opened.<br><br>\r\n<strong>Leave 0 for no time limit<\/strong>",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "50",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": 0,
+                "placeholder": "Default value: 0",
+                "prepend": "",
+                "append": "",
+                "min": 0,
+                "max": "",
+                "step": 1
+            },
+            {
+                "key": "field_627e2167ace87",
+                "label": "New message post - Time interval between new posts (seconds)",
+                "name": "wcsts_new_ticket_message_post_time_interval",
+                "aria-label": "",
+                "type": "number",
+                "instructions": "By default, the user can open new ticket messages without time limitations. Via this option, you can restrict the user to post new messages only after X seconds had passed before the last message.<br><br>\r\n<strong>Leave 0 for no time limit<\/strong>",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "50",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": 0,
+                "placeholder": "Default value: 0",
+                "prepend": "",
+                "append": "",
+                "min": 0,
+                "max": "",
+                "step": 1
+            },
+            {
+                "key": "field_5854f7a01dcb2",
+                "label": "User ticket - Display user ticket area in My account page",
+                "name": "wcsts_display_user_ticket_area_in_my_account_page",
+                "aria-label": "",
+                "type": "select",
+                "instructions": "User ticket area can be displayed in My account page in its own tab.",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "50",
+                    "class": "",
+                    "id": ""
+                },
+                "choices": {
+                    "yes": "Yes",
+                    "no": "No"
+                },
+                "default_value": [],
+                "allow_null": 0,
+                "multiple": 0,
+                "ui": 0,
+                "return_format": "value",
+                "ajax": 0,
+                "placeholder": ""
+            },
+            {
+                "key": "field_5c933b675f5cb",
+                "label": "User ticket - Disable user ticket opening",
+                "name": "wcsts_disable_user_ticket_opening",
+                "aria-label": "",
+                "type": "true_false",
+                "instructions": "The user won't be able to open new user tickets. He can only read the already existing and the ones opened by the Admin.",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "50",
+                    "class": "",
+                    "id": ""
+                },
+                "message": "",
+                "default_value": 0,
+                "ui": 1,
+                "ui_on_text": "",
+                "ui_off_text": ""
+            },
+            {
+                "key": "field_5ae6c3c50b4eb",
+                "label": "User ticket - My Account user ticket area URL endpoint",
+                "name": "wcsts_user_tickect_area_url_endpoint",
+                "aria-label": "",
+                "type": "text",
+                "instructions": "My Account user ticket area by default has the following url: https:\/\/youriste.com\/my-account\/wcsts-user-tickets-area\/ . The <strong>wcsts-user-tickets-area<\/strong> can be customized using a custom text.\r\nIf left empty will be used the default <strong>wcsts-user-tickets-area<\/strong> endpoint.",
+                "required": 0,
+                "conditional_logic": [
+                    [
+                        {
+                            "field": "field_5854f7a01dcb2",
+                            "operator": "==",
+                            "value": "yes"
+                        }
+                    ]
+                ],
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "wcsts-user-tickets-area",
+                "placeholder": "wcsts-user-tickets-area",
+                "prepend": "",
+                "append": "",
+                "maxlength": ""
+            },
+            {
+                "key": "field_57d67d41bcfe7",
+                "label": "Order ticket - Enable Order ticket system",
+                "name": "wcsts_is_order_ticket_enabled",
+                "aria-label": "",
+                "type": "select",
+                "instructions": "By default order ticket system is enabled and shows ticket area inside every order details page. Select <strong>No<\/strong> to disable order ticket system display.",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "choices": {
+                    "yes": "Yes",
+                    "no": "No"
+                },
+                "default_value": [
+                    "yes"
+                ],
+                "allow_null": 0,
+                "multiple": 0,
+                "ui": 0,
+                "return_format": "value",
+                "ajax": 0,
+                "placeholder": ""
+            },
+            {
+                "key": "field_58c6ad3f705cf",
+                "label": "Order ticket - Display \"Tickets\" column on My Account -> Order table",
+                "name": "wcsts_display_ticket_number_column_on_my_accont_order_table",
+                "aria-label": "",
+                "type": "true_false",
+                "instructions": "Once enable this option, the plugin will display a new \"Tickets\" column in the order table reporting the number of ticket opened for each order.",
+                "required": 0,
+                "conditional_logic": [
+                    [
+                        {
+                            "field": "field_57d67d41bcfe7",
+                            "operator": "==",
+                            "value": "yes"
+                        }
+                    ]
+                ],
+                "wrapper": {
+                    "width": "34",
+                    "class": "",
+                    "id": ""
+                },
+                "message": "",
+                "default_value": 0,
+                "ui": 1,
+                "ui_on_text": "",
+                "ui_off_text": ""
+            },
+            {
+                "key": "field_5d820a1c21e47",
+                "label": "Order ticket - Mark ticket as closed on \"completed\" status",
+                "name": "wcsts_mark_ticket_as_closed_on_completed",
+                "aria-label": "",
+                "type": "true_false",
+                "instructions": "When an order hits the \"completed\" status, associated tickets will be marked as closed. <strong>Note:<\/strong> switching back the order to another status, won't change the ticket status.",
+                "required": 0,
+                "conditional_logic": [
+                    [
+                        {
+                            "field": "field_57d67d41bcfe7",
+                            "operator": "==",
+                            "value": "yes"
+                        }
+                    ]
+                ],
+                "wrapper": {
+                    "width": "33",
+                    "class": "",
+                    "id": ""
+                },
+                "message": "",
+                "default_value": 0,
+                "ui": 1,
+                "ui_on_text": "",
+                "ui_off_text": ""
+            },
+            {
+                "key": "field_59c29f519e37d",
+                "label": "Order ticket - Order details area position",
+                "name": "wcsts_order_ticket_area_position",
+                "aria-label": "",
+                "type": "select",
+                "instructions": "Select a position for the Ticket area inside the Order details page",
+                "required": 0,
+                "conditional_logic": [
+                    [
+                        {
+                            "field": "field_57d67d41bcfe7",
+                            "operator": "==",
+                            "value": "yes"
+                        }
+                    ]
+                ],
+                "wrapper": {
+                    "width": "33",
+                    "class": "",
+                    "id": ""
+                },
+                "choices": {
+                    "woocommerce_order_details_after_order_table": "After order details table",
+                    "woocommerce_order_details_before_order_table": "Before order details table",
+                    "woocommerce_order_details_after_billing_and_shipping_details": "After customer billing and shipping addresses"
+                },
+                "default_value": "woocommerce_order_details_after_order_table",
+                "allow_null": 0,
+                "multiple": 0,
+                "ui": 0,
+                "return_format": "value",
+                "ajax": 0,
+                "placeholder": ""
+            },
+            {
+                "key": "field_5847c90f7b40a",
+                "label": "Order ticket - Disable tickets by order status",
+                "name": "wcsts_order_ticket_system_disabled_order_statuses",
+                "aria-label": "",
+                "type": "order_staus_selector",
+                "instructions": "Select for which order statuses the ticket area will be not displayed in the order details page.",
+                "required": 0,
+                "conditional_logic": [
+                    [
+                        {
+                            "field": "field_57d67d41bcfe7",
+                            "operator": "==",
+                            "value": "yes"
+                        }
+                    ]
+                ],
+                "wrapper": {
+                    "width": "34",
+                    "class": "",
+                    "id": ""
+                },
+                "return_value": "name",
+                "allowed_order_statuses": "",
+                "field_type": "checkbox"
+            },
+            {
+                "key": "field_59d24e3ef31b1",
+                "label": "Order ticket - Display order status on tickets",
+                "name": "wcsts_display_order_status_on_order_tickets",
+                "aria-label": "",
+                "type": "true_false",
+                "instructions": "Show order status on order tickets.",
+                "required": 0,
+                "conditional_logic": [
+                    [
+                        {
+                            "field": "field_57d67d41bcfe7",
+                            "operator": "==",
+                            "value": "yes"
+                        }
+                    ]
+                ],
+                "wrapper": {
+                    "width": "33",
+                    "class": "",
+                    "id": ""
+                },
+                "message": "",
+                "default_value": 0,
+                "ui": 1,
+                "ui_on_text": "",
+                "ui_off_text": ""
+            },
+            {
+                "key": "field_59df294ed4280",
+                "label": "Order ticket - Number of order tickets that can be opened by user",
+                "name": "wcsts_order_ticket_limit",
+                "aria-label": "",
+                "type": "number",
+                "instructions": "This is the max number of order tickets that the user can open. Set <strong>-1<\/strong> for no limits.",
+                "required": 1,
+                "conditional_logic": [
+                    [
+                        {
+                            "field": "field_57d67d41bcfe7",
+                            "operator": "==",
+                            "value": "yes"
+                        }
+                    ]
+                ],
+                "wrapper": {
+                    "width": "33",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": -1,
+                "placeholder": "Default value: -1",
+                "prepend": "",
+                "append": "",
+                "min": -1,
+                "max": "",
+                "step": 1
+            },
+            {
+                "key": "field_5a25161211310",
+                "label": "User won't be able to reply if ticket is marked as closed",
+                "name": "wcsts_deny_closed_ticket_reply",
+                "aria-label": "",
+                "type": "true_false",
+                "instructions": "By default user will be able to reply if a ticket was marked as closed. Enable this option to deny user reply for closed tickets",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "34",
+                    "class": "",
+                    "id": ""
+                },
+                "message": "",
+                "default_value": 0,
+                "ui": 1,
+                "ui_on_text": "",
+                "ui_off_text": ""
+            },
+            {
+                "key": "field_5f893ca8c1f2c",
+                "label": "Order ticket - Prevent the user to post further messages until an admin posted a reply",
+                "name": "wcsts_order_ticket_disable_user_reply_until_admin_message",
+                "aria-label": "",
+                "type": "true_false",
+                "instructions": "This option prevents the user to be able to post further messages until he got a reply for the previous one.",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "33",
+                    "class": "",
+                    "id": ""
+                },
+                "message": "",
+                "default_value": 0,
+                "ui": 1,
+                "ui_on_text": "",
+                "ui_off_text": ""
+            },
+            {
+                "key": "field_5f893d76c1f2d",
+                "label": "User ticket - Prevent the user to post further messages until an admin posted a reply",
+                "name": "wcsts_user_ticket_disable_user_reply_until_admin_message",
+                "aria-label": "",
+                "type": "true_false",
+                "instructions": "This option prevents the user to be able to post further messages until he got a reply for the previous one.",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "33",
+                    "class": "",
+                    "id": ""
+                },
+                "message": "",
+                "default_value": 0,
+                "ui": 1,
+                "ui_on_text": "",
+                "ui_off_text": ""
+            },
+            {
+                "key": "field_5a0eff8e13e9d",
+                "label": "Order details page - Disable smooth scroll",
+                "name": "wcsts_order_details_page_smooth_scroll",
+                "aria-label": "",
+                "type": "true_false",
+                "instructions": "When the <strong>Get help<\/strong> button is pressed the user is redirected into the Order details page smoth scolling to the Ticket area. You can disable the smooth scrool feature.",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "34",
+                    "class": "",
+                    "id": ""
+                },
+                "message": "",
+                "default_value": 0,
+                "ui": 1,
+                "ui_on_text": "",
+                "ui_off_text": ""
+            },
+            {
+                "key": "field_5c431050ec342",
+                "label": "Disable \"Get help\" button",
+                "name": "wcsts_disable_get_help_button",
+                "aria-label": "",
+                "type": "true_false",
+                "instructions": "On orders list page, for each order, a \"Get help\" button is displayed. The \"Get help\" button redirects the user into the order ticket area. This options disable that button display.",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "33",
+                    "class": "",
+                    "id": ""
+                },
+                "message": "",
+                "default_value": 0,
+                "ui": 1,
+                "ui_on_text": "",
+                "ui_off_text": ""
+            },
+            {
+                "key": "field_5a66f8ffc4b5c",
+                "label": "Ticket messages area - show it already expansed",
+                "name": "wcsts_ticket_conversation_is_expansed",
+                "aria-label": "",
+                "type": "true_false",
+                "instructions": "By default Ticket message area is collpased. Enable this option to show it expansed.",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "33",
+                    "class": "",
+                    "id": ""
+                },
+                "message": "",
+                "default_value": 0,
+                "ui": 1,
+                "ui_on_text": "",
+                "ui_off_text": ""
+            }
+        ],
+        "location": [
+            [
+                {
+                    "param": "options_page",
+                    "operator": "==",
+                    "value": "acf-options-ticket-system-options"
+                }
+            ]
+        ],
+        "menu_order": 0,
+        "position": "normal",
+        "style": "default",
+        "label_placement": "top",
+        "instruction_placement": "label",
+        "hide_on_screen": "",
+        "active": true,
+        "description": "",
+        "show_in_rest": 0
+    },
+    {
+        "key": "group_5854faf84fc9a",
+        "title": "WooCommerce Support Ticket – Text: My Account page user ticket area",
+        "fields": [
+            {
+                "key": "field_5854fb0662bf5",
+                "label": "Tab label",
+                "name": "wcsts_my_account_page_user_ticket_area_tab_label",
+                "aria-label": "",
+                "type": "text",
+                "instructions": "Personal Ticket Area",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "Personal Ticket Area",
+                "maxlength": "",
+                "placeholder": "Personal Ticket Area",
+                "prepend": "",
+                "append": ""
+            },
+            {
+                "key": "field_5854ff73f4cb7",
+                "label": "Tab page description",
+                "name": "wcsts_my_account_tab_page_description",
+                "aria-label": "",
+                "type": "wysiwyg",
+                "instructions": "This is a description displayed in the User ticket area tab page before the ticket area.",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "Create a new ticket or reply to the already opened tickets. <strong>NOTE:<\/strong> To submit a ticket about an order, please click on <strong>Orders<\/strong> tab, click on the order you wish and then use the ticket area you find in the its details page.",
+                "tabs": "all",
+                "toolbar": "basic",
+                "media_upload": 1,
+                "delay": 0
+            }
+        ],
+        "location": [
+            [
+                {
+                    "param": "options_page",
+                    "operator": "==",
+                    "value": "acf-options-ticket-system-texts"
+                }
+            ]
+        ],
+        "menu_order": 0,
+        "position": "normal",
+        "style": "default",
+        "label_placement": "top",
+        "instruction_placement": "label",
+        "hide_on_screen": "",
+        "active": true,
+        "description": "",
+        "show_in_rest": false
+    },
+    {
+        "key": "group_57cd8ed53fcde",
+        "title": "WooCommerce Support Ticket - Text: Form",
+        "fields": [
+            {
+                "key": "field_57cd8f23e7e07",
+                "label": "New ticket description text",
+                "name": "wcsts_new_ticket_description_text",
+                "aria-label": "",
+                "type": "wysiwyg",
+                "instructions": "This is a description text showed on new ticket area. Here you can provide more info about response time or whatever you think you customers should know before submitting a new ticket.",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "tabs": "all",
+                "toolbar": "basic",
+                "media_upload": 1,
+                "delay": 0
+            },
+            {
+                "key": "field_57cd8f9e207c8",
+                "label": "New ticket \"succesfully submitted\" message",
+                "name": "wcsts_new_ticket_succesfully_submitted_message",
+                "aria-label": "",
+                "type": "text",
+                "instructions": "This is the text message showed after a ticket has been sucesfully submitted.",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "The ticket has been succesfully submitted!",
+                "maxlength": "",
+                "placeholder": "The ticket has been succesfully submitted!",
+                "prepend": "",
+                "append": ""
+            }
+        ],
+        "location": [
+            [
+                {
+                    "param": "options_page",
+                    "operator": "==",
+                    "value": "acf-options-ticket-system-texts"
+                }
+            ]
+        ],
+        "menu_order": 1,
+        "position": "normal",
+        "style": "default",
+        "label_placement": "top",
+        "instruction_placement": "label",
+        "hide_on_screen": "",
+        "active": true,
+        "description": "",
+        "show_in_rest": false
+    },
+    {
+        "key": "group_57cebb0ad6303",
+        "title": "WooCommerce Support Ticket – Options: Attachments",
+        "fields": [
+            {
+                "key": "field_57ceba6a1373e",
+                "label": "Allow file(s) attachment?",
+                "name": "wcsts_allow_files_attachment",
+                "aria-label": "",
+                "type": "true_false",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": 0,
+                "message": "Enable",
+                "ui": 0,
+                "ui_on_text": "",
+                "ui_off_text": ""
+            },
+            {
+                "key": "field_57ceba931373f",
+                "label": "Number of uploadable files",
+                "name": "wcsts_num_of_uploadable_files",
+                "aria-label": "",
+                "type": "number",
+                "instructions": "",
+                "required": 1,
+                "conditional_logic": [
+                    [
+                        {
+                            "field": "field_57ceba6a1373e",
+                            "operator": "==",
+                            "value": "1"
+                        }
+                    ]
+                ],
+                "wrapper": {
+                    "width": "33",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": 1,
+                "min": 1,
+                "max": "",
+                "step": 1,
+                "placeholder": 1,
+                "prepend": "",
+                "append": ""
+            },
+            {
+                "key": "field_57cebab813740",
+                "label": "Allowed file types",
+                "name": "wcsts_allowed_file_types",
+                "aria-label": "",
+                "type": "text",
+                "instructions": "Specify which file type(s) are allowed. Leave empty to allow all file types. In case of multiple file types, specify extension separating value by comma. Ex.: \".jpg, .pdf, .png\".",
+                "required": 0,
+                "conditional_logic": [
+                    [
+                        {
+                            "field": "field_57ceba6a1373e",
+                            "operator": "==",
+                            "value": "1"
+                        }
+                    ]
+                ],
+                "wrapper": {
+                    "width": "33",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "maxlength": "",
+                "placeholder": ".jpg, .pdf, .png",
+                "prepend": "",
+                "append": ""
+            },
+            {
+                "key": "field_57cebb4613741",
+                "label": "Max file size",
+                "name": "wcsts_max_file_size",
+                "aria-label": "",
+                "type": "number",
+                "instructions": "Specify the max size of the uploadable files. Size is expressed in <strong>Kb<\/strong>.",
+                "required": 0,
+                "conditional_logic": [
+                    [
+                        {
+                            "field": "field_57ceba6a1373e",
+                            "operator": "==",
+                            "value": "1"
+                        }
+                    ]
+                ],
+                "wrapper": {
+                    "width": "33",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": 4096,
+                "min": 1,
+                "max": "",
+                "step": 1,
+                "placeholder": 4096,
+                "prepend": "",
+                "append": ""
+            }
+        ],
+        "location": [
+            [
+                {
+                    "param": "options_page",
+                    "operator": "==",
+                    "value": "acf-options-ticket-system-options"
+                }
+            ]
+        ],
+        "menu_order": 1,
+        "position": "normal",
+        "style": "default",
+        "label_placement": "top",
+        "instruction_placement": "label",
+        "hide_on_screen": "",
+        "active": true,
+        "description": "",
+        "show_in_rest": false
+    },
+    {
+        "key": "group_5976f6ab1668c",
+        "title": "WooCommerce Support Ticket - Texts: Misc",
+        "fields": [
+            {
+                "key": "field_5976f6bfbe525",
+                "label": "Email sender name used for notification emails",
+                "name": "wcsts_email_sender_name",
+                "aria-label": "",
+                "type": "text",
+                "instructions": "Leave empty to use the Blog name as sender name.",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "33",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "placeholder": "",
+                "prepend": "",
+                "append": "",
+                "maxlength": ""
+            },
+            {
+                "key": "field_59672946edbea",
+                "label": "Pay Per Ticket - No more questions left message",
+                "name": "wcsts_ppt_no_more_questions_left_message",
+                "aria-label": "",
+                "type": "text",
+                "instructions": "This text is displayed on the fronted when the users cannot hasn't left any more question.",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "33",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "You cannot ask any more question.",
+                "placeholder": "You cannot ask any more question.",
+                "prepend": "",
+                "append": "",
+                "maxlength": ""
+            },
+            {
+                "key": "field_59cd150ab226d",
+                "label": "Order list page - Get help button text",
+                "name": "wcsts_get_help_button_text",
+                "aria-label": "",
+                "type": "text",
+                "instructions": "Text for the \"Get help\" button showed in the order list page.",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "34",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "Get Help",
+                "placeholder": "Get Help",
+                "prepend": "",
+                "append": "",
+                "maxlength": ""
+            },
+            {
+                "key": "field_59ce451e95d57",
+                "label": "Personal Ticket Area tab - new messages counter label",
+                "name": "wcsts_personal_ticket_area_tab_new_messages_counter_label",
+                "aria-label": "",
+                "type": "text",
+                "instructions": "<p>Every time a new messages are available, this text will be showed notifing the new number of messages. Use the special %s as placeholder for the number of messages.<\/p>\r\n<p><strong>NOTE:<\/strong> to not display the label, leave empty this field<\/p>",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "50",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "(new messages: %s)",
+                "placeholder": "(new messages: %s)",
+                "prepend": "",
+                "append": "",
+                "maxlength": ""
+            },
+            {
+                "key": "field_59df25449fab2",
+                "label": "Staff label on admin replies",
+                "name": "wcsts_staff_label_text",
+                "aria-label": "",
+                "type": "text",
+                "instructions": "On admin replies, \"Staff\" is used as author. You can customize that text by using this option.",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "50",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "Staff",
+                "placeholder": "Staff",
+                "prepend": "",
+                "append": "",
+                "maxlength": ""
+            },
+            {
+                "key": "field_6385c7f42ec03",
+                "label": "Submit a new ticket area title",
+                "name": "wcsts_submit_new_ticket_area_title",
+                "aria-label": "",
+                "type": "text",
+                "instructions": "Submit a new ticket area title.",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "50",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "Submit a new ticket",
+                "maxlength": "",
+                "placeholder": "Submit a new ticket",
+                "prepend": "",
+                "append": ""
+            },
+            {
+                "key": "field_6385c88c2ec04",
+                "label": "Subject label",
+                "name": "wcsts_subject_label",
+                "aria-label": "",
+                "type": "text",
+                "instructions": "Subject label (in case the type of the subject is not set a free text)",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "50",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "Subject",
+                "maxlength": "",
+                "placeholder": "Subject",
+                "prepend": "",
+                "append": ""
+            }
+        ],
+        "location": [
+            [
+                {
+                    "param": "options_page",
+                    "operator": "==",
+                    "value": "acf-options-ticket-system-texts"
+                }
+            ]
+        ],
+        "menu_order": 2,
+        "position": "normal",
+        "style": "default",
+        "label_placement": "top",
+        "instruction_placement": "label",
+        "hide_on_screen": "",
+        "active": true,
+        "description": "",
+        "show_in_rest": 0
+    },
+    {
+        "key": "group_57d28ca45f907",
+        "title": "WooCommerce Support Ticket – Options: Email notifications",
+        "fields": [
+            {
+                "key": "field_57d28c39a0404",
+                "label": "User - Email notifications",
+                "name": "wcsts_user_email_notifications",
+                "aria-label": "",
+                "type": "true_false",
+                "instructions": "Enable user email notifications.",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": 1,
+                "message": "Enable",
+                "ui": 0,
+                "ui_on_text": "",
+                "ui_off_text": ""
+            },
+            {
+                "key": "field_57d28bf1a0403",
+                "label": "User - New ticket submission notification",
+                "name": "wcsts_user_new_ticket_submission_notification",
+                "aria-label": "",
+                "type": "true_false",
+                "instructions": "A notification email will be sent to the user after he has submitted a new ticket.",
+                "required": 0,
+                "conditional_logic": [
+                    [
+                        {
+                            "field": "field_57d28c39a0404",
+                            "operator": "==",
+                            "value": "1"
+                        }
+                    ]
+                ],
+                "wrapper": {
+                    "width": "50",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": 1,
+                "message": "Enable",
+                "ui": 0,
+                "ui_on_text": "",
+                "ui_off_text": ""
+            },
+            {
+                "key": "field_57d28c81a0405",
+                "label": "User - Reply by admin notification",
+                "name": "wcsts_user_reply_by_admin_notification",
+                "aria-label": "",
+                "type": "true_false",
+                "instructions": "A notification email will be sent to the user whenever an admin replies to his ticket.",
+                "required": 0,
+                "conditional_logic": [
+                    [
+                        {
+                            "field": "field_57d28c39a0404",
+                            "operator": "==",
+                            "value": "1"
+                        }
+                    ]
+                ],
+                "wrapper": {
+                    "width": "50",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": 1,
+                "message": "Enable",
+                "ui": 0,
+                "ui_on_text": "",
+                "ui_off_text": ""
+            },
+            {
+                "key": "field_57d28cf0a0406",
+                "label": "Admin - Email notifications",
+                "name": "wcsts_admin_email_notifications",
+                "aria-label": "",
+                "type": "true_false",
+                "instructions": "Enable admin email notifications.",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": 1,
+                "message": "Enable",
+                "ui": 0,
+                "ui_on_text": "",
+                "ui_off_text": ""
+            },
+            {
+                "key": "field_57d28d2aa0407",
+                "label": "Admin - New ticket submission notification",
+                "name": "wcsts_admin_new_ticket_submission_notification",
+                "aria-label": "",
+                "type": "true_false",
+                "instructions": "A notification email will be sent to the admin after an user has submitted a new ticket.",
+                "required": 0,
+                "conditional_logic": [
+                    [
+                        {
+                            "field": "field_57d28cf0a0406",
+                            "operator": "==",
+                            "value": "1"
+                        }
+                    ]
+                ],
+                "wrapper": {
+                    "width": "50",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": 1,
+                "message": "Enable",
+                "ui": 0,
+                "ui_on_text": "",
+                "ui_off_text": ""
+            },
+            {
+                "key": "field_57d28d90a0408",
+                "label": "Admin -  Reply by user notification",
+                "name": "wcsts_admin_reply_by_user_notification",
+                "aria-label": "",
+                "type": "true_false",
+                "instructions": "A notification email will be sent to the admin whenever an user replies to his ticket.",
+                "required": 0,
+                "conditional_logic": [
+                    [
+                        {
+                            "field": "field_57d28cf0a0406",
+                            "operator": "==",
+                            "value": "1"
+                        }
+                    ]
+                ],
+                "wrapper": {
+                    "width": "50",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": 1,
+                "message": "Enable",
+                "ui": 0,
+                "ui_on_text": "",
+                "ui_off_text": ""
+            },
+            {
+                "key": "field_57d3d61a3ae48",
+                "label": "Custom admin recipients",
+                "name": "wcsts_admin_custom_email_recipiens",
+                "aria-label": "",
+                "type": "text",
+                "instructions": "By default sends admin email notifications to the default WordPress admin email address. You can override this behaviour by specifing one or more email addresses in the following text are. In case of multiple recipients, separate email addresses with commas.",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "maxlength": "",
+                "placeholder": "admin@yoursite.com, shop_manager@yoursite.com",
+                "prepend": "",
+                "append": ""
+            },
+            {
+                "key": "field_5a66f6ca6de96",
+                "label": "Disable email header and footer",
+                "name": "wcsts_disable_email_header_and_footer",
+                "aria-label": "",
+                "type": "true_false",
+                "instructions": "If you are experiencing any layout issue due to a 3rd party email customizer plugin, try disable the email header and footer rendering.",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "message": "",
+                "default_value": 0,
+                "ui": 1,
+                "ui_on_text": "",
+                "ui_off_text": ""
+            },
+            {
+                "key": "field_5a66fb598baa6",
+                "label": "Email from address",
+                "name": "wcst_email_from_address",
+                "aria-label": "",
+                "type": "email",
+                "instructions": "By default as notification from email address will be used <i>noprely@'yourdomain'<\/i>. You can however customize using this option. Leave empty to use the default one.",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "placeholder": "",
+                "prepend": "",
+                "append": ""
+            }
+        ],
+        "location": [
+            [
+                {
+                    "param": "options_page",
+                    "operator": "==",
+                    "value": "acf-options-ticket-system-options"
+                }
+            ]
+        ],
+        "menu_order": 2,
+        "position": "normal",
+        "style": "default",
+        "label_placement": "top",
+        "instruction_placement": "label",
+        "hide_on_screen": "",
+        "active": true,
+        "description": "",
+        "show_in_rest": false
+    },
+    {
+        "key": "group_5cee5d9a2c70b",
+        "title": "WooCommerce Support Ticket – Options: Pay per ticket",
+        "fields": [
+            {
+                "key": "field_5cee5daf526dc",
+                "label": "Disable payment detection",
+                "name": "wcsts_ppt_disable_payment_detection",
+                "aria-label": "",
+                "type": "true_false",
+                "instructions": "<p>By default Pay Per Tickets will be available only after a payment is detected. In case of a not automatic payment method (like \"checks\" or \"cash on delivery\"), WooCommerce  considers the payment as perfromed once the checkout is completed. So tickets will be available just after the checkout has been even if they have been actually paid.<\/p>\r\n<p>Disabling the payment detection will make the Pay Per Tickets available only when the order hits the <strong>Completed<\/strong> status (so you can make sure orders have been paid).<\/p>",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "message": "",
+                "default_value": 0,
+                "ui": 1,
+                "ui_on_text": "",
+                "ui_off_text": ""
+            }
+        ],
+        "location": [
+            [
+                {
+                    "param": "options_page",
+                    "operator": "==",
+                    "value": "acf-options-ticket-system-options"
+                }
+            ]
+        ],
+        "menu_order": 2,
+        "position": "normal",
+        "style": "default",
+        "label_placement": "top",
+        "instruction_placement": "label",
+        "hide_on_screen": "",
+        "active": true,
+        "description": "",
+        "show_in_rest": false
+    },
+    {
+        "key": "group_5b961d6f32570",
+        "title": "WooCommerce Support Ticket – Texts: Automatic ticket first message",
+        "fields": [
+            {
+                "key": "field_5b961d9fc01ae",
+                "label": "First message",
+                "name": "wcsts_automatic_ticket_first_message",
+                "aria-label": "",
+                "type": "wysiwyg",
+                "instructions": "When an automatick ticket is opened you can optionally send a first message to the user. Leave empty if you don't want to send any first message.",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "tabs": "all",
+                "toolbar": "basic",
+                "media_upload": 0,
+                "delay": 0
+            }
+        ],
+        "location": [
+            [
+                {
+                    "param": "options_page",
+                    "operator": "==",
+                    "value": "acf-options-ticket-system-texts"
+                }
+            ]
+        ],
+        "menu_order": 2,
+        "position": "normal",
+        "style": "default",
+        "label_placement": "top",
+        "instruction_placement": "label",
+        "hide_on_screen": "",
+        "active": true,
+        "description": "",
+        "show_in_rest": false
+    },
+    {
+        "key": "group_57d2ac98d4a98",
+        "title": "WooCommerce Support Ticket - Texts: emails sent to User",
+        "fields": [
+            {
+                "key": "field_57d2abe7b351f",
+                "label": "User - New ticket email subject (Order ticket type)",
+                "name": "wcsts_user_new_ticket_subject_text",
+                "aria-label": "",
+                "type": "text",
+                "instructions": "This is the subject used for the notification email sent to the user after he has placed a new ticket. You can use the special <strong>{ticket_id}<\/strong> to display the ticket id, <strong>{subject}<\/strong> to display the ticket subject.",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "New ticket #{ticket_id} submitted",
+                "placeholder": "",
+                "prepend": "",
+                "append": "",
+                "maxlength": ""
+            },
+            {
+                "key": "field_57d2ac9d7b149",
+                "label": "User - New ticket email body (Order ticket type)",
+                "name": "wcsts_user_new_ticket_email_body_message",
+                "aria-label": "",
+                "type": "wysiwyg",
+                "instructions": "This is the email body used for the notification email sent to the user after he has placed a new ticket. You can use the special <strong>{order_page_url}<\/strong>, <strong>{ticket_id}<\/strong>, <strong>{subject}<\/strong> and <strong>{message}<\/strong> shotcodes in the message body to embed the ticket details page link, display the ticket id, the ticket subject and the message replied by the admin. You can also use the special shortcode listed <a href=\"?wcsts_shortcode_page=ok\" target=\"_blank\">here<\/a>.",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "Thank you for contacting us. You ticket has been received, we will contact you back as soon as possible.",
+                "tabs": "all",
+                "toolbar": "basic",
+                "media_upload": 0,
+                "delay": 0
+            },
+            {
+                "key": "field_57d2b0b80e885",
+                "label": "User - New reply by admin email subject (Order ticket type)",
+                "name": "wcsts_user_new_reply_by_admin_email_subject_text",
+                "aria-label": "",
+                "type": "text",
+                "instructions": "This is the subject used for the notification email sent to the user after an admin has replyed to his ticket. You can use the special <strong>{ticket_id}<\/strong> to display the ticket id, <strong>{subject}<\/strong> to display the ticket subject..",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "New reply to ticket #{ticket_id}",
+                "placeholder": "",
+                "prepend": "",
+                "append": "",
+                "maxlength": ""
+            },
+            {
+                "key": "field_57d2b0f60e886",
+                "label": "User - New reply by admin email body (Order ticket type)",
+                "name": "wcsts_user_new_reply_by_admin_email_body",
+                "aria-label": "",
+                "type": "wysiwyg",
+                "instructions": "This is the email body used for the notification email sent to the user after an admin has replied to his ticket.  You can use the special <strong>{order_page_url}<\/strong>, <strong>{ticket_id}<\/strong>, <strong>{subject}<\/strong> and <strong>{message}<\/strong> shotcodes  in the message body to embed the ticket details page link, display the ticket id, the ticket subject and the message replied by the admin. You can also use the special shortcode listed <a href=\"?wcsts_shortcode_page=ok\" target=\"_blank\">here<\/a>.",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "The admin has replied to your ticket:\r\n\r\n<i>\r\n{message}\r\n<\/i>\r\n<br\/>\r\nReply by clicking on the following link: {order_page_url}",
+                "tabs": "all",
+                "toolbar": "basic",
+                "media_upload": 0,
+                "delay": 0
+            },
+            {
+                "key": "field_58b7db3c7b32a",
+                "label": "User - New ticket email subject (User ticket type)",
+                "name": "wcsts_user_new_ticket_subject_text_user_type",
+                "aria-label": "",
+                "type": "text",
+                "instructions": "This is the subject used for the notification email sent to the user after he has placed a new ticket. You can use the special <strong>{ticket_id}<\/strong> to display the ticket id, <strong>{subject}<\/strong> to display the ticket subject.",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "New ticket #{ticket_id} submitted",
+                "placeholder": "",
+                "prepend": "",
+                "append": "",
+                "maxlength": ""
+            },
+            {
+                "key": "field_58b7db567b32b",
+                "label": "User - New ticket email body (User ticket type)",
+                "name": "wcsts_user_new_ticket_email_body_message_user_type",
+                "aria-label": "",
+                "type": "wysiwyg",
+                "instructions": "This is the email body used for the notification email sent to the user after he has placed a new ticket. You can use the special, <strong>{ticket_page_url}<\/strong> (My Account -> User ticket area page), <strong>{ticket_id}<\/strong>, <strong>{subject}<\/strong> and <strong>{message}<\/strong> shotcodes in the message body to embed the ticket details page link, display the ticket id, the ticket subject and the message replied by the admin. You can also use the special shortcode listed <a href=\"?wcsts_shortcode_page=ok\" target=\"_blank\">here<\/a>.",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "Thank you for contacting us. You ticket has been received, we will contact you back as soon as possible.",
+                "tabs": "all",
+                "toolbar": "basic",
+                "media_upload": 0,
+                "delay": 0
+            },
+            {
+                "key": "field_58b7db6c7b32c",
+                "label": "User - New reply by admin email subject (User ticket type)",
+                "name": "wcsts_user_new_reply_by_admin_email_subject_text_user_type",
+                "aria-label": "",
+                "type": "text",
+                "instructions": "This is the subject used for the notification email sent to the user after an admin has replyed to his ticket. You can use the special <strong>{ticket_id}<\/strong>to display the ticket id, <strong>{subject}<\/strong> to display the ticket subject.",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "New reply to ticket #{ticket_id}",
+                "placeholder": "",
+                "prepend": "",
+                "append": "",
+                "maxlength": ""
+            },
+            {
+                "key": "field_58b7db857b32d",
+                "label": "User - New reply by admin email body (User ticket type)",
+                "name": "wcsts_user_new_reply_by_admin_email_body_user_type",
+                "aria-label": "",
+                "type": "wysiwyg",
+                "instructions": "This is the email body used for the notification email sent to the user after an admin has replied to his ticket.  You can use the special <strong>{ticket_page_url}<\/strong> (My Account -> User ticket area page), <strong>{ticket_id}<\/strong>, <strong>{subject}<\/strong> and <strong>{message}<\/strong> shotcodes  in the message body to embed the ticket details page link, display the ticket id, the ticket subject and the message replied by the admin. You can also use the special shortcode listed <a href=\"?wcsts_shortcode_page=ok\" target=\"_blank\">here<\/a>.",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "The admin has replied to your ticket:\r\n\r\n<i>\r\n{message}\r\n<\/i>",
+                "tabs": "all",
+                "toolbar": "basic",
+                "media_upload": 0,
+                "delay": 0
+            }
+        ],
+        "location": [
+            [
+                {
+                    "param": "options_page",
+                    "operator": "==",
+                    "value": "acf-options-ticket-system-texts"
+                }
+            ]
+        ],
+        "menu_order": 3,
+        "position": "normal",
+        "style": "default",
+        "label_placement": "top",
+        "instruction_placement": "label",
+        "hide_on_screen": "",
+        "active": true,
+        "description": "",
+        "show_in_rest": 0
+    },
+    {
+        "key": "group_59008adf19314",
+        "title": "WooCommerce Support Ticket – Automatic ticket",
+        "fields": [
+            {
+                "key": "field_5901ae40a7bf4",
+                "label": "Open automatically a ticket when an order hits a particular status?",
+                "name": "wcsts_open_ticket_automatically",
+                "aria-label": "",
+                "type": "true_false",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "message": "",
+                "default_value": 0,
+                "ui": 1,
+                "ui_on_text": "",
+                "ui_off_text": ""
+            },
+            {
+                "key": "field_5901ae8aa7bf5",
+                "label": "Select for which order status",
+                "name": "wcsts_automatic_ticket_order_status",
+                "aria-label": "",
+                "type": "order_staus_selector",
+                "instructions": "When the order will hit the selected statuses, a ticket will automtaically opened.",
+                "required": 0,
+                "conditional_logic": [
+                    [
+                        {
+                            "field": "field_5901ae40a7bf4",
+                            "operator": "==",
+                            "value": "1"
+                        }
+                    ]
+                ],
+                "wrapper": {
+                    "width": "50",
+                    "class": "",
+                    "id": ""
+                },
+                "return_value": "name",
+                "allowed_order_statuses": "",
+                "field_type": "checkbox"
+            },
+            {
+                "key": "field_61e99a8fa84fc",
+                "label": "Enable first message email notification to the user",
+                "name": "wcsts_automatic_ticket_enable_first_message_notification",
+                "aria-label": "",
+                "type": "true_false",
+                "instructions": "By default, when a ticket has automatically opened no notification is sent. This option will disable the default behavior. <strong>NOTE;<\/strong> Make sure you have enabled the User notification options.",
+                "required": 0,
+                "conditional_logic": [
+                    [
+                        {
+                            "field": "field_5901ae40a7bf4",
+                            "operator": "==",
+                            "value": "1"
+                        }
+                    ]
+                ],
+                "wrapper": {
+                    "width": "50",
+                    "class": "",
+                    "id": ""
+                },
+                "message": "",
+                "default_value": 0,
+                "ui": 1,
+                "ui_on_text": "",
+                "ui_off_text": ""
+            }
+        ],
+        "location": [
+            [
+                {
+                    "param": "options_page",
+                    "operator": "==",
+                    "value": "acf-options-ticket-system-options"
+                }
+            ]
+        ],
+        "menu_order": 3,
+        "position": "normal",
+        "style": "default",
+        "label_placement": "top",
+        "instruction_placement": "label",
+        "hide_on_screen": "",
+        "active": true,
+        "description": "",
+        "show_in_rest": 0
+    },
+    {
+        "key": "group_58b7d9ce4580e",
+        "title": "WooCommerce Support Ticket - Texts: emails sent to Admin",
+        "fields": [
+            {
+                "key": "field_57d2b1e50e887",
+                "label": "Admin - New ticket submitted by user email subject",
+                "name": "wcsts_admin_new_ticket_subject_text",
+                "aria-label": "",
+                "type": "text",
+                "instructions": "This is the subject used for the notification email sent to the admin after an user has submitted a ticket. You can use the special {ticket_id} to display the ticket id, <strong>{subject}<\/strong> to display the ticket subject.",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "New ticket #{ticket_id} submitted",
+                "placeholder": "",
+                "prepend": "",
+                "append": "",
+                "maxlength": ""
+            },
+            {
+                "key": "field_57d2b2550e888",
+                "label": "Admin - New ticket submitted bu user email body",
+                "name": "wcsts_admin_new_ticket_email_body_message",
+                "aria-label": "",
+                "type": "wysiwyg",
+                "instructions": "This is the email body used for the notification email sent to the user after an admin has replied to his ticket.  You can use the special <strong>{admin_ticket_page}<\/strong>, <strong>{ticket_id}<\/strong>, <strong>{subject}<\/strong> and <strong>{message}<\/strong> shotcodes in the message body to embed the ticket details page link, display the ticket id, the ticket subject and the message replied by the admin. You can also use the special shortcode listed <a href=\"?wcsts_shortcode_page=ok\" target=\"_blank\">here<\/a>.",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "The user has submitted a new ticket:\r\n<h3>Ticket subject<\/h3>\r\n<i>\r\n{subject}\r\n<\/i>\r\n<h3>Message<\/h3>\r\n<i>\r\n{message}\r\n<\/i>\r\n<br\/>\r\nReply by clicking on the following link: {admin_ticket_page}",
+                "tabs": "all",
+                "toolbar": "basic",
+                "media_upload": 0,
+                "delay": 0
+            },
+            {
+                "key": "field_57d2b2ce0e889",
+                "label": "Admin - New reply by user email subject",
+                "name": "wcsts_admin_new_reply_by_user_email_subject_text",
+                "aria-label": "",
+                "type": "text",
+                "instructions": "This is the subject used for the notification email sent to the admin after an user has replied to a ticket. You can use the special {ticket_id} to display the ticket id, <strong>{subject}<\/strong> to display the ticket subject.",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "New reply from user to ticket #{ticket_id}",
+                "placeholder": "",
+                "prepend": "",
+                "append": "",
+                "maxlength": ""
+            },
+            {
+                "key": "field_57d2b3150e88a",
+                "label": "Admin - New reply by user email body",
+                "name": "wcsts_admin_new_reply_by_user_email_body",
+                "aria-label": "",
+                "type": "wysiwyg",
+                "instructions": "This is the email body used for the notification email sent to the user after an admin has replied to his ticket.  You can use the special <strong>{admin_ticket_page}<\/strong>, <strong>{ticket_id}<\/strong>, <strong>{subject}<\/strong> and <strong>{message}<\/strong> shotcodes in the message body to embed the ticket details page link, display the ticket id, the ticket subject and the message replied by the admin. You can also use the special shortcode listed <a href=\"?wcsts_shortcode_page=ok\" target=\"_blank\">here<\/a>.",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "The user has replied to your ticket:\r\n<h3>Ticket subject<\/h3>\r\n<i>\r\n{subject}\r\n<\/i>\r\n<h3>Message<\/h3>\r\n<i>\r\n{message}\r\n<\/i>\r\n<br\/>\r\nReply by clicking on the following link: {admin_ticket_page}",
+                "tabs": "all",
+                "toolbar": "basic",
+                "media_upload": 0,
+                "delay": 0
+            },
+            {
+                "key": "field_5889ab35ef424",
+                "label": "Admin - New ticket assigned email subject",
+                "name": "wcsts_admin_new_ticket_assigned_email_subject_text",
+                "aria-label": "",
+                "type": "text",
+                "instructions": "This is the subject used for the notification email sent to the user to whom has been assigned the ticket. You can use the special {ticket_id} to display the ticket id, <strong>{subject}<\/strong> to display the ticket subject.",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "Following tickets have been assigned: {ticket_id}",
+                "placeholder": "",
+                "prepend": "",
+                "append": "",
+                "maxlength": ""
+            },
+            {
+                "key": "field_5889ababef425",
+                "label": "Admin - New ticket assigned email body",
+                "name": "wcsts_admin_new_ticket_assigned_email_body",
+                "aria-label": "",
+                "type": "wysiwyg",
+                "instructions": "This is the email body used for the notification email sent to the user when a new ticket has been assigned.  You can use the special <strong>{ticket_id}<\/strong>,<strong>{admin_ticket_page}<\/strong> shortcodes in the message body to display the ticket id and the ticket details page link.",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "Following tickets have been assigned: {ticket_id}. <br\/>\r\nReply by clicking on the following link(s): {admin_ticket_page}",
+                "tabs": "all",
+                "toolbar": "basic",
+                "media_upload": 0,
+                "delay": 0
+            }
+        ],
+        "location": [
+            [
+                {
+                    "param": "options_page",
+                    "operator": "==",
+                    "value": "acf-options-ticket-system-texts"
+                }
+            ]
+        ],
+        "menu_order": 4,
+        "position": "normal",
+        "style": "default",
+        "label_placement": "top",
+        "instruction_placement": "label",
+        "hide_on_screen": "",
+        "active": true,
+        "description": "",
+        "show_in_rest": 0
+    }
+]

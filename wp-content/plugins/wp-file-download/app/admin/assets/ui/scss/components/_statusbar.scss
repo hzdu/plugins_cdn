@@ -1,0 +1,54 @@
+#wpfd_status {
+  position: fixed;
+  display: none;
+  right: 41px;
+  bottom: 25px;
+  flex: 4;
+  order: 4;
+  z-index: 9999;
+  background: #fdfdfd;
+  @include boxShadow(0 10px 30px 0 rgba(160, 166, 190,.5));
+  @include borderRadius($small-radius);
+  border: 1px solid #ccc;
+  line-height: 25px;
+  padding: 0;
+  width: 300px;
+  .wpfd_status_header {
+    line-height: 35px;
+    font-size: 15px;
+    padding: 0 15px;
+    font-weight: bold;
+    background: white;
+    @include borderRadius($small-radius $small-radius 0 0);
+    span.toolbox {
+      display: block;
+      width: 35px;
+      height: 35px;
+      float: right;
+      cursor: pointer;
+      position: relative;
+      &:after {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        font-family: "Material Icons";
+        font-size: 15px;
+        padding-left: 10px;
+      }
+      &.minimize:after {
+        content: "";
+      }
+      &.maximize:after {
+        content: "";
+      }
+    }
+    &:hover {
+      cursor: move;
+    }
+  }
+  .wpfd_status_body {
+    padding: 10px;
+  }
+}

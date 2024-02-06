@@ -1,0 +1,170 @@
+:root {
+  --happyforms-color-multistep-info-text-color: #FFFFFF;
+  --happyforms-color-multistep-info-back-color: #000000;
+  --happyforms-color-multistep-info-back-color-hover: #000000;
+}
+
+.happyforms-form-progress {
+  position: relative;
+  width: auto;
+  margin: 0;
+  padding: 0px 1%;
+}
+
+.happyforms-step {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.happyforms-step-preview,
+.happyforms-step {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.happyforms-step-preview {
+  position: relative;
+  padding: 0 1%;
+}
+
+.happyforms-step-preview a.submit {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+}
+
+.happyforms-form--multistep .happyforms-part--submit {
+  padding-top: 0;
+}
+
+.happyforms-part.happyforms-part--page_break {
+  flex: 0 0 100%;
+  margin: 0;
+  padding: 0 1%;
+}
+
+/* New Multistep CSS */
+.happyforms-page-break:before {
+  content: "";
+  position: absolute;
+  top: 57%;
+  left: 0;
+  right: 0;
+  border-top: 3px dashed #ccc;
+}
+
+.happyforms-page-break span.label:empty:before {
+  content: "Add page break";
+  opacity: .5;
+}
+
+.happyforms-page-break .happyforms-part__label {
+  position: relative;
+  font-size: 13px;
+  text-transform: uppercase;
+  font-weight: 600;
+  border: none;
+  box-shadow: none;
+  white-space: nowrap;
+  text-align: center;
+  margin: 0;
+  padding: 6px 20px;
+  max-width: 100%;
+  width: 100%!important;
+  background: transparent!important;
+}
+
+.happyforms-page-break .happyforms-part__label {
+  text-align: center !important;
+  width: 100% !important;
+}
+
+.happyforms-page-break .happyforms-part__label span.label {
+  border-radius: 4px;
+  background: #fff;
+  font-size: 13px;
+  font-weight: 600 !important;
+  padding: 6px 8px;
+  height: 24px;
+  color: #000;
+  color: var(--happyforms-color-part-description);
+}
+
+.happyforms-page-break .happyforms-required,
+.happyforms-page-break .happyforms-optional {
+  display: none !important;
+}
+
+button.submit.happyforms-submit.happyforms-button--submit.happyforms-back-step,
+button.submit.happyforms-submit.happyforms-button--submit.happyforms-continue-step {
+    background: none;
+    padding: 0;
+    font-size: var(--happyforms-part-value-font-size);
+    color: #000;
+    color: var(--happyforms-color-part-description);
+    border: 0px solid transparent !important;
+    width: auto !important;
+    border-width: 0px !important;
+    font-weight: normal !important;
+    text-decoration: underline;
+    display: block;
+}
+
+button.submit.happyforms-submit.happyforms-button--submit.happyforms-previous-step:hover {
+  color: var(--happyforms-color-multistep-previous-text);
+  border-bottom: 1px solid #000;
+}
+
+.happyforms-form-progress__step-title {
+    margin-bottom: 5px;
+}
+
+.happyforms-form-progress {
+  margin-bottom: 20px;
+}
+
+.happyforms-flex.happyforms-step_information_wrapper {
+    padding: 0;
+    margin: 0;
+}
+
+.happyforms-styles .happyforms-flex.happyforms-step_information_wrapper h2,
+.happyforms-styles .happyforms-flex.happyforms-step_information_wrapper span {
+  font-size: var(--happyforms-part-value-font-size);
+  color: #000;
+  color: var(--happyforms-color-multistep-info-text-color);
+  margin-bottom: 0;
+}
+
+.happyforms-styles .happyforms-flex.happyforms-step_information_wrapper button.submit.happyforms-submit.happyforms-button--submit.happyforms-back-step {
+  color: #000;
+  color: var(--happyforms-color-multistep-info-back-color);
+  margin-top: 2px;
+}
+
+.happyforms-styles .happyforms-flex.happyforms-step_information_wrapper button.submit.happyforms-submit.happyforms-button--submit.happyforms-back-step:hover {
+  color: #000;
+  color: var(--happyforms-color-multistep-info-back-color-hover);
+}
+
+.happyforms-styles .happyforms-message-notice.happyforms-step-wrapper-notice {
+  width: 100%;
+  display: flex;
+}
+
+.happyforms-styles .happyforms-message-notice.happyforms-step-wrapper-notice button.submit.happyforms-submit.happyforms-button--submit.happyforms-back-step {
+  text-align: left;
+  display: inline-block;
+  white-space: nowrap;
+  margin-right:10px;
+}
+
+.happyforms-styles .happyforms-message-notice.happyforms-step-wrapper-notice span.happyforms-form-progress__step-index.happyforms-form-progress__step-title {
+  text-align: right;
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  margin-top:3px;
+  flex-grow: 1;
+}

@@ -1,0 +1,115 @@
+$wpfd-progress-cancel-color: #0073ab;
+$wpfd-progress-cancel-upload-done: green;
+$wpfd-progress-cancel-upload-error: red;
+$wpfd-progress-pause-color: #0073ab;
+$wpfd-progress-paused-color: green;
+$wpfd-progress-height: 30px;
+$wpfd-progress-run-height: 4px;
+$wpfd-progress-run-color: #0073ab;
+
+.wpfd_progress_block {
+  position: relative;
+  height: $wpfd-progress-height;
+  margin-bottom: 5px;
+
+  .wpfd_progress_fileinfo {
+    padding: 0;
+    align-content: center;
+    z-index: 2;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    height: $wpfd-progress-height;
+    .wpfd_progress_filename {
+      padding: 0;
+      width: calc(100% - 50px);
+      display: block;
+      float: left;
+      color: #000000;
+      font-weight: bold;
+      @include textTruncate();
+    }
+  }
+  .wpfd_progress_full {
+    display: none;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: $wpfd-progress-run-height;
+    background: rgba(0, 0, 0, 0.1);
+    z-index: 1;
+    .wpfd_progress_run {
+      width: 0;
+      height: $wpfd-progress-run-height;
+      background: $wpfd-progress-run-color;
+      @include transition(width .2s ease-out);
+    }
+    .done {
+      display: none !important;
+    }
+  }
+}
+.wpfd_progress_pause,
+.wpfd_progress_cancel {
+  width: 20px;
+  height: 25px;
+  display: block;
+  float: right;
+  cursor: pointer;
+  position: relative;
+  &:after {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    font-family: 'Material Icons';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 15px;
+    line-height: 25px;
+    letter-spacing: normal;
+    text-transform: none;
+    display: inline-block;
+    white-space: nowrap;
+    word-wrap: normal;
+    direction: ltr;
+    -webkit-font-feature-settings: 'liga';
+    -webkit-font-smoothing: antialiased;
+    text-align: center;
+  }
+}
+.wpfd_progress_pause {
+  &:after {
+    content: 'pause';
+    color: $wpfd-progress-pause-color;
+  }
+  &.paused {
+    &:after {
+      content: 'play_arrow';
+      color: $wpfd-progress-paused-color;
+    }
+  }
+}
+.wpfd_progress_cancel {
+  &:after {
+    content: 'stop';
+    color: $wpfd-progress-cancel-color;
+  }
+  &.uploadDone {
+    &:after {
+      content: "check";
+      color: $wpfd-progress-cancel-upload-done;
+    }
+  }
+  &.uploadError {
+    &:after {
+      content: 'error';
+      color: $wpfd-progress-cancel-upload-error;
+    }
+  }
+}
+

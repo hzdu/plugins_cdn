@@ -1,0 +1,136 @@
+.wws-popup-container * {
+	box-sizing: border-box;
+}
+
+.wws-popup__header {
+	position: absolute;
+	right: 0;
+	top: 10px;
+}
+
+.wws-popup {
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	display: none;
+}
+
+.wws-popup-container {
+	width: auto;
+	position: fixed;
+	z-index: 9999999;
+}
+
+/** Close btn **/
+.wws-popup__close-btn {
+	width: 34px;
+	height: 34px;
+	border-radius: 50%;
+	float: right;
+	text-align: center;
+	vertical-align: middle;
+	line-height: 36px;
+	cursor: pointer;
+	font-size: 24px;
+}
+
+.wws-popup__close-btn svg {
+	width: 16px;
+	height: 16px;
+}
+
+/** Support **/
+.wws-popup__support-wrapper {
+	margin-top: 8px;
+	border-radius: 8px;
+}
+
+.wws-popup__support-img-wrapper {
+	width: 54px;
+	height: 54px;
+	border-radius: 50%;
+	overflow: hidden;
+	margin-right: 3px;
+	display: block;
+	margin: 0 auto 8px auto;
+}
+
+.wws-popup__support-img {
+	max-width: 100%;
+	height: auto;
+	display: block;
+}
+
+.wws-popup__support {
+	display: inline-block;
+	vertical-align: bottom;
+	overflow: hidden;
+	width: 360px;
+	border-radius: 8px 8px 0 0;
+}
+
+.wws-popup__support-about {
+	text-align: center;
+	padding: 20px 10px;
+	line-height: 22px;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+/** Input **/
+.wws-popup__input-wrapper {
+	width: 360px;
+	float: right;
+	background-color: #fff;
+	padding: 8px 12px;
+	border-radius: 0 0 8px 8px;
+	position: relative;
+}
+
+.wws-popup__input {
+	border: none !important;
+	background-color: transparent !important;
+	outline: none !important;
+	padding: 6px 0 !important;
+	margin: 0 !important;
+	box-shadow: none !important;
+	color: #000 !important;
+	vertical-align: middle !important;
+	display: inline-block !important;
+	width: 294px !important;
+	height: auto !important;
+}
+
+.wws-popup__input::-webkit-input-placeholder {
+	color: #888FBB !important;
+}
+
+.wws-popup__send-btn {
+	cursor: pointer;
+	padding: 6px;
+	width: 34px;
+	display: inline-block;
+	vertical-align: middle;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+.wws-popup__send-btn:active {
+	background-color: #eceff1;
+	border-radius: 3px;
+}
+
+@media ( max-width: 380px ) {
+	.wws-popup__support,
+	.wws-popup__input-wrapper {
+		width: 300px;
+	}
+
+	.wws-popup__input {
+		width: 234px !important;
+	}
+}

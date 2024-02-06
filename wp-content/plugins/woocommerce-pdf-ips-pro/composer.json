@@ -1,0 +1,49 @@
+{
+	"require": {
+		"iio/libmergepdf": "^4.0",
+		"stevenmaguire/oauth2-dropbox": "^3.0",
+        "spatie/dropbox-api": "^1.17",
+		"guzzlehttp/guzzle": "~6.0",
+		"symfony/polyfill-intl-normalizer": "^1.23",
+		"symfony/polyfill-intl-idn": "^1.23",
+		"symfony/polyfill-php72": "^1.23",
+		"league/flysystem-sftp": "^2.1",
+		"league/flysystem-ftp": "^2.0",
+		"composer/ca-bundle": "^1.2"
+	},
+	"extra": {
+		"strauss": {
+			"target_directory": "lib",
+			"namespace_prefix": "WPO\\WC\\PDF_Invoices_Pro\\Vendor\\",
+			"classmap_prefix": "WPO_WCPDF_IPS_PRO_",
+			"packages": [],
+			"override_autoload": {
+			},
+			"exclude_from_copy": {
+				"packages": [
+				],
+				"namespaces": [
+				],
+				"patterns": [
+				]
+			},
+			"exclude_from_prefix": {
+				"packages": [
+					"symfony/polyfill-intl-normalizer",
+					"symfony/polyfill-intl-idn",
+					"symfony/polyfill-php72"
+				],
+				"namespaces": [
+				],
+				"patterns": [
+					"/^psr.*$/"
+				]
+			},
+			"namespace_replacement_patterns" : {
+			},
+			"delete_vendor_files": false,
+			"include_modified_date": false,
+			"include_author": false
+		}
+	}
+}

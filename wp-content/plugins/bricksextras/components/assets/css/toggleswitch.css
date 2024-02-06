@@ -1,0 +1,161 @@
+:root {
+  --x-toggle-slider-width: 60px;
+  --x-toggle-control-size: 26px;
+  --x-toggle-slider-padding: 4px;
+}
+
+.x-toggle-switch {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.x-toggle-switch_switch {
+  position: relative;
+  display: inline-block;
+  width: var(--x-toggle-slider-width);
+  height: 34px;
+  margin: 0;
+}
+
+.x-toggle-switch_switch input { 
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.x-toggle-switch_label {
+  background-color: transparent;
+  padding: 1em;
+}
+
+body.bricks-is-frontend .brxe-xtoggleswitch :focus {
+  outline: none;
+}
+
+body.bricks-is-frontend .brxe-xtoggleswitch :focus-visible {
+  outline: thin dotted currentColor;
+}
+
+.x-toggle-switch_label-active {
+  color: #fff;
+}
+
+.x-toggle-switch_slider {
+  position: absolute;
+  cursor: pointer;
+  left: 0;
+  right: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+  top: 50%;
+  transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  height: 30px;
+  padding-left: var(--x-toggle-slider-padding);
+  padding-right: var(--x-toggle-slider-padding);
+  will-change: background-color;
+}
+
+.x-toggle-switch_control {
+  border-style: solid;
+  border-width: 0;
+  position: absolute;
+  content: '';
+  height: var(--x-toggle-control-size);
+  width: var(--x-toggle-control-size);
+  left: var(--x-toggle-slider-padding);
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition-duration: .4s;
+  transition-duration: .4s;
+   -webkit-transition-property: all;
+  transition-property: all;
+  top: 50%;
+  transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  box-shadow: 0px 4px 20px rgba(0,0,0,0.33);
+  will-change: transform;
+  --x-toggle-transform-size: calc(var(--x-toggle-slider-width) - var(--x-toggle-control-size) - var(--x-toggle-slider-padding) - var(--x-toggle-slider-padding) );
+}
+
+.x-toggle-switch input:checked + .slider {
+  background-color: #2196F3;
+}
+
+.x-toggle-switch input:focus + .x-toggle-switch_slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+.x-toggle-switch input:checked + .x-toggle-switch_slider .x-toggle-switch_control {
+  -webkit-transform: translate(var(--x-toggle-transform-size), -50%);
+  -ms-transform: translate(var(--x-toggle-transform-size), -50%);
+  transform: translate(var(--x-toggle-transform-size), -50%);
+}
+
+
+.x-toggle-switch_multiple-slider {
+  position: absolute;
+  pointer-events: none;
+}
+
+.x-toggle-switch_labels {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.x-toggle-switch[data-x-switch*=multiple] {
+  background-color: #fff;
+  overflow: hidden;
+  padding: 5px;
+}
+
+[data-x-switch*=multiple] .x-toggle-switch_label {
+  cursor: pointer;
+  z-index: 1;
+  transition: color 300ms ease 0s, background-color 300ms ease 0s;
+  -webkit-transition: color 300ms ease 0s, background-color 300ms ease 0s;
+}
+
+.x-toggle-switch_multiple-slider {
+  transition: left 300ms ease 0s, top 300ms ease 0s, width 300ms ease 0s;
+  -webkit-transition: left 300ms ease 0s, top 300ms ease 0s, width 300ms ease 0s;
+  background-color: #222;
+  will-change: left,width;
+}
+
+.x-toggle-switch[data-x-switch-builder*=multiple] {
+  background-color: #fff;
+  overflow: hidden;
+  padding: 5px;
+}
+
+.x-toggle-switch_label > span {
+  pointer-events: none;
+  position: relative;
+  z-index: 1;
+}
+
+[data-x-switch-builder*=multiple] .x-toggle-switch_label {
+  cursor: pointer;
+  z-index: 1;
+  transition: color 300ms ease 0s, background-color 300ms ease 0s;
+  -webkit-transition: color 300ms ease 0s, background-color 300ms ease 0s;
+}
+
+/* Text meant only for screen readers. */
+.screen-reader-text {
+  border: 0;
+  clip: rect(1px, 1px, 1px, 1px);
+  clip-path: inset(50%);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+  word-wrap: normal !important;
+}

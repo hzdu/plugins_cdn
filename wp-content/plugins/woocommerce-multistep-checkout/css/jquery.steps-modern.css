@@ -1,0 +1,372 @@
+/*************Modern Layout Stylesheet ***/
+#wizard #place_order, .woocommerce-billing-fields > h3{display:none}
+.woocommerce #payment div.form-row, .woocommerce-page #payment div.form-row{border-top: none;padding:0}
+#ship-to-different-address{margin:0}
+.woocommerce #payment ul.payment_methods, .woocommerce-page #payment ul.payment_methods{border-bottom:none;padding-bottom:5px
+}
+
+.wizard > .content
+{
+    display: block;
+    margin: 0.5em;
+    overflow: hidden;
+    position: relative;
+    width: auto;
+
+}
+
+.wizard > .content > .body
+{
+    float: left;
+    height: 95%;
+    padding: 0;
+    width: 98%; 
+}
+
+.wizard > .content > .body input.error
+{
+    background: rgb(251, 227, 228);
+    border: 1px solid #fbc2c4;
+    color: #8a1f11;
+}
+
+.wizard > .content > .body label.error
+{
+    color: #8a1f11;
+    display: inline-block;
+}
+
+.wizard.wizard a
+{
+    outline: 0;
+}
+
+.wizard > .steps > ul{
+    list-style: none !important;
+    padding-left: 20px;
+    margin-left: 10px;
+}
+
+.wizard.five-steps > .steps > ul > li
+{
+    width: 20%;
+}
+
+.wizard.three-steps > .steps > ul > li
+{
+    width: 33.33333%;
+}
+
+.wizard > .steps > ul > li {
+    width: 25%;
+}
+
+
+.wizard.wizard > .steps .current-info
+{
+    position: absolute;
+    left: -999em;
+}
+
+.wizard.wizard > .content > .title
+{
+    position: absolute;
+    left: -999em;
+}
+
+.wizard.wizard > .steps.clearfix:before,
+.wizard.wizard > .steps.clearfix:after
+{
+    display:block;
+}
+
+.wizard.wizard > .steps.clearfix:after
+{
+    display:block;
+    margin-bottom: 10px;
+}
+
+.wizard.wizard > .steps
+{
+    margin:20px 10px 0px 10px;
+    position: relative;
+    clear:both;
+    font-family:"Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: bold;
+}
+
+.wizard.wizard > .steps > ul > li
+{
+    position:relative;
+
+}
+
+.wizard.wizard > .steps > ul > li,
+.wizard.wizard > .actions > ul > li
+{
+    float: left;
+    list-style: none !important;
+    padding: 0;
+    margin: 0;
+}
+
+.wizard.wizard > .steps a {
+    position:relative;
+    display:block;
+    width:80%;
+    margin-right:30px;
+    padding:10px;
+    float: left;
+    font-size:15px;
+    line-height:40px;
+    text-decoration:none;
+    transition: 0.1s;
+}
+
+#wizard.three-steps > .steps a{
+     width:85%;
+}
+.wizard.wizard > .steps a:before {
+    width:0px;
+    height:0px;
+    position: absolute;
+    content: "";
+    top: 0px;
+    left: -20px;
+    transition: 0.1s;
+}
+.wizard.wizard > .steps a:after {
+    width: 0;
+    height: 0;
+    position: absolute;
+    content: "";
+    top: 0px;
+    right: -20px;
+    transition: 0.1s;
+}
+
+.wizard.wizard > .steps li span
+{
+    display: block;
+    float: left;
+    font-size: 14px;
+    text-align:center;
+    width:26px;
+    margin: 5px 5px 5px 0;
+    line-height:26px;
+    border: 2px solid;
+    -webkit-border-radius:20px;
+    -moz-border-radius:20px;
+    border-radius:20px;
+}
+
+.wizard.wizard > .steps li.done span {
+    text-shadow:none;
+    border: 2px solid #eee;
+    text-shadow:none;
+}
+
+.wizard.wizard > .steps li.current span {
+    text-shadow:none;
+    border: 2px solid;
+}
+
+.wizard.wizard > .steps li.current.error span {
+    text-shadow:none;
+    border: 2px solid;
+}
+
+.wizard.wizard > .actions > ul > li
+{
+    float: left;
+}
+
+.wizard.wizard > .content  ul  li
+{
+    list-style: none !important;
+}
+
+.wizard.wizard > .content
+{
+    display: block;
+    margin: 0 1%;
+    position: relative; 
+    width: 98%;
+}
+
+
+.wizard.wizard > .content > .body
+{
+    float: left;
+    position: relative;
+    width: 100%;
+    padding: 0;
+}
+
+.wizard > .actions .disabled a {
+    background: #eee;
+    color: #aaa;
+}
+
+.woocommerce-checkout #payment{
+    background: transparent !important;
+}
+
+.wizard.wizard > .actions
+{
+    margin-top: 10px;
+    position: relative;
+    display: inline-block;
+    text-align: right;
+    width: 100%;
+}
+
+
+.wizard.wizard > .actions > ul
+{
+    display: inline-block;
+    text-align: right;
+}
+
+.wizard.wizard > .actions > ul > li
+{
+    margin: 0 0.5em;
+}
+
+
+/******************** Modern Style ***/
+
+.wizard > .steps li.done a {
+    color: #fff;
+    background-color: #b99fcc;
+}
+.wizard > .steps li.done a:before {
+    border-top: 30px solid #b99fcc;
+    border-bottom: 30px solid #b99fcc;
+}
+.wizard > .steps li.done a:after {
+    border-left: 20px solid #b99fcc;
+}
+
+.wizard > .steps li.done span {
+    color: #163038;
+    background-color: #FFF;
+    border-color: #163038;
+}
+
+
+.wizard > .steps a {
+    color: #333;
+    background-color: #eee;
+}
+.wizard > .steps a:before {
+
+    border-top: 30px solid #eee;
+    border-bottom: 30px solid #eee;
+    border-left:20px solid transparent;
+}
+.wizard > .steps a:after {
+
+    border-top: 30px solid transparent;
+    border-bottom: 30px solid transparent;
+    border-left:20px solid #eee;
+}
+
+.wizard > .steps li span
+{
+    color: #ccc;
+    background-color: #FFF;
+    border-color: #ccc;
+}
+
+.wizard > .steps li.current a {
+    color: #ffffff;
+    background-color: #5d2e78;
+}
+.wizard > .steps li.current a:before {
+    border-top: 30px solid #5d2e78;
+    border-bottom: 30px solid #5d2e78;
+}
+.wizard > .steps li.current a:after {
+    border-left: 20px solid #5d2e78;
+}
+
+.wizard > .steps li.current span {
+    color: #163038;
+    background-color: #FFF;
+    border-color: #A3C1C9;
+}
+
+.wizard > .steps li.current.error a {
+    color: #fff;
+    background-color: #b81c23;
+}
+.wizard > .steps li.current.error a:before {
+    border-top: 30px solid #b81c23;
+    border-bottom: 30px solid #b81c23;
+}
+.wizard > .steps li.current.error a:after {
+    border-left: 20px solid #b81c23;
+}
+
+.wizard > .steps li.current.error span {
+    color: #8F061E;
+    background-color: #FFF;
+    border-color: #A3C1C9;
+}
+
+.wizard > .actions > ul {
+    display: inline-block;
+    text-align: right;
+}
+
+
+.wizard > .actions > ul > li {
+    margin: 0 0.5em;
+}
+
+.wizard > .actions a, .wizard > .actions a:hover, .wizard > .actions a:active, #wizard .checkout_coupon .button, #wizard form.login input.button{
+    background: none repeat scroll 0 0 #5d2e78;
+    color: #fff;
+    display: block;
+    padding: 0.5em 1em;
+    text-decoration: none;    
+    border: none;
+    font-weight: normal;
+}
+form.login .button, .woocommerce form.login input[type="submit"]{
+    background: #5d2e78;
+} 
+
+.wizard a, .tabcontrol a {
+    outline: 0 none;
+}
+
+
+/**********Media qUERIES ***/
+/***For smart phones **/
+@media(max-width: 767px){
+
+    .wizard > .steps > ul > li, .wizard.five-steps > .steps > ul > li{
+        float: none;
+        font-size: 14px;
+        margin-left: 0;
+        width: 100%;
+    }
+
+    .wizard > .steps .actions.clearfix ul li{
+        float: right;
+    }
+    .wizard > .steps .actions.clearfix ul li:first-child{
+        float: left;
+    }
+
+
+    .wizard.wizard > .steps > ul > li,
+    .wizard.wizard > .actions > ul > li
+    {
+        margin-bottom: 5px;
+        clear: both;
+        float:left;
+    }
+}

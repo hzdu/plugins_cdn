@@ -1,0 +1,348 @@
+$grid-gutter-width: 10px;
+
+// scss-docs-start grid-breakpoints
+$grid-breakpoints: (
+    xs: 0,
+    sm: 576px,
+    md: 768px,
+    lg: 992px,
+    xl: 1200px,
+    xxl: 1400px
+) !default;
+
+@import "~bootstrap/scss/mixins/breakpoints";
+@import "components/order-bump";
+@import "components/quantity-control";
+@import "components/cart-item";
+@import "components/order-totals";
+@import "components/promo";
+@import "components/mobile-cart-summary";
+@import "components/footer";
+@import "components/compatibility";
+
+#cfw {
+    padding-top: 2em;
+}
+
+
+main.checkoutwc {
+    --cfw-horizontal-divider-color: var(--cfw-cart-summary-text-color);
+    --cfw-cart-summary-order-total-text-color: var(--cfw-cart-summary-text-color);
+
+    // Light (default)
+    --cfw-cart-summary-text-color-default: hsla(0, 0%, 10%, .5);
+    --cfw-cart-summary-border-color: hsla(0, 0%, 10%, .1);
+    --cfw-cart-summary-text-color-contrast: hsla(0, 0%, 10%, .9);
+    --cfw-cart-summary-border: 1px solid var(--cfw-cart-summary-border-color);
+    --cfw-cart-summary-component-bg: hsla(0,0%,10%,.05);
+
+    // Dark mode
+    --cfw-cart-summary-dark-border-color: hsla(0,0%,100%,.1);
+    --cfw-cart-summary-dark-text-color-default: hsla(0,0%,100%,.5);
+    --cfw-cart-summary-dark-text-color-contrast: #fff;
+    --cfw-cart-summary-dark-border: 1px solid var(--cfw-cart-summary-dark-border-color);
+    --cfw-cart-summary-dark-component-bg: hsla(0,0%,100%,.05);
+
+    // Loading shimmer
+    --cfw-loading-shimmer-gradient: linear-gradient(-90deg, transparent, var(--cfw-body-background-color), transparent);
+    --cfw-loading-shimmer-filter: blur(1px);
+
+    .cfw-secondary-btn, a.button, .woocommerce-button, input[type="button"] {
+        &:not(.cfw-primary-btn):not(.cfw-quantity-stepper-btn-minus):not(.cfw-quantity-stepper-btn-plus) {
+            padding: 0.94rem;
+        }
+    }
+}
+
+#cfw-logo-container, #cfw-logo-container-mobile {
+    .cfw-logo {
+        padding-top: 0;
+
+        a {
+            margin-top: 0;
+        }
+    }
+}
+
+#cfw-cart-summary > *:not(#cfw-mobile-cart-header) {
+    position: relative;
+    z-index: 2;
+}
+
+#cfw-mobile-cart-header {
+    position: relative;
+    z-index: 2;
+}
+
+#cfw-cart-summary-content {
+    position: relative;
+    z-index: 2;
+}
+
+main.checkoutwc .cfw-rp {
+    @include media-breakpoint-up(lg) {
+        padding-right: 48px;
+    }
+}
+
+#cfw-cart-summary {
+    border-left: 0;
+    padding: 0;
+
+    --cfw-cart-summary-text-color: var(--cfw-cart-summary-text-color-default);
+    --cfw-cart-summary-order-total-text-color: var(--cfw-cart-summary-text-color-default);
+    --cfw-loading-shimmer-gradient: linear-gradient(-90deg, transparent, var(--cfw-cart-summary-background-color), transparent);
+
+    &.cfw-cart-summary-dark {
+        --cfw-cart-summary-border-color: var(--cfw-cart-summary-dark-border-color);
+        --cfw-cart-summary-text-color-default: var(--cfw-cart-summary-dark-text-color-default);
+        --cfw-cart-summary-text-color-contrast: var(--cfw-cart-summary-dark-text-color-contrast);
+        --cfw-cart-summary-border: var(--cfw-cart-summary-dark-border);
+        --cfw-cart-summary-component-bg: var(--cfw-cart-summary-dark-component-bg);
+        --cfw-cart-summary-text-color: var(--cfw-cart-summary-dark-text-color-default);
+        --cfw-cart-summary-order-total-text-color: var(--cfw-cart-summary-dark-text-color-default);
+    }
+
+    h4 {
+        color: var(--cfw-cart-summary-text-color-contrast);
+    }
+
+    &.cfw-cart-summary-dark .cfw-secondary-btn {
+        background-color: #f4f4f4;
+        color: var(--cfw-cart-summary-background-color);
+        border-color: #f4f4f4 !important;
+    }
+
+    > div {
+        @include media-breakpoint-up(lg) {
+            padding-left: 48px;
+        }
+    }
+
+    input[type=email],
+    input[type=number],
+    input[type=password],
+    input[type=tel],
+    input[type=text].input-text,
+    select,
+    textarea {
+        background: transparent !important;
+    }
+
+    #cfw-cart .cart-item-row .cfw-cart-item-description .cfw-cart-item-data {
+        color: var(--cfw-cart-summary-text-color-default);
+    }
+
+    &:before {
+        content: " ";
+        background: var(--cfw-cart-summary-background-color);
+        box-shadow: inset 5px 0 30px 0 rgba(0,0,0,.18);
+        position: fixed;
+        height: calc(100vh + 60px);
+        width: 100%;
+        top: 0;
+        z-index: 1;
+    }
+}
+
+#cfw-logo-container-mobile {
+    display: none;
+}
+
+@include media-breakpoint-down(lg) {
+    #cfw {
+        margin-top: 1em;
+    }
+
+    #cfw-logo-container {
+        display: none;
+    }
+
+    #cfw-logo-container-mobile {
+        display: block;
+        width: calc(100% - 40px);
+        margin: auto;
+    }
+
+    #cfw-cart-summary {
+        &:before {
+            content: none;
+        }
+    }
+}
+
+// Stripe for WooCommerce (Payment Plugins)
+form.woocommerce-checkout > .woocommerce-NoticeGroup {
+    flex: 0 0 auto;
+    width: 58.33333333%;
+    padding-right: 20px;
+
+    @include media-breakpoint-down(lg) {
+        width: 100%;
+        max-width: 100%;
+        flex-shrink: 0;
+        padding: 0 20px;
+    }
+}
+
+html, body.checkout-wc, main.checkoutwc {
+    height: calc(100% - 32px);
+
+    @include media-breakpoint-down(md) {
+        height: calc(100% - 46px);
+    }
+}
+
+body.checkout-wc, main.checkoutwc, form#checkout {
+    display: flex;
+    flex: 1 0 auto;
+}
+
+#order_review {
+    display: flex;
+    flex-direction: column;
+    flex: 1 0 auto;
+
+    .cfw-panel.active {
+        flex: 1 0 auto;
+        padding-bottom: 4em;
+    }
+}
+
+#cfw-header {
+    min-height: 60px;
+}
+
+body.checkout-wc main.checkoutwc {
+    font-weight: 400;
+
+    h3 {
+        font-weight: 600;
+    }
+
+    h3 {
+        letter-spacing: -0.01em;
+        margin-bottom: 1em;
+    }
+
+    #cfw_trust_badges {
+        border: none;
+        color: var(--cfw-cart-summary-text-color-contrast);
+
+        h4 {
+            padding: 1em 0;
+            margin-bottom: 0;
+            position: relative;
+            transform: none;
+            background: transparent;
+            top: auto;
+            left: auto;
+            font-weight: 600;
+        }
+
+        h5 {
+            font-weight: 500;
+        }
+    }
+}
+
+#cfw-breadcrumb {
+    counter-reset: tab-number;
+
+    li, li.active {
+        a {
+            font-size: 14px;
+            font-weight: 500;
+            margin: 0 8px;
+        }
+    }
+
+    li.tab:after {
+        display: none;
+    }
+
+    li:before {
+        counter-increment: tab-number;
+        content: counter(tab-number);
+        font-size: 15px;
+        font-weight: 600;
+        background: #ECEDEF;
+        width: 25px;
+        height: 25px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 100em;
+    }
+
+    li {
+        &:not(:last-child):before {
+            color: var(--cfw-breadcrumb-completed-accent-color);
+        }
+
+        &.active ~ li:not(:last-child):before {
+            color: var(--cfw-breadcrumb-next-accent-color);
+        }
+
+        &.active:before {
+            color: var(--cfw-breadcrumb-current-accent-color);
+        }
+    }
+}
+
+#cfw-payment-request-buttons {
+    h2 {
+        font-weight: 600;
+    }
+}
+
+.form-row {
+    input[type=email],
+    input[type=number],
+    input[type=password],
+    input[type=tel],
+    input[type=text].input-text,
+    select,
+    textarea {
+        border: 1px solid #8D8D8E !important;
+        border-radius: 6px !important;
+        padding: 14px !important;
+        font-size: 17px !important;
+    }
+
+    &.cfw-label-is-floated {
+        input[type=email],
+        input[type=number],
+        input[type=password],
+        input[type=tel],
+        input[type=text].input-text,
+        select,
+        textarea {
+            color: #4C4C4E !important;
+            padding: 21px 14px 7px 14px !important;
+        }
+    }
+
+    label.cfw-floatable-label {
+        color: #6F6F72 !important;
+        margin-top: 4px !important;
+        letter-spacing: 0.02em !important;
+        font-weight: 400 !important;
+    }
+}
+
+input#cfw-promo-code-btn {
+    height: 50px;
+}
+
+img.attachment-cfw_cart_thumb.size-cfw_cart_thumb {
+    border-radius: 12px;
+}
+
+main.checkoutwc .iti__selected-flag {
+    max-height: 54px;
+}
+
+#cfw {
+    --cfw-blocked-visibility: visibile;
+}

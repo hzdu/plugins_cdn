@@ -1,0 +1,199 @@
+
+.wpfd-category-module {
+    position: relative;
+}
+.wpfd-category-module .wpfd-loading-wrapper,
+.wpfd-category-module .wpfd-loading {
+    margin: 0 auto;
+    width: 70px;
+    height: 70px;
+}
+.wpfd-category-module .wpfd-category-search {
+    position: relative;
+}
+.wpfd-category-module .wpfd-category-search textarea,
+.wpfd-category-module .wpfd-category-search input {
+    overflow: hidden;
+    overflow-wrap: break-word;
+    resize: none;
+    height: 32px;
+    background: #fff;
+    width: 100%;
+    line-height: 26px;
+    font-size: 16px;
+    box-shadow: 0 0 0 transparent;
+    border-radius: 4px;
+    border: 1px solid #7e8993;
+    color: #32373c;
+    padding: 2px 6px;
+}
+.wpfd-category-module .categories-dropdown {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 36px;
+    z-index: 9;
+}
+.wpfd-category-module .categories-dropdown ul {
+    list-style: none !important;
+    list-style-type: none !important;
+    margin: 0 !important;
+    padding: 0 5px !important;
+}
+.wpfd-category-module .categories-dropdown ul li {
+    list-style: none !important;
+    list-style-type: none !important;
+}
+.wpfd-category-module .wpfd-category {
+    color: #404852;
+    padding: 5px 0;
+    margin: 0;
+    white-space: nowrap;
+}
+.wpfd-category-module .wpfd-category:hover, .wpfd-category-module .wpfd-category.active {
+    background: rgba(34, 145, 240, 0.1);
+    color: #2291f0;
+}
+.wpfd-category-module .wpfd-category:hover .dashicon, .wpfd-category-module .wpfd-category.active .dashicon,
+.wpfd-category-module .wpfd-category:hover .wpfd-cloud-icon path, .wpfd-category-module .wpfd-category.active .wpfd-cloud-icon path {
+    fill: #2291f0;
+}
+.wpfd-category-module .wpfd-category .dashicon {
+    vertical-align: top;
+    width: 20px;
+    fill: #888888;
+}
+.wpfd-category-module .wpfd-category .wpfd-category-name {
+    cursor: pointer;
+    padding-left: 5px;
+    display: inline;
+    vertical-align: baseline;
+    line-height: 1em;
+}
+.wpfd-category-module .wpfd-category .wpfd-category-count {
+    float: right;
+    padding-right: 15px;
+    vertical-align: sub;
+}
+.wpfd-category-module .wpfd-category .wpfd-toggle-expand {
+    vertical-align: middle;
+    display: inline-block;
+    width: 14px;
+    height: 24px;
+    cursor: pointer;
+    position: relative;
+    margin-right: 2px;
+}
+.wpfd-category-module .wpfd-category .wpfd-toggle-expand:after {
+    content: "\f347";
+    font-family: "dashicons";
+}
+.wpfd-category-module .default-icon {
+    display: inline-block;
+    vertical-align: middle;
+}
+.wpfd-category-module .wpfd-cloud-icon{
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    display: inline-block;
+    vertical-align: text-top;
+}
+
+.wpfd-category-module .categories-dropdown {
+    display: block;
+    width: 100%;
+    max-height: 200px;
+    background: #fff;
+    overflow: auto;
+    font-weight: 600;
+    box-shadow: 0 0 15px -5px #000;
+}
+
+
+.wpfd-category-module .wpfd-selected-category-name {
+    text-align: left;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 20px;
+    padding: 10px 0;
+}
+.wpfd-category-module .wpfd-selected-category-name > span {
+    font-style: italic;
+}
+.wpfd-category-module .wpfd-edit-category {
+    padding: 0;
+    margin-top: 10px;
+}
+.wpfd-category-module .wpfd-edit-category a {
+    font-size: 12px;
+    background: #4c5866 !important;
+    border: 0;
+    border-radius: 3px;
+    box-shadow: none;
+    color: #fff !important;
+    font-weight: 700;
+    text-transform: uppercase;
+    cursor: pointer;
+    padding: 10px;
+    display: inline-block;
+}
+.wpfd-category-module .wpfd-edit-category a:hover {
+    color: #fff !important;
+    background: #343c46 !important;
+}
+.wpfd-category-module .categories-dropdown {
+    display: block;
+    width: 100%;
+    max-height: 200px;
+    background: #fff;
+    overflow: auto;
+    font-weight: 600;
+    box-shadow: 0 0 15px -5px #000;
+}
+
+li.select-option-item-googledrive,
+li.select-option-item-dropbox,
+li.select-option-item-onedrive {
+    pointer-events: none !important;
+}
+
+.wpfd-category-module .wpfd-category-search,
+.wpfd-category-module .wpfd-file-search,
+.wpfd-file-module .wpfd-category-search,
+.wpfd-file-module .wpfd-file-search {
+    font-size: 13px;
+}
+
+.wpfd-divi-category-container a,
+.wpfd-divi-category-container button,
+.wpfd-divi-category-container input,
+.wpfd-divi-category-container .wpfd_checkbox,
+.wpfd-divi-category-container span:before,
+.divi-search-container .box-search-filter input,
+.divi-search-container .box-search-filter img,
+.divi-search-container .box-search-filter button,
+.divi-search-container .box-search-filter a,
+.divi-search-container .box-search-filter span,
+.divi-search-container .box-search-filter li,
+.divi-search-container .box-search-filter .tags-item,
+.divi-file-container a,
+.divi-file-container button,
+.divi-file-container .wpfd-single-file--icon,
+.divi-file-container h3 {
+    pointer-events: none !important;
+}
+
+li.divi_wpfd_file_category::before,
+li.divi_wpfd_single_file::before,
+li.divi_wpfd_search::before {
+    content: '' !important;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 20px;
+    height: 16px;
+    background-size: 18px;
+    margin: 0 auto 5px auto;
+}
+
+

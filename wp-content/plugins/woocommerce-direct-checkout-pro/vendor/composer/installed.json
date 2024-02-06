@@ -1,0 +1,457 @@
+{
+    "packages": [
+        {
+            "name": "automattic/jetpack-assets",
+            "version": "v1.18.7",
+            "version_normalized": "1.18.7.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Automattic/jetpack-assets.git",
+                "reference": "094d19cc5649b8a9e5d12beecee9371ff0ea4279"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Automattic/jetpack-assets/zipball/094d19cc5649b8a9e5d12beecee9371ff0ea4279",
+                "reference": "094d19cc5649b8a9e5d12beecee9371ff0ea4279",
+                "shasum": ""
+            },
+            "require": {
+                "automattic/jetpack-constants": "^1.6.22"
+            },
+            "require-dev": {
+                "automattic/jetpack-changelogger": "^3.3.6",
+                "brain/monkey": "2.6.1",
+                "wikimedia/testing-access-wrapper": "^1.0 || ^2.0",
+                "yoast/phpunit-polyfills": "1.0.4"
+            },
+            "suggest": {
+                "automattic/jetpack-autoloader": "Allow for better interoperability with other plugins that use this package."
+            },
+            "time": "2023-07-11T05:13:08+00:00",
+            "type": "jetpack-library",
+            "extra": {
+                "autotagger": true,
+                "mirror-repo": "Automattic/jetpack-assets",
+                "textdomain": "jetpack-assets",
+                "changelogger": {
+                    "link-template": "https://github.com/Automattic/jetpack-assets/compare/v${old}...v${new}"
+                },
+                "branch-alias": {
+                    "dev-trunk": "1.18.x-dev"
+                }
+            },
+            "installation-source": "dist",
+            "autoload": {
+                "files": [
+                    "actions.php"
+                ],
+                "classmap": [
+                    "src/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "description": "Asset management utilities for Jetpack ecosystem packages",
+            "support": {
+                "source": "https://github.com/Automattic/jetpack-assets/tree/v1.18.7"
+            },
+            "install-path": "../../jetpack_vendor/automattic/jetpack-assets"
+        },
+        {
+            "name": "automattic/jetpack-composer-plugin",
+            "version": "v1.1.11",
+            "version_normalized": "1.1.11.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Automattic/jetpack-composer-plugin.git",
+                "reference": "101321afbb5619168ba34b4ce8d2c473ccef40e0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Automattic/jetpack-composer-plugin/zipball/101321afbb5619168ba34b4ce8d2c473ccef40e0",
+                "reference": "101321afbb5619168ba34b4ce8d2c473ccef40e0",
+                "shasum": ""
+            },
+            "require": {
+                "composer-plugin-api": "^2.1.0"
+            },
+            "require-dev": {
+                "automattic/jetpack-changelogger": "^3.3.4",
+                "composer/composer": "^2.2 || ^2.4",
+                "yoast/phpunit-polyfills": "1.0.4"
+            },
+            "time": "2023-05-22T14:27:41+00:00",
+            "type": "composer-plugin",
+            "extra": {
+                "plugin-modifies-install-path": true,
+                "class": "Automattic\\Jetpack\\Composer\\Plugin",
+                "mirror-repo": "Automattic/jetpack-composer-plugin",
+                "changelogger": {
+                    "link-template": "https://github.com/Automattic/jetpack-composer-plugin/compare/v${old}...v${new}"
+                },
+                "autotagger": true,
+                "branch-alias": {
+                    "dev-trunk": "1.1.x-dev"
+                }
+            },
+            "installation-source": "dist",
+            "autoload": {
+                "classmap": [
+                    "src/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "description": "A custom installer plugin for Composer to move Jetpack packages out of `vendor/` so WordPress's translation infrastructure will find their strings.",
+            "keywords": [
+                "composer",
+                "i18n",
+                "jetpack",
+                "plugin"
+            ],
+            "support": {
+                "source": "https://github.com/Automattic/jetpack-composer-plugin/tree/v1.1.11"
+            },
+            "install-path": "../automattic/jetpack-composer-plugin"
+        },
+        {
+            "name": "automattic/jetpack-constants",
+            "version": "v1.6.22",
+            "version_normalized": "1.6.22.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Automattic/jetpack-constants.git",
+                "reference": "7b5c44d763c7b0dd7498be2b41a89bfefe84834c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Automattic/jetpack-constants/zipball/7b5c44d763c7b0dd7498be2b41a89bfefe84834c",
+                "reference": "7b5c44d763c7b0dd7498be2b41a89bfefe84834c",
+                "shasum": ""
+            },
+            "require-dev": {
+                "automattic/jetpack-changelogger": "^3.3.2",
+                "brain/monkey": "2.6.1",
+                "yoast/phpunit-polyfills": "1.0.4"
+            },
+            "suggest": {
+                "automattic/jetpack-autoloader": "Allow for better interoperability with other plugins that use this package."
+            },
+            "time": "2023-04-10T11:43:45+00:00",
+            "type": "jetpack-library",
+            "extra": {
+                "autotagger": true,
+                "mirror-repo": "Automattic/jetpack-constants",
+                "changelogger": {
+                    "link-template": "https://github.com/Automattic/jetpack-constants/compare/v${old}...v${new}"
+                },
+                "branch-alias": {
+                    "dev-trunk": "1.6.x-dev"
+                }
+            },
+            "installation-source": "dist",
+            "autoload": {
+                "classmap": [
+                    "src/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "description": "A wrapper for defining constants in a more testable way.",
+            "support": {
+                "source": "https://github.com/Automattic/jetpack-constants/tree/v1.6.22"
+            },
+            "install-path": "../../jetpack_vendor/automattic/jetpack-constants"
+        },
+        {
+            "name": "quadlayers/wp-dashboard-widget-news",
+            "version": "1.0.9",
+            "version_normalized": "1.0.9.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/quadlayers/wp-dashboard-widget-news.git",
+                "reference": "c8f270a3de46f986dab8b9547848dc6b6f0ae7fe"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/quadlayers/wp-dashboard-widget-news/zipball/c8f270a3de46f986dab8b9547848dc6b6f0ae7fe",
+                "reference": "c8f270a3de46f986dab8b9547848dc6b6f0ae7fe",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1.0"
+            },
+            "require-dev": {
+                "dealerdirect/phpcodesniffer-composer-installer": "^0.7.0",
+                "phpcompatibility/phpcompatibility-wp": "^2.1.0",
+                "wp-coding-standards/wpcs": "^2.3.0"
+            },
+            "time": "2023-03-16T15:19:31+00:00",
+            "type": "jetpack-library",
+            "extra": {
+                "textdomain": "wp-dashboard-widget-news"
+            },
+            "installation-source": "dist",
+            "autoload": {
+                "psr-4": {
+                    "QuadLayers\\WP_Dashboard_Widget_News\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0"
+            ],
+            "authors": [
+                {
+                    "name": "QuadLayers",
+                    "email": "noreply@quadlayers.com"
+                }
+            ],
+            "description": "WP Dashboard Widget News",
+            "keywords": [
+                "admin",
+                "dashboard",
+                "widget",
+                "wordpress"
+            ],
+            "support": {
+                "issues": "https://github.com/quadlayers/wp-dashboard-widget-news/issues",
+                "source": "https://github.com/quadlayers/wp-dashboard-widget-news/tree/1.0.9"
+            },
+            "install-path": "../../jetpack_vendor/quadlayers/wp-dashboard-widget-news"
+        },
+        {
+            "name": "quadlayers/wp-license-client",
+            "version": "1.4.6",
+            "version_normalized": "1.4.6.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/quadlayers/wp-license-client.git",
+                "reference": "0902ccd0b23df01b6b651f831186786d284969af"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/quadlayers/wp-license-client/zipball/0902ccd0b23df01b6b651f831186786d284969af",
+                "reference": "0902ccd0b23df01b6b651f831186786d284969af",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^9.5",
+                "woocommerce/woocommerce-sniffs": "^0.1.3"
+            },
+            "time": "2023-04-10T17:20:01+00:00",
+            "type": "jetpack-library",
+            "extra": {
+                "textdomain": "wp-license-client"
+            },
+            "installation-source": "dist",
+            "autoload": {
+                "files": [
+                    "src/helpers.php"
+                ],
+                "psr-4": {
+                    "QuadLayers\\WP_License_Client\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0"
+            ],
+            "authors": [
+                {
+                    "name": "QuadLayers",
+                    "email": "noreply@quadlayers.com"
+                }
+            ],
+            "description": "Client for the WooCommerce License Manager server.",
+            "keywords": [
+                "client",
+                "license",
+                "wordpress"
+            ],
+            "support": {
+                "issues": "https://github.com/quadlayers/wp-license-client/issues",
+                "source": "https://github.com/quadlayers/wp-license-client/tree/1.4.6"
+            },
+            "install-path": "../../jetpack_vendor/quadlayers/wp-license-client"
+        },
+        {
+            "name": "quadlayers/wp-notice-plugin-promote",
+            "version": "1.1.3",
+            "version_normalized": "1.1.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/quadlayers/wp-notice-plugin-promote.git",
+                "reference": "fa633254a8ec201a556907a28c9f9ffc0e0fc581"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/quadlayers/wp-notice-plugin-promote/zipball/fa633254a8ec201a556907a28c9f9ffc0e0fc581",
+                "reference": "fa633254a8ec201a556907a28c9f9ffc0e0fc581",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1.0"
+            },
+            "require-dev": {
+                "dealerdirect/phpcodesniffer-composer-installer": "^0.7.0",
+                "phpcompatibility/phpcompatibility-wp": "^2.1.0",
+                "wp-coding-standards/wpcs": "^2.3.0"
+            },
+            "time": "2023-02-23T16:37:39+00:00",
+            "type": "jetpack-library",
+            "extra": {
+                "textdomain": "wp-notice-plugin-promote"
+            },
+            "installation-source": "dist",
+            "autoload": {
+                "psr-4": {
+                    "QuadLayers\\WP_Notice_Plugin_Promote\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0"
+            ],
+            "authors": [
+                {
+                    "name": "QuadLayers",
+                    "email": "noreply@quadlayers.com"
+                }
+            ],
+            "description": "WP Notice Plugin Promote",
+            "keywords": [
+                "admin",
+                "notice",
+                "plugin",
+                "wordpress"
+            ],
+            "support": {
+                "issues": "https://github.com/quadlayers/wp-notice-plugin-promote/issues",
+                "source": "https://github.com/quadlayers/wp-notice-plugin-promote/tree/1.1.3"
+            },
+            "install-path": "../../jetpack_vendor/quadlayers/wp-notice-plugin-promote"
+        },
+        {
+            "name": "quadlayers/wp-notice-plugin-required",
+            "version": "2.0.7",
+            "version_normalized": "2.0.7.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/quadlayers/wp-notice-plugin-required.git",
+                "reference": "fd3d10dbdb39be738c3ef320e43cb7cd4e59e071"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/quadlayers/wp-notice-plugin-required/zipball/fd3d10dbdb39be738c3ef320e43cb7cd4e59e071",
+                "reference": "fd3d10dbdb39be738c3ef320e43cb7cd4e59e071",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1.0"
+            },
+            "require-dev": {
+                "woocommerce/woocommerce-sniffs": "^0.1.3"
+            },
+            "time": "2023-06-23T12:20:55+00:00",
+            "type": "jetpack-library",
+            "extra": {
+                "textdomain": "wp-notice-plugin-required"
+            },
+            "installation-source": "dist",
+            "autoload": {
+                "psr-4": {
+                    "QuadLayers\\WP_Notice_Plugin_Required\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0"
+            ],
+            "authors": [
+                {
+                    "name": "QuadLayers",
+                    "email": "noreply@quadlayers.com"
+                }
+            ],
+            "description": "WP Notice Plugin Required",
+            "keywords": [
+                "admin",
+                "notice",
+                "plugin",
+                "wordpress"
+            ],
+            "support": {
+                "issues": "https://github.com/quadlayers/wp-notice-plugin-required/issues",
+                "source": "https://github.com/quadlayers/wp-notice-plugin-required/tree/2.0.7"
+            },
+            "install-path": "../../jetpack_vendor/quadlayers/wp-notice-plugin-required"
+        },
+        {
+            "name": "quadlayers/wp-plugin-table-links",
+            "version": "1.0.7",
+            "version_normalized": "1.0.7.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/quadlayers/wp-plugin-table-links.git",
+                "reference": "cadb59de7ce90b0e3b59174bfb7f52af556c7a66"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/quadlayers/wp-plugin-table-links/zipball/cadb59de7ce90b0e3b59174bfb7f52af556c7a66",
+                "reference": "cadb59de7ce90b0e3b59174bfb7f52af556c7a66",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1.0"
+            },
+            "require-dev": {
+                "woocommerce/woocommerce-sniffs": "^0.1.3"
+            },
+            "time": "2023-03-20T18:39:34+00:00",
+            "type": "jetpack-library",
+            "extra": {
+                "textdomain": "wp-plugin-table-links"
+            },
+            "installation-source": "dist",
+            "autoload": {
+                "psr-4": {
+                    "QuadLayers\\WP_Plugin_Table_Links\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0"
+            ],
+            "authors": [
+                {
+                    "name": "QuadLayers",
+                    "email": "noreply@quadlayers.com"
+                }
+            ],
+            "description": "WP Plugin Table Links",
+            "keywords": [
+                "admin",
+                "links",
+                "plugin",
+                "wordpress"
+            ],
+            "support": {
+                "issues": "https://github.com/quadlayers/wp-plugin-table-links/issues",
+                "source": "https://github.com/quadlayers/wp-plugin-table-links/tree/1.0.7"
+            },
+            "install-path": "../../jetpack_vendor/quadlayers/wp-plugin-table-links"
+        }
+    ],
+    "dev": false,
+    "dev-package-names": []
+}

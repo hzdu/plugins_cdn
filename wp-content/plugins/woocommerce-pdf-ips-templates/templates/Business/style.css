@@ -1,0 +1,399 @@
+<?php extract( wpo_wcpdf_templates_get_footer_settings( $this, '2cm' ) ); // $footer_height & $page_bottom ?>
+
+/* Load font */
+@font-face {
+	font-family: 'Roboto Slab';
+	font-style: normal;
+	font-weight: normal;
+	src: local('Roboto Slab Normal'), url(<?php echo $this->get_template_path(); ?>/fonts/RobotoSlab-Normal.ttf) format('truetype');
+}
+@font-face {
+	font-family: 'Roboto Slab';
+	font-style: normal;
+	font-weight: bold;
+	src: local('Roboto Slab Bold'), url(<?php echo $this->get_template_path(); ?>/fonts/RobotoSlab-Bold.ttf) format('truetype');
+}
+@font-face {
+	font-family: 'Roboto Slab';
+	font-style: italic;
+	font-weight: normal;
+	src: local('Roboto Italic'), url(<?php echo $this->get_template_path(); ?>/fonts/Roboto-Italic.ttf) format('truetype');
+}
+@font-face {
+	font-family: 'Roboto Slab';
+	font-style: italic;
+	font-weight: bold;
+	src: local('Roboto Bold Italic'), url(<?php echo $this->get_template_path(); ?>/fonts/Roboto-BoldItalic.ttf) format('truetype');
+}
+
+
+/* Main Body */
+@page {
+	margin-top: 1cm;
+	margin-bottom: <?php echo $page_bottom; ?>;
+	margin-left: 1cm;
+	margin-right: 1cm;
+}
+body {
+	background: #fff;
+	color: #000;
+	margin: 0cm;
+	font-family: 'Roboto slab';
+	line-height: 100%;
+	font-weight: normal;
+	font-size: 10pt;
+}
+
+h1, h2, h3, h4 {
+	font-weight: bold;
+	margin: 0;
+}
+
+h1 {
+	font-size: 18pt;
+	margin: 2mm 0;
+}
+
+h2 {
+	font-size: 14pt;
+}
+
+h3, h4 {
+	font-size: 9pt;
+}
+
+ol,
+ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+li,
+ul {
+	margin-bottom: 0.75em;
+}
+
+p {
+	margin: 0;
+	padding: 0;
+}
+
+p + p {
+	margin-top: 1.25em;
+}
+
+a { 
+	border-bottom: 1px solid; 
+	text-decoration: none; 
+}
+
+span.checkbox {
+	display: inline-block;
+	width: 3mm;
+	height: 3mm;
+	border: 1px solid black;
+	background-color: white;
+}
+
+div.bottom-spacer {
+	clear: both;
+	margin-top: 5mm;
+}
+
+/* Basic Table Styling */
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+	page-break-inside: always;
+}
+
+th, td {
+	font-weight: normal;
+	text-align: inherit;
+	vertical-align: top;
+}
+
+table.container {
+	width:100%;
+	border: 0;
+}
+
+tr.no-borders, td.no-borders {
+	border: 0 !important;
+	border-top: 0 !important;
+	border-bottom: 0 !important;
+	padding: 0 !important;
+	width: auto;
+}
+
+/* Header */
+td.header img {
+	max-height: 3cm;
+	width: auto;
+}
+
+td.header {
+	font-size: 16pt;
+	font-weight: normal;
+	text-align: right;
+}
+
+.header-stretcher {
+	height: 3cm;
+	display: block;
+}
+
+td.header, td.shop-info {
+	padding-bottom: 3mm;
+}
+
+td.shop-info {
+	width: 33%;
+}
+
+tr.underline td {
+	border-bottom: 1px solid black;
+}
+
+table.addresses {
+	width: 66%;
+	margin-bottom: 2mm;
+}
+
+table.addresses td {
+	width: 50%;
+}
+
+td.billing-address {
+	height: 4cm;
+}
+
+.document-type-label {
+	padding-top: 3mm;
+	text-transform: uppercase;
+	text-align: right;
+}
+
+/* Order data */
+table.order-data {
+	width: 100%;
+}
+
+table.order-data .dates table {
+	/* margin-right: 0;
+	margin-left: auto; */
+	float: right;
+}
+
+table.order-data .dates,
+table.order-data .dates th,
+table.order-data .dates td {
+	text-align: right !important;
+	white-space: nowrap;
+}
+
+/* Order details */
+table.order-details {
+	width: 100%;
+	margin-top: 3mm;
+	margin-bottom: 1cm;
+}
+
+table.order-details tr:last-child {
+	/*padding-bottom: 5cm;*/
+}
+
+.order-details tr {
+	page-break-inside: always;
+	page-break-after: auto;	
+}
+
+.order-details td,
+.order-details th {
+	padding: 0.375em;
+}
+
+.order-details th {
+	font-weight: normal;
+	text-align: inherit;
+	border-bottom: 1px solid black;
+	border-top: 1px solid black;
+	padding-top: 0;
+}
+
+.order-details .cb {
+	width: 3.5mm;
+}
+.order-details .thumbnail,
+.order-details .quantity,
+.order-details .weight {
+	width: 8%;
+}
+.order-details .sku,
+.order-details .price,
+.order-details .regular_price,
+.order-details .vat,
+.order-details .discount,
+.order-details .tax_rate,
+.order-details .total {
+	width: 10%; 
+}
+.order-details .position {
+	width: 5%;
+}
+
+.order-details .last-column.total {
+	text-align: right !important;
+}
+
+td.thumbnail img {
+	width: 13mm !important;
+	height: auto !important;
+}
+
+/* item meta formatting for WC2.6 and older */
+dl {
+	margin: 4px 0;
+}
+
+dt, dd, dd p {
+	display: inline;
+	font-size: 7pt;
+	line-height: 115%;
+}
+
+dd {
+	margin-left: 5px;
+}
+
+dd:after {
+	content: "\A";
+	white-space: pre;
+}
+/* item-meta formatting for WC3.0+ */
+.wc-item-meta {
+	margin: 4px 0;
+	font-size: 7pt;
+	line-height: 115%;
+}
+.wc-item-meta p {
+	display: inline;
+}
+.wc-item-meta li {
+	margin: 0;
+	margin-left: 5px;
+}
+
+/* product bundles compatibility */
+.order-details tr.bundled-item td.description {
+	padding-left: 5mm;
+}
+
+.order-details tr.bundled-item.hidden {
+	display: none;
+}
+
+/* Totals */
+div.notes-totals-container {
+	width: 100%;
+}
+
+div.notes-totals-container::after {
+	content: '';
+	clear: both;
+}
+
+div.notes {
+	width: 60%;
+	margin-bottom: 8mm;
+	float: left;
+}
+
+div.notes .wrapper {
+	page-break-inside: always;
+	page-break-after: auto;
+	word-wrap: break-word;
+}
+
+div.totals {
+	width: 33%;
+	float: right;
+}
+
+table.totals-table {
+	width: 100%;
+	border-collapse: separate;
+}
+
+table.totals-table th,
+table.totals-table td {
+	border: 0;
+	padding: 4px;
+}
+table.totals-table th {
+	text-align: inherit;
+	vertical-align: top;
+}
+
+table.totals-table td {
+	text-align: right;
+}
+
+tr.tax-line.last td,
+tr.tax-line.last th {
+	padding-bottom: 3mm;
+}
+
+tr.grand-total td, tr.grand-total th {
+	border-top: 1px solid black;
+	border-bottom: 1px solid black;
+}
+
+/* Notes */
+.notes {
+	margin-top: 8mm;
+}
+
+/* Footer Imprint */
+#footer {
+	position: absolute;
+	bottom: -<?php echo $footer_height; ?>;
+	left: 0;
+	right: 0;
+	/*height: 1cm;*/
+	text-align: center;
+	border-top: 0.1mm solid gray;
+	margin-bottom: 0;
+	padding-top: 2mm;
+}
+
+/* page numbers */
+.pagenum:before {
+	content: counter(page);
+}
+.pagenum,.pagecount {
+	font-family: sans-serif;
+}
+
+/* Totals (legacy) */
+table.notes-totals {
+	width: 100%;
+	border-spacing: 0;
+	table-layout: fixed;
+}
+
+td.totals {
+	width: 33%;
+}
+
+/* RTL specific */
+.rtl {
+	direction: rtl !important;
+}
+.rtl div.totals {
+	float: left !important;
+}
+.rtl div.notes {
+	float: right !important;
+}

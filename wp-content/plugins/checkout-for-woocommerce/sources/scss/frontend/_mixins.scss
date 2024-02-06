@@ -1,0 +1,25 @@
+@mixin cfw-payment-request-button() {
+    margin-right: 8px !important;
+    margin-bottom: 0.5em;
+    border: none !important;
+    max-width: 140px !important;
+    min-width: 140px;
+    overflow: hidden;
+    border-radius: 5px;
+    max-height: 42px;
+    min-height: 42px;
+}
+
+@mixin clearfix() {
+    *zoom: 1;
+
+    &::before,
+    &::after {
+        content: ' ';
+        display: table;
+    }
+
+    &::after {
+        clear: both;
+    }
+}

@@ -1,0 +1,97 @@
+.van-table {
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    min-width: 500px;
+	width: 99%;
+	text-align: center;
+	font-size: 14px;
+}
+.van-table th {
+	padding: 10px;
+}
+.van-table td.table-actions a
+{
+	text-decoration:none;
+}
+.van-table thead tr {
+    background-color: #2980b9;
+    color: #ffffff;	
+	font-weight:bold;
+	font-size: 13px;
+}
+van-table th,
+.van-table td {
+    padding: 12px 15px;
+}
+.van-table tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+.van-table tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+.van-table tbody tr:nth-of-type(odd) {
+    background-color: #ffffff;
+}
+
+.van-table tbody tr:last-of-type {
+    border-bottom: 2px solid #2980b9;
+}
+.van-table tbody tr.active-row {
+    font-weight: bold;
+    color: #2980b9;
+}
+
+.mfp-bg {
+	z-index: 10000;
+}
+.mfp-wrap 
+{
+	z-index: 10001;
+}
+.input-field-form-table
+{
+	width: 100%;
+	margin: auto;
+}
+.input-field-form-table .label {
+    width: 30%;
+	padding-right: 20px;
+	text-align: right;
+}
+.input-field-form-table th, .input-field-form-table td {
+    padding: 20px 0;
+}
+.input-field-form-table select, 
+.input-field-form-table textarea:not(.wp-editor-area), 
+.input-field-form-table input[type=number], 
+.input-field-form-table.metaboxes-tab input[type=number], 
+.input-field-form-table input[type=text], 
+.input-field-form-table input[type=email], 
+.input-field-form-table input[type=password]
+{
+    border: 1px solid #d8d8d8;
+    border-radius: 8px;
+    padding: 8px 10px;
+    height: 38px;
+    min-width: 90px;
+    box-shadow: none;
+    color: #716269;
+}
+.dashicons-move
+{
+	cursor: grab;
+}
+.remove-field, .delete-field
+{
+	color: #e60000;
+}
+.remove-field:hover, .delete-field:hover
+{
+	color: red;
+}
+td input , td select {
+	width: 90%;
+}

@@ -1,0 +1,490 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Oct 15, 2018, 4:01:41 PM
+    Author     : tatthang96
+*/
+.img-size-table {
+  max-width: 48px !important;
+  max-height: 48px !important;
+  border-radius: 50%;
+}
+
+.ui-autocomplete-loading {
+  background-position-x: 365px !important;
+}
+
+.time-available td {
+  padding: 0px;
+}
+
+.time-available {
+  margin: 0px;
+  border-top: 0px;
+  border-collapse: separate;
+}
+/*List Account*/
+.nta-list-box-accounts {
+  max-width: 390px;
+}
+
+.nta-list-box-select {
+  max-width: 388px;
+  box-shadow: 0px 8px 7px 0px rgba(0, 0, 0, 0.05);
+}
+.nta-list-box-accounts .nta-list-items {
+  background-color: #fff;
+}
+
+.nta-list-box-accounts .nta-list-items:hover {
+  cursor: move;
+}
+
+.nta-list-box-accounts .nta-list-items .btn-remove-account:hover {
+  cursor: pointer;
+}
+
+.nta-list-box-accounts .nta-list-items:hover .icon-block img {
+  opacity: 1;
+}
+
+:not(:last-child).nta-list-items {
+  border-bottom: 1px solid #f2f2f2;
+}
+
+.nta-list-items .box-content:not(.box-content-woo) {
+  display: table;
+  padding: 10px;
+}
+
+.nta-list-items .box-content-woo {
+  padding: 10px;
+}
+
+.box-content .box-row {
+  display: table-row;
+}
+
+.box-content .btn-remove-account {
+  color: #a00;
+}
+
+.box-content .account-avatar {
+  display: table-cell;
+  text-align: center;
+  width: 50px;
+  vertical-align: top;
+}
+
+.icon-block img {
+  opacity: 0.7;
+}
+
+.account-avatar .wa_img_wrap {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+}
+
+.box-content .container-block {
+  display: table-cell;
+  vertical-align: middle;
+  padding-left: 10px;
+}
+
+.box-content .container-block a {
+  text-decoration: none;
+}
+
+.box-content .container-block ul {
+  margin: 0px;
+}
+
+.box-content .container-block span {
+  display: inline-block;
+  padding: 2px 5px;
+  border-radius: 3px;
+  background-color: #c9cfd6;
+  line-height: 1.4;
+  color: #fff;
+}
+
+.box-content .container-block span.active-date {
+  background-color: #00bc28;
+}
+
+.box-content .container-block h4 {
+  color: #3584b5;
+  margin: 0px 0px 5px;
+}
+
+.box-content .container-block p {
+  margin: 0px 0px 5px;
+}
+
+.nta-list-box-accounts .box-content .container-block {
+  width: 280px;
+}
+
+.box-content .icon-block {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+/*All Accounts Admin Page*/
+
+/*Selected Account*/
+
+#nta_wa_avatar {
+  width: 8%;
+}
+
+#nta_wa_number {
+  width: 15%;
+}
+
+.nta-shortcode-table {
+  min-width: 165px;
+}
+
+.post-type-whatsapp-accounts #remove-post-thumbnail {
+  color: #a00;
+}
+
+.nta-list-box-select {
+  max-height: 293px;
+  overflow-y: auto;
+}
+
+.nta-list-box-select .ui-menu-item:hover {
+  background-color: #f7f9fb;
+  cursor: pointer;
+}
+
+.nta-list-box-select .ui-menu-item {
+  padding: 0px;
+}
+
+:not(:last-child).ui-menu-item {
+  border-bottom: 1px solid #f2f2f2;
+}
+
+#input-account {
+  width: 390px;
+}
+
+.nta-list-box-select .box-content .container-block {
+  width: 300px;
+}
+
+#input-users,
+#input-users-woo {
+  width: 390px;
+  background-color: #f7f9fb;
+}
+
+/*ADMIN TAB STYLE*/
+.nta-tab-wrapper {
+  border-bottom: 1px solid #ccc !important;
+}
+.nta-tab-wrapper .nav-tab-active {
+  border-bottom: 1px solid #fff;
+}
+
+ul.nta-tab-wrapper li {
+  margin: 0;
+}
+
+ul.nta-tab-wrapper .nav-tab {
+  background: #fff;
+}
+
+.nta-selected-tab {
+  margin-left: 0px;
+}
+
+.nta-tabs-content {
+  border: 1px solid #dfdfdf;
+  border-top: none;
+  padding: 20px;
+  background: #fff;
+}
+
+/*SVG SIZE AVTAR*/
+.nta-whatsapp-default-avatar {
+  width: 48px;
+  height: 48px;
+}
+
+/*ON/OFF BUTTON STYLE*/
+#nta-wa-switch:checked + label.green {
+  background: #aedcae;
+}
+#nta-wa-switch:checked + label.green:after {
+  background: #5cb85c;
+}
+#nta-wa-switch:checked + label:after {
+  left: calc(100% - 18px);
+}
+#nta-wa-switch + label {
+  background: #ddd;
+  border-radius: 20px;
+}
+#nta-wa-switch + label:after {
+  background: #fff;
+  border-radius: 50%;
+  width: 16px;
+  height: 16px;
+  top: 2px;
+  left: 2px;
+}
+
+/* End of duplication */
+
+.nta-wa-switch-control input[type="checkbox"] {
+  display: none;
+}
+.nta-wa-switch-control input[type="checkbox"] + label {
+  display: inline-block;
+  width: 40px;
+  height: 20px;
+  position: relative;
+  transition: 0.3s;
+  /*margin: 0px 20px;*/
+  box-sizing: border-box;
+}
+.nta-wa-switch-control input[type="checkbox"] + label:after,
+.nta-wa-switch-control input[type="checkbox"] + label:before {
+  content: "";
+  display: block;
+  position: absolute;
+  left: 2px;
+  top: 2px;
+  /* width: 20px;
+  height: 20px; */
+  transition: 0.3s;
+  cursor: pointer;
+  
+}
+
+/* Switch input */
+.nta-wa-switch-control input:checked + label.green {
+  background: #aedcae;
+}
+.nta-wa-switch-control input:checked + label.green:after {
+  background: #5cb85c;
+}
+.nta-wa-switch-control input:checked + label:after {
+  left: calc(100% - 18px);
+}
+.nta-wa-switch-control input + label {
+  background: #ddd;
+  border-radius: 20px;
+}
+.nta-wa-switch-control input + label:after {
+  background: #fff;
+  border-radius: 50%;
+  width: 16px;
+  height: 16px;
+}
+/* Switch input */
+
+/* JQUERY UI AUTOCOMPLE CUSTOM */
+.whatsapp_page_floating-widget-whatsapp
+  .ui-autocomplete
+  .ui-menu-item.ui-state-focus {
+  background-color: #f7f9fb;
+}
+
+.toplevel_page_nta_whatsapp .ui-autocomplete .ui-menu-item.ui-state-focus {
+  background-color: #f7f9fb;
+}
+
+.wa-validate-error {
+  color: red;
+}
+
+/* DISPLAY PAGES FLOATING WIDGET CSS */
+.nta-wa-pages-content {
+  padding-top: 20px !important;
+}
+
+#nta-wa-pages-checkall-show,
+#nta-wa-pages-checkall-hide {
+  margin-left: 16px;
+}
+
+#nta-wa-display-pages-list {
+  max-height: 150px;
+  overflow-y: scroll;
+  background: #fff;
+  padding: 15px;
+  border: 1px solid #dfdfdf;
+}
+
+.hide-select {
+  display: none !important;
+}
+
+.wa-save-loading {
+  animation: rotation 2s infinite linear;
+}
+
+.wa-save .wa-save-loading {
+  margin: 5px 0 0 5px;
+}
+
+/* Meta button styles */
+.meta-button-style{
+  display: flex;
+}
+
+.meta-button-style > div{
+  width: 50%;
+}
+
+.meta-button-style .preview-button{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.meta-button-style .preview-button p {
+  position: absolute;
+  top: 0;
+  font-weight: 600;
+  line-height: 1.3;
+  font-size: 14px;
+}
+
+
+
+@media screen and (max-width: 782px) {
+  .meta-button-style{
+    display: block;
+  }
+  
+  .meta-button-style > div{
+    width: unset;
+  }
+  .meta-button-style .preview-button p {
+    position: static;
+  }
+
+  .meta-button-style .preview-button{
+    flex-direction: column;
+  }
+}
+
+.nta-wa-border-box,
+.nta-wa-border-box *,
+.nta-wa-border-box :before,
+.nta-wa-border-box :after {
+    box-sizing: border-box;
+}
+
+.nta-wa-d-row {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.nta-wa-radio-select-img {
+    margin: 10px 20px 10px 0;
+}
+
+.nta-wa-radio-select-img:last-child {
+    margin: 10px 0;
+}
+
+.nta-wa-radio-select-img input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    visibility: hidden;
+    z-index: -1;
+}
+
+.nta-wa-radio-select-img span {
+    display: block;
+    text-align: center;
+}
+
+.nta-wa-radio-img-wrap {
+    border: 3px solid #f0f0f0;
+    border-radius: 5px;
+    background-color: #ffffff;
+    padding: 10px;
+    height: 155px;
+    margin-bottom: 10px;
+    transition: all .3s;
+    width: 200px;
+}
+
+.nta-wa-radio-img-wrap img {
+    width: 100%;
+}
+
+.nta-wa-radio-select-img input:checked + label .nta-wa-radio-img-wrap {
+    border-color: #2DB742;
+}
+
+.nta-wa-radio-select-img input:checked + label span {
+    font-weight: 600;
+}
+
+.dashicons-editor-help.njt-wa-tooltip{
+  font-size: 18px;
+  color: #a0a0a0;
+}
+
+input.njt-wa-pro, 
+select.njt-wa-pro, 
+select.njt-wa-pro:hover, 
+input.njt-wa-pro:hover,
+select.njt-wa-pro:focus,
+input.njt-wa-pro:focus
+{
+  background: rgba(255,255,255,.5);
+  border-color: rgba(222,222,222,.75);
+  box-shadow: inset 0 1px 2px rgb(0 0 0 / 4%);
+  color: rgba(51,51,51,.5);
+}
+
+/* Widget Preview Styles */
+#app-preview .wa__popup_intro p, 
+#app-preview .wa__popup_notice p, 
+#app-preview .nta-wa-gdpr p
+{
+  margin: 0;
+}
+
+#app-preview .wa__popup_intro p {
+  font-size: 12px;
+} 
+#app-preview .wa__popup_notice p,
+#app-preview .nta-wa-gdpr p {
+  font-size: 11px;
+}
+#app-preview .nta-wa-gdpr p:first-child {
+  display: inline;
+}
+
+.nta-tabs-content .select2-search{
+  margin: 0;
+}
+
+.nta-tabs-content .select2-search input{
+  margin: 0 !important;
+  min-height: auto;
+}
+
+.nta-tabs-content .select2-container--default .select2-selection--multiple .select2-selection__choice{
+  margin-bottom: 0;
+}

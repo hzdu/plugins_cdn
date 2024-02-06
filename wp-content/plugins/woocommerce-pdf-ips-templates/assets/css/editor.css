@@ -1,0 +1,351 @@
+
+#documents {
+	margin-top:             20px;
+}
+
+#wpo-wcpdf-settings .ui-widget {
+	font-family:            inherit;
+}
+
+#wpo-wcpdf-settings .ui-widget-content {
+	background:             none;
+	border:                 none;
+}
+
+#wpo-wcpdf-settings .ui-widget-header {
+	background:             none;
+	border:                 none;
+}
+
+#wpo-wcpdf-settings .ui-tabs-nav > .ui-state-default {
+	border:                 2px solid #ccc;
+}
+#wpo-wcpdf-settings .ui-state-default {
+	width:                  auto;
+	border-radius:			0;
+	margin-right:			5px;
+	background: 			#e4e4e4;
+	border:                 none;
+}
+
+#wpo-wcpdf-settings .document-tabs {
+	display:                block;
+	position:               relative;
+	z-index:                999;
+	margin:                 0 0 -2px 0;
+	margin-left:            20px;
+	overflow:               hidden;
+}
+
+#wpo-wcpdf-settings .document-tabs li.ui-tabs-active {
+	background: 			white;
+	border-bottom-width: 	2px;
+	border-bottom-color: 	white;
+}
+
+#wpo-wcpdf-settings .document-tabs li a {
+	display:                inline-block;
+	padding:                10px;
+	text-decoration: 		none;
+	font-weight: 			bold;
+	font-size:              15px;
+	color:                  #555;
+}
+
+#wpo-wcpdf-settings .document-tabs li.ui-tabs-active a {
+	color:                  black;
+}
+
+#wpo-wcpdf-settings .document-content {
+	background:             #fff;
+	border:                 2px solid #ccc;
+	border-radius:			0;
+	margin:                 0;
+	height:                 auto !important;
+}
+
+#wpo-wcpdf-settings .button.load-defaults {
+	display:                inline-block;
+	float:                  right;
+}
+
+#wpo-wcpdf-settings .sort-items {
+	font-size:              0.9em;
+	background-color:       #fafafa;
+	padding:                14px 20px 10px 20px;
+	border-bottom:          1px solid #eee;
+	display:                block;
+	margin:                 -10px -14px 10px -20px;
+}
+
+#wpo-wcpdf-settings .sort-items select {
+	margin-top:             -2px;
+	font-size:              0.9em!important;
+}
+
+#wpo-wcpdf-settings .columns-header {
+	color:                  #b6a380;
+	text-transform:         uppercase;
+	font-size:              15px;
+	font-weight:            600;
+	background-color:       white;
+	padding:                5px 20px;
+	border-width: 			1px 0;
+	border-style: 			solid;
+	border-color: 			#ccc;
+	display:                block;
+	margin:                 10px -14px 10px -20px;
+}
+
+#wpo-wcpdf-settings .columns-header span {
+	font-size:              12px;
+	text-transform:         none;
+	font-weight:            lighter;
+	padding-left:           10px;
+	color:                  #999;
+}
+
+#wpo-wcpdf-settings .columns-header span a {
+	color:                  #999;
+}
+
+#wpo-wcpdf-settings .document.columns,
+#wpo-wcpdf-settings .document.totals {
+	float:                  none;
+}
+
+#wpo-wcpdf-settings .field-list {
+	min-height:             50px;
+}
+
+#wpo-wcpdf-settings .document.totals, #wpo-wcpdf-settings .document.columns, #wpo-wcpdf-settings .document.custom-blocks {
+	overflow:               hidden;
+}
+
+#wpo-wcpdf-settings .field,
+#wpo-wcpdf-settings .custom-block {
+	vertical-align:         top;
+	border:                 1px solid #ccc;
+	background-color:       #e4e4e4;
+	padding:                7px 15px 7px 0px;
+	margin:                 5px 10px 5px 0;
+	border-radius:          4px;
+	display:                inline-block;
+	white-space:            normal;
+	position:               relative;
+	overflow:               visible;
+	max-width:              240px;
+}
+
+#wpo-wcpdf-settings .field.description,
+#wpo-wcpdf-settings .field.static_text,
+#wpo-wcpdf-settings .field.text {
+	max-width:              500px;
+}
+
+#wpo-wcpdf-settings .custom-block {
+	max-width:              88%;
+}
+
+#wpo-wcpdf-settings .custom-block .ui-accordion-content {
+	padding:                0;
+}
+
+#wpo-wcpdf-settings .custom-block input[type="text"],
+#wpo-wcpdf-settings .custom-block select,
+#wpo-wcpdf-settings .custom-block table,
+#wpo-wcpdf-settings .custom-block textarea {
+	width:                  100%;
+	max-width:				545px;
+}
+
+#wpo-wcpdf-settings .custom-block hr {
+	margin-top:             10px;
+	margin-bottom:          0;
+	margin-left:            10px;
+	margin-right:           10px;
+	border:                 0;
+	border-top:             1px solid #aaa;
+	border-bottom:          1px solid #ddd;
+}
+
+#wpo-wcpdf-settings .custom-block-advanced label,
+#wpo-wcpdf-settings .custom-block-advanced input[type="checkbox"] {
+	display:                inline-block;
+	vertical-align:         middle;
+}
+
+#wpo-wcpdf-settings .custom-block-advanced p {
+	margin:                 0 0 5px 0;
+}
+
+#wpo-wcpdf-settings .custom-block-advanced table.custom-block-requirements {
+	margin-top:				0.5em;
+}
+
+#wpo-wcpdf-settings .custom-block-advanced table.custom-block-requirements td {
+	padding-bottom:			0.3em;
+	vertical-align:			middle;
+}
+
+#wpo-wcpdf-settings .custom-block-advanced table.custom-block-requirements td label {
+	padding:				0.3em;
+}
+
+#wpo-wcpdf-settings .custom-block-advanced table.custom-block-requirements span.remove-requirement {
+	width: 					9%;
+	text-align: 			center;
+	line-height:			1.8em;
+	font-size: 				1.5em;
+	color: 					#666;
+}
+
+#wpo-wcpdf-settings .custom-block-advanced table.custom-block-requirements span.remove-requirement:hover {
+	color:					#222;
+	cursor: 				pointer;
+}
+
+#wpo-wcpdf-settings .ui-accordion .ui-accordion-header {
+	margin:                 0;
+}
+
+
+#wpo-wcpdf-settings .custom-block {
+	padding:                7px 10px;
+}
+
+#wpo-wcpdf-settings .document.totals .field, #wpo-wcpdf-settings .custom-block {
+	float:                  left;
+	clear:                  left;
+	display:                block;
+}
+
+#wpo-wcpdf-settings .custom-block tr.meta_key td { position: relative; }
+
+#wpo-wcpdf-settings .custom-block tr.meta_key td.tooltip[data-tip]:after {
+	content:attr(data-tip);
+	position:absolute;
+	bottom:35px;
+	left:0px;
+	padding:12px;
+	background:#444;
+	color:white;
+	z-index:20;
+	font-size: 0.85em;
+	height: 18px;
+	line-height:18px;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	white-space:nowrap;
+	word-wrap:normal;
+}
+
+#wpo-wcpdf-settings .custom-block tr.meta_key td.tooltip[data-tip]:before {
+	content:'';
+	border-left: 5px solid transparent;
+	border-right: 5px solid transparent;
+	border-top: 5px solid #444;	
+	position:absolute;
+	bottom:30px;
+	left:35px;
+	z-index:10;
+}
+
+#wpo-wcpdf-settings .field-title {
+	border:                 none;
+	padding:                0 0 0 25px;
+	font-weight:            bold;
+	height:                 18px;
+}
+
+#wpo-wcpdf-settings .add-field {
+	min-height:             28px;
+	max-width:              100%;
+	width:                  auto;
+	padding:                4px 4px 2px 0;
+	background-color:       #3e859b;
+}
+
+#wpo-wcpdf-settings .add-field-plus {
+	color:                  #d6e9ef;
+	font-size:              20px;
+	display:                block;
+	float:                  left;
+	width:                  15%;
+	margin:                 5px 0 0 0;
+	text-align:             center;
+}
+
+#wpo-wcpdf-settings .dropdown-add-field {
+	float:                  left;
+	display:                block;
+	height:                 26px;
+	border:                 none;
+	background:             #fdfdfd;
+	-webkit-border-radius:  0!important;
+	border-radius:          0!important;
+	width:                  85%;
+	margin:                 0;
+}
+
+#wpo-wcpdf-settings .field-options {
+	padding:                0 15px;
+	margin:                 5px 0 0 0;
+	height:                 auto;
+	overflow:               hidden;
+}
+
+#wpo-wcpdf-settings .field-options:last-of-type {
+	margin-bottom:          10px;
+}
+
+#wpo-wcpdf-settings .ui-accordion-content-active {
+	height:                 auto!important;
+}
+
+#wpo-wcpdf-settings .field-option {
+	margin:                 7px 0 0 0;
+}
+
+#wpo-wcpdf-settings .field-option textarea {
+	width:                  350px;
+}
+
+#wpo-wcpdf-settings .delete-field {
+	position:               absolute;
+	right:                  -9px;
+	top:                    -5px;
+	width:                  16px;
+	height:                 16px;
+	font-size:              16px;
+	background-color:       white;
+	border-radius:          50%;
+	cursor:                 pointer;
+}
+
+/* Phone */
+
+@media screen and (max-width: 767px) {
+	#wpo-wcpdf-settings .ui-tabs .ui-tabs-panel {
+		padding:                1em 1em 1em 1.4em;
+	}
+
+	#wpo-wcpdf-settings .document-tabs {
+		padding:                0;
+		margin:                 0 0 10px 0;
+	}
+
+	#wpo-wcpdf-settings .document-tabs li {
+		margin:                 0 8px 8px 0;
+	}
+
+	#wpo-wcpdf-settings .document-tabs li.ui-tabs-active {
+		border-bottom-color:    #ccc;
+		padding:                0;
+	}
+
+	#wpo-wcpdf-settings .add-field-plus {
+		margin:                 5px 0 0 0;
+	}
+}

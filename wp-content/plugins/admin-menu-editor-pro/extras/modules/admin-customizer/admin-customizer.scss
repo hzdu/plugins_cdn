@@ -1,0 +1,920 @@
+@use "sass:math";
+@import "../../../css/input-group";
+@import "../../../css/forms";
+
+//region Variables
+$navHoverColor: #2271b1;
+$navHoverBackgroundColor: #f6f7f7;
+$contentColor: #50575e;
+$boxBorderColor: #dcdcde;
+$boxBorder: 1px solid $boxBorderColor;
+
+$backButtonWidth: 48px;
+
+$labelFontSize: 14px;
+$controlLeftPadding: 12px;
+$controlRightPadding: 12px;
+//endregion
+
+//region Overall structure
+#ame-ac-admin-customizer {
+	display: flex;
+	flex-direction: row;
+	align-items: stretch;
+
+	box-sizing: border-box;
+	width: 100%;
+	height: 100%;
+	max-height: 100%;
+}
+
+#ame-ac-sidebar {
+	flex-basis: 18%;
+	min-width: 320px;
+	max-width: 600px;
+	flex-grow: 1;
+
+	display: flex;
+	flex-direction: column;
+
+	background: #f4f4f5;
+	border-right: $boxBorder;
+}
+
+#ame-ac-container-collection {
+	position: relative;
+	width: 100%;
+}
+
+#ame-ac-preview-container {
+	flex-basis: 82%;
+	flex-grow: 1;
+	background: #ddd;
+	position: relative; //Let the refresh spinner position itself relative to the container.
+}
+
+#ame-ac-primary-actions {
+	min-height: 30px;
+	border-bottom: $boxBorder;
+
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	padding-right: 15px;
+}
+
+#ame-ac-sidebar-content {
+	//background: lightyellow;
+	flex-grow: 1;
+
+	//Scroll contents vertically.
+	overflow-y: auto;
+	overflow-x: hidden;
+
+	//Allow the "save/publish in progress" overlay to position itself correctly.
+	position: relative;
+}
+
+#ame-ac-sidebar-blocker-overlay {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.4);
+	display: none;
+}
+
+//endregion
+
+//region Action buttons
+#ame-ac-exit-admin-customizer {
+	box-sizing: border-box;
+
+	$buttonSize: 45px;
+	$topBorderWidth: 4px;
+	$hoverColor: #2271b1;
+
+	display: block;
+	height: $buttonSize;
+	//Match at least the width of the "back" button in section navigation.
+	width: math.max($buttonSize, $backButtonWidth);
+	//Push everything else to the right.
+	margin-right: auto;
+
+	border-right: 1px solid #dcdcde;
+	border-top: $topBorderWidth solid transparent;
+	color: #3c434a;
+	text-decoration: none; //No underline for the link.
+
+	position: relative;
+	text-align: center;
+
+	&:before {
+		font: normal 22px/#{$buttonSize} dashicons;
+		content: "\f335";
+		position: relative;
+		top: (1px - $topBorderWidth);
+	}
+
+	&:hover {
+		background: #fff;
+		color: $hoverColor;
+		border-top-color: $hoverColor;
+		cursor: pointer;
+	}
+}
+
+#ame-ac-primary-actions {
+	.spinner {
+		margin-top: 0;
+		float: none;
+	}
+}
+
+#ame-ac-save-button-wrapper {
+	#ame-ac-apply-changes {
+		border-top-right-radius: 0;
+		border-bottom-right-radius: 0;
+	}
+
+	#ame-ac-extra-actions-trigger {
+		border-top-left-radius: 0;
+		border-bottom-left-radius: 0;
+
+		min-width: 30px;
+		padding-left: 0;
+		padding-right: 0;
+	}
+}
+
+//endregion
+
+//region Info
+#ame-ac-sidebar-info {
+	.notice {
+		margin: 0;
+		padding-top: 9px;
+		padding-left: $controlLeftPadding;
+		padding-bottom: 9px;
+		//Intentionally leave the padding-right property unchanged for the "dismiss" button.
+	}
+
+	#ame-ac-global-notification-area {
+		border-bottom: $boxBorder;
+		overflow-x: hidden;
+
+		&:empty {
+			display: none;
+		}
+	}
+}
+
+//endregion
+
+//region Controls
+.ame-ac-control-label {
+	display: block;
+	box-sizing: border-box;
+
+	font-size: $labelFontSize;
+	line-height: 1.75;
+	font-weight: 600;
+	margin-bottom: 4px;
+}
+
+.ame-ac-control {
+	display: block;
+	box-sizing: border-box;
+	width: 100%;
+
+	margin-bottom: 12px;
+	padding-left: $controlLeftPadding;
+	padding-right: $controlRightPadding;
+
+	.description {
+		color: $contentColor;
+
+		display: block;
+		font-style: italic;
+		line-height: 1.5;
+
+		margin-top: 0;
+		margin-bottom: 5px;
+	}
+
+	p.description {
+		margin-top: 0.5em;
+	}
+}
+
+.ame-ac-control-group .ame-ac-control {
+	padding-left: 0;
+	padding-right: 0;
+}
+
+.ame-text-input-control {
+	width: 100%;
+}
+
+.ame-ac-separator {
+	//Same margin as in the normal Customizer.
+	margin: 15px 0 0 0;
+	border: none;
+}
+
+//endregion
+
+//region Validation errors
+
+#ame-ac-sidebar-content {
+	.ame-ac-validation-errors, ame-ac-validation-errors {
+		> ul {
+			margin: 0;
+			padding: 0;
+		}
+
+		li {
+			list-style: none;
+		}
+	}
+
+	.ame-ac-validation-error {
+		margin: 0 0 6px 0;
+		padding: 9px $controlLeftPadding;
+	}
+}
+
+.ame-ac-control {
+	.ame-ac-has-error {
+		outline: 2px solid #d63638;
+	}
+}
+
+//endregion
+
+//region Sections
+.ame-ac-section {
+	list-style: none;
+	box-sizing: border-box;
+	margin: 0;
+	width: 100%;
+}
+
+.ame-ac-section-link {
+	display: block;
+	box-sizing: border-box;
+	width: 100%;
+	margin: 0;
+
+	cursor: pointer;
+
+	//Emulate appearance of the the Theme Customizer.
+	.ame-ac-section-title {
+		display: block;
+		position: relative;
+		padding: 10px 10px 11px 14px;
+		margin: 0;
+
+		color: $contentColor;
+		background-color: white;
+		border-bottom: $boxBorder;
+		border-left: 4px solid #fff;
+
+		line-height: 1.55;
+		font-size: $labelFontSize;
+
+		transition: .14s color ease-in-out, .14s background-color ease-in-out, .14s border-color ease-in-out;
+
+		//Add a ">" indicator to the title.
+		&:after {
+			font: normal 20px/1 dashicons;
+			display: block;
+			content: "\f345";
+			color: #a7aaad;
+
+			position: absolute;
+			right: 10px;
+			top: calc(50% - 10px);
+		}
+
+		&:hover {
+			color: $navHoverColor;
+			background: $navHoverBackgroundColor;
+			border-left-color: $navHoverColor;
+
+			&:after {
+				color: $navHoverColor;
+			}
+		}
+	}
+}
+
+//Top border for the first section link and for section links that are preceded
+//by something that's not a section link (e.g. other controls).
+.ame-ac-section .ame-ac-section-meta + .ame-ac-section-link,
+li:not(.ame-ac-section-link) + .ame-ac-section-link {
+	border-top: $boxBorder;
+}
+
+.ame-ac-section-meta {
+	display: block;
+	box-sizing: border-box;
+	width: 100%;
+
+	background: white;
+}
+
+.ame-ac-section-header {
+	$headerFontSize: 20px;
+	$headerLineHeight: 27px;
+
+	display: flex;
+	border-bottom: $boxBorder;
+	margin-bottom: 15px;
+
+	color: $contentColor;
+
+	.ame-ac-section-title {
+		flex-grow: 1;
+		padding-left: 14px;
+		padding-right: 10px;
+
+		font-size: 20px;
+		font-weight: 200;
+		line-height: 27px;
+
+		//Note: 23 + 24 to match the height if the breadcrumbs are hidden.
+		margin-top: (23px / $headerFontSize) * 1em;
+		margin-bottom: (24px / $headerFontSize) * 1em;
+
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+
+	.ame-ac-section-breadcrumbs {
+		display: block;
+
+		font-size: 13px;
+		line-height: $headerLineHeight - 1px;
+		font-weight: 400;
+		color: #50575e;
+
+		overflow: hidden;
+		white-space: nowrap;
+		text-overflow: ellipsis;
+	}
+
+	//Reduce margins when there are breadcrumbs and avoid making the header too tall.
+	//These values were chosen to visually match the Theme Customizer.
+	.ame-ac-section-title.ame-ac-has-breadcrumbs {
+		margin-top: (9px / $headerFontSize) * 1em;
+		margin-bottom: (11px / $headerFontSize) * 1em;
+	}
+}
+
+.ame-ac-section-back-button {
+	display: block;
+	width: $backButtonWidth;
+	flex-shrink: 0;
+
+	margin: 0;
+	padding: 0 3px 0 0;
+
+	background: #fff;
+	color: $contentColor;
+
+	border: none;
+	border-right: $boxBorder;
+	border-left: 4px solid #fff;
+	box-shadow: none;
+
+	cursor: pointer;
+	text-align: center;
+
+	&:before {
+		display: block;
+		font: normal 20px/1 dashicons;
+		content: "\f341";
+		margin-right: 1px; //To line up with the close button.
+	}
+
+	&:hover {
+		color: $navHoverColor;
+		border-left-color: $navHoverColor;
+		background: $navHoverBackgroundColor;
+	}
+}
+
+//No back button for the root section.
+#ame-ac-section-structure-root .ame-ac-section-back-button {
+	display: none;
+}
+
+//Slide sections left or right when the user navigates to/away from them.
+.ame-ac-section {
+	//By default, all sections are hidden on the right side.
+	transform: translateX(100%);
+	visibility: hidden;
+	height: 0;
+	overflow: hidden;
+
+	position: absolute;
+	top: 0;
+	left: 0;
+
+	transition-property: transform, visibility;
+	transition-duration: 0.182s;
+	transition-timing-function: cubic-bezier(0.65, 0.05, 0.36, 1);
+
+	&.ame-ac-transitioning {
+		visibility: visible;
+		height: auto;
+		overflow: auto;
+	}
+}
+
+.ame-ac-current-section {
+	//The current section is not translated, so it's visible.
+	transform: none;
+	visibility: visible;
+	height: auto;
+	overflow: auto;
+}
+
+.ame-ac-previous-section {
+	transform: translateX(-100%);
+}
+
+//Disable section transitions for users who prefer reduced motion.
+@media (prefers-reduced-motion: reduce) {
+	.ame-ac-section {
+		transition: none;
+	}
+}
+
+//region Content sections
+$contentSectionBottomPadding: 5px;
+
+//These sections serve as headings for groups of controls.
+.ame-ac-content-section {
+	background: #fff;
+	border-top: 1px solid $boxBorderColor;
+	border-bottom: 1px solid $boxBorderColor;
+
+	padding-top: 4px;
+	padding-bottom: $contentSectionBottomPadding;
+}
+
+.ame-ac-content-section-title {
+	margin: 0;
+	font-size: $labelFontSize + 1px;
+}
+
+//Increase the top margin of the heading item unless it's the first thing in the parent section.
+.ame-ac-control + .ame-ac-content-section {
+	margin-top: 18px;
+}
+
+//Slightly separate a content section from a preceding section link.
+.ame-ac-section-link + .ame-ac-content-section {
+	margin-top: 0.5em;
+}
+
+//Nested content sections are less prominent.
+.ame-ac-content-section-2 {
+	border-top-style: none;
+	background-color: transparent;
+
+	$borderOffset: math.min(8px, $controlLeftPadding);
+	margin-left: $borderOffset;
+	padding-left: math.max($controlLeftPadding - $borderOffset, 0);
+	width: calc(100% - #{$borderOffset});
+
+	padding-top: 0;
+	padding-bottom: 0;
+
+	.ame-ac-content-section-title {
+		//font-size: $labelFontSize;
+	}
+}
+
+//endregion
+
+//endregion
+
+//region Preview
+#ame-ac-preview {
+	display: block;
+	box-sizing: border-box;
+	width: 100%;
+	height: 100%;
+
+	margin: 0;
+	padding: 0;
+	border: none;
+}
+
+#ame-ac-preview-refresh-indicator {
+	display: block;
+	position: absolute;
+	//Position the spinner in the center of the preview.
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+
+	z-index: 2;
+	background: rgba(255, 255, 255, 0.5);
+
+	$fadeTime: 250ms;
+	visibility: hidden;
+	opacity: 0;
+	//Fade the overlay in and out. When fading out, delay the visibility change
+	//until the fade is complete.
+	transition: opacity $fadeTime ease-in, visibility 0ms ease-in $fadeTime;
+
+	&.ame-ac-show-indicator {
+		visibility: visible;
+		opacity: 1;
+
+		//When fading in, change visibility immediately instead of waiting for
+		//the delay. Does not affect opacity because it already had no delay.
+		transition-delay: 0ms;
+	}
+
+	#ame-ac-refresh-spinner {
+		display: none; //Not used.
+		/*box-sizing: border-box;
+		width: 10em;
+		height: 10em;
+		border-radius: 50%;
+
+		$backColor: rgba(100, 100, 100, 0.4);
+		border: 1.1em solid $backColor;
+		border-left: 1.1em solid #ffffff;
+
+		animation: ame-ac-basic-spin 1.1s infinite linear;*/
+	}
+}
+
+@keyframes ame-ac-basic-spin {
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(360deg);
+	}
+}
+
+//endregion
+
+//region jQuery UI menu
+
+.ui-menu {
+	$primary: #ffffff;
+	$secondary: #444a4a;
+	$highlight: #0073aa;
+	$light-grey: #e5e5e5;
+	$medium-grey: #8c8f94;
+	$dark-grey: #32373c;
+	$white: #ffffff;
+	$black: #000000;
+	$delete: #dc3232;
+
+	background-color: $primary;
+	border-radius: 5px;
+	border: 1px solid $secondary;
+	box-shadow: 0 2px 5px rgba($black, 0.1);
+	z-index: 9999;
+
+	.ui-menu-item {
+		color: $dark-grey;
+		padding: 8px 16px;
+		margin: 0;
+
+		cursor: pointer;
+		font-size: 14px;
+		line-height: 1.4;
+		white-space: nowrap;
+
+		&:hover,
+		&.ui-state-focus {
+			background-color: $highlight;
+			color: $white;
+			outline: none;
+		}
+
+		//Disable color transitions for Dashicons inside menu items. The gradual transition
+		//looks weird when the rest of the menu item changes color instantly.
+		.dashicons {
+			transition: none;
+		}
+	}
+
+	.ui-menu-divider {
+		border-top: 1px solid $light-grey;
+		margin: 5px 0;
+	}
+
+	.ui-menu-item.ui-state-disabled {
+		color: $medium-grey;
+		cursor: default;
+
+		&:hover,
+		&.ui-state-focus {
+			background-color: transparent;
+		}
+	}
+
+	.ui-menu-icon {
+		float: right;
+		margin-top: 2px;
+	}
+
+	.ui-menu .ui-menu {
+		position: absolute;
+		top: 0;
+		left: 100%;
+		border: none;
+		margin-top: -2px;
+		margin-left: -1px;
+	}
+
+	//Delete/discard menu items.
+	.ui-menu-item-delete, .ame-ac-menu-item-delete {
+		color: $delete;
+
+		&:hover,
+		&.ui-state-focus {
+			background-color: lighten($delete, 15%);
+			color: $white;
+		}
+
+		&.ui-state-disabled {
+			&:hover,
+			&.ui-state-focus {
+				color: $medium-grey;
+				background-color: transparent;
+			}
+		}
+	}
+}
+
+#ame-ac-extra-actions-menu {
+	//This is a dropdown menu, so it should be absolutely positioned.
+	position: absolute;
+}
+
+//endregion
+
+//region jQuery UI dialog
+
+$dialogContentVerticalPadding: 8px;
+$dialogContentHorizontalPadding: 8px;
+
+.ui-dialog {
+	$borderRadius: 3px;
+	$closeButtonSize: 36px;
+	$baseFontSize: 14px;
+
+	background-color: white;
+	border: 1px solid #c0c0c0;
+	border-radius: $borderRadius;
+	box-shadow: 0 3px 6px rgba(0, 0, 0, 0.25);
+
+	.ui-dialog-titlebar {
+		background-color: #fcfcfc;
+		border-radius: $borderRadius $borderRadius 0 0;
+		border-bottom: 1px solid #dfdfdf;
+
+		padding: 0 $closeButtonSize 0 8px;
+	}
+
+	.ui-dialog-title {
+		font-size: 18px;
+		font-weight: 600;
+		line-height: 2;
+		margin: 0;
+	}
+
+	.ui-dialog-titlebar-close {
+		background-color: transparent;
+		border: none;
+
+		color: #666;
+		cursor: pointer;
+
+		padding: 0;
+		margin: 0;
+		position: absolute;
+		top: 0;
+		right: 0;
+		width: $closeButtonSize;
+		height: $closeButtonSize;
+		text-align: center;
+
+		&:hover {
+			//background-color: #dcdcde;
+			color: #000;
+		}
+
+		&:before {
+			font: normal 20px/#{$closeButtonSize} "dashicons";
+			content: "\f158";
+			vertical-align: middle;
+		}
+	}
+
+	.ui-dialog-content {
+		font-size: $baseFontSize;
+		line-height: 20px/$baseFontSize;
+		padding: $dialogContentVerticalPadding $dialogContentHorizontalPadding;
+	}
+
+	.ui-dialog-buttonpane {
+		background-color: #fcfcfc;
+		border-top: 1px solid #dcdcde;
+		padding: 8px;
+		text-align: right;
+
+		//Move the confirmation button to the left.
+		.button-primary {
+			float: left;
+		}
+	}
+
+	.ui-dialog-buttonset {
+
+	}
+}
+
+.ui-widget-overlay {
+	background-color: rgba(0, 0, 0, 0.7);
+	position: fixed;
+	left: 0;
+	top: 0;
+	right: 0;
+	bottom: 0;
+
+	width: 100%;
+	height: 100%;
+}
+
+.ui-front {
+	z-index: 10000;
+}
+
+.ame-ac-dialog-label {
+	display: block;
+	font-size: 14px;
+	font-weight: 600;
+	margin-bottom: 3px;
+}
+
+.ame-ac-dialog-row {
+	margin-bottom: (10px/14px) * 1em;
+
+	input, select, textarea {
+		width: 100%;
+	}
+}
+
+.ame-ac-more-toggle {
+	text-decoration: none;
+	margin-bottom: 8px;
+	line-height: 20px;
+
+	&:before {
+		font: normal 20px/1 "dashicons";
+		content: "\f140";
+		vertical-align: top;
+
+		//The icon is not aligned with its own left edge, so we need to move it a bit
+		//to the left to visually align it with the form fields.
+		margin-left: -3px;
+	}
+
+	&.ame-ac-more-toggle-active:before {
+		content: "\f142";
+	}
+}
+
+.ame-ac-dialog-help {
+	margin: #{-$dialogContentVerticalPadding} #{-$dialogContentHorizontalPadding} $dialogContentVerticalPadding;
+	padding: 3px $dialogContentHorizontalPadding;
+
+	//Light grey
+	background-color: #f5f5f5;
+	border-bottom: 1px solid #dcdcdc;
+
+	p:first-of-type {
+		margin-top: 0;
+	}
+
+	ul {
+		margin-top: 0.5em;
+
+		li {
+			list-style: disc inside;
+			margin-left: 0.5em;
+		}
+	}
+
+	.ame-ac-more-toggle.ame-ac-more-toggle-inactive:before {
+		content: "\f348 ";
+	}
+}
+
+.ame-ac-dialog {
+	@include ame-invalid-input-styles;
+}
+
+//endregion
+
+//region Download theme dialog
+#ame-ac-download-theme-dialog {
+	position: relative;
+
+}
+
+.ui-dialog-buttonset .ame-dialog-confirm-button {
+	min-width: 7em;
+}
+
+#ame-ac-download-progress-overlay {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: rgba(0, 0, 0, 0.5);
+	z-index: 2;
+	cursor: wait;
+}
+
+//endregion
+
+//region Import theme feature
+#ame-ac-latest-import-report {
+	table {
+		th {
+			text-align: left;
+		}
+
+		td {
+			text-align: right;
+			padding-left: 1em;
+		}
+	}
+}
+
+//endregion
+
+//region Misc
+.ame-ac-visually-hidden {
+	clip: rect(0 0 0 0);
+	clip-path: inset(50%);
+	height: 1px;
+	overflow: hidden;
+	position: absolute;
+	white-space: nowrap;
+	width: 1px;
+}
+
+.ame-ac-general-progress-spinner {
+	$borderWidth: 7px;
+
+	width: 50px;
+	height: 50px;
+	background-color: rgba(255, 255, 255, 0.8);
+	border: $borderWidth solid #f3f3f3;
+	border-top: $borderWidth solid #3498db;
+	border-radius: 50%;
+
+	animation: ac-progress-spin 2s linear infinite;
+}
+
+@keyframes ac-progress-spin {
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(360deg);
+	}
+}
+
+.ame-ac-spinner-container {
+	width: 100%;
+	height: 100%;
+
+	/* Flexbox properties for centering the spinner */
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+//endregion

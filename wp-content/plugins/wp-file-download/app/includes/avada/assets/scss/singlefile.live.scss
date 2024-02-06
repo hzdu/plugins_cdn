@@ -1,0 +1,27 @@
+.wpfd-avada-single-file {
+  .wpfd-file-placeholder {
+    position: relative;
+    text-align: center;
+    span {
+      @media screen and(min-width: 768px) {
+        display: block;
+        position: absolute;
+        bottom: 12px;
+        width: 100%;
+        left: 0;
+      }
+    }
+  }
+}
+
+.fusion-builder-live-editor {
+
+  .wpfd-avada-single-file a,
+  .wpfd-avada-single-file button,
+  .wpfd-avada-single-file .wpfd-single-file--icon,
+  .wpfd-avada-single-file h3 {
+    pointer-events: none !important;
+  }
+
+}
+

@@ -1,0 +1,277 @@
+.o-menu-button-links {
+  /* Component wide Variables */
+
+  --o_menubutton-gfs: var(
+    --o_menubutton-global-font-size,
+    var(--o-fluid-font-1, 1rem)
+  );
+
+  --o_link-color: var(--o_menubutton-item-color, var(--o-links));
+  --o_link-color-hover: var(
+    --o_menubutton-item-color-hover,
+    var(--o-links-hover)
+  );
+
+  /* Button Variables */
+
+  --o_caret-top: var(--o_menubutton-caret-thickness, var(--o-border-size-2));
+  --o_caret-size: var(--o_menubutton-caret-size, 0.5em);
+  --o_menubutton-but-mi: var(--o_menubutton-button-margin-inline, 0);
+  --o_menubutton-but-mb: var(--o_menubutton-button-margin-block, 0);
+  --o_menubutton-but-pi: var(
+    --o_menubutton-button-padding-inline,
+    var(--o-size-2)
+  );
+  --o_menubutton-but-pb: var(
+    --o_menubutton-button-padding-block,
+    var(--o-size-1)
+  );
+  --o_menubutton-but-bg: var(--o_menubutton-button-bg, var(--o-links));
+  --o_menubutton-but-bga: var(
+    --o_menubutton-button-bg-active,
+    var(--o-links-hover)
+  );
+  --o_menubutton-but-bt: var(
+    --o_menubutton-button-border-thickness,
+    var(--o-border-size-2)
+  );
+  --o_menubutton-but-bta: var(
+    --o_menubutton-button-border-thickness-active,
+    var(--o_menubutton-but-bt)
+  );
+  --o_menubutton-but-bc: var(
+    --o_menubutton-button-border-color,
+    var(--o-links)
+  );
+  --o_menubutton-but-bca: var(
+    --o_menubutton-button-border-color-active,
+    var(--o-links-hover)
+  );
+  --o_menubutton-but-fs: var(
+    --o_menubutton-button-font-size,
+    var(--o_menubutton-gfs)
+  );
+  --o_menubutton-but-fc: var(--o_menubutton-button-color, var(--o-surface-1));
+  --o_menubutton-but-fca: var(
+    --o_menubutton-button-color-active,
+    var(--o-surface-1)
+  );
+  --o_menubutton-but-br: var(--o_menubutton-button-border-radius, 0);
+
+  --o_menubutton-but-sh: var(--o_menubutton-button-shadow, none);
+  --o_menubutton-but-sha: var(--o_menubutton-button-shadow-active, var(--o_menubutton-but-sh));
+
+  /* PopUp Variables */
+  --o_menubutton-popup-bc: var(
+    --o_menubutton-menu-border-color,
+    hsl(var(--o-links-hsl) / 75%)
+  );
+  --o_menubutton-popup-bg: var(--o_menubutton-menu-bg, var(--o-surface-1));
+  --o_menubutton-popup-br: var(--o_menubutton-menu-border-radius, 0);
+  --o_menubutton-popup-pi: var(
+    --o_menubutton-menu-padding-inline,
+    var(--o-size-2)
+  );
+  --o_menubutton-popup-pb: var(
+    --o_menubutton-menu-padding-block,
+    var(--o-size-2)
+  );
+  --o_menubutton-popup-bt: var(
+    --o_menubutton-menu-border-thickness,
+    var(--o-border-size-2)
+  );
+  --o_menubutton-popup-sh: var(--o_menubutton-menu-shadow, none);
+
+  /* Menu Item Variables */
+  --o_menubutton-sub-bc: var(
+    --o_menubutton-item-border-color,
+    hsl(var(--o-links-hsl) / 75%)
+  );
+
+  --o_menubutton-sub-bt: var(
+    --o_menubutton-item-border-thickness,
+    var(--o-border-size-2)
+  );
+  --o_menubutton-sub-br: var(--o_menubutton-item-border-radius, 0);
+  --o_menubutton-sub-pi: var(
+    --o_menubutton-item-padding-inline,
+    var(--o-size-2)
+  );
+  --o_menubutton-sub-pb: var(
+    --o_menubutton-item-padding-block,
+    var(--o-size-1)
+  );
+  --o_menubutton-sub-pl-offset: 0px;
+  --o_menubutton-sub-pl: calc(
+    var(--o_menubutton-sub-pi) + var(--o_menubutton-sub-pl-offset)
+  );
+  --o_menubutton-sub-mi: var(
+    --o_menubutton-item-margin-inline,
+    0
+  );
+  --o_menubutton-sub-mb: var(--o_menubutton-item-margin-block, 0);
+
+  /* Element settings */
+  margin: 0;
+  font-size: var(--o_menubutton-gfs);
+  position: relative;
+}
+
+.o-menu-button-links li {
+  margin: 0;
+  padding: 0;
+  border: 0 solid black;
+  list-style: none;
+}
+
+.o-menu-button-links .brxe-text-basic,
+.o-menu-button-links .brxe-text {
+  font-size: var(--o_menubutton-gfs);
+}
+
+.o-menu-button-links button {
+  display: inline-block;
+  position: relative;
+  margin-inline: var(--o_menubutton-but-mi);
+  margin-block: var(--o_menubutton-but-mb);
+  padding-inline: var(--o_menubutton-but-pi);
+  padding-block: var(--o_menubutton-but-pb);
+  background-color: var(--o_menubutton-but-bg);
+  border: var(--o_menubutton-but-bt) solid var(--o_menubutton-but-bc);
+  font-size: var(--o_menubutton-but-fs);
+  color: var(--o_menubutton-but-fc);
+  border-radius: var(--o_menubutton-but-br);
+    box-shadow: var(--o_menubutton-but-sh);
+}
+.o-menu-button-links button .brxe-text-basic,
+.o-menu-button-links button .brxe-text {
+  font-size: var(--o_menubutton-but-fs);
+  color: var(--o_menubutton-but-fc);
+}
+.o-menu-button-links [role="menu"],
+div.brx-body.iframe.mounted .o-menu-button-links__menu {
+  /* Display properties */
+  display: none;
+  position: absolute;
+
+  /* Layout properties */
+  max-width: initial;
+  width: max-content;
+  margin: 0;
+  padding-inline: var(--o_menubutton-popup-pi);
+  padding-block: var(--o_menubutton-popup-pb);
+
+  /* Color properties */
+  background-color: var(--o_menubutton-popup-bg);
+
+  /* Border properties */
+  border: var(--o_menubutton-popup-bt) solid var(--o_menubutton-popup-bc);
+  border-radius: var(--o_menubutton-popup-br);
+
+  /* Other properties */
+  box-shadow: var(--o_menubutton-popup-sh);
+  list-style: none;
+}
+
+div.brx-body.iframe.mounted .o-menu-button-links__menu {
+  display: var(--o_menubutton-popup-display, none);
+}
+
+.o-menu-button-links [role="menuitem"],
+.o-menu-button-links [role="separator"],
+div.brx-body.iframe.mounted .o-menu-button-links__menu-item,
+div.brx-body.iframe.mounted .o-menu-button-links__separator {
+  display: block;
+  min-inline-size: max-content;
+  margin-block: var(--o_menubutton-sub-mb);
+  margin-inline: var(--o_menubutton-sub-mi);
+
+  padding-block: var(--o_menubutton-sub-pb);
+  padding-inline: var(--o_menubutton-sub-pi);
+
+  border: 0 solid var(--o_menubutton-sub-bc);
+  border-radius: var(--o_menubutton-sub-br);
+
+  background-color: var(--o_menubutton-item-bg, transparent);
+
+  font-size: var(
+    --o_menubutton-item-font-size,
+    var(--o_menubutton-global-font-size)
+  );
+  color: var(--o_link-color);
+}
+
+.o-menu-button-links [role="separator"],
+div.brx-body.iframe.mounted .o-menu-button-links__separator {
+  padding: 0;
+  padding-top: var(--o_menubutton-separator-height, var(--o-border-size-2));
+  margin-block: var(--o_menubutton-separator-margin, var(--o-size-fluid-1));
+  background-color: var(--o_menubutton-separator-color, var(--o-surface-4));
+}
+
+.o-menu-button-links button > span::after {
+  content: "";
+  display: inline-block;
+  border-top: var(--o_caret-top) solid transparent;
+  border-left: var(--o_caret-top) solid transparent;
+  border-bottom: var(--o_caret-top) solid currentcolor;
+  border-right: var(--o_caret-top) solid currentcolor;
+  height: var(--o_caret-size);
+  width: var(--o_caret-size);
+  margin-left: 0.75em;
+  transform: translateX(-50%) translateY(-25%) rotate(45deg);
+  transform-origin: center center;
+  transition: transform 0.2s var(--o-ease-in-out-3);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .o-menu-button-links button > span::after {
+    transition: none;
+  }
+}
+
+.o-menu-button-links button:hover > span::after,
+.o-menu-button-links button:focus > span::after,
+.o-menu-button-links button[aria-expanded="true"] > span::after {
+  transform: translateX(-50%) translateY(0) rotate(-135deg);
+}
+
+/* focus styling */
+
+.o-menu-button-links button:hover,
+.o-menu-button-links button:focus,
+.o-menu-button-links button[aria-expanded="true"] {
+  padding-inline: calc(
+    var(--o_menubutton-but-pi) + var(--o_menubutton-but-bt) -
+      var(--o_menubutton-but-bta)
+  );
+  padding-block: calc(
+    var(--o_menubutton-but-pb) + var(--o_menubutton-but-bt) -
+      var(--o_menubutton-but-bta)
+  );
+  background-color: var(--o_menubutton-but-bga);
+  border: var(--o_menubutton-but-bta) solid var(--o_menubutton-but-bca);
+  color: var(--o_menubutton-but-fca);
+  box-shadow: var(--o_menubutton-but-sha);
+  outline: none;
+}
+
+.o-menu-button-links button:hover .brxe-text-basic,
+.o-menu-button-links button:focus .brxe-text-basic,
+.o-menu-button-links button[aria-expanded="true"] .brxe-text-basic,
+.o-menu-button-links button:hover .brxe-text,
+.o-menu-button-links button:focus .brxe-text,
+.o-menu-button-links button[aria-expanded="true"] .brxe-text {
+  color: var(--o_menubutton-but-fca);
+}
+
+.o-menu-button-links [role="menuitem"]:focus,
+div.brx-body.iframe.mounted .o-menu-button-links__menu-item:hover {
+  color: var(--o_link-color-hover);
+  background-color: var(--o_menubutton-item-active-bg, transparent);
+  outline: none;
+
+  padding-inline: calc(var(--o_menubutton-sub-pi) - var(--o_menubutton-sub-bt));
+  padding-block: calc(var(--o_menubutton-sub-pb) - var(--o_menubutton-sub-bt));
+  border: var(--o_menubutton-sub-bt) solid var(--o_menubutton-sub-bc);
+}

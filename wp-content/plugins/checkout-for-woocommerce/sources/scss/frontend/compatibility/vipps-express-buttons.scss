@@ -1,0 +1,16 @@
+#cfw-payment-request-buttons {
+    a.vipps-express-checkout {
+        margin: 0;
+        @include cfw-payment-request-button();
+        background: none;
+        padding: 0;
+        display: block;
+        max-width: 214px !important;
+    }
+}
+
+#cfw-payment-request-buttons.cfw-blocked {
+    a.vipps-express-checkout {
+        @include cfw-shimmer-content();
+    }
+}

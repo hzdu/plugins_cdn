@@ -1,0 +1,57 @@
+.woocommerce-pdf-catalog a {
+	margin-right: 15px;
+	margin-bottom: 20px;
+}
+
+.woocommerce-pdf-catalog-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: rgba(0,0,0,0.7);
+    display: block;
+    width: 100%;
+    height: 100%;
+    z-index: 9999999;
+}
+
+.woocommerce-pdf-catalog-popup-container {
+    margin: 0 auto;
+    width: 100%;
+    max-width: 600px;
+    text-align: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    position: fixed;
+    z-index: 99999999;
+}
+
+.woocommerce-pdf-catalog-popup {
+    padding: 50px;
+    background: #fff;
+    border-radius: 20px;
+}
+
+.button.woocommerce-pdf-catalog-email-send {
+    margin-bottom: 0;
+}
+
+.woocommerce-pdf-catalog-row { 
+  display:flex;
+  flex-wrap: wrap;
+}
+
+.woocommerce-pdf-catalog-col {
+  flex: 1 1 0;
+  width: 0;
+  padding: 10px;
+  
+}
+
+.woocommerce-pdf-catalog-builder-subcategory, .woocommerce-pdf-catalog-builder-subsubcategory {
+    margin-left:  10px;
+}
+
+.woocommerce-pdf-catalog-builder input {
+    margin-bottom: 5px;
+}

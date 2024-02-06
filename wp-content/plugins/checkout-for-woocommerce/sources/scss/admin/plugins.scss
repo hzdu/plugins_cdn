@@ -1,0 +1,22 @@
+@import "~modaal/dist/css/modaal.min.css";
+
+.cfw-tw {
+    @import './tailwind';
+
+    input[type="checkbox"]:checked::before {
+        content: '';
+    }
+
+    input[type="radio"]:checked::before {
+        background-color: unset;
+    }
+
+    table {
+        border-collapse:separate;
+        border-spacing:1.25rem;
+    }
+}
+
+.cfw-tw .modaal-content-container {
+    padding: unset;
+}

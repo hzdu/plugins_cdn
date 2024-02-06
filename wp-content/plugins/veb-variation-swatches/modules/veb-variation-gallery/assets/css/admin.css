@@ -1,0 +1,270 @@
+/**
+ * WooCommerce Additional Variation Images And Swatches Pro
+ *
+ * This source file is subject to the GNU General Public License v3.0
+ * that is bundled with this package in the file license.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://www.gnu.org/licenses/gpl-3.0.html
+ * 
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to support@innovativewp.org so we can send you a copy immediately.
+ *
+ * @author    InnovativeWP
+ * @copyright Copyright (c) 2021, InnovativeWP.
+ * @license   http://www.gnu.org/licenses/gpl-3.0.html GNU General Public License v3.0
+ */
+
+.rtl .veb-variation-gallery-images li {
+  float: right !important;
+}
+.rtl .veb-variation-gallery-images li .delete {
+  left: -5px;
+  right: auto !important;
+}
+
+.veb-variation-gallery-wrapper .veb-variation-gallery-inside {
+  border-top: 1px solid #c3c4c7;
+}
+.veb-variation-gallery-wrapper .veb-variation-gallery-postbox {
+  position: relative;
+  min-width: 255px;
+  border: 1px solid #c3c4c7;
+  -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.04);
+          box-shadow: 0 1px 1px rgba(0, 0, 0, 0.04);
+  background: #fff;
+  padding: 0;
+  line-height: 1;
+}
+.veb-variation-gallery-wrapper .veb-variation-gallery-postbox .postbox-header {
+  border: none;
+}
+.veb-variation-gallery-wrapper .veb-variation-gallery-postbox.closed .veb-variation-gallery-inside {
+  display: none;
+}
+.veb-variation-gallery-wrapper .veb-variation-gallery-postbox.closed .toggle-indicator::before {
+  content: "\f140";
+}
+.veb-variation-gallery-wrapper .handle-div {
+  width: 36px;
+  height: 36px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+.veb-variation-gallery-wrapper .veb-variation-gallery-image-container {
+  padding: 5px 10px;
+}
+.veb-variation-gallery-wrapper .veb-variation-gallery-images {
+  *zoom: 1;
+  margin: 0;
+}
+.veb-variation-gallery-wrapper .veb-variation-gallery-images::before, .veb-variation-gallery-wrapper .veb-variation-gallery-images::after {
+  content: " ";
+  display: table;
+}
+.veb-variation-gallery-wrapper .veb-variation-gallery-images::after {
+  clear: both;
+}
+.veb-variation-gallery-wrapper .veb-variation-gallery-images li {
+  float: left;
+  list-style: none;
+  position: relative;
+  cursor: move;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  margin: 3px;
+  background: none;
+  border-radius: 2px;
+  border: 3px solid transparent;
+}
+.veb-variation-gallery-wrapper .veb-variation-gallery-images li.veb-variation-gallery-sortable-placeholder {
+  position: relative;
+  border: 3px dashed #DDDDDD;
+  background: #F7F7F7;
+}
+.veb-variation-gallery-wrapper .veb-variation-gallery-images li.veb-variation-gallery-sortable-placeholder::after {
+  font-family: "Dashicons";
+  speak: none;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  margin: 0;
+  text-indent: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  content: "\f161";
+  font-size: 2.618em;
+  line-height: 80px;
+  color: #DDDDDD;
+}
+.veb-variation-gallery-wrapper .veb-variation-gallery-images li img {
+  width: 80px;
+  display: block;
+  height: auto;
+  border: 1px solid #D5D5D5;
+}
+.veb-variation-gallery-wrapper .veb-variation-gallery-images li .delete {
+  display: none;
+  color: #999;
+  background: #fff;
+  position: absolute;
+  right: -5px;
+  top: -5px;
+  z-index: 1;
+  text-decoration: none;
+  border-radius: 100%;
+}
+.veb-variation-gallery-wrapper .veb-variation-gallery-images li:hover .delete {
+  display: block;
+}
+.veb-variation-gallery-wrapper .add-veb-variation-gallery-image-wrapper {
+  display: block;
+  padding: 0 13px 10px 13px;
+}
+
+#veb-variation-gallery-tutorials-wrapper {
+  background: #fff;
+  border-radius: 2px;
+  border: 1px solid #DDDDDD;
+}
+#veb-variation-gallery-tutorials-wrapper li {
+  overflow: hidden;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 50px 30px;
+  margin: 0;
+  border-bottom: 1px solid #DDDDDD;
+  position: relative;
+}
+#veb-variation-gallery-tutorials-wrapper li:last-child {
+  border: 0;
+}
+#veb-variation-gallery-tutorials-wrapper .tutorial-image-wrapper,
+#veb-variation-gallery-tutorials-wrapper .tutorial-description-wrapper {
+  float: left;
+  padding: 0 20px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+#veb-variation-gallery-tutorials-wrapper .tutorial-description-wrapper {
+  width: 40%;
+}
+#veb-variation-gallery-tutorials-wrapper .tutorial-description-wrapper h3 {
+  margin: 0 0 20px;
+  font-size: 1.5em;
+  line-height: 1.5em;
+}
+#veb-variation-gallery-tutorials-wrapper .tutorial-description-wrapper .tutorial-contents {
+  font-size: 15px;
+  line-height: 1.5em;
+  margin-bottom: 20px;
+}
+#veb-variation-gallery-tutorials-wrapper .tutorial-description-wrapper .tutorial-buttons .button {
+  border-radius: 3px;
+  line-height: 1;
+  padding: 13px 20px;
+  font-size: 13px;
+  height: 40px;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  text-shadow: none;
+}
+#veb-variation-gallery-tutorials-wrapper .tutorial-description-wrapper .tutorial-buttons .button:active {
+  -webkit-transform: translateY(0);
+      -ms-transform: translateY(0);
+          transform: translateY(0);
+}
+#veb-variation-gallery-tutorials-wrapper .tutorial-description-wrapper .tutorial-buttons .button.button-live-demo {
+  background-color: #FFFFFF;
+  color: #333333;
+  border: 1px solid #EEEEEE;
+}
+#veb-variation-gallery-tutorials-wrapper .tutorial-description-wrapper .tutorial-buttons .button.button-live-demo:hover {
+  background: #EEEEEE;
+}
+#veb-variation-gallery-tutorials-wrapper .tutorial-description-wrapper .tutorial-buttons .button.button-docs {
+  background-color: #36373A;
+  color: #FFFFFF;
+  border: 1px solid #36373A;
+}
+#veb-variation-gallery-tutorials-wrapper .tutorial-description-wrapper .tutorial-buttons .button.button-docs:hover {
+  background: #5D5E61;
+  border-color: #5D5E61;
+}
+#veb-variation-gallery-tutorials-wrapper .tutorial-description-wrapper .tutorial-buttons .button.button-pro {
+  background-color: #39B54A;
+  color: #FFFFFF;
+  border: 1px solid #39B54A;
+}
+#veb-variation-gallery-tutorials-wrapper .tutorial-description-wrapper .tutorial-buttons .button.button-pro:hover {
+  background: #3FC851;
+  border-color: #3FC851;
+}
+#veb-variation-gallery-tutorials-wrapper .tutorial-image-wrapper {
+  width: 60%;
+  position: relative;
+  text-align: center;
+}
+#veb-variation-gallery-tutorials-wrapper .tutorial-image-wrapper .ribbon {
+  position: absolute;
+  left: -5px;
+  top: -5px;
+  z-index: 1;
+  overflow: hidden;
+  width: 75px;
+  height: 75px;
+  text-align: right;
+  margin: 1px 22px;
+}
+#veb-variation-gallery-tutorials-wrapper .tutorial-image-wrapper .ribbon span {
+  font-size: 10px;
+  font-weight: bold;
+  color: #fff;
+  text-transform: uppercase;
+  text-align: center;
+  line-height: 20px;
+  -webkit-transform: rotate(-45deg);
+      -ms-transform: rotate(-45deg);
+          transform: rotate(-45deg);
+  width: 100px;
+  display: block;
+  background: #bc0808;
+  -webkit-box-shadow: 0 3px 10px -5px rgb(0, 0, 0);
+          box-shadow: 0 3px 10px -5px rgb(0, 0, 0);
+  position: absolute;
+  top: 19px;
+  left: -21px;
+}
+#veb-variation-gallery-tutorials-wrapper .tutorial-image-wrapper .ribbon span::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 100%;
+  z-index: -1;
+  border-width: 3px;
+  border-style: solid;
+  border-color: #8f0808 transparent transparent #8f0808;
+}
+#veb-variation-gallery-tutorials-wrapper .tutorial-image-wrapper .ribbon span::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 100%;
+  z-index: -1;
+  border-width: 3px;
+  border-style: solid;
+  border-color: #8f0808 #8f0808 transparent transparent;
+}

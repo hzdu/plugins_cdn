@@ -1,0 +1,78 @@
+@charset "UTF-8";
+/*
+ * Third level menus.
+ */
+#adminmenu .ame-deep-submenu, .folded #adminmenu .ame-deep-submenu {
+  position: absolute;
+}
+#adminmenu li.menu-top.opensub .ame-deep-submenu, #adminmenu li.menu-top.wp-has-current-submenu .ame-deep-submenu, .folded #adminmenu li.menu-top.opensub .ame-deep-submenu, .folded #adminmenu li.menu-top.wp-has-current-submenu .ame-deep-submenu {
+  top: -1000em;
+  position: absolute;
+}
+#adminmenu li.ame-has-deep-submenu.ame-has-highlighted-item > a:first-of-type, #adminmenu li.ame-has-deep-submenu.ame-has-current-deep-submenu > a:first-of-type, .folded #adminmenu li.ame-has-deep-submenu.ame-has-highlighted-item > a:first-of-type, .folded #adminmenu li.ame-has-deep-submenu.ame-has-current-deep-submenu > a:first-of-type {
+  background: #0073aa;
+  color: #fff;
+}
+#adminmenu li.ame-has-deep-submenu.ame-has-highlighted-item > a:first-of-type::after, #adminmenu li.ame-has-deep-submenu.ame-has-current-deep-submenu > a:first-of-type::after, .folded #adminmenu li.ame-has-deep-submenu.ame-has-highlighted-item > a:first-of-type::after, .folded #adminmenu li.ame-has-deep-submenu.ame-has-current-deep-submenu > a:first-of-type::after {
+  content: "\f140";
+  margin-top: -9px;
+}
+#adminmenu li.ame-has-deep-submenu.ame-has-highlighted-item > .ame-deep-submenu, #adminmenu li.ame-has-deep-submenu.ame-has-current-deep-submenu > .ame-deep-submenu, .folded #adminmenu li.ame-has-deep-submenu.ame-has-highlighted-item > .ame-deep-submenu, .folded #adminmenu li.ame-has-deep-submenu.ame-has-current-deep-submenu > .ame-deep-submenu {
+  top: 0;
+  position: relative;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+#adminmenu li.ame-has-deep-submenu:not(.ame-has-submenu-icons).ame-has-highlighted-item > .ame-deep-submenu > li > a, #adminmenu li.ame-has-deep-submenu:not(.ame-has-submenu-icons).ame-has-current-deep-submenu > .ame-deep-submenu > li > a, .folded #adminmenu li.ame-has-deep-submenu:not(.ame-has-submenu-icons).ame-has-highlighted-item > .ame-deep-submenu > li > a, .folded #adminmenu li.ame-has-deep-submenu:not(.ame-has-submenu-icons).ame-has-current-deep-submenu > .ame-deep-submenu > li > a {
+  padding-left: 24px;
+}
+#adminmenu li.ame-has-deep-submenu > a, .folded #adminmenu li.ame-has-deep-submenu > a {
+  position: relative;
+}
+#adminmenu li.ame-has-deep-submenu > a::after, .folded #adminmenu li.ame-has-deep-submenu > a::after {
+  position: absolute;
+  right: 6px;
+  top: 50%;
+  margin-top: -9px;
+  height: 18px;
+  width: 20px;
+  font-family: dashicons, serif;
+  content: "\f139";
+  font-size: 23px;
+  line-height: 18px;
+  text-align: right;
+}
+
+#adminmenu .wp-submenu li.opensub > ul.ame-deep-submenu,
+.folded #adminmenu .wp-submenu li.opensub > ul.ame-deep-submenu {
+  top: -1px;
+}
+
+.folded #adminmenu li.opensub > ul.ame-deep-submenu,
+.folded #adminmenu .wp-has-current-submenu.opensub > ul.ame-deep-submenu,
+.no-js.folded #adminmenu .ame-has-deep-submenu:hover > ul.ame-deep-submenu {
+  top: 0;
+  left: 160px;
+}
+
+.folded #adminmenu li.opensub li.ame-has-highlighted-item > ul.ame-deep-submenu {
+  left: 0;
+  box-shadow: none;
+}
+.folded #adminmenu li.opensub li.ame-has-highlighted-item > ul.ame-deep-submenu > li.wp-submenu-head {
+  display: none;
+}
+
+.folded #adminmenu li.ame-has-deep-submenu.ame-has-highlighted-item > .ame-deep-submenu, .folded #adminmenu li.ame-has-deep-submenu.ame-has-current-deep-submenu > .ame-deep-submenu {
+  border-left-width: 0;
+}
+
+#adminmenu li.ws-ame-primary-am-item + li.ws-ame-secondary-am-item a:first-of-type:before,
+#adminmenu li.ws-ame-secondary-am-item + li.ws-ame-secondary-am-item a:first-of-type:before {
+  content: "– ";
+  font-weight: 800;
+  vertical-align: top;
+  line-height: 1;
+}
+
+/*# sourceMappingURL=pro-admin-styles.css.map */

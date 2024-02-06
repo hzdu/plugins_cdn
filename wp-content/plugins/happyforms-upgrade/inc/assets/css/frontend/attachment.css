@@ -1,0 +1,146 @@
+/* attachment */
+.happyforms-attachment-box {
+  display: flex;
+  flex-grow: 1;
+  align-items: center;
+  width: auto;
+  height: auto !important;
+  padding: 10px;
+  border: 1px solid #dbdbdb;
+  border-radius: 6px;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+.happyforms-upload-area {
+  cursor: pointer;
+}
+.happyforms-styles.happyforms-form--part-border-radius-square .happyforms-attachment-box {
+  border-radius: 0;
+}
+.happyforms-styles.happyforms-form--part-border-radius-pill .happyforms-attachment-box {
+  border-radius: 25px;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+.happyforms-attachment-progress {
+  display: none;
+}
+.happyforms-attachment-progress[data-type=default] {
+  display: block;
+  color: #888888;
+}
+.happyforms-styles .happyforms-attachment-progress[data-type=default] {
+  color: var(--happyforms-color-part-placeholder);
+}
+.happyforms-upload-area input[type=text]:focus + .happyforms-attachment-box,
+.happyforms-upload-area.focus .happyforms-attachment-box {
+  outline: 0;
+  border-color: #7aa4ff;
+  border-color: var(--happyforms-color-part-border-focus);
+  box-shadow: inset 0 0 0 1px #7aa4ff;
+  box-shadow: inset 0 0 0 1px var(--happyforms-color-part-border-focus);
+}
+.happyforms-upload-area.uploading .happyforms-attachment-progress[data-type=default] {
+  display: none;
+}
+.happyforms-upload-area.uploading .happyforms-attachment-progress[data-type=uploading] {
+  display: block;
+}
+.happyforms-styles .happyforms-attachment-progress {
+  font-size: 16px;
+  font-size: var(--happyforms-part-value-font-size);
+  overflow-wrap: anywhere;
+}
+.happyforms-styles .happyforms-part--attachment .happyforms-input-group__suffix {
+  font-size: 16px;
+  font-size: var(--happyforms-part-value-font-size);
+}
+.happyforms-part--attachment .happyforms-input-group__suffix {
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+.happyforms-form--part-border-radius-square .happyforms-attachment-box {
+  border-radius: 0;
+}
+.happyforms-form--part-border-radius-pill .happyforms-attachment-box {
+  border-radius: 25px;
+}
+.happyforms-styles .happyforms-attachment-box {
+  border-color: #dbdbdb;
+  border-color: var(--happyforms-color-part-border);
+  background-color: #fff;
+  background-color: var(--happyforms-color-part-background);
+}
+ul.happyforms-attachment__list {
+  list-style: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+ul.happyforms-attachment__list.has-items {
+  margin-bottom: 10px !important;
+}
+ul.happyforms-attachment__list li.happyforms-attachment-item {
+  display: flex;
+  margin: 0 0 5px !important;
+}
+.happyforms-styles ul.happyforms-attachment__list li.happyforms-attachment-item {
+  font-size: 16px;
+  font-size: var(--happyforms-part-value-font-size);
+  color: #000;
+  color: var(--happyforms-color-part-title);
+}
+ul.happyforms-attachment__list li.happyforms-attachment-item:first-child {
+  margin-top: 10px !important;
+}
+ul.happyforms-attachment__list li.happyforms-attachment-item[data-attachment-id=""] {
+  display: none;
+}
+.happyforms-attachment-item__col--main {
+  flex: 1;
+}
+.happyforms-attachment-item__size {
+  text-transform: uppercase;
+}
+.happyforms-styles .happyforms-attachment-item__size {
+  color: #454545;
+  color: var(--happyforms-color-part-description);
+}
+.happyforms-attachment-item__size:before {
+  content: '-';
+  display: inline-block;
+  margin-right: 5px;
+}
+.happyforms-attachment-item__size span {
+  padding: 0 5px;
+}
+.happyforms-attachment-box.uploading .happyforms-attachment-box__progress {
+  display: block;
+}
+.happyforms-attachment__counter {
+  margin: 5px 0 0;
+}
+.happyforms-styles .happyforms-attachment__counter {
+  font-size: 14px;
+  font-size: var(--happyforms-part-description-font-size);
+  color: #454545;
+  color: var(--happyforms-color-part-description);
+}
+.happyforms-attachment__counter svg {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  margin-right: 5px;
+  vertical-align: top;
+}
+.happyforms-part--attachment .happyforms-file-notices > * {
+  display: none;
+}
+.happyforms-part--attachment .counter-label-1 {
+  text-transform: lowercase;
+}
+
+.happyforms-part--attachment .happyforms-part__el .moxie-shim.moxie-shim-html5 {
+  width: 100% !important;
+  height: 52px !important;
+}

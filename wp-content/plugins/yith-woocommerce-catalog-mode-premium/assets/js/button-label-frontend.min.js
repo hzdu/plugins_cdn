@@ -1,0 +1,1 @@
+jQuery(function(n){n("span.ywctm-custom-button").on("click",function(n){n.preventDefault()})});

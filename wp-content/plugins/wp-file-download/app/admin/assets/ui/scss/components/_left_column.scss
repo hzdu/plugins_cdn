@@ -1,0 +1,131 @@
+$dropdown-background-color: #ffffff;
+
+#wpfd-categories-col {
+  padding: 20px;
+  .ju-dropdown-wrapper {
+    position: relative;
+    display: block;
+    .wpfd_add_new {
+      display: flex;
+      justify-content: center;
+      padding: 8px 25px;
+      position: relative;
+      text-decoration: none;
+      text-transform: capitalize;
+      color: $v4-color;
+      cursor: pointer;
+      margin: 0 auto;
+      @include transition(unset);
+      font-weight: bold;
+      letter-spacing: 0;
+      @include fontSize(14px);
+      .material-icons {
+        @include fontSize(18px);
+        margin-right: 5px;
+      }
+    }
+    .ju-dropdown-menu {
+      display: none;
+      position: absolute;
+      background-color: $dropdown-background-color;
+      padding: 0;
+      margin: 0;
+      z-index: 1;
+      ul {
+        list-style: none;
+        width: 100%;
+        li {
+          display: list-item;
+          padding: 10px;
+        }
+      }
+    }
+    &.hasCloud:hover {
+      @include boxShadow(0px 8px 16px 0px rgba(0,0,0,0.2));
+      .wpfd_add_new {
+        border: 1px solid white;
+        @include borderRadius(4px 4px 0 0);
+        @include boxShadow(none);
+        border-bottom: 1px solid #eee;
+        background: #fff;
+      }
+      .ju-dropdown-menu {
+        display: block;
+        margin: 0 auto;
+        top: 36px;
+        left: 0;
+        right: 0;
+        @include borderRadius(0 0 4px 4px);
+        @include boxShadow(0px 8px 16px 0px rgba(0,0,0,0.2));
+        li {
+          padding: 7px 0;
+          text-align: center;
+          margin: 0;
+
+          a, button, .button {
+            margin: 0;
+            background: transparent;
+            border: none;
+            @include boxShadow(none);
+            width: 100%;
+            padding: 0 30px;
+            position: relative;
+            font-weight: bold;
+            text-align: center;
+            line-height: 26px;
+            color: $v4-color;
+            .wpfd-folder {
+              &.wpfd-aws-icon {
+                font-size: 14px!important;
+              }
+              position: unset;
+              vertical-align: middle;
+              font-size: 24px;
+              margin-right: 5px;
+            }
+            &:hover {
+              background: rgba(0,0,0,0.05);
+              @include borderRadius(0);
+            }
+          }
+        }
+      }
+    }
+  }
+  .ui-resizable-handle {
+    right: 0;
+    width: 2px;
+    background: rgba(105, 105, 105, 0.2);
+    &::before {
+      content: '';
+      width: 10px;
+      height: 30px;
+      display: block;
+      position: absolute;
+      top: 100px;
+      left: -4px;
+      background: url('../images/icon-resize.svg') no-repeat;
+      background-size: 10px 30px;
+    }
+  }
+}
+
+#categorieslist {
+  margin-left: 20px;
+  margin-right: 18px;
+}
+.wpfd-pseudo-top-cat{
+  display: flex;flex-wrap: wrap;justify-content: flex-start;align-items: center;margin: 10px 0 0 0; padding: 0 5px;
+}
+.wpfd-pseudo-label {
+  color: #0073ab;
+  text-transform: uppercase;
+  font-size: 14px;
+  margin: 0 5px;
+  font-weight: bold;
+  font-stretch: normal;
+  line-height: 1.26;
+}
+// nestable
+@import 'nestable';
+//@import 'v3_nestable';

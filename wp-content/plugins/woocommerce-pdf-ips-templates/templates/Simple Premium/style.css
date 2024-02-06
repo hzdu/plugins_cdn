@@ -1,0 +1,404 @@
+<?php extract( wpo_wcpdf_templates_get_footer_settings( $this, '2cm' ) ); // $footer_height & $page_bottom ?>
+@page {
+	margin-top: 1cm;
+	margin-bottom: <?php echo $page_bottom; ?>;
+	margin-left: 2cm;
+	margin-right: 2cm;
+}
+body {
+	background: #fff;
+	color: #000;
+	margin: 0cm;
+	font-family: 'Open Sans', sans-serif;
+	/* want to use custom fonts? http://docs.wpovernight.com/woocommerce-pdf-invoices-packing-slips/using-custom-fonts/ */
+	font-size: 9pt;
+	line-height: 100%; /* fixes inherit dompdf bug */
+}
+
+h1, h2, h3, h4 {
+	font-weight: bold;
+	margin: 0;
+}
+
+h1 {
+	font-size: 16pt;
+	margin: 5mm 0;
+}
+
+h2 {
+	font-size: 14pt;
+}
+
+h3, h4 {
+	font-size: 9pt;
+}
+
+
+ol,
+ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+li,
+ul {
+	margin-bottom: 0.75em;
+}
+
+p {
+	margin: 0;
+	padding: 0;
+}
+
+p + p {
+	margin-top: 1.25em;
+}
+
+a { 
+	border-bottom: 1px solid; 
+	text-decoration: none; 
+}
+
+span.checkbox {
+	display: inline-block;
+	width: 3mm;
+	height: 3mm;
+	border: 1px solid black;
+	background-color: white;
+}
+
+/* Basic Table Styling */
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+	page-break-inside: always;
+	border: 0;
+	margin: 0;
+	padding: 0;
+}
+
+th, td {
+	vertical-align: top;
+	text-align: inherit;
+}
+
+table.container {
+	width:100%;
+	border: 0;
+}
+
+tr.no-borders,
+td.no-borders {
+	border: 0 !important;
+	border-top: 0 !important;
+	border-bottom: 0 !important;
+	padding: 0 !important;
+	width: auto;
+}
+
+/* Header */
+table.head {
+	margin-bottom: 12mm;
+}
+
+td.header img {
+	max-height: 3cm;
+	width: auto;
+}
+
+td.header {
+	font-size: 16pt;
+	font-weight: 700;
+}
+
+td.shop-info {
+	width: 40%;
+}
+.document-type-label {
+	text-transform: uppercase;
+}
+
+/* Recipient addressses & order data */
+table.order-data-addresses {
+	width: 100%;
+	margin-bottom: 10mm;
+}
+
+table.order-data-addresses td.address {
+	word-wrap: break-word;
+}
+
+td.order-data {
+	width: 40%;
+}
+
+.invoice .shipping-address {
+	width: 30%;
+}
+
+.packing-slip .billing-address {
+	width: 30%;
+}
+
+td.order-data table th {
+	font-weight: normal;
+	padding-right: 2mm;
+}
+
+/* Order details */
+table.order-details {
+	width: 100%;
+	margin-bottom: 0mm;
+}
+
+.order-details .cb {
+	width: 3.5mm;
+}
+.order-details .sku,
+.order-details .weight,
+.order-details .thumbnail,
+.order-details .quantity,
+.order-details .price,
+.order-details .regular_price,
+.order-details .vat,
+.order-details .discount,
+.order-details .tax_rate,
+.order-details .total {
+	width: 10%;
+}
+
+.order-details .product_description {
+	width: 50mm;
+}
+.order-details .all_meta {
+	width: 25mm;
+}
+
+
+.order-details .position {
+	width: 5%;
+}
+
+.order-details .last-column.total {
+	text-align: right !important;
+}
+
+.order-details .thumbnail img {
+	width: 13mm;
+	height: auto;
+}
+
+.order-details tr {
+	page-break-inside: always;
+	page-break-after: auto;	
+}
+
+.order-details td,
+.order-details th {
+	border-bottom: 1px solid #ccc;
+	padding: 0.375em;
+}
+
+.order-details th {
+	font-weight: bold;
+	text-align: inherit;
+}
+
+.order-details thead th {
+	color: white;
+	background-color: black;
+	border-color: black;
+}
+
+/* product bundles compatibility */
+.order-details tr.bundled-item td.description {
+	padding-left: 5mm;
+}
+
+.order-details tr.product-bundle td,
+.order-details tr.product-bundle th,
+.order-details tr.bundled-item td,
+.order-details tr.bundled-item th {
+	border-bottom: 0;
+}
+
+.order-details tr.bundled-item:last-child td,
+.order-details tr.bundled-item:last-child th {
+	border-bottom: 1px #ccc solid;
+}
+
+.order-details tr.bundled-item.hidden {
+	display: none;
+}
+
+div.notes-totals-container {
+	width: 100%;
+}
+
+div.notes-totals-container::after {
+	content: '';
+	clear: both;
+}
+
+/* Notes */
+div.notes {
+	width: 60%;
+	margin-bottom: 8mm;
+	float: left;
+}
+
+.notes .wrapper {
+	page-break-inside: always;
+	page-break-after: auto;
+	word-wrap: break-word;
+}
+
+/* Totals */
+.totals {
+	width: 40%;
+	float: right;
+}
+
+.totals table {
+	width: 100%;
+	border-collapse: separate;
+}
+
+.totals th,
+.totals td {
+	border: 0;
+	border-top: 1px solid #ccc;
+	border-bottom: 1px solid #ccc;
+	padding: 0.375em;
+}
+
+.totals th.description,
+.totals td.price {
+	width: 50%;
+}
+
+.totals td.price {
+	text-align: right;
+}
+
+.totals .grand-total td,
+.totals .grand-total th {
+	border-top: 2px solid #000;
+	border-bottom: 2px solid #000;
+	font-weight: bold;
+}
+
+.totals tr.payment_method {
+	display: none;
+}
+
+/* bottom spacer */
+div.bottom-spacer {
+	clear: both;
+	height: 8mm;
+}
+
+/* item meta formatting for WC2.6 and older */
+dl {
+	margin: 4px 0;
+}
+
+dt, dd, dd p {
+	display: inline;
+	font-size: 7pt;
+	line-height: 7pt;
+}
+
+dd {
+	margin-left: 5px;
+}
+
+dd:after {
+	content: "\A";
+	white-space: pre;
+}
+
+/* item-meta formatting for WC3.0+ */
+.wc-item-meta {
+	margin: 4px 0;
+	font-size: 7pt;
+	line-height: 7pt;
+}
+.wc-item-meta p {
+	display: inline;
+}
+.wc-item-meta li {
+	margin: 0;
+	margin-left: 5px;
+}
+
+/* Notes & Totals */
+.customer-notes {
+	margin-top: 5mm;
+}
+
+/* Footer Imprint */
+#footer {
+	position: absolute;
+	bottom: -<?php echo $footer_height; ?>;
+	left: 0;
+	right: 0;
+	height: <?php echo $footer_height; ?>;
+	text-align: center;
+	border-top: 0.1mm solid gray;
+	margin-bottom: 0;
+	padding-top: 2mm;
+}
+
+/* page numbers */
+.pagenum:before {
+	content: counter(page);
+}
+.pagenum,.pagecount {
+	font-family: sans-serif;
+}
+
+/* styles for legacy 3rd party templates using tables for the notes & totals */
+table.notes-totals {
+	width:100%;
+	margin-bottom: 8mm;
+}
+
+table.notes-totals tr {
+	page-break-inside: always;
+	page-break-after: auto;	
+}
+
+table.notes-totals td,
+table.notes-totals th {
+	border-bottom: 1px #ccc solid;
+	padding: 0.375em;
+}
+
+table.notes-totals th {
+	font-weight: bold;
+	text-align: inherit;
+}
+
+table.notes-totals table.totals {
+	width: 100%;
+	margin-top: 5mm;
+	table-layout: fixed;
+}
+
+table.notes-totals::after {
+	content: '';
+	clear: both;
+}
+
+/* RTL specific */
+.rtl {
+	direction: rtl !important;
+}
+.rtl div.totals {
+	float: left !important;
+}
+.rtl div.notes {
+	float: right !important;
+}

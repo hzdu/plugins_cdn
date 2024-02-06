@@ -1,0 +1,83 @@
+/**
+ *
+ * Signature field
+ *
+ */
+.happyforms--signature-area--container,
+.happyforms-styles .happyforms-part .happyforms--signature-area--container {
+  position: relative;
+  padding: 10px;
+  border: 1px solid #dbdbdb;
+  border-radius: 6px;
+}
+
+.happyforms--signature-area {
+  width: 100%;
+  height: 250px;
+  margin-bottom: 10px;
+}
+
+.happyforms--signature-area--container svg {
+  width: 100%;
+  height: 100%;
+}
+
+.happyforms--signature-area--container.drawing svg {
+  touch-action: none;
+}
+
+.happyforms--signature-area--start-drawing {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.happyforms--signature-area--toolbar {
+  display: flex;
+  justify-content: space-between;
+}
+
+.happyforms--signature-area--toolbar .happyforms-button {
+  visibility: hidden;
+}
+
+.happyforms--signature-area--toolbar .happyforms--signature-area--clear-drawing,
+.happyforms--signature-area--toolbar .happyforms--signature-area--done-drawing {
+  flex: 0 1 49.5%;
+}
+
+.happyforms--signature-area--toolbar .happyforms--signature-area--edit-drawing {
+  flex: 0 2 100%;
+  display: none;
+}
+
+.happyforms--signature-area--container.drawing .happyforms--signature-area--start-drawing,
+.happyforms--signature-area--container.drawn .happyforms--signature-area--start-drawing {
+  display: none;
+}
+
+.happyforms--signature-area--container.drawing .happyforms--signature-area--clear-drawing,
+.happyforms--signature-area--container.drawing .happyforms--signature-area--done-drawing {
+  visibility: visible;
+}
+
+.happyforms--signature-area--container.drawn .happyforms--signature-area--clear-drawing,
+.happyforms--signature-area--container.drawn .happyforms--signature-area--done-drawing {
+  display: none;
+}
+
+.happyforms--signature-area--container.drawn .happyforms--signature-area--edit-drawing {
+  visibility: visible;
+  display: block;
+}
+
+.happyforms-part__el-preview__signature {
+  width: 100%;
+  height: 250px;
+}
+
+.happyforms-part__el-preview__signature svg {
+  width: 100%;
+  height: 100%;
+}

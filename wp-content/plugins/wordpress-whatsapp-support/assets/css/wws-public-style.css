@@ -1,0 +1,115 @@
+/* Common CSS for templates */
+.wws-clearfix {
+  clear: both; }
+
+.wws-shadow {
+  box-shadow: 0 0 50px rgba(0, 0, 0, 0.1); }
+
+.wws-gradient {
+  z-index: -1;
+  position: fixed;
+  width: 500px;
+  height: 500px;
+  content: "";
+  pointer-events: none;
+  display: none; }
+
+@keyframes wws-shake {
+  0% {
+    transform: translateX(0px); }
+  25% {
+    transform: translateX(-8px); }
+  50% {
+    transform: translateX(8px); }
+  100% {
+    transform: translateX(0); } }
+
+.wws-shake-animation {
+  animation: wws-shake 300ms; }
+
+/* Plugin GDPR CSS*/
+.wws-popup .wws-gdpr {
+  border-top: 1px dashed #eee;
+  padding: 8px 12px 6px 12px;
+  background: #fff;
+  color: #888FBB;
+  -webkit-user-select: none;
+  user-select: none;
+  outline: none !important; }
+
+.wws-popup .wws-gdpr label {
+  color: #888FBB;
+  display: block;
+  font-weight: normal;
+  margin: 0;
+  padding: 0; }
+
+.wws-popup .wws-gdpr label input[type="checkbox"] {
+  vertical-align: middle;
+  margin-right: 4px;
+  padding: 0; }
+
+/* Button generator button CSS */
+.wws-shortcode-btn {
+  padding: 4px 10px;
+  margin: 2px;
+  border-radius: 3px;
+  text-align: center;
+  text-decoration: none !important;
+  vertical-align: middle;
+  justify-content: center;
+  align-items: center; }
+
+.wws-shortcode-btn:hover {
+  box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.16); }
+
+.wws-shortcode-btn > svg {
+  vertical-align: middle;
+  margin-right: 5px;
+  width: 16px;
+  height: 16px; }
+
+/* Loader CSS */
+.wws-spinner {
+  margin: 80px auto;
+  width: 70px;
+  text-align: center; }
+
+.wws-spinner > div {
+  width: 18px;
+  height: 18px;
+  border-radius: 100%;
+  display: inline-block;
+  animation: wws-sk-bouncedelay 1.4s infinite ease-in-out both; }
+
+.wws-spinner .wws-bounce1 {
+  animation-delay: -0.32s; }
+
+.wws-spinner .wws-bounce2 {
+  animation-delay: -0.16s; }
+
+@keyframes wws-sk-bouncedelay {
+  0%, 80%, 100% {
+    transform: scale(0); }
+  40% {
+    transform: scale(1); } }
+
+/* QR CSS */
+.wws-qr {
+  width: auto;
+  max-width: 98%;
+  padding: 10px;
+  text-align: center; }
+
+.wws-qr img {
+  display: inline-block !important; }
+
+/* Trigger CSS */
+.wws-popup__open-btn > svg,
+.wws-popup__open-btn > span {
+  vertical-align: middle; }
+
+.wws-popup__open-btn > svg {
+  padding-right: 2px;
+  width: 16px;
+  height: 16px; }

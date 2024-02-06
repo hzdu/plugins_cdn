@@ -1,0 +1,353 @@
+import swal                    from 'sweetalert2/dist/sweetalert2';
+import { cfwDomReady }         from '../_functions';
+import FieldToggler            from './components/FieldToggler';
+import FontSelector            from './components/FontSelector';
+import ImagePicker             from './components/ImagePicker';
+import OrderBumpsAdmin         from './components/OrderBumpsAdmin';
+import RichEditor              from './components/RichEditor';
+import SettingsExporterButton  from './components/SettingsExporterButton';
+import SettingsImporterButton  from './components/SettingsImporterButton';
+import TrustBadgeRepeater      from './components/TrustBadgeRepeater';
+
+declare const cfw_sendwp_remote_install: any;
+declare const cfw_acr_preview: any;
+declare const objectiv_cfw_admin: any;
+
+cfwDomReady( () => {
+    /**
+     * Unload Handler
+     */
+    let changed = false;
+    const beforeUnloadHandler = ( event ) => {
+        if ( changed ) {
+            event.preventDefault();
+            event.returnValue = ( <any>window ).objectiv_cfw_admin.i18n_nav_warning;
+        }
+    };
+
+    const fieldChangedHandler = () => {
+        jQuery( '#cfw_admin_header_save_button' ).removeClass( 'cfw-save-inactive' );
+
+        changed = true;
+    };
+
+    jQuery( document.body ).on( 'input keydown', '.cfw-tw', fieldChangedHandler );
+    jQuery( document.body ).on( 'cfw_admin_field_changed', fieldChangedHandler );
+
+    window.addEventListener( 'beforeunload', beforeUnloadHandler );
+
+    jQuery( document.body ).on( 'click', '#cfw_admin_page_submit, #submit, #publish', () => {
+        window.removeEventListener( 'beforeunload', beforeUnloadHandler );
+    } );
+
+    /**
+     * Code Editors
+     */
+    // Header Scripts
+    new RichEditor( '#_cfw__settingheader_scriptsstring' );
+    new RichEditor( '#_cfw__settingheader_scripts_checkoutstring' );
+    new RichEditor( '#_cfw__settingheader_scripts_thank_youstring' );
+    new RichEditor( '#_cfw__settingheader_scripts_order_paystring' );
+
+    // Footer Scripts
+    new RichEditor( '#_cfw__settingfooter_scriptsstring' );
+    new RichEditor( '#_cfw__settingfooter_scripts_checkoutstring' );
+    new RichEditor( '#_cfw__settingfooter_scripts_thank_youstring' );
+    new RichEditor( '#_cfw__settingfooter_scripts_order_paystring' );
+
+    // Custom CSS
+    new RichEditor( '#_cfw__settingcustom_css_defaultstring', 'css' );
+
+    // PHP Snippets
+    new RichEditor( '#_cfw__settingphp_snippetsstring', 'php' );
+
+    /**
+     * Color Pickers
+     */
+    jQuery( '.cfw-admin-color-picker' ).wpColorPicker( {
+        change: fieldChangedHandler,
+    } );
+
+    /**
+     * Font Selectors
+     */
+    new FontSelector( '#cfw-body-font-selector' );
+    new FontSelector( '#cfw-heading-font-selector' );
+
+    /**
+     * Settings Export / Import
+     */
+    new SettingsExporterButton( '#export_settings_button' );
+    new SettingsImporterButton( '#import_settings_button' );
+
+    /**
+     * Toggled Field Sections
+     */
+    new FieldToggler( '#cfw_checkbox_enable_cart_editing', '#cart_edit_empty_cart_redirect, #cfw_checkbox_allow_checkout_cart_item_variation_changes, #cfw_checkbox_show_item_remove_button' );
+    new FieldToggler( '#cfw_checkbox_enable_thank_you_page', '#cfw_checkbox_enable_map_embed, #thank_you_order_statuses, #cfw_checkbox_override_view_order_template' );
+    new FieldToggler( '#cfw_checkbox_enable_trust_badges', '#trust_badges_title, .cfw-admin-trust-badge-row:not(.cfw-admin-trust-badge-template-row), .cfw-admin-add-trust-badge-row-button, [name="_cfw__setting[trust_badge_position][string]"]' );
+    new FieldToggler( '#cfw_checkbox_enable_smartystreets_integration', '#smartystreets_auth_id, #smartystreets_auth_token' );
+    new FieldToggler( '#cfw_checkbox_enable_fetchify_address_autocomplete', '#fetchify_access_token' );
+    new FieldToggler( '#cfw_checkbox_enable_international_phone_field', '[name="_cfw__setting[international_phone_field_standard][string]"]' );
+    new FieldToggler( '#cfw_checkbox_enable_discreet_address_1_fields', '[name="_cfw__setting[discreet_address_1_fields_order][string]"]' );
+
+    new FieldToggler(
+        '#cfw_enable_side_cart',
+        '#cfw_checkbox_enable_ajax_add_to_cart, '
+        + '#cfw_checkbox_enable_free_shipping_progress_bar, '
+        + '#side_cart_free_shipping_threshold, '
+        + '#side_cart_amount_remaining_message, '
+        + '#side_cart_free_shipping_message, '
+        + '#side_cart_free_shipping_progress_indicator_color, '
+        + '#side_cart_free_shipping_progress_bg_color, '
+        + '#cfw_checkbox_enable_floating_cart_button, '
+        + '#floating_cart_button_right_position, '
+        + '#floating_cart_button_bottom_position, '
+        + '#cfw_checkbox_hide_floating_cart_button_empty_cart, '
+        + '#cfw_checkbox_enable_order_bumps_on_side_cart, '
+        + '#side_cart_icon_width, '
+        + '#side_cart_icon_color, '
+        + '[name="_cfw__setting[side_cart_icon][string]"], '
+        + '#cfw_checkbox_enable_promo_codes_on_side_cart, '
+        + '#cfw_checkbox_enable_side_cart_continue_shopping_button, '
+        + '#cfw_checkbox_show_side_cart_item_discount, '
+        + '#cfw_checkbox_enable_side_cart_payment_buttons, '
+        + '#cfw_checkbox_allow_side_cart_item_variation_changes',
+    );
+
+    new FieldToggler(
+        '#cfw_checkbox_enable_floating_cart_button',
+        '#floating_cart_button_right_position, #floating_cart_button_bottom_position, #cfw_checkbox_hide_floating_cart_button_empty_cart',
+    );
+
+    new FieldToggler(
+        '#cfw_checkbox_enable_free_shipping_progress_bar',
+        '#side_cart_free_shipping_threshold, #side_cart_amount_remaining_message, #side_cart_free_shipping_message, #side_cart_free_shipping_progress_indicator_color, #side_cart_free_shipping_progress_bg_color',
+    );
+
+    new FieldToggler( '#cfw_checkbox_enable_pickup_ship_option', '#pickup_ship_option_label' );
+    new FieldToggler( '#pickup_methods_other', '#pickup_shipping_method_other_label, #cfw_checkbox_enable_pickup_shipping_method_other_regex' );
+    new FieldToggler( '#cfw_checkbox_enable_pickup', '#pickup_option_label, [name="_cfw__setting[pickup_methods][string][]"], #pickup_ship_option_label, #pickup_shipping_method_other_label, #cfw_checkbox_enable_pickup_shipping_method_other_regex, #cfw_checkbox_enable_pickup_method_step, #cfw_checkbox_hide_pickup_methods, #cfw_checkbox_enable_pickup_ship_option' );
+    new FieldToggler( '#cfw_checkbox_enable_highlighted_countries', '[name="_cfw__setting[highlighted_countries][string][]"]' );
+
+    /**
+     * Image Pickers
+     */
+    new ImagePicker( '.cfw-admin-image-picker-button' );
+    new ImagePicker( '.cfw-admin-side-cart-logo-picker-button' );
+
+    /**
+     * Trust Badge Repeater
+     */
+    new TrustBadgeRepeater();
+
+    /**
+     * Order Bumps Metaboxes
+     */
+    new OrderBumpsAdmin();
+
+    // Enable Select2
+    jQuery( document.body ).trigger( 'wc-enhanced-select-init' );
+
+    /**
+     * Order Bumps Form Validation
+     */
+    jQuery( '.post-type-cfw_order_bumps form#post' ).validate( {
+        rules: {
+            'cfw_ob_categories[]': {
+                required() {
+                    return jQuery( '#cfw_ob_display_for option:selected' ).val() === 'specific_categories';
+                },
+            },
+            'cfw_ob_products[]': {
+                required() {
+                    return jQuery( '#cfw_ob_display_for option:selected' ).val() === 'specific_products';
+                },
+            },
+            cfw_ob_offer_quantity: {
+                required() {
+                    return !jQuery( '#cfw_ob_upsell' ).is( ':checked' );
+                },
+                number: true,
+            },
+            cfw_ob_offer_discount: {
+                required: true,
+                number: true,
+            },
+            cfw_ob_offer_product: {
+                required: true,
+            },
+            cfw_ob_offer_language: {
+                required: true,
+            },
+            cfw_ob_offer_description: {
+                required: true,
+            },
+        },
+        // Specify validation error messages
+        messages: {
+            'cfw_ob_categories[]': 'You must specify at least one category.',
+            'cfw_ob_products[]': 'You must specify at least one product.',
+            cfw_ob_offer_discount: 'Discount value must be a number. Example: 10, or 10.00',
+            cfw_ob_offer_product: 'You must specify an offer product.',
+        },
+        focusInvalid: false,
+        invalidHandler( form, validator ) {
+            if ( !validator.numberOfInvalids() ) return;
+
+            jQuery( 'html, body' ).animate( {
+                scrollTop: jQuery( validator.errorList[ 0 ].element ).offset().top,
+            }, 300 );
+        },
+        errorPlacement( error, element ) {
+            error.appendTo( element.closest( 'td' ) );
+        },
+        submitHandler( form ) {
+            form.submit();
+        },
+    } );
+
+    /**
+     * Order Bumps Settings Validation
+     */
+    jQuery( '#order_bumps_settings_form' ).validate( {
+        rules: {
+            '_cfw__setting[max_bumps][string]': {
+                required: true,
+                number: true,
+            },
+        },
+        focusInvalid: false,
+        invalidHandler( form, validator ) {
+            if ( !validator.numberOfInvalids() ) return;
+
+            jQuery( 'html, body' ).animate( {
+                scrollTop: jQuery( validator.errorList[ 0 ].element ).offset().top,
+            }, 300 );
+        },
+        errorPlacement( error, element ) {
+            error.appendTo( element.closest( '.cfw-admin-field-container' ) );
+        },
+        submitHandler( form ) {
+            form.submit();
+        },
+    } );
+
+    jQuery( document.body ).on( 'input', '#cfw_license_key', () => {
+        const key = jQuery( '#cfw_license_key' ).val().toString().trim();
+
+        if ( key.length !== 32 ) {
+            return;
+        }
+
+        const licenseContentDiv = jQuery( '#1-activate-your-license_content' );
+
+        licenseContentDiv.block( {
+            message: null,
+            overlayCSS: {
+                background: '#fff',
+                opacity: 0.4,
+            },
+        } );
+
+        jQuery.ajax( {
+            type: 'POST',
+            url: ( <any>window ).objectiv_cfw_admin.ajax_url,
+            data: {
+                action: 'cfw_license_save',
+                key,
+                nonce: ( <any>window ).objectiv_cfw_admin.nonce,
+            },
+            success( response ) {
+                if ( response.success === false ) {
+                    return;
+                }
+
+                if ( response.fragments ) {
+                    jQuery.each( response.fragments, ( selector: any, value ) => {
+                        if ( typeof value === 'string' ) {
+                            jQuery( selector ).replaceWith( value );
+                        }
+                    } );
+                }
+            },
+            complete() {
+                licenseContentDiv.unblock();
+            },
+            dataType: 'json',
+            cache: false,
+        } );
+    } );
+
+    jQuery( document.body ).on( 'click', '#cfw_admin_header_save_button', ( e ) => {
+        e.preventDefault();
+        jQuery( '#cfw_admin_page_submit' ).trigger( 'click' );
+    } );
+
+    jQuery( document.body ).on( 'click', '#cfw_reset_stats', ( e ) => {
+        swal.fire( {
+            title: 'Confirm',
+            text: 'Are you sure you want to reset your conversion statistics for this Order Bump? This cannot be undone.',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Yes, reset!',
+            confirmButtonColor: '#4e9ae0',
+            customClass: {
+                container: 'cfw-swal-container',
+            },
+        } ).then( ( result ) => {
+            if ( !result.isConfirmed ) {
+                jQuery( e.currentTarget ).prop( 'checked', false );
+            }
+        } );
+    } );
+
+    jQuery( document.body ).on( 'click', '#cfw_sendwp_install_button', ( e ) => {
+        cfw_sendwp_remote_install();
+    } );
+
+    jQuery( document.body ).on( 'click', '#cfw_send_preview_button', ( e ) => {
+        e.preventDefault();
+
+        const email_address = jQuery( '#cfw_send_preview' ).val();
+        const email_id = jQuery( '#post_ID' ).val();
+
+        if ( email_address === '' ) {
+            alert( 'Please enter an email address.' );
+            return;
+        }
+
+        const data = {
+            action: 'cfw_acr_preview_email_send',
+            email_address,
+            email_id,
+            security: cfw_acr_preview.nonce,
+            dataType: 'json',
+        };
+
+        jQuery.post( objectiv_cfw_admin.ajax_url, data, ( response ) => {
+            // handle the response from wp_send_json_success
+            if ( response.success ) {
+                alert( 'Email sent successfully.' );
+            } else {
+                alert( response.data );
+            }
+        } );
+    } );
+
+    jQuery( '#cfw-remigrate-v7' ).on( 'click', ( e ) => {
+        // eslint-disable-next-line no-restricted-globals
+        const confirmation = confirm( 'Are you sure you want to remigrate your settings from v7? This cannot be undone.' );
+        if ( !confirmation ) {
+            e.preventDefault();
+        }
+    } );
+
+    jQuery( '#cfw-delete-acr-carts' ).on( 'click', ( e ) => {
+        // eslint-disable-next-line no-restricted-globals
+        const confirmation = confirm( 'Are you sure you want to clear all tracked carts and reset all recovery statistics? This cannot be undone.' );
+        if ( !confirmation ) {
+            e.preventDefault();
+        }
+    } );
+} );

@@ -1,0 +1,50 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "getwooplugins/attribute-filter",
+  "version": "1.0.0",
+  "title": "Variation Swatches: Filter by Attribute",
+  "category": "getwooplugins",
+  "icon": "filter",
+  "description": "Variation Swatches: Filter by Attribute Block",
+  "attributes": {
+    "attributeId": {
+      "type": "number",
+      "default": 0
+    },
+    "showCount": {
+      "type": "boolean",
+      "default": false
+    },
+    "selectType": {
+      "type": "string",
+      "default": "single"
+    },
+    "queryType": {
+      "type": "string",
+      "default": "or"
+    }
+  },
+  "styles": [
+    {
+      "name": "list",
+      "label": "List",
+      "isDefault": true
+    },
+    {
+      "name": "button",
+      "label": "Button"
+    }
+  ],
+  "supports": {
+    "html": false
+  },
+  "textdomain": "woo-variation-swatches-pro",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css",
+  "viewScript": [
+    "woo-variation-swatches-attribute-filter"
+  ],
+  "render": "file:./render.php"
+}

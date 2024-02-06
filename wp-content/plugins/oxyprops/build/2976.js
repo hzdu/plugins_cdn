@@ -1,0 +1,1 @@
+"use strict";(globalThis.webpackChunkoxyprops=globalThis.webpackChunkoxyprops||[]).push([[2976],{2976:(e,n,p)=>{p.r(n),p.d(n,{TriggerChange:()=>t,TriggerInput:()=>s});const t=()=>{oxyProps.inputItem.dispatchEvent(new Event("change"))},s=()=>{oxyProps.inputItem.dispatchEvent(new Event("input"))}}}]);

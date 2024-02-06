@@ -1,0 +1,64 @@
+/**
+ *
+ * Multi step
+ *
+ */
+.happyforms-part--page_break hr {
+  display: block;
+  width: 100%;
+  height: 1px;
+  border-top: 2px dashed #dbdbdb;
+  border-color: var(--happyforms-color-part-border);
+  background: transparent;
+}
+
+/**
+ *
+ * reCAPTCHA
+ *
+ */
+.grecaptcha-badge {
+  display: none !important;
+}
+
+.happyforms-save-session {
+  display: none !important;
+}
+
+[data-happyforms-resumable] .happyforms-save-session {
+  display: inline-block !important;
+}
+
+.happyforms--signature-area--container,
+.happyforms--signature-area--container .happyforms-button {
+  cursor: auto !important;
+}
+
+.happyforms-builder-preview {
+  background: #efefef;
+  padding: 0px !important;
+}
+
+.happyforms-builder-preview .notice {
+  background: #fff;
+  border: 1px solid #c3c4c7;
+  border-left-width: 4px;
+  box-shadow: 0 1px 1px rgb(0 0 0 / 4%);
+  padding: 8px 12px;
+  color: #000;
+  font-size: 16px;
+  font-size: var(--happyforms-part-title-font-size);
+}
+
+.happyforms-builder-preview .notice-warning {
+  border-left-color: #dba617;
+}
+
+.happyforms-builder-preview,
+.happyforms-builder-preview .notice a {
+  pointer-events: auto !important;
+}
+
+.happyforms-builder-preview .notice a {
+  cursor: pointer !important;
+}

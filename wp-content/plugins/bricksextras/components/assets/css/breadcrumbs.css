@@ -1,0 +1,79 @@
+:root {
+    --x-breadcrumb-separator: '';
+    --x-breadcrumbs-gap: 5px;
+}
+
+.brxe-xbreadcrumbs {
+    display: inline-flex;
+    flex-direction: row;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.x-breadcrumbs_list {
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.brxe-xbreadcrumbs li {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+}
+
+.x-breadcrumbs_prefix {
+    display: flex;
+    align-items: center;
+}
+
+.x-breadcrumbs_list-item,
+[data-source=yoast] > span:last-child,
+[data-source=navxt] > .breadcrumbs,
+.brxe-xbreadcrumbs .aioseo-breadcrumbs,
+.brxe-xbreadcrumbs .rank-math-breadcrumb > p,
+.brxe-xbreadcrumbs > .breadcrumbs,
+[data-source=seopress] .breadcrumb {
+    flex-wrap: wrap;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    column-gap: var(--x-breadcrumbs-gap);
+    padding: 0;
+}
+
+
+.brxe-xbreadcrumbs .aioseo-breadcrumb {
+    display: inline-flex;
+}
+
+.brxe-xbreadcrumbs .breadcrumbs[typeof="BreadcrumbList"] > span {
+    display: inline-flex;
+}
+
+[data-source=yoast] span,
+[data-source=seopress] .breadcrumb-item {
+    display: inline-flex;
+}
+
+[data-source=seopress] .breadcrumb li::after {
+    margin-right: 0;
+    margin-left: var(--x-breadcrumbs-gap);
+}
+
+.brxe-xbreadcrumbs li > span,
+.brxe-xbreadcrumbs a > span {
+    display: inline-block;
+}
+
+
+.brxe-xbreadcrumbs[data-source=extras] li:not(:first-child):before {
+    color: inherit;
+    content: ' ' var(--x-breadcrumb-separator) ' ';
+}
+
+.brxe-xbreadcrumbs[data-source=extras] li:not(:last-child):after {
+    content: '';
+}

@@ -1,0 +1,539 @@
+.ame-image-selector-v2 .ame-image-preview {
+  border: 1px dashed #b4b9be;
+  text-align: center;
+  background: #f1f1f1;
+  line-height: 0;
+  display: inline-block;
+  box-sizing: border-box;
+}
+.ame-image-selector-v2 .ame-image-preview img {
+  max-width: 100%;
+}
+.ame-image-selector-v2 .ame-image-preview-placeholder {
+  display: inline-block;
+  padding: 10px;
+  line-height: normal;
+}
+.ame-image-selector-v2 .ame-external-image-url {
+  margin-top: 0.4em;
+}
+.ame-image-selector-v2 .ame-image-selector-actions {
+  display: block;
+  margin-top: 0.8em;
+}
+.ame-image-selector-v2 .ame-remove-image-link {
+  line-height: 30px;
+  margin-left: 1em;
+}
+
+.ame-ac-control .ame-image-selector-v2 {
+  box-sizing: border-box;
+  width: 100%;
+}
+.ame-ac-control .ame-image-selector-v2 .ame-image-selector-actions {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: baseline;
+}
+.ame-ac-control .ame-image-selector-v2 .ame-set-external-image-url {
+  margin-left: 0.30769231em;
+}
+.ame-ac-control .ame-image-selector-v2 .ame-remove-image-link {
+  margin-left: auto;
+}
+.ame-ac-control .ame-image-selector-v2 .ame-image-preview {
+  box-sizing: border-box;
+}
+.ame-ac-control .ame-image-selector-v2 .ame-image-preview-empty {
+  width: 100%;
+}
+
+.ame-code-editor-control-wrap .CodeMirror {
+  height: auto;
+}
+.ame-code-editor-control-wrap .CodeMirror-scroll {
+  overflow-y: hidden;
+  overflow-x: auto;
+  min-height: 100px;
+}
+
+.ame-number-input-control select:invalid, .ame-number-input-control select.ame-has-validation-errors, .ame-number-input-control input:invalid, .ame-number-input-control input.ame-has-validation-errors {
+  border-color: #d63638;
+}
+.ame-number-input-control select:invalid:focus, .ame-number-input-control select.ame-has-validation-errors:focus, .ame-number-input-control input:invalid:focus, .ame-number-input-control input.ame-has-validation-errors:focus {
+  box-shadow: 0 0 0 1px #d63638;
+}
+
+.ame-small-number-input {
+  width: 5.1em;
+}
+
+.ame-font-size-input {
+  width: 5.1em;
+}
+
+.ame-container-with-popup-slider {
+  overflow: visible;
+}
+
+.ame-popup-slider {
+  position: absolute;
+  border: 1px solid #ccd0d4;
+  border-radius: 4px;
+  background: white;
+  padding: 8px 16px;
+  box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.2);
+}
+.ame-popup-slider, .ame-popup-slider * {
+  box-sizing: border-box;
+}
+.ame-popup-slider .ame-popup-slider-bar {
+  display: block;
+  height: 16px;
+  position: relative;
+  overflow: visible;
+  cursor: pointer;
+}
+.ame-popup-slider .ame-popup-slider-groove {
+  display: block;
+  height: 100%;
+  min-width: 16px;
+  padding: 6px 0;
+}
+.ame-popup-slider .ame-popup-slider-groove:before {
+  display: block;
+  content: " ";
+  width: 100%;
+  height: 100%;
+  background-color: #ebebeb;
+  border-radius: 3px;
+}
+.ame-popup-slider .ame-popup-slider-handle {
+  cursor: pointer;
+  width: 16px;
+  height: 16px;
+  position: absolute;
+  top: 0px;
+  margin-left: -8px;
+  border-radius: 50%;
+  background-color: #fff;
+  border: 2px solid #3582c4;
+}
+.ame-popup-slider .ame-popup-slider-tip {
+  display: block;
+  width: 24px;
+  height: 12px;
+  padding-right: 12px;
+  padding-left: 1px;
+  padding-bottom: 0;
+  position: absolute;
+  top: -12px;
+  overflow: hidden;
+  pointer-events: none;
+}
+.ame-popup-slider .ame-popup-slider-tip:after {
+  display: block;
+  content: " ";
+  width: 12px;
+  height: 12px;
+  background-color: white;
+  box-shadow: 0 0 0 0.9px #ccd0d4;
+  transform-origin: left bottom;
+  transform: rotate(45deg);
+}
+.ame-popup-slider .ame-popup-slider-top-tip {
+  top: -12px;
+}
+.ame-popup-slider .ame-popup-slider-bottom-tip {
+  top: 100%;
+  transform: scaleY(-1);
+}
+
+.ame-radio-button-bar-control {
+  display: flex;
+  flex-direction: row;
+}
+.ame-radio-button-bar-control input[type=radio], .ame-radio-button-bar-control input[type=checkbox] {
+  position: absolute;
+  left: -9999em;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  margin: -1px;
+}
+.ame-radio-button-bar-control > label {
+  display: inline-block;
+}
+.ame-radio-button-bar-control input[type=radio]:checked ~ .button {
+  background-color: #dcdcde;
+  color: #135e96;
+  border-color: #0a4b78;
+  box-shadow: inset 0 2px 5px -3px #0a4b78;
+  z-index: 1;
+}
+.ame-radio-button-bar-control > .ame-radio-bar-item:not(:first-child) > .button {
+  margin-left: -1px;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.ame-radio-button-bar-control > .ame-radio-bar-item:not(:last-child) > .button {
+  margin-right: 0;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+.ame-radio-button-bar-control input[type=radio]:disabled ~ .button {
+  color: #a7aaad;
+  border-color: #dcdcde;
+  background: #f6f7f7;
+  box-shadow: none;
+  cursor: default;
+}
+.ame-radio-button-bar-control .ame-radio-bar-button {
+  display: flex;
+  align-items: center;
+}
+.ame-radio-button-bar-control .ame-radio-bar-button.ame-rb-has-label .dashicons {
+  margin-right: 0.2em;
+}
+.ame-radio-button-bar-control .ame-radio-bar-button .dashicons-image-rotate {
+  font-size: 17px;
+  line-height: 17px;
+  height: 16px;
+}
+.ame-radio-button-bar-control .ame-radio-bar-button .dashicons-no, .ame-radio-button-bar-control .ame-radio-bar-button .dashicons-no-alt {
+  font-size: 22px;
+  line-height: 22px;
+  height: 22px;
+}
+
+.ame-rg-has-nested-controls {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(auto, max-content));
+  column-gap: 1.2307692308em;
+  row-gap: 0.6153846154em;
+  align-items: center;
+}
+.ame-rg-has-nested-controls .ame-rg-option-label {
+  grid-column: 1;
+}
+.ame-rg-has-nested-controls .ame-rg-nested-control {
+  grid-column: 2;
+}
+.ame-rg-has-nested-controls.ame-rg-no-center-items {
+  align-items: normal;
+}
+
+.ame-rg-with-color-pickers {
+  align-items: normal;
+}
+.ame-rg-with-color-pickers .ame-rg-has-choice-child {
+  margin-top: 0.3846153846em;
+}
+.ame-rg-with-color-pickers .ame-rg-nested-control .wp-picker-container {
+  min-width: 257px;
+}
+
+.ame-ac-control .ame-radio-group-component > p {
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+.ame-ac-control .ame-radio-group-component > p:first-of-type {
+  margin-top: 0;
+}
+.ame-ac-control .ame-radio-group-component > p:last-of-type {
+  margin-bottom: 0;
+}
+.ame-ac-control .ame-rg-with-color-pickers .ame-rg-nested-control {
+  grid-column: 1;
+}
+.ame-ac-control .ame-rg-with-color-pickers .ame-rg-nested-control .wp-picker-container {
+  min-width: unset;
+}
+
+.ame-background-position-control {
+  position: relative;
+}
+.ame-background-position-control span.button {
+  position: relative;
+  height: 38px;
+  line-height: 38px;
+  border-radius: 0;
+  margin: 0 -1px 0 0;
+}
+.ame-background-position-control .dashicons {
+  height: 20px;
+  position: relative;
+  vertical-align: top;
+  margin-top: 8px;
+}
+.ame-background-position-control .ame-background-position-output {
+  margin-bottom: 0.6em;
+}
+.ame-background-position-control .ame-bps-center {
+  display: inline-block;
+  width: 20px;
+  height: 11px;
+  text-align: center;
+  margin-top: 13px;
+}
+.ame-background-position-control .ame-bps-center:before {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  content: " ";
+  border-radius: 50%;
+  background-color: currentColor;
+  vertical-align: top;
+}
+.ame-background-position-control .ame-background-position-group {
+  margin-bottom: -1px;
+}
+.ame-background-position-control .ame-background-position-group.ame-background-position-group label {
+  margin: 0 !important;
+  padding: 0;
+}
+.ame-background-position-control .ame-background-position-group:first-child label:first-child .dashicons {
+  transform: rotate(45deg);
+}
+.ame-background-position-control .ame-background-position-group:first-child label:first-child .button {
+  border-top-left-radius: 3px;
+}
+.ame-background-position-control .ame-background-position-group:first-child label:last-child .dashicons {
+  transform: rotate(-45deg);
+}
+.ame-background-position-control .ame-background-position-group:first-child label:last-child .button {
+  border-top-right-radius: 3px;
+}
+.ame-background-position-control .ame-background-position-group:last-child label:first-child .dashicons {
+  transform: rotate(-45deg);
+}
+.ame-background-position-control .ame-background-position-group:last-child label:first-child .button {
+  border-bottom-left-radius: 3px;
+}
+.ame-background-position-control .ame-background-position-group:last-child label:last-child .dashicons {
+  transform: rotate(45deg);
+}
+.ame-background-position-control .ame-background-position-group:last-child label:last-child .button {
+  border-bottom-right-radius: 3px;
+}
+.ame-background-position-control input[type=radio] {
+  position: absolute;
+  left: -9999em;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  margin: -1px;
+}
+.ame-background-position-control input[type=radio]:checked ~ .button {
+  background: #f0f0f1;
+  border-color: #8c8f94;
+  box-shadow: inset 0 2px 5px -3px rgba(0, 0, 0, 0.51);
+  z-index: 1;
+  color: #1d2327;
+  /*background: Highlight;
+  color: HighlightText;*/
+}
+
+.ame-font-style-control input[type=checkbox], .ame-font-style-control input[type=radio] {
+  position: absolute;
+  left: -9999em;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  margin: -1px;
+}
+.ame-font-style-control .ame-font-style-control-choice {
+  margin: 0 0.4em 0 0 !important;
+}
+.ame-font-style-control .ame-font-style-control-choice:last-of-type {
+  margin-right: 0 !important;
+}
+.ame-font-style-control .button {
+  user-select: none;
+  font-size: 15px;
+  line-height: 2;
+  text-align: center;
+  min-width: 42px;
+}
+.ame-font-style-control .button .dashicons {
+  line-height: 30px;
+}
+.ame-font-style-control input:checked ~ .button {
+  background-color: #dcdcde;
+  /*color: #135e96;
+  border-color: #0a4b78;
+  box-shadow: inset 0 2px 5px -3px #0a4b78;*/
+  /*
+  //TinyMCE active button style.
+  border-color: #50575e;
+  box-shadow: inset 0 2px 5px -3px rgba(0, 0, 0, 0.3);
+  */
+}
+.ame-font-style-control .ame-font-sample {
+  font-weight: 600;
+}
+.ame-font-style-control .ame-font-style-null-choice {
+  display: none;
+}
+.ame-font-style-control .dashicons-editor-strikethrough {
+  font-size: 25px;
+}
+.ame-font-style-control .dashicons-editor-strikethrough:before {
+  margin-left: -2px;
+}
+
+.ame-ac-control .ame-font-style-control {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  row-gap: 0.4em;
+}
+
+.ame-box-dimensions-control {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+}
+.ame-box-dimensions-control .ame-single-box-dimension {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.ame-box-dimensions-control .ame-box-dimension-label {
+  color: #646970;
+  font-size: 13px;
+  margin: 1px 0 0 0 !important;
+}
+.ame-box-dimensions-control input:focus ~ .ame-box-dimension-label {
+  color: inherit;
+}
+.ame-box-dimensions-control .ame-single-box-dimension select:invalid, .ame-box-dimensions-control .ame-single-box-dimension select.ame-has-validation-errors, .ame-box-dimensions-control .ame-single-box-dimension input:invalid, .ame-box-dimensions-control .ame-single-box-dimension input.ame-has-validation-errors {
+  border-color: #d63638;
+}
+.ame-box-dimensions-control .ame-single-box-dimension select:invalid:focus, .ame-box-dimensions-control .ame-single-box-dimension select.ame-has-validation-errors:focus, .ame-box-dimensions-control .ame-single-box-dimension input:invalid:focus, .ame-box-dimensions-control .ame-single-box-dimension input.ame-has-validation-errors:focus {
+  box-shadow: 0 0 0 1px #d63638;
+}
+.ame-box-dimensions-control .ame-single-box-dimension input {
+  margin-right: 0;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+.ame-box-dimensions-control .ame-single-box-dimension:not(:first-child) input {
+  margin-left: -1px;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.ame-box-dimensions-control .ame-box-dimensions-unit-selector {
+  margin-left: -1px;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.ame-box-dimensions-control input:focus, .ame-box-dimensions-control select:focus {
+  z-index: 2;
+}
+.ame-box-dimensions-control .ame-box-dimensions-link-button {
+  display: flex;
+  align-items: center;
+  margin-left: 4px;
+}
+
+.ame-ac-control .ame-box-dimensions-control {
+  flex-wrap: nowrap;
+  width: 100%;
+}
+.ame-ac-control .ame-box-dimensions-control .ame-single-box-dimension {
+  width: 3em;
+  flex-grow: 1;
+  flex-shrink: 1;
+  /*
+  Unfortunately, the negative margin trick doesn't work well with fractional widths
+  that can be generated when shrinking the inputs, so we'll hide a border instead.
+
+  In this case, hide the right border and not the left one because of the left-to-right
+  rendering order. It appears that when you have two adjacent elements with fractional
+  width, sometimes the second element will partially overlap the first one, so the right
+  border of the first element would be effectively hidden anyway.
+   */
+}
+.ame-ac-control .ame-box-dimensions-control .ame-single-box-dimension input {
+  width: 100%;
+  box-sizing: border-box;
+}
+.ame-ac-control .ame-box-dimensions-control .ame-single-box-dimension:not(:first-child) input {
+  margin-left: 0;
+}
+.ame-ac-control .ame-box-dimensions-control .ame-single-box-dimension:not(:last-child) input {
+  border-right-style: none;
+}
+.ame-ac-control .ame-box-dimensions-control .ame-box-dimensions-link-button {
+  margin-left: 0;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.ame-ac-control .ame-box-dimensions-control .ame-box-dimensions-unit-selector {
+  margin-right: 0;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border-right-style: none;
+}
+.ame-ac-control .ame-box-dimensions-control .ame-box-dimension-topLeft .ame-box-dimension-label .ame-box-dimension-label-text,
+.ame-ac-control .ame-box-dimensions-control .ame-box-dimension-topRight .ame-box-dimension-label .ame-box-dimension-label-text,
+.ame-ac-control .ame-box-dimensions-control .ame-box-dimension-bottomLeft .ame-box-dimension-label .ame-box-dimension-label-text,
+.ame-ac-control .ame-box-dimensions-control .ame-box-dimension-bottomRight .ame-box-dimension-label .ame-box-dimension-label-text {
+  position: absolute;
+  text-indent: -1000em;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+.ame-ac-control .ame-box-dimensions-control .ame-box-dimension-topLeft .ame-box-dimension-label::before,
+.ame-ac-control .ame-box-dimensions-control .ame-box-dimension-topRight .ame-box-dimension-label::before,
+.ame-ac-control .ame-box-dimensions-control .ame-box-dimension-bottomLeft .ame-box-dimension-label::before,
+.ame-ac-control .ame-box-dimensions-control .ame-box-dimension-bottomRight .ame-box-dimension-label::before {
+  display: inline-block;
+  content: "";
+  width: 0.6em;
+  height: 0.6em;
+  margin-top: 2px;
+  color: #777;
+  opacity: 0.8;
+  border: 2px solid currentColor;
+}
+.ame-ac-control .ame-box-dimensions-control .ame-box-dimension-topLeft .ame-box-dimension-label::before {
+  border-top-left-radius: 0.6em;
+  border-top-width: 4px;
+  border-left-width: 4px;
+}
+.ame-ac-control .ame-box-dimensions-control .ame-box-dimension-topRight .ame-box-dimension-label::before {
+  border-top-right-radius: 0.6em;
+  border-top-width: 4px;
+  border-right-width: 4px;
+}
+.ame-ac-control .ame-box-dimensions-control .ame-box-dimension-bottomLeft .ame-box-dimension-label::before {
+  border-bottom-left-radius: 0.6em;
+  border-bottom-width: 4px;
+  border-left-width: 4px;
+}
+.ame-ac-control .ame-box-dimensions-control .ame-box-dimension-bottomRight .ame-box-dimension-label::before {
+  border-bottom-right-radius: 0.6em;
+  border-bottom-width: 4px;
+  border-right-width: 4px;
+}
+
+.ame-border-sample-container {
+  display: inline-block;
+  vertical-align: baseline;
+}
+
+.ame-border-sample {
+  display: inline-block;
+  border-top: 0.2307692308em solid #444;
+  width: 14em;
+  vertical-align: middle;
+  padding-bottom: 2px;
+}
+
+/*# sourceMappingURL=controls.css.map */

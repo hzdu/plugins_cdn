@@ -1,0 +1,1 @@
+"use strict";!function(){var e=document.getElementById("su_option_additional-skins_license");if(e){var t=e.getAttribute("data-key"),n=e.getAttribute("data-key-masked");e.addEventListener("focus",function(){e.value===n&&(e.value=t)}),e.addEventListener("blur",function(){e.value===t&&(e.value=n)})}}();

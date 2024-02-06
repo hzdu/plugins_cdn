@@ -1,0 +1,804 @@
+@charset "UTF-8";
+/**
+ * WP File Download
+ *
+ * We developed this code with our hearts and passion.
+ * We hope you found it useful, easy to understand and to customize.
+ * Otherwise, please feel free to contact us at contact@joomunited.com *
+ * @package WP File Download
+ * @copyright Copyright (C) 2013 JoomUnited (http://www.joomunited.com). All rights reserved.
+ * @copyright Copyright (C) 2013 Damien Barrère (http://www.crac-design.com). All rights reserved.
+ * @license GNU General Public License version 2 or later; http://www.gnu.org/licenses/gpl-2.0.html
+ */
+#et-boc .wpfd-content-default h2, .wpfd-content-default h2 {
+  padding: 0.5555555556em 0 0 0;
+  margin: 0 0 0.5555555556em 0;
+  font-size: 1em;
+  color: #595959;
+}
+@media only screen and (max-width: 720px) {
+  #et-boc .wpfd-content-default h2, .wpfd-content-default h2 {
+    margin: 0 0 0.3888888889em 0;
+    padding-top: 0.3888888889em;
+  }
+}
+#et-boc .wpfd-content-default a, .wpfd-content-default a {
+  text-decoration: none !important;
+  border-bottom: 0;
+  box-shadow: none;
+  color: #444;
+  transition: all 0.2s ease;
+}
+#et-boc .wpfd-content-default a:hover, .wpfd-content-default a:hover {
+  box-shadow: 1px 1px 0.6666666667em #ccc;
+}
+#et-boc .wpfd-content-default .wpfd-container, .wpfd-content-default .wpfd-container {
+  flex-flow: row;
+}
+#et-boc .wpfd-content-default .wpfd-container .wpfd-foldertree ul.jaofiletree li, .wpfd-content-default .wpfd-container .wpfd-foldertree ul.jaofiletree li {
+  margin: 0 0 10px 0 !important;
+}
+#et-boc .wpfd-content-default .wpfd-container .wpfd-foldertree ul.jaofiletree li.selected > a, .wpfd-content-default .wpfd-container .wpfd-foldertree ul.jaofiletree li.selected > a {
+  color: #3d3d3d;
+  font-weight: bold;
+}
+#et-boc .wpfd-content-default .wpfd-container .wpfd-foldertree ul.jaofiletree li.selected > .zmdi-folder, .wpfd-content-default .wpfd-container .wpfd-foldertree ul.jaofiletree li.selected > .zmdi-folder {
+  color: #3d3d3d;
+  font-weight: bold;
+}
+#et-boc .wpfd-content-default .wpfd-container .wpfd-foldertree ul.jaofiletree li.selected > .zmdi-folder:before, .wpfd-content-default .wpfd-container .wpfd-foldertree ul.jaofiletree li.selected > .zmdi-folder:before {
+  color: #3d3d3d;
+  font-weight: bold;
+}
+#et-boc .wpfd-content-default .wpfd-container .wpfd-foldertree ul.jaofiletree li.selected > .icon-open-close, .wpfd-content-default .wpfd-container .wpfd-foldertree ul.jaofiletree li.selected > .icon-open-close {
+  color: #3d3d3d;
+  font-weight: bold;
+}
+#et-boc .wpfd-content-default .wpfd-container .wpfd-foldertree ul.jaofiletree li.selected > .icon-open-close:before, .wpfd-content-default .wpfd-container .wpfd-foldertree ul.jaofiletree li.selected > .icon-open-close:before {
+  color: #3d3d3d;
+  font-weight: bold;
+}
+#et-boc .wpfd-content-default .wpfd-container .wpfd-foldertree ul.jaofiletree a, .wpfd-content-default .wpfd-container .wpfd-foldertree ul.jaofiletree a {
+  color: #666666;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  letter-spacing: normal;
+  text-align: left;
+}
+#et-boc .wpfd-content-default .wpfd-container .wpfd-foldertree ul.jaofiletree .zmdi-folder,
+#et-boc .wpfd-content-default .wpfd-container .wpfd-foldertree ul.jaofiletree .zmdi-folder-open,
+#et-boc .wpfd-content-default .wpfd-container .wpfd-foldertree ul.jaofiletree .icon-open-close, .wpfd-content-default .wpfd-container .wpfd-foldertree ul.jaofiletree .zmdi-folder,
+.wpfd-content-default .wpfd-container .wpfd-foldertree ul.jaofiletree .zmdi-folder-open,
+.wpfd-content-default .wpfd-container .wpfd-foldertree ul.jaofiletree .icon-open-close {
+  color: #888888;
+}
+#et-boc .wpfd-content-default .wpfd-container .wpfd-foldertree ul.jaofiletree .zmdi-folder, .wpfd-content-default .wpfd-container .wpfd-foldertree ul.jaofiletree .zmdi-folder {
+  margin-top: 1px;
+  margin-right: 8px;
+}
+#et-boc .wpfd-content-default .wpfd_list, .wpfd-content-default .wpfd_list {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  flex: auto;
+  flex-wrap: wrap;
+  width: 100%;
+  max-width: 100%;
+}
+#et-boc .wpfd-content-default .wpfd_list .file, .wpfd-content-default .wpfd_list .file {
+  font-size: 13px;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  background: #ffffff;
+  min-height: 3.8888888889em;
+  min-width: 350px;
+  padding: 15px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  width: calc(50% - 20px);
+  float: left;
+  box-sizing: border-box;
+  flex-grow: 1;
+}
+@media only screen and (max-width: 720px) {
+  #et-boc .wpfd-content-default .wpfd_list .file, .wpfd-content-default .wpfd_list .file {
+    min-width: unset;
+  }
+}
+#et-boc .wpfd-content-default .wpfd_list .file.flex_span, .wpfd-content-default .wpfd_list .file.flex_span {
+  height: 1px;
+  background: transparent !important;
+  min-height: 1px !important;
+  max-height: 1px !important;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+  border: none;
+}
+#et-boc .wpfd-content-default .wpfd_list .file.is_downloaded, .wpfd-content-default .wpfd_list .file.is_downloaded {
+  background-color: #eeeeee;
+}
+#et-boc .wpfd-content-default .wpfd_list .file input.cbox_file_download:focus, .wpfd-content-default .wpfd_list .file input.cbox_file_download:focus {
+  outline: unset;
+}
+#et-boc .wpfd-content-default .wpfd_list .file.wpfd-password-protection-form, .wpfd-content-default .wpfd_list .file.wpfd-password-protection-form {
+  display: block;
+  color: #999999;
+  font-size: 13px;
+}
+#et-boc .wpfd-content-default .wpfd_list .file.wpfd-password-protection-form .protected-title, .wpfd-content-default .wpfd_list .file.wpfd-password-protection-form .protected-title {
+  color: #808080;
+  font-weight: bold;
+  font-size: 1em;
+}
+#et-boc .wpfd-content-default .wpfd_list .file.wpfd-password-protection-form .wpfd-password-label, .wpfd-content-default .wpfd_list .file.wpfd-password-protection-form .wpfd-password-label {
+  color: #808080;
+  font-size: 1em;
+}
+#et-boc .wpfd-content-default .wpfd_list .file.wpfd-password-protection-form .password-title, .wpfd-content-default .wpfd_list .file.wpfd-password-protection-form .password-title {
+  margin-top: 10px;
+}
+#et-boc .wpfd-content-default .wpfd_list .file.wpfd-password-protection-form .password-type-and-submit-section, .wpfd-content-default .wpfd_list .file.wpfd-password-protection-form .password-type-and-submit-section {
+  width: 100%;
+}
+#et-boc .wpfd-content-default .wpfd_list .file.wpfd-password-protection-form .wpfd-password-value, .wpfd-content-default .wpfd_list .file.wpfd-password-protection-form .wpfd-password-value {
+  width: calc(100% - 65px);
+  padding: 5px 10px;
+  box-sizing: border-box;
+  margin: 0;
+  display: inline-block;
+  font-size: 13px;
+  vertical-align: middle;
+  min-height: 38px;
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+}
+#et-boc .wpfd-content-default .wpfd_list .file.wpfd-password-protection-form .wpfd-password-value:focus, .wpfd-content-default .wpfd_list .file.wpfd-password-protection-form .wpfd-password-value:focus {
+  outline: none;
+}
+#et-boc .wpfd-content-default .wpfd_list .file.wpfd-password-protection-form .wpfd-password-submit, .wpfd-content-default .wpfd_list .file.wpfd-password-protection-form .wpfd-password-submit {
+  width: 55px;
+  font-size: 13px;
+  padding: 5px;
+  box-sizing: border-box;
+  display: inline-block;
+  margin: 0 0 0 1px;
+  min-height: 38px;
+  vertical-align: middle;
+  border-radius: 4px;
+  background-color: #28303d;
+  color: #d1e4dd;
+}
+#et-boc .wpfd-content-default .wpfd_list .file.wpfd-password-protection-form .wpfd-password-submit:hover, .wpfd-content-default .wpfd_list .file.wpfd-password-protection-form .wpfd-password-submit:hover {
+  box-shadow: 1px 1px 0.6666666667em #ccc;
+  background-color: #28303d;
+  border-color: #28303d;
+  color: #d1e4dd;
+}
+#et-boc .wpfd-content-default .wpfd_list .file.wpfd-password-protection-form .wpfd-password-submit:focus, .wpfd-content-default .wpfd_list .file.wpfd-password-protection-form .wpfd-password-submit:focus {
+  outline: none;
+}
+#et-boc .wpfd-content-default .wpfd_list .file.wpfd-password-protection-form .message-info, .wpfd-content-default .wpfd_list .file.wpfd-password-protection-form .message-info {
+  font-size: 1em;
+  margin: 5px 0;
+}
+#et-boc .wpfd-content-default .filecontent > div.ext[class*=wpfd-icon-set-], .wpfd-content-default .filecontent > div.ext[class*=wpfd-icon-set-] {
+  height: 70px;
+  width: 70px;
+  float: left;
+  color: #fff;
+  position: relative;
+  top: 0;
+  text-indent: -999999999px;
+}
+@media screen and (max-width: 450px) {
+  #et-boc .wpfd-content-default .filecontent > div.ext[class*=wpfd-icon-set-], .wpfd-content-default .filecontent > div.ext[class*=wpfd-icon-set-] {
+    display: block;
+    float: unset;
+    margin: 0 auto 20px auto;
+  }
+}
+#et-boc .wpfd-content-default .filecontent > div.ext[class*=wpfd-icon-set-png], .wpfd-content-default .filecontent > div.ext[class*=wpfd-icon-set-png] {
+  background-size: 100% !important;
+}
+#et-boc .wpfd-content-default .filecontent > div.ext[class*=wpfd-icon-set-svg], .wpfd-content-default .filecontent > div.ext[class*=wpfd-icon-set-svg] {
+  background-size: 100% !important;
+}
+#et-boc .wpfd-content-default .filecontent > div.ext:not([class*=wpfd-icon-set-]), .wpfd-content-default .filecontent > div.ext:not([class*=wpfd-icon-set-]) {
+  height: 5.5555555556em;
+  width: 4.1666666667em;
+  margin-right: 0.8333333333em;
+  float: left;
+  background: url(../../../assets/images/theme/neutral.png) top center transparent no-repeat;
+  background-size: contain;
+  color: #fff;
+  position: relative;
+  top: 0;
+}
+@media screen and (max-width: 450px) {
+  #et-boc .wpfd-content-default .filecontent > div.ext:not([class*=wpfd-icon-set-]), .wpfd-content-default .filecontent > div.ext:not([class*=wpfd-icon-set-]) {
+    margin-bottom: 10px;
+  }
+}
+#et-boc .wpfd-content-default .filecontent > div.ext:not([class*=wpfd-icon-set-])[class*=ext-], .wpfd-content-default .filecontent > div.ext:not([class*=wpfd-icon-set-])[class*=ext-] {
+  color: transparent;
+}
+#et-boc .wpfd-content-default .filecontent > div.ext:not([class*=wpfd-icon-set-]).ext-7z, .wpfd-content-default .filecontent > div.ext:not([class*=wpfd-icon-set-]).ext-7z {
+  background-image: url("../../../assets/images/theme/7z.png");
+}
+#et-boc .wpfd-content-default .filecontent > div.ext:not([class*=wpfd-icon-set-]).ext-ace, .wpfd-content-default .filecontent > div.ext:not([class*=wpfd-icon-set-]).ext-ace {
+  background-image: url("../../../assets/images/theme/ace.png");
+}
+#et-boc .wpfd-content-default .filecontent > div.ext:not([class*=wpfd-icon-set-]).ext-bz2, .wpfd-content-default .filecontent > div.ext:not([class*=wpfd-icon-set-]).ext-bz2 {
+  background-image: url("../../../assets/images/theme/bz2.png");
+}
+#et-boc .wpfd-content-default .filecontent > div.ext:not([class*=wpfd-icon-set-]).ext-dmg, .wpfd-content-default .filecontent > div.ext:not([class*=wpfd-icon-set-]).ext-dmg {
+  background-image: url("../../../assets/images/theme/dmg.png");
+}
+#et-boc .wpfd-content-default .filecontent > div.ext:not([class*=wpfd-icon-set-]).ext-gz, .wpfd-content-default .filecontent > div.ext:not([class*=wpfd-icon-set-]).ext-gz {
+  background-image: url("../../../assets/images/theme/gz.png");
+}
+#et-boc .wpfd-content-default .filecontent > div.ext:not([class*=wpfd-icon-set-]).ext-rar, .wpfd-content-default .filecontent > div.ext:not([class*=wpfd-icon-set-]).ext-rar {
+  background-image: url("../../../assets/images/theme/rar.png");
+}
+#et-boc .wpfd-content-default .filecontent > div.ext:not([class*=wpfd-icon-set-]).ext-tgz, .wpfd-content-default .filecontent > div.ext:not([class*=wpfd-icon-set-]).ext-tgz {
+  background-image: url("../../../assets/images/theme/tgz.png");
+}
+#et-boc .wpfd-content-default .filecontent > div.ext:not([class*=wpfd-icon-set-]).ext-zip, .wpfd-content-default .filecontent > div.ext:not([class*=wpfd-icon-set-]).ext-zip {
+  background-image: url("../../../assets/images/theme/zip.png");
+}
+#et-boc .wpfd-content-default .filecontent > div.ext:not([class*=wpfd-icon-set-]).ext-csv, .wpfd-content-default .filecontent > div.ext:not([class*=wpfd-icon-set-]).ext-csv {
+  background-image: url("../../../assets/images/theme/csv.png");
+}
+#et-boc .wpfd-content-default .filecontent > div.ext:not([class*=wpfd-icon-set-]).ext-doc, .wpfd-content-default .filecontent > div.ext:not([class*=wpfd-icon-set-]).ext-doc {
+  background-image: url("../../../assets/images/theme/doc.png");
+}
+#et-boc .wpfd-content-default .filecontent > div.ext:not([class*=wpfd-icon-set-]).ext-docx, .wpfd-content-default .filecontent > div.ext:not([class*=wpfd-icon-set-]).ext-docx {
+  background-image: url("../../../assets/images/theme/docx.png");
+}
+#et-boc .wpfd-content-default .filecontent > div.ext:not([class*=wpfd-icon-set-]).ext-html, .wpfd-content-default .filecontent > div.ext:not([class*=wpfd-icon-set-]).ext-html {
+  background-image: url("../../../assets/images/theme/html.png");
+}
+#et-boc .wpfd-content-default .filecontent > div.ext:not([class*=wpfd-icon-set-]).ext-key, .wpfd-content-default .filecontent > div.ext:not([class*=wpfd-icon-set-]).ext-key {
+  background-image: url("../../../assets/images/theme/key.png");
+}
+#et-boc .wpfd-content-default .filecontent > div.ext:not([class*=wpfd-icon-set-]).ext-keynote, .wpfd-content-default .filecontent > div.ext:not([class*=wpfd-icon-set-]).ext-keynote {
+  background-image: url("../../../assets/images/theme/keynote.png");
+}
+#et-boc .wpfd-content-default .filecontent > div.ext:not([class*=wpfd-icon-set-]).ext-odp, .wpfd-content-default .filecontent > div.ext:not([class*=wpfd-icon-set-]).ext-odp {
+  background-image: url("../../../assets/images/theme/odp.png");
+}
+#et-boc .wpfd-content-default .filecontent > div.ext:not([class*=wpfd-icon-set-]).ext-ods, .wpfd-content-default .filecontent > div.ext:not([class*=wpfd-icon-set-]).ext-ods {
+  background-image: url("../../../assets/images/theme/ods.png");
+}
+#et-boc .wpfd-content-default .filecontent > div.ext:not([class*=wpfd-icon-set-]).ext-odt, .wpfd-content-default .filecontent > div.ext:not([class*=wpfd-icon-set-]).ext-odt {
+  background-image: url("../../../assets/images/theme/odt.png");
+}
+#et-boc .wpfd-content-default .filecontent > div.ext:not([class*=wpfd-icon-set-]).ext-pages, .wpfd-content-default .filecontent > div.ext:not([class*=wpfd-icon-set-]).ext-pages {
+  background-image: url("../../../assets/images/theme/pages.png");
+}
+#et-boc .wpfd-content-default .filecontent > div.ext:not([class*=wpfd-icon-set-]).ext-pdf, .wpfd-content-default .filecontent > div.ext:not([class*=wpfd-icon-set-]).ext-pdf {
+  background-image: url("../../../assets/images/theme/pdf.png");
+}
+#et-boc .wpfd-content-default .filecontent > div.ext:not([class*=wpfd-icon-set-]).ext-pps, .wpfd-content-default .filecontent > div.ext:not([class*=wpfd-icon-set-]).ext-pps {
+  background-image: url("../../../assets/images/theme/pps.png");
+}
+#et-boc .wpfd-content-default .filecontent > div.ext:not([class*=wpfd-icon-set-]).ext-ppt, .wpfd-content-default .filecontent > div.ext:not([class*=wpfd-icon-set-]).ext-ppt {
+  background-image: url("../../../assets/images/theme/ppt.png");
+}
+#et-boc .wpfd-content-default .filecontent > div.ext:not([class*=wpfd-icon-set-]).ext-pptx, .wpfd-content-default .filecontent > div.ext:not([class*=wpfd-icon-set-]).ext-pptx {
+  background-image: url("../../../assets/images/theme/pptx.png");
+}
+#et-boc .wpfd-content-default .filecontent > div.ext:not([class*=wpfd-icon-set-]).ext-rtf, .wpfd-content-default .filecontent > div.ext:not([class*=wpfd-icon-set-]).ext-rtf {
+  background-image: url("../../../assets/images/theme/rtf.png");
+}
+#et-boc .wpfd-content-default .filecontent > div.ext:not([class*=wpfd-icon-set-]).ext-tex, .wpfd-content-default .filecontent > div.ext:not([class*=wpfd-icon-set-]).ext-tex {
+  background-image: url("../../../assets/images/theme/tex.png");
+}
+#et-boc .wpfd-content-default .filecontent > div.ext:not([class*=wpfd-icon-set-]).ext-txt, .wpfd-content-default .filecontent > div.ext:not([class*=wpfd-icon-set-]).ext-txt {
+  background-image: url("../../../assets/images/theme/txt.png");
+}
+#et-boc .wpfd-content-default .filecontent > div.ext:not([class*=wpfd-icon-set-]).ext-xls, .wpfd-content-default .filecontent > div.ext:not([class*=wpfd-icon-set-]).ext-xls {
+  background-image: url("../../../assets/images/theme/xls.png");
+}
+#et-boc .wpfd-content-default .filecontent > div.ext:not([class*=wpfd-icon-set-]).ext-xlsx, .wpfd-content-default .filecontent > div.ext:not([class*=wpfd-icon-set-]).ext-xlsx {
+  background-image: url("../../../assets/images/theme/xlsx.png");
+}
+#et-boc .wpfd-content-default .filecontent > div.ext:not([class*=wpfd-icon-set-]).ext-xml, .wpfd-content-default .filecontent > div.ext:not([class*=wpfd-icon-set-]).ext-xml {
+  background-image: url("../../../assets/images/theme/xml.png");
+}
+#et-boc .wpfd-content-default .filecontent > div.ext:not([class*=wpfd-icon-set-]).ext-bmp, .wpfd-content-default .filecontent > div.ext:not([class*=wpfd-icon-set-]).ext-bmp {
+  background-image: url("../../../assets/images/theme/bmp.png");
+}
+#et-boc .wpfd-content-default .filecontent > div.ext:not([class*=wpfd-icon-set-]).ext-exif, .wpfd-content-default .filecontent > div.ext:not([class*=wpfd-icon-set-]).ext-exif {
+  background-image: url("../../../assets/images/theme/exif.png");
+}
+#et-boc .wpfd-content-default .filecontent > div.ext:not([class*=wpfd-icon-set-]).ext-gif, .wpfd-content-default .filecontent > div.ext:not([class*=wpfd-icon-set-]).ext-gif {
+  background-image: url("../../../assets/images/theme/gif.png");
+}
+#et-boc .wpfd-content-default .filecontent > div.ext:not([class*=wpfd-icon-set-]).ext-ico, .wpfd-content-default .filecontent > div.ext:not([class*=wpfd-icon-set-]).ext-ico {
+  background-image: url("../../../assets/images/theme/ico.png");
+}
+#et-boc .wpfd-content-default .filecontent > div.ext:not([class*=wpfd-icon-set-]).ext-jpeg, .wpfd-content-default .filecontent > div.ext:not([class*=wpfd-icon-set-]).ext-jpeg {
+  background-image: url("../../../assets/images/theme/jpeg.png");
+}
+#et-boc .wpfd-content-default .filecontent > div.ext:not([class*=wpfd-icon-set-]).ext-jpg, .wpfd-content-default .filecontent > div.ext:not([class*=wpfd-icon-set-]).ext-jpg {
+  background-image: url("../../../assets/images/theme/jpg.png");
+}
+#et-boc .wpfd-content-default .filecontent > div.ext:not([class*=wpfd-icon-set-]).ext-png, .wpfd-content-default .filecontent > div.ext:not([class*=wpfd-icon-set-]).ext-png {
+  background-image: url("../../../assets/images/theme/png.png");
+}
+#et-boc .wpfd-content-default .filecontent > div.ext:not([class*=wpfd-icon-set-]).ext-psd, .wpfd-content-default .filecontent > div.ext:not([class*=wpfd-icon-set-]).ext-psd {
+  background-image: url("../../../assets/images/theme/psd.png");
+}
+#et-boc .wpfd-content-default .filecontent > div.ext:not([class*=wpfd-icon-set-]).ext-tif, .wpfd-content-default .filecontent > div.ext:not([class*=wpfd-icon-set-]).ext-tif {
+  background-image: url("../../../assets/images/theme/tif.png");
+}
+#et-boc .wpfd-content-default .filecontent > div.ext:not([class*=wpfd-icon-set-]).ext-tiff, .wpfd-content-default .filecontent > div.ext:not([class*=wpfd-icon-set-]).ext-tiff {
+  background-image: url("../../../assets/images/theme/tiff.png");
+}
+#et-boc .wpfd-content-default .filecontent > div.ext:not([class*=wpfd-icon-set-]).ext-aac, .wpfd-content-default .filecontent > div.ext:not([class*=wpfd-icon-set-]).ext-aac {
+  background-image: url("../../../assets/images/theme/aac.png");
+}
+#et-boc .wpfd-content-default .filecontent > div.ext:not([class*=wpfd-icon-set-]).ext-aif, .wpfd-content-default .filecontent > div.ext:not([class*=wpfd-icon-set-]).ext-aif {
+  background-image: url("../../../assets/images/theme/aif.png");
+}
+#et-boc .wpfd-content-default .filecontent > div.ext:not([class*=wpfd-icon-set-]).ext-aiff, .wpfd-content-default .filecontent > div.ext:not([class*=wpfd-icon-set-]).ext-aiff {
+  background-image: url("../../../assets/images/theme/aiff.png");
+}
+#et-boc .wpfd-content-default .filecontent > div.ext:not([class*=wpfd-icon-set-]).ext-alac, .wpfd-content-default .filecontent > div.ext:not([class*=wpfd-icon-set-]).ext-alac {
+  background-image: url("../../../assets/images/theme/alac.png");
+}
+#et-boc .wpfd-content-default .filecontent > div.ext:not([class*=wpfd-icon-set-]).ext-amr, .wpfd-content-default .filecontent > div.ext:not([class*=wpfd-icon-set-]).ext-amr {
+  background-image: url("../../../assets/images/theme/amr.png");
+}
+#et-boc .wpfd-content-default .filecontent > div.ext:not([class*=wpfd-icon-set-]).ext-au, .wpfd-content-default .filecontent > div.ext:not([class*=wpfd-icon-set-]).ext-au {
+  background-image: url("../../../assets/images/theme/au.png");
+}
+#et-boc .wpfd-content-default .filecontent > div.ext:not([class*=wpfd-icon-set-]).ext-cdda, .wpfd-content-default .filecontent > div.ext:not([class*=wpfd-icon-set-]).ext-cdda {
+  background-image: url("../../../assets/images/theme/cdda.png");
+}
+#et-boc .wpfd-content-default .filecontent > div.ext:not([class*=wpfd-icon-set-]).ext-flac, .wpfd-content-default .filecontent > div.ext:not([class*=wpfd-icon-set-]).ext-flac {
+  background-image: url("../../../assets/images/theme/flac.png");
+}
+#et-boc .wpfd-content-default .filecontent > div.ext:not([class*=wpfd-icon-set-]).ext-m3u, .wpfd-content-default .filecontent > div.ext:not([class*=wpfd-icon-set-]).ext-m3u {
+  background-image: url("../../../assets/images/theme/m3u.png");
+}
+#et-boc .wpfd-content-default .filecontent > div.ext:not([class*=wpfd-icon-set-]).ext-m4a, .wpfd-content-default .filecontent > div.ext:not([class*=wpfd-icon-set-]).ext-m4a {
+  background-image: url("../../../assets/images/theme/m4a.png");
+}
+#et-boc .wpfd-content-default .filecontent > div.ext:not([class*=wpfd-icon-set-]).ext-m4p, .wpfd-content-default .filecontent > div.ext:not([class*=wpfd-icon-set-]).ext-m4p {
+  background-image: url("../../../assets/images/theme/m4p.png");
+}
+#et-boc .wpfd-content-default .filecontent > div.ext:not([class*=wpfd-icon-set-]).ext-mid, .wpfd-content-default .filecontent > div.ext:not([class*=wpfd-icon-set-]).ext-mid {
+  background-image: url("../../../assets/images/theme/mid.png");
+}
+#et-boc .wpfd-content-default .filecontent > div.ext:not([class*=wpfd-icon-set-]).ext-mp3, .wpfd-content-default .filecontent > div.ext:not([class*=wpfd-icon-set-]).ext-mp3 {
+  background-image: url("../../../assets/images/theme/mp3.png");
+}
+#et-boc .wpfd-content-default .filecontent > div.ext:not([class*=wpfd-icon-set-]).ext-mp4, .wpfd-content-default .filecontent > div.ext:not([class*=wpfd-icon-set-]).ext-mp4 {
+  background-image: url("../../../assets/images/theme/mp4.png");
+}
+#et-boc .wpfd-content-default .filecontent > div.ext:not([class*=wpfd-icon-set-]).ext-mpa, .wpfd-content-default .filecontent > div.ext:not([class*=wpfd-icon-set-]).ext-mpa {
+  background-image: url("../../../assets/images/theme/mpa.png");
+}
+#et-boc .wpfd-content-default .filecontent > div.ext:not([class*=wpfd-icon-set-]).ext-ogg, .wpfd-content-default .filecontent > div.ext:not([class*=wpfd-icon-set-]).ext-ogg {
+  background-image: url("../../../assets/images/theme/ogg.png");
+}
+#et-boc .wpfd-content-default .filecontent > div.ext:not([class*=wpfd-icon-set-]).ext-pac, .wpfd-content-default .filecontent > div.ext:not([class*=wpfd-icon-set-]).ext-pac {
+  background-image: url("../../../assets/images/theme/pac.png");
+}
+#et-boc .wpfd-content-default .filecontent > div.ext:not([class*=wpfd-icon-set-]).ext-ra, .wpfd-content-default .filecontent > div.ext:not([class*=wpfd-icon-set-]).ext-ra {
+  background-image: url("../../../assets/images/theme/ra.png");
+}
+#et-boc .wpfd-content-default .filecontent > div.ext:not([class*=wpfd-icon-set-]).ext-wav, .wpfd-content-default .filecontent > div.ext:not([class*=wpfd-icon-set-]).ext-wav {
+  background-image: url("../../../assets/images/theme/wav.png");
+}
+#et-boc .wpfd-content-default .filecontent > div.ext:not([class*=wpfd-icon-set-]).ext-wma, .wpfd-content-default .filecontent > div.ext:not([class*=wpfd-icon-set-]).ext-wma {
+  background-image: url("../../../assets/images/theme/wma.png");
+}
+#et-boc .wpfd-content-default .filecontent > div.ext:not([class*=wpfd-icon-set-]).ext-3gp, .wpfd-content-default .filecontent > div.ext:not([class*=wpfd-icon-set-]).ext-3gp {
+  background-image: url("../../../assets/images/theme/3gp.png");
+}
+#et-boc .wpfd-content-default .filecontent > div.ext:not([class*=wpfd-icon-set-]).ext-asf, .wpfd-content-default .filecontent > div.ext:not([class*=wpfd-icon-set-]).ext-asf {
+  background-image: url("../../../assets/images/theme/asf.png");
+}
+#et-boc .wpfd-content-default .filecontent > div.ext:not([class*=wpfd-icon-set-]).ext-avi, .wpfd-content-default .filecontent > div.ext:not([class*=wpfd-icon-set-]).ext-avi {
+  background-image: url("../../../assets/images/theme/avi.png");
+}
+#et-boc .wpfd-content-default .filecontent > div.ext:not([class*=wpfd-icon-set-]).ext-flv, .wpfd-content-default .filecontent > div.ext:not([class*=wpfd-icon-set-]).ext-flv {
+  background-image: url("../../../assets/images/theme/flv.png");
+}
+#et-boc .wpfd-content-default .filecontent > div.ext:not([class*=wpfd-icon-set-]).ext-m4v, .wpfd-content-default .filecontent > div.ext:not([class*=wpfd-icon-set-]).ext-m4v {
+  background-image: url("../../../assets/images/theme/m4v.png");
+}
+#et-boc .wpfd-content-default .filecontent > div.ext:not([class*=wpfd-icon-set-]).ext-mkv, .wpfd-content-default .filecontent > div.ext:not([class*=wpfd-icon-set-]).ext-mkv {
+  background-image: url("../../../assets/images/theme/mkv.png");
+}
+#et-boc .wpfd-content-default .filecontent > div.ext:not([class*=wpfd-icon-set-]).ext-mov, .wpfd-content-default .filecontent > div.ext:not([class*=wpfd-icon-set-]).ext-mov {
+  background-image: url("../../../assets/images/theme/mov.png");
+}
+#et-boc .wpfd-content-default .filecontent > div.ext:not([class*=wpfd-icon-set-]).ext-mpeg, .wpfd-content-default .filecontent > div.ext:not([class*=wpfd-icon-set-]).ext-mpeg {
+  background-image: url("../../../assets/images/theme/mpeg.png");
+}
+#et-boc .wpfd-content-default .filecontent > div.ext:not([class*=wpfd-icon-set-]).ext-mpg, .wpfd-content-default .filecontent > div.ext:not([class*=wpfd-icon-set-]).ext-mpg {
+  background-image: url("../../../assets/images/theme/mpg.png");
+}
+#et-boc .wpfd-content-default .filecontent > div.ext:not([class*=wpfd-icon-set-]).ext-rm, .wpfd-content-default .filecontent > div.ext:not([class*=wpfd-icon-set-]).ext-rm {
+  background-image: url("../../../assets/images/theme/rm.png");
+}
+#et-boc .wpfd-content-default .filecontent > div.ext:not([class*=wpfd-icon-set-]).ext-swf, .wpfd-content-default .filecontent > div.ext:not([class*=wpfd-icon-set-]).ext-swf {
+  background-image: url("../../../assets/images/theme/swf.png");
+}
+#et-boc .wpfd-content-default .filecontent > div.ext:not([class*=wpfd-icon-set-]).ext-vob, .wpfd-content-default .filecontent > div.ext:not([class*=wpfd-icon-set-]).ext-vob {
+  background-image: url("../../../assets/images/theme/vob.png");
+}
+#et-boc .wpfd-content-default .filecontent > div.ext:not([class*=wpfd-icon-set-]).ext-wmv, .wpfd-content-default .filecontent > div.ext:not([class*=wpfd-icon-set-]).ext-wmv {
+  background-image: url("../../../assets/images/theme/wmv.png");
+}
+#et-boc .wpfd-content-default .filecontent > div.ext:not([class*=wpfd-icon-set-]).ext-css, .wpfd-content-default .filecontent > div.ext:not([class*=wpfd-icon-set-]).ext-css {
+  background-image: url("../../../assets/images/theme/css.png");
+}
+#et-boc .wpfd-content-default .filecontent > div.ext:not([class*=wpfd-icon-set-]).ext-img, .wpfd-content-default .filecontent > div.ext:not([class*=wpfd-icon-set-]).ext-img {
+  background-image: url("../../../assets/images/theme/img.png");
+}
+#et-boc .wpfd-content-default .filecontent > div.ext:not([class*=wpfd-icon-set-]) .txt, .wpfd-content-default .filecontent > div.ext:not([class*=wpfd-icon-set-]) .txt {
+  position: absolute;
+  top: 2.6666666667em;
+  left: 0.3888888889em;
+  display: block;
+  width: 1.9444444444em;
+  font-size: 0.9444444444em;
+  font-weight: bold;
+  line-height: 0.8888888889em;
+  text-align: center;
+  letter-spacing: -1px;
+  text-transform: uppercase;
+  font-family: arial, helvetica, sans-serif !important;
+}
+#et-boc .wpfd-content-default .filecontent > div > img, .wpfd-content-default .filecontent > div > img {
+  width: 70px;
+  margin-right: 0;
+  float: left;
+  position: relative;
+}
+
+@media only screen and (max-width: 762px) and (min-width: 641px) {
+  #et-boc .wpfd-content-default .wpfd_list .file,
+  .wpfd-content-default .wpfd_list .file {
+    display: block;
+    flex: unset;
+  }
+}
+@media only screen and (max-width: 720px) and (min-width: 300px) {
+  #et-boc .wpfd-content-default .wpfd_list .file,
+  .wpfd-content-default .wpfd_list .file {
+    width: auto;
+  }
+}
+@media only screen and (max-width: 450px) {
+  #et-boc .wpfd-content-default .wpfd_list .file,
+  .wpfd-content-default .wpfd_list .file {
+    display: block;
+    width: auto;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+}
+#et-boc .wpfd-content-default .wpfd_list .file .filecontent,
+.wpfd-content-default .wpfd_list .file .filecontent {
+  margin-left: 0;
+  width: 70%;
+}
+@media only screen and (max-width: 762px) and (min-width: 641px) {
+  #et-boc .wpfd-content-default .wpfd_list .file .filecontent,
+  .wpfd-content-default .wpfd_list .file .filecontent {
+    width: 100%;
+  }
+}
+@media only screen and (max-width: 450px) {
+  #et-boc .wpfd-content-default .wpfd_list .file .filecontent,
+  .wpfd-content-default .wpfd_list .file .filecontent {
+    width: 100%;
+  }
+}
+#et-boc .wpfd-content-default .wpfd_list .file .file-right,
+.wpfd-content-default .wpfd_list .file .file-right {
+  margin: 0 auto;
+  text-align: center;
+  width: 43%;
+  min-width: 115px;
+  padding-left: 5px;
+}
+@media only screen and (max-width: 762px) and (min-width: 641px) {
+  #et-boc .wpfd-content-default .wpfd_list .file .file-right,
+  .wpfd-content-default .wpfd_list .file .file-right {
+    padding-top: 0.5555555556em;
+    width: 100%;
+    clear: both;
+  }
+}
+@media only screen and (max-width: 450px) {
+  #et-boc .wpfd-content-default .wpfd_list .file .file-right,
+  .wpfd-content-default .wpfd_list .file .file-right {
+    padding-top: 20px;
+    padding-bottom: 10px;
+    width: 100%;
+    clear: both;
+  }
+}
+@media screen and (min-width: 768px) {
+  #et-boc .wpfd-content-default .wpfd_list .file .file-right .downloadlink,
+  .wpfd-content-default .wpfd_list .file .file-right .downloadlink {
+    margin: 23px 0 5px 0;
+  }
+}
+#et-boc .wpfd-content-default .wpfd_list .file .file-right .openlink,
+.wpfd-content-default .wpfd_list .file .file-right .openlink {
+  margin-top: 10px;
+}
+#et-boc .wpfd-content-default .wpfd_list .file .openlink img,
+.wpfd-content-default .wpfd_list .file .openlink img {
+  margin: auto;
+}
+#et-boc .wpfd-content-default .wpfd_list .file .downloadlink:hover,
+.wpfd-content-default .wpfd_list .file .downloadlink:hover {
+  box-shadow: 1px 1px 0.6666666667em #ccc;
+}
+#et-boc .wpfd-content-default .wpfd_list .file h3,
+.wpfd-content-default .wpfd_list .file h3 {
+  font-size: 1.2em;
+  line-height: 1.2222222222em;
+  padding-top: 0;
+  margin: 0 0 0.5555555556em 0;
+  clear: none;
+  word-wrap: break-word;
+  text-transform: none;
+  overflow: hidden;
+}
+#et-boc .wpfd-content-default .wpfd_list .file h3 a,
+.wpfd-content-default .wpfd_list .file h3 a {
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  letter-spacing: normal;
+  text-align: left;
+  color: #808080;
+  text-transform: none;
+  vertical-align: text-top;
+  font-size: 16px;
+  line-height: 16px;
+}
+#et-boc .wpfd-content-default .wpfd_list .file .file-xinfo,
+.wpfd-content-default .wpfd_list .file .file-xinfo {
+  margin-left: 5em;
+  text-transform: none;
+  overflow: hidden;
+  font-size: 1em;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.21;
+  letter-spacing: normal;
+  text-align: left;
+  color: #999999;
+  padding: 15px 0 0 25px;
+}
+@media screen and (max-width: 450px) {
+  #et-boc .wpfd-content-default .wpfd_list .file .file-xinfo,
+  .wpfd-content-default .wpfd_list .file .file-xinfo {
+    margin-left: 0;
+  }
+}
+#et-boc .wpfd-content-default .wpfd_list .file .file-xinfo .file-desc,
+.wpfd-content-default .wpfd_list .file .file-xinfo .file-desc {
+  margin: -15px 0 15px 0;
+}
+#et-boc .wpfd-content-default .wpfd_list .file .file-xinfo .file-desc p,
+.wpfd-content-default .wpfd_list .file .file-xinfo .file-desc p {
+  margin: 0;
+}
+#et-boc .wpfd-content-default .wpfd_list .file .file-xinfo .file-size,
+#et-boc .wpfd-content-default .wpfd_list .file .file-xinfo .file-hits,
+#et-boc .wpfd-content-default .wpfd_list .file .file-xinfo .file-dated,
+.wpfd-content-default .wpfd_list .file .file-xinfo .file-size,
+.wpfd-content-default .wpfd_list .file .file-xinfo .file-hits,
+.wpfd-content-default .wpfd_list .file .file-xinfo .file-dated {
+  margin: 3px 0;
+}
+#et-boc .wpfd-content-default .wpfd_list .file .file-xinfo > div > span,
+.wpfd-content-default .wpfd_list .file .file-xinfo > div > span {
+  margin: 0 5px 0 0;
+  display: inline-block;
+  font-size: 1em;
+}
+#et-boc .wpfd-content-default .wpfd_list .file .filecontent,
+.wpfd-content-default .wpfd_list .file .filecontent {
+  font-size: 1em;
+  line-height: 1.2;
+}
+#et-boc .wpfd-content-default .wpfd_list .file .filecontent h3,
+.wpfd-content-default .wpfd_list .file .filecontent h3 {
+  padding: 0 0 0 25px;
+  margin: 0 0 5px 0;
+  vertical-align: top;
+  position: relative;
+  font-size: 16px;
+  line-height: 16px;
+}
+#et-boc .wpfd-content-default .wpfd_list .file .filecontent h3 a:hover,
+.wpfd-content-default .wpfd_list .file .filecontent h3 a:hover {
+  box-shadow: none;
+}
+@media screen and (max-width: 450px) {
+  #et-boc .wpfd-content-default .wpfd_list .file .filecontent h3,
+  .wpfd-content-default .wpfd_list .file .filecontent h3 {
+    width: 100%;
+    text-align: center;
+    box-sizing: border-box;
+    padding: 0;
+    margin-bottom: 10px;
+  }
+  #et-boc .wpfd-content-default .wpfd_list .file .filecontent h3 > .wpfd_checkbox, #et-boc .wpfd-content-default .wpfd_list .file .filecontent h3 > a,
+  .wpfd-content-default .wpfd_list .file .filecontent h3 > .wpfd_checkbox,
+  .wpfd-content-default .wpfd_list .file .filecontent h3 > a {
+    display: inline-block;
+    vertical-align: middle;
+  }
+  #et-boc .wpfd-content-default .wpfd_list .file .filecontent h3 > .wpfd_checkbox,
+  .wpfd-content-default .wpfd_list .file .filecontent h3 > .wpfd_checkbox {
+    position: unset;
+    margin-right: 5px;
+  }
+}
+
+#et-boc .wpfd-container-default,
+.wpfd-container-default {
+  box-sizing: border-box;
+  padding: 0;
+  min-height: 50px;
+  -webkit-overflow-scrolling: touch;
+  position: relative;
+}
+#et-boc .wpfd-container-default .wpfd-categories,
+.wpfd-container-default .wpfd-categories {
+  padding: 0;
+}
+#et-boc .wpfd-container-default .wpfd-categories h2,
+.wpfd-container-default .wpfd-categories h2 {
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  letter-spacing: normal;
+  text-align: left;
+  color: #2c2c2c;
+  text-transform: uppercase;
+  font-size: 1.25em;
+  padding: 0;
+  margin: 0 0 0 10px;
+}
+
+#et-boc .wpfd-container-default:not(.with_foldertree),
+.wpfd-container-default:not(.with_foldertree) {
+  width: 100%;
+}
+
+.wpfd-content-default .default-download-category.display-download-category {
+  display: none;
+}
+.wpfd-content-default .default-download-category:hover {
+  cursor: pointer;
+}
+
+@media (max-width: 720px) {
+  .wpfd-content-default.wpfd-content .wpfd-flex-container {
+    display: block;
+  }
+  .wpfd-content-default .wpfd_list {
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+  }
+  .wpfd-content-default .wpfd_list .file {
+    -webkit-flex: 0 !important;
+    -ms-flex: 0 !important;
+    flex: 0 !important;
+  }
+}
+/* Right to left */
+.rtl .wpfd-content-default {
+  direction: rtl;
+}
+.rtl .wpfd-content-default .wpfd-categories .catlink span {
+  padding-right: 5px;
+  text-align: left;
+}
+.rtl .wpfd-content-default i.wpfd-preview, .rtl .wpfd-content-default i.wpfd-download {
+  padding-right: 5px;
+}
+.rtl .wpfd-content-default .filecontent > div.ext {
+  float: right;
+  margin-right: unset;
+  margin-left: 15px;
+}
+.rtl .wpfd-content-default .file .file-xinfo {
+  overflow: hidden;
+  margin-right: 65px;
+  margin-left: unset;
+}
+.rtl .wpfd-content-default .file .file-xinfo span {
+  float: right;
+  margin-left: 2px;
+}
+.rtl .wpfd-content-default .backcategory {
+  float: none;
+  right: unset;
+  left: 10px;
+}
+.rtl .wpfd-content-default .backcategory .zmdi-chevron-left {
+  -moz-transform: scaleX(-1);
+  -o-transform: scaleX(-1);
+  -webkit-transform: scaleX(-1);
+  transform: scale(-1);
+  margin-left: 3px;
+}
+.rtl .wpfd-content-default i.zmdi, .rtl .wpfd-content-default .zmdi-folder, .rtl .wpfd-content-default .zmdi-folder-open {
+  -moz-transform: scaleX(-1);
+  -o-transform: scaleX(-1);
+  -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
+  padding-left: 5px;
+}
+.rtl .wpfd-content-default .icon-open-close {
+  -moz-transform: scaleX(-1);
+  -o-transform: scaleX(-1);
+  -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
+  float: right;
+}
+.rtl .wpfd-content-default ul.jaofiletree:first-child {
+  margin-right: -10px !important;
+  margin-left: unset !important;
+}
+.rtl .wpfd-content-default ul.jaofiletree li {
+  padding-right: 10px !important;
+  padding-left: unset !important;
+}
+
+/* pagination */
+.wpfd-pagination .page-numbers {
+  margin: 6px;
+  display: inline-block;
+}
+.wpfd-pagination a.page-numbers {
+  cursor: pointer;
+  color: #046bd2;
+}
+.wpfd-pagination .page-numbers.current {
+  color: #000;
+}
+
+#et-boc .wpfd-content.wpfd-content-default + .wpfd-pagination,
+.wpfd-content.wpfd-content-default + .wpfd-pagination {
+  padding: 5px;
+  text-align: center;
+}
+@media screen and (min-width: 720px) {
+  #et-boc .wpfd-content.wpfd-content-default.wpfd_contentdefault_foldertree + .wpfd-pagination,
+  .wpfd-content.wpfd-content-default.wpfd_contentdefault_foldertree + .wpfd-pagination {
+    width: 70%;
+    margin-left: 0;
+    float: right;
+  }
+}
+@media screen and (max-width: 720px) {
+  #et-boc .wpfd-content.wpfd-content-default.wpfd_contentdefault_foldertree + .wpfd-pagination,
+  .wpfd-content.wpfd-content-default.wpfd_contentdefault_foldertree + .wpfd-pagination {
+    text-align: center;
+    padding: 5px 5px 5px 15px;
+    margin-left: 25px;
+  }
+}

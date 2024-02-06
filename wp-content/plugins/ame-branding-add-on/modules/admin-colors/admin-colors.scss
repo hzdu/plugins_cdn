@@ -1,0 +1,23 @@
+$closeFieldMargin: 10px;
+
+#ame-field-row-are_advanced_options_visible,
+.ame-form-box .ame-ac-are_advanced_options_visible {
+	margin-top: $closeFieldMargin * 2;
+	margin-bottom: $closeFieldMargin;
+}
+
+#ame-field-row-is_live_preview_enabled,
+.ame-form-box .ame-ac-is_live_preview_enabled {
+	margin-top: $closeFieldMargin;
+}
+
+//Show/hide advanced options.
+#ame-admin-colors-wrapper {
+	.ame-advanced-admin-color {
+		display: none;
+	}
+
+	&.ame-advanced-options-visible .ame-advanced-admin-color {
+		display: inherit;
+	}
+}

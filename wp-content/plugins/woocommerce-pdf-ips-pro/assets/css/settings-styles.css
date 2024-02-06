@@ -1,0 +1,61 @@
+#wcpdf-pro-bulk-export input.date,
+#wcpdf-pro-bulk-export input.hour,
+#wcpdf-pro-bulk-export input.minute {
+	width: auto !important;
+}
+
+#wpo-wcpdf-settings .static-file-row input,
+#wpo-wcpdf-settings .static-file-row .button {
+	margin: 2px 4px 2px 0;
+}
+
+.setting-warning input {
+	border-color: red;
+}
+
+.filename-duplicate-warning {
+	color: red;
+}
+
+#ftp_config .ftp-details {
+	overflow: auto;
+}
+#ftp_config input + input {
+	margin-left: 10px;
+}
+#ftp_protocol {
+	margin-bottom: 5px;
+}
+#ftp_host,
+#ftp_port,
+#ftp_username,
+#ftp_password,
+#ftp_remote_folder,
+#ftp_root_path {
+	float:left;
+	margin-bottom: 5px;
+}
+
+#ftp_host {
+	width: calc(80% - 2px);
+	max-width: 400px;
+	clear:both;
+}
+#ftp_port {
+	width: calc(20% - 12px);
+	max-width: 100px;
+}
+#ftp_username {
+	clear:both;
+}
+#ftp_username,
+#ftp_password {
+	width: calc(50% - 7px);
+	max-width: 250px;
+}
+#ftp_root_path,
+#ftp_remote_folder {
+	width: calc(100% - 3px);
+	max-width: 510px;
+	clear: both;
+}

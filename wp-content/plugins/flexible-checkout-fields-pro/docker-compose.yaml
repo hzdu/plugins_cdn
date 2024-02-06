@@ -1,0 +1,23 @@
+version: '3.9'
+
+services:
+
+    wordpress:
+        image: wpdesknet/phpunit-woocommerce:0-0
+        volumes:
+            - .././:/opt/project
+        depends_on:
+            - mysql0
+        environment:
+            WORDPRESS_DB_NAME: wptest
+            WORDPRESS_DB_USER: mysql
+            WORDPRESS_DB_PASSWORD: mysql
+            WORDPRESS_DB_HOST: mysql0
+
+    mysql0:
+        image: mysql:5.7
+        environment:
+            MYSQL_ROOT_PASSWORD: mysql
+            MYSQL_DATABASE: wptest
+            MYSQL_USER: mysql
+            MYSQL_PASSWORD: mysql

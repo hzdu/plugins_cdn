@@ -1,0 +1,52 @@
+.brxe-xnotificationbar {
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px;
+    width: 100%;
+    flex-direction: column;
+    background: #222;
+    z-index: 10;
+    color: #fff;
+    display: none;
+    position: relative;
+}
+
+.brxe-xnotificationbar[data-x-notification*=page_load] {
+    display: flex;
+}
+
+.x-notification_close {
+    background: none;
+    box-shadow: none;
+    border: none;
+    outline: none;
+    padding: 10px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    color: inherit;
+    display: flex;
+    align-items: center;
+    justify-content: center;;
+}
+
+.x-notification_close-icon {
+    display: flex;
+}
+
+.x-notification_close-text {
+    margin-right: .5em;
+}
+
+.x-notification_content {
+    max-width: 100%;
+}
+
+/* builder */
+.brx-body.iframe .brxe-xnotificationbar {
+    display: flex;
+}
+
+.brxe-xnotificationbar.brx-draggable.is-empty {
+    min-height: 30px;
+}

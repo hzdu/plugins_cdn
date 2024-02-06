@@ -1,0 +1,782 @@
+/** PANEL **/
+div.ywraq_quote_button_color .yith-colorpicker-group {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    max-width: 400px;
+    grid-row-gap: 30px;
+}
+
+div.ywraq_quote_button_color .yith-colorpicker-group label {
+    text-transform: uppercase;
+    font-size: 10px;
+}
+
+#yith_woocommerce_request_a_quote_general-button-label .yith-plugin-fw-upload-img-preview {
+    margin-bottom: 20px;
+}
+
+#yith_woocommerce_request_a_quote_request-page .ywraq-create-page {
+    display: inline-block;
+    margin-left: 10px;
+    line-height: 30px;
+}
+
+div#ywraq_cron_time {
+    display: flex;
+    align-items: baseline;
+}
+
+div#ywraq_cron_time .select2 {
+    width: 150px !important;
+    min-width: 150px !important;
+}
+
+.yith-woocommerce-request-a-quote-panel h3.title {
+    color: #2a8db0;
+    font-size: 16px;
+}
+.ywraq_required_check .validate-required,
+.ywraq_required_check label{
+    color:#ea0034;
+}
+.ywraq_required_check span.select2.select2-container.select2-container--default.select2-container--below,
+.ywraq_required_check input[type="text"] {
+    border: 1px solid #ea0034 !important;
+}
+
+.ywraq_required_check span.select2.select2-container.select2-container--default.select2-container--below input[type="text"]{
+    border: 1px solid transparent !important;
+}
+
+.ywraq_required_check .validate-required {
+    margin-top: 10px;
+    display:inline-block;
+    font-size:13px;
+}
+
+label[for="ywraq_return_to_shop_url"], label[for="ywraq_return_to_shop_after_sent_the_request_url"] {
+    text-align: right;
+}
+
+.ywraq-admin-no-posts {
+    text-align: center;
+    padding: 50px;
+}
+
+.ywraq-admin-no-posts-logo {
+    padding-bottom: 10px;
+}
+
+.ywraq-admin-no-posts-text {
+    font-size: 16px;
+    line-height: 30px;
+    margin-top: 20px;
+}
+
+.ywraq-admin-no-posts a.page-title-action {
+    padding: 5px 30px !important;
+}
+
+.ywraq-admin-no-posts-text p {
+    font-size: 14px;
+    line-height: 1em;
+}
+
+#yith_woocommerce_request_a_quote_request-list .yith-plugin-fw__panel__content__page__title .ywraq-add-new-quote {
+    margin-left: 20px;
+    margin-right: 5px;
+}
+
+#yith_woocommerce_request_a_quote_request-list h1.yith-plugin-fw__panel__content__page__title.yith-plugin-fw-panel-custom-tab-title {
+    display: flex;
+}
+
+table.wp-list-table.widefat.fixed.striped.table-view-list.quotes {
+    border: 2px solid #f1f1f1;
+}
+
+table.wp-list-table.quotes.striped > tbody > :nth-child(odd) {
+    background-color: #f1f1f1;
+}
+
+table.wp-list-table.widefat.fixed.striped.table-view-list.quotes th,
+table.wp-list-table.widefat.fixed.striped.table-view-list.quotes td {
+    vertical-align: middle;
+    height: 50px;
+    border: 0;
+}
+
+table.wp-list-table.widefat.fixed.striped.table-view-list.quotes tr:hover {
+    background-color: #e7f0f6;
+    transition: all 0.3s linear;
+}
+
+.ywraq-admin-wrap-content .tablenav-pages {
+    margin-top: 15px;
+}
+
+/** END PANEL **/
+
+.widefat .column-hide_add_to_quote {
+    width: 20%;
+    text-align: center;
+}
+
+.widefat .column-hide_add_to_quote mark {
+    display: block;
+    text-indent: -9999px;
+    position: relative;
+    height: 1em;
+    width: 1em;
+    background: 0 0;
+    font-size: 1.4em;
+    margin: 0 auto;
+}
+
+.widefat .column-hide_add_to_quote mark.show:after,
+.widefat .column-hide_add_to_quote mark.hide:after {
+    font-family: WooCommerce;
+    speak: none;
+    font-weight: 400;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    margin: 0;
+    text-indent: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+}
+
+.widefat .column-hide_add_to_quote mark.hide:after {
+    content: "\e013";
+    color: #a00000;
+}
+
+.widefat .column-hide_add_to_quote mark.show:after {
+    content: "\e015";
+    color: #2ea2cc;
+}
+
+.widefat mark.ywraq-new.tips:after {
+    color: #999;
+}
+
+.widefat mark.ywraq-pending.tips:after {
+    color: #ffba00;
+}
+
+.widefat mark.ywraq-accepted.tips:after {
+    color: #56bb0f;
+}
+
+
+.widefat mark.ywraq-expired.tips:after {
+    color: #C8C8C8;
+}
+
+.widefat mark.ywraq-pending.tips:after,
+.widefat mark.ywraq-rejected.tips:after,
+.widefat mark.ywraq-expired.tips:after,
+.widefat mark.ywraq-accepted.tips:after,
+.widefat mark.ywraq-new.tips:after {
+    content: "\e603";
+    font-family: WooCommerce;
+    font-weight: 400;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    margin: 0;
+    text-indent: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+}
+
+#poststuff h3 span {
+    font-weight: 400;
+}
+
+#yith-ywraq-metabox-order h2 {
+    padding: 12px 24px;
+}
+
+.ywraq-email-success,
+.ywraq-email-error {
+    display: none;
+}
+
+.ywraq-email-error {
+    color: red;
+}
+
+.ywraq-email-success {
+    color: #98aa36;
+}
+
+#yith-ywraq-metabox-order h3 {
+    font-size: 1em;
+    margin: 0 10px !important;
+}
+
+tr.sub-option {
+    background: rgba(244, 244, 244, 0.43);
+}
+
+#yith-ywraq-metabox-order .inside {
+    padding: 0 24px 12px;
+}
+
+#yith-ywraq-metabox-order .metaboxes-tab div.tabs-panel {
+    padding: 0 12px;
+}
+
+#yith-ywraq-metabox-order input {
+    min-height: 28px;
+}
+
+#yith-ywraq-metabox-order .metaboxes-tab label {
+    color: #555;
+    line-height: 1.4em;
+}
+
+#yith-ywraq-metabox-order .metaboxes-tab span.desc.inline {
+    display: block;
+    line-height: normal;
+}
+
+#yith-ywraq-metabox-order .yith-plugin-fw-field-wrapper.yith-plugin-fw-datepicker-field-wrapper:before {
+    content: "\e915";
+    color: #757575a6;
+    font-family: 'yith-icon' !important;
+    position: absolute;
+    left: 220px;
+    top: 5px;
+    font-size: 20px;
+}
+
+
+mark.order-status.status-ywraq-accepted {
+    background: #B8B007;
+    color: #fff;
+}
+
+
+mark.order-status.status-ywraq-pending {
+    background: #DDA702;
+    color: #fff;
+}
+
+
+mark.order-status.status-ywraq-new {
+    background: #f1c1c1;
+    color: #a24545;
+}
+
+mark.order-status.status-ywraq-expired {
+    background: #d66868;
+    color: #fff;
+}
+
+#ywraq_pdf_file-container .desc.inline {
+    display: inline-block !important;
+}
+
+#yith-ywraq-metabox-order .tabs-panel {
+    border: 0;
+}
+
+#yith-ywraq-metabox-order .yith-plugin-fw-field-wrapper.yith-plugin-fw-datepicker-field-wrapper input,
+#yith-ywraq-metabox-order input.text-short {
+    max-width: 250px;
+}
+
+.the-metabox.datepicker.clearfix {
+    box-shadow: none !important;
+    position: relative !important;
+}
+
+.yith-plugins_page_yith_woocommerce_request_a_quote .yith-plugin-fw-radio__row {
+    margin-bottom: 10px;
+}
+
+.yith-plugin-ui .button-secondary.yith-button-ghost:focus,
+.yith-plugin-ui .button-secondary.yith-button-ghost {
+    border: 1px solid #007694;
+    color: #007694;
+    background: white;
+}
+
+.yith-plugin-ui .button-secondary.yith-button-ghost:hover {
+    border: 1px solid #375f6b;
+    color: #375f6b;
+    background: white;
+}
+
+.yith-exclusion-list-empty {
+    min-height: 100px;
+}
+
+.ywpar-exclusion-list-tab .ywraq-admin-no-posts-logo img {
+    width: 50px;
+}
+
+table.excluded_categories td,
+table.excluded_categories th,
+table.excluded_products td,
+table.excluded_products th {
+    vertical-align: middle;
+}
+
+table.excluded_categories .column-image,
+table.excluded_products .column-image {
+    width: 52px;
+    text-align: center;
+    white-space: nowrap;
+}
+
+table.excluded_categories .column-image img,
+table.excluded_products .column-image img {
+    margin: 0;
+    width: auto;
+    height: auto;
+    max-width: 40px;
+    max-height: 40px;
+}
+
+table.excluded_categories .column-slug,
+table.excluded_categories .column-name {
+    width: 25%;
+}
+
+table.excluded_categories .column-count {
+    width: 74px;
+}
+
+table.excluded_categories .column-actions,
+table.excluded_products .column-actions {
+    width: 100px;
+}
+
+table.excluded_products .column-stock .in-stock {
+    color: #42af2c;
+}
+
+table.excluded_products .column-stock .out-of-stock {
+    color: #db1b1b;
+}
+
+#yith-add-exclusion-cat,
+#yith-add-exclusion-tag,
+#yith-add-exclusion-prod {
+    margin: 20px 0 0;
+    padding: 20px;
+    background-color: #ebebeb;
+    display: inline-block;
+    border: 1px solid #e0e0e0;
+}
+
+#yith-add-exclusion-tag label,
+#yith-add-exclusion-prod label,
+#yith-add-exclusion-cat label {
+    margin: 0 0 10px;
+    text-transform: uppercase;
+    font-size: 13px;
+    font-weight: 700;
+    display: block;
+}
+
+div#ywraq-submenu {
+    padding: 20px 0 50px 0;
+    display: block;
+}
+
+div#ywraq-ywraq-pdf-template-metabox {
+    border: none;
+}
+
+div#ywraq-ywraq-pdf-template-metabox .postbox-header {
+    display: none;
+}
+
+#ywraq-ywraq-pdf-template-metabox .block-editor__container,
+#ywraq-ywraq-pdf-template-metabox .interface-interface-skeleton {
+    position: relative;
+}
+
+.auto-fold #ywraq-ywraq-pdf-template-metabox .interface-interface-skeleton {
+    left: 0;
+}
+
+.yith-plugin-ui--ywraq-pdf-template-post_type #poststuff #post-body.columns-2 {
+    margin-right: 0;
+}
+
+.yith-plugin-ui--ywraq-pdf-template-post_type #post-body.columns-2 #postbox-container-1 {
+    display: none !important;
+}
+
+.yith-plugin-ui--ywraq-pdf-template-post_type .yith-plugin-ui #editor h2 {
+    border: none;
+}
+
+#ywraq-ywraq-pdf-template-metabox .editor-styles-wrapper.block-editor-writing-flow {
+    padding: 60px;
+    box-sizing: border-box;
+    margin:0 auto;
+}
+
+.yith-plugin-ui--ywraq-pdf-template-post_type #postdivrich,
+.yith-plugin-ui--ywraq-pdf-template-post_type #titlediv {
+    display: none;
+}
+
+.ywraq-metabox-wrapper .yith-plugin-ui table.form-table {
+    border: 0;
+}
+
+.ywraq-metabox-wrapper div#submitpost {
+    margin-top: 60px;
+}
+
+.ywraq-metabox-wrapper .wp-block-post-title {
+    display: none;
+}
+
+/*
+.ywraq-metabox-wrapper button.components-button.editor-post-publish-button.editor-post-publish-button__button.is-primary,
+.ywraq-metabox-wrapper button.components-button.editor-post-publish-panel__toggle.editor-post-publish-button__button.is-primary{
+    display: none;
+}
+*/
+
+/* DEFAULT FORM */
+#ywraq-add-field {
+    margin: 20px 0;
+    padding: 20px;
+    background-color: #ebebeb;
+    display: inline-block;
+    border: 1px solid #e0e0e0;
+}
+
+#ywraq-add-field h4 {
+    margin: 0 0 10px;
+    text-transform: uppercase;
+}
+
+#ywraq-add-field label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+#ywraq-add-field input[type="text"] {
+    width: 300px;
+    height: 30px;
+}
+
+#ywraq_form_fields_form {
+    margin-bottom: 30px;
+}
+
+#ywraq_form_fields_form input[type="submit"].button-primary {
+    margin-top: 30px;
+}
+
+#ywraq_form_fields .td_field_action {
+    text-align: center;
+}
+
+#ywraq_form_fields tr.disabled-row td:not( .td_field_action ) {
+    opacity: 0.3;
+}
+
+#ywraq_form_fields tr.disabled-row .td_field_action .edit_field {
+    display: none;
+}
+
+#ywraq_form_fields tr:not( .is_custom ) .td_field_action .remove_field {
+    display: none;
+}
+
+#ywraq-add-field input.required,
+#ywraq-add-field input.field-exists {
+    border: 1px solid rgba(253, 76, 76, 1);
+    -webkit-box-shadow: 2px 1px 10px 1px rgba(253, 76, 76, 0.5);
+    -moz-box-shadow: 2px 1px 10px 1px rgba(253, 76, 76, 0.5);
+    box-shadow: 2px 1px 10px 1px rgba(253, 76, 76, 0.5);
+}
+
+
+div#ywraq_field_add_edit_form input[type="text"], div#ywraq_field_add_edit_form select {
+    width: 100%;
+    padding: 5px 5px;
+}
+
+.ywraq-form-link {
+    margin-left: 240px;
+
+}
+
+#ywraq_field_add_edit_form td.label {
+    width: 100px;
+}
+
+#ywraq_field_add_edit_form td {
+    padding: 5px;
+}
+
+#ywraq_field_add_edit_form .ui-dialog-titlebar.ui-widget-header.ui-corner-all.ui-helper-clearfix.ui-draggable-handle {
+    border-radius: 0;
+    border: 0;
+}
+
+#ywraq_field_add_edit_form textarea {
+    width: 100%;
+}
+
+#ywraq_field_add_edit_form small {
+    color: #72777c;
+    font-style: italic;
+}
+
+#ywraq_field_add_edit_form button.ui-button.ui-widget.ui-state-default.ui-corner-all.ui-button-icon-only.ui-dialog-titlebar-close {
+    margin-top: 6px;
+}
+
+#ywraq_field_add_edit_form select, #ywraq_field_add_edit_form input[type="text"] {
+    background: none;
+    box-shadow: none;
+}
+
+.yith-plugins_page_yith_woocommerce_request_a_quote span.ui-button-icon-primary.ui-icon.ui-icon-closethick {
+    display: none !important;
+}
+
+#ywraq_form_fields td.ui-sortable-handle:before {
+    content: '\f333';
+    font-family: Dashicons;
+    text-align: center;
+    line-height: 1;
+    color: #999;
+    display: block;
+    width: 17px;
+    height: 100%;
+    margin: 4px 0 0 0;
+}
+
+.ywraq-form-wrapper {
+    background: #fff;
+    box-sizing: border-box;
+}
+
+.ywraq-edit-form-content {
+    padding: 20px;
+    clear: both;
+    padding-bottom: 50px;
+}
+
+#ywraq_form_fields {
+    margin: 20px 0;
+}
+
+#ywraq_form_fields_form select {
+    min-height: 30px;
+    border-radius: 3px;
+    background: #FFF url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20width%3D%2220%22%20height%3D%2220%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M5%206l5%205%205-5%202%201-7%207-7-7%202-1z%22%20fill%3D%22%23555%22%2F%3E%3C%2Fsvg%3E') no-repeat right 5px top 55%;
+    background-size: 16px 16px;
+}
+
+.yith-plugins_page_yith_woocommerce_request_a_quote button.ui-button.ui-widget.ui-state-default.ui-corner-all.ui-button-icon-only.ui-dialog-titlebar-close:before {
+    font-family: 'yith-icon';
+    content: '\e906';
+    font-size: 13px;
+}
+
+.yith-plugins_page_yith_woocommerce_request_a_quote .ui-dialog-buttonpane .ui-button {
+    box-shadow: none;
+    background: #007694;
+    color: #fff;
+    border: 0;
+}
+
+/** METABOX ***/
+#yith-ywraq-metabox-order h2 {
+    color: #03689F;
+}
+
+#yith-ywraq-metabox-order h3 {
+    text-transform: none;
+    color: #000;
+    font-size: 15px;
+    font-weight: bold;
+    padding: 20px 0 20px 5px;
+}
+
+.yith-plugin-ui span.description {
+    margin-top: 10px;
+}
+
+p#_ywraq_submit_button .button {
+    margin-right: 10px;
+    padding: 8px 15px;
+    box-sizing: border-box;
+    text-transform: none;
+    font-size: 13px;
+}
+
+p#_ywraq_submit_button .button.yith-button-ghost {
+    margin-right: 10px;
+    padding: 8px 15px;
+    box-sizing: border-box;
+}
+
+p#_ywraq_submit_button .button.yith-button-ghost:hover {
+    filter: brightness(1.1);
+    background-color: #fff;
+    color: #007694;
+}
+
+input#ywraq_submit_button {
+    margin-left: 15px;
+    margin-right: 10px;
+}
+
+.yith-plugin-fw-field-wrapper.yith-plugin-fw-customer-request-field-wrapper {
+    margin-left: -250px;
+    display: flex;
+}
+
+.customer-request-field {
+    padding-bottom: 20px;
+    display: flex;
+    clear: both;
+    min-height: 30px;
+}
+
+.customer-request-field label {
+    margin-left: 0 !important;
+    width: 100px !important;
+}
+
+.customer-request-field-wrapper {
+    background-color: #f1f1f1;
+    padding: 20px;
+    width: 48%;
+    position: relative;
+    transition: all linear 0.3s;
+}
+
+.customer-request-field-wrapper input[readonly] {
+    display: none;
+}
+
+.customer-request-field-wrapper.edit .editable .customer-field-value {
+    display: none;
+}
+
+.customer-request-field-wrapper .editable input[readonly],
+.customer-request-field-wrapper .editable textarea[readonly] {
+    display: none;
+}
+
+.yith-pencil.customer-request-editor {
+    background: url(../icons/yith-pencil.svg) no-repeat center center;
+    display: block;
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    right: 20px;
+    cursor: pointer;
+}
+
+div#_ywraq_customer_request_title-container h3 {
+    padding-bottom: 0;
+}
+
+table.wp-list-table.widefat.fixed.striped.table-view-list.quotes {
+    margin-top: 30px;
+}
+
+.yith-plugins_page_yith_woocommerce_request_a_quote .ywraq-exclusion-list-popup span.select2.select2-container.select2-container--default,
+.yith-plugins_page_yith_woocommerce_request_a_quote ywraq-exclusion-list-popup span.select2.select2-container.select2-container--default.yith-plugin-fw-select2-container {
+    height: auto;
+}
+
+.yith-plugins_page_yith_woocommerce_request_a_quote table.wp-list-table.widefat.fixed.striped.table-view-list.quotes {
+    margin-top: 30px;
+}
+
+.yith-plugins_page_yith_woocommerce_request_a_quote .select2-container--default .select2-selection--single .select2-selection__placeholder {
+    color: #353d40;
+    font-size: 14px;
+}
+
+.yith-plugins_page_yith_woocommerce_request_a_quote .select2-container--default .select2-selection--single .select2-selection__placeholder:hover {
+    color: #2271b1;
+}
+
+.yith-plugins_page_yith_woocommerce_request_a_quote .select2-container.yith-plugin-fw-select2-container {
+    z-index: 9999999 !important;
+}
+
+/** PDF TEMPLATES **/
+.action.column-action{
+    width:1%;
+    text-align: right;
+}
+.yith-plugin-ui--boxed-wp-list-style table.wp-list-table tbody tr a.set-default-badge{
+    opacity: 0;
+    transition: .3s;
+    margin-left: 10px ;
+}
+.yith-plugin-ui--boxed-wp-list-style table.wp-list-table tbody tr:hover a.set-default-badge{
+    opacity: 1;
+}
+td.action.column-action {
+    position: relative;
+}
+
+.action.column-action a.set-default-badge,
+.default-badge {
+    font-size: 8px;
+    text-transform: uppercase;
+    background: #007aa0;
+    border-radius: 4px;
+    color: #ffffff;
+    padding: 0 12px;
+    line-height: 18px;
+    display: inline-block;
+}
+
+.default-badge {
+    position: absolute;
+    top: -9px;
+    right: 10px;
+    width: auto;
+    background: #bf8628;
+}
+
+.yith-plugin-ui--boxed-wp-list-style table.wp-list-table tbody tr.is-default {
+    box-shadow: 0 0 0 1px #bf8628, 0 3px 11px 6px var(--yith-light-shadow);
+    background: #fbf8f3;
+}
+
+body.post-php.post-type-ywraq-pdf-template .yith-plugin-fw-wp-page-wrapper .wrap > .page-title-action,
+.post-type-ywraq-pdf-template .yith-plugin-ui--ywraq-pdf-template-post_type .search-box,
+body.post-type-ywraq-pdf-template .yith-plugin-ui .tablenav {
+    display: none;
+}
+
+@media (max-width: 1441px ) {
+    .customer-request-field-wrapper {
+        width: 70%;
+    }
+}

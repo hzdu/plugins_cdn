@@ -1,0 +1,60 @@
+.has-agent-view {
+
+    position: relative;
+    margin-bottom: 40px;
+
+    // wrapper border
+    &::before {
+        content: '';
+        position: absolute;
+        pointer-events: none;
+        user-select: none;
+        width: 103%;
+        left: 50%;
+        top: 60px;
+        height: calc( 100% - 50px );
+        border: 2px dashed #C6D7E3;
+        transform: translateX(-50%);
+        border-radius: 8px;
+        z-index: 0;
+    }
+
+    .move-icon {
+        width: 12px;
+    }
+
+    .move-icon img {
+        margin-right: 0;
+        margin-top: 6px;
+        width: 90%;
+    }
+
+    // social widget color , change color picker width, height
+    .cht-colorpicker__preview {
+        @apply w-10 h-10 rounded-full;
+        &--inner {
+            @apply rounded-full;
+        }
+    }
+
+    .chaty-channel-setting {
+        input {
+            @apply w-full border border-solid border-cht-gray-150/20 py-2 px-4 text-base font-primary text-cht-gray-150 inline-block
+        }
+    }
+
+    .add-agent-button {
+        background-color: #f9fafb;
+        padding: 20px;
+        border: 1px solid #EAEFF2;
+        border-radius: 5px;
+        margin-top: -10px;
+    }
+
+    @media( min-width: 575px ) {
+        .add-agent-button {
+            padding: 20px 20px 20px 90px;
+        }
+    }
+
+}

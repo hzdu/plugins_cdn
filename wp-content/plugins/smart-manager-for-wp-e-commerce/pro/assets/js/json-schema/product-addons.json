@@ -1,0 +1,299 @@
+{
+	"definitions": {},
+	"$schema": "",
+	"$id": "",
+	"type": "array",
+	"title": "Product Add-ons Schema",
+	"default": null,
+	"items": {
+		"$id": "#/items",
+		"type": "object",
+		"title": "Product Add-on",
+		"default": null,
+		"required": [
+			"name",
+			"type",
+			"position"
+		],
+		"properties": {
+			"name": {
+				"$id": "#/items/properties/name",
+				"type": "string",
+				"title": "Title",
+				"default": ""
+			},
+			"title_format": {
+				"$id": "#/items/properties/title_format",
+				"type": "string",
+				"enum": [
+					"label",
+					"heading",
+					"hide"
+				],
+				"title": "Format title",
+				"default": "label",
+				"examples": [
+					"label",
+					"heading",
+					"hide"
+				]
+			},
+			"description_enable": {
+				"$id": "#/items/properties/description_enable",
+				"type": "integer",
+				"enum": [
+					0,
+					1
+				],
+				"title": "Add description",
+				"default": 0,
+				"examples": [
+					0,
+					1
+				]
+			},
+			"description": {
+				"$id": "#/items/properties/description",
+				"type": "string",
+				"title": "The Description",
+				"default": ""
+			},
+			"type": {
+				"$id": "#/items/properties/type",
+				"type": "string",
+				"enum": [
+					"multiple_choice",
+					"checkbox",
+					"custom_text",
+					"custom_textarea",
+					"file_upload",
+					"custom_price",
+					"input_multiplier",
+					"heading"
+				],
+				"title": "Type",
+				"default": "multiple_choice",
+				"examples": [
+					"multiple_choice",
+					"checkbox",
+					"custom_text",
+					"custom_textarea",
+					"file_upload",
+					"custom_price",
+					"input_multiplier",
+					"heading"
+				],
+				"pattern": "^(.*)$"
+			},
+			"display": {
+				"$id": "#/items/properties/display",
+				"type": "string",
+				"enum": [
+					"select",
+					"radiobutton",
+					"images"
+				],
+				"title": "Display as",
+				"default": "select",
+				"examples": [
+					"select",
+					"radiobutton",
+					"images"
+				]
+			},
+			"position": {
+				"$id": "#/items/properties/position",
+				"type": "integer",
+				"title": "Position of Addon",
+				"default": 0,
+				"examples": [
+					0,
+					1,
+					2,
+					3,
+					4,
+					5,
+					6,
+					7
+				],
+				"multipleOf": 1.0,
+				"minimum": 0.0
+			},
+			"required": {
+				"$id": "#/items/properties/required",
+				"type": "integer",
+				"enum": [
+					0,
+					1
+				],
+				"title": "Required field",
+				"default": 0,
+				"examples": [
+					0,
+					1
+				]
+			},
+			"restrictions": {
+				"$id": "#/items/properties/restrictions",
+				"type": "integer",
+				"enum": [
+					0,
+					1
+				],
+				"title": "Restriction",
+				"default": 0,
+				"examples": [
+					0,
+					1
+				]
+			},
+			"restrictions_type": {
+				"$id": "#/items/properties/restrictions_type",
+				"type": "string",
+				"enum": [
+					"any_text",
+					"only_letters",
+					"only_numbers",
+					"only_letters_numbers",
+					"email"
+				],
+				"title": "The Restrictions Type",
+				"default": "any_text",
+				"examples": [
+					"any_text",
+					"only_letters",
+					"only_numbers",
+					"only_letters_numbers",
+					"email"
+				]
+			},
+			"adjust_price": {
+				"$id": "#/items/properties/adjust_price",
+				"type": "integer",
+				"enum": [
+					0,
+					1
+				],
+				"title": "Adjust price",
+				"default": 0,
+				"examples": [
+					0,
+					1
+				]
+			},
+			"price_type": {
+				"$id": "#/items/properties/price_type",
+				"type": "string",
+				"enum": [
+					"flat_fee",
+					"quantity_based",
+					"percentage_based"
+				],
+				"title": "Adjust price type",
+				"default": "flat_fee",
+				"examples": [
+					"flat_fee",
+					"quantity_based",
+					"percentage_based"
+				]
+			},
+			"price": {
+				"$id": "#/items/properties/price",
+				"type": "string",
+				"title": "Price",
+				"default": "",
+				"examples": [
+					"0.00",
+					"9.99",
+					"0.50",
+					"33.3"
+				]
+			},
+			"min": {
+				"$id": "#/items/properties/min",
+				"type": "integer",
+				"title": "Minimum quantity",
+				"default": 0,
+				"examples": [
+					0,
+					10,
+					55,
+					999
+				]
+			},
+			"max": {
+				"$id": "#/items/properties/max",
+				"type": "integer",
+				"title": "Maximum quantity",
+				"default": 0,
+				"examples": [
+					0,
+					10,
+					55,
+					999
+				],
+				"multipleOf": 1.0,
+				"minimum": 0.0
+			},
+			"options": {
+				"$id": "#/items/properties/options",
+				"type": "array",
+				"title": "Options",
+				"default": null,
+				"items": {
+					"$id": "#/items/properties/options/items",
+					"type": "object",
+					"title": "The Items Schema",
+					"properties": {
+						"label": {
+							"$id": "#/items/properties/options/items/properties/label",
+							"type": "string",
+							"title": "Label",
+							"default": ""
+						},
+						"price": {
+							"$id": "#/items/properties/options/items/properties/price",
+							"type": "string",
+							"title": "Price",
+							"default": "",
+							"examples": [
+								"0.00",
+								"9.99",
+								"0.50",
+								"33.3"
+							]
+						},
+						"image": {
+							"$id": "#/items/properties/options/items/properties/image",
+							"type": "string",
+							"title": "Image",
+							"default": "",
+							"examples": [
+								"10",
+								"68",
+								"43",
+								"97"
+							]
+						},
+						"price_type": {
+							"$id": "#/items/properties/options/items/properties/price_type",
+							"type": "string",
+							"enum": [
+								"flat_fee",
+								"quantity_based",
+								"percentage_based"
+							],
+							"title": "Price type",
+							"default": "flat_fee",
+							"examples": [
+								"flat_fee",
+								"quantity_based",
+								"percentage_based"
+							]
+						}
+					}
+				}
+			}
+		}
+	}
+}

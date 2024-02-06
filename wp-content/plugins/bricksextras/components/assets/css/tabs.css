@@ -1,0 +1,221 @@
+:root {
+    --x-tabs-transition-duration: .3s;
+    --x-tabs-transition-distance: 10px;
+    --x-tabs-slider-duration: .3s;
+    --x-tabs-adaptive-height-duration: .3s;
+}
+
+[data-x-tab-wrap=wrap] .x-tabs_list {
+    flex-wrap: wrap;
+}
+
+[data-x-tab-wrap=nowrap] .x-tabs_list {
+    flex-wrap: nowrap;
+}
+
+[data-x-tab-wrap=scroll] .x-tabs_tab {
+    flex-shrink: 0;
+}
+  
+[data-x-tab-wrap=scroll] .x-tabs_list {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+}
+
+[data-x-tab-wrap=scroll] .x-tabs_list::-webkit-scrollbar{
+    display: none;
+}  
+
+.x-tabs_slider {
+    position: absolute;
+    transition: left var(--x-tabs-slider-duration) ease 0s, top var(--x-tabs-slider-duration) ease 0s, width var(--x-tabs-slider-duration) ease 0s;
+    -webkit-transition: left var(--x-tabs-slider-duration) ease 0s, top var(--x-tabs-slider-duration) ease 0s, width var(--x-tabs-slider-duration) ease 0s;
+    background-color: #222;
+    will-change: left,width;
+}
+
+:where(.brxe-xtabs) {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+:where(.x-tabs_list) {
+    padding: 0;
+    margin: 0;
+    flex-wrap: wrap;
+    position: relative;
+}
+
+.brxe-block.x-tabs_list {
+    align-items: stretch;
+}
+
+.x-tabs_tab {
+    display: flex;
+}
+
+.x-tabs_tab > * {
+    position: relative;
+    z-index: 1;
+}
+
+.brxe-block.x-tabs_content {
+    align-items: stretch;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+}
+
+.brxe-div.x-tabs_content-item {
+    display: block;
+}
+
+.x-tabs_panel-content {
+    padding: 20px;
+}
+
+:where(.x-tabs_tab) {
+    padding: 20px;
+    transition: all var(--x-tabs-transition-duration) ease;
+    cursor: pointer;
+    flex-direction: column;
+}
+
+:where(.x-tabs_toggle) {
+    cursor: pointer;
+}
+
+.brxe-block.x-tabs_panel {
+    display: none;
+    animation: xTabsFadeInAnimation ease var(--x-tabs-transition-duration);
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+}
+
+.brxe-xtabs[data-x-tabs*=fadeinnonne_x] .x-tabs_panel {
+    animation-name: none;
+}
+
+.brxe-xtabs[data-x-tabs*=fadein_x] .x-tabs_panel {
+    animation-name: xTabsFadeInAnimation;
+}
+
+.brxe-xtabs[data-x-tabs*=fadeinup_x] .x-tabs_panel {
+    animation-name: xTabsFadeInUpAnimation;
+}
+
+.brxe-xtabs[data-x-tabs*=fadeindown_x] .x-tabs_panel {
+    animation-name: xTabsFadeInDownAnimation;
+}
+
+.brxe-xtabs[data-x-tabs*=fadeinleft_x] .x-tabs_panel {
+    animation-name: xTabsFadeInLeftAnimation;
+}
+
+.brxe-xtabs[data-x-tabs*=fadeinright_x] .x-tabs_panel {
+    animation-name: xTabsFadeInRightAnimation;
+}
+
+.x-tabs-mobile[data-x-tabs*=disableBricksAnimations] .x-tabs_panel *[data-interactions*=startAnimation] {
+    animation-name: none!important;
+}
+
+.brxe-xtabs:not(.x-tabs-mobile)[data-x-tabs*=adaptiveHeight] .x-tabs_content {
+    transition: height var(--x-tabs-adaptive-height-duration) ease;
+}
+
+
+/*.x-tabs_content-item:first-child > .brxe-block.x-tabs_panel {
+    display: flex;
+}*/
+
+.brxe-block.x-tabs_toggle {
+    display: none;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+:where(.x-tabs_toggle) {
+    background-color: #dddedf;
+    padding: 20px;
+}
+
+:where(.x-tabs_toggle-icon) {
+    font-size: 1em;
+    transition: transform .15s ease;
+}
+
+.brxe-block.x-tabs_panel-current {
+    display: flex;
+}
+
+/* mobile accordion */
+
+.x-tabs_list-accordion.x-tabs_list {
+    display: none;
+}
+
+.x-tabs_content-accordion > .x-tabs_content-item > .brxe-block.x-tabs_toggle {
+    display: flex;
+}
+
+.x-tabs_content-accordion > .x-tabs_content-item > .brxe-block.x-tabs_panel {
+    animation: none;
+}
+
+
+@keyframes xTabsFadeInAnimation {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+     }
+  }
+
+  @keyframes xTabsFadeInUpAnimation {
+    0% {
+        opacity: 0;
+        transform: translateY(var(--x-tabs-transition-distance));
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0px);
+     }
+  }
+
+  @keyframes xTabsFadeInDownAnimation {
+    0% {
+        opacity: 0;
+        transform: translateY(var(--x-tabs-transition-distance));
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0px);
+     }
+  }
+
+  @keyframes xTabsFadeInLeftAnimation {
+    0% {
+        opacity: 0;
+        transform: translateX(var(--x-tabs-transition-distance));
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0px);
+     }
+  }
+
+  @keyframes xTabsFadeInRightAnimation {
+    0% {
+        opacity: 0;
+        transform: translateX(var(--x-tabs-transition-distance));
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0px);
+     }
+  }

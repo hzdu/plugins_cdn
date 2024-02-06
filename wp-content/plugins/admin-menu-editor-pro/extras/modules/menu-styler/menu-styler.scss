@@ -1,0 +1,116 @@
+#ws-ame-menu-style-settings {
+	padding: 0;
+
+	.ws_dialog_buttons {
+		flex-shrink: 0;
+		flex-grow: 0;
+
+		padding: 8px;
+		margin-top: 0;
+		border-top: 1px solid #dcdcde;
+
+		background: #fcfcfc;
+	}
+}
+
+#ws-ame-ms-dialog-wrapper {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+
+}
+
+#ws-ame-ms-dialog-content {
+	flex-shrink: 1;
+	flex-grow: 1;
+	min-height: 100px;
+}
+
+#ws-ame-ms-preview-box-container {
+	display: inline-block;
+	margin: 0 12px;
+	
+	//Align vertically with WordPress buttons.
+	line-height: 28px;
+}
+
+/*
+Position the style dialog relative to the admin menu and the edges of the screen,
+overriding the default jQuery UI dialog positioning.
+
+The "ws-ame-menu-style-dialog" class is added by using the "classes" option when
+creating the dialog.
+ */
+.ws-ame-menu-style-dialog {
+	$edgeOffset: 30px;
+	$elementOffset: 10px;
+	$maxDialogWidth: 810px;
+
+	//The left edge of the dialog should be at least $elementOffset pixels away from
+	//the admin menu.
+	--menu-based-offset: calc(var(--ame-ms-menu-width, 160px) + #{$elementOffset});
+	//The right edge should be at at least $edgeOffset pixels away from the right edge
+	//of the screen. Given the minimum left and right offsets, we can calculate how much
+	//horizontal space is available for the dialog.
+	--available-width: calc(100vw - var(--menu-based-offset) - #{$edgeOffset});
+	//For readability, the dialog width should not exceed $maxDialogWidth.
+	--dialog-width: max(min(var(--available-width), #{$maxDialogWidth}), 200px);
+	//If the screen is large enough, center the dialog instead of aligning it to the menu.
+	--centering-based-offset: calc((100vw - var(--dialog-width)) / 2);
+
+	//The final offset is the maximum of the two (centered or aligned to the menu).
+	//Fall back to 0px in case we end up with negative offsets on small screens.
+	--dialog-left: max(var(--centering-based-offset), var(--menu-based-offset), 0px);
+
+	position: fixed !important;
+
+	bottom: $edgeOffset !important;
+	//Show below the Admin Bar.
+	top: calc(var(--wp-admin--admin-bar--height, 32px) + $elementOffset) !important;
+
+	left: var(--dialog-left) !important;
+	width: var(--dialog-width) !important;
+	height: auto !important;
+
+	display: flex;
+	flex-direction: column;
+
+	.ui-dialog-titlebar {
+		flex-grow: 0;
+		flex-shrink: 0;
+	}
+
+	.ui-dialog-content {
+		flex-grow: 1;
+		flex-shrink: 1;
+	}
+}
+
+.ui-widget-overlay.ame-ms-dialog-overlay {
+	//Leave the admin menu unobstructed, but cover the rest of the screen.
+	$menuOverlayColor: transparent;
+	background-color: transparent;
+
+	--left-offset: calc(var(--ame-ms-menu-width, 160px) + 20px);
+	background-image: linear-gradient(
+					to right,
+					$menuOverlayColor 0,
+					$menuOverlayColor var(--left-offset),
+					rgba(0, 0, 0, 0.7) var(--left-offset)
+	);
+
+	opacity: 1; //Override the default 0.7 opacity.
+
+	//Change the cursor over the admin menu area to indicate that it's not clickable
+	//while the style dialog is open.
+	&:before {
+		content: '';
+		display: block;
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: var(--left-offset);
+		height: 100%;
+		cursor: not-allowed;
+	}
+}

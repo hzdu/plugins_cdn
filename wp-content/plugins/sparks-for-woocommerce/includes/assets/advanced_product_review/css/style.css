@@ -1,0 +1,105 @@
+.sp-review-gallery {
+  display: flex; }
+
+.sp-upvote-button {
+  text-decoration: none !important; }
+
+img.nv_review_thumbnail {
+  float: left !important;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  overflow: hidden;
+  margin-left: 5px;
+  min-width: 70px;
+  max-width: 140px;
+  height: 70px; }
+
+.sp-review-upload-preview {
+  display: flex;
+  margin: 8px 0; }
+
+#sp-upload-review-list {
+  display: flex; }
+  #sp-upload-review-list li.sp-upload-img-preview {
+    position: relative;
+    background-color: var(--formfieldbgcolor);
+    background-position: center;
+    background-size: cover;
+    height: 80px;
+    width: 80px; }
+    #sp-upload-review-list li.sp-upload-img-preview .sp-apr-remove-product {
+      position: absolute;
+      right: 0;
+      top: 0;
+      transform: translate3d(50%, -50%, 0);
+      color: var(--sp-text-color);
+      background: var(--sp-site-bg);
+      border: 0;
+      width: 20px;
+      height: 20px;
+      letter-spacing: 0;
+      font-size: 16px;
+      border-radius: 50%;
+      font-weight: 700;
+      font-stretch: expanded;
+      padding: 0;
+      line-height: 0;
+      z-index: 10; }
+  #sp-upload-review-list li + li {
+    margin-left: 8px; }
+  #sp-upload-review-list li:last-child {
+    margin-right: 8px; }
+
+#sp-upload-max {
+  display: none;
+  font-size: .8em;
+  color: var(--sp-primary-accent); }
+
+#sp-upload-review-image {
+  display: block;
+  visibility: hidden;
+  width: 0;
+  height: 0; }
+
+#sp-do-upload {
+  width: 80px;
+  height: 80px;
+  border-style: dashed;
+  border-color: var(--formfieldbordercolor);
+  border-width: var(--formfieldborderwidth);
+  border-radius: 3px;
+  background-color: var(--formfieldbgcolor);
+  color: var(--primarybtnbg);
+  padding: var(--formfieldpadding);
+  text-transform: var(--formfieldtexttransform);
+  font-weight: var(--formfieldfontweight);
+  font-family: var(--bodyfontfamily);
+  font-size: var(--formlabelfontsize, 1.5em);
+  letter-spacing: var(--formfieldletterspacing);
+  line-height: var(--formfieldlineheight);
+  margin: 0;
+  -webkit-appearance: none; }
+  #sp-do-upload:hover, #sp-do-upload:focus {
+    color: var(--primarybtnhoverbg); }
+
+.sp-apr-upvote-section {
+  display: flex; }
+  .sp-apr-upvote-section .sp-upvote-icon {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    vertical-align: middle;
+    margin-bottom: 6px;
+    color: var(--sp-primary-accent); }
+    .sp-apr-upvote-section .sp-upvote-icon svg .nv_like {
+      display: block; }
+    .sp-apr-upvote-section .sp-upvote-icon svg .nv_like_active {
+      display: none; }
+    .sp-apr-upvote-section .sp-upvote-icon.active {
+      color: var(--sp-secondary-accent); }
+      .sp-apr-upvote-section .sp-upvote-icon.active svg .nv_like {
+        display: none; }
+      .sp-apr-upvote-section .sp-upvote-icon.active svg .nv_like_active {
+        display: block; }
+  .sp-apr-upvote-section .sp-upvote-count {
+    font-size: var(--bodyfontsize, 0.9em); }

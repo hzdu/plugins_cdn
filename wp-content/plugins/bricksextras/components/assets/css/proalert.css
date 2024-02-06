@@ -1,0 +1,31 @@
+[data-x-alert] {
+    display: none;
+    justify-content: space-between;
+    padding: 30px;
+    width: 400px;
+    flex-direction: column;
+    background: #f9f9f9;
+    z-index: 10;
+    position: relative;
+}
+
+.x-alert_close {
+    background: none;
+    box-shadow: none;
+    border: none;
+    outline: none;
+    padding: 10px;
+    margin: 10px;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.x-alert_content {
+    max-width: 100%;
+}
+
+/* builder */
+.brx-body.iframe .brxe-xproalert {
+    display: flex;
+}

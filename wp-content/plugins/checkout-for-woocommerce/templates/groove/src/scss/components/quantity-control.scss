@@ -1,0 +1,37 @@
+.cfw-edit-item-quantity-control-wrap .cfw-quantity-stepper {
+    border: var(--cfw-cart-summary-border);
+    background-color: var(--cfw-cart-summary-component-bg);
+    color: var(--cfw-cart-summary-text-color-default);
+
+    svg {
+        fill: var(--cfw-cart-summary-text-color-default);
+    }
+
+    .cfw-quantity-stepper-value-label {
+        color: var(--cfw-cart-summary-text-color-contrast) !important;
+    }
+}
+
+.cfw-quantity-stepper .cfw-quantity-stepper-btn-minus {
+    border-right: var(--cfw-cart-summary-border);
+
+    &:hover {
+        background-color: var(--cfw-cart-summary-border-color);
+
+        svg {
+            fill: var(--cfw-cart-summary-text-color-contrast);
+        }
+    }
+}
+
+.cfw-quantity-stepper .cfw-quantity-stepper-btn-plus {
+    border-left: var(--cfw-cart-summary-border);
+
+    &:hover {
+        background-color: var(--cfw-cart-summary-border-color);
+
+        svg {
+            fill: var(--cfw-cart-summary-text-color-contrast);
+        }
+    }
+}

@@ -1,0 +1,119 @@
+.brxe-xslidemenu {
+    width: 100%;
+    flex-direction: column;
+}
+
+.brxe-xslidemenu .menu-item a {
+    color: inherit;
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    padding: 10px;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.brxe-xslidemenu .menu-item {
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+
+.x-slide-menu_list {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+}
+
+.brxe-xslidemenu .sub-menu {
+    display: none;
+    flex-direction: column;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+}
+
+:root {
+    --x-slide-menu-indent: 0px;
+}
+
+.brxe-xslidemenu .sub-menu {
+    text-indent: var(--x-slide-menu-indent)    
+}
+
+.brxe-xslidemenu .sub-menu .sub-menu {
+    text-indent: calc( var(--x-slide-menu-indent) * 2 )    
+}
+
+.brxe-xslidemenu .sub-menu .sub-menu .sub-menu {
+    text-indent: calc( var(--x-slide-menu-indent) * 3 )    
+}
+
+.brxe-xslidemenu .sub-menu .sub-menu .sub-menu .sub-menu {
+    text-indent: calc( var(--x-slide-menu-indent) * 4 )    
+}
+
+.brxe-xslidemenu .sub-menu .sub-menu .sub-menu .sub-menu .sub-menu {
+    text-indent: calc( var(--x-slide-menu-indent) * 5 )    
+}
+
+.brxe-xslidemenu .menu-item-has-children > a[href*="#"] .x-slide-menu_dropdown-icon {
+    pointer-events: none;
+}
+
+.x-slide-menu_dropdown-icon {
+    background-color: transparent;
+    fill: currentColor;
+    width: 2em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: inherit;
+}
+
+.x-slide-menu_dropdown-icon svg {
+    font-size: 1em;
+    height: 1em;
+    width: 1em;
+    stroke: currentColor;
+    transition: transform 0.4s ease;
+}
+
+[class*=brxe-] .x-slide-menu_dropdown-icon svg {
+    height: 1em;
+    width: 1em;
+}
+
+.x-slide-menu_dropdown-icon[aria-expanded=true] svg {
+    transform: rotateX(180deg);
+}
+
+.x-slide-menu_dropdown-icon-click-area:first-of-type:nth-last-of-type(2) {
+    display: none;
+}
+
+.brxe-xslidemenu a[href='#'] span[itemprop=name] {
+    pointer-events: none;
+}
+
+.brxe-xslidemenu .screen-reader-text {
+    clip: rect(1px,1px,1px,1px);
+    height: 1px;
+    overflow: hidden;
+    position: absolute!important;
+    width: 1px;
+    word-wrap: normal!important;
+}
+
+.brxe-xslidemenu[data-x-slide-menu*=clickSelector] {
+    display: none;
+}
+
+.brx-body.iframe .brxe-xslidemenu[data-x-slide-menu*=hidden] {
+    display: block;
+}
+
+.brx-body.iframe .brxe-xslidemenu.brx-draggable.is-empty {
+    min-height: unset;
+}

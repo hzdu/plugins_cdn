@@ -1,0 +1,31 @@
+// Dark
+.elementor-panel {
+  .elementor-element {
+    .icon {
+      .wp-file-download-file:before {
+        background-image: url(../images/wpfd_file_dark_mode.svg);
+      }
+      .wp-file-download-category:before {
+        background-image: url(../images/wpfd_category_dark_mode.svg);
+      }
+      .wp-file-download-search:before {
+        background-image: url(../images/wpfd_search_dark_mode.svg);
+      }
+    }
+    &:hover {
+      .icon {
+        .wp-file-download-file:before {
+          background-image: url(../images/wpfd_file_dark_mode_hover.svg);
+        }
+
+        .wp-file-download-category:before {
+          background-image: url(../images/wpfd_category_dark_mode_hover.svg);
+        }
+
+        .wp-file-download-search:before {
+          background-image: url(../images/wpfd_search_dark_mode_hover.svg);
+        }
+      }
+    }
+  }
+}

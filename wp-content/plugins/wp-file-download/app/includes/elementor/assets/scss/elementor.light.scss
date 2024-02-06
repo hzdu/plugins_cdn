@@ -1,0 +1,31 @@
+// Light
+.elementor-panel {
+  .elementor-element {
+    .icon {
+      .wp-file-download-file:before {
+        background-image: url(../images/wpfd_file.svg);
+      }
+      .wp-file-download-category:before {
+        background-image: url(../images/wpfd_category.svg);
+      }
+      .wp-file-download-search:before {
+        background-image: url(../images/wpfd_search.svg);
+      }
+    }
+    &:hover {
+      .icon {
+        .wp-file-download-file:before {
+          background-image: url(../images/wpfd_file_hover.svg);
+        }
+
+        .wp-file-download-category:before {
+          background-image: url(../images/wpfd_category_hover.svg);
+        }
+
+        .wp-file-download-search:before {
+          background-image: url(../images/wpfd_search_hover.svg);
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,566 @@
+/**
+ * Nestable
+ */
+.dd {
+  position: relative;
+  display: block;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 13px;
+  line-height: 20px;
+}
+
+.dd-list {
+  display: block;
+  position: relative;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.dd-collapsed .dd-list {
+  display: none;
+}
+
+.dd-item, .dd-empty, .dd-placeholder {
+  display: block;
+  position: relative;
+  margin: 0;
+  padding: 0;
+  min-height: 20px;
+  font-size: 13px;
+  line-height: 20px;
+}
+
+.dd-handle {
+  display: block;
+  height: 30px;
+  margin: 1px 0;
+  padding: 5px 10px;
+  color: #333;
+  text-decoration: none;
+  border: 1px solid #ccc;
+  background: #fafafa;
+  background: -webkit-linear-gradient(top, #fafafa 0%, #eee 100%);
+  background: -moz-linear-gradient(top, #fafafa 0%, #eee 100%);
+  background: linear-gradient(top, #fafafa 0%, #eee 100%);
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  &:hover {
+    color: #2ea8e5;
+    background: #fff;
+    cursor: move;
+    & + .dd-content {
+      background: #fff;
+      border-right-color: #0073ab;
+    }
+  }
+}
+
+.dd-item > button {
+  position: relative;
+  cursor: pointer;
+  float: left;
+  width: 20px;
+  height: 35px;
+  margin: 0;
+  padding: 0;
+  text-indent: 100%;
+  overflow: hidden;
+  border: 0;
+  background: transparent;
+  &:focus {
+    outline: none;
+  }
+}
+
+.wpfd-column div#wpfd-categories-col a {
+  &.trash i.icon-trash, &.edit i.icon-edit {
+    margin-top: 5px;
+  }
+}
+
+.dd-item {
+  > button {
+    &:before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 50%;
+      @include transform(translateY(-50%));
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      color: #888888;
+      background: url('../images/tree-arrow.svg') no-repeat center center;
+      background-size: 8px;
+    }
+    &[data-action="collapse"]:before {
+      @include transform(rotate(90deg) translateX(-50%));
+    }
+  }
+  &.active {
+    > button {
+      &[data-action]:before {
+        color: $v4-color;
+      }
+    }
+  }
+}
+
+.dd-placeholder {
+  margin: 5px 0;
+  padding: 0;
+  min-height: 30px;
+  max-height: 30px;
+  background: #f2fbff;
+  border: 1px dashed #b6bcbf;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+}
+
+.dd-empty {
+  margin: 5px 0;
+  display: none;
+  padding: 0;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  border: 1px dashed #bbb;
+  min-height: 100px;
+  background-color: #e5e5e5;
+  background-image: -webkit-linear-gradient(45deg, #fff 25%, transparent 25%, transparent 75%, #fff 75%, #fff), -webkit-linear-gradient(45deg, #fff 25%, transparent 25%, transparent 75%, #fff 75%, #fff);
+  background-image: -moz-linear-gradient(45deg, #fff 25%, transparent 25%, transparent 75%, #fff 75%, #fff), -moz-linear-gradient(45deg, #fff 25%, transparent 25%, transparent 75%, #fff 75%, #fff);
+  background-image: linear-gradient(45deg, #fff 25%, transparent 25%, transparent 75%, #fff 75%, #fff), linear-gradient(45deg, #fff 25%, transparent 25%, transparent 75%, #fff 75%, #fff);
+  background-size: 60px 60px;
+  background-position: 0 0, 30px 30px;
+}
+
+.dd-dragel {
+  position: absolute;
+  pointer-events: none;
+  z-index: 9999;
+  background: $v4-color;
+  height: 32px;
+  overflow: hidden;
+  padding: 0 5px;
+  border-radius: $small-radius;
+  li {
+    padding-left: 0 !important;
+  }
+  .dd3-handle .wpfd-folder,
+  .dd3-handle .onedrive-icon,
+  .dd3-handle .onedrive-business-icon,
+  .dd3-handle .dropbox-icon,
+  .dd3-handle .google-drive-icon {
+    color: #fff !important;
+  }
+  & > .dd3-item > .dd3-content {
+    margin: 0;
+    background: unset !important;
+    border: unset !important;
+    margin-left: 0 !important;
+    padding-left: 0 !important;
+  }
+  .countfile,
+  .count_badge,
+  button {
+    display: none !important;
+  }
+
+  .dd3-content a.t .title {
+    color: #fff !important;
+  }
+  .dd3-item > .dd3-handle {
+    left: 0;
+  }
+}
+
+/**
+ * Nestable Extras
+ */
+
+.nestable-lists {
+  display: block;
+  clear: both;
+  padding: 30px 0;
+  width: 100%;
+  border: 0;
+  border-top: 2px solid #ddd;
+  border-bottom: 2px solid #ddd;
+}
+
+#nestable-menu {
+  padding: 0;
+  margin: 20px 0;
+}
+
+#nestable-output, #nestable2-output {
+  width: 100%;
+  height: 7em;
+  font-size: 0.75em;
+  line-height: 1.333333em;
+  font-family: Consolas, monospace;
+  padding: 5px;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+}
+
+.dd-hover > .dd-handle {
+  background: #2ea8e5 !important;
+}
+
+/* greyout disabled categories */
+
+.bs-docs-sidenav2 {
+  > li .dd-content.disabled {
+    background: #999;
+    pointer-events: none;
+    cursor: default;
+  }
+  a {
+    &[disabled] {
+      pointer-events: none;
+      cursor: default;
+      color: #e1e1e1;
+      &:hover {
+        pointer-events: none;
+        cursor: default;
+        color: #e1e1e1;
+      }
+    }
+    &.disabled {
+      pointer-events: none;
+      cursor: default;
+      color: #e1e1e1;
+      span.title {
+        color: #e1e1e1;
+      }
+    }
+  }
+  > li .dd-content.disabled:hover a {
+    &.edit .icon-edit, &.trash .icon-trash {
+      display: none;
+    }
+  }
+}
+
+/**
+
+ * Nestable Draggable Handles
+
+ */
+
+.dd3-content {
+  background: transparent none repeat scroll 0 0;
+  border: none;
+  border-radius: 0;
+  @include boxSizing(border-box);
+  color: #333;
+  display: block;
+  height: 32px;
+  margin-top: 4px;
+  margin-bottom: 4px;
+  padding: 0 15px 0 65px;
+  text-decoration: none;
+  line-height: 32px;
+  margin-left: -18px;
+  margin-right: -11px;
+  border-right: 5px solid transparent;
+  a.t {
+    display: flex;
+    color: #454545;
+    text-decoration: none;
+    text-align: left;
+    line-height: 1.3;
+    @include fontSize(14px);
+    position: relative;
+    top: 8px;
+    .title {
+      @include textTruncate();
+      display: inline-block;
+      vertical-align: sub;
+    }
+    span.title.editable {
+      width: auto;
+    }
+  }
+  &:hover {
+    border-right: 5px solid $v4-color;
+    a.t {
+      color: $v4-color;
+      position: relative;
+      z-index: 14;
+    }
+    span.countfile {
+      color: $v4-color;
+    }
+  }
+}
+
+.dd-item.active {
+  & > .dd-content {
+    background: transparent none repeat scroll 0 0;
+    border: medium none;
+    color: $v4-color;
+  }
+  & > .dd3-content a.t {
+    color: #313131;
+  }
+}
+
+.dd3-item {
+  &.folderhide {
+    display: none;
+  }
+
+  &.active {
+    > div.dd-content.dd3-content > a.t span.title,
+    > div.dd-content.dd3-content > a.t span.title {
+      color: #313131;
+    }
+    > div.dd-content.dd3-content > a.t span.title.editable,
+    > div.dd-content.dd3-content > a.t span.title.editable {
+      color: #888888;
+    }
+    > .dd-content {
+      background: #fff;
+      border-right: 5px solid $v4-color;
+      span.countfile {
+        color: $v4-color;
+      }
+    }
+    > .dd3-handle {
+      > .wpfd-folder,
+      > .onedrive-icon,
+      > .onedrive-business-icon,
+      > .dropbox-icon,
+      > .google-drive-icon {
+        color: $v4-color;
+      }
+    }
+  }
+  &:hover {
+    > .dd3-content {
+      [class^='icon-'] {
+        color: $v4-color;
+      }
+    }
+    > .dd3-handle {
+      > .wpfd-folder,
+      > .onedrive-icon,
+      > .onedrive-business-icon,
+      > .dropbox-icon,
+      > .google-drive-icon {
+        color: $v4-color;
+      }
+    }
+  }
+  //> button {
+  //  margin-left: -17px !important;
+  //  margin-right: -3px !important;
+  //}
+}
+
+
+
+.dd-expand {
+  display: none;
+}
+
+.dd-collapsed {
+  .dd-list, .dd-collapse {
+    display: none;
+  }
+  .dd-expand {
+    display: block;
+  }
+}
+
+.dd3-handle {
+  position: relative;
+  float: left;
+  margin: 0;
+  top: 0;
+  cursor: pointer;
+  width: 26px;
+  text-indent: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  border: none;
+  background: transparent !important;
+  border-radius: 0;
+
+  .wpfd-folder, .onedrive-icon, .onedrive-business-icon, .dropbox-icon, .google-drive-icon {
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 5px;
+    width: 26px;
+    text-indent: 0;
+    color: #b2b2b2;
+    font-size: 24px;
+    font-weight: normal;
+    vertical-align: middle;
+  }
+  .wpfd-aws-icon {
+    font-size: 14px!important;
+    top: 12px!important;
+  }
+  &:hover {
+    background: #32373C;
+  }
+}
+.dd3-item.active {
+  > .dd3-handle {
+    > .wpfd-folder,
+    > .onedrive-icon,
+    > .onedrive-business-icon,
+    > .dropbox-icon,
+    > .google-drive-icon {
+      color: $v4-color;
+    }
+  }
+}
+
+.disabled.dd3-handle:hover {
+  background: none !important;
+  cursor: default;
+}
+
+.bs-docs-sidenav2 {
+  > li a {
+    &.edit, &.trash {
+      float: right;
+      display: none;
+      cursor: pointer;
+    }
+  }
+  .icon-edit, .icon-trash {
+    vertical-align: middle;
+  }
+  > li {
+    .dd-content:hover a {
+      &.edit, &.trash {
+        display: inherit;
+        width: 14px;
+        height: 14px;
+      }
+    }
+    span.countfile {
+      margin-top: 1px;
+      float: right;
+      color: #7f7f7f;
+    }
+    .count_badge {
+      padding: 2px 8px 4px 8px;
+      background: white;
+      border-radius: 4px;
+      text-align: center;
+    }
+    .dd-content {
+      &:hover {
+        .count_badge {
+          background: $v4-color;
+          color: #fff;
+        }
+        a {
+          i[class^="icon-"] {
+            position: relative;
+            top: 10px;
+            display: block;
+            background-image: none !important;
+
+            &:before {
+              position: absolute;
+              background-image: none;
+              right: 0;
+              top: 0;
+              display: inline-block;
+              width: 14px;
+              height: 14px;
+              font-size: 14px;
+              line-height: 1;
+              font-family: dashicons;
+              text-decoration: inherit;
+              font-weight: 400;
+              font-style: normal;
+              vertical-align: top;
+              text-align: center;
+              transition: color .1s ease-in 0;
+              -webkit-font-smoothing: antialiased;
+              -moz-osx-font-smoothing: grayscale;
+              color: $v4-color;
+            }
+          }
+        }
+        .icon-edit:before {
+          content: "\f464";
+        }
+
+        .icon-trash:before {
+          content: "\f182";
+        }
+
+        //&.edit .icon-edit, &.trash .icon-trash {
+        //  //background-image: url(../../../images/glyphicons-halflings-white.png) !important;
+        //  &:before {
+        //
+        //  }
+        //}
+      }
+      a {
+        &.edit:hover, &.trash:hover {
+          opacity: 1;
+        }
+      }
+    }
+    &:hover .dd-content .icon-chevron-right {
+      display: none;
+    }
+  }
+  .active {
+    .icon-chevron-right {
+    //background-image: url(../../../images/glyphicons-halflings-white.png);
+    opacity: 1;
+  }
+  }
+}
+.dd-item.active > .dd-content > .countfile .count_badge {
+  background: $v4-color;
+  color: #fff;
+}
+.wpfddropzoom > .dd3-handle > .wpfd-folder {
+  color: $v4-color;
+}
+.dd-content-hover {
+  background: rgba(34, 145, 240, 0.1);
+  a.t {
+    color: $v4-color;
+    position: relative;
+    z-index: 999;
+  }
+  span.countfile {
+    color: $v4-color;
+  }
+}
+
+.dd3-item [type=button] + .dd3-handle {
+  left: 0;
+}
+.dd3-item > .dd3-handle {
+  left: 20px;
+}
+
+.dd-dragging {
+  .dd-content:hover,
+  .dd-handle:hover + .dd-content {
+    border-radius: $small-radius;
+    border: 2px solid $v4-color !important;
+    a.t {
+      top: 6px;
+    }
+  }
+}
