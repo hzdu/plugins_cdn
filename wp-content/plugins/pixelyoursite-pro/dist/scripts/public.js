@@ -82,6 +82,8 @@ if (!String.prototype.trim) {
 
     var isTrackEventForGA = [];
 
+    var isAdsLoad = false;
+
     var dummyPinterest = function () {
 
         /**
@@ -837,45 +839,52 @@ if (!String.prototype.trim) {
             utmTerms : utmTerms,
             utmId : utmId,
             isNewSession: checkSession(),
+            setHidePixelCookie: function(){
+                let refresh_after_consent = false;
+                if ( !firstVisit && options.gdpr.consent_magic_integration_enabled && window.CS_Data !== undefined && window.CS_Data.cs_refresh_after_consent) {
+                    refresh_after_consent = true;
+                }
+                if( !refresh_after_consent && !firstVisit) return false;
+
+                const url_parts = window.location.href;
+                const url_params = new URLSearchParams(window.location.search);
+                const matchingPixels = ["facebook", "ga", "google_ads", "bing", "pinterest", "tiktok"];
+                $.each(matchingPixels, function (slug){
+                    var module = getPixelBySlag(slug);
+                    if(module && module.isEnabled()){
+                        $.each(module.getHidePixel(), function (index, hide_info) {
+                            for (const item of hide_info.hide_tag_contain) {
+                                if (item) {
+                                    let hideTagTimeInHours = hide_info.hide_tag_time;
+                                    let hideTagTimeInMilliseconds = hideTagTimeInHours * 60 * 60 * 1000;
+                                    let currentTimeInMilliseconds = new Date().getTime();
+                                    let expiresTimeInMilliseconds = currentTimeInMilliseconds + hideTagTimeInMilliseconds;
+                                    const itemValue = item.split('=');
+                                    const key = itemValue[0];
+                                    const value = itemValue[1];
+
+                                    if (value !== undefined) {
+                                        if (url_params.get(key) === value) {
+                                            Cookies.set('hide_tag_'+hide_info.pixel, true, { expires: new Date(expiresTimeInMilliseconds) });
+                                            break;
+                                        }
+                                    } else if (url_params.get(key) !== null) {
+                                        Cookies.set('hide_tag_'+hide_info.pixel, true, { expires: new Date(expiresTimeInMilliseconds) });
+                                        break;
+                                    }
+                                }
+                            }
+                        });
+                    }
+
+                });
+            },
             hideMatchingPixel: function(pixelValue, slug) {
-                if(!firstVisit) return false;
                 if(Cookies.get('hide_tag_'+pixelValue))
                 {
                     return true;
                 }
-                var hide = false;
-                const url_parts = window.location.href;
-                const url_params = new URLSearchParams(window.location.search);
-                const matchingPixels = [];
-                $.each(getPixelBySlag(slug).getHidePixel(), function (index, hide_info) {
-
-                    if (hide_info.pixel === pixelValue) {
-                        for (const item of hide_info.hide_tag_contain) {
-                            if (item) {
-                                let hideTagTimeInHours = hide_info.hide_tag_time;
-                                let hideTagTimeInMilliseconds = hideTagTimeInHours * 60 * 60 * 1000;
-                                let currentTimeInMilliseconds = new Date().getTime();
-                                let expiresTimeInMilliseconds = currentTimeInMilliseconds + hideTagTimeInMilliseconds;
-                                const itemValue = item.split('=');
-                                const key = itemValue[0];
-                                const value = itemValue[1];
-
-                                if (value !== undefined) {
-                                    if (url_params.get(key) === value) {
-                                        Cookies.set('hide_tag_'+pixelValue, true, { expires: new Date(expiresTimeInMilliseconds) });
-                                        hide = true;
-                                        break;
-                                    }
-                                } else if (url_params.get(key) !== null) {
-                                    Cookies.set('hide_tag_'+pixelValue, true, { expires: new Date(expiresTimeInMilliseconds) });
-                                    hide = true;
-                                    break;
-                                }
-                            }
-                        }
-                    }
-                });
-                return hide;
+                return false;
             },
             validateEmail: function (email) {
                 var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -1069,12 +1078,21 @@ if (!String.prototype.trim) {
             },
 
             manageCookies: function () {
-                if(isNewSession && !options.cookie.disabled_all_cookie && !options.cookie.disabled_start_session_cookie) {
+
+                let cm_consent_not_expressed = false;
+                if ( options.gdpr.consent_magic_integration_enabled && window.CS_Data !== undefined && window.CS_Data.cs_refresh_after_consent == 1 ) {
+                    if ( Cookies.get( 'cs_viewed_cookie_policy' ) === undefined ) {
+                        cm_consent_not_expressed = true;
+                    }
+                }
+
+                if( !cm_consent_not_expressed && isNewSession && !options.cookie.disabled_all_cookie && !options.cookie.disabled_start_session_cookie) {
                     let duration = options.last_visit_duration * 60000
                     var now = new Date();
                     now.setTime(now.getTime() + duration);
                     Cookies.set('pys_session_limit', true,{ expires: now })
-                    Cookies.set('pys_start_session', true)
+                    Cookies.set('pys_start_session', true);
+                    Utils.setHidePixelCookie();
                 }
                 if (options.gdpr.ajax_enabled && !options.gdpr.consent_magic_integration_enabled) {
 
@@ -1629,7 +1647,15 @@ if (!String.prototype.trim) {
                     };
 
                     gtag('js', new Date());
+                    if ( options.google_consent_mode ) {
+                        let data = {};
+                        data[ 'analytics_storage' ] = options.gdpr.analytics_storage.enabled ? options.gdpr.analytics_storage.value : 'granted';
+                        data[ 'ad_storage' ] = options.gdpr.ad_storage.enabled ? options.gdpr.ad_storage.value : 'granted';
+                        data[ 'ad_user_data' ] = options.gdpr.ad_user_data.enabled ? options.gdpr.ad_user_data.value : 'granted';
+                        data[ 'ad_personalization' ] = options.gdpr.ad_personalization.enabled ? options.gdpr.ad_personalization.value : 'granted';
 
+                        gtag( 'consent', 'default', data );
+                    }
                     gtag_loaded = true;
 
                 }
@@ -2175,7 +2201,13 @@ if (!String.prototype.trim) {
                 else {
                     Cookies.remove('pys_advanced_form_data')
                 }
-                GAds.updateEnhancedConversionData()
+                if(Analytics.isEnabled()){
+                    Analytics.updateEnhancedConversionData()
+                }
+                else if(GAds.isEnabled()){
+                    GAds.updateEnhancedConversionData()
+                }
+
 
             },
 
@@ -3084,7 +3116,7 @@ if (!String.prototype.trim) {
     var Analytics = function (options) {
 
         var initialized = false;
-
+        var isAllowEnhancedConversions = false;
         /**
          * Fires event
          *
@@ -3161,7 +3193,6 @@ if (!String.prototype.trim) {
                     let params = {
                         event_category: "Key Actions",
                         event_action: name,
-                        non_interaction: param.non_interaction,
                     }
                     if(param.hasOwnProperty("target_url")) {
                         params['event_label'] = param.target_url
@@ -3181,7 +3212,6 @@ if (!String.prototype.trim) {
                     let params = {
                         event_category: "Key Actions",
                         event_action: name,
-                        non_interaction: param.non_interaction,
                     }
                     return params;
                 }
@@ -3189,7 +3219,6 @@ if (!String.prototype.trim) {
                     let params = {
                         event_category: "Key Actions",
                         event_action: name,
-                        non_interaction: param.non_interaction,
                     }
                     var formClass = (typeof param.form_class != 'undefined') ? 'class: ' + param.form_class : '';
                     if(formClass != "") {
@@ -3202,7 +3231,6 @@ if (!String.prototype.trim) {
                         event_category: "Key Actions",
                         event_action: name,
                         event_label: param.download_name,
-                        non_interaction: param.non_interaction,
                     }
                     return params;
                 }
@@ -3212,7 +3240,6 @@ if (!String.prototype.trim) {
                         event_category: "Key Actions",
                         event_action: name,
                         event_label: document.title,
-                        non_interaction: param.non_interaction,
                     }
                     return params;
                 }
@@ -3220,8 +3247,7 @@ if (!String.prototype.trim) {
                     let params = {
                         event_category: "Key Actions",
                         event_action: name,
-                        event_label: param.search_term,
-                        non_interaction: param.non_interaction,
+                        event_label: param.search_term
                     }
                     return params;
                 }
@@ -3363,7 +3389,41 @@ if (!String.prototype.trim) {
             disable: function () {
                 initialized = false;
             },
+            updateEnhancedConversionData : function () {
 
+                if(isAllowEnhancedConversions) {
+                    var advanced = Utils.getAdvancedFormData()
+                    var mergedData = [];
+                    if(
+                        Object.keys(options.google_ads.user_data).length == 0 ||
+                        advanced["email"].length > 0 && advanced["email"] != options.google_ads.user_data.email ||
+                        advanced["phone"].length > 0 && advanced["phone"] != options.google_ads.user_data.phone_number ||
+                        advanced["first_name"].length > 0 && advanced["first_name"] != options.google_ads.user_data.address.first_name ||
+                        advanced["last_name"].length > 0 && advanced["last_name"] != options.google_ads.user_data.address.last_name
+                    ) {
+                        advanced_data = {
+                            "email": advanced["email"].length > 0 && advanced["email"] != options.google_ads.user_data.email ? advanced["email"] : options.google_ads.user_data.email ?? '',
+                            "phone_number": advanced["phone"].length > 0 && advanced["phone"] != options.google_ads.user_data.phone_number ? advanced["phone"] : options.google_ads.user_data.phone_number ?? '',
+                            "address": {
+                                "first_name": advanced["first_name"].length > 0 && advanced["first_name"] != options.google_ads.user_data.first_name ? advanced["first_name"] : options.google_ads.user_data.first_name ?? '',
+                                "last_name": advanced["last_name"].length > 0 && advanced["last_name"] != options.google_ads.user_data.last_name ? advanced["last_name"] : options.google_ads.user_data.last_name ?? '',
+                            }
+                        };
+                        if(Object.keys(options.google_ads.user_data).length != 0){
+                            mergedData = options.google_ads.user_data;
+                            mergedData.email = advanced_data.email;
+                            mergedData.phone_number = advanced_data.phone_number;
+                            mergedData.address.first_name = advanced_data.address.first_name;
+                            mergedData.address.last_name = advanced_data.address.last_name;
+                        }
+                        else{
+                            mergedData = advanced_data;
+                        }
+
+                        gtag('set', 'user_data', mergedData);
+                    }
+                }
+            },
             loadPixel: function () {
 
                 if (initialized || !this.isEnabled() || !Utils.consentGiven('analytics')) {
@@ -3458,7 +3518,39 @@ if (!String.prototype.trim) {
                     }
 
                 });
+                if(!isAdsLoad){
+                    for (var i = 0; i < options.google_ads.conversion_ids.length; i++) {
+                        var trackingId = options.google_ads.conversion_ids[i];
+                        if (!Utils.hideMatchingPixel(trackingId, 'google_ads')) {
+                            Utils.loadGoogleTag(trackingId);
+                            break; // Прерываем выполнение цикла, если загрузили тег
+                        }
+                    }
+                    var ids = options.google_ads.conversion_ids.filter(function (pixelId) {
+                        return !Utils.hideMatchingPixel(pixelId, 'google_ads');
+                    });
+                    // configure conversion ids
+                    ids.forEach(function (conversion_id,index) {
 
+                        gtag('config', conversion_id);
+
+                        if(options.google_ads.enhanced_conversion.includes("index_"+index)) {
+                            isAllowEnhancedConversions = true
+                            gtag('config', conversion_id,{ 'allow_enhanced_conversions':true });
+                        }
+
+                        if(isAllowEnhancedConversions) {
+                            var advanced = Utils.getAdvancedFormData()
+                            if(Object.keys(options.google_ads.user_data).length > 0) {
+                                gtag('set', 'user_data', options.google_ads.user_data);
+                            } else if(advanced["email"].length > 0) {
+                                gtag('set', 'user_data', {"email":advanced["email"]});
+                            }
+                        }
+
+                    });
+                    isAdsLoad = true;
+                }
                 initialized = true;
 
                 Utils.fireStaticEvents('ga');
@@ -3849,10 +3941,34 @@ if (!String.prototype.trim) {
 
                 if(isAllowEnhancedConversions) {
                     var advanced = Utils.getAdvancedFormData()
-                    if(Object.keys(options.google_ads.user_data).length == 0) {
-                        if(advanced["email"].length > 0) {
-                            gtag('set', 'user_data', {"email":advanced["email"]});
+                    var mergedData = [];
+                    if(
+                        Object.keys(options.google_ads.user_data).length == 0 ||
+                        advanced["email"].length > 0 && advanced["email"] != options.google_ads.user_data.email ||
+                        advanced["phone"].length > 0 && advanced["phone"] != options.google_ads.user_data.phone_number ||
+                        advanced["first_name"].length > 0 && advanced["first_name"] != options.google_ads.user_data.address.first_name ||
+                        advanced["last_name"].length > 0 && advanced["last_name"] != options.google_ads.user_data.address.last_name
+                    ) {
+                        advanced_data = {
+                            "email": advanced["email"].length > 0 && advanced["email"] != options.google_ads.user_data.email ? advanced["email"] : options.google_ads.user_data.email ?? '',
+                            "phone_number": advanced["phone"].length > 0 && advanced["phone"] != options.google_ads.user_data.phone_number ? advanced["phone"] : options.google_ads.user_data.phone_number ?? '',
+                            "address": {
+                                "first_name": advanced["first_name"].length > 0 && advanced["first_name"] != options.google_ads.user_data.first_name ? advanced["first_name"] : options.google_ads.user_data.first_name ?? '',
+                                "last_name": advanced["last_name"].length > 0 && advanced["last_name"] != options.google_ads.user_data.last_name ? advanced["last_name"] : options.google_ads.user_data.last_name ?? '',
+                            }
+                        };
+                        if(Object.keys(options.google_ads.user_data).length != 0){
+                            mergedData = options.google_ads.user_data;
+                            mergedData.email = advanced_data.email;
+                            mergedData.phone_number = advanced_data.phone_number;
+                            mergedData.address.first_name = advanced_data.address.first_name;
+                            mergedData.address.last_name = advanced_data.address.last_name;
                         }
+                        else{
+                            mergedData = advanced_data;
+                        }
+
+                        gtag('set', 'user_data', mergedData);
                     }
                 }
             },
@@ -3863,36 +3979,49 @@ if (!String.prototype.trim) {
                     return;
                 }
 
-                for (var i = 0; i < options.google_ads.conversion_ids.length; i++) {
-                    var trackingId = options.google_ads.conversion_ids[i];
-                    if (!Utils.hideMatchingPixel(trackingId, 'google_ads')) {
-                        Utils.loadGoogleTag(trackingId);
-                        break; // Прерываем выполнение цикла, если загрузили тег
-                    }
-                }
-                var ids = options.google_ads.conversion_ids.filter(function (pixelId) {
-                    return !Utils.hideMatchingPixel(pixelId, 'google_ads');
-                });
-                // configure conversion ids
-                ids.forEach(function (conversion_id,index) {
-
-                    gtag('config', conversion_id);
-
-                    if(options.google_ads.enhanced_conversion.includes("index_"+index)) {
-                        isAllowEnhancedConversions = true
-                        gtag('config', conversion_id,{ 'allow_enhanced_conversions':true });
-                    }
-
-                    if(isAllowEnhancedConversions) {
-                        var advanced = Utils.getAdvancedFormData()
-                        if(Object.keys(options.google_ads.user_data).length > 0) {
-                            gtag('set', 'user_data', options.google_ads.user_data);
-                        } else if(advanced["email"].length > 0) {
-                            gtag('set', 'user_data', {"email":advanced["email"]});
+                if(!isAdsLoad){
+                    for (var i = 0; i < options.google_ads.conversion_ids.length; i++) {
+                        var trackingId = options.google_ads.conversion_ids[i];
+                        if (!Utils.hideMatchingPixel(trackingId, 'google_ads')) {
+                            Utils.loadGoogleTag(trackingId);
+                            break; // Прерываем выполнение цикла, если загрузили тег
                         }
                     }
+                    var ids = options.google_ads.conversion_ids.filter(function (pixelId) {
+                        return !Utils.hideMatchingPixel(pixelId, 'google_ads');
+                    });
+                    // configure conversion ids
+                    ids.forEach(function (conversion_id,index) {
 
-                });
+                        let config = {};
+
+                        if(options.google_ads.enhanced_conversion.includes("index_"+index)) {
+                            isAllowEnhancedConversions = true;
+                            config.allow_enhanced_conversions = true
+                        }
+
+                        // Cross-Domain tracking
+                        if (options.google_ads.crossDomainEnabled) {
+                            config.linker = {
+                                accept_incoming: options.google_ads.crossDomainAcceptIncoming,
+                                domains: options.google_ads.crossDomainDomains
+                            };
+                        }
+
+                        gtag('config', conversion_id, config );
+
+                        if(isAllowEnhancedConversions) {
+                            var advanced = Utils.getAdvancedFormData()
+                            if(Object.keys(options.google_ads.user_data).length > 0) {
+                                gtag('set', 'user_data', options.google_ads.user_data);
+                            } else if(advanced["email"].length > 0) {
+                                gtag('set', 'user_data', {"email":advanced["email"]});
+                            }
+                        }
+
+                    });
+                    isAdsLoad = true;
+                }
 
                 initialized = true;
 
