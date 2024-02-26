@@ -62,12 +62,12 @@
 
 		onTimeFormatChange: function( model, value ) {
 			if ( 12 === parseInt( value, 10 ) ) {
-				model.set('min_hour', 1, {
+				model.set('min_hour', 0, {
 					silent: true
 				});
 
-				this.$el.find('input[data-bind=min_hour]').val(1).attr({
-					'min': 1,
+				this.$el.find('input[data-bind=min_hour]').val(0).attr({
+					'min': 0,
 					'max': 12
 				});
 
@@ -76,11 +76,11 @@
 				});
 
 				this.$el.find('input[data-bind=max_hour]').val(12).attr({
-					'min': 1,
+					'min': 0,
 					'max': 12
 				});
 			} else {
-				model.set('min_hour', 1, {
+				model.set('min_hour', 0, {
 					silent: true
 				});
 

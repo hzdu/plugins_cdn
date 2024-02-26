@@ -352,7 +352,6 @@ if (!String.prototype.trim) {
         function addYouTubeEvents(iframe) {
 
             var player = YT.get(iframe.id);
-
             if (!player) {
                 player = new YT.Player(iframe, {});
             }
@@ -2210,7 +2209,44 @@ if (!String.prototype.trim) {
 
 
             },
+            getAdvancedMergeFormData: function() {
+                var advanced = Utils.getAdvancedFormData();
+                var mergedData = {};
 
+                if (
+                    Object.keys(options.google_ads.user_data).length == 0 ||
+                    (advanced["email"] != options.google_ads.user_data.email) ||
+                    (advanced["phone"] != options.google_ads.user_data.phone_number) ||
+                    ( options.google_ads.user_data.address &&
+                        ( options.google_ads.user_data.address.first_name && advanced["first_name"] != options.google_ads.user_data.address.first_name ||
+                          options.google_ads.user_data.address.last_name && advanced["last_name"] != options.google_ads.user_data.address.last_name )
+                    )
+                ) {
+                    if (Object.keys(options.google_ads.user_data).length != 0) {
+                        mergedData = options.google_ads.user_data;
+                        if (advanced["email"] && advanced["email"] != options.google_ads.user_data.email) {
+                            mergedData.email = advanced.email;
+                        }
+                        if (advanced["phone"] && advanced["phone"] != options.google_ads.user_data.phone_number) {
+                            mergedData.phone_number = advanced["phone"];
+                        }
+                        if ( options.google_ads.user_data.address ) {
+                            if ( options.google_ads.user_data.address.first_name && advanced["first_name"] && advanced["first_name"] != options.google_ads.user_data.address.first_name) {
+                                mergedData.address = mergedData.address || {};
+                                mergedData.address.first_name = advanced["first_name"];
+                            }
+                            if ( options.google_ads.user_data.address.last_name && advanced["last_name"] && advanced["last_name"] != options.google_ads.user_data.address.last_name) {
+                                mergedData.address = mergedData.address || {};
+                                mergedData.address.last_name = advanced["last_name"];
+                            }
+                        }
+                    } else {
+                        mergedData = advanced;
+                    }
+                    return mergedData;
+                }
+                return advanced;
+            },
             getAdvancedFormData: function () {
                 let dataStr = Cookies.get("pys_advanced_form_data");
                 if(dataStr === undefined) {
@@ -3162,6 +3198,11 @@ if (!String.prototype.trim) {
                 var params = mapParamsTov4(ids,name,copyParams)
             }
 
+            delete params.analytics_storage;
+            delete params.ad_storage;
+            delete params.ad_user_data;
+            delete params.ad_personalization;
+
             _fireEvent(ids, name, params);
             isTrackEventForGA.push(name);
 
@@ -3392,36 +3433,8 @@ if (!String.prototype.trim) {
             updateEnhancedConversionData : function () {
 
                 if(isAllowEnhancedConversions) {
-                    var advanced = Utils.getAdvancedFormData()
-                    var mergedData = [];
-                    if(
-                        Object.keys(options.google_ads.user_data).length == 0 ||
-                        advanced["email"].length > 0 && advanced["email"] != options.google_ads.user_data.email ||
-                        advanced["phone"].length > 0 && advanced["phone"] != options.google_ads.user_data.phone_number ||
-                        advanced["first_name"].length > 0 && advanced["first_name"] != options.google_ads.user_data.address.first_name ||
-                        advanced["last_name"].length > 0 && advanced["last_name"] != options.google_ads.user_data.address.last_name
-                    ) {
-                        advanced_data = {
-                            "email": advanced["email"].length > 0 && advanced["email"] != options.google_ads.user_data.email ? advanced["email"] : options.google_ads.user_data.email ?? '',
-                            "phone_number": advanced["phone"].length > 0 && advanced["phone"] != options.google_ads.user_data.phone_number ? advanced["phone"] : options.google_ads.user_data.phone_number ?? '',
-                            "address": {
-                                "first_name": advanced["first_name"].length > 0 && advanced["first_name"] != options.google_ads.user_data.first_name ? advanced["first_name"] : options.google_ads.user_data.first_name ?? '',
-                                "last_name": advanced["last_name"].length > 0 && advanced["last_name"] != options.google_ads.user_data.last_name ? advanced["last_name"] : options.google_ads.user_data.last_name ?? '',
-                            }
-                        };
-                        if(Object.keys(options.google_ads.user_data).length != 0){
-                            mergedData = options.google_ads.user_data;
-                            mergedData.email = advanced_data.email;
-                            mergedData.phone_number = advanced_data.phone_number;
-                            mergedData.address.first_name = advanced_data.address.first_name;
-                            mergedData.address.last_name = advanced_data.address.last_name;
-                        }
-                        else{
-                            mergedData = advanced_data;
-                        }
-
-                        gtag('set', 'user_data', mergedData);
-                    }
+                    var advanced = Utils.getAdvancedMergeFormData()
+                    gtag('set', 'user_data', advanced);
                 }
             },
             loadPixel: function () {
@@ -3518,7 +3531,7 @@ if (!String.prototype.trim) {
                     }
 
                 });
-                if(!isAdsLoad){
+                if(!isAdsLoad && GAds.isEnabled() && options.google_ads.conversion_ids.length > 0){
                     for (var i = 0; i < options.google_ads.conversion_ids.length; i++) {
                         var trackingId = options.google_ads.conversion_ids[i];
                         if (!Utils.hideMatchingPixel(trackingId, 'google_ads')) {
@@ -3540,12 +3553,8 @@ if (!String.prototype.trim) {
                         }
 
                         if(isAllowEnhancedConversions) {
-                            var advanced = Utils.getAdvancedFormData()
-                            if(Object.keys(options.google_ads.user_data).length > 0) {
-                                gtag('set', 'user_data', options.google_ads.user_data);
-                            } else if(advanced["email"].length > 0) {
-                                gtag('set', 'user_data', {"email":advanced["email"]});
-                            }
+                            var advanced = Utils.getAdvancedMergeFormData()
+                            gtag('set', 'user_data', advanced);
                         }
 
                     });
@@ -3858,6 +3867,8 @@ if (!String.prototype.trim) {
 
 
             };
+
+
             if (conversion_labels.length > 0) {
                 ids = conversion_labels;
                 if(!isTrackEventForGA.includes(name)){
@@ -3865,30 +3876,27 @@ if (!String.prototype.trim) {
                 }
             }
             else {
-
-                if (name == 'purchase') {
-                    if(ids.length && options.google_ads.woo_purchase_conversion_track && options.google_ads.woo_purchase_conversion_track == 'conversion')
-                    {
-                        _fireEvent(ids, "conversion");
-                    }
-                    if (ids.length && options.google_ads.woo_purchase_conversion_track && options.google_ads.woo_purchase_conversion_track == 'purchase') {
-                        ids = ids;
-                    } else {
-                        ids = coversionIds
-                    }
+                var conversion_event_name = data.e_id;
+                switch (conversion_event_name) {
+                    case "woo_add_to_cart_on_cart_page":
+                    case "woo_add_to_cart_on_checkout_page":
+                    case "woo_add_to_cart_on_button_click":
+                        conversion_event_name = 'woo_add_to_cart';
+                        break;
+                    case "edd_add_to_cart_on_cart_page":
+                    case "edd_add_to_cart_on_checkout_page":
+                    case "edd_add_to_cart_on_button_click":
+                        conversion_event_name = 'edd_add_to_cart';
+                        break;
                 }
-                else if (name == 'begin_checkout') {
-                    if(ids.length && options.google_ads[data.e_id + '_conversion_track'] && options.google_ads[data.e_id + '_conversion_track'] == 'conversion')
-                    {
-
-                        _fireEvent(ids, "conversion");
-                    }
-                    if (ids.length && options.google_ads[data.e_id + '_conversion_track'] && options.google_ads[data.e_id + '_conversion_track'] == 'initiate_checkout') {
-                        ids = ids;
-                    } else {
-                        ids = coversionIds
-                    }
-                }else {
+                if(ids.length && options.google_ads[conversion_event_name + '_conversion_track'] && options.google_ads[conversion_event_name + '_conversion_track'] == 'conversion')
+                {
+                    _fireEvent(ids, "conversion");
+                }
+                if (ids.length && options.google_ads[conversion_event_name + '_conversion_track'] && options.google_ads[conversion_event_name + '_conversion_track'] != 'conversion') {
+                    ids = ids;
+                }
+                else {
                     ids = coversionIds;
                 }
                 if(!isTrackEventForGA.includes(name)){
@@ -3940,36 +3948,8 @@ if (!String.prototype.trim) {
             updateEnhancedConversionData : function () {
 
                 if(isAllowEnhancedConversions) {
-                    var advanced = Utils.getAdvancedFormData()
-                    var mergedData = [];
-                    if(
-                        Object.keys(options.google_ads.user_data).length == 0 ||
-                        advanced["email"].length > 0 && advanced["email"] != options.google_ads.user_data.email ||
-                        advanced["phone"].length > 0 && advanced["phone"] != options.google_ads.user_data.phone_number ||
-                        advanced["first_name"].length > 0 && advanced["first_name"] != options.google_ads.user_data.address.first_name ||
-                        advanced["last_name"].length > 0 && advanced["last_name"] != options.google_ads.user_data.address.last_name
-                    ) {
-                        advanced_data = {
-                            "email": advanced["email"].length > 0 && advanced["email"] != options.google_ads.user_data.email ? advanced["email"] : options.google_ads.user_data.email ?? '',
-                            "phone_number": advanced["phone"].length > 0 && advanced["phone"] != options.google_ads.user_data.phone_number ? advanced["phone"] : options.google_ads.user_data.phone_number ?? '',
-                            "address": {
-                                "first_name": advanced["first_name"].length > 0 && advanced["first_name"] != options.google_ads.user_data.first_name ? advanced["first_name"] : options.google_ads.user_data.first_name ?? '',
-                                "last_name": advanced["last_name"].length > 0 && advanced["last_name"] != options.google_ads.user_data.last_name ? advanced["last_name"] : options.google_ads.user_data.last_name ?? '',
-                            }
-                        };
-                        if(Object.keys(options.google_ads.user_data).length != 0){
-                            mergedData = options.google_ads.user_data;
-                            mergedData.email = advanced_data.email;
-                            mergedData.phone_number = advanced_data.phone_number;
-                            mergedData.address.first_name = advanced_data.address.first_name;
-                            mergedData.address.last_name = advanced_data.address.last_name;
-                        }
-                        else{
-                            mergedData = advanced_data;
-                        }
-
-                        gtag('set', 'user_data', mergedData);
-                    }
+                    var advanced = Utils.getAdvancedMergeFormData()
+                    gtag('set', 'user_data', advanced);
                 }
             },
 
@@ -3979,7 +3959,7 @@ if (!String.prototype.trim) {
                     return;
                 }
 
-                if(!isAdsLoad){
+                if(!isAdsLoad && options.google_ads.conversion_ids.length > 0){
                     for (var i = 0; i < options.google_ads.conversion_ids.length; i++) {
                         var trackingId = options.google_ads.conversion_ids[i];
                         if (!Utils.hideMatchingPixel(trackingId, 'google_ads')) {
@@ -4011,12 +3991,8 @@ if (!String.prototype.trim) {
                         gtag('config', conversion_id, config );
 
                         if(isAllowEnhancedConversions) {
-                            var advanced = Utils.getAdvancedFormData()
-                            if(Object.keys(options.google_ads.user_data).length > 0) {
-                                gtag('set', 'user_data', options.google_ads.user_data);
-                            } else if(advanced["email"].length > 0) {
-                                gtag('set', 'user_data', {"email":advanced["email"]});
-                            }
+                            var advanced = Utils.getAdvancedMergeFormData()
+                            gtag('set', 'user_data', advanced);
                         }
 
                     });
