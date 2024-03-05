@@ -3176,9 +3176,7 @@ if (!String.prototype.trim) {
                 return !Utils.hideMatchingPixel(pixelId, 'ga');
             })
             Utils.copyProperties(Utils.getRequestParams(), eventParams);
-
             var _fireEvent = function (tracking_id,name,params) {
-
                 params['send_to'] = tracking_id;
                 if (options.debug) {
                     console.log('[Google Analytics #' + tracking_id + '] ' + name, params);
@@ -3189,12 +3187,9 @@ if (!String.prototype.trim) {
             };
 
             var copyParams = Utils.copyProperties(eventParams, {}); // copy params because mapParamsTov4 can modify it
-            if(event.hasOwnProperty("unify")){
-                var params = mapParamsToUnifyGA(name,copyParams)
-            }
-            else {
-                var params = mapParamsTov4(ids,name,copyParams)
-            }
+
+            var params = mapParamsTov4(ids,name,copyParams)
+
 
             delete params.analytics_storage;
             delete params.ad_storage;
@@ -3225,74 +3220,6 @@ if (!String.prototype.trim) {
 
         }
 
-        function mapParamsToUnifyGA(name,param){
-            switch (name) {
-                case 'OutboundClick':
-                case 'InternalClick': {
-                    let params = {
-                        event_category: "Key Actions",
-                        event_action: name,
-                    }
-                    if(param.hasOwnProperty("target_url")) {
-                        params['event_label'] = param.target_url
-                    }
-                    if(options.trackTrafficSource) {
-                        params['traffic_source'] = param.traffic_source
-                    }
-                    return params;
-                }
-
-                case 'AdSense' :
-                case 'Comment' :
-                case 'login' :
-                case 'sign_up' :
-                case 'EmailClick' :
-                case 'TelClick' : {
-                    let params = {
-                        event_category: "Key Actions",
-                        event_action: name,
-                    }
-                    return params;
-                }
-                case 'Form' : {
-                    let params = {
-                        event_category: "Key Actions",
-                        event_action: name,
-                    }
-                    var formClass = (typeof param.form_class != 'undefined') ? 'class: ' + param.form_class : '';
-                    if(formClass != "") {
-                        params["event_label"] = formClass;
-                    }
-                    return params;
-                }
-                case 'Download' : {
-                    let params = {
-                        event_category: "Key Actions",
-                        event_action: name,
-                        event_label: param.download_name,
-                    }
-                    return params;
-                }
-                case 'TimeOnPage' :
-                case 'PageScroll' : {
-                    let params = {
-                        event_category: "Key Actions",
-                        event_action: name,
-                        event_label: document.title,
-                    }
-                    return params;
-                }
-                case 'search' : {
-                    let params = {
-                        event_category: "Key Actions",
-                        event_action: name,
-                        event_label: param.search_term
-                    }
-                    return params;
-                }
-            }
-            return param;
-        }
         function mapParamsTov4(tag,name,param) {
             //GA4 automatically collects a number of parameters for all events
             var hasGA4Tag = false;
@@ -3323,83 +3250,6 @@ if (!String.prototype.trim) {
                     delete param.dynx_pagetype;
                     delete param.dynx_totalvalue;
                 }
-            } else {
-
-                switch (name) {
-                    case 'OutboundClick':
-                    case 'InternalClick': {
-                        let params = {
-                            event_category: "Key Actions",
-                            event_action: name,
-                        }
-                        if(param.hasOwnProperty("target_url")) {
-                            params['event_label'] = param.target_url
-                        }
-                        if(options.trackTrafficSource) {
-                            params['traffic_source'] = param.traffic_source
-                        }
-                        return params;
-                    }
-
-                    case 'AdSense' :
-                    case 'Comment' :
-                    case 'login' :
-                    case 'sign_up' :
-                    case 'EmailClick' :
-                    case 'TelClick' : {
-                        let params = {
-                            event_category: "Key Actions",
-                            event_action: name,
-                        }
-                        return params;
-                    }
-                    case 'Form' : {
-                        let params = {
-                            event_category: "Key Actions",
-                            event_action: name,
-                        }
-                        var formClass = (typeof param.form_class != 'undefined') ? 'class: ' + param.form_class : '';
-                        if(formClass != "") {
-                            params["event_label"] = formClass;
-                        }
-                        return params;
-                    }
-                    case 'Download' : {
-                        let params = {
-                            event_category: "Key Actions",
-                            event_action: name,
-                            event_label: param.download_name,
-                        }
-                        return params;
-                    }
-                    case 'TimeOnPage' :
-                    case 'PageScroll' : {
-                        let params = {
-                            event_category: "Key Actions",
-                            event_action: name,
-                            event_label: document.title,
-                        }
-                        return params;
-                    }
-                    case 'search' : {
-                        let params = {
-                            event_category: "Key Actions",
-                            event_action: name,
-                            event_label: param.search_term,
-                        }
-                        return params;
-                    }
-                }
-
-                //delete standard params
-
-                delete param.post_type;
-                delete param.post_id;
-                delete param.plugin;
-                delete param.user_role;
-                delete param.cartlows;
-                delete param.cartflows_flow;
-                delete param.cartflows_step;
             }
             return param;
         }

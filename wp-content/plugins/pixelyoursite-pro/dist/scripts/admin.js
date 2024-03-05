@@ -242,12 +242,19 @@ jQuery( document ).ready(function($) {
 
 
     function updatePostEventFields() {
+        const arr_form_trigger = ["CF7", "fluentform", "formidable", "forminator", "gravity", "ninjaform", "wpforms", ];
+        console.log($.inArray($("#pys_event_trigger_type").val(), arr_form_trigger))
         if($("#pys_event_trigger_type").val() == "post_type") {
             $(".event-delay").css("visibility","visible");
             $(".triger_post_type").show();
             $("#url_filter_panel").hide();
             $(".post_type_error").show();
-        } else {
+        } else if($.inArray($("#pys_event_trigger_type").val(), arr_form_trigger) != -1) {
+            $("#url_filter_panel").hide();
+            $(".post_type_error").hide();
+            $(".triger_post_type").hide();
+        }
+        else{
             $(".post_type_error").hide();
             $(".triger_post_type").hide();
         }
