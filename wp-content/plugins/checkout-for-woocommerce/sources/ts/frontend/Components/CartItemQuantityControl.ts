@@ -9,7 +9,7 @@ class CartItemQuantityControl {
     }
 
     setQuantityStepperTriggers(): void {
-        jQuery( document.body ).on( 'click', '.cfw-quantity-stepper-btn-minus', ( event ) => {
+        jQuery( document.body ).on( 'click', '.cfw-quantity-stepper-btn-minus:not(.cfw-disabled)', ( event ) => {
             const element = jQuery( event.currentTarget );
             const quantityValue = element.siblings( '.cfw-edit-item-quantity-value' ).first();
             const quantityStepperLabel = element.parents( '.cart-item-row' ).find( '.cfw-cart-item-quantity-bubble' ).first();
@@ -33,7 +33,7 @@ class CartItemQuantityControl {
             return false;
         } );
 
-        jQuery( document.body ).on( 'click', '.cfw-quantity-stepper-btn-plus:not(.maxed)', ( event ) => {
+        jQuery( document.body ).on( 'click', '.cfw-quantity-stepper-btn-plus:not(.cfw-disabled)', ( event ) => {
             const element = jQuery( event.currentTarget );
             const quantityValue = element.siblings( '.cfw-edit-item-quantity-value' ).first();
             const quantityStepperLabel = element.siblings( '.cfw-quantity-stepper-value-label' ).first();
@@ -71,10 +71,21 @@ class CartItemQuantityControl {
         jQuery( document.body ).on( 'click', '.cfw-quantity-bulk-edit', ( event ) => {
             const element = jQuery( event.currentTarget );
             const response = ( <any>window ).prompt( DataService.getMessage( 'quantity_prompt_message' ), element.data( 'quantity' ) );
+            const quantityValue = element.siblings( '.cfw-edit-item-quantity-value' ).first();
+            const minQuantity = Number( jQuery( quantityValue ).data( 'min-value' ) );
+            const maxQuantity = Number( jQuery( quantityValue ).data( 'max-quantity' ) );
 
             // If we have input
             if ( response !== null ) {
-                const newQuantity = Number( response );
+                let newQuantity = Number( response );
+
+                if ( newQuantity > 0 && newQuantity < minQuantity ) {
+                    newQuantity = minQuantity;
+                }
+
+                if ( newQuantity > maxQuantity ) {
+                    newQuantity = maxQuantity;
+                }
 
                 if ( newQuantity > 0 || ( <any>window ).confirm( DataService.getMessage( 'delete_confirm_message' ) ) ) {
                     element.siblings( '.cfw-edit-item-quantity-value' ).val( newQuantity );

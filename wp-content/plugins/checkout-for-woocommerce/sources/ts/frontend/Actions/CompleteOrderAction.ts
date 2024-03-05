@@ -47,37 +47,7 @@ class CompleteOrderAction extends Action {
             }
 
             if ( typeof resp.messages === 'string' && resp.messages.length ) {
-                // Wrapping the response in a <div /> is required for correct parsing
-                const messages = jQuery( jQuery.parseHTML( `<div>${resp.messages}</div>` ) );
-
-                // Errors
-                const woocommerceErrorMessages = messages.find( '.woocommerce-error li' ).length ? messages.find( '.woocommerce-error li' ) : messages.find( '.woocommerce-error' );
-
-                jQuery.each( woocommerceErrorMessages, ( i, el ) => {
-                    const alert: Alert = new Alert( 'error', jQuery( el ).html().trim(), 'cfw-alert-error' );
-                    AlertService.queueAlert( alert );
-                } );
-
-                // Info
-                const wooCommerceInfoMessages = messages.find( '.woocommerce-info li' ).length ? messages.find( '.woocommerce-info li' ) : messages.find( '.woocommerce-info' );
-
-                jQuery.each( wooCommerceInfoMessages, ( i, el ) => {
-                    const alert: Alert = new Alert( 'notice', jQuery( el ).html().trim(), 'cfw-alert-info' );
-                    AlertService.queueAlert( alert );
-                } );
-
-                // Messages
-                const wooCommerceMessages = messages.find( '.woocommerce-message li' ).length ? messages.find( '.woocommerce-message li' ) : messages.find( '.woocommerce-message' );
-
-                jQuery.each( wooCommerceMessages, ( i, el ) => {
-                    const alert: Alert = new Alert( 'success', jQuery( el ).html().trim(), 'cfw-alert-success' );
-                    AlertService.queueAlert( alert );
-                } );
-
-                // EveryPay doesn't understand WooCommerce, so fix it for them
-                if ( resp.messages.indexOf( '<script' ) !== -1 ) {
-                    jQuery( document.body ).prepend( `<div style="display:none">${resp.messages}</div>` );
-                }
+                AlertService.createAlertsFromMessages( resp.messages );
             } else {
                 /**
                  * If the payment gateway comes back with no message, show a generic error.

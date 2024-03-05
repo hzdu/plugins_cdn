@@ -21,7 +21,6 @@ class EmailAutocompleteInput {
 
         this.email = this.options.defaultEmail || '';
         this.domain = '';
-
         this.inputElement = options.inputElement;
         this.inputElement.addEventListener( 'input', this.handleInputChange );
         this.inputElement.addEventListener( 'beforeinput', this.handleBeforeInput );
@@ -30,26 +29,34 @@ class EmailAutocompleteInput {
     private handleInputChange = ( event: Event ): void => {
         const input = event.target as HTMLInputElement;
         const { value } = input;
-        const [ email, domain ] = value.split( '@' );
+        const atIndex = value.indexOf( '@' );
 
-        if ( !domain ) {
-            this.email = email;
-            this.triggerOnEmailChange();
+        if ( atIndex === -1 ) {
+            // Ignore changes if there's no @ symbol.
             return;
         }
 
-        const autoCompleteDomain = this.options.domains.find( ( d ) => d.startsWith( domain ) );
+        const emailPart = value.substring( 0, atIndex );
+        const domainPart = value.substring( atIndex + 1 );
+        this.email = emailPart;
 
-        if ( autoCompleteDomain ) {
-            this.domain = autoCompleteDomain;
-            const completedValue = `${email}@${this.domain}`;
-            input.value = completedValue;
-            input.setSelectionRange( value.length, completedValue.length );
-        } else {
-            this.domain = domain;
+        // Use a slightly modified logic to immediately autocomplete the domain
+        // even if only one character is deleted.
+        if ( domainPart !== this.domain ) {
+            // Find the first domain that starts with the current input.
+            const autoCompleteDomain = this.options.domains.find( ( d ) => d.startsWith( domainPart ) );
+
+            if ( autoCompleteDomain ) {
+                this.domain = autoCompleteDomain;
+                const completedValue = `${emailPart}@${this.domain}`;
+                input.value = completedValue;
+                // Set the selection range to highlight the autocompleted part of the domain.
+                input.setSelectionRange( emailPart.length + domainPart.length + 1, completedValue.length );
+            } else {
+                this.domain = domainPart;
+            }
         }
 
-        this.email = email;
         this.triggerOnEmailChange();
     };
 

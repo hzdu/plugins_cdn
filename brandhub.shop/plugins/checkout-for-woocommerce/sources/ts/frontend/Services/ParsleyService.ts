@@ -107,13 +107,33 @@ class ParsleyService implements FieldValidationRefresher {
                     }
 
                     // If email address is from a common domain, allow it
-                    if (
-                        email.endsWith( '@gmail.com' )
-                        || email.endsWith( '@yahoo.com' )
-                        || email.endsWith( '@outlook.com' )
-                        || email.endsWith( '@hey.com' )
-                        || email.endsWith( '@hotmail.com' )
-                    ) {
+                    const emailDomains = [
+                        '@gmail.com',
+                        '@yahoo.com',
+                        '@outlook.com',
+                        '@hey.com',
+                        '@hotmail.com',
+                        '@aol.com',
+                        '@icloud.com',
+                        '@mail.com',
+                        '@zoho.com',
+                        '@protonmail.com',
+                        '@live.com',
+                        '@msn.com',
+                        '@ymail.com',
+                        '@me.com',
+                        '@sbcglobal.net',
+                        '@bellsouth.net',
+                        '@inbox.com',
+                    ];
+
+                    const isCommonEmailDomain = ( emailAddress: string ): boolean => emailDomains.some( ( domain ) => emailAddress.endsWith( domain ) );
+
+                    if ( isCommonEmailDomain( email ) ) {
+                        return true;
+                    }
+
+                    if ( DataService.getSetting( 'disable_email_domain_validation' ) ) {
                         return true;
                     }
 

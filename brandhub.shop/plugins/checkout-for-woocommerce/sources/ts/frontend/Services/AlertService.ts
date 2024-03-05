@@ -121,6 +121,46 @@ class AlertService {
         const containerElement = container ? jQuery( container ) : AlertService.alertContainer;
         containerElement.find( '.cfw-alert-temporary' ).hide();
     }
+
+    public static createAlertsFromMessages( messages: string, extraClasses: string = null ): boolean {
+        let foundSuccessMessage = false; // used by coupon handler
+
+        // Wrapping the response in a <div /> is required for correct parsing
+        const wrappedMessages = jQuery( jQuery.parseHTML( `<div>${messages}</div>` ) );
+
+        // Errors
+        const woocommerceErrorMessages = wrappedMessages.find( 'ul.woocommerce-error li, div.woocommerce-error, div.wc-block-components-notice-banner.is-error .wc-block-components-notice-banner__content' );
+
+        jQuery.each( woocommerceErrorMessages, ( i, el ) => {
+            const alert: Alert = new Alert( 'error', jQuery( el ).html().trim(), `cfw-alert-error ${extraClasses}` );
+            AlertService.queueAlert( alert );
+        } );
+
+        // Info
+        const wooCommerceInfoMessages = wrappedMessages.find( 'ul.woocommerce-info li, div.woocommerce-info, div.wc-block-components-notice-banner.is-info .wc-block-components-notice-banner__content' );
+
+        jQuery.each( wooCommerceInfoMessages, ( i, el ) => {
+            const alert: Alert = new Alert( 'notice', jQuery( el ).html().trim(), `cfw-alert-info ${extraClasses}` );
+            AlertService.queueAlert( alert );
+        } );
+
+        // Messages
+        const wooCommerceMessages = wrappedMessages.find( 'ul.woocommerce-message li, div.woocommerce-message, div.wc-block-components-notice-banner.is-success .wc-block-components-notice-banner__content' );
+
+        jQuery.each( wooCommerceMessages, ( i, el ) => {
+            const alert: Alert = new Alert( 'success', jQuery( el ).html().trim(), `cfw-alert-success ${extraClasses}` );
+            AlertService.queueAlert( alert );
+
+            foundSuccessMessage = true;
+        } );
+
+        // EveryPay doesn't understand WooCommerce, so fix it for them
+        if ( messages.indexOf( '<script' ) !== -1 ) {
+            jQuery( document.body ).prepend( `<div style="display:none">${messages}</div>` );
+        }
+
+        return foundSuccessMessage;
+    }
 }
 
 export default AlertService;

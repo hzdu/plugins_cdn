@@ -42,34 +42,7 @@ class ApplyCouponAction extends Action {
     public response( resp: string ): void {
         let success = false;
 
-        // Wrapping the response in a <div /> is required for correct parsing
-        const messages = jQuery( jQuery.parseHTML( `<div>${resp}</div>` ) );
-
-        // Errors
-        const woocommerceErrorMessages = messages.find( '.woocommerce-error li' ).length ? messages.find( '.woocommerce-error li' ) : messages.find( '.woocommerce-error' );
-
-        jQuery.each( woocommerceErrorMessages, ( i, el ) => {
-            const alert: Alert = new Alert( 'error', jQuery( el ).html().trim(), 'cfw-alert-error cfw-coupon-alert', true );
-            AlertService.queueAlert( alert );
-        } );
-
-        // Info
-        const wooCommerceInfoMessages = messages.find( '.woocommerce-info li' ).length ? messages.find( '.woocommerce-info li' ) : messages.find( '.woocommerce-info' );
-
-        jQuery.each( wooCommerceInfoMessages, ( i, el ) => {
-            const alert: Alert = new Alert( 'notice', jQuery( el ).html().trim(), 'cfw-alert-info cfw-coupon-alert', true );
-            AlertService.queueAlert( alert );
-        } );
-
-        // Messages
-        const wooCommerceMessages = messages.find( '.woocommerce-message li' ).length ? messages.find( '.woocommerce-message li' ) : messages.find( '.woocommerce-message' );
-
-        jQuery.each( wooCommerceMessages, ( i, el ) => {
-            success = true;
-
-            const alert: Alert = new Alert( 'success', jQuery( el ).html().trim(), 'cfw-alert-success cfw-coupon-alert', true );
-            AlertService.queueAlert( alert );
-        } );
+        success = AlertService.createAlertsFromMessages( resp, 'cfw-coupon-alert' );
 
         if ( success ) {
             jQuery( document.body ).trigger( 'cfw-apply-coupon-success' );

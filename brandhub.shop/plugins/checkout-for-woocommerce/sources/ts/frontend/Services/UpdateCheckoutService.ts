@@ -164,13 +164,13 @@ class UpdateCheckoutService {
         let has_full_address  = true;
 
         const billing_email = jQuery( '#billing_email' ).val();
-        const s_company     = jQuery( '#shipping_company' ).val();
-        const s_country     = jQuery( '#shipping_country' ).val();
-        const s_state       = jQuery( '#shipping_state' ).val();
-        const s_postcode    = jQuery( ':input#shipping_postcode' ).val();
-        const s_city        = jQuery( '#shipping_city' ).val();
-        const s_address     = jQuery( ':input#shipping_address_1' ).val();
-        const s_address_2   = jQuery( ':input#shipping_address_2' ).val();
+        let s_company     = jQuery( '#shipping_company' ).val();
+        let s_country     = jQuery( '#shipping_country' ).val();
+        let s_state       = jQuery( '#shipping_state' ).val();
+        let s_postcode    = jQuery( ':input#shipping_postcode' ).val();
+        let s_city        = jQuery( '#shipping_city' ).val();
+        let s_address     = jQuery( ':input#shipping_address_1' ).val();
+        let s_address_2   = jQuery( ':input#shipping_address_2' ).val();
         let company         = s_company;
         let country         = s_country;
         let state           = s_state;
@@ -187,6 +187,17 @@ class UpdateCheckoutService {
             city      = jQuery( '#billing_city' ).val();
             address   = jQuery( ':input#billing_address_1' ).val();
             address_2 = jQuery( ':input#billing_address_2' ).val();
+        }
+
+        // WooCommerce core reverses the order it sets fields, so if billing address is forced we need to reverse it back
+        if ( DataService.getSetting( 'ship_to_billing_address_only' ) !== false ) {
+            s_company   = company;
+            s_country   = country;
+            s_state     = state;
+            s_postcode  = postcode;
+            s_city      = city;
+            s_address   = address;
+            s_address_2 = address_2;
         }
 
         if ( requiredShippingAddressFieldInputs.length ) {

@@ -15,6 +15,7 @@ const CopyPlugin = require( 'copy-webpack-plugin' );
 const WebpackRTLPlugin = require( 'webpack-rtl-plugin' );
 const { resolve } = require( 'path' );
 const { BundleAnalyzerPlugin } = require( 'webpack-bundle-analyzer' );
+const BundleOutputPlugin = require( 'webpack-bundle-output' );
 
 const sourcesDir = './sources';
 
@@ -304,6 +305,7 @@ module.exports = {
             new WebpackRTLPlugin( {
                 filename: 'css/[name]-rtl.css',
             } ),
+            new BundleOutputPlugin(),
             // new BundleAnalyzerPlugin(),
         ],
         optimization: {

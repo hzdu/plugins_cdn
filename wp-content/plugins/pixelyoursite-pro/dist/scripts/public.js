@@ -1779,10 +1779,7 @@ if (!String.prototype.trim) {
                 if (options.gdpr.consent_magic_integration_enabled && typeof CS_Data !== "undefined" ) {
 
                     var test_prefix = CS_Data.test_prefix;
-                    if ((typeof CS_Data.cs_google_analytics_consent_mode !== "undefined" && CS_Data.cs_google_analytics_consent_mode == 1) && pixel == 'analytics') {
-                        return true;
-                    }
-                    if ((typeof CS_Data.cs_google_ads_consent_mode !== "undefined" && CS_Data.cs_google_ads_consent_mode == 1) && pixel == 'google_ads') {
+                    if ((typeof CS_Data.cs_google_consent_mode_enabled !== "undefined" && CS_Data.cs_google_consent_mode_enabled == 1) && ( pixel == 'analytics' || pixel == 'google_ads' ) ) {
                         return true;
                     }
 
@@ -2898,6 +2895,7 @@ if (!String.prototype.trim) {
                     if(!advancedMatching) {
                         fbq('init', pixelId);
                     } else {
+                        var test_prefix = CS_Data.test_prefix;
                         var cs_advanced_matching = Cookies.get('cs_enabled_advanced_matching'+test_prefix);
                         if (jQuery('#cs_enabled_advanced_matching'+test_prefix).length > 0) {
                             if (cs_advanced_matching == 'yes') {
