@@ -3223,9 +3223,6 @@ if (!String.prototype.trim) {
         function mapParamsTov4(tag,name,param) {
             //GA4 automatically collects a number of parameters for all events
             var hasGA4Tag = false;
-            delete param.page_title;
-            delete param.event_url;
-            delete param.landing_page;
 
             // end
             if (Array.isArray(tag)) {
@@ -3237,7 +3234,6 @@ if (!String.prototype.trim) {
                 hasGA4Tag = true;
             }
             if(hasGA4Tag) {
-                delete param.traffic_source;
                 delete param.event_category;
                 delete param.event_label;
                 delete param.ecomm_prodid;
