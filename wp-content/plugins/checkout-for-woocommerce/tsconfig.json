@@ -6,6 +6,7 @@
         "allowJs": true,
         "jsx": "react",
         "esModuleInterop": true,
+        "resolveJsonModule": true,
         "allowSyntheticDefaultImports": true,
         "lib": [
             "dom",
@@ -14,6 +15,9 @@
     },
     "include": [
         "./sources/ts/**/*"
+    ],
+    "files": [
+        "node_modules/@woocommerce/components/src/search/autocompleters/utils.ts",
     ],
     "exclude": [
         "./sources/ts/tests/**/*"

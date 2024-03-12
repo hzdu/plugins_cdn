@@ -15,7 +15,6 @@ $grid-breakpoints: (
 @import "components/quantity-control";
 @import "components/cart-item";
 @import "components/order-totals";
-@import "components/promo";
 @import "components/mobile-cart-summary";
 @import "components/footer";
 @import "components/compatibility";
@@ -26,7 +25,6 @@ $grid-breakpoints: (
 
 
 main.checkoutwc {
-    --cfw-horizontal-divider-color: var(--cfw-cart-summary-text-color);
     --cfw-cart-summary-order-total-text-color: var(--cfw-cart-summary-text-color);
 
     // Light (default)
@@ -103,7 +101,15 @@ main.checkoutwc .cfw-rp {
         --cfw-cart-summary-order-total-text-color: var(--cfw-cart-summary-dark-text-color-default);
     }
 
-    h4 {
+    --cfw-horizontal-divider-color: var(--cfw-cart-summary-text-color);
+
+    --cfw-tb-review-title: var(--cfw-cart-summary-text-color-contrast);
+    --cfw-tb-review-subtitle: var(--cfw-cart-summary-text-color);
+    --cfw-tb-review-content: var(--cfw-cart-summary-text-color-contrast);
+    --cfw-tb-guarantee-title:var(--cfw-cart-summary-text-color-contrast);
+    --cfw-tb-guarantee-content: var(--cfw-cart-summary-text-color-contrast);
+
+    h3, h4, h5 {
         color: var(--cfw-cart-summary-text-color-contrast);
     }
 
@@ -225,22 +231,12 @@ body.checkout-wc main.checkoutwc {
         margin-bottom: 1em;
     }
 
-    #cfw_trust_badges {
-        border: none;
-        color: var(--cfw-cart-summary-text-color-contrast);
-
-        h4 {
-            padding: 1em 0;
-            margin-bottom: 0;
-            position: relative;
-            transform: none;
-            background: transparent;
-            top: auto;
-            left: auto;
-            font-weight: 600;
+    #cfw_trust_badges_list {
+        .cfw-trust-badges-list-title {
+            color: var(--cfw-cart-summary-text-color-contrast);
         }
 
-        h5 {
+        h3 {
             font-weight: 500;
         }
     }
@@ -308,6 +304,12 @@ body.checkout-wc main.checkoutwc {
         border-radius: 6px !important;
         padding: 14px !important;
         font-size: 17px !important;
+        caret-color: var(--cfw-cart-summary-text-color-contrast) !important;
+
+        &::placeholder {
+            color: var(--cfw-cart-summary-text-color-default) !important;
+            font-size: 14px;
+        }
     }
 
     &.cfw-label-is-floated {
@@ -318,13 +320,13 @@ body.checkout-wc main.checkoutwc {
         input[type=text].input-text,
         select,
         textarea {
-            color: #4C4C4E !important;
+            color: var( --cfw-cart-summary-text-color-contrast ) !important;
             padding: 21px 14px 7px 14px !important;
         }
     }
 
     label.cfw-floatable-label {
-        color: #6F6F72 !important;
+        color: var(--cfw-cart-summary-text-color-default) !important;
         margin-top: 4px !important;
         letter-spacing: 0.02em !important;
         font-weight: 400 !important;

@@ -1,0 +1,27 @@
+.cfw-side-cart-quantity-wrap {
+    display: inline-flex;
+    align-items: center;
+    color: var(--cfw-side-cart-icon-text-color, #222);
+    position: relative;
+    flex-direction: row;
+    vertical-align: middle;
+    transition: all 0.3s ease;
+
+    svg {
+        width: var(--cfw-side-cart-icon-width, 34px);
+        color: var(--cfw-side-cart-icon-color, #222);
+    }
+
+    svg:not(.cfw-side-cart-icon-solid) {
+        fill: none;
+    }
+
+    .cfw-side-cart-quantity {
+        font-size: 16px;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif !important;
+        font-weight: 400;
+        letter-spacing: 0.3px;
+        line-height: 20px;
+        padding-left: 0.25em;
+    }
+}

@@ -1,0 +1,18 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "cfw/order-bump-offer-form",
+	"version": "1.0.0",
+	"title": "Order Bump Offer Form",
+	"category": "design",
+	"icon": "forms",
+	"description": "The form to accept or reject the bump offer.",
+	"example": {},
+	"supports": {
+		"html": false
+	},
+	"textdomain": "checkout-wc",
+	"script": "cfw-blocks",
+	"style": "cfw-blocks",
+    "render": "file:./render.php"
+}

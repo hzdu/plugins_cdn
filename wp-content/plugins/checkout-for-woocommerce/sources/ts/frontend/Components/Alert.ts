@@ -9,18 +9,22 @@ class Alert {
 
     public temporary: boolean;
 
-    private readonly _debouncedScrollToNotices;
+    private typeClassMapping = {
+        error: 'cfw-alert-error',
+        notice: 'cfw-alert-info',
+        success: 'cfw-alert-success',
+    };
 
     /**
      * @param type
      * @param message
-     * @param cssClass
+     * @param extraCSSClasses
      * @param temporary
      */
-    constructor( type: 'error' | 'notice' | 'success', message: string, cssClass: string, temporary = false ) {
+    constructor( type: 'error' | 'notice' | 'success', message: string, extraCSSClasses: string = null, temporary = false ) {
         this.type = type;
         this.message = message;
-        this.cssClass = cssClass;
+        this.cssClass = this.typeClassMapping[ type ] + ( extraCSSClasses ? ` ${extraCSSClasses}` : '' );
         this.alertContainer = jQuery( '#cfw-alert-container' );
         this.temporary = temporary;
     }

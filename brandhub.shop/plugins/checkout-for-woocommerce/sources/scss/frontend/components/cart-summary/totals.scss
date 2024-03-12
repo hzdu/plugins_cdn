@@ -1,4 +1,4 @@
-#cfw-totals-list table {
+.cfw-totals-list table {
     padding-top: 1em;
     display: block;
     width: 100%;
@@ -42,13 +42,6 @@
                 font-size: initial;
                 font-weight: 700;
             }
-
-            .includes_tax {
-                display: block;
-                margin-top: 10px;
-                font-weight: normal;
-                color: #666;
-            }
         }
 
         /**
@@ -89,7 +82,7 @@
 }
 
 @include media-breakpoint-down(lg) {
-    #cfw-totals-list {
+    .cfw-totals-list {
         margin-bottom: 0;
     }
 
@@ -102,4 +95,12 @@
             text-align: right;
         }
     }
+}
+
+.includes_tax {
+    display: block;
+    margin-top: 10px;
+    font-weight: normal;
+    color: #666;
+    white-space: nowrap;
 }

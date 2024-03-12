@@ -1,5 +1,5 @@
-import Main          from '../../Main';
-import Compatibility from '../Compatibility';
+import Compatibility  from '../Compatibility';
+import ParsleyService from '../../Services/ParsleyService';
 
 class PaymentPluginsPayPal extends Compatibility {
     constructor() {
@@ -29,7 +29,7 @@ class PaymentPluginsPayPal extends Compatibility {
                 jQuery( '#shipping_address_1_field' ).removeClass( 'cfw-hidden' );
                 jQuery( '#billing_address_1_field' ).removeClass( 'cfw-hidden' );
 
-                Main.instance.parsleyService.queueRefreshParsley();
+                ParsleyService.instance.queueRefreshParsley();
             }
         } );
     }

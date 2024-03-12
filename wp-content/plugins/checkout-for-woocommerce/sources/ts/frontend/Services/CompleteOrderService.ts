@@ -1,8 +1,8 @@
-import cfwAddOverlay       from '../../functions/cfwAddOverlay';
-import CompleteOrderAction from '../Actions/CompleteOrderAction';
-import Main                from '../Main';
-import DataService         from './DataService';
-import LoggingService      from './LoggingService';
+import cfwAddOverlay         from '../../functions/cfwAddOverlay';
+import CompleteOrderAction   from '../Actions/CompleteOrderAction';
+import DataService           from './DataService';
+import LoggingService        from './LoggingService';
+import UpdateCheckoutService from './UpdateCheckoutService';
 
 class CompleteOrderService {
     constructor() {
@@ -26,7 +26,7 @@ class CompleteOrderService {
      */
     static completeOrderSubmitHandler(): boolean {
         // Prevent any update checkout calls from spawning
-        Main.instance.updateCheckoutService.resetUpdateCheckoutTimer();
+        UpdateCheckoutService.resetUpdateCheckoutTimer();
 
         if ( DataService.checkoutForm.is( '.processing' ) ) {
             return false;

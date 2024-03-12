@@ -1,4 +1,5 @@
 import Action                  from './Action';
+import DataService             from '../Services/DataService';
 
 declare let wc_cart_fragments_params: any;
 
@@ -43,6 +44,11 @@ class UpdateSideCart extends Action {
         if ( resp.result ) {
             jQuery( document.body ).trigger( 'wc_fragment_refresh' );
             jQuery( document.body ).trigger( 'updated_cart_totals' );
+        }
+
+        if ( resp.data ) {
+            // Update the data stores, including actions
+            Action.updateDataStore( resp.data, true );
         }
 
         this.blockedElements.unblock();

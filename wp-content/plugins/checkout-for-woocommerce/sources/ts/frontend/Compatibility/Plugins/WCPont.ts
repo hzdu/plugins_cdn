@@ -1,7 +1,7 @@
 import Alert         from '../../Components/Alert';
-import Main          from '../../Main';
 import AlertService  from '../../Services/AlertService';
 import Compatibility from '../Compatibility';
+import TabService    from '../../Services/TabService';
 
 class WCPont extends Compatibility {
     constructor() {
@@ -9,7 +9,7 @@ class WCPont extends Compatibility {
     }
 
     load(): void {
-        const easyTabsWrap: any = Main.instance.tabService.tabContainer;
+        const easyTabsWrap: any = TabService.tabContainer;
 
         easyTabsWrap.bind( 'easytabs:before', ( event ) => {
             const selected_shipping_method = jQuery( '[name="shipping_method[0]"]:checked' ).val().toString();
@@ -18,7 +18,7 @@ class WCPont extends Compatibility {
                 // Prevent removing alert on next update checkout
                 AlertService.preserveAlerts = true;
 
-                const alert: Alert = new Alert(  'error', 'Nem választottál átvevőhelyet', 'cfw-alert-error', true );
+                const alert: Alert = new Alert(  'error', 'Nem választottál átvevőhelyet', null, true );
                 AlertService.queueAlert( alert );
                 AlertService.showAlerts();
 

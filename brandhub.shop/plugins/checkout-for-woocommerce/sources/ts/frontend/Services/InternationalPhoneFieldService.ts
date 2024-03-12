@@ -1,7 +1,7 @@
 import intlTelInput   from 'intl-tel-input';
-import Main           from '../Main';
 import DataService    from './DataService';
 import LoggingService from './LoggingService';
+import ParsleyService from './ParsleyService';
 
 class InternationalPhoneFieldService {
     constructor() {
@@ -67,7 +67,7 @@ class InternationalPhoneFieldService {
         } );
 
         phoneInput.on( 'countrychange', () => {
-            Main.instance.parsleyService.refreshField( phoneInput.get( 0 ) );
+            ParsleyService.instance.refreshField( phoneInput.get( 0 ) );
         } );
 
         phoneInput.parents( '.woocommerce-input-wrapper' ).siblings( 'label' ).addClass( 'intl-tel-input-label' );

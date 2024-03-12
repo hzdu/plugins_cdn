@@ -26,10 +26,10 @@ class LostPasswordAction extends Action {
 
         // Errors
         if ( resp.result ) {
-            const alert: Alert = new Alert( 'success', resp.message, 'cfw-alert-success cfw-coupon-alert', true );
+            const alert: Alert = new Alert( 'success', resp.message, 'cfw-coupon-alert', true );
             alerts.push( alert );
         } else {
-            const alert: Alert = new Alert( 'error', resp.message, 'cfw-alert-error cfw-coupon-alert', true );
+            const alert: Alert = new Alert( 'error', resp.message, 'cfw-coupon-alert', true );
             alerts.push( alert );
         }
 
@@ -51,7 +51,7 @@ class LostPasswordAction extends Action {
      * @param errorThrown
      */
     public error( xhr: any, textStatus: string, errorThrown: string ): void {
-        const alert: Alert = new Alert( 'error', `An error occurred during login. Error: ${errorThrown} (${textStatus})`, 'cfw-alert-error' );
+        const alert: Alert = new Alert( 'error', `An error occurred during login. Error: ${errorThrown} (${textStatus})` );
         AlertService.queueAlert( alert );
 
         super.error( xhr, textStatus, errorThrown );

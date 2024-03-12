@@ -13,17 +13,12 @@ class AlertService {
 
     private static debouncedScrollToNotices;
 
-    private static debouncedShowAlerts;
+    private static debouncedShowAlerts: any;
 
-    /**
-     * @type {boolean}
-     * @private
-     */
-    public static preserveAlerts = false;
+    public static preserveAlerts = true; // initially true so that alerts on page load aren't obliterated
 
-    constructor( alertContainer: JQuery<HTMLElement> ) {
-        AlertService.alertContainer = alertContainer;
-
+    constructor() {
+        AlertService.alertContainer = jQuery( '#cfw-alert-container' );
         AlertService.debouncedScrollToNotices = debounce( AlertService.scrollToNotices, 200 );
         AlertService.debouncedShowAlerts = debounce( AlertService.showAlerts, 200 );
 
@@ -52,15 +47,15 @@ class AlertService {
     public static showAlerts( queue = 'default', container: string = null ): void {
         AlertService.removeTemporaryAlerts( container );
 
-        // If we don't have any alerts to show, let's bail here
-        if ( !AlertService.queues[ queue ] || AlertService.queues[ queue ].length === 0 ) {
-            return;
-        }
-
         // Unless alerts should be preserved, let's hide them here
         // Then only new or duplicated alerts will be shown
         if ( !AlertService.preserveAlerts ) {
             AlertService.hideAlerts( container );
+        }
+
+        // If we don't have any alerts to show, let's bail here
+        if ( !AlertService.queues[ queue ] || AlertService.queues[ queue ].length === 0 ) {
+            return;
         }
 
         const containerElement = container ? jQuery( container ) : AlertService.alertContainer;
@@ -87,7 +82,7 @@ class AlertService {
     }
 
     public static getOrBuildAlert( type: string, message: string, cssClass: string ): JQuery<HTMLElement> {
-        const hash = Md5.hashStr( message + cssClass + type );
+        const hash = Md5.hashStr( message + type );
         const id = AlertService.getAlertId( hash );
         const existingAlert = jQuery( `#${id}` );
 
@@ -132,7 +127,7 @@ class AlertService {
         const woocommerceErrorMessages = wrappedMessages.find( 'ul.woocommerce-error li, div.woocommerce-error, div.wc-block-components-notice-banner.is-error .wc-block-components-notice-banner__content' );
 
         jQuery.each( woocommerceErrorMessages, ( i, el ) => {
-            const alert: Alert = new Alert( 'error', jQuery( el ).html().trim(), `cfw-alert-error ${extraClasses}` );
+            const alert: Alert = new Alert( 'error', jQuery( el ).html().trim(), `${extraClasses}` );
             AlertService.queueAlert( alert );
         } );
 
@@ -140,7 +135,7 @@ class AlertService {
         const wooCommerceInfoMessages = wrappedMessages.find( 'ul.woocommerce-info li, div.woocommerce-info, div.wc-block-components-notice-banner.is-info .wc-block-components-notice-banner__content' );
 
         jQuery.each( wooCommerceInfoMessages, ( i, el ) => {
-            const alert: Alert = new Alert( 'notice', jQuery( el ).html().trim(), `cfw-alert-info ${extraClasses}` );
+            const alert: Alert = new Alert( 'notice', jQuery( el ).html().trim(), `${extraClasses}` );
             AlertService.queueAlert( alert );
         } );
 
@@ -148,7 +143,7 @@ class AlertService {
         const wooCommerceMessages = wrappedMessages.find( 'ul.woocommerce-message li, div.woocommerce-message, div.wc-block-components-notice-banner.is-success .wc-block-components-notice-banner__content' );
 
         jQuery.each( wooCommerceMessages, ( i, el ) => {
-            const alert: Alert = new Alert( 'success', jQuery( el ).html().trim(), `cfw-alert-success ${extraClasses}` );
+            const alert: Alert = new Alert( 'success', jQuery( el ).html().trim(), `${extraClasses}` );
             AlertService.queueAlert( alert );
 
             foundSuccessMessage = true;

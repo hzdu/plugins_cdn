@@ -1,6 +1,6 @@
-import Main           from '../../Main';
 import LoggingService from '../../Services/LoggingService';
 import Compatibility  from '../Compatibility';
+import ParsleyService from '../../Services/ParsleyService';
 
 class ExtraCheckoutFieldsBrazil extends Compatibility {
     private _targetNodes = [
@@ -41,7 +41,7 @@ class ExtraCheckoutFieldsBrazil extends Compatibility {
                 }
             } );
 
-            Main.instance.parsleyService.queueRefreshParsley();
+            ParsleyService.instance.queueRefreshParsley();
         };
 
         // Create an observer instance linked to the callback function

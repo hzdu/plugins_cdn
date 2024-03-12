@@ -5,10 +5,10 @@ import StreetNameStrategy              from '../FieldStrategies/StreetNameStrate
 import Utilities                       from '../Utilities';
 
 class AutocompleteStrategy {
-    public constructor( protected components: google.maps.GeocoderAddressComponent[], protected formattedAddress: string ) {}
+    public constructor( protected components: google.maps.GeocoderAddressComponent[], protected formattedAddress: string, protected userInputValue: string ) {}
 
     public getHouseNumber(): string {
-        return new HouseNumberStrategy( this.components, this.formattedAddress ).getValue();
+        return new HouseNumberStrategy( this.components, this.formattedAddress, this.userInputValue ).getValue();
     }
 
     public getStreetName(): string {
@@ -16,7 +16,7 @@ class AutocompleteStrategy {
     }
 
     public getAddress1(): string {
-        return new Address1Strategy( this.components, this.formattedAddress ).getValue();
+        return new Address1Strategy( this.components, this.formattedAddress, this.userInputValue ).getValue();
     }
 
     /**

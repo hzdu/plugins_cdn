@@ -57,8 +57,16 @@
     }
 }
 
+.cfw-primary-btn {
+    @include cfw-primary-button();
+}
+
+.cfw-secondary-btn {
+    @include cfw-secondary-button();
+}
+
 // Target .checkoutwc so that our modaal wrapper (SmartyStreets) and main container both are ancestors
-.checkoutwc, .checkoutwc.cfw-modaal {
+.checkoutwc, .cfw-modal {
     .cfw-prev-tab {
         transition: all .2s ease;
         text-decoration: none;

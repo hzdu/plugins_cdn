@@ -20,7 +20,7 @@ export default function cfwValidateTab( tab: string ): Promise<any> {
             const template = DataService.getMessage( 'generic_field_validation_error_message' );
             const message = template.replace( '%s', label );
 
-            AlertService.queueAlert( new Alert( 'error', message, 'cfw-alert-error' ) );
+            AlertService.queueAlert( new Alert( 'error', message ) );
             AlertService.showAlerts();
 
             reject( new Error( 'CheckoutWC: A non-parsley required field was detected to be invalid.' ) );

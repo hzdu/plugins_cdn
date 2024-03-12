@@ -1,3 +1,5 @@
+import DataService                       from '../Services/DataService';
+
 class EmailAutocompleteInput {
     private inputElement: HTMLInputElement;
 
@@ -8,6 +10,10 @@ class EmailAutocompleteInput {
     private domain: string;
 
     constructor( options: EmailAutocompleteInputOptions ) {
+        if ( DataService.getSetting( 'disable_domain_autocomplete' ) ) {
+            return;
+        }
+
         if ( window.matchMedia( '(pointer:coarse)' ).matches ) {
             return;
         }

@@ -50,7 +50,7 @@
     }
 }
 
-#cfw-cart-summary.cfw-blocked {
+#cfw-cart-summary.cfw-blocked, #cfw-mobile-cart-summary.cfw-blocked {
     .cfw-cart-item-quantity-bubble {
         display: var(--cfw-loading-shimmer-cart-item-quantity-display-mode);
     }
@@ -61,7 +61,8 @@
     .cfw-cart-item-subtotal span,
     .cfw-cart-item-data,
     .cfw-items-summary-item-discount,
-    .cfw-promo-row > div > * {
+    .cfw-promo-row > div > *,
+    .cfw-show-coupons-module {
         @include cfw-shimmer-content();
     }
 
@@ -69,7 +70,7 @@
         @include cfw-shimmer-content( -2px );
     }
 
-    #cfw-totals-list {
+    .cfw-totals-list {
         tr {
             @include cfw-shimmer-content( 0.75em );
         }

@@ -1,4 +1,12 @@
-#cfw-cart {
+#cfw-mobile-cart-summary .cfw-cart-table {
+    margin-top: 0;
+}
+
+.cfw-cart-table {
+    &:first-child {
+        margin-top: 1.25em;
+    }
+
     border-collapse: collapse;
 
     // Cart item table rows
@@ -50,6 +58,11 @@
         // Product Title / Meta Data
         .cfw-cart-item-description {
             padding-left: 1em;
+
+            &[colspan="2"] {
+                padding-left: 0;
+            }
+
             width: 100%;
 
             > div, > p {

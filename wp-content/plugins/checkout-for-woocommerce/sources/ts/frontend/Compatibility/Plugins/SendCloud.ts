@@ -1,5 +1,4 @@
 import Alert         from '../../Components/Alert';
-import Main          from '../../Main';
 import AlertService  from '../../Services/AlertService';
 import TabService    from '../../Services/TabService';
 import Compatibility from '../Compatibility';
@@ -10,7 +9,7 @@ class SendCloud extends Compatibility {
     }
 
     load( params ): void {
-        const easyTabsWrap: any = Main.instance.tabService.tabContainer;
+        const easyTabsWrap: any = TabService.tabContainer;
 
         easyTabsWrap.bind( 'easytabs:before', ( event, clicked, target ) => {
             if ( jQuery( target ).attr( 'id' ) === TabService.paymentMethodTabId ) {
@@ -22,7 +21,7 @@ class SendCloud extends Compatibility {
                         // Prevent removing alert on next update checkout
                         AlertService.preserveAlerts = true;
 
-                        const alert: Alert = new Alert( 'error', params.notice, 'cfw-alert-error', true );
+                        const alert: Alert = new Alert( 'error', params.notice, null, true );
                         AlertService.queueAlert( alert );
                         AlertService.showAlerts();
 

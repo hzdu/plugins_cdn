@@ -1,9 +1,9 @@
 import Alert                 from '../Components/Alert';
-import Main                  from '../Main';
 import AlertService          from '../Services/AlertService';
 import DataService           from '../Services/DataService';
 import LoggingService        from '../Services/LoggingService';
 import Action                from './Action';
+import ParsleyService        from '../Services/ParsleyService';
 
 class CompleteOrderAction extends Action {
     /**
@@ -24,7 +24,7 @@ class CompleteOrderAction extends Action {
                 jQuery( document.body ).trigger( 'cfw-order-complete-before-redirect', [ DataService.checkoutForm, resp ] );
                 LoggingService.logEvent( 'Fired cfw-order-complete-before-redirect event.' );
 
-                Main.instance.parsleyService.destroy();
+                ParsleyService.instance.destroy();
 
                 if ( resp.redirect.indexOf( 'https://' ) === -1 || resp.redirect.indexOf( 'http://' ) === -1 ) {
                     ( <any>window ).location = resp.redirect;
@@ -57,7 +57,6 @@ class CompleteOrderAction extends Action {
                 const alert: Alert = new Alert(
                     'error',
                     message,
-                    'cfw-alert-error',
                 );
                 AlertService.queueAlert( alert );
 
@@ -153,7 +152,7 @@ class CompleteOrderAction extends Action {
             message += `<br/>Response text:<pre>${xhr.responseText}</pre>`;
         }
 
-        const alert: Alert = new Alert( 'error', message, 'cfw-alert-error' );
+        const alert: Alert = new Alert( 'error', message );
         AlertService.queueAlert( alert );
 
         this.submitError();

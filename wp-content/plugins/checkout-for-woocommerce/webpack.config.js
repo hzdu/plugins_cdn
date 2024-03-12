@@ -14,8 +14,8 @@ const MiniCssExtractPlugin = require( 'mini-css-extract-plugin' );
 const CopyPlugin = require( 'copy-webpack-plugin' );
 const WebpackRTLPlugin = require( 'webpack-rtl-plugin' );
 const { resolve } = require( 'path' );
-const { BundleAnalyzerPlugin } = require( 'webpack-bundle-analyzer' );
 const BundleOutputPlugin = require( 'webpack-bundle-output' );
+const WooCommerceDependencyExtractionWebpackPlugin = require( '@woocommerce/dependency-extraction-webpack-plugin' );
 
 const sourcesDir = './sources';
 
@@ -30,16 +30,9 @@ module.exports = {
         module: {
             rules: [
                 {
-                    test: /slick-carousel\/slick\/slick\.js/,
-                    use: [
-                        {
-                            loader: path.resolve( __dirname, './sources/js/_wrappedSlickLoader.js' ),
-                        },
-                    ],
-                },
-                {
                     test: /\.tsx?$/,
-                    use: 'ts-loader',
+                    loader: 'ts-loader',
+                    options: { allowTsInNodeModules: true },
                 },
                 {
                     test: /\.(webp|png|jpe?g|gif)$/,
@@ -84,17 +77,15 @@ module.exports = {
             'cfw-grid': [
                 `${sourcesDir}/scss/frontend/cfw-grid.scss`,
             ],
-            selectwoo: [
-                require.resolve( 'cfwselectwoo/dist/js/selectWoo.full.js' ),
-                require.resolve( 'cfwselectwoo/dist/css/selectWoo.css' ),
-            ],
-            slick: [
-                require.resolve( 'slick-carousel/slick/slick.js' ),
-            ],
+            selectwoo: {
+                import: [
+                    require.resolve( 'cfwselectwoo/dist/js/selectWoo.full.js' ),
+                    require.resolve( 'cfwselectwoo/dist/css/selectWoo.css' ),
+                ],
+            },
             checkout: {
                 import: [
                     require.resolve( 'jquery-first-event/dist/index.js' ),
-                    require.resolve( 'modaal/dist/js/modaal.min' ),
                     require.resolve( 'EasyTabs/lib/jquery.easytabs.min' ),
                     require.resolve( 'garlicjs/dist/garlic.min.js' ),
                     require.resolve( 'parsleyjs/dist/parsley.min.js' ),
@@ -131,14 +122,13 @@ module.exports = {
                     require.resolve( 'parsleyjs/dist/i18n/cs.js' ),
                     require.resolve( 'parsleyjs/dist/i18n/cs.extra' ),
                     require.resolve( 'parsleyjs/dist/i18n/en.js' ),
-                    `${sourcesDir}/ts/checkout.ts`,
+                    `${sourcesDir}/ts/checkout.tsx`,
                     `${sourcesDir}/scss/frontend/checkout.scss`,
                 ],
             },
             'order-pay': {
                 import: [
                     require.resolve( 'jquery-first-event/dist/index.js' ),
-                    require.resolve( 'modaal/dist/js/modaal.min' ),
                     require.resolve( 'EasyTabs/lib/jquery.easytabs.min' ),
                     require.resolve( 'garlicjs/dist/garlic.min.js' ),
                     require.resolve( 'parsleyjs/dist/parsley.min.js' ),
@@ -175,14 +165,13 @@ module.exports = {
                     require.resolve( 'parsleyjs/dist/i18n/cs.js' ),
                     require.resolve( 'parsleyjs/dist/i18n/cs.extra' ),
                     require.resolve( 'parsleyjs/dist/i18n/en.js' ),
-                    `${sourcesDir}/ts/order-pay.ts`,
+                    `${sourcesDir}/ts/order-pay.tsx`,
                     `${sourcesDir}/scss/frontend/order-pay.scss`,
                 ],
             },
             'thank-you': {
                 import: [
                     require.resolve( 'jquery-first-event/dist/index.js' ),
-                    require.resolve( 'modaal/dist/js/modaal.min' ),
                     require.resolve( 'EasyTabs/lib/jquery.easytabs.min' ),
                     require.resolve( 'garlicjs/dist/garlic.min.js' ),
                     require.resolve( 'parsleyjs/dist/parsley.min.js' ),
@@ -219,7 +208,7 @@ module.exports = {
                     require.resolve( 'parsleyjs/dist/i18n/cs.js' ),
                     require.resolve( 'parsleyjs/dist/i18n/cs.extra' ),
                     require.resolve( 'parsleyjs/dist/i18n/en.js' ),
-                    `${sourcesDir}/ts/thank-you.ts`,
+                    `${sourcesDir}/ts/thank-you.tsx`,
                     `${sourcesDir}/scss/frontend/thank-you.scss`,
                 ],
             },
@@ -228,15 +217,14 @@ module.exports = {
                 filename: 'js/mce.js',
             },
             admin: [
-                require.resolve( 'jquery-validation/dist/jquery.validate.js' ),
                 `${sourcesDir}/ts/admin/admin.ts`,
                 `${sourcesDir}/scss/admin/admin.scss`,
             ],
-            'admin-acr-reports': [
-                `${sourcesDir}/ts/admin/acr-reports.tsx`,
-            ],
             'admin-settings': [
                 `${sourcesDir}/ts/admin/settings.tsx`,
+            ],
+            'admin-order-bumps-editor': [
+                `${sourcesDir}/ts/admin/order-bumps-editor.tsx`,
             ],
             'admin-plugins': [
                 `${sourcesDir}/scss/admin/plugins.scss`,
@@ -245,9 +233,14 @@ module.exports = {
             ],
             'side-cart': {
                 import: [
-                    require.resolve( 'modaal/dist/js/modaal.min' ),
-                    `${sourcesDir}/ts/side-cart.ts`,
+                    `${sourcesDir}/ts/side-cart.tsx`,
                     `${sourcesDir}/scss/frontend/side-cart.scss`,
+                ],
+            },
+            blocks: {
+                import: [
+                    `${sourcesDir}/ts/blocks.tsx`,
+                    `${sourcesDir}/scss/blocks.scss`,
                 ],
             },
             'utils-script': {
@@ -261,7 +254,9 @@ module.exports = {
             errorDetails: true,
         },
         plugins: [
-            ...defaultConfig.plugins,
+            ...defaultConfig.plugins.filter(
+                ( plugin ) => plugin.constructor.name !== 'DependencyExtractionWebpackPlugin',
+            ),
             /**
              * Copy source files/directories to a build directory.
              *
@@ -306,7 +301,7 @@ module.exports = {
                 filename: 'css/[name]-rtl.css',
             } ),
             new BundleOutputPlugin(),
-            // new BundleAnalyzerPlugin(),
+            !process.env.WP_NO_EXTERNALS && new WooCommerceDependencyExtractionWebpackPlugin(),
         ],
         optimization: {
             ...defaultConfig.optimization,
@@ -317,7 +312,9 @@ module.exports = {
                     default: {
                         type: 'javascript/auto',
                         chunks: 'all',
-                        minChunks: 2,
+                        minChunks: 1,
+                        minSize: 100000,
+                        maxSize: 250000,
                         reuseExistingChunk: true,
                         name( module, chunks, cacheGroupKey ) {
                             return `${cacheGroupKey}-${chunks.map( ( item ) => item.name ).join( '-' )}`;
@@ -345,6 +342,12 @@ module.exports = {
                         type: 'css/mini-extract',
                         name: 'side-cart-styles',
                         chunks: ( chunk ) => chunk.name === 'side-cart',
+                        enforce: true,
+                    },
+                    blocksStyles: {
+                        type: 'css/mini-extract',
+                        name: 'blocks-styles',
+                        chunks: ( chunk ) => chunk.name === 'blocks',
                         enforce: true,
                     },
                     adminStyles: {

@@ -1,28 +1,43 @@
 import Alert                    from '../Components/Alert';
 import FieldValidationRefresher from '../Interfaces/FieldValidationRefresher';
-import Main                     from '../Main';
 import AlertService             from './AlertService';
 import DataService              from './DataService';
 import LoggingService           from './LoggingService';
 import jqXHR = JQuery.jqXHR;
+import TabService from './TabService';
 
 // eslint-disable-next-line camelcase
 declare let wc_address_i18n_params: any;
 
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const debounce = require( 'debounce' );
 
 class ParsleyService implements FieldValidationRefresher {
+    private static _instance: ParsleyService;
+
+    private constructor() {
+        // ...
+    }
+
+    public static get instance(): ParsleyService {
+        if ( !this._instance ) {
+            this._instance = new this();
+        }
+
+        return this._instance;
+    }
+
     /**
      * @type {any}
      * @private
      */
     private _parsley: any;
 
-    private readonly _debouncedParsleyRefresh;
+    private _debouncedParsleyRefresh;
 
     static xhrCache: Record<string, jqXHR<any>> = {};
 
-    constructor() {
+    load(): void {
         this._debouncedParsleyRefresh = debounce( this.refreshParsley, 200 );
 
         this.setParsleyValidators();
@@ -167,7 +182,7 @@ class ParsleyService implements FieldValidationRefresher {
                     return;
                 }
 
-                const activeTab = Main.instance.tabService.getCurrentTab();
+                const activeTab = TabService.getCurrentTab();
                 let onActiveTab = false;
 
                 // If one page checkout or the field is on the active tab, set onActiveTab to true
@@ -189,7 +204,7 @@ class ParsleyService implements FieldValidationRefresher {
                         .replace( '*', '' );
                     const message = error.replace( '%s', fieldLabel.trim() );
 
-                    const alert: Alert = new Alert( 'error', message, 'cfw-alert-error' );
+                    const alert: Alert = new Alert( 'error', message );
                     AlertService.queueAlert( alert );
                     AlertService.showAlerts();
                 }

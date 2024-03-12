@@ -1,3 +1,7 @@
+import { select, subscribe } from '@wordpress/data';
+import DataStores            from '../DataStores';
+import { Bump }              from '../../Types/BumpTypes';
+
 class PaymentRequestButtons {
     private expressButtonContainer: any;
 
@@ -35,9 +39,10 @@ class PaymentRequestButtons {
     }
 
     maybeShowExpressButtons(): boolean {
+        const needsPayment = select( DataStores.cart_store_key ).getCartNeedsPayment( null ) as boolean;
         const hasButtons = this.hasButtons();
 
-        if ( hasButtons ) {
+        if ( hasButtons && needsPayment ) {
             this.showExpressButtons();
         }
 

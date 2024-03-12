@@ -1,5 +1,5 @@
-import Main          from '../../Main';
-import Compatibility from '../Compatibility';
+import Compatibility         from '../Compatibility';
+import UpdateCheckoutService from '../../Services/UpdateCheckoutService';
 
 class WooFunnelsOrderBumps extends Compatibility {
     constructor() {
@@ -15,7 +15,7 @@ class WooFunnelsOrderBumps extends Compatibility {
         let handler: any;
 
         const resetHandler = () => {
-            handler = () => Main.instance.updateCheckoutService.queueUpdateCheckout();
+            handler = () => UpdateCheckoutService.queueUpdateCheckout();
         };
 
         resetHandler();

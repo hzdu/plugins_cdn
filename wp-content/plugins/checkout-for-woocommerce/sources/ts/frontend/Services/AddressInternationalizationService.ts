@@ -3,7 +3,7 @@
 declare let wc_address_i18n_params: any;
 
 class AddressInternationalizationService {
-    constructor() {
+    static load(): void {
         jQuery( ( $ ) => {
             // wc_address_i18n_params is required to continue, ensure the object exists
             if ( typeof wc_address_i18n_params === 'undefined' ) {
