@@ -10,7 +10,7 @@ import Actions                   from '../../Types/Actions';
 
 const PromoFieldControl = ( { location = '' } ) => {
     const actions = useSelect( ( select: any ) => select( DataStores.cart_store_key ).getCartActions( null ), [] ) as Actions;
-    const [ isPromoVisible, setIsPromoVisible ] = useState( false );
+    const [ isPromoVisible, setIsPromoVisible ] = useState( !DataService.getSetting( 'enable_coupon_code_link' ) as boolean && DataService.getCheckoutParam( 'is_checkout' ) as boolean );
     const [ promoCode, setPromoCode ] = useState( '' );
 
     const promoCodeLabel = DataService.getMessage( 'promo_code_label' );
@@ -44,6 +44,7 @@ const PromoFieldControl = ( { location = '' } ) => {
                     </div>
                 }
                 duration={300}
+                expanded={isPromoVisible}
             >
                 <div className="row cfw-promo-row cfw-input-wrap-row">
                     <div className="col-8">

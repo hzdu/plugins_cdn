@@ -1,5 +1,6 @@
 import React                   from 'react';
-import { MinusIcon, PlusIcon } from '@heroicons/react/16/solid';
+import MinusIcon               from '@heroicons/react/16/solid/MinusIcon';
+import PlusIcon                from '@heroicons/react/16/solid/PlusIcon';
 import DataService             from '../Services/DataService';
 import cfwGetWPHooks           from '../../functions/cfwGetWPHooks';
 

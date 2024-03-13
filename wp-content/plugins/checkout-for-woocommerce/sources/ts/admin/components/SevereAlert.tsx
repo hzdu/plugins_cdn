@@ -1,4 +1,4 @@
-import { XCircleIcon }                            from '@heroicons/react/20/solid';
+import XCircleIcon                                from '@heroicons/react/20/solid/XCircleIcon';
 import React                                      from 'react';
 import { Markup }                                 from 'interweave';
 

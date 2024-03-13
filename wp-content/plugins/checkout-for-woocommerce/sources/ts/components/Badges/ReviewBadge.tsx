@@ -4,7 +4,9 @@ const ReviewBadge = ( { title, subtitle, description, imageUrl } ) => (
     <div className="max-w-lg grow mb-6">
         <div>
             <div className="flex mb-6 items-center">
-                <img className="block w-16 h-16 object-cover rounded-full" src={imageUrl} alt="" />
+                {imageUrl && (
+                    <img className="block w-16 h-16 object-cover rounded-full" src={imageUrl} alt={title}/>
+                )}
                 <div className="ml-5">
                     <span className="block text-base font-semibold leading-none text-[--cfw-tb-review-title]">{title || 'Example Customer Name'}</span>
                     <span className="block text-sm text-[--cfw-tb-review-subtitle]">{subtitle || 'Example Customer Role'}</span>

@@ -1,5 +1,6 @@
 import React                                 from 'react';
-import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/24/outline';
+import ChevronLeftIcon                       from '@heroicons/react/24/outline/ChevronLeftIcon';
+import ChevronRightIcon                      from '@heroicons/react/24/outline/ChevronRightIcon';
 
 export default function TabPaginationControl( { totalPages, currentPage, onPageChange } ) {
     return (

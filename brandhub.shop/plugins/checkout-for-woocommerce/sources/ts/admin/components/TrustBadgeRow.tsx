@@ -136,7 +136,7 @@ function TrustBadgeRow( { badge, setBadge, removeHandler, dragHandleProps }: Tru
                         <GuaranteeBadge
                             title={badge.title}
                             description={badge.description}
-                            image_url={badge.image?.url}
+                            imageUrl={badge.image?.url}
                         />
                     ) : (
                         <ReviewBadge

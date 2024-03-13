@@ -16,7 +16,7 @@ const zipName = `checkout-for-woocommerce-${version}.zip`;
  */
 module.exports = merge( common, {
     output: {
-        filename: 'js/[name]-[contenthash].js',
+        filename: 'js/[name].js',
     },
     plugins: [
         /**

@@ -48,8 +48,6 @@ class SideCart {
             }
 
             if ( !DataService.getSetting( 'disable_side_cart_auto_open' ) ) {
-                jQuery( '#cfw_empty_side_cart_message' ).hide();
-
                 SideCart.openCart();
 
                 return;
@@ -73,8 +71,6 @@ class SideCart {
             if ( resp.data ) {
                 Action.updateDataStore( resp.data );
             }
-
-            jQuery( '#cfw_empty_side_cart_message' ).hide();
 
             jQuery( document.body ).trigger( 'wc_fragment_refresh' );
             jQuery( document.body ).trigger( 'added_to_cart', [ resp.fragments, resp.cart_hash, jQuery( e.target ) ] );

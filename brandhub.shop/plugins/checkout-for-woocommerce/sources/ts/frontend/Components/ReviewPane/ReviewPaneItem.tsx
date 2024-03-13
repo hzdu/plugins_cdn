@@ -5,7 +5,7 @@ import { Markup }                       from 'interweave';
 const ReviewPaneItem = ( { label, content, showChangeLink = true, tabLink = null, wrapperClass = null } ) => (
     <li className={wrapperClass}>
         <div className="inner col-10">
-            <div role="rowheader" className="cfw-review-pane-label">
+            <div role="rowheader" className={`cfw-review-pane-label ${label.length > 9 ? 'label-long' : ''}`}>
                 <Markup content={label} noWrap={true}/>
             </div>
             <div role="cell" className="cfw-review-pane-content">

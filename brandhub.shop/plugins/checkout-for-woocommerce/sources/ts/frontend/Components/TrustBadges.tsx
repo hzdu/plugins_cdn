@@ -17,7 +17,7 @@ const TrustBadges: React.FC = () => (
                             key={badge.id}
                             title={badge.title}
                             description={badge.description}
-                            image_url={badge.image.url}
+                            imageUrl={badge.image?.url}
                         />
                     );
                 case 'review':
@@ -27,7 +27,7 @@ const TrustBadges: React.FC = () => (
                             title={badge.title}
                             subtitle={badge.subtitle}
                             description={badge.description}
-                            imageUrl={badge.image.url}
+                            imageUrl={badge.image?.url}
                         />
                     );
                 default: return null;

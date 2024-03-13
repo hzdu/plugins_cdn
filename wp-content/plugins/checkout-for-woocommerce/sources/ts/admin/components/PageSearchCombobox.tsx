@@ -1,5 +1,6 @@
 import { Combobox }                                        from '@headlessui/react';
-import { CheckIcon, ChevronUpDownIcon }                    from '@heroicons/react/20/solid';
+import CheckIcon                                           from '@heroicons/react/20/solid/CheckIcon';
+import ChevronUpDownIcon                                   from '@heroicons/react/20/solid/ChevronUpDownIcon';
 import apiFetch                                            from '@wordpress/api-fetch';
 import React, { useState, useEffect }                      from 'react';
 import type { WP_REST_API_Posts, WP_REST_API_Post }        from 'wp-types';

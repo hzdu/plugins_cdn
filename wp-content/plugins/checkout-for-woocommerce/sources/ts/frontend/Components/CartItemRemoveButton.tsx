@@ -1,5 +1,5 @@
 import React                                from 'react';
-import { XMarkIcon }                        from '@heroicons/react/16/solid';
+import XMarkIcon                            from '@heroicons/react/16/solid/XMarkIcon';
 import DataService                          from '../Services/DataService';
 
 const CartItemRemoveButton = ( { handleRemove } ) => {

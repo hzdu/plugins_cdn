@@ -38,18 +38,18 @@ const WYSIWYGField = ( { name, label, description, initialMode, onModeChange, ..
             {mode === 'WYSIWYG' ? (
                 <ReactQuill
                     id={name}
-                    {...field}
                     onChange={handleEditorChange}
                     value={field.value}
                     modules={modules}
                     theme="snow"
+                    className={'cfw-wysiwyg-visual-mode-element'}
                 />
             ) : (
                 <textarea
                     id={name}
                     {...field}
                     onChange={( e ) => handleEditorChange( e.target.value )}
-                    className="your-textarea-class"
+                    className={'cfw-wysiwyg-text-mode-element'}
                 />
             )}
 

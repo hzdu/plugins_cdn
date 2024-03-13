@@ -1,4 +1,4 @@
-import { ExclamationTriangleIcon }   from '@heroicons/react/20/solid';
+import ExclamationTriangleIcon       from '@heroicons/react/20/solid/ExclamationTriangleIcon';
 import React                         from 'react';
 import { Markup }                    from 'interweave';
 

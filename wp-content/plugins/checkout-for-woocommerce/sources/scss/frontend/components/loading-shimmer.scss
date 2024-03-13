@@ -17,7 +17,7 @@
         background: var(--cfw-loading-shimmer-gradient);
         background-size: 1000px 100%;
         border-radius: 5px;
-        animation: shimmer 1s infinite linear;
+        animation: cfw-shimmer 1s infinite linear;
         display: var(--cfw-loading-shimmer-display-mode);
         backdrop-filter: var(--cfw-loading-shimmer-filter);
         z-index: 10000;
@@ -26,7 +26,7 @@
     }
 }
 
-@keyframes shimmer {
+@keyframes cfw-shimmer {
     0% {
         background-position: -500px 0;
     }

@@ -73,7 +73,6 @@ const SideCartTotals = () => {
                     )}
                 </tbody>
             </table>
-            {ReactHtmlParser( actions.cfw_after_side_cart_totals )}
         </div>
     );
 };

@@ -6,7 +6,6 @@ import SettingsFormPropsPlanInterface                       from '../../../inter
 import AdminPageSection                                     from '../AdminPageSection';
 import CheckboxField                                        from '../Fields/CheckboxField';
 import RadioGroupField                                      from '../Fields/RadioGroupField';
-import TextField                                            from '../Fields/TextField';
 import StorePolicyRepeater                                  from '../StorePolicyRepeater';
 
 interface GlobalOptionsFormSettingsInterface {

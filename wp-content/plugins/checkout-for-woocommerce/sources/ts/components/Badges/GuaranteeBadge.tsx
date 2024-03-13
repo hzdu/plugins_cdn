@@ -1,9 +1,11 @@
 import React from 'react';
 
-const GuaranteeBadge = ( { image_url, title, description } ) => (
+const GuaranteeBadge = ( { imageUrl, title, description } ) => (
     <div className="flex items-center grow mb-6 max-w-lg">
         <div className="mr-4 flex-shrink-0">
-            <img src={image_url} className="max-w-28 h-auto"/>
+            {imageUrl && (
+                <img src={imageUrl} className="max-w-28 h-auto" alt={title}/>
+            )}
         </div>
         <div>
             <h3 className="text-base font-semibold mb-2 text-[--cfw-tb-guarantee-title]">{title || 'Guarantee Title'}</h3>

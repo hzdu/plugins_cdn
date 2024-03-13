@@ -203,10 +203,10 @@ const OrderBumpsOfferPanel = ( { meta, handleFieldChange } ) => (
                     <TextControl
                         label={ 'After Checkout Submit Modal Subheading' }
                         help={ 'Default if blank: Add this offer to your order and save!' }
-                        value={ meta.cfw_ob_offer_cancel_button_text }
+                        value={ meta.cfw_ob_offer_subheading }
                         onChange={
                             ( newValue: string ) => {
-                                handleFieldChange( 'cfw_ob_offer_cancel_button_text', newValue );
+                                handleFieldChange( 'cfw_ob_offer_subheading', newValue );
                             }
                         }
                     />

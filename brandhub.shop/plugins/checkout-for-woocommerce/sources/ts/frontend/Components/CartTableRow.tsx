@@ -24,11 +24,11 @@ const CartTableRow = ( { item, updateItem }: CartTableRowProps ) => (
                     ) : (
                         <Markup content={item.thumbnail} noWrap={true} />
                     ) }
-                    { !DataService.getSetting( 'enable_cart_editing' ) || item.has_quantity_override ? (
+                    { ( !DataService.getSetting( 'enable_cart_editing' ) || item.has_quantity_override ) && (
                         <span className="cfw-cart-item-quantity-bubble">
                             <Markup content={item.quantity.toString()} noWrap={true} />
                         </span>
-                    ) : null }
+                    ) }
                 </div>
             </td>
         ) : null }
@@ -42,19 +42,19 @@ const CartTableRow = ( { item, updateItem }: CartTableRowProps ) => (
                     <Markup content={item.title} noWrap={true} />
                 ) }
             </div>
-            { DataService.getSetting( 'show_item_discount' ) ? (
+            { DataService.getSetting( 'show_item_discount' ) && (
                 <div className="cfw-items-summary-item-discount">
                     <Markup content={item.discount_html} noWrap={true} />
                 </div>
-            ) : null }
-            { item.formatted_data.length ? (
+            ) }
+            { item.formatted_data.length > 0 && (
                 <div className="cfw-cart-item-data">
                     <Markup content={item.formatted_data} noWrap={true} />
                 </div>
-            ) : null }
+            ) }
 
             <div className="cfw_cart_item_after_data">
-                {!item.disable_cart_editing ? (
+                {!item.disable_cart_editing && (
                     <CartItemQuantityControl
                         quantity={item.quantity}
                         setQuantity={( newQuantity: number ) => {
@@ -65,11 +65,11 @@ const CartTableRow = ( { item, updateItem }: CartTableRowProps ) => (
                         max={item.max_quantity}
                         step={item.step}
                     />
-                ) : null }
+                ) }
 
-                {!item.disable_cart_variation_editing ? (
+                {!item.disable_cart_variation_editing && (
                     <CartItemEditVariationLink item={item} />
-                ) : null }
+                ) }
 
                 {ReactHtmlParser( item.actions.cfw_cart_item_after_data ?? '' )}
             </div>

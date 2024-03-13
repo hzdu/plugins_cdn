@@ -55,13 +55,16 @@ class UpdateCheckoutService {
 
         checkoutForm.on( 'change', selectors.join( ', ' ), UpdateCheckoutService.maybeUpdateCheckout );
 
+        // Maybe update checkout on billing email change
+        // - If ACR is enabled, always update
+        // - If one-page checkout is enabled and ACR is not enabled - don't do it
         checkoutForm.on( 'change', '#billing_email', () => {
-            if ( DataService.getSetting( 'enable_one_page_checkout' ) ) {
+            if ( DataService.getSetting( 'enable_one_page_checkout' ) && !DataService.getSetting( 'enable_acr' ) ) {
                 return;
             }
 
             UpdateCheckoutService.maybeUpdateCheckout();
-        } ); // for the shipping address preview
+        } );
 
         // The below line matches the WooCommerce core update_checkout trigger
         // But aren't using it because it's overly aggressive and causes errors that pull the customer out of context for slow typists

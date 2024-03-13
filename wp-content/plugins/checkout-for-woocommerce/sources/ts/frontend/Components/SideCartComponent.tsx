@@ -4,15 +4,12 @@ import ReactHtmlParser                                   from 'react-html-parser
 import { __ }                                            from '@wordpress/i18n';
 import DataStores                                        from '../DataStores';
 import SideCartIcon                                      from './SideCartIcon';
-import { CartTotalsData }                                from '../../interfaces/CartTotalInterface';
 import CartTable                                         from './CartTable';
 import PromoFieldControl                                 from './PromoFieldControl';
 import SideCartTotals                                    from './SideCartTotals';
 import DataService                                       from '../Services/DataService';
-import PrimaryButton                                     from './PrimaryButton';
 import SecondaryButton                                   from './SecondaryButton';
 import OrderBumpsList                                    from '../../components/OrderBumpsList';
-import FreeShippingProgressBar                           from './FreeShippingProgressBar';
 import SideCartData                                      from '../../interfaces/SideCartData';
 import Actions                                           from '../../Types/Actions';
 import SuggestedProductsCarousel                         from './SuggestedProductsCarousel';
@@ -20,7 +17,6 @@ import PrimaryLinkButton                                 from './PrimaryLinkButt
 
 const SideCartComponent: React.FC = () => {
     const actions = useSelect( ( select: any ) => select( DataStores.cart_store_key ).getCartActions( null ), [] ) as Actions;
-    const totals = useSelect( ( select: any ) => select( DataStores.cart_store_key ).getCartTotals( null ), [] ) as CartTotalsData;
     const notices = useSelect( ( select: any ) => select( DataStores.cart_store_key ).getCartNotices( null ), [] ) as string;
     const sideCartData = useSelect( ( select: any ) => select( DataStores.cart_store_key ).getSideCartData( null ), [] ) as SideCartData;
 
@@ -43,7 +39,7 @@ const SideCartComponent: React.FC = () => {
                     </svg>
                 </span>
 
-                <SideCartIcon quantity={totals.quantity}/>
+                <SideCartIcon />
 
                 {ReactHtmlParser( actions.cfw_after_side_cart_header )}
             </div>

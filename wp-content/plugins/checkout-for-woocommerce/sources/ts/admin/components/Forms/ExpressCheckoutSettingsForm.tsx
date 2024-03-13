@@ -2,7 +2,9 @@ import { SlotFillProvider, withFilters }                  from '@wordpress/compo
 import { Formik, Form }                                   from 'formik';
 import React                                              from 'react';
 import { Markup }                                         from 'interweave';
-import { CheckCircleIcon, MinusCircleIcon, XCircleIcon }  from '@heroicons/react/24/solid';
+import CheckCircleIcon                                    from '@heroicons/react/24/solid/CheckCircleIcon';
+import MinusCircleIcon                                    from '@heroicons/react/24/solid/MinusCircleIcon';
+import XCircleIcon                                        from '@heroicons/react/24/solid/XCircleIcon';
 import SettingsFormContainerPropsInterface                from '../../../interfaces/SettingsFormContainerPropsInterface';
 import SettingsFormPropsPlanInterface                     from '../../../interfaces/SettingsFormPropsPlanInterface';
 import AdminPageSection                                   from '../AdminPageSection';

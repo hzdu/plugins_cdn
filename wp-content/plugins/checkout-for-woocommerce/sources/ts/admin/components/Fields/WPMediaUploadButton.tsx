@@ -42,6 +42,7 @@ const WPMediaUploadButton = ( { name, label, description, defaultUrl = null, nes
                 const attachment = currentFrame.state().get( 'selection' ).first().toJSON();
 
                 setAttachment( attachment );
+                setShowPreview( true );
                 helpers.setValue( attachment.id );
             } );
 

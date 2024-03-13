@@ -92,6 +92,7 @@ import SmartyStreetsModal                                                       
 import PromoFieldControl                                                                   from './frontend/Components/PromoFieldControl';
 import ShippingPackages                                                                    from './frontend/Components/ShippingPackages';
 import Mollie                                                                              from './frontend/Compatibility/Gateways/Mollie';
+import WooCommercePayments                                                                 from './frontend/Compatibility/Gateways/WooCommercePayments';
 
 cfwDomReady( () => {
     ( window as any ).cfwGetWPHooks = cfwGetWPHooks;
@@ -254,6 +255,7 @@ cfwDomReady( () => {
         new Mercado(),
         new OwnID(),
         new Mollie(),
+        new WooCommercePayments(),
     ].forEach( ( compat ) => compat.maybeLoad() );
 
     // Init checkout ( WooCommerce native event )
