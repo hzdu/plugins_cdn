@@ -27,12 +27,8 @@ const SideCartIcon = ( { additionalClass = '' } ) => {
                 src={DataService.getSetting( 'cart_icon_url' )}
             />
 
-            {totals.quantity > 0
-                ? (
-                    <div className="cfw-side-cart-quantity" dangerouslySetInnerHTML={{ __html: totals.quantity }}>
-                    </div>
-                ) : null
-            }
+            {/* Note: Always output the quantity even if it is hidden so people can show it if they want to */}
+            <div className={`cfw-side-cart-quantity ${totals.quantity === 0 ? 'cfw-hidden' : ''}`} dangerouslySetInnerHTML={{ __html: totals.quantity }}></div>
         </div>
     );
 };

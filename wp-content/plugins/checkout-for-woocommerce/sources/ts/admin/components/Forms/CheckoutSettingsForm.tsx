@@ -12,7 +12,6 @@ import RadioGroupField                                        from '../Fields/Ra
 import TextField                                              from '../Fields/TextField';
 import MediumAlert                                            from '../MediumAlert';
 import SevereAlert                                            from '../SevereAlert';
-import StorePolicyRepeater                                    from '../StorePolicyRepeater';
 
 declare let cfw_google_address_autocomplete: any;
 

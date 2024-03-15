@@ -38,7 +38,7 @@ body.admin-bar {
     left: 0;
     top: 0;
     width: 100%;
-    z-index: 99998;
+    z-index: 999998;
     visibility: hidden;
     height: 100vh;
 }
@@ -74,7 +74,7 @@ $slick-loader-path: "../images/";
     font-family: var(--cfw-body-font-family);
     right: -480px;
     top: 0;
-    z-index: 99999;
+    z-index: 999999;
     color: var(--cfw-body-text-color);
     text-rendering: optimizelegibility !important;
     -webkit-font-smoothing: subpixel-antialiased;
@@ -427,6 +427,7 @@ $slick-loader-path: "../images/";
     position: fixed;
     bottom: var(--cfw-side-cart-button-bottom-position, 20px);
     right: var(--cfw-side-cart-button-right-position, 20px);
+    z-index: 999997;
 
     .cfw-side-cart-floating-button-anchor {
         display: block;
@@ -438,7 +439,6 @@ $slick-loader-path: "../images/";
         text-rendering: optimizelegibility !important;
         -webkit-font-smoothing: subpixel-antialiased;
         -moz-osx-font-smoothing: grayscale;
-        z-index: 99997;
         color: #222;
         text-transform: none;
         text-decoration: none;

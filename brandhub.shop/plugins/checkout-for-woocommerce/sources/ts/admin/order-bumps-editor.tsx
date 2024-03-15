@@ -58,7 +58,7 @@ registerBlockType( 'cfw/order-bump-preview', {
 
         useEffect( () => {
             const fetchProductData = async () => {
-                const productData = await getProductData( meta.cfw_ob_offer_product[ 0 ].key ) as any;
+                const productData = await getProductData( meta.cfw_ob_offer_product_v9[ 0 ].key ) as any;
                 setWrappedThumb( productData.featuredImageUrl ? `<img src="${productData.featuredImageUrl}" alt="Featured Image">` : null );
                 setOfferPrice( productData.price );
             };
@@ -66,14 +66,14 @@ registerBlockType( 'cfw/order-bump-preview', {
             if ( meta?.cfw_ob_offer_product ) {
                 fetchProductData();
             }
-        }, [ meta.cfw_ob_offer_product ] );
+        }, [ meta.cfw_ob_offer_product_v9 ] );
 
         return (
             <div className={'cfw-order-bumps'}>
                 <OrderBump
                     bump={{
                         id: '123',
-                        offerProductId: meta.cfw_ob_offer_product,
+                        offerProductId: meta.cfw_ob_offer_product_v9,
                         wrappedThumb,
                         offerDescription: meta.cfw_ob_offer_description,
                         offerLanguage: meta.cfw_ob_offer_language,

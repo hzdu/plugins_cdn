@@ -23,10 +23,10 @@ const OrderBumpsActionsPanel = ( { meta, handleFieldChange } ) => (
                         help={'If any of these products are in the cart, remove them when this bump is added to the cart.'}
                         placeholder="Search for products"
                         multiple={true}
-                        selected={meta.cfw_ob_products_to_remove}
+                        selected={meta.cfw_ob_products_to_remove_v9}
                         onChange={
                             ( newValues: any ) => {
-                                handleFieldChange( 'cfw_ob_products_to_remove', newValues );
+                                handleFieldChange( 'cfw_ob_products_to_remove_v9', newValues );
                             }
                         }
                     />

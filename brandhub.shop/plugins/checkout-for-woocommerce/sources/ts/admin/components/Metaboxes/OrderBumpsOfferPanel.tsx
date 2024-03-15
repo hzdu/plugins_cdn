@@ -18,7 +18,7 @@ const getValidationRules: ( meta: OrderBumpsMeta ) => ValidationRules = ( meta )
         number: true,
         error: 'Discount value must be a number. Example: 10, or 10.00',
     },
-    cfw_ob_offer_product: {
+    cfw_ob_offer_product_v9: {
         required: true,
         error: 'You must select an offer product.',
     },
@@ -44,10 +44,10 @@ const OrderBumpsOfferPanel = ( { meta, handleFieldChange } ) => (
             autocompleter={ProductsAndVariationsCompleter}
             placeholder="Search for product"
             multiple={false}
-            selected={meta.cfw_ob_offer_product}
+            selected={meta.cfw_ob_offer_product_v9}
             onChange={
                 ( newValues: any ) => {
-                    handleFieldChange( 'cfw_ob_offer_product', newValues );
+                    handleFieldChange( 'cfw_ob_offer_product_v9', newValues );
                 }
             }
         />
@@ -63,7 +63,7 @@ const OrderBumpsOfferPanel = ( { meta, handleFieldChange } ) => (
             }
         />
 
-        { meta.cfw_ob_display_for === 'specific_products' && meta.cfw_ob_products.length === 1
+        { meta.cfw_ob_display_for === 'specific_products' && meta.cfw_ob_products_v9.length === 1
                 && <>
                     <CheckboxControl
                         label="Use Order Bump As Upsell"

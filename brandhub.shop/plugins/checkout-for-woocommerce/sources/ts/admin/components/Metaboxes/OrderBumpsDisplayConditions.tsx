@@ -10,11 +10,11 @@ import withMetaboxValidation                                          from './wi
 import { OrderBumpsMeta, ValidationRules }                            from '../../Types/ValidationRules';
 
 const getValidationRules: ( meta: OrderBumpsMeta ) => ValidationRules = ( meta ) => ( {
-    cfw_ob_products: {
+    cfw_ob_products_v9: {
         required: () => meta.cfw_ob_display_for === 'specific_products',
         error: 'You must specify at least one product.',
     },
-    cfw_ob_categories: {
+    cfw_ob_categories_v9: {
         required: () => meta.cfw_ob_display_for === 'specific_categories',
         error: 'You must specify at least one category.',
     },
@@ -24,7 +24,12 @@ const OrderBumpsDisplayConditions = ( { meta, handleFieldChange } ) => {
     const { createNotice, removeNotice } = useDispatch( noticesStore );
 
     useEffect( () => {
-        if ( meta.cfw_ob_display_location !== 'complete_order' ) {
+        if ( meta.cfw_ob_display_location !== 'complete_order'
+            || (
+                meta.cfw_ob_full_screen !== 'yes'
+                && meta.cfw_ob_display_location === 'complete_order'
+            )
+        ) {
             createNotice(
                 'warning',
                 'Block Editor is only used for Full Screen Order Bumps (Configurable for After Checkout Submit Bumps). Blocks are ignored for other configurations.',
@@ -37,7 +42,7 @@ const OrderBumpsDisplayConditions = ( { meta, handleFieldChange } ) => {
         return () => {
             removeNotice( 'notice-cfw_ob_display_location' );
         };
-    }, [ meta.cfw_ob_display_location ] );
+    }, [ meta.cfw_ob_display_location, meta.cfw_ob_full_screen ] );
 
     return (
         <PluginDocumentSettingPanel
@@ -63,10 +68,10 @@ const OrderBumpsDisplayConditions = ( { meta, handleFieldChange } ) => {
                         autocompleter={ProductsAndVariationsCompleter}
                         placeholder="Search for products"
                         multiple={true}
-                        selected={meta.cfw_ob_products}
+                        selected={meta.cfw_ob_products_v9}
                         onChange={
                             ( newValues: any ) => {
-                                handleFieldChange( 'cfw_ob_products', newValues );
+                                handleFieldChange( 'cfw_ob_products_v9', newValues );
                             }
                         }
                     />
@@ -91,10 +96,10 @@ const OrderBumpsDisplayConditions = ( { meta, handleFieldChange } ) => {
                         label={'Categories'}
                         placeholder="Search for categories"
                         multiple={true}
-                        selected={meta.cfw_ob_categories}
+                        selected={meta.cfw_ob_categories_v9}
                         onChange={
                             ( newValues: any ) => {
-                                handleFieldChange( 'cfw_ob_categories', newValues );
+                                handleFieldChange( 'cfw_ob_categories_v9', newValues );
                             }
                         }
                     />
@@ -145,10 +150,10 @@ const OrderBumpsDisplayConditions = ( { meta, handleFieldChange } ) => {
                 autocompleter={ProductsAndVariationsCompleter}
                 placeholder="Search for excluded products"
                 multiple={true}
-                selected={meta.cfw_ob_exclude_products}
+                selected={meta.cfw_ob_exclude_products_v9}
                 onChange={
                     ( newValues: any ) => {
-                        handleFieldChange( 'cfw_ob_exclude_products', newValues );
+                        handleFieldChange( 'cfw_ob_exclude_products_v9', newValues );
                     }
                 }
             />
@@ -158,10 +163,10 @@ const OrderBumpsDisplayConditions = ( { meta, handleFieldChange } ) => {
                 label={'Excluded Categories'}
                 placeholder="Search for excluded categories"
                 multiple={true}
-                selected={meta.cfw_ob_exclude_categories}
+                selected={meta.cfw_ob_exclude_categories_v9}
                 onChange={
                     ( newValues: any ) => {
-                        handleFieldChange( 'cfw_ob_exclude_categories', newValues );
+                        handleFieldChange( 'cfw_ob_exclude_categories_v9', newValues );
                     }
                 }
             />

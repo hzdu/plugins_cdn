@@ -38,7 +38,7 @@ class SideCart {
         jQuery( document.body ).on( 'click', '.menu-item a:has(.cfw-side-cart-open-trigger)', SideCart.openCart.bind( this ) );
         jQuery( document.body ).on( 'click', '.cfw-side-cart-close-trigger, .cfw-side-cart-close-btn, #cfw-side-cart-overlay', SideCart.closeCart.bind( this ) );
         jQuery( document.body ).on( 'added_to_cart', ( e, fragments, hash, button, source ) => {
-            if ( !source ) {
+            if ( !source || source !== 'cfw' ) {
                 if ( fragments && fragments.cfw_data ) {
                     Action.updateDataStore( fragments.cfw_data );
                 }  else {
@@ -73,7 +73,7 @@ class SideCart {
             }
 
             jQuery( document.body ).trigger( 'wc_fragment_refresh' );
-            jQuery( document.body ).trigger( 'added_to_cart', [ resp.fragments, resp.cart_hash, jQuery( e.target ) ] );
+            jQuery( document.body ).trigger( 'added_to_cart', [ resp.fragments, resp.cart_hash, jQuery( e.target ), 'cfw' ] );
             jQuery( document.body ).trigger( 'updated_cart_totals' );
         } );
 

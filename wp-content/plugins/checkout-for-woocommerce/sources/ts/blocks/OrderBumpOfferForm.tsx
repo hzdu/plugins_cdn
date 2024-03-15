@@ -25,7 +25,7 @@ class OrderBumpOfferForm {
                 const [ meta ] = useEntityProp( 'postType', postType, 'meta' );
 
                 useEffect( () => {
-                    apiFetch( { path: `checkoutwc/v1/order-bump-offer-form-preview/${meta.cfw_ob_offer_product[ 0 ].key}/${postId}` } ).then( ( response ) => {
+                    apiFetch( { path: `checkoutwc/v1/order-bump-offer-form-preview/${meta.cfw_ob_offer_product_v9[ 0 ].key}/${postId}` } ).then( ( response ) => {
                         setHtml( response as string );
                     } );
                 }, [ meta ] );
