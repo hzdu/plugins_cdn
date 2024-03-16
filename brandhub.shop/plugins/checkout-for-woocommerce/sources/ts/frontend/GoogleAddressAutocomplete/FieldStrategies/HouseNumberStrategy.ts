@@ -5,13 +5,13 @@ export default class HouseNumberStrategy {
     public constructor(  protected components: google.maps.GeocoderAddressComponent[], protected formattedAddress: string, protected userInputValue: string ) {}
 
     public getValue(): string {
-        let results = HouseNumberStrategy.tryToParseHouseNumberFromUserInput( this.formattedAddress );
+        let results = HouseNumberStrategy.tryToParseHouseNumberFromAddress1( this.formattedAddress );
 
         if ( results ) {
             return results;
         }
 
-        results = HouseNumberStrategy.tryToParseHouseNumberFromUserInput( this.userInputValue );
+        results = HouseNumberStrategy.tryToParseHouseNumberFromAddress1( this.userInputValue );
 
         if ( results ) {
             return results;
@@ -31,12 +31,20 @@ export default class HouseNumberStrategy {
         return Array.isArray( houseNumberResults ) ? `${houseNumberResults[ 1 ]}` : '';
     }
 
-    protected static tryToParseHouseNumberFromUserInput( address1: string ): string {
+    /**
+     * Try to get the house number out of the address1 field
+     *
+     * Note: The subpremise must start with a digit to be detected, but it can contain other characters
+     *
+     * @param address1
+     * @protected
+     */
+    protected static tryToParseHouseNumberFromAddress1( address1: string ): string {
         // Process <subpremise>/<street number> <route> formats
         // get all the user entered values before a match with the street name;
         // group #1 = unit number, group #2 = street number
         // eslint-disable-next-line no-useless-escape
-        const slashedResults = RegExp( '^(.*?)\/(.*?) ' ).exec( address1 );
+        const slashedResults = RegExp( '^(\\d+\\S*?)\/(.*?) ' ).exec( address1 );
 
         // If this is an array, format was unit/house number format
         if ( Array.isArray( slashedResults ) ) {
@@ -47,7 +55,7 @@ export default class HouseNumberStrategy {
         // get all the user entered values before a match with the street name;
         // group #1 = unit number, group #2 = street number
         // eslint-disable-next-line no-useless-escape
-        const dashedResults = RegExp( '^(.*?)-(.*?) ' ).exec( address1 );
+        const dashedResults = RegExp( '^(\\d+\\S*?)-(.*?) ' ).exec( address1 );
 
         // If this is an array, format was unit/house number format
         if ( Array.isArray( dashedResults ) ) {

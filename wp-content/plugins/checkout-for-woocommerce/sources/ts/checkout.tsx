@@ -1,7 +1,6 @@
 import React                                                                               from 'react';
 import { select }                                                                          from '@wordpress/data';
 import { cfwDomReady, cfwDefineScrollToNotices }                                           from './_functions';
-import CartTable                                                                           from './frontend/Components/CartTable';
 import TrustBadges                                                                         from './frontend/Components/TrustBadges';
 import DataService                                                                         from './frontend/Services/DataService';
 import LoggingService                                                                      from './frontend/Services/LoggingService';
@@ -93,6 +92,7 @@ import PromoFieldControl                                                        
 import ShippingPackages                                                                    from './frontend/Components/ShippingPackages';
 import Mollie                                                                              from './frontend/Compatibility/Gateways/Mollie';
 import WooCommercePayments                                                                 from './frontend/Compatibility/Gateways/WooCommercePayments';
+import CheckoutCartTable                                                                   from './frontend/Components/CheckoutCartTable';
 
 cfwDomReady( () => {
     ( window as any ).cfwGetWPHooks = cfwGetWPHooks;
@@ -116,12 +116,12 @@ cfwDomReady( () => {
     // Load React components
     const componentMappings: ComponentMappingInterface[] = [
         { id: 'cfw-trust-badges', component: <TrustBadges /> },
-        { id: 'cfw-mobile-cart-table', component: <CartTable />, condition: !DataService.getSetting( 'enable_one_page_checkout' ) },
-        { id: 'cfw-cart', component: <CartTable /> },
+        { id: 'cfw-mobile-cart-table', component: <CheckoutCartTable /> },
+        { id: 'cfw-cart', component: <CheckoutCartTable /> },
         { id: 'cfw-cart-summary-coupons', component: <PromoFieldControl location={'checkout_cart_summary'} /> },
         { id: 'cfw-coupons-mobile', component: <PromoFieldControl /> },
         { id: 'cfw-mobile-cart-coupons', component: <PromoFieldControl /> },
-        { id: 'cfw-mobile-cart-summary-totals', component: <CartTotals />, condition: !DataService.getSetting( 'enable_one_page_checkout' ) },
+        { id: 'cfw-mobile-cart-summary-totals', component: <CartTotals /> },
         { id: 'cfw-cart-summary-totals', component: <CartTotals /> },
         { id: 'cfw-mobile-totals', component: <CartTotals /> },
         { id: 'cfw-review-order-totals', component: <CartTotalsReview /> },

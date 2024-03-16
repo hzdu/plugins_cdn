@@ -40,13 +40,6 @@ const CartTable: React.FC = () => {
                 !sideCartData.is_empty
                 && DataService.getSetting( 'enable_free_shipping_progress_bar' )
                 && (
-                    !DataService.getCheckoutParam( 'is_checkout' )
-                    || (
-                        DataService.getSetting( 'enable_free_shipping_progress_bar' )
-                        && DataService.getSetting( 'enable_free_shipping_progress_bar_at_checkout' )
-                        && DataService.getCheckoutParam( 'is_checkout' )
-                    )
-                ) && (
                     <FreeShippingProgressBar/>
                 )
             }

@@ -48,7 +48,7 @@ const SideCartComponent: React.FC = () => {
                 {
                     !sideCartData.is_empty ? (
                         <>
-                            <CartTable/>
+                            <CartTable />
                             <OrderBumpsList locations={[ 'below_cart_items', 'below_side_cart_items' ]}/>
                             {ReactHtmlParser( actions.cfw_after_side_cart_items_table )}
                         </>

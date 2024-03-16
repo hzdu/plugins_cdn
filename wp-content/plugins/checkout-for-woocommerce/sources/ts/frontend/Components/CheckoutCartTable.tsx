@@ -2,14 +2,14 @@ import React                                   from 'react';
 import { dispatch, useSelect }                 from '@wordpress/data';
 import ReactHtmlParser                         from 'react-html-parser';
 import CartItemInterface                       from '../../interfaces/CartItemInterface';
-import CartTableRow                            from './CartTableRow';
 import DataStores                              from '../DataStores';
 import LoggingService                          from '../Services/LoggingService';
 import DataService                             from '../Services/DataService';
 import FreeShippingProgressBar                 from './FreeShippingProgressBar';
 import SideCartData                            from '../../interfaces/SideCartData';
+import CheckoutCartTableRow                    from './CheckoutCartTableRow';
 
-const CartTable: React.FC = () => {
+const CheckoutCartTable: React.FC = () => {
     const items = useSelect( ( select: any ) => select( DataStores.cart_store_key ).getCartItems( null ), [] );
     const actions = useSelect( ( select: any ) => select( DataStores.cart_store_key ).getCartActions( null ), [] );
     const sideCartData = useSelect( ( select: any ) => select( DataStores.cart_store_key ).getSideCartData( null ), [] ) as SideCartData;
@@ -39,6 +39,7 @@ const CartTable: React.FC = () => {
             {
                 !sideCartData.is_empty
                 && DataService.getSetting( 'enable_free_shipping_progress_bar' )
+                && DataService.getSetting( 'enable_free_shipping_progress_bar_at_checkout' )
                 && (
                     <FreeShippingProgressBar/>
                 )
@@ -46,7 +47,7 @@ const CartTable: React.FC = () => {
             <table className="cfw-cart-table cfw-module">
                 <tbody>
                     {ReactHtmlParser( actions.cfw_cart_html_table_start )}
-                    {items.map( ( item: CartItemInterface ) => ( <CartTableRow item={item} updateItem={updateItem} key={item.item_key} /> ) )}
+                    {items.map( ( item: CartItemInterface ) => ( <CheckoutCartTableRow item={item} updateItem={updateItem} key={item.item_key} /> ) )}
                 </tbody>
             </table>
             {ReactHtmlParser( actions.cfw_after_cart_html )}
@@ -54,4 +55,4 @@ const CartTable: React.FC = () => {
     );
 };
 
-export default CartTable;
+export default CheckoutCartTable;

@@ -53,7 +53,7 @@ const CartTableRow = ( { item, updateItem }: CartTableRowProps ) => (
                 </div>
             ) }
 
-            <div className="cfw_cart_item_after_data">
+            <div className="cfw_side_cart_item_after_data">
                 {!item.disable_cart_editing && (
                     <CartItemQuantityControl
                         quantity={item.quantity}
@@ -71,7 +71,7 @@ const CartTableRow = ( { item, updateItem }: CartTableRowProps ) => (
                     <CartItemEditVariationLink item={item} />
                 ) }
 
-                {ReactHtmlParser( item.actions.cfw_cart_item_after_data ?? '' )}
+                {ReactHtmlParser( item.actions.cfw_side_cart_item_after_data ?? '' )}
             </div>
         </th>
         <td className="cfw-cart-item-quantity visually-hidden">
@@ -79,12 +79,14 @@ const CartTableRow = ( { item, updateItem }: CartTableRowProps ) => (
         </td>
         <td className="cfw-cart-item-subtotal">
             {ReactHtmlParser( item.actions.cfw_before_cart_item_subtotal ? item.actions.cfw_before_cart_item_subtotal : '' )}
+
             <CartItemRemoveButton
                 handleRemove={() => {
                     const updatedItem = { ...item, quantity: 0 };
                     updateItem( updatedItem );
                 }}
             />
+
             <Markup content={item.subtotal} noWrap={true} />
         </td>
     </tr>

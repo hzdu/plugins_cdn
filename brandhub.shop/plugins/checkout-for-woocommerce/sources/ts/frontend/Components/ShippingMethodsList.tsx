@@ -26,13 +26,18 @@ const ShippingMethodsList: React.FC<ShippingProps> = (
     },
 ) => {
     const actions = useSelect( ( select: any ) => select( DataStores.cart_store_key ).getCartActions( null ), [] );
+
     return (
         <div>
             {availableMethods.length > 0 ? (
                 <>
                     {packageCount > 1 && <h4 className="cfw-shipping-package-title">{packageName}</h4>}
 
-                    {ReactHtmlParser( actions.woocommerce_review_order_before_shipping )}
+                    {actions.woocommerce_review_order_before_shipping.length > 0 && (
+                        <table id="cfw-before-shipping">
+                            <tbody dangerouslySetInnerHTML={ { __html: actions.woocommerce_review_order_before_shipping.length }}></tbody>
+                        </table>
+                    )}
 
                     <ul id="shipping_method" className="cfw-shipping-methods-list">
                         {availableMethods.map( ( method ) => (
@@ -51,8 +56,8 @@ const ShippingMethodsList: React.FC<ShippingProps> = (
                                     <label
                                         htmlFor={`shipping_method_${index}_${method.id}`}
                                         onClick={() => updateSelectedMethod( method )}
+                                        dangerouslySetInnerHTML={{ __html: method.label }}
                                     >
-                                        {ReactHtmlParser( method.label )}
                                     </label>
                                 </div>
 
@@ -66,12 +71,14 @@ const ShippingMethodsList: React.FC<ShippingProps> = (
                         ) )}
                     </ul>
 
-                    {ReactHtmlParser( actions.woocommerce_review_order_after_shipping )}
+                    {( actions.woocommerce_review_order_after_shipping.length > 0 || actions.cfw_after_shipping_methods.length > 0 ) && (
+                        <table id="cfw-after-shipping">
+                            <tbody dangerouslySetInnerHTML={ { __html: actions.cfw_after_shipping_methods + actions.woocommerce_review_order_after_shipping }}></tbody>
+                        </table>
+                    )}
                 </>
             ) : (
-                <div className="shipping-message">
-                    {ReactHtmlParser( DataService.getMessage( 'no_shipping_methods_notice' ) )}
-                </div>
+                <div className="shipping-message" dangerouslySetInnerHTML={ { __html: DataService.getMessage( 'no_shipping_methods_notice' ) } }></div>
             )}
 
             {packageCount > 1 && (
