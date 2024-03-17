@@ -41,6 +41,8 @@ const ListPicker = ({ listId, provider, apiKey, onChange }) => {
 			'blocksy_ext_newsletter_subscribe_maybe_get_lists'
 		)
 
+		body.append('nonce', ctDashboardLocalizations.dashboard_actions_nonce)
+
 		try {
 			const response = await fetch(ctDashboardLocalizations.ajax_url, {
 				method: 'POST',

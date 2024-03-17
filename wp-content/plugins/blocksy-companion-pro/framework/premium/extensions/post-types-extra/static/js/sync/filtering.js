@@ -52,34 +52,46 @@ ctEvents.on(
 
 			[`${prefix}_filter_font_color`]: [
 				{
-					selector: applyPrefixFor('.ct-dynamic-filter', prefix),
+					selector: applyPrefixFor('.ct-dynamic-filter[data-type="simple"]', prefix),
 					variable: 'theme-link-initial-color',
 					type: 'color:default',
 				},
 
 				{
-					selector: applyPrefixFor('.ct-dynamic-filter', prefix),
+					selector: applyPrefixFor('.ct-dynamic-filter[data-type="simple"]', prefix),
 					variable: 'theme-link-hover-color',
 					type: 'color:hover',
+				},
+
+				{
+					selector: applyPrefixFor('.ct-dynamic-filter[data-type="buttons"]', prefix),
+					variable: 'theme-link-initial-color',
+					type: 'color:default_2',
+				},
+
+				{
+					selector: applyPrefixFor('.ct-dynamic-filter[data-type="buttons"]', prefix),
+					variable: 'theme-link-hover-color',
+					type: 'color:hover_2',
 				},
 			],
 
 			[`${prefix}_filter_button_color`]: [
 				{
-					selector: applyPrefixFor('.ct-dynamic-filter', prefix),
+					selector: applyPrefixFor('.ct-dynamic-filter[data-type="buttons"]', prefix),
 					variable: 'theme-button-background-initial-color',
 					type: 'color:default',
 				},
 
 				{
-					selector: applyPrefixFor('.ct-dynamic-filter', prefix),
+					selector: applyPrefixFor('.ct-dynamic-filter[data-type="buttons"]', prefix),
 					variable: 'theme-button-background-hover-color',
 					type: 'color:hover',
 				},
 			],
 
 			[`${prefix}_filter_button_padding`]: {
-				selector: applyPrefixFor('.ct-dynamic-filter', prefix),
+				selector: applyPrefixFor('.ct-dynamic-filter[data-type="buttons"]', prefix),
 				type: 'spacing',
 				variable: 'padding',
 				responsive: true,
@@ -87,7 +99,7 @@ ctEvents.on(
 			},
 
 			[`${prefix}_filter_button_border_radius`]: {
-				selector: applyPrefixFor('.ct-dynamic-filter', prefix),
+				selector: applyPrefixFor('.ct-dynamic-filter[data-type="buttons"]', prefix),
 				type: 'spacing',
 				variable: 'theme-border-radius',
 				responsive: true,

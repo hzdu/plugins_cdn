@@ -7,16 +7,24 @@ export const maybeHandleSingleSwatches = (el) => {
 		return
 	}
 
-	const form = el.closest('.entry-summary').querySelector('.variations_form')
+	const forms = el
+		.closest('.entry-summary')
+		.querySelectorAll('.variations_form')
 
-	if (!form || form.hasEventListener) {
+	if (!forms || !forms.length) {
 		return
 	}
 
-	form.hasEventListener = true
+	forms.forEach((form) => {
+		if (form.hasEventListener) {
+			return
+		}
 
-	$(form).on('found_variation', () => computeSwatch(form))
-	$(form).on('reset_data', () => computeSwatch(form))
+		form.hasEventListener = true
 
-	$(form).wc_variation_form()
+		$(form).on('found_variation', () => computeSwatch(form))
+		$(form).on('reset_data', () => computeSwatch(form))
+
+		$(form).wc_variation_form()
+	})
 }

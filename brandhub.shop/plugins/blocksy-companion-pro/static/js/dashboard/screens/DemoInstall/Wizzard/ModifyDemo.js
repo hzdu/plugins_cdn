@@ -63,7 +63,7 @@ const ModifyDemo = ({ style, nextStep }) => {
 		const stepDescriptor = stepsDescriptors[stepName]
 
 		var evtSource = new EventSource(
-			`${ctDashboardLocalizations.ajax_url}?${stepDescriptor.query_string}`
+			`${ctDashboardLocalizations.ajax_url}?${stepDescriptor.query_string}&nonce=${ctDashboardLocalizations.dashboard_actions_nonce}`
 		)
 
 		evtSource.onmessage = (e) => {

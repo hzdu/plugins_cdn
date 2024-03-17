@@ -16,6 +16,8 @@ const NewsletterSubscribe = ({ extension, onExtsSync }) => {
 				: 'blocksy_extension_activate'
 		)
 
+		body.append('nonce', ctDashboardLocalizations.dashboard_actions_nonce)
+
 		try {
 			await fetch(ctDashboardLocalizations.ajax_url, {
 				method: 'POST',

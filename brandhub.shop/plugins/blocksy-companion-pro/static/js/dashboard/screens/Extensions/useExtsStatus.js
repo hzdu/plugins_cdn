@@ -47,7 +47,7 @@ const useExtsStatus = () => {
 		}
 
 		const response = await fetch(
-			`${wp.ajax.settings.url}?action=blocksy_extensions_status`,
+			`${wp.ajax.settings.url}?action=blocksy_extensions_status&nonce=${ctDashboardLocalizations.dashboard_actions_nonce}`,
 
 			{
 				method: 'POST',

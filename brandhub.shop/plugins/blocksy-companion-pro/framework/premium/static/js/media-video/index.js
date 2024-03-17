@@ -15,7 +15,17 @@ import { addFilter } from '@wordpress/hooks'
 
 import EditVideoButton from './components/EditVideoButton'
 
+const POST_TYPES_TO_SKIP = ['.post-type-guest-author']
+
 const appendActionsOnLoad = () => {
+	if (
+		POST_TYPES_TO_SKIP.some((selector) =>
+			document.querySelector('body').hasClass(selector)
+		)
+	) {
+		return
+	}
+
 	appendToGalleryItems()
 	appendToSimpleFeaturedImage()
 	appendToGutenbergFeaturedImage()
