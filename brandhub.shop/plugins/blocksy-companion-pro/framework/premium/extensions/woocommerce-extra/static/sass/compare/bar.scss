@@ -1,0 +1,91 @@
+@import '../../../../../../../static/sass/frontend/common-frontend/functions';
+@import '../../../../../../../static/sass/frontend/common-frontend/mixins';
+
+.ct-drawer-canvas[data-compare-bar] {
+
+	.ct-compare-bar {
+		height: var(--compare-bar-height, 70px);
+		padding-block: var(--compare-bar-padding, 15px);
+	}	
+}
+
+.ct-compare-bar {
+	position: relative;
+
+	.ct-container {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 20px;
+	}
+
+	ul {
+		flex: 1;
+		display: flex;
+		align-items: center;
+		flex-wrap: wrap;
+		gap: 10px;
+		overflow: clip;
+		height: calc(var(--compare-bar-height, 70px) - var(--compare-bar-padding, 15px) * 2);
+
+		&:hover {
+			overflow: visible;
+		}
+	}
+
+	li {
+		display: flex;
+		justify-content: center;
+		position: relative;
+		flex: 0 0 calc(var(--compare-bar-height, 70px) - var(--compare-bar-padding, 15px) * 2);
+
+		.ct-tooltip {
+			transform: translate3d(0px, -50px, 0px);
+		}
+
+		&:hover {
+
+			.ct-tooltip {
+				opacity: 1;
+				visibility: visible;
+				transform: translate3d(0px, -55px, 0px);
+			}
+
+			.ct-compare-remove {
+				opacity: 1;
+			}
+		}
+	}
+
+	.ct-media-container {
+		border-radius: 2px;
+	}
+
+	.ct-compare-remove {
+		position: absolute;
+		z-index: 1;
+		top: 3px;
+		inset-inline-end: 3px;
+		display: flex;
+		opacity: 0;
+		padding: 3px;
+		color: #fff;
+		background: #d83428;
+		border-radius: 2px;
+		transition: opacity 0.15s ease;
+	}
+
+	.ct-button {
+		gap: 10px;
+		margin-left: auto;
+		--theme-button-min-height: 40px;
+
+		@include media-breakpoint-down (md) {
+			padding: 5px 15px;
+		}
+
+		svg {
+			fill: currentColor;
+		}
+	}
+}

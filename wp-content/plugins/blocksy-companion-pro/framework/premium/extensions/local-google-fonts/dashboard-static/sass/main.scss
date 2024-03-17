@@ -1,0 +1,34 @@
+@import 'fonts-list';
+@import 'variations-modal';
+
+.ct-local-google-fonts-options {
+	padding-top: 40px;
+	border-top: 1px dashed #eee;
+
+	form {
+		display: grid;
+		grid-template-columns: 1fr 150px;
+		gap: 10px;
+		margin-top: 25px;
+	}
+
+	.ct-select-input {
+		--input-height: 35px;
+	}
+
+	&.ct-syncing {
+
+		.ct-select-input {
+
+			&:after {
+				display: none;
+			}
+
+			svg {
+				position: absolute;
+				top: 10px;
+				inset-inline-end: 10px;
+			}
+		}
+	}
+}

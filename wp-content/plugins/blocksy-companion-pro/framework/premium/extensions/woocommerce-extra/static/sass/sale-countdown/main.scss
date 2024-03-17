@@ -1,0 +1,47 @@
+.ct-product-sale-countdown {
+
+	.ct-module-title {
+
+		&:only-child {
+			display: none;
+		}
+	}
+
+	div {
+		display: flex;
+		gap: 30px;
+
+		span {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			gap: 10px;
+
+			b {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				min-width: 45px;
+				aspect-ratio: 1/1;
+				border-radius: 10px;
+				background: var(--theme-palette-color-5);
+			}
+
+			small {
+				font-size: 11px;
+				font-weight: 500;
+				text-transform: uppercase;
+			}
+
+			&:not(:last-child) b {
+				position: relative;
+
+				&:after {
+					content: ':';
+					position: absolute;
+					inset-inline-end: -17px;
+				}
+			}
+		}
+	}
+}

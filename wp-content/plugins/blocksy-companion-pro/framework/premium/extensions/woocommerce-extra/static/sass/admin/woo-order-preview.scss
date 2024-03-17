@@ -1,0 +1,117 @@
+.wp-block-blocksy-woo-order {
+	
+	// order overview
+	.woocommerce-order-overview {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+		border: 1px solid var(--theme-border-color);
+
+		@media (min-width: 690px) {
+			display: grid;
+			grid-template-columns: repeat(2, 1fr);
+		}
+
+		li {
+			padding: 1em 1.3em;
+			margin-bottom: -1px;
+			border-bottom: 1px solid var(--theme-border-color);
+
+			@media (min-width: 690px) {
+				&:nth-child(odd) {
+					border-inline-end: 1px solid var(--theme-border-color);
+				}
+			}
+
+			strong {
+				display: block;
+			}
+		}
+	}
+
+	// order details
+	.woocommerce-order-details {
+
+		table {
+			width: 100%;
+			border-collapse: collapse;
+
+			a {
+				font-weight: 500;
+				text-decoration: none;
+				--theme-link-initial-color: var(--theme-text-color);
+			}
+
+			tr {
+
+				> *:first-child {
+					padding-inline-start: 0;
+				}
+
+				> *:last-child {
+					padding-inline-end: 0;
+				}
+			}
+
+			th, td {
+				text-align: initial;
+				border-bottom: 1px dashed var(--theme-table-border-color, var(--theme-border-color));
+				padding: var(--theme-table-padding, 0.7em 1em);
+			}
+
+			thead {
+
+				th {
+					border-bottom: 2px solid var(--theme-table-border-color, var(--theme-border-color));
+				}
+			}
+
+			tfoot {
+
+				tr:last-child {
+
+					th, td {
+						border-bottom: none;
+					}
+				}
+			}
+		}
+	}
+
+	// customer details
+	.woocommerce-customer-details {
+
+		.col2-set {
+			display: grid;
+
+			@media (max-width: 689.98px) {
+				grid-row-gap: 2em;
+			}
+
+			@media (min-width: 690px) {
+				grid-template-columns: repeat(2, 1fr);
+				grid-column-gap: 30px;
+			}
+		}
+
+		.woocommerce-column__title {
+			font-size: 15px;
+			margin-bottom: 0;
+			padding: 20px;
+			border: 1px solid var(--theme-border-color);
+			border-bottom: 0;
+			background: rgba(237, 239, 242, 0.4);
+		}
+
+		address {
+			font-size: 15px;
+			padding: 20px;
+			border: 1px solid var(--theme-border-color);
+		}
+	}
+
+	// misc
+	> *:not(:last-child) {
+		margin-bottom: 40px;
+	}
+}

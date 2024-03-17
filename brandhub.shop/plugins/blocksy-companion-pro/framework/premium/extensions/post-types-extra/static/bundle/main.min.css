@@ -1,0 +1,8 @@
+/**
+ *  - v2.0.32
+ * 
+ * Copyright (c) 2024
+ * Licensed GPLv2+
+ */
+
+.ct-read-progress-bar{background:linear-gradient(to right, var(--progress-bar-scroll, var(--theme-palette-color-1)) var(--scroll, 0%), var(--progress-bar-background, transparent) 0);background-repeat:no-repeat;position:fixed;top:calc(var(--admin-bar, 0px) + var(--theme-frame-size, 0px));width:calc(100% - var(--theme-frame-size, 0px)*2);height:var(--progress-bar-height, 3px);z-index:51;opacity:1;transition:opacity .3s ease}.ct-read-progress-bar.ct-auto-hide[style*="100"]{opacity:0}.ct-dynamic-filter{display:flex;flex-wrap:wrap;justify-content:var(--filter-items-alignment, center);gap:var(--items-vertical-spacing, 10px) var(--items-horizontal-spacing, 30px);margin-bottom:var(--container-spacing, 40px);--theme-link-initial-color: var(--theme-text-color)}.ct-dynamic-filter a.active{color:var(--theme-link-hover-color)}.ct-dynamic-filter[data-type=buttons] a{padding:var(--padding, 8px 15px);border-radius:var(--theme-border-radius, 3px);background:var(--theme-button-background-initial-color)}.ct-dynamic-filter[data-type=buttons] a:hover,.ct-dynamic-filter[data-type=buttons] a.active{background:var(--theme-button-background-hover-color)}.ct-related-posts-items.flexy-items{margin-inline:calc(var(--grid-columns-gap, 30px)/-2)}.ct-related-posts-items.flexy-items .flexy-item{flex:0 0 var(--grid-columns-width, 25%);width:var(--grid-columns-width, 25%);padding-inline:calc(var(--grid-columns-gap, 30px)/2)}

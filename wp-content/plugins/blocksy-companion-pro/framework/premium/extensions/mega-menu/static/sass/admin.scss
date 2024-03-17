@@ -1,0 +1,28 @@
+.ct-mega-menu-modal {
+	--select-input-width: 100%;
+	--option-border-style: dashed;
+
+	.ct-mega-menu-options {
+		padding: 20px;
+	}
+
+	.ct-current-tab > .ct-control:not(.full-width) > section {
+		width: 280px;
+	}
+
+	.ct-control.full-width > section {
+		width: 100%;
+	}
+
+	.ct-box-shadow-modal,
+	.ct-background-modal,
+	.ct-color-picker-modal {
+		left: initial;
+		right: 0;
+	}
+
+	.ct-image-picker {
+		--grid-columns: repeat(4, 1fr);
+		margin: 0;
+	}
+}

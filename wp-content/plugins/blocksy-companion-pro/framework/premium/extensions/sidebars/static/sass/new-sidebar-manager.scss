@@ -1,0 +1,80 @@
+.edit-widgets-block-editor {
+
+	.ct-block-sidebars-manager {
+		width: 100%;
+		max-width: 700px;
+		margin: 30px auto 0 auto;
+		padding: 18px 15px;
+		background: #fff;
+		box-sizing: border-box;
+		border: 1px solid #e0e0e0;
+
+		h2 {
+			font-size: 13px;
+			font-weight: 500;
+			margin: 0 0 16px 0;
+		}
+
+		p {
+			opacity: 0.7;
+			margin: 0 0 15px 0;
+		}
+
+		form {
+			display: grid;
+			grid-template-columns: 1fr auto;
+			gap: 10px;
+			margin: 0;
+
+			input {
+				min-height: 35px;
+
+				&:not(:focus) {
+					border-color: #e0e0e0;
+				}
+			}
+		}
+	}
+
+	// custom sidebars controls
+	div[class*="ct-custom-sidebar"] {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		position: absolute;
+		top: 0;
+		z-index: 2;
+		cursor: pointer;
+
+		.dashicons {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			width: 48px;
+			height: 48px;
+		}
+
+		.ct-tooltip {
+			--tooltip-initial-position: -15px;
+			--tooltip-hover-position: -10px;
+		}
+	}
+
+	.ct-custom-sidebar-settings {
+		inset-inline-end: 40px;
+
+		.dashicons:before {
+			font-size: 15px;
+			margin-top: 2px;
+		}
+	}
+
+	.ct-custom-sidebar-remove {
+		inset-inline-end: 82px;
+
+		.dashicons:before {
+			font-size: 18px;
+			margin-top: 3px;
+		}
+	}
+}

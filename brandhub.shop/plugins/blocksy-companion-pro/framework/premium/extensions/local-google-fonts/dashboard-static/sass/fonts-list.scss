@@ -1,0 +1,94 @@
+.ct-local-google-fonts-list {
+	margin-top: 35px;
+	padding-top: 35px;
+	border-top: 1px dashed #eee;
+
+	h4 {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+
+		.ct-sync-date {
+			font-size: 13px;
+			font-weight: normal;
+			font-style: italic;
+			color: #5e6d80;
+		}
+	}
+
+	ul {
+		margin: 0;
+
+		li {
+			display: flex;
+			gap: 10px;
+			margin: 0;
+
+			&:not(:last-child) {
+				margin-bottom: 20px;
+				padding-bottom: 20px;
+				border-bottom: 1px dashed #eee;
+			}
+		}
+	}
+}
+
+.ct-google-font-info {
+	display: flex;
+	flex-direction: column;
+
+	span {
+		font-size: 14px;
+		font-weight: 500;
+	}
+
+	i {
+		margin-top: 3px;
+		font-size: 12px;
+		color: rgba(94, 109, 128, 0.7);
+	}
+}
+
+.ct-google-font-actions {
+	display: flex;
+	align-items: center;
+	gap: 15px;
+	margin-inline-start: auto;
+
+	button {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		position: relative;
+		width: 16px;
+		height: 16px;
+		padding: 0;
+		border: none;
+		cursor: pointer;
+		appearance: none;
+		background: transparent;
+		color: rgba(94, 109, 128, 0.7);
+		transition: color 0.2s cubic-bezier(0.455, 0.03, 0.515, 0.955);
+
+		&:hover {
+			color: var(--ui-accent-color);
+		}
+
+		&:focus {
+			outline: none;
+		}
+
+		&:before {
+			font-family: dashicons;
+			font-size: 13px;
+		}
+	}
+
+	.ct-remove-font:before {
+		content: '\f182';
+	}
+
+	.ct-edit-font:before {
+		content: '\f111';
+	}
+}

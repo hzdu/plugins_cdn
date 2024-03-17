@@ -1,0 +1,58 @@
+.ct-products-container {
+	position: relative;
+
+	&[data-animate*=':end'],
+	&[data-animate*=':start'] {
+		> *:not(.ct-filters-loading) {
+			transition: opacity 0.15s ease-in-out, transform 0.15s ease-in-out;
+		}
+	}
+
+	&[data-animate='leave:start'] {
+		[data-products],
+		.woocommerce-no-products-found {
+			opacity: 1;
+			transform: translateY(0px);
+		}
+	}
+
+	&[data-animate='leave:end'] {
+		[data-products],
+		.woocommerce-no-products-found {
+			opacity: 0;
+			transform: translateY(20px);
+		}
+	}
+
+	&[data-animate='leave'],
+	&[data-animate='appear:start'] {
+		[data-products],
+		.woocommerce-no-products-found {
+			opacity: 0;
+			transform: translateY(-20px);
+		}
+	}
+}
+
+.ct-filters-loading {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	opacity: 0;
+	transition: opacity 0.15s ease-in-out;
+
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+
+	&.active {
+		opacity: 1;
+	}
+
+	svg {
+		position: absolute;
+		top: 50px;
+		opacity: 0.5;
+	}
+}

@@ -1,0 +1,91 @@
+// content blocks modal
+.ct-content-blocks-modal {
+	--modal-width: 560px;
+	--modal-padding: 55px;
+
+	p {
+		padding-bottom: 1.5em;
+		border-bottom: 1px dashed #eee;
+	}
+
+	.ct-options-container {
+		padding-bottom: 40px;
+		--options-horizontal-spacing: 0;
+
+		.ct-control:first-child {
+			--options-vertical-spacing: 0;
+		}
+	}
+}
+
+// code editor
+.ct-hooks-notice-modal {
+	--modal-width: 500px;
+	--modal-min-height: 330px;
+	--modal-close-button: none;
+	text-align: center;
+
+	.ct-modal-actions {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		grid-column-gap: 20px;
+	}
+}
+
+.blocksy-code-editor-trigger {
+	display: inline-flex;
+	align-items: center;
+	margin: 0 8px;
+}
+
+body:not(.blocksy-inline-code-editor) {
+
+	.blocksy-inline-code-container,
+	.blocksy-code-editor-trigger .enabled {
+		display: none;
+	}
+}
+
+body.blocksy-inline-code-editor {
+	.blocksy-code-editor-trigger .disabled {
+		display: none;
+	}
+
+	.block-editor-writing-flow {
+		padding-bottom: 0;
+	}
+
+	// code editor block
+	.CodeMirror {
+		height: auto;
+
+		.CodeMirror-scroll {
+			min-height: 70vh;
+		}
+	}
+}
+
+
+// shortcode input
+input.blocksy-shortcode {
+	width: 98%;
+	margin-top: 6px;
+}
+
+
+// enable disable column
+.post-type-ct_content_block .column-actions {
+	width: 100px;
+	vertical-align: middle;
+	text-align: center;
+
+	.ct-option-switch {
+		margin-right: auto;
+	}
+}
+
+.ct-previewed-post {
+	.ct-select-input:before {
+		content: '"ref-width"';
+	}
+}

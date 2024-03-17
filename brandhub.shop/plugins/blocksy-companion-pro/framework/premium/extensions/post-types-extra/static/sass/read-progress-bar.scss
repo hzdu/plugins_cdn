@@ -1,0 +1,15 @@
+.ct-read-progress-bar {
+	background: linear-gradient(to right,var(--progress-bar-scroll, var(--theme-palette-color-1)) var(--scroll, 0%),var(--progress-bar-background, transparent) 0);
+	background-repeat: no-repeat;
+	position: fixed;
+	top: calc(var(--admin-bar, 0px) + var(--theme-frame-size, 0px));
+	width: calc(100% - var(--theme-frame-size, 0px) * 2);
+	height: var(--progress-bar-height, 3px);
+	z-index: 51;
+	opacity: 1;
+	transition: opacity 0.3s ease;
+
+	&.ct-auto-hide[style*='100'] {
+		opacity: 0;
+	}
+}

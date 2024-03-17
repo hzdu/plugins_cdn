@@ -1,0 +1,132 @@
+.ct-white-label-options {
+
+	.ct-tabs {
+		margin: 0;
+
+		> ul {
+			position: sticky;
+			top: 32px;
+			z-index: 2;
+			margin: 0;
+			box-shadow: none;
+			background: #fff;
+			border-bottom: 2px solid var(--optionBorderColor);
+
+			--tabs-pills-margin: 0;
+			--tabs-pills-active-color: var(--ui-accent-color);
+			--tabs-pills-active-background-color: transparent;
+			--tabs-pills-inactive-background-color: transparent;
+
+			> li {
+				flex: initial;
+				border: none;
+				height: 50px;
+				padding: 0 35px;
+				font-weight: 600;
+
+				&:after {
+					display: none;
+				}
+
+				&.active {
+					&:before {
+						top: initial;
+						// height: 3px;
+						bottom: -2px;
+					}
+				}
+			}
+		}
+	}
+
+	.ct-white-label-group {
+
+		&:not(:last-child) {
+			padding-bottom: 30px;
+			border-bottom: 1px dashed rgba(226, 230, 235, 0.9);
+		}
+
+		h4 {
+			position: sticky;
+			top: calc(50px + 32px);
+			z-index: 1;
+			font-size: 15px;
+			font-weight: 600;
+			margin-bottom: 15px;
+			padding-block: 30px 10px;
+			background: #fff;
+		}
+
+		> div {
+			display: flex;
+			flex-direction: column;
+			gap: 10px;
+
+			&:not(:last-child) {
+				margin-bottom: 25px;
+			}
+		}
+
+		label {
+			font-size: 13px;
+			font-weight: 500;
+			letter-spacing: 0.1px;
+		}
+
+		input,
+		textarea {
+			padding: 5px 8px;
+			border-radius: 3px;
+
+			&:not(:focus) {
+				border-color: var(--optionBorderColor, #ddd);
+			}
+		}
+
+		input {
+			height: 35px;
+		}
+
+		.ct-upload-thumb {
+			display: flex;
+			gap: 8px;
+
+			input {
+				flex: 1;
+			}
+		}
+
+		.ct-option-description {
+			margin-top: 0;
+			opacity: 0.8;
+			color: inherit;
+		}
+	}
+
+	.ct-white-label-actions-group {
+		padding-top: 30px;
+
+		.ct-white-label-switch {
+			display: flex;
+			font-size: 14px;
+
+			&:not(:last-child) {
+				margin-bottom: 30px;
+			}
+		}
+
+		.extension-notice {
+			margin-top: -15px;
+			padding: 12px 15px;
+			font-size: 14px;
+			line-height: 1.6;
+			font-style: italic;
+			border-radius: 5px;
+			border: 1px dashed #dfe3e6;
+		}
+	}
+
+	.ct-button-primary {
+		margin-top: 35px;
+	}
+}

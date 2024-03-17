@@ -1,0 +1,61 @@
+.ct-adobe-fonts-options {
+	padding-top: 40px;
+	border-top: 1px dashed #eee;
+
+	form {
+		display: grid;
+		grid-template-columns: 1fr 150px;
+		gap: 10px;
+		margin-top: 25px;
+	}
+
+	.ct-option-input {
+		position: relative;
+		--input-height: 35px;
+
+		svg {
+			position: absolute;
+			top: 10px;
+			inset-inline-end: 10px;
+		}
+	}
+
+	.ct-project-fonts {
+		margin-top: 35px;
+		padding-top: 35px;
+		border-top: 1px dashed #eee;
+
+		ul {
+			margin: 0;
+
+			li {
+				display: flex;
+				flex-direction: column;
+				margin: 0;
+
+				&:not(:last-child) {
+					margin-bottom: 20px;
+					padding-bottom: 20px;
+					border-bottom: 1px dashed #eee;
+				}
+
+				span {
+					font-size: 14px;
+					font-weight: 500;
+				}
+
+				i {
+					margin-top: 3px;
+					font-size: 12px;
+					color: rgba(85, 93, 102, 0.8);
+				}
+			}
+		}
+	}
+
+	.ct-option-description {
+		opacity: 1;
+		display: block;
+		color: #d63638;
+	}
+}

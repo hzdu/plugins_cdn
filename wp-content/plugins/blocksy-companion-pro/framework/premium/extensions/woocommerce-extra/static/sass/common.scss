@@ -1,0 +1,94 @@
+.ct-woo-card-extra {
+
+	&[data-type="type-1"] {
+		display: flex;
+		flex-direction: column;
+		gap: 15px;
+		top: 15px;
+		inset-inline-end: 15px;
+
+		.ct-button {
+			padding: 0;
+			width: 32px;
+			min-height: 32px;
+			border-radius: 100%;
+
+			&:hover,
+			&[data-button-state="active"],
+			&[data-button-state="loading"] {
+				color: var(--theme-button-text-hover-color);
+				background: var(--theme-button-background-hover-color);
+			}
+		}
+	}
+}
+
+
+
+
+// single wishlist & compare layer
+.ct-product-additional-actions {
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+
+	--theme-font-size: 14px;
+	--theme-font-weight: 500;
+	--theme-link-initial-color: var(--theme-text-color);
+
+	--theme-icon-size: 14px;
+	--theme-icon-color: currentColor;
+
+	a {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 8px;
+	}
+
+	&[data-type="link"] {
+		gap: 25px;
+
+		a {
+			
+			&[data-button-state="active"],
+			&[data-button-state="loading"] {
+				--theme-link-initial-color: var(--theme-link-hover-color);
+			}
+		}
+	}
+
+	&[data-type="button"] {
+		gap: 10px;
+
+		a {
+			height: 40px;
+			min-width: 40px;
+			padding: 5px 15px;
+			border: 1px solid var(--theme-border-color);
+			border-radius: var(--theme-button-border-radius, 3px);
+
+			&[data-button-state="active"],
+			&[data-button-state="loading"] {
+				color: var(--theme-button-text-initial-color);
+				border-color: var(--theme-button-background-initial-color);
+				background-color: var(--theme-button-background-initial-color);
+			}
+		}
+	}
+
+	// tooltip
+	.ct-tooltip {
+		transform: translate3d(0px, -45px, 0px);
+	}
+
+	a:hover .ct-tooltip {
+		opacity: 1;
+		visibility: visible;
+		transform: translate3d(0px, -50px, 0px);
+	}
+
+	// .ct-heart-fill {
+	// 	display: none;
+	// }
+}

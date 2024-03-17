@@ -1,0 +1,28 @@
+.ct-dynamic-filter {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: var(--filter-items-alignment, center);
+	gap: var(--items-vertical-spacing, 10px) var(--items-horizontal-spacing, 30px);
+	margin-bottom: var(--container-spacing, 40px);
+
+	a {
+		&.active {
+			color: var(--theme-link-hover-color);
+		}
+	}
+
+	// filter button type
+	&[data-type="buttons"] a {
+		padding: var(--padding, 8px 15px);
+		border-radius: var(--theme-border-radius, 3px);
+		background: var(--theme-button-background-initial-color);
+
+		&:hover,
+		&.active {
+			background: var(--theme-button-background-hover-color);
+		}
+	}
+
+	// resets
+	--theme-link-initial-color: var(--theme-text-color);
+}

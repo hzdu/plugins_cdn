@@ -1,0 +1,66 @@
+.ct-create-instance {
+	position: relative;
+	padding: 0 14px;
+	margin-top: 20px;
+	padding-top: 20px;
+
+	&:before {
+		position: absolute;
+		content: '';
+		top: 0;
+		inset-inline: 14px;
+		border-top: 1px solid var(--optionBorderColor);
+	}
+
+	button {
+		width: 100%;
+	}
+}
+
+// remove instance
+.ct-remove-instance {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 30px;
+	height: 37px;
+	margin-inline-end: 10px;
+	opacity: 0.85;
+	transition: color 0.2s cubic-bezier(0.455, 0.03, 0.515, 0.955), opacity 0.2s cubic-bezier(0.455, 0.03, 0.515, 0.955);
+
+	svg {
+		fill: currentColor;
+	}
+
+	&:hover {
+		opacity: 1;
+		color: #dd4b39;
+	}
+}
+
+.ct-create-instance-content {
+	padding: 25px 0;
+	border-top: 1px dashed var(--optionBorderColor);
+
+	.ct-option-input {
+		label {
+			display: block;
+			margin-bottom: 10px;
+		}
+	}
+
+	.ct-control-copy-instance {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		grid-column-gap: 10px;
+		align-items: center;
+		padding-top: 25px;
+		margin-top: 25px;
+		border-top: 1px dashed var(--optionBorderColor);
+
+		&.ct-disabled .ct-select-input {
+			pointer-events: none;
+			opacity: 0.5
+		}
+	}
+}

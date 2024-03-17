@@ -1,0 +1,45 @@
+.wishlist-product-actions {
+	width: 300px;
+	text-align: end;
+
+	.product_type_variable {
+		width: 100%;
+	}
+}
+
+// common styles
+.ct-woocommerce-wishlist-table {
+	--table-padding: 1.3em 0.7em;
+
+	.ct-cart-actions > * {
+		margin-bottom: 0;
+	}
+
+	.single_add_to_cart_button ~ .added_to_cart {
+		display: none;
+	}
+
+	.button,
+	.quantity {
+		--theme-button-min-height: 40px;
+	}
+
+	.stock {
+
+		&.in-stock {
+			display: none;
+		}
+
+		&:last-child {
+			margin-bottom: 0;
+		}
+	}
+
+	@include media-breakpoint-down (md) {
+		.quantity,
+		.wishlist-product-remove,
+		.wishlist-product-actions {
+			display: none;		
+		}
+	}
+}

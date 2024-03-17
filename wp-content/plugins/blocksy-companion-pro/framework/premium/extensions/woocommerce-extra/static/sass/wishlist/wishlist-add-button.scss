@@ -1,0 +1,14 @@
+[class*="ct-wishlist-button"] {
+
+	&:not([data-button-state="active"]) {
+
+		.ct-heart-fill {
+			opacity: 0;
+		}
+	}
+
+	&[data-button-state="disabled"] {
+		opacity: 0.5;
+		pointer-events: none;
+	}
+}

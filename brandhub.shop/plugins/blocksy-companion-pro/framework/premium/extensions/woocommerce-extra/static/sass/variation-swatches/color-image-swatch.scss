@@ -1,0 +1,11 @@
+[data-swatches-type='color'],
+[data-swatches-type='image'] {
+
+	.ct-swatch {
+		padding: 2px;
+		width: var(--swatch-size, 30px);
+		background-clip: content-box;
+		border: 2px solid var(--swatch-border-color, var(--theme-border-color));
+		transition: border-color 0.12s cubic-bezier(0.455, 0.03, 0.515, 0.955);
+	}
+}

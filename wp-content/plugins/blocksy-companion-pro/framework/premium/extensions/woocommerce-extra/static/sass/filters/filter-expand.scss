@@ -1,0 +1,14 @@
+.wp-block-heading {
+
+	&.ct-expandable-trigger {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+
+		--theme-icon-color: currentColor;
+	}
+
+	&[aria-expanded="false"] {
+		margin-bottom: 0 !important;
+	}
+}

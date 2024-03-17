@@ -1,0 +1,42 @@
+.ct-quick-view-card {
+	display: flex;
+	position: relative;
+	overflow: hidden;
+	opacity: 1;
+	box-shadow: var(--theme-box-shadow);
+	border-radius: var(--theme-border-radius);
+	transition: opacity 0.2s ease-in-out;
+
+	@include media-breakpoint-down(sm) {
+		max-height: 80vh;
+	}
+
+	// close button
+	.ct-toggle-close {
+		--toggle-button-position: absolute;
+		--toggle-button-z-index: 1;
+		--toggle-button-top: 15px;
+		--toggle-button-inset-end: 15px;
+
+		--theme-icon-size: 10px;
+		--theme-icon-color: var(--theme-text-color);
+		--toggle-button-size: 30px;
+
+		&:not(:hover) svg {
+			opacity: 0.6;
+		}
+	}
+}
+
+.ct-quick-view-content {
+	width: 100%;
+	
+	@include media-breakpoint-down(sm) {
+		overflow-y: auto;
+	}
+
+	@include media-breakpoint-up(md) {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+	}
+}

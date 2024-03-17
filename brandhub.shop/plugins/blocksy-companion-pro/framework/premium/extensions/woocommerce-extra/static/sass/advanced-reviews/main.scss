@@ -1,0 +1,155 @@
+@import '../../../../../../../static/sass/frontend/common-frontend/functions';
+@import '../../../../../../../static/sass/frontend/common-frontend/mixins';
+
+.woocommerce-Reviews {
+
+	// reviews summary
+	.ct-reviews-summary {
+		display: grid;
+		align-items: center;
+		gap: 20px;
+		padding-block: 35px;
+
+		@include media-breakpoint-up (md) {
+			grid-template-columns: 2fr 2fr;
+		}
+	}
+
+	.ct-reviews-average-rating-info {
+		display: flex;
+		align-items: center;
+		gap: 10px;
+		margin-bottom: 10px;
+
+		b {
+			font-size: 50px;
+			line-height: 1;
+		}
+
+		.woocommerce-product-rating {
+			align-items: initial;
+			flex-direction: column;
+			gap: 2px;
+		}
+
+		.woocommerce-review-link {
+			margin: 0;
+		}
+	}
+
+	.ct-reviews-rating {
+		display: grid;
+		grid-template-columns: auto 1fr auto;
+		align-items: center;
+		gap: 5px 10px;
+		font-size: 13px;
+	}
+
+	.ct-review-rating-percent-bar {
+		display: flex;
+		height: 7px;
+		overflow: clip;
+		border-radius: 1px;
+		background: var(--theme-border-color);
+
+		span {
+			border-radius: inherit;
+			background: var(--theme-palette-color-1);
+		}
+	}
+
+	// review title
+	.ct-review-title {
+		font-size: 16px;
+		margin-top: 0;
+	}
+
+	// review images
+	.ct-review-images {
+		display: flex;
+		align-items: center;
+		flex-wrap: wrap;
+		gap: 10px;
+		margin-top: var(--theme-content-spacing);
+
+		.ct-media-container {
+			width: 60px;
+			height: 60px;
+			border-radius: 2px;
+
+			&[data-src] {
+				cursor: pointer;
+			}
+		}
+	}
+
+	// review voting
+	.ct-review-votes {
+		display: flex;
+		align-items: center;
+		flex-wrap: wrap;
+		gap: 15px;
+		font-size: 13px;
+		margin-top: 25px;
+		padding-top: 25px;
+		border-top: 1px dashed var(--theme-border-color);
+		
+		--theme-icon-color: currentColor;
+
+		:not([data-button-state="active"]) {
+			--theme-link-initial-color: var(--theme-text-color);			
+		}
+
+		[data-count="0"] {
+			visibility: hidden;
+		}
+	}
+
+
+
+	// form options
+	.comment-form-field-input-title {
+		grid-column: 1/-1;
+	}
+
+	// upload section
+	.ct-review-upload-section {
+
+		> label {
+			display: inline-block;
+		}
+
+		.ct-upload-button {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			width: 60px;
+			height: 60px;
+			margin: 0;
+			border-radius: 2px;
+			border: 2px dashed var(--theme-border-color);
+			transition: all 0.12s cubic-bezier(0.455, 0.03, 0.515, 0.955);
+
+			&:hover {
+				color: var(--theme-form-field-border-focus-color);
+				border-color: var(--theme-form-field-border-focus-color);
+			}
+		}
+
+		input[type="file"] {
+			display: none;
+		}
+
+		.ct-remove-image {
+			position: absolute;
+			top: 3px;
+			inset-inline-end: 3px;
+			display: flex;
+			padding: 3px;
+			color: #fff;
+			cursor: pointer;
+			background: #d83428;
+			border-radius: 2px;
+		}
+	}
+}

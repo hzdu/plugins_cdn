@@ -1,0 +1,19 @@
+[data-swatches-type='button'] {
+
+	.ct-swatch {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		min-width: var(--swatch-size);
+		padding: 0 calc(var(--swatch-size) / 3.5);
+		font-size: calc(var(--swatch-size) / 2.5);
+		font-weight: 600;
+		line-height: 1;
+		color: var(--swatch-button-text-color);
+		background: var(--swatch-button-background-color);
+		border: 2px solid var(--swatch-button-border-color, var(--theme-border-color));
+		transition: color 0.12s cubic-bezier(0.455, 0.03, 0.515, 0.955), 
+					background 0.12s cubic-bezier(0.455, 0.03, 0.515, 0.955),
+					border-color 0.12s cubic-bezier(0.455, 0.03, 0.515, 0.955);
+	}
+}

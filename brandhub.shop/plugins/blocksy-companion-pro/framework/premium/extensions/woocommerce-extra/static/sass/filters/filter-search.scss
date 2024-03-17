@@ -1,0 +1,34 @@
+.ct-filter-search {
+	position: relative;
+
+	input[type="search"] {
+		padding-inline-end: var(--theme-form-field-height, 40px);
+
+		&::-webkit-search-cancel-button {
+			-webkit-appearance: none;
+		}
+	}
+
+	.ct-filter-search-icon {
+		position: absolute;
+		top: 0;
+		inset-inline-end: 0;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: var(--theme-form-field-height, 40px);
+		height: var(--theme-form-field-height, 40px);
+		cursor: pointer;
+	}
+}
+
+.ct-filter-widget-wrapper {
+
+	&.ct-active .ct-filter-search-zoom-icon {
+		display: none;
+	}
+
+	&:not(.ct-active) .ct-filter-search-reset-icon {
+		display: none;
+	}
+}

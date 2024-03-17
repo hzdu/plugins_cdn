@@ -1,0 +1,44 @@
+// hover effect
+[data-dropdown*='simple'] > ul > [class*='ct-mega-menu'] {
+	.entry-content,
+	.sub-menu > li > .ct-menu-link {
+		padding-inline: 0;
+	}
+}
+
+[data-dropdown*='solid'] > ul > [class*='ct-mega-menu'] {
+	.sub-menu {
+		--menu-item-padding: var(--dropdown-items-spacing, 13px);
+	}
+}
+
+[data-dropdown*='padded'] > ul > [class*='ct-mega-menu'] {
+	.sub-menu > li > .ct-menu-link {
+		margin-inline: 0;
+	}
+}
+
+
+// when megamenu is transformed to normal dropdown
+.more-items-container [class*='ct-mega-menu'] {
+
+	.entry-content {
+		padding: var(--menu-item-padding, 0px);
+	}
+}
+
+
+// entry content color
+[class*='ct-mega-menu'] {
+
+	.entry-content {
+		color: var(--theme-text-color);
+	}
+}
+
+
+// disabled links
+.menu-item .ct-disabled-link {
+	pointer-events: none;
+	--theme-link-hover-color: var(--theme-link-initial-color) !important;
+}

@@ -1,0 +1,33 @@
+[data-filter-criteria='brands'] {
+
+	&[data-display-type='inline'] {
+		row-gap: 15px;
+	}
+
+	.ct-media-container img {
+		object-fit: contain;
+	}
+
+	// image frame
+	&[data-frame='yes'] {
+
+		.ct-media-container {
+			padding: 8px;
+			border-radius: 2px;
+			box-sizing: content-box;
+			transition: border 0.2s ease;
+			border: 2px solid var(--theme-border-color);
+		}
+
+		.ct-filter-item {
+
+			&:hover,
+			&.active {
+
+				.ct-media-container {
+					border-color: var(--theme-link-hover-color);
+				}
+			}
+		}
+	}
+}

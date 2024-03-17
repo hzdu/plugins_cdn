@@ -1,0 +1,51 @@
+[class*='ct-shipping-progress'] {
+	font-size: 15px;
+
+	p {
+		margin-bottom: 0;
+	}
+
+	.ct-progress-bar {
+
+		&:not(:empty) {
+			position: relative;
+			height: 5px;
+			overflow: clip;
+			margin-top: 15px;
+			border-radius: 1px;
+			background: var(--shipping-progress-bar-initial-color, var(--theme-border-color));
+		}
+
+		span {
+			position: absolute;
+			inset-block: 0;
+			inset-inline-start: 0;
+			border-radius: inherit;
+			background-color: var(--shipping-progress-bar-active-color, var(--theme-palette-color-1));
+		}
+	}
+}
+
+// special cases
+.ct-shipping-progress-single {
+	padding: 30px;
+	border: 1px dashed var(--theme-border-color);
+}
+
+.ct-shipping-progress-mini-cart {
+	font-size: 14px;
+	color: var(--theme-text-color);
+	margin-bottom: var(--mini-cart-items-spacing, 20px);
+}
+
+.ct-shipping-progress-cart-page {
+	margin-bottom: 20px;
+	padding-bottom: 20px;
+	border-bottom: 1px dashed var(--theme-border-color);
+}
+
+.ct-shipping-progress-checkout-page {
+	margin-bottom: 40px;
+	padding-bottom: 40px;
+	border-bottom: 1px dashed var(--theme-border-color);
+}

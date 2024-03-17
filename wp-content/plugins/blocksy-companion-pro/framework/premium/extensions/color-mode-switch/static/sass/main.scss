@@ -1,0 +1,160 @@
+html[data-color-mode*='updating'] {
+	
+	*:not(.ct-color-switch *) {
+		transition: all 0.15s ease !important;
+	}
+}
+
+
+[data-color-mode*="dark"] [data-color-switch="normal"],
+[data-color-mode*="light"] [data-color-switch="reversed"] {
+	--is-toggled: var(--true);
+	--is-light-mode-visible: none;
+	--is-toggled-path: path("M-9 3h25a1 1 0 0017 13v30H0Z");
+}
+
+[data-color-mode*="dark"] [data-color-switch="reversed"],
+[data-color-mode*="light"] [data-color-switch="normal"] {
+	--is-toggled: var(--false);
+	--is-dark-mode-visible: none;
+}
+
+@media (prefers-color-scheme: dark) {
+	[data-color-mode="os-default"] {
+
+		[data-color-switch="normal"] {
+			--is-toggled: var(--true);
+			--is-light-mode-visible: none;
+			--is-toggled-path: path("M-9 3h25a1 1 0 0017 13v30H0Z");
+		}
+
+		[data-color-switch="reversed"] {
+			--is-toggled: var(--false);
+			--is-dark-mode-visible: none;
+		}
+	}
+}
+
+@media (prefers-color-scheme: light) {
+	[data-color-mode="os-default"] {
+
+		[data-color-switch="normal"] {
+			--is-toggled: var(--false);
+			--is-dark-mode-visible: none;
+		}
+
+		[data-color-switch="reversed"] {
+			--is-toggled: var(--true);
+			--is-light-mode-visible: none;
+			--is-toggled-path: path("M-9 3h25a1 1 0 0017 13v30H0Z");
+		}
+	}
+}
+
+
+.ct-color-switch {
+	--animation-duration: 300ms;
+
+	.ct-dark-mode-label {
+		display: var(--is-dark-mode-visible, block);
+	}
+
+	.ct-light-mode-label {
+		display: var(--is-light-mode-visible, block);
+	}
+
+
+	// toggled state ----------
+
+		// expand effect
+		.ct-switch-type-expand {
+			:first-child path {
+				d: var(--is-toggled-path, path("M0-11h25a1 1 0 0017 13v30H0Z"));
+				transition-delay: var(--is-toggled, calc(var(--animation-duration) * .4));
+				transition-timing-function: var(--is-toggled, cubic-bezier(0,0,0,1.25));
+			}
+
+			g {
+				path {
+					transform: var(--is-toggled, scale(.75));
+					transition-delay: var(--is-toggled, 0s);
+				}
+
+				circle {
+					transform: var(--is-toggled, scale(1.4));
+					transition-delay: var(--is-toggled, 0s);
+				}
+			}
+		}
+
+		// within effect
+		.ct-switch-type-within {
+
+			.ct-switch-type-within__circle {
+				transform: var(--is-toggled, scale(1.5));
+			}
+
+			.ct-switch-type-within__inner {
+				transform: var(--is-toggled, translate3d(3px,-3px,0) scale(1.2));
+			}
+
+			g path {
+				transform: var(--is-toggled, scale(.65));
+			}
+		}
+
+		// dark inner effect
+		.ct-switch-type-dark-inner {
+			:first-child {
+				transform: var(--is-toggled, rotate(180deg));
+			}
+
+			:last-child {
+				transform: var(--is-toggled, rotate(-180deg));
+			}
+		}
+
+	// end toggled state ------
+
+
+	// normal state -----------
+
+		// expand effect
+		.ct-switch-type-expand {
+			:first-child path {
+				transition-property: transform,d;
+				transition-duration: calc(var(--animation-duration) * .6);
+				transition-timing-function: cubic-bezier(0,0,.5,1);
+			}
+
+			g {
+				path,
+				circle {
+					transform-origin: center;
+					transition: transform calc(var(--animation-duration) * .65) cubic-bezier(0,0,0,1.25) calc(var(--animation-duration) * .35);
+				}
+			}
+		}
+
+		// within effect
+		.ct-switch-type-within * {
+			transform-origin: center;
+			transition: transform calc(var(--animation-duration)) cubic-bezier(0,0,0,1.25);
+		}
+
+		// dark inner effect
+		.ct-switch-type-dark-inner path {
+			transform-origin: center;
+			transition: transform var(--animation-duration) ease;
+		}
+
+	// end normal state -------
+
+
+	// support for chromium browsers
+	@supports not (d:path("")) {
+		.ct-switch-type-expand :first-child path {
+			transform: var(--is-toggled, translate3d(-9px,14px,0));
+		}
+	}
+}

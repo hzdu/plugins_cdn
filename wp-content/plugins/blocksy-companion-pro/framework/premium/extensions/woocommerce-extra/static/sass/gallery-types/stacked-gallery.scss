@@ -1,0 +1,7 @@
+.ct-stacked-gallery-container {
+	display: grid;
+	grid-template-columns: repeat(var(--columns, 2), 1fr);
+	grid-auto-rows: min-content;
+	grid-column-gap: var(--thumbs-spacing, 15px);
+	grid-row-gap: var(--thumbs-spacing, 15px);
+}

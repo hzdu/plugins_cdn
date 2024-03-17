@@ -1,0 +1,46 @@
+@import '../../../../../../../static/sass/frontend/common-frontend/functions';
+@import '../../../../../../../static/sass/frontend/common-frontend/mixins';
+
+#ct-size-guide-modal {
+
+	// common
+	.ct-container,
+	.ct-panel-inner {
+		box-shadow: var(--theme-box-shadow);
+	}
+
+	.ct-size-guide-content {
+		width: 100%;
+	}
+
+	// modal
+	&[data-behaviour="modal"] {
+		--vertical-alignment: center;
+
+		.ct-panel-content {
+			padding: var(--panel-padding, 35px);
+		}
+
+		.ct-container {
+			display: flex;
+			flex-direction: column;
+			overflow: hidden;
+			border-radius: var(--theme-border-radius);
+		}
+
+		.ct-panel-heading {
+			display: flex;
+			align-items: center;
+			padding: 15px 25px;
+			font-size: 15px;
+			font-weight: 600;
+			color: var(--theme-text-color);
+			border-bottom: 1px solid var(--theme-border-color);
+		}
+
+		.ct-size-guide-content {
+			padding: 25px;
+			overflow: auto;
+		}
+	}
+}

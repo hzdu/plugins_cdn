@@ -1,0 +1,159 @@
+@import '../../../../../../../static/sass/frontend/common-frontend/functions';
+@import '../../../../../../../static/sass/frontend/common-frontend/mixins';
+
+.ct-compare-table {
+	overflow: auto;
+	font-size: 15px;
+}
+
+.ct-compare-row {
+	display: inline-grid;
+	grid-template-columns: 150px repeat(var(--compare-products), minmax(250px, 300px));
+	min-width: 100%;
+
+	&:not(:first-child) {
+		border-top: 1px solid var(--theme-border-color);
+	}
+}
+
+.ct-compare-column {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	padding: 15px;
+	border-inline-end: 1px solid var(--theme-border-color);
+}
+
+
+// items
+.ct-compare-item-label {
+	@include media-breakpoint-up (sm) {
+		position: sticky;
+		inset-inline-start: 0;
+		z-index: 2;
+	}
+
+	font-size: 13px;
+	font-weight: 600;
+	text-transform: uppercase;
+	background-color: var(--theme-palette-color-7);
+}
+
+.ct-compare-remove {
+	display: flex;
+	align-items: center;
+	gap: 0.5em;
+	font-size: 14px;
+
+	--theme-icon-size: 12px;
+	--theme-icon-color: currentColor;
+	--theme-link-initial-color: var(--theme-text-color);
+}
+
+.ct-compare-column {
+
+	figure {
+		display: flex;
+		position: relative;
+
+		.ct-woo-card-extra {
+			position: absolute;
+			z-index: 1;
+		}
+	}
+
+	.woocommerce-loop-product__title {
+		font-size: 16px;
+		margin: 0;
+
+		--theme-link-initial-color: var(--theme-text-color);
+	}
+
+	.price {
+		font-size: 14px;
+	}
+
+	.button {
+
+		&.added {
+			display: none;
+		}
+	}
+
+	.star-rating,
+	.ct-product-brands {
+		margin-block: auto;
+	}
+
+	p {
+		&:last-child {
+			margin-bottom: 0;
+		}
+	}
+}
+
+
+// compare modal
+#ct-compare-modal {
+	--vertical-alignment: center;
+
+	.ct-panel-content {
+		padding: var(--panel-padding, 35px);
+	}
+
+	.ct-container {
+		display: flex;
+		flex-direction: column;
+		position: relative;
+		overflow: hidden;
+		box-shadow: var(--theme-box-shadow);
+		border-radius: var(--theme-border-radius);
+	}
+
+	.ct-panel-heading {
+		display: flex;
+		align-items: center;
+		padding-block: 15px;
+		padding-inline: 25px 15px;
+		font-size: 15px;
+		font-weight: 600;
+		color: var(--theme-text-color);
+		border-bottom: 1px solid var(--theme-border-color);
+
+		.ct-toggle-close {
+			--theme-icon-size: 10px;
+			--theme-icon-color: var(--theme-text-color);
+			--toggle-button-size: 25px;
+		}
+	}
+
+	.ct-compare-table {
+		background-color: inherit;
+	}
+
+	.ct-compare-column {
+		padding: 15px 25px;
+	}
+
+	.woocommerce-Message {
+		margin: 30px 25px;
+	}
+}
+
+// sticky rows
+.ct-compare-row-is-sticky {
+	position: sticky;
+	top: -1px;
+	z-index: 3;
+	background-color: inherit;
+
+	&:after {
+		content: '';
+		position: absolute;
+		z-index: 2;
+		inset-inline: 0;
+		bottom: -1px;
+		height: 1px;
+		background: var(--theme-border-color);
+	}
+}

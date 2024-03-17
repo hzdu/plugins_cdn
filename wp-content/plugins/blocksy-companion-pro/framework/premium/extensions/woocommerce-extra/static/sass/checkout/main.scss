@@ -1,0 +1,28 @@
+table.shop_table {
+
+	.ct-checkout-cart-item {
+		display: grid;
+		grid-template-columns: 100px 1fr;
+		align-items: center;
+		gap: 20px;
+
+		@include media-breakpoint-down (xs) {
+			grid-template-columns: 1fr 2fr;
+		}
+	}
+
+	.ct-checkout-cart-item-content {
+		display: flex;
+		flex-direction: column;
+		gap: 0.5em;
+
+		&:only-child {
+			grid-column: 1/-1;
+		}
+
+		dl.variation {
+			margin: 0;
+			font-size: 14px;
+		}
+	}
+}

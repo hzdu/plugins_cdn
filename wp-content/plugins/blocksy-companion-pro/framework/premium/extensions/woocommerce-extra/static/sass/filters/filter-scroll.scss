@@ -1,0 +1,23 @@
+.ct-filter-widget {
+
+	&[style*="height"] {
+		overflow-y: auto;
+		scrollbar-width: thin;
+		padding-inline-end: 7px;
+		-webkit-overflow-scrolling: touch;
+
+		&::-webkit-scrollbar-track {
+			border-radius: 10px;
+			background-color: rgba(0,0,0,0.03);
+		}
+
+		&::-webkit-scrollbar {
+			width: 4px;
+		}
+
+		&::-webkit-scrollbar-thumb {
+			border-radius: 10px;
+			background-color: rgba(0,0,0,0.1);
+		}
+	}
+}
