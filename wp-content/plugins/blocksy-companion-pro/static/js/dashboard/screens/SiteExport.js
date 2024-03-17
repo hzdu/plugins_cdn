@@ -29,8 +29,6 @@ const SiteExport = () => {
 		const body = new FormData()
 
 		body.append('action', 'blocksy_demo_export')
-		body.append('nonce', ctDashboardLocalizations.dashboard_actions_nonce)
-
 		body.append('name', name)
 		body.append('is_pro', isPro)
 		body.append('url', url)

@@ -39,11 +39,6 @@ const useActivationAction = (extension, doneCb = () => {}) => {
 					: 'blocksy_extension_activate'
 			)
 
-			body.append(
-				'nonce',
-				ctDashboardLocalizations.dashboard_actions_nonce
-			)
-
 			setIsLoading(true)
 
 			try {

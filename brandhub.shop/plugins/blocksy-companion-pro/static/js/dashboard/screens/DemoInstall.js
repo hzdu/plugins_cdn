@@ -52,7 +52,6 @@ const DemoInstall = ({ children, path, location }) => {
 
 		const body = new FormData()
 		body.append('action', 'blocksy_demo_list')
-		body.append('nonce', ctDashboardLocalizations.dashboard_actions_nonce)
 
 		try {
 			const response = await fetch(ctDashboardLocalizations.ajax_url, {
@@ -71,13 +70,6 @@ const DemoInstall = ({ children, path, location }) => {
 					plugins_cache = data.active_plugins
 					demos_cache = data.demos
 					demos_error_cache = data.demo_error
-				}
-
-				if (!success) {
-					console.error(
-						'Blocksy:Dashboard:DemoInstall:demos_list',
-						data
-					)
 				}
 			}
 		} catch (e) {}

@@ -91,8 +91,17 @@ registerDynamicChunk('blocksy_account', {
 
 			ctEvents.trigger('ct:overlay:handle-click', {
 				e: event,
+				options: {
+					openStrategy: 'fast',
+					container: panel,
+				},
+			})
+
+			ctEvents.trigger('ct:overlay:handle-click', {
+				e: event,
 				href: '#account-modal',
 				options: {
+					openStrategy: 'skip',
 					isModal: true,
 					computeScrollContainer: () => {
 						if (!panel.closest('body')) {

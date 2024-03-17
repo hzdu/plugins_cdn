@@ -1,6 +1,6 @@
 export const flushPermalinks = async () => {
 	const response = await fetch(
-		`${wp.ajax.settings.url}?action=blocksy_flush_permalinks&nonce=${ctDashboardLocalizations.dashboard_actions_nonce}`,
+		`${wp.ajax.settings.url}?action=blocksy_flush_permalinks`,
 
 		{
 			method: 'POST',

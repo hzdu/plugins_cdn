@@ -51,8 +51,6 @@ const EditCredentials = ({ extension, onCredentialsValidated }) => {
 			'blocksy_ext_newsletter_subscribe_maybe_save_credentials'
 		)
 
-		body.append('nonce', ctDashboardLocalizations.dashboard_actions_nonce)
-
 		setIsLoading(true)
 
 		try {

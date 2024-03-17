@@ -1,8 +1,6 @@
 import ctEvents from 'ct-events'
 import cookie from 'js-cookie'
 
-import { loadStyle } from 'blocksy-frontend'
-
 const onKeydown = (event) => {
 	if (event.keyCode !== 27) return
 	hideCookieConsent(document.querySelector('.cookie-notification'))
@@ -44,10 +42,15 @@ export const onDocumentLoaded = (cb) => {
 	}
 }
 
-let cookiesData = {}
-
-const mountCookieNotification = () => {
+const initCookies = () => {
 	const notification = document.querySelector('.cookie-notification')
+
+	if (!notification) return
+
+	if (cookie.get('blocksy_cookies_consent_accepted')) {
+		notification.remove()
+		return
+	}
 
 	showCookieConsent(notification)
 	;[...notification.querySelectorAll('button')].map((el) => {
@@ -74,32 +77,43 @@ const mountCookieNotification = () => {
 					sameSite: 'lax',
 				})
 
-				if (cookiesData && cookiesData.scripts) {
-					cookiesData.scripts.map((scriptTag) => {
-						const parser = new DOMParser()
-						const html = parser.parseFromString(
-							scriptTag,
-							'text/html'
-						)
+				const body = new FormData()
+				body.append('action', 'blc_load_blocked_scripts')
 
-						const scriptsToLoad = html.querySelectorAll('script')
+				fetch(ct_localizations.ajax_url, {
+					method: 'POST',
+					body,
+				})
+					.then((r) => r.json())
+					.then(({ data: scripts }) => {
+						scripts.map((scriptTag) => {
+							const parser = new DOMParser()
+							const html = parser.parseFromString(
+								scriptTag,
+								'text/html'
+							)
 
-						if (!scriptsToLoad) return
-						;[...scriptsToLoad].map((script) => {
-							const newTag = document.createElement('script')
+							const scriptsToLoad =
+								html.querySelectorAll('script')
 
-							if (script.innerHTML) {
-								newTag.innerHTML = script.innerHTML
-							}
+							if (!scriptsToLoad) return
+							;[...scriptsToLoad].map((script) => {
+								const newTag = document.createElement('script')
 
-							;[...script.attributes].map(({ name, value }) => {
-								newTag.setAttribute(name, value)
+								if (script.innerHTML) {
+									newTag.innerHTML = script.innerHTML
+								}
+
+								;[...script.attributes].map(
+									({ name, value }) => {
+										newTag.setAttribute(name, value)
+									}
+								)
+
+								document.head.appendChild(newTag)
 							})
-
-							document.head.appendChild(newTag)
 						})
 					})
-				}
 			}
 
 			if (el.classList.contains('ct-cookies-decline-button')) {
@@ -126,39 +140,6 @@ const mountCookieNotification = () => {
 			hideCookieConsent(notification)
 		})
 	})
-}
-
-const initCookies = () => {
-	if (cookie.get('blocksy_cookies_consent_accepted')) {
-		return
-	}
-
-	const body = new FormData()
-	body.append('action', 'blc_load_cookies_consent_data')
-
-	fetch(ct_localizations.ajax_url, {
-		method: 'POST',
-		body,
-	})
-		.then((r) => r.json())
-		.then(({ data }) => {
-			cookiesData = data
-
-			const drawerCanvas = document.querySelector(
-				'.ct-drawer-canvas[data-location="start"]'
-			)
-
-			loadStyle(ct_localizations.dynamic_styles.cookie_notification).then(
-				() => {
-					drawerCanvas.insertAdjacentHTML(
-						'beforeend',
-						cookiesData.consent_output
-					)
-
-					mountCookieNotification()
-				}
-			)
-		})
 }
 
 onDocumentLoaded(() => {

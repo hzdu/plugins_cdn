@@ -161,22 +161,24 @@
 	.block-editor-block-list__layout > .wp-block-heading {
 		display: flex;
 		align-items: center;
-		// justify-content: space-between;
+		justify-content: space-between;
 		
 		&:after {
 			display: block;
 			content: '';
 			width: 10px;
 			height: 10px;
-			margin-inline-start: auto;
 			background: currentColor;
 			mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' fill='currentColor' viewBox='0 0 25 25'%3E%3Cpath d='M.207 17.829 12.511 5.525l1.768 1.768L1.975 19.596z'%3E%3C/path%3E%3Cpath d='m10.721 7.243 1.768-1.768L24.793 17.78l-1.768 1.767z'%3E%3C/path%3E%3C/svg%3E");
 		}
-
-		[data-rich-text-placeholder] {
-			display: contents;
-		}
 	}
+
+	// &:not(.wp-block-blocksy-widgets-wrapper--expanded) {
+
+	// 	[data-type="blocksy/woocommerce-filters"] {
+	// 		display: none;
+	// 	}
+	// }
 }
 
 

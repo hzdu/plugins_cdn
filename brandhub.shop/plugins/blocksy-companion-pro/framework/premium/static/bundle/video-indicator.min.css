@@ -1,0 +1,8 @@
+/**
+ *  - v2.0.26
+ * 
+ * Copyright (c) 2024
+ * Licensed GPLv2+
+ */
+
+.ct-video-indicator{position:absolute;inset:0;z-index:3;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:opacity .12s cubic-bezier(0.455, 0.03, 0.515, 0.955),visibility .12s cubic-bezier(0.455, 0.03, 0.515, 0.955)}.ct-video-indicator svg{border-radius:100%;transition:transform .12s cubic-bezier(0.455, 0.03, 0.515, 0.955)}.ct-video-indicator svg:hover{transform:scale3d(1.1, 1.1, 1)}.ct-video-indicator .ct-video-loader{visibility:hidden}.ct-video-indicator.loading svg{background:#fff}.ct-video-indicator.loading .ct-video-loader{visibility:visible}.ct-dynamic-media:not([data-state=playing]) .ct-pause-path,.ct-media-container:not([data-state=playing]) .ct-pause-path{display:none}

@@ -217,7 +217,7 @@ export const useInstaller = (demoConfiguration) => {
 		const stepDescriptor = stepsDescriptors[stepName]
 
 		var evtSource = new EventSource(
-			`${ctDashboardLocalizations.ajax_url}?${stepDescriptor.query_string}&nonce=${ctDashboardLocalizations.dashboard_actions_nonce}`
+			`${ctDashboardLocalizations.ajax_url}?${stepDescriptor.query_string}`
 		)
 
 		evtSource.onerror = (e) => {
