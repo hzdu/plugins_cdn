@@ -9,7 +9,7 @@ import DataStores                from '../DataStores';
 import Actions                   from '../../Types/Actions';
 
 const PromoFieldControl = ( { location = '' } ) => {
-    const actions = useSelect( ( select: any ) => select( DataStores.cart_store_key ).getCartActions( null ), [] ) as Actions;
+    const staticActions = useSelect( ( select: any ) => select( DataStores.cart_store_key ).getCartStaticActions( null ), [] );
     const [ isPromoVisible, setIsPromoVisible ] = useState( !DataService.getSetting( 'enable_coupon_code_link' ) as boolean && DataService.getCheckoutParam( 'is_checkout' ) as boolean );
     const [ promoCode, setPromoCode ] = useState( '' );
 
@@ -66,7 +66,7 @@ const PromoFieldControl = ( { location = '' } ) => {
                 </div>
             </SlideToggle>
             { location === 'checkout_cart_summary' && (
-                <div dangerouslySetInnerHTML={{ __html: actions.cfw_coupon_module_end }}></div>
+                <div dangerouslySetInnerHTML={{ __html: staticActions.cfw_coupon_module_end }}></div>
             )}
         </div>
     );

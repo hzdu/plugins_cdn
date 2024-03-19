@@ -8,7 +8,6 @@ import DataService                            from '../Services/DataService';
 
 const SideCartTotals = () => {
     const totals = useSelect( ( select: any ) => select( DataStores.cart_store_key ).getCartTotals( null ), [] ) as CartTotalsData;
-    const actions = useSelect( ( select: any ) => select( DataStores.cart_store_key ).getCartActions( null ), [] );
 
     return (
         <div className="cfw-module cfw-totals-list">

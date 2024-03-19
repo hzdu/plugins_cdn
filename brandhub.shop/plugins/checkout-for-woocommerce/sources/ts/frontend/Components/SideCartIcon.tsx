@@ -1,7 +1,6 @@
 import React                                           from 'react';
-import { Markup }                                      from 'interweave';
-import { ReactSVG }                                    from 'react-svg';
 import { useSelect }                                   from '@wordpress/data';
+import SVG                                             from 'react-inlinesvg';
 import DataService                                     from '../Services/DataService';
 import DataStores                                      from '../DataStores';
 import { CartTotalsData }                              from '../../interfaces/CartTotalInterface';
@@ -11,18 +10,15 @@ const SideCartIcon = ( { additionalClass = '' } ) => {
 
     return (
         <div className={`cfw-side-cart-quantity-wrap ${additionalClass}`}>
-            <ReactSVG
-                beforeInjection={( svg ) => {
+            <SVG
+                preProcessor={( svg ) => {
                     // Do any SVG elements have a stroke attribute? If not add cfw-side-cart-icon-solid class to SVG
-                    const hasStroke = svg.querySelectorAll( '[stroke]' ).length > 0;
+                    const hasStroke = svg.includes( 'stroke' );
                     if ( !hasStroke ) {
-                        svg.classList.add( 'cfw-side-cart-icon-solid' );
+                        svg = svg.replace( '<svg ', '<svg class="cfw-side-cart-icon-solid" ' );
                     }
-                }}
-                afterInjection={( svg ) => {
-                    const parent = svg.parentNode.parentNode;
-                    parent.parentNode.insertBefore( svg, parent );
-                    parent.parentNode.removeChild( parent );
+
+                    return svg;
                 }}
                 src={DataService.getSetting( 'cart_icon_url' )}
             />

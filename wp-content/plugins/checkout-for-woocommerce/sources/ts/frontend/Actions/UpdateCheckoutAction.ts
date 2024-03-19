@@ -5,6 +5,7 @@ import LoggingService                 from '../Services/LoggingService';
 import TabService                     from '../Services/TabService';
 import UpdateCheckoutService          from '../Services/UpdateCheckoutService';
 import Action                         from './Action';
+import DataStores                     from '../DataStores';
 
 class UpdateCheckoutAction extends Action {
     private static _underlyingRequest: any = null;
@@ -280,7 +281,7 @@ class UpdateCheckoutAction extends Action {
 
             if ( resp.data ) {
                 // Update the data stores
-                Action.updateDataStore( resp.data );
+                DataStores.updateDataStore( resp.data );
             }
 
             UpdateCheckoutService.triggerUpdatedCheckout( resp );

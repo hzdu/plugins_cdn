@@ -4,14 +4,49 @@ import DataService                            from '../Services/DataService';
 import DataStores                             from '../DataStores';
 import CartItemInterface                      from '../../interfaces/CartItemInterface';
 import { Bump }                               from '../../Types/BumpTypes';
-import Action                                 from '../Actions/Action';
 import LoggingService                         from '../Services/LoggingService';
 
 declare let wc_cart_fragments_params: any;
 
 class SideCart {
     constructor() {
+        this.setDataStoreListeners();
         this.setTriggers();
+    }
+
+    setDataStoreListeners(): void {
+        const cartHashKey = wc_cart_fragments_params.cart_hash_key;
+
+        // Refresh fragments when storage changes in another tab, or after cart events
+        jQuery( window ).one( 'wc_fragments_loaded', () => {
+            DataStores.tryToUpdateDataStoreFromLocalStorage();
+        } );
+
+        // If change happens on another tab, catch the next fragment refresh
+        // We can't always listen to the fragment refresh because it happens often
+        jQuery( window ).on( 'storage onstorage', ( e: any ) => {
+            if (
+                cartHashKey === e.originalEvent.key && localStorage.getItem( cartHashKey ) !== sessionStorage.getItem( cartHashKey )
+            ) {
+                jQuery( window ).one( 'wc_fragments_refreshed', () => {
+                    DataStores.tryToUpdateDataStoreFromLocalStorage();
+                } );
+            }
+        } );
+
+        jQuery( document.body ).on( 'added_to_cart removed_from_cart', ( event, fragments, cart_hash, button, source ) => {
+            if ( !fragments ) {
+                return;
+            }
+
+            if ( source && source === 'cfw_data_already_updated' ) {
+                return;
+            }
+
+            if ( fragments && fragments.cfw_data ) {
+                DataStores.updateDataStore( fragments.cfw_data, true );
+            }
+        } );
     }
 
     setTriggers(): void {
@@ -37,16 +72,7 @@ class SideCart {
         jQuery( document.body ).on( 'click', '.cfw-side-cart-open-trigger, .added_to_cart', SideCart.openCart.bind( this ) );
         jQuery( document.body ).on( 'click', '.menu-item a:has(.cfw-side-cart-open-trigger)', SideCart.openCart.bind( this ) );
         jQuery( document.body ).on( 'click', '.cfw-side-cart-close-trigger, .cfw-side-cart-close-btn, #cfw-side-cart-overlay', SideCart.closeCart.bind( this ) );
-        jQuery( document.body ).on( 'added_to_cart', ( e, fragments, hash, button, source ) => {
-            if ( !source || source !== 'cfw' ) {
-                if ( fragments && fragments.cfw_data ) {
-                    Action.updateDataStore( fragments.cfw_data );
-                }  else {
-                    // Workaround - try to get the cart data from the session storage
-                    SideCart.tryToGetDataFromLocalStorage();
-                }
-            }
-
+        jQuery( document.body ).on( 'added_to_cart', () => {
             if ( !DataService.getSetting( 'disable_side_cart_auto_open' ) ) {
                 SideCart.openCart();
 
@@ -61,6 +87,7 @@ class SideCart {
                 this.shakeCartButton();
             } );
         } );
+
         jQuery( document.body ).on( 'click', `a.wc-forward:contains(${DataService.getMessage( 'view_cart' )})`, SideCart.openCart.bind( this ) );
         jQuery( document.body ).on( 'cfw_suggested_variable_product_added_to_cart cfw_order_bump_variation_added_to_cart', ( e, resp ) => {
             if ( typeof resp !== 'object' ) {
@@ -69,21 +96,21 @@ class SideCart {
             }
 
             if ( resp.data ) {
-                Action.updateDataStore( resp.data );
+                DataStores.updateDataStore( resp.data );
             }
 
             jQuery( document.body ).trigger( 'wc_fragment_refresh' );
-            jQuery( document.body ).trigger( 'added_to_cart', [ resp.fragments, resp.cart_hash, jQuery( e.target ), 'cfw' ] );
+            jQuery( document.body ).trigger( 'added_to_cart', [ resp.fragments, resp.cart_hash, jQuery( e.target ), 'cfw_data_already_updated' ] );
             jQuery( document.body ).trigger( 'updated_cart_totals' );
         } );
 
         jQuery( document.body ).on( 'cfw_cart_item_variation_edited', ( e, resp ) => {
+            if ( resp.data ) {
+                DataStores.updateDataStore( resp.data );
+            }
+
             jQuery( document.body ).trigger( 'wc_fragment_refresh' );
             jQuery( document.body ).trigger( 'updated_cart_totals' );
-
-            if ( resp.data ) {
-                Action.updateDataStore( resp.data );
-            }
         } );
 
         jQuery( window ).on( 'load', () => {
@@ -114,7 +141,7 @@ class SideCart {
 
         if ( fragments && fragments.cfw_data ) {
             LoggingService.logNotice( 'Successfully fetched fragments from session storage' );
-            Action.updateDataStore( fragments.cfw_data );
+            DataStores.updateDataStore( fragments.cfw_data );
         } else {
             LoggingService.logNotice( 'Failed to fetch fragments from session storage' );
         }

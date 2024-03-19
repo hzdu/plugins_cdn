@@ -11,7 +11,7 @@ import SideCartData                            from '../../interfaces/SideCartDa
 
 const CartTable: React.FC = () => {
     const items = useSelect( ( select: any ) => select( DataStores.cart_store_key ).getCartItems( null ), [] );
-    const actions = useSelect( ( select: any ) => select( DataStores.cart_store_key ).getCartActions( null ), [] );
+    const staticActions = useSelect( ( select: any ) => select( DataStores.cart_store_key ).getCartStaticActions( null ), [] );
     const sideCartData = useSelect( ( select: any ) => select( DataStores.cart_store_key ).getSideCartData( null ), [] ) as SideCartData;
 
     const updateItem = ( item: CartItemInterface ) => {
@@ -45,11 +45,11 @@ const CartTable: React.FC = () => {
             }
             <table className="cfw-cart-table cfw-module">
                 <tbody>
-                    {ReactHtmlParser( actions.cfw_cart_html_table_start )}
+                    {ReactHtmlParser( staticActions.cfw_cart_html_table_start )}
                     {items.map( ( item: CartItemInterface ) => ( <CartTableRow item={item} updateItem={updateItem} key={item.item_key} /> ) )}
                 </tbody>
             </table>
-            {ReactHtmlParser( actions.cfw_after_cart_html )}
+            {ReactHtmlParser( staticActions.cfw_after_cart_html )}
         </>
     );
 };

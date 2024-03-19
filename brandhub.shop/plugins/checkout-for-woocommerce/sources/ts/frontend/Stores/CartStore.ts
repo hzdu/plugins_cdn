@@ -13,6 +13,7 @@ export interface CartStoreStateInterface {
     cartNeedsPayment: boolean;
     cartItems: CartItemInterface[];
     cartActions: Actions;
+    cartStaticActions: Actions;
     cartTotals: CartTotalsData;
     cartNotices: string;
     orderBumps: Bump[];
@@ -26,6 +27,7 @@ const DEFAULT_STATE: CartStoreStateInterface = {
     cartNeedsPayment: false,
     cartItems: [],
     cartActions: {},
+    cartStaticActions: {},
     cartTotals: null,
     cartNotices: '',
     orderBumps: [],
@@ -52,6 +54,14 @@ const reducer = ( state = DEFAULT_STATE, action: any ): CartStoreStateInterface 
             return {
                 ...state,
                 cartItems: action.cartItems,
+            };
+        case 'SET_CART_STATIC_ACTIONS':
+            if ( fastDeepEqual( state.cartStaticActions, action.cartStaticActions ) ) {
+                return state;
+            }
+            return {
+                ...state,
+                cartStaticActions: action.cartStaticActions,
             };
         case 'SET_CART_ACTIONS':
             if ( fastDeepEqual( state.cartActions, action.cartActions ) ) {
@@ -128,6 +138,12 @@ const actions = {
             cartItems,
         };
     },
+    setCartStaticActions( cartStaticActions: Actions ) {
+        return {
+            type: 'SET_CART_STATIC_ACTIONS',
+            cartStaticActions,
+        };
+    },
     setCartActions( cartActions: Actions ) {
         return {
             type: 'SET_CART_ACTIONS',
@@ -179,6 +195,9 @@ const selectors = {
     },
     getCartItems( state: CartStoreStateInterface ) {
         return state.cartItems;
+    },
+    getCartStaticActions( state: CartStoreStateInterface ) {
+        return state.cartStaticActions;
     },
     getCartActions( state: CartStoreStateInterface ) {
         return state.cartActions;

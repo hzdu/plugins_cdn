@@ -16,7 +16,7 @@ import SuggestedProductsCarousel                         from './SuggestedProduc
 import PrimaryLinkButton                                 from './PrimaryLinkButton';
 
 const SideCartComponent: React.FC = () => {
-    const actions = useSelect( ( select: any ) => select( DataStores.cart_store_key ).getCartActions( null ), [] ) as Actions;
+    const staticActions = useSelect( ( select: any ) => select( DataStores.cart_store_key ).getCartStaticActions( null ), [] );
     const notices = useSelect( ( select: any ) => select( DataStores.cart_store_key ).getCartNotices( null ), [] ) as string;
     const sideCartData = useSelect( ( select: any ) => select( DataStores.cart_store_key ).getSideCartData( null ), [] ) as SideCartData;
 
@@ -41,7 +41,7 @@ const SideCartComponent: React.FC = () => {
 
                 <SideCartIcon />
 
-                {ReactHtmlParser( actions.cfw_after_side_cart_header )}
+                {ReactHtmlParser( staticActions.cfw_after_side_cart_header )}
             </div>
 
             <div className="cfw-side-cart-contents">
@@ -50,12 +50,12 @@ const SideCartComponent: React.FC = () => {
                         <>
                             <CartTable />
                             <OrderBumpsList locations={[ 'below_cart_items', 'below_side_cart_items' ]}/>
-                            {ReactHtmlParser( actions.cfw_after_side_cart_items_table )}
+                            {ReactHtmlParser( staticActions.cfw_after_side_cart_items_table )}
                         </>
                     ) : (
                         <>
-                            {ReactHtmlParser( actions.woocommerce_cart_is_empty )}
-                            {ReactHtmlParser( actions.checkoutwc_empty_side_cart_content )}
+                            {ReactHtmlParser( staticActions.woocommerce_cart_is_empty )}
+                            {ReactHtmlParser( staticActions.checkoutwc_empty_side_cart_content )}
                         </>
                     )
                 }
@@ -65,7 +65,7 @@ const SideCartComponent: React.FC = () => {
                     <>
                         <div className="cfw-side-cart-contents-footer-border-shim"></div>
 
-                        {ReactHtmlParser( actions.cfw_side_cart_footer_start )}
+                        {ReactHtmlParser( staticActions.cfw_side_cart_footer_start )}
 
                         {DataService.getSetting( 'enable_promo_codes_on_side_cart' ) && (
                             <PromoFieldControl/>
@@ -74,16 +74,16 @@ const SideCartComponent: React.FC = () => {
                         <div dangerouslySetInnerHTML={{ __html: notices }}></div>
 
                         <div className="cfw-side-cart-totals">
-                            {ReactHtmlParser( actions.cfw_before_side_cart_totals )}
+                            {ReactHtmlParser( staticActions.cfw_before_side_cart_totals )}
 
                             <SideCartTotals/>
 
-                            {ReactHtmlParser( actions.cfw_after_side_cart_totals )}
+                            {ReactHtmlParser( staticActions.cfw_after_side_cart_totals )}
                         </div>
 
                         <div className="wc-proceed-to-checkout">
                             {ReactHtmlParser( DataService.getSetting( 'wc_get_pay_buttons' ) )}
-                            {ReactHtmlParser( actions.woocommerce_cart_actions )}
+                            {ReactHtmlParser( staticActions.woocommerce_cart_actions )}
 
                             <PrimaryLinkButton
                                 href={DataService.getSetting( 'checkout_page_url' ).toString()}
@@ -96,10 +96,10 @@ const SideCartComponent: React.FC = () => {
                                 />
                             )}
 
-                            {ReactHtmlParser( actions.cfw_after_side_cart_proceed_to_checkout_button )}
+                            {ReactHtmlParser( staticActions.cfw_after_side_cart_proceed_to_checkout_button )}
 
                             {DataService.getSetting( 'enable_side_cart_payment_buttons' )
-                                && ReactHtmlParser( actions.woocommerce_widget_shopping_cart_buttons )
+                                && ReactHtmlParser( staticActions.woocommerce_widget_shopping_cart_buttons )
                             }
 
                             {DataService.getSetting( 'enable_side_cart_suggested_products' ) && (
