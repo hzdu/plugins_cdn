@@ -161,12 +161,15 @@ function ajaxSearch(element, ordering, direction, pushState = true) {
     var $key = $(sform).find('input[name=q]').val();
     var $placeholder = $(sform).find('input[name=q]').attr('placeholder');
     var $paged = $(sform).find('input[name=wpfd_search_page]').length ? $(sform).find('input[name=wpfd_search_page]').val() : 1;
+    var isSearchAll = ($(sform).find('input[name=wpfd_search_all]').length && $(sform).find('input[name=wpfd_search_all]').val() !== null) ? parseInt($(sform).find('input[name=wpfd_search_all]').val()) : 1;
 
     // Avoid conflict key search
     if ($key.toString() === $placeholder.toString()) {
         $key = '';
     }
-
+    if (parseInt($(sform).find('[name=catid]').val()) == 0 && isSearchAll == 0) {
+        return false;
+    }
     // Get the form data
     var formData = {
         'q': $key,
@@ -321,7 +324,7 @@ function ajaxSearch(element, ordering, direction, pushState = true) {
             if (parseInt(wpfdvars.downloadSelected) === 1) {
                 var dls_contents = '<div class="wpfd-search-result-download-files-section">';
                 dls_contents += '<a type="button" id="search_download_selected_btn" class="search-download-selected" style="display: none">';
-                dls_contents += 'Download Selected <i class="zmdi zmdi-check-all wpfd-download-category"></i></a>';
+                dls_contents += wpfdvars.translates.download_selected + ' <i class="zmdi zmdi-check-all wpfd-download-category"></i></a>';
                 dls_contents += '<input type="hidden" id="search_result_download_selected_list" class="search_result_download_selected_list" />';
                 dls_contents += '<input type="hidden" id="search_result_download_selected_file_with_category_list" class="search_result_download_selected_file_with_category_list" /></div>';
                 result = dls_contents + result;

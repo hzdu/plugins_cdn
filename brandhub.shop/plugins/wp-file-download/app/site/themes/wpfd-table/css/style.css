@@ -10,6 +10,9 @@
  * @copyright Copyright (C) 2013 Damien Barrère (http://www.crac-design.com). All rights reserved.
  * @license GNU General Public License version 2 or later; http://www.gnu.org/licenses/gpl-2.0.html
  */
+#et-boc .wpfd-content-table, .wpfd-content-table {
+  max-width: 100% !important;
+}
 #et-boc .wpfd-content-table ul.jaofiletree li.selected > a, .wpfd-content-table ul.jaofiletree li.selected > a {
   color: #3d3d3d;
   font-weight: bold;
@@ -41,6 +44,7 @@
 }
 #et-boc .wpfd-content-table .wpfd-theme-rows th.wpfd-last-col-table, .wpfd-content-table .wpfd-theme-rows th.wpfd-last-col-table {
   min-width: 120px;
+  padding-right: 30px !important;
 }
 #et-boc .wpfd-content-table a, .wpfd-content-table a {
   text-decoration: none !important;
@@ -686,6 +690,8 @@
 #et-boc .wpfd-content-table .mediaTableWrapperWithMenu, .wpfd-content-table .mediaTableWrapperWithMenu {
   position: relative;
   padding: 0;
+  width: 100%;
+  overflow: auto;
 }
 #et-boc .wpfd-content-table .mediaTableMenu, .wpfd-content-table .mediaTableMenu {
   display: none;

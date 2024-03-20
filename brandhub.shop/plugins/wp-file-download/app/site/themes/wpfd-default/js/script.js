@@ -52,10 +52,18 @@ jQuery(document).ready(function ($) {
     });
 
     function default_initClick() {
-        $('.wpfd-content-default .catlink').unbind('click').click(function () {
-            default_load($(this).parents('.wpfd-content-default.wpfd-content-multi').data('category'), $(this).data('idcat'));
+        $(document).off('click', '.wpfd-content-default .catlink').on('click', '.wpfd-content-default .catlink', function(e) {
+            var ctheme = $(this).parents('.wpfd-content').find('.wpfd_root_category_theme').val();
+            var c_root_cat = $(this).parents('.wpfd-content').find('.wpfd_root_category_id').val();
+            var rootCat = ".wpfd-content-default.wpfd-content-multi[data-category=" + c_root_cat + "]";
+            var current_category = $(rootCat).find('#current_category_' + c_root_cat).val();
+            $(".wpfd-content[data-category=" + $(this).parents('.wpfd-content-'+ctheme).data('category') + "] .wpfd-container-"+ctheme).find('.wpfd-categories .wpfdcategory.catlink').each(function () {
+                var tempidCat = $(this).data('idcat');
+                cParents[tempidCat] = {parent: current_category, term_id: tempidCat, name: $(this).attr('title')};
+            });
+            default_load(c_root_cat, $(this).data('idcat'));
             return false;
-        });
+        })
     }
 
     function initInputSelected(sc) {
@@ -148,7 +156,282 @@ jQuery(document).ready(function ($) {
         }
     }
 
-    function default_load(sourcecat, catid, page) {
+    _wpfd_text = function (text) {
+        if (typeof (l10n) !== 'undefined') {
+            return l10n[text];
+        }
+        return text;
+    };
+
+    function toMB(mb) {
+        return mb * 1024 * 1024;
+    }
+    var allowedExt = wpfdparams.allowed;
+    allowedExt = allowedExt.split(',');
+    allowedExt.sort();
+
+    function initUploader(currentContainer) {
+        var upload_type = 'file';
+        // Init the uploader
+        var uploader = new Resumable({
+            target: wpfdparams.wpfduploadajax + '?action=wpfd&task=files.upload&upload_from=front',
+            query: {
+                id_category: $(currentContainer).find('input[name=id_category]').val(),
+            },
+            fileParameterName: 'file_upload',
+            simultaneousUploads: 2,
+            maxFileSize: toMB(wpfdparams.maxFileSize),
+            maxFileSizeErrorCallback: function (file) {
+                alert(file.name + ' ' + _wpfd_text('is too large, please upload file(s) less than ') + wpfdparams.maxFileSize + 'Mb!');
+            },
+            chunkSize: wpfdparams.serverUploadLimit - 50 * 1024, // Reduce 50KB to avoid error
+            forceChunkSize: true,
+            fileType: allowedExt,
+            fileTypeErrorCallback: function (file) {
+                alert(file.name + ' cannot upload!<br/><br/>' + _wpfd_text('This type of file is not allowed to be uploaded. You can add new file types in the plugin configuration'));
+            },
+            generateUniqueIdentifier: function (file, event) {
+                var relativePath = file.webkitRelativePath || file.fileName || file.name;
+                var size = file.size;
+                var prefix = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+                return (prefix + size + '-' + relativePath.replace(/[^0-9a-zA-Z_-]/img, ''));
+            }
+        });
+
+        if (!uploader.support) {
+            alert(_wpfd_text('Your browser does not support HTML5 file uploads!'));
+        }
+
+        if (typeof (willUpload) === 'undefined') {
+            var willUpload = true;
+        }
+
+        uploader.on('createFolders', function (files) {
+            upload_type = 'folder';
+            var currentRootCat = currentContainer.find('input[name=id_category]').val()
+            // Prepare category tree
+            var paths = files.map(function(file) {
+                if (file.hasOwnProperty('catId')) {
+                    currentRootCat = file.catId;
+                }
+                var filePath = (file.hasOwnProperty('relativePath')) ? file.relativePath : file.webkitRelativePath;
+                var namePos = filePath.lastIndexOf(file.name);
+                return filePath.substr(0,namePos);
+            });
+            // get unique value (not empty value)
+            paths = paths.filter( function(item, i, ar) { return item && ar.indexOf(item) === i } );
+            if (paths.length > 0) {
+                var categoryType = currentContainer.find('input[name=category_type]').val();
+                // Send ajax to initial categories
+                $.ajax({
+                    url: wpfdparams.wpfduploadajax + '?action=wpfd&task=categories.createCategoriesDeep',
+                    data: {
+                        paths: paths.join('|'),
+                        category_id: currentRootCat,
+                        type: categoryType
+                    },
+                    method: 'POST',
+                    success: function (data) {
+                    }
+                });
+            }
+        })
+
+        uploader.on('filesAdded', function (files) {
+            files.forEach(function (file) {
+                var progressBlock = '<div class="wpfd_process_block" id="' + file.uniqueIdentifier + '">'
+                    + '<div class="wpfd_process_fileinfo">'
+                    + '<span class="wpfd_process_filename">' + file.fileName + '</span>'
+                    + '<span class="wpfd_process_cancel">Cancel</span>'
+                    + '</div>'
+                    + '<div class="wpfd_process_full" style="display: block;">'
+                    + '<div class="wpfd_process_run" data-w="0" style="width: 0%;"></div>'
+                    + '</div></div>';
+
+                //$('#preview', '.wpreview').before(progressBlock);
+                currentContainer.find('#preview', '.wpreview').before(progressBlock);
+                $(currentContainer).find('.wpfd_process_cancel').unbind('click').click(function () {
+                    fileID = $(this).parents('.wpfd_process_block').attr('id');
+                    fileObj = uploader.getFromUniqueIdentifier(fileID);
+                    uploader.removeFile(fileObj);
+                    $(this).parents('.wpfd_process_block').fadeOut('normal', function () {
+                        $(this).remove();
+                    });
+
+                    if (uploader.files.length === 0) {
+                        $(currentContainer).find('.wpfd_process_pause').fadeOut('normal', function () {
+                            $(this).remove();
+                        });
+                    }
+
+                    $.ajax({
+                        url: wpfdparams.wpfduploadajax + '?action=wpfd&task=files.upload',
+                        method: 'POST',
+                        dataType: 'json',
+                        data: {
+                            id_category: currentContainer.find('input[name=id_category]').val(),
+                            deleteChunks: fileID
+                        },
+                        success: function (res, stt) {
+                            if (res.response === true) {
+                            }
+                        }
+                    })
+                });
+            });
+
+            // Do not run uploader if no files added or upload same files again
+            if (files.length > 0) {
+                uploadPauseBtn = $(currentContainer).find('.wpreview').find('.wpfd_process_pause').length;
+                restableBlock = $(currentContainer).find('.wpfd_process_block');
+
+                if (!uploadPauseBtn) {
+                    restableBlock.before('<div class="wpfd_process_pause">Pause</div>');
+                    $(currentContainer).find('.wpfd_process_pause').unbind('click').click(function () {
+                        if (uploader.isUploading()) {
+                            uploader.pause();
+                            $(this).text('Start');
+                            $(this).addClass('paused');
+                            willUpload = false;
+                        } else {
+                            uploader.upload();
+                            $(this).text('Pause');
+                            $(this).removeClass('paused');
+                            willUpload = true;
+                        }
+                    });
+                }
+
+                uploader.opts.query = {
+                    id_category: currentContainer.find('input[name=id_category]').val()
+                };
+
+                if (willUpload) {
+                    setTimeout( function() {uploader.upload();}, 1000);
+                }
+            }
+        });
+
+        uploader.on('fileProgress', function (file) {
+            $(currentContainer).find('.wpfd_process_block#' + file.uniqueIdentifier)
+                .find('.wpfd_process_run').width(Math.floor(file.progress() * 100) + '%');
+        });
+
+        uploader.on('fileSuccess', function (file, res) {
+            var thisUploadBlock = currentContainer.find('.wpfd_process_block#' + file.uniqueIdentifier);
+            thisUploadBlock.find('.wpfd_process_cancel').addClass('uploadDone').text('OK').unbind('click');
+            thisUploadBlock.find('.wpfd_process_full').remove();
+
+            var response = JSON.parse(res);
+            if (response.response === false && typeof(response.datas) !== 'undefined') {
+                if (typeof(response.datas.code) !== 'undefined' && response.datas.code > 20) {
+                    alert('<div>' + response.datas.message + '</div>');
+                    return false;
+                }
+            }
+            if (typeof(response) === 'string') {
+                alert('<div>' + response + '</div>');
+                return false;
+            }
+
+            if (response.response !== true) {
+                alert(response.response);
+                return false;
+            }
+        });
+
+        uploader.on('fileError', function (file, msg) {
+            thisUploadBlock = currentContainer.find('.wpfd_process_block#' + file.uniqueIdentifier);
+            thisUploadBlock.find('.wpfd_process_cancel').addClass('uploadError').text('Error').unbind('click');
+            thisUploadBlock.find('.wpfd_process_full').remove();
+        });
+
+        uploader.on('complete', function () {
+            //load sub categories
+            var currentRootCat = currentContainer.find('input[name=id_category]').val();
+            var sourcecat = currentContainer.parents('.wpfd-content.wpfd-content-multi').data('category');
+            var theme = currentContainer.parents('.wpfd-content.wpfd-content-multi[data-category=' + sourcecat + ']').find('.wpfd_root_category_theme').val();
+            var wpfd_tree = $('.wpfd-content[data-category="'+sourcecat+'"] .wpfd-foldertree');
+            wpfd_tree.jaofiletree({
+                script: wpfdparams.wpfduploadajax + '?juwpfisadmin=false&action=wpfd&task=categories.getCats',
+                usecheckboxes: false,
+                root: sourcecat,
+                expanded: parseInt(wpfdparams.allow_category_tree_expanded) === 1 ? true : false
+            });
+
+            var categoryAjaxUrl = wpfdparams.wpfdajaxurl + "task=categories.display&view=categories&id=" + currentRootCat + "&top=" + sourcecat;
+            if (wpfdDefaultCategoriesLocalCache.exist(categoryAjaxUrl)) {
+                wpfdDefaultCategoriesLocalCache.remove(categoryAjaxUrl);
+            }
+
+            var fileCount  = $(currentContainer).find('.wpfd_process_cancel').length;
+            var categoryId = $(currentContainer).find('input[name=id_category]').val();
+            var ajax_url = typeof (wpfdparams.wpfduploadajax) !== 'undefined' ? wpfdparams.wpfduploadajax : wpfd_var.wpfduploadajax;
+            $.ajax({
+                url: ajax_url + '?action=wpfd&task=files.wpfdPendingUploadFiles',
+                method: 'POST',
+                dataType: 'json',
+                data: {
+                    uploadedFiles: fileCount,
+                    id_category: categoryId,
+                },
+                success: function (res) {
+                    currentContainer.find('.progress').delay(300).fadeIn(300).hide(300, function () {
+                        $(this).remove();
+                    });
+                    currentContainer.find('.uploaded').delay(300).fadeIn(300).hide(300, function () {
+                        $(this).remove();
+                    });
+                    $('#wpreview .file').delay(1200).show(1200, function () {
+                        $(this).removeClass('done placeholder');
+                    });
+
+                    $('.gritter-item-wrapper ').remove();
+                    $(currentContainer).find('#wpfd-upload-messages').append(wpfdparams.translates.msg_upload_file);
+                    $(currentContainer).find('#wpfd-upload-messages').delay(1200).fadeIn(1200, function () {
+                        $(currentContainer).find('#wpfd-upload-messages').empty();
+                        $(currentContainer).find('.wpfd_process_pause').remove();
+                        $(currentContainer).find('.wpfd_process_block').remove();
+                    });
+
+                    // Call list files
+                    if (currentContainer.parent('.wpfd-upload-form').length) {
+                        var sourcecat         = currentContainer.parents('.wpfd-content.wpfd-content-multi').data('category');
+                        var current_category  = currentContainer.parents('.wpfd-content.wpfd-content-multi').find('#current_category_' + sourcecat).val();
+
+                        // Refresh uploaded files on caching
+                        var ordering =  currentContainer.parents('.wpfd-content.wpfd-content-multi').find('#current_ordering_' + sourcecat).val();
+                        var orderingDirection =  currentContainer.parents('.wpfd-content.wpfd-content-multi').find('#current_ordering_direction_' + sourcecat).val();
+                        var page_limit =  currentContainer.parents('.wpfd-content.wpfd-content-multi').find('#page_limit_' + sourcecat).val();
+                        var params = $.param({
+                            task: 'files.display',
+                            view: 'files',
+                            id: current_category,
+                            rootcat: sourcecat,
+                            page: page,
+                            orderCol: ordering,
+                            orderDir: orderingDirection,
+                            page_limit: page_limit
+                        });
+                        var fileAjaxUrl = wpfdparams.wpfdajaxurl + params;
+                        if (wpfdDefaultFilesLocalCache.exist(fileAjaxUrl)) {
+                            wpfdDefaultFilesLocalCache.remove(fileAjaxUrl);
+                        }
+
+                        default_load(sourcecat, current_category, null,upload_type);
+                        upload_type = 'file';
+                        return false;
+                    }
+                }
+            });
+        });
+
+        uploader.assignBrowse($(currentContainer).find('#upload_button'));
+        uploader.assignBrowse($(currentContainer).find('#upload_folder_button'), true);
+        uploader.assignDrop($(currentContainer).find('.jsWpfdFrontUpload'));
+    }
+
+    function default_load(sourcecat, catid, page, upload_type) {
         $(document).trigger('wpfd:category-loading');
         var pathname = window.location.href.replace(window.location.hash, '');
         var container = $(".wpfd-content-default.wpfd-content-multi[data-category=" + sourcecat + "]");
@@ -174,9 +457,9 @@ jQuery(document).ready(function ($) {
         if (oldCategoryAjax !== null) {
             oldCategoryAjax.abort();
         }
-        var categoryAjaxUrl = wpfdparams.wpfdajaxurl + "?action=wpfd&task=categories.display&view=categories&id=" + catid + "&top=" + sourcecat;
+        var categoryAjaxUrl = wpfdparams.wpfdajaxurl + "task=categories.display&view=categories&id=" + catid + "&top=" + sourcecat;
         window.wpfdAjax[tree_source_cat].category = $.ajax({
-            url: wpfdparams.wpfdajaxurl + "?action=wpfd&task=categories.display&view=categories&id=" + catid + "&top=" + sourcecat,
+            url: categoryAjaxUrl,
             dataType: "json",
             cache: true,
             beforeSend: function () {
@@ -184,7 +467,7 @@ jQuery(document).ready(function ($) {
                     container.find('.wpfd-form-search-file-category').remove();
                 }
 
-                if (wpfdDefaultCategoriesLocalCache.exist(categoryAjaxUrl)) {
+                if (wpfdDefaultCategoriesLocalCache.exist(categoryAjaxUrl) && upload_type != 'folder') {
                     var triggerCategories = wpfdDefaultCategoriesLocalCache.get(categoryAjaxUrl);
                     wpfdDefaultCategoriesLocalCacheTrigger(triggerCategories, sourcecat, page, pathname, catid, container, empty_subcategories);
                     return false;
@@ -242,7 +525,7 @@ jQuery(document).ready(function ($) {
 
             if (categories.category.breadcrumbs !== undefined) {
                 if (sourcecat.toString() === 'all_0' && catid.toString() !== 'all_0' && parseInt(catid) !== 0) {
-                    categories.category.breadcrumbs = allCategoriesDividerBreadcrumbs + categories.category.breadcrumbs;
+                    categories.category.breadcrumbs = allCategoriesBreadcrumbs + categories.category.breadcrumbs;
                 }
                 $(".wpfd-content-multi[data-category=" + sourcecat + "] .breadcrumbs").html(categories.category.breadcrumbs);
             }
@@ -308,6 +591,7 @@ jQuery(document).ready(function ($) {
         if (oldFileAjax !== null) {
             oldFileAjax.abort();
         }
+
         window.wpfdAjax[tree_source_cat].file = $.ajax({
             url: fileAjaxUrl,
             dataType: "json",
@@ -339,6 +623,10 @@ jQuery(document).ready(function ($) {
                 } else {
                     $(".wpfd-content-default.wpfd-content-multi[data-category=" + sourcecat + "]  .default-download-category").addClass("display-download-category");
                 }
+                
+                setTimeout(function() {
+                    $(".wpfd-content-default.wpfd-content-multi[data-category=" + sourcecat + "]").find('.wpfd-current-url').val(window.location.href);
+                }, 1000);
 
                 $(".wpfd-content-default.wpfd-content-multi[data-category=" + sourcecat + "]").after(content.pagination);
                 delete content.pagination;
@@ -366,214 +654,6 @@ jQuery(document).ready(function ($) {
 
                     if (typeof (Wpfd) === 'undefined') {
                         Wpfd = {};
-                    }
-
-                    _wpfd_text = function (text) {
-                        if (typeof (l10n) !== 'undefined') {
-                            return l10n[text];
-                        }
-                        return text;
-                    };
-
-                    function toMB(mb) {
-                        return mb * 1024 * 1024;
-                    }
-
-                    var allowedExt = wpfdparams.allowed;
-                    allowedExt = allowedExt.split(',');
-                    allowedExt.sort();
-
-                    var initUploader = function (currentContainer) {
-                        // Init the uploader
-                        var uploader = new Resumable({
-                            target: wpfdparams.wpfduploadajax + '?action=wpfd&task=files.upload&upload_from=front',
-                            query: {
-                                id_category: $(currentContainer).find('input[name=id_category]').val(),
-                            },
-                            fileParameterName: 'file_upload',
-                            simultaneousUploads: 2,
-                            maxFileSize: toMB(wpfdparams.maxFileSize),
-                            maxFileSizeErrorCallback: function (file) {
-                                bootbox.alert(file.name + ' ' + _wpfd_text('is too large, please upload file(s) less than ') + wpfdparams.maxFileSize + 'Mb!');
-                            },
-                            chunkSize: wpfdparams.serverUploadLimit - 50 * 1024, // Reduce 50KB to avoid error
-                            forceChunkSize: true,
-                            fileType: allowedExt,
-                            fileTypeErrorCallback: function (file) {
-                                bootbox.alert(file.name + ' cannot upload!<br/><br/>' + _wpfd_text('This type of file is not allowed to be uploaded. You can add new file types in the plugin configuration'));
-                            },
-                            generateUniqueIdentifier: function (file, event) {
-                                var relativePath = file.webkitRelativePath || file.fileName || file.name;
-                                var size = file.size;
-                                var prefix = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
-                                return (prefix + size + '-' + relativePath.replace(/[^0-9a-zA-Z_-]/img, ''));
-                            }
-                        });
-
-                        if (!uploader.support) {
-                            bootbox.alert(_wpfd_text('Your browser does not support HTML5 file uploads!'));
-                        }
-
-                        if (typeof (willUpload) === 'undefined') {
-                            var willUpload = true;
-                        }
-
-                        uploader.on('filesAdded', function (files) {
-                            files.forEach(function (file) {
-                                var progressBlock = '<div class="wpfd_process_block" id="' + file.uniqueIdentifier + '">'
-                                    + '<div class="wpfd_process_fileinfo">'
-                                    + '<span class="wpfd_process_filename">' + file.fileName + '</span>'
-                                    + '<span class="wpfd_process_cancel">Cancel</span>'
-                                    + '</div>'
-                                    + '<div class="wpfd_process_full" style="display: block;">'
-                                    + '<div class="wpfd_process_run" data-w="0" style="width: 0%;"></div>'
-                                    + '</div></div>';
-
-                                //$('#preview', '.wpreview').before(progressBlock);
-                                currentContainer.find('#preview', '.wpreview').before(progressBlock);
-                                $(currentContainer).find('.wpfd_process_cancel').unbind('click').click(function () {
-                                    fileID = $(this).parents('.wpfd_process_block').attr('id');
-                                    fileObj = uploader.getFromUniqueIdentifier(fileID);
-                                    uploader.removeFile(fileObj);
-                                    $(this).parents('.wpfd_process_block').fadeOut('normal', function () {
-                                        $(this).remove();
-                                    });
-
-                                    if (uploader.files.length === 0) {
-                                        $(currentContainer).find('.wpfd_process_pause').fadeOut('normal', function () {
-                                            $(this).remove();
-                                        });
-                                    }
-
-                                    $.ajax({
-                                        url: wpfd_var.wpfduploadajax + '?action=wpfd&task=files.upload',
-                                        method: 'POST',
-                                        dataType: 'json',
-                                        data: {
-                                            id_category: $('input[name=id_category]').val(),
-                                            deleteChunks: fileID
-                                        },
-                                        success: function (res, stt) {
-                                            if (res.response === true) {
-                                            }
-                                        }
-                                    })
-                                });
-                            });
-
-                            // Do not run uploader if no files added or upload same files again
-                            if (files.length > 0) {
-                                uploadPauseBtn = $(currentContainer).find('.wpreview').find('.wpfd_process_pause').length;
-                                restableBlock = $(currentContainer).find('.wpfd_process_block');
-
-                                if (!uploadPauseBtn) {
-                                    restableBlock.before('<div class="wpfd_process_pause">Pause</div>');
-                                    $(currentContainer).find('.wpfd_process_pause').unbind('click').click(function () {
-                                        if (uploader.isUploading()) {
-                                            uploader.pause();
-                                            $(this).text('Start');
-                                            $(this).addClass('paused');
-                                            willUpload = false;
-                                        } else {
-                                            uploader.upload();
-                                            $(this).text('Pause');
-                                            $(this).removeClass('paused');
-                                            willUpload = true;
-                                        }
-                                    });
-                                }
-
-                                uploader.opts.query = {
-                                    id_category: currentContainer.find('input[name=id_category]').val()
-                                };
-
-                                if (willUpload) uploader.upload();
-                            }
-                        });
-
-                        uploader.on('fileProgress', function (file) {
-                            $(currentContainer).find('.wpfd_process_block#' + file.uniqueIdentifier)
-                                .find('.wpfd_process_run').width(Math.floor(file.progress() * 100) + '%');
-                        });
-
-                        uploader.on('fileSuccess', function (file, res) {
-                            var thisUploadBlock = currentContainer.find('.wpfd_process_block#' + file.uniqueIdentifier);
-                            thisUploadBlock.find('.wpfd_process_cancel').addClass('uploadDone').text('OK').unbind('click');
-                            thisUploadBlock.find('.wpfd_process_full').remove();
-
-                            var response = JSON.parse(res);
-                            if (response.response === false && typeof(response.datas) !== 'undefined') {
-                                if (typeof(response.datas.code) !== 'undefined' && response.datas.code > 20) {
-                                    bootbox.alert('<div>' + response.datas.message + '</div>');
-                                    return false;
-                                }
-                            }
-                            if (typeof(response) === 'string') {
-                                bootbox.alert('<div>' + response + '</div>');
-                                return false;
-                            }
-
-                            if (response.response !== true) {
-                                bootbox.alert(response.response);
-                                return false;
-                            }
-                        });
-
-                        uploader.on('fileError', function (file, msg) {
-                            thisUploadBlock = currentContainer.find('.wpfd_process_block#' + file.uniqueIdentifier);
-                            thisUploadBlock.find('.wpfd_process_cancel').addClass('uploadError').text('Error').unbind('click');
-                            thisUploadBlock.find('.wpfd_process_full').remove();
-                        });
-
-                        uploader.on('complete', function () {
-                            var fileCount  = $(currentContainer).find('.wpfd_process_cancel').length;
-                            var categoryId = $(currentContainer).find('input[name=id_category]').val();
-                            var ajax_url = typeof (wpfdparams.wpfduploadajax) !== 'undefined' ? wpfdparams.wpfduploadajax : wpfd_var.wpfduploadajax;
-                            $.ajax({
-                                url: ajax_url + '?action=wpfd&task=files.wpfdPendingUploadFiles',
-                                method: 'POST',
-                                dataType: 'json',
-                                data: {
-                                    uploadedFiles: fileCount,
-                                    id_category: categoryId,
-                                },
-                                success: function (res) {
-                                    currentContainer.find('.progress').delay(300).fadeIn(300).hide(300, function () {
-                                        $(this).remove();
-                                    });
-                                    currentContainer.find('.uploaded').delay(300).fadeIn(300).hide(300, function () {
-                                        $(this).remove();
-                                    });
-                                    $('#wpreview .file').delay(1200).show(1200, function () {
-                                        $(this).removeClass('done placeholder');
-                                    });
-
-                                    $('.gritter-item-wrapper ').remove();
-                                    $(currentContainer).find('#wpfd-upload-messages').append(wpfdparams.translates.msg_upload_file);
-                                    $(currentContainer).find('#wpfd-upload-messages').delay(1200).fadeIn(1200, function () {
-                                        $(currentContainer).find('#wpfd-upload-messages').empty();
-                                        $(currentContainer).find('.wpfd_process_pause').remove();
-                                        $(currentContainer).find('.wpfd_process_block').remove();
-                                    });
-
-                                    // Call list files
-                                    if (currentContainer.parent('.wpfd-upload-form').length) {
-                                        // Refresh uploaded files on caching
-                                        if (wpfdDefaultFilesLocalCache.exist(fileAjaxUrl)) {
-                                            wpfdDefaultFilesLocalCache.remove(fileAjaxUrl);
-                                        }
-                                        var sourcecat         = currentContainer.parents('.wpfd-content.wpfd-content-multi').data('category');
-                                        var current_category  = currentContainer.parents('.wpfd-content.wpfd-content-multi').find('#current_category_' + sourcecat).val();
-
-                                        default_load(sourcecat, current_category);
-                                        return false;
-                                    }
-                                }
-                            });
-                        });
-
-                        uploader.assignBrowse($(currentContainer).find('#upload_button'));
-                        uploader.assignDrop($(currentContainer).find('.jsWpfdFrontUpload'));
                     }
 
                     var containers = $(".wpfd-content-default.wpfd-content-multi[data-category=" + sourcecat + "] div[class*=wpfdUploadForm]");
@@ -632,15 +712,24 @@ jQuery(document).ready(function ($) {
                 continue;
             }
             if (i < links.length - 1) {
-                html += '<li><a class="catlink" data-idcat="' + links[i].term_id + '" href="javascript:void(0)">';
-                html += links[i].name + '</a><span class="divider"> &gt; </span></li>';
+                if (links[i].term_id != "all_0") {
+                    html += '<li><a class="catlink" data-idcat="' + links[i].term_id + '" href="javascript:void(0)">';
+                    html += links[i].name + '</a><span class="divider"> &gt; </span></li>';
+                }
             } else {
-                html += '<li><span>' + links[i].name + '</span></li>';
+                if (links[i].term_id != "all_0") {
+                    html += '<li><span>' + links[i].name + '</span></li>';
+                } else {
+                    html += '<li><span>' + wpfdparams.translates.wpfd_all_categories + '</span></li>';
+                }
             }
         }
 
-        $(".wpfd-content-default.wpfd-content-multi[data-category=" + sourcecat + "] .wpfd-breadcrumbs-default li").remove();
-        $(".wpfd-content-default.wpfd-content-multi[data-category=" + sourcecat + "] .wpfd-breadcrumbs-default").append(html);
+        if (html == '' && catid.toString() == 'all_0') {
+            html += '<li><span>' + wpfdparams.translates.wpfd_all_categories + '</span></li>';
+        }
+
+        $(".wpfd-content-default.wpfd-content-multi[data-category=" + sourcecat + "] .wpfd-breadcrumbs-default").html(html);
         defaultdownloadcategory.attr('href', category.linkdownload_cat);
     }
 
@@ -828,6 +917,8 @@ jQuery(document).ready(function ($) {
 
     // Local categories cache trigger
     function wpfdDefaultCategoriesLocalCacheTrigger(triggerCategories, sourcecat, page, pathname, catid, container, empty_subcategories) {
+
+        // Check if file search display is enabled
         var $displayFileSearch = $(".wpfd-content-default.wpfd-content-multi[data-category=" + sourcecat + "]").find('.wpfd_root_category_display_file_search');
         if ($displayFileSearch.length) {
             var $themeName = $(".wpfd-content-default.wpfd-content-multi[data-category=" + sourcecat + "]").find('.wpfd_root_category_theme').val();
@@ -859,12 +950,16 @@ jQuery(document).ready(function ($) {
             wpfdDefaultSearchFileCategoryHandle();
         }
 
+        // Update browser history
+        var historyState = '';
         if (page !== null && page !== undefined) {
-            window.history.pushState('', document.title, pathname + '#' + sourcecat + '-' + catid + '-wpfd-' + triggerCategories.category.slug + '-p' + page);
+            historyState = `#${sourcecat}-${catid}-wpfd-${triggerCategories.category.slug}-p${page}`;
         } else {
-            window.history.pushState('', document.title, pathname + '#' + sourcecat + '-' + catid + '-wpfd-' + triggerCategories.category.slug);
+            historyState = `#${sourcecat}-${catid}-wpfd-${triggerCategories.category.slug}`;
         }
+        window.history.pushState('', document.title, pathname + historyState);
 
+        // Update container and categories
         container.find('#current_category_slug_' + sourcecat).val(triggerCategories.category.slug);
         var sourcecategories = $(".wpfd-content-default.wpfd-content-multi[data-category=" + sourcecat + "]  .wpfd-template-categories").html();
         if (sourcecategories) {
@@ -872,6 +967,8 @@ jQuery(document).ready(function ($) {
             var html = template(triggerCategories);
             $(".wpfd-content-default.wpfd-content-multi[data-category=" + sourcecat + "] .wpfd-container-default").prepend(html);
         }
+
+        // Update breadcrumbs and initialize click events
         if (triggerCategories.category.breadcrumbs !== undefined) {
             $(".wpfd-content-multi[data-category=" + sourcecat + "] .breadcrumbs").html(triggerCategories.category.breadcrumbs);
         }
@@ -882,6 +979,7 @@ jQuery(document).ready(function ($) {
         default_breadcrum(sourcecat, catid, triggerCategories.category);
         default_initClick();
 
+        // Expand tree if present
         if (tree.length) {
             var currentTree = container.find('.wpfd-foldertree-default');
             currentTree.find('li').removeClass('selected');
@@ -906,6 +1004,7 @@ jQuery(document).ready(function ($) {
 
         }
 
+        // Hide download button and empty subcategories message if needed
         if ($(".wpfd-content-default.wpfd-content-multi[data-category=" + sourcecat + "] .wpfd-container-default > .wpfd-password-form").length) {
             hideDownloadAllBtn(sourcecat, true);
             $(".wpfd-content-default.wpfd-content-multi[data-category=" + sourcecat + "] .default-download-category").attr('href', '#');
@@ -920,31 +1019,32 @@ jQuery(document).ready(function ($) {
 
     // Local files cache trigger
     function wpfdDefaultFilesLocalCacheTrigger(triggerFiles, sourcecat, empty_files, fileAjaxUrl) {
+        var sourceCatSelector = ".wpfd-content-default.wpfd-content-multi[data-category=" + sourcecat + "]";
+
         if (typeof (triggerFiles.categoryPassword) !== 'undefined' && triggerFiles.categoryPassword.length) {
             hideDownloadAllBtn(sourcecat, true);
-            $(".wpfd-content-default.wpfd-content-multi[data-category=" + sourcecat + "] .default-download-category").attr('href', '#');
-            $(".wpfd-content-default.wpfd-content-multi[data-category=" + sourcecat + "] .wpfdcategory").hide();
-            $(".wpfd-content-default.wpfd-content-multi[data-category=" + sourcecat + "] .wpfd-container-default").empty();
-            $(".wpfd-content-default.wpfd-content-multi[data-category=" + sourcecat + "] .wpfd-container-default").append(triggerFiles.categoryPassword);
+            $(sourceCatSelector + " .default-download-category").attr('href', '#');
+            $(sourceCatSelector + " .wpfdcategory").hide();
+            $(sourceCatSelector + " .wpfd-container-default").empty().append(triggerFiles.categoryPassword);
         } else {
             if (triggerFiles.files.length) {
-                $(".wpfd-content-default.wpfd-content-multi[data-category=" + sourcecat + "]  .default-download-category").removeClass("display-download-category");
+                $(sourceCatSelector + " .default-download-category").removeClass("display-download-category");
             } else {
-                $(".wpfd-content-default.wpfd-content-multi[data-category=" + sourcecat + "]  .default-download-category").addClass("display-download-category");
+                $(sourceCatSelector + " .default-download-category").addClass("display-download-category");
             }
 
-            $(".wpfd-content-default.wpfd-content-multi[data-category=" + sourcecat + "]").after(triggerFiles.cache_pagination);
-            var sourcefiles = $(".wpfd-content-default.wpfd-content-multi[data-category=" + sourcecat + "]  .wpfd-template-files").html();
+            $(sourceCatSelector).after(triggerFiles.cache_pagination);
+
+            var sourcefiles = $(sourceCatSelector + " .wpfd-template-files").html();
             var template = Handlebars.compile(sourcefiles);
             var html = template(triggerFiles);
             html = $('<textarea/>').html(html).val();
-            $(".wpfd-content-default.wpfd-content-multi[data-category=" + sourcecat + "] .wpfd-container-default").append(html);
+            $(sourceCatSelector + " .wpfd-container-default").append(html);
 
             if (typeof (triggerFiles.filepasswords) !== 'undefined') {
                 $.each(triggerFiles.filepasswords, function( file_id, pw_form ) {
-                    $(".wpfd-content-default.wpfd-content-multi[data-category=" + sourcecat + "] .wpfd-container-default").find('.file[data-id="' + file_id + '"]').empty();
-                    $(".wpfd-content-default.wpfd-content-multi[data-category=" + sourcecat + "] .wpfd-container-default").find('.file[data-id="' + file_id + '"]').addClass('wpfd-password-protection-form');
-                    $(".wpfd-content-default.wpfd-content-multi[data-category=" + sourcecat + "] .wpfd-container-default").find('.file[data-id="' + file_id + '"]').append(pw_form);
+                    var fileSelector =  $(sourceCatSelector + " .wpfd-container-default").find('.file[data-id="' + file_id + '"]')
+                    $(fileSelector).empty().addClass('wpfd-password-protection-form').append(pw_form);
                 });
             }
 
@@ -952,219 +1052,11 @@ jQuery(document).ready(function ($) {
                 var upload_form_html = '<div class="wpfd-upload-form" style="margin: 20px 10px">';
                 upload_form_html += triggerFiles.uploadform;
                 upload_form_html += '</div>';
-                $(".wpfd-content-default.wpfd-content-multi[data-category=" + sourcecat + "] .wpfd-container-default").append(upload_form_html);
+                $(sourceCatSelector + " .wpfd-container-default").append(upload_form_html);
 
                 if (typeof (Wpfd) === 'undefined') {
                     Wpfd = {};
                 }
-
-                _wpfd_text = function (text) {
-                    if (typeof (l10n) !== 'undefined') {
-                        return l10n[text];
-                    }
-                    return text;
-                };
-
-                function toMB(mb) {
-                    return mb * 1024 * 1024;
-                }
-
-                var allowedExt = wpfdparams.allowed;
-                allowedExt = allowedExt.split(',');
-                allowedExt.sort();
-
-                var initUploader = function (currentContainer) {
-                    // Init the uploader
-                    var uploader = new Resumable({
-                        target: wpfdparams.wpfduploadajax + '?action=wpfd&task=files.upload&upload_from=front',
-                        query: {
-                            id_category: $(currentContainer).find('input[name=id_category]').val(),
-                        },
-                        fileParameterName: 'file_upload',
-                        simultaneousUploads: 2,
-                        maxFileSize: toMB(wpfdparams.maxFileSize),
-                        maxFileSizeErrorCallback: function (file) {
-                            bootbox.alert(file.name + ' ' + _wpfd_text('is too large, please upload file(s) less than ') + wpfdparams.maxFileSize + 'Mb!');
-                        },
-                        chunkSize: wpfdparams.serverUploadLimit - 50 * 1024, // Reduce 50KB to avoid error
-                        forceChunkSize: true,
-                        fileType: allowedExt,
-                        fileTypeErrorCallback: function (file) {
-                            bootbox.alert(file.name + ' cannot upload!<br/><br/>' + _wpfd_text('This type of file is not allowed to be uploaded. You can add new file types in the plugin configuration'));
-                        },
-                        generateUniqueIdentifier: function (file, event) {
-                            var relativePath = file.webkitRelativePath || file.fileName || file.name;
-                            var size = file.size;
-                            var prefix = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
-                            return (prefix + size + '-' + relativePath.replace(/[^0-9a-zA-Z_-]/img, ''));
-                        }
-                    });
-
-                    if (!uploader.support) {
-                        bootbox.alert(_wpfd_text('Your browser does not support HTML5 file uploads!'));
-                    }
-
-                    if (typeof (willUpload) === 'undefined') {
-                        var willUpload = true;
-                    }
-
-                    uploader.on('filesAdded', function (files) {
-                        files.forEach(function (file) {
-                            var progressBlock = '<div class="wpfd_process_block" id="' + file.uniqueIdentifier + '">'
-                                + '<div class="wpfd_process_fileinfo">'
-                                + '<span class="wpfd_process_filename">' + file.fileName + '</span>'
-                                + '<span class="wpfd_process_cancel">Cancel</span>'
-                                + '</div>'
-                                + '<div class="wpfd_process_full" style="display: block;">'
-                                + '<div class="wpfd_process_run" data-w="0" style="width: 0%;"></div>'
-                                + '</div></div>';
-
-                            //$('#preview', '.wpreview').before(progressBlock);
-                            currentContainer.find('#preview', '.wpreview').before(progressBlock);
-                            $(currentContainer).find('.wpfd_process_cancel').unbind('click').click(function () {
-                                fileID = $(this).parents('.wpfd_process_block').attr('id');
-                                fileObj = uploader.getFromUniqueIdentifier(fileID);
-                                uploader.removeFile(fileObj);
-                                $(this).parents('.wpfd_process_block').fadeOut('normal', function () {
-                                    $(this).remove();
-                                });
-
-                                if (uploader.files.length === 0) {
-                                    $(currentContainer).find('.wpfd_process_pause').fadeOut('normal', function () {
-                                        $(this).remove();
-                                    });
-                                }
-
-                                $.ajax({
-                                    url: wpfd_var.wpfduploadajax + '?action=wpfd&task=files.upload',
-                                    method: 'POST',
-                                    dataType: 'json',
-                                    data: {
-                                        id_category: $('input[name=id_category]').val(),
-                                        deleteChunks: fileID
-                                    },
-                                    success: function (res, stt) {
-                                        if (res.response === true) {
-                                        }
-                                    }
-                                })
-                            });
-                        });
-
-                        // Do not run uploader if no files added or upload same files again
-                        if (files.length > 0) {
-                            uploadPauseBtn = $(currentContainer).find('.wpreview').find('.wpfd_process_pause').length;
-                            restableBlock = $(currentContainer).find('.wpfd_process_block');
-
-                            if (!uploadPauseBtn) {
-                                restableBlock.before('<div class="wpfd_process_pause">Pause</div>');
-                                $(currentContainer).find('.wpfd_process_pause').unbind('click').click(function () {
-                                    if (uploader.isUploading()) {
-                                        uploader.pause();
-                                        $(this).text('Start');
-                                        $(this).addClass('paused');
-                                        willUpload = false;
-                                    } else {
-                                        uploader.upload();
-                                        $(this).text('Pause');
-                                        $(this).removeClass('paused');
-                                        willUpload = true;
-                                    }
-                                });
-                            }
-
-                            uploader.opts.query = {
-                                id_category: currentContainer.find('input[name=id_category]').val()
-                            };
-
-                            if (willUpload) uploader.upload();
-                        }
-                    });
-
-                    uploader.on('fileProgress', function (file) {
-                        $(currentContainer).find('.wpfd_process_block#' + file.uniqueIdentifier)
-                            .find('.wpfd_process_run').width(Math.floor(file.progress() * 100) + '%');
-                    });
-
-                    uploader.on('fileSuccess', function (file, res) {
-                        var thisUploadBlock = currentContainer.find('.wpfd_process_block#' + file.uniqueIdentifier);
-                        thisUploadBlock.find('.wpfd_process_cancel').addClass('uploadDone').text('OK').unbind('click');
-                        thisUploadBlock.find('.wpfd_process_full').remove();
-
-                        var response = JSON.parse(res);
-                        if (response.response === false && typeof(response.datas) !== 'undefined') {
-                            if (typeof(response.datas.code) !== 'undefined' && response.datas.code > 20) {
-                                bootbox.alert('<div>' + response.datas.message + '</div>');
-                                return false;
-                            }
-                        }
-                        if (typeof(response) === 'string') {
-                            bootbox.alert('<div>' + response + '</div>');
-                            return false;
-                        }
-
-                        if (response.response !== true) {
-                            bootbox.alert(response.response);
-                            return false;
-                        }
-                    });
-
-                    uploader.on('fileError', function (file, msg) {
-                        thisUploadBlock = currentContainer.find('.wpfd_process_block#' + file.uniqueIdentifier);
-                        thisUploadBlock.find('.wpfd_process_cancel').addClass('uploadError').text('Error').unbind('click');
-                        thisUploadBlock.find('.wpfd_process_full').remove();
-                    });
-
-                    uploader.on('complete', function () {
-                        var fileCount  = $(currentContainer).find('.wpfd_process_cancel').length;
-                        var categoryId = $(currentContainer).find('input[name=id_category]').val();
-                        var ajax_url = typeof (wpfdparams.wpfduploadajax) !== 'undefined' ? wpfdparams.wpfduploadajax : wpfd_var.wpfduploadajax;
-                        $.ajax({
-                            url: ajax_url + '?action=wpfd&task=files.wpfdPendingUploadFiles',
-                            method: 'POST',
-                            dataType: 'json',
-                            data: {
-                                uploadedFiles: fileCount,
-                                id_category: categoryId,
-                            },
-                            success: function (res) {
-                                currentContainer.find('.progress').delay(300).fadeIn(300).hide(300, function () {
-                                    $(this).remove();
-                                });
-                                currentContainer.find('.uploaded').delay(300).fadeIn(300).hide(300, function () {
-                                    $(this).remove();
-                                });
-                                $('#wpreview .file').delay(1200).show(1200, function () {
-                                    $(this).removeClass('done placeholder');
-                                });
-
-                                $('.gritter-item-wrapper ').remove();
-                                $(currentContainer).find('#wpfd-upload-messages').append(wpfdparams.translates.msg_upload_file);
-                                $(currentContainer).find('#wpfd-upload-messages').delay(1200).fadeIn(1200, function () {
-                                    $(currentContainer).find('#wpfd-upload-messages').empty();
-                                    $(currentContainer).find('.wpfd_process_pause').remove();
-                                    $(currentContainer).find('.wpfd_process_block').remove();
-                                });
-
-                                // Call list files
-                                if (currentContainer.parent('.wpfd-upload-form').length) {
-                                    // Refresh uploaded files on caching
-                                    if (wpfdDefaultFilesLocalCache.exist(fileAjaxUrl)) {
-                                        wpfdDefaultFilesLocalCache.remove(fileAjaxUrl);
-                                    }
-                                    var sourcecat         = currentContainer.parents('.wpfd-content.wpfd-content-multi').data('category');
-                                    var current_category  = currentContainer.parents('.wpfd-content.wpfd-content-multi').find('#current_category_' + sourcecat).val();
-
-                                    default_load(sourcecat, current_category);
-                                    return false;
-                                }
-                            }
-                        });
-                    });
-
-                    uploader.assignBrowse($(currentContainer).find('#upload_button'));
-                    uploader.assignDrop($(currentContainer).find('.jsWpfdFrontUpload'));
-                };
 
                 var containers = $(".wpfd-content-default.wpfd-content-multi[data-category=" + sourcecat + "] div[class*=wpfdUploadForm]");
                 if (containers.length > 0) {
@@ -1355,18 +1247,20 @@ jQuery(document).ready(function ($) {
     wpfdDefaultDisplayDownloadedFiles();
 
     function wpfdDefaultDownloadFiles() {
-        $('.file.png .wpfd_downloadlink, .file.jpg .wpfd_downloadlink, .file.jpeg .wpfd_downloadlink, .file.gif .wpfd_downloadlink').on('click', function (event) {
-            event.preventDefault();
-            var fileId = $(this).parents('.file').data('id');
-            var categoryId = $(this).parents('.file').data('catid');
-            var cloudType = $(this).parents('.wpfd-content-default').find('.wpfd_root_category_type').val();
+        if (!wpfdparams.offRedirectLinkDownloadImageFile) {
+            $('.file.png .wpfd_downloadlink, .file.jpg .wpfd_downloadlink, .file.jpeg .wpfd_downloadlink, .file.gif .wpfd_downloadlink').on('click', function (event) {
+                event.preventDefault();
+                var fileId = $(this).parents('.file').data('id');
+                var categoryId = $(this).parents('.file').data('catid');
+                var cloudType = $(this).parents('.wpfd-content-default').find('.wpfd_root_category_type').val();
 
-            if (!fileId || !categoryId) {
-                return false;
-            }
+                if (!fileId || !categoryId) {
+                    return false;
+                }
 
-            window.location.href = wpfdparams.site_url + "?wpfd_action=wpfd_download_file&wpfd_file_id=" + fileId + "&wpfd_category_id=" + categoryId + "&cloudType=" + cloudType;
-        });
+                window.location.href = wpfdparams.site_url + "?wpfd_action=wpfd_download_file&wpfd_file_id=" + fileId + "&wpfd_category_id=" + categoryId + "&cloudType=" + cloudType;
+            });
+        }
     }
     wpfdDefaultDownloadFiles();
 });

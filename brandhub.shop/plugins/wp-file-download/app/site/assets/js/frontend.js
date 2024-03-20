@@ -160,19 +160,29 @@ jQuery(document).ready(function($) {
         }
     }
 
+    setTimeout(function() {
+        if ($('.wpfd_root_category_default_open').length > 0) {
+            $('.wpfd_root_category_default_open').each(function() {
+                $('.wpfdcategory.catlink[data-idcat="'+$(this).val()+'"]').trigger('click');
+            });
+        }
+    }, 1000);
+
     function wpfdDownloadFiles() {
-        $('.wpfd-single-file.png .wpfd_downloadlink, .wpfd-single-file.jpg .wpfd_downloadlink, .wpfd-single-file.jpeg .wpfd_downloadlink, .wpfd-single-file.gif .wpfd_downloadlink').on('click', function (event) {
-            event.preventDefault();
-            var fileId = $(this).parents('.wpfd-single-file').data('id');
-            var categoryId = $(this).parents('.wpfd-single-file').data('catid');
-            var cloudType = $(this).parents('.wpfd-single-file').find('.wpfd_root_category_type').val();
+        if (!wpfdparams.offRedirectLinkDownloadImageFile) {
+            $('.wpfd-single-file.png .wpfd_downloadlink, .wpfd-single-file.jpg .wpfd_downloadlink, .wpfd-single-file.jpeg .wpfd_downloadlink, .wpfd-single-file.gif .wpfd_downloadlink').on('click', function (event) {
+                event.preventDefault();
+                var fileId = $(this).parents('.wpfd-single-file').data('id');
+                var categoryId = $(this).parents('.wpfd-single-file').data('catid');
+                var cloudType = $(this).parents('.wpfd-single-file').find('.wpfd_root_category_type').val();
 
-            if (!fileId || !categoryId) {
-                return false;
-            }
+                if (!fileId || !categoryId) {
+                    return false;
+                }
 
-            window.location.href = wpfdparams.site_url + "?wpfd_action=wpfd_download_file&wpfd_file_id=" + fileId + "&wpfd_category_id=" + categoryId + "&cloudType=" + cloudType;
-        });
+                window.location.href = wpfdparams.site_url + "?wpfd_action=wpfd_download_file&wpfd_file_id=" + fileId + "&wpfd_category_id=" + categoryId + "&cloudType=" + cloudType;
+            });
+        }
     }
     wpfdDownloadFiles();
 });

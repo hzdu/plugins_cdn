@@ -3495,12 +3495,11 @@ jQuery(document).ready(function ($) {
         // Do not run uploader if no files added or upload same files again
         if (files.length > 0) {
             files.forEach(function (file) {
-                Wpfd.log(file.uniqueIdentifier + ' added to upload queue!');
-                wpfd_status.progressAdd(file.uniqueIdentifier, file.fileName, $('input[name=id_category]').val());
-
                 if (typeof (file.relativePath) !== 'undefined' && file.relativePath.indexOf('/') !== -1 && !Wpfd.directoryUpload) {
                     Wpfd.directoryUpload = true;
                 }
+                Wpfd.log(file.uniqueIdentifier + ' added to upload queue!');
+                wpfd_status.progressAdd(file.uniqueIdentifier, file.fileName, $('input[name=id_category]').val(), Wpfd.directoryUpload);
             });
         }
     }
@@ -3510,9 +3509,7 @@ jQuery(document).ready(function ($) {
             bootbox.alert(wpfd_permissions.translate.wpfd_edit_category);
             return false;
         }
-
         processFiles(files);
-
     });
 
     Wpfd.uploader.on('createFolders', function (files) {
@@ -3530,47 +3527,22 @@ jQuery(document).ready(function ($) {
         // get unique value (not empty value)
         paths = paths.filter( function(item, i, ar) { return item && ar.indexOf(item) === i } );
         if (paths.length > 0) {
-            // Save current paths into localstorage
-            var savedPaths = window.localStorage.getItem('uploading_paths');
-            if (!savedPaths) {
-                savedPaths = new Object();
-                savedPaths[currentRootCat] = paths;
-            } else {
-                savedPaths = JSON.parse(savedPaths);
-                if (savedPaths.hasOwnProperty(currentRootCat)) {
-
-                    let unExistPaths = [];
-                    for (let i = 0; i < paths.length; i++) {
-                        if (!savedPaths[currentRootCat].includes(paths[i])) {
-                            unExistPaths.push(paths[i]);
-                        }
+            var categoryType = $('#categorieslist li[data-id-category="' + currentRootCat + '"]').data('type');
+            // Send ajax to initial categories
+            $.ajax({
+                url: wpfdajaxurl + 'task=categories.createCategoriesDeep',
+                data: {
+                    paths: paths.join('|'),
+                    category_id: currentRootCat,
+                    type: categoryType
+                },
+                method: 'POST',
+                success: function (data) {
+                    if (data.success) {
+                        Wpfd.reloadCategoryTree();
                     }
-                    paths = unExistPaths.slice();
-                    savedPaths[currentRootCat] = savedPaths[currentRootCat].concat(paths);
-                } else {
-                    savedPaths[currentRootCat] = paths;
                 }
-            }
-            window.localStorage.setItem('uploading_paths', JSON.stringify(savedPaths));
-
-            if (paths && paths.length > 0) {
-                var categoryType = $('#categorieslist li[data-id-category="' + currentRootCat + '"]').data('type');
-                // Send ajax to initial categories
-                $.ajax({
-                    url: wpfdajaxurl + 'task=categories.createCategoriesDeep',
-                    data: {
-                        paths: paths.join('|'),
-                        category_id: currentRootCat,
-                        type: categoryType
-                    },
-                    method: 'POST',
-                    success: function (data) {
-                        if (data.success) {
-                            Wpfd.reloadCategoryTree();
-                        }
-                    }
-                });
-            }
+            });
         }
     });
 

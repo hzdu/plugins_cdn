@@ -57,7 +57,7 @@ var wpfd_status = {
     this.maximize();
     return statusLine;
   },
-  progressAdd: function (prgId, fileName, fileCatId) {
+  progressAdd: function (prgId, fileName, fileCatId, directoryUpload) {
     var file = Wpfd.uploader.getFromUniqueIdentifier(prgId);
     var catIdFromPrgId = prgId.split('|||').slice(0, 1).shift();
     fileCatId = catIdFromPrgId || fileCatId;
@@ -80,13 +80,21 @@ var wpfd_status = {
       id_category: fileCatId,
     });
 
-    for (var num = 1; num <= Wpfd.uploader.getOpt('simultaneousUploads'); num++) {
-      if (typeof(file.chunks[num - 1]) !== 'undefined') {
-        if (file.chunks[num - 1].status() === 'pending' && file.chunks[num - 1].preprocessState === 0) {
-          file.chunks[num - 1].send();
+    if (!directoryUpload) {
+      for (var num = 1; num <= Wpfd.uploader.getOpt('simultaneousUploads'); num++) {
+        if (typeof(file.chunks[num - 1]) !== 'undefined') {
+          if (file.chunks[num - 1].status() === 'pending' && file.chunks[num - 1].preprocessState === 0) {
+            file.chunks[num - 1].send();
+          }
         }
       }
+    } else {
+      setTimeout(function() {
+        file.upload();
+      }, 3000);
     }
+
+
     // Show status box
     this.maximize();
 

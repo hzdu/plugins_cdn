@@ -13,6 +13,7 @@
 $image-theme-path: '../../../assets/images/theme' !default;
 
 #et-boc .wpfd-content-table, .wpfd-content-table {
+  max-width: 100% !important;
   ul.jaofiletree {
     li.selected {
       > a {
@@ -51,6 +52,7 @@ $image-theme-path: '../../../assets/images/theme' !default;
   .wpfd-theme-rows {
     th.wpfd-last-col-table {
       min-width: 120px;
+      padding-right: 30px !important;
     }
   }
   a {
@@ -518,6 +520,8 @@ $image-theme-path: '../../../assets/images/theme' !default;
   .mediaTableWrapperWithMenu {
     position: relative;
     padding: 0;
+    width: 100%;
+    overflow: auto;
   }
   .mediaTableMenu {
     display: none;

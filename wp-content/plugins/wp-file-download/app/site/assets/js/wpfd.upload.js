@@ -37,16 +37,17 @@ jQuery(document).ready(function ($) {
                 id_category: $(currentContainer).find('input[name=id_category]').val(),
             },
             fileParameterName: 'file_upload',
-            simultaneousUploads: 2,
+            simultaneousUploads: 1,
+            maxChunkRetries: 1,
             maxFileSize: toMB(wpfd_admin.maxFileSize),
             maxFileSizeErrorCallback: function (file) {
-                bootbox.alert(file.name + ' ' + _wpfd_text('is too large, please upload file(s) less than ') + wpfd_admin.maxFileSize + 'Mb!');
+                alert(file.name + ' ' + _wpfd_text('is too large, please upload file(s) less than ') + wpfd_admin.maxFileSize + 'Mb!');
             },
             chunkSize: wpfd_admin.serverUploadLimit - 50 * 1024, // Reduce 50KB to avoid error
             forceChunkSize: true,
             fileType: allowedExt,
             fileTypeErrorCallback: function (file) {
-                bootbox.alert(file.name + ' cannot upload!<br/><br/>' + _wpfd_text('This type of file is not allowed to be uploaded. You can add new file types in the plugin configuration'));
+                alert(file.name + ' cannot upload!<br/><br/>' + _wpfd_text('This type of file is not allowed to be uploaded. You can add new file types in the plugin configuration'));
             },
             generateUniqueIdentifier: function (file, event) {
                 var relativePath = file.webkitRelativePath || file.fileName || file.name;
@@ -57,7 +58,7 @@ jQuery(document).ready(function ($) {
         });
 
         if (!uploader.support) {
-            bootbox.alert(_wpfd_text('Your browser does not support HTML5 file uploads!'));
+            alert(_wpfd_text('Your browser does not support HTML5 file uploads!'));
         }
 
         if (typeof (willUpload) === 'undefined') {
@@ -133,9 +134,41 @@ jQuery(document).ready(function ($) {
                     id_category: currentContainer.find('input[name=id_category]').val()
                 };
 
-                if (willUpload) uploader.upload();
+                if (willUpload) {
+                    setTimeout( function() {uploader.upload();}, 1000);
+                }
             }
         });
+
+        uploader.on('createFolders', function (files) {
+            var currentRootCat = currentContainer.find('input[name=id_category]').val()
+            // Prepare category tree
+            var paths = files.map(function(file) {
+                if (file.hasOwnProperty('catId')) {
+                    currentRootCat = file.catId;
+                }
+                var filePath = (file.hasOwnProperty('relativePath')) ? file.relativePath : file.webkitRelativePath;
+                var namePos = filePath.lastIndexOf(file.name);
+                return filePath.substr(0,namePos);
+            });
+            // get unique value (not empty value)
+            paths = paths.filter( function(item, i, ar) { return item && ar.indexOf(item) === i } );
+            if (paths.length > 0) {
+                var categoryType = currentContainer.find('input[name=category_type]').val();
+                // Send ajax to initial categories
+                $.ajax({
+                    url: wpfd_var.wpfdajaxurl + '?action=wpfd&task=categories.createCategoriesDeep',
+                    data: {
+                        paths: paths.join('|'),
+                        category_id: currentRootCat,
+                        type: categoryType
+                    },
+                    method: 'POST',
+                    success: function (data) {
+                    }
+                });
+            }
+        })
 
         uploader.on('fileProgress', function (file) {
             $(currentContainer).find('.wpfd_process_block#' + file.uniqueIdentifier)
@@ -150,17 +183,17 @@ jQuery(document).ready(function ($) {
             var response = JSON.parse(res);
             if (response.response === false && typeof(response.datas) !== 'undefined') {
                 if (typeof(response.datas.code) !== 'undefined' && response.datas.code > 20) {
-                    bootbox.alert('<div>' + response.datas.message + '</div>');
+                    alert('<div>' + response.datas.message + '</div>');
                     return false;
                 }
             }
             if (typeof(response) === 'string') {
-                bootbox.alert('<div>' + response + '</div>');
+                alert('<div>' + response + '</div>');
                 return false;
             }
 
             if (response.response !== true) {
-                bootbox.alert(response.response);
+                alert(response.response);
                 return false;
             }
         });
@@ -172,6 +205,93 @@ jQuery(document).ready(function ($) {
         });
 
         uploader.on('complete', function () {
+            //load sub categories
+            var currentRootCat = currentContainer.find('input[name=id_category]').val()
+            var sourcecat = currentContainer.parents('.wpfd-content.wpfd-content-multi').data('category');
+            var theme = currentContainer.parents('.wpfd-content.wpfd-content-multi[data-category=' + sourcecat + ']').find('.wpfd_root_category_theme').val();
+            var cloneThemeType = currentContainer.parents('.wpfd-content.wpfd-content-multi[data-category=' + sourcecat + ']').find('.wpfd_root_category_clone_theme_type').val();
+
+            var wpfd_tree = (theme == 'tree' || cloneThemeType == 'tree') ? $('.wpfd-content[data-category="'+sourcecat+'"] .wpfd-tree-categories-files') : $('.wpfd-content[data-category="'+sourcecat+'"] .wpfd-foldertree');
+            if (wpfd_tree.length) {
+                wpfd_tree.jaofiletree({
+                    script: wpfd_var.wpfdajaxurl + '?juwpfisadmin=false&action=wpfd&task=categories.getCats',
+                    usecheckboxes: false,
+                    root: sourcecat,
+                    expanded: parseInt(wpfdparams.allow_category_tree_expanded) === 1 ? true : false
+                });
+            }
+
+            if (sourcecat != undefined) {
+                var categoryAjaxUrl = wpfdparams.wpfdajaxurl + "task=categories.display&view=categories&id=" + currentRootCat + "&top=" + sourcecat;
+                setTimeout(function () {
+                    $.ajax({
+                        url: categoryAjaxUrl,
+                        dataType: "json"
+                    }).done(function (categories) {
+                        var sourcecategories = $(".wpfd-content[data-category=" + sourcecat + "] .wpfd-template-categories").html();
+                        if (theme == 'tree' || cloneThemeType == 'tree') {
+                            sourcecategories = $("#wpfd-template-tree-categories").html();
+                        } else if (cloneThemeType == 'table' || theme == 'table') {
+                            sourcecategories = $("#wpfd-template-"+theme+"-categories-" + sourcecat).html();
+                        }
+
+                        if (sourcecategories) {
+                            var template = Handlebars.compile(sourcecategories);
+                            var html = template(categories);
+
+                            if (theme == 'tree' || cloneThemeType == 'tree') {
+                                if (categories.categories.length > 0) {
+                                    var list     = $(".wpfd-content-tree[data-category=" + sourcecat + "] > ul:not(.breadcrumbs)");
+                                    list.find('li.directory').remove();
+                                    list.append(html);
+
+                                    var tree_cParents = {};
+                                    var current_category_obj = categories.category;
+                                    var sourceCatName = $(".wpfd-content-tree[data-category=" + sourcecat + "]").find('.wpfd-category-theme-title').text();
+                                    if (sourcecat == 'all_0') {
+                                        tree_cParents[sourcecat] = {parent: 0, term_id: 0, name: wpfdparams.translates.wpfd_all_categories};
+                                    } else {
+                                        tree_cParents[sourcecat] = {parent: 0, term_id: parseInt(sourcecat), name: sourceCatName};
+                                    }
+
+                                    tree_cParents[current_category_obj.term_id] = {parent: current_category_obj.parent, term_id: current_category_obj.term_id, name: current_category_obj.name};
+
+                                    var listChildCategories = categories.categories;
+                                    for (var i = 0; i < listChildCategories.length; i++) {
+                                        var childCategory = listChildCategories[i];
+                                        tree_cParents[childCategory.term_id] = {parent: childCategory.parent, term_id: childCategory.term_id, name: childCategory.name};
+                                    }
+
+                                    $(".wpfd-content-tree[data-category=" + sourcecat + "] a.catlink:not(.breadcrumbs a.catlink)").unbind('click.cat').bind('click.cat', function (e) {
+                                        e.preventDefault();
+                                        tree_load($(this).parents('.wpfd-content-tree').data('category'), $(this).data('idcat'), $(this));
+                                        tree_breadcrum($(this).parents('.wpfd-content-tree').data('category'), $(this).data('idcat'), $(this), tree_cParents);
+                                    });
+                                }
+                            } else {
+                                if ($(".wpfd-content[data-category=" + sourcecat + "] .wpfd-categories").length) {
+                                    $(".wpfd-content[data-category=" + sourcecat + "] .wpfd-categories").remove();
+                                }
+                                $(".wpfd-content[data-category=" + sourcecat + "] .wpfd-container-"+theme).prepend(html);
+
+                                if ($(".wpfd-content[data-category=" + sourcecat + "] .wpfd-container-"+theme).find('.wpfd-categories .wpfdcategory.catlink').length == 0) {
+                                    var html_category_list = '';
+                                    var class_sourcecategories = '';
+                                    if (cloneThemeType == 'preview' || theme == 'preview') {
+                                        class_sourcecategories = 'preview_category';
+                                    }
+                                    for (var i = 0; i < categories.categories.length; i++) {
+                                        html_category_list += '<a class="wpfdcategory catlink '+class_sourcecategories+'" style="margin : 10px 10px 10px 10px;" href="#" data-idcat="'+categories.categories[i].term_id+'" title="'+categories.categories[i].name+'"><span>'+categories.categories[i].name+'</span><i class="zmdi zmdi-folder wpfd-folder"></i></a>';
+                                    }
+                                    $(".wpfd-content[data-category=" + sourcecat + "] .wpfd-container-"+theme).find('.wpfd-categories').append(html_category_list);
+                                }
+                            }
+
+                        }
+                    })
+                }, 100);
+            }
+            
             var fileCount  = $(currentContainer).find('.wpfd_process_cancel').length;
             var categoryId = $(currentContainer).find('input[name=id_category]').val();
 
@@ -513,9 +633,23 @@ jQuery(document).ready(function ($) {
                     }
                 }
             });
+            
+            var wpfd_upload_type = $(currentContainer).find('input[name=wpfd_upload_type]');
+            if (wpfd_upload_type.length) {
+                $.ajax({
+                    url: wpfd_var.wpfdajaxurl + '?juwpfisadmin=false&action=wpfd&task=categories.getTreeCats',
+                    method: 'POST',
+                    success: function (res) {
+                        if (res.success === true) {
+                            $(currentContainer).find('#wpfd-upload-category-target').html(res.data);
+                        }
+                    }
+                });
+            }
         });
 
         uploader.assignBrowse($(currentContainer).find('#upload_button'));
+        uploader.assignBrowse($(currentContainer).find('#upload_folder_button'), true);
         uploader.assignDrop($(currentContainer).find('.jsWpfdFrontUpload'));
     }
 
@@ -528,8 +662,10 @@ jQuery(document).ready(function ($) {
             if ($(el).find('#wpfd-upload-category-target').length) {
                 $(el).find('#wpfd-upload-category-target').on('change', function () {
                     var category_target_id = $(this).val();
+                    var category_target_type = $(this).find('option:selected').data('type');
                     var containerData      = $(el).data('container');
                     $(this).parents('.jsWpfdFrontUpload').find('#id_category').val(category_target_id);
+                    $(this).parents('.jsWpfdFrontUpload').find('#category_type').val(category_target_type);
                 });
             }
         });

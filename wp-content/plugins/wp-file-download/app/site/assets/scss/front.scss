@@ -266,7 +266,6 @@ ul.head-category {
     border-radius: 10px;
     color: #fff;
     font-size: 14px;
-    margin: 5px 0 8px 8px;
     padding: 5px 30px;
     text-align: center;
     text-decoration: none;
@@ -300,6 +299,15 @@ ul.head-category {
       line-height: 18px;
     }
   }
+
+  a[class*="-download-category"] {
+    margin: 5px 0 8px 8px;
+  }
+
+  a[class*="-download-selected"] {
+    margin: 10px 0 20px 10px;
+  }
+
   .zmdi {
     font-family: Material-Design-Iconic-Font !important;
   }
@@ -422,20 +430,23 @@ ul.head-category {
     color: #8f8f8f;
     box-sizing: border-box;
     height: 49px;
-    padding: 15px 20px;
+    padding: 15px 10px;
     text-decoration: none;
     background: #fff;
-    display: inline-block;
+    //display: inline-block;
     font-weight: normal;
     border: 1px solid #cccccc;
     border-radius: 6px;
     text-align: left;
     /* IE is so silly */
-    flex: 1 0 165px;
-    min-width: 165px;
+    flex: 0 0 180px;
+    min-width: 180px;
     overflow: hidden;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
     @media screen and (max-width: 1024px) {
-      flex: 1 0 150px;
+      flex: 0 0 150px;
       min-width: 150px;
     }
     > span {
@@ -444,7 +455,7 @@ ul.head-category {
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
-      margin-top: -3px;
+      margin-top: -1px;
       font-weight: normal;
       text-align: left;
       padding-left: 10px;
@@ -452,6 +463,7 @@ ul.head-category {
       vertical-align: baseline;
       max-width: 150px;
       box-sizing: border-box;
+      align-self: center;
       @media screen and (max-width: 420px) {
         max-width: calc(100% - 22px);
       }
