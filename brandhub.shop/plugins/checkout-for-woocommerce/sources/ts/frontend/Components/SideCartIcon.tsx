@@ -10,18 +10,7 @@ const SideCartIcon = ( { additionalClass = '' } ) => {
 
     return (
         <div className={`cfw-side-cart-quantity-wrap ${additionalClass}`}>
-            <SVG
-                preProcessor={( svg ) => {
-                    // Do any SVG elements have a stroke attribute? If not add cfw-side-cart-icon-solid class to SVG
-                    const hasStroke = svg.includes( 'stroke' );
-                    if ( !hasStroke ) {
-                        svg = svg.replace( '<svg ', '<svg class="cfw-side-cart-icon-solid" ' );
-                    }
-
-                    return svg;
-                }}
-                src={DataService.getSetting( 'cart_icon_url' )}
-            />
+            <SVG src={DataService.getSetting( 'cart_icon_contents' )} />
 
             {/* Note: Always output the quantity even if it is hidden so people can show it if they want to */}
             <div className={`cfw-side-cart-quantity ${totals.quantity === 0 ? 'cfw-hidden' : ''}`} dangerouslySetInnerHTML={{ __html: totals.quantity }}></div>

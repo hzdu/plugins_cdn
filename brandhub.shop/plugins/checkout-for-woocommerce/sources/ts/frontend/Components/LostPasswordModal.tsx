@@ -38,6 +38,14 @@ const LostPasswordModal: React.FC = () => {
             return false;
         } );
 
+        jQuery( document.body ).on( 'click', '#cfw-login-alert-container .cfw-alert-error a', ( e ) => {
+            e.preventDefault();
+
+            openModal();
+
+            return false;
+        } );
+
         // Lost password form submit handler
         jQuery( document.body ).on( `submit.${id}`, `.${id} #cfw_lost_password_form`, onSubmit );
 

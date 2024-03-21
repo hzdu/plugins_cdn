@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Checkout for WooCommerce\n"
-"POT-Creation-Date: 2024-03-11 12:13-0400\n"
+"POT-Creation-Date: 2024-03-19 10:50-0400\n"
 "PO-Revision-Date: 2017-10-14 11:44-0400\n"
 "Last-Translator: \n"
 "Language-Team: support@checkoutwc.com\n"
@@ -24,6 +24,7 @@ msgstr ""
 "X-Poedit-SearchPathExcluded-2: node_modules\n"
 "X-Poedit-SearchPathExcluded-3: */node_modules/*\n"
 "X-Poedit-SearchPathExcluded-4: *.js\n"
+"X-Poedit-SearchPathExcluded-5: vendor-prefixed\n"
 
 #: sources/ts/blocks/OrderBumpSteps.tsx:21
 #: includes/API/AfterCheckoutBumpProductFormAPI.php:54
@@ -41,7 +42,7 @@ msgid "Order Received"
 msgstr ""
 
 #: sources/ts/frontend/Components/LoginFormModal.tsx:120
-#: sources/php/functions.php:3977
+#: sources/php/functions.php:3572
 msgid "Welcome back"
 msgstr ""
 
@@ -57,16 +58,12 @@ msgid "Method"
 msgstr ""
 
 #: sources/ts/frontend/Components/ReviewPane/OrderReviewStepReviewPane.tsx:39
-#: sources/php/functions.php:1384 sources/php/template-functions.php:1603
-#: sources/php/template-functions.php:1908
+#: sources/php/functions.php:956 sources/php/template-functions.php:1628
+#: sources/php/template-functions.php:1933
 msgid "Payment"
 msgstr ""
 
-#: sources/ts/frontend/Components/ReviewPane/ReviewPaneItem.tsx:19
-msgid "Change"
-msgstr ""
-
-#: sources/ts/frontend/Components/SideCartComponent.tsx:39
+#: sources/ts/frontend/Components/SideCartComponent.tsx:35
 msgid "Close Cart"
 msgstr ""
 
@@ -112,7 +109,7 @@ msgstr ""
 
 #: includes/API/GetVariationFormAPI.php:26
 #: includes/API/OrderBumpOfferFormPreview.php:39
-#: sources/php/functions.php:4095
+#: sources/php/functions.php:3690
 msgid "Product not found"
 msgstr ""
 
@@ -205,8 +202,8 @@ msgstr ""
 
 #: includes/Compatibility/Gateways/PayPalForWooCommerce.php:178
 #: sources/php/template-functions.php:650
-#: sources/php/template-functions.php:1018
-#: sources/php/template-functions.php:1638
+#: sources/php/template-functions.php:1025
+#: sources/php/template-functions.php:1663
 msgid "Billing address"
 msgstr ""
 
@@ -223,13 +220,13 @@ msgstr ""
 msgid "You have been unsubscribed from our cart reminder emails."
 msgstr ""
 
-#: includes/Features/AbandonedCartRecovery.php:627
-#: sources/php/functions.php:1324
+#: includes/Features/AbandonedCartRecovery.php:635
+#: sources/php/functions.php:896
 msgid "Complete Order"
 msgstr ""
 
-#: includes/Features/AbandonedCartRecovery.php:792
-#: includes/Features/AbandonedCartRecovery.php:856
+#: includes/Features/AbandonedCartRecovery.php:807
+#: includes/Features/AbandonedCartRecovery.php:871
 msgid "This order was abandoned and subsequently recovered."
 msgstr ""
 
@@ -274,7 +271,7 @@ msgid "Pick up in store"
 msgstr ""
 
 #: includes/Features/LocalPickup.php:520
-#: includes/Managers/AssetManager.php:638
+#: includes/Managers/AssetManager.php:651
 msgid "Pickup"
 msgstr ""
 
@@ -311,91 +308,95 @@ msgid "Usually ready in 5+ days."
 msgstr ""
 
 #: includes/Features/OrderReviewStep.php:67
-#: sources/php/template-functions.php:1908
+#: sources/php/template-functions.php:1933
 msgid "Review"
 msgstr ""
 
-#: includes/Features/SideCart.php:458 includes/Features/SideCart.php:810
+#: includes/Features/SideCart.php:445 includes/Features/SideCart.php:679
 msgid "Congrats! You get free standard shipping."
 msgstr ""
 
 #. translators: %s is the amount remaining for free shipping
-#: includes/Features/SideCart.php:472 includes/Features/SideCart.php:824
+#: includes/Features/SideCart.php:459 includes/Features/SideCart.php:693
 #, php-format
 msgid "You're %s away from free shipping!"
 msgstr ""
 
-#: includes/Managers/AssetManager.php:620
+#: includes/Managers/AssetManager.php:633
 msgid "Please enter a valid phone number."
 msgstr ""
 
-#: includes/Managers/AssetManager.php:629
+#: includes/Managers/AssetManager.php:642
 msgid "Please enter your first and last name."
 msgstr ""
 
-#: includes/Managers/AssetManager.php:630
+#: includes/Managers/AssetManager.php:643
 #: sources/php/template-functions.php:660
-#: sources/php/template-functions.php:1622
+#: sources/php/template-functions.php:1647
 msgid "Shipping address"
 msgstr ""
 
-#: includes/Managers/AssetManager.php:631
-#: includes/Managers/AssetManager.php:792
+#: includes/Managers/AssetManager.php:644
+#: includes/Managers/AssetManager.php:807
 msgid "Please enter a new quantity:"
 msgstr ""
 
-#: includes/Managers/AssetManager.php:632
+#: includes/Managers/AssetManager.php:645
 msgid ""
 "3-digit security code usually found on the back of your card. American "
 "Express cards have a 4-digit code located on the front."
 msgstr ""
 
-#: includes/Managers/AssetManager.php:633
-#: includes/Managers/AssetManager.php:793
+#: includes/Managers/AssetManager.php:646
+#: includes/Managers/AssetManager.php:808
 msgid "Are you sure you want to remove this item from your cart?"
 msgstr ""
 
-#: includes/Managers/AssetManager.php:637
+#: includes/Managers/AssetManager.php:650
 msgid "Please enter a valid postcode / ZIP."
 msgstr ""
 
-#: includes/Managers/AssetManager.php:650
+#: includes/Managers/AssetManager.php:652
+msgid "Continue to pickup"
+msgstr ""
+
+#: includes/Managers/AssetManager.php:664
 msgid "Start with post/zip code or street"
 msgstr ""
 
-#: includes/Managers/AssetManager.php:651
+#: includes/Managers/AssetManager.php:665
 msgid "Shipping method"
 msgstr ""
 
-#: includes/Managers/AssetManager.php:806
+#: includes/Managers/AssetManager.php:821
 msgid "Apply"
 msgstr ""
 
-#: includes/Managers/AssetManager.php:815
+#: includes/Managers/AssetManager.php:830
 msgid "Have a promo code? Click here."
 msgstr ""
 
-#: includes/Managers/AssetManager.php:824
+#: includes/Managers/AssetManager.php:839
 msgid "Promo Code"
 msgstr ""
 
-#: includes/Managers/AssetManager.php:833
+#: includes/Managers/AssetManager.php:848
 msgid "Enter Promo Code"
 msgstr ""
 
-#: includes/Managers/AssetManager.php:834
+#: includes/Managers/AssetManager.php:849
 msgid "Remove this item"
 msgstr ""
 
-#: includes/Managers/AssetManager.php:835
+#: includes/Managers/AssetManager.php:850
 msgid "Proceed to checkout"
 msgstr ""
 
-#: includes/Managers/AssetManager.php:836
+#: includes/Managers/AssetManager.php:851
 msgid "Continue shopping"
 msgstr ""
 
-#: includes/Managers/AssetManager.php:837
+#: includes/Managers/AssetManager.php:852
 msgid "Edit"
 msgstr ""
 
@@ -407,94 +408,86 @@ msgstr ""
 msgid "Ship to"
 msgstr ""
 
-#: sources/php/functions.php:458
-#, php-format
-msgctxt "shipping packages"
-msgid "Shipping"
-msgid_plural "Shipping %d"
-msgstr[0] ""
-msgstr[1] ""
-
-#: sources/php/functions.php:1150
+#: sources/php/functions.php:722
 msgid "No shipping methods available"
 msgstr ""
 
-#: sources/php/functions.php:1410
+#: sources/php/functions.php:982
 msgid "All transactions are secure and encrypted."
 msgstr ""
 
-#: sources/php/functions.php:1432
+#: sources/php/functions.php:1004
 msgid "Your order is free. No payment is required."
 msgstr ""
 
-#: sources/php/functions.php:1475
+#: sources/php/functions.php:1047
 msgid "Same as shipping address"
 msgstr ""
 
-#: sources/php/functions.php:1483
+#: sources/php/functions.php:1055
 msgid "Use a different billing address"
 msgstr ""
 
-#: sources/php/functions.php:1717
+#: sources/php/functions.php:1289
 msgid "Return to cart"
 msgstr ""
 
-#: sources/php/functions.php:1756
+#: sources/php/functions.php:1328
 msgid "Continue to shipping"
 msgstr ""
 
-#: sources/php/functions.php:1779
+#: sources/php/functions.php:1351
 msgid "Continue to payment"
 msgstr ""
 
-#: sources/php/functions.php:1779 sources/php/functions.php:1818
+#: sources/php/functions.php:1351 sources/php/functions.php:1390
 msgid "Review order"
 msgstr ""
 
-#: sources/php/functions.php:1840
+#: sources/php/functions.php:1412
 msgid "Return to information"
 msgstr ""
 
-#: sources/php/functions.php:1862
+#: sources/php/functions.php:1434
 msgid "Return to shipping"
 msgstr ""
 
-#: sources/php/functions.php:1884
+#: sources/php/functions.php:1456
 msgid "Return to payment"
 msgstr ""
 
-#: sources/php/functions.php:2404
+#: sources/php/functions.php:1976
 msgid "Or"
 msgstr ""
 
-#: sources/php/functions.php:2632
+#: sources/php/functions.php:2203
 msgid "Decrement"
 msgstr ""
 
-#: sources/php/functions.php:2644
+#: sources/php/functions.php:2215
 msgid "Increment"
 msgstr ""
 
-#: sources/php/functions.php:3319
+#: sources/php/functions.php:2890
 msgid "Unsubscribe"
 msgstr ""
 
-#: sources/php/functions.php:3981
+#: sources/php/functions.php:3576
 msgid ""
 "It looks like you already have an account. Please enter your login details "
 "below."
 msgstr ""
 
-#: sources/php/functions.php:3984
+#: sources/php/functions.php:3579
 msgid ""
 "If you have shopped with us before, please enter your login details below."
 msgstr ""
 
-#: sources/php/functions.php:4041
+#: sources/php/functions.php:3636
 msgid "Or continue as guest"
 msgstr ""
 
-#: sources/php/functions.php:4111 sources/php/functions.php:4248
+#: sources/php/functions.php:3706 sources/php/functions.php:3843
 msgid "No thanks"
 msgstr ""
 
@@ -511,8 +504,8 @@ msgid "Express checkout"
 msgstr ""
 
 #: sources/php/template-functions.php:320
-#: sources/php/template-functions.php:1585
-#: sources/php/template-functions.php:1879
+#: sources/php/template-functions.php:1610
+#: sources/php/template-functions.php:1904
 msgid "Information"
 msgstr ""
 
@@ -549,7 +542,7 @@ msgid "Log out."
 msgstr ""
 
 #: sources/php/template-functions.php:640
-#: sources/php/template-functions.php:1615
+#: sources/php/template-functions.php:1640
 msgid "Billing and Shipping address"
 msgstr ""
 
@@ -558,110 +551,49 @@ msgstr ""
 msgid "Your Cart"
 msgstr ""
 
-#: sources/php/template-functions.php:1039
+#: sources/php/template-functions.php:1046
 msgid "Select the address that matches your card or payment method."
 msgstr ""
 
 #. translators: %s is the order number
-#: sources/php/template-functions.php:1352
+#: sources/php/template-functions.php:1377
 #, php-format
 msgid "Order %s"
 msgstr ""
 
 #. translators: %s is the billing first name
-#: sources/php/template-functions.php:1365
+#: sources/php/template-functions.php:1390
 #, php-format
 msgid "Thank you %s!"
 msgstr ""
 
-#: sources/php/template-functions.php:1469
+#: sources/php/template-functions.php:1494
 msgid "Order status"
 msgstr ""
 
-#: sources/php/template-functions.php:1500
+#: sources/php/template-functions.php:1525
 msgid "Order updates"
 msgstr ""
 
-#: sources/php/template-functions.php:1509
+#: sources/php/template-functions.php:1534
 msgid "You’ll get shipping and delivery updates by email."
 msgstr ""
 
-#: sources/php/template-functions.php:1599
+#: sources/php/template-functions.php:1624
 msgid "Contact information"
 msgstr ""
 
-#: sources/php/template-functions.php:1651
-#: sources/php/template-functions.php:1894
+#: sources/php/template-functions.php:1676
+#: sources/php/template-functions.php:1919
 msgid "Shipping"
 msgstr ""
 
-#: sources/php/template-functions.php:1752
+#: sources/php/template-functions.php:1777
 msgid "Login"
 msgstr ""
 
-#: sources/php/template-functions.php:1974
+#: sources/php/template-functions.php:1999
 msgid "Your Cart is Empty"
-msgstr ""
-
-#: vendor-prefixed/stellarwp/installer/src/Installer/Button.php:55
-msgid "Activated!"
-msgstr ""
-
-#: vendor-prefixed/stellarwp/installer/src/Installer/Button.php:77
-msgid "Activating..."
-msgstr ""
-
-#: vendor-prefixed/stellarwp/installer/src/Installer/Button.php:145
-msgid "Installed!"
-msgstr ""
-
-#: vendor-prefixed/stellarwp/installer/src/Installer/Button.php:167
-msgid "Installing..."
-msgstr ""
-
-#: vendor-prefixed/stellarwp/installer/src/Installer/Button.php:211
-#, php-format
-msgid "Activate %s"
-msgstr ""
-
-#: vendor-prefixed/stellarwp/installer/src/Installer/Button.php:213
-#, php-format
-msgid "Install %s"
-msgstr ""
-
-#: vendor-prefixed/stellarwp/installer/src/Installer/Config.php:25
-#, php-format
-msgid "You must provide a hook prefix via %1$s before creating an Installer."
-msgstr ""
-
-#: vendor-prefixed/stellarwp/installer/src/Installer/Config.php:54
-#, php-format
-msgid "The %1$s has already been called and set to %2$s."
-msgstr ""
-
-#: vendor-prefixed/stellarwp/installer/src/Installer/Config.php:64
-msgid ""
-"Hook prefix must only contain lowercase letters, numbers, \"_\", or \"-\"."
-msgstr ""
-
-#: vendor-prefixed/stellarwp/installer/src/Installer/Handler/Plugin.php:239
-#, php-format
-msgid ""
-"There was an error and plugin could not be installed, %1$splease install "
-"manually%2$s."
-msgstr ""
-
-#: vendor-prefixed/stellarwp/installer/src/Installer/Handler/Plugin.php:385
-msgid "Insecure request."
-msgstr ""
-
-#: vendor-prefixed/stellarwp/installer/src/Installer/Handler/Plugin.php:395
-#, php-format
-msgid "Security Error, Need higher permissions to install %1$s."
-msgstr ""
-
-#: vendor-prefixed/stellarwp/installer/src/Installer/Handler/Plugin.php:418
-msgid "Success."
 msgstr ""
 
 #. Plugin URI of the plugin/theme

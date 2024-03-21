@@ -47,7 +47,7 @@ class LoginForm {
 
         if ( emailInput.length ) {
             // Add check to keyup event
-            emailInput.on( 'keyup change', this._debounceAccountExists );
+            emailInput.on( 'keyup change input', this._debounceAccountExists );
 
             // Handles page onload use case
             this.triggerAccountExistsCheck();

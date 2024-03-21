@@ -63,7 +63,7 @@ registerBlockType( 'cfw/order-bump-preview', {
                 setOfferPrice( productData.price );
             };
 
-            if ( meta?.cfw_ob_offer_product ) {
+            if ( meta?.cfw_ob_offer_product_v9 ) {
                 fetchProductData();
             }
         }, [ meta.cfw_ob_offer_product_v9 ] );

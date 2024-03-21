@@ -10,7 +10,9 @@
 
 .cfw-input-wrap-row:last-child {
     .form-row {
-        margin-bottom: 0;
+        @include media-breakpoint-up(lg) {
+            margin-bottom: 0;
+        }
     }
 }
 

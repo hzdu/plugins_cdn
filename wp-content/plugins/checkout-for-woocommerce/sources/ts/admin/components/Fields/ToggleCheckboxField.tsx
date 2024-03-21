@@ -17,6 +17,7 @@ const ToggleCheckboxField = ( { name, label, description, disabled = false, ...p
                     <Switch
                         checked={field.value}
                         onChange={( value ) => {
+                            jQuery( document.body ).trigger( 'cfw_admin_field_changed' );
                             helpers.setValue( value );
                         }}
                         className={classNames(

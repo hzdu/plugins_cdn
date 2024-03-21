@@ -39,7 +39,7 @@
     padding: 0.82rem;
     font-size: 1em;
     background: var(--cfw-buttons-secondary-background-color);
-    color: var(--cfw-buttons-secondary-text-color);
+    color: var(--cfw-buttons-secondary-text-color) !important;
     text-align: center;
     transition: all .1s ease-in-out;
     display: inline-block;
@@ -48,12 +48,20 @@
 
     &:hover {
         background: var(--cfw-buttons-secondary-hover-background-color);
-        color: var(--cfw-buttons-secondary-hover-text-color);
+        color: var(--cfw-buttons-secondary-hover-text-color) !important;
         border-color: var(--cfw-buttons-secondary-hover-background-color);
     }
 
     &:focus {
         outline-style: none;
+    }
+
+    &.cfw-secondary-btn-inactive {
+        opacity: 0.5;
+    }
+
+    &.cfw-secondary-btn-active {
+        opacity: 1;
     }
 }
 

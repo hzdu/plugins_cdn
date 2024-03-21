@@ -7,6 +7,7 @@ import SecondaryButton           from './SecondaryButton';
 import PromoFieldInput           from './PromoFieldInput';
 import DataStores                from '../DataStores';
 import Actions                   from '../../Types/Actions';
+import PrimaryButton             from './PrimaryButton';
 
 const PromoFieldControl = ( { location = '' } ) => {
     const staticActions = useSelect( ( select: any ) => select( DataStores.cart_store_key ).getCartStaticActions( null ), [] );
@@ -60,6 +61,7 @@ const PromoFieldControl = ( { location = '' } ) => {
                             <SecondaryButton
                                 label={promoCodeButtonLabel}
                                 onClick={() => onClick( promoCode )}
+                                className={ promoCode.length ? 'cfw-secondary-btn-active' : 'cfw-secondary-btn-inactive'}
                             />
                         </div>
                     </div>

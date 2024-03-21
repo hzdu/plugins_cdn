@@ -48,6 +48,7 @@ class Pickup {
     static showContent( target ): void {
         const radioButton = jQuery( target );
         const isPickup = radioButton.val() === 'pickup';
+        const continueToShippingBtn = jQuery( '#cfw-customer-info-action .cfw-continue-to-shipping-btn' ).first();
 
         if ( isPickup && DataService.getSetting( 'hide_pickup_methods' ) ) {
             Pickup.documentBody.addClass( 'cfw-hide-pickup-methods' );
@@ -74,6 +75,9 @@ class Pickup {
             const oldLabel = Pickup.shippingMethodBreadcrumb.text();
             Pickup.shippingMethodBreadcrumb.text( DataService.getMessage( 'pickup_label' ) ).data( 'old_label', oldLabel );
 
+            const oldButtonLabel = continueToShippingBtn.text();
+            continueToShippingBtn.text( DataService.getMessage( 'pickup_btn_label' ) ).data( 'old_label', oldButtonLabel );
+
             Pickup.documentBody.addClass( 'cfw-hide-payment-request-buttons' );
         } else {
             Pickup.shippingAddress.show();
@@ -92,6 +96,9 @@ class Pickup {
 
             const label = Pickup.shippingMethodBreadcrumb.data( 'old_label' );
             Pickup.shippingMethodBreadcrumb.text( label );
+
+            const oldButtonLabel = continueToShippingBtn.data( 'old_label' );
+            continueToShippingBtn.text( oldButtonLabel );
 
             Pickup.documentBody.removeClass( 'cfw-hide-payment-request-buttons' );
         }
