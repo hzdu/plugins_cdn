@@ -1,0 +1,66 @@
+//
+// Component: Utility
+//
+// ========================================================================
+
+
+// Variables
+// ========================================================================
+
+//
+// New
+//
+
+@dropcap-color:                                 inherit;
+
+
+// Panel
+// ========================================================================
+
+.hook-panel-scrollable() {}
+
+
+// Box-shadow bottom
+// ========================================================================
+
+.hook-box-shadow-bottom() {}
+
+
+// Drop cap
+// ========================================================================
+
+.hook-dropcap() {
+    // Prevent line wrap
+    margin-bottom: -2px;
+}
+
+.hook-dropcap() when not (@dropcap-color = inherit) {
+    color: @dropcap-color;
+}
+
+
+// Logo
+// ========================================================================
+
+.hook-logo() {}
+
+.hook-logo-hover() {}
+
+
+// Miscellaneous
+// ========================================================================
+
+.hook-utility-misc() {}
+
+
+// Inverse
+// ========================================================================
+
+@inverse-dropcap-color:                                 inherit;
+
+.hook-inverse-dropcap() when not (@inverse-dropcap-color = @dropcap-color) {
+    color: @inverse-dropcap-color;
+}
+
+.hook-inverse-logo() {}
+.hook-inverse-logo-hover() {}

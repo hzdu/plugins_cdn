@@ -1,0 +1,44 @@
+//
+// Global
+//
+
+@global-color:          #001F21;
+@global-emphasis-color: #01454A;
+@global-muted-color:    #A7AEAE;
+
+@global-link-color:       #13C694;
+@global-link-hover-color: #04B4CB;
+
+@global-muted-background:     #F7F8F8;
+@global-primary-background:   #16CA88;
+@global-secondary-background: #011C1D;
+
+@global-success-background: #94E277;
+@global-warning-background: #FFC851;
+@global-danger-background:  #FF5371;
+
+//
+// Alert
+//
+
+@alert-success-background: lighten(tint(@global-success-background, 40%), 12%);
+@alert-warning-background: lighten(tint(@global-warning-background, 40%), 12%);
+@alert-danger-background:  lighten(tint(@global-danger-background, 40%), 12%);
+
+//
+// Button
+//
+
+@internal-button-primary-hover-gradient: linear-gradient(320deg, spin(@global-primary-background, 6%), spin(@global-primary-background, 30%));
+
+//
+// Card
+//
+
+@internal-card-primary-hover-gradient: linear-gradient(320deg, spin(@card-primary-background, 6%), spin(@card-primary-background, 25%));
+
+//
+// Text
+//
+
+@internal-text-background-color-gradient: linear-gradient(150deg, #04B4CB 20%, #20D662 100%);

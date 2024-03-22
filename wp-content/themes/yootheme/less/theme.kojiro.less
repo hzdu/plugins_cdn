@@ -1,0 +1,158 @@
+/*
+
+Name: Kojiro
+Background: White
+Color: Orange
+Type: Flat
+Preview: https://yootheme.com/api/style/kojiro/default.jpg
+
+Style: white-green
+Name: White Green
+Background: White
+Color: Green
+Type: Flat
+Preview: https://yootheme.com/api/style/kojiro/white-green.jpg
+
+Style: white-red
+Name: White Red
+Background: White
+Color: Red
+Type: Flat
+Preview: https://yootheme.com/api/style/kojiro/white-red.jpg
+
+Style: white-yellow
+Name: White Yellow
+Background: White
+Color: Yellow
+Type: Flat
+Preview: https://yootheme.com/api/style/kojiro/white-yellow.jpg
+
+Style: white-darkred
+Name: White Darkred
+Background: White
+Color: Red
+Type: Flat
+Preview: https://yootheme.com/api/style/kojiro/white-darkred.jpg
+
+Style: dark-red
+Name: Dark Red
+Background: Dark
+Color: Red
+Type: Flat
+Preview: https://yootheme.com/api/style/kojiro/dark-red.jpg
+
+*/
+
+// Platform
+@import "platform.less";
+
+// UIkit Core
+@import "../vendor/assets/uikit/src/less/uikit.less";
+
+// UIkit Theme
+@import "../vendor/assets/uikit-themes/master/_import.less";
+@import "../vendor/assets/uikit-themes/master-kojiro/_import.less";
+
+// Theme
+@import "theme.less";
+
+
+// Variables
+// ========================================================================
+
+//
+// Mask
+//
+
+@internal-theme-mask-default-border-image:               "../vendor/assets/uikit-themes/master-kojiro/images/mask-default-image.svg";
+
+//
+// Box Decoration
+//
+
+@theme-box-decoration-z-index:                           2;
+@theme-box-decoration-default-background:                @global-primary-background;
+@theme-box-decoration-primary-background:                @global-primary-background;
+@theme-box-decoration-secondary-background:              @global-primary-background;
+
+.hook-box-decoration-default() {
+
+    &::before {
+        bottom: 0;
+        width: 200px;
+        height: 30px;
+        .svg-fill("../../../../uikit-themes/master-kojiro/images/box-decoration-image-01.svg", "#000", @theme-box-decoration-default-background);
+        background-repeat: no-repeat;
+        background-color: transparent;
+    }
+
+}
+
+.hook-box-decoration-primary() {
+
+    &::before {
+        top: auto;
+        bottom: 5px;
+        left: -30px;
+        width: 200px;
+        height: 30px;
+        .svg-fill("../../../../uikit-themes/master-kojiro/images/box-decoration-image-01.svg", "#000", @theme-box-decoration-primary-background);
+        background-repeat: no-repeat;
+        background-color: transparent;
+        z-index: -1;
+    }
+
+    &::after {
+        content: '';
+        position: absolute;
+        top: -10px;
+        bottom: -20px;
+        left: auto;
+        right: -18px;
+        width: 30px;
+        height: 200px;
+        .svg-fill("../../../../uikit-themes/master-kojiro/images/box-decoration-image-02.svg", "#000", @theme-box-decoration-secondary-background);
+        background-repeat: no-repeat;
+        background-color: transparent;
+        pointer-events: none;
+        z-index: -1;
+    }
+
+}
+
+.hook-box-decoration-secondary() {
+
+    &::before {
+        top: 45px;
+        left: auto;
+        width: 30px;
+        height: 200px;
+        .svg-fill("../../../../uikit-themes/master-kojiro/images/box-decoration-image-02.svg", "#000", @theme-box-decoration-default-background);
+        background-repeat: no-repeat;
+        background-color: transparent;
+    }
+
+}
+
+//
+// Transition Border
+//
+
+@theme-transition-border-border:                        @global-background;
+@theme-transition-border-hover-border:                  @global-background;
+
+//
+// Inverse
+//
+
+@inverse-theme-box-decoration-default-background:       transparent;
+@inverse-theme-box-decoration-primary-background:       transparent;
+@inverse-theme-box-decoration-secondary-background:     transparent;
+
+
+// Style
+// ========================================================================
+
+@import (optional) "../vendor/assets/uikit-themes/master-kojiro/styles/@{internal-style}.less";
+
+@internal-style: ~'';

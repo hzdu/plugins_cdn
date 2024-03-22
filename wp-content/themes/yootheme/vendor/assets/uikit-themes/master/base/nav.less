@@ -1,0 +1,322 @@
+//
+// Component: Nav
+//
+// ========================================================================
+
+//
+// New
+//
+
+@nav-default-item-hover-background:             transparent;
+@nav-default-item-active-background:            transparent;
+
+@nav-primary-item-padding-vertical:             @nav-item-padding-vertical;
+@nav-primary-item-padding-horizontal:           @nav-item-padding-horizontal;
+
+@nav-primary-header-padding-vertical:           @nav-header-padding-vertical;
+@nav-primary-header-padding-horizontal:         @nav-header-padding-horizontal;
+
+@nav-secondary-margin-top:                      0;
+@nav-secondary-item-padding-vertical:           @nav-item-padding-vertical;
+@nav-secondary-item-padding-horizontal:         @nav-item-padding-horizontal;
+@nav-secondary-item-hover-background:           transparent;
+@nav-secondary-item-active-background:          transparent;
+
+@internal-nav-default-mode:                     ~''; // siblings
+@internal-nav-default-siblings-opacity:         1;
+@internal-nav-default-siblings-filter:          ~'';
+
+@internal-nav-primary-mode:                     ~''; // siblings
+@internal-nav-primary-siblings-opacity:         1;
+@internal-nav-primary-siblings-filter:          ~'';
+
+@internal-nav-default-icon-mode:                ~''; // bullet
+@internal-nav-default-bullet-width:                      6px;
+@internal-nav-default-bullet-height:                     6px;
+@internal-nav-default-bullet-background:                 @global-primary-background;
+@internal-nav-default-bullet-border-radius:              50%;
+@internal-nav-default-bullet-margin:                     5px;
+@internal-nav-default-bullet-transition-duration:        0.2s;
+@internal-nav-default-bullet-transition-timing-function: ease-out;
+
+@internal-nav-primary-icon-mode:                ~''; // bullet
+@internal-nav-primary-bullet-width:                      10px;
+@internal-nav-primary-bullet-height:                     10px;
+@internal-nav-primary-bullet-background:                 @global-primary-background;
+@internal-nav-primary-bullet-border-radius:              50%;
+@internal-nav-primary-bullet-margin:                     5px;
+@internal-nav-primary-bullet-transition-duration:        0.2s;
+@internal-nav-primary-bullet-transition-timing-function: ease-out;
+
+
+// Variables
+// ========================================================================
+
+
+// Sublists
+// ========================================================================
+
+.hook-nav-sub() {}
+
+
+// Header
+// ========================================================================
+
+.hook-nav-header() {}
+
+
+// Divider
+// ========================================================================
+
+.hook-nav-divider() {}
+
+
+// Default style modifier
+// ========================================================================
+
+.hook-nav-default() {}
+
+.hook-nav-default-item() {
+    transition: 0.1s ease-in-out;
+    transition-property: color, background-color, border-color, box-shadow, opacity, filter;
+}
+
+.hook-nav-default-item-hover() when not (@nav-default-item-hover-background = transparent) {
+    background-color: @nav-default-item-hover-background;
+}
+
+.hook-nav-default-item-active() when not (@nav-default-item-active-background = transparent) {
+    background-color: @nav-default-item-active-background;
+}
+
+//
+// Bullet
+//
+
+.hook-nav-default-item() when (@internal-nav-default-icon-mode = bullet) {
+
+    position: relative;
+
+    &::before {
+        content: "";
+        display: inline-block;
+        width: 0;
+        height: 0;
+        margin: 0;
+        flex-shrink: 0;
+        background-color: @internal-nav-default-bullet-background;
+        border-radius: @internal-nav-default-bullet-border-radius;
+        transition: @internal-nav-default-bullet-transition-duration @internal-nav-default-bullet-transition-timing-function;
+        transition-property: height, width, margin;
+    }
+
+}
+
+.hook-nav-default-item-hover() when (@internal-nav-default-icon-mode = bullet) {
+
+    &::before {
+        width: @internal-nav-default-bullet-width;
+        height: @internal-nav-default-bullet-height;
+        margin-right: @internal-nav-default-bullet-margin;
+    }
+
+}
+
+.hook-nav-default-subtitle() {}
+
+.hook-nav-default-header() {}
+
+.hook-nav-default-divider() {}
+
+
+// Primary style modifier
+// ========================================================================
+
+.hook-nav-primary() {}
+
+.hook-nav-primary-item() {
+    transition: 0.1s ease-in-out;
+    transition-property: color, background-color, border-color, box-shadow, opacity, filter;
+}
+
+.hook-nav-primary-item() when not (@nav-primary-item-padding-vertical = @nav-item-padding-vertical), not(@nav-primary-item-padding-horizontal = @nav-item-padding-horizontal) {
+    padding: @nav-primary-item-padding-vertical @nav-primary-item-padding-horizontal;
+}
+
+.hook-nav-primary-item-hover() {}
+
+.hook-nav-primary-item-active() {}
+
+//
+// Bullet
+//
+
+.hook-nav-primary-item() when (@internal-nav-primary-icon-mode = bullet) {
+
+    position: relative;
+
+    &::before {
+        content: "";
+        display: inline-block;
+        width: 0;
+        height: 0;
+        margin: 0;
+        flex-shrink: 0;
+        background-color: @internal-nav-primary-bullet-background;
+        border-radius: @internal-nav-primary-bullet-border-radius;
+        transition: @internal-nav-primary-bullet-transition-duration @internal-nav-primary-bullet-transition-timing-function;
+        transition-property: height, width, margin;
+    }
+
+}
+
+.hook-nav-primary-item-hover() when (@internal-nav-primary-icon-mode = bullet) {
+
+    &::before {
+        width: @internal-nav-primary-bullet-width;
+        height: @internal-nav-primary-bullet-height;
+        margin-right: @internal-nav-primary-bullet-margin;
+    }
+
+}
+
+.hook-nav-primary-subtitle() {}
+
+.hook-nav-primary-header() when not (@nav-primary-header-padding-vertical = @nav-header-padding-vertical), not(@nav-primary-header-padding-horizontal = @nav-header-padding-horizontal) {
+    padding: @nav-primary-header-padding-vertical @nav-primary-header-padding-horizontal;
+}
+
+.hook-nav-primary-divider() {}
+
+
+// Secondary style modifier
+// ========================================================================
+
+.hook-nav-secondary() when not (@nav-secondary-margin-top = 0) {
+    > :not(.uk-nav-divider) + :not(.uk-nav-header, .uk-nav-divider) {  margin-top: @nav-secondary-margin-top; }
+}
+
+.hook-nav-secondary-item() {
+    transition: 0.1s ease-in-out;
+    transition-property: color, background-color, border-color, box-shadow;
+
+}
+
+.hook-nav-secondary-item() when not (@nav-secondary-item-padding-vertical = @nav-item-padding-vertical), not(@nav-secondary-item-padding-horizontal = @nav-item-padding-horizontal) {
+    padding: @nav-secondary-item-padding-vertical @nav-secondary-item-padding-horizontal;
+}
+
+.hook-nav-secondary-item-hover() when not (@nav-secondary-item-hover-background = transparent) {
+    background-color: @nav-secondary-item-hover-background;
+}
+
+.hook-nav-secondary-item-active() when not (@nav-secondary-item-active-background = transparent) {
+    background-color: @nav-secondary-item-active-background;
+}
+
+.hook-nav-secondary-subtitle() {}
+
+.hook-nav-secondary-subtitle-hover() {}
+
+.hook-nav-secondary-subtitle-active() {}
+
+.hook-nav-secondary-header() {}
+
+.hook-nav-secondary-divider() {}
+
+
+// Style modifier
+// ========================================================================
+
+.hook-nav-dividers() {}
+
+
+// Miscellaneous
+// ========================================================================
+
+//
+// Default
+//
+
+// Siblings
+.hook-nav-misc() when (@internal-nav-default-mode = siblings) {
+
+    .uk-nav-default:hover a:not(:hover),
+    .uk-nav-default:hover .uk-nav-header,
+    .uk-nav-default:hover a:not(:hover) > .uk-nav-subtitle {
+        .hook-nav-default-siblings();
+    }
+
+}
+
+.hook-nav-default-siblings() when not (@internal-nav-default-siblings-opacity = 1) {
+    opacity: @internal-nav-default-siblings-opacity;
+}
+
+.hook-nav-default-siblings() when not (@internal-nav-default-siblings-filter = ~'') {
+    filter: @internal-nav-default-siblings-filter;
+}
+
+//
+// Primary
+//
+
+// Siblings
+.hook-nav-misc() when (@internal-nav-primary-mode = siblings) {
+
+    .uk-nav-primary:hover a:not(:hover),
+    .uk-nav-primary:hover .uk-nav-header,
+    .uk-nav-primary:hover a:not(:hover) > .uk-nav-subtitle {
+        .hook-nav-primary-siblings();
+    }
+
+}
+
+.hook-nav-primary-siblings() when not (@internal-nav-primary-siblings-opacity = 1) {
+    opacity: @internal-nav-primary-siblings-opacity;
+}
+
+.hook-nav-primary-siblings() when not (@internal-nav-primary-siblings-filter = ~'') {
+    filter: @internal-nav-primary-siblings-filter;
+}
+
+
+// Inverse
+// ========================================================================
+
+@inverse-nav-default-item-hover-background:     transparent;
+@inverse-nav-default-item-active-background:    transparent;
+
+@inverse-nav-secondary-item-hover-background:   transparent;
+@inverse-nav-secondary-item-active-background:  transparent;
+
+.hook-inverse-nav-default-item() {}
+.hook-inverse-nav-default-item-hover() when not (@nav-default-item-hover-background = @inverse-nav-default-item-hover-background) {
+    background-color: @inverse-nav-default-item-hover-background;
+}
+.hook-inverse-nav-default-item-active() when not (@nav-default-item-active-background = @inverse-nav-default-item-active-background) {
+    background-color: @inverse-nav-default-item-active-background;
+}
+.hook-inverse-nav-default-header() {}
+.hook-inverse-nav-default-divider() {}
+
+.hook-inverse-nav-primary-item() {}
+.hook-inverse-nav-primary-item-hover() {}
+.hook-inverse-nav-primary-item-active() {}
+.hook-inverse-nav-primary-header() {}
+.hook-inverse-nav-primary-divider() {}
+
+.hook-inverse-nav-secondary-item() {}
+.hook-inverse-nav-secondary-item-hover() when not (@nav-secondary-item-hover-background = @inverse-nav-secondary-item-hover-background) {
+    background-color: @inverse-nav-secondary-item-hover-background;
+}
+.hook-inverse-nav-secondary-item-active() when not (@nav-secondary-item-active-background = @inverse-nav-secondary-item-active-background) {
+    background-color: @inverse-nav-secondary-item-active-background;
+}
+.hook-inverse-nav-secondary-subtitle() {}
+.hook-inverse-nav-secondary-subtitle-hover() {}
+.hook-inverse-nav-secondary-subtitle-active() {}
+.hook-inverse-nav-secondary-header() {}
+.hook-inverse-nav-secondary-divider() {}
+
+.hook-inverse-nav-dividers() {}

@@ -1,0 +1,119 @@
+/*
+
+Name: Balou
+Background: White
+Color: Blue
+Type: Flat
+Preview: https://yootheme.com/api/style/balou/default.jpg
+
+Style: white-grey
+Name: White Grey
+Background: White
+Color: Grey
+Type: Flat
+Preview: https://yootheme.com/api/style/balou/white-grey.jpg
+
+Style: white-turquoise
+Name: White Turquoise
+Background: White
+Color: Turquoise
+Type: Flat
+Preview: https://yootheme.com/api/style/balou/white-turquoise.jpg
+
+Style: white-pink
+Name: White Pink
+Background: White
+Color: Pink
+Type: Flat
+Preview: https://yootheme.com/api/style/balou/white-pink.jpg
+
+Style: white-beige
+Name: White Beige
+Background: White
+Color: Beige
+Type: Flat
+Preview: https://yootheme.com/api/style/balou/white-beige.jpg
+
+Style: white-orange
+Name: White Orange
+Background: White
+Color: Orange
+Type: Flat
+Preview: https://yootheme.com/api/style/balou/white-orange.jpg
+
+*/
+
+// Platform
+@import "platform.less";
+
+// UIkit Core
+@import "../vendor/assets/uikit/src/less/uikit.less";
+
+// UIkit Theme
+@import "../vendor/assets/uikit-themes/master/_import.less";
+@import "../vendor/assets/uikit-themes/master-balou/_import.less";
+
+// Theme
+@import "theme.less";
+
+
+//
+// Variables
+// ========================================================================
+
+@theme-page-container-background:                       @global-primary-background;
+
+@theme-page-container-width:                            1840px;
+
+//
+// Transition Border
+//
+
+@theme-transition-border-hover-border-width:            8px;
+@theme-transition-border-border:                        @global-secondary-background;
+@theme-transition-border-hover-border:                  @theme-transition-border-border;
+
+//
+// WooCommerce
+//
+
+@woocommerce-shop-page-title-font-size:                 12px;
+@woocommerce-shop-page-title-line-height:               1.4;
+@woocommerce-shop-page-title-color:                     @global-emphasis-color;
+@woocommerce-shop-page-title-font-family:               @global-secondary-font-family;
+@woocommerce-shop-page-title-font-weight:               @global-secondary-font-weight;
+@woocommerce-shop-page-title-text-transform:            @global-secondary-text-transform;
+@woocommerce-shop-page-title-letter-spacing:            @global-secondary-letter-spacing;
+@woocommerce-shop-page-title-font-style:                @global-secondary-font-style;
+
+@woocommerce-shop-page-price-margin-top:                @global-small-margin;
+@woocommerce-shop-page-price-font-size:                 12px;
+@woocommerce-shop-page-price-line-height:               1.4;
+@woocommerce-shop-page-price-font-family:               @global-secondary-font-family;
+@woocommerce-shop-page-price-font-weight:               @global-secondary-font-weight;
+@woocommerce-shop-page-price-color:                     @global-muted-color;
+@woocommerce-shop-page-price-text-transform:            @global-secondary-text-transform;
+@woocommerce-shop-page-price-letter-spacing:            @global-secondary-letter-spacing;
+@woocommerce-shop-page-price-font-style:                @global-secondary-font-style;
+
+@woocommerce-product-page-price-font-size:              @global-font-size;
+@woocommerce-product-page-price-line-height:            1.4;
+@woocommerce-product-page-price-font-family:            @global-primary-font-family;
+@woocommerce-product-page-price-font-weight:            @global-primary-font-weight;
+@woocommerce-product-page-price-color:                  @global-emphasis-color;
+@woocommerce-product-page-price-text-transform:         @global-secondary-text-transform;
+@woocommerce-product-page-price-letter-spacing:         @global-secondary-letter-spacing;
+@woocommerce-product-page-price-font-style:             @global-secondary-font-style;
+
+@woocommerce-rating-color:                              @global-secondary-background;
+
+@woocommerce-cart-page-layout:                          columns;
+@woocommerce-order-page-layout:                         columns;
+
+
+// Style
+// ========================================================================
+
+@import (optional) "../vendor/assets/uikit-themes/master-balou/styles/@{internal-style}.less";
+
+@internal-style: ~'';

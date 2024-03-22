@@ -1,0 +1,69 @@
+//
+// Component: Table
+//
+// ========================================================================
+
+
+// Variables
+// ========================================================================
+
+//
+// New
+//
+
+@table-divider-box-shadow:                      none;
+
+
+// Component
+// ========================================================================
+
+.hook-table-header-cell() {}
+
+.hook-table-cell() {}
+
+.hook-table-footer() {}
+
+.hook-table-caption() {}
+
+.hook-table-row-active() {}
+
+
+// Style modifiers
+// ========================================================================
+
+.hook-table-divider() when not (@table-divider-box-shadow = none) {
+    box-shadow: @table-divider-box-shadow;
+}
+
+.hook-table-striped() {}
+
+.hook-table-hover() {}
+
+
+// Size modifier
+// ========================================================================
+
+.hook-table-small() {}
+
+.hook-table-large() {}
+
+
+// Miscellaneous
+// ========================================================================
+
+.hook-table-misc() {}
+
+
+// Inverse
+// ========================================================================
+
+@inverse-table-divider-box-shadow:              none;
+
+.hook-inverse-table-header-cell() {}
+.hook-inverse-table-caption() {}
+.hook-inverse-table-row-active() {}
+.hook-inverse-table-divider() when not (@table-divider-box-shadow = none) {
+    box-shadow: @inverse-table-divider-box-shadow;
+}
+.hook-inverse-table-striped() {}
+.hook-inverse-table-hover() {}

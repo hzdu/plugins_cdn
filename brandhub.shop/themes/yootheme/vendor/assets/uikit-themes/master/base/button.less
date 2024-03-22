@@ -1,0 +1,770 @@
+//
+// Component: Button
+//
+// ========================================================================
+
+
+// Variables
+// ========================================================================
+
+@button-text-hover-color:                       @global-emphasis-color;
+
+//
+// New
+//
+
+@button-transition-duration:                    0.1s;
+
+@internal-button-mode:                          ~''; // strikethrough, ripple
+
+@button-default-backdrop-filter:                ~'';
+@button-primary-backdrop-filter:                ~'';
+@button-secondary-backdrop-filter:              ~'';
+@button-danger-backdrop-filter:                 ~'';
+@button-disabled-backdrop-filter:               ~'';
+
+@button-text-mode:                              line; // line, border-bottom
+@button-text-icon-mode:                         ~''; // arrow, dash
+
+@button-text-border-width:                      @global-border-width;
+@button-text-border:                            currentColor;
+@button-text-hover-border:                      currentColor;
+
+@internal-button-text-line-bottom:                     0;
+@internal-button-text-line-left:                       0;
+@internal-button-text-line-right:                      100%;
+@internal-button-text-line-hover-left:                 0;
+@internal-button-text-line-hover-right:                0;
+@internal-button-text-line-transition-duration:        0.3s;
+@internal-button-text-line-transition-timing-function: ease-out;
+
+@internal-button-text-arrow-image:                      "../../../../uikit-themes/master/images/button-text-arrow.svg";
+@internal-button-text-arrow-padding:                    5px;
+@internal-button-text-arrow-position:                   right;
+@internal-button-text-arrow-width:                      22px;
+@internal-button-text-arrow-hover-width:                @internal-button-text-arrow-width;
+@internal-button-text-arrow-image-position:             100%;
+@internal-button-text-arrow-image-offset:               5px;
+@internal-button-text-arrow-color:                      @button-text-color;
+@internal-button-text-arrow-hover-color:                @button-text-hover-color;
+@internal-button-text-arrow-background:                 transparent;
+@internal-button-text-arrow-border-radius:              0;
+@internal-button-text-arrow-transition-duration:        0.2s;
+@internal-button-text-arrow-transition-timing-function: ease-out;
+
+@internal-button-text-dash-padding:             8px;
+@internal-button-text-dash-size:                20px;
+
+@internal-button-default-mode:                  ~''; // glow
+@internal-button-default-glow-gradient:         ~'';
+@internal-button-default-glow-filter:           ~'';
+@internal-button-default-hover-glow-filter:     ~'';
+
+@internal-button-primary-mode:                  ~''; // glow
+@internal-button-primary-glow-gradient:         ~'';
+@internal-button-primary-glow-filter:           ~'';
+@internal-button-primary-hover-glow-filter:     ~'';
+
+@internal-button-secondary-mode:                ~''; // glow
+@internal-button-secondary-glow-gradient:       ~'';
+@internal-button-secondary-glow-filter:         ~'';
+@internal-button-secondary-hover-glow-filter:   ~'';
+
+
+// Component
+// ========================================================================
+
+.hook-button() {
+    transition: @button-transition-duration ease-in-out;
+    transition-property: color, background-color, background-position, background-size, border-color, box-shadow;
+}
+
+.hook-button-hover() {}
+.hook-button-active() {}
+
+//
+// Strikethrough
+//
+
+.hook-button() when (@internal-button-mode = strikethrough) {
+
+    position: relative;
+
+    &:not(.uk-button-text):not(.uk-button-link)::before {
+        content: "";
+        position: absolute;
+        top: ~'calc(50% - 1px)';
+        left: ~'calc(@{button-padding-horizontal} - 5px)';
+        right: ~'calc(100% + 3px - (@{button-padding-horizontal} - 5px))';
+        height: 1px;
+        background-color: currentColor;
+        transition: right 0.2s ease;
+    }
+
+}
+
+.hook-button-hover() when (@internal-button-mode = strikethrough) {
+
+    &:not(.uk-button-text):not(.uk-button-link)::before { right: ~'calc(@{button-padding-horizontal} - 5px)'; }
+
+}
+
+//
+// Ripple
+//
+
+.hook-button() when (@internal-button-mode = ripple) {
+
+    &:not(.uk-button-text):not(.uk-button-link) {
+        background-position: 50% 100%;
+        background-size: 0;
+        transition-duration: 0.5s;
+        transition-timing-function: cubic-bezier(.165,.85,.45,1);
+    }
+
+}
+
+.hook-button-hover() when (@internal-button-mode = ripple) {
+
+    &:not(.uk-button-text):not(.uk-button-link) { background-size: 15000%; }
+
+}
+
+.hook-button-active() when (@internal-button-mode = ripple) {
+
+    &:not(.uk-button-text):not(.uk-button-link) {
+        transition-duration: 0s;
+    }
+
+}
+
+//
+// Glow
+//
+
+.hook-button() when (@internal-button-default-mode = glow) and not (@button-border-radius = 0),
+                    (@internal-button-primary-mode = glow) and not (@button-border-radius = 0),
+                    (@internal-button-secondary-mode = glow) and not (@button-border-radius = 0) {
+
+    &::before,
+    &::after { border-radius: @button-border-radius; }
+
+}
+
+
+// Style modifiers
+// ========================================================================
+
+.hook-button-default() when not (@button-default-backdrop-filter = ~'') {
+    backdrop-filter: @button-default-backdrop-filter;
+    -webkit-backdrop-filter: @button-default-backdrop-filter;
+}
+
+// Ripple
+.hook-button-default() when (@internal-button-mode = ripple) {
+    background-image: radial-gradient(circle at 50% 100%, @button-default-hover-background 1%, transparent 1%);
+}
+
+.hook-button-default-hover() when (@internal-button-mode = ripple) {
+    background-color: @button-default-background;
+}
+
+.hook-button-default-active() when (@internal-button-mode = ripple) {
+    background-image: none;
+}
+
+// Glow
+.hook-button-default() when (@internal-button-default-mode = glow) {
+
+    &:not(.uk-hack) {
+        position: relative;
+        z-index: 0;
+        background: none !important;
+        box-shadow: none !important;
+        border: none !important;
+    }
+
+    &::before,
+    &::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        // Fix Safari flickering
+        will-change: filter;
+    }
+
+    &::before {
+        background-image: @internal-button-default-glow-gradient;
+        filter: @internal-button-default-glow-filter;
+        transition: filter @button-transition-duration ease-in-out;
+    }
+
+}
+
+.hook-button-default-hover() when (@internal-button-default-mode = glow) and not (@internal-button-default-hover-glow-filter = ~'') {
+
+    &::before { filter: @internal-button-default-hover-glow-filter; }
+
+}
+
+.uk-button-default::after:extend(.uk-button-default) when (@internal-button-default-mode = glow) {}
+.uk-button-default:hover::after:extend(.uk-button-default:hover) when (@internal-button-default-mode = glow) {}
+.uk-button-default:active::after:extend(.uk-button-default:active) when (@internal-button-default-mode = glow) {}
+
+//
+// Primary
+//
+
+.hook-button-primary() when not (@button-primary-backdrop-filter = ~'') {
+    backdrop-filter: @button-primary-backdrop-filter;
+    -webkit-backdrop-filter: @button-primary-backdrop-filter;
+}
+
+// Ripple
+.hook-button-primary() when (@internal-button-mode = ripple) {
+    background-image: radial-gradient(circle at 50% 100%, @button-primary-hover-background 1%, transparent 1%);
+}
+
+.hook-button-primary-hover() when (@internal-button-mode = ripple) {
+    background-color: @button-primary-background;
+}
+
+.hook-button-primary-active() when (@internal-button-mode = ripple) {
+    background-image: none;
+}
+
+// Glow
+.hook-button-primary() when (@internal-button-primary-mode = glow) {
+
+    &:not(.uk-hack) {
+        position: relative;
+        z-index: 0;
+        background: none !important;
+        box-shadow: none !important;
+        border: none !important;
+    }
+
+    &::before,
+    &::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        // Fix Safari flickering
+        will-change: filter;
+    }
+
+    &::before {
+        background-image: @internal-button-primary-glow-gradient;
+        filter: @internal-button-primary-glow-filter;
+        transition: filter @button-transition-duration ease-in-out;
+    }
+
+}
+
+.hook-button-primary-hover() when (@internal-button-primary-mode = glow) and not (@internal-button-primary-hover-glow-filter = ~'') {
+
+    &::before { filter: @internal-button-primary-hover-glow-filter; }
+
+}
+
+.uk-button-primary::after:extend(.uk-button-primary) when (@internal-button-primary-mode = glow) {}
+.uk-button-primary:hover::after:extend(.uk-button-primary:hover) when (@internal-button-primary-mode = glow) {}
+.uk-button-primary:active::after:extend(.uk-button-primary:active) when (@internal-button-primary-mode = glow) {}
+
+//
+// Secondary
+//
+
+.hook-button-secondary() when not (@button-secondary-backdrop-filter = ~'') {
+    backdrop-filter: @button-secondary-backdrop-filter;
+    -webkit-backdrop-filter: @button-secondary-backdrop-filter;
+}
+
+// Ripple
+.hook-button-secondary() when (@internal-button-mode = ripple) {
+    background-image: radial-gradient(circle at 50% 100%, @button-secondary-hover-background 1%, transparent 1%);
+}
+
+.hook-button-secondary-hover() when (@internal-button-mode = ripple) {
+    background-color: @button-secondary-background;
+}
+
+.hook-button-secondary-active() when (@internal-button-mode = ripple) {
+    background-image: none;
+}
+
+// Glow
+.hook-button-secondary() when (@internal-button-secondary-mode = glow) {
+
+    &:not(.uk-hack) {
+        position: relative;
+        z-index: 0;
+        background: none !important;
+        box-shadow: none !important;
+        border: none !important;
+    }
+
+    &::before,
+    &::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        // Fix Safari flickering
+        will-change: filter;
+    }
+
+    &::before {
+        background-image: @internal-button-secondary-glow-gradient;
+        filter: @internal-button-secondary-glow-filter;
+        transition: filter @button-transition-duration ease-in-out;
+    }
+
+}
+
+.hook-button-secondary-hover() when (@internal-button-secondary-mode = glow) and not (@internal-button-secondary-hover-glow-filter = ~'') {
+
+    &::before { filter: @internal-button-secondary-hover-glow-filter; }
+
+}
+
+.uk-button-secondary::after:extend(.uk-button-secondary) when (@internal-button-secondary-mode = glow) {}
+.uk-button-secondary:hover::after:extend(.uk-button-secondary:hover) when (@internal-button-secondary-mode = glow) {}
+.uk-button-secondary:active::after:extend(.uk-button-secondary:active) when (@internal-button-secondary-mode = glow) {}
+
+//
+// Danger
+//
+
+.hook-button-danger() when not (@button-danger-backdrop-filter = ~'') {
+    backdrop-filter: @button-danger-backdrop-filter;
+    -webkit-backdrop-filter: @button-danger-backdrop-filter;
+}
+
+// Ripple
+.hook-button-danger() when (@internal-button-mode = ripple) {
+    background-image: radial-gradient(circle at 50% 100%, @button-danger-hover-background 1%, transparent 1%);
+}
+
+.hook-button-danger-hover() when (@internal-button-mode = ripple) {
+    background-color: @button-danger-background;
+}
+
+.hook-button-danger-active() when (@internal-button-mode = ripple) {
+    background-image: none;
+}
+
+
+// Disabled
+// ========================================================================
+
+.hook-button-disabled() when not (@button-disabled-backdrop-filter = ~'') {
+    backdrop-filter: @button-disabled-backdrop-filter;
+    -webkit-backdrop-filter: @button-disabled-backdrop-filter;
+}
+
+//
+// Strikethrough
+//
+
+.hook-button-disabled() when (@internal-button-mode = strikethrough) {
+
+    &::before { display: none; }
+
+}
+
+//
+// Glow
+//
+
+.hook-button-disabled() when (@internal-button-default-mode = glow),
+                             (@internal-button-primary-mode = glow),
+                             (@internal-button-secondary-mode = glow) {
+
+    &:after,
+    &:before { display: none; }
+
+}
+
+
+// Size modifiers
+// ========================================================================
+
+//
+// Strikethrough
+//
+
+.hook-button-small() when (@internal-button-mode = strikethrough) {
+
+    &::before {
+        left: ~'calc(@{button-small-padding-horizontal} - 3px)';
+        right: ~'calc(100% + 3px - (@{button-small-padding-horizontal} - 3px))';
+    }
+
+}
+
+.hook-button-large() when (@internal-button-mode = strikethrough) {
+
+    &::before {
+        left: ~'calc(@{button-large-padding-horizontal} - 5px)';
+        right: ~'calc(100% + 3px - (@{button-large-padding-horizontal} - 5px))';
+    }
+
+}
+
+//
+// Glow
+//
+
+.hook-button-small() when (@internal-button-default-mode = glow) and not (@button-small-border-radius = 0),
+                          (@internal-button-primary-mode = glow) and not (@button-small-border-radius = 0),
+                          (@internal-button-secondary-mode = glow) and not (@button-small-border-radius = 0) {
+
+    &::before,
+    &::after { border-radius: @button-small-border-radius; }
+
+}
+
+.hook-button-large() when (@internal-button-default-mode = glow) and not (@button-large-border-radius = 0),
+                          (@internal-button-primary-mode = glow) and not (@button-large-border-radius = 0),
+                          (@internal-button-secondary-mode = glow) and not (@button-large-border-radius = 0) {
+
+    &::before,
+    &::after { border-radius: @button-large-border-radius; }
+
+}
+
+
+// Text modifier
+// ========================================================================
+
+//
+// Line effect
+//
+
+.hook-button-text() when (@button-text-mode = line) {
+
+    position: relative;
+    z-index: 0;
+
+    &::before {
+        content: "";
+        position: absolute;
+        bottom: @internal-button-text-line-bottom;
+        left: @internal-button-text-line-left;
+        right: @internal-button-text-line-right;
+        z-index: -1;
+        border-bottom: @button-text-border-width solid @button-text-border;
+        transition: @internal-button-text-line-transition-duration @internal-button-text-line-transition-timing-function;
+        transition-property: left, right;
+    }
+
+}
+
+.hook-button-text-hover() when (@button-text-mode = line) {
+
+    &:not(:disabled)::before {
+        left: @internal-button-text-line-hover-left;
+        right: @internal-button-text-line-hover-right;
+    }
+
+}
+
+//
+// Border bottom
+//
+
+.hook-button-text() when (@button-text-mode = border-bottom) {
+    border-bottom: @button-text-border-width solid @button-text-border;
+}
+
+.hook-button-text-hover() when (@button-text-mode = border-bottom) and not ((@button-text-border = @button-text-hover-border) and (@button-text-hover-border = transparent)) {
+    border-bottom-color: @button-text-hover-border;
+}
+
+//
+// Arrow
+//
+
+.hook-button-text() when (@button-text-icon-mode = arrow) {
+
+    position: relative;
+    padding-@{internal-button-text-arrow-position}: (@internal-button-text-arrow-width + @internal-button-text-arrow-padding);
+
+    &::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        bottom: 0;
+        @{internal-button-text-arrow-position}: 0;
+        width: @internal-button-text-arrow-width;
+        height: @internal-button-text-arrow-width;
+        transition: @internal-button-text-arrow-transition-duration @internal-button-text-arrow-transition-timing-function;
+        transition-property: height, width, background-position;
+    }
+
+}
+
+.hook-button-text() when (@button-text-icon-mode = arrow) and not (@internal-button-text-arrow-image = ~'') {
+
+    &::after {
+        .svg-fill(@internal-button-text-arrow-image, "#000", @internal-button-text-arrow-color);
+        background-repeat: no-repeat;
+        background-position: ~'calc(@{internal-button-text-arrow-image-position} - @{internal-button-text-arrow-image-offset}) 50%';
+    }
+
+}
+
+.hook-button-text() when (@button-text-icon-mode = arrow) and not (@internal-button-text-arrow-background = transparent) {
+    &::after { background-color: @internal-button-text-arrow-background; }
+}
+
+.hook-button-text() when (@button-text-icon-mode = arrow) and not (@internal-button-text-arrow-border-radius = 0) {
+    &::after { border-radius: @internal-button-text-arrow-border-radius; }
+}
+
+.hook-button-text-hover() when (@button-text-icon-mode = arrow) and not (@internal-button-text-arrow-image = ~'') {
+
+    &:not(:disabled)::after {
+        .svg-fill(@internal-button-text-arrow-image, "#000", @internal-button-text-arrow-hover-color);
+        background-position: @internal-button-text-arrow-image-position 50%;
+    }
+
+}
+
+// Animation
+.hook-button-text() when (@button-text-icon-mode = arrow) and not (@internal-button-text-arrow-hover-width = @internal-button-text-arrow-width) {
+
+    padding-@{internal-button-text-arrow-position}: 0;
+    transition: padding @internal-button-text-arrow-transition-duration @internal-button-text-arrow-transition-timing-function;
+
+}
+
+.hook-button-text-hover() when (@button-text-icon-mode = arrow) and not (@internal-button-text-arrow-hover-width = @internal-button-text-arrow-width) {
+
+    &:not(:disabled) {
+        padding-@{internal-button-text-arrow-position}: (@internal-button-text-arrow-hover-width + @internal-button-text-arrow-padding);
+    }
+
+    &:not(:disabled)::after {
+        width: @internal-button-text-arrow-hover-width;
+        height: @internal-button-text-arrow-hover-width;
+    }
+
+}
+
+//
+// Dash
+//
+
+.hook-button-text() when (@button-text-icon-mode = dash) {
+
+    position: relative;
+    padding-left: (@internal-button-text-dash-size + @internal-button-text-dash-padding);
+
+    &::after {
+        content: "";
+        position: absolute;
+        top: ~'calc(50% - 1px)';
+        left: 0;
+        width: @internal-button-text-dash-size;
+        border-bottom: @button-text-border-width solid @button-text-border;
+    }
+
+}
+
+.hook-button-text-hover() when (@button-text-icon-mode = dash) and not ((@button-text-border = @button-text-hover-border) and (@button-text-hover-border = transparent)) {
+
+    &:not(:disabled)::after {
+        border-bottom-color: @button-text-hover-border;
+    }
+}
+
+
+// Link modifier
+// ========================================================================
+
+.hook-button-link() {}
+
+
+// Miscellaneous
+// ========================================================================
+
+.hook-button-misc() when (@internal-button-mode = strikethrough) {
+
+    .uk-button-small:hover {
+
+        &::before { right: ~'calc(@{button-small-padding-horizontal} - 3px)'; }
+
+    }
+
+    .uk-button-large:hover {
+
+        &::before { right: ~'calc(@{button-large-padding-horizontal} - 5px)'; }
+
+    }
+
+}
+
+
+// Inverse
+// ========================================================================
+
+@inverse-button-text-hover-color:                       @inverse-global-emphasis-color;
+
+//
+// New
+//
+
+@internal-inverse-button-default-glow-gradient:         ~'';
+@internal-inverse-button-primary-glow-gradient:         ~'';
+@internal-inverse-button-secondary-glow-gradient:       ~'';
+
+@inverse-button-text-border:                            currentColor;
+@inverse-button-text-hover-border:                      currentColor;
+
+@internal-inverse-button-text-arrow-color:              @inverse-button-text-color;
+@internal-inverse-button-text-arrow-hover-color:        @inverse-button-text-hover-color;
+@internal-inverse-button-text-arrow-background:         transparent;
+
+.hook-inverse-button-default() {}
+
+.hook-inverse-button-default() when (@internal-button-mode = ripple) {
+    background-image: radial-gradient(circle at 50% 100%, @inverse-button-default-hover-background 1%, transparent 1%);
+}
+.hook-inverse-button-default-hover() when (@internal-button-mode = ripple) {
+    background-color: @inverse-button-default-background;
+}
+.hook-inverse-button-default-active() when (@internal-button-mode = ripple) {
+    background-image: none;
+}
+
+.hook-inverse() when (@internal-button-default-mode = glow) and not (@internal-inverse-button-default-glow-gradient = ~'') {
+
+    .uk-button-default::before { background-image: @internal-inverse-button-default-glow-gradient; }
+
+}
+.hook-inverse() when (@internal-button-default-mode = glow) {
+
+    .uk-button-default::after {
+        background-color: @inverse-button-default-background;
+        .hook-inverse-button-default();
+    }
+
+    .uk-button-default:hover::after {
+        background-color: @inverse-button-default-hover-background;
+        color: @inverse-button-default-hover-color;
+        .hook-inverse-button-default-hover();
+    }
+
+    .uk-button-default:active::after {
+        background-color: @inverse-button-default-active-background;
+        .hook-inverse-button-default-active();
+    }
+
+}
+
+.hook-inverse-button-primary() when (@internal-button-mode = ripple) {
+    background-image: radial-gradient(circle at 50% 100%, @inverse-button-primary-hover-background 1%, transparent 1%);
+}
+.hook-inverse-button-primary-hover() when (@internal-button-mode = ripple) {
+    background-color: @inverse-button-primary-background;
+}
+.hook-inverse-button-primary-active() when (@internal-button-mode = ripple) {
+    background-image: none;
+}
+
+.hook-inverse() when (@internal-button-default-mode = glow) and not (@internal-inverse-button-primary-glow-gradient = ~'') {
+
+    .uk-button-primary::before { background-image: @internal-inverse-button-primary-glow-gradient; }
+
+}
+.hook-inverse() when (@internal-button-primary-mode = glow) {
+
+    .uk-button-primary::after {
+        background-color: @inverse-button-primary-background;
+        .hook-inverse-button-primary();
+    }
+
+    .uk-button-primary:hover::after {
+        background-color: @inverse-button-primary-hover-background;
+        color: @inverse-button-primary-hover-color;
+        .hook-inverse-button-primary-hover();
+    }
+
+    .uk-button-primary:active::after {
+        background-color: @inverse-button-primary-active-background;
+        .hook-inverse-button-primary-active();
+    }
+
+}
+
+.hook-inverse-button-secondary() when (@internal-button-mode = ripple) {
+    background-image: radial-gradient(circle at 50% 100%, @inverse-button-secondary-hover-background 1%, transparent 1%);
+}
+.hook-inverse-button-secondary-hover() when (@internal-button-mode = ripple) {
+    background-color: @inverse-button-secondary-background;
+}
+.hook-inverse-button-secondary-active() when (@internal-button-mode = ripple) {
+    background-image: none;
+}
+
+.hook-inverse() when (@internal-button-default-mode = glow) and not (@internal-inverse-button-secondary-glow-gradient = ~'') {
+
+    .uk-button-secondary::before { background-image: @internal-inverse-button-secondary-glow-gradient; }
+
+}
+.hook-inverse() when (@internal-button-secondary-mode = glow) {
+
+    .uk-button-secondary::after {
+        background-color: @inverse-button-secondary-background;
+        .hook-inverse-button-secondary();
+    }
+
+    .uk-button-secondary:hover::after {
+        background-color: @inverse-button-secondary-hover-background;
+        color: @inverse-button-secondary-hover-color;
+        .hook-inverse-button-secondary-hover();
+    }
+
+    .uk-button-secondary:active::after {
+        background-color: @inverse-button-secondary-active-background;
+        .hook-inverse-button-secondary-active();
+    }
+
+}
+
+.hook-inverse-button-text() when (@button-text-mode = line) {
+    &::before { border-bottom-color: @inverse-button-text-border; }
+}
+
+.hook-inverse-button-text() when (@button-text-mode = border-bottom) {
+    border-bottom-color: @inverse-button-text-border;
+}
+.hook-inverse-button-text-hover() when (@button-text-mode = border-bottom) and not ((@inverse-button-text-border = @inverse-button-text-hover-border) and (@inverse-button-text-hover-border = transparent)) {
+    border-bottom-color: @inverse-button-text-hover-border;
+}
+
+.hook-inverse-button-text() when (@button-text-icon-mode = arrow) and not (@internal-button-text-arrow-image = ~'') {
+    &::after { .svg-fill(@internal-button-text-arrow-image, "#000", @internal-inverse-button-text-arrow-color); }
+}
+.hook-inverse-button-text() when (@button-text-icon-mode = arrow) and not (@internal-inverse-button-text-arrow-background = transparent) {
+    &::after { background-color: @internal-inverse-button-text-arrow-background; }
+}
+.hook-inverse-button-text-hover() when (@button-text-icon-mode = arrow) and not (@internal-button-text-arrow-image = ~'') {
+    &:not(:disabled)::after { .svg-fill(@internal-button-text-arrow-image, "#000", @internal-inverse-button-text-arrow-hover-color); }
+}
+
+.hook-inverse-button-text() when (@button-text-icon-mode = dash) {
+    &::after { border-bottom-color: @inverse-button-text-border; }
+}
+.hook-inverse-button-text-hover() when (@button-text-icon-mode = dash) {
+    &:not(:disabled)::after { border-bottom-color: @inverse-button-text-hover-border; }
+}
+
+.hook-inverse-button-text-disabled() {}
+
+.hook-inverse-button-link() {}

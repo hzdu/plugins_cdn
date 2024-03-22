@@ -1,0 +1,58 @@
+{
+    "@import": "./element.php",
+    "name": "html",
+    "title": "Html",
+    "icon": "${url:images/icon.svg}",
+    "group": "basic",
+    "iconSmall": "${url:images/iconSmall.svg}",
+    "element": true,
+    "width": 500,
+    "placeholder": {
+        "props": {
+            "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+        }
+    },
+    "templates": {
+        "render": "./templates/template.php",
+        "content": "./templates/content.php"
+    },
+    "fields": {
+        "content": {
+            "label": "Content",
+            "type": "editor",
+            "editor": "code",
+            "mode": "text/html",
+            "source": true
+        },
+        "name": "${builder.name}",
+        "source": "${builder.source}",
+        "id": "${builder.id}",
+        "status": "${builder.status}",
+        "class": "${builder.cls}",
+        "attributes": "${builder.attrs}",
+        "css": {
+            "type": "editor",
+            "label": "CSS",
+            "description": "Enter your own custom CSS. The following selectors will be prefixed automatically for this element: <code>.el-element</code>",
+            "editor": "code",
+            "mode": "css",
+            "attrs": {
+                "debounce": 500,
+                "hints": [".el-element"]
+            }
+        },
+        "transform": "${builder.transform}"
+    },
+    "fieldset": {
+        "default": {
+            "type": "tabs",
+            "fields": [
+                {
+                    "title": "Content",
+                    "fields": ["content"]
+                },
+                "${builder.advanced}"
+            ]
+        }
+    }
+}

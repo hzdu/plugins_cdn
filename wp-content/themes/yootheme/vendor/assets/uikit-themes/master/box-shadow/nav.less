@@ -1,0 +1,167 @@
+//
+// Component: Nav
+//
+// ========================================================================
+
+
+// Variables
+// ========================================================================
+
+//
+// New
+//
+
+@nav-default-item-hover-box-shadow:             none;
+
+@nav-default-divider-box-shadow:                none;
+
+@nav-primary-divider-box-shadow:                none;
+
+@nav-secondary-divider-box-shadow:              none;
+
+@nav-dividers-box-shadow:                       none;
+
+
+// Sublists
+// ========================================================================
+
+.hook-nav-sub() {}
+
+
+// Header
+// ========================================================================
+
+.hook-nav-header() {}
+
+
+// Divider
+// ========================================================================
+
+.hook-nav-divider() {}
+
+
+// Default style modifier
+// ========================================================================
+
+.hook-nav-default() {}
+
+.hook-nav-default-item() {}
+
+.hook-nav-default-item-hover() when not (@nav-default-item-hover-box-shadow = none) {
+    box-shadow: @nav-default-item-hover-box-shadow;
+}
+
+.hook-nav-default-item-active() {}
+
+.hook-nav-default-subtitle() {}
+
+.hook-nav-default-header() {}
+
+.hook-nav-default-divider() when not (@nav-default-divider-box-shadow = none) {
+    box-shadow: @nav-default-divider-box-shadow;
+}
+
+
+// Primary style modifier
+// ========================================================================
+
+.hook-nav-primary() {}
+
+.hook-nav-primary-item() {}
+
+.hook-nav-primary-item-hover() {}
+
+.hook-nav-primary-item-active() {}
+
+.hook-nav-primary-subtitle() {}
+
+.hook-nav-primary-header() {}
+
+.hook-nav-primary-divider() when not (@nav-primary-divider-box-shadow = none) {
+    box-shadow: @nav-primary-divider-box-shadow;
+}
+
+
+// Secondary style modifier
+// ========================================================================
+
+.hook-nav-secondary() {}
+
+.hook-nav-secondary-item() {}
+
+.hook-nav-secondary-item-hover() {}
+
+.hook-nav-secondary-item-active() {}
+
+.hook-nav-secondary-subtitle() {}
+
+.hook-nav-secondary-subtitle-hover() {}
+
+.hook-nav-secondary-subtitle-active() {}
+
+.hook-nav-secondary-header() {}
+
+.hook-nav-secondary-divider() when not (@nav-secondary-divider-box-shadow = none) {
+    box-shadow: @nav-secondary-divider-box-shadow;
+}
+
+
+// Style modifier
+// ========================================================================
+
+.hook-nav-dividers() when not (@nav-dividers-box-shadow = none) {
+    box-shadow: @nav-dividers-box-shadow;
+}
+
+
+// Miscellaneous
+// ========================================================================
+
+.hook-nav-misc() {}
+
+
+// Inverse
+// ========================================================================
+
+@inverse-nav-default-item-hover-box-shadow:     none;
+
+@inverse-nav-default-divider-box-shadow:        none;
+
+@inverse-nav-primary-divider-box-shadow:        none;
+
+@inverse-nav-secondary-divider-box-shadow:      none;
+
+@inverse-nav-dividers-box-shadow:               none;
+
+.hook-inverse-nav-default-item() {}
+.hook-inverse-nav-default-item-hover() when not (@nav-default-item-hover-box-shadow = none) {
+    box-shadow: @inverse-nav-default-item-hover-box-shadow;
+}
+.hook-inverse-nav-default-item-active() {}
+.hook-inverse-nav-default-header() {}
+.hook-inverse-nav-default-divider() when not (@nav-default-divider-box-shadow = none) {
+    box-shadow: @inverse-nav-default-divider-box-shadow;
+}
+
+.hook-inverse-nav-primary-item() {}
+.hook-inverse-nav-primary-item-hover() {}
+.hook-inverse-nav-primary-item-active() {}
+.hook-inverse-nav-primary-header() {}
+.hook-inverse-nav-primary-divider() when not (@nav-default-divider-box-shadow = none) {
+    box-shadow: @inverse-nav-default-divider-box-shadow;
+}
+
+.hook-inverse-nav-secondary-item() {}
+.hook-inverse-nav-secondary-item-hover() {}
+.hook-inverse-nav-secondary-item-active() {}
+.hook-inverse-nav-secondary-subtitle() {}
+.hook-inverse-nav-secondary-subtitle-hover() {}
+.hook-inverse-nav-secondary-subtitle-active() {}
+.hook-inverse-nav-secondary-header() {}
+.hook-inverse-nav-secondary-divider() when not (@nav-secondary-divider-box-shadow = none) {
+    box-shadow: @inverse-nav-secondary-divider-box-shadow;
+}
+
+.hook-inverse-nav-dividers() when not (@nav-dividers-box-shadow = none) {
+    box-shadow: @inverse-nav-dividers-box-shadow;
+}

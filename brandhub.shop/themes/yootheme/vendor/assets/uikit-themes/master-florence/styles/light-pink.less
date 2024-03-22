@@ -1,0 +1,63 @@
+//
+// Global
+//
+
+@global-color:          #4e4241;
+@global-emphasis-color: #422c2a;
+@global-muted-color:    #9c807e;
+@global-link-color:     #9c807e;
+
+@global-background:           #f1e7e4;
+@global-muted-background:     desaturate(darken(@global-background, 3%), 4%);
+@global-primary-background:   #e6d6d3;
+@global-secondary-background: #4b3c3b;
+@global-success-background:   #45a34c;
+@global-warning-background:   #e89029;
+@global-danger-background:    #c1433b;
+
+//
+// Button
+//
+
+@internal-button-default-gradient:        linear-gradient(90deg, lighten(@global-background, 3%) 62.5%, transparent 62.5%);
+@internal-button-default-hover-gradient:  linear-gradient(90deg, lighten(@global-background, 3%) 62.5%, transparent 62.5%);
+@internal-button-default-active-gradient: linear-gradient(90deg, lighten(@global-background, 5%) 62.5%, transparent 62.5%);
+
+@internal-button-primary-gradient:        linear-gradient(90deg, @global-primary-background 62.5%, transparent 62.5%);
+@internal-button-primary-hover-gradient:  linear-gradient(90deg, @global-primary-background 62.5%, transparent 62.5%);
+@internal-button-primary-active-gradient: linear-gradient(90deg, darken(@global-primary-background, 3%) 62.5%, transparent 62.5%);
+
+@button-text-border: darken(@global-primary-background, 6%);
+
+//
+// Card
+//
+
+@card-default-background:       lighten(@global-background, 2%);
+@card-default-hover-background: lighten(@card-default-background, 4%);
+@card-primary-background:       @global-primary-background;
+
+//
+// Divider
+//
+
+@divider-small-border: @global-primary-background;
+
+//
+// Dropdown
+//
+
+@dropdown-background: lighten(@global-background, 2%);
+
+//
+// Navbar
+//
+
+@navbar-nav-item-line-hover-background: darken(@global-primary-background, 6%);
+@navbar-dropdown-background:            lighten(@global-background, 2%);
+
+//
+// Section
+//
+
+@section-primary-background: @global-primary-background;

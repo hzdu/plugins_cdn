@@ -1,0 +1,107 @@
+//
+// Component: Thumbnav
+//
+// ========================================================================
+
+
+// Variables
+// ========================================================================
+
+//
+// New
+//
+
+@thumbnav-item-background:                      rgba(255,255,255,0.4);
+
+@thumbnav-item-opacity:                         1;
+@thumbnav-item-hover-opacity:                   0;
+@thumbnav-item-active-opacity:                  0;
+
+@internal-thumbnav-mode:                        ~''; // siblings
+@internal-thumbnav-siblings-opacity:            1;
+@internal-thumbnav-siblings-filter:             ~'';
+
+
+// Component
+// ========================================================================
+
+.hook-thumbnav() {}
+
+.hook-thumbnav-item() {
+
+    position: relative;
+
+    &::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background-color: @thumbnav-item-background;
+        background-origin: border-box;
+        transition: 0.1s ease-in-out;
+        transition-property: background-color, border-color, box-shadow, opacity;
+    }
+
+}
+
+.hook-thumbnav-item-hover() {}
+
+.hook-thumbnav-item-active() {}
+
+//
+// Opacity
+//
+
+.hook-thumbnav-item() when not (@thumbnav-item-opacity = 1) {
+    &::after { opacity: @thumbnav-item-opacity; }
+}
+
+.hook-thumbnav-item-hover() when not (@thumbnav-item-opacity = @thumbnav-item-hover-opacity) {
+    &::after { opacity: @thumbnav-item-hover-opacity; }
+}
+
+.hook-thumbnav-item-active() when not (@thumbnav-item-opacity = @thumbnav-item-active-opacity) {
+    &::after { opacity: @thumbnav-item-active-opacity; }
+}
+
+
+// Miscellaneous
+// ========================================================================
+
+.hook-thumbnav-misc() {}
+
+// Siblings
+.hook-thumbnav-misc() when (@internal-thumbnav-mode = siblings) {
+
+    .hook-thumbnav-item() {
+        transition: 0.1s ease-in-out;
+        transition-property: opacity, filter;
+    }
+
+    .uk-thumbnav:hover > * > :not(:hover) {
+        .hook-thumbnav-siblings();
+    }
+
+}
+
+.hook-thumbnav-siblings() when not (@internal-thumbnav-siblings-opacity = 1) {
+    opacity: @internal-thumbnav-siblings-opacity;
+}
+
+.hook-thumbnav-siblings() when not (@internal-thumbnav-siblings-filter = ~'') {
+    filter: @internal-thumbnav-siblings-filter;
+}
+
+
+// Inverse
+// ========================================================================
+
+@inverse-thumbnav-item-background:            rgba(0,0,0,0.4);
+
+.hook-inverse-thumbnav-item() {
+    &::after { background-color: @inverse-thumbnav-item-background; }
+}
+.hook-inverse-thumbnav-item-hover() {}
+.hook-inverse-thumbnav-item-active() {}

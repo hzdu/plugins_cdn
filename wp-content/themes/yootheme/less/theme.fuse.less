@@ -1,0 +1,164 @@
+/*
+
+Name: Fuse
+Background: White
+Color: Black
+Type: Flat
+Preview: https://yootheme.com/api/style/fuse/default.jpg
+
+Style: white-red
+Name: White Red
+Background: White
+Color: Red
+Type: Flat
+Preview: https://yootheme.com/api/style/fuse/white-red.jpg
+
+Style: white-bordeaux
+Name: White Bordeaux
+Background: White
+Color: Red
+Type: Flat
+Preview: https://yootheme.com/api/style/fuse/white-bordeaux.jpg
+
+Style: light-green
+Name: Light Green
+Background: light
+Color: Green
+Type: Skeuomorphic
+Preview: https://yootheme.com/api/style/fuse/light-green.jpg
+
+Style: dark-yellow
+Name: Dark Yellow
+Background: Dark
+Color: Yellow
+Type: Flat
+Preview: https://yootheme.com/api/style/fuse/dark-yellow.jpg
+
+Style: dark-brown
+Name: Dark Brown
+Background: Dark
+Color: Brown
+Type: Flat
+Preview: https://yootheme.com/api/style/fuse/dark-brown.jpg
+
+*/
+
+// Platform
+@import "platform.less";
+
+// UIkit Core
+@import "../vendor/assets/uikit/src/less/uikit.less";
+
+// UIkit Theme
+@import "../vendor/assets/uikit-themes/master/_import.less";
+@import "../vendor/assets/uikit-themes/master-fuse/_import.less";
+
+// Theme
+@import "theme.less";
+
+
+// Variables
+// ========================================================================
+
+//
+// Toolbar
+//
+
+@theme-toolbar-font-size:                                11px;
+
+//
+// Header
+//
+
+@theme-headerbar-font-size:                              11px;
+
+//
+// Box Decoration
+//
+
+@theme-box-decoration-z-index:                           1;
+
+@theme-box-decoration-default-transform-horizontal:      -15px;
+@theme-box-decoration-default-transform-vertical:        15px;
+@theme-box-decoration-default-background:                transparent;
+@theme-box-decoration-default-border-width:              @global-border-width;
+@theme-box-decoration-default-border:                    @global-border;
+
+@theme-box-decoration-primary-transform-horizontal:      15px;
+@theme-box-decoration-primary-transform-vertical:        15px;
+@theme-box-decoration-primary-background:                transparent;
+@theme-box-decoration-primary-border-width:              @global-border-width;
+@theme-box-decoration-primary-border:                    @global-border;
+
+@theme-box-decoration-secondary-transform-horizontal:    15px;
+@theme-box-decoration-secondary-transform-vertical:      -15px;
+@theme-box-decoration-secondary-background:              transparent;
+@theme-box-decoration-secondary-border-width:            @global-border-width;
+@theme-box-decoration-secondary-border:                  @global-border;
+
+@inverse-theme-box-decoration-default-border:            @inverse-global-border;
+@inverse-theme-box-decoration-primary-border:            @inverse-global-border;
+@inverse-theme-box-decoration-secondary-border:          @inverse-global-border;
+
+//
+// Transition Border
+//
+
+@theme-transition-border-hover-border-width:             16px;
+
+@theme-transition-border-border:                         @global-background;
+@theme-transition-border-hover-border:                   @theme-transition-border-border;
+
+//
+// WooCommerce
+//
+
+//
+// Shop page
+//
+
+@woocommerce-shop-page-title-font-size:                 @global-font-size;
+@woocommerce-shop-page-title-line-height:               1.4;
+@woocommerce-shop-page-title-color:                     @global-emphasis-color;
+@woocommerce-shop-page-title-font-family:               @global-font-family;
+@woocommerce-shop-page-title-font-weight:               normal;
+@woocommerce-shop-page-title-text-transform:            normal;
+@woocommerce-shop-page-title-letter-spacing:            0;
+@woocommerce-shop-page-title-font-style:                normal;
+
+@woocommerce-shop-page-price-font-family:               @global-secondary-font-family;
+@woocommerce-shop-page-price-font-size:                 11px;
+@woocommerce-shop-page-price-font-weight:               @global-secondary-font-weight;
+@woocommerce-shop-page-price-letter-spacing:            @global-secondary-letter-spacing;
+@woocommerce-shop-page-price-text-transform:            @global-secondary-text-transform;
+
+//
+// Single product page
+//
+
+@woocommerce-product-page-price-font-family:            @global-secondary-font-family;
+@woocommerce-product-page-price-font-size:              @global-small-font-size;
+@woocommerce-product-page-price-font-weight:            @global-secondary-font-weight;
+@woocommerce-product-page-price-letter-spacing:         @global-secondary-letter-spacing;
+@woocommerce-product-page-price-line-height:            1.4;
+@woocommerce-product-page-price-text-transform:         @global-secondary-text-transform;
+
+//
+// Rating
+//
+
+@woocommerce-rating-color:                               @global-primary-background;
+
+//
+// Review Link
+//
+
+@woocommerce-review-link-font-size:                      14px;
+
+
+// Style
+// ========================================================================
+
+@import (optional) "../vendor/assets/uikit-themes/master-fuse/styles/@{internal-style}.less";
+
+@internal-style: ~'';

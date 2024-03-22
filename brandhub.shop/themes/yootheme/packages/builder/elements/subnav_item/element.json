@@ -1,0 +1,43 @@
+{
+    "@import": "./element.php",
+    "name": "subnav_item",
+    "title": "Item",
+    "width": 500,
+    "placeholder": {
+        "props": {
+            "content": "Item"
+        }
+    },
+    "templates": {
+        "render": "./templates/template.php",
+        "content": "./templates/content.php"
+    },
+    "fields": {
+        "content": {
+            "label": "Content",
+            "source": true
+        },
+        "link": "${builder.link}",
+        "link_target": "${builder.link_target}",
+        "active": {
+            "label": "Active",
+            "type": "checkbox",
+            "text": "Active item",
+            "source": true
+        },
+        "status": "${builder.statusItem}",
+        "source": "${builder.source}"
+    },
+    "fieldset": {
+        "default": {
+            "type": "tabs",
+            "fields": [
+                {
+                    "title": "Content",
+                    "fields": ["content", "link", "link_target", "active"]
+                },
+                "${builder.advancedItem}"
+            ]
+        }
+    }
+}

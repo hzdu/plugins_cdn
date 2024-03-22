@@ -1,0 +1,67 @@
+//
+// Component: Notification
+//
+// ========================================================================
+
+
+// Variables
+// ========================================================================
+
+//
+// New
+//
+
+@notification-message-border-mode:                        ~'';
+@notification-message-border-width:                       0;
+@notification-message-border:                             transparent;
+
+@notification-message-primary-border:                     transparent;
+@notification-message-success-border:                     transparent;
+@notification-message-warning-border:                     transparent;
+@notification-message-danger-border:                      transparent;
+
+
+// Component
+// ========================================================================
+
+.hook-notification() {}
+
+
+// Message
+// ========================================================================
+
+.hook-notification-message() when not (@notification-message-border-width = 0) {
+    border@{notification-message-border-mode}: @notification-message-border-width solid @notification-message-border;
+}
+
+
+// Close
+// ========================================================================
+
+.hook-notification-close() {}
+
+
+// Style modifiers
+// ========================================================================
+
+.hook-notification-message-primary() when not (@notification-message-border-width = 0) {
+    border@{notification-message-border-mode}-color: @notification-message-primary-border;
+}
+
+.hook-notification-message-success() when not (@notification-message-border-width = 0) {
+    border@{notification-message-border-mode}-color: @notification-message-success-border;
+}
+
+.hook-notification-message-warning() when not (@notification-message-border-width = 0) {
+    border@{notification-message-border-mode}-color: @notification-message-warning-border;
+}
+
+.hook-notification-message-danger() when not (@notification-message-border-width = 0) {
+    border@{notification-message-border-mode}-color: @notification-message-danger-border;
+}
+
+
+// Miscellaneous
+// ========================================================================
+
+.hook-notification-misc() {}

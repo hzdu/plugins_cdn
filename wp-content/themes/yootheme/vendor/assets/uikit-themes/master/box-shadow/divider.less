@@ -1,0 +1,77 @@
+//
+// Component: Divider
+//
+// ========================================================================
+
+
+// Variables
+// ========================================================================
+
+//
+// New
+//
+
+@divider-icon-line-box-shadow:                  none;
+
+@divider-small-box-shadow:                      none;
+
+@divider-vertical-box-shadow:                   none;
+
+
+// Icon
+// ========================================================================
+
+.hook-divider-icon() {}
+
+.hook-divider-icon-line() when not (@divider-icon-line-box-shadow = none) {
+    box-shadow: @divider-icon-line-box-shadow;
+}
+
+.hook-divider-icon-line-left() {}
+
+.hook-divider-icon-line-right() {}
+
+
+// Small
+// ========================================================================
+
+.hook-divider-small() when not (@divider-small-box-shadow = none) {
+    box-shadow: @divider-small-box-shadow;
+}
+
+
+// Vertical
+// ========================================================================
+
+.hook-divider-vertical() when not (@divider-vertical-box-shadow = none) {
+    box-shadow: @divider-vertical-box-shadow;
+}
+
+
+// Miscellaneous
+// ========================================================================
+
+.hook-divider-misc() {}
+
+
+// Inverse
+// ========================================================================
+
+@inverse-divider-icon-line-box-shadow:          none;
+
+@inverse-divider-small-box-shadow:              none;
+
+@inverse-divider-vertical-box-shadow:           none;
+
+.hook-inverse-divider-icon() {}
+.hook-inverse-divider-icon-line() when not (@divider-icon-line-box-shadow = none) {
+    box-shadow: @inverse-divider-icon-line-box-shadow;
+}
+
+.hook-inverse-divider-small() when not (@divider-small-box-shadow = none) {
+    box-shadow: @inverse-divider-small-box-shadow;
+}
+
+.hook-inverse-divider-vertical() when not (@divider-vertical-box-shadow = none) {
+    box-shadow: @inverse-divider-vertical-box-shadow;
+}

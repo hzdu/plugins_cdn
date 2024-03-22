@@ -1,0 +1,214 @@
+//
+// Global
+//
+
+@global-color:                #fff;
+@global-emphasis-color:       #fff;
+@global-inverse-color:        #080443;
+@global-link-color:           #ffef3a;
+@global-muted-color:          #68659b;
+@global-link-hover-color:     #f1bb19;
+@global-background:           #080443;
+@global-danger-background:    #e90150;
+@global-muted-background:     #191558;
+@global-primary-background:   #ffef3a;
+@global-secondary-background: #140f50;
+@global-success-background:   #02c333;
+@global-warning-background:   #ff9c00;
+@global-border:               #222158;
+@global-large-box-shadow:     0 14px 25px 0 rgba(0, 0, 0, 0.3);
+@global-medium-box-shadow:    0 5px 15px 0 rgba(0, 0, 0, 0.3);
+@global-small-box-shadow:     0 2px 8px 0 rgba(0, 0, 0, 0.4);
+@global-xlarge-box-shadow:    0 28px 50px 0 rgba(0, 0, 0, 0.3);
+
+//
+// Theme
+//
+
+@theme-page-container-color-mode: light;
+
+//
+// Alert
+//
+
+@alert-primary-background: @global-primary-background;
+@alert-primary-color:      @global-inverse-color;
+@alert-success-background: @global-success-background;
+@alert-success-color:      @global-color;
+@alert-warning-background: @global-warning-background;
+@alert-warning-color:      @global-color;
+@alert-danger-background:  @global-danger-background;
+@alert-danger-color:       @global-color;
+
+//
+// Base
+//
+
+@base-ins-background:  @global-muted-background;
+@base-mark-background: lighten(@global-muted-background, 5%);
+
+//
+// Button
+//
+
+@button-secondary-color:             fade(@global-color, 80%);
+@button-secondary-active-background: @global-secondary-background;
+@button-secondary-active-color:      fade(@global-color, 80%);
+
+//
+// Card
+//
+
+@card-default-color-mode:         light;
+@card-default-hover-background:   @global-muted-background;
+@card-primary-color:              @global-inverse-color;
+@card-primary-color-mode:         dark;
+@card-secondary-color:            @global-color;
+@card-secondary-hover-background: lighten(desaturate(@card-secondary-background, 5%), 5%);
+
+//
+// Dotnav
+//
+
+@dotnav-item-border: lighten(@global-border, 5%);
+
+//
+// Dropbar
+//
+
+@dropbar-color-mode: light;
+
+//
+// Dropdown
+//
+
+@dropdown-color-mode: light;
+
+//
+// Form Range
+//
+@form-range-thumb-background:       @global-emphasis-color;
+@form-range-track-background:       @global-muted-background;
+@form-range-track-focus-background: desaturate(lighten(@global-muted-background, 10%), 15%);
+
+//
+// Form
+//
+
+@form-focus-background:       lighten(@form-background, 3%);
+@form-focus-color:            @global-emphasis-color;
+@form-radio-background:       lighten(@global-muted-background, 3%);
+@form-radio-focus-background: lighten(@global-muted-background, 8%);
+@form-label-color:            @global-emphasis-color;
+
+//
+// Icon
+//
+
+@icon-button-color:        @global-inverse-color;
+@icon-button-active-color: @global-inverse-color;
+
+//
+// Inverse
+//
+
+@inverse-global-color-mode:                      dark;
+@inverse-button-primary-hover-background:        darken(@inverse-button-primary-background, 12%);
+@inverse-button-primary-active-background:       darken(@inverse-button-primary-background, 15%);
+@inverse-button-primary-active-color:            @global-background;
+@inverse-button-secondary-hover-background:      lighten(@inverse-button-secondary-background, 10%);
+@inverse-button-secondary-active-background:     lighten(@inverse-button-secondary-background, 15%);
+@internal-inverse-button-text-arrow-color:       darken(@global-primary-background, 15%);
+@internal-inverse-button-text-arrow-hover-color: darken(@global-primary-background, 15%);
+@inverse-slidenav-background:                    @global-color;
+@inverse-slidenav-color:                         @global-background;
+@inverse-slidenav-hover-background:              fade(@global-color, 90%);
+@inverse-slidenav-hover-color:                   @global-background;
+@inverse-slidenav-active-background:             fade(@global-color, 85%);
+@inverse-slidenav-active-color:                  @global-background;
+
+//
+// Label
+//
+
+@label-color: @global-inverse-color;
+
+//
+// Navbar
+//
+
+@navbar-color-mode:            light;
+@navbar-dropdown-color-mode:   light;
+@navbar-subtitle-color:        @global-color;
+@navbar-nav-item-hover-color:  @global-inverse-color;
+@navbar-nav-item-active-color: @global-inverse-color;
+
+//
+// Overlay
+//
+
+@overlay-default-color-mode: light;
+@overlay-primary-background: rgba(255, 255, 255, 0.5);
+@overlay-primary-color-mode: dark;
+
+//
+// Search
+//
+
+@search-default-focus-background: lighten(@search-default-background, 3%);
+
+//
+// Section
+//
+@section-default-color-mode:     light;
+@section-muted-color-mode:       light;
+@section-primary-color-mode:     dark;
+@internal-section-default-image: "../../master-tomsen-brody/images/styles/dark-yellow/section-dark-background.svg";
+
+//
+// Slidenav
+//
+
+@slidenav-color: @global-muted-color;
+
+//
+// Table
+//
+
+@table-row-active-background:  @global-muted-background;
+@table-striped-row-background: fade(@global-secondary-background, 90%);
+
+//
+// Text
+//
+
+@text-secondary-color: lighten(@global-secondary-background, 50%);
+
+//
+// Thumbnav
+//
+
+@thumbnav-item-gradient:         linear-gradient(180deg, rgba(0,0,0,0), rgba(0,0,0,0.4));
+@inverse-thumbnav-item-gradient: linear-gradient(180deg, rgba(255,255,255,0), rgba(255,255,255,0.4));
+
+//
+// Tile
+//
+
+@tile-default-color-mode: light;
+@tile-muted-color-mode:   light;
+@tile-primary-color-mode: dark;
+
+//
+// Utility
+//
+
+@box-shadow-bottom-background: #000;
+@dragover-box-shadow:          0 0 20px 0 rgba(0, 0, 0, 0.5);
+
+//
+// Woocommerce
+//
+
+@woocommerce-rating-color:            @global-emphasis-color;
+@woocommerce-rating-background-color: desaturate(lighten(@global-muted-background, 10%), 15%);

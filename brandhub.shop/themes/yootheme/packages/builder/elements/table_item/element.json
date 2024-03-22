@@ -1,0 +1,96 @@
+{
+    "@import": "./element.php",
+    "name": "table_item",
+    "title": "Item",
+    "width": 500,
+    "placeholder": {
+        "props": {
+            "title": "Title",
+            "meta": "",
+            "content": "Lorem ipsum dolor sit amet.",
+            "image": ""
+        }
+    },
+    "templates": {
+        "render": "./templates/template.php",
+        "content": "./templates/content.php"
+    },
+    "fields": {
+        "title": {
+            "label": "Title",
+            "source": true
+        },
+        "meta": {
+            "label": "Meta",
+            "source": true
+        },
+        "content": {
+            "label": "Content",
+            "type": "editor",
+            "source": true
+        },
+        "image": "${builder.image}",
+        "image_alt": {
+            "label": "Image Alt",
+            "source": true,
+            "enable": "image"
+        },
+        "link": "${builder.link}",
+        "link_text": {
+            "label": "Link Text",
+            "description": "Set a different link text for this item.",
+            "source": true,
+            "enable": "link"
+        },
+        "image_focal_point": {
+            "label": "Focal Point",
+            "description": "Set a focal point to adjust the image focus when cropping.",
+            "type": "select",
+            "options": {
+                "Top Left": "top-left",
+                "Top Center": "top-center",
+                "Top Right": "top-right",
+                "Center Left": "center-left",
+                "Center Center": "",
+                "Center Right": "center-right",
+                "Bottom Left": "bottom-left",
+                "Bottom Center": "bottom-center",
+                "Bottom Right": "bottom-right"
+            },
+            "source": true,
+            "enable": "image"
+        },
+        "status": "${builder.statusItem}",
+        "source": "${builder.source}"
+    },
+    "fieldset": {
+        "default": {
+            "type": "tabs",
+            "fields": [
+                {
+                    "title": "Content",
+                    "fields": [
+                        "title",
+                        "meta",
+                        "content",
+                        "image",
+                        "image_alt",
+                        "link",
+                        "link_text"
+                    ]
+                },
+                {
+                    "title": "Settings",
+                    "fields": [
+                        {
+                            "label": "Image",
+                            "type": "group",
+                            "fields": ["image_focal_point"]
+                        }
+                    ]
+                },
+                "${builder.advancedItem}"
+            ]
+        }
+    }
+}

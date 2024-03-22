@@ -1,0 +1,230 @@
+//
+// Global
+//
+
+@global-color:                #fff;
+@global-emphasis-color:       #fff;
+@global-link-color:           #afa79b;
+@global-muted-color:          rgba(255,255,255,0.7);
+@global-link-hover-color:     #fff;
+@global-inverse-color:        #161616;
+@global-background:           #161616;
+@global-danger-background:    #ca4747;
+@global-muted-background:     #1f1d1d;
+@global-primary-background:   #D2CABF;
+@global-secondary-background: #121212;
+@global-success-background:   #4f8a61;
+@global-border:               rgba(255, 255, 255, 0.1);
+@global-warning-background:   #f5b071;
+
+//
+// Theme
+//
+
+@theme-page-container-color-mode: light;
+
+//
+// Alert
+//
+
+@alert-primary-color: @global-primary-background;
+
+//
+// Badge
+//
+
+@badge-color: @global-inverse-color;
+
+//
+// Button
+//
+
+@button-default-hover-color:         @global-inverse-color;
+@button-primary-color:               @global-inverse-color;
+@button-primary-hover-background:    @global-muted-background;
+@button-primary-active-color:        @global-inverse-color;
+@button-secondary-background:        @global-muted-background;
+@button-secondary-hover-color:       @global-inverse-color;
+@button-secondary-active-background: @global-muted-background;
+@button-secondary-active-color:      @global-primary-background;
+@button-danger-color:                @global-emphasis-color;
+@button-danger-hover-color:          @button-danger-color;
+@button-danger-active-color:         @button-danger-color;
+
+//
+// Card
+//
+
+@card-badge-color:           @global-inverse-color;
+@card-default-background:    lighten(@global-muted-background, 1%);
+@card-default-color-mode:    light;
+@card-primary-background:    #cec5b7;
+@card-primary-color-mode:    dark;
+@card-secondary-color:       @global-color;
+@card-secondary-title-color: @global-emphasis-color;
+
+//
+// Dotnav
+//
+
+@dotnav-item-active-background: @global-primary-background;
+
+//
+// Dropdown
+//
+
+@dropdown-nav-item-color:         @global-emphasis-color;
+@dropdown-nav-header-color:       fade(@global-primary-background, 50%);
+@dropdown-nav-sublist-item-color: @global-emphasis-color;
+
+//
+// Form Range
+//
+
+@form-range-thumb-background:       @global-emphasis-color;
+@form-range-track-background:       lighten(@global-muted-background, 5%);
+@form-range-track-focus-background: lighten(@global-muted-background, 15%);
+
+//
+// Form
+//
+
+@form-focus-background:       lighten(@form-background, 5%);
+@form-radio-background:       lighten(@global-muted-background, 5%);
+@form-radio-focus-background: lighten(@form-radio-background, 5%);
+
+//
+// Icon
+//
+
+@icon-button-background:        @global-muted-background;
+@icon-button-hover-background:  @global-color;
+@icon-button-hover-color:       @global-inverse-color;
+@icon-button-active-background: fade(@icon-button-hover-background, 50%);
+@icon-button-active-color:      @icon-button-hover-color;
+
+// Inverse
+//
+
+@inverse-global-color-mode:                  dark;
+@inverse-marker-background:                  @global-background;
+@inverse-marker-hover-background:            rgba(0, 0, 0, 0.8);
+@inverse-nav-secondary-item-hover-color:     @global-inverse-color;
+@inverse-nav-secondary-subtitle-hover-color: @global-inverse-color;
+@inverse-totop-color:                        @global-color;
+
+//
+// Label
+//
+
+@label-color: @global-inverse-color;
+
+//
+// Marker
+//
+
+@marker-background:       @global-primary-background;
+@marker-color:            @global-background;
+@marker-hover-background: fade(@global-primary-background, 90%);
+
+//
+// Nav
+//
+
+@nav-default-item-color:             @global-emphasis-color;
+@nav-default-sublist-item-color:     @global-emphasis-color;
+@nav-primary-item-color:             @global-emphasis-color;
+@nav-primary-sublist-item-color:     @global-emphasis-color;
+@nav-secondary-item-hover-color:     @global-inverse-color;
+@nav-secondary-subtitle-hover-color: @global-inverse-color;
+
+//
+// Navbar
+//
+
+@navbar-dropdown-nav-item-color:         @global-emphasis-color;
+@navbar-dropdown-nav-header-color:       fade(@global-primary-background, 50%);
+@navbar-dropdown-nav-sublist-item-color: @global-emphasis-color;
+@navbar-dropdown-color:                  @global-muted-color;
+@navbar-color-mode:                      light;
+@navbar-dropdown-color-mode:             light;
+
+//
+// Overlay
+//
+
+@overlay-default-color-mode: light;
+
+//
+// Search
+//
+
+@search-default-focus-background: lighten(@search-default-background, 5%);
+
+//
+// Section
+//
+
+@section-default-color-mode: light;
+@section-muted-color-mode:   light;
+
+//
+// Slidenav
+//
+
+@slidenav-background:        @global-primary-background;
+@slidenav-color:             @global-inverse-color;
+@slidenav-hover-background:  fade(@global-primary-background, 90%);
+@slidenav-hover-color:       @global-inverse-color;
+@slidenav-active-background: fade(@global-primary-background, 80%);
+@slidenav-active-color:      @global-inverse-color;
+
+//
+// Subnav
+//
+
+@subnav-pill-item-hover-background: @global-muted-background;
+@subnav-pill-item-onclick-color:    @global-inverse-color;
+@subnav-pill-item-active-color:     @global-inverse-color;
+
+//
+// Text
+//
+
+@text-primary-color:   darken(@global-primary-background, 10%);
+@text-secondary-color: desaturate(darken(@global-primary-background, 20%), 10%);
+
+//
+// Thumbnav
+//
+
+@thumbnav-item-gradient:         linear-gradient(180deg, rgba(0,0,0,0), rgba(0,0,0,0.4));
+@inverse-thumbnav-item-gradient: linear-gradient(180deg, rgba(255,255,255,0), rgba(255,255,255,0.4));
+
+@thumbnav-item-active-border: @global-emphasis-color;
+
+//
+// Tile
+//
+
+@tile-default-color-mode: light;
+@tile-muted-color-mode:   light;
+
+//
+// Totop
+//
+
+@totop-hover-color: @global-inverse-color;
+
+//
+// Utility
+//
+
+@box-shadow-bottom-background: #000;
+@dragover-box-shadow:          0 0 20px 0 #000;
+
+//
+// Woocommerce
+//
+
+@woocommerce-rating-background-color: lighten(@global-muted-background, 10%);

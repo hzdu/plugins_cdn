@@ -1,0 +1,250 @@
+/*
+
+Name: Union Dental
+Background: White
+Color: Blue
+Type: Flat
+Preview: https://yootheme.com/api/style/union-dental/default.jpg
+
+Style: white-green
+Name: White Green
+Background: White
+Color: Green
+Type: Flat
+Preview: https://yootheme.com/api/style/union-dental/white-green.jpg
+
+Style: white-turquoise
+Name: White Turquoise
+Background: White
+Color: Turquoise
+Type: Flat
+Preview: https://yootheme.com/api/style/union-dental/white-turquoise.jpg
+
+Style: white-red
+Name: White Red
+Background: White
+Color: Red
+Type: Flat
+Preview: https://yootheme.com/api/style/union-dental/white-red.jpg
+
+Style: white-lightblue
+Name: White Lightblue
+Background: White
+Color: Blue
+Type: Flat
+Preview: https://yootheme.com/api/style/union-dental/white-lightblue.jpg
+
+Style: white-lightgreen
+Name: White Lightgreen
+Background: White
+Color: Green
+Type: Flat
+Preview: https://yootheme.com/api/style/union-dental/white-lightgreen.jpg
+
+*/
+
+// Platform
+@import "platform.less";
+
+// UIkit Core
+@import "../vendor/assets/uikit/src/less/uikit.less";
+
+// UIkit Theme
+@import "../vendor/assets/uikit-themes/master/_import.less";
+@import "../vendor/assets/uikit-themes/master-union-dental/_import.less";
+
+// Theme
+@import "theme.less";
+
+
+// Variables
+// ========================================================================
+
+//
+// Page
+//
+
+@theme-page-border-mode:                                -bottom;
+@theme-page-border-width:                               5px;
+@theme-page-border:                                     @global-primary-background;
+
+//
+// Page Container
+//
+
+@theme-page-container-width:                            1840px;
+
+//
+// Toolbar
+//
+
+@theme-toolbar-background:                              @global-muted-background;
+@theme-toolbar-color-mode:                              dark;
+
+//
+// Box Decoration
+//
+
+@theme-box-decoration-top:                               -40px;
+@theme-box-decoration-bottom:                            -40px;
+@theme-box-decoration-left:                              -40px;
+@theme-box-decoration-right:                             -40px;
+@theme-box-decoration-z-index:                           0;
+
+@theme-box-decoration-default-transform-horizontal:      0;
+@theme-box-decoration-default-transform-vertical:        0;
+@theme-box-decoration-default-background:                @global-warning-background;
+
+@theme-box-decoration-primary-transform-horizontal:      0;
+@theme-box-decoration-primary-transform-vertical:        0;
+@theme-box-decoration-primary-background:                @global-primary-background;
+
+@theme-box-decoration-secondary-transform-horizontal:    0;
+@theme-box-decoration-secondary-transform-vertical:      0;
+@theme-box-decoration-secondary-background:              @global-danger-background;
+
+.hook-box-decoration() {
+
+    &::after {
+        content: '';
+        position: absolute;
+        z-index: @theme-box-decoration-z-index;
+        pointer-events: none;
+    }
+
+}
+
+.hook-box-decoration-default() {
+
+    &::before {
+        width: 120px;
+        height: 60px;
+        border-radius: 0 0 500px 500px;
+    }
+
+    &::after {
+        right: -20px;
+        bottom: -20px;
+        width: 60px;
+        height: 120px;
+        border-radius: 0 500px 500px 0;
+        background: @theme-box-decoration-secondary-background;
+    }
+
+}
+
+.hook-box-decoration-primary() {
+
+    &::before {
+        left: ~'calc(100% - 40px)';
+        width: 80px;
+        height: 80px;
+        border-radius: 500px;
+    }
+
+    &::after {
+        bottom: -20px;
+        left: -20px;
+        width: 60px;
+        height: 60px;
+        border-radius: 500px 0 0 0;
+        background: @theme-box-decoration-default-background;
+    }
+
+}
+
+.hook-box-decoration-secondary() {
+
+    &::before {
+        width: 80px;
+        height: 80px;
+        border-radius: 500px 0 0 0;
+    }
+
+    &::after {
+        right: -40px;
+        bottom: -40px;
+        width: 120px;
+        height: 60px;
+        border-radius: 0 0 500px 500px;
+        background: @theme-box-decoration-primary-background;
+    }
+
+}
+
+/* Tablet Landscape and bigger */
+@media (min-width: @breakpoint-medium) {
+
+    .tm-box-decoration-default {
+
+        &::before {
+            width: 160px;
+            height: 80px;
+        }
+
+        &::after {
+            right: -40px;
+            bottom: -40px;
+            width: 80px;
+            height: 160px;
+        }
+    }
+
+    .tm-box-decoration-primary {
+
+        &::before {
+            left: ~'calc(100% - 60px)';
+            width: 120px;
+            height: 120px;
+        }
+
+        &::after {
+            bottom: -30px;
+            left: -40px;
+            width: 100px;
+            height: 100px;
+        }
+
+    }
+
+    .tm-box-decoration-secondary {
+
+        &::before {
+            width: 100px;
+            height: 100px;
+        }
+
+        &::after {
+            right: -40px;
+            bottom: -40px;
+            width: 160px;
+            height: 80px;
+        }
+    }
+
+}
+
+//
+// Transition Border
+//
+
+@theme-transition-border-hover-border-width:            0 0 8px 0;
+
+//
+// Section
+//
+
+@section-title-color:                                   @global-emphasis-color;
+@section-title-font-size:                               13px;
+
+@internal-section-title-dash-border-height:             50px;
+@internal-section-title-dash-border-width:              2px;
+@internal-section-title-dash-color:                     @global-primary-background;
+
+
+// Style
+// ========================================================================
+
+@import (optional) "../vendor/assets/uikit-themes/master-union-dental/styles/@{internal-style}.less";
+
+@internal-style: ~'';

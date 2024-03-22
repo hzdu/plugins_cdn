@@ -1,0 +1,141 @@
+/*
+
+Name: Paladin
+Background: White
+Color: Red
+Type: Flat
+Preview: https://yootheme.com/api/style/paladin/default.jpg
+
+Style: light-green
+Name: Light Green
+Background: Light
+Color: Green
+Type: Flat
+Preview: https://yootheme.com/api/style/paladin/light-green.jpg
+
+Style: white-orange
+Name: White Orange
+Background: White
+Color: Orange
+Type: Flat
+Preview: https://yootheme.com/api/style/paladin/white-orange.jpg
+
+Style: light-blue
+Name: Light Blue
+Background: Light
+Color: Blue
+Type: Flat
+Preview: https://yootheme.com/api/style/paladin/light-blue.jpg
+
+Style: light-red
+Name: Light Red
+Background: Light
+Color: Red
+Type: Flat
+Preview: https://yootheme.com/api/style/paladin/light-red.jpg
+
+Style: light-darkblue
+Name: Light Darkblue
+Background: Light
+Color: Blue
+Type: Flat
+Preview: https://yootheme.com/api/style/paladin/light-darkblue.jpg
+
+*/
+
+// Platform
+@import "platform.less";
+
+// UIkit Core
+@import "../vendor/assets/uikit/src/less/uikit.less";
+
+// UIkit Theme
+@import "../vendor/assets/uikit-themes/master/_import.less";
+@import "../vendor/assets/uikit-themes/master-paladin/_import.less";
+
+// Theme
+@import "theme.less";
+
+
+// Variables
+// ========================================================================
+
+//
+// Header
+//
+
+@theme-headerbar-top-padding-bottom:            40px;
+@theme-headerbar-top-padding-top:               40px;
+@theme-headerbar-font-size:                     @global-small-font-size;
+
+//
+// Section
+//
+
+@section-title-color:                           @global-emphasis-color;
+@section-title-font-size:                       12px;
+@section-title-font-weight:                     600;
+@section-title-text-transform:                  uppercase;
+@section-title-letter-spacing:                  1px;
+
+@internal-section-title-dash-border-height:     40px;
+
+//
+// Inverse
+//
+
+@inverse-section-title-color:                   @inverse-global-emphasis-color;
+
+//
+// Transition Border
+//
+
+@theme-transition-border-hover-border-width:            15px;
+
+@theme-transition-border-border:                        @global-background;
+@theme-transition-border-hover-border:                  @theme-transition-border-border;
+
+//
+// WooCommerce
+//
+
+//
+// Shop page
+//
+
+@woocommerce-shop-page-title-font-size:                 @base-h4-font-size;
+@woocommerce-shop-page-title-line-height:               @base-h4-line-height;
+@woocommerce-shop-page-title-color:                     @base-h4-color;
+@woocommerce-shop-page-title-font-family:               @base-h4-font-family;
+@woocommerce-shop-page-title-font-weight:               @base-h4-font-weight;
+@woocommerce-shop-page-title-text-transform:            @base-h4-text-transform;
+@woocommerce-shop-page-title-letter-spacing:            @base-h4-letter-spacing;
+@woocommerce-shop-page-title-font-style:                @base-h4-font-style;
+
+//
+// Single product page
+//
+
+@woocommerce-product-page-title-font-size-m:            @base-h1-font-size-m;
+@woocommerce-product-page-title-font-size:              @base-h1-font-size;
+@woocommerce-product-page-title-line-height:            @base-h1-line-height;
+@woocommerce-product-page-title-color:                  @base-h1-color;
+@woocommerce-product-page-title-font-family:            @base-h1-font-family;
+@woocommerce-product-page-title-font-weight:            @base-h1-font-weight;
+@woocommerce-product-page-title-text-transform:         @base-h1-text-transform;
+@woocommerce-product-page-title-letter-spacing:         @base-h1-letter-spacing;
+@woocommerce-product-page-title-font-style:             @base-h1-font-style;
+
+//
+// Widgets
+//
+
+@woocommerce-widget-active-filters-font-size:           @global-small-font-size;
+
+
+// Style
+// ========================================================================
+
+@import (optional) "../vendor/assets/uikit-themes/master-paladin/styles/@{internal-style}.less";
+
+@internal-style: ~'';

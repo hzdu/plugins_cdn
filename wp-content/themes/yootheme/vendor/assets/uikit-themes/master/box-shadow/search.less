@@ -1,0 +1,120 @@
+//
+// Component: Search
+//
+// ========================================================================
+
+
+// Variables
+// ========================================================================
+
+//
+// New
+//
+
+@search-default-input-box-shadow:               none;
+@search-default-input-focus-box-shadow:         none;
+
+@search-navbar-input-box-shadow:                none;
+@search-navbar-input-focus-box-shadow:          none;
+
+@search-large-input-box-shadow:                 none;
+@search-large-input-focus-box-shadow:           none;
+
+
+// Component
+// ========================================================================
+
+.hook-search-input() {}
+
+
+// Icon
+// ========================================================================
+
+.hook-search-icon() {}
+
+
+// Default modifiers
+// ========================================================================
+
+.hook-search-default-input() when not (@search-default-input-box-shadow = none) {
+    box-shadow: @search-default-input-box-shadow;
+}
+
+.hook-search-default-input-focus() when not (@search-default-input-focus-box-shadow = none) {
+    box-shadow: @search-default-input-focus-box-shadow;
+}
+
+
+// Navbar modifiers
+// ========================================================================
+
+.hook-search-navbar-input() when not (@search-navbar-input-box-shadow = none) {
+    box-shadow: @search-navbar-input-box-shadow;
+}
+
+.hook-search-navbar-input-focus() when not (@search-navbar-input-focus-box-shadow = none) {
+    box-shadow: @search-navbar-input-focus-box-shadow;
+}
+
+
+// Large modifiers
+// ========================================================================
+
+.hook-search-large-input() when not (@search-large-input-box-shadow = none) {
+    box-shadow: @search-large-input-box-shadow;
+}
+
+.hook-search-large-input-focus() when not (@search-large-input-focus-box-shadow = none) {
+    box-shadow: @search-large-input-focus-box-shadow;
+}
+
+
+// Toggle
+// ========================================================================
+
+.hook-search-toggle() {}
+
+.hook-search-toggle-hover() {}
+
+
+// Miscellaneous
+// ========================================================================
+
+.hook-search-misc() {}
+
+
+// Inverse
+// ========================================================================
+
+@inverse-search-default-input-box-shadow:       none;
+@inverse-search-default-input-focus-box-shadow: none;
+
+@inverse-search-navbar-input-box-shadow:        none;
+@inverse-search-navbar-input-focus-box-shadow:  none;
+
+@inverse-search-large-input-box-shadow:         none;
+@inverse-search-large-input-focus-box-shadow:   none;
+
+.hook-inverse-search-default-input() when not (@search-default-input-box-shadow = none) {
+    box-shadow: @inverse-search-default-input-box-shadow;
+}
+.hook-inverse-search-default-input-focus() when not (@search-default-input-focus-box-shadow = none) {
+    box-shadow: @inverse-search-default-input-focus-box-shadow;
+}
+
+.hook-inverse-search-navbar-input() when not (@search-navbar-input-box-shadow = none) {
+    box-shadow: @inverse-search-navbar-input-box-shadow;
+}
+.hook-inverse-search-navbar-input-focus() when not (@search-navbar-input-focus-box-shadow = none) {
+    box-shadow: @inverse-search-navbar-input-focus-box-shadow;
+}
+
+.hook-inverse-search-large-input() when not (@search-large-input-box-shadow = none) {
+    box-shadow: @inverse-search-large-input-box-shadow;
+}
+.hook-inverse-search-large-input-focus() when not (@search-large-input-focus-box-shadow = none) {
+    box-shadow: @inverse-search-large-input-focus-box-shadow;
+}
+
+.hook-inverse-search-toggle() {}
+.hook-inverse-search-toggle-hover() {}

@@ -1,0 +1,233 @@
+//
+// Global
+//
+
+@global-color:          rgba(255,255,255,.7);
+@global-emphasis-color: #fff;
+@global-muted-color:    rgba(255,255,255,.4);
+@global-inverse-color:  #152131;
+
+@global-link-color:       #1e6eC1;
+@global-link-hover-color: #fff;
+
+@global-background:           #0d1319;
+@global-danger-background:    #a72213;
+@global-muted-background:     #0d1926;
+@global-primary-background:   #1e6eC1;
+@global-secondary-background: #152131;
+@global-success-background:   #329a56;
+@global-warning-background:   #f59a00;
+
+@global-border: rgba(255,255,255,0.1);
+
+@global-large-box-shadow:  0 14px 25px 0 rgba(0,0,0,.55);
+@global-medium-box-shadow: 0 5px 15px 0 rgba(0,0,0,.6);
+@global-small-box-shadow:  0 2px 8px 0 rgba(0,0,0,.6);
+@global-xlarge-box-shadow: 0 28px 50px 0 rgba(0,0,0,.5);
+
+//
+// Theme
+//
+
+@theme-page-container-color-mode:           light;
+@theme-box-decoration-default-background:   lighten(@global-muted-background, 5%);
+@theme-box-decoration-secondary-background: #fff;
+@theme-toolbar-color-mode:                  light;
+
+//
+// Alert
+//
+
+@alert-border: #fff;
+
+//
+// Base
+//
+
+@base-em-color:             @global-emphasis-color;
+@base-ins-background:       fade(@global-primary-background, 30%);
+@base-ins-color:            @global-color;
+@base-mark-background:      fade(@global-primary-background, 30%);
+@base-mark-color:           @global-color;
+@base-selection-background: rgba(255,255,255,.7);
+
+//
+// Button
+//
+
+@button-default-hover-background:  #fff;
+@button-default-active-background: darken(@button-default-hover-background, 15%);
+@button-primary-active-background: #fff;
+@button-secondary-background:      #fff;
+@button-secondary-hover-border:    #fff;
+@button-danger-hover-color:        @global-emphasis-color;
+@button-danger-active-color:       @global-emphasis-color;
+
+//
+// Card
+//
+
+@card-badge-background:         #fff;
+@card-default-color-mode:       light;
+@card-primary-color:            @global-color;
+@card-primary-color-mode:       light;
+@card-primary-title-color:      @global-emphasis-color;
+@card-primary-hover-box-shadow: @global-large-box-shadow;
+@card-secondary-color:          @global-color;
+@card-secondary-color-mode:     light;
+@card-secondary-title-color:    @global-emphasis-color;
+
+//
+// Dotnav
+//
+
+@dotnav-item-background: #fff;
+
+//
+// Dropdown
+//
+
+@dropdown-nav-item-color:         @global-emphasis-color;
+@dropdown-nav-header-color:       @global-emphasis-color;
+@dropdown-nav-sublist-item-color: @global-emphasis-color;
+
+//
+// Form Range
+//
+
+@form-range-track-background:       @global-border;
+@form-range-track-focus-background: fadein(@form-range-track-background, 5%);
+
+//
+// Form
+//
+
+@form-radio-background:          @global-border;
+@form-radio-focus-background:    fadein(@global-border, 5%);
+@form-radio-checked-background:  #fff;
+@form-radio-disabled-background: fade(@global-border, 5%);
+
+//
+// Inverse
+//
+
+@inverse-global-color-mode:          dark;
+@inverse-slidenav-background:        rgba(255, 255, 255, 0.3);
+@inverse-slidenav-hover-background:  rgba(255, 255, 255, 0.4);
+@inverse-slidenav-active-background: rgba(255, 255, 255, 0.4);
+
+//
+// Label
+//
+
+@label-background:    #fff;
+@label-success-color: @global-emphasis-color;
+@label-warning-color: @global-emphasis-color;
+@label-danger-color:  @global-emphasis-color;
+
+//
+// Marker
+//
+
+@marker-background:       #fff;
+@marker-hover-background: @marker-background;
+
+//
+// Navbar
+//
+
+@navbar-color-mode:                      light;
+@navbar-dropdown-color-mode:             light;
+@navbar-dropdown-color:                  @global-emphasis-color;
+@navbar-dropdown-nav-item-color:         @global-emphasis-color;
+@navbar-dropdown-nav-header-color:       @global-emphasis-color;
+@navbar-dropdown-nav-sublist-item-color: @global-emphasis-color;
+
+//
+// Notification
+//
+
+@notification-message-background:         #fff;
+@notification-message-success-color:      @global-emphasis-color;
+@notification-message-warning-color:      @global-emphasis-color;
+@notification-message-danger-color:       @global-emphasis-color;
+@notification-message-primary-color-mode: light;
+
+//
+// Overlay
+//
+
+@overlay-default-color-mode: light;
+@overlay-primary-background: rgba(255,255,255,.8);
+@overlay-primary-color-mode: dark;
+
+//
+// Section
+//
+
+@section-default-color-mode: light;
+@section-muted-color-mode:   light;
+@section-primary-color-mode: light;
+
+//
+// Slidenav
+//
+
+@slidenav-background:        rgba(0, 0, 0, 0.3);
+@slidenav-color:             fade(@global-emphasis-color, 85%);
+@slidenav-hover-background:  rgba(0, 0, 0, 0.4);
+@slidenav-hover-color:       @global-emphasis-color;
+@slidenav-active-background: rgba(0, 0, 0, 0.3);
+@slidenav-active-color:      fade(@global-emphasis-color, 70%);
+
+//
+// Subnav
+//
+
+@subnav-pill-item-active-background: #fff;
+
+//
+// Table
+//
+
+@table-row-active-background: @global-muted-background;
+
+//
+// Text
+//
+
+@text-secondary-color: @global-emphasis-color;
+
+//
+// Thumbnav
+//
+
+@thumbnav-item-gradient:         linear-gradient(180deg, rgba(0,0,0,0), rgba(0,0,0,0.4));
+@inverse-thumbnav-item-gradient: linear-gradient(180deg, rgba(255,255,255,0), rgba(255,255,255,0.4));
+
+//
+// Tile
+//
+
+@tile-default-color-mode: light;
+@tile-muted-color-mode:   light;
+@tile-primary-color-mode: light;
+
+//
+// Tooltip
+//
+
+@tooltip-background: #fff;
+
+//
+// Utility
+//
+
+@box-shadow-bottom-background: rgba(0,0,0,.6);
+@dragover-box-shadow:          0 0 20px 0 rgba(0,0,0,.5);
+
+//
+// Woocommerce
+//
+
+@woocommerce-rating-background-color: fadein(@global-border, 5%);

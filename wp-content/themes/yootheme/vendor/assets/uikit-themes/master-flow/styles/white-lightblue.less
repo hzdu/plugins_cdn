@@ -1,0 +1,56 @@
+//
+// Global
+//
+
+@global-color:                                  #79818A;
+@global-muted-color:                            #7a8a9a;
+@global-emphasis-color:                         #444C55;
+@global-link-color:                             #6b95fd;
+@global-link-hover-color:                       #FC8D79;
+
+@global-border:                                 rgba(0,0,0,0.06);
+@global-primary-background:                     #79A0FF;
+@global-secondary-background:                   #FC8D79;
+@global-muted-background:                       #f3f6fb;
+@global-danger-background:                      #F05D63;
+@global-success-background:                     #68d489;
+@global-warning-background:                     #ffb94f;
+
+//
+// Theme
+//
+
+@internal-theme-transition-border-border-gradient: linear-gradient(45deg, @global-primary-background 40%, saturate(spin(@global-primary-background, 15), 25%));
+
+//
+// Alert
+//
+
+@alert-primary-background:                      lighten(tint(@global-primary-background, 30%), 15%);
+@alert-danger-background:                       lighten(tint(@global-danger-background, 30%), 20%);
+@alert-warning-background:                      lighten(tint(@global-warning-background, 30%), 18%);
+@alert-success-background:                      lighten(tint(@global-success-background, 30%), 20%);
+
+//
+// Badge
+//
+
+@internal-badge-gradient:                       ~'';
+
+//
+// Button
+//
+
+@button-default-border:                         saturate(darken(@global-border, 3%), 3%);
+
+@internal-button-primary-gradient:              linear-gradient(45deg, @global-primary-background 40%, saturate(spin(@global-primary-background, 15), 25%));
+@internal-button-secondary-gradient:            linear-gradient(45deg, @global-secondary-background 40%, spin(saturate(@global-secondary-background, 5%), 10));
+
+//
+// Card
+//
+
+@internal-card-primary-gradient:                linear-gradient(45deg, @global-primary-background 40%, saturate(spin(@global-primary-background, 15), 25%));
+@internal-card-secondary-gradient:              linear-gradient(45deg, @global-secondary-background 40%, spin(saturate(@global-secondary-background, 20%), 15));
+
+@internal-card-badge-gradient:                  linear-gradient(45deg, @global-primary-background 40%, saturate(spin(@global-primary-background, 15), 25%));

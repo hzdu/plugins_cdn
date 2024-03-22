@@ -1,0 +1,175 @@
+//
+// Component: Tile
+//
+// ========================================================================
+
+
+// Variables
+// ========================================================================
+
+//
+// New
+//
+
+
+@tile-default-hover-background:                 darken(@tile-muted-background, 2%);
+@tile-muted-hover-background:                   darken(@tile-muted-background, 2%);
+@tile-primary-hover-background:                 darken(@tile-primary-background, 4%);
+@tile-secondary-hover-background:               darken(@tile-secondary-background, 4%);
+
+@internal-tile-hover-mode:                      ~''; // ripple
+
+
+// Component
+// ========================================================================
+
+.hook-tile() {}
+
+
+// Style modifiers
+// ========================================================================
+
+.hook-tile-default() {}
+
+.hook-tile-default-hover() when not (@tile-default-hover-background = inherit) {
+    background-color: @tile-default-hover-background;
+}
+
+//
+// Fix rendering bug in Safari by fading the original color to transparent instead of `transparent` which is `rgba(0,0,0,0)`
+// Note: fade color function doesn't work with `inherit`
+//
+
+.hook-tile-default() when (@internal-tile-hover-mode = ripple) and not (@tile-default-hover-background = inherit) {
+
+    &.uk-tile-hover { background-image: radial-gradient(farthest-side at 50% 100%, @tile-default-hover-background ~'calc(100% - 1px)', fade(@tile-default-hover-background, 0%) 100%); }
+
+}
+
+.hook-tile-default-hover() when (@internal-tile-hover-mode = ripple) and not (@tile-default-hover-background = inherit) {
+    background-color: @tile-default-background;
+}
+
+//
+// Muted
+//
+
+.hook-tile-muted() {}
+
+.hook-tile-muted-hover() when not (@tile-muted-hover-background = inherit) {
+    background-color: @tile-muted-hover-background;
+}
+
+//
+// Fix rendering bug in Safari by fading the original color to transparent instead of `transparent` which is `rgba(0,0,0,0)`
+// Note: fade color function doesn't work with `inherit`
+//
+
+.hook-tile-muted() when (@internal-tile-hover-mode = ripple) and not (@tile-muted-hover-background = inherit) {
+
+    &.uk-tile-hover { background-image: radial-gradient(farthest-side at 50% 100%, @tile-muted-hover-background ~'calc(100% - 1px)', fade(@tile-muted-hover-background, 0%) 100%); }
+
+}
+
+.hook-tile-muted-hover() when (@internal-tile-hover-mode = ripple) and not (@tile-muted-hover-background = inherit) {
+    background-color: @tile-muted-background;
+}
+
+//
+// Primary
+//
+
+.hook-tile-primary() {}
+
+.hook-tile-primary-hover() when not (@tile-primary-hover-background = inherit) {
+    background-color: @tile-primary-hover-background;
+}
+
+//
+// Fix rendering bug in Safari by fading the original color to transparent instead of `transparent` which is `rgba(0,0,0,0)`
+// Note: fade color function doesn't work with `inherit`
+//
+
+.hook-tile-primary() when (@internal-tile-hover-mode = ripple) and not (@tile-primary-hover-background = inherit) {
+
+    &.uk-tile-hover { background-image: radial-gradient(farthest-side at 50% 100%, @tile-primary-hover-background ~'calc(100% - 1px)', fade(@tile-primary-hover-background, 0%) 100%); }
+
+}
+
+.hook-tile-primary-hover() when (@internal-tile-hover-mode = ripple) and not (@tile-primary-hover-background = inherit) {
+    background-color: @tile-primary-background;
+}
+
+//
+// Secondary
+//
+
+.hook-tile-secondary() {}
+
+.hook-tile-secondary-hover() when not (@tile-secondary-hover-background = inherit) {
+    background-color: @tile-secondary-hover-background;
+}
+
+//
+// Fix rendering bug in Safari by fading the original color to transparent instead of `transparent` which is `rgba(0,0,0,0)`
+// Note: fade color function doesn't work with `inherit`
+//
+
+.hook-tile-secondary() when (@internal-tile-hover-mode = ripple) and not (@tile-secondary-hover-background = inherit) {
+
+    &.uk-tile-hover { background-image: radial-gradient(farthest-side at 50% 100%, @tile-secondary-hover-background ~'calc(100% - 1px)', fade(@tile-secondary-hover-background, 0%) 100%); }
+
+}
+
+.hook-tile-secondary-hover() when (@internal-tile-hover-mode = ripple) and not (@tile-secondary-hover-background = inherit) {
+    background-color: @tile-secondary-background;
+}
+
+
+// Miscellaneous
+// ========================================================================
+
+.hook-tile-misc() {
+
+    .uk-tile-hover {
+        transition: 0.1s ease-in-out;
+        transition-property: background-color, background-size;
+    }
+
+}
+
+.hook-tile-misc() when (@internal-tile-hover-mode = ripple) {
+
+    .uk-tile-hover {
+        background-position: 50% 100%;
+        background-size: 0 0;
+        background-repeat: no-repeat;
+        transition-duration: 0.5s;
+        transition-timing-function: cubic-bezier(.165,.85,.45,1);
+    }
+
+    .uk-tile-hover:hover { background-size: 150% 150%; }
+
+}
+
+// Fix if `uk-link-toggle` is set on tile
+.hook-tile-misc() when (@tile-default-color-mode = @inverse-global-color-mode) {
+
+    :where(.uk-tile-default:not(.uk-preserve-color)) > * { color: @inverse-base-color; }
+
+}
+.hook-tile-misc() when (@tile-muted-color-mode = @inverse-global-color-mode) {
+
+    :where(.uk-tile-muted:not(.uk-preserve-color)) > * { color: @inverse-base-color; }
+
+}
+.hook-tile-misc() when (@tile-primary-color-mode = @inverse-global-color-mode) {
+
+    :where(.uk-tile-primary:not(.uk-preserve-color)) > * { color: @inverse-base-color; }
+
+}
+.hook-tile-misc() when (@tile-secondary-color-mode = @inverse-global-color-mode) {
+
+    :where(.uk-tile-secondary:not(.uk-preserve-color)) > * { color: @inverse-base-color; }
+
+}

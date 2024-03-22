@@ -1,0 +1,52 @@
+//
+// Component: Animation
+//
+// ========================================================================
+
+
+// Variables
+// ========================================================================
+
+
+// Miscellaneous
+// ========================================================================
+
+.hook-animation-misc() when (@internal-heading-small-mode = glitch),
+                            (@internal-heading-medium-mode = glitch),
+                            (@internal-heading-large-mode = glitch),
+                            (@internal-heading-xlarge-mode = glitch),
+                            (@internal-heading-2xlarge-mode = glitch),
+                            (@internal-heading-3xlarge-mode = glitch) {
+
+    @keyframes uk-text-shadow-glitch {
+        0% { text-shadow: none; }
+        25% { text-shadow: -2px -2px 0 @internal-heading-glitch-color-1, 2px 2px 0 @internal-heading-glitch-color-2; }
+        50% { text-shadow: 2px -2px 0 @internal-heading-glitch-color-1, -2px 2px 0 @internal-heading-glitch-color-2; }
+        75% { text-shadow: -2px 2px 0 @internal-heading-glitch-color-1, 2px -2px 0 @internal-heading-glitch-color-2; }
+        100% { text-shadow: 2px 2px 0 @internal-heading-glitch-color-1, -2px -2px 0 @internal-heading-glitch-color-2; }
+    }
+
+}
+
+.hook-animation-misc() when (@internal-navbar-nav-item-mode = flicker),
+                            (@internal-pagination-item-mode = flicker) {
+
+    @keyframes uk-flicker {
+        0% { opacity: 0; }
+        10% {
+            opacity: 0.6;
+            transform: scale(0.8);
+        }
+        20% { opacity: 0; }
+        40% { opacity: 1; }
+        50% {
+            opacity: 0.2;
+            transform: scale(1.1);
+        }
+        100% {
+            opacity: 1;
+            transform: scale(1);
+        }
+    }
+
+}

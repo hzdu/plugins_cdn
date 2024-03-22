@@ -1,0 +1,226 @@
+//
+// Component: Subnav
+//
+// ========================================================================
+
+
+// Variables
+// ========================================================================
+
+@subnav-item-transition-duration:               0.1s;
+
+@subnav-item-text-decoration:                   inherit;
+@subnav-item-active-text-decoration:            none;
+
+@subnav-pill-item-hover-backdrop-filter:        ~'';
+@subnav-pill-item-active-backdrop-filter:       ~'';
+
+@internal-subnav-pill-item-mode:                ~''; // glow
+@internal-subnav-pill-item-glow-gradient:       ~'';
+@internal-subnav-pill-item-glow-filter:         ~'';
+@internal-subnav-pill-item-hover-glow-filter:   ~'';
+@internal-subnav-pill-item-glow-opacity:        1;
+@internal-subnav-pill-item-hover-glow-opacity:  1;
+@internal-subnav-pill-item-active-glow-opacity: 1;
+
+@internal-subnav-mode:                          ~''; // siblings
+@internal-subnav-siblings-opacity:              1;
+@internal-subnav-siblings-filter:               ~'';
+
+
+// Component
+// ========================================================================
+
+.hook-subnav() {}
+
+.hook-subnav-item() {
+    transition: @subnav-item-transition-duration ease-in-out;
+    transition-property: color, background-color, border-color, box-shadow, opacity, filter;
+}
+
+.hook-subnav-item() when not (@subnav-item-text-decoration = inherit) {
+    text-decoration: @subnav-item-text-decoration;
+}
+
+.hook-subnav-item-hover() {}
+
+.hook-subnav-item-active() when not (@subnav-item-active-text-decoration = none) {
+    text-decoration: @subnav-item-active-text-decoration;
+}
+
+
+// Divider modifier
+// ========================================================================
+
+.hook-subnav-divider() {}
+
+
+// Pill modifier
+// ========================================================================
+
+.hook-subnav-pill-item() {}
+
+.hook-subnav-pill-item() when not (@base-link-text-decoration = none) {
+    text-decoration: none;
+}
+
+.hook-subnav-pill-item-hover() when not (@subnav-item-hover-text-decoration = none) {
+    text-decoration: none;
+}
+
+.hook-subnav-pill-item-onclick() {}
+
+.hook-subnav-pill-item-active() when not (@subnav-item-active-text-decoration = none) {
+    text-decoration: none;
+}
+
+.hook-subnav-pill-item-hover() when not (@subnav-pill-item-hover-backdrop-filter = ~'') {
+    backdrop-filter: @subnav-pill-item-hover-backdrop-filter;
+    -webkit-backdrop-filter: @subnav-pill-item-hover-backdrop-filter;
+}
+
+.hook-subnav-pill-item-active() when not (@subnav-pill-item-active-backdrop-filter = ~'') {
+    backdrop-filter: @subnav-pill-item-active-backdrop-filter;
+    -webkit-backdrop-filter: @subnav-pill-item-active-backdrop-filter;
+}
+
+//
+// Glow
+//
+
+.hook-subnav-pill-item() when (@internal-subnav-pill-item-mode = glow) {
+
+    &:not(.uk-hack) {
+        position: relative;
+        z-index: 0;
+        background: none !important;
+        box-shadow: none !important;
+        border: none !important;
+    }
+
+    &::before,
+    &::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        // Fix Safari flickering
+        will-change: filter;
+    }
+
+    &::before {
+        background-image: @internal-subnav-pill-item-glow-gradient;
+        filter: @internal-subnav-pill-item-glow-filter;
+        transition: @subnav-item-transition-duration ease-in-out;
+        transition-property: opacity, filter;
+    }
+
+}
+
+.hook-subnav-pill-item() when (@internal-subnav-pill-item-mode = glow) and not (@subnav-pill-item-border-radius = 0) {
+
+    &::before,
+    &::after { border-radius: @subnav-pill-item-border-radius; }
+
+}
+
+.hook-subnav-pill-item() when (@internal-subnav-pill-item-mode = glow) and not (@internal-subnav-pill-item-glow-opacity = 1) {
+
+    &::before { opacity: @internal-subnav-pill-item-glow-opacity; }
+
+}
+
+.hook-subnav-pill-item-hover() when (@internal-subnav-pill-item-mode = glow) and not (@internal-subnav-pill-item-hover-glow-filter = ~'') {
+
+    &::before { filter: @internal-subnav-pill-item-hover-glow-filter; }
+
+}
+
+.hook-subnav-pill-item-hover() when (@internal-subnav-pill-item-mode = glow) and not (@internal-subnav-pill-item-hover-glow-opacity = @internal-subnav-pill-item-glow-opacity) {
+
+    &::before { opacity: @internal-subnav-pill-item-hover-glow-opacity; }
+
+}
+
+.hook-subnav-pill-item-active() when (@internal-subnav-pill-item-mode = glow) and not (@internal-subnav-pill-item-active-glow-opacity = @internal-subnav-pill-item-glow-opacity) {
+
+    &::before { opacity: @internal-subnav-pill-item-active-glow-opacity; }
+
+}
+
+.uk-subnav-pill > * > :first-child::after:extend(.uk-subnav-pill > * > :first-child) when (@internal-subnav-pill-item-mode = glow) {}
+.uk-subnav-pill > * > a:hover::after:extend(.uk-subnav-pill > * > a:hover) when (@internal-subnav-pill-item-mode = glow) {}
+.uk-subnav-pill > .uk-active > a::after:extend(.uk-subnav-pill > .uk-active > a) when (@internal-subnav-pill-item-mode = glow) {}
+
+
+// Disabled
+// ========================================================================
+
+.hook-subnav-item-disabled() {}
+
+
+// Miscellaneous
+// ========================================================================
+
+.hook-subnav-misc() {}
+
+// Siblings
+.hook-subnav-misc() when (@internal-subnav-mode = siblings) {
+
+    .uk-subnav:not(.uk-subnav-pill):hover > * > :first-child:not(:hover) {
+        .hook-subnav-siblings();
+    }
+
+}
+
+.hook-subnav-siblings() when not (@internal-subnav-siblings-opacity = 1) {
+    opacity: @internal-subnav-siblings-opacity;
+}
+
+.hook-subnav-siblings() when not (@internal-subnav-siblings-filter = ~'') {
+    filter: @internal-subnav-siblings-filter;
+}
+
+
+// Inverse
+// ========================================================================
+
+@internal-inverse-subnav-pill-item-glow-gradient:       ~'';
+
+.hook-inverse-subnav-item() {}
+.hook-inverse-subnav-item-hover() {}
+.hook-inverse-subnav-item-active() {}
+
+.hook-inverse-subnav-divider() {}
+
+.hook-inverse-subnav-pill-item() {}
+.hook-inverse-subnav-pill-item-hover() {}
+.hook-inverse-subnav-pill-item-onclick() {}
+.hook-inverse-subnav-pill-item-active() {}
+
+.hook-inverse() when (@internal-subnav-pill-item-mode = glow) and not (@internal-inverse-subnav-pill-item-glow-gradient = ~'') {
+
+    .uk-subnav-pill > * > :first-child::before { background-image: @internal-inverse-subnav-pill-item-glow-gradient; }
+
+}
+.hook-inverse() when (@internal-subnav-pill-item-mode = glow) {
+
+    .uk-subnav-pill > * > :first-child::after {
+        background-color: @inverse-subnav-pill-item-background;
+        .hook-inverse-subnav-pill-item();
+    }
+
+    .uk-subnav-pill > * > a:hover::after {
+        background-color: @inverse-subnav-pill-item-hover-background;
+        color: @inverse-subnav-pill-item-hover-color;
+        .hook-inverse-subnav-pill-item-hover();
+    }
+
+    .uk-subnav-pill > .uk-active > a::after {
+        background-color: @inverse-subnav-pill-item-active-background;
+        .hook-inverse-subnav-pill-item-active();
+    }
+
+}
+
+.hook-inverse-subnav-item-disabled() {}

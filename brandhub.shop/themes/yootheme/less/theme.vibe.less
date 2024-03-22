@@ -1,0 +1,190 @@
+/*
+
+Name: Vibe
+Background: Dark
+Color: Pink
+Type: Skeuomorphic
+Preview: https://yootheme.com/api/style/vibe/default.jpg
+
+Style: dark-blue
+Name: Dark Blue
+Background: Dark
+Color: Blue
+Type: Skeuomorphic
+Preview: https://yootheme.com/api/style/vibe/dark-blue.jpg
+
+Style: dark-turquoise
+Name: Dark Turquoise
+Background: Dark
+Color: Turquoise
+Type: Skeuomorphic
+Preview: https://yootheme.com/api/style/vibe/dark-turquoise.jpg
+
+Style: dark-yellow
+Name: Dark Yellow
+Background: Dark
+Color: Yellow
+Type: Skeuomorphic
+Preview: https://yootheme.com/api/style/vibe/dark-yellow.jpg
+
+Style: dark-red
+Name: Dark Red
+Background: Dark
+Color: Red
+Type: Skeuomorphic
+Preview: https://yootheme.com/api/style/vibe/dark-red.jpg
+
+Style: dark-green
+Name: Dark Green
+Background: Dark
+Color: Green
+Type: Skeuomorphic
+Preview: https://yootheme.com/api/style/vibe/dark-green.jpg
+
+*/
+
+// Platform
+@import "platform.less";
+
+// UIkit Core
+@import "../vendor/assets/uikit/src/less/uikit.less";
+
+// UIkit Theme
+@import "../vendor/assets/uikit-themes/master/_import.less";
+@import "../vendor/assets/uikit-themes/master-vibe/_import.less";
+
+// Theme
+@import "theme.less";
+
+
+// Variables
+// ========================================================================
+
+//
+// Page Container
+//
+
+@theme-page-container-color-mode:                       light;
+
+//
+// Page Border
+//
+
+@theme-page-border-mode:                                 -top;
+@theme-page-border-width:                                6px;
+@theme-page-body-border:                                 mix(@global-secondary-background, @global-primary-background, 50%);
+@internal-theme-page-border-gradient:                    linear-gradient(90deg, @global-secondary-background, @global-primary-background);
+
+//
+// Toolbar
+//
+
+@theme-toolbar-background:                               darken(@global-background, 1%);
+@theme-toolbar-font-size:                                12px;
+
+//
+// Box Decoration
+//
+
+@theme-box-decoration-top:                               2px;
+@theme-box-decoration-bottom:                            2px;
+@theme-box-decoration-left:                              2px;
+@theme-box-decoration-right:                             2px;
+
+@theme-box-decoration-default-transform-horizontal:      0;
+@theme-box-decoration-default-transform-vertical:        0;
+@theme-box-decoration-default-background:                transparent;
+@theme-box-decoration-default-border-width:              @global-border-width;
+@theme-box-decoration-default-border:                    @global-primary-background;
+
+@theme-box-decoration-primary-transform-horizontal:      0;
+@theme-box-decoration-primary-transform-vertical:        0;
+@theme-box-decoration-primary-background:                transparent;
+
+@theme-box-decoration-secondary-transform-horizontal:    0;
+@theme-box-decoration-secondary-transform-vertical:      0;
+@theme-box-decoration-secondary-background:              transparent;
+
+//
+// New
+//
+
+@internal-theme-box-decoration-default-border-gradient:  linear-gradient(135deg, @global-primary-background, desaturate(darken(spin(@global-primary-background, -45%), 15%), 25%));
+
+@theme-box-decoration-secondary-box-shadow:              -2px -2px 0 @global-primary-background, 2px 2px 0 @global-secondary-background;
+
+.hook-box-decoration-default() when not (@theme-box-decoration-default-border-width = 0) {
+
+    padding: @theme-box-decoration-default-border-width;
+
+    &::before {
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        border-image: @internal-theme-box-decoration-default-border-gradient 1;
+    }
+
+}
+
+.hook-box-decoration-primary() {
+
+    padding: 2px;
+
+    &::before {
+
+        animation: tm-box-decoration-primary-glitch 0.65s cubic-bezier(0.25, 0.46, 0.45, 0.94) both infinite;
+
+        @keyframes tm-box-decoration-primary-glitch {
+            0% { box-shadow: none; }
+            25% { box-shadow: -2px -2px 0 @global-primary-background, 2px 2px 0 @global-secondary-background; }
+            50% { box-shadow: 2px -2px 0 @global-primary-background, -2px 2px 0 @global-secondary-background; }
+            75% { box-shadow: -2px 2px 0 @global-primary-background, 2px -2px 0 @global-secondary-background; }
+            100% { box-shadow: 2px 2px 0 @global-primary-background, -2px -2px 0 @global-secondary-background; }
+        }
+
+    }
+
+}
+
+.hook-box-decoration-secondary() {
+
+    padding: 2px;
+
+    &::before { box-shadow: @theme-box-decoration-secondary-box-shadow; }
+
+}
+
+//
+// Transition Border
+//
+
+@theme-transition-border-hover-border-width:             12px;
+
+@internal-theme-transition-border-border-gradient:       linear-gradient(135deg, @global-primary-background, desaturate(darken(spin(@global-primary-background, -45%), 15%), 25%));
+@internal-theme-transition-border-hover-border-gradient: @internal-theme-transition-border-border-gradient;
+
+//
+// WooCommerce
+//
+
+//
+// Rating
+//
+
+@woocommerce-rating-background-color:                    desaturate(lighten(@global-muted-background, 15%), 8%);
+@woocommerce-rating-color:                               @global-primary-background;
+
+//
+// Widgets
+//
+
+@woocommerce-widget-active-filters-font-size:            @global-small-font-size;
+
+
+// Style
+// ========================================================================
+
+@import (optional) "../vendor/assets/uikit-themes/master-vibe/styles/@{internal-style}.less";
+
+@internal-style: ~'';

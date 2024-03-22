@@ -1,0 +1,67 @@
+//
+// Component: Pagination
+//
+// ========================================================================
+
+
+// Variables
+// ========================================================================
+
+//
+// New
+//
+
+@internal-pagination-item-background-image:         ~'';
+
+
+// Component
+// ========================================================================
+
+.hook-pagination() {}
+
+
+// Items
+// ========================================================================
+
+.hook-pagination-item() when not (@internal-pagination-item-background-image = ~'') {
+    background-color: transparent !important;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
+
+.hook-pagination-item() when not (@internal-pagination-item-background-image = ~'') and not (@pagination-item-background = transparent) {
+    .svg-fill(@internal-pagination-item-background-image, "#000", @pagination-item-background);
+}
+
+.hook-pagination-item-hover() when not (@internal-pagination-item-background-image = ~'') and not (@pagination-item-background = @pagination-item-hover-background) and not (@pagination-item-hover-background = transparent) {
+    .svg-fill(@internal-pagination-item-background-image, "#000", @pagination-item-hover-background);
+    transition-property: none;
+}
+
+.hook-pagination-item-active() when not (@internal-pagination-item-background-image = ~'') and not (@pagination-item-background = @pagination-item-active-background) and not (@pagination-item-active-background = transparent) {
+    .svg-fill(@internal-pagination-item-background-image, "#000", @pagination-item-active-background);
+    transition-property: none;
+}
+
+.hook-pagination-item-disabled() {}
+
+
+// Miscellaneous
+// ========================================================================
+
+.hook-pagination-misc() {}
+
+
+// Inverse
+// ========================================================================
+
+.hook-inverse-pagination-item() when not (@internal-pagination-item-background-image = ~'') and not (@inverse-pagination-item-background = transparent) {
+    .svg-fill(@internal-pagination-item-background-image, "#000", @inverse-pagination-item-background);
+}
+.hook-inverse-pagination-item-hover() when not (@internal-pagination-item-background-image = ~'') and not (@inverse-pagination-item-background = @inverse-pagination-item-hover-background) and not (@inverse-pagination-item-hover-background = transparent) {
+    .svg-fill(@internal-pagination-item-background-image, "#000", @inverse-pagination-item-hover-background);
+}
+.hook-inverse-pagination-item-active() when not (@internal-pagination-item-background-image = ~'') and not (@inverse-pagination-item-background = @inverse-pagination-item-active-background) and not (@inverse-pagination-item-active-background = transparent) {
+    .svg-fill(@internal-pagination-item-background-image, "#000", @inverse-pagination-item-active-background);
+}
+.hook-inverse-pagination-item-disabled() {}

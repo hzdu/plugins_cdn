@@ -1,0 +1,47 @@
+//
+// Component: Grid
+//
+// ========================================================================
+
+
+// Variables
+// ========================================================================
+
+@internal-grid-divider-horizontal-border-gradient:  ~'';
+
+@internal-grid-divider-vertical-border-gradient:    ~'';
+
+
+// Divider
+// ========================================================================
+
+.hook-grid-divider-horizontal() when not (@internal-grid-divider-horizontal-border-gradient = ~'') {
+    border-image: @internal-grid-divider-horizontal-border-gradient;
+    border-image-slice: 1;
+    // Fix Safari setting 3px `border-width` if `border-image` is used.
+    border-width: 0 0 0 @grid-divider-border-width;
+}
+
+.hook-grid-divider-vertical() when not (@internal-grid-divider-vertical-border-gradient = ~'') {
+    border-image: @internal-grid-divider-vertical-border-gradient;
+    border-image-slice: 1;
+    // Fix Safari setting 3px `border-width` if `border-image` is used.
+    border-width: @grid-divider-border-width 0 0 0;
+}
+
+
+// Miscellaneous
+// ========================================================================
+
+.hook-grid-misc() {}
+
+
+// Inverse
+// ========================================================================
+
+.hook-inverse-grid-divider-horizontal() when not (@internal-grid-divider-horizontal-border-gradient = ~'') {
+    border-image: none;
+}
+.hook-inverse-grid-divider-vertical() when not (@internal-grid-divider-vertical-border-gradient = ~'') {
+    border-image: none;
+}

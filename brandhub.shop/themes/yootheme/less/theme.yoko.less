@@ -1,0 +1,187 @@
+/*
+
+Name: Yoko
+Background: White
+Color: Red
+Type: Material
+Preview: https://yootheme.com/api/style/yoko/default.jpg
+
+Style: white-blue
+Name: White Blue
+Background: White
+Color: Blue
+Type: Material
+Preview: https://yootheme.com/api/style/yoko/white-blue.jpg
+
+Style: white-darkblue
+Name: White Darkblue
+Background: White
+Color: Blue
+Type: Material
+Preview: https://yootheme.com/api/style/yoko/white-darkblue.jpg
+
+Style: white-yellow
+Name: White Yellow
+Background: White
+Color: Yellow
+Type: Material
+Preview: https://yootheme.com/api/style/yoko/white-yellow.jpg
+
+Style: white-turquoise
+Name: White Turquoise
+Background: White
+Color: Turquoise
+Type: Material
+Preview: https://yootheme.com/api/style/yoko/white-turquoise.jpg
+
+Style: white-red
+Name: White Red
+Background: White
+Color: Red
+Type: Material
+Preview: https://yootheme.com/api/style/yoko/white-red.jpg
+
+*/
+
+// Platform
+@import "platform.less";
+
+// UIkit Core
+@import "../vendor/assets/uikit/src/less/uikit.less";
+
+// UIkit Theme
+@import "../vendor/assets/uikit-themes/master/_import.less";
+@import "../vendor/assets/uikit-themes/master-yoko/_import.less";
+
+// Theme
+@import "theme.less";
+
+
+//
+// Variables
+// ========================================================================
+
+//
+// Page Container
+//
+
+@theme-page-container-width:                    1400px;
+@theme-page-container-background:               #fafafa;
+
+//
+// Toolbar
+//
+
+@theme-toolbar-background:                      @global-background;
+@theme-toolbar-color-mode:                      dark;
+
+//
+// Header
+//
+
+@theme-headerbar-font-size:                     @global-small-font-size;
+
+//
+// Section
+//
+
+@section-title-color:                           @global-emphasis-color;
+
+//
+// Box Decoration
+//
+
+@theme-box-decoration-bottom:                   7px;
+@theme-box-decoration-left:                     7px;
+@theme-box-decoration-right:                    7px;
+@theme-box-decoration-top:                      7px;
+
+@theme-box-decoration-default-background:       @global-primary-background;
+@theme-box-decoration-primary-background:       @global-primary-background;
+@theme-box-decoration-secondary-background:     @global-primary-background;
+
+.hook-box-decoration {
+
+    &::before {
+        -webkit-mask-repeat: no-repeat;
+        mask-repeat: no-repeat;
+    }
+
+}
+
+.hook-box-decoration-default() {
+
+    &::before {
+        -webkit-mask-image: url("../vendor/assets/uikit-themes/master-yoko/images/box-decoration-default-image.svg");
+        mask-image: url("../vendor/assets/uikit-themes/master-yoko/images/box-decoration-default-image.svg");
+        -webkit-mask-position: 0% 100%;
+        mask-position: 0% 100%;
+    }
+
+}
+
+.hook-box-decoration-primary() {
+
+    &::before {
+        -webkit-mask-image: url("../vendor/assets/uikit-themes/master-yoko/images/box-decoration-primary-image.svg");
+        mask-image: url("../vendor/assets/uikit-themes/master-yoko/images/box-decoration-primary-image.svg");
+        -webkit-mask-position: 100% 100%;
+        mask-position: 100% 100%;
+    }
+
+}
+
+.hook-box-decoration-secondary() {
+
+    &::before {
+        -webkit-mask-image: url("../vendor/assets/uikit-themes/master-yoko/images/box-decoration-secondary-image.svg");
+        mask-image: url("../vendor/assets/uikit-themes/master-yoko/images/box-decoration-secondary-image.svg");
+        -webkit-mask-position: 100% 0%;
+        mask-position: 100% 0%;
+    }
+
+}
+
+@inverse-theme-box-decoration-default-background:       @inverse-global-border;
+@inverse-theme-box-decoration-primary-background:       @inverse-global-border;
+@inverse-theme-box-decoration-secondary-background:     @inverse-global-border;
+
+//
+// Transition Border
+//
+
+@theme-transition-border-hover-border-width:             12px;
+@internal-theme-transition-border-border-gradient:       linear-gradient(120deg, @global-primary-background 0%, @global-primary-background 50%, @global-secondary-background 50%);
+@internal-theme-transition-border-hover-border-gradient: @internal-theme-transition-border-border-gradient;
+
+//
+// WooCommerce
+//
+
+//
+// Shop page
+//
+
+
+@woocommerce-shop-page-price-font-size:                 @global-small-font-size;
+@woocommerce-shop-page-price-line-height:               @global-line-height;
+
+//
+// Rating
+//
+
+@woocommerce-rating-color:                              @global-primary-background;
+
+//
+// Widgets
+//
+
+@woocommerce-widget-active-filters-font-size:           13px;
+
+
+// Style
+// ========================================================================
+
+@import (optional) "../vendor/assets/uikit-themes/master-yoko/styles/@{internal-style}.less";
+
+@internal-style: ~'';

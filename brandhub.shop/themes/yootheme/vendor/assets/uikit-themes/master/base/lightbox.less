@@ -1,0 +1,72 @@
+//
+// Component: Lightbox
+//
+// ========================================================================
+
+
+// Variables
+// ========================================================================
+
+//
+// New
+//
+
+@lightbox-backdrop-filter:                      ~'';
+
+@lightbox-button-active-color:                  ~'';
+
+@lightbox-button-hover-background:              transparent;
+@lightbox-button-active-background:             transparent;
+
+
+// Component
+// ========================================================================
+
+.hook-lightbox() when not (@lightbox-backdrop-filter = ~'') {
+    backdrop-filter: @lightbox-backdrop-filter;
+    -webkit-backdrop-filter: @lightbox-backdrop-filter;
+}
+
+
+// Item
+// ========================================================================
+
+.hook-lightbox-item() {}
+
+
+// Toolbar
+// ========================================================================
+
+.hook-lightbox-toolbar() {}
+
+
+// Toolbar Icon
+// ========================================================================
+
+.hook-lightbox-toolbar-icon() {}
+
+.hook-lightbox-toolbar-icon-hover() {}
+
+
+// Button
+// ========================================================================
+
+.hook-lightbox-button() {}
+
+.hook-lightbox-button-hover() when not (@lightbox-button-hover-background = transparent) {
+    background-color: @lightbox-button-hover-background;
+}
+
+.hook-lightbox-button-active() when not (@lightbox-button-active-color = ~'') {
+    color: @lightbox-button-active-color;
+}
+
+.hook-lightbox-button-active() when not (@lightbox-button-active-background = transparent) {
+    background-color: @lightbox-button-active-background;
+}
+
+
+// Miscellaneous
+// ========================================================================
+
+.hook-lightbox-misc() {}

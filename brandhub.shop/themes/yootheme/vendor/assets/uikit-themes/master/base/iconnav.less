@@ -1,0 +1,58 @@
+//
+// Component: Iconnav
+//
+// ========================================================================
+
+
+// Variables
+// ========================================================================
+
+@internal-iconnav-mode:                         ~''; // siblings
+@internal-iconnav-siblings-opacity:             1;
+@internal-iconnav-siblings-filter:              ~'';
+
+
+// Component
+// ========================================================================
+
+.hook-iconnav() {}
+
+.hook-iconnav-item() {
+    transition: 0.1s ease-in-out;
+    transition-property: color, background-color, border-color, box-shadow, opacity, filter;
+}
+
+.hook-iconnav-item-hover() {}
+
+.hook-iconnav-item-active() {}
+
+
+// Miscellaneous
+// ========================================================================
+
+.hook-iconnav-misc() {}
+
+// Siblings
+.hook-iconnav-misc() when (@internal-iconnav-mode = siblings) {
+
+    .uk-iconnav:hover > * > a:not(:hover) {
+        .hook-iconnav-siblings();
+    }
+
+}
+
+.hook-iconnav-siblings() when not (@internal-iconnav-siblings-opacity = 1) {
+    opacity: @internal-iconnav-siblings-opacity;
+}
+
+.hook-iconnav-siblings() when not (@internal-iconnav-siblings-filter = ~'') {
+    filter: @internal-iconnav-siblings-filter;
+}
+
+
+// Inverse
+// ========================================================================
+
+.hook-inverse-iconnav-item() {}
+.hook-inverse-iconnav-item-hover() {}
+.hook-inverse-iconnav-item-active() {}

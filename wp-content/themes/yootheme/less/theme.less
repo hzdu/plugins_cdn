@@ -1,0 +1,1014 @@
+/* ========================================================================
+   Theme
+ ========================================================================== */
+
+// Variables
+// ========================================================================
+
+//
+// Page
+//
+
+@theme-page-border-mode:                        ~'';
+@theme-page-border-width:                       0;
+@theme-page-border-width-l:                     @theme-page-border-width;
+@theme-page-border:                             transparent;
+
+@internal-theme-page-border-gradient:           ~'';
+
+//
+// Page Container
+//
+
+@theme-page-container-width:                    1500px;
+@theme-page-container-margin-top:               @global-large-margin;
+@theme-page-container-margin-bottom:            @theme-page-container-margin-top;
+@theme-page-container-background:               darken(@global-muted-background, 3%);
+@theme-page-container-color-mode:               dark;
+
+//
+// Toolbar
+//
+
+@theme-toolbar-color-mode:                      light;
+@theme-toolbar-padding-top:                     10px;
+@theme-toolbar-padding-bottom:                  10px;
+@theme-toolbar-background:                      @global-secondary-background;
+@theme-toolbar-font-size:                       @global-small-font-size;
+@theme-toolbar-font-family:                     inherit;
+
+//
+// Header
+//
+
+@theme-headerbar-color-mode:                    @navbar-color-mode;
+
+@theme-headerbar-top-padding-top:               20px;
+@theme-headerbar-top-padding-bottom:            20px;
+@theme-headerbar-top-background:                @navbar-background;
+@theme-headerbar-top-border-width:              0;
+@theme-headerbar-top-border:                    transparent;
+
+@theme-headerbar-bottom-padding-top:            20px;
+@theme-headerbar-bottom-padding-bottom:         20px;
+@theme-headerbar-bottom-background:             @navbar-background;
+@theme-headerbar-bottom-border-width:           0;
+@theme-headerbar-bottom-border:                 transparent;
+
+@theme-headerbar-stacked-margin-top:            20px;
+
+@theme-headerbar-font-size:                     inherit;
+
+//
+// Sidebar
+//
+
+@theme-sidebar-min-width:                       200px;
+
+
+/* HTML
+ ========================================================================== */
+
+/*
+ * Force vertical scrollbar (has to be on `html`)
+ */
+
+html { overflow-y: scroll; }
+
+/*
+ * Clip content positioned outside (right or bottom) of the `body`
+ * Has to be set on the `body` element. Otherwise touch gestures can still scroll horizontally.
+ * 1. Use `clip` to forbid all scrolling, including programmatic scrolling.
+ *    `hidden` fallback can be removed with Safari 15.5.
+ */
+
+body {
+    overflow: hidden;
+    /* 1 */
+    overflow: clip;
+}
+
+
+/* Page
+ ========================================================================== */
+
+/*
+ * Page
+ * Position context needed for `tm-page-container` if background image is set and for `tm-header-overlay`.
+ */
+
+.tm-page { position: relative; }
+
+/*
+ * Needed for section sticky cover and reveal effects because of negative z-index
+ * 1. Create stacking context to make interactive elements clickable
+ * 2. Remove box from box tree
+ * Note: `isolate` is reset to `auto` in `platform.less` if modal opens in Joomla 4
+ * 3. Set decreasing stacking context for repeating reveal effects
+ */
+
+/* 1 */
+.tm-page:has(> * > .uk-position-z-index-negative) { isolation: isolate; }
+
+/* 2 */
+.tm-page > :is(main, footer, .builder):has(> .uk-position-z-index-negative) { display: contents; }
+
+/* 3 */
+.tm-page > :nth-child(3) { --tm-reveal: -10; }
+.tm-page > :nth-child(4) { --tm-reveal: -20; }
+.tm-page > :nth-child(5) { --tm-reveal: -30; }
+.tm-page > :nth-child(6) { --tm-reveal: -40; }
+
+/*
+ * Border
+ * 1. Need to remove default `border-width` of 4px if `border-image` is used in Safari and Edge
+ *    Only needed if border mode is not full, e.g. `left`
+ * 2. Important: Gradient won't work if the border-color is `transparent` in Safari
+ */
+
+/* Tablet landscape and bigger */
+@media (min-width: @breakpoint-medium) {
+
+    /* 1 */
+    .tm-page when not (@theme-page-border-width = 0) and not (@internal-theme-page-border-gradient = ~'') and not (@theme-page-border-mode = ~'') {
+        border-width: 0;
+    }
+
+    /* 2 */
+    .tm-page when not (@theme-page-border-width = 0) {
+        border@{theme-page-border-mode}: @theme-page-border-width solid @theme-page-border;
+    }
+
+    .tm-page when not (@theme-page-border-width = 0) and not (@internal-theme-page-border-gradient = ~'') {
+        border-image: @internal-theme-page-border-gradient 1;
+    }
+
+}
+
+/* Desktop and bigger */
+@media (min-width: @breakpoint-large) {
+
+    .tm-page when not (@theme-page-border-width = 0) {
+        border@{theme-page-border-mode}-width: @theme-page-border-width-l;
+    }
+
+}
+
+/*
+ * Page Container
+ */
+
+// Needs to be outside of media query to keep background if header is transparent outside the box
+:where(.tm-page-container) {
+    background-color: @theme-page-container-background;
+    --uk-inverse: @theme-page-container-color-mode;
+}
+
+@media (min-width: @theme-page-container-width) {
+
+    .tm-page-container .tm-page {
+        max-width: @theme-page-container-width;
+        background: @base-body-background;
+    }
+
+    // Needed for navbar and toolbar
+    .tm-page-width { max-width: @theme-page-container-width; }
+
+    .tm-page-margin-top { margin-top: @theme-page-container-margin-top; }
+    .tm-page-margin-bottom { margin-bottom: @theme-page-container-margin-bottom; }
+
+}
+
+
+/* Cookie Banner
+ ========================================================================== */
+
+/*
+ * Let cookie notification appear above any page content.
+ */
+
+.tm-cookie-banner { z-index: @notification-z-index; }
+
+
+/* Toolbar
+ ========================================================================== */
+
+.tm-toolbar {
+    padding-top: @theme-toolbar-padding-top;
+    padding-bottom: @theme-toolbar-padding-bottom;
+    font-size: @theme-toolbar-font-size;
+    // Make sure media overlay is always below
+    position: relative;
+}
+
+.tm-toolbar .uk-subnav > * > :first-child { font-size: @theme-toolbar-font-size; }
+
+// Not transparent
+.tm-toolbar-default { background: @theme-toolbar-background; }
+
+.tm-toolbar-default:extend(.uk-light all) when (@theme-toolbar-color-mode = light) {}
+.tm-toolbar-default:extend(.uk-dark all) when (@theme-toolbar-color-mode = dark) {}
+
+
+/* Header
+ ========================================================================== */
+
+/*
+ * Header
+ */
+
+.tm-header,
+.tm-header-mobile {
+    // Make sure media overlay is always below
+    position: relative;
+}
+
+/*
+ * Headerbars
+ */
+
+.tm-headerbar-top {
+    padding-top: @theme-headerbar-top-padding-top;
+    padding-bottom: @theme-headerbar-top-padding-bottom;
+}
+
+.tm-headerbar-bottom {
+    padding-top: @theme-headerbar-bottom-padding-top;
+    padding-bottom: @theme-headerbar-bottom-padding-bottom;
+}
+
+.tm-headerbar-stacked { margin-top: @theme-headerbar-stacked-margin-top; }
+
+// Typo
+.tm-headerbar when not (@theme-headerbar-font-size = inherit) {
+    font-size: @theme-headerbar-font-size;
+}
+
+.tm-headerbar .uk-subnav > * > :first-child when not (@theme-headerbar-font-size = inherit) { font-size: @theme-headerbar-font-size; }
+
+// Not transparent
+.tm-headerbar-top.tm-headerbar-default { background: @theme-headerbar-top-background; }
+.tm-headerbar-top.tm-headerbar-default when not (@theme-headerbar-top-border-width = 0) { border-bottom: @theme-headerbar-top-border-width solid @theme-headerbar-top-border; }
+.tm-headerbar-bottom.tm-headerbar-default { background: @theme-headerbar-bottom-background; }
+.tm-headerbar-bottom.tm-headerbar-default when not (@theme-headerbar-bottom-border-width = 0) { border-bottom: @theme-headerbar-bottom-border-width solid @theme-headerbar-bottom-border; }
+
+.tm-headerbar-default:extend(.uk-light all) when (@theme-headerbar-color-mode = light) {}
+.tm-headerbar-default:extend(.uk-dark all) when (@theme-headerbar-color-mode = dark) {}
+
+/*
+ * Overlay + Transparent Header
+ * 1. Position above following section
+ * 2. Create stacking context because following section might create one
+ *    Use `where` to let UIkit `uk-position-z-index-*` classes win
+ * 3. Take the full width. Doesn't use width because `html` element may have a `border` or `padding`
+ */
+
+.tm-header-overlay {
+    /* 1 */
+    position: absolute;
+    /* 3 */
+    left: 0;
+    right: 0;
+}
+
+/* 2 */
+:where(.tm-header-overlay) { z-index: @sticky-z-index; }
+
+/*
+ * Header Mobile
+ */
+
+.tm-header-mobile {}
+
+.tm-header-mobile-slide { z-index: @drop-z-index; }
+
+/*
+ * Subnav in Navbar
+ */
+
+.uk-navbar-item .uk-subnav > * > :first-child { font-size: @navbar-nav-item-font-size; }
+
+
+/* Sidebar
+ ========================================================================== */
+
+/* Phone landscape and bigger */
+@media (min-width: @breakpoint-small) {
+
+    .tm-sidebar { min-width: @theme-sidebar-min-width; }
+
+}
+
+
+/* Dropbar Center Layout
+ ========================================================================== */
+
+.tm-height-min-1-1 { min-height: 100%; }
+
+// Expand height so rows in builder modules can take the full height. Only if one module on dialog position.
+.tm-height-expand:has(> .uk-panel:only-child > :only-child) {
+    flex: 1;
+    display: flex;
+}
+
+.tm-height-expand > .uk-panel:only-child:has(> :only-child) { flex: 1; }
+
+// .tm-height-expand:has(> .uk-panel:only-child),
+// .tm-height-expand > .uk-panel:only-child {
+//     flex: 1;
+//     display: flex;
+//     flex-direction: column;
+// }
+// .tm-height-expand > .uk-panel:only-child > .uk-height-1-1:first-child { flex: 1; }
+
+
+
+/* Error
+ ========================================================================== */
+
+.tm-error-icon { font-size: 250px; }
+
+.tm-error-headline { font-size: 100px; }
+
+
+/* Offline
+ ========================================================================== */
+
+.tm-offline { width: 300px; }
+
+
+/* Child Utilities
+ ========================================================================== */
+
+//
+// List
+//
+
+.tm-child-list > ul:extend(.uk-list all) {}
+.tm-child-list-divider > ul:extend(.uk-list-divider all) {}
+
+/*
+ * Manually repeat list divider selector because
+ * `:extend` won't extend a selector which is created by another `:extend`
+ * Guards are only allowed on single selectors
+ */
+
+.uk-card-primary.uk-card-body .uk-list-divider > li:nth-child(n+2) when (@card-primary-color-mode = @inverse-global-color-mode) {
+    border-top-color: @inverse-list-divider-border;
+    .hook-inverse-list-divider();
+}
+
+.uk-card-primary .uk-card-body .uk-list-divider > li:nth-child(n+2) when (@card-primary-color-mode = @inverse-global-color-mode) {
+    border-top-color: @inverse-list-divider-border;
+    .hook-inverse-list-divider();
+}
+
+.uk-card-secondary.uk-card-body .uk-list-divider > li:nth-child(n+2) when (@card-secondary-color-mode = @inverse-global-color-mode) {
+    border-top-color: @inverse-list-divider-border;
+    .hook-inverse-list-divider();
+}
+
+.uk-card-secondary .uk-card-body .uk-list-divider > li:nth-child(n+2) when (@card-secondary-color-mode = @inverse-global-color-mode) {
+    border-top-color: @inverse-list-divider-border;
+    .hook-inverse-list-divider();
+}
+
+.uk-section-primary:not(.uk-preserve-color) .uk-list-divider > li:nth-child(n+2) when (@section-primary-color-mode = @inverse-global-color-mode) {
+    border-top-color: @inverse-list-divider-border;
+    .hook-inverse-list-divider();
+}
+
+.uk-section-secondary:not(.uk-preserve-color) .uk-list-divider > li:nth-child(n+2) when (@section-secondary-color-mode = @inverse-global-color-mode) {
+    border-top-color: @inverse-list-divider-border;
+    .hook-inverse-list-divider();
+}
+
+
+/* Syntax Highlighter
+ ========================================================================== */
+
+/*
+ * Reset highlight.js
+ */
+
+.hljs {
+    padding: 0;
+    background: transparent;
+    overflow: visible;
+}
+
+
+/* Section
+ ========================================================================== */
+
+@section-title-color:                           @global-muted-color;
+@section-title-font-size:                       @global-small-font-size;
+@section-title-line-height:                     @global-line-height;
+@section-title-font-family:                     @global-secondary-font-family;
+@section-title-font-weight:                     @global-secondary-font-weight;
+@section-title-text-transform:                  @global-secondary-text-transform;
+@section-title-letter-spacing:                  @global-secondary-letter-spacing;
+@section-title-font-style:                      @global-secondary-font-style;
+
+.tm-section-title {
+    color: @section-title-color;
+    font-size: @section-title-font-size;
+    line-height: @section-title-line-height;
+    // `writing-mode` has to be on the parent element to fix the width in Safari
+    -webkit-writing-mode: vertical-lr;
+    writing-mode: vertical-lr;
+    .hook-section-title();
+}
+
+.tm-section-title > * {
+    // `writing-mode` has to be on the element which is rotated in IE 11
+    -ms-writing-mode: tb-lr;
+    // Fix height in Edge and IE 11
+    display: inline-block;
+}
+
+// `writing-mode` has to be on the element which is rotated in Edge
+@supports (-ms-ime-align: auto) {
+
+    .tm-section-title { writing-mode: inherit; }
+    .tm-section-title > * { writing-mode: vertical-lr; }
+
+}
+
+.hook-section-title() when not (@section-title-font-family = inherit) {
+    font-family: @section-title-font-family;
+}
+
+.hook-section-title() when not (@section-title-font-weight = inherit) {
+    font-weight: @section-title-font-weight;
+}
+
+.hook-section-title() when not (@section-title-text-transform = inherit) {
+    text-transform: @section-title-text-transform;
+}
+
+.hook-section-title() when not (@section-title-letter-spacing = inherit) {
+    letter-spacing: @section-title-letter-spacing;
+}
+
+.hook-section-title() when not (@section-title-font-style = inherit) {
+    font-style: @section-title-font-style;
+}
+
+@internal-section-title-mode:                   ~''; // dash
+@internal-section-title-dash-border-height:     15px;
+@internal-section-title-dash-border-width:      @global-border-width;
+@internal-section-title-dash-border-margin:     15px;
+@internal-section-title-dash-color:             currentColor;
+@internal-section-title-dash-background-image:  ~'';
+
+/*
+ * Dash
+ */
+
+@internal-section-title-mode:                   dash;
+
+.hook-section-title() when (@internal-section-title-mode = dash) {
+
+    > ::before {
+        content: "";
+        position: absolute;
+        top: -(@internal-section-title-dash-border-height + @internal-section-title-dash-border-margin);
+        left: ~'calc(50% - (@{internal-section-title-dash-border-width} / 2))';
+        height: @internal-section-title-dash-border-height;
+        width: @internal-section-title-dash-border-width;
+    }
+
+}
+
+// Color
+.hook-section-title() when (@internal-section-title-mode = dash) and (@internal-section-title-dash-background-image = ~'') {
+
+    > ::before {
+        background-color: @internal-section-title-dash-color;
+    }
+
+}
+
+// Image
+.hook-section-title() when (@internal-section-title-mode = dash) and not (@internal-section-title-dash-background-image = ~'') and not (@internal-section-title-dash-color = currentColor) {
+
+    > ::before {
+        .svg-fill(@internal-section-title-dash-background-image, "#000", @internal-section-title-dash-color);
+    }
+
+}
+
+//
+// Inverse
+//
+
+@inverse-section-title-color:                     @inverse-global-color;
+
+.hook-inverse() {
+
+    .tm-section-title { color: @inverse-section-title-color; }
+
+}
+
+@internal-inverse-section-title-dash-color:       @inverse-global-color;
+
+.hook-inverse() when (@internal-section-title-mode = dash) and not (@internal-section-title-dash-background-image = ~'') and not (@internal-section-title-dash-color = currentColor) {
+
+    .tm-section-title > ::before {
+        .svg-fill(@internal-section-title-dash-background-image, "#000", @internal-inverse-section-title-dash-color);
+    }
+
+}
+
+
+/* Utility
+ ========================================================================== */
+
+.tm-rotate-180 { transform: rotate(180deg); }
+
+/*
+ * Collapsing Grid
+ */
+
+.tm-grid-expand > * { flex-grow: 1; }
+
+/* Fix expand */
+.tm-grid-expand > .uk-width-expand { flex-grow: 999; }
+
+/* Possible Issue: `[class*="\@s"]` also matches breakpoint order first and last classes
+
+/* Phone landscape and bigger */
+@media (min-width: @breakpoint-small) {
+    .tm-grid-expand > .uk-width-1-1\@s,
+    .tm-grid-expand > .uk-width-1-2\@s,
+    .tm-grid-expand > .uk-width-1-3\@s,
+    .tm-grid-expand > .uk-width-2-3\@s,
+    .tm-grid-expand > .uk-width-1-4\@s,
+    .tm-grid-expand > .uk-width-3-4\@s,
+    .tm-grid-expand > .uk-width-1-5\@s,
+    .tm-grid-expand > .uk-width-2-5\@s,
+    .tm-grid-expand > .uk-width-3-5\@s,
+    .tm-grid-expand > .uk-width-4-5\@s,
+    .tm-grid-expand > .uk-width-1-6\@s,
+    .tm-grid-expand > .uk-width-5-6\@s,
+    .tm-grid-expand > .uk-width-small\@s,
+    .tm-grid-expand > .uk-width-medium\@s,
+    .tm-grid-expand > .uk-width-large\@s,
+    .tm-grid-expand > .uk-width-xlarge\@s,
+    .tm-grid-expand > .uk-width-2xlarge\@s,
+    .tm-grid-expand > .uk-width-auto\@s { flex-grow: 1; }
+    .tm-grid-expand > .uk-width-expand\@s { flex-grow: 999; }
+}
+
+/* Tablet landscape and bigger */
+@media (min-width: @breakpoint-medium) {
+    .tm-grid-expand > .uk-width-1-1\@m,
+    .tm-grid-expand > .uk-width-1-2\@m,
+    .tm-grid-expand > .uk-width-1-3\@m,
+    .tm-grid-expand > .uk-width-2-3\@m,
+    .tm-grid-expand > .uk-width-1-4\@m,
+    .tm-grid-expand > .uk-width-3-4\@m,
+    .tm-grid-expand > .uk-width-1-5\@m,
+    .tm-grid-expand > .uk-width-2-5\@m,
+    .tm-grid-expand > .uk-width-3-5\@m,
+    .tm-grid-expand > .uk-width-4-5\@m,
+    .tm-grid-expand > .uk-width-1-6\@m,
+    .tm-grid-expand > .uk-width-5-6\@m,
+    .tm-grid-expand > .uk-width-small\@m,
+    .tm-grid-expand > .uk-width-medium\@m,
+    .tm-grid-expand > .uk-width-large\@m,
+    .tm-grid-expand > .uk-width-xlarge\@m,
+    .tm-grid-expand > .uk-width-2xlarge\@m,
+    .tm-grid-expand > .uk-width-auto\@m { flex-grow: 1; }
+    .tm-grid-expand > .uk-width-expand\@m { flex-grow: 999; }
+}
+
+/* Desktop and bigger */
+@media (min-width: @breakpoint-large) {
+    .tm-grid-expand > .uk-width-1-1\@l,
+    .tm-grid-expand > .uk-width-1-2\@l,
+    .tm-grid-expand > .uk-width-1-3\@l,
+    .tm-grid-expand > .uk-width-2-3\@l,
+    .tm-grid-expand > .uk-width-1-4\@l,
+    .tm-grid-expand > .uk-width-3-4\@l,
+    .tm-grid-expand > .uk-width-1-5\@l,
+    .tm-grid-expand > .uk-width-2-5\@l,
+    .tm-grid-expand > .uk-width-3-5\@l,
+    .tm-grid-expand > .uk-width-4-5\@l,
+    .tm-grid-expand > .uk-width-1-6\@l,
+    .tm-grid-expand > .uk-width-5-6\@l,
+    .tm-grid-expand > .uk-width-small\@l,
+    .tm-grid-expand > .uk-width-medium\@l,
+    .tm-grid-expand > .uk-width-large\@l,
+    .tm-grid-expand > .uk-width-xlarge\@l,
+    .tm-grid-expand > .uk-width-2xlarge\@l,
+    .tm-grid-expand > .uk-width-auto\@l { flex-grow: 1; }
+    .tm-grid-expand > .uk-width-expand\@l { flex-grow: 999; }
+}
+
+/* Large screen and bigger */
+@media (min-width: @breakpoint-xlarge) {
+    .tm-grid-expand > .uk-width-1-1\@xl,
+    .tm-grid-expand > .uk-width-1-2\@xl,
+    .tm-grid-expand > .uk-width-1-3\@xl,
+    .tm-grid-expand > .uk-width-2-3\@xl,
+    .tm-grid-expand > .uk-width-1-4\@xl,
+    .tm-grid-expand > .uk-width-3-4\@xl,
+    .tm-grid-expand > .uk-width-1-5\@xl,
+    .tm-grid-expand > .uk-width-2-5\@xl,
+    .tm-grid-expand > .uk-width-3-5\@xl,
+    .tm-grid-expand > .uk-width-4-5\@xl,
+    .tm-grid-expand > .uk-width-1-6\@xl,
+    .tm-grid-expand > .uk-width-5-6\@xl,
+    .tm-grid-expand > .uk-width-small\@xl,
+    .tm-grid-expand > .uk-width-medium\@xl,
+    .tm-grid-expand > .uk-width-large\@xl,
+    .tm-grid-expand > .uk-width-xlarge\@xl,
+    .tm-grid-expand > .uk-width-2xlarge\@xl,
+    .tm-grid-expand > .uk-width-auto\@xl { flex-grow: 1; }
+    .tm-grid-expand > .uk-width-expand\@xl { flex-grow: 999; }
+}
+
+/*
+ * Prevent the need to set flex on picture element to stretch the image
+ */
+
+.uk-flex > picture { display: contents; }
+
+
+/* Mask
+ ========================================================================== */
+
+@internal-theme-mask-default-border-image:               ~'';
+@internal-theme-mask-default-border-image-slice:         30;
+@internal-theme-mask-default-border-image-repeat:        round;
+
+@internal-theme-mask-default-image:                      "../vendor/assets/uikit-themes/master/images/mask-default-image.svg";
+
+.tm-mask-default {
+    .hook-mask-default();
+}
+
+.hook-mask-default() when not (@internal-theme-mask-default-border-image = ~'') {
+
+    @supports (-webkit-mask-box-image-source: url()) {
+        & {
+            -webkit-mask-box-image-source: url(@internal-theme-mask-default-border-image);
+            mask-border: url(@internal-theme-mask-default-border-image);
+            -webkit-mask-box-image-slice: @internal-theme-mask-default-border-image-slice fill;
+            mask-border-slice: @internal-theme-mask-default-border-image-slice;
+            -webkit-mask-box-image-repeat: @internal-theme-mask-default-border-image-repeat;
+            mask-border-repeat: @internal-theme-mask-default-border-image-repeat;
+        }
+    }
+
+    // Firefox Fallback
+    @supports not (-webkit-mask-box-image-source: url()) {
+        & {
+            mask-image: url(@internal-theme-mask-default-border-image);
+            mask-size: 100% 100%;
+        }
+    }
+}
+
+.hook-mask-default() when not (@internal-theme-mask-default-image = ~'') and (@internal-theme-mask-default-border-image = ~'') {
+    -webkit-mask-image: url(@internal-theme-mask-default-image);
+    mask-image: url(@internal-theme-mask-default-image);
+    -webkit-mask-size: 100% 100%;
+    mask-size: 100% 100%;
+}
+
+.hook-mask-default() {}
+
+
+/* Box Decoration
+ ========================================================================== */
+
+@theme-box-decoration-top:                               0;
+@theme-box-decoration-bottom:                            0;
+@theme-box-decoration-left:                              0;
+@theme-box-decoration-right:                             0;
+@theme-box-decoration-z-index:                           -1;
+
+@theme-box-decoration-default-transform-horizontal:      -20px;
+@theme-box-decoration-default-transform-vertical:        20px;
+@theme-box-decoration-default-background:                darken(@global-muted-background, 3%);
+@theme-box-decoration-default-border-width:              0;
+@theme-box-decoration-default-border:                    transparent;
+@theme-box-decoration-default-backdrop-filter:           ~'';
+@theme-box-decoration-default-blend-mode:                ~'';
+
+@theme-box-decoration-primary-transform-horizontal:      20px;
+@theme-box-decoration-primary-transform-vertical:        20px;
+@theme-box-decoration-primary-background:                darken(@global-muted-background, 3%);
+@theme-box-decoration-primary-border-width:              0;
+@theme-box-decoration-primary-border:                    transparent;
+@theme-box-decoration-primary-backdrop-filter:           ~'';
+@theme-box-decoration-primary-blend-mode:                ~'';
+
+@theme-box-decoration-secondary-transform-horizontal:    20px;
+@theme-box-decoration-secondary-transform-vertical:      -20px;
+@theme-box-decoration-secondary-background:              darken(@global-muted-background, 3%);
+@theme-box-decoration-secondary-border-width:            0;
+@theme-box-decoration-secondary-border:                  transparent;
+@theme-box-decoration-secondary-backdrop-filter:         ~'';
+@theme-box-decoration-secondary-blend-mode:              ~'';
+
+.tm-box-decoration-default,
+.tm-box-decoration-primary,
+.tm-box-decoration-secondary {
+
+    position: relative;
+    z-index: 0;
+
+    &::before {
+        content: '';
+        position: absolute;
+        top: @theme-box-decoration-top;
+        bottom: @theme-box-decoration-bottom;
+        left: @theme-box-decoration-left;
+        right: @theme-box-decoration-right;
+        z-index: @theme-box-decoration-z-index;
+        // Prevent clickable area if box-decoration is above links
+        pointer-events: none;
+    }
+    .hook-box-decoration();
+
+}
+
+.tm-box-decoration-default {
+
+    &::before {
+        transform: translate(@theme-box-decoration-default-transform-horizontal, @theme-box-decoration-default-transform-vertical);
+        background-color: @theme-box-decoration-default-background;
+    }
+    .hook-box-decoration-default();
+
+}
+
+.hook-box-decoration-default() when not (@theme-box-decoration-default-border-width = 0) {
+    &::before { border: @theme-box-decoration-default-border-width solid @theme-box-decoration-default-border; }
+}
+
+.hook-box-decoration-default() when not (@theme-box-decoration-default-backdrop-filter = ~'') {
+    &::before { backdrop-filter: @theme-box-decoration-default-backdrop-filter; }
+}
+
+.hook-box-decoration-default() when not (@theme-box-decoration-default-backdrop-filter = ~'') and not (@theme-box-decoration-default-border-width = 0) and (@theme-box-decoration-default-background = transparent) {
+    &::before {
+        clip-path: polygon(0 0, 0 100%, @theme-box-decoration-default-border-width 100%, @theme-box-decoration-default-border-width @theme-box-decoration-default-border-width, ~'calc(100% - @{theme-box-decoration-default-border-width})' @theme-box-decoration-default-border-width, ~'calc(100% - @{theme-box-decoration-default-border-width})' ~'calc(100% - @{theme-box-decoration-default-border-width})', @theme-box-decoration-default-border-width ~'calc(100% - @{theme-box-decoration-default-border-width})', @theme-box-decoration-default-border-width 100%, 100% 100%, 100% 0);
+    }
+}
+
+.hook-box-decoration-default() when not (@theme-box-decoration-default-blend-mode = ~'') {
+    &::before { mix-blend-mode: @theme-box-decoration-default-blend-mode; }
+}
+
+.tm-box-decoration-primary {
+
+    &::before {
+        transform: translate(@theme-box-decoration-primary-transform-horizontal, @theme-box-decoration-primary-transform-vertical);
+        background-color: @theme-box-decoration-primary-background;
+    }
+    .hook-box-decoration-primary();
+
+}
+
+.hook-box-decoration-primary() when not (@theme-box-decoration-primary-border-width = 0) {
+    &::before { border: @theme-box-decoration-primary-border-width solid @theme-box-decoration-primary-border; }
+}
+
+.hook-box-decoration-primary() when not (@theme-box-decoration-primary-backdrop-filter = ~'') {
+    &::before { backdrop-filter: @theme-box-decoration-primary-backdrop-filter; }
+}
+
+.hook-box-decoration-primary() when not (@theme-box-decoration-primary-backdrop-filter = ~'') and not (@theme-box-decoration-primary-border-width = 0) and (@theme-box-decoration-primary-background = transparent) {
+    &::before {
+        clip-path: polygon(0 0, 0 100%, @theme-box-decoration-primary-border-width 100%, @theme-box-decoration-primary-border-width @theme-box-decoration-primary-border-width, ~'calc(100% - @{theme-box-decoration-primary-border-width})' @theme-box-decoration-primary-border-width, ~'calc(100% - @{theme-box-decoration-primary-border-width})' ~'calc(100% - @{theme-box-decoration-primary-border-width})', @theme-box-decoration-primary-border-width ~'calc(100% - @{theme-box-decoration-primary-border-width})', @theme-box-decoration-primary-border-width 100%, 100% 100%, 100% 0);
+    }
+}
+
+.hook-box-decoration-primary() when not (@theme-box-decoration-primary-blend-mode = ~'') {
+    &::before { mix-blend-mode: @theme-box-decoration-primary-blend-mode; }
+}
+
+.tm-box-decoration-secondary {
+
+    &::before {
+        transform: translate(@theme-box-decoration-secondary-transform-horizontal, @theme-box-decoration-secondary-transform-vertical);
+        background-color: @theme-box-decoration-secondary-background;
+    }
+    .hook-box-decoration-secondary();
+
+}
+
+.hook-box-decoration-secondary() when not (@theme-box-decoration-secondary-border-width = 0) {
+    &::before { border: @theme-box-decoration-secondary-border-width solid @theme-box-decoration-secondary-border; }
+}
+
+.hook-box-decoration-secondary() when not (@theme-box-decoration-secondary-backdrop-filter = ~'') {
+    &::before { backdrop-filter: @theme-box-decoration-secondary-backdrop-filter; }
+}
+
+.hook-box-decoration-secondary() when not (@theme-box-decoration-secondary-backdrop-filter = ~'') and not (@theme-box-decoration-secondary-border-width = 0) and (@theme-box-decoration-secondary-background = transparent) {
+    &::before {
+        clip-path: polygon(0 0, 0 100%, @theme-box-decoration-secondary-border-width 100%, @theme-box-decoration-secondary-border-width @theme-box-decoration-secondary-border-width, ~'calc(100% - @{theme-box-decoration-secondary-border-width})' @theme-box-decoration-secondary-border-width, ~'calc(100% - @{theme-box-decoration-secondary-border-width})' ~'calc(100% - @{theme-box-decoration-secondary-border-width})', @theme-box-decoration-secondary-border-width ~'calc(100% - @{theme-box-decoration-secondary-border-width})', @theme-box-decoration-secondary-border-width 100%, 100% 100%, 100% 0);
+    }
+}
+
+.hook-box-decoration-secondary() when not (@theme-box-decoration-secondary-blend-mode = ~'') {
+    &::before { mix-blend-mode: @theme-box-decoration-secondary-blend-mode; }
+}
+
+.hook-box-decoration() {}
+.hook-box-decoration-default() {}
+.hook-box-decoration-primary() {}
+.hook-box-decoration-secondary() {}
+
+//
+// Inverse
+//
+
+@inverse-theme-box-decoration-default-background:   @inverse-global-muted-background;
+@inverse-theme-box-decoration-primary-background:   @inverse-global-muted-background;
+@inverse-theme-box-decoration-secondary-background: @inverse-global-muted-background;
+
+@inverse-theme-box-decoration-default-border:       transparent;
+@inverse-theme-box-decoration-primary-border:       transparent;
+@inverse-theme-box-decoration-secondary-border:     transparent;
+
+.tm-box-decoration-inverse.tm-box-decoration-default { .hook-inverse-box-decoration-default(); }
+.tm-box-decoration-inverse.tm-box-decoration-primary { .hook-inverse-box-decoration-primary(); }
+.tm-box-decoration-inverse.tm-box-decoration-secondary { .hook-inverse-box-decoration-secondary(); }
+
+.hook-inverse-box-decoration-default() when not (@theme-box-decoration-default-background = transparent) {
+    &::before { background-color: @inverse-theme-box-decoration-default-background; }
+}
+
+.hook-inverse-box-decoration-primary() when not (@theme-box-decoration-primary-background = transparent) {
+    &::before { background-color: @inverse-theme-box-decoration-primary-background; }
+}
+
+.hook-inverse-box-decoration-secondary() when not (@theme-box-decoration-secondary-background = transparent) {
+    &::before { background-color: @inverse-theme-box-decoration-secondary-background; }
+}
+
+.hook-inverse-box-decoration-default() when not (@theme-box-decoration-default-border-width = 0) {
+    &::before { border-color: @inverse-theme-box-decoration-default-border; }
+}
+
+.hook-inverse-box-decoration-primary() when not (@theme-box-decoration-primary-border-width = 0) {
+    &::before { border-color: @inverse-theme-box-decoration-primary-border; }
+}
+
+.hook-inverse-box-decoration-secondary() when not (@theme-box-decoration-secondary-border-width = 0) {
+    &::before { border-color: @inverse-theme-box-decoration-secondary-border; }
+}
+
+
+/* Transition Border
+ ========================================================================== */
+
+@theme-transition-border-direction-mode:                    inside; // inside, outside
+@theme-transition-border-transition-duration:               0.1s;
+@theme-transition-border-border-width:                      0;
+@theme-transition-border-border:                            @global-primary-background;
+@theme-transition-border-hover-border-width:                10px;
+@theme-transition-border-hover-border:                      @global-primary-background;
+
+@internal-theme-transition-border-border-gradient:          ~'';
+@internal-theme-transition-border-hover-border-gradient:    ~'';
+
+@theme-transition-border-blend-mode:                        ~'';
+
+// Low specificity
+:where(.tm-transition-border) {
+    display: block;
+    position: relative;
+}
+
+.tm-transition-border::after {
+    content: '';
+    position: absolute;
+    z-index: 1; // Place outside border above adjacent content
+    pointer-events: none;
+    transition: @theme-transition-border-transition-duration ease-in-out;
+    .hook-transition-border();
+}
+
+/* Show */
+.uk-transition-toggle:hover .tm-transition-border::after,
+.uk-transition-toggle:focus .tm-transition-border::after,
+.uk-transition-toggle:hover.tm-transition-border::after,
+.uk-transition-toggle:focus.tm-transition-border::after {
+    .hook-transition-border-hover();
+}
+
+.hook-transition-border() when (@theme-transition-border-direction-mode = inside) {
+    top: -1px;
+    bottom: -1px;
+    left: -1px;
+    right: -1px;
+}
+
+.hook-transition-border() when (@theme-transition-border-direction-mode = outside) and (@internal-theme-transition-border-border-gradient = ~'') and (@internal-theme-transition-border-hover-border-gradient = ~'') {
+    top: 1px;
+    bottom: 1px;
+    left: 1px;
+    right: 1px;
+}
+
+// For gradient border because outline not possible
+.hook-transition-border() when (@theme-transition-border-direction-mode = outside) and not (@internal-theme-transition-border-border-gradient = ~''),
+                               (@theme-transition-border-direction-mode = outside) and not (@internal-theme-transition-border-hover-border-gradient = ~'') {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: ~'calc(100% - 2px)';
+    height: ~'calc(100% - 2px)';
+    box-sizing: content-box;
+}
+
+.hook-transition-border() when (@theme-transition-border-direction-mode = inside),
+                               (@theme-transition-border-direction-mode = outside) and not (@internal-theme-transition-border-border-gradient = ~''),
+                               (@theme-transition-border-direction-mode = outside) and not (@internal-theme-transition-border-hover-border-gradient = ~'') {
+    transition-property: border-color, border-width;
+    border: @theme-transition-border-border-width solid @theme-transition-border-border;
+}
+
+.hook-transition-border() when (@theme-transition-border-direction-mode = outside) and (@internal-theme-transition-border-border-gradient = ~'') and (@internal-theme-transition-border-hover-border-gradient = ~'') {
+    transition-property: outline-color, outline-width;
+    outline: @theme-transition-border-border-width solid @theme-transition-border-border;
+}
+
+.hook-transition-border-hover() when (@theme-transition-border-direction-mode = inside),
+                                     (@theme-transition-border-direction-mode = outside) and not (@internal-theme-transition-border-border-gradient = ~''),
+                                     (@theme-transition-border-direction-mode = outside) and not (@internal-theme-transition-border-hover-border-gradient = ~'') {
+    border-width: @theme-transition-border-hover-border-width;
+    border-color: @theme-transition-border-hover-border;
+}
+
+.hook-transition-border-hover() when (@theme-transition-border-direction-mode = outside) and (@internal-theme-transition-border-border-gradient = ~'') and (@internal-theme-transition-border-hover-border-gradient = ~'') {
+    outline-width: @theme-transition-border-hover-border-width;
+    outline-color: @theme-transition-border-hover-border;
+}
+
+// Gradient
+.hook-transition-border() when not (@internal-theme-transition-border-border-gradient = ~'') {
+    border-image: @internal-theme-transition-border-border-gradient 1;
+}
+
+.hook-transition-border-hover() when not (@internal-theme-transition-border-hover-border-gradient = ~'') {
+    border-image: @internal-theme-transition-border-hover-border-gradient 1;
+}
+
+.hook-transition-border() {}
+.hook-transition-border-hover() {}
+
+.hook-transition-border() when not (@theme-transition-border-blend-mode = ~'') {
+    mix-blend-mode: @theme-transition-border-blend-mode;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+
+/* Font Family
+ ========================================================================== */
+
+.uk-font-default {
+    font-family: @global-font-family;
+    font-weight: @base-body-font-weight;
+}
+
+.uk-font-primary {
+    font-family: @global-primary-font-family;
+    font-weight: @global-primary-font-weight;
+}
+
+.uk-font-secondary {
+    font-family: @global-secondary-font-family;
+    font-weight: @global-secondary-font-weight;
+}
+
+.uk-font-tertiary {
+    font-family: @global-tertiary-font-family;
+    font-weight: @global-tertiary-font-weight;
+}
+
+
+/* Fix Drop Cap with Page Break (+ platform.less)
+ ========================================================================== */
+
+/* Reset */
+.tm-page-break::first-letter {
+    display: inline !important;
+    margin: 0 !important;
+    float: none !important;
+    font-family: inherit !important;
+    font-size: inherit !important;
+    line-height: inherit !important;
+    color: inherit !important;
+}

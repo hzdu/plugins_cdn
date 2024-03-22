@@ -1,0 +1,81 @@
+//
+// Component: Totop
+//
+// ========================================================================
+
+
+// Variables
+// ========================================================================
+
+//
+// New
+//
+
+@totop-background:                              transparent;
+@totop-hover-background:                        transparent;
+@totop-active-background:                       transparent;
+
+@totop-backdrop-filter:                         ~'';
+
+@internal-totop-mode:                           ~''; // animate
+
+
+// Component
+// ========================================================================
+
+.hook-totop() {
+    transition: 0.1s ease-in-out;
+    transition-property: color, background-color, border-color, box-shadow;
+}
+
+.hook-totop() when not (@totop-background = transparent) {
+    background: @totop-background;
+}
+
+.hook-totop-hover() when not (@totop-hover-background = @totop-background) {
+    background-color: @totop-hover-background;
+}
+
+.hook-totop-active() when not (@totop-active-background = @totop-background) {
+    background-color: @totop-active-background;
+}
+
+.hook-totop() when not (@totop-backdrop-filter = ~'') {
+    backdrop-filter: @totop-backdrop-filter;
+    -webkit-backdrop-filter: @totop-backdrop-filter;
+}
+
+//
+// Animate
+//
+
+.hook-totop-hover() when (@internal-totop-mode = animate) {
+    overflow: hidden;
+    vertical-align: middle;
+
+    svg { animation: uk-slide-top 0.3s reverse, uk-slide-bottom 0.2s 0.3s; }
+}
+
+
+// Miscellaneous
+// ========================================================================
+
+.hook-icon-misc() {}
+
+
+// Inverse
+// ========================================================================
+
+@inverse-totop-background:                              transparent;
+@inverse-totop-hover-background:                        transparent;
+@inverse-totop-active-background:                       transparent;
+
+.hook-inverse-totop() when not (@inverse-totop-background = transparent) {
+    background-color: @inverse-totop-background;
+}
+.hook-inverse-totop-hover() when not (@inverse-totop-hover-background = @inverse-totop-background) {
+    background-color: @inverse-totop-hover-background;
+}
+.hook-inverse-totop-active() when not (@inverse-totop-active-background = @inverse-totop-background) {
+    background-color: @inverse-totop-active-background;
+}

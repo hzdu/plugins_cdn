@@ -1,0 +1,232 @@
+/*
+
+Name: Dennis Miller
+Background: White
+Color: Red
+Type: Flat
+Preview: https://yootheme.com/api/style/dennis-miller/default.jpg
+
+Style: white-green
+Name: White Green
+Background: White
+Color: Green
+Type: Flat
+Preview: https://yootheme.com/api/style/dennis-miller/white-green.jpg
+
+Style: black-red
+Name: Black Red
+Background: Black
+Color: Red
+Type: Flat
+Preview: https://yootheme.com/api/style/dennis-miller/black-red.jpg
+
+Style: black-green
+Name: Black Green
+Background: Black
+Color: Green
+Type: Flat
+Preview: https://yootheme.com/api/style/dennis-miller/black-green.jpg
+
+
+Style: colored-yellow
+Name: Colored Yellow
+Background: Colored
+Color: Yellow
+Type: Flat
+Preview: https://yootheme.com/api/style/dennis-miller/colored-yellow.jpg
+
+Style: colored-blue
+Name: Colored Blue
+Background: Colored
+Color: Blue
+Type: Flat
+Preview: https://yootheme.com/api/style/dennis-miller/colored-blue.jpg
+
+
+*/
+
+// Platform
+@import "platform.less";
+
+// UIkit Core
+@import "../vendor/assets/uikit/src/less/uikit.less";
+
+// UIkit Theme
+@import "../vendor/assets/uikit-themes/master/_import.less";
+@import "../vendor/assets/uikit-themes/master-dennis-miller/_import.less";
+
+// Theme
+@import "theme.less";
+
+
+// Variables
+// ========================================================================
+
+//
+// Page Border
+//
+
+@theme-page-border-mode:                                -bottom;
+@theme-page-border-width:                               6px;
+@theme-page-border:                                     @global-primary-background;
+
+.tm-page {
+
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 50%;
+        right: 0;
+        z-index: 999;
+        height: 4px;
+        background: @global-primary-background;
+    }
+}
+
+/* Tablet portrait and smaller */
+@media (max-width: @breakpoint-medium) {
+
+    .tm-page when not (@theme-page-border-width = 0) {
+
+        &::before { left: 0; }
+
+        border@{theme-page-border-mode}: @theme-page-border-width solid @theme-page-border;
+
+    }
+
+}
+
+//
+// Mask
+//
+
+@internal-theme-mask-default-border-image:               "../vendor/assets/uikit-themes/master-dennis-miller/images/mask-default-image.svg";
+@internal-theme-mask-default-border-image-slice:         0;
+@internal-theme-mask-default-border-image-repeat:        stretch;
+
+
+//
+// Box Decoration
+//
+
+@theme-box-decoration-z-index:                           2;
+
+@theme-box-decoration-default-transform-horizontal:      10px;
+@theme-box-decoration-default-transform-vertical:        -10px;
+@theme-box-decoration-default-background:                @global-primary-background;
+
+@theme-box-decoration-primary-transform-horizontal:      0;
+@theme-box-decoration-primary-transform-vertical:        0;
+@theme-box-decoration-primary-background:                @global-primary-background;
+
+@theme-box-decoration-secondary-transform-horizontal:    0;
+@theme-box-decoration-secondary-transform-vertical:      0;
+@theme-box-decoration-secondary-background:              @global-primary-background;
+
+//
+// New
+//
+
+@theme-box-decoration-primary-width:                     3px;
+@theme-box-decoration-primary-height:                    60px;
+
+.hook-box-decoration-default() {
+
+    &::before {
+        .svg-fill("../../../../uikit-themes/master-dennis-miller/images/box-decoration-default-image.svg", "#000", @theme-box-decoration-default-background);
+        background-repeat: no-repeat;
+        background-color: transparent;
+    }
+
+}
+
+.hook-box-decoration-primary() {
+
+    &::before {
+        top: auto;
+        bottom: -(@theme-box-decoration-primary-height / 2);
+        left: ~'calc(50% - (@{theme-box-decoration-primary-width} / 2))';
+        width: @theme-box-decoration-primary-width;
+        height: @theme-box-decoration-primary-height;
+        background-color: @theme-box-decoration-primary-background;
+    }
+
+}
+
+.hook-box-decoration-secondary() {
+
+    &::before {
+        .svg-fill("../../../../uikit-themes/master-dennis-miller/images/box-decoration-secondary-image.svg", "#000", @theme-box-decoration-secondary-background, border-image-source);
+        background-color: transparent;
+        border-image-slice: 78 fill;
+        border-image-width: 78px;
+    }
+
+}
+
+//
+// Inverse
+//
+
+@inverse-theme-box-decoration-default-background:        @inverse-global-primary-background;
+@inverse-theme-box-decoration-primary-background:        @inverse-global-primary-background;
+@inverse-theme-box-decoration-secondary-background:      @inverse-global-primary-background;
+
+.hook-inverse-box-decoration-default() when not (@theme-box-decoration-default-background = transparent) {
+
+    &::before {
+        .svg-fill("../../../../uikit-themes/master-dennis-miller/images/box-decoration-default-image.svg", "#000", @inverse-theme-box-decoration-default-background);
+        background-color: transparent;
+    }
+
+}
+
+.hook-inverse-box-decoration-secondary() when not (@theme-box-decoration-secondary-background = transparent) {
+
+    &::before {
+        .svg-fill("../../../../uikit-themes/master-dennis-miller/images/box-decoration-secondary-image.svg", "#000", @inverse-theme-box-decoration-secondary-background, border-image-source);
+        background-color: transparent;
+    }
+
+}
+
+
+//
+// Transition Border
+//
+
+@theme-transition-border-hover-border-width:             16px;
+
+//
+// Section
+//
+
+@section-title-color:                                    @global-secondary-background;
+@section-title-font-size:                                12px;
+@section-title-font-family:                              @global-primary-font-family;
+@section-title-font-weight:                              @global-primary-font-weight;
+@section-title-text-transform:                           uppercase;
+@section-title-letter-spacing:                           1px;
+
+@internal-section-title-dash-color:                      @global-primary-background;
+@internal-section-title-dash-border-height:              47px;
+@internal-section-title-dash-border-width:               2px;
+@internal-section-title-dash-background-image:           "../../../../uikit-themes/master-dennis-miller/images/section-title-image.svg";
+
+@inverse-section-title-color:                            @inverse-global-emphasis-color;
+
+//
+// WooCommerce
+//
+
+@woocommerce-rating-color:                               @global-primary-background;
+@woocommerce-widget-active-filters-font-size:            @global-small-font-size;
+
+
+// Style
+// ========================================================================
+
+@import (optional) "../vendor/assets/uikit-themes/master-dennis-miller/styles/@{internal-style}.less";
+
+@internal-style: ~'';

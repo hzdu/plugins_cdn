@@ -1,0 +1,227 @@
+//
+// Global
+//
+
+@global-color:            rgba(24, 24, 24, 0.75);
+@global-emphasis-color:   @global-primary-background;
+@global-inverse-color:    #fff;
+@global-link-color:       #6c1b1b;
+@global-link-hover-color: darken(@global-link-color, 25%);
+@global-muted-color:      rgba(24, 24, 24, 0.5);
+
+@global-background:           #ef463e;
+@global-muted-background:     desaturate(darken(@global-background, 4%), 8%);
+@global-primary-background:   #181818;
+@global-secondary-background: desaturate(darken(@global-background, 6%), 14%);
+@global-success-background:   #2d5545;
+@global-warning-background:   #ff9e48;
+@global-danger-background:    #712334;
+
+@global-border: rgba(24, 24, 24, 0.1);
+
+@global-large-box-shadow:  0 15px 55px 0 rgba(126, 5, 5, 0.15);
+@global-medium-box-shadow: 0 5px 15px 0 rgba(126, 5, 5, 0.15);
+@global-small-box-shadow:  0 2px 8px 0 rgba(126, 5, 5, 0.15);
+@global-xlarge-box-shadow: 0 28px 50px 0 rgba(126, 5, 5, 0.15);
+
+//
+// Alert
+//
+
+@alert-primary-background: @global-primary-background;
+@alert-primary-color:      @global-background;
+@alert-success-background: @global-primary-background;
+@alert-success-color:      saturate(lighten(@global-success-background, 25%), 10%);
+@alert-warning-background: @global-primary-background;
+@alert-warning-color:      saturate(lighten(@global-warning-background, 15%), 10%);
+@alert-danger-background:  @global-primary-background;
+@alert-danger-color:       saturate(lighten(@global-danger-background, 25%), 10%);
+
+//
+// Badge
+//
+
+@badge-background: @global-primary-background;
+
+//
+// Base
+//
+
+@base-link-text-decoration: underline;
+
+@base-code-color:      #f5e29e;
+@base-ins-background:  rgba(255, 255, 255, 0.1);
+@base-ins-color:       @global-primary-background;
+@base-mark-background: rgba(255, 255, 255, 0.1);
+@base-mark-color:      @global-primary-background;
+
+//
+// Button
+//
+
+@button-default-background:        @global-primary-background;
+@button-default-hover-background:  @global-primary-background;
+@button-default-active-background: rgba(24, 24, 24, 0.7);
+
+@button-primary-active-color: @global-primary-background;
+
+@button-secondary-hover-color:       @global-emphasis-color;
+@button-secondary-active-background: rgba(255, 255, 255, 0.8);
+
+@button-link-hover-color:         @global-color;
+@inverse-button-link-hover-color: @inverse-global-color;
+
+//
+// Card
+//
+
+@card-badge-background: @global-primary-background;
+
+@card-primary-border:       fade(@global-secondary-background, 50%);
+@card-primary-hover-border: @global-secondary-background;
+
+@card-secondary-color:            @global-emphasis-color;
+@card-secondary-color-mode:       dark;
+@card-secondary-hover-background: darken(@card-secondary-background, 2%);
+
+//
+// Dotnav
+//
+
+@dotnav-item-border:             @global-primary-background;
+@dotnav-item-onclick-background: @global-primary-background;
+@dotnav-item-active-background:  @global-primary-background;
+
+@inverse-dotnav-item-border: @global-inverse-color;
+
+//
+// Dropbar
+//
+
+@dropbar-color:      @global-color;
+@dropbar-color-mode: dark;
+
+//
+// Dropdown
+//
+
+@dropdown-background:                   @global-muted-background;
+@dropdown-color:                        @global-color;
+@dropdown-color-mode:                   dark;
+@dropdown-nav-item-hover-color:         @global-emphasis-color;
+@dropdown-nav-sublist-item-hover-color: @global-emphasis-color;
+
+//
+// Form
+//
+
+@form-radio-checked-background:       @global-primary-background;
+@form-radio-checked-focus-background: @global-primary-background;
+@form-radio-border:                   rgba(24, 24, 24, 0.2);
+
+//
+// Form Range
+//
+
+@form-range-thumb-background: @global-primary-background;
+@form-range-track-background: @global-border;
+
+//
+// Icon
+//
+
+@icon-button-background:       @global-primary-background;
+@icon-button-hover-background: fade(@global-primary-background, 80%);
+
+//
+// Label
+//
+
+@label-background:         @global-primary-background;
+@label-success-background: @global-primary-background;
+@label-success-color:      saturate(lighten(@global-success-background, 25%), 10%);
+@label-warning-background: @global-primary-background;
+@label-warning-color:      @global-warning-background;
+@label-danger-background:  @global-primary-background;
+@label-danger-color:       saturate(lighten(@global-danger-background, 25%), 10%);
+
+//
+// Nav
+//
+
+@nav-primary-item-hover-color:          @global-emphasis-color;
+@nav-primary-item-active-color:         @global-emphasis-color;
+@nav-primary-sublist-item-hover-color:  @global-emphasis-color;
+@nav-primary-sublist-item-active-color: @global-emphasis-color;
+
+//
+// Navbar
+//
+
+@navbar-dropdown-color-mode:                    dark;
+@navbar-dropdown-nav-item-hover-color:          @global-emphasis-color;
+@navbar-dropdown-nav-item-active-color:         @global-emphasis-color;
+@navbar-dropdown-nav-sublist-item-hover-color:  @global-emphasis-color;
+@navbar-dropdown-nav-sublist-item-active-color: @global-emphasis-color;
+
+//
+// Overlay
+//
+
+@overlay-primary-color-mode: dark;
+
+//
+// Section
+//
+
+@section-secondary-color-mode: dark;
+
+//
+// Slidenav
+//
+
+@slidenav-color:             @global-inverse-color;
+@slidenav-hover-color:       @slidenav-color;
+@slidenav-active-color:      @slidenav-color;
+@slidenav-background:        @global-primary-background;
+@slidenav-hover-background:  fade(@slidenav-background, 50%);
+@slidenav-active-background: fade(@slidenav-background, 50%);
+
+@inverse-slidenav-color:             @global-emphasis-color;
+@inverse-slidenav-hover-color:       @slidenav-color;
+@inverse-slidenav-active-color:      @slidenav-color;
+@inverse-slidenav-background:        #fff;
+@inverse-slidenav-hover-background:  fade(@inverse-slidenav-background, 50%);
+@inverse-slidenav-active-background: fade(@inverse-slidenav-background, 50%);
+
+//
+// Text
+//
+
+@text-primary-color:   @global-link-color;
+@text-secondary-color: @global-link-color;
+
+//
+// Tile
+//
+
+@tile-secondary-color-mode: dark;
+
+//
+// Tooltip
+//
+
+@tooltip-background: @global-primary-background;
+
+//
+// Theme
+//
+
+@theme-toolbar-color-mode: dark;
+
+//
+// WooCommerce
+//
+
+@woocommerce-rating-background-color: fade(@global-border, 30%);
+@woocommerce-rating-color:            @global-primary-background;

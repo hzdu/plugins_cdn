@@ -1,0 +1,183 @@
+/*
+
+Name: Trek
+Background: White
+Color: Blue
+Type: Skeuomorphic
+Preview: https://yootheme.com/api/style/trek/default.jpg
+
+Style: light-green
+Name: Light Green
+Background: Light
+Color: Green
+Type: Skeuomorphic
+Preview: https://yootheme.com/api/style/trek/light-green.jpg
+
+Style: white-lightyellow
+Name: White Lightyellow
+Background: White
+Color: Yellow
+Type: Skeuomorphic
+Preview: https://yootheme.com/api/style/trek/white-lightyellow.jpg
+
+Style: white-orange
+Name: White Orange
+Background: White
+Color: Orange
+Type: Skeuomorphic
+Preview: https://yootheme.com/api/style/trek/white-orange.jpg
+
+Style: white-yellow
+Name: White Yellow
+Background: White
+Color: Yellow
+Type: Skeuomorphic
+Preview: https://yootheme.com/api/style/trek/white-yellow.jpg
+
+Style: black-beige
+Name: Black Beige
+Background: Black
+Color: Beige
+Type: Skeuomorphic
+Preview: https://yootheme.com/api/style/trek/black-beige.jpg
+
+*/
+
+// Platform
+@import "platform.less";
+
+// UIkit Core
+@import "../vendor/assets/uikit/src/less/uikit.less";
+
+// UIkit Theme
+@import "../vendor/assets/uikit-themes/master/_import.less";
+@import "../vendor/assets/uikit-themes/master-trek/_import.less";
+
+// Theme
+@import "theme.less";
+
+
+// Variables
+// ========================================================================
+
+//
+// Toolbar
+//
+
+@theme-toolbar-background:                               darken(@global-primary-background, 5%);
+
+//
+// Header
+//
+
+@theme-headerbar-color-mode:                            light;
+
+//
+// Section
+//
+
+@section-title-color:                                    @global-emphasis-color;
+@section-title-font-size:                                12px;
+@section-title-line-height:                              15px;
+
+@internal-section-title-dash-border-height:              60px;
+
+//
+// SVG
+//
+
+@internal-svg-color-muted:                               darken(@global-muted-background, 3%);
+
+//
+// Mask
+//
+
+@internal-theme-mask-default-border-image:               "../vendor/assets/uikit-themes/master-trek/images/mask-default-image.svg";
+@internal-theme-mask-default-border-image-slice:         50;
+
+//
+// Box Decoration
+//
+
+@theme-box-decoration-default-transform-horizontal:      -40px;
+@theme-box-decoration-default-transform-vertical:        40px;
+@theme-box-decoration-default-background:                transparent;
+
+@theme-box-decoration-primary-transform-horizontal:      0;
+@theme-box-decoration-primary-transform-vertical:        0;
+@theme-box-decoration-primary-background:                transparent;
+
+@theme-box-decoration-secondary-transform-horizontal:    40px;
+@theme-box-decoration-secondary-transform-vertical:      -40px;
+@theme-box-decoration-secondary-background:              transparent;
+
+//
+// New
+//
+
+@internal-box-decoration-default-image:                  "../vendor/assets/uikit-themes/master-trek/images/box-decoration-default-image.png";
+@internal-box-decoration-primary-image:                  "../vendor/assets/uikit-themes/master-trek/images/box-decoration-primary-image.png";
+@internal-box-decoration-secondary-image:                "../vendor/assets/uikit-themes/master-trek/images/box-decoration-secondary-image.png";
+
+// Inverse
+@internal-inverse-box-decoration-default-image:          "../vendor/assets/uikit-themes/master-trek/images/inverse-box-decoration-default-image.png";
+@internal-inverse-box-decoration-primary-image:          "../vendor/assets/uikit-themes/master-trek/images/inverse-box-decoration-primary-image.png";
+@internal-inverse-box-decoration-secondary-image:        "../vendor/assets/uikit-themes/master-trek/images/inverse-box-decoration-secondary-image.png";
+
+.hook-box-decoration-default() {
+
+    &::before {
+        border-image-source: url(@internal-box-decoration-default-image);
+        border-image-slice: 60 fill;
+        border-image-width: 60px;
+        border-image-repeat: round;
+    }
+
+    &.tm-box-decoration-inverse::before { border-image-source: url(@internal-inverse-box-decoration-default-image); }
+
+}
+
+
+.hook-box-decoration-primary() {
+
+    &::before {
+        top: -40px;
+        bottom: -40px;
+        left: -40px;
+        right: -40px;
+        border-image-source: url(@internal-box-decoration-primary-image);
+        border-image-slice: 120 fill;
+        border-image-width: 120px;
+        border-image-repeat: round;
+    }
+
+    &.tm-box-decoration-inverse::before { border-image-source: url(@internal-inverse-box-decoration-primary-image); }
+
+}
+
+.hook-box-decoration-secondary() {
+
+    &::before {
+        border-image-source: url(@internal-box-decoration-secondary-image);
+        border-image-slice: 60 fill;
+        border-image-width: 60px;
+        border-image-repeat: round;
+    }
+
+    &.tm-box-decoration-inverse::before { border-image-source: url(@internal-inverse-box-decoration-secondary-image); }
+
+}
+
+//
+// WooCommerce
+//
+
+@woocommerce-rating-color:                               @global-primary-background;
+
+
+// Style
+// ========================================================================
+
+@import (optional) "../vendor/assets/uikit-themes/master-trek/styles/@{internal-style}.less";
+
+@internal-style: ~'';

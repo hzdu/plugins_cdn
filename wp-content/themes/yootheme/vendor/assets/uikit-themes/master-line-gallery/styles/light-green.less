@@ -1,0 +1,168 @@
+//
+// Global
+//
+
+@global-color:                #151313;
+@global-emphasis-color:       #151313;
+@global-inverse-color:        #FDFAF2;
+@global-background:           #FAF7ED;
+@global-muted-background:     #ECE7DA;
+@global-primary-background:   #017D69;
+@global-secondary-background: #151313;
+@global-success-background:   #26BFA5;
+
+
+//
+// Alert
+//
+
+@alert-primary-background: fade(@global-primary-background, 20%);
+@alert-success-background: fade(@global-success-background, 30%);
+
+//
+// Badge
+//
+
+@badge-color: @global-inverse-color;
+
+//
+// Base
+//
+
+@base-ins-background:       fade(@global-primary-background, 20%);
+@base-mark-background:      fade(@global-primary-background, 20%);
+@base-selection-background: @global-primary-background;
+@base-selection-color:      @global-inverse-color;
+
+//
+// Button
+//
+
+@button-primary-color:        @global-inverse-color;
+@button-primary-hover-color:  @global-inverse-color;
+@button-primary-active-color: @global-inverse-color;
+
+//
+// Card
+//
+
+@card-badge-color:              @global-inverse-color;
+@card-primary-color:            @global-inverse-color;
+@card-primary-color-mode:       light;
+@card-primary-hover-background: darken(@global-primary-background, 2%);
+
+//
+// Form
+//
+
+@form-radio-background:       @global-muted-background;
+@form-radio-focus-background: desaturate(darken(@form-radio-background, 5%), 5%);
+
+//
+// Icon
+//
+
+@icon-button-color:        @global-inverse-color;
+@icon-button-hover-color:  @global-inverse-color;
+@icon-button-active-color: @global-inverse-color;
+
+//
+// Inverse
+//
+
+@inverse-badge-color:                        @global-inverse-color;
+@inverse-button-primary-color:               @global-inverse-color;
+@inverse-button-primary-hover-background:    #02715F;
+@inverse-button-primary-hover-color:         @global-inverse-color;
+@inverse-button-primary-active-background:   #055F4F;
+@inverse-button-primary-active-color:        @global-inverse-color;
+@inverse-button-text-hover-border:           rgba(253, 250, 242, 0);
+@inverse-card-badge-color:                   @global-inverse-color;
+@inverse-form-border:                        rgba(253, 250, 242, 0.5);
+@inverse-heading-bullet-border:              @global-inverse-color;
+@inverse-icon-link-hover-color:              #fff;
+@inverse-icon-button-background:             @global-inverse-color;
+@inverse-icon-button-hover-background:       #FAF1DC;
+@inverse-icon-button-active-background:      #F6E9C6;
+@inverse-label-color:                        @global-inverse-color;
+@inverse-link-heading-hover-color:           rgba(253, 250, 242, 0.5);
+@inverse-subnav-item-color:                  #fff;
+@inverse-subnav-item-hover-color:            rgba(255, 255, 255, 0.6);
+@inverse-subnav-item-active-color:           rgba(255, 255, 255, 0.6);
+@inverse-nav-secondary-item-hover-color:     lighten(@global-primary-background, 8%);
+@inverse-nav-secondary-subtitle-hover-color: lighten(@global-primary-background, 8%);
+
+//
+// Label
+//
+
+@label-color:         @global-inverse-color;
+@label-success-color: @global-inverse-color;
+@label-warning-color: @global-inverse-color;
+@label-danger-color:  @global-inverse-color;
+
+//
+// List
+//
+
+@list-primary-color:      @global-primary-background;
+@list-striped-background: saturate(lighten(@global-muted-background, 3%), 10%);
+
+//
+// Marker
+//
+
+@marker-color:       @global-inverse-color;
+@marker-hover-color: @global-inverse-color;
+
+//
+// Navbar
+//
+
+@navbar-dropdown-nav-item-hover-color:  lighten(@global-primary-background, 8%);
+@navbar-dropdown-nav-item-active-color: lighten(@global-primary-background, 8%);
+
+//
+// Overlay
+//
+
+@overlay-primary-color-mode: light;
+
+//
+// Section
+//
+
+@section-primary-color-mode: light;
+
+//
+// Slidenav
+//
+
+@slidenav-color:        @global-inverse-color;
+@slidenav-hover-color:  @global-inverse-color;
+@slidenav-active-color: @global-inverse-color;
+
+//
+// Table
+//
+
+@table-row-active-background:  saturate(lighten(@global-muted-background, 3%), 10%);
+@table-striped-row-background: saturate(lighten(@global-muted-background, 3%), 10%);
+
+//
+// Text
+//
+
+@text-primary-color: @global-primary-background;
+
+//
+// Tile
+//
+
+@tile-primary-color-mode: light;
+
+//
+// Woocommerce
+//
+
+@woocommerce-rating-background-color: desaturate(darken(@global-muted-background, 12%), 12%);

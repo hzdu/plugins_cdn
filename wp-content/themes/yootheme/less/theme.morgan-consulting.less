@@ -1,0 +1,163 @@
+/*
+
+Name: Morgan Consulting
+Background: White
+Color: Beige
+Type: Flat
+Preview: https://yootheme.com/api/style/morgan-consulting/default.jpg
+
+Style: white-green
+Name: White Green
+Background: White
+Color: Green
+Type: Flat
+Preview: https://yootheme.com/api/style/morgan-consulting/white-green.jpg
+
+Style: white-dove
+Name: White Dove
+Background: White
+Color: Blue
+Type: Flat
+Preview: https://yootheme.com/api/style/morgan-consulting/white-dove.jpg
+
+Style: white-yellow
+Name: White Yellow
+Background: White
+Color: Yellow
+Type: Flat
+Preview: https://yootheme.com/api/style/morgan-consulting/white-yellow.jpg
+
+Style: white-red
+Name: White Red
+Background: White
+Color: Red
+Type: Flat
+Preview: https://yootheme.com/api/style/morgan-consulting/white-red.jpg
+
+Style: white-orange
+Name: White Orange
+Background: White
+Color: Orange
+Type: Flat
+Preview: https://yootheme.com/api/style/morgan-consulting/white-orange.jpg
+
+*/
+
+// Platform
+@import "platform.less";
+
+// UIkit Core
+@import "../vendor/assets/uikit/src/less/uikit.less";
+
+// UIkit Theme
+@import "../vendor/assets/uikit-themes/master/_import.less";
+@import "../vendor/assets/uikit-themes/master-morgan-consulting/_import.less";
+
+// Theme
+@import "theme.less";
+
+
+// Variables
+// ========================================================================
+
+//
+// Toolbar
+//
+
+@theme-toolbar-font-size:                                13px;
+
+//
+// Header
+//
+
+@theme-headerbar-font-size:                              13px;
+
+//
+// Page Border
+//
+
+@theme-page-border-width:                                20px;
+
+@theme-page-container-width:                             1560px;
+@theme-page-container-background:                        #272727;
+@theme-page-container-color-mode:                        light;
+
+.tm-page when not (@theme-page-border-width = 0) { border-top-width: 0; }
+
+//
+// Box Decoration
+//
+
+@theme-box-decoration-top:                               10px;
+@theme-box-decoration-bottom:                            10px;
+@theme-box-decoration-left:                              10px;
+@theme-box-decoration-right:                             10px;
+@theme-box-decoration-z-index:                           1;
+
+@theme-box-decoration-default-transform-horizontal:      0;
+@theme-box-decoration-default-transform-vertical:        0;
+@theme-box-decoration-default-background:                transparent;
+@theme-box-decoration-default-border-width:              4px;
+@theme-box-decoration-default-border:                    @global-muted-background;
+
+@theme-box-decoration-primary-transform-horizontal:      0;
+@theme-box-decoration-primary-transform-vertical:        0;
+@theme-box-decoration-primary-background:                transparent;
+@theme-box-decoration-primary-border-width:              4px;
+@theme-box-decoration-primary-border:                    @global-primary-background;
+
+@theme-box-decoration-secondary-transform-horizontal:    0;
+@theme-box-decoration-secondary-transform-vertical:      0;
+@theme-box-decoration-secondary-background:              transparent;
+@theme-box-decoration-secondary-border-width:            4px;
+@theme-box-decoration-secondary-border:                  @global-secondary-background;
+
+@inverse-theme-box-decoration-default-border:            @inverse-global-muted-background;
+@inverse-theme-box-decoration-primary-border:            @inverse-global-primary-background;
+@inverse-theme-box-decoration-secondary-border:          @inverse-global-primary-background;
+
+//
+// Transition Border
+//
+
+@theme-transition-border-border:                         @global-secondary-background;
+@theme-transition-border-hover-border:                   @theme-transition-border-border;
+
+//
+// WooCommerce
+//
+
+//
+// Shop page
+//
+
+@woocommerce-shop-page-title-font-size:                  @base-h6-font-size;
+@woocommerce-shop-page-title-line-height:                @base-h6-line-height;
+@woocommerce-shop-page-title-color:                      @base-h6-color;
+@woocommerce-shop-page-title-font-family:                @base-h6-font-family;
+@woocommerce-shop-page-title-font-weight:                @base-h6-font-weight;
+@woocommerce-shop-page-title-text-transform:             @base-h6-text-transform;
+@woocommerce-shop-page-title-letter-spacing:             @base-h6-letter-spacing;
+@woocommerce-shop-page-title-font-style:                 @base-h6-font-style;
+
+@woocommerce-shop-page-price-font-size:                  13px;
+
+//
+// Rating
+//
+
+@woocommerce-rating-color:                               @global-secondary-background;
+
+//
+// Widgets
+//
+
+@woocommerce-widget-active-filters-font-size:            @global-small-font-size;
+
+
+// Style
+// ========================================================================
+
+@import (optional) "../vendor/assets/uikit-themes/master-morgan-consulting/styles/@{internal-style}.less";
+
+@internal-style: ~'';

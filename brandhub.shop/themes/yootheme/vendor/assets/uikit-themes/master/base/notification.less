@@ -1,0 +1,124 @@
+//
+// Component: Notification
+//
+// ========================================================================
+
+
+// Variables
+// ========================================================================
+
+@notification-position:                               15px;
+@notification-width:                                  420px;
+
+@notification-message-padding:                        @global-gutter;
+@notification-message-font-size:                      @global-font-size;
+@notification-message-line-height:                    1.5;
+
+@notification-close-top:                              (@notification-message-padding / 2);
+@notification-close-right:                            (@notification-message-padding / 2);
+
+@notification-message-primary-color:                  @global-inverse-color;
+@notification-message-success-color:                  @global-inverse-color;
+@notification-message-warning-color:                  @global-inverse-color;
+@notification-message-danger-color:                   @global-inverse-color;
+
+//
+// New
+//
+
+@notification-message-backdrop-filter:              ~'';
+
+@notification-message-primary-background:             @global-primary-background;
+@notification-message-success-background:             @global-success-background;
+@notification-message-warning-background:             @global-warning-background;
+@notification-message-danger-background:              @global-danger-background;
+
+@notification-message-primary-color-mode:             light;
+@notification-message-success-color-mode:             light;
+@notification-message-warning-color-mode:             light;
+@notification-message-danger-color-mode:              light;
+
+
+// Component
+// ========================================================================
+
+.hook-notification() {}
+
+
+// Message
+// ========================================================================
+
+.hook-notification-message() when not (@notification-message-backdrop-filter = ~'') {
+    backdrop-filter: @notification-message-backdrop-filter;
+    -webkit-backdrop-filter: @notification-message-backdrop-filter;
+}
+
+
+// Close
+// ========================================================================
+
+.hook-notification-close() {}
+
+
+// Style modifiers
+// ========================================================================
+
+.hook-notification-message-primary() { background-color: @notification-message-primary-background; }
+
+.hook-notification-message-success() { background-color: @notification-message-success-background; }
+
+.hook-notification-message-warning() { background-color: @notification-message-warning-background; }
+
+.hook-notification-message-danger() { background-color: @notification-message-danger-background; }
+
+
+// Miscellaneous
+// ========================================================================
+
+.hook-notification-misc() {
+
+    .uk-notification-message-primary .uk-close:extend(.uk-light .uk-close all) when (@notification-message-primary-color-mode = light) {}
+    .uk-notification-message-primary .uk-close:extend(.uk-dark .uk-close all) when (@notification-message-primary-color-mode = dark) {}
+    .uk-notification-message-primary .uk-button-default:extend(.uk-light .uk-button-default all) when (@notification-message-primary-color-mode = light) {}
+    .uk-notification-message-primary .uk-button-default:extend(.uk-dark .uk-button-default all) when (@notification-message-primary-color-mode = dark) {}
+    .uk-notification-message-primary .uk-button-primary:extend(.uk-light .uk-button-primary all) when (@notification-message-primary-color-mode = light) {}
+    .uk-notification-message-primary .uk-button-primary:extend(.uk-dark .uk-button-primary all) when (@notification-message-primary-color-mode = dark) {}
+    .uk-notification-message-primary .uk-button-secondary:extend(.uk-light .uk-button-secondary all) when (@notification-message-primary-color-mode = light) {}
+    .uk-notification-message-primary .uk-button-secondary:extend(.uk-dark .uk-button-secondary all) when (@notification-message-primary-color-mode = dark) {}
+    .uk-notification-message-primary .uk-button-text:extend(.uk-light .uk-button-text all) when (@notification-message-primary-color-mode = light) {}
+    .uk-notification-message-primary .uk-button-text:extend(.uk-dark .uk-button-text all) when (@notification-message-primary-color-mode = dark) {}
+
+    .uk-notification-message-success .uk-close:extend(.uk-light .uk-close all) when (@notification-message-success-color-mode = light) {}
+    .uk-notification-message-success .uk-close:extend(.uk-dark .uk-close all) when (@notification-message-success-color-mode = dark) {}
+    .uk-notification-message-success .uk-button-default:extend(.uk-light .uk-button-default all) when (@notification-message-success-color-mode = light) {}
+    .uk-notification-message-success .uk-button-default:extend(.uk-dark .uk-button-default all) when (@notification-message-success-color-mode = dark) {}
+    .uk-notification-message-success .uk-button-primary:extend(.uk-light .uk-button-primary all) when (@notification-message-success-color-mode = light) {}
+    .uk-notification-message-success .uk-button-primary:extend(.uk-dark .uk-button-primary all) when (@notification-message-success-color-mode = dark) {}
+    .uk-notification-message-success .uk-button-secondary:extend(.uk-light .uk-button-secondary all) when (@notification-message-success-color-mode = light) {}
+    .uk-notification-message-success .uk-button-secondary:extend(.uk-dark .uk-button-secondary all) when (@notification-message-success-color-mode = dark) {}
+    .uk-notification-message-success .uk-button-text:extend(.uk-light .uk-button-text all) when (@notification-message-success-color-mode = light) {}
+    .uk-notification-message-success .uk-button-text:extend(.uk-dark .uk-button-text all) when (@notification-message-success-color-mode = dark) {}
+
+    .uk-notification-message-warning .uk-close:extend(.uk-light .uk-close all) when (@notification-message-warning-color-mode = light) {}
+    .uk-notification-message-warning .uk-close:extend(.uk-dark .uk-close all) when (@notification-message-warning-color-mode = dark) {}
+    .uk-notification-message-warning .uk-button-default:extend(.uk-light .uk-button-default all) when (@notification-message-warning-color-mode = light) {}
+    .uk-notification-message-warning .uk-button-default:extend(.uk-dark .uk-button-default all) when (@notification-message-warning-color-mode = dark) {}
+    .uk-notification-message-warning .uk-button-primary:extend(.uk-light .uk-button-primary all) when (@notification-message-warning-color-mode = light) {}
+    .uk-notification-message-warning .uk-button-primary:extend(.uk-dark .uk-button-primary all) when (@notification-message-warning-color-mode = dark) {}
+    .uk-notification-message-warning .uk-button-secondary:extend(.uk-light .uk-button-secondary all) when (@notification-message-warning-color-mode = light) {}
+    .uk-notification-message-warning .uk-button-secondary:extend(.uk-dark .uk-button-secondary all) when (@notification-message-warning-color-mode = dark) {}
+    .uk-notification-message-warning .uk-button-text:extend(.uk-light .uk-button-text all) when (@notification-message-warning-color-mode = light) {}
+    .uk-notification-message-warning .uk-button-text:extend(.uk-dark .uk-button-text all) when (@notification-message-warning-color-mode = dark) {}
+
+    .uk-notification-message-danger .uk-close:extend(.uk-light .uk-close all) when (@notification-message-danger-color-mode = light) {}
+    .uk-notification-message-danger .uk-close:extend(.uk-dark .uk-close all) when (@notification-message-danger-color-mode = dark) {}
+    .uk-notification-message-danger .uk-button-default:extend(.uk-light .uk-button-default all) when (@notification-message-danger-color-mode = light) {}
+    .uk-notification-message-danger .uk-button-default:extend(.uk-dark .uk-button-default all) when (@notification-message-danger-color-mode = dark) {}
+    .uk-notification-message-danger .uk-button-primary:extend(.uk-light .uk-button-primary all) when (@notification-message-danger-color-mode = light) {}
+    .uk-notification-message-danger .uk-button-primary:extend(.uk-dark .uk-button-primary all) when (@notification-message-danger-color-mode = dark) {}
+    .uk-notification-message-danger .uk-button-secondary:extend(.uk-light .uk-button-secondary all) when (@notification-message-danger-color-mode = light) {}
+    .uk-notification-message-danger .uk-button-secondary:extend(.uk-dark .uk-button-secondary all) when (@notification-message-danger-color-mode = dark) {}
+    .uk-notification-message-danger .uk-button-text:extend(.uk-light .uk-button-text all) when (@notification-message-danger-color-mode = light) {}
+    .uk-notification-message-danger .uk-button-text:extend(.uk-dark .uk-button-text all) when (@notification-message-danger-color-mode = dark) {}
+
+}

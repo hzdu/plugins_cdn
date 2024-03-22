@@ -1,0 +1,73 @@
+//
+// Global
+//
+
+@global-emphasis-color:                         #181937;
+@global-color:                                  #4A4E58;
+@global-muted-color:                            #BEBFC5;
+@global-link-color:                             #FF2E64;
+
+@global-muted-background:                       #f7f8f9;
+@global-primary-background:                     #FF2E64;
+@global-secondary-background:                   #060D2A;
+
+@global-border:                                 rgba(6,13,42,0.06);
+
+@global-small-box-shadow:                       2px 4px 16px rgba(6,13,42,0.06);
+@global-medium-box-shadow:                      2px 12px 32px rgba(6,13,42,0.06);
+@global-large-box-shadow:                       2px 18px 48px rgba(6,13,42,0.06);
+@global-xlarge-box-shadow:                      2px 26px 56px rgba(6,13,42,0.06);
+
+//
+// Button
+//
+
+@button-default-color:                          @global-primary-background;
+@button-default-border:                         @button-default-color;
+@inverse-button-default-border:                 fade(@inverse-global-color, 20%);
+@internal-button-default-gradient:              linear-gradient(90deg, @global-primary-background 50%, @button-default-background 50%);
+@internal-button-default-hover-gradient:        linear-gradient(90deg, @global-primary-background 50%, @button-default-hover-background 50%);
+@internal-button-default-active-gradient:       linear-gradient(90deg, lighten(@global-primary-background, 8%) 0%, darken(@global-primary-background, 12%) 100%);
+
+@internal-button-primary-gradient:              linear-gradient(90deg, @button-primary-background 0%, spin(darken(@button-primary-background, 15%), -15%) 50%, darken(@button-primary-background, 10%) 100%);
+
+@internal-button-secondary-gradient:            linear-gradient(90deg, @button-secondary-background 0%, lighten(@button-secondary-background, 5%) 50%, @button-secondary-background 50%, #540535 100%);
+
+//
+// Card
+//
+
+@internal-card-primary-gradient:                linear-gradient(155deg, spin(darken(@card-primary-background, 7%), -15%) 0%, @card-primary-background 100%);
+@internal-card-primary-hover-gradient:          linear-gradient(90deg, spin(darken(@card-primary-background, 7%), -15%) 0%, darken(@card-primary-background, 5%) 100%);
+
+@internal-card-secondary-gradient:              linear-gradient(155deg, darken(@card-secondary-background, 8%) 0%, @card-secondary-background 50%, #3A0324 100%);
+@internal-card-secondary-hover-gradient:        linear-gradient(90deg, darken(@card-secondary-background, 8%) 0%, @card-secondary-background 50%, #3A0324 100%);
+@internal-card-badge-gradient:                  linear-gradient(90deg, spin(darken(@global-primary-background, 15%), -15%), darken(@global-primary-background, 10%));
+
+//
+// Navbar
+//
+
+@navbar-dropdown-background:                    darken(@global-secondary-background, 8%);
+
+//
+// Section
+//
+
+@internal-section-primary-gradient:             linear-gradient(155deg, spin(darken(@section-primary-background, 7%), -15%) 0%, @section-primary-background 100%);
+
+@internal-section-secondary-gradient:           linear-gradient(155deg, darken(@section-secondary-background, 8%) 0%, @section-secondary-background 50%, #3A0324 100%);
+
+//
+// Subnav
+//
+
+@internal-subnav-pill-item-active-gradient:     linear-gradient(155deg, spin(darken(@subnav-pill-item-active-background, 7%), -15%) 0%, @subnav-pill-item-active-background 100%);
+
+//
+// Tile
+//
+
+@internal-tile-primary-gradient:                linear-gradient(155deg, spin(darken(@tile-primary-background, 7%), -15%) 0%, @tile-primary-background 100%);
+
+@internal-tile-secondary-gradient:              linear-gradient(155deg, darken(@tile-secondary-background, 8%) 0%, @tile-secondary-background 50%, #3A0324 100%);

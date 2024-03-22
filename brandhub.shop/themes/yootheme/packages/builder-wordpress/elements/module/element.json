@@ -1,0 +1,328 @@
+{
+    "@import": "./element.php",
+    "name": "module",
+    "title": "Widget",
+    "group": "system",
+    "icon": "${url:images/icon.svg}",
+    "iconSmall": "${url:images/iconSmall.svg}",
+    "element": true,
+    "width": 500,
+    "defaults": {
+        "menu_style": "default",
+        "menu_image_margin": true,
+        "menu_image_align": "center"
+    },
+    "templates": {
+        "render": "./templates/template.php"
+    },
+    "fields": {
+        "widget": {
+            "type": "select-widget",
+            "label": "Widget",
+            "description": "Any WordPress widget can be displayed in your custom layout."
+        },
+        "style": {
+            "type": "select",
+            "label": "Style",
+            "description": "Select a panel style.",
+            "options": {
+                "None": "",
+                "Card Default": "card-default",
+                "Card Primary": "card-primary",
+                "Card Secondary": "card-secondary",
+                "Card Hover": "card-hover"
+            }
+        },
+        "title_style": {
+            "type": "select",
+            "label": "Style",
+            "description": "Title styles differ in font-size but may also come with a predefined color, size and font.",
+            "options": {
+                "None": "",
+                "Heading 3X-Large": "heading-3xlarge",
+                "Heading 2X-Large": "heading-2xlarge",
+                "Heading X-Large": "heading-xlarge",
+                "Heading Large": "heading-large",
+                "Heading Medium": "heading-medium",
+                "Heading Small": "heading-small",
+                "Heading H1": "h1",
+                "Heading H2": "h2",
+                "Heading H3": "h3",
+                "Heading H4": "h4",
+                "Heading H5": "h5",
+                "Heading H6": "h6",
+                "Text Meta": "meta",
+                "Text Lead": "lead"
+            }
+        },
+        "title_decoration": {
+            "type": "select",
+            "label": "Decoration",
+            "description": "Decorate the title with a divider, bullet or a line that is vertically centered to the heading.",
+            "options": {
+                "None": "",
+                "Divider": "divider",
+                "Bullet": "bullet",
+                "Line": "line"
+            }
+        },
+        "title_font_family": {
+            "label": "Font Family",
+            "description": "Select an alternative font family. Mind that not all styles have different font families.",
+            "type": "select",
+            "options": {
+                "None": "",
+                "Default": "default",
+                "Primary": "primary",
+                "Secondary": "secondary",
+                "Tertiary": "tertiary"
+            }
+        },
+        "title_color": {
+            "type": "select",
+            "label": "Color",
+            "description": "Select the text color. If the background option is selected, styles that don't apply a background image use the primary color instead.",
+            "options": {
+                "None": "",
+                "Muted": "muted",
+                "Primary": "primary",
+                "Success": "success",
+                "Warning": "warning",
+                "Danger": "danger",
+                "Background": "background"
+            }
+        },
+        "list_style": {
+            "label": "List Style",
+            "description": "Select the list style.",
+            "type": "select",
+            "options": {
+                "None": "",
+                "Divider": "divider"
+            },
+            "show": "$match(type, 'recent-posts|pages|recent-comments|archives|categories|meta')"
+        },
+        "link_style": {
+            "label": "Link Style",
+            "description": "Select the link style.",
+            "type": "select",
+            "options": {
+                "None": "",
+                "Muted": "muted"
+            },
+            "show": "$match(type, 'recent-posts|pages|recent-comments|archives|categories|meta')"
+        },
+        "menu_type": {
+            "label": "Type",
+            "description": "Select the menu type.",
+            "type": "select",
+            "default": "nav",
+            "options": {
+                "Nav": "nav",
+                "Subnav": "subnav",
+                "Iconnav": "iconnav"
+            },
+            "show": "$match(type, 'menu')"
+        },
+        "menu_divider": {
+            "label": "Divider",
+            "description": "Show optional dividers between nav or subnav items.",
+            "type": "checkbox",
+            "text": "Show dividers",
+            "show": "$match(type, 'menu')"
+        },
+        "menu_style": {
+            "label": "Style",
+            "description": "Select the nav style.",
+            "type": "select",
+            "options": {
+                "Default": "default",
+                "Primary": "primary",
+                "Secondary": "secondary"
+            },
+            "show": "$match(type, 'menu')"
+        },
+        "menu_size": {
+            "label": "Primary Size",
+            "description": "Select the primary nav size.",
+            "type": "select",
+            "options": {
+                "Default": "",
+                "Medium": "medium",
+                "Large": "large",
+                "X-Large": "xlarge"
+            },
+            "show": "$match(type, 'menu')",
+            "enable": "menu_style == 'primary'"
+        },
+        "menu_image_width": {
+            "attrs": {
+                "placeholder": "auto"
+            },
+            "show": "$match(type, 'menu')"
+        },
+        "menu_image_height": {
+            "attrs": {
+                "placeholder": "auto"
+            },
+            "show": "$match(type, 'menu')"
+        },
+        "menu_image_svg_inline": {
+            "label": "Inline SVG",
+            "description": "Inject SVG images into the markup so they adopt the text color automatically.",
+            "type": "checkbox",
+            "text": "Make SVG stylable with CSS",
+            "show": "$match(type, 'menu')"
+        },
+        "menu_icon_width": {
+            "label": "Icon Width",
+            "description": "Set the icon width.",
+            "show": "$match(type, 'menu')"
+        },
+        "menu_image_margin": {
+            "label": "Image and Title",
+            "type": "checkbox",
+            "text": "Add margin between",
+            "show": "$match(type, 'menu')"
+        },
+        "menu_image_align": {
+            "label": "Image Align",
+            "type": "select",
+            "options": {
+                "Top": "top",
+                "Center": "center"
+            },
+            "show": "$match(type, 'menu')"
+        },
+        "position": "${builder.position}",
+        "position_left": "${builder.position_left}",
+        "position_right": "${builder.position_right}",
+        "position_top": "${builder.position_top}",
+        "position_bottom": "${builder.position_bottom}",
+        "position_z_index": "${builder.position_z_index}",
+        "margin": "${builder.margin}",
+        "margin_remove_top": "${builder.margin_remove_top}",
+        "margin_remove_bottom": "${builder.margin_remove_bottom}",
+        "maxwidth": "${builder.maxwidth}",
+        "maxwidth_breakpoint": "${builder.maxwidth_breakpoint}",
+        "block_align": "${builder.block_align}",
+        "block_align_breakpoint": "${builder.block_align_breakpoint}",
+        "block_align_fallback": "${builder.block_align_fallback}",
+        "text_align": "${builder.text_align_justify}",
+        "text_align_breakpoint": "${builder.text_align_breakpoint}",
+        "text_align_fallback": "${builder.text_align_justify_fallback}",
+        "animation": "${builder.animation}",
+        "_parallax_button": "${builder._parallax_button}",
+        "visibility": "${builder.visibility}",
+        "name": "${builder.name}",
+        "status": "${builder.status}",
+        "id": "${builder.id}",
+        "class": "${builder.cls}",
+        "attributes": "${builder.attrs}",
+        "css": {
+            "label": "CSS",
+            "description": "Enter your own custom CSS. The following selectors will be prefixed automatically for this element: <code>.el-element</code>, <code>.el-title</code>",
+            "type": "editor",
+            "editor": "code",
+            "mode": "css",
+            "attrs": {
+                "debounce": 500,
+                "hints": [".el-element", ".el-title"]
+            }
+        },
+        "transform": "${builder.transform}"
+    },
+    "fieldset": {
+        "default": {
+            "type": "tabs",
+            "fields": [
+                {
+                    "title": "Content",
+                    "fields": ["widget"]
+                },
+                {
+                    "title": "Settings",
+                    "fields": [
+                        {
+                            "label": "Panel",
+                            "type": "group",
+                            "divider": true,
+                            "fields": ["style"]
+                        },
+                        {
+                            "label": "Title",
+                            "type": "group",
+                            "divider": true,
+                            "fields": [
+                                "title_style",
+                                "title_decoration",
+                                "title_font_family",
+                                "title_color"
+                            ]
+                        },
+                        {
+                            "label": "List",
+                            "type": "group",
+                            "divider": true,
+                            "fields": [
+                                "list_style",
+                                "link_style"
+                            ],
+                            "show": "$match(type, 'recent-posts|pages|recent-comments|archives|categories|meta')"
+                        },
+                        {
+                            "label": "Menu",
+                            "type": "group",
+                            "divider": true,
+                            "fields": [
+                                "menu_type",
+                                "menu_divider",
+                                "menu_style",
+                                "menu_size",
+                                {
+                                    "label": "Image Width/Height",
+                                    "description": "Setting just one value preserves the original proportions. The image will be resized and cropped automatically, and where possible, high resolution images will be auto-generated.",
+                                    "type": "grid",
+                                    "width": "1-2",
+                                    "fields": ["menu_image_width", "menu_image_height"]
+                                },
+                                "menu_image_svg_inline",
+                                "menu_icon_width",
+                                "menu_image_margin",
+                                "menu_image_align"
+                            ],
+                            "show": "$match(type, 'menu')"
+                        },
+                        {
+                            "label": "General",
+                            "type": "group",
+                            "fields": [
+                                "position",
+                                "position_left",
+                                "position_right",
+                                "position_top",
+                                "position_bottom",
+                                "position_z_index",
+                                "margin",
+                                "margin_remove_top",
+                                "margin_remove_bottom",
+                                "maxwidth",
+                                "maxwidth_breakpoint",
+                                "block_align",
+                                "block_align_breakpoint",
+                                "block_align_fallback",
+                                "text_align",
+                                "text_align_breakpoint",
+                                "text_align_fallback",
+                                "animation",
+                                "_parallax_button",
+                                "visibility"
+                            ]
+                        }
+                    ]
+                },
+                "${builder.advanced}"
+            ]
+        }
+    }
+}

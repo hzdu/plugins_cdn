@@ -1,0 +1,204 @@
+/*
+
+Name: Circle
+Background: Black
+Color: Red
+Type: Skeuomorphic
+Preview: https://yootheme.com/api/style/circle/default.jpg
+
+Style: dark-blue
+Name: Dark Blue
+Background: Dark
+Color: Blue
+Type: Skeuomorphic
+Preview: https://yootheme.com/api/style/circle/dark-blue.jpg
+
+Style: black-orange
+Name: Black Orange
+Background: Black
+Color: Orange
+Type: Skeuomorphic
+Preview: https://yootheme.com/api/style/circle/black-orange.jpg
+
+Style: black-green
+Name: Black Green
+Background: Black
+Color: Green
+Type: Skeuomorphic
+Preview: https://yootheme.com/api/style/circle/black-green.jpg
+
+Style: dark-turquoise
+Name: Dark Turquoise
+Background: Dark
+Color: Blue
+Type: Skeuomorphic
+Preview: https://yootheme.com/api/style/circle/dark-turquoise.jpg
+
+Style: white-purple
+Name: White Purple
+Background: White
+Color: Purple
+Type: Skeuomorphic
+Preview: https://yootheme.com/api/style/circle/white-purple.jpg
+
+*/
+
+// Platform
+@import "platform.less";
+
+// UIkit Core
+@import "../vendor/assets/uikit/src/less/uikit.less";
+
+// UIkit Theme
+@import "../vendor/assets/uikit-themes/master/_import.less";
+@import "../vendor/assets/uikit-themes/master-circle/_import.less";
+
+// Theme
+@import "theme.less";
+
+
+// Variables
+// ========================================================================
+
+//
+// Page Container
+//
+
+@theme-page-container-color-mode:                        light;
+
+//
+// Toolbar
+//
+
+@theme-toolbar-background:                               @global-background;
+
+//
+// Box Decoration
+//
+
+@theme-box-decoration-top:                               -10px;
+@theme-box-decoration-bottom:                            -10px;
+@theme-box-decoration-left:                              -10px;
+@theme-box-decoration-right:                             -10px;
+
+@theme-box-decoration-default-transform-horizontal:      0;
+@theme-box-decoration-default-transform-vertical:        0;
+@theme-box-decoration-default-background:                #fc4395;
+
+@theme-box-decoration-primary-transform-horizontal:      0;
+@theme-box-decoration-primary-transform-vertical:        0;
+@theme-box-decoration-primary-background:                rgba(255,255,255, 0.1);
+@theme-box-decoration-primary-border-width:              1px;
+@theme-box-decoration-primary-border:                    rgba(255,255,255, 0.1);
+
+@theme-box-decoration-secondary-transform-horizontal:    0;
+@theme-box-decoration-secondary-transform-vertical:      0;
+@theme-box-decoration-secondary-background:              rgba(255,255,255, 0.1);
+@theme-box-decoration-secondary-border-width:            1px;
+@theme-box-decoration-secondary-border:                  rgba(255,255,255, 0.1);
+
+//
+// New
+//
+
+@theme-box-decoration-border-radius:                     10px;
+
+@theme-box-decoration-default-gradient:                  conic-gradient(from 70deg, #FD3D8F, #B823C3, #4901AC, #063AD8, #4901AC, #B823C3, #FD3D8F, #E8533C);
+
+@theme-box-decoration-primary-glow-filter:               blur(7px);
+@theme-box-decoration-primary-glow-gradient:             conic-gradient(from 70deg, #FD3D8F, #B823C3, #4901AC, #063AD8, #4901AC, #B823C3, #FD3D8F, #E8533C);
+
+@theme-box-decoration-secondary-glow-filter:             blur(7px);
+
+.hook-box-decoration() {
+
+    &::before { border-radius: @theme-box-decoration-border-radius; }
+
+}
+
+.hook-box-decoration-default() {
+
+    &::before {
+        bottom: 0;
+        background-image: @theme-box-decoration-default-gradient;
+    }
+
+    img {
+        border-radius: @theme-box-decoration-border-radius * 0.7; // -30%
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+    }
+
+}
+
+.hook-box-decoration-primary() {
+
+    &::before {
+        backdrop-filter: @theme-box-decoration-primary-glow-filter;
+        -webkit-backdrop-filter: @theme-box-decoration-primary-glow-filter;
+        z-index: -1;
+    }
+
+    img {
+        border-radius: @theme-box-decoration-border-radius * 0.7; // -30%
+    }
+
+    &::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: -2;
+        height: 100%;
+        opacity: 0.7;
+        background-image: @theme-box-decoration-primary-glow-gradient;
+        filter: blur(85px);
+    }
+
+}
+
+.hook-box-decoration-secondary() {
+
+    &::before {
+        backdrop-filter: @theme-box-decoration-secondary-glow-filter;
+        -webkit-backdrop-filter: @theme-box-decoration-secondary-glow-filter;
+    }
+
+    img {
+        border-radius: @theme-box-decoration-border-radius * 0.7; // -30%
+    }
+
+}
+
+//
+// Inverse
+//
+
+@inverse-theme-box-decoration-primary-background:       rgba(0, 0, 0, 0.03);
+@inverse-theme-box-decoration-primary-border:           rgba(0, 0, 0, 0.06);
+@inverse-theme-box-decoration-secondary-background:     rgba(0, 0, 0, 0.03);
+@inverse-theme-box-decoration-secondary-border:         rgba(0, 0, 0, 0.06);
+
+//
+// Transition Border
+//
+
+@internal-theme-transition-border-border-gradient:       linear-gradient(30deg, #812FCB 0%, #D91F71 40%, #FF1445 70%, #ED7E65 100%);
+@internal-theme-transition-border-hover-border-gradient: @internal-theme-transition-border-border-gradient;
+
+//
+// WooCommerce
+//
+
+@woocommerce-rating-background-color:                   lighten(@global-muted-background, 15%);
+@woocommerce-rating-color:                              @global-primary-background;
+
+
+// Style
+// ========================================================================
+
+@import (optional) "../vendor/assets/uikit-themes/master-circle/styles/@{internal-style}.less";
+
+@internal-style: ~'';

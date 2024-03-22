@@ -1,0 +1,42 @@
+//
+// Component: Badge
+//
+// ========================================================================
+
+
+// Variables
+// ========================================================================
+
+//
+// New
+//
+
+@badge-box-shadow:                              none;
+
+
+// Component
+// ========================================================================
+
+.hook-badge() when not (@badge-box-shadow = none) {
+    box-shadow: @badge-box-shadow;
+}
+
+.hook-badge-hover() {}
+
+
+// Miscellaneous
+// ========================================================================
+
+.hook-badge-misc() {}
+
+
+// Inverse
+// ========================================================================
+
+@inverse-badge-box-shadow:                      none;
+
+.hook-inverse-badge() when not (@badge-box-shadow = none) {
+    box-shadow: @inverse-badge-box-shadow;
+}
+
+.hook-inverse-badge-hover() {}

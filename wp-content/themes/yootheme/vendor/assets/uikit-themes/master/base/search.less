@@ -1,0 +1,113 @@
+//
+// Component: Search
+//
+// ========================================================================
+
+
+// Variables
+// ========================================================================
+
+//
+// New
+//
+
+@search-default-backdrop-filter:                    ~'';
+
+@search-navbar-backdrop-filter:                     ~'';
+
+@search-large-backdrop-filter:                      ~'';
+
+@search-navbar-focus-background:                    @search-navbar-background;
+
+@search-large-focus-background:                     @search-large-background;
+
+
+// Component
+// ========================================================================
+
+.hook-search-input() {
+    transition: 0.2s ease-in-out;
+    transition-property: color, background-color, border-color, box-shadow;
+}
+
+// Icon
+// ========================================================================
+
+.hook-search-icon() when not (@search-default-backdrop-filter = ~''),
+                         not (@search-navbar-backdrop-filter = ~''),
+                         not (@search-large-backdrop-filter = ~'') { z-index: 1; }
+
+
+// Default modifiers
+// ========================================================================
+
+.hook-search-default-input() when not (@search-default-backdrop-filter = ~'') {
+    backdrop-filter: @search-default-backdrop-filter;
+    -webkit-backdrop-filter: @search-default-backdrop-filter;
+}
+
+.hook-search-default-input-focus() {}
+
+
+// Navbar modifiers
+// ========================================================================
+
+.hook-search-navbar-input() when not (@search-navbar-backdrop-filter = ~'') {
+    backdrop-filter: @search-navbar-backdrop-filter;
+    -webkit-backdrop-filter: @search-navbar-backdrop-filter;
+}
+
+.hook-search-navbar-input-focus() when not (@search-navbar-focus-background = @search-navbar-background) {
+    background-color: @search-navbar-focus-background;
+}
+
+
+// Large modifiers
+// ========================================================================
+
+.hook-search-large-input() when not (@search-large-backdrop-filter = ~'') {
+    backdrop-filter: @search-large-backdrop-filter;
+    -webkit-backdrop-filter: @search-large-backdrop-filter;
+}
+
+.hook-search-large-input-focus() when not (@search-large-focus-background = @search-large-background) {
+    background-color: @search-large-focus-background;
+}
+
+
+// Toggle
+// ========================================================================
+
+.hook-search-toggle() {}
+
+.hook-search-toggle-hover() {}
+
+
+// Miscellaneous
+// ========================================================================
+
+.hook-search-misc() {}
+
+
+// Inverse
+// ========================================================================
+
+@inverse-search-navbar-focus-background:            @inverse-search-navbar-background;
+
+@inverse-search-large-focus-background:             @inverse-search-large-background;
+
+.hook-inverse-search-default-input() {}
+.hook-inverse-search-default-input-focus() {}
+
+.hook-inverse-search-navbar-input() {}
+.hook-inverse-search-navbar-input-focus() when not (@inverse-search-navbar-focus-background = @inverse-search-navbar-background) {
+    background: @inverse-search-navbar-focus-background;
+}
+
+.hook-inverse-search-large-input() {}
+.hook-inverse-search-large-input-focus() when not (@inverse-search-large-focus-background = @inverse-search-large-background) {
+    background: @inverse-search-large-focus-background;
+}
+
+.hook-inverse-search-toggle() {}
+.hook-inverse-search-toggle-hover() {}

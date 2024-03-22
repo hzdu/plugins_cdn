@@ -1,0 +1,55 @@
+//
+// Component: Breadcrumb
+//
+// ========================================================================
+
+
+// Variables
+// ========================================================================
+
+//
+// New
+//
+
+@internal-breadcrumb-divider-background-image:         ~'';
+
+
+// Component
+// ========================================================================
+
+.hook-breadcrumb() {}
+
+
+// Items
+// ========================================================================
+
+.hook-breadcrumb-item() {}
+
+.hook-breadcrumb-item-hover() {}
+
+.hook-breadcrumb-item-disabled() {}
+
+.hook-breadcrumb-item-active() {}
+
+.hook-breadcrumb-divider() when not (@internal-breadcrumb-divider-background-image = ~'') {
+    .svg-fill(@internal-breadcrumb-divider-background-image, "#000", @breadcrumb-divider-color, content);
+    vertical-align: middle;
+}
+
+// Miscellaneous
+// ========================================================================
+
+.hook-breadcrumb-misc() {}
+
+
+// Inverse
+// ========================================================================
+
+.hook-inverse-breadcrumb-item() {}
+.hook-inverse-breadcrumb-item-hover() {}
+.hook-inverse-breadcrumb-item-disabled() {}
+.hook-inverse-breadcrumb-item-active() {}
+
+.hook-inverse-breadcrumb-divider() when not (@internal-breadcrumb-divider-background-image = ~'') {
+    .svg-fill(@internal-breadcrumb-divider-background-image, "#000", @inverse-breadcrumb-divider-color, content);
+}

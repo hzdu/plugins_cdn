@@ -1,0 +1,160 @@
+//
+// Component: Subnav
+//
+// ========================================================================
+
+
+// Variables
+// ========================================================================
+
+//
+// New
+//
+
+@internal-subnav-divider-border-gradient:                 ~'';
+
+@subnav-pill-item-border-width:                           0;
+
+@subnav-pill-item-border:                                 transparent;
+@subnav-pill-item-hover-border:                           transparent;
+@subnav-pill-item-onclick-border:                         transparent;
+@subnav-pill-item-active-border:                          transparent;
+
+@subnav-pill-item-disabled-border:                        transparent;
+
+@internal-subnav-pill-item-border-image-slice:            ~'';
+@internal-subnav-pill-item-border-image-width:            ~'';
+@internal-subnav-pill-item-border-image-repeat:           ~'';
+
+@internal-subnav-pill-item-border-image:                  ~'';
+
+
+// Component
+// ========================================================================
+
+.hook-subnav() {}
+
+.hook-subnav-item() {}
+
+.hook-subnav-item-hover() {}
+
+.hook-subnav-item-active() {}
+
+
+// Divider modifier
+// ========================================================================
+
+.hook-subnav-divider() when not (@internal-subnav-divider-border-gradient = ~'') {
+    border-image: @internal-subnav-divider-border-gradient;
+    border-image-slice: 1;
+    // Fix Safari setting 3px `border-width` if `border-image` is used.
+    border-width: 0 0 0 @subnav-divider-border-width;
+}
+
+
+// Pill modifier
+// ========================================================================
+
+.hook-subnav-pill-item() when not (@subnav-pill-item-border-width = 0)
+                          and not (@internal-subnav-pill-item-border-image = ~'') {
+    border-image-slice: @internal-subnav-pill-item-border-image-slice !important;
+    border-image-width: @internal-subnav-pill-item-border-image-width !important;
+    border-image-repeat: @internal-subnav-pill-item-border-image-repeat !important;
+}
+
+// Color
+.hook-subnav-pill-item() when not (@subnav-pill-item-border-width = 0) {
+    border: @subnav-pill-item-border-width solid @subnav-pill-item-border;
+}
+
+.hook-subnav-pill-item-hover() when not (@subnav-pill-item-border-width = 0) {
+    border-color: @subnav-pill-item-hover-border;
+}
+
+.hook-subnav-pill-item-onclick() when not (@subnav-pill-item-border-width = 0) {
+    border-color: @subnav-pill-item-onclick-border;
+}
+
+.hook-subnav-pill-item-active() when not (@subnav-pill-item-border-width = 0) {
+    border-color: @subnav-pill-item-active-border;
+}
+
+// Image
+.hook-subnav-pill-item() when not (@subnav-pill-item-border-width = 0) and not (@internal-subnav-pill-item-border-image = ~'')
+                          and not (@subnav-pill-item-border = transparent) {
+    .svg-fill(@internal-subnav-pill-item-border-image, "#000", @subnav-pill-item-border, border-image-source);
+}
+
+.hook-subnav-pill-item-hover() when not (@subnav-pill-item-border-width = 0) and not (@internal-subnav-pill-item-border-image = ~'')
+                          and not (@subnav-pill-item-border = @subnav-pill-item-hover-border) {
+    .svg-fill(@internal-subnav-pill-item-border-image, "#000", @subnav-pill-item-hover-border, border-image-source);
+}
+
+.hook-subnav-pill-item-active() when not (@subnav-pill-item-border-width = 0) and not (@internal-subnav-pill-item-border-image = ~'')
+                          and not (@subnav-pill-item-border = @subnav-pill-item-active-border) {
+    .svg-fill(@internal-subnav-pill-item-border-image, "#000", @subnav-pill-item-active-border, border-image-source);
+}
+
+
+// Disabled
+// ========================================================================
+
+.hook-subnav-item-disabled() when not (@subnav-pill-item-border-width = 0) {
+    border-color: @subnav-pill-item-disabled-border;
+}
+
+
+// Miscellaneous
+// ========================================================================
+
+.hook-subnav-misc() {}
+
+
+// Inverse
+// ========================================================================
+
+@inverse-subnav-pill-item-border:                                 transparent;
+@inverse-subnav-pill-item-hover-border:                           transparent;
+@inverse-subnav-pill-item-onclick-border:                         transparent;
+@inverse-subnav-pill-item-active-border:                          transparent;
+
+@inverse-subnav-pill-item-disabled-border:                        transparent;
+
+.hook-inverse-subnav-item() {}
+.hook-inverse-subnav-item-hover() {}
+.hook-inverse-subnav-item-active() {}
+
+.hook-inverse-subnav-divider() when not (@internal-subnav-divider-border-gradient = ~'') {
+    border-image: none;
+}
+
+.hook-inverse-subnav-pill-item() when not (@subnav-pill-item-border-width = 0) {
+    border-color: @inverse-subnav-pill-item-border;
+}
+.hook-inverse-subnav-pill-item-hover() when not (@subnav-pill-item-border-width = 0) {
+    border-color: @inverse-subnav-pill-item-hover-border;
+}
+.hook-inverse-subnav-pill-item-onclick() when not (@subnav-pill-item-border-width = 0) {
+    border-color: @inverse-subnav-pill-item-onclick-border;
+}
+.hook-inverse-subnav-pill-item-active() when not (@subnav-pill-item-border-width = 0) {
+    border-color: @inverse-subnav-pill-item-active-border;
+}
+.hook-inverse-subnav-item-disabled() when not (@subnav-pill-item-border-width = 0) {
+    border-color: @inverse-subnav-pill-item-disabled-border;
+}
+
+.hook-inverse-subnav-pill-item() when not (@subnav-pill-item-border-width = 0) and not (@internal-subnav-pill-item-border-image = ~'')
+                                  and not (@inverse-subnav-pill-item-border = transparent) {
+    .svg-fill(@internal-subnav-pill-item-border-image, "#000", @inverse-subnav-pill-item-border, border-image-source);
+}
+
+.hook-inverse-subnav-pill-item-hover() when not (@subnav-pill-item-border-width = 0) and not (@internal-subnav-pill-item-border-image = ~'')
+                                        and not (@inverse-subnav-pill-item-border = @inverse-subnav-pill-item-hover-border) {
+    .svg-fill(@internal-subnav-pill-item-border-image, "#000", @inverse-subnav-pill-item-hover-border, border-image-source);
+}
+
+.hook-inverse-subnav-pill-item-active() when not (@subnav-pill-item-border-width = 0) and not (@internal-subnav-pill-item-border-image = ~'')
+                                         and not (@inverse-subnav-pill-item-border = @inverse-subnav-pill-item-active-border) {
+    .svg-fill(@internal-subnav-pill-item-border-image, "#000", @inverse-subnav-pill-item-active-border, border-image-source);
+}

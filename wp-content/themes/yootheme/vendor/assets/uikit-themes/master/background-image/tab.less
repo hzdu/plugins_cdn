@@ -1,0 +1,94 @@
+//
+// Component: Tab
+//
+// ========================================================================
+
+
+// Variables
+// ========================================================================
+
+//
+// New
+//
+
+@internal-tab-item-background-image:                ~'';
+
+
+// Component
+// ========================================================================
+
+.hook-tab() {}
+
+// Items
+// ========================================================================
+
+.hook-tab-item() {}
+
+.hook-tab-item-hover() {}
+
+.hook-tab-item-active() {}
+
+.hook-tab-item-disabled() {}
+
+// Image only
+.hook-tab-item() when not (@internal-tab-item-background-image = ~'') {
+    background-color: transparent !important;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
+
+.hook-tab-item() when not (@internal-tab-item-background-image = ~'') and not (@tab-item-background = transparent) {
+    .svg-fill(@internal-tab-item-background-image, "#000", @tab-item-background);
+}
+
+.hook-tab-item-hover() when not (@internal-tab-item-background-image = ~'') and not (@tab-item-background = @tab-item-hover-background) and not (@tab-item-hover-background = transparent) {
+    .svg-fill(@internal-tab-item-background-image, "#000", @tab-item-hover-background);
+    transition-property: none;
+}
+
+.hook-tab-item-active() when not (@internal-tab-item-background-image = ~'') and not (@tab-item-background = @tab-item-active-background) and not (@tab-item-active-background = transparent) {
+    .svg-fill(@internal-tab-item-background-image, "#000", @tab-item-active-background);
+    transition-property: none;
+}
+
+
+// Position modifiers
+// ========================================================================
+
+.hook-tab-bottom() {}
+
+.hook-tab-bottom-item() {}
+
+.hook-tab-left() {}
+
+.hook-tab-left-item() {}
+
+.hook-tab-right() {}
+
+.hook-tab-right-item() {}
+
+
+// Miscellaneous
+// ========================================================================
+
+.hook-tab-misc() {}
+
+
+// Inverse
+// ========================================================================
+
+.hook-inverse-tab() {}
+
+.hook-inverse-tab-item() {}
+.hook-inverse-tab-item-hover() {}
+.hook-inverse-tab-item-active() {}
+.hook-inverse-tab-item() when not (@internal-tab-item-background-image = ~'') and not (@inverse-tab-item-background = transparent) {
+    .svg-fill(@internal-tab-item-background-image, "#000", @inverse-tab-item-background);
+}
+.hook-inverse-tab-item-hover() when not (@internal-tab-item-background-image = ~'') and not (@inverse-tab-item-background = @inverse-tab-item-hover-background) and not (@inverse-tab-item-hover-background = transparent) {
+    .svg-fill(@internal-tab-item-background-image, "#000", @inverse-tab-item-hover-background);
+}
+.hook-inverse-tab-item-active() when not (@internal-tab-item-background-image = ~'') and not (@inverse-tab-item-background = @inverse-tab-item-active-background) and not (@inverse-tab-item-active-background = transparent) {
+    .svg-fill(@internal-tab-item-background-image, "#000", @inverse-tab-item-active-background);
+}
+.hook-inverse-tab-item-disabled() {}

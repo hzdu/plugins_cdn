@@ -1,0 +1,159 @@
+{
+    "@import": "./element.php",
+    "name": "divider",
+    "title": "Divider",
+    "group": "basic",
+    "icon": "${url:images/icon.svg}",
+    "iconSmall": "${url:images/iconSmall.svg}",
+    "element": true,
+    "width": 500,
+    "defaults": {
+        "divider_element": "hr"
+    },
+    "templates": {
+        "render": "./templates/template.php",
+        "content": "./templates/content.php"
+    },
+    "fields": {
+        "divider_style": {
+            "label": "Style",
+            "description": "Choose a divider style.",
+            "type": "select",
+            "options": {
+                "None": "",
+                "Icon": "icon",
+                "Small": "small",
+                "Vertical": "vertical"
+            }
+        },
+        "divider_element": {
+            "label": "HTML Element",
+            "description": "Set a thematic break between paragraphs or give it no semantic meaning.",
+            "type": "select",
+            "options": {
+                "hr": "hr",
+                "div": "div"
+            }
+        },
+        "divider_align": {
+            "label": "Alignment",
+            "description": "Center, left and right alignment may depend on a breakpoint and require a fallback.",
+            "type": "select",
+            "options": {
+                "None": "",
+                "Left": "left",
+                "Center": "center",
+                "Right": "right"
+            },
+            "enable": "divider_style == 'small'"
+        },
+        "divider_align_breakpoint": {
+            "label": "Alignment Breakpoint",
+            "description": "Define the device width from which the alignment will apply.",
+            "type": "select",
+            "options": {
+                "Always": "",
+                "Small (Phone Landscape)": "s",
+                "Medium (Tablet Landscape)": "m",
+                "Large (Desktop)": "l",
+                "X-Large (Large Screens)": "xl"
+            },
+            "enable": "divider_style == 'small' && divider_align"
+        },
+        "divider_align_fallback": {
+            "label": "Alignment Fallback",
+            "description": "Define an alignment fallback for device widths below the breakpoint.",
+            "type": "select",
+            "options": {
+                "None": "",
+                "Left": "left",
+                "Center": "center",
+                "Right": "right"
+            },
+            "enable": "divider_style == 'small' && divider_align && divider_align_breakpoint"
+        },
+        "position": "${builder.position}",
+        "position_left": "${builder.position_left}",
+        "position_right": "${builder.position_right}",
+        "position_top": "${builder.position_top}",
+        "position_bottom": "${builder.position_bottom}",
+        "position_z_index": "${builder.position_z_index}",
+        "margin": "${builder.margin}",
+        "margin_remove_top": "${builder.margin_remove_top}",
+        "margin_remove_bottom": "${builder.margin_remove_bottom}",
+        "maxwidth": "${builder.maxwidth}",
+        "maxwidth_breakpoint": "${builder.maxwidth_breakpoint}",
+        "block_align": "${builder.block_align}",
+        "block_align_breakpoint": "${builder.block_align_breakpoint}",
+        "block_align_fallback": "${builder.block_align_fallback}",
+        "animation": "${builder.animation}",
+        "_parallax_button": "${builder._parallax_button}",
+        "visibility": "${builder.visibility}",
+        "name": "${builder.name}",
+        "status": "${builder.status}",
+        "source": "${builder.source}",
+        "id": "${builder.id}",
+        "class": "${builder.cls}",
+        "attributes": "${builder.attrs}",
+        "css": {
+            "label": "CSS",
+            "description": "Enter your own custom CSS. The following selectors will be prefixed automatically for this element: <code>.el-element</code>",
+            "type": "editor",
+            "editor": "code",
+            "mode": "css",
+            "attrs": {
+                "debounce": 500,
+                "hints": [".el-element"]
+            }
+        },
+        "transform": "${builder.transform}"
+    },
+    "fieldset": {
+        "default": {
+            "type": "tabs",
+            "fields": [
+                {
+                    "title": "Settings",
+                    "fields": [
+                        {
+                            "label": "Divider",
+                            "type": "group",
+                            "divider": true,
+                            "fields": [
+                                "divider_style",
+                                "divider_element",
+                                "divider_align",
+                                "divider_align_breakpoint",
+                                "divider_align_fallback"
+                            ]
+                        },
+                        {
+                            "label": "General",
+                            "type": "group",
+                            "fields": [
+                                "position",
+                                "position_left",
+                                "position_right",
+                                "position_top",
+                                "position_bottom",
+                                "position_z_index",
+                                "margin",
+                                "margin_remove_top",
+                                "margin_remove_bottom",
+                                "maxwidth",
+                                "maxwidth_breakpoint",
+                                "block_align",
+                                "block_align_breakpoint",
+                                "block_align_fallback",
+                                "animation",
+                                "_parallax_button",
+                                "visibility"
+                            ]
+                        }
+                    ]
+                },
+                "${builder.advanced}"
+            ]
+        }
+    }
+}

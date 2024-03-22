@@ -1,0 +1,132 @@
+/*
+
+Name: Horizon
+Background: White
+Color: Red
+Type: Material
+Preview: https://yootheme.com/api/style/horizon/default.jpg
+
+Style: white-blue
+Name: White Blue
+Background: White
+Color: Blue
+Type: Material
+Preview: https://yootheme.com/api/style/horizon/white-blue.jpg
+
+Style: white-green
+Name: White Green
+Background: White
+Color: Green
+Type: Material
+Preview: https://yootheme.com/api/style/horizon/white-green.jpg
+
+Style: white-dove
+Name: White Dove
+Background: White
+Color: Blue
+Type: Material
+Preview: https://yootheme.com/api/style/horizon/white-dove.jpg
+
+Style: dark-turquoise
+Name: Dark Turquoise
+Background: Dark
+Color: Turquoise
+Type: Material
+Preview: https://yootheme.com/api/style/horizon/dark-turquoise.jpg
+
+Style: black-orange
+Name: Black Orange
+Background: Black
+Color: Orange
+Type: Material
+Preview: https://yootheme.com/api/style/horizon/black-orange.jpg
+
+*/
+
+// Platform
+@import "platform.less";
+
+// UIkit Core
+@import "../vendor/assets/uikit/src/less/uikit.less";
+
+// UIkit Theme
+@import "../vendor/assets/uikit-themes/master/_import.less";
+@import "../vendor/assets/uikit-themes/master-horizon/_import.less";
+
+// Theme
+@import "theme.less";
+
+
+// Variables
+// ========================================================================
+
+//
+// Toolbar
+//
+
+@theme-toolbar-font-size:                               12px;
+
+//
+// Box Decoration
+//
+
+//
+// Transition Border
+//
+
+@theme-transition-border-hover-border-width:             10px 0 0 0;
+
+//
+// Woocommerce
+//
+
+//
+// Shop page
+//
+
+@woocommerce-shop-page-price-margin-top:                2px;
+@woocommerce-shop-page-price-font-family:               @global-secondary-font-family;
+@woocommerce-shop-page-price-font-weight:               @global-secondary-font-weight;
+@woocommerce-shop-page-price-text-transform:            @global-secondary-text-transform;
+@woocommerce-shop-page-price-letter-spacing:            @global-secondary-letter-spacing;
+@woocommerce-shop-page-price-font-style:                @global-secondary-font-style;
+@woocommerce-shop-page-price-color:                     @global-emphasis-color;
+
+//
+// Single product page
+//
+
+@woocommerce-product-page-price-font-size:              13px;
+@woocommerce-product-page-price-font-family:            @global-secondary-font-family;
+@woocommerce-product-page-price-font-weight:            @global-secondary-font-weight;
+@woocommerce-product-page-price-text-transform:         @global-secondary-text-transform;
+@woocommerce-product-page-price-letter-spacing:         0.5px;
+@woocommerce-product-page-price-font-style:             @global-secondary-font-style;
+@woocommerce-product-page-price-color:                  @global-emphasis-color;
+
+//
+// Rating
+//
+
+@woocommerce-rating-font-size:                          13px;
+
+//
+// Review Link
+//
+
+@woocommerce-review-link-font-size:                     13px;
+
+//
+// Widgets
+//
+
+@woocommerce-widget-font-size:                          @global-font-size;
+
+
+
+// Style
+// ========================================================================
+
+@import (optional) "../vendor/assets/uikit-themes/master-horizon/styles/@{internal-style}.less";
+
+@internal-style: ~'';

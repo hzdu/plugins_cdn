@@ -1,0 +1,29 @@
+//
+// Component: Tooltip
+//
+// ========================================================================
+
+
+// Variables
+// ========================================================================
+
+//
+// New
+//
+
+@tooltip-backdrop-filter:                       ~'';
+
+
+// Component
+// ========================================================================
+
+.hook-tooltip() when not (@tooltip-backdrop-filter = ~'') {
+    backdrop-filter: @tooltip-backdrop-filter;
+    -webkit-backdrop-filter: @tooltip-backdrop-filter;
+}
+
+
+// Miscellaneous
+// ========================================================================
+
+.hook-tooltip-misc() {}

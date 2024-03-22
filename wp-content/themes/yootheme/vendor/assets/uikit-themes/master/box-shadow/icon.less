@@ -1,0 +1,74 @@
+//
+// Component: Icon
+//
+// ========================================================================
+
+
+// Variables
+// ========================================================================
+
+//
+// New
+//
+
+@icon-button-box-shadow:                        none;
+@icon-button-hover-box-shadow:                  none;
+@icon-button-active-box-shadow:                 none;
+
+
+// Style modifiers
+// ========================================================================
+
+//
+// Link
+//
+
+.hook-icon-link() {}
+
+.hook-icon-link-hover() {}
+
+.hook-icon-link-active() {}
+
+//
+// Button
+//
+
+.hook-icon-button() when not (@icon-button-box-shadow = none) {
+    box-shadow: @icon-button-box-shadow;
+}
+
+.hook-icon-button-hover() when not (@icon-button-hover-box-shadow = none) {
+    box-shadow: @icon-button-hover-box-shadow;
+}
+
+.hook-icon-button-active() when not (@icon-button-active-box-shadow = none) {
+    box-shadow: @icon-button-active-box-shadow;
+}
+
+
+// Miscellaneous
+// ========================================================================
+
+.hook-icon-misc() {}
+
+
+// Inverse
+// ========================================================================
+
+@inverse-icon-button-box-shadow:                        none;
+@inverse-icon-button-hover-box-shadow:                  none;
+@inverse-icon-button-active-box-shadow:                 none;
+
+.hook-inverse-icon-link() {}
+.hook-inverse-icon-link-hover() {}
+.hook-inverse-icon-link-active() {}
+
+.hook-inverse-icon-button() when not (@icon-button-box-shadow = none) {
+    box-shadow: @inverse-icon-button-box-shadow;
+}
+.hook-inverse-icon-button-hover() when not (@icon-button-hover-box-shadow = none) {
+    box-shadow: @inverse-icon-button-hover-box-shadow;
+}
+.hook-inverse-icon-button-active() when not (@icon-button-active-box-shadow = none) {
+    box-shadow: @inverse-icon-button-active-box-shadow;
+}

@@ -1,0 +1,275 @@
+//
+// Global
+//
+
+@global-color:            fade(@global-emphasis-color, 50%);
+@global-emphasis-color:   #fff3e6;
+@global-inverse-color:    #0f0c0b;
+@global-link-color:       #AE8F88;
+@global-link-hover-color: lighten(@global-link-color, 15%);
+@global-muted-color:      fade(@global-emphasis-color, 30%);
+
+@global-background:           #2c2929;
+@global-danger-background:    #b45a5f;
+@global-muted-background:     fade(lighten(@global-background, 6%), 70%);
+@global-primary-background:   #88635b;
+@global-secondary-background: #282525;
+@global-success-background:   #6e9c7f;
+@global-warning-background:   #d19f7b;
+
+@global-border: rgba(209, 182, 177, 0.1);
+
+@global-large-box-shadow:  2px 3px 10px 0 rgba(25, 20, 17, 0.35);
+@global-medium-box-shadow: 2px 3px 6px 0 rgba(25, 20, 17, 0.35);
+@global-small-box-shadow:  1px 2px 5px 0 rgba(25, 20, 17, 0.35);
+@global-xlarge-box-shadow: 2px 4px 12px 0 rgba(25, 20, 17, 0.35);
+
+//
+// Theme
+//
+
+@theme-page-container-color-mode: light;
+
+//
+// Alert
+//
+
+@alert-background:         @global-muted-background;
+@alert-primary-color:      lighten(@global-primary-background, 15%);
+@alert-primary-background: @global-muted-background;
+@alert-success-color:      lighten(@global-success-background, 15%);
+@alert-success-background: @global-muted-background;
+@alert-warning-color:      lighten(@global-warning-background, 15%);
+@alert-warning-background: @global-muted-background;
+@alert-danger-color:       lighten(@global-danger-background, 15%);
+@alert-danger-background:  @global-muted-background;
+
+//
+// Badge
+//
+@badge-background: @global-primary-background;
+@badge-color:      @global-emphasis-color;
+
+//
+// Base
+//
+
+@base-ins-background:  fade(@global-primary-background, 20%);
+@base-mark-background: fade(@global-primary-background, 20%);
+
+//
+// Button
+//
+
+@internal-button-default-gradient:        linear-gradient(90deg, @global-muted-background 62.5%, transparent 62.5%);
+@internal-button-default-hover-gradient:  linear-gradient(90deg, @global-muted-background 62.5%, transparent 62.5%);
+@internal-button-default-active-gradient: linear-gradient(90deg, @global-muted-background 62.5%, transparent 62.5%);
+@button-secondary-color:                  @global-emphasis-color;
+@button-secondary-hover-background:       desaturate(darken(@button-secondary-background, 2%), 2%);
+@button-secondary-active-background:      darken(@button-secondary-hover-background, 4%);
+@button-text-border:                      fade(@global-primary-background, 50%);
+@inverse-button-primary-color:            @global-emphasis-color;
+@inverse-button-primary-hover-color:      @global-emphasis-color;
+@inverse-button-primary-active-color:     fade(@global-emphasis-color, 70%);
+@inverse-button-secondary-color:          @global-emphasis-color;
+@inverse-marker-background:               @global-primary-background;
+@inverse-marker-color:                    @global-emphasis-color;
+@inverse-marker-hover-color:              fade(@global-emphasis-color, 80%);
+@inverse-button-secondary-hover-color:    @global-emphasis-color;
+@inverse-button-secondary-active-color:   fade(@global-emphasis-color, 70%);
+
+//
+// Card
+//
+
+@card-hover-background: @global-muted-background;
+
+@card-default-background:       @global-muted-background;
+@card-default-color-mode:       light;
+@card-default-hover-background: @global-muted-background;
+@card-default-box-shadow:       @global-medium-box-shadow;
+@card-default-hover-box-shadow: @global-xlarge-box-shadow;
+
+@card-primary-background:       @global-primary-background;
+@card-primary-color-mode:       light;
+@card-primary-box-shadow:       @global-medium-box-shadow;
+@card-primary-hover-box-shadow: @global-xlarge-box-shadow;
+
+@card-secondary-color:            @global-color;
+@card-secondary-title-color:      @global-emphasis-color;
+@card-secondary-hover-background: desaturate(darken(@card-secondary-background, 2%), 2%);
+
+//
+// Divider
+//
+
+@divider-icon-color:   @global-primary-background;
+@divider-small-border: @global-border;
+
+//
+// Dropdown
+//
+
+@dropdown-color-mode: light;
+
+//
+// Dropbar
+//
+
+@dropbar-color-mode:        light;
+@dropbar-top-box-shadow:    0 4px 6px -5px rgba(0,0,0,0.2), 0 20px 32px -25px rgba(0,0,0,0.25);
+@dropbar-bottom-box-shadow: 0 -4px 6px -5px rgba(0,0,0,0.2), 0 -20px 32px -25px rgba(0,0,0,0.25);
+@dropbar-left-box-shadow:   4px 0 6px -5px rgba(0,0,0,0.2), 20px 0 32px -25px rgba(0,0,0,0.25);
+@dropbar-right-box-shadow:  -4px 0 6px -5px rgba(0,0,0,0.2), -20px 0 32px -25px rgba(0,0,0,0.25);
+
+//
+// Form
+//
+
+@form-focus-border:                     fade(@form-border, 60%);
+@form-radio-checked-background:         @global-primary-background;
+@form-radio-checked-focus-background:   @global-primary-background;
+@form-radio-border:                     fade(@global-border, 30%);
+@form-radio-focus-border:               fade(@form-radio-border, 60%);
+@inverse-form-radio-checked-icon-color: @global-emphasis-color;
+
+//
+// Form Range
+//
+
+@form-range-thumb-background:       @global-emphasis-color;
+@form-range-track-background:       fade(lighten(@global-background, 15%), 70%);
+@form-range-track-focus-background: @global-emphasis-color;
+
+//
+// Icon
+//
+
+@icon-button-hover-background: fade(lighten(@global-background, 6%), 50%);
+
+//
+// Inverse
+//
+
+@inverse-global-color-mode: dark;
+
+//
+// Label
+//
+
+@label-background: @global-muted-background;
+@label-color:      @global-emphasis-color;
+
+//
+// Marker
+//
+
+@marker-background:  #FFFFFF;
+@marker-color:       #000000;
+@marker-hover-color: rgba(0, 0, 0, 0.3);
+
+//
+// Navbar
+//
+
+@navbar-color-mode:          light;
+@navbar-dropdown-color-mode: light;
+
+//
+// Notification
+//
+
+@notification-message-primary-color: #ffffff;
+@notification-message-success-color: #ffffff;
+@notification-message-warning-color: #ffffff;
+@notification-message-danger-color:  #ffffff;
+
+//
+// List
+//
+
+@list-bullet-icon-color: @global-primary-background;
+
+//
+// Offcanvas
+//
+
+@offcanvas-bar-color-mode: light;
+
+//
+// Overlay
+//
+
+@overlay-default-color-mode: light;
+
+//
+// Search
+//
+
+@search-default-focus-border:             darken(@global-primary-background, 10%);
+@inverse-search-default-focus-background: transparent;
+
+//
+// Section
+//
+
+@section-default-color-mode: light;
+@section-muted-color-mode:   light;
+@section-primary-background: @global-primary-background;
+@section-primary-color-mode: light;
+
+@internal-section-default-image:   "../../master-florence/images/styles/dark-brown/section-dark-background.svg";
+@internal-section-muted-image:     "../../master-florence/images/styles/dark-brown/section-dark-background.svg";
+@internal-section-primary-image:   "../../master-florence/images/styles/dark-brown/section-dark-background.svg";
+@internal-section-secondary-image: "../../master-florence/images/styles/dark-brown/section-dark-background.svg";
+
+//
+// Table
+//
+
+@table-row-active-background: fade(@global-primary-background, 20%);
+
+//
+// Text
+//
+
+@text-primary-color:   lighten(@global-primary-background, 15%);
+@text-secondary-color: desaturate(lighten(@global-secondary-background, 50%), 10%);
+@text-success-color:   lighten(@global-success-background, 15%);
+@text-warning-color:   lighten(@global-warning-background, 15%);
+@text-danger-color:    lighten(@global-danger-background, 15%);
+
+//
+// Thumbnav
+//
+
+@thumbnav-item-gradient:         linear-gradient(180deg, rgba(0,0,0,0), rgba(0,0,0,0.4));
+@inverse-thumbnav-item-gradient: linear-gradient(180deg, rgba(255,255,255,0), rgba(255,255,255,0.4));
+
+//
+// Tile
+//
+
+@tile-default-color-mode: light;
+@tile-muted-color-mode:   light;
+
+@tile-primary-color-mode: light;
+
+@internal-tile-default-image:   "../../master-florence/images/styles/dark-brown/background-noise.png";
+@internal-tile-muted-image:     "../../master-florence/images/styles/dark-brown/background-noise.png";
+@internal-tile-primary-image:   "../../master-florence/images/styles/dark-brown/background-noise.png";
+@internal-tile-secondary-image: "../../master-florence/images/styles/dark-brown/background-noise.png";
+
+//
+// Tooltip
+//
+
+@tooltip-background: @global-primary-background;
+@tooltip-color:      @global-emphasis-color;
+
+//
+// WooCommerce
+//
+
+@woocommerce-rating-color:            @global-primary-background;
+@woocommerce-rating-background-color: lighten(@global-muted-background, 15%);

@@ -1,0 +1,138 @@
+/*
+
+Name: Yard
+Background: White
+Color: Yellow
+Type: Flat
+Preview: https://yootheme.com/api/style/yard/default.jpg
+
+Style: white-orange
+Name: White Orange
+Background: White
+Color: Orange
+Type: Material
+Preview: https://yootheme.com/api/style/yard/white-orange.jpg
+
+Style: white-red
+Name: White Red
+Background: White
+Color: Red
+Type: Material
+Preview: https://yootheme.com/api/style/yard/white-red.jpg
+
+Style: white-blue
+Name: White Blue
+Background: White
+Color: Blue
+Type: Material
+Preview: https://yootheme.com/api/style/yard/white-blue.jpg
+
+Style: white-darkblue
+Name: White Darkblue
+Background: White
+Color: blue
+Type: Material
+Preview: https://yootheme.com/api/style/yard/white-darkblue.jpg
+
+Style: dark-orange
+Name: Dark Orange
+Background: Dark
+Color: Orange
+Type: Material
+Preview: https://yootheme.com/api/style/yard/dark-orange.jpg
+
+*/
+
+// Platform
+@import "platform.less";
+
+// UIkit Core
+@import "../vendor/assets/uikit/src/less/uikit.less";
+
+// UIkit Theme
+@import "../vendor/assets/uikit-themes/master/_import.less";
+@import "../vendor/assets/uikit-themes/master-yard/_import.less";
+
+// Theme
+@import "theme.less";
+
+
+//
+// Variables
+// ========================================================================
+
+//
+// Page Border
+//
+
+@theme-page-border-width:                                30px;
+@theme-page-border-width-l:                              50px;
+
+.tm-page when not (@theme-page-border-width = 0) { border-top-width: 0; }
+
+//
+// Header
+//
+
+@theme-headerbar-font-size:                              @global-small-font-size;
+
+//
+// Section
+//
+
+@internal-section-title-mode:                            ~'';
+@section-title-letter-spacing:                           none;
+
+//
+// Box Decoration
+//
+
+@theme-box-decoration-default-background:                transparent;
+@theme-box-decoration-default-border-width:              3px;
+@theme-box-decoration-default-border:                    @global-primary-background;
+
+@theme-box-decoration-primary-background:                transparent;
+@theme-box-decoration-primary-border-width:              3px;
+@theme-box-decoration-primary-border:                    @global-primary-background;
+
+@theme-box-decoration-secondary-background:              transparent;
+@theme-box-decoration-secondary-border-width:            3px;
+@theme-box-decoration-secondary-border:                  @global-primary-background;
+
+//
+// Inverse
+//
+
+@inverse-theme-box-decoration-default-border:            fade(@inverse-global-primary-background, 60%);
+@inverse-theme-box-decoration-primary-border:            fade(@inverse-global-primary-background, 60%);
+@inverse-theme-box-decoration-secondary-border:          fade(@inverse-global-primary-background, 60%);
+
+//
+// Transition Border
+//
+
+@theme-transition-border-hover-border-width:             12px;
+
+//
+// WooCommerce
+//
+
+//
+// Rating
+//
+
+@woocommerce-rating-color:                               @global-primary-background;
+
+//
+// Widgets
+//
+
+@woocommerce-widget-active-filters-font-size:            @global-small-font-size;
+
+
+// Style
+// ========================================================================
+
+@import (optional) "../vendor/assets/uikit-themes/master-yard/styles/@{internal-style}.less";
+
+@internal-style: ~'';

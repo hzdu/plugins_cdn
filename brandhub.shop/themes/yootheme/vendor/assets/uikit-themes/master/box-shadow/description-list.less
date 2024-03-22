@@ -1,0 +1,36 @@
+//
+// Component: Description list
+//
+// ========================================================================
+
+
+// Variables
+// ========================================================================
+
+//
+// New
+//
+
+@description-list-divider-term-box-shadow:      none;
+
+
+// Component
+// ========================================================================
+
+.hook-description-list-term() {}
+
+.hook-description-list-description() {}
+
+
+// Style modifier
+// ========================================================================
+
+.hook-description-list-divider-term() when not (@description-list-divider-term-box-shadow = none) {
+    box-shadow: @description-list-divider-term-box-shadow;
+}
+
+
+// Miscellaneous
+// ========================================================================
+
+.hook-description-list-misc() {}

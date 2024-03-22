@@ -1,0 +1,172 @@
+/*
+
+Name: Pinewood Lake
+Background: Light
+Color: Orange
+Type: Skeuomorphic
+Preview: https://yootheme.com/api/style/pinewood-lake/default.jpg
+
+Style: light-green
+Name: Light Green
+Background: Light
+Color: Green
+Type: Skeuomorphic
+Preview: https://yootheme.com/api/style/pinewood-lake/light-green.jpg
+
+Style: light-petrol
+Name: Light Petrol
+Background: Light
+Color: Turquoise
+Type: Skeuomorphic
+Preview: https://yootheme.com/api/style/pinewood-lake/light-petrol.jpg
+
+Style: light-orange
+Name: Light Orange
+Background: Light
+Color: Orange
+Type: Skeuomorphic
+Preview: https://yootheme.com/api/style/pinewood-lake/light-orange.jpg
+
+Style: light-blue
+Name: Light Blue
+Background: Light
+Color: Blue
+Type: Skeuomorphic
+Preview: https://yootheme.com/api/style/pinewood-lake/light-blue.jpg
+
+Style: light-umber
+Name: Light Umber
+Background: Light
+Color: Orange
+Type: Skeuomorphic
+Preview: https://yootheme.com/api/style/pinewood-lake/light-umber.jpg
+
+*/
+
+// Platform
+@import "platform.less";
+
+// UIkit Core
+@import "../vendor/assets/uikit/src/less/uikit.less";
+
+// UIkit Theme
+@import "../vendor/assets/uikit-themes/master/_import.less";
+@import "../vendor/assets/uikit-themes/master-pinewood-lake/_import.less";
+
+// Theme
+@import "theme.less";
+
+
+// Variables
+// ========================================================================
+
+//
+// Header
+//
+
+@theme-headerbar-font-size:                              @global-small-font-size;
+
+//
+// Section
+//
+
+@section-title-color:                                    @global-emphasis-color;
+
+@internal-section-title-dash-border-height:              60px;
+@internal-section-title-dash-border-margin:              20px;
+
+//
+// Mask
+//
+
+@internal-theme-mask-default-border-image:               "../vendor/assets/uikit-themes/master-pinewood-lake/images/mask-default-image.svg";
+@internal-theme-mask-default-border-image-slice:         50;
+
+//
+// Box Decoration
+//
+
+@theme-box-decoration-default-transform-horizontal:      0;
+@theme-box-decoration-default-transform-vertical:        0;
+@theme-box-decoration-default-background:                transparent;
+@theme-box-decoration-default-border-width:              3px;
+@theme-box-decoration-default-border:                    @global-secondary-background;
+
+@theme-box-decoration-primary-transform-horizontal:      0;
+@theme-box-decoration-primary-transform-vertical:        0;
+@theme-box-decoration-primary-background:                transparent;
+@theme-box-decoration-primary-border-width:              3px;
+@theme-box-decoration-primary-border:                    @global-primary-background;
+
+@theme-box-decoration-secondary-transform-horizontal:    0;
+@theme-box-decoration-secondary-transform-vertical:      0;
+@theme-box-decoration-secondary-background:              transparent;
+@theme-box-decoration-secondary-border-width:            3px;
+@theme-box-decoration-secondary-border:                  @global-primary-background;
+
+.hook-box-decoration() {
+
+    &::before {
+        -webkit-mask-box-image-source: url("../vendor/assets/uikit-themes/master-pinewood-lake/images/box-decoration-image.svg");
+        mask-border: url("../vendor/assets/uikit-themes/master-pinewood-lake/images/box-decoration-image.svg");
+        -webkit-mask-box-image-slice: 3;
+        mask-border-slice: 3;
+        -webkit-mask-box-image-repeat: round;
+        mask-border-repeat: round;
+        // Firefox Fallback
+        mask-image: url("../vendor/assets/uikit-themes/master-pinewood-lake/images/box-decoration-image.svg");
+        mask-size: 100% 100%;
+    }
+
+}
+
+.hook-box-decoration-default() { padding: 10px; }
+
+.hook-box-decoration-primary() { padding: 10px; }
+
+.hook-box-decoration-secondary() {
+
+    &::before {
+        top: 10px;
+        bottom: 10px;
+        left: 10px;
+        right: 10px;
+        z-index: 1;
+    }
+
+}
+
+@inverse-theme-box-decoration-default-border:            @inverse-global-muted-background;
+@inverse-theme-box-decoration-primary-border:            @inverse-global-primary-background;
+@inverse-theme-box-decoration-secondary-border:          @inverse-global-primary-background;
+
+//
+// Transition Border
+//
+
+@theme-transition-border-hover-border-width:             17px;
+
+//
+// Woocommerce
+//
+
+//
+// Rating
+//
+
+@woocommerce-rating-background-color:                    fade(@global-secondary-background, 20%);
+@woocommerce-rating-color:                               @global-primary-background;
+
+//
+// Widgets
+//
+
+@woocommerce-widget-active-filters-font-size:            @global-small-font-size;
+
+
+// Style
+// ========================================================================
+
+@import (optional) "../vendor/assets/uikit-themes/master-pinewood-lake/styles/@{internal-style}.less";
+
+@internal-style: ~'';

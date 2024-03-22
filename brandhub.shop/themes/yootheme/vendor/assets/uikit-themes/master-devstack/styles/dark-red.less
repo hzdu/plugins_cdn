@@ -1,0 +1,402 @@
+//
+// Global
+//
+
+@global-color:                rgba(255, 255, 255, 0.90);
+@global-emphasis-color:       #ffffff;
+@global-inverse-color:        #000;
+@global-link-color:           #e0271a;
+@global-muted-color:          rgba(252, 252, 255, 0.4);
+@global-link-hover-color:     #e65522;
+@global-background:           #1e2225;
+@global-danger-background:    #ff1350;
+@global-muted-background:     #151a1d;
+@global-primary-background:   #ff3b2e;
+@global-secondary-background: #12161a;
+@global-success-background:   #44c209;
+@global-warning-background:   #ff8313;
+@global-border:               #15181a;
+@global-large-box-shadow:     -5px -5px 15px rgba(255, 255, 255, 0.03), 5px 5px 15px rgba(0, 0, 0, 0.35);
+@global-medium-box-shadow:    -2px -2px 5px rgba(255, 255, 255, 0.03), 2px 2px 4px rgba(0, 0, 0, 0.35);
+@global-small-box-shadow:     -1px -1px 1px rgba(255, 255, 255, 0.03), 1px 1px 1px rgba(0, 0, 0, 0.35);
+@global-xlarge-box-shadow:    -10px -10px 30px rgba(255, 255, 255, 0.03), 10px 10px 30px rgba(0, 0, 0, 0.35);
+
+//
+// Theme
+//
+
+@theme-page-container-color-mode:                  light;
+@internal-theme-page-border-gradient:              linear-gradient(90deg, #e4212e 10%, #e0271a 65%, #e65522 100%);
+@internal-theme-transition-border-border-gradient: linear-gradient(51deg, #ee3040 0%, #e4212e 15%, #e65522 100%);
+
+//
+// Accordion
+//
+
+@accordion-item-box-shadow: inset 0 1px rgba(255, 255, 255, 0.04);
+
+//
+// Alert
+//
+
+@alert-background:    #15181a;
+@alert-primary-color: #ffffff;
+@alert-success-color: #ffffff;
+@alert-warning-color: #ffffff;
+@alert-danger-color:  #ffffff;
+
+//
+// Badge
+//
+
+@badge-background: #ffffff;
+
+//
+// Base
+//
+
+@base-hr-box-shadow:   0 1px 0 rgba(255, 255, 255, 0.04);
+@base-pre-background:  #1a1e21;
+@base-selection-color: #ffffff;
+
+//
+// Breadcrumb
+//
+
+@breadcrumb-item-disabled-color: rgba(252, 252, 255, 0.25);
+
+//
+// Button
+//
+
+@button-default-background:                 #262a2c;
+@button-default-hover-color:                #ffffff;
+@button-default-active-color:               #ffffff;
+@button-primary-background:                 #ff3b2e;
+@button-primary-box-shadow:                 -5px -5px 15px rgba(255, 255, 255, 0.03), 5px 5px 15px rgba(0, 0, 0, 0.35);
+@button-primary-color:                      #ffffff;
+@button-primary-hover-box-shadow:           -2px -2px 5px rgba(255, 255, 255, 0.03), 2px 2px 5px rgba(0, 0, 0, 0.35);
+@button-primary-hover-color:                #ffffff;
+@button-primary-active-color:               #ffffff;
+@button-secondary-border:                   rgba(255, 255, 255, 0.7);
+@button-secondary-box-shadow:               inset 3px 3px 10px rgba(0, 0, 0, 0.35), -5px -5px 15px rgba(255, 255, 255, 0.03), 5px 5px 15px rgba(0, 0, 0, 0.35);
+@button-secondary-color:                    #ffffff;
+@button-secondary-hover-background:         #ffffff;
+@button-secondary-hover-box-shadow:         -2px -2px 5px rgba(255, 255, 255, 0.03), 2px 2px 4px rgba(0, 0, 0, 0.35);
+@button-secondary-hover-color:              #ff3b2e;
+@button-secondary-active-background:        rgba(255, 255, 255, 0.8);
+@button-secondary-active-box-shadow:        -1px -1px 1px rgba(255, 255, 255, 0.03), 1px 1px 1px rgba(0, 0, 0, 0.35);
+@button-secondary-active-color:             #ff3b2e;
+@button-danger-box-shadow:                  5px 5px 15px rgba(172, 0, 44, 0.3);
+@button-danger-color:                       #ffffff;
+@button-danger-hover-box-shadow:            2px 2px 5px rgba(172, 0, 44, 0.3);
+@button-danger-hover-color:                 #ffffff;
+@button-danger-active-color:                #ffffff;
+@internal-button-primary-gradient:          linear-gradient(51deg, #ee3040 50%, #e4212e 65%, #e65522 100%);
+@internal-button-primary-active-gradient:   linear-gradient(51deg, #eb0032 50%, #e5001d 70%, #e54000 100%);
+@internal-button-secondary-hover-gradient:  none;
+@internal-button-secondary-active-gradient: none;
+
+//
+// Card
+//
+
+@card-badge-color:                 @inverse-global-inverse-color;
+@internal-card-badge-gradient:     linear-gradient(51deg, #ee3040 35%, #e4212e 50%, #e65522 100%);
+@card-hover-box-shadow:            -8px -8px 20px rgba(255, 255, 255, 0.04), 8px 8px 20px rgba(0, 0, 0, 0.35);
+@card-default-background:          #202326;
+@card-default-color-mode:          light;
+@card-default-box-shadow:          -8px -8px 20px rgba(255, 255, 255, 0.04), 8px 8px 20px rgba(0, 0, 0, 0.35);
+@card-primary-box-shadow:          -8px -8px 20px rgba(255, 255, 255, 0.03), 8px 8px 20px rgba(46, 3, 0, 0.4);
+@card-primary-color:               rgba(255, 255, 255, 0.7);
+@card-primary-hover-box-shadow:    -2px -2px 10px rgba(255, 255, 255, 0.04), 2px 2px 5px rgba(46, 3, 0, 0.4);
+@card-secondary-box-shadow:        -8px -8px 20px rgba(255, 255, 255, 0.04), 8px 8px 20px rgba(0, 0, 0, 0.35);
+@card-secondary-color:             rgba(255, 255, 255, 0.7);
+@card-secondary-hover-box-shadow:  -2px -2px 10px rgba(44, 49, 54, 0.7), 2px 2px 5px rgba(0, 0, 0, 0.35);
+@internal-card-primary-gradient:   linear-gradient(51deg, #ee3040 0%, #e4212e 15%, #e65522 100%);
+@internal-card-secondary-gradient: linear-gradient(40deg, #08090b 0%, #12161a, 90%);
+
+//
+// Description list
+//
+
+@description-list-divider-term-box-shadow: inset 0 1px rgba(255, 255, 255, 0.04);
+
+//
+// Divider
+//
+
+@divider-icon-line-box-shadow:           0 1px 0 rgba(255, 255, 255, 0.04);
+@internal-divider-small-border-gradient: linear-gradient(40deg, #e4212e 0%, #e0271a 40%, #e65522 100%);
+
+//
+// Dotnav
+//
+
+@dotnav-item-background: rgba(0, 0, 0, 0.35);
+@dotnav-item-box-shadow: inset 1px 1px 1px rgba(0, 0, 0, 0.2), 1px 1px 1px rgba(82, 89, 98, 0.2);
+
+
+//
+// Dropbar
+//
+
+@dropbar-color-mode:        light;
+@dropbar-top-box-shadow:    0 33px 45px -37px rgba(0, 0, 0, 0.2);
+@dropbar-bottom-box-shadow: 0 -33px 45px -37px rgba(0, 0, 0, 0.2);
+@dropbar-left-box-shadow:   33px 0 45px -37px rgba(0, 0, 0, 0.2);
+@dropbar-right-box-shadow:  -33px 0 45px -37px rgba(0, 0, 0, 0.2);
+
+//
+// Dropdown
+//
+
+@dropdown-color-mode: light;
+
+//
+// Form
+//
+
+@form-box-shadow:                   inset 2px 2px 5px rgba(0, 0, 0, 0.35), inset -2px -2px 5px rgba(82, 89, 98, 0.2);
+@form-focus-box-shadow:             inset 1px 1px 2px rgba(0, 0, 0, 0.35), inset -1px -1px 2px rgba(82, 89, 98, 0.2);
+@form-disabled-background:          #23272b;
+@form-disabled-box-shadow:          inset 1px 1px 2px rgba(0, 0, 0, 0.35), inset -1px -1px 2px rgba(82, 89, 98, 0.2);
+@form-range-thumb-box-shadow:       2px 2px 5px rgba(0, 0, 0, 0.35);
+@form-range-track-box-shadow:       0 1px 0 rgba(61, 66, 73, 0.4);
+@form-range-track-focus-box-shadow: 0 1px 0 #3d4249;
+@form-radio-box-shadow:             inset 1px 1px 2px rgba(0, 0, 0, 0.5), inset -1px -1px 2px rgba(82, 89, 98, 0.4);
+@form-radio-focus-box-shadow:       inset 1px 1px 1px rgba(0, 0, 0, 0.5), inset -1px -1px 1px rgba(82, 89, 98, 0.4);
+
+//
+// Grid
+//
+
+@grid-divider-horizontal-box-shadow: 1px 0 0 rgba(255, 255, 255, 0.04);
+@grid-divider-vertical-box-shadow:   0 1px 0 rgba(255, 255, 255, 0.04);
+
+//
+// Heading
+//
+
+@heading-divider-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.04);
+@heading-line-box-shadow:    0 1px 0 rgba(255, 255, 255, 0.04);
+
+//
+// Icon
+//
+
+@icon-button-background: #23272b;
+
+//
+// Inverse
+//
+
+@inverse-global-color-mode: dark;
+
+//
+// Label
+//
+
+@label-color:         #ffffff;
+@label-success-color: #ffffff;
+@label-warning-color: #ffffff;
+@label-danger-color:  #ffffff;
+
+//
+// Link
+//
+
+@link-heading-hover-color: #ffffff;
+
+//
+// List
+//
+
+@list-divider-box-shadow: inset 0 1px rgba(255, 255, 255, 0.04);
+@list-striped-background: rgba(255, 255, 255, 0.04);
+
+//
+// Nav
+//
+
+@nav-default-divider-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.04);
+@nav-primary-divider-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.04);
+@nav-dividers-box-shadow:        inset 0 1px 0 rgba(255, 255, 255, 0.04);
+
+//
+// Navbar
+//
+
+@navbar-color-mode:                       light;
+@navbar-dropdown-color-mode:              light;
+@navbar-dropdown-box-shadow:              0 15px 40px rgba(0, 0, 0, 0.35);
+@navbar-nav-item-color:                   rgba(255, 255, 255, 0.4);
+@navbar-nav-item-hover-color:             #ffffff;
+@navbar-nav-item-onclick-color:           #ffffff;
+@navbar-nav-item-active-color:            #ffffff;
+@navbar-nav-item-line-hover-background:   #ffffff;
+@navbar-nav-item-line-onclick-background: #ffffff;
+@navbar-nav-item-line-active-background:  #ffffff;
+@internal-navbar-nav-item-line-gradient:  ~'';
+
+//
+// Offcanvas
+//
+
+@offcanvas-bar-color-mode:     light;
+@offcanvas-overlay-background: rgba(18, 22, 26, 0.9);
+
+//
+// Overlay
+//
+
+@overlay-default-color-mode: light;
+
+//
+// Pagination
+//
+
+@pagination-item-background: #23272b;
+
+//
+// Progress
+//
+
+@progress-background:            #15181a;
+@progress-box-shadow:            inset 1px 1px 1px rgba(0, 0, 0, 0.35), inset -1px -1px 1px rgba(82, 89, 98, 0.2);
+@internal-progress-bar-gradient: linear-gradient(40deg, #e4212e 0%, #e0271a 40%, #e65522 100%);
+
+//
+// Search
+//
+
+@search-default-input-box-shadow:       inset 2px 2px 5px rgba(0, 0, 0, 0.35), inset -2px -2px 5px rgba(82, 89, 98, 0.2);
+@search-default-input-focus-box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.35), inset -1px -1px 2px rgba(82, 89, 98, 0.2);
+
+//
+// Section
+//
+
+@section-default-color-mode:        light;
+@section-muted-color-mode:          light;
+@internal-section-primary-gradient: linear-gradient(40deg, #e4212e 0%, #e0271a 40%, #ed6424 100%);
+
+//
+// Slidenav
+//
+
+@slidenav-hover-color:  #ffffff;
+@slidenav-active-color: #ffffff;
+
+//
+// Subnav
+//
+
+@subnav-item-color:                  @global-muted-color;
+@subnav-item-hover-color:            @global-emphasis-color;
+@subnav-item-active-color:           @global-emphasis-color;
+@subnav-pill-item-hover-background:  #23272b;
+@subnav-pill-item-active-background: #23272b;
+
+//
+// Tab
+//
+
+@tab-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.04);
+
+//
+// Table
+//
+
+@table-divider-box-shadow:   inset 0 2px 0 0 rgba(255, 255, 255, 0.04);
+@table-hover-row-background: rgba(21, 26, 29, 0.2);
+
+//
+// Text
+//
+
+@text-secondary-color:                    #a3a3a3;
+@text-lead-color:                         rgba(255, 255, 255, 0.65);
+@internal-text-background-color-gradient: linear-gradient(40deg, #e4212e 0%, #e0271a 40%, #e65522 100%);
+
+//
+// Thumbnav
+//
+
+@thumbnav-item-gradient:         linear-gradient(180deg, rgba(0,0,0,0), rgba(0,0,0,0.4));
+@inverse-thumbnav-item-gradient: linear-gradient(180deg, rgba(255,255,255,0), rgba(255,255,255,0.4));
+
+//
+// Tile
+//
+
+@tile-default-color-mode:        light;
+@tile-muted-color-mode:          light;
+@internal-tile-primary-gradient: linear-gradient(40deg, #e4212e 0%, #e0271a 40%, #ed6424 100%);
+
+//
+// Tooltip
+//
+
+@tooltip-color: #ffffff;
+
+//
+// Utility
+//
+
+@box-shadow-bottom-background: rgba(0, 0, 0, 0.45);
+
+//
+// Woocommerce
+//
+
+@woocommerce-rating-background-color: fade(@global-muted-color, 15%);
+
+// Miscellaneous
+// ========================================================================
+
+.hook-button-misc() {
+
+    .uk-tile-primary .uk-button-primary,
+    .uk-card-primary .uk-button-primary,
+    .uk-section-primary .uk-button-primary,
+    .uk-tile-primary .uk-button-default,
+    .uk-card-primary .uk-button-default,
+    .uk-section-primary .uk-button-default {
+
+        background: @global-emphasis-color;
+        color: #1e2225;
+        box-shadow: -5px -5px 15px rgba(255, 255, 255, 0.02), 5px 5px 15px rgba(0, 0, 0, 0.2);
+
+        &:hover {
+            color: #e0271a;
+            box-shadow: -1px -1px 1px rgba(255, 255, 255, 0.02), 1px 1px 1px rgba(0, 0, 0, 0.2);
+        }
+
+    }
+
+    .uk-tile-primary .uk-button-secondary,
+    .uk-card-primary .uk-button-secondary,
+    .uk-section-primary .uk-button-secondary {
+
+        box-shadow: inset 3px 3px 10px rgba(0, 0, 0, 0.2), -5px -5px 15px rgba(255, 255, 255, 0.02), 5px 5px 15px rgba(0, 0, 0, 0.2);
+
+        &:hover { box-shadow: -1px -1px 1px rgba(255, 255, 255, 0.02), 1px 1px 1px rgba(0, 0, 0, 0.2); }
+
+    }
+
+}
+
+.hook-link-misc() {
+
+    :where(.uk-tile-primary) a,
+    :where(.uk-card-primary) a,
+    :where(.uk-section-primary) a {
+
+        color: #ffa854;
+
+        &:hover { color: #7c2c13; }
+
+    }
+
+}

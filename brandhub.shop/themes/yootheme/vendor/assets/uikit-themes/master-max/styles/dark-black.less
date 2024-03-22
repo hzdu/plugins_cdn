@@ -1,0 +1,364 @@
+//
+// Global
+//
+
+@global-color:                #97979b;
+@global-emphasis-color:       #ffffff;
+@global-inverse-color:        #222124;
+@global-link-color:           #fd5055;
+@global-background:           #232428;
+@global-muted-background:     #313236;
+@global-primary-background:   #202125;
+@global-secondary-background: #1b1c20;
+@global-border:               #35353b;
+
+//
+// Theme
+//
+
+@theme-page-container-color-mode:         light;
+@theme-box-decoration-default-background: @global-muted-background;
+@theme-box-decoration-primary-background: darken(@global-primary-background, 3%);
+
+//
+// Alert
+//
+
+@alert-background:         @global-secondary-background;
+@alert-color:              #d8d8d8;
+@alert-primary-background: #fc5055;
+@alert-primary-color:      @global-emphasis-color;
+@alert-success-background: #1fd17b;
+@alert-success-color:      @global-emphasis-color;
+@alert-warning-background: #ffbd66;
+@alert-warning-color:      @global-emphasis-color;
+@alert-danger-background:  #f43238;
+@alert-danger-color:       @global-emphasis-color;
+
+//
+// Article
+//
+
+@article-meta-link-color:       #fc5055;
+@article-meta-link-hover-color: @global-emphasis-color;
+
+//
+// Badge
+//
+
+@badge-background: @global-emphasis-color;
+
+//
+// Base
+//
+
+@base-link-hover-color: @global-emphasis-color;
+@base-ins-background:   #ffea74;
+@base-ins-color:        #1e2026;
+@base-mark-background:  #ffea74;
+@base-mark-color:       #1e2026;
+
+//
+// Breadcrumb
+//
+
+@breadcrumb-item-color:          #9c9ca0;
+@breadcrumb-item-hover-color:    @global-emphasis-color;
+@breadcrumb-item-active-color:   @global-emphasis-color;
+@breadcrumb-item-disabled-color: #76767b;
+@breadcrumb-divider-color:       #9c9ca0;
+
+//
+// Button
+//
+
+@button-border-width:               1px;
+@button-default-background:         #323337;
+@button-default-hover-background:   @global-secondary-background;
+@button-default-hover-color:        @global-emphasis-color;
+@button-default-active-background:  @global-secondary-background;
+@button-primary-background:         @global-secondary-background;
+@button-primary-color:              @global-emphasis-color;
+@button-primary-hover-background:   #323337;
+@button-primary-hover-color:        @global-emphasis-color;
+@button-primary-active-background:  #323337;
+@button-primary-active-color:       @global-emphasis-color;
+@button-secondary-background:       rgba(32, 32, 36, 0);
+@button-secondary-border:           #47474b;
+@button-secondary-color:            #9d9da1;
+@button-secondary-hover-background: rgba(45, 67, 82, 0);
+@button-secondary-hover-border:     @global-emphasis-color;
+@button-secondary-hover-color:      @global-emphasis-color;
+@button-secondary-active-border:    @global-emphasis-color;
+@button-secondary-active-color:     @global-emphasis-color;
+@button-danger-background:          #ff384b;
+@button-danger-color:               @global-emphasis-color;
+@button-danger-hover-background:    #fc1e33;
+@button-danger-hover-color:         @global-emphasis-color;
+@button-danger-active-background:   #f1041a;
+@button-danger-active-color:        @global-emphasis-color;
+@button-disabled-background:        #212226;
+@button-disabled-color:             #69696c;
+
+//
+// Card
+//
+
+@card-badge-color:                @global-emphasis-color;
+@card-hover-box-shadow:           0 6px 50px 0 rgba(0, 0, 0, 0.3);
+@card-default-background:         #27282c;
+@card-default-color-mode:         light;
+@card-default-hover-background:   #2b2d31;
+@card-primary-background:         #323337;
+@card-primary-color:              rgba(255, 255, 255, 0.88);
+@card-primary-hover-background:   #3a3b3f;
+@card-secondary-background:       @global-secondary-background;
+@card-secondary-color:            @global-emphasis-color;
+@card-secondary-color-mode:       light;
+@card-secondary-hover-background: #1e1e21;
+
+//
+// Divider
+//
+
+@divider-icon-color:   #54545a;
+@divider-small-border: @global-emphasis-color;
+
+//
+// Dropbar
+//
+
+@dropbar-background: @global-secondary-background;
+@dropbar-color:      @global-emphasis-color;
+
+//
+// Dropdown
+//
+
+@dropdown-color-mode:                   light;
+@dropdown-nav-item-hover-color:         @global-emphasis-color;
+@dropdown-nav-sublist-item-hover-color: @global-emphasis-color;
+
+//
+// Dotnav
+//
+
+@dotnav-item-background: rgba(255, 255, 255, 0.25);
+
+@dotnav-item-hover-background:   @global-emphasis-color;
+@dotnav-item-onclick-background: fade(@dotnav-item-hover-background, 50%);
+@dotnav-item-active-background:  @dotnav-item-hover-background;
+
+@inverse-dotnav-item-background:         fade(@inverse-global-color, 20%);
+@inverse-dotnav-item-onclick-background: fade(@inverse-dotnav-item-background, 40%);
+
+//
+// Form
+//
+
+@form-focus-border:                   @global-emphasis-color;
+@form-radio-checked-background:       @global-emphasis-color;
+@form-radio-checked-focus-background: fade(@global-emphasis-color, 80%);
+@form-radio-focus-border:             @global-emphasis-color;
+
+//
+// Form Range
+//
+
+@form-range-thumb-border:           @global-emphasis-color;
+@form-range-track-focus-background: @global-emphasis-color;
+
+//
+// Heading
+//
+
+@heading-bullet-border: @global-emphasis-color;
+
+//
+// Icon
+//
+
+@icon-button-hover-background: #1c1c1e;
+
+//
+// Inverse
+//
+
+@inverse-global-color-mode: dark;
+
+//
+// Label
+//
+
+@label-background:         #3f4249;
+@label-color:              @global-emphasis-color;
+@label-success-color:      @global-emphasis-color;
+@label-warning-background: #febc66;
+@label-warning-color:      @global-emphasis-color;
+@label-danger-color:       @global-emphasis-color;
+
+//
+// List
+//
+
+@list-striped-background: rgba(49, 50, 54, 0.21);
+
+//
+// Marker
+//
+
+@marker-background:  @global-emphasis-color;
+@marker-color:       @global-background;
+@marker-hover-color: @global-background;
+
+
+//
+// Nav
+//
+
+@nav-default-item-hover-color:         @global-emphasis-color;
+@nav-default-item-active-background:   @global-secondary-background;
+@nav-default-item-active-color:        @global-emphasis-color;
+@nav-default-sublist-item-hover-color: @global-emphasis-color;
+@nav-primary-item-hover-color:         @global-emphasis-color;
+@nav-secondary-subtitle-hover-color:   @global-emphasis-color;
+
+//
+// Navbar
+//
+
+@navbar-background:                            @global-secondary-background;
+@navbar-color-mode:                            light;
+@navbar-nav-item-hover-color:                  @global-emphasis-color;
+@navbar-nav-item-line-background:              @global-emphasis-color;
+@navbar-nav-item-line-hover-background:        @global-emphasis-color;
+@navbar-nav-item-line-onclick-background:      @global-emphasis-color;
+@navbar-nav-item-line-active-background:       @global-emphasis-color;
+@navbar-item-color:                            #b2b2b2;
+@navbar-toggle-hover-color:                    @global-emphasis-color;
+@navbar-dropdown-background:                   @navbar-background;
+@navbar-dropdown-color-mode:                   light;
+@navbar-dropdown-color:                        #b2b2b2;
+@navbar-dropdown-nav-item-color:               #b2b2b2;
+@navbar-dropdown-nav-item-hover-color:         @global-emphasis-color;
+@navbar-dropdown-nav-item-active-color:        @global-emphasis-color;
+@navbar-dropdown-nav-header-color:             #b2b2b2;
+@navbar-dropdown-nav-divider-border:           rgba(178, 178, 178, 0.19);
+@navbar-dropdown-nav-sublist-item-color:       #b2b2b2;
+@navbar-dropdown-nav-sublist-item-hover-color: @global-emphasis-color;
+
+//
+// Notification
+//
+
+@notification-message-primary-color: #ffffff;
+@notification-message-success-color: #ffffff;
+@notification-message-warning-color: #ffffff;
+@notification-message-danger-color:  #ffffff;
+
+//
+// Offcanvas
+//
+
+@offcanvas-overlay-background: rgba(60, 62, 67, 0.47);
+
+//
+// Overlay
+//
+
+@overlay-default-color-mode: light;
+@overlay-primary-background: rgba(253, 80, 85, 0.63);
+@overlay-primary-color-mode: dark;
+
+//
+// Pagination
+//
+
+@pagination-item-color:        #9c9ca0;
+@pagination-item-active-color: @global-emphasis-color;
+
+//
+// Progress
+//
+
+@progress-bar-background: @global-link-color;
+
+//
+// Search
+//
+
+@search-color:                #9c9ca0;
+@search-icon-color:           #9c9ca0;
+@search-placeholder-color:    #9c9ca0;
+@search-default-focus-border: @global-emphasis-color;
+
+//
+// Section
+//
+
+@section-default-color-mode:   light;
+@section-muted-color-mode:     light;
+@section-primary-background:   @global-primary-background;
+@section-secondary-background: @global-secondary-background;
+
+//
+// Subnav
+//
+
+@subnav-item-color:             #9c9ca0;
+@subnav-item-hover-color:       @global-emphasis-color;
+@subnav-item-active-color:      @global-emphasis-color;
+@subnav-item-disabled-color:    #878787;
+@subnav-pill-item-active-color: @global-emphasis-color;
+
+//
+// SVG
+//
+
+@internal-svg-muted-color: darken(@global-muted-color, 15%);
+
+//
+// Tab
+//
+
+@tab-item-color:          #9c9ca0;
+@tab-item-hover-color:    @global-emphasis-color;
+@tab-item-active-border:  @global-emphasis-color;
+@tab-item-active-color:   @global-emphasis-color;
+@tab-item-disabled-color: #76767b;
+
+//
+// Table
+//
+
+@table-row-active-background: @global-muted-background;
+
+//
+// Text
+//
+
+@text-background-color: @global-emphasis-color;
+@text-primary-color:    #fb5055;
+@text-secondary-color:  lighten(@global-secondary-background, 50%);
+@text-meta-link-color:  #fb5055;
+
+//
+// Thumbnav
+//
+
+@thumbnav-item-gradient:         linear-gradient(180deg, rgba(0,0,0,0), rgba(0,0,0,0.4));
+@inverse-thumbnav-item-gradient: linear-gradient(180deg, rgba(255,255,255,0), rgba(255,255,255,0.4));
+
+//
+// Tile
+//
+
+@tile-default-color-mode: light;
+@tile-muted-color-mode:   light;
+
+//
+// WooCommerce
+//
+
+@woocommerce-rating-background-color: @global-muted-background;
+@woocommerce-rating-color:            @global-emphasis-color;

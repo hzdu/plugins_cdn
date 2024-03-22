@@ -1,0 +1,66 @@
+//
+// Component: Lightbox
+//
+// ========================================================================
+
+
+// Variables
+// ========================================================================
+
+//
+// New
+//
+
+@lightbox-button-border-width:                  0;
+
+@lightbox-button-border:                        transparent;
+@lightbox-button-hover-border:                  transparent;
+@lightbox-button-active-border:                 transparent;
+
+
+// Component
+// ========================================================================
+
+.hook-lightbox() {}
+
+
+// Item
+// ========================================================================
+
+.hook-lightbox-item() {}
+
+
+// Toolbar
+// ========================================================================
+
+.hook-lightbox-toolbar() {}
+
+
+// Toolbar Icon
+// ========================================================================
+
+.hook-lightbox-toolbar-icon() {}
+
+.hook-lightbox-toolbar-icon-hover() {}
+
+
+// Button
+// ========================================================================
+
+.hook-lightbox-button() when not (@lightbox-button-border-width = 0) {
+    border: @lightbox-button-border-width solid @lightbox-button-border;
+}
+
+.hook-lightbox-button-hover() when not (@lightbox-button-border-width = 0) {
+    border-color: @lightbox-button-hover-border;
+}
+
+.hook-lightbox-button-active() when not (@lightbox-button-border-width = 0) {
+    border-color: @lightbox-button-active-border;
+}
+
+
+// Miscellaneous
+// ========================================================================
+
+.hook-lightbox-misc() {}

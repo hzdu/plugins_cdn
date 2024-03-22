@@ -1,0 +1,113 @@
+/*
+
+Name: Tech Space
+Background: White
+Color: Blue
+Type: Flat
+Preview: https://yootheme.com/api/style/tech-space/default.jpg
+
+Style: white-darkblue
+Name: White Darkblue
+Background: White
+Color: Blue
+Type: Flat
+Preview: https://yootheme.com/api/style/tech-space/white-darkblue.jpg
+
+Style: white-green
+Name: White Green
+Background: White
+Color: Green
+Type: Flat
+Preview: https://yootheme.com/api/style/tech-space/white-green.jpg
+
+Style: white-blue
+Name: White blue
+Background: White
+Color: Blue
+Type: Flat
+Preview: https://yootheme.com/api/style/tech-space/white-blue.jpg
+
+Style: white-pink
+Name: White Pink
+Background: White
+Color: Pink
+Type: Flat
+Preview: https://yootheme.com/api/style/tech-space/white-pink.jpg
+
+Style: white-orange
+Name: White Orange
+Background: White
+Color: Orange
+Type: Flat
+Preview: https://yootheme.com/api/style/tech-space/white-orange.jpg
+
+*/
+
+// Platform
+@import "platform.less";
+
+// UIkit Core
+@import "../vendor/assets/uikit/src/less/uikit.less";
+
+// UIkit Theme
+@import "../vendor/assets/uikit-themes/master/_import.less";
+@import "../vendor/assets/uikit-themes/master-tech-space/_import.less";
+
+// Theme
+@import "theme.less";
+
+// Variables
+// ========================================================================
+
+//
+// Box-Decoration
+//
+
+@theme-box-decoration-primary-background:                   @global-primary-background;
+@theme-box-decoration-secondary-background:                 @global-secondary-background;
+
+@inverse-theme-box-decoration-primary-background:           @inverse-global-primary-background;
+@inverse-theme-box-decoration-secondary-background:         @inverse-global-primary-background;
+
+//
+// Section Title
+//
+
+@section-title-color:                                       @global-emphasis-color;
+
+//
+// Toolbar
+//
+
+@theme-toolbar-background:                                  @global-muted-background;
+@theme-toolbar-color-mode:                                  dark;
+
+//
+// Transition Border
+//
+
+@theme-transition-border-hover-border-width:                14px;
+
+//
+// WooCommerce
+//
+
+@woocommerce-product-page-price-font-size:                  @global-large-font-size;
+@woocommerce-product-page-price-line-height:                1.4;
+@woocommerce-product-page-price-font-family:                @global-primary-font-family;
+@woocommerce-product-page-price-font-weight:                @global-primary-font-weight;
+@woocommerce-product-page-price-color:                      @global-emphasis-color;
+
+@woocommerce-product-page-price-from-font-size:             @global-small-font-size;
+@woocommerce-product-page-price-from-text-transform:        lowercase;
+
+@woocommerce-cart-page-layout:                              columns;
+@woocommerce-order-page-layout:                             columns;
+
+
+// Style
+// ========================================================================
+
+@import (optional) "../vendor/assets/uikit-themes/master-tech-space/styles/@{internal-style}.less";
+
+@internal-style: ~'';

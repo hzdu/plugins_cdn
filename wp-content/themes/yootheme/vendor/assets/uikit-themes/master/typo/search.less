@@ -1,0 +1,157 @@
+//
+// Component: Search
+//
+// ========================================================================
+
+//
+// New
+//
+
+@search-default-font-family:                    inherit;
+@search-default-font-weight:                    inherit;
+@search-default-text-transform:                 inherit;
+@search-default-letter-spacing:                 inherit;
+@search-default-font-style:                     inherit;
+
+@search-navbar-font-family:                     inherit;
+@search-navbar-font-weight:                     inherit;
+@search-navbar-text-transform:                  inherit;
+@search-navbar-letter-spacing:                  inherit;
+@search-navbar-font-style:                      inherit;
+
+@search-large-font-family:                      inherit;
+@search-large-font-weight:                      inherit;
+@search-large-text-transform:                   inherit;
+@search-large-letter-spacing:                   inherit;
+@search-large-font-style:                       inherit;
+
+
+// Variables
+// ========================================================================
+
+
+// Component
+// ========================================================================
+
+.hook-search-input() {}
+
+
+// Icon
+// ========================================================================
+
+.hook-search-icon() {}
+
+
+// Default modifiers
+// ========================================================================
+
+.hook-search-default-input() {}
+
+.hook-search-default-input() when not (@search-default-font-family = inherit) {
+    font-family: @search-default-font-family;
+}
+
+.hook-search-default-input() when not (@search-default-font-weight = inherit) {
+    font-weight: @search-default-font-weight;
+}
+
+.hook-search-default-input() when not (@search-default-text-transform = inherit) {
+    text-transform: @search-default-text-transform;
+}
+
+.hook-search-default-input() when not (@search-default-letter-spacing = inherit) {
+    letter-spacing: @search-default-letter-spacing;
+}
+
+.hook-search-default-input() when not (@search-default-font-style = inherit) {
+    font-style: @search-default-font-style;
+}
+
+
+.hook-search-default-input-focus() {}
+
+
+// Navbar modifiers
+// ========================================================================
+
+.hook-search-navbar-input() {}
+
+.hook-search-navbar-input() when not (@search-navbar-font-family = inherit) {
+    font-family: @search-navbar-font-family;
+}
+
+.hook-search-navbar-input() when not (@search-navbar-font-weight = inherit) {
+    font-weight: @search-navbar-font-weight;
+}
+
+.hook-search-navbar-input() when not (@search-navbar-text-transform = inherit) {
+    text-transform: @search-navbar-text-transform;
+}
+
+.hook-search-navbar-input() when not (@search-navbar-letter-spacing = inherit) {
+    letter-spacing: @search-navbar-letter-spacing;
+}
+
+.hook-search-navbar-input() when not (@search-navbar-font-style = inherit) {
+    font-style: @search-navbar-font-style;
+}
+
+.hook-search-navbar-input-focus() {}
+
+
+// Large modifiers
+// ========================================================================
+
+.hook-search-large-input() {}
+
+.hook-search-large-input() when not (@search-large-font-family = inherit) {
+    font-family: @search-large-font-family;
+}
+
+.hook-search-large-input() when not (@search-large-font-weight = inherit) {
+    font-weight: @search-large-font-weight;
+}
+
+.hook-search-large-input() when not (@search-large-text-transform = inherit) {
+    text-transform: @search-large-text-transform;
+}
+
+.hook-search-large-input() when not (@search-large-letter-spacing = inherit) {
+    letter-spacing: @search-large-letter-spacing;
+}
+
+.hook-search-large-input() when not (@search-large-font-style = inherit) {
+    font-style: @search-large-font-style;
+}
+
+.hook-search-large-input-focus() {}
+
+
+// Toggle
+// ========================================================================
+
+.hook-search-toggle() {}
+
+.hook-search-toggle-hover() {}
+
+
+// Miscellaneous
+// ========================================================================
+
+.hook-search-misc() {}
+
+
+// Inverse
+// ========================================================================
+
+.hook-inverse-search-default-input() {}
+.hook-inverse-search-default-input-focus() {}
+
+.hook-inverse-search-navbar-input() {}
+.hook-inverse-search-navbar-input-focus() {}
+
+.hook-inverse-search-large-input() {}
+.hook-inverse-search-large-input-focus() {}
+
+.hook-inverse-search-toggle() {}
+.hook-inverse-search-toggle-hover() {}

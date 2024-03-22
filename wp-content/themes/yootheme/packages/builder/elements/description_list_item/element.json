@@ -1,0 +1,48 @@
+{
+    "@import": "./element.php",
+    "name": "description_list_item",
+    "title": "Item",
+    "width": 500,
+    "placeholder": {
+        "props": {
+            "title": "Title",
+            "meta": "",
+            "content": "Lorem ipsum dolor sit amet."
+        }
+    },
+    "templates": {
+        "render": "./templates/template.php",
+        "content": "./templates/content.php"
+    },
+    "fields": {
+        "title": {
+            "label": "Title",
+            "source": true
+        },
+        "meta": {
+            "label": "Meta",
+            "source": true
+        },
+        "content": {
+            "label": "Content",
+            "type": "editor",
+            "source": true
+        },
+        "link": "${builder.link}",
+        "link_target": "${builder.link_target}",
+        "status": "${builder.statusItem}",
+        "source": "${builder.source}"
+    },
+    "fieldset": {
+        "default": {
+            "type": "tabs",
+            "fields": [
+                {
+                    "title": "Content",
+                    "fields": ["title", "meta", "content", "link", "link_target"]
+                },
+                "${builder.advancedItem}"
+            ]
+        }
+    }
+}

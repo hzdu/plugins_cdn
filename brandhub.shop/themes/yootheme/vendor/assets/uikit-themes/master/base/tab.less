@@ -1,0 +1,103 @@
+//
+// Component: Tab
+//
+// ========================================================================
+
+
+// Variables
+// ========================================================================
+
+//
+// New
+//
+
+@tab-item-background:                           transparent;
+@tab-item-hover-background:                     transparent;
+@tab-item-active-background:                    transparent;
+
+@tab-vertical-item-padding-horizontal:          @tab-item-padding-horizontal;
+@tab-vertical-item-padding-vertical:            @tab-item-padding-vertical;
+
+
+// Component
+// ========================================================================
+
+.hook-tab() {}
+
+
+// Items
+// ========================================================================
+
+.hook-tab-item() {
+    transition: 0.1s ease-in-out;
+    transition-property: color, background-color, border-color, box-shadow;
+}
+
+.hook-tab-item() when not (@base-link-text-decoration = none) {
+    text-decoration: none;
+}
+
+// Background
+.hook-tab-item() when not (@tab-item-background = transparent) {
+    background-color: @tab-item-background;
+}
+
+.hook-tab-item-hover() when not (@tab-item-background = @tab-item-hover-background) {
+    background-color: @tab-item-hover-background;
+}
+
+.hook-tab-item-active() when not (@tab-item-background = @tab-item-active-background) {
+    background-color: @tab-item-active-background;
+}
+
+.hook-tab-item-disabled() {}
+
+
+// Position modifiers
+// ========================================================================
+
+.hook-tab-bottom() {}
+
+.hook-tab-bottom-item() {}
+
+.hook-tab-left() {}
+
+.hook-tab-left-item() when not (@tab-vertical-item-padding-vertical = @tab-item-padding-vertical), not (@tab-vertical-item-padding-horizontal = @tab-item-padding-horizontal) {
+    padding: @tab-vertical-item-padding-vertical @tab-vertical-item-padding-horizontal;
+}
+
+.hook-tab-right() {}
+
+.hook-tab-right-item() when not (@tab-vertical-item-padding-vertical = @tab-item-padding-vertical), not (@tab-vertical-item-padding-horizontal = @tab-item-padding-horizontal) {
+    padding: @tab-vertical-item-padding-vertical @tab-vertical-item-padding-horizontal;
+}
+
+
+// Miscellaneous
+// ========================================================================
+
+.hook-tab-misc() {
+
+    .uk-tab .uk-dropdown { margin-left: (@tab-margin-horizontal + @tab-item-padding-horizontal); }
+
+}
+
+
+// Inverse
+// ========================================================================
+
+@inverse-tab-item-background:                           transparent;
+@inverse-tab-item-hover-background:                     transparent;
+@inverse-tab-item-active-background:                    transparent;
+
+.hook-inverse-tab() {}
+.hook-inverse-tab-item() when not (@inverse-tab-item-background = transparent) {
+    background-color: @inverse-tab-item-background;
+}
+.hook-inverse-tab-item-hover() when not (@inverse-tab-item-background = @inverse-tab-item-hover-background) {
+    background-color: @inverse-tab-item-hover-background;
+}
+.hook-inverse-tab-item-active() when not (@inverse-tab-item-background = @inverse-tab-item-active-background) {
+    background-color: @inverse-tab-item-active-background;
+}
+.hook-inverse-tab-item-disabled() {}

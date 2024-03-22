@@ -1,0 +1,117 @@
+//
+// Component: Subnav
+//
+// ========================================================================
+
+
+// Variables
+// ========================================================================
+
+//
+// New
+//
+
+@internal-subnav-pill-item-active-gradient:         ~'';
+
+@internal-subnav-pill-item-background-image:        ~'';
+
+
+// Component
+// ========================================================================
+
+.hook-subnav() {}
+
+.hook-subnav-item() {}
+
+.hook-subnav-item-hover() {}
+
+.hook-subnav-item-active() {}
+
+
+// Divider modifier
+// ========================================================================
+
+.hook-subnav-divider() {}
+
+
+// Pill modifier
+// ========================================================================
+
+.hook-subnav-pill-item() {}
+
+.hook-subnav-pill-item-hover() {}
+
+.hook-subnav-pill-item-onclick() {}
+
+// Gradient only
+.hook-subnav-pill-item-active() when not (@internal-subnav-pill-item-active-gradient = ~'') {
+    background-image: @internal-subnav-pill-item-active-gradient;
+}
+
+// Image only
+.hook-subnav-pill-item() when not (@internal-subnav-pill-item-background-image = ~'') {
+    background-color: transparent !important;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
+
+.hook-subnav-pill-item() when not (@internal-subnav-pill-item-background-image = ~'') and not (@subnav-pill-item-background = transparent) {
+    .svg-fill(@internal-subnav-pill-item-background-image, "#000", @subnav-pill-item-background);
+}
+
+.hook-subnav-pill-item-hover() when not (@internal-subnav-pill-item-background-image = ~'') and not (@subnav-pill-item-background = @subnav-pill-item-hover-background) and not (@subnav-pill-item-hover-background = transparent) {
+    .svg-fill(@internal-subnav-pill-item-background-image, "#000", @subnav-pill-item-hover-background);
+    transition-property: none;
+}
+
+.hook-subnav-pill-item-onclick() when not (@internal-subnav-pill-item-background-image = ~'') and not (@subnav-pill-item-background = @subnav-pill-item-onclick-background) and not (@subnav-pill-item-onclick-background = transparent) {
+    .svg-fill(@internal-subnav-pill-item-background-image, "#000", @subnav-pill-item-onclick-background);
+    transition-property: none;
+}
+
+.hook-subnav-pill-item-active() when not (@internal-subnav-pill-item-background-image = ~'') and not (@subnav-pill-item-background = @subnav-pill-item-active-background) and not (@subnav-pill-item-active-background = transparent) {
+    .svg-fill(@internal-subnav-pill-item-background-image, "#000", @subnav-pill-item-active-background);
+    transition-property: none;
+}
+
+
+// Disabled
+// ========================================================================
+
+.hook-subnav-item-disabled() {}
+
+
+// Miscellaneous
+// ========================================================================
+
+.hook-subnav-misc() {}
+
+
+// Inverse
+// ========================================================================
+
+.hook-inverse-subnav-item() {}
+.hook-inverse-subnav-item-hover() {}
+.hook-inverse-subnav-item-active() {}
+
+.hook-inverse-subnav-divider() {}
+
+.hook-inverse-subnav-pill-item() {}
+.hook-inverse-subnav-pill-item-hover() {}
+.hook-inverse-subnav-pill-item-onclick() {}
+.hook-inverse-subnav-pill-item-active() when not (@internal-subnav-pill-item-active-gradient = ~'') {
+    background-image: none;
+}
+.hook-inverse-subnav-pill-item() when not (@internal-subnav-pill-item-background-image = ~'') and not (@inverse-subnav-pill-item-background = transparent) {
+    .svg-fill(@internal-subnav-pill-item-background-image, "#000", @inverse-subnav-pill-item-background);
+}
+.hook-inverse-subnav-pill-item-hover() when not (@internal-subnav-pill-item-background-image = ~'') and not (@inverse-subnav-pill-item-background = @inverse-subnav-pill-item-hover-background) and not (@inverse-subnav-pill-item-hover-background = transparent) {
+    .svg-fill(@internal-subnav-pill-item-background-image, "#000", @inverse-subnav-pill-item-hover-background);
+}
+.hook-inverse-subnav-pill-item-onclick() when not (@internal-subnav-pill-item-background-image = ~'') and not (@inverse-subnav-pill-item-background = @inverse-subnav-pill-item-onclick-background) and not (@inverse-subnav-pill-item-onclick-background = transparent) {
+    .svg-fill(@internal-subnav-pill-item-background-image, "#000", @inverse-subnav-pill-item-onclick-background);
+}
+.hook-inverse-subnav-pill-item-active() when not (@internal-subnav-pill-item-background-image = ~'') and not (@inverse-subnav-pill-item-background = @inverse-subnav-pill-item-active-background) and not (@inverse-subnav-pill-item-active-background = transparent) {
+    .svg-fill(@internal-subnav-pill-item-background-image, "#000", @inverse-subnav-pill-item-active-background);
+}
+.hook-inverse-subnav-item-disabled() {}

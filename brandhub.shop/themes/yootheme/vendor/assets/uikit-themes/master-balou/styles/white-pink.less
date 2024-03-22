@@ -1,0 +1,28 @@
+//
+// Global
+//
+
+@global-color:                #5b3c4d;
+@global-emphasis-color:       #320b21;
+@global-link-color:           #cb7f72;
+@global-muted-color:          #ad9da6;
+@global-danger-background:    #d55067;
+@global-primary-background:   #f4e4e1;
+@global-secondary-background: #8a5f6a;
+@global-success-background:   #68a080;
+@global-warning-background:   #f7c466;
+@global-border:               rgba(50, 11, 33, 0.2);
+
+//
+// Alert
+//
+
+@alert-success-background: lighten(@global-success-background, 44%);
+@alert-warning-background: lighten(tint(@global-warning-background, 45%), 13%);
+@alert-danger-background:  lighten(tint(@global-danger-background, 40%), 23%);
+
+//
+// Table
+//
+
+@table-row-active-background: lighten(@global-primary-background, 5%);

@@ -1,0 +1,165 @@
+{
+    "@import": "./element.php",
+    "name": "totop",
+    "title": "To Top",
+    "group": "basic",
+    "icon": "${url:images/icon.svg}",
+    "iconSmall": "${url:images/iconSmall.svg}",
+    "element": true,
+    "width": 500,
+    "defaults": {
+        "title_grid_column_gap": "small",
+        "title_grid_row_gap": "small",
+        "margin": "default"
+    },
+    "templates": {
+        "render": "./templates/template.php"
+    },
+    "fields": {
+        "title": {
+            "label": "Title"
+        },
+        "link_title": "${builder.link_title}",
+        "title_style": {
+            "label": "Style",
+            "description": "Select a predefined text style, including color, size and font-family.",
+            "type": "select",
+            "options": {
+                "None": "",
+                "Small": "small",
+                "Meta": "meta"
+            },
+            "enable": "title"
+        },
+        "title_grid_column_gap": {
+            "label": "Grid Column Gap",
+            "description": "Set the size of the gap between the title and the content.",
+            "type": "select",
+            "options": {
+                "Small": "small",
+                "Medium": "medium",
+                "Default": "",
+                "Large": "large",
+                "None": "collapse"
+            },
+            "enable": "title"
+        },
+        "title_grid_row_gap": {
+            "label": "Grid Row Gap",
+            "description": "Set the size of the gap if the grid items stack.",
+            "type": "select",
+            "options": {
+                "Small": "small",
+                "Medium": "medium",
+                "Default": "",
+                "Large": "large",
+                "None": "collapse"
+            },
+            "enable": "title"
+        },
+        "title_grid_breakpoint": {
+            "label": "Grid Breakpoint",
+            "description": "Set the breakpoint from which grid items will stack.",
+            "type": "select",
+            "options": {
+                "Always": "",
+                "Small (Phone Landscape)": "s",
+                "Medium (Tablet Landscape)": "m",
+                "Large (Desktop)": "l",
+                "X-Large (Large Screens)": "xl"
+            },
+            "enable": "title"
+        },
+        "position": "${builder.position}",
+        "position_left": "${builder.position_left}",
+        "position_right": "${builder.position_right}",
+        "position_top": "${builder.position_top}",
+        "position_bottom": "${builder.position_bottom}",
+        "position_z_index": "${builder.position_z_index}",
+        "margin": "${builder.margin}",
+        "margin_remove_top": "${builder.margin_remove_top}",
+        "margin_remove_bottom": "${builder.margin_remove_bottom}",
+        "maxwidth": "${builder.maxwidth}",
+        "maxwidth_breakpoint": "${builder.maxwidth_breakpoint}",
+        "block_align": "${builder.block_align}",
+        "block_align_breakpoint": "${builder.block_align_breakpoint}",
+        "block_align_fallback": "${builder.block_align_fallback}",
+        "text_align": "${builder.text_align}",
+        "text_align_breakpoint": "${builder.text_align_breakpoint}",
+        "text_align_fallback": "${builder.text_align_fallback}",
+        "animation": "${builder.animation}",
+        "_parallax_button": "${builder._parallax_button}",
+        "visibility": "${builder.visibility}",
+        "name": "${builder.name}",
+        "status": "${builder.status}",
+        "id": "${builder.id}",
+        "class": "${builder.cls}",
+        "attributes": "${builder.attrs}",
+        "css": {
+            "label": "CSS",
+            "description": "Enter your own custom CSS. The following selectors will be prefixed automatically for this element: <code>.el-element</code>, <code>.el-title</code>",
+            "type": "editor",
+            "editor": "code",
+            "mode": "css",
+            "attrs": {
+                "debounce": 500,
+                "hints": [".el-element", ".el-title"]
+            }
+        },
+        "transform": "${builder.transform}"
+    },
+    "fieldset": {
+        "default": {
+            "type": "tabs",
+            "fields": [
+                {
+                    "title": "Content",
+                    "fields": ["title", "link_title"]
+                },
+                {
+                    "title": "Settings",
+                    "fields": [
+                        {
+                            "label": "Title",
+                            "type": "group",
+                            "divider": true,
+                            "fields": [
+                                "title_style",
+                                "title_grid_column_gap",
+                                "title_grid_row_gap",
+                                "title_grid_breakpoint"
+                            ]
+                        },
+                        {
+                            "label": "General",
+                            "type": "group",
+                            "fields": [
+                                "position",
+                                "position_left",
+                                "position_right",
+                                "position_top",
+                                "position_bottom",
+                                "position_z_index",
+                                "margin",
+                                "margin_remove_top",
+                                "margin_remove_bottom",
+                                "maxwidth",
+                                "maxwidth_breakpoint",
+                                "block_align",
+                                "block_align_breakpoint",
+                                "block_align_fallback",
+                                "text_align",
+                                "text_align_breakpoint",
+                                "text_align_fallback",
+                                "animation",
+                                "_parallax_button",
+                                "visibility"
+                            ]
+                        }
+                    ]
+                },
+                "${builder.advanced}"
+            ]
+        }
+    }
+}

@@ -1,0 +1,144 @@
+/*
+
+Name: Joline
+Background: White
+Color: Beige
+Type: Flat
+Preview: https://yootheme.com/api/style/joline/default.jpg
+
+Style: white-salmon
+Name: White Salmon
+Background: White
+Color: Red
+Type: Flat
+Preview: https://yootheme.com/api/style/joline/white-salmon.jpg
+
+Style: white-green
+Name: White Green
+Background: White
+Color: Green
+Type: Flat
+Preview: https://yootheme.com/api/style/joline/white-green.jpg
+
+Style: light-green
+Name: Light Green
+Background: Light
+Color: Green
+Type: Flat
+Preview: https://yootheme.com/api/style/joline/light-green.jpg
+
+Style: light-pink
+Name: Light Pink
+Background: Light
+Color: Pink
+Type: Flat
+Preview: https://yootheme.com/api/style/joline/light-pink.jpg
+
+Style: dark-pink
+Name: Dark Pink
+Background: Dark
+Color: Pink
+Type: Flat
+Preview: https://yootheme.com/api/style/joline/dark-pink.jpg
+
+*/
+
+// Platform
+@import "platform.less";
+
+// UIkit Core
+@import "../vendor/assets/uikit/src/less/uikit.less";
+
+// UIkit Theme
+@import "../vendor/assets/uikit-themes/master/_import.less";
+@import "../vendor/assets/uikit-themes/master-joline/_import.less";
+
+// Theme
+@import "theme.less";
+
+
+// Variables
+// ========================================================================
+
+//
+// Toolbar
+//
+
+@theme-toolbar-font-size:                       12px;
+
+//
+// Header
+//
+
+@theme-headerbar-top-padding-top:               40px;
+@theme-headerbar-top-padding-bottom:            40px;
+@theme-headerbar-top-border-width:              @global-border-width;
+@theme-headerbar-top-border:                    @global-border;
+
+@theme-headerbar-bottom-padding-top:            40px;
+@theme-headerbar-bottom-padding-bottom:         40px;
+
+@theme-headerbar-stacked-margin-top:            40px;
+
+@theme-headerbar-font-size:                     12px;
+
+.tm-headerbar-top + .uk-navbar-container:not(.uk-navbar-sticky) .uk-navbar-nav > li > a::before when (@navbar-nav-item-line-mode) and (@navbar-nav-item-line-position-mode = top) { top: -@theme-headerbar-top-border-width; }
+
+//
+// Box Decoration
+//
+
+@theme-box-decoration-z-index:                           1;
+
+@theme-box-decoration-default-transform-horizontal:      -15px;
+@theme-box-decoration-default-transform-vertical:        15px;
+@theme-box-decoration-default-background:                transparent;
+@theme-box-decoration-default-border-width:              @global-border-width;
+@theme-box-decoration-default-border:                    @global-primary-background;
+
+@theme-box-decoration-primary-transform-horizontal:      15px;
+@theme-box-decoration-primary-transform-vertical:        15px;
+@theme-box-decoration-primary-background:                transparent;
+@theme-box-decoration-primary-border-width:              @global-border-width;
+@theme-box-decoration-primary-border:                    @global-primary-background;
+
+@theme-box-decoration-secondary-transform-horizontal:    15px;
+@theme-box-decoration-secondary-transform-vertical:      -15px;
+@theme-box-decoration-secondary-background:              transparent;
+@theme-box-decoration-secondary-border-width:            @global-border-width;
+@theme-box-decoration-secondary-border:                  @global-primary-background;
+
+@inverse-theme-box-decoration-default-border:            @inverse-global-primary-background;
+@inverse-theme-box-decoration-primary-border:            @inverse-global-primary-background;
+@inverse-theme-box-decoration-secondary-border:          @inverse-global-primary-background;
+
+//
+// Transition Border
+//
+
+@theme-transition-border-hover-border-width:             6px;
+
+//
+// WooCommerce
+//
+
+//
+// Rating
+//
+
+@woocommerce-rating-background-color:                    darken(@global-muted-background, 5%);
+@woocommerce-rating-color:                               @global-primary-background;
+
+//
+// Widgets
+//
+
+@woocommerce-widget-active-filters-font-size:            @global-small-font-size;
+
+
+// Style
+// ========================================================================
+
+@import (optional) "../vendor/assets/uikit-themes/master-joline/styles/@{internal-style}.less";
+
+@internal-style: ~'';

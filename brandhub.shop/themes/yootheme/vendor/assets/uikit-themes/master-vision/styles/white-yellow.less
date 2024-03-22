@@ -1,0 +1,104 @@
+//
+// Global
+//
+
+@global-link-color:                             #e4b902;
+@global-link-hover-color:                       #ffbf00;
+
+@global-primary-background:                     #FFED63;
+
+//
+// Alert
+//
+
+@alert-primary-color:                           @global-link-hover-color;
+
+//
+// Base
+//
+
+@inverse-base-link-color:                      @inverse-global-primary-background;
+@inverse-base-link-hover-color:                lighten(@inverse-base-link-color, 10%);
+
+//
+// Button
+//
+
+@inverse-button-default-color:                  @inverse-global-primary-background;
+@inverse-button-default-hover-background:       @inverse-global-primary-background;
+@inverse-button-default-hover-color:            @inverse-global-inverse-color;
+@inverse-button-default-active-background:      darken(@inverse-button-default-hover-background, 8%);
+@inverse-button-default-active-color:           fade(@inverse-global-inverse-color, 80%);
+@inverse-button-default-border:                 @inverse-global-primary-background;
+@inverse-button-default-hover-border:           @inverse-button-default-hover-background;
+@inverse-button-default-active-border:          @inverse-button-default-active-background;
+
+@button-primary-color:                          @global-emphasis-color;
+@button-primary-hover-background:               spin(lighten(@button-primary-background, 3%), 3%);
+@button-primary-hover-color:                    fade(@button-primary-color, 80%);
+@internal-button-primary-gradient:              ~'';
+@internal-button-primary-hover-gradient:        ~'';
+@internal-button-primary-active-gradient:       ~'';
+
+@internal-button-secondary-gradient:            ~'';
+@internal-button-secondary-hover-gradient:      ~'';
+@internal-button-secondary-active-gradient:     ~'';
+
+//
+// Card
+//
+
+@card-badge-color:                              @global-emphasis-color;
+@card-primary-color:                            @global-emphasis-color;
+@card-primary-color-mode:                       dark;
+@card-primary-hover-background:                 spin(lighten(@card-primary-background, 3%), 3%);
+
+@internal-card-primary-gradient:                ~'';
+@internal-card-primary-hover-gradient:          ~'';
+@internal-card-secondary-gradient:              ~'';
+@internal-card-secondary-hover-gradient:        ~'';
+@internal-card-badge-gradient:                  ~'';
+
+//
+// Link
+//
+
+@divider-small-border:                          darken(@global-primary-background, 20%);
+@divider-icon-color:                            darken(@global-primary-background, 20%);
+
+//
+// Link
+//
+
+@link-heading-hover-color:                      @global-link-hover-color;
+
+//
+// Section
+//
+
+@section-primary-color-mode:                    dark;
+@internal-section-primary-gradient:             ~'';
+
+@internal-section-secondary-gradient:           ~'';
+
+//
+// Subnav
+//
+
+@subnav-pill-item-active-color:                 @global-emphasis-color;
+@internal-subnav-pill-item-active-gradient:     ~'';
+
+//
+// Text
+//
+
+@text-primary-color:                           @global-link-hover-color;
+
+//
+// Tile
+//
+
+@tile-primary-color-mode:                       dark;
+@internal-tile-primary-gradient:                ~'';
+
+@internal-tile-secondary-gradient:              ~'';

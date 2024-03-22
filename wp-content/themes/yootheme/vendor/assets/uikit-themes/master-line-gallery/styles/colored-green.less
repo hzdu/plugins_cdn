@@ -1,0 +1,266 @@
+//
+// Global
+//
+
+@global-color:                #004651;
+@global-emphasis-color:       #004651;
+@global-inverse-color:        #00DD87;
+@global-link-color:           #004651;
+@global-muted-color:          rgba(0, 70, 81, 0.5);
+@global-link-hover-color:     #004651;
+@global-background:           #F3D4DF;
+@global-danger-background:    #FB578C;
+@global-muted-background:     #EBC9D6;
+@global-primary-background:   #00DD87;
+@global-secondary-background: #004651;
+@global-success-background:   #05C382;
+@global-warning-background:   #ffc107;
+@global-border:               rgba(0, 70, 81, 0.15);
+
+//
+// Alert
+//
+
+@alert-primary-background: rgba(0, 70, 81, 0.1);
+@alert-primary-color:      @global-color;
+@alert-warning-background: rgba(255, 210, 109, 0.5);
+@alert-danger-background:  rgba(251, 87, 140, 0.3);
+
+//
+// Badge
+//
+
+@badge-color: #EAFBFD;
+
+//
+// Base
+//
+
+@base-em-color:        @global-danger-background;
+@base-ins-background:  desaturate(darken(@global-muted-background, 2%), 5%);
+@base-mark-background: desaturate(darken(@global-muted-background, 2%), 5%);
+@base-pre-border:      @global-border;
+
+//
+// Button
+//
+
+@button-default-color:               @global-color;
+@button-default-hover-color:         @global-color;
+@button-default-active-color:        @global-color;
+@button-primary-background:          @global-primary-background;
+@button-primary-color:               @global-color;
+@button-primary-hover-color:         #EAFBFD;
+@button-primary-active-background:   @global-primary-background;
+@button-secondary-background:        @global-color;
+@button-secondary-color:             #EAFBFD;
+@button-secondary-hover-background:  darken(@global-secondary-background, 4%);
+@button-secondary-hover-color:       #EAFBFD;
+@button-secondary-active-background: @global-color;
+@button-secondary-active-color:      #EAFBFD;
+@button-danger-color:                #EAFBFD;
+@button-danger-hover-color:          #EAFBFD;
+@button-danger-active-color:         #EAFBFD;
+
+//
+// Card
+//
+
+@card-badge-color:                #EAFBFD;
+@card-default-color:              @global-color;
+@card-default-title-color:        @global-color;
+@card-primary-background:         @global-primary-background;
+@card-primary-color:              @global-color;
+@card-primary-hover-background:   saturate(darken(@global-primary-background, 1%), 3%);
+@card-secondary-color:            @global-primary-background;
+@card-secondary-color-mode:       light;
+@card-secondary-hover-background: darken(@global-secondary-background, 4%);
+
+//
+// Divider
+//
+
+@divider-small-border:    @global-color;
+@divider-vertical-border: @global-color;
+
+//
+// Dotnav
+//
+
+@dotnav-item-hover-background: @global-primary-background;
+
+//
+// Dropdown
+//
+
+@dropdown-nav-item-hover-color:         #EAFBFD;
+@dropdown-nav-sublist-item-hover-color: #EAFBFD;
+
+//
+// Form Range
+//
+
+@form-range-track-background:       fade(@global-muted-color, 15%);
+@form-range-track-focus-background: @global-muted-color;
+
+//
+// Form
+//
+
+@form-border:                   fade(@global-color, 15%);
+@form-focus-border:             @global-color;
+@form-disabled-border:          fade(@global-color, 5%);
+@form-success-border:           fade(@global-success-background, 60%);
+@form-success-color:            @global-success-background;
+@form-radio-background:         fade(desaturate(darken(@global-muted-background, 12%), 14%), 40%);
+@form-radio-checked-icon-color: @global-background;
+
+//
+// Icon
+//
+
+@icon-button-background:        @global-secondary-background;
+@icon-button-color:             @global-primary-background;
+@icon-button-hover-background:  darken(@global-secondary-background, 4%);
+@icon-button-hover-color:       @global-primary-background;
+@icon-button-active-background: @icon-button-background;
+@icon-button-active-color:      @global-primary-background;
+
+//
+// Inverse
+//
+
+@inverse-global-muted-color:                      fade(@global-inverse-color, 60%);
+@inverse-global-inverse-color:                    @global-emphasis-color;
+@inverse-button-primary-hover-background:         lighten(@global-primary-background, 4%);
+@inverse-button-primary-hover-color:              @inverse-button-primary-color;
+@inverse-button-primary-active-background:        darken(@inverse-button-primary-hover-background, 5%);
+@inverse-button-primary-active-color:             @inverse-button-primary-hover-color;
+@inverse-button-secondary-color:                  #EAFBFD;
+@inverse-button-secondary-background:             lighten(@global-secondary-background, 3%);
+@inverse-button-secondary-hover-background:       lighten(@inverse-button-secondary-background,4%);
+@inverse-button-secondary-hover-color:            @inverse-button-secondary-color;
+@inverse-button-secondary-active-background:      @inverse-button-secondary-background;
+@inverse-button-secondary-active-color:           @inverse-button-secondary-hover-color;
+@inverse-dotnav-item-background:                  fade(@global-background, 50%);
+@inverse-dotnav-item-hover-background:            @global-background;
+@inverse-dotnav-item-onclick-background:          fade(@global-background, 70%);
+@inverse-form-border:                             fade(@global-primary-background, 10%);
+@inverse-icon-button-background:                  @global-primary-background;
+@inverse-icon-button-color:                       @global-color;
+@inverse-icon-button-hover-background:            darken(@global-primary-background, 7%);
+@inverse-icon-button-hover-color:                 @global-color;
+@inverse-icon-button-active-background:           darken(@global-primary-background, 17%);
+@inverse-icon-button-active-color:                @global-color;
+@inverse-marker-background:                       @global-background;
+@inverse-nav-default-item-color:                  @global-inverse-color;
+@inverse-nav-default-item-hover-color:            #EAFBFD;
+@inverse-nav-default-sublist-item-hover-color:    #EAFBFD;
+@inverse-nav-secondary-item-hover-color:          #EAFBFD;
+@inverse-nav-secondary-sublist-item-hover-color:  #EAFBFD;
+@inverse-nav-secondary-subtitle-hover-color:      #EAFBFD;
+@inverse-nav-secondary-sublist-item-active-color: #EAFBFD;
+@inverse-slidenav-background:                     @global-background;
+@inverse-slidenav-hover-background:               darken(@global-primary-background, 7%);
+@inverse-slidenav-active-background:              darken(@global-primary-background, 17%);
+@inverse-subnav-item-hover-color:                 @inverse-global-muted-color;
+@inverse-subnav-pill-item-hover-color:            @inverse-global-muted-color;
+@inverse-tab-item-hover-color:                    @inverse-global-muted-color;
+
+//
+// Label
+//
+
+@label-background:    @global-secondary-background;
+@label-color:         #EAFBFD;
+@label-success-color: #EAFBFD;
+@label-warning-color: #EAFBFD;
+@label-danger-color:  #EAFBFD;
+
+//
+// List
+//
+
+@list-primary-color:      #B6A8EC;
+@list-striped-background: fade(@global-muted-background, 63%);
+
+//
+// Navbar
+//
+
+@navbar-dropdown-nav-item-hover-color:          #EAFBFD;
+@navbar-dropdown-nav-item-active-color:         #EAFBFD;
+@navbar-dropdown-nav-sublist-item-hover-color:  #EAFBFD;
+@navbar-dropdown-nav-sublist-item-active-color: #EAFBFD;
+
+//
+// Offcanvas
+//
+
+@offcanvas-bar-color-mode: light;
+
+//
+// Pagination
+//
+
+@pagination-item-hover-background: saturate(darken(@global-primary-background, 2%), 4%);
+@pagination-item-hover-color:      @global-color;
+@pagination-item-active-color:     @global-color;
+
+//
+// Search
+//
+
+@search-default-border:       fade(@global-color, 15%);
+@search-default-focus-border: @global-color;
+@search-large-border:         fade(@global-color, 15%);
+@search-large-focus-border:   @global-color;
+
+//
+// Section
+//
+
+@section-primary-color-mode:   dark;
+@section-secondary-color-mode: light;
+
+//
+// Subnav
+//
+
+@subnav-pill-item-active-color: #FFFFFF;
+
+//
+// SVG
+//
+
+@internal-svg-muted-color: @global-muted-color;
+
+//
+// Tab
+//
+
+@tab-item-active-color: #FFFFFF;
+
+//
+// Table
+//
+
+@table-row-active-background:  fade(@global-muted-background, 63%);
+@table-striped-row-background: fade(@global-muted-background, 63%);
+
+//
+// Text
+//
+
+@text-primary-color:                      #0ED186;
+@text-secondary-color:                    #B3A3F3;
+@text-success-color:                      @global-success-background;
+@text-danger-color:                       @global-danger-background;
+@text-warning-color:                      #efa65d;
+@internal-text-background-color-gradient: linear-gradient(90deg, @text-background-color 30%, saturate(darken(@text-background-color, 10%), 30%) 100%);
+
+//
+// Woocommerce
+//
+
+@woocommerce-rating-background-color: desaturate(darken(@global-muted-background, 8%), 12%);

@@ -1,0 +1,114 @@
+/*
+
+Name: Creative Hub
+Background: White
+Color: Pink
+Type: Material
+Preview: https://yootheme.com/api/style/creative-hub/default.jpg
+
+Style: white-turquoise
+Name: White Turquoise
+Background: White
+Color: Turquoise
+Type: Material
+Preview: https://yootheme.com/api/style/creative-hub/white-turquoise.jpg
+
+Style: white-orange
+Name: White Orange
+Background: White
+Color: Orange
+Type: Material
+Preview: https://yootheme.com/api/style/creative-hub/white-orange.jpg
+
+Style: white-purple
+Name: White Purple
+Background: White
+Color: Purple
+Type: Material
+Preview: https://yootheme.com/api/style/creative-hub/white-purple.jpg
+
+Style: white-green
+Name: White green
+Background: White
+Color: Green
+Type: Material
+Preview: https://yootheme.com/api/style/creative-hub/white-green.jpg
+
+Style: white-blue
+Name: White Blue
+Background: White
+Color: Blue
+Type: Material
+Preview: https://yootheme.com/api/style/creative-hub/white-blue.jpg
+
+*/
+
+// Platform
+@import "platform.less";
+
+// UIkit Core
+@import "../vendor/assets/uikit/src/less/uikit.less";
+
+// UIkit Theme
+@import "../vendor/assets/uikit-themes/master/_import.less";
+@import "../vendor/assets/uikit-themes/master-creative-hub/_import.less";
+
+// Theme
+@import "theme.less";
+
+// Variables
+// ========================================================================
+
+//
+// Header
+//
+
+@theme-headerbar-font-size:                         @global-small-font-size;
+
+//
+// Box Decoration
+//
+
+@theme-box-decoration-primary-background:           @global-primary-background;
+@theme-box-decoration-secondary-background:         @global-secondary-background;
+
+//
+// Section
+//
+
+@section-title-color:                               @global-color;
+
+@internal-section-title-dash-border-height:         30px;
+@internal-section-title-dash-border-width:          2px;
+@internal-section-title-dash-border-margin:         10px;
+@internal-section-title-dash-color:                 @global-primary-background;
+
+.hook-section-default() {
+
+    & + .uk-section-muted { border-top: @global-border-width solid @global-border; }
+
+}
+
+.hook-section-muted() {
+
+    & + .uk-section-default,
+    & + style + .uk-section-default { border-top: @global-border-width solid @global-border; }
+
+}
+
+.tm-border-bottom { border-bottom: @global-border-width solid @global-border; }
+
+//
+// Transition Border
+//
+
+@internal-theme-transition-border-border-gradient:          linear-gradient(320deg, @card-primary-background, spin(@card-primary-background, 15%));
+@internal-theme-transition-border-hover-border-gradient:    @internal-theme-transition-border-border-gradient;
+
+
+// Style
+// ========================================================================
+
+@import (optional) "../vendor/assets/uikit-themes/master-creative-hub/styles/@{internal-style}.less";
+
+@internal-style: ~'';

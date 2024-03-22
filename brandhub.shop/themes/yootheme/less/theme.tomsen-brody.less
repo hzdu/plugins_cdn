@@ -1,0 +1,101 @@
+/*
+
+Name: Tomsen Brody
+Background: White
+Color: Blue
+Type: Flat
+Preview: https://yootheme.com/api/style/tomsen-brody/default.jpg
+
+Style: white-purple
+Name: White Purple
+Background: White
+Color: Purple
+Type: Flat
+Preview: https://yootheme.com/api/style/tomsen-brody/white-purple.jpg
+
+Style: white-dove
+Name: White Dove
+Background: White
+Color: Blue
+Type: Flat
+Preview: https://yootheme.com/api/style/tomsen-brody/white-dove.jpg
+
+Style: dark-yellow
+Name: Dark Yellow
+Background: Dark
+Color: Yellow
+Type: Flat
+Preview: https://yootheme.com/api/style/tomsen-brody/dark-yellow.jpg
+
+Style: white-pink
+Name: White Pink
+Background: White
+Color: Pink
+Type: Flat
+Preview: https://yootheme.com/api/style/tomsen-brody/white-pink.jpg
+
+Style: white-turquoise
+Name: White Turquoise
+Background: White
+Color: Turquoise
+Type: Flat
+Preview: https://yootheme.com/api/style/tomsen-brody/white-turquoise.jpg
+
+*/
+
+// Platform
+@import "platform.less";
+
+// UIkit Core
+@import "../vendor/assets/uikit/src/less/uikit.less";
+
+// UIkit Theme
+@import "../vendor/assets/uikit-themes/master/_import.less";
+@import "../vendor/assets/uikit-themes/master-tomsen-brody/_import.less";
+
+// Theme
+@import "theme.less";
+
+
+// Variables
+// ========================================================================
+
+//
+// Section
+//
+
+@section-title-color:                                    @global-emphasis-color;
+@section-title-font-size:                                @global-font-size;
+@section-title-text-transform:                           uppercase;
+
+@internal-section-title-dash-border-height:              45px;
+@internal-section-title-dash-border-width:               2px;
+@internal-section-title-dash-color:                      @global-primary-background;
+
+//
+// Box Decoration
+//
+
+@theme-box-decoration-default-background:                @global-primary-background;
+@theme-box-decoration-primary-background:                @global-primary-background;
+@theme-box-decoration-secondary-background:              @global-secondary-background;
+
+//
+// Transition Border
+//
+
+@theme-transition-border-hover-border-width:             20px;
+
+//
+// WooCommerce
+//
+
+@woocommerce-rating-color:                               @global-secondary-background;
+
+
+// Style
+// ========================================================================
+
+@import (optional) "../vendor/assets/uikit-themes/master-tomsen-brody/styles/@{internal-style}.less";
+
+@internal-style: ~'';

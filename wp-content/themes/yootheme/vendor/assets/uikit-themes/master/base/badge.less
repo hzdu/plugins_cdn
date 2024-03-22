@@ -1,0 +1,44 @@
+//
+// Component: Badge
+//
+// ========================================================================
+
+
+// Variables
+// ========================================================================
+
+//
+// New
+//
+
+@badge-font-weight:                             normal;
+
+
+// Component
+// ========================================================================
+
+.hook-badge() {
+    font-weight: @badge-font-weight;
+    // Make sure text is centered for any font
+    line-height: 0;
+    letter-spacing: 0;
+}
+
+.hook-badge() when not (@base-link-text-decoration = none) {
+    text-decoration: none;
+}
+
+.hook-badge-hover() {}
+
+
+// Miscellaneous
+// ========================================================================
+
+.hook-badge-misc() {}
+
+
+// Inverse
+// ========================================================================
+
+.hook-inverse-badge() {}
+.hook-inverse-badge-hover() {}

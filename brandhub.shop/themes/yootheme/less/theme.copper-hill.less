@@ -1,0 +1,185 @@
+/*
+
+Name: Copper Hill
+Background: White
+Color: Orange
+Type: Flat
+Preview: https://yootheme.com/api/style/copper-hill/default.jpg
+
+Style: white-red
+Name: White Red
+Background: White
+Color: Red
+Type: Flat
+Preview: https://yootheme.com/api/style/copper-hill/white-red.jpg
+
+Style: light-turquoise
+Name: Light Turquoise
+Background: Light
+Color: Turquoise
+Type: Skeuomorphic
+Preview: https://yootheme.com/api/style/copper-hill/light-turquoise.jpg
+
+Style: light-black
+Name: Light Black
+Background: Light
+Color: Black
+Type: Flat
+Preview: https://yootheme.com/api/style/copper-hill/light-black.jpg
+
+Style: light-beige
+Name: Light Beige
+Background: Light
+Color: Beige
+Type: Skeuomorphic
+Preview: https://yootheme.com/api/style/copper-hill/light-beige.jpg
+
+Style: black-beige
+Name: Black Beige
+Background: Black
+Color: Beige
+Type: Flat
+Preview: https://yootheme.com/api/style/copper-hill/black-beige.jpg
+
+*/
+
+// Platform
+@import "platform.less";
+
+// UIkit Core
+@import "../vendor/assets/uikit/src/less/uikit.less";
+
+// UIkit Theme
+@import "../vendor/assets/uikit-themes/master/_import.less";
+@import "../vendor/assets/uikit-themes/master-copper-hill/_import.less";
+
+// Theme
+@import "theme.less";
+
+
+// Variables
+// ========================================================================
+
+//
+// Box Decoration
+//
+
+@theme-box-decoration-top:                               10px;
+@theme-box-decoration-bottom:                            10px;
+@theme-box-decoration-left:                              10px;
+@theme-box-decoration-right:                             10px;
+@theme-box-decoration-z-index:                           1;
+
+@theme-box-decoration-default-transform-horizontal:      0;
+@theme-box-decoration-default-transform-vertical:        0;
+@theme-box-decoration-default-background:                transparent;
+@theme-box-decoration-default-border-width:              @global-border-width;
+@theme-box-decoration-default-border:                    darken(@global-border, 3%);
+
+@theme-box-decoration-primary-transform-horizontal:      0;
+@theme-box-decoration-primary-transform-vertical:        0;
+@theme-box-decoration-primary-background:                transparent;
+@theme-box-decoration-primary-border-width:              @global-border-width;
+@theme-box-decoration-primary-border:                    darken(@global-border, 3%);
+
+@theme-box-decoration-secondary-transform-horizontal:    -10px;
+@theme-box-decoration-secondary-transform-vertical:      10px;
+@theme-box-decoration-secondary-background:              transparent;
+@theme-box-decoration-secondary-border-width:            @global-border-width;
+@theme-box-decoration-secondary-border:                  darken(@global-border, 3%);
+
+.hook-box-decoration-default() {}
+
+.hook-box-decoration-primary() {
+
+    &::before {
+        top: 16px;
+        right: 16px;
+    }
+
+}
+
+.hook-box-decoration-primary() when not (@theme-box-decoration-primary-border-width = 0) {
+
+    &::after {
+        content: '';
+        position: absolute;
+        top: 10px;
+        bottom: 16px;
+        left: 16px;
+        right: 10px;
+        border: @theme-box-decoration-primary-border-width solid @theme-box-decoration-primary-border;
+        z-index: @theme-box-decoration-z-index;
+    }
+
+}
+
+.hook-box-decoration-secondary() {
+
+    &::before {
+        top: -20px;
+        bottom: -8px;
+        left: -8px;
+        right: -20px;
+    }
+
+}
+
+.hook-box-decoration-secondary() when not (@theme-box-decoration-secondary-border-width = 0) {
+
+    &::after {
+        content: '';
+        position: absolute;
+        top: -16px;
+        bottom: -12px;
+        left: -12px;
+        right: -16px;
+        border: @theme-box-decoration-secondary-border-width solid @theme-box-decoration-secondary-border;
+        z-index: @theme-box-decoration-z-index;
+    }
+
+}
+
+@inverse-theme-box-decoration-default-border:            @inverse-global-border;
+@inverse-theme-box-decoration-primary-border:            @inverse-global-border;
+@inverse-theme-box-decoration-secondary-border:          @inverse-global-border;
+
+.hook-inverse-box-decoration-primary() when not (@theme-box-decoration-primary-border-width = 0) {
+    &::after { border-color: @inverse-theme-box-decoration-primary-border; }
+}
+
+.hook-inverse-box-decoration-secondary() when not (@theme-box-decoration-secondary-border-width = 0) {
+    &::after { border-color: @inverse-theme-box-decoration-secondary-border; }
+}
+
+//
+// Transition Border
+//
+
+@theme-transition-border-border:                        @global-background;
+@theme-transition-border-hover-border-width:            14px;
+@theme-transition-border-hover-border:                  @theme-transition-border-border;
+
+//
+// WooCommerce
+//
+
+//
+// Rating
+//
+
+@woocommerce-rating-color:                               @global-primary-background;
+
+//
+// Widgets
+//
+
+@woocommerce-widget-active-filters-font-size:            @global-small-font-size;
+
+
+// Style
+// ========================================================================
+
+@import (optional) "../vendor/assets/uikit-themes/master-copper-hill/styles/@{internal-style}.less";
+
+@internal-style: ~'';

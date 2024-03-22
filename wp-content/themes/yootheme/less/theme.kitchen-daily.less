@@ -1,0 +1,141 @@
+/*
+
+Name: Kitchen Daily
+Background: White
+Color: Red
+Type: Material
+Preview: https://yootheme.com/api/style/kitchen-daily/default.jpg
+
+Style: white-orange
+Name: White Orange
+Background: White
+Color: Orange
+Type: Material
+Preview: https://yootheme.com/api/style/kitchen-daily/white-orange.jpg
+
+Style: white-green
+Name: White Green
+Background: White
+Color: Green
+Type: Material
+Preview: https://yootheme.com/api/style/kitchen-daily/white-green.jpg
+
+Style: white-darkgreen
+Name: White Darkgreen
+Background: White
+Color: Green
+Type: Material
+Preview: https://yootheme.com/api/style/kitchen-daily/white-darkgreen.jpg
+
+Style: white-blue
+Name: White Blue
+Background: White
+Color: Blue
+Type: Material
+Preview: https://yootheme.com/api/style/kitchen-daily/white-blue.jpg
+
+Style: white-red
+Name: White Red
+Background: White
+Color: Red
+Type: Material
+Preview: https://yootheme.com/api/style/kitchen-daily/white-red.jpg
+
+*/
+
+// Platform
+@import "platform.less";
+
+// UIkit Core
+@import "../vendor/assets/uikit/src/less/uikit.less";
+
+// UIkit Theme
+@import "../vendor/assets/uikit-themes/master/_import.less";
+@import "../vendor/assets/uikit-themes/master-kitchen-daily/_import.less";
+
+// Theme
+@import "theme.less";
+
+// Variables
+// ========================================================================
+
+//
+// Box Decoration
+//
+
+@theme-box-decoration-primary-background:       @global-primary-background;
+@theme-box-decoration-secondary-background:     @global-secondary-background;
+
+//
+// Page
+//
+
+@theme-page-border-mode:                        -top;
+@theme-page-border-width:                       3px;
+@theme-page-border:                             @global-primary-background;
+
+//
+// Toolbar
+//
+
+@theme-toolbar-padding-top:                     5px - (@theme-page-border-width);
+@theme-toolbar-padding-bottom:                  5px;
+@theme-headerbar-font-size:                     @global-small-font-size;
+
+//
+// Section
+//
+
+@section-title-font-family:                     'Work Sans';
+@section-title-font-size:                       13px;
+@section-title-font-weight:                     500;
+@section-title-line-height:                     0.86;
+@section-title-text-transform:                  uppercase;
+
+@internal-section-title-dash-border-height:     50px;
+@internal-section-title-dash-border-width:      2px;
+@internal-section-title-dash-border-margin:     12px;
+@internal-section-title-dash-color:             fade(@global-muted-color, 30%);
+
+.hook-section-default() {
+
+    & + .uk-section-muted { border-top: @global-border-width solid @global-border; }
+
+}
+
+.hook-section-muted() {
+
+    & + .uk-section-default,
+    & + style + .uk-section-default { border-top: @global-border-width solid @global-border; }
+
+}
+
+//
+// Toolbar
+//
+
+@theme-toolbar-background:                      @global-primary-background;
+
+//
+// WooCommerce
+//
+
+//
+// Rating
+//
+
+@woocommerce-rating-color:                      @global-secondary-background;
+
+//
+// Widgets
+//
+
+@woocommerce-widget-active-filters-font-size:   @global-small-font-size;
+
+
+// Style
+// ========================================================================
+
+@import (optional) "../vendor/assets/uikit-themes/master-kitchen-daily/styles/@{internal-style}.less";
+
+@internal-style: ~'';

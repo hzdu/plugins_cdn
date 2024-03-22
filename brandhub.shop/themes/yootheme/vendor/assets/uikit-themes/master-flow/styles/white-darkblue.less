@@ -1,0 +1,116 @@
+//
+// Global
+//
+
+@global-color:                                  #60769a;
+@global-muted-color:                            #7f8fab;
+@global-emphasis-color:                         #001b40;
+@global-link-color:                             #1361d5;
+@global-link-hover-color:                       lighten(@global-link-color, 20%);
+
+@global-muted-background:                       #f8faff;
+@global-primary-background:                     #0A56C7;
+@global-secondary-background:                   #0a47a0;
+@global-border:                                 #eaeef8;
+
+@global-success-background:                     #03d487;
+
+@global-small-box-shadow:                       0 1px 10px 0 rgba(0,0,0,0.08);
+@global-medium-box-shadow:                      0 20px 40px 0 rgba(33,87,172,0.06);
+@global-large-box-shadow:                       0 10px 50px 5px rgba(33,87,172,0.09);
+@global-xlarge-box-shadow:                      0 10px 50px 5px rgba(33,87,172,0.2);
+
+//
+// Theme
+//
+
+@theme-box-decoration-default-background:          lighten(@global-primary-background, 10%);
+@theme-box-decoration-primary-background:          lighten(@global-primary-background, 10%);
+@theme-box-decoration-secondary-background:        lighten(@global-primary-background, 10%);
+@internal-theme-transition-border-border-gradient: linear-gradient(45deg, @global-primary-background, lighten(@global-primary-background, 10%));
+
+//
+// Alert
+//
+
+@alert-primary-background:                      lighten(tint(@global-primary-background, 30%), 38%);
+@alert-success-background:                      lighten(tint(@global-success-background, 30%), 35%);
+
+//
+// Badge
+//
+
+@internal-badge-gradient:                       linear-gradient(45deg, @global-primary-background, lighten(@global-primary-background, 10%));
+
+//
+// Button
+//
+
+@button-default-border:                         saturate(darken(@global-border, 2%), 3%);
+@button-default-hover-border:                   lighten(@global-primary-background, 10%);
+@button-default-hover-box-shadow:               ~'';
+
+@internal-button-primary-gradient:              ~'';
+@internal-button-primary-hover-gradient:        linear-gradient(45deg, @global-primary-background, lighten(@global-primary-background, 10%));
+@button-primary-hover-box-shadow:               ~'';
+@button-primary-active-background:              darken(@button-primary-background, 5%);
+
+@button-secondary-color:                        @global-primary-background;
+@button-secondary-background:                   lighten(saturate(@global-secondary-background, 5%), 63%);
+@internal-button-secondary-gradient:            ~'';
+@button-secondary-hover-color:                  @button-secondary-color;
+@button-secondary-hover-background:             lighten(saturate(@global-secondary-background, 8%), 60%);
+@internal-button-secondary-hover-gradient:      ~'';
+@button-secondary-hover-box-shadow:             ~'';
+@button-secondary-active-color:                 @button-secondary-hover-color;
+@button-secondary-active-background:            @button-secondary-background;
+
+//
+// Card
+//
+
+@card-primary-box-shadow:                       0 20px 40px 0 rgba(0,15,39,0.1);
+@internal-card-primary-gradient:                linear-gradient(45deg, @global-primary-background, lighten(@global-primary-background, 10%));
+@internal-card-primary-hover-gradient:          linear-gradient(45deg, @global-primary-background, lighten(@global-primary-background, 8%));
+@card-primary-hover-box-shadow:                 @global-xlarge-box-shadow;
+
+@card-secondary-box-shadow:                     0 20px 40px 0 rgba(0,15,39,0.1);
+@internal-card-secondary-gradient:              linear-gradient(45deg, darken(@global-secondary-background, 3%), lighten(@global-secondary-background, 8%));
+@internal-card-secondary-hover-gradient:        linear-gradient(45deg, @global-secondary-background, lighten(@global-secondary-background, 8%));
+@card-secondary-hover-box-shadow:               @global-xlarge-box-shadow;
+
+@internal-card-badge-gradient:                  linear-gradient(45deg, @global-primary-background, lighten(@global-primary-background, 10%));
+
+//
+// Divider
+//
+
+@divider-icon-color:                            @global-border;
+@divider-icon-line-border:                      @global-border;
+
+//
+// Form
+//
+
+@form-focus-background:                         darken(@global-muted-background, 2%);
+
+//
+// Search
+//
+
+@search-default-focus-background:               darken(@global-muted-background, 2%);
+
+//
+// Tooltip
+//
+
+@tooltip-color:                                 @global-secondary-background;
+@tooltip-background:                            lighten(saturate(@global-secondary-background, 5%), 63%);
+
+//
+// Pagination
+//
+
+@pagination-item-active-color:                 @global-inverse-color;
+@pagination-item-hover-color:                  @global-secondary-background;
+@pagination-item-hover-background:             lighten(saturate(@global-secondary-background, 5%), 63%);

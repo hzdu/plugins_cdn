@@ -1,0 +1,212 @@
+{
+    "@import": "./element.php",
+    "name": "social",
+    "title": "Social",
+    "group": "multiple items",
+    "icon": "${url:images/icon.svg}",
+    "iconSmall": "${url:images/iconSmall.svg}",
+    "element": true,
+    "container": true,
+    "width": 500,
+    "defaults": {
+        "link_style": "button",
+        "grid": "horizontal",
+        "grid_gap": "small",
+        "image_svg_inline": true,
+        "margin": "default"
+    },
+    "placeholder": {
+        "children": [
+            { "type": "social_item", "props": { "link": "https://twitter.com" } },
+            { "type": "social_item", "props": { "link": "https://facebook.com" } },
+            { "type": "social_item", "props": { "link": "https://www.youtube.com" } }
+        ]
+    },
+    "templates": {
+        "render": "./templates/template.php",
+        "content": "./templates/content.php"
+    },
+    "fields": {
+        "content": {
+            "label": "Items",
+            "type": "content-items",
+            "title": "link",
+            "item": "social_item"
+        },
+        "link_style": {
+            "label": "Style",
+            "type": "select",
+            "options": {
+                "Default": "",
+                "Button": "button",
+                "Link": "link",
+                "Link Muted": "muted",
+                "Link Text": "text",
+                "Link Reset": "reset"
+            }
+        },
+        "icon_width": {
+            "label": "Icon Width",
+            "description": "Set the icon width."
+        },
+        "image_loading": {
+            "label": "Image Loading",
+            "description": "By default, images are loaded lazy. Enable eager loading for images in the initial viewport.",
+            "type": "checkbox",
+            "text": "Load image eagerly"
+        },
+        "grid": {
+            "label": "Grid",
+            "type": "select",
+            "options": {
+                "Horizontal": "horizontal",
+                "Vertical": "vertical"
+            }
+        },
+        "grid_vertical_breakpoint": {
+            "label": "Grid Breakpoint",
+            "description": "Set the breakpoint from which grid items will align side by side.",
+            "type": "select",
+            "options": {
+                "Always": "",
+                "Small (Phone Landscape)": "s",
+                "Medium (Tablet Landscape)": "m",
+                "Large (Desktop)": "l",
+                "X-Large (Large Screens)": "xl"
+            },
+            "enable": "grid == 'vertical'"
+        },
+        "grid_gap": {
+            "label": "Grid Gap",
+            "description": "Set the size of the gap between the grid columns and rows.",
+            "type": "select",
+            "options": {
+                "Small": "small",
+                "Medium": "medium",
+                "Default": "",
+                "Large": "large"
+            }
+        },
+        "link_target": {
+            "label": "Link Target",
+            "type": "checkbox",
+            "text": "Open in a new window"
+        },
+        "link_aria_label": {
+            "label": "ARIA Label",
+            "description": "Enter a descriptive text label to make it accessible if the link has no visible text."
+        },
+        "image_svg_inline": {
+            "label": "Inline SVG",
+            "description": "Inject SVG images into the page markup so that they can easily be styled with CSS.",
+            "type": "checkbox",
+            "text": "Make SVG stylable with CSS"
+        },
+        "position": "${builder.position}",
+        "position_left": "${builder.position_left}",
+        "position_right": "${builder.position_right}",
+        "position_top": "${builder.position_top}",
+        "position_bottom": "${builder.position_bottom}",
+        "position_z_index": "${builder.position_z_index}",
+        "margin": "${builder.margin}",
+        "margin_remove_top": "${builder.margin_remove_top}",
+        "margin_remove_bottom": "${builder.margin_remove_bottom}",
+        "maxwidth": "${builder.maxwidth}",
+        "maxwidth_breakpoint": "${builder.maxwidth_breakpoint}",
+        "block_align": "${builder.block_align}",
+        "block_align_breakpoint": "${builder.block_align_breakpoint}",
+        "block_align_fallback": "${builder.block_align_fallback}",
+        "text_align": "${builder.text_align}",
+        "text_align_breakpoint": "${builder.text_align_breakpoint}",
+        "text_align_fallback": "${builder.text_align_fallback}",
+        "animation": "${builder.animation}",
+        "_parallax_button": "${builder._parallax_button}",
+        "visibility": "${builder.visibility}",
+        "name": "${builder.name}",
+        "status": "${builder.status}",
+        "source": "${builder.source}",
+        "id": "${builder.id}",
+        "class": "${builder.cls}",
+        "attributes": "${builder.attrs}",
+        "css": {
+            "label": "CSS",
+            "description": "Enter your own custom CSS. The following selectors will be prefixed automatically for this element: <code>.el-element</code>, <code>.el-link</code>",
+            "type": "editor",
+            "editor": "code",
+            "mode": "css",
+            "attrs": {
+                "debounce": 500,
+                "hints": [".el-element", ".el-link"]
+            }
+        },
+        "transform": "${builder.transform}"
+    },
+    "fieldset": {
+        "default": {
+            "type": "tabs",
+            "fields": [
+                {
+                    "title": "Content",
+                    "fields": ["content"]
+                },
+                {
+                    "title": "Settings",
+                    "fields": [
+                        {
+                            "label": "Social Icons",
+                            "type": "group",
+                            "divider": true,
+                            "fields": [
+                                "link_style",
+                                "icon_width",
+                                "image_loading",
+                                "grid",
+                                "grid_vertical_breakpoint",
+                                "grid_gap"
+                            ]
+                        },
+                        {
+                            "label": "Link",
+                            "type": "group",
+                            "divider": true,
+                            "fields": ["link_target", "link_aria_label"]
+                        },
+                        {
+                            "label": "Image",
+                            "type": "group",
+                            "divider": true,
+                            "fields": ["image_svg_inline"]
+                        },
+                        {
+                            "label": "General",
+                            "type": "group",
+                            "fields": [
+                                "position",
+                                "position_left",
+                                "position_right",
+                                "position_top",
+                                "position_bottom",
+                                "position_z_index",
+                                "margin",
+                                "margin_remove_top",
+                                "margin_remove_bottom",
+                                "maxwidth",
+                                "maxwidth_breakpoint",
+                                "block_align",
+                                "block_align_breakpoint",
+                                "block_align_fallback",
+                                "text_align",
+                                "text_align_breakpoint",
+                                "text_align_fallback",
+                                "animation",
+                                "_parallax_button",
+                                "visibility"
+                            ]
+                        }
+                    ]
+                },
+                "${builder.advanced}"
+            ]
+        }
+    }
+}

@@ -1,0 +1,156 @@
+/*
+
+Name: Florence
+Background: White
+Color: Beige
+Type: Material
+Preview: https://yootheme.com/api/style/florence/default.jpg
+
+Style: white-beige
+Name: White Beige
+Background: White
+Color: Beige
+Type: Material
+Preview: https://yootheme.com/api/style/florence/white-beige.jpg
+
+Style: light-pink
+Name: Light Pink
+Background: Light
+Color: Pink
+Type: Material
+Preview: https://yootheme.com/api/style/florence/light-pink.jpg
+
+Style: white-red
+Name: White Red
+Background: White
+Color: Red
+Type: Material
+Preview: https://yootheme.com/api/style/florence/white-red.jpg
+
+Style: white-orange
+Name: White Orange
+Background: White
+Color: Orange
+Type: Material
+Preview: https://yootheme.com/api/style/florence/white-orange.jpg
+
+Style: dark-brown
+Name: Dark Brown
+Background: Dark
+Color: Brown
+Type: Material
+Preview: https://yootheme.com/api/style/florence/dark-brown.jpg
+
+*/
+
+// Platform
+@import "platform.less";
+
+// UIkit Core
+@import "../vendor/assets/uikit/src/less/uikit.less";
+
+// UIkit Theme
+@import "../vendor/assets/uikit-themes/master/_import.less";
+@import "../vendor/assets/uikit-themes/master-florence/_import.less";
+
+// Theme
+@import "theme.less";
+
+
+// Variables
+// ========================================================================
+
+//
+// Toolbar
+//
+
+@theme-toolbar-font-size:                                11px;
+
+//
+// Section
+//
+
+@section-title-color:                                    @global-emphasis-color;
+
+@internal-section-title-dash-border-height:              60px;
+@internal-section-title-dash-border-margin:              20px;
+
+//
+// Box Decoration
+//
+
+@theme-box-decoration-top:                               30%;
+@theme-box-decoration-right:                             15%;
+
+@theme-box-decoration-primary-transform-horizontal:      -20px;
+@theme-box-decoration-primary-transform-vertical:        20px;
+@theme-box-decoration-primary-background:                @global-primary-background;
+
+@theme-box-decoration-secondary-transform-horizontal:    -20px;
+@theme-box-decoration-secondary-transform-vertical:      20px;
+@theme-box-decoration-secondary-background:              darken(@global-primary-background, 3%);
+
+@inverse-theme-box-decoration-primary-background:        @inverse-global-primary-background;
+@inverse-theme-box-decoration-secondary-background:      @inverse-global-primary-background;
+
+//
+// Transition Border
+//
+
+@theme-transition-border-hover-border-width:             0 0 10px 0;
+
+//
+// WooCommerce
+//
+
+//
+// Shop page
+//
+
+@woocommerce-shop-page-title-font-size:                 18px;
+@woocommerce-shop-page-title-line-height:               1.4;
+@woocommerce-shop-page-title-color:                     @base-h5-color;
+@woocommerce-shop-page-title-font-family:               @global-primary-font-family;
+@woocommerce-shop-page-title-font-weight:               @global-primary-font-weight;
+@woocommerce-shop-page-title-text-transform:            @global-primary-text-transform;
+@woocommerce-shop-page-title-letter-spacing:            -0.01em;
+@woocommerce-shop-page-title-font-style:                @global-primary-font-style;
+
+@woocommerce-shop-page-price-font-family:               @global-secondary-font-family;
+@woocommerce-shop-page-price-font-size:                 11px;
+@woocommerce-shop-page-price-letter-spacing:            2px;
+@woocommerce-shop-page-price-margin-top:                2px;
+@woocommerce-shop-page-price-text-transform:            @global-secondary-text-transform;
+
+//
+// Single product page
+//
+
+@woocommerce-product-page-price-font-size:              @base-h5-font-size;
+@woocommerce-product-page-price-line-height:            @base-h5-line-height;
+@woocommerce-product-page-price-font-family:            @base-h5-font-family;
+@woocommerce-product-page-price-font-weight:            @base-h5-font-weight;
+@woocommerce-product-page-price-text-transform:         @base-h5-text-transform;
+@woocommerce-product-page-price-letter-spacing:         @base-h5-letter-spacing;
+@woocommerce-product-page-price-font-style:             @base-h5-font-style;
+
+//
+// Rating
+//
+
+@woocommerce-rating-color:                               @global-secondary-background;
+@woocommerce-rating-font-size:                           12px;
+
+//
+// Widgets
+//
+
+@woocommerce-widget-active-filters-font-size:            @global-small-font-size;
+
+
+// Style
+// ========================================================================
+
+@import (optional) "../vendor/assets/uikit-themes/master-florence/styles/@{internal-style}.less";
+
+@internal-style: ~'';

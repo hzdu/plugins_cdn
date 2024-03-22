@@ -1,0 +1,45 @@
+//
+// Component: Dropbar
+//
+// ========================================================================
+
+
+// Variables
+// ========================================================================
+
+//
+// New
+//
+
+@dropbar-backdrop-filter:                       ~'';
+
+
+// Component
+// ========================================================================
+
+.hook-dropbar() when not (@dropbar-backdrop-filter = ~'') {
+    backdrop-filter: @dropbar-backdrop-filter;
+    -webkit-backdrop-filter: @dropbar-backdrop-filter;
+}
+
+
+// Direction modifier
+// ========================================================================
+
+.hook-dropbar-top() {}
+
+.hook-dropbar-bottom() {}
+
+.hook-dropbar-left() {}
+
+.hook-dropbar-right() {}
+
+
+// Miscellaneous
+// ========================================================================
+
+.hook-dropbar-misc() when not (@navbar-mode = border-always) and not (@navbar-mode = rail) {
+
+    .uk-dropbar-inset { padding-top: 0; }
+
+}

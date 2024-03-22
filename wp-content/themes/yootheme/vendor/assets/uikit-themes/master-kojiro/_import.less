@@ -1,0 +1,421 @@
+@internal-fonts: 'Manrope:400,500,600';
+
+
+
+
+
+
+
+
+@global-font-family: Manrope;
+@global-font-size: 16px;
+@global-line-height: 1.5;
+
+@global-xxlarge-font-size: 42px;
+@global-xlarge-font-size: 32px;
+@global-large-font-size: 24px;
+@global-medium-font-size: 20px;
+@global-small-font-size: 14px;
+
+@global-primary-font-family: inherit;
+@global-primary-font-weight: 600;
+@global-primary-text-transform: inherit;
+@global-primary-letter-spacing: inherit;
+@global-primary-font-style: inherit;
+
+@global-secondary-font-family: inherit;
+@global-secondary-font-weight: inherit;
+@global-secondary-text-transform: inherit;
+@global-secondary-letter-spacing: inherit;
+@global-secondary-font-style: inherit;
+
+
+
+
+
+@global-color: #000;
+@global-emphasis-color: #000;
+@global-muted-color: #AAA;
+
+@global-link-color: #E3A154;
+@global-link-hover-color: #C0853D;
+
+@global-inverse-color: #FFF;
+
+
+
+
+
+@global-background: #FFF;
+
+@global-muted-background: #F8F8F8;
+@global-primary-background: #E3A154;
+@global-secondary-background: #3E5249;
+
+@global-success-background: #80B485;
+@global-warning-background: #E5BA43;
+@global-danger-background: #D15F3C;
+
+
+
+
+
+@global-border-width: 1px;
+@global-border: #E5E5E5;
+@global-border-radius: 2px;
+
+
+
+
+
+@global-small-box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+@global-medium-box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+@global-large-box-shadow: 0 14px 25px rgba(0,0,0,0.16);
+@global-xlarge-box-shadow: 0 28px 50px rgba(0,0,0,0.16);
+
+
+
+
+
+
+@global-margin: 20px;
+@global-small-margin: 10px;
+@global-medium-margin: 40px;
+@global-large-margin: 70px;
+@global-xlarge-margin: 140px;
+
+
+@global-gutter: 30px;
+@global-small-gutter: 15px;
+@global-medium-gutter: 40px;
+@global-large-gutter: 70px;
+
+
+
+
+
+@global-control-height: 40px;
+@global-control-small-height: 30px;
+@global-control-large-height: 55px;
+
+
+
+
+
+@global-z-index: 1000;
+@base-link-hover-text-decoration: none;
+@base-ins-background: #FFEEBC;
+@base-mark-background: #FFEEBC;
+@base-heading-font-weight: 600;
+@base-blockquote-font-style: normal;
+@base-selection-background: @global-primary-background;
+@base-pre-padding: 20px;
+@base-pre-background: @global-muted-background;
+@base-pre-border-width: @global-border-width;
+@base-pre-border: @global-border;
+@base-blockquote-border: @global-primary-background;
+@base-blockquote-border-mode: -left;
+@base-blockquote-border-width: 2px;
+@base-blockquote-font-weight: 500;
+@base-blockquote-padding-left: 22px;
+@base-blockquote-footer-font-style: normal;
+@inverse-base-code-color: #D15F3C;
+@inverse-base-color: fade(@global-inverse-color, 77%);
+@inverse-base-em-color: #D15F3C;
+@inverse-base-link-hover-color: @inverse-global-muted-color;
+@inverse-base-blockquote-border: @global-primary-background;
+@link-muted-hover-color: @global-primary-background;
+@link-text-hover-color: @global-primary-background;
+@inverse-link-heading-hover-color: @global-primary-background;
+@inverse-link-muted-hover-color: @global-primary-background;
+@inverse-link-text-hover-color: @global-primary-background;
+@heading-divider-border: @global-primary-background;
+@heading-bullet-border: @global-primary-background;
+@heading-line-border: @global-emphasis-color;
+@inverse-heading-bullet-border: @inverse-global-emphasis-color;
+@inverse-heading-divider-border: @inverse-global-emphasis-color;
+@inverse-heading-line-border: @inverse-global-emphasis-color;
+@divider-icon-color: @global-primary-background;
+@internal-divider-icon-image: "../../../../uikit-themes/master-kojiro/images/divider-icon.svg";
+@divider-small-border-width: 2px;
+@divider-small-border: @global-primary-background;
+@divider-vertical-border-width: 2px;
+@divider-vertical-border: @global-primary-background;
+@inverse-divider-icon-color: @global-primary-background;
+@inverse-divider-small-border: @global-primary-background;
+@inverse-divider-vertical-border: @global-primary-background;
+@inverse-list-striped-background: rgba(255, 255, 255, 0.05);
+@description-list-term-font-size: 18px;
+@table-header-cell-font-weight: 500;
+@table-caption-font-size: @global-font-size;
+@table-row-active-background: rgba(227, 161, 84, 0.12);
+@table-header-cell-text-transform: inherit;
+@inverse-table-header-cell-color: fade(@global-inverse-color, 85%);
+@icon-link-hover-color: @global-primary-background;
+@icon-button-background: @global-primary-background;
+@icon-button-color: @global-inverse-color;
+@icon-button-hover-color: @global-inverse-color;
+@icon-button-active-color: @global-inverse-color;
+@icon-button-border-width: 2px;
+@icon-button-hover-box-shadow: 0 0 0 5px fade(@icon-button-background, 30%);
+@icon-button-active-box-shadow: 0 0 0 3px fade(@icon-button-background, 30%);
+@inverse-icon-link-color: fade(@global-inverse-color, 95%);
+@inverse-icon-link-hover-color: @global-primary-background;
+@inverse-icon-link-active-color: fade(@global-inverse-color, 95%);
+@inverse-icon-button-background: @global-primary-background;
+@inverse-icon-button-color: @global-inverse-color;
+@inverse-icon-button-hover-background: darken(@global-primary-background, 5%);
+@inverse-icon-button-active-background: darken(@global-primary-background, 10%);
+@inverse-icon-button-hover-color: fade(@global-inverse-color, 85%);
+@inverse-icon-button-active-color: fade(@global-inverse-color, 95%);
+@form-background: transparent;
+@form-disabled-background: transparent;
+@form-range-track-height: 2px;
+@form-range-track-focus-background: @global-border;
+@form-range-thumb-background: @global-primary-background;
+@form-small-font-size: @global-font-size;
+@form-icon-color: @global-inverse-color;
+@form-border-mode: -bottom;
+@form-border-width: @global-border-width;
+@form-border: @global-border;
+@form-danger-border: @global-danger-background;
+@form-disabled-border: @global-border;
+@form-success-border: @global-success-background;
+@form-focus-border: @global-primary-background;
+@inverse-form-background: transparent;
+@inverse-form-focus-background: transparent;
+@inverse-form-select-icon-color: rgba(255, 255, 255, 0.90);
+@inverse-form-radio-checked-focus-background: @global-primary-background;
+@inverse-form-radio-checked-background: @global-primary-background;
+@inverse-form-border: @inverse-global-border;
+@inverse-form-focus-border: @global-primary-background;
+@button-padding-horizontal: 23px;
+@button-link-hover-color: @global-primary-background;
+@button-border-radius: 500px;
+@button-default-hover-box-shadow: 0 0 0 5px fade(@button-default-background, 95%);
+@button-default-active-box-shadow: 0 0 0 3px fade(@button-default-background, 95%);
+@button-danger-hover-box-shadow: 0 0 0 5px fade(@button-danger-background, 15%);
+@button-danger-active-box-shadow: 0 0 0 2px fade(@button-danger-background, 15%);
+@button-font-family: @global-primary-font-family;
+@button-font-weight: @global-primary-font-weight;
+@button-font-style: @global-primary-font-style;
+@button-letter-spacing: @global-primary-letter-spacing;
+@button-primary-hover-box-shadow: 0 0 0 5px fade(@button-primary-background, 30%);
+@button-primary-active-box-shadow: 0 0 0 3px fade(@button-primary-background, 30%);
+@button-secondary-hover-box-shadow: 0 0 0 5px fade(@button-secondary-background, 20%);
+@button-secondary-active-box-shadow: 0 0 0 2px fade(@button-secondary-background, 20%);
+@button-text-border-width: 2px;
+@button-text-mode: border-bottom;
+@button-text-hover-border: @global-primary-background;
+@button-text-transform: @global-primary-text-transform;
+@inverse-button-default-background: @global-muted-background;
+@inverse-button-default-hover-background: #DFDFDF;
+@inverse-button-primary-background: @global-primary-background;
+@inverse-button-primary-color: @inverse-global-emphasis-color;
+@inverse-button-primary-hover-color: @inverse-global-emphasis-color;
+@inverse-button-primary-active-color: @inverse-global-emphasis-color;
+@inverse-button-default-hover-box-shadow: 0 0 0 4px fade(@inverse-button-default-hover-background, 24%);
+@inverse-button-default-active-box-shadow: 0 0 0 3px fade(@inverse-button-default-hover-background, 24%);
+@inverse-button-primary-hover-box-shadow: 0 0 0 4px fade(@global-primary-background, 30%);
+@inverse-button-primary-active-box-shadow: 0 0 0 3px fade(@global-primary-background, 30%);
+@inverse-button-secondary-hover-box-shadow: 0 0 0 4px fade(@inverse-button-secondary-background, 24%);
+@inverse-button-secondary-active-box-shadow: 0 0 0 3px fade(@inverse-button-secondary-background, 24%);
+@progress-height: 7px;
+@progress-background: darken(@global-muted-background, 5%);
+@card-default-hover-background: @card-default-background;
+@card-primary-hover-background: @card-primary-background;
+@card-secondary-hover-background: @card-secondary-background;
+@card-hover-box-shadow: 0 0 0 6px darken(@global-muted-background, 3%);
+@card-default-hover-box-shadow: 0 0 0 6px darken(@card-default-background, 3%);
+@card-primary-hover-box-shadow: 0 0 0 6px darken(@card-primary-background, 5%);
+@card-secondary-hover-box-shadow: 0 0 0 6px darken(@card-secondary-background, 5%);
+@close-color: @global-color;
+@close-hover-color: @global-primary-background;
+@marker-background: @global-primary-background;
+@marker-hover-background: darken(@global-primary-background, 5%);
+@inverse-marker-background: @global-inverse-color;
+@inverse-marker-color: @global-secondary-background;
+@inverse-marker-hover-color: @global-secondary-background;
+@inverse-marker-hover-background: fade(@global-inverse-color, 80%);
+@totop-hover-color: @global-primary-background;
+@totop-active-color: @global-primary-background;
+@inverse-totop-hover-color: @global-primary-background;
+@inverse-totop-active-color: @global-primary-background;
+@alert-success-background: lighten(tint(@global-success-background, 30%), 22%);
+@alert-close-opacity: 0.8;
+@inverse-badge-background: @global-primary-background;
+@inverse-badge-color: @global-inverse-color;
+@label-border-width: 2px;
+@label-font-weight: 500;
+@overlay-primary-background: fade(@global-primary-background, 85%);
+@article-meta-font-size: @global-font-size;
+@comment-meta-font-size: @global-font-size;
+@search-default-background: transparent;
+@search-navbar-font-size: 21px;
+@search-toggle-hover-color: @global-primary-background;
+@search-default-border-mode: -bottom;
+@search-default-border: @global-border;
+@search-default-border-width: @global-border-width;
+@search-focus-border: @global-primary-background;
+@inverse-search-default-background: transparent;
+@inverse-search-default-focus-background: transparent;
+@inverse-search-toggle-color: rgba(255, 255, 255, 0.62);
+@inverse-search-toggle-hover-color: #E3A154;
+@inverse-search-default-border: rgba(229, 229, 229, 0.46);
+@inverse-search-default-focus-border: #E3A154;
+@accordion-item-padding-top: 20px;
+@accordion-item-border: @global-border;
+@accordion-item-border-width: 1px;
+@dropdown-padding: 40px;
+@dropdown-background: @global-secondary-background;
+@dropdown-color-mode: light;
+@dropdown-nav-item-color: @global-inverse-color;
+@dropdown-nav-header-color: @global-inverse-color;
+@dropdown-nav-sublist-item-color: @global-inverse-color;
+@dropdown-nav-item-hover-color: @global-primary-background;
+@dropdown-nav-sublist-item-hover-color: @global-primary-background;
+@dropdown-nav-font-size: 18px;
+@dropdown-nav-font-weight: 500;
+@dropbar-background: @global-secondary-background;
+@dropbar-color-mode: light;
+@tooltip-background: @global-primary-background;
+@nav-header-font-size: @global-font-size;
+@nav-header-text-transform: inherit;
+@nav-default-item-color: @global-color;
+@nav-default-item-hover-color: @global-primary-background;
+@nav-default-item-active-color: @global-primary-background;
+@nav-default-sublist-item-hover-color: @global-primary-background;
+@nav-default-sublist-item-active-color: @global-primary-background;
+@nav-primary-font-size: @global-xxlarge-font-size;
+@nav-primary-item-color: @global-color;
+@nav-primary-item-hover-color: @global-primary-background;
+@nav-primary-item-active-color: @global-primary-background;
+@nav-primary-sublist-item-hover-color: @global-primary-background;
+@nav-secondary-item-color: @global-color;
+@nav-secondary-item-hover-color: @global-primary-background;
+@nav-secondary-item-active-color: @global-primary-background;
+@nav-secondary-subtitle-hover-color: @global-primary-background;
+@nav-secondary-sublist-item-hover-color: @global-primary-background;
+@nav-primary-subtitle-color: @global-muted-color;
+@nav-secondary-font-weight: 500;
+@inverse-nav-default-item-color: fade(@global-inverse-color, 90%);
+@inverse-nav-default-item-hover-color: @global-primary-background;
+@inverse-nav-default-sublist-item-hover-color: @global-primary-background;
+@inverse-nav-default-item-active-color: @global-primary-background;
+@inverse-nav-default-sublist-item-active-color: @global-primary-background;
+@inverse-nav-primary-item-color: fade(@global-inverse-color, 90%);
+@inverse-nav-primary-item-hover-color: @global-primary-background;
+@inverse-nav-primary-sublist-item-hover-color: @global-primary-background;
+@inverse-nav-primary-item-active-color: @global-primary-background;
+@inverse-nav-primary-sublist-item-active-color: fade(@global-inverse-color, 90%);
+@inverse-nav-secondary-item-hover-color: @global-primary-background;
+@inverse-nav-secondary-sublist-item-hover-color: @global-primary-background;
+@inverse-nav-secondary-subtitle-hover-color: @global-primary-background;
+@inverse-nav-secondary-item-active-color: @global-primary-background;
+@navbar-background: @global-background;
+@navbar-nav-item-height: 110px;
+@navbar-nav-item-color: @global-color;
+@navbar-nav-item-font-size: 18px;
+@navbar-nav-item-hover-color: @global-primary-background;
+@navbar-nav-item-active-color: @global-color;
+@navbar-toggle-color: @global-color;
+@navbar-subtitle-font-size: @global-font-size;
+@navbar-dropdown-shift-margin: -@navbar-dropdown-padding;
+@navbar-dropdown-padding: 40px;
+@navbar-dropdown-background: @global-secondary-background;
+@navbar-dropdown-color: @global-inverse-color;
+@navbar-dropdown-color-mode: light;
+@navbar-dropdown-nav-item-color: @global-inverse-color;
+@navbar-dropdown-nav-item-hover-color: @global-primary-background;
+@navbar-dropdown-nav-item-active-color: @global-primary-background;
+@navbar-dropdown-nav-header-color: @global-inverse-color;
+@navbar-dropdown-nav-divider-border: rgba(250, 250, 250, 0.2);
+@navbar-dropdown-nav-sublist-item-color: @global-inverse-color;
+@navbar-dropdown-nav-sublist-item-hover-color: @global-primary-background;
+@navbar-dropdown-nav-sublist-item-active-color: @global-primary-background;
+@navbar-nav-item-font-weight: 500;
+@navbar-nav-item-line-background: @global-primary-background;
+@navbar-nav-item-line-border-radius: 2px;
+@navbar-nav-item-line-height: 0;
+@navbar-nav-item-line-hover-height: 2px;
+@navbar-nav-item-line-margin-vertical: 30px;
+@navbar-nav-item-line-mode: true;
+@navbar-nav-item-line-onclick-height: 2px;
+@navbar-nav-item-line-active-height: 2px;
+@navbar-padding-top: 5px;
+@navbar-padding-bottom: @navbar-padding-top;
+@navbar-padding-top-m: 15px;
+@navbar-padding-bottom-m: @navbar-padding-top-m;
+@navbar-primary-nav-item-hover-color: @global-primary-background;
+@inverse-navbar-nav-item-color: fade(@global-inverse-color, 84%);
+@inverse-navbar-nav-item-active-color: @global-inverse-color;
+@inverse-navbar-nav-item-line-hover-background: @global-primary-background;
+@inverse-navbar-nav-item-line-onclick-background: @global-primary-background;
+@inverse-navbar-nav-item-line-active-background: @global-primary-background;
+@subnav-item-color: @global-color;
+@subnav-item-hover-color: @global-primary-background;
+@subnav-item-active-color: @global-primary-background;
+@subnav-divider-margin-horizontal: 25px;
+@subnav-pill-item-padding-vertical: 7px;
+@subnav-pill-item-padding-horizontal: 20px;
+@subnav-pill-item-onclick-color: @global-primary-background;
+@subnav-item-font-weight: 500;
+@subnav-pill-item-border-radius: 500px;
+@inverse-subnav-pill-item-active-color: rgb(194, 127, 44);
+@breadcrumb-item-font-size: @global-font-size;
+@breadcrumb-item-color: @global-color;
+@breadcrumb-item-hover-color: @global-primary-background;
+@breadcrumb-divider: "|";
+@breadcrumb-item-font-weight: 500;
+@breadcrumb-item-disabled-color: @global-muted-color;
+@inverse-breadcrumb-item-color: fade(@global-inverse-color, 84%);
+@inverse-breadcrumb-item-active-color: fade(@global-inverse-color, 84%);
+@inverse-breadcrumb-item-disabled-color: @inverse-global-muted-color;
+@pagination-item-color: @global-color;
+@pagination-item-hover-color: @global-primary-background;
+@pagination-item-active-color: @global-primary-background;
+@pagination-item-font-weight: 500;
+@inverse-pagination-item-color: fade(@global-inverse-color, 85%);
+@inverse-pagination-item-hover-color: @global-primary-background;
+@inverse-pagination-item-active-color: @global-primary-background;
+@tab-item-hover-color: @global-primary-background;
+@tab-item-font-weight: 500;
+@inverse-tab-item-color: fade(@global-inverse-color, 84%);
+@inverse-tab-item-hover-color: @global-primary-background;
+@inverse-tab-item-active-border: @global-primary-background;
+@slidenav-color: @global-inverse-color;
+@slidenav-hover-color: @global-inverse-color;
+@slidenav-active-color: @global-inverse-color;
+@slidenav-background: @global-secondary-background;
+@slidenav-hover-background: darken(@global-secondary-background,10%);
+@slidenav-active-background: darken(@global-secondary-background,15%);
+@inverse-slidenav-color: @global-emphasis-color;
+@inverse-slidenav-hover-color: @global-emphasis-color;
+@inverse-slidenav-active-color: @global-emphasis-color;
+@inverse-slidenav-background: @global-inverse-color;
+@inverse-slidenav-hover-background: fade(@global-inverse-color, 80%);
+@inverse-slidenav-active-background: fade(@global-inverse-color, 70%);
+@dotnav-item-background: transparent;
+@dotnav-item-hover-background: @global-primary-background;
+@dotnav-item-onclick-background: @global-primary-background;
+@dotnav-item-active-background: @global-primary-background;
+@dotnav-item-border-width: @global-border-width;
+@dotnav-item-border: @global-primary-background;
+@dotnav-item-hover-box-shadow: 0 0 0 3px fade(@dotnav-item-border, 30%);
+@inverse-dotnav-item-background: transparent;
+@inverse-dotnav-item-hover-background: @inverse-global-muted-color;
+@inverse-dotnav-item-onclick-background: @global-inverse-color;
+@inverse-dotnav-item-active-background: @global-inverse-color;
+@inverse-dotnav-item-border: @global-inverse-color;
+@iconnav-item-hover-color: @global-primary-background;
+@inverse-iconnav-item-color: fade(@global-inverse-color, 90%);
+@inverse-iconnav-item-hover-color: @global-primary-background;
+@inverse-iconnav-item-active-color: @global-inverse-color;
+@text-lead-font-size: @global-medium-font-size;
+@text-meta-font-size: @global-font-size;
+@text-small-font-size: @global-font-size;
+@text-large-font-size: 21px;
+@text-lead-font-weight: 500;
+@text-meta-font-weight: 400;
+@inverse-text-primary-color: @global-primary-background;
+@inverse-text-secondary-color: lighten(@global-secondary-background, 15%);

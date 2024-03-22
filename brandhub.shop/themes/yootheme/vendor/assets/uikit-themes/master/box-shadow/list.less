@@ -1,0 +1,41 @@
+//
+// Component: List
+//
+// ========================================================================
+
+
+// Variables
+// ========================================================================
+
+//
+// New
+//
+
+@list-divider-box-shadow:                       none;
+
+
+// Style modifiers
+// ========================================================================
+
+.hook-list-divider() when not (@list-divider-box-shadow = none) {
+    box-shadow: @list-divider-box-shadow;
+}
+
+.hook-list-striped() {}
+
+
+// Miscellaneous
+// ========================================================================
+
+.hook-list-misc() {}
+
+
+// Inverse
+// ========================================================================
+
+@inverse-list-divider-box-shadow:               none;
+
+.hook-inverse-list-divider() when not (@list-divider-box-shadow = none) {
+    box-shadow: @inverse-list-divider-box-shadow;
+}
+.hook-inverse-list-striped() {}

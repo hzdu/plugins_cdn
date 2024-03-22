@@ -1,0 +1,328 @@
+//
+// Component: Nav
+//
+// ========================================================================
+
+
+// Variables
+// ========================================================================
+
+//
+// New
+//
+
+@nav-header-font-weight:                        inherit;
+@nav-header-letter-spacing:                     @global-secondary-letter-spacing;
+
+@nav-default-font-family:                       @global-secondary-font-family;
+@nav-default-font-weight:                       @global-secondary-font-weight;
+@nav-default-text-transform:                    @global-secondary-text-transform;
+@nav-default-letter-spacing:                    @global-secondary-letter-spacing;
+@nav-default-font-style:                        @global-secondary-font-style;
+
+@nav-default-subtitle-color:                    @nav-default-item-color;
+@nav-default-subtitle-font-family:              inherit;
+@nav-default-subtitle-font-weight:              inherit;
+@nav-default-subtitle-text-transform:           inherit;
+@nav-default-subtitle-letter-spacing:           inherit;
+@nav-default-subtitle-line-height:              inherit;
+@nav-default-subtitle-font-style:               inherit;
+
+@nav-primary-font-family:                       @global-primary-font-family;
+@nav-primary-font-weight:                       @global-primary-font-weight;
+@nav-primary-text-transform:                    @global-primary-text-transform;
+@nav-primary-letter-spacing:                    @global-primary-letter-spacing;
+@nav-primary-font-style:                        @global-primary-font-style;
+
+@nav-primary-subtitle-color:                    @nav-primary-item-color;
+@nav-primary-subtitle-font-family:              inherit;
+@nav-primary-subtitle-font-weight:              inherit;
+@nav-primary-subtitle-text-transform:           inherit;
+@nav-primary-subtitle-letter-spacing:           inherit;
+@nav-primary-subtitle-line-height:              inherit;
+@nav-primary-subtitle-font-style:               inherit;
+
+@nav-secondary-font-family:                     @global-secondary-font-family;
+@nav-secondary-font-weight:                     @global-secondary-font-weight;
+@nav-secondary-text-transform:                  @global-secondary-text-transform;
+@nav-secondary-letter-spacing:                  @global-secondary-letter-spacing;
+@nav-secondary-font-style:                      @global-secondary-font-style;
+
+@nav-secondary-subtitle-font-family:            inherit;
+@nav-secondary-subtitle-font-weight:            inherit;
+@nav-secondary-subtitle-text-transform:         inherit;
+@nav-secondary-subtitle-letter-spacing:         inherit;
+@nav-secondary-subtitle-line-height:            inherit;
+@nav-secondary-subtitle-font-style:             inherit;
+
+
+// Sublists
+// ========================================================================
+
+.hook-nav-sub() {}
+
+
+// Header
+// ========================================================================
+
+.hook-nav-header() when not (@nav-header-font-weight = inherit) {
+    font-weight: @nav-header-font-weight;
+}
+
+.hook-nav-header() when not (@nav-header-letter-spacing = inherit) {
+    letter-spacing: @nav-header-letter-spacing;
+}
+
+
+// Divider
+// ========================================================================
+
+.hook-nav-divider() {}
+
+
+// Default style modifier
+// ========================================================================
+
+.hook-nav-default() {}
+
+.hook-nav-default() when not (@nav-default-font-family = inherit) {
+    font-family: @nav-default-font-family;
+}
+
+.hook-nav-default() when not (@nav-default-font-weight = inherit) {
+    font-weight: @nav-default-font-weight;
+}
+
+.hook-nav-default() when not (@nav-default-text-transform = inherit) {
+    text-transform: @nav-default-text-transform;
+}
+
+.hook-nav-default() when not (@nav-default-letter-spacing = inherit) {
+    letter-spacing: @nav-default-letter-spacing;
+}
+
+.hook-nav-default() when not (@nav-default-font-style = inherit) {
+    font-style: @nav-default-font-style;
+}
+
+.hook-nav-default-item() {}
+
+.hook-nav-default-item-hover() {}
+
+.hook-nav-default-item-active() {}
+
+.hook-nav-default-subtitle() {}
+
+.hook-nav-default-subtitle() when not (@nav-default-subtitle-font-family = inherit) {
+    font-family: @nav-default-subtitle-font-family;
+}
+
+.hook-nav-default-subtitle() when not (@nav-default-subtitle-font-weight = inherit) {
+    font-weight: @nav-default-subtitle-font-weight;
+}
+
+.hook-nav-default-subtitle() when not (@nav-default-subtitle-text-transform = inherit) {
+    text-transform: @nav-default-subtitle-text-transform;
+}
+
+.hook-nav-default-subtitle() when not (@nav-default-subtitle-letter-spacing = inherit) {
+    letter-spacing: @nav-default-subtitle-letter-spacing;
+}
+
+.hook-nav-default-subtitle() when not (@nav-default-subtitle-line-height = inherit) {
+    line-height: @nav-default-subtitle-line-height;
+}
+
+.hook-nav-default-subtitle() when not (@nav-default-subtitle-font-style = inherit) {
+    font-style: @nav-default-subtitle-font-style;
+}
+
+.hook-nav-default-header() {}
+
+.hook-nav-default-divider() {}
+
+
+// Primary style modifier
+// ========================================================================
+
+.hook-nav-primary() when not (@nav-primary-font-family = inherit) {
+    font-family: @nav-primary-font-family;
+}
+
+.hook-nav-primary() when not (@nav-primary-font-weight = inherit) {
+    font-weight: @nav-primary-font-weight;
+}
+
+.hook-nav-primary() when not (@nav-primary-text-transform = inherit) {
+    text-transform: @nav-primary-text-transform;
+}
+
+.hook-nav-primary() when not (@nav-primary-letter-spacing = inherit) {
+    letter-spacing: @nav-primary-letter-spacing;
+}
+
+.hook-nav-primary() when not (@nav-primary-font-style = inherit) {
+    font-style: @nav-primary-font-style;
+}
+
+.hook-nav-primary-item() {}
+
+.hook-nav-primary-item-hover() {}
+
+.hook-nav-primary-item-active() {}
+
+.hook-nav-primary-subtitle() {}
+
+.hook-nav-primary-subtitle() when not (@nav-primary-subtitle-font-family = inherit) {
+    font-family: @nav-primary-subtitle-font-family;
+}
+
+.hook-nav-primary-subtitle() when not (@nav-primary-subtitle-font-weight = inherit) {
+    font-weight: @nav-primary-subtitle-font-weight;
+}
+
+.hook-nav-primary-subtitle() when not (@nav-primary-subtitle-text-transform = inherit) {
+    text-transform: @nav-primary-subtitle-text-transform;
+}
+
+.hook-nav-primary-subtitle() when not (@nav-primary-subtitle-letter-spacing = inherit) {
+    letter-spacing: @nav-primary-subtitle-letter-spacing;
+}
+
+.hook-nav-primary-subtitle() when not (@nav-primary-subtitle-line-height = inherit) {
+    line-height: @nav-primary-subtitle-line-height;
+}
+
+.hook-nav-primary-subtitle() when not (@nav-primary-subtitle-font-style = inherit) {
+    font-style: @nav-primary-subtitle-font-style;
+}
+
+.hook-nav-primary-header() {}
+
+.hook-nav-primary-divider() {}
+
+
+// Secondary style modifier
+// ========================================================================
+
+.hook-nav-secondary() when not (@nav-secondary-font-family = inherit) {
+    font-family: @nav-secondary-font-family;
+}
+
+.hook-nav-secondary() when not (@nav-secondary-font-weight = inherit) {
+    font-weight: @nav-secondary-font-weight;
+}
+
+.hook-nav-secondary() when not (@nav-secondary-text-transform = inherit) {
+    text-transform: @nav-secondary-text-transform;
+}
+
+.hook-nav-secondary() when not (@nav-secondary-letter-spacing = inherit) {
+    letter-spacing: @nav-secondary-letter-spacing;
+}
+
+.hook-nav-secondary() when not (@nav-secondary-font-style = inherit) {
+    font-style: @nav-secondary-font-style;
+}
+
+.hook-nav-secondary-item() {}
+
+.hook-nav-secondary-item-hover() {}
+
+.hook-nav-secondary-item-active() {}
+
+.hook-nav-secondary-subtitle() when not (@nav-secondary-subtitle-font-family = inherit) {
+    font-family: @nav-secondary-subtitle-font-family;
+}
+
+.hook-nav-secondary-subtitle() when not (@nav-secondary-subtitle-font-weight = inherit) {
+    font-weight: @nav-secondary-subtitle-font-weight;
+}
+
+.hook-nav-secondary-subtitle() when not (@nav-secondary-subtitle-text-transform = inherit) {
+    text-transform: @nav-secondary-subtitle-text-transform;
+}
+
+.hook-nav-secondary-subtitle() when not (@nav-secondary-subtitle-letter-spacing = inherit) {
+    letter-spacing: @nav-secondary-subtitle-letter-spacing;
+}
+
+.hook-nav-secondary-subtitle() when not (@nav-secondary-subtitle-line-height = inherit) {
+    line-height: @nav-secondary-subtitle-line-height;
+}
+
+.hook-nav-secondary-subtitle() when not (@nav-secondary-subtitle-font-style = inherit) {
+    font-style: @nav-secondary-subtitle-font-style;
+}
+
+.hook-nav-secondary-subtitle-hover() {}
+
+.hook-nav-secondary-subtitle-active() {}
+
+.hook-nav-secondary-header() {}
+
+.hook-nav-secondary-divider() {}
+
+
+// Style modifier
+// ========================================================================
+
+.hook-nav-dividers() {}
+
+
+// Miscellaneous
+// ========================================================================
+
+.hook-nav-misc() when not (@nav-default-subtitle-color = @nav-default-item-color) {
+
+    .uk-nav-default > li:not(.uk-active) > a:not(:hover) .uk-nav-subtitle { color: @nav-default-subtitle-color; }
+
+}
+
+.hook-nav-misc() when not (@nav-primary-subtitle-color = @nav-primary-item-color) {
+
+    .uk-nav-primary > li:not(.uk-active) > a:not(:hover) .uk-nav-subtitle { color: @nav-primary-subtitle-color; }
+
+}
+
+
+// Inverse
+// ========================================================================
+
+@inverse-nav-default-subtitle-color:            @inverse-nav-default-item-color;
+@inverse-nav-primary-subtitle-color:            @inverse-nav-primary-item-color;
+
+.hook-inverse-nav-default-item() {}
+.hook-inverse-nav-default-item-hover() {}
+.hook-inverse-nav-default-item-active() {}
+.hook-inverse-nav-default-header() {}
+.hook-inverse-nav-default-divider() {}
+
+.hook-inverse-nav-primary-item() {}
+.hook-inverse-nav-primary-item-hover() {}
+.hook-inverse-nav-primary-item-active() {}
+.hook-inverse-nav-primary-header() {}
+.hook-inverse-nav-primary-divider() {}
+
+.hook-inverse-nav-secondary-item() {}
+.hook-inverse-nav-secondary-item-hover() {}
+.hook-inverse-nav-secondary-item-active() {}
+.hook-inverse-nav-secondary-subtitle() {}
+.hook-inverse-nav-secondary-subtitle-hover() {}
+.hook-inverse-nav-secondary-subtitle-active() {}
+.hook-inverse-nav-secondary-header() {}
+.hook-inverse-nav-secondary-divider() {}
+
+.hook-inverse-nav-dividers() {}
+
+.hook-inverse() when not (@nav-default-subtitle-color = @nav-default-item-color) {
+
+    .uk-nav-default > li:not(.uk-active) > a:not(:hover) .uk-nav-subtitle { color: @inverse-nav-default-subtitle-color; }
+
+}
+
+.hook-inverse() when not (@nav-primary-subtitle-color = @nav-primary-item-color) {
+
+    .uk-nav-primary > li:not(.uk-active) > a:not(:hover) .uk-nav-subtitle { color: @inverse-nav-primary-subtitle-color; }
+
+}

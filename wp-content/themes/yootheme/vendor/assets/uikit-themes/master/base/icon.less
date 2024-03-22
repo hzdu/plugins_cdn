@@ -1,0 +1,173 @@
+//
+// Component: Icon
+//
+// ========================================================================
+
+
+// Variables
+// ========================================================================
+
+@icon-button-transition-duration:               0.1s;
+@icon-button-backdrop-filter:                   ~'';
+
+@internal-icon-button-mode:                     ~''; // ripple, glow
+
+@internal-icon-button-glow-gradient:            ~'';
+@internal-icon-button-glow-filter:              ~'';
+@internal-icon-button-hover-glow-filter:        ~'';
+
+
+// Style modifiers
+// ========================================================================
+
+//
+// Link
+//
+
+.hook-icon-link() {}
+
+.hook-icon-link-hover() {}
+
+.hook-icon-link-active() {}
+
+//
+// Button
+//
+
+.hook-icon-button() {
+    transition: @icon-button-transition-duration ease-in-out;
+    transition-property: color, background-color, background-size, border-color, box-shadow;
+}
+
+.hook-icon-button() when not (@icon-button-backdrop-filter = ~'') {
+    backdrop-filter: @icon-button-backdrop-filter;
+    -webkit-backdrop-filter: @icon-button-backdrop-filter;
+}
+
+.hook-icon-button-hover() {}
+
+.hook-icon-button-active() {}
+
+//
+// Ripple
+// Fix rendering bug in Safari by fading the original color to transparent instead of `transparent` which is `rgba(0,0,0,0)`
+//
+
+.hook-icon-button() when (@internal-icon-button-mode = ripple) {
+    background-position: 50% 100%;
+    background-size: 0 0;
+    background-repeat: no-repeat;
+    background-image: radial-gradient(farthest-side at 50% 100%, @icon-button-hover-background ~'calc(100% - 1px)', fade(@icon-button-hover-background, 0%) 100%);
+    transition-duration: 0.5s;
+    transition-timing-function: cubic-bezier(.165,.85,.45,1);
+}
+
+.hook-icon-button-hover() when (@internal-icon-button-mode = ripple) {
+    background-size: 150% 150%;
+    background-color: @icon-button-background;
+}
+
+.hook-icon-button-active() when (@internal-icon-button-mode = ripple) {
+    background-image: none;
+    transition-duration: 0s;
+}
+
+//
+// Glow
+//
+
+.hook-icon-button() when (@internal-icon-button-mode = glow) {
+
+    &:not(.uk-hack) {
+        position: relative;
+        z-index: 0;
+        background: none !important;
+        box-shadow: none !important;
+        border: none !important;
+    }
+
+    &::before,
+    &::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        // Fix Safari flickering
+        will-change: filter;
+    }
+
+    &::before {
+        background-image: @internal-icon-button-glow-gradient;
+        filter: @internal-icon-button-glow-filter;
+        transition: filter @icon-button-transition-duration ease-in-out;
+    }
+
+}
+
+.hook-icon-button() when (@internal-icon-button-mode = glow) and not (@icon-button-border-radius = 0) {
+
+    &::before,
+    &::after { border-radius: @icon-button-border-radius; }
+
+}
+
+.hook-icon-button-hover() when (@internal-icon-button-mode = glow) and not (@internal-icon-button-hover-glow-filter = ~'') {
+
+    &::before { filter: @internal-icon-button-hover-glow-filter; }
+
+}
+
+.uk-icon-button::after:extend(.uk-icon-button) when (@internal-icon-button-mode = glow) {}
+.uk-icon-button:hover::after:extend(.uk-icon-button:hover) when (@internal-icon-button-mode = glow) {}
+.uk-icon-button:active::after:extend(.uk-icon-button:active) when (@internal-icon-button-mode = glow) {}
+
+
+// Miscellaneous
+// ========================================================================
+
+.hook-icon-misc() {}
+
+
+// Inverse
+// ========================================================================
+
+@internal-inverse-icon-button-glow-gradient:            ~'';
+
+.hook-inverse-icon-link() {}
+.hook-inverse-icon-link-hover() {}
+.hook-inverse-icon-link-active() {}
+
+.hook-inverse-icon-button() when (@internal-icon-button-mode = ripple) {
+    background-image: radial-gradient(farthest-side at 50% 100%, @inverse-icon-button-hover-background ~'calc(100% - 1px)', fade(@inverse-icon-button-hover-background, 0%) 100%);
+}
+.hook-inverse-icon-button-hover() when (@internal-icon-button-mode = ripple) {
+    background-color: @inverse-icon-button-background;
+}
+.hook-inverse-icon-button-active() when (@internal-icon-button-mode = ripple) {
+    background-image: none;
+}
+
+.hook-inverse() when (@internal-icon-button-mode = glow) and not (@internal-inverse-icon-button-glow-gradient = ~'') {
+
+    .uk-icon-button::before { background-image: @internal-inverse-icon-button-glow-gradient; }
+
+}
+.hook-inverse() when (@internal-icon-button-mode = glow) {
+
+    .uk-icon-button::after {
+        background-color: @inverse-icon-button-background;
+        .hook-inverse-icon-button();
+    }
+
+    .uk-icon-button:hover::after {
+        background-color: @inverse-icon-button-hover-background;
+        color: @inverse-icon-button-hover-color;
+        .hook-inverse-icon-button-hover();
+    }
+
+    .uk-icon-button:active::after {
+        background-color: @inverse-icon-button-active-background;
+        .hook-inverse-icon-button-active();
+    }
+
+}

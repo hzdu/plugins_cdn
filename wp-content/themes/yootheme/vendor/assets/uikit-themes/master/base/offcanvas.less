@@ -1,0 +1,41 @@
+//
+// Component: Off-canvas
+//
+// ========================================================================
+
+
+// Variables
+// ========================================================================
+
+//
+// New
+//
+
+@offcanvas-overlay-backdrop-filter:             ~'';
+
+
+// Bar
+// ========================================================================
+
+.hook-offcanvas-bar() {}
+
+
+// Close
+// ========================================================================
+
+.hook-offcanvas-close() {}
+
+
+// Overlay
+// ========================================================================
+
+.hook-offcanvas-overlay() when not (@offcanvas-overlay-backdrop-filter = ~'') {
+    backdrop-filter: @offcanvas-overlay-backdrop-filter;
+    -webkit-backdrop-filter: @offcanvas-overlay-backdrop-filter;
+}
+
+
+// Miscellaneous
+// ========================================================================
+
+.hook-offcanvas-misc() {}

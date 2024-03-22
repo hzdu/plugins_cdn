@@ -1,0 +1,83 @@
+//
+// Global
+//
+
+@global-color:                                  #7a838a;
+@global-muted-color:                            #a2a8ad;
+@global-emphasis-color:                         #1e262b;
+@global-link-color:                             #F92C8B;
+@global-link-hover-color:                       #4D58DF;
+
+@global-primary-background:                     #F92C8B;
+@global-secondary-background:                   #4D58DF;
+@global-muted-background:                       #f7f9fb;
+@global-danger-background:                      #f6294f;
+@global-success-background:                     #0fce76;
+
+//
+// Theme
+//
+
+@internal-theme-transition-border-border-gradient: ~'';
+
+//
+// Alert
+//
+
+@alert-primary-background:                      lighten(tint(@global-primary-background, 30%), 25%);
+@alert-danger-background:                       lighten(tint(@global-danger-background, 30%), 25%);
+@alert-warning-background:                      lighten(tint(@global-warning-background, 30%), 20%);
+@alert-success-background:                      lighten(tint(@global-success-background, 30%), 28%);
+
+//
+// Badge
+//
+
+@internal-badge-gradient:                       ~'';
+
+//
+// Breadcrumb
+//
+
+@breadcrumb-divider-color:                      lighten(@breadcrumb-item-color, 10%);
+
+//
+// Button
+//
+
+@button-default-border:                         darken(@global-border, 3%);
+@internal-button-primary-gradient:              ~'';
+
+@internal-button-primary-hover-gradient:        ~'';
+@button-primary-hover-box-shadow:               0 0 30px 0 saturate(fade(@global-primary-background, 35%), 70%);
+
+@internal-button-secondary-gradient:            ~'';
+@internal-button-secondary-hover-gradient:      ~'';
+@button-secondary-hover-box-shadow:             0 0 30px 0 saturate(fade(@global-secondary-background, 35%), 70%);
+
+@button-danger-hover-background:                lighten(@button-danger-background, 5%);
+
+//
+// Card
+//
+
+@internal-card-primary-gradient:                ~'';
+@internal-card-primary-hover-gradient:          ~'';
+
+@internal-card-secondary-gradient:              ~'';
+@internal-card-secondary-hover-gradient:        ~'';
+
+@internal-card-badge-gradient:                  ~'';
+
+//
+// Navbar
+//
+
+@internal-navbar-nav-item-line-gradient:        ~'';
+
+//
+// Divider
+//
+
+@divider-icon-color:                            darken(@global-border, 3%);
+@divider-icon-line-border:                      darken(@global-border, 3%);

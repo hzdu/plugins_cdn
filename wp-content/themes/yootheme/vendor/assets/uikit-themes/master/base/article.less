@@ -1,0 +1,73 @@
+//
+// Component: Article
+//
+// ========================================================================
+
+
+// Variables
+// ========================================================================
+
+//
+// New
+//
+
+@article-meta-link-color:                       @article-meta-color;
+@article-meta-link-hover-color:                 @global-color;
+
+@article-margin-top-m:                          @article-margin-top;
+
+
+// Component
+// ========================================================================
+
+.hook-article() {}
+
+
+// Adjacent sibling
+// ========================================================================
+
+.hook-article-adjacent() {}
+
+
+// Title
+// ========================================================================
+
+.hook-article-title() {}
+
+
+// Meta
+// ========================================================================
+
+.hook-article-meta() {
+
+    a { color: @article-meta-link-color; }
+
+    a:hover {
+        color: @article-meta-link-hover-color;
+        text-decoration: none;
+    }
+
+}
+
+
+// Miscellaneous
+// ========================================================================
+
+.hook-article-misc() when not (@article-margin-top-m = @article-margin-top) {
+
+    /* Tablet landscape and bigger */
+    @media (min-width: @breakpoint-medium) {
+
+        .uk-article + .uk-article {
+            margin-top: @article-margin-top-m;
+        }
+
+    }
+
+}
+
+
+// Inverse
+// ========================================================================
+
+.hook-inverse-article-meta() {}

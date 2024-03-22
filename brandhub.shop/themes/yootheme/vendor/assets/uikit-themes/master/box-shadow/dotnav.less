@@ -1,0 +1,68 @@
+//
+// Component: Dotnav
+//
+// ========================================================================
+
+
+// Variables
+// ========================================================================
+
+//
+// New
+//
+
+@dotnav-item-box-shadow:                        none;
+@dotnav-item-hover-box-shadow:                  none;
+@dotnav-item-onclick-box-shadow:                none;
+@dotnav-item-active-box-shadow:                 none;
+
+
+// Component
+// ========================================================================
+
+.hook-dotnav() {}
+
+.hook-dotnav-item() when not (@dotnav-item-box-shadow = none) {
+    box-shadow: @dotnav-item-box-shadow;
+}
+
+.hook-dotnav-item-hover() when not (@dotnav-item-hover-box-shadow = none) {
+    box-shadow: @dotnav-item-hover-box-shadow;
+}
+
+.hook-dotnav-item-onclick() when not (@dotnav-item-onclick-box-shadow = none) {
+    box-shadow: @dotnav-item-onclick-box-shadow;
+}
+
+.hook-dotnav-item-active() when not (@dotnav-item-active-box-shadow = none) {
+    box-shadow: @dotnav-item-active-box-shadow;
+}
+
+
+// Miscellaneous
+// ========================================================================
+
+.hook-dotnav-misc() {}
+
+
+// Inverse
+// ========================================================================
+
+@inverse-dotnav-item-box-shadow:                none;
+@inverse-dotnav-item-hover-box-shadow:          none;
+@inverse-dotnav-item-onclick-box-shadow:        none;
+@inverse-dotnav-item-active-box-shadow:         none;
+
+.hook-inverse-dotnav() {}
+.hook-inverse-dotnav-item() when not (@dotnav-item-box-shadow = none) {
+    box-shadow: @inverse-dotnav-item-box-shadow;
+}
+.hook-inverse-dotnav-item-hover() when not (@dotnav-item-hover-box-shadow = none) {
+    box-shadow: @inverse-dotnav-item-hover-box-shadow;
+}
+.hook-inverse-dotnav-item-onclick() when not (@dotnav-item-onclick-box-shadow = none) {
+    box-shadow: @inverse-dotnav-item-onclick-box-shadow;
+}
+.hook-inverse-dotnav-item-active() when not (@dotnav-item-active-box-shadow = none) {
+    box-shadow: @inverse-dotnav-item-active-box-shadow;
+}

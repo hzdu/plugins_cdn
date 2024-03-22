@@ -1,0 +1,281 @@
+//
+// Component: Pagination
+//
+// ========================================================================
+
+
+// Variables
+// ========================================================================
+
+//
+// New
+//
+
+@pagination-item-transition-duration:           0.1s;
+
+@pagination-item-min-width:                     0;
+@pagination-item-height:                        0;
+@pagination-item-background:                    transparent;
+@pagination-item-hover-background:              transparent;
+@pagination-item-active-background:             transparent;
+@pagination-item-disabled-background:           transparent;
+
+@internal-pagination-item-mode:                 ~''; // flicker, glow
+
+@internal-pagination-item-glow-gradient:        ~'';
+@internal-pagination-item-glow-filter:          ~'';
+@internal-pagination-item-hover-glow-filter:    ~'';
+@internal-pagination-item-glow-opacity:         1;
+@internal-pagination-item-hover-glow-opacity:   1;
+@internal-pagination-item-active-glow-opacity:  1;
+
+@pagination-item-next-previous-color:                    inherit;
+@pagination-item-next-previous-hover-color:              inherit;
+@pagination-item-next-previous-background:               inherit;
+@pagination-item-next-previous-hover-background:         inherit;
+
+@internal-pagination-item-next-previous-mode:   ~''; // animate
+
+
+// Component
+// ========================================================================
+
+.hook-pagination() {}
+
+
+// Items
+// ========================================================================
+
+.hook-pagination-item() {
+    transition: @pagination-item-transition-duration ease-in-out;
+    transition-property: color, background-color, border-color, box-shadow;
+}
+
+.hook-pagination-item() when not (@pagination-item-min-width = 0) {
+    box-sizing: border-box;
+    min-width: @pagination-item-min-width;
+    justify-content: center;
+}
+
+.hook-pagination-item() when not (@pagination-item-height = 0) {
+    height: @pagination-item-height;
+    box-sizing: border-box;
+}
+
+.hook-pagination-item() when not (@base-link-text-decoration = none) {
+    text-decoration: none;
+}
+
+// Background
+.hook-pagination-item()  when not (@pagination-item-background = transparent) {
+    background-color: @pagination-item-background;
+}
+
+.hook-pagination-item-hover() when not (@pagination-item-background = @pagination-item-hover-background) {
+    background-color: @pagination-item-hover-background;
+}
+
+.hook-pagination-item-active() when not (@pagination-item-background = @pagination-item-active-background) {
+    background-color: @pagination-item-active-background;
+}
+
+.hook-pagination-item-disabled() when not (@pagination-item-background = @pagination-item-disabled-background),
+                                      not (@pagination-item-next-previous-background = inherit) {
+    background-color: @pagination-item-disabled-background;
+}
+
+//
+// Flicker
+//
+
+.hook-pagination-item-hover() when (@internal-pagination-item-mode = flicker) {
+    animation: uk-flicker 0.2s ease both;
+}
+
+//
+// Glow
+//
+
+.hook-pagination-item() when (@internal-pagination-item-mode = glow) {
+
+    &:not(.uk-hack) {
+        position: relative;
+        z-index: 0;
+        background: none !important;
+        box-shadow: none !important;
+        border: none !important;
+    }
+
+    &::before,
+    &::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        // Fix Safari flickering
+        will-change: filter;
+    }
+
+    &::before {
+        background-image: @internal-pagination-item-glow-gradient;
+        filter: @internal-pagination-item-glow-filter;
+        transition: @pagination-item-transition-duration ease-in-out;
+        transition-property: opacity, filter;
+    }
+
+}
+
+.hook-pagination-item() when (@internal-pagination-item-mode = glow) and not (@pagination-item-border-radius = 0) {
+
+    &::before,
+    &::after { border-radius: @pagination-item-border-radius; }
+
+}
+
+.hook-pagination-item() when (@internal-pagination-item-mode = glow) and not (@internal-pagination-item-glow-opacity = 1) {
+
+    &::before { opacity: @internal-pagination-item-glow-opacity; }
+
+}
+
+.hook-pagination-item-hover() when (@internal-pagination-item-mode = glow) and not (@internal-pagination-item-hover-glow-filter = ~'') {
+
+    &::before { filter: @internal-pagination-item-hover-glow-filter; }
+
+}
+
+.hook-pagination-item-hover() when (@internal-pagination-item-mode = glow) and not (@internal-pagination-item-hover-glow-opacity = @internal-pagination-item-glow-opacity) {
+
+    &::before { opacity: @internal-pagination-item-hover-glow-opacity; }
+
+}
+
+.hook-pagination-item-active() when (@internal-pagination-item-mode = glow) and not (@internal-pagination-item-active-glow-opacity = @internal-pagination-item-glow-opacity) {
+
+    &::before { opacity: @internal-pagination-item-active-glow-opacity; }
+
+}
+
+.uk-pagination > * > *::after:extend(.uk-pagination > * > *) when (@internal-pagination-item-mode = glow) {}
+.uk-pagination > * > :hover::after:extend(.uk-pagination > * > :hover) when (@internal-pagination-item-mode = glow) {}
+.uk-pagination > .uk-active > *::after:extend(.uk-pagination > .uk-active > *) when (@internal-pagination-item-mode = glow) {}
+
+
+//
+// Next Previous only
+//
+
+.hook-pagination-item() when not (@pagination-item-next-previous-color = inherit) {
+
+    &:where([aria-label]) { color: @pagination-item-next-previous-color; }
+
+}
+
+.hook-pagination-item-hover() when not (@pagination-item-next-previous-hover-color = inherit) {
+
+    &:where([aria-label]) { color: @pagination-item-next-previous-hover-color; }
+
+}
+
+.hook-pagination-item() when not (@pagination-item-next-previous-background = inherit) {
+
+    &:where([aria-label]) { background-color: @pagination-item-next-previous-background; }
+
+}
+
+.hook-pagination-item-hover() when not (@pagination-item-next-previous-hover-background = inherit) {
+
+    &:where([aria-label]) { background-color: @pagination-item-next-previous-hover-background; }
+
+}
+
+
+// Miscellaneous
+// ========================================================================
+
+// Next Previous Mode
+.hook-pagination-misc() when (@internal-pagination-item-next-previous-mode = animate) {
+
+    :hover > .uk-pagination-next { animation: uk-slide-right 0.3s reverse, uk-slide-left 0.2s 0.3s; }
+    :hover > .uk-pagination-previous { animation: uk-slide-left 0.3s reverse, uk-slide-right 0.2s 0.3s; }
+
+}
+
+
+// Inverse
+// ========================================================================
+
+@inverse-pagination-item-background:                    transparent;
+@inverse-pagination-item-hover-background:              transparent;
+@inverse-pagination-item-active-background:             transparent;
+@inverse-pagination-item-disabled-background:           transparent;
+
+@internal-inverse-pagination-item-glow-gradient:        ~'';
+
+@inverse-pagination-item-next-previous-color:                    inherit;
+@inverse-pagination-item-next-previous-hover-color:              inherit;
+@inverse-pagination-item-next-previous-background:               inherit;
+@inverse-pagination-item-next-previous-hover-background:         inherit;
+
+.hook-inverse-pagination-item() when not (@inverse-pagination-item-background = transparent) {
+    background-color: @inverse-pagination-item-background;
+}
+.hook-inverse-pagination-item-hover() when not (@inverse-pagination-item-background = @inverse-pagination-item-hover-background) {
+    background-color: @inverse-pagination-item-hover-background;
+}
+.hook-inverse-pagination-item-active() when not (@inverse-pagination-item-background = @inverse-pagination-item-active-background) {
+    background-color: @inverse-pagination-item-active-background;
+}
+.hook-inverse-pagination-item-disabled() when not (@inverse-pagination-item-background = @inverse-pagination-item-disabled-background),
+                                              not (@inverse-pagination-item-next-previous-background = inherit) {
+    background-color: @inverse-pagination-item-disabled-background;
+}
+
+.hook-inverse() when (@internal-pagination-item-mode = glow) and not (@internal-inverse-pagination-item-glow-gradient = ~'') {
+
+    .uk-pagination > * > *::before { background-image: @internal-inverse-pagination-item-glow-gradient; }
+
+}
+.hook-inverse() when (@internal-pagination-item-mode = glow) {
+
+    .uk-pagination > * > *::after {
+        background-color: @inverse-pagination-item-background;
+        .hook-inverse-pagination-item();
+    }
+
+    .uk-pagination > * > *:hover::after {
+        background-color: @inverse-pagination-item-hover-background;
+        color: @inverse-pagination-item-hover-color;
+        .hook-inverse-pagination-item-hover();
+    }
+
+    .uk-pagination > .uk-active > *::after {
+        background-color: @inverse-pagination-item-active-background;
+        .hook-inverse-pagination-item-active();
+    }
+
+}
+
+.hook-inverse-pagination-item() when not (@inverse-pagination-item-next-previous-color = inherit) {
+
+    &:where([aria-label]) { color: @inverse-pagination-item-next-previous-color; }
+
+}
+
+.hook-inverse-pagination-item-hover() when not (@inverse-pagination-item-next-previous-hover-color = inherit) {
+
+    &:where([aria-label]) { color: @inverse-pagination-item-next-previous-hover-color; }
+
+}
+
+.hook-inverse-pagination-item() when not (@inverse-pagination-item-next-previous-background = inherit) {
+
+    &:where([aria-label]) { background-color: @inverse-pagination-item-next-previous-background; }
+
+}
+
+.hook-inverse-pagination-item-hover() when not (@inverse-pagination-item-next-previous-hover-background = inherit) {
+
+    &:where([aria-label]) { background-color: @inverse-pagination-item-next-previous-hover-background; }
+
+}

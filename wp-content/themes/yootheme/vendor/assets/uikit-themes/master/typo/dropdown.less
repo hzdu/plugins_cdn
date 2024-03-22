@@ -1,0 +1,113 @@
+//
+// Component: Dropdown
+//
+// ========================================================================
+
+
+// Variables
+// ========================================================================
+
+//
+// New
+//
+
+@dropdown-nav-font-size:                        @global-font-size;
+@dropdown-nav-font-family:                      @global-secondary-font-family;
+@dropdown-nav-font-weight:                      @global-secondary-font-weight;
+@dropdown-nav-text-transform:                   @global-secondary-text-transform;
+@dropdown-nav-letter-spacing:                   @global-secondary-letter-spacing;
+@dropdown-nav-font-style:                       @global-secondary-font-style;
+
+@dropdown-nav-subtitle-color:                   @dropdown-nav-item-color;
+@dropdown-nav-subtitle-font-family:             inherit;
+@dropdown-nav-subtitle-font-weight:             inherit;
+@dropdown-nav-subtitle-text-transform:          inherit;
+@dropdown-nav-subtitle-letter-spacing:          inherit;
+@dropdown-nav-subtitle-line-height:             inherit;
+@dropdown-nav-subtitle-font-style:              inherit;
+
+
+// Component
+// ========================================================================
+
+.hook-dropdown() {}
+
+
+// Dropbar modifier
+// ========================================================================
+
+.hook-dropdown-dropbar() {}
+
+.hook-dropdown-dropbar-large() {}
+
+
+// Nav
+// ========================================================================
+
+.hook-dropdown-nav() { font-size: @dropdown-nav-font-size; }
+
+.hook-dropdown-nav() when not (@dropdown-nav-font-family = inherit) {
+    font-family: @dropdown-nav-font-family;
+}
+
+.hook-dropdown-nav() when not (@dropdown-nav-font-weight = inherit) {
+    font-weight: @dropdown-nav-font-weight;
+}
+
+.hook-dropdown-nav() when not (@dropdown-nav-text-transform = inherit) {
+    text-transform: @dropdown-nav-text-transform;
+}
+
+.hook-dropdown-nav() when not (@dropdown-nav-letter-spacing = inherit) {
+    letter-spacing: @dropdown-nav-letter-spacing;
+}
+
+.hook-dropdown-nav() when not (@dropdown-nav-font-style = inherit) {
+    font-style: @dropdown-nav-font-style;
+}
+
+.hook-dropdown-nav-item() {}
+
+.hook-dropdown-nav-item-hover() {}
+
+.hook-dropdown-nav-subtitle() {}
+
+.hook-dropdown-nav-subtitle() when not (@dropdown-nav-subtitle-font-family = inherit) {
+    font-family: @dropdown-nav-subtitle-font-family;
+}
+
+.hook-dropdown-nav-subtitle() when not (@dropdown-nav-subtitle-font-weight = inherit) {
+    font-weight: @dropdown-nav-subtitle-font-weight;
+}
+
+.hook-dropdown-nav-subtitle() when not (@dropdown-nav-subtitle-text-transform = inherit) {
+    text-transform: @dropdown-nav-subtitle-text-transform;
+}
+
+.hook-dropdown-nav-subtitle() when not (@dropdown-nav-subtitle-letter-spacing = inherit) {
+    letter-spacing: @dropdown-nav-subtitle-letter-spacing;
+}
+
+.hook-dropdown-nav-subtitle() when not (@dropdown-nav-subtitle-line-height = inherit) {
+    line-height: @dropdown-nav-subtitle-line-height;
+}
+
+.hook-dropdown-nav-subtitle() when not (@dropdown-nav-subtitle-font-style = inherit) {
+    font-style: @dropdown-nav-subtitle-font-style;
+}
+
+.hook-dropdown-nav-header() {}
+
+.hook-dropdown-nav-divider() {}
+
+
+// Miscellaneous
+// ========================================================================
+
+.hook-dropdown-misc() {}
+
+.hook-dropdown-misc() when not (@dropdown-nav-subtitle-color = @dropdown-nav-item-color) {
+
+    .uk-dropdown-nav > li:not(.uk-active) > a:not(:hover) .uk-nav-subtitle { color: @dropdown-nav-subtitle-color; }
+
+}

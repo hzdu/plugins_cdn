@@ -1,0 +1,216 @@
+/*
+
+Name: Line Gallery
+Background: White
+Color: Yellow
+Type: Flat
+Preview: https://yootheme.com/api/style/line-gallery/default.jpg
+
+Style: white-green
+Name: White Green
+Background: White
+Color: Green
+Type: Flat
+Preview: https://yootheme.com/api/style/line-gallery/white-green.jpg
+
+Style: light-green
+Name: Light Green
+Background: Light
+Color: Green
+Type: Flat
+Preview: https://yootheme.com/api/style/line-gallery/light-green.jpg
+
+Style: black-orange
+Name: Black Orange
+Background: Black
+Color: Orange
+Type: Flat
+Preview: https://yootheme.com/api/style/line-gallery/black-orange.jpg
+
+Style: colored-blue
+Name: Colored Blue
+Background: Colored
+Color: Blue
+Type: Flat
+Preview: https://yootheme.com/api/style/line-gallery/colored-blue.jpg
+
+Style: colored-green
+Name: Colored Green
+Background: Colored
+Color: Green
+Type: Flat
+Preview: https://yootheme.com/api/style/line-gallery/colored-green.jpg
+
+
+*/
+
+// Platform
+@import "platform.less";
+
+// UIkit Core
+@import "../vendor/assets/uikit/src/less/uikit.less";
+
+// UIkit Theme
+@import "../vendor/assets/uikit-themes/master/_import.less";
+@import "../vendor/assets/uikit-themes/master-line-gallery/_import.less";
+
+// Theme
+@import "theme.less";
+
+
+// Variables
+// ========================================================================
+
+//
+// Page Container
+//
+
+@theme-page-container-width:                             1840px;
+
+//
+// Box-Decoration
+//
+
+@theme-box-decoration-top:                               -30px;
+@theme-box-decoration-bottom:                            -30px;
+@theme-box-decoration-left:                              -30px;
+@theme-box-decoration-right:                             -30px;
+
+@theme-box-decoration-default-transform-horizontal:      0;
+@theme-box-decoration-default-transform-vertical:        0;
+@theme-box-decoration-default-background:                @global-emphasis-color;
+
+@theme-box-decoration-primary-transform-horizontal:      0;
+@theme-box-decoration-primary-transform-vertical:        0;
+@theme-box-decoration-primary-background:                @global-emphasis-color;
+
+@theme-box-decoration-secondary-transform-horizontal:    0;
+@theme-box-decoration-secondary-transform-vertical:      0;
+@theme-box-decoration-secondary-background:              @global-emphasis-color;
+
+.hook-box-decoration {
+
+    &::before,
+    &::after {
+        background-color: transparent !important;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: contain;
+    }
+
+    &::after {
+        content: '';
+        position: absolute;
+        top: @theme-box-decoration-top;
+        bottom: @theme-box-decoration-bottom;
+        left: @theme-box-decoration-left;
+        right: @theme-box-decoration-right;
+        pointer-events: none;
+        z-index: 1;
+    }
+
+}
+
+.hook-box-decoration-default() {
+
+    &::before { .svg-fill("../../../../uikit-themes/master-line-gallery/images/box-decoration-default-image.svg", "#000", @theme-box-decoration-default-background); }
+
+    &::after { display: none; }
+
+}
+
+.hook-box-decoration-primary() {
+
+    &::before { display: none; }
+
+    &::after { .svg-fill("../../../../uikit-themes/master-line-gallery/images/box-decoration-primary-image.svg", "#000", @theme-box-decoration-primary-background); }
+}
+
+.hook-box-decoration-secondary() {
+
+    &::before { .svg-fill("../../../../uikit-themes/master-line-gallery/images/box-decoration-default-image.svg", "#000", @theme-box-decoration-secondary-background); }
+
+    &::after { .svg-fill("../../../../uikit-themes/master-line-gallery/images/box-decoration-primary-image.svg", "#000", @theme-box-decoration-secondary-background); }
+
+}
+
+//
+// Inverse
+//
+
+@inverse-theme-box-decoration-default-background:   @inverse-global-emphasis-color;
+@inverse-theme-box-decoration-primary-background:   @inverse-global-emphasis-color;
+@inverse-theme-box-decoration-secondary-background: @inverse-global-emphasis-color;
+
+.hook-inverse-box-decoration-default() when not (@theme-box-decoration-default-background = transparent) {
+
+    &::before { .svg-fill("../../../../uikit-themes/master-line-gallery/images/box-decoration-default-image.svg", "#000", @inverse-theme-box-decoration-default-background); }
+
+}
+
+.hook-inverse-box-decoration-primary() when not (@theme-box-decoration-primary-background = transparent) {
+
+    &::after { .svg-fill("../../../../uikit-themes/master-line-gallery/images/box-decoration-primary-image.svg", "#000", @inverse-theme-box-decoration-primary-background); }
+
+}
+
+.hook-inverse-box-decoration-secondary() when not (@theme-box-decoration-secondary-background = transparent) {
+
+    &::before { .svg-fill("../../../../uikit-themes/master-line-gallery/images/box-decoration-default-image.svg", "#000", @inverse-theme-box-decoration-secondary-background); }
+
+    &::after { .svg-fill("../../../../uikit-themes/master-line-gallery/images/box-decoration-primary-image.svg", "#000", @inverse-theme-box-decoration-secondary-background); }
+
+}
+
+// Transition Border
+//
+
+@theme-transition-border-hover-border-width:    20px;
+
+//
+// Section
+//
+
+@section-title-color:                           @global-color;
+@section-title-font-family:                     inherit;
+@section-title-font-weight:                     600;
+@section-title-text-transform:                  uppercase;
+@section-title-letter-spacing:                  -0.02em;
+@section-title-font-style:                      inherit;
+
+@internal-section-title-dash-color:             @global-color;
+@internal-section-title-dash-border-height:     18px;
+@internal-section-title-dash-border-width:      18px;
+@internal-section-title-dash-border-margin:     10px;
+@internal-section-title-dash-background-image:  '../../../../uikit-themes/master-line-gallery/images/section-title-image.svg';
+
+//
+// Inverse
+//
+
+@inverse-section-title-color:                   @global-inverse-color;
+@internal-inverse-section-title-dash-color:     @inverse-section-title-color;
+
+//
+// WooCommerce
+//
+
+//
+// Rating
+//
+
+@woocommerce-rating-color:                               @global-secondary-background;
+
+//
+// Widgets
+//
+
+@woocommerce-widget-active-filters-font-size:            @global-small-font-size;
+
+
+// Style
+// ========================================================================
+
+@import (optional) "../vendor/assets/uikit-themes/master-line-gallery/styles/@{internal-style}.less";
+
+@internal-style: ~'';

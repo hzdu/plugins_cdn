@@ -1,0 +1,113 @@
+//
+// Component: Slidenav
+//
+// ========================================================================
+
+
+// Variables
+// ========================================================================
+
+//
+// New
+//
+
+@slidenav-backdrop-filter:                      ~'';
+
+@slidenav-background:                           transparent;
+@slidenav-hover-background:                     transparent;
+@slidenav-active-background:                    transparent;
+
+@internal-slidenav-next-previous-mode:          ~''; // animate
+
+@slidenav-margin:                               0;
+
+
+// Component
+// ========================================================================
+
+.hook-slidenav() {
+    transition: 0.1s ease-in-out;
+    transition-property: color, background-color, border-color, box-shadow;
+}
+
+.hook-slidenav() when not (@slidenav-backdrop-filter = ~'') {
+    backdrop-filter: @slidenav-backdrop-filter;
+    -webkit-backdrop-filter: @slidenav-backdrop-filter;
+}
+
+// Background
+.hook-slidenav() when not (@slidenav-background = transparent) {
+    background-color: @slidenav-background;
+}
+
+.hook-slidenav-hover() when not (@slidenav-background = @slidenav-hover-background) {
+    background-color: @slidenav-hover-background;
+}
+
+.hook-slidenav-active() when not (@slidenav-background = @slidenav-active-background) {
+    background-color: @slidenav-active-background;
+}
+
+
+// Icon modifier
+// ========================================================================
+
+//
+// Animate
+//
+
+.hook-slidenav() when (@internal-slidenav-next-previous-mode = animate) {
+    overflow: hidden;
+}
+
+.hook-slidenav-previous() when (@internal-slidenav-next-previous-mode = animate) {
+
+    &:hover svg { animation: uk-slide-left 0.3s reverse, uk-slide-right 0.2s 0.3s; }
+
+}
+
+.hook-slidenav-next() when (@internal-slidenav-next-previous-mode = animate) {
+
+    &:hover svg { animation: uk-slide-right 0.3s reverse, uk-slide-left 0.2s 0.3s; }
+
+}
+
+
+// Size modifier
+// ========================================================================
+
+.hook-slidenav-large() {}
+
+
+// Container
+// ========================================================================
+
+.hook-slidenav-container() when not (@slidenav-margin = 0) {
+
+    > :first-child { margin-right: @slidenav-margin; }
+
+}
+
+
+// Miscellaneous
+// ========================================================================
+
+.hook-icon-misc() {}
+
+
+// Inverse
+// ========================================================================
+
+@inverse-slidenav-background:                           transparent;
+@inverse-slidenav-hover-background:                     transparent;
+@inverse-slidenav-active-background:                    transparent;
+
+.hook-inverse-slidenav() when not (@inverse-slidenav-background = transparent) {
+    background-color: @inverse-slidenav-background;
+}
+.hook-inverse-slidenav-hover() when not (@inverse-slidenav-background = @inverse-slidenav-hover-background) {
+    background-color: @inverse-slidenav-hover-background;
+}
+.hook-inverse-slidenav-active() when not (@inverse-slidenav-background = @inverse-slidenav-active-background) {
+    background-color: @inverse-slidenav-active-background;
+}

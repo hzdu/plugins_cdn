@@ -1,0 +1,329 @@
+//
+// Component: Navbar
+//
+// ========================================================================
+
+
+// Variables
+// ========================================================================
+
+//
+// New
+//
+
+@navbar-mode:                                            ~''; // border, border-always, rail, frame
+@navbar-mode-border-vertical:                            ~''; // partial, all
+
+@navbar-border-width:                                    0;
+@navbar-border:                                          transparent;
+@internal-navbar-border-mode:                            ~''; // overlay
+
+@navbar-dropdown-border-width:                           0;
+@navbar-dropdown-border:                                 transparent;
+
+
+// Component
+// ========================================================================
+
+.hook-navbar() {}
+
+
+// Container
+// ========================================================================
+
+.hook-navbar-container() {}
+
+
+// Nav
+// ========================================================================
+
+.hook-navbar-nav-item() {}
+
+.hook-navbar-nav-item-hover() {}
+
+.hook-navbar-nav-item-onclick() {}
+
+.hook-navbar-nav-item-active() {}
+
+
+// Item
+// ========================================================================
+
+.hook-navbar-item() {}
+
+
+// Toggle
+// ========================================================================
+
+.hook-navbar-toggle() {}
+
+.hook-navbar-toggle-hover() {}
+
+.hook-navbar-toggle-icon() {}
+
+.hook-navbar-toggle-icon-hover() {}
+
+
+// Subtitle
+// ========================================================================
+
+.hook-navbar-subtitle() {}
+
+
+// Style modifiers
+// ========================================================================
+
+.hook-navbar-primary() {}
+
+.hook-navbar-transparent() {}
+
+.hook-navbar-sticky() {}
+
+
+// Dropdown
+// ========================================================================
+
+.hook-navbar-dropdown() when not (@navbar-dropdown-border-width = 0) {
+    border: @navbar-dropdown-border-width solid @navbar-dropdown-border;
+}
+
+.hook-navbar-dropdown-large() {}
+
+.hook-navbar-dropdown-dropbar() when not (@navbar-dropdown-border-width = 0) {
+    border: none;
+}
+
+.hook-navbar-dropdown-dropbar-large() {}
+
+
+// Dropdown nav
+// ========================================================================
+
+.hook-navbar-dropdown-nav() {}
+
+.hook-navbar-dropdown-nav-item() {}
+
+.hook-navbar-dropdown-nav-item-hover() {}
+
+.hook-navbar-dropdown-nav-subtitle() {}
+
+.hook-navbar-dropdown-nav-header() {}
+
+.hook-navbar-dropdown-nav-divider() {}
+
+
+// Dropbar
+// ========================================================================
+
+.hook-navbar-dropbar() {}
+
+
+// Miscellaneous
+// ========================================================================
+
+//
+// Mode Border Vertical
+//
+
+.hook-navbar-misc() when (@navbar-mode-border-vertical = partial) and not (@navbar-border-width = 0),
+                         (@navbar-mode-border-vertical = partial) and not (@navbar-border-width = 0) {
+
+    .uk-navbar-left {
+        padding-right: @container-padding-horizontal;
+        border-right: @navbar-border-width solid @navbar-border;
+    }
+
+    .uk-navbar-right {
+        padding-left: @container-padding-horizontal;
+        border-left: @navbar-border-width solid @navbar-border;
+    }
+
+    /* Phone landscape and bigger */
+    @media (min-width: @breakpoint-small) {
+
+        .uk-navbar-left { padding-right: @container-padding-horizontal-s; }
+        .uk-navbar-right { padding-left: @container-padding-horizontal-s; }
+
+    }
+
+    /* Tablet landscape and bigger */
+    @media (min-width: @breakpoint-medium) {
+
+        .uk-navbar-left { padding-right: @container-padding-horizontal-m; }
+        .uk-navbar-right { padding-left: @container-padding-horizontal-m; }
+
+    }
+
+}
+
+.hook-navbar-misc() when (@navbar-mode-border-vertical = all) and not (@navbar-border-width = 0) {
+
+    .uk-navbar-left .uk-navbar-nav,
+    .uk-navbar-left .uk-navbar-item,
+    .uk-navbar-left .uk-navbar-toggle,
+    .uk-navbar-center > :last-child,
+    .uk-navbar-right .uk-navbar-nav > li:nth-last-child(n+2) > a { border-right: @navbar-border-width solid @navbar-border; }
+
+    .uk-navbar-right .uk-navbar-nav,
+    .uk-navbar-right .uk-navbar-item,
+    .uk-navbar-right .uk-navbar-toggle,
+    .uk-navbar-center .uk-navbar-nav,
+    .uk-navbar-center .uk-navbar-item,
+    .uk-navbar-center .uk-navbar-toggle,
+    .uk-navbar-left .uk-navbar-nav > li:nth-child(n+2) > a,
+    .uk-navbar-center .uk-navbar-nav > li:nth-child(n+2) > a { border-left: @navbar-border-width solid @navbar-border; }
+
+}
+
+.hook-navbar-misc() when (@navbar-mode-border-vertical = all) and not (@navbar-border-width = 0) and not (@navbar-mode = frame) {
+
+    .uk-navbar-right { border-right: @navbar-border-width solid @navbar-border; }
+    .uk-navbar-left { border-left: @navbar-border-width solid @navbar-border; }
+
+}
+
+.hook-navbar-misc() when (@navbar-mode-border-vertical = all) and not (@navbar-border-width = 0) and (@navbar-mode = frame) {
+
+    .uk-navbar-justify > :last-child > :not(.uk-navbar-nav):last-child,
+    .uk-navbar-justify > :last-child > .uk-navbar-nav > :last-child > a { border-right: none; }
+
+}
+
+//
+// Mode Border + Border Always
+//
+
+.hook-navbar-container() when (@navbar-mode = border) and not (@navbar-border-width = 0) {
+    border-bottom-color: @navbar-border;
+}
+
+.hook-navbar-misc() when (@navbar-mode = border) and not (@navbar-border-width = 0) {
+
+    .uk-navbar-container { border-bottom: @navbar-border-width solid transparent; }
+
+}
+
+.hook-navbar-misc() when (@navbar-mode = border-always) and not (@navbar-border-width = 0) {
+
+    .uk-navbar-container { border-bottom: @navbar-border-width solid @navbar-border; }
+
+}
+
+.hook-navbar-container() when (@navbar-mode = border) and not (@navbar-border-width = 0) and not (@navbar-mode-border-vertical = ~'') {
+
+    .tm-header .tm-headerbar-top + * &:not(.uk-navbar-sticky) { border-top: @navbar-border-width solid @navbar-border; }
+}
+
+.hook-navbar-misc() when (@navbar-mode = border-always) and not (@navbar-border-width = 0) and not (@navbar-mode-border-vertical = ~'') {
+
+    .tm-header .tm-headerbar-top + * .uk-navbar-container:not(.uk-navbar-sticky) { border-top: @navbar-border-width solid @navbar-border; }
+}
+
+.hook-navbar-misc() when ((@navbar-mode = border) and not (@navbar-border-width = 0) and (@internal-navbar-border-mode = overlay)),
+                         ((@navbar-mode = border-always) and not (@navbar-border-width = 0) and (@internal-navbar-border-mode = overlay)) {
+
+    .uk-navbar-left,
+    .uk-navbar-right,
+    .uk-navbar-center { margin-bottom: -@navbar-border-width; }
+
+}
+
+//
+// Mode Rail
+//
+
+.hook-navbar() when (@navbar-mode = rail) and not (@navbar-border-width = 0) {
+
+    border-bottom: @navbar-border-width solid @navbar-border;
+
+    .tm-header .tm-headerbar-top + * & { border-top: @navbar-border-width solid @navbar-border; }
+    .tm-header .tm-headerbar-top + * .uk-navbar-sticky > * > & { border-top-color: transparent !important; }
+
+}
+
+//
+// Mode Frame
+//
+
+.hook-navbar() when (@navbar-mode = frame) and not (@navbar-border-width = 0) {
+
+    border: @navbar-border-width solid @navbar-border;
+
+}
+
+
+// Inverse
+// ========================================================================
+
+@inverse-navbar-border:                                transparent;
+
+.hook-inverse-navbar-nav-item() {}
+.hook-inverse-navbar-nav-item-hover() {}
+.hook-inverse-navbar-nav-item-onclick() {}
+.hook-inverse-navbar-nav-item-active() {}
+
+.hook-inverse-navbar-item() {}
+
+.hook-inverse-navbar-toggle() {}
+.hook-inverse-navbar-toggle-hover() {}
+
+.hook-inverse() when (@navbar-mode-border-vertical = partial) and not (@navbar-border-width = 0),
+                     (@navbar-mode-border-vertical = partial) and not (@navbar-border-width = 0) {
+
+    .uk-navbar-left { border-right-color: @inverse-navbar-border; }
+    .uk-navbar-right { border-left-color: @inverse-navbar-border; }
+
+}
+
+.hook-inverse() when (@navbar-mode-border-vertical = all) and not (@navbar-border-width = 0) {
+
+    .uk-navbar-left .uk-navbar-nav,
+    .uk-navbar-left .uk-navbar-item,
+    .uk-navbar-left .uk-navbar-toggle,
+    .uk-navbar-center > :last-child,
+    .uk-navbar-right .uk-navbar-nav > li:nth-last-child(n+2) > a { border-right-color: @inverse-navbar-border; }
+
+    .uk-navbar-right .uk-navbar-nav,
+    .uk-navbar-right .uk-navbar-item,
+    .uk-navbar-right .uk-navbar-toggle,
+    .uk-navbar-center .uk-navbar-nav,
+    .uk-navbar-center .uk-navbar-item,
+    .uk-navbar-center .uk-navbar-toggle,
+    .uk-navbar-left .uk-navbar-nav > li:nth-child(n+2) > a,
+    .uk-navbar-center .uk-navbar-nav > li:nth-child(n+2) > a { border-left-color: @inverse-navbar-border; }
+
+}
+
+.hook-inverse() when (@navbar-mode-border-vertical = all) and not (@navbar-border-width = 0) and not (@navbar-mode = frame) {
+
+    .uk-navbar-right { border-right-color: @inverse-navbar-border; }
+    .uk-navbar-left { border-left-color: @inverse-navbar-border; }
+
+}
+
+.hook-inverse() when (@navbar-mode = border) and not (@navbar-border-width = 0) {
+
+    .uk-navbar-container:not(.uk-navbar-transparent),
+    &.uk-navbar-container:not(.uk-navbar-transparent) { border-bottom-color: @inverse-navbar-border; }
+
+}
+
+.hook-inverse() when (@navbar-mode = border-always) and not (@navbar-border-width = 0) {
+
+    .uk-navbar-container,
+    &.uk-navbar-container { border-bottom-color: @inverse-navbar-border; }
+
+}
+
+.hook-inverse() when (@navbar-mode = rail) and not (@navbar-border-width = 0) {
+
+    .uk-navbar { border-bottom-color: @inverse-navbar-border; }
+    .tm-header &.tm-headerbar-top + * .uk-navbar { border-top-color: @inverse-navbar-border; }
+
+}
+
+.hook-inverse() when (@navbar-mode = frame) and not (@navbar-border-width = 0) {
+
+    .uk-navbar { border-color: @inverse-navbar-border; }
+
+}

@@ -1,0 +1,71 @@
+//
+// Global
+//
+
+@global-emphasis-color:                         #474747;
+@global-link-color:                             #61D988;
+@global-link-hover-color:                       #795CF4;
+
+@global-primary-background:                     #44cf8f;
+@global-secondary-background:                   #795CF4;
+@global-muted-background:                       #f9f9f9;
+@global-danger-background:                      #f14b4b;
+@global-success-background:                     #30b778;
+@global-warning-background:                     #ffb13c;
+
+//
+// Theme
+//
+
+@internal-theme-transition-border-border-gradient: ~'';
+
+//
+// Alert
+//
+
+@alert-primary-background:                      lighten(tint(@global-secondary-background, 30%), 21%);
+@alert-primary-color:                           @global-secondary-background;
+@alert-success-background:                      lighten(tint(@global-success-background, 30%), 33%);
+
+//
+// Badge
+//
+
+@internal-badge-gradient:                       ~'';
+
+//
+// Button
+//
+
+@button-default-border:                         darken(@global-border, 3%);
+
+@internal-button-primary-gradient:              ~'';
+@internal-button-primary-hover-gradient:        ~'';
+@button-primary-hover-box-shadow:               0 0 30px 0 darken(fade(@global-primary-background, 40%), 5%);
+
+@internal-button-secondary-gradient:            ~'';
+@internal-button-secondary-hover-gradient:      ~'';
+@button-secondary-hover-box-shadow:             0 0 30px 0 saturate(fade(@global-secondary-background, 35%), 70%);
+
+//
+// Card
+//
+
+@internal-card-primary-gradient:                ~'';
+@card-primary-hover-background:                 darken(@card-primary-background, 3%);
+@internal-card-primary-hover-gradient:          ~'';
+@card-primary-hover-box-shadow:                 0 10px 60px 0 darken(fade(@global-primary-background, 50%), 5%);
+
+@card-secondary-background:                     lighten(@global-secondary-background, 1%);
+@internal-card-secondary-gradient:              ~'';
+@card-secondary-hover-background:               darken(@card-secondary-background, 3%);
+@internal-card-secondary-hover-gradient:        ~'';
+@card-secondary-hover-box-shadow:               0 10px 60px 0 saturate(fade(@global-secondary-background, 35%), 60%);
+
+@internal-card-badge-gradient:                  ~'';
+
+//
+// Navbar
+//
+
+@internal-navbar-nav-item-line-gradient:        ~'';

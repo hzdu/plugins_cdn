@@ -1,0 +1,461 @@
+//
+// Component: Card
+//
+// ========================================================================
+
+
+// Variables
+// ========================================================================
+
+//
+// New
+//
+
+@card-transition-duration:                      0.1s;
+
+@card-default-backdrop-filter:                  ~'';
+@card-primary-backdrop-filter:                  ~'';
+@card-secondary-backdrop-filter:                ~'';
+
+@card-default-header-border-width:              @global-border-width;
+@card-default-header-border:                    @global-border;
+
+@card-default-footer-border-width:              @global-border-width;
+@card-default-footer-border:                    @global-border;
+
+@internal-card-hover-mode:                      ~''; // ripple
+
+@internal-card-default-mode:                    ~''; // glow
+@internal-card-default-glow-gradient:           ~'';
+@internal-card-default-glow-filter:             ~'';
+@internal-card-default-hover-glow-filter:       ~'';
+
+@internal-card-primary-mode:                    ~''; // glow
+@internal-card-primary-glow-gradient:           ~'';
+@internal-card-primary-glow-filter:             ~'';
+@internal-card-primary-hover-glow-filter:       ~'';
+
+@internal-card-secondary-mode:                  ~''; // glow
+@internal-card-secondary-glow-gradient:         ~'';
+@internal-card-secondary-glow-filter:           ~'';
+@internal-card-secondary-hover-glow-filter:     ~'';
+
+
+// Component
+// ========================================================================
+
+.hook-card() {
+    transition: @card-transition-duration ease-in-out;
+    transition-property: color, background-color, background-size, border-color, box-shadow;
+}
+
+//
+// Ripple
+//
+
+.hook-card() when (@internal-card-hover-mode = ripple) {
+    background-position: 50% 100%;
+    background-size: 0 0;
+    background-repeat: no-repeat;
+    transition-duration: 0.5s;
+    transition-timing-function: cubic-bezier(.165,.85,.45,1);
+}
+
+.hook-card() when (@internal-card-hover-mode = ripple) {
+
+    &:hover { background-size: 150% 150%; }
+
+}
+
+//
+// Glow
+//
+
+.hook-card() when (@internal-card-default-mode = glow) and not (@card-border-radius = 0),
+                  (@internal-card-primary-mode = glow) and not (@card-border-radius = 0),
+                  (@internal-card-secondary-mode = glow) and not (@card-border-radius = 0) {
+
+    &::before,
+    &::after { border-radius: @card-border-radius; }
+
+}
+
+
+// Sections
+// ========================================================================
+
+.hook-card-body() {}
+
+.hook-card-header() {}
+
+.hook-card-footer() {}
+
+
+// Media
+// ========================================================================
+
+.hook-card-media() {}
+
+.hook-card-media-top() {}
+
+.hook-card-media-bottom() {}
+
+.hook-card-media-left() {}
+
+.hook-card-media-right() {}
+
+
+// Title
+// ========================================================================
+
+.hook-card-title() {}
+
+
+// Badge
+// ========================================================================
+
+.hook-card-badge() {}
+
+
+// Hover modifier
+// ========================================================================
+
+//
+// Ripple
+// Fix rendering bug in Safari by fading the original color to transparent instead of `transparent` which is `rgba(0,0,0,0)`
+//
+
+.hook-card-hover() when (@internal-card-hover-mode = ripple) and not (@card-hover-background = inherit) {
+
+    &:not(.uk-card-default):not(.uk-card-primary):not(.uk-card-secondary) {
+        background-color: transparent;
+        background-image: radial-gradient(farthest-side at 50% 100%, @card-hover-background ~'calc(100% - 1px)', fade(@card-hover-background, 0%) 100%);
+    }
+
+}
+
+
+// Style modifiers
+// ========================================================================
+
+.hook-card-default() when not (@card-default-backdrop-filter = ~'') {
+    backdrop-filter: @card-default-backdrop-filter;
+    -webkit-backdrop-filter: @card-default-backdrop-filter;
+}
+
+.hook-card-default-title() {}
+
+.hook-card-default-hover() {}
+
+.hook-card-default-header() { border-bottom: @card-default-header-border-width solid @card-default-header-border; }
+
+.hook-card-default-footer() { border-top: @card-default-footer-border-width solid @card-default-footer-border; }
+
+//
+// Ripple
+// Fix rendering bug in Safari by fading the original color to transparent instead of `transparent` which is `rgba(0,0,0,0)`
+// Note: fade color function doesn't work with `inherit`
+//
+
+.hook-card-default() when (@internal-card-hover-mode = ripple) and not (@card-default-hover-background = inherit) {
+
+    &.uk-card-hover { background-image: radial-gradient(farthest-side at 50% 100%, @card-default-hover-background ~'calc(100% - 1px)', fade(@card-default-hover-background, 0%) 100%); }
+
+}
+
+.hook-card-default-hover() when (@internal-card-hover-mode = ripple) and not (@card-default-hover-background = inherit) {
+    background-color: @card-default-background;
+}
+
+//
+// Glow
+//
+
+.hook-card-default() when (@internal-card-default-mode = glow) {
+
+    &:not(.uk-hack) {
+        z-index: 0;
+        background: none !important;
+        box-shadow: none !important;
+        border: none !important;
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+    }
+
+    &::before,
+    &::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        // Fix Safari flickering
+        will-change: filter;
+    }
+
+    &::before {
+        background-image: @internal-card-default-glow-gradient;
+        filter: @internal-card-default-glow-filter;
+        transition: filter @card-transition-duration ease-in-out;
+    }
+
+    &::after { transform: none !important; }
+
+}
+
+.hook-card-default-hover() when (@internal-card-default-mode = glow) and not (@internal-card-default-hover-glow-filter = ~'') {
+
+    &::before { filter: @internal-card-default-hover-glow-filter; }
+
+}
+
+.uk-card-default::after:extend(.uk-card-default) when (@internal-card-default-mode = glow) {}
+.uk-card-default.uk-card-hover:hover::after:extend(.uk-card-default.uk-card-hover:hover) when (@internal-card-default-mode = glow) {}
+
+//
+// Primary
+//
+
+.hook-card-primary() when not (@card-primary-backdrop-filter = ~'') {
+    backdrop-filter: @card-primary-backdrop-filter;
+    -webkit-backdrop-filter: @card-primary-backdrop-filter;
+}
+
+.hook-card-primary-title() {}
+
+.hook-card-primary-hover() {}
+
+//
+// Ripple
+// Fix rendering bug in Safari by fading the original color to transparent instead of `transparent` which is `rgba(0,0,0,0)`
+// Note: fade color function doesn't work with `inherit`
+//
+
+.hook-card-primary() when (@internal-card-hover-mode = ripple) and not (@card-primary-hover-background = inherit) {
+
+    &.uk-card-hover { background-image: radial-gradient(farthest-side at 50% 100%, @card-primary-hover-background ~'calc(100% - 1px)', fade(@card-primary-hover-background, 0%) 100%); }
+
+}
+
+.hook-card-primary-hover() when (@internal-card-hover-mode = ripple) and not (@card-primary-hover-background = inherit) {
+    background-color: @card-primary-background;
+}
+
+//
+// Glow
+//
+
+.hook-card-primary() when (@internal-card-primary-mode = glow) {
+
+    &:not(.uk-hack) {
+        z-index: 0;
+        background: none !important;
+        box-shadow: none !important;
+        border: none !important;
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+    }
+
+    &::before,
+    &::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        // Fix Safari flickering
+        will-change: filter;
+    }
+
+    &::before {
+        background-image: @internal-card-primary-glow-gradient;
+        filter: @internal-card-primary-glow-filter;
+        transition: filter @card-transition-duration ease-in-out;
+    }
+
+    &::after { transform: none !important; }
+
+}
+
+.hook-card-primary-hover() when (@internal-card-primary-mode = glow) and not (@internal-card-primary-hover-glow-filter = ~'') {
+
+    &::before { filter: @internal-card-primary-hover-glow-filter; }
+
+}
+
+.uk-card-primary::after:extend(.uk-card-primary) when (@internal-card-primary-mode = glow) {}
+.uk-card-primary.uk-card-hover:hover::after:extend(.uk-card-primary.uk-card-hover:hover) when (@internal-card-primary-mode = glow) {}
+
+//
+// Secondary
+//
+
+.hook-card-secondary() when not (@card-secondary-backdrop-filter = ~'') {
+    backdrop-filter: @card-secondary-backdrop-filter;
+    -webkit-backdrop-filter: @card-secondary-backdrop-filter;
+}
+
+.hook-card-secondary-title() {}
+
+.hook-card-secondary-hover() {}
+
+//
+// Ripple
+// Fix rendering bug in Safari by fading the original color to transparent instead of `transparent` which is `rgba(0,0,0,0)`
+// Note: fade color function doesn't work with `inherit`
+//
+
+.hook-card-secondary() when (@internal-card-hover-mode = ripple) and not (@card-secondary-hover-background = inherit) {
+
+    &.uk-card-hover { background-image: radial-gradient(farthest-side at 50% 100%, @card-secondary-hover-background ~'calc(100% - 1px)', fade(@card-secondary-hover-background, 0%) 100%); }
+
+}
+
+.hook-card-secondary-hover() when (@internal-card-hover-mode = ripple) and not (@card-secondary-hover-background = inherit) {
+    background-color: @card-secondary-background;
+}
+
+//
+// Glow
+//
+
+.hook-card-secondary() when (@internal-card-secondary-mode = glow) {
+
+    &:not(.uk-hack) {
+        z-index: 0;
+        background: none !important;
+        box-shadow: none !important;
+        border: none !important;
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+    }
+
+    &::before,
+    &::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        // Fix Safari flickering
+        will-change: filter;
+    }
+
+    &::before {
+        background-image: @internal-card-secondary-glow-gradient;
+        filter: @internal-card-secondary-glow-filter;
+        transition: filter @card-transition-duration ease-in-out;
+    }
+
+    &::after { transform: none !important; }
+
+}
+
+.hook-card-secondary-hover() when (@internal-card-secondary-mode = glow) and not (@internal-card-secondary-hover-glow-filter = ~'') {
+
+    &::before { filter: @internal-card-secondary-hover-glow-filter; }
+
+}
+
+.uk-card-secondary::after:extend(.uk-card-secondary) when (@internal-card-secondary-mode = glow) {}
+.uk-card-secondary.uk-card-hover:hover::after:extend(.uk-card-secondary.uk-card-hover:hover) when (@internal-card-secondary-mode = glow) {}
+
+
+// Miscellaneous
+// ========================================================================
+
+.hook-card-misc() {
+
+    /*
+     * Default
+     */
+
+    .uk-card-body > .uk-nav-default {
+        margin-left: -@card-body-padding-horizontal;
+        margin-right: -@card-body-padding-horizontal;
+    }
+    .uk-card-body > .uk-nav-default:only-child {
+        margin-top: (-@card-body-padding-vertical + 15px);
+        margin-bottom: (-@card-body-padding-vertical + 15px);
+    }
+
+    .uk-card-body > .uk-nav-default > li > a,
+    .uk-card-body > .uk-nav-default .uk-nav-header,
+    .uk-card-body > .uk-nav-default .uk-nav-divider {
+        padding-left: @card-body-padding-horizontal;
+        padding-right: @card-body-padding-horizontal;
+    }
+
+    .uk-card-body > .uk-nav-default .uk-nav-sub { padding-left: @nav-sublist-deeper-padding-left + @card-body-padding-horizontal; }
+
+
+    /* Desktop and bigger */
+    @media (min-width: @breakpoint-large) {
+
+        .uk-card-body > .uk-nav-default {
+            margin-left: -@card-body-padding-horizontal-l;
+            margin-right: -@card-body-padding-horizontal-l;
+        }
+        .uk-card-body > .uk-nav-default:only-child {
+            margin-top: (-@card-body-padding-vertical-l + 15px);
+            margin-bottom: (-@card-body-padding-vertical-l + 15px);
+        }
+
+        .uk-card-body > .uk-nav-default > li > a,
+        .uk-card-body > .uk-nav-default .uk-nav-header,
+        .uk-card-body > .uk-nav-default .uk-nav-divider {
+            padding-left: @card-body-padding-horizontal-l;
+            padding-right: @card-body-padding-horizontal-l;
+        }
+
+        .uk-card-body > .uk-nav-default .uk-nav-sub { padding-left: @nav-sublist-deeper-padding-left + @card-body-padding-horizontal-l; }
+
+    }
+
+    /*
+     * Small
+     */
+
+    .uk-card-small > .uk-nav-default {
+        margin-left: -@card-small-body-padding-horizontal;
+        margin-right: -@card-small-body-padding-horizontal;
+    }
+    .uk-card-small > .uk-nav-default:only-child {
+        margin-top: (-@card-small-body-padding-vertical + 15px);
+        margin-bottom: (-@card-small-body-padding-vertical + 15px);
+    }
+
+    .uk-card-small > .uk-nav-default > li > a,
+    .uk-card-small > .uk-nav-default .uk-nav-header,
+    .uk-card-small > .uk-nav-default .uk-nav-divider {
+        padding-left: @card-small-body-padding-horizontal;
+        padding-right: @card-small-body-padding-horizontal;
+    }
+
+    .uk-card-small > .uk-nav-default .uk-nav-sub { padding-left: @nav-sublist-deeper-padding-left + @card-small-body-padding-horizontal; }
+
+    /*
+     * Large
+     */
+
+    /* Desktop and bigger */
+    @media (min-width: @breakpoint-large) {
+
+        .uk-card-large > .uk-nav-default { margin: 0; }
+        .uk-card-large > .uk-nav-default:only-child { margin: 0; }
+
+        .uk-card-large > .uk-nav-default > li > a,
+        .uk-card-large > .uk-nav-default .uk-nav-header,
+        .uk-card-large > .uk-nav-default .uk-nav-divider {
+            padding-left: 0;
+            padding-right: 0;
+        }
+
+        .uk-card-large > .uk-nav-default .uk-nav-sub { padding-left: @nav-sublist-deeper-padding-left; }
+
+    }
+
+}
+
+
+// Inverse
+// ========================================================================
+
+.hook-inverse-card-badge() {}

@@ -1,0 +1,49 @@
+//
+// Component: Dropbar
+//
+// ========================================================================
+
+
+// Variables
+// ========================================================================
+
+//
+// New
+//
+
+@dropbar-top-box-shadow:                        none;
+@dropbar-bottom-box-shadow:                     none;
+@dropbar-left-box-shadow:                       none;
+@dropbar-right-box-shadow:                      none;
+
+
+// Component
+// ========================================================================
+
+.hook-dropbar() {}
+
+
+// Direction modifier
+// ========================================================================
+
+.hook-dropbar-top() when not (@dropbar-top-box-shadow = none) {
+    box-shadow: @dropbar-top-box-shadow;
+}
+
+.hook-dropbar-bottom() when not (@dropbar-bottom-box-shadow = none) {
+    box-shadow: @dropbar-bottom-box-shadow;
+}
+
+.hook-dropbar-left() when not (@dropbar-left-box-shadow = none) {
+    box-shadow: @dropbar-left-box-shadow;
+}
+
+.hook-dropbar-right() when not (@dropbar-right-box-shadow = none) {
+    box-shadow: @dropbar-right-box-shadow;
+}
+
+
+// Miscellaneous
+// ========================================================================
+
+.hook-dropbar-misc() {}

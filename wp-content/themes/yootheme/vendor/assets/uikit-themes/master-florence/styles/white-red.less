@@ -1,0 +1,92 @@
+//
+// Global
+//
+
+@global-link-color: darken(@global-primary-background, 15%);
+
+@global-primary-background:   #ee4752;
+@global-secondary-background: #4f3a50;
+@global-danger-background:    #e45541;
+
+//
+// Button
+//
+
+@internal-button-default-gradient:        linear-gradient(90deg, fade(@global-secondary-background, 10%) 62.5%, transparent 62.5%);
+@internal-button-default-hover-gradient:  linear-gradient(90deg, fade(@global-secondary-background, 10%) 62.5%, transparent 62.5%);
+@internal-button-default-active-gradient: linear-gradient(90deg, fade(@global-secondary-background, 20%) 62.5%, transparent 62.5%);
+
+@internal-button-primary-gradient:        linear-gradient(90deg, fade(@global-primary-background, 20%) 62.5%, transparent 62.5%);
+@internal-button-primary-hover-gradient:  linear-gradient(90deg, fade(@global-primary-background, 20%) 62.5%, transparent 62.5%);
+@internal-button-primary-active-gradient: linear-gradient(90deg, fade(@global-primary-background, 30%) 62.5%, transparent 62.5%);
+
+@button-text-border: fade(@global-secondary-background, 20%);
+
+//
+// Card
+//
+
+@card-badge-background:         fade(@global-primary-background, 20%);
+@card-primary-color-mode:       light;
+@inverse-card-badge-background: fade(@global-inverse-color, 80%);
+
+//
+// Divider
+//
+
+@divider-small-border: fade(@global-secondary-background, 15%);
+
+//
+// Form
+//
+
+@form-focus-border:                   @global-primary-background;
+@form-radio-focus-border:             @global-primary-background;
+@form-radio-checked-background:       @global-primary-background;
+@form-radio-checked-focus-background: lighten(@global-primary-background, 6%);
+
+//
+// Heading
+//
+
+@heading-bullet-border: fade(@global-secondary-background, 15%);
+@heading-line-border:   fade(@global-secondary-background, 15%);
+
+//
+// Inverse
+//
+
+@inverse-global-color:       fade(@global-inverse-color, 80%);
+@inverse-global-muted-color: fade(@inverse-global-color, 40%);
+
+//
+// Navbar
+//
+
+@navbar-nav-item-line-hover-background:   fade(@global-secondary-background, 15%);
+@navbar-nav-item-line-onclick-background: @navbar-nav-item-line-hover-background;
+@navbar-nav-item-line-active-background:  @navbar-nav-item-line-hover-background;
+
+//
+// Section
+//
+
+@section-primary-color-mode: light;
+
+//
+// Subnav
+//
+
+@subnav-pill-item-active-color: @global-inverse-color;
+
+//
+// Table
+//
+
+@table-row-active-background: @global-muted-background;
+
+//
+// Tile
+//
+
+@tile-primary-color-mode: light;

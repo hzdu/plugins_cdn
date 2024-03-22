@@ -1,0 +1,206 @@
+/*
+
+Name: Flow
+Background: White
+Color: Purple
+Type: Material
+Preview: https://yootheme.com/api/style/flow/default.jpg
+
+Style: white-darkblue
+Name: White Darkblue
+Background: White
+Color: Blue
+Type: Material
+Preview: https://yootheme.com/api/style/flow/white-darkblue.jpg
+
+Style: white-blue
+Name: White Blue
+Background: White
+Color: Blue
+Type: Material
+Preview: https://yootheme.com/api/style/flow/white-blue.jpg
+
+Style: white-lightblue
+Name: White Lightblue
+Background: White
+Color: Blue
+Type: Material
+Preview: https://yootheme.com/api/style/flow/white-lightblue.jpg
+
+Style: white-green
+Name: White Green
+Background: White
+Color: Green
+Type: Material
+Preview: https://yootheme.com/api/style/flow/white-green.jpg
+
+Style: white-pink
+Name: White Pink
+Background: White
+Color: Pink
+Type: Material
+Preview: https://yootheme.com/api/style/flow/white-pink.jpg
+
+*/
+
+// Platform
+@import "platform.less";
+
+// UIkit Core
+@import "../vendor/assets/uikit/src/less/uikit.less";
+
+// UIkit Theme
+@import "../vendor/assets/uikit-themes/master/_import.less";
+@import "../vendor/assets/uikit-themes/master-flow/_import.less";
+
+// Theme
+@import "theme.less";
+
+
+// Variables
+// ========================================================================
+
+
+//
+// Toolbar
+//
+
+@theme-toolbar-background:                               @global-primary-background;
+
+//
+// Box Decoration
+//
+
+@theme-box-decoration-default-transform-horizontal:      -30px;
+@theme-box-decoration-default-transform-vertical:        30px;
+@theme-box-decoration-default-background:                @global-primary-background;
+
+@theme-box-decoration-primary-transform-horizontal:      30px;
+@theme-box-decoration-primary-transform-vertical:        30px;
+@theme-box-decoration-primary-background:                @global-primary-background;
+
+@theme-box-decoration-secondary-transform-horizontal:    0;
+@theme-box-decoration-secondary-transform-vertical:      0;
+@theme-box-decoration-secondary-background:              @global-primary-background;
+
+.hook-box-decoration() {
+
+    &::after {
+        content: '';
+        position: absolute;
+        top: @theme-box-decoration-top;
+        bottom: @theme-box-decoration-bottom;
+        left: @theme-box-decoration-left;
+        right: @theme-box-decoration-right;
+        z-index: @theme-box-decoration-z-index;
+    }
+
+}
+
+.hook-box-decoration-default() {
+
+    &::before {
+        background: radial-gradient(circle at ~'calc(0% + 100px)' ~'calc(100% - 110px)', @theme-box-decoration-default-background 99px, transparent 100px), transparent;
+    }
+
+    &::after {
+        transform: translate(@theme-box-decoration-default-transform-horizontal, @theme-box-decoration-default-transform-vertical);
+        background: radial-gradient(circle at ~'calc(0% + 170px)' ~'calc(100% - 50px)', @global-secondary-background 49px, transparent 50px), transparent;
+    }
+
+}
+
+.hook-box-decoration-primary() {
+
+      &::before {
+        background: radial-gradient(circle at ~'calc(100% - 100px)' ~'calc(100% - 110px)', @theme-box-decoration-default-background 99px, transparent 100px), transparent;
+    }
+
+    &::after {
+        transform: translate(@theme-box-decoration-primary-transform-horizontal, @theme-box-decoration-primary-transform-vertical);
+        background: radial-gradient(circle at ~'calc(100% - 170px)' ~'calc(100% - 50px)', @global-secondary-background 49px, transparent 50px), transparent;
+    }
+
+}
+
+.hook-box-decoration-secondary() {
+
+    &::before {
+        left: -30px;
+        right: -30px;
+        background: radial-gradient(circle at 100px ~'calc(70%)', @theme-box-decoration-default-background 99px, transparent 100px), transparent;
+    }
+
+    &::after {
+        left: -30px;
+        right: -30px;
+        background: radial-gradient(circle at ~'calc(100% - 100px)' 60%, @global-secondary-background 99px, transparent 100px), transparent;
+    }
+
+}
+
+//
+// Inverse
+//
+
+@inverse-theme-box-decoration-default-background:       rgba(255,255,255,0.5);
+@inverse-theme-box-decoration-primary-background:       rgba(255,255,255,0.5);
+@inverse-theme-box-decoration-secondary-background:     rgba(255,255,255,0.5);
+
+.hook-inverse-box-decoration-default() when not (@theme-box-decoration-default-background = transparent) {
+
+    &::before {
+        background: radial-gradient(circle at ~'calc(0% + 100px)' ~'calc(100% - 110px)', @inverse-theme-box-decoration-default-background 99px, transparent 100px), transparent;
+    }
+
+    &::after {
+        background: radial-gradient(circle at ~'calc(0% + 170px)' ~'calc(100% - 50px)', #fff 49px, transparent 50px), transparent;
+    }
+
+}
+
+.hook-inverse-box-decoration-primary() when not (@theme-box-decoration-primary-background = transparent) {
+
+    &::before {
+        background: radial-gradient(circle at ~'calc(100% - 100px)' ~'calc(100% - 110px)', @inverse-theme-box-decoration-primary-background 99px, transparent 100px), transparent;
+    }
+
+    &::after {
+        background: radial-gradient(circle at ~'calc(100% - 170px)' ~'calc(100% - 50px)', #fff 49px, transparent 50px), transparent;
+    }
+
+}
+
+.hook-inverse-box-decoration-secondary() when not (@theme-box-decoration-secondary-background = transparent) {
+
+    &::before {
+        background: radial-gradient(circle at 100px ~'calc(70%)', @inverse-theme-box-decoration-secondary-background 99px, transparent 100px), transparent;
+    }
+
+    &::after {
+        background: radial-gradient(circle at ~'calc(100% - 100px)' 60%, #fff 99px, transparent 100px), transparent;
+    }
+
+}
+
+//
+// Transition Border
+//
+
+@internal-theme-transition-border-border-gradient:       linear-gradient(45deg, #6852ED, saturate(spin(#6852ED, 30), 21%));
+@internal-theme-transition-border-hover-border-gradient: @internal-theme-transition-border-border-gradient;
+
+//
+// WooCommerce
+//
+
+@woocommerce-widget-active-filters-border-radius:       0;
+@woocommerce-widget-active-filters-font-size:           @global-small-font-size;
+
+
+// Style
+// ========================================================================
+
+@import (optional) "../vendor/assets/uikit-themes/master-flow/styles/@{internal-style}.less";
+
+@internal-style: ~'';

@@ -1,0 +1,145 @@
+//
+// Component: Form
+//
+// ========================================================================
+
+
+// Variables
+// ========================================================================
+
+//
+// New
+//
+
+@form-backdrop-filter:                          ~'';
+
+@form-multi-line-padding-horizontal:            @form-padding-horizontal;
+
+@form-danger-focus-background:                  inherit;
+@form-success-focus-background:                 inherit;
+
+@form-label-font-size:                          @global-font-size;
+
+
+// Component
+// ========================================================================
+
+.hook-form() {
+    transition: 0.2s ease-in-out;
+    transition-property: color, background-color, border-color, box-shadow;
+}
+
+.hook-form() when not (@form-backdrop-filter = ~'') {
+    backdrop-filter: @form-backdrop-filter;
+    -webkit-backdrop-filter: @form-backdrop-filter;
+}
+
+.hook-form-single-line() {}
+
+.hook-form-multi-line() when not (@form-multi-line-padding-horizontal = @form-padding-horizontal) {
+    padding-left: @form-multi-line-padding-horizontal;
+    padding-right: @form-multi-line-padding-horizontal;
+}
+
+.hook-form-focus() {}
+
+.hook-form-disabled() {}
+
+
+// Style modifiers
+// ========================================================================
+
+.hook-form-danger() {}
+
+.hook-form-success() {}
+
+.hook-form-blank() {}
+
+.hook-form-blank-focus() {}
+
+
+// Radio and checkbox
+// ========================================================================
+
+.hook-form-radio() {
+    transition: 0.2s ease-in-out;
+    transition-property: background-color, border-color, box-shadow;
+}
+
+.hook-form-radio-focus() {}
+
+.hook-form-radio-checked() {}
+
+.hook-form-radio-checked-focus() {}
+
+.hook-form-radio-disabled() {}
+
+
+// Legend
+// ========================================================================
+
+.hook-form-legend() {}
+
+
+// Label
+// ========================================================================
+
+.hook-form-label() { font-size: @form-label-font-size; }
+
+
+// Layout
+// ========================================================================
+
+.hook-form-stacked-label() {}
+
+.hook-form-horizontal-label() {}
+
+
+// Icon
+// ========================================================================
+
+.hook-form-icon() when not (@form-backdrop-filter = ~'') {
+    z-index: 1;
+}
+
+
+// Miscellaneous
+// ========================================================================
+
+// Transparent `background-color` doesn't work on Windows and the background will appear white.
+// This is why the text color is set to black.
+.hook-form-misc() when (@form-background = transparent),
+                       (@form-background = rgba(0, 0, 0, 0)) {
+
+    .uk-select:not([multiple]):not([size]) option { color: #444; }
+
+}
+
+.hook-form-misc() when not (@form-danger-focus-background = inherit) {
+
+    .uk-form-danger:focus { background-color: @form-danger-focus-background; }
+
+}
+
+.hook-form-misc() when not (@form-success-focus-background = inherit) {
+
+    .uk-form-success:focus { background-color: @form-success-focus-background; }
+
+}
+
+
+// Inverse
+// ========================================================================
+
+.hook-inverse-form() {}
+.hook-inverse-form-focus() {}
+
+.hook-inverse-form-radio() {}
+.hook-inverse-form-radio-focus() {}
+
+.hook-inverse-form-radio-checked() {}
+.hook-inverse-form-radio-checked-focus() {}
+
+.hook-inverse-form-label() {}
+
+.hook-inverse-form-icon() {}

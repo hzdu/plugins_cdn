@@ -1,0 +1,121 @@
+/*
+
+Name: Max
+Background: White
+Color: Blue
+Type: Material
+Preview: https://yootheme.com/api/style/max/default.jpg
+
+Style: white-red
+Name: White Red
+Background: White
+Color: Red
+Type: Material
+Preview: https://yootheme.com/api/style/max/white-red.jpg
+
+Style: white-salmon
+Name: White Salmon
+Background: White
+Color: Red
+Type: Material
+Preview: https://yootheme.com/api/style/max/white-salmon.jpg
+
+Style: white-turquoise
+Name: White Turquoise
+Background: White
+Color: Turquoise
+Type: Material
+Preview: https://yootheme.com/api/style/max/white-turquoise.jpg
+
+Style: white-purple
+Name: White Purple
+Background: White
+Color: Purple
+Type: Material
+Preview: https://yootheme.com/api/style/max/white-purple.jpg
+
+Style: dark-black
+Name: Dark Black
+Background: Dark
+Color: Black
+Type: Material
+Preview: https://yootheme.com/api/style/max/dark-black.jpg
+
+*/
+
+// Platform
+@import "platform.less";
+
+// UIkit Core
+@import "../vendor/assets/uikit/src/less/uikit.less";
+
+// UIkit Theme
+@import "../vendor/assets/uikit-themes/master/_import.less";
+@import "../vendor/assets/uikit-themes/master-max/_import.less";
+
+// Theme
+@import "theme.less";
+
+
+// Variables
+// ========================================================================
+
+//
+// Header
+//
+
+@theme-headerbar-color-mode:                             light;
+@theme-headerbar-font-size:                              @global-small-font-size;
+
+//
+// Box Decoration
+//
+
+@theme-box-decoration-primary-background:                @global-primary-background;
+@theme-box-decoration-secondary-background:              @global-secondary-background;
+
+@inverse-theme-box-decoration-primary-background:        @inverse-global-primary-background;
+@inverse-theme-box-decoration-secondary-background:      @inverse-global-primary-background;
+
+//
+// Transition Border
+//
+
+@theme-transition-border-hover-border-width:            12px;
+
+//
+// WooCommerce
+//
+
+//
+// Shop page
+//
+
+@woocommerce-shop-page-title-font-size:                 @global-font-size;
+@woocommerce-shop-page-title-line-height:               @base-h4-line-height;
+@woocommerce-shop-page-title-color:                     @base-h4-color;
+@woocommerce-shop-page-title-font-family:               @base-h4-font-family;
+@woocommerce-shop-page-title-font-weight:               @base-h4-font-weight;
+@woocommerce-shop-page-title-text-transform:            @base-h4-text-transform;
+@woocommerce-shop-page-title-letter-spacing:            @base-h4-letter-spacing;
+@woocommerce-shop-page-title-font-style:                @base-h4-font-style;
+
+//
+// Widgets
+//
+
+@woocommerce-widget-active-filters-font-size:           @global-small-font-size;
+
+//
+// WooCommerce
+//
+
+@woocommerce-rating-color:                              @global-primary-background;
+
+
+// Style
+// ========================================================================
+
+@import (optional) "../vendor/assets/uikit-themes/master-max/styles/@{internal-style}.less";
+
+@internal-style: ~'';

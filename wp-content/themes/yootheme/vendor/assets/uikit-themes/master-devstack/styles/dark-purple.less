@@ -1,0 +1,376 @@
+//
+// Global
+//
+
+@global-color:                rgba(255, 255, 255, 0.9);
+@global-emphasis-color:       #fff;
+@global-inverse-color:        #000;
+@global-link-color:           #a92ae7;
+@global-link-hover-color:     #701699;
+@global-muted-color:          rgba(252, 252, 255, 0.35);
+@global-background:           #303751;
+@global-danger-background:    #e81898;
+@global-muted-background:     #2a3049;
+@global-primary-background:   #be2af0;
+@global-secondary-background: #141826;
+@global-success-background:   #09e07a;
+@global-warning-background:   #aac900;
+@global-border:               #272c42;
+@global-large-box-shadow:     -4px -4px 12px rgba(255, 255, 255, 0.03), 4px 4px 12px rgba(0, 0, 0, 0.2);
+@global-medium-box-shadow:    -2px -2px 5px rgba(255, 255, 255, 0.03), 2px 2px 4px rgba(0, 0, 0, 0.2);
+@global-small-box-shadow:     -1px -1px 1px rgba(255, 255, 255, 0.03), 1px 1px 1px rgba(0, 0, 0, 0.2);
+@global-xlarge-box-shadow:    -10px -10px 30px rgba(255, 255, 255, 0.03), 10px 10px 30px rgba(0, 0, 0, 0.2);
+
+//
+// Theme
+//
+
+@theme-page-container-color-mode:                  light;
+@internal-theme-page-border-gradient:              linear-gradient(90deg, #732edf 10%, #a92ae7 70%, #c729f4 100%);
+@internal-theme-transition-border-border-gradient: linear-gradient(51deg, #732edf 0%, #a92ae7 40%, #c729f4 100%);
+
+//
+// Accordion
+//
+
+@accordion-item-box-shadow: inset 0 1px rgba(255, 255, 255, 0.04);
+
+//
+// Alert
+//
+
+@alert-background:    #394160;
+@alert-primary-color: @global-emphasis-color;
+@alert-success-color: @global-emphasis-color;
+@alert-warning-color: @global-emphasis-color;
+@alert-danger-color:  @global-emphasis-color;
+
+//
+// Badge
+//
+
+@badge-background: #ffffff;
+
+//
+// Base
+//
+
+@base-ins-background:  rgba(0, 0, 0, 0.2);
+@base-mark-background: rgba(0, 0, 0, 0.2);
+@base-hr-box-shadow:   0 1px 0 rgba(255, 255, 255, 0.04);
+@base-pre-background:  #394160;
+@base-selection-color: #ffffff;
+
+//
+// Button
+//
+
+@button-default-hover-color:  @global-emphasis-color;
+@button-default-active-color: @global-emphasis-color;
+
+@button-primary-background:       #a92ae7;
+@button-primary-box-shadow:       -5px -5px 15px rgba(255, 255, 255, 0.04), 5px 5px 15px rgba(0, 0, 0, 0.2);
+@button-primary-color:            @global-emphasis-color;
+@button-primary-hover-box-shadow: -2px -2px 5px rgba(255, 255, 255, 0.04), 2px 2px 5px rgba(0, 0, 0, 0.2);
+@button-primary-hover-color:      @global-emphasis-color;
+@button-primary-active-color:     @global-emphasis-color;
+
+@button-secondary-border:                   rgba(255, 255, 255, 0.7);
+@button-secondary-box-shadow:               inset 3px 3px 10px rgba(0, 0, 0, 0.1), -4px -4px 12px rgba(255, 255, 255, 0.04), 4px 4px 12px rgba(0, 0, 0, 0.15);
+@button-secondary-color:                    @global-emphasis-color;
+@button-secondary-hover-background:         @global-emphasis-color;
+@button-secondary-hover-box-shadow:         -2px -2px 5px rgba(255, 255, 255, 0.04), 2px 2px 4px rgba(0, 0, 0, 0.2);
+@button-secondary-hover-color:              #be2af0;
+@button-secondary-active-background:        rgba(255, 255, 255, 0.8);
+@button-secondary-active-box-shadow:        -1px -1px 1px rgba(255, 255, 255, 0.04), 1px 1px 1px rgba(0, 0, 0, 0.2);
+@button-secondary-active-color:             #be2af0;
+@button-danger-box-shadow:                  5px 5px 15px rgba(0, 0, 0, 0.2);
+@button-danger-color:                       @global-emphasis-color;
+@button-danger-hover-box-shadow:            2px 2px 5px rgba(0, 0, 0, 0.2);
+@button-danger-hover-color:                 @global-emphasis-color;
+@button-danger-active-color:                @global-emphasis-color;
+@internal-button-primary-gradient:          linear-gradient(51deg, #732edf 50%, #a92ae7 75%, #db29f4 100%);
+@internal-button-primary-active-gradient:   linear-gradient(51deg, #731fd6 50%, #a903dc 70%, #db00e8 100%);
+@internal-button-secondary-hover-gradient:  none;
+@internal-button-secondary-active-gradient: none;
+
+//
+// Card
+//
+
+@card-badge-color:                 @inverse-global-inverse-color;
+@internal-card-badge-gradient:     linear-gradient(51deg, #732edf 25%, #a92ae7 60%, #c429f2 100%);
+@card-hover-box-shadow:            -10px -10px 20px rgba(115, 130, 190, 0.08), 10px 10px 20px rgba(27, 30, 45, 0.3);
+@card-default-color-mode:          light;
+@card-default-box-shadow:          -10px -10px 20px rgba(115, 130, 190, 0.08), 10px 10px 20px rgba(27, 30, 45, 0.2);
+@card-primary-box-shadow:          -10px -10px 20px rgba(115, 130, 190, 0.08), 5px 5px 20px rgba(19, 2, 25, 0.14);
+@card-primary-color:               fade(@global-emphasis-color, 70%);
+@card-primary-hover-box-shadow:    -2px -2px 5px rgba(115, 130, 190, 0.08), 2px 2px 4px rgba(19, 2, 25, 0.14);
+@card-secondary-box-shadow:        -10px -10px 20px rgba(115, 130, 190, 0.08), 10px 10px 20px rgba(27, 30, 45, 0.3);
+@card-secondary-color:             fade(@global-emphasis-color, 70%);
+@card-secondary-hover-box-shadow:  -2px -2px 5px rgba(115, 130, 190, 0.08), 2px 2px 4px rgba(27, 30, 45, 0.3);
+@internal-card-default-gradient:   linear-gradient(51deg, #303751 0%, #323a52 100%);
+@internal-card-primary-gradient:   linear-gradient(51deg, #732edf 0%, #a92ae7 40%, #c729f4 100%);
+@internal-card-secondary-gradient: linear-gradient(40deg, #1d2337 0%, #262d47 90%);
+
+//
+// Description list
+//
+
+@description-list-divider-term-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+
+//
+// Divider
+//
+
+@divider-icon-line-border:               @global-border;
+@divider-icon-line-box-shadow:           0 1px 0 rgba(255, 255, 255, 0.04);
+@internal-divider-small-border-gradient: linear-gradient(40deg, #732edf 0%, #a92ae7 40%, #c729f4 100%);
+
+//
+// Dotnav
+//
+
+@dotnav-item-background: rgba(23, 27, 41, 0.5);
+@dotnav-item-box-shadow: inset 1px 1px 1px rgba(0,0,0, 0.15), 1px 1px 1px rgba(255, 255, 255, 0.05);
+
+
+//
+// Dropbar
+//
+
+@dropbar-color-mode:        light;
+@dropbar-top-box-shadow:    0 33px 45px -37px rgba(0, 0, 0, 0.2);
+@dropbar-bottom-box-shadow: 0 -33px 45px -37px rgba(0, 0, 0, 0.2);
+@dropbar-left-box-shadow:   33px 0 45px -37px rgba(0, 0, 0, 0.2);
+@dropbar-right-box-shadow:  -33px 0 45px -37px rgba(0, 0, 0, 0.2);
+
+//
+// Dropdown
+//
+
+@dropdown-color-mode: light;
+
+//
+// Form
+//
+
+@form-box-shadow:                   inset 2px 2px 5px rgba(0, 0, 0, 0.27), inset -2px -2px 5px rgba(255, 255, 255, 0.05);
+@form-focus-box-shadow:             inset 1px 1px 2px rgba(0, 0, 0, 0.27), inset -1px -1px 2px rgba(255, 255, 255, 0.05);
+@form-disabled-background:          lighten(@global-background, 2%);
+@form-disabled-box-shadow:          inset 1px 1px 2px rgba(0, 0, 0, 0.27), inset -1px -1px 2px rgba(255, 255, 255, 0.05);
+@form-range-thumb-box-shadow:       2px 2px 5px rgba(0, 0, 0, 0.2);
+@form-range-track-box-shadow:       0 1px 0 rgba(255, 255, 255, 0.08);
+@form-range-track-focus-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.08);
+@form-radio-box-shadow:             inset 1px 1px 2px rgba(0, 0, 0, 0.5), inset -1px -1px 2px rgba(255, 255, 255, 0.2);
+@form-radio-focus-box-shadow:       inset 1px 1px 1px rgba(0, 0, 0, 0.5), inset -1px -1px 1px rgba(255, 255, 255, 0.2);
+
+//
+// Grid
+//
+
+@grid-divider-border:                @global-border;
+@grid-divider-horizontal-box-shadow: 1px 0 0 rgba(255, 255, 255, 0.04);
+@grid-divider-vertical-box-shadow:   0 1px 0 rgba(255, 255, 255, 0.04);
+
+//
+// Heading
+//
+
+@heading-divider-border:     @global-border;
+@heading-divider-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.04);
+@heading-line-border:        @global-border;
+@heading-line-box-shadow:    0 1px 0 rgba(255, 255, 255, 0.04);
+
+//
+// Inverse
+//
+
+@inverse-global-color-mode:           dark;
+@inverse-navbar-nav-item-hover-color: linear-gradient(90deg, #732edf 0%, #a92ae7 40%, #c729f4 100%);
+
+//
+// Label
+//
+
+@label-color:         @global-emphasis-color;
+@label-success-color: @global-emphasis-color;
+@label-warning-color: @global-emphasis-color;
+@label-danger-color:  @global-emphasis-color;
+
+//
+// Link
+//
+
+@link-heading-hover-color: @global-emphasis-color;
+
+//
+// List
+//
+
+@list-divider-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+@list-striped-background: rgba(255, 255, 255, 0.05);
+
+//
+// Nav
+//
+
+@nav-default-divider-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.04);
+@nav-primary-divider-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.04);
+@nav-dividers-box-shadow:        inset 0 1px 0 rgba(255, 255, 255, 0.04);
+
+//
+// Navbar
+//
+
+@navbar-color-mode:                       light;
+@navbar-dropdown-color-mode:              light;
+@navbar-dropdown-box-shadow:              0 15px 40px rgba(0, 0, 0, 0.2);
+@navbar-nav-item-color:                   rgba(255, 255, 255, 0.5);
+@navbar-nav-item-hover-color:             @global-emphasis-color;
+@navbar-nav-item-onclick-color:           @global-emphasis-color;
+@navbar-nav-item-active-color:            @global-emphasis-color;
+@navbar-nav-item-line-hover-background:   @global-emphasis-color;
+@navbar-nav-item-line-onclick-background: @global-emphasis-color;
+@navbar-nav-item-line-active-background:  @global-emphasis-color;
+@internal-navbar-nav-item-line-gradient:  ~'';
+
+//
+// Offcanvas
+//
+
+@offcanvas-bar-color-mode:     light;
+@offcanvas-overlay-background: rgba(30, 35, 50, 0.5);
+
+//
+// Overlay
+//
+
+@overlay-default-color-mode: light;
+
+//
+// Pagination
+//
+
+@pagination-item-color: rgba(255, 255, 255, 0.65);
+
+//
+// Progress
+//
+
+@progress-box-shadow:            inset 1px 1px 1px rgba(0, 0, 0, 0.5), inset -1px -1px 1px rgba(255, 255, 255, 0.1);
+@internal-progress-bar-gradient: linear-gradient(40deg, #732edf 0%, #a92ae7 40%, #c729f4 100%);
+
+//
+// Search
+//
+
+@search-default-input-box-shadow:       inset 2px 2px 5px rgba(0, 0, 0, 0.27), inset -2px -2px 5px rgba(255, 255, 255, 0.05);
+@search-default-input-focus-box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.25), inset -1px -1px 2px rgba(255, 255, 255, 0.05);
+@search-default-focus-background:       darken(@global-background, 1%);
+
+//
+// Section
+//
+
+@section-default-color-mode:        light;
+@section-muted-color-mode:          light;
+@internal-section-primary-gradient: linear-gradient(40deg, #732edf 0%, #a92ae7 40%, #bd29f0 100%);
+
+//
+// Slidenav
+//
+
+@slidenav-hover-color:  @global-emphasis-color;
+@slidenav-active-color: @global-emphasis-color;
+
+//
+// Subnav
+//
+
+@subnav-item-color:        fade(@global-muted-color, 50%);
+@subnav-item-hover-color:  @global-emphasis-color;
+@subnav-item-active-color: @global-emphasis-color;
+
+//
+// Tab
+//
+
+@tab-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.04);
+
+//
+// Table
+//
+
+@table-divider-box-shadow:   inset 0 2px 0 0 rgba(255, 255, 255, 0.04);
+@table-hover-row-background: rgba(42, 48, 73, 0.4);
+
+//
+// Text
+//
+
+@text-lead-color:                         rgba(255, 255, 255, 0.65);
+@text-secondary-color:                    #a89edf;
+@internal-text-background-color-gradient: linear-gradient(40deg, #732edf 0%, #a92ae7 40%, #c729f4 100%);
+
+//
+// Thumbnav
+//
+
+@thumbnav-item-gradient:         linear-gradient(180deg, rgba(0,0,0,0), rgba(0,0,0,0.4));
+@inverse-thumbnav-item-gradient: linear-gradient(180deg, rgba(255,255,255,0), rgba(255,255,255,0.4));
+
+//
+// Tile
+//
+
+@tile-default-color-mode:        light;
+@tile-muted-color-mode:          light;
+@internal-tile-primary-gradient: linear-gradient(40deg, #732edf 0%, #a92ae7 40%, #c729f4 100%);
+
+//
+// Utility
+//
+
+@box-shadow-bottom-background: rgba(0, 0, 0, 0.4);
+
+//
+// Woocommerce
+//
+
+@woocommerce-rating-background-color: fade(@global-muted-color, 15%);
+
+// Miscellaneous
+// ========================================================================
+
+.hook-button-misc() {
+
+    .uk-tile-primary .uk-button-primary,
+    .uk-card-primary .uk-button-primary,
+    .uk-section-primary .uk-button-primary,
+    .uk-tile-primary .uk-button-default,
+    .uk-card-primary .uk-button-default,
+    .uk-section-primary .uk-button-default {
+
+        background: @global-emphasis-color;
+        color: #303751;
+
+        &:hover { color: #be2af0; }
+
+    }
+
+}
+
+.hook-link-misc() {
+
+    :where(.uk-tile-primary) a,
+    :where(.uk-card-primary) a,
+    :where(.uk-section-primary) a {
+
+        color: #fdac5c;
+
+        &:hover { color: #7c2c13; }
+
+    }
+
+}

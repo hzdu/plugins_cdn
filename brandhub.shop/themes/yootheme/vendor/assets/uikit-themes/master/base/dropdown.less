@@ -1,0 +1,78 @@
+//
+// Component: Dropdown
+//
+// ========================================================================
+
+
+// Variables
+// ========================================================================
+
+//
+// New
+//
+
+@dropdown-backdrop-filter:                      ~'';
+
+@dropdown-nav-margin-horizontal:                0;
+
+@dropdown-nav-item-padding-vertical:            @nav-item-padding-vertical;
+@dropdown-nav-item-padding-horizontal:          @nav-item-padding-horizontal;
+
+@dropdown-nav-item-hover-background:            transparent;
+
+@dropdown-nav-sublist-padding-left:             (@dropdown-nav-item-padding-horizontal + @nav-sublist-deeper-padding-left);
+
+@dropdown-nav-divider-margin-horizontal:        0;
+
+
+// Component
+// ========================================================================
+
+.hook-dropdown() when not (@dropdown-backdrop-filter = ~'') {
+    backdrop-filter: @dropdown-backdrop-filter;
+    -webkit-backdrop-filter: @dropdown-backdrop-filter;
+}
+
+
+// Dropbar modifier
+// ========================================================================
+
+.hook-dropdown-dropbar() {}
+
+.hook-dropdown-dropbar-large() {}
+
+
+// Nav
+// ========================================================================
+
+.hook-dropdown-nav() when not (@dropdown-nav-margin-horizontal = 0) {
+    margin-left: @dropdown-nav-margin-horizontal;
+    margin-right: @dropdown-nav-margin-horizontal;
+}
+
+.hook-dropdown-nav-item() when not (@dropdown-nav-item-padding-vertical = @nav-item-padding-vertical), not(@dropdown-nav-item-padding-horizontal = @nav-item-padding-horizontal) {
+    padding: @dropdown-nav-item-padding-vertical @dropdown-nav-item-padding-horizontal;
+}
+
+.hook-dropdown-nav-item-hover() { background-color: @dropdown-nav-item-hover-background; }
+
+.hook-dropdown-nav-subtitle() {}
+
+.hook-dropdown-nav-header() when not (@dropdown-nav-item-padding-vertical = @nav-item-padding-vertical), not(@dropdown-nav-item-padding-horizontal = @nav-item-padding-horizontal) {
+    padding: @dropdown-nav-item-padding-vertical @dropdown-nav-item-padding-horizontal;
+}
+
+.hook-dropdown-nav-divider() when not (@dropdown-nav-divider-margin-horizontal = 0) {
+    margin-left: @dropdown-nav-divider-margin-horizontal;
+    margin-right: @dropdown-nav-divider-margin-horizontal;
+}
+
+
+// Miscellaneous
+// ========================================================================
+
+.hook-dropdown-misc() when not (@dropdown-nav-sublist-padding-left = @nav-sublist-padding-left) {
+
+    .uk-dropdown-nav .uk-nav-sub { padding-left: @dropdown-nav-sublist-padding-left; }
+
+}

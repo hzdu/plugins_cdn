@@ -1,0 +1,177 @@
+/*
+
+Name: Vision
+Background: White
+Color: Red
+Type: Material
+Preview: https://yootheme.com/api/style/vision/default.jpg
+
+Style: white-blue
+Name: White Blue
+Background: White
+Color: Blue
+Type: Material
+Preview: https://yootheme.com/api/style/vision/white-blue.jpg
+
+Style: white-yellow
+Name: White Yellow
+Background: White
+Color: Yellow
+Type: Material
+Preview: https://yootheme.com/api/style/vision/white-yellow.jpg
+
+Style: white-lilac
+Name: White Lilac
+Background: White
+Color: Purple
+Type: Material
+Preview: https://yootheme.com/api/style/vision/white-lilac.jpg
+
+Style: white-pink
+Name: White Pink
+Background: White
+Color: Pink
+Type: Material
+Preview: https://yootheme.com/api/style/vision/white-pink.jpg
+
+Style: black-green
+Name: Black Green
+Background: Black
+Color: Green
+Type: Material
+Preview: https://yootheme.com/api/style/vision/black-green.jpg
+
+*/
+
+// Platform
+@import "platform.less";
+
+// UIkit Core
+@import "../vendor/assets/uikit/src/less/uikit.less";
+
+// UIkit Theme
+@import "../vendor/assets/uikit-themes/master/_import.less";
+@import "../vendor/assets/uikit-themes/master-vision/_import.less";
+
+// Theme
+@import "theme.less";
+
+
+// Variables
+// ========================================================================
+
+//
+// Toolbar
+//
+
+@theme-toolbar-font-size:                                14px;
+
+//
+// Section
+//
+
+@section-title-color:                                    @global-emphasis-color;
+
+@internal-section-title-dash-border-height:              60px;
+@internal-section-title-dash-border-margin:              20px;
+
+//
+// Box Decoration
+//
+
+@theme-box-decoration-top:                               -50px;
+@theme-box-decoration-bottom:                            -50px;
+@theme-box-decoration-left:                              -50px;
+@theme-box-decoration-right:                             -50px;
+
+@theme-box-decoration-default-transform-horizontal:      0;
+@theme-box-decoration-default-transform-vertical:        0;
+@theme-box-decoration-default-background:                darken(@global-muted-background, 7%);
+
+@theme-box-decoration-primary-transform-horizontal:      0;
+@theme-box-decoration-primary-transform-vertical:        0;
+@theme-box-decoration-primary-background:                darken(@global-muted-background, 7%);
+
+@theme-box-decoration-secondary-transform-horizontal:    0;
+@theme-box-decoration-secondary-transform-vertical:      0;
+@theme-box-decoration-secondary-background:              darken(@global-muted-background, 7%);
+
+.hook-box-decoration() {
+
+    &::before {
+        -webkit-mask-image: url("../vendor/assets/uikit-themes/master-vision/images/box-decoration-image.svg");
+        mask-image: url("../vendor/assets/uikit-themes/master-vision/images/box-decoration-image.svg");
+        -webkit-mask-position: 50% 50%;
+        mask-position: 50% 50%;
+        -webkit-mask-repeat: repeat;
+        mask-repeat: repeat;
+    }
+
+}
+
+.hook-box-decoration-default() {
+
+    &::before { right: 50px; }
+
+}
+
+.hook-box-decoration-primary() {
+
+    &::before { left: 50px; }
+
+}
+
+.hook-box-decoration-secondary() {
+
+    &::before { top: 50px; }
+
+}
+
+@inverse-theme-box-decoration-default-background:   @inverse-global-muted-background;
+@inverse-theme-box-decoration-primary-background:   @inverse-global-muted-background;
+@inverse-theme-box-decoration-secondary-background: @inverse-global-muted-background;
+
+//
+// Transition Border
+//
+
+@theme-transition-border-hover-border-width:             12px;
+
+@internal-theme-transition-border-border-gradient:       linear-gradient(155deg, @global-primary-background 0%, spin(@global-primary-background, 9%) 100%);
+@internal-theme-transition-border-hover-border-gradient: @internal-theme-transition-border-border-gradient;
+
+//
+// WooCommerce
+//
+
+//
+// Shop page
+//
+
+@woocommerce-shop-page-price-font-size:             14px;
+
+//
+// Rating
+//
+
+@woocommerce-rating-color:                          @global-secondary-background;
+
+//
+// Widgets
+//
+
+@woocommerce-widget-active-filters-font-size:       14px;
+
+//
+// Review Link
+//
+
+@woocommerce-review-link-font-size:                 14px;
+
+
+// Style
+// ========================================================================
+
+@import (optional) "../vendor/assets/uikit-themes/master-vision/styles/@{internal-style}.less";
+
+@internal-style: ~'';

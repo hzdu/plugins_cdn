@@ -1,0 +1,343 @@
+//
+// Component: Navbar
+//
+// ========================================================================
+
+
+// Variables
+// ========================================================================
+
+@navbar-nav-item-font-family:                   @global-secondary-font-family;
+
+//
+// New
+//
+
+@navbar-nav-item-font-weight:                   @global-secondary-font-weight;
+@navbar-nav-item-text-transform:                @global-secondary-text-transform;
+@navbar-nav-item-letter-spacing:                @global-secondary-letter-spacing;
+@navbar-nav-item-font-style:                    @global-secondary-font-style;
+
+@navbar-nav-item-text-shadow:                   none;
+@navbar-nav-item-hover-text-shadow:             none;
+@navbar-nav-item-active-text-shadow:            none;
+
+@navbar-item-font-size:                         @navbar-nav-item-font-size;
+@navbar-item-font-family:                       @navbar-nav-item-font-family;
+
+@navbar-subtitle-color:                         @navbar-nav-item-color;
+@navbar-subtitle-font-family:                   inherit;
+@navbar-subtitle-font-weight:                   inherit;
+@navbar-subtitle-text-transform:                inherit;
+@navbar-subtitle-letter-spacing:                inherit;
+@navbar-subtitle-line-height:                   inherit;
+@navbar-subtitle-font-style:                    inherit;
+
+@navbar-primary-nav-item-font-size:             @global-large-font-size;
+@navbar-primary-nav-item-font-weight:           400;
+@navbar-primary-nav-item-color:                 transparent;
+@navbar-primary-nav-item-hover-color:           transparent;
+@navbar-primary-nav-item-onclick-color:         transparent;
+@navbar-primary-nav-item-active-color:          transparent;
+@navbar-primary-toggle-icon-width:              26px;
+
+@navbar-dropdown-nav-font-size:                 @global-font-size;
+@navbar-dropdown-nav-font-family:               @global-secondary-font-family;
+@navbar-dropdown-nav-font-weight:               @global-secondary-font-weight;
+@navbar-dropdown-nav-text-transform:            @global-secondary-text-transform;
+@navbar-dropdown-nav-letter-spacing:            @global-secondary-letter-spacing;
+@navbar-dropdown-nav-font-style:                @global-secondary-font-style;
+
+@navbar-dropdown-nav-subtitle-color:            @navbar-dropdown-nav-item-color;
+@navbar-dropdown-nav-subtitle-font-family:      inherit;
+@navbar-dropdown-nav-subtitle-font-weight:      inherit;
+@navbar-dropdown-nav-subtitle-text-transform:   inherit;
+@navbar-dropdown-nav-subtitle-letter-spacing:   inherit;
+@navbar-dropdown-nav-subtitle-line-height:      inherit;
+@navbar-dropdown-nav-subtitle-font-style:       inherit;
+
+
+// Component
+// ========================================================================
+
+.hook-navbar() {}
+
+
+// Container
+// ========================================================================
+
+.hook-navbar-container() {}
+
+
+// Nav
+// ========================================================================
+
+.hook-navbar-nav-item() {}
+
+.hook-navbar-nav-item() when not (@navbar-nav-item-font-weight = inherit) {
+    font-weight: @navbar-nav-item-font-weight;
+}
+
+.hook-navbar-nav-item() when not (@navbar-nav-item-text-transform = inherit) {
+    text-transform: @navbar-nav-item-text-transform;
+}
+
+.hook-navbar-nav-item() when not (@navbar-nav-item-letter-spacing = inherit) {
+    letter-spacing: @navbar-nav-item-letter-spacing;
+}
+
+.hook-navbar-nav-item() when not (@navbar-nav-item-font-style = inherit) {
+    font-style: @navbar-nav-item-font-style;
+}
+
+.hook-navbar-nav-item() when not (@navbar-nav-item-text-shadow = none) {
+    text-shadow: @navbar-nav-item-text-shadow;
+}
+
+.hook-navbar-nav-item-hover() when not (@navbar-nav-item-hover-text-shadow = none) {
+    text-shadow: @navbar-nav-item-hover-text-shadow;
+}
+
+.hook-navbar-nav-item-onclick() {}
+
+.hook-navbar-nav-item-active() when not (@navbar-nav-item-active-text-shadow = none) {
+    text-shadow: @navbar-nav-item-active-text-shadow;
+}
+
+
+// Item
+// ========================================================================
+
+.hook-navbar-item() when not (@navbar-nav-item-font-size = @navbar-item-font-size) {
+    font-size: @navbar-item-font-size;
+}
+
+.hook-navbar-item() when not (@navbar-nav-item-font-family = @navbar-item-font-family) {
+    font-family: @navbar-item-font-family;
+}
+
+
+// Toggle
+// ========================================================================
+
+.hook-navbar-toggle() {}
+
+.hook-navbar-toggle() when not (@navbar-nav-item-font-weight = inherit) {
+    font-weight: @navbar-nav-item-font-weight;
+}
+
+.hook-navbar-toggle() when not (@navbar-nav-item-text-transform = inherit) {
+    text-transform: @navbar-nav-item-text-transform;
+}
+
+.hook-navbar-toggle() when not (@navbar-nav-item-letter-spacing = inherit) {
+    letter-spacing: @navbar-nav-item-letter-spacing;
+}
+
+.hook-navbar-toggle-hover() {}
+
+.hook-navbar-toggle-icon() {}
+
+.hook-navbar-toggle-icon-hover() {}
+
+
+// Subtitle
+// ========================================================================
+
+.hook-navbar-subtitle() {}
+
+.hook-navbar-subtitle() when not (@navbar-subtitle-font-family = inherit) {
+    font-family: @navbar-subtitle-font-family;
+}
+
+.hook-navbar-subtitle() when not (@navbar-subtitle-font-weight = inherit) {
+    font-weight: @navbar-subtitle-font-weight;
+}
+
+.hook-navbar-subtitle() when not (@navbar-subtitle-text-transform = inherit) {
+    text-transform: @navbar-subtitle-text-transform;
+}
+
+.hook-navbar-subtitle() when not (@navbar-subtitle-letter-spacing = inherit) {
+    letter-spacing: @navbar-subtitle-letter-spacing;
+}
+
+.hook-navbar-subtitle() when not (@navbar-subtitle-line-height = inherit) {
+    line-height: @navbar-subtitle-line-height;
+}
+
+.hook-navbar-subtitle() when not (@navbar-subtitle-font-style = inherit) {
+    font-style: @navbar-subtitle-font-style;
+}
+
+
+// Style modifiers
+// ========================================================================
+
+.hook-navbar-primary() {}
+
+.hook-navbar-nav-item() {
+
+    .uk-navbar-primary & { font-size: @navbar-primary-nav-item-font-size; }
+
+    .uk-navbar-primary & when not (@navbar-primary-nav-item-font-weight = inherit) {
+        font-weight: @navbar-primary-nav-item-font-weight;
+    }
+
+    .uk-navbar-primary & when not (@navbar-primary-nav-item-color = transparent) {
+        color: @navbar-primary-nav-item-color;
+    }
+
+}
+
+.hook-navbar-nav-item-hover() when not (@navbar-primary-nav-item-hover-color = transparent) {
+
+    .uk-navbar-primary & { color: @navbar-primary-nav-item-hover-color; }
+
+}
+
+.hook-navbar-nav-item-onclick() when not (@navbar-primary-nav-item-onclick-color = transparent) {
+
+    .uk-navbar-primary & { color: @navbar-primary-nav-item-onclick-color; }
+
+}
+
+.hook-navbar-nav-item-active() when not (@navbar-primary-nav-item-active-color = transparent) {
+
+    .uk-navbar-primary & { color: @navbar-primary-nav-item-active-color; }
+
+}
+
+.hook-navbar-toggle() {
+
+    .uk-navbar-primary & { font-size: @navbar-primary-nav-item-font-size; }
+
+    .uk-navbar-primary & when not (@navbar-primary-nav-item-font-weight = inherit) {
+        font-weight: @navbar-primary-nav-item-font-weight;
+    }
+
+}
+
+.hook-navbar-toggle-icon() {
+    .uk-navbar-primary & > svg { width: @navbar-primary-toggle-icon-width; }
+}
+
+.hook-navbar-transparent() {}
+
+.hook-navbar-sticky() {}
+
+
+// Dropdown
+// ========================================================================
+
+.hook-navbar-dropdown() {}
+
+.hook-navbar-dropdown-large() {}
+
+.hook-navbar-dropdown-dropbar() {}
+
+.hook-navbar-dropdown-dropbar-large() {}
+
+
+// Dropdown nav
+// ========================================================================
+
+.hook-navbar-dropdown-nav() { font-size: @navbar-dropdown-nav-font-size; }
+
+.hook-navbar-dropdown-nav() when not (@navbar-dropdown-nav-font-family = inherit) {
+    font-family: @navbar-dropdown-nav-font-family;
+}
+
+.hook-navbar-dropdown-nav() when not (@navbar-dropdown-nav-font-weight = inherit) {
+    font-weight: @navbar-dropdown-nav-font-weight;
+}
+
+.hook-navbar-dropdown-nav() when not (@navbar-dropdown-nav-text-transform = inherit) {
+    text-transform: @navbar-dropdown-nav-text-transform;
+}
+
+.hook-navbar-dropdown-nav() when not (@navbar-dropdown-nav-letter-spacing = inherit) {
+    letter-spacing: @navbar-dropdown-nav-letter-spacing;
+}
+
+.hook-navbar-dropdown-nav() when not (@navbar-dropdown-nav-font-style = inherit) {
+    font-style: @navbar-dropdown-nav-font-style;
+}
+
+.hook-navbar-dropdown-nav-item() {}
+
+.hook-navbar-dropdown-nav-item-hover() {}
+
+.hook-navbar-dropdown-nav-subtitle() {}
+
+.hook-navbar-dropdown-nav-subtitle() when not (@navbar-dropdown-nav-subtitle-font-family = inherit) {
+  font-family: @navbar-dropdown-nav-subtitle-font-family;
+}
+
+.hook-navbar-dropdown-nav-subtitle() when not (@navbar-dropdown-nav-subtitle-font-weight = inherit) {
+  font-weight: @navbar-dropdown-nav-subtitle-font-weight;
+}
+
+.hook-navbar-dropdown-nav-subtitle() when not (@navbar-dropdown-nav-subtitle-text-transform = inherit) {
+  text-transform: @navbar-dropdown-nav-subtitle-text-transform;
+}
+
+.hook-navbar-dropdown-nav-subtitle() when not (@navbar-dropdown-nav-subtitle-letter-spacing = inherit) {
+  letter-spacing: @navbar-dropdown-nav-subtitle-letter-spacing;
+}
+
+.hook-navbar-dropdown-nav-subtitle() when not (@navbar-dropdown-nav-subtitle-line-height = inherit) {
+  line-height: @navbar-dropdown-nav-subtitle-line-height;
+}
+
+.hook-navbar-dropdown-nav-subtitle() when not (@navbar-dropdown-nav-subtitle-font-style = inherit) {
+  font-style: @navbar-dropdown-nav-subtitle-font-style;
+}
+
+.hook-navbar-dropdown-nav-header() {}
+
+.hook-navbar-dropdown-nav-divider() {}
+
+
+// Dropbar
+// ========================================================================
+
+.hook-navbar-dropbar() {}
+
+
+// Miscellaneous
+// ========================================================================
+
+.hook-navbar-misc() when not (@navbar-subtitle-color = @navbar-nav-item-color) {
+
+    .uk-navbar-nav > li:not(.uk-active):not(:hover) > a:not([aria-expanded="true"]):not(:active) .uk-navbar-subtitle { color: @navbar-subtitle-color; }
+
+}
+
+.hook-navbar-misc() when not (@navbar-dropdown-nav-subtitle-color = @navbar-dropdown-nav-item-color) {
+
+    .uk-navbar-dropdown-nav > li:not(.uk-active) > a:not(:hover) .uk-nav-subtitle { color: @navbar-dropdown-nav-subtitle-color; }
+
+}
+
+
+// Inverse
+// ========================================================================
+
+@inverse-navbar-subtitle-color:                 @inverse-navbar-nav-item-color;
+
+.hook-inverse-navbar-nav-item() {}
+.hook-inverse-navbar-nav-item-hover() {}
+.hook-inverse-navbar-nav-item-onclick() {}
+.hook-inverse-navbar-nav-item-active() {}
+
+.hook-inverse-navbar-item() {}
+
+.hook-inverse-navbar-toggle() {}
+.hook-inverse-navbar-toggle-hover() {}
+
+.hook-inverse() when not (@navbar-subtitle-color = @navbar-nav-item-color) {
+
+    .uk-navbar-nav > li:not(.uk-active):not(:hover) > a:not([aria-expanded="true"]):not(:active) .uk-navbar-subtitle { color: @inverse-navbar-subtitle-color; }
+
+}

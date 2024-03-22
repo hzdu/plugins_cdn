@@ -1,0 +1,77 @@
+//
+// Component: Accordion
+//
+// ========================================================================
+
+
+// Variables
+// ========================================================================
+
+//
+// New
+//
+
+@accordion-title-font-family:                   @global-primary-font-family;
+@accordion-title-font-weight:                   @global-primary-font-weight;
+@accordion-title-text-transform:                @global-primary-text-transform;
+@accordion-title-letter-spacing:                @global-primary-letter-spacing;
+@accordion-title-font-style:                    @global-primary-font-style;
+
+
+// Component
+// ========================================================================
+
+.hook-accordion() {}
+
+
+// Item
+// ========================================================================
+
+.hook-accordion-item() {}
+
+
+// Title
+// ========================================================================
+
+.hook-accordion-title() when not (@accordion-title-font-family = inherit) {
+    font-family: @accordion-title-font-family;
+}
+
+.hook-accordion-title() when not (@accordion-title-font-weight = inherit) {
+    font-weight: @accordion-title-font-weight;
+}
+
+.hook-accordion-title() when not (@accordion-title-text-transform = inherit) {
+    text-transform: @accordion-title-text-transform;
+}
+
+.hook-accordion-title() when not (@accordion-title-letter-spacing = inherit) {
+    letter-spacing: @accordion-title-letter-spacing;
+}
+
+.hook-accordion-title() when not (@accordion-title-font-style = inherit) {
+    font-style: @accordion-title-font-style;
+}
+
+.hook-accordion-title-hover() {}
+
+
+// Content
+// ========================================================================
+
+.hook-accordion-content() {}
+
+
+// Miscellaneous
+// ========================================================================
+
+.hook-accordion-misc() {}
+
+
+// Inverse
+// ========================================================================
+
+.hook-inverse-accordion-item() {}
+
+.hook-inverse-accordion-title() {}
+.hook-inverse-accordion-title-hover() {}

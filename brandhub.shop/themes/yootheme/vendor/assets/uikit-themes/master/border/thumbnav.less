@@ -1,0 +1,76 @@
+//
+// Component: Thumbnav
+//
+// ========================================================================
+
+
+// Variables
+// ========================================================================
+
+//
+// New
+//
+
+@thumbnav-item-border-width:                         0;
+
+@thumbnav-item-border:                               transparent;
+@thumbnav-item-hover-border:                         transparent;
+@thumbnav-item-active-border:                        transparent;
+
+
+// Component
+// ========================================================================
+
+.hook-thumbnav() {}
+
+.hook-thumbnav-item() when not (@thumbnav-item-border-width = 0) {
+
+    &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 1;
+        transition: 0.1s ease-in-out;
+        transition-property: border-color;
+    }
+
+}
+
+.hook-thumbnav-item() when not (@thumbnav-item-border-width = 0) {
+    &::before { border: @thumbnav-item-border-width solid @thumbnav-item-border; }
+}
+
+.hook-thumbnav-item-hover() when not (@thumbnav-item-border-width = 0) {
+    &::before { border-color: @thumbnav-item-hover-border; }
+}
+
+.hook-thumbnav-item-active() when not (@thumbnav-item-border-width = 0) {
+    &::before { border-color: @thumbnav-item-active-border; }
+}
+
+
+// Miscellaneous
+// ========================================================================
+
+.hook-thumbnav-misc() {}
+
+
+// Inverse
+// ========================================================================
+
+@inverse-thumbnav-item-border:                          transparent;
+@inverse-thumbnav-item-hover-border:                    transparent;
+@inverse-thumbnav-item-active-border:                   transparent;
+
+.hook-inverse-thumbnav-item() when not (@thumbnav-item-border-width = 0) {
+    &::before { border-color: @inverse-thumbnav-item-border; }
+}
+.hook-inverse-thumbnav-item-hover() when not (@thumbnav-item-border-width = 0) {
+    &::before { border-color: @inverse-thumbnav-item-hover-border; }
+}
+.hook-inverse-thumbnav-item-active() when not (@thumbnav-item-border-width = 0) {
+    &::before { border-color: @inverse-thumbnav-item-active-border; }
+}

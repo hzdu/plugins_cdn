@@ -1,0 +1,51 @@
+//
+// Component: SVG
+//
+// ========================================================================
+
+
+// Variables
+// ========================================================================
+
+//
+// New
+//
+
+@internal-svg-muted-color:                      lighten(@global-muted-color, 15%);
+@internal-svg-default-background:               @global-background;
+@internal-svg-muted-background:                 darken(@global-muted-background, 2%);
+
+
+// Miscellaneous
+// ========================================================================
+
+.hook-svg-misc() {
+
+    svg.uk-text-muted,
+    svg .uk-text-muted { color: @internal-svg-muted-color !important; }
+
+    .uk-svg-default-background { color: @internal-svg-default-background !important; }
+    .uk-svg-muted-background { color: @internal-svg-muted-background !important; }
+
+}
+
+// Inverse
+// ========================================================================
+
+//
+// New
+//
+
+@internal-inverse-svg-muted-color:                      @inverse-global-muted-color;
+@internal-inverse-svg-default-background:               transparent;
+@internal-inverse-svg-muted-background:                 @inverse-global-muted-background;
+
+.hook-inverse() {
+
+    svg.uk-text-muted,
+    svg .uk-text-muted { color: @internal-inverse-svg-muted-color !important; }
+
+    .uk-svg-default-background { color: @internal-inverse-svg-default-background !important; }
+    .uk-svg-muted-background { color: @internal-inverse-svg-muted-background !important; }
+
+}

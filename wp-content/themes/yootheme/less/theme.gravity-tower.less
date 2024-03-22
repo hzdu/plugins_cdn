@@ -1,0 +1,82 @@
+/*
+
+Name: Gravity Tower
+Background: Light
+Color: Blue
+Type: Flat
+Preview: https://yootheme.com/api/style/gravity-tower/default.jpg
+
+Style: light-blue
+Name: Light Blue
+Background: Light
+Color: Blue
+Type: Flat
+Preview: https://yootheme.com/api/style/gravity-tower/light-blue.jpg
+
+Style: light-red
+Name: Light Red
+Background: Light
+Color: Red
+Type: Flat
+Preview: https://yootheme.com/api/style/gravity-tower/light-red.jpg
+
+Style: light-yellow
+Name: Light Yellow
+Background: Light
+Color: Yellow
+Type: Flat
+Preview: https://yootheme.com/api/style/gravity-tower/light-yellow.jpg
+
+Style: dark-blue
+Name: Dark Blue
+Background: Dark
+Color: Blue
+Type: Flat
+Preview: https://yootheme.com/api/style/gravity-tower/dark-blue.jpg
+
+Style: dark-green
+Name: Dark Green
+Background: Dark
+Color: Green
+Type: Flat
+Preview: https://yootheme.com/api/style/gravity-tower/dark-green.jpg
+
+*/
+
+// Platform
+@import "platform.less";
+
+// UIkit Core
+@import "../vendor/assets/uikit/src/less/uikit.less";
+
+// UIkit Theme
+@import "../vendor/assets/uikit-themes/master/_import.less";
+@import "../vendor/assets/uikit-themes/master-gravity-tower/_import.less";
+
+// Theme
+@import "theme.less";
+
+
+// Variables
+// ========================================================================
+
+//
+// Mask
+//
+
+@internal-theme-mask-default-border-image:               "../vendor/assets/uikit-themes/master-gravity-tower/images/mask-default-image.svg";
+@internal-theme-mask-default-border-image-slice:         0;
+@internal-theme-mask-default-border-image-repeat:        stretch;
+
+//
+// Transition Border
+//
+
+@theme-transition-border-direction-mode:                 outside;
+
+// Style
+// ========================================================================
+
+@import (optional) "../vendor/assets/uikit-themes/master-gravity-tower/styles/@{internal-style}.less";
+
+@internal-style: ~'';

@@ -1,0 +1,143 @@
+/*
+
+Name: Nioh Studio
+Background: White
+Color: Green
+Type: Flat
+Preview: https://yootheme.com/api/style/nioh-studio/default.jpg
+
+Style: black-blue
+Name: Black Blue
+Background: Black
+Color: Blue
+Type: Flat
+Preview: https://yootheme.com/api/style/nioh-studio/black-blue.jpg
+
+Style: white-blue
+Name: White Blue
+Background: White
+Color: Blue
+Type: Flat
+Preview: https://yootheme.com/api/style/nioh-studio/white-blue.jpg
+
+Style: white-orange
+Name: White Orange
+Background: White
+Color: Orange
+Type: Flat
+Preview: https://yootheme.com/api/style/nioh-studio/white-orange.jpg
+
+Style: white-pink
+Name: White Pink
+Background: White
+Color: Pink
+Type: Flat
+Preview: https://yootheme.com/api/style/nioh-studio/white-pink.jpg
+
+Style: white-turquoise
+Name: White Turquoise
+Background: White
+Color: Turquoise
+Type: Flat
+Preview: https://yootheme.com/api/style/nioh-studio/white-turquoise.jpg
+
+*/
+
+// Platform
+@import "platform.less";
+
+// UIkit Core
+@import "../vendor/assets/uikit/src/less/uikit.less";
+
+// UIkit Theme
+@import "../vendor/assets/uikit-themes/master/_import.less";
+@import "../vendor/assets/uikit-themes/master-nioh-studio/_import.less";
+
+// Theme
+@import "theme.less";
+
+
+// Variables
+// ========================================================================
+
+//
+// Page
+//
+
+@theme-page-border:                                      @global-primary-background;
+@theme-page-border-mode:                                 -right;
+@theme-page-border-width:                                10px;
+
+//
+// Header
+//
+
+@theme-headerbar-font-size:                              @global-small-font-size;
+
+//
+// Section
+//
+
+@section-title-font-size:                                @global-font-size;
+
+@internal-section-title-dash-border-height:              3px;
+@internal-section-title-dash-border-width:               18px;
+
+//
+// Box Decoration
+//
+
+@theme-box-decoration-default-background:                transparent;
+@theme-box-decoration-default-border-width:              4px;
+@theme-box-decoration-default-border:                    darken(@global-muted-background, 3%);
+
+@theme-box-decoration-primary-background:                transparent;
+@theme-box-decoration-primary-border-width:              4px;
+@theme-box-decoration-primary-border:                    @global-primary-background;
+
+@theme-box-decoration-secondary-background:              transparent;
+@theme-box-decoration-secondary-border-width:            4px;
+@theme-box-decoration-secondary-border:                  @global-secondary-background;
+
+@inverse-theme-box-decoration-default-border:            @inverse-global-muted-background;
+@inverse-theme-box-decoration-primary-border:            @inverse-global-primary-background;
+@inverse-theme-box-decoration-secondary-border:          @inverse-global-primary-background;
+
+//
+// Transition Border
+//
+
+@theme-transition-border-hover-border-width:             0 10px 0 0;
+
+//
+// Woocommerce
+//
+
+//
+// Shop page
+//
+
+@woocommerce-shop-page-price-margin-top:                 2px;
+
+//
+// Rating
+//
+
+@woocommerce-rating-font-size:                           13px;
+@woocommerce-rating-color:                               @global-secondary-background;
+
+//
+// Widgets
+//
+
+@woocommerce-widget-link-hover-color:                    @global-primary-background;
+
+@woocommerce-widget-active-filters-font-size:            @global-small-font-size;
+
+
+// Style
+// ========================================================================
+
+@import (optional) "../vendor/assets/uikit-themes/master-nioh-studio/styles/@{internal-style}.less";
+
+@internal-style: ~'';

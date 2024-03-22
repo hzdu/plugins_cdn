@@ -1,0 +1,98 @@
+/*
+
+Name: Design Bites
+Background: White
+Color: Pink
+Type: Material
+Preview: https://yootheme.com/api/style/design-bites/default.jpg
+
+Style: white-green
+Name: White Green
+Background: White
+Color: Green
+Type: Material
+Preview: https://yootheme.com/api/style/design-bites/white-green.jpg
+
+Style: white-yellow
+Name: White Yellow
+Background: White
+Color: Yellow
+Type: Material
+Preview: https://yootheme.com/api/style/design-bites/white-yellow.jpg
+
+Style: white-turquoise
+Name: White Turquoise
+Background: White
+Color: Turquoise
+Type: Material
+Preview: https://yootheme.com/api/style/design-bites/white-turquoise.jpg
+
+Style: white-orange
+Name: White Orange
+Background: White
+Color: Orange
+Type: Material
+Preview: https://yootheme.com/api/style/design-bites/white-orange.jpg
+
+Style: white-lightgreen
+Name: White Lightgreen
+Background: White
+Color: Green
+Type: Material
+Preview: https://yootheme.com/api/style/design-bites/white-lightgreen.jpg
+
+*/
+
+// Platform
+@import "platform.less";
+
+// UIkit Core
+@import "../vendor/assets/uikit/src/less/uikit.less";
+
+// UIkit Theme
+@import "../vendor/assets/uikit-themes/master/_import.less";
+@import "../vendor/assets/uikit-themes/master-design-bites/_import.less";
+
+// Theme
+@import "theme.less";
+
+
+// Variables
+// ========================================================================
+
+//
+// Header
+//
+
+@theme-headerbar-font-size:                             13px;
+
+//
+// Box Decoration
+//
+
+@theme-box-decoration-primary-background:               @global-primary-background;
+@theme-box-decoration-secondary-background:             @global-secondary-background;
+
+//
+// Transition Border
+//
+
+@theme-transition-border-hover-border-width:            18px;
+
+//
+// WooCommerce
+//
+
+//
+// Widgets
+//
+
+@woocommerce-widget-active-filters-font-size:           @global-small-font-size;
+
+
+// Style
+// ========================================================================
+
+@import (optional) "../vendor/assets/uikit-themes/master-design-bites/styles/@{internal-style}.less";
+
+@internal-style: ~'';

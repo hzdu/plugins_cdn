@@ -1,0 +1,90 @@
+//
+// Component: Search
+//
+// ========================================================================
+
+
+// Variables
+// ========================================================================
+
+//
+// New
+//
+
+@search-default-border-radius:                  0;
+
+@search-navbar-border-radius:                   0;
+
+@search-large-border-radius:                    0;
+
+
+// Component
+// ========================================================================
+
+.hook-search-input() {}
+
+
+// Icon
+// ========================================================================
+
+.hook-search-icon() {}
+
+
+// Default modifiers
+// ========================================================================
+
+.hook-search-default-input() when not (@search-default-border-radius = 0) {
+    border-radius: @search-default-border-radius;
+}
+
+.hook-search-default-input-focus() {}
+
+
+// Navbar modifiers
+// ========================================================================
+
+.hook-search-navbar-input() when not (@search-navbar-border-radius = 0) {
+    border-radius: @search-navbar-border-radius;
+}
+
+.hook-search-navbar-input-focus() {}
+
+
+// Large modifiers
+// ========================================================================
+
+.hook-search-large-input() when not (@search-large-border-radius = 0) {
+    border-radius: @search-large-border-radius;
+}
+
+.hook-search-large-input-focus() {}
+
+
+// Toggle
+// ========================================================================
+
+.hook-search-toggle() {}
+
+.hook-search-toggle-hover() {}
+
+
+// Miscellaneous
+// ========================================================================
+
+.hook-search-misc() {}
+
+
+// Inverse
+// ========================================================================
+
+.hook-inverse-search-default-input() {}
+.hook-inverse-search-default-input-focus() {}
+
+.hook-inverse-search-navbar-input() {}
+.hook-inverse-search-navbar-input-focus() {}
+
+.hook-inverse-search-large-input() {}
+.hook-inverse-search-large-input-focus() {}
+
+.hook-inverse-search-toggle() {}
+.hook-inverse-search-toggle-hover() {}

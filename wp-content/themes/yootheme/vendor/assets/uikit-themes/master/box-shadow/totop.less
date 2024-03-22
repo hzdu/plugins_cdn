@@ -1,0 +1,56 @@
+//
+// Component: Totop
+//
+// ========================================================================
+
+
+// Variables
+// ========================================================================
+
+//
+// New
+//
+
+@totop-box-shadow:                              none;
+@totop-hover-box-shadow:                        none;
+@totop-active-box-shadow:                       none;
+
+
+// Component
+// ========================================================================
+
+.hook-totop() when not (@totop-box-shadow = none) {
+    box-shadow: @totop-box-shadow;
+}
+
+.hook-totop-hover() when not (@totop-hover-box-shadow = none) {
+    box-shadow: @totop-hover-box-shadow;
+}
+
+.hook-totop-active() when not (@totop-active-box-shadow = none) {
+    box-shadow: @totop-active-box-shadow;
+}
+
+
+// Miscellaneous
+// ========================================================================
+
+.hook-icon-misc() {}
+
+
+// Inverse
+// ========================================================================
+
+@inverse-totop-box-shadow:                      none;
+@inverse-totop-hover-box-shadow:                none;
+@inverse-totop-active-box-shadow:               none;
+
+.hook-inverse-totop() when not (@totop-box-shadow = none) {
+    box-shadow: @inverse-totop-box-shadow;
+}
+.hook-inverse-totop-hover() when not (@totop-hover-box-shadow = none) {
+    box-shadow: @inverse-totop-hover-box-shadow;
+}
+.hook-inverse-totop-active() when not (@totop-active-box-shadow = none) {
+    box-shadow: @inverse-totop-active-box-shadow;
+}

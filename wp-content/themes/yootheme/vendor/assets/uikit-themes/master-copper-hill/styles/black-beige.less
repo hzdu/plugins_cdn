@@ -1,0 +1,318 @@
+//
+// Global
+//
+
+@global-color:                rgba(255, 255, 255, 0.8);
+@global-emphasis-color:       #ffffff;
+@global-inverse-color:        #1a1a1a;
+@global-link-color:           #ecd0b2;
+@global-muted-color:          rgba(255, 255, 255, 0.6);
+@global-background:           #161616;
+@global-danger-background:    #b55654;
+@global-muted-background:     #212021;
+@global-primary-background:   #c39a6d;
+@global-secondary-background: #171817;
+@global-success-background:   #8da565;
+@global-warning-background:   #e4b470;
+@global-border:               rgba(255, 255, 255, 0.07);
+
+//
+// Theme
+//
+
+@theme-page-container-color-mode:       light;
+@theme-box-decoration-default-border:   fadein(@global-border, 15%);
+@theme-box-decoration-primary-border:   fadein(@global-border, 15%);
+@theme-box-decoration-secondary-border: fadein(@global-border, 15%);
+
+//
+// Alert
+//
+
+@alert-primary-background: @global-primary-background;
+@alert-primary-color:      @global-emphasis-color;
+@alert-success-background: @global-success-background;
+@alert-success-color:      @global-emphasis-color;
+@alert-warning-background: @global-warning-background;
+@alert-warning-color:      @global-emphasis-color;
+@alert-danger-background:  @global-danger-background;
+@alert-danger-color:       @global-emphasis-color;
+
+//
+// Base
+//
+
+@base-ins-background:  rgba(255, 255, 255, 0.04);
+@base-ins-color:       @global-emphasis-color;
+@base-mark-background: rgba(255, 255, 255, 0.04);
+@base-mark-color:      #e2c19d;
+
+//
+// Breadcrumb
+//
+
+@breadcrumb-divider-color: rgba(255, 255, 255, 0.2);
+
+//
+// Button
+//
+
+@button-default-border:           rgba(255, 255, 255, 0.2);
+@button-default-color:            @global-emphasis-color;
+@button-default-hover-background: rgba(255, 255, 255, 0.08);
+@button-default-hover-color:      @global-emphasis-color;
+@button-primary-border:           rgba(197, 158, 116, 0.6);
+@button-primary-color:            @global-emphasis-color;
+@button-primary-hover-background: @global-primary-background;
+@button-primary-hover-color:      @global-emphasis-color;
+@button-secondary-color:          @global-emphasis-color;
+@button-secondary-hover-border:   #6b5e50;
+@button-secondary-hover-color:    @global-emphasis-color;
+@button-danger-hover-color:       @global-emphasis-color;
+@button-disabled-color:           rgba(255, 255, 255, 0.1);
+
+//
+// Card
+//
+
+@card-badge-background:     lighten(@global-primary-background, 5%);
+@card-badge-color:          @global-emphasis-color;
+@card-badge-border:         transparent;
+@card-default-color-mode:   light;
+@card-primary-color:        rgba(255, 255, 255, 0.8);
+@card-primary-title-color:  @global-emphasis-color;
+@card-secondary-border:     #6b5e50;
+@card-secondary-color-mode: light;
+
+//
+// Divider
+//
+
+@divider-icon-color:   #d7b38d;
+@divider-small-border: #d7b38d;
+
+//
+// Dotnav
+//
+
+@dotnav-item-border:            rgba(255, 255, 255, 0.7);
+@dotnav-item-active-background: @global-primary-background;
+
+//
+// Dropbar
+//
+
+@dropbar-color-mode: light;
+
+//
+// Dropdown
+//
+
+@dropdown-color-mode: light;
+
+//
+// Form
+//
+
+@form-radio-border: rgba(255, 255, 255, 0.15);
+
+//
+// Form Range
+//
+
+@form-range-track-background:       fade(@global-border, 10%);
+@form-range-track-focus-background: fade(@global-border, 15%);
+
+//
+// Heading
+//
+
+@heading-divider-border: rgba(255, 255, 255, 0.08);
+
+//
+// Icon
+//
+
+@icon-button-border:            #313033;
+@icon-button-size:              45px;
+@icon-button-hover-background:  #313033;
+@icon-button-hover-border:      #313033;
+@icon-button-hover-color:       @global-emphasis-color;
+@icon-button-active-background: #3e3c40;
+@icon-button-active-border:     transparent;
+@icon-button-active-color:      @global-emphasis-color;
+
+//
+// Iconnav
+//
+
+@iconnav-item-color:        @global-muted-color;
+@iconnav-item-hover-color:  @global-emphasis-color;
+@iconnav-item-active-color: @global-emphasis-color;
+
+//
+// Inverse
+//
+
+@inverse-global-color-mode:             dark;
+@inverse-global-muted-background:       fade(@global-inverse-color, 5%);
+@inverse-icon-button-border:            @inverse-global-border;
+@inverse-icon-button-color:             @inverse-global-color;
+@inverse-icon-button-hover-background:  @inverse-global-muted-background;
+@inverse-icon-button-hover-border:      transparent;
+@inverse-icon-button-hover-color:       @inverse-global-emphasis-color;
+@inverse-icon-button-active-background: fadein(@inverse-global-muted-background, 4%);
+@inverse-icon-button-active-border:     transparent;
+@inverse-icon-button-active-color:      @inverse-global-emphasis-color;
+
+
+//
+// Label
+//
+
+@label-border:         rgba(255, 255, 255, 0.15);
+@label-success-border: rgba(184, 203, 153, 0.5);
+@label-success-color:  @global-emphasis-color;
+@label-warning-border: rgba(228, 180, 112, 0.5);
+@label-warning-color:  @global-emphasis-color;
+@label-danger-border:  rgba(181, 86, 84, 0.5);
+@label-danger-color:   @global-emphasis-color;
+
+//
+// Marker
+//
+
+@marker-background:       #ffffff;
+@marker-color:            @global-inverse-color;
+@marker-hover-background: rgba(255, 255, 255, 0.8);
+@marker-hover-color:      @global-inverse-color;
+
+//
+// Nav
+//
+
+@nav-default-item-color:               @global-muted-color;
+@nav-default-item-hover-color:         @global-emphasis-color;
+@nav-default-item-active-color:        @global-emphasis-color;
+@nav-default-sublist-item-color:       @global-muted-color;
+@nav-default-sublist-item-hover-color: @global-emphasis-color;
+@nav-primary-item-color:               @global-muted-color;
+@nav-primary-item-hover-color:         @global-emphasis-color;
+@nav-primary-item-active-color:        #e2c19d;
+@nav-primary-sublist-item-hover-color: @global-emphasis-color;
+@nav-secondary-item-hover-background:  @global-muted-background;
+@nav-secondary-item-active-background: @global-muted-background;
+@nav-secondary-item-hover-color:       @global-emphasis-color;
+@nav-secondary-item-active-color:      @global-emphasis-color;
+
+//
+// Navbar
+//
+
+@navbar-color-mode:             light;
+@navbar-dropdown-color-mode:    light;
+@navbar-nav-item-color:         @global-muted-color;
+@navbar-nav-item-hover-color:   @global-emphasis-color;
+@navbar-nav-item-onclick-color: @global-muted-color;
+@navbar-nav-item-active-color:  @global-emphasis-color;
+@navbar-toggle-color:           @global-muted-color;
+@navbar-toggle-hover-color:     @global-emphasis-color;
+
+//
+// Offcanvas
+//
+
+@offcanvas-bar-color-mode: light;
+
+//
+// Overlay
+//
+
+@overlay-default-color-mode: light;
+
+//
+// Pagination
+//
+
+@pagination-item-color:        @global-muted-color;
+@pagination-item-hover-color:  @global-emphasis-color;
+@pagination-item-active-color: @global-emphasis-color;
+
+//
+// Search
+//
+
+@search-toggle-color:       @global-muted-color;
+@search-toggle-hover-color: @global-emphasis-color;
+
+//
+// Section
+//
+
+@section-default-color-mode:       light;
+@section-muted-color-mode:         light;
+@section-secondary-background:     #131313;
+@internal-section-muted-image:     "../../master-copper-hill/images/section-background-noise.png";
+@internal-section-primary-image:   "../../master-copper-hill/images/section-background-noise.png";
+@internal-section-secondary-image: "../../master-copper-hill/images/section-background-noise.png";
+
+//
+// Subnav
+//
+
+@subnav-item-color:              @global-muted-color;
+@subnav-item-hover-color:        @global-emphasis-color;
+@subnav-item-active-color:       @global-emphasis-color;
+@subnav-pill-item-hover-color:   @global-emphasis-color;
+@subnav-pill-item-onclick-color: @global-muted-color;
+@subnav-pill-item-active-border: rgba(255, 255, 255, 0.15);
+@subnav-pill-item-active-color:  @global-emphasis-color;
+
+//
+// Tab
+//
+
+@tab-item-color:         @global-muted-color;
+@tab-item-hover-color:   @global-emphasis-color;
+@tab-item-active-border: #d7b38d;
+@tab-item-active-color:  @global-emphasis-color;
+
+//
+// Table
+//
+
+@table-row-active-background: rgba(255, 255, 255, 0.05);
+@table-hover-row-background:  rgba(255, 255, 255, 0.08);
+
+//
+// Text
+//
+
+@text-background-color: #d4a97c;
+@text-primary-color:    #e2c19d;
+@text-success-color:    #b0bf99;
+@text-warning-color:    #fbcd8d;
+@text-secondary-color:  desaturate(darken(@global-primary-background, 5%), 20%);
+
+//
+// Thumbnav
+//
+
+@thumbnav-item-gradient:         linear-gradient(180deg, rgba(0,0,0,0), rgba(0,0,0,0.4));
+@inverse-thumbnav-item-gradient: linear-gradient(180deg, rgba(255,255,255,0), rgba(255,255,255,0.4));
+
+//
+// Tile
+//
+
+@tile-default-color-mode:       light;
+@tile-muted-color-mode:         light;
+@internal-tile-muted-image:     "../../master-copper-hill/images/section-background-noise.png";
+@internal-tile-primary-image:   "../../master-copper-hill/images/section-background-noise.png";
+@internal-tile-secondary-image: "../../master-copper-hill/images/section-background-noise.png";
+
+//
+// WooCommerce
+//
+
+@woocommerce-rating-background-color: lighten(@global-muted-background, 10%);

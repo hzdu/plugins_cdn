@@ -1,0 +1,17 @@
+<svg width="20" height="15" viewBox="0 0 20 15" xmlns="http://www.w3.org/2000/svg">
+    <style>
+        .uk-navbar-toggle-icon svg > [class*='line-'] {
+            transition: 0.2s ease-in-out;
+            transition-property: transform;
+            transform-origin: center;
+        }
+
+        .uk-navbar-toggle-icon svg > .line-1 { transform: translateY(-5px); }
+        .uk-navbar-toggle-icon svg > .line-2 { transform: translateY(5px); }
+
+        .uk-navbar-toggle-animate[aria-expanded="true"] svg > .line-1 { transform: translateY(0) rotate(45deg); }
+        .uk-navbar-toggle-animate[aria-expanded="true"] svg > .line-2 { transform: translateY(0) rotate(-45deg); }
+    </style>
+    <line class="line-1" y1="7.5" x2="20" y2="7.5" fill="none" stroke="#000" />
+    <line class="line-2" y1="7.5" x2="20" y2="7.5" fill="none" stroke="#000" />
+</svg>

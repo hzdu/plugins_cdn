@@ -1,0 +1,86 @@
+/*
+
+Name: Matthew Taylor
+Background: White
+Color: Blue
+Type: Flat
+Preview: https://yootheme.com/api/style/matthew-taylor/default.jpg
+
+Style: white-pink
+Name: White Pink
+Background: White
+Color: Pink
+Type: Flat
+Preview: https://yootheme.com/api/style/matthew-taylor/white-pink.jpg
+
+Style: white-red
+Name: White Red
+Background: White
+Color: Red
+Type: Flat
+Preview: https://yootheme.com/api/style/matthew-taylor/white-red.jpg
+
+Style: white-green
+Name: White Green
+Background: White
+Color: Green
+Type: Flat
+Preview: https://yootheme.com/api/style/matthew-taylor/white-green.jpg
+
+Style: dark-yellow
+Name: Dark Yellow
+Background: Dark
+Color: Yellow
+Type: Flat
+Preview: https://yootheme.com/api/style/matthew-taylor/dark-yellow.jpg
+
+Style: white-purple
+Name: White Purple
+Background: White
+Color: Purple
+Type: Flat
+Preview: https://yootheme.com/api/style/matthew-taylor/white-purple.jpg
+
+*/
+
+// Platform
+@import "platform.less";
+
+// UIkit Core
+@import "../vendor/assets/uikit/src/less/uikit.less";
+
+// UIkit Theme
+@import "../vendor/assets/uikit-themes/master/_import.less";
+@import "../vendor/assets/uikit-themes/master-matthew-taylor/_import.less";
+
+// Theme
+@import "theme.less";
+
+// Variables
+// ========================================================================
+
+@theme-box-decoration-primary-background:                @global-primary-background;
+@theme-box-decoration-secondary-background:              @global-secondary-background;
+
+@inverse-theme-box-decoration-primary-background:        @inverse-global-primary-background;
+@inverse-theme-box-decoration-secondary-background:      @inverse-global-primary-background;
+
+//
+// Transition Border
+//
+
+@theme-transition-border-hover-border-width:             24px;
+
+//
+// WooCommerce
+//
+
+@woocommerce-rating-color:                               @global-primary-background;
+
+
+// Style
+// ========================================================================
+
+@import (optional) "../vendor/assets/uikit-themes/master-matthew-taylor/styles/@{internal-style}.less";
+
+@internal-style: ~'';

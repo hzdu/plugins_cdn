@@ -1,0 +1,119 @@
+/*
+
+Name: Glowbar
+Background: White
+Color: Black
+Type: Skeuomorphic
+Preview: https://yootheme.com/api/style/glowbar/default.jpg
+
+Style: light-brown
+Name: Light Brown
+Background: Light
+Color: Brown
+Type: Skeuomorphic
+Preview: https://yootheme.com/api/style/glowbar/light-brown.jpg
+
+Style: light-green
+Name: Light Green
+Background: Light
+Color: Green
+Type: Skeuomorphic
+Preview: https://yootheme.com/api/style/glowbar/light-green.jpg
+
+Style: white-brown
+Name: White Brown
+Background: White
+Color: Brown
+Type: Skeuomorphic
+Preview: https://yootheme.com/api/style/glowbar/white-brown.jpg
+
+Style: light-red
+Name: Light Red
+Background: Light
+Color: Red
+Type: Skeuomorphic
+Preview: https://yootheme.com/api/style/glowbar/light-red.jpg
+
+Style: colored-pink
+Name: Colored Pink
+Background: Colored
+Color: Pink
+Type: Skeuomorphic
+Preview: https://yootheme.com/api/style/glowbar/colored-pink.jpg
+
+*/
+
+// Platform
+@import "platform.less";
+
+// UIkit Core
+@import "../vendor/assets/uikit/src/less/uikit.less";
+
+// UIkit Theme
+@import "../vendor/assets/uikit-themes/master/_import.less";
+@import "../vendor/assets/uikit-themes/master-glowbar/_import.less";
+
+// Theme
+@import "theme.less";
+
+
+// Variables
+// ========================================================================
+
+//
+// Mask
+//
+
+@internal-theme-mask-default-border-image:               "../vendor/assets/uikit-themes/master-glowbar/images/mask-default-image.svg";
+@internal-theme-mask-default-border-image-slice:         0;
+
+//
+// Box Decoration
+//
+
+@theme-box-decoration-z-index:                           1;
+
+@theme-box-decoration-default-transform-horizontal:      0;
+@theme-box-decoration-default-transform-vertical:        0;
+@theme-box-decoration-default-background:                transparent;
+@theme-box-decoration-default-border-width:              12px;
+@theme-box-decoration-default-border:                    fade(@global-background, 20%);
+@theme-box-decoration-default-backdrop-filter:           blur(12px);
+
+@theme-box-decoration-primary-transform-horizontal:      0;
+@theme-box-decoration-primary-transform-vertical:        0;
+@theme-box-decoration-primary-background:                transparent;
+@theme-box-decoration-primary-border-width:              12px;
+@theme-box-decoration-primary-border:                    fade(@global-secondary-background, 20%);
+@theme-box-decoration-primary-backdrop-filter:           blur(12px);
+
+@theme-box-decoration-secondary-transform-horizontal:    0;
+@theme-box-decoration-secondary-transform-vertical:      0;
+@theme-box-decoration-secondary-background:              transparent;
+@theme-box-decoration-secondary-border-width:            1px;
+@theme-box-decoration-secondary-border:                  @global-background;
+
+.tm-box-decoration-secondary {
+    &::before {
+        top: 10px;
+        right: 10px;
+        bottom: 10px;
+        left: 10px;
+    }
+}
+
+//
+// Transition Border
+//
+
+@theme-transition-border-border:                         @global-background;
+@theme-transition-border-hover-border:                   @global-background;
+@theme-transition-border-hover-border-width:             12px;
+
+
+// Style
+// ========================================================================
+
+@import (optional) "../vendor/assets/uikit-themes/master-glowbar/styles/@{internal-style}.less";
+
+@internal-style: ~'';

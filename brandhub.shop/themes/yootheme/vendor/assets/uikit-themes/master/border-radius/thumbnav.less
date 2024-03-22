@@ -1,0 +1,47 @@
+//
+// Component: Thumbnav
+//
+// ========================================================================
+
+
+// Variables
+// ========================================================================
+
+//
+// New
+//
+
+@thumbnav-item-border-radius:                   0;
+
+
+// Component
+// ========================================================================
+
+.hook-thumbnav() {}
+
+.hook-thumbnav-item() when not (@thumbnav-item-border-radius = 0) {
+    border-radius: @thumbnav-item-border-radius;
+    overflow: hidden;
+}
+
+.hook-thumbnav-item() when not (@thumbnav-item-border-radius = 0) {
+    &::before { border-radius: @thumbnav-item-border-radius; }
+}
+
+.hook-thumbnav-item-hover() {}
+
+.hook-thumbnav-item-active() {}
+
+
+// Miscellaneous
+// ========================================================================
+
+.hook-thumbnav-misc() {}
+
+
+// Inverse
+// ========================================================================
+
+.hook-inverse-thumbnav-item() {}
+.hook-inverse-thumbnav-item-hover() {}
+.hook-inverse-thumbnav-item-active() {}

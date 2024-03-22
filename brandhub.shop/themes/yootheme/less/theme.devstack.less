@@ -1,0 +1,124 @@
+/*
+
+Name: DevStack
+Background: Light
+Color: Blue
+Type: material
+Preview: https://yootheme.com/api/style/devstack/default.jpg
+
+Style: light-green
+Name: Light Green
+Background: Light
+Color: Green
+Type: material
+Preview: https://yootheme.com/api/style/devstack/light-green.jpg
+
+Style: light-orange
+Name: Light Orange
+Background: Light
+Color: Orange
+Type: material
+Preview: https://yootheme.com/api/style/devstack/light-orange.jpg
+
+Style: light-blue
+Name: Light Blue
+Background: Light
+Color: Blue
+Type: material
+Preview: https://yootheme.com/api/style/devstack/light-blue.jpg
+
+Style: dark-red
+Name: Dark Red
+Background: Dark
+Color: Red
+Type: material
+Preview: https://yootheme.com/api/style/devstack/dark-red.jpg
+
+Style: dark-purple
+Name: Dark Purple
+Background: Dark
+Color: Purple
+Type: material
+Preview: https://yootheme.com/api/style/devstack/dark-purple.jpg
+
+*/
+
+// Platform
+@import "platform.less";
+
+// UIkit Core
+@import "../vendor/assets/uikit/src/less/uikit.less";
+
+// UIkit Theme
+@import "../vendor/assets/uikit-themes/master/_import.less";
+@import "../vendor/assets/uikit-themes/master-devstack/_import.less";
+
+// Theme
+@import "theme.less";
+
+
+// Variables
+// ========================================================================
+
+//
+// Page Border
+//
+
+@theme-page-border:                                     @global-primary-background;
+@theme-page-border-mode:                                -bottom;
+@theme-page-border-width:                               6px;
+@internal-theme-page-border-gradient:                   linear-gradient(90deg, #4c6cd8 10%, #6f40f1 65%);
+
+.tm-page when not (@theme-page-border-width = 0) {
+    border@{theme-page-border-mode}: @theme-page-border-width solid @theme-page-border;
+}
+
+//
+// Toolbar
+//
+
+@theme-toolbar-background:                              @global-primary-background;
+
+//
+// Header
+//
+
+@theme-headerbar-font-size:                             @global-small-font-size;
+
+//
+// Box Decoration
+//
+
+@theme-box-decoration-primary-background:               @global-primary-background;
+@theme-box-decoration-secondary-background:             @global-secondary-background;
+
+//
+// Transition Border
+//
+
+@internal-theme-transition-border-border-gradient:       linear-gradient(40deg, #7141F1 0%, #4D6BD8 70%, #3183E2 100%);
+@internal-theme-transition-border-hover-border-gradient: @internal-theme-transition-border-border-gradient;
+
+//
+// WooCommerce
+//
+
+//
+// Rating
+//
+
+@woocommerce-rating-color:                              @global-primary-background;
+
+//
+// Widgets
+//
+
+@woocommerce-widget-active-filters-font-size:           @global-small-font-size;
+
+
+// Style
+// ========================================================================
+
+@import (optional) "../vendor/assets/uikit-themes/master-devstack/styles/@{internal-style}.less";
+
+@internal-style: ~'';

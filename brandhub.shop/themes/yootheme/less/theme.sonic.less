@@ -1,0 +1,141 @@
+/*
+
+Name: Sonic
+Background: White
+Color: Red
+Type: Material
+Preview: https://yootheme.com/api/style/sonic/default.jpg
+
+Style: white-turquoise
+Name: White Turquoise
+Background: White
+Color: Turquoise
+Type: Material
+Preview: https://yootheme.com/api/style/sonic/white-turquoise.jpg
+
+Style: white-pink
+Name: White Pink
+Background: White
+Color: Pink
+Type: Material
+Preview: https://yootheme.com/api/style/sonic/white-pink.jpg
+
+Style: white-blue
+Name: White Blue
+Background: White
+Color: Blue
+Type: Material
+Preview: https://yootheme.com/api/style/sonic/white-blue.jpg
+
+Style: white-purple
+Name: White Purple
+Background: White
+Color: Purple
+Type: Material
+Preview: https://yootheme.com/api/style/sonic/white-purple.jpg
+
+Style: dark-turquoise
+Name: Dark Turquoise
+Background: Dark
+Color: Turquoise
+Type: Material
+Preview: https://yootheme.com/api/style/sonic/dark-turquoise.jpg
+
+*/
+
+// Platform
+@import "platform.less";
+
+// UIkit Core
+@import "../vendor/assets/uikit/src/less/uikit.less";
+
+// UIkit Theme
+@import "../vendor/assets/uikit-themes/master/_import.less";
+@import "../vendor/assets/uikit-themes/master-sonic/_import.less";
+
+// Theme
+@import "theme.less";
+
+
+// Variables
+// ========================================================================
+
+//
+// Box Decoration
+//
+
+@theme-box-decoration-default-transform-horizontal:       -15px;
+@theme-box-decoration-default-transform-vertical:         15px;
+@theme-box-decoration-default-background:                 transparent;
+@theme-box-decoration-default-border-width:               2px;
+@theme-box-decoration-default-border:                     darken(@global-muted-background, 5%);
+
+@theme-box-decoration-primary-transform-horizontal:       15px;
+@theme-box-decoration-primary-transform-vertical:         15px;
+@theme-box-decoration-primary-background:                 transparent;
+@theme-box-decoration-primary-border-width:               2px;
+@theme-box-decoration-primary-border:                     @global-primary-background;
+
+@theme-box-decoration-secondary-transform-horizontal:     15px;
+@theme-box-decoration-secondary-transform-vertical:       -15px;
+@theme-box-decoration-secondary-background:               transparent;
+@theme-box-decoration-secondary-border-width:             2px;
+@theme-box-decoration-secondary-border:                   @global-secondary-background;
+
+//
+// New
+//
+
+@internal-theme-box-decoration-primary-border-gradient:   linear-gradient(135deg, #f95860, #ff7f58);
+@internal-theme-box-decoration-secondary-border-gradient: linear-gradient(135deg, #605cee, #7571c8);
+
+.hook-box-decoration-primary() when not (@theme-box-decoration-primary-border-width = 0) {
+
+    &::before { border-image: @internal-theme-box-decoration-primary-border-gradient 1; }
+
+}
+
+.hook-box-decoration-secondary() when not (@theme-box-decoration-secondary-border-width = 0) {
+
+    &::before { border-image: @internal-theme-box-decoration-secondary-border-gradient 1; }
+
+}
+
+@inverse-theme-box-decoration-default-border:             @inverse-global-muted-background;
+@inverse-theme-box-decoration-primary-border:             @inverse-global-primary-background;
+@inverse-theme-box-decoration-secondary-border:           @inverse-global-primary-background;
+
+.hook-inverse-box-decoration-primary() when not (@theme-box-decoration-primary-border-width = 0) {
+    &::before { border-image: none; }
+}
+
+.hook-inverse-box-decoration-secondary() when not (@theme-box-decoration-secondary-border-width = 0) {
+    &::before { border-image: none; }
+}
+
+//
+// Transition Border
+//
+
+@theme-transition-border-hover-border-width:              7px;
+
+@internal-theme-transition-border-border-gradient:        linear-gradient(135deg, #f95860, #ff7f58);
+@internal-theme-transition-border-hover-border-gradient:  @internal-theme-transition-border-border-gradient;
+
+//
+// Woocommerce
+//
+
+//
+// Widgets
+//
+
+@woocommerce-widget-active-filters-font-size:             @global-small-font-size;
+
+
+// Style
+// ========================================================================
+
+@import (optional) "../vendor/assets/uikit-themes/master-sonic/styles/@{internal-style}.less";
+
+@internal-style: ~'';

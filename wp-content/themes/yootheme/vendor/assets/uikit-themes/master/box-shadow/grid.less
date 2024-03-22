@@ -1,0 +1,46 @@
+//
+// Component: Grid
+//
+// ========================================================================
+
+
+// Variables
+// ========================================================================
+
+//
+// New
+//
+
+@grid-divider-horizontal-box-shadow:            none;
+@grid-divider-vertical-box-shadow:              none;
+
+
+// Divider
+// ========================================================================
+
+.hook-grid-divider-horizontal() when not (@grid-divider-horizontal-box-shadow = none) {
+    box-shadow: @grid-divider-horizontal-box-shadow;
+}
+.hook-grid-divider-vertical() when not (@grid-divider-vertical-box-shadow = none) {
+    box-shadow: @grid-divider-vertical-box-shadow;
+}
+
+
+// Miscellaneous
+// ========================================================================
+
+.hook-grid-misc() {}
+
+
+// Inverse
+// ========================================================================
+
+@inverse-grid-divider-horizontal-box-shadow:    none;
+@inverse-grid-divider-vertical-box-shadow:      none;
+
+.hook-inverse-grid-divider-horizontal() when not (@grid-divider-horizontal-box-shadow = none) {
+    box-shadow: @inverse-grid-divider-horizontal-box-shadow;
+}
+.hook-inverse-grid-divider-vertical() when not (@grid-divider-vertical-box-shadow = none) {
+    box-shadow: @inverse-grid-divider-vertical-box-shadow;
+}

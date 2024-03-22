@@ -1,0 +1,91 @@
+//
+// Global
+//
+
+@global-emphasis-color:                         #445190;
+@global-color:                                  #6D76A2;
+@global-muted-color:                            fade(@global-color, 50%);
+@global-link-color:                             #8484FF;
+
+@global-muted-background:                       #f6f6ff;
+@global-primary-background:                     #8484FF;
+@global-secondary-background:                   #140F3D;
+
+@global-border:                                 rgba(10,11,18,0.08);
+
+@global-small-box-shadow:                       2px 4px 16px rgba(10,11,18,0.06);
+@global-medium-box-shadow:                      2px 12px 32px rgba(10,11,18,0.06);
+@global-large-box-shadow:                       2px 18px 48px rgba(10,11,18,0.06);
+@global-xlarge-box-shadow:                      2px 26px 56px rgba(10,11,18,0.06);
+
+//
+// Badge
+//
+
+@badge-background:                              @global-emphasis-color;
+
+//
+// Button
+//
+
+@button-default-border:                         fade(@global-secondary-background, 10%);
+@button-default-hover-border:                   @global-secondary-background;
+@button-default-active-border:                  @global-secondary-background;
+@inverse-button-default-border:                 fade(@inverse-global-color, 20%);
+
+@button-primary-hover-background:               spin(darken(@button-primary-background, 8%), -5%);
+@internal-button-primary-gradient:              ~'';
+@internal-button-primary-hover-gradient:        ~'';
+@internal-button-primary-active-gradient:       ~'';
+
+@button-secondary-hover-background:             darken(@button-secondary-background, 5%);
+@internal-button-secondary-gradient:            ~'';
+@internal-button-secondary-hover-gradient:      ~'';
+@internal-button-secondary-active-gradient:     ~'';
+
+//
+// Card
+//
+
+@card-primary-hover-background:                 spin(darken(@card-primary-background, 3%), -5%);
+@internal-card-primary-gradient:                ~'';
+@internal-card-primary-hover-gradient:          ~'';
+
+@card-secondary-hover-background:               darken(@card-secondary-background, 5%);
+@internal-card-secondary-gradient:              ~'';
+@internal-card-secondary-hover-gradient:        ~'';
+@internal-card-badge-gradient:                  ~'';
+
+//
+// Navbar
+//
+
+@navbar-dropdown-background:                    desaturate(lighten(@global-secondary-background, 7%), 12%);
+
+//
+// Section
+//
+
+@internal-section-primary-gradient:             ~'';
+
+@internal-section-secondary-gradient:           ~'';
+
+//
+// Subnav
+//
+
+@internal-subnav-pill-item-active-gradient:     ~'';
+
+//
+// Tile
+//
+
+@internal-tile-primary-gradient:                ~'';
+
+@internal-tile-secondary-gradient:              ~'';
+
+//
+// Woocommerce
+//
+
+@woocommerce-rating-color:                      @global-emphasis-color;

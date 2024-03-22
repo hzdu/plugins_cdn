@@ -1,0 +1,185 @@
+/*
+
+Name: Jack Baker
+Background: White
+Color: Red
+Type: Flat
+Preview: https://yootheme.com/api/style/jack-baker/default.jpg
+
+Style: white-black
+Name: White Black
+Background: White
+Color: Black
+Type: Flat
+Preview: https://yootheme.com/api/style/jack-baker/white-black.jpg
+
+Style: white-brown
+Name: White Brown
+Background: White
+Color: Brown
+Type: Flat
+Preview: https://yootheme.com/api/style/jack-baker/white-brown.jpg
+
+Style: red-black
+Name: Red Black
+Background: Colored
+Color: Black
+Type: Flat
+Preview: https://yootheme.com/api/style/jack-baker/red-black.jpg
+
+Style: dark-turquoise
+Name: Dark Turquoise
+Background: Dark
+Color: Turquoise
+Type: Flat
+Preview: https://yootheme.com/api/style/jack-baker/dark-turquoise.jpg
+
+Style: black-red
+Name: Black Red
+Background: Black
+Color: Red
+Type: Flat
+Preview: https://yootheme.com/api/style/jack-baker/black-red.jpg
+
+*/
+
+// Platform
+@import "platform.less";
+
+// UIkit Core
+@import "../vendor/assets/uikit/src/less/uikit.less";
+
+// UIkit Theme
+@import "../vendor/assets/uikit-themes/master/_import.less";
+@import "../vendor/assets/uikit-themes/master-jack-baker/_import.less";
+
+// Theme
+@import "theme.less";
+
+
+// Variables
+// ========================================================================
+
+//
+// Page
+//
+
+@theme-page-border-width:                                14px;
+@theme-page-border:                                      @global-background;
+
+//
+// Header
+//
+
+@theme-headerbar-font-size:                             @global-small-font-size;
+
+//
+// Section
+//
+
+@section-title-color:                                    @global-color;
+@section-title-text-transform:                           uppercase;
+@section-title-letter-spacing:                           3px;
+
+//
+// Box Decoration
+//
+
+@theme-box-decoration-default-transform-horizontal:      0;
+@theme-box-decoration-default-transform-vertical:        0;
+@theme-box-decoration-default-background:                @global-color;
+
+@theme-box-decoration-primary-transform-horizontal:      0;
+@theme-box-decoration-primary-transform-vertical:        0;
+@theme-box-decoration-primary-background:                @global-color;
+
+@theme-box-decoration-secondary-transform-horizontal:    0;
+@theme-box-decoration-secondary-transform-vertical:      0;
+@theme-box-decoration-secondary-background:              @global-color;
+
+.hook-box-decoration() {
+
+    &::before {
+        background-color: transparent !important;
+        border-image-slice: 30 fill;
+        border-image-width: 30px;
+    }
+
+}
+
+.hook-box-decoration-default() {
+
+    &::before {
+        .svg-fill("../../../../uikit-themes/master-jack-baker/images/box-decoration-default-image.svg", "#000", @theme-box-decoration-default-background, border-image-source);
+        border-image-outset: 25px;
+    }
+
+}
+
+.hook-box-decoration-primary() {
+
+    &::before {
+        .svg-fill("../../../../uikit-themes/master-jack-baker/images/box-decoration-primary-image.svg", "#000", @theme-box-decoration-primary-background, border-image-source);
+        border-image-outset: 24px;
+    }
+
+}
+
+.hook-box-decoration-secondary() {
+
+    &::before {
+        .svg-fill("../../../../uikit-themes/master-jack-baker/images/box-decoration-secondary-image.svg", "#000", @theme-box-decoration-secondary-background, border-image-source);
+        border-image-outset: 20px;
+    }
+
+}
+
+@inverse-theme-box-decoration-default-background:   @inverse-global-color;
+@inverse-theme-box-decoration-primary-background:   @inverse-global-color;
+@inverse-theme-box-decoration-secondary-background: @inverse-global-color;
+
+.hook-inverse-box-decoration-default() {
+    &::before { .svg-fill("../../../../uikit-themes/master-jack-baker/images/box-decoration-default-image.svg", "#000", @inverse-theme-box-decoration-default-background, border-image-source); }
+}
+
+.hook-inverse-box-decoration-primary() {
+    &::before { .svg-fill("../../../../uikit-themes/master-jack-baker/images/box-decoration-primary-image.svg", "#000", @inverse-theme-box-decoration-primary-background, border-image-source); }
+}
+
+.hook-inverse-box-decoration-secondary() {
+    &::before { .svg-fill("../../../../uikit-themes/master-jack-baker/images/box-decoration-secondary-image.svg", "#000", @inverse-theme-box-decoration-secondary-background, border-image-source); }
+}
+
+//
+// Transition Border
+//
+
+@theme-transition-border-direction-mode:                 outside;
+@theme-transition-border-hover-border-width:             12px;
+
+@theme-transition-border-border:                         @global-secondary-background;
+@theme-transition-border-hover-border:                   @theme-transition-border-border;
+
+//
+// WooCommerce
+//
+
+//
+// Rating
+//
+
+@woocommerce-rating-color:                               @global-secondary-background;
+
+//
+// Widgets
+//
+
+@woocommerce-widget-active-filters-font-size:            @global-small-font-size;
+
+
+// Style
+// ========================================================================
+
+@import (optional) "../vendor/assets/uikit-themes/master-jack-baker/styles/@{internal-style}.less";
+
+@internal-style: ~'';

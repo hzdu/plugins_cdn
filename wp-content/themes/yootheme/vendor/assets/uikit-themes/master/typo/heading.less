@@ -1,0 +1,328 @@
+//
+// Component: Heading
+//
+// ========================================================================
+
+
+// Variables
+// ========================================================================
+
+//
+// New
+//
+
+@heading-small-color:                          @global-emphasis-color;
+@heading-small-font-family:                    @global-primary-font-family;
+@heading-small-font-weight:                    @global-primary-font-weight;
+@heading-small-text-transform:                 @global-primary-text-transform;
+@heading-small-letter-spacing:                 @global-primary-letter-spacing;
+@heading-small-font-style:                     @global-primary-font-style;
+
+@heading-small-text-shadow:                    none;
+
+@heading-medium-color:                         @global-emphasis-color;
+@heading-medium-font-family:                   @global-primary-font-family;
+@heading-medium-font-weight:                   @global-primary-font-weight;
+@heading-medium-text-transform:                @global-primary-text-transform;
+@heading-medium-letter-spacing:                @global-primary-letter-spacing;
+@heading-medium-font-style:                    @global-primary-font-style;
+
+@heading-medium-text-shadow:                   none;
+
+@heading-large-color:                          @global-emphasis-color;
+@heading-large-font-family:                    @global-primary-font-family;
+@heading-large-font-weight:                    @global-primary-font-weight;
+@heading-large-text-transform:                 @global-primary-text-transform;
+@heading-large-letter-spacing:                 @global-primary-letter-spacing;
+@heading-large-font-style:                     @global-primary-font-style;
+
+@heading-large-text-shadow:                    none;
+
+@heading-xlarge-color:                         @global-emphasis-color;
+@heading-xlarge-font-family:                   @global-primary-font-family;
+@heading-xlarge-font-weight:                   @global-primary-font-weight;
+@heading-xlarge-text-transform:                @global-primary-text-transform;
+@heading-xlarge-letter-spacing:                @global-primary-letter-spacing;
+@heading-xlarge-font-style:                    @global-primary-font-style;
+
+@heading-xlarge-text-shadow:                   none;
+
+@heading-2xlarge-color:                        @global-emphasis-color;
+@heading-2xlarge-font-family:                  @global-primary-font-family;
+@heading-2xlarge-font-weight:                  @global-primary-font-weight;
+@heading-2xlarge-text-transform:               @global-primary-text-transform;
+@heading-2xlarge-letter-spacing:               @global-primary-letter-spacing;
+@heading-2xlarge-font-style:                   @global-primary-font-style;
+
+@heading-2xlarge-text-shadow:                  none;
+
+@heading-3xlarge-color:                        @global-emphasis-color;
+@heading-3xlarge-font-family:                  @global-primary-font-family;
+@heading-3xlarge-font-weight:                  @global-primary-font-weight;
+@heading-3xlarge-text-transform:               @global-primary-text-transform;
+@heading-3xlarge-letter-spacing:               @global-primary-letter-spacing;
+@heading-3xlarge-font-style:                   @global-primary-font-style;
+
+@heading-3xlarge-text-shadow:                  none;
+
+
+// Component
+// ========================================================================
+
+//
+// Small
+//
+
+.hook-heading-small() when not (@heading-small-color = @base-heading-color) {
+    color: @heading-small-color;
+}
+
+.hook-heading-small() when not (@heading-small-font-family = inherit) and not (@heading-small-font-family = @base-heading-font-family) {
+    font-family: @heading-small-font-family;
+}
+
+.hook-heading-small() when not (@heading-small-font-weight = inherit) and not (@heading-small-font-weight = @base-heading-font-weight) {
+    font-weight: @heading-small-font-weight;
+}
+
+.hook-heading-small() when not (@heading-small-text-transform = inherit) and not (@heading-small-text-transform = @base-heading-text-transform) {
+    text-transform: @heading-small-text-transform;
+}
+
+.hook-heading-small() when not (@heading-small-letter-spacing = inherit) and not (@heading-small-letter-spacing = @base-heading-text-transform) {
+    letter-spacing: @heading-small-letter-spacing;
+}
+
+.hook-heading-small() when not (@heading-small-font-style = inherit) and not (@heading-small-font-style = @base-heading-text-transform) {
+    font-style: @heading-small-font-style;
+}
+
+.hook-heading-small() when not (@heading-small-text-shadow = none) {
+    text-shadow: @heading-small-text-shadow;
+}
+
+//
+// Medium
+//
+
+.hook-heading-medium() when not (@heading-medium-color = @base-heading-color) {
+    color: @heading-medium-color;
+}
+
+.hook-heading-medium() when not (@heading-medium-font-family = inherit) and not (@heading-medium-font-family = @base-heading-font-family) {
+    font-family: @heading-medium-font-family;
+}
+
+.hook-heading-medium() when not (@heading-medium-font-weight = inherit) and not (@heading-medium-font-weight = @base-heading-font-weight) {
+    font-weight: @heading-medium-font-weight;
+}
+
+.hook-heading-medium() when not (@heading-medium-text-transform = inherit) and not (@heading-medium-text-transform = @base-heading-text-transform) {
+    text-transform: @heading-medium-text-transform;
+}
+
+.hook-heading-medium() when not (@heading-medium-letter-spacing = inherit) and not (@heading-medium-letter-spacing = @base-heading-text-transform) {
+    letter-spacing: @heading-medium-letter-spacing;
+}
+
+.hook-heading-medium() when not (@heading-medium-font-style = inherit) and not (@heading-medium-font-style = @base-heading-text-transform) {
+    font-style: @heading-medium-font-style;
+}
+
+.hook-heading-medium() when not (@heading-medium-text-shadow = none) {
+    text-shadow: @heading-medium-text-shadow;
+}
+
+//
+// Large
+//
+
+.hook-heading-large() when not (@heading-large-color = @base-heading-color) {
+    color: @heading-large-color;
+}
+
+.hook-heading-large() when not (@heading-large-font-family = inherit) and not (@heading-large-font-family = @base-heading-font-family) {
+    font-family: @heading-large-font-family;
+}
+
+.hook-heading-large() when not (@heading-large-font-weight = inherit) and not (@heading-large-font-weight = @base-heading-font-weight) {
+    font-weight: @heading-large-font-weight;
+}
+
+.hook-heading-large() when not (@heading-large-text-transform = inherit) and not (@heading-large-text-transform = @base-heading-text-transform) {
+    text-transform: @heading-large-text-transform;
+}
+
+.hook-heading-large() when not (@heading-large-letter-spacing = inherit) and not (@heading-large-letter-spacing = @base-heading-text-transform) {
+    letter-spacing: @heading-large-letter-spacing;
+}
+
+.hook-heading-large() when not (@heading-large-font-style = inherit) and not (@heading-large-font-style = @base-heading-text-transform) {
+    font-style: @heading-large-font-style;
+}
+
+.hook-heading-large() when not (@heading-large-text-shadow = none) {
+    text-shadow: @heading-large-text-shadow;
+}
+
+//
+// X-Large
+//
+
+.hook-heading-xlarge() when not (@heading-xlarge-color = @base-heading-color) {
+    color: @heading-xlarge-color;
+}
+
+.hook-heading-xlarge() when not (@heading-xlarge-font-family = inherit) and not (@heading-xlarge-font-family = @base-heading-font-family) {
+    font-family: @heading-xlarge-font-family;
+}
+
+.hook-heading-xlarge() when not (@heading-xlarge-font-weight = inherit) and not (@heading-xlarge-font-weight = @base-heading-font-weight) {
+    font-weight: @heading-xlarge-font-weight;
+}
+
+.hook-heading-xlarge() when not (@heading-xlarge-text-transform = inherit) and not (@heading-xlarge-text-transform = @base-heading-text-transform) {
+    text-transform: @heading-xlarge-text-transform;
+}
+
+.hook-heading-xlarge() when not (@heading-xlarge-letter-spacing = inherit) and not (@heading-xlarge-letter-spacing = @base-heading-text-transform) {
+    letter-spacing: @heading-xlarge-letter-spacing;
+}
+
+.hook-heading-xlarge() when not (@heading-xlarge-font-style = inherit) and not (@heading-xlarge-font-style = @base-heading-text-transform) {
+    font-style: @heading-xlarge-font-style;
+}
+
+.hook-heading-xlarge() when not (@heading-xlarge-text-shadow = none) {
+    text-shadow: @heading-xlarge-text-shadow;
+}
+
+//
+// 2X-Large
+//
+
+.hook-heading-2xlarge() when not (@heading-2xlarge-color = @base-heading-color) {
+    color: @heading-2xlarge-color;
+}
+
+.hook-heading-2xlarge() when not (@heading-2xlarge-font-family = inherit) and not (@heading-2xlarge-font-family = @base-heading-font-family) {
+    font-family: @heading-2xlarge-font-family;
+}
+
+.hook-heading-2xlarge() when not (@heading-2xlarge-font-weight = inherit) and not (@heading-2xlarge-font-weight = @base-heading-font-weight) {
+    font-weight: @heading-2xlarge-font-weight;
+}
+
+.hook-heading-2xlarge() when not (@heading-2xlarge-text-transform = inherit) and not (@heading-2xlarge-text-transform = @base-heading-text-transform) {
+    text-transform: @heading-2xlarge-text-transform;
+}
+
+.hook-heading-2xlarge() when not (@heading-2xlarge-letter-spacing = inherit) and not (@heading-2xlarge-letter-spacing = @base-heading-text-transform) {
+    letter-spacing: @heading-2xlarge-letter-spacing;
+}
+
+.hook-heading-2xlarge() when not (@heading-2xlarge-font-style = inherit) and not (@heading-2xlarge-font-style = @base-heading-text-transform) {
+    font-style: @heading-2xlarge-font-style;
+}
+
+.hook-heading-2xlarge() when not (@heading-2xlarge-text-shadow = none) {
+    text-shadow: @heading-2xlarge-text-shadow;
+}
+
+//
+// 3X-Large
+//
+
+.hook-heading-3xlarge() when not (@heading-3xlarge-color = @base-heading-color) {
+    color: @heading-3xlarge-color;
+}
+
+.hook-heading-3xlarge() when not (@heading-3xlarge-font-family = inherit) and not (@heading-3xlarge-font-family = @base-heading-font-family) {
+    font-family: @heading-3xlarge-font-family;
+}
+
+.hook-heading-3xlarge() when not (@heading-3xlarge-font-weight = inherit) and not (@heading-3xlarge-font-weight = @base-heading-font-weight) {
+    font-weight: @heading-3xlarge-font-weight;
+}
+
+.hook-heading-3xlarge() when not (@heading-3xlarge-text-transform = inherit) and not (@heading-3xlarge-text-transform = @base-heading-text-transform) {
+    text-transform: @heading-3xlarge-text-transform;
+}
+
+.hook-heading-3xlarge() when not (@heading-3xlarge-letter-spacing = inherit) and not (@heading-3xlarge-letter-spacing = @base-heading-text-transform) {
+    letter-spacing: @heading-3xlarge-letter-spacing;
+}
+
+.hook-heading-3xlarge() when not (@heading-3xlarge-font-style = inherit) and not (@heading-3xlarge-font-style = @base-heading-text-transform) {
+    font-style: @heading-3xlarge-font-style;
+}
+
+.hook-heading-3xlarge() when not (@heading-3xlarge-text-shadow = none) {
+    text-shadow: @heading-3xlarge-text-shadow;
+}
+
+
+// Divider
+// ========================================================================
+
+.hook-heading-divider() {}
+
+
+// Bullet
+// ========================================================================
+
+.hook-heading-bullet() {}
+
+
+// Line
+// ========================================================================
+
+.hook-heading-line() {}
+
+
+
+// Miscellaneous
+// ========================================================================
+
+.hook-heading-misc() {}
+
+
+// Inverse
+// ========================================================================
+
+@inverse-heading-small-color:                  @inverse-global-emphasis-color;
+@inverse-heading-medium-color:                 @inverse-global-emphasis-color;
+@inverse-heading-large-color:                  @inverse-global-emphasis-color;
+@inverse-heading-xlarge-color:                 @inverse-global-emphasis-color;
+@inverse-heading-2xlarge-color:                @inverse-global-emphasis-color;
+@inverse-heading-3xlarge-color:                @inverse-global-emphasis-color;
+
+.hook-inverse-heading-small() when not (@inverse-heading-small-color = @inverse-base-heading-color) {
+    color: @inverse-heading-small-color;
+}
+
+.hook-inverse-heading-medium() when not (@inverse-heading-medium-color = @inverse-base-heading-color) {
+    color: @inverse-heading-medium-color;
+}
+
+.hook-inverse-heading-large() when not (@inverse-heading-large-color = @inverse-base-heading-color) {
+    color: @inverse-heading-large-color;
+}
+
+.hook-inverse-heading-xlarge() when not (@inverse-heading-xlarge-color = @inverse-base-heading-color) {
+    color: @inverse-heading-xlarge-color;
+}
+
+.hook-inverse-heading-2xlarge() when not (@inverse-heading-2xlarge-color = @inverse-base-heading-color) {
+    color: @inverse-heading-2xlarge-color;
+}
+
+.hook-inverse-heading-3xlarge() when not (@inverse-heading-3xlarge-color = @inverse-base-heading-color) {
+    color: @inverse-heading-3xlarge-color;
+}
+
+.hook-inverse-heading-divider() {}
+
+.hook-inverse-heading-bullet() {}
+
+.hook-inverse-heading-line() {}

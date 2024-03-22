@@ -1,0 +1,112 @@
+/*
+
+Name: District
+Background: White
+Color: Pink
+Type: Flat
+Preview: https://yootheme.com/api/style/district/default.jpg
+
+Style: white-black
+Name: White Black
+Background: White
+Color: Black
+Type: Flat
+Preview: https://yootheme.com/api/style/district/white-black.jpg
+
+Style: white-turquoise
+Name: White Turquoise
+Background: White
+Color: Turquoise
+Type: Flat
+Preview: https://yootheme.com/api/style/district/white-turquoise.jpg
+
+Style: white-yellow
+Name: White Yellow
+Background: White
+Color: Yellow
+Type: Flat
+Preview: https://yootheme.com/api/style/district/white-yellow.jpg
+
+Style: white-red
+Name: White red
+Background: White
+Color: Red
+Type: Flat
+Preview: https://yootheme.com/api/style/district/white-red.jpg
+
+Style: white-blue
+Name: White Blue
+Background: White
+Color: Blue
+Type: Flat
+Preview: https://yootheme.com/api/style/district/white-blue.jpg
+
+*/
+
+// Platform
+@import "platform.less";
+
+// UIkit Core
+@import "../vendor/assets/uikit/src/less/uikit.less";
+
+// UIkit Theme
+@import "../vendor/assets/uikit-themes/master/_import.less";
+@import "../vendor/assets/uikit-themes/master-district/_import.less";
+
+// Theme
+@import "theme.less";
+
+
+// Variables
+// ========================================================================
+
+//
+// Page border
+//
+
+@theme-page-border-width:                                15px;
+@theme-page-border:                                      @global-background;
+
+
+//
+// Section
+//
+
+@section-title-color:                                    @global-color;
+@section-title-text-transform:                           uppercase;
+@section-title-letter-spacing:                           2px;
+
+//
+// Header
+//
+
+@theme-headerbar-top-padding-bottom:                     0;
+
+//
+// Box Decoration
+//
+
+@theme-box-decoration-primary-background:                @global-primary-background;
+@theme-box-decoration-secondary-background:              @global-primary-background;
+
+//
+// Transition Border
+//
+
+@theme-transition-border-border:                         @global-background;
+@theme-transition-border-hover-border-width:             15px;
+@theme-transition-border-hover-border:                   @theme-transition-border-border;
+
+//
+// WooCommerce
+//
+
+@woocommerce-rating-color:                               darken(@global-primary-background, 10%);
+
+
+// Style
+// ========================================================================
+
+@import (optional) "../vendor/assets/uikit-themes/master-district/styles/@{internal-style}.less";
+
+@internal-style: ~'';
