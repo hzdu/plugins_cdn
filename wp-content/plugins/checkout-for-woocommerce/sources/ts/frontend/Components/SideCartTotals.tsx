@@ -13,7 +13,7 @@ const SideCartTotals = () => {
         <div className="cfw-module cfw-totals-list">
             <table className="cfw-module">
                 <tbody>
-                    {ReactHtmlParser( totals.actions.cfw_before_cart_summary_totals )}
+                    {ReactHtmlParser( totals.actions?.cfw_before_cart_summary_totals )}
 
                     <tr className="cart-subtotal">
                         <th>{totals.subtotal.label}</th>

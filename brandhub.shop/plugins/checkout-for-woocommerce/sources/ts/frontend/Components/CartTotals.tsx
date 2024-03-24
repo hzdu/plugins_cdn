@@ -12,7 +12,7 @@ const CartTotals = () => {
         <div className="cfw-module cfw-totals-list">
             <table className="cfw-module">
                 <tbody>
-                    {ReactHtmlParser( totals.actions.cfw_before_cart_summary_totals )}
+                    {ReactHtmlParser( totals.actions?.cfw_before_cart_summary_totals )}
 
                     <tr className="cart-subtotal">
                         <th>{totals.subtotal.label}</th>
@@ -59,7 +59,7 @@ const CartTotals = () => {
                         </tr>
                     ) )}
 
-                    {ReactHtmlParser( totals.actions.woocommerce_review_order_before_order_total )}
+                    {ReactHtmlParser( totals.actions?.woocommerce_review_order_before_order_total )}
 
                     <tr className="order-total">
                         <th>{totals.total.label}</th>
@@ -68,8 +68,8 @@ const CartTotals = () => {
                         </td>
                     </tr>
 
-                    {ReactHtmlParser( totals.actions.woocommerce_review_order_after_order_total )}
-                    {ReactHtmlParser( totals.actions.cfw_after_cart_summary_totals )}
+                    {ReactHtmlParser( totals.actions?.woocommerce_review_order_after_order_total )}
+                    {ReactHtmlParser( totals.actions?.cfw_after_cart_summary_totals )}
                 </tbody>
             </table>
         </div>

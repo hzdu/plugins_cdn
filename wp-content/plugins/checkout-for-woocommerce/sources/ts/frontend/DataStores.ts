@@ -40,11 +40,11 @@ class DataStores {
 
         register( CartStore );
 
-        // DataStores.hasInitialized = DataStores.tryToUpdateDataStoreFromLocalStorage();
-        //
-        // if ( DataStores.hasInitialized ) {
-        //     return;
-        // }
+        DataStores.hasInitialized = DataStores.tryToUpdateDataStoreFromLocalStorage();
+
+        if ( DataStores.hasInitialized ) {
+            return;
+        }
 
         // Fallback, get from the page
         ( dispatch( DataStores.cart_store_key ) as any ).setCartNeedsPayment( DataService.getData( 'cart' ).needsPayment as boolean );
@@ -62,6 +62,10 @@ class DataStores {
     }
 
     static tryToUpdateDataStoreFromLocalStorage() {
+        if ( DataService.getCheckoutParam( 'is_checkout' ) ) {
+            return false;
+        }
+
         if ( !DataStores.supportsHTML5Storage() ) {
             return false;
         }

@@ -14,9 +14,9 @@ class SendCloud extends Compatibility {
         easyTabsWrap.bind( 'easytabs:before', ( event, clicked, target ) => {
             if ( jQuery( target ).attr( 'id' ) === TabService.paymentMethodTabId ) {
                 const selectedShippingMethod = jQuery( "input[name='shipping_method[0]']:checked" );
-                const selectedServicePoint = jQuery( '#sendcloudshipping_service_point_selected' );
+                const selectedServicePoint = jQuery( `#${selectedShippingMethod.attr( 'id' )}_submit_data` );
 
-                if ( selectedShippingMethod.length && selectedShippingMethod.val().toString().indexOf( 'service_point_shipping_method' ) !== -1 ) {
+                if ( selectedShippingMethod.length && selectedShippingMethod.val().toString().indexOf( 'sc_service_point' ) !== -1 ) {
                     if ( selectedServicePoint.length === 0 || selectedServicePoint.val() === '' ) {
                         // Prevent removing alert on next update checkout
                         AlertService.preserveAlerts = true;

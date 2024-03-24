@@ -45,11 +45,11 @@ const CartTable: React.FC = () => {
             }
             <table className="cfw-cart-table cfw-module">
                 <tbody>
-                    {ReactHtmlParser( staticActions.cfw_cart_html_table_start )}
+                    {ReactHtmlParser( staticActions?.cfw_cart_html_table_start )}
                     {items.map( ( item: CartItemInterface ) => ( <CartTableRow item={item} updateItem={updateItem} key={item.item_key} /> ) )}
                 </tbody>
             </table>
-            {ReactHtmlParser( staticActions.cfw_after_cart_html )}
+            {ReactHtmlParser( staticActions?.cfw_after_cart_html )}
         </>
     );
 };

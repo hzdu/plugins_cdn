@@ -68,7 +68,7 @@ const PromoFieldControl = ( { location = '' } ) => {
                 </div>
             </SlideToggle>
             { location === 'checkout_cart_summary' && (
-                <div dangerouslySetInnerHTML={{ __html: staticActions.cfw_coupon_module_end }}></div>
+                <div dangerouslySetInnerHTML={{ __html: staticActions?.cfw_coupon_module_end }}></div>
             )}
         </div>
     );

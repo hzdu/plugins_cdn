@@ -134,15 +134,15 @@ function TrustBadgeRow( { badge, setBadge, removeHandler, dragHandleProps }: Tru
                 <div className="max-w-xl w-full shadow rounded-lg p-4">
                     {badge.template === 'guarantee' ? (
                         <GuaranteeBadge
-                            title={badge.title}
-                            description={badge.description}
+                            title={badge.title.length ? badge.title : 'Guarantee Title'}
+                            description={badge.description.length ? badge.description : 'The details of your guarantee.'}
                             imageUrl={badge.image?.url}
                         />
                     ) : (
                         <ReviewBadge
-                            title={badge.title}
-                            subtitle={badge.subtitle}
-                            description={badge.description}
+                            title={badge.title.length ? badge.title : 'Example Customer Name'}
+                            subtitle={badge.subtitle.length ? badge.subtitle : 'Example Customer Role'}
+                            description={badge.description.length ? badge.description : 'The glowingly positive review text!'}
                             imageUrl={badge.image?.url}
                         />
                     )}

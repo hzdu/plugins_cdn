@@ -248,7 +248,7 @@ $slick-loader-path: "../images/";
         }
     }
 
-    .cart-item-row > * {
+    .cart-item-row:not(:only-child):not(:last-child) > * {
         border-bottom: 1px solid rgb(211, 212, 213);
     }
 

@@ -15,23 +15,9 @@ class SideCart {
     }
 
     setDataStoreListeners(): void {
-        const cartHashKey = wc_cart_fragments_params.cart_hash_key;
-
-        // Refresh fragments when storage changes in another tab, or after cart events
-        jQuery( window ).one( 'wc_fragments_loaded', () => {
+        // Catch cart fragment updates
+        jQuery( window ).on( 'wc_fragments_refreshed', () => {
             DataStores.tryToUpdateDataStoreFromLocalStorage();
-        } );
-
-        // If change happens on another tab, catch the next fragment refresh
-        // We can't always listen to the fragment refresh because it happens often
-        jQuery( window ).on( 'storage onstorage', ( e: any ) => {
-            if (
-                cartHashKey === e.originalEvent.key && localStorage.getItem( cartHashKey ) !== sessionStorage.getItem( cartHashKey )
-            ) {
-                jQuery( window ).one( 'wc_fragments_refreshed', () => {
-                    DataStores.tryToUpdateDataStoreFromLocalStorage();
-                } );
-            }
         } );
 
         jQuery( document.body ).on( 'added_to_cart removed_from_cart', ( event, fragments, cart_hash, button, source ) => {

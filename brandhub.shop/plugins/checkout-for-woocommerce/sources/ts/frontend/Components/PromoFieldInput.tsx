@@ -19,6 +19,7 @@ const PromoFieldInput = ( { label, placeholder, value, setValue } ) => {
                 <input
                     type="text"
                     className="input-text"
+                    data-persist={'false'}
                     id={id}
                     placeholder={placeholder}
                     value={value}

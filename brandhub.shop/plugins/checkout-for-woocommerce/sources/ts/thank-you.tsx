@@ -6,6 +6,7 @@ import cfwGetWPHooks                     from './functions/cfwGetWPHooks';
 import StorePoliciesList                 from './frontend/Components/StorePoliciesList';
 import ComponentMappingInterface         from './interfaces/ComponentMappingInterface';
 import cfwRenderComponentIfElementExists from './functions/cfwRenderComponentIfElementExists';
+import TrustBadges                       from './frontend/Components/TrustBadges';
 
 class ThankYou {
     constructor() {
@@ -37,6 +38,7 @@ class ThankYou {
             // Load React components
             const componentMappings: ComponentMappingInterface[] = [
                 { id: 'cfw-store-policies-container', component: <StorePoliciesList policies={DataService.getSetting( 'store_policies' )} /> },
+                { id: 'cfw-trust-badges', component: <TrustBadges /> },
             ];
             componentMappings.forEach( ( { id, component, condition = true } ) => {
                 cfwRenderComponentIfElementExists( id, component, condition );

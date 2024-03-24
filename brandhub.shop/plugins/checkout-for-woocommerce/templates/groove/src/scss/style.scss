@@ -103,11 +103,19 @@ main.checkoutwc .cfw-rp {
 
     --cfw-horizontal-divider-color: var(--cfw-cart-summary-text-color);
 
+    // Trust badges
     --cfw-tb-review-title: var(--cfw-cart-summary-text-color-contrast);
     --cfw-tb-review-subtitle: var(--cfw-cart-summary-text-color);
     --cfw-tb-review-content: var(--cfw-cart-summary-text-color-contrast);
     --cfw-tb-guarantee-title:var(--cfw-cart-summary-text-color-contrast);
     --cfw-tb-guarantee-content: var(--cfw-cart-summary-text-color-contrast);
+
+    // Free Shipping Progress Bar:
+    .cfw-side-cart-free-shipping-progress-wrap p {
+        color: var(--cfw-cart-summary-text-color-contrast);
+    }
+    --cfw-side-cart-free-shipping-progress-indicator: var(--cfw-cart-summary-text-color-contrast);
+    --cfw-side-cart-free-shipping-progress-background: var( --cfw-cart-summary-text-color-default );
 
     h3, h4, h5 {
         color: var(--cfw-cart-summary-text-color-contrast);
@@ -148,6 +156,47 @@ main.checkoutwc .cfw-rp {
         width: 100%;
         top: 0;
         z-index: 1;
+    }
+
+    .form-row {
+        input[type=email],
+        input[type=number],
+        input[type=password],
+        input[type=tel],
+        input[type=text].input-text,
+        select,
+        textarea {
+            border: 1px solid #8D8D8E !important;
+            border-radius: 6px !important;
+            padding: 14px !important;
+            font-size: 17px !important;
+            caret-color: var(--cfw-cart-summary-text-color-contrast) !important;
+
+            &::placeholder {
+                color: var(--cfw-cart-summary-text-color-default) !important;
+                font-size: 14px;
+            }
+        }
+
+        &.cfw-label-is-floated {
+            input[type=email],
+            input[type=number],
+            input[type=password],
+            input[type=tel],
+            input[type=text].input-text,
+            select,
+            textarea {
+                color: var( --cfw-cart-summary-text-color-contrast ) !important;
+                padding: 21px 14px 7px 14px !important;
+            }
+        }
+
+        label.cfw-floatable-label {
+            color: var(--cfw-cart-summary-text-color-default) !important;
+            margin-top: 4px !important;
+            letter-spacing: 0.02em !important;
+            font-weight: 400 !important;
+        }
     }
 }
 
@@ -289,47 +338,6 @@ body.checkout-wc main.checkoutwc {
 #cfw-payment-request-buttons {
     h2 {
         font-weight: 600;
-    }
-}
-
-.form-row {
-    input[type=email],
-    input[type=number],
-    input[type=password],
-    input[type=tel],
-    input[type=text].input-text,
-    select,
-    textarea {
-        border: 1px solid #8D8D8E !important;
-        border-radius: 6px !important;
-        padding: 14px !important;
-        font-size: 17px !important;
-        caret-color: var(--cfw-cart-summary-text-color-contrast) !important;
-
-        &::placeholder {
-            color: var(--cfw-cart-summary-text-color-default) !important;
-            font-size: 14px;
-        }
-    }
-
-    &.cfw-label-is-floated {
-        input[type=email],
-        input[type=number],
-        input[type=password],
-        input[type=tel],
-        input[type=text].input-text,
-        select,
-        textarea {
-            color: var( --cfw-cart-summary-text-color-contrast ) !important;
-            padding: 21px 14px 7px 14px !important;
-        }
-    }
-
-    label.cfw-floatable-label {
-        color: var(--cfw-cart-summary-text-color-default) !important;
-        margin-top: 4px !important;
-        letter-spacing: 0.02em !important;
-        font-weight: 400 !important;
     }
 }
 

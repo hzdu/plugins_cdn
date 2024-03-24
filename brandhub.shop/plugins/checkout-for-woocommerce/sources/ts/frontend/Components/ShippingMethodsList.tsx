@@ -38,14 +38,15 @@ const ShippingMethodsList: React.FC<ShippingProps> = (
                                     type="radio"
                                     name={`shipping_method[${index}]`}
                                     data-index={index}
-                                    id={`shipping_method_${index}_${method.id}`}
+                                    id={`shipping_method_${index}_${method.sanitizedId}`}
                                     value={method.id}
                                     className="shipping_method"
                                     checked={method.id === chosenMethod}
                                     onChange={() => updateSelectedMethod( method )}
+                                    data-persist={false}
                                 />
                                 <label
-                                    htmlFor={`shipping_method_${index}_${method.id}`}
+                                    htmlFor={`shipping_method_${index}_${method.sanitizedId}`}
                                     onClick={() => updateSelectedMethod( method )}
                                     dangerouslySetInnerHTML={{ __html: method.label }}
                                 >
@@ -53,10 +54,10 @@ const ShippingMethodsList: React.FC<ShippingProps> = (
                             </div>
 
                             {/* eslint-disable-next-line max-len */}
-                            {method.actions.woocommerce_after_shipping_rate.trim() && /<thead|<tbody|<tfoot|<th|<tr/.test( method.actions.woocommerce_after_shipping_rate ) && method.actions.woocommerce_after_shipping_rate.trim().substring( 0, 6 ) !== '<table' ? (
-                                <table dangerouslySetInnerHTML={{ __html: method.actions.woocommerce_after_shipping_rate }} />
+                            {method.actions?.woocommerce_after_shipping_rate.trim() && /<thead|<tbody|<tfoot|<th|<tr/.test( method.actions?.woocommerce_after_shipping_rate ) && method.actions?.woocommerce_after_shipping_rate.trim().substring( 0, 6 ) !== '<table' ? (
+                                <table dangerouslySetInnerHTML={{ __html: method.actions?.woocommerce_after_shipping_rate }} />
                             ) : (
-                                ReactHtmlParser( method.actions.woocommerce_after_shipping_rate )
+                                <div dangerouslySetInnerHTML={{ __html: method.actions?.woocommerce_after_shipping_rate }} />
                             )}
                         </li>
                     ) )}

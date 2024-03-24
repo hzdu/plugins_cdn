@@ -2,6 +2,7 @@ import Actions from '../Types/Actions';
 
 export interface ShippingMethodInterface {
     id: string;
+    sanitizedId: string;
     label: string;
     checked: boolean;
     actions: Actions;

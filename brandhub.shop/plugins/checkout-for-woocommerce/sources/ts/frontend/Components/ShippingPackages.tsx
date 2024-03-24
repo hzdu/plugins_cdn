@@ -36,11 +36,11 @@ const ShippingPackages: React.FC = () => {
                 <Markup content={DataService.getMessage( 'shipping_methods_heading' )} noWrap={true} />
             </h3>
 
-            {ReactHtmlParser( staticActions.cfw_after_shipping_method_heading )}
+            {ReactHtmlParser( staticActions?.cfw_after_shipping_method_heading )}
 
-            {actions.woocommerce_review_order_before_shipping.length > 0 && (
+            {actions?.woocommerce_review_order_before_shipping.length > 0 && (
                 <table id="cfw-before-shipping">
-                    <tbody dangerouslySetInnerHTML={ { __html: actions.woocommerce_review_order_before_shipping.length }}></tbody>
+                    <tbody dangerouslySetInnerHTML={ { __html: actions?.woocommerce_review_order_before_shipping.length }}></tbody>
                 </table>
             )}
 
@@ -59,11 +59,11 @@ const ShippingPackages: React.FC = () => {
                 }
             </div>
 
-            <div dangerouslySetInnerHTML={{ __html: staticActions.cfw_checkout_after_shipping_methods }} />
+            <div dangerouslySetInnerHTML={{ __html: staticActions?.cfw_checkout_after_shipping_methods }} />
 
-            {( actions.woocommerce_review_order_after_shipping.length > 0 || actions.cfw_after_shipping_methods.length > 0 ) && (
+            {( actions?.woocommerce_review_order_after_shipping.length > 0 || actions?.cfw_after_shipping_methods.length > 0 ) && (
                 <table id="cfw-after-shipping">
-                    <tbody dangerouslySetInnerHTML={ { __html: actions.cfw_after_shipping_methods + actions.woocommerce_review_order_after_shipping }}></tbody>
+                    <tbody dangerouslySetInnerHTML={ { __html: actions?.cfw_after_shipping_methods + actions?.woocommerce_review_order_after_shipping }}></tbody>
                 </table>
             )}
         </>

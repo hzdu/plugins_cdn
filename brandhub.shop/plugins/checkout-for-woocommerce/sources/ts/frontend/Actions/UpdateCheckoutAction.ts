@@ -282,6 +282,13 @@ class UpdateCheckoutAction extends Action {
             if ( resp.data ) {
                 // Update the data stores
                 DataStores.updateDataStore( resp.data );
+
+                // Update the cart hash - this will trigger a fragment refresh on other tabs
+                localStorage.setItem( DataService.getCheckoutParam( 'cart_hash_key' ) as string, resp.cart_hash );
+                sessionStorage.setItem( DataService.getCheckoutParam( 'cart_hash_key' ) as string, resp.cart_hash );
+
+                // Blank out the cart creation time so that if they go back to the shop, a fragment refresh will be forced
+                sessionStorage.setItem( 'wc_cart_created', '' );
             }
 
             UpdateCheckoutService.triggerUpdatedCheckout( resp );
