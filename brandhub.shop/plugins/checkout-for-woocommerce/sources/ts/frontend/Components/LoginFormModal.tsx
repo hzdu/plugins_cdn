@@ -27,6 +27,10 @@ const LoginFormModal: React.FC = () => {
     };
 
     const autoOpen = () => {
+        if ( !DataService.getSetting( 'is_login_at_checkout_allowed' ) ) {
+            return;
+        }
+
         // If the user already saw the login nag, don't show it again
         if ( Cookies.get( 'cfw_login_modal_shown' ) === 'true' && !DataService.getSetting( 'bypass_login_modal_shown_cookie' ) ) {
             return;

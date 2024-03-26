@@ -80,7 +80,7 @@ const CheckoutCartTableRow = ( { item, updateItem }: CartTableRowProps ) => (
         <td className="cfw-cart-item-subtotal">
             {ReactHtmlParser( item.actions?.cfw_before_cart_item_subtotal ? item.actions?.cfw_before_cart_item_subtotal : '' )}
 
-            { DataService.getSetting( 'show_item_remove_button' ) && (
+            { !item.hide_remove_item && DataService.getSetting( 'show_item_remove_button' ) && (
                 <CartItemRemoveButton
                     handleRemove={() => {
                         const updatedItem = { ...item, quantity: 0 };

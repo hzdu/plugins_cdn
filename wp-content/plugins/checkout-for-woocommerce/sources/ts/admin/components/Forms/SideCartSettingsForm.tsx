@@ -221,13 +221,6 @@ const SideCartSettingsForm: React.FC<SideCartSettingsFormPropsInterface> = ( pro
                                                                 description='Hide floating cart button if cart is empty.'
                                                                 searchTerm={searchTerm}
                                                             />
-
-                                                            <CheckboxField
-                                                                name="shake_floating_cart_button"
-                                                                label="Disable Cart Auto Open"
-                                                                description='Instead of opening the side cart, gently shake the floating cart button to indicate a successful add to cart event.'
-                                                                searchTerm={searchTerm}
-                                                            />
                                                         </>
                                                     )
                                                 }
@@ -309,6 +302,13 @@ const SideCartSettingsForm: React.FC<SideCartSettingsFormPropsInterface> = ( pro
                                                 description='Control various Side Cart options.'
                                                 content={
                                                     <>
+                                                        <CheckboxField
+                                                            name="shake_floating_cart_button"
+                                                            label="Disable Cart Auto Open"
+                                                            description='Instead of opening the side cart, gently shake the floating cart button (if visible) to indicate a successful add to cart event.'
+                                                            searchTerm={searchTerm}
+                                                        />
+
                                                         <CheckboxField
                                                             name="enable_ajax_add_to_cart"
                                                             label="Enable AJAX Add to Cart"

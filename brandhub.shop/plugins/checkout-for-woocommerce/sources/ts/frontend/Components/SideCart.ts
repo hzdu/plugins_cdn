@@ -110,6 +110,10 @@ class SideCart {
                 SideCart.openCart();
             }
 
+            if ( !DataService.getSetting( 'enable_floating_cart_button' ) ) {
+                return;
+            }
+
             if ( DataService.getRuntimeParameter( 'openCart' ) && DataService.getSetting( 'disable_side_cart_auto_open' ) ) {
                 this.shakeCartButton();
             }

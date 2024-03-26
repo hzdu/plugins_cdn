@@ -7,6 +7,7 @@ interface CartItemInterface {
     title: string;
     url: string;
     subtotal: string;
+    hide_remove_item: boolean;
     row_class: string;
     data: Array<{key: string; value: any;}>;
     formatted_data: string;

@@ -80,12 +80,14 @@ const CartTableRow = ( { item, updateItem }: CartTableRowProps ) => (
         <td className="cfw-cart-item-subtotal">
             {ReactHtmlParser( item.actions?.cfw_before_cart_item_subtotal ? item.actions?.cfw_before_cart_item_subtotal : '' )}
 
-            <CartItemRemoveButton
-                handleRemove={() => {
-                    const updatedItem = { ...item, quantity: 0 };
-                    updateItem( updatedItem );
-                }}
-            />
+            {!item.hide_remove_item
+                && <CartItemRemoveButton
+                    handleRemove={() => {
+                        const updatedItem = { ...item, quantity: 0 };
+                        updateItem( updatedItem );
+                    }}
+                />
+            }
 
             <Markup content={item.subtotal} noWrap={true} />
         </td>
