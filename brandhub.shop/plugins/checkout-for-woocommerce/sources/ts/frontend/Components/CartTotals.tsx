@@ -23,7 +23,9 @@ const CartTotals = () => {
 
                     {totals.coupons.map( ( coupon: CartCoupon ) => (
                         <tr key={coupon.code} className={`cart-discount coupon-${coupon.class}`}>
-                            <th>{coupon.label}</th>
+                            <th>
+                                <Markup content={coupon.label} noWrap={true} />
+                            </th>
                             <td>
                                 <Markup content={coupon.value} noWrap={true} />
                             </td>

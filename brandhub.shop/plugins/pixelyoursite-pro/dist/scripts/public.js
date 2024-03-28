@@ -1141,21 +1141,36 @@ if (!String.prototype.trim) {
                         }
                     });
                 }
-                if (options.ajaxForServerEvent && !Cookies.get('pbid') && !(options.cookie.disabled_all_cookie || options.cookie.externalID_disabled_by_api)) {
+                if (options.ajaxForServerEvent && !Cookies.get('pbid')) {
+                    if(Facebook.advancedMatching() && Facebook.advancedMatching().external_id && !(options.cookie.disabled_all_cookie || options.cookie.externalID_disabled_by_api)){
+                        let expires = parseInt(options.external_id_expire || 180);
+                        Cookies.set('pbid', Facebook.advancedMatching().external_id, { expires: expires, path: '/' });
+                    }
+                    else{
+                        jQuery.ajax({
+                            url: options.ajaxUrl,
+                            dataType: 'json',
+                            data: {
+                                action: 'pys_get_pbid'
+                            },
+                            success: function (res) {
+                                if (res.data && res.data.pbid != false && options.send_external_id) {
+                                    if(!(options.cookie.disabled_all_cookie || options.cookie.externalID_disabled_by_api)){
+                                        var expires = parseInt(options.external_id_expire || 180);
+                                        Cookies.set('pbid', res.data.pbid, { expires: expires, path: '/' });
+                                    }
 
-                    jQuery.ajax({
-                        url: options.ajaxUrl,
-                        dataType: 'json',
-                        data: {
-                            action: 'pys_get_pbid'
-                        },
-                        success: function (res) {
-                            if (res.data && res.data.pbid != false && options.send_external_id) {
-                                var expires = parseInt(options.external_id_expire || 180);
-                                Cookies.set('pbid', res.data.pbid, { expires: expires, path: '/' });
+                                    if(options.hasOwnProperty('facebook')) {
+                                        options.facebook.advancedMatching = {
+                                            ...options.facebook.advancedMatching,  // распыляем текущие значения advancedMatching
+                                            external_id: res.data.pbid
+                                        };
+                                    }
+                                }
                             }
-                        }
-                    });
+                        });
+                    }
+
                 }
                 let expires = parseInt(options.cookie_duration); //  days
                 let queryVars = getQueryVars();
@@ -1806,67 +1821,39 @@ if (!String.prototype.trim) {
 
                     var test_prefix = CS_Data.test_prefix;
                     if ((typeof CS_Data.cs_google_consent_mode_enabled !== "undefined" && CS_Data.cs_google_consent_mode_enabled == 1) && ( pixel == 'analytics' || pixel == 'google_ads' ) ) {
-                        return true;
+                        if ( CS_Data.cs_cache_enabled == 0 || ( CS_Data.cs_cache_enabled == 1 && window.CS_Cache && window.CS_Cache.check_status) ){
+                            return true;
+                        } else {
+                            return false;
+                        }
                     }
 
-                    if ( CS_Data.cs_cache_enabled == 1 ) {
-                        var substring = "cs_enabled_cookie_term";
-                        var theCookies = document.cookie.split(';');
+                    var substring = "cs_enabled_cookie_term";
+                    var theCookies = document.cookie.split( ';' );
 
-                        for (var i = 1 ; i <= theCookies.length; i++) {
-                            if ( theCookies[ i - 1 ].indexOf( substring ) !== -1 ) {
-                                var categoryCookie = theCookies[ i - 1 ].replace( 'cs_enabled_cookie_term' + test_prefix + '_', '' );
-                                categoryCookie = Number( categoryCookie.replace( /\D+/g, "" ) );
-                                var cs_cookie_val = Cookies.get( 'cs_enabled_cookie_term' + test_prefix + '_' + categoryCookie );
+                    for ( var i = 1; i <= theCookies.length; i++ ) {
+                        if ( theCookies[ i - 1 ].indexOf( substring ) !== -1 ) {
+                            var categoryCookie = theCookies[ i - 1 ].replace( 'cs_enabled_cookie_term' + test_prefix + '_', '' );
+                            categoryCookie = Number( categoryCookie.replace( /\D+/g, "" ) );
+                            var cs_cookie_val = Cookies.get( 'cs_enabled_cookie_term' + test_prefix + '_' + categoryCookie );
 
-                                if ( categoryCookie === CS_Data.cs_script_cat.facebook && pixel == 'facebook' ) {
-                                    if ( cs_cookie_val == 'yes' ) {
-                                        return true;
-                                    } else {
-                                        return false;
-                                    }
-                                } else if ( categoryCookie === CS_Data.cs_script_cat.bing && pixel == 'bing' ) {
-                                    if ( cs_cookie_val == 'yes' ) {
-                                        return true;
-                                    } else {
-                                        return false;
-                                    }
-                                } else if ( categoryCookie === CS_Data.cs_script_cat.analytics && pixel == 'analytics' ) {
-                                    if ( cs_cookie_val == 'yes' ) {
-                                        return true;
-                                    } else {
-                                        return false;
-                                    }
-                                } else if ( categoryCookie === CS_Data.cs_script_cat.gads && pixel == 'google_ads' ) {
-                                    if ( cs_cookie_val == 'yes' ) {
-                                        return true;
-                                    } else {
-                                        return false;
-                                    }
-                                } else if ( categoryCookie === CS_Data.cs_script_cat.pinterest && pixel == 'pinterest' ) {
-                                    if ( cs_cookie_val == 'yes' ) {
-                                        return true;
-                                    } else {
-                                        return false;
-                                    }
-                                } else if ( categoryCookie === CS_Data.cs_script_cat.tiktok && pixel == 'tiktok' ) {
-                                    if ( cs_cookie_val == 'yes' ) {
-                                        return true;
-                                    } else {
-                                        return false;
-                                    }
-                                }
+                            if ( categoryCookie === CS_Data.cs_script_cat.facebook && pixel == 'facebook' ) {
+                                return cs_cookie_val == 'yes';
+                            } else if ( categoryCookie === CS_Data.cs_script_cat.bing && pixel == 'bing' ) {
+                                return cs_cookie_val == 'yes';
+                            } else if ( categoryCookie === CS_Data.cs_script_cat.analytics && pixel == 'analytics' ) {
+                                return cs_cookie_val == 'yes';
+                            } else if ( categoryCookie === CS_Data.cs_script_cat.gads && pixel == 'google_ads' ) {
+                                return cs_cookie_val == 'yes';
+                            } else if ( categoryCookie === CS_Data.cs_script_cat.pinterest && pixel == 'pinterest' ) {
+                                return cs_cookie_val == 'yes';
+                            } else if ( categoryCookie === CS_Data.cs_script_cat.tiktok && pixel == 'tiktok' ) {
+                                return cs_cookie_val == 'yes';
                             }
-                        }
-                    } else {
-                        var cs_cookie = Cookies.get('cs_viewed_cookie_policy'+test_prefix);
-                        if (typeof cs_cookie === 'undefined' || cs_cookie === 'yes') {
-                            return true;
                         }
                     }
 
                     return false;
-
                 }
 
 
@@ -2633,6 +2620,12 @@ if (!String.prototype.trim) {
         }
 
         var initialized = false;
+        var genereateFbp = function (){
+            return !Cookies.get('_fbp') ? 'fb.1.'+Date.now()+'.'+Math.floor(1000000000 + Math.random() * 9000000000) : Cookies.get('_fbp');
+        };
+        var genereateFbc = function (){
+            return getUrlParameter('fbclid') ? 'fb.1.'+Date.now()+'.'+getUrlParameter('fbclid') : ''
+        };
         var configuredPixels = new Array();
 
         function fireEvent(name, event) {
@@ -2653,6 +2646,8 @@ if (!String.prototype.trim) {
 
             Utils.copyProperties(data, params);
             Utils.copyProperties(Utils.getRequestParams(), params);
+
+            Utils.copyProperties(Utils.getRequestParams(), data);
 
 
             if(options.facebook.serverApiEnabled) {
@@ -2724,11 +2719,13 @@ if (!String.prototype.trim) {
                             setTimeout(function(){
                                 if(!Cookies.get('_fbp'))
                                 {
-                                    Cookies.set('_fbp','fb.1.'+currentTimeInSeconds+'.'+randomNum,  { expires: expires })
+                                    Cookies.set('_fbp',genereateFbp(),  { expires: expires });
+                                    json['data']['_fbp'] = genereateFbp();
                                 }
                                 if(getUrlParameter('fbclid') && !Cookies.get('_fbc'))
                                 {
-                                    Cookies.set('_fbc', 'fb.1.'+currentTimeInSeconds+'.'+getUrlParameter('fbclid'),  { expires: expires })
+                                    Cookies.set('_fbc', genereateFbc(),  { expires: expires });
+                                    json['data']['_fbc'] = genereateFbc();
                                 }
                                 jQuery.ajax( {
                                     type: 'POST',
@@ -2778,7 +2775,12 @@ if (!String.prototype.trim) {
                 }
 
                 Facebook.maybeInitPixel(pixelId);
-                fbq(actionType,pixelId, name, params,args);
+                if(name == 'PageView'){
+                    fbq(actionType,pixelId, name, data,args);
+                }
+                else{
+                    fbq(actionType,pixelId, name, params,args);
+                }
             });
 
         }
@@ -5421,7 +5423,7 @@ if (pysOptions.gdpr.cookie_law_info_integration_enabled) {
     }
 }
 
-if (pysOptions.ajaxForServerEvent && !Cookies.get('pbid') && !(pysOptions.cookie.disabled_all_cookie || pysOptions.cookie.externalID_disabled_by_api || disabled_GDRP_plugin)) {
+if (pysOptions.ajaxForServerEvent && !Cookies.get('pbid')) {
 
     jQuery.ajax({
         url: pysOptions.ajaxUrl,
@@ -5431,8 +5433,17 @@ if (pysOptions.ajaxForServerEvent && !Cookies.get('pbid') && !(pysOptions.cookie
         },
         success: function (res) {
             if (res.data && res.data.pbid != false && pysOptions.send_external_id) {
-                var expires = parseInt(pysOptions.external_id_expire || 180);
-                Cookies.set('pbid', res.data.pbid, { expires: expires, path: '/' });
+                if(!(pysOptions.cookie.disabled_all_cookie || pysOptions.cookie.externalID_disabled_by_api || disabled_GDRP_plugin)){
+                    var expires = parseInt(pysOptions.external_id_expire || 180);
+                    Cookies.set('pbid', res.data.pbid, { expires: expires, path: '/' });
+                }
+
+                if(pysOptions.hasOwnProperty('facebook')) {
+                    pysOptions.facebook.advancedMatching = {
+                        ...pysOptions.facebook.advancedMatching,  // распыляем текущие значения advancedMatching
+                        external_id: res.data.pbid
+                    };
+                }
             }
         }
     });

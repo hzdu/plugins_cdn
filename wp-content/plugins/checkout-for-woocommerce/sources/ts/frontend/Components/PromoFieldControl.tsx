@@ -23,6 +23,10 @@ const PromoFieldControl = ( { location = '' } ) => {
         jQuery( document.body ).trigger( 'cfw_update_cart' );
     };
 
+    if ( !DataService.getSetting( 'coupons_enabled' ) ) {
+        return <></>;
+    }
+
     return (
         <div className="cfw-coupon-wrap">
             <SlideToggle
