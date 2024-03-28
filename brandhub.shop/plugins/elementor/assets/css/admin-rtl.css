@@ -1,4 +1,4 @@
-/*! elementor - v3.20.0 - 11-03-2024 */
+/*! elementor - v3.20.0 - 20-03-2024 */
 .elementor-button,
 .e-btn,
 #elementor-deactivate-feedback-modal .dialog-skip,
@@ -2392,5 +2392,75 @@ body.rtl .e-feature-promotion {
     max-width: 90%;
     aspect-ratio: 16/9;
   }
+}
+.elementor-control-notice {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 16px;
+  border-radius: 3px;
+  border: 1px solid var(--notice-control-color, var(--e-a-color-txt));
+  color: var(--e-a-color-txt);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.5;
+  text-align: start;
+  margin-block-start: 10px;
+}
+.elementor-control-notice-type-info {
+  --notice-control-color: var(--e-a-color-info);
+}
+.elementor-control-notice-type-success {
+  --notice-control-color: var(--e-a-color-success);
+}
+.elementor-control-notice-type-warning {
+  --notice-control-color: var(--e-a-color-warning);
+}
+.elementor-control-notice-type-danger {
+  --notice-control-color: var(--e-a-color-danger);
+}
+.elementor-control-notice-icon {
+  flex-basis: 18px;
+  color: var(--notice-control-color);
+}
+.elementor-control-notice-main {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 6px;
+  flex: 1;
+}
+.elementor-control-notice-main-heading {
+  font-weight: 700;
+  font-style: italic;
+}
+.elementor-control-notice-main-content {
+  font-style: italic;
+  line-height: 1.5;
+}
+.elementor-control-notice-main-actions {
+  display: flex;
+  gap: 10px;
+  padding-block-start: 8px;
+}
+.elementor-control-notice-main a {
+  color: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+.elementor-control-notice-main a:hover, .elementor-control-notice-main a:focus {
+  color: inherit;
+}
+.elementor-control-notice-dismiss {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  background-color: transparent;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
 }
 /*# sourceMappingURL=admin-rtl.css.map */

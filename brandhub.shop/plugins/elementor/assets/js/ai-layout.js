@@ -1,4 +1,4 @@
-/*! elementor - v3.20.0 - 11-03-2024 */
+/*! elementor - v3.20.0 - 20-03-2024 */
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
@@ -1309,6 +1309,7 @@ exports["default"] = _default;
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 "use strict";
+/* provided dependency */ var sprintf = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n")["sprintf"];
 
 
 var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
@@ -1330,65 +1331,85 @@ var PromptErrorMessage = function PromptErrorMessage(_ref) {
     _ref$actionPosition = _ref.actionPosition,
     actionPosition = _ref$actionPosition === void 0 ? 'default' : _ref$actionPosition,
     props = (0, _objectWithoutProperties2.default)(_ref, _excluded);
-  var messages = {
-    default: {
-      text: /*#__PURE__*/_react.default.createElement(_ui.AlertTitle, null, (0, _i18n.__)('Unknown error. Please try again later.', 'elementor')),
-      description: (0, _i18n.__)('Error code:', 'elementor') + ' ' + error,
-      buttonText: (0, _i18n.__)('Try Again', 'elementor'),
-      buttonAction: onRetry
-    },
-    service_outage_internal: {
-      text: /*#__PURE__*/_react.default.createElement(_ui.AlertTitle, null, (0, _i18n.__)('Elementor AI is temporarily unavailable', 'elementor')),
-      description: (0, _i18n.__)('Seems like we are experiencing technical difficulty. We should be up and running shortly.', 'elementor'),
-      buttonText: (0, _i18n.__)('Try Again', 'elementor'),
-      buttonAction: onRetry
-    },
-    invalid_connect_data: {
-      text: /*#__PURE__*/_react.default.createElement(_ui.AlertTitle, null, (0, _i18n.__)('Reconnect your account', 'elementor')),
-      description: /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, (0, _i18n.__)('We couldn\'t connect to your account due to technical difficulties on our end. Reconnect your account to continue.', 'elementor'), ' ', /*#__PURE__*/_react.default.createElement("a", {
-        href: "https://elementor.com/help/disconnecting-reconnecting-your-elementor-account/",
-        target: "_blank",
-        rel: "noreferrer"
-      }, (0, _i18n.__)('Show me how', 'elementor'))),
-      buttonText: (0, _i18n.__)('Reconnect', 'elementor'),
-      buttonAction: function buttonAction() {
-        return window.open(window.ElementorAiConfig.connect_url);
-      }
-    },
-    not_connected: {
-      text: /*#__PURE__*/_react.default.createElement(_ui.AlertTitle, null, (0, _i18n.__)('You aren\'t connected to Elementor AI.', 'elementor')),
-      description: (0, _i18n.__)('Elementor AI is just a few clicks away. Connect your account to instantly create texts and custom code.', 'elementor'),
-      buttonText: (0, _i18n.__)('Connect', 'elementor'),
-      buttonAction: function buttonAction() {
-        return window.open(window.ElementorAiConfig.connect_url);
-      }
-    },
-    quota_reached_trail: {
-      text: /*#__PURE__*/_react.default.createElement(_ui.AlertTitle, null, (0, _i18n.__)('It\'s time to upgrade.', 'elementor')),
-      description: (0, _i18n.__)('Enjoy the free trial? Upgrade now for unlimited access to built-in image, text and custom code generators.', 'elementor'),
-      buttonText: (0, _i18n.__)('Upgrade', 'elementor'),
-      buttonAction: function buttonAction() {
-        return window.open('https://go.elementor.com/ai-popup-purchase-limit-reached/', '_blank');
-      }
-    },
-    quota_reached_subscription: {
-      text: /*#__PURE__*/_react.default.createElement(_ui.AlertTitle, null, (0, _i18n.__)('It\'s time to upgrade.', 'elementor')),
-      description: (0, _i18n.__)('Love Elementor AI? Upgrade to continue creating with built-in image, text and custom code generators.', 'elementor'),
-      buttonText: (0, _i18n.__)('Upgrade', 'elementor'),
-      buttonAction: function buttonAction() {
-        return window.open('https://go.elementor.com/ai-popup-purchase-limit-reached/', '_blank');
-      }
-    },
-    rate_limit_network: {
-      text: /*#__PURE__*/_react.default.createElement(_ui.AlertTitle, null, (0, _i18n.__)('Whoa! Slow down there.', 'elementor')),
-      description: (0, _i18n.__)('We can’t process that many requests so fast. Try again in 15 minutes.', 'elementor')
-    },
-    invalid_prompts: {
-      text: /*#__PURE__*/_react.default.createElement(_ui.AlertTitle, null, (0, _i18n.__)('We were unable to generate that prompt.', 'elementor')),
-      description: (0, _i18n.__)('Seems like the prompt contains words that could generate harmful content. Write a different prompt to continue.', 'elementor')
+  function getQuotaReachedTrailMessage(featureName) {
+    if (!featureName) {
+      return {
+        text: /*#__PURE__*/_react.default.createElement(_ui.AlertTitle, null, (0, _i18n.__)('It\'s time to upgrade.', 'elementor')),
+        description: (0, _i18n.__)('Enjoy the free trial? Upgrade now for unlimited access to built-in image, text and custom code generators.', 'elementor'),
+        buttonText: (0, _i18n.__)('Upgrade', 'elementor'),
+        buttonAction: function buttonAction() {
+          return window.open('https://go.elementor.com/ai-popup-purchase-limit-reached/', '_blank');
+        }
+      };
     }
-  };
-  var message = messages[error] || messages.default;
+    return {
+      text: /*#__PURE__*/_react.default.createElement(_ui.AlertTitle, null, (0, _i18n.__)('Your free trial is up!', 'elementor')),
+      // Translators: %s is the feature name.
+      description: sprintf((0, _i18n.__)('Upgrade now to keep using %s', 'elementor'), featureName),
+      buttonText: (0, _i18n.__)('Upgrade now', 'elementor'),
+      buttonAction: function buttonAction() {
+        return window.open('https://go.elementor.com/ai-popup-purchase-limit-reached/', '_blank');
+      }
+    };
+  }
+  function getErrorMessage() {
+    var _error$extra_data;
+    var errMsg = error.message || error;
+    var featureName = (_error$extra_data = error.extra_data) === null || _error$extra_data === void 0 ? void 0 : _error$extra_data.featureName;
+    var messages = {
+      default: {
+        text: /*#__PURE__*/_react.default.createElement(_ui.AlertTitle, null, (0, _i18n.__)('Unknown error. Please try again later.', 'elementor')),
+        description: (0, _i18n.__)('Error code:', 'elementor') + ' ' + error,
+        buttonText: (0, _i18n.__)('Try Again', 'elementor'),
+        buttonAction: onRetry
+      },
+      service_outage_internal: {
+        text: /*#__PURE__*/_react.default.createElement(_ui.AlertTitle, null, (0, _i18n.__)('Elementor AI is temporarily unavailable', 'elementor')),
+        description: (0, _i18n.__)('Seems like we are experiencing technical difficulty. We should be up and running shortly.', 'elementor'),
+        buttonText: (0, _i18n.__)('Try Again', 'elementor'),
+        buttonAction: onRetry
+      },
+      invalid_connect_data: {
+        text: /*#__PURE__*/_react.default.createElement(_ui.AlertTitle, null, (0, _i18n.__)('Reconnect your account', 'elementor')),
+        description: /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, (0, _i18n.__)('We couldn\'t connect to your account due to technical difficulties on our end. Reconnect your account to continue.', 'elementor'), ' ', /*#__PURE__*/_react.default.createElement("a", {
+          href: "https://elementor.com/help/disconnecting-reconnecting-your-elementor-account/",
+          target: "_blank",
+          rel: "noreferrer"
+        }, (0, _i18n.__)('Show me how', 'elementor'))),
+        buttonText: (0, _i18n.__)('Reconnect', 'elementor'),
+        buttonAction: function buttonAction() {
+          return window.open(window.ElementorAiConfig.connect_url);
+        }
+      },
+      not_connected: {
+        text: /*#__PURE__*/_react.default.createElement(_ui.AlertTitle, null, (0, _i18n.__)('You aren\'t connected to Elementor AI.', 'elementor')),
+        description: (0, _i18n.__)('Elementor AI is just a few clicks away. Connect your account to instantly create texts and custom code.', 'elementor'),
+        buttonText: (0, _i18n.__)('Connect', 'elementor'),
+        buttonAction: function buttonAction() {
+          return window.open(window.ElementorAiConfig.connect_url);
+        }
+      },
+      quota_reached_trail: getQuotaReachedTrailMessage(featureName),
+      quota_reached_subscription: {
+        text: /*#__PURE__*/_react.default.createElement(_ui.AlertTitle, null, (0, _i18n.__)('It\'s time to upgrade.', 'elementor')),
+        description: (0, _i18n.__)('Love Elementor AI? Upgrade to continue creating with built-in image, text and custom code generators.', 'elementor'),
+        buttonText: (0, _i18n.__)('Upgrade', 'elementor'),
+        buttonAction: function buttonAction() {
+          return window.open('https://go.elementor.com/ai-popup-purchase-limit-reached/', '_blank');
+        }
+      },
+      rate_limit_network: {
+        text: /*#__PURE__*/_react.default.createElement(_ui.AlertTitle, null, (0, _i18n.__)('Whoa! Slow down there.', 'elementor')),
+        description: (0, _i18n.__)('We can’t process that many requests so fast. Try again in 15 minutes.', 'elementor')
+      },
+      invalid_prompts: {
+        text: /*#__PURE__*/_react.default.createElement(_ui.AlertTitle, null, (0, _i18n.__)('We were unable to generate that prompt.', 'elementor')),
+        description: (0, _i18n.__)('Seems like the prompt contains words that could generate harmful content. Write a different prompt to continue.', 'elementor')
+      }
+    };
+    return messages[errMsg] || messages.default;
+  }
+  var message = getErrorMessage();
   var action = (message === null || message === void 0 ? void 0 : message.buttonText) && /*#__PURE__*/_react.default.createElement(_ui.Button, {
     color: "inherit",
     size: "small",
@@ -1564,7 +1585,7 @@ var UpgradeChip = function UpgradeChip(_ref3) {
     display: "flex",
     alignItems: "center"
   }, /*#__PURE__*/_react.default.createElement(Chip, {
-    color: "accent",
+    color: "promotion",
     label: (0, _i18n.__)('Upgrade', 'elementor'),
     icon: /*#__PURE__*/_react.default.createElement(_icons.AIIcon, null),
     size: "small"
@@ -1607,14 +1628,14 @@ var UpgradeChip = function UpgradeChip(_ref3) {
     }, bullet)));
   })), /*#__PURE__*/_react.default.createElement(_ui.Button, {
     variant: "contained",
-    color: "accent",
+    color: "promotion",
     size: "small",
     href: actionUrl,
     target: "_blank",
     startIcon: /*#__PURE__*/_react.default.createElement(_icons.AIIcon, null),
     sx: {
       '&:hover': {
-        color: 'accent.contrastText'
+        color: 'promotion.contrastText'
       }
     }
   }, actionLabel))));
@@ -4049,7 +4070,7 @@ var ProTemplateIndicator = function ProTemplateIndicator() {
     alignItems: "start",
     spacing: 2
   }, /*#__PURE__*/_react.default.createElement(_ui.Chip, {
-    color: "accent",
+    color: "promotion",
     variant: "outlined",
     size: "small",
     label: (0, _i18n.__)('Pro', 'elementor'),
@@ -4058,7 +4079,7 @@ var ProTemplateIndicator = function ProTemplateIndicator() {
     variant: "body2"
   }, (0, _i18n.__)("This result includes an Elementor Pro widget that's not available with your current plan. Upgrade to use all the widgets in this result.", 'elementor')), /*#__PURE__*/_react.default.createElement(_ui.Button, {
     variant: "contained",
-    color: "accent",
+    color: "promotion",
     size: "small",
     href: actionUrl,
     target: "_blank",
@@ -4106,7 +4127,7 @@ var ProWidgetsNotice = function ProWidgetsNotice() {
   }, /*#__PURE__*/_react.default.createElement(_ui.Alert, {
     severity: "info",
     variant: "filled",
-    color: "accent",
+    color: "promotion",
     onClose: function onClose() {
       return markAsViewed();
     },
@@ -12626,17 +12647,17 @@ module.exports = _toConsumableArray, module.exports.__esModule = true, module.ex
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 var _typeof = (__webpack_require__(/*! ./typeof.js */ "../node_modules/@babel/runtime/helpers/typeof.js")["default"]);
-function _toPrimitive(input, hint) {
-  if (_typeof(input) !== "object" || input === null) return input;
-  var prim = input[Symbol.toPrimitive];
-  if (prim !== undefined) {
-    var res = prim.call(input, hint || "default");
-    if (_typeof(res) !== "object") return res;
+function toPrimitive(t, r) {
+  if ("object" != _typeof(t) || !t) return t;
+  var e = t[Symbol.toPrimitive];
+  if (void 0 !== e) {
+    var i = e.call(t, r || "default");
+    if ("object" != _typeof(i)) return i;
     throw new TypeError("@@toPrimitive must return a primitive value.");
   }
-  return (hint === "string" ? String : Number)(input);
+  return ("string" === r ? String : Number)(t);
 }
-module.exports = _toPrimitive, module.exports.__esModule = true, module.exports["default"] = module.exports;
+module.exports = toPrimitive, module.exports.__esModule = true, module.exports["default"] = module.exports;
 
 /***/ }),
 
@@ -12648,11 +12669,11 @@ module.exports = _toPrimitive, module.exports.__esModule = true, module.exports[
 
 var _typeof = (__webpack_require__(/*! ./typeof.js */ "../node_modules/@babel/runtime/helpers/typeof.js")["default"]);
 var toPrimitive = __webpack_require__(/*! ./toPrimitive.js */ "../node_modules/@babel/runtime/helpers/toPrimitive.js");
-function _toPropertyKey(arg) {
-  var key = toPrimitive(arg, "string");
-  return _typeof(key) === "symbol" ? key : String(key);
+function toPropertyKey(t) {
+  var i = toPrimitive(t, "string");
+  return "symbol" == _typeof(i) ? i : String(i);
 }
-module.exports = _toPropertyKey, module.exports.__esModule = true, module.exports["default"] = module.exports;
+module.exports = toPropertyKey, module.exports.__esModule = true, module.exports["default"] = module.exports;
 
 /***/ }),
 

@@ -1,0 +1,30 @@
+@media only screen and (max-width: 1024px) {
+  table.tt_timetable th {
+    font-size: 16px;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  table.tt_timetable thead th,
+  table.tt_timetable .event .event_header {
+    font-size: 14px;
+  }
+  table.tt_timetable td,
+  table.tt_timetable .event .after_hour_text,
+  table.tt_timetable .event .before_hour_text {
+    font-size: 13px;
+  }
+  table.tt_timetable td {
+    padding: 0 4px;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .qode-ttevents-single .tt_event_hours li {
+    width: 100%;
+    margin-right: 0;
+    margin-bottom: 30px;
+  }
+}
+
+/*# sourceMappingURL=../css/timetable-schedule-responsive.css.map */

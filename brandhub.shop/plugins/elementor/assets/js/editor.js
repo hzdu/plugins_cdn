@@ -1,4 +1,4 @@
-/*! elementor - v3.20.0 - 11-03-2024 */
+/*! elementor - v3.20.0 - 20-03-2024 */
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
@@ -13828,7 +13828,7 @@ ControlMediaItemView = ControlBaseDataView.extend({
     var checks = {
       height: 1080,
       width: 1920,
-      filesizeInBytes: 200000
+      filesizeInBytes: 100000
     };
     return Object.keys(checks).some(function (key) {
       var value = attachment[key] || false;
@@ -14790,7 +14790,7 @@ ControlMediaItemView = ControlMultipleBaseItemView.extend({
     var checks = {
       height: 1080,
       width: 1920,
-      filesizeInBytes: 200000
+      filesizeInBytes: 100000
     };
     return Object.keys(checks).some(function (key) {
       var value = attachment[key] || false;
@@ -56909,6 +56909,20 @@ module.exports = _arrayWithoutHoles, module.exports.__esModule = true, module.ex
 
 /***/ }),
 
+/***/ "../node_modules/@babel/runtime/helpers/assertClassBrand.js":
+/*!******************************************************************!*\
+  !*** ../node_modules/@babel/runtime/helpers/assertClassBrand.js ***!
+  \******************************************************************/
+/***/ ((module) => {
+
+function _assertClassBrand(e, t, n) {
+  if ("function" == typeof e ? e === t : e.has(t)) return arguments.length < 3 ? t : n;
+  throw new TypeError("Private element is not present on this object");
+}
+module.exports = _assertClassBrand, module.exports.__esModule = true, module.exports["default"] = module.exports;
+
+/***/ }),
+
 /***/ "../node_modules/@babel/runtime/helpers/assertThisInitialized.js":
 /*!***********************************************************************!*\
   !*** ../node_modules/@babel/runtime/helpers/assertThisInitialized.js ***!
@@ -57016,22 +57030,6 @@ module.exports = _classCallCheck, module.exports.__esModule = true, module.expor
 
 /***/ }),
 
-/***/ "../node_modules/@babel/runtime/helpers/classExtractFieldDescriptor.js":
-/*!*****************************************************************************!*\
-  !*** ../node_modules/@babel/runtime/helpers/classExtractFieldDescriptor.js ***!
-  \*****************************************************************************/
-/***/ ((module) => {
-
-function _classExtractFieldDescriptor(receiver, privateMap, action) {
-  if (!privateMap.has(receiver)) {
-    throw new TypeError("attempted to " + action + " private field on non-instance");
-  }
-  return privateMap.get(receiver);
-}
-module.exports = _classExtractFieldDescriptor, module.exports.__esModule = true, module.exports["default"] = module.exports;
-
-/***/ }),
-
 /***/ "../node_modules/@babel/runtime/helpers/classPrivateFieldGet.js":
 /*!**********************************************************************!*\
   !*** ../node_modules/@babel/runtime/helpers/classPrivateFieldGet.js ***!
@@ -57039,12 +57037,26 @@ module.exports = _classExtractFieldDescriptor, module.exports.__esModule = true,
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 var classApplyDescriptorGet = __webpack_require__(/*! ./classApplyDescriptorGet.js */ "../node_modules/@babel/runtime/helpers/classApplyDescriptorGet.js");
-var classExtractFieldDescriptor = __webpack_require__(/*! ./classExtractFieldDescriptor.js */ "../node_modules/@babel/runtime/helpers/classExtractFieldDescriptor.js");
+var classPrivateFieldGet2 = __webpack_require__(/*! ./classPrivateFieldGet2.js */ "../node_modules/@babel/runtime/helpers/classPrivateFieldGet2.js");
 function _classPrivateFieldGet(receiver, privateMap) {
-  var descriptor = classExtractFieldDescriptor(receiver, privateMap, "get");
+  var descriptor = classPrivateFieldGet2(privateMap, receiver);
   return classApplyDescriptorGet(receiver, descriptor);
 }
 module.exports = _classPrivateFieldGet, module.exports.__esModule = true, module.exports["default"] = module.exports;
+
+/***/ }),
+
+/***/ "../node_modules/@babel/runtime/helpers/classPrivateFieldGet2.js":
+/*!***********************************************************************!*\
+  !*** ../node_modules/@babel/runtime/helpers/classPrivateFieldGet2.js ***!
+  \***********************************************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+var assertClassBrand = __webpack_require__(/*! ./assertClassBrand.js */ "../node_modules/@babel/runtime/helpers/assertClassBrand.js");
+function _classPrivateFieldGet2(s, a) {
+  return s.get(assertClassBrand(s, a));
+}
+module.exports = _classPrivateFieldGet2, module.exports.__esModule = true, module.exports["default"] = module.exports;
 
 /***/ }),
 
@@ -57055,9 +57067,9 @@ module.exports = _classPrivateFieldGet, module.exports.__esModule = true, module
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 var classApplyDescriptorSet = __webpack_require__(/*! ./classApplyDescriptorSet.js */ "../node_modules/@babel/runtime/helpers/classApplyDescriptorSet.js");
-var classExtractFieldDescriptor = __webpack_require__(/*! ./classExtractFieldDescriptor.js */ "../node_modules/@babel/runtime/helpers/classExtractFieldDescriptor.js");
+var classPrivateFieldGet2 = __webpack_require__(/*! ./classPrivateFieldGet2.js */ "../node_modules/@babel/runtime/helpers/classPrivateFieldGet2.js");
 function _classPrivateFieldSet(receiver, privateMap, value) {
-  var descriptor = classExtractFieldDescriptor(receiver, privateMap, "set");
+  var descriptor = classPrivateFieldGet2(privateMap, receiver);
   classApplyDescriptorSet(receiver, descriptor, value);
   return value;
 }
@@ -57073,20 +57085,12 @@ module.exports = _classPrivateFieldSet, module.exports.__esModule = true, module
 
 var setPrototypeOf = __webpack_require__(/*! ./setPrototypeOf.js */ "../node_modules/@babel/runtime/helpers/setPrototypeOf.js");
 var isNativeReflectConstruct = __webpack_require__(/*! ./isNativeReflectConstruct.js */ "../node_modules/@babel/runtime/helpers/isNativeReflectConstruct.js");
-function _construct(Parent, args, Class) {
-  if (isNativeReflectConstruct()) {
-    module.exports = _construct = Reflect.construct.bind(), module.exports.__esModule = true, module.exports["default"] = module.exports;
-  } else {
-    module.exports = _construct = function _construct(Parent, args, Class) {
-      var a = [null];
-      a.push.apply(a, args);
-      var Constructor = Function.bind.apply(Parent, a);
-      var instance = new Constructor();
-      if (Class) setPrototypeOf(instance, Class.prototype);
-      return instance;
-    }, module.exports.__esModule = true, module.exports["default"] = module.exports;
-  }
-  return _construct.apply(null, arguments);
+function _construct(t, e, r) {
+  if (isNativeReflectConstruct()) return Reflect.construct.apply(null, arguments);
+  var o = [null];
+  o.push.apply(o, e);
+  var p = new (t.bind.apply(t, o))();
+  return r && setPrototypeOf(p, r.prototype), p;
 }
 module.exports = _construct, module.exports.__esModule = true, module.exports["default"] = module.exports;
 
@@ -57278,15 +57282,12 @@ module.exports = _isNativeFunction, module.exports.__esModule = true, module.exp
 /***/ ((module) => {
 
 function _isNativeReflectConstruct() {
-  if (typeof Reflect === "undefined" || !Reflect.construct) return false;
-  if (Reflect.construct.sham) return false;
-  if (typeof Proxy === "function") return true;
   try {
-    Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {}));
-    return true;
-  } catch (e) {
-    return false;
-  }
+    var t = !Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {}));
+  } catch (t) {}
+  return (module.exports = _isNativeReflectConstruct = function _isNativeReflectConstruct() {
+    return !!t;
+  }, module.exports.__esModule = true, module.exports["default"] = module.exports)();
 }
 module.exports = _isNativeReflectConstruct, module.exports.__esModule = true, module.exports["default"] = module.exports;
 
@@ -57777,17 +57778,17 @@ module.exports = _toConsumableArray, module.exports.__esModule = true, module.ex
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 var _typeof = (__webpack_require__(/*! ./typeof.js */ "../node_modules/@babel/runtime/helpers/typeof.js")["default"]);
-function _toPrimitive(input, hint) {
-  if (_typeof(input) !== "object" || input === null) return input;
-  var prim = input[Symbol.toPrimitive];
-  if (prim !== undefined) {
-    var res = prim.call(input, hint || "default");
-    if (_typeof(res) !== "object") return res;
+function toPrimitive(t, r) {
+  if ("object" != _typeof(t) || !t) return t;
+  var e = t[Symbol.toPrimitive];
+  if (void 0 !== e) {
+    var i = e.call(t, r || "default");
+    if ("object" != _typeof(i)) return i;
     throw new TypeError("@@toPrimitive must return a primitive value.");
   }
-  return (hint === "string" ? String : Number)(input);
+  return ("string" === r ? String : Number)(t);
 }
-module.exports = _toPrimitive, module.exports.__esModule = true, module.exports["default"] = module.exports;
+module.exports = toPrimitive, module.exports.__esModule = true, module.exports["default"] = module.exports;
 
 /***/ }),
 
@@ -57799,11 +57800,11 @@ module.exports = _toPrimitive, module.exports.__esModule = true, module.exports[
 
 var _typeof = (__webpack_require__(/*! ./typeof.js */ "../node_modules/@babel/runtime/helpers/typeof.js")["default"]);
 var toPrimitive = __webpack_require__(/*! ./toPrimitive.js */ "../node_modules/@babel/runtime/helpers/toPrimitive.js");
-function _toPropertyKey(arg) {
-  var key = toPrimitive(arg, "string");
-  return _typeof(key) === "symbol" ? key : String(key);
+function toPropertyKey(t) {
+  var i = toPrimitive(t, "string");
+  return "symbol" == _typeof(i) ? i : String(i);
 }
-module.exports = _toPropertyKey, module.exports.__esModule = true, module.exports["default"] = module.exports;
+module.exports = toPropertyKey, module.exports.__esModule = true, module.exports["default"] = module.exports;
 
 /***/ }),
 
@@ -57986,19 +57987,19 @@ function _objectSpread2(e) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ _toPrimitive)
+/* harmony export */   "default": () => (/* binding */ toPrimitive)
 /* harmony export */ });
 /* harmony import */ var _typeof_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./typeof.js */ "../node_modules/@babel/runtime/helpers/esm/typeof.js");
 
-function _toPrimitive(input, hint) {
-  if ((0,_typeof_js__WEBPACK_IMPORTED_MODULE_0__["default"])(input) !== "object" || input === null) return input;
-  var prim = input[Symbol.toPrimitive];
-  if (prim !== undefined) {
-    var res = prim.call(input, hint || "default");
-    if ((0,_typeof_js__WEBPACK_IMPORTED_MODULE_0__["default"])(res) !== "object") return res;
+function toPrimitive(t, r) {
+  if ("object" != (0,_typeof_js__WEBPACK_IMPORTED_MODULE_0__["default"])(t) || !t) return t;
+  var e = t[Symbol.toPrimitive];
+  if (void 0 !== e) {
+    var i = e.call(t, r || "default");
+    if ("object" != (0,_typeof_js__WEBPACK_IMPORTED_MODULE_0__["default"])(i)) return i;
     throw new TypeError("@@toPrimitive must return a primitive value.");
   }
-  return (hint === "string" ? String : Number)(input);
+  return ("string" === r ? String : Number)(t);
 }
 
 /***/ }),
@@ -58012,15 +58013,15 @@ function _toPrimitive(input, hint) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ _toPropertyKey)
+/* harmony export */   "default": () => (/* binding */ toPropertyKey)
 /* harmony export */ });
 /* harmony import */ var _typeof_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./typeof.js */ "../node_modules/@babel/runtime/helpers/esm/typeof.js");
 /* harmony import */ var _toPrimitive_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./toPrimitive.js */ "../node_modules/@babel/runtime/helpers/esm/toPrimitive.js");
 
 
-function _toPropertyKey(arg) {
-  var key = (0,_toPrimitive_js__WEBPACK_IMPORTED_MODULE_1__["default"])(arg, "string");
-  return (0,_typeof_js__WEBPACK_IMPORTED_MODULE_0__["default"])(key) === "symbol" ? key : String(key);
+function toPropertyKey(t) {
+  var i = (0,_toPrimitive_js__WEBPACK_IMPORTED_MODULE_1__["default"])(t, "string");
+  return "symbol" == (0,_typeof_js__WEBPACK_IMPORTED_MODULE_0__["default"])(i) ? i : String(i);
 }
 
 /***/ }),
