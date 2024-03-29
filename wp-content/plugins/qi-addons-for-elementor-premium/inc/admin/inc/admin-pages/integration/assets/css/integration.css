@@ -1,0 +1,85 @@
+/* ==========================================================================
+   Color variables - start
+   ========================================================================== */
+/* Input fields */
+/* ==========================================================================
+   Color variables - end
+   ========================================================================== */
+/* ==========================================================================
+   Font mixins - start
+   ========================================================================== */
+/* This can be changed */
+/* This can be changed */
+/* This can be changed */
+/* ==========================================================================
+   Font mixins - end
+   ========================================================================== */
+/* ==========================================================================
+   Button mixins - start
+   ========================================================================== */
+/* ==========================================================================
+   Button mixins - end
+   ========================================================================== */
+#qodef-page.qodef-dashboard-admin .qodef-admin-integration-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 55px;
+  position: relative;
+  z-index: 10;
+}
+
+#qodef-page.qodef-dashboard-admin .qodef-admin-integration-header .qodef-integrations-header-right {
+  flex-shrink: 0;
+  text-align: right;
+}
+
+#qodef-page.qodef-dashboard-admin .qodef-admin-integration-header .qodef-save-integrations-holder {
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+#qodef-page.qodef-dashboard-admin .qodef-admin-integration-header .qodef-save-integrations-holder .qodef-btn {
+  margin-left: 10px;
+}
+
+#qodef-page.qodef-dashboard-admin .qodef-integration-form {
+  margin-bottom: 100px;
+}
+
+#qodef-page.qodef-dashboard-admin .qodef-section-box-integration {
+  padding-right: 27%;
+  margin-bottom: 52px;
+}
+
+@media only screen and (max-width: 600px) {
+  #qodef-page.qodef-dashboard-admin .qodef-section-box-integration {
+    padding-right: 0;
+  }
+}
+
+#qodef-page.qodef-dashboard-admin .qodef-section-box-integration p {
+  margin-bottom: 22px;
+}
+
+.qi-addons-for-elementor_page_qi_addons_for_elementor_premium_integration .qodef-admin-footer {
+  display: none;
+}
+
+@media only screen and (max-width: 1024px) {
+  .qi-addons-for-elementor_page_qi_addons_for_elementor_premium_integration .qodef-admin-footer {
+    display: block;
+  }
+}
+
+.qi-addons-for-elementor_page_qi_addons_for_elementor_premium_integration .qodef-admin-content .qodef-admin-footer {
+  display: block;
+}
+
+@media only screen and (max-width: 1024px) {
+  .qi-addons-for-elementor_page_qi_addons_for_elementor_premium_integration .qodef-admin-content .qodef-admin-footer {
+    display: none;
+  }
+}
