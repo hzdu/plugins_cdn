@@ -1,0 +1,77 @@
+/* ==========================================================================
+   portfolio carousel - responsive styles
+   ========================================================================== */
+
+.qode-vertical-portfolio-slider {
+	.qode-vps-image {
+		@include laptop-landscape-mac {
+			max-width: 70%;
+		}
+	}
+
+	.qode-vps-bottom {
+		@include laptop-landscape-large-plus-pixel {
+			left: 18.5%;
+		}
+
+		@include laptop-landscape-mac {
+			left: 18.5%;
+		}
+
+		@include ipad-portrait {
+			bottom: 50px;
+			left: 50%;
+			transform: translateX(-50%);
+		}
+	}
+
+	&.swiper-container-vertical {
+		& > .swiper-pagination-bullets {
+			@include ipad-portrait {
+				right: 50px;
+			}
+
+			@include phone-portrait {
+				right: 30px;
+			}
+		}
+	}
+
+	.qode-vps-title-one,
+	.qode-vps-title-two {
+		@include ipad-portrait {
+			display: none;
+		}
+	}
+
+	@include ipad-landscape {
+		.qode-vps-title-one,
+		.qode-vps-title-two {
+			font-size: 100px;
+		}
+
+		.qode-vps-title-one {
+			&:before{
+				left: -52px;
+				top: 72px;
+			}
+
+			.qode-vps-to-first{
+				clip-path: polygon(0 0,100% 0,100% 100%,119% 100%,0 32%);
+			}
+		}
+
+		.qode-vps-title-two{
+			&:before{
+				left: 31px;
+				top: 60px;
+				width: 370px;
+			}
+
+			&:after{
+				right: -33px;
+				top: 85px;
+			}
+		}
+	}
+}

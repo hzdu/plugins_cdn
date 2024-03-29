@@ -1,0 +1,276 @@
+/* ==========================================================================
+   Portfolio list stacked shortcode style - begin
+   ========================================================================== */
+
+#qode-portfolio-list-stacked {
+	position: fixed;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 100vw;
+
+	.qode-pls-item {
+		position: absolute;
+		transition: transform 1s cubic-bezier(.2, .84, .5, 1);
+		will-change: transform;
+		backface-visibility: hidden;
+		pointer-events: none;
+
+		//edge fix
+		@supports (-ms-ime-align: auto) {
+			transition: none;
+		}
+
+		//IE fallback
+		@media all and (-ms-high-contrast: none) {
+			transition: none;
+		}
+
+		&.qode-active {
+			z-index: 100;
+		}
+
+		&.qode-active,
+		&.qode-active+.qode-pls-item {
+			pointer-events: auto;
+		}
+	}
+
+	img {
+		display: block;
+		will-change: transform;
+	}
+
+	.qode-pls-item-inner {
+		@include qodeAbsoluteHolderLayout;
+
+		>div {
+			opacity: 0;
+			transform: translate3d(0, -10%, 0);
+			transition: transform 1s cubic-bezier(.2, .84, .5, 1), opacity .4s;
+		}
+	}
+
+	&.qode-loaded {
+		@for $i from 1 to 10 {
+			.qode-pls-item:nth-of-type(#{$i}) .qode-pls-item-inner>div {
+				transition-delay: $i * 0.25s;
+			}
+		}
+
+		.qode-pls-item-inner>div {
+			opacity: 1;
+			transform: translate3d(0, 0, 0);
+		}
+	}
+
+	#qode-pls-text-items {
+		position: absolute;
+		bottom: 20px;
+		left: 0;
+		width: 100%;
+		z-index: 300;
+		text-align: center;
+		display: none;
+		
+		>div:not(.qode-active) {
+			display: none;
+		}
+	}
+
+	@at-root &.qode-overflow {
+		overflow: hidden !important;
+	}
+
+	.qode-pls-end-of-scroll {
+		display: flex;
+		height: 100vh;
+		align-items: center;
+		justify-content: center;
+		flex-direction: column;
+		max-width: 60%;
+		margin: auto;
+		text-align: center;
+		pointer-events: none;
+		opacity: 0;
+		transition: opacity .4s;
+		
+		.qode-eos-title {
+			
+			* {
+				color: $first-main-color;
+				-webkit-text-fill-color: transparent;
+				-webkit-text-stroke-width: 2px;
+				-webkit-text-stroke-color: $first-main-color;
+				font-size: 100px;
+				line-height: 1em;
+				font-weight: 400;
+				letter-spacing: 0.2em;
+				font-style: italic;
+			}
+			
+			a {
+				position: relative;
+				
+				&:after {
+					content: '';
+					position: absolute;
+					top: 50%;
+					right: 0;
+					transform: translateY(-50%);
+					width: 100%;
+					height: 10px;
+					background-color: currentColor;
+					//@supports not (-ms-high-contrast: none) {
+					//	transition: width .3s ease-in;
+					//}
+				}
+				
+				//&:hover {
+				//	&:after {
+				//		@supports not (-ms-high-contrast: none) {
+				//			width: 0;
+				//			transition: width .3s ease-in;
+				//		}
+				//	}
+				//}
+			}
+		}
+
+		@media all and (-ms-high-contrast: none) {
+			//IE fallback
+			display: table;
+			table-layout: fixed;
+
+			>div {
+				display: table-cell;
+				vertical-align: middle;
+			}
+		}
+		
+		&.qode-visible {
+			pointer-events: auto;
+			opacity: 1;
+			transition: opacity 1s;
+		}
+	}
+
+	.qode-pls-scroll-note {
+		position: absolute;
+		top: 0;
+		left: 0;
+		height: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		pointer-events: none;
+
+		@media all and (-ms-high-contrast: none) {
+			//IE fallback
+			left: -50px;
+		}
+
+		@include keyframes(qodeArrowDown) {
+			0% {
+				transform-origin: center;
+				transform: rotate(-180deg);
+			}
+
+			100% {
+				transform-origin: center;
+				transform: rotate(0deg);
+			}
+		}
+
+		@include keyframes(qodeArrowUp) {
+			0% {
+				transform-origin: center;
+				transform: rotate(0deg);
+			}
+
+			100% {
+				transform-origin: center;
+				transform: rotate(-180deg);
+			}
+		}
+		
+		.qode-pls-down {
+			position: absolute;
+			bottom: 60px;
+			left: 60px;
+			opacity: 1;
+			transition: opacity .4s ease-in .2s;
+			transform: rotate(-180deg);
+			animation: qodeArrowDown 1s forwards;
+			will-change: transform;
+			
+			svg {
+				path {
+					fill: $first-main-color;
+				}
+			}
+		}
+	}
+
+	.qode-pls-widget-area {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		margin: 55px 0 0;
+
+		>div {
+			white-space: nowrap;
+		}
+	}
+
+	&.qode-eos {
+		.qode-pls-scroll-note {
+			.qode-pls-down {
+				animation: qodeArrowUp 1s forwards;
+				will-change: transform;
+			}
+		}
+
+		~#qode-pls-info,
+		#qode-pls-text-items {
+			display: none !important;
+		}
+	}
+}
+
+#qode-pls-info {
+	position: fixed;
+	top: -4px;
+	left: 0;
+	z-index: 5000;
+	pointer-events: none;
+	opacity: 0;
+	transition: opacity .1s .15s;
+
+	.qode-pls-title-holder {
+		display: inline-block;
+		padding: 0 18px;
+		white-space: nowrap;
+
+		.qode-pls-title {
+			margin-bottom: 5px;
+			margin-top: 25px;
+			
+			a {
+				font-size: 60px;
+				font-style: italic;
+				font-weight: 400;
+				color: $first-main-color;
+			}
+		}
+	}
+	
+	&.qode-show {
+		opacity: 1;
+		transition: none;
+	}
+}
+
+/* ==========================================================================
+   Portfolio list stacked shortcode style - end
+   ========================================================================== */

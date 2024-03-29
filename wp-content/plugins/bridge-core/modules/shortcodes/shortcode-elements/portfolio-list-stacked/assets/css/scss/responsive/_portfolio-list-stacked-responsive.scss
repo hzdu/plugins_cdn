@@ -1,0 +1,38 @@
+/* ==========================================================================
+   Portfolio list stacked shortcode style - begin
+   ========================================================================== */
+
+#qode-portfolio-list-stacked {
+    @include ipad-landscape {
+        .qode-pls-scroll-note {
+            left: 30px;
+        }
+
+        .qode-pls-widget-area {
+            right: 30px;
+        }
+
+        .qode-pls-end-of-scroll {
+            max-width: 75vw;
+        }
+
+        .qode-eos-title {
+            font-size: 8vw;
+        }
+
+        #qode-pls-text-items {
+            display: block;
+        }
+    }
+
+    @include phone-landscape {
+        .qode-pls-widget-area,
+        .qode-pls-scroll-note {
+            display: none;
+        }
+    }
+}
+
+/* ==========================================================================
+   Portfolio list stacked shortcode style - end
+   ========================================================================== */

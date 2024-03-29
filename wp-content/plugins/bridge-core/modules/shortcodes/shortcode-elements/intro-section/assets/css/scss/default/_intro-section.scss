@@ -1,0 +1,168 @@
+/* ==========================================================================
+   Intro Section shortcode style - begin
+   ========================================================================== */
+
+@mixin qodeCustomAppearHidden($transition-delay: false, $initial-opacity: 0){
+    opacity: $initial-opacity;
+    transform: translateY(30px) translateZ(0) skewY(3deg) scaleY(1.2);
+    transform-origin: top left;
+
+    @if $transition-delay {
+        transition: transform 1s cubic-bezier(.16,.09,0,1.02) #{$transition-delay},opacity .3s #{$transition-delay};
+    } else {
+    transition: transform 1s cubic-bezier(.16,.09,0,1.02),opacity .3s;
+}
+}
+
+@mixin qodeCustomAppear(){
+    opacity: 1;
+    transform: translateY(0px) skewY(0deg) scaleZ(1);
+}
+
+#qode-intro-section {
+    display: flex;
+    min-height: 100vh;
+    overflow: hidden;
+    
+    .qode-is-title,
+    .qode-is-subtitle,
+    .qode-is-content-btm {
+        color: #fff;
+    }
+    
+
+    .qode-ms-explorer &{
+        height: 100vh;
+    }
+    .qode-browser--ms-explorer & {
+        height: 100vh;
+    }
+
+    .qode-is-content-wrapper {
+        position: relative;
+        z-index: 10;
+        width: 61%;
+        max-width: 1160px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        @media only screen and (max-width: 1440px){
+            width: 70%;
+        }
+    }
+
+    &.qode-alignment--center {
+
+       .qode-is-content-wrapper {
+           .qode-is-content {
+               text-align: center;
+           }
+       }
+    }
+    &.qode-alignment--left {
+
+        .qode-is-content-wrapper {
+            .qode-is-content {
+                text-align: left;
+            }
+        }
+    }
+    &.qode-alignment--right {
+
+        .qode-is-content-wrapper {
+            .qode-is-content {
+                text-align: right;
+            }
+        }
+    }
+
+
+    &.qode-is-align-bottom {
+        align-items: flex-end;
+        box-sizing: border-box;
+        padding-bottom: 12.4vh;
+    }
+    .qode-is-title {
+        display: block;
+        line-height: 1.1em;
+        font-size: 80px;
+        margin: 0;
+        z-index: 9;
+        background-size: 300% 50%;
+        background-position: 200% 50%;
+        opacity: 0;
+		transform: translateY(30px) skewY(3deg) scaleY(1.2);
+    	transform-origin: left;
+		transition: transform 1.2s cubic-bezier(0.16, 0.09, 0, 1.02), opacity .3s;
+
+        .qode-browser--ms-explorer & {
+            background: none !important;
+        }
+        @include phone-portrait {
+            font-size: 40px;
+        }
+    }
+    
+
+    .qode-is-content-btm {
+        opacity: 0;
+		transform: translateY(30px) skewY(3deg) scaleY(1.2);
+    	transform-origin: top left;
+        transition: transform 1.2s cubic-bezier(0.16, 0.09, 0, 1.02), opacity .3s;
+        transition-delay: .1s;
+    }
+
+    .qode-is-content {
+
+        &.qode--appear {
+
+            .qode-is-title,
+            .qode-is-content-btm,
+            .qode-is-subtitle {
+                opacity: 1;
+                transform: translateY(0) skewY(0) scaleY(1);
+            }            
+        }
+    }
+
+    .qode-is-subtitle {
+        margin: 0;
+        @include qodeCustomAppearHidden(.05s);
+    }
+
+    .qode-is-text {
+        margin: 18px 0 0;
+        line-height: 1.2em;
+        color: inherit;
+    }
+
+    .qode-is-bg-wrapper {
+        position: fixed;
+        /*position: absolute;*/
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        transition: opacity .5s cubic-bezier(0.39, 0.575, 0.565, 1);
+        will-change: opacity;
+    }
+
+    .qode-is-bg-image {
+        @include qodeAbsoluteHolderLayout();
+        background-position: center;
+        background-size: cover;
+    }
+
+    &.qode-fade-bg {
+        .qode-is-bg-wrapper {
+            opacity: 0;
+            pointer-events: none;
+        }
+    }
+}
+
+/* ==========================================================================
+   Intro Section shortcode style - end
+   ========================================================================== */

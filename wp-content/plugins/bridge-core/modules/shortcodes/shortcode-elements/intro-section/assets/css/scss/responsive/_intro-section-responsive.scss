@@ -1,0 +1,56 @@
+/* ==========================================================================
+   Intro Section shortcode responsive style - begin
+   ========================================================================== */
+
+#qodef-intro-section {
+    @include ipad-landscape {
+        .qodef-is-content-wrapper {
+            width: 71% !important;
+        }
+
+        .qodef-is-content-btm {
+            width: 100%;
+        }
+    }
+
+    @include ipad-portrait{
+        .qodef-is-content-wrapper {
+            width: 75% !important;
+        }
+    }
+
+    @media only screen and (max-width: 736px) {
+
+        .qodef-btn {
+            margin-top: 75px;
+        }
+    }
+
+    @include phone-portrait{
+
+        padding-top: 90px;
+        box-sizing: border-box;
+
+        &.qodef-is-align-bottom{
+            padding-top: 36vh;
+        }
+
+        .qodef-is-content-wrapper {
+            width: 80% !important;
+        }
+
+        &.qodef-is-align-center{
+            .qodef-is-content-btm {
+                padding-left: 0;
+            }
+        }
+    }
+
+    @media only screen and (max-width: 360px){
+
+    }
+}
+
+/* ==========================================================================
+   Intro Section shortcode responsive style - end
+   ========================================================================== */

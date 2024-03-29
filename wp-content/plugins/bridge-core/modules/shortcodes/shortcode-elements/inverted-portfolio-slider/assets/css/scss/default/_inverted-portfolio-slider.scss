@@ -1,0 +1,124 @@
+.qode-inverted-portfolio-slider{
+
+    .qode-ips-item-inner {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .qode-ips-content-holder {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+
+        .qode-ips-image-holder{
+            position: relative;
+            z-index: 9999;
+            overflow: hidden;
+
+            @include laptop-landscape-mac{
+                max-width: 85%;
+            }
+
+            @include ipad-landscape{
+                max-width: 70%;
+            }
+        }
+    }
+
+    .qode-ips-info-holder {
+        position: absolute;
+        left: 60px;
+        bottom: 53px;
+
+        .portfolio_custom_field{
+            display: flex;
+            align-items: baseline;
+            justify-content: flex-start;
+
+            h6{
+                font-weight: 500;
+                color: #000;
+            }
+
+            p{
+                font-weight: 400;
+                color: #000;
+                margin-left: 5px;
+            }
+        }
+    }
+
+    .qode-pps-title-link{
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate3d(-50%, -50%, 0);
+        white-space: nowrap;
+        font-size: 352px;
+        color: #000;
+
+        @include laptop-landscape-large-plus-pixel{
+            font-size: 290px;
+        }
+
+        @include laptop-landscape-mac{
+            font-size: 230px;
+        }
+
+        @include laptop-landscape-medium{
+            font-size: 240px;
+        }
+        
+        @include ipad-landscape{
+            font-size: 18vw;
+        }
+
+        &.qode-pps-title-link-aux{
+            color: #fff;
+        }
+    }
+
+    .qode-ips-navigation-holder {
+        position: absolute;
+        z-index: 9999;
+        right: 49px;
+        bottom: 53px;
+        width: auto;
+        display: flex;
+
+        @include phone-portrait{
+            bottom: 20px;
+            left: 50%;
+            right: auto;
+            transform: translateX(-50%);
+            white-space: nowrap;
+        }
+        
+        .qode-ips-button-prev,
+        .qode-ips-button-next {
+            color: #000;
+            cursor: pointer;
+        }
+
+        .qode-ips-nav-label{
+            vertical-align: middle;
+            font-size: 17px;
+
+            &.qode-ips-nav-label-prev{
+                padding: 0 24px 0 1px;
+            }
+
+            &.qode-ips-nav-label-next{
+                padding: 0 10px 0 24px;
+            }
+        }
+
+        .qode-ips-nav-arrow{
+            vertical-align: middle;
+            font-size: 24px;
+        }
+    }
+}

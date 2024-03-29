@@ -1,0 +1,340 @@
+/* ==========================================================================
+   Numbered Carousel shortcode style - begin
+   ========================================================================== */
+
+.qode-numbered-carousel {
+    position: relative;
+    height: 100vh;
+
+    //layout
+    .qode-nc-grid {
+        @include qodeAbsoluteHolderLayout;
+
+        .qode-nc-grid-line {
+            position: absolute;
+            top: 0;
+            height: 100%;
+            width: 20%;
+
+            &:before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                height: 100%;
+                width: 1px;
+                background-color: (rgba(173, 164, 146, .4));
+                z-index: 10;
+            }
+
+            &:after {
+                content: '';
+                @include qodeAbsoluteHolderLayout;
+                background: rgb(5, 10, 31);
+            }
+        }
+
+        @for $i from 1 through 5 {
+            .qode-nc-grid-line:nth-child(#{$i}) {
+                left: 20% * ($i - 1);
+
+                &:after {
+                    transition-delay: .07s * $i;
+                }
+            }
+        }
+    }
+
+    .qode-nc-bg-items {
+        @include qodeAbsoluteHolderLayout;
+
+        &:after {
+            content: '';
+            @include qodeAbsoluteHolderLayout;
+            background: rgba(13, 19, 35, .25);
+        }
+
+        .qode-nc-bg-item {
+            @include qodeAbsoluteHolderLayout;
+            visibility: hidden;
+
+            &.qode-active {
+                visibility: visible;
+            }
+        }
+
+        .qode-nc-image {
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
+        video {
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+        }
+    }
+
+    .qode-nc-item-subtitle {
+        margin: 0 0 10px;
+    }
+
+    .qode-nc-item-title {
+        color: #fff;
+        font-size: 69px;
+        margin-top: 0;
+    }
+
+    .qode-nc-item-text-wrapper {
+        max-width: 90%;
+        margin: 11px 0 0;
+    }
+
+    .qode-nc-item-text {
+        color: #d5d5d5;
+        margin-bottom: 40px;
+        font-size: 17px;
+        font-weight: 300;
+    }
+
+    .qode-nc-item-number {
+        font-size: 20.85vw;
+        font-weight: 900;
+        color: #fff;
+        -webkit-text-stroke: 1px #fff;
+        transition: all 0.4s ease;
+    }
+
+    .qode-nc-content {
+        position: relative;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        z-index: 100;
+    }
+
+    .swiper-container {
+        height: 100%;
+        opacity: 0;
+        @include qodeTransform(translate3d(2%, 0, 0));
+
+        &.qode-show {
+            opacity: 1;
+            @include qodeTransform(translate3d(0%, 0, 0));
+            @include qodeTransition(1s cubic-bezier(0.47, 0.07, 0.23, 0.99) .5s);
+        }
+    }
+
+    .qode-nc-item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 60vw;
+        box-sizing: border-box;
+        margin: 0 5vw;
+
+        .qode-nc-item-inner {
+            max-width: 60%;
+            padding-left: 11px;
+            box-sizing: border-box;
+        }
+
+        .qode-nc-item-number-wrapper {
+            display: flex;
+            align-items: center;
+            opacity: 1;
+            transform: translateZ(0);
+        }
+
+        .qode-nc-item-btn{
+            border: 2px solid #fff;
+            color: #fff;
+
+            &:hover{
+                border-color: #fff;
+                background-color: #fff;
+                color: #000;
+            }
+        }
+    }
+
+    //states
+    .qode-nc-item-inner {
+        opacity: 0;
+    }
+
+    .swiper-slide-prev {
+        cursor: pointer;
+
+        .qode-nc-item-inner {
+            opacity: 0;
+            @include qodeTransform(translate3d(-5vw, 0, 0));
+        }
+
+        .qode-nc-item-number {
+            color: transparent;
+            -webkit-text-stroke: 1px #fff;
+        }
+
+        &:hover {
+            .qode-nc-item-number {
+                color: #fff;
+                -webkit-text-stroke: 1px #fff;
+            }
+        }
+    }
+
+    .swiper-slide-active {
+        .qode-nc-item-number-wrapper {
+            pointer-events: none;
+            @include qodeTransform(translate3d(0, 0, 0));
+        }
+
+        .qode-nc-item-inner {
+            opacity: 1;
+            @include qodeTransform(translate3d(0, 0, 0));
+        }
+    }
+
+    .swiper-slide-next,
+    .swiper-slide-next~div:not(.swiper-slide-active) {
+        cursor: pointer;
+
+        .qode-nc-item-inner {
+            opacity: 0;
+            @include qodeTransform(translate3d(5vw, 0, 0));
+        }
+
+        .qode-nc-item-number-wrapper {
+            @include qodeTransform(translate3d(-45vw, 0, 0));
+        }
+
+        .qode-nc-item-number {
+            color: transparent;
+            -webkit-text-stroke: 1px #fff;
+        }
+
+        &:hover {
+            .qode-nc-item-number {
+                color: #fff;
+                -webkit-text-stroke: 1px #fff;
+            }
+        }
+    }
+
+    //transitions
+    &.qode-initialized {
+        .qode-nc-grid-line:after {
+            @include qodeTransform(scaleX(0));
+            @include qodeTransformOrigin(100% 0);
+            @include qodeTransitionTransform(.5s cubic-bezier(0.86, 0, 0.07, 1));
+        }
+    }
+
+    .qode-nc-item-number-wrapper {
+        @include qodeTransitionTransform(.6s);
+    }
+
+    .qode-nc-item-number {
+        @include qodeTransition(all .4s);
+    }
+
+    &.qode-next {
+        .swiper-slide-active {
+            .qode-nc-item-inner {
+                @include qodeTransition(transform 1s cubic-bezier(0.075, 0.82, 0.165, 1) .4s, opacity 1s cubic-bezier(0.075, 0.82, 0.165, 1) .4s);
+            }
+        }
+
+        .swiper-slide-prev {
+            .qode-nc-item-inner {
+                @include qodeTransition(.5s);
+            }
+        }
+
+        .qode-nc-grid-line:after {
+            @include qodeTransform(scaleX(0));
+            @include qodeTransformOrigin(100% 0);
+        }
+
+        &.qode-mask {
+            .qode-nc-grid-line:after {
+                @include qodeTransform(scaleX(1));
+                @include qodeTransformOrigin(0 0);
+            }
+        }
+    }
+
+    &.qode-prev {
+        .swiper-slide-active {
+            .qode-nc-item-inner {
+                @include qodeTransition(transform 1s cubic-bezier(0.075, 0.82, 0.165, 1) .4s, opacity 1s cubic-bezier(0.075, 0.82, 0.165, 1) .4s);
+            }
+        }
+
+        &.qode-fade-prev-content {
+            .qode-nc-item-inner {
+                opacity: 0;
+                -webkit-transition: all .4s cubic-bezier(0.165, 0.84, 0.44, 1) .5s, -webkit-transform .0s .9s;
+                transition: all .4s cubic-bezier(0.165, 0.84, 0.44, 1) .5s, transform .0s .9s;
+            }
+        }
+
+        .qode-nc-grid-line:after {
+            @include qodeTransform(scaleX(0));
+            @include qodeTransformOrigin(0% 0);
+        }
+
+        &.qode-mask {
+            .qode-nc-grid-line:after {
+                @include qodeTransform(scaleX(1));
+                @include qodeTransformOrigin(100% 0);
+            }
+        }
+    }
+
+    //bullets
+    .qode-nc-indicators {
+        position: absolute;
+        left: 0;
+        bottom: 50px;
+        width: 100%;
+        text-align: center;
+        z-index: 200;
+
+        >span {
+            display: inline-block;
+            position: relative;
+            height: 36px;
+            width: 17px;
+            vertical-align: bottom;
+            margin: 0 5px;
+
+            &:after {
+                content: '';
+                position: absolute;
+                bottom: 0;
+                left: 13px;
+                width: 1px;
+                height: 100%;
+                background-color: #fff;
+                @include qodeTransformOrigin(0 100%);
+                @include qodeTransform(scaleY(.55));
+                @include qodeTransitionTransform(.4s cubic-bezier(0.075, 0.82, 0.165, 1));
+            }
+
+            &.qode-active {
+                pointer-events: none;
+
+                &:after {
+                    @include qodeTransform(scaleY(1));
+                }
+            }
+        }
+    }
+}
+
+/* ==========================================================================
+   Numbered Carousel shortcode style - end
+   ========================================================================== */

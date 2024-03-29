@@ -1,0 +1,28 @@
+.qode-interactive-links {
+    &.qode-il-links-aside {
+
+        @include ipad-portrait{
+            .qode-il-inner {
+                .qode-il-titles-holder{
+                    display: none;
+                }
+
+                .qode-il-images-holder .qode-il-image{
+                    position: relative;
+                    top: auto;
+                    left: auto;
+                    opacity: 1;
+                    visibility: visible;
+                }
+            }
+            .qode-il-responsive-title-holder {
+                display: block;
+                position: absolute;
+                left: 50px;
+                bottom: 50px;
+                z-index: 10;
+            }
+        }
+
+    }
+}

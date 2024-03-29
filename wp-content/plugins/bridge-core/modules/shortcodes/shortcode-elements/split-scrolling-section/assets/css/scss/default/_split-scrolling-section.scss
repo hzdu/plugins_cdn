@@ -1,0 +1,94 @@
+/* ==========================================================================
+   Split Scrolling Section shortcode style - begin
+   ========================================================================== */
+
+.qode-split-scrolling-section {
+	position: relative;
+	overflow: hidden;
+	height: 100%;
+	
+	.qode-sss-ms-left,
+	.qode-sss-ms-right {
+		width: 50%;
+		height: 100%;
+		box-sizing: border-box;
+	}
+
+	 .qode-sss-ms-section{
+		 height: 100%;
+		 overflow: hidden;
+	 }
+
+	.qode-sss-ms-left {
+		position: fixed;
+		div,ul,li{
+			height: 100%;
+		}
+		
+		.qode-sss-ms-section {
+			background-position: 100% center;
+			background-size: cover;
+		}
+	}
+
+	.qode-sss-ms-right {
+		float: right;
+		margin: 80px 0;
+		padding: 0 25px;
+		
+		.qode-sss-ms-section {
+			background-position: 0 center;
+			background-size: cover;
+		}
+	}
+	.qode-image-slider-item-inner{
+		&.image{
+			display: none;
+		}
+	}
+
+	.qode-image-slider-item-inner-wrapper{
+		position: relative;
+		.qode-image-slider-item-content{
+
+			height: auto;
+			position: absolute;
+			bottom: 50%;
+			width: 100%;
+			padding: 0 5%;
+			text-align: center;
+			box-sizing: border-box;
+            @include qodeTransform(translateY(50%));
+
+			.qode-image-slider-item-inner{
+
+				&.title{
+					font-size: 40px;
+					margin: 0;
+                    font-weight: 500;
+					letter-spacing: 0.6em;
+
+					span {
+						display: block;
+                        margin-bottom: 10px;
+					}
+				}
+			}
+		}
+	}
+
+	.qode-prod-cat.qode-cat-with-image{
+		&:nth-child(even) {
+			top: 38px;
+		}
+	}
+
+	.qode-owl-slider .owl-nav .owl-next,
+	.qode-owl-slider .owl-nav .owl-prev{
+		@include qodeTransform(none);
+		bottom: 50%;
+	}
+}
+/* ==========================================================================
+   Split Scrolling Section shortcode style - end
+   ========================================================================== */

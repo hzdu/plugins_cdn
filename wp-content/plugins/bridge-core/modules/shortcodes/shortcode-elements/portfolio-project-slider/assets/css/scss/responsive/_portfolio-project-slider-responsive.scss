@@ -1,0 +1,188 @@
+/* ==========================================================================
+   portfolio project slider - responsive styles
+   ========================================================================== */
+
+.qode-portfolio-project-slider {
+	
+	&.swiper-container {
+		
+		@include laptop-landscape-mac {
+			
+			.swiper-slide {
+				
+				.qode-pps-inner {
+					
+					.qode-pps-image {
+						width: 63%;
+					}
+				}
+			}
+		}
+		
+		@include ipad-landscape {
+			margin-left: 44px;
+			
+			.swiper-slide {
+				
+				.qode-pps-inner {
+					
+					.qode-pps-image {
+						width: 75%;
+						
+						.qodef-pps-title {
+							top: 3px;
+							right: -39%;
+							
+							a {
+								font-size: 55px;
+							}
+						}
+					}
+					
+					.qode-pps-bottom-content {
+						padding-left: 15px;
+						width: 66%;
+						right: -66%;
+						
+						.qode-qode-pps-info {
+							margin-bottom: 23px;
+						}
+					}
+				}
+			}
+			
+		}
+		
+		@media only screen and (max-width: 1000px) {
+			height: calc(100vh - 100px);
+		}
+		
+		@include ipad-portrait {
+			
+			.swiper-slide {
+				
+				.qode-pps-inner {
+					
+					.qode-pps-image {
+						flex-direction: column;
+						width: 79%;
+						
+						.qodef-pps-title {
+							right: initial;
+							left: 0;
+							top: -86px;
+							width: 60%;
+						}
+					}
+					
+					.qode-pps-bottom-content {
+						position: relative;
+						bottom: 0;
+						left: 0;
+						padding-left: 0;
+						width: 100%;
+						
+						.qode-qode-pps-info {
+							margin-bottom: 23px;
+							margin-top: 35px;
+						}
+					}
+				}
+			}
+		}
+		
+		@include phone-landscape {
+			margin-left: 0;
+			
+			.swiper-slide {
+				
+				.qode-pps-inner {
+					
+					.qode-pps-image {
+						width: 100%;
+						
+						.qodef-pps-title {
+							right: initial;
+							left: 0;
+							top: 80px;
+							width: 60%;
+							
+							a {
+								font-size: 45px;
+							}
+						}
+					}
+					
+					.qode-pps-bottom-content {
+						display: none;
+					}
+				}
+			}
+			
+			.qode-pps-widget-area {
+				left: 50%;
+				transform: translateX(-50%);
+			}
+			
+			.swiper-pagination {
+				text-align: center;
+			}
+			
+			.swiper-pagination-bullets {
+				display: none;
+				left: 0;
+				bottom: 1vh !important;
+				
+				.swiper-pagination-bullet {
+					&:after {
+						width: 50px;
+					}
+					
+					&.swiper-pagination-bullet-active {
+						margin-right: 65px;
+					}
+				}
+			}
+		}
+		
+		@include phone-portrait {
+			
+			.swiper-slide {
+				padding: 0 20px;
+				box-sizing: border-box;
+				
+				.qode-pps-inner {
+					
+					.qode-pps-image {
+						width: 100%;
+						
+						.qodef-pps-title {
+							right: initial;
+							left: 0;
+							top: -73px;
+							width: 100%;
+						}
+					}
+					
+					.qode-pps-bottom-content {
+						display: none;
+					}
+				}
+			}
+			
+			.qode-pps-widget-area {
+				bottom: 10vh;
+			}
+			
+			.swiper-pagination-bullets {
+				display: block;
+				left: 0;
+				bottom: 20vh !important;
+			}
+		}
+	}
+}
+
+.qode-with-portfolio-project-slider .content {
+	min-height: auto !important;
+}

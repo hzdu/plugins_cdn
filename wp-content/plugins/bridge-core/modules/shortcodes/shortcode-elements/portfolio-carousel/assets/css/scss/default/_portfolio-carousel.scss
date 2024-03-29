@@ -1,0 +1,54 @@
+/* ==========================================================================
+   portfolio carousel shortcode styles
+   ========================================================================== */
+
+.qode-portfolio-carousel {
+	padding-bottom: 53px;
+
+	&.qode-auto-width-carousel {
+
+		.swiper-slide {
+			width: auto;
+			position: relative;
+
+			&:not(:first-child) {
+				margin-left: -50px;
+			}
+
+			&:nth-child(even) {
+				transform: translateY(53px);
+			}
+
+		}
+	}
+
+	.swiper-slide,
+	.swiper-slide * {
+		cursor: none;
+	}
+
+	.qode-pc-custom-cursor {
+		position: fixed;
+		top: 50%;
+		left: 50%;
+		width: 127px;
+		height: 127px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		opacity: 0;
+		z-index: 9999;
+		pointer-events: none;
+		border: 1px solid $first-main-color;
+		border-radius: 50%;
+		font-size: 13px;
+		text-transform: uppercase;
+		letter-spacing: 3px;
+		color: $first-main-color;
+		transition: opacity 100ms cubic-bezier(0.39, 0.575, 0.565, 1);
+
+		&.qode-is-active {
+			opacity: 1;
+		}
+	}
+}

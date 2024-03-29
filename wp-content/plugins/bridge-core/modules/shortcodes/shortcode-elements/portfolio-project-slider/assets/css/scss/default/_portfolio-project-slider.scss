@@ -1,0 +1,152 @@
+/* ==========================================================================
+   portfolio project slider shortcode styles
+   ========================================================================== */
+
+.qode-portfolio-project-slider {
+	&.swiper-container {
+		height: 100vh;
+		margin-left: 100px;
+		
+		.swiper-slide {
+			
+			.qode-pps-inner {
+				font-size: 0;
+				height: 100%;
+				
+				.qode-pps-image {
+					display: flex;
+					width: 69%;
+					position: relative;
+					top: 50%;
+					transform: translateY(-50%);
+
+					.qode-safari & {
+						display: -webkit-box !important;
+					}
+					
+					.qodef-pps-title {
+						margin: 0;
+						position: absolute;
+						top: 52px;
+						right: -39.5%;
+						width: 53%;
+						
+						a {
+							display: block;
+							font-size: 100px;
+							line-height: 1.1em;
+							text-transform: uppercase;
+						}
+					}
+				}
+				
+				.qode-pps-bottom-content {
+					font-size: 14px;
+					display: block;
+					vertical-align: bottom;
+					width: 45%;
+					padding-left: 3.1vw;
+					position: absolute;
+					left: 100%;
+					bottom: 0;
+					
+					.qode-qode-pps-info {
+						margin-bottom: 1.4vw;
+					}
+					
+					.qode-pps-custom-field {
+						
+						p {
+							display: inline-block;
+							font-style: italic;
+						}
+					}
+					
+					.qode-pps-date {
+						font-style: italic;
+					}
+					
+					.qode-btn {
+						&.qode-btn-simple {
+							
+							.qode-btn-text {
+								line-height: 1;
+								vertical-align: bottom;
+							}
+						}
+					}
+				}
+			}
+		}
+		
+		.swiper-pagination {
+			text-align: right;
+		}
+		
+		.swiper-pagination-bullets {
+			position: absolute !important;
+			right: 4.7vw;
+			bottom: 6.2vh;
+			width: auto;
+			
+			.swiper-pagination-bullet {
+				position: relative;
+				margin: 0 8px;
+				width: auto;
+				height: auto;
+				background: transparent;
+				opacity: 1;
+				
+				&:after {
+					content: '';
+					width: 100px;
+					height: 2px;
+					position: absolute;
+					top: 50%;
+					left: calc(100% + 15px);
+					transform: translateY(-50%);
+					background-color: rgba(#000, 0.3);
+					opacity: 0;
+				}
+				
+				&.swiper-pagination-bullet-active {
+					margin-right: 115px;
+					
+					&:after {
+						opacity: 1;
+					}
+				}
+			}
+		}
+		
+		.qode-pps-widget-area {
+			position: absolute;
+			left: 0;
+			bottom: 6.2vh;
+			z-index: 50;
+			
+			.widget {
+				margin: 0;
+			}
+		}
+		
+		&.qode-pps-light {
+			
+			.qodef-pps-title a,
+			.qode-pps-bottom-content *,
+			.qode-pps-widget-area *,
+			.swiper-pagination-bullet {
+				color: #fff;
+			}
+			
+			.swiper-pagination-bullets {
+				.swiper-pagination-bullet {
+					&:after {
+						background-color: rgba(#fff, .3);
+					}
+				}
+			}
+			
+		}
+	}
+}

@@ -1,0 +1,95 @@
+.qode-interactive-links{
+    &.qode-il-links-below{
+        height: 100vh;
+
+        .qode-il-responsive-title-holder{
+            display: none;
+        }
+
+        .qode-il-inner{
+            height: 100%;
+            display: flex;
+            align-items: flex-end;
+            position: relative;
+        }
+
+        .qode-il-images-holder{
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 10;
+
+            .qode-il-image{
+                position: absolute;
+                right: 0;
+                bottom: 0;
+                opacity: 0;
+                visibility: hidden;
+                transition: all 0.3s ease;
+
+                &.qode-active{
+                    opacity: 1;
+                    visibility: visible;
+                }
+
+                a,
+                img{
+                    display: block;
+                    margin: 0 auto;
+                }
+            }
+        }
+
+        .qode-il-titles-holder{
+            position: relative;
+            z-index: 20;
+            padding-bottom: 73px;
+            padding-left: 40px;
+            max-width: 50%;
+            width: 100%;
+
+            .qode-il-link {
+                position: relative;
+                display: inline-block;
+                margin-right: 31px;
+                margin-bottom: 20px;
+                color: inherit;
+
+                &:hover{
+                    color: inherit;
+                }
+
+                .qode-il-title {
+                    position: relative;
+                    display: inline-block;
+
+                    &:before {
+                        content: '';
+                        position: absolute;
+                        bottom: 0;
+                        left: 0;
+                        width: 100%;
+                        height: 1px;
+                        background-color: currentColor;
+                        transition: width 0.3s ease;
+                    }
+                }
+
+                &.qode-active {
+                    .qode-il-title {
+                        opacity: 50%;
+                    }
+                }
+            }
+        }
+
+        .qode-il-widget-area{
+            position: absolute;
+            right: 20px;
+            bottom: 20px;
+            z-index: 20;
+        }
+    }
+}
