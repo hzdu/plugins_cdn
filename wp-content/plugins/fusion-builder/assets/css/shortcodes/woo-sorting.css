@@ -1,0 +1,45 @@
+.fusion-woo-sorting {
+  --awb-margin-top: 0;
+  --awb-margin-right: 0;
+  --awb-margin-bottom: 0;
+  --awb-margin-left: 0;
+  --awb-dropdown-bg-color: var(--woo_dropdown_bg_color);
+  --awb-dropdown-hover-bg-color: var(--woo_dropdown_bg_color);
+  --awb-dropdown-text-color: var(--woo_dropdown_text_color);
+  --awb-dropdown-border-color: var(--woo_dropdown_border_color);
+  margin: var(--awb-margin-top) var(--awb-margin-right) var(--awb-margin-bottom) var(--awb-margin-left);
+  z-index: 100;
+  position: relative;
+}
+.fusion-woo-sorting .order-dropdown .current-li,
+.fusion-woo-sorting .order-dropdown ul li a:not(:hover),
+.fusion-woo-sorting.catalog-ordering .order li a:not(:hover),
+.fusion-woo-sorting .fusion-grid-list-view li:not(.active-view):not(:hover) {
+  background-color: var(--awb-dropdown-bg-color);
+}
+.fusion-woo-sorting .order-dropdown ul li a:hover,
+.fusion-woo-sorting.catalog-ordering .order li a:hover,
+.fusion-woo-sorting .fusion-grid-list-view li:hover,
+.fusion-woo-sorting .fusion-grid-list-view li.active-view {
+  background-color: var(--awb-dropdown-hover-bg-color);
+}
+.fusion-woo-sorting .order-dropdown,
+.fusion-woo-sorting .order-dropdown a,
+.fusion-woo-sorting .order-dropdown ul li a,
+.fusion-woo-sorting .order-dropdown a:hover,
+.fusion-woo-sorting .order-dropdown > li:after,
+.fusion-woo-sorting .order-dropdown ul li a:hover,
+.fusion-woo-sorting.catalog-ordering .order li a,
+.fusion-woo-sorting .fusion-grid-list-view a,
+.fusion-woo-sorting .fusion-grid-list-view li:hover,
+.fusion-woo-sorting .fusion-grid-list-view li.active-view a i {
+  color: var(--awb-dropdown-text-color);
+}
+.fusion-woo-sorting .order-dropdown > li:after,
+.fusion-woo-sorting .order-dropdown .current-li,
+.fusion-woo-sorting .order-dropdown ul li a,
+.fusion-woo-sorting.catalog-ordering .order li a,
+.fusion-woo-sorting .fusion-grid-list-view,
+.fusion-woo-sorting .fusion-grid-list-view li {
+  border-color: var(--awb-dropdown-border-color);
+}

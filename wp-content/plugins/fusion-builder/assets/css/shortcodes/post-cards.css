@@ -1,0 +1,120 @@
+.fusion-post-cards {
+  --awb-filters-font-size: inherit;
+  --awb-filters-line-height: inherit;
+  --awb-filters-letter-spacing: inherit;
+  --awb-filters-text-transform: inherit;
+  --awb-filters-color: var(--link_color);
+  --awb-filters-font-family: inherit;
+  --awb-filters-font-style: inherit;
+  --awb-filters-font-weight: inherit;
+  --awb-filters-hover-color: var(--link_hover_color);
+  --awb-filters-active-color: var(--primary_color);
+  --awb-active-filter-border-size: 3px;
+  --awb-active-filter-border-color: var(--primary_color);
+  --awb-filters-border-bottom: 1px;
+  --awb-filters-border-top: 1px;
+  --awb-filters-border-left-style: none;
+  --awb-filters-border-right: 0;
+  --awb-filters-border-right-style: none;
+  --awb-filters-border-left: 0;
+  --awb-filters-border-color: var(--sep_color);
+  --awb-filters-height: 36px;
+  --awb-filters-alignment: flex-start;
+  --awb-column-spacing: 40px;
+  --awb-row-spacing: 40px;
+  --awb-margin-top: 0;
+  --awb-margin-right: 0;
+  --awb-margin-bottom: 0;
+  --awb-margin-left: 0;
+  --awb-load-more-btn-color: var(--awb-color8);
+  --awb-load-more-btn-bg-color: var(--awb-color3);
+  --awb-load-more-btn-hover-color: var(--awb-color1);
+  --awb-load-more-btn-hover-bg-color: var(--awb-color5);
+  margin-top: var(--awb-margin-top);
+  margin-right: var(--awb-margin-right);
+  margin-bottom: var(--awb-margin-bottom);
+  margin-left: var(--awb-margin-left);
+}
+.fusion-post-cards.fusion-grid-archive.fusion-grid-flex-grow.fusion-grid-columns-1 {
+  display: flex;
+  flex-grow: 1;
+}
+.fusion-post-cards.fusion-grid-archive.fusion-grid-flex-grow.fusion-grid-columns-1 > .fusion-grid {
+  flex-grow: 1;
+  max-width: 100%;
+  /* Fix ellipsis text issue */
+}
+.fusion-post-cards .fusion-grid {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  margin-bottom: 0;
+  padding: 0;
+  margin-right: calc(var(--awb-column-spacing) / -2);
+  margin-left: calc(var(--awb-column-spacing) / -2);
+  margin-top: calc(var(--awb-row-spacing) / -2);
+}
+.fusion-post-cards .fusion-grid .product-list-view {
+  width: 100%;
+}
+.fusion-post-cards .fusion-grid > li:last-child > .fusion-absolute-separator {
+  display: none;
+}
+.fusion-post-cards .fusion-grid.fusion-flex-align-items-stretch > .fusion-grid-column > .fusion-column-wrapper > .fusion-builder-row-inner:first-of-type:last-of-type {
+  flex: 1;
+}
+.fusion-post-cards .fusion-grid > .fusion-grid-column {
+  padding-right: calc(var(--awb-column-spacing) / 2);
+  padding-left: calc(var(--awb-column-spacing) / 2);
+  padding-top: calc(var(--awb-row-spacing) / 2);
+  padding-bottom: calc(var(--awb-row-spacing) / 2);
+}
+.fusion-post-cards .fusion-grid > .fusion-grid-column > .fusion-column-inner-bg {
+  margin-right: calc(var(--awb-column-spacing) / 2);
+  margin-left: calc(var(--awb-column-spacing) / 2);
+  margin-top: calc(var(--awb-row-spacing) / 2);
+  margin-bottom: calc(var(--awb-row-spacing) / 2);
+}
+.fusion-post-cards .fusion-grid-column {
+  margin-bottom: 0 !important;
+  margin-top: 0;
+}
+.fusion-post-cards .fusion-load-more-button {
+  color: var(--awb-load-more-btn-color);
+  background-color: var(--awb-load-more-btn-bg-color);
+}
+.fusion-post-cards .fusion-load-more-button:hover,
+.fusion-post-cards .fusion-load-more-button:focus {
+  color: var(--awb-load-more-btn-hover-color);
+  background-color: var(--awb-load-more-btn-hover-bg-color);
+}
+.fusion-post-cards .fusion-filters {
+  flex-flow: wrap;
+  border-bottom-width: var(--awb-filters-border-bottom);
+  border-top-width: var(--awb-filters-border-top);
+  border-left-width: var(--awb-filters-border-left);
+  border-left-style: var(--awb-filters-border-left-style);
+  border-right-width: var(--awb-filters-border-right);
+  border-right-style: var(--awb-filters-border-right-style);
+  border-color: var(--awb-filters-border-color);
+  min-height: var(--awb-filters-height);
+  justify-content: var(--awb-filters-alignment);
+}
+.fusion-post-cards .fusion-filters li a {
+  color: var(--awb-filters-color);
+  font-size: var(--awb-filters-font-size);
+  font-family: var(--awb-filters-font-family);
+  font-style: var(--awb-filters-font-style);
+  font-weight: var(--awb-filters-font-weight);
+  line-height: var(--awb-filters-line-height);
+  letter-spacing: var(--awb-filters-letter-spacing);
+  text-transform: var(--awb-filters-text-transform);
+}
+.fusion-post-cards .fusion-filters li a:hover {
+  color: var(--awb-filters-hover-color);
+}
+.fusion-post-cards .fusion-filters li.fusion-active a {
+  border-color: var(--awb-active-filter-border-color);
+  border-top-width: var(--awb-active-filter-border-size);
+  color: var(--awb-filters-active-color);
+}

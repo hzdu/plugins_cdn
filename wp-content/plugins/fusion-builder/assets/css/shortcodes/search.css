@@ -1,0 +1,97 @@
+.fusion-search-element {
+  --awb-margin-top: 0;
+  --awb-margin-right: 0;
+  --awb-margin-bottom: 0;
+  --awb-margin-left: 0;
+  --awb-input-height: var(--form_input_height);
+  --awb-text-color: var(--form_text_color);
+  --awb-focus-border-color: var(--form_focus_border_color);
+  --awb-bg-color: var(--form_bg_color);
+  --awb-border-size-top: var(--form_border_width-top);
+  --awb-border-size-right: var(--form_border_width-right);
+  --awb-border-size-bottom: var(--form_border_width-bottom);
+  --awb-border-size-left: var(--form_border_width-left);
+  --awb-border-color: var(--form_border_color);
+  --awb-text-size: var(--form_text_size);
+  --awb-border-radius: calc(1px * var(--form_border_radius));
+  --awb-live-results-bg-color: var(--form_bg_color);
+  --awb-live-results-link-color: var(--link_color);
+  --awb-live-results-meta-color: var(--link_color);
+  --awb-live-results-height: var(--live_search_results_height);
+  --awb-live-results-scrollbar-bg: var(--scrollbar_background);
+  --awb-live-results-scrollbar-handle: var(--scrollbar_handle);
+  --awb-results-border-top: var(--form_border_width-top);
+  --awb-results-border-right: var(--form_border_width-right);
+  --awb-results-border-bottom: var(--form_border_width-bottom);
+  --awb-results-border-left: var(--form_border_width-left);
+  --awb-live-results-border-color: var(--form_border_color);
+  margin: var(--awb-margin-top) var(--awb-margin-right) var(--awb-margin-bottom) var(--awb-margin-left);
+}
+.fusion-search-element .searchform .fusion-search-form-content .fusion-search-field input {
+  height: var(--awb-input-height);
+  font-size: var(--awb-text-size);
+  background-color: var(--awb-bg-color);
+  border-top-width: var(--awb-border-size-top);
+  border-right-width: var(--awb-border-size-right);
+  border-bottom-width: var(--awb-border-size-bottom);
+  border-left-width: var(--awb-border-size-left);
+  border-color: var(--awb-border-color);
+  color: var(--awb-text-color);
+}
+.fusion-search-element .searchform .fusion-search-form-content .fusion-search-button input[type=submit] {
+  height: var(--awb-input-height);
+  width: var(--awb-input-height);
+  line-height: var(--awb-input-height);
+}
+.fusion-search-element.fusion-search-form-clean .searchform .fusion-search-form-content .fusion-search-field input {
+  padding-left: var(--awb-input-height);
+}
+.fusion-search-element .searchform .fusion-search-form-content .fusion-search-field input::placeholder,
+.fusion-search-element.fusion-search-form-clean .searchform .fusion-search-form-content .fusion-search-button input[type=submit] {
+  color: var(--awb-text-color);
+  font-size: var(--awb-text-size);
+}
+.fusion-search-element .searchform .fusion-search-form-content .fusion-search-field input:focus {
+  border-color: var(--awb-focus-border-color);
+}
+.fusion-search-element .searchform.fusion-search-form-classic .fusion-search-form-content,
+.fusion-search-element .fusion-search-form-classic .searchform:not(.fusion-search-form-clean) .fusion-search-form-content {
+  border-radius: var(--awb-border-radius);
+  overflow: hidden;
+}
+.fusion-search-element .fusion-search-form-content input.s {
+  border-radius: var(--awb-border-radius);
+}
+.fusion-search-element .fusion-live-search .fusion-search-results {
+  max-height: var(--awb-live-results-height);
+  transition: 0.3s opacity, 0.3s margin;
+  background-color: var(--awb-live-results-bg-color);
+  border-color: var(--awb-live-results-border-color);
+  border-width: var(--awb-results-border-top) var(--awb-results-border-right) var(--awb-results-border-bottom) var(--awb-results-border-left);
+}
+.fusion-search-element .fusion-live-search .fusion-search-results.live-results-scrollbar-custom {
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+.fusion-search-element .fusion-live-search .fusion-search-results.live-results-scrollbar-custom.live-results-scrollbar-custom::-webkit-scrollbar {
+  width: 8px;
+}
+.fusion-search-element .fusion-live-search .fusion-search-results.live-results-scrollbar-custom.live-results-scrollbar-custom::-webkit-scrollbar-track {
+  background: var(--awb-live-results-scrollbar-bg);
+}
+.fusion-search-element .fusion-live-search .fusion-search-results.live-results-scrollbar-custom.live-results-scrollbar-custom::-webkit-scrollbar-thumb {
+  background-color: var(--awb-live-results-scrollbar-handle);
+  border-radius: 5px;
+}
+.fusion-search-element .fusion-live-search .fusion-search-results.live-results-scrollbar-default {
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+.fusion-search-element .fusion-live-search .fusion-search-results .fusion-search-result {
+  color: var(--awb-live-results-link-color);
+  border-color: var(--awb-live-results-border-color);
+  border-width: var(--awb-results-border-top) var(--awb-results-border-right) var(--awb-results-border-bottom) var(--awb-results-border-left);
+}
+.fusion-search-element .fusion-live-search .fusion-search-results .fusion-search-result .fusion-search-post-type {
+  color: var(--awb-live-results-meta-color);
+}

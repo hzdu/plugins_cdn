@@ -1,0 +1,52 @@
+.fusion-form-form-wrapper .fusion-form-field .fusion-form-select-wrapper {
+  position: relative;
+}
+.fusion-form-form-wrapper .fusion-form-field .fusion-form-select-wrapper .select-arrow {
+  top: 1px;
+}
+.fusion-form-form-wrapper .fusion-form-field .fusion-select-wrapper {
+  position: relative;
+}
+.fusion-form-form-wrapper .fusion-form-field .fusion-select-wrapper .select-arrow {
+  border: none;
+  top: 50%;
+  transform: translateY(-50%);
+  bottom: auto;
+  height: auto;
+  width: auto;
+  right: 1em;
+  font-size: inherit !important;
+  background: transparent !important;
+  display: flex;
+  align-items: center;
+}
+.fusion-form-form-wrapper .fusion-form-field .fusion-select-wrapper .select-arrow svg path {
+  stroke: var(--awb-form-text-color);
+}
+.fusion-form-form-wrapper .fusion-form-field select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  text-overflow: "";
+  cursor: pointer;
+  display: block;
+  outline: 0;
+  width: 100%;
+  position: relative;
+  text-indent: 0;
+  vertical-align: middle;
+  z-index: 5;
+  margin: 0;
+  line-height: normal !important;
+}
+.fusion-form-form-wrapper .fusion-form-field select:focus {
+  border-color: var(--awb-form-focus-border-color);
+}
+.fusion-form-form-wrapper .fusion-form-field select option {
+  background-color: var(--awb-form-select-bg, inherit);
+}
+.fusion-form.awb-rtl .fusion-select-wrapper .select-arrow {
+  left: calc(1em + var(--awb-form-border-width-left));
+}
+.fusion-form.awb-ltr .fusion-select-wrapper .select-arrow {
+  right: calc(1em + var(--awb-form-border-width-right));
+}

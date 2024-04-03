@@ -1,0 +1,35 @@
+.fusion-text {
+  --awb-content-alignment: initial;
+  --awb-font-size: inherit;
+  --awb-line-height: inherit;
+  --awb-letter-spacing: inherit;
+  --awb-text-transform: inherit;
+  --awb-text-color: inherit;
+  --awb-text-font-family: inherit;
+  --awb-text-font-style: inherit;
+  --awb-text-font-weight: inherit;
+  --awb-columns: var(--text_columns, auto);
+  --awb-column-spacing: var(--text_column_spacing, normal);
+  --awb-column-min-width: var(--text_column_min_width, auto);
+  --awb-rule-style: var(--text_rule_style, initial);
+  --awb-margin-top: 0;
+  --awb-margin-right: 0;
+  --awb-margin-bottom: 0;
+  --awb-margin-left: 0;
+  text-align: var(--awb-content-alignment);
+  font-size: var(--awb-font-size);
+  line-height: var(--awb-line-height);
+  letter-spacing: var(--awb-letter-spacing);
+  text-transform: var(--awb-text-transform);
+  color: var(--awb-text-color);
+  font-family: var(--awb-text-font-family);
+  font-weight: var(--awb-text-font-weight);
+  font-style: var(--awb-text-font-style);
+  margin: var(--awb-margin-top) var(--awb-margin-right) var(--awb-margin-bottom) var(--awb-margin-left);
+}
+.awb-text-cols {
+  column-count: var(--awb-columns);
+  column-gap: var(--awb-column-spacing);
+  column-width: var(--awb-column-min-width);
+  column-rule: var(--awb-rule-style);
+}

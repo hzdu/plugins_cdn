@@ -1,0 +1,18 @@
+.fusion-flickr-element {
+  --awb-margin-top-medium: var(--awb-margin-top);
+  --awb-margin-right-medium: var(--awb-margin-right);
+  --awb-margin-bottom-medium: var(--awb-margin-bottom);
+  --awb-margin-left-medium: var(--awb-margin-left);
+  margin-top: var(--awb-margin-top-medium);
+  margin-right: var(--awb-margin-right-medium);
+  margin-bottom: var(--awb-margin-bottom-medium);
+  margin-left: var(--awb-margin-left-medium);
+}
+.fusion-flickr-element .flickr-images {
+  margin: 0 calc(-1 * var(--awb-md-column-space) / 2 * 1px);
+}
+.fusion-flickr-element .flickr-image {
+  width: var(--awb-md-column-width);
+  padding: 0 calc(var(--awb-md-column-space) / 2 * 1px);
+  margin-bottom: calc(var(--awb-md-column-space) * 1px);
+}

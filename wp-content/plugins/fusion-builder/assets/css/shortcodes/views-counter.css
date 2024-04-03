@@ -1,0 +1,42 @@
+.awb-views-counter {
+  --awb-color: inherit;
+  --awb-background: transparent;
+  --awb-font-size: inherit;
+  --awb-alignment-floated: flex-start;
+  --awb-alignment-stacked: stretch;
+  --awb-padding-top: 0;
+  --awb-padding-right: 0;
+  --awb-padding-bottom: 0;
+  --awb-padding-left: 0;
+  --awb-margin-top: 0;
+  --awb-margin-right: 0;
+  --awb-margin-bottom: 0;
+  --awb-margin-left: 0;
+  --awb-border-radius-top-left: 0;
+  --awb-border-radius-top-right: 0;
+  --awb-border-radius-bottom-right: 0;
+  --awb-border-radius-bottom-left: 0;
+  --awb-box-shadow: none;
+  background-color: var(--awb-background);
+  padding: var(--awb-padding-top) var(--awb-padding-right) var(--awb-padding-bottom) var(--awb-padding-left);
+  margin: var(--awb-margin-top) var(--awb-margin-right) var(--awb-margin-bottom) var(--awb-margin-left);
+  border-radius: var(--awb-border-radius-top-left) var(--awb-border-radius-top-right) var(--awb-border-radius-bottom-right) var(--awb-border-radius-bottom-left);
+  box-shadow: var(--awb-box-shadow);
+}
+.awb-views-counter-separator {
+  padding: 0 5px;
+}
+.awb-views-counter-content {
+  display: flex;
+  flex-wrap: wrap;
+  color: var(--awb-color);
+  font-size: var(--awb-font-size);
+  justify-content: var(--awb-alignment-floated);
+}
+.awb-views-counter-content-stacked {
+  flex-direction: column;
+  align-items: var(--awb-alignment-stacked);
+}
+.awb-views-counter-content-stacked .awb-views-counter-separator {
+  display: none;
+}

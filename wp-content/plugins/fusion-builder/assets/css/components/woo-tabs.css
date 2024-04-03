@@ -1,0 +1,114 @@
+.fusion-body .fusion-woo-tabs-tb {
+  --awb-margin-top: 0;
+  --awb-margin-right: 0;
+  --awb-margin-bottom: 0;
+  --awb-margin-left: 0;
+  --awb-backgroundcolor: var(--content_bg_color);
+  --awb-inactivebackgroundcolor: transparent;
+  --awb-active-nav-text-color: var(--primary_color);
+  --awb-inactive-nav-text-color: var(--link_color);
+  --awb-bordercolor: var(--sep_color);
+  --awb-text-color: var(--body_typography-color);
+  --awb-text-font-size: var(--body_typography-font-size);
+  --awb-text-line-height: var(--body_typography-line-height);
+  --awb-text-letter-spacing: var(--body_typography-letter-spacing);
+  --awb-text-text-transform: none;
+  --awb-text-font-family: var(--body_typography-font-family);
+  --awb-text-font-weight: var(--body_typography-font-weight);
+  --awb-text-font-style: var(--body_typography-font-style, normal);
+  --awb-title-color: var(--h3_typography-color);
+  --awb-title-font-size: var(--post_titles_extras_typography-font-size);
+  --awb-title-line-height: var(--h3_typography-line-height);
+  --awb-title-letter-spacing: var(--h3_typography-letter-spacing);
+  --awb-title-text-transform: var(--h3_typography-text-transform);
+  --awb-title-font-family: var(--h3_typography-font-family);
+  --awb-title-font-weight: var(--h3_typography-font-weight);
+  --awb-title-font-style: var(--h3_typography-font-style, normal);
+  --awb-nav-content-space: 240px;
+  --awb-stars-color: var(--primary_color);
+  --awb-nav-padding-top: 10px;
+  --awb-nav-padding-right: 20px;
+  --awb-nav-padding-bottom: 10px;
+  --awb-nav-padding-left: 20px;
+  --awb-content-padding-top: 40px;
+  --awb-content-padding-right: 40px;
+  --awb-content-padding-bottom: 40px;
+  --awb-content-padding-left: 40px;
+  --awb-stars-default-color: #999;
+  margin: var(--awb-margin-top) var(--awb-margin-right) var(--awb-margin-bottom) var(--awb-margin-left);
+}
+.fusion-body .fusion-woo-tabs-tb .wc-tabs > li.active > a {
+  background-color: var(--awb-backgroundcolor);
+  color: var(--awb-active-nav-text-color);
+}
+.fusion-body .fusion-woo-tabs-tb .wc-tabs > li > a {
+  background-color: var(--awb-inactivebackgroundcolor);
+  color: var(--awb-inactive-nav-text-color);
+}
+.fusion-body .fusion-woo-tabs-tb .wc-tabs > li > a:hover {
+  background-color: var(--awb-backgroundcolor);
+  color: var(--awb-active-nav-text-color);
+}
+.fusion-body .fusion-woo-tabs-tb .woocommerce-Tabs-panel {
+  background-color: var(--awb-backgroundcolor);
+}
+.fusion-body .fusion-woo-tabs-tb .woocommerce-tabs .tabs li a {
+  border-color: var(--awb-bordercolor);
+  padding: var(--awb-nav-padding-top) var(--awb-nav-padding-right) var(--awb-nav-padding-bottom) var(--awb-nav-padding-left);
+}
+.fusion-body .fusion-woo-tabs-tb .woocommerce-tabs .panel {
+  border-color: var(--awb-bordercolor);
+  color: var(--awb-text-color);
+  font-size: var(--awb-text-font-size);
+  line-height: var(--awb-text-line-height);
+  letter-spacing: var(--awb-text-letter-spacing);
+  text-transform: var(--awb-text-text-transform);
+  font-family: var(--awb-text-font-family);
+  font-weight: var(--awb-text-font-weight);
+  font-style: var(--awb-text-font-style);
+  padding: var(--awb-content-padding-top) var(--awb-content-padding-right) var(--awb-content-padding-bottom) var(--awb-content-padding-left);
+}
+.fusion-body .fusion-woo-tabs-tb .woocommerce-tabs .panel .shop_attributes tr {
+  border-color: var(--awb-bordercolor);
+}
+.fusion-body .fusion-woo-tabs-tb .woocommerce-tabs .panel .shop_attributes th {
+  color: var(--awb-text-color);
+}
+.fusion-body .fusion-woo-tabs-tb #tab-reviews #reviews #comments .woocommerce-Reviews-title,
+.fusion-body .fusion-woo-tabs-tb .woocommerce-Tabs-panel .fusion-woocommerce-tab-title {
+  color: var(--awb-title-color);
+  font-size: var(--awb-title-font-size);
+  line-height: var(--awb-title-line-height);
+  letter-spacing: var(--awb-title-letter-spacing);
+  text-transform: var(--awb-title-text-transform);
+  font-family: var(--awb-title-font-family);
+  font-weight: var(--awb-title-font-weight);
+  font-style: var(--awb-title-font-style);
+}
+.fusion-body .fusion-woo-tabs-tb .meta {
+  color: var(--awb-text-color);
+}
+.fusion-body .fusion-woo-tabs-tb .stars a {
+  color: var(--awb-text-color);
+}
+.fusion-body .fusion-woo-tabs-tb .stars a:after {
+  color: var(--awb-stars-default-color);
+}
+.fusion-body .fusion-woo-tabs-tb .stars a:hover {
+  color: var(--link_hover_color);
+}
+.fusion-body .fusion-woo-tabs-tb.woo-tabs-horizontal .woocommerce-tabs > .tabs {
+  border-color: var(--awb-bordercolor);
+}
+.fusion-body .fusion-woo-tabs-tb.woo-tabs-horizontal .woocommerce-tabs > .tabs .active {
+  border-color: var(--awb-bordercolor);
+}
+.fusion-body .fusion-woo-tabs-tb.woo-tabs-vertical .woocommerce-tabs .panel {
+  margin-left: var(--awb-nav-content-space);
+}
+.fusion-body .fusion-woo-tabs-tb .comment-text .star-rating:before {
+  color: var(--awb-stars-color);
+}
+.fusion-body .fusion-woo-tabs-tb .comment-text .star-rating span:before {
+  color: var(--awb-stars-color);
+}

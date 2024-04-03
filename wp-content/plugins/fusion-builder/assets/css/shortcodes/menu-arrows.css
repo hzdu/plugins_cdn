@@ -1,0 +1,107 @@
+.awb-menu {
+  --awb-arrows-size-height: 12px;
+  --awb-arrows-size-width: 23px;
+}
+.awb-menu__sub-arrow,
+.awb-menu__main-li_with-main-arrow:after {
+  content: " ";
+  position: absolute;
+  width: 0;
+  border-color: transparent;
+  z-index: 999999999;
+  transition: all calc(var(--awb-transition-time) * 1ms) cubic-bezier(0.42, 0.01, 0.58, 1), transform calc(var(--awb-transition-time) * 1ms) cubic-bezier(0.42, 0.01, 0.58, 1);
+  border-style: solid;
+  border-top-width: var(--awb-arrows-size-height);
+  border-bottom-width: var(--awb-arrows-size-height);
+  border-left-width: var(--awb-arrows-size-width);
+  border-right-width: var(--awb-arrows-size-width);
+  opacity: 0;
+  pointer-events: none;
+  box-sizing: border-box;
+  top: 100%;
+}
+.awb-menu__main-li_with-main-arrow {
+  --arrow-color: var(--awb-active-bg);
+}
+.awb-menu__main-li_with-main-arrow.awb-menu__main-li_active-arrow-border {
+  --arrow-color: var(--awb-active-border-color);
+}
+.awb-menu_row .awb-menu__main-li_with-main-arrow:after {
+  border-top-color: var(--arrow-color);
+}
+.awb-menu_row .alt-arrow-child-color .awb-menu__sub-arrow {
+  border-bottom-color: var(--awb-submenu-active-bg);
+}
+.awb-menu_column.awb-menu_expand-right .alt-arrow-child-color .awb-menu__sub-arrow {
+  border-right-color: var(--awb-submenu-active-bg);
+}
+.awb-menu_column.awb-menu_expand-left .alt-arrow-child-color .awb-menu__sub-arrow {
+  border-left-color: var(--awb-submenu-active-bg);
+}
+.awb-menu_column .awb-menu__main-li_with-main-arrow:after {
+  top: calc(50% - var(--awb-arrows-size-height));
+}
+.awb-menu_column.awb-menu_expand-right .awb-menu__main-li_with-main-arrow:after {
+  left: 100%;
+  border-left-color: var(--arrow-color);
+}
+.awb-menu_column.awb-menu_expand-left .awb-menu__main-li_with-main-arrow:after {
+  right: 100%;
+  left: auto;
+  border-right-color: var(--arrow-color);
+}
+.awb-menu_row .awb-menu__sub-arrow {
+  border-bottom-color: var(--awb-submenu-bg);
+  bottom: calc(-1 * var(--awb-submenu-space, 0));
+}
+.awb-menu_column.awb-menu_expand-right .awb-menu__sub-arrow {
+  border-right-color: var(--awb-submenu-bg);
+  left: calc(100% + var(--awb-submenu-space) - (var(--awb-arrows-size-width) * 2));
+  top: calc(50% - var(--awb-arrows-size-height));
+}
+.awb-menu_column.awb-menu_expand-left .awb-menu__sub-arrow {
+  border-left-color: var(--awb-submenu-bg);
+  right: calc(100% + var(--awb-submenu-space) - (var(--awb-arrows-size-width) * 2));
+  top: calc(50% - var(--awb-arrows-size-height));
+  left: auto;
+}
+.awb-menu_desktop .awb-menu__main-li_with-main-arrow:focus-within:after,
+.awb-menu_desktop .awb-menu__main-li_with-main-arrow:hover:after {
+  visibility: visible;
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+.awb-menu_desktop.awb-menu_em-hover .awb-menu__main-li_with-sub-arrow:focus-within .awb-menu__sub-arrow,
+.awb-menu_desktop.awb-menu_em-hover .awb-menu__main-li_with-sub-arrow:hover .awb-menu__sub-arrow {
+  visibility: visible;
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+.awb-menu_desktop.awb-menu_em-click .awb-menu__main-li_with-main-arrow.expanded:after,
+.awb-menu_desktop.awb-menu_em-click .awb-menu__main-li_with-sub-arrow.expanded .awb-menu__sub-arrow {
+  visibility: visible;
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+.awb-menu_transition-slide_up .awb-menu__sub-arrow {
+  transform: translateY(20px);
+}
+.awb-menu_transition-slide_down .awb-menu__sub-arrow {
+  transform: translateY(-20px);
+}
+.awb-menu__main-li_with-active-arrow:active:after,
+.awb-menu__main-li_with-active-arrow.current-menu-item:after,
+.awb-menu__main-li_with-active-arrow.current-menu-ancestor:after,
+.awb-menu__main-li_with-active-arrow.current-menu-parent:after {
+  visibility: visible;
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+.awb-menu_desktop .awb-menu__main-li_with-sub-arrow.reposition-arrows .awb-menu__sub-arrow,
+.awb-menu_desktop .awb-menu__main-li_with-main-arrow.reposition-arrows:after {
+  inset-inline-start: 1em;
+}

@@ -1,0 +1,63 @@
+.fusion-woo-cart_table {
+  --awb-margin-top: 0;
+  --awb-margin-right: 0;
+  --awb-margin-bottom: 0;
+  --awb-margin-left: 0;
+  --awb-heading-cell-backgroundcolor: transparent;
+  --awb-heading-color: var(--body_typography-color);
+  --awb-fusion-font-family-heading-font: var(--h4_typography-font-family);
+  --awb-fusion-font-variant-heading-font: 700;
+  --awb-heading-font-size: 0.85em;
+  --awb-heading-line-height: normal;
+  --awb-heading-letter-spacing: var(--h4_typography-letter-spacing);
+  --awb-heading-text-transform: var(--h4_typography-text-transform);
+  --awb-table-cell-backgroundcolor: transparent;
+  --awb-fusion-font-family-text-font: var(--body_typography-font-family);
+  --awb-fusion-font-variant-text-font: inherit;
+  --awb-text-font-size: var(--body_typography-font-size);
+  --awb-text-line-height: var(--body_typography-line-height);
+  --awb-text-letter-spacing: var(--body_typography-letter-spacing);
+  --awb-text-text-transform: none;
+  --awb-border-color: var(--sep_color);
+  margin: var(--awb-margin-top) var(--awb-margin-right) var(--awb-margin-bottom) var(--awb-margin-left) !important;
+}
+.fusion-woo-cart_table thead tr th {
+  background-color: var(--awb-heading-cell-backgroundcolor);
+  color: var(--awb-heading-color);
+  font-family: var(--awb-fusion-font-family-heading-font);
+  font-weight: var(--awb-fusion-font-variant-heading-font);
+  font-size: var(--awb-heading-font-size);
+  line-height: var(--awb-heading-line-height);
+  letter-spacing: var(--awb-heading-letter-spacing);
+  text-transform: var(--awb-heading-text-transform);
+  padding-top: var(--awb-cell-padding-top, 0);
+  padding-bottom: var(--awb-cell-padding-bottom, 0);
+  padding-left: var(--awb-cell-padding-left, 0);
+  padding-right: var(--awb-cell-padding-right, 0);
+}
+.fusion-woo-cart_table tbody tr td {
+  background-color: var(--awb-table-cell-backgroundcolor);
+  color: var(--awb-text-color) !important;
+  font-family: var(--awb-fusion-font-family-text-font);
+  font-weight: var(--awb-fusion-font-variant-text-font);
+  font-size: var(--awb-text-font-size);
+  line-height: var(--awb-text-line-height);
+  letter-spacing: var(--awb-text-letter-spacing);
+  text-transform: var(--awb-text-text-transform);
+  padding-top: var(--awb-cell-padding-top, 25px);
+  padding-bottom: var(--awb-cell-padding-bottom, 25px);
+  padding-left: var(--awb-cell-padding-left, 0);
+  padding-right: var(--awb-cell-padding-right, 0);
+}
+.fusion-woo-cart_table tbody tr td a,
+.fusion-woo-cart_table tbody tr td.product-subtotal .amount {
+  color: var(--awb-text-color, var(--awb-link-color)) !important;
+}
+.fusion-woo-cart_table tr,
+.fusion-woo-cart_table tr td,
+.fusion-woo-cart_table tr th {
+  border-color: var(--awb-border-color) !important;
+}
+.fusion-woo-cart_table.has-auto-height .shop_table tbody tr {
+  height: auto;
+}

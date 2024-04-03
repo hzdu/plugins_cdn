@@ -1,0 +1,235 @@
+/* stylelint-disable length-zero-no-unit */
+/* stylelint-enable length-zero-no-unit */
+.alert {
+  padding: 15px;
+  margin-bottom: 20px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+}
+.alert h4 {
+  margin-top: 0;
+  color: inherit;
+}
+.alert .alert-link {
+  font-weight: bold;
+}
+.alert > p,
+.alert > ul {
+  margin-bottom: 0;
+}
+.alert > p + p {
+  margin-top: 5px;
+}
+.alert-dismissable {
+  padding-right: 35px;
+}
+.alert-success hr {
+  border-top-color: #c9e2b3;
+}
+.alert-success .alert-link {
+  color: #356635;
+}
+.alert-info hr {
+  border-top-color: #a6e1ec;
+}
+.alert-info .alert-link {
+  color: #2d6987;
+}
+.alert-warning hr {
+  border-top-color: #f7e1b5;
+}
+.alert-warning .alert-link {
+  color: #a47e3c;
+}
+.alert-danger hr {
+  border-top-color: #e4b9c0;
+}
+.alert-danger .alert-link {
+  color: #953b39;
+}
+.close {
+  position: relative;
+  top: -2px;
+  opacity: 0.2;
+  float: right;
+  padding: 0;
+  background: none;
+  border: 0 none;
+  cursor: pointer;
+  font-size: 21px;
+  color: #000;
+  font-weight: bold;
+  line-height: 1;
+}
+.awb-alert-inherit-link-color a {
+  color: inherit;
+}
+.awb-alert-inherit-link-color a:hover,
+.awb-alert-inherit-link-color a:focus {
+  color: inherit;
+}
+.fusion-alert {
+  --awb-padding-top: 25px;
+  --awb-padding-right: 25px;
+  --awb-padding-bottom: 25px;
+  --awb-padding-left: 25px;
+  --awb-margin-top: 0;
+  --awb-margin-right: 0;
+  --awb-margin-bottom: 20px;
+  --awb-margin-left: 0;
+  --awb-accent-color: inherit;
+  --awb-background-color: transparent;
+  --awb-border-size: var(--alert_border_size);
+  --awb-border-top-left-radius: var(--awb-alert-border-top-left-radius-default, 0);
+  --awb-border-top-right-radius: var(--awb-alert-border-top-right-radius-default, 0);
+  --awb-border-bottom-right-radius: var(--awb-alert-border-bottom-right-radius-default, 0);
+  --awb-border-bottom-left-radius: var(--awb-alert-border-bottom-left-radius-default, 0);
+  display: flex;
+  align-items: center;
+  clear: both;
+  position: relative;
+  padding: var(--awb-padding-top) var(--awb-padding-right) var(--awb-padding-bottom) var(--awb-padding-left);
+  margin: var(--awb-margin-top) var(--awb-margin-right) var(--awb-margin-bottom) var(--awb-margin-left);
+  border-radius: 0;
+  text-shadow: none;
+  color: var(--awb-accent-color);
+  background: var(--awb-background-color);
+  border-color: var(--awb-accent-color);
+  border-width: var(--awb-border-size);
+  border-top-left-radius: var(--awb-border-top-left-radius);
+  border-top-right-radius: var(--awb-border-top-right-radius);
+  border-bottom-right-radius: var(--awb-border-bottom-right-radius);
+  border-bottom-left-radius: var(--awb-border-bottom-left-radius);
+}
+.fusion-alert.alert-shadow {
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+}
+.fusion-alert .fusion-alert-content,
+.fusion-alert .alert-icon {
+  color: var(--awb-accent-color);
+}
+.fusion-alert .fusion-alert-content-wrapper {
+  flex: 1;
+  display: flex;
+}
+.fusion-alert .alert-icon i {
+  font-size: 1.33333em;
+  line-height: 0.75em;
+  vertical-align: -0.0667em;
+}
+.fusion-alert.awb-alert-close-boxed .close {
+  position: absolute;
+  box-sizing: content-box;
+  top: -1px;
+  right: -1px;
+  height: 25px;
+  width: 25px;
+  line-height: 25px;
+  opacity: 1;
+  border: 1px solid;
+  border-color: inherit;
+  color: inherit;
+  font-size: 15px;
+  transition: all 0.2s;
+}
+.fusion-alert.awb-alert-close-boxed .close:hover {
+  opacity: 1;
+  background-color: rgba(0, 0, 0, 0.05);
+}
+.fusion-alert.awb-alert-close-floated .close {
+  position: static;
+  opacity: 0.75;
+  height: 1em;
+  width: 1em;
+  line-height: 1;
+  border: none;
+  color: inherit;
+  font-size: 2em;
+  font-weight: 400;
+  transition: opacity 0.2s;
+}
+.fusion-alert.awb-alert-close-floated .close:hover {
+  opacity: 1;
+}
+.fusion-alert.alert-blank {
+  border: 1px solid #747474;
+}
+.fusion-alert.fusion-alert-capitalize {
+  text-transform: uppercase;
+}
+.fusion-alert.fusion-alert-center {
+  text-align: center;
+}
+.fusion-alert.fusion-alert-center .fusion-alert-content-wrapper {
+  justify-content: center;
+}
+.fusion-alert.fusion-alert-center .close {
+  border-top-width: 0px;
+}
+.ltr .fusion-alert.fusion-alert-center .close {
+  border-right-width: 0px;
+}
+.rtl .fusion-alert.fusion-alert-center .close {
+  border-left-width: 0px;
+}
+.fusion-alert.fusion-alert-center .alert-icon {
+  margin-right: 10px;
+}
+.fusion-alert.fusion-alert-left .close {
+  border-top-width: 0px;
+  border-right-width: 0px;
+}
+.fusion-alert.fusion-alert-left .fusion-alert-content-wrapper .alert-icon {
+  margin-right: 1em;
+}
+.fusion-alert.fusion-alert-right .close {
+  left: -1px;
+  right: auto;
+  border-top-width: 0px;
+  border-left-width: 0px;
+}
+.fusion-alert.fusion-alert-right .fusion-alert-content-wrapper {
+  justify-content: flex-end;
+}
+.fusion-alert.fusion-alert-right .fusion-alert-content-wrapper .alert-icon {
+  order: 1;
+  margin-left: 1em;
+}
+.fusion-alert.fusion-alert-right.awb-alert-close-floated .fusion-alert-content-wrapper {
+  order: 1;
+}
+.fusion-alert.awb-stripe-button-response.fusion-hidden {
+  display: none;
+}
+.fusion-alert.alert-info.general {
+  --awb-background-color: var(--info_bg_color);
+  --awb-accent-color: var(--info_accent_color);
+}
+.fusion-alert.alert-warning.notice {
+  --awb-background-color: var(--warning_bg_color);
+  --awb-accent-color: var(--warning_accent_color);
+}
+.fusion-alert.alert-danger.error {
+  --awb-background-color: var(--danger_bg_color);
+  --awb-accent-color: var(--danger_accent_color);
+}
+.fusion-alert.alert-success.success {
+  --awb-background-color: var(--success_bg_color);
+  --awb-accent-color: var(--success_accent_color);
+}
+/* Gravity Forms */
+.gform_wrapper .gform_validation_errors {
+  position: relative;
+  padding: 25px;
+  border-radius: 0;
+  margin-bottom: 20px;
+  text-shadow: none;
+}
+.gform_wrapper .gform_validation_errors,
+.gform_wrapper .gfield_error .gfield_validation_message {
+  --awb-background-color: var(--danger_bg_color);
+  --awb-accent-color: var(--danger_accent_color);
+  background: var(--danger_bg_color);
+  border-color: var(--danger_accent_color);
+  color: var(--danger_accent_color);
+}

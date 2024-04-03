@@ -1,0 +1,87 @@
+.awb-woo-order-downloads {
+  --awb-margin-top: 0;
+  --awb-margin-right: 0;
+  --awb-margin-bottom: 0;
+  --awb-margin-left: 0;
+  --awb-h-cell-pad-top: 1px;
+  --awb-h-cell-pad-right: 1px;
+  --awb-h-cell-pad-bottom: 15px;
+  --awb-h-cell-pad-left: 1px;
+  --awb-b-cell-pad-top: 25px;
+  --awb-b-cell-pad-right: 0;
+  --awb-b-cell-pad-bottom: 25px;
+  --awb-b-cell-pad-left: 0;
+  --awb-h-cell-bg: transparent;
+  --awb-b-cell-bg: transparent;
+  --awb-border-c: var(--sep_color);
+  --awb-border-w: 1px;
+  --awb-border-s: solid;
+  --awb-table-h-typo-font-family: var(--h4_typography-font-family);
+  --awb-table-h-typo-font-style: var(--h4_typography-font-style, normal);
+  --awb-table-h-typo-font-weight: 700;
+  --awb-table-h-typo-font-size: 0.85em;
+  --awb-table-h-typo-line-height: normal;
+  --awb-table-h-typo-letter-spacing: var(--h4_typography-letter-spacing);
+  --awb-table-h-typo-text-transform: var(--h4_typography-text-transform);
+  --awb-table-h-typo-color: var(--body_typography-color);
+  --awb-table-item-typo-font-family: var(--body_typography-font-family);
+  --awb-table-item-typo-font-style: var(--body_typography-font-style, normal);
+  --awb-table-item-typo-font-weight: var(--body_typography-font-weight);
+  --awb-table-item-typo-font-size: var(--body_typography-font-size);
+  --awb-table-item-typo-line-height: var(--body_typography-line-height);
+  --awb-table-item-typo-letter-spacing: var(--body_typography-letter-spacing);
+  --awb-table-item-typo-text-transform: none;
+  --awb-table-item-typo-color: var(--link_color);
+  --awb-item-link-color-hover: var(--link_hover_color);
+  margin-top: var(--awb-margin-top);
+  margin-right: var(--awb-margin-right);
+  margin-bottom: var(--awb-margin-bottom);
+  margin-left: var(--awb-margin-left);
+}
+.awb-woo-order-downloads__table.shop_table thead tr th {
+  font-family: var(--awb-table-h-typo-font-family);
+  font-style: var(--awb-table-h-typo-font-style);
+  font-weight: var(--awb-table-h-typo-font-weight);
+  font-size: var(--awb-table-h-typo-font-size);
+  line-height: var(--awb-table-h-typo-line-height);
+  letter-spacing: var(--awb-table-h-typo-letter-spacing);
+  text-transform: var(--awb-table-h-typo-text-transform);
+  color: var(--awb-table-h-typo-color);
+  background-color: var(--awb-h-cell-bg);
+  padding: var(--awb-h-cell-pad-top) var(--awb-h-cell-pad-right) var(--awb-h-cell-pad-bottom) var(--awb-h-cell-pad-left);
+}
+.awb-woo-order-downloads .awb-woo-order-downloads__item,
+.awb-woo-order-downloads .awb-woo-order-downloads__item a {
+  font-family: var(--awb-table-item-typo-font-family);
+  font-style: var(--awb-table-item-typo-font-style);
+  font-weight: var(--awb-table-item-typo-font-weight);
+  font-size: var(--awb-table-item-typo-font-size);
+  line-height: var(--awb-table-item-typo-line-height);
+  letter-spacing: var(--awb-table-item-typo-letter-spacing);
+  text-transform: var(--awb-table-item-typo-text-transform);
+  color: var(--awb-table-item-typo-color);
+}
+.awb-woo-order-downloads .awb-woo-order-downloads__item td {
+  padding: var(--awb-b-cell-pad-top) var(--awb-b-cell-pad-right) var(--awb-b-cell-pad-bottom) var(--awb-b-cell-pad-left);
+  background-color: var(--awb-b-cell-bg);
+}
+.awb-woo-order-downloads .awb-woo-order-downloads__item a:hover,
+.awb-woo-order-downloads .awb-woo-order-downloads__item a:focus {
+  color: var(--awb-item-link-color-hover);
+}
+.awb-woo-order-downloads table.shop_table.order_details thead tr {
+  border-color: var(--awb-border-c);
+  border-bottom-width: var(--awb-border-w);
+  border-bottom-style: var(--awb-border-s);
+}
+.awb-woo-order-downloads table.shop_table.order_details tbody tr,
+.awb-woo-order-downloads table.shop_table.order_details tfoot {
+  border-color: var(--awb-border-c);
+  border-top-width: var(--awb-border-w);
+  border-top-style: var(--awb-border-s);
+  border-bottom-width: 0px;
+}
+.awb-woo-order-downloads__table tr th:last-child,
+.awb-woo-order-downloads__table tr td:last-child {
+  text-align: right;
+}

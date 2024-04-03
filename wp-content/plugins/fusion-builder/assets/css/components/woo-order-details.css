@@ -1,0 +1,103 @@
+.awb-woo-order-details {
+  --awb-item-typo-font-family: var(--body_typography-font-family);
+  --awb-item-typo-font-style: var(--body_typography-font-style, normal);
+  --awb-item-typo-font-weight: var(--body_typography-font-weight);
+  --awb-item-typo-font-size: var(--body_typography-font-size);
+  --awb-item-typo-line-height: var(--body_typography-line-height);
+  --awb-item-typo-letter-spacing: var(--body_typography-letter-spacing);
+  --awb-item-typo-text-transform: none;
+  --awb-item-typo-color: var(--body_typography-color);
+  --awb-detail-typo-font-family: inherit;
+  --awb-detail-typo-font-style: inherit;
+  --awb-detail-typo-font-weight: bolder;
+  --awb-detail-typo-font-size: inherit;
+  --awb-detail-typo-line-height: inherit;
+  --awb-detail-typo-letter-spacing: inherit;
+  --awb-detail-typo-text-transform: inherit;
+  --awb-detail-typo-color: inherit;
+  --awb-failed-btn-color: inherit;
+  --awb-failed-btn-bg-color: transparent;
+  --awb-failed-btn-border-c: transparent;
+  --awb-failed-btn-color-hover: var(--link_hover_color);
+  --awb-failed-btn-bg-color-hover: transparent;
+  --awb-failed-btn-border-c-hover: transparent;
+  --awb-failed-btn-border-w: 0px;
+  --awb-btn-padding-top: 0;
+  --awb-btn-padding-right: 0;
+  --awb-btn-padding-bottom: 0;
+  --awb-btn-padding-left: 0;
+  --awb-btn-radius-top-left: 4px;
+  --awb-btn-radius-top-right: 4px;
+  --awb-btn-radius-bottom-right: 4px;
+  --awb-btn-radius-bottom-left: 4px;
+  --awb-btn-distance: 10px;
+  --awb-btn-msg-distance: 5px;
+  --awb-margin-top: 0;
+  --awb-margin-right: 0;
+  --awb-margin-bottom: 0;
+  --awb-margin-left: 0;
+  margin-top: var(--awb-margin-top);
+  margin-right: var(--awb-margin-right);
+  margin-bottom: var(--awb-margin-bottom);
+  margin-left: var(--awb-margin-left);
+}
+.awb-woo-order-details__list {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+.awb-woo-order-details__list > li,
+.awb-woo-order-details__failed,
+.awb-woo-order-details__failed-actions {
+  font-family: var(--awb-item-typo-font-family);
+  font-style: var(--awb-item-typo-font-style);
+  font-weight: var(--awb-item-typo-font-weight);
+  font-size: var(--awb-item-typo-font-size);
+  line-height: var(--awb-item-typo-line-height);
+  letter-spacing: var(--awb-item-typo-letter-spacing);
+  text-transform: var(--awb-item-typo-text-transform);
+  color: var(--awb-item-typo-color);
+}
+.awb-woo-order-details p.awb-woo-order-details__failed,
+.awb-woo-order-details p.awb-woo-order-details__failed-actions {
+  margin-bottom: 0;
+}
+.awb-woo-order-details p.awb-woo-order-details__failed {
+  margin-bottom: var(--awb-btn-msg-distance);
+}
+.awb-woo-order-details__list > li > strong {
+  font-family: var(--awb-detail-typo-font-family);
+  font-style: var(--awb-detail-typo-font-style);
+  font-weight: var(--awb-detail-typo-font-weight);
+  font-size: var(--awb-detail-typo-font-size);
+  line-height: var(--awb-detail-typo-line-height);
+  letter-spacing: var(--awb-detail-typo-letter-spacing);
+  text-transform: var(--awb-detail-typo-text-transform);
+  color: var(--awb-detail-typo-color);
+}
+.awb-woo-order-details__failed-actions .button {
+  color: var(--awb-failed-btn-color);
+  background-color: var(--awb-failed-btn-bg-color);
+  padding: var(--awb-btn-padding-top) var(--awb-btn-padding-right) var(--awb-btn-padding-bottom) var(--awb-btn-padding-left);
+  border-radius: var(--awb-btn-radius-top-left) var(--awb-btn-radius-top-right) var(--awb-btn-radius-bottom-right) var(--awb-btn-radius-bottom-left);
+  border: var(--awb-failed-btn-border-w) solid var(--awb-failed-btn-border-c);
+  display: inline-block;
+}
+.awb-woo-order-details__failed-actions .button.pay {
+  margin-right: var(--awb-btn-distance);
+}
+.awb-woo-order-details__failed-actions .button:hover,
+.awb-woo-order-details__failed-actions .button:focus {
+  color: var(--awb-failed-btn-color-hover);
+  background-color: var(--awb-failed-btn-bg-color-hover);
+  border-color: var(--awb-failed-btn-border-c-hover);
+}
+.awb-woo-order-details__le-hide {
+  display: none;
+}
+.awb-woo-order-details__le-switch-failed .awb-woo-order-details__list {
+  display: none;
+}
+.awb-woo-order-details__le-switch-failed .awb-woo-order-details__le-hide {
+  display: block;
+}

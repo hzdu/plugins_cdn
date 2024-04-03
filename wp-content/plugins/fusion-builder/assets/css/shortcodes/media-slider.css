@@ -1,0 +1,80 @@
+/* stylelint-disable length-zero-no-unit */
+/* stylelint-enable length-zero-no-unit */
+.fusion-slider-sc {
+  --awb-arrow-position-vertical: 50%;
+  --awb-arrow-position-horizontal: 0;
+  --awb-arrow-size: var(--slider_arrow_size);
+  --awb-arrow-bgcolor: var(--carousel_nav_color);
+  --awb-arrow-color: #fff;
+  --awb-arrow-hover-bgcolor: var(--carousel_hover_color);
+  --awb-arrow-hover-color: var(--awb-arrow-color);
+  --awb-arrow-border-sizes-top: 0;
+  --awb-arrow-border-sizes-right: 0;
+  --awb-arrow-border-sizes-bottom: 0;
+  --awb-arrow-border-sizes-left: 0;
+  --awb-arrow-border-color: transparent;
+  --awb-arrow-border-radius-top-left: 0;
+  --awb-arrow-border-radius-top-right: 0;
+  --awb-arrow-border-radius-bottom-right: 0;
+  --awb-arrow-border-radius-bottom-left: 0;
+  --awb-arrow-border-style: none;
+  --awb-arrow-border-hover-color: var(--awb-arrow-border-color);
+  --awb-dots-color: #000;
+  --awb-dots-active-color: var(--carousel_nav_color);
+  --awb-dots-align: center;
+  --awb-dots-size: 8px;
+  --awb-dots-active-size: 8px;
+  --awb-dots-position-vertical: 0;
+  --awb-dots-spacing: 4px;
+}
+.fusion-slider-sc .slides > li.fusion-flex-column {
+  display: none;
+}
+.fusion-slider-sc .slides > li.fusion-flex-column:first-child {
+  display: block;
+}
+.fusion-slider-sc .slides > li:first-child {
+  display: block;
+}
+.fusion-slider-sc .flex-direction-nav a {
+  position: absolute;
+  top: var(--awb-arrow-position-vertical);
+  z-index: 100;
+  margin: -20px 0 0;
+  height: var(--slider_nav_box_dimensions-height, 30px);
+  width: var(--slider_nav_box_dimensions-width, 30px);
+  opacity: 0;
+  overflow: hidden;
+  color: var(--awb-arrow-color);
+  background-color: var(--awb-arrow-bgcolor);
+  background-repeat: no-repeat;
+  border-width: var(--awb-arrow-border-sizes-top) var(--awb-arrow-border-sizes-right) var(--awb-arrow-border-sizes-bottom) var(--awb-arrow-border-sizes-left);
+  border-style: var(--awb-arrow-border-style);
+  border-color: var(--awb-arrow-border-color);
+  border-radius: var(--awb-arrow-border-radius-top-left) var(--awb-arrow-border-radius-top-right) var(--awb-arrow-border-radius-bottom-right) var(--awb-arrow-border-radius-bottom-left);
+  cursor: pointer;
+  font-size: var(--awb-arrow-size);
+  font-weight: normal;
+  font-family: "awb-icons";
+  -webkit-font-smoothing: none;
+}
+.fusion-slider-sc:hover .flex-next:hover,
+.fusion-slider-sc:hover .flex-prev:hover {
+  background-color: var(--awb-arrow-hover-bgcolor);
+  border-color: var(--awb-arrow-border-hover-color);
+  color: var(--awb-arrow-hover-color);
+  opacity: 1;
+}
+.fusion-slider-sc .fusion-aligncenter {
+  margin-left: auto;
+  margin-right: auto;
+}
+.fusion-slider-sc .fusion-slider-sc-cover .slides,
+.fusion-slider-sc .fusion-slider-sc-cover .image,
+.fusion-slider-sc .fusion-slider-sc-cover .fusion-image-hover-element,
+.fusion-slider-sc .fusion-slider-sc-cover img {
+  height: 100%;
+}
+.fusion-slider-sc .fusion-slider-sc-cover .slides .image img {
+  object-fit: cover;
+}

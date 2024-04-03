@@ -1,0 +1,46 @@
+.fusion-counters-circle {
+  --awb-margin-top: 0;
+  --awb-margin-right: 0;
+  --awb-margin-bottom: 20px;
+  --awb-margin-left: 0;
+  margin: var(--awb-margin-top) var(--awb-margin-right) var(--awb-margin-bottom) var(--awb-margin-left);
+  text-align: center;
+}
+.fusion-counters-circle .counter-circle-wrapper {
+  --awb-font-size: 50px;
+  --awb-size: 220px;
+  display: inline-block;
+  position: relative;
+  margin: 0 7.5px 15px 7.5px;
+  overflow: hidden;
+  text-align: center;
+  height: var(--awb-size);
+  width: var(--awb-size);
+}
+.fusion-counters-circle .counter-circle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+  height: var(--awb-size);
+  width: var(--awb-size);
+  font-size: var(--awb-font-size);
+}
+.fusion-counters-circle .counter-circle .fusion-counter-circle-content-inner {
+  line-height: 1;
+  width: 80%;
+}
+.fusion-counters-circle .counter-circle .fontawesome-icon {
+  float: none;
+  margin: 0;
+  font-size: inherit;
+}
+.fusion-counters-circle .counter-circle canvas {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+.fusion-counters-circle:last-child {
+  margin-right: 0;
+}
