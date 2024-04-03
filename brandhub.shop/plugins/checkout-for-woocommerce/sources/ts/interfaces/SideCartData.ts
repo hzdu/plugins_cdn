@@ -8,7 +8,6 @@ export interface SuggestedProduct {
 }
 
 export default interface SideCartData {
-    is_empty: boolean;
     free_shipping_progress_bar: {
         has_free_shipping: boolean;
         amount_remaining: number;

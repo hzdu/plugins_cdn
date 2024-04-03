@@ -278,7 +278,6 @@ class UpdateCheckoutService {
             bill_to_different_address: billToDifferentAddress,
             post_data: formDataParams.toString(),
             shipping_method: undefined,
-            coupon_code: '',
             cfw: true,
         };
 
@@ -293,10 +292,6 @@ class UpdateCheckoutService {
             }
 
             data.shipping_method = shipping_methods;
-        }
-
-        if ( typeof args !== 'undefined' && typeof args.coupon_code !== 'undefined' && args.coupon_code !== '' ) {
-            data.coupon_code = args.coupon_code;
         }
 
         return data;

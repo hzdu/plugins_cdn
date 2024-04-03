@@ -1,5 +1,5 @@
 import React, { useEffect, useState }                  from 'react';
-import { Modal }                                       from '@wordpress/components';
+import { Modal }                                       from 'react-responsive-modal';
 import { __ }                                          from '@wordpress/i18n';
 import Cookies                                         from 'js-cookie';
 import DataService                                     from '../Services/DataService';
@@ -42,18 +42,18 @@ const LoginFormModal: React.FC = () => {
 
         openModal();
 
-        jQuery( document.body ).trigger( 'cfw_login_modal_open' );
+        jQuery( document.body ).one( 'cfw_login_modal_open', () => {
+            const username = jQuery( '#cfw_login_username' );
+            const emailValue = jQuery( '#billing_email' ).val();
 
-        const username = jQuery( '#cfw_login_username' );
-        const emailValue = jQuery( '#billing_email' ).val();
+            if ( emailValue !== '' ) {
+                username.val( emailValue );
 
-        if ( emailValue !== '' ) {
-            username.val( emailValue );
-
-            setTimeout( () => {
-                jQuery( '#cfw_login_password' ).trigger( 'focus' );
-            }, 200 );
-        }
+                setTimeout( () => {
+                    jQuery( '#cfw_login_password' ).trigger( 'focus' );
+                }, 200 );
+            }
+        } );
     };
 
     const loginSubmit = ( event: { preventDefault: () => void; } ) => {
@@ -121,10 +121,19 @@ const LoginFormModal: React.FC = () => {
         <>
             {isModalOpen && (
                 <Modal
-                    title={__( 'Welcome back', 'checkout-wc' )}
-                    __experimentalHideHeader={true}
-                    onRequestClose={() => closeModal()}
-                    className={`cfw-modal cfw-grid ${id}`}
+                    open={true}
+                    onClose={() => closeModal()}
+                    classNames={{
+                        root: 'cfw-modal-root',
+                        overlay: 'cfw-modal-overlay',
+                        modal: `cfw-modal cfw-grid ${id}`,
+                        modalContainer: 'cfw-modal-container',
+                    }}
+                    showCloseIcon={false}
+                    onAnimationEnd={() => {
+                        jQuery( document.body ).trigger( 'cfw_login_modal_open' );
+                    }}
+                    focusTrapped={false}
                 >
                     <div dangerouslySetInnerHTML={{ __html: content }} />
                 </Modal>

@@ -1,13 +1,27 @@
-.components-modal__screen-overlay {
+.cfw-modal-root {
     z-index: 999999 !important;
 }
 
-.cfw-modal:not(.is-full-screen) {
-    width: 100% !important;
-    max-width: 840px !important;
+.cfw-modal-container {
+    display: flex;
+    align-items: center;
 }
 
-.cfw-modal.is-full-screen {
+.cfw-modal {
+    padding: 32px;
+    margin: auto;
+    border-radius: 5px;
+}
+
+.cfw-modal:not(.cfw-full-screen) {
+    width: 100% !important;
+    max-width: 840px !important;
+    min-height: fit-content !important;
+    max-height: 80%;
+}
+
+.cfw-modal.cfw-full-screen {
+    max-width: 100%;
     width: 100% !important;
     height: 100% !important;
     border-radius: 0 !important;

@@ -1,6 +1,6 @@
 import React, { useEffect, useState }             from 'react';
 import apiFetch                                   from '@wordpress/api-fetch';
-import { Modal }                                  from '@wordpress/components';
+import { Modal }                                  from 'react-responsive-modal';
 import LoggingService                             from '../Services/LoggingService';
 import cfwAjax                                    from '../../functions/cfwAjax';
 import jqXHR = JQuery.jqXHR;
@@ -17,9 +17,6 @@ const withProductModal = ( WrappedComponent: React.ComponentType, apiUrl: string
             .then( ( data: any ) => {
                 setContent( data.html ?? 'Could not load product' );
                 setIsModalOpen( true );
-
-                const form = jQuery( `.${id} form` );
-                form.wc_variation_form();
             } )
             .catch( ( error ) => {
                 LoggingService.logError( 'Error fetching variation form:', error );
@@ -123,16 +120,24 @@ const withProductModal = ( WrappedComponent: React.ComponentType, apiUrl: string
                 closeModal={closeModal}
                 containerId={id}
             />
-            {isModalOpen && (
-                <Modal
-                    title={null}
-                    __experimentalHideHeader={true}
-                    onRequestClose={closeModal}
-                    className={`cfw-modal cfw-grid ${id}`}
-                >
-                    <div dangerouslySetInnerHTML={{ __html: content }} />
-                </Modal>
-            )}
+            <Modal
+                open={isModalOpen}
+                onClose={closeModal}
+                classNames={{
+                    root: 'cfw-modal-root',
+                    overlay: 'cfw-modal-overlay',
+                    modal: `cfw-modal cfw-grid ${id}`,
+                    modalContainer: 'cfw-modal-container',
+                }}
+                onAnimationEnd={() => {
+                    const form = jQuery( `.${id} form` );
+                    form.wc_variation_form();
+                }}
+                showCloseIcon={false}
+                focusTrapped={false}
+            >
+                <div dangerouslySetInnerHTML={{ __html: content }} />
+            </Modal>
         </>
     );
 };

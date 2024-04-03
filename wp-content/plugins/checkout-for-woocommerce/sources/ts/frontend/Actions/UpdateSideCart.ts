@@ -1,5 +1,6 @@
 import Action                  from './Action';
 import DataStores              from '../DataStores';
+import DataService             from '../Services/DataService';
 
 declare let wc_cart_fragments_params: any;
 
@@ -44,6 +45,8 @@ class UpdateSideCart extends Action {
         if ( resp.data ) {
             // Update the data stores, including actions
             DataStores.updateDataStore( resp.data, true );
+
+            DataService.setRuntimeParameter( 'dataAlreadyUpdated', true );
         }
 
         if ( resp.result ) {

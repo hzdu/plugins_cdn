@@ -10,6 +10,7 @@ import { ShippingPackageInterface } from '../../interfaces/ShippingPackageInterf
 
 // Define the combined state type
 export interface CartStoreStateInterface {
+    cartIsEmpty: boolean;
     cartNeedsPayment: boolean;
     cartItems: CartItemInterface[];
     cartActions: Actions;
@@ -24,6 +25,7 @@ export interface CartStoreStateInterface {
 
 // Default state
 const DEFAULT_STATE: CartStoreStateInterface = {
+    cartIsEmpty: true,
     cartNeedsPayment: false,
     cartItems: [],
     cartActions: {},
@@ -39,6 +41,14 @@ const DEFAULT_STATE: CartStoreStateInterface = {
 // Combined reducer
 const reducer = ( state = DEFAULT_STATE, action: any ): CartStoreStateInterface => {
     switch ( action.type ) {
+        case 'SET_CART_IS_EMPTY':
+            if ( fastDeepEqual( state.cartIsEmpty, action.cartIsEmpty ) ) {
+                return state;
+            }
+            return {
+                ...state,
+                cartIsEmpty: action.cartIsEmpty,
+            };
         case 'SET_CART_NEEDS_PAYMENT':
             if ( fastDeepEqual( state.cartNeedsPayment, action.cartNeedsPayment ) ) {
                 return state;
@@ -126,6 +136,12 @@ const reducer = ( state = DEFAULT_STATE, action: any ): CartStoreStateInterface 
 
 // Combined actions
 const actions = {
+    setCartIsEmpty( cartIsEmpty: boolean ) {
+        return {
+            type: 'SET_CART_IS_EMPTY',
+            cartIsEmpty,
+        };
+    },
     setCartNeedsPayment( cartNeedsPayment: boolean ) {
         return {
             type: 'SET_CART_NEEDS_PAYMENT',
@@ -190,6 +206,9 @@ const actions = {
 
 // Combined selectors
 const selectors = {
+    getCartIsEmpty( state: CartStoreStateInterface ) {
+        return state.cartIsEmpty;
+    },
     getCartNeedsPayment( state: CartStoreStateInterface ) {
         return state.cartNeedsPayment;
     },

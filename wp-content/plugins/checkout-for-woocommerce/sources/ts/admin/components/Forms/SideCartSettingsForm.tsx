@@ -351,6 +351,15 @@ const SideCartSettingsForm: React.FC<SideCartSettingsFormPropsInterface> = ( pro
                                                             searchTerm={searchTerm}
                                                         />
 
+                                                        {values.enable_promo_codes_on_side_cart && (
+                                                            <CheckboxField
+                                                                name="enable_side_cart_coupon_code_link"
+                                                                label="Hide Coupon Code Field Behind Link"
+                                                                description='Initially hide coupon field until "Have a coupon code?" link is clicked.'
+                                                                searchTerm={searchTerm}
+                                                            />
+                                                        )}
+
                                                         <CheckboxField
                                                             name="enable_side_cart_totals"
                                                             label="Show Shipping and Totals"

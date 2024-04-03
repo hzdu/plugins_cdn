@@ -1,5 +1,5 @@
 import React                                                           from 'react';
-import ReactDOM                                                        from 'react-dom';
+import { render }                                                      from '@wordpress/element';
 import { cfwDefineScrollToNotices, cfwDomReady }                       from './_functions';
 import AddToCart                                                       from './frontend/Components/AddToCart';
 import SideCartComponent                                               from './frontend/Components/SideCartComponent';
@@ -33,7 +33,7 @@ cfwDomReady( () => {
     const mountPoints = document.querySelectorAll( '.cfw-checkoutwc_cart-shortcode' );
 
     mountPoints.forEach( ( mountPoint: HTMLElement ) => {
-        ReactDOM.render(
+        render(
             <SideCartIcon additionalClass={mountPoint.dataset.additionalClasses} />,
             mountPoint,
         );

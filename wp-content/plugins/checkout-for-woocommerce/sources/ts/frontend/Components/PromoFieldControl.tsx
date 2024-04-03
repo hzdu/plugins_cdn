@@ -11,7 +11,16 @@ import PrimaryButton             from './PrimaryButton';
 
 const PromoFieldControl = ( { location = '' } ) => {
     const staticActions = useSelect( ( select: any ) => select( DataStores.cart_store_key ).getCartStaticActions( null ), [] );
-    const [ isPromoVisible, setIsPromoVisible ] = useState( !DataService.getSetting( 'enable_coupon_code_link' ) as boolean && DataService.getCheckoutParam( 'is_checkout' ) as boolean );
+    const [ isPromoVisible, setIsPromoVisible ] = useState(
+        (
+            !DataService.getSetting( 'enable_coupon_code_link' ) as boolean
+            && DataService.getCheckoutParam( 'is_checkout' ) as boolean
+        )
+        || (
+            !DataService.getSetting( 'enable_side_cart_coupon_code_link' ) as boolean
+            && !DataService.getCheckoutParam( 'is_checkout' ) as boolean
+        ),
+    );
     const [ promoCode, setPromoCode ] = useState( '' );
 
     const promoCodeLabel = DataService.getMessage( 'promo_code_label' );

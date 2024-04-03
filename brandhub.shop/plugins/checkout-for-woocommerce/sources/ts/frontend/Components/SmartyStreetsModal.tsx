@@ -1,5 +1,5 @@
 import React, { useEffect, useState }                  from 'react';
-import { Modal }                                       from '@wordpress/components';
+import { Modal }                                       from 'react-responsive-modal';
 
 const SmartyStreetsModal: React.FC = () => {
     const [ isModalOpen, setIsModalOpen ] = React.useState( false );
@@ -24,10 +24,16 @@ const SmartyStreetsModal: React.FC = () => {
         <>
             {isModalOpen && (
                 <Modal
-                    title={''}
-                    __experimentalHideHeader={true}
-                    onRequestClose={() => closeModal()}
-                    className={`cfw-modal checkoutwc cfw-grid smarty-modal ${id}`}
+                    open={true}
+                    onClose={() => closeModal()}
+                    classNames={{
+                        root: 'cfw-modal-root',
+                        overlay: 'cfw-modal-overlay',
+                        modal: `cfw-modal checkoutwc cfw-grid smarty-modal ${id}`,
+                        modalContainer: 'cfw-modal-container',
+                    }}
+                    showCloseIcon={false}
+                    focusTrapped={false}
                 >
                     <div dangerouslySetInnerHTML={{ __html: content }} />
                 </Modal>

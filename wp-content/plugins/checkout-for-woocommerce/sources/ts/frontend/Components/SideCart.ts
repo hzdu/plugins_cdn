@@ -17,6 +17,11 @@ class SideCart {
     setDataStoreListeners(): void {
         // Catch cart fragment updates
         jQuery( window ).on( 'wc_fragments_refreshed', () => {
+            if ( DataService.getRuntimeParameter( 'dataAlreadyUpdated' ) ) {
+                DataService.setRuntimeParameter( 'dataAlreadyUpdated', false );
+                return;
+            }
+
             DataStores.tryToUpdateDataStoreFromLocalStorage();
         } );
 
@@ -25,7 +30,8 @@ class SideCart {
                 return;
             }
 
-            if ( source && source === 'cfw_data_already_updated' ) {
+            if ( DataService.getRuntimeParameter( 'dataAlreadyUpdated' ) ) {
+                DataService.setRuntimeParameter( 'dataAlreadyUpdated', false );
                 return;
             }
 
@@ -82,17 +88,17 @@ class SideCart {
             }
 
             if ( resp.data ) {
-                DataStores.updateDataStore( resp.data );
+                DataStores.updateDataStore( resp.data, true );
             }
 
             jQuery( document.body ).trigger( 'wc_fragment_refresh' );
-            jQuery( document.body ).trigger( 'added_to_cart', [ resp.fragments, resp.cart_hash, jQuery( e.target ), 'cfw_data_already_updated' ] );
+            jQuery( document.body ).trigger( 'added_to_cart', [ resp.fragments, resp.cart_hash, jQuery( e.target ) ] );
             jQuery( document.body ).trigger( 'updated_cart_totals' );
         } );
 
         jQuery( document.body ).on( 'cfw_cart_item_variation_edited', ( e, resp ) => {
             if ( resp.data ) {
-                DataStores.updateDataStore( resp.data );
+                DataStores.updateDataStore( resp.data, true );
             }
 
             jQuery( document.body ).trigger( 'wc_fragment_refresh' );
@@ -131,7 +137,7 @@ class SideCart {
 
         if ( fragments && fragments.cfw_data ) {
             LoggingService.logNotice( 'Successfully fetched fragments from session storage' );
-            DataStores.updateDataStore( fragments.cfw_data );
+            DataStores.updateDataStore( fragments.cfw_data, true );
         } else {
             LoggingService.logNotice( 'Failed to fetch fragments from session storage' );
         }

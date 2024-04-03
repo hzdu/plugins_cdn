@@ -1,5 +1,5 @@
 import React, { useEffect, useState }                from 'react';
-import { Flex, FlexItem, Modal }                     from '@wordpress/components';
+import { Modal }                                     from 'react-responsive-modal';
 import apiFetch                                      from '@wordpress/api-fetch';
 import LoggingService                                from '../Services/LoggingService';
 import CartItemInterface                             from '../../interfaces/CartItemInterface';
@@ -27,9 +27,6 @@ const CartItemEditVariationLink = ( { item }: CartItemEditVariationLinkProps ) =
             .then( ( data: Record<string, string> ) => {
                 setContent( data.html ?? 'Could not load product' );
                 setOpen( true );
-
-                const form = jQuery( `.${id} form` );
-                form.wc_variation_form();
             } )
             .catch( ( error ) => {
                 LoggingService.logError( 'Error fetching variation form:', error );
@@ -115,17 +112,32 @@ const CartItemEditVariationLink = ( { item }: CartItemEditVariationLinkProps ) =
             </a>
 
             { isOpen && (
-                <Modal title={null} __experimentalHideHeader={true} onRequestClose={ closeModal } className={`cfw-modal cfw-grid ${id}`}>
+                <Modal
+                    open={true}
+                    onClose={ closeModal }
+                    classNames={{
+                        root: 'cfw-modal-root',
+                        overlay: 'cfw-modal-overlay',
+                        modal: `cfw-modal cfw-grid ${id}`,
+                        modalContainer: 'cfw-modal-container',
+                    }}
+                    onAnimationEnd={() => {
+                        const form = jQuery( `.${id} form` );
+                        form.wc_variation_form();
+                    }}
+                    showCloseIcon={false}
+                    focusTrapped={false}
+                >
                     <div dangerouslySetInnerHTML={ { __html: content } } />
 
-                    <Flex style={ { marginTop: '1em' } } justify={'center'}>
-                        <FlexItem>
+                    <div style={ { marginTop: '1em', display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'center' } }>
+                        <div style={ { margin: '0 10px' } }>
                             <PrimaryButton disabled={confirmDisabled} onClick={onSubmit} style={{ padding: '0.82rem' }} label={DataService.getMessage( 'update_cart_item_variation_button' )} />
-                        </FlexItem>
-                        <FlexItem>
+                        </div>
+                        <div style={ { margin: '0 10px' } }>
                             <SecondaryButton label={DataService.getMessage( 'cancel_button_label' )} onClick={closeModal} />
-                        </FlexItem>
-                    </Flex>
+                        </div>
+                    </div>
                 </Modal>
             ) }
         </>

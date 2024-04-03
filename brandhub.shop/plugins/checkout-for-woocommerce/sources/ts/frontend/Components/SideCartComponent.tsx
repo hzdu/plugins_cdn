@@ -10,15 +10,13 @@ import SideCartTotals                                    from './SideCartTotals'
 import DataService                                       from '../Services/DataService';
 import SecondaryButton                                   from './SecondaryButton';
 import OrderBumpsList                                    from '../../components/OrderBumpsList';
-import SideCartData                                      from '../../interfaces/SideCartData';
-import Actions                                           from '../../Types/Actions';
 import SuggestedProductsCarousel                         from './SuggestedProductsCarousel';
 import PrimaryLinkButton                                 from './PrimaryLinkButton';
 
 const SideCartComponent: React.FC = () => {
+    const isEmpty = useSelect( ( select: any ) => select( DataStores.cart_store_key ).getCartIsEmpty( null ), [] );
     const staticActions = useSelect( ( select: any ) => select( DataStores.cart_store_key ).getCartStaticActions( null ), [] );
     const notices = useSelect( ( select: any ) => select( DataStores.cart_store_key ).getCartNotices( null ), [] ) as string;
-    const sideCartData = useSelect( ( select: any ) => select( DataStores.cart_store_key ).getSideCartData( null ), [] ) as SideCartData;
 
     // Scroll to notices if they exist
     useEffect( () => {
@@ -46,7 +44,7 @@ const SideCartComponent: React.FC = () => {
 
             <div className="cfw-side-cart-contents">
                 {
-                    !sideCartData.is_empty ? (
+                    !isEmpty ? (
                         <>
                             <CartTable />
                             <OrderBumpsList locations={[ 'below_cart_items', 'below_side_cart_items' ]}/>
@@ -61,7 +59,7 @@ const SideCartComponent: React.FC = () => {
                 }
             </div>
             <div className="cfw-side-cart-contents-footer">
-                {!sideCartData.is_empty && (
+                {!isEmpty && (
                     <>
                         <div className="cfw-side-cart-contents-footer-border-shim"></div>
 

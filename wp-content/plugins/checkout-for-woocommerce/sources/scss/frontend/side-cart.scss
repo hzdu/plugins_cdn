@@ -7,6 +7,9 @@
 @import "components/modals";
 @import "components/side-cart-quantity-wrap";
 
+// 3rd party
+@import '~react-responsive-modal/styles.css';
+
 .cfw-side-cart-open-trigger {
     cursor: pointer;
 }
@@ -133,6 +136,10 @@ $slick-loader-path: "../images/";
 
     .cfw-module {
         margin-bottom: 1em;
+    }
+
+    #cfw-side-cart-container {
+        width: 100%;
     }
 
     #cfw-side-cart-form {

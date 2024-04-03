@@ -1,5 +1,5 @@
 import React, { useEffect, useState }                  from 'react';
-import { Modal }                                       from '@wordpress/components';
+import { Modal }                                       from 'react-responsive-modal';
 import DataService                                     from '../Services/DataService';
 import LostPasswordAction                              from '../Actions/LostPasswordAction';
 
@@ -11,8 +11,7 @@ const LostPasswordModal: React.FC = () => {
     const openModal = () => {
         setContent( DataService.getData( 'lost_password_form' ) );
         setIsModalOpen( true );
-
-        jQuery( `.${id} #user_login` ).val( jQuery( '#billing_email' ).val() );
+        jQuery( document.body ).trigger( 'cfw_login_modal_close' );
     };
 
     const closeModal = () => {
@@ -59,10 +58,19 @@ const LostPasswordModal: React.FC = () => {
         <>
             {isModalOpen && (
                 <Modal
-                    title={''}
-                    __experimentalHideHeader={true}
-                    onRequestClose={() => closeModal()}
-                    className={`cfw-modal cfw-grid ${id}`}
+                    open={true}
+                    onClose={() => closeModal()}
+                    classNames={{
+                        root: 'cfw-modal-root',
+                        overlay: 'cfw-modal-overlay',
+                        modal: `cfw-modal cfw-grid ${id}`,
+                        modalContainer: 'cfw-modal-container',
+                    }}
+                    showCloseIcon={false}
+                    onAnimationEnd={() => {
+                        jQuery( `.${id} #user_login` ).val( jQuery( '#billing_email' ).val() );
+                    }}
+                    focusTrapped={false}
                 >
                     <div dangerouslySetInnerHTML={{ __html: content }} />
                 </Modal>

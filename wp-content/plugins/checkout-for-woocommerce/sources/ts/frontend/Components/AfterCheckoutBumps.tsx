@@ -1,5 +1,5 @@
 import React, { useEffect, useState }                from 'react';
-import { Modal }                                     from '@wordpress/components';
+import { Modal }                                     from 'react-responsive-modal';
 import apiFetch                                      from '@wordpress/api-fetch';
 import LoggingService                                from '../Services/LoggingService';
 import DataService                                   from '../Services/DataService';
@@ -46,9 +46,6 @@ const AfterCheckoutBumps = () => {
                     setFullScreen( false );
                     setContent( data.html ?? 'Could not load product' );
                     setOpen( true );
-
-                    const form = jQuery( 'form.cfw-product-form-modal.variable' );
-                    form.wc_variation_form();
                 } )
                 .catch( ( error ) => {
                     LoggingService.logError( 'Error fetching after checkout bump product form:', error );
@@ -64,9 +61,6 @@ const AfterCheckoutBumps = () => {
                 setFullScreen( true );
                 setContent( response.content?.rendered ?? 'Could not load offer' );
                 setOpen( true );
-
-                const form = jQuery( 'form.cfw-product-form-modal.variable' );
-                form.wc_variation_form();
             } )
             .catch( ( error ) => {
                 LoggingService.logError( 'Error fetching after checkout bump product form:', error );
@@ -214,7 +208,24 @@ const AfterCheckoutBumps = () => {
     return (
         <>
             { isOpen && (
-                <Modal title={null} __experimentalHideHeader={true} isDismissible={false} onRequestClose={() => null} className={`cfw-modal cfw-grid ${id}`} isFullScreen={fullScreen}>
+                <Modal
+                    onClose={() => null}
+                    classNames={{
+                        root: 'cfw-modal-root',
+                        overlay: 'cfw-modal-overlay',
+                        modal: `cfw-modal cfw-grid ${id} ${fullScreen ? 'cfw-full-screen' : ''}`,
+                        modalContainer: 'cfw-modal-container',
+                    }}
+                    open={true}
+                    onAnimationEnd={() => {
+                        const form = jQuery( 'form.cfw-product-form-modal.variable' );
+                        form.wc_variation_form();
+                    }}
+                    onOverlayClick={() => {}}
+                    onEscKeyDown={() => {}}
+                    showCloseIcon={false}
+                    focusTrapped={false}
+                >
                     <div dangerouslySetInnerHTML={ { __html: content } } />
                 </Modal>
             ) }

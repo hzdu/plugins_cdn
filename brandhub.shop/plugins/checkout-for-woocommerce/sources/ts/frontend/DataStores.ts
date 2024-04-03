@@ -14,6 +14,7 @@ declare let wc_cart_fragments_params: any;
 
 interface UpdateDataInterface {
     cart?: {
+        isEmpty?: boolean;
         needsPayment?: boolean;
         items?: CartItemInterface[];
         totals?: CartTotalsData;
@@ -47,6 +48,7 @@ class DataStores {
         }
 
         // Fallback, get from the page
+        ( dispatch( DataStores.cart_store_key ) as any ).setCartIsEmpty( DataService.getData( 'cart' ).isEmpty as boolean );
         ( dispatch( DataStores.cart_store_key ) as any ).setCartNeedsPayment( DataService.getData( 'cart' ).needsPayment as boolean );
         ( dispatch( DataStores.cart_store_key ) as any ).setCartItems( DataService.getData( 'cart' ).items as CartItemInterface[] );
         ( dispatch( DataStores.cart_store_key ) as any ).setCartActions( DataService.getData( 'cart' ).actions as Actions );
@@ -113,7 +115,11 @@ class DataStores {
             return;
         }
 
-        if ( data.cart?.needsPayment ) {
+        if ( typeof data.cart?.isEmpty !== 'undefined' ) {
+            ( dispatch( DataStores.cart_store_key ) as any ).setCartIsEmpty( data.cart.isEmpty as boolean );
+        }
+
+        if ( typeof data.cart?.needsPayment !== 'undefined' ) {
             ( dispatch( DataStores.cart_store_key ) as any ).setCartNeedsPayment( data.cart.needsPayment as boolean );
         }
 

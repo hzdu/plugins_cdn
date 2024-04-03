@@ -1,16 +1,15 @@
 import React              from 'react';
 import { useSelect }      from '@wordpress/data';
 import DataStores         from '../DataStores';
-import SideCartData       from '../../interfaces/SideCartData';
 import DataService        from '../Services/DataService';
 import SideCartIcon       from './SideCartIcon';
 
 const SideCartFloatingButton: React.FC = () => {
-    const sideCartData = useSelect( ( select: any ) => select( DataStores.cart_store_key ).getSideCartData( null ), [] ) as SideCartData;
+    const isEmpty = useSelect( ( select: any ) => select( DataStores.cart_store_key ).getCartIsEmpty( null ), [] );
 
     let shouldHideButton = false;
 
-    if ( sideCartData.is_empty && DataService.getSetting( 'hide_floating_cart_button_empty_cart' ) ) {
+    if ( isEmpty && DataService.getSetting( 'hide_floating_cart_button_empty_cart' ) ) {
         shouldHideButton = true;
     }
 

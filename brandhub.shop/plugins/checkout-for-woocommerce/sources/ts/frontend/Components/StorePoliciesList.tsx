@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import apiFetch            from '@wordpress/api-fetch';
-import { Modal }           from '@wordpress/components';
-import LoggingService      from '../Services/LoggingService';
+import React, { useState }                        from 'react';
+import apiFetch                                   from '@wordpress/api-fetch';
+import { Modal }                                  from 'react-responsive-modal';
+import LoggingService                             from '../Services/LoggingService';
 
 const StorePoliciesList = ( { policies } ) => {
     const [ isModalOpen, setIsModalOpen ] = useState( false );
@@ -45,8 +45,15 @@ const StorePoliciesList = ( { policies } ) => {
             </ul>
             {isModalOpen && (
                 <Modal
-                    title={modalTitle}
-                    onRequestClose={() => setIsModalOpen( false )}
+                    open={true}
+                    onClose={() => setIsModalOpen( false )}
+                    focusTrapped={false}
+                    classNames={{
+                        overlay: 'cfw-modal-overlay',
+                        modal: 'cfw-modal',
+                        root: 'cfw-modal-root',
+                        modalContainer: 'cfw-modal-container',
+                    }}
                 >
                     <div dangerouslySetInnerHTML={{ __html: modalContent }} />
                 </Modal>

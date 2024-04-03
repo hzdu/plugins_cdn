@@ -7,12 +7,11 @@ import DataStores                              from '../DataStores';
 import LoggingService                          from '../Services/LoggingService';
 import DataService                             from '../Services/DataService';
 import FreeShippingProgressBar                 from './FreeShippingProgressBar';
-import SideCartData                            from '../../interfaces/SideCartData';
 
 const CartTable: React.FC = () => {
+    const isEmpty = useSelect( ( select: any ) => select( DataStores.cart_store_key ).getCartIsEmpty( null ), [] );
     const items = useSelect( ( select: any ) => select( DataStores.cart_store_key ).getCartItems( null ), [] );
     const staticActions = useSelect( ( select: any ) => select( DataStores.cart_store_key ).getCartStaticActions( null ), [] );
-    const sideCartData = useSelect( ( select: any ) => select( DataStores.cart_store_key ).getSideCartData( null ), [] ) as SideCartData;
 
     const updateItem = ( item: CartItemInterface ) => {
         // Find the index of the item to update
@@ -37,7 +36,7 @@ const CartTable: React.FC = () => {
     return (
         <>
             {
-                !sideCartData.is_empty
+                !isEmpty
                 && DataService.getSetting( 'enable_free_shipping_progress_bar' )
                 && (
                     <FreeShippingProgressBar/>
