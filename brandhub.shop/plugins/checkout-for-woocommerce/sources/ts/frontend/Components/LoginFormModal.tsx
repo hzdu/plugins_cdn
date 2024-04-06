@@ -42,7 +42,7 @@ const LoginFormModal: React.FC = () => {
 
         openModal();
 
-        jQuery( document.body ).one( 'cfw_login_modal_open', () => {
+        jQuery( document.body ).on( 'cfw_login_modal_open', () => {
             const username = jQuery( '#cfw_login_username' );
             const emailValue = jQuery( '#billing_email' ).val();
 
@@ -77,7 +77,7 @@ const LoginFormModal: React.FC = () => {
 
     useEffect( () => {
         // Account exists listener (once)
-        jQuery( document.body ).one( 'cfw_account_exists', autoOpen.bind( this )  );
+        jQuery( document.body ).on( 'cfw_account_exists', autoOpen.bind( this )  );
 
         // Click listener (always)
         jQuery( document.body ).on( `click.${id}`, '.showlogin, #cfw-login-modal-trigger', ( e ) => {

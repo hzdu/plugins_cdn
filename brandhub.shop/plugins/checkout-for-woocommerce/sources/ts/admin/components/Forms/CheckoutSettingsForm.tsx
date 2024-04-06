@@ -545,6 +545,12 @@ const CheckoutSettingsForm: React.FC<CheckoutSettingsFormPropsInterface> = ( pro
                                             </>
                                         )
                                     }
+                                    <CheckboxField
+                                        name="enable_sticky_cart_summary"
+                                        label="Enable Sticky Cart Summary"
+                                        description='If cart summary is shorter than the rest of the content, it will stick to the top of the screen when scrolling.'
+                                        searchTerm={searchTerm}
+                                    />
                                 </>
                             }
                         />

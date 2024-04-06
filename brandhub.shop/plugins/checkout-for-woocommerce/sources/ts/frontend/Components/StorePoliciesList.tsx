@@ -55,6 +55,7 @@ const StorePoliciesList = ( { policies } ) => {
                         modalContainer: 'cfw-modal-container',
                     }}
                 >
+                    <h1>{modalTitle}</h1>
                     <div dangerouslySetInnerHTML={{ __html: modalContent }} />
                 </Modal>
             )}

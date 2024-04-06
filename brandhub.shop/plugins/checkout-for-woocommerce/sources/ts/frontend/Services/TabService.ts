@@ -188,6 +188,14 @@ class TabService {
         }
 
         try {
+            const movingBack    = !TabService.getCurrentTab().nextAll( `#${tabId}.cfw-panel` ).length; // technically a misnomer
+
+            if ( !movingBack ) {
+                const destination = tabId.replace( 'cfw-', '' );
+                jQuery( document.body ).trigger( 'cfw_step_changed', destination );
+                LoggingService.logEvent( `cfw_step_changed fired. Destination: ${destination}` );
+            }
+
             TabService.tabContainer.easytabs( 'select', tabId );
         } catch ( e ) {
             LoggingService.logError( `Could not select tab: ${e.message}` );

@@ -22,18 +22,6 @@
     font-style: normal;
 }
 
-body.admin-bar {
-    #cfw-side-cart {
-        top: 32px;
-        height: calc(100vh - 32px);
-
-        @include media-breakpoint-down(lg) {
-            top: 0;
-            height: 100vh;
-        }
-    }
-}
-
 #cfw-side-cart-overlay {
     opacity: 0;
     position: fixed;
@@ -70,13 +58,13 @@ $slick-loader-path: "../images/";
     position: fixed;
     width: 100%;
     max-width: 480px;
-    height: 100%;
     overflow-x: hidden;
     overflow-y: visible;
     background: var(--cfw-body-background-color) !important;
     font-family: var(--cfw-body-font-family);
     right: -480px;
-    top: 0;
+    top: var(--wp-admin--admin-bar--height, 0px);
+    height: calc(100vh - var(--wp-admin--admin-bar--height, 0px));
     z-index: 999999;
     color: var(--cfw-body-text-color);
     text-rendering: optimizelegibility !important;
@@ -140,6 +128,7 @@ $slick-loader-path: "../images/";
 
     #cfw-side-cart-container {
         width: 100%;
+        height: 100%;
     }
 
     #cfw-side-cart-form {
@@ -187,7 +176,6 @@ $slick-loader-path: "../images/";
 
     .cfw-side-cart-contents {
         flex-grow: 1;
-        overflow-y: auto;
 
         @include media-breakpoint-down(md) {
             flex-grow: unset;

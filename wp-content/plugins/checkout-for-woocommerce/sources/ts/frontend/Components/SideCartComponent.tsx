@@ -47,7 +47,11 @@ const SideCartComponent: React.FC = () => {
                     !isEmpty ? (
                         <>
                             <CartTable />
-                            <OrderBumpsList locations={[ 'below_cart_items', 'below_side_cart_items' ]}/>
+
+                            {DataService.getSetting( 'enable_order_bumps' ) && DataService.getSetting( 'enable_order_bumps_on_side_cart' ) && (
+                                <OrderBumpsList locations={[ 'below_cart_items', 'below_side_cart_items' ]}/>
+                            ) }
+
                             {ReactHtmlParser( staticActions?.cfw_after_side_cart_items_table )}
                         </>
                     ) : (

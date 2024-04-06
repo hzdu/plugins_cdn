@@ -73,3 +73,10 @@ main.checkoutwc .cfw-rp {
 .cfw-mb {
     margin-bottom: .8em !important;
 }
+
+.cfw-sticky {
+    @media screen and (min-width: 992px) {
+        position: sticky !important;
+        top: var(--wp-admin--admin-bar--height, 0px);
+    }
+}
