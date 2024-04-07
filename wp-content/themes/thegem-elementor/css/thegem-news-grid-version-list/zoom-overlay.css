@@ -1,0 +1,37 @@
+.hover-list-zoom-overlay .portfolio-item .image .image-inner img {
+	overflow: hidden;
+	transition: 0.7s cubic-bezier(.2,1,.22,1);
+}
+
+.hover-list-zoom-overlay .portfolio-item .image:hover .image-inner img {
+	transform: scale(1.05);
+	cursor: pointer;
+}
+
+.hover-list-zoom-overlay .portfolio-item .image.format-video.has-post-thumbnail:hover .image-inner img {
+	-webkit-transform: translate(0,0) scale(1);
+	transform: translate(0,0) scale(1);
+}
+
+.hover-list-zoom-overlay .portfolio-item .image .overlay,
+.hover-list-zoom-overlay .portfolio-item:hover .image .overlay {
+	display: block;
+}
+
+.hover-list-zoom-overlay .portfolio-item .image .overlay:before {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	z-index: -1;
+	content: '';
+	opacity: 0;
+    margin: 0;
+	background-color: rgba(0, 0, 0, 0.35);
+	transition: 0.7s cubic-bezier(.2,1,.22,1);
+}
+
+.hover-list-zoom-overlay .portfolio-item .image:hover .overlay:before {
+	opacity: 1;
+}

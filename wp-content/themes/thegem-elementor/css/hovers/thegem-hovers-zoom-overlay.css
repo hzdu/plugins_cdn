@@ -1,0 +1,234 @@
+.hover-zoom-overlay .portfolio-item .image .image-inner img,
+.hover-zoom-overlay .gallery-item .overlay-wrap .image-wrap img {
+	overflow: hidden;
+	-webkit-transform: translate(0, 0) scale(1);
+	transform: translate(0, 0) scale(1);
+	-webkit-transition: -webkit-transform 0.5s;
+	transition: transform 0.5s;
+}
+
+.hover-zoom-overlay .portfolio-item:is(:hover, .hover-effect) .image .image-inner img,
+.hover-zoom-overlay .gallery-item:is(:hover, .hover-effect) .overlay-wrap .image-wrap img {
+	-webkit-transform: translate(0, 0) scale(1.12);
+	transform: translate(0, 0) scale(1.12);
+	-webkit-transition: -webkit-transform 0.5s;
+	transition: transform 0.5s;
+}
+
+.news-grid.hover-zoom-overlay .portfolio-item:is(:hover, .hover-effect) .image.format-video.has-post-thumbnail .image-inner img {
+	-webkit-transform: translate(0, 0) scale(1);
+	transform: translate(0, 0) scale(1);
+}
+
+.hover-zoom-overlay .portfolio-item .image .overlay,
+.hover-zoom-overlay .portfolio-item:is(:hover, .hover-effect) .image .overlay,
+.hover-zoom-overlay .gallery-item .overlay-wrap .overlay,
+.hover-zoom-overlay .gallery-item:is(:hover, .hover-effect) .overlay-wrap .overlay {
+	display: block;
+}
+
+.hover-zoom-overlay .portfolio-item .image .overlay:before,
+.hover-zoom-overlay .gallery-item .overlay-wrap .overlay:before {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	z-index: -1;
+	content: '';
+	opacity: 0;
+	margin: 0;
+	background-color: rgba(0, 0, 0, 0.3);
+	-webkit-transition: opacity 0.3s;
+	transition: opacity 0.3s;
+}
+
+.hover-zoom-overlay .portfolio-item:is(:hover, .hover-effect) .image .overlay:before,
+.hover-zoom-overlay .gallery-item:is(:hover, .hover-effect) .overlay-wrap .overlay:before {
+	opacity: 1;
+}
+
+.hover-zoom-overlay .portfolio-item .image .overlay .links .portfolio-icons {
+	display: none;
+}
+
+.hover-zoom-overlay .portfolio-item .image .links .caption .title {
+	opacity: 0;
+	top: 200px;
+	display: inline-block;
+	vertical-align: middle;
+	position: relative;
+	will-change: transform;
+	-webkit-transform: scale(0);
+	transform: scale(0);
+	-webkit-transition: -webkit-transform 0s 0.5s, opacity 0.3s 0.1s, top 0.3s 0.1s;
+	transition: transform 0s 0.5s, opacity 0.3s 0.1s, top 0.3s 0.1s;
+}
+
+.hover-zoom-overlay .gallery-item .overlay .overlay-content-inner .title {
+	opacity: 0;
+	top: 200px;
+	display: block;
+	vertical-align: middle;
+	position: relative;
+	margin-top: 35px;
+	will-change: transform;
+	-webkit-transform: scale(0);
+	transform: scale(0);
+	-webkit-transition: -webkit-transform 0s 0.5s, opacity 0.3s 0.1s, top 0.3s 0.1s;
+	transition: transform 0s 0.5s, opacity 0.3s 0.1s, top 0.3s 0.1s;
+}
+
+.hover-zoom-overlay .portfolio-item:is(:hover, .hover-effect) .image .links .caption .title {
+	opacity: 1;
+	top: 0;
+	-webkit-transform: scale(1);
+	transform: scale(1);
+	-webkit-transition: -webkit-transform 0.3s 0.1s, opacity 0.3s 0.1s, top 0s;
+	transition: transform 0.3s 0.1s, opacity 0.3s 0.1s, top 0s;
+}
+
+.hover-zoom-overlay .gallery-item:is(:hover, .hover-effect) .overlay .overlay-content-inner .title {
+	opacity: 1;
+	top: 0;
+	-webkit-transform: scale(1);
+	transform: scale(1);
+	-webkit-transition: -webkit-transform 0.3s 0.1s, opacity 0.3s 0.1s, top 0s;
+	transition: transform 0.3s 0.1s, opacity 0.3s 0.1s, top 0s;
+}
+
+.hover-zoom-overlay .portfolio-item .image .links .caption .description,
+.hover-zoom-overlay .portfolio-item .image .links .caption .details,
+.hover-zoom-overlay .portfolio-item .image .links .caption .info {
+	opacity: 0;
+	top: 200px;
+	position: relative;
+	will-change: transform;
+	-webkit-transform: scale(0);
+	transform: scale(0);
+	-webkit-transition: -webkit-transform 0s 0.5s, opacity 0.3s, top 0.3s;
+	transition: transform 0s 0.5s, opacity 0.3s, top 0.3s;
+}
+
+.hover-zoom-overlay .portfolio-item:is(:hover, .hover-effect) .image .links .caption .description,
+.hover-zoom-overlay .portfolio-item:is(:hover, .hover-effect) .image .links .caption .details,
+.hover-zoom-overlay .portfolio-item:is(:hover, .hover-effect) .image .links .caption .info {
+	opacity: 1;
+	top: 0;
+	-webkit-transform: scale(1);
+	transform: scale(1);
+	-webkit-transition: -webkit-transform 0.3s 0.2s, opacity 0.3s 0.2s, top 0s;
+	transition: transform 0.2s 0.2s, opacity 0.3s 0.2s, top 0s;
+}
+
+.hover-zoom-overlay .portfolio-item .image .links .caption .product-info {
+	opacity: 0;
+	top: 200px;
+	position: relative;
+	will-change: transform;
+	-webkit-transform: scale(0);
+	transform: scale(0);
+	-webkit-transition: -webkit-transform 0s 0.5s, opacity 0.3s, top 0.3s;
+	transition: transform 0s 0.5s, opacity 0.3s, top 0.3s;
+}
+
+.hover-zoom-overlay .portfolio-item:is(:hover, .hover-effect) .image .links .caption .product-info {
+	opacity: 1;
+	top: 0;
+	-webkit-transform: scale(1);
+	transform: scale(1);
+	-webkit-transition: -webkit-transform 0.3s 0.2s, opacity 0.3s 0.2s, top 0s;
+	transition: transform 0.2s 0.2s, opacity 0.3s 0.2s, top 0s;
+}
+
+.hover-zoom-overlay .gallery-item .overlay .overlay-content-inner .subtitle {
+	opacity: 0;
+	display: inline-block;
+	vertical-align: middle;
+	top: 200px;
+	position: relative;
+	margin-top: 20px;
+	will-change: transform;
+	-webkit-transform: scale(0);
+	transform: scale(0);
+	-webkit-transition: -webkit-transform 0s 0.5s, opacity 0.3s, top 0.3s;
+	transition: transform 0s 0.5s, opacity 0.3s, top 0.3s;
+}
+
+.hover-zoom-overlay .gallery-item:is(:hover, .hover-effect) .overlay .overlay-content-inner .subtitle {
+	opacity: 1;
+	top: 0;
+	-webkit-transform: scale(1);
+	transform: scale(1);
+	-webkit-transition: -webkit-transform 0.3s 0.2s, opacity 0.3s 0.2s, top 0s;
+	transition: transform 0.2s 0.2s, opacity 0.3s 0.2s, top 0s;
+}
+
+/* Alternative Version */
+
+.hover-zoom-overlay.version-alternative.caption-position-image .portfolio-item .image .overlay .links {
+	justify-content: flex-end;
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	height: auto;
+	max-height: 100%;
+	-webkit-transition: bottom 0.3s, transform 0.3s;
+	transition: bottom 0.3s, transform 0.3s;
+}
+
+.hover-zoom-overlay.version-alternative.caption-position-image .portfolio-item.appearance-type-featured_image:is(:hover, .hover-effect) .image .overlay .links {
+	bottom: 50%;
+	-webkit-transform: translateY(50%);
+	transform: translateY(50%);
+}
+
+.hover-zoom-overlay.version-alternative.caption-position-image .portfolio-item .image .links .caption .title,
+.hover-zoom-overlay.version-alternative.caption-position-image .portfolio-item .image .links .caption .info {
+	opacity: 1;
+	top: 0;
+	transform: none;
+	transition: all 0.3s;
+}
+
+.hover-zoom-overlay.version-alternative.caption-position-image .portfolio-item.appearance-type-featured_image:not(:hover, .hover-effect) .image .links .caption .title,
+.hover-zoom-overlay.version-alternative.caption-position-image .portfolio-item:not(.appearance-type-featured_image) .image .links .caption .title {
+	margin-bottom: 20px;
+}
+
+.hover-zoom-overlay.version-alternative.caption-position-image:is(.columns-4, .columns-5, .columns-6) .portfolio-item:not(.double-item) .image .links .caption .title,
+.hover-zoom-overlay.version-alternative.caption-position-image .portfolio-item.small-item .image .links .caption .title {
+	margin-bottom: 12px;
+}
+
+.hover-zoom-overlay.version-alternative.caption-position-image .portfolio-item .image .links .caption .description {
+	opacity: 1;
+	position: initial;
+	transform: none;
+}
+
+.hover-zoom-overlay.version-alternative.caption-position-image .portfolio-item.appearance-type-featured_image:is(:hover, .hover-effect) .image .links .caption .slide-content-hidden {
+	margin-bottom: 0 !important;
+}
+
+.hover-zoom-overlay.version-alternative.caption-position-image .portfolio-item .image .overlay:after {
+	content: '';
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	z-index: -1;
+	opacity: 1;
+	background: -moz-linear-gradient(top, rgba(30,87,153,0) 65%, rgba(0,0,0,0.5) 100%);
+	background: -webkit-linear-gradient(top, rgba(30,87,153,0) 65%,rgba(0,0,0,0.5) 100%);
+	background: linear-gradient(to bottom, rgba(30,87,153,0) 65%,rgba(0,0,0,0.5) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#001e5799', endColorstr='#80000000',GradientType=0 );
+	-webkit-transition: opacity 0.3s;
+	transition: opacity 0.3s;
+}
+
+.hover-zoom-overlay.version-alternative.caption-position-image .portfolio-item.appearance-type-featured_image:is(:hover, .hover-effect) .image .overlay:after {
+	opacity: 0;
+}

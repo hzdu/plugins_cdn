@@ -1,0 +1,51 @@
+.hover-new-simple-zoom .portfolio-item .image .image-inner img {
+	overflow: hidden;
+	-webkit-transform: translate(0,0) scale(1);
+	transform: translate(0,0) scale(1);
+	-webkit-transition: -webkit-transform 0.3s;
+	transition: transform 0.3s;
+}
+
+.hover-new-simple-zoom .portfolio-item:hover .image .image-inner img {
+	-webkit-transform: translate(0,0) scale(1.12);
+	transform: translate(0,0) scale(1.12);
+	-webkit-transition: -webkit-transform 0.3s;
+	transition: transform 0.3s;
+}
+
+.hover-new-simple-zoom .portfolio-item:hover .image.format-video.has-post-thumbnail .image-inner img {
+	-webkit-transform: translate(0,0) scale(1);
+	transform: translate(0,0) scale(1);
+}
+
+.version-new.news-grid.portfolio.hover-new-simple-zoom.title-on-hover .portfolio-item .image .links .caption .info {
+	-webkit-transform: translateY(-100%);
+	transform: translateY(-100%);
+	-webkit-transition: transform 0.3s;
+	transition: transform 0.3s;
+}
+
+.version-new.news-grid.portfolio.hover-new-simple-zoom.title-on-hover .portfolio-item:hover .image .links .caption .info {
+	-webkit-transform: translateY(0);
+	transform: translateY(0);
+}
+
+.version-new.news-grid.portfolio.hover-new-simple-zoom.title-on-hover .portfolio-item:hover .image.format-video.has-post-thumbnail .links .caption .info {
+	-webkit-transform: translateY(-100%);
+	transform: translateY(-100%);
+}
+
+.hover-new-simple-zoom .portfolio-item .image .image-inner.without-image svg {
+	overflow: hidden;
+	-webkit-transform: translate(-50%,-50%) scale(1);
+	transform: translate(-50%,-50%) scale(1);
+	-webkit-transition: -webkit-transform 0.3s;
+	transition: transform 0.3s;
+}
+
+.hover-new-simple-zoom .portfolio-item:hover .image .image-inner.without-image svg {
+	-webkit-transform: translate(-50%,-50%) scale(1.12);
+	transform: translate(-50%,-50%) scale(1.12);
+	-webkit-transition: -webkit-transform 0.3s;
+	transition: transform 0.3s;
+}

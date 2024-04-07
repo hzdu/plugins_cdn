@@ -1,0 +1,432 @@
+.hover-horizontal-sliding .portfolio-item .image .image-inner img,
+.hover-horizontal-sliding .gallery-item .overlay-wrap .image-wrap img {
+	overflow: hidden;
+	-webkit-transform: translateX(0);
+	transform: translateX(0);
+	-webkit-transition: -webkit-transform 0.5s;
+	transition: transform 0.5s;
+}
+
+.hover-horizontal-sliding .portfolio-item:is(:hover, .hover-effect) .image .image-inner img,
+.hover-horizontal-sliding .gallery-item:is(:hover, .hover-effect) .overlay-wrap .image-wrap img {
+	-webkit-transform: translateX(-9%);
+	transform: translateX(-9%);
+}
+
+.news-grid.hover-horizontal-sliding .portfolio-item .image.format-video.has-post-thumbnail .image-inner img {
+	-webkit-transform: translateX(-5%);
+	transform: translateX(-5%);
+}
+
+.hover-horizontal-sliding .portfolio-item .image .overlay,
+.hover-horizontal-sliding .portfolio-item:is(:hover, .hover-effect) .image .overlay,
+.hover-horizontal-sliding .gallery-item .overlay-wrap .overlay,
+.hover-horizontal-sliding .gallery-item:is(:hover, .hover-effect) .overlay-wrap .overlay {
+	display: block;
+}
+
+.hover-horizontal-sliding .portfolio-item .image .overlay:before,
+.hover-horizontal-sliding .gallery-item .overlay-wrap .overlay:before {
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: -1;
+	content: '';
+	width: 100%;
+	height: 100%;
+	opacity: 0;
+	-webkit-transition: opacity 0.5s, background-color 0.5s;
+	transition: opacity 0.5s, background-color 0.5s;
+}
+
+.hover-horizontal-sliding .portfolio-item:is(:hover, .hover-effect) .image .overlay:before,
+.hover-horizontal-sliding .gallery-item:is(:hover, .hover-effect) .overlay-wrap .overlay:before {
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: -1;
+	content: '';
+	width: 100%;
+	height: 100%;
+	opacity: 1;
+	-webkit-transition: opacity 0.5s, background-color 0.5s;
+	transition: opacity 0.5s, background-color 0.5s;
+}
+
+.hover-horizontal-sliding .portfolio-item .image .overlay .links .portfolio-icons > .icon,
+.hover-horizontal-sliding .portfolio-item .image .overlay .links .portfolio-icons-inner > .icon,
+.hover-horizontal-sliding .gallery-item .overlay .overlay-content-inner a.icon,
+.portfolio.products.hover-horizontal-sliding .portfolio-item .image .overlay .portfolio-icons.product-bottom a.added_to_cart {
+	opacity: 0;
+	display: inline-block;
+	vertical-align: middle;
+	-webkit-transform: translateX(-200px);
+	transform: translateX(-200px);
+	-webkit-transition: opacity 0.3s, -webkit-transform 0.3s;
+	transition: opacity 0.3s, transform 0.3s;
+}
+
+.hover-horizontal-sliding .gallery-item .overlay .overlay-content-inner a.icon.link {
+	margin-left: 10px;
+}
+
+.hover-horizontal-sliding .portfolio-item .image .overlay .links .portfolio-icons > .icon:nth-child(1),
+.hover-horizontal-sliding .portfolio-item .image .overlay .links .portfolio-icons > .icon:nth-child(2),
+.hover-horizontal-sliding .portfolio-item .image .overlay .links .portfolio-icons > .icon:nth-child(3),
+.hover-horizontal-sliding .portfolio-item .image .overlay .links .portfolio-icons > .icon:nth-child(4),
+.hover-horizontal-sliding .portfolio-item .image .overlay .links .portfolio-icons > .icon:nth-child(5),
+.hover-horizontal-sliding .portfolio-item .image .overlay .links .portfolio-icons-inner > .icon:nth-child(1),
+.hover-horizontal-sliding .portfolio-item .image .overlay .links .portfolio-icons-inner > .icon:nth-child(2),
+.hover-horizontal-sliding .portfolio-item .image .overlay .links .portfolio-icons-inner > .icon:nth-child(3),
+.hover-horizontal-sliding .portfolio-item .image .overlay .links .portfolio-icons-inner > .icon:nth-child(4),
+.hover-horizontal-sliding .portfolio-item .image .overlay .links .portfolio-icons-inner > .icon:nth-child(5) {
+	-webkit-transition: -webkit-transform 0.2s, font-size 0.3s;
+	transition: transform 0.2s, color 0.3s, font-size 0.3s;
+}
+
+.hover-horizontal-sliding .portfolio-item:is(:hover, .hover-effect) .image .overlay .links .portfolio-icons > .icon,
+.hover-horizontal-sliding .portfolio-item:is(:hover, .hover-effect) .image .overlay .links .portfolio-icons-inner > .icon,
+.hover-horizontal-sliding .gallery-item:is(:hover, .hover-effect) .overlay .overlay-content-inner a.icon,
+.portfolio.products.hover-horizontal-sliding .portfolio-item:is(:hover, .hover-effect) .image .overlay .portfolio-icons.product-bottom a.added_to_cart {
+	opacity: 1;
+	-webkit-transform: translate(0, 0);
+	transform: translate(0, 0);
+}
+
+.portfolio.hover-horizontal-sliding .portfolio-item:is(:hover, .hover-effect) .image .overlay .links .portfolio-icons > .icon:hover,
+.portfolio.hover-horizontal-sliding .portfolio-item:is(:hover, .hover-effect) .image .overlay .links .portfolio-icons-inner > .icon:hover {
+	-webkit-transform: scale(1.2);
+	transform: scale(1.2);
+	-webkit-transition: -webkit-transform 0.2s !important;
+	transition: transform 0.2s !important;
+}
+
+.portfolio.hover-horizontal-sliding .portfolio-item:is(:hover, .hover-effect) .image .overlay .links .portfolio-icons > .yith-wcwl-add-to-wishlist.added.icon:hover,
+.portfolio.hover-horizontal-sliding .portfolio-item:is(:hover, .hover-effect) .image .overlay .links .portfolio-icons-inner > .yith-wcwl-add-to-wishlist.added.icon:hover {
+	-webkit-transform: none;
+	transform: none;
+}
+
+.hover-horizontal-sliding .portfolio-item:is(:hover, .hover-effect) .image .overlay .links .portfolio-icons > .icon:nth-child(1),
+.hover-horizontal-sliding .portfolio-item:is(:hover, .hover-effect) .image .overlay .links .portfolio-icons-inner > .icon:nth-child(1),
+.portfolio.products.hover-horizontal-sliding .portfolio-item:is(:hover, .hover-effect) .image .overlay .portfolio-icons.product-bottom a.added_to_cart {
+	-webkit-transition: opacity 0.8s, transform 0.2s 0.18s, font-size 0.3s;
+	transition: opacity 0.8s, transform 0.2s 0.18s, font-size 0.3s;
+}
+
+.hover-horizontal-sliding .portfolio-item:is(:hover, .hover-effect) .image .overlay .links .portfolio-icons > .icon:nth-child(2),
+.hover-horizontal-sliding .portfolio-item:is(:hover, .hover-effect) .image .overlay .links .portfolio-icons-inner > .icon:nth-child(2) {
+	-webkit-transition: opacity 0.8s, transform 0.2s 0.16s, font-size 0.3s;
+	transition: opacity 0.8s, transform 0.2s 0.16s, font-size 0.3s;
+}
+
+.hover-horizontal-sliding .portfolio-item:is(:hover, .hover-effect) .image .overlay .links .portfolio-icons > .icon:nth-child(3),
+.hover-horizontal-sliding .portfolio-item:is(:hover, .hover-effect) .image .overlay .links .portfolio-icons-inner > .icon:nth-child(3),
+.portfolio.hover-horizontal-sliding .portfolio-item:is(:hover, .hover-effect) .image .overlay .links .portfolio-icons > .yith-wcwl-add-to-wishlist a.icon,
+.portfolio.hover-horizontal-sliding .portfolio-item:is(:hover, .hover-effect) .image .overlay .links .portfolio-icons-inner > .yith-wcwl-add-to-wishlist a.icon {
+	-webkit-transition: opacity 0.8s, transform 0.2s 0.14s, font-size 0.3s;
+	transition: opacity 0.8s, transform 0.2s 0.14s, font-size 0.3s;;
+}
+
+.hover-horizontal-sliding .portfolio-item:is(:hover, .hover-effect) .image .overlay .links .portfolio-icons > .icon:nth-child(4),
+.hover-horizontal-sliding .portfolio-item:is(:hover, .hover-effect) .image .overlay .links .portfolio-icons-inner > .icon:nth-child(4) {
+	-webkit-transition: opacity 0.8s, transform 0.2s 0.12s, font-size 0.3s;
+	transition: opacity 0.8s, transform 0.2s 0.12s, font-size 0.3s;
+}
+
+.hover-horizontal-sliding .portfolio-item:is(:hover, .hover-effect) .image .overlay .links .portfolio-icons > .icon:nth-child(5),
+.hover-horizontal-sliding .portfolio-item:is(:hover, .hover-effect) .image .overlay .links .portfolio-icons-inner > .icon:nth-child(5) {
+	-webkit-transition: opacity 0.8s, transform 0.2s 0.1s, font-size 0.3s;
+	transition: opacity 0.8s, transform 0.2s 0.1s, font-size 0.3s;
+}
+
+.hover-horizontal-sliding .portfolio-item .image .links .caption .title,
+.hover-horizontal-sliding .gallery-item .overlay .title {
+	opacity: 0;
+	position: relative;
+	left: -200px;
+	-webkit-transition: opacity 0.3s, left 0.3s;
+	transition: opacity 0.3s, left 0.3s;
+}
+
+.hover-horizontal-sliding .portfolio-item:is(:hover, .hover-effect) .image .links .caption .title,
+.hover-horizontal-sliding .gallery-item:is(:hover, .hover-effect) .overlay .title {
+	opacity: 1;
+	left: 0;
+	-webkit-transition: opacity 0.3s, left 0.3s;
+	transition: opacity 0.3s, left 0.3s;
+}
+
+.hover-horizontal-sliding .portfolio-item .image .links .caption .description,
+.hover-horizontal-sliding .portfolio-item .image .links .caption .details,
+.hover-horizontal-sliding .gallery-item .overlay .subtitle {
+	opacity: 0;
+	position: relative;
+	left: -200px;
+	-webkit-transition: opacity 0.3s 0.1s, left 0.3s 0.1s;
+	transition: opacity 0.3s 0.1s, left 0.3s 0.1s;
+}
+
+.hover-horizontal-sliding .portfolio-item:is(:hover, .hover-effect) .image .links .caption .description,
+.hover-horizontal-sliding .portfolio-item:is(:hover, .hover-effect) .image .links .caption .details,
+.hover-horizontal-sliding .gallery-item:is(:hover, .hover-effect) .overlay .subtitle {
+	opacity: 1;
+	left: 0;
+	-webkit-transition: opacity 0.3s 0.1s, left 0.3s 0.1s;
+	transition: opacity 0.3s 0.1s, left 0.3s 0.1s;
+}
+
+.hover-horizontal-sliding .portfolio-item .image .links .caption .product-info {
+	opacity: 0;
+	position: relative;
+	left: -200px;
+	-webkit-transition: opacity 0.3s 0.1s, left 0.3s 0.1s;
+	transition: opacity 0.3s 0.1s, left 0.3s 0.1s;
+}
+
+.hover-horizontal-sliding .portfolio-item:is(:hover, .hover-effect) .image .links .caption .product-info {
+	opacity: 1;
+	left: 0;
+	-webkit-transition: opacity 0.3s 0.1s, left 0.3s 0.1s;
+	transition: opacity 0.3s 0.1s, left 0.3s 0.1s;
+}
+
+.hover-horizontal-sliding .gallery-item .overlay .overlay-line {
+	width: 0;
+	opacity: 0;
+	-webkit-transition: width 0.35s, opacity 0.5s;
+	transition: width 0.35s, opacity 0.5s;
+}
+
+.hover-horizontal-sliding .gallery-item:is(:hover, .hover-effect) .overlay .overlay-line {
+	width: 100%;
+	opacity: 1;
+	-webkit-transition: width 0.35s, opacity 0.5s;
+	transition: width 0.35s, opacity 0.5s;
+}
+
+.hover-horizontal-sliding .portfolio-item .image .links .overlay-line {
+	overflow: hidden;
+	position: relative;
+	background: transparent;
+}
+
+.hover-horizontal-sliding .portfolio-item .image .links .overlay-line:after {
+	position: absolute;
+	content: '';
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 2px;
+	background-color: #fff;
+	-webkit-transform: translateX(-100%);
+	transform: translateX(-100%);
+	-webkit-transition: -webkit-transform 0.35s;
+	transition: transform 0.35s;
+}
+
+.hover-horizontal-sliding .portfolio-item:is(:hover, .hover-effect) .image .links .overlay-line:after {
+	-webkit-transform: translateX(0);
+	transform: translateX(0);
+	-webkit-transition: -webkit-transform 0.35s;
+	transition: transform 0.35s;
+}
+
+.hover-horizontal-sliding .portfolio-item .image .overlay .links .portfolio-sharing-pane {
+	opacity: 0;
+	margin-top: 0;
+	margin-bottom: 0;
+	-webkit-transform: translateY(-1000px);
+	transform: translateY(-1000px);
+	-webkit-transition: opacity 0.3s, margin 0.3s 0.3s, -webkit-transform 0s;
+	transition: opacity 0.3s, margin 0.3s 0.3s, transform 0s;
+}
+
+.hover-horizontal-sliding .portfolio-item:is(:hover, .hover-effect) .image .overlay .links .portfolio-sharing-pane {
+	visibility: hidden;
+	-webkit-transform: translateY(0);
+	transform: translateY(0);
+	-webkit-transition: opacity 0.5s, -webkit-transform 0s, margin 0.3s 0.3s;
+	transition: opacity 0.5s, transform 0s, margin 0.3s 0.3s;
+}
+
+.hover-horizontal-sliding .portfolio-item:is(:hover, .hover-effect) .image .overlay .links .portfolio-sharing-pane.active {
+	opacity: 1;
+	visibility: visible;
+	margin-top: 20px;
+	margin-bottom: 30px;
+	-webkit-transition: opacity 0.5s, margin 0.3s;
+	transition: opacity 0.5s, margin 0.3s;
+}
+
+.hover-horizontal-sliding .portfolio-item:is(:hover, .hover-effect) .image .overlay .links .portfolio-sharing-pane .socials-item-icon {
+	opacity: 0;
+	-webkit-transform: translate(0, 30px);
+	transform: translate(0, 30px);
+}
+
+.hover-horizontal-sliding .portfolio-item:is(:hover, .hover-effect) .image .overlay .links .portfolio-sharing-pane.active .socials-item-icon {
+	opacity: 1;
+	-webkit-transform: translate(0, 0);
+	transform: translate(0, 0);
+}
+
+.hover-horizontal-sliding .portfolio-item:is(:hover, .hover-effect) .image .overlay .links .portfolio-sharing-pane a.socials-item:nth-child(1) .socials-item-icon,
+.hover-horizontal-sliding .portfolio-item:is(:hover, .hover-effect) .image .overlay .links .portfolio-sharing-pane.active a.socials-item:nth-child(1) .socials-item-icon {
+	-webkit-transition: color 0.3s, -webkit-transform 0.3s, opacity 0.3s;
+	transition: color 0.3s, transform 0.3s, opacity 0.3s;
+}
+
+.hover-horizontal-sliding .portfolio-item:is(:hover, .hover-effect) .image .overlay .links .portfolio-sharing-pane a.socials-item:nth-child(2) .socials-item-icon,
+.hover-horizontal-sliding .portfolio-item:is(:hover, .hover-effect) .image .overlay .links .portfolio-sharing-pane.active a.socials-item:nth-child(2) .socials-item-icon {
+	-webkit-transition: color 0.3s, -webkit-transform 0.3s 0.05s, opacity 0.3s 0.05s;
+	transition: color 0.3s, transform 0.3s 0.05s, opacity 0.3s 0.05s;
+}
+
+.hover-horizontal-sliding .portfolio-item:is(:hover, .hover-effect) .image .overlay .links .portfolio-sharing-pane a.socials-item:nth-child(3) .socials-item-icon,
+.hover-horizontal-sliding .portfolio-item:is(:hover, .hover-effect) .image .overlay .links .portfolio-sharing-pane.active a.socials-item:nth-child(3) .socials-item-icon {
+	-webkit-transition: color 0.3s, -webkit-transform 0.3s 0.1s, opacity 0.3s 0.1s;
+	transition: color 0.3s, transform 0.3s 0.1s, opacity 0.3s 0.1s;
+}
+
+.hover-horizontal-sliding .portfolio-item:is(:hover, .hover-effect) .image .overlay .links .portfolio-sharing-pane a.socials-item:nth-child(4) .socials-item-icon,
+.hover-horizontal-sliding .portfolio-item:is(:hover, .hover-effect) .image .overlay .links .portfolio-sharing-pane.active a.socials-item:nth-child(4) .socials-item-icon {
+	-webkit-transition: color 0.3s, -webkit-transform 0.3s 0.15s, opacity 0.3s 0.15s;
+	transition: color 0.3s, transform 0.3s 0.15s, opacity 0.3s 0.15s;
+}
+
+.hover-horizontal-sliding .portfolio-item:is(:hover, .hover-effect) .image .overlay .links .portfolio-sharing-pane a.socials-item:nth-child(5) .socials-item-icon,
+.hover-horizontal-sliding .portfolio-item:is(:hover, .hover-effect) .image .overlay .links .portfolio-sharing-pane.active a.socials-item:nth-child(5) .socials-item-icon {
+	-webkit-transition: color 0.3s, -webkit-transform 0.3s 0.2s, opacity 0.3s 0.2s;
+	transition: color 0.3s, transform 0.3s 0.2s, opacity 0.3s 0.2s;
+}
+
+.hover-horizontal-sliding .portfolio-item:is(:hover, .hover-effect) .image .overlay .links .portfolio-sharing-pane a.socials-item:nth-child(6) .socials-item-icon,
+.hover-horizontal-sliding .portfolio-item:is(:hover, .hover-effect) .image .overlay .links .portfolio-sharing-pane.active a.socials-item:nth-child(6) .socials-item-icon {
+	-webkit-transition: color 0.3s, -webkit-transform 0.3s 0.25s, opacity 0.3s 0.25s;
+	transition: color 0.3s, transform 0.3s 0.25s, opacity 0.3s 0.25s;
+}
+
+.hover-horizontal-sliding .portfolio-item:is(:hover, .hover-effect) .image .overlay .links .portfolio-sharing-pane a.socials-item:nth-child(7) .socials-item-icon,
+.hover-horizontal-sliding .portfolio-item:is(:hover, .hover-effect) .image .overlay .links .portfolio-sharing-pane.active a.socials-item:nth-child(7) .socials-item-icon {
+	-webkit-transition: color 0.3s, -webkit-transform 0.3s 0.3s, opacity 0.3s 0.3s;
+	transition: color 0.3s, transform 0.3s 0.3s, opacity 0.3s 0.3s;
+}
+
+/* Alternative Version */
+
+.hover-horizontal-sliding.version-alternative.caption-position-hover .portfolio-item:not(:hover, .hover-effect) .image .date {
+	-webkit-transform: translateY(-100%);
+	transform: translateY(-100%);
+}
+
+.hover-horizontal-sliding.version-alternative .portfolio-item .image .links .portfolio-icons {
+	margin-bottom: 15px;
+}
+
+.hover-horizontal-sliding.version-alternative .portfolio-item .image .links .portfolio-likes {
+	opacity: 0;
+	position: relative;
+	left: -200px;
+	margin: 0;
+	-webkit-transition: opacity 0.3s 0.1s, left 0.3s 0.1s;
+	transition: opacity 0.3s 0.1s, left 0.3s 0.1s;
+}
+
+.hover-horizontal-sliding.version-alternative .portfolio-item:is(:hover, .hover-effect) .image .links .portfolio-likes {
+	opacity: 1;
+	left: 0;
+	-webkit-transition: opacity 0.3s 0.1s, left 0.3s 0.1s;
+	transition: opacity 0.3s 0.1s, left 0.3s 0.1s;
+}
+
+.hover-horizontal-sliding.version-alternative:is(.caption-position-hover, .caption-position-image) .portfolio-icons {
+	text-align: left;
+}
+
+.hover-horizontal-sliding.version-alternative:is(.caption-position-hover, .caption-position-image) .portfolio-icons a:first-child {
+	margin-left: 0 !important;
+}
+
+.hover-horizontal-sliding.version-alternative:is(.caption-position-hover, .caption-position-image) .portfolio-item .image .overlay .links {
+	justify-content: flex-end !important
+}
+
+.hover-horizontal-sliding .portfolio-item .image .links .caption .set {
+	color: var(--thegem-to-styled-color1, #00BCD4);
+}
+
+.hover-horizontal-sliding .portfolio-item .image .links .caption .set,
+.hover-horizontal-sliding:not(.version-alternative) .portfolio-item .image .links .caption .date {
+	opacity: 0;
+	position: relative;
+	left: -200px;
+	-webkit-transition: opacity 0.3s, left 0.3s;
+	transition: opacity 0.3s, left 0.3s;
+}
+
+.hover-horizontal-sliding .portfolio-item:is(:hover, .hover-effect) .image .links .caption .set,
+.hover-horizontal-sliding:not(.version-alternative) .portfolio-item:is(:hover, .hover-effect) .image .links .caption .date {
+	opacity: 1;
+	left: 0;
+	-webkit-transition: opacity 0.3s, left 0.3s;
+	transition: opacity 0.3s, left 0.3s;
+}
+
+.hover-horizontal-sliding .portfolio-item .image .zilla-likes .zilla-likes-count {
+	color: var(--thegem-to-styled-color1, #00BCD4);
+}
+
+.hover-horizontal-sliding.version-alternative.caption-position-image .image .links .caption {
+	position: relative;
+}
+
+.hover-horizontal-sliding.version-alternative.caption-position-image .image .links .caption .title {
+	padding: 0 !important;
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	opacity: 1;
+	margin: 0 !important;
+	-webkit-transition: opacity 0.3s 0.18s, transform 0.3s 0.18s;
+	transition: opacity 0.3s 0.18s, transform 0.3s 0.18s;
+}
+
+.hover-horizontal-sliding.version-alternative.caption-position-image .portfolio-item.appearance-type-featured_image:is(:hover, .hover-effect) .image .links .caption .title {
+	opacity: 0;
+	transform: translateX(100%);
+	-webkit-transition: opacity 0.3s, transform 0.3s;
+	transition: opacity 0.3s, transform 0.3s;
+}
+
+.hover-horizontal-sliding.version-alternative.caption-position-image .portfolio-item .image .overlay:after {
+	content: '';
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	z-index: -1;
+	opacity: 1;
+	background: -moz-linear-gradient(top, rgba(30,87,153,0) 65%, rgba(0,0,0,0.5) 100%);
+	background: -webkit-linear-gradient(top, rgba(30,87,153,0) 65%,rgba(0,0,0,0.5) 100%);
+	background: linear-gradient(to bottom, rgba(30,87,153,0) 65%,rgba(0,0,0,0.5) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#001e5799', endColorstr='#80000000',GradientType=0 );
+	opacity: 1;
+	-webkit-transition: opacity 0.3s;
+	transition: opacity 0.3s;
+}
+
+.hover-horizontal-sliding.version-alternative.caption-position-image .portfolio-item.appearance-type-featured_image:is(:hover, .hover-effect) .image .overlay:after {
+	opacity: 0;
+}
+
+.hover-horizontal-sliding.version-alternative .image .overlay .links {
+	padding: 18px 30px;
+}
+
+.hover-horizontal-sliding.version-alternative:is(.columns-4, .columns-5, .columns-6) .portfolio-item:not(.double-item) .image .overlay .links,
+.hover-horizontal-sliding.version-alternative .portfolio-item.small-item .image .overlay .links {
+	padding: 10px 15px;
+}

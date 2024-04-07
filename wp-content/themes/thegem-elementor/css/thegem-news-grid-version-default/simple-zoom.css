@@ -1,0 +1,33 @@
+.hover-simple-zoom .portfolio-item .image .image-inner img {
+	overflow: hidden;
+	-webkit-transform: translate(0,0) scale(1);
+	transform: translate(0,0) scale(1);
+	-webkit-transition: -webkit-transform 0.3s;
+	transition: transform 0.3s;
+}
+
+.hover-simple-zoom .portfolio-item:hover .image .image-inner img {
+	-webkit-transform: translate(0,0) scale(1.12);
+	transform: translate(0,0) scale(1.12);
+	-webkit-transition: -webkit-transform 0.3s;
+	transition: transform 0.3s;
+}
+
+.hover-simple-zoom .portfolio-item:hover .image.format-video.has-post-thumbnail .image-inner img {
+	-webkit-transform: translate(0,0) scale(1);
+	transform: translate(0,0) scale(1);
+}
+
+.hover-simple-zoom .portfolio-item .image .image-inner.without-image svg {
+	overflow: hidden;
+	-webkit-transform: translate(-50%,-50%) scale(1);
+	transform: translate(-50%,-50%) scale(1);
+	-webkit-transition: -webkit-transform 0.3s;
+	transition: transform 0.3s;
+}
+.hover-simple-zoom .portfolio-item:hover .image .image-inner.without-image svg {
+	-webkit-transform: translate(-50%,-50%) scale(1.12);
+	transform: translate(-50%,-50%) scale(1.12);
+	-webkit-transition: -webkit-transform 0.3s;
+	transition: transform 0.3s;
+}

@@ -1,0 +1,906 @@
+.header-wrapper{
+	position: relative;
+	top: 0;
+	right: 0;
+	left: 0;
+	z-index: 390;
+	backface-visibility: hidden;
+	-webkit-backface-visibility: hidden;
+}
+.header-sticky-template{
+	position: fixed;
+	z-index: 391;
+	visibility: hidden;
+	opacity: 0;
+	transition: opacity .1s ease, visibility .1s ease, transform .3s ease;
+	animation: header-fadeOutUpBig .1s ease;
+	pointer-events: none;
+}
+.header-sticky-template.header-sticked{
+	visibility: visible;
+	opacity: 1;
+	/*transform: translateZ(0);*/
+	animation: header-fadeInDownBig .3s ease;
+	pointer-events: visible;
+	pointer-events: unset;
+}
+@media (min-width: 992px) {
+	.header-sticky-template.header-hide-on-scroll-desktop {
+		transform: translateY(-100%);
+		animation: none;
+	}
+	.header-sticky-template.header-hide-on-scroll-desktop.header-scroll-up {
+		transform: none;
+	}
+}
+@media (max-width: 991px) {
+	.header-sticky-template.header-hide-on-scroll-mobile {
+		transform: translateY(-100%);
+		animation: none;
+	}
+	.header-sticky-template.header-hide-on-scroll-mobile.header-scroll-up {
+		transform: none;
+	}
+}
+.header-sticky-prepared .header-wrapper{
+	position: absolute;
+}
+.header-transparent .header-wrapper{
+	position: absolute;
+}
+.header-scroll-stick .whb-flex-row{
+	transition: height .2s ease;
+}
+.header-scroll-stick.header-sticked .whb-flex-row{
+	transition-duration: .3s;
+}
+.header-scroll-stick.header-scroll-down .header-wrapper,
+.header-scroll-stick.header-scroll-up .header-wrapper{
+	transition: transform .3s ease;
+}
+.header-scroll-stick.header-scroll-down .header-wrapper{
+	transform: translateY(-100%);
+}
+.header-scroll-stick.header-scroll-up .header-wrapper{
+	transform: none;
+}
+.header-scroll-slide.header-sticked .header-wrapper{
+	animation: header-fadeInDownBig .4s ease;
+}
+.header-scroll-slide.header-scroll-down .header-wrapper,
+.header-scroll-slide.header-scroll-up .header-wrapper{
+	transition: transform .3s ease;
+}
+.header-scroll-slide.whb-hide-on-scroll.header-sticked .header-wrapper{
+	transform: translateY(-100%);
+	animation: none;
+}
+.header-scroll-slide.whb-hide-on-scroll.header-scroll-up .header-wrapper{
+	transform: none;
+}
+.header-sticked .header-wrapper{
+	position: fixed;
+	/*transform: translateZ(0);*/
+}
+.header-sticked .elementor-section{
+	transition: background-color .3s ease;
+}
+.header-sticked:not(.header-sticky-template) .elementor-section:not(.header-sticky-row) {
+	display: none;
+}
+@keyframes header-fadeInDownBig{
+	from{
+		transform: translate3d(0, -100%, 0);
+	}
+	to{
+		transform: none;
+	}
+}
+@keyframes header-fadeOutUpBig{
+	from{
+		transform: none;
+	}
+	to{
+		transform: translate3d(0, -100%, 0);
+	}
+}
+.header-background{
+	position: relative;
+}
+.header-background:before{
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+.header-sticked.header-background:before{
+	opacity: 0.95;
+}
+.admin-bar .header-sticked .header-wrapper,
+.admin-bar .header-sticky-template{
+	top: 32px;
+}
+@media (max-width: 767px){
+	.admin-bar .header-sticked .header-wrapper,
+	.admin-bar .header-sticky-template{
+		top: 46px;
+	}
+}
+@media (max-width: 599px){
+	.admin-bar .header-sticked .header-wrapper,
+	.admin-bar .header-sticky-template{
+		top: 0;
+	}
+}
+
+/* Thegem Flexibility */
+.tg-flex{
+	display: flex !important;
+}
+.tg-inline-flex{
+	display: inline-flex !important;
+}
+.tg-flex-row{
+	flex-direction: row !important;
+}
+.tg-flex-row-reverse{
+	flex-direction: row-reverse !important;
+}
+.tg-flex-column{
+	flex-direction: column !important;
+}
+.tg-flex-column-reverse{
+	flex-direction: column-reverse !important;
+}
+.tg-flex-wrap{
+	flex-wrap: wrap !important;
+}
+.tg-flex-wrap-reverse{
+	flex-wrap: wrap-reverse !important;
+}
+.tg-flex-nowrap{
+	flex-wrap: nowrap !important;
+}
+.tg-justify-content-start{
+	justify-content: flex-start !important;
+}
+.tg-justify-content-end{
+	justify-content: flex-end !important;
+}
+.tg-justify-content-center{
+	justify-content: center !important;
+}
+.tg-justify-content-between{
+	justify-content: space-between !important;
+}
+.tg-justify-content-around{
+	justify-content: space-around !important;
+}
+.tg-justify-content-evenly{
+	justify-content: space-evenly !important;
+}
+.tg-align-content-start{
+	align-content: flex-start !important;
+}
+.tg-align-content-end{
+	align-content: flex-end !important;
+}
+.tg-align-content-center{
+	align-content: center !important;
+}
+.tg-align-content-around{
+	align-content: space-around !important;
+}
+.tg-align-content-stretch{
+	align-content: stretch !important;
+}
+.tg-align-items-start{
+	align-items: flex-start !important;
+}
+.tg-align-items-end{
+	align-items: flex-end !important;
+}
+.tg-align-items-center{
+	align-items: center !important;
+}
+.tg-align-items-baseline{
+	align-items: baseline !important;
+}
+.tg-align-items-stretch{
+	align-items: stretch !important;
+}
+
+.elementor-widget-wrap.thegem-column-elements-inline {
+	display: flex;
+	align-items: center;
+}
+.elementor-widget-wrap.thegem-column-elements-inline > .elementor-element {
+	width: auto;
+	padding-left: 5px;
+	padding-right: 5px;
+	margin-bottom: 0;
+	/*z-index: 1;*/
+}
+@media (max-width: 1024px) {
+	.elementor-widget-wrap.thegem-column-elements-inline > .elementor-element {
+		order: 100;
+	}
+}
+.elementor-widget-wrap.thegem-column-elements-inline > .elementor-element.elementor-inner-section {
+	flex: auto;
+}
+.header-wrapper .thegem-template-header > .elementor > .elementor-inner > .elementor-section-wrap > .elementor-section > .elementor-container > .elementor-row > .elementor-column > .elementor-column-wrap > .elementor-widget-wrap:not(.thegem-column-elements-inline) > .elementor-element {
+	width: 100% !important;
+}
+
+.elementor-widget-wrap.thegem-column-elements-inline .elementor-html5dnd-current-element {
+	flex-direction: column;
+}
+.elementor-widget-wrap.thegem-column-elements-inline .elementor-sortable-placeholder.elementor-widget-placeholder {
+	/*width: 10px;*/
+	/*height: auto;*/
+}
+
+.elementor-shape-simple .elementor-social-icon-android:hover,
+.elementor-shape-simple .elementor-social-icon-android {
+	background-color: transparent;
+	color: #a4c639
+}
+
+.elementor-shape-simple .elementor-social-icon-apple:hover,
+.elementor-shape-simple .elementor-social-icon-apple {
+	background-color: transparent;
+	color: #999
+}
+
+.elementor-shape-simple .elementor-social-icon-behance:hover,
+.elementor-shape-simple .elementor-social-icon-behance {
+	background-color: transparent;
+	color: #1769ff
+}
+
+.elementor-shape-simple .elementor-social-icon-bitbucket:hover,
+.elementor-shape-simple .elementor-social-icon-bitbucket {
+	background-color: transparent;
+	color: #205081
+}
+
+.elementor-shape-simple .elementor-social-icon-codepen:hover,
+.elementor-shape-simple .elementor-social-icon-codepen {
+	background-color: transparent;
+	color: #000
+}
+
+.elementor-shape-simple .elementor-social-icon-delicious:hover,
+.elementor-shape-simple .elementor-social-icon-delicious {
+	background-color: transparent;
+	color: #39f
+}
+
+.elementor-shape-simple .elementor-social-icon-deviantart:hover,
+.elementor-shape-simple .elementor-social-icon-deviantart {
+	background-color: transparent;
+	color: #05cc47
+}
+
+.elementor-shape-simple .elementor-social-icon-digg:hover,
+.elementor-shape-simple .elementor-social-icon-digg {
+	background-color: transparent;
+	color: #005be2
+}
+
+.elementor-shape-simple .elementor-social-icon-dribbble:hover,
+.elementor-shape-simple .elementor-social-icon-dribbble {
+	background-color: transparent;
+	color: #ea4c89
+}
+
+.elementor-shape-simple .elementor-social-icon-elementor:hover,
+.elementor-shape-simple .elementor-social-icon-elementor {
+	background-color: transparent;
+	color: #d30c5c
+}
+
+.elementor-shape-simple .elementor-social-icon-envelope:hover,
+.elementor-shape-simple .elementor-social-icon-envelope {
+	background-color: transparent;
+	color: #ea4335
+}
+
+.elementor-shape-simple .elementor-social-icon-facebook:hover,
+.elementor-shape-simple .elementor-social-icon-facebook,
+.elementor-shape-simple .elementor-social-icon-facebook-f:hover,
+.elementor-shape-simple .elementor-social-icon-facebook-f {
+	background-color: transparent;
+	color: #3b5998
+}
+
+.elementor-shape-simple .elementor-social-icon-flickr:hover,
+.elementor-shape-simple .elementor-social-icon-flickr {
+	background-color: transparent;
+	color: #0063dc
+}
+
+.elementor-shape-simple .elementor-social-icon-foursquare:hover,
+.elementor-shape-simple .elementor-social-icon-foursquare {
+	background-color: transparent;
+	color: #2d5be3
+}
+
+.elementor-shape-simple .elementor-social-icon-free-code-camp:hover,
+.elementor-shape-simple .elementor-social-icon-free-code-camp,
+.elementor-shape-simple .elementor-social-icon-freecodecamp:hover,
+.elementor-shape-simple .elementor-social-icon-freecodecamp {
+	background-color: transparent;
+	color: #006400
+}
+
+.elementor-shape-simple .elementor-social-icon-github:hover,
+.elementor-shape-simple .elementor-social-icon-github {
+	background-color: transparent;
+	color: #333
+}
+
+.elementor-shape-simple .elementor-social-icon-gitlab:hover,
+.elementor-shape-simple .elementor-social-icon-gitlab {
+	background-color: transparent;
+	color: #e24329
+}
+
+.elementor-shape-simple .elementor-social-icon-globe:hover,
+.elementor-shape-simple .elementor-social-icon-globe {
+	background-color: transparent;
+	color: #818a91
+}
+
+.elementor-shape-simple .elementor-social-icon-google-plus:hover,
+.elementor-shape-simple .elementor-social-icon-google-plus,
+.elementor-shape-simple .elementor-social-icon-google-plus-g:hover,
+.elementor-shape-simple .elementor-social-icon-google-plus-g {
+	background-color: transparent;
+	color: #dd4b39
+}
+
+.elementor-shape-simple .elementor-social-icon-houzz:hover,
+.elementor-shape-simple .elementor-social-icon-houzz {
+	background-color: transparent;
+	color: #7ac142
+}
+
+.elementor-shape-simple .elementor-social-icon-instagram:hover,
+.elementor-shape-simple .elementor-social-icon-instagram {
+	background-color: transparent;
+	color: #262626
+}
+
+.elementor-shape-simple .elementor-social-icon-jsfiddle:hover,
+.elementor-shape-simple .elementor-social-icon-jsfiddle {
+	background-color: transparent;
+	color: #487aa2
+}
+
+.elementor-shape-simple .elementor-social-icon-link:hover,
+.elementor-shape-simple .elementor-social-icon-link {
+	background-color: transparent;
+	color: #818a91
+}
+
+.elementor-shape-simple .elementor-social-icon-linkedin:hover,
+.elementor-shape-simple .elementor-social-icon-linkedin,
+.elementor-shape-simple .elementor-social-icon-linkedin-in:hover,
+.elementor-shape-simple .elementor-social-icon-linkedin-in {
+	background-color: transparent;
+	color: #0077b5
+}
+
+.elementor-shape-simple .elementor-social-icon-medium:hover,
+.elementor-shape-simple .elementor-social-icon-medium {
+	background-color: transparent;
+	color: #00ab6b
+}
+
+.elementor-shape-simple .elementor-social-icon-meetup:hover,
+.elementor-shape-simple .elementor-social-icon-meetup {
+	background-color: transparent;
+	color: #ec1c40
+}
+
+.elementor-shape-simple .elementor-social-icon-mixcloud:hover,
+.elementor-shape-simple .elementor-social-icon-mixcloud {
+	background-color: transparent;
+	color: #273a4b
+}
+
+.elementor-shape-simple .elementor-social-icon-odnoklassniki:hover,
+.elementor-shape-simple .elementor-social-icon-odnoklassniki {
+	background-color: transparent;
+	color: #f4731c
+}
+
+.elementor-shape-simple .elementor-social-icon-pinterest:hover,
+.elementor-shape-simple .elementor-social-icon-pinterest {
+	background-color: transparent;
+	color: #bd081c
+}
+
+.elementor-shape-simple .elementor-social-icon-product-hunt:hover,
+.elementor-shape-simple .elementor-social-icon-product-hunt {
+	background-color: transparent;
+	color: #da552f
+}
+
+.elementor-shape-simple .elementor-social-icon-reddit:hover,
+.elementor-shape-simple .elementor-social-icon-reddit {
+	background-color: transparent;
+	color: #ff4500
+}
+
+.elementor-shape-simple .elementor-social-icon-rss:hover,
+.elementor-shape-simple .elementor-social-icon-rss {
+	background-color: transparent;
+	color: #f26522
+}
+
+.elementor-shape-simple .elementor-social-icon-shopping-cart:hover,
+.elementor-shape-simple .elementor-social-icon-shopping-cart {
+	background-color: transparent;
+	color: #4caf50
+}
+
+.elementor-shape-simple .elementor-social-icon-skype:hover,
+.elementor-shape-simple .elementor-social-icon-skype {
+	background-color: transparent;
+	color: #00aff0
+}
+
+.elementor-shape-simple .elementor-social-icon-slideshare:hover,
+.elementor-shape-simple .elementor-social-icon-slideshare {
+	background-color: transparent;
+	color: #0077b5
+}
+
+.elementor-shape-simple .elementor-social-icon-snapchat:hover,
+.elementor-shape-simple .elementor-social-icon-snapchat {
+	background-color: transparent;
+	color: #fffc00
+}
+
+.elementor-shape-simple .elementor-social-icon-soundcloud:hover,
+.elementor-shape-simple .elementor-social-icon-soundcloud {
+	background-color: transparent;
+	color: #f80
+}
+
+.elementor-shape-simple .elementor-social-icon-spotify:hover,
+.elementor-shape-simple .elementor-social-icon-spotify {
+	background-color: transparent;
+	color: #2ebd59
+}
+
+.elementor-shape-simple .elementor-social-icon-stack-overflow:hover,
+.elementor-shape-simple .elementor-social-icon-stack-overflow {
+	background-color: transparent;
+	color: #fe7a15
+}
+
+.elementor-shape-simple .elementor-social-icon-steam:hover,
+.elementor-shape-simple .elementor-social-icon-steam {
+	background-color: transparent;
+	color: #00adee
+}
+
+.elementor-shape-simple .elementor-social-icon-stumbleupon:hover,
+.elementor-shape-simple .elementor-social-icon-stumbleupon {
+	background-color: transparent;
+	color: #eb4924
+}
+
+.elementor-shape-simple .elementor-social-icon-telegram:hover,
+.elementor-shape-simple .elementor-social-icon-telegram {
+	background-color: transparent;
+	color: #2ca5e0
+}
+
+.elementor-shape-simple .elementor-social-icon-thumb-tack:hover,
+.elementor-shape-simple .elementor-social-icon-thumb-tack {
+	background-color: transparent;
+	color: #1aa1d8
+}
+
+.elementor-shape-simple .elementor-social-icon-tripadvisor:hover,
+.elementor-shape-simple .elementor-social-icon-tripadvisor {
+	background-color: transparent;
+	color: #589442
+}
+
+.elementor-shape-simple .elementor-social-icon-tumblr:hover,
+.elementor-shape-simple .elementor-social-icon-tumblr {
+	background-color: transparent;
+	color: #35465c
+}
+
+.elementor-shape-simple .elementor-social-icon-twitch:hover,
+.elementor-shape-simple .elementor-social-icon-twitch {
+	background-color: transparent;
+	color: #6441a5
+}
+
+.elementor-shape-simple .elementor-social-icon-twitter:hover,
+.elementor-shape-simple .elementor-social-icon-twitter {
+	background-color: transparent;
+	color: #1da1f2
+}
+
+.elementor-shape-simple .elementor-social-icon-viber:hover,
+.elementor-shape-simple .elementor-social-icon-viber {
+	background-color: transparent;
+	color: #665cac
+}
+
+.elementor-shape-simple .elementor-social-icon-vimeo:hover,
+.elementor-shape-simple .elementor-social-icon-vimeo {
+	background-color: transparent;
+	color: #1ab7ea
+}
+
+.elementor-shape-simple .elementor-social-icon-vk:hover,
+.elementor-shape-simple .elementor-social-icon-vk {
+	background-color: transparent;
+	color: #45668e
+}
+
+.elementor-shape-simple .elementor-social-icon-weibo:hover,
+.elementor-shape-simple .elementor-social-icon-weibo {
+	background-color: transparent;
+	color: #dd2430
+}
+
+.elementor-shape-simple .elementor-social-icon-weixin:hover,
+.elementor-shape-simple .elementor-social-icon-weixin {
+	background-color: transparent;
+	color: #31a918
+}
+
+.elementor-shape-simple .elementor-social-icon-whatsapp:hover,
+.elementor-shape-simple .elementor-social-icon-whatsapp {
+	background-color: transparent;
+	color: #25d366
+}
+
+.elementor-shape-simple .elementor-social-icon-wordpress:hover,
+.elementor-shape-simple .elementor-social-icon-wordpress {
+	background-color: transparent;
+	color: #21759b
+}
+
+.elementor-shape-simple .elementor-social-icon-xing:hover,
+.elementor-shape-simple .elementor-social-icon-xing {
+	background-color: transparent;
+	color: #026466
+}
+
+.elementor-shape-simple .elementor-social-icon-yelp:hover,
+.elementor-shape-simple .elementor-social-icon-yelp {
+	background-color: transparent;
+	color: #af0606
+}
+
+.elementor-shape-simple .elementor-social-icon-youtube:hover,
+.elementor-shape-simple .elementor-social-icon-youtube {
+	background-color: transparent;
+	color: #cd201f
+}
+
+.elementor-shape-simple .elementor-social-icon-500px:hover,
+.elementor-shape-simple .elementor-social-icon-500px {
+	background-color: transparent;
+	color: #0099e5
+}
+
+.elementor-shape-simple .elementor-social-icon i:hover,
+.elementor-shape-simple .elementor-social-icon i {
+	color: inherit;
+}
+
+.site-header .elementor-section, .site-header .elementor-column-wrap {
+	border-color: var(--thegem-to-box-border-color, #DFE5E8);
+}
+
+/*Use light color for elements*/
+
+.site-header.header-light .elementor-section,
+.site-header.header-light .elementor-column-wrap {
+	border-color: var(--header-builder-light-color);
+}
+
+/* Show elements z-index */
+body.menu-scroll-locked,
+body.cart-scroll-locked{
+	overflow-x: hidden;
+}
+body.menu-scroll-locked.is-no-sticky .header-sticky-template,
+body.cart-scroll-locked.is-no-sticky .header-sticky-template{
+	opacity: 0;
+}
+body.menu-scroll-locked .thegem-template-header .vc_row,
+body.cart-scroll-locked .thegem-template-header .vc_row{
+	z-index: auto !important;
+}
+body.menu-scroll-locked .thegem-template-header .thegem-te-menu,
+body.cart-scroll-locked .thegem-template-header .thegem-te-cart{
+	z-index: auto !important;
+}
+body.menu-scroll-locked .thegem-template-header .thegem-te-menu .thegem-te-menu__hamburger .hamburger-menu-back.active,
+body.menu-scroll-locked .thegem-template-header .thegem-te-menu .overlay-menu-back.active {
+	z-index: 999 !important;
+}
+body.menu-scroll-locked .thegem-template-header .thegem-te-menu .thegem-te-menu__hamburger .nav-menu,
+body.menu-scroll-locked .thegem-template-header .thegem-te-menu .overlay-menu-wrapper.active{
+	z-index: 1000 !important;
+}
+
+/* Disable hide-on-scroll if body locked */
+body.menu-scroll-locked:not(.is-no-sticky) .header-sticky-template.header-hide-on-scroll-mobile,
+body.cart-scroll-locked:not(.is-no-sticky) .header-sticky-template.header-hide-on-scroll-mobile {
+	transform: none !important;
+}
+body.menu-scroll-locked:not(.is-no-sticky) .header-sticky-template,
+body.cart-scroll-locked:not(.is-no-sticky) .header-sticky-template {
+	z-index: 391 !important;
+	opacity: 1!important;
+	visibility: visible !important;
+	pointer-events: auto !important;
+}
+
+/* Heading/Text Shortcode custom text style */
+.thegem-te-heading .thegem-heading.text-body-tiny{
+	font-family: var(--thegem-to-body-tiny-font-family);
+	font-style: var(--thegem-to-body-tiny-font-style);
+	font-weight: var(--thegem-to-body-tiny-font-weight);
+	font-size: var(--thegem-to-body-tiny-font-size);
+	line-height: var(--thegem-to-body-tiny-line-height);
+	letter-spacing: var(--thegem-to-body-tiny-letter-spacing);
+	text-transform: var(--thegem-to-body-tiny-text-transform);
+}
+
+@media (min-width: 1025px) {
+
+	.elementor-widget.flex-absolute-desktop {
+		position: absolute;
+	}
+
+	.flex-horizontal-align-left:not(.flex-absolute-desktop) {
+		margin-left: 0;
+		margin-right: auto;
+	}
+
+	.flex-horizontal-align-left.flex-absolute-desktop {
+		left: 0;
+	}
+
+	.flex-horizontal-align-center:not(.flex-absolute-desktop) {
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	.flex-horizontal-align-center.flex-absolute-desktop {
+		left: 50%;
+		width: fit-content !important;
+		max-width: 100%;
+		transform: translateX(-50%);
+	}
+
+	.flex-horizontal-align-right:not(.flex-absolute-desktop) {
+		margin-left: auto;
+		margin-right: 0;
+	}
+
+	.flex-horizontal-align-right.flex-absolute-desktop {
+		right: 0;
+	}
+
+	.flex-vertical-align-top:not(.flex-absolute-desktop) {
+		align-self: flex-start;
+	}
+
+	.flex-vertical-align-top.flex-absolute-desktop {
+		top: 0;
+	}
+
+	.flex-vertical-align-center:not(.flex-absolute-desktop) {
+		align-self: center;
+	}
+
+	.flex-vertical-align-center.flex-absolute-desktop {
+		top: 50%;
+		transform: translateY(-50%);
+	}
+
+	.flex-horizontal-align-center.flex-vertical-align-center.flex-absolute-desktop {
+		transform: translate(-50%, -50%);
+	}
+
+	.flex-vertical-align-bottom:not(.flex-absolute-desktop) {
+		align-self: flex-end;
+	}
+
+	.flex-vertical-align-bottom.flex-absolute-desktop {
+		bottom: 0;
+	}
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+
+	.elementor-widget.flex-absolute-tablet {
+		position: absolute;
+	}
+
+	.flex-horizontal-align-tablet-left:not(.flex-absolute-tablet),
+	.flex-horizontal-align-tablet-default:not(.flex-absolute-tablet).flex-horizontal-align-left {
+		margin-left: 0;
+		margin-right: auto;
+	}
+
+	.flex-horizontal-align-tablet-left.flex-absolute-tablet,
+	.flex-horizontal-align-tablet-default.flex-absolute-tablet.flex-horizontal-align-left  {
+		left: 0;
+	}
+
+	.flex-horizontal-align-tablet-center:not(.flex-absolute-tablet),
+	.flex-horizontal-align-tablet-default:not(.flex-absolute-tablet).flex-horizontal-align-center {
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	.flex-horizontal-align-tablet-center.flex-absolute-tablet,
+	.flex-horizontal-align-tablet-default.flex-absolute-tablet.flex-horizontal-align-center {
+		left: 50%;
+		width: fit-content !important;
+		max-width: 100%;
+		transform: translateX(-50%);
+	}
+
+	.flex-horizontal-align-tablet-right:not(.flex-absolute-tablet),
+	.flex-horizontal-align-tablet-default:not(.flex-absolute-tablet).flex-horizontal-align-right {
+		margin-left: auto;
+		margin-right: 0;
+	}
+
+	.flex-horizontal-align-tablet-right.flex-absolute-tablet,
+	.flex-horizontal-align-tablet-default.flex-absolute-tablet.flex-horizontal-align-right {
+		right: 0;
+	}
+
+	.flex-vertical-align-tablet-top:not(.flex-absolute-tablet),
+	.flex-vertical-align-tablet-default:not(.flex-absolute-tablet).flex-vertical-align-top {
+		align-self: flex-start;
+	}
+
+	.flex-vertical-align-tablet-top.flex-absolute-tablet,
+	.flex-vertical-align-tablet-default.flex-absolute-tablet.flex-vertical-align-top {
+		top: 0;
+	}
+
+	.flex-vertical-align-tablet-center:not(.flex-absolute-tablet),
+	.flex-vertical-align-tablet-default:not(.flex-absolute-tablet).flex-vertical-align-center {
+		align-self: center;
+	}
+
+	.flex-vertical-align-tablet-center.flex-absolute-tablet,
+	.flex-vertical-align-tablet-default.flex-absolute-tablet.flex-vertical-align-center {
+		top: 50%;
+		transform: translateY(-50%);
+	}
+
+	.flex-horizontal-align-tablet-center.flex-vertical-align-tablet-center.flex-absolute-tablet,
+	.flex-horizontal-align-tablet-default.flex-vertical-align-tablet-center.flex-absolute-tablet.flex-horizontal-align-center,
+	.flex-horizontal-align-tablet-center.flex-vertical-align-tablet-default.flex-absolute-tablet.flex-vertical-align-center {
+		transform: translate(-50%, -50%);
+	}
+
+	.flex-vertical-align-tablet-bottom:not(.flex-absolute-tablet),
+	.flex-vertical-align-tablet-default:not(.flex-absolute-tablet).flex-vertical-align-bottom {
+		align-self: flex-end;
+	}
+
+	.flex-vertical-align-tablet-bottom.flex-absolute-tablet,
+	.flex-vertical-align-tablet-default.flex-absolute-tablet.flex-vertical-align-bottom {
+		bottom: 0;
+	}
+}
+
+@media (max-width: 767px) {
+
+	.elementor-widget.flex-absolute-mobile {
+		position: absolute;
+	}
+
+	.flex-horizontal-align-mobile-left:not(.flex-absolute-mobile),
+	.flex-horizontal-align-mobile-default:not(.flex-absolute-mobile).flex-horizontal-align-tablet-left,
+	.flex-horizontal-align-mobile-default:not(.flex-absolute-mobile).flex-horizontal-align-tablet-default.flex-horizontal-align-left {
+		margin-left: 0;
+		margin-right: auto;
+	}
+
+	.flex-horizontal-align-mobile-left.flex-absolute-mobile,
+	.flex-horizontal-align-mobile-default.flex-absolute-mobile.flex-horizontal-align-tablet-left,
+	.flex-horizontal-align-mobile-default.flex-absolute-mobile.flex-horizontal-align-tablet-default.flex-horizontal-align-left  {
+		left: 0;
+	}
+
+	.flex-horizontal-align-mobile-center:not(.flex-absolute-mobile),
+	.flex-horizontal-align-mobile-default:not(.flex-absolute-mobile).flex-horizontal-align-tablet-center,
+	.flex-horizontal-align-mobile-default:not(.flex-absolute-mobile).flex-horizontal-align-tablet-default.flex-horizontal-align-center {
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	.flex-horizontal-align-mobile-center.flex-absolute-mobile,
+	.flex-horizontal-align-mobile-default.flex-absolute-mobile.flex-horizontal-align-tablet-center,
+	.flex-horizontal-align-mobile-default.flex-absolute-mobile.flex-horizontal-align-tablet-default.flex-horizontal-align-center {
+		left: 50%;
+		width: fit-content !important;
+		max-width: 100%;
+		transform: translateX(-50%);
+	}
+
+	.flex-horizontal-align-mobile-right:not(.flex-absolute-mobile),
+	.flex-horizontal-align-mobile-default:not(.flex-absolute-mobile).flex-horizontal-align-tablet-right,
+	.flex-horizontal-align-mobile-default:not(.flex-absolute-mobile).flex-horizontal-align-tablet-default.flex-horizontal-align-right {
+		margin-left: auto;
+		margin-right: 0;
+	}
+
+	.flex-horizontal-align-mobile-right.flex-absolute-mobile,
+	.flex-horizontal-align-mobile-default.flex-absolute-mobile.flex-horizontal-align-tablet-right,
+	.flex-horizontal-align-mobile-default.flex-absolute-mobile.flex-horizontal-align-tablet-default.flex-horizontal-align-right {
+		right: 0;
+	}
+
+	.flex-vertical-align-mobile-top:not(.flex-absolute-mobile),
+	.flex-vertical-align-mobile-default:not(.flex-absolute-mobile).flex-vertical-align-tablet-top,
+	.flex-vertical-align-mobile-default:not(.flex-absolute-mobile).flex-vertical-align-tablet-default.flex-vertical-align-top {
+		align-self: flex-start;
+	}
+
+	.flex-vertical-align-mobile-top.flex-absolute-mobile,
+	.flex-vertical-align-mobile-default.flex-absolute-mobile.flex-vertical-align-tablet-top,
+	.flex-vertical-align-mobile-default.flex-absolute-mobile.flex-vertical-align-tablet-default.flex-vertical-align-top {
+		top: 0;
+	}
+
+	.flex-vertical-align-mobile-center:not(.flex-absolute-mobile),
+	.flex-vertical-align-mobile-default:not(.flex-absolute-mobile).flex-vertical-align-tablet-center,
+	.flex-vertical-align-mobile-default:not(.flex-absolute-mobile).flex-vertical-align-tablet-default.flex-vertical-align-center {
+		align-self: center;
+	}
+
+	.flex-vertical-align-mobile-center.flex-absolute-mobile,
+	.flex-vertical-align-mobile-default.flex-absolute-mobile.flex-vertical-align-tablet-center,
+	.flex-vertical-align-mobile-default.flex-absolute-mobile.flex-vertical-align-tablet-default.flex-vertical-align-center {
+		top: 50%;
+		transform: translateY(-50%);
+	}
+
+	.flex-horizontal-align-mobile-center.flex-vertical-align-mobile-center.flex-absolute-mobile,
+	.flex-horizontal-align-mobile-default.flex-horizontal-align-tablet-center.flex-vertical-align-mobile-center.flex-absolute-mobile.flex-horizontal-align-center,
+	.flex-horizontal-align-mobile-default.flex-horizontal-align-tablet-default.flex-horizontal-align-center.flex-vertical-align-mobile-center.flex-absolute-mobile.flex-horizontal-align-center,
+	.flex-horizontal-align-mobile-center.flex-vertical-align-mobile-default.flex-vertical-align-tablet-center.flex-absolute-mobile.flex-vertical-align-center,
+	.flex-horizontal-align-mobile-center.flex-vertical-align-mobile-default.flex-vertical-align-tablet-default.flex-vertical-align-center.flex-absolute-mobile.flex-vertical-align-center {
+		transform: translate(-50%, -50%);
+	}
+
+	.flex-vertical-align-mobile-bottom:not(.flex-absolute-mobile),
+	.flex-vertical-align-mobile-default:not(.flex-absolute-mobile).flex-vertical-align-tablet-bottom,
+	.flex-vertical-align-mobile-default:not(.flex-absolute-mobile).flex-vertical-align-tablet-default.flex-vertical-align-bottom {
+		align-self: flex-end;
+	}
+
+	.flex-vertical-align-mobile-bottom.flex-absolute-mobile,
+	.flex-vertical-align-mobile-default.flex-absolute-mobile.flex-vertical-align-tablet-bottom,
+	.flex-vertical-align-mobile-default.flex-absolute-mobile.flex-vertical-align-tablet-default.flex-vertical-align-bottom {
+		bottom: 0;
+	}
+}
