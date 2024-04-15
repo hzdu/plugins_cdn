@@ -1,4 +1,4 @@
-/*! elementor - v3.20.0 - 20-03-2024 */
+/*! elementor - v3.21.0 - 15-04-2024 */
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
@@ -805,9 +805,9 @@ var PromptErrorMessage = function PromptErrorMessage(_ref) {
       };
     }
     return {
-      text: /*#__PURE__*/_react.default.createElement(_ui.AlertTitle, null, (0, _i18n.__)('Your free trial is up!', 'elementor')),
       // Translators: %s is the feature name.
-      description: sprintf((0, _i18n.__)('Upgrade now to keep using %s', 'elementor'), featureName),
+      text: /*#__PURE__*/_react.default.createElement(_ui.AlertTitle, null, sprintf((0, _i18n.__)('You\'ve used all AI credits for %s.', 'elementor'), featureName.toLowerCase())),
+      description: (0, _i18n.__)('Upgrade now to keep using this feature. You still have credits for other AI features (Text, Code, Images, Containers, etc.)', 'elementor'),
       buttonText: (0, _i18n.__)('Upgrade now', 'elementor'),
       buttonAction: function buttonAction() {
         return window.open('https://go.elementor.com/ai-popup-purchase-limit-reached/', '_blank');
@@ -820,20 +820,20 @@ var PromptErrorMessage = function PromptErrorMessage(_ref) {
     var featureName = (_error$extra_data = error.extra_data) === null || _error$extra_data === void 0 ? void 0 : _error$extra_data.featureName;
     var messages = {
       default: {
-        text: /*#__PURE__*/_react.default.createElement(_ui.AlertTitle, null, (0, _i18n.__)('Unknown error. Please try again later.', 'elementor')),
-        description: (0, _i18n.__)('Error code:', 'elementor') + ' ' + error,
-        buttonText: (0, _i18n.__)('Try Again', 'elementor'),
+        text: /*#__PURE__*/_react.default.createElement(_ui.AlertTitle, null, (0, _i18n.__)('There was a glitch.', 'elementor')),
+        description: (0, _i18n.__)('Wait a moment and give it another go, or try tweaking the prompt.', 'elementor'),
+        buttonText: (0, _i18n.__)('Try again', 'elementor'),
         buttonAction: onRetry
       },
       service_outage_internal: {
-        text: /*#__PURE__*/_react.default.createElement(_ui.AlertTitle, null, (0, _i18n.__)('Elementor AI is temporarily unavailable', 'elementor')),
-        description: (0, _i18n.__)('Seems like we are experiencing technical difficulty. We should be up and running shortly.', 'elementor'),
-        buttonText: (0, _i18n.__)('Try Again', 'elementor'),
+        text: /*#__PURE__*/_react.default.createElement(_ui.AlertTitle, null, (0, _i18n.__)('There was a glitch.', 'elementor')),
+        description: (0, _i18n.__)('Wait a moment and give it another go.', 'elementor'),
+        buttonText: (0, _i18n.__)('Try again', 'elementor'),
         buttonAction: onRetry
       },
       invalid_connect_data: {
-        text: /*#__PURE__*/_react.default.createElement(_ui.AlertTitle, null, (0, _i18n.__)('Reconnect your account', 'elementor')),
-        description: /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, (0, _i18n.__)('We couldn\'t connect to your account due to technical difficulties on our end. Reconnect your account to continue.', 'elementor'), ' ', /*#__PURE__*/_react.default.createElement("a", {
+        text: /*#__PURE__*/_react.default.createElement(_ui.AlertTitle, null, (0, _i18n.__)('There was a glitch.', 'elementor')),
+        description: /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, (0, _i18n.__)('Try exiting Elementor and sign in again.', 'elementor'), ' ', /*#__PURE__*/_react.default.createElement("a", {
           href: "https://elementor.com/help/disconnecting-reconnecting-your-elementor-account/",
           target: "_blank",
           rel: "noreferrer"
@@ -853,9 +853,9 @@ var PromptErrorMessage = function PromptErrorMessage(_ref) {
       },
       quota_reached_trail: getQuotaReachedTrailMessage(featureName),
       quota_reached_subscription: {
-        text: /*#__PURE__*/_react.default.createElement(_ui.AlertTitle, null, (0, _i18n.__)('It\'s time to upgrade.', 'elementor')),
-        description: (0, _i18n.__)('Love Elementor AI? Upgrade to continue creating with built-in image, text and custom code generators.', 'elementor'),
-        buttonText: (0, _i18n.__)('Upgrade', 'elementor'),
+        text: /*#__PURE__*/_react.default.createElement(_ui.AlertTitle, null, (0, _i18n.__)('Looks like you\'re out of credits.', 'elementor')),
+        description: (0, _i18n.__)('Ready to take it to the next level?', 'elementor'),
+        buttonText: (0, _i18n.__)('Upgrade now', 'elementor'),
         buttonAction: function buttonAction() {
           return window.open('https://go.elementor.com/ai-popup-purchase-limit-reached/', '_blank');
         }
@@ -867,6 +867,24 @@ var PromptErrorMessage = function PromptErrorMessage(_ref) {
       invalid_prompts: {
         text: /*#__PURE__*/_react.default.createElement(_ui.AlertTitle, null, (0, _i18n.__)('We were unable to generate that prompt.', 'elementor')),
         description: (0, _i18n.__)('Seems like the prompt contains words that could generate harmful content. Write a different prompt to continue.', 'elementor')
+      },
+      service_unavailable: {
+        text: /*#__PURE__*/_react.default.createElement(_ui.AlertTitle, null, (0, _i18n.__)('There was a glitch.', 'elementor')),
+        description: (0, _i18n.__)('Wait a moment and give it another go, or try tweaking the prompt.', 'elementor'),
+        buttonText: (0, _i18n.__)('Try again', 'elementor'),
+        buttonAction: onRetry
+      },
+      request_timeout_error: {
+        text: /*#__PURE__*/_react.default.createElement(_ui.AlertTitle, null, (0, _i18n.__)('There was a glitch.', 'elementor')),
+        description: (0, _i18n.__)('Wait a moment and give it another go, or try tweaking the prompt.', 'elementor'),
+        buttonText: (0, _i18n.__)('Try again', 'elementor'),
+        buttonAction: onRetry
+      },
+      invalid_token: {
+        text: /*#__PURE__*/_react.default.createElement(_ui.AlertTitle, null, (0, _i18n.__)('Try again', 'elementor')),
+        description: (0, _i18n.__)('Try exiting Elementor and sign in again.', 'elementor'),
+        buttonText: (0, _i18n.__)('Reconnect', 'elementor'),
+        buttonAction: onRetry
       }
     };
     return messages[errMsg] || messages.default;
@@ -2967,20 +2985,26 @@ var _extends2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/he
 var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "../node_modules/@babel/runtime/helpers/defineProperty.js"));
 var _ui = __webpack_require__(/*! @elementor/ui */ "@elementor/ui");
 var _excluded = ["onClose", "usagePercentage", "hasSubscription"];
-var _title, _description, _url, _title2, _description2, _url2;
+var _title, _description, _url, _title2, _description2, _url2, _title3, _description3, _url3;
 var KEY_SUBSCRIPTION = 'subscription';
 var KEY_NO_SUBSCRIPTION = 'noSubscription';
 var alertConfigs = [{
   threshold: 95,
-  title: (_title = {}, (0, _defineProperty2.default)(_title, KEY_SUBSCRIPTION, __('You’ve used over 95% of your Elementor AI plan.', 'elementor')), (0, _defineProperty2.default)(_title, KEY_NO_SUBSCRIPTION, __('You’ve used over 95% of the free trial.', 'elementor')), _title),
-  description: (_description = {}, (0, _defineProperty2.default)(_description, KEY_SUBSCRIPTION, __('Get maximum access.', 'elementor')), (0, _defineProperty2.default)(_description, KEY_NO_SUBSCRIPTION, __('Upgrade now to keep using this feature, you can still use other AI features.', 'elementor')), _description),
+  title: (_title = {}, (0, _defineProperty2.default)(_title, KEY_SUBSCRIPTION, __('You’ve used over 95% of your Elementor AI plan.', 'elementor')), (0, _defineProperty2.default)(_title, KEY_NO_SUBSCRIPTION, __('You’ve used 95% of credits for this AI feature.', 'elementor')), _title),
+  description: (_description = {}, (0, _defineProperty2.default)(_description, KEY_SUBSCRIPTION, __('Get maximum access.', 'elementor')), (0, _defineProperty2.default)(_description, KEY_NO_SUBSCRIPTION, __('Upgrade now to keep using this feature. You still have credits for other AI features (Text, Code, Images, Containers, etc.)', 'elementor')), _description),
   url: (_url = {}, (0, _defineProperty2.default)(_url, KEY_SUBSCRIPTION, 'https://go.elementor.com/ai-banner-paid-95-limit-reach/'), (0, _defineProperty2.default)(_url, KEY_NO_SUBSCRIPTION, 'https://go.elementor.com/ai-banner-free-95-limit-reach/'), _url),
   color: 'error'
 }, {
   threshold: 80,
-  title: (_title2 = {}, (0, _defineProperty2.default)(_title2, KEY_SUBSCRIPTION, __('You’ve used over 80% of your Elementor AI plan.', 'elementor')), (0, _defineProperty2.default)(_title2, KEY_NO_SUBSCRIPTION, __('You’ve used over 80% of the free trial.', 'elementor')), _title2),
-  description: (_description2 = {}, (0, _defineProperty2.default)(_description2, KEY_SUBSCRIPTION, __('Get maximum access.', 'elementor')), (0, _defineProperty2.default)(_description2, KEY_NO_SUBSCRIPTION, __('Upgrade now to keep using this feature, you can still use other AI features.', 'elementor')), _description2),
+  title: (_title2 = {}, (0, _defineProperty2.default)(_title2, KEY_SUBSCRIPTION, __('You’ve used over 80% of your Elementor AI plan.', 'elementor')), (0, _defineProperty2.default)(_title2, KEY_NO_SUBSCRIPTION, __('You’ve used 80% of credits for this AI feature.', 'elementor')), _title2),
+  description: (_description2 = {}, (0, _defineProperty2.default)(_description2, KEY_SUBSCRIPTION, __('Get maximum access.', 'elementor')), (0, _defineProperty2.default)(_description2, KEY_NO_SUBSCRIPTION, __('Upgrade now to keep using this feature. You still have credits for other AI features (Text, Code, Images, Containers, etc.)', 'elementor')), _description2),
   url: (_url2 = {}, (0, _defineProperty2.default)(_url2, KEY_SUBSCRIPTION, 'https://go.elementor.com/ai-banner-paid-80-limit-reach/'), (0, _defineProperty2.default)(_url2, KEY_NO_SUBSCRIPTION, 'https://go.elementor.com/ai-banner-free-80-limit-reach/'), _url2),
+  color: 'warning'
+}, {
+  threshold: 75,
+  title: (_title3 = {}, (0, _defineProperty2.default)(_title3, KEY_SUBSCRIPTION, __('You’ve used over 75% of your Elementor AI plan.', 'elementor')), (0, _defineProperty2.default)(_title3, KEY_NO_SUBSCRIPTION, __(' You’ve used 75% of credits for this AI feature.', 'elementor')), _title3),
+  description: (_description3 = {}, (0, _defineProperty2.default)(_description3, KEY_SUBSCRIPTION, __('Get maximum access.', 'elementor')), (0, _defineProperty2.default)(_description3, KEY_NO_SUBSCRIPTION, __('Upgrade now to keep using this feature. You still have credits for other AI features (Text, Code, Images, Containers, etc.)', 'elementor')), _description3),
+  url: (_url3 = {}, (0, _defineProperty2.default)(_url3, KEY_SUBSCRIPTION, 'https://go.elementor.com/ai-banner-paid-80-limit-reach/'), (0, _defineProperty2.default)(_url3, KEY_NO_SUBSCRIPTION, 'https://go.elementor.com/ai-banner-free-80-limit-reach/'), _url3),
   color: 'warning'
 }];
 var UpgradeButton = function UpgradeButton(props) {
@@ -3105,7 +3129,7 @@ var VoicePromotionAlert = function VoicePromotionAlert(props) {
   var _useIntroduction = (0, _useIntroduction2.default)(props.introductionKey),
     isViewed = _useIntroduction.isViewed,
     markAsViewed = _useIntroduction.markAsViewed;
-  if (!isViewed) {
+  if (isViewed) {
     return null;
   }
   return /*#__PURE__*/_react.default.createElement(_ui.Box, {
