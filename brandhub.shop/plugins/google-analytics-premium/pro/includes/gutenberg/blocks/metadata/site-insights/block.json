@@ -1,0 +1,51 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "monsterinsights/site-insights",
+  "title": "Site Insights",
+  "category": "widgets",
+  "description": "Display your analytics stats on your website.",
+  "keywords": [
+    "insights",
+    "graph",
+    "chart",
+    "scorecard"
+  ],
+  "textdomain": "default",
+  "attributes": {
+    "type": {
+      "type": "string",
+      "default": ""
+    },
+    "metric": {
+      "type": "string",
+      "default": "sessions"
+    },
+    "primaryColor": {
+      "type": "string",
+      "default": "#4CABFF"
+    },
+    "secondaryColor": {
+      "type": "string",
+      "default": "#E6F1FD"
+    },
+    "textColor": {
+      "type": "string",
+      "default": "#393F4C"
+    },
+    "backgroundColor": {
+      "type": "string",
+      "default": "#FFFFFF"
+    },
+    "withComparison": {
+      "type": "boolean",
+      "default": true
+    }
+  },
+  "supports": {
+    "inserter": false,
+    "reusable": false,
+    "html": false,
+    "anchor": true
+  }
+}
