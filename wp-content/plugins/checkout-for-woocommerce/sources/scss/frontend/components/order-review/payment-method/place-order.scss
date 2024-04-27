@@ -11,7 +11,7 @@
     width: 100%;
 }
 
-#cfw-place-order button:not(.gpay-button) {
+#cfw-place-order button:not([class^="gpay-"]) {
     @include cfw-primary-button();
 }
 

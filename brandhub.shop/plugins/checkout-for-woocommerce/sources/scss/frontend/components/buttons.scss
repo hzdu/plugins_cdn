@@ -73,6 +73,11 @@
     @include cfw-secondary-button();
 }
 
+// Gift up, and anything else that puts buttons in the totals
+.cfw-totals-list button {
+    @include cfw-secondary-button();
+}
+
 // Target .checkoutwc so that our modaal wrapper (SmartyStreets) and main container both are ancestors
 .checkoutwc, .cfw-modal {
     .cfw-prev-tab {

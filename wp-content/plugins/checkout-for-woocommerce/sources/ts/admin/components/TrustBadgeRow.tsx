@@ -141,7 +141,7 @@ function TrustBadgeRow( { badge, setBadge, removeHandler, dragHandleProps }: Tru
                     ) : (
                         <ReviewBadge
                             title={badge.title.length ? badge.title : 'Example Customer Name'}
-                            subtitle={badge.subtitle.length ? badge.subtitle : 'Example Customer Role'}
+                            subtitle={badge.subtitle?.length ? badge.subtitle : 'Example Customer Role'}
                             description={badge.description.length ? badge.description : 'The glowingly positive review text!'}
                             imageUrl={badge.image?.url}
                         />

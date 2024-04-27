@@ -18,11 +18,9 @@ const CartTableRow = ( { item, updateItem }: CartTableRowProps ) => (
             <td className="cfw-cart-item-image">
                 <div className="cfw-cart-item-image-wrap">
                     { DataService.getSetting( 'link_items' ) ? (
-                        <a target="_blank" href={item.url}>
-                            <Markup content={item.thumbnail} noWrap={true} />
-                        </a>
+                        <a target="_blank" href={item.url} dangerouslySetInnerHTML={{ __html: item.thumbnail }} />
                     ) : (
-                        <Markup content={item.thumbnail} noWrap={true} />
+                        <span dangerouslySetInnerHTML={{ __html: item.thumbnail }} />
                     ) }
                     { ( !DataService.getSetting( 'enable_cart_editing' ) || item.has_quantity_override ) && (
                         <span className="cfw-cart-item-quantity-bubble">
@@ -35,11 +33,9 @@ const CartTableRow = ( { item, updateItem }: CartTableRowProps ) => (
         <th className="cfw-cart-item-description" colSpan={ !item.thumbnail.length ? 2 : undefined }>
             <div className="cfw-cart-item-title">
                 { DataService.getSetting( 'link_items' ) ? (
-                    <a target="_blank" href={item.url}>
-                        <Markup content={item.title} noWrap={true} />
-                    </a>
+                    <a target="_blank" href={item.url} dangerouslySetInnerHTML={ { __html: item.title }} />
                 ) : (
-                    <Markup content={item.title} noWrap={true} />
+                    <span dangerouslySetInnerHTML={ { __html: item.title }} />
                 ) }
             </div>
             { DataService.getSetting( 'show_item_discount' ) && (
@@ -54,6 +50,8 @@ const CartTableRow = ( { item, updateItem }: CartTableRowProps ) => (
             ) }
 
             <div className="cfw_side_cart_item_after_data">
+                {ReactHtmlParser( item.actions?.cfw_side_cart_item_after_data ?? '' )}
+
                 {!item.disable_cart_editing && !item.has_quantity_override && (
                     <CartItemQuantityControl
                         quantity={item.quantity}
@@ -70,8 +68,6 @@ const CartTableRow = ( { item, updateItem }: CartTableRowProps ) => (
                 {!item.disable_cart_variation_editing && (
                     <CartItemEditVariationLink item={item} />
                 ) }
-
-                {ReactHtmlParser( item.actions?.cfw_side_cart_item_after_data ?? '' )}
             </div>
         </th>
         <td className="cfw-cart-item-quantity visually-hidden">

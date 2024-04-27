@@ -42,7 +42,12 @@ const SuggestedProductsCarousel = ( { openModal } ) => {
                                 </div>
                             )}
                             <div className="cfw-suggested-product-description col">
-                                <div className="cfw-suggested-product-title">{product.title}</div>
+                                <div className="cfw-suggested-product-title" dangerouslySetInnerHTML={ { __html: product.title } } />
+
+                                {product.afterTitle && (
+                                    <div className="cfw-suggested-product-after-title" dangerouslySetInnerHTML={ { __html: product.afterTitle }} />
+                                )}
+
                                 <div className="cfw-suggested-product-price">
                                     {DataService.getSetting( 'show_item_discount' ) && (
                                         <Markup content={product.priceHtml} noWrap={true} />

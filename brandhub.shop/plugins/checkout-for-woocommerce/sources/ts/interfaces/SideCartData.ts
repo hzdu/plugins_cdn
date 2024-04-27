@@ -1,6 +1,7 @@
 export interface SuggestedProduct {
     productId: number;
     title: string;
+    afterTitle: string;
     priceHtml: string;
     imageTag: string;
     isVariable: boolean;

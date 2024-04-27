@@ -8,7 +8,7 @@ const GuaranteeBadge = ( { imageUrl, title, description } ) => {
         <div className="flex items-center grow mb-6 max-w-lg">
             <div className="mr-4 flex-shrink-0">
                 {imageUrl && (
-                    <img src={imageUrl} className="max-w-28 h-auto" alt={title}/>
+                    <img src={imageUrl} className="w-full max-w-28 h-auto" alt={title}/>
                 )}
             </div>
             <div>

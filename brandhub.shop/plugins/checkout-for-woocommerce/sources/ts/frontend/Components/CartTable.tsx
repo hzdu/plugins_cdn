@@ -7,6 +7,7 @@ import DataStores                              from '../DataStores';
 import LoggingService                          from '../Services/LoggingService';
 import DataService                             from '../Services/DataService';
 import FreeShippingProgressBar                 from './FreeShippingProgressBar';
+import cfwDangerouslyOutputTableRowAction      from '../../functions/cfwDangerouslyOutputTableRowAction';
 
 const CartTable: React.FC = () => {
     const isEmpty = useSelect( ( select: any ) => select( DataStores.cart_store_key ).getCartIsEmpty( null ), [] );
@@ -44,7 +45,7 @@ const CartTable: React.FC = () => {
             }
             <table className="cfw-cart-table cfw-module">
                 <tbody>
-                    {ReactHtmlParser( staticActions?.cfw_cart_html_table_start )}
+                    {cfwDangerouslyOutputTableRowAction( staticActions?.cfw_cart_html_table_start )}
                     {items.map( ( item: CartItemInterface ) => ( <CartTableRow item={item} updateItem={updateItem} key={item.item_key} /> ) )}
                 </tbody>
             </table>

@@ -34,7 +34,10 @@ class Pickup {
         jQuery( '[name="cfw_delivery_method"]:checked' ).trigger( 'change' );
 
         Pickup.documentBody.on( 'change', '[name="cfw_delivery_method"], [name="cfw_pickup_location"]', () => {
-            UpdateCheckoutService.queueUpdateCheckout();
+            UpdateCheckoutService.queueUpdateCheckout( null, {
+                // We don't want to update the shipping method since it will be recalculated when this changes
+                update_shipping_method: false,
+            } );
         } );
 
         cfwGetWPHooks().addFilter( 'cfw_js_suppress_smarty_address_validation', 'cfw', ( value ) => {

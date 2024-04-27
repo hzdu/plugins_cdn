@@ -1,10 +1,10 @@
 import React                                  from 'react';
 import { Markup }                             from 'interweave';
-import ReactHtmlParser                        from 'react-html-parser';
 import { useSelect }                          from '@wordpress/data';
 import DataStores                             from '../DataStores';
 import { CartCoupon, CartTotalsData }         from '../../interfaces/CartTotalInterface';
 import DataService                            from '../Services/DataService';
+import cfwDangerouslyOutputTableRowAction     from '../../functions/cfwDangerouslyOutputTableRowAction';
 
 const SideCartTotals = () => {
     const totals = useSelect( ( select: any ) => select( DataStores.cart_store_key ).getCartTotals( null ), [] ) as CartTotalsData;
@@ -13,7 +13,7 @@ const SideCartTotals = () => {
         <div className="cfw-module cfw-totals-list">
             <table className="cfw-module">
                 <tbody>
-                    {ReactHtmlParser( totals.actions?.cfw_before_cart_summary_totals )}
+                    {cfwDangerouslyOutputTableRowAction( totals.actions?.cfw_before_cart_summary_totals )}
 
                     <tr className="cart-subtotal">
                         <th>{totals.subtotal.label}</th>

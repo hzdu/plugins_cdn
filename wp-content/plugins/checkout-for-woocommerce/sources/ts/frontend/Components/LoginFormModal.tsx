@@ -129,8 +129,31 @@ const LoginFormModal: React.FC = () => {
                         modal: `cfw-modal cfw-grid ${id}`,
                         modalContainer: 'cfw-modal-container',
                     }}
-                    showCloseIcon={false}
                     onAnimationEnd={() => {
+                        if ( content && isModalOpen ) {
+                            const tempDiv = document.createElement( 'div' );
+
+                            tempDiv.innerHTML = content;
+
+                            const scripts = tempDiv.querySelectorAll( 'script' );
+
+                            scripts.forEach( ( script ) => {
+                                const newScript = document.createElement( 'script' );
+
+                                newScript.type = 'text/javascript';
+
+                                if ( script.src ) {
+                                    newScript.src = script.src;
+                                    newScript.async = true;
+                                } else {
+                                    newScript.textContent = script.textContent;
+                                }
+
+                                document.body.appendChild( newScript );
+                                document.body.removeChild( newScript );
+                            } );
+                        }
+
                         jQuery( document.body ).trigger( 'cfw_login_modal_open' );
                     }}
                     focusTrapped={false}

@@ -26,14 +26,23 @@ class CompleteOrderAction extends Action {
 
                 ParsleyService.instance.destroy();
 
+                if ( typeof resp.redirect === 'undefined' ) {
+                    // In the unlikely event this happens, assume someone else is handling the redirect for us
+                    return;
+                }
+
                 if ( resp.redirect.indexOf( 'https://' ) === -1 || resp.redirect.indexOf( 'http://' ) === -1 ) {
                     ( <any>window ).location = resp.redirect;
                 } else {
                     ( <any>window ).location = decodeURI( resp.redirect );
                 }
             } else if ( resp.result === 'failure' ) {
+                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                // @ts-ignore
                 throw new Error( 'Result failure' );
             } else {
+                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                // @ts-ignore
                 throw new Error( 'Invalid response' );
             }
         } catch ( err ) {
