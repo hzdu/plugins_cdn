@@ -56,10 +56,7 @@ const SuggestedProductsCarousel = ( { openModal } ) => {
                                 <button
                                     type="submit"
                                     className="cfw-suggested-product-add-to-cart cfw-secondary-btn"
-                                    data-product={product.productId}
-                                    data-variable={product.isVariable ? 'true' : 'false'}
-                                    value={product.productId}
-                                    onClick={( e ) => {
+                                    onClick={() => {
                                         if ( product.isVariable ) {
                                             openModal( product.productId );
                                         }
@@ -67,7 +64,7 @@ const SuggestedProductsCarousel = ( { openModal } ) => {
                                         return cfwAjax( 'cfw_add_to_cart', {
                                             type: 'POST',
                                             data: {
-                                                'add-to-cart': jQuery( e.currentTarget ).data( 'product' ),
+                                                'add-to-cart': product.productId,
                                             },
                                             dataType: 'json',
                                             cache: false,

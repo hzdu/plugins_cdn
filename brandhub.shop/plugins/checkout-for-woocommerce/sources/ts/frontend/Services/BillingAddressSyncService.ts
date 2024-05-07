@@ -129,7 +129,7 @@ class BillingAddressSyncService {
         }
 
         if ( currentValue !== newValue ) {
-            LoggingService.log( `Syncing field: ${srcField.attr( 'name' )} to ${destField.attr( 'name' )}` );
+            LoggingService.logNotice( `Syncing field: ${srcField.attr( 'name' )} to ${destField.attr( 'name' )}` );
 
             destField.val( srcField.val() );
 

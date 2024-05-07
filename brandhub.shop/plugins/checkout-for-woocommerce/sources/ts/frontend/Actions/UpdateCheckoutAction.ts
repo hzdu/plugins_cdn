@@ -191,7 +191,7 @@ class UpdateCheckoutAction extends Action {
                     }
                 }
             } catch ( e ) {
-                LoggingService.log( 'Unable to handle gateway edge case', e );
+                LoggingService.logNotice( 'Unable to handle gateway edge case', e );
             }
 
             /**

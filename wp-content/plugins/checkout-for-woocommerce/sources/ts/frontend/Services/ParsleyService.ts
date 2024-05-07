@@ -94,7 +94,7 @@ class ParsleyService implements FieldValidationRefresher {
                         cache: false,
                         statusCode: {
                             202() {
-                                LoggingService.log( 'CheckoutWC: Invalid postcode validation request. Must include postcode and country.' );
+                                LoggingService.logNotice( 'CheckoutWC: Invalid postcode validation request. Must include postcode and country.' );
                             },
                         },
                     };
@@ -210,10 +210,10 @@ class ParsleyService implements FieldValidationRefresher {
                 }
 
                 if ( fieldIsDisabled || fieldIsReadOnly || fieldContainerIsHidden || fieldIsHiddenAndOnActiveTab || fieldIsAHiddenIconicDeliverySlotsField ) {
-                    LoggingService.log( 'Bypassing Parsley validation for field below.', false, fieldInstance.$element );
-                    LoggingService.log( `Reason fieldIsHiddenAndOnActiveTab: ${fieldIsHiddenAndOnActiveTab ? 'true' : 'false'}` );
-                    LoggingService.log( `Reason fieldContainerIsHidden: ${fieldContainerIsHidden ? 'true' : 'false'}` );
-                    LoggingService.log( `Reason fieldIsAHiddenIconicDeliverySlotsField: ${fieldIsAHiddenIconicDeliverySlotsField ? 'true' : 'false'}` );
+                    LoggingService.logNotice( 'Bypassing Parsley validation for field below.', fieldInstance.$element );
+                    LoggingService.logNotice( `Reason fieldIsHiddenAndOnActiveTab: ${fieldIsHiddenAndOnActiveTab ? 'true' : 'false'}` );
+                    LoggingService.logNotice( `Reason fieldContainerIsHidden: ${fieldContainerIsHidden ? 'true' : 'false'}` );
+                    LoggingService.logNotice( `Reason fieldIsAHiddenIconicDeliverySlotsField: ${fieldIsAHiddenIconicDeliverySlotsField ? 'true' : 'false'}` );
 
                     // hide the message wrapper if the field itself is specifically display none
                     if ( fieldInstance.$element.css( 'display' ) === 'none' ) {
@@ -226,7 +226,7 @@ class ParsleyService implements FieldValidationRefresher {
                     return;
                 }
 
-                LoggingService.log( 'Field did not pass validation. Field object is logged below.', false, fieldInstance.$element );
+                LoggingService.logNotice( 'Field did not pass validation. Field object is logged below.', fieldInstance.$element );
             } );
 
             // If we don't call this here, changing the state

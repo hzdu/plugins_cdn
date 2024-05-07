@@ -30,7 +30,7 @@ abstract class Compatibility {
       Object.values( cfw.compatibility ).filter( ( { class: className } ) => this.key === className ).forEach( ( { params } ) => {
           this.load( params );
 
-          LoggingService.log( `Loaded ${this.key} module. 🧩` );
+          LoggingService.logNotice( `Loaded ${this.key} module. 🧩` );
       } );
   }
 }

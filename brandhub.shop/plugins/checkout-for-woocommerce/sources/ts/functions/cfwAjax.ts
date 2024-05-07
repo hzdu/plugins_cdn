@@ -2,7 +2,7 @@ import DataService    from '../frontend/Services/DataService';
 import LoggingService from '../frontend/Services/LoggingService';
 
 export default function cfwAjax( id: string, params: JQuery.AjaxSettings ): JQuery.jqXHR<any> {
-    LoggingService.log( `AJAX request to endpoint: ${id}. ☄️` );
+    LoggingService.logNotice( `AJAX request to endpoint: ${id}. ☄️` );
 
     const defaultErrorFunction = ( xhr: JQuery.jqXHR, textStatus: string, errorThrown: string ): void => {
         if ( textStatus !== 'abort' ) {
