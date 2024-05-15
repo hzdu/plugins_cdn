@@ -12,6 +12,7 @@ interface CartItemInterface {
     data: Array<{key: string; value: any;}>;
     formatted_data: string;
     disable_cart_editing: boolean;
+    disable_cart_editing_at_checkout: boolean;
     disable_cart_variation_editing: boolean;
     max_quantity: number;
     min_quantity: number;

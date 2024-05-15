@@ -22,7 +22,7 @@ const CartTableRow = ( { item, updateItem }: CartTableRowProps ) => (
                     ) : (
                         <span dangerouslySetInnerHTML={{ __html: item.thumbnail }} />
                     ) }
-                    { ( !DataService.getSetting( 'enable_cart_editing' ) || item.has_quantity_override ) && (
+                    { ( item.disable_cart_editing || item.has_quantity_override ) && (
                         <span className="cfw-cart-item-quantity-bubble">
                             <Markup content={item.quantity.toString()} noWrap={true} />
                         </span>

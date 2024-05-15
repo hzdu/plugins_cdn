@@ -6,22 +6,20 @@ class Mollie extends Compatibility {
     }
 
     load(): void {
+        // Mollie intercepts the submission process and reroutes it to their own submission handler, even when a non-mollie gatweway is selected
+        // So we can't rely on detecting whether mollie is actually selected
         jQuery( document.body ).on( 'click', 'input#place_order, button#place_order', ( e ) => {
-            if ( !Mollie.isMollieSelected() ) {
-                return;
-            }
-
-            jQuery( document.body ).trigger( 'cfw_request_after_checkout_submit_bumps' );
-        } );
-
-        jQuery( document.body ).on( 'cfw_after_checkout_bump_handle_rejection cfw_after_checkout_bump_handle_add_to_cart', ( e ) => {
-            if ( !Mollie.isMollieSelected() ) {
+            if ( jQuery( document.body ).triggerHandler( 'cfw_request_after_checkout_submit_bumps' ) === false ) {
+                e.preventDefault();
+                e.stopImmediatePropagation();
                 return false;
             }
 
-            jQuery( document.body ).find( 'input#place_order, button#place_order' ).first().trigger( 'click' );
-
             return true;
+        } );
+
+        jQuery( document.body ).on( 'cfw_after_checkout_bump_handle_rejection cfw_after_checkout_bump_handle_add_to_cart', () => {
+            jQuery( document.body ).find( 'input#place_order, button#place_order' ).first().trigger( 'click' );
         } );
     }
 

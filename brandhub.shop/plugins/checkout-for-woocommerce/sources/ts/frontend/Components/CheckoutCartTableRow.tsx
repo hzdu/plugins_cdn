@@ -22,7 +22,7 @@ const CheckoutCartTableRow = ( { item, updateItem }: CartTableRowProps ) => (
                     ) : (
                         <span dangerouslySetInnerHTML={{ __html: item.thumbnail }} />
                     ) }
-                    { ( !DataService.getSetting( 'enable_cart_editing' ) || item.has_quantity_override ) && (
+                    { ( item.disable_cart_editing_at_checkout || item.has_quantity_override ) && (
                         <span className="cfw-cart-item-quantity-bubble">
                             <Markup content={item.quantity.toString()} noWrap={true} />
                         </span>
@@ -52,7 +52,7 @@ const CheckoutCartTableRow = ( { item, updateItem }: CartTableRowProps ) => (
             <div className="cfw_cart_item_after_data">
                 {ReactHtmlParser( item.actions?.cfw_cart_item_after_data ?? '' )}
 
-                {!item.disable_cart_editing && !item.has_quantity_override && (
+                {!item.disable_cart_editing_at_checkout && !item.has_quantity_override && (
                     <CartItemQuantityControl
                         quantity={item.quantity}
                         setQuantity={( newQuantity: number ) => {
@@ -65,7 +65,7 @@ const CheckoutCartTableRow = ( { item, updateItem }: CartTableRowProps ) => (
                     />
                 ) }
 
-                {!item.disable_cart_variation_editing && (
+                { !item.disable_cart_editing_at_checkout && !item.disable_cart_variation_editing && (
                     <CartItemEditVariationLink item={item} />
                 ) }
             </div>

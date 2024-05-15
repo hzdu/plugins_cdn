@@ -220,6 +220,8 @@
       if (iconic_woothumbs.products.length <= 0) {
         return;
       }
+      $('.iconic-woothumbs-remove-on-js-load').remove();
+      $('.iconic-woothumbs-all-images-wrap').addClass('iconic-woothumbs-js-loaded');
       $.each(iconic_woothumbs.products, function (index, product_object) {
         iconic_woothumbs.setup_sliders(product_object);
         iconic_woothumbs.watch_variations(product_object);
@@ -807,6 +809,7 @@
           }
         }
       }
+      $(window).trigger('resize');
     },
     /**
      * Helper: Set visibility of thumbnail controls
@@ -2338,7 +2341,9 @@
         // `plyr_setup` method.
         function maybe_resolve() {
           if (destroy_counter === window.iconic_woothumbs_plyr[type].length) {
-            resolve();
+            setTimeout(function () {
+              resolve();
+            }, 250);
           }
         }
         window.iconic_woothumbs_plyr[type].forEach(function (plyr_instance, index) {
