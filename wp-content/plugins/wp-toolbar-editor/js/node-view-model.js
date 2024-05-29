@@ -1,6 +1,6 @@
 var wsAdminBarEditor = wsAdminBarEditor || {};
 
-(function($) {
+(function ($) {
 
 	/**
 	 * This view-model represents a single Admin Bar menu node and its children.
@@ -10,7 +10,7 @@ var wsAdminBarEditor = wsAdminBarEditor || {};
 	 * @param {wsAdminBarEditor.ApplicationViewModel} [appViewModel]
 	 * @constructor
 	 */
-	wsAdminBarEditor.NodeViewModel = function(node, parentViewModel, appViewModel) {
+	wsAdminBarEditor.NodeViewModel = function (node, parentViewModel, appViewModel) {
 		if (typeof parentViewModel === 'undefined') {
 			parentViewModel = null;
 		}
@@ -29,6 +29,20 @@ var wsAdminBarEditor = wsAdminBarEditor || {};
 		this.is_custom = ko.observable(typeof node['is_custom'] !== 'undefined' ? node.is_custom : false);
 		this.is_hidden = ko.observable(typeof node['is_hidden'] !== 'undefined' ? node.is_hidden : false);
 
+		this.is_present_on_page = (typeof node.is_present_on_page !== 'undefined') ? node.is_present_on_page : true;
+		this.last_seen_timestamp = (typeof node.last_seen_timestamp !== 'undefined') ? node.last_seen_timestamp : 0;
+
+		if (this.is_present_on_page || this.is_custom() || (this.last_seen_timestamp === 0)) {
+			this.is_stale = false;
+		} else {
+			const now = (new Date()).getTime();
+			//Note: The "last seen" timestamp is a Unix timestamp in seconds,
+			//while JS timestamps are in milliseconds.
+			const daysSinceSeen = (now - self.last_seen_timestamp * 1000) / (24 * 60 * 60 * 1000);
+			const threshold = appViewModel ? appViewModel.stalenessThresholdInDays : 14;
+			this.is_stale = daysSinceSeen > threshold;
+		}
+
 		//In PHP json_encode() will encode empty PHP arrays as JS arrays, but we want hash tables instead.
 		if ((typeof node['is_visible_to_actor'] === 'object') && !Array.isArray(node.is_visible_to_actor)) {
 			this.is_visible_to_actor = ko.observable(node.is_visible_to_actor);
@@ -38,7 +52,7 @@ var wsAdminBarEditor = wsAdminBarEditor || {};
 
 		//noinspection JSUnusedGlobalSymbols
 		this.is_visible = ko.computed({
-			read: function() {
+			read: function () {
 				if (self.is_hidden()) {
 					//This node is hidden from all users.
 					return false;
@@ -58,7 +72,7 @@ var wsAdminBarEditor = wsAdminBarEditor || {};
 				return !self.is_hidden();
 			},
 
-			write: function(value) {
+			write: function (value) {
 				if (appViewModel.selectedActor() !== null) {
 					//Show/hide this node to the selected actor.
 					var slug = appViewModel.selectedActor().slug;
@@ -70,7 +84,7 @@ var wsAdminBarEditor = wsAdminBarEditor || {};
 
 						//Hide from all actors.
 						var newActorVisibility = {};
-						ko.utils.arrayForEach(appViewModel.actors(), function(actor) {
+						ko.utils.arrayForEach(appViewModel.actors(), function (actor) {
 							if (actor.slug) {
 								newActorVisibility[actor.slug] = false;
 							}
@@ -104,7 +118,7 @@ var wsAdminBarEditor = wsAdminBarEditor || {};
 		//noinspection JSUnusedGlobalSymbols
 		this.effectiveId = ko.computed({
 			read: self.id,
-			write: function(value) {
+			write: function (value) {
 				//The ID must not be a non-empty string.
 				value = '' + value;
 				if (value === '') {
@@ -127,26 +141,33 @@ var wsAdminBarEditor = wsAdminBarEditor || {};
 			owner: this
 		});
 
+		/**
+		 * @returns {boolean}
+		 */
+		this.isDeletable = ko.pureComputed(function () {
+			return self.is_custom() || !self.is_present_on_page;
+		});
+
 		this.defaults = typeof node['defaults'] !== 'undefined' ? node.defaults : {};
 
-		this.hasDefault = function(propertyName) {
+		this.hasDefault = function (propertyName) {
 			return typeof self.defaults[propertyName] !== 'undefined';
 		};
-		this.getDefault = function(propertyName) {
+		this.getDefault = function (propertyName) {
 			return self.hasDefault(propertyName) ? self.defaults[propertyName] : null;
 		};
-		this.isDefault = function(propertyName) {
+		this.isDefault = function (propertyName) {
 			return self.hasDefault(propertyName) && (self[propertyName]() === null);
 		};
 		//noinspection JSUnusedGlobalSymbols
-		this.canBeReset = function(propertyName) {
+		this.canBeReset = function (propertyName) {
 			return self.hasDefault(propertyName) && !self.isDefault(propertyName);
 		};
 		//noinspection JSUnusedGlobalSymbols
-		this.resetToDefault = function(model, event) {
+		this.resetToDefault = function (model, event) {
 			var target = event.target || event.srcElement;
 			var propertyName = $(target).data('fieldName');
-			if ( propertyName && self.hasDefault(propertyName) ) {
+			if (propertyName && self.hasDefault(propertyName)) {
 				self[propertyName](null);
 			}
 		};
@@ -155,6 +176,7 @@ var wsAdminBarEditor = wsAdminBarEditor || {};
 			'title', 'href', 'html', 'class', 'onclick',
 			'target', 'titleAttr', 'tabindex'
 		];
+
 		function capitaliseFirstLetter(string) {
 			return string.charAt(0).toUpperCase() + string.slice(1);
 		}
@@ -170,10 +192,10 @@ var wsAdminBarEditor = wsAdminBarEditor || {};
 
 		function makeObservableWithDefault(name) {
 			return {
-				read: function() {
+				read: function () {
 					return self[name]() !== null ? self[name]() : self.getDefault(name);
 				},
-				write: function(value) {
+				write: function (value) {
 					var defaultValue = self.getDefault(name);
 					var valueMatchesDefault = (value === defaultValue) ||
 						(defaultValue === null && value === '');
@@ -189,15 +211,15 @@ var wsAdminBarEditor = wsAdminBarEditor || {};
 		//This observable controls whether the node settings panel is visible.
 		this.settingsVisible = ko.observable(false);
 		//noinspection JSUnusedGlobalSymbols
-		this.toggleSettings = function() {
-			self.settingsVisible( !self.settingsVisible() );
+		this.toggleSettings = function () {
+			self.settingsVisible(!self.settingsVisible());
 			return false;
 		};
 
 		//This is the node editor header title. Some items don't have a title (e.g. groups)
 		//or have a title that contain HTML, so we can't just use effectiveTitle() here.
 		//noinspection JSUnusedGlobalSymbols
-		this.safeTitle = ko.computed(function() {
+		this.safeTitle = ko.computed(function () {
 			if (self.group()) {
 				return self.id();
 			}
@@ -220,7 +242,7 @@ var wsAdminBarEditor = wsAdminBarEditor || {};
 		//Expand/collapse children nodes.
 		var isExpanded = ko.observable(false);
 		this.expanded = ko.computed({
-			read: function() {
+			read: function () {
 				//Nodes with no children are always "expanded". This is necessary to allow dropping
 				//items under these nodes. nestedSortable doesn't let you drag stuff to invisible lists.
 				return isExpanded() || (self.children().length == 0);
@@ -231,7 +253,7 @@ var wsAdminBarEditor = wsAdminBarEditor || {};
 
 
 		//noinspection JSUnusedGlobalSymbols
-		this.toggleExpand = function(node, event) {
+		this.toggleExpand = function (node, event) {
 			var newState = !self.expanded();
 
 			if (typeof event['shiftKey'] !== 'undefined' && event.shiftKey) {
@@ -244,7 +266,7 @@ var wsAdminBarEditor = wsAdminBarEditor || {};
 
 			function toggleAll(node, state) {
 				node.expanded(state);
-				for(var i = 0; i < node.children().length; i++) {
+				for (var i = 0; i < node.children().length; i++) {
 					toggleAll(node.children()[i], state);
 				}
 			}
@@ -252,7 +274,7 @@ var wsAdminBarEditor = wsAdminBarEditor || {};
 		};
 
 		//Convert the node to a plain old JS object. Useful for JSON serialisation.
-		this.toJs = function() {
+		this.toJs = function () {
 			var plainNode = {};
 
 			var observablesToMap = [
@@ -260,7 +282,7 @@ var wsAdminBarEditor = wsAdminBarEditor || {};
 				'onclick', 'target', 'titleAttr', 'tabindex',
 				'is_custom', 'is_hidden', 'is_visible_to_actor'
 			];
-			$.each(observablesToMap, function(index, name) {
+			$.each(observablesToMap, function (index, name) {
 				var value = self[name]();
 				if (value !== null) {
 					plainNode[name] = self[name]();
@@ -268,8 +290,10 @@ var wsAdminBarEditor = wsAdminBarEditor || {};
 			});
 			plainNode.defaults = self.defaults;
 
+			plainNode.last_seen_timestamp = self.last_seen_timestamp;
+
 			plainNode.children = [];
-			$.each(self.children(), function(index, child) {
+			$.each(self.children(), function (index, child) {
 				plainNode.children.push(child.toJs());
 			});
 
@@ -279,7 +303,7 @@ var wsAdminBarEditor = wsAdminBarEditor || {};
 		//Create view models for all children, too.
 		if ((typeof node['children'] !== 'undefined') && (node.children.length > 0)) {
 			var tempChildren = [];
-			$.each(node.children, function(index, child) {
+			$.each(node.children, function (index, child) {
 				tempChildren.push(new wsAdminBarEditor.NodeViewModel(child, self, appViewModel));
 			});
 			this.children(tempChildren);

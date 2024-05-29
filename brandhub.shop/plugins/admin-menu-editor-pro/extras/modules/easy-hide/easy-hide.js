@@ -104,7 +104,9 @@ var AmeEasyHide;
                 //Sort items alphabetically if requested.
                 if (this.itemSortOrder === SortOrder.SORT_ALPHA) {
                     results.sort(function (a, b) {
-                        return a.label.localeCompare(b.label);
+                        const unquotedA = _.trim(a.label, ' "\'');
+                        const unquotedB = _.trim(b.label, ' "\'');
+                        return unquotedA.localeCompare(unquotedB);
                     });
                 }
                 return results;

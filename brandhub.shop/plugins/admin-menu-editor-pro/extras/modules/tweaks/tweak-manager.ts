@@ -13,6 +13,7 @@ interface AmeTweakManagerScriptData {
 	isProVersion: boolean;
 	tweaks: AmeTweakProperties[];
 	sections: AmeSectionProperties[];
+	aliases: AmeAliasProperties[];
 	lastUserTweakSuffix: number;
 	defaultCodeEditorSettings: Record<string, any>;
 }
@@ -22,7 +23,13 @@ interface AmeNamedNodeProperties {
 	label: string;
 }
 
-abstract class AmeNamedNode {
+interface AmeNamedNodeInterface {
+	id: string;
+	label:  string | KnockoutObservable<string>;
+	htmlId: string;
+}
+
+abstract class AmeNamedNode implements AmeNamedNodeInterface {
 	id: string;
 	label: string | KnockoutObservable<string>;
 	htmlId: string = '';
@@ -254,9 +261,9 @@ function isSettingStore(thing: object): thing is AmeSettingStore {
 }
 
 class AmeCompositeNode extends AmeNamedNode {
-	children: KnockoutObservableArray<AmeNamedNode>;
+	children: KnockoutObservableArray<AmeNamedNodeInterface>;
 	propertyPath: string[] = [];
-	actorAccess: AmeActorAccess | null = null;
+	actorAccess: AmeActorAccessInterface | null = null;
 	properties: AmeSettingStore | null = null;
 
 	protected constructor(
@@ -344,7 +351,12 @@ class AmeCompositeNode extends AmeNamedNode {
 	}
 }
 
-class AmeActorAccess {
+interface AmeActorAccessInterface {
+	isChecked: KnockoutComputed<boolean>;
+	isIndeterminate: KnockoutComputed<boolean>;
+}
+
+class AmeActorAccess implements AmeActorAccessInterface {
 	isChecked: KnockoutComputed<boolean>;
 	protected enabledForActor: AmeObservableActorFeatureMap;
 	protected module: AmeTweakManagerModule;
@@ -436,7 +448,10 @@ class AmeActorAccess {
 					const childrenArray = children();
 					for (let i = 0; i < childrenArray.length; i++) {
 						const child = childrenArray[i];
-						if ((child instanceof AmeCompositeNode) && child.actorAccess) {
+						if (
+							((child instanceof AmeCompositeNode) || (child instanceof AmeTweakAlias))
+							&& child.actorAccess
+						) {
 							child.actorAccess.isChecked(checked);
 						}
 					}
@@ -446,15 +461,51 @@ class AmeActorAccess {
 	}
 }
 
+class AmeAliasActorAccess {
+	isChecked: KnockoutComputed<boolean>;
+	isIndeterminate: KnockoutComputed<boolean>;
+
+	constructor(target: AmeActorAccessInterface) {
+		this.isChecked = ko.computed<boolean>({
+			read: () => {
+				return target.isChecked();
+			},
+			write: (checked: boolean) => {
+				target.isChecked(checked);
+			}
+		});
+		this.isIndeterminate = ko.computed<boolean>(() => {
+			return target.isIndeterminate();
+		});
+	}
+}
+
+interface AmeTweakNode extends AmeNamedNodeInterface {
+	readonly isUserDefined: boolean;
+	actorAccess: AmeActorAccessInterface | null;
+
+	setParent(tweak: AmeTweakNode): this;
+	getParent(): AmeTweakNode | null;
+
+	addChild(tweak: AmeTweakNode): this;
+	removeChild(tweak: AmeTweakNode): void;
+
+	setSection(section: AmeTweakSection): this;
+	getSection(): AmeTweakSection | null;
+}
+
 interface AmeSavedTweakProperties {
 	id: string;
 	enabledForActor?: AmeDictionary<boolean>;
 }
 
-interface AmeTweakProperties extends AmeSavedTweakProperties, AmeActorFeatureProperties {
-	description?: string;
+interface AmeContainedNodeProperties {
 	parentId?: string | null;
 	sectionId?: string | null;
+}
+
+interface AmeTweakProperties extends AmeSavedTweakProperties, AmeActorFeatureProperties, AmeContainedNodeProperties {
+	description?: string;
 
 	isUserDefined?: boolean;
 	typeId?: string;
@@ -463,14 +514,14 @@ interface AmeTweakProperties extends AmeSavedTweakProperties, AmeActorFeaturePro
 	[key: string]: any;
 }
 
-class AmeTweakItem extends AmeCompositeNode {
+class AmeTweakItem extends AmeCompositeNode implements AmeTweakNode {
 	label: KnockoutObservable<string>;
 
 	public readonly isUserDefined: boolean;
 	private readonly initialProperties: AmeSavedTweakProperties | null = null;
 
 	private section: AmeTweakSection | null = null;
-	private parent: AmeTweakItem | null = null;
+	private parent: AmeTweakNode | null = null;
 
 	constructor(properties: AmeTweakProperties, module: AmeTweakManagerModule) {
 		super(properties, module, 'self');
@@ -525,7 +576,7 @@ class AmeTweakItem extends AmeCompositeNode {
 		return this;
 	}
 
-	setParent(tweak: AmeTweakItem) {
+	setParent(tweak: AmeTweakNode) {
 		this.parent = tweak;
 		return this;
 	}
@@ -534,17 +585,17 @@ class AmeTweakItem extends AmeCompositeNode {
 		return this.section;
 	}
 
-	getParent(): AmeTweakItem | null {
+	getParent(): AmeTweakNode | null {
 		return this.parent;
 	}
 
-	addChild(tweak: AmeTweakItem) {
+	addChild(tweak: AmeTweakNode) {
 		this.children.push(tweak);
 		tweak.setParent(this);
 		return this;
 	}
 
-	removeChild(tweak: AmeTweakItem) {
+	removeChild(tweak: AmeTweakNode) {
 		this.children.remove(tweak);
 	}
 
@@ -567,6 +618,74 @@ class AmeTweakItem extends AmeCompositeNode {
 	}
 }
 
+interface AmeAliasProperties extends AmeContainedNodeProperties {
+	tweakId: string;
+	label: string;
+}
+
+class AmeTweakAlias implements AmeTweakNode {
+	static idCounter = 0;
+
+	id: string;
+	htmlId: string;
+	actorAccess: AmeActorAccessInterface | null;
+
+	readonly isUserDefined: boolean = false;
+	label: string | KnockoutObservable<string>;
+
+	private parent: AmeTweakNode | null = null;
+	private section: AmeTweakSection | null = null;
+
+	readonly tooltip: string;
+
+	constructor(target: AmeTweakItem, label: string) {
+		this.label = label;
+
+		AmeTweakAlias.idCounter++;
+		this.id = 'alias-' + AmeTweakAlias.idCounter;
+		this.htmlId = 'ame-tweak_' + AmeTweakManagerModule.slugify(this.id);
+
+		if (target.actorAccess) {
+			this.actorAccess = new AmeAliasActorAccess(target.actorAccess);
+		} else {
+			this.actorAccess = null;
+		}
+
+		this.tooltip = 'This is an alias for: "' + target.label() + '"';
+		const targetSection = target.getSection();
+		if (targetSection) {
+			this.tooltip += ' in the section "' + targetSection.label + '"';
+		}
+	}
+
+	addChild(_: AmeTweakNode): this {
+		//No children allowed.
+		throw new Error('Aliases cannot have children.');
+	}
+
+	removeChild(_: AmeTweakNode): void {
+		//No children allowed = nothing to remove.
+	}
+
+	getParent(): AmeTweakNode | null {
+		return this.parent;
+	}
+
+	setParent(tweak: AmeTweakNode): this {
+		this.parent = tweak;
+		return this;
+	}
+
+	setSection(section: AmeTweakSection): this {
+		this.section = section;
+		return this;
+	}
+
+	getSection(): AmeTweakSection | null {
+		return this.section;
+	}
+}
+
 interface AmeSectionProperties {
 	id: string;
 	label: string;
@@ -578,7 +697,7 @@ class AmeTweakSection {
 	id: string;
 	label: string;
 	description: string = '';
-	tweaks: KnockoutObservableArray<AmeTweakItem>;
+	tweaks: KnockoutObservableArray<AmeTweakNode>;
 	isOpen: KnockoutObservable<boolean>;
 
 	footerTemplateName: string | null = null;
@@ -590,7 +709,7 @@ class AmeTweakSection {
 		this.id = properties.id;
 		this.label = properties.label;
 		this.isOpen = ko.observable<boolean>(true);
-		this.tweaks = ko.observableArray([] as AmeTweakItem[]);
+		this.tweaks = ko.observableArray([] as AmeTweakNode[]);
 
 		if (properties.description) {
 			this.description = properties.description;
@@ -607,12 +726,12 @@ class AmeTweakSection {
 		}
 	}
 
-	addTweak(tweak: AmeTweakItem) {
+	addTweakNode(tweak: AmeTweakNode) {
 		this.tweaks.push(tweak);
 		tweak.setSection(this);
 	}
 
-	removeTweak(tweak: AmeTweakItem) {
+	removeTweakNode(tweak: AmeTweakNode) {
 		this.tweaks.remove(tweak);
 	}
 
@@ -687,19 +806,33 @@ class AmeTweakManagerModule {
 		});
 		const firstSection = this.sections[0];
 
-		_.forEach(scriptData.tweaks, (properties) => {
-			const tweak = new AmeTweakItem(properties, this);
-			this.tweaksById[tweak.id] = tweak;
-
+		const addNodeToParent = (node: AmeTweakNode, properties: AmeContainedNodeProperties) => {
 			if (properties.parentId && this.tweaksById.hasOwnProperty(properties.parentId)) {
-				this.tweaksById[properties.parentId].addChild(tweak);
+				this.tweaksById[properties.parentId].addChild(node);
 			} else {
 				let ownerSection = firstSection;
 				if (properties.sectionId && this.sectionsById.hasOwnProperty(properties.sectionId)) {
 					ownerSection = this.sectionsById[properties.sectionId];
 				}
-				ownerSection.addTweak(tweak);
+				ownerSection.addTweakNode(node);
 			}
+		};
+
+		_.forEach(scriptData.tweaks, (properties) => {
+			const tweak = new AmeTweakItem(properties, this);
+			this.tweaksById[tweak.id] = tweak;
+			addNodeToParent(tweak, properties);
+		});
+
+		_.forEach(scriptData.aliases, (properties) => {
+			//Does the target tweak exist?
+			if (!this.tweaksById.hasOwnProperty(properties.tweakId)) {
+				return;
+			}
+
+			const target = this.tweaksById[properties.tweakId];
+			const alias = new AmeTweakAlias(target, properties.label);
+			addNodeToParent(alias, properties);
 		});
 
 		//Remove empty sections.
@@ -809,7 +942,7 @@ class AmeTweakManagerModule {
 
 		const newTweak = new AmeTweakItem(props, this);
 		this.tweaksById[newTweak.id] = newTweak;
-		this.sectionsById['admin-css'].addTweak(newTweak)
+		this.sectionsById['admin-css'].addTweakNode(newTweak)
 	}
 
 	static slugify(input: string): string {
@@ -831,17 +964,17 @@ class AmeTweakManagerModule {
 		}
 	}
 
-	confirmDeleteTweak(tweak: AmeTweakItem) {
+	confirmDeleteTweak(tweak: AmeTweakNode) {
 		if (!tweak.isUserDefined || !confirm('Delete this tweak?')) {
 			return;
 		}
 		this.deleteTweak(tweak);
 	}
 
-	protected deleteTweak(tweak: AmeTweakItem) {
+	protected deleteTweak(tweak: AmeTweakNode) {
 		const section = tweak.getSection();
 		if (section) {
-			section.removeTweak(tweak);
+			section.removeTweakNode(tweak);
 		}
 		const parent = tweak.getParent();
 		if (parent) {

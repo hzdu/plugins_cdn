@@ -349,12 +349,18 @@
 		  unblock($("#order_review"));
 		},
 		success: function (response) {
-		  if (response) {
-			$("#order_review")
-			  .html($(response).html())
-			  .trigger("updated_checkout");
-			$(document.body).trigger("added_to_cart");
-		  }
+			/**
+			 * Fix compatibility issues with WooCommerce PayPal Express Checkout
+			 */
+			if (!!response.success && !!response.data) {
+				$(document.body).trigger("added_to_cart");
+				location.reload();
+			} else if (response) {
+				$("#order_review")
+					.html($(response).html())
+					.trigger("updated_checkout");
+				$(document.body).trigger("added_to_cart");
+			}
 		},
 	  });
 	});

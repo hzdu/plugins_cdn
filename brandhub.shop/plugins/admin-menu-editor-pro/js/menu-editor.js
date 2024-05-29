@@ -2401,6 +2401,33 @@ function readMenuTreeState(){
 		itemsByFilename[filename] = containerNode;
 	});
 
+	// Ensure items that need auto-generated slugs have unique IDs. The IDs only
+	// need to be unique within the same menu configuration, not globally.
+	let localIdCounter = 0;
+	const usedLocalIds = {};
+	function ensureUniqueIdIfNeeded(menuItem) {
+		// Recurse into children.
+		if (menuItem.items) {
+			_.forEach(menuItem.items, ensureUniqueIdIfNeeded);
+		}
+
+		const needsUniqueId = (menuItem.template_id === wsEditorData.embeddedPageTemplateId)
+			|| (menuItem.open_in === 'iframe');
+		const currentLocalId = (typeof menuItem.local_id === 'string') ? menuItem.local_id : '';
+
+		// Assign a new ID if the item needs one and doesn't have it, or if the current ID
+		// is a duplicate. IDs can get duplicated if the user copies and pastes items.
+		if ((needsUniqueId && (currentLocalId === '')) || usedLocalIds.hasOwnProperty(currentLocalId)) {
+			menuItem.local_id = randomMenuId(localIdCounter + 'C', 8);
+		}
+
+		if (typeof menuItem.local_id === 'string') {
+			usedLocalIds[menuItem.local_id] = true;
+			localIdCounter++;
+		}
+	}
+	_.forEach(tree, ensureUniqueIdIfNeeded);
+
 	AmeCapabilityManager.pruneGrantedUserCapabilities();
 
 	var result = {

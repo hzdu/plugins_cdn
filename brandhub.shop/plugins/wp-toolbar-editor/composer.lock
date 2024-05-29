@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d63bcffdf658a0d3f365e85681c14e21",
+    "content-hash": "a0f469d5c862e4609bc0213e85878d03",
     "packages": [
         {
             "name": "yahnis-elsts/plugin-update-checker",
@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/YahnisElsts/plugin-update-checker.git",
-                "reference": "5f251be064949ddce8a040a2bb9e4e1747000d95"
+                "reference": "97dfe23d158b8af0ea3f7652e678688da6e52e51"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/YahnisElsts/plugin-update-checker/zipball/5f251be064949ddce8a040a2bb9e4e1747000d95",
-                "reference": "5f251be064949ddce8a040a2bb9e4e1747000d95",
+                "url": "https://api.github.com/repos/YahnisElsts/plugin-update-checker/zipball/97dfe23d158b8af0ea3f7652e678688da6e52e51",
+                "reference": "97dfe23d158b8af0ea3f7652e678688da6e52e51",
                 "shasum": ""
             },
             "require": {
@@ -28,7 +28,7 @@
             "type": "library",
             "autoload": {
                 "files": [
-                    "load-v5p3.php"
+                    "load-v5p4.php"
                 ]
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -55,7 +55,7 @@
                 "issues": "https://github.com/YahnisElsts/plugin-update-checker/issues",
                 "source": "https://github.com/YahnisElsts/plugin-update-checker/tree/master"
             },
-            "time": "2023-11-15T16:49:00+00:00"
+            "time": "2024-03-20T16:33:33+00:00"
         }
     ],
     "packages-dev": [],
@@ -66,7 +66,10 @@
     },
     "prefer-stable": false,
     "prefer-lowest": false,
-    "platform": [],
+    "platform": {
+        "ext-json": "*",
+        "php": ">=7.2"
+    },
     "platform-dev": [],
     "plugin-api-version": "2.3.0"
 }

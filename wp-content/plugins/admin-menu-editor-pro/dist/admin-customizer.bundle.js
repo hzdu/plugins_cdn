@@ -5039,6 +5039,7 @@ var AmeAdminCustomizer;
             }
             this.customBasePath = scriptData.customBasePath || null;
             this.consoleLoggingEnabled = scriptData.isWpDebugEnabled || false;
+            this.downloadOnlyIfChangesetIsNonEmpty = scriptData.downloadOnlyIfChangesetIsNonEmpty || false;
             if ((typeof scriptData.exitPromptMode === 'number') && (scriptData.exitPromptMode in ExitPromptMode)) {
                 this.exitPromptMode = scriptData.exitPromptMode;
             }
@@ -5248,8 +5249,10 @@ var AmeAdminCustomizer;
                     //The changeset must already be saved for the download to work,
                     //which means it should have a name.
                     && (this.settings.getCurrentChangeset().name() !== '')
-                    //The changeset should probably be non-empty.
-                    && this.settings.getCurrentChangeset().isNonEmpty());
+                    && (
+                    //Optionally, the download can be restricted to non-empty changesets.
+                    !this.downloadOnlyIfChangesetIsNonEmpty
+                        || this.settings.getCurrentChangeset().isNonEmpty()));
             });
             this.downloadThemeActionEnabled.subscribe((isEnabled) => {
                 if (this.$extraActionMenu) {

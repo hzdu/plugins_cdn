@@ -305,12 +305,28 @@ class AmeActorAccess {
                     const childrenArray = children();
                     for (let i = 0; i < childrenArray.length; i++) {
                         const child = childrenArray[i];
-                        if ((child instanceof AmeCompositeNode) && child.actorAccess) {
+                        if (((child instanceof AmeCompositeNode) || (child instanceof AmeTweakAlias))
+                            && child.actorAccess) {
                             child.actorAccess.isChecked(checked);
                         }
                     }
                 }
             }
+        });
+    }
+}
+class AmeAliasActorAccess {
+    constructor(target) {
+        this.isChecked = ko.computed({
+            read: () => {
+                return target.isChecked();
+            },
+            write: (checked) => {
+                target.isChecked(checked);
+            }
+        });
+        this.isIndeterminate = ko.computed(() => {
+            return target.isIndeterminate();
         });
     }
 }
@@ -396,6 +412,50 @@ class AmeTweakItem extends AmeCompositeNode {
         return null;
     }
 }
+class AmeTweakAlias {
+    constructor(target, label) {
+        this.isUserDefined = false;
+        this.parent = null;
+        this.section = null;
+        this.label = label;
+        AmeTweakAlias.idCounter++;
+        this.id = 'alias-' + AmeTweakAlias.idCounter;
+        this.htmlId = 'ame-tweak_' + AmeTweakManagerModule.slugify(this.id);
+        if (target.actorAccess) {
+            this.actorAccess = new AmeAliasActorAccess(target.actorAccess);
+        }
+        else {
+            this.actorAccess = null;
+        }
+        this.tooltip = 'This is an alias for: "' + target.label() + '"';
+        const targetSection = target.getSection();
+        if (targetSection) {
+            this.tooltip += ' in the section "' + targetSection.label + '"';
+        }
+    }
+    addChild(_) {
+        //No children allowed.
+        throw new Error('Aliases cannot have children.');
+    }
+    removeChild(_) {
+        //No children allowed = nothing to remove.
+    }
+    getParent() {
+        return this.parent;
+    }
+    setParent(tweak) {
+        this.parent = tweak;
+        return this;
+    }
+    setSection(section) {
+        this.section = section;
+        return this;
+    }
+    getSection() {
+        return this.section;
+    }
+}
+AmeTweakAlias.idCounter = 0;
 class AmeTweakSection {
     constructor(properties) {
         this.description = '';
@@ -419,11 +479,11 @@ class AmeTweakSection {
             this.htmlId = '';
         }
     }
-    addTweak(tweak) {
+    addTweakNode(tweak) {
         this.tweaks.push(tweak);
         tweak.setSection(this);
     }
-    removeTweak(tweak) {
+    removeTweakNode(tweak) {
         this.tweaks.remove(tweak);
     }
     hasContent() {
@@ -469,19 +529,31 @@ class AmeTweakManagerModule {
             this.sections.push(section);
         });
         const firstSection = this.sections[0];
-        _.forEach(scriptData.tweaks, (properties) => {
-            const tweak = new AmeTweakItem(properties, this);
-            this.tweaksById[tweak.id] = tweak;
+        const addNodeToParent = (node, properties) => {
             if (properties.parentId && this.tweaksById.hasOwnProperty(properties.parentId)) {
-                this.tweaksById[properties.parentId].addChild(tweak);
+                this.tweaksById[properties.parentId].addChild(node);
             }
             else {
                 let ownerSection = firstSection;
                 if (properties.sectionId && this.sectionsById.hasOwnProperty(properties.sectionId)) {
                     ownerSection = this.sectionsById[properties.sectionId];
                 }
-                ownerSection.addTweak(tweak);
+                ownerSection.addTweakNode(node);
             }
+        };
+        _.forEach(scriptData.tweaks, (properties) => {
+            const tweak = new AmeTweakItem(properties, this);
+            this.tweaksById[tweak.id] = tweak;
+            addNodeToParent(tweak, properties);
+        });
+        _.forEach(scriptData.aliases, (properties) => {
+            //Does the target tweak exist?
+            if (!this.tweaksById.hasOwnProperty(properties.tweakId)) {
+                return;
+            }
+            const target = this.tweaksById[properties.tweakId];
+            const alias = new AmeTweakAlias(target, properties.label);
+            addNodeToParent(alias, properties);
         });
         //Remove empty sections.
         this.sections = _.filter(this.sections, function (section) {
@@ -577,7 +649,7 @@ class AmeTweakManagerModule {
         props.children.push(cssInput);
         const newTweak = new AmeTweakItem(props, this);
         this.tweaksById[newTweak.id] = newTweak;
-        this.sectionsById['admin-css'].addTweak(newTweak);
+        this.sectionsById['admin-css'].addTweakNode(newTweak);
     }
     static slugify(input) {
         const _ = AmeTweakManagerModule._;
@@ -605,7 +677,7 @@ class AmeTweakManagerModule {
     deleteTweak(tweak) {
         const section = tweak.getSection();
         if (section) {
-            section.removeTweak(tweak);
+            section.removeTweakNode(tweak);
         }
         const parent = tweak.getParent();
         if (parent) {

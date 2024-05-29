@@ -82,6 +82,15 @@ export namespace AmeAdminCustomizer {
 		customBasePath: string | null;
 
 		exitPromptMode?: number;
+
+		/**
+		 * Whether generating an admin theme requires the current changeset to be non-empty.
+		 *
+		 * By default, even if the current changeset is empty, the user can still generate an admin
+		 * theme from previously saved settings. If there are no settings, the generated theme just
+		 * won't change the admin interface at all.
+		 */
+		downloadOnlyIfChangesetIsNonEmpty?: boolean;
 	}
 
 	interface AdminThemeTexts {
@@ -1292,6 +1301,8 @@ export namespace AmeAdminCustomizer {
 		private readonly consoleLoggingEnabled: boolean;
 		private readonly exitPromptMode: ExitPromptMode;
 
+		private readonly downloadOnlyIfChangesetIsNonEmpty: boolean;
+
 		constructor(scriptData: ScriptData) {
 			super(scriptData);
 
@@ -1314,6 +1325,7 @@ export namespace AmeAdminCustomizer {
 
 			this.customBasePath = scriptData.customBasePath || null;
 			this.consoleLoggingEnabled = scriptData.isWpDebugEnabled || false;
+			this.downloadOnlyIfChangesetIsNonEmpty = scriptData.downloadOnlyIfChangesetIsNonEmpty || false;
 
 			if ((typeof scriptData.exitPromptMode === 'number') && (scriptData.exitPromptMode in ExitPromptMode)) {
 				this.exitPromptMode = scriptData.exitPromptMode;
@@ -1561,8 +1573,11 @@ export namespace AmeAdminCustomizer {
 					//The changeset must already be saved for the download to work,
 					//which means it should have a name.
 					&& (this.settings.getCurrentChangeset().name() !== '')
-					//The changeset should probably be non-empty.
-					&& this.settings.getCurrentChangeset().isNonEmpty()
+					&& (
+						//Optionally, the download can be restricted to non-empty changesets.
+						!this.downloadOnlyIfChangesetIsNonEmpty
+						|| this.settings.getCurrentChangeset().isNonEmpty()
+					)
 				);
 			});
 			this.downloadThemeActionEnabled.subscribe((isEnabled) => {

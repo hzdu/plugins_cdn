@@ -2,14 +2,14 @@
 
 var wsAdminBarEditor = wsAdminBarEditor || {};
 
-(function($) {
+(function ($) {
 
 	/*
 	 * A custom binding that prevents click events from bubbling up.
 	 */
 	ko.bindingHandlers.stopBubble = {
-		init: function(element) {
-			ko.utils.registerEventHandler(element, "click", function(event) {
+		init: function (element) {
+			ko.utils.registerEventHandler(element, "click", function (event) {
 				event.cancelBubble = true;
 				if (event.stopPropagation) {
 					event.stopPropagation();
@@ -27,7 +27,7 @@ var wsAdminBarEditor = wsAdminBarEditor || {};
 	 * @param {Object} settings Various settings passed in by the plugin.
 	 * @constructor
 	 */
-	wsAdminBarEditor.ApplicationViewModel = function(settings) {
+	wsAdminBarEditor.ApplicationViewModel = function (settings) {
 		var self = this;
 
 		/**
@@ -38,10 +38,10 @@ var wsAdminBarEditor = wsAdminBarEditor || {};
 		 * @returns {wsAdminBarEditor.NodeViewModel[]} Children of the root node.
 		 */
 		function buildNodeTree(nodes) {
-			var root = { children: [] }, nodeModels = {};
+			var root = {children: []}, nodeModels = {};
 
 			//Make view-models for each node.
-			$.each(nodes, function(id, plainNode) {
+			$.each(nodes, function (id, plainNode) {
 				nodeModels[id] = new NodeViewModel(plainNode, null, self);
 			});
 
@@ -51,7 +51,7 @@ var wsAdminBarEditor = wsAdminBarEditor || {};
 				 * @param {String} id
 				 * @param {NodeViewModel} node
 				 */
-				function(id, node) {
+				function (id, node) {
 					var parent = root;
 					if (node.parentId && nodeModels.hasOwnProperty(node.parentId)) {
 						parent = nodeModels[node.parentId];
@@ -84,9 +84,9 @@ var wsAdminBarEditor = wsAdminBarEditor || {};
 
 				var children = plainNode.children;
 				delete plainNode.children;
-				nodes[plainNode.id]  = plainNode;
+				nodes[plainNode.id] = plainNode;
 
-				$.each(children, function(index, child) {
+				$.each(children, function (index, child) {
 					mapNode(child, plainNode);
 				});
 			}
@@ -96,6 +96,7 @@ var wsAdminBarEditor = wsAdminBarEditor || {};
 
 		this.defaultConfiguration = settings.defaultConfiguration;
 		this.currentConfiguration = settings.currentConfiguration;
+		this.stalenessThresholdInDays = settings.stalenessThresholdInDays || 14;
 
 		this.nodes = ko.observableArray();
 
@@ -104,7 +105,7 @@ var wsAdminBarEditor = wsAdminBarEditor || {};
 		//noinspection JSUnusedGlobalSymbols
 		this.selectedNode = ko.computed({
 			read: self.internalSelectedNode,
-			write: function(node) {
+			write: function (node) {
 				var previousNode = self.internalSelectedNode();
 				if (node === previousNode) {
 					return;
@@ -121,6 +122,14 @@ var wsAdminBarEditor = wsAdminBarEditor || {};
 				}
 			},
 			owner: self
+		});
+
+		this.canDeleteSelectedNode = ko.computed(function () {
+			const node = self.selectedNode();
+			if (!node) {
+				return false;
+			}
+			return node.isDeletable();
 		});
 
 		/**
@@ -140,8 +149,8 @@ var wsAdminBarEditor = wsAdminBarEditor || {};
 
 			function searchArray(nodes) {
 				var foundNode = null, i = 0;
-				while(!foundNode && i < nodes.length) {
-					if ( (nodes[i] !== excludeNode) && ((nodes[i].id() + '') === id) ) {
+				while (!foundNode && i < nodes.length) {
+					if ((nodes[i] !== excludeNode) && ((nodes[i].id() + '') === id)) {
 						foundNode = nodes[i];
 					} else {
 						foundNode = searchArray(nodes[i].children());
@@ -161,11 +170,12 @@ var wsAdminBarEditor = wsAdminBarEditor || {};
 		 * @param {wsAdminBarEditor.NodeViewModel} [excludeNode]
 		 * @return {wsAdminBarEditor.NodeViewModel}
 		 */
-		this.findNodeById = function(id, excludeNode) {
+		this.findNodeById = function (id, excludeNode) {
 			return findNodeById(self.nodes(), id, excludeNode);
 		};
 
 		var customItemCounter = 0;
+
 		function createUniqueNodeId(prefix, ignoreNode) {
 			if (typeof prefix === 'undefined' || prefix === null) {
 				prefix = 'custom-node-';
@@ -183,11 +193,11 @@ var wsAdminBarEditor = wsAdminBarEditor || {};
 		}
 
 		//noinspection JSUnusedGlobalSymbols
-		this.createItem = function() {
+		this.createItem = function () {
 			var node = new NodeViewModel({
-				id:        createUniqueNodeId(),
-				title:     'Custom Item #' + customItemCounter,
-				group:     false,
+				id: createUniqueNodeId(),
+				title: 'Custom Item #' + customItemCounter,
+				group: false,
 				is_custom: true,
 				is_hidden: false
 			}, null, self);
@@ -196,16 +206,16 @@ var wsAdminBarEditor = wsAdminBarEditor || {};
 		};
 
 		//noinspection JSUnusedGlobalSymbols
-		this.createGroup = function() {
-			if ( !self.canCreateGroup() ) {
+		this.createGroup = function () {
+			if (!self.canCreateGroup()) {
 				alert("You can not create a group inside a group. Put it under a normal item instead.");
 				return;
 			}
 
 			var node = new NodeViewModel({
-				id:        createUniqueNodeId('custom-group-'),
-				title:     '',
-				group:     true,
+				id: createUniqueNodeId('custom-group-'),
+				title: '',
+				group: true,
 				is_custom: true,
 				is_hidden: false
 			}, null, self);
@@ -220,7 +230,7 @@ var wsAdminBarEditor = wsAdminBarEditor || {};
 		 *
 		 * @param {wsAdminBarEditor.NodeViewModel} node
 		 */
-		this.insertNodeAfterSelected = function(node) {
+		this.insertNodeAfterSelected = function (node) {
 			var selectedNode = self.selectedNode();
 
 			var container = self.nodes;
@@ -232,7 +242,7 @@ var wsAdminBarEditor = wsAdminBarEditor || {};
 			}
 
 			//Place the new item after the selected one, if any.
-			if ( !selectedNode ) {
+			if (!selectedNode) {
 				container.push(node);
 			} else {
 				var targetPosition = container.indexOf(selectedNode) + 1;
@@ -240,8 +250,8 @@ var wsAdminBarEditor = wsAdminBarEditor || {};
 			}
 		};
 
-		this.canCreateGroup = ko.computed(function() {
-			if ( !self.selectedNode() || !self.selectedNode().parent() ) {
+		this.canCreateGroup = ko.computed(function () {
+			if (!self.selectedNode() || !self.selectedNode().parent()) {
 				//You can create a group at root level.
 				return true;
 			}
@@ -250,21 +260,21 @@ var wsAdminBarEditor = wsAdminBarEditor || {};
 		}, this);
 
 		//noinspection JSUnusedGlobalSymbols
-		this.deleteSelectedNode = function() {
+		this.deleteSelectedNode = function () {
 			var node = self.selectedNode();
-			if ( !node ) {
+			if (!node) {
 				alert('Please select an item to delete first.');
 				return;
 			}
 
-			if ( !node.is_custom() ) {
-				if ( confirm('Sorry, but you cannot delete a default item. Would you like to hide it instead?') ) {
+			if (!node.isDeletable()) {
+				if (confirm('Sorry, but you cannot delete a default item. Would you like to hide it instead?')) {
 					node.is_hidden(true);
 				}
 				return;
 			}
 
-			if ( node.children().length > 0 && !confirm('Delete this item and all of its children?') ) {
+			if (node.children().length > 0 && !confirm('Delete this item and all of its children?')) {
 				return;
 			}
 			//Concern: What if node a custom item but its children are not?
@@ -280,7 +290,7 @@ var wsAdminBarEditor = wsAdminBarEditor || {};
 		this.nodeInClipboard = ko.observable(null);
 
 		function copySelectedToClipboard(remove) {
-			if ( !self.selectedNode() ) {
+			if (!self.selectedNode()) {
 				alert('Please select an item first.');
 				return;
 			}
@@ -296,17 +306,17 @@ var wsAdminBarEditor = wsAdminBarEditor || {};
 		}
 
 		//noinspection JSUnusedGlobalSymbols
-		this.copyNode = function() {
+		this.copyNode = function () {
 			copySelectedToClipboard(false);
 		};
 		//noinspection JSUnusedGlobalSymbols
-		this.cutNode = function() {
+		this.cutNode = function () {
 			copySelectedToClipboard(true);
 		};
 
 		//noinspection JSUnusedGlobalSymbols
-		this.pasteNode = function() {
-			if ( !self.nodeInClipboard() ) {
+		this.pasteNode = function () {
+			if (!self.nodeInClipboard()) {
 				return; //Nothing to do - the clipboard is empty.
 			}
 
@@ -346,17 +356,18 @@ var wsAdminBarEditor = wsAdminBarEditor || {};
 		function toggleAllNodes(nodes, expanded) {
 			for (var i = 0; i < nodes.length; i++) {
 				nodes[i].expanded(expanded);
-				if ( nodes[i].children().length > 0 ) {
+				if (nodes[i].children().length > 0) {
 					toggleAllNodes(nodes[i].children(), expanded);
 				}
 			}
 		}
+
 		//noinspection JSUnusedGlobalSymbols
-		this.expandAll = function() {
+		this.expandAll = function () {
 			toggleAllNodes(self.nodes(), true);
 		};
 		//noinspection JSUnusedGlobalSymbols
-		this.collapseAll = function() {
+		this.collapseAll = function () {
 			toggleAllNodes(self.nodes(), false);
 		};
 
@@ -394,7 +405,7 @@ var wsAdminBarEditor = wsAdminBarEditor || {};
 		this.internalSelectedActor = ko.observable(null);
 		this.selectedActor = ko.computed({
 			read: self.internalSelectedActor,
-			write: function(actor) {
+			write: function (actor) {
 				if (actor === actorAll) {
 					actor = null;
 				}
@@ -445,9 +456,9 @@ var wsAdminBarEditor = wsAdminBarEditor || {};
 		 * @param {wsAdminBarEditor.NodeViewModel} newParent The parent node it is being moved to.
 		 * @returns {boolean}
 		 */
-		this.isAllowedMove = function(node, newParent) {
+		this.isAllowedMove = function (node, newParent) {
 			//Disallow moving groups directly to other groups.
-			return ! (node.group() && newParent && newParent.group());
+			return !(node.group() && newParent && newParent.group());
 		};
 
 		// noinspection JSUnusedGlobalSymbols
@@ -457,7 +468,7 @@ var wsAdminBarEditor = wsAdminBarEditor || {};
 		 * @param {wsAdminBarEditor.NodeViewModel} node
 		 * @param {wsAdminBarEditor.NodeViewModel} parent
 		 */
-		this.onNodeMoved = function(node, parent) {
+		this.onNodeMoved = function (node, parent) {
 			node.parent(parent);
 
 			//If the parent had no children before it may have been closed.
@@ -471,7 +482,7 @@ var wsAdminBarEditor = wsAdminBarEditor || {};
 		 * Save/load admin bar configurations.
 		 */
 		//noinspection JSUnusedGlobalSymbols
-		this.saveMenu = function() {
+		this.saveMenu = function () {
 			var nodes = flattenNodeTree(self.nodes());
 			$('#admin-bar-node-list').val($.toJSON(nodes));
 
@@ -484,7 +495,7 @@ var wsAdminBarEditor = wsAdminBarEditor || {};
 			return true;
 		};
 
-		this.loadMenu = function(nodeList) {
+		this.loadMenu = function (nodeList) {
 			var tree = buildNodeTree(nodeList);
 
 			//In Multisite the "My Sites" menu contains a list of the current user's sites.
@@ -499,10 +510,10 @@ var wsAdminBarEditor = wsAdminBarEditor || {};
 		};
 
 		//noinspection JSUnusedGlobalSymbols
-		this.loadDefaultConfiguration = function() {
+		this.loadDefaultConfiguration = function () {
 			self.loadMenu(self.defaultConfiguration);
 		};
-		this.loadCurrentConfiguration = function() {
+		this.loadCurrentConfiguration = function () {
 			self.loadMenu(self.currentConfiguration);
 		};
 
@@ -515,7 +526,7 @@ var wsAdminBarEditor = wsAdminBarEditor || {};
 		};
 
 		// noinspection JSUnusedGlobalSymbols Used in KO templates.
-		this.exportMenu = function() {
+		this.exportMenu = function () {
 			var exportData = {
 				format: self.exportFormat,
 				created_at: (new Date()).toUTCString(),
@@ -534,7 +545,7 @@ var wsAdminBarEditor = wsAdminBarEditor || {};
 			importFileInput = $('#abe-import-file');
 
 		//Enable the upload button when the user selects a file.
-		importFileInput.on('change', function() {
+		importFileInput.on('change', function () {
 			var fileName = $(this).val();
 			uploadButton.prop('disabled', !fileName);
 		});
@@ -550,7 +561,7 @@ var wsAdminBarEditor = wsAdminBarEditor || {};
 		importForm.ajaxForm({
 			dataType: 'json',
 
-			beforeSubmit: function() {
+			beforeSubmit: function () {
 				if (importFileInput.get(0).files.length <= 0) {
 					alert('Select a file first!');
 					return false;
@@ -562,7 +573,7 @@ var wsAdminBarEditor = wsAdminBarEditor || {};
 				return true;
 			},
 
-			success: function(response) {
+			success: function (response) {
 				var progressNotice = $('#abe-import-progress-notice');
 
 				if (typeof response['error'] !== 'undefined') {
@@ -590,18 +601,30 @@ var wsAdminBarEditor = wsAdminBarEditor || {};
 				progressNotice.hide();
 				$('#abe-import-complete-notice').show();
 
+				//The import file could potentially have very old timestamps, and we don't want
+				//to flag all nodes as "stale" just because of that. So let's update all existing
+				//timestamps to the current time (note: Unix timestamps in seconds).
+				const now = Math.round((new Date()).getTime() / 1000);
+				$.each(response.nodes, function (index, node) {
+					if (typeof node['last_seen_timestamp'] !== 'undefined') {
+						node['last_seen_timestamp'] = now;
+					}
+				});
+
 				self.loadMenu(response.nodes);
 
 				//Pause for a moment before closing the dialog so that the user
 				//can see the success message.
 				setTimeout(
-					function() { importDialog.dialog('close'); },
+					function () {
+						importDialog.dialog('close');
+					},
 					900
 				);
 			},
 
-			error: function(xhr, statusText, error) {
-				if ( typeof error['message'] !== 'undefined' ) {
+			error: function (xhr, statusText, error) {
+				if (typeof error['message'] !== 'undefined') {
 					alert(error.message);
 				} else {
 					alert('Error: Ajax request failed');
@@ -616,7 +639,7 @@ var wsAdminBarEditor = wsAdminBarEditor || {};
 		/**
 		 * Open the menu import dialog.
 		 */
-		this.importMenu = function() {
+		this.importMenu = function () {
 			importForm.resetForm();
 			uploadButton.prop('disabled', true);
 
@@ -733,13 +756,13 @@ var wsAdminBarEditor = wsAdminBarEditor || {};
 		this.loadCurrentConfiguration();
 	};
 
-	$(function() {
+	$(function () {
 		var editorElement = $('#ws_admin_bar_editor');
 
 		wsAdminBarEditor.app = new wsAdminBarEditor.ApplicationViewModel(AbeData);
 		ko.applyBindings(wsAdminBarEditor.app, editorElement.get(0));
 
-		editorElement.on('mouseover', '.abe-tooltip-trigger', function(event) {
+		editorElement.on('mouseover', '.abe-tooltip-trigger', function (event) {
 			// Bind the qTip within the event handler
 			$(this).qtip({
 				overwrite: false, // Make sure the tooltip won't be overridden once created
