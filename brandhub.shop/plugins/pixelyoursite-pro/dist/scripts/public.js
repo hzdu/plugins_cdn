@@ -74,7 +74,6 @@ if (!String.prototype.trim) {
 }
 
 ! function ($, options) {
-
     if (options.debug) {
         console.log('PYS:', options);
     }
@@ -933,6 +932,18 @@ if (!String.prototype.trim) {
                 return to;
             },
 
+            sendServerAjaxRequest : function(url, data) {
+                jQuery.ajax({
+                    type: 'POST',
+                    url: url,
+                    data: data,
+                    headers: {
+                        'Cache-Control': 'no-cache'
+                    },
+                    success: function () {},
+                });
+            },
+
             clone: function(obj) {
                 var copy;
 
@@ -1132,7 +1143,7 @@ if (!String.prototype.trim) {
                         }
                     });
                 }
-                if (options.ajaxForServerEvent && !Cookies.get('pbid')) {
+                if (options.ajaxForServerEvent && !Cookies.get('pbid') && Facebook.isEnabled()) {
                     if(Facebook.advancedMatching() && Facebook.advancedMatching().external_id && !(options.cookie.disabled_all_cookie || options.cookie.externalID_disabled_by_api)){
                         let expires = parseInt(options.external_id_expire || 180);
                         Cookies.set('pbid', Facebook.advancedMatching().external_id, { expires: expires, path: '/' });
@@ -1161,7 +1172,6 @@ if (!String.prototype.trim) {
                             }
                         });
                     }
-
                 }
                 let expires = parseInt(options.cookie_duration); //  days
                 let queryVars = getQueryVars();
@@ -1685,7 +1695,6 @@ if (!String.prototype.trim) {
                         dataLayer.push(arguments);
                     };
 
-                    gtag('js', new Date());
                     if ( options.google_consent_mode ) {
                         let data = {};
                         data[ 'analytics_storage' ] = options.gdpr.analytics_storage.enabled ? options.gdpr.analytics_storage.value : 'granted';
@@ -1695,6 +1704,8 @@ if (!String.prototype.trim) {
 
                         gtag( 'consent', 'default', data );
                     }
+
+                    gtag('js', new Date());
                     gtag_loaded = true;
 
                 }
@@ -1833,6 +1844,24 @@ if (!String.prototype.trim) {
                             return true;
                         } else {
                             return false;
+                        }
+                    }
+
+                    if ( CS_Data.cs_script_cat.pys == CS_Data.cs_necessary_cat_id ) {
+                        return true;
+                    } else {
+                        if( pixel == 'facebook' && ( CS_Data.cs_script_cat.facebook == 0 || CS_Data.cs_script_cat.facebook == CS_Data.cs_necessary_cat_id ) ) {
+                            return true;
+                        } else if( pixel == 'bing' && ( CS_Data.cs_script_cat.bing == 0 || CS_Data.cs_script_cat.bing == CS_Data.cs_necessary_cat_id ) ) {
+                            return true;
+                        } else if( pixel == 'analytics' && ( CS_Data.cs_script_cat.analytics == 0 || CS_Data.cs_script_cat.analytics == CS_Data.cs_necessary_cat_id ) ) {
+                            return true;
+                        } else if( pixel == 'google_ads' && ( CS_Data.cs_script_cat.gads == 0 || CS_Data.cs_script_cat.gads == CS_Data.cs_necessary_cat_id ) ) {
+                            return true;
+                        } else if( pixel == 'pinterest' && ( CS_Data.cs_script_cat.pinterest == 0 || CS_Data.cs_script_cat.pinterest == CS_Data.cs_necessary_cat_id ) ) {
+                            return true;
+                        } else if( pixel == 'tiktok' && ( CS_Data.cs_script_cat.tiktok == 0 || CS_Data.cs_script_cat.tiktok == CS_Data.cs_necessary_cat_id ) ) {
+                            return true;
                         }
                     }
 
@@ -2207,8 +2236,9 @@ if (!String.prototype.trim) {
             /**
              * Advanced From Data
              */
-            saveAdvancedFormData: function (email,phone,firstName,lastName) {
+            saveAdvancedFormData: function (email, phone, firstName, lastName) {
                 let data = Utils.getAdvancedFormData();
+                // Ensure data["address"] is an object
 
                 if(email != null) {
                     data["email"] = email;
@@ -2230,51 +2260,145 @@ if (!String.prototype.trim) {
                     Cookies.remove('pys_advanced_form_data')
                 }
                 if(Analytics.isEnabled()){
-                    Analytics.updateEnhancedConversionData()
+                    Analytics.updateEnhancedConversionData();
+                } else if(GAds.isEnabled()){
+                    GAds.updateEnhancedConversionData();
                 }
-                else if(GAds.isEnabled()){
-                    GAds.updateEnhancedConversionData()
-                }
-
-
             },
             getAdvancedMergeFormData: function() {
-                var advanced = Utils.getAdvancedFormData();
-                var mergedData = {};
+                const advanced = Utils.getAdvancedFormData();
+                let mergedData = {};
 
-                if (
-                    Object.keys(options.google_ads.user_data).length == 0 ||
-                    (advanced["email"] != options.google_ads.user_data.email) ||
-                    (advanced["phone"] != options.google_ads.user_data.phone_number) ||
-                    ( options.google_ads.user_data.address &&
-                        ( options.google_ads.user_data.address.first_name && advanced["first_name"] != options.google_ads.user_data.address.first_name ||
-                          options.google_ads.user_data.address.last_name && advanced["last_name"] != options.google_ads.user_data.address.last_name )
-                    )
-                ) {
-                    if (Object.keys(options.google_ads.user_data).length != 0) {
-                        mergedData = options.google_ads.user_data;
-                        if (advanced["email"] && advanced["email"] != options.google_ads.user_data.email) {
-                            mergedData.email = advanced.email;
-                        }
-                        if (advanced["phone"] && advanced["phone"] != options.google_ads.user_data.phone_number) {
-                            mergedData.phone_number = advanced["phone"];
-                        }
-                        if ( options.google_ads.user_data.address ) {
-                            if ( options.google_ads.user_data.address.first_name && advanced["first_name"] && advanced["first_name"] != options.google_ads.user_data.address.first_name) {
-                                mergedData.address = mergedData.address || {};
-                                mergedData.address.first_name = advanced["first_name"];
+                    if(options.tracking_analytics.use_encoding_provided_data){
+                        mergedData.sha256_email_address = [];
+                        mergedData.sha256_phone_number = [];
+                        mergedData.address = [];
+                        if(options.tracking_analytics.hasOwnProperty("userData")){
+                            if (options.tracking_analytics.userData.hasOwnProperty("email") && options.tracking_analytics.userData.email !== '') {
+                                mergedData.sha256_email_address.push(sha256(options.tracking_analytics.userData.email));
                             }
-                            if ( options.google_ads.user_data.address.last_name && advanced["last_name"] && advanced["last_name"] != options.google_ads.user_data.address.last_name) {
-                                mergedData.address = mergedData.address || {};
-                                mergedData.address.last_name = advanced["last_name"];
+                            if (options.tracking_analytics.userData.hasOwnProperty("phone_number") && options.tracking_analytics.userData.phone_number !== '') {
+                                mergedData.sha256_phone_number.push(sha256(options.tracking_analytics.userData.phone_number));
                             }
+                            if(options.tracking_analytics.userData.hasOwnProperty("address")){
+                                let address = Object.assign({}, options.tracking_analytics.userData.address);
+                                if(address.first_name){
+                                    address.sha256_first_name = address.first_name !== '' ? sha256(address.first_name) : '';
+                                    delete address.first_name;
+                                }
+                                if(address.last_name){
+                                    address.sha256_last_name = address.last_name !== '' ? sha256(address.last_name) : '';
+                                    delete address.last_name;
+                                }
+                                mergedData.address.push(address);
+                            }
+                        }
+
+                        if (advanced.email && advanced.email !== '') {
+                            mergedData.sha256_email_address.push(sha256(advanced.email));
+                        }
+                        if (advanced.phone && advanced.phone !== '') {
+                            mergedData.sha256_phone_number.push(sha256(advanced.phone));
+                        }
+                        if (advanced.first_name || advanced.last_name) {
+                            let address = {
+                                sha256_first_name: advanced.first_name !== '' ? sha256(advanced.first_name) : '',
+                                sha256_last_name: advanced.last_name !== '' ? sha256(advanced.last_name) : '',
+                                // Add other address properties here if they exist in advanced
+                            };
+                            mergedData.address.push(address);
                         }
                     } else {
-                        mergedData = advanced;
+                        mergedData.email = [];
+                        mergedData.phone_number = [];
+                        mergedData.address = [];
+                        if(options.tracking_analytics.hasOwnProperty("userData")){
+                            if (options.tracking_analytics.userData.hasOwnProperty("email")) {
+                                mergedData.email.push(options.tracking_analytics.userData.email);
+                            }
+                            if (options.tracking_analytics.userData.hasOwnProperty("phone_number")) {
+                                mergedData.phone_number.push(options.tracking_analytics.userData.phone_number);
+                            }
+                            if(options.tracking_analytics.userData.hasOwnProperty("address")){
+                                mergedData.address.push(options.tracking_analytics.userData.address);
+                            }
+                        }
+
+                        // Add new values from advanced to the arrays
+                        if (advanced.email) {
+                            mergedData.email.push(advanced.email);
+                        }
+                        if (advanced.phone) {
+                            mergedData.phone_number.push(advanced.phone);
+                        }
+                        if (advanced.first_name || advanced.last_name) {
+                            let address = {
+                                first_name: advanced.first_name || '',
+                                last_name: advanced.last_name || '',
+                                // Add other address properties here if they exist in advanced
+                            };
+                            mergedData.address.push(address);
+                        }
                     }
-                    return mergedData;
+
+                Utils.removeEmptyProperties(mergedData);
+                return mergedData;
+            },
+            removeEmptyProperties : function(obj) {
+
+                if (obj.hasOwnProperty('address')) {
+                    // Проходим по каждому массиву в 'address'
+                    for (let i = 0; i < obj['address'].length; i++) {
+                        let address1 = obj['address'][i];
+
+                        // Сравниваем с каждым другим массивом в 'address'
+                        for (let j = i + 1; j < obj['address'].length; j++) {
+                            let address2 = obj['address'][j];
+
+                            // Если находим дублирующиеся свойства, удаляем их из address2
+                            for (let prop in address1) {
+                                if (address1[prop] === address2[prop]) {
+                                    delete address2[prop];
+                                }
+                            }
+                        }
+                    }
                 }
-                return advanced;
+
+                for (let key in obj) {
+                    if (obj[key] === null || obj[key] === undefined || obj[key] === '') {
+                        delete obj[key];
+                    } else if (Array.isArray(obj[key])) {
+                        obj[key] = [...new Set(obj[key])]; // Удаление дубликатов из массива
+                        obj[key] = obj[key].filter(item => item !== null && item !== undefined && item !== '');
+                        // Обработка объектов внутри массивов
+                        obj[key] = obj[key].map(item => {
+                            if (item === null) {
+                                return; // Пропускаем null элементы
+                            } else if (Array.isArray(item)) {
+                                return this.removeEmptyProperties(item);
+                            } else if (typeof item === 'object') {
+                                let cleanedItem = this.removeEmptyProperties(item);
+                                if (Object.keys(cleanedItem).length > 0) {
+                                    return cleanedItem;
+                                }
+                            } else {
+                                return item;
+                            }
+                        });
+                        // Удаляем пустые объекты и null из массива
+                        obj[key] = obj[key].filter(item => item !== undefined && !(typeof item === 'object' && Object.keys(item).length === 0));
+                        if (obj[key].length === 0) {
+                            delete obj[key];
+                        }
+                    } else if (typeof obj[key] === 'object') {
+                        this.removeEmptyProperties(obj[key]);
+                        if (Object.keys(obj[key]).length === 0) {
+                            delete obj[key];
+                        }
+                    }
+                }
+                return obj;
             },
             getAdvancedFormData: function () {
                 let dataStr = Cookies.get("pys_advanced_form_data");
@@ -2358,7 +2482,7 @@ if (!String.prototype.trim) {
                             //ttq.load('C60QSCQRVDG9JAKNPK2G');
                             //ttq.page();
                         }(window, document, 'ttq');
-                        break; // Прерываем выполнение цикла, если загрузили тег
+                        break;
                     }
                 }
 
@@ -2636,14 +2760,7 @@ if (!String.prototype.trim) {
         }
 
         var initialized = false;
-        var genereateFbp = function (){
-            return !Cookies.get('_fbp') ? 'fb.1.'+Date.now()+'.'+Math.floor(1000000000 + Math.random() * 9000000000) : Cookies.get('_fbp');
-        };
-        var genereateFbc = function (){
-            return getUrlParameter('fbclid') ? 'fb.1.'+Date.now()+'.'+getUrlParameter('fbclid') : ''
-        };
         var configuredPixels = new Array();
-
         function fireEvent(name, event) {
 
 
@@ -2679,12 +2796,12 @@ if (!String.prototype.trim) {
                         options.gdpr.cookie_law_info_integration_enabled;
                     // Update eventID
 
-                    if( options.ajaxForServerEvent || event.type !== "static") {
+                    if( !event.eventID && (options.ajaxForServerEvent || event.type !== "static")) {
                         event.eventID = pys_generate_token(36);
                     }
 
                     // send event from server if they was bloc by gdpr or need send with delay
-                    if( options.ajaxForServerEvent || isApiDisabled || event.delay > 0 || event.type !== "static" ){
+                    if( options.ajaxForServerEvent || isApiDisabled ){
 
                         var json = {
                             action: 'pys_api_event',
@@ -2704,70 +2821,11 @@ if (!String.prototype.trim) {
                         if(event.hasOwnProperty('edd_order')) {
                             json['edd_order'] = event.edd_order;
                         }
-                        if(event.e_id === "automatic_event_internal_link"
-                            || event.e_id === "automatic_event_outbound_link"
-                        ) {
-                            setTimeout(function(){
-                                jQuery.ajax( {
-                                    type: 'POST',
-                                    url: options.ajaxUrl,
-                                    data: json,
-                                    headers: {
-                                        'Cache-Control': 'no-cache'
-                                    },
-                                    success: function(){},
-                                });
-                            },500)
-                        } else if(name == 'PageView') {
-                            let expires = parseInt(options.cookie_duration);
-                            var currentTimeInSeconds=Date.now();
-                            var randomNum = Math.floor(1000000000 + Math.random() * 9000000000);
-                            timeoutDelay = 0;
-
-                            if(!Cookies.get('_fbp'))
-                            {
-                                timeoutDelay = 100;
-                            }
-                            if(getUrlParameter('fbclid') && !Cookies.get('_fbc'))
-                            {
-                                timeoutDelay = 100;
-                            }
-                            setTimeout(function(){
-                                if(!Cookies.get('_fbp'))
-                                {
-                                    Cookies.set('_fbp',genereateFbp(),  { expires: expires });
-                                    json['data']['_fbp'] = genereateFbp();
-                                }
-                                if(getUrlParameter('fbclid') && !Cookies.get('_fbc'))
-                                {
-                                    Cookies.set('_fbc', genereateFbc(),  { expires: expires });
-                                    json['data']['_fbc'] = genereateFbc();
-                                }
-                                jQuery.ajax( {
-                                    type: 'POST',
-                                    url: options.ajaxUrl,
-                                    data: json,
-                                    headers: {
-                                        'Cache-Control': 'no-cache'
-                                    },
-                                    success: function(){},
-                                });
-                            },timeoutDelay)
+                        if (event.e_id === "automatic_event_internal_link" || event.e_id === "automatic_event_outbound_link") {
+                            setTimeout(() => Utils.sendServerAjaxRequest(options.ajaxUrl, json), 500);
+                        } else if (event.type != 'static') {
+                            Utils.sendServerAjaxRequest(options.ajaxUrl, json);
                         }
-                        else
-                        {
-                            jQuery.ajax( {
-                                type: 'POST',
-                                url: options.ajaxUrl,
-                                data: json,
-                                headers: {
-                                    'Cache-Control': 'no-cache'
-                                },
-                                success: function(){},
-                            });
-                        }
-
-
                     }
 
                     if( event.e_id !== "automatic_event_signup" && name == "CompleteRegistration" && options.facebook.wooCRSendFromServer ) {
@@ -2776,8 +2834,6 @@ if (!String.prototype.trim) {
                 }
 
             }
-
-
 
             if (options.debug) {
                 console.log('[Facebook] ' + name, params,"pixel_ids",ids,"eventID",event.eventID);
@@ -2789,14 +2845,8 @@ if (!String.prototype.trim) {
                 if(options.facebook.serverApiEnabled && event.hasOwnProperty('eventID')) {
                     args.eventID = pixelId+event.eventID;
                 }
-
                 Facebook.maybeInitPixel(pixelId);
-                if(name == 'PageView'){
-                    fbq(actionType,pixelId, name, data,args);
-                }
-                else{
-                    fbq(actionType,pixelId, name, params,args);
-                }
+                fbq(actionType,pixelId, name, params,args);
             });
 
         }
@@ -2876,7 +2926,14 @@ if (!String.prototype.trim) {
                     s.parentNode.insertBefore(t, s)
                 }(window,
                     document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
+                let expires = parseInt(options.cookie_duration);
+                if(!Cookies.get('_fbp') && options.facebook.hasOwnProperty('fbp')) {
+                    Cookies.set('_fbp', options.facebook.fbp, { expires: expires });
+                }
 
+                if(!Cookies.get('_fbc') && options.facebook.hasOwnProperty('fbc') && options.facebook.fbc.length > 0) {
+                    Cookies.set('_fbc', options.facebook.fbc, { expires: expires });
+                }
                 var ids = options.facebook.pixelIds.filter(function (pixelId) {
                     return !Utils.hideMatchingPixel(pixelId, 'facebook');
                 });
@@ -3159,7 +3216,6 @@ if (!String.prototype.trim) {
                     if (window.pysEddProductData[download_id].hasOwnProperty(index)) {
                         if (window.pysEddProductData[download_id][index].hasOwnProperty('facebook')) {
 
-
                             Utils.copyProperties(window.pysEddProductData[download_id][index]['facebook']["params"], event.params)
 
                             // maybe customize value option
@@ -3170,7 +3226,7 @@ if (!String.prototype.trim) {
                             // update contents qty param
                             var contents = event.params.contents;
                             contents[0].quantity = qty;
-                            event.params.contents = JSON.stringify(contents);
+                            event.params.contents = contents;
 
                             this.fireEvent(event.name,event);
 
@@ -3223,10 +3279,11 @@ if (!String.prototype.trim) {
                 return !Utils.hideMatchingPixel(pixelId, 'ga');
             })
             Utils.copyProperties(Utils.getRequestParams(), eventParams);
-            var _fireEvent = function (tracking_id,name,params) {
-                params['send_to'] = tracking_id;
+            var _fireEvent = function (tracking_ids,name,params) {
+
+                params['send_to'] = tracking_ids;
                 if (options.debug) {
-                    console.log('[Google Analytics #' + tracking_id + '] ' + name, params);
+                    console.log('[Google Analytics #' + tracking_ids + '] ' + name, params);
                 }
 
                 gtag('event', name, params);
@@ -3322,10 +3379,14 @@ if (!String.prototype.trim) {
                 initialized = false;
             },
             updateEnhancedConversionData : function () {
-
-                if(isAllowEnhancedConversions) {
-                    var advanced = Utils.getAdvancedMergeFormData()
-                    gtag('set', 'user_data', advanced);
+                if (!initialized || !this.isEnabled()) {
+                    return;
+                }
+                if(options.hasOwnProperty("tracking_analytics") && options.tracking_analytics.hasOwnProperty("userDataEnable") && options.tracking_analytics.userDataEnable) {
+                    var advanced = Utils.getAdvancedMergeFormData();
+                    if (Object.keys(advanced).length > 0) {
+                        gtag('set', 'user_data', advanced);
+                    }
                 }
             },
             loadPixel: function () {
@@ -3339,7 +3400,7 @@ if (!String.prototype.trim) {
                     var trackingId = options.ga.trackingIds[i];
                     if (!Utils.hideMatchingPixel(trackingId, 'ga')) {
                         Utils.loadGoogleTag(trackingId);
-                        break; // Прерываем выполнение цикла, если загрузили тег
+                        break;
                     }
                 }
 
@@ -3358,6 +3419,13 @@ if (!String.prototype.trim) {
                     cd.dimension4 = 'dynx_itemid';
                     cd.dimension5 = 'dynx_pagetype';
                     cd.dimension6 = 'dynx_totalvalue';
+                }
+
+                if(options.hasOwnProperty("tracking_analytics") && options.tracking_analytics.hasOwnProperty("userDataEnable") && options.tracking_analytics.userDataEnable){
+                    var advanced = Utils.getAdvancedMergeFormData();
+                    if(Object.keys(advanced).length > 0){
+                        gtag('set', 'user_data', advanced);
+                    }
                 }
 
                 var config = {
@@ -3384,10 +3452,11 @@ if (!String.prototype.trim) {
 
                     var obj = options.ga.isDebugEnabled;
                     var searchValue = "index_"+index;
+                    var config = Object.assign({}, options.config);
                     config.debug_mode = false;
 
                     for (var key in obj) {
-                        if (obj.hasOwnProperty(key) && obj[key] === searchValue) {
+                        if (obj[key] === searchValue) {
                             config.debug_mode = true;
                             break;
                         }
@@ -3401,9 +3470,24 @@ if (!String.prototype.trim) {
                             config.allow_ad_personalization_signals = false
                         }
                     }
+                    if(options.ga.hasOwnProperty('additionalConfig')){
+                        if(options.ga.additionalConfig.hasOwnProperty(trackingId) && options.ga.additionalConfig[trackingId]){
+                            config.first_party_collection = options.ga.additionalConfig[trackingId].first_party_collection;
+                        }
 
+                    }
+                    if(options.ga.hasOwnProperty('serverContainerUrls')){
+                        if(options.ga.serverContainerUrls.hasOwnProperty(trackingId) && options.ga.serverContainerUrls[trackingId].enable_server_container != false){
+                            if(options.ga.serverContainerUrls[trackingId].server_container_url != ''){
+                                config.server_container_url = options.ga.serverContainerUrls[trackingId].server_container_url;
+                            }
+                            if(options.ga.serverContainerUrls[trackingId].transport_url != ''){
+                                config.transport_url = options.ga.serverContainerUrls[trackingId].transport_url;
+                            }
+                            config.first_party_collection = options.ga.serverContainerUrls[trackingId].first_party_collection;
+                        }
+                    }
                     if (options.gdpr.cookiebot_integration_enabled && typeof Cookiebot !== 'undefined') {
-
                         var cookiebot_consent_category = options.gdpr['cookiebot_analytics_consent_category'];
                         if (options.gdpr['analytics_prior_consent_enabled']) {
                             if (Cookiebot.consented === true && Cookiebot.consent[cookiebot_consent_category]) {
@@ -3414,20 +3498,18 @@ if (!String.prototype.trim) {
                                 gtag('config', trackingId, config);
                             }
                         }
-
                     }
                     else
                     {
                         gtag('config', trackingId, config);
                     }
-
                 });
                 if(!isAdsLoad && GAds.isEnabled() && options.google_ads.conversion_ids.length > 0){
                     for (var i = 0; i < options.google_ads.conversion_ids.length; i++) {
                         var trackingId = options.google_ads.conversion_ids[i];
                         if (!Utils.hideMatchingPixel(trackingId, 'google_ads')) {
                             Utils.loadGoogleTag(trackingId);
-                            break; // Прерываем выполнение цикла, если загрузили тег
+                            break;
                         }
                     }
                     var ids = options.google_ads.conversion_ids.filter(function (pixelId) {
@@ -3443,14 +3525,11 @@ if (!String.prototype.trim) {
                             gtag('config', conversion_id,{ 'allow_enhanced_conversions':true });
                         }
 
-                        if(isAllowEnhancedConversions) {
-                            var advanced = Utils.getAdvancedMergeFormData()
-                            gtag('set', 'user_data', advanced);
-                        }
-
                     });
                     isAdsLoad = true;
                 }
+
+
                 initialized = true;
 
                 Utils.fireStaticEvents('ga');
@@ -3542,7 +3621,7 @@ if (!String.prototype.trim) {
 
             },
 
-            onWooAddToCartOnSingleEvent: function (product_id, qty, product_type, is_external, $form) {
+            onWooAddToCartOnSingleEvent: function (product_id, qty, product_type, is_external, $form, prod_info) {
 
                 window.pysWooProductData = window.pysWooProductData || [];
 
@@ -3584,8 +3663,8 @@ if (!String.prototype.trim) {
 
                             if(options.woo.addToCartOnButtonValueEnabled &&
                                 options.woo.addToCartOnButtonValueOption !== 'global' &&
-                                event.params.hasOwnProperty('ecomm_totalvalue')) {
-                                event.params.ecomm_totalvalue = groupValue;
+                                event.params.hasOwnProperty('value')) {
+                                event.params.value = groupValue;
                             }
 
                             if(groupValue == 0) return; // skip if no items selected
@@ -3599,12 +3678,22 @@ if (!String.prototype.trim) {
                             options.woo.addToCartOnButtonValueOption !== 'global' &&
                             product_type !== Utils.PRODUCT_GROUPED)
                         {
-                            if(event.params.hasOwnProperty('ecomm_totalvalue')) {
-                                event.params.ecomm_totalvalue = event.params.items[0].price * qty;
+                            if(event.params.hasOwnProperty('value')) {
+                                event.params.value = event.params.items[0].price * qty;
                             }
                         }
 
-
+                        if(prod_info)
+                        {
+                            if(prod_info['pys_list_name_productlist_id'])
+                            {
+                                event.params.items[0]['item_list_id'] = prod_info['pys_list_name_productlist_id']
+                            }
+                            if(prod_info['pys_list_name_productlist_name'])
+                            {
+                                event.params.items[0]['item_list_name'] =prod_info['pys_list_name_productlist_name']
+                            }
+                        }
 
                         var eventName = is_external ? options.woo.affiliateEventName : event.name;
                         eventName = normalizeEventName(eventName);
@@ -3630,7 +3719,9 @@ if (!String.prototype.trim) {
                 if (event.params.items[0].item_list_id !== undefined) {
                     select_prod_list.list_id = event.params.items[0].item_list_id;
                 }
-                Cookies.set('select_prod_list', select_prod_list, { expires: 1 });
+                const url = new URL(window.location.href);
+                select_prod_list.url = url.origin + url.pathname;
+                Cookies.set('select_prod_list', JSON.stringify(select_prod_list), { expires: 1 });
                 this.fireEvent(event.name, event);
             },
 
@@ -3838,7 +3929,7 @@ if (!String.prototype.trim) {
 
             updateEnhancedConversionData : function () {
 
-                if(isAllowEnhancedConversions) {
+                if(options.hasOwnProperty("tracking_analytics") && options.tracking_analytics.hasOwnProperty("userDataEnable") && options.tracking_analytics.userDataEnable){
                     var advanced = Utils.getAdvancedMergeFormData()
                     gtag('set', 'user_data', advanced);
                 }
@@ -3855,7 +3946,7 @@ if (!String.prototype.trim) {
                         var trackingId = options.google_ads.conversion_ids[i];
                         if (!Utils.hideMatchingPixel(trackingId, 'google_ads')) {
                             Utils.loadGoogleTag(trackingId);
-                            break; // Прерываем выполнение цикла, если загрузили тег
+                            break;
                         }
                     }
                     var ids = options.google_ads.conversion_ids.filter(function (pixelId) {
@@ -3881,7 +3972,7 @@ if (!String.prototype.trim) {
 
                         gtag('config', conversion_id, config );
 
-                        if(isAllowEnhancedConversions) {
+                        if(options.hasOwnProperty("tracking_analytics") && options.tracking_analytics.hasOwnProperty("userDataEnable") && options.tracking_analytics.userDataEnableuserDataEnable){
                             var advanced = Utils.getAdvancedMergeFormData()
                             gtag('set', 'user_data', advanced);
                         }
@@ -4202,8 +4293,14 @@ if (!String.prototype.trim) {
                 }
             }
         }
-        else
-        {
+
+        if ( options.gdpr.consent_magic_integration_enabled && typeof CS_Data !== "undefined" ) {
+            if ( CS_Data.cs_script_cat.pys == CS_Data.cs_necessary_cat_id || CS_Data.cs_script_cat.pys == 0 ) {
+                Utils.manageCookies();
+            } else if ( Cookies.get( 'cs_enabled_cookie_term' + CS_Data.test_prefix + '_' + CS_Data.cs_script_cat.pys ) == 'yes' ) {
+                Utils.manageCookies();
+            }
+        } else {
             Utils.manageCookies();
         }
 
@@ -4708,9 +4805,8 @@ if (!String.prototype.trim) {
                     var $button = $(this);
                     var $prod_info = $button.siblings('.pys_list_name_productdata').data();
                     var product_id = $(this).data('product_id');
-                    Cookies.set('productlist', $prod_info, { expires: 1 })
+                    Cookies.set('productlist', JSON.stringify($prod_info), { expires: 1 })
                     var product_id = $(this).data('product_id');
-
                     if (typeof product_id !== 'undefined') {
                         Facebook.onWooAddToCartOnButtonEvent(product_id,$(this));
                         Analytics.onWooAddToCartOnButtonEvent(product_id, $prod_info);
@@ -4730,7 +4826,7 @@ if (!String.prototype.trim) {
                     var $button = $(this);
                     var $prod_info = $button.siblings('.pys_list_name_productdata').data();
                     var product_id = $(this).data('product_id');
-                    Cookies.set('productlist', $prod_info, { expires: 1 })
+                    Cookies.set('productlist', JSON.stringify($prod_info), { expires: 1 })
                     if ($button.hasClass('disabled')) {
                         return;
                     }
@@ -4777,7 +4873,7 @@ if (!String.prototype.trim) {
                     }
 
                     Facebook.onWooAddToCartOnSingleEvent(product_id, qty, product_type, is_external, $form);
-                    Analytics.onWooAddToCartOnSingleEvent(product_id, qty, product_type, is_external, $form);
+                    Analytics.onWooAddToCartOnSingleEvent(product_id, qty, product_type, is_external, $form, $prod_info);
                     GAds.onWooAddToCartOnSingleEvent(product_id, qty, product_type, is_external, $form);
                     Pinterest.onWooAddToCartOnSingleEvent(product_id, qty, product_type, is_external, $form);
                     Bing.onWooAddToCartOnSingleEvent(product_id, qty, product_type, is_external, $form);
@@ -4789,7 +4885,7 @@ if (!String.prototype.trim) {
                     var $button = $(this);
                     var $prod_info = $button.siblings('.pys_list_name_productdata').data();
                     var product_id = $(this).data('product_id');
-                    Cookies.set('productlist', $prod_info, { expires: 1 })
+                    Cookies.set('productlist', JSON.stringify($prod_info), { expires: 1 })
                 });
 
                 // Single Product
@@ -4897,32 +4993,38 @@ if (!String.prototype.trim) {
 
 
             // WooCommerce
-            if(options.dynamicEvents.hasOwnProperty("woo_select_content_search") ||
-                options.dynamicEvents.hasOwnProperty("woo_select_content_shop") ||
-                options.dynamicEvents.hasOwnProperty("woo_select_content_tag") ||
-                options.dynamicEvents.hasOwnProperty("woo_select_content_single") ||
-                options.dynamicEvents.hasOwnProperty("woo_select_content_category")
-            ) {
-                $('.product.type-product a.woocommerce-loop-product__link').onFirst('click', function (evt) {
-                    var productId = $(this).parent().find("a.add_to_cart_button").attr("data-product_id");
-                    if(options.dynamicEvents.hasOwnProperty("woo_select_content_search") &&
-                        options.dynamicEvents.woo_select_content_search.hasOwnProperty(productId)) {
-                        Analytics.onWooSelectContent(options.dynamicEvents.woo_select_content_search[productId][Analytics.tag()]);
-                    } else if(options.dynamicEvents.hasOwnProperty("woo_select_content_shop") &&
-                        options.dynamicEvents.woo_select_content_shop.hasOwnProperty(productId)) {
-                        Analytics.onWooSelectContent(options.dynamicEvents.woo_select_content_shop[productId][Analytics.tag()]);
-                    } else if(options.dynamicEvents.hasOwnProperty("woo_select_content_tag") &&
-                        options.dynamicEvents.woo_select_content_tag.hasOwnProperty(productId)) {
-                        Analytics.onWooSelectContent(options.dynamicEvents.woo_select_content_tag[productId][Analytics.tag()]);
-                    } else if(options.dynamicEvents.hasOwnProperty("woo_select_content_single") &&
-                        options.dynamicEvents.woo_select_content_single.hasOwnProperty(productId)) {
-                        Analytics.onWooSelectContent(options.dynamicEvents.woo_select_content_single[productId][Analytics.tag()]);
-                    } else if(options.dynamicEvents.hasOwnProperty("woo_select_content_category") &&
-                        options.dynamicEvents.woo_select_content_category.hasOwnProperty(productId)) {
-                        Analytics.onWooSelectContent(options.dynamicEvents.woo_select_content_category[productId][Analytics.tag()]);
+
+            $('.product.type-product a.woocommerce-loop-product__link').onFirst('click', function (evt) {
+                var productId = $(this).parent().find("a.add_to_cart_button").attr("data-product_id");
+                var eventTypes = ["woo_select_content_search", "woo_select_content_shop", "woo_select_content_tag", "woo_select_content_single", "woo_select_content_category"];
+                var isEventFired = false;
+
+                for (var i = 0; i < eventTypes.length; i++) {
+                    var eventType = eventTypes[i];
+                    if (options.dynamicEvents.hasOwnProperty(eventType) && options.dynamicEvents[eventType].hasOwnProperty(productId)) {
+                        Analytics.onWooSelectContent(options.dynamicEvents[eventType][productId][Analytics.tag()]);
+                        isEventFired = true;
+                        break;
                     }
-                });
-            }
+                }
+
+                if (!isEventFired) {
+                    let prod_info = $(this).parent().find('.pys_list_name_productdata').data();
+                    if (prod_info) {
+                        const select_prod_list = {};
+                        if (prod_info['pys_list_name_productlist_name']) {
+                            select_prod_list.list_name = prod_info['pys_list_name_productlist_name']
+                        }
+                        if (prod_info['pys_list_name_productlist_id']) {
+                            select_prod_list.list_id = prod_info['pys_list_name_productlist_id']
+                        }
+                        const url = new URL(window.location.href);
+                        select_prod_list.url = url.origin + url.pathname;
+                        Cookies.set('select_prod_list', JSON.stringify(select_prod_list), { expires: 1 });
+                    }
+                }
+            });
+
         }
 
         // setup EDD events
@@ -5440,56 +5542,6 @@ if (!String.prototype.trim) {
 
 }(jQuery, pysOptions);
 
-var disabled_GDRP_plugin = false;
-if (pysOptions.gdpr.cookiebot_integration_enabled && typeof Cookiebot !== 'undefined') {
-    if (Cookiebot.consented === false && !Cookiebot.consent['marketing'] && !Cookiebot.consent['statistics']) {
-        disabled_GDRP_plugin = true;
-    }
-}
-if (pysOptions.gdpr.cookie_law_info_integration_enabled) {
-    var cli_cookie = Cookies.get('cookieyes-consent') ?? Cookies.get('viewed_cookie_policy');
-
-    if (typeof cli_cookie !== 'undefined') {
-        if (cli_cookie === Cookies.get('cookieyes-consent')) {
-            if (getCookieYes('analytics') !== 'yes') {
-                disabled_GDRP_plugin = true;
-            }
-        } else if (cli_cookie === Cookies.get('viewed_cookie_policy')) {
-            if (Cookies.get('viewed_cookie_policy') !== 'yes') {
-                disabled_GDRP_plugin = true;
-            }
-        }
-    }
-    else if(typeof Cli_Data !== "undefined" && typeof cli_cookie == 'undefined'){
-        disabled_GDRP_plugin = true;
-    }
-}
-
-if (pysOptions.ajaxForServerEvent && !Cookies.get('pbid')) {
-
-    jQuery.ajax({
-        url: pysOptions.ajaxUrl,
-        dataType: 'json',
-        data: {
-            action: 'pys_get_pbid'
-        },
-        success: function (res) {
-            if (res.data && res.data.pbid != false && pysOptions.send_external_id) {
-                if(!(pysOptions.cookie.disabled_all_cookie || pysOptions.cookie.externalID_disabled_by_api || disabled_GDRP_plugin)){
-                    var expires = parseInt(pysOptions.external_id_expire || 180);
-                    Cookies.set('pbid', res.data.pbid, { expires: expires, path: '/' });
-                }
-
-                if(pysOptions.hasOwnProperty('facebook')) {
-                    pysOptions.facebook.advancedMatching = {
-                        ...pysOptions.facebook.advancedMatching,
-                        external_id: res.data.pbid
-                    };
-                }
-            }
-        }
-    });
-}
 function pys_generate_token(length){
     //edit the token allowed characters
     var a = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890".split("");

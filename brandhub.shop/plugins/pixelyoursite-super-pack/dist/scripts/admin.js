@@ -18,12 +18,32 @@ jQuery(document).ready(function ($) {
             $(this).parents('.pixel_info').find('.server_access_api_token').attr('disabled', 'disabled')
         }
     })
+
     $body.on('input','.pixel_info .pixel_id'  ,function () {
         updatePixelData($(this).parents('.pixel_info'),'pixel_id',$(this).val())
     })
     $body.on('input','.server_access_api_token'  ,function () {
         updatePixelData($(this).parents('.pixel_info'),'server_access_api_token',$(this).val())
     })
+
+    $body.on('change','.pixel_info .enable_server_container',function () {
+        updatePixelData($(this).parents('.pixel_info'),'enable_server_container',this.checked)
+    })
+    $body.on('input','.server_container_url'  ,function () {
+        updatePixelData($(this).parents('.pixel_info'),'server_container_url',$(this).val())
+    })
+    $body.on('input','.transport_url'  ,function () {
+        updatePixelData($(this).parents('.pixel_info'),'transport_url',$(this).val())
+    })
+    $body.on('change','.send_page_view'  ,function () {
+
+        updatePixelData($(this).parents('.pixel_info'),'send_page_view',this.checked)
+    })
+    $body.on('change','.first_party_collection'  ,function () {
+
+        updatePixelData($(this).parents('.pixel_info'),'first_party_collection',this.checked)
+    })
+
     $body.on('input','.pixel_info .pixel_ext'  ,function () {
 
         updatePixelData($(this).parents('.pixel_info'),'ext_'+$(this).data('ext'),$(this).val())
@@ -32,6 +52,11 @@ jQuery(document).ready(function ($) {
 
         updatePixelData($(this).parents('.pixel_info'),'ext_'+$(this).data('ext'),this.checked)
     })
+
+    $body.on('change','.pixel_info .enhanced_conversions_manual_enabled'  ,function () {
+        updatePixelData($(this).parents('.pixel_info'),'enhanced_conversions_manual_enabled',this.checked)
+    })
+
     $body.on('change','.pixel_info .is_fire_signal'  ,function () {
         updatePixelData($(this).parents('.pixel_info'),'is_fire_signal',this.checked)
     })
@@ -194,8 +219,16 @@ jQuery(document).ready(function ($) {
 
         $('#pixel_ga_hide_url_conditions_'+count).pysselect2({placeholder: $('#pixel_ga_hide_url_conditions_'+count).data("placeholder"), tags: true});
 
+        $row.find('#enable_server_container').attr('id','enable_server_container_'+count);
+        $row.find("label[for='enable_server_container']").attr('for','enable_server_container_'+count)
+
         updatePixelData($row,'use_server_api',$row.find('.pys_ga_use_server_api')[0].checked)
         updatePixelData($row,'server_access_api_token',$row.find('.server_access_api_token').val())
+        updatePixelData($row,'enable_server_container',$row.find('.enable_server_container')[0].checked)
+        updatePixelData($row,'send_page_view',$row.find('.send_page_view')[0].checked)
+        updatePixelData($row,'first_party_collection',$row.find('.first_party_collection')[0].checked)
+        updatePixelData($row,'server_container_url',$row.find('.server_container_url').val())
+        updatePixelData($row,'transport_url',$row.find('.transport_url').val())
 
         updatePixelInputValue($row)
     });
@@ -210,6 +243,9 @@ jQuery(document).ready(function ($) {
         $row.insertBefore('#pys_superpack_google_ads_id')
             .attr('id', '')
             .css('display', 'block');
+
+        $row.find('#enhanced_conversions_manual_enabled').attr('id','enhanced_conversions_manual_enabled_'+count)
+        $row.find("label[for='enhanced_conversions_manual_enabled']").attr('for','enhanced_conversions_manual_enabled_'+count)
 
         $row.find('#pixel_ads_is_hide').attr('id','pixel_ads_is_hide_'+count)
         $row.find("label[for='pixel_ads_is_hide']").attr('for','pixel_ads_is_hide_'+count)
@@ -239,6 +275,9 @@ jQuery(document).ready(function ($) {
         $pixel.find('.pixel_ext_chekbox').each(function () {
             updatePixelData($pixel,'ext_'+$(this).data('ext'),this.checked)
         })
+
+        updatePixelData($pixel,'enhanced_conversions_manual_enabled',$pixel.find('.enhanced_conversions_manual_enabled')[0].checked)
+
 
         updatePixelData($pixel,'is_fire_signal',$pixel.find('.is_fire_signal')[0].checked)
 
