@@ -1,9 +1,4 @@
 /**
- * External Dependencies
- */
-const path = require( 'path' );
-
-/**
  * WordPress Dependencies
  */
 const defaultConfig = require( '@wordpress/scripts/config/webpack.config' );
@@ -182,10 +177,6 @@ module.exports = [
                     `${sourcesDir}/ts/side-cart.tsx`,
                     `${sourcesDir}/scss/frontend/side-cart.scss`,
                 ],
-            },
-            'utils-script': {
-                import: require.resolve( 'intl-tel-input/build/js/utils.js' ),
-                filename: 'js/utils.js',
             },
         },
         plugins: [

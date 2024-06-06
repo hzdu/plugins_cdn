@@ -102,6 +102,10 @@ module.exports = {
                         context: path.resolve( process.cwd(), 'node_modules/@fontsource' ),
                         noErrorOnMissing: true,
                     },
+                    {
+                        from: path.resolve( __dirname, 'node_modules/intl-tel-input/build/js/utils.js' ),
+                        to: 'js/utils.js',
+                    },
                 ],
             } ),
             new WebpackNotifierPlugin(

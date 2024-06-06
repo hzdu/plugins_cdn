@@ -13,6 +13,7 @@ const CheckoutCartTable: React.FC = () => {
     const isEmpty = useSelect( ( select: any ) => select( DataStores.cart_store_key ).getCartIsEmpty( null ), [] );
     const items = useSelect( ( select: any ) => select( DataStores.cart_store_key ).getCartItems( null ), [] );
     const staticActions = useSelect( ( select: any ) => select( DataStores.cart_store_key ).getCartStaticActions( null ), [] );
+    const actions = useSelect( ( select: any ) => select( DataStores.cart_store_key ).getCartActions( null ), [] );
 
     const updateItem = ( item: CartItemInterface ) => {
         // Find the index of the item to update
@@ -51,7 +52,7 @@ const CheckoutCartTable: React.FC = () => {
                     {items.map( ( item: CartItemInterface ) => ( <CheckoutCartTableRow item={item} updateItem={updateItem} key={item.item_key} /> ) )}
                 </tbody>
             </table>
-            {ReactHtmlParser( staticActions?.cfw_after_cart_html )}
+            {ReactHtmlParser( actions?.cfw_after_cart_html )}
         </>
     );
 };

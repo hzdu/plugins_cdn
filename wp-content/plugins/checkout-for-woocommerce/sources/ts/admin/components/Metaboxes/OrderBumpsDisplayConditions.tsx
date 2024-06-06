@@ -1,13 +1,13 @@
-import React, { useEffect }                                           from 'react';
-import { PluginDocumentSettingPanel }                                 from '@wordpress/edit-post';
-import { CheckboxControl, RadioControl }                              from '@wordpress/components';
-import { useDispatch }                                                from '@wordpress/data';
-import { store as noticesStore }                                      from '@wordpress/notices';
-import MetaboxSelect                                                  from './Fields/MetaboxSelect';
-import ProductsAndVariationsCompleter                                 from './ProductsAndVariationsCompleter';
-import SelectWithLabel                                                from '../SelectWithLabel';
-import withMetaboxValidation                                          from './withMetaboxValidation';
-import { OrderBumpsMeta, ValidationRules }                            from '../../Types/ValidationRules';
+import React, { useEffect }                                                            from 'react';
+import { PluginDocumentSettingPanel }                                                  from '@wordpress/edit-post';
+import { __experimentalNumberControl as NumberControl, CheckboxControl, RadioControl } from '@wordpress/components';
+import { useDispatch }                                                                 from '@wordpress/data';
+import { store as noticesStore }                                                       from '@wordpress/notices';
+import MetaboxSelect                                                                   from './Fields/MetaboxSelect';
+import ProductsAndVariationsCompleter                                                  from './ProductsAndVariationsCompleter';
+import SelectWithLabel                                                                 from '../SelectWithLabel';
+import withMetaboxValidation                                                           from './withMetaboxValidation';
+import { OrderBumpsMeta, ValidationRules }                                             from '../../Types/ValidationRules';
 
 const getValidationRules: ( meta: OrderBumpsMeta ) => ValidationRules = ( meta ) => ( {
     cfw_ob_products_v9: {
@@ -17,6 +17,12 @@ const getValidationRules: ( meta: OrderBumpsMeta ) => ValidationRules = ( meta )
     cfw_ob_categories_v9: {
         required: () => meta.cfw_ob_display_for === 'specific_categories',
         error: 'You must specify at least one category.',
+    },
+    cfw_ob_minimum_subtotal: {
+        required() {
+            return false;
+        },
+        number: true,
     },
 } );
 
@@ -167,6 +173,17 @@ const OrderBumpsDisplayConditions = ( { meta, handleFieldChange } ) => {
                 onChange={
                     ( newValues: any ) => {
                         handleFieldChange( 'cfw_ob_exclude_categories_v9', newValues );
+                    }
+                }
+            />
+
+            <NumberControl
+                label={ 'Minimum Subtotal' }
+                help={ 'Only display this offer for carts with a subtotal greater than X. Example 99.99' }
+                value={ meta.cfw_ob_minimum_subtotal }
+                onChange={
+                    ( newValue: string ) => {
+                        handleFieldChange( 'cfw_ob_minimum_subtotal', newValue );
                     }
                 }
             />

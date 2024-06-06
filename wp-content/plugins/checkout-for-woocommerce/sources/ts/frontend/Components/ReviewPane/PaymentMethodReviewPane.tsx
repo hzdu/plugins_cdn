@@ -1,9 +1,10 @@
-import React                            from 'react';
-import { __ }                           from '@wordpress/i18n';
-import { useSelect }                    from '@wordpress/data';
-import ReviewPaneItem                   from './ReviewPaneItem';
-import ReviewPaneDataInterface          from '../../Interfaces/ReviewPaneDataInterface';
-import DataStores                       from '../../DataStores';
+import React                              from 'react';
+import { __ }                             from '@wordpress/i18n';
+import { useSelect }                      from '@wordpress/data';
+import { Markup }                         from 'interweave';
+import ReviewPaneItem                     from './ReviewPaneItem';
+import ReviewPaneDataInterface            from '../../Interfaces/ReviewPaneDataInterface';
+import DataStores                         from '../../DataStores';
 
 const PaymentMethodReviewPane = () => {
     const reviewData: ReviewPaneDataInterface = useSelect( ( select: any ) => select( DataStores.cart_store_key ).getReviewData( null ), [] );
@@ -38,6 +39,8 @@ const PaymentMethodReviewPane = () => {
                     />
                 )
             }
+
+            <Markup content={reviewData.actions?.cfw_after_payment_step_review_pane} noWrap={true} />
         </ul>
     );
 };

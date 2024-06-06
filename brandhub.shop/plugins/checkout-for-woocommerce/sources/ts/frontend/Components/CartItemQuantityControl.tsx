@@ -37,6 +37,9 @@ const CartItemQuantityControl = ( { quantity, setQuantity, min, max, step } ) =>
                 newQuantity = max;
             }
 
+            // Make sure newQuantity is a multiple of step
+            newQuantity = Math.round( newQuantity / step ) * step;
+
             if ( newQuantity > 0 || window.confirm( DataService.getMessage( 'delete_confirm_message' ) ) ) {
                 setQuantity( newQuantity );
             }

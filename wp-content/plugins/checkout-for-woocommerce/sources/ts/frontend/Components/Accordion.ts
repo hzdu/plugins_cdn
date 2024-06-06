@@ -23,7 +23,7 @@ class Accordion {
             } );
         } );
 
-        jQuery( document.body ).on( 'click', '.cfw-shipping-methods-list li, .cfw-radio-reveal-li', ( e ) => {
+        jQuery( document.body ).on( 'click', '.cfw-radio-reveal-li', ( e ) => {
             if ( jQuery( e.target ).is( ':input' ) ) {
                 return;
             }

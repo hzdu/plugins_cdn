@@ -1,4 +1,5 @@
 import { select, subscribe }                  from '@wordpress/data';
+import Cookies                                from 'js-cookie';
 import UpdateSideCart                         from '../Actions/UpdateSideCart';
 import DataService                            from '../Services/DataService';
 import DataStores                             from '../DataStores';
@@ -61,23 +62,22 @@ class SideCart {
             jQuery( document.body ).on( 'click', additionalSideCartTriggerSelectors, SideCart.openCart.bind( this ) );
         }
 
+        jQuery( document.body ).on( 'cfw_open_side_cart', SideCart.openCart.bind( this ) );
         jQuery( document.body ).on( 'click', '.cfw-side-cart-open-trigger, .added_to_cart', SideCart.openCart.bind( this ) );
         jQuery( document.body ).on( 'click', '.menu-item a:has(.cfw-side-cart-open-trigger)', SideCart.openCart.bind( this ) );
         jQuery( document.body ).on( 'click', '.cfw-side-cart-close-trigger, .cfw-side-cart-close-btn, #cfw-side-cart-overlay', SideCart.closeCart.bind( this ) );
         jQuery( document.body ).on( 'added_to_cart', () => {
-            if ( !DataService.getSetting( 'disable_side_cart_auto_open' ) ) {
-                SideCart.openCart();
+            this.maybeOpenCartOrShakeButton();
+        } );
 
-                return;
-            }
-
-            if ( !DataService.getSetting( 'enable_floating_cart_button' ) ) {
-                return;
-            }
-
-            jQuery( document.body  ).on( 'wc_fragments_loaded', () => {
-                this.shakeCartButton();
+        document.body.addEventListener( 'wc-blocks_added_to_cart', () => {
+            // Manually refresh and handle opening the cart
+            jQuery( document.body ).one( 'wc_fragments_refreshed', () => {
+                this.maybeOpenCartOrShakeButton();
             } );
+
+            // Trigger the manual refresh
+            jQuery( document.body ).trigger( 'wc_fragment_refresh' );
         } );
 
         jQuery( document.body ).on( 'click', `a.wc-forward:contains(${DataService.getMessage( 'view_cart' )})`, SideCart.openCart.bind( this ) );
@@ -106,23 +106,31 @@ class SideCart {
         } );
 
         jQuery( window ).on( 'load', () => {
-            if (
-                window.location.hash === '#cfw-cart'
-                || (
-                    DataService.getRuntimeParameter( 'openCart' )
-                    && !DataService.getSetting( 'disable_side_cart_auto_open' )
-                )
-            ) {
-                SideCart.openCart();
+            if ( window.location.hash === '#cfw-cart' || DataService.getRuntimeParameter( 'openCart' ) ) {
+                this.maybeOpenCartOrShakeButton();
             }
+        } );
 
-            if ( !DataService.getSetting( 'enable_floating_cart_button' ) ) {
-                return;
+        jQuery( window ).on( 'load', () => {
+            if ( Cookies.get( 'cfw_cart_hash' ) !== Cookies.get( 'woocommerce_cart_hash' ) ) {
+                jQuery( document.body ).trigger( 'wc_fragment_refresh' );
             }
+        } );
+    }
 
-            if ( DataService.getRuntimeParameter( 'openCart' ) && DataService.getSetting( 'disable_side_cart_auto_open' ) ) {
-                this.shakeCartButton();
-            }
+    maybeOpenCartOrShakeButton(): void {
+        if ( !DataService.getSetting( 'disable_side_cart_auto_open' ) ) {
+            SideCart.openCart();
+
+            return;
+        }
+
+        if ( !DataService.getSetting( 'enable_floating_cart_button' ) ) {
+            return;
+        }
+
+        jQuery( document.body  ).on( 'wc_fragments_loaded', () => {
+            this.shakeCartButton();
         } );
     }
 

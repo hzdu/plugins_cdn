@@ -6,14 +6,13 @@ class PaymentPluginsPayPal extends Compatibility {
         super( 'PaymentPluginsPayPal' );
     }
 
-    /**
-     * Loads the Braintree compatibility class
-     *
-     * @param {any} params
-     */
-    load( params: any ): void {
+    load(): void {
         jQuery( document.body ).on( 'cfw_pre_update_order_review_action', () => {
             if ( typeof ( <any>window ).wcPPCPSettings === 'undefined' ) {
+                return;
+            }
+
+            if ( typeof ( <any>window ).wcPPCPSettings.ppcp_data === 'undefined' ) {
                 return;
             }
 

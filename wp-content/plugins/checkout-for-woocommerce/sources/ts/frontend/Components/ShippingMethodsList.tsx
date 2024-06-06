@@ -1,8 +1,5 @@
 import React                                                 from 'react';
-import { useSelect }                                         from '@wordpress/data';
 import { Markup }                                            from 'interweave';
-import ReactHtmlParser                                       from 'react-html-parser';
-import DataStores                                            from '../DataStores';
 import { ShippingPackageInterface, ShippingMethodInterface } from '../../interfaces/ShippingPackageInterface';
 import DataService                                           from '../Services/DataService';
 
@@ -32,7 +29,10 @@ const ShippingMethodsList: React.FC<ShippingProps> = (
 
                 <ul id="shipping_method" className="cfw-shipping-methods-list">
                     {availableMethods.map( ( method ) => (
-                        <li key={method.id}>
+                        <li
+                            key={method.id}
+                            onClick={() => updateSelectedMethod( method )}
+                        >
                             <div className="cfw-shipping-method-inner">
                                 <input
                                     type="radio"

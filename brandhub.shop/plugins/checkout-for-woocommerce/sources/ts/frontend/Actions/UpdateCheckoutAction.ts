@@ -20,7 +20,7 @@ class UpdateCheckoutAction extends Action {
     constructor() {
         super( 'update_order_review' );
 
-        this.blockUISelector = '#cfw-billing-methods, .cfw-review-pane, #cfw-cart-summary, #cfw-mobile-cart-summary, #cfw-place-order, #cfw-payment-request-buttons, #cfw-mobile-total, .cfw-order-bumps, #cfw-shipping-methods, .cfw-next-tab';
+        this.blockUISelector = '#cfw-billing-methods, .cfw-review-pane, #cfw-cart-summary, #cfw-mobile-cart-summary, #cfw-place-order, #cfw-payment-request-buttons, #cfw-mobile-total, .cfw-order-bumps, #cfw-shipping-packages-container, .cfw-next-tab';
     }
 
     public load( data: any, args: any = {} ): void {

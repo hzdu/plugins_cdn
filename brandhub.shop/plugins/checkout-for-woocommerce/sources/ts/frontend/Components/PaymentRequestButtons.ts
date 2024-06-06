@@ -1,6 +1,5 @@
-import { select, subscribe } from '@wordpress/data';
+import { select }            from '@wordpress/data';
 import DataStores            from '../DataStores';
-import { Bump }              from '../../Types/BumpTypes';
 
 class PaymentRequestButtons {
     private expressButtonContainer: any;
@@ -30,23 +29,6 @@ class PaymentRequestButtons {
 
                 iterations += 1;
             }, 1000 );
-        } );
-
-        // Fix for WooPay
-        jQuery( window ).on( 'load', () => {
-            jQuery( '.wcpay-payment-request-wrapper' ).children( 'div' ).each( ( index, element ) => {
-                // if only contains comment, hide it
-                if ( jQuery( element ).children().length === 0 ) {
-                    jQuery( element ).hide();
-                }
-            } );
-
-            // If all children are hidden, hide the parent
-            jQuery( '.wcpay-payment-request-wrapper' ).each( ( index, element ) => {
-                if ( jQuery( element ).children( ':visible' ).length === 0 ) {
-                    jQuery( element ).hide();
-                }
-            } );
         } );
     }
 
