@@ -91,7 +91,7 @@ var WPFormsElementorModern = window.WPFormsElementorModern || ( function( docume
 
 			// Apply settings from the textarea.
 			settingsModel.on( 'change:copyPasteJsonValue', ( changedModel ) => {
-				app.pasteSettings( changedModel );
+				app.pasteSettings( changedModel, view );
 			} );
 
 			// Change style settings.
@@ -118,6 +118,7 @@ var WPFormsElementorModern = window.WPFormsElementorModern || ( function( docume
 			app.updateAccentColors( $scope, formId );
 			app.loadChoicesJS( $scope, formId );
 			app.initRichTextField( formId );
+			app.initRepeaterField( formId );
 		},
 
 		/**
@@ -148,18 +149,16 @@ var WPFormsElementorModern = window.WPFormsElementorModern || ( function( docume
 		 *
 		 * @since 1.8.3
 		 *
-		 * @param {object} event Event object.
+		 * @param {Object} event Event object.
 		 */
-		resetStyleSettings: function( event ) {
-
-			let model           = event.options.elementSettingsModel;
-			let container       = event.options.container;
-			let widgetContainer = container.view.$el[0];
-			let defaults        = model.defaults;
-			let styleSettings   = app.getStyleAttributesKeys();
-			let globals         = model.get( '__globals__' );
-			let defaultValues   = {};
-			let $widgetStyles   = $( widgetContainer ).find( '#wpforms-css-vars-root' ).next( 'style' );
+		resetStyleSettings( event ) {
+			const model = event.options.elementSettingsModel;
+			const container = event.options.container;
+			const widgetContainer = container.view.$el[ 0 ];
+			const defaults = model.defaults;
+			const styleSettings = app.getStyleAttributesKeys();
+			const defaultValues = {};
+			const $widgetStyles = $( widgetContainer ).find( '#wpforms-css-vars-root' ).next( 'style' );
 
 			// Prepare default style settings values.
 			styleSettings.forEach( function( element ) {
@@ -167,16 +166,7 @@ var WPFormsElementorModern = window.WPFormsElementorModern || ( function( docume
 			} );
 
 			// Reset global style settings.
-			if ( globals ) {
-				elementorCommon.api.run( 'document/globals/settings', {
-					container: container,
-					settings: {},
-					options: {
-						external: true,
-						render: false,
-					},
-				} );
-			}
+			app.resetGlobalStyleSettings( model, container );
 
 			// Reset widget settings to default.
 			elementorCommon.api.run( 'document/elements/settings', {
@@ -262,19 +252,42 @@ var WPFormsElementorModern = window.WPFormsElementorModern || ( function( docume
 		},
 
 		/**
+		 * Reset global style settings.
+		 *
+		 * @since 1.8.7
+		 *
+		 * @param {Object} model     Settings model.
+		 * @param {Object} container Container.
+		 */
+		resetGlobalStyleSettings( model, container ) {
+			const globals = model.get( '__globals__' );
+
+			if ( globals && ! model.changed.__globals__ ) {
+				elementorCommon.api.run( 'document/globals/settings', {
+					container,
+					settings: {},
+					options: {
+						external: true,
+						render: false,
+					},
+				} );
+			}
+		},
+
+		/**
 		 * Paste settings.
 		 *
 		 * @since 1.8.3
 		 *
-		 * @param {object} model Settings model.
+		 * @param {Object} model Settings model.
+		 * @param {Object} view  View.
 		 */
-		pasteSettings: function( model ) {
-
-			let copyPasteJsonValue  = model.changed.copyPasteJsonValue;
-			let pasteAttributes = app.parseValidateJson( copyPasteJsonValue );
+		pasteSettings( model, view ) {
+			const copyPasteJsonValue = model.changed.copyPasteJsonValue;
+			const pasteAttributes = app.parseValidateJson( copyPasteJsonValue );
+			const container = view.container;
 
 			if ( ! pasteAttributes ) {
-
 				elementorCommon.dialogsManager.createWidget( 'alert', {
 					message: wpformsElementorVars.strings.copy_paste_error,
 					headerMessage: wpformsElementorVars.strings.heads_up,
@@ -285,9 +298,10 @@ var WPFormsElementorModern = window.WPFormsElementorModern || ( function( docume
 				return;
 			}
 
+			app.resetGlobalStyleSettings( model, container );
+
 			model.set( pasteAttributes );
 		},
-
 
 		/**
 		 * Parse and validate JSON string.
@@ -296,10 +310,9 @@ var WPFormsElementorModern = window.WPFormsElementorModern || ( function( docume
 		 *
 		 * @param {string} value JSON string.
 		 *
-		 * @returns {boolean|object} Parsed JSON object OR false on error.
+		 * @return {boolean|object} Parsed JSON object OR false on error.
 		 */
-		parseValidateJson: function( value ) {
-
+		parseValidateJson( value ) {
 			if ( typeof value !== 'string' ) {
 				return false;
 			}
@@ -465,6 +478,39 @@ var WPFormsElementorModern = window.WPFormsElementorModern || ( function( docume
 					$el.data( 'choicesjs', choicesInstance );
 
 				} catch ( e ) {} // eslint-disable-line no-empty
+			} );
+		},
+
+		/**
+		 * Initialize Repeater field.
+		 *
+		 * @since 1.8.9
+		 *
+		 * @param {number} formId Form ID.
+		 */
+		initRepeaterField( formId ) {
+			const $rowButtons = $( `.wpforms-form[data-formid="${ formId }"] .wpforms-field-repeater > .wpforms-field-repeater-display-rows .wpforms-field-repeater-display-rows-buttons` );
+
+			// Get the label height and set the button position.
+			$rowButtons.each( function() {
+				const $cont = $( this );
+				const $label = $cont.siblings( '.wpforms-layout-column' )
+					.find( '.wpforms-field' ).first()
+					.find( '.wpforms-field-label' );
+				const labelStyle = window.getComputedStyle( $label.get( 0 ) );
+				const margin = labelStyle?.getPropertyValue( '--wpforms-field-size-input-spacing' ) || 0;
+				const height = $label.outerHeight() || 0;
+				const top = height + parseInt( margin, 10 ) + 10;
+
+				$cont.css( { top } );
+			} );
+
+			// Init buttons and descriptions for each repeater in each form.
+			$( `.wpforms-form[data-formid="${ formId }"]` ).each( function() {
+				const $repeater = $( this ).find( '.wpforms-field-repeater' );
+
+				$repeater.find( '.wpforms-field-repeater-display-rows-buttons' ).addClass( 'wpforms-init' );
+				$repeater.find( '.wpforms-field-repeater-display-rows:last .wpforms-field-description' ).addClass( 'wpforms-init' );
 			} );
 		},
 	};

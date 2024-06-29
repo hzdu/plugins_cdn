@@ -62,7 +62,7 @@ const WPFormsStripeModernBuilder = window.WPFormsStripeModernBuilder || ( functi
 				$( '#wpforms-panel-payments' )
 					.on( 'click', toggleInput, app.toggleContent )
 					.on( 'click', '.wpforms-panel-content-section-payment-plan-head-buttons-toggle', app.togglePlan )
-					.on( 'click', '.wpforms-panel-content-section-payment-plan-head-buttons-delete', app.deletePlan )
+					.on( 'click', '.wpforms-panel-content-section-stripe .wpforms-panel-content-section-payment-plan-head-buttons-delete', app.deletePlan )
 					.on( 'input', planNameInput, app.renamePlan )
 					.on( 'focusout', planNameInput, app.checkPlanName );
 			}
@@ -148,7 +148,7 @@ const WPFormsStripeModernBuilder = window.WPFormsStripeModernBuilder || ( functi
 		},
 
 		/**
-		 * Determinate is legacy settings is loaded.
+		 * Determine is legacy settings is loaded.
 		 *
 		 * @since 1.8.4
 		 *
@@ -195,7 +195,7 @@ const WPFormsStripeModernBuilder = window.WPFormsStripeModernBuilder || ( functi
 		},
 
 		/**
-		 * Determinate if field type is Stripe credit card.
+		 * Determine if field type is Stripe credit card.
 		 *
 		 * @since 1.8.4
 		 *
@@ -293,7 +293,7 @@ const WPFormsStripeModernBuilder = window.WPFormsStripeModernBuilder || ( functi
 		 */
 		deletePlan() {
 			// Trigger a warning modal when trying to delete single plan without pro addon.
-			$( '.wpforms-panel-content-section-payment-button-add-plan' ).click();
+			$( '.wpforms-panel-content-section-stripe .wpforms-panel-content-section-payment-button-add-plan' ).click();
 		},
 
 		/**
