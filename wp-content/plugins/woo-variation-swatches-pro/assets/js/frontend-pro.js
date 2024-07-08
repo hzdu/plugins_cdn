@@ -2,7 +2,7 @@
  * Variation Swatches for WooCommerce - PRO
  *
  * Author: Emran Ahmed ( emran.bd.08@gmail.com )
- * Date: 4/23/2024, 3:56:32 PM
+ * Date: 6/13/2024, 6:03:07 PM
  * Released under the GPLv3 license.
  */
 /******/ (function() { // webpackBootstrap
@@ -16,8 +16,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, _toPropertyKey(descriptor.key), descriptor); } }
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
 function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return _typeof(key) === "symbol" ? key : String(key); }
-function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (_typeof(res) !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
+function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
+function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
 // ================================================================
 // WooCommerce Variation Swatches - Pro
 // ================================================================
@@ -184,7 +184,8 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
           var product_id = args.variation_id;
           var data = _objectSpread(_objectSpread({}, variations), {}, {
             quantity: quantity,
-            product_id: product_id
+            product_id: product_id,
+            _wpnonce: woo_variation_swatches_pro_params._wpnonce
           });
           $thisbutton.removeClass('added');
           $thisbutton.addClass('loading');
@@ -287,7 +288,8 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
               method: 'POST',
               data: {
                 product_id: this.product_id,
-                is_archive: true
+                is_archive: true,
+                _wpnonce: woo_variation_swatches_pro_params._wpnonce
               }
             });
             this.xhr.fail(function (jqXHR, textStatus) {
@@ -395,6 +397,7 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
           if (value && attributes.count && attributes.count > attributes.chosenCount) {
             currentAttributes['product_id'] = this.product_id;
             currentAttributes[attribute_name] = value;
+            currentAttributes['_wpnonce'] = woo_variation_swatches_pro_params._wpnonce;
             this.previewXhr = $.ajax({
               global: false,
               url: woo_variation_swatches_pro_params.wc_ajax_url.toString().replace('%%endpoint%%', 'woo_get_preview_variation'),
@@ -586,7 +589,7 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
                               // 1 attribute except catalog mode
 
                               /*if (!woo_variation_swatches_pro_options.enable_catalog_mode && attributes.count === 1 && variation_out_of_stock) {
-                                  $option_element.addClass('out-of-stock')
+                              	$option_element.addClass('out-of-stock')
                               }*/
 
                               if (!woo_variation_swatches_pro_options.enable_clickable_out_of_stock_archive && attributes.count === 1 && variation_out_of_stock) {
@@ -685,6 +688,7 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
               });
               currentAttributes.product_id = this.product_id;
               currentAttributes.custom_data = this.$element.data('custom_data');
+              currentAttributes._wpnonce = woo_variation_swatches_pro_params._wpnonce;
               this.xhr = $.ajax({
                 global: false,
                 url: woo_variation_swatches_pro_params.wc_ajax_url.toString().replace('%%endpoint%%', 'woo_get_variation'),
@@ -914,7 +918,6 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
                     select.val(value).trigger('change');
                     $(this).parent('li.radio-variable-item').trigger('wvs-selected-item', [value, select, self.$element]); // Custom Event for li
                   }
-
                   select.trigger('click');
                   //select.trigger('focusin')
                   if (woo_variation_swatches_pro_options.is_mobile) {

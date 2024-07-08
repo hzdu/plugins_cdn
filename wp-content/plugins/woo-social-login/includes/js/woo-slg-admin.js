@@ -2,6 +2,126 @@
 
 jQuery(document).ready(function ($) {
 
+    // For facebook authentication type 
+    $('input[type=radio][name=woo_slg_auth_type_facebook]').change(function() {
+        if (this.value == 'app') {
+            $('.fb_graph').hide();
+        }
+        else if (this.value == 'graph') {
+            $('.fb_graph').show();
+        }
+    });
+
+    // For WordPress authentication type
+    $('input[type=radio][name=woo_slg_auth_type_wordpresscom]').change(function() {
+        if (this.value == 'app') {
+            $('.wp_graph').hide();
+        }
+        else if (this.value == 'graph') {
+            $('.wp_graph').show();
+        }
+    });
+
+    // For twitter authentication type 
+    $('input[type=radio][name=woo_slg_auth_type_twitter]').change(function() {
+        if (this.value == 'app') {
+            $('.twitter_graph').hide();
+        }
+        else if (this.value == 'graph') {
+            $('.twitter_graph').show();
+        }
+    });
+
+    // For linkedin authentication type 
+    $('input[type=radio][name=woo_slg_auth_type_linkedin]').change(function() {
+        if (this.value == 'app') {
+            $('.linkedin_graph').hide();
+        }
+        else if (this.value == 'graph') {
+            $('.linkedin_graph').show();
+        }
+    });
+
+    // For github authentication type 
+    $('input[type=radio][name=woo_slg_auth_type_github]').change(function() {
+        if (this.value == 'app') {
+            $('.github_graph').hide();
+        }
+        else if (this.value == 'graph') {
+            $('.github_graph').show();
+        }
+    });
+
+    // For yahoo authentication type 
+    $('input[type=radio][name=woo_slg_auth_type_yahoo]').change(function() {
+        if (this.value == 'app') {
+            $('.yahoo_graph').hide();
+        }
+        else if (this.value == 'graph') {
+            $('.yahoo_graph').show();
+        }
+    });
+
+    // For Google authentication type 
+    $('input[type=radio][name=woo_slg_auth_type_google]').change(function() {
+        if (this.value == 'app') {
+            $('.google_graph').hide();
+        }
+        else if (this.value == 'graph') {
+            $('.google_graph').show();
+        }
+    });
+
+    // For Paypal authentication type 
+    // $('input[type=radio][name=woo_slg_auth_type_paypal]').change(function() {
+    //     if (this.value == 'app') {
+    //         $('.paypal_graph').hide();
+    //     }
+    //     else if (this.value == 'graph') {
+    //         $('.paypal_graph').show();
+    //     }
+    // });
+
+    // For VK authentication type 
+    $('input[type=radio][name=woo_slg_auth_type_vk]').change(function() {
+        if (this.value == 'app') {
+            $('.vk_graph').hide();
+        }
+        else if (this.value == 'graph') {
+            $('.vk_graph').show();
+        }
+    });
+
+    // For foursquare authentication type 
+    $('input[type=radio][name=woo_slg_auth_type_foursquare]').change(function() {
+        if (this.value == 'app') {
+            $('.foursquare_graph').hide();
+        }
+        else if (this.value == 'graph') {
+            $('.foursquare_graph').show();
+        }
+    });
+
+    // For Windows Liv authentication type 
+    $('input[type=radio][name=woo_slg_auth_type_windowslive]').change(function() {
+        if (this.value == 'app') {
+            $('.windowslive_graph').hide();
+        }
+        else if (this.value == 'graph') {
+            $('.windowslive_graph').show();
+        }
+    });
+
+    // For amazon authentication type 
+    $('input[type=radio][name=woo_slg_auth_type_amazon]').change(function() {
+        if (this.value == 'app') {
+            $('.amazon_graph').hide();
+        }
+        else if (this.value == 'graph') {
+            $('.amazon_graph').show();
+        }
+    });
+
     $('.if-js-closed').removeClass('if-js-closed').addClass('closed');
     postboxes.add_postbox_toggles('woocommerce-social-login_page_woo-social-settings');
 
@@ -221,6 +341,27 @@ jQuery(document).ready(function ($) {
             } else {
                 $('#woo_slg_gdpr_privacy_page').closest('tr').hide();
                 $('#woo_slg_gdpr_privacy_policy').closest('tr').hide();
+            }
+        }
+
+    }
+
+    // This is for user agreement GDPR
+    woo_slg_toggle_admin_ua_gdpr_options();
+    $(document).on('change','#woo_slg_enable_gdpr_ua',function () {
+        woo_slg_toggle_admin_ua_gdpr_options();
+    });
+
+    function woo_slg_toggle_admin_ua_gdpr_options() {
+
+        if ($('#woo_slg_enable_gdpr_ua').length) {
+
+            if ($('#woo_slg_enable_gdpr_ua').is(':checked')) {
+                $('#woo_slg_gdpr_ua_page').closest('tr').show();
+                $('#woo_slg_gdpr_user_agree').closest('tr').show();
+            } else {
+                $('#woo_slg_gdpr_ua_page').closest('tr').hide();
+                $('#woo_slg_gdpr_user_agree').closest('tr').hide();
             }
         }
 

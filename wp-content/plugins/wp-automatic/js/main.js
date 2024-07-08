@@ -294,10 +294,21 @@ jQuery(document).ready(function () {
     }
   });
 
+  //if a deslider of the keywordbox empty the value of the field 
+  //deslider of field box has the attribute data-controls-r and set to empty
+  //note when the data-controls-r is not set to empty, it is not related to keywords box
   jQuery("input[data-controls-r]").change(function () {
-    if (!jQuery(this).prop("checked") == true) {
-      if (jQuery("#field111").val() == "*") {
-        jQuery("#field111").val("");
+
+    //get the value of the data-controls-r attribute
+    var field_value = jQuery(this).attr("data-controls-r");
+
+    //if the value is empty, it is related to the keyword box
+    if(field_value.trim() == ""){ 
+    
+      if (!jQuery(this).prop("checked") == true    ) {
+        if (jQuery("#field111").val() == "*") {
+          jQuery("#field111").val("");
+        }
       }
     }
   });
@@ -538,6 +549,16 @@ jQuery(document).ready(function () {
         supportedText +
         ' , <abbr title="Random number between two values. e.g, [rand_1_3] will be replaced by either 1,2 or 3" >[rand_num1_num2]</abbr> , <abbr title="src url of the chosen image at the source to be a featured image" >[featured_img_source]</abbr> , <abbr title="src url of the featured image after setting it" >[featured_img_local_source]</abbr>, <abbr title="ID the featured image after setting it" >[featured_img_id]</abbr>';
 
+      // add to supportedText2 the [post_title] tag which returns the final generated post title inserted in the post title field
+      supportedText2 = supportedText2 + ' , <abbr title="Generated Post title which will be inserted as the post title" >[post_title]</abbr>';
+
+      // add the post_content tag
+      supportedText2 = supportedText2 + ' , <abbr title="Generated Post content which will be inserted as the post content" >[post_content]</abbr>';
+
+      // add the [inline_link] tag which is the inline link found in the post content 
+      supportedText2 = supportedText2 + ' , <abbr title="Inline link found in the post content" >[inline_link]</abbr>';
+
+
       // fixed tags for all campaigns content only
       supportedText =
         supportedText +
@@ -732,6 +753,7 @@ jQuery(document).ready(function () {
             action: "wp_automatic_reactivate_key",
             id: jQuery(this).attr("data-id"),
             key: dataKey,
+            nonce: jQuery(this).attr("data-nonce"),
           },
 
           success: function (data) {
@@ -753,6 +775,9 @@ jQuery(document).ready(function () {
       var dataFunction = jQuery(this).attr("data-function");
       var dataData = jQuery(this).attr("data-data");
 
+      //nonce
+      var dataNonce = jQuery(this).attr("data-nonce");
+
       jQuery(".spinner_" + dataKey).show();
 
       jQuery.ajax({
@@ -764,6 +789,7 @@ jQuery(document).ready(function () {
           id: dataKey,
           function: dataFunction,
           data: dataData,
+          nonce: dataNonce,
         },
 
         success: function (data) {
@@ -792,6 +818,7 @@ jQuery(document).ready(function () {
           action: "wp_automatic_bulk",
           id: dataCamp,
           key: datakey,
+          nonce: jQuery(this).attr("data-nonce"),
         },
 
         success: function (data) {
@@ -807,6 +834,10 @@ jQuery(document).ready(function () {
   // fetch yt user playlists, removed from v > 3.70
   jQuery("#yt_playlist_update_OLD").click(function () {
     jQuery(".spinner-playlist").show();
+
+    //nonce id wp_automatic_nonce_field
+    var dataNonce = jQuery("#wp_automatic_nonce_field").val();
+
     jQuery.ajax({
       url: ajaxurl,
       type: "POST",
@@ -816,6 +847,7 @@ jQuery(document).ready(function () {
         action: "wp_automatic_yt_playlists",
         user: jQuery("#camp_yt_user").val(),
         pid: jQuery("#wp_automatic_post_id").val(),
+        nonce: dataNonce,
       },
 
       success: function (data) {
@@ -860,6 +892,10 @@ jQuery(document).ready(function () {
   // fetch dm user playlists
   jQuery("#dm_playlist_update").click(function () {
     jQuery(".spinner-dmplaylist").show();
+
+    //nonce id wp_automatic_nonce_field
+    var dataNonce = jQuery("#wp_automatic_nonce_field").val();
+
     jQuery.ajax({
       url: ajaxurl,
       type: "POST",
@@ -915,6 +951,9 @@ jQuery(document).ready(function () {
     // show spinner
     jQuery(".spinner-more_posted_posts").addClass("is-active");
 
+    //nonce id wp_automatic_nonce_field
+    var dataNonce = jQuery("#wp_automatic_nonce_field").val();
+
     jQuery.ajax({
       url: ajaxurl,
       type: "POST",
@@ -923,6 +962,7 @@ jQuery(document).ready(function () {
         action: "wp_automatic_more_posted_posts",
         camp: jQuery(this).attr("data-camp"),
         page: jQuery(this).data("page"),
+        nonce: dataNonce,
       },
 
       success: function (data) {
@@ -1051,7 +1091,8 @@ jQuery(document).ready(function () {
         "?action=wp_automatic_iframe&address=" +
         encodeURIComponent(mySrc) +
         "&theCookie=" +
-        encodeURIComponent(theCookie);
+        encodeURIComponent(theCookie) +
+        "&nonce=" + jQuery("#wp_automatic_nonce_field").val();
 
       // Encoding
       if (jQuery('input[value="OPT_FEED_ENCODING"]').prop("checked") == true) {
@@ -1072,6 +1113,17 @@ jQuery(document).ready(function () {
         var wait_for = jQuery('input[name="cg_apify_wait_for_single"]').val();
         if (wait_for != "") {
           iframeUrl = iframeUrl + "&wait_for=" + wait_for;
+        }
+
+        //read initial cookies field cg_ml_cookie
+        var initial_cookies = jQuery('input[name="cg_ml_cookie"]').val();
+
+        if (initial_cookies != "") {
+
+          //url encode the initial cookies
+          initial_cookies = encodeURIComponent(initial_cookies);
+
+          iframeUrl = iframeUrl + "&initial_cookies=" + initial_cookies;
         }
 
       } else if (which == "cg_ml_lnk_visual[]") {

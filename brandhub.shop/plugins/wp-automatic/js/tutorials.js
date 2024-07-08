@@ -8,9 +8,18 @@ const tutorials = {
       url: "https://www.youtube.com/watch?v=cBfhaq1-BuQ",
     },
     {
+      url:"https://valvepress.com/how-to-use-openrouter-instead-of-openai-on-wordpress-automatic-plugin/",
+      title: "How to use OpenRouter instead of OpenAI on WordPress Automatic Plugin for any model or for FREE!",
+    },
+    {
       url: "https://valvepress.com/how-to-increase-content-length-of-generated-openai-chatgpt-content-on-wordpress-automatic-plugin/",
       title:
         "How to increase content length of generated OpenAI ChatGPT content on WordPress Automatic plugin",
+    },
+    {
+      url: "https://valvepress.com/how-to-increase-the-number-of-posts-for-every-added-keyword-to-wordpress-automatic-campaign/",
+      title:
+        "How to increase the number of posts for every added keyword to WordPress Automatic campaign",
     },
   ],
   Articles: [],
@@ -240,6 +249,12 @@ const tutorials = {
       url: "https://valvepress.com/how-to-import-from-telegram-to-wordpress-posts-automatically/",
     },
   ],
+  Places: [
+    {
+      url: "https://valvepress.com/how-to-auto-post-from-google-places-to-wordpress-posts/",
+      title: "How to auto post from Google Places to WordPress posts",
+    },
+  ],
   Multi: [
     {
       title: "Multi Page Scraper Etsy to WordPress",
@@ -302,6 +317,10 @@ const tutorials = {
       title: "How to Integrate OpenAI GPT-3/ChatGPT with any module",
     },
     {
+      url:"https://valvepress.com/how-to-use-openrouter-instead-of-openai-on-wordpress-automatic-plugin/",
+      title: "How to use OpenRouter instead of OpenAI on WordPress Automatic Plugin for any model or for FREE!",
+    },
+    {
       url: "https://valvepress.com/how-to-automatically-generate-yoast-rank-math-seo-description-using-openai-gpt/",
       title:
         "How to automatically generate Yoast/Rank Math SEO description using OpenAI GPT",
@@ -349,7 +368,16 @@ const tutorials = {
       title:
         "How to integrate WordPress Automatic plugin with Internal Link Juicer for automatic internal links",
     },
-    {url: "https://valvepress.com/how-to-set-the-post-template-for-posts-generated-using-wordpress-automatic-plugin/", title: "How to set the post template for posts generated using WordPress Automatic plugin"},
+    {
+      url: "https://valvepress.com/how-to-set-the-post-template-for-posts-generated-using-wordpress-automatic-plugin/",
+      title:
+        "How to set the post template for posts generated using WordPress Automatic plugin",
+    },
+    {
+      url: "https://valvepress.com/how-to-automatically-generate-wordpress-featured-images-using-openai-dalle-3/",
+      title:
+        "How to automatically generate WordPress featured images using OpenAI DALL-E 3",
+    },
   ],
 };
 

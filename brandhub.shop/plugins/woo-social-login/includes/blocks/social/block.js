@@ -8,7 +8,7 @@
   var TextControl       = components.TextControl
   var SelectControl     = components.SelectControl
   var CheckboxControl   = components.CheckboxControl
-  var ServerSideRender  = components.ServerSideRender
+  const { serverSideRender: ServerSideRender } = window.wp;
 
   // custom block icon
   const iconEl = el('svg', { width: 20, height: 20 },
@@ -90,6 +90,8 @@
                 { label: i18n.__('Amazon'), value: 'amazon' },
                 { label: i18n.__('Paypal'), value: 'paypal' },
                 { label: i18n.__('Line'), value: 'line' },
+                { label: i18n.__('GitHub'), value: 'github' },
+                { label: i18n.__('Wordpress'), value: 'wordpresscom' },
                 { label: i18n.__('Login with email'), value: 'email' },
               ],
             onChange: function (newNetwork) {

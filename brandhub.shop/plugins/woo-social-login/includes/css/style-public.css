@@ -1,3 +1,11 @@
+.woo-slg-restrict{
+    padding: 8px 15px;
+    background-color: #ff9800;
+    color: white;
+    opacity: 0.83;
+    transition: opacity 0.6s;
+    margin-bottom: 15px;
+}
 .woo-slg-login-error,
 .woo-slg-login-success,
 .woo-slg-login-otp-success,
@@ -152,7 +160,7 @@
 }
 .woo-social-login-linked-profiles thead tr th,
 .woo-social-login-linked-profiles tfoot tr th{
-    padding: 8px 0;
+    /*padding: 8px 0;*/
 }
 .woo-social-login-linked-profiles thead tr th:first-child,
 .woo-social-login-linked-profiles tfoot tr th:first-child{
@@ -217,10 +225,18 @@
 }
 /* Twitter */
 .woo-slg-social-btn.woo-slg-social-login-twitter {
-    background-color: #55acee;
+    background-color: #000;
 }
 .woo-slg-tw-icon {
     background-image: url("../images/twitter-icon.png");
+}
+/* Github */
+.woo-slg-github-icon {
+    background-image: url("../images/github-icon.png");
+}
+/* Wordpress.com */
+.woo-slg-wordpresscom-icon {
+    background-image: url("../images/wordpresscom-icon.png");
 }
 /* Google+ */
 .woo-slg-social-btn.woo-slg-social-login-googleplus {
@@ -282,6 +298,14 @@
 .woo-slg-social-btn.woo-slg-social-login-line {
     background-color: #01c301;
 }
+/* GitHub */
+.woo-slg-social-btn.woo-slg-social-login-github {
+    background-color: #252525;
+}
+/* Wordpresscom */
+.woo-slg-social-btn.woo-slg-social-login-wordpresscom {
+    background-color: #2145e6;
+}
 .woo-slg-line-icon {
     background-image: url("../images/line-icon.png");
 }
@@ -309,7 +333,7 @@ input#woo-slg-email-login-btn-otp{
 .woo-slg-provider .woo-slg-provider-name{text-transform: capitalize;padding-left: 7px;font-size: 12px;line-height: 1.2;display: inline-block;font-weight: bold;height: 34px;}
 /* Provider button color for all link*/
 .woo-slg-provider.facebook{background: #3b5998;}
-.woo-slg-provider.twitter{background: #0084b4;}
+.woo-slg-provider.twitter{background: #000;}
 .woo-slg-provider.googleplus{background: #4285f4;}
 .woo-slg-provider.yahoo{background: #720e9e;}
 .woo-slg-provider.amazon{background: #ff9900;}
@@ -320,6 +344,8 @@ input#woo-slg-email-login-btn-otp{
 .woo-slg-provider.linkedin{background: #0077b5;}
 .woo-slg-provider.apple{background: #cccccc;}
 .woo-slg-provider.line{background: #01c301;}
+.woo-slg-provider.github{background: #000000;}
+.woo-slg-provider.wordpresscom{background: #2145e6;}
 
 .woo-slg-horizontal-divider{
     display: block;
@@ -409,11 +435,12 @@ form.bbp-login-form #woo-slg-social-container-login{
     width: 100%;
     left: -7px;
 }
-.woo-slg-social-googleplus iframe {
+/*.woo-slg-social-googleplus iframe {
     width: 100% !important;
     margin: 0 !important;
     top: -11px !important;
-}
+    position: absolute !important;
+}*/
 .woo-slg-social-btn .woo-slg-social-googleplus iframe,
 .woo-slg-social-btn .woo-slg-social-googleplus > div {
     width: 250px !important;

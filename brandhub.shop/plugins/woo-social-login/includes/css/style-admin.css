@@ -1,3 +1,14 @@
+.woo-slg-error-msg-info{
+	margin-bottom: 10px !important;
+	padding: 10px 15px 10px 40px !important;
+}
+.woo-slg-error-msg-info .closebtn{
+	float: right;
+    font-size: 25px;
+    padding-right: 0px;
+    margin-top: -2px;
+    cursor: pointer;
+}
 .woo-slg-social-none {
 	display:none !important;
 }
@@ -34,6 +45,12 @@ td.woo-slg-netowrk-vk {
 }
 td.woo-slg-netowrk-paypal {
 	color: #012069;
+}
+td.woo-slg-netowrk-github {
+	color: #000000;
+}
+td.woo-slg-netowrk-wordpresscom {
+	color: #2145e6;
 }
 .widefat .woo-slg-table-col {
 	line-height: 1.4;
@@ -81,12 +98,14 @@ td.woo-slg-netowrk-paypal {
 	max-width: 90%;
 	padding: 20px 35px;
 	background: none repeat scroll 0 0 #FFFFFF;
-	z-index:999999;
+	z-index:9999;
 	overflow: auto;
 	font: 12px "Lucida Grande",Verdana,Arial,sans-serif;
 	box-shadow: 0 4px 30px #000000;
 	color: #000000;
 	overflow: hidden;
+	max-height: 70vh;
+    overflow-y: auto;
 }
 .woo-slg-popup-content .description {
 	margin-left: 0px !important
@@ -592,10 +611,11 @@ tr.woo-slg-setting-seperator td{
     border: 1px solid #e0e0e0;
 }
 .woo-slg-error.info{
-	padding: 5px 0px 5px 30px;
+	padding: 5px 0px 5px 35px;
 	margin: 10px 0px 0px 0px;
-	background-color:#FFEBE8;
-	border-color:#CCC;
+	background-color:#f8d7da;
+	border-color:#f5c2c7;
+	color: #842029;
 	border-radius: 3px 3px 3px 3px;
 	border-style: solid;
 	border-width: 1px;
@@ -607,9 +627,9 @@ tr.woo-slg-setting-seperator td{
 .woo-slg-error.info:before{
 	content: " ";
 	background: url(../images/ico-info.png);
-	width: 16px;
-	height: 16px;
-	background-size: 16px;
+	width: 22px;
+	height: 22px;
+	background-size: 22px;
 	display: block;
 	background-repeat: no-repeat;
 	background-position: center;
@@ -630,6 +650,42 @@ tr.woo-slg-setting-seperator td{
 }
 
 /* 11 Nov, 2019 */
+
+/* 31 July, 2023 */
+.woo-slg-error-box.apple-info {
+    padding: 4px 10px 7px !important;
+    font-size: 14px;
+}
+.woo-slg-doc.info{
+	padding: 10px 0px 5px 35px;
+	margin: 10px 0px 0px 0px;
+	background-color:#cfe2ff;
+	border-color:#b6d4fe;
+	border-radius: 3px 3px 3px 3px;
+	border-style: solid;
+	border-width: 1px;
+	position: relative;
+	color: #084298;
+}
+.woo-slg-doc.info:before{
+	content: " ";
+	background: url(../images/ico-doc.svg);
+	width: 30px;
+	height: 30px;
+	background-size: 30px;
+	display: block;
+	background-repeat: no-repeat;
+	background-position: center;
+	position: absolute;
+	left: 0px;
+	top: 50%;
+	transform: translateY(-50%);
+}
+.woo-slg-doc.info a{
+	font-weight: bold;
+	font-size: 14px;
+}
+
 /* 10 dec, 2018 */
 .woo_slg_mail_otp_settings_show_rows{
     display: table-row;
@@ -649,3 +705,6 @@ tr.woo-slg-setting-seperator td{
 #wpbody-content .content.woo-slg-content-section .woo-slg-content .meta-box-sortables .stuffbox .hndle{
     border-bottom: 1px solid #ccd0d4; 
 }
+
+/* Hide FB graph feilds */
+.graph_hide { display: none;}							

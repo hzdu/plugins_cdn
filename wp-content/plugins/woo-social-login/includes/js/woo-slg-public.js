@@ -1,45 +1,56 @@
 "use strict";
 
 jQuery(document).ready(function ($) {
-
     // if google button is display
     if ($(".woo-slg-social-googleplus").length > 0) {
         var auth2;
-        var googleUser = {};
-        if (WOOSlg.google_client_id != "") {
+        var googleUser = {};        
+        if ( WOOSlg.google_client_id != ""  ) {
+            var woo_slg_start_app = function () { 
+               
+               var googleInitializeData = {
+                   client_id: WOOSlg.google_client_id,                    
+                   /*callback: handleCredentialResponse,*/
+               };
+               if( WOOSlg.google_auth_type == 'app' ){
+                   googleInitializeData.ux_mode        = 'redirect';
+                   //googleInitializeData.redirect_uri   = WOOSlg.google_auth_redirect_uri;
+                   googleInitializeData.login_uri      = WOOSlg.google_auth_redirect_uri;
+                   googleInitializeData.origin         = WOOSlg.google_auth_redirect_uri;
+               }else{
+                   googleInitializeData.callback        = handleCredentialResponse;                    
+               }
 
-             var woo_slg_start_app = function () {                 
-                google.accounts.id.initialize({
-                    client_id: WOOSlg.google_client_id,
-                    callback: handleCredentialResponse
-                });
+               google.accounts.id.initialize(googleInitializeData);
 
-                $(".woo-slg-social-googleplus").each(function(key, value) {
+               $(".woo-slg-social-googleplus").each(function(key, value) {
 
-                    var buttonid = $(this).attr('id');
-                    var newbutton_id = buttonid +"-"+ key;
-                    $(this).attr('id', newbutton_id);
+                   var buttonid = $(this).attr('id');
+                   var newbutton_id = buttonid +"-"+ key;
+                   $(this).attr('id', newbutton_id);
 
-                    var image = $(this).parents("a").find("img").width();
-                    google.accounts.id.renderButton(
-                        document.getElementById(newbutton_id),
-                        {   theme: "filled_blue", 
-                            size: "medium", 
-                            width: "standard",
-                            type: "standard",
-                            width : image+"px" }
-                    );
+                   var image = $(this).parents("a").find("img").width();
+                   google.accounts.id.renderButton(
+                       document.getElementById(newbutton_id),
+                       {   theme: "filled_blue", 
+                           size: "medium", 
+                           width: "standard",
+                           type: "standard",
+                           width : image+"px",
+                           state : $('#woo_slg_social_gp_redirect_url').val(),
+                       }
+                   );
 
-                });
+               });
 
 
-                google.accounts.id.prompt();
+               google.accounts.id.prompt();
 
 
-            };
+           };
 
-            // initialize google library
-            woo_slg_start_app();
+           // initialize google library
+           woo_slg_start_app();
         }else{
 
             var object = $('.woo-slg-social-googleplus');
@@ -58,16 +69,27 @@ jQuery(document).ready(function ($) {
         }
 
          function handleCredentialResponse(response) {
-
+            
              // send ajax google data
             var object = $('.woo-slg-social-googleplus');
+
+            // Define some veriable
+            var useragreement = 'false';
+
+            // Check user agreement selected or not
+            
+            if ( jQuery(object).parents('.woo-slg-social-container').find('#wooslg-user-agree-check').is(":checked"))
+            {
+                useragreement = 'true';
+            }
 
             var woo_slg_post_data = {
                 action: 'woo_slg_social_login',
                 type: 'googleplus',
                 gp_userdata: response.credential,
+                useragreement : useragreement,
             };
-
+            
             $.ajax({
                 url: WOOSlg.ajaxurl,
                 type: 'post',
@@ -117,7 +139,6 @@ jQuery(document).ready(function ($) {
             errorel.html(WOOSlg.lierrormsg);
             return false;
         } else {
-
             var linkedinurl = $(this).closest('.woo-slg-social-container').find('.woo-slg-social-li-redirect-url').val();
 
             if (linkedinurl == '') {
@@ -177,14 +198,19 @@ jQuery(document).ready(function ($) {
             errorel.html(WOOSlg.twerrormsg);
             return false;
         } else {
-
-            var twitterurl = WOOSlg.tw_authurl;
             
+            // Check if the class 'woo-slg-social-tw-redirect-url' does not exist on any element
+            if (!$('.woo-slg-social-tw-redirect-url').length) {
+                var twitterurl = WOOSlg.tw_authurl;
+            }else{
+                var twitterurl = $(this).closest('.woo-slg-social-container').find('.woo-slg-social-tw-redirect-url').val();
+            }
+
             if (twitterurl == '') {
                 alert(WOOSlg.urlerror);
                 return false;
             }
-
+            
             var twLogin = window.open(twitterurl, "twitter_login", "scrollbars=yes,resizable=no,toolbar=no,location=no,directories=no,status=no,menubar=no,copyhistory=no,height=400,width=600");
             var tTimer = setInterval(function () { //set interval for executing the code to popup
                 try {
@@ -373,6 +399,78 @@ jQuery(document).ready(function ($) {
                         clearInterval(vkTimer);
                         vkLogin.close();
                         woo_slg_social_connect('vk', object);
+                    }
+                } catch (e) {
+                }
+            }, 300);
+        }
+    });
+
+    // login with github
+    $(document).on('click', 'a.woo-slg-social-login-github', function () {
+
+        var object = $(this);
+        var errorel = $(this).parents('.woo-slg-social-container').find('.woo-slg-login-error');
+
+        errorel.hide();
+        errorel.html('');
+
+        if (WOOSlg.githuberror == '1') {
+            errorel.show();
+            errorel.html(WOOSlg.githuberrormsg);
+            return false;
+        } else {
+
+            var githuburl = $(this).closest('.woo-slg-social-container').find('.woo-slg-social-github-redirect-url').val();
+
+            if (githuburl == '') {
+                alert(WOOSlg.urlerror);
+                return false;
+            }
+
+            var gitHubLogin = window.open(githuburl, "github", "scrollbars=yes,resizable=no,toolbar=no,location=no,directories=no,status=no,menubar=no,copyhistory=no,height=400,width=600");
+            var lTimer = setInterval(function () { //set interval for executing the code to popup
+                try {
+                    if (gitHubLogin.location.hostname == window.location.hostname) { //if login domain host name and window location hostname is equal then it will go ahead
+                        clearInterval(lTimer);
+                        gitHubLogin.close();
+                        woo_slg_social_connect('github', object);
+                    }
+                } catch (e) {
+                }
+            }, 300);
+        }
+    });
+
+    // login with Wordpress.com
+    $(document).on('click', 'a.woo-slg-social-login-wordpresscom', function () {
+
+        var object = $(this);
+        var errorel = $(this).parents('.woo-slg-social-container').find('.woo-slg-login-error');
+
+        errorel.hide();
+        errorel.html('');
+
+        if (WOOSlg.wordpresscomerror == '1') {
+            errorel.show();
+            errorel.html(WOOSlg.wordpresscomerrormsg);
+            return false;
+        } else {
+
+            var wordpresscomurl = $(this).closest('.woo-slg-social-container').find('.woo-slg-social-wordpresscom-redirect-url').val();
+
+            if (wordpresscomurl == '') {
+                alert(WOOSlg.urlerror);
+                return false;
+            }
+
+            var wordpresscomLogin = window.open(wordpresscomurl, "wordpresscom", "scrollbars=yes,resizable=no,toolbar=no,location=no,directories=no,status=no,menubar=no,copyhistory=no,height=400,width=600");
+            var lTimer = setInterval(function () { //set interval for executing the code to popup
+                try {
+                    if (wordpresscomLogin.location.hostname == window.location.hostname) { //if login domain host name and window location hostname is equal then it will go ahead
+                        clearInterval(lTimer);
+                        wordpresscomLogin.close();
+                        woo_slg_social_connect('wordpresscom', object);
                     }
                 } catch (e) {
                 }
@@ -776,18 +874,66 @@ $(document).on('click', '.woo-slg-email-login-container .woo-slg-email-login-btn
         });
 });
 
+    function woo_slg_social_connect_with_google_app(response) {
+        // send ajax google data
+        var object = $('.woo-slg-social-googleplus');
+        // Define some veriable
+        var useragreement = 'false';
+
+        // Check user agreement selected or not   
+        if ( jQuery(object).parents('.woo-slg-social-container').find('#wooslg-user-agree-check').is(":checked")){
+            useragreement = 'true';
+        }
+
+        var woo_slg_post_data = {
+            action: 'woo_slg_social_login',
+            type: 'googleplus',
+            gp_userdata: response.credential,
+            useragreement : useragreement,
+        };   
+        $.ajax({
+            url: WOOSlg.ajaxurl,
+            type: 'post',
+            data: woo_slg_post_data,
+            success: function (woo_slg_google_ajax_response) {
+                if (woo_slg_google_ajax_response) {
+                    woo_slg_social_connect('googleplus', object);
+                } 
+            }
+        });
+    } 
+
+    var google_app = getParameterByName( window.location.href, 'wooslg');    
+    var google_app_credential = getParameterByName( window.location.href, 'credential');
+    if( google_app = 'google_app' && google_app_credential != null ){
+        var response = { credential: google_app_credential };
+
+        woo_slg_social_connect_with_google_app(response) ;   
+    }
+
 });
 
 // Social Connect Process
 function woo_slg_social_connect(type, object) {
 
+    // Define some veriable
+    var useragreement = 'false';
+
+    // Check user agreement selected or not
+    
+    if ( jQuery(object).parents('.woo-slg-social-container').find('#wooslg-user-agree-check').is(":checked"))
+    {
+        useragreement = 'true';
+    }
+    
+
     var data = {
         action: 'woo_slg_social_login',
-        type: type
+        type: type,
+        useragreement : useragreement
     };
 
-    //show loader
-    
+    // Show loader
     jQuery(object).parents('.woo-slg-social-container').find('.woo-slg-login-loader').show();
     
     jQuery(object).parents('.woo-slg-social-container').find('.woo-slg-social-wrap').hide();
@@ -799,7 +945,13 @@ function woo_slg_social_connect(type, object) {
         jQuery(object).parents('.woo-slg-social-container').find('.woo-slg-social-wrap').show();
 
         var redirect_url = object.parents('.woo-slg-social-container').find('.woo-slg-redirect-url').val();
-        if (response != '') {
+        
+        if( response.indexOf('restrict')  > -1 ){
+            jQuery(object).parents('.woo-slg-social-container').find('.woo-slg-restrict').remove();
+            jQuery(object).parents('.woo-slg-social-container').append('<div class="woo-slg-restrict">New user registrations are disabled on this website. Please contact admin.</div>');
+
+        }else if (response != '') {
+
             var result = jQuery.parseJSON(response);
             if (redirect_url != '') {
 
@@ -1098,4 +1250,14 @@ function validateEmailAddress(email) {
     } else {
         return false;
     }
+}
+
+function getParameterByName(url, name) {
+    if (!url) url = window.location.href;
+    name = name.replace(/[\[\]]/g, "\\$&");
+    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, " "));
 }
