@@ -50,7 +50,7 @@ class PaymentRequestButtons {
 
     hasButtons(): boolean {
         let hasButtons = false;
-        const potentialButtons = this.expressButtonContainer.children().not( 'h2, .blockUI' );
+        const potentialButtons = this.expressButtonContainer.children().not( 'h2, .blockUI, #wc-stripe-payment-request-button-separator' );
 
         potentialButtons.each( ( index, element ) => {
             if ( jQuery( element ).get( 0 ).getBoundingClientRect().height > 0 ) {
