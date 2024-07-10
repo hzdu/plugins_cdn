@@ -1,6 +1,4 @@
 import Action                  from './Action';
-import DataStores              from '../DataStores';
-import DataService             from '../Services/DataService';
 
 class AddToCartAction extends Action {
     protected button: JQuery;
@@ -29,14 +27,10 @@ class AddToCartAction extends Action {
             return;
         }
 
-        if ( resp.data ) {
-            // Update the data stores, including actions
-            DataStores.updateDataStore( resp.data, true );
-            DataService.setRuntimeParameter( 'dataAlreadyUpdated', true );
-        }
+        jQuery( '#cfw_empty_side_cart_message' ).hide();
 
         jQuery( document.body ).trigger( 'wc_fragment_refresh' );
-        jQuery( document.body ).trigger( 'added_to_cart', [ resp.fragments ?? [], resp.cart_hash, this.button ] );
+        jQuery( document.body ).trigger( 'added_to_cart', [ resp.fragments, resp.cart_hash, this.button ] );
         jQuery( document.body ).trigger( 'updated_cart_totals' );
     }
 

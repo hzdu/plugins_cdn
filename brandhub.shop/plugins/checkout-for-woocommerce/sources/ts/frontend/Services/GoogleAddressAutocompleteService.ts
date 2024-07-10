@@ -12,10 +12,6 @@ class GoogleAddressAutocompleteService {
     constructor( fieldValidator: FieldValidationRefresher ) {
         LoggingService.logNotice( 'Loading Google Address Autocomplete Service' );
 
-        if ( DataService.getRuntimeParameter( 'loaded_google_autocomplete' ) ) {
-            return;
-        }
-
         if ( !DataService.getSetting( 'enable_address_autocomplete' ) ) {
             return;
         }
@@ -50,26 +46,16 @@ class GoogleAddressAutocompleteService {
             types: DataService.getSetting( 'google_address_autocomplete_type' ).split( '|' ),
         };
 
-        const autocomplete = new google.maps.places.Autocomplete( field, options );
+        const autocomplete =  new google.maps.places.Autocomplete( field, options );
 
         if ( countryRestrictions ) {
             autocomplete.setComponentRestrictions( { country: countryRestrictions } );
         }
 
-        // Variable to store the user's input value
-        let userInputValue = '';
-
-        // Listen for input events to capture the user's search term
-        field.addEventListener( 'input', () => {
-            userInputValue = field.value;
-        } );
-
-        autocomplete.addListener( 'place_changed', () => {
-            this.fillAddress( prefix, autocomplete, field, userInputValue );
-        } );
+        autocomplete.addListener( 'place_changed', () => this.fillAddress( prefix, autocomplete, field ) );
     }
 
-    fillAddress( prefix: string, autocomplete: google.maps.places.Autocomplete, { value: formattedAddress }: HTMLInputElement, userInputValue: string ): void {
+    fillAddress( prefix: string, autocomplete: google.maps.places.Autocomplete, { value: formattedAddress }: HTMLInputElement ): void {
         cfwGetWPHooks().doAction( 'cfw_google_address_autocomplete_fill_address', autocomplete, prefix );
 
         const { address_components: components } = autocomplete.getPlace();
@@ -79,9 +65,8 @@ class GoogleAddressAutocompleteService {
         }
 
         LoggingService.logNotice( 'Google Address Autocomplete Components', components );
-        LoggingService.logNotice( 'Google Address Autocomplete Formatted Address', formattedAddress );
 
-        const strategy = AutocompleteStrategyFactory.get( components, formattedAddress, userInputValue );
+        const strategy = AutocompleteStrategyFactory.get( components, formattedAddress );
 
         this.queueStateUpdate( prefix, strategy.getState() );
 

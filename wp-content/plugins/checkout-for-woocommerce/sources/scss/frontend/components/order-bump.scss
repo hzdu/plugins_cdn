@@ -1,5 +1,4 @@
 @import '../variables';
-@import "../grid-mixins"; // so that it works on admin
 
 .cfw-order-bumps {
     .cfw-order-bump {
@@ -21,10 +20,6 @@
                 font-weight: 600;
                 cursor: pointer;
                 display: flex;
-                align-items: center;
-                input {
-                    margin-right: 0.5em !important; // needed for admin
-                }
 
                 span {
                     flex-grow: 1;
@@ -34,14 +29,6 @@
 
         .cfw-order-bump-body img {
             max-width: 100%;
-            min-width: 60px;
-            height: auto;
-        }
-
-        .cfw-order-bump-content {
-            p {
-                margin-bottom: 0.8em;
-            }
         }
 
         .cfw-order-bump-total {
@@ -56,10 +43,6 @@
     }
 }
 
-/**
- * Order Bumps Responsive Stuff
- * This is separate from the main file because we can't use these mixins on admin
- */
 // Hide payment tab order bumps output on desktop
 #order_review .cfw-order-bumps.cfw-order-bumps-mobile {
     display: none;

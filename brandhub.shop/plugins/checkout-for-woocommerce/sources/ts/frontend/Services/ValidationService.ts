@@ -1,3 +1,4 @@
+import Main           from '../Main';
 import DataService    from './DataService';
 import LoggingService from './LoggingService';
 import TabService     from './TabService';
@@ -5,39 +6,39 @@ import TabService     from './TabService';
 type validatorFactory = () => Promise<any>;
 type validatorFactoryQueue = Record<string, Array<validatorFactory>>;
 class ValidationService {
-    protected static validatorFactoryQueue: validatorFactoryQueue = {};
+    protected validatorFactoryQueue: validatorFactoryQueue = {};
 
-    static load(): void {
+    constructor() {
         DataService.setRuntimeParameter( 'cfw_suppress_js_field_validation', false );
 
-        ValidationService.validateTabsBeforeSwitch();
-        ValidationService.validateOnFormSubmit();
+        this.validateTabsBeforeSwitch();
+        this.validateOnFormSubmit();
 
-        jQuery( window ).on( 'load', () => { ValidationService.validatePreviousTabs(); } );
+        jQuery( window ).on( 'load', () => { this.validatePreviousTabs(); } );
 
-        TabService.tabContainer.bind( 'easytabs:after', () => {
+        Main.instance.tabService.tabContainer.bind( 'easytabs:after', () => {
             // Clean up the state so that the next validation runs fresh
             jQuery( '.cfw-validation-passed' ).removeClass( 'cfw-validation-passed' );
         } );
     }
 
-    static addValidatorFactory( tab: string, validator: validatorFactory ): void {
-        if ( !ValidationService.validatorFactoryQueue[ tab ] ) {
-            ValidationService.validatorFactoryQueue[ tab ] = [];
+    addValidatorFactory( tab: string, validator: validatorFactory ): void {
+        if ( !this.validatorFactoryQueue[ tab ] ) {
+            this.validatorFactoryQueue[ tab ] = [];
         }
 
-        ValidationService.validatorFactoryQueue[ tab ].push( validator );
+        this.validatorFactoryQueue[ tab ].push( validator );
     }
 
-    static validateTabsBeforeSwitch(): void {
-        TabService.tabContainer.bind( 'easytabs:before', ( event, clicked, target ) => {
+    validateTabsBeforeSwitch(): void {
+        Main.instance.tabService.tabContainer.bind( 'easytabs:before', ( event, clicked, target ) => {
             // TODO: Can we be honest with ourselves and agree that this is a bit of a hack?
             if ( DataService.getRuntimeParameter( 'cfw_suppress_js_field_validation' ) ) {
                 return true;
             }
 
             const targetId      = target.attr( 'id' );
-            const currentTab    = TabService.getCurrentTab();
+            const currentTab    = Main.instance.tabService.getCurrentTab();
             const alreadyPassed = currentTab.hasClass( 'cfw-validation-passed' );
             const movingBack    = !currentTab.nextAll( `#${targetId}.cfw-panel` ).length; // technically a misnomer
 
@@ -45,14 +46,14 @@ class ValidationService {
                 return true;
             }
 
-            ValidationService.validateTab( currentTab.attr( 'id' ), targetId );
+            this.validateTab( currentTab.attr( 'id' ), targetId );
 
             event.stopImmediatePropagation();
             return false;
         } );
     }
 
-    static validateTab( tab: string, destinationTab: string ): void {
+    validateTab( tab: string, destinationTab: string ): void {
         const currentTab = jQuery( `#${tab}` );
 
         // Prevent duplicate runs
@@ -65,7 +66,7 @@ class ValidationService {
 
         currentTabButton.addClass( 'cfw-button-loading' );
 
-        const promises = ValidationService.getValidatorPromisesForTab( tab );
+        const promises = this.getValidatorPromisesForTab( tab );
 
         const finished = () => {
             currentTab.removeClass( 'cfw-validation-pending' );
@@ -84,13 +85,15 @@ class ValidationService {
                 ( reason ) => {
                     if ( reason ) {
                         LoggingService.logError( `CheckoutWC Tab Validation Promise Failed: ${reason}` );
+                        // eslint-disable-next-line no-console
+                        console.log( reason );
                     }
                     finished();
                 },
             );
     }
 
-    static validateOnFormSubmit(): void {
+    validateOnFormSubmit(): void {
         const { checkoutForm } = DataService;
 
         checkoutForm.on( 'submit', ( e, passedValidation ) => {
@@ -122,7 +125,7 @@ class ValidationService {
             }
 
             tabsToValidate.forEach( ( tab ) => {
-                promises.push( ...ValidationService.getValidatorPromisesForTab( tab ) );
+                promises.push( ...this.getValidatorPromisesForTab( tab ) );
             } );
 
             const currentTab = jQuery( '#cfw-payment-method' );
@@ -144,6 +147,8 @@ class ValidationService {
                     ( reason ) => {
                         if ( reason ) {
                             LoggingService.logError( `CheckoutWC Validation Promise Failed: ${reason}` );
+                            // eslint-disable-next-line no-console
+                            console.log( reason );
                         }
                         finished();
                     },
@@ -151,21 +156,21 @@ class ValidationService {
         } );
     }
 
-    static validatePreviousTabs(): void {
-        const currentTab = TabService.getCurrentTab();
+    validatePreviousTabs(): void {
+        const currentTab = Main.instance.tabService.getCurrentTab();
         const previousTabs = currentTab.prevAll( '.cfw-panel' );
 
         previousTabs.each( ( index, tab ) => {
             Promise
-                .all( ValidationService.getValidatorPromisesForTab( tab.id ) )
+                .all( this.getValidatorPromisesForTab( tab.id ) )
                 .catch( () => {
                     TabService.go( tab.id );
                 } );
         } );
     }
 
-    static getValidatorPromisesForTab( tab: string ): Promise<any>[] {
-        const validators = ValidationService.validatorFactoryQueue[ tab ] ?? [];
+    getValidatorPromisesForTab( tab: string ): Promise<any>[] {
+        const validators = this.validatorFactoryQueue[ tab ] ?? [];
         const parsleyPromise = DataService.checkoutForm.parsley().whenValidate( { group: tab } ); // technically not a Promise but respected by Promise.all
 
         return validators.map( ( callback ) => callback() ).concat( [ parsleyPromise ] );

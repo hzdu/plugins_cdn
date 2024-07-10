@@ -10,7 +10,6 @@ import Braintree                                         from './Compatibility/G
 import KlarnaCheckout                                    from './Compatibility/Gateways/KlarnaCheckout';
 import KlarnaPayments                                    from './Compatibility/Gateways/KlarnaPayments';
 import Mercado                                           from './Compatibility/Gateways/Mercado';
-import Mollie                                            from './Compatibility/Gateways/Mollie';
 import NMI                                               from './Compatibility/Gateways/NMI';
 import PayPalForWooCommerce                              from './Compatibility/Gateways/PayPalForWooCommerce';
 import PayPalPlusCw                                      from './Compatibility/Gateways/PayPalPlusCw';
@@ -349,7 +348,6 @@ class Main {
             new NMI(),
             new PaymentPluginsPayPal(),
             new Mercado(),
-            new Mollie(),
         ].forEach( ( compat ) => compat.maybeLoad() );
     }
 

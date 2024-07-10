@@ -1,154 +1,151 @@
-import { select, subscribe }                  from '@wordpress/data';
-import Cookies                                from 'js-cookie';
-import UpdateSideCart                         from '../Actions/UpdateSideCart';
-import DataService                            from '../Services/DataService';
-import DataStores                             from '../DataStores';
-import CartItemInterface                      from '../../interfaces/CartItemInterface';
-import { Bump }                               from '../../Types/BumpTypes';
-import LoggingService                         from '../Services/LoggingService';
-
-declare let wc_cart_fragments_params: any;
+import cfwAjax                        from '../../functions/cfwAjax';
+import UpdateSideCart                 from '../Actions/UpdateSideCart';
+import SuggestedProductAddToCartModal from '../Modals/SuggestedProductAddToCartModal';
+import DataService                    from '../Services/DataService';
 
 class SideCart {
     constructor() {
-        this.setDataStoreListeners();
         this.setTriggers();
     }
 
-    setDataStoreListeners(): void {
-        // Catch cart fragment updates
-        jQuery( window ).on( 'wc_fragments_refreshed', () => {
-            if ( DataService.getRuntimeParameter( 'dataAlreadyUpdated' ) ) {
-                DataService.setRuntimeParameter( 'dataAlreadyUpdated', false );
-                return;
-            }
-
-            DataStores.tryToUpdateDataStoreFromLocalStorage();
-        } );
-
-        jQuery( document.body ).on( 'added_to_cart removed_from_cart', ( event, fragments, cart_hash, button, source ) => {
-            if ( !fragments ) {
-                return;
-            }
-
-            if ( DataService.getRuntimeParameter( 'dataAlreadyUpdated' ) ) {
-                DataService.setRuntimeParameter( 'dataAlreadyUpdated', false );
-                return;
-            }
-
-            if ( fragments && fragments.cfw_data ) {
-                DataStores.updateDataStore( fragments.cfw_data, true );
-            }
-        } );
-    }
-
     setTriggers(): void {
-        // Allow non-data based updates to the cart
-        jQuery( document.body ).on( 'cfw_update_cart', () => {
-            this.processCartUpdates();
+        jQuery( document.body ).on( 'submit', '#cfw-side-cart-form', ( e ) => {
+            // Prevent enter key from submitting the form
+            e.preventDefault();
         } );
 
-        // Subscribe to changes in the store
-        subscribe( () => {
-            // Check if an AJAX update is needed
-            if ( DataService.getRuntimeParameter( 'needsAjaxUpdate' ) ) {
-                this.processCartUpdates();
+        // Prevent enter key on input with id #cfw-promo-code
+        jQuery( document.body ).on( 'keydown', '#cfw-promo-code', ( e ) => {
+            if ( e.key === 'Enter' ) {
+                e.preventDefault();
             }
-        }, DataStores.cart_store_key );
+        } );
 
         const additionalSideCartTriggerSelectors = DataService.getSetting( 'additional_side_cart_trigger_selectors' );
 
         if ( additionalSideCartTriggerSelectors ) {
-            jQuery( document.body ).on( 'click', additionalSideCartTriggerSelectors, SideCart.openCart.bind( this ) );
+            jQuery( document.body ).on( 'click', additionalSideCartTriggerSelectors, this.openCart.bind( this ) );
         }
 
-        jQuery( document.body ).on( 'cfw_open_side_cart', SideCart.openCart.bind( this ) );
-        jQuery( document.body ).on( 'click', '.cfw-side-cart-open-trigger, .added_to_cart', SideCart.openCart.bind( this ) );
-        jQuery( document.body ).on( 'click', '.menu-item a:has(.cfw-side-cart-open-trigger)', SideCart.openCart.bind( this ) );
-        jQuery( document.body ).on( 'click', '.cfw-side-cart-close-trigger, .cfw-side-cart-close-btn, #cfw-side-cart-overlay', SideCart.closeCart.bind( this ) );
+        jQuery( document.body ).on( 'click', '.cfw-side-cart-open-trigger, .added_to_cart', this.openCart.bind( this ) );
+        jQuery( document.body ).on( 'click', '.menu-item a:has(.cfw-side-cart-open-trigger)', this.openCart.bind( this ) );
+        jQuery( document.body ).on( 'click', '.cfw-side-cart-close-trigger, .cfw-side-cart-close-btn, #cfw-side-cart-overlay', this.closeCart.bind( this ) );
         jQuery( document.body ).on( 'added_to_cart', () => {
-            this.maybeOpenCartOrShakeButton();
-        } );
+            if ( !DataService.getSetting( 'disable_side_cart_auto_open' ) ) {
+                jQuery( '#cfw_empty_side_cart_message' ).hide();
 
-        document.body.addEventListener( 'wc-blocks_added_to_cart', () => {
-            // Manually refresh and handle opening the cart
-            jQuery( document.body ).one( 'wc_fragments_refreshed', () => {
-                this.maybeOpenCartOrShakeButton();
+                this.openCart();
+
+                return;
+            }
+
+            if ( !DataService.getSetting( 'enable_floating_cart_button' ) ) {
+                return;
+            }
+
+            jQuery( document.body  ).on( 'wc_fragments_loaded', () => {
+                this.shakeCartButton();
             } );
-
-            // Trigger the manual refresh
-            jQuery( document.body ).trigger( 'wc_fragment_refresh' );
         } );
-
-        jQuery( document.body ).on( 'click', `a.wc-forward:contains(${DataService.getMessage( 'view_cart' )})`, SideCart.openCart.bind( this ) );
+        jQuery( document.body ).on( 'click', `a.wc-forward:contains(${DataService.getMessage( 'view_cart' )})`, this.openCart.bind( this ) );
+        jQuery( document.body ).on( 'wc_fragments_loaded', this.initializeCart );
+        jQuery( document.body ).on( 'cfw_update_cart', this.processCartUpdates.bind( this ) );
         jQuery( document.body ).on( 'cfw_suggested_variable_product_added_to_cart cfw_order_bump_variation_added_to_cart', ( e, resp ) => {
             if ( typeof resp !== 'object' ) {
                 // eslint-disable-next-line no-param-reassign
                 resp = JSON.parse( resp );
             }
 
-            if ( resp.data ) {
-                DataStores.updateDataStore( resp.data, true );
-            }
+            jQuery( '#cfw_empty_side_cart_message' ).hide();
 
             jQuery( document.body ).trigger( 'wc_fragment_refresh' );
             jQuery( document.body ).trigger( 'added_to_cart', [ resp.fragments, resp.cart_hash, jQuery( e.target ) ] );
             jQuery( document.body ).trigger( 'updated_cart_totals' );
         } );
 
-        jQuery( document.body ).on( 'cfw_cart_item_variation_edited', ( e, resp ) => {
-            if ( resp.data ) {
-                DataStores.updateDataStore( resp.data, true );
-            }
-
+        jQuery( document.body ).on( 'cfw_cart_item_variation_edited', () => {
             jQuery( document.body ).trigger( 'wc_fragment_refresh' );
             jQuery( document.body ).trigger( 'updated_cart_totals' );
         } );
 
-        jQuery( window ).on( 'load', () => {
-            if ( window.location.hash === '#cfw-cart' || DataService.getRuntimeParameter( 'openCart' ) ) {
-                this.maybeOpenCartOrShakeButton();
+        // Edit variations in cart
+        jQuery( document.body ).on( 'click', '.cfw-variation-edit-btn', this.showVariationForm.bind( this ) );
+
+        jQuery( document.body ).on( 'click', '#cfw-promo-code-btn', () => {
+            const value = jQuery( '#cfw-promo-code' ).val();
+            if ( value !== null && value.toString().length !== 0 ) {
+                jQuery( document.body ).trigger( 'cfw_update_cart' );
             }
         } );
 
         jQuery( window ).on( 'load', () => {
-            if ( Cookies.get( 'cfw_cart_hash' ) !== Cookies.get( 'woocommerce_cart_hash' ) ) {
-                jQuery( document.body ).trigger( 'wc_fragment_refresh' );
+            if (
+                window.location.hash === '#cfw-cart'
+                || (
+                    DataService.getRuntimeParameter( 'openCart' )
+                    && !DataService.getSetting( 'disable_side_cart_auto_open' )
+                )
+            ) {
+                this.openCart();
+            }
+
+            if ( DataService.getRuntimeParameter( 'openCart' ) && DataService.getSetting( 'disable_side_cart_auto_open' ) ) {
+                this.shakeCartButton();
             }
         } );
-    }
 
-    maybeOpenCartOrShakeButton(): void {
-        if ( !DataService.getSetting( 'disable_side_cart_auto_open' ) ) {
-            SideCart.openCart();
-
-            return;
-        }
-
-        if ( !DataService.getSetting( 'enable_floating_cart_button' ) ) {
-            return;
-        }
-
-        jQuery( document.body  ).on( 'wc_fragments_loaded', () => {
-            this.shakeCartButton();
+        jQuery( document.body ).on( 'click', '.cfw-show-coupons-module', () => {
+            jQuery( '.cfw-promo-wrap' ).slideDown( 300 );
+            jQuery( '.cfw-show-coupons-module' ).hide();
         } );
-    }
 
-    static tryToGetDataFromLocalStorage(): void {
-        if ( !SideCart.supportsHTML5Storage() ) {
-            return;
-        }
+        jQuery( window ).on( 'load wc_fragments_refreshed wc_fragments_loaded', () => {
+            if ( !DataService.getSetting( 'enable_side_cart_suggested_products' ) ) {
+                return;
+            }
 
-        // eslint-disable-next-line camelcase
-        const data: any = sessionStorage.getItem( wc_cart_fragments_params.fragment_name );
-        const fragments = JSON.parse( data );
+            let options = {
+                dots: true,
+                arrows: false,
+                rtl: false,
+            };
 
-        if ( fragments && fragments.cfw_data ) {
-            LoggingService.logNotice( 'Successfully fetched fragments from session storage' );
-            DataStores.updateDataStore( fragments.cfw_data, true );
-        } else {
-            LoggingService.logNotice( 'Failed to fetch fragments from session storage' );
-        }
+            if ( DataService.getCheckoutParam( 'is_rtl' ) ) {
+                options = {
+                    ...options,
+                    rtl: true,
+                };
+            }
+
+            jQuery( '.cfw-suggested-products' ).not( '.slick-initialized' ).slick( options );
+        } );
+
+        jQuery( document.body ).on( 'click', '.cfw-suggested-product-add-to-cart', ( e ) => {
+            e.preventDefault();
+
+            if ( jQuery( e.currentTarget ).data( 'variable' ) ) {
+                const apiRoot = ( <any>window ).wpApiSettings.root;
+                const url = `${apiRoot}checkoutwc/v1/get-variation-form/${jQuery( e.currentTarget ).data( 'product' )}`;
+
+                jQuery.get( url, ( data ) => {
+                    const modal = new SuggestedProductAddToCartModal( data.html ?? 'Could not load product.' );
+                    modal.open();
+                } );
+            } else {
+                return cfwAjax( 'cfw_add_to_cart', {
+                    type: 'POST',
+                    data: {
+                        'add-to-cart': jQuery( e.currentTarget ).data( 'product' ),
+                    },
+                    dataType: 'json',
+                    cache: false,
+                } ).done(
+                    ( resp ) => {
+                        jQuery( document.body ).trigger( 'cfw_suggested_variable_product_added_to_cart', [ resp ] );
+                    },
+                );
+            }
+        } );
     }
 
     shakeCartButton(): void {
@@ -159,7 +156,13 @@ class SideCart {
         }, 850 );
     }
 
-    static openCart( e?: Event ): void {
+    initializeCart(): void {
+        if ( jQuery( '#cfw-side-cart-form' ).hasClass( 'uninitialized' ) ) {
+            jQuery( document.body ).trigger( 'wc_fragment_refresh' );
+        }
+    }
+
+    openCart( e?: Event ): void {
         if ( e ) {
             e.preventDefault();
         }
@@ -168,7 +171,7 @@ class SideCart {
         jQuery( '.cfw-side-cart-floating-button' ).attr( 'aria-expanded', 'true' );
     }
 
-    static closeCart( e?: Event ): void {
+    closeCart( e?: Event ): void {
         if ( e ) {
             e.preventDefault();
         }
@@ -176,8 +179,12 @@ class SideCart {
         jQuery( '.cfw-side-cart-floating-button' ).attr( 'aria-expanded', 'false' );
     }
 
-    processCartUpdates(): void {
-        const blockedElements = jQuery( '#cfw-side-cart' );
+    processCartUpdates( event: any, element?: JQuery ): void {
+        let blockedElements = jQuery( '#cfw-side-cart' );
+
+        if ( element ) {
+            blockedElements = jQuery( element ).parents( '.cart-item-row' ).find( 'td, th' );
+        }
 
         blockedElements.block( {
             message: null,
@@ -187,52 +194,16 @@ class SideCart {
             },
         } );
 
-        const formDataParams = new URLSearchParams();
-
-        const promoCode = DataService.getRuntimeParameter( 'promoCodeToApply' );
-
-        if ( promoCode ) {
-            formDataParams.append( 'cfw-promo-code', promoCode );
-            DataService.setRuntimeParameter( 'promoCodeToApply', null );
-        }
-
-        const items = ( select( DataStores.cart_store_key ) as any ).getCartItems( null );
-
-        // Loop through items array and append to formDataParams
-        items.forEach( ( item: CartItemInterface ) => {
-            formDataParams.append( `cart[${item.item_key}][qty]`, item.quantity.toString() );
-        } );
-
-        const bumps = select( DataStores.cart_store_key ).getOrderBumps( null ) as Bump[];
-
-        if ( bumps.length ) {
-            bumps.forEach( ( bump: Bump ) => {
-                if ( bump.selected && !bump.variationParent ) {
-                    formDataParams.append( `cfw_order_bump[${bump.id}]`, bump.id.toString() );
-                }
-            } );
-        }
-
         new UpdateSideCart( blockedElements ).load( {
             security: DataService.getCheckoutParam( 'update_side_cart_nonce' ),
-            cart_data: formDataParams.toString(),
+            cart_data: jQuery( '#cfw-side-cart-form' ).serialize(),
         } );
     }
 
-    static supportsHTML5Storage(): boolean {
-        let supportsHTML5Storage: boolean;
-
-        try {
-            supportsHTML5Storage = ( 'sessionStorage' in window && window.sessionStorage !== null );
-            window.sessionStorage.setItem( 'wc', 'test' );
-            window.sessionStorage.removeItem( 'wc' );
-            window.localStorage.setItem( 'wc', 'test' );
-            window.localStorage.removeItem( 'wc' );
-        } catch ( err ) {
-            supportsHTML5Storage = false;
-        }
-
-        return supportsHTML5Storage;
+    showVariationForm( event: Event ): void {
+        const url = DataService.getCheckoutParam( 'wc_ajax_url' ).toString().replace( '%%endpoint%%', 'cfw_get_variation_form' );
+        // Get form from AJAX request and inject into adjacent div with cfw-variation-form class
+        jQuery( event.currentTarget ).siblings( '.cfw-variation-form' ).load( `${url}&key=${jQuery( event.currentTarget ).data( 'item' )}` );
     }
 }
 

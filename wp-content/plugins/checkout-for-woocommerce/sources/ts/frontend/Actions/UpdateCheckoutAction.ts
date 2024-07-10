@@ -1,11 +1,11 @@
-import Alert                          from '../Components/Alert';
-import AlertService                   from '../Services/AlertService';
-import DataService                    from '../Services/DataService';
-import LoggingService                 from '../Services/LoggingService';
-import TabService                     from '../Services/TabService';
-import UpdateCheckoutService          from '../Services/UpdateCheckoutService';
-import Action                         from './Action';
-import DataStores                     from '../DataStores';
+import Alert                 from '../Components/Alert';
+import Main                  from '../Main';
+import AlertService          from '../Services/AlertService';
+import DataService           from '../Services/DataService';
+import LoggingService        from '../Services/LoggingService';
+import TabService            from '../Services/TabService';
+import UpdateCheckoutService from '../Services/UpdateCheckoutService';
+import Action                from './Action';
 
 class UpdateCheckoutAction extends Action {
     private static _underlyingRequest: any = null;
@@ -20,7 +20,7 @@ class UpdateCheckoutAction extends Action {
     constructor() {
         super( 'update_order_review' );
 
-        this.blockUISelector = '#cfw-billing-methods, .cfw-review-pane, #cfw-cart-summary, #cfw-mobile-cart-summary, #cfw-place-order, #cfw-payment-request-buttons, #cfw-mobile-total, .cfw-order-bumps, #cfw-shipping-packages-container, .cfw-next-tab';
+        this.blockUISelector = '#cfw-billing-methods, .cfw-review-pane, #cfw-cart-summary, #cfw-place-order, #cfw-payment-request-buttons, #cfw-mobile-total, .cfw-order-bumps, #cfw-shipping-methods, .cfw-next-tab';
     }
 
     public load( data: any, args: any = {} ): void {
@@ -191,7 +191,7 @@ class UpdateCheckoutAction extends Action {
                     }
                 }
             } catch ( e ) {
-                LoggingService.logNotice( 'Unable to handle gateway edge case', e );
+                LoggingService.log( 'Unable to handle gateway edge case', e );
             }
 
             /**
@@ -226,8 +226,8 @@ class UpdateCheckoutAction extends Action {
                 jQuery( 'body' ).addClass( 'cfw-hide-shipping' );
 
                 // In case the current tab gets hidden
-                if ( TabService.getCurrentTab().is( ':hidden' ) ) {
-                    TabService.go( TabService.getCurrentTab().prev().attr( 'id' ) );
+                if ( Main.instance.tabService.getCurrentTab().is( ':hidden' ) ) {
+                    TabService.go( Main.instance.tabService.getCurrentTab().prev().attr( 'id' ) );
                 }
             } else {
                 jQuery( 'body' ).removeClass( 'cfw-hide-shipping' );
@@ -257,19 +257,19 @@ class UpdateCheckoutAction extends Action {
 
             if ( resp.notices.success ) {
                 Object.keys( resp.notices.success ).forEach( ( key: any ) => {
-                    alerts.push( new Alert( 'success', resp.notices.success[ key ].notice, null, resp.notices.success[ key ].data.temporary ?? false ) );
+                    alerts.push( new Alert( 'success', resp.notices.success[ key ].notice, 'cfw-alert-success', resp.notices.success[ key ].data.temporary ?? false ) );
                 } );
             }
 
             if ( resp.notices.notice ) {
                 Object.keys( resp.notices.notice ).forEach( ( key: any ) => {
-                    alerts.push( new Alert( 'notice', resp.notices.notice[ key ].notice, null, resp.notices.notice[ key ].data.temporary ?? false ) );
+                    alerts.push( new Alert( 'notice', resp.notices.notice[ key ].notice, 'cfw-alert-info', resp.notices.notice[ key ].data.temporary ?? false ) );
                 } );
             }
 
             if ( resp.notices.error ) {
                 Object.keys( resp.notices.error ).forEach( ( key: any ) => {
-                    alerts.push( new Alert( 'error', resp.notices.error[ key ].notice, null, resp.notices.error[ key ].data.temporary ?? false ) );
+                    alerts.push( new Alert( 'error', resp.notices.error[ key ].notice, 'cfw-alert-error', resp.notices.error[ key ].data.temporary ?? false ) );
                 } );
             }
 
@@ -278,18 +278,6 @@ class UpdateCheckoutAction extends Action {
             // Fire finishing events
             jQuery( document.body ).trigger( 'cfw_pre_updated_checkout', [ resp ] );
             LoggingService.logEvent( 'Fired cfw_pre_updated_checkout event.' );
-
-            if ( resp.data ) {
-                // Update the data stores
-                DataStores.updateDataStore( resp.data );
-
-                // Update the cart hash - this will trigger a fragment refresh on other tabs
-                localStorage.setItem( DataService.getCheckoutParam( 'cart_hash_key' ) as string, resp.cart_hash );
-                sessionStorage.setItem( DataService.getCheckoutParam( 'cart_hash_key' ) as string, resp.cart_hash );
-
-                // Blank out the cart creation time so that if they go back to the shop, a fragment refresh will be forced
-                sessionStorage.setItem( 'wc_cart_created', '' );
-            }
 
             UpdateCheckoutService.triggerUpdatedCheckout( resp );
         } );
@@ -312,9 +300,8 @@ class UpdateCheckoutAction extends Action {
      */
     public error( xhr: any, textStatus: string, errorThrown: string ): void {
         if ( textStatus !== 'abort' ) {
-            const alert = new Alert( 'error', DataService.getMessage( 'update_checkout_error' ) );
+            const alert = new Alert( 'error', DataService.getMessage( 'update_checkout_error' ), 'cfw-alert-error' );
             AlertService.queueAlert( alert );
-            AlertService.showAlerts();
         }
 
         super.error( xhr, textStatus, errorThrown );
@@ -329,6 +316,9 @@ class UpdateCheckoutAction extends Action {
 
     /**
      * Cleanses our beautiful fragments of evil dirty bad stuff
+     *
+     * @param value
+     * @returns {string}
      */
     static cleanseFragments( value: string ) {
         if ( typeof value !== 'string' ) {

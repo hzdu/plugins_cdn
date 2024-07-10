@@ -1,8 +1,8 @@
-import Alert                 from '../../Components/Alert';
-import AlertService          from '../../Services/AlertService';
-import TabService            from '../../Services/TabService';
-import Compatibility         from '../Compatibility';
-import UpdateCheckoutService from '../../Services/UpdateCheckoutService';
+import Alert         from '../../Components/Alert';
+import Main          from '../../Main';
+import AlertService  from '../../Services/AlertService';
+import TabService    from '../../Services/TabService';
+import Compatibility from '../Compatibility';
 
 class MyShipper extends Compatibility {
     constructor() {
@@ -10,11 +10,11 @@ class MyShipper extends Compatibility {
     }
 
     load( params ): void {
-        const easyTabsWrap: any = TabService.tabContainer;
+        const easyTabsWrap: any = Main.instance.tabService.tabContainer;
 
         easyTabsWrap.bind( 'easytabs:after', () => {
-            if ( TabService.getCurrentTab().attr( 'id' ) === TabService.shippingMethodTabId ) {
-                UpdateCheckoutService.queueUpdateCheckout();
+            if ( Main.instance.tabService.getCurrentTab().attr( 'id' ) === TabService.shippingMethodTabId ) {
+                Main.instance.updateCheckoutService.queueUpdateCheckout();
             }
         } );
 
@@ -28,7 +28,7 @@ class MyShipper extends Compatibility {
                         // Prevent removing alert on next update checkout
                         AlertService.preserveAlerts = true;
 
-                        const alert: Alert = new Alert( 'error', params.notice, null, true );
+                        const alert: Alert = new Alert( 'error', params.notice, 'cfw-alert-error', true );
                         AlertService.queueAlert( alert );
                         AlertService.showAlerts();
 

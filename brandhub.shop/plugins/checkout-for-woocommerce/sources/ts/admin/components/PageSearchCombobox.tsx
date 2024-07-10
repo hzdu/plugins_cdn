@@ -1,6 +1,5 @@
 import { Combobox }                                        from '@headlessui/react';
-import CheckIcon                                           from '@heroicons/react/20/solid/CheckIcon';
-import ChevronUpDownIcon                                   from '@heroicons/react/20/solid/ChevronUpDownIcon';
+import { CheckIcon, ChevronUpDownIcon }                    from '@heroicons/react/20/solid';
 import apiFetch                                            from '@wordpress/api-fetch';
 import React, { useState, useEffect }                      from 'react';
 import type { WP_REST_API_Posts, WP_REST_API_Post }        from 'wp-types';
@@ -46,7 +45,6 @@ export default function PageSearchCombobox( props ) {
                 <Combobox.Input
                     className="w-full rounded-md border-0 bg-white py-1.5 pl-3 pr-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                     onChange={( event ) => setQuery( event.target.value )}
-                    placeholder={'Search for a WordPress page'}
                     displayValue={updateDisplayValue}
                 />
                 <Combobox.Button className="absolute inset-y-0 right-0 flex items-center rounded-r-md px-2 focus:outline-none">

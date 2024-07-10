@@ -17,7 +17,7 @@
         background: var(--cfw-loading-shimmer-gradient);
         background-size: 1000px 100%;
         border-radius: 5px;
-        animation: cfw-shimmer 1s infinite linear;
+        animation: shimmer 1s infinite linear;
         display: var(--cfw-loading-shimmer-display-mode);
         backdrop-filter: var(--cfw-loading-shimmer-filter);
         z-index: 10000;
@@ -26,7 +26,7 @@
     }
 }
 
-@keyframes cfw-shimmer {
+@keyframes shimmer {
     0% {
         background-position: -500px 0;
     }
@@ -50,7 +50,7 @@
     }
 }
 
-#cfw-cart-summary.cfw-blocked, #cfw-mobile-cart-summary.cfw-blocked {
+#cfw-cart-summary.cfw-blocked {
     .cfw-cart-item-quantity-bubble {
         display: var(--cfw-loading-shimmer-cart-item-quantity-display-mode);
     }
@@ -61,8 +61,7 @@
     .cfw-cart-item-subtotal span,
     .cfw-cart-item-data,
     .cfw-items-summary-item-discount,
-    .cfw-promo-row > div > *,
-    .cfw-show-coupons-module {
+    .cfw-promo-row > div > * {
         @include cfw-shimmer-content();
     }
 
@@ -70,7 +69,7 @@
         @include cfw-shimmer-content( -2px );
     }
 
-    .cfw-totals-list {
+    #cfw-totals-list {
         tr {
             @include cfw-shimmer-content( 0.75em );
         }
@@ -81,7 +80,7 @@
     }
 }
 
-#cfw-shipping-packages-container.cfw-blocked {
+#cfw-shipping-methods.cfw-blocked {
     .cfw-shipping-method-inner {
         @include cfw-shimmer-content();
     }

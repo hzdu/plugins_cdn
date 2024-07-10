@@ -1,8 +1,8 @@
 import fastDeepEqual                           from 'fast-deep-equal';
 import cfwGetWPHooks                           from '../../functions/cfwGetWPHooks';
+import Main                                    from '../Main';
 import DataService                             from './DataService';
 import TabService                              from './TabService';
-import LoggingService                          from './LoggingService';
 
 class SmartyStreetsAddressValidationService {
     protected userAddress;
@@ -19,16 +19,23 @@ class SmartyStreetsAddressValidationService {
 
     constructor( addressFieldNamePrefix: string ) {
         this.addressFieldNamePrefix = addressFieldNamePrefix;
+        this.setupModaal();
         this.run();
     }
 
-    public static isWrongTabContext( target ): boolean {
-        const currentTab = TabService.getCurrentTab();
+    public isWrongTabContext( target ): boolean {
+        const currentTab = Main.instance.tabService.getCurrentTab();
         const destinationTab = jQuery( target );
         const destinationTabIsAfterCurrentTab = currentTab.nextAll( '.cfw-panel' ).filter( `#${destinationTab.attr( 'id' )}` ).length;
         const currentTabIsInformationTab = currentTab.attr( 'id' ) === TabService.customerInformationTabId;
 
         return !destinationTabIsAfterCurrentTab || !currentTabIsInformationTab;
+    }
+
+    public setupModaal(): void {
+        this.modaalTrigger = jQuery( '.cfw-smartystreets-modal-trigger' );
+
+        this.modaalTrigger.modaal( { width: 600, custom_class: 'checkoutwc' } );
     }
 
     public getAddress(): Record<string, unknown> {
@@ -44,11 +51,11 @@ class SmartyStreetsAddressValidationService {
     }
 
     public maybeValidateAddress( event, clicked, target ): boolean {
-        if ( TabService.tabsLoaded && SmartyStreetsAddressValidationService.isWrongTabContext( target ) ) {
+        if ( Main.instance.tabsLoaded && this.isWrongTabContext( target ) ) {
             return true;
         }
 
-        if ( TabService.tabsLoaded ) {
+        if ( Main.instance.tabsLoaded ) {
             this.tabChangeDestinationID = target[ 0 ].id;
         }
 
@@ -71,7 +78,8 @@ class SmartyStreetsAddressValidationService {
         const setData = ( val ) => { data = val; };
 
         const handleError = ( xhr: any, textStatus: string, errorThrown: string ) => {
-            LoggingService.logError( `SmartyStreets Address Validation Error: ${errorThrown} (${textStatus})` );
+            // eslint-disable-next-line no-console
+            console.log( `SmartyStreets Address Validation Error: ${errorThrown} (${textStatus})` );
         };
 
         jQuery.ajax( {
@@ -90,7 +98,21 @@ class SmartyStreetsAddressValidationService {
             return true;
         }
 
-        jQuery( document.body ).trigger( 'cfw_smarty_streets_modal_open', [ response.form ] );
+        if ( response.code === 2 ) {
+            jQuery( '.cfw-smarty-matched' ).show();
+            jQuery( '.cfw-smarty-unmatched' ).hide();
+        } else {
+            jQuery( '.cfw-smarty-matched' ).hide();
+            jQuery( '.cfw-smarty-unmatched' ).show();
+        }
+
+        jQuery( '.cfw-smartystreets-suggested-address-button' ).text( response.suggested_button_label );
+        jQuery( '.cfw-smartystreets-user-address-button' ).text( response.user_button_label );
+
+        jQuery( '.cfw-smartystreets-user-address' ).html( response.original );
+        jQuery( '.cfw-smartystreets-suggested-address' ).html( response.address );
+
+        this.modaalTrigger.modaal( 'open' );
 
         this.suggestedAddress = response.components;
         this.userAddress = address;
@@ -106,32 +128,28 @@ class SmartyStreetsAddressValidationService {
          * Only fires when the current tab is the information tab
          * and the destination tab is to the right
          */
-        if ( TabService.tabsLoaded ) {
-            TabService.tabContainer.bind( 'easytabs:before', this.maybeValidateAddress.bind( this ) );
+        if ( Main.instance.tabsLoaded ) {
+            Main.instance.tabService.tabContainer.bind( 'easytabs:before', this.maybeValidateAddress.bind( this ) );
         } else {
             DataService.checkoutForm.on( 'checkout_place_order', this.maybeValidateAddress.bind( this ) );
         }
 
-        const closeItUp = ( e: { preventDefault: () => void; } ) => {
-            e.preventDefault();
-
+        const closeItUp = () => {
             this.userHasAcceptedAddress = true;
 
-            jQuery( document.body ).trigger( 'cfw_smarty_streets_modal_close' );
+            this.modaalTrigger.modaal( 'close' );
 
-            if ( TabService.tabsLoaded ) {
-                TabService.tabContainer.easytabs( 'select', `#${this.tabChangeDestinationID}` );
+            if ( Main.instance.tabsLoaded ) {
+                Main.instance.tabService.tabContainer.easytabs( 'select', `#${this.tabChangeDestinationID}` );
             } else {
                 DataService.checkoutForm.submit();
             }
             this.tabChangeDestinationID = null;
         };
 
-        const handleSuggestedAddressButtonClick = ( e: { preventDefault: () => void; } ) => {
-            e.preventDefault();
-
+        const handleSuggestedAddressButtonClick = ( event ) => {
             if ( !this.suggestedAddress ) {
-                jQuery( document.body ).trigger( 'cfw_smarty_streets_modal_close' );
+                this.modaalTrigger.modaal( 'close' );
             }
 
             // Replace address with suggested address
@@ -143,7 +161,7 @@ class SmartyStreetsAddressValidationService {
             // Set the comparison data to the actual field values to prevent false positives
             this.userAddress = this.getAddress();
 
-            closeItUp( e );
+            closeItUp();
         };
 
         jQuery( document.body ).on( 'click', '.cfw-smartystreets-suggested-address-button', handleSuggestedAddressButtonClick );

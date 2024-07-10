@@ -1,6 +1,3 @@
-import { select }            from '@wordpress/data';
-import DataStores            from '../DataStores';
-
 class PaymentRequestButtons {
     private expressButtonContainer: any;
 
@@ -38,10 +35,9 @@ class PaymentRequestButtons {
     }
 
     maybeShowExpressButtons(): boolean {
-        const needsPayment = select( DataStores.cart_store_key ).getCartNeedsPayment( null ) as boolean;
         const hasButtons = this.hasButtons();
 
-        if ( hasButtons && needsPayment ) {
+        if ( hasButtons ) {
             this.showExpressButtons();
         }
 
@@ -50,7 +46,7 @@ class PaymentRequestButtons {
 
     hasButtons(): boolean {
         let hasButtons = false;
-        const potentialButtons = this.expressButtonContainer.children().not( 'h2, .blockUI, #wc-stripe-payment-request-button-separator' );
+        const potentialButtons = this.expressButtonContainer.children().not( 'h2, .blockUI' );
 
         potentialButtons.each( ( index, element ) => {
             if ( jQuery( element ).get( 0 ).getBoundingClientRect().height > 0 ) {

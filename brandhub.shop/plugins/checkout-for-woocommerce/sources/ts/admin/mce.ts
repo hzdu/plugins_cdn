@@ -34,13 +34,6 @@
                     },
                 },
                 {
-                    text: ( <any>window ).cfw_acr_replacement_codes.customer_email,
-                    value: '{{customer_email}}',
-                    onclick() {
-                        editor.insertContent( this.value() );
-                    },
-                },
-                {
                     text: ( <any>window ).cfw_acr_replacement_codes.customer_firstname,
                     value: '{{customer_firstname}}',
                     onclick() {

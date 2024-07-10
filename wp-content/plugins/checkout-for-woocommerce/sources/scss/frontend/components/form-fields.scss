@@ -10,16 +10,14 @@
 
 .cfw-input-wrap-row:last-child {
     .form-row {
-        @include media-breakpoint-up(lg) {
-            margin-bottom: 0;
-        }
+        margin-bottom: 0;
     }
 }
 
-.checkoutwc .form-row, #cfw-cart-summary {
+.checkoutwc .form-row {
     position: relative;
 
-    input[type="text"],
+    input[type="text"].input-text,
     input[type="email"],
     input[type="tel"],
     input[type="number"],
@@ -89,7 +87,7 @@
     }
 
     &.cfw-label-is-floated {
-        input[type="text"],
+        input[type="text"].input-text,
         input[type="email"],
         input[type="tel"],
         input[type="number"],

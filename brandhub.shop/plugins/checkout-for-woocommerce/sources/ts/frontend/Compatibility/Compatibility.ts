@@ -1,16 +1,16 @@
 import LoggingService from '../Services/LoggingService';
 
-declare let cfw: any;
+declare let cfwEventData: any;
 
 abstract class Compatibility {
-    protected key;
+  protected key;
 
-    /**
+  /**
    * @param key Unique string matching localized json from server.
    */
-    protected constructor( key: string ) {
-        this.key = key;
-    }
+  protected constructor( key: string ) {
+      this.key = key;
+  }
 
   /**
    * Literally anything function. Runs user code.
@@ -27,10 +27,10 @@ abstract class Compatibility {
    * It is assumed a class could not have more than one instance inside the activeClasses array.
    */
   public maybeLoad() {
-      Object.values( cfw.compatibility ).filter( ( { class: className } ) => this.key === className ).forEach( ( { params } ) => {
+      Object.values( cfwEventData.compatibility ).filter( ( { class: className } ) => this.key === className ).forEach( ( { params } ) => {
           this.load( params );
 
-          LoggingService.logNotice( `Loaded ${this.key} module. 🧩` );
+          LoggingService.log( `Loaded ${this.key} module. 🧩` );
       } );
   }
 }

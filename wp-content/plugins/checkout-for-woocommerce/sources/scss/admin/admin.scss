@@ -2,18 +2,6 @@
 @import "components/notices"; 
 @import "components/data-tooltip";
 @import 'sweetalert2/src/sweetalert2.scss';
-@import 'react-quill/dist/quill.snow.css';
-@import '../frontend/components/order-bump';
-
-.cfw-order-bumps {
-    @import '../frontend/grid';
-}
-
-.is-focus-mode {
-    [data-type="cfw/order-bump-preview"] {
-        opacity: 1 !important;
-    }
-}
 
 .template_select_info_table_screen_shot_container {
     display: flex;
@@ -362,70 +350,4 @@ label.error {
 
 #cfw-acr-carts nav div > svg {
     display: none;
-}
-
-#cfw-new-trust-badge-settings .ql-container {
-    min-height: 100px;
-}
-
-.cfw-admin-select-field input:focus {
-    outline: none !important;
-    box-shadow: none !important;
-}
-
-.cfw-admin-section-component-content:empty:before {
-    content: 'No fields match your search term.';
-}
-
-.cfw-ob-display-conditions-mb, .cfw-ob-offer-mb, .cfw-ob-actions-mb {
-    > .components-base-control {
-        margin-bottom: 1rem;
-
-        .woocommerce-select-control .woocommerce-select-control__tags {
-            margin-top: 0.25rem;
-        }
-    }
-}
-
-// Order Bump Offer Form Preview Block Styles
-// Don't import this because we need to customize it for admin
-.cfw-order-bump-offer-form-wrap {
-    @import '../frontend/components/order-bump-offer-form';
-    @import "../frontend/grid";
-    @import "../frontend/_utility-classes";
-
-    form {
-        pointer-events: none; // no form stuff on admin preview
-        background: #fff;
-        box-shadow: 0 2px 10px rgba(0,0,0,.1);
-        border: 1px solid #eee;
-        border-radius: 5px;
-        color: #333;
-        padding: 40px !important;
-        width: auto !important;
-
-        @import '../frontend/components/buttons';
-    }
-
-    &:after {
-        content: 'This is a partial preview. To see all of your changes, save the Order Bump. Button styles are defaulted and do not reflect Appearance settings.';
-        font-style: italic;
-        text-align: center;
-        font-size: 12px;
-        display: block;
-        width: 450px;
-        margin: 0 auto;
-        padding-top: 0.5em;
-    }
-}
-
-.cfw-wysiwyg-text-mode-element {
-    width: 100%;
-    height: 8rem;
-}
-
-.cfw-wysiwyg-visual-mode-element {
-    .ql-editor {
-        min-height: 8rem;
-    }
 }

@@ -36,6 +36,7 @@
 @import "components/cart-summary/style";
 @import "components/cart-summary/mobile-review";
 @import "components/cart-summary/cart";
+@import "components/cart-summary/coupons";
 @import "components/cart-summary/totals";
 @import "components/cart-summary/cart-item-quantity-control";
 @import "components/order-review/style";
@@ -55,10 +56,8 @@
 @import "components/international-phone-field";
 @import "components/fetchify-address-autocomplete";
 @import "components/login-modal";
+@import "components/modaal-styles";
 @import "components/delivery-method";
-@import "components/side-cart-quantity-wrap"; // in case of a custom header
-@import "components/free-shipping-progress-bar";
-@import "components/promo-field-control";
 
 // Compatibility Classes
 @import "compatibility/elementor-pro";
@@ -126,7 +125,6 @@
 @import "compatibility/advanced-coupons-for-woocommerce";
 @import "compatibility/betheme";
 @import "compatibility/byjuno";
-@import "compatibility/divi";
 
 // Uncanny Groups for LearnDash
 #ulgm_group_name-description {
@@ -138,7 +136,7 @@
 // 3rd Party
 @import "~intl-tel-input/build/css/intlTelInput";
 @import "~tippy.js/dist/tippy.css";
-@import '~react-responsive-modal/styles.css';
+@import "~modaal/dist/css/modaal.min.css";
 
 /**
  * Show / Hide Shipping Toggle
@@ -175,7 +173,6 @@
 .cfw_cart_item_after_data {
     margin-top: 0.5em;
     display: flex;
-    flex-wrap: wrap;
     align-items: center;
 
     .cfw-edit-item-quantity-control-wrap {

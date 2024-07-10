@@ -8,12 +8,8 @@ export default function cfwValidateTab( tab: string ): Promise<any> {
             const container = jQuery( el );
             const field = container.find( ':input' ).not( '[data-parsley-group]' );
 
-            if ( !field.length || field.val() !== '' ) {
+            if ( field.val() !== '' ) {
                 return; // continue
-            }
-
-            if ( field.is( '.iti__search-input, .iti__selected-country' ) ) {
-                return; // special international phone field handling
             }
 
             // If field doesn't have label, look for TH
@@ -24,7 +20,7 @@ export default function cfwValidateTab( tab: string ): Promise<any> {
             const template = DataService.getMessage( 'generic_field_validation_error_message' );
             const message = template.replace( '%s', label );
 
-            AlertService.queueAlert( new Alert( 'error', message ) );
+            AlertService.queueAlert( new Alert( 'error', message, 'cfw-alert-error' ) );
             AlertService.showAlerts();
 
             reject( new Error( 'CheckoutWC: A non-parsley required field was detected to be invalid.' ) );

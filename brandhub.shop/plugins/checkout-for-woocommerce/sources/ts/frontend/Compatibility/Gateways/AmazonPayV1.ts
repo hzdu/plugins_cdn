@@ -2,7 +2,6 @@ import AlertService         from '../../Services/AlertService';
 import DataService          from '../../Services/DataService';
 import TabService           from '../../Services/TabService';
 import Compatibility        from '../Compatibility';
-import LoggingService       from '../../Services/LoggingService';
 
 // eslint-disable-next-line camelcase
 declare let amazon_payments_advanced: any;
@@ -60,11 +59,13 @@ class AmazonPayV1 extends Compatibility {
                 try {
                     jQuery( document.body ).find( '#pay_with_amazon' ).get( 0 ).shadowRoot.innerHTML = '';
                 } catch ( error ) {
-                    LoggingService.logError( error );
+                    // eslint-disable-next-line no-console
+                    console.log( error );
                 }
             } );
         } catch ( error ) {
-            LoggingService.logError( error );
+            // eslint-disable-next-line no-console
+            console.log( error );
         }
     }
 

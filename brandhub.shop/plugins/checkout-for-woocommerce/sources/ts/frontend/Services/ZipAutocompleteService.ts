@@ -2,23 +2,23 @@ import FieldValidationRefresher from '../Interfaces/FieldValidationRefresher';
 import DataService              from './DataService';
 
 class ZipAutocompleteService {
-    protected static fieldValidationRefresher: FieldValidationRefresher;
+    protected fieldValidationRefresher: FieldValidationRefresher;
 
-    static load( fieldValidationRefresher: FieldValidationRefresher ): void {
-        ZipAutocompleteService.fieldValidationRefresher = fieldValidationRefresher;
-        ZipAutocompleteService.setZipAutocompleteHandlers();
+    constructor( fieldValidationRefresher: FieldValidationRefresher ) {
+        this.fieldValidationRefresher = fieldValidationRefresher;
+        this.setZipAutocompleteHandlers();
     }
 
     /**
      * Attach change events to postcode fields
      */
-    static setZipAutocompleteHandlers(): void {
+    setZipAutocompleteHandlers(): void {
         if ( DataService.getSetting( 'enable_zip_autocomplete' ) === true ) {
-            jQuery( document.body ).on( 'input change paste', '#shipping_postcode, #billing_postcode', ZipAutocompleteService.autoCompleteCityState );
+            jQuery( document.body ).on( 'input change paste', '#shipping_postcode, #billing_postcode', this.autoCompleteCityState.bind( this ) );
         }
     }
 
-    static autoCompleteCityState( e ): void {
+    autoCompleteCityState( e ): void {
         if ( typeof e.originalEvent === 'undefined' ) {
             return;
         }
@@ -38,11 +38,11 @@ class ZipAutocompleteService {
         const incompatibleCountries = [ 'GB', 'CA', 'NL', 'BE' ];
 
         if ( incompatibleCountries.indexOf( country ) === -1 ) {
-            ZipAutocompleteService.getZipData( country, zip, type );
+            this.getZipData( country, zip, type );
         }
     }
 
-    protected static getZipData( country: string, zip: string, type: string ): void {
+    protected getZipData( country: string, zip: string, type: string ): void {
         jQuery.ajax( {
             url: `https://api.zippopotam.us/${country}/${zip}`,
             dataType: 'json',
@@ -54,7 +54,7 @@ class ZipAutocompleteService {
                 // Cleanup Parsley messages
                 stateField.val( state ).trigger( 'change', [ 'cfw_zip_change' ] );
 
-                ZipAutocompleteService.fieldValidationRefresher.refreshField( stateField.get( 0 ) );
+                this.fieldValidationRefresher.refreshField( stateField.get( 0 ) );
 
                 // If there's more than one result, don't autocomplete city
                 // This prevents crappy autocompletes
@@ -67,7 +67,7 @@ class ZipAutocompleteService {
                 // Cleanup Parsley messages
                 cityField.val( city ).trigger( 'change', [ 'cfw_zip_change' ] );
 
-                ZipAutocompleteService.fieldValidationRefresher.refreshField( cityField.get( 0 ) );
+                this.fieldValidationRefresher.refreshField( cityField.get( 0 ) );
             },
         } );
     }

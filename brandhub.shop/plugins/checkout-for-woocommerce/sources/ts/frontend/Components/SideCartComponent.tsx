@@ -17,7 +17,6 @@ const SideCartComponent: React.FC = () => {
     const isEmpty = useSelect( ( select: any ) => select( DataStores.cart_store_key ).getCartIsEmpty( null ), [] );
     const staticActions = useSelect( ( select: any ) => select( DataStores.cart_store_key ).getCartStaticActions( null ), [] );
     const notices = useSelect( ( select: any ) => select( DataStores.cart_store_key ).getCartNotices( null ), [] ) as string;
-    const actions = useSelect( ( select: any ) => select( DataStores.cart_store_key ).getCartActions( null ), [] );
 
     // Scroll to notices if they exist
     useEffect( () => {
@@ -104,8 +103,6 @@ const SideCartComponent: React.FC = () => {
                             {DataService.getSetting( 'enable_side_cart_payment_buttons' )
                                 && ReactHtmlParser( staticActions?.woocommerce_widget_shopping_cart_buttons )
                             }
-
-                            {ReactHtmlParser( actions?.woocommerce_after_cart_totals )}
 
                             {DataService.getSetting( 'enable_side_cart_suggested_products' ) && (
                                 <SuggestedProductsCarousel/>

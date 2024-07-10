@@ -1,6 +1,5 @@
 const { merge } = require( 'webpack-merge' );
-const commonFrontend = require( './webpack.config.js' )[ 0 ];
-const commonAdmin = require( './webpack.config.js' )[ 1 ];
+const common = require( './webpack.config.js' );
 const CssMinimizerPlugin = require( 'css-minimizer-webpack-plugin' );
 const WebpackShellPluginNext = require( 'webpack-shell-plugin-next' );
 const ImageminPlugin = require( 'imagemin-webpack-plugin' ).default;
@@ -10,9 +9,14 @@ const productionDir = './dist';
 const outPath = `${productionDir}/checkout-for-woocommerce`;
 const zipName = `checkout-for-woocommerce-${version}.zip`;
 
-const productionSettings = {
+/**
+ * Webpack config (Production mode)
+ *
+ * @see https://webpack.js.org/guides/production/
+ */
+module.exports = merge( common, {
     output: {
-        filename: 'js/[name].js',
+        filename: 'js/[name]-[contenthash].js',
     },
     plugins: [
         /**
@@ -35,6 +39,19 @@ const productionSettings = {
             },
             svgo: null,
         } ),
+        new WebpackShellPluginNext( {
+            onBuildStart: {
+                scripts: [
+                    `rm -rf ${productionDir} && mkdir -p ${productionDir}`,
+                ],
+            },
+            onAfterDone: {
+                scripts: [
+                    // eslint-disable-next-line max-len
+                    `npx cpy --parents '.' '!./dist' '!./tests' '!./cypress' '!./bin' '!./assets' '!./**/node_modules' '!./**/phpunit' '!./cypress.env.json' '!./cypress.overrides.json' ${outPath} && cd ${productionDir} && zip --recurse-paths ${zipName} ./checkout-for-woocommerce`,
+                ],
+            },
+        } ),
     ],
     optimization: {
         minimizer: [
@@ -55,26 +72,4 @@ const productionSettings = {
             } ),
         ],
     },
-};
-
-const frontendConfig = merge( commonFrontend, productionSettings );
-const adminConfig = merge( commonAdmin, productionSettings );
-
-// Add the WebpackShellPluginNext to the last configuration
-adminConfig.plugins.push(
-    new WebpackShellPluginNext( {
-        onBuildStart: {
-            scripts: [
-                `rm -rf ${productionDir} && mkdir -p ${productionDir}`,
-            ],
-        },
-        onAfterDone: {
-            scripts: [
-                // eslint-disable-next-line max-len
-                `npx cpy --parents '.' '!./dist' '!./tests' '!./cypress' '!./bin' '!./assets' '!./**/node_modules' '!./**/phpunit' '!./strauss.phar' '!./cypress.env.json' '!./cypress.overrides.json' ${outPath} && cd ${productionDir} && zip --recurse-paths ${zipName} ./checkout-for-woocommerce`,
-            ],
-        },
-    } ),
-);
-
-module.exports = [ frontendConfig, adminConfig ];
+} );

@@ -5,7 +5,7 @@ import cfwAjax      from './cfwAjax';
 function handleError( xhr: JQuery.jqXHR, textStatus: string, errorThrown: string ): void {
     const message = `An error occurred during login. Error: ${errorThrown} (${textStatus})`;
 
-    AlertService.queueAlert( new Alert( 'error', message ), 'login' );
+    AlertService.queueAlert( new Alert( 'error', message, 'cfw-alert-error' ), 'login' );
     AlertService.showAlerts( 'login', '#cfw-login-alert-container' );
 }
 
@@ -17,7 +17,7 @@ function handleSuccess( rawResponse: unknown ): void {
         return;
     }
 
-    const alert = new Alert( 'error', response?.message );
+    const alert = new Alert( 'error', response?.message, 'cfw-alert-error' );
     AlertService.queueAlert( alert, 'login' );
     AlertService.showAlerts( 'login', '#cfw-login-alert-container' );
 }

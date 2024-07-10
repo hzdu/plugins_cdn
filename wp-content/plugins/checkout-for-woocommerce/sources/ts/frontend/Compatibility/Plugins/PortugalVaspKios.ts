@@ -1,3 +1,4 @@
+import Main          from '../../Main';
 import Compatibility from '../Compatibility';
 
 declare let pvkw: any;

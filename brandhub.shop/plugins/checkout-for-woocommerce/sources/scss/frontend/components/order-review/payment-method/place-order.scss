@@ -11,10 +11,10 @@
     width: 100%;
 }
 
-#cfw-place-order button:not([class^="gpay-"]) {
+#cfw-place-order button:not(.gpay-button) {
     @include cfw-primary-button();
 }
 
-.cfw-payment-method-active .cfw-totals-list .place-order {
+.cfw-payment-method-active #cfw-totals-list .place-order {
   display: block;
 }

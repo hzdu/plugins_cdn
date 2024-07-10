@@ -1,7 +1,7 @@
-import intlTelInput, { Iti } from 'intl-tel-input';
-import DataService           from './DataService';
-import LoggingService        from './LoggingService';
-import ParsleyService        from './ParsleyService';
+import intlTelInput   from 'intl-tel-input';
+import Main           from '../Main';
+import DataService    from './DataService';
+import LoggingService from './LoggingService';
 
 class InternationalPhoneFieldService {
     constructor() {
@@ -29,14 +29,12 @@ class InternationalPhoneFieldService {
      * @param prefix string
      * @return intlTelInput.Plugin|null
      */
-    setupPhoneField( prefix: string ): Iti | null {
-        const phone = jQuery( `#${prefix}_phone` );
+    setupPhoneField( prefix: string ): intlTelInput.Plugin | null {
+        const phoneInput = jQuery( `#${prefix}_phone` );
 
-        if ( phone.length === 0 ) {
+        if ( phoneInput.length === 0 ) {
             return null;
         }
-
-        const phoneInput = phone.get( 0 ) as HTMLInputElement;
 
         const format = DataService.getSetting( 'international_phone_field_standard' );
         const formatMap = {
@@ -46,7 +44,7 @@ class InternationalPhoneFieldService {
             RFC3966: 3,
         };
 
-        const countryData = intlTelInput.getCountryData();
+        const countryData = window.intlTelInputGlobals.getCountryData();
         const allowedCountries = DataService.getSetting( 'allowed_countries' );
         const shippingCountries = DataService.getSetting( 'shipping_countries' );
 
@@ -59,25 +57,22 @@ class InternationalPhoneFieldService {
             }
         }
 
-        const countryInput = jQuery( `#${prefix}_country` );
-        const countryVal = countryInput.val();
-
-        const iti = intlTelInput( phoneInput, {
+        const iti = intlTelInput( phoneInput.get( 0 ), {
             utilsScript: `${DataService.getCheckoutParam( 'dist_path' )}/js/utils.js`,
             onlyCountries: Object.keys( prefix === 'shipping' ? shippingCountries : allowedCountries ),
             allowDropdown: DataService.getSetting( 'allow_international_phone_field_country_dropdown' ),
             autoPlaceholder: DataService.getSetting( 'international_phone_field_placeholder_mode' ),
-            countryOrder: DataService.getSetting( 'phone_field_highlighted_countries' ) ?? [],
-            nationalMode: true,
-            formatOnDisplay: true,
-            initialCountry: countryInput.length && countryVal !== null && countryVal.toString().length !== 0 ? countryVal : DataService.getSetting( 'base_country' ),
+            preferredCountries: DataService.getSetting( 'phone_field_highlighted_countries' ) ?? [],
+            formatOnDisplay: false,
         } );
 
-        phoneInput.addEventListener( 'countrychange', () => {
-            ParsleyService.instance.refreshField( phoneInput );
+        phoneInput.on( 'countrychange', () => {
+            Main.instance.parsleyService.refreshField( phoneInput.get( 0 ) );
         } );
 
-        phone.parents( '.woocommerce-input-wrapper' ).siblings( 'label' ).addClass( 'intl-tel-input-label' );
+        phoneInput.parents( '.woocommerce-input-wrapper' ).siblings( 'label' ).addClass( 'intl-tel-input-label' );
+
+        const countryInput = jQuery( `#${prefix}_country` );
 
         jQuery( document.body ).on( 'change', `#${prefix}_country`, ( e ) => {
             const element = jQuery( e.currentTarget );
@@ -92,6 +87,18 @@ class InternationalPhoneFieldService {
             }
         } );
 
+        const val =  countryInput.val();
+
+        try {
+            if ( countryInput.length && val !== null && val.toString().length !== 0 ) {
+                iti.setCountry( val.toString() );
+            } else {
+                iti.setCountry( DataService.getSetting( 'base_country' ) );
+            }
+        } catch {
+            LoggingService.logError( `Failed to set country for international phone field: ${countryInput.attr( 'id' )}` );
+        }
+
         jQuery( document.body ).on( 'change', `#${prefix}_phone`, ( e ) => {
             const formattedElement = jQuery( `#${prefix}_phone_formatted` );
             const element = jQuery( e.currentTarget );
@@ -104,9 +111,7 @@ class InternationalPhoneFieldService {
             formattedElement.val( iti.getNumber( formatMap[ format ] ) );
         } );
 
-        iti.promise.then( () => {
-            phone.trigger( 'change' );
-        } );
+        phoneInput.trigger( 'change' );
 
         return iti;
     }

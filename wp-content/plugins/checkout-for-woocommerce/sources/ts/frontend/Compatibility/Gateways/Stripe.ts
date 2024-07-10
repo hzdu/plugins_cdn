@@ -7,10 +7,10 @@ class Stripe extends Compatibility {
     }
 
     load(): void {
-        jQuery( document ).on( 'stripeError', Stripe.onError );
+        jQuery( document ).on( 'stripeError', this.onError );
     }
 
-    static onError(): void {
+    onError(): void {
         window.location.hash = TabService.paymentMethodTabId;
     }
 }

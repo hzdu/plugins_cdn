@@ -1,30 +1,30 @@
 import LoggingService from './LoggingService';
 
 class BillingAddressSyncService {
-    static load(): void {
+    constructor() {
         jQuery( window ).on( 'load', () => {
-            BillingAddressSyncService.listenForShippingChanges();
-            BillingAddressSyncService.listenForBillingChanges();
-            BillingAddressSyncService.listenForSameAsShippingToggle();
+            this.listenForShippingChanges();
+            this.listenForBillingChanges();
+            this.listenForSameAsShippingToggle();
         } );
 
         // Anytime updated_checkout runs make sure we have the right billing address values
-        jQuery( document.body ).on( 'updated_checkout', BillingAddressSyncService.maybeSyncShippingAddressToBillingAddress );
+        jQuery( document.body ).on( 'updated_checkout', this.maybeSyncShippingAddressToBillingAddress.bind( this ) );
     }
 
-    static listenForShippingChanges(): void {
+    listenForShippingChanges(): void {
         jQuery( '.woocommerce-shipping-fields [name^="shipping_"]' ).not( '#shipping_email' ).on( 'change', ( event ) => {
             const sameAsShipping = jQuery( 'input[name="bill_to_different_address"]:checked' ).val();
             const shippingField  = jQuery( event.target );
             const billingField   = jQuery( `[name="${shippingField.attr( 'name' ).replace( 'shipping_', 'billing_' )}"]` );
 
             if ( sameAsShipping === 'same_as_shipping' ) {
-                BillingAddressSyncService.syncField( shippingField, billingField );
+                this.syncField( shippingField, billingField );
             }
         } );
     }
 
-    static listenForBillingChanges(): void {
+    listenForBillingChanges(): void {
         jQuery( '[name^="billing_"]' ).not( '#billing_email' ).on( 'change', ( event, param ) => {
             // Only process this if a human changed the value
             // OR if cfw_store was passed as the first parameter (zip / address autocomplete)
@@ -38,16 +38,16 @@ class BillingAddressSyncService {
         } );
     }
 
-    static listenForSameAsShippingToggle(): void {
+    listenForSameAsShippingToggle(): void {
         const sameAsShipping = jQuery( 'input[name="bill_to_different_address"]' );
 
         sameAsShipping.on( 'change', () => {
-            BillingAddressSyncService.maybeSyncShippingAddressToBillingAddress();
-            BillingAddressSyncService.maybeRestoreSessionValueToBillingAddress();
+            this.maybeSyncShippingAddressToBillingAddress();
+            this.maybeRestoreSessionValueToBillingAddress();
         } );
     }
 
-    static maybeSyncShippingAddressToBillingAddress(): void {
+    maybeSyncShippingAddressToBillingAddress(): void {
         const billToDifferentAddress = jQuery( 'input[name="bill_to_different_address"]:checked' );
 
         if ( !billToDifferentAddress.length ) {
@@ -63,11 +63,11 @@ class BillingAddressSyncService {
             const shippingField  = jQuery( element );
             const billingField   = jQuery( `[name="${shippingField.attr( 'name' ).replace( 'shipping_', 'billing_' )}"]` );
 
-            BillingAddressSyncService.syncField( shippingField, billingField );
+            this.syncField( shippingField, billingField );
         } );
     }
 
-    static maybeRestoreSessionValueToBillingAddress(): void {
+    maybeRestoreSessionValueToBillingAddress(): void {
         const billToDifferentAddress = jQuery( 'input[name="bill_to_different_address"]:checked' );
 
         if ( !billToDifferentAddress.length ) {
@@ -112,7 +112,7 @@ class BillingAddressSyncService {
      * @param srcField
      * @param destField
      */
-    static syncField( srcField: JQuery<HTMLElement>, destField: JQuery<HTMLElement> ): void {
+    syncField( srcField: JQuery<HTMLElement>, destField: JQuery<HTMLElement> ): void {
         if ( typeof destField === 'undefined' ) {
             return;
         }
@@ -129,7 +129,7 @@ class BillingAddressSyncService {
         }
 
         if ( currentValue !== newValue ) {
-            LoggingService.logNotice( `Syncing field: ${srcField.attr( 'name' )} to ${destField.attr( 'name' )}` );
+            LoggingService.log( `Syncing field: ${srcField.attr( 'name' )} to ${destField.attr( 'name' )}` );
 
             destField.val( srcField.val() );
 

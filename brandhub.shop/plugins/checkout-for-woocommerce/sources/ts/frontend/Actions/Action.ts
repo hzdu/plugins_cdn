@@ -1,5 +1,5 @@
-import DataService                      from '../Services/DataService';
-import LoggingService                   from '../Services/LoggingService';
+import DataService    from '../Services/DataService';
+import LoggingService from '../Services/LoggingService';
 
 /**
  * Base class for our ajax handling. Child classes will extend this and override the response function and implement their

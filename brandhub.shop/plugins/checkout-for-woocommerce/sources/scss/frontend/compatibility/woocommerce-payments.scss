@@ -12,20 +12,10 @@
 }
 
 #wcpay-payment-request-button-separator {
-    display: none !important;
+    display: none;
 }
 
 .wcpay-payment-request-wrapper {
     padding-top: 0 !important;
     margin-top: 0 !important;
-}
-
-// Hide empty buttons
-.wcpay-payment-request-wrapper div:not(:has(p, div, button)) {
-    display: none;
-}
-
-// Hide payment request buttons container if there are no visible buttons
-.wcpay-payment-request-wrapper:not(:has(> div > * )) {
-    display: none;
 }

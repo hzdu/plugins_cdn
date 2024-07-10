@@ -39,7 +39,7 @@
     padding: 0.82rem;
     font-size: 1em;
     background: var(--cfw-buttons-secondary-background-color);
-    color: var(--cfw-buttons-secondary-text-color) !important;
+    color: var(--cfw-buttons-secondary-text-color);
     text-align: center;
     transition: all .1s ease-in-out;
     display: inline-block;
@@ -48,38 +48,17 @@
 
     &:hover {
         background: var(--cfw-buttons-secondary-hover-background-color);
-        color: var(--cfw-buttons-secondary-hover-text-color) !important;
+        color: var(--cfw-buttons-secondary-hover-text-color);
         border-color: var(--cfw-buttons-secondary-hover-background-color);
     }
 
     &:focus {
         outline-style: none;
     }
-
-    &.cfw-secondary-btn-inactive {
-        opacity: 0.5;
-    }
-
-    &.cfw-secondary-btn-active {
-        opacity: 1;
-    }
-}
-
-.cfw-primary-btn {
-    @include cfw-primary-button();
-}
-
-.cfw-secondary-btn {
-    @include cfw-secondary-button();
-}
-
-// Gift up, and anything else that puts buttons in the totals
-.cfw-totals-list button {
-    @include cfw-secondary-button();
 }
 
 // Target .checkoutwc so that our modaal wrapper (SmartyStreets) and main container both are ancestors
-.checkoutwc, .cfw-modal {
+.checkoutwc, .checkoutwc.cfw-modaal {
     .cfw-prev-tab {
         transition: all .2s ease;
         text-decoration: none;
