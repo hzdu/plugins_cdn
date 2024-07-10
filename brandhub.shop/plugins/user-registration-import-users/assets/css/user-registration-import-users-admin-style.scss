@@ -1,0 +1,49 @@
+/**
+ * Import
+ **/
+@import '../../../user-registration/assets/css/variables/variables';
+
+.ur-export-users-page {
+	.ur-input {
+		max-width: inherit;
+	}
+
+	.user-registration-custom-file {
+		margin-bottom: 0;
+
+		& + .help {
+			margin-top: 4px;
+		}
+	}
+}
+
+.ur-table-map-field {
+	.is_required {
+		border-color: $red;
+
+		& + .ur-table-map-label-invalid {
+			color: $red;
+			display: block;
+			margin-top: 5px;
+		}
+	}
+}
+
+.ur-table-map-label {
+	.ur-table-map-label-desc {
+		color: $color_gray_two;
+		display: block;
+		font-style: italic;
+		margin-top: 4px;
+	}
+}
+
+.publishing-action {
+	.user-registration-table & {
+		text-align: right;
+
+		.ur_import_mapped_column_button {
+			width: auto;
+		}
+	}
+}

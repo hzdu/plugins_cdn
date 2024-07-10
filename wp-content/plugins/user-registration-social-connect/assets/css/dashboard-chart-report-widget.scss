@@ -1,0 +1,71 @@
+#user_registration_social_connect_dashboard_reporting{
+	.ursc-dashboard-widget {
+		min-height: 100px;
+		.ursc-loading {
+			.spinner {
+				left: 0;
+				right: 0;
+				top: 50%;
+				margin: 0 auto;
+				position: absolute;
+				transform: translateY(-50%);
+				opacity:1;
+				visibility:visible;
+			}
+		}
+		.ursc-chart {
+
+			canvas#ursc-chart-report-area {
+				margin: 30px 0;
+			}
+
+			.ursc-chart-report-legends {
+
+				ul {
+					display: flex;
+					flex-wrap: wrap;
+
+					li {
+						display: flex;
+						align-items: center;
+					    margin-right: 10px;
+						background: #eee;
+						padding: 4px 8px;
+						border-radius: 20px;
+
+						.ursc-color-tag {
+							display: block;
+							width: 10px;
+							height: 10px;
+							border-radius: 10px;
+							margin-right: 5px;
+						}
+					}
+				}
+			}
+
+			.ursc-dashboard-widget-statictics {
+				margin-left: -12px;
+				margin-right: -12px;
+				padding-top: 12px;
+				border-top: 1px solid #eee;
+
+				.ursc-total-social-reg {
+					padding: 0 12px;
+					font-weight: 600;
+				}
+			}
+		}
+
+		.no-user-found  {
+			margin: 30px 0;
+			text-align: center;
+
+			.no-user-message {
+				display: block;
+				margin-top: 10px;
+				color: #bcbcbc;
+			}
+		}
+	}
+}

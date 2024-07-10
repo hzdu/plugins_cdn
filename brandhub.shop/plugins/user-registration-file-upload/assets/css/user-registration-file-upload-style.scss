@@ -1,0 +1,227 @@
+@import '../../../user-registration/assets/css/variables/variables';
+
+$remove_btn_dark : #f70d1a;
+$download_btn_dark: #0170b9;
+
+.user-registration {
+	.urfu-file-upload {
+		a.urfu-attachment-link {
+			border-bottom: 0 none;
+		}
+
+		button {
+			padding: 10px 20px;
+			border: 0 none;
+			position: relative;
+			cursor: pointer;
+			line-height: 1em;
+			border-radius: 0;
+		}
+	}
+}
+
+.dropzone {
+	padding: 20px;
+	margin-bottom: 10px;
+	border: 2px dashed $color_gray_four;
+
+	.dz-message {
+		text-align: center;
+		margin: 2em 0;
+
+		svg {
+			width: 40px;
+			height: 40px;
+			padding: 4px;
+			margin: 0 auto;
+			background: $color_gray_four;
+			border-radius: 4px
+		}
+
+		&.hide{
+			display: none;
+		}
+
+		.user-registration-file-upload-title {
+			color: $color_gray_one;
+			display: block;
+			font-size: 16px;
+			margin-top: 8px;
+		}
+
+		.user-registration-file-upload-hint {
+			color: $color_gray_three;
+			font-size: 14px;
+		}
+	}
+
+	.dz-preview {
+		flex: 0 0 100%;
+		width: 100%;
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		margin-bottom: 20px;
+		border-bottom: 1px solid $border_color;
+		padding-bottom: 20px;
+
+		.dz-image {
+			width: 64px;
+			height: 64px;
+			flex: 0 0 64px;
+			margin-right: 15px;
+			border-radius: 3px;
+			overflow: hidden;
+
+			img {
+				width: 100%;
+				max-height: 100% !important;
+			}
+
+		}
+
+		.dz-details {
+			text-align: left;
+			font-size: 14px;
+			flex: 1;
+
+			.dz-size {
+				color: $gray_base;
+			}
+
+			.dz-filename {
+				overflow: hidden;
+				max-width: 200px;
+
+				span {
+					color: $color_gray_three;
+
+					// Clamping text
+					display: -webkit-box;
+					-webkit-line-clamp: 1;
+					-webkit-box-orient: vertical;
+					overflow: hidden;
+				}
+			}
+
+			@media screen and (max-width: 768px) {
+				flex: 100%;
+			}
+		}
+
+		.dz-progress {
+			background: $color_gray_five;
+			border-radius: 2px;
+			height: 4px;
+			width: 100%;
+			margin-left: 80px;
+			order: 4;
+
+			.dz-upload {
+				background-color: $green;
+				border-radius: 2px;
+				height: 4px;
+				display: block;
+				transition: all 0.25s ease 0s;
+			}
+		}
+
+		.dz-error-message {
+			color: $red;
+			font-size: 14px;
+			flex: 0 0 80%;
+			width: 100%;
+			text-align: left;
+			margin-left: 80px;
+			order: 5;
+		}
+
+		.dz-success-mark,
+		.dz-error-mark {
+			display: none;
+		}
+
+		.dz-remove {
+			font-size: 0;
+			position: relative;
+			height: 28px;
+			width: 28px;
+			display: inline-flex;
+			margin-left: auto;
+			order: 3;
+			border-radius: 14px;
+			border: 2px solid $remove_btn_dark !important;
+
+			&:before,
+			&:after {
+				content: '';
+				height: 14px;
+				width: 2px;
+				display: block;
+				background: $remove_btn_dark !important;
+				position: absolute;
+				top: 50%;
+				left: 0;
+				right: 0;
+				margin: 0 auto;
+			}
+
+			&:before {
+				transform: translateY(-50%) rotate(45deg)
+			}
+
+			&:after {
+				transform: translateY(-50%) rotate(-45deg)
+			}
+		}
+
+		.urfu-download-file {
+			margin-right: 10px;
+			color: $download_btn_dark;
+			text-decoration: none;
+			height: 28px;
+			width: 28px;
+			border-radius: 20px;
+			border: 2px solid $download_btn_dark;
+
+			span {
+				display: block;
+				margin: 0 auto;
+				line-height: 24px;;
+			}
+		}
+
+		&.dz-processing {
+			.dz-progress {
+				display: block;
+			}
+		}
+
+		&.dz-complete {
+			.dz-progress {
+				display: none;
+			}
+		}
+
+		&.dz-error {
+			.dz-remove {
+				border-color: $red;
+
+				&:before,
+				&:after {
+					background: $red;
+				}
+			}
+		}
+
+		&:last-child {
+			border-bottom: 0;
+			padding-bottom: 0;
+			margin-bottom: 0;
+		}
+	}
+
+	&.dz-clickable {
+		cursor: pointer;
+	}
+}

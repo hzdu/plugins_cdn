@@ -1,0 +1,224 @@
+@import '../../../user-registration/assets/css/variables/variables';
+
+.urcl-form-settings-container {
+	margin-bottom: 1em;
+
+	.urcl-form-settings-logic-wrap {
+		background: $white;
+		padding: 16px;
+		margin-bottom: 16px;
+		border-radius: 4px;
+		position: relative;
+		border: 1px solid $border_color;
+
+		.urcl-form-settings-assign, .urcl-form-settings-action-wrapper {
+			display: flex;
+			align-items: center;
+			margin-bottom: 8px;
+
+			p {
+				margin: 0;
+				color: $gray_base;
+			}
+
+			.urcl-form-settings-field {
+				width: 160px;
+				margin: 0 8px;
+				line-height: 1.25;
+			}
+
+			.select2-container {
+				width: 200px !important;
+				margin-left: 10px;
+				margin-right: 10px;
+			}
+
+			#urcl-redirection-custom-page {
+				display: none;
+				width: 160px;
+			}
+
+			#urcl-redirection-external-url {
+				display: none;
+				width: 200px;
+			}
+		}
+
+		.urcl-form-settings-logic-box {
+			margin: 0 0 8px;
+
+			.urcl-conditional-group,
+			.urcl-conditional-or-group {
+				display: flex;
+				align-items: center;
+				padding: 8px;
+				border-radius: 4px;
+				background: $color_gray_five;
+
+				.urcl-form-group {
+					flex: 1;
+				}
+
+				.urcl-operator {
+					width: 120px;
+					margin: 0 8px;
+				}
+
+				.urcl-value {
+					flex: 1;
+					margin-right: 8px;
+				}
+
+				.add {
+					padding: 8px;
+					max-width: inherit;
+					flex: 0 0 auto;
+				}
+
+				.remove {
+					&:hover {
+						background: $red;
+						border-color: $red;
+						color: $white;
+					}
+				}
+			}
+		}
+
+		.urcl-or-label {
+			color: $gray_base;
+			text-align: center;
+			font-weight: 600;
+			position: relative;
+
+			&::before,
+			&::after {
+				content: '';
+				display: block;
+				background: $border_color;
+				height: 1px;
+				position: absolute;
+				top: 50%;
+			}
+
+			&::before {
+				left: 0;
+				right: 52%;
+			}
+
+			&::after {
+				right: 0;
+				left: 52%;
+			}
+		}
+
+		.urcl-add-or-condition {
+			display: flex;
+			margin-left: auto;
+		}
+
+		.urcl-remove-condition {
+			position: absolute;
+			right: 16px;
+			top: 16px;
+			background: $color_gray_four;
+			border: none;
+			border-radius: 50%;
+			height: 20px;
+			width: 20px;
+			cursor: pointer;
+
+			&::before,
+			&::after {
+				content: '';
+				height: 11px;
+				width: 2px;
+				display: block;
+				background: $color_gray_two;
+				position: absolute;
+				top: 50%;
+				left: 0;
+				right: 0;
+				margin: 0 auto;
+			}
+
+			&::before {
+				transform: translateY(-50%) rotate(45deg);
+			}
+
+			&::after {
+				transform: translateY(-50%) rotate(-45deg);
+			}
+
+			&:hover {
+				background: $color_gray_three;
+
+				&::before,
+				&::after {
+					background: $color_gray_one;
+				}
+			}
+		}
+	}
+}
+
+.urcl-conditional-logic {
+	&__group {
+		margin-bottom: 12px;
+	}
+
+	&__rule {
+		position: relative;
+
+		&:not(:last-child) {
+			margin-bottom: 8px;
+		}
+
+		&__actions {
+			position: absolute;
+			top: 0;
+			right: 8px;
+			background: transparentize($gray_base, 0.35);
+			padding: 2px;
+			border-radius: 4px;
+			display: flex;
+			opacity: 0;
+			visibility: hidden;
+			transition: 0.2s ease;
+
+			.dashicons {
+				cursor: pointer;
+				font-size: 16px;
+				height: 16px;
+				width: 16px;
+				color: $white;
+				line-height: 16px;
+				margin: 0 2px;
+			}
+		}
+
+		&:hover {
+			.urcl-conditional-logic {
+				&__rule {
+					&__actions {
+						top: -10px;
+						opacity: 1;
+						visibility: visible;
+					}
+				}
+			}
+		}
+	}
+
+	&__rule--no-gutter {
+		.urcl-conditional-logic {
+			&__rule {
+				&__param,
+				&__value {
+					flex: calc(50% - 40px);
+					margin: 0;
+				}
+			}
+		}
+	}
+}

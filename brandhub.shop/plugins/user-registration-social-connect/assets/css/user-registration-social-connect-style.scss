@@ -1,0 +1,298 @@
+@import '../../../user-registration/assets/css/variables/variables';
+
+.ursc-front-spinner {
+	background: url('../images/wpspin_light-2x.gif') no-repeat;
+	background-size: 16px 16px;
+	display: block;
+	opacity: .7;
+	filter: alpha(opacity=70);
+	width: 16px;
+	height: 16px;
+	margin-left: -40px;
+	float: left;
+	margin-top: 8px;
+}
+
+.user-registration-social-connect-networks {
+	margin-bottom: 20px;
+
+	ul.ursc-network-lists {
+		margin: 0;
+		padding: 0;
+		list-style-type: none;
+
+		li.ursc-login-media {
+			display: inline-block;
+
+			a {
+				padding: 10px;
+				background-color: $color_social_default;
+				color: $white;
+				display: table;
+				text-decoration: none;
+				transition: background-color 0.35s;
+
+				&:hover {
+					background-color: lighten( $color_social_default, 5% );
+				}
+			}
+
+			.ursc-login-text,
+			.ursc-icon-block {
+				display: table-cell;
+				vertical-align: middle;
+			}
+
+			.ursc-login-text {
+				padding-left: 10px;
+			}
+
+			.ursc-icon-block {
+				background-repeat: no-repeat;
+				background-position: center;
+				width: 24px;
+				height: 24px;
+				display: none;
+
+				&.ursc-login-with-facebook {
+					background-image: url('../images/facebook.png');
+					display: table-cell;
+				}
+
+				&.ursc-login-with-twitter {
+					background-image: url('../images/twitter.png');
+					display: table-cell;
+				}
+
+				&.ursc-login-with-google {
+					background-image: url('../images/google.png');
+					display: table-cell;
+				}
+
+				&.ursc-login-with-linkedin {
+					background-image: url('../images/linkedin.png');
+					display: table-cell;
+				}
+			}
+
+			&.ursc-login-media--facebook {
+				a {
+					background-color: $color_facebook;
+
+					&:hover {
+						background-color: lighten( $color_facebook, 5%);
+					}
+				}
+			}
+
+			&.ursc-login-media--twitter {
+				a {
+					background-color: $color_twitter;
+
+					&:hover {
+						background-color: lighten( $color_twitter, 5%);
+					}
+				}
+			}
+
+			&.ursc-login-media--google {
+				a {
+					background-color: $color_google;
+
+					&:hover {
+						background-color: lighten( $color_google, 5%);
+					}
+				}
+			}
+
+			&.ursc-login-media--linkedin {
+				a {
+					background-color: $color_linkedin;
+
+					&:hover {
+						background-color: lighten( $color_linkedin, 5%);
+					}
+				}
+			}
+		}
+
+
+		&.ursc_theme_1,
+		&.ursc_theme_2,
+		&.ursc_theme_3 {
+			li.ursc-login-media {
+				width: 40px;
+				height: 40px;
+				margin: 0 5px 0 0;
+			}
+		}
+
+		&.ursc_theme_1 {
+			li.ursc-login-media {
+				a {
+					border-radius: 50%;
+					height: 40px;
+					width: 40px;
+					padding: 0;
+				}
+			}
+		}
+
+		&.ursc_theme_3 {
+			li.ursc-login-media {
+				a {
+					border-radius: 3px;
+				}
+			}
+		}
+
+		// style 4 with text
+		&.ursc_theme_4 {
+			li.ursc-login-media {
+				margin: 0 10px 5px 0;
+				display: inline-block;
+
+				a {
+					display: block;
+					border-radius: 3px;
+
+					.ursc-icon-block {
+						&.ursc-login-with-facebook {
+							background-image: url('../images/facebook-brand-white.png');
+						}
+						&.ursc-login-with-google {
+							background-image: url('../images/google-brand.png');
+							background-size: 100%;
+							border-radius: 2px;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+.ursc-input {
+	width: 100%;
+	display: block;
+	padding: 10px;
+}
+
+/* Text meant only for screen readers. */
+.screen-reader-text {
+	clip: rect(1px, 1px, 1px, 1px);
+	position: absolute !important;
+	height: 1px;
+	width: 1px;
+	overflow: hidden;
+
+	&:focus {
+		background-color: #f1f1f1;
+		border-radius: 3px;
+		box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.6);
+		clip: auto !important;
+		color: #21759b;
+		display: block;
+		font-size: 1px;
+		font-weight: bold;
+		height: auto;
+		left: 5px;
+		line-height: normal;
+		padding: 15px 23px 14px;
+		text-decoration: none;
+		top: 5px;
+		width: auto;
+		z-index: 100000; /* Above WP toolbar. */
+	}
+}
+
+/* Do not show the outline on the skip link target. */
+#content[tabindex='-1']:focus {
+	outline: 0;
+}
+
+// Alert Notification
+.ursc-alert {
+	&.ursc-alert--error {
+		margin-top: 15px;
+		box-sizing: border-box;
+		padding: 5px !important;
+	}
+}
+
+.user-registration-social-connect-networks-error{
+
+	display:none;
+}
+
+.ursc-alert--error {
+	border-left: 4px solid $red;
+	padding: 12px;
+	margin-left: 0;
+	margin-bottom: 20px;
+	background-color: $white;
+	box-shadow: 0 1px 1px 0 rgba(0,0,0,0.1);
+}
+
+.ursc-dialog{
+	display: none; /* Hidden by default */
+	position: fixed; /* Stay in place */
+	z-index: 99; /* Sit on top */
+	left: 0;
+	top: 0;
+	width: 100%; /* Full width */
+	height: 100%; /* Full height */
+	overflow: auto; /* Enable scroll if needed */
+	background-color: rgb(0,0,0); /* Fallback color */
+	background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+
+	.ursc-dialog-content{
+		position: relative;
+		background-color: #fefefe;
+		margin: 10% auto auto; /* 10% from the top and centered */
+		padding: 40px 20px 60px;
+		border: 1px solid #888;
+		width: 30%; /* Could be more or less, depending on screen size */
+		min-width: 350px;
+
+		.button-primary{
+			margin-top: 10px;
+		}
+	}
+
+	.ursc-close{
+		position: absolute;
+		right: 20px;
+		top: 15px;
+		color: #aaa;
+		/*float: right;*/
+		font-size: 28px;
+		font-weight: bold;
+
+		&:hover,
+		&:focus{
+			color: black;
+			text-decoration: none;
+			cursor: pointer;
+		}
+	}
+}
+
+.user-registration {
+	.ursc-dialog {
+		.ursc-dialog-content {
+			padding: 40px 20px 20px;
+		}
+	}
+}
+
+.register {
+	.user-registration-social-connect-networks {
+		margin-bottom: 0;
+		margin-top: 10px;
+
+		.ursc-network-lists {
+			padding: 0 10px;
+		}
+	}
+}

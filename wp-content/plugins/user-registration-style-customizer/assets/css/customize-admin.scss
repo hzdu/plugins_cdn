@@ -1,0 +1,35 @@
+@import '../../../user-registration/assets/css/variables/variables';
+
+.ur-registered-from {
+	.ur-builder-wrapper {
+		.button {
+			&.button-style-customizer {
+				width: 56px;
+				height: 56px;
+				position: fixed;
+				right: 32px;
+				bottom: 24px;
+				box-shadow: 2px 3px 15px transparentize($gray_base, 0.7);
+				z-index: 1;
+
+				.dashicons {
+					font-size: 32px;
+					height: 32px;
+					width: 32px;
+					position: absolute;
+					left: 0;
+					right: 0;
+					margin: 0 auto;
+					top: 50%;
+					transform: translateY(-50%);
+				}
+			}
+		}
+
+		&.ur-multipart {
+			.button-style-customizer {
+				bottom: 75px;
+			}
+		}
+	}
+}
