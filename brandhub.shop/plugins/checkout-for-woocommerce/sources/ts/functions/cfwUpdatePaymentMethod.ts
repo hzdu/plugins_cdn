@@ -1,6 +1,6 @@
 import cfwAjax from './cfwAjax';
 
-export default function cfwUpdatePaymentMethod( paymentMethod: string ): JQueryXHR {
+export default function cfwUpdatePaymentMethod( paymentMethod: string ): void {
     const params = {
         type: 'POST',
         data: {
@@ -8,5 +8,5 @@ export default function cfwUpdatePaymentMethod( paymentMethod: string ): JQueryX
         },
     };
 
-    return cfwAjax( 'update_payment_method', params );
+    cfwAjax( 'update_payment_method', params );
 }

@@ -1,21 +1,20 @@
-// Custom fonts
-@import "custom-fonts";
+@import "../../../node_modules/bootstrap/scss/_functions"; // required to pull in nested bootstrap grid
 
-@import "grid-mixins";
+// scss-docs-start grid-breakpoints
+$grid-breakpoints: (
+    xs: 0,
+    sm: 576px,
+    md: 768px,
+    lg: 992px,
+    xl: 1200px,
+    xxl: 1400px
+) !default;
+
+@import "~bootstrap/scss/mixins/breakpoints";
 @import "components/buttons";
-@import "components/variation-modal";
-@import "components/modals";
 
 .cfw-side-cart-open-trigger {
     cursor: pointer;
-}
-
-@font-face {
-    font-family: "cfw-slick";
-    src: url("../fonts/slick.eot");
-    src: url("../fonts/slick.eot?#iefix") format("embedded-opentype"), url("../fonts/slick.woff") format("woff"), url("../fonts/slick.ttf") format("truetype"), url("../fonts/slick.svg#slick") format("svg");
-    font-weight: normal;
-    font-style: normal;
 }
 
 body.admin-bar {
@@ -42,25 +41,10 @@ body.admin-bar {
     height: 100vh;
 }
 
-$slick-font-family: "cfw-slick";
-$slick-loader-path: "../images/";
-
-.slick-dotted.slick-slider {
-    margin-bottom: 1em !important;
-}
-
 // Requires grid
 @import "utility-classes";
 
-@import "components/order-bump";
-
 #cfw-side-cart {
-    /*rtl:begin:ignore*/
-    /* These are copied because Slick uses .parent & selectors that cause issues when imported */
-    @import "components/slick";
-    @import "components/slick-theme";
-    /*rtl:end:ignore*/
-
     font-size: 16px;
     box-sizing: border-box;
     position: fixed;
@@ -82,6 +66,16 @@ $slick-loader-path: "../images/";
     line-height: 1;
     visibility: hidden;
 
+    .slick-dots button {
+        font-size: 8px;
+
+        &:hover {
+            background: none;
+            color: initial;
+            font-size: 8px;
+        }
+    }
+
     @import "variables";
     @import "custom-properties";
 
@@ -92,13 +86,16 @@ $slick-loader-path: "../images/";
     }
 
     @import "components/cart-summary/cart-item-quantity-control";
-    @import "components/suggested-products";
+    @import "components/order-bump";
     @import "compatibility/woocommerce-subscriptions";
     @import "compatibility/woocommerce-product-bundles";
 
     #cfw_order_bumps_below_cart_items {
         display: block !important;
     }
+
+    // Bootstrap 5.0 Grid
+    @import "grid";
 
     // Checkbox
     @import "components/form-fields";
@@ -115,10 +112,6 @@ $slick-loader-path: "../images/";
         font-family: var(--cfw-heading-font-family) !important;
     }
 
-    .form-row {
-        padding: 5px !important;
-    }
-
     a:not(.cfw-primary-btn):not(.cfw-secondary-btn) {
         color: var(--cfw-body-link-color);
     }
@@ -133,11 +126,6 @@ $slick-loader-path: "../images/";
         height: 100%;
         padding: 1.5em 0;
         position: relative;
-        background: inherit !important;
-
-        @include media-breakpoint-down(md) {
-            overflow: hidden scroll;
-        }
     }
 
     .cfw-side-cart-contents-header,
@@ -174,11 +162,6 @@ $slick-loader-path: "../images/";
         flex-grow: 1;
         overflow-y: auto;
 
-        @include media-breakpoint-down(md) {
-            flex-grow: unset;
-            overflow-y: unset;
-        }
-
         h2 {
             margin-top: 2em;
             text-align: center;
@@ -213,8 +196,6 @@ $slick-loader-path: "../images/";
             text-transform: none;
             background: var(--cfw-body-background-color) !important;
             border: none;
-            color: inherit !important;
-            vertical-align: middle;
         }
     }
 
@@ -222,21 +203,13 @@ $slick-loader-path: "../images/";
         border-collapse: collapse;
 
         tr {
-            display: flex;
-            justify-content: space-between;
-            padding: 10px 0;
+            td, th {
+                padding: 10px 0;
+            }
         }
 
         tr.order-total {
-            align-items: baseline;
             border-top: 2px solid #000;
-
-            .includes_tax {
-                color: #666;
-                display: block;
-                font-weight: 400;
-                margin-top: 10px;
-            }
         }
     }
 
@@ -251,7 +224,6 @@ $slick-loader-path: "../images/";
     .cfw-side-cart-totals {
         table {
             border-spacing: 0 1em;
-
             th, td {
                 padding: 0;
                 text-align: left;
@@ -274,10 +246,9 @@ $slick-loader-path: "../images/";
         top: 8px;
         right: 0;
         font-size: 0.9em;
-        color: var(--cfw-body-text-color) !important;
+        color: var(--cfw-body-text-color);
         font-weight: bold;
         transition: all 0.3s ease;
-        text-decoration: none;
     }
 
     tr:hover .cfw-remove-item-button {
@@ -300,11 +271,6 @@ $slick-loader-path: "../images/";
 
     .cfw-secondary-btn {
         line-height: normal;
-        padding: 0.4em;
-    }
-
-    .cfw-primary-btn {
-        padding: 0.6em;
     }
 
     .wc-proceed-to-checkout > *:not(:last-child) {
@@ -348,7 +314,7 @@ $slick-loader-path: "../images/";
     }
 
     .cfw-side-cart-free-shipping-progress {
-        background-color: var(--cfw-side-cart-free-shipping-progress-background, #f5f5f5);
+        background-color: var(--cfw-side-cart-free-shipping-progress-background, #f5f5f5 );
     }
 
     .cfw-side-cart-free-shipping-progress-indicator {
@@ -365,21 +331,16 @@ $slick-loader-path: "../images/";
     }
 
     .cfw-side-cart-coupon-wrap {
-        margin-bottom: 0.8em;
+        margin-bottom: 2em;
 
-        .form-row, .cfw-input-wrap {
+        .form-row {
             input[type="text"], input[type="tel"], input[type="email"], input[type="password"] {
-                font-size: 14px !important;
+                font-size: 14px;
             }
 
             .cfw-secondary-btn {
                 font-size: 14px;
-                padding: 0.82rem !important;
             }
-        }
-
-        a {
-            text-decoration: none;
         }
     }
 
@@ -387,22 +348,15 @@ $slick-loader-path: "../images/";
         display: none;
     }
 
-    .cfw_side_cart_item_after_data {
-        margin-top: 0.5em;
-        display: flex;
-        align-items: center;
+    //#cfw-alert-container {
+    //    position: absolute;
+    //    left: 0;
+    //    right: 0;
+    //    top: 0;
+    //}
 
-        .cfw-edit-item-quantity-control-wrap {
-            margin-right: 7px;
-        }
-    }
-
-    .cfw-cart-edit-item-variation {
-        text-decoration: none;
-    }
-
-    @include media-breakpoint-down(md) {
-        max-width: 100%;
+    @include media-breakpoint-down(lg) {
+        width: 100%;
     }
 }
 
@@ -441,7 +395,7 @@ $slick-loader-path: "../images/";
     background: var(--cfw-side-cart-button-background, #fff);
     border-radius: 8px;
     padding: 16px;
-    box-shadow: var(--cfw-side-cart-button-box-shadow, 0 2px 10px rgba(0, 0, 0, 0.372863));
+    box-shadow: var(--cfw-side-cart-button-box-shadow, 0 2px 10px rgba(0, 0, 0, 0.372863) );
     cursor: pointer;
     text-rendering: optimizelegibility !important;
     -webkit-font-smoothing: subpixel-antialiased;
@@ -449,7 +403,6 @@ $slick-loader-path: "../images/";
     z-index: 999997;
     color: #222;
     text-transform: none;
-    text-decoration: none;
 
     &:hover .cfw-side-cart-quantity-wrap {
         opacity: 0.5;
@@ -505,29 +458,6 @@ body.cfw-side-cart-close {
 
 html[dir="rtl"] .cfw-side-cart-close-btn svg {
     transform: scaleX(-1);
-}
-
-.cfw-shake {
-    animation-name: cfw-shake;
-    animation-duration: 0.8s;
-    animation-iteration-count: 1;
-    animation-timing-function: ease;
-    animation-fill-mode: both;
-}
-
-@keyframes cfw-shake {
-    0% {
-        transform: translate(0, 0);
-    }
-    10%, 30%, 50%, 70%, 90% {
-        transform: translate(-5px, 0);
-    }
-    20%, 40%, 60%, 80% {
-        transform: translate(5px, 0);
-    }
-    100% {
-        transform: translate(0, 0);
-    }
 }
 
 

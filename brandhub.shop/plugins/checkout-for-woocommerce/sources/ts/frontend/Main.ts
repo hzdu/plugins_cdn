@@ -1,76 +1,70 @@
-import cfwAddOverlay                                     from '../functions/cfwAddOverlay';
-import cfwValidatePaymentTab                             from '../functions/cfwValidatePaymentTab';
-import cfwValidateShippingTab                            from '../functions/cfwValidateShippingTab';
-import AccountValidation                                 from './AccountValidation';
-import AmazonPayLegacy                                   from './Compatibility/Gateways/AmazonPayLegacy';
-import AmazonPayV1                                       from './Compatibility/Gateways/AmazonPayV1';
-import AmazonPay                                         from './Compatibility/Gateways/AmazonPay';
-import BraintreeForWooCommerce                           from './Compatibility/Gateways/BraintreeForWooCommerce';
-import Braintree                                         from './Compatibility/Gateways/Braintree';
-import KlarnaCheckout                                    from './Compatibility/Gateways/KlarnaCheckout';
-import KlarnaPayments                                    from './Compatibility/Gateways/KlarnaPayments';
-import Mercado                                           from './Compatibility/Gateways/Mercado';
-import NMI                                               from './Compatibility/Gateways/NMI';
-import PayPalForWooCommerce                              from './Compatibility/Gateways/PayPalForWooCommerce';
-import PayPalPlusCw                                      from './Compatibility/Gateways/PayPalPlusCw';
-import PaymentPluginsPayPal                              from './Compatibility/Gateways/PaymentPluginsPayPal';
-import Square                                            from './Compatibility/Gateways/Square';
-import Stripe                                            from './Compatibility/Gateways/Stripe';
-import WooCommercePensoPay                               from './Compatibility/Gateways/WooCommercePensoPay';
-import WooSquarePro                                      from './Compatibility/Gateways/WooSquarePro';
-import CO2OK                                             from './Compatibility/Plugins/CO2OK';
-import EUVatNumber                                       from './Compatibility/Plugins/EUVatNumber';
-import ExtraCheckoutFieldsBrazil                         from './Compatibility/Plugins/ExtraCheckoutFieldsBrazil';
-import MondialRelay                                      from './Compatibility/Plugins/MondialRelay';
-import MyShipper                                         from './Compatibility/Plugins/MyShipper';
-import NIFPortugal                                       from './Compatibility/Plugins/NIFPortugal';
-import NLPostcodeChecker                                 from './Compatibility/Plugins/NLPostcodeChecker';
-import OrderDeliveryDate                                 from './Compatibility/Plugins/OrderDeliveryDate';
-import PortugalVaspKios                                  from './Compatibility/Plugins/PortugalVaspKios';
-import PostNL                                            from './Compatibility/Plugins/PostNL';
-import SendCloud                                         from './Compatibility/Plugins/SendCloud';
-import ShipMondo                                         from './Compatibility/Plugins/ShipMondo';
-import WCPont                                            from './Compatibility/Plugins/WCPont';
-import WooCommerceAddressValidation                      from './Compatibility/Plugins/WooCommerceAddressValidation';
-import WooCommerceGermanized                             from './Compatibility/Plugins/WooCommerceGermanized';
-import WooCommerceGiftCards                              from './Compatibility/Plugins/WooCommerceGiftCards';
-import WooFunnelsOrderBumps                              from './Compatibility/Plugins/WooFunnelsOrderBumps';
-import Accordion                                         from './Components/Accordion';
-import AddableFields                                     from './Components/AddableFields';
-import CartItemQuantityControl                           from './Components/CartItemQuantityControl';
-import Coupons                                           from './Components/Coupons';
-import DiscreetAddressLine1Fields                        from './Components/DiscreetAddressLine1Fields';
-import FormField                                         from './Components/FormField';
-import Form                                              from './Components/Form';
-import FullName                                          from './Components/FullName';
-import LoginForm                                         from './Components/LoginForm';
-import LostPasswordModal                                 from './Components/LostPasswordModal';
-import PaymentRequestButtons                             from './Components/PaymentRequestButtons';
-import StorePolicyModals                                 from './Components/StorePolicyModals';
-import TermsAndConditions                                from './Components/TermsAndConditions';
-import Pickup                                            from './Features/Pickup';
-import AddressInternationalizationService                from './Services/AddressInternationalizationService';
-import AlertService                                      from './Services/AlertService';
-import BillingAddressSyncService                         from './Services/BillingAddressSyncService';
-import ChromeAutocompleteBugService                      from './Services/ChromeAutocompleteBugService';
-import CompleteOrderService                              from './Services/CompleteOrderService';
-import DataService                                       from './Services/DataService';
-import EditVariableCartItemService                       from './Services/EditVariableCartItemService';
-import FetchifyAddressAutocompleteService                from './Services/FetchifyAddressAutocompleteService';
-import FieldPersistenceService                           from './Services/FieldPersistenceService';
-import GoogleAddressAutocompleteService                  from './Services/GoogleAddressAutocompleteService';
-import InternationalPhoneFieldService                    from './Services/InternationalPhoneFieldService';
-import LoggingService                                    from './Services/LoggingService';
-import OrderBumpService                                  from './Services/OrderBumpService';
-import OrderReviewStepService                            from './Services/OrderReviewStepService';
-import ParsleyService                                    from './Services/ParsleyService';
-import PaymentGatewaysService                            from './Services/PaymentGatewaysService';
-import SmartyStreetsAddressValidationService             from './Services/SmartyStreetsAddressValidationService';
-import TabService                                        from './Services/TabService';
-import TooltipService                                    from './Services/TooltipService';
-import UpdateCheckoutService                             from './Services/UpdateCheckoutService';
-import ValidationService                                 from './Services/ValidationService';
-import ZipAutocompleteService                            from './Services/ZipAutocompleteService';
+import cfwValidateShippingTab                from '../functions/cfwValidateShippingTab';
+import AccountValidation                     from './AccountValidation';
+import AmazonPayLegacy                       from './Compatibility/Gateways/AmazonPayLegacy';
+import AmazonPayV1                           from './Compatibility/Gateways/AmazonPayV1';
+import AmazonPay                             from './Compatibility/Gateways/AmazonPay';
+import BraintreeForWooCommerce               from './Compatibility/Gateways/BraintreeForWooCommerce';
+import Braintree                             from './Compatibility/Gateways/Braintree';
+import KlarnaCheckout                        from './Compatibility/Gateways/KlarnaCheckout';
+import NMI                                   from './Compatibility/Gateways/NMI';
+import PayPalForWooCommerce                  from './Compatibility/Gateways/PayPalForWooCommerce';
+import PayPalPlusCw                          from './Compatibility/Gateways/PayPalPlusCw';
+import Square                                from './Compatibility/Gateways/Square';
+import Stripe                                from './Compatibility/Gateways/Stripe';
+import WooCommercePensoPay                   from './Compatibility/Gateways/WooCommercePensoPay';
+import WooSquarePro                          from './Compatibility/Gateways/WooSquarePro';
+import CO2OK                                 from './Compatibility/Plugins/CO2OK';
+import EUVatNumber                           from './Compatibility/Plugins/EUVatNumber';
+import ExtraCheckoutFieldsBrazil             from './Compatibility/Plugins/ExtraCheckoutFieldsBrazil';
+import MondialRelay                          from './Compatibility/Plugins/MondialRelay';
+import MyShipper                             from './Compatibility/Plugins/MyShipper';
+import NIFPortugal                           from './Compatibility/Plugins/NIFPortugal';
+import NLPostcodeChecker                     from './Compatibility/Plugins/NLPostcodeChecker';
+import OrderDeliveryDate                     from './Compatibility/Plugins/OrderDeliveryDate';
+import PortugalVaspKios                      from './Compatibility/Plugins/PortugalVaspKios';
+import PostNL                                from './Compatibility/Plugins/PostNL';
+import SendCloud                             from './Compatibility/Plugins/SendCloud';
+import ShipMondo                             from './Compatibility/Plugins/ShipMondo';
+import WCPont                                from './Compatibility/Plugins/WCPont';
+import WooCommerceAddressValidation          from './Compatibility/Plugins/WooCommerceAddressValidation';
+import WooCommerceGermanized                 from './Compatibility/Plugins/WooCommerceGermanized';
+import WooCommerceGiftCards                  from './Compatibility/Plugins/WooCommerceGiftCards';
+import WooFunnelsOrderBumps                  from './Compatibility/Plugins/WooFunnelsOrderBumps';
+import Accordion                             from './Components/Accordion';
+import AddableFields                         from './Components/AddableFields';
+import CartItemQuantityControl               from './Components/CartItemQuantityControl';
+import Coupons                               from './Components/Coupons';
+import DiscreetAddressLine1Fields            from './Components/DiscreetAddressLine1Fields';
+import FormField                             from './Components/FormField';
+import Form                                  from './Components/Form';
+import FullName                              from './Components/FullName';
+import LoginForm                             from './Components/LoginForm';
+import LostPasswordModal                     from './Components/LostPasswordModal';
+import OrderBump                             from './Components/OrderBump';
+import PaymentRequestButtons                 from './Components/PaymentRequestButtons';
+import TermsAndConditions                    from './Components/TermsAndConditions';
+import Pickup                                from './Features/Pickup';
+import AddressInternationalizationService    from './Services/AddressInternationalizationService';
+import AlertService                          from './Services/AlertService';
+import BillingAddressSyncService             from './Services/BillingAddressSyncService';
+import ChromeAutocompleteBugService          from './Services/ChromeAutocompleteBugService';
+import CompleteOrderService                  from './Services/CompleteOrderService';
+import DataService                           from './Services/DataService';
+import FetchifyAddressAutocompleteService    from './Services/FetchifyAddressAutocompleteService';
+import FieldPersistenceService               from './Services/FieldPersistenceService';
+import GoogleAddressAutocompleteService      from './Services/GoogleAddressAutocompleteService';
+import InternationalPhoneFieldService        from './Services/InternationalPhoneFieldService';
+import LoggingService                        from './Services/LoggingService';
+import OrderReviewStepService                from './Services/OrderReviewStepService';
+import ParsleyService                        from './Services/ParsleyService';
+import PaymentGatewaysService                from './Services/PaymentGatewaysService';
+import SmartyStreetsAddressValidationService from './Services/SmartyStreetsAddressValidationService';
+import TabService                            from './Services/TabService';
+import TooltipService                        from './Services/TooltipService';
+import UpdateCheckoutService                 from './Services/UpdateCheckoutService';
+import ValidationService                     from './Services/ValidationService';
+import ZipAutocompleteService                from './Services/ZipAutocompleteService';
+import Data = google.maps.Data;
 
 /**
  * The main class of the front end checkout system
@@ -115,12 +109,6 @@ class Main {
     private _paymentGatewaysService: PaymentGatewaysService;
 
     /**
-     * @type {OrderBumpService}
-     * @private
-     */
-    private _orderBumpService: OrderBumpService;
-
-    /**
      * @type boolean
      * @private
      */
@@ -153,7 +141,7 @@ class Main {
      * @param {AjaxInfo} ajaxInfo
      * @param {any} settings
      */
-    constructor( checkoutFormElement: any, alertContainer: any, tabContainerElement: any, breadCrumbElement: any, settings: any ) {
+    constructor( checkoutFormElement: any, alertContainer: any, tabContainerElement, breadCrumbElement, settings: any ) {
         if ( !Main._instance ) {
             Main._instance = this;
         }
@@ -188,7 +176,6 @@ class Main {
         const validationService = new ValidationService();
         validationService.addValidatorFactory( 'cfw-customer-info', accountValidation.getValidatorFactory() );
         validationService.addValidatorFactory( 'cfw-shipping-method', cfwValidateShippingTab );
-        validationService.addValidatorFactory( 'cfw-payment-method', cfwValidatePaymentTab );
 
         new BillingAddressSyncService();
         new FieldPersistenceService( checkoutFormElement );
@@ -220,7 +207,6 @@ class Main {
         new TooltipService();
         new OrderReviewStepService();
         new InternationalPhoneFieldService();
-        this.orderBumpService = new OrderBumpService();
 
         /**
          * Components
@@ -234,10 +220,9 @@ class Main {
         new TermsAndConditions();
         new PaymentRequestButtons();
         new CartItemQuantityControl();
+        new OrderBump();
         new AddableFields();
         new FullName();
-        new EditVariableCartItemService();
-        new StorePolicyModals();
 
         /**
          * Features
@@ -254,31 +239,13 @@ class Main {
         jQuery( document.body ).trigger( 'init_checkout' );
         LoggingService.logEvent( 'Fired init_checkout event.' );
 
-        jQuery( document.body ).on( 'cfw-add-overlay', () => {
-            cfwAddOverlay();
-        } );
-
         jQuery( document.body ).on( 'cfw-remove-overlay', () => {
             DataService.checkoutForm.unblock();
         } );
 
-        jQuery( document.body ).on( 'cfw_update_cart', ( e ) => {
+        jQuery( document.body ).on( 'cfw_update_cart', () => {
             jQuery( '[name="cfw_update_cart"]' ).val( 'true' );
-            Main.instance.updateCheckoutService.queueUpdateCheckout( e, {
-                update_shipping_method: false,
-            } );
-        } );
-
-        jQuery( document.body ).on( 'cfw_order_bump_variation_added_to_cart', ( e ) => {
-            Main.instance.updateCheckoutService.queueUpdateCheckout( e, {
-                update_shipping_method: false,
-            } );
-        } );
-
-        jQuery( document.body ).on( 'cfw_cart_item_variation_edited', ( e ) => {
-            Main.instance.updateCheckoutService.queueUpdateCheckout( e, {
-                update_shipping_method: false,
-            } );
+            Main.instance.updateCheckoutService.queueUpdateCheckout();
         } );
 
         const expandCart = jQuery( '#cfw-expand-cart' );
@@ -323,7 +290,6 @@ class Main {
             new CO2OK(),
             new EUVatNumber(),
             new KlarnaCheckout(),
-            new KlarnaPayments(),
             new MondialRelay(),
             new NIFPortugal(),
             new NLPostcodeChecker(),
@@ -346,8 +312,6 @@ class Main {
             new MyShipper(),
             new ExtraCheckoutFieldsBrazil(),
             new NMI(),
-            new PaymentPluginsPayPal(),
-            new Mercado(),
         ].forEach( ( compat ) => compat.maybeLoad() );
     }
 
@@ -470,14 +434,6 @@ class Main {
      */
     static get instance(): Main {
         return Main._instance;
-    }
-
-    get orderBumpService(): OrderBumpService {
-        return this._orderBumpService;
-    }
-
-    set orderBumpService( value: OrderBumpService ) {
-        this._orderBumpService = value;
     }
 }
 

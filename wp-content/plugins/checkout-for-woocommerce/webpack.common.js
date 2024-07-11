@@ -1,191 +1,131 @@
-/**
- * External Dependencies
- */
+// Imports
 const path = require( 'path' );
-
-/**
- * WordPress Dependencies
- */
-const defaultConfig = require( '@wordpress/scripts/config/webpack.config' );
-const RemoveEmptyScriptsPlugin = require( 'webpack-remove-empty-scripts' );
-const WebpackNotifierPlugin = require( 'webpack-notifier' );
 const MiniCssExtractPlugin = require( 'mini-css-extract-plugin' );
-const CopyPlugin = require( 'copy-webpack-plugin' );
-const WebpackRTLPlugin = require( 'webpack-rtl-plugin' );
-const { resolve } = require( 'path' );
-const BundleOutputPlugin = require( 'webpack-bundle-output' );
+const { CleanWebpackPlugin } = require( 'clean-webpack-plugin' );
+
+const sourcesDir = './sources';
 
 module.exports = {
-    ...defaultConfig,
-    // stats: 'verbose',
-    ...{
-        output: {
-            path: resolve( process.cwd(), 'build' ),
-            filename: 'js/[name].js',
-        },
-        module: {
-            rules: [
-                {
-                    test: /\.tsx?$/,
-                    loader: 'ts-loader',
-                    options: { allowTsInNodeModules: true },
-                },
-                {
-                    test: /\.(webp|png|jpe?g|gif)$/,
-                    type: 'asset/resource',
-                    generator: {
-                        filename: 'images/[name][ext]',
-                    },
-                },
-                {
-                    test: /\.(sa|sc|c)ss$/,
-                    exclude: '/node_modules',
-                    use: [
-                        MiniCssExtractPlugin.loader,
-                        {
-                            loader: 'css-loader',
-                            options: {
-                                importLoaders: 3,
-                                url: false,
-                            },
+    context: __dirname,
+    output: {
+        path: path.resolve( __dirname, 'assets/dist' ),
+    },
+    externals: {
+        jquery: 'jQuery',
+        'js-cookie': 'Cookies',
+    },
+    entry: {
+        'checkoutwc-selectwoo': [
+            require.resolve( 'cfwselectwoo/dist/js/selectWoo.full.js' ),
+            require.resolve( 'cfwselectwoo/dist/css/selectWoo.css' ),
+        ],
+        'checkoutwc-vendor': [
+            require.resolve( 'dom4/build/dom4.max.js' ),
+            require.resolve( 'jquery-first-event/dist/index.js' ),
+            require.resolve( 'modaal/dist/js/modaal.min' ),
+            require.resolve( 'EasyTabs/lib/jquery.easytabs.min' ),
+            require.resolve( 'garlicjs/dist/garlic.min.js' ),
+            require.resolve( 'parsleyjs/dist/parsley.min.js' ),
+            require.resolve( 'parsleyjs/dist/i18n/de.js' ),
+            require.resolve( 'parsleyjs/dist/i18n/da.js' ),
+            require.resolve( 'parsleyjs/dist/i18n/es.js' ),
+            require.resolve( 'parsleyjs/dist/i18n/el.js' ),
+            require.resolve( 'parsleyjs/dist/i18n/el.extra' ),
+            require.resolve( 'parsleyjs/dist/i18n/fi.js' ),
+            require.resolve( 'parsleyjs/dist/i18n/fi.extra' ),
+            require.resolve( 'parsleyjs/dist/i18n/fr.js' ),
+            require.resolve( 'parsleyjs/dist/i18n/it.js' ),
+            require.resolve( 'parsleyjs/dist/i18n/ja.js' ),
+            require.resolve( 'parsleyjs/dist/i18n/nl.js' ),
+            require.resolve( 'parsleyjs/dist/i18n/no.js' ),
+            require.resolve( 'parsleyjs/dist/i18n/hu.js' ),
+            require.resolve( 'parsleyjs/dist/i18n/pl.js' ),
+            require.resolve( 'parsleyjs/dist/i18n/sv.js' ),
+            require.resolve( 'parsleyjs/dist/i18n/sv.extra' ),
+            require.resolve( 'parsleyjs/dist/i18n/he.js' ),
+            require.resolve( 'parsleyjs/dist/i18n/he.extra' ),
+            require.resolve( 'parsleyjs/dist/i18n/sk.js' ),
+            require.resolve( 'parsleyjs/dist/i18n/sk.extra' ),
+            require.resolve( 'parsleyjs/dist/i18n/sl.js' ),
+            require.resolve( 'parsleyjs/dist/i18n/sl.extra' ),
+            require.resolve( 'parsleyjs/dist/i18n/hu.extra' ),
+            require.resolve( 'parsleyjs/dist/i18n/pt-br' ),
+            require.resolve( 'parsleyjs/dist/i18n/pt-pt' ),
+            require.resolve( 'parsleyjs/dist/i18n/zh_cn.js' ),
+            require.resolve( 'parsleyjs/dist/i18n/ru.js' ),
+            require.resolve( 'parsleyjs/dist/i18n/ru.extra' ),
+            require.resolve( 'parsleyjs/dist/i18n/lt.js' ),
+            require.resolve( 'parsleyjs/dist/i18n/lt.extra' ),
+            require.resolve( 'parsleyjs/dist/i18n/cs.js' ),
+            require.resolve( 'parsleyjs/dist/i18n/cs.extra' ),
+            require.resolve( 'parsleyjs/dist/i18n/en.js' ),
+        ],
+        'checkoutwc-front': [
+            `${sourcesDir}/ts/checkout.ts`,
+            `${sourcesDir}/scss/frontend/checkout.scss`,
+        ],
+        'checkoutwc-order-pay': [
+            `${sourcesDir}/ts/order-pay.ts`,
+            `${sourcesDir}/scss/frontend/order-pay.scss`,
+        ],
+        'checkoutwc-thank-you': [
+            `${sourcesDir}/ts/thank-you.ts`,
+            `${sourcesDir}/scss/frontend/thank-you.scss`,
+        ],
+        'checkoutwc-admin': [
+            require.resolve( 'jquery-validation/dist/jquery.validate.js' ),
+            `${sourcesDir}/ts/admin/admin.ts`,
+            `${sourcesDir}/scss/admin/admin.scss`,
+        ],
+        'checkoutwc-admin-onboarding': [
+            `${sourcesDir}/ts/admin/onboarding.tsx`,
+            `${sourcesDir}/scss/admin/onboarding.scss`,
+        ],
+        'checkoutwc-side-cart': [
+            `${sourcesDir}/ts/side-cart.ts`,
+            `${sourcesDir}/scss/frontend/side-cart.scss`,
+        ],
+    },
+    resolve: {
+        extensions: [ '.ts', '.tsx', '.js', '.json', '.scss' ],
+    },
+    stats: {
+        colors: true,
+    },
+    module: {
+        rules: [
+            {
+                test: /\.tsx?$/,
+                loader: 'ts-loader',
+            },
+            {
+                test: /\.(scss|css)$/,
+                use: [
+                    MiniCssExtractPlugin.loader,
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            sourceMap: true,
+                            url: false,
                         },
-                        'postcss-loader',
-                        'svg-transform-loader/encode-query',
-                        'sass-loader',
-                    ],
-                },
-                {
-                    test: /\.svg$/,
-                    type: 'asset/inline',
-                    use: 'svg-transform-loader',
-                },
-                {
-                    test: /\.(woff|woff2|eot|ttf|otf)$/,
-                    type: 'asset/resource',
-                    generator: {
-                        filename: 'fonts/[name][ext]',
-                    },
-                },
-            ],
-        },
-        stats: {
-            ...defaultConfig.stats,
-            colors: true,
-            errorDetails: true,
-        },
-        plugins: [
-            ...defaultConfig.plugins.filter(
-                ( plugin ) => plugin.constructor.name !== 'DependencyExtractionWebpackPlugin',
-            ),
-            /**
-             * Copy source files/directories to a build directory.
-             *
-             * @see https://www.npmjs.com/package/copy-webpack-plugin
-             */
-            new CopyPlugin( {
-                patterns: [
-                    {
-                        from: '**/*.{jpg,jpeg,png,gif,svg}',
-                        to: 'images/[path][name][ext]',
-                        context: path.resolve( process.cwd(), 'sources/images' ),
-                        noErrorOnMissing: true,
                     },
                     {
-                        from: '**/*.{woff,woff2,eot,ttf,otf}',
-                        to: 'fonts/[path][name][ext]',
-                        context: path.resolve( process.cwd(), 'sources/fonts' ),
-                        noErrorOnMissing: true,
+                        loader: 'postcss-loader',
+                        options: {
+                            sourceMap: true,
+                        },
                     },
                     {
-                        from: '**/files/*.{woff,woff2,eot,ttf,otf}',
-                        to: 'css/files/[name][ext]',
-                        context: path.resolve( process.cwd(), 'node_modules/@fontsource' ),
-                        noErrorOnMissing: true,
-                    },
-                    {
-                        from: path.resolve( __dirname, 'node_modules/intl-tel-input/build/js/utils.js' ),
-                        to: 'js/utils.js',
+                        loader: 'sass-loader',
+                        options: {
+                            sourceMap: true,
+                        },
                     },
                 ],
-            } ),
-            new WebpackNotifierPlugin(
-                {
-                    alwaysNotify: true,
-                },
-            ),
-            new RemoveEmptyScriptsPlugin(),
-            new WebpackRTLPlugin( {
-                filename: 'css/[name]-rtl.css',
-            } ),
-            new BundleOutputPlugin(),
-        ],
-        optimization: {
-            ...defaultConfig.optimization,
-            splitChunks: {
-                ...defaultConfig.optimization.splitChunks,
-                cacheGroups: {
-                    ...defaultConfig.optimization.splitChunks.cacheGroups,
-                    default: {
-                        type: 'javascript/auto',
-                        chunks: 'all',
-                        minChunks: 1,
-                        minSize: 100000,
-                        maxSize: 250000,
-                        reuseExistingChunk: true,
-                        name( module, chunks, cacheGroupKey ) {
-                            return `${cacheGroupKey}-${chunks.map( ( item ) => item.name ).join( '-' )}`;
-                        },
-                    },
-                    checkoutStyles: {
-                        type: 'css/mini-extract',
-                        name: 'checkout-styles',
-                        chunks: ( chunk ) => chunk.name === 'checkout',
-                        enforce: true,
-                    },
-                    orderpayStyles: {
-                        type: 'css/mini-extract',
-                        name: 'order-pay-styles',
-                        chunks: ( chunk ) => chunk.name === 'order-pay',
-                        enforce: true,
-                    },
-                    thankyouStyles: {
-                        type: 'css/mini-extract',
-                        name: 'thank-you-styles',
-                        chunks: ( chunk ) => chunk.name === 'thank-you',
-                        enforce: true,
-                    },
-                    sidecartStyles: {
-                        type: 'css/mini-extract',
-                        name: 'side-cart-styles',
-                        chunks: ( chunk ) => chunk.name === 'side-cart',
-                        enforce: true,
-                    },
-                    blocksStyles: {
-                        type: 'css/mini-extract',
-                        name: 'blocks-styles',
-                        chunks: ( chunk ) => chunk.name === 'blocks',
-                        enforce: true,
-                    },
-                    adminStyles: {
-                        type: 'css/mini-extract',
-                        name: 'admin-styles',
-                        chunks: ( chunk ) => chunk.name === 'admin',
-                        enforce: true,
-                    },
-                    adminPlugins: {
-                        type: 'css/mini-extract',
-                        name: 'admin-plugins-styles',
-                        chunks: ( chunk ) => chunk.name === 'admin-plugins',
-                        enforce: true,
-                    },
-                    selectwooStyles: {
-                        type: 'css/mini-extract',
-                        name: 'selectwoo-styles',
-                        chunks: ( chunk ) => chunk.name === 'selectwoo',
-                        enforce: true,
-                    },
-                },
             },
-        },
+        ],
     },
+    plugins: [
+        new CleanWebpackPlugin(),
+    ],
 };

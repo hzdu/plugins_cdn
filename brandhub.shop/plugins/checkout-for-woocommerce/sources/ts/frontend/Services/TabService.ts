@@ -85,6 +85,7 @@ class TabService {
                 tabs: 'ul > li.tab',
             } );
 
+            // After tab switch, scroll to the top of the active tab and set an active class
             this.tabContainer.on( 'easytabs:after', () => {
                 // Remove temporary alerts on successful tab switch
                 // TODO: Move to Alert service
@@ -150,7 +151,7 @@ class TabService {
 
         this.tabContainer.bind( 'easytabs:after', ( event, clicked, target ) => {
             // Scroll to top of tab container
-            this.maybeScrollToTop();
+            this.scrollToTop();
 
             // Set current tab active class on form
             this.setActiveTabClass();
@@ -161,15 +162,11 @@ class TabService {
         } );
     }
 
-    maybeScrollToTop(): void {
-        const currentScrollTop = document.documentElement.scrollTop;
-        const tabContainerTop = this.tabContainer.offset().top - 40;
-
-        if ( currentScrollTop > tabContainerTop ) {
-            jQuery( 'html, body' ).animate( {
-                scrollTop: tabContainerTop,
-            }, 300 );
-        }
+    scrollToTop() {
+        // Scroll to the top of current tab on tab switch
+        jQuery( 'html, body' ).animate( {
+            scrollTop: this.tabContainer.offset().top,
+        }, 300 );
     }
 
     /**

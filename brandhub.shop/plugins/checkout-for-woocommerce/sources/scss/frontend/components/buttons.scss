@@ -23,12 +23,6 @@
     &:focus {
         outline-style: none;
     }
-
-    &:disabled {
-        background: var(--cfw-buttons-primary-disabled-background-color, #737373);
-        border-color: var(--cfw-buttons-primary-disabled-background-color, #737373);
-        cursor: not-allowed;
-    }
 }
 
 @mixin cfw-secondary-button() {
@@ -44,7 +38,6 @@
     transition: all .1s ease-in-out;
     display: inline-block;
     width: 100%;
-    text-decoration: none;
 
     &:hover {
         background: var(--cfw-buttons-secondary-hover-background-color);
@@ -58,7 +51,7 @@
 }
 
 // Target .checkoutwc so that our modaal wrapper (SmartyStreets) and main container both are ancestors
-.checkoutwc, .checkoutwc.cfw-modaal {
+.checkoutwc {
     .cfw-prev-tab {
         transition: all .2s ease;
         text-decoration: none;

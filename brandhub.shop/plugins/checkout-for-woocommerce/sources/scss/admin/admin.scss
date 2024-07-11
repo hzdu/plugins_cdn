@@ -1,7 +1,6 @@
 @import "components/admin-page-header";
 @import "components/notices"; 
 @import "components/data-tooltip";
-@import 'sweetalert2/src/sweetalert2.scss';
 
 .template_select_info_table_screen_shot_container {
     display: flex;
@@ -318,36 +317,4 @@ label.error {
     form {
         visibility: hidden;
     }
-}
-
-// ACR Email Custom Fields
-#cfw_email_subject, #cfw_email_preheader {
-    padding: 3px 8px;
-    line-height: 100%;
-    height: 1.7em;
-    width: 100%;
-    outline: none;
-    margin: 0 0 3px;
-    background-color: #fff;
-    margin-top: 0.25em;
-    font-size: 1.5em;
-}
-
-#cfw_email_subject-label, #cfw_email_preheader-label {
-    font-size: 1.5em;
-    display: block;
-    margin-top: 1em;
-}
-
-#cfw_email_preheader {
-
-}
-
-.cfw-admin-align-center {
-    display: flex;
-    align-items: center;
-}
-
-#cfw-acr-carts nav div > svg {
-    display: none;
 }

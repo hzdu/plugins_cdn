@@ -1,8 +1,7 @@
-import fastDeepEqual                           from 'fast-deep-equal';
-import cfwGetWPHooks                           from '../../functions/cfwGetWPHooks';
-import Main                                    from '../Main';
-import DataService                             from './DataService';
-import TabService                              from './TabService';
+import fastDeepEqual                        from 'fast-deep-equal';
+import Main                                 from '../Main';
+import DataService                          from './DataService';
+import TabService                           from './TabService';
 
 class SmartyStreetsAddressValidationService {
     protected userAddress;
@@ -57,10 +56,6 @@ class SmartyStreetsAddressValidationService {
 
         if ( Main.instance.tabsLoaded ) {
             this.tabChangeDestinationID = target[ 0 ].id;
-        }
-
-        if ( cfwGetWPHooks().applyFilters( 'cfw_js_suppress_smarty_address_validation', false ) ) {
-            return true;
         }
 
         const address = this.getAddress();

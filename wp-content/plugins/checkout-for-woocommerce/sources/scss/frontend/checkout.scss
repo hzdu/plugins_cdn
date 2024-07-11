@@ -2,20 +2,17 @@
 @import "~normalize.css/normalize.css";
 @import "components/template-loader-resets";
 
+// Grid
+@import "grid";
+
 // Variables
 @import "custom-properties";
-
-// Bootstrap Grid Mixins
-@import "grid-mixins";
 
 // Mixins
 @import "mixins";
 
 // Utility Classes
 @import "utility-classes";
-
-// Custom fonts
-@import "custom-fonts";
 
 // Components
 @import "components/document";
@@ -32,7 +29,6 @@
 @import "components/tooltip-labels";
 @import "components/cart-summary/trust-badges";
 @import "components/modals";
-@import "components/variation-modal";
 @import "components/cart-summary/style";
 @import "components/cart-summary/mobile-review";
 @import "components/cart-summary/cart";
@@ -121,17 +117,6 @@
 @import "compatibility/woocommerce-product-bundles";
 @import "compatibility/vipps-express-buttons";
 @import "compatibility/coderockz-delivery";
-@import "compatibility/intuit-gateway";
-@import "compatibility/advanced-coupons-for-woocommerce";
-@import "compatibility/betheme";
-@import "compatibility/byjuno";
-
-// Uncanny Groups for LearnDash
-#ulgm_group_name-description {
-    font-size: 0.85em;
-    display: block;
-    margin-top: 0.8em;
-}
 
 // 3rd Party
 @import "~intl-tel-input/build/css/intlTelInput";
@@ -167,16 +152,6 @@
 
     #cfw-payment-method .cfw-return-to-information-btn {
         display: block !important;
-    }
-}
-
-.cfw_cart_item_after_data {
-    margin-top: 0.5em;
-    display: flex;
-    align-items: center;
-
-    .cfw-edit-item-quantity-control-wrap {
-        margin-right: 7px;
     }
 }
 

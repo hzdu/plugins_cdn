@@ -12,7 +12,7 @@ class Coupons {
 
     setShowCouponsModuleListener(): void {
         jQuery( document.body ).on( 'click', '.cfw-show-coupons-module', () => {
-            jQuery( '.cfw-promo-wrap' ).removeClass( 'cfw-hidden' ).slideDown( 300 );
+            jQuery( '.cfw-promo-wrap' ).slideDown( 300 );
             jQuery( '.cfw-show-coupons-module' ).hide();
         } );
     }

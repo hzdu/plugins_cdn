@@ -1,0 +1,32 @@
+{
+    "name": "wpdesk\/phpstan-rules",
+    "description": "Meta package with PHPStan configuration for WP Desk projects",
+    "type": "phpstan-extension",
+    "require": {
+        "phpstan\/phpstan": "^1.10",
+        "phpstan\/extension-installer": "^1.3",
+        "szepeviktor\/phpstan-wordpress": "^1.3",
+        "phpstan\/phpstan-deprecation-rules": "^1.1",
+        "php-stubs\/woocommerce-stubs": "^8.3",
+        "phpstan\/phpstan-strict-rules": "^1.5"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Bart Jaskulski",
+            "email": "bjaskulski@protonmail.com"
+        }
+    ],
+    "config": {
+        "allow-plugins": {
+            "phpstan\/extension-installer": false
+        }
+    },
+    "extra": {
+        "phpstan": {
+            "includes": [
+                "rules.neon"
+            ]
+        }
+    }
+}

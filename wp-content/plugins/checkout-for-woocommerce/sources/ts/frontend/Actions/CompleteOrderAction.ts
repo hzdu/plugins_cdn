@@ -38,7 +38,6 @@ class CompleteOrderAction extends Action {
             }
         } catch ( err ) {
             jQuery( document.body ).trigger( 'cfw_complete_order_failure' );
-            LoggingService.logEvent( 'Fired cfw_complete_order_failure event.' );
 
             // Reload page
             if ( resp.reload === true ) {
@@ -125,7 +124,6 @@ class CompleteOrderAction extends Action {
 
         if ( maybeValidJSON === null ) {
             LoggingService.logError( 'Unable to fix malformed JSON' );
-            LoggingService.logError( 'Response:', rawResponse );
         } else if ( this.isValidJSON( maybeValidJSON[ 0 ] ) ) {
             LoggingService.logError( 'Fixed malformed JSON. Original:' );
             LoggingService.logError( rawResponse );
@@ -133,7 +131,6 @@ class CompleteOrderAction extends Action {
             rawResponse = maybeValidJSON[ 0 ];
         } else {
             LoggingService.logError( 'Unable to fix malformed JSON' );
-            LoggingService.logError( 'Response:', rawResponse );
         }
 
         return rawResponse;

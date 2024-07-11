@@ -1,5 +1,6 @@
+import telUtils       from 'intl-tel-input/build/js/utils';
+// @ts-ignore
 import intlTelInput   from 'intl-tel-input';
-import Main           from '../Main';
 import DataService    from './DataService';
 import LoggingService from './LoggingService';
 
@@ -58,16 +59,10 @@ class InternationalPhoneFieldService {
         }
 
         const iti = intlTelInput( phoneInput.get( 0 ), {
-            utilsScript: `${DataService.getCheckoutParam( 'dist_path' )}/js/utils.js`,
+            utilsScript: telUtils, // just for formatting/placeholders etc
             onlyCountries: Object.keys( prefix === 'shipping' ? shippingCountries : allowedCountries ),
             allowDropdown: DataService.getSetting( 'allow_international_phone_field_country_dropdown' ),
-            autoPlaceholder: DataService.getSetting( 'international_phone_field_placeholder_mode' ),
-            preferredCountries: DataService.getSetting( 'phone_field_highlighted_countries' ) ?? [],
-            formatOnDisplay: false,
-        } );
-
-        phoneInput.on( 'countrychange', () => {
-            Main.instance.parsleyService.refreshField( phoneInput.get( 0 ) );
+            autoPlaceholder: 'aggressive',
         } );
 
         phoneInput.parents( '.woocommerce-input-wrapper' ).siblings( 'label' ).addClass( 'intl-tel-input-label' );

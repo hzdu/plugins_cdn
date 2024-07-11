@@ -89,13 +89,11 @@ class UpdateCheckoutService {
          * Special case: User logged in and we need to make sure the name updates
          */
         if ( DataService.getSetting( 'user_logged_in' ) ) {
-            jQuery( document.body ).on( 'cfw-after-tab-change', ( e ) => {
+            jQuery( document.body ).on( 'cfw-after-tab-change', () => {
                 const currentTab = Main.instance.tabService.getCurrentTab();
 
                 if ( currentTab.attr( 'id' ) === TabService.shippingMethodTabId ) {
-                    this.queueUpdateCheckout( e, {
-                        block_ui_selector: '.cfw-review-pane',
-                    } );
+                    this.queueUpdateCheckout();
                 }
             } );
         }
@@ -110,10 +108,6 @@ class UpdateCheckoutService {
 
     maybeUpdateCheckout( args?: any ): void {
         this.resetUpdateCheckoutTimer();
-
-        if ( ( <any>window ).cfw_update_payment_method_request_xhr && typeof ( <any>window ).cfw_update_payment_method_request_xhr.abort === 'function' ) {
-            ( <any>window ).cfw_update_payment_method_request_xhr.abort();
-        }
 
         this.updateCheckoutTimer =  window.setTimeout( this.triggerUpdateCheckout.bind( this ), 5, args );
     }
@@ -132,7 +126,7 @@ class UpdateCheckoutService {
             update_shipping_method: true,
         };
 
-        new UpdateCheckoutAction().load( UpdateCheckoutService.getData( theArgs ), theArgs );
+        new UpdateCheckoutAction().load( UpdateCheckoutService.getData( theArgs ) );
     }
 
     /**

@@ -1,6 +1,6 @@
 #cfw_trust_badges {
     position: relative;
-    border-top: 1px solid var(--cfw-horizontal-divider-color);
+    border-top: 1px solid #e6e6e6;
     font-size: 1rem;
 
     h4 {
@@ -52,27 +52,17 @@
     }
 
     .cfw-badge {
-        &:not(:first-child) {
-            margin-top: 1.5em;
-        }
+        margin-top: 1.5em;
 
         h5 {
             margin-top: 0;
-            margin-bottom: 0.8em;
-            font-size: 1.1em;
+            margin-bottom: 0.5em;
+            font-size: 1em;
         }
 
         img {
             max-width: 100%;
             height: auto;
-        }
-
-        div {
-            padding-top: 1em;
-        }
-
-        div:last-child {
-            padding-left: 1.5em;
         }
     }
 }

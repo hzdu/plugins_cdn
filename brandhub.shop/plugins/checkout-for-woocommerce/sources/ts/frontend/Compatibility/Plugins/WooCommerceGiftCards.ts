@@ -14,7 +14,7 @@ class WooCommerceGiftCards extends Compatibility {
 
             const code = jQuery( '#wc_gc_cart_code' ).val();
             if ( code ) {
-                Main.instance.updateCheckoutService.queueUpdateCheckout();
+                Main.instance.updateCheckoutService.triggerUpdateCheckout();
             }
         } );
 
@@ -36,7 +36,7 @@ class WooCommerceGiftCards extends Compatibility {
                 data: `wc_gc_cart_id=${cardId}&security=${wc_gc_params.security_remove_card_nonce}`,
                 dataType: 'html',
                 success() {
-                    Main.instance.updateCheckoutService.queueUpdateCheckout();
+                    Main.instance.updateCheckoutService.triggerUpdateCheckout();
                 },
             } );
 

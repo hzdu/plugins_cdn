@@ -32,41 +32,11 @@ class FetchifyAddressAutocompleteService {
         if ( DataService.getSetting( 'needs_shipping_address' ) === true ) {
             this.attachFetchify( 'shipping', fetchify );
         }
-
-        jQuery( '.cfw-fetchify-enter-address-manually' ).on( 'click', ( e ) => {
-            e.preventDefault();
-
-            let prefix = '';
-
-            if ( jQuery( e.currentTarget ).parents( '.woocommerce-shipping-fields' ).length ) {
-                prefix = 'shipping';
-            } else {
-                prefix = 'billing';
-            }
-
-            jQuery( e.currentTarget ).hide();
-            this.showAddressFields( prefix );
-        } );
     }
 
-    showAddressFields( prefix: string ): void {
-        jQuery( `#${prefix}_address_1_field` ).parents( '.cfw-input-wrap-row' ).slideDown( 300 );
-        jQuery( `#${prefix}_address_2_field` ).parents( '.cfw-input-wrap-row' ).slideDown( 300 );
-        jQuery( `#${prefix}_city_field` ).parents( '.cfw-input-wrap-row' ).slideDown( 300 );
-        jQuery( `#${prefix}_postcode_field` ).parents( '.cfw-input-wrap-row' ).slideDown( 300 );
-        jQuery( `#${prefix}_country_field` ).parents( '.cfw-input-wrap-row' ).slideDown( 300 );
-        jQuery( `#${prefix}_state_field` ).parents( '.cfw-input-wrap-row' ).slideDown( 300 );
-        jQuery( `#${prefix}_company_field` ).parents( '.cfw-input-wrap-row' ).slideDown( 300, () => {
-            jQuery( `#${prefix}_address_1` ).trigger( 'focus' );
-        } );
-
-        jQuery( `.woocommerce-${prefix}-fields` ).find( '.cfw-fetchify-enter-address-manually' ).hide();
-    }
-
-    attachFetchify( prefix: string, fetchify: any ): void {
+    attachFetchify( prefix: string, fetchify: any ) {
         const onResultSelected = ( object: any, dom: any, result: any ) => {
             this.safeFillCountryState( prefix, result );
-            this.showAddressFields( prefix );
 
             this.fieldValidationRefresher.refreshField( document.getElementById( `${prefix}_address_1` ) );
             this.fieldValidationRefresher.refreshField( document.getElementById( `${prefix}_address_2` ) );
@@ -90,33 +60,10 @@ class FetchifyAddressAutocompleteService {
             company: `${prefix}_company`,
             town: `${prefix}_city`,
             postcode: `${prefix}_postcode`,
-            country: `${prefix}_country`,
-            placeholders: true,
-            texts: {
-                default_placeholder: DataService.getMessage( 'fetchify_default_placeholder' ),
-            },
         }, { onResultSelected } );
-
-        if (
-            jQuery( `#${prefix}_address_1` ).val() === ''
-            && jQuery( `#${prefix}_address_2` ).val() === ''
-            && jQuery( `#${prefix}_company` ).val() === ''
-            && jQuery( `#${prefix}_city` ).val() === ''
-            && jQuery( `#${prefix}_postcode` ).val() === ''
-        ) {
-            jQuery( `#${prefix}_address_1_field` ).parents( '.cfw-input-wrap-row' ).hide();
-            jQuery( `#${prefix}_address_2_field` ).parents( '.cfw-input-wrap-row' ).hide();
-            jQuery( `#${prefix}_city_field` ).parents( '.cfw-input-wrap-row' ).hide();
-            jQuery( `#${prefix}_postcode_field` ).parents( '.cfw-input-wrap-row' ).hide();
-            jQuery( `#${prefix}_country_field` ).parents( '.cfw-input-wrap-row' ).hide();
-            jQuery( `#${prefix}_state_field` ).parents( '.cfw-input-wrap-row' ).hide();
-            jQuery( `#${prefix}_company_field` ).parents( '.cfw-input-wrap-row' ).hide();
-        } else {
-            jQuery( `.woocommerce-${prefix}-fields` ).find( '.cfw-fetchify-enter-address-manually' ).hide();
-        }
     }
 
-    safeFillCountryState( prefix: any, result: any ): void {
+    safeFillCountryState( prefix: any, result: any ) {
         try {
             this.fillCountryState( prefix, result );
         } catch ( err ) {

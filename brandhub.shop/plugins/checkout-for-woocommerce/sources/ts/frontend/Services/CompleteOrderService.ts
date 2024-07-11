@@ -1,8 +1,8 @@
-import cfwAddOverlay       from '../../functions/cfwAddOverlay';
 import CompleteOrderAction from '../Actions/CompleteOrderAction';
 import Main                from '../Main';
 import DataService         from './DataService';
 import LoggingService      from './LoggingService';
+import TabService          from './TabService';
 
 class CompleteOrderService {
     constructor() {
@@ -18,13 +18,13 @@ class CompleteOrderService {
     }
 
     setCompleteOrderListener(): void {
-        DataService.checkoutForm.on( 'submit', CompleteOrderService.completeOrderSubmitHandler.bind( this ) );
+        DataService.checkoutForm.on( 'submit', this.completeOrderSubmitHandler.bind( this ) );
     }
 
     /**
      * Kick off complete order
      */
-    static completeOrderSubmitHandler(): boolean {
+    completeOrderSubmitHandler(): boolean {
         // Prevent any update checkout calls from spawning
         Main.instance.updateCheckoutService.resetUpdateCheckoutTimer();
 
@@ -36,10 +36,10 @@ class CompleteOrderService {
 
         // If all the payment stuff has finished any ajax calls, run the complete order.
         // eslint-disable-next-line max-len
-        if ( DataService.checkoutForm.triggerHandler( 'checkout_place_order', [ DataService.checkoutForm ] ) !== false && DataService.checkoutForm.triggerHandler( `checkout_place_order_${DataService.checkoutForm.find( 'input[name="payment_method"]:checked' ).val()}`, [ DataService.checkoutForm ] ) !== false ) {
+        if ( DataService.checkoutForm.triggerHandler( 'checkout_place_order' ) !== false && DataService.checkoutForm.triggerHandler( `checkout_place_order_${DataService.checkoutForm.find( 'input[name="payment_method"]:checked' ).val()}` ) !== false ) {
             DataService.checkoutForm.addClass( 'processing' );
 
-            cfwAddOverlay();
+            CompleteOrderService.addOverlay();
 
             new CompleteOrderAction().load( DataService.checkoutForm.serialize() );
         } else {
@@ -51,6 +51,30 @@ class CompleteOrderService {
          * briefly appears during a successful order
          */
         return false;
+    }
+
+    /**
+     * Adds a visual indicator that the checkout is doing something
+     */
+    static addOverlay(): void {
+        if ( !jQuery( `#${TabService.paymentMethodTabId}:visible, #${TabService.orderReviewTabId}:visible` ).length ) {
+            return;
+        }
+
+        const { checkoutForm } = DataService;
+        const formData = checkoutForm.data();
+
+        if ( formData[ 'blockUI.isBlocked' ] === 1 ) {
+            return;
+        }
+
+        checkoutForm.block( {
+            message: null,
+            overlayCSS: {
+                background: '#fff',
+                opacity: 0.6,
+            },
+        } );
     }
 }
 

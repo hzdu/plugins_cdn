@@ -1,0 +1,95 @@
+{
+	"name": "wpdesk/flexible-checkout-fields-pro",
+	"authors": [
+		{
+			"name": "Krzysiek",
+			"email": "krzysiek@wpdesk.pl"
+		}
+	],
+	"config": {
+		"sort-packages": true,
+		"platform": {
+			"php": "7.3.33"
+		},
+		"allow-plugins": {
+			"cweagans/composer-patches": true,
+			"dealerdirect/phpcodesniffer-composer-installer": true,
+			"kylekatarnls/update-helper": true,
+			"wpdesk/wp-codeception": true,
+			"wpdesk/wp-wpdesk-composer": true,
+			"phpstan/extension-installer": true
+		},
+		"platform-check": false
+	},
+	"require": {
+		"php": ">=7.3",
+		"doctrine/collections": "^1.8",
+		"psr/log": "^1.0.1",
+		"wpdesk/phpstan-rules": "^1.1",
+		"wpdesk/wp-wpdesk-helper-override": "^1.1.0"
+	},
+	"autoload": {
+		"classmap": [
+			"inc",
+			"classes",
+			"vendor_prefixed"
+		],
+		"psr-4": {
+			"WPDesk\\FCF\\Pro\\": "src"
+		}
+	},
+	"require-dev": {
+		"10up/wp_mock": "*",
+		"codeception/module-asserts": "^1.3",
+		"mockery/mockery": "*",
+		"phpunit/phpunit": "^9",
+		"wpdesk/wp-codeception": "^2",
+		"wpdesk/wp-logs": "^1.10",
+		"wpdesk/wp-notice": "^3.0",
+		"wpdesk/wp-plugin-flow-paid": "^1.0.2",
+		"wpdesk/wp-view": "^2.0",
+		"wpdesk/wp-wpdesk-composer": "^2"
+	},
+	"autoload-dev": {
+		"psr-4": {
+			"WPDesk\\FCF\\Pro\\Tests\\Unit\\": "tests/unit"
+		}
+	},
+	"extra": {
+		"text-domain": "flexible-checkout-fields-pro",
+		"translations-folder": "lang",
+		"translation-file-headers": {
+			"Project-Id-Version": "Flexible Checkout Fields PRO",
+			"Last-Translator": "Mateusz Gbiorczyk <mateusz.gbiorczyk@wpdesk.net>",
+			"X-Poedit-WPHeader": "flexible-checkout-fields-pro.php"
+		},
+		"po-files": {
+			"pl_PL": "pl_PL.po",
+			"es_ES": "es_ES.po",
+			"de_DE": "de_DE.po"
+		},
+		"minify-assets" : {
+			"js" : [
+				"assets/js/checkout.js",
+				"assets/js/checkout_shipping_conditions.js",
+				"assets/js/select2.full.js",
+				"assets/js/select2.js",
+				"assets/js/settings-saved-shipping-fields.js",
+				"assets/js/shipping_conditional_logic.js"
+			],
+			"css" : [
+				"assets/css/admin-notice.css",
+				"assets/css/select2.css"
+			]
+		}
+	},
+	"scripts": {
+		"test": "echo composer is alive",
+		"phpcs": "phpcs",
+		"phpunit-unit": "phpunit --configuration phpunit-unit.xml --coverage-text --colors=never",
+		"phpunit-unit-fast": "phpunit --configuration phpunit-unit.xml --no-coverage",
+		"phpunit-integration": "phpunit --configuration phpunit-integration.xml --coverage-text --colors=never",
+		"phpunit-integration-fast": "phpunit --configuration phpunit-integration.xml --no-coverage",
+		"docs": "apigen generate"
+	}
+}

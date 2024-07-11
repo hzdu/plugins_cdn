@@ -1,10 +1,5 @@
 @mixin cfw-shimmer-content( $top_bottom_margin: 0, $top: 0 ) {
-    position: relative !important;
-    pointer-events: none;
-
-    > * {
-        visibility: var(--cfw-blocked-visibility, hidden);
-    }
+    position: relative;
 
     &:after {
         content: " ";
@@ -17,21 +12,18 @@
         background: var(--cfw-loading-shimmer-gradient);
         background-size: 1000px 100%;
         border-radius: 5px;
-        animation: shimmer 1s infinite linear;
+        animation: shimmer 2s infinite linear;
         display: var(--cfw-loading-shimmer-display-mode);
-        backdrop-filter: var(--cfw-loading-shimmer-filter);
         z-index: 10000;
-        will-change: transform;
-        transform: translate3d(0,0,0); // Force GPU acceleration
     }
 }
 
 @keyframes shimmer {
     0% {
-        background-position: -500px 0;
+        background-position: -1000px 0;
     }
     100% {
-        background-position: 500px 0;
+        background-position: 1000px 0;
     }
 }
 
@@ -55,7 +47,6 @@
         display: var(--cfw-loading-shimmer-cart-item-quantity-display-mode);
     }
 
-    .cfw-cart-edit-item-variation,
     .cfw-cart-item-image-wrap,
     .cfw-edit-item-quantity-control-wrap,
     .cfw-cart-item-subtotal span,
@@ -101,11 +92,6 @@
     @include cfw-shimmer-content();
 }
 
-.cfw-next-tab.cfw-blocked {
-    border: none;
-    @include cfw-shimmer-content();
-}
-
 #cfw-payment-request-buttons.cfw-blocked {
     > div:not(.wc-stripe-banner-checkout),
     button,
@@ -121,7 +107,10 @@
 }
 
 .cfw-order-bumps.cfw-blocked {
-    .cfw-order-bump-header label, .cfw-order-bump-image, .cfw-order-bump-content {
-        @include cfw-shimmer-content();
+    .cfw-order-bump {
+        label, .row > div {
+            @include cfw-shimmer-content();
+        }
+
     }
 }

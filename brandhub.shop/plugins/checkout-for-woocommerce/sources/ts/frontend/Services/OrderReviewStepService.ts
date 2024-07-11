@@ -21,13 +21,6 @@ class OrderReviewStepService {
             return;
         }
 
-        // WooCommerce Germanized checkbox
-        const legalCheckbox = jQuery( '#legal' );
-
-        if ( legalCheckbox.length && !legalCheckbox.is( ':checked' ) ) {
-            return;
-        }
-
         TabService.go( TabService.paymentMethodTabId );
     }
 }

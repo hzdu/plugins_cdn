@@ -1,8 +1,7 @@
-import cfwGetWPHooks                  from '../../functions/cfwGetWPHooks';
-import AutocompleteStrategyFactory    from '../GoogleAddressAutocomplete/AutocompleteStrategies/AutocompleteStrategyFactory';
-import FieldValidationRefresher       from '../Interfaces/FieldValidationRefresher';
-import DataService                    from './DataService';
-import LoggingService                 from './LoggingService';
+import AutocompleteStrategyFactory from '../GoogleAddressAutocomplete/AutocompleteStrategies/AutocompleteStrategyFactory';
+import FieldValidationRefresher    from '../Interfaces/FieldValidationRefresher';
+import DataService                 from './DataService';
+import LoggingService              from './LoggingService';
 
 /* global google */
 
@@ -56,8 +55,6 @@ class GoogleAddressAutocompleteService {
     }
 
     fillAddress( prefix: string, autocomplete: google.maps.places.Autocomplete, { value: formattedAddress }: HTMLInputElement ): void {
-        cfwGetWPHooks().doAction( 'cfw_google_address_autocomplete_fill_address', autocomplete, prefix );
-
         const { address_components: components } = autocomplete.getPlace();
 
         if ( !components ) {
@@ -95,7 +92,7 @@ class GoogleAddressAutocompleteService {
                 const stateField = jQuery( `#${prefix}state` );
 
                 const noFuzzySearchNeeded = !stateField.is( 'select' ) || stateField.find( `option[value="${state}"]` ).length;
-                const stateValue          = noFuzzySearchNeeded ? state : stateField.find( `option:contains(${state.replace( "'", '’' )})` ).val();
+                const stateValue          = noFuzzySearchNeeded ? state : stateField.find( `option:contains(${state})` ).val();
 
                 stateField.val( stateValue );
 
