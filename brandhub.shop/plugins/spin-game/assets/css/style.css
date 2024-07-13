@@ -1,0 +1,171 @@
+.spingamecanvans {
+    width: 100%;
+    max-width: 375px;
+    position: relative;
+    display: none;
+}
+
+.spingamecanvans .part2 {
+    background: url("../images/zhuanpan.png") left top no-repeat;
+    padding-top: 100%;
+    background-size: cover;
+    position: relative;
+    transition: transform 10.5s;
+    transition-timing-function: cubic-bezier(0.42, 0, 0, 0.99);
+}
+
+.spingamecanvans .rotate-pointer {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 30%;
+    height: 30%;
+    margin-left: -15%;
+    margin-top: -15%;
+    background: url("../images/pointer.png") center center no-repeat;
+    background-size: cover;
+}
+
+.result-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 100000;
+}
+
+.result-overlay .result-box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-image: linear-gradient(to bottom, #ffffcc, white);
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    width: 50%;
+}
+
+.result-overlay .result-box #result-text {
+    font-size: 2em;
+    color: #000;
+    padding-bottom: 20px;
+    font-weight: bold;
+}
+
+.result-overlay .coupon-card {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    z-index: 3000;
+    background-image: url("../images/msgbox.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding: 80px;
+}
+
+.result-overlay .coupon-card .coupon-card-price {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 3.5em;
+    font-weight: bold;
+    color: #fff;
+}
+
+.result-overlay .coupon-card .coupon-card-desc {
+    position: absolute;
+    top: 70%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 0.5em;
+    color: #eaeaea;
+}
+
+@keyframes pulse {
+    0%,
+    100% {
+        transform: scale(0.9);
+    }
+
+    50% {
+        transform: scale(1);
+    }
+}
+
+.result-overlay .result-box .getitnow {
+    margin-top: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    background-color: black;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 50px;
+    display: inline-block;
+    font-size: 1.2em;
+    text-align: center;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: pulse 1s infinite;
+}
+
+/* .result-overlay .result-box .close-btn {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    font-size: 24px;
+    color: #f49404;
+    cursor: pointer;
+    user-select: none;
+    z-index: 2000;
+} */
+
+@media (max-width: 767px) {
+    .spin-button {
+        bottom: 10px; /* 调整底部偏移量 */
+        left: 10px; /* 调整左侧偏移量 */
+        width: 80px; /* 调整宽度 */
+        height: 80px; /* 调整高度 */
+    }
+}
+
+.spin-button {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    width: 100px;
+    height: 100px;
+    background: url("../images/bonuscoupons.png") no-repeat center center;
+    background-size: cover;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 99999;
+}
+
+.spin-button .show-f-spingame {
+    color: rgb(0, 0, 0);
+    text-align: center;
+    font-size: 1.2em;
+    font-weight: bold;
+    line-height: 1.2;
+}
+
+.spin-button .close-button {
+    position: absolute;
+    top: -25px;
+    right: -25px;
+    background: transparent;
+    border: none;
+    font-size: 18px;
+    color: #c8800c;
+    cursor: pointer;
+}
