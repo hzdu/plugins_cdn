@@ -90,7 +90,7 @@ wp.domReady(function () {
       '<input type="hidden" name="facebook_accounts[' + username + '][username]" value="' + username + '">',
       '<input type="hidden" name="facebook_accounts[' + username + '][access_token]" value="' + accessToken + '">',
       '<input type="hidden" name="facebook_accounts[' + username + '][expires_at]" value="' + expiresAt + '">',
-      '<a target="_blank" href="https://www.instagram.com/' + username + '/" rel="noopener noreferrer">' + usernameDisplay + '</a>',
+      '<a target="_blank" href="https://www.instagram.com/' + username + '/" rel="noopener">' + usernameDisplay + '</a>',
       '</td>',
       '<td align="right">',
       '<button type="button" class="button button-small" onclick="jQuery(this).closest(\'.instagram-account\').remove()">Remove</button>',

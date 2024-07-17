@@ -5,7 +5,7 @@ jQuery(document).ready(function () {
   var cookieId = 'flatsome_cookie_notice'
   var cookieValue = flatsomeVars.options.cookie_notice_version
 
-  if (cookie(cookieId) !== cookieValue) {
+  if (Flatsome.cookie(cookieId) !== cookieValue) {
     setTimeout(function () {
       $notice.addClass('flatsome-cookies--active')
 
@@ -13,7 +13,7 @@ jQuery(document).ready(function () {
         e.preventDefault()
         $notice.removeClass('flatsome-cookies--active').addClass('flatsome-cookies--inactive')
         // set cookie
-        cookie(cookieId, cookieValue, 365)
+        Flatsome.cookie(cookieId, cookieValue, 365)
       })
     }, 2500)
   }
