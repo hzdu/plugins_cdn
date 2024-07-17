@@ -34,7 +34,8 @@ jQuery(document).ready(function ($) {
             delay: 250,
             data: function (params) {
                 return {
-                    keyword: params.term
+                    keyword: params.term,
+                    nonce: $('#_woocommerce_photo_reviews_nonce').val()
                 };
             },
             processResults: function (data) {
@@ -60,7 +61,8 @@ jQuery(document).ready(function ($) {
             delay: 250,
             data: function (params) {
                 return {
-                    keyword: params.term
+                    keyword: params.term,
+                    nonce: $('#_woocommerce_photo_reviews_nonce').val()
                 };
             },
             processResults: function (data) {

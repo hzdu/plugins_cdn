@@ -112,6 +112,7 @@ jQuery(document).ready(function ($) {
             url: 'admin-ajax.php?action=wcpr_get_reviews_from_ali',
             data: {
                 import_method: 'sku',
+                nonce: $('#wcpr_import_nonce_field').val(),
                 product_id: product_id[0],
                 product_sku: product_sku,
                 countries: countries ? countries : [],
@@ -167,6 +168,7 @@ jQuery(document).ready(function ($) {
             url: 'admin-ajax.php?action=wcpr_download_image_from_ali',
             data: {
                 reviews_with_images: reviews_with_images,
+                nonce: $('#wcpr_import_nonce_field').val(),
                 imported: n,
                 product_ids: ids,
                 wcpr_adjust_image_sizes: 1,

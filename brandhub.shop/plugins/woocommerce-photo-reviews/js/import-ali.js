@@ -150,6 +150,7 @@ jQuery(document).ready(function ($) {
             url: 'admin-ajax.php?action=wcpr_get_reviews_from_ali',
             data: {
                 import_method: 'sku',
+                nonce: $('#wcpr_import_nonce_field').val(),
                 product_id: product_ids[0],
                 // product_url: product_url,
                 product_sku: product_sku,
@@ -209,6 +210,7 @@ jQuery(document).ready(function ($) {
             url: 'admin-ajax.php?action=wcpr_download_image_from_ali',
             data: {
                 reviews_with_images: reviews_with_images,
+                nonce: $('#wcpr_import_nonce_field').val(),
                 imported: n,
                 product_ids: ids,
                 wcpr_adjust_image_sizes: 1,
@@ -319,6 +321,7 @@ jQuery(document).ready(function ($) {
                 url: 'admin-ajax.php?action=wcpr_get_reviews_from_ali',
                 data: {
                     import_method: 'sku',
+                    nonce: $('#wcpr_import_nonce_field').val(),
                     product_id: product_ids[i],
                     product_sku: product_sku[i],
                     countries: countries ? countries : [],

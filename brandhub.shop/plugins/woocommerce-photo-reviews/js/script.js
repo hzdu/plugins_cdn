@@ -185,7 +185,7 @@ jQuery(document).ready(function ($) {
                                     $container.append(`<input type="hidden" name="wcpr_image_upload_id" value="${response.img_id}">`);
                                 }
                             }
-                            resolve(error)
+                            resolve(error);
                         },
                         error:function (err){
                             error = err.responseText === '-1' ? err.statusText : err.responseText;
@@ -489,6 +489,7 @@ function wcpr_pagination_loadmore($comments, $pagination_container) {
     $pagination_container = jQuery($pagination_container);
     let $filters = $comments.find('.wcpr-filter-container'),
         cpage = jQuery('.wcpr-load-more-reviews-cpage').val(),
+        max_page = jQuery('.wcpr-load-more-reviews-cpage').data('max_page'),
         parent_post_id = jQuery('.wcpr-load-more-reviews-product-id').val(),
         rating = jQuery('.wcpr-load-more-reviews-rating').val(),
         verified = jQuery('.wcpr-load-more-reviews-verified').val(),
@@ -516,55 +517,17 @@ function wcpr_pagination_loadmore($comments, $pagination_container) {
     }
 
     if (cpage && parent_post_id) {
-        if (cpage > 1) {
-            let $button = $comments.find('.wcpr-load-more-reviews-button');
-            jQuery.ajax({
-                url: woocommerce_photo_reviews_params.ajaxurl, // AJAX handler, declared before
-                data: {
-                    'action': 'wcpr_ajax_load_more_reviews', // wp_ajax_cloadmore
-                    'post_id': parent_post_id, // the current post
-                    'cpage': cpage, // current comment page
-                    'rating': rating,
-                    'verified': verified,
-                    'image': image,
-                    'is_shortcode': '',
-                    'frontend_style': woocommerce_photo_reviews_params.display,
-                },
-                type: 'POST',
-                beforeSend: function () {
-                    $button.addClass('wcpr-loading');
-                },
-                success: function (response) {
-                    if (response.html) {
-                        handle_missing_container();
-                        $container.html(response.html);
-                    }
-                    jQuery(document.body).trigger('wcpr_ajax_load_more_reviews_end');
-                    // wcpr_helpful_button();
-                },
-                complete: function () {
-                    $button.removeClass('wcpr-loading');
-                }
-            });
-        }
         jQuery(document).on('click', '.wcpr-load-more-reviews-button:not(.shortcode-wcpr-load-more-reviews-button):not(.wcpr-loading)', function () {
             let $button = jQuery(this);
-            if (woocommerce_photo_reviews_params.sort == 2) {
-                cpage++;
-                if (cpage == 1) {
-                    cpage++;
-                }
-            } else {
-                cpage--;
-                if (cpage == 1) {
-                    cpage--;
-                }
+            if ($button.parent().hasClass('wcpr-hidden')){
+                return false;
             }
             if (cpage > -1) {
                 jQuery.ajax({
                     url: woocommerce_photo_reviews_params.ajaxurl, // AJAX handler, declared before
                     data: {
                         'action': 'wcpr_ajax_load_more_reviews', // wp_ajax_cloadmore
+                        'nonce': woocommerce_photo_reviews_params.nonce,
                         'post_id': parent_post_id, // the current post
                         'cpage': cpage, // current comment page
                         'rating': rating,
@@ -581,13 +544,23 @@ function wcpr_pagination_loadmore($comments, $pagination_container) {
                         if (response.html) {
                             $container.append(response.html);
                             // if the last page, remove the button
-                            if (cpage == 0)
-                                $button.parent().remove();
+                            if (woocommerce_photo_reviews_params.default_comments_page === 'oldest') {
+                                if (cpage < max_page){
+                                    cpage++;
+                                }else {
+                                    $button.parent().addClass('wcpr-hidden');
+                                }
+                            }else {
+                                if (cpage > 1){
+                                    cpage--;
+                                }else {
+                                    $button.parent().addClass('wcpr-hidden');
+                                }
+                            }
                         } else {
-                            $button.parent().remove();
+                            $button.parent().addClass('wcpr-hidden');
                         }
                         jQuery(document.body).trigger('wcpr_ajax_load_more_reviews_end');
-                        // wcpr_helpful_button();
                     },
                     complete: function () {
                         $button.removeClass('wcpr-loading');
@@ -604,7 +577,11 @@ function wcpr_pagination_loadmore($comments, $pagination_container) {
                 if (ajax_pagination_running || (parseInt($button.find('.wcpr-filter-button-count').html()) === 0 && !$button.hasClass('wcpr-active'))) {
                     return false;
                 }
-                cpage = 0;
+                if (woocommerce_photo_reviews_params.default_comments_page === 'oldest') {
+                    cpage=1;
+                }else {
+                    cpage = '';
+                }
                 let filter_type = $button.data('filter_type');
                 switch (filter_type) {
                     case 'all':
@@ -655,19 +632,22 @@ function wcpr_pagination_loadmore($comments, $pagination_container) {
                         'frontend_style': woocommerce_photo_reviews_params.display,
                     },
                     success: function (response) {
-                        if (woocommerce_photo_reviews_params.sort == 2) {
-                            cpage++;
-                        } else {
-                            cpage--;
-                        }
                         if (response.html) {
                             $no_review.hide();
                             handle_missing_container();
                         }
                         $container.html(response.html);
-                        cpage = parseInt(response.cpage);
                         handle_missing_pagination();
-                        $pagination_container.html(response.load_more_html);
+                        max_page = parseInt(response.max_page);
+                        if (max_page != cpage) {
+                            if (woocommerce_photo_reviews_params.default_comments_page === 'oldest') {
+                                cpage++;
+                            }else {
+                                cpage--;
+                            }
+                            $pagination_container.find('.wcpr-load-more-reviews-button').parent().removeClass('wcpr-hidden');
+                        }
+                        // $pagination_container.html(response.load_more_html);
                         // wcpr_helpful_button();
                         let update_count = response.update_count;
                         if (update_count) {
@@ -695,7 +675,7 @@ function wcpr_pagination_loadmore($comments, $pagination_container) {
                             default:
                                 $filters_rating.find('.wcpr-filter-button').removeClass('wcpr-active');
                                 $button.addClass('wcpr-active');
-                            // $filters.find('.wcpr-filter-rating-placeholder').html($button.html());
+                                $filters.find('.wcpr-filter-rating-placeholder').html($button.html());
                         }
                         jQuery(document.body).trigger('wcpr_ajax_load_more_reviews_end');
                     },
@@ -742,6 +722,8 @@ function viwcpr_flexslider() {
         if (jQuery(this).closest('.rtl').length) {
             rtl = true;
         }
+        console.log('rtl')
+        console.log(rtl)
         let wrap = jQuery(this).find('.viwcpr-slide-wrap');
         let wrap_width = wrap.innerWidth() ?  jQuery(this).parent().width() : 0,
             gap = parseInt(params.cols_gap || 20),
@@ -764,18 +746,39 @@ function viwcpr_flexslider() {
             itemMargin: gap,
             controlNav: false,
             maxItems: colums,
-            reverse: rtl,
+            reverse: false,
             rtl: rtl,
             move: colums,
             touch: true,
             slideshow: false,
             start:function (slider){
+                if (slider.count === slider.move){
+                    get_reviews(slider,1,params,selector).then(function () {
+                        slider.setProps(0);
+                    });
+                }
                 let id_css = slider.data('id_css'),
                     css = `.${id_css} .viwse-suggestion-product-wrap{width: ${itemWidth}px !important;}`,
                     h=0;
                 for (let i = 0; i < slider.move; i++) {
                     if (h < slider.find(selector).eq(i).innerHeight()) {
                         h = slider.find(selector).eq(i).innerHeight();
+                    }
+                    if (slider.find(selector).eq(i).find('.shortcode-reviews-images-wrap-right img').length) {
+                        slider.find(selector).eq(i).find('.shortcode-reviews-images-wrap-right img').on('load',function(){
+                            if (!jQuery('#'+id_css).length){
+                                jQuery('head').append(`<style id="${id_css}"></style>`);
+                            }
+                            if (jQuery(this).closest(selector+':visible').length && jQuery(this).closest(selector).innerHeight() && slider.data('current_height')) {
+                                let h_tmp = slider.find(selector).eq(i).innerHeight() + 30;
+                                if (jQuery(this).closest(selector).innerHeight() > parseFloat(slider.data('current_height'))) {
+                                    let css_tmp = `.${id_css} .viwse-suggestion-product-wrap{width: ${itemWidth}px !important;}`;
+                                    css_tmp += `.${id_css} .villatheme-slider-viewport{height: ${h_tmp}px !important;}`;
+                                    jQuery('#' + id_css).html(css_tmp);
+                                    slider.data('current_height',h_tmp);
+                                }
+                            }
+                        });
                     }
                 }
                 if (h) {
@@ -786,6 +789,7 @@ function viwcpr_flexslider() {
                     jQuery('head').append(`<style id="${id_css}"></style>`);
                 }
                 jQuery('#'+id_css).html(css);
+                slider.data('current_height',h);
             },
             before:function (slider){
                 slider.removeClass('viwcpr-slide-wrap-init');
@@ -798,21 +802,54 @@ function viwcpr_flexslider() {
                 let id_css = slider.data('id_css'),
                     css = `.${id_css} .viwse-suggestion-product-wrap{width: ${itemWidth}px !important;}`,
                     first = slider.currentSlide * slider.move ,
-                    last = (slider.currentSlide + 1) * slider.move - 1,
+                    last = (slider.currentSlide + 1) * slider.move ,
                     h = 0;
                 slider.find(selector).css({'margin-bottom': '0', 'margin-top': '0', 'width': `${itemWidth}px !important;`});
                 if (first === last){
                     h = slider.find(selector).eq(first).innerHeight();
+                    if (slider.find(selector).eq(first).find('.shortcode-reviews-images-wrap-right img').length) {
+                        slider.find(selector).eq(first).find('.shortcode-reviews-images-wrap-right img').on('load',function(){
+                            if (!jQuery('#'+id_css).length){
+                                jQuery('head').append(`<style id="${id_css}"></style>`);
+                            }
+                            if (jQuery(this).closest(selector+':visible').length && jQuery(this).closest(selector).innerHeight() && slider.data('current_height')) {
+                                let h_tmp = slider.find(selector).eq(i).innerHeight() + 30;
+                                if (jQuery(this).closest(selector).innerHeight() > parseFloat(slider.data('current_height'))) {
+                                    let css_tmp = `.${id_css} .viwse-suggestion-product-wrap{width: ${itemWidth}px !important;}`;
+                                    css_tmp += `.${id_css} .villatheme-slider-viewport{height: ${h_tmp}px !important;}`;
+                                    jQuery('#' + id_css).html(css_tmp);
+                                    slider.data('current_height',h_tmp);
+                                }
+                            }
+                        });
+                    }
                 }else {
                     for (let i = first; i < last; i++) {
                         if (h < slider.find(selector).eq(i).innerHeight()) {
                             h = slider.find(selector).eq(i).innerHeight();
+                        }
+                        if (slider.find(selector).eq(i).find('.shortcode-reviews-images-wrap-right img').length) {
+                            slider.find(selector).eq(i).find('.shortcode-reviews-images-wrap-right img').on('load',function(){
+                                if (!jQuery('#'+id_css).length){
+                                    jQuery('head').append(`<style id="${id_css}"></style>`);
+                                }
+                                if (jQuery(this).closest(selector+':visible').length && jQuery(this).closest(selector).innerHeight() && slider.data('current_height')) {
+                                    let h_tmp = slider.find(selector).eq(i).innerHeight() + 30;
+                                    if (jQuery(this).closest(selector).innerHeight() > parseFloat(slider.data('current_height'))) {
+                                        let css_tmp = `.${id_css} .viwse-suggestion-product-wrap{width: ${itemWidth}px !important;}`;
+                                        css_tmp += `.${id_css} .villatheme-slider-viewport{height: ${h_tmp}px !important;}`;
+                                        jQuery('#' + id_css).html(css_tmp);
+                                        slider.data('current_height',h_tmp);
+                                    }
+                                }
+                            });
                         }
                     }
                 }
                 if (h) {
                     h += 30;
                     css += `.${id_css} .villatheme-slider-viewport{height: ${h}px !important;}`;
+                    slider.data('current_height',h);
                 }
                 if (!jQuery('#'+id_css).length){
                     jQuery('head').append(`<style id="${id_css}"></style>`);
@@ -820,49 +857,50 @@ function viwcpr_flexslider() {
                 jQuery('#'+id_css).html(css);
             },
             end:function (slider) {
-                let total_pages = parseInt(slider.find('.wcpr-reviews-total-pages').html()),
+                let total_pages = parseInt(slider.find('.wcpr-reviews-total-pages').html() || slider.closest('.woocommerce-photo-reviews-shortcode').find('.wcpr-reviews-total-pages').html() ),
                     current_page = Math.ceil(slider.find(selector).length/parseInt(params.comments_per_page || 1));
                 if (total_pages > current_page){
                     let current = slider.limit;
-                    let get_reviews = async function(){
-                        await new Promise(function (resolve) {
-                            jQuery.ajax({
-                                url: woocommerce_photo_reviews_params.ajaxurl,
-                                type: 'get',
-                                data: {
-                                    action: 'woocommerce_photo_reviews_shortcode_ajax_get_reviews',
-                                    reviews_shortcode: JSON.stringify(params),
-                                    wcpr_page: current_page + 1,
-                                    wcpr_image: slider.data('wcpr_image'),
-                                    wcpr_verified: slider.data('wcpr_verified'),
-                                    wcpr_rating: slider.data('wcpr_rating'),
-                                },
-                                beforeSend:function(){
-                                    slider.addClass('woocommerce-photo-reviews-shortcode-loading');
-                                },
-                                success: function (response) {
-                                    let temp = jQuery('<div></div>');
-                                    temp.append(response.html);
-                                    temp.find(selector).each(function (k, v) {
-                                       slider.addSlide(jQuery(v));
-                                    });
-                                    slider.removeClass('woocommerce-photo-reviews-shortcode-loading');
-                                    resolve(slider);
-                                },
-                                error: function (err) {
-                                    resolve(slider);
-                                    slider.removeClass('woocommerce-photo-reviews-shortcode-loading');
-                                }
-                            })
-                        });
-                    };
-                    get_reviews().then(function () {
-                        slider.setProps(current)
+                    get_reviews(slider,current_page,params,selector).then(function () {
+                        slider.setProps(current);
                     });
                 }
             }
         });
     });
+    let get_reviews = async function(slider,current_page,params,selector){
+        await new Promise(function (resolve) {
+            jQuery.ajax({
+                url: woocommerce_photo_reviews_params.ajaxurl,
+                type: 'get',
+                data: {
+                    action: 'woocommerce_photo_reviews_shortcode_ajax_get_reviews',
+                    nonce: woocommerce_photo_reviews_params.nonce,
+                    reviews_shortcode: JSON.stringify(params),
+                    wcpr_page: current_page + 1,
+                    wcpr_image: slider.data('wcpr_image'),
+                    wcpr_verified: slider.data('wcpr_verified'),
+                    wcpr_rating: slider.data('wcpr_rating'),
+                },
+                beforeSend:function(){
+                    slider.closest('.woocommerce-photo-reviews-shortcode').addClass('woocommerce-photo-reviews-shortcode-loading');
+                },
+                success: function (response) {
+                    let temp = jQuery('<div></div>');
+                    temp.append(response.html);
+                    temp.find(selector).each(function (k, v) {
+                        slider.addSlide(jQuery(v));
+                    });
+                    slider.closest('.woocommerce-photo-reviews-shortcode').removeClass('woocommerce-photo-reviews-shortcode-loading');
+                    resolve(slider);
+                },
+                error: function (err) {
+                    resolve(slider);
+                    slider.closest('.woocommerce-photo-reviews-shortcode').removeClass('woocommerce-photo-reviews-shortcode-loading');
+                }
+            })
+        });
+    };
     jQuery('.wcpr-grid .wcpr-grid-item').last().css('display','inline-block');
     jQuery('.shortcode-wcpr-grid .shortcode-wcpr-grid-item').last().css('display','inline-block');
     if (jQuery('#wcpr_thank_you_message').length){
@@ -984,7 +1022,7 @@ function wcpr_helpful_button() {
                 'action': 'wcpr_helpful_button_handle',
                 'vote': vote,
                 'comment_id': comment_id,
-                // 'nonce': woocommerce_photo_reviews_params.nonce,
+                'nonce': woocommerce_photo_reviews_params.nonce,
             },
             type: 'POST',
             success: function (response) {

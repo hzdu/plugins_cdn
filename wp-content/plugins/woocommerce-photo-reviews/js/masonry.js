@@ -270,7 +270,7 @@ function wcpr_resize_masonry_items(force_resize = false) {
     }
     jQuery('.wcpr-grid-loadmore .wcpr-grid-item:not(.wcpr-grid-item-init)').each(function () {
         if (!jQuery(this).is(':visible')) {
-            return false;
+            return true;
         }
         wcpr_resize_masonry_item(jQuery(this));
     });
