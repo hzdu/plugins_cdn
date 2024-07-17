@@ -156,16 +156,16 @@
 									props.setAttributes({novasharePinTitle : new_value});
 								}
 							}),
-
-							//pin description
-							el(wp.components.TextareaControl, {
-								value    : props.attributes.novasharePinDescription,
-								label    : __('Pin Description', 'novashare') + ' (' + __('Deprecated', 'novashare') + ')',
-								onChange : function (new_value) {
-									props.setAttributes({novasharePinDescription : new_value});
-								}
-							})
 						),
+
+						//pin description
+						el(wp.components.TextareaControl, {
+							value    : props.attributes.novasharePinDescription,
+							label    : __('Pin Description', 'novashare'),
+							onChange : function (new_value) {
+								props.setAttributes({novasharePinDescription : new_value});
+							}
+						}),
 
 						//pin repin id
 						el(wp.components.TextControl, {

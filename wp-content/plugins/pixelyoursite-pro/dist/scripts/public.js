@@ -77,6 +77,9 @@ if (!String.prototype.trim) {
     if (options.debug) {
         console.log('PYS:', options);
     }
+
+    var uniqueId = {};
+
     var firstVisit = false;
 
     var isTrackEventForGA = [];
@@ -932,6 +935,23 @@ if (!String.prototype.trim) {
                 return to;
             },
 
+            /**
+             * Generate unique ID
+             */
+            generateUniqueId : function (event) {
+                if(event.eventID.length == 0 || (event.type == "static" && options.ajaxForServerStaticEvent) || (event.type !== "static" && options.ajaxForServerEvent)) {
+                    let idKey = event.hasOwnProperty('custom_event_post_id') ? event.custom_event_post_id : event.e_id;
+                    if (!uniqueId.hasOwnProperty(idKey)) {
+                        uniqueId[idKey] = pys_generate_token();
+                    }
+                    return uniqueId[idKey];
+                }
+                else if(event.eventID.length !== 0)
+                {
+                    return event.eventID;
+                }
+            },
+
             sendServerAjaxRequest : function(url, data) {
                 jQuery.ajax({
                     type: 'POST',
@@ -1352,7 +1372,7 @@ if (!String.prototype.trim) {
 
                 var dateTime = getDateTime();
                 if(options.enable_event_time_param) {
-                    requestParams.event_time = dateTime[0];
+                    requestParams.event_hour = dateTime[0];
                 }
 
                 if(options.enable_event_day_param) {
@@ -2438,7 +2458,8 @@ if (!String.prototype.trim) {
             var params = {};
             Utils.copyProperties(data, params);
 
-            params.event_id = event.event_id;
+            params.eventID = Utils.generateUniqueId(event);
+
             if(ids.length > 0){
                 TikTok.fireEventAPI(name, event, params);
             }
@@ -2567,10 +2588,6 @@ if (!String.prototype.trim) {
                             options.gdpr.cookie_law_info_integration_enabled;
                         // Update eventID
 
-                        if( event.eventID.length == 0 && ( options.ajaxForServerEvent || event.type !== "static" ) ) {
-                            event.eventID = pys_generate_token(36);
-                        }
-
                         // send event from server if they were block by gdpr or need send with delay
                         if( options.ajaxForServerEvent || isApiDisabled || event.delay > 0 || event.type !== "static" ){
 
@@ -2581,7 +2598,7 @@ if (!String.prototype.trim) {
                                 ids: ids,
                                 data:params,
                                 url:window.location.href,
-                                event_id:event.event_id,
+                                event_id:params.eventID,
                                 ajax_event:options.ajax_event
                             };
 
@@ -2597,26 +2614,10 @@ if (!String.prototype.trim) {
                                 || name == 'PageView'
                             ) {
                                 setTimeout(function(){
-                                    jQuery.ajax( {
-                                        type: 'POST',
-                                        url: options.ajaxUrl,
-                                        data: json,
-                                        headers: {
-                                            'Cache-Control': 'no-cache'
-                                        },
-                                        success: function(){},
-                                    });
+                                    Utils.sendServerAjaxRequest(options.ajaxUrl, json)
                                 },500)
                             } else {
-                                jQuery.ajax( {
-                                    type: 'POST',
-                                    url: options.ajaxUrl,
-                                    data: json,
-                                    headers: {
-                                        'Cache-Control': 'no-cache'
-                                    },
-                                    success: function(){},
-                                });
+                                Utils.sendServerAjaxRequest(options.ajaxUrl, json)
                             }
                         }
                     }
@@ -2811,9 +2812,8 @@ if (!String.prototype.trim) {
                         options.gdpr.cookie_law_info_integration_enabled;
                     // Update eventID
 
-                    if(event.type !== "static" || options.ajaxForServerStaticEvent || (!options.ajaxForServerStaticEvent && !event.eventID)) {
-                        event.eventID = pys_generate_token(36);
-                    }
+                    event.eventID = Utils.generateUniqueId(event);
+
                     if(Cookies.get('_fbp')){
                         params._fbp = Cookies.get('_fbp');
                     }
@@ -2868,7 +2868,7 @@ if (!String.prototype.trim) {
                 // add eventID for deduplicate events @see https://developers.facebook.com/docs/marketing-api/conversions-api/deduplicate-pixel-and-server-events/
                 var args = {};
                 if(options.facebook.serverApiEnabled && event.hasOwnProperty('eventID')) {
-                    args.eventID = pixelId+event.eventID;
+                    args.eventID = event.eventID;
                 }
                 Facebook.maybeInitPixel(pixelId);
                 fbq(actionType,pixelId, name, params,args);
@@ -3298,7 +3298,6 @@ if (!String.prototype.trim) {
             }
 
             var eventParams = event.params;
-            var data = event.params;
             var valuesArray = Object.values(event.trackingIds);
             var ids = valuesArray.filter(function (pixelId) {
                 return !Utils.hideMatchingPixel(pixelId, 'ga');
@@ -3318,6 +3317,8 @@ if (!String.prototype.trim) {
             var copyParams = Utils.copyProperties(eventParams, {}); // copy params because mapParamsTov4 can modify it
 
             var params = mapParamsTov4(ids,name,copyParams)
+
+            params.event_id = Utils.generateUniqueId(event);
 
 
             delete params.analytics_storage;
@@ -3479,7 +3480,7 @@ if (!String.prototype.trim) {
                     var searchValue = "index_"+index;
                     var config_for_tag = Object.assign({}, config);
                     config_for_tag.debug_mode = false;
-
+                    config_for_tag.send_page_view = !options.ga.custom_page_view_event;
                     for (var key in obj) {
                         if (obj[key] === searchValue) {
                             config_for_tag.debug_mode = true;
@@ -3490,6 +3491,7 @@ if (!String.prototype.trim) {
                     {
                         delete config_for_tag.debug_mode;
                     }
+
                     if(isv4(trackingId)) {
                         if(options.ga.disableAdvertisingPersonalization) {
                             config_for_tag.allow_ad_personalization_signals = false
@@ -3842,6 +3844,9 @@ if (!String.prototype.trim) {
                 return;
             }
             var _params = Utils.copyProperties(data.params,{});
+
+            _params.event_id = Utils.generateUniqueId(data);
+
             var ids = data.ids.filter(function (pixelId) {
                 return !Utils.hideMatchingPixel(pixelId, 'google_ads');
             });
@@ -5566,17 +5571,11 @@ if (!String.prototype.trim) {
 
 }(jQuery, pysOptions);
 
-function pys_generate_token(length){
-    //edit the token allowed characters
-    var a = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890".split("");
-    var b = [];
-    for (var i=0; i<length; i++) {
-        var j = (Math.random() * (a.length-1)).toFixed(0);
-        b[i] = a[j];
-    }
-    return b.join("");
+function pys_generate_token() {
+    return ([1e7]+-1e3+-4e3+-8e3+-1e11).replace(/[018]/g, c =>
+        (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
+    );
 }
-
 function getBundlePriceOnSingleProduct(data) {
     var items_sum = 0;
     jQuery(".bundle_form .bundled_product").each(function(index){

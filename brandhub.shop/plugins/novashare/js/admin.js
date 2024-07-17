@@ -87,7 +87,9 @@
 		});
 
 		//input display control
-		$('.novashare-input-controller input').change(function() {
+		$('.novashare-input-controller input, .novashare-input-controller select').change(function() {
+
+			var controller = $(this);
 
 			var inputID = $(this).attr('id');
 
@@ -96,26 +98,71 @@
 			$('.' + inputID).each(function() {
 
 				var skipFlag = true;
+				var forceHide = false;
+				var forceShow = false;
+				var optionSelected = false;
 
 				if($(this).hasClass('novashare-input-controller')) {
-					nestedControllers.push($(this).find('input').attr('id'));
+					nestedControllers.push($(this).find('input, select').attr('id'));
 				}
 
 				var currentInputContainer = this;
 
 				$.each(nestedControllers, function(index, value) {
+					var currentController = $('#' + value);
 
-					var controlChecked = $('#' + value).is(':checked');
-					var controlReverse = $('#' + value).closest('.novashare-input-controller').hasClass('novashare-input-controller-reverse');
+					if(currentController.is('input')) {
 
-		  			if($(currentInputContainer).hasClass(value) && (controlChecked == controlReverse)) {
-		  				skipFlag = false;
-		  				return false;
-		  			}
+						var controlChecked = $('#' + value).is(':checked');
+						var controlReverse = $('#' + value).closest('.novashare-input-controller').hasClass('novashare-input-controller-reverse');
+
+			  			if($(currentInputContainer).hasClass(value) && (controlChecked == controlReverse)) {
+			  				skipFlag = false;
+			  				return false;
+			  			}
+			  		}
+			  		else if(currentController.is('select')) {
+			  			var classNames = currentInputContainer.className.match(/novashare-select-control-([^\s]*)/g);
+
+			  			if(classNames) {
+							var foundClass = ($.inArray('novashare-select-control-' + $('#' + value).val(), classNames)) >= 0;
+							if(!foundClass) {
+								forceHide = true;
+							}
+						}
+
+						//clear value of nested selected controller and trigger change event
+						if(controller.is('input') && !controller.is(':checked')) {
+							currentController.val('').change();
+						}
+			  		}
 				});
 
+				if(controller.is('select')) {
+					var classNames = this.className.match(/novashare-select-control-([^\s]*)/g);
+
+					var foundClass = ($.inArray('novashare-select-control-' + controller.val(), classNames)) >= 0;
+
+					if(classNames && (foundClass != $(this).hasClass('novashare-control-reverse'))) {
+						forceShow = true;
+					}
+					else {
+						forceHide = true;
+					}
+
+					var classParts = this.className.split('novashare-select-control-');
+					var controllerClassNames = classParts[0].match(/([^\s]+)/g);
+					$(controllerClassNames).each(function() {
+						var controller = $('#' + this);
+						if(controller.val() == classParts[1]) {
+							forceShow = true;
+							forceHide = false;
+						}
+					});
+				}
+
 				if(skipFlag) {
-					if($(this).hasClass('hidden')) {
+					if(($(this).hasClass('hidden') || forceShow) && !forceHide) {
 						$(this).removeClass('hidden');
 					}
 					else {
@@ -497,8 +544,6 @@ jQuery(function($) {
 			message.html(NOVASHARE.strings.failed);
 		})
 		.always(function(r) {
-
-			console.log(r);
 			
 			//show response message
 			if(r.data && r.data.message) {
