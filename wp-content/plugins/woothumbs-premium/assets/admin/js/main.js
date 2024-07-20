@@ -39,7 +39,7 @@
     ai_container_tpl = `<h2 class="iconic-woothumbs-ai__section-title" data-attribute-name="{{attribute_name}}" data-attribute-label="{{attribute_label}}"><span>${iconic_woothumbs_vars.text.attribute} {{attribute_label}}</span> <a href="#" class="${ai_add_row_class.replace('.', '')} button">${iconic_woothumbs_vars.text.add} {{attribute_label}}</a></h2>
 							<div data-attribute-name="{{attribute_name}}" data-term-count="" class="${ai_section_content_class.replace('.', '')}"></div>
 							<div class="clear"></div>`,
-    ai_row_tpl = `<div data-attribute-name="{{attribute_name}}" data-term-id="{{term_id}}" data-is-new="{{is_new}}" class="${ai_row_class.replace('.', '')} closed">
+    ai_row_tpl = `<div data-attribute-name="{{attribute_name}}" data-term-id={{term_id}} data-is-new="{{is_new}}" class="${ai_row_class.replace('.', '')} closed">
 						<h3>
 							<div class="${ai_row_class.replace('.', '')}-toggle" aria-label="${iconic_woothumbs_vars.text.click_to_toggle}"></div>
 							<select class="${ai_select_field_class.replace('.', '')}" data-attribute="{{attribute_name}}">
@@ -52,7 +52,7 @@
 						<div class="${ai_row_class.replace('.', '')}-content" style="display: none;">
 							<ul class="iconic-woothumbs-ai__images">{{images}}</ul>
 
-							<input type="hidden" class="${ai_image_ids_field_class.replace('.', '')}" name="{{attribute_name}}__{{term_id}}" data-attribute-label="{{attribute_label}}" value=""/>
+							<input type="hidden" class="${ai_image_ids_field_class.replace('.', '')}" name={{attribute_name}}__{{term_id}} data-attribute-label={{attribute_label}} value=""/>
 
 							<button {{disabled}} id="iconic-woothumbs-ai__add-specific" type="button" class="manage_woothumbs_ai button-secondary iconic-woothumbs-ai__add-specific">
 								${iconic_woothumbs_vars.text.add_images}
@@ -132,7 +132,7 @@
     $attribute_section = $ai_specific_attributes_section.find(attribute_section_selector);
 
     // Prevent this section from being added again from the action dropdown.
-    $ai_action_select.find(`option[value=${attribute_name}]`).attr('disabled', true);
+    $ai_action_select.find(`option[value="${attribute_name}]"`).attr('disabled', true);
 
     // Check the attributes cache first before fetching
     // attribute terms for the select dropdown via AJAX,
@@ -155,7 +155,8 @@
         }
       }).done(function (response) {
         if (response.success) {
-          const select_term_data = JSON.parse(response.data);
+          const response_data = response.data.replace('&amp;', '&');
+          const select_term_data = JSON.parse(response_data);
           ai_attributes_cache[attribute_name] = select_term_data;
           $attribute_section.attr('data-term-count', ai_attributes_cache[attribute_name].length);
           add_ai_attribute_rows(attribute_name, attribute_label, select_term_data, row_term_data);
@@ -187,7 +188,12 @@
           options_html = prepare_select_options(select_term_data, data.term);
           $attribute_container.prepend(tpl.replace(/{{is_new}}/g, 'no').replace(/{{term_id}}/g, data.term).replace(/{{options}}/g, options_html).replace(/{{images}}/g, images_html).replace(/{{disabled}}/g, ''));
           // Update the hidden input value.
-          update_ai_gallery_state($attribute_container.find(`[data-term-id="${data.term}"]`), false);
+          $term_containers = $attribute_container.find('[data-term-id]');
+          $term_containers.each(function (i) {
+            if ($(this).attr('data-term-id') === data.term) {
+              update_ai_gallery_state($(this), false);
+            }
+          });
         }
       });
     } else {
@@ -214,7 +220,7 @@
     for (const key in select_term_data) {
       if (Object.hasOwnProperty.call(select_term_data, key)) {
         const selected = current_term && select_term_data[key] == current_term ? 'selected' : '';
-        options_html += `<option ${selected} value="${select_term_data[key]}">${select_term_data[key]}</option>`;
+        options_html += `<option ${selected} value=${select_term_data[key]}>${select_term_data[key]}</option>`;
       }
     }
     return options_html;
@@ -738,7 +744,7 @@
     // Remove the parent section if it no longer contains any rows..
     if (!$parent_section_content.children().length) {
       $parent_section_content.parent().find(`[data-attribute-name="${attribute_name}"]`).remove();
-      $ai_action_select.find(`option[value=${attribute_name}]`).attr('disabled', false);
+      $ai_action_select.find(`option[value="${attribute_name}]"`).attr('disabled', false);
     }
   }
 
@@ -1401,7 +1407,7 @@
           text: iconic_woothumbs_vars.text.attach_mp4
         },
         library: {
-          type: 'video/mp4'
+          type: ['video/mp4', 'video/webm']
         },
         multiple: false
       });
@@ -1451,7 +1457,7 @@
           text: iconic_woothumbs_vars.text.attach_mp4
         },
         library: {
-          type: 'video/mp4'
+          type: ['video/mp4', 'video/webm']
         },
         multiple: false
       });

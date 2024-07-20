@@ -54,7 +54,7 @@
       iconic_woothumbs.vars.show_attribute_trigger = 'iconic_woothumbs_show_attribute';
       iconic_woothumbs.vars.loading_attribute_trigger = 'iconic_woothumbs_loading_attribute';
       iconic_woothumbs.vars.fullscreen_trigger = iconic_woothumbs.is_true(iconic_woothumbs_vars.settings.fullscreen_general_click_anywhere) ? '.iconic-woothumbs-fullscreen, img' : '.iconic-woothumbs-fullscreen';
-      iconic_woothumbs.vars.zoom_fullscreen_trigger = iconic_woothumbs.is_true(iconic_woothumbs_vars.settings.fullscreen_general_click_anywhere) ? '.zm-viewer .iconic-woothumbs-fullscreen, .zm-viewer img' : '.zm-viewer .iconic-woothumbs-fullscreen';
+      iconic_woothumbs.vars.zoom_fullscreen_trigger = iconic_woothumbs.is_true(iconic_woothumbs_vars.settings.fullscreen_general_click_anywhere) ? '.zm-viewer .iconic-woothumbs-fullscreen, .zm-viewer img' : '.iconic-woothumbs-fullscreen';
       iconic_woothumbs.vars.photoswipe_container_class = '.iconic-woothumbs-pswp';
       iconic_woothumbs.vars.play_trigger = '.iconic-woothumbs-play';
       iconic_woothumbs.vars.window_size = {
@@ -186,8 +186,8 @@
       }
       iconic_woothumbs.els.all_images_wrap.each(function (index, element) {
         const $all_images_wrap = $(element),
-          $product = $all_images_wrap.closest('.product'),
-          is_variable = $all_images_wrap.data('product-type') === 'variable' || $all_images_wrap.data('product-type') === 'variable-subscription',
+          $product = $all_images_wrap.closest('.product, .wp-block-woocommerce-single-product'),
+          is_variable = $all_images_wrap.data('product-type').includes('variable'),
           $variations_form = is_variable ? $product.find('form.variations_form') : false,
           variations_json = $variations_form ? $variations_form.attr('data-product_variations') : false;
         iconic_woothumbs.products[index] = {
@@ -220,6 +220,8 @@
       if (iconic_woothumbs.products.length <= 0) {
         return;
       }
+      $('.iconic-woothumbs-remove-on-js-load').remove();
+      $('.iconic-woothumbs-all-images-wrap').addClass('iconic-woothumbs-js-loaded');
       $.each(iconic_woothumbs.products, function (index, product_object) {
         iconic_woothumbs.setup_sliders(product_object);
         iconic_woothumbs.watch_variations(product_object);
@@ -587,6 +589,9 @@
       if (!product_object.maintain_slide_index) {
         current_slide_index = 0;
       }
+      $slider.on('init', function (event, slick) {
+        iconic_woothumbs.els.all_images_wrap.addClass('iconic-woothumbs-gallery-loaded');
+      });
       $slider.slick(iconic_woothumbs.images_slider_args(product_object, current_slide_index));
 
       // We must ensure that the previous handler has been removed
@@ -804,6 +809,7 @@
           }
         }
       }
+      $(window).trigger('resize');
     },
     /**
      * Helper: Set visibility of thumbnail controls
@@ -1064,9 +1070,12 @@
             const selected_term_data = term_data[selected_attribute_key];
             for (const term_data_key in selected_term_data) {
               if (Object.hasOwnProperty.call(selected_term_data, term_data_key)) {
-                const sanitized_term_data_key = iconic_woothumbs.sanitize_string(term_data_key),
-                  sanitized_attribute_value = iconic_woothumbs.sanitize_string(selected_attributes[selected_attribute_key]);
-                if (sanitized_term_data_key === sanitized_attribute_value) {
+                const sanitized_term_data_key = iconic_woothumbs.sanitize_string(term_data_key, true),
+                  sanitized_attribute_value = iconic_woothumbs.sanitize_string(selected_attributes[selected_attribute_key]),
+                  $select_option = $(`select[id="${selected_attribute_key}"]`).find(`option[value="${sanitized_attribute_value}"]`);
+                if (sanitized_term_data_key === sanitized_attribute_value ||
+                // Fallback in case the attribute slugs have been amended.
+                $select_option.length && $select_option.text() === sanitized_term_data_key) {
                   data = [...data, ...selected_term_data[term_data_key]];
                 }
                 if (term_data_key.toLowerCase() === 'any') {
@@ -1085,14 +1094,49 @@
       return data;
     },
     /**
+     * Strip special characters from a string,
+     * preserving hyphens.
+     *
+     * @param string
+     */
+    strip_special_chars(string) {
+      const placeholder = 'PLACEHOLDER';
+      let stripped_string = string.replace(/([a-zA-Z0-9])-([a-zA-Z0-9])/g, `$1${placeholder}$2`);
+      const valid_chars_to_strip = /[a-zA-Z0-9]/g;
+      if (valid_chars_to_strip.test(stripped_string)) {
+        stripped_string = stripped_string.replace(/[^a-zA-Z0-9]/g, '');
+      }
+      stripped_string = stripped_string.replace(new RegExp(placeholder, 'g'), '-');
+      return stripped_string;
+    },
+    /**
      * Sanitize a string; mimicks sanitize_title.
      *
      * @param title
      * @param string
+     * @param strip_chars
      */
-    sanitize_string(string) {
+    sanitize_string(string, strip_chars = false) {
       if (typeof string !== 'string') {
         return string;
+      }
+
+      // Handle encoded/decoded strings.
+      const url_encoded_pattern = /^((%[0-9A-Fa-f]{2})+)$/i;
+
+      // Cater for decoded strings.
+      if (!url_encoded_pattern.test(string)) {
+        if (strip_chars) {
+          string = iconic_woothumbs.strip_special_chars(string);
+        }
+
+        // Encode for consistency.
+        string = encodeURIComponent(string);
+      }
+
+      // Abort processing if this is an URL encoded string.
+      if (url_encoded_pattern.test(string)) {
+        return string.toLowerCase();
       }
 
       // German diacratic character handling.
@@ -1522,7 +1566,7 @@
       if (product_object.all_images_wrap.hasClass(iconic_woothumbs.vars.reset_class) || product_object.all_images_wrap.hasClass(iconic_woothumbs.vars.loading_class)) {
         return;
       }
-      if (product_object.default_images.length < 2) {
+      if (iconic_woothumbs.vars.is_slider_layout && product_object.default_images.length < 2) {
         window.iconic_woothumbs_last_variation_slide_index = product_object.images.slick('slickCurrentSlide');
       }
       product_object.all_images_wrap.trigger(iconic_woothumbs.vars.loading_variation_trigger);
@@ -1615,6 +1659,10 @@
      * @param parent_slide
      */
     trigger_photoswipe(product_object, $clicked_element, last_slide, parent_slide) {
+      if ('undefined' === typeof window.iconic_woothumbs_photoswipe || window.iconic_woothumbs_photoswipe !== false) {
+        return;
+      }
+
       // build items array
       let items = iconic_woothumbs.get_gallery_items(product_object),
         index = typeof items.index !== 'undefined' ? items.index : 0;
@@ -1625,12 +1673,13 @@
         }
         index = $clicked_element_parent.data('slick-index') ? $clicked_element_parent.data('slick-index') : $clicked_element_parent.data('index');
       }
+      const photoswipe_items = iconic_woothumbs.vars.is_rtl ? items.items.reverse() : items.items;
       const maybe_use_index = iconic_woothumbs.vars.is_stacked_layout || typeof last_slide === 'undefined' || !last_slide,
         animationDuration = 100,
         options = {
           mainClass: 'iconic-woothumbs-pswp',
-          dataSource: items.items,
-          index: maybe_use_index && true !== last_slide ? index : items.items.length - 1,
+          dataSource: photoswipe_items,
+          index: maybe_use_index && true !== last_slide && !iconic_woothumbs.vars.is_rtl ? index : photoswipe_items.length - 1,
           showHideAnimationType: 'fade',
           showAnimationDuration: animationDuration,
           hideAnimationDuration: animationDuration,
@@ -1673,6 +1722,15 @@
 
       // Initialise Plyr once the slide has received the DOM update.
       window.iconic_woothumbs_photoswipe.on('contentActivate', function (data) {
+        setTimeout(function () {
+          if (iconic_woothumbs.vars.is_rtl) {
+            const total = window.iconic_woothumbs_photoswipe.options.dataSource.length;
+            const current = window.iconic_woothumbs_photoswipe.currIndex;
+            const reversed = total - current;
+            const separator = window.iconic_woothumbs_photoswipe.options.indexIndicatorSep;
+            $('.iconic-woothumbs-pswp .pswp__counter').html(reversed + separator + total);
+          }
+        }, 10);
         // A short delay is required before we can query the DOM
         // in other methods, such as plyr_setup etc.
         setTimeout(function () {
@@ -1697,6 +1755,9 @@
         if (iconic_woothumbs.plyr_get_gallery_videos(product_object.images_wrap)) {
           iconic_woothumbs.plyr_reset(iconic_woothumbs.vars.plyr_fullscreen_type, product_object, iconic_woothumbs.vars.plyr_gallery_type);
         }
+      });
+      window.iconic_woothumbs_photoswipe.on('destroy', function () {
+        window.iconic_woothumbs_photoswipe = false;
       });
 
       // Register UI elements.
@@ -2324,12 +2385,14 @@
         // window.iconic_woothumbs_plyr[type] array in the
         // `plyr_setup` method.
         function maybe_resolve() {
-          destroy_counter++;
           if (destroy_counter === window.iconic_woothumbs_plyr[type].length) {
-            resolve();
+            setTimeout(function () {
+              resolve();
+            }, 250);
           }
         }
         window.iconic_woothumbs_plyr[type].forEach(function (plyr_instance, index) {
+          destroy_counter++;
           plyr_instance.destroy(maybe_resolve);
         });
       });
@@ -2510,8 +2573,10 @@
           // videos at once is very poor UX.
           $container = product_object.images.find('.plyr:first');
         }
-      } else if (iconic_woothumbs.vars.plyr_fullscreen_type === type) {
+      } else if (iconic_woothumbs.vars.plyr_fullscreen_type === type && ('undefined' === typeof window.iconic_woothumbs_photoswipe || window.iconic_woothumbs_photoswipe !== false)) {
         $container = $(window.iconic_woothumbs_photoswipe.currSlide.holderElement).find('.plyr');
+      } else {
+        $container = false;
       }
       return $container;
     }

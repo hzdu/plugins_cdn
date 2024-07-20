@@ -1,5 +1,4 @@
 ( function( $, obj ) {
-
 	obj.init = function() {
 		$( '.stellarwp-uplink-license-key-field' ).each( function() {
 			var $el = $( this );
@@ -35,4 +34,4 @@
 	$( function() {
 		obj.init();
 	} );
-} )( jQuery, {} );
+} )( jQuery, {}	 );
