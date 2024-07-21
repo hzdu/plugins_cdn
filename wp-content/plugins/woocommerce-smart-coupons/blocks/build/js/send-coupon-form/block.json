@@ -1,0 +1,28 @@
+{
+  "apiVersion": 2,
+  "name": "woocommerce-smart-coupons/send-coupon-form",
+  "version": "1.0.0",
+  "title": "Send coupon form",
+  "category": "woocommerce-smart-coupons",
+  "description": "Displays Send coupon form.",
+  "supports": {
+    "html": false,
+    "align": false,
+    "multiple": false,
+    "reusable": false
+  },
+  "parent": [
+    "woocommerce/checkout-contact-information-block"
+  ],
+  "attributes": {
+    "lock": {
+      "type": "object",
+      "default": {
+        "remove": true,
+        "move": true
+      }
+    }
+  },
+  "textdomain": "woocommerce-smart-coupons",
+  "editorStyle": "file:../../../build/style-woocommerce-smart-coupons-send-coupon-form-block.css"
+}

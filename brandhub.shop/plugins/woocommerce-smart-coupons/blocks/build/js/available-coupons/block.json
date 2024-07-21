@@ -1,0 +1,29 @@
+{
+  "apiVersion": 2,
+  "name": "woocommerce-smart-coupons/available-coupons",
+  "version": "1.0.0",
+  "title": "Available coupons",
+  "category": "woocommerce-smart-coupons",
+  "description": "Displays available coupons.",
+  "supports": {
+    "html": false,
+    "align": false,
+    "multiple": false,
+    "reusable": false
+  },
+  "attributes": {
+    "lock": {
+      "type": "object",
+      "default": {
+        "remove": true,
+        "move": true
+      }
+    }
+  },
+  "parent": [
+    "woocommerce/checkout-contact-information-block",
+    "woocommerce/cart-items-block"
+  ],
+  "textdomain": "woocommerce-smart-coupons",
+  "editorStyle": "file:../../../build/style-woocommerce-smart-coupons-available-coupons-block.css"
+}
