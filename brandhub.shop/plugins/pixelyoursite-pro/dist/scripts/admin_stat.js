@@ -313,6 +313,24 @@
                     startDatepicker.datepicker( "option", "maxDate", pysStatGlobal.endDate );
                 });
 
+            let startDeleteDatepicker =  jQuery( ".deleting_form .pys_stat_delete_time_custom .datepicker_start" )
+                .datepicker({
+                    dateFormat:"mm/dd/yy"
+                })
+                .on( "change", function() {
+                    pysStatGlobal.startDateDelete = util.getDatepickerDate( this.value )
+                    endDeleteDatepicker.datepicker( "option", "minDate", pysStatGlobal.startDateDelete );
+                })
+
+            let endDeleteDatepicker =  jQuery( ".deleting_form .pys_stat_delete_time_custom .datepicker_end" )
+                .datepicker({
+                    dateFormat:"mm/dd/yy"
+                })
+                .on( "change", function() {
+                    pysStatGlobal.endDateDelete = util.getDatepickerDate( this.value )
+                    startDeleteDatepicker.datepicker( "option", "maxDate", pysStatGlobal.endDateDelete );
+                });
+
             $(".pys_stat .per_page_selector").on("change",function () {
                 pysStatGlobal.perPage = parseInt($(this).val());
                 pysStatGlobal.loadGlobalData(1)
@@ -387,6 +405,18 @@
                     $(".global_data .pys_stat_time_custom").css("display","none")
                     pysStatGlobal.updateStartEndDate()
                     pysStatGlobal.loadGlobalData(1)
+                }
+
+            })
+
+            jQuery(".deleting_form .pys_stat_delete_time").on("change",function () {
+                let typeDate = jQuery(this).val()
+                if(typeDate == "custom") {
+                    jQuery(".deleting_form .pys_stat_delete_time_custom").css("display","flex")
+                    jQuery(".deleting_form .pys_stat_delete_time_custom .datepicker").text("")
+                } else {
+                    $(".deleting_form .pys_stat_delete_time_custom").css("display","none")
+                    jQuery(".deleting_form .pys_stat_delete_time_custom .datepicker").text("")
                 }
 
             })

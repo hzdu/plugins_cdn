@@ -8,8 +8,7 @@ $(document).ready(function(){
         });
     }
 
-    $('button[type="submit"]').on('click', function(e){
-        console.log($(this).val())
+    $('.custom_events button[type="submit"]').on('click', function(e){
         e.preventDefault();
         var _this_form = $(this).closest('form');
         var data_form = _this_form.serializeArray();
@@ -114,6 +113,35 @@ $(document).ready(function(){
                     btnClass: 'btn-red',
                     action: function () {
                         location.href = _this.attr('href');
+                    }
+                },
+                cancelAction: {
+                    text: 'No!'
+                }
+            }
+        });
+    });
+
+
+    $('.deleting_form button[type="submit"]').on('click', function(e){
+        e.preventDefault();
+        var _this_form = $(this).closest('form');
+        var data_form = _this_form.serializeArray();
+
+        $.confirm({
+            boxWidth: '500px',
+            useBootstrap: false,
+            title: 'Warning: please confirm deletion of statistics records',
+            content: 'Please verify the accuracy of the period for which you are deleting records. Be aware that once deleted, the data cannot be recovered. Proceed with caution.',
+            type: 'red',
+            typeAnimated: true,
+            autoClose: 'cancelAction|10000',
+            buttons: {
+                deleteEvent: {
+                    text: 'Yes, delete statistics records',
+                    btnClass: 'btn-red',
+                    action: function () {
+                        _this_form.submit()
                     }
                 },
                 cancelAction: {
