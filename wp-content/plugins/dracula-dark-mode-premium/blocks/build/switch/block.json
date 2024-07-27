@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json.schemastore.org/block.json",
+  "apiVersion": 2,
+  "name": "dracula/switch",
+  "version": "1.0.0",
+  "title": "Dark Mode Switch",
+  "category": "widgets",
+  "description": "Insert a dark mode toggle switch into your content.",
+  "supports": {
+    "html": false
+  },
+  "attributes": {
+    "style": {
+      "type": "number",
+      "default": 1
+    },
+    "data": {
+      "type": "object"
+    }
+  },
+  "keywords": [
+    "dark mode",
+    "switch",
+    "dracula"
+  ],
+  "textdomain": "dracula",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css"
+}
