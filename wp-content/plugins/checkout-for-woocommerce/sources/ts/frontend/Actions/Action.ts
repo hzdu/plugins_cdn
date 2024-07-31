@@ -1,5 +1,5 @@
-import DataService    from '../Services/DataService';
-import LoggingService from '../Services/LoggingService';
+import DataService                      from '../Services/DataService';
+import LoggingService                   from '../Services/LoggingService';
 
 /**
  * Base class for our ajax handling. Child classes will extend this and override the response function and implement their
@@ -19,6 +19,7 @@ abstract class Action {
         this.id = id;
 
         LoggingService.log( `Running ${this.id} action. ☄️` );
+        jQuery( document.body ).trigger( `cfw_pre_${this.id}_action` );
     }
 
     /**
@@ -49,12 +50,14 @@ abstract class Action {
 
                 if ( maybeValidJSON === null ) {
                     LoggingService.logError( 'Unable to fix malformed JSON' );
+                    LoggingService.logError( 'Response:', response );
                 } else if ( Action.isValidJSON( maybeValidJSON[ 0 ] ) ) {
                     LoggingService.logNotice( 'Fixed malformed JSON. Original:', response );
                     // eslint-disable-next-line prefer-destructuring
                     response = maybeValidJSON[ 0 ];
                 } else {
                     LoggingService.logError( 'Unable to fix malformed JSON' );
+                    LoggingService.logError( 'Response:', response );
                 }
 
                 return response;

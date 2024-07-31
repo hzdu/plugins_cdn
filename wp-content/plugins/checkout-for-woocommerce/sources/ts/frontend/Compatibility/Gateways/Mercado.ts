@@ -1,4 +1,3 @@
-import Main                 from '../../Main';
 import DataService          from '../../Services/DataService';
 import TabService           from '../../Services/TabService';
 import Compatibility        from '../Compatibility';
@@ -14,7 +13,7 @@ class Mercado extends Compatibility {
         } );
 
         jQuery( document.body ).one( 'updated_checkout', () => {
-            if ( Main.instance.tabService.getCurrentTab().attr( 'id' ) === TabService.paymentMethodTabId || DataService.getSetting( 'enable_one_page_checkout' ) ) {
+            if ( TabService.getCurrentTab().attr( 'id' ) === TabService.paymentMethodTabId || DataService.getSetting( 'enable_one_page_checkout' ) ) {
                 Mercado.makeSureFormLoaded();
             }
         } );

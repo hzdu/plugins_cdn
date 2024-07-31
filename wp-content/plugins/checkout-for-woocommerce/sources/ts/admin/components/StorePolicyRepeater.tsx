@@ -1,18 +1,16 @@
-import { DragDropContext, Droppable, Draggable }            from '@hello-pangea/dnd';
-import apiFetch                                             from '@wordpress/api-fetch';
-import React, { useState, useEffect }                       from 'react';
-import StorePolicy                                          from './StorePolicy';
+import { DragDropContext, Droppable, Draggable }                         from '@hello-pangea/dnd';
+import { useField }                                                      from 'formik';
+import React, { useEffect }                                              from 'react';
+import StorePolicy                                                       from './StorePolicy';
 
-declare let cfw_admin_settings_data: any;
+const StorePolicyRepeater = ( { name } ) => {
+    const [ field, , helpers ] = useField( name );
 
-type StorePolicyRow = {
-    title: string;
-    page: any;
-};
+    const rows = field.value;
 
-function StorePolicyRepeater() {
-    const [ isLoading, setIsLoading ] = useState( false );
-    const [ rows, setRows ] = useState( [] );
+    const setRows = ( newRows: any[] ) => {
+        helpers.setValue( newRows );
+    };
 
     const addRow = () => {
         const newRows = [ ...rows ];
@@ -27,15 +25,8 @@ function StorePolicyRepeater() {
     };
 
     const fetchPolicies = async () => {
-        if ( cfw_admin_settings_data.store_policies === 'undefined' ) {
-            console.log( 'Error: Store policies data object undefined' );
-            return;
-        }
-
-        if ( cfw_admin_settings_data.store_policies.length === 0 ) {
+        if ( rows.length === 0 ) {
             addRow();
-        } else {
-            setRows( cfw_admin_settings_data.store_policies );
         }
     };
 
@@ -62,18 +53,10 @@ function StorePolicyRepeater() {
         setRows( updatedRows );
     };
 
-    const saveSettings = async () => {
-        setIsLoading( true );
-
-        await apiFetch( {
-            path: '/checkoutwc/v1/settings/store_policies',
-            method: 'POST',
-            data: {
-                value: rows,
-            },
-        } );
-
-        setIsLoading( false );
+    const removeRow = ( index ) => {
+        // Filter out the row at the specified index
+        const updatedRows = field.value.filter( ( _, i ) => i !== index );
+        helpers.setValue( updatedRows ); // Update Formik's state
     };
 
     const onDragEnd = ( result ) => {
@@ -102,7 +85,7 @@ function StorePolicyRepeater() {
 
     return (
         <DragDropContext onDragEnd={onDragEnd}>
-            <div className={ isLoading ? 'opacity-50' : '' }>
+            <div>
                 <div className="space-y-4">
                     <Droppable droppableId="store_policies">
                         { ( provided ) => (
@@ -125,7 +108,7 @@ function StorePolicyRepeater() {
                                                 <StorePolicy
                                                     row={row}
                                                     setRow={( value ) => updateRow( index, value )}
-                                                    removeHandler={() => setRows( ( prevRows ) => prevRows.filter( ( _, i ) => i !== index ) )}
+                                                    removeHandler={() => removeRow( index )}
                                                     dragHandleProps={providedToo.dragHandleProps}
                                                 />
                                             </div>
@@ -142,18 +125,9 @@ function StorePolicyRepeater() {
                         type="button"
                     >Add Row</button>
                 </div>
-
-                <div className="mt-4 text-center">
-                    <button
-                        id="cfw_admin_page_submit"
-                        className="mt-4 py-2 px-4 bg-blue-600 text-white rounded-md invisible"
-                        type="submit"
-                        onClick={saveSettings}
-                    >Save Settings</button>
-                </div>
             </div>
         </DragDropContext>
     );
-}
+};
 
 export default StorePolicyRepeater;

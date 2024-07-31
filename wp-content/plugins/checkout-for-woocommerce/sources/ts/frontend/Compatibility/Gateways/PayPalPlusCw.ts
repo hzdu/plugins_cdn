@@ -1,18 +1,14 @@
-import Main          from '../../Main';
-import Compatibility from '../Compatibility';
+import Compatibility         from '../Compatibility';
+import UpdateCheckoutService from '../../Services/UpdateCheckoutService';
 
 class PayPalPlusCw extends Compatibility {
-    /**
-     * @param {Main} main The Main object
-     * @param {any} params Params for the child class to run on load
-     */
     constructor() {
         super( 'PayPalPlusCw' );
     }
 
     load(): void {
         jQuery( document.body ).on( 'cfw-payment-tab-loaded', () => {
-            Main.instance.updateCheckoutService.queueUpdateCheckout();
+            UpdateCheckoutService.queueUpdateCheckout();
         } );
     }
 }

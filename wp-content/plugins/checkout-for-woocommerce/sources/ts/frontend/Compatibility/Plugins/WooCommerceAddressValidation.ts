@@ -1,4 +1,3 @@
-import Main          from '../../Main';
 import Compatibility from '../Compatibility';
 
 class WooCommerceAddressValidation extends Compatibility {

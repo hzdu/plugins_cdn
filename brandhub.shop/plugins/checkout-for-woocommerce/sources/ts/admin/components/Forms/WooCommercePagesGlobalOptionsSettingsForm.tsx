@@ -11,6 +11,7 @@ import StorePolicyRepeater                                  from '../StorePolicy
 interface GlobalOptionsFormSettingsInterface {
     show_cart_item_discount: boolean;
     cart_item_link: string;
+    cart_item_link_target_new_window: boolean;
     cart_item_data_display: string;
     store_policies: any[];
 }
@@ -71,6 +72,15 @@ const WooCommercePagesGlobalOptionsSettingsForm: React.FC<GlobalOptionsSettingsF
                                         ]}
                                         searchTerm={searchTerm}
                                     />
+
+                                    {values.cart_item_link === 'enabled' && (
+                                        <CheckboxField
+                                            name="cart_item_link_target_new_window"
+                                            label="Open in New Window"
+                                            description='Open cart item links in a new window.'
+                                            searchTerm={searchTerm}
+                                        />
+                                    )}
 
                                     <RadioGroupField
                                         name={'cart_item_data_display'}

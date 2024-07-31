@@ -23,6 +23,12 @@
     &:focus {
         outline-style: none;
     }
+
+    &:disabled {
+        background: var(--cfw-buttons-primary-disabled-background-color, #737373);
+        border-color: var(--cfw-buttons-primary-disabled-background-color, #737373);
+        cursor: not-allowed;
+    }
 }
 
 @mixin cfw-secondary-button() {
@@ -33,25 +39,47 @@
     padding: 0.82rem;
     font-size: 1em;
     background: var(--cfw-buttons-secondary-background-color);
-    color: var(--cfw-buttons-secondary-text-color);
+    color: var(--cfw-buttons-secondary-text-color) !important;
     text-align: center;
     transition: all .1s ease-in-out;
     display: inline-block;
     width: 100%;
+    text-decoration: none;
 
     &:hover {
         background: var(--cfw-buttons-secondary-hover-background-color);
-        color: var(--cfw-buttons-secondary-hover-text-color);
+        color: var(--cfw-buttons-secondary-hover-text-color) !important;
         border-color: var(--cfw-buttons-secondary-hover-background-color);
     }
 
     &:focus {
         outline-style: none;
     }
+
+    &.cfw-secondary-btn-inactive {
+        opacity: 0.5;
+    }
+
+    &.cfw-secondary-btn-active {
+        opacity: 1;
+    }
+}
+
+.cfw-primary-btn {
+    @include cfw-primary-button();
+}
+
+.cfw-secondary-btn {
+    @include cfw-secondary-button();
+}
+
+// Gift up, and anything else that puts buttons in the totals
+.cfw-totals-list button {
+    @include cfw-secondary-button();
 }
 
 // Target .checkoutwc so that our modaal wrapper (SmartyStreets) and main container both are ancestors
-.checkoutwc {
+.checkoutwc, .cfw-modal {
     .cfw-prev-tab {
         transition: all .2s ease;
         text-decoration: none;

@@ -10,41 +10,41 @@ import SpainAutocompleteStrategy       from './SpainAutocompleteStrategy';
 import SwedenAutocompleteStrategy      from './SwedenAutocompleteStrategy';
 
 export default class AutocompleteStrategyFactory {
-    public static get( components: google.maps.GeocoderAddressComponent[], formattedAddress: string ): AutocompleteStrategy {
+    public static get( components: google.maps.GeocoderAddressComponent[], formattedAddress: string, userInputValue: string ): AutocompleteStrategy {
         const country = Utilities.getComponentValueByType( 'country', components );
 
         if ( country === 'NZ' ) {
-            return new NewZealandAutocompleteStrategy( components, formattedAddress );
+            return new NewZealandAutocompleteStrategy( components, formattedAddress, userInputValue );
         }
 
         if ( country === 'NL' ) {
-            return new NetherlandsAutocompleteStrategy( components, formattedAddress );
+            return new NetherlandsAutocompleteStrategy( components, formattedAddress, userInputValue );
         }
 
         if ( country === 'CA' ) {
-            return new CanadaAutocompleteStrategy( components, formattedAddress );
+            return new CanadaAutocompleteStrategy( components, formattedAddress, userInputValue );
         }
 
         if ( country === 'ES' ) {
-            return new SpainAutocompleteStrategy( components, formattedAddress );
+            return new SpainAutocompleteStrategy( components, formattedAddress, userInputValue );
         }
 
         if ( country === 'DE' ) {
-            return new GermanyAutocompleteStrategy( components, formattedAddress );
+            return new GermanyAutocompleteStrategy( components, formattedAddress, userInputValue );
         }
 
         if ( country === 'SE' ) {
-            return new SwedenAutocompleteStrategy( components, formattedAddress );
+            return new SwedenAutocompleteStrategy( components, formattedAddress, userInputValue );
         }
 
         if ( country === 'MY' ) {
-            return new MalaysiaAutocompleteStrategy( components, formattedAddress );
+            return new MalaysiaAutocompleteStrategy( components, formattedAddress, userInputValue );
         }
 
         if ( country === 'IT' ) {
-            return new ItalyAutocompleteStrategy( components, formattedAddress );
+            return new ItalyAutocompleteStrategy( components, formattedAddress, userInputValue );
         }
 
-        return new AutocompleteStrategy( components, formattedAddress );
+        return new AutocompleteStrategy( components, formattedAddress, userInputValue );
     }
 }

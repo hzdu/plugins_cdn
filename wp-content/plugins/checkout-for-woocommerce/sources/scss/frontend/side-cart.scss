@@ -1,26 +1,31 @@
-@import "../../../node_modules/bootstrap/scss/_functions"; // required to pull in nested bootstrap grid
+// Custom fonts
+@import "custom-fonts";
 
-// scss-docs-start grid-breakpoints
-$grid-breakpoints: (
-    xs: 0,
-    sm: 576px,
-    md: 768px,
-    lg: 992px,
-    xl: 1200px,
-    xxl: 1400px
-) !default;
-
-@import "~bootstrap/scss/mixins/breakpoints";
+@import "grid-mixins";
 @import "components/buttons";
+@import "components/variation-modal";
+@import "components/modals";
+@import "components/side-cart-quantity-wrap";
+
+// 3rd party
+@import '~react-responsive-modal/styles.css';
 
 .cfw-side-cart-open-trigger {
     cursor: pointer;
 }
 
+@font-face {
+    font-family: "cfw-slick";
+    src: url("../fonts/slick.eot");
+    src: url("../fonts/slick.eot?#iefix") format("embedded-opentype"), url("../fonts/slick.woff") format("woff"), url("../fonts/slick.ttf") format("truetype"), url("../fonts/slick.svg#slick") format("svg");
+    font-weight: normal;
+    font-style: normal;
+}
+
 body.admin-bar {
     #cfw-side-cart {
-        top: 32px;
-        height: calc(100vh - 32px);
+        top: var(--wp-admin--admin-bar--height, 0px);
+        height: calc(100vh - var(--wp-admin--admin-bar--height, 0px));
 
         @include media-breakpoint-down(lg) {
             top: 0;
@@ -41,10 +46,25 @@ body.admin-bar {
     height: 100vh;
 }
 
+$slick-font-family: "cfw-slick";
+$slick-loader-path: "../images/";
+
+.slick-dotted.slick-slider {
+    margin-bottom: 1em !important;
+}
+
 // Requires grid
 @import "utility-classes";
 
+@import "components/order-bump";
+
 #cfw-side-cart {
+    /*rtl:begin:ignore*/
+    /* These are copied because Slick uses .parent & selectors that cause issues when imported */
+    @import "components/slick";
+    @import "components/slick-theme";
+    /*rtl:end:ignore*/
+
     font-size: 16px;
     box-sizing: border-box;
     position: fixed;
@@ -66,16 +86,6 @@ body.admin-bar {
     line-height: 1;
     visibility: hidden;
 
-    .slick-dots button {
-        font-size: 8px;
-
-        &:hover {
-            background: none;
-            color: initial;
-            font-size: 8px;
-        }
-    }
-
     @import "variables";
     @import "custom-properties";
 
@@ -86,16 +96,20 @@ body.admin-bar {
     }
 
     @import "components/cart-summary/cart-item-quantity-control";
-    @import "components/order-bump";
+    @import "components/suggested-products";
+    @import "components/free-shipping-progress-bar";
     @import "compatibility/woocommerce-subscriptions";
     @import "compatibility/woocommerce-product-bundles";
+
+    // Adhoc express button fixes
+    // Payment Plugins Stripe / PayPal
+    .wc-stripe-gpay-mini-cart, .wc-ppcp-minicart-ppcp {
+        display: block;
+    }
 
     #cfw_order_bumps_below_cart_items {
         display: block !important;
     }
-
-    // Bootstrap 5.0 Grid
-    @import "grid";
 
     // Checkbox
     @import "components/form-fields";
@@ -112,6 +126,10 @@ body.admin-bar {
         font-family: var(--cfw-heading-font-family) !important;
     }
 
+    .form-row {
+        padding: 5px !important;
+    }
+
     a:not(.cfw-primary-btn):not(.cfw-secondary-btn) {
         color: var(--cfw-body-link-color);
     }
@@ -120,12 +138,22 @@ body.admin-bar {
         margin-bottom: 1em;
     }
 
+    #cfw-side-cart-container {
+        width: 100%;
+        height: 100%;
+    }
+
     #cfw-side-cart-form {
         display: flex;
         flex-direction: column;
         height: 100%;
         padding: 1.5em 0;
         position: relative;
+        background: inherit !important;
+
+        @include media-breakpoint-down(md) {
+            overflow: hidden scroll;
+        }
     }
 
     .cfw-side-cart-contents-header,
@@ -160,7 +188,11 @@ body.admin-bar {
 
     .cfw-side-cart-contents {
         flex-grow: 1;
-        overflow-y: auto;
+
+        @include media-breakpoint-down(md) {
+            flex-grow: unset;
+            overflow-y: unset;
+        }
 
         h2 {
             margin-top: 2em;
@@ -196,6 +228,8 @@ body.admin-bar {
             text-transform: none;
             background: var(--cfw-body-background-color) !important;
             border: none;
+            color: inherit !important;
+            vertical-align: middle;
         }
     }
 
@@ -203,27 +237,36 @@ body.admin-bar {
         border-collapse: collapse;
 
         tr {
-            td, th {
-                padding: 10px 0;
-            }
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
         }
 
         tr.order-total {
+            align-items: baseline;
             border-top: 2px solid #000;
+
+            .includes_tax {
+                color: #666;
+                display: block;
+                font-weight: 400;
+                margin-top: 10px;
+            }
         }
     }
 
-    .cart-item-row > * {
+    .cart-item-row:not(:only-child):not(:last-child) > * {
         border-bottom: 1px solid rgb(211, 212, 213);
     }
 
     .cfw-cart-item-image-wrap {
-        margin-top: 10px;
+        margin-top: 4px;
     }
 
     .cfw-side-cart-totals {
         table {
             border-spacing: 0 1em;
+
             th, td {
                 padding: 0;
                 text-align: left;
@@ -246,9 +289,10 @@ body.admin-bar {
         top: 8px;
         right: 0;
         font-size: 0.9em;
-        color: var(--cfw-body-text-color);
+        color: var(--cfw-body-text-color) !important;
         font-weight: bold;
         transition: all 0.3s ease;
+        text-decoration: none;
     }
 
     tr:hover .cfw-remove-item-button {
@@ -271,6 +315,11 @@ body.admin-bar {
 
     .cfw-secondary-btn {
         line-height: normal;
+        padding: 0.4em;
+    }
+
+    .cfw-primary-btn {
+        padding: 0.6em;
     }
 
     .wc-proceed-to-checkout > *:not(:last-child) {
@@ -305,23 +354,6 @@ body.admin-bar {
         display: table-row;
     }
 
-    .cfw-side-cart-free-shipping-progress-wrap {
-        margin-top: 1em;
-    }
-
-    .cfw-side-cart-free-shipping-progress-wrap p {
-        margin-bottom: 0.75em;
-    }
-
-    .cfw-side-cart-free-shipping-progress {
-        background-color: var(--cfw-side-cart-free-shipping-progress-background, #f5f5f5 );
-    }
-
-    .cfw-side-cart-free-shipping-progress-indicator {
-        background: var(--cfw-side-cart-free-shipping-progress-indicator);
-        height: 0.5em;
-    }
-
     .cfw-order-bump-header label {
         align-items: center;
     }
@@ -330,17 +362,24 @@ body.admin-bar {
         content: "";
     }
 
-    .cfw-side-cart-coupon-wrap {
-        margin-bottom: 2em;
+    @import "components/promo-field-control";
 
-        .form-row {
+    .cfw-coupon-wrap {
+        margin-bottom: 0.8em;
+
+        .form-row, .cfw-input-wrap {
             input[type="text"], input[type="tel"], input[type="email"], input[type="password"] {
-                font-size: 14px;
+                font-size: 14px !important;
             }
 
             .cfw-secondary-btn {
                 font-size: 14px;
+                padding: 0.82rem !important;
             }
+        }
+
+        a {
+            text-decoration: none;
         }
     }
 
@@ -348,61 +387,71 @@ body.admin-bar {
         display: none;
     }
 
-    //#cfw-alert-container {
-    //    position: absolute;
-    //    left: 0;
-    //    right: 0;
-    //    top: 0;
-    //}
+    .cfw_side_cart_item_after_data {
+        margin-top: 0.5em;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
 
-    @include media-breakpoint-down(lg) {
-        width: 100%;
+        .cfw-edit-item-quantity-control-wrap {
+            margin-right: 7px;
+        }
+    }
+
+    .cfw-cart-edit-item-variation {
+        text-decoration: none;
+    }
+
+    .cfw-promo-row {
+        .form-row {
+            padding: 0 !important;
+        }
+
+        .cfw-label-is-floated input[type=text] {
+            padding: 1.35em 0.8em 0.52em !important;
+        }
+
+        label {
+            padding: 0 1.03em !important;
+        }
+    }
+
+    .cfw_cart_item_after_data {
+        margin-top: 0.5em;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+
+        .cfw-edit-item-quantity-control-wrap {
+            margin-right: 7px;
+        }
+    }
+
+    @include media-breakpoint-down(md) {
+        max-width: 100%;
     }
 }
 
-.cfw-side-cart-quantity-wrap {
-    display: inline-flex;
-    align-items: center;
-    color: var(--cfw-side-cart-icon-text-color, #222);
-    position: relative;
-    flex-direction: row;
-    vertical-align: middle;
-    transition: all 0.3s ease;
-
-    svg {
-        width: var(--cfw-side-cart-icon-width, 34px);
-        color: var(--cfw-side-cart-icon-color, #222);
-    }
-
-    svg:not(.cfw-side-cart-icon-solid) {
-        fill: none;
-    }
-
-    .cfw-side-cart-quantity {
-        font-size: 16px;
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif !important;
-        font-weight: 400;
-        letter-spacing: 0.3px;
-        line-height: 20px;
-        padding-left: 0.25em;
-    }
-}
-
-.cfw-side-cart-floating-button {
+#cfw-side-cart-floating-button {
     position: fixed;
     bottom: var(--cfw-side-cart-button-bottom-position, 20px);
     right: var(--cfw-side-cart-button-right-position, 20px);
-    background: var(--cfw-side-cart-button-background, #fff);
-    border-radius: 8px;
-    padding: 16px;
-    box-shadow: var(--cfw-side-cart-button-box-shadow, 0 2px 10px rgba(0, 0, 0, 0.372863) );
-    cursor: pointer;
-    text-rendering: optimizelegibility !important;
-    -webkit-font-smoothing: subpixel-antialiased;
-    -moz-osx-font-smoothing: grayscale;
     z-index: 999997;
-    color: #222;
-    text-transform: none;
+
+    .cfw-side-cart-floating-button-anchor {
+        display: block;
+        background: var(--cfw-side-cart-button-background, #fff);
+        border-radius: 8px;
+        padding: 16px;
+        box-shadow: var(--cfw-side-cart-button-box-shadow, 0 2px 10px rgba(0, 0, 0, 0.372863));
+        cursor: pointer;
+        text-rendering: optimizelegibility !important;
+        -webkit-font-smoothing: subpixel-antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        color: #222;
+        text-transform: none;
+        text-decoration: none;
+    }
 
     &:hover .cfw-side-cart-quantity-wrap {
         opacity: 0.5;
@@ -410,7 +459,7 @@ body.admin-bar {
 }
 
 body.woocommerce-cart {
-    .cfw-side-cart-floating-button {
+    #cfw-side-cart-floating-button {
         display: none;
     }
 }
@@ -458,6 +507,29 @@ body.cfw-side-cart-close {
 
 html[dir="rtl"] .cfw-side-cart-close-btn svg {
     transform: scaleX(-1);
+}
+
+.cfw-shake {
+    animation-name: cfw-shake;
+    animation-duration: 0.8s;
+    animation-iteration-count: 1;
+    animation-timing-function: ease;
+    animation-fill-mode: both;
+}
+
+@keyframes cfw-shake {
+    0% {
+        transform: translate(0, 0);
+    }
+    10%, 30%, 50%, 70%, 90% {
+        transform: translate(-5px, 0);
+    }
+    20%, 40%, 60%, 80% {
+        transform: translate(5px, 0);
+    }
+    100% {
+        transform: translate(0, 0);
+    }
 }
 
 

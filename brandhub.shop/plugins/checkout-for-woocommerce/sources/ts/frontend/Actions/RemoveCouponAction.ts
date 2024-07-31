@@ -1,9 +1,9 @@
-import Alert          from '../Components/Alert';
-import Main           from '../Main';
-import AlertService   from '../Services/AlertService';
-import DataService    from '../Services/DataService';
-import LoggingService from '../Services/LoggingService';
-import Action         from './Action';
+import Alert                 from '../Components/Alert';
+import AlertService          from '../Services/AlertService';
+import DataService           from '../Services/DataService';
+import LoggingService        from '../Services/LoggingService';
+import Action                from './Action';
+import UpdateCheckoutService from '../Services/UpdateCheckoutService';
 
 /**
  *
@@ -28,7 +28,7 @@ class RemoveCouponAction extends Action {
 
         jQuery( document.body ).trigger( 'removed_coupon_in_checkout', [ resp.coupon ] );
 
-        Main.instance.updateCheckoutService.queueUpdateCheckout( {}, { update_shipping_method: false } );
+        UpdateCheckoutService.maybeUpdateCheckout( { update_shipping_method: false } );
 
         // Remove coupon code from coupon field
         DataService.checkoutForm.find( '#cfw-promo-code' ).val( '' );
@@ -43,7 +43,7 @@ class RemoveCouponAction extends Action {
         jQuery( document.body ).trigger( 'cfw-apply-coupon-error' );
         LoggingService.logEvent( 'Fired cfw-apply-coupon-error event.' );
 
-        const alert: Alert = new Alert( 'error', `Failed to remove coupon. Error: ${errorThrown} (${textStatus})`, 'cfw-alert-error' );
+        const alert: Alert = new Alert( 'error', `Failed to remove coupon. Error: ${errorThrown} (${textStatus})` );
         AlertService.queueAlert( alert );
 
         AlertService.showAlerts();

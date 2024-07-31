@@ -64,12 +64,16 @@ const SideCartTotals = () => {
                                 </tr>
                             ) )}
 
+                            {cfwDangerouslyOutputTableRowAction( totals.actions?.woocommerce_cart_totals_before_order_total )}
+
                             <tr className="order-total">
                                 <th>{totals.total.label}</th>
                                 <td>
                                     <Markup content={totals.total.value} noWrap={true} />
                                 </td>
                             </tr>
+
+                            {cfwDangerouslyOutputTableRowAction( totals.actions?.woocommerce_cart_totals_after_order_total )}
                         </>
                     )}
                 </tbody>

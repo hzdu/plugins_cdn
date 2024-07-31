@@ -1,5 +1,6 @@
-import cfwUpdatePaymentMethod from '../../functions/cfwUpdatePaymentMethod';
-import LoggingService         from './LoggingService';
+import cfwGetWPHooks             from '../../functions/cfwGetWPHooks';
+import cfwUpdatePaymentMethod    from '../../functions/cfwUpdatePaymentMethod';
+import LoggingService            from './LoggingService';
 import ClickEvent = JQuery.ClickEvent;
 
 class PaymentGatewaysService {
@@ -13,13 +14,6 @@ class PaymentGatewaysService {
 
         jQuery( document.body ).on( 'cfw_pre_updated_checkout', () => {
             this.initSelectedPaymentGateway();
-        } );
-
-        jQuery( document.body ).on( 'cfw-payment-tab-loaded', () => {
-            // Fix Stripe rendering issue
-            setTimeout( () => {
-                jQuery( '.wc_payment_method.cfw-active .payment_box' ).hide().show( 0 );
-            }, 100 );
         } );
 
         this.initSelectedPaymentGateway();
@@ -43,7 +37,7 @@ class PaymentGatewaysService {
         }
 
         // If there are none selected, select the first.
-        if ( paymentMethods.filter( ':checked' ).length === 0 ) {
+        if ( cfwGetWPHooks().applyFilters( 'cfw_js_ensure_selected_payment_method', paymentMethods.filter( ':checked' ).length === 0 ) ) {
             paymentMethods.eq( 0 ).prop( 'checked', true );
         }
 
@@ -51,7 +45,7 @@ class PaymentGatewaysService {
 
         if ( paymentMethods.length > 1 ) {
             // Hide open descriptions.
-            jQuery( `div.payment_box:not(".${checkedPaymentMethodId}")` ).filter( ':visible' ).slideUp( 0 );
+            jQuery( 'div.payment_box' ).not( `.${checkedPaymentMethodId}` ).filter( ':visible' ).slideUp( 0 );
         }
 
         paymentMethods.filter( ':checked' ).eq( 0 ).trigger( 'click' );
@@ -76,17 +70,14 @@ class PaymentGatewaysService {
 
         // Humans only please
         if ( typeof e.originalEvent !== 'undefined' ) {
-            cfwUpdatePaymentMethod( paymentMethod );
+            ( <any>window ).cfw_update_payment_method_request_xhr = cfwUpdatePaymentMethod( paymentMethod );
         }
 
         const currentSelectedPaymentMethod = selectedPaymentMethod.attr( 'id' );
 
         if ( currentSelectedPaymentMethod !== this._selectedGateway ) {
-            // Give the accordion time to open in case this is helpful
-            setTimeout( () => {
-                jQuery( document.body ).trigger( 'payment_method_selected' );
-                LoggingService.logEvent( `Fired payment_method_selected event. Gateway: ${currentSelectedPaymentMethod}` );
-            }, 400 );
+            jQuery( document.body ).trigger( 'payment_method_selected' );
+            LoggingService.logEvent( `Fired payment_method_selected event. Gateway: ${currentSelectedPaymentMethod}` );
         }
 
         this._selectedGateway = currentSelectedPaymentMethod;

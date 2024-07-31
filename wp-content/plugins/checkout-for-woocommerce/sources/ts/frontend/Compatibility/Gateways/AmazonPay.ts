@@ -1,8 +1,8 @@
-import Main                 from '../../Main';
 import AlertService         from '../../Services/AlertService';
 import DataService          from '../../Services/DataService';
 import TabService           from '../../Services/TabService';
 import Compatibility        from '../Compatibility';
+import LoggingService       from '../../Services/LoggingService';
 
 // eslint-disable-next-line camelcase
 declare let amazon_payments_advanced: any;
@@ -20,9 +20,7 @@ class AmazonPay extends Compatibility {
         jQuery( document.body ).on( 'cfw_complete_order_failure', () => {
             // Amazon Pay triggers update_checkout after a failed submission
             // This prevents the generated alerts from being immediately scrubbed.
-            if ( Main.instance ) {
-                AlertService.preserveAlerts = true;
-            }
+            AlertService.preserveAlerts = true;
         } );
 
         /**
@@ -63,8 +61,7 @@ class AmazonPay extends Compatibility {
 
             this.timer = setInterval( this.clearShadowRoot.bind( this ), 25 );
         } catch ( error ) {
-            // eslint-disable-next-line no-console
-            console.log( error );
+            LoggingService.logError( error );
         }
 
         jQuery( window ).on( 'updated_checkout', () => {

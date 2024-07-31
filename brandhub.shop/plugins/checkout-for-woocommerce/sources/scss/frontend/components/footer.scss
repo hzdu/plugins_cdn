@@ -22,7 +22,28 @@
 }
 
 #wp_footer {
-    & > *:not(.pakkelabels-modal):not(.shipmondo-modal):not(#fb-root) {
+    & > *:not(.pakkelabels-modal):not(.shipmondo-modal):not(#fb-root):not(.mailster-block-form-type-popup):not(.jet-popup) {
         display: none;
+    }
+}
+
+#cfw-footer .cfw-store-policies {
+    list-style-type: none;
+    margin-bottom: 1em;
+    font-weight: bold;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
+    li {
+        list-style-type: none;
+        margin-right: 1.5em;
+
+        a {
+            color: currentColor;
+            text-decoration: none;
+            box-shadow: 0 -2px inset currentColor;
+        }
     }
 }

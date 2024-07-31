@@ -1,10 +1,6 @@
 // Fetchify address autocomplete UI
 body.admin-bar.glass #cc_c2a {
-    margin-top: -32px;
-
-    @include media-breakpoint-down(md) {
-        margin-top: -46px;
-    }
+    margin-top: calc(-1 * var(--wp-admin--admin-bar--height, 0));
 }
 
 #cc_c2a {
@@ -18,4 +14,8 @@ body.admin-bar.glass #cc_c2a {
     color: lighten(#737373, 30%);
     background-color: lighten(#737373, 30%);
     border: none;
+}
+
+.cfw-fetchify-enter-address-manually {
+    margin-bottom: 0.8em;
 }

@@ -2,17 +2,20 @@
 @import "~normalize.css/normalize.css";
 @import "components/template-loader-resets";
 
+// Bootstrap Grid Mixins
+@import "grid-mixins";
+
 // Variables
 @import "custom-properties";
-
-// Grid
-@import "grid";
 
 // Mixins
 @import "mixins";
 
 // Utility Classes
 @import "utility-classes";
+
+// Custom fonts
+@import "custom-fonts";
 
 // Components
 @import "components/document";
@@ -77,9 +80,11 @@
 @import "compatibility/woocommerce-mailerlite";
 @import "compatibility/payment-plugins-paypal-for-woocommerce";
 @import "compatibility/woocommerce-product-bundles";
+@import "compatibility/intuit-gateway";
 
 // 3rd Party
 @import "~intl-tel-input/build/css/intlTelInput";
+@import '~react-responsive-modal/styles.css';
 
 // TODO: Move
 #arrow, .lost_password a {

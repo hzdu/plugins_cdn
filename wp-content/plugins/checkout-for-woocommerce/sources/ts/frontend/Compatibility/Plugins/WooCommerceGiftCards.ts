@@ -1,5 +1,5 @@
-import Main                  from '../../Main';
 import Compatibility         from '../Compatibility';
+import UpdateCheckoutService from '../../Services/UpdateCheckoutService';
 
 declare let wc_gc_params: any;
 
@@ -14,7 +14,7 @@ class WooCommerceGiftCards extends Compatibility {
 
             const code = jQuery( '#wc_gc_cart_code' ).val();
             if ( code ) {
-                Main.instance.updateCheckoutService.triggerUpdateCheckout();
+                UpdateCheckoutService.queueUpdateCheckout();
             }
         } );
 
@@ -36,7 +36,7 @@ class WooCommerceGiftCards extends Compatibility {
                 data: `wc_gc_cart_id=${cardId}&security=${wc_gc_params.security_remove_card_nonce}`,
                 dataType: 'html',
                 success() {
-                    Main.instance.updateCheckoutService.triggerUpdateCheckout();
+                    UpdateCheckoutService.queueUpdateCheckout();
                 },
             } );
 

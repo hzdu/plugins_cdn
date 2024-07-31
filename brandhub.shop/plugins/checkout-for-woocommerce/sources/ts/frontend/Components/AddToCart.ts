@@ -4,7 +4,7 @@ import DataService     from '../Services/DataService';
 class AddToCart {
     constructor() {
         if ( DataService.getSetting( 'enable_ajax_add_to_cart' ) ) {
-            jQuery( document.body ).on( 'submit', 'form.cart', this.addToCartFormSubmit );
+            jQuery( document.body ).on( 'submit', 'form.cart', this.addToCartFormSubmit.bind( this ) );
         }
     }
 
@@ -15,48 +15,53 @@ class AddToCart {
             return;
         }
 
-        e.preventDefault();
+        // Use the submitter property to determine the button that triggered the form submission
+        const submitButton = e.originalEvent?.submitter as HTMLButtonElement;
 
-        const button = form.find( 'button[type="submit"]' );
-        const productData = form.serializeArray();
-        let hasProductId = false;
-
-        // Check for woocommerce custom quantity code
-        // https://docs.woocommerce.com/document/override-loop-template-and-show-quantities-next-to-add-to-cart-buttons/
-        jQuery.each( productData, ( key, formItem ) => {
-            if ( formItem.name === 'productID' || formItem.name === 'add-to-cart' ) {
-                if ( formItem.value ) {
-                    hasProductId = true;
-                    return false;
-                }
-            }
-
-            return true;
-        } );
-
-        let productID: string | boolean = false;
-
-        // If no product id found , look for the form action URL
-        if ( !hasProductId && form.attr( 'action' ) ) {
-            const isUrl = form.attr( 'action' ).match( /add-to-cart=([0-9]+)/ );
-            productID = isUrl ? isUrl[ 1 ] : false;
+        // Check if the button's name is 'add-to-subscription' and exit if it is
+        if ( submitButton && submitButton.name === 'add-to-subscription' ) {
+            return;
         }
 
-        // if button as name add-to-cart get it and add to form
-        if ( button.attr( 'name' ) && button.attr( 'name' ) === 'add-to-cart' && button.attr( 'value' ) ) {
-            productID = button.attr( 'value' );
+        // Prevent form submission by default
+        e.preventDefault();
+
+        const productData = form.serializeArray();
+        let productID: string | boolean = false;
+
+        // Look for product ID in the form data
+        productData.forEach( ( item ) => {
+            if ( item.name === 'productID' || item.name === 'add-to-cart' ) {
+                if ( item.value ) {
+                    productID = item.value;
+                }
+            }
+        } );
+
+        // Additional check on form's action URL if no product ID found
+        if ( !productID && form.attr( 'action' ) ) {
+            const match = form.attr( 'action' ).match( /add-to-cart=(\d+)/ );
+            if ( match ) {
+                productID = match[ 1 ];
+            }
+        }
+
+        // Include the submit button's data if it has 'add-to-cart' name
+        if ( submitButton && submitButton.name === 'add-to-cart' && submitButton.value ) {
+            productData.push( { name: 'add-to-cart', value: submitButton.value } );
         }
 
         if ( productID ) {
             productData.push( { name: 'add-to-cart', value: productID } );
         }
 
-        button.addClass( 'loading' );
+        jQuery( submitButton ).addClass( 'loading' );
 
-        // Trigger event.
-        jQuery( document.body ).trigger( 'adding_to_cart', [ button, productData ] );
+        // Trigger an event for adding to cart
+        jQuery( document.body ).trigger( 'adding_to_cart', [ submitButton, productData ] );
 
-        new AddToCartAction( button ).load( jQuery.param( productData ) );
+        // Execute add-to-cart action
+        new AddToCartAction( jQuery( submitButton ) ).load( jQuery.param( productData ) );
     }
 }
 

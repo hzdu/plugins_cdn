@@ -1,4 +1,3 @@
-import OrderBumpService from '../../Services/OrderBumpService';
 import Compatibility    from '../Compatibility';
 
 class KlarnaPayments extends Compatibility {
@@ -9,10 +8,14 @@ class KlarnaPayments extends Compatibility {
     load(): void {
         jQuery( document.body ).on( 'click', 'input#place_order, button#place_order', ( e ) => {
             if ( !KlarnaPayments.isKlarnaPaymentsSelected() ) {
-                return;
+                return true;
             }
 
-            OrderBumpService.maybeDisplayAfterCheckoutSubmitBumps( e as unknown as Event );
+            if ( jQuery( document.body ).triggerHandler( 'cfw_request_after_checkout_submit_bumps', [ e ] ) === false ) {
+                e.preventDefault();
+                e.stopImmediatePropagation();
+                return false;
+            }
         } );
 
         jQuery( document.body ).on( 'cfw_after_checkout_bump_handle_rejection cfw_after_checkout_bump_handle_add_to_cart', ( e ) => {

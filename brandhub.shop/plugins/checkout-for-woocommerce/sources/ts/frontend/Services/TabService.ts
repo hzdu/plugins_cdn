@@ -1,16 +1,6 @@
-import Main           from '../Main';
 import AlertService   from './AlertService';
 import DataService    from './DataService';
 import LoggingService from './LoggingService';
-
-/**
- * EzTab Enum
- */
-export enum EasyTab {
-    CUSTOMER,
-    SHIPPING,
-    PAYMENT,
-}
 
 /**
  *
@@ -20,19 +10,21 @@ class TabService {
      * @type {any}
      * @private
      */
-    private _tabContainer: any;
+    public static tabContainer: JQuery<any>;
+
+    public static tabsLoaded = false;
 
     /**
      * @type {any}
      * @private
      */
-    private _tabBreadcrumbContainer: any;
+    private static tabBreadcrumbContainer: JQuery<any>;
 
     /**
      * @type string
      * @private
      */
-    private static _customerInformationTabId = 'cfw-customer-info'
+    private static _customerInformationTabId = 'cfw-customer-info';
 
     /**
      * @type string
@@ -52,13 +44,15 @@ class TabService {
      */
     private static _orderReviewTabId = 'cfw-order-review';
 
-    /**
-     * @param tabContainer
-     * @param tabBreadcrumbContainer
-     */
-    constructor( tabContainer: any, tabBreadcrumbContainer: any ) {
-        this.tabContainer = jQuery( tabContainer );
-        this.tabBreadcrumbContainer = jQuery( tabBreadcrumbContainer );
+    static load(): void {
+        TabService.tabContainer = jQuery( '#cfw' );
+        TabService.tabBreadcrumbContainer = jQuery( '#cfw-breadcrumb' );
+
+        if ( !DataService.getSetting( 'load_tabs' ) ) {
+            return;
+        }
+
+        TabService.tabsLoaded = TabService.maybeLoadTabs();
     }
 
     /**
@@ -66,9 +60,9 @@ class TabService {
      *
      * @return boolean
      */
-    maybeLoadTabs(): boolean {
+    static maybeLoadTabs(): boolean {
         // Don't try to load tabs if tabs don't exist
-        if ( !this.tabBreadcrumbContainer.length ) {
+        if ( !TabService.tabBreadcrumbContainer.length ) {
             // if tabs can't load, make all the tabs visible
             if ( !DataService.getSetting( 'enable_one_page_checkout' ) ) {
                 jQuery( '.cfw-panel' ).css( 'opacity', '1' ).css( 'display', 'block' );
@@ -79,14 +73,13 @@ class TabService {
 
         try {
             // Initialize tabs
-            this.tabContainer.easytabs( {
+            TabService.tabContainer.easytabs( {
                 animate: false,
                 defaultTab: 'li.tab.cfw-default-tab',
                 tabs: 'ul > li.tab',
             } );
 
-            // After tab switch, scroll to the top of the active tab and set an active class
-            this.tabContainer.on( 'easytabs:after', () => {
+            TabService.tabContainer.on( 'easytabs:after', () => {
                 // Remove temporary alerts on successful tab switch
                 // TODO: Move to Alert service
                 AlertService.removeTemporaryAlerts();
@@ -94,14 +87,13 @@ class TabService {
 
             // Add tab active class on window load
             jQuery( window ).on( 'load updated_checkout', () => {
-                this.setActiveTabClass();
+                TabService.setActiveTabClass();
             } );
 
-            this.setTabChangeListeners();
-            this.setTabButtonListeners();
+            TabService.setTabChangeListeners();
+            TabService.setTabButtonListeners();
         } catch ( e ) {
-            // eslint-disable-next-line no-console
-            console.log( e );
+            LoggingService.logError( e );
 
             return false;
         }
@@ -112,23 +104,23 @@ class TabService {
     /**
      * Returns the current and target tab indexes
      *
-     * @returns any
+     * @returns JQuery<HTMLElement>
      */
-    getCurrentTab() {
-        return this.tabContainer.find( '.cfw-panel.active' ).first();
+    static getCurrentTab(): JQuery<HTMLElement> {
+        return TabService.tabContainer.find( '.cfw-panel.active' ).first();
     }
 
-    setTabButtonListeners() {
+    static setTabButtonListeners(): void {
         jQuery( document.body ).on( 'click', '.cfw-tab-link, .cfw-next-tab, .cfw-prev-tab', ( event ) => {
             const tab = jQuery( event.currentTarget ).data( 'tab' );
 
             if ( tab ) {
-                this.tabContainer.easytabs( 'select', tab );
+                TabService.tabContainer.easytabs( 'select', tab );
             }
         } );
     }
 
-    setTabChangeListeners() {
+    static setTabChangeListeners(): void {
         /**
          * Some gateways really really want to fire their stuff when visible.
          *
@@ -143,18 +135,18 @@ class TabService {
             }
         } );
 
-        this.tabContainer.bind( 'easytabs:before', ( event, clicked, target ) => {
+        TabService.tabContainer.bind( 'easytabs:before', ( event, clicked, target ) => {
         // Fire event that we can listen to around the world
             jQuery( document.body ).trigger( 'cfw-before-tab-change', [ event, clicked, target ] );
             LoggingService.logEvent( 'Fired cfw-before-tab-change event.' );
         } );
 
-        this.tabContainer.bind( 'easytabs:after', ( event, clicked, target ) => {
+        TabService.tabContainer.bind( 'easytabs:after', ( event, clicked, target ) => {
             // Scroll to top of tab container
-            this.scrollToTop();
+            TabService.maybeScrollToTop();
 
             // Set current tab active class on form
-            this.setActiveTabClass();
+            TabService.setActiveTabClass();
 
             // Fire event that we can listen to around the world
             jQuery( document.body ).trigger( 'cfw-after-tab-change', [ event, clicked, target ] );
@@ -162,22 +154,26 @@ class TabService {
         } );
     }
 
-    scrollToTop() {
-        // Scroll to the top of current tab on tab switch
-        jQuery( 'html, body' ).animate( {
-            scrollTop: this.tabContainer.offset().top,
-        }, 300 );
+    static maybeScrollToTop(): void {
+        const currentScrollTop = document.documentElement.scrollTop;
+        const tabContainerTop = TabService.tabContainer.offset().top - 40;
+
+        if ( currentScrollTop > tabContainerTop ) {
+            jQuery( 'html, body' ).animate( {
+                scrollTop: tabContainerTop,
+            }, 300 );
+        }
     }
 
     /**
      * Set active tab class on form
      */
-    setActiveTabClass() {
+    static setActiveTabClass(): void {
         const { checkoutForm } = DataService;
 
         // Add a class to checkout form to indicate payment tab is active tab
         // Doesn't work when tab is initialized by hash in URL
-        const currentTabId = this.getCurrentTab().attr( 'id' );
+        const currentTabId = TabService.getCurrentTab().attr( 'id' );
         const activeClass = `${currentTabId}-active`;
 
         checkoutForm.removeClass( 'cfw-customer-info-active' ).removeClass( 'cfw-shipping-method-active' ).removeClass( 'cfw-payment-method-active' ).addClass( activeClass );
@@ -187,53 +183,39 @@ class TabService {
      * @param {string} tabId
      */
     static go( tabId ): void {
-        if ( !Main.instance.tabService.tabBreadcrumbContainer.length ) {
+        if ( !TabService.tabBreadcrumbContainer.length ) {
             return;
         }
 
         try {
-            Main.instance.tabService.tabContainer.easytabs( 'select', tabId );
+            const movingBack    = !TabService.getCurrentTab().nextAll( `#${tabId}.cfw-panel` ).length; // technically a misnomer
+
+            if ( !movingBack ) {
+                const destination = tabId.replace( 'cfw-', '' );
+                jQuery( document.body ).trigger( 'cfw_step_changed', destination );
+                LoggingService.logEvent( `cfw_step_changed fired. Destination: ${destination}` );
+            }
+
+            TabService.tabContainer.easytabs( 'select', tabId );
         } catch ( e ) {
-            console.log( `Could not select tab: ${e.message}` );
+            LoggingService.logError( `Could not select tab: ${e.message}` );
         }
     }
 
-    /**
-     * @return {any}
-     */
-    get tabContainer(): any {
-        return this._tabContainer;
-    }
-
-    /**
-     * @param {any} value
-     */
-    set tabContainer( value: any ) {
-        this._tabContainer = value;
-    }
-
-    get tabBreadcrumbContainer(): any {
-        return this._tabBreadcrumbContainer;
-    }
-
-    set tabBreadcrumbContainer( value: any ) {
-        this._tabBreadcrumbContainer = value;
-    }
-
     static get customerInformationTabId(): string {
-        return this._customerInformationTabId;
+        return TabService._customerInformationTabId;
     }
 
     static get shippingMethodTabId(): string {
-        return this._shippingMethodTabId;
+        return TabService._shippingMethodTabId;
     }
 
     static get paymentMethodTabId(): string {
-        return this._paymentMethodTabId;
+        return TabService._paymentMethodTabId;
     }
 
     static get orderReviewTabId(): string {
-        return this._orderReviewTabId;
+        return TabService._orderReviewTabId;
     }
 }
 

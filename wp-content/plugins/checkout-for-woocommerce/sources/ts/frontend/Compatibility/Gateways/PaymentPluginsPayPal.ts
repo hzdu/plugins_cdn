@@ -1,19 +1,18 @@
-import Main          from '../../Main';
-import Compatibility from '../Compatibility';
+import Compatibility  from '../Compatibility';
+import ParsleyService from '../../Services/ParsleyService';
 
 class PaymentPluginsPayPal extends Compatibility {
     constructor() {
         super( 'PaymentPluginsPayPal' );
     }
 
-    /**
-     * Loads the Braintree compatibility class
-     *
-     * @param {any} params
-     */
-    load( params: any ): void {
+    load(): void {
         jQuery( document.body ).on( 'cfw_pre_update_order_review_action', () => {
             if ( typeof ( <any>window ).wcPPCPSettings === 'undefined' ) {
+                return;
+            }
+
+            if ( typeof ( <any>window ).wcPPCPSettings.ppcp_data === 'undefined' ) {
                 return;
             }
 
@@ -29,7 +28,7 @@ class PaymentPluginsPayPal extends Compatibility {
                 jQuery( '#shipping_address_1_field' ).removeClass( 'cfw-hidden' );
                 jQuery( '#billing_address_1_field' ).removeClass( 'cfw-hidden' );
 
-                Main.instance.parsleyService.queueRefreshParsley();
+                ParsleyService.instance.queueRefreshParsley();
             }
         } );
     }

@@ -1,26 +1,43 @@
+import Alert                    from '../Components/Alert';
 import FieldValidationRefresher from '../Interfaces/FieldValidationRefresher';
-import Main                     from '../Main';
+import AlertService             from './AlertService';
 import DataService              from './DataService';
 import LoggingService           from './LoggingService';
 import jqXHR = JQuery.jqXHR;
+import TabService from './TabService';
 
 // eslint-disable-next-line camelcase
 declare let wc_address_i18n_params: any;
 
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const debounce = require( 'debounce' );
 
 class ParsleyService implements FieldValidationRefresher {
+    private static _instance: ParsleyService;
+
+    private constructor() {
+        // ...
+    }
+
+    public static get instance(): ParsleyService {
+        if ( !this._instance ) {
+            this._instance = new this();
+        }
+
+        return this._instance;
+    }
+
     /**
      * @type {any}
      * @private
      */
     private _parsley: any;
 
-    private readonly _debouncedParsleyRefresh;
+    private _debouncedParsleyRefresh;
 
     static xhrCache: Record<string, jqXHR<any>> = {};
 
-    constructor() {
+    load(): void {
         this._debouncedParsleyRefresh = debounce( this.refreshParsley, 200 );
 
         this.setParsleyValidators();
@@ -77,7 +94,7 @@ class ParsleyService implements FieldValidationRefresher {
                         cache: false,
                         statusCode: {
                             202() {
-                                LoggingService.log( 'CheckoutWC: Invalid postcode validation request. Must include postcode and country.' );
+                                LoggingService.logNotice( 'CheckoutWC: Invalid postcode validation request. Must include postcode and country.' );
                             },
                         },
                     };
@@ -105,13 +122,33 @@ class ParsleyService implements FieldValidationRefresher {
                     }
 
                     // If email address is from a common domain, allow it
-                    if (
-                        email.endsWith( '@gmail.com' )
-                        || email.endsWith( '@yahoo.com' )
-                        || email.endsWith( '@outlook.com' )
-                        || email.endsWith( '@hey.com' )
-                        || email.endsWith( '@hotmail.com' )
-                    ) {
+                    const emailDomains = [
+                        '@gmail.com',
+                        '@yahoo.com',
+                        '@outlook.com',
+                        '@hey.com',
+                        '@hotmail.com',
+                        '@aol.com',
+                        '@icloud.com',
+                        '@mail.com',
+                        '@zoho.com',
+                        '@protonmail.com',
+                        '@live.com',
+                        '@msn.com',
+                        '@ymail.com',
+                        '@me.com',
+                        '@sbcglobal.net',
+                        '@bellsouth.net',
+                        '@inbox.com',
+                    ];
+
+                    const isCommonEmailDomain = ( emailAddress: string ): boolean => emailDomains.some( ( domain ) => emailAddress.endsWith( domain ) );
+
+                    if ( isCommonEmailDomain( email ) ) {
+                        return true;
+                    }
+
+                    if ( DataService.getSetting( 'disable_email_domain_validation' ) ) {
                         return true;
                     }
 
@@ -145,7 +182,7 @@ class ParsleyService implements FieldValidationRefresher {
                     return;
                 }
 
-                const activeTab = Main.instance.tabService.getCurrentTab();
+                const activeTab = TabService.getCurrentTab();
                 let onActiveTab = false;
 
                 // If one page checkout or the field is on the active tab, set onActiveTab to true
@@ -154,14 +191,29 @@ class ParsleyService implements FieldValidationRefresher {
                 }
 
                 const fieldIsHiddenAndOnActiveTab = ( onActiveTab && fieldInstance.$element.is( ':hidden' ) );
+                const fieldIsHiddenAndNotOnActiveTab = ( !onActiveTab && fieldInstance.$element.is( ':hidden' ) );
                 const fieldContainerIsHidden = fieldInstance.$element.parents( '.form-row' ).hasClass( 'hidden' );
                 const fieldIsAHiddenIconicDeliverySlotsField = fieldInstance.$element.parents( '#jckwds-fields' ).css( 'display' ) === 'none';
+                const fieldIsDisabled = fieldInstance.$element.is( ':disabled' );
+                const fieldIsReadOnly = fieldInstance.$element.is( '[readonly]' );
 
-                if ( fieldContainerIsHidden || fieldIsHiddenAndOnActiveTab || fieldIsAHiddenIconicDeliverySlotsField ) {
-                    LoggingService.log( 'Bypassing Parsley validation for field below.', false, fieldInstance.$element );
-                    LoggingService.log( `Reason fieldIsHiddenAndOnActiveTab: ${fieldIsHiddenAndOnActiveTab ? 'true' : 'false'}` );
-                    LoggingService.log( `Reason fieldContainerIsHidden: ${fieldContainerIsHidden ? 'true' : 'false'}` );
-                    LoggingService.log( `Reason fieldIsAHiddenIconicDeliverySlotsField: ${fieldIsAHiddenIconicDeliverySlotsField ? 'true' : 'false'}` );
+                if ( fieldIsHiddenAndNotOnActiveTab && !fieldIsDisabled && !fieldIsReadOnly && !fieldContainerIsHidden && !fieldIsAHiddenIconicDeliverySlotsField ) {
+                    // Display alert: %s is a required field
+                    const error = DataService.getMessage( 'generic_field_validation_error_message' );
+                    const fieldLabel = jQuery( fieldInstance.$element ).parents( '.cfw-input-wrap' ).find( 'label' ).text()
+                        .replace( '*', '' );
+                    const message = error.replace( '%s', fieldLabel.trim() );
+
+                    const alert: Alert = new Alert( 'error', message );
+                    AlertService.queueAlert( alert );
+                    AlertService.showAlerts();
+                }
+
+                if ( fieldIsDisabled || fieldIsReadOnly || fieldContainerIsHidden || fieldIsHiddenAndOnActiveTab || fieldIsAHiddenIconicDeliverySlotsField ) {
+                    LoggingService.logNotice( 'Bypassing Parsley validation for field below.', fieldInstance.$element );
+                    LoggingService.logNotice( `Reason fieldIsHiddenAndOnActiveTab: ${fieldIsHiddenAndOnActiveTab ? 'true' : 'false'}` );
+                    LoggingService.logNotice( `Reason fieldContainerIsHidden: ${fieldContainerIsHidden ? 'true' : 'false'}` );
+                    LoggingService.logNotice( `Reason fieldIsAHiddenIconicDeliverySlotsField: ${fieldIsAHiddenIconicDeliverySlotsField ? 'true' : 'false'}` );
 
                     // hide the message wrapper if the field itself is specifically display none
                     if ( fieldInstance.$element.css( 'display' ) === 'none' ) {
@@ -174,7 +226,7 @@ class ParsleyService implements FieldValidationRefresher {
                     return;
                 }
 
-                LoggingService.log( 'Field did not pass validation. Field object is logged below.', false, fieldInstance.$element );
+                LoggingService.logNotice( 'Field did not pass validation. Field object is logged below.', fieldInstance.$element );
             } );
 
             // If we don't call this here, changing the state

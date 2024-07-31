@@ -1,9 +1,9 @@
 import Alert                 from '../Components/Alert';
-import Main                  from '../Main';
 import AlertService          from '../Services/AlertService';
 import DataService           from '../Services/DataService';
 import LoggingService        from '../Services/LoggingService';
 import Action                from './Action';
+import ParsleyService        from '../Services/ParsleyService';
 
 class CompleteOrderAction extends Action {
     /**
@@ -24,7 +24,12 @@ class CompleteOrderAction extends Action {
                 jQuery( document.body ).trigger( 'cfw-order-complete-before-redirect', [ DataService.checkoutForm, resp ] );
                 LoggingService.logEvent( 'Fired cfw-order-complete-before-redirect event.' );
 
-                Main.instance.parsleyService.destroy();
+                ParsleyService.instance.destroy();
+
+                if ( typeof resp.redirect === 'undefined' ) {
+                    // In the unlikely event this happens, assume someone else is handling the redirect for us
+                    return;
+                }
 
                 if ( resp.redirect.indexOf( 'https://' ) === -1 || resp.redirect.indexOf( 'http://' ) === -1 ) {
                     ( <any>window ).location = resp.redirect;
@@ -32,12 +37,17 @@ class CompleteOrderAction extends Action {
                     ( <any>window ).location = decodeURI( resp.redirect );
                 }
             } else if ( resp.result === 'failure' ) {
+                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                // @ts-ignore
                 throw new Error( 'Result failure' );
             } else {
+                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                // @ts-ignore
                 throw new Error( 'Invalid response' );
             }
         } catch ( err ) {
             jQuery( document.body ).trigger( 'cfw_complete_order_failure' );
+            LoggingService.logEvent( 'Fired cfw_complete_order_failure event.' );
 
             // Reload page
             if ( resp.reload === true ) {
@@ -46,37 +56,7 @@ class CompleteOrderAction extends Action {
             }
 
             if ( typeof resp.messages === 'string' && resp.messages.length ) {
-                // Wrapping the response in a <div /> is required for correct parsing
-                const messages = jQuery( jQuery.parseHTML( `<div>${resp.messages}</div>` ) );
-
-                // Errors
-                const woocommerceErrorMessages = messages.find( '.woocommerce-error li' ).length ? messages.find( '.woocommerce-error li' ) : messages.find( '.woocommerce-error' );
-
-                jQuery.each( woocommerceErrorMessages, ( i, el ) => {
-                    const alert: Alert = new Alert( 'error', jQuery( el ).html().trim(), 'cfw-alert-error' );
-                    AlertService.queueAlert( alert );
-                } );
-
-                // Info
-                const wooCommerceInfoMessages = messages.find( '.woocommerce-info li' ).length ? messages.find( '.woocommerce-info li' ) : messages.find( '.woocommerce-info' );
-
-                jQuery.each( wooCommerceInfoMessages, ( i, el ) => {
-                    const alert: Alert = new Alert( 'notice', jQuery( el ).html().trim(), 'cfw-alert-info' );
-                    AlertService.queueAlert( alert );
-                } );
-
-                // Messages
-                const wooCommerceMessages = messages.find( '.woocommerce-message li' ).length ? messages.find( '.woocommerce-message li' ) : messages.find( '.woocommerce-message' );
-
-                jQuery.each( wooCommerceMessages, ( i, el ) => {
-                    const alert: Alert = new Alert( 'success', jQuery( el ).html().trim(), 'cfw-alert-success' );
-                    AlertService.queueAlert( alert );
-                } );
-
-                // EveryPay doesn't understand WooCommerce, so fix it for them
-                if ( resp.messages.indexOf( '<script' ) !== -1 ) {
-                    jQuery( document.body ).prepend( `<div style="display:none">${resp.messages}</div>` );
-                }
+                AlertService.createAlertsFromMessages( resp.messages );
             } else {
                 /**
                  * If the payment gateway comes back with no message, show a generic error.
@@ -86,7 +66,6 @@ class CompleteOrderAction extends Action {
                 const alert: Alert = new Alert(
                     'error',
                     message,
-                    'cfw-alert-error',
                 );
                 AlertService.queueAlert( alert );
 
@@ -124,6 +103,7 @@ class CompleteOrderAction extends Action {
 
         if ( maybeValidJSON === null ) {
             LoggingService.logError( 'Unable to fix malformed JSON' );
+            LoggingService.logError( 'Response:', rawResponse );
         } else if ( this.isValidJSON( maybeValidJSON[ 0 ] ) ) {
             LoggingService.logError( 'Fixed malformed JSON. Original:' );
             LoggingService.logError( rawResponse );
@@ -131,6 +111,7 @@ class CompleteOrderAction extends Action {
             rawResponse = maybeValidJSON[ 0 ];
         } else {
             LoggingService.logError( 'Unable to fix malformed JSON' );
+            LoggingService.logError( 'Response:', rawResponse );
         }
 
         return rawResponse;
@@ -180,7 +161,7 @@ class CompleteOrderAction extends Action {
             message += `<br/>Response text:<pre>${xhr.responseText}</pre>`;
         }
 
-        const alert: Alert = new Alert( 'error', message, 'cfw-alert-error' );
+        const alert: Alert = new Alert( 'error', message );
         AlertService.queueAlert( alert );
 
         this.submitError();

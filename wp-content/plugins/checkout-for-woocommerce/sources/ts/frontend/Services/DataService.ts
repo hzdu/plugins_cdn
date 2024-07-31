@@ -1,4 +1,4 @@
-declare let cfwEventData: any;
+declare let cfw: any;
 
 class DataService {
     /**
@@ -8,70 +8,78 @@ class DataService {
     private static _checkoutForm: JQuery<HTMLElement>;
 
     static initRunTimeParams(): void {
-        cfwEventData.runtime_params = {};
+        cfw.runtime_params = {};
     }
 
     static getSettings(): Record<string, unknown> {
-        return cfwEventData.settings;
+        return cfw.settings;
     }
 
     static getSetting( setting: string ): any {
-        if ( cfwEventData.settings[ setting ] ) {
-            return cfwEventData.settings[ setting ];
+        if ( cfw.settings[ setting ] ) {
+            return cfw.settings[ setting ];
         }
 
         return false;
     }
 
+    static getData( key: string ): any {
+        return cfw.data[ key ] ?? false;
+    }
+
+    static updateData( key: string, value: any ): void {
+        cfw.data[ key ] = value;
+    }
+
     static getMessage( messageKey: string ): string {
-        if ( cfwEventData.messages[ messageKey ] ) {
-            return cfwEventData.messages[ messageKey ];
+        if ( cfw.messages[ messageKey ] ) {
+            return cfw.messages[ messageKey ];
         }
 
         return '';
     }
 
     static getCompatibilityClass( key: string ): CompatibilityClass {
-        return cfwEventData.compatibility[ key ];
+        return cfw.compatibility[ key ];
     }
 
     static getElement( element: string ): JQuery<HTMLElement> {
-        if ( cfwEventData.elements[ element ] ) {
-            return jQuery( cfwEventData.elements[ element ] );
+        if ( cfw.elements[ element ] ) {
+            return jQuery( cfw.elements[ element ] );
         }
 
         return jQuery();
     }
 
     static getCheckoutParams(): Record<string, unknown> {
-        return cfwEventData.checkout_params;
+        return cfw.checkout_params;
     }
 
     /**
    * @param param
    */
     static getCheckoutParam( param: string ): string | boolean | null {
-        if ( cfwEventData.checkout_params[ param ] ) {
-            return cfwEventData.checkout_params[ param ];
+        if ( cfw.checkout_params[ param ] ) {
+            return cfw.checkout_params[ param ];
         }
 
         return null;
     }
 
     static getRuntimeParameters(): Record<string, unknown> {
-        return cfwEventData.runtime_params;
+        return cfw.runtime_params;
     }
 
     static getRuntimeParameter( param: string ): any {
-        if ( cfwEventData.runtime_params[ param ] ) {
-            return cfwEventData.runtime_params[ param ];
+        if ( cfw.runtime_params[ param ] ) {
+            return cfw.runtime_params[ param ];
         }
 
         return null;
     }
 
     static setRuntimeParameter( param: string, value: any ): void {
-        cfwEventData.runtime_params[ param ] = value;
+        cfw.runtime_params[ param ] = value;
     }
 
     /**

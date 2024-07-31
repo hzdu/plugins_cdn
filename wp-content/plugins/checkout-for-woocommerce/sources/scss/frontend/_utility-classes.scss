@@ -1,3 +1,7 @@
+.cfw-tw {
+    @import './tailwind';
+}
+
 .cfw-small {
     font-size: 0.875em;
 }
@@ -8,6 +12,10 @@ main.checkoutwc .cfw-padding-top {
 
 main.checkoutwc .cfw-light-gray {
     color: #737373;
+}
+
+.cfw-pt-05 {
+    padding-top: 0.5em !important;
 }
 
 .cfw-pt-1 {
@@ -64,4 +72,11 @@ main.checkoutwc .cfw-rp {
 
 .cfw-mb {
     margin-bottom: .8em !important;
+}
+
+.cfw-sticky {
+    @media screen and (min-width: 992px) {
+        position: sticky !important;
+        top: var(--wp-admin--admin-bar--height, 0px);
+    }
 }

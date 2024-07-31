@@ -22,11 +22,12 @@
         .cfw-review-pane-label {
             color: lighten(#333, 25%);
             font-weight: normal;
+            white-space: nowrap;
             flex: 0 0 6em;
         }
 
-        .cfw-review-pane-label.shipping-details-label-long {
-            flex: 0 0 9em;
+        .cfw-review-pane-label.label-long {
+            flex: 0 0 8em;
         }
 
         .cfw-review-pane-content {
@@ -53,18 +54,13 @@
     }
 }
 
-.cfw-review-pane-content {
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-.cfw-review-pane li .cfw-order-review-total-label {
+.cfw-review-pane li.cfw-order-review-total-label .cfw-review-pane-label {
     font-size: 1.1em;
     color: #333;
     font-weight: 500;
 }
 
-.cfw-order-review-total {
+.cfw-review-pane li.cfw-order-review-total-label .cfw-review-pane-content {
     font-size: 1.25em;
 }
 
@@ -72,6 +68,21 @@
     font-weight: 500;
 }
 
-#cfw-review-order-totals li .inner {
-    align-items: center;
+#cfw-review-order-totals .cfw-review-pane-label {
+    flex-grow: 1;
+}
+
+#cfw-review-order-totals li:last-child .cfw-review-pane-label {
+    color: #333;
+    font-size: 1.1em;
+    font-weight: 500;
+}
+
+#cfw-review-order-totals .cfw-review-pane-content {
+    text-align: right;
+    padding-right: 0;
+}
+
+#cfw-review-order-totals li:last-child .cfw-review-pane-content {
+    font-size: 1.25em;
 }

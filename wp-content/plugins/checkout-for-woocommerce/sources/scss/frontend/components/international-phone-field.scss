@@ -1,15 +1,15 @@
-main.checkoutwc {
+body.checkout-wc, main.checkoutwc {
     .iti {
         width: 100%;
     }
 
     .iti__flag {
-        background-image: url("../../images/flags.png");
+        background-image: url("../images/flags.png?v=9.0.38");
     }
 
     @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
         .iti__flag {
-            background-image: url("../../images/flags@2x.png");
+            background-image: url("../images/flags@2x.png?v=9.0.38");
         }
     }
 
@@ -17,10 +17,10 @@ main.checkoutwc {
         max-height: 44px; // prevent parsley error from causing flag to offset
     }
 
-    .iti--allow-dropdown {
-        input {
+    .iti.iti--allow-dropdown {
+        .iti__tel-input {
             padding-right: 6px !important;
-            padding-left: 50.82px !important;
+            padding-left: 52px !important;
         }
     }
 
@@ -32,7 +32,19 @@ main.checkoutwc {
         z-index: 100000;
     }
 
+    .iti__country {
+        padding: 8px !important;
+    }
+
+    .iti__dropdown-content {
+        border-radius: 5px;
+    }
+
     .iti__selected-flag:focus {
         outline: none;
+    }
+
+    .iti__search-input {
+        padding: 0.6em !important;
     }
 }

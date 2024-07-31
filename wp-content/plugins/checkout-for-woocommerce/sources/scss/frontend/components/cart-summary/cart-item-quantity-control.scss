@@ -4,22 +4,12 @@
     color: #717171;
 }
 
-.cfw-quantity-remove-item {
-    transition: all .2s ease;
-    opacity: 0;
-}
-
-.cart-item-row:hover .cfw-edit-item-quantity-control-wrap .cfw-quantity-remove-item {
-    opacity: 1;
-}
-
 .cfw-quantity-stepper {
     font-size: 0.75em;
     display: inline-flex;
     align-items: center;
     border: solid 1px rgb(211, 212, 213);
     border-radius: 16px;
-    margin-top: 0.5em;
     opacity: 0.9;
 
     .cfw-quantity-stepper-btn-minus, .cfw-quantity-stepper-btn-plus {
@@ -35,7 +25,12 @@
         margin-bottom: 0;
         margin-right: 0;
 
-        &.maxed {
+        &:before, &:after {
+            content: none !important;
+            display: none !important;
+        }
+
+        &.cfw-disabled {
             cursor: not-allowed;
 
             &:hover {
@@ -81,10 +76,42 @@
         padding-left: 0.25em;
         padding-right: 0.25em;
         user-select: none;
+        cursor: default;
+        text-decoration: none;
+    }
+
+    .cfw-quantity-bulk-edit {
         cursor: pointer;
+        text-decoration: none;
 
         &:hover {
             opacity: 0.5;
         }
     }
+}
+
+.cfw-cart-item-subtotal {
+    position: relative;
+}
+
+.cfw-remove-item-button {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif !important;
+    opacity: 0;
+    position: absolute;
+    top: 1em;
+    right: 0;
+    font-size: 0.9em;
+    color: var(--cfw-cart-summary-text-color) !important;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    text-decoration: none;
+
+    svg {
+        width: 20px;
+        height: 20px;
+    }
+}
+
+tr:hover .cfw-remove-item-button {
+    opacity: 1;
 }

@@ -152,6 +152,9 @@ const LoginFormModal: React.FC = () => {
                                 document.body.appendChild( newScript );
                                 document.body.removeChild( newScript );
                             } );
+
+                            // Trigger DOMContentLoaded event
+                            document.dispatchEvent( new Event( 'DOMContentLoaded' ) );
                         }
 
                         jQuery( document.body ).trigger( 'cfw_login_modal_open' );

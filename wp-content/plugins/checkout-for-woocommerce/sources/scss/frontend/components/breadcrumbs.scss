@@ -31,7 +31,7 @@
             width: 12px;
             height: 12px;
             background: var(--cfw-breadcrumb-completed-accent-color);
-            mask-image: url(../../images/arrow-right.svg);
+            mask-image: url("../images/arrow-right.svg");
             mask-size: 12px;
             mask-repeat: no-repeat;
             mask-position: center;
@@ -46,7 +46,7 @@
             background: var(--cfw-breadcrumb-next-accent-color);
         }
 
-        &.active:not(:last-child):after {
+        &.active:after {
             background: var(--cfw-breadcrumb-current-accent-color);
         }
     }

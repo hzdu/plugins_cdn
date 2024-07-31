@@ -13,7 +13,7 @@
     }
 
     .wc-credit-card-form-card-number, .wc-credit-card-form-card-expiry, .wc-credit-card-form-card-cvc, .js-sv-wc-payment-gateway-credit-card-form-input {
-        &:not(iframe) {
+        &:not(iframe,[id^="wc-first-data-clover-credit-card"]) {
             padding: 0.82em !important;
         }
     }
@@ -60,6 +60,14 @@
 
         a {
             display: none;
+        }
+
+        ul {
+            align-items: center;
+            display: flex;
+            justify-content: flex-end;
+            max-height: 18px;
+            list-style: none;
         }
 
         @include media-breakpoint-down(lg) {

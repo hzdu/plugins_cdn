@@ -54,7 +54,7 @@ const AfterCheckoutBumps = () => {
             return true;
         }
 
-        url = `wp/v2/cfw_order_bumps/${bumpId}`; // Adjust the API path according to your setup
+        url = `wp/v2/cfw_order_bumps/${bumpId}`;
 
         apiFetch( { path: url } )
             .then( ( response: any ) => {

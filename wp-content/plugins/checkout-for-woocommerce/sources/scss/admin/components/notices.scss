@@ -48,17 +48,29 @@ body.post-type-cfw_order_bumps .cfw-license-upgrade-blocker-og {
 
 body.cfw-admin-page {
     .notice, div.updated, div.error {
-        &:not(.checkout-wc) {
-            display: none; // hide until page load
+        &:not([id^="pressmodo-notice-cfw_"]) {
+            display: none !important; // hide until page load
         }
     }
 }
 
+div[id^="pressmodo-notice-"] {
+    display: none !important; // hide until page load
+}
+
 .cfw-admin-notices-container {
+    margin-bottom: -20px;
+    clear: both; // fix issue with screen options / help widget
+
+    div[id^=pressmodo-notice-] {
+        display: flex !important;
+    }
+
     .notice, div.updated, div.error {
         &:nth-child(2) {
             margin-top: 20px; // pad the top of the first one
         }
+        margin-bottom: 15px;
         margin-left: 40px;
         margin-right: 40px;
     }

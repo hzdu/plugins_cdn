@@ -18,7 +18,7 @@ const CartTableRow = ( { item, updateItem }: CartTableRowProps ) => (
             <td className="cfw-cart-item-image">
                 <div className="cfw-cart-item-image-wrap">
                     { DataService.getSetting( 'link_items' ) ? (
-                        <a target="_blank" href={item.url} dangerouslySetInnerHTML={{ __html: item.thumbnail }} />
+                        <a target={ DataService.getSetting( 'cart_item_link_target_new_window' ) ? '_blank' : '_self' } href={item.url} dangerouslySetInnerHTML={{ __html: item.thumbnail }} />
                     ) : (
                         <span dangerouslySetInnerHTML={{ __html: item.thumbnail }} />
                     ) }
@@ -33,7 +33,7 @@ const CartTableRow = ( { item, updateItem }: CartTableRowProps ) => (
         <th className="cfw-cart-item-description" colSpan={ !item.thumbnail.length ? 2 : undefined }>
             <div className="cfw-cart-item-title">
                 { DataService.getSetting( 'link_items' ) ? (
-                    <a target="_blank" href={item.url} dangerouslySetInnerHTML={ { __html: item.title }} />
+                    <a target={ DataService.getSetting( 'cart_item_link_target_new_window' ) ? '_blank' : '_self' } href={item.url} dangerouslySetInnerHTML={ { __html: item.title }} />
                 ) : (
                     <span dangerouslySetInnerHTML={ { __html: item.title }} />
                 ) }

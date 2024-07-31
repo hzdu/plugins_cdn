@@ -1,5 +1,5 @@
-import Main          from '../../Main';
-import Compatibility from '../Compatibility';
+import Compatibility         from '../Compatibility';
+import UpdateCheckoutService from '../../Services/UpdateCheckoutService';
 
 class NMI extends Compatibility {
     constructor() {
@@ -8,7 +8,7 @@ class NMI extends Compatibility {
 
     load( params ): void {
         jQuery( document.body ).on( 'cfw-payment-tab-loaded', () => {
-            Main.instance.updateCheckoutService.triggerUpdateCheckout();
+            UpdateCheckoutService.queueUpdateCheckout();
         } );
     }
 }

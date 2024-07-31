@@ -4,11 +4,11 @@ import HouseNumberStrategy from './HouseNumberStrategy';
 import StreetNameStrategy  from './StreetNameStrategy';
 
 export default class Address1Strategy {
-    public constructor(  protected components: google.maps.GeocoderAddressComponent[], protected formattedAddress: string  ) {}
+    public constructor(  protected components: google.maps.GeocoderAddressComponent[], protected formattedAddress: string, protected userInputValue: string ) {}
 
     public getValue(): string {
         const country     = Utilities.getComponentValueByType( 'country', this.components );
-        const houseNumber = new HouseNumberStrategy( this.components, this.formattedAddress ).getValue();
+        const houseNumber = new HouseNumberStrategy( this.components, this.formattedAddress, this.userInputValue ).getValue();
         const streetName  = new StreetNameStrategy( this.components, this.formattedAddress ).getValue();
 
         return cfwBuildAddress1( country, houseNumber, streetName );

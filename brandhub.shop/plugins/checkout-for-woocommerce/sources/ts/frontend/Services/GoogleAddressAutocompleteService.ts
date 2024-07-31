@@ -1,7 +1,8 @@
-import AutocompleteStrategyFactory from '../GoogleAddressAutocomplete/AutocompleteStrategies/AutocompleteStrategyFactory';
-import FieldValidationRefresher    from '../Interfaces/FieldValidationRefresher';
-import DataService                 from './DataService';
-import LoggingService              from './LoggingService';
+import cfwGetWPHooks                  from '../../functions/cfwGetWPHooks';
+import AutocompleteStrategyFactory    from '../GoogleAddressAutocomplete/AutocompleteStrategies/AutocompleteStrategyFactory';
+import FieldValidationRefresher       from '../Interfaces/FieldValidationRefresher';
+import DataService                    from './DataService';
+import LoggingService                 from './LoggingService';
 
 /* global google */
 
@@ -10,6 +11,10 @@ class GoogleAddressAutocompleteService {
 
     constructor( fieldValidator: FieldValidationRefresher ) {
         LoggingService.logNotice( 'Loading Google Address Autocomplete Service' );
+
+        if ( DataService.getRuntimeParameter( 'loaded_google_autocomplete' ) ) {
+            return;
+        }
 
         if ( !DataService.getSetting( 'enable_address_autocomplete' ) ) {
             return;
@@ -45,16 +50,28 @@ class GoogleAddressAutocompleteService {
             types: DataService.getSetting( 'google_address_autocomplete_type' ).split( '|' ),
         };
 
-        const autocomplete =  new google.maps.places.Autocomplete( field, options );
+        const autocomplete = new google.maps.places.Autocomplete( field, options );
 
         if ( countryRestrictions ) {
             autocomplete.setComponentRestrictions( { country: countryRestrictions } );
         }
 
-        autocomplete.addListener( 'place_changed', () => this.fillAddress( prefix, autocomplete, field ) );
+        // Variable to store the user's input value
+        let userInputValue = '';
+
+        // Listen for input events to capture the user's search term
+        field.addEventListener( 'input', () => {
+            userInputValue = field.value;
+        } );
+
+        autocomplete.addListener( 'place_changed', () => {
+            this.fillAddress( prefix, autocomplete, field, userInputValue );
+        } );
     }
 
-    fillAddress( prefix: string, autocomplete: google.maps.places.Autocomplete, { value: formattedAddress }: HTMLInputElement ): void {
+    fillAddress( prefix: string, autocomplete: google.maps.places.Autocomplete, { value: formattedAddress }: HTMLInputElement, userInputValue: string ): void {
+        cfwGetWPHooks().doAction( 'cfw_google_address_autocomplete_fill_address', autocomplete, prefix );
+
         const { address_components: components } = autocomplete.getPlace();
 
         if ( !components ) {
@@ -62,8 +79,9 @@ class GoogleAddressAutocompleteService {
         }
 
         LoggingService.logNotice( 'Google Address Autocomplete Components', components );
+        LoggingService.logNotice( 'Google Address Autocomplete Formatted Address', formattedAddress );
 
-        const strategy = AutocompleteStrategyFactory.get( components, formattedAddress );
+        const strategy = AutocompleteStrategyFactory.get( components, formattedAddress, userInputValue );
 
         this.queueStateUpdate( prefix, strategy.getState() );
 
@@ -92,7 +110,7 @@ class GoogleAddressAutocompleteService {
                 const stateField = jQuery( `#${prefix}state` );
 
                 const noFuzzySearchNeeded = !stateField.is( 'select' ) || stateField.find( `option[value="${state}"]` ).length;
-                const stateValue          = noFuzzySearchNeeded ? state : stateField.find( `option:contains(${state})` ).val();
+                const stateValue          = noFuzzySearchNeeded ? state : stateField.find( `option:contains(${state.replace( "'", '’' )})` ).val();
 
                 stateField.val( stateValue );
 

@@ -3,13 +3,13 @@ import AlertService from './Services/AlertService';
 import DataService  from './Services/DataService';
 
 class AccountValidation {
-    public init(): void {
+    static load(): void {
         jQuery( document.body ).on( 'cfw_account_exists updated_checkout', ( { type } ) => {
-            if ( this.accountDoesNotExistOrLoginIsNotRequired() || !DataService.getSetting( 'login_allowed_at_checkout' ) ) {
+            if ( AccountValidation.accountDoesNotExistOrLoginIsNotRequired() || !DataService.getSetting( 'login_allowed_at_checkout' ) ) {
                 return;
             }
 
-            this.addAlert();
+            AccountValidation.addAlert();
 
             if ( type === 'cfw_account_exists' ) {
                 AlertService.showAlerts();
@@ -17,28 +17,28 @@ class AccountValidation {
         } );
     }
 
-    public getValidatorFactory(): () => Promise<any> {
+    static getValidatorFactory(): () => Promise<any> {
         return () => new Promise( ( resolve, reject ) => {
-            if ( this.accountDoesNotExistOrLoginIsNotRequired() || !DataService.getSetting( 'login_allowed_at_checkout' ) ) {
+            if ( AccountValidation.accountDoesNotExistOrLoginIsNotRequired() || !DataService.getSetting( 'login_allowed_at_checkout' ) ) {
                 resolve( true );
                 return;
             }
 
-            this.addAlert();
+            AccountValidation.addAlert();
             AlertService.showAlerts();
 
             reject( new Error( 'CheckoutWC: Account already exists and login required.' ) );
         } );
     }
 
-    protected addAlert(): void {
+    static addAlert(): void {
         const message = DataService.getMessage( 'account_already_registered_notice' );
         const classes = 'cfw-alert-error cfw-login-required-error';
 
         AlertService.queueAlert( new Alert( 'error', message, classes ) );
     }
 
-    protected accountDoesNotExistOrLoginIsNotRequired(): boolean {
+    static accountDoesNotExistOrLoginIsNotRequired(): boolean {
         const userIsNotLoggedIn = !DataService.getSetting( 'user_logged_in' );
         const registrationIsRequired = DataService.getSetting( 'is_registration_required' );
         const runtimeEmailMatchedUser = DataService.getRuntimeParameter( 'runtime_email_matched_user' );
