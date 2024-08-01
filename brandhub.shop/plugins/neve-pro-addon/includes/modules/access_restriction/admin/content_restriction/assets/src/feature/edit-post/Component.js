@@ -3,10 +3,11 @@ import { PluginDocumentSettingPanel } from '@wordpress/edit-post';
 import { __ } from '@wordpress/i18n';
 import Toggle from '../../components/Toggle';
 import { withSelect, withDispatch } from '@wordpress/data';
-import { compose, useDebounce } from '@wordpress/compose';
+import { compose } from '@wordpress/compose';
 import { useState, useCallback } from '@wordpress/element';
 import AsyncSelect from 'react-select/async';
 import Select from 'react-select';
+import { debounce } from 'lodash';
 
 import { TextControl } from '@wordpress/components';
 import { handlePasswordChange, loadUsersCallback } from '../../utils';
@@ -49,7 +50,11 @@ const Component = ( { metaFields, setMetaFields } ) => {
 		setMetaFields( { [ META_KEY_ALLOWED_USER_ROLES ]: userRoles } );
 	};
 
-	const debouncedUserOptions = useDebounce( loadUsers, 500 );
+	const debouncedUserOptions = debounce( loadUsers, 500 );
+
+	const currentPostType = wp.data
+		.select( 'core/editor' )
+		.getCurrentPostType();
 
 	return (
 		<PluginDocumentSettingPanel
@@ -59,6 +64,19 @@ const Component = ( { metaFields, setMetaFields } ) => {
 			<Toggle
 				value={ restrictionTypes.user_role }
 				save={ ( newValue ) => {
+					window.tiTrk
+						?.with( 'neve' )
+						.set(
+							'content-restriction-' +
+								currentPostType +
+								'-user-role',
+							{
+								feature: 'content-restriction',
+								featureComponent:
+									currentPostType + '-user-role',
+								featureValue: newValue,
+							}
+						);
 					updateRestrictionTypeStatus( 'user_role', newValue );
 				} }
 				label={ __( 'Allowed User Roles', 'neve' ) }
@@ -80,6 +98,19 @@ const Component = ( { metaFields, setMetaFields } ) => {
 			<Toggle
 				value={ restrictionTypes.user_id }
 				save={ ( newValue ) => {
+					window.tiTrk
+						?.with( 'neve' )
+						.set(
+							'content-restriction-' +
+								currentPostType +
+								'-allowed-users',
+							{
+								feature: 'content-restriction',
+								featureComponent:
+									currentPostType + '-allowed-users',
+								featureValue: newValue,
+							}
+						);
 					updateRestrictionTypeStatus( 'user_id', newValue );
 				} }
 				label={ __( 'Allowed Users', 'neve' ) }
@@ -99,6 +130,18 @@ const Component = ( { metaFields, setMetaFields } ) => {
 			<Toggle
 				value={ restrictionTypes.password }
 				save={ ( newValue ) => {
+					window.tiTrk
+						?.with( 'neve' )
+						.set(
+							'content-restriction' +
+								currentPostType +
+								'-password',
+							{
+								feature: 'content-restriction',
+								featureComponent: currentPostType + '-password',
+								featureValue: newValue,
+							}
+						);
 					updateRestrictionTypeStatus( 'password', newValue );
 				} }
 				label={ __( 'Password', 'neve' ) }

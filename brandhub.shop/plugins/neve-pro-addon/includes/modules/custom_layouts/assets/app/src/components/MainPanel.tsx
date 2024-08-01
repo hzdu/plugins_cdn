@@ -112,16 +112,36 @@ const MainPanel: React.FC< Props > = ( {
 	};
 
 	const changeLayout = ( nextValue: string ) => {
+		// @ts-ignore
+		window.tiTrk?.with( 'neve' ).set( 'custom-layouts-sidebar-layout', {
+			feature: 'custom-layouts-sidebar',
+			featureComponent: 'layout',
+			featureValue: nextValue,
+		} );
 		setPostMeta( { [ META_LAYOUT ]: nextValue } );
 	};
 
 	const changeExpire = ( nextValue: Record< string, unknown > ) => {
+		// @ts-ignore
+		window.tiTrk
+			?.with( 'neve' )
+			.set( 'custom-layouts-sidebar-expire-date', {
+				feature: 'custom-layouts-sidebar',
+				featureComponent: 'expire-date',
+				featureValue: nextValue,
+			} );
 		setPostMeta( {
 			[ META_EXPIRE ]: ( nextValue as unknown ) as boolean,
 		} );
 	};
 
 	const changeHook = ( nextValue: string ) => {
+		// @ts-ignore
+		window.tiTrk?.with( 'neve' ).set( 'custom-layouts-sidebar-hook', {
+			feature: 'custom-layouts-sidebar',
+			featureComponent: 'hook',
+			featureValue: nextValue,
+		} );
 		setPostMeta( {
 			[ META_HOOK ]: nextValue,
 		} );
@@ -130,36 +150,76 @@ const MainPanel: React.FC< Props > = ( {
 	const changePriority = (
 		nextValue: number | Record< string, unknown >
 	) => {
+		// @ts-ignore
+		window.tiTrk?.with( 'neve' ).set( 'custom-layouts-sidebar-priority', {
+			feature: 'custom-layouts-sidebar',
+			featureComponent: 'priority',
+			featureValue: nextValue,
+		} );
 		setPostMeta( {
 			[ META_PRIORITY ]: nextValue,
 		} );
 	};
 
 	const changeSidebar = ( nextValue: string ) => {
+		// @ts-ignore
+		window.tiTrk?.with( 'neve' ).set( 'custom-layouts-sidebar-sidebar', {
+			feature: 'custom-layouts-sidebar',
+			featureComponent: 'sidebar',
+			featureValue: nextValue,
+		} );
 		setPostMeta( {
 			[ META_SIDEBAR ]: nextValue,
 		} );
 	};
 
 	const changeSidebarAction = ( nextValue: string ) => {
+		// @ts-ignore
+		window.tiTrk
+			?.with( 'neve' )
+			.set( 'custom-layouts-sidebar-sidebar-action', {
+				feature: 'custom-layouts-sidebar',
+				featureComponent: 'sidebar-action',
+				featureValue: nextValue,
+			} );
 		setPostMeta( {
 			[ META_SIDEBAR_ACTIONS ]: nextValue,
 		} );
 	};
 
 	const changeInside = ( nextValue: string ) => {
+		// @ts-ignore
+		window.tiTrk?.with( 'neve' ).set( 'custom-layouts-sidebar-inside', {
+			feature: 'custom-layouts-sidebar',
+			featureComponent: 'inside',
+			featureValue: nextValue,
+		} );
 		setPostMeta( {
 			[ META_INSIDE ]: nextValue,
 		} );
 	};
 
 	const changeEventNo = ( nextValue: number | Record< string, unknown > ) => {
+		// @ts-ignore
+		window.tiTrk?.with( 'neve' ).set( 'custom-layouts-sidebar-event-no', {
+			feature: 'custom-layouts-sidebar',
+			featureComponent: 'event-no',
+			featureValue: nextValue,
+		} );
 		setPostMeta( {
 			[ META_EVENTS_NO ]: nextValue,
 		} );
 	};
 
 	const changeConditionalRules = ( nextValue: Rules[][] ) => {
+		// @ts-ignore
+		window.tiTrk
+			?.with( 'neve' )
+			.set( 'custom-layouts-sidebar-conditional-rules', {
+				feature: 'custom-layouts-sidebar',
+				featureComponent: 'conditional-rules',
+				featureValue: JSON.stringify( nextValue ),
+			} );
 		const filteredValue = Object.values( nextValue )
 			.map( function ( group ) {
 				let itemToCheck = group as Array< Rules >;

@@ -1,11 +1,11 @@
 /* global neveAccessRestriction */
 import { __ } from '@wordpress/i18n';
 import Toggle from '../../components/Toggle';
-import { useDebounce } from '@wordpress/compose';
 import { useState, useCallback } from '@wordpress/element';
 import AsyncSelect from 'react-select/async';
 import Select from 'react-select';
 import { TextControl } from '@wordpress/components';
+import { debounce } from 'lodash';
 import { handlePasswordChange, loadUsersCallback } from '../../utils';
 
 const TermSettings = () => {
@@ -34,7 +34,7 @@ const TermSettings = () => {
 		setRestrictionTypes( metaValue );
 	};
 
-	const debouncedUserOptions = useDebounce( loadUsers, 500 );
+	const debouncedUserOptions = debounce( loadUsers, 500 );
 
 	return (
 		<>
@@ -47,6 +47,11 @@ const TermSettings = () => {
 			<Toggle
 				value={ restrictionTypes.user_role }
 				save={ ( newValue ) => {
+					window.tiTrk?.with( 'neve' ).set( 'term-user-role', {
+						feature: 'content-restriction',
+						featureComponent: 'term-user-role',
+						featureValue: newValue,
+					} );
 					updateRestrictionTypeStatus( 'user_role', newValue );
 				} }
 				label={ __( 'Allowed User Roles', 'neve' ) }
@@ -70,6 +75,11 @@ const TermSettings = () => {
 			<Toggle
 				value={ restrictionTypes.user_id }
 				save={ ( newValue ) => {
+					window.tiTrk?.with( 'neve' ).set( 'term-allowed-users', {
+						feature: 'content-restriction',
+						featureComponent: 'term-allowed-users',
+						featureValue: newValue,
+					} );
 					updateRestrictionTypeStatus( 'user_id', newValue );
 				} }
 				label={ __( 'Allowed Users', 'neve' ) }
@@ -91,6 +101,11 @@ const TermSettings = () => {
 			<Toggle
 				value={ restrictionTypes.password }
 				save={ ( newValue ) => {
+					window.tiTrk?.with( 'neve' ).set( 'term-password', {
+						feature: 'content-restriction',
+						featureComponent: 'term-password',
+						featureValue: newValue,
+					} );
 					updateRestrictionTypeStatus( 'password', newValue );
 				} }
 				label={ __( 'Password', 'neve' ) }
