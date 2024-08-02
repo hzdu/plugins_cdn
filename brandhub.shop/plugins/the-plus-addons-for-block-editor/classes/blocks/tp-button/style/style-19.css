@@ -1,0 +1,34 @@
+/* Button Style 19 */
+.tpgb-plus-button.button-style-19 .button-link-wrap {
+    margin: 0;
+    overflow: hidden;
+    transition: all 0.3s;
+    border: 1px solid #212121;
+	color : #212121;
+}
+.tpgb-plus-button.button-style-19 .button-link-wrap:hover {
+    border-color: #313131;
+}
+.tpgb-plus-button.button-style-19 .button-link-wrap span, .tpgb-plus-button.button-style-19 .button-link-wrap .btn-icon {
+    position: relative;
+    z-index: 1
+}
+.tpgb-plus-button.button-style-19 .button-link-wrap:after {
+    content: '';
+    position: absolute;
+    transition: all 0.3s;
+    width: 0;
+    height: 103%;
+    top: 50%;
+    left: 50%;
+    background: #f18248;
+    transform: translateX(-50%) translateY(-50%)
+}
+.tpgb-plus-button.button-style-19 .button-link-wrap:hover:after {
+    width: 90%;
+    opacity: 1
+}
+.tpgb-plus-button.button-style-19 .button-link-wrap:active:after {
+    width: 101%;
+    opacity: 1
+}

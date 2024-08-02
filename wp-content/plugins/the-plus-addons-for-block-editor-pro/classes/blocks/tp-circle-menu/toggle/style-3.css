@@ -1,0 +1,47 @@
+/* Toggle Style-3 */
+.tpgb-circle-menu .tpgb-circle-main-menu-list.style-3 a.main_menu_icon .close-toggle-icon {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    text-align: center;
+    transform: scale(0.2) rotate(45deg);
+    transition: transform .4s ease-in-out;
+    width: 50%;
+    height: 2px;
+    z-index: 1;
+    background: #fff;
+    border-radius: 10px;
+    opacity: 0;
+    visibility: hidden;
+    margin: 0 auto;
+}
+.tpgb-circle-menu .tpgb-circle-main-menu-list.style-3 a.main_menu_icon .close-toggle-icon:before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate3d(-50%,-50%,0) rotate(-90deg);
+    transition: transform .4s ease-in-out;
+    width: 100%;
+    height: 2px;
+    z-index: 1;
+    background: #fff;
+    border-radius: 10px;
+}
+.tpgb-circle-menu .circleMenu-open .tpgb-circle-main-menu-list.style-3 a.main_menu_icon .close-toggle-icon {
+	opacity:1;
+	visibility:visible;
+	transform: scale(1) rotate(315deg);
+}
+.tpgb-circle-menu .tpgb-circle-main-menu-list.style-3 a.main_menu_icon .toggle-icon-wrap{
+    transform: scale(1);
+	opacity:1;
+	visibility:visible;
+	transition: transform .4s ease-in-out;
+}
+.tpgb-circle-menu .circleMenu-open .tpgb-circle-main-menu-list.style-3 a.main_menu_icon .toggle-icon-wrap{
+    transform: scale(0.2);
+	opacity:0;
+	visibility:hidden;
+}

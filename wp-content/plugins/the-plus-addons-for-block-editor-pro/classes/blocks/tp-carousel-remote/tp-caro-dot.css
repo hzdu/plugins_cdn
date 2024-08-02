@@ -1,0 +1,72 @@
+/* Carousel Custom Dots Css */
+@-webkit-keyframes dash-data {
+    to {
+        stroke-dashoffset: 0
+    }
+}
+
+@keyframes dash-data {
+    to {
+        stroke-dashoffset: 0
+    }
+}
+
+.tpgb-carousel-remote .tpgb-carousel-dots.dot-horizontal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: visible!important
+}
+
+.tpgb-carousel-remote .tpgb-carousel-dots.dot-vertical {
+    flex-direction: column
+}
+
+.tpgb-carousel-dots.dot-vertical .tpgb-carodots-item {
+    margin-bottom: 10px
+}
+
+.tpgb-carousel-dots.dot-horizontal .tpgb-carodots-item:not(:first-child){
+    margin-left: 10px
+}
+.tpgb-carousel-dots .tpgb-carodots-item {
+    width: 35px;
+    height: 35px;
+    line-height: 35px;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: background .3s ease
+}
+
+.tpgb-carodots-item .tpgb-dots {
+    width: 100%;
+    height: 100%;
+}
+
+.tpgb-carodots-item.style-1 .active-border .border,.tpgb-carodots-item.style-1 .tooltip-txt,.tpgb-carodots-item.style-2 .active-border {
+    display: none
+}
+
+.tpgb-carodots-item.style-1 .active-border {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    width: 100%;
+    height: 100%
+}
+
+.tpgb-carodots-item.style-1.active .active-border .border {
+    display: block;
+    animation: 3s ease-in forwards dash-data ;
+}
+
+.active-border .border {
+    stroke-linecap: round;
+    stroke-dasharray: 110;
+    stroke-dashoffset: 110
+}
+.tpgb-carodots-item.style-1 .active-border:focus{
+    outline: none;
+}

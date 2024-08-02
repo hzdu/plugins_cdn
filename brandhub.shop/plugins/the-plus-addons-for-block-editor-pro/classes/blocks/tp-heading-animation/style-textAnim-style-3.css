@@ -1,0 +1,47 @@
+/*anim style*/
+/*Style 3*/
+.tpgb-heading-animation .heading-text-style-3{
+    transition: width .5s;
+}
+.tpgb-heading-animation .heading-text-style-3 .heading-anim-text {
+	white-space: nowrap
+}
+.tpgb-heading-animation .heading-text-style-3 .heading-anim-text .letter {
+    display: inline-block;
+    opacity: 0;
+}
+.heading-text-style-3 .heading-anim-text .letter{
+	-webkit-animation: heading-style-2-out 1s forwards;
+    animation: heading-style-2-out 1s forwards;
+	animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+}
+.heading-text-style-3 .heading-anim-text .letter.letter-anim-in {
+	-webkit-animation: heading-style-3-in 2.25s forwards;
+    animation: heading-style-3-in 2.25s forwards;
+	animation-timing-function: cubic-bezier(0.45, 0, 0.55, 1);
+}
+@-webkit-keyframes heading-style-3-in {
+    0% {
+        opacity: 0
+    }
+	50% {
+        opacity: 0.5
+    }
+    to {
+        opacity: 1
+    }
+}
+
+@keyframes heading-style-3-in {
+    0% {
+        opacity: 0
+    }
+	50% {
+        opacity: 0.5
+    }
+    to {
+        opacity: 1
+    }
+}
+/*Style 3*/
+/*anim style*/

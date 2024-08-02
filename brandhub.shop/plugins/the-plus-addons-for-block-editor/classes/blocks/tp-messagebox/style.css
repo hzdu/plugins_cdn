@@ -1,0 +1,71 @@
+.tpgb-messagebox {
+    z-index: 1
+}
+.tpgb-messagebox .messagebox-bg-box {
+	overflow: hidden;
+}
+.tpgb-messagebox .message-media {
+    display: flex;
+    align-items: flex-start;
+}
+.tpgb-messagebox .msg-icon-content ,.tpgb-messagebox .msg-dismiss-content{
+	 position: relative;
+    display: inline-block;
+    text-align: center;
+}
+.tpgb-messagebox .msg-icon-content.main-icon-postfix {
+	margin-left: 15px;
+}
+.tpgb-messagebox .msg-icon ,.tpgb-messagebox .dismiss-icon{
+	color: #000;
+    width: 55px;
+    height: 55px;
+    line-height: 55px;
+    font-size: 25px;
+}
+.tpgb-messagebox .msg-icon{
+	color:#ffffff;
+	background:#313131;
+}
+.tpgb-messagebox .dismiss-icon{
+	cursor:pointer;
+}
+.msg-icon.msg-arrow-prefix::after {
+    content: '';
+    position: absolute;
+    right: -20px;
+    border: 10px solid transparent;
+    border-left-color: #313131;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.msg-icon.msg-arrow-postfix::after {
+    content: '';
+    position: absolute;
+    left: -20px;
+    border: 10px solid transparent;
+    border-right-color: #313131;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.tpgb-messagebox .msg-content {
+    flex: 1 1 0%;
+	margin:auto 0;
+}
+.tpgb-messagebox .msg-inner-body {
+	display: flex;
+	position: relative;
+	justify-content: space-between;
+    padding-left: 10px;
+	margin: 0px 10px 0px 5px;
+}
+.tpgb-messagebox .msg-title {
+	font-size: 18px;
+}
+.msg-inner-body.extra-btn-enable .msg-title {
+	margin-right: 10px;
+}
+.tpgb-messagebox .msg-desc {
+	padding: 5px 0px 5px 10px;
+	margin: 0px 5px 0px 5px;
+}

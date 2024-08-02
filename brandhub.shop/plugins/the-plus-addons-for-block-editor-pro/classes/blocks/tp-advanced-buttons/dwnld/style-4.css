@@ -1,0 +1,75 @@
+/**
+ * CSS for both Frontend+Backend.
+ */
+/** Download Button **/
+@keyframes tp-loading {
+    0% {
+        transform: rotate(0deg)
+    }
+
+    to {
+        transform: rotate(359deg)
+    }
+}
+@keyframes tp-change-icon {
+    0% {
+        color: transparent
+    }
+
+    to {
+        color: #fff
+    }
+}
+@keyframes tp-pulse {
+    0%,to {
+        transform: scale3d(1,1,1)
+    }
+    50% {
+        transform: scale3d(1.05,1.05,1.05)
+    }
+}
+.tpgb-adv-btn-inner.ab-download.tpgb-download-style-4 .adv-button-link-wrap.loading .btn-icon-start,.tpgb-adv-btn-inner.ab-download.tpgb-download-style-4 .adv-button-link-wrap.success .btn-icon-start {
+    display: none
+}
+.tpgb-adv-btn-inner.ab-download.tpgb-download-style-4 .adv-button-link-wrap {
+    display: inline-block;
+    padding: 12px 12px 10px;
+    border: 0;
+    border-radius: 3px;
+    background: #6a79e3;
+    vertical-align: middle;
+    text-decoration: none;
+    transition: all 1.2s ease-in-out;
+    outline: 0
+}
+.tpgb-adv-btn-inner.ab-download.tpgb-download-style-4 .adv-button-link-wrap .adv-btn-icon {
+    font-size: 40px;
+    color: #fff
+}
+.tpgb-adv-btn-inner.ab-download.tpgb-download-style-4 .adv-button-link-wrap .btn-icon-start {
+    display: block
+}
+.tpgb-adv-btn-inner.ab-download.tpgb-download-style-4 .adv-button-link-wrap:hover {
+    animation: tp-pulse .2s 2 both
+}
+.tpgb-adv-btn-inner.ab-download.tpgb-download-style-4 .adv-button-link-wrap.loading .cmn-icon {
+    animation: tp-loading 2s infinite linear
+}
+.tpgb-adv-btn-inner.ab-download.tpgb-download-style-4 .adv-button-link-wrap .btn-icon-load {
+    display: none
+}
+.tpgb-adv-btn-inner.ab-download.tpgb-download-style-4 .adv-button-link-wrap.loading .btn-icon-load {
+    display: block
+}
+.tpgb-adv-btn-inner.ab-download.tpgb-download-style-4 .adv-button-link-wrap.success {
+    border-radius: 50%;
+    background: #80bca3
+}
+.tpgb-adv-btn-inner.ab-download.tpgb-download-style-4 .adv-button-link-wrap .btn-icon-success {
+    display: none
+}
+.tpgb-adv-btn-inner.ab-download.tpgb-download-style-4 .adv-button-link-wrap.success .btn-icon-success {
+    display: block;
+    color: transparent;
+    animation: tp-change-icon 1s .6s linear both
+}

@@ -1,0 +1,29 @@
+/* Button Style-9 */
+.tpgb-plus-button.button-style-9 .button-link-wrap {
+    padding-right: 20px;
+	color: #212121;
+}
+.tpgb-plus-button.button-style-9 a.button-link-wrap .btn-arrow {
+    position: relative;
+    display: inline-block;
+    margin-left: 10px;
+}
+.tpgb-plus-button.button-style-9 a.button-link-wrap .btn-hide {
+    opacity: 0;
+    transform: translateX(-20px) translateZ(0);
+}
+.tpgb-plus-button.button-style-9 a.button-link-wrap:hover .btn-hide {
+    opacity: 1;
+    transform: translateX(0) translateZ(0);
+    transition: transform .7s .1s cubic-bezier(.23,1,.32,1),opacity .45s .1s cubic-bezier(.165,.84,.44,1);
+}
+.tpgb-plus-button.button-style-9 a.button-link-wrap .btn-show {
+    transform: translateX(0%) translateZ(0) translateY(-50%);
+    position: absolute;
+    top: 50%;
+}
+.tpgb-plus-button.button-style-9 a.button-link-wrap:hover .btn-show {
+    opacity: 0;
+    transform: translateX(20px) translateZ(0) translateY(-50%);
+    transition: transform .7s cubic-bezier(.23,1,.32,1),opacity .45s cubic-bezier(.165,.84,.44,1);
+}

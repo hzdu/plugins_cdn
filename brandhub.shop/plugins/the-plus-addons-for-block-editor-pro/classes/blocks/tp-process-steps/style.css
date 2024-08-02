@@ -1,0 +1,95 @@
+/*process/steps
+  CSS for both Frontend+Backend.
+*/
+.tpgb-process-steps .tpgb-p-s-wrap {
+    position: relative;
+}
+.tpgb-process-steps .tp-ps-content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+.tpgb-process-steps .tpgb-p-s-wrap {
+    min-height: 150px;
+}
+.tpgb-process-steps h6.tp-pro-step-title {
+    font-size: 24px;
+    color: #212121;
+    position: relative;
+    display: inline-block;
+    margin: 0;
+}
+.tpgb-process-steps .tp-pro-step-desc,.tpgb-process-steps .tp-pro-step-desc p {
+    font-size: 16px;
+    color: #7e7e7e;
+    line-height: 1.6em;
+    position: relative;
+    display: inline-block;
+    margin: 0;
+    margin-top: 15px;
+}
+.tpgb-process-steps .tp-ps-right-content a {
+    outline: none;
+}
+.tpgb-process-steps .tpgb-p-s-wrap .tp-ps-left-imt .tp-ps-icon-img {
+    width: 90px;
+    height: 90px;
+    border: 1px solid #6a79e3;
+    border-radius: 50%;
+    background: #6a79e3;
+    text-align: center;
+	z-index: 2;
+    color: #ffffff;
+    font-size: 25px;
+}
+.tpgb-p-s-wrap .tp-ps-left-imt .tp-pro-step-icon-img {
+    width: 100%;
+    height: 100%;
+}
+.tpgb-p-s-wrap .tp-ps-icon-img .tp-ps-text {
+    position: relative;
+    display: inline-flex;
+    overflow: hidden;
+    line-height: initial;
+    word-break: keep-all;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 16px;
+}
+.tp-pro-step-icon-img .tp-icon-img {
+    width: 100%;
+    height: auto;
+}
+.tpgb-process-steps .tpgb-p-s-wrap .tp-pro-step-icon-img {
+    overflow: hidden;
+}
+.tpgb-process-steps {
+    counter-reset: my-sec-counter;
+}
+.tpgb-p-s-wrap:hover .tp-ps-left-imt .tp-ps-icon-img, .tpgb-p-s-wrap.active .tp-ps-left-imt .tp-ps-icon-img {
+    background: #aba2a2;
+    color: #fff;
+}
+.tpgb-process-steps.tp_ps_sep_img .tpgb-p-s-wrap .separator_custom_img {
+    position: absolute;
+    max-width: 100%;
+    display: flex;
+    right: 0;
+}
+.tpgb-process-steps.tp_ps_sep_img .tpgb-p-s-wrap:last-child .separator_custom_img {
+    display: none;
+}
+
+@media (max-width: 1024px) and (min-width: 768px) {
+    .tpgb-process-steps .tp-pro-step-title {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 767px) {
+    .tpgb-process-steps .tp-pro-step-desc,.tpgb-process-steps .tp-pro-step-desc p {
+        font-size: 15px;
+    }
+}

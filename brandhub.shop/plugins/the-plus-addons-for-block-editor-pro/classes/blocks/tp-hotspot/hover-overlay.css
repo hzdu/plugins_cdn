@@ -1,0 +1,18 @@
+/* Hover Overlay Css */
+
+.tpgb-hotspot .tpgb-hotspot-inner:after{
+	content: '';
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	background: transparent;
+	transition: all 0.3s ease;
+	opacity: 0;
+	visibility: hidden
+}
+.tpgb-hotspot .tpgb-hotspot-inner.overlay-bg-color.on-hover:after {
+	opacity: 1;
+	visibility: visible
+}

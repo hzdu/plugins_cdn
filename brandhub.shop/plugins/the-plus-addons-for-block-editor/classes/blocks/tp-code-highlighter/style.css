@@ -1,0 +1,335 @@
+/**
+	CSS For Code Highlighter
+	Front End + Back End
+**/
+.prism-previewer {
+    z-index: 1
+}
+.tpgb-code-highlighter .toolbar-item a {
+	text-decoration: none
+}
+.tpgb-code-highlighter code[class*="language-"], .tpgb-code-highlighter pre[class*="language-"] {
+	background: none;
+	font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+	font-size: 1em;
+	text-align: left;
+	white-space: pre;
+	word-spacing: normal;
+	word-break: normal;
+	word-wrap: normal;
+	line-height: 1.5;
+	tab-size: 4;
+	hyphens: none
+}
+.tpgb-code-highlighter div.code-toolbar {
+	position: relative
+}
+.tpgb-code-highlighter div.code-toolbar > .toolbar {
+	position: absolute;
+	top: .3em;
+	right: .2em;
+	transition: opacity 0.3s ease-in-out;
+	opacity: 0
+}
+.tpgb-code-highlighter div.code-toolbar:hover > .toolbar, .tpgb-code-highlighter div.code-toolbar:focus-within > .toolbar {
+	opacity: 1
+}
+.tpgb-code-highlighter div.code-toolbar > .toolbar .toolbar-item {
+	display: inline-block
+}
+.tpgb-code-highlighter div.code-toolbar > .toolbar a {
+	cursor: pointer
+}
+.tpgb-code-highlighter div.code-toolbar > .toolbar button {
+	background: none;
+	border: 0;
+	color: inherit;
+	font: inherit;
+	line-height: normal;
+	overflow: visible;
+	padding: 0;
+	user-select: none
+}
+.tpgb-code-highlighter div.code-toolbar > .toolbar a, .tpgb-code-highlighter div.code-toolbar > .toolbar button {
+	color: #000;
+    font-size: 13px;
+    box-shadow: 0 2px 0 0 #00000033;
+    background-color: #fff;
+    border: 1px solid #dddddd;
+    padding: 1px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+	transition: 0.3s linear
+}
+
+/* Copy/Download Icon start */
+.tpgb-code-highlighter .code-download-icon,.tpgb-code-highlighter span.code-copy-icon, .tpgb-code-highlighter span.code-copied-icon {
+    font-size: 11px;
+    margin-left: 5px
+}
+/* Copy/Download Icon end */
+
+/* Language Text Start */
+.tpgb-code-highlighter div.code-toolbar > .toolbar .toolbar-item > span {
+    user-select: none;
+    color: #000;
+    font-size: 13px;
+    box-shadow: 0 2px 0 0 #0003;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 1px 10px;
+    border-radius: 5px
+}
+/* Language Text End */
+
+.tpgb-code-highlighter .line-highlight:before, .tpgb-code-highlighter .line-highlight[data-end]:after {
+	content: attr(data-start);
+	position: absolute;
+	top: .4em;
+	left: .6em;
+	min-width: 1em;
+	padding: 0 .5em;
+	background-color: #997a6666;
+	color: #f5f2f0;
+	font: bold 65%/1.5 sans-serif;
+	text-align: center;
+	vertical-align: .3em;
+	border-radius: 999px;
+	text-shadow: none;
+	box-shadow: 0 1px #fff
+}
+.tpgb-code-highlighter .line-highlight[data-end]:after {
+	content: attr(data-end);
+	top: auto;
+	bottom: .4em
+}
+.tpgb-code-highlighter .line-numbers .line-highlight:before, .tpgb-code-highlighter .line-numbers .line-highlight:after {
+	content: none
+}
+.tpgb-code-highlighter pre[id].linkable-line-numbers span.line-numbers-rows {
+	pointer-events: all
+}
+.tpgb-code-highlighter pre[id].linkable-line-numbers span.line-numbers-rows > span:before {
+	cursor: pointer
+}
+.tpgb-code-highlighter pre[id].linkable-line-numbers span.line-numbers-rows > span:hover:before {
+	background-color: #80808033
+}
+.tpgb-code-highlighter pre[class*="language-"].line-numbers {
+	position: relative;
+	padding-left: 3.8em;
+	counter-reset: linenumber
+}
+.tpgb-code-highlighter pre[class*="language-"].line-numbers > code {
+	position: relative;
+	white-space: inherit
+}
+.tpgb-code-highlighter .line-numbers-rows > span {
+	display: block;
+	counter-increment: linenumber
+}
+.tpgb-code-highlighter .line-numbers-rows > span:before {
+	content: counter(linenumber);
+	color: #999;
+	display: block;
+	padding-right: 0.8em;
+	text-align: right
+}
+.tpgb-code-highlighter span.inline-color-wrapper {
+	background: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyIDIiPjxwYXRoIGZpbGw9ImdyYXkiIGQ9Ik0wIDBoMnYySDB6Ii8+PHBhdGggZmlsbD0id2hpdGUiIGQ9Ik0wIDBoMXYxSDB6TTEgMWgxdjFIMXoiLz48L3N2Zz4=");
+	background-position: center;
+	background-size: 110%;
+	display: inline-block;
+	height: 1.333ch;
+	width: 1.333ch;
+	margin: 0 .333ch;
+	box-sizing: border-box;
+	border: 1px solid #fff;
+	outline: 1px solid #00000080;
+	overflow: hidden
+}
+.tpgb-code-highlighter span.inline-color {
+	display: block;
+	height: 120%;
+	width: 120%
+}
+.prism-previewer, .prism-previewer:before, .prism-previewer:after {
+	position: absolute;
+	pointer-events: none
+}
+.prism-previewer, .prism-previewer:after {
+	left: 50%
+}
+.prism-previewer {
+	margin-top: -48px;
+	width: 32px;
+	height: 32px;
+	margin-left: -16px;
+	opacity: 0;
+	transition: opacity .25s
+}
+.prism-previewer.flipped {
+	margin-top: 0;
+	margin-bottom: -48px
+}
+.prism-previewer:before, .prism-previewer:after {
+	content: '';
+	position: absolute;
+	pointer-events: none
+}
+.prism-previewer:before {
+	top: -5px;
+	right: -5px;
+	left: -5px;
+	bottom: -5px;
+	border-radius: 10px;
+	border: 5px solid #fff;
+	box-shadow: 0 0 3px #00000080 inset, 0 0 10px #000000bf
+}
+.prism-previewer:after {
+	top: 100%;
+	width: 0;
+	height: 0;
+	margin: 5px 0 0 -7px;
+	border: 7px solid transparent;
+	border-color: #ff000000;
+	border-top-color: #fff
+}
+.prism-previewer.flipped:after {
+	top: auto;
+	bottom: 100%;
+	margin-top: 0;
+	margin-bottom: 5px;
+	border-top-color: #ff000000;
+	border-bottom-color: #fff
+}
+.prism-previewer.active {
+	opacity: 1
+}
+.prism-previewer-angle:before {
+	border-radius: 50%;
+	background: #fff
+}
+.prism-previewer-angle:after {
+	margin-top: 4px
+}
+.prism-previewer-angle svg {
+	width: 32px;
+	height: 32px;
+	transform: rotate(-90deg)
+}
+.prism-previewer-angle[data-negative] svg {
+	transform: scaleX(-1) rotate(-90deg)
+}
+.prism-previewer-angle circle {
+	fill: transparent;
+	stroke: #2e3538;
+	stroke-opacity: 0.9;
+	stroke-width: 32;
+	stroke-dasharray: 0, 500
+}
+.prism-previewer-gradient:before {
+	content: none
+}
+.prism-previewer-gradient div {
+	position: absolute;
+	top: -5px;
+	left: -5px;
+	right: -5px;
+	bottom: -5px;
+	border-radius: 10px;
+	border: 5px solid #fff;
+	box-shadow: 0 0 3px #00000080 inset, 0 0 10px #000000bf
+}
+.prism-previewer-color {
+	background-image: linear-gradient(45deg, #bbb 25%, transparent 25%, transparent 75%, #bbb 75%, #bbb), linear-gradient(45deg, #bbb 25%, #eee 25%, #eee 75%, #bbb 75%, #bbb);
+	background-size: 10px 10px;
+	background-position: 0 0, 5px 5px
+}
+.prism-previewer-color:before {
+	background-color: inherit;
+	background-clip: padding-box
+}
+.prism-previewer-easing {
+	margin-top: -76px;
+	margin-left: -30px;
+	width: 60px;
+	height: 60px;
+	background: #333
+}
+.prism-previewer-easing.flipped {
+	margin-bottom: -116px
+}
+.prism-previewer-easing svg {
+	width: 60px;
+	height: 60px
+}
+.prism-previewer-easing circle {
+	fill: #2e3538;
+	stroke: #fff
+}
+.prism-previewer-easing path {
+	fill: none;
+	stroke: #fff;
+	stroke-linecap: round;
+	stroke-width: 4
+}
+.prism-previewer-easing line {
+	stroke: #fff;
+	stroke-opacity: 0.5;
+	stroke-width: 2
+}
+.prism-previewer-gradient {
+	background-image: linear-gradient(45deg, #bbb 25%, transparent 25%, transparent 75%, #bbb 75%, #bbb), linear-gradient(45deg, #bbb 25%, #eee 25%, #eee 75%, #bbb 75%, #bbb);
+	background-size: 10px 10px;
+	background-position: 0 0, 5px 5px;
+	width: 64px;
+	margin-left: -32px
+}
+@keyframes prism-previewer-time {
+	0% {
+		stroke-dasharray: 0, 500;
+		stroke-dashoffset: 0
+	}
+	50% {
+		stroke-dasharray: 100, 500;
+		stroke-dashoffset: 0
+	}
+	100% {
+		stroke-dasharray: 0, 500;
+		stroke-dashoffset: -100
+	}
+}
+.prism-previewer-time:before {
+	border-radius: 50%;
+	background: #fff
+}
+.prism-previewer-time:after {
+	margin-top: 4px
+}
+.prism-previewer-time svg {
+	width: 32px;
+	height: 32px;
+	transform: rotate(-90deg)
+}
+.prism-previewer-time circle {
+	fill: transparent;
+	stroke: #2e3538;
+	stroke-opacity: 0.9;
+	stroke-width: 32;
+	stroke-dasharray: 0, 500;
+	stroke-dashoffset: 0;
+	animation: prism-previewer-time linear infinite 3s
+}
+@media print {
+	.line-highlight {
+		print-color-adjust: exact
+	}
+}
+
+body.admin-bar .prism-previewer { 
+	margin-top: -15px !important; 
+} 
+body.admin-bar .prism-previewer-easing { 
+	margin-top: -40px !important; 
+}

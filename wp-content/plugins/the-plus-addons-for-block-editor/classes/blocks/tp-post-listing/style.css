@@ -1,0 +1,178 @@
+/**
+* CSS for both Frontend+Backend.
+*/
+
+.tpgb-post-listing .post-loop-inner {
+    position: relative
+}
+
+.tpgb-post-listing .post-loop-inner .post-meta-info a,.tpgb-post-listing .post-loop-inner .tpgb-post-title a {
+    text-decoration: blink
+}
+
+.tpgb-post-listing .dynamic-list-content {
+    position: relative;
+    overflow: hidden;
+    width: 100%
+}
+
+.tpgb-post-img {
+    width: 100%
+}
+
+.tpgb-dynamic-tran,.tpgb-dynamic-tran a,.tpgb-dynamic-tran p {
+    transition: all .3s ease-in-out
+}
+/*-----Post title----*/
+.tpgb-post-listing .tpgb-post-title {
+    font-size: 20px;
+    line-height: 25px;
+    margin: 0
+}
+
+.tpgb-post-listing .dynamic-list-content:hover .tpgb-post-title a {
+    color: #6f14f1
+}
+
+.tpgb-post-excerpt {
+    position: relative
+}
+
+.editor-styles-wrapper .tpgb-post-excerpt p,.tpgb-post-excerpt p {
+    margin: 5px 0 0
+}
+/*-----Post title----*/
+/*-----Post Meta Info----*/
+.post-meta-info {
+    position: relative;
+    display: block;
+    font-size: 14px;
+    line-height: 1;
+    text-transform: capitalize;
+    margin-bottom: 10px
+}
+
+.post-meta-info>span,.post-meta-info>span>a {
+    font-weight: 500
+}
+
+.post-info-style-3 .post-author-date {
+    vertical-align: middle;
+    display: inline-block;
+    margin-left: 7px
+}
+
+.post-info-style-3 .post-author-date>a {
+    display: block;
+    line-height: 20px;
+    text-transform: capitalize;
+    text-align: left
+}
+
+.post-info-style-3 .post-author-detail {
+    display: flex;
+    align-items: center
+}
+
+.post-info-style-3 .post-author-avatar img {
+    border-radius: 30px;
+    max-width: 42px
+}
+
+.post-info-style-3 .post-author-date>.post-author-name {
+    text-transform: uppercase;
+    font-weight: 600
+}
+
+.tpgb-post-listing .post-meta-info .post-author-date>a,.tpgb-post-listing .post-meta-info>span,.tpgb-post-listing .post-meta-info>span>a {
+    color: #676767
+}
+/*-----Post Meta Info----*/
+.tpgb-post-featured-img {
+    position: relative;
+    overflow: hidden
+}
+
+.tpgb-post-featured-img>a:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: 0 0;
+    transition: all .3s ease-in-out;
+    z-index: 1
+}
+
+.tpgb-post-listing .dynamic-list-content:hover .tpgb-post-featured-img.hover-image-style-1 img {
+    transform: scale(1.1)
+}
+
+.tpgb-post-category {
+    display: block;
+    position: relative
+}
+
+.tpgb-post-category.cat-style-1>a,.tpgb-post-category.cat-style-2>a {
+    display: inline-block;
+    line-height: 18px;
+    color: #212121;
+    vertical-align: middle
+}
+
+.tpgb-post-category.cat-style-1>a {
+    border: 1px solid #212121;
+    padding: 4px 15px;
+    font-size: 12px;
+    margin: 0 8px 4px 0;
+    border-radius: 30px
+}
+
+.tpgb-post-category.cat-style-2>a {
+    position: relative;
+    font-size: 15px;
+    margin: 0 10px 10px 0
+}
+
+.tpgb-post-category.cat-style-2>a:before {
+    height: 2px;
+    width: 100%;
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    content: "";
+    transform: scaleX(0);
+    transform-origin: left;
+    background: #ff124f;
+    transition: transform .3s cubic-bezier(.52,.01,.16,1)
+}
+
+.tpgb-post-category.cat-style-2>a:hover:before {
+    transform: scaleX(1)
+}
+
+.tpgb-no-posts-found {
+    font-size: 14px;
+    background: #8072fc;
+    padding: 10px;
+    text-align: center;
+    line-height: 25px;
+    border-radius: 3px;
+    box-shadow: 0 5px 30px -5px #8072fc;
+    color: #fff
+}
+.tpgb-wrap-fw {
+    width: 100%;
+}
+@media (max-width:767px) {
+    .tpgb-post-listing .tpgb-row {
+        margin-left: 0;
+        margin-right: 0
+    }
+}
+
+/* Twenty Twenty Three Theme Image Issue */
+.theme-twentytwentythree .tpgb-post-listing .post-loop-inner .tpgb-post-img{
+    height: auto;
+}

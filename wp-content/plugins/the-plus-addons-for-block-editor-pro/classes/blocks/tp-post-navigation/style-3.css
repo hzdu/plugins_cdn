@@ -1,0 +1,36 @@
+/*Style 3*/
+.tpgb-nav-style-3 .tpgb-post-nav-hover-con {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 200px;
+    border: 1px solid #efe5e5;
+    background-size: cover;
+    background-attachment: scroll;
+    background-position: center center;
+    background-repeat: no-repeat
+}
+.tpgb-nav-style-3 .post_nav_link .tpgb-post-nav-hover-con:before {
+    content: "";
+    background: #fff8f8;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transition: all .3s linear
+}
+.tpgb-nav-style-3 .post_nav_link .next-post-content,.tpgb-nav-style-3 .post_nav_link .prev-post-content {
+    z-index: 99;
+    text-align: center;
+    padding: 15px
+}
+.tpgb-nav-style-3 .post_nav_link:hover .tpgb-post-nav-hover-con:before {
+    background: #00000094
+}
+@media (max-width:767px) {
+    .tpgb-nav-style-3 .tpgb-row {
+        margin-left: 0;
+        margin-right: 0
+    }
+}
+/*Style 3*/

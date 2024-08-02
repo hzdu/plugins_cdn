@@ -1,0 +1,22 @@
+/*style 4 */
+.tpgb-scroll-nav.style-4 .tpgb-scroll-nav-dots {
+    position: absolute;
+    display: inline-block;
+    cursor: pointer;
+    width: 20px;
+    height: 1px;
+    transition: all .3s ease-in-out;
+    background: red;
+    z-index: 2
+}
+
+.tpgb-scroll-nav.style-4 .tpgb-scroll-nav-dots:hover,.tpgb-scroll-nav.style-4 a.tpgb-scroll-nav-item.active .tpgb-scroll-nav-dots {
+    width: 40px
+}
+
+.tpgb-scroll-nav.style-4.nav-right .tpgb-scroll-nav-dots:hover,.tpgb-scroll-nav.style-4.nav-right a.tpgb-scroll-nav-item.active .tpgb-scroll-nav-dots {
+    width: 40px;
+    transform: translate3d(-50%,0,0)
+}
+
+/*style 4 */

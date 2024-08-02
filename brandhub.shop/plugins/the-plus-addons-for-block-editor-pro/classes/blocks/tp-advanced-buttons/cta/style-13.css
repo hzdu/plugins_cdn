@@ -1,0 +1,73 @@
+/**
+ * CSS for both Frontend+Backend.
+ */
+.tpgb-adv-btn-inner.ab-cta.tpgb-cta-style-13 .adv-button-link-wrap {
+    display: flex;
+    padding: 15px 80px;
+    border-color: #000;
+    border-radius: 5px
+}
+.tpgb-adv-btn-inner.ab-cta.tpgb-cta-style-13 .adv-button-link-wrap:hover {
+    border-radius: 50px
+}
+.tpgb-adv-btn-inner.ab-cta.tpgb-cta-style-13 .adv-button-link-wrap:hover .sty13-main-text,.tpgb-adv-btn-inner.ab-cta.tpgb-cta-style-13 .adv-button-link-wrap:hover .sty13-main-text>span {
+    color: transparent!important
+}
+.tpgb-adv-btn-inner.ab-cta.tpgb-cta-style-13 .adv-button-link-wrap span.sty13-extra-text {
+    text-transform: none;
+    position: absolute;
+    color: #ff5a6e;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    line-height: inherit;
+    opacity: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px
+}
+.tpgb-adv-btn-inner.ab-cta.tpgb-cta-style-13 .adv-button-link-wrap:hover>span.sty13-extra-text {
+    opacity: 1;
+    transition: all .25s ease-in-out .1s
+}
+.tpgb-adv-btn-inner.ab-cta.tpgb-cta-style-13 .adv-button-link-wrap:hover:before {
+    transition: .3s ease-in-out;
+    background-color: #ff5a6e
+}
+.tpgb-adv-btn-inner.ab-cta.tpgb-cta-style-13 .adv-button-link-wrap:before {
+    content: "";
+    top: -15px
+}
+.tpgb-adv-btn-inner.ab-cta.tpgb-cta-style-13 .adv-button-link-wrap:after,.tpgb-adv-btn-inner.ab-cta.tpgb-cta-style-13 .adv-button-link-wrap:before {
+    position: absolute;
+    display: inline;
+    width: calc(100% - 60px);
+    height: 25px;
+    overflow: hidden
+}
+.tpgb-adv-btn-inner.ab-cta.tpgb-cta-style-13 .adv-button-link-wrap:before {
+    border: 2px solid #6a79e3;
+    background-color: #6a79e3;
+    transform: skew(-25deg);
+    transition: .3s ease-in-out;
+    z-index: 11;
+    box-sizing: border-box
+}
+.tpgb-adv-btn-inner.ab-cta.tpgb-cta-style-13 .adv-button-link-wrap:after {
+    content: "Available for work";
+    color: #fff;
+    z-index: 11;
+    top: -12px;
+    font-weight: 400
+}
+.tpgb-adv-btn-inner.ab-cta.tpgb-cta-style-13:before {
+    box-sizing: border-box
+}
+.tpgb-adv-btn-inner.ab-cta.tpgb-cta-style-13.style-13-align-left .adv-button-link-wrap:after,.tpgb-adv-btn-inner.ab-cta.tpgb-cta-style-13.style-13-align-left .adv-button-link-wrap:before {
+    left: -12px
+}
+.tpgb-adv-btn-inner.ab-cta.tpgb-cta-style-13.style-13-align-right .adv-button-link-wrap:after,.tpgb-adv-btn-inner.ab-cta.tpgb-cta-style-13.style-13-align-right .adv-button-link-wrap:before {
+    right: -12px
+}

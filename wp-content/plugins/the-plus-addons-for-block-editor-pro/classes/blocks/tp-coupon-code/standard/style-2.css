@@ -1,0 +1,27 @@
+.tpgb-coupon-code .coupon-code-inner.style-2 .coupon-btn-link {
+	overflow: hidden;
+}
+.tpgb-coupon-code .coupon-code-inner.style-2 .coupon-text {
+    width: 100%;
+    height: 100%;
+	left: 0;
+    top: 0;
+}
+.tpgb-coupon-code .coupon-code-inner.style-2 .coupon-text {
+	width: unset;
+}
+.tpgb-coupon-code .coupon-code-inner.style-2 .coupon-text::after {
+    content: "";
+    display: block;
+    width: 0;
+    height: 0;
+    border-top: 100px solid transparent;
+    border-left: 44px solid #6f14f1;
+    position: absolute;
+    right: -44px;
+    top: 0;
+}
+.tpgb-coupon-code .coupon-code-inner.style-2 .coupon-btn-link:hover .coupon-text {
+    padding-right: 5px;
+    transition: all 0.3s ease;
+}

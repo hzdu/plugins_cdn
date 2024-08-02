@@ -1,0 +1,83 @@
+/* Tooltip Style */
+
+.tpgb-carodots-item .tooltip-txt {
+    visibility: hidden;
+    width: 120px;
+    height: auto;
+    background-color: #000;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    z-index: 1;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center
+}
+
+.tpgb-carodots-item .tooltip-top .tooltip-txt {
+    transform: translate3d(0,-50%,0);
+    bottom: 58%
+}
+
+.tpgb-carodots-item.style-2 .tooltip-right .tooltip-txt {
+    top: 50%;
+    left: 100%;
+    transform: translate3d(13px,-50%,0);
+    bottom: 0;
+    padding: 20px 0;
+    line-height: 1px
+}
+
+.tpgb-carodots-item .tooltip-left .tooltip-txt {
+    top: 50%;
+    left: 100%;
+    z-index: 1;
+    transform: translate3d(-175px,-50%,0)
+}
+
+.tpgb-carodots-item .tooltip-bottom .tooltip-txt {
+    top: 50px
+}
+
+.tpgb-carodots-item.style-2.active .tooltip-txt {
+    visibility: visible
+}
+
+.tpgb-carodots-item.style-2 .tooltip-txt.tooltip-arrow:after {
+    position: absolute;
+    content: "";
+    border: 8px solid transparent;
+    z-index: 2;
+    border-right-color: #000
+}
+
+.tpgb-carodots-item.style-2 .tooltip-top .tooltip-txt.tooltip-arrow:after {
+    left: 50%;
+    bottom: -15px;
+    transform: translate3d(-50%,0,0) rotate(270deg)
+}
+
+.tpgb-carodots-item.style-2 .tooltip-right .tooltip-txt.tooltip-arrow:after {
+    left: -7px;
+    height: 0;
+    width: 0;
+    transform: translate3d(-55%,-60%,0) rotate(360deg);
+    top: 50%
+}
+
+.tpgb-carodots-item.style-2 .tooltip-left .tooltip-txt.tooltip-arrow:after {
+    right: -16px;
+    height: 0;
+    width: 0;
+    transform: translate3d(0,-50%,0) rotate(180deg);
+    top: 50%
+}
+
+.tpgb-carodots-item.style-2 .tooltip-bottom .tooltip-txt.tooltip-arrow:after {
+    left: 50%;
+    top: -15px;
+    transform: translate3d(-50%,0,0) rotate(90deg)
+}
+/* Tooltip Style */

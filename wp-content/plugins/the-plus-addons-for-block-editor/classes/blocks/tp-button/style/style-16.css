@@ -1,0 +1,41 @@
+/* Button Style-16 */
+.tpgb-plus-button.button-style-16 .button-link-wrap {
+	border : 1px solid #7248f1;
+    transition: color 0.3s cubic-bezier(.2,1,.3,1);
+}
+.tpgb-plus-button.button-style-16 .button-link-wrap:hover{
+    border-color: #f18248;
+}
+.tpgb-plus-button.button-style-16 .button-link-wrap::before, .tpgb-plus-button.button-style-16 .button-link-wrap::after {
+    content: '';
+    border-radius: inherit;
+    pointer-events: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    transition: transform 0.3s cubic-bezier(.75,0,.125,1),opacity 0.3s cubic-bezier(.75,0,.125,1);
+}
+.tpgb-plus-button.button-style-16 .button-link-wrap::before {
+    border: 1px solid #f18248;
+    opacity: 0;
+    transform: scale3d(1.2,1.2,1);
+    background: #f18248;
+}
+.tpgb-plus-button.button-style-16 .button-link-wrap::after {
+    background: #7248f1;
+}
+.tpgb-plus-button.button-style-16 .button-link-wrap:hover::before {
+    opacity: 1;
+    transform: scale3d(1,1,1);
+}
+.tpgb-plus-button.button-style-16 .button-link-wrap:hover::after {
+    opacity: 0;
+    transform: scale3d(.8,.8,1);
+}
+.tpgb-plus-button.button-style-16 .button-link-wrap span {
+    position: relative;
+    z-index: 1;
+}

@@ -1,0 +1,81 @@
+/*style-5*/
+.tpgb-audioplay-wrap.style-5 .tpgb-player {
+    padding: 0;
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center
+}
+
+.tpgb-audioplay-wrap.style-5 .ap-st5-img {
+    position: relative;
+    display: block;
+    width: 200px;
+    min-height: 200px;
+    float: left;
+    border-top-right-radius: 0!important;
+    border-bottom-right-radius: 0!important
+}
+
+.tpgb-audioplay-wrap.style-5 .ap-st5-content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    width: calc(100% - 200px);
+    align-items: center
+}
+
+.tpgb-audioplay-wrap.style-5 .controls {
+    display: block;
+    margin: 0;
+    align-items: center;
+    position: relative
+}
+
+.tpgb-audioplay-wrap.style-5 .controls .tpgb-ap-pp {
+    background: #f44336;
+    height: 75px;
+    width: 75px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    margin: 10px 20px 10px 0
+}
+
+.tpgb-audioplay-wrap.style-5 .ap-nextprev {
+    position: absolute;
+    top: -10px;
+    right: -25px;
+    display: flex
+}
+
+.tpgb-audioplay-wrap.style-5 .ap-controls-track {
+    position: relative;
+    display: inline-flex;
+    width: 95%;
+    align-items: center;
+    padding: 0 20px
+}
+
+.tpgb-audioplay-wrap.style-5 .tracker {
+    margin-left: 0
+}
+
+.tpgb-audioplay-wrap.style-5 .ap-st5-img {
+    background-repeat: no-repeat!important;
+    background-size: cover!important;
+    background-position: center!important
+}
+
+@media only screen and (max-width:425px) {
+    .tpgb-audioplay-wrap.style-5 .ap-st5-img {
+        width: 130px
+    }
+
+    .tpgb-audioplay-wrap.style-5 .ap-st5-content {
+        width: calc(100% - 130px)
+    }
+}
+/*style-5*/

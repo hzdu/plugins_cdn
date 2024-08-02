@@ -1,0 +1,819 @@
+/**
+ * CSS for both Frontend+Backend.
+ */
+
+ .tpgb-login-register .tpgb-form-title {
+   margin: 0 0 10px;
+   width: 100%
+}
+
+.tpgb-login-register .tpgb-login-form,.tpgb-login-register .tpgb-lostpass-form,.tpgb-login-register .tpgb-register-form,.tpgb-login-register .tpgb-rp-form {
+   display: block;
+   width: 100%;
+   height: 100%
+}
+
+.tpgb-login-register .tpgb-buform-layput {
+   position: relative;
+   display: block;
+   width: auto;
+   z-index: 11
+}
+
+.tpgb-form-label {
+   font-size: 16px;
+   font-weight: 500;
+   line-height: 20px;
+   color: #6b7280
+}
+
+.tpgb-login-register input[type=email],.tpgb-login-register input[type=number],.tpgb-login-register input[type=password],.tpgb-login-register input[type=submit],.tpgb-login-register input[type=tel],.tpgb-login-register input[type=text],.tpgb-login-register input[type=url],.tpgb-login-register textarea {
+   -webkit-backface-visibility: hidden;
+   background: #fff;
+   border: solid 1px #e5e7eb;
+   box-sizing: border-box;
+   outline: 0;
+   padding: .41rem .66rem;
+   -webkit-appearance: none;
+   outline-offset: 0;
+   border-radius: 0;
+   width: 100%;
+   position: relative;
+   line-height: 1.5
+}
+
+.tpgb-form-controls.tpgb-pass-field{
+   display: flex;
+   align-items: center;
+}
+
+/* CheckBox & Radio Button */
+.tpgb-login-register input[type=checkbox],.tpgb-login-register input[type=radio] {
+   width: 18px;
+   height: 18px;
+   margin: 0;
+   position: relative;
+   border: 1px solid #878787
+}
+
+.tpgb-login-register input[type=checkbox] {
+   -webkit-appearance: none;
+   border-radius: 3px
+}
+
+.tpgb-login-register input[type=radio]::before {
+   position: absolute;
+   top: 3px;
+   left: 3px;
+   width: 10px;
+   height: 10px;
+   content: "";
+   line-height: 1.14285714;
+   border-radius: 50%
+}
+
+.tpgb-login-register input[type=radio]:checked {
+   border: 1px solid #5048e5;
+   background-color: #fff
+}
+
+.tpgb-login-register input[type=radio] {
+   -webkit-appearance: none;
+   border-radius: 50%;
+   background-color: #fff
+}
+
+.tpgb-login-register input[type=radio]:checked:before {
+   background: #5048e5
+}
+
+.tpgb-login-register input[type=checkbox]::before {
+   content: "";
+   display: block;
+   position: absolute;
+   top: 0;
+   left: 5px;
+   width: 6px;
+   height: 12px;
+   margin: 0;
+   border: solid #fff;
+   border-width: 0 3px 3px 0;
+   transform: rotate(45deg);
+   visibility: hidden
+}
+
+.tpgb-login-register input[type=checkbox]:checked:before {
+   visibility: visible
+}
+
+/* CheckBox & Radio Button */
+
+/* select Drop Down */
+
+.tpgb-login-register select {
+   max-width: 100%;
+   padding: 8px 24px 8px 8px;
+   border: 1px solid rgba(77,77,77,.1);
+   border-radius: 2px;
+   font-size: 14px;
+   font-weight: 400;
+   color: #878787
+}
+
+/* select Drop Down */
+
+.tpgb-login-register input[type=email]::placeholder,.tpgb-login-register input[type=number]::placeholder,.tpgb-login-register input[type=password]::placeholder,.tpgb-login-register input[type=tel]::placeholder,.tpgb-login-register input[type=text]::placeholder,.tpgb-login-register input[type=url]::placeholder,.tpgb-login-register textarea::placeholder {
+   color: #d1d5db
+}
+
+.tpgb-form-controls {
+   position: relative
+}
+
+.tpgb-login-register .tpgb-button,.tpgb-login-register .tpgb-login-button,.tpgb-login-register .tpgb-lost-pass-button,.tpgb-login-register .tpgb-otp-button,.tpgb-login-register .tpgb-register-button,.tpgb-lostpass-form .tpgb-forget-password-button,.tpgb-magic-link-button,.tpgb-rp-form .tpgb-resetpassword-button {
+   display: inline-block;
+   color: #fff;
+   border: 0;
+   box-shadow: none;
+   outline: 0;
+   padding: 10px 16px;
+   font-size: 14px;
+   font-weight: 400;
+   line-height: 20px;
+   transition: all .3s ease-in-out;
+   cursor: pointer
+}
+
+.tpgb-login-register .tpgb-otp-button,.tpgb-login-register .tpgb-verify-button {
+   margin-top: 10px;
+   width: 100%
+}
+
+.tpgb-login-register .tpgb-codeotp-wrap {
+   display: none;
+   margin-top: 10px
+}
+
+.tpgb-field-group:not(:last-child) {
+   margin-bottom: 12px
+}
+
+.tpgb-login-form .tpgb-field-group,.tpgb-login-register .tpgb-form-title,.tpgb-register-form .tpgb-field-group {
+   padding: 0 8px
+}
+
+.tpgb-login-wrap {
+   display: flex;
+   flex-wrap: wrap
+}
+
+.tpgb-field-group.tpgb-lostpass-relink {
+   display: inline-block;
+   vertical-align: middle
+}
+
+.tpgb-login-register .tpgb-field-group a.tpgb-lost-password,.tpgb-login-register .tpgb-field-group a.tpgb-register-link,.tpgb-login-wrap .tpgb-field-group .tpgb-re-login , .tpgb-login-register .tpgb-field-group a.tpgb-magic-tag {
+   cursor: pointer;
+   font-size: 16px;
+   text-transform: capitalize;
+   line-height: 1;
+   color: #313131;
+   font-weight: 500;
+   text-decoration: blink
+}
+.tpgb-login-register .tpgb-field-group.tpgb-lostpass-relink a.tpgb-lost-password:focus{
+   box-shadow: none;
+   outline : none;
+}
+/* Social Facebook & Google Css */ 
+
+.tpgn-socialbtn-wrap {
+   display: flex
+}
+
+.tpgn-socialbtn-wrap a.tpgb-btn-fb {
+   display: inline-block;
+   border-radius: 1px;
+   text-decoration: none;
+   transition: background-color .218s,border-color .218s,box-shadow .218s;
+   background: #4c69ba;
+   color: #fff
+}
+
+.tpgn-socialbtn-wrap a.tpgb-btn-fb:focus,.tpgn-socialbtn-wrap a.tpgb-btn-fb:hover {
+   color: #fff
+}
+
+.tpgn-socialbtn-wrap .tpgb-social-logo {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   width: 100%;
+   padding: 12px;
+   height: inherit
+}
+
+.tpgb-social-logo img {
+   width: 24px;
+   height: 24px
+}
+
+.tpgn-socialbtn-wrap p {
+   margin: 0 0 0 8px;
+   color: #fff
+}
+
+.tpgn-socialbtn-wrap .tpgb-btn-google {
+   margin-left: 10px;
+   margin-bottom: 0
+}
+
+.tpgb-btn-goo .tpgb-social-logo{
+   padding: 0 10px;
+}
+
+.tpgb-google-standard .abcRioButtonIcon{
+   display: flex;
+   align-items: center;
+   margin-right: 8px;
+   justify-content: center;
+}
+.tpgb-google-icon .abcRioButtonIcon{
+   display: flex;
+   align-items: center;
+}
+.tpgb-google-standard .abcRioButtonContents{
+   font-size: 14px;
+   letter-spacing: 0.25px;
+   font-weight: 500;
+   text-overflow: ellipsis;
+   text-align: center;
+   flex-grow: 1;
+}
+.tpgb-google-standard.tpgb-goshap-pill .tpgb-social-logo,.tpgb-google-icon.tpgb-gicon-circle .tpgb-social-logo{
+   border-radius: 20px !important;
+}
+.tpgb-google-standard.tpgb-goshap-pill .abcRioButtonIcon,.tpgb-google-icon.tpgb-gicon-circle .abcRioButtonIcon{
+   border-radius: 18px !important;
+}
+/* Theme Light */
+
+.tpgb-social-logo.tpgb-goo-outline,.tpgb-social-logo.tpgb-goo-filled_blue,.tpgb-social-logo.tpgb-goo-filled_black {
+   background: #fff;
+   border: 1px solid #dadce0;
+   color: #3c4043;
+   cursor: pointer;
+   padding: 5px 10px;
+   border-radius: 4px;
+}
+.tpgb-social-logo.tpgb-goo-outline:hover{
+   box-shadow: none;
+   border-color: #d2e3fc;
+   outline: none;
+}
+
+
+/* Theme Light */
+/* Dark Blue Light */
+.tpgb-google-icon .tpgb-goo-filled_blue .abcRioButtonIcon , .tpgb-google-icon .tpgb-goo-filled_black .abcRioButtonIcon {
+   margin-left: 0px;
+   justify-content: center;
+   border-radius: 4px;
+}
+.tpgb-google-icon .tpgb-social-logo.tpgb-goo-filled_blue,.tpgb-google-icon .tpgb-social-logo.tpgb-goo-filled_black{
+   padding: 3px;
+}
+.tpgb-social-logo.tpgb-goo-filled_blue,.tpgb-social-logo.tpgb-goo-filled_black{
+   border: none;
+   padding: 1px 10px;
+}
+.tpgb-goo-filled_blue .abcRioButtonIcon , .tpgb-goo-filled_black .abcRioButtonIcon{
+   height: 36px;
+   min-width: 36px;
+   width: 36px;
+   background: #fff;
+   margin-left: -9px;
+   border-top-left-radius: 4px;
+   border-bottom-left-radius: 4px;
+}
+.tpgb-goo-filled_blue{
+   background-color: #1a73e8 !important;
+   color: #fff !important;
+}
+.tpgb-goo-filled_black{
+   background-color: #202124 !important;
+   color: #e8eaed !important;
+}
+
+/* Dark Blue Light */
+/* Google Button Size */
+
+.tpgb-gobtn-medium .abcRioButtonIcon,.tpgb-goicon-medium .abcRioButtonIcon{
+   height: 14px;
+   min-width: 14px;
+   width: 14px;
+}
+.tpgb-gobtn-small .abcRioButtonIcon,.tpgb-goicon-small .abcRioButtonIcon{
+   height: 10px;
+   min-width: 10px;
+   width: 10px;
+}
+.tpgb-gobtn-small .abcRioButtonContents{
+   font-size: 11px;
+}
+
+.tpgb-recheck-wrap .tpgb-recheck-label {
+   display: block;
+   width: 15px;
+   height: 16px;
+   background: #fff;
+   border: 1px solid #000;
+   position: relative;
+   cursor: pointer
+}
+
+.tpgb-recheck-wrap .tpgb-recheck-label::after,.tpgb-recheck-wrap .tpgb-recheck-label::before {
+   content: "";
+   position: absolute;
+   width: 0;
+   height: 3px;
+   background: #5048e5;
+   transform: translate(1px,6px) rotate(45deg);
+   transform-origin: left;
+   transition: all 150ms;
+   transition-delay: 150ms;
+   display: block
+}
+
+.tpgb-recheck-wrap .tpgb-recheck-label::after {
+   transform: translate(7px,11px) rotate(-45deg);
+   transition-delay: 0ms
+}
+
+.tpgb-recheck-wrap,.tpgb-remember-me {
+   display: flex;
+   align-items: center;
+   position: relative
+}
+
+.tpgb-recheck-wrap input[type=checkbox]:checked~.tpgb-recheck-label:before {
+   width: 7px;
+   transition-delay: 0ms
+}
+
+.tpgb-recheck-wrap input[type=checkbox]:checked~.tpgb-recheck-label:after {
+   width: 15px;
+   transition-delay: 150ms
+}
+
+.tpgb-loginbefore-text {
+   position: relative;
+   display: inline
+}
+
+.tpgb-lostpass-form .tpgb-field-group {
+   width: 100%
+}
+
+.tpgb-lostpass-form .tpgb-forgot-password-label {
+   margin: 0 0 10px
+}
+
+/* Form Tab Css */
+
+
+/* Button Hover Show Form Css */
+
+
+/* Left Side Template Css */
+
+.tpgb-login-register .tpgb-left-temp,.tpgb-login-register .tpgb-right-temp {
+   position: relative;
+   float: left;
+   width: 50%;
+   word-break: break-word;
+   padding: 1%
+}
+
+.tpgb-login-register .tpgb-form-template {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   width: 100%
+}
+
+/* Show Password Toggle */
+
+.tpgb-passHint {
+   position: absolute;
+   z-index: 11;
+   right: 10px;
+   transform: scale(.8);
+   transition: all .3s linear;
+   top: 7px
+}
+.tpgb-password-show{
+   position: absolute;
+   z-index: 11;
+   right: 10px;
+   transform: translateY(-50%) scale(.8);
+   transition: all .3s linear;
+   top: 50%
+}
+.tpgb-passHint {
+   right: 20px;
+   top: -25px;
+   color: red;
+   width: 15px;
+   height: 15px
+}
+
+.tpgb-login-register .tpgb-pass-indicator {
+   position: relative;
+   margin: 10px 0;
+   padding: 0;
+   display: none
+}
+
+.tpgb-login-register .tpgb-pass-indicator.tp-done {
+   display: none
+}
+
+.tpgb-login-register .tpgb-pass-indicator.indicator-show {
+   display: block
+}
+
+.tpgb-login-register .tpgb-pass-indicator .tpgb-pass-list {
+   list-style: none;
+   user-select: none
+}
+
+.tpgb-login-register .tpgb-pass-indicator .tpgb-pass-list span i,.tpgb-login-register .tpgb-pass-indicator .tpgb-pass-list span svg {
+   margin: 7px 8px 0 0;
+   width: 18px
+}
+
+.tpgb-login-register .tpgb-pass-indicator.inline .tpgb-pass-list {
+   display: inline-flex;
+   padding: 8px;
+   background: #0000001c;
+   margin-right: 5px;
+   border-radius: 50px;
+   border: 1px solid #0000001c
+}
+
+.tpgb-login-register .tp-pass-success-ind {
+   color: #6fc784
+}
+
+/*password strength meter start*/
+.tpgb-login-register .tpgb-password-strength-wrapper {
+   opacity: 0;
+   visibility: hidden;
+   height: 0;
+   width: 0;
+   transition: all .3s linear;
+   position: relative
+}
+
+.tpgb-login-register .tpgb-password-strength-wrapper.show {
+   opacity: 1;
+   width: 100%;
+   height: 100%;
+   visibility: visible;
+   display: flex
+}
+
+.tpgb-login-register .tpgb-password-strength-wrapper.style-2.after-label.show {
+   position: relative;
+   display: inline-flex;
+   width: max-content;
+   margin-bottom: 7px;
+   float: right
+}
+
+.tpgb-login-register .tpgb-password-strength-wrapper.style-2.after-field.show #password-strength {
+   position: relative;
+   font-size: 0;
+   padding: 2px;
+   color: #fff;
+   display: flex;
+   align-items: center;
+   line-height: 1;
+   width: 0;
+   -webkit-transition: width .3s;
+   transition: width .3s
+}
+
+.tpgb-login-register .tpgb-password-strength-wrapper.style-2.after-field.show #password-strength.short {
+   width: 25%;
+   background: #a03
+}
+
+.tpgb-login-register .tpgb-password-strength-wrapper.style-2.after-field.show #password-strength.bad {
+   width: 50%;
+   background: #fc3
+}
+
+.tpgb-login-register .tpgb-password-strength-wrapper.style-2.after-field.show #password-strength.good {
+   width: 75%;
+   background: #69c
+}
+
+.tpgb-login-register .tpgb-password-strength-wrapper.style-2.after-field.show #password-strength.strong {
+   width: 100%;
+   background: green
+}
+
+.tpgb-login-register .tpgb-password-strength-wrapper.style-2.after-field.show {
+   margin-top: 5px;
+   border: 1px solid #0000004d;
+   border-radius: 3px
+}
+
+.tpgb-login-register .tpgb-pass-indicator .tpgb-pass-list {
+   display: flex;
+   align-items: center;
+   justify-content: flex-start
+}
+
+.tpgb-login-register .tpgb-pass-indicator p {
+   margin: 0
+}
+.tpgb-login-register .tpgb-pass-indicator.inline p{
+   margin: 0;
+   font-size: 12px
+}
+
+.tpgb-login-register .tpgb-password-strength-wrapper.style-1 .short,.tpgb-login-register .tpgb-password-strength-wrapper.style-2.after-label.show .short,.tpgb-login-register .tpgb-password-strength-wrapper.style-2.inline-filed.show .short {
+   color: #a03
+}
+
+.tpgb-login-register .tpgb-password-strength-wrapper.style-1 .bad,.tpgb-login-register .tpgb-password-strength-wrapper.style-2.after-label.show .bad,.tpgb-login-register .tpgb-password-strength-wrapper.style-2.inline-filed.show .bad {
+   color: #fc3
+}
+
+.tpgb-login-register .tpgb-password-strength-wrapper.style-1 .good,.tpgb-login-register .tpgb-password-strength-wrapper.style-2.after-label.show .good,.tpgb-login-register .tpgb-password-strength-wrapper.style-2.inline-filed.show .good {
+   color: #69c
+}
+
+.tpgb-login-register .tpgb-password-strength-wrapper.style-1 .strong,.tpgb-login-register .tpgb-password-strength-wrapper.style-2.after-label.show .strong,.tpgb-login-register .tpgb-password-strength-wrapper.style-2.inline-filed.show .strong {
+   color: green
+}
+/*password strength meter end*/
+
+/* Error Load Css */
+
+.tpgb-login-register .tpgb-register-form input:not(.tpgb-error-load,[type=checkbox],[type=radio]):valid {
+   background-repeat: no-repeat;
+   background-position: right calc(.375em + .1875rem) center;
+   background-size: calc(.75em + .375rem) calc(.75em + .375rem);
+   background-image: url(../../plugins/the-plus-addons-for-block-editor/assets/images/vaildcheck.png);
+   cursor: pointer;
+   transition: auto;
+}
+.tpgb-login-register .tpgb-register-form input:not(.tpgb-error-load,[type=checkbox],[type=radio]):invalid {
+   background-repeat: no-repeat;
+   background-position: right calc(.375em + .1875rem) center;
+   background-size: calc(.75em + .375rem) calc(.75em + .375rem);
+   background-image: url(../../plugins/the-plus-addons-for-block-editor/assets/images/login-vali-error.png);
+   cursor: pointer;
+   transition: auto;
+}
+.block-editor-block-list__block .tpgb-login-register .tpgb-register-form input:not(.tpgb-error-load):hover+.tpgb-error-field,.tpgb-login-register .tpgb-register-form input:not(.tpgb-error-load):invalid:hover+.tpgb-error-field {
+   opacity: 1
+}
+
+.tpgb-login-register .tpgb-error-field {
+   opacity: 0;
+   position: absolute;
+   right: 0;
+   top: 45px;
+   background: #f84545;
+   font-size: 12px;
+   color: #fff;
+   border-radius: 3px;
+   padding: 0 10px;
+   z-index : 999;
+   transition: all .3s linear
+}
+
+.tpgb-login-register .tpgb-error-field::before {
+   content: "";
+   position: absolute;
+   top: -13px;
+   right: 12px;
+   margin-left: 0;
+   border-width: 7px;
+   border-style: solid;
+   border-color: #f84545 transparent transparent;
+   transform: rotate(180deg)
+}
+
+.tpgb-regis-noti {
+   position: absolute;
+   width: 100%;
+   left: 0;
+   top: 0;
+   height: 100%;
+   background: rgba(0,0,0,.4);
+   opacity: 0;
+   visibility: hidden;
+   transition: all .3s linear
+}
+
+.tpgb-regis-noti.active {
+   opacity: 1;
+   visibility: visible
+}
+
+.tpgb-regis-noti.active .tpgb-re-response {
+   position: relative;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   vertical-align: middle;
+   top: 50%;
+   transform: translateY(-50%);
+   padding: 5px;
+   text-align: center;
+   color: #fff
+}
+.tpgb-regis-noti .tpgb-re-response svg{
+   width: 18px;
+   fill: #fff;
+   margin-right: 10px;
+}
+.tpgb-login-register .tpgb-honey-input {
+   display: none
+}
+
+.tpgb-lostpass-form.tpgb-login-lost,.tpgb-magic-form {
+   display: none;
+   position: absolute;
+   top: 0;
+   left: 0;
+   width: 100%;
+   padding: 10px 15px;
+   background: #fff;
+   border-radius: 4px;
+   z-index: 11
+}
+
+.tpgb-magic-form {
+   height: 100%
+}
+
+.tpgb-lostpass-form.tpgb-login-lost .tpgb-lpu-back,.tpgb-magic-form .tpgb-lpu-back {
+   cursor: pointer;
+   position: relative;
+   display: inline-block;
+   color: #000
+}
+
+.tpgb-lostpass-form.tpgb-login-lost .tpgb-lpu-back:hover {
+   color: initial
+}
+
+.tpgb-magic-form .tpgb-lpu-back {
+   margin-bottom: 12px
+}
+/* Account Menu Css */
+.tpgb-account-menu {
+   position: relative;
+   display: block;
+   width: 100%;
+   z-index: inherit
+}
+
+.tpgb-account-menu .tpgb-account-btn-wrap {
+   position: relative;
+   display: inline-block;
+   transition: all .3s ease-in-out
+}
+
+.tpgb-account-menu .tpgb-account-btn-wrap .tpgb-account-btn {
+   position: relative;
+   padding: 10px 15px;
+   border-radius: 5px;
+   display: inline-block;
+   line-height: 1;
+   background-color: #201830;
+   color: #fff;
+   fill: #fff;
+   text-align: center;
+   transition: all .3s;
+   box-shadow: none;
+   text-decoration: none;
+   box-sizing: border-box;
+   cursor: pointer
+}
+
+.tpgb-account-btn .tpgb-acc-text {
+   position: relative;
+   display: flex;
+   align-items: center;
+   color: #fff
+}
+
+.tpgb-account-btn .tpgb-acc-text .avatar {
+   width: 40px;
+   margin-right: 15px;
+   border-radius: 5px;
+   height: auto;
+}
+
+.tpgb-log-menu {
+   display: none;
+   position: absolute;
+   transition: all .3s;
+   border: 1px solid #a59696;
+   z-index: 11;
+   background: #fff;
+   width: max-content;
+   border-radius: 5px;
+   padding: 10px
+}
+
+.tpgb-login-wrap .tpgb-account-menu .tpgb-account-btn:focus,.tpgb-login-wrap .tpgb-account-menu .tpgb-account-btn:hover {
+   color: #fff
+}
+
+.tpgb-account-btn-wrap:hover .tpgb-log-menu {
+   display: block
+}
+
+.tpgb-log-menu .tpgb-acct-list {
+   margin: 0;
+   padding: 0
+}
+
+.tpgb-acct-list .tpgb-acc-item {
+   list-style: none;
+   text-align: center;
+   line-height: 1.5
+}
+
+.tpgb-acct-list .tpgb-acc-item a.tpgb-acc-link {
+   color: #7e7e7e;
+   font-size: 16px;
+   padding: 0;
+   line-height: 18px;
+   font-weight: 400
+}
+
+.tpgb-login-register span.loading-spinner-reg {
+   margin-right: 8px;
+   vertical-align: middle;
+   font-size: 15px
+}
+
+.tpgb-acct-list .tpgb-acc-item .tpgb-acc-icon {
+   display: inline-block;
+   vertical-align: middle;
+   font-size: 20px;
+   color: #6b6b6b;
+   margin-right: 10px
+}
+
+.tpgb-choice,.tpgb-reg-choice {
+   display: flex;
+   align-items: center
+}
+
+.tpgb-reg-choice .tpgb-choice:not(:last-child) {
+   margin-right: 8px
+}
+
+.tpgb-choice-label {
+   margin-left: 7px;
+   color: #374151
+}
+.tpgb-btn-goo{
+   width: auto !important;
+}
+.tpgb-btn-goo .tpgb-fb-content,.tpgb-btn-google .tpgb-btn-goo .abcRioButtonContentWrapper {
+   display: flex!important;
+   align-items: center!important;
+   justify-content: center!important
+}
+
+.tpgb-btn-google .abcRioButton:hover {
+   box-shadow: none!important
+}
+
+.tpgb-btn-google .tpgb-btn-goo .abcRioButtonLightBlue,.tpgb-social-logo.tpgb-goo-light {
+   background-color: #fff;
+   color: #757575!important;
+   border: 1px solid #757575;
+   box-shadow: none!important
+}
+.tpgb-submit-wrap .tpgb-lrbtn-icon{
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   column-gap: 8px
+}
+.tpgb-submit-wrap .tpgb-lrbtn-icon span.icon-after{
+   order: -1;
+}

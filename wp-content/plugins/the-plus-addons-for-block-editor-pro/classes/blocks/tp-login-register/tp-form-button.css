@@ -1,0 +1,75 @@
+.tpgb-login-register .tpgb-formbtn-hover,.tpgb-show-button .tpgb-button-wrap {
+    position: relative;
+    display: inline-block
+}
+ 
+.tpgb-login-register .tpgb-login-wrap a.tpgb-show-button {
+    display: inline-block;
+    margin-bottom: 0;
+    font-weight: 400;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    border: 1px solid #5048e5;
+    white-space: nowrap;
+    padding: 10px 16px;
+    font-size: 14px;
+    line-height: 20px;
+    user-select: none;
+    color: #fff;
+    background-color: #5048e5;
+    transition: all .3s ease-in-out
+}
+ 
+.tpgb-show-button .tpgb-button-wrap {
+    vertical-align: middle
+}
+ 
+.tpgb-login-register a.tpgb-show-button:focus,.tpgb-login-register a.tpgb-show-button:hover {
+    color: #fff
+}
+ 
+.tpgb-show-button .tpgb-button-wrap .tpgb-hcp-icon {
+    margin-right: 8px;
+    font-size: 16px;
+    display: inline-block;
+    vertical-align: middle
+}
+ 
+.tpgb-show-button .tpgb-button-wrap .tpgb-button-text {
+    -webkit-box-flex: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+    -webkit-box-ordinal-group: 11;
+    -ms-flex-order: 10;
+    order: 10;
+    display: inline-block;
+    vertical-align: middle
+}
+ 
+.tpgb-login-register .tpgb-form-wrap {
+    position: absolute;
+    width: auto;
+    display: none;
+    padding: 10px 15px;
+    margin-top: 10px;
+    border-radius: 4px;
+    background: #e6ebef;
+    z-index: 11;
+    min-width: 350px
+}
+ 
+.tpgb-form-wrap.tpgb-cnt-left {
+    left: 0;
+    right: auto
+}
+ 
+.tpgb-form-wrap.tpgb-cnt-center {
+    left: 50%;
+    transform: translateX(-50%)
+}
+ 
+.tpgb-form-wrap.tpgb-cnt-right {
+    left: auto;
+    right: 0
+}

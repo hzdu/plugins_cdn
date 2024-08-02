@@ -1,0 +1,45 @@
+/* style-6 */
+.tpgb-heading-title.heading-style-6 .sub-style {
+ 	display:block;
+ 	position: relative;
+}
+.tpgb-heading-title.heading-style-6 .sub-heading .heading-sub-title {
+ 	display:block;
+    margin-top: 5px;
+    margin-bottom: 0;
+}
+.tpgb-heading-title.heading-style-6 .heading-title  {
+ 	margin-top: 0;
+    margin-bottom: 0;
+ 	display: block;
+}
+.tpgb-heading-title.heading-style-6 .heading-title  {
+	transition: 1s;
+	overflow: hidden;
+}
+.tpgb-heading-title.heading-style-6 .head-title:after {
+ 	position: absolute;
+ 	bottom: 0;
+ 	color: #ff844a;
+ 	content: '.';
+ 	font-size: 60px;
+	width: 60px;
+	line-height: 0.5;
+    margin-left: -30px;
+ 	pointer-events: none;
+ 	transition: text-shadow, color 0.3s;
+ 	text-shadow: 15px 0 #ff844a, -15px 0 #ff844a;
+}
+
+.tpgb-heading-title.heading-style-6 .head-title.text-left:after {
+	left: 10px;
+	transform: translateX(0%);
+}
+.tpgb-heading-title.heading-style-6 .head-title.text-center:after {
+	left: 50%;
+	transform: translateX(-50%);
+}
+.tpgb-heading-title.heading-style-6 .head-title.text-right:after {
+	right: 5px;
+	transform: translateX(-50%);
+}

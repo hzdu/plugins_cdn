@@ -1,0 +1,71 @@
+.tpgb-team-member-list.team-style-1 .team-list-content {
+    position: relative;
+    display: block;
+    width: 100%
+}
+
+.tpgb-team-member-list.team-style-1 .post-content-image {
+    position: relative;
+    display: block;
+    overflow: hidden;
+    transition: all .3s linear
+}
+
+.tpgb-team-member-list.team-style-1 .tpgb-team-social-content {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    right: 10px
+}
+
+.tpgb-team-member-list.team-style-1 .tpgb-team-social-content .tpgb-team-social-list>div a {
+    display: block;
+    width: 40px;
+    height: 40px;
+    font-size: 17px;
+    line-height: 40px;
+    border-radius: 50%;
+    color: #fff;
+    transition: all .3s linear
+}
+
+.tpgb-team-member-list.team-style-1 .team-list-content .tpgb-team-social-content {
+    opacity: 0;
+    transition: all .3s ease-in-out;
+    visibility: hidden;
+    transform: translateY(50%)
+}
+
+.tpgb-team-member-list.team-style-1 .team-list-content:hover .tpgb-team-social-content {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0)
+}
+
+.tpgb-team-member-list.team-style-1 .tpgb-team-social-content .tpgb-team-social-list>div:hover a {
+    transform: translateY(-3px)
+}
+
+.tpgb-team-member-list.team-style-1 .tpgb-team-social-content .tpgb-team-social-list .tpgb-team-profile-link a{
+    background: #222
+}
+
+.tpgb-team-member-list.team-style-1 .tpgb-team-social-content .tpgb-team-social-list .fb-link a{
+    background: #3b5998
+}
+
+.tpgb-team-member-list.team-style-1 .tpgb-team-social-content .tpgb-team-social-list .twitter-link a{
+    background: #1da1f2
+}
+
+.tpgb-team-member-list.team-style-1 .tpgb-team-social-content .tpgb-team-social-list .instagram-link a{
+    background: #cd486b
+}
+
+.tpgb-team-member-list.team-style-1 .tpgb-team-social-content .tpgb-team-social-list .linkedin-link a,.tpgb-team-member-list.team-style-1 .tpgb-team-social-content .tpgb-team-social-list .mail-link a{
+    background: #0077b5
+}
+
+.tpgb-team-member-list.team-style-1 .tpgb-team-social-content .tpgb-team-social-list .Telephone-link a{
+    background: #a9a9a9
+}

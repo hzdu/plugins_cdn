@@ -1,0 +1,115 @@
+/* Pricing List Style-2 */
+.bezier-1 {
+    transition: all .7s cubic-bezier(.645,.045,.355,1);
+}
+.perspective {
+    transform: perspective(1000px);
+    transform-style: preserve-3d;
+}
+.tpgb-pricing-list.food-menu-style-2 {
+    overflow: visible;
+}
+.tpgb-pricing-list.food-menu-style-2 .food-menu-tag-block {
+    display: block;
+    position: relative;
+    width: 100%;
+}
+.tpgb-pricing-list .food-flipbox {
+    position: relative;
+    min-height: 300px;
+    transform: perspective(1000px);
+    transform-style: preserve-3d;
+}
+.tpgb-pricing-list .food-flipbox,.food-flipbox-holder {
+    transform: perspective(1000px);
+}
+.tpgb-pricing-list .flip-horizontal:hover .food-flipbox-front {
+    transform: rotateY(-180deg);
+	box-shadow: none;
+}
+.tpgb-pricing-list .flip-vertical:hover .food-flipbox-front {
+    transform: rotateX(-180deg);
+	box-shadow: none;
+}
+.tpgb-pricing-list .food-flipbox-back,.tpgb-pricing-list .food-flipbox-front {
+    transform-style: preserve-3d;
+}
+.tpgb-pricing-list .food-flipbox-front {
+    position: absolute;
+    z-index: 2;
+}
+.tpgb-pricing-list .food-flipbox-back,.tpgb-pricing-list .food-flipbox-front {
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    display: table;
+    min-height: 300px;
+    background: #b1b1b1;
+}
+.tpgb-pricing-list .food-flipbox-content {
+    display: table-cell;
+    vertical-align: middle;
+    transform-style: preserve-3d;
+    perspective: 1000px;
+    backface-visibility: hidden;
+    transform: translateZ(35px) scale(.81);
+}
+.tpgb-pricing-list .flip-horizontal:hover .food-flipbox-back {
+    transform: rotateY(0);
+}
+.tpgb-pricing-list .flip-vertical:hover .food-flipbox-back {
+    transform: rotateX(0);
+}
+.tpgb-pricing-list .flip-horizontal .food-flipbox-back {
+    transform: rotateY(180deg);
+}
+.tpgb-pricing-list .flip-vertical .food-flipbox-back {
+    transform: rotateX(180deg);
+}
+.tpgb-pricing-list .food-flipbox-back {
+    position: absolute;
+    backface-visibility: hidden;
+}
+.tpgb-pricing-list .food-flipbox-holder.height-full {
+    min-height: 300px;
+}
+.tpgb-pricing-list .food-flipbox-front,.tpgb-pricing-list .food-flipbox-back {
+    background-size: cover;
+    background-position: center center;
+}
+.tpgb-pricing-list.food-menu-style-2 .bottom-left .food-flipbox-front .food-flipbox-content,.tpgb-pricing-list.food-menu-style-2 .bottom-right .food-flipbox-front .food-flipbox-content {
+    vertical-align: bottom;
+}
+.tpgb-pricing-list.food-menu-style-2 .top-left .food-flipbox-front .food-flipbox-content,.tpgb-pricing-list.food-menu-style-2 .top-right .food-flipbox-front .food-flipbox-content {
+    vertical-align: top;
+}
+.tpgb-pricing-list.food-menu-style-2 .top-right .food-flipbox-content,.tpgb-pricing-list.food-menu-style-2 .bottom-right .food-flipbox-content {
+    text-align: right;
+}
+.tpgb-pricing-list.food-menu-style-2 .top-left .food-menu-title,.tpgb-pricing-list.food-menu-style-2 .bottom-left .food-menu-title {
+    left: -19px;
+    padding-left: 20px;
+}
+.tpgb-pricing-list.food-menu-style-2 .top-right .food-menu-title,.tpgb-pricing-list.food-menu-style-2 .bottom-right .food-menu-title {
+    right: -19px;
+    padding-right: 20px;
+}
+.tpgb-pricing-list.food-menu-style-2 .food-menu-title{
+	color: #fff;
+}
+.tpgb-pricing-list.food-menu-style-2 .food-menu-title {
+    background: #000000b5;
+    display: inline-block;
+    padding: 10px;
+    position: relative;
+}
+.no-backface {
+    backface-visibility: hidden;
+}
+.height-full {
+    height: 100%;
+}
+.width-full {
+    width: 100%;
+}

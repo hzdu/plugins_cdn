@@ -1,0 +1,46 @@
+/* Dark Mode Style-2 */
+.darkmode-style-2 .tpgb-darkmode-toggle:before, .darkmode-style-2 .tpgb-darkmode-toggle:after {
+	position: absolute;
+	color: #6f14f1;
+	font-size: 18px;
+}
+.darkmode-style-2 .tpgb-darkmode-toggle {
+    border: none;
+    cursor: pointer;
+    display: flex;
+    outline: none;
+    width: 5.2em;
+    align-items: center;
+    justify-content: center;
+    height: 2.3em;
+    border-radius: 100px;
+    background: #6f14f1;
+	padding: 0;
+}
+.darkmode-style-2 .tpgb-dark-mode-slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 3px;
+    right: 0;
+    border-radius: 45px;
+    bottom: 0;
+    transition: .4s;
+}
+.darkmode-style-2 .tpgb-dark-mode-slider:before {
+    border-radius: 50%;
+    background: #fff;
+}
+.darkmode-style-2 .tpgb-dark-mode-slider:before {
+	content: '';
+	position: absolute;
+	height: 3em;
+	width: 3em;
+	left: -0.3em;
+	bottom: -0.3em;
+	transition: .4s;
+	box-shadow: 0 4px 24px 0 #00000050;
+}
+.darkmode-style-2.darkmode-activated .tpgb-dark-mode-slider:before {
+	transform: translateX(2.6em);
+}

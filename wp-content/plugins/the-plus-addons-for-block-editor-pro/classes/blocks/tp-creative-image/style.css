@@ -1,0 +1,92 @@
+/*Image Factory*/
+.tpgb-animate-image figure {
+    margin: 0
+}
+.tpgb-creative-image .text-center>figure {
+    margin: 0 auto
+}
+.tpgb-creative-image .text-right>figure {
+    margin-left: auto
+}
+.tpgb-creative-image .text-left>figure {
+    margin-right: auto
+}
+.tpgb-animate-image figcaption.tpgb-img-caption {
+    color: #b0b0b0;
+    font-style: italic;
+    font-size: 14px;
+    display: inline-block;
+    transition: all .3s ease-in-out
+}
+.tpgb-creative-image img {
+    max-width: 100%;
+    height: auto;
+    transition: all .3s ease-in-out;
+    will-change: transform;
+    image-rendering: -webkit-optimize-contrast
+}
+.tpgb-creative-image .tpgb-creative-mask-media img {
+    height: 100%;
+}
+.tpgb-creative-img-wrap {
+    font-size: 0;
+    display: block
+}
+@media (min-width:768px) and (max-width:1200px) {
+    .tpgb-creative-image .text-tablet-center {
+        text-align: center
+    }
+    .tpgb-creative-image .text-tablet-right {
+        text-align: right
+    }
+    .tpgb-creative-image .text-tablet-left {
+        text-align: left
+    }
+    .tpgb-creative-image .text-tablet-center>figure {
+        margin: 0 auto
+    }
+    .tpgb-creative-image .text-tablet-right>figure {
+        margin-left: auto;
+        margin-right: 0
+    }
+    .tpgb-creative-image .text-tablet-left>figure {
+        margin-right: auto;
+        margin-left: 0
+    }
+}
+@media (max-width:767px) {
+    .tpgb-creative-image .text-mobile-center {
+        text-align: center
+    }
+    .tpgb-creative-image .text-mobile-right {
+        text-align: right
+    }
+    .tpgb-creative-image .text-mobile-left {
+        text-align: left
+    }
+    .tpgb-creative-image .text-mobile-center>figure {
+        margin: 0 auto
+    }
+    .tpgb-creative-image .text-mobile-right>figure {
+        margin-left: auto;
+        margin-right: 0
+    }
+    .tpgb-creative-image .text-mobile-left>figure {
+        margin-right: auto;
+        margin-left: 0
+    }
+}
+
+/* Float Align Css */
+.tpgb-image-right,.tpgb-image-left{
+    display: inline-block;
+    width: auto
+}
+.tpgb-image-right{
+    float: right;
+    margin-left: 10px
+}
+.tpgb-image-left{
+    float: left;
+    margin-right: 10px
+}

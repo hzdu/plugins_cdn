@@ -1,0 +1,27 @@
+/** Shake Animation */
+.tpgb-plus-button .button-link-wrap.shake_animate {
+    backface-visibility: hidden;
+    transform: translateZ(0);
+    animation: shake_animate 5s linear infinite running;
+}
+
+@keyframes shake_animate {
+    2%,6% {
+        transform: translateX(3px) rotate(2deg)
+    }
+    4%,8% {
+        transform: translateX(-3px) rotate(-2deg)
+    }
+    10%,14% {
+        transform: translateX(2px) rotate(1deg)
+    }
+    12%,16% {
+        transform: translateX(-2px) rotate(-1deg)
+    }
+    18% {
+        transform: translateX(1px) rotate(0)
+    }
+    20% {
+        transform: translateX(-1px) rotate(0)
+    }
+}

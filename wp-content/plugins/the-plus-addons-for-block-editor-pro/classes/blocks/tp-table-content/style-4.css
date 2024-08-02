@@ -1,0 +1,39 @@
+/*Style-4*/
+.editor-styles-wrapper .table-style-4 .toc-list {
+    list-style: none;
+    margin: 0
+}
+.table-style-4 .toc-list {
+    list-style-type: none
+}
+.table-style-4 .toc>.toc-list {
+    overflow: visible
+}
+.table-style-4 .tpgb-toc .toc-list {
+    padding-left: 0
+}
+.table-style-4 .tpgb-toc>.toc-list .toc-list li:before {
+    display: block;
+    background: #eee;
+    transition: all .3s ease-in-out;
+    transform: translateX(0);
+    content: "";
+    position: absolute;
+    left: 0;
+    height: 100%;
+    width: 2px
+}
+.table-style-4 .tpgb-toc>.toc-list .toc-list li.is-active-li:before {
+    background: #54bc4b;
+    width: 6px;
+    border-radius: 3px;
+    transform: translateX(-50%);
+    left: 1px
+}
+.table-style-4 .tpgb-toc .toc-list li {
+    position: relative!important
+}
+.table-style-4 .tpgb-toc .toc-list .toc-list li {
+    padding-left: 15px
+}
+/*Style-4*/

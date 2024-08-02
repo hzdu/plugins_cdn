@@ -1,0 +1,183 @@
+.tpgb-lazyload,.tpgb-lazyload.tpgb-lazy-start {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.tpgb-lazyload.tpgb-lazy-loading {
+    transition: opacity 0.5s ease-in !important;
+    opacity: 1;
+	visibility: visible;
+}
+
+.tpgb-lazyload.tpgb-lazy-loaded {
+    opacity: 1;
+	visibility: visible;
+}
+
+.tpgb-lazyload + .tpgb-loader-dbl-circle, .tpgb-lazyload + .tpgb-loader-circle, .tpgb-lazyload + .tpgb-loader-skeleton {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    z-index: 1;
+    opacity: 1;
+    visibility: visible;
+    transition: all .3s ease;
+}
+.tpgb-lazyload.tpgb-lazy-loading + .tpgb-loader-dbl-circle, .tpgb-lazyload.tpgb-lazy-loaded + .tpgb-loader-dbl-circle,
+.tpgb-lazyload.tpgb-lazy-loading + .tpgb-loader-circle, .tpgb-lazyload.tpgb-lazy-loaded + .tpgb-loader-circle,
+.tpgb-lazyload.tpgb-lazy-loading + .tpgb-loader-skeleton, .tpgb-lazyload.tpgb-lazy-loaded + .tpgb-loader-skeleton {
+	z-index: auto;
+	opacity: 0;
+	visibility:hidden;
+}
+
+.lazy-background {
+    background-image: none !important;
+}
+
+/*double circle*/
+.tpgb-loader-dbl-circle:before, .tpgb-loader-dbl-circle:after {
+    content: "";
+    left: -19px;
+    position: absolute;
+    width: 1.2em;
+    height: 1.2em;
+    border-radius: 50%;
+    background-color: #505050;
+    -webkit-animation: tpgb-move-cirlce 2s infinite ease-in-out;
+    animation: tpgb-move-cirlce 2s infinite ease-in-out;
+}
+
+.tpgb-loader-dbl-circle:after {
+    -webkit-animation-delay: -1s;
+    animation-delay: -1s;
+    background-color: #505050;
+    opacity: 0.4;
+}
+
+@-webkit-keyframes tpgb-move-cirlce {
+	0% {
+		z-index: 1;
+		transform: translate(0, 0);
+	}
+	50% {
+		z-index: 1;
+		transform: translate(120%, 0);
+	}
+	50.1% {
+		z-index: 0;
+		transform: translate(120%, 0);
+	}
+	100% {
+		z-index: 0;
+		transform: translate(0, 0);
+	}
+}
+
+@keyframes tpgb-move-cirlce {
+	0% {
+		z-index: 1;
+		transform: translate(0, 0);
+	}
+	50% {
+		z-index: 1;
+		transform: translate(120%, 0);
+	}
+	50.1% {
+		z-index: 0;
+		transform: translate(120%, 0);
+	}
+	100% {
+		z-index: 0;
+		transform: translate(0, 0);
+	}
+}
+/*double circle*/
+/*circle*/
+.tpgb-lazyload + .tpgb-loader-circle {
+    width: 2em;
+    height: 2em;
+}
+.tpgb-loader-circle:before, .tpgb-loader-circle:after {
+	content: "";
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	border-radius: 50%;
+	color: rgba(14, 95, 118, 0.25);
+	background-color: rgb(80 80 80 / 50%);
+	-webkit-animation: tpgb-bubble-disks 2s infinite cubic-bezier(0.55, 0.15, 0.45, 0.85) alternate;
+	animation: tpgb-bubble-disks 2s infinite cubic-bezier(0.55, 0.15, 0.45, 0.85) alternate;
+}
+
+.tpgb-loader-circle:after {
+  -webkit-animation-delay: -1s;
+          animation-delay: -1s;
+}
+
+@-webkit-keyframes tpgb-bubble-disks {
+  0% {
+    z-index: 1;
+    transform: scale3d(0, 0, 0);
+  }
+  100% {
+    z-index: 2;
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+@keyframes tpgb-bubble-disks {
+  0% {
+    z-index: 1;
+    transform: scale3d(0, 0, 0);
+  }
+  100% {
+    z-index: 2;
+    transform: scale3d(1, 1, 1);
+  }
+}
+/*circle*/
+/*blur-image*/
+.tpgb-lazyload[data-tpgb-lazy="blur-img"],.tpgb-lazyload.tpgb-lazy-start[data-tpgb-lazy="blur-img"] {
+	filter: blur(2vw);
+	opacity:1;
+	visibility:visible;
+}
+.tpgb-lazyload.tpgb-lazy-loading[data-tpgb-lazy="blur-img"], .tpgb-lazyload.tpgb-lazy-loaded[data-tpgb-lazy="blur-img"] {
+	filter: initial;
+}
+/*blur-image*/
+/*skeleton*/
+.tpgb-lazyload + .tpgb-loader-skeleton {
+    width: 100%;
+    height: 100%;
+    background-color: #DDDBDD;
+}
+.tpgb-lazyload[data-tpgb-lazy="skeleton"],.tpgb-lazyload.tpgb-lazy-start[data-tpgb-lazy="skeleton"] {
+	opacity:1;
+	visibility:visible;
+}
+.tpgb-loader-skeleton:after{
+position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    transform: translateX(-100%);
+    background-image: linear-gradient(90deg, rgba(255, 255, 255, 0) 0, rgba(255, 255, 255, 0.2) 20%, rgba(255, 255, 255, 0.5) 60%, rgba(255, 255, 255, 0));
+    -webkit-animation: tpgb-load-skeleton 5s infinite;
+    animation: tpgb-load-skeleton 3s infinite;
+    content: "";
+}
+@-webkit-keyframes tpgb-load-skeleton {
+	100% {
+		transform: translateX(100%);
+	}
+}
+@keyframes tpgb-load-skeleton {
+	100% {
+		transform: translateX(100%);
+	}
+}
+/*skeleton*/

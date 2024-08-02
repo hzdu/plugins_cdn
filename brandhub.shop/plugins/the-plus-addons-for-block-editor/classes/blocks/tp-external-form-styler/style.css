@@ -1,0 +1,63 @@
+/*
+ External Form Styler
+ Front End + Back End CSS
+*/
+.tpgb-external-form-styler .tpgb-select-form-alert {
+	font-size: 14px;
+    background: #8072fc;
+    padding: 10px;
+    text-align: center;
+    line-height: 25px;
+    border-radius: 3px;
+    box-shadow: 0 5px 30px -5px #8072fc;
+    color: #fff;
+}
+.input-radio-check:checked ~ label.input__radio_btn .toggle-button__icon .tpgb-radiocf7-icon {
+    transform: translate3d(-50%, -50%, 0);
+    animation: radio-show 0.2s;
+}
+@keyframes radio-hide {
+    0% {
+        transform: translate3d(-50%, -50%, 0);
+    }
+    100% {
+        transform: translate3d(-50%, 200%, 0);
+    }
+}
+@keyframes radio-show {
+    0% {
+        transform: translate3d(-50%, 200%, 0);
+    }
+    100% {
+        transform: translate3d(-50%, -50%, 0);
+    }
+}
+.input-checkbox-check:checked ~ label.input__checkbox_btn .toggle-button__icon .tpgb-checkcf7-icon {
+    transform: translate3d(-50%, -50%, 0);
+    animation: checkbox-show 0.2s;
+}
+@keyframes checkbox-hide {
+    0% {
+        transform: translate3d(-50%, -50%, 0);
+    }
+    100% {
+        transform: translate3d(-50%, 200%, 0);
+    }
+}
+@keyframes checkbox-show {
+    0% {
+        transform: translate3d(-50%, 200%, 0);
+    }
+    100% {
+        transform: translate3d(-50%, -50%, 0);
+    }
+}
+body #primary #pt-plus-blog-post-list.blog-list .entry-content,
+body #primary .testimonial-list .testimonial-list-content .entry-content,
+body #primary .gallery-list .entry-content {
+    width: 100%;
+    float: none;
+}
+.fa.fa-check.toggle-button__icon:before {
+    display: none;
+}

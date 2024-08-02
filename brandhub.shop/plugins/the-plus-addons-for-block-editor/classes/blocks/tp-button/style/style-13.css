@@ -1,0 +1,59 @@
+/* Button Style-13 */
+.tpgb-plus-button.button-style-13 .button-link-wrap {
+    border: 1px solid #212121;
+    overflow: hidden;
+	color: #212121;
+}
+.tpgb-plus-button.button-style-13 .button-link-wrap:hover {
+    border-color: #f18248;
+}
+.tpgb-plus-button.button-style-13 .button-link-wrap span {
+    position: relative;
+    z-index: 1
+}
+.tpgb-plus-button.button-style-13 .button-link-wrap::before {
+    opacity: .4
+}
+.tpgb-plus-button.button-style-13 .button-link-wrap::before,.tpgb-plus-button.button-style-13 .button-link-wrap::after {
+    content: '';
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    transition: transform 0.3s cubic-bezier(.75,0,.125,1);
+}
+.tpgb-plus-button.button-style-13.hover-top .button-link-wrap::before,.tpgb-plus-button.button-style-13.hover-top .button-link-wrap::after {
+    bottom: 100%;
+    left: 0
+}
+.tpgb-plus-button.button-style-13.hover-bottom .button-link-wrap::before,.tpgb-plus-button.button-style-13.hover-bottom .button-link-wrap::after {
+    bottom: -100%;
+    left: 0
+}
+.tpgb-plus-button.button-style-13.hover-right .button-link-wrap::before,.tpgb-plus-button.button-style-13.hover-right .button-link-wrap::after {
+    right: 100%;
+    top: 0;
+    left: 100%
+}
+.tpgb-plus-button.button-style-13.hover-left .button-link-wrap::before,.tpgb-plus-button.button-style-13.hover-left .button-link-wrap::after {
+    left: -100%;
+    right: 100%;
+    top: 0
+}
+.tpgb-plus-button.button-style-13.hover-left .button-link-wrap:hover::before,.tpgb-plus-button.button-style-13.hover-left .button-link-wrap:hover::after {
+    transform: translate3d(100%,0%,0)
+}
+.tpgb-plus-button.button-style-13.hover-right .button-link-wrap:hover::before,.tpgb-plus-button.button-style-13.hover-right .button-link-wrap:hover::after {
+    transform: translate3d(-100%,0%,0)
+}
+.tpgb-plus-button.button-style-13.hover-top .button-link-wrap:hover::before,.tpgb-plus-button.button-style-13.hover-top .button-link-wrap:hover::after {
+    transform: translate3d(0%,100%,0)
+}
+.tpgb-plus-button.button-style-13.hover-bottom .button-link-wrap:hover::before,.tpgb-plus-button.button-style-13.hover-bottom .button-link-wrap:hover::after {
+    transform: translate3d(0%,-100%,0)
+}
+.tpgb-plus-button.button-style-13 .button-link-wrap:hover::after {
+    transition-delay: 0.175s
+}
+.tpgb-plus-button.button-style-13 .button-link-wrap::before,.tpgb-plus-button.button-style-13 .button-link-wrap::after {
+    background: #f18248
+}

@@ -1,0 +1,118 @@
+/**
+ * CSS for both Frontend+Backend.
+ */
+ .tpgb-mailchimp .tpgb-mailchimp-form.text-center {
+    text-align: center;
+    margin: 0 auto
+}
+
+.tpgb-mailchimp .plus-newsletter-input-wrapper {
+    position: relative;
+    display: inline-block;
+    width: 100%
+}
+
+.tpgb-mailchimp .plus-newsletter-input-wrapper span.prefix-icon {
+    position: absolute;
+    font-size: 16px;
+    display: inline-flex;
+    line-height: 1;
+    color: #313131;
+    padding: 0;
+    margin: 0;
+    top: 50%;
+    left: 15px;
+    transform: translate3d(0,-50%,0)
+}
+
+.tpgb-mailchimp-form input[type=email],.tpgb-mailchimp-form input[type=number],.tpgb-mailchimp-form input[type=password],.tpgb-mailchimp-form input[type=search],.tpgb-mailchimp-form input[type=tel],.tpgb-mailchimp-form input[type=text],.tpgb-mailchimp-form input[type=url] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background: #fff;
+    border-radius: 0;
+    border-style: solid;
+    border-width: .1rem;
+    box-shadow: none;
+    display: block;
+    font-size: 1.6rem;
+    letter-spacing: -.015em;
+    margin: 0;
+    max-width: 100%;
+    padding: 1.5rem 1.8rem;
+    width: 100%
+}
+
+.tpgb-mailchimp-form input.form-control,button.subscribe-btn-submit {
+    display: inline-block;
+    margin: 0;
+    transition: all .3s linear;
+    border-radius: 40px
+}
+
+.tpgb-mailchimp-form input.form-control {
+    font-size: 16px;
+    line-height: 20px;
+    padding: 15px 20px;
+    margin-bottom: 0!important;
+    width: 100%;
+    height: auto
+}
+
+.tpgb-mailchimp .plus-newsletter-input-wrapper span.prefix-icon+input.form-control {
+    padding-left: 40px!important
+}
+
+button.subscribe-btn-submit {
+    position: relative;
+    vertical-align: middle;
+    border: 0;
+    font-size: 13px;
+    line-height: 1;
+    letter-spacing: 1px;
+    cursor: pointer;
+    color: #fff;
+    white-space: pre;
+}
+
+.tpgb-mailchimp .tpgb-notification {
+    font-size: 13px;
+    line-height: 18px;
+    padding: 10px;
+    transition: all .3s linear;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background: #8072fc;
+    color: #fff;
+    box-shadow: 0 0 35px -14px #222;
+    border-radius: 3px;
+    display: none;
+    opacity: 0
+}
+
+.tpgb-mailchimp .tpgb-notification .subscribe-response {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    position: relative;
+    width: 100%;
+    height: 100%
+}
+/*.....................*/
+.subscribe-btn-submit .subscribe-btn-icon {
+    vertical-align: middle;
+}
+/*......................*/
+.subscribe-btn-icon.btn-before {
+    margin-right: 1px
+}
+.subscribe-btn-icon.btn-after {
+    margin-left: 1px
+}
+.subscribe-btn-icon {
+    font-size: 9px
+}

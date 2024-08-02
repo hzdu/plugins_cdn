@@ -1,0 +1,48 @@
+.tpgb-offcanvas-wrapper .offcanvas-toggle-btn.humberger-style-1{
+    position: relative;
+    width: 50px;
+    height: 50px;
+    padding: 15px;
+    background: #d3d3d3;
+    border-radius: 30px;
+    display: inline-flex;
+    flex-direction: column-reverse;
+    justify-content: center;
+    margin-top: 0;
+    cursor: pointer;
+    transition: all .3s ease-in-out
+}
+
+.tpgb-offcanvas-wrapper .offcanvas-toggle-btn.humberger-style-1 span.menu_line.menu_line--bottom {
+    transform: scaleX(.33) translateZ(0)
+}
+
+.tpgb-offcanvas-wrapper .offcanvas-toggle-btn.humberger-style-1 span.menu_line.menu_line--center {
+    transform: scaleX(.66) translateZ(0)
+}
+
+.tpgb-offcanvas-wrapper .offcanvas-toggle-btn.humberger-style-1:hover span.menu_line.menu_line--bottom {
+    transform: scaleX(1) translateZ(0)
+}
+
+.tpgb-offcanvas-wrapper .offcanvas-toggle-btn.humberger-style-1:hover span.menu_line.menu_line--top {
+    transform: scaleX(.33) translateZ(0)
+}
+
+.tpgb-offcanvas-wrapper .offcanvas-toggle-btn.humberger-style-1 span.menu_line {
+    height: 1px;
+    background: #212121;
+    transition: opacity .5s,transform .5s,background .5s,-webkit-transform .5s;
+    display: block;
+    width: 100%
+}
+
+.tpgb-offcanvas-wrapper .offcanvas-toggle-btn.humberger-style-1 span.menu_line {
+    transform-origin: right
+}
+
+.tpgb-offcanvas-wrapper .offcanvas-toggle-btn.humberger-style-1 span.menu_line.menu_line--center {
+    margin: .3125em 0;
+    position: relative;
+    background: #212121
+}

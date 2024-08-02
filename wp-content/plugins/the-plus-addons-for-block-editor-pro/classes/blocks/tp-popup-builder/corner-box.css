@@ -1,0 +1,44 @@
+/*corner box effect*/
+.tpgb-canvas-content-wrap.tpgb-corner-box {
+    width: 300px;
+    height: 300px
+}
+
+.tpgb-canvas-content-wrap.tpgb-top-left.tpgb-corner-box,.tpgb-canvas-content-wrap.tpgb-top-right.tpgb-corner-box {
+    transform: translate3d(-300px,-300px,0)
+}
+
+.tpgb-canvas-content-wrap.tpgb-bottom-left.tpgb-corner-box {
+    transform: translate3d(-300px,300px,0)
+}
+
+.tpgb-canvas-content-wrap.tpgb-bottom-right.tpgb-corner-box {
+    transform: translate3d(300px,300px,0)
+}
+
+.tpgb-corner-box.tpgb-open .tpgb-canvas-content-wrap.tpgb-visible {
+    visibility: visible;
+    transition: all .5s
+}
+
+.tpgb-canvas-content-wrap.tpgb-top-right.tpgb-corner-box {
+    right: 0;
+    left: auto
+}
+
+.tpgb-canvas-content-wrap.tpgb-bottom-right.tpgb-corner-box {
+    right: 0;
+    left: auto;
+    bottom: 0;
+    top: auto
+}
+
+.tpgb-canvas-content-wrap.tpgb-bottom-left.tpgb-corner-box {
+    bottom: 0;
+    top: auto
+}
+
+.tpgb-corner-box.tpgb-open.tpgb-bottom-left .tpgb-canvas-content-wrap.tpgb-visible,.tpgb-corner-box.tpgb-open.tpgb-bottom-right .tpgb-canvas-content-wrap.tpgb-visible,.tpgb-corner-box.tpgb-open.tpgb-top-left .tpgb-canvas-content-wrap.tpgb-visible,.tpgb-corner-box.tpgb-open.tpgb-top-right .tpgb-canvas-content-wrap.tpgb-visible {
+    transform: translate3d(0,0,0)
+}
+/*corner box effect*/

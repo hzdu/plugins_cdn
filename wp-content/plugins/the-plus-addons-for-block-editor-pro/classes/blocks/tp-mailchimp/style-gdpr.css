@@ -1,0 +1,51 @@
+/* Gdpg check box */
+.tpgb-gdpr-wrap {
+    display: flex;
+    align-items: center;
+    position: relative;
+    margin-top: 15px
+}
+.tpgb-gdpr-wrap input[type=checkbox] {
+    display: none
+}
+.tpgb-gdpr-wrap .tpgb-gdpr-label {
+    display: block;
+    width: 18px;
+    height: 18px;
+    background: #fff;
+    border: 1px solid #000;
+    position: relative;
+    cursor: pointer
+}
+.tpgb-gdpr-wrap .tpgb-gdpr-label::after,.tpgb-gdpr-wrap .tpgb-gdpr-label::before {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 3px;
+    bottom: 14px;
+    left: -1px;
+    background: #6f14f1;
+    transform: translate(1px,6px) rotate(45deg);
+    transform-origin: left;
+    transition: all 150ms;
+    transition-delay: 150ms
+}
+.tpgb-gdpr-wrap .tpgb-gdpr-label::after {
+    bottom: 12px;
+    left: -2px;
+    transform: translate(7px,11px) rotate(-45deg);
+    transition-delay: 0ms
+}
+.tpgb-gdpr-wrap .tpgb-gdpr-desc {
+    margin-left: 10px;
+    margin-bottom: 0;
+    cursor: pointer
+}
+.tpgb-gdpr-wrap input[type=checkbox]:checked~.tpgb-gdpr-label:before {
+    width: 7px;
+    transition-delay: 0ms
+}
+.tpgb-gdpr-wrap input[type=checkbox]:checked~.tpgb-gdpr-label::after {
+    width: 20px;
+    transition-delay: 150ms
+}

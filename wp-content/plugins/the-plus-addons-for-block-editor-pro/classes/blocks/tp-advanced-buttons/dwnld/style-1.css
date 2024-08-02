@@ -1,0 +1,70 @@
+/**
+ * CSS for both Frontend+Backend.
+ */
+/** Download Button **/
+
+@keyframes tp-drop {
+    20% {
+        transform: translate(0,-3px)
+    }
+    80% {
+        transform: translate(0,2px)
+    }
+    95% {
+        transform: translate(0,0)
+    }
+}
+.tpgb-adv-btn-inner.ab-download.tpgb-download-style-1 .adv-button-link-wrap {
+    cursor: pointer;
+    display: inline-grid;
+    position: relative;
+    width: 48px;
+    height: 48px;
+    color: #6a79e3;
+    border-radius: 50%;
+    -webkit-tap-highlight-color: transparent;
+    outline: 0;
+    background: #e1e4ea
+}
+.tpgb-adv-btn-inner.ab-download.tpgb-download-style-1.dba_center .adv-button-link-wrap {
+    left: -24px
+}
+.tpgb-adv-btn-inner.ab-download.tpgb-download-style-1.dba_left .adv-button-link-wrap {
+    left: 0
+}
+.tpgb-adv-btn-inner.ab-download.tpgb-download-style-1.dba_right .adv-button-link-wrap {
+    right: 0
+}
+.tpgb-adv-btn-inner.ab-download.tpgb-download-style-1 .adv-button-link-wrap:hover {
+    background: #0077ff33
+}
+.tpgb-adv-btn-inner.ab-download.tpgb-download-style-1 .adv-button-link-wrap svg {
+    fill: none;
+    position: absolute;
+    left: calc(50% + 3px);
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+.tpgb-adv-btn-inner.ab-download.tpgb-download-style-1 .adv-button-link-wrap svg path,.tpgb-adv-btn-inner.ab-download.tpgb-download-style-1 .adv-button-link-wrap svg polyline {
+    stroke: #6a79e3;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    transition: all .3s ease;
+    transition-delay: .3s
+}
+.tpgb-adv-btn-inner.ab-download.tpgb-download-style-1 .adv-button-link-wrap svg path#check {
+    stroke-dasharray: 38;
+    stroke-dashoffset: 114;
+    transition: all .4s ease
+}
+.tpgb-adv-btn-inner.ab-download.tpgb-download-style-1 .adv-button-link-wrap.downloaded svg .svg-out {
+    opacity: 0;
+    animation: tp-drop .3s linear;
+    transition-delay: .4s
+}
+.tpgb-adv-btn-inner.ab-download.tpgb-download-style-1 .adv-button-link-wrap.downloaded svg path#check {
+    stroke: #20cca5;
+    stroke-dashoffset: 174;
+    transition-delay: .4s
+}

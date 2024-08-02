@@ -1,0 +1,47 @@
+/* Switch Style 4 css */
+.switch-style-4 .switcher-button{
+	display: none;
+}
+.switch-toggle-wrap.switch-style-4:before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 0;
+    background: #ff844a;
+    width: 50%;
+    height: 100%;
+    z-index: 1;
+    transform: translateX(-100%);
+    transition: all .3s ease-in-out
+}
+.switch-toggle-wrap.switch-style-4 {
+    position: relative;
+    margin: 0 auto;
+    border-radius: 50px;
+    overflow: hidden;
+    padding: 0;
+    display: flex;
+    max-width: 315px;
+    width: 100%;
+    text-align: center;
+    background: #6f14f1
+}
+.switch-toggle-wrap.switch-style-4.active:before {
+    transform: translateX(0)
+}
+.switch-toggle-wrap.switch-style-4 .switch-1,.switch-toggle-wrap.switch-style-4 .switch-2 {
+    position: relative;
+    z-index: 1;
+    padding: 15px 25px;
+    margin: 0;
+    margin-right: 0!important;
+    margin-left: 0!important;
+    width: 50%
+}
+.switch-toggle-wrap.switch-style-4 .switch-label {
+	display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff
+}
+/* Switch Style 4 css */

@@ -1,0 +1,35 @@
+/* Mobile Menu Indicator */
+.tpgb-mobile-menu .tpgb-mm-li.active:before,.tpgb-mobile-menu .tpgb-mm-li.active:after {
+    width: 50%;
+    content: '';
+    display: flex;
+    position: absolute;
+    z-index: 11;
+    left: 0;
+    right: 0;
+    margin: 0 auto
+}
+.tpgb-mobile-menu .tpgb-mm-li.indi-top.active:before {
+    border-top: 3px solid #6f14f1;
+    top: 0
+}
+.tpgb-mobile-menu .tpgb-mm-li.indi-bottom.active:after {
+    border-top: 3px solid #6f14f1;
+    bottom: 0
+}
+.tpgb-mobile-menu .tpgb-mm-li.dot.active .tpgb-menu-link:after {
+    content: "\A";
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #6f14f1;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    margin: 0 auto;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%)
+}

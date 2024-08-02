@@ -1,0 +1,130 @@
+/*Gravity Form*/
+.tpgb-gravity-form .gform_body ul.gform_fields {
+    position: relative;
+    display: block;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+.tpgb-gravity-form .gform_wrapper .gform_fields, .tpgb-gravity-form .gform_wrapper .gform_footer {
+	pointer-events: all; 
+}
+.ginput_container ul {
+    position: relative;
+    display: block;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+.tpgb-gravity-form .gform_wrapper {
+    margin: 0 auto;
+}
+.tpgb-gravity-form,
+.tpgb-gravity-form .gfield,
+.tpgb-gravity-form .gfield .ginput_container,
+.tpgb-gravity-form .gfield .ginput_container input[type="text"],
+.tpgb-gravity-form .gfield .ginput_container select,
+.tpgb-gravity-form .gfield .ginput_container textarea,
+.tpgb-gravity-form .gform_wrapper .gfield_checkbox li label,
+.tpgb-gravity-form .ginput_container_checkbox input[type="checkbox"],
+.tpgb-gravity-form .gform_wrapper .gfield_radio li label,
+.tpgb-gravity-form .ginput_container_radio input[type="radio"],
+.tpgb-gravity-form .gform_wrapper input[type="button"],
+.tpgb-gravity-form .gform_wrapper input[type="submit"],
+.tpgb-gravity-form .input__file_btn,
+.tpgb-gravity-form .ginput_container_fileupload input[type="file"],
+.tpgb-gravity-form .gform_wrapper .gform_fileupload_multifile .gform_drop_area,
+.tpgb-gravity-form .gform_wrapper ul li.gfield,
+.tpgb-gravity-form .gform_wrapper .gform_footer,
+.tpgb-gravity-form .gform_wrapper {
+    transition: all 0.3s linear;
+}
+.tpgb-gravity-form .ginput_container_checkbox .tpgb-gravity-check,
+.tpgb-gravity-form .ginput_container_radio .tpgb-gravity-radio {
+    position: absolute;
+    display: block;
+    font: normal normal normal 14px/1 "Font Awesome 5 Free";
+    font-weight: 600;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    top: 0;
+    left: 0;
+    width: 24px;
+    height: 24px;
+    line-height: 24px;
+    font-size: 13px;
+    text-align: center;
+    background: transparent;
+    color: transparent;
+    animation: radio-hide 0.2s ease-out;
+    transition: none;
+    background: #bfcecc;
+}
+.tpgb-gravity-form .gform_wrapper .gfield_checkbox li,
+.tpgb-gravity-form .gform_wrapper .gfield_radio li {
+    line-height: inherit;
+    position: relative;
+}
+.tpgb-gravity-form .ginput_container_checkbox input[type="checkbox"]:checked + label .tpgb-gravity-check,
+.tpgb-gravity-form .ginput_container_radio input[type="radio"]:checked + label .tpgb-gravity-radio {
+    background: #e8e2e2;
+}
+.tpgb-gravity-form .ginput_container_checkbox input[type="checkbox"] + label .tpgb-gravity-check,
+.tpgb-gravity-form .ginput_container_radio input[type="radio"] + label .tpgb-gravity-radio {
+    background: #ead0d0;
+}
+.tpgb-gravity-form .ginput_container_checkbox input[type="checkbox"]:checked + label .tpgb-gravity-check,
+.tpgb-gravity-form .ginput_container_radio input[type="radio"]:checked + label .tpgb-gravity-radio {
+    color: #000;
+}
+.tpgb-gravity-form .ginput_container_checkbox .tpgb-gravity-check,
+.tpgb-gravity-form .ginput_container_radio .tpgb-gravity-radio {
+    color: #fff;
+}
+.tpgb-gravity-form .ginput_container_radio .tpgb-gravity-radio {
+    border-radius: 50px;
+}
+.tpgb-gravity-form .gform_wrapper .gfield_checkbox li label,
+.tpgb-gravity-form .gform_wrapper .gfield_radio li label {
+    top: 0;
+    margin-left: 30px;
+}
+.tpgb-gravity-form .ginput_container_checkbox input[type="checkbox"],
+.tpgb-gravity-form .ginput_container_radio input[type="radio"] {
+    display: none !important;
+}
+.tpgb-gravity-form input[type="file"] {
+    width: 100% !important;
+}
+.tpgb-gravity-form input[type="button"],
+.tpgb-gravity-form input[type="submit"] {
+    padding: 0.75em 2em;
+}
+.tpgb-gravity-form label.input__file_btn svg {
+    margin-right: 10px;
+}
+.tpgb-gravity-form label.input__file_btn svg {
+    fill: currentColor;
+    vertical-align: middle;
+}
+.tpgb-gravity-form .gfield .ginput_container select {
+    -webkit-appearance: none;
+    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAANCAYAAAC+ct6XAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoV2luZG93cykiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6RUYwQkE1Rjg4QUQ2MTFFQUFCRTE5QTY4OUM5MDJCQTgiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6RUYwQkE1Rjk4QUQ2MTFFQUFCRTE5QTY4OUM5MDJCQTgiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDpFRjBCQTVGNjhBRDYxMUVBQUJFMTlBNjg5QzkwMkJBOCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDpFRjBCQTVGNzhBRDYxMUVBQUJFMTlBNjg5QzkwMkJBOCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/Pnyo1VoAAACPSURBVHjaYvz//z/DQAAmhgECLKQonjNnDoypCMQhQNwNE0hJSaGdxVAgDcQHgFgOiDmBuIkeQY1sKQg0AnEpzYMaCFSQgxcJ8APxR1pafBCKR0iqBoIoIC5CE3sKxHG0DuplQGwGxPlQ/mtyLCU3OxUAMQ8Q+wGxMxBfo0dQw8sLaAq/Q24cMw5UWQ0QYACu2RqTtMAfyAAAAABJRU5ErkJggg==");
+    background-position: center right;
+    background-repeat: no-repeat;
+}
+@media only screen and (min-width: 641px) {
+    .gform_wrapper ul.gform_fields li.gfield {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+    .gform_wrapper .top_label li.gfield.gf_left_half {
+        padding-right: 8px !important;
+        padding-left: 0 !important;
+    }
+    .gform_wrapper .top_label li.gfield.gf_right_half {
+        padding-left: 8px !important;
+        padding-right: 0 !important;
+    }
+}

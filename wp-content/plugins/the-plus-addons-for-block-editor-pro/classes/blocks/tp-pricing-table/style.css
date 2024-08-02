@@ -1,0 +1,179 @@
+/* CSS For Pricing Table
+   Front End + Back End */
+.tpgb-pricing-table .pricing-table-button{
+	text-align: center;
+}
+.tpgb-pricing-table .pricing-table-inner {
+    position: relative;
+    padding: 20px;
+    width: 100%;
+    border-width: 0;
+    border-style: solid;
+}
+.tpgb-pricing-table .pricing-table-inner:hover {
+    z-index: 1
+}
+.pricing-title-content.style-1 {
+    display: block;
+    text-align: center
+}
+.pricing-title-content.style-1>div {
+    margin-bottom: 8px
+}
+.pricing-title-content.style-1>div:last-child {
+    margin-bottom: 0
+}
+.tpgb-pricing-table .tpgb-icon-list-items {
+    list-style: none;
+    padding: 0;
+    margin: 0
+}
+.tpgb-pricing-table .tpgb-icon-list-items span.tpgb-icon-list-text {
+    display: inline-block
+}
+.tpgb-pricing-table .tpgb-icon-list-items .tpgb-icon-list-item .tpgb-icon-list-icon {
+    margin-right: 8px;
+    line-height: inherit;
+}
+.tpgb-pricing-table .tpgb-icon-list-items .tpgb-icon-list-item .tpgb-extra-list-icon {
+    margin-left: 8px;
+    line-height: inherit;
+}
+.tpgb-pricing-table .pricing-overlay-color {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    background-color: transparent;
+    z-index: -1
+}
+.tpgb-pricing-table .content-overlay-bg-color {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    background-color: transparent;
+    z-index: -1
+}
+.tpgb-pricing-table.hover_fadein .pricing-overlay-color {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0;
+    transition: opacity 1200ms cubic-bezier(.165,.84,.44,1);
+    background: transparent
+}
+.tpgb-pricing-table.hover_fadein:hover .pricing-overlay-color {
+    opacity: 1
+}
+.tpgb-pricing-table.hover_slide_left .pricing-table-inner,.tpgb-pricing-table.hover_slide_right .pricing-table-inner,.tpgb-pricing-table.hover_slide_top .pricing-table-inner,.tpgb-pricing-table.hover_slide_bottom .pricing-table-inner {
+    overflow: hidden
+}
+.tpgb-pricing-table.hover_slide_left .pricing-overlay-color,.tpgb-pricing-table.hover_slide_right .pricing-overlay-color,.tpgb-pricing-table.hover_slide_top .pricing-overlay-color,.tpgb-pricing-table.hover_slide_bottom .pricing-overlay-color {
+    display: block;
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    transition: 0.3s ease-out;
+    background: transparent
+}
+.tpgb-pricing-table.hover_slide_left .pricing-overlay-color {
+    left: -100%
+}
+.tpgb-pricing-table.hover_slide_left:hover .pricing-overlay-color {
+    left: 0
+}
+.tpgb-pricing-table.hover_slide_right .pricing-overlay-color {
+    right: -100%;
+    left: auto
+}
+.tpgb-pricing-table.hover_slide_right:hover .pricing-overlay-color {
+    right: 0
+}
+.tpgb-pricing-table.hover_slide_top .pricing-overlay-color {
+    top: -100%
+}
+.tpgb-pricing-table.hover_slide_top:hover .pricing-overlay-color {
+    top: 0
+}
+.tpgb-pricing-table.hover_slide_bottom .pricing-overlay-color {
+    bottom: -100%;
+    top: auto
+}
+.tpgb-pricing-table.hover_slide_bottom:hover .pricing-overlay-color {
+    bottom: 0
+}
+.tpgb-pricing-table .pricing-table-inner .pricing-icon {
+    margin: 0 auto 8px;
+	font-size: 25px;
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+}
+.tpgb-draw-svg object {
+    opacity: 0;
+    width: 100%;
+}
+.tpgb-pricing-table .tpgb-draw-svg{
+    margin: 0 auto 8px;
+    width: 100%;
+    max-width: 50px;
+    line-height: 50px;
+    text-align: center;
+}
+.tpgb-pricing-table .pricing-icon.icon-square {
+    border-radius: 2px;
+}
+.tpgb-pricing-table .pricing-icon.icon-rounded {
+    border-radius: 30px;
+}
+.tpgb-pricing-table .icon-hexagon {
+    border-radius: initial;
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' xml:space='preserve' viewBox='0 0 90 100'%3E%3Cdefs%3E%3Cpath id='a' d='M1.699.871h86.603v98.258H1.699z'/%3E%3C/defs%3E%3CclipPath id='b'%3E%3Cuse xlink:href='%23a' overflow='visible'/%3E%3C/clipPath%3E%3Cpath clip-path='url(%23b)' fill='%23231F20' d='m4.513 23.375 37.672-21.75a5.625 5.625 0 0 1 5.628 0l37.672 21.75A5.63 5.63 0 0 1 88.3 28.25v43.5a5.63 5.63 0 0 1-2.815 4.875l-37.672 21.75a5.625 5.625 0 0 1-5.628 0L4.513 76.625a5.63 5.63 0 0 1-2.815-4.875v-43.5a5.63 5.63 0 0 1 2.815-4.875'/%3E%3C/svg%3E") top right / 100% 100%;
+}
+.tpgb-pricing-table .icon-pentagon {
+    border-radius: initial;
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' xml:space='preserve' viewBox='0 0 100 97'%3E%3Cdefs%3E%3Cpath id='a' d='M.883 1.541h98.234v93.918H.883z'/%3E%3C/defs%3E%3CclipPath id='b'%3E%3Cuse xlink:href='%23a' overflow='visible'/%3E%3C/clipPath%3E%3Cpath clip-path='url(%23b)' fill='%23231F20' d='M17.968 91.982 1.129 40.157a5.031 5.031 0 0 1 1.828-5.626L47.042 2.502a5.032 5.032 0 0 1 5.915 0l44.085 32.029a5.033 5.033 0 0 1 1.828 5.626L82.031 91.982a5.032 5.032 0 0 1-4.786 3.477H22.753a5.032 5.032 0 0 1-4.785-3.477'/%3E%3C/svg%3E") top right / 100% 100%;
+}
+.tpgb-pricing-table .icon-square-rotate {
+    border-radius: initial;
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' xml:space='preserve' viewBox='0 0 98 98'%3E%3Cdefs%3E%3Cpath id='a' d='M1.148 1.147h95.704v95.704H1.148z'/%3E%3C/defs%3E%3CclipPath id='b'%3E%3Cuse xlink:href='%23a' overflow='visible'/%3E%3C/clipPath%3E%3Cpath clip-path='url(%23b)' fill='%23231F20' d='M95.333 52.666 52.667 95.333a5.185 5.185 0 0 1-7.333 0L2.667 52.666a5.185 5.185 0 0 1 0-7.333L45.333 2.666a5.185 5.185 0 0 1 7.333 0l42.667 42.667a5.183 5.183 0 0 1 0 7.333'/%3E%3C/svg%3E") top right / 100% 100%;
+}
+.pricing-previous-price-wrap {
+    position: relative;
+    display: inline-block;
+    vertical-align: top;
+    line-height: 1;
+    color: #aaa;
+    font-weight: 500;
+    padding-right: 10px;
+    text-decoration: line-through !important;
+    font-size: 20px
+}
+.tpgb-pricing-table .pricing-table-inner .pricing-cta-text {
+    text-align: center;
+    display: block;
+    font-size: 14px;
+    line-height: 1.2;
+    margin-bottom: 15px
+}
+.tpgb-pricing-table .tpgb-plus-button.button-style-8 .button-link-wrap {
+    border-radius: 4px;
+    font-size: 16px;
+    letter-spacing: .5px;
+    background: #fff;
+    border-color: #4f6df5;
+    color: #4f6df5
+}

@@ -1,0 +1,143 @@
+/**
+ * CSS for both Frontend+Backend.
+ */
+/** Download Button **/
+@keyframes tp-icon-bounce {
+    0% {
+        transform: translateY(-5px)
+    }
+    to {
+        transform: translateY(0)
+    }
+}
+@keyframes tp-white-pulse {
+    0% {
+        color: #ffffff33
+    }
+    to {
+        color: #ffffff80
+    }
+}
+.tpgb-download-style-5 .tp-meter.is-done:before {
+    display: none
+}
+.tpgb-download-style-5 .adv-button-link-wrap {
+    background: #6a79e3;
+    padding: 1rem 2rem;
+    color: #fff;
+    text-decoration: none;
+    transition: .5s linear all;
+    overflow: hidden;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center
+}
+.tpgb-download-style-5 .adv-button-link-wrap:hover {
+    background: #6a79e3
+}
+.tpgb-download-style-5 {
+    position: relative;
+    width: auto;
+    height: 60px;
+    transform-style: preserve-3d;
+    transform-origin: 50% 50%0;
+    transform: rotateX(0deg);
+    transition: .2s linear all;
+    display: inline-block
+}
+.tpgb-download-style-5.is-active {
+    transform: rotateX(90deg) translateZ(2rem)
+}
+.tpgb-download-style-5.is-active .tp-meter-progress {
+    right: 0
+}
+.tpgb-advanced-buttons .tpgb-download-style-5 a.adv-button-link-wrap,.tpgb-download-style-5 .tp-meter {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    line-height: 4rem;
+    padding: 0 1rem;
+    padding-right: 80px;
+    transform-origin: top center;
+    outline: 0;
+    max-height: 60px;
+    color: #fff
+}
+.tpgb-download-style-5 .tp-meter {
+    padding-right: 1rem;
+    background: #c41564;
+    overflow: hidden;
+    transform: rotateX(270deg)
+}
+.tpgb-download-style-5 .tp-meter:before {
+    display: block
+}
+.tpgb-download-style-5 .tp-meter:after,.tpgb-download-style-5 .tp-meter:before {
+    text-align: center;
+    color: #ffffff80
+}
+.tpgb-download-style-5 .tp-meter:before {
+    content: "downloading...";
+    animation: tp-white-pulse 1s infinite alternate
+}
+.tpgb-download-style-5 .tp-meter:after {
+    content: "done!";
+    display: none;
+    color: #fff
+}
+.tpgb-download-style-5 .tp-meter.is-done:after {
+    display: block
+}
+.tpgb-download-style-5 .tp-meter .tp-meter-progress {
+    display: block;
+    width: 100%;
+    position: absolute;
+    right: 100%;
+    top: 0;
+    bottom: 0;
+    background-image: linear-gradient(-45deg,#00000026 10%,#00000033 10%,#00000033 20%,#00000026 20%,#00000026 30%,#00000033 30%,#00000033 40%,#00000026 40%,#00000026 50%,#00000033 50%,#00000033 60%,#00000026 60%,#00000026 70%,#00000033 70%,#00000033 80%,#00000026 80%,#00000026 90%,#00000033 90%,#00000033);
+    transition: 4s linear all
+}
+.tpgb-download-style-5 .adv-button-link-wrap .icon-wrap {
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 4rem;
+    display: flex;
+    background: #0000001a
+}
+.tpgb-download-style-5 .adv-button-link-wrap .icon-download {
+    position: relative;
+    display: block;
+    width: 2.5rem;
+    height: 1rem;
+    margin: auto;
+    border: solid .5rem #fff;
+    border-top: none;
+    transition: .3s linear
+}
+.tpgb-download-style-5 .adv-button-link-wrap .icon-download:after,.tpgb-download-style-5 .adv-button-link-wrap .icon-download:before {
+    content: "";
+    display: block;
+    position: absolute;
+    animation: tp-icon-bounce .5s infinite alternate;
+    transition: .3s linear
+}
+.tpgb-download-style-5 .adv-button-link-wrap .icon-download:before {
+    left: .5rem;
+    top: -.5rem;
+    width: .5rem;
+    height: .5rem;
+    background: #fff
+}
+.tpgb-download-style-5 .adv-button-link-wrap .icon-download:after {
+    left: .25rem;
+    top: -.125rem;
+    width: 0;
+    height: 0;
+    border-left: solid .5rem transparent;
+    border-right: solid .5rem transparent;
+    border-top: solid .5rem #fff
+}

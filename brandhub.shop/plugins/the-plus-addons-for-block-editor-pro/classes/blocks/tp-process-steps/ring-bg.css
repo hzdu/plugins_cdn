@@ -1,0 +1,31 @@
+/* Process Steps Ring BG */
+.tp-pro-step-icon-img .tp-icon-img,.tp-ps-special-bg i,.tp-ps-special-bg .tp-ps-text {
+    position: relative;
+    z-index: 111;
+}
+.tpgb-process-steps .tp-ps-left-imt .tp-ps-special-bg:before,.tpgb-process-steps .tp-ps-left-imt .tp-ps-special-bg:after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    border-radius: 50%;
+    background: inherit;
+    z-index: 22;
+}
+.tpgb-process-steps .tp-ps-left-imt .tp-ps-special-bg:after {
+    width: 110px;
+    height: 110px;
+    opacity: .7;
+}
+.tpgb-process-steps .tp-ps-left-imt .tp-ps-special-bg:before {
+    width: 130px;
+    height: 130px;
+    opacity: .3;
+}
+.tpgb-process-steps .tp-ps-left-imt.tp-ps-special-bg {
+    margin-bottom: 20px;
+}
+.tpgb-process-steps .tp-ps-left-imt .tp-ps-special-bg .tp-ps-icon-img {
+    border: none!important;
+}

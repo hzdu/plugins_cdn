@@ -1,0 +1,76 @@
+.product-style-3 .product-content-image .product-image img {
+    transform: scale(1);
+    transition: all .3s ease-in-out
+}
+
+.product-style-3 .product-content-image:hover .product-image img {
+    transform: scale(1.03)
+}
+
+.product-style-3 .product-content-image:hover .product-image .hover-image+img {
+    opacity: 0;
+    filter: alpha(opacity=0);
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)"
+}
+
+.product-style-3 .product-content-image .product-image .hover-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    transition: all .4s ease
+}
+
+.product-style-3 a.add_to_cart_button.product_type_simple {
+    background: #222;
+    padding: 12px;
+    border-radius: 0;
+    width: 100%;
+    color: #fff;
+    font-size: 14px;
+    line-height: 20px;
+    text-transform: uppercase;
+    letter-spacing: .4px;
+    margin: 0;
+    display: inline-block
+}
+
+.product-style-3 a.add_to_cart_button span.icon {
+    left: auto;
+    top: 50%;
+    transform: translateY(-50%)
+}
+
+.product-style-3 a.add_to_cart_button span.icon {
+    position: absolute;
+    left: 0;
+    right: 0;
+    text-align: center;
+    margin: 0 auto
+}
+
+.product-style-3:not(.tpgb-metro) .product-list-content .wrapper-cart-hover-hidden.add-cart-btn {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0;
+    transform: translate3d(0,100%,0);
+    transition: all .3s ease-in-out;
+    z-index: 1
+}
+
+.product-style-3 .product-list-content:hover .wrapper-cart-hover-hidden.add-cart-btn {
+    opacity: 1;
+    transform: translate3d(0,0,0)
+}
+
+.product-style-3 .product-list-content .add_to_cart_button .icon .check::after,.product-style-3 .product-list-content .add_to_cart_button .icon .check::before {
+    background: #fff
+}
+
+.product-style-3 .product-list-content .add_to_cart_button .icon .sr-loader-icon::after {
+    background: #fff
+}

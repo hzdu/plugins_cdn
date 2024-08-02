@@ -1,0 +1,85 @@
+/*after display counter auto start*/
+body {
+    counter-reset: my-sec-counter
+}
+
+.tpgb-scroll-nav.style-2.nav-left .tpgb-scroll-nav-dots.number-normal:after,.tpgb-scroll-nav.style-2.nav-right .tpgb-scroll-nav-dots.number-normal:after,.tpgb-scroll-nav.style-4.nav-left .tpgb-scroll-nav-dots.number-normal:after,.tpgb-scroll-nav.style-4.nav-right .tpgb-scroll-nav-dots.number-normal:after {
+    counter-increment: my-sec-counter;
+    content: counter(my-sec-counter);
+    color: red;
+    left: 0;
+    right: 0;
+    top: 4px;
+    position: absolute
+}
+
+.tpgb-scroll-nav.style-2.nav-left .tpgb-scroll-nav-dots.lower-roman:after,.tpgb-scroll-nav.style-2.nav-right .tpgb-scroll-nav-dots.lower-roman:after,.tpgb-scroll-nav.style-4.nav-left .tpgb-scroll-nav-dots.lower-roman:after,.tpgb-scroll-nav.style-4.nav-right .tpgb-scroll-nav-dots.lower-roman:after {
+    counter-increment: my-sec-counter;
+    content: counter(my-sec-counter,lower-roman)". ";
+    color: red;
+    left: 3px;
+    right: 0;
+    top: 3px;
+    position: absolute
+}
+
+.tpgb-scroll-nav.style-2.nav-left .tpgb-scroll-nav-dots.decimal-leading-zero:after,.tpgb-scroll-nav.style-2.nav-right .tpgb-scroll-nav-dots.decimal-leading-zero:after,.tpgb-scroll-nav.style-4.nav-left .tpgb-scroll-nav-dots.decimal-leading-zero:after,.tpgb-scroll-nav.style-4.nav-right .tpgb-scroll-nav-dots.decimal-leading-zero:after {
+    counter-increment: my-sec-counter;
+    content: counter(my-sec-counter,decimal-leading-zero)". ";
+    color: red;
+    left: 2px;
+    right: 0;
+    top: 3px;
+    position: absolute
+}
+
+.tpgb-scroll-nav.style-2.nav-left .tpgb-scroll-nav-dots.upper-alpha:after,.tpgb-scroll-nav.style-2.nav-right .tpgb-scroll-nav-dots.upper-alpha:after,.tpgb-scroll-nav.style-4.nav-left .tpgb-scroll-nav-dots.upper-alpha:after,.tpgb-scroll-nav.style-4.nav-right .tpgb-scroll-nav-dots.upper-alpha:after {
+    counter-increment: my-sec-counter;
+    content: counter(my-sec-counter,upper-alpha)". ";
+    color: red;
+    left: 3px;
+    right: 0;
+    top: 4px;
+    position: absolute
+}
+
+.tpgb-scroll-nav.style-2.nav-left .tpgb-scroll-nav-dots.lower-alpha:after,.tpgb-scroll-nav.style-2.nav-right .tpgb-scroll-nav-dots.lower-alpha:after,.tpgb-scroll-nav.style-4.nav-left .tpgb-scroll-nav-dots.lower-alpha:after,.tpgb-scroll-nav.style-4.nav-right .tpgb-scroll-nav-dots.lower-alpha:after {
+    counter-increment: my-sec-counter;
+    content: counter(my-sec-counter,lower-alpha)". ";
+    color: red;
+    left: 3px;
+    right: 0;
+    top: 3px;
+    position: absolute
+}
+
+.tpgb-scroll-nav.style-2.nav-left .tpgb-scroll-nav-dots.upper-roman:after,.tpgb-scroll-nav.style-2.nav-right .tpgb-scroll-nav-dots.upper-roman:after,.tpgb-scroll-nav.style-4.nav-left .tpgb-scroll-nav-dots.upper-roman:after,.tpgb-scroll-nav.style-4.nav-right .tpgb-scroll-nav-dots.upper-roman:after {
+    counter-increment: my-sec-counter;
+    content: counter(my-sec-counter,upper-roman)". ";
+    color: red;
+    left: 4px;
+    right: 0;
+    top: 3px;
+    position: absolute
+}
+
+.tpgb-scroll-nav.style-2.nav-left .tpgb-scroll-nav-dots.lower-greek:after,.tpgb-scroll-nav.style-2.nav-right .tpgb-scroll-nav-dots.lower-greek:after,.tpgb-scroll-nav.style-4.nav-left .tpgb-scroll-nav-dots.lower-greek:after,.tpgb-scroll-nav.style-4.nav-right .tpgb-scroll-nav-dots.lower-greek:after {
+    counter-increment: my-sec-counter;
+    content: counter(my-sec-counter,lower-greek)". ";
+    color: red;
+    left: 3px;
+    right: 0;
+    top: 2px;
+    position: absolute
+}
+
+.tpgb-scroll-nav.style-4.nav-left .tpgb-scroll-nav-dots.decimal-leading-zero:after,.tpgb-scroll-nav.style-4.nav-left .tpgb-scroll-nav-dots.lower-alpha:after,.tpgb-scroll-nav.style-4.nav-left .tpgb-scroll-nav-dots.lower-greek:after,.tpgb-scroll-nav.style-4.nav-left .tpgb-scroll-nav-dots.lower-roman:after,.tpgb-scroll-nav.style-4.nav-left .tpgb-scroll-nav-dots.number-normal:after,.tpgb-scroll-nav.style-4.nav-left .tpgb-scroll-nav-dots.upper-alpha:after,.tpgb-scroll-nav.style-4.nav-left .tpgb-scroll-nav-dots.upper-roman:after,.tpgb-scroll-nav.style-4.nav-right .tpgb-scroll-nav-dots.decimal-leading-zero:after,.tpgb-scroll-nav.style-4.nav-right .tpgb-scroll-nav-dots.lower-alpha:after,.tpgb-scroll-nav.style-4.nav-right .tpgb-scroll-nav-dots.lower-greek:after,.tpgb-scroll-nav.style-4.nav-right .tpgb-scroll-nav-dots.lower-roman:after,.tpgb-scroll-nav.style-4.nav-right .tpgb-scroll-nav-dots.number-normal:after,.tpgb-scroll-nav.style-4.nav-right .tpgb-scroll-nav-dots.upper-alpha:after,.tpgb-scroll-nav.style-4.nav-right .tpgb-scroll-nav-dots.upper-roman:after {
+    margin: 0 0 0 10px;
+    font-size: 17px;
+    width: 20px
+}
+
+.tpgb-scroll-nav.style-2.nav-left .tpgb-scroll-nav-dots.decimal-leading-zero:after,.tpgb-scroll-nav.style-2.nav-left .tpgb-scroll-nav-dots.lower-alpha:after,.tpgb-scroll-nav.style-2.nav-left .tpgb-scroll-nav-dots.lower-greek:after,.tpgb-scroll-nav.style-2.nav-left .tpgb-scroll-nav-dots.lower-roman:after,.tpgb-scroll-nav.style-2.nav-left .tpgb-scroll-nav-dots.number-normal:after,.tpgb-scroll-nav.style-2.nav-left .tpgb-scroll-nav-dots.upper-alpha:after,.tpgb-scroll-nav.style-2.nav-left .tpgb-scroll-nav-dots.upper-roman:after,.tpgb-scroll-nav.style-2.nav-right .tpgb-scroll-nav-dots.decimal-leading-zero:after,.tpgb-scroll-nav.style-2.nav-right .tpgb-scroll-nav-dots.lower-alpha:after,.tpgb-scroll-nav.style-2.nav-right .tpgb-scroll-nav-dots.lower-greek:after,.tpgb-scroll-nav.style-2.nav-right .tpgb-scroll-nav-dots.lower-roman:after,.tpgb-scroll-nav.style-2.nav-right .tpgb-scroll-nav-dots.number-normal:after,.tpgb-scroll-nav.style-2.nav-right .tpgb-scroll-nav-dots.upper-alpha:after,.tpgb-scroll-nav.style-2.nav-right .tpgb-scroll-nav-dots.upper-roman:after {
+    font-size: 15px
+}
+/*dispaly counter end*/

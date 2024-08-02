@@ -1,0 +1,63 @@
+/* Portfolio */
+.tpgb-animated-service-boxes.portfolio.portfolio-style-2 {
+    overflow: hidden
+}
+.tpgb-animated-service-boxes.portfolio.portfolio-style-1 .portfolio-hover-image {
+    height: 100%;
+    background-size: cover!important;
+    background-position: center!important
+}
+.tpgb-animated-service-boxes.portfolio.portfolio-style-1 .portfolio-hover-wrapper {
+    width: auto;
+    max-width: 100%;
+    height: 600px;
+    padding: 0
+}
+.tpgb-animated-service-boxes.portfolio.portfolio-style-1 .asb_wrap_list.tpgb-row {
+    align-items: center
+}
+.tpgb-animated-service-boxes.portfolio .asb-title {
+	font-size: 36px;
+    line-height: 1.23;
+}
+.tpgb-animated-service-boxes.portfolio.portfolio-style-1 .asb-title {
+    vertical-align: top;
+    color: #ddd;
+    margin-bottom: 0
+}
+.tpgb-animated-service-boxes.portfolio.portfolio-style-1 .portfolio-content-wrapper {
+    padding: 5%;
+    z-index: 1
+}
+.tpgb-animated-service-boxes.portfolio.portfolio-style-1 .portfolio-hover-image {
+    transition: all .5s ease-in-out 0s
+}
+.tpgb-animated-service-boxes.portfolio.portfolio-style-1 .service-item-loop:hover .portfolio-hover-image {
+    transform: scale(1.5)
+}
+@media (max-width:767px) and (min-width:320px) {
+    .tpgb-animated-service-boxes.portfolio.portfolio-style-1 .portfolio-hover-wrapper.tpgb-col-md-6.tpgb-col-lg-6.tpgb-col-sm-12.tpgb-col-12 {
+        display: flex;
+        align-items: center;
+        text-align: center;
+        justify-content: center
+    }
+}
+/* style-2 */
+.tpgb-animated-service-boxes.portfolio.portfolio-style-2 {
+    height: 100%;
+    text-align: center
+}
+.tpgb-animated-service-boxes.portfolio.portfolio-style-2 .portfolio-wrapper {
+    position: relative;
+    min-height: 700px;
+    background-size: cover!important;
+    background-position: center!important;
+    transition: all .6s ease-in-out
+}
+.tpgb-animated-service-boxes.portfolio.portfolio-style-2 .portfolio-wrapper,.tpgb-animated-service-boxes.portfolio.portfolio-style-2 .service-item-loop .pf_a_click {
+    flex-direction: column;
+}
+.tpgb-animated-service-boxes.portfolio.portfolio-style-2 .asb-title {
+    margin-bottom: 0;
+}

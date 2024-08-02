@@ -1,0 +1,110 @@
+/**
+ * CSS for both Frontend+Backend. Before After
+ */
+ .tpgb-before-after {
+    overflow: hidden
+}
+
+.tpgb-before-after .tpgb-beforeafter-inner {
+    position: relative;
+    text-align: center;
+    transform-style: preserve-3d
+}
+
+.tpgb-before-after .tpgb-beforeafter-img {
+    position: absolute;
+    overflow: hidden
+}
+
+.tpgb-before-after .tpgb-beforeafter-img.tpgb-before-img {
+    z-index: 1;
+    float: left
+}
+
+.tpgb-before-after .tpgb-beforeafter-img.tpgb-after-img {
+    z-index: 0;
+    float: right
+}
+
+.tpgb-before-after .tpgb-beforeafter-img>img {
+    user-select: none;
+    display: block;
+    max-width: none;
+    width: 100%;
+    object-fit: cover
+}
+
+.tpgb-before-after .tpgb-beforeafter-label {
+    opacity: 0;
+    transition: all .4s linear
+}
+
+.tpgb-before-after:hover .tpgb-beforeafter-label {
+    opacity: 1
+}
+
+.tpgb-beforeafter-label.after-label,.tpgb-beforeafter-label.before-label {
+    margin-bottom: 0;
+    position: absolute;
+    transform: translate3d(0,-50%,0);
+    width: auto;
+    padding: 10px 17px;
+    border-radius: 3px;
+    top: 50%;
+    z-index: 1;
+    background: rgba(255,255,255,.64);
+    white-space: nowrap
+}
+
+.tpgb-beforeafter-label.before-label {
+    text-align: left;
+    left: 0;
+    margin-left: 10px
+}
+
+.tpgb-beforeafter-label.after-label {
+    text-align: right;
+    right: 0;
+    margin-right: 10px
+}
+
+.tpgb-before-after .tpgb-beforeafter-sep {
+    position: absolute;
+    z-index: 2;
+    transform: translate3d(0,0,0)
+}
+
+.pt_plus_before_after .before-after-bottom-separate {
+    height: 10px;
+    display: none;
+    background: rgba(200,200,200,.7)
+}
+
+.tpgb-before-sepicon,.tpgb-before-sepicon>img {
+    border-radius: 0!important;
+    box-shadow: none!important
+}
+
+.tpgb-before-sepicon {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    z-index: 3;
+    cursor: pointer
+}
+
+.tpgb-before-sepicon>img {
+    display: block;
+    margin: auto
+}
+
+.tpgb-before-after .sep-img,.tpgb-before-sepicon>img {
+    max-width: 300px;
+    max-height: 300px
+}
+
+.tpgb-beforeafter-label.before-label.vertical {
+    position: fixed
+}

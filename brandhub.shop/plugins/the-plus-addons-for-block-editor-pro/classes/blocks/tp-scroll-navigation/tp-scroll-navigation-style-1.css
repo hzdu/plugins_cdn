@@ -1,0 +1,21 @@
+/*style 1 */
+.tpgb-scroll-nav.style-1 .tpgb-scroll-nav-dots {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    background-color: red;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    color: #fff;
+    font-size: 14px;
+    transition: all .3s cubic-bezier(.5,.12,.46,.88)
+}
+
+.tpgb-scroll-nav.style-1 .tpgb-scroll-nav-dots:hover,.tpgb-scroll-nav.style-1 a.tpgb-scroll-nav-item.active .tpgb-scroll-nav-dots {
+    background-color: #ff000000;
+    border-radius: 50%;
+    z-index: 5;
+    border: 1px solid red
+}
+/*style 1 */

@@ -1,0 +1,293 @@
+/**
+ * CSS for both Frontend+Backend.
+*/
+.tpgb-audioplay-wrap .tpgb-player {
+    text-align: center;
+    padding: 20px;
+    background: #242628;
+    z-index: 2
+}
+
+.tpgb-audio-player-wrapper .title {
+    font-size: 14px;
+    font-weight: bold
+}
+.tpgb-audio-player-wrapper .artist {
+    font-size: 12px
+}
+
+.tpgb-audioplay-wrap .trackDetails {
+    margin-top: 4px;
+    width: 100%;
+    height: auto;
+    border: 0;
+    background: 0 0;
+    border-radius: 4px;
+    padding: 6px
+}
+
+.tpgb-audioplay-wrap .artist,.tpgb-audioplay-wrap .title {
+    user-select: none;
+    left: 167px;
+    color: #fff
+}
+
+.tpgb-audioplay-wrap .playlistIcon,.tpgb-audioplay-wrap .volumeIcon {
+    position: absolute;
+    height: auto;
+    width: auto;
+    line-height: 1
+}
+
+.tpgb-audioplay-wrap .playlistIcon {
+    top: 20px;
+    right: 20px;
+    cursor: pointer;
+    color: #fff;
+    z-index: 11
+}
+
+.tpgb-audioplay-wrap .volumeIcon {
+    display: block;
+    bottom: 13px;
+    right: 20px
+}
+
+.tpgb-audioplay-wrap .controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px auto;
+    color: #fff;
+    height: auto;
+    width: auto
+}
+
+.tpgb-audioplay-wrap .controls .tpgb-ap-pp .pause,.tpgb-audioplay-wrap .controls .tpgb-ap-pp .play {
+    font-size: 22px
+}
+
+.tpgb-audioplay-wrap .controls .rew {
+    margin-right: 15px
+}
+
+.tpgb-audioplay-wrap .controls .fwd {
+    margin-left: 15px
+}
+
+.tpgb-audioplay-wrap .controls .fwd,.tpgb-audioplay-wrap .controls .rew {
+    font-size: 15px;
+    cursor: pointer
+}
+
+.tpgb-audioplay-wrap .controls .pause,.tpgb-audioplay-wrap .controls .play,.tpgb-audioplay-wrap .plIcon,.tpgb-audioplay-wrap .volumeIcon {
+    font-size: 20px
+}
+
+.tpgb-audioplay-wrap .controls .pause,.tpgb-audioplay-wrap .hidden {
+    display: none;
+}
+.tpgb-audioplay-wrap .volume .ui-slider-handle {
+    display: none !important;
+}
+
+.tpgb-audioplay-wrap .controls .visible {
+    display: inline-block
+}
+
+.tpgb-audioplay-wrap .tracker {
+    position: relative;
+    cursor: pointer;
+    height: 2px;
+    width: 100%;
+    margin: 0 auto
+}
+
+.tpgb-audioplay-wrap .ui-widget.ui-widget-content {
+    border: 0
+}
+
+.tpgb-audioplay-wrap .ui-corner-all {
+    border-radius: 0
+}
+
+.tpgb-audioplay-wrap .ui-slider .ui-slider-handle {
+    position: absolute;
+    cursor: pointer;
+    outline: 0;
+    touch-action: none;
+    z-index: 2;
+    display: block;
+    top: -6.5px;
+    width: 15px;
+    height: 15px;
+    border-radius: 100%;
+    background: #fff
+}
+
+.tpgb-audioplay-wrap .tracker .ui-slider-range {
+    background: #f44336;
+    height: 100%;
+    top: 0
+}
+.tpgb-audioplay-wrap .volume.noUi-vertical .noUi-origin{
+    width: 100%;
+}
+
+.tpgb-audioplay-wrap .volume .noUi-origin {
+    background: #333;
+}
+
+.tpgb-audioplay-wrap .volume .noUi-connects{
+    background: #00dbde
+}
+
+.tpgb-audioplay-wrap .ui-slider-handle {
+    cursor: pointer;
+    height: 10px;
+    margin-left: -5px;
+    top: 2px;
+    width: 10px;
+    z-index: 2
+}
+
+.tpgb-audioplay-wrap .tpgb-volume-bg {
+    display: none;
+    background: #fff;
+    padding: 14px;
+    position: absolute;
+    left: -7px;
+    bottom: 30px;
+    height: 120px;
+    box-shadow: 0 0 10px #000;
+    border-radius: 4px;
+    z-index: 22
+}
+
+.tpgb-audioplay-wrap .volume {
+    position: absolute;
+    left: 11px;
+    height: 100px;
+    width: 6px;
+    border-radius: 10px;
+    overflow: hidden;
+    cursor: pointer
+}
+
+.tpgb-audioplay-wrap .playlist {
+    background-color: #1e1e1e;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    position: relative;
+    width: auto;
+    z-index: 1;
+    display: none;
+    transition: all ease-in-out .1s;
+    max-height: 200px;
+    overflow-y: auto
+}
+
+.playlist.playlistshow,.tpgb-audioplay-wrap .show {
+    display: block
+}
+
+.tpgb-audioplay-wrap .playlist::-webkit-scrollbar,.tpgb-audioplay-wrap .playlist::-webkit-scrollbar-track {
+    border-radius: 5px;
+    background-color: #f5f5f5
+}
+
+.tpgb-audioplay-wrap .playlist::-webkit-scrollbar {
+    width: 8px
+}
+
+.tpgb-audioplay-wrap .playlist::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    background-color: #d62929
+}
+
+.tpgb-audioplay-wrap .playlist .tpgb-playlist {
+    color: #eee;
+    cursor: pointer;
+    padding: 6px 12px;
+    transition: all ease-in-out .1s
+}
+
+.tpgb-audioplay-wrap .playlist .tpgb-playlist:hover {
+    background: #333
+}
+
+.tpgb-audioplay-wrap .playlist .tpgb-playlist.active {
+    font-weight: 700;
+    background: #000;
+}
+
+.tpgb-audioplay-wrap .ui-button,.tpgb-audioplay-wrap .ui-state-default,.tpgb-audioplay-wrap .ui-widget-content .ui-state-default,.tpgb-audioplay-wrap .ui-widget-header .ui-state-default,html .tpgb-audioplay-wrap .ui-button.ui-state-disabled:active,html .tpgb-audioplay-wrap .ui-button.ui-state-disabled:hover {
+    border: 0
+}
+
+.tpgb-audioplay-wrap .ui-widget-content {
+    background: #666
+}
+
+.tpgb-audioplay-wrap .icons,.tpgb-audioplay-wrap .tpgb-player .vol-icon-toggle,.tpgb-audioplay-wrap .tpgb-player .trackDetails .splitTxt{
+    color: #fff
+}
+
+.tpgb-audioplay-wrap .tpgb-ap-pp,.tpgb-audioplay-wrap .tpgb-player .vol-icon-toggle {
+    cursor: pointer
+}
+
+.tpgb-audioplay-wrap .ap-time-seek-vol {
+    width: 93%;
+    display: inline-block
+}
+
+.tpgb-audioplay-wrap.style-1 .tracker {
+    width: 90%
+}
+
+.tpgb-audioplay-wrap.style-1 .playlist .tpgb-playlist {
+    padding: 6px 16px
+}
+
+.tpgb-audioplay-wrap .controls .pause,.tpgb-audioplay-wrap .controls .play {
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    line-height: 50px
+}
+/* Container Css */
+.tpgb-container-row .tpgb-audio-player{
+    width: 100%;
+}
+
+.tpgb-player .noUi-handle:after,.tpgb-player .noUi-handle:before{
+    display: none;
+}
+.tpgb-player .tracker .noUi-handle{
+    width: 15px;
+    height: 15px;
+    right: -14px;
+    top: -7px;
+    border: unset;
+    box-shadow: unset;
+    border-radius: 30px;
+}
+.tpgb-player .volume .noUi-handle{
+    width: 10px;
+    height: 10px;
+    border: unset;
+    border-radius: 30px;
+    right: -2px;
+    bottom: -2px;
+}
+.tracker .tracker-fill {
+    position: absolute;
+    height: 2px;
+    left: -1px;
+    top: -1px;
+    border-radius: 10px;
+    background: #f44336;
+}

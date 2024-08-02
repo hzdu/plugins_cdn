@@ -1,0 +1,72 @@
+@keyframes tpgb_cnt_rotate {
+    0% {
+        transform: rotate(0deg) translate(-10px) rotate(0deg)
+    }
+
+    to {
+        transform: rotate(360deg) translate(-10px) rotate(-360deg)
+    }
+}
+
+@keyframes rotating {
+    0% {
+        transform: rotate(0deg)
+    }
+
+    to {
+        transform: rotate(360deg)
+    }
+}
+
+@keyframes tpgb_cnt_float {
+    0%,to {
+        transform: translateY(0)
+    }
+
+    50% {
+        transform: translateY(2%)
+    }
+}
+
+@keyframes tpgb_cnt_toss {
+    0%,to {
+        transform: rotate(-1deg)
+    }
+
+    50% {
+        transform: rotate(1deg)
+    }
+}
+
+@keyframes tpgb_cnt_pulse {
+    0%,to {
+        transform: scale(.97);
+        opacity: 1
+    }
+
+    50% {
+        transform: scale(1);
+        opacity: 1
+    }
+}
+
+.tpgb-hover-floating,.tpgb-hover-pulse,.tpgb-hover-tossing,.tpgb-normal-floating,.tpgb-normal-pulse,.tpgb-normal-tossing {
+    animation-duration: 1.5s
+}
+
+.tpgb-hover-floating:hover,.tpgb-normal-floating {
+    animation: tpgb_cnt_float 2.2s infinite
+}
+
+.tpgb-hover-tossing:hover,.tpgb-normal-tossing {
+    animation: tpgb_cnt_toss 2.2s infinite
+}
+
+.tpgb-hover-pulse:hover,.tpgb-normal-pulse {
+    animation: tpgb_cnt_pulse 2.2s infinite
+}
+
+.tpgb-hover-rotating:hover,.tpgb-normal-rotating {
+    animation: tpgb_cnt_rotate 8s infinite linear;
+    transform-origin: center center
+}

@@ -1,0 +1,30 @@
+/* Circle Menu Straight */
+.tpgb-circle-menu.layout-straight ul.tpgb-circle-menu-wrap.menu-style-2.menu-direction-right, .tpgb-circle-menu.layout-straight ul.tpgb-circle-menu-wrap.menu-style-2.menu-direction-left {
+	display: flex;
+	align-items: center;
+}
+.tpgb-circle-menu.layout-straight ul.tpgb-circle-menu-wrap.menu-style-2 li.tpgb-circle-menu-list:not(.tpgb-circle-main-menu-list) a {
+    width: auto;
+    height: auto;
+	line-height: inherit;
+}
+.tpgb-circle-menu.layout-straight ul.tpgb-circle-menu-wrap.menu-style-2.circleMenu-open li.tpgb-circle-menu-list:not(.tpgb-circle-main-menu-list){
+	opacity:1;
+	z-index:11;
+}
+.tpgb-circle-menu.layout-straight .menu-style-2.circleMenu-closed .tpgb-circle-menu-list:not(.tpgb-circle-main-menu-list), .tpgb-circle-menu.layout-straight .tpgb-circle-menu-wrap.menu-style-2:not(.circleMenu-open) .tpgb-circle-menu-list:not(.tpgb-circle-main-menu-list){
+	z-index:-1;
+}
+.tpgb-circle-menu.layout-straight .menu-style-2 .menu-tooltip-title {
+    position: relative;
+    opacity: 1;
+    display: block;
+    margin: 0;
+	white-space: nowrap;
+    color: #fff;
+    line-height: 1;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 12px;
+    transition: all .3s ease 0s;
+}

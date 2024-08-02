@@ -1,0 +1,111 @@
+.tpgb-unfold-wrapper {
+    align-items: unset;
+    flex-direction: column;
+    width: 100%
+}
+
+.tp-expand .tpgb-unfold-last-toggle.center {
+    display: flex;
+    justify-content: center
+}
+
+.tp-expand .tpgb-unfold-last-toggle.right {
+    display: flex;
+    justify-content: flex-end
+}
+
+.tp-expand .tpgb-unfold-last-toggle.left {
+    display: flex;
+    justify-content: flex-start
+}
+
+.tp-expand.tpgb-unfold-wrapper .tpgb-unfold-title {
+    position: relative;
+    font-size: 24px;
+    line-height: 38px;
+    color : #101011;
+    font-weight: 500
+}
+
+.tpgb-unfold-wrapper .tpgb-unfold-description {
+    position: relative;
+    overflow: hidden;
+    font-size: 18px;
+    line-height: 29px;
+    color: #747474;
+    font-weight: 400
+}
+
+.tpgb-unfold-wrapper:not(.fullview,.tpgb-unfold-editor) .tpgb-unfold-description::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(rgba(255,255,255,0),#fff);
+    z-index: 11
+}
+
+.tpgb-unfold-wrapper .tpgb-unfold-last-toggle {
+    position: relative;
+    display: none;
+    margin-top: 15px
+}
+
+.tpgb-unfold-wrapper .tpgb-unfold-toggle,.tpgb-unfold-wrapper .tpgb-unfold-toggle-link,.tpgb-unfold-wrapper .tpgb-unfold-toggle-link:active,.tpgb-unfold-wrapper .tpgb-unfold-toggle-link:focus,.tpgb-unfold-wrapper .tpgb-unfold-toggle:active,.tpgb-unfold-wrapper .tpgb-unfold-toggle:focus {
+    position: relative;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    width: max-content;
+    border-radius: 4px;
+    padding: 10px 20px;
+    text-decoration: none;
+    font-size: 16px;
+    line-height: 18px;
+    font-weight: 400;
+    outline: 0;
+    color: #fff;
+    transition: all .3s linear
+}
+
+.tpgb-unfold-wrapper .tpgb-unfold-toggle-link,.tpgb-unfold-wrapper .tpgb-unfold-toggle-link:active,.tpgb-unfold-wrapper .tpgb-unfold-toggle-link:focus {
+    visibility: hidden;
+    position: absolute;
+    transition: none;
+    border: 1px solid #6f14f1;
+    transform: translateY(125px);
+    opacity: 0
+}
+
+.tpgb-unfold-wrapper.fullview .tpgb-unfold-last-toggle.flex-end .tpgb-unfold-toggle-link {
+    margin-left: 0;
+    margin-right: 15px
+}
+
+.tpgb-unfold-wrapper.fullview .tpgb-unfold-last-toggle .tpgb-unfold-toggle-link,.tpgb-unfold-wrapper.fullview .tpgb-unfold-last-toggle .tpgb-unfold-toggle-link:active,.tpgb-unfold-wrapper.fullview .tpgb-unfold-last-toggle .tpgb-unfold-toggle-link:focus {
+    visibility: visible;
+    width: auto;
+    height: auto;
+    margin-left: 15px;
+    padding: 10px 20px;
+    transition: all .9s linear;
+    transform: translateY(0);
+    opacity: 1;
+    position: relative;
+    color: #fff
+}
+
+.tpgb-unfold-wrapper.tpgb-ca-center .tpgb-unfold-toggle-link,.tpgb-unfold-wrapper.tpgb-ca-center .tpgb-unfold-toggle-link:active,.tpgb-unfold-wrapper.tpgb-ca-center .tpgb-unfold-toggle-link:focus,.tpgb-unfold-wrapper.tpgb-ca-center.fullview .tpgb-unfold-toggle-link,.tpgb-unfold-wrapper.tpgb-ca-center.fullview .tpgb-unfold-toggle-link:active,.tpgb-unfold-wrapper.tpgb-ca-center.fullview .tpgb-unfold-toggle-link:focus {
+    transform: unset
+}
+
+.tpgb-unfold-last-toggle.right .tpgb-unfold-toggle-link,.tpgb-unfold-wrapper.fullview .tpgb-unfold-toggle-link span{
+    margin-right: 10px
+}
+
+.tpgb-unfold-last-toggle .tpgb-unfold-toggle .toggle-button-icon{
+    font-size: 15px;
+    margin-right: 10px
+}

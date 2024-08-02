@@ -1,0 +1,32 @@
+.tpgb-blockquote-inner {
+    position: relative;
+    display: block
+}
+
+.tpgb-blockquote-inner .tpgb-quote-text {
+    font-size: inherit;
+    padding: 0!important;
+    margin: 0;
+    background: 0 0;
+    border: 0;
+    font-style: normal;
+    transition: all .3s ease-in-out;
+    font-weight: 400
+}
+
+.tpgb-blockquote-inner .tpgb-quote-text:after,.tpgb-blockquote-inner .tpgb-quote-text:before {
+    display: none
+}
+
+.tpgb-blockquote-inner,.tpgb-blockquote-inner .tpgb-quote-text>span {
+    transition: all .3s ease-in-out
+}
+
+.tpgb-blockquote-inner.tpgb-quote-style-1 {
+    background-color: #f0e7fe80;
+    padding: 10px;
+    border-left: 3px solid #6f14f1;
+    font-size: 16px;
+    line-height: 29px;
+    color: #888
+}

@@ -1,0 +1,104 @@
+/**
+ * CSS for both Frontend+Backend.
+ */
+.tpgb-wrap-fw {
+    width: 100%;
+}
+.tpgb-team-member-list .splide__slide {
+    padding: 15px 0
+}
+
+.tpgb-team-profile span.thumb-wrap {
+    position: relative;
+    display: block;
+    font-size: 0
+}
+
+.tpgb-team-member-list .tpgb-team-social-content .tpgb-team-social-list {
+    padding: 0;
+    margin: 0 auto;
+    text-align: center;
+    display: block;
+    list-style: none
+}
+
+.tpgb-team-member-list .tpgb-team-social-content .tpgb-team-social-list>div {
+    display: inline-block;
+    margin: 2px 5px;
+    vertical-align: middle;
+    position: relative;
+    text-align: center
+}
+
+.tpgb-team-member-list .tpgb-team-profile img {
+    transition: all .3s ease-in-out;
+    border-radius: 6px;
+    width: 100%
+}
+
+.tpgb-team-member-list .post-content-bottom {
+    position: relative;
+    display: block;
+    padding: 15px 10px;
+    text-align: center
+}
+
+.tpgb-team-member-list .team-list-content .tpgb-post-title,.tpgb-team-member-list .team-list-content .tpgb-post-title a {
+    font-size: 18px;
+    line-height: 24px;
+    display: inline-block;
+    margin-top: 0;
+    margin-bottom: 0;
+    font-weight: 600;
+    color: #222;
+    text-decoration: none;
+    transition: all .3s linear
+}
+
+.tpgb-team-member-list .tpgb-member-designation {
+    position: relative;
+    display: block;
+    margin-top: 8px;
+    font-size: 15px;
+    line-height: 20px;
+    color: #888;
+    font-weight: 300;
+    transition: all .3s linear
+}
+
+.team-list-content .post-content-image a {
+    font-size: 0
+}
+
+@media (max-width:767px) {
+    .tpgb-team-member-list .tpgb-row {
+        margin-left: 0;
+        margin-right: 0
+    }
+}
+/* Col 8 css */
+
+@media (min-width: 576px) {
+    .tpgb-team-member-list .grid-item.tpgb-col-sm-8{
+        flex: 0 0 12.5%;
+        max-width: 12.5%
+    }
+}
+@media (min-width: 768px) {
+    .tpgb-team-member-list .grid-item.tpgb-col-md-8{
+        flex: 0 0 12.5%;
+        max-width: 12.5%
+    }
+}
+@media (min-width: 992px) {
+    .tpgb-team-member-list .grid-item.tpgb-col-lg-8{
+        flex: 0 0 12.5%;
+        max-width: 12.5%
+    }
+}
+/* Col 8 css */
+
+/* Twenty Twenty Three Theme Image */
+.theme-twentytwentythree .tpgb-team-member-list .tpgb-team-profile img{
+    height: auto;
+}

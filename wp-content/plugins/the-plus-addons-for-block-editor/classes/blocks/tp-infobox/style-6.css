@@ -1,0 +1,107 @@
+/**
+ * CSS for both Frontend+Backend.
+ */
+/*Style 6*/
+.tpgb-infobox.info-box-style-6 {
+    padding-top: 30px;
+    padding-bottom: 30px
+}
+
+.tpgb-infobox.info-box-style-6 .info-box-inner {
+    box-shadow: none!important;
+    -webkit-box-shadow: none!important;
+    -moz-box-shadow: none!important
+}
+
+.tpgb-infobox.info-box-style-6 .info-box-all,
+.style-6.service-title {
+    transition: all 0.8s cubic-bezier(.19, 1, .22, 1);
+}
+
+.tpgb-infobox.info-box-style-6:hover .service-title {
+    position: relative;
+    transform: translateY(0);
+    transition: transform 1s cubic-bezier(.19, 1, .22, 1);
+}
+
+.tpgb-infobox.info-box-style-6 .service-title {
+    top: 50%;
+    transform: translateY(-50%);
+    position: absolute;
+    text-align: center;
+    display: block;
+    width: 100%;
+    transition: all 1s;
+    margin-bottom: 0;
+}
+
+.tpgb-infobox.info-box-style-6 .info-box-title-hide {
+    opacity: 0;
+    margin-bottom: 0;
+	text-align: center;
+}
+
+.tpgb-infobox.info-box-style-6 .service-desc {
+    opacity: 0;
+    transform: translate3d(0, -50%, 0);
+    transition: transform 1s cubic-bezier(.19, 1, .22, 1);
+}
+
+.tpgb-infobox.info-box-style-6 .info-box-icon-img {
+    opacity: 0;
+    backface-visibility: hidden;
+    transition: transform 1s cubic-bezier(.19, 1, .22, 1);
+}
+
+.tpgb-infobox.info-box-style-6:hover .service-desc {
+    opacity: 1;
+    transform: translate3d(0, 10px, 0);
+    transition: all 0.8s cubic-bezier(.19, 1, .22, 1);
+}
+
+.tpgb-infobox.info-box-style-6:hover .info-box-icon-img {
+    opacity: 1;
+    transform: translate3d(0, -10px, 0);
+    transition: all 0.8s cubic-bezier(.19, 1, .22, 1);
+}
+
+.tpgb-infobox.info-box-style-6 {
+    overflow: visible;
+    box-shadow: none!important;
+    transition: all .35s
+}
+
+.tpgb-infobox.info-box-style-6 .info-box-full.color {
+    background: inherit;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    transform: translate3d(0, 0, 0);
+    transition: transform .35s;
+    width: 100%;
+    z-index: 1
+}
+
+.info-box-style-6:hover .info-box-title-hide {
+    display: none
+}
+
+.tpgb-infobox.info-box-style-6:hover .info-box-full.color {
+    transform: scaleX(1.14625) translate3d(0, 0, 0)
+}
+
+.tpgb-infobox.info-box-style-6:hover .info-box-all {
+    position: relative;
+    z-index: 6
+}
+
+.tpgb-infobox.info-box-style-6 .info-box-all {
+    position: relative;
+    z-index: 5
+}
+
+.tpgb-infobox.info-box-style-6:hover {
+    z-index: 7
+}
+/*Style 6*/

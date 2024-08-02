@@ -1,0 +1,84 @@
+/* Progress Bar Style */
+.progress-bar-media {
+    display: table;
+    width: 100%;
+    vertical-align: middle;
+}
+.prog-title.prog-icon {
+    display: table-cell;
+    vertical-align: middle;
+}
+.tpgb-progress-bar:not(.tpgb-piechart) .progress-bar-title.before-icon{
+	padding-left: 5px;
+}
+.tpgb-progress-bar:not(.tpgb-piechart) .progress-bar-title.after-icon{
+	padding-right: 5px;
+}
+.progress-bar-skill-bar-filled {
+    background: #2d9bea;
+    height: 100%;
+    width: 0%;
+    transition: width 2s cubic-bezier(0, 0, 0.2, 1) .2s;
+    position: relative;
+}
+.progress-bar-skill.skill-fill.small {
+    height: 6px;
+}
+.progress-bar-skill.skill-fill.medium	{
+	height: 15px;
+}
+.progress-bar-skill.skill-fill.large	{
+	height: 40px;
+}
+.progress-bar-skill-bar-filled {
+    background-color: #6c2bcc;
+}
+.progress-bar-skill.skill-fill {
+    background-color: #8072fc;
+    margin-top: 0px;
+    position: relative;
+}
+.progress-bar-media-large {
+    position: absolute;
+    top: 0;
+}
+.progress-bar-media.large {
+    position: absolute;
+    transform: translateZ(50px) translateY(-50%);
+    top: 50%;
+	width: 15%;
+    padding: 0 10px;
+    transition: width 2s cubic-bezier(0, 0, 0.2, 1) .2s;
+}
+.progress-bar-media.large .prog-title.prog-icon.large .progres-ims, .progress-bar-media.large .prog-title.prog-icon.large .progress-bar-title {
+    color: #fff;
+}
+.progress-bar-media.large span.progress-bar-title {
+    display: table-cell;
+    vertical-align: middle;
+    padding-left: 5px;
+	padding-right: 5px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.progress-bar-media.large span.progres-ims {
+    display: table-cell;
+    vertical-align: middle;
+
+}
+.progress-style-2.progress-bar-skill.skill-fill {
+    margin-top: 5px;
+    height: 2px;
+    box-shadow: none;
+    overflow: visible;
+}
+.progress-style-2 .progress-bar-skill-bar-filled:after {
+    position: absolute;
+    content: '';
+    left: 100%;
+    margin-left: -2px;
+    border-right: 2px solid #6c2bcc;
+    height: 8px;
+    top: 0;
+}

@@ -1,0 +1,13 @@
+/* sticky Column Css */
+.tpgb-column-sticky{
+	-webkit-align-self: flex-start;
+    -ms-flex-item-align: start;
+    align-self: flex-start;
+	will-change: min-height;
+}
+.tpgb-column-sticky .inner-wrapper-sticky {
+    display: flex;
+    width: -webkit-fill-available;
+    transform: translate3d(0, 0, 0);
+    will-change: position, transform;
+}

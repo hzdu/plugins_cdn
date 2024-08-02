@@ -1,0 +1,25 @@
+/*style 2 */
+.tpgb-scroll-nav.style-2 .tpgb-scroll-nav-dots:before {
+    content: "";
+    position: relative;
+    top: 3.5px;
+    display: inline-block;
+    cursor: pointer;
+    color: #000;
+    font-size: 14px;
+    width: 20px;
+    height: 20px;
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+    transform-origin: center center;
+    box-shadow: 0 0 0 1px #fff;
+    background-color: transparent;
+    transition: transform .3s ease,background-color .6s ease,-webkit-transform .3s ease;
+    border: 1px solid #ff5a6e
+}
+
+.tpgb-scroll-nav.style-2 .tpgb-scroll-nav-dots:hover:before,.tpgb-scroll-nav.style-2 a.tpgb-scroll-nav-item.active .tpgb-scroll-nav-dots:before {
+    border-color: #8072fc;
+    transform: rotate(315deg)
+}
+/*style 2 */

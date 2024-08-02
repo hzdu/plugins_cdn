@@ -1,0 +1,61 @@
+/*Coupon Code*/
+.tpgb-coupon-code .coupon-code-inner {
+    position: relative;
+    display: inline-block;
+    width: 30%;
+}
+.tpgb-coupon-code.action-click .full-code-text {
+	width: 30%;
+}
+.tpgb-coupon-code .coupon-btn-link {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    height: auto;
+    font-size: 18px;
+    padding: 10px 15px; 
+    line-height: 1;
+    letter-spacing: 1px;
+    background: #6f14f1;
+    border-radius: 3px;
+    border: 2px solid #ddd;
+	color: #444444;
+    background: linear-gradient(315deg, #0000000f 10%, #00000000 15%, #00000000 35%, #0000000f 40%, #0000000f 60%, #00000000 65%, #00000000 85%, #0000000f 90%) repeat scroll 0 0/6px 6px #00000000;  
+	cursor: pointer;
+}
+.tpgb-coupon-code .coupon-code-inner .coupon-text {
+	padding: 10px 15px; 
+    font-size: 16px;
+    color: #FFF;
+    background: #6f14f1;
+}
+.tpgb-coupon-code .full-code-text{
+    position: relative;
+    display: inline-flex;
+	width: 100%;
+    font-size: 20px;
+    padding: 6px 33px;
+    overflow: hidden;
+	line-height: 1;
+	color: #000000;
+    background: #6f14f120;
+    border: 2px solid #6f14f1;
+	justify-content: center;
+	align-items: center;
+}
+.full-code-text.code-arrow::before, .full-code-text.code-arrow::after{
+    content: '';
+    position: absolute;
+    border: 10px solid transparent;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 100;
+}
+.full-code-text.code-arrow::before{
+    left: 0px;
+    border-left-color: #6f14f1;
+}
+.full-code-text.code-arrow::after {
+    right: 0px;
+    border-right-color: #6f14f1;
+}

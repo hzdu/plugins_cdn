@@ -1,0 +1,76 @@
+.coupon-code-slideOut.slide-out-left .tpgb-draggable-handle{cursor:w-resize}
+.coupon-code-slideOut.slide-out-left .tpgb-draggable-dragging{cursor:ew-resize}
+.coupon-code-slideOut.slide-out-top .tpgb-draggable-handle{cursor:n-resize}
+.coupon-code-slideOut.slide-out-top .tpgb-draggable-dragging{cursor:ns-resize}
+.coupon-code-slideOut.slide-out-right .tpgb-draggable-handle{cursor:e-resize}
+.coupon-code-slideOut.slide-out-right .tpgb-draggable-dragging{cursor:ew-resize}
+.coupon-code-slideOut.slide-out-bottom .tpgb-draggable-handle{cursor:s-resize}
+.coupon-code-slideOut.slide-out-bottom .tpgb-draggable-dragging{cursor:ns-resize}
+
+.tpgb-anim-pos-cont {
+	position: absolute;
+	top: 0;
+	right: 0;
+	z-index: 9999;
+}
+.tpgb-anim-pos-cont svg {
+	position: relative;
+	color: #fff;
+	transition: all 2s linear;
+}
+.tpgb-coupon-code.coupon-code-slideOut .tpgb-anim-pos-cont svg{
+    animation: tpgbshake 2s infinite;
+}
+
+@keyframes tpgbshake {
+    0%,to { transform: scale(.4) }
+    50% { transform: scale(.5) }
+}
+.tpgb-coupon-code.coupon-code-slideOut:hover .tpgb-anim-pos-cont svg{
+	animation: tpgbccanim 2s infinite linear;  
+}
+@keyframes tpgbccanim {
+  0% { transform: translateX(0); } 
+  to { transform: translateX(-100px); }
+}
+
+.tpgb-anim-pos-cont.slide-out-right {
+    left: 0;
+    top: 0;
+    right: auto;
+}
+.tpgb-coupon-code.coupon-code-slideOut:hover .tpgb-anim-pos-cont.slide-out-right svg{
+  animation: tpgbccanimright 2s infinite linear;
+}
+@keyframes tpgbccanimright {
+  0% { transform: translateX(0); } 
+  to { transform: translateX(100px); }
+}
+
+.tpgb-anim-pos-cont.slide-out-top {
+    left: 0;
+    bottom: 0;
+    top: auto;
+    right:auto;
+}
+.tpgb-coupon-code.coupon-code-slideOut:hover .tpgb-anim-pos-cont.slide-out-top svg{
+  animation: tpgbccanimtop 2s infinite linear;
+}
+@keyframes tpgbccanimtop {
+  0% { transform: translateX(0); } 
+  to { transform: translateY(-100px); }
+}
+.tpgb-anim-pos-cont.slide-out-bottom {
+    left: auto;
+    bottom: auto;
+    top: 0;
+    right:0;
+    transform: rotate(180deg);
+}
+.tpgb-coupon-code.coupon-code-slideOut:hover .tpgb-anim-pos-cont.slide-out-bottom svg{
+  animation: tpgbccanimbottom 2s infinite linear;
+}
+@keyframes tpgbccanimbottom {
+  0% { transform: translateX(0); } 
+  to { transform: translateY(-100px); }
+}

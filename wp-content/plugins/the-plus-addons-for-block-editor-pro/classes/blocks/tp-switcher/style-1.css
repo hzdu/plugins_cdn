@@ -1,0 +1,21 @@
+/* Switch Style 1 css */
+.switch-style-1 .switcher-button {
+    font-size: 12px
+}
+.switch-slider.style-1:before {
+    content: "";
+    position: absolute;
+    height: 3em;
+    width: 3em;
+    left: -.1em;
+    bottom: -.3em;
+    background: #fff;
+    transition: .4s
+}
+.switch-toggle:checked + .switch-slider.style-1:before {
+    transform: translateX(2.4em)
+}
+.switch-slider.style-1:before, .switch-slider.style-2:before {
+    box-shadow: 0 0 10px 0 #00000080
+}
+/* Switch Style 1 css */

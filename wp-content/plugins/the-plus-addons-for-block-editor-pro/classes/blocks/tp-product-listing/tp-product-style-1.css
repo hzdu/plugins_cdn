@@ -1,0 +1,62 @@
+.product-style-1 .wrapper-cart-hover-hidden.add-cart-btn {
+    position: absolute;
+    bottom: 10px;
+    left: 0;
+    width: 100%;
+    opacity: 0;
+    visibility: hidden;
+    text-align: center;
+    transition: all .3s ease;
+    z-index: 1
+}
+
+.product-style-1 .product-list-content:hover .wrapper-cart-hover-hidden.add-cart-btn {
+    opacity: 1;
+    visibility: visible;
+    bottom: 20px
+}
+
+.product-style-1 .add_to_cart_button span.text {
+    display: inline-block;
+    overflow: hidden;
+    position: relative;
+    z-index: 1;
+    vertical-align: middle;
+    margin-left: 5px;
+    line-height: 20px
+}
+
+.product-style-1 .add_to_cart_button span.text span:not(:first-child) {
+    position: absolute;
+    top: 100%;
+    left: 0
+}
+
+.product-style-1 .add_to_cart_button.product_type_simple:hover .text span {
+    transform: translateY(-100%)
+}
+
+.product-style-1 .product-content-image .product-image img{
+    transform: scale(1);
+    transition: all .3s ease-in-out
+}
+
+.product-style-1 .product-content-image:hover .product-image img{
+    transform: scale(1.03)
+}
+
+.product-style-1 .product-content-image:hover .product-image .hover-image+img{
+    opacity: 0;
+    filter: alpha(opacity=0);
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)"
+}
+
+.product-style-1 .product-content-image .product-image .hover-image{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    transition: all .4s ease
+}

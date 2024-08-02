@@ -1,0 +1,35 @@
+/* Button Style-5 */
+.tpgb-plus-button.button-style-5 .button-link-wrap {
+    margin: 10px;
+    text-align: center;
+    border: 1px solid #7248f1;
+    background: #7248f1;
+    transition: all .15s ease-out .15s;
+    background-size: cover!important;
+    background-position: center center!important;
+    border-radius: 0px!important;
+}
+.tpgb-plus-button.button-style-5 .button-link-wrap:before, .tpgb-plus-button.button-style-5 .button-link-wrap:after {
+    content: '';
+    position: absolute;
+    background: #f18248;
+    top: -7px;
+    left: -7px;
+    transition: all .15s ease-out .15s;
+}
+.tpgb-plus-button.button-style-5 .button-link-wrap:before {
+    height: 6px;
+    width: 100%;
+}
+.tpgb-plus-button.button-style-5 .button-link-wrap:after {
+    height: 100%;
+    width: 6px;
+}
+.tpgb-plus-button.button-style-5 .button-link-wrap:hover{
+    border-color: #f18248;
+	background: #f18248;
+}
+.tpgb-plus-button.button-style-5 .button-link-wrap:hover:before, .tpgb-plus-button.button-style-5 .button-link-wrap:hover:after {
+    left: 0;
+    top: 0;
+}

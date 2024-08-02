@@ -1,0 +1,81 @@
+/*highlights*/
+@-webkit-keyframes tpgb-highlight-word {
+    0% {
+        stroke-dasharray: 0 1500
+    }
+    15% {
+        stroke-dasharray: 1500 1500
+    }
+    85% {
+        opacity: 1
+    }
+    90% {
+        stroke-dasharray: 1500 1500;
+        opacity: 0
+    }
+    to {
+        stroke-dasharray: 0 1500;
+        opacity: 0
+    }
+}
+
+@keyframes tpgb-highlight-word {
+    0% {
+        stroke-dasharray: 0 1500
+    }
+    15% {
+        stroke-dasharray: 1500 1500
+    }
+    85% {
+        opacity: 1
+    }
+    90% {
+        stroke-dasharray: 1500 1500;
+        opacity: 0
+    }
+    to {
+        stroke-dasharray: 0 1500;
+        opacity: 0
+    }
+}
+
+.tpgb-heading-animation .heading-highlights .heading-anim-text {
+    position: relative;
+    top: auto;
+    left: auto
+}
+
+.tpgb-heading-animation .heading-highlights svg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: calc(100% + 15px);
+    height: calc(100% + 15px);
+    transform: translate(-50%,-50%);
+    overflow: visible
+}
+
+.tpgb-heading-animation .heading-highlights svg path {
+    stroke: #8072fc;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 8;
+    fill: none;
+    stroke-dasharray: 1500;
+    animation: tpgb-highlight-word 12s infinite
+}
+
+.tpgb-heading-animation .heading-highlights svg path:nth-of-type(2) {
+    animation-delay: .5s
+}
+
+.heading-highlights.heading-highlight-exclamationmark svg {
+    width: auto;
+    left: auto;
+    height: 1.3em;
+    position: relative;
+    transform: initial;
+    vertical-align: middle;
+    padding: 0 7px
+}
+/*highlights*/

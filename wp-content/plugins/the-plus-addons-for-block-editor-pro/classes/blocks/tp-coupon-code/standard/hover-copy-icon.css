@@ -1,0 +1,47 @@
+.code-click-icon .code-copy-svg-icon{
+    opacity: 0;
+    visibility: hidden;
+    position: absolute;
+    transition: 0.3s linear;
+    cursor: pointer;
+    width: 80%;
+    height: 80%;
+}
+.code-click-icon .full-code-text:hover .code-copy-svg-icon{
+    opacity: 1;
+    visibility: visible;
+}
+
+.code-click-icon .code-copy-svg-icon path {
+    stroke-width: 1.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+  
+.code-click-icon .code-copy-svg-icon path.check {
+    transform-origin: center;
+    stroke: #83F5AD;
+    stroke-dasharray: 16;
+    stroke-dashoffset: 20;
+}
+  
+.code-click-icon .code-copy-svg-icon.copied path.check {
+    stroke-dashoffset: 32;
+    transition: all 0.5s ease;
+    animation: copiedPage 2s ease forwards;
+}
+  
+@keyframes copiedPage {
+    0% {
+      transform: rotate(0) translateY(0);
+      opacity: 1;
+    }
+    50% {
+      transform: rotate(0) translateY(0);
+      opacity: 1;
+    }
+    100% {
+      transform: rotate(10deg) translateY(16px);
+      opacity: 0;
+    }
+}

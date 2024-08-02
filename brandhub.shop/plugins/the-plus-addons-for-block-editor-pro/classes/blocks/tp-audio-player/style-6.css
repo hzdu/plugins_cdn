@@ -1,0 +1,77 @@
+/*style-6*/
+.tpgb-audioplay-wrap.style-6 .tpgb-player {
+    padding: 0;
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center
+}
+
+.tpgb-audioplay-wrap.style-6 .ap-st5-img {
+    position: relative;
+    display: block;
+    width: 200px;
+    float: left
+}
+
+.tpgb-audioplay-wrap.style-6 .ap-st5-content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: calc(100% - 200px);
+    align-items: center;
+    min-height: 200px;
+    justify-content: center;
+    padding: 0 20px;
+    border-top-left-radius: 0!important;
+    border-bottom-left-radius: 0!important
+}
+
+.tpgb-audioplay-wrap.style-6 .controls {
+    display: flex;
+    margin: 0;
+    position: relative;
+    align-items: center;
+    justify-content: center
+}
+
+.tpgb-audioplay-wrap.style-6 .controls .tpgb-ap-pp {
+    background: #f44336;
+    height: 75px;
+    width: 75px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    margin: 0
+}
+
+.tpgb-audioplay-wrap.style-6 .ap-nextprev {
+    position: absolute;
+    bottom: -30px;
+    display: flex
+}
+
+.tpgb-audioplay-wrap.style-6 .trackDetails {
+    margin-bottom: 10px
+}
+
+.tpgb-audioplay-wrap.style-6 .tracker {
+    width: 97%
+}
+.tpgb-audioplay-wrap.style-6 .ap-st5-content {
+    background-repeat: no-repeat!important;
+    background-size: cover!important;
+    background-position: center!important
+}
+
+@media only screen and (max-width:425px) {
+    .tpgb-audioplay-wrap.style-6 .ap-st5-img {
+        width: 130px
+    }
+
+    .tpgb-audioplay-wrap.style-6 .ap-st5-content {
+        width: calc(100% - 130px)
+    }
+}
+/*style-6*/

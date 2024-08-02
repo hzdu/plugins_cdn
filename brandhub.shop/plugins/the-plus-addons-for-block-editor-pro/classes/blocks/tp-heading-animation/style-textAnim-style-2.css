@@ -1,0 +1,65 @@
+/*anim style*/
+/*Style 2*/
+.tpgb-heading-animation .heading-text-style-2{
+    transition: width .5s;
+}
+.tpgb-heading-animation .heading-text-style-2 .heading-anim-text{
+	white-space: nowrap
+}
+.tpgb-heading-animation .heading-text-style-2 .heading-anim-text .letter{
+    display: inline-block;
+    opacity: 0;
+}
+.heading-text-style-2 .heading-anim-text .letter{
+    animation: heading-style-2-out 1s forwards;
+	animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+}
+.heading-text-style-2 .heading-anim-text .letter.letter-anim-in {
+    animation: heading-style-2-in .95s forwards;
+	animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+}
+@-webkit-keyframes heading-style-2-in {
+    0% {
+        transform: scale(4) translateZ(0);
+        opacity: 0
+    }
+    to {
+        transform: scale(1) translateZ(0);
+        opacity: 1
+    }
+}
+
+@keyframes heading-style-2-in {
+    0% {
+        transform: scale(4) translateZ(0);
+        opacity: 0
+    }
+    
+    to {
+        transform: scale(1) translateZ(0);
+        opacity: 1
+    }
+}
+@-webkit-keyframes heading-style-2-out {
+    0% {
+        transform: scale(1) translateZ(0);
+        opacity: 1
+    }
+    to {
+        transform: scale(1) translateZ(0);
+        opacity: 0
+    }
+}
+
+@keyframes heading-style-2-out {
+    0% {
+        transform: scale(1) translateZ(0);
+        opacity: 1
+    }
+    to {
+        transform: scale(1) translateZ(0);
+        opacity: 0
+    }
+}
+/*Style 2*/
+/*anim style*/

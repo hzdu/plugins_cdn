@@ -1,0 +1,176 @@
+/**
+ * CSS for both Frontend+Backend.
+ */
+ .tpgb-hotspot-inner {
+    overflow: hidden;
+    line-height: 0
+}
+
+.tpgb-hotspot-inner .hotspot-image {
+    width: 100%
+}
+
+.pin-hotspot .normal_drop_waves:after,.tpgb-hotspot-inner .hotspot-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%
+}
+
+.hotspot-overlay .pin-hotspot {
+    position: absolute;
+    text-align: center
+}
+
+.tpgb-hotspot .pin-hotspot .pin-hotspot-wrapper,.tpgb-hotspot .pin-hotspot .pin-hover {
+    position: relative;
+    display: inline-block;
+    z-index: 1
+}
+
+.pin-hotspot .pin-content,.pin-hotspot .pin-content.pin-type-icon,.pin-hotspot .pin-content.pin-type-image {
+	background: #222;
+    border-radius: 50%;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    display: inline-block;
+    position: relative;
+    z-index: 1
+}
+
+.pin-hotspot .pin-content .pin-icon {
+    font-style: normal;
+    padding: 0;
+    font-size: 15px;
+    vertical-align: middle;
+    text-align: center;
+    display: inline-block;
+    color: #fff
+}
+
+.pin-hotspot .pin-content.pin-type-text {
+    width: auto;
+    height: auto;
+    line-height: initial;
+    padding: 5px 15px;
+    border-radius: 5px
+}
+
+.pin-content.pin-type-text .pin-icon {
+    font-size: 18px;
+    line-height: 18px
+}
+
+.pin-hotspot .pin-type-image img.pin-icon {
+    max-width: 20px
+}
+
+.pin-hotspot .normal_drop_waves:after {
+    content: "";
+    border-radius: 50%;
+    transition: all .3s cubic-bezier(0,0,.2,1)
+}
+
+.pin-hotspot .pin-link {
+    display: block
+}
+
+/* Continues Effect Css  */
+@-webkit-keyframes continue-drop-waves {
+    0% {
+        opacity: .8
+    }
+
+    to {
+        opacity: 0;
+        -webkit-transform: scale(1.4);
+        transform: scale(1.4)
+    }
+}
+
+@keyframes continue-drop-waves {
+    0% {
+        opacity: .8
+    }
+
+    to {
+        opacity: 0;
+        -webkit-transform: scale(1.4);
+        transform: scale(1.4)
+    }
+}
+
+.pin-hotspot:hover .normal_drop_waves:after {
+    transform: scale(1.4)
+}
+
+.pin-hotspot .hover_drop_waves:after,.pin-hotspot .image_drop_waves:after {
+    content: "";
+    background: #ff214f;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    border-radius: 50%;
+    z-index: -1;
+    -webkit-animation-duration: 1.5s;
+    animation-duration: 1.5s;
+    -webkit-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
+    -webkit-animation-timing-function: ease-out;
+    animation-timing-function: ease-out;
+    -webkit-animation-iteration-count: infinite;
+    animation-iteration-count: infinite
+}
+
+.pin-hotspot .hover_drop_waves:hover:after,.pin-hotspot .image_drop_waves:after {
+    -webkit-animation-name: continue-drop-waves;
+    animation-name: continue-drop-waves
+}
+
+/* Css for page load animation */
+@keyframes hotspotBounceIn {
+    0% {
+        transform: translateY(80px);
+        opacity: 0
+    }
+
+    33% {
+        transform: translateY(-13px);
+        opacity: 0
+    }
+
+    66% {
+        transform: translateY(4px);
+        opacity: 1
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1
+    }
+}
+
+.hotspot-overlay .pin-hotspot .amimation-in {
+    visibility: hidden
+}
+
+.tpgb-hotspot .hotspot-animation-in {
+    -webkit-animation: hotspotBounceIn .8s ease-out forwards;
+    animation: hotspotBounceIn .8s ease-out forwards;
+    visibility: visible;
+    opacity: 1;
+    transform: translateY(80px);
+    -webkit-transform: translateY(80px)
+}
+
+/* Twenty Twenty Three Theme Image */
+.theme-twentytwentythree .tpgb-hotspot-inner .hotspot-image{
+    height: auto;
+}

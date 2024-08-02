@@ -1,0 +1,36 @@
+/* Switch Style 3 css */
+.switch-style-3 .switcher-button{
+	display: none;
+}
+.switch-toggle-wrap.switch-style-3 {
+    position: relative;
+    padding: 0;
+    text-align: center;
+    display: flex;
+    margin: 0 auto;
+    max-width: 280px
+}
+.switch-toggle-wrap.switch-style-3 .switch-1,.switch-toggle-wrap.switch-style-3 .switch-2 {
+    margin: 0;
+    width: 50%;
+    text-align: center;
+    padding: 10px
+}
+.switch-toggle-wrap.switch-style-3 .underline {
+    width: 50%;
+    height: 4px;
+    position: absolute;
+    left: 0;
+    bottom: -2;
+    background: linear-gradient(to right,rgba(0,227,246,.04)0,#6f14f1 50%,rgba(255,255,255,.1) 100%);
+    transition: all .4s ease 0s
+}
+.switch-toggle-wrap.switch-style-3.active .underline {
+    left: 50%
+}
+.switch-toggle-wrap.switch-style-3 .switch-label {
+    display: flex;
+    align-items: center;
+    justify-content: center
+}
+/* Switch Style 3 css */

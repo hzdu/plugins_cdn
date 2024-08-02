@@ -1,0 +1,28 @@
+/* Button Style-6 */
+.tpgb-plus-button.button-style-6 {
+    overflow: visible;
+}
+.tpgb-plus-button.button-style-6 .button-link-wrap {
+    transition: left .5s cubic-bezier(.19,1,.22,1),right .5s cubic-bezier(.19,1,.22,1);
+    left: 22px;
+	color: #212121;
+}
+.tpgb-plus-button.button-style-6 .button-link-wrap > span {
+    display: flex;
+    align-items: center;
+}
+.tpgb-plus-button.button-style-6 .button-link-wrap .btn-left-arrow {
+    transition: left .5s cubic-bezier(.19,1,.22,1),right .5s cubic-bezier(.19,1,.22,1);
+    font-size: 10px;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.tpgb-plus-button.button-style-6 .button-link-wrap:hover {
+    left: 0;
+    padding-right: 22px;
+}
+.tpgb-plus-button.button-style-6 .button-link-wrap:hover .btn-left-arrow{
+    left: calc(100% - 11px);
+}

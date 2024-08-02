@@ -1,0 +1,125 @@
+/* SS Toggle */
+.tpgb-social-sharing.sharing-toggle .tpgb-social-list .share-btn {
+	border-radius: 50px;
+}
+.tpgb-social-sharing.sharing-toggle.sharing-style-1 .toggle-share{
+	position: relative;
+    width: max-content;
+    height: auto;
+	padding: 10px 15px;
+    border-radius: 30px;
+    background: #2A4870;
+	cursor: pointer;
+    display: flex;
+	margin: 0 auto;
+    align-items: center;
+    justify-content: center;
+}
+.tpgb-social-sharing.sharing-toggle.sharing-style-1 .toggle-icon {
+    color: #D0D8DB;
+    font-size: 16px;
+}
+.tpgb-social-sharing.sharing-toggle.sharing-style-1 .toggle-icon .toggle-label{
+    text-transform: uppercase;
+    position: relative;
+    margin-right: 3px;
+    display: inline-block;
+}
+
+.tpgb-social-sharing.sharing-toggle.sharing-style-1 .toggle-icon .toggle-btn{
+	position: relative;
+    display: inline-block;
+    background: #d0d8dbe6;
+    color: #2A4870;
+    border-radius: 50%;
+    width: 25px;
+    text-align: center;
+    height: 25px;
+    line-height: 25px;
+	margin-left: 3px;
+}
+.tpgb-social-sharing.sharing-toggle.sharing-style-1 .tpgb-social-list{
+    justify-content: center;
+	display: none;
+	transition: all .3s ease-in-out;
+}
+.tpgb-social-sharing.sharing-toggle.sharing-style-1 .tpgb-social-list .share-btn{
+	width: 100%;
+	height: auto;
+}
+.tpgb-social-sharing.sharing-toggle.sharing-style-2 .tpgb-social-list {
+    display: inline-flex;
+    position: relative;
+    left: auto;
+    bottom: auto;
+    transform: none;
+	width: auto;
+	z-index: 1;
+}
+.tpgb-social-sharing.sharing-toggle.sharing-style-2 .tpgb-social-list .tpgb-main-menu {
+	display: inline-block;
+    transition: all 1s ease 0s;
+}
+
+.tpgb-social-sharing.sharing-toggle.sharing-style-2 .tpgb-social-list .tpgb-main-menu {
+    position: relative;
+    left: auto;
+    bottom: auto;
+    transform: none;
+}
+.tpgb-social-sharing.sharing-toggle.sharing-style-2 .tpgb-social-list .tpgb-main-menu a.tpgb-share-btn {
+    color: #fff;
+    font-size: 20px;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+	cursor: pointer;
+    background: #8072fc;
+    border-color: #8072fc;
+    transition: all .3s ease 0s;
+}
+.tpgb-social-sharing.sharing-toggle.sharing-style-2 .tpgb-social-list > div{
+	padding: 0;
+}
+.tpgb-social-sharing.sharing-toggle.sharing-style-2 .tpgb-social-list .tpgb-social-menu{
+	position: absolute;
+    display: inline-block;
+	transition: 1s ease;
+}
+.tpgb-social-sharing.sharing-toggle.sharing-style-2 .tpgb-social-list.right .tpgb-social-menu{
+	left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.tpgb-social-sharing.sharing-toggle.sharing-style-2 .tpgb-social-list.left .tpgb-social-menu{
+	right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.tpgb-social-sharing.sharing-toggle.sharing-style-2 .tpgb-social-list.top .tpgb-social-menu{
+	bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.tpgb-social-sharing.sharing-toggle.sharing-style-2 .tpgb-social-list.bottom .tpgb-social-menu{
+	top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.tpgb-social-sharing.sharing-toggle.sharing-style-2 .tpgb-social-list .tpgb-social-menu a.share-btn {
+    width: auto;
+    height: auto;
+    line-height: initial;
+    padding: 0;
+    color: #fff;
+	border-radius: 50%;
+    transition: all .3s ease 0s;
+}
+.tpgb-social-sharing.sharing-toggle.sharing-style-2 .tpgb-social-list  > div:not(:first-child){
+	opacity: 0;
+	visibility: hidden;
+}
+.tpgb-social-sharing.sharing-toggle.sharing-style-2 .tpgb-social-list.active  > div:not(:first-child){
+	opacity: 1;
+	visibility: visible;
+}

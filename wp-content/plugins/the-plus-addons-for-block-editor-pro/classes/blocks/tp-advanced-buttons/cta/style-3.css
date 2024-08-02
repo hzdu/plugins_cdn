@@ -1,0 +1,46 @@
+/**
+ * CSS for both Frontend+Backend.
+ */
+ @keyframes tp-jittery {
+    5%,50% {
+        transform: scale(1)
+    }
+    10% {
+        transform: scale(.9)
+    }
+    15% {
+        transform: scale(1.15)
+    }
+    20% {
+        transform: scale(1.15) rotate(-5deg)
+    }
+    25% {
+        transform: scale(1.15) rotate(5deg)
+    }
+    30% {
+        transform: scale(1.15) rotate(-3deg)
+    }
+    35% {
+        transform: scale(1.15) rotate(2deg)
+    }
+    40% {
+        transform: scale(1.15) rotate(0)
+    }
+}
+.tpgb-adv-btn-inner.ab-cta.tpgb-cta-style-3 {
+    position: relative;
+    display: block
+}
+.tpgb-adv-btn-inner.ab-cta.tpgb-cta-style-3 .adv-button-link-wrap:hover {
+    color: #212121;
+    animation: tp-heartbeat .2s infinite
+}
+.tpgb-adv-btn-inner.ab-cta.tpgb-cta-style-3 .adv-button-link-wrap {
+    background: #6a79e3;
+    border: 3px solid #6a79e3;
+    border-radius: 50px;
+    letter-spacing: 2px;
+    color: #fff;
+    appearance: searchfield;
+    animation: tp-jittery 4s infinite
+}

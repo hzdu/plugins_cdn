@@ -1,0 +1,36 @@
+/* Button Style-18 */
+.tpgb-plus-button.button-style-18 .button-link-wrap {
+    overflow: hidden;
+    background: #7248f1;
+    transition: background 0.3s;
+    z-index: 1
+}
+.tpgb-plus-button.button-style-18 .button-link-wrap span,.tpgb-plus-button.button-style-18 .button-link-wrap .btn-icon {
+    position: relative;
+    z-index: 1
+}
+.tpgb-plus-button.button-style-18 .button-link-wrap::before,.tpgb-plus-button.button-style-18 .button-link-wrap::after {
+    content: '';
+    position: absolute;
+    border-radius: inherit;
+}
+.tpgb-plus-button.button-style-18 .button-link-wrap::before {
+    background: #f18248;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transform: translate3d(0,100%,0);
+    transition: transform 0.3s cubic-bezier(.75,0,.125,1);
+}
+.tpgb-plus-button.button-style-18 .button-link-wrap:hover::before {
+    transform: translate3d(0,0,0)
+}
+.tpgb-plus-button.button-style-18 .button-link-wrap::after {
+    top: 2px;
+    left: 2px;
+    right: 2px;
+    bottom: 2px;
+    background: #7248f1;
+    border-radius: 0
+}

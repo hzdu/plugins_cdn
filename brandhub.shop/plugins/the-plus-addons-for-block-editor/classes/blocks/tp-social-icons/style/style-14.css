@@ -1,0 +1,59 @@
+/* Social Icons Style-14 */
+.tpgb-social-icons.style-14 .tpgb-social-list {
+    display: flex;
+    width: 100%
+}
+.tpgb-social-icons.style-14 .tpgb-social-list > div {
+    display: block;
+    width: 100%;
+    justify-content: space-around
+}
+.tpgb-social-icons.style-14 .tpgb-social-list > div .tpgb-icon-link {
+    width: 100%;
+    height: 100%;
+    margin-right: 0;
+    padding: 10px;
+	background: #404040;
+	color: #d3d3d3;
+}
+.tpgb-social-icons.style-14 .tpgb-social-list > div:hover .tpgb-icon-link{
+	background: #000;
+}
+.tpgb-social-icons.style-14 .tpgb-social-list > div .tpgb-social-loop-inner {
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    margin-right: 0;
+}
+.tpgb-social-icons.style-14 .tpgb-social-list > div.style-14 .tpgb-social-icn {
+    transition: 0.2s ease;
+}
+.tpgb-social-icons.style-14 .social-faded > div:hover .tpgb-social-icn {
+    transform: scale(0)
+}
+.tpgb-social-icons.style-14 .social-faded span.tpgb-social-title {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    transition: all .3s ease-out;
+    opacity: 0;
+    filter: blur(25px);
+    transform: translateZ(0) translateX(0%);
+    will-change: transform;
+    left: 0;
+    right: 0;
+	color: #fff;
+}
+.tpgb-social-icons.style-14 .social-faded > div:hover span.tpgb-social-title {
+    transition: all .3s ease-out;
+    opacity: 1;
+    filter: blur(0)
+}
+.tpgb-social-icons.style-14 .social-chaffal > div .tpgb-social-icn {
+    display: none
+}
+@media (max-width: 767px) {
+	.tpgb-social-icons.style-14 .tpgb-social-list {
+        flex-wrap: wrap;
+    }
+}

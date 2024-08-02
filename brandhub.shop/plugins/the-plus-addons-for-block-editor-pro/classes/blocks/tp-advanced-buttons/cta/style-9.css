@@ -1,0 +1,67 @@
+/**
+ * CSS for both Frontend+Backend.
+ */
+@keyframes tp-blink {
+    25%,75% {
+        color: transparent
+    }
+    40%,60% {
+        color: #fff
+    }
+}
+.tpgb-adv-btn-inner.ab-cta.tpgb-cta-style-9 .adv-btn-parrot {
+    position: absolute;
+    width: 60px;
+    text-align: center;
+    animation: tp-blink .8s infinite;
+    color: transparent
+}
+.tpgb-adv-btn-inner.ab-cta.tpgb-cta-style-9 .adv-btn-parrot:before {
+    content: "Click Me!"
+}
+.tpgb-adv-btn-inner.ab-cta.tpgb-cta-style-9 .adv-btn-parrot:nth-child(1) {
+    top: -45px;
+    left: -70px;
+    font-size: 12px;
+    transform: rotate(-30deg);
+    animation-duration: .5s
+}
+.tpgb-adv-btn-inner.ab-cta.tpgb-cta-style-9 .adv-btn-parrot:nth-child(2) {
+    font-size: 12px;
+    right: -50px;
+    top: -20px;
+    transform: rotate(15deg);
+    animation-duration: .3s
+}
+.tpgb-adv-btn-inner.ab-cta.tpgb-cta-style-9 .adv-btn-parrot:nth-child(3) {
+    font-size: 16px;
+    top: -65px;
+    left: 15px;
+    transform: rotate(10deg);
+    animation-duration: 1s
+}
+.tpgb-adv-btn-inner.ab-cta.tpgb-cta-style-9 .adv-btn-parrot:nth-child(4) {
+    font-size: 18px;
+    top: -70px;
+    left: 95px;
+    transform: rotate(2deg);
+    animation-duration: .7s
+}
+.tpgb-adv-btn-inner.ab-cta.tpgb-cta-style-9 .adv-btn-parrot:nth-child(5) {
+    font-size: 14px;
+    bottom: -15px;
+    right: 20px;
+    transform: rotate(0deg);
+    animation-duration: .8s
+}
+.tpgb-adv-btn-inner.ab-cta.tpgb-cta-style-9 .adv-btn-parrot:nth-child(6) {
+    font-size: 12px;
+    bottom: -10px;
+    left: -20px;
+    transform: rotate(10deg);
+    animation-duration: 1.2s
+}
+.tpgb-adv-btn-inner.ab-cta.tpgb-cta-style-9 .adv-button-link-wrap:hover .adv-btn-parrot:before {
+    content: "Do it!";
+    width: 70px
+}

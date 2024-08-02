@@ -1,0 +1,43 @@
+/*Shape divider*/
+.tpgb-section .tpgb-section-divider, .tpgb-container-row .tpgb-section-divider {
+    position: absolute;
+    left: 0;
+    right: 0;
+    line-height: 0;
+    overflow: hidden;
+    direction: ltr
+}
+.tpgb-section>.tpgb-section-divider.section-top-divider, .tpgb-container-row>.tpgb-section-divider.section-top-divider {
+    top: -1px
+}
+.tpgb-section>.tpgb-section-divider.section-bottom-divider, .tpgb-container-row>.tpgb-section-divider.section-bottom-divider {
+    bottom: -1px
+}
+.section-bottom-divider.shape-st-6.shape-flip,.section-top-divider.shape-st-6.shape-flip,.tpgb-section-divider.section-bottom-divider {
+    transform: rotate(180deg)
+}
+.section-bottom-divider.shape-st-6.shape-flip,.section-top-divider.shape-flip {
+    transform: rotateY(180deg)
+}
+.section-bottom-divider.shape-flip,.section-top-divider.shape-st-6 {
+    transform: rotateX(180deg)
+}
+.section-bottom-divider.shape-st-6 {
+    transform: rotate(0deg)
+}
+.tpgb-section-divider.bring-front {
+    z-index: 2;
+    pointer-events: none
+}
+.tpgb-section-divider svg {
+    position: relative;
+    width: calc(100% + 1.2px);
+    display: block;
+    left: 50%;
+    transform: translateX(-50%)
+}
+.tpgb-section-divider .shape-fill {
+    fill: #6f14f1;
+    transform-origin: center
+}
+/*Shape divider*/

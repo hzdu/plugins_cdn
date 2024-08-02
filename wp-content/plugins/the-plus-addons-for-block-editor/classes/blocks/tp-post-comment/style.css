@@ -1,0 +1,278 @@
+.tpgb-post-comment {
+    position: relative;
+    display: block;
+    margin: 0;
+    padding: 0
+}
+
+.edit-post-visual-editor .tpgb-post-comment p {
+    margin: 0 0 15px
+}
+
+.tpgb-post-comment .comments-area {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    margin: 30px 0
+}
+
+.tpgb-post-comment ul.comment-list {
+    margin: 0 0 10px;
+    padding: 0 0 20px;
+    background: 0 0;
+    border: 0;
+    transition: all .3s ease
+}
+
+.tpgb-post-comment .comment-list>li {
+    list-style: none
+}
+
+.tpgb-post-comment .comment-list>.comment {
+    border-bottom: 1px solid #eee
+}
+
+.tpgb-post-comment .tpgb-col {
+    padding: 0
+}
+
+.tpgb-post-comment .comment-list ul.children li,.tpgb-post-comment .comment-list>.comment:nth-child(2) {
+    border-top: 1px solid #eee
+}
+
+.tpgb-post-comment .comment-list .comment-section-title {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 10px;
+    margin-top: 5px;
+    font-size: 26px;
+    line-height: 30px;
+    text-transform: capitalize;
+    word-spacing: 0;
+    letter-spacing: 0;
+    font-weight: 700;
+    color: #313131
+}
+
+.tpgb-post-comment #comments .comment-list li.comment>.comment-body,.tpgb-post-comment #comments .comment-list li.pingback>.comment-body {
+    overflow: visible;
+    margin: 0;
+    position: relative;
+    padding: 25px 25px 25px 95px;
+    transition: all .3s linear;
+    display: block;
+    border-bottom: 0
+}
+
+.tpgb-post-comment #comments .comment-list li.comment>.comment-body a {
+    text-decoration: blink
+}
+
+.tpgb-post-comment #comments .comment-meta {
+    margin: 0;
+    display: inline-block
+}
+
+.tpgb-post-comment .comment-author.vcard span.says {
+    display: none
+}
+
+.tpgb-post-comment .comment-author.vcard cite.fn .url {
+    font-weight: 600;
+    font-size: 14px;
+    color: #222;
+    line-height: 28px;
+    letter-spacing: .5px;
+    text-transform: uppercase;
+    font-style: initial
+}
+
+.tpgb-post-comment .comment-list .comment-metadata {
+    display: inline-block;
+    vertical-align: middle
+}
+
+.tpgb-post-comment .comment-list .comment-author.vcard {
+    display: inline-block;
+    padding-right: 7px;
+    vertical-align: middle
+}
+
+.tpgb-post-comment .comment-list li.comment>.comment-body img.avatar,.tpgb-post-comment .comment-list li.pingback>.comment-body img.avatar {
+    position: absolute;
+    left: 0;
+    top: 10px;
+    width: 75px;
+    height: 75px;
+    border: 0;
+    border-radius: 50%
+}
+
+.tpgb-post-comment .comment-meta.commentmetadata {
+    margin-top: 0;
+    font-size: 12px;
+    font-style: normal;
+    text-align: left;
+    display: inline-block;
+    vertical-align: middle
+}
+
+.tpgb-post-comment #cancel-comment-reply-link,.tpgb-post-comment .comment-list .reply a,.tpgb-post-comment .comment-meta.commentmetadata a {
+    text-transform: uppercase;
+    font-weight: 500;
+    font-size: 11px;
+    letter-spacing: .3px
+}
+
+.tpgb-post-comment .comment-meta.commentmetadata a {
+    color: #777;
+    line-height: 1
+}
+
+.tpgb-post-comment .comment-meta.commentmetadata a.comment-edit-link {
+    color: #313131
+}
+
+.tpgb-post-comment .comment-list li.comment>.comment-body p,.tpgb-post-comment .comment-list li.pingback>.comment-body p {
+    padding-bottom: 0;
+    margin-top: 10px;
+    margin-bottom: 0;
+    font-size: 14px;
+    color: #666
+}
+
+.tpgb-post-comment .comment-list .reply {
+    position: absolute;
+    top: 25px;
+    right: 0
+}
+
+.tpgb-post-comment .comment-list .reply a {
+    background: 0 0;
+    cursor: pointer;
+    padding: 6px 14px;
+    line-height: 20px;
+    transition: all .3s linear 0s;
+    width: auto;
+    border-radius: 30px
+}
+
+.tpgb-post-comment #comments h3#reply-title {
+    text-align: left;
+    position: relative;
+    display: block;
+    padding: 0;
+    margin: 20px auto;
+    color: #232323;
+    font-size: 24px;
+    line-height: 28px;
+    text-transform: capitalize;
+    width: auto;
+    font-weight: 700;
+    letter-spacing: 0;
+    float: none;
+    vertical-align: middle
+}
+
+.tpgb-post-comment #respond.comment-respond {
+    text-align: left;
+    position: relative;
+    display: block;
+    width: 100%;
+    padding: 0;
+    margin: 0 0 20px
+}
+
+.tpgb-post-comment #respond.comment-respond h3#reply-title {
+    margin-bottom: 10px
+}
+
+.tpgb-post-comment #cancel-comment-reply-link {
+    color: #666;
+    cursor: pointer;
+    padding: 0 5px;
+    font-weight: 400;
+    transition: all .2s linear 0s;
+    border-radius: 2px;
+    position: relative;
+    text-align: center;
+    width: 90px;
+    margin: 0 auto;
+    display: inline-block;
+    vertical-align: middle
+}
+
+.tpgb-post-comment #respond #commentform label,.tpgb-post-comment form#commentform {
+    position: relative;
+    display: inline-block;
+    width: 100%
+}
+
+.tpgb-post-comment #comments .logged-in-as {
+    font-size: 12px;
+    letter-spacing: 0;
+    text-align: left;
+    color: #888
+}
+
+.tpgb-post-comment #respond #commentform label {
+    margin-bottom: 8px;
+    font-size: 15px;
+    line-height: 1.3;
+    color: #888;
+    max-width: 100%;
+    font-weight: 400
+}
+
+.tpgb-post-comment #commentform #author,.tpgb-post-comment #commentform #email,.tpgb-post-comment #commentform #url,.tpgb-post-comment form.comment-form textarea#comment {
+    background: #f6f6f6;
+    border: 1px solid rgba(211,211,211,.1);
+    color: #666;
+    float: left;
+    width: 100%;
+    font-size: 15px;
+    font-weight: 400;
+    padding: 12px 20px;
+    border-radius: 4px;
+    transition: .3s ease
+}
+
+.tpgb-post-comment form#commentform .tpgb-row,.tpgb-post-comment form.comment-form textarea#comment {
+    margin: 0
+}
+
+.tpgb-post-comment #comments .form-submit {
+    text-align: left
+}
+
+.tpgb-post-comment #commentform #submit {
+    color: #fff;
+    transition: all .3s linear;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    line-height: 1.1;
+    padding: 8px 20px;
+    text-align: left;
+    text-transform: uppercase;
+    font-weight: 500
+}
+
+.tpgb-post-comment #commentform #author:focus,.tpgb-post-comment #commentform #email:focus,.tpgb-post-comment #commentform #url:focus,.tpgb-post-comment form.comment-form textarea#comment:focus {
+    outline: 0
+}
+
+@media (min-width:581px) {
+    .tpgb-post-comment .tpgb-md-pl15 {
+        padding-left: 15px
+    }
+}
+
+@media (max-width:580px) {
+    .tpgb-post-comment .comment-form .tpgb-col {
+        -ms-flex: 0 0 100%;
+        flex: 0 0 100%;
+        max-width: 100%
+    }
+}

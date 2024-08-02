@@ -1,0 +1,256 @@
+.tpgb-flipbox.flip-box-style-1 {
+    overflow: visible!important
+}
+
+.tpgb-flipbox {
+    transition: all .25s linear;
+    z-index: 1
+}
+
+.tpgb-flipbox .flip-box-inner {
+    transition: all .3s
+}
+
+.tpgb-flipbox .flip-box-bg-box {
+    position: relative;
+    transition: .4s
+}
+
+.tpgb-flipbox .flip-box-bg-box>div:first-child {
+    position: relative;
+    z-index: 11
+}
+
+.service-flipbox {
+    position: relative;
+    -webkit-perspective: 1000;
+    perspective: 1000;
+    -moz-transform-style: preserve-3d;
+    transform-style: preserve-3d
+}
+
+.tpgb-flipbox .flip-box-inner .service-flipbox,.tpgb-flipbox .flip-box-inner .service-flipbox-back,.tpgb-flipbox .flip-box-inner .service-flipbox-front {
+    min-height: 300px
+}
+
+.perspective {
+    transform: perspective(1000px);
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d
+}
+
+.bezier-1 {
+    transition: all .7s cubic-bezier(.645,.045,.355,1)
+}
+
+.service-flipbox,.service-flipbox-holder {
+    transform: perspective(1000px)
+}
+
+.height-full {
+    height: 100%
+}
+
+.tpgb-flipbox .flip-box-inner .service-flipbox-front {
+    background: #fff
+}
+
+.service-flipbox-back,.service-flipbox-front {
+    background-size: cover;
+    background-position: center;
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d
+}
+
+.service-flipbox-front {
+    position: absolute;
+    z-index: 2
+}
+
+.tpgb-flipbox .service-flipbox-content {
+    position: relative;
+    z-index: 11
+}
+
+.width-full {
+    width: 100%
+}
+
+.tpgb-flipbox .flip-box-inner .service-icon {
+    display: inline-block;
+    font-size: 25px;
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    text-align: center
+}
+
+.tpgb-draw-svg object {
+    opacity: 0;
+    width: 100%
+}
+
+.tpgb-flipbox .flip-box-inner .tpgb-draw-svg {
+    display: inline-block;
+    width: 100%;
+    max-width: 50px;
+    line-height: 50px;
+    text-align: center
+}
+
+.tpgb-flipbox.flip-box-style-1 .service-icon {
+    padding: 0
+}
+
+.tpgb-flipbox img.service-img {
+    display: inline-block
+}
+
+.flip-box-inner .service-img {
+    max-width: 100px;
+    width: auto;
+    height: auto
+}
+
+.tpgb-flipbox.flip-box-style-1 .service-img {
+    padding: 15px
+}
+
+.flip-box-inner .icon-square {
+    border: 1px solid;
+    border-radius: inherit
+}
+
+.flip-box-inner .icon-rounded {
+    border: 1px solid;
+    border-radius: 50%
+}
+
+.flip-box-inner .icon-hexagon,.flip-box-inner .icon-pentagon {
+    border-radius: initial;
+    background-color: #8072fc;
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' xml:space='preserve' viewBox='0 0 90 100'%3E%3Cdefs%3E%3Cpath id='a' d='M1.699.871h86.603v98.258H1.699z'/%3E%3C/defs%3E%3CclipPath id='b'%3E%3Cuse xlink:href='%23a' overflow='visible'/%3E%3C/clipPath%3E%3Cpath clip-path='url(%23b)' fill='%23231F20' d='m4.513 23.375 37.672-21.75a5.625 5.625 0 0 1 5.628 0l37.672 21.75A5.63 5.63 0 0 1 88.3 28.25v43.5a5.63 5.63 0 0 1-2.815 4.875l-37.672 21.75a5.625 5.625 0 0 1-5.628 0L4.513 76.625a5.63 5.63 0 0 1-2.815-4.875v-43.5a5.63 5.63 0 0 1 2.815-4.875'/%3E%3C/svg%3E")top right/100% 100%
+}
+
+.flip-box-inner .icon-pentagon {
+    border-radius: initial;
+    background-color: #8072fc;
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' xml:space='preserve' viewBox='0 0 100 97'%3E%3Cdefs%3E%3Cpath id='a' d='M.883 1.541h98.234v93.918H.883z'/%3E%3C/defs%3E%3CclipPath id='b'%3E%3Cuse xlink:href='%23a' overflow='visible'/%3E%3C/clipPath%3E%3Cpath clip-path='url(%23b)' fill='%23231F20' d='M17.968 91.982 1.129 40.157a5.031 5.031 0 0 1 1.828-5.626L47.042 2.502a5.032 5.032 0 0 1 5.915 0l44.085 32.029a5.033 5.033 0 0 1 1.828 5.626L82.031 91.982a5.032 5.032 0 0 1-4.786 3.477H22.753a5.032 5.032 0 0 1-4.785-3.477'/%3E%3C/svg%3E")top right/100% 100%;
+    padding-top: 4px
+}
+
+.flip-box-inner .icon-square-rotate {
+    border-radius: initial;
+    background-color: #8072fc;
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' xml:space='preserve' viewBox='0 0 98 98'%3E%3Cdefs%3E%3Cpath id='a' d='M1.148 1.147h95.704v95.704H1.148z'/%3E%3C/defs%3E%3CclipPath id='b'%3E%3Cuse xlink:href='%23a' overflow='visible'/%3E%3C/clipPath%3E%3Cpath clip-path='url(%23b)' fill='%23231F20' d='M95.333 52.666 52.667 95.333a5.185 5.185 0 0 1-7.333 0L2.667 52.666a5.185 5.185 0 0 1 0-7.333L45.333 2.666a5.185 5.185 0 0 1 7.333 0l42.667 42.667a5.183 5.183 0 0 1 0 7.333'/%3E%3C/svg%3E")top right/100% 100%
+}
+
+.flip-box-inner .service-icon {
+    font-size: inherit;
+    top: auto
+}
+
+.service-content {
+    -webkit-flex: 1 1 0;
+    flex: 1 1 0%
+}
+
+.service-title {
+    font-size: 18px;
+    margin-bottom: .5rem;
+    font-weight: 500;
+    line-height: 1.1
+}
+
+.tpgb-flipbox.flip-box-style-1 .flip-box-inner .service-title {
+    margin-bottom: 0;
+    margin-top: 0
+}
+
+.tpgb-flipbox.flip-box-style-1 .service-desc,.tpgb-flipbox.flip-box-style-1 .service-title {
+    padding: 15px
+}
+
+.flip-box-inner .service-desc p {
+    transition: all .3s linear
+}
+
+.flip-horizontal .service-flipbox-back {
+    transform: rotateY(180deg)
+}
+
+.fold-back-horizontal {
+    transform: translateX(-100%) rotateY(-180deg)
+}
+
+.service-flipbox-back {
+    position: absolute;
+    backface-visibility: hidden
+}
+
+.service-flipbox-back,.service-flipbox-front {
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    display: table
+}
+
+.no-backface {
+    backface-visibility: hidden
+}
+
+.origin-center {
+    transform-origin: center
+}
+
+.service-flipbox-content {
+    display: table-cell;
+    vertical-align: middle;
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+    -webkit-perspective: 1000px;
+    perspective: 1000px;
+    backface-visibility: hidden;
+    transform: translateZ(35px) scale(.81);
+    filter: blur(0);
+}
+
+.service-desc {
+    margin-top: 0
+}
+
+.tpgb-flipbox .flipbox-back-overlay,.tpgb-flipbox .flipbox-front-overlay {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    background-color: transparent;
+    z-index: 1
+}
+
+.flip-horizontal:hover .service-flipbox-front {
+    transform: rotateY(-180deg)
+}
+
+.flip-horizontal:hover .service-flipbox-back {
+    transform: rotateY(0)
+}
+
+.flip-vertical:hover .service-flipbox-front {
+    transform: rotateX(-180deg)
+}
+
+.flip-vertical .service-flipbox-back {
+    transform: rotateX(180deg)
+}
+
+.flip-vertical:hover .service-flipbox-back {
+    transform: rotateX(0)
+}
+
+.tpgb-flipbox .tpgb-adv-button {
+    z-index: 1;
+    padding: 0 15px
+}

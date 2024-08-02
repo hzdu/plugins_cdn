@@ -1,0 +1,42 @@
+/* Social Icons Style-11 */
+.tpgb-social-icons.style-11 .tpgb-social-list {
+    display: flex;
+    flex-wrap: wrap
+}
+.tpgb-social-icons.style-11 .tpgb-social-list > div .tpgb-icon-link {
+    display: block;
+    margin-right: 0;
+    color: #fff;
+}
+.tpgb-social-icons.style-11 .tpgb-social-list > div {
+    margin-right: 10px
+}
+.tpgb-social-icons.style-11 .tpgb-social-list > div .tpgb-icon-link:before {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    content: ""
+}
+.tpgb-social-icons.style-11 .tpgb-social-list > div .tpgb-icon-link:before {
+    z-index: 1;
+    transition: box-shadow 0.3s
+}
+.tpgb-social-icons.style-11 .tpgb-social-list > div .tpgb-icon-link:before {
+    box-shadow: inset 0 0 0 70px #404040
+}
+.tpgb-social-icons.style-11 .tpgb-social-list > div:hover .tpgb-icon-link {
+	color: #000;
+}
+.tpgb-social-icons.style-11 .tpgb-social-list > div:hover .tpgb-icon-link:before {
+    box-shadow: inset 0 0 0 4px #404040
+}
+.tpgb-social-icons.style-11 .tpgb-social-list > div .tpgb-icon-link .tpgb-social-icn {
+    position: relative;
+    z-index: 1
+}
+.tpgb-social-icons.style-11 .tpgb-social-list > div:last-child {
+    margin-right: 0
+}

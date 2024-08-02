@@ -1,0 +1,74 @@
+/* FancyBox */
+.tpgb-animated-service-boxes.fancy-box .fancybox-image-background {
+    overflow: hidden;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center
+}
+.tpgb-animated-service-boxes.fancy-box .fancybox-inner-wrapper {
+    overflow: hidden;
+    height: 100%;
+    border-radius: 5px
+}
+.tpgb-animated-service-boxes.fancy-box .fancybox-image-background {
+    transform: scaleX(1) scaleY(1) translateZ(0);
+    transition: all .4s ease 0s;
+    box-shadow: rgba(0,0,0,.25) 0 0 0 2000px inset;
+    height: 100%;
+    padding: 20px
+}
+.tpgb-animated-service-boxes.fancy-box .fancybox-inner-wrapper:hover .fancybox-image-background {
+    transform: scale(1.13);
+    box-shadow: transparent 0 0 0 2000px inset
+}
+.tpgb-animated-service-boxes.fancy-box .tpgb-adv-button.button-style-8 .button-link-wrap {
+    padding: 15px 20px;
+}
+.tpgb-animated-service-boxes.fancy-box .asb-desc,.tpgb-animated-service-boxes.fancy-box .asb-title {
+    color: #fff
+}
+.tpgb-animated-service-boxes.fancy-box .tpgb-adv-button .button-link-wrap:after {
+    border: 1px solid rgba(255,255,255,.3)
+}
+.tpgb-animated-service-boxes.fancy-box .fancybox-inner-wrapper:after {
+    display: block;
+    position: absolute;
+    content: ' ';
+    width: 100%;
+    height: 6px;
+    left: 0;
+    bottom: 0;
+    background: #000;
+    z-index: 5;
+    transform: scaleX(0) translateZ(0);
+    transform-origin: 0 0;
+    transition: .45s cubic-bezier(.24,1,.3,1)
+}
+.tpgb-animated-service-boxes.fancy-box .fancybox-inner-wrapper:hover:after {
+    transform: scaleX(1) translateZ(0)
+}
+.tpgb-animated-service-boxes.fancy-box .fancybox-inner-content {
+    top: -100%;
+    padding: 20px;
+    height: 100%
+}
+.tpgb-animated-service-boxes.fancy-box .fb-content {
+    min-height: 230px;
+    top: 30px
+}
+.tpgb-animated-service-boxes.fancy-box .fb-button {
+    margin-top: 30px
+}
+.tpgb-animated-service-boxes.fancy-box .asb-title {
+    margin: 0 0 10px;
+    font-size: 20px
+}
+.tpgb-animated-service-boxes.fancy-box .asb-sub-title {
+    margin: 0 0 10px;
+    color: #fff;
+    font-weight: 400
+}
+.tpgb-animated-service-boxes.fancy-box .asb-desc {
+    margin-top: 10px;
+    font-size: 16px
+}

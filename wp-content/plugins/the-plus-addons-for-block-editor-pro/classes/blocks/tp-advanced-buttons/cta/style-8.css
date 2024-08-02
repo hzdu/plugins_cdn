@@ -1,0 +1,47 @@
+/**
+ * CSS for both Frontend+Backend.
+ */
+@keyframes tp-give-score {
+    30%,80% {
+        top: 0
+    }
+    40%,70% {
+        top: 50px
+    }
+}
+.tpgb-adv-btn-inner.ab-cta.tpgb-cta-style-8 .adv-btn-emoji {
+    position: absolute;
+    top: -45px;
+    left: 0;
+    width: 35px;
+    height: 35px;
+    overflow: hidden
+}
+.tpgb-adv-btn-inner.ab-cta.tpgb-cta-style-8 .adv-btn-emoji:before {
+    content: "💯";
+    display: inline-block;
+    animation: tp-give-score 2.5s infinite;
+    position: relative;
+    top: 0;
+    font-size: 20px
+}
+.tpgb-adv-btn-inner.ab-cta.tpgb-cta-style-8 .adv-btn-emoji:nth-child(2) {
+    left: 0;
+    right: 0;
+    margin: auto
+}
+.tpgb-adv-btn-inner.ab-cta.tpgb-cta-style-8 .adv-btn-emoji:nth-child(2):before {
+    animation: tp-give-score 2.5s infinite .2s
+}
+.tpgb-adv-btn-inner.ab-cta.tpgb-cta-style-8 .adv-btn-emoji:nth-child(3) {
+    left: auto;
+    right: 0
+}
+.tpgb-adv-btn-inner.ab-cta.tpgb-cta-style-8 .adv-btn-emoji:nth-child(3):before {
+    animation: tp-give-score 2.5s infinite .4s
+}
+.tpgb-adv-btn-inner.ab-cta.tpgb-cta-style-8 .adv-button-link-wrap:hover .adv-btn-emoji:before {
+    content: "👏";
+    transition: .5s ease;
+    font-size: 20px
+}

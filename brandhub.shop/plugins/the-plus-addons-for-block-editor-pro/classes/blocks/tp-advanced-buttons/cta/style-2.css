@@ -1,0 +1,23 @@
+/**
+ * CSS for both Frontend+Backend.
+ */
+.tpgb-adv-btn-inner.ab-cta.tpgb-cta-style-2 .adv-button-link-wrap {
+    border: 0
+}
+.tpgb-adv-btn-inner.ab-cta.tpgb-cta-style-2 .adv-button-link-wrap:before {
+    content: "";
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    top: 50%;
+    border: 1px solid;
+    border-radius: 30px;
+    z-index: -1;
+    opacity: .5;
+    transform: translateY(-50%) translateX(-50%) scale(1);
+    margin: 0 auto!important;
+    left: 50%
+}
+.tpgb-adv-btn-inner.ab-cta.tpgb-cta-style-2 .adv-button-link-wrap:hover:before {
+    width: 100%!important
+}

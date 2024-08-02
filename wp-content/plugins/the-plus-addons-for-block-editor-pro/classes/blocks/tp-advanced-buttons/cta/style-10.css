@@ -1,0 +1,41 @@
+/**
+ * CSS for both Frontend+Backend.
+ */
+.tpgb-adv-btn-inner.ab-cta.tpgb-cta-style-10 .adv-button-link-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    padding: 0;
+    border: 0;
+    background: no-repeat;
+    border-radius: unset
+}
+.tpgb-adv-btn-inner.ab-cta.tpgb-cta-style-10 .adv-button-link-wrap svg {
+    height: 50px;
+    width: 150px;
+    fill: none;
+    stroke-width: 5
+}
+.tpgb-adv-btn-inner.ab-cta.tpgb-cta-style-10 .adv-button-link-wrap svg .tpgb-cpt-btn01 {
+    stroke: #ff5c6f99;
+    fill: #ff5a6e;
+    transition: all 1s ease-in-out
+}
+.tpgb-adv-btn-inner.ab-cta.tpgb-cta-style-10 .adv-button-link-wrap svg .tpgb-cpt-btn02 {
+    stroke: #fff;
+    stroke-dasharray: 20 420;
+    stroke-dashoffset: 20;
+    transition: all 1s ease-in-out
+}
+.tpgb-adv-btn-inner.ab-cta.tpgb-cta-style-10 .adv-button-link-wrap>span {
+    position: absolute;
+    margin: auto 0;
+    letter-spacing: 3px
+}
+.tpgb-adv-btn-inner.ab-cta.tpgb-cta-style-10 .adv-button-link-wrap:hover .tpgb-cpt-btn01 {
+    fill: #ff5a6e80
+}
+.tpgb-adv-btn-inner.ab-cta.tpgb-cta-style-10 .adv-button-link-wrap:hover .tpgb-cpt-btn02 {
+    stroke-dashoffset: -420
+}

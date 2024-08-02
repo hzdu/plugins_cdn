@@ -1,0 +1,115 @@
+/* CSS For Social Icons
+Front End + Back End */
+.tpgb-social-icons {
+    position: relative;
+    display: block;
+    padding: 0
+}
+.tpgb-social-icons .tpgb-social-list {
+    display: inline-block;
+    padding: 0;
+    margin: 0;
+    position: relative;
+    list-style: none
+}
+.tpgb-social-icons .tpgb-social-list > div {
+    position: relative;
+    font-size: 20px;
+    text-align: center;
+    display: inline-block;
+    width: auto;
+    height: auto;
+    line-height: unset;
+    top: auto
+}
+.tpgb-social-icons .tpgb-social-list > div:not(.style-14) .tpgb-social-loop-inner {
+    position: relative;
+    overflow: hidden
+}
+.tpgb-social-icons .tpgb-social-list > div .tpgb-icon-link {
+    font-size: 20px;
+    color: #28262b;
+    text-align: center;
+    width: 2.5em;
+    height: 2.5em;
+    line-height: 2.5em;
+    margin-right: 10px;
+	text-decoration: none;
+	cursor:pointer;
+}
+.tpgb-social-icons .tpgb-social-list .social-img {
+    display: inline-flex;
+}
+.tpgb-social-icons.text-center .tpgb-social-list {
+    justify-content: center
+}
+.tpgb-social-icons.text-left .tpgb-social-list {
+    justify-content: flex-start
+}
+.tpgb-social-icons.text-right .tpgb-social-list {
+    justify-content: flex-end
+}
+.tpgb-social-icons .tpgb-social-list .tpgb-social-icn.social-img img {
+    max-width: 25px;
+    height: auto;
+}
+/*align css */
+.tpgb-social-icons.text-left{
+    text-align: left;
+}
+.tpgb-social-icons.text-center{
+    text-align: center;
+}
+.tpgb-social-icons.text-right{
+    text-align: right;
+}
+.tpgb-social-icons .tpgb-social-list > div:last-child .tpgb-icon-link {
+    margin-right: 0
+}
+@media (min-width: 768px) and (max-width:1024px) {
+    .tsocialtext-center {
+        text-align:center!important;
+        margin: 0 auto!important
+    }
+    .tsocialtext-left {
+        text-align: left!important;
+        margin-left: 0!important
+    }
+    .tsocialtext-right {
+        text-align: right!important;
+        margin-right: 0!important
+    }
+    .tpgb-social-icons.tsocialtext-center .tpgb-social-list {
+        justify-content: center!important
+    }
+    .tpgb-social-icons.tsocialtext-left .tpgb-social-list {
+        justify-content: flex-start!important
+    }
+    .tpgb-social-icons.tsocialtext-right .tpgb-social-list {
+        justify-content: flex-end!important
+    }
+}
+
+@media (max-width: 767px) {
+    .msocialtext-left {
+        text-align:left!important;
+        margin-left: 0!important
+    }
+    .msocialtext-center {
+        text-align: center!important;
+        margin: 0 auto!important
+    }
+    .msocialtext-right {
+        text-align: right!important;
+        margin-right: 0!important
+    }
+    .tpgb-social-icons.msocialtext-center .tpgb-social-list {
+        justify-content: center!important
+    }
+    .tpgb-social-icons.msocialtext-left .tpgb-social-list {
+        justify-content: flex-start!important
+    }
+    .tpgb-social-icons.msocialtext-right .tpgb-social-list {
+        justify-content: flex-end!important
+    }
+}

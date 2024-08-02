@@ -1,0 +1,238 @@
+.tpgb_video_player iframe.fluidvids-item {
+    opacity: 0
+}
+
+.tpgb_video_player .fluidvids iframe,.tpgb_video_player .tpgb-video-embed-wrap iframe {
+    opacity: 1
+}
+
+.tpgb_video_player.not-touch iframe,.tpgb_video_player.not-touch video {
+    pointer-events: none
+}
+
+.tpgb_video_player .fluidvids {
+    position: initial
+}
+
+.ts-video-wrapper video {
+    position: relative;
+    display: inline-block;
+    width: 100%
+}
+
+.video_container {
+    margin: 0;
+    padding: 0;
+    background: 0 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%
+}
+
+.video-space {
+    padding-bottom: 56.25%;
+    position: relative;
+    height: 0;
+    overflow: hidden
+}
+
+.tpgb-video-box {
+    position: relative;
+    display: block;
+    width: 100%;
+    font-size: 0;
+    transition: all .4s linear
+}
+
+.tp-video-popup-icon,.ts-video-caption {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    cursor: pointer;
+    padding: 0;
+    margin: 0;
+    z-index: 1;
+    transition: all .4s linear;
+    transform: translate3d(-50%,-50%,0)
+}
+
+.ts-video-caption {
+    opacity: .8;
+    width: auto;
+    height: auto
+}
+
+.tpgb_video_player:hover .ts-video-caption {
+    opacity: 1;
+    z-index: 1
+}
+
+.tp-video-popup-icon {
+    width: 150px;
+    height: 150px
+}
+
+.tpgb_video_player .tp-video-popup-icon .tp-video-icon {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 100%
+}
+
+.ts-video-caption-text {
+    position: absolute;
+    bottom: 0;
+    font-weight: 400;
+    left: 0;
+    right: 0;
+    color: #fff;
+    background: 0 0;
+    padding: 5px 5%;
+    font-size: 12px;
+    text-align: center;
+    z-index: 1;
+    line-height: 1;
+    -moz-box-sizing: content-box;
+    -webkit-box-sizing: content-box;
+    box-sizing: content-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition: all .3s ease-in-out;
+    opacity: 0;
+    visibility: hidden
+}
+
+.tpgb_video_player:hover .ts-video-caption-text {
+    opacity: 1;
+    visibility: visible
+}
+
+.tpgb_video_player {
+    overflow: hidden
+}
+
+.ts-video-icon,.ts-video-image-zoom.set-image {
+    width: 100%;
+    height: auto;
+    position: relative;
+    z-index: 1
+}
+
+.ts-video-wrapper {
+    width: 100%;
+    display: block;
+    font-size: 0
+}
+
+.ts-video-wrapper.embed-container {
+    position: relative;
+    padding-bottom: 56.25%;
+    overflow: hidden;
+    max-width: 100%;
+    height: auto
+}
+
+.embed-container embed,.ts-video-wrapper.embed-container iframe,.ts-video-wrapper.embed-container object {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0
+}
+
+.tpgb-video-embed-wrap {
+    position: relative;
+    display: block;
+    margin: 0;
+    height: 0;
+    overflow: hidden
+}
+
+.ts-video-hidden {
+    display: none!important
+}
+
+.tpgb-video-embed-wrap {
+    padding: 0 0 56.25%
+}
+
+.ts-type-self-hosted .tpgb-video-thumb {
+    z-index: 1;
+    object-fit: cover
+}
+
+.ts-type-self-hosted .tpgb-video-play-btn {
+    z-index: 2;
+    background: 0 0
+}
+
+.pt-plus-video-frame,.tpgb-video-poster,button.tpgb-video-play-btn.ts-video-blay-btn-youtube,img.tpgb-video-thumb {
+    position: absolute;
+    padding: 0;
+    margin: 0;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    height: 100%;
+    width: 100%;
+    border: 0
+}
+
+img.tpgb-video-thumb {
+    object-fit: cover;
+    transition-duration: .7s;
+    transition-property: transform,-webkit-transform
+}
+
+button.tpgb-video-play-btn.ts-video-blay-btn-youtube {
+    background: 0 0;
+    background-image: none;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 0;
+    vertical-align: middle;
+    text-align: center;
+    cursor: pointer;
+    opacity: .8;
+    transition: all .5s
+}
+
+.ts-video-wrapper:hover .tpgb-video-play-btn {
+    opacity: 1
+}
+
+.tpgb_video_player .tp-video-icon-inner {
+    display: inline-block;
+    width: auto;
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+    transition: all .4s linear;
+    z-index: 1
+}
+
+.tpgb_video_player .tp-video-popup {
+    overflow: visible;
+    position: relative;
+    display: inline-block;
+    width: auto
+}
+
+.tpgb_video_player .tpgb-video-upload {
+    display: none
+}
+
+.ts-video-wrapper .perfmatters-lazy-youtube {
+    position: absolute
+}
+
+.tpgb_video_player.tpgb-video-icon-anim {
+    overflow: visible
+}
+
+.tpgb_video_player.tpgb-video-icon-anim .tp-video-popup {
+    z-index: 2
+}

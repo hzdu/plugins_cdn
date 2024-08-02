@@ -1,0 +1,98 @@
+/**
+ * CSS for both Frontend+Backend.
+ */
+ .tpgb-accor-wrap {
+    position: relative;
+    overflow-anchor: none
+}
+.tpgb-accor-wrap .tpgb-accor-item {
+    margin-bottom : 5px;
+}
+.tpgb-accor-wrap .tpgb-accordion-header {
+    position: relative;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    outline: 0;
+    transition: all .2s linear;
+    font-size: 18px;
+    line-height: 29px;
+    font-weight: 100;
+    color: #101011
+}
+
+.tpgb-accor-wrap .tpgb-accordion-content {
+    display: none
+}
+
+.tpgb-accor-wrap .tpgb-accordion-content.active {
+    display: block
+}
+
+.tpgb-accordion-header .accordion-title-icon-wrap {
+    width: 100%;
+    display: flex;
+    align-items: center
+}
+.tpgb-accordion-content .tpgb-content-editor{
+    color: #747474;
+    font-weight: 100;
+    font-size: 16px;
+    line-height: 29px;
+    float: none !important;
+}
+.tpgb-accordion-header .accordion-tab-icon {
+    display: inline-block;
+    margin-right: 10px;
+    color: #000;
+    font-size: 15px;
+}
+.tpgb-accor-wrap .tpgb-accordion-header i {
+    font-style: normal
+}
+.tpgb-accordion-header.active .accordion-tab-icon{
+    color: #6f14f1
+}
+.tpgb-accordion-header .toggle-icon {
+    display: inline-block;
+    line-height: 1;
+    text-align: center;
+    font-size: 15px;
+    transition: all .3s
+}
+
+.tpgb-accordion-header .accordion-toggle-icon {
+    margin: 0 20px;
+    z-index: 1
+}
+.tpgb-accordion-header .close-toggle-icon{
+    color: #000;
+}
+.tpgb-accordion-header.active .open-toggle-icon{
+    color: #6f14f1;
+}
+.tpgb-accordion-header .open-toggle-icon,.tpgb-accordion-header.active .close-toggle-icon {
+    display: none
+}
+
+.tpgb-accordion-header .close-toggle-icon,.tpgb-accordion-header.active .open-toggle-icon {
+    display: inline
+}
+
+.tpgb-accor-wrap .accordion-title-icon-wrap .accordion-title {
+    padding: 0;
+    margin: 0
+}
+/* Title Alignment Css */
+.tpgb-accor-wrap .text-left .accordion-title-icon-wrap {
+    justify-content: flex-start
+}
+
+.tpgb-accor-wrap .text-center .accordion-title-icon-wrap {
+    justify-content: center
+}
+
+.tpgb-accor-wrap .text-right .accordion-title-icon-wrap {
+    justify-content: flex-end
+}
+/* Title Alignment Css */

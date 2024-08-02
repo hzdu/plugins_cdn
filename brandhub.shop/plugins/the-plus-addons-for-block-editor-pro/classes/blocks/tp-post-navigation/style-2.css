@@ -1,0 +1,42 @@
+/*Style 2*/
+.tpgb-nav-style-2 .tpgb-post-nav {
+    display: block
+}
+.tpgb-nav-style-2 .post-next,.tpgb-nav-style-2 .post-prev {
+    display: inline-block
+}
+.tpgb-nav-style-2 .post-prev {
+    margin-right: 5px
+}
+.tpgb-nav-style-2 .tpgb-post-nav-hover-con {
+    position: absolute;
+    opacity: 0;
+    z-index: 99;
+    visibility: hidden;
+    max-width: 215px;
+    padding: 15px;
+    background: #d3d3d3;
+    border-radius: 5px
+}
+.tpgb-nav-style-2 .post-next:hover .tpgb-post-nav-hover-con,.tpgb-nav-style-2 .post-prev:hover .tpgb-post-nav-hover-con {
+    opacity: 1;
+    visibility: visible
+}
+.tpgb-nav-style-2 .tpgb-post-nav-hover-con .next-post-content,.tpgb-nav-style-2 .tpgb-post-nav-hover-con .prev-post-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center
+}
+.tpgb-nav-style-2 .post-next a .prev-hveicon,.tpgb-nav-style-2 .post-prev a .prev-hveicon {
+    color: #cebbbbb5;
+    font-size: 24px;
+    transition: all .3s linear;
+    margin-bottom: 10px
+}
+.tpgb-nav-style-2 .post-next:hover a .prev-hveicon,.tpgb-nav-style-2 .post-prev:hover a .prev-hveicon {
+    color: #000
+}
+.tpgb-nav-style-2 .post-image {
+    padding: 0!important
+}
+/*Style 2*/

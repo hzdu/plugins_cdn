@@ -1,0 +1,46 @@
+/*push effect*/
+.tpgb-canvas-content-wrap.tpgb-corner-box,.tpgb-canvas-content-wrap.tpgb-push,.tpgb-canvas-content-wrap.tpgb-reveal {
+    transition: all .5s
+}
+
+.tpgb-canvas-content-wrap.tpgb-left.tpgb-push {
+    transform: translate3d(-100%,0,0)
+}
+
+.tpgb-canvas-content-wrap.tpgb-right.tpgb-push {
+    transform: translate3d(100%,0,0)
+}
+
+.tpgb-canvas-content-wrap.tpgb-top.tpgb-push {
+    transform: translate3d(0,-100%,0)
+}
+
+.tpgb-canvas-content-wrap.tpgb-bottom.tpgb-push {
+    transform: translate3d(0,100%,0)
+}
+
+.tpgb-push.tpgb-open .tpgb-canvas-content-wrap.tpgb-visible {
+    visibility: visible;
+    transition: all .5s
+}
+
+.tpgb-push.tpgb-open.tpgb-left .tpgb-offcanvas-container {
+    transform: translate3d(300px,0,0)
+}
+
+.tpgb-push.tpgb-open.tpgb-right .tpgb-offcanvas-container {
+    transform: translateX(-300px)
+}
+
+.tpgb-push.tpgb-open.tpgb-top .tpgb-offcanvas-container {
+    transform: translate3d(0,300px,0)
+}
+
+.tpgb-push.tpgb-open.tpgb-bottom .tpgb-offcanvas-container {
+    transform: translate3d(0,-300px,0)
+}
+
+html.tpgb-offcanvas-content-widget.tpgb-push.tpgb-reset {
+    overflow: hidden
+}
+/*push effect*/

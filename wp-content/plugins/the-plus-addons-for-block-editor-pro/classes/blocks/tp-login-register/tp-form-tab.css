@@ -1,0 +1,41 @@
+.tpgb-form-tab-wrap .tpgb-form-tabbtn {
+    position: relative;
+    display: block;
+    text-align: center;
+    margin-bottom: 10px;
+    padding: 0
+}
+
+.tpgb-form-tab-wrap .tpgb-form-tabbtn .tpgb-ftab-btn {
+    position: relative;
+    display: inline-flex!important;
+    list-style: none;
+    padding: 10px 16px;
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 2px;
+    max-width: 130px;
+    min-width: 130px;
+    text-align: right;
+    justify-content: center;
+    cursor: pointer
+}
+
+.tpgb-form-tab-wrap .tpgb-form-tabbtn .tpgb-ftab-btn.active {
+    background: #5048e5;
+    color: #fff
+}
+
+.tpgb-form-tab-wrap .tpgb-form-tabbtn .tpgb-ftab-btn:last-child {
+    margin-left: 10px
+}
+
+.tpgb-form-tab-wrap .tpgb-logintab-content,.tpgb-form-tab-wrap .tpgb-registab-content {
+    display: none;
+    position: relative;
+    width: 100%
+}
+
+.tpgb-form-tab-wrap .tpgb-logintab-content.active,.tpgb-form-tab-wrap .tpgb-registab-content.active {
+    display: block  
+}

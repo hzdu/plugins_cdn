@@ -1,0 +1,63 @@
+/*style-9*/
+.tpgb-audioplay-wrap.style-9 .tpgb-player {
+    padding: 0;
+    background: 0 0
+}
+
+.tpgb-audioplay-wrap.style-9 .tpgb-player .tpgb-player-hover {
+    padding: 0;
+    margin: 0;
+    background: 0 0;
+    overflow: visible;
+    transform-style: preserve-3d;
+    perspective: 1200px
+}
+
+.tpgb-audioplay-wrap.style-9 .tpgb-player .tpgb-player-hover .tpgb-player-bg-img {
+    min-height: 200px;
+    overflow: visible;
+    position: relative;
+    display: block;
+    width: 100%;
+    transition: all .366s ease-in-out;
+    transform-origin: 0 0;
+    background-size: cover!important;
+    background-position: center!important
+}
+
+.tpgb-audioplay-wrap.style-9 .trackDetails {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    bottom: 20px;
+    padding: 0;
+    left: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-start
+}
+
+.tpgb-audioplay-wrap.style-9 .tpgb-player .tpgb-player-hover:hover .tpgb-player-bg-img {
+    transform: rotateX(40deg);
+    opacity: 1
+}
+
+.tpgb-audioplay-wrap.style-9 .tpgb-player .controls {
+    display: flex;
+    align-items: center;
+    margin: 0 auto;
+    color: #fff;
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    opacity: 0;
+    transition: all .366s ease-in-out;
+    justify-content: space-around
+}
+
+.tpgb-audioplay-wrap.style-9 .tpgb-player:hover .controls {
+    opacity: 1;
+    color: #313131
+}
+/*style-9*/

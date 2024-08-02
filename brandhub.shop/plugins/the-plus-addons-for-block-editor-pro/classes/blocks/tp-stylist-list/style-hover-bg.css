@@ -1,0 +1,33 @@
+
+/*Bg Hover Effect*/
+.tpgb-stylist-list .tpgb-bg-hover-effect {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    overflow: hidden
+}
+.tpgb-stylist-list .tpgb-bg-hover-effect .hover-item-content {
+    visibility: hidden;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    transform: scale(1.1);
+    transition: all 450ms ease
+}
+.tpgb-stylist-list .tpgb-bg-hover-effect .hover-item-content.active {
+    transform: scale(1);
+    visibility: visible;
+    opacity: 1
+}
+.tpgb-container-row .tpgb-stylist-list {
+    position: initial;
+}
+/*Bg Hover Effect*/

@@ -1,0 +1,73 @@
+.tpgb-coupon-code .coupon-code-inner.style-5 .coupon-btn-link {
+	display: flex;
+    position: relative;
+    align-items: center;
+    cursor: pointer;
+    text-decoration: none;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+	border: none;
+    overflow: hidden;
+}
+.tpgb-coupon-code .coupon-code-inner.style-5 .coupon-btn-link {
+    background: #6f14f1;
+}
+.tpgb-coupon-code .coupon-code-inner.style-5 .coupon-icon {
+	display: inline-flex;
+    align-self: auto;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 50px;
+    background: #6f14f1;
+    color: #fff;
+    line-height: 1;
+    height: 50px;
+}
+.tpgb-coupon-code .coupon-code-inner.style-5 .coupon-icon .tpgb-scissors {
+	width: 20px;
+}
+.tpgb-coupon-code .coupon-code-inner.style-5 .coupon-text {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    border-top-left-radius: 2px;
+    border-bottom-left-radius: 2px;
+	background: unset;
+}
+.tpgb-coupon-code .coupon-code-inner.style-5 .coupon-btn-link::before {
+    position: absolute;
+    content: "";
+    width: 0;
+    height: 0;
+    border-top: 21px solid #4a4a4a;
+    border-left: 25px solid transparent;
+    top: -1px;
+    right: -1px;
+}
+.tpgb-coupon-code .coupon-code-inner.style-5 .coupon-btn-link::after {
+    position: absolute;
+    content: "";
+    width: 0;
+    height: 0;
+    border-bottom: 21px solid #954efb;
+    border-right: 25px solid transparent;
+    top: -1px;
+    right: -1px;
+    box-shadow: 0 0 3px #00000026;
+}
+.tpgb-coupon-code .coupon-code-inner.style-5 .coupon-btn-link:hover::before {
+    border-top: 35px solid #4a4a4a;
+    border-left: 39px solid transparent;
+    transition: all 0.3s ease-in-out;
+}
+.tpgb-coupon-code .coupon-code-inner.style-5 .coupon-btn-link:hover::after {
+    border-bottom: 35px solid #954efb;
+    border-right: 39px solid transparent;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 0 8px #00000040;
+}
+.tpgb-coupon-code .coupon-code-inner.style-5 .coupon-btn-link:hover{
+    background-color: #6f14f1;
+}

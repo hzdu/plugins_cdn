@@ -1,0 +1,58 @@
+.tpgb-creative-img-parallax {
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%
+}
+.tpgb-creative-img-parallax {
+    right: 0;
+    text-align: center;
+    background-position: center top;
+    background-image: none;
+    opacity: 1;
+    visibility: visible
+}
+figure.section-parallax-img img {
+    width: 100%
+}
+.tpgb-parallax-img-parent {
+    display: block;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 0;
+    -o-object-fit: cover;
+    object-fit: cover;
+    position: relative;
+    overflow: hidden;
+    height: 100%!important;
+    max-height: 100%!important
+}
+.tpgb-parallax-img-parent .tpgb-parallax-img-container {
+    height: 100%;
+    max-height: 100%;
+    width: 120%;
+    -webkit-transform-style: flat;
+    transform-style: flat;
+    -webkit-perspective: 1200px;
+    -ms-perspective: 1200px;
+    perspective: 1200px;
+    backface-visibility: hidden
+}
+.tpgb-parallax-img-parent .tpgb-simple-parallax-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    -o-object-fit: cover;
+    object-fit: cover;
+    width: 110%;
+    height: 118%!important;
+    max-width: none;
+    visibility: visible;
+    transition: none
+}
+.tpgb-creative-image .section-parallax-img {
+    position: relative
+}

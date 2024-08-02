@@ -1,0 +1,327 @@
+/**
+ * CSS for both Frontend+Backend.
+ */
+ .tpgb-scroll-nav-inner {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    overflow: visible!important
+}
+
+.tpgb-scroll-nav.nav-bottom_left .tpgb-scroll-nav-inner,.tpgb-scroll-nav.nav-left .tpgb-scroll-nav-inner,.tpgb-scroll-nav.nav-top_left .tpgb-scroll-nav-inner {
+    align-items: flex-start
+}
+
+.tpgb-scroll-nav.nav-bottom_right .tpgb-scroll-nav-inner,.tpgb-scroll-nav.nav-right .tpgb-scroll-nav-inner,.tpgb-scroll-nav.nav-top_right .tpgb-scroll-nav-inner {
+    align-items: flex-end
+}
+
+.tpgb-scroll-nav-dots,.tpgb-scroll-nav-item {
+    position: relative;
+    align-items: center;
+    justify-content: center
+}
+
+.tpgb-scroll-nav-item {
+    margin: 0;
+    display: flex;
+    overflow: visible!important;
+    width: 35px;
+    height: 35px
+}
+
+.tpgb-scroll-nav-dots {
+    margin: 0 auto;
+    padding: 0;
+    text-align: center
+}
+
+.tpgb-column-inner .tpgb-scroll-nav,.tpgb-scroll-nav {
+    width: auto !important;
+}
+/*scroll navigation direction */
+.tpgb-scroll-nav.nav-left,.tpgb-scroll-nav.nav-right {
+    top: 50%;
+    position: fixed;
+    transform: translate3d(0,-50%,0)
+}
+
+.tpgb-scroll-nav.nav-left {
+    left: 15px;
+    z-index: 1;
+    margin-left: 0
+}
+
+.tpgb-scroll-nav.nav-right {
+    right: 15px;
+    z-index: 1111;
+    margin-right: 0
+}
+
+.tpgb-scroll-nav.nav-top.center {
+    left: 0;
+    right: 0;
+    justify-content: center;
+    text-align: center;
+    align-items: center
+}
+
+.tpgb-scroll-nav.nav-top.center,.tpgb-scroll-nav.nav-top.left,.tpgb-scroll-nav.nav-top.right {
+    display: flex;
+    top: 20px;
+    position: fixed;
+    z-index: 3;
+    margin-left: 0;
+    margin-top: 0
+}
+
+.tpgb-scroll-nav.nav-top.left {
+    left: 50px;
+    justify-content: flex-start;
+    text-align: flex-start;
+    align-items: flex-start
+}
+
+.tpgb-scroll-nav.nav-top.right {
+    right: 50px;
+    justify-content: flex-end;
+    text-align: right;
+    align-items: flex-end
+}
+
+.tpgb-scroll-nav.nav-bottom .tpgb-scroll-nav-inner,.tpgb-scroll-nav.nav-top .tpgb-scroll-nav-inner {
+    flex-direction: inherit
+}
+
+.tpgb-scroll-nav.nav-top_left {
+    top: 25px;
+    position: fixed;
+    left: 10px;
+    z-index: 3
+}
+
+.tpgb-scroll-nav.nav-top_right {
+    top: 25px;
+    position: fixed;
+    right: 10px;
+    z-index: 3
+}
+
+.tpgb-scroll-nav.nav-bottom.center {
+    position: fixed;
+    bottom: 20px;
+    z-index: 1;
+    left: 50%;
+    right: auto;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    transform: translate3d(-50%,0,0)
+}
+
+.tpgb-scroll-nav.nav-bottom.left {
+    position: fixed;
+    bottom: 20px;
+    z-index: 1;
+    left: 50px;
+    display: flex;
+    justify-content: flex-start;
+    text-align: left;
+    align-items: flex-start
+}
+
+.tpgb-scroll-nav.nav-bottom.right {
+    position: fixed;
+    bottom: 20px;
+    z-index: 1;
+    right: 50px;
+    display: flex;
+    justify-content: flex-end;
+    text-align: right;
+    align-items: flex-end
+}
+
+.tpgb-scroll-nav.nav-bottom_left {
+    bottom: 25px;
+    position: fixed;
+    left: 10px;
+    z-index: 2
+}
+
+.tpgb-scroll-nav.nav-bottom_right {
+    bottom: 25px;
+    position: fixed;
+    right: 10px;
+    z-index: 2
+}
+/*scroll navigation direction */
+
+/* ToolTip Css  */
+.tpgb-scroll-nav-dots .tooltip-title.nav-top {
+    visibility: hidden;
+    width: 120px;
+    height: auto;
+    background-color: #000;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    top: 20px;
+    left: 50%;
+    right: 50%;
+    position: absolute;
+    z-index: 1;
+    transform: translate3d(-50%,50%,0);
+    display: flex;
+    align-items: center
+}
+
+.tpgb-scroll-nav-dots .tooltip-title.nav-bottom_left,.tpgb-scroll-nav-dots .tooltip-title.nav-left,.tpgb-scroll-nav-dots .tooltip-title.nav-top_left {
+    visibility: hidden;
+    width: 120px;
+    height: auto;
+    background-color: #000;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    top: 50%;
+    left: 100%;
+    position: absolute;
+    z-index: 1;
+    transform: translate3d(13px,-50%,0);
+    display: flex;
+    align-items: center
+}
+
+.tpgb-scroll-nav-dots .tooltip-title.nav-bottom_right,.tpgb-scroll-nav-dots .tooltip-title.nav-right,.tpgb-scroll-nav-dots .tooltip-title.nav-top_right {
+    width: 120px;
+    height: auto;
+    background-color: #000;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 10px;
+    z-index: 2;
+    position: absolute;
+    transform: translate3d(-13px,-50%,0);
+    top: 50%;
+    visibility: hidden;
+    right: 100%;
+    display: flex;
+    align-items: center
+}
+
+.tpgb-scroll-nav-dots .tooltip-title.nav-bottom {
+    visibility: hidden;
+    width: 120px;
+    height: auto;
+    background-color: #000;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    bottom: 20px;
+    left: 50%;
+    right: 50%;
+    position: absolute;
+    z-index: 1;
+    transform: translate3d(-50%,-50%,0);
+    display: flex;
+    align-items: center
+}
+
+.tpgb-scroll-nav-dots span.tooltip-title.on-default,.tpgb-scroll-nav-dots:hover .tooltip-title {
+    visibility: visible
+}
+
+.tpgb-scroll-nav-dots span.tooltip-title .tooltip-icon {
+    margin-right: 10px
+}
+
+.tpgb-scroll-nav-dots .tooltip-title {
+    font-size: 18px;
+    line-height: 25px
+}
+
+.tpgb-scroll-nav-dots .tooltip-title.text-left {
+    justify-content: flex-start
+}
+
+.tpgb-scroll-nav-dots .tooltip-title.text-center {
+    justify-content: center
+}
+
+.tpgb-scroll-nav-dots .tooltip-title.text-right {
+    justify-content: flex-end
+}
+
+.tpgb-scroll-nav-dots .tooltip-title.nav-top.tooltip-arrow:after {
+    position: absolute;
+    left: 50%;
+    top: -15px;
+    content: "";
+    border: 8px solid transparent;
+    z-index: 2;
+    border-right-color: #000;
+    transform: translate3d(-50%,0,0) rotate(90deg)
+}
+
+.tpgb-scroll-nav-dots .tooltip-title.nav-bottom_right.tooltip-arrow:after,.tpgb-scroll-nav-dots .tooltip-title.nav-right.tooltip-arrow:after,.tpgb-scroll-nav-dots .tooltip-title.nav-top_right.tooltip-arrow:after {
+    position: absolute;
+    right: -16px;
+    content: "";
+    height: 0;
+    width: 0;
+    border: 8px solid transparent;
+    z-index: 2;
+    border-right-color: #000;
+    transform: translate3d(0,-50%,0) rotate(180deg);
+    top: 50%
+}
+
+.tpgb-scroll-nav-dots .tooltip-title.nav-bottom_left.tooltip-arrow:after,.tpgb-scroll-nav-dots .tooltip-title.nav-left.tooltip-arrow:after {
+    position: absolute;
+    left: -7px;
+    content: "";
+    height: 0;
+    width: 0;
+    border: 8px solid transparent;
+    z-index: 2;
+    border-right-color: #000;
+    transform: translate3d(-55%,-60%,0) rotate(360deg);
+    top: 50%
+}
+
+.tpgb-scroll-nav-dots .tooltip-title.nav-bottom.tooltip-arrow:after {
+    position: absolute;
+    left: 50%;
+    bottom: -15px;
+    content: "";
+    border: 8px solid transparent;
+    z-index: 2;
+    border-right-color: #000;
+    transform: translate3d(-50%,0,0) rotate(270deg)
+}
+
+.tpgb-scroll-nav-dots .tooltip-title.nav-top_left.tooltip-arrow:after {
+    position: absolute;
+    left: -7px;
+    content: "";
+    height: 0;
+    width: 0;
+    border: 8px solid transparent;
+    z-index: 2;
+    border-right-color: #000;
+    transform: translate3d(-55%,-60%,0) rotate(360deg);
+    top: 50%
+}
+/*dispaly tooltip style onhover on active section or default start */
+.tpgb-scroll-nav .tpgb-scroll-nav-item.active span.tooltip-title.on-active-section,.tpgb-scroll-nav.style-5 .tpgb-scroll-nav-item.active .tpgb-scroll-nav-dots span.tooltip-title.on-active-section {
+    visibility: visible
+}
+/*dispaly tooltip style onhover on active section or default end*/
+
+/* ToolTip Css  */

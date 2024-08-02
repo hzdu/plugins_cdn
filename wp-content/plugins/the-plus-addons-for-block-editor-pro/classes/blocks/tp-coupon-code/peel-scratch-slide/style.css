@@ -1,0 +1,64 @@
+.tpgb-coupon-code.coupon-code-scratch, .tpgb-coupon-code.coupon-code-slideOut, .tpgb-coupon-code.coupon-code-peel {
+	height: 250px;
+	max-width: 500px;
+	margin: 0 auto;
+	overflow: hidden;
+}
+.tpgb-coupon-code.coupon-code-scratch .coupon-front-side, .tpgb-coupon-code.coupon-code-slideOut .coupon-front-side {
+	z-index: 99;
+}
+.coupon-front-side {
+	background: #F08080;
+}
+.coupon-front-side, .coupon-back-side {
+	position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: stretch;
+}
+.coupon-back-side {
+	background: #54595F;
+}
+.coupon-front-inner, .coupon-back-inner {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-content: center;
+    align-items: stretch;
+    min-width: 100%;
+    z-index: 2;
+}
+.coupon-back-content {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-content: center;
+    align-items: stretch;
+}
+.coupon-code-overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: block;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+.tpgb-coupon-code h3.coupon-front-content, .tpgb-coupon-code h3.coupon-back-title {
+    color: #fff;
+    font-size: 23px;
+    text-align: center;
+    margin: 0 0 10px 0;
+}
+.tpgb-coupon-code .coupon-back-description {
+    color: #fff;
+    font-size: 13px;
+    text-align: center;
+    margin: 0 0 10px 0;
+}
+.tpgb-coupon-code .coupon-front-side, .tpgb-coupon-code .coupon-back-side{
+    overflow: hidden !important;
+}

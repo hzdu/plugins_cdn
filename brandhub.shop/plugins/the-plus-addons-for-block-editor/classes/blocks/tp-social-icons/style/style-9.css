@@ -1,0 +1,83 @@
+/* Social Icons Style-9 */
+.tpgb-social-icons.style-9 .tpgb-social-list {
+    display: flex;
+    flex-wrap: wrap
+}
+.tpgb-social-icons.style-9 .tpgb-social-list > div .tpgb-icon-link {
+    display: block;
+    transition: color .2s ease;
+    margin: 0
+}
+.tpgb-social-icons.style-9 .tpgb-social-list > div {
+    margin-right: 10px;
+    overflow: visible
+}
+.tpgb-social-icons.style-9 .tpgb-icon-link .tpgb-line-blink::before {
+	background: #000;
+}
+.tpgb-social-icons.style-9 .tpgb-icon-link span.line-top-left,.tpgb-social-icons.style-9 .tpgb-icon-link span.line-top-center,.tpgb-social-icons.style-9 .tpgb-icon-link span.line-top-right,.tpgb-social-icons.style-9 .tpgb-icon-link span.line-bottom-left,.tpgb-social-icons.style-9 .tpgb-icon-link span.line-bottom-center,.tpgb-social-icons.style-9 .tpgb-icon-link span.line-bottom-right {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    background: transparent
+}
+.tpgb-social-icons.style-9 .tpgb-icon-link span.line-top-left:before,.tpgb-social-icons.style-9 .tpgb-icon-link span.line-top-center:before,.tpgb-social-icons.style-9 .tpgb-icon-link span.line-top-right:before,.tpgb-social-icons.style-9 .tpgb-icon-link span.line-bottom-left:before,.tpgb-social-icons.style-9 .tpgb-icon-link span.line-bottom-center:before,.tpgb-social-icons.style-9 .tpgb-icon-link span.line-bottom-right:before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    width: 1px
+}
+.tpgb-social-icons.style-9 .tpgb-icon-link span.line-bottom-left:before,.tpgb-social-icons.style-9 .tpgb-icon-link span.line-bottom-center:before,.tpgb-social-icons.style-9 .tpgb-icon-link span.line-bottom-right:before {
+    bottom: 100%;
+    top: 0;
+    transition: top .2s ease-in-out .1s,bottom .2s ease-in-out
+}
+.tpgb-social-icons.style-9 .tpgb-icon-link span.line-top-left:before,.tpgb-social-icons.style-9 .tpgb-icon-link span.line-top-center:before,.tpgb-social-icons.style-9 .tpgb-icon-link span.line-top-right:before {
+    bottom: 0;
+    top: 100%;
+    transition: top .2s ease-in-out,bottom .2s ease-in-out .1s
+}
+.tpgb-social-icons.style-9 .tpgb-icon-link:hover .line-top-left:before,.tpgb-social-icons.style-9 .tpgb-icon-link:hover .line-top-center:before,.tpgb-social-icons.style-9 .tpgb-icon-link:hover .line-top-right:before {
+    top: 0;
+    bottom: 100%
+}
+.tpgb-social-icons.style-9 .tpgb-icon-link:hover .line-bottom-left:before,.tpgb-social-icons.style-9 .tpgb-icon-link:hover .line-bottom-center:before,.tpgb-social-icons.style-9 .tpgb-icon-link:hover .line-bottom-right:before {
+    top: 100%;
+    bottom: 0
+}
+.tpgb-social-icons.style-9 .tpgb-icon-link span.line-top-left {
+    top: 8px;
+    left: 0;
+    transform: rotate(-55deg)
+}
+.tpgb-social-icons.style-9 .tpgb-icon-link span.line-top-center {
+    top: 0;
+    left: 50%;
+    margin-left: -6px
+}
+.tpgb-social-icons.style-9 .tpgb-icon-link span.line-top-right {
+    top: 8px;
+    right: 0;
+    transform: rotate(55deg)
+}
+.tpgb-social-icons.style-9 .tpgb-icon-link span.line-bottom-left {
+    bottom: 8px;
+    left: 0;
+    transform: rotate(55deg)
+}
+.tpgb-social-icons.style-9 .tpgb-icon-link span.line-bottom-center {
+    bottom: 0;
+    left: 50%;
+    margin-left: -6px
+}
+.tpgb-social-icons.style-9 .tpgb-icon-link span.line-bottom-right {
+    bottom: 8px;
+    right: 0;
+    transform: rotate(-55deg)
+}
+.tpgb-social-icons.style-9 .tpgb-icon-link .tpgb-social-title:before {
+    background: #f06eaa
+}
+.tpgb-social-icons.style-9 .tpgb-social-list > div:last-child {
+    margin-right: 0
+}

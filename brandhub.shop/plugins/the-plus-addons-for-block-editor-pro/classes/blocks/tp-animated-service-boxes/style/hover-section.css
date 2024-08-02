@@ -1,0 +1,67 @@
+/* Hover Section */
+.tpgb-animated-service-boxes.hover-section .asb-desc,
+.tpgb-animated-service-boxes.hover-section .asb-icon,
+.tpgb-animated-service-boxes.hover-section .asb-image,
+.tpgb-animated-service-boxes.hover-section .asb-sub-title,
+.tpgb-animated-service-boxes.hover-section .tpgb-adv-button .button-link-wrap {
+    opacity: 0
+}
+.hover-section-content-wrapper:hover .asb-desc,.hover-section-content-wrapper:hover .asb-icon,.hover-section-content-wrapper:hover .asb-sub-title,.hover-section-content-wrapper:hover .tpgb-adv-button .button-link-wrap,.tpgb-animated-service-boxes.hover-section .service-item-loop:hover .asb-image {
+    opacity: 1
+}
+.tpgb-animated-service-boxes.hover-section .tpgb-adv-button.button-style-8 .button-link-wrap{
+    padding: 15px 30px;
+}
+.tpgb-animated-service-boxes.hover-section .tpgb-adv-button .button-link-wrap {
+    margin-top: 15px
+}
+.hover-section.hover-section-style-1 .hover-section-content-wrapper .asb-title-link {
+    pointer-events: none
+}
+.tpgb-animated-service-boxes.hover-section {
+    min-height: 500px;
+    position: relative;
+    display: flex;
+	justify-content: center;
+}
+.tpgb-animated-service-boxes.hover-section .asb_wrap_list.tpgb-row.hover-section-extra {
+    position: relative;
+    display: inline-flex;
+    align-items: flex-start;
+    width: 100%;
+    height: auto;
+    align-self: center
+}
+.tpgb-animated-service-boxes.hover-section .asb-desc p,.tpgb-animated-service-boxes.hover-section .asb-title {
+    margin: 0
+}
+.tpgb-animated-service-boxes.hover-section .asb-desc {
+    margin-top: 20px
+}
+.tpgb-animated-service-boxes.hover-section .asb-sub-title {
+    margin: 15px 0 0
+}
+.tpgb-animated-service-boxes.hover-section .asb-icon-image {
+    margin-bottom: 20px;
+    transform: translateY(-30px)
+}
+.tpgb-animated-service-boxes.hover-section .hover-content-inner-hover {
+    position: relative;
+    transform: translateY(30px);
+}
+.tpgb-animated-service-boxes.hover-section .hover-section-content-wrapper:hover .asb-icon-image,.tpgb-animated-service-boxes.hover-section .hover-section-content-wrapper:hover .hover-content-inner-hover {
+    transform: translateY(0)
+}
+@media (max-width:1024px) and (min-width:768px) {
+    .tpgb-animated-service-boxes.hover-section .asb_wrap_list.tpgb-row.hover-section-extra {
+        padding: 0 20px
+    }
+}
+@media (max-width:767px) and (min-width:320px) {
+    .tpgb-animated-service-boxes.hover-section .asb_wrap_list.tpgb-row.hover-section-extra {
+        padding: 0 10px
+    }
+    .tpgb-animated-service-boxes.hover-section .service-item-loop {
+        padding: 20px 0
+    }
+}

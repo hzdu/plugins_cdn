@@ -1,0 +1,65 @@
+/*
+Front End + Back End CSS
+*/
+/*Site Logo*/
+.tpgb-site-logo {
+	line-height: 0;
+}
+.tpgb-site-logo .site-logo-wrap {
+    display: inline-block;
+    position: relative;
+}
+.tpgb-site-logo .site-normal-logo {
+    position: relative;
+    display: inline-block;
+    transition: all 0.3s ease-in-out 0.2s;
+}
+.tpgb-site-logo .site-normal-logo .image-logo-wrap {
+    width: 100%;
+    max-width: 100px;
+    height: auto;
+}
+.site-normal-logo img {
+	will-change: transform;
+    image-rendering: -webkit-optimize-contrast;
+}
+.site-normal-logo.hover-logo {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate3d(-50%, -50%, 0) scale(0.5);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease-in-out 0.1s;
+}
+.site-logo-wrap.logo-hover-normal:hover .site-normal-logo.hover-logo {
+    visibility: visible;
+    opacity: 1;
+    transform: translate3d(-50%, -50%, 0) scale(1);
+    transition: all 0.3s ease-in-out 0.2s;
+}
+.site-logo-wrap.logo-hover-normal:hover .site-normal-logo:not(.hover-logo) {
+    visibility: hidden;
+    opacity: 0;
+    transform: scale(0.5);
+}
+.tpgb-nav-sticky-sec .normal-image {
+    opacity: 1;
+    transform: translateY(0);
+}
+.tpgb-site-logo .sticky-image {
+    position: absolute;
+    display: block;
+    top: 0;
+    opacity: 0;
+}
+.tpgb-nav-sticky-sec .image-logo-wrap {
+    transition: all 0.3s linear;
+}
+.tpgb-nav-sticky-sec.tpgb-fixed-sticky .normal-image.tp-sticky-logo-cls {
+    opacity: 0;
+    transform: translateY(-100px);
+}
+.tpgb-nav-sticky-sec.tpgb-fixed-sticky .sticky-image {
+    opacity: 1;
+}

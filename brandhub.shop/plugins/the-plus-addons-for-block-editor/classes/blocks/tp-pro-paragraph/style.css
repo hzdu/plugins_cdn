@@ -1,0 +1,29 @@
+.tpgb-pro-paragraph {
+    position: relative;
+    display: block
+}
+
+.tpgb-pro-paragraph .pro-heading-inner,.tpgb-pro-paragraph .pro-paragraph-inner,.tpgb-pro-paragraph .pro-paragraph-inner a {
+    transition: all .3s linear
+}
+
+.tpgb-pro-paragraph .pro-heading-inner,.tpgb-pro-paragraph .pro-paragraph-inner * {
+    margin: 0;
+    padding: 0
+}
+
+.tpgb-drop-cap p::first-letter{
+    float: left;
+    text-align: center;
+    line-height: 1;
+    font-size: 40px;
+}
+.tpgb-drop-cap.tpgb-drop-framed p::first-letter,.tpgb-drop-cap.tpgb-drop-stacked p::first-letter{
+    width: 1rem;
+    height: 1rem;
+    margin-right : 10px;
+    padding: 5px;
+}
+.tpgb-drop-cap.tpgb-drop-framed p::first-letter{
+    border: 3px solid;
+}

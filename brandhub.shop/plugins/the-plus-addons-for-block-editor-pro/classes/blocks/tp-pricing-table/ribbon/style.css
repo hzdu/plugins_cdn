@@ -1,0 +1,45 @@
+/* Pricing Table Ribbon */
+.pricing-ribbon-pin {
+    z-index: 1
+}
+.pricing-ribbon-pin.style-1 {
+    position: absolute;
+    bottom: 100%;
+    left: 0;
+    right: 0;
+    width: 100%
+}
+.pricing-ribbon-pin .ribbon-pin-inner {
+    font-size: 15px;
+    text-transform: uppercase;
+    letter-spacing: .2px;
+    color: #fff;
+    line-height: 20px
+}
+.pricing-ribbon-pin.style-1 .ribbon-pin-inner {
+    background: #212121;
+    padding: 6px 15px
+}
+.pricing-ribbon-pin .ribbon-pin-inner p {
+    margin-bottom: 0;
+    color: #fff;
+    transition: all 0.3s
+}
+.pricing-ribbon-pin.style-2 {
+    position: absolute;
+    top: 0;
+    right: -7px;
+    background-color: #212121;
+    padding: 10px 13px;
+    width: auto;
+    border-radius: 2px
+}
+.pricing-ribbon-pin.style-2:after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    right: 0;
+    border: 2px solid transparent;
+    border-left: 5px solid #212121;
+    border-top: 1px solid #212121
+}

@@ -1,0 +1,45 @@
+/* Social Icons Style-15 */
+.tpgb-social-icons.style-15 .tpgb-social-list {
+    padding: 0;
+    margin: 0;
+    position: relative;
+    list-style: none;
+    display: block
+}
+.tpgb-social-icons.style-15 .tpgb-social-list > div.style-15 {
+    display: block
+}
+.tpgb-social-icons.style-15 .tpgb-social-list > div.style-15 .tpgb-icon-link {
+    margin: 0;
+    width: 100%;
+	background: #404040;
+	color: #d3d3d3;
+	height: 50px;
+}
+.tpgb-social-icons.style-15 .tpgb-social-list > div.style-15 .tpgb-social-icn {
+    transition: 0.2s ease;
+}
+.tpgb-social-icons.style-15 .social-faded > div:hover .tpgb-social-icn {
+    transform: scale(0)
+}
+.tpgb-social-icons.style-15 .social-faded span.tpgb-social-title {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    transition: all .3s ease-out;
+    opacity: 0;
+    filter: blur(25px);
+    transform: translateZ(0) translateX(0%);
+    will-change: transform;
+    left: 0;
+    right: 0;
+	color: #fff;
+}
+.tpgb-social-icons.style-15 .social-faded > div:hover span.tpgb-social-title {
+    transition: all .3s ease-out;
+    opacity: 1;
+    filter: blur(0)
+}
+.tpgb-social-icons.style-15 .social-chaffal > div .tpgb-social-icn {
+    display: none
+}

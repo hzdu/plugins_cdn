@@ -1,0 +1,66 @@
+.cta-style-8 .cta-title {
+    margin: 0
+}
+
+.cta-style-8 .cta-subtitle {
+    margin: 0;
+    padding: 0
+}
+
+.cta-style-8 .cta-product-box {
+    width: 100%;
+    min-height: 180px;
+    position: relative
+}
+
+.cta-style-8 .cta-product-box-inner {
+    background-position: center!important;
+    background-repeat: no-repeat!important;
+    background-size: cover!important;
+    min-height: 180px;
+    padding: 20px;
+    font-size: 16px;
+    color: #fff;
+    transition: all .25s ease-in-out
+}
+
+.cta-style-8 .cta-product-box-inner:after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%
+}
+
+.cta-style-8 .cta-product-box {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box
+}
+
+.cta-style-8 .cta-img-hide {
+    opacity: 0
+}
+
+.cta-style-8 .cta-product-box:hover .cta-btn-block,.cta-style-8 .cta-product-box:hover .cta-product-box-inner {
+    transform: translateY(-70px)
+}
+
+.cta-style-8 .cta-product-box .cta-btn-block {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #000;
+    font-size: 14px;
+    padding: .7em 1.6em;
+    min-height: 70px;
+    transform: rotateX(-90deg);
+    transform-origin: center top 0;
+    transform-style: preserve-3d;
+    width: 100%;
+    top: 100%;
+    transition: all .25s ease-in-out;
+    background : #0000004D;
+    position: absolute
+}

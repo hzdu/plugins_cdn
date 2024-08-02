@@ -1,0 +1,54 @@
+/*
+Front End + Back End CSS
+*/
+/* Dark Mode */
+.tpgb-dark-mode{
+	line-height: 1;
+}
+.tpgb-dark-mode .tpgb-dark-mode-wrap {
+	position: relative;
+	display: inline-block;
+}
+.dark-pos-absolute .tpgb-dark-mode-wrap {
+	display: block;
+}
+ .tpgb-darkmode-toggle {
+	z-index: 500;
+	transition: all 0.5s ease;
+}
+.tpgb-dark-mode.dark-pos-relative .tpgb-darkmode-toggle {
+	position: relative;
+}
+.tpgb-dark-mode.dark-pos-absolute .tpgb-darkmode-toggle {
+	position: absolute;
+}
+.tpgb-dark-mode.dark-pos-fixed .tpgb-darkmode-toggle {
+	position: fixed;
+}
+.tpgb-dark-mode.dark-pos-fixed {
+    height: 0;
+    z-index: 9999;
+}
+.tpgb-dark-mode.dark-pos-absolute .tpgb-darkmode-toggle {
+	left: 10%;
+	right: auto;
+}
+.fix-left-top.tpgb-darkmode-toggle {
+	left: 10%;
+    top: 10%;
+}
+.fix-left-bottom.tpgb-darkmode-toggle {
+	left: 10%;
+    bottom: 10%;
+}
+.fix-right-top.tpgb-darkmode-toggle {
+	right: 10%;
+	top: 10%;
+}
+.fix-right-bottom.tpgb-darkmode-toggle {
+	right: 10%;
+	bottom: 10%;
+}
+.tpgb-dark-mode .tpgb-darkmode-toggle:focus, .tpgb-dark-mode .tpgb-darkmode-toggle:hover {
+	outline: none;
+}

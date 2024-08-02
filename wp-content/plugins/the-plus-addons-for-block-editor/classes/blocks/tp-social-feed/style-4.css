@@ -1,0 +1,61 @@
+/* SF Style-4 */
+.social-feed-style-4 .feed-Facebook .reference-thumb {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 10px 10px;
+}
+.social-feed-style-4 .tpgb-sf-contant-img a.tpgb-image-link {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%
+}
+.social-feed-style-4 .tpgb-sf-feed {
+    background-color: #000000a6;
+    border: 0px;
+    padding: 0px;
+    position: relative;
+    overflow: hidden;
+}
+.social-feed-style-4 .tpgb-sf-contant {
+    opacity: 0;
+    visibility: hidden;
+    z-index: 1;
+    padding: 0 15px;
+}
+.social-feed-style-4 .tpgb-sf-feed:hover .tpgb-sf-contant {
+    opacity: 1;
+    visibility: visible;
+}
+.social-feed-style-4 .tpgb-message, .social-feed-style-4 .tpgb-title, .social-feed-style-4 .tpgb-sf-footer, .social-feed-style-4 .tpgb-sf-username, .social-feed-style-4 .tpgb-sf-username a, .social-feed-style-4 .tpgb-sf-time, .social-feed-style-4 .tpgb-sf-time a {
+    color: #fff;
+}
+.social-feed-style-4 .tpgb-post-thumb {
+    padding: 0px;
+}
+.social-feed-style-4 .tpgb-sf-contant-img {
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    min-height: 275px;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.social-feed-style-4 .tpgb-sf-contant-img:before {
+    position: absolute;
+    content: '';
+    top: 0;
+    width: 100%;
+    left: 0;
+    height: 100%;
+    background: #000000a6;
+    opacity: 0;
+    visibility: hidden;
+}
+.social-feed-style-4 .tpgb-sf-feed:hover .tpgb-sf-contant-img:before {
+    opacity: 1;
+    visibility: visible;
+}

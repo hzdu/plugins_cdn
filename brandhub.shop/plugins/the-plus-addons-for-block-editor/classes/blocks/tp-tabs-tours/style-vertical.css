@@ -1,0 +1,26 @@
+.tab-view-vertical .tpgb-tabs-wrapper {
+    display: flex
+}
+.tab-view-vertical .tpgb-tabs-nav-wrapper {
+    flex-shrink: 0
+}
+.tab-view-vertical .tpgb-tabs-content-wrapper {
+    flex-grow: 1
+}
+.tab-view-vertical .tpgb-tabs-nav .tpgb-tab-header {
+    margin-bottom: 25px
+}
+.tab-view-vertical .tpgb-tabs-nav-wrapper.align-bottom,.tab-view-vertical .tpgb-tabs-nav-wrapper.align-center,.tab-view-vertical .tpgb-tabs-nav-wrapper.align-top {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column
+}
+
+.tab-view-vertical .tpgb-tabs-nav-wrapper.align-top {
+    align-self: flex-start
+}
+
+.tab-view-vertical .tpgb-tabs-nav-wrapper.align-bottom {
+    align-self: flex-end
+}

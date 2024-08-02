@@ -1,0 +1,76 @@
+/*social sharing
+* CSS for both Frontend+Backend.
+*/
+.tpgb-social-sharing .tpgb-social-list {
+    display: inline-flex;
+    flex-wrap: wrap;
+	list-style: none;
+	width: auto;
+	margin: 0;
+	padding: 0;
+}
+.tpgb-social-sharing .tpgb-social-list.full-column{
+	width: 100%;
+}
+.tpgb-social-sharing .tpgb-social-list .tpgb-social-menu {
+	display: flex;
+	position: relative;
+	width: max-content;
+	padding: 5px;
+	margin: 0;
+}
+.tpgb-social-sharing .tpgb-social-list .totalcount{
+	display: inline-flex;
+	position: relative;
+	align-items: center;
+    justify-content: center;
+	text-align: center;
+	width: max-content;
+	padding: 5px;
+}
+.totalcount .totalcount-item{
+    position: relative;
+    display: inline-flex;
+    flex-direction: column;
+	width: 100%;
+}
+.totalcount .totalcount-item .total-count-number{
+	position: relative;
+    display: inline-block;
+	font-weight: 700;
+	font-size: 14px;
+	line-height: 0;
+	color: #888;
+}
+.totalcount .totalcount-item .total-number-label{
+	font-size: 10px;
+	text-transform: uppercase;
+    font-weight: 400;
+    color: #444;
+	display: inline-block;
+	position: relative;
+	line-height: 0;
+    margin-top: 20px;
+}
+.tpgb-social-sharing .tpgb-social-list .share-btn{
+    font-size: 10px;
+    cursor: pointer;
+    text-decoration: none;
+	background: #313131;
+    color: #fff;
+	width: 100%;
+	border-radius: 4px;
+	overflow: hidden;
+}
+.social-btn-icon{
+	width: 41px;
+	height: 41px;
+	line-height: 41px;
+}
+.tpgb-social-list .tpgb-social-menu .social-btn-title , .tpgb-social-sharing .social-count-number{
+    align-items: center;
+    display: flex;
+	font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 1.5px;
+}

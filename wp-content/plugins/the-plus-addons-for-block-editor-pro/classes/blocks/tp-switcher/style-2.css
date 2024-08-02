@@ -1,0 +1,15 @@
+/* Switch Style 2 css */
+.switch-slider.style-2:before {
+	position: absolute;
+    content: "";
+    height: 1.8em;
+    width: 1.8em;
+    left: .25em;
+    bottom: .25em;
+	background:#fff;
+    transition: .4s
+}
+.switch-toggle:checked+.switch-slider.style-2:before{
+    transform: translateX(2.6em);
+}
+/* Switch Style 2 css */

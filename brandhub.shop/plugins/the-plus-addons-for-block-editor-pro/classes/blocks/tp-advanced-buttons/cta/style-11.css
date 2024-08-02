@@ -1,0 +1,29 @@
+/**
+ * CSS for both Frontend+Backend.
+ */
+.tpgb-adv-btn-inner.ab-cta.tpgb-cta-style-11 .adv-button-link-wrap {
+    border: 5px solid #4a4d5c;
+    border-radius: unset
+}
+.tpgb-adv-btn-inner.ab-cta.tpgb-cta-style-11 .adv-button-link-wrap::after,.tpgb-adv-btn-inner.ab-cta.tpgb-cta-style-11 .adv-button-link-wrap::before {
+    display: block;
+    width: 10%;
+    background: #fff;
+    height: 5px;
+    transform: skewX(-45deg);
+    transition: all .45s cubic-bezier(.86,0,.07,1)
+}
+.tpgb-adv-btn-inner.ab-cta.tpgb-cta-style-11 .adv-button-link-wrap::before {
+    right: 20%;
+    top: -5px
+}
+.tpgb-adv-btn-inner.ab-cta.tpgb-cta-style-11 .adv-button-link-wrap::after {
+    left: 20%;
+    bottom: -5px
+}
+.tpgb-adv-btn-inner.ab-cta.tpgb-cta-style-11 .adv-button-link-wrap:hover::before {
+    right: 80%
+}
+.tpgb-adv-btn-inner.ab-cta.tpgb-cta-style-11 .adv-button-link-wrap:hover::after {
+    left: 80%
+}

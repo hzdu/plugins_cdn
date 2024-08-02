@@ -1,0 +1,108 @@
+/**
+ * CSS for both Frontend+Backend.
+ */
+/** Download Button **/
+@keyframes tp-rubberBand {
+    0% {
+        transform: scale(1,1,1)
+    }
+    30% {
+        transform: scale3d(1.15,.75,1)
+    }
+    40% {
+        transform: scale3d(.75,1.15,1)
+    }
+    50% {
+        transform: scale3d(1.1,.85,1)
+    }
+    65% {
+        transform: scale3d(.95,1.05,1)
+    }
+    75% {
+        transform: scale3d(1.05,.95,1)
+    }
+    to {
+        transform: scale3d(1,1,1)
+    }
+}
+.tpgb-adv-btn-inner.ab-download.tpgb-download-style-2 .adv-button-link-wrap.load,.tpgb-adv-btn-inner.ab-download.tpgb-download-style-2 .adv-button-link-wrap:hover {
+    background: #0077ff33
+}
+.tpgb-adv-btn-inner.ab-download.tpgb-download-style-2,.tpgb-adv-btn-inner.ab-download.tpgb-download-style-2 .adv-button-link-wrap {
+    position: relative;
+    height: 48px;
+    width: 48px;
+    border-radius: 100%;
+    background: #e8eaed;
+    cursor: pointer;
+    overflow: hidden;
+    transition: all .2s ease;
+    outline: 0;
+    margin: 0
+}
+.tpgb-adv-btn-inner.ab-download.tpgb-download-style-2 .adv-button-link-wrap {
+    display: inline-grid
+}
+.tpgb-adv-btn-inner.ab-download.tpgb-download-style-2 .adv-button-link-wrap:after {
+    content: "";
+    position: relative;
+    display: block;
+    width: 200%;
+    height: 100%;
+    background-image: linear-gradient(100deg,#ffffff00,#ffffff40,#ffffff00);
+    transform: translateX(-100%)
+}
+.tpgb-adv-btn-inner.ab-download.tpgb-download-style-2 .adv-button-link-wrap svg {
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    fill: none
+}
+.tpgb-adv-btn-inner.ab-download.tpgb-download-style-2 .adv-button-link-wrap svg#border {
+    position: absolute;
+    top: 0;
+    left: 0;
+    stroke: none;
+    stroke-dasharray: 144;
+    stroke-dashoffset: 144;
+    transition: all .9s linear
+}
+.tpgb-adv-btn-inner.ab-download.tpgb-download-style-2 .adv-button-link-wrap svg#arrow {
+    position: absolute;
+    top: 14px;
+    left: 17px;
+    stroke: #6a79e3;
+    transition: all .2s ease
+}
+.tpgb-adv-btn-inner.ab-download.tpgb-download-style-2 .adv-button-link-wrap svg#check {
+    position: absolute;
+    top: 17px;
+    left: 13px;
+    stroke: #6a79e3;
+    transform: scale(0)
+}
+.tpgb-adv-btn-inner.ab-download.tpgb-download-style-2 .adv-button-link-wrap.load #arrow path,.tpgb-adv-btn-inner.ab-download.tpgb-download-style-2 .adv-button-link-wrap.load #arrow polyline,.tpgb-adv-btn-inner.ab-download.tpgb-download-style-2 .adv-button-link-wrap:hover #arrow path,.tpgb-adv-btn-inner.ab-download.tpgb-download-style-2 .adv-button-link-wrap:hover #arrow polyline {
+    stroke: #6a79e3
+}
+.tpgb-adv-btn-inner.ab-download.tpgb-download-style-2 .adv-button-link-wrap.load #border {
+    stroke: #6a79e3;
+    stroke-dasharray: 144;
+    stroke-dashoffset: 0
+}
+.tpgb-adv-btn-inner.ab-download.tpgb-download-style-2 .adv-button-link-wrap.done {
+    background: #6a79e3;
+    animation: tp-rubberBand .8s
+}
+.tpgb-adv-btn-inner.ab-download.tpgb-download-style-2 .adv-button-link-wrap.done:after {
+    transform: translateX(50%);
+    transition: transform .4s ease;
+    transition-delay: .7s
+}
+.tpgb-adv-btn-inner.ab-download.tpgb-download-style-2 .adv-button-link-wrap.done #arrow,.tpgb-adv-btn-inner.ab-download.tpgb-download-style-2 .adv-button-link-wrap.done #border {
+    display: none
+}
+.tpgb-adv-btn-inner.ab-download.tpgb-download-style-2 .adv-button-link-wrap.done #check {
+    transform: scale(1);
+    transition: all .2s ease;
+    transition-delay: .2s
+}

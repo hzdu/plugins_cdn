@@ -1,0 +1,31 @@
+/* Button Style-14 */
+.tpgb-plus-button.button-style-14 .button-link-wrap {
+    border: 1px solid #212121;
+    overflow: hidden;
+	color:#212121;
+}
+.tpgb-plus-button.button-style-14 .button-link-wrap::after {
+    content: attr(data-hover);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    height: 100%;
+    display: grid;
+    align-items: center;
+    color: #212121;
+    transform-origin: -25% 50%;
+    transform: rotate3d(0,0,1,45deg);
+    transition: transform 0.3s ease-in;
+}
+.tpgb-plus-button.button-style-14 .button-link-wrap:hover::after, .tpgb-plus-button.button-style-14 .button-link-wrap:hover {
+    transition-timing-function: ease-out;
+}
+.tpgb-plus-button.button-style-14 .button-link-wrap:hover::after {
+    transform: rotate3d(0,0,1,0deg);
+}
+.tpgb-plus-button.button-style-14 .button-link-wrap:hover span {
+    opacity: 0;
+    transition: opacity .3s linear .1s;
+}

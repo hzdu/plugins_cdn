@@ -1,0 +1,24 @@
+/* Hover Style 2 Css */
+.tpgb-accor-wrap.hover-style-2 .tpgb-accor-item .tpgb-accordion-header {
+    position: relative;
+    overflow: hidden;
+}
+.tpgb-accor-wrap.hover-style-2 .tpgb-accor-item .tpgb-accordion-header > span {
+    position: relative;
+    z-index: 1;
+}
+.tpgb-accor-wrap.hover-style-2 .tpgb-accordion-header:before{
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 0;
+    width: 100%;
+}
+.tpgb-accor-wrap.hover-style-2 .tpgb-accor-item:hover .tpgb-accordion-header:not(.active):before {
+    height: 5px;
+}
+.tpgb-accor-wrap.hover-style-2 .tpgb-accor-item .tpgb-accordion-header.active:before {
+    height: 100%;
+}
+/* Hover Style 2 Css */

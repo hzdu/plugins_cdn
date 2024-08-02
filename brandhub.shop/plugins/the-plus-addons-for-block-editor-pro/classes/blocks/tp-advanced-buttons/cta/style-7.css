@@ -1,0 +1,51 @@
+/**
+ * CSS for both Frontend+Backend.
+ */
+@keyframes tp-up-down {
+    50% {
+        margin-top: -20px
+    }
+}
+.tpgb-adv-btn-inner.ab-cta.tpgb-cta-style-7 .adv-button-link-wrap:before {
+    content: "👇";
+    font-size: 40px;
+    transform: scaleX(-1);
+    right: 0;
+    top: -60px;
+    animation: tp-up-down 1s infinite;
+    position: absolute
+}
+.tpgb-adv-btn-inner.ab-cta.tpgb-cta-style-7 .adv-button-link-wrap .hands:after,.tpgb-adv-btn-inner.ab-cta.tpgb-cta-style-7 .adv-button-link-wrap .hands:before {
+    content: "👇";
+    font-size: 30px;
+    opacity: 0;
+    transition: .4s ease-in-out
+}
+.tpgb-adv-btn-inner.ab-cta.tpgb-cta-style-7 .adv-button-link-wrap .hands:before {
+    transform: rotate(-60deg);
+    left: -45px;
+    top: -10px
+}
+.tpgb-adv-btn-inner.ab-cta.tpgb-cta-style-7 .adv-button-link-wrap .hands:after {
+    transform: rotate(170deg);
+    right: 10px;
+    bottom: -45px
+}
+.tpgb-adv-btn-inner.ab-cta.tpgb-cta-style-7 .adv-button-link-wrap:hover .hands:before {
+    opacity: 1;
+    left: -35px
+}
+.tpgb-adv-btn-inner.ab-cta.tpgb-cta-style-7 .adv-button-link-wrap:hover .hands:after {
+    opacity: 1;
+    top: 40px
+}
+
+@media only screen and (max-width:425px) {
+    .tpgb-adv-btn-inner.ab-cta.tpgb-cta-style-7 .adv-button-link-wrap:before {
+        font-size: 25px;
+        top: -40px
+    }
+    .tpgb-adv-btn-inner.ab-cta.tpgb-cta-style-7 .adv-button-link-wrap .hands:after,.tpgb-adv-btn-inner.ab-cta.tpgb-cta-style-7 .adv-button-link-wrap .hands:before {
+        font-size: 20px
+    }
+}

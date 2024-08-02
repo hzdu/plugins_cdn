@@ -1,0 +1,85 @@
+/*Image Factory*/
+.tpgb-creative-img-wrap.tpgb-bg-animate-img {
+    overflow: hidden;
+    display: block
+}
+.tpgb-bg-animate-img:after {
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%
+}
+.tpgb-bg-animate-img img,.tpgb-bg-img-animated .tpgb-bg-animate-img img,.tpgb-bg-img-animated .tpgb-bg-animate-img:hover img {
+    opacity: 0
+}
+.tpgb-bg-img-anim img {
+    width: 100%
+}
+.tpgb-bg-animate-img.left {
+    transform: translateX(-100%);
+    transition-delay: 0s
+}
+.tpgb-bg-animate-img.right {
+    transform: translateX(100%);
+    transition-delay: 0s
+}
+.tpgb-bg-animate-img.top {
+    transform: translateY(-100%);
+    transition-delay: 0s
+}
+.tpgb-bg-animate-img.bottom {
+    transform: translateY(100%);
+    transition-delay: 0s
+}
+.tpgb-bg-animate-img {
+    transition: all .3s;
+    transition-duration: .5s;
+    width: 100%;
+    height: 100%;
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+    background-size: cover!important;
+    background-position: center center!important
+}
+.tpgb-creative-animated .tpgb-bg-animate-img {
+    transform: translateX(0);
+    transition-delay: 0s;
+    transition: all 0s
+}
+.tpgb-bg-animate-img:after {
+    content: "";
+    background: #d3d3d3;
+    transition: all .5s;
+    transition-delay: .6s
+}
+.tpgb-bg-animate-img.left:after,.tpgb-bg-animate-img.right:after {
+    transform: translateX(0)
+}
+.tpgb-bg-animate-img.bottom:after,.tpgb-bg-animate-img.top:after {
+    transform: translateY(0)
+}
+.tpgb-creative-animated .tpgb-bg-animate-img.left:after {
+    transform: translateX(102%)
+}
+.tpgb-creative-animated .tpgb-bg-animate-img.right:after {
+    transform: translateX(-102%)
+}
+.tpgb-creative-animated .tpgb-bg-animate-img.top:after {
+    transform: translateY(102%)
+}
+.tpgb-creative-animated .tpgb-bg-animate-img.bottom:after {
+    transform: translateY(-102%)
+}
+.tpgb-creative-animated .tpgb-bg-animate-img:after {
+    -webkit-animation-fill-mode: both;
+    -moz-animation-fill-mode: both;
+    animation-fill-mode: both
+}
+.tpgb-animate-image.tpgb-bg-img-animated {
+    opacity: 0
+}
+.tpgb-animate-image.tpgb-bg-img-animated.tpgb-creative-animated {
+    opacity: 1!important
+}

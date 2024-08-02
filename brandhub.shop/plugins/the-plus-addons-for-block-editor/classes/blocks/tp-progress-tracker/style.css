@@ -1,0 +1,241 @@
+.tpgb-fixed-block{
+    position: fixed;
+    display: block;
+    z-index: 999;
+}
+.type-horizontal .tpgb-progress-track{
+    left: 0;
+    height: 20px;
+    width: 100%;
+}
+.type-vertical .tpgb-progress-track{
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 30px;
+}
+.type-horizontal .tpgb-progress-track, .type-vertical .tpgb-progress-track {
+    background-color: #d3d3d3;
+}
+.type-horizontal .progress-track-fill {
+    background: #ff844a;
+    height: 100%;
+    width: 0;
+    position: absolute;
+}
+.type-vertical .progress-track-fill {
+    background: #ff844a;
+    width: 100%;
+    height: 0;
+    position: absolute;
+}
+.tpgb-progress-tracker .pos-top{
+    top: 0;
+}
+.tpgb-progress-tracker .pos-bottom{
+    bottom: 0;
+}
+.tpgb-progress-tracker .pos-left{
+    left: 0;
+}
+.tpgb-progress-tracker .pos-right{
+    right: 0;
+    left: auto;
+}
+.progress-track-percentage {
+    position: absolute;
+    display: flex;
+    font-size: 12px;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-weight: 500;
+    width: max-content;
+}
+.type-horizontal .progress-track-percentage.style-1, .type-vertical .progress-track-percentage.style-1 {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+.type-horizontal .progress-track-percentage.style-2, .type-vertical .progress-track-percentage.style-2 {
+    padding: 5px 10px;
+    background: #000;
+}
+.type-horizontal .progress-track-percentage.style-2 {
+    right: -20px
+}
+.type-vertical .progress-track-percentage.style-2 {
+    bottom: -15px
+}
+.type-horizontal .pos-top .progress-track-percentage.style-2 {
+    top: calc(100% + 10px);
+}
+.type-horizontal .pos-bottom .progress-track-percentage.style-2 {
+    bottom: calc(100% + 10px);
+}
+.type-horizontal .progress-track-percentage.style-2::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 5px;
+    border-style: solid;
+}
+.type-horizontal .pos-top .progress-track-percentage.style-2::before {
+    top: -9px;
+    border-color: transparent transparent #000 transparent;
+}
+.type-horizontal .pos-bottom .progress-track-percentage.style-2::before {
+    bottom: -9px;
+    border-color: #000 transparent transparent transparent;
+}
+
+.type-horizontal .tpgb-progress-track.direction-rtl {
+    direction: rtl;
+}
+.type-horizontal .tpgb-progress-track.direction-rtl .progress-track-percentage.style-2{
+    left: -20px;
+    right: auto;
+}
+.type-vertical .pos-left .progress-track-percentage.style-2 {
+    left: calc(100% + 10px);
+}
+.type-vertical .pos-right .progress-track-percentage.style-2 {
+    right: calc(100% + 10px);
+}
+.type-vertical .progress-track-percentage.style-2::before {
+    content: "";
+    position: absolute;
+    border-width: 5px;
+    border-style: solid;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.type-vertical .pos-left .progress-track-percentage.style-2::before {
+    left: -9px;
+    border-color:  transparent #000 transparent transparent;
+}
+.type-vertical .pos-right .progress-track-percentage.style-2::before {
+    right: -9px;
+    border-color: transparent transparent transparent #000;
+}
+.tpgb-pt-svg-circle {
+    transform: rotate(-90deg);
+}
+.type-circular .tpgb-progress-track {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.type-circular .progress-track-percentage {
+    position: absolute;
+    display: inline-flex;
+    font-size: 12px;
+    font-weight: 500;
+    color: #000;
+}
+circle.tpgb-pt-circle-st {
+    fill: transparent;
+    stroke: none;
+    transition: 0.1s linear;
+}
+circle.tpgb-pt-circle-st1, circle.tpgb-pt-circle-st2 {
+    stroke: #0000001a;
+    stroke-width: 10px;
+    stroke-linecap: butt;
+    fill: none;
+    paint-order: stroke;
+    transition: 0.1s linear;
+}
+.tpgb-progress-track.pos-center-left {
+    top: 50%;
+    transform: translateY(-50%);
+}
+.tpgb-progress-track.pos-center-right {
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.tpgb-progress-tracker.tracker-rel-sel {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100% !important;
+    height: 100%;
+}
+.tpgb-progress-tracker.tracker-rel-sel .tpgb-progress-track{
+    position: sticky;
+}
+
+.tracker-pin-point-wrap {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+.tpgb-progress-tracker .tracker-pin {
+    position: absolute;
+    cursor: pointer;
+}
+
+
+.tracker-pin-text {
+    display: inline-block;
+    font-size: 14px;
+    border: 1px solid #d3d3d3;
+    color: #000;
+    width: max-content;
+    max-width: 200px;
+    padding: 2px 7px;
+    cursor: pointer;
+    transition: 0.3s linear;
+}
+.pin-style-2 .tracker-pin{
+    width: 20px;
+    height: 20px;
+    border: 1px solid #d3d3d3;
+    background-color: #fff;
+    border-radius: 20px;
+    transition: 0.3s linear;
+}
+.pin-style-2 .tracker-pin.active{
+    background-color: #ff844a;
+    border-color: #ff844a;
+}
+.pin-style-2 .tracker-pin.active .tracker-pin-text{
+    color: #ff844a;
+}
+.pin-style-2 .tracker-pin-text {
+    position: absolute;
+    border: none;
+}
+
+.type-horizontal .pos-top .pin-style-2 .tracker-pin, .type-horizontal .pos-bottom .pin-style-2 .tracker-pin, .type-vertical .pos-left .pin-style-2 .tracker-pin-text, .type-vertical .pos-right .pin-style-2 .tracker-pin-text {
+    top: 50%;
+    transform: translateY(-50%);
+}
+.type-vertical .pos-left .pin-style-2 .tracker-pin, .type-vertical .pos-right .pin-style-2 .tracker-pin, .type-horizontal .pos-top .pin-style-2 .tracker-pin-text, .type-horizontal .pos-bottom .pin-style-2 .tracker-pin-text {
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.type-vertical .pos-left .pin-style-1 .tracker-pin, .type-vertical .pos-left .pin-style-2 .tracker-pin-text {
+    left: calc(100% + 10px);
+}
+.type-vertical .pos-right .pin-style-1 .tracker-pin, .type-vertical .pos-right .pin-style-2 .tracker-pin-text {
+    right: calc(100% + 10px);
+}
+.type-horizontal .pos-top .pin-style-1 .tracker-pin, .type-horizontal .pos-top .pin-style-2 .tracker-pin-text {
+    top: calc(100% + 10px);
+}
+.type-horizontal .pos-bottom .pin-style-1 .tracker-pin, .type-horizontal .pos-bottom .pin-style-2 .tracker-pin-text {
+    bottom: calc(100% + 10px);
+}
+
+/* Admin Bar Css */
+body.admin-bar .tpgb-progress-tracker.type-horizontal .tpgb-progress-track.pos-top, body.admin-bar .tpgb-progress-tracker.type-vertical .tpgb-progress-track { 
+    top: 32px
+}
+body.admin-bar .tpgb-progress-tracker.type-vertical .tpgb-progress-track {
+    height: calc(100% - 32px);
+}

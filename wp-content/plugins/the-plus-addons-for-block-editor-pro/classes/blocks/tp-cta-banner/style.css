@@ -1,0 +1,127 @@
+/**
+ * CSS for both Frontend+Backend.
+ */
+
+.cta-block-inner_img,.tpgb-cta-banner .cta-block-inner {
+    line-height: 0;
+    overflow: hidden
+}
+
+.tpgb-cta-banner .cta-block.hover-tilt .cta-block-inner {
+    transition: none
+}
+.tpgb-cta-banner .bottom-left,.tpgb-cta-banner .bottom-right,.tpgb-cta-banner .center-left,.tpgb-cta-banner .center-right,.tpgb-cta-banner .text-center,.tpgb-cta-banner .top-left,.tpgb-cta-banner .top-right {
+    position: absolute;
+    left: 27px;
+    right: 27px;
+    display: block;
+    z-index: 100;
+    opacity: 1;
+    visibility: visible;
+    transition: opacity .3s ease .3s,visibility .3s ease .3s
+}
+
+.tpgb-cta-banner .content-level2 {
+    display: table;
+    height: 100%;
+    width: 100%
+}
+
+.tpgb-cta-banner .content-level3 {
+    display: table-cell;
+    vertical-align: middle
+}
+
+.tpgb-cta-banner .cta-block-inner .content-level3 a {
+    text-decoration: blink
+}
+
+.tpgb-cta-banner .cta-desc,.tpgb-cta-banner h3.cta-title,.tpgb-cta-banner h4.cta-subtitle {
+    color: #000
+}
+
+.tpgb-cta-banner .cta-subtitle {
+    font-size: 18px;
+    line-height: 26px;
+    font-weight: 500
+}
+
+.tpgb-cta-banner .cta-desc {
+    font-size: 15px;
+    line-height: 20px;
+    font-weight: 500
+}
+
+.tpgb-cta-banner h3.cta-title {
+    font-size: 30px;
+    line-height: 44px;
+    letter-spacing: 1px;
+    font-weight: 700
+}
+
+.tpgb-cta-banner .cta-desc,.tpgb-cta-banner .cta-subtitle {
+    margin: 0;
+}
+
+.tpgb-cta-banner h3.cta-title {
+    margin: 0;
+    padding: 0
+}
+
+.cta-block-inner_img {
+    width: 100%;
+    display: block
+}
+
+.cta-block-inner_img img {
+    width: 100%;
+    transform: scale(1);
+    transition: all .7s ease-in-out
+}
+
+.cta-block .entry-thumb {
+    position: absolute!important;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    border-radius: 0!important
+}
+
+.tpgb-cta-banner .entry-thumb .entry-hover {
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity .3s ease .3s,visibility .3s ease .3s
+}
+
+.tpgb-cta-banner .entry-thumb .entry-hover:before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0
+}
+
+.tpgb-cta-banner .tpgb-adv-button {
+    margin: 20px 0
+}
+
+/* Hover Effect css */
+.cta_img_blur:hover .cta-block-inner_img img {
+    transform: scale(1.1);
+    filter: blur(5px)
+}
+
+.cta_img_vertical:hover .cta-block-inner_img img {
+    transform: scale(1.1) rotate(2deg)
+}
+
+/* Twenty Twenty Three Theme Image */
+.theme-twentytwentythree .cta-block-inner_img img{
+    height: auto;
+}

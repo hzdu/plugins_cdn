@@ -1,0 +1,32 @@
+.tpgb-sv-inner {
+  position: relative;
+  display: block;
+  width: 100%;
+}
+.tpgb-spline-3d-viewer spline-viewer {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.tpgb-sv-loading {
+  height: 0;
+  width: 0;
+  padding: 15px;
+  border: 6px solid #ccc;
+  border-right-color: #888;
+  border-radius: 22px;
+  -webkit-animation: rotate 1s infinite linear;
+  animation: rotate 1s infinite linear;
+  transform: translate(-50%, -50%);
+  position: absolute;
+  left: 50%;
+  top: 50%;
+}
+  
+@-webkit-keyframes rotate {
+  100% {
+    -webkit-transform:  translate(-50%, -50%) rotate(360deg);
+  }
+}

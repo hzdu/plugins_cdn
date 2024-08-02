@@ -1,0 +1,93 @@
+/* SS Horizontal */
+.tpgb-social-sharing.sharing-horizontal.sharing-style-2 .tpgb-social-list .share-btn{
+	flex-direction: column;
+    justify-content: flex-start;
+}
+.tpgb-social-sharing.sharing-horizontal.sharing-style-3 .tpgb-social-list .share-btn{
+	flex-direction: column;
+	justify-content: center;
+    align-items: center;
+}
+
+.tpgb-social-sharing.sharing-horizontal.sharing-style-4 .social-count-number{
+	flex-direction: column;
+	align-items :flex-start;
+	margin: 10px;
+}
+.tpgb-social-sharing.sharing-horizontal.sharing-style-4 .tpgb-social-list .social-count, .tpgb-social-sharing.sharing-horizontal.sharing-style-4 .tpgb-social-list .count-label{
+	margin: 0;
+}
+.tpgb-social-sharing.sharing-horizontal.sharing-style-5 .tpgb-social-list a.share-btn {
+	justify-content: space-between;
+}
+.tpgb-social-sharing.sharing-horizontal.sharing-style-5 .tpgb-social-list a.share-btn .custom-style-5 {
+	display: flex;
+}
+.tpgb-social-sharing.sharing-horizontal.sharing-style-5 .tpgb-social-list .social-btn-title {
+	border-left: 1px solid;
+	padding-left: 10px;
+	border-color: #ffffff1a;
+}
+.tpgb-social-sharing.sharing-horizontal.sharing-style-5 .social-btn-icon:after {
+    content: '';
+    width: 1px;
+    height: 16px;
+    background-color: #ffffff1a;
+    position: absolute;
+    right: -1px;
+}
+
+.tpgb-social-sharing.sharing-horizontal.sharing-style-3 .tpgb-social-list .social-btn-icon, .tpgb-social-sharing.sharing-horizontal.sharing-style-3 .tpgb-social-list .social-btn-title, .tpgb-social-sharing.sharing-horizontal.sharing-style-3 .tpgb-social-list .social-count-number {
+    transition: all 0.4s ease-in-out 0.2s;
+}
+
+.tpgb-social-sharing.sharing-horizontal.sharing-style-2 .tpgb-social-list .social-count-number {
+	flex-direction: column;
+}
+
+.tpgb-social-sharing.sharing-horizontal.sharing-style-3 .tpgb-social-list .social-count-number {
+    flex-direction: column;
+    position: absolute;
+    transform: scale(0);
+}
+.tpgb-social-sharing.sharing-horizontal.sharing-style-3 .tpgb-social-list .share-btn:hover .social-btn-icon, .tpgb-social-sharing.sharing-horizontal.sharing-style-3 .tpgb-social-list .share-btn:hover .social-btn-title {
+    transform: scale(0);
+}
+.tpgb-social-sharing.sharing-horizontal.sharing-style-3 .tpgb-social-list .share-btn:hover .social-count-number {
+    transform: scale(1);
+}
+.tpgb-social-sharing.sharing-horizontal .social-count ,.tpgb-social-sharing.sharing-horizontal .count-label {
+	margin: 0 10px;
+}
+.tpgb-social-sharing.sharing-horizontal .social-btn-title ,.tpgb-social-sharing.sharing-vertical .social-btn-title{
+	margin: 10px;
+}
+/*align css */
+.tpgb-social-sharing.sharing-horizontal.sharing-style-1 .tpgb-social-list .text-left, .tpgb-social-sharing.sharing-horizontal.sharing-style-4 .tpgb-social-list .text-left {
+	justify-content: flex-start!important
+}
+.tpgb-social-sharing.sharing-horizontal.sharing-style-1 .tpgb-social-list .text-center, .tpgb-social-sharing.sharing-horizontal.sharing-style-4 .tpgb-social-list .text-center {
+	justify-content: center!important
+}
+.tpgb-social-sharing.sharing-horizontal.sharing-style-1 .tpgb-social-list .text-right ,.tpgb-social-sharing.sharing-horizontal.sharing-style-4 .tpgb-social-list .text-right {
+	justify-content: flex-end!important
+}
+
+.tpgb-social-sharing.sharing-horizontal.sharing-style-2 .tpgb-social-list .text-left ,.tpgb-social-sharing.sharing-horizontal.sharing-style-3 .tpgb-social-list .text-left {
+    align-items: flex-start!important;
+}
+.tpgb-social-sharing.sharing-horizontal.sharing-style-2 .tpgb-social-list .text-left .social-count-number {
+	align-items: flex-start!important;
+}
+.tpgb-social-sharing.sharing-horizontal.sharing-style-2 .tpgb-social-list .text-center, .tpgb-social-sharing.sharing-horizontal.sharing-style-3 .tpgb-social-list .text-center {
+    align-items: center!important;
+}
+.tpgb-social-sharing.sharing-horizontal.sharing-style-2 .tpgb-social-list .text-center .social-count-number {
+	align-items: center!important;
+}
+.tpgb-social-sharing.sharing-horizontal.sharing-style-2 .tpgb-social-list .text-right, .tpgb-social-sharing.sharing-horizontal.sharing-style-3 .tpgb-social-list .text-right {
+    align-items: flex-end!important;
+}
+.tpgb-social-sharing.sharing-horizontal.sharing-style-2 .tpgb-social-list .text-right .social-count-number {
+	align-items: flex-end!important;
+}

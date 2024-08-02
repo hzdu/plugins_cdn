@@ -1,0 +1,49 @@
+/**
+ * CSS for both Frontend+Backend.
+ */
+.tpgb-adv-btn-inner {
+    position: relative;
+    display: inline-block;
+    vertical-align: middle
+}
+.tpgb-adv-btn-inner.ab-cta:not(.tpgb-cta-style-13) :after,.tpgb-adv-btn-inner.ab-cta:not(.tpgb-cta-style-13) :before {
+    content: "";
+    position: absolute
+}
+.tpgb-adv-btn-inner.ab-cta .adv-button-link-wrap {
+    padding: 10px 15px;
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    background: 0 0;
+    border: 3px solid #212121;
+    border-radius: 50px;
+    cursor: pointer;
+    text-decoration: none;
+    font-weight: 600;
+    color: #212121;
+    font-size: 12px;
+    z-index: 1;
+    outline: 0;
+    text-align: center
+}
+.tpgb-adv-btn-inner.ab-cta .adv-button-link-wrap:hover {
+    color: #6a79e3
+}
+/** Download Button **/
+.tpgb-adv-btn-inner.ab-download {
+    z-index: 11
+}
+.tpgb-advanced-buttons .adv_btn_ext_txt {
+    position: relative;
+    display: inline-block;
+    margin-right: 10px;
+    cursor: pointer;
+    font-size: 18px;
+    color: #6a79e3;
+    vertical-align: middle;
+    transition: all .3s ease
+}
+.tpgb-advanced-buttons .adv_btn_ext_txt:hover {
+    color: #212121
+}

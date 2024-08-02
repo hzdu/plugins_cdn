@@ -1,0 +1,37 @@
+.tpgb-creative-image .tpgb-creative-img-wrap.scroll-image-wrap {
+    display: block;
+    position: relative;
+    margin: 0 auto;
+    width: 100%;
+    overflow: hidden;
+    transition: all .3s ease-in-out
+}
+.tpgb-animate-image.text-center .scroll-image-wrap {
+    margin: 0 auto;
+    text-align: center
+}
+.tpgb-animate-image.text-left .scroll-image-wrap {
+    margin-left: 0;
+    text-align: left
+}
+.tpgb-animate-image.text-right .scroll-image-wrap {
+    margin-right: 0;
+    text-align: right
+}
+.tpgb-creative-image .scroll-image-wrap .creative-scroll-image {
+    display: block;
+    position: relative;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    background-position: top;
+    background-repeat: no-repeat;
+    min-height: 400px;
+    height: 100%;
+    overflow: hidden;
+    transition: background-position 2s cubic-bezier(.1,.54,.43,.94);
+    background-size: cover
+}
+.tpgb-creative-image .scroll-image-wrap:hover .creative-scroll-image {
+    background-position: center bottom!important
+}

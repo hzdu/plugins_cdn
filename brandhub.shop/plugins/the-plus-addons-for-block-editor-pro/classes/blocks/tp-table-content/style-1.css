@@ -1,0 +1,26 @@
+/*Style-1*/
+.editor-styles-wrapper .table-style-1 .toc-list {
+    list-style: none;
+    margin: 0
+}
+.table-style-1 .toc-list {
+    list-style-type: none
+}
+.table-style-1 .toc-link::before {
+    background-color: #eee;
+    content: " ";
+    display: inline-block;
+    height: inherit;
+    left: 0;
+    margin-top: -1px;
+    position: absolute;
+    width: 2px;
+    transition: all .1s linear
+}
+.table-style-1 .toc-link.is-active-link::before {
+    background-color: #54bc4b
+}
+.editor-styles-wrapper .table-style-1 ol,.editor-styles-wrapper .table-style-1 ul {
+    margin: 0
+}
+/*Style-1*/

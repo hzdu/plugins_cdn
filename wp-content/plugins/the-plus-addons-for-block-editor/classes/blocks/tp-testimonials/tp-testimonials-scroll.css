@@ -1,0 +1,23 @@
+/* scroll Bar css */
+.testimonial-list-content .entry-content::-webkit-scrollbar,.testimonial-list-content .testi-author-title::-webkit-scrollbar {
+    width: 10px;
+    cursor: pointer !important
+}
+
+.testimonial-list-content .entry-content::-webkit-scrollbar-track,.testimonial-list-content .testi-author-title::-webkit-scrollbar-track {
+    border-radius: 10px;
+    background: #fff
+}
+.testimonial-list-content .entry-content.scroll-on-hover::-webkit-scrollbar-track,.testimonial-list-content .entry-content.scroll-on-hover::-webkit-scrollbar-thumb,.testimonial-list-content .testi-author-title.title-scroll-on-hover::-webkit-scrollbar-track,.testimonial-list-content .testi-author-title.title-scroll-on-hover::-webkit-scrollbar-thumb {
+    opacity: 0;
+    visibility: hidden
+}
+.testimonial-list-content .entry-content::-webkit-scrollbar-thumb,.testimonial-list-content .testi-author-title::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background: #6f14f1
+}
+.testimonial-list-content .entry-content.scroll-on-hover:hover::-webkit-scrollbar-thumb,.testimonial-list-content .entry-content.scroll-on-hover:hover::-webkit-scrollbar-track,.testimonial-list-content .testi-author-title.title-scroll-on-hover:hover::-webkit-scrollbar-thumb,.testimonial-list-content .testi-author-title.title-scroll-on-hover:hover::-webkit-scrollbar-track{
+    opacity: 1;
+    visibility: visible
+}
+/* scroll Bar css */

@@ -1,0 +1,264 @@
+.tpgb-row-background{
+    position: absolute;
+    width: 100%;
+	height:100%;
+	top:0;
+    left: 0;
+	overflow: hidden;
+	transition: all .3s ease,left 0s, width 0s;
+}
+.tpgb-deep-layer, .row-animat-bg{
+    width: 100%;
+	height:100%;
+    z-index: auto;
+}
+@-webkit-keyframes bg-kenburns-effect {
+    0% {
+      -webkit-transform: scale(1);
+              transform: scale(1);
+      -webkit-transform-origin: 50% 50%;
+              transform-origin: 50% 50%;
+    }
+    100% {
+      -webkit-transform: scale(1.28);
+              transform: scale(1.28);
+      -webkit-transform-origin: 50% 50%;
+              transform-origin: 50% 50%;
+    }
+}
+@keyframes bg-kenburns-effect {
+    0% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+        -webkit-transform-origin: 50% 50%;
+        transform-origin: 50% 50%;
+    }
+    100% {
+        -webkit-transform: scale(1.28);
+        transform: scale(1.28);
+        -webkit-transform-origin: 50% 50%;
+        transform-origin: 50% 50%;
+    }
+}
+.tpgb-deep-layer.tpgb-img-parallax-hover{
+	overflow: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: auto;
+    height: auto;
+    will-change: transform;
+}
+.tpgb-deep-layer .tpgb-video-wrap{
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+.tpgb-deep-layer .video-poster-img{
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: auto;
+    will-change: transform;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    background-size: cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+}
+.tpgb-deep-layer .video-poster-img iframe{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+	 max-width: none;
+    -webkit-transform: translate(-50%,-50%);
+	-ms-transform: translate(-50%,-50%);
+	-moz-transform: translate(-50%,-50%);
+	-o-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%);
+}
+/* .columns-vimeo-bg.tp-loading .video-js */
+.tpgb-video-youtube .tp-loading .tpgb-video-wrap,.tpgb-video-vimeo .tp-loading .tpgb-video-wrap {
+    opacity: 0;
+}
+.tpgb-video-self-hosted .tpgb-video-wrap .self-hosted-video{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+    -moz-transform: translate(-50%,-50%);
+    -o-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%);
+    object-fit: cover;
+}
+.tpgb-row-background.fixed-bg-video{
+	clip: rect(0, auto, auto, 0);
+}
+.tpgb-row-background.fixed-bg-video .video-poster-img{
+	position: fixed;
+    display: block;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center center;    
+    will-change: transform;
+}
+.tpgb-deep-layer .row-bg-slide{
+    width: 100%;
+    height: 100%!important;
+    position: absolute;
+    left: 0;
+    top: 0
+}
+.tpgb-deep-layer.tpgb-row-bg-gradient{
+	background-repeat: no-repeat;
+    background-size: 800% 400%;
+    background-attachment: fixed;
+    z-index: auto;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#ff2d60, endColorstr=#1deab9);
+    background-image: linear-gradient(120deg,#ff2d60,#ff9132,#ff61fa,#6caafd,#29ccff,#1deab9);
+    animation-name: plus_row_animation;
+    animation-duration: 15s;
+    animation-timing-function: linear;
+    animation-delay: 0s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    animation-play-state: running;
+	will-change: background-position;
+}
+
+@-webkit-keyframes plus_row_animation {
+	0% {
+        background-position: 0 50%
+    }
+
+    100% {
+        background-position: 100% 50%
+    }
+}
+@keyframes plus_row_animation {
+    0% {
+        background-position: 0 50%
+    }
+
+    100% {
+        background-position: 100% 50%
+    }
+}
+.tpgb-deep-layer.tpgb-row-bg-gradient{
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+.tpgb-deep-layer.tpgb-row-scrollbg{
+    position:fixed;
+	top: 0;
+    left: 0;
+    right: 0;
+	background-position: center !important;
+    background-size: cover !important;
+	-webkit-transition: all .7s linear;
+	-moz-transition: all .7s linear;
+	-o-transition: all .7s linear;
+	-ms-transition: all .7s linear;
+    transition: all .7s linear;
+    z-index: auto;
+}
+.tpgb-row-scrollbg .tpgb-section-bg-scrolling {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+	opacity:0;
+	visibility: hidden;
+    background-position: center !important;
+    background-size: cover !important;
+    -webkit-transition: all .7s ease;
+    -moz-transition: all .7s ease;
+    -o-transition: all .7s ease;
+    -ms-transition: all .7s ease;
+    transition: all .7s ease;
+}
+.tpgb-row-scrollbg .tpgb-section-bg-scrolling.active{
+    opacity:1;
+	visibility: visible;
+}
+
+/* Middle Layer css Start */
+
+.tpgb-middle-layer,.tpgb-top-layer{
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    width: 100%;
+    height: 100%;
+}
+.canvas-style-1 .tpgb-bubble{
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    top: 50%;
+    background: black;
+    opacity: .7;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    -webkit-animation: move 3s infinite;
+    animation: move 3s infinite;
+}
+@-webkit-keyframes move {
+	100% {
+		-webkit-transform: translate3d(0, 0, -1000px);
+		transform: translate3d(0, 0, -1000px);
+	}
+}
+
+@keyframes move {
+	100% {
+		-webkit-transform: translate3d(0, 0, -1000px);
+		transform: translate3d(0, 0, -1000px);
+	}
+}
+.canvas-style-4 canvas, .canvas-style-8 canvas{
+    width: 100% ;
+    height: 100%;
+}
+.tpgb-mordernimg-effect .tpgb-parlximg-wrap,.tpgb-mordern-parallax .tpgb-parlximg-wrap{
+    position: absolute ;
+}
+.tpgb-automove-img .tpgb-parlximg-wrap{
+    position: absolute ;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+	background-size : cover;
+    will-change: transform;
+    overflow: hidden;
+    z-index: auto;
+}
+@media (min-width: 1025px) {
+    .tpgb-middle-layer .tpgb-parlximg-wrap.desktop-hide{
+        display: none;
+    }
+}
+@media (max-width: 1024px) {
+    .tpgb-middle-layer .tpgb-parlximg-wrap.tablet-hide{
+        display: none;
+    }
+}
+@media (max-width: 767px) {
+    .tpgb-middle-layer .tpgb-parlximg-wrap.mobile-hide{
+        display: none;
+    }
+}
+/* Middle Layer css End */

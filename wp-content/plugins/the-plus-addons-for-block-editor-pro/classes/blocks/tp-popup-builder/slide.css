@@ -1,0 +1,22 @@
+/*slide effect*/
+.tpgb-canvas-content-wrap.tpgb-slide {
+    transform: translate3d(-100%,0,0)
+}
+
+.tpgb-canvas-content-wrap.tpgb-slide.tpgb-right {
+    transform: translate3d(100%,0,0)
+}
+
+.tpgb-canvas-content-wrap.tpgb-slide.tpgb-top {
+    transform: translate3d(0,-100%,0)
+}
+
+.tpgb-canvas-content-wrap.tpgb-slide.tpgb-bottom {
+    transform: translate3d(0,100%,0)
+}
+
+.tpgb-slide.tpgb-open .tpgb-canvas-content-wrap.tpgb-visible {
+    transition: all .8s;
+    transition-timing-function: cubic-bezier(.7,0,.3,1)
+}
+/*slide effect*/
