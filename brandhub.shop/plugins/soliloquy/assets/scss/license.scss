@@ -1,0 +1,77 @@
+@import 'vars';
+@import '_mixins';
+#soliloquy-license-check {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	background: rgb(255, 255, 255);
+	z-index: 14000050;
+	position: fixed;
+	overflow: hidden;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	height: 100%;
+	min-width: 0;
+	cursor: default;
+	text-align: center;
+	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+		Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+	.close {
+		position: absolute;
+		top: 10px;
+		right: 10px;
+	}
+	h3 {
+		margin: 0;
+		padding: 0;
+		font-size: 22px;
+		margin-bottom: 10px;
+	}
+	p {
+		margin: 0;
+		padding: 0;
+		font-size: 18px;
+		margin-bottom: 30px;
+	}
+	.soliloquy-logo {
+		text-align: center;
+	}
+	.button {
+		@include borderRadius(2px);
+		padding: 16px 20px;
+		height: 33px;
+		line-height: 30px;
+		text-decoration: none;
+		text-shadow: none;
+		font-weight: 600;
+		-webkit-box-shadow: none;
+		box-shadow: none;
+		box-sizing: border-box;
+		border: 2px solid;
+
+		/**
+		* Green Button
+		* - Replaces WordPress' default primary button style
+		*/
+		&.button-primary {
+			background: $primary_button_color;
+			border-color: $primary_button_color;
+			-webkit-box-shadow: none;
+			box-shadow: none;
+			color: $white;
+
+			&:hover {
+				background: $primary_button_color_hover;
+				border-color: $primary_button_color_hover;
+				color: $white;
+			}
+		}
+		&.button-outline {
+			border: 2px solid $black;
+			color: $black;
+		}
+	}
+}
