@@ -39,7 +39,7 @@
     ai_container_tpl = `<h2 class="iconic-woothumbs-ai__section-title" data-attribute-name="{{attribute_name}}" data-attribute-label="{{attribute_label}}"><span>${iconic_woothumbs_vars.text.attribute} {{attribute_label}}</span> <a href="#" class="${ai_add_row_class.replace('.', '')} button">${iconic_woothumbs_vars.text.add} {{attribute_label}}</a></h2>
 							<div data-attribute-name="{{attribute_name}}" data-term-count="" class="${ai_section_content_class.replace('.', '')}"></div>
 							<div class="clear"></div>`,
-    ai_row_tpl = `<div data-attribute-name="{{attribute_name}}" data-term-id={{term_id}} data-is-new="{{is_new}}" class="${ai_row_class.replace('.', '')} closed">
+    ai_row_tpl = `<div data-attribute-name="{{attribute_name}}" data-term-id="{{term_id}}" data-is-new="{{is_new}}" class="${ai_row_class.replace('.', '')} closed">
 						<h3>
 							<div class="${ai_row_class.replace('.', '')}-toggle" aria-label="${iconic_woothumbs_vars.text.click_to_toggle}"></div>
 							<select class="${ai_select_field_class.replace('.', '')}" data-attribute="{{attribute_name}}">
@@ -52,7 +52,7 @@
 						<div class="${ai_row_class.replace('.', '')}-content" style="display: none;">
 							<ul class="iconic-woothumbs-ai__images">{{images}}</ul>
 
-							<input type="hidden" class="${ai_image_ids_field_class.replace('.', '')}" name={{attribute_name}}__{{term_id}} data-attribute-label={{attribute_label}} value=""/>
+							<input type="hidden" class="${ai_image_ids_field_class.replace('.', '')}" name="{{attribute_name}}__{{term_id}}" data-attribute-label="{{attribute_label}}" value=""/>
 
 							<button {{disabled}} id="iconic-woothumbs-ai__add-specific" type="button" class="manage_woothumbs_ai button-secondary iconic-woothumbs-ai__add-specific">
 								${iconic_woothumbs_vars.text.add_images}
@@ -220,7 +220,7 @@
     for (const key in select_term_data) {
       if (Object.hasOwnProperty.call(select_term_data, key)) {
         const selected = current_term && select_term_data[key] == current_term ? 'selected' : '';
-        options_html += `<option ${selected} value=${select_term_data[key]}>${select_term_data[key]}</option>`;
+        options_html += `<option ${selected} value="${select_term_data[key]}">${select_term_data[key]}</option>`;
       }
     }
     return options_html;

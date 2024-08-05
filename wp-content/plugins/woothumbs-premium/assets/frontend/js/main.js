@@ -1123,20 +1123,24 @@
 
       // Handle encoded/decoded strings.
       const url_encoded_pattern = /^((%[0-9A-Fa-f]{2})+)$/i;
+      let sanitized_string = string;
+
+      // Replace single spaces now, before further processing.
+      sanitized_string = sanitized_string.replace(/ /g, '-');
 
       // Cater for decoded strings.
-      if (!url_encoded_pattern.test(string)) {
+      if (!url_encoded_pattern.test(sanitized_string)) {
         if (strip_chars) {
-          string = iconic_woothumbs.strip_special_chars(string);
+          sanitized_string = iconic_woothumbs.strip_special_chars(sanitized_string);
         }
 
         // Encode for consistency.
-        string = encodeURIComponent(string);
+        sanitized_string = encodeURIComponent(sanitized_string);
       }
 
       // Abort processing if this is an URL encoded string.
-      if (url_encoded_pattern.test(string)) {
-        return string.toLowerCase();
+      if (url_encoded_pattern.test(sanitized_string)) {
+        return sanitized_string.toLowerCase();
       }
 
       // German diacratic character handling.
@@ -1144,7 +1148,8 @@
       // Ä, ä     \u00c4, \u00e4
       // Ö, ö     \u00d6, \u00f6
       // ß        \u00df
-      let sanitized_string = string.replace(/\u00dc/g, 'Ue').replace(/\u00fc/g, 'ue').replace(/\u00c4/g, 'Ae').replace(/\u00e4/g, 'ae').replace(/\u00d6/g, 'Oe').replace(/\u00f6/g, 'oe').replace(/\u00df/g, 'ss');
+      sanitized_string.replace(/\u00dc/g, 'Ue').replace(/\u00fc/g, 'ue').replace(/\u00c4/g, 'Ae').replace(/\u00e4/g, 'ae').replace(/\u00d6/g, 'Oe').replace(/\u00f6/g, 'oe').replace(/\u00df/g, 'ss');
+
       // Specific diacratic handling must happen before the broader
       // normalization of the string below.
       sanitized_string = sanitized_string.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
