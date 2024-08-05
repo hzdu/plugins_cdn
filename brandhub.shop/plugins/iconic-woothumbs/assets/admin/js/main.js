@@ -132,7 +132,7 @@
     $attribute_section = $ai_specific_attributes_section.find(attribute_section_selector);
 
     // Prevent this section from being added again from the action dropdown.
-    $ai_action_select.find(`option[value=${attribute_name}]`).attr('disabled', true);
+    $ai_action_select.find(`option[value="${attribute_name}]"`).attr('disabled', true);
 
     // Check the attributes cache first before fetching
     // attribute terms for the select dropdown via AJAX,
@@ -155,7 +155,8 @@
         }
       }).done(function (response) {
         if (response.success) {
-          const select_term_data = JSON.parse(response.data);
+          const response_data = response.data.replace('&amp;', '&');
+          const select_term_data = JSON.parse(response_data);
           ai_attributes_cache[attribute_name] = select_term_data;
           $attribute_section.attr('data-term-count', ai_attributes_cache[attribute_name].length);
           add_ai_attribute_rows(attribute_name, attribute_label, select_term_data, row_term_data);
@@ -187,7 +188,12 @@
           options_html = prepare_select_options(select_term_data, data.term);
           $attribute_container.prepend(tpl.replace(/{{is_new}}/g, 'no').replace(/{{term_id}}/g, data.term).replace(/{{options}}/g, options_html).replace(/{{images}}/g, images_html).replace(/{{disabled}}/g, ''));
           // Update the hidden input value.
-          update_ai_gallery_state($attribute_container.find(`[data-term-id="${data.term}"]`), false);
+          $term_containers = $attribute_container.find('[data-term-id]');
+          $term_containers.each(function (i) {
+            if ($(this).attr('data-term-id') === data.term) {
+              update_ai_gallery_state($(this), false);
+            }
+          });
         }
       });
     } else {
@@ -738,7 +744,7 @@
     // Remove the parent section if it no longer contains any rows..
     if (!$parent_section_content.children().length) {
       $parent_section_content.parent().find(`[data-attribute-name="${attribute_name}"]`).remove();
-      $ai_action_select.find(`option[value=${attribute_name}]`).attr('disabled', false);
+      $ai_action_select.find(`option[value="${attribute_name}]"`).attr('disabled', false);
     }
   }
 
@@ -1401,7 +1407,7 @@
           text: iconic_woothumbs_vars.text.attach_mp4
         },
         library: {
-          type: 'video/mp4'
+          type: ['video/mp4', 'video/webm']
         },
         multiple: false
       });
@@ -1451,7 +1457,7 @@
           text: iconic_woothumbs_vars.text.attach_mp4
         },
         library: {
-          type: 'video/mp4'
+          type: ['video/mp4', 'video/webm']
         },
         multiple: false
       });
