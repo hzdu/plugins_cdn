@@ -59,7 +59,7 @@ $(document).ready(function(){
         var _this_form = $(this).closest('form');
         var data_form = _this_form.serializeArray();
         var triggerTypeValue = '';
-        var formTriggerTypes = ['CF7', 'fluentform', 'formidable', 'forminator', 'gravity', 'ninjaform', 'wpforms'];
+        var formTriggerTypes = ['CF7', 'fluentform', 'formidable', 'forminator', 'gravity', 'ninjaform', 'wpforms', 'wsform'];
         for (var i = 0; i < data_form.length; i++) {
             if (data_form[i].name === 'pys[event][trigger_type]' && formTriggerTypes.includes(data_form[i].value)) {
                 triggerTypeValue = data_form[i].value;

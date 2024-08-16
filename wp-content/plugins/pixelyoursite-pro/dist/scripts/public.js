@@ -2263,22 +2263,50 @@ if (!String.prototype.trim) {
             /**
              * Advanced From Data
              */
-            saveAdvancedFormData: function (email, phone, firstName, lastName) {
+            saveAdvancedFormData: function (email, phone, firstName, lastName, override = true) {
                 let data = Utils.getAdvancedFormData();
                 // Ensure data["address"] is an object
 
-                if(email != null) {
-                    data["email"] = email;
+                if ( email != null ) {
+                    if ( !override ) {
+                        if ( typeof data[ "email" ] === 'undefined' || !data[ "email" ] ) {
+                            data[ "email" ] = email;
+                        }
+                    } else {
+                        data[ "email" ] = email;
+                    }
                 }
-                if(phone != null) {
-                    data["phone"] = phone;
+
+                if ( phone != null ) {
+                    if ( !override ) {
+                        if ( typeof data[ "phone" ] === 'undefined' || !data[ "phone" ] ) {
+                            data[ "phone" ] = phone;
+                        }
+                    } else {
+                        data[ "phone" ] = phone;
+                    }
                 }
-                if(firstName != null) {
-                    data["first_name"] = firstName;
+
+                if ( firstName != null ) {
+                    if ( !override ) {
+                        if ( typeof data[ "first_name" ] === 'undefined' || !data[ "first_name" ] ) {
+                            data[ "first_name" ] = firstName;
+                        }
+                    } else {
+                        data[ "first_name" ] = firstName;
+                    }
                 }
-                if(lastName != null) {
-                    data["last_name"] = lastName;
+
+                if ( lastName != null ) {
+                    if ( !override ) {
+                        if ( typeof data[ "last_name" ] === 'undefined' || !data[ "last_name" ] ) {
+                            data[ "last_name" ] = lastName;
+                        }
+                    } else {
+                        data[ "last_name" ] = lastName;
+                    }
                 }
+
                 if(!options.cookie.disabled_advanced_form_data_cookie)
                 {
                     Cookies.set('pys_advanced_form_data', JSON.stringify(data),{ expires: 300 } );
@@ -4336,51 +4364,81 @@ if (!String.prototype.trim) {
         Utils.initializeRequestParams();
         Utils.setupGdprCallbacks();
 
+        if ( options.enable_auto_save_advance_matching ) {
+            let override = options.data_persistency == 'recent_data';
 
-        //Setup Advanced Form Data
-        if(options.enable_auto_save_advance_matching) {
-            $(document).on("blur","input[type='email']",function () {
-                let email = $(this).val().trim().toLowerCase();
-                if(Utils.validateEmail(email)) {
-                    Utils.saveAdvancedFormData(email,null,null,null);
-                }
-            })
-            $(document).on("blur","input[type='tel']",function () {
-                let phone = $(this).val().trim().replace(/\D/g, "");
-                if(phone.length > 5) {
-                    Utils.saveAdvancedFormData(null,phone,null,null);
-                }
-            })
-            $(document).on("blur","input[type='text']",function () {
-                let name;
-                if($(this).attr("name") && $(this).attr("name") != '')
-                {
-                    name = $(this).attr("name").trim()
-                }
-                if(name && options.advance_matching_fn_names.includes(name)) {
-                    let value = $(this).val().trim();
-                    if(value.length > 0) {
-                        Utils.saveAdvancedFormData(null,null,value,null);
+            //Setup Advanced Form Data
+            if ( options.advance_matching_form.enable_advance_matching_forms ) {
+                $( document ).on( "blur", "input[type='email']", function () {
+                    let email = $( this ).val().trim().toLowerCase();
+                    if ( Utils.validateEmail( email ) ) {
+                        Utils.saveAdvancedFormData( email, null, null, null, override );
                     }
-                }
-                if(name && options.advance_matching_ln_names.includes(name)) {
-                    let value = $(this).val().trim();
-                    if(value.length > 0) {
-                        Utils.saveAdvancedFormData(null,null,null,value);
+                } )
+                $( document ).on( "blur", "input[type='tel']", function () {
+                    let phone = $( this ).val().trim().replace( /\D/g, "" );
+                    if ( phone.length > 5 ) {
+                        Utils.saveAdvancedFormData( null, phone, null, null, override );
                     }
-                }
-                if(name && options.advance_matching_tel_names.includes(name)) {
-                    let value = $(this).val().trim();
-                    if(value.length > 0) {
-                        Utils.saveAdvancedFormData(null,value,null,null);
+                } )
+                $( document ).on( "blur", "input[type='text']", function () {
+                    let name;
+                    if ( $( this ).attr( "name" ) && $( this ).attr( "name" ) != '' ) {
+                        name = $( this ).attr( "name" ).trim()
                     }
-                }
+                    if ( name && options.advance_matching_form.advance_matching_fn_names.includes( name ) ) {
+                        let value = $( this ).val().trim();
+                        if ( value.length > 0 ) {
+                            Utils.saveAdvancedFormData( null, null, value, null, override );
+                        }
+                    }
+                    if ( name && options.advance_matching_form.advance_matching_ln_names.includes( name ) ) {
+                        let value = $( this ).val().trim();
+                        if ( value.length > 0 ) {
+                            Utils.saveAdvancedFormData( null, null, null, value, override );
+                        }
+                    }
+                    if ( name && options.advance_matching_form.advance_matching_tel_names.includes( name ) ) {
+                        let value = $( this ).val().trim();
+                        if ( value.length > 0 ) {
+                            Utils.saveAdvancedFormData( null, value, null, null, override );
+                        }
+                    }
+                    if ( name && options.advance_matching_form.advance_matching_em_names.includes( name ) ) {
+                        let email = $( this ).val().trim().toLowerCase();
 
-            })
+                        if ( Utils.validateEmail( email ) ) {
+                            Utils.saveAdvancedFormData( email, null, null, null, false );
+                        }
+                    }
+                } )
+            }
+
+            //Setup Advanced Url Data
+            if ( Object.keys( options.advance_matching_url ).length > 0 && options.advance_matching_url.enable_advance_matching_url ) {
+                const url_params = new URLSearchParams( window.location.search );
+                url_params.forEach( ( value, key ) => {
+                    if ( options.advance_matching_url.advance_matching_fn_names.includes( key ) ) {
+                        Utils.saveAdvancedFormData( null, null, value.trim(), null, override );
+                    }
+
+                    if ( options.advance_matching_url.advance_matching_ln_names.includes( key ) ) {
+                        Utils.saveAdvancedFormData( null, null, null, value.trim(), override );
+                    }
+
+                    if ( options.advance_matching_url.advance_matching_tel_names.includes( key ) ) {
+                        Utils.saveAdvancedFormData( null, value.trim(), null, null, override );
+                    }
+
+                    if ( options.advance_matching_url.advance_matching_em_names.includes( key ) ) {
+                        let email = value.trim().toLowerCase()
+                        if ( Utils.validateEmail( email ) ) {
+                            Utils.saveAdvancedFormData( email, null, null, null, override );
+                        }
+                    }
+                } );
+            }
         }
-
-
-
 
         // setup Click Event
         if (
@@ -5240,6 +5298,11 @@ if (!String.prototype.trim) {
                 if ($form.hasClass('frm-fluent-form')) {
                     return;
                 }
+
+                // exclude WS form forms
+                if ($form.hasClass('wsf-form') ) {
+                    return;
+                }
                 if(!options.enable_success_send_form) {
                     var params = {
                         form_id: $form.attr('id'),
@@ -5512,6 +5575,36 @@ if (!String.prototype.trim) {
                 }
             });
         });
+
+        //WSForm
+        $( document ).on( 'wsf-submit-complete', ( event, form_object, form_id ) => {
+            let sendEventId = null,
+                disabled_form_action = false;
+            if ( options.triggerEventTypes.hasOwnProperty( 'wsform' ) ) {
+                let key_event = Object.keys( options.triggerEventTypes.wsform )[ 0 ];
+
+                if ( options.triggerEventTypes.wsform[ key_event ].hasOwnProperty( 'disabled_form_action' ) ) {
+                    disabled_form_action = options.triggerEventTypes.wsform[ key_event ].disabled_form_action;
+                }
+                $.each( options.triggerEventTypes.wsform, function ( eventId, triggers ) {
+                    $.each( triggers.forms, function ( index, value ) {
+                        if ( value == form_id ) {
+                            sendEventId = eventId;
+                        }
+                    } );
+                } );
+            }
+            if ( sendEventId != null ) {
+                Utils.fireTriggerEvent( sendEventId );
+
+                if ( !disabled_form_action ) {
+                    sendFormAction( $( event.target ), form_id );
+                }
+            } else {
+                sendFormAction( $( event.target ), form_id );
+            }
+        } )
+
         // load pixel APIs
         Utils.loadPixels();
 

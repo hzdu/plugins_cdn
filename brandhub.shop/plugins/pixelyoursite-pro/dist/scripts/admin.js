@@ -251,7 +251,7 @@ jQuery( document ).ready(function($) {
 
 
     function updatePostEventFields() {
-        const arr_form_trigger = ["CF7", "fluentform", "formidable", "forminator", "gravity", "ninjaform", "wpforms", ];
+        const arr_form_trigger = ["CF7", "fluentform", "formidable", "forminator", "gravity", "ninjaform", "wpforms", "wsform"];
         $("#fire_event_once").show();
         $(".triger_number_page_visit").css("display","none");
         if($("#pys_event_trigger_type").val() == "post_type") {
