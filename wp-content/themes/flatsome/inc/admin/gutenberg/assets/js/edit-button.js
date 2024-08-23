@@ -18,7 +18,15 @@
       this.bindEvents()
     },
     addEditButton: function () {
+      // Pre WP 6.6
       this.headerToolbar = document.querySelector('.block-editor .edit-post-header__toolbar')
+
+      // WP 6.6
+      if (!this.headerToolbar) {
+        this.headerToolbar = document.querySelector(
+          '.block-editor .editor-header__toolbar'
+        )
+		  }
 
       if (!this.headerToolbar) return
       this.headerToolbar.insertAdjacentHTML('beforeend',

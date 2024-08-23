@@ -1,12 +1,12 @@
 .block-editor #uxbuilder-edit-button {
 	display: inline-flex;
 	align-items: center;
-	margin-right: 12px;
-	height: 36px;
+	margin-inline: 12px;
+	height: 32px;
 }
 
 .block-editor #uxbuilder-edit-button svg {
-	margin-right: 5px;
+	margin-inline-end: 5px;
 }
 
 .block-editor #uxbuilder-edit-button.is-busy {
@@ -34,4 +34,14 @@ html :where(.editor-styles-wrapper) {
 	font-weight: 800;
 	margin-bottom: 1em;
 	margin-top: 2em;
+}
+
+@media screen and (max-width: 782px) {
+  .block-editor #uxbuilder-edit-button {
+    font-size: 0;
+  }
+
+  .block-editor #uxbuilder-edit-button svg {
+    margin-inline-end: 0px;
+  }
 }
