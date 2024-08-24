@@ -1602,6 +1602,7 @@ if (!String.prototype.trim) {
                 if (events.hasOwnProperty('facebook')) {
                     event = events.facebook;
                     if(Utils.isEventInTimeWindow(event.name,event,"dyn_facebook_"+eventId)) {
+                        event = Utils.getFormFilledData(event);
                         Facebook.fireEvent(event.name, event);
                     }
                 }
@@ -1609,6 +1610,7 @@ if (!String.prototype.trim) {
                 if (events.hasOwnProperty('ga')) {
                     event = events.ga;
                     if(Utils.isEventInTimeWindow(event.name,event,"dyn_ga_"+eventId)) {
+                        event = Utils.getFormFilledData(event);
                         Analytics.fireEvent(event.name, event);
                     }
                 }
@@ -1616,6 +1618,7 @@ if (!String.prototype.trim) {
                 if (events.hasOwnProperty('google_ads')) {
                     event = events.google_ads;
                     if(Utils.isEventInTimeWindow(event.name,event,"dyn_google_ads_"+eventId)) {
+                        event = Utils.getFormFilledData(event);
                         GAds.fireEvent(event.name, event);
                     }
                 }
@@ -1623,6 +1626,7 @@ if (!String.prototype.trim) {
                 if (events.hasOwnProperty('pinterest')) {
                     event = events.pinterest;
                     if(Utils.isEventInTimeWindow(event.name,event,"dyn_pinterest_"+eventId)) {
+                        event = Utils.getFormFilledData(event);
                         Pinterest.fireEvent(event.name, event);;
                     }
                 }
@@ -1630,12 +1634,14 @@ if (!String.prototype.trim) {
                 if (events.hasOwnProperty('bing')) {
                     event = events.bing;
                     if(Utils.isEventInTimeWindow(event.name,event,"dyn_bing_"+eventId)) {
+                        event = Utils.getFormFilledData(event);
                         Bing.fireEvent(event.name, event);;
                     }
                 }
                 if (events.hasOwnProperty('tiktok')) {
                     event = events.tiktok;
                     if(Utils.isEventInTimeWindow(event.name,event,"dyn_bing_"+eventId)) {
+                        event = Utils.getFormFilledData(event);
                         TikTok.fireEvent(event.name, event);
                     }
                 }
@@ -1682,6 +1688,7 @@ if (!String.prototype.trim) {
                             event.fired = event.fired || false;
 
                             if (!event.fired && Utils.isEventInTimeWindow(event.name,event,'static_' + pixel+"_")) {
+                                event = Utils.getFormFilledData(event);
 
                                 var fired = false;
 
@@ -2263,140 +2270,309 @@ if (!String.prototype.trim) {
             /**
              * Advanced From Data
              */
-            saveAdvancedFormData: function (email, phone, firstName, lastName, override = true) {
-                let data = Utils.getAdvancedFormData();
-                // Ensure data["address"] is an object
-
-                if ( email != null ) {
-                    if ( !override ) {
-                        if ( typeof data[ "email" ] === 'undefined' || !data[ "email" ] ) {
+            saveAdvancedFormData: function ( email, phone, firstName, lastName, override = true ) {
+                
+                if ( !options.cookie.disabled_advanced_form_data_cookie ) {
+                    let data = Utils.getAdvancedFormData();
+                    // Ensure data["address"] is an object
+                    
+                    if ( email != null ) {
+                        if ( !override ) {
+                            if ( typeof data[ "email" ] === 'undefined' || !data[ "email" ] ) {
+                                data[ "email" ] = email;
+                            }
+                        } else {
                             data[ "email" ] = email;
                         }
-                    } else {
-                        data[ "email" ] = email;
+                        
+                        if ( typeof data[ "emails" ] === 'object' ) {
+                            if ( override ) {
+                                data[ "emails" ] = [ email, ...Object.values( data[ "emails" ] ) ];
+                            } else {
+                                data[ "emails" ] = [ ...Object.values( data[ "emails" ] ), email ];
+                            }
+                        } else {
+                            data[ "emails" ] = [ email ];
+                        }
+                        data[ "emails" ] = [ ...new Set( data[ "emails" ] ) ];
+                        data[ "emails" ] = data[ "emails" ].slice( 0, 3 );
                     }
-                }
-
-                if ( phone != null ) {
-                    if ( !override ) {
-                        if ( typeof data[ "phone" ] === 'undefined' || !data[ "phone" ] ) {
+                    
+                    if ( phone != null ) {
+                        if ( !override ) {
+                            if ( typeof data[ "phone" ] === 'undefined' || !data[ "phone" ] ) {
+                                data[ "phone" ] = phone;
+                            }
+                        } else {
                             data[ "phone" ] = phone;
                         }
-                    } else {
-                        data[ "phone" ] = phone;
+                        
+                        if ( typeof data[ "phones" ] === 'object' ) {
+                            if ( override ) {
+                                data[ "phones" ] = [ phone, ...Object.values( data[ "phones" ] ) ];
+                            } else {
+                                data[ "phones" ] = [ ...Object.values( data[ "phones" ] ), phone ];
+                            }
+                        } else {
+                            data[ "phones" ] = [ phone ];
+                        }
+                        data[ "phones" ] = [ ...new Set( data[ "phones" ] ) ];
+                        data[ "phones" ] = data[ "phones" ].slice( 0, 3 );
                     }
-                }
-
-                if ( firstName != null ) {
-                    if ( !override ) {
-                        if ( typeof data[ "first_name" ] === 'undefined' || !data[ "first_name" ] ) {
+                    
+                    if ( firstName != null ) {
+                        if ( !override ) {
+                            if ( typeof data[ "first_name" ] === 'undefined' || !data[ "first_name" ] ) {
+                                data[ "first_name" ] = firstName;
+                            }
+                        } else {
                             data[ "first_name" ] = firstName;
                         }
-                    } else {
-                        data[ "first_name" ] = firstName;
+                        
+                        if ( typeof data[ "fns" ] === 'object' ) {
+                            if ( override ) {
+                                data[ "fns" ] = [ firstName, ...Object.values( data[ "fns" ] ) ];
+                            } else {
+                                data[ "fns" ] = [ ...Object.values( data[ "fns" ] ), firstName ];
+                            }
+                        } else {
+                            data[ "fns" ] = [ firstName ];
+                        }
+                        data[ "fns" ] = [ ...new Set( data[ "fns" ] ) ];
+                        data[ "fns" ] = data[ "fns" ].slice( 0, 2 );
                     }
-                }
-
-                if ( lastName != null ) {
-                    if ( !override ) {
-                        if ( typeof data[ "last_name" ] === 'undefined' || !data[ "last_name" ] ) {
+                    
+                    if ( lastName != null ) {
+                        if ( !override ) {
+                            if ( typeof data[ "last_name" ] === 'undefined' || !data[ "last_name" ] ) {
+                                data[ "last_name" ] = lastName;
+                            }
+                        } else {
                             data[ "last_name" ] = lastName;
                         }
-                    } else {
-                        data[ "last_name" ] = lastName;
+                        
+                        if ( typeof data[ "lns" ] === 'object' ) {
+                            if ( override ) {
+                                data[ "lns" ] = [ lastName, ...Object.values( data[ "lns" ] ) ];
+                            } else {
+                                data[ "lns" ] = [ ...Object.values( data[ "fns" ] ), lastName ];
+                            }
+                        } else {
+                            data[ "lns" ] = [ lastName ];
+                        }
+                        data[ "lns" ] = [ ...new Set( data[ "lns" ] ) ];
+                        data[ "lns" ] = data[ "lns" ].slice( 0, 2 );
                     }
+                    
+                    Cookies.set( 'pys_advanced_form_data', JSON.stringify( data ), { expires: 300 } );
+                } else {
+                    Cookies.remove( 'pys_advanced_form_data' )
                 }
-
-                if(!options.cookie.disabled_advanced_form_data_cookie)
-                {
-                    Cookies.set('pys_advanced_form_data', JSON.stringify(data),{ expires: 300 } );
-                }
-                else {
-                    Cookies.remove('pys_advanced_form_data')
-                }
-                if(Analytics.isEnabled()){
+                if ( Analytics.isEnabled() ) {
                     Analytics.updateEnhancedConversionData();
-                } else if(GAds.isEnabled()){
+                } else if ( GAds.isEnabled() ) {
                     GAds.updateEnhancedConversionData();
                 }
             },
-            getAdvancedMergeFormData: function() {
+            getAdvancedMergeFormData: function () {
                 const advanced = Utils.getAdvancedFormData();
-                let mergedData = {};
+                let mergedData = {},
+                    limit = options.tracking_analytics.use_multiple_provided_data ? 3 : 1,
+                    address_limit = options.tracking_analytics.use_multiple_provided_data ? 2 : 1;
 
-                    if(options.tracking_analytics.use_encoding_provided_data){
-                        mergedData.sha256_email_address = [];
-                        mergedData.sha256_phone_number = [];
-                        mergedData.address = [];
-                        if(options.tracking_analytics.hasOwnProperty("userData")){
-                            if (options.tracking_analytics.userData.hasOwnProperty("email") && options.tracking_analytics.userData.email !== '') {
-                                mergedData.sha256_email_address.push(sha256(options.tracking_analytics.userData.email));
-                            }
-                            if (options.tracking_analytics.userData.hasOwnProperty("phone_number") && options.tracking_analytics.userData.phone_number !== '') {
-                                mergedData.sha256_phone_number.push(sha256(options.tracking_analytics.userData.phone_number));
-                            }
-                            if(options.tracking_analytics.userData.hasOwnProperty("address")){
-                                let address = Object.assign({}, options.tracking_analytics.userData.address);
-                                if(address.first_name){
-                                    address.sha256_first_name = address.first_name !== '' ? sha256(address.first_name) : '';
+                if ( options.tracking_analytics.use_encoding_provided_data ) {
+                    mergedData.sha256_email_address = [];
+                    mergedData.sha256_phone_number = [];
+                    mergedData.address = [];
+                    if ( options.tracking_analytics.hasOwnProperty( "userData" ) ) {
+                        if ( options.tracking_analytics.userData.hasOwnProperty( "emails" ) && Object.keys( options.tracking_analytics.userData.emails ).length > 0 ) {
+                            Object.keys( options.tracking_analytics.userData.emails ).forEach( ( key ) => {
+                                mergedData.sha256_email_address.push( sha256( options.tracking_analytics.userData.emails[ key ] ) );
+                            } )
+                        }
+                        if ( options.tracking_analytics.userData.hasOwnProperty( "phones" ) && Object.keys( options.tracking_analytics.userData.phones ).length > 0 ) {
+                            Object.keys( options.tracking_analytics.userData.phones ).forEach( ( key ) => {
+                                mergedData.sha256_phone_number.push( sha256( options.tracking_analytics.userData.phones[ key ] ) );
+                            } )
+                        }
+                        if ( options.tracking_analytics.userData.hasOwnProperty( "addresses" ) && Object.keys( options.tracking_analytics.userData.addresses ).length > 0 ) {
+                            Object.keys( options.tracking_analytics.userData.addresses ).forEach( ( key ) => {
+                                let address = Object.assign( {}, options.tracking_analytics.userData.addresses[ key ] );
+
+                                if ( address.first_name ) {
+                                    address.sha256_first_name = address.first_name !== '' ? sha256( address.first_name ) : '';
                                     delete address.first_name;
                                 }
-                                if(address.last_name){
-                                    address.sha256_last_name = address.last_name !== '' ? sha256(address.last_name) : '';
+                                if ( address.last_name ) {
+                                    address.sha256_last_name = address.last_name !== '' ? sha256( address.last_name ) : '';
                                     delete address.last_name;
                                 }
-                                mergedData.address.push(address);
-                            }
+                                mergedData.address.push( address );
+                            } )
                         }
+                    }
 
-                        if (advanced.email && advanced.email !== '') {
-                            mergedData.sha256_email_address.push(sha256(advanced.email));
+                    let data_persistency = options.data_persistency;
+
+                    //emails
+                    if ( advanced.emails && Object.keys( advanced.emails ).length > 0 ) {
+                        Object.keys( advanced.emails ).forEach( ( key ) => {
+                            if ( data_persistency === 'recent_data' ) {
+                                mergedData.sha256_email_address.push( sha256( advanced.emails[ key ] ) );
+                            } else {
+                                mergedData.sha256_email_address.unshift( sha256( advanced.emails[ key ] ) );
+                            }
+                        } )
+                    }
+                    if ( advanced.email && advanced.email !== '' ) {
+                        if ( data_persistency === 'recent_data' ) {
+                            mergedData.sha256_email_address.push( sha256( advanced.email ) );
+                        } else {
+                            mergedData.sha256_email_address.unshift( sha256( advanced.email ) );
                         }
-                        if (advanced.phone && advanced.phone !== '') {
-                            mergedData.sha256_phone_number.push(sha256(advanced.phone));
+                    }
+                    mergedData.sha256_email_address = [ ...new Set( mergedData.sha256_email_address ) ];
+                    mergedData.sha256_email_address = mergedData.sha256_email_address.slice( 0, limit );
+
+                    //phones
+                    if ( advanced.phones && Object.keys( advanced.phones ).length > 0 ) {
+                        Object.keys( advanced.phones ).forEach( ( key ) => {
+                            if ( data_persistency === 'recent_data' ) {
+                                mergedData.sha256_phone_number.push( sha256( advanced.phones[ key ] ) );
+                            } else {
+                                mergedData.sha256_phone_number.unshift( sha256( advanced.phones[ key ] ) );
+                            }
+                        } )
+                    }
+                    if ( advanced.phone && advanced.phone !== '' ) {
+                        if ( data_persistency === 'recent_data' ) {
+                            mergedData.sha256_phone_number.push( sha256( advanced.phone ) );
+                        } else {
+                            mergedData.sha256_phone_number.unshift( sha256( advanced.phone ) );
                         }
-                        if (advanced.first_name || advanced.last_name) {
+                    }
+                    mergedData.sha256_phone_number = [ ...new Set( mergedData.sha256_phone_number ) ];
+                    mergedData.sha256_phone_number = mergedData.sha256_phone_number.slice( 0, limit );
+
+                    //first and last names
+                    if ( advanced.fns && Object.keys( advanced.fns ).length > 0 ) {
+                        Object.entries( advanced.fns ).forEach( ( item ) => {
+                            if ( mergedData.address.length < address_limit ) {
+                                let first_name = item[ 1 ];
+                                let last_name = ( advanced.lns && Object.keys( advanced.lns ).length > 0 ) ? ( advanced.lns[ item[ 0 ] ] ? advanced.lns[ item[ 0 ] ] : advanced.lns[ 0 ] ) : '';
+                                let address = {
+                                    sha256_first_name: first_name !== '' ? sha256( first_name ) : '',
+                                    sha256_last_name: last_name !== '' ? sha256( last_name ) : '',
+                                    // Add other address properties here if they exist in advanced
+                                };
+                                mergedData.address.push( address );
+                            }
+                        } )
+                    }
+
+                    if ( advanced.first_name || advanced.last_name ) {
+                        if ( mergedData.address.length < address_limit ) {
                             let address = {
-                                sha256_first_name: advanced.first_name !== '' ? sha256(advanced.first_name) : '',
-                                sha256_last_name: advanced.last_name !== '' ? sha256(advanced.last_name) : '',
+                                sha256_first_name: advanced.first_name !== '' ? sha256( advanced.first_name ) : '',
+                                sha256_last_name: advanced.last_name !== '' ? sha256( advanced.last_name ) : '',
                                 // Add other address properties here if they exist in advanced
                             };
-                            mergedData.address.push(address);
+                            mergedData.address.push( address );
                         }
-                    } else {
-                        mergedData.email = [];
-                        mergedData.phone_number = [];
-                        mergedData.address = [];
-                        if(options.tracking_analytics.hasOwnProperty("userData")){
-                            if (options.tracking_analytics.userData.hasOwnProperty("email")) {
-                                mergedData.email.push(options.tracking_analytics.userData.email);
-                            }
-                            if (options.tracking_analytics.userData.hasOwnProperty("phone_number")) {
-                                mergedData.phone_number.push(options.tracking_analytics.userData.phone_number);
-                            }
-                            if(options.tracking_analytics.userData.hasOwnProperty("address")){
-                                mergedData.address.push(options.tracking_analytics.userData.address);
-                            }
+                    }
+                } else {
+                    mergedData.email = [];
+                    mergedData.phone_number = [];
+                    mergedData.address = [];
+                    if ( options.tracking_analytics.hasOwnProperty( "userData" ) ) {
+                        if ( options.tracking_analytics.userData.hasOwnProperty( "emails" ) && Object.keys( options.tracking_analytics.userData.emails ).length > 0 ) {
+                            Object.keys( options.tracking_analytics.userData.emails ).forEach( ( key ) => {
+                                mergedData.email.push( options.tracking_analytics.userData.emails[ key ] );
+                            } )
                         }
+                        if ( options.tracking_analytics.userData.hasOwnProperty( "phones" ) && Object.keys( options.tracking_analytics.userData.phones ).length > 0 ) {
+                            Object.keys( options.tracking_analytics.userData.phones ).forEach( ( key ) => {
+                                mergedData.phone_number.push( options.tracking_analytics.userData.phones[ key ] );
+                            } )
+                        }
+                        if ( options.tracking_analytics.userData.hasOwnProperty( "addresses" ) && Object.keys( options.tracking_analytics.userData.addresses ).length > 0 ) {
+                            Object.keys( options.tracking_analytics.userData.addresses ).forEach( ( key ) => {
+                                mergedData.address.push( options.tracking_analytics.userData.addresses[ key ] );
+                            } )
+                        }
+                    }
 
-                        // Add new values from advanced to the arrays
-                        if (advanced.email) {
-                            mergedData.email.push(advanced.email);
+                    let data_persistency = options.data_persistency;
+
+                    //emails
+                    if ( advanced.emails && Object.keys( advanced.emails ).length > 0 ) {
+                        Object.keys( advanced.emails ).forEach( ( key ) => {
+                            if ( data_persistency === 'recent_data' ) {
+                                mergedData.email.push( advanced.emails[ key ] );
+                            } else {
+                                mergedData.email.unshift( advanced.emails[ key ] );
+                            }
+                        } )
+                    }
+                    if ( advanced.email && advanced.email !== '' ) {
+                        if ( data_persistency === 'recent_data' ) {
+                            mergedData.email.push( advanced.email );
+                        } else {
+                            mergedData.email.unshift( advanced.email );
                         }
-                        if (advanced.phone) {
-                            mergedData.phone_number.push(advanced.phone);
+                    }
+                    mergedData.email = [ ...new Set( mergedData.email ) ];
+                    mergedData.email = mergedData.email.slice( 0, limit );
+
+                    //phones
+                    if ( advanced.phones && Object.keys( advanced.phones ).length > 0 ) {
+                        Object.keys( advanced.phones ).forEach( ( key ) => {
+                            if ( data_persistency === 'recent_data' ) {
+                                mergedData.phone_number.push( advanced.phones[ key ] );
+                            } else {
+                                mergedData.phone_number.unshift( advanced.phones[ key ] );
+                            }
+                        } )
+                    }
+                    if ( advanced.phone && advanced.phone !== '' ) {
+                        if ( data_persistency === 'recent_data' ) {
+                            mergedData.phone_number.push( advanced.phone );
+                        } else {
+                            mergedData.phone_number.unshift( advanced.phone );
                         }
-                        if (advanced.first_name || advanced.last_name) {
+                    }
+                    mergedData.phone_number = [ ...new Set( mergedData.phone_number ) ];
+                    mergedData.phone_number = mergedData.phone_number.slice( 0, limit );
+
+                    //first and last names
+                    if ( advanced.fns && Object.keys( advanced.fns ).length > 0 ) {
+                        Object.entries( advanced.fns ).forEach( ( item ) => {
+                            if ( mergedData.address.length < address_limit ) {
+                                let first_name = item[ 1 ];
+                                let last_name = ( advanced.lns && Object.keys( advanced.lns ).length > 0 ) ? ( advanced.lns[ item[ 0 ] ] ? advanced.lns[ item[ 0 ] ] : advanced.lns[ 0 ] ) : '';
+                                let address = {
+                                    first_name: first_name || '',
+                                    last_name: last_name || '',
+                                    // Add other address properties here if they exist in advanced
+                                };
+                                mergedData.address.push( address );
+                            }
+                        } )
+                    }
+
+                    if ( advanced.first_name || advanced.last_name ) {
+                        if ( mergedData.address.length < address_limit ) {
                             let address = {
                                 first_name: advanced.first_name || '',
                                 last_name: advanced.last_name || '',
                                 // Add other address properties here if they exist in advanced
                             };
-                            mergedData.address.push(address);
+                            mergedData.address.push( address );
                         }
                     }
+                }
 
-                Utils.removeEmptyProperties(mergedData);
+                Utils.removeEmptyProperties( mergedData );
                 return mergedData;
             },
             removeEmptyProperties : function(obj) {
@@ -2458,10 +2634,28 @@ if (!String.prototype.trim) {
             getAdvancedFormData: function () {
                 let dataStr = Cookies.get("pys_advanced_form_data");
                 if(dataStr === undefined) {
-                    return {'first_name':"",'last_name':"",'email':"",'phone':""};
+                    return {'first_name':"",'last_name':"",'email':"",'phone':"",'fns':[],'lns':[],'emails':[],'phones':[]};
                 } else {
                     return JSON.parse(dataStr);
                 }
+            },
+
+            getFormFilledData: function ( event ) {
+                if ( Object.keys(options.track_dynamic_fields).length > 0 && Object.keys(event.params).length > 0 ) {
+                    Object.entries(event.params).forEach((item) => {
+
+                        if ( options.track_dynamic_fields.hasOwnProperty(item[0]) ) {
+                            let fieldData = Cookies.get('pys_dyn_field_' + item[1] );
+
+                            if(fieldData !== undefined && fieldData !== '') {
+                                event.params[item[0]] = fieldData;
+                            } else {
+                                delete event.params[item[0]];
+                            }
+                        }
+                    })
+                }
+                return event;
             }
 
         };
