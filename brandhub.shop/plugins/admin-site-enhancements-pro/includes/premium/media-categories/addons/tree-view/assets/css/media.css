@@ -1,0 +1,264 @@
+#media-categories-module-tree-view {
+     display: none;
+     will-change: min-height;
+}
+ #media-categories-module-tree-view .media-categories-module-tree-view-inner {
+     transform: translate(0, 0);
+     transform: translate3d(0, 0, 0);
+     will-change: position, transform;
+}
+ #media-categories-module-tree-view-list {
+     margin: 0;
+     padding: 0;
+     border: 1px solid #c3c4c7;
+     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.04);
+     max-height: 75vh;
+     overflow-y: scroll;
+}
+ #media-categories-module-tree-view-list > ul {
+     display: flex;
+     flex-direction: row;
+     flex-wrap: wrap;
+     justify-content: space-between;
+     background: #fff;
+     margin: 0;
+     padding: 10px;
+}
+ #media-categories-module-tree-view-list ul li {
+     width: 100%;
+     position: relative;
+     margin: 0;
+     padding: 0;
+}
+#media-categories-module-tree-view-list ul li.cat-item-all,
+#media-categories-module-tree-view-list ul li.cat-item-unassigned {
+     width: 100%;
+}
+ #media-categories-module-tree-view-list ul li.cat-item-all, #media-categories-module-tree-view-list ul li.cat-item-unassigned {
+     background: #fafafa;
+     border: 1px solid #ddd;
+     margin-bottom: 8px;
+}
+ #media-categories-module-tree-view-list ul li.current-cat > a {
+     background-color: #f3f3f3;
+     border: 1px solid #ddd;
+     font-weight: 600;
+}
+ #media-categories-module-tree-view-list ul li.jstree-node {
+     display: grid;
+     grid-template-columns: 20px auto;
+}
+ #media-categories-module-tree-view-list ul li.jstree-node i.jstree-ocl {
+     display: inline-block;
+     width: 20px;
+     height: 38px;
+     margin: 0;
+     padding: 0;
+     background: url(../../../../../../media-categories/_modules/dashboard/icons/chevron-right.svg) center no-repeat;
+     background-size: 16px 16px;
+}
+ #media-categories-module-tree-view-list ul li.jstree-node.jstree-closed > i.jstree-ocl:hover, #media-categories-module-tree-view-list ul li.jstree-node.jstree-open > i.jstree-ocl:hover {
+     background-color: #e5e5e5;
+}
+ #media-categories-module-tree-view-list ul li.jstree-node.cat-item-all i.jstree-ocl, #media-categories-module-tree-view-list ul li.jstree-node.cat-item-unassigned i.jstree-ocl {
+     opacity: 0;
+}
+ #media-categories-module-tree-view-list ul li.jstree-node.jstree-closed > i.jstree-ocl {
+     background: url(../../../../../../media-categories/_modules/dashboard/icons/plus.svg) center no-repeat;
+     background-size: 16px 16px;
+}
+ #media-categories-module-tree-view-list ul li.jstree-node.jstree-open > i.jstree-ocl {
+     background: url(../../../../../../media-categories/_modules/dashboard/icons/minus.svg) center no-repeat;
+     background-size: 16px 16px;
+}
+ #media-categories-module-tree-view-list ul li.jstree-node ul.jstree-children {
+     grid-column: span 2;
+     margin: 0 0 0 20px;
+}
+ #media-categories-module-tree-view-list ul li a {
+     position: relative;
+     display: block;
+     text-decoration: none;
+     margin: 0;
+    /* padding: 10px;
+     */
+     padding: 10px 10px 10px 6px;
+     border-radius: 4px;
+}
+ #media-categories-module-tree-view-list ul li.current-cat > a {
+     padding: 10px 10px 10px 6px;
+}
+ #media-categories-module-tree-view-list ul li.cat-item-all a, #media-categories-module-tree-view-list ul li.cat-item-unassigned a {
+     padding: 10px;
+     margin-left: -20px;
+}
+ #media-categories-module-tree-view-list ul li.cat-item-all:hover a, #media-categories-module-tree-view-list ul li.cat-item-unassigned:hover a {
+     margin-left: -20px;
+}
+ #media-categories-module-tree-view-list ul li a:hover {
+     background-color: #f3f3f3;
+}
+ #media-categories-module-tree-view-list ul li a.media-categories-module-tree-view-edit, #media-categories-module-tree-view-list ul li a.media-categories-module-tree-view-delete {
+     position: absolute;
+     display: inline-block;
+     top: 0;
+     min-width: 18px;
+     height: 18px;
+     line-height: 18px;
+     margin: 9px 0 0 0;
+     padding: 0;
+     font-size: 10px;
+     text-align: center;
+     text-indent: -9999px;
+}
+ #media-categories-module-tree-view-list ul li a.media-categories-module-tree-view-delete {
+     right: 35px;
+     background: url(../../../../../../media-categories/_modules/dashboard/feather/trash-2.svg) 50% 50% no-repeat;
+     background-size: 18px 18px;
+}
+ #media-categories-module-tree-view-list ul li a.media-categories-module-tree-view-edit {
+     right: 60px;
+     background: url(../../../../../../media-categories/_modules/dashboard/feather/edit.svg) 50% 50% no-repeat;
+     background-size: 18px 18px;
+}
+ #media-categories-module-tree-view-list ul li .count {
+     position: absolute;
+     display: inline-block;
+     top: 0;
+     right: 10px;
+     min-width: 18px;
+     height: 18px;
+     line-height: 18px;
+     margin: 9px 0 0 0;
+     border: 1px solid #ccc;
+     background: #fff;
+     font-size: 10px;
+     text-align: center;
+     border-radius: 4px;
+     color: #000;
+     text-decoration: none;
+}
+ #media-categories-module-tree-view-list ul li ul.children {
+     margin: 0 0 0 20px;
+}
+ .media-categories-module-tree-view {
+     width: 100%;
+     display: flex;
+     flex-direction: row;
+     top: -22px;
+}
+.supports-drag-drop .media-categories-module-tree-view {
+     padding-top: 2px;    
+}
+#media-categories-spinner {
+    display: flex;
+    align-items: center;
+    margin-top: 8px;
+}
+#media-categories-spinner svg {
+    margin-right: 6px;
+}
+ .media-categories-module-tree-view #media-categories-module-tree-view {
+     display: none;
+     width: 20%;
+     box-sizing: border-box;
+     padding: 0 10px 0 0;
+     margin-top: 45px;
+}
+}
+}
+ .media-categories-module-tree-view #media-categories-module-tree-view h2.wp-heading-inline {
+     float: left;
+     font-size: 23px;
+     font-weight: 400;
+     margin: 0;
+     padding: 11px 0 4px 0;
+     line-height: 1.3;
+}
+ .media-categories-module-tree-view #media-categories-module-tree-view a.button {
+     float: right;
+     margin: 11px 0 0 0;
+}
+ .media-categories-module-tree-view #media-categories-module-tree-view .wp-filter {
+     margin: 12px 0;
+}
+ .media-categories-module-tree-view #media-categories-module-tree-view .wp-filter .search-form {
+     width: 100%;
+}
+ .media-categories-module-tree-view #media-categories-module-tree-view .wp-filter .search-form button {
+     width: 32%;
+     height: 30px;
+}
+ .media-categories-module-tree-view #media-categories-module-tree-view .wp-filter .search-form button svg {
+     position: relative;
+     top: 2px;
+}
+ .media-categories-module-tree-view .wrap {
+     width: 80%;
+     margin-top: 0;
+}
+ .media-categories-module-tree-view .wrap th#tree-view-move {
+     width: 20px;
+}
+ ul.ui-contextmenu {
+     margin: 0;
+     padding: 0;
+     background-color: #fff;
+     box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.25);
+     border-radius: 2px;
+}
+ ul.ui-contextmenu li.ui-menu-item {
+     margin: 0;
+     padding: 10px 20px;
+     cursor: pointer;
+}
+ ul.ui-contextmenu li.ui-menu-item:hover {
+     background-color: #e7e7e7;
+}
+ #media-categories-module-tree-view-draggable {
+     display: block;
+     z-index: 99999999;
+     background-color: rgba(0, 0, 0, 0.8);
+     min-width: 120px;
+     margin: 0;
+     padding: 10px;
+     color: #fff;
+     cursor: move;
+     cursor: grab;
+     cursor: -moz-grab;
+     cursor: -webkit-grab;
+}
+ .media-categories-module-tree-view-droppable-hover {
+     background-color: #e5e5e5;
+}
+ @media only screen and (max-width: 1300px) {
+     .media-categories-module-tree-view #media-categories-module-tree-view {
+         width: 25%;
+    }
+     .media-categories-module-tree-view .wrap {
+         width: 75%;
+    }
+}
+ @media only screen and (max-width: 1100px) {
+     .media-categories-module-tree-view #media-categories-module-tree-view {
+         width: 30%;
+    }
+     .media-categories-module-tree-view .wrap {
+         width: 70%;
+    }
+}
+ @media only screen and (max-width: 768px) {
+    .media-categories-module-tree-view {
+        flex-direction: column;
+    }
+     .media-categories-module-tree-view #media-categories-module-tree-view {
+         width: 100%;
+         margin-bottom: 32px;
+    }
+     .media-categories-module-tree-view #media-categories-module-tree-view .wp-filter .search-form button {
+         padding: 5px 14px 0;
+    }
+     .media-categories-module-tree-view .wrap {
+         width: 100%;
+    }
+}

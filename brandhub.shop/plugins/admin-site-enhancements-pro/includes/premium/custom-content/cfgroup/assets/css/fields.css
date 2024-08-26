@@ -1,0 +1,582 @@
+/*---------------------------------------------------------------------------------------------
+    generic
+---------------------------------------------------------------------------------------------*/
+
+.cfgroup_tooltip {
+    display: inline-block;
+    border: 1px solid #999;
+    background: #f5f5f5;
+    border-radius: 50%;
+    cursor: pointer;
+    line-height: 1;
+    width: 13px;
+    height: 13px;
+    font-size: 11px;
+    line-height: 13px;
+    text-align: center;
+    margin-left: 4px;
+}
+
+.tooltip_inner {
+    display: none;
+}
+
+/*---------------------------------------------------------------------------------------------
+    #cfgroup_fields (container)
+---------------------------------------------------------------------------------------------*/
+
+#cfgroup_fields .inside {
+    margin: 0;
+    padding: 0;
+}
+
+.fields-header {
+    width: 100%;
+    display: flex;
+    padding: 10px 0;
+    background: #fafafa;
+    border-bottom: 1px solid #dfdfdf;
+}
+
+.field-header {
+    font-weight: 600;
+    text-align: left;
+}
+
+.field-order,
+.field-toggle {
+    width: 48px;
+}
+
+.field-key {
+    width: 268px;
+}
+
+.field-type {
+    width: 96px;
+}
+
+.field-width {
+    width: 96px;
+}
+
+.field-order {
+    position: relative;
+}
+
+.field-order svg {
+    position: absolute;
+    left: 14px;
+    top: -1px;
+    color: #666;
+}
+
+.field-toggle {
+    display: flex;
+}
+
+.field-toggle a {
+    height: 18px;
+    margin-top: -4px;
+    margin-bottom: -8px;
+    padding: 4px 8px;
+    cursor: pointer;
+}
+
+.field-toggle a:hover {
+    background: #eee;
+}
+
+.cfgroup_toggle_fields.icon-rotated svg {
+    transform: rotate(180deg);
+}
+
+.field-label {
+    width: calc(100% - 48px - 48px - 268px - 96px - 96px);
+}
+
+#cfgroup_fields .table_footer {
+    padding: 10px 12px;
+    text-align: right;
+    background: #fafafa;
+}
+
+#cfgroup_fields .field_meta.even td {
+    background-color: #fcfcfc;
+}
+
+#cfgroup_fields .fields {
+    margin: 0;
+    background: #0073aa;
+}
+
+#cfgroup_fields .fields a.cfgroup_edit_field {
+    font-weight: normal;
+    cursor: pointer;
+}
+
+#cfgroup_fields .fields .button-secondary.cfgroup_edit_field {
+    vertical-align: baseline;
+}
+
+.cfgroup_edit_field svg {
+    margin: -4px 0 -11px 0;
+    padding: 4px 8px;
+}
+
+.cfgroup_edit_field svg:hover {
+    background: #eee;
+}
+
+.field.form_open .cfgroup_edit_field svg {
+    transform: rotate(180deg);
+}
+
+.field.form_open .cfgroup_edit_field svg:hover {
+    background: #1b5a8d;
+}
+
+#cfgroup_fields .fields li {
+    margin: 0;
+    background: #fafafa;
+}
+
+.tab-flag {
+    margin-left: 2px;
+    padding: 2px 6px;
+    font-weight: 500;
+    background: #fff;
+    color: #50575e;
+    border: 1px solid #bbb;
+    border-radius: 4px;
+}
+
+#cfgroup_fields .field.form_open .tab-flag {
+    border-color: #0073aa;
+}
+
+/* #cfgroup_fields .fields li.tab, */
+li.tab .field_meta td {
+    border-bottom: 1px solid #90b8d8;
+}
+
+#cfgroup_fields .fields li.tab table.widefat {
+    background: #f3f7fb;
+}
+
+#cfgroup_fields .fields li.tab a.cfgroup_edit_field {
+    font-weight: 600;
+}
+
+#cfgroup_fields .fields li.tab .field_meta .field_name {
+    color: #bbb;    
+}
+
+#cfgroup_fields .fields li.tab .field_meta .field_type,
+#cfgroup_fields .fields li.tab .field_meta .field_width {
+    color: transparent !important;
+}
+
+#cfgroup_fields .fields li.tab tr.field_column_width {
+    display: none;
+}
+
+#cfgroup_fields .fields li.repeater li {
+    margin: 0 0 0 48px;
+}
+
+#cfgroup_fields .fields li.repeater ul {
+    min-height: 4px;
+    border-bottom: 1px solid #dfdfdf;
+    background: #fafafa;
+    padding-bottom: 4px;
+}
+
+#cfgroup_fields .fields li.repeater li {
+    border-left: 1px solid #dfdfdf;
+}
+
+#cfgroup_fields .fields li.repeater li:last-child {
+}
+
+#cfgroup_fields .field.form_open {
+    border-bottom: 1px solid #DFDFDF;
+}
+
+#cfgroup_fields .field.form_open .field_meta td {
+    background-color: #0073aa;
+    color: #fff;
+}
+
+#cfgroup_fields .field.form_open .field_meta td a {
+    color: #fff;
+}
+
+/*---------------------------------------------------------------------------------------------
+    #cfgroup_rules (container)
+---------------------------------------------------------------------------------------------*/
+
+#cfgroup_rules .select2 {
+    width: 99.95%;
+}
+
+/*---------------------------------------------------------------------------------------------
+    #asenha_cfgroup_meta_box (container)
+---------------------------------------------------------------------------------------------*/
+
+#asenha_cfgroup_meta_box .select2 {
+    width: 99.95%;
+}
+
+/*---------------------------------------------------------------------------------------------
+    field_meta
+---------------------------------------------------------------------------------------------*/
+
+.field_meta table {
+    border: 0;
+    border-radius: 0;
+    border-spacing: 0;
+}
+
+.field_meta td {
+    border: 0;
+    border-bottom: 1px solid #dfdfdf;
+    padding: 10px 0;
+}
+
+.field_meta td.field_order {
+    width: 48px;
+    cursor: move;
+    position: relative;
+}
+
+.field_meta td.field_order:after {
+    content: '\f333';
+}
+
+.form_open .field_meta td.field_order:after {
+    color: #fff;
+}
+
+.field_meta td.field_name {
+    width: 260px;
+}
+
+.field_meta td.field_type {
+    width: 88px;
+    padding-left: 8px;
+}
+
+.field_meta td.field_width {
+    width: 96px;
+    padding-left: 8px;
+}
+
+.field_meta td.field_toggle {
+    width: 48px;
+}
+
+/*---------------------------------------------------------------------------------------------
+    field_form
+---------------------------------------------------------------------------------------------*/
+
+.field_form {
+    display: none;
+}
+
+.field_form table {
+    width: 100%;
+    border: none;
+    border-radius: 0;
+    border-spacing: 0;
+}
+
+.field_form td {
+    padding: 10px 12px;
+}
+
+.field_form .field_column_width td {
+    padding: 10px 12px 20px;
+}
+
+.field_form td.label {
+    width: 24%;
+    vertical-align: top;
+}
+
+.field_form td.label {
+    padding: 20px 12px;
+}
+
+.field_form td.label.repeater-label,
+.field_form td.label.validation-label,
+.field_form td.label.select-label {
+    padding: 10px 12px;
+}
+
+.field_form td.label label {
+    color: #333;
+}
+
+.field_form td.label p.description {
+    color: #666;
+    font-style: normal;
+    margin: 6px 0 0 0 !important;
+}
+
+.field_form span.required {
+    margin-right: 5px;
+    color: red;
+}
+
+.field_form tr.field_basics table {
+    padding: 10px 12px 20px;
+    border-bottom: 1px solid #bcc4c6;
+    border-spacing: 0;
+}
+
+.field_form tr.field_basics td {
+    padding: 0 20px 0 0;
+    border: none;
+}
+
+.field_form tr.field_basics td:last-child {
+    padding: 0;
+}
+
+.field_form tr.field_basics td.field_label {
+    width: 24%;
+    padding-right: 18px;
+}
+
+.field_form tr.field_basics td.field_name {
+    width: 40%;
+    padding-left: 2px;
+}
+
+.field_form tr.field_basics td.field_type {
+    width: 17.5%;    
+}
+
+.field_form tr.field_basics td.field_column_width {
+    width: 17.5%;
+}
+
+.field_form tr.field_label td {
+    border-top: 0;
+}
+
+.field.form_open table.widefat,
+.field_form tr.field_actions td {
+    background: #ecf5f8;
+}
+
+.field_form tr.field_actions td {
+    border-top: 1px solid #bcc4c6;
+    text-align: right;
+}
+
+.field_form select,
+.field_form textarea,
+.field_form input[type="text"] {
+    width: 99.95%;
+    margin-top: 10px;
+}
+
+.field_form select.multiple {
+    height: 100px;
+}
+
+.ui-sortable-placeholder {
+    height: 40px;
+    background: #cdddd6 !important;
+    border: 1px dashed #508871 !important;
+}
+
+/*---------------------------------------------------------------------------------------------
+    Buttons, links
+---------------------------------------------------------------------------------------------*/
+
+span.cfgroup_delete_field {
+    margin-right: 16px;
+    text-decoration: underline;
+    cursor: pointer;
+    color: red;
+}
+
+span.cfgroup_delete_field:hover {
+    text-decoration: none;
+    background: red;
+    color: #fff;
+}
+
+/*---------------------------------------------------------------------------------------------
+    Options
+---------------------------------------------------------------------------------------------*/
+
+#cfgroup_rules .inside,
+#cfgroup_extras .inside {
+    margin: 0;
+    padding: 0;
+}
+
+.field-group-placement-radio {
+    display: flex;
+    box-sizing: border-box;
+    width: 100%;
+    padding: 14px 16px;
+    border-bottom: 1px solid #dfdfdf;
+}
+
+.field-group-placement-radio div {
+    margin-right: 20px;
+}
+
+.field-group-placement-radio label {
+    font-weight: 600;
+}
+
+#cfgroup_rules table,
+#cfgroup_extras table {
+    width: 100%;
+    border-spacing: 0;
+}
+
+#cfgroup_rules table td,
+#cfgroup_extras table td {
+    padding: 14px 16px;
+    border-top: 1px solid #fff;
+    border-bottom: 1px solid #dfdfdf;
+}
+
+#cfgroup_rules table tr:last-child td,
+#cfgroup_extras table tr:last-child td {
+    border-bottom: none;
+}
+
+#cfgroup_rules table td.label,
+#cfgroup_extras table td.label {
+    width: 120px;
+    background: #fff;
+    vertical-align: top;
+}
+
+#cfgroup_rules table td.label label,
+#cfgroup_extras table td.label label {
+    color: #333;
+    line-height: 1.5em;
+}
+
+#cfgroup_rules table td.label p.description,
+#cfgroup_extras table td.label p.description {
+    color: #666;
+    font-style: normal;
+    margin: 6px 0 0 0 !important;
+}
+
+#cfgroup_rules table select,
+#cfgroup_extras table select,
+#cfgroup_rules table textarea,
+#cfgroup_extras table textarea,
+#cfgroup_rules table input[type="text"],
+#cfgroup_extras table input[type="text"] {
+    width: 99.95%;
+    height: auto;
+    padding: 0 5px;
+    outline: none;
+}
+
+#cfgroup_rules table select {
+    padding: 1px 5px 2px;
+}
+
+input[type="text"].select2-input {
+    min-height: 0;
+}
+
+.select2-container-multi .select2-choices {
+    padding: 2px 5px 1px 0 !important;
+}
+
+#wpcontent #cfgroup_extras table select.multiple {
+    height: 60px;
+}
+
+/*---------------------------------------------------------------------------------------------
+    Checkboxes
+---------------------------------------------------------------------------------------------*/
+
+span.checkbox {
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+    display: inline-block;
+    background: url(../images/checkbox-off.png) no-repeat;
+    vertical-align: bottom;
+    margin-right: 3px;
+}
+
+span.checkbox.active {
+    background: url(../images/checkbox-on.png) no-repeat;
+}
+
+/*---------------------------------------------------------------------------------------------
+    Hide some submit buttons
+---------------------------------------------------------------------------------------------*/
+
+#submitdiv #minor-publishing-actions,
+#submitdiv #misc-publishing-actions {
+    display: none;
+}
+
+#submitdiv #major-publishing-actions {
+    border-top: none;
+}
+
+
+/*---------------------------------------------------------------------------------------------
+    Icons
+---------------------------------------------------------------------------------------------*/
+
+.field_meta td.field_order:after {
+    display: block;
+    /* color: #aaa; */
+
+    /* dashicons */
+    font-size: 20px;
+    font-family: dashicons;
+    width: 100%;
+    height: 20px;
+    line-height: 1;
+    font-weight: 400;
+    text-decoration: inherit;
+    vertical-align: top;
+    text-align: center;
+    -webkit-font-smoothing: antialiased;
+    -mos-osx-font-smoothing: grayscale;
+}
+
+/*---------------------------------------------------------------------------------------------
+    Tips
+---------------------------------------------------------------------------------------------*/
+
+#asenha_cfgroup_tips_meta_box .inside {
+    padding: 0 10px 10px;
+}
+
+.tips-wrapper {
+    /* padding: 0 10px; */
+}
+
+#asenha_cfgroup_tips_meta_box .dashicons {
+    color: #46b450;
+}
+
+/*---------------------------------------------------------------------------------------------
+    Tips
+---------------------------------------------------------------------------------------------*/
+
+#powerTip {
+    max-width: 480px;
+    white-space: normal !important;
+}

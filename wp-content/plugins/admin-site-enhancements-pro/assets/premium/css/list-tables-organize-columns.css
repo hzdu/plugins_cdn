@@ -1,0 +1,272 @@
+#organize-columns {
+	display: inline;
+	margin-left: 5px;
+}
+
+.filter-items #organize-columns {
+	display: inline-block;
+	vertical-align: middle;
+}
+
+#organize-columns a {
+	padding-left: 12px;
+	padding-right: 12px;
+}
+
+#organize-columns a svg.cog {
+	position: relative;
+	top: 3px;
+	margin-right: 4px;
+}
+
+#organize-columns a svg.columns {
+	position: relative;
+	top: 2px;
+}
+
+.wp-filter .search-form input[type=search].search {
+	width: 200px;
+}
+
+/* Mods for default WP core CSS */
+
+#excerpt {
+	display: table-cell;
+	margin: 0 !important;
+	height: initial !important;
+	width: auto;
+}
+
+/* Default columns render */
+
+.post-featured-image {
+	height: auto;
+	max-width: 100%;
+}
+
+/* ASE CFG custom field columns render */
+
+.custom-field-color-preview {
+	display: inline-block;
+	width: 12px;
+	height: 12px;
+	position: relative;
+	top: 2px;
+	margin-right: 6px;
+	border: 1px solid #50575e;
+}
+
+.custom-field-file-image-as-url {
+	max-width: 100%;
+	background-size: cover;
+	background-position: 50% 50%;
+}
+
+.custom-field-file-image-as-id {
+	display: block;
+	height: auto;
+	max-width: 100%;
+}
+
+.wp-list-table a.custom-field-file-link {
+	word-break: break-all;
+}
+
+.related-items {
+	display: flex;
+	flex-direction: column;
+}
+
+.related-items a {
+	display: block;
+}
+
+span.pointer {
+	margin-right: 3px;
+}
+
+span.pointer svg {
+	transform: scale(0.75);
+}
+
+.collection-items-wrapper {
+	position: relative;
+	margin-bottom: 16px;
+}
+
+.collection-items {
+	height: 80px;
+	overflow: hidden;
+}
+
+.collection-items.opened {
+	height: auto;
+	overflow: visible;
+	padding-bottom: 20px;
+	margin-bottom: -16px;
+}
+
+.collection-items:before {
+	content: '';
+    display: block;
+    position: absolute;
+    z-index: 1;
+    font-size: 12px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 60px;
+    width: 100%;
+    text-align: center;
+    background: linear-gradient(to bottom, rgba(255,255,255,0) 0%,rgba(255,255,255,0.6) 50%,rgba(255,255,255,1) 100%);
+}
+
+.collection-items.opened:before {
+	display: none;	
+}
+
+.ase-acf-gallery .collection-items .collection-item {
+	padding: 0;
+	display: flex;
+	flex-direction: row;
+    flex-wrap: wrap;
+    gap: 4px;
+    border: 0 !important;
+    background: none !important;
+}
+
+.striped > tbody > :nth-child(odd) .collection-items:before {
+    background: linear-gradient(to bottom, rgba(246,247,247,0) 0%,rgba(246,247,247,0.6) 50%,rgba(246,247,247,1) 100%);	
+}
+
+.show-more-less.show-more,
+.show-more-less {
+	display: block;
+    background: none;
+    text-decoration: none;
+    border: 0;
+    position: absolute;
+    left: 0;
+    bottom: -24px;
+    margin: auto;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 11px;
+    font-weight: 500;
+    cursor: pointer;
+    z-index: 3;
+}
+
+.show-more-less {
+	bottom: -6px;
+}
+
+.collection-items-wrapper .collection-items-wrapper .show-more-less.show-more,
+.collection-items-wrapper .collection-items-wrapper .show-more-less {
+    bottom: -4px;	
+}
+
+a.show-more-less:focus {
+	box-shadow: none;
+	outline: none;
+	color: #2271b1;
+}
+
+.collection-items .collection-item {
+	border: 1px solid #ccc;
+	padding: 6px 12px 8px;
+	margin-bottom: 8px;
+	background: #f9f9f9;
+}
+
+.striped > tbody > :nth-child(odd) .collection-items-wrapper:not(.ase-acf-gallery) .collection-items .collection-item {
+	border: 1px solid #bbb;
+	background: rgba(255,255,255,0.8);
+}
+
+.collection-items .collection-item:last-child {
+	margin-bottom: 0;
+}
+
+.collection-items .collection-item-title {
+	padding-bottom: 6px;
+	margin-bottom: 12px;
+	font-weight: 600;
+	border-bottom: 1px solid #ddd;
+} 
+
+.collection-sub-item {
+	display: flex;
+	flex-direction: column;
+	margin-bottom: 8px;
+}
+
+.mb-cloneable-field .collection-sub-item {
+	display: block;
+}
+
+.collection-sub-item:last-child {
+	margin-bottom: 0;
+}
+
+.collection-sub-item .sub-field-label {
+	font-weight: 600;	
+	margin-right: 6px;
+}
+
+.collection-sub-item img {
+	padding-top: 4px;
+}
+
+.collection-sub-item .custom-field-file-image-as-url {
+	margin-top: 4px;
+}
+
+.mb-media-wrapper {
+	display: flex;
+	flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 4px;
+}
+
+/* Horizontal Scrolling */
+
+.wrap .wp-list-table {
+	display: none;
+}
+
+.wrap #list-table-wrapper .wp-list-table {
+	display: table;
+}
+
+#list-table-wrapper {
+	position: relative;
+	display: flex;
+	overflow-x: auto;
+	overflow-y: hidden;
+	width: 100%;
+	border: 1px solid #c3c4c7;
+	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.04);
+}
+
+#list-table-wrapper table.widefat {
+	border: none;
+	box-shadow: none;
+}
+
+/* Responsive View */
+
+@media screen and (max-width:782px) {
+
+	.wp-list-table th:not(.column-primary),
+	th#excerpt {
+		display: none;
+	}
+
+	.wp-list-table tr:not(.inline-edit-row):not(.no-items) td:not(.check-column,.column-primary) {
+		display: none;
+		padding: 3px 8px 3px 35%;
+	}
+
+}

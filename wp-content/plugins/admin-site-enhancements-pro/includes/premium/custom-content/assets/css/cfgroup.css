@@ -1,0 +1,70 @@
+#asenha_cfgroup_meta_box .postbox-header,
+#screen-options-wrap label[for="commentstatusdiv-hide"],
+#screen-options-wrap label[for="slugdiv-hide"],
+#screen-options-wrap label[for="commentsdiv-hide"],
+#commentstatusdiv,
+#slugdiv,
+#commentsdiv {
+	display: none;
+}
+
+.misc-pub-section.misc-pub-visibility,
+.misc-pub-section.misc-pub-curtime {
+	/* display: none; */
+}
+
+.postbox .inside {
+	padding: 8px 0 0;
+}
+
+/* === TABS === */
+
+#poststuff #asenha_cfgroup_meta_box .inside {
+	margin: 0;
+}
+.postbox .container {
+	max-width: 100%;
+	width: 100%;
+} 
+
+.postbox ul.tabs {
+	list-style: none;
+	margin: 0;
+	display: flex;
+	border-bottom: 1px solid #c3c4c7;
+}
+
+.postbox ul.tabs li {
+	 margin-bottom: 0;
+}
+
+.postbox ul.tabs li div {
+	padding: 0 16px 9px;
+	font-size: 14px;
+	font-weight: 500;
+	color: #1d2327;
+	border-bottom: 2px solid rgba(0,0,0,0);
+}
+
+.postbox ul.tabs li div:hover {
+	color: #007DBA;
+	cursor: pointer;
+}
+
+.postbox .wrapper_tab-content {
+	position: relative;
+	padding: 0;
+}
+
+.postbox .tab-content {
+	display: none;
+}
+
+.postbox .tab-content.content-visible {
+	display: block;
+}
+
+.postbox .item-active {
+  color: #1d2327;
+  border-bottom: 2px solid #007DBA !important;
+}

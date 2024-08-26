@@ -1,0 +1,24 @@
+/* Reference: https://plugins.trac.wordpress.org/browser/add-dashboard-columns/tags/2.0.0/assets/add-dashboard-columns.css */
+#wpbody #wpbody-content #dashboard-widgets .postbox-container { 
+    width: 100%;
+}
+
+@media ( min-width: 768px ) {
+    #wpbody #wpbody-content #dashboard-widgets:not(.columns-1) .postbox-container { 
+        width: 50%;
+    }
+}
+
+@media ( min-width: 1200px ) {
+    .columns-prefs .columns-prefs-3, .columns-prefs .columns-prefs-4 { 
+        display: inline-block;
+    }
+    
+    #wpbody #wpbody-content #dashboard-widgets.columns-3 .postbox-container { 
+        width: 33.3%;
+    }
+    
+    #wpbody #wpbody-content #dashboard-widgets.columns-4 .postbox-container { 
+        width: 25%;
+    }
+}
