@@ -4,7 +4,7 @@ var $saz = jQuery.noConflict();
 
     $saz(function() {
         
-        $saz("li#toplevel_page_sysbasics a.toplevel_page_sysbasics").removeAttr("href");
+        $saz("li#toplevel_page_woomatrix a.toplevel_page_woomatrix").removeAttr("href");
 
     });
 

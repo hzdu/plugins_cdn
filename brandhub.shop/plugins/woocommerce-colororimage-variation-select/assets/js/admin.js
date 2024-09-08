@@ -64,29 +64,7 @@ var $var = jQuery.noConflict();
         var second_next_to_shop_more     = $var('.woocommerce_enable_shop_show_more_input').closest('tr').next().next();
 
 
-        $var(".wcva_activate_license").on('click',function(event) {
-
-         event.preventDefault();
-
-         var licensekey = $var(".wcva_license_key_input").val();
-
-         $var.ajax({
-            data: {
-                action    : "wcva_activate_license",
-                licensekey  : licensekey
-
-            },
-            type: 'POST',
-            url: wcvaadmin.ajax_url,
-            success: function( response ) { 
-                console.log(response);
-                window.location.reload();
-            }
-        });
-
-         return false;
-
-     });
+        
 
         
     
