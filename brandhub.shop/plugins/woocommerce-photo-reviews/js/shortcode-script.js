@@ -259,7 +259,12 @@ jQuery(document).ready(function ($) {
             if (img_data) {
                 $('.shortcode-wcpr-modal-light-box').removeClass('shortcode-wcpr-no-images');
                 $left_main.html(img_data);
-                $left_main.find('img').attr('src', $left_main.find('img').data('original_src') || $left_main.find('img').attr('src'));
+                let original_src = $left_main.find('img').data('original_src');
+                if (!original_src || original_src.indexOf('data:') > -1){
+                    $left_main.find('img').attr('src', $left_main.find('img').attr('src'));
+                }else {
+                    $left_main.find('img').attr('src', original_src);
+                }
             }
             $left_modal.find('.shortcode-reviews-images').map(function () {
                 let lazy_load_src = $(this).data('src');
@@ -388,25 +393,6 @@ jQuery(document).ready(function ($) {
     $('body').on('click', '.shortcode-wcpr-prev', function () {
         showReview(current -= 1);
     });
-
-    /*Mobile swipe support*/
-    // let el = document.getElementById('shortcode-wcpr-modal-wrap');
-    // if (el !== null) {
-    //     viSwipeDetect(el, function (swipedir) {
-    //         switch (swipedir) {
-    //             case 'left':
-    //                 $('.shortcode-wcpr-prev').click();
-    //                 break;
-    //             case 'right':
-    //                 $('.shortcode-wcpr-next').click();
-    //                 break;
-    //             case 'up':
-    //             case 'down':
-    //                 $('.shortcode-wcpr-overlay').click();
-    //                 break;
-    //         }
-    //     });
-    // }
     /*Ajax pagination*/
     let ajax_pagination_running = false;
     let wcpr_image = '', wcpr_verified = '', wcpr_rating = '';
