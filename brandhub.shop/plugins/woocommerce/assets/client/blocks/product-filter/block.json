@@ -1,19 +1,18 @@
 {
 	"name": "woocommerce/product-filter",
 	"version": "1.0.0",
-	"title": "Product Filter",
+	"title": "Product Filter (Experimental)",
 	"description": "A block that adds product filters to the product collection.",
 	"category": "woocommerce",
 	"keywords": [ "WooCommerce", "Filters" ],
 	"textdomain": "woocommerce",
 	"supports": {
 		"html": false,
-		"reusable": false
+		"reusable": false,
+		"inserter": false
 	},
+	"ancestor": [ "woocommerce/product-filters" ],
 	"usesContext": [ "query", "queryId" ],
-	"providesContext": {
-		"collectionData": "collectionData"
-	},
 	"attributes": {
 		"filterType": {
 			"type": "string"
@@ -21,11 +20,20 @@
 		"heading": {
 			"type": "string"
 		},
-		"collectionData": {
-			"type": "object",
-			"default": {}
+		"isPreview": {
+			"type": "boolean",
+			"default": false
+		},
+		"attributeId": {
+			"type": "number",
+			"default": 0
 		}
 	},
-	"apiVersion": 2,
+	"example": {
+		"attributes": {
+			"isPreview": true
+		}
+	},
+	"apiVersion": 3,
 	"$schema": "https://schemas.wp.org/trunk/block.json"
 }

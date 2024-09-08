@@ -8,12 +8,15 @@
 	"keywords": [ "WooCommerce" ],
 	"textdomain": "woocommerce",
 	"usesContext": [
-		"id",
 		"queryId",
 		"query",
 		"queryContext",
 		"displayLayout",
-		"templateSlug"
+		"templateSlug",
+		"postId",
+		"queryContextIncludes",
+		"collection",
+		"__privateProductCollectionPreviewState"
 	],
 	"supports": {
 		"inserter": false,
@@ -21,9 +24,6 @@
 		"html": false,
 		"align": [ "wide", "full" ],
 		"anchor": true,
-		"__experimentalLayout": {
-			"allowEditing": false
-		},
 		"color": {
 			"gradients": true,
 			"link": true,
