@@ -1,0 +1,28 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "iconic-was/product-block-editor",
+	"version": "1.0.0",
+	"title": "WooCommerce Attribute Swatches - Iconic",
+	"category": "widgets",
+	"icon": "flag",
+	"description": "Attribute Swatches block",
+	"attributes": {
+		"property": {
+			"type": "string"
+		},
+		"message": {
+			"type": "string",
+			"__experimentalRole": "content",
+			"source": "text",
+			"selector": "div"
+		}
+	},
+	"supports": {
+		"html": false,
+		"inserter": false
+	},
+	"textdomain": "iconic-was",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css"
+}
