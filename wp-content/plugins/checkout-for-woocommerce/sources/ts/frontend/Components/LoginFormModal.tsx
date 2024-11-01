@@ -1,13 +1,12 @@
 import React, { useEffect, useState }                  from 'react';
 import { Modal }                                       from 'react-responsive-modal';
-import { __ }                                          from '@wordpress/i18n';
 import Cookies                                         from 'js-cookie';
 import DataService                                     from '../Services/DataService';
 import cfwAjaxLogin                                    from '../../functions/cfwAjaxLogin';
 
 const LoginFormModal: React.FC = () => {
-    const [ isModalOpen, setIsModalOpen ] = React.useState( false );
-    const [ content, setContent ] = React.useState( '' );
+    const [ isModalOpen, setIsModalOpen ] = useState( false );
+    const [ content, setContent ] = useState( '' );
     const [ id ] = useState( () => `component-${Math.random().toString( 16 ).slice( 2 )}` );
 
     const openModal = () => {
@@ -153,7 +152,7 @@ const LoginFormModal: React.FC = () => {
                                 document.body.removeChild( newScript );
                             } );
 
-                            // Trigger DOMContentLoaded event
+                            // Workaround for Cloudflare Turnstile. Once fixed in Cloudflare plugin, remove this
                             document.dispatchEvent( new Event( 'DOMContentLoaded' ) );
                         }
 

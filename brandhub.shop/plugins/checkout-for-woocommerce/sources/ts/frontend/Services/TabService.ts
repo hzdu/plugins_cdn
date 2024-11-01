@@ -135,13 +135,13 @@ class TabService {
             }
         } );
 
-        TabService.tabContainer.bind( 'easytabs:before', ( event, clicked, target ) => {
+        TabService.tabContainer.on( 'easytabs:before', ( event, clicked, target ) => {
         // Fire event that we can listen to around the world
             jQuery( document.body ).trigger( 'cfw-before-tab-change', [ event, clicked, target ] );
             LoggingService.logEvent( 'Fired cfw-before-tab-change event.' );
         } );
 
-        TabService.tabContainer.bind( 'easytabs:after', ( event, clicked, target ) => {
+        TabService.tabContainer.on( 'easytabs:after', ( event, clicked, target ) => {
             // Scroll to top of tab container
             TabService.maybeScrollToTop();
 

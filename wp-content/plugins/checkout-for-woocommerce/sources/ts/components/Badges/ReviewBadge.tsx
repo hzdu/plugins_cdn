@@ -1,6 +1,18 @@
 import React from 'react';
 
-const ReviewBadge = ( { title, subtitle, description, imageUrl } ) => {
+interface ReviewBadgeProps {
+    imageUrl?: string;
+    title?: string;
+    subtitle?: string;
+    description?: string;
+}
+
+const ReviewBadge: React.FC<ReviewBadgeProps> = ( {
+    imageUrl = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64"%3E%3Crect fill="%23CCCCCC" width="64" height="64" rx="32"/%3E%3C/svg%3E', // Gray placeholder as SVG
+    title,
+    subtitle,
+    description,
+} ) => {
     if ( !title && !description ) {
         return <></>;
     }
@@ -31,10 +43,6 @@ const ReviewBadge = ( { title, subtitle, description, imageUrl } ) => {
             </div>
         </div>
     );
-};
-
-ReviewBadge.defaultProps = {
-    image_url: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64"%3E%3Crect fill="%23CCCCCC" width="64" height="64" rx="32"/%3E%3C/svg%3E', // Gray placeholder as SVG
 };
 
 export default ReviewBadge;

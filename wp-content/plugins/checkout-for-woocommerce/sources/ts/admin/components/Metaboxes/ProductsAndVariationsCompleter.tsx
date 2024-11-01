@@ -12,7 +12,7 @@ import interpolateComponents               from '@automattic/interpolate-compone
 import { ProductImage }                    from '@woocommerce/components';
 import { AutoCompleter }                   from '@woocommerce/components/build-types/search/autocompleters';
 import React                               from 'react';
-import { computeSuggestionMatch }          from '@woocommerce/components/src/search/autocompleters/utils';
+import { computeSuggestionMatch }          from '@woocommerce/components/build/search/autocompleters/utils';
 import { cfw__ }                           from '../../../functions/translationWrappers';
 
 const completer: AutoCompleter = {

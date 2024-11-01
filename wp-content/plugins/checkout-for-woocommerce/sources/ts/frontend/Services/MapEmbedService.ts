@@ -1,6 +1,5 @@
+import { Loader }  from '@googlemaps/js-api-loader';
 import DataService from './DataService';
-
-declare let google: any;
 
 class MapEmbedService {
     /**
@@ -12,12 +11,20 @@ class MapEmbedService {
         }
     }
 
-    initMap() {
-        if ( jQuery( '#map' ).length == 0 || typeof google === 'undefined' ) {
+    async initMap() {
+        if ( jQuery( '#map' ).length === 0 ) {
             return;
         }
 
-        const map = new google.maps.Map( document.getElementById( 'map' ), {
+        const loader = new Loader( {
+            apiKey: DataService.getSetting( 'google_maps_api_key' ),
+            version: 'weekly',
+        } );
+
+        const { Map } = await loader.importLibrary( 'maps' ) as google.maps.MapsLibrary;
+        const { AdvancedMarkerElement } = await loader.importLibrary( 'marker' ) as google.maps.MarkerLibrary;
+
+        const map = new Map( document.getElementById( 'map' ) as HTMLElement, {
             center: { lat: -34.397, lng: 150.644 },
             zoom: 15,
             mapTypeControl: false,
@@ -25,6 +32,7 @@ class MapEmbedService {
             streetViewControl: false,
             rotateControl: false,
             fullscreenControl: false,
+            mapId: 'CFW_THANK_YOU_MAP',
         } );
 
         const geocoder = new google.maps.Geocoder();
@@ -33,7 +41,7 @@ class MapEmbedService {
             if ( status == google.maps.GeocoderStatus.OK ) {
                 map.setCenter( results[ 0 ].geometry.location );
 
-                const marker = new google.maps.Marker( {
+                const marker = new AdvancedMarkerElement( {
                     map,
                     position: results[ 0 ].geometry.location,
                 } );

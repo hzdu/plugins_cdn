@@ -107,7 +107,7 @@ class SmartyStreetsAddressValidationService {
          * and the destination tab is to the right
          */
         if ( TabService.tabsLoaded ) {
-            TabService.tabContainer.bind( 'easytabs:before', this.maybeValidateAddress.bind( this ) );
+            TabService.tabContainer.on( 'easytabs:before', this.maybeValidateAddress.bind( this ) );
         } else {
             DataService.checkoutForm.on( 'checkout_place_order', this.maybeValidateAddress.bind( this ) );
         }

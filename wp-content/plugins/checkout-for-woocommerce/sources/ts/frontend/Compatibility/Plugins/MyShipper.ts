@@ -12,13 +12,13 @@ class MyShipper extends Compatibility {
     load( params ): void {
         const easyTabsWrap: any = TabService.tabContainer;
 
-        easyTabsWrap.bind( 'easytabs:after', () => {
+        easyTabsWrap.on( 'easytabs:after', () => {
             if ( TabService.getCurrentTab().attr( 'id' ) === TabService.shippingMethodTabId ) {
                 UpdateCheckoutService.queueUpdateCheckout();
             }
         } );
 
-        easyTabsWrap.bind( 'easytabs:before', ( event, clicked, target ) => {
+        easyTabsWrap.on( 'easytabs:before', ( event, clicked, target ) => {
             if ( jQuery( target ).attr( 'id' ) === TabService.paymentMethodTabId ) {
                 const selectedShippingMethod = jQuery( "input[name='shipping_method[0]']:checked" );
                 const shippingNumber = jQuery( 'input.shipper_number' ).first();

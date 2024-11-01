@@ -46,7 +46,7 @@ module.exports = [
             checkout: {
                 import: [
                     require.resolve( 'jquery-first-event/dist/index.js' ),
-                    require.resolve( 'EasyTabs/lib/jquery.easytabs.min' ),
+                    require.resolve( 'easytabs/lib/jquery.easytabs.min' ),
                     require.resolve( 'garlicjs/dist/garlic.min.js' ),
                     require.resolve( 'parsleyjs/dist/parsley.min.js' ),
                     require.resolve( 'parsleyjs/dist/i18n/de.js' ),
@@ -89,7 +89,7 @@ module.exports = [
             'order-pay': {
                 import: [
                     require.resolve( 'jquery-first-event/dist/index.js' ),
-                    require.resolve( 'EasyTabs/lib/jquery.easytabs.min' ),
+                    require.resolve( 'easytabs/lib/jquery.easytabs.min' ),
                     require.resolve( 'garlicjs/dist/garlic.min.js' ),
                     require.resolve( 'parsleyjs/dist/parsley.min.js' ),
                     require.resolve( 'parsleyjs/dist/i18n/de.js' ),
@@ -132,7 +132,6 @@ module.exports = [
             'thank-you': {
                 import: [
                     require.resolve( 'jquery-first-event/dist/index.js' ),
-                    require.resolve( 'EasyTabs/lib/jquery.easytabs.min' ),
                     require.resolve( 'garlicjs/dist/garlic.min.js' ),
                     require.resolve( 'parsleyjs/dist/parsley.min.js' ),
                     require.resolve( 'parsleyjs/dist/i18n/de.js' ),

@@ -23,7 +23,7 @@ class MondialRelay extends Compatibility {
 
         const easyTabsWrap: any = TabService.tabContainer;
 
-        easyTabsWrap.bind( 'easytabs:before', ( event, clicked, target ) => {
+        easyTabsWrap.on( 'easytabs:before', ( event, clicked, target ) => {
             if ( jQuery( target ).attr( 'id' ) === TabService.paymentMethodTabId ) {
                 if ( jQuery( '#mrwp_parcel_shop_mandatory' ).val() === 'Yes' ) {
                     if ( jQuery( '#mrwp_parcel_shop_id' ).val() === '' ) {

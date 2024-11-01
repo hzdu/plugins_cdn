@@ -15,6 +15,62 @@ class CompleteOrderAction extends Action {
     }
 
     /**
+     * Fire the ajax request
+     *
+     * Duplicate of Action.ts without the noncache parameter - necessary for PostFinance compatibility
+     *
+     * @param data
+     */
+    load( data: any ): void {
+        const currentTime = new Date();
+        const n = currentTime.getTime();
+        const url = DataService.getCheckoutParam( 'wc_ajax_url' ).toString().replace( '%%endpoint%%', this.id );
+
+        // ajaxSetup is global, but we use it to ensure JSON is valid once returned.
+        jQuery.ajaxSetup( {
+            dataFilter( rawResponse, dataType ) {
+                let response = rawResponse;
+
+                // We only want to work with JSON
+                if ( dataType !== 'json' ) {
+                    return rawResponse;
+                }
+
+                if ( Action.isValidJSON( response ) ) {
+                    return response;
+                }
+                // Attempt to fix the malformed JSON
+                const maybeValidJSON = response.match( /{".*}/ );
+
+                if ( maybeValidJSON === null ) {
+                    LoggingService.logError( 'Unable to fix malformed JSON' );
+                    LoggingService.logError( 'Response:', response );
+                } else if ( Action.isValidJSON( maybeValidJSON[ 0 ] ) ) {
+                    LoggingService.logNotice( 'Fixed malformed JSON. Original:', response );
+                    // eslint-disable-next-line prefer-destructuring
+                    response = maybeValidJSON[ 0 ];
+                } else {
+                    LoggingService.logError( 'Unable to fix malformed JSON' );
+                    LoggingService.logError( 'Response:', response );
+                }
+
+                return response;
+            },
+        } );
+
+        jQuery.ajax( {
+            type: 'POST',
+            url: `${url}`,
+            data,
+            success: this.response.bind( this ),
+            error: this.error.bind( this ),
+            complete: this.complete.bind( this ),
+            dataType: 'json',
+            cache: false,
+        } );
+    }
+
+    /**
      * @param resp
      */
     public response( resp: any ): void {

@@ -9,7 +9,7 @@ class ShipMondo extends Compatibility {
     }
 
     load( params ): void {
-        TabService.tabContainer.bind( 'easytabs:before', ( event, clicked, target ) => {
+        TabService.tabContainer.on( 'easytabs:before', ( event, clicked, target ) => {
             if ( jQuery( target ).attr( 'id' ) === TabService.paymentMethodTabId ) {
                 const selectedShippingMethod = jQuery( "input[name='shipping_method[0]']:checked" );
 

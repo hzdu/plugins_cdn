@@ -1,7 +1,8 @@
-import intlTelInput, { Iti } from 'intl-tel-input';
-import DataService           from './DataService';
-import LoggingService        from './LoggingService';
-import ParsleyService        from './ParsleyService';
+import intlTelInput, { Iti }                                                                                                                  from 'intl-tel-input';
+import { ar, bg, bn, bs, ca, cs, de, el, en, es, fa, fi, fr, hi, hr, hu, id, it, ja, ko, mr, nl, pl, pt, ro, ru, sk, sv, te, th, tr, ur, zh } from 'intl-tel-input/i18n';
+import DataService                                                                                                                            from './DataService';
+import LoggingService                                                                                                                         from './LoggingService';
+import ParsleyService                                                                                                                         from './ParsleyService';
 
 class InternationalPhoneFieldService {
     constructor() {
@@ -71,6 +72,7 @@ class InternationalPhoneFieldService {
             nationalMode: true,
             formatOnDisplay: true,
             initialCountry: countryInput.length && countryVal !== null && countryVal.toString().length !== 0 ? countryVal : DataService.getSetting( 'base_country' ),
+            i18n: InternationalPhoneFieldService.getLocale( DataService.getSetting( 'locale_prefix' ) ),
         } );
 
         phoneInput.addEventListener( 'countrychange', () => {
@@ -113,6 +115,14 @@ class InternationalPhoneFieldService {
         } );
 
         return iti;
+    }
+
+    static getLocale( language: string ): any {
+        const locales = {
+            ar, bg, bn, bs, ca, cs, de, el, en, es, fa, fi, fr, hi, hr, hu, id, it, ja, ko, mr, nl, pl, pt, ro, ru, sk, sv, te, th, tr, ur, zh,
+        };
+
+        return locales[ language ] || en; // Return the selected language or fall back to English if not found
     }
 }
 

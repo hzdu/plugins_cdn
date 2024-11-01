@@ -90,6 +90,12 @@ class GoogleAddressAutocompleteService {
         this.updateField( `${prefix}city`, strategy.getCity() );
         this.updateField( `${prefix}postcode`, strategy.getPostcode() );
         this.updateField( `${prefix}country`, strategy.getCountry() );
+
+        const address2 = jQuery( `#${prefix}address_2` );
+
+        if ( address2.length && address2.val() !== '' ) {
+            jQuery( `#${prefix}address_2_field` ).prev( '.cfw-add-field' ).trigger( 'click' );
+        }
     }
 
     updateField( id: string, value: string ): void {

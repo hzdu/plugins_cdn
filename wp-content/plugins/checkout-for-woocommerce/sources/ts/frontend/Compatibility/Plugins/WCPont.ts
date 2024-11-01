@@ -11,7 +11,7 @@ class WCPont extends Compatibility {
     load(): void {
         const easyTabsWrap: any = TabService.tabContainer;
 
-        easyTabsWrap.bind( 'easytabs:before', ( event ) => {
+        easyTabsWrap.on( 'easytabs:before', ( event ) => {
             const selected_shipping_method = jQuery( '[name="shipping_method[0]"]:checked' ).val().toString();
 
             if ( jQuery( '[name="wc_selected_pont"]' ).val() == '' && selected_shipping_method.indexOf( 'wc_pont_' ) >= 0 ) {

@@ -1,5 +1,11 @@
 class Utilities {
-    public static getComponentValueByType( type: string, components: google.maps.GeocoderAddressComponent[] ): string {
+    public static getComponentValueByType( type: string, components: google.maps.GeocoderAddressComponent[], long = false ): string {
+        const component = Utilities.getComponentByType( type, components );
+
+        if ( long ) {
+            return component?.long_name ?? '';
+        }
+
         return Utilities.getComponentByType( type, components )?.short_name ?? '';
     }
 

@@ -10,6 +10,21 @@
     min-height: 42px;
 }
 
+@mixin apply-cfw-payment-request-button-styles-with-exclusions($base-selectors, $excluded-parents) {
+    @each $base-selector in $base-selectors {
+        $full-selector: $base-selector;
+
+        @each $excluded-parent in $excluded-parents {
+            $full-selector: unquote("#{$full-selector}:not(#{$excluded-parent}, #{$excluded-parent} *)");
+        }
+
+        // Apply the styles to the constructed selector
+        #{$full-selector} {
+            @include cfw-payment-request-button();
+        }
+    }
+}
+
 @mixin clearfix() {
     *zoom: 1;
 

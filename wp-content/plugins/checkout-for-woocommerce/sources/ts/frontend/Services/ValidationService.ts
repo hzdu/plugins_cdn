@@ -15,7 +15,7 @@ class ValidationService {
 
         jQuery( window ).on( 'load', () => { ValidationService.validatePreviousTabs(); } );
 
-        TabService.tabContainer.bind( 'easytabs:after', () => {
+        TabService.tabContainer.on( 'easytabs:after', () => {
             // Clean up the state so that the next validation runs fresh
             jQuery( '.cfw-validation-passed' ).removeClass( 'cfw-validation-passed' );
         } );
@@ -30,7 +30,7 @@ class ValidationService {
     }
 
     static validateTabsBeforeSwitch(): void {
-        TabService.tabContainer.bind( 'easytabs:before', ( event, clicked, target ) => {
+        TabService.tabContainer.on( 'easytabs:before', ( event, clicked, target ) => {
             // TODO: Can we be honest with ourselves and agree that this is a bit of a hack?
             if ( DataService.getRuntimeParameter( 'cfw_suppress_js_field_validation' ) ) {
                 return true;

@@ -53,6 +53,13 @@ class PaymentRequestButtons {
         const potentialButtons = this.expressButtonContainer.children().not( 'h2, .blockUI, #wc-stripe-payment-request-button-separator' );
 
         potentialButtons.each( ( index, element ) => {
+            const elementId = jQuery( element ).attr( 'id' );
+
+            // If element ID contains stripe but no children, skip it
+            if ( elementId && elementId.includes( 'stripe' ) && !jQuery( element ).children().length ) {
+                return;
+            }
+
             if ( jQuery( element ).get( 0 ).getBoundingClientRect().height > 0 ) {
                 hasButtons = true;
             }

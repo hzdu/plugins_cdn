@@ -1,6 +1,16 @@
 import React from 'react';
 
-const GuaranteeBadge = ( { imageUrl, title, description } ) => {
+interface GuaranteeBadgeProps {
+    imageUrl?: string;
+    title?: string;
+    description?: string;
+}
+
+const GuaranteeBadge: React.FC<GuaranteeBadgeProps> = ( {
+    imageUrl = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64"%3E%3Crect fill="%23CCCCCC" width="64" height="64" rx="32"/%3E%3C/svg%3E', // Gray placeholder as SVG
+    title,
+    description,
+} ) => {
     if ( !title && !description ) {
         return <></>;
     }
@@ -17,10 +27,6 @@ const GuaranteeBadge = ( { imageUrl, title, description } ) => {
             </div>
         </div>
     );
-};
-
-GuaranteeBadge.defaultProps = {
-    image_url: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64"%3E%3Crect fill="%23CCCCCC" width="64" height="64" rx="32"/%3E%3C/svg%3E', // Gray placeholder as SVG
 };
 
 export default GuaranteeBadge;

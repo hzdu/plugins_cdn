@@ -26,42 +26,46 @@ class AddToCart {
         // Prevent form submission by default
         e.preventDefault();
 
+        const button = form.find( 'button[type="submit"]' );
         const productData = form.serializeArray();
-        let productID: string | boolean = false;
+        let hasProductId = false;
 
-        // Look for product ID in the form data
-        productData.forEach( ( item ) => {
-            if ( item.name === 'productID' || item.name === 'add-to-cart' ) {
-                if ( item.value ) {
-                    productID = item.value;
+        // Check for woocommerce custom quantity code
+        // https://docs.woocommerce.com/document/override-loop-template-and-show-quantities-next-to-add-to-cart-buttons/
+        jQuery.each( productData, ( key, formItem ) => {
+            if ( formItem.name === 'productID' || formItem.name === 'add-to-cart' ) {
+                if ( formItem.value ) {
+                    hasProductId = true;
+                    return false;
                 }
             }
+
+            return true;
         } );
 
-        // Additional check on form's action URL if no product ID found
-        if ( !productID && form.attr( 'action' ) ) {
-            const match = form.attr( 'action' ).match( /add-to-cart=(\d+)/ );
-            if ( match ) {
-                productID = match[ 1 ];
-            }
+        let productID: string | boolean = false;
+
+        // If no product id found , look for the form action URL
+        if ( !hasProductId && form.attr( 'action' ) ) {
+            const isUrl = form.attr( 'action' ).match( /add-to-cart=([0-9]+)/ );
+            productID = isUrl ? isUrl[ 1 ] : false;
         }
 
-        // Include the submit button's data if it has 'add-to-cart' name
-        if ( submitButton && submitButton.name === 'add-to-cart' && submitButton.value ) {
-            productData.push( { name: 'add-to-cart', value: submitButton.value } );
+        // if button as name add-to-cart get it and add to form
+        if ( button.attr( 'name' ) && button.attr( 'name' ) === 'add-to-cart' && button.attr( 'value' ) ) {
+            productID = button.attr( 'value' );
         }
 
         if ( productID ) {
             productData.push( { name: 'add-to-cart', value: productID } );
         }
 
-        jQuery( submitButton ).addClass( 'loading' );
+        button.addClass( 'loading' );
 
-        // Trigger an event for adding to cart
-        jQuery( document.body ).trigger( 'adding_to_cart', [ submitButton, productData ] );
+        // Trigger event.
+        jQuery( document.body ).trigger( 'adding_to_cart', [ button, productData ] );
 
-        // Execute add-to-cart action
-        new AddToCartAction( jQuery( submitButton ) ).load( jQuery.param( productData ) );
+        new AddToCartAction( button ).load( jQuery.param( productData ) );
     }
 }
 

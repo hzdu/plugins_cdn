@@ -1,17 +1,10 @@
 #cfw-payment-request-buttons {
-    #wcpay-payment-request-wrapper {
-        padding-top: 0 !important;
-        clear: none !important;
-        order: 2;
-        width: 140px;
-    }
-
     #wcpay-payment-request-button {
         height: 42px;
     }
 }
 
-#wcpay-payment-request-button-separator {
+#wcpay-payment-request-button-separator, #wcpay-express-checkout-button-separator {
     display: none !important;
 }
 
@@ -28,4 +21,14 @@
 // Hide payment request buttons container if there are no visible buttons
 .wcpay-payment-request-wrapper:not(:has(> div > * )) {
     display: none;
+}
+
+#cfw-payment-request-buttons > div.wcpay-payment-request-wrapper {
+    display: flex;
+    width: fit-content;
+
+    & > div {
+        @include cfw-payment-request-button();
+        max-width: unset !important;
+    }
 }

@@ -7,17 +7,20 @@
         "jsx": "react",
         "esModuleInterop": true,
         "resolveJsonModule": true,
+        "baseUrl": ".",
+        "composite": true,
         "allowSyntheticDefaultImports": true,
         "lib": [
             "dom",
             "ES2015",
-        ]
+        ],
+        "moduleResolution": "node",
     },
     "include": [
         "./sources/ts/**/*"
     ],
     "files": [
-        "node_modules/@woocommerce/components/src/search/autocompleters/utils.ts",
+        "node_modules/@woocommerce/components/build/search/autocompleters/utils.js",
     ],
     "exclude": [
         "./sources/ts/tests/**/*"

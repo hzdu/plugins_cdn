@@ -26,13 +26,25 @@
         clear: none;
     }
 
-    > div, button, > #checkout_paypal_message, > #wc-stripe-payment-request-wrapper, > #wcpay-payment-request-wrapper {
-        @include cfw-payment-request-button();
-    }
+    // List of button elements/selectors to apply styles to
+    $base-selectors: (
+        'div',
+        'button',
+        '#checkout_paypal_message',
+        '#wc-stripe-payment-request-wrapper'
+    );
+
+    // List of parent classes to exclude
+    $excluded-parents: (
+        '.wcpay-payment-request-wrapper',
+    );
+
+    @include apply-cfw-payment-request-button-styles-with-exclusions( $base-selectors, $excluded-parents );
 
     // Don't add this to the mixin because it needs
     // to be a direct descendant rule and limited to divs for now
-    > div:empty {
+    // :has fakes level 4 empty here: https://stackoverflow.com/a/78257580
+    > div:not(:has(*)) {
         display: none;
     }
 }
