@@ -12,6 +12,7 @@ a#wc_sc_print_coupons,
 a#sc-manage-category,
 #wc-sc-copy-coupon-code {
 	background-color: #f0fff0;
+	border-bottom: 1px solid #bfbfbf !important;
 }
 button#export_coupons > span.dashicons,
 a#wc_sc_print_coupons > span.dashicons,
@@ -27,6 +28,9 @@ div#smart_coupons_tabs h2 .sc-quick-links {
 }
 .coupon_title_prefix_suffix_field input {
 	height: 2em;
+}
+.coupon_title_prefix_suffix_field input.short {
+	width: 4.5em !important;
 }
 li.wc_sc_actions_tab a::before {
 	font-family: WooCommerce !important;
