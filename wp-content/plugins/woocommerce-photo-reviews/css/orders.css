@@ -20,6 +20,20 @@
   position: sticky;
   bottom: 0;
 }
+.viwcpr-review-order-wrap .viwcpr-review-order-info .viwcpr-review-order-submit {
+  background-color: gainsboro;
+  color: black;
+  height: 45px;
+  line-height: 45px;
+  padding: 0 25px;
+  transition: all 0.5s;
+  font-size: 14px;
+  font-weight: 400;
+  text-align: center;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
 .viwcpr-review-order-wrap .viwcpr-review-order-info .viwcpr-review-order-submit.viwcpr-review-order-submit-loading {
   color: rgba(255, 255, 255, 0.05);
   opacity: 1 !important;
@@ -50,7 +64,7 @@
 }
 .viwcpr-review-order-wrap .viwcpr-review-order-container .wcpr-comment-form-submit {
   pointer-events: none !important;
-  display: none;
+  display: none !important;
 }
 .viwcpr-review-order-wrap .viwcpr-review-order-container .woocommerce-photo-reviews-form-container {
   border-radius: 3px;

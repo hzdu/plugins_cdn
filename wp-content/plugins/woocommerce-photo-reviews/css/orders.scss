@@ -1,37 +1,55 @@
 
-.viwcpr-review-order-wrap{
+.viwcpr-review-order-wrap {
   position: relative;
   display: inline-flex;
   flex-direction: column;
   gap: 10px;
   width: 100%;
-  *,:after, :before{
+
+  *, :after, :before {
     box-sizing: border-box;
   }
-  .viwcpr-review-order-info{
+
+  .viwcpr-review-order-info {
     display: inline-flex;
     width: 100%;
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
-    &:last-child{
+
+    &:last-child {
       background: #fff;
       position: sticky;
       bottom: 0;
     }
-    .viwcpr-review-order-submit{
-      &.viwcpr-review-order-submit-loading{
-        color: hsla(0,0%,100%,.05);
-        opacity: 1!important;
-        pointer-events: none!important;
+
+    .viwcpr-review-order-submit {
+      background-color: rgb(220, 220, 220);
+      color: rgb(0, 0, 0);
+      height: 45px;
+      line-height: 45px;
+      padding: 0 25px;
+      transition: all 0.5s;
+      font-size: 14px;
+      font-weight: 400;
+      text-align: center;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+
+      &.viwcpr-review-order-submit-loading {
+        color: hsla(0, 0%, 100%, .05);
+        opacity: 1 !important;
+        pointer-events: none !important;
         position: relative;
-        &:after{
+
+        &:after {
           -webkit-animation: spin .5s linear infinite;
           animation: spin .5s linear infinite;
           border: 2px solid #fff;
           border-radius: 32px;
-          border-right-color: transparent!important;
-          border-top-color: transparent!important;
+          border-right-color: transparent !important;
+          border-top-color: transparent !important;
           content: "";
           display: block;
           height: 16px;
@@ -45,35 +63,42 @@
       }
     }
   }
-  .viwcpr-review-order-container{
+
+  .viwcpr-review-order-container {
     display: inline-flex;
     flex-direction: column;
     gap: 10px;
-    .wcpr-comment-form-submit{
+
+    .wcpr-comment-form-submit {
       pointer-events: none !important;
-      display: none;
+      display: none !important;
     }
-    .woocommerce-photo-reviews-form-container{
+
+    .woocommerce-photo-reviews-form-container {
       border-radius: 3px;
       border: 1px solid #ccc;
-      .comment-form{
+
+      .comment-form {
         margin: auto;
       }
-      .woocommerce-photo-reviews-form-meta-title{
+
+      .woocommerce-photo-reviews-form-meta-title {
         text-align: center;
         font-weight: 600;
       }
     }
   }
 }
+
 @keyframes spin {
-   0% {
-     transform: rotate(0deg);
-   }
-   100% {
-     transform: rotate(360deg);
-   }
- }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 .wcpr-rate-buttons-container {
   position: relative;
 }
