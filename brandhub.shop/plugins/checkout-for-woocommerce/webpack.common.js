@@ -2,6 +2,7 @@
  * External Dependencies
  */
 const path = require( 'path' );
+const dotenv = require( 'dotenv' );
 
 /**
  * WordPress Dependencies
@@ -14,6 +15,9 @@ const CopyPlugin = require( 'copy-webpack-plugin' );
 const WebpackRTLPlugin = require( 'webpack-rtl-plugin' );
 const { resolve } = require( 'path' );
 const BundleOutputPlugin = require( 'webpack-bundle-output' );
+
+dotenv.config();
+const ENABLE_WEBPACK_NOTIFICATIONS = ( process?.env?.ENABLE_WEBPACK_NOTIFICATIONS ?? 'true' ) === 'true';
 
 module.exports = {
     ...defaultConfig,
@@ -108,7 +112,7 @@ module.exports = {
                     },
                 ],
             } ),
-            new WebpackNotifierPlugin(
+            ENABLE_WEBPACK_NOTIFICATIONS && new WebpackNotifierPlugin(
                 {
                     alwaysNotify: true,
                 },

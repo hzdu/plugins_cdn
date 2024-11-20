@@ -150,30 +150,30 @@
         },
         {
             "name": "sabberworm/php-css-parser",
-            "version": "v8.5.1",
-            "version_normalized": "8.5.1.0",
+            "version": "v8.7.0",
+            "version_normalized": "8.7.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/MyIntervals/PHP-CSS-Parser.git",
-                "reference": "4a3d572b0f8b28bb6fd016ae8bbfc445facef152"
+                "reference": "f414ff953002a9b18e3a116f5e462c56f21237cf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/MyIntervals/PHP-CSS-Parser/zipball/4a3d572b0f8b28bb6fd016ae8bbfc445facef152",
-                "reference": "4a3d572b0f8b28bb6fd016ae8bbfc445facef152",
+                "url": "https://api.github.com/repos/MyIntervals/PHP-CSS-Parser/zipball/f414ff953002a9b18e3a116f5e462c56f21237cf",
+                "reference": "f414ff953002a9b18e3a116f5e462c56f21237cf",
                 "shasum": ""
             },
             "require": {
                 "ext-iconv": "*",
-                "php": ">=5.6.20"
+                "php": "^5.6.20 || ^7.0.0 || ~8.0.0 || ~8.1.0 || ~8.2.0 || ~8.3.0 || ~8.4.0"
             },
             "require-dev": {
-                "phpunit/phpunit": "^5.7.27"
+                "phpunit/phpunit": "5.7.27 || 6.5.14 || 7.5.20 || 8.5.40"
             },
             "suggest": {
                 "ext-mbstring": "for parsing UTF-8 CSS"
             },
-            "time": "2024-02-15T16:41:13+00:00",
+            "time": "2024-10-27T17:38:32+00:00",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -212,23 +212,23 @@
             ],
             "support": {
                 "issues": "https://github.com/MyIntervals/PHP-CSS-Parser/issues",
-                "source": "https://github.com/MyIntervals/PHP-CSS-Parser/tree/v8.5.1"
+                "source": "https://github.com/MyIntervals/PHP-CSS-Parser/tree/v8.7.0"
             },
             "install-path": "../sabberworm/php-css-parser"
         },
         {
             "name": "smartystreets/phpsdk",
-            "version": "4.19.1",
-            "version_normalized": "4.19.1.0",
+            "version": "5.2.1",
+            "version_normalized": "5.2.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/smartystreets/smartystreets-php-sdk.git",
-                "reference": "15aef42018c7ea7b39e89fe821da24a663876a8f"
+                "reference": "2edfd8c9609c6f92cd78864e5ea6223ebdb668f4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/smartystreets/smartystreets-php-sdk/zipball/15aef42018c7ea7b39e89fe821da24a663876a8f",
-                "reference": "15aef42018c7ea7b39e89fe821da24a663876a8f",
+                "url": "https://api.github.com/repos/smartystreets/smartystreets-php-sdk/zipball/2edfd8c9609c6f92cd78864e5ea6223ebdb668f4",
+                "reference": "2edfd8c9609c6f92cd78864e5ea6223ebdb668f4",
                 "shasum": ""
             },
             "require": {
@@ -241,7 +241,7 @@
             "suggest": {
                 "psr/log": "^1.0.1"
             },
-            "time": "2023-11-21T15:48:36+00:00",
+            "time": "2024-10-28T16:36:49+00:00",
             "type": "library",
             "installation-source": "dist",
             "autoload": {
@@ -263,7 +263,7 @@
             "homepage": "https://github.com/smartystreets/smartystreets-php-sdk",
             "support": {
                 "issues": "https://github.com/smartystreets/smartystreets-php-sdk/issues",
-                "source": "https://github.com/smartystreets/smartystreets-php-sdk/tree/4.19.1"
+                "source": "https://github.com/smartystreets/smartystreets-php-sdk/tree/5.2.1"
             },
             "install-path": "../smartystreets/phpsdk"
         },
@@ -432,23 +432,23 @@
         },
         {
             "name": "symfony/polyfill-php80",
-            "version": "v1.29.0",
-            "version_normalized": "1.29.0.0",
+            "version": "v1.31.0",
+            "version_normalized": "1.31.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-php80.git",
-                "reference": "87b68208d5c1188808dd7839ee1e6c8ec3b02f1b"
+                "reference": "60328e362d4c2c802a54fcbf04f9d3fb892b4cf8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-php80/zipball/87b68208d5c1188808dd7839ee1e6c8ec3b02f1b",
-                "reference": "87b68208d5c1188808dd7839ee1e6c8ec3b02f1b",
+                "url": "https://api.github.com/repos/symfony/polyfill-php80/zipball/60328e362d4c2c802a54fcbf04f9d3fb892b4cf8",
+                "reference": "60328e362d4c2c802a54fcbf04f9d3fb892b4cf8",
                 "shasum": ""
             },
             "require": {
-                "php": ">=7.1"
+                "php": ">=7.2"
             },
-            "time": "2024-01-29T20:11:03+00:00",
+            "time": "2024-09-09T11:45:10+00:00",
             "type": "library",
             "extra": {
                 "thanks": {
@@ -495,7 +495,7 @@
                 "shim"
             ],
             "support": {
-                "source": "https://github.com/symfony/polyfill-php80/tree/v1.29.0"
+                "source": "https://github.com/symfony/polyfill-php80/tree/v1.31.0"
             },
             "funding": [
                 {
@@ -515,21 +515,21 @@
         },
         {
             "name": "woocommerce/action-scheduler",
-            "version": "3.7.2",
-            "version_normalized": "3.7.2.0",
+            "version": "3.8.2",
+            "version_normalized": "3.8.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/woocommerce/action-scheduler.git",
-                "reference": "cb3c7854b31a285b46964931425fef6f485be145"
+                "reference": "2bc91d88fdbc2c07ab899cbb56b983e11e62cf69"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/woocommerce/action-scheduler/zipball/cb3c7854b31a285b46964931425fef6f485be145",
-                "reference": "cb3c7854b31a285b46964931425fef6f485be145",
+                "url": "https://api.github.com/repos/woocommerce/action-scheduler/zipball/2bc91d88fdbc2c07ab899cbb56b983e11e62cf69",
+                "reference": "2bc91d88fdbc2c07ab899cbb56b983e11e62cf69",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.6"
+                "php": ">=7.0"
             },
             "require-dev": {
                 "phpunit/phpunit": "^7.5",
@@ -537,7 +537,7 @@
                 "wp-cli/wp-cli": "~2.5.0",
                 "yoast/phpunit-polyfills": "^2.0"
             },
-            "time": "2024-02-14T21:35:25+00:00",
+            "time": "2024-09-12T23:12:58+00:00",
             "type": "wordpress-plugin",
             "extra": {
                 "scripts-description": {
@@ -555,7 +555,7 @@
             "homepage": "https://actionscheduler.org/",
             "support": {
                 "issues": "https://github.com/woocommerce/action-scheduler/issues",
-                "source": "https://github.com/woocommerce/action-scheduler/tree/3.7.2"
+                "source": "https://github.com/woocommerce/action-scheduler/tree/3.8.2"
             },
             "install-path": "../woocommerce/action-scheduler"
         }

@@ -9,9 +9,14 @@ import NewZealandAutocompleteStrategy  from './NewZealandAutocompleteStrategy';
 import SpainAutocompleteStrategy       from './SpainAutocompleteStrategy';
 import SwedenAutocompleteStrategy      from './SwedenAutocompleteStrategy';
 import UKAutocompleteStrategy          from './UKAutocompleteStrategy';
+import TaiwanAutocompleteStrategy      from './TaiwanAutocompleteStrategy';
 
 export default class AutocompleteStrategyFactory {
-    public static get( components: google.maps.GeocoderAddressComponent[], formattedAddress: string, userInputValue: string ): AutocompleteStrategy {
+    public static get(
+        components: google.maps.GeocoderAddressComponent[],
+        formattedAddress: string,
+        userInputValue?: string,
+    ): AutocompleteStrategy {
         const country = Utilities.getComponentValueByType( 'country', components );
 
         if ( country === 'NZ' ) {
@@ -48,6 +53,10 @@ export default class AutocompleteStrategyFactory {
 
         if ( country === 'GB' ) {
             return new UKAutocompleteStrategy( components, formattedAddress, userInputValue );
+        }
+
+        if ( country === 'TW' ) {
+            return new TaiwanAutocompleteStrategy( components, formattedAddress, userInputValue );
         }
 
         return new AutocompleteStrategy( components, formattedAddress, userInputValue );

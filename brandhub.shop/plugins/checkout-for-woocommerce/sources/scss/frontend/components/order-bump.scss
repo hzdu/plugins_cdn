@@ -75,7 +75,7 @@
 }
 
 main.checkoutwc {
-    .cfw-order-bumps:not(.cfw-order-bumps-mobile):not(#cfw_order_bumps_above_express_checkout):not(#cfw_order_bumps_bottom_information_tab) {
+    #cfw_bumps_below_cart_items, #cfw_bumps_below_checkout_cart_items {
         @include media-breakpoint-down(lg) {
             display: none;
         }

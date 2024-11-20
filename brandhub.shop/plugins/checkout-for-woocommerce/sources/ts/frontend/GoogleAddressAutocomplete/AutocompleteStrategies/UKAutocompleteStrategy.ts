@@ -20,4 +20,8 @@ export default class UKAutocompleteStrategy extends AutocompleteStrategy {
     public getAddress2(): string {
         return Utilities.getComponentValueByType( 'locality', this.components );
     }
+
+    public getState(): string {
+        return ''; // set to blank
+    }
 }

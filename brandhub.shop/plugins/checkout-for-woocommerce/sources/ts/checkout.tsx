@@ -140,7 +140,7 @@ cfwDomReady( () => {
         { id: 'cfw-shipping-method-review-pane', component: <ShippingMethodReviewPane /> },
         { id: 'cfw-payment-method-review-pane', component: <PaymentMethodReviewPane /> },
         { id: 'cfw-order-review-step-review-pane', component: <OrderReviewStepReviewPane /> },
-        { id: 'cfw_bumps_mobile_output', component: <OrderBumpsList locations={[ 'below_cart_items', 'above_terms_and_conditions' ]} containerClass={'cfw-order-bumps-mobile'} /> },
+        { id: 'cfw_bumps_mobile_output', component: <OrderBumpsList locations={[ 'below_cart_items', 'below_checkout_cart_items' ]} containerClass={'cfw-order-bumps-mobile'} /> },
         { id: 'cfw-store-policies-container', component: <StorePoliciesList policies={DataService.getSetting( 'store_policies' )} /> },
         { id: 'cfw_after_checkout_bumps_root', component: <AfterCheckoutBumps /> },
         { id: 'cfw_login_modal', component: <LoginFormModal /> },

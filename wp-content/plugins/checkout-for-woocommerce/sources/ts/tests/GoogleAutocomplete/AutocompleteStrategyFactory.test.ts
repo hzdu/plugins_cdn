@@ -5,21 +5,39 @@ import GermanyAutocompleteStrategy                     from '../../frontend/Goog
 import NetherlandsAutocompleteStrategy                 from '../../frontend/GoogleAddressAutocomplete/AutocompleteStrategies/NetherlandsAutocompleteStrategy';
 import NewZealandAutocompleteStrategy                  from '../../frontend/GoogleAddressAutocomplete/AutocompleteStrategies/NewZealandAutocompleteStrategy';
 import SpainAutocompleteStrategy                       from '../../frontend/GoogleAddressAutocomplete/AutocompleteStrategies/SpainAutocompleteStrategy';
+import TaiwanAutocompleteStrategy                      from '../../frontend/GoogleAddressAutocomplete/AutocompleteStrategies/TaiwanAutocompleteStrategy';
+
 import { canadaAddress, canadaComponents }             from './mockData/canada';
 import { germanyAddress, germanyComponents }           from './mockData/germany';
 import { netherlandsAddress, netherlandsComponents }   from './mockData/netherlands';
 import { newZealandAddress, newZealandComponents }     from './mockData/newZealand';
 import { spainAddress, spainComponents }               from './mockData/spain';
 import { unitedStatesAddress, unitedStatesComponents } from './mockData/unitedStates';
+import { taiwanAddress, taiwanComponents }             from './mockData/taiwan';
 
 test( 'AutocompleteStrategyFactory.ts United States', () => {
-    expect( AutocompleteStrategyFactory.get( unitedStatesComponents(), unitedStatesAddress() ).constructor.name ).toBe( AutocompleteStrategy.name );
+    expect( AutocompleteStrategyFactory.get( unitedStatesComponents(), unitedStatesAddress() ).constructor.name ).toBe(
+        AutocompleteStrategy.name,
+    );
 } );
 
 test( 'AutocompleteStrategyFactory.ts Special Cases', () => {
-    expect( AutocompleteStrategyFactory.get( canadaComponents(), canadaAddress() ).constructor.name ).toBe( CanadaAutocompleteStrategy.name );
-    expect( AutocompleteStrategyFactory.get( germanyComponents(), germanyAddress() ).constructor.name ).toBe( GermanyAutocompleteStrategy.name );
-    expect( AutocompleteStrategyFactory.get( netherlandsComponents(), netherlandsAddress() ).constructor.name ).toBe( NetherlandsAutocompleteStrategy.name );
-    expect( AutocompleteStrategyFactory.get( newZealandComponents(), newZealandAddress() ).constructor.name ).toBe( NewZealandAutocompleteStrategy.name );
-    expect( AutocompleteStrategyFactory.get( spainComponents(), spainAddress() ).constructor.name ).toBe( SpainAutocompleteStrategy.name );
+    expect( AutocompleteStrategyFactory.get( canadaComponents(), canadaAddress() ).constructor.name ).toBe(
+        CanadaAutocompleteStrategy.name,
+    );
+    expect( AutocompleteStrategyFactory.get( germanyComponents(), germanyAddress() ).constructor.name ).toBe(
+        GermanyAutocompleteStrategy.name,
+    );
+    expect( AutocompleteStrategyFactory.get( netherlandsComponents(), netherlandsAddress() ).constructor.name ).toBe(
+        NetherlandsAutocompleteStrategy.name,
+    );
+    expect( AutocompleteStrategyFactory.get( newZealandComponents(), newZealandAddress() ).constructor.name ).toBe(
+        NewZealandAutocompleteStrategy.name,
+    );
+    expect( AutocompleteStrategyFactory.get( spainComponents(), spainAddress() ).constructor.name ).toBe(
+        SpainAutocompleteStrategy.name,
+    );
+    expect( AutocompleteStrategyFactory.get( taiwanComponents(), taiwanAddress() ).constructor.name ).toBe(
+        TaiwanAutocompleteStrategy.name,
+    );
 } );

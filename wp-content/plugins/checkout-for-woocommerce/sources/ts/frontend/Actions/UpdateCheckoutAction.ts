@@ -113,6 +113,11 @@ class UpdateCheckoutAction extends Action {
             return;
         }
 
+        // Fire core WooCommerce event
+        if ( resp.applied_coupon.toString().length ) {
+            jQuery( document.body ).trigger( 'applied_coupon_in_checkout', [ resp.applied_coupon ] );
+        }
+
         requestAnimationFrame( () => {
             /**
              * Save payment details to a temporary object

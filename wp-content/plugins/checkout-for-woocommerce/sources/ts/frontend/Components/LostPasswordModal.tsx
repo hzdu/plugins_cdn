@@ -68,6 +68,32 @@ const LostPasswordModal: React.FC = () => {
                     }}
                     showCloseIcon={false}
                     onAnimationEnd={() => {
+                        if ( content && isModalOpen ) {
+                            const tempDiv = document.createElement( 'div' );
+
+                            tempDiv.innerHTML = content;
+
+                            const scripts = tempDiv.querySelectorAll( 'script' );
+
+                            scripts.forEach( ( script ) => {
+                                const newScript = document.createElement( 'script' );
+
+                                newScript.type = 'text/javascript';
+
+                                if ( script.src ) {
+                                    newScript.src = script.src;
+                                    newScript.async = true;
+                                } else {
+                                    newScript.textContent = script.textContent;
+                                }
+
+                                document.body.appendChild( newScript );
+                                document.body.removeChild( newScript );
+                            } );
+
+                            // Workaround for Cloudflare Turnstile. Once fixed in Cloudflare plugin, remove this
+                            document.dispatchEvent( new Event( 'DOMContentLoaded' ) );
+                        }
                         jQuery( `.${id} #user_login` ).val( jQuery( '#billing_email' ).val() );
                     }}
                     focusTrapped={false}

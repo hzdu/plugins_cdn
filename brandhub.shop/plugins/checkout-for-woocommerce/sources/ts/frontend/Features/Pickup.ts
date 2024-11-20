@@ -3,11 +3,7 @@ import DataService           from '../Services/DataService';
 import UpdateCheckoutService from '../Services/UpdateCheckoutService';
 
 class Pickup {
-    protected static documentBody: JQuery<HTMLElement>;
-
     protected static shippingAddress: JQuery<HTMLElement>;
-
-    protected static pickupLocationWrap: JQuery<HTMLElement>;
 
     protected static billingFieldsContainer: JQuery<HTMLElement>;
 
@@ -18,22 +14,23 @@ class Pickup {
             return;
         }
 
-        Pickup.documentBody = jQuery( document.body );
         Pickup.shippingAddress = jQuery( '#cfw-customer-info-address.shipping' );
-        Pickup.pickupLocationWrap = jQuery( '#cfw-pickup-location-wrap' );
         Pickup.billingFieldsContainer = jQuery( '#cfw-billing-fields-container' );
         Pickup.shippingMethodBreadcrumb = jQuery( 'li.cfw-shipping-method > a' );
-        this.setTriggers();
+
+        jQuery( window ).on( 'load', () => {
+            this.setTriggers();
+        } );
     }
 
     setTriggers(): void {
-        Pickup.documentBody.on( 'change', '[name="cfw_delivery_method"]', ( e ) => {
+        jQuery( document.body ).on( 'change', '[name="cfw_delivery_method"]', ( e ) => {
             Pickup.showContent( e.target );
         } );
 
         jQuery( '[name="cfw_delivery_method"]:checked' ).trigger( 'change' );
 
-        Pickup.documentBody.on( 'change', '[name="cfw_delivery_method"], [name="cfw_pickup_location"]', () => {
+        jQuery( document.body ).on( 'change', '[name="cfw_delivery_method"], [name="cfw_pickup_location"]', () => {
             UpdateCheckoutService.queueUpdateCheckout( null, {
                 // We don't want to update the shipping method since it will be recalculated when this changes
                 update_shipping_method: false,
@@ -54,14 +51,14 @@ class Pickup {
         const continueToShippingBtn = jQuery( '#cfw-customer-info-action .cfw-continue-to-shipping-btn' ).first();
 
         if ( isPickup && DataService.getSetting( 'hide_pickup_methods' ) ) {
-            Pickup.documentBody.addClass( 'cfw-hide-pickup-methods' );
+            jQuery( document.body ).addClass( 'cfw-hide-pickup-methods' );
         } else {
-            Pickup.documentBody.removeClass( 'cfw-hide-pickup-methods' );
+            jQuery( document.body ).removeClass( 'cfw-hide-pickup-methods' );
         }
 
         if ( isPickup ) {
             Pickup.shippingAddress.hide();
-            Pickup.pickupLocationWrap.show().find( ':input' ).prop( 'disabled', false );
+            jQuery( '#cfw-pickup-location-wrap' ).show().find( ':input' ).prop( 'disabled', false );
 
             jQuery( '#shipping_dif_from_billing_radio' ).prop( 'checked', true ).trigger( 'change' );
             jQuery( '#billing_same_as_shipping_radio' ).prop( 'disabled', true );
@@ -81,10 +78,10 @@ class Pickup {
             const oldButtonLabel = continueToShippingBtn.text();
             continueToShippingBtn.text( DataService.getMessage( 'pickup_btn_label' ) ).data( 'old_label', oldButtonLabel );
 
-            Pickup.documentBody.addClass( 'cfw-hide-payment-request-buttons' );
+            jQuery( document.body ).addClass( 'cfw-hide-payment-request-buttons' );
         } else {
             Pickup.shippingAddress.show();
-            Pickup.pickupLocationWrap.hide().find( ':input' ).prop( 'disabled', true );
+            jQuery( '#cfw-pickup-location-wrap' ).hide().find( ':input' ).prop( 'disabled', true );
 
             jQuery( '#billing_same_as_shipping_radio' ).prop( 'disabled', false );
             jQuery( '#cfw-shipping-same-billing .cfw-radio-reveal-group' ).css( 'border', '' );
@@ -103,7 +100,7 @@ class Pickup {
             const oldButtonLabel = continueToShippingBtn.data( 'old_label' );
             continueToShippingBtn.text( oldButtonLabel );
 
-            Pickup.documentBody.removeClass( 'cfw-hide-payment-request-buttons' );
+            jQuery( document.body ).removeClass( 'cfw-hide-payment-request-buttons' );
         }
     }
 }

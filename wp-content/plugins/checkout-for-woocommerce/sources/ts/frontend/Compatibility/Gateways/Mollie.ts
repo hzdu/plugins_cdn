@@ -22,15 +22,6 @@ class Mollie extends Compatibility {
             jQuery( document.body ).find( 'input#place_order, button#place_order' ).first().trigger( 'click' );
         } );
     }
-
-    static isMollieSelected(): boolean {
-        if ( jQuery( 'input[name="payment_method"]:checked' ).length ) {
-            const selectedValue = jQuery( 'input[name="payment_method"]:checked' ).val().toString();
-            return selectedValue.indexOf( 'mollie' ) !== -1;
-        }
-
-        return false;
-    }
 }
 
 export default Mollie;

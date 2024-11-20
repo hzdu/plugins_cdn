@@ -1,5 +1,5 @@
 .cfw-totals-list tr.shipping.recurring-total td {
-  text-align: left;
+  text-align: right;
 }
 
 tr.shipping.recurring-total > td > ul {
@@ -8,6 +8,9 @@ tr.shipping.recurring-total > td > ul {
 
   li {
     list-style: none;
+      display: flex;
+      padding-left: 0;
+      justify-content: space-between;
 
     input {
       margin-right: 0.3em;

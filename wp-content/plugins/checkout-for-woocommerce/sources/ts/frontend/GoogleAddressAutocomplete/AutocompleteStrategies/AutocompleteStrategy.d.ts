@@ -1,8 +1,8 @@
 declare class AutocompleteStrategy {
     protected components: google.maps.GeocoderAddressComponent[];
     protected formattedAddress: string;
-    protected userInputValue: string;
-    constructor(components: google.maps.GeocoderAddressComponent[], formattedAddress: string, userInputValue: string);
+    protected userInputValue?: string;
+    constructor(components: google.maps.GeocoderAddressComponent[], formattedAddress: string, userInputValue?: string);
     getHouseNumber(): string;
     getStreetName(): string;
     getAddress1(): string;

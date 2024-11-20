@@ -1,6 +1,6 @@
 {
     "name": "checkout-for-woocommerce",
-    "version": "9.1.6",
+    "version": "9.1.8",
     "description": "### Development installation instructions",
     "scripts": {
         "build_dev": "./bin/build-dev.sh",
@@ -8,7 +8,6 @@
         "dev": "npx webpack --config webpack.dev.js",
         "production-travis": "cross-env CFW_TRAVIS=1 webpack --config webpack.prod.js",
         "watch": "npm run dev -- --watch",
-        "test": "node tests/e2e-tests/cypress-runner.js",
         "composer_install": "composer install --no-dev --ignore-platform-reqs && composer dump-autoload",
         "composer_install_dev": "composer install --ignore-platform-reqs && composer dump-autoload",
         "min_php_version_test": "./vendor/bin/phpcs -p . --standard=PHPCompatibility --runtime-set testVersion 7.3 -n --extensions=php,inc,lib --ignore=node_modules/*,dist/*,vendor/*,tests/*,vendor-prefixed/sabberworm/php-css-parser/src/RuleSet/DeclarationBlock.php",
@@ -23,7 +22,13 @@
         "preinstall": "npx only-allow pnpm",
         "generate-documentation": "./bin/generate-documentation.sh",
         "generate-action-documentation": "./vendor/bin/wp-documentor parse . --ignore-vcs-ignored --prefix=cfw --prefix=checkoutwc --type=actions --exclude=vendor --exclude=vendor-prefixed --exclude=dist --exclude=node_modules --exclude=build --format=markdown --output=docs/actions.md",
-        "generate-filter-documentation": "./vendor/bin/wp-documentor parse . --ignore-vcs-ignored --prefix=cfw --prefix=checkoutwc --type=filters --exclude=vendor --exclude=vendor-prefixed --exclude=dist --exclude=node_modules --exclude=build --format=markdown --output=docs/filters.md"
+        "generate-filter-documentation": "./vendor/bin/wp-documentor parse . --ignore-vcs-ignored --prefix=cfw --prefix=checkoutwc --type=filters --exclude=vendor --exclude=vendor-prefixed --exclude=dist --exclude=node_modules --exclude=build --format=markdown --output=docs/filters.md",
+        "test:build": "wp-env start",
+        "test:db:export": "./tests/e2e/setup/dbexport.sh",
+        "test:db:import": "./tests/e2e/setup/dbimport.sh",
+        "test:rebuild": "echo 'Y' | wp-env destroy && wp-env start",
+        "test:headless": "pnpm playwright test",
+        "test": "pnpm playwright test --ui"
     },
     "browserslist": [
         "> 1%",
@@ -45,12 +50,15 @@
     "homepage": "https://github.com/kestrelwp/checkout-for-woocommerce",
     "devDependencies": {
         "@automattic/interpolate-components": "^1.2.1",
+        "@playwright/test": "^1.48.0",
         "@shrutibalasa/tailwind-grid-auto-fit": "^1.1.0",
         "@types/google.maps": "^3.55.12",
         "@typescript-eslint/eslint-plugin": "^5.62.0",
         "@typescript-eslint/parser": "5.62.0",
         "@woocommerce/dependency-extraction-webpack-plugin": "^3.0.1",
         "@wordpress/dependency-extraction-webpack-plugin": "^6.4.0",
+        "@wordpress/e2e-test-utils-playwright": "^1.9.0",
+        "@wordpress/env": "^10.3.0",
         "@wordpress/scripts": "^26.19.0",
         "@wordpress/url": "^4.4.0",
         "autoprefixer": "^10.4.19",
@@ -126,6 +134,7 @@
         "bootstrap": "5.3.1",
         "cfwselectwoo": "^1.0.10",
         "debounce": "^1.2.1",
+        "dotenv": "^16.4.5",
         "easytabs": "github:Objectivco/jQuery-EasyTabs#3.2.4",
         "fast-deep-equal": "^3.1.3",
         "formik": "^2.4.6",

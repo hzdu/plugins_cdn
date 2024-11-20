@@ -111,7 +111,7 @@ class GoogleAddressAutocompleteService {
     }
 
     queueStateUpdate( prefix: string, state: string ): void {
-        jQuery( document.body ).one( 'country_to_state_changed', () => {
+        jQuery( document.body ).one( 'country_to_state_changing', () => {
             setTimeout( () => {
                 const stateField = jQuery( `#${prefix}state` );
 

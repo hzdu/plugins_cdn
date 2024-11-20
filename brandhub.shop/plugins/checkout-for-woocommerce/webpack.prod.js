@@ -61,7 +61,7 @@ const frontendConfig = merge( commonFrontend, productionSettings );
 const adminConfig = merge( commonAdmin, productionSettings );
 
 // Add the WebpackShellPluginNext to the last configuration
-adminConfig.plugins.push(
+frontendConfig.plugins.push(
     new WebpackShellPluginNext( {
         onBuildStart: {
             scripts: [

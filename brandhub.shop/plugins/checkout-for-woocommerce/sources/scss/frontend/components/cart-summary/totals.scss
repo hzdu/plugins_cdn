@@ -29,6 +29,10 @@
             flex-basis: 66.66%;
         }
 
+        &:not(.order-total.recurring-total) + .order-total.recurring-total {
+            border-top: 2px solid #000;
+        }
+
         &.order-total {
             align-items: baseline;
             border-top: 2px solid #000;
@@ -42,6 +46,11 @@
                 font-size: initial;
                 font-weight: 700;
             }
+
+            &.recurring-total {
+                border-top: 0;
+            }
+
         }
 
         /**
@@ -60,6 +69,7 @@
 
         &.recurring-total {
             align-items: baseline;
+            justify-content: flex-end;
 
             .first-payment-date {
                 color: #666;

@@ -5,7 +5,7 @@ import StreetNameStrategy              from '../FieldStrategies/StreetNameStrate
 import Utilities                       from '../Utilities';
 
 class AutocompleteStrategy {
-    public constructor( protected components: google.maps.GeocoderAddressComponent[], protected formattedAddress: string, protected userInputValue: string ) {}
+    public constructor( protected components: google.maps.GeocoderAddressComponent[], protected formattedAddress: string, protected userInputValue?: string ) {}
 
     public getHouseNumber(): string {
         return new HouseNumberStrategy( this.components, this.formattedAddress, this.userInputValue ).getValue();
