@@ -269,7 +269,6 @@ ul.nta-tab-wrapper .nav-tab {
   height: 20px; */
   transition: 0.3s;
   cursor: pointer;
-  
 }
 
 /* Switch input */
@@ -340,15 +339,15 @@ ul.nta-tab-wrapper .nav-tab {
 }
 
 /* Meta button styles */
-.meta-button-style{
+.meta-button-style {
   display: flex;
 }
 
-.meta-button-style > div{
+.meta-button-style > div {
   width: 50%;
 }
 
-.meta-button-style .preview-button{
+.meta-button-style .preview-button {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -363,21 +362,19 @@ ul.nta-tab-wrapper .nav-tab {
   font-size: 14px;
 }
 
-
-
 @media screen and (max-width: 782px) {
-  .meta-button-style{
+  .meta-button-style {
     display: block;
   }
-  
-  .meta-button-style > div{
+
+  .meta-button-style > div {
     width: unset;
   }
   .meta-button-style .preview-button p {
     position: static;
   }
 
-  .meta-button-style .preview-button{
+  .meta-button-style .preview-button {
     flex-direction: column;
   }
 }
@@ -386,88 +383,86 @@ ul.nta-tab-wrapper .nav-tab {
 .nta-wa-border-box *,
 .nta-wa-border-box :before,
 .nta-wa-border-box :after {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 .nta-wa-d-row {
-    display: flex;
-    flex-wrap: wrap;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .nta-wa-radio-select-img {
-    margin: 10px 20px 10px 0;
+  margin: 10px 20px 10px 0;
 }
 
 .nta-wa-radio-select-img:last-child {
-    margin: 10px 0;
+  margin: 10px 0;
 }
 
 .nta-wa-radio-select-img input {
-    position: absolute;
-    top: 0;
-    left: 0;
-    opacity: 0;
-    visibility: hidden;
-    z-index: -1;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  visibility: hidden;
+  z-index: -1;
 }
 
 .nta-wa-radio-select-img span {
-    display: block;
-    text-align: center;
+  display: block;
+  text-align: center;
 }
 
 .nta-wa-radio-img-wrap {
-    border: 3px solid #f0f0f0;
-    border-radius: 5px;
-    background-color: #ffffff;
-    padding: 10px;
-    height: 155px;
-    margin-bottom: 10px;
-    transition: all .3s;
-    width: 200px;
+  border: 3px solid #f0f0f0;
+  border-radius: 5px;
+  background-color: #ffffff;
+  padding: 10px;
+  height: 155px;
+  margin-bottom: 10px;
+  transition: all 0.3s;
+  width: 200px;
 }
 
 .nta-wa-radio-img-wrap img {
-    width: 100%;
+  width: 100%;
 }
 
 .nta-wa-radio-select-img input:checked + label .nta-wa-radio-img-wrap {
-    border-color: #2DB742;
+  border-color: #2db742;
 }
 
 .nta-wa-radio-select-img input:checked + label span {
-    font-weight: 600;
+  font-weight: 600;
 }
 
-.dashicons-editor-help.njt-wa-tooltip{
+.dashicons-editor-help.njt-wa-tooltip {
   font-size: 18px;
   color: #a0a0a0;
 }
 
-input.njt-wa-pro, 
-select.njt-wa-pro, 
-select.njt-wa-pro:hover, 
+input.njt-wa-pro,
+select.njt-wa-pro,
+select.njt-wa-pro:hover,
 input.njt-wa-pro:hover,
 select.njt-wa-pro:focus,
-input.njt-wa-pro:focus
-{
-  background: rgba(255,255,255,.5);
-  border-color: rgba(222,222,222,.75);
+input.njt-wa-pro:focus {
+  background: rgba(255, 255, 255, 0.5);
+  border-color: rgba(222, 222, 222, 0.75);
   box-shadow: inset 0 1px 2px rgb(0 0 0 / 4%);
-  color: rgba(51,51,51,.5);
+  color: rgba(51, 51, 51, 0.5);
 }
 
 /* Widget Preview Styles */
-#app-preview .wa__popup_intro p, 
-#app-preview .wa__popup_notice p, 
-#app-preview .nta-wa-gdpr p
-{
+#app-preview .wa__popup_intro p,
+#app-preview .wa__popup_notice p,
+#app-preview .nta-wa-gdpr p {
   margin: 0;
 }
 
 #app-preview .wa__popup_intro p {
   font-size: 12px;
-} 
+}
 #app-preview .wa__popup_notice p,
 #app-preview .nta-wa-gdpr p {
   font-size: 11px;
@@ -476,15 +471,27 @@ input.njt-wa-pro:focus
   display: inline;
 }
 
-.nta-tabs-content .select2-search{
+.nta-tabs-content .select2-search {
   margin: 0;
 }
 
-.nta-tabs-content .select2-search input{
+.nta-tabs-content .select2-search input {
   margin: 0 !important;
   min-height: auto;
 }
 
-.nta-tabs-content .select2-container--default .select2-selection--multiple .select2-selection__choice{
+.nta-tabs-content
+  .select2-container--default
+  .select2-selection--multiple
+  .select2-selection__choice {
   margin-bottom: 0;
+}
+
+.form-table .nta-wa-section-block {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.nta-wa-notice.hidden {
+  display: none !important;
 }
