@@ -23,8 +23,8 @@ Flatsome.behavior('wishlist', {
 				}
 				$this.addClass('loading')
 				// Delete or add item (only one of both is present).
-				$this.parent().find('.delete_item').click()
-				$this.parent().find('.add_to_wishlist').click()
+				$this.parent().find('.delete_item').trigger('click')
+				$this.parent().find('.add_to_wishlist').trigger('click')
 
 				e.preventDefault()
 			})
@@ -34,17 +34,17 @@ Flatsome.behavior('wishlist', {
 	},
 })
 
-jQuery(document).ready(function () {
-	var flatsomeAddToWishlist = function () {
-		jQuery('.wishlist-button').removeClass('loading')
+jQuery(function ($) {
+  var flatsomeAddToWishlist = function () {
+		$('.wishlist-button').removeClass('loading')
 		markAdded()
 
-		jQuery.ajax({
+		$.ajax({
 			data: {
 				action: 'flatsome_update_wishlist_count',
 			},
 			success: function (data) {
-				var $icon = jQuery('i.wishlist-icon')
+				var $icon = $('i.wishlist-icon')
 				$icon.addClass('added')
 				if (data == 0) {
 					$icon.removeAttr('data-icon-label')
@@ -62,7 +62,7 @@ jQuery(document).ready(function () {
 		})
 	}
 
-	jQuery('body').on(
+	$('body').on(
 		'added_to_wishlist removed_from_wishlist',
 		flatsomeAddToWishlist
 	)

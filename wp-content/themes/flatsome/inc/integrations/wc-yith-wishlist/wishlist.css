@@ -213,3 +213,27 @@ td.wishlist-empty{
   content: '×';
   color: #ccc;
 }
+
+/* YITH Wishlist v4.0 */
+.wishlist-popup .yith-wcwl-icon-svg {
+  display: none;
+}
+
+.wishlist-popup .yith-wcwl-add-to-wishlist {
+  margin-block-start: 0;
+}
+
+.yith-wcwl-add-button:not(.wishlist-popup .yith-wcwl-add-button) {
+  display: block;
+  margin-block-end: 1em;
+}
+
+.yith-wcwl-wishlistaddedbrowse:not(.wishlist-popup .yith-wcwl-wishlistaddedbrowse) {
+  display: block;
+  margin-block-end: 1em;
+
+  .feedback {
+    display: block;
+    justify-content: flex-start;
+  }
+}
