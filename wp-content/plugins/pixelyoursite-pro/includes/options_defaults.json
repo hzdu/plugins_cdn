@@ -6,6 +6,8 @@
   "session_disable": false,
   "google_retargeting_logic": "ecomm",
 
+  "enable_all_tracking_ids" : true,
+
   "gdpr_facebook_prior_consent_enabled": true,
   "gdpr_tiktok_prior_consent_enabled": true,
   "gdpr_analytics_prior_consent_enabled": true,
@@ -26,6 +28,7 @@
   "gdpr_real_cookie_banner_integration_enabled": false,
 
   "block_robot_enabled": true,
+  "exclude_blocked_robots": ["WP Rocket"],
   "block_ip_enabled": false,
   "blocked_ips": [],
 
@@ -52,6 +55,7 @@
   "woo_vip_client_transactions": 3,
   "woo_vip_client_average_value": 200,
   "woo_big_whale_ltv": 500,
+  "woo_purchase_new_customer_guest": "yes",
   "woo_purchase_on_transaction": true,
   "woo_purchase_value_option": "price",
   "woo_purchase_value_percent": 0,
@@ -85,6 +89,7 @@
   "woo_advance_purchase_fb_enabled": true,
   "woo_advance_purchase_ga_enabled": true,
   "woo_last_export_date": "",
+  "woo_last_export_customer_date": "",
 
   "edd_add_to_cart_on_button_click": true,
   "edd_add_to_cart_on_checkout_page": false,
@@ -97,6 +102,7 @@
   "edd_vip_client_transactions": 3,
   "edd_vip_client_average_value": 200,
   "edd_big_whale_ltv": 500,
+  "edd_purchase_new_customer_guest": "yes",
   "edd_purchase_on_transaction": true,
   "edd_purchase_value_option": "price",
   "edd_purchase_value_percent": 0,
@@ -169,9 +175,11 @@
 
   "woo_enabled_save_data_to_orders": true,
   "woo_enabled_save_data_to_user": true,
+  "woo_enabled_display_data_to_orders": true,
   "woo_enabled_show_tracking_type" : true,
   "edd_enabled_save_data_to_orders": true,
   "edd_enabled_save_data_to_user": true,
+  "edd_enabled_display_data_to_orders": true,
   "edd_enabled_show_tracking_type" : true,
   "cookie_duration": 7,
   "last_visit_duration": 60,

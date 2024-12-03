@@ -25,18 +25,21 @@ jQuery( document ).ready(function($) {
         var start = ""
         var end = ""
         if(type === "export_by_date"){
-            start = $( "#pys_purchase_export_datepickers .pys_datepickers_from" ).val()
-            end = $( "#pys_purchase_export_datepickers .pys_datepickers_to" ).val()
+            start = $( "#pys_purchase_export_datepickers .pys_datepickers_from" ).val() + " 00:00:00"
+            end = $( "#pys_purchase_export_datepickers .pys_datepickers_to" ).val() + " 23:59:59"
         } else if(type === "export_last_time") {
-            start = $( "#pys_core_woo_last_export_date" ).val()
-            if(start == "") {
+            if($( "#pys_core_woo_last_export_date" ).val() == "") {
                 var result = new Date();
                 result.setDate(result.getDate() - 1);
-                start = result.toISOString().slice(0,10)
+                start = result.toISOString().slice(0,10) + " 00:00:00"
             }
-            end = (new Date()).toISOString().slice(0,10)
+            else {
+                start = $( "#pys_core_woo_last_export_date" ).val();
+            }
+
+            end = (new Date()).toISOString().slice(0,10) + " 23:59:59"
         }
-        var orderStatus = $(".order_status:checked").map(function(){
+        var orderStatus = $(".order_export_card .order_status:checked").map(function(){
             return $(this).val();
         }).get();
 
@@ -86,18 +89,18 @@ jQuery( document ).ready(function($) {
         var start = ""
         var end = ""
         if(type === "export_by_date"){
-            start = $( "#pys_purchase_export_datepickers .pys_datepickers_from" ).val()
-            end = $( "#pys_purchase_export_datepickers .pys_datepickers_to" ).val()
+            start = $( "#pys_purchase_export_datepickers .pys_datepickers_from" ).val() + " 00:00:00"
+            end = $( "#pys_purchase_export_datepickers .pys_datepickers_to" ).val() + " 23:59:59"
         } else if(type === "export_last_time") {
-            start = $( "#pys_core_woo_last_export_date" ).val()
+            start = $( "#pys_core_woo_last_export_date" ).val() + " 00:00:00"
             if(start == "") {
                 var result = new Date();
                 result.setDate(result.getDate() - 1);
-                start = result.toISOString().slice(0,10)
+                start = result.toISOString().slice(0,10) + " 00:00:00"
             }
-            end = (new Date()).toISOString().slice(0,10)
+            end = (new Date()).toISOString().slice(0,10) + " 23:59:59"
         }
-        var orderStatus = $(".order_status:checked").map(function(){
+        var orderStatus = $(".order_export_card .order_status:checked").map(function(){
             return $(this).val();
         }).get();
 
@@ -162,7 +165,7 @@ jQuery( document ).ready(function($) {
     }
 
     function showNewFile(fileUrl,fileName) {
-        $(".export_links li").slice(3).remove();
+        $(".order_export_card .export_links li").slice(3).remove();
 
         var parts = fileName.split("-")
         var created = parts[0].replaceAll("_","/");
@@ -178,13 +181,13 @@ jQuery( document ).ready(function($) {
         }
 
         item += "</b> - <a href='"+fileUrl+"' download>download CSV</a></li>"
-        $(".export_links_title").after(item)
+        $(".order_export_card .export_links_title").after(item)
         alert("Success create new file")
     }
 
     function wooGenerateOfflineEventsReport(count,type,start,end,page,key) {
         showLoader(true)
-        var orderStatus = $(".order_status:checked").map(function(){
+        var orderStatus = $(".order_export_card .order_status:checked").map(function(){
             return $(this).val();
         }).get();
 
@@ -222,7 +225,7 @@ jQuery( document ).ready(function($) {
     }
     function wooGenerateAllOfflineEventsReport(count,type,start,end,page,key) {
         showLoader(true)
-        var orderStatus = $(".order_status:checked").map(function(){
+        var orderStatus = $(".order_export_card .order_status:checked").map(function(){
             return $(this).val();
         }).get();
 

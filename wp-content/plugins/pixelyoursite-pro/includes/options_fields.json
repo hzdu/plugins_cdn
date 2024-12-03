@@ -7,6 +7,8 @@
   "google_retargeting_logic": "radio",
   "visit_data_model": "radio",
 
+  "enable_all_tracking_ids" : "checkbox",
+
   "gdpr_facebook_prior_consent_enabled": "checkbox",
   "gdpr_tiktok_prior_consent_enabled": "checkbox",
   "gdpr_analytics_prior_consent_enabled": "checkbox",
@@ -27,6 +29,7 @@
   "gdpr_real_cookie_banner_integration_enabled": "checkbox",
 
   "block_robot_enabled": "checkbox",
+  "exclude_blocked_robots": "multi_select",
   "block_ip_enabled": "checkbox",
   "blocked_ips": "multi_select",
 
@@ -48,6 +51,7 @@
   "woo_vip_client_transactions": "number",
   "woo_vip_client_average_value": "number",
   "woo_big_whale_ltv": "number",
+  "woo_purchase_new_customer_guest": "radio",
   "woo_purchase_on_transaction": "checkbox",
   "woo_purchase_value_option": "radio",
   "woo_purchase_value_percent": "number",
@@ -82,6 +86,7 @@
   "woo_advance_purchase_fb_enabled": "checkbox",
   "woo_advance_purchase_ga_enabled": "checkbox",
   "woo_last_export_date": "text",
+  "woo_last_export_customer_date": "text",
 
   "edd_advance_purchase_fb_enabled": "checkbox",
   "edd_advance_purchase_ga_enabled": "checkbox",
@@ -95,6 +100,7 @@
   "edd_vip_client_transactions": "number",
   "edd_vip_client_average_value": "number",
   "edd_big_whale_ltv": "number",
+  "edd_purchase_new_customer_guest": "radio",
   "edd_purchase_on_transaction": "checkbox",
   "edd_purchase_value_option": "radio",
   "edd_purchase_value_percent": "number",
@@ -162,9 +168,11 @@
 
   "woo_enabled_save_data_to_orders": "checkbox",
   "woo_enabled_save_data_to_user": "checkbox",
+  "woo_enabled_display_data_to_orders": "checkbox",
   "woo_enabled_show_tracking_type" : "checkbox",
   "edd_enabled_save_data_to_orders": "checkbox",
   "edd_enabled_save_data_to_user": "checkbox",
+  "edd_enabled_display_data_to_orders": "checkbox",
   "edd_enabled_show_tracking_type" : "checkbox",
   "enable_content_name_param": "checkbox",
   "enable_page_title_param" : "checkbox",
