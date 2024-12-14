@@ -62,6 +62,11 @@
             },
             success: function(response){
                 console.log(response);
+
+                if(!isJSON(response)){
+                    response = extractAndValidateJSON(response, ['error', 'state', 'keywords_found', 'count', 'total', 'finish']);
+                }
+
                 if (response.error) {
                     wpil_swal(response.error.title, response.error.text, 'error');
                     return;
@@ -87,8 +92,14 @@
                     case 'aioseo_process':
                         state = 'Processing All in One SEO Keyword Data';
                         break;
+                    case 'squirrly_process':
+                        state = 'Processing Squirrly SEO Keyword Data';
+                        break;
                     case 'post_keyword_process':
                         state = 'Processing Page Content Keywords';
+                        break;
+                    case 'ai_generated_process':
+                        state = 'Processing AI Generated Keywords';
                         break;
                     case 'custom_process':
                         state = 'Processing Custom Keywords';
@@ -162,16 +173,18 @@
                 });
             },
             success: function(response){
+                if(!isJSON(response)){
+                    response = extractAndValidateJSON(response, ['error', 'success']);
+                }
+
                 if (response.error) {
                     wpil_swal(response.error.title, response.error.text, 'error');
                     return;
                 }else if(response.success){
                     if($('.link-whisper_page_link_whisper_target_keywords').length > 0){
-                        var noItems = true;
                         for(var i in data){
                             // if the keyword is active, show the keyword
                             if(data[i]){
-                                noItems = false;
                                 $('#active-keyword-' + i).css({'display': 'inline-block'});
                             }else{
                                 $('#active-keyword-' + i).css({'display': 'none'});
@@ -179,14 +192,37 @@
 
                         }
 
-                        if(noItems){
-                            button.parents('tr').find('.no-active-keywords-notice').css({'display': 'inline-block'});
-                        }else{
+                        var hasItems = (button.parents('tr').find('.wpil-target-keyword-active-kywrd:visible').length) > 0 ? true: false; 
+
+                        if(hasItems){
                             button.parents('tr').find('.no-active-keywords-notice').css({'display': 'none'});
+                        }else{
+                            button.parents('tr').find('.no-active-keywords-notice').css({'display': 'inline-block'});
                         }
                     }
 
-                    wpil_swal(response.success.title, response.success.text, 'success');
+                    if ((wpil_ajax.dismissed_popups && wpil_ajax.dismissed_popups['target_keyword_update'] !== 1)) {
+                        var popupWrapper = document.createElement('div');
+                        $(popupWrapper).append(response.success.text + '<br><br> <input type="checkbox" id="wpil-perma-dismiss-popup" data-wpil-popup-name="target_keyword_update"><span style="font-size: 12px;">(Don\'t show this again)</span>');
+                        wpil_swal({'title': response.success.title, content: popupWrapper, 'icon': 'success'}).then(() => {
+                            var checkbox = $('#wpil-perma-dismiss-popup');
+                            if(checkbox.is(':checked') && wpil_ajax.dismiss_popup_nonce){
+                                $.ajax({
+                                    type: 'POST',
+                                    url: ajaxurl,
+                                    data: {
+                                        action: 'wpil_dismiss_popup_notice',
+                                        popup_name: checkbox.data('wpil-popup-name'),
+                                        nonce: wpil_ajax.dismiss_popup_nonce,
+                                    },
+                                    complete: function (data) {
+                                        console.log('ignoring complete!');
+                                        wpil_ajax.dismissed_popups['target_keyword_update'] = 1;
+                                    }
+                                })
+                            }
+                        });
+                    }
 
                     if($('.wpil-suggestions-can-be-regenerated').length){
                         // allow the suggestions to be regenerated
@@ -246,40 +282,61 @@
                 });
             },
             success: function(response){
+                if(!isJSON(response)){
+                    response = extractAndValidateJSON(response, ['error', 'success']);
+                }
+
                 console.log(response);
                 if (response.error) {
                     wpil_swal(response.error.title, response.error.text, 'error');
                     return;
                 }else if(response.success){
+                    if ((wpil_ajax.dismissed_popups && wpil_ajax.dismissed_popups['target_keyword_create'] !== 1)) {
+                        var popupWrapper = document.createElement('div');
+                        $(popupWrapper).append(response.success.text + '<br><br> <input type="checkbox" id="wpil-perma-dismiss-popup" data-wpil-popup-name="target_keyword_create"><span style="font-size: 12px;">(Don\'t show this again)</span>');
+                        wpil_swal({'title': response.success.title, content: popupWrapper, 'icon': 'success'}).then(() => {
+                            var checkbox = $('#wpil-perma-dismiss-popup');
+                            if(checkbox.is(':checked') && wpil_ajax.dismiss_popup_nonce){
+                                $.ajax({
+                                    type: 'POST',
+                                    url: ajaxurl,
+                                    data: {
+                                        action: 'wpil_dismiss_popup_notice',
+                                        popup_name: checkbox.data('wpil-popup-name'),
+                                        nonce: wpil_ajax.dismiss_popup_nonce,
+                                    },
+                                    complete: function (data) {
+                                        console.log('ignoring complete!');
+                                        wpil_ajax.dismissed_popups['target_keyword_create'] = 1;
+                                    }
+                                })
+                            }
+                        });
+                    }
+
                     if($('.link-whisper_page_link_whisper_target_keywords').length > 0){
-                        wpil_swal(response.success.title, response.success.text, 'success').then(function(){
-                            var activeKeywordsCloud = button.parents('tr').find('.column-word_cloud ul');
-                            var activeKeyword = '';
+                        var activeKeywordsCloud = button.parents('tr').find('.column-word_cloud ul');
+                        var activeKeyword = '';
 
-                            $(response.success.data).each(function(index, dat){
-                                button.parents('.wpil-collapsible-wrapper').find('.report_links').append(dat.reportRow);
-                                activeKeyword += '<li id="active-keyword-' + dat.keywordId + '" class="wpil-target-keyword-active-kywrd">' + dat.keyword + '</li>';
-                            });
-
-                            $(activeKeywordsCloud).find('.no-active-keywords-notice').css({'display': 'none'});
-                            $(activeKeywordsCloud).append(activeKeyword);
-
-                            // update the custom keyword count
-                            var count = wrapper.find('.report_links li:visible').length;
-                            wrapper.find('.wpil-collapsible').text(count);
+                        $(response.success.data).each(function(index, dat){
+                            button.parents('.wpil-collapsible-wrapper').find('.report_links').append(dat.reportRow);
+                            activeKeyword += '<li id="active-keyword-' + dat.keywordId + '" class="wpil-target-keyword-active-kywrd">' + dat.keyword + '</li>';
                         });
+
+                        $(activeKeywordsCloud).find('.no-active-keywords-notice').css({'display': 'none'});
+                        $(activeKeywordsCloud).append(activeKeyword);
+
+                        // update the custom keyword count
+                        var count = wrapper.find('.report_links li:visible').length;
+                        wrapper.find('.wpil-collapsible').text(count);
                     }else{
-                        wpil_swal(response.success.title, response.success.text, 'success').then(function(){
-                            console.log(button.parents('#wpil-keyword-select-metabox').find('#keywordchecklist'));
-
-                            $(response.success.data).each(function(index, dat){
-                                button.parents('#wpil-keyword-select-metabox').find('#keywordchecklist').append(dat.suggestionRow);
-                                button.parents('#wpil-keyword-select-metabox').find('#keywordchecklist-custom').append(dat.suggestionRow);
-                            });
-
-                            // allow the suggestions to be regenerated
-                            $('.wpil-suggestions-can-be-regenerated').val(1).trigger('change');
+                        $(response.success.data).each(function(index, dat){
+                            button.parents('#wpil-keyword-select-metabox').find('#keywordchecklist').append(dat.suggestionRow);
+                            button.parents('#wpil-keyword-select-metabox').find('#keywordchecklist-custom').append(dat.suggestionRow);
                         });
+
+                        // allow the suggestions to be regenerated
+                        $('.wpil-suggestions-can-be-regenerated').val(1).trigger('change');
                     }
 
                     parent.find('.input-clone').remove();
@@ -332,32 +389,54 @@
                 });
             },
             success: function(response){
+                if(!isJSON(response)){
+                    response = extractAndValidateJSON(response, ['error', 'success']);
+                }
+
                 console.log(response);
                 if (response.error) {
                     wpil_swal(response.error.title, response.error.text, 'error');
                     return;
                 }else if(response.success){
-                    if($('.link-whisper_page_link_whisper_target_keywords').length > 0){
-                        wpil_swal(response.success.title, response.success.text, 'success').then(function(){
-                            $('#target-keyword-' + keywordId).fadeOut(300, function(){
-                                var count = wrapper.find('.report_links li:visible').length;
-                                wrapper.find('.wpil-collapsible').text(count);
-                            });
+                    if ((wpil_ajax.dismissed_popups && wpil_ajax.dismissed_popups['target_keyword_delete'] !== 1)) {
+                        var popupWrapper = document.createElement('div');
+                        $(popupWrapper).append(response.success.text + '<br><br> <input type="checkbox" id="wpil-perma-dismiss-popup" data-wpil-popup-name="target_keyword_delete"><span style="font-size: 12px;">(Don\'t show this again)</span>');
+                        wpil_swal({'title': response.success.title, content: popupWrapper, 'icon': 'success'}).then(() => {
+                            var checkbox = $('#wpil-perma-dismiss-popup');
+                            if(checkbox.is(':checked') && wpil_ajax.dismiss_popup_nonce){
+                                $.ajax({
+                                    type: 'POST',
+                                    url: ajaxurl,
+                                    data: {
+                                        action: 'wpil_dismiss_popup_notice',
+                                        popup_name: checkbox.data('wpil-popup-name'),
+                                        nonce: wpil_ajax.dismiss_popup_nonce,
+                                    },
+                                    complete: function (data) {
+                                        console.log('ignoring complete!');
+                                        wpil_ajax.dismissed_popups['target_keyword_delete'] = 1;
+                                    }
+                                })
+                            }
+                        });
+                    }
 
-                            // hide the active keyword button
-                            $('#active-keyword-' + keywordId).fadeOut(300, function(){
-                                var activeKeywordsCount = button.parents('tr').find('.column-word_cloud li:visible').length;
-                                if(activeKeywordsCount < 1){
-                                    button.parents('tr').find('.column-word_cloud li.no-active-keywords-notice').css({'display': 'inline-block'});
-                                }
-                            });
-                            
+                    if($('.link-whisper_page_link_whisper_target_keywords').length > 0){
+                        $('#target-keyword-' + keywordId).fadeOut(300, function(){
+                            var count = wrapper.find('.report_links li:visible').length;
+                            wrapper.find('.wpil-collapsible').text(count);
+                        });
+
+                        // hide the active keyword button
+                        $('#active-keyword-' + keywordId).fadeOut(300, function(){
+                            var activeKeywordsCount = button.parents('tr').find('.column-word_cloud li:visible').length;
+                            if(activeKeywordsCount < 1){
+                                button.parents('tr').find('.column-word_cloud li.no-active-keywords-notice').css({'display': 'inline-block'});
+                            }
                         });
                     }else{
-                        wpil_swal(response.success.title, response.success.text, 'success').then(function(){
-                            $('#keyword-all-' + keywordId + ', #keyword-custom-' + keywordId).fadeOut(300);
-                            $('.wpil-suggestions-can-be-regenerated').val(1).trigger('change');
-                        });
+                        $('#keyword-all-' + keywordId + ', #keyword-custom-' + keywordId).fadeOut(300);
+                        $('.wpil-suggestions-can-be-regenerated').val(1).trigger('change');
                     }
                 }
             },

@@ -14,7 +14,6 @@
     $(document).on('click', '#wpil-bulk-keywords-global-set', bulkSetAutolinkSettings);
     $(document).on('click', '.wpil-bulk-autolink-setting-icon', toggleBulkAutolinkSettings);
     $(document).on('click', '.wpil-autolink-import-method', toggleBulkAutolinkCreateMethod);
-//    $(document).on('click', '.wpil-open-bulk-autolink-create-form', showBulkAutolinkInterface);
     $(document).on('click', '#wpil-bulk-keywords-close, .wpil-autolink-bulk-create-background', hideBulkAutolinkInterface);
     $(document).on('change', '#wpil-autolink-csv-import-file', toggleFileImportButton);
     $(document).on('change keyup', '#wpil-autolink-keyword-field, #wpil-autolink-url-field', toggleFieldImportButton);
@@ -149,9 +148,10 @@
         var settingKey = {
             'add_same_link': 'wpil_keywords_add_same_link',             // 0    // checkbox
             'link_once': 'wpil_keywords_link_once',                     // 1    // checkbox
-            'force_insert': 'wpil_keywords_force_insert',               // 2    // checkbox
-            'limit_inserts': 'wpil_keywords_limit_inserts',             // 3    // checkbox
-            'insert_limit': 'wpil_keywords_insert_limit',               // 4    // num
+            'restrict_to_live': 'wpil_keywords_restrict_to_live',       // 2    // checkbox
+            'force_insert': 'wpil_keywords_force_insert',               // 3    // checkbox
+            'limit_inserts': 'wpil_keywords_limit_inserts',             // 4    // checkbox
+            'insert_limit': 'wpil_keywords_insert_limit',               // 5    // num
             'select_links': 'wpil_keywords_select_links',               // 6    // checkbox
             'set_priority': 'wpil_keywords_set_priority',               // 7    // checkbox
             'priority_setting': 'wpil_keywords_priority_setting',       // 8    // num
@@ -342,6 +342,7 @@
                 link: parent.find('input[name="link"]').val(),
                 wpil_keywords_add_same_link: parent.find('.wpil-bulk-autolinks-add-same-link').is(':checked') ? 1 : 0,
                 wpil_keywords_link_once: parent.find('.wpil-bulk-autolinks-link-once').is(':checked') ? 1 : 0,
+                wpil_keywords_restrict_to_live: parent.find('.wpil-bulk-autolinks-restrict-to-live').is(':checked') ? 1 : 0,
                 wpil_keywords_limit_inserts: limitInserts,
                 wpil_keywords_select_links: parent.find('.wpil-bulk-autolinks-select-links').is(':checked') ? 1 : 0,
                 wpil_keywords_set_priority: setPriority,
@@ -469,6 +470,11 @@
             },
             success: function(response){
                 console.log(response);
+
+                if(!isJSON(response)){
+                    response = extractAndValidateJSON(response, ['error', 'finish', 'partial', 'keyword_ids', 'displayMessage', 'keyword_data', 'keyword_id', 'loop']);
+                }
+
                 if (response.error) {
                     wpil_swal(response.error.title, response.error.text, 'error');
                     return;
@@ -541,6 +547,7 @@
         var settings = {
             'add_same': globalSettings.find('.wpil-bulk-autolinks-add-same-link').prop('checked'),
             'link_once': globalSettings.find('.wpil-bulk-autolinks-link-once').prop('checked'),
+            'restrict_to_live': globalSettings.find('.wpil-bulk-autolinks-restrict-to-live').prop('checked'),
             'force_insert': globalSettings.find('.wpil-bulk-autolinks-force-insert').prop('checked'),
             'limit_inserts': globalSettings.find('.wpil-bulk-autolinks-limit-inserts-checkbox').prop('checked'),
             'insert_limit': globalSettings.find('.wpil-bulk-autolinks-insert-limit').val(),
@@ -568,6 +575,7 @@
         // update all the setting values for the imported settings
         importedAutolinks.find('.wpil-bulk-autolinks-add-same-link[type="checkbox"]').prop('checked', settings.add_same);
         importedAutolinks.find('.wpil-bulk-autolinks-link-once[type="checkbox"]').prop('checked', settings.link_once);
+        importedAutolinks.find('.wpil-bulk-autolinks-restrict-to-live[type="checkbox"]').prop('checked', settings.restrict_to_live);
         importedAutolinks.find('.wpil-bulk-autolinks-force-insert[type="checkbox"]').prop('checked', settings.force_insert);
         importedAutolinks.find('.wpil-bulk-autolinks-limit-inserts-checkbox[type="checkbox"]').prop('checked', settings.limit_inserts);
         importedAutolinks.find('.wpil-bulk-autolinks-insert-limit[type="number"]').val(settings.insert_limit);
@@ -726,7 +734,31 @@
         }
 
         if(selected === 'delete-selected'){
-            deleteSelectedRules();
+            var wrapper = document.createElement('div');
+            $(wrapper).append('<strong>You are about to delete an Autolinking Rule</strong><br><br>Do you want to remove the rule, but <strong>leave the links in the content?</strong><br><br>Or do you want to <strong>remove the links too?</strong>');
+
+            wpil_swal({
+                content: wrapper,
+                icon: "info",
+                buttons: {
+                    deleteRuleAndLinks: "Delete Rule And Links",
+                    deleteRuleOnly: "Just Delete Rule",
+                    cancel: true,
+                },
+            })
+            .then((value) => {
+                if(value === 'deleteRuleOnly' || value === 'deleteRuleAndLinks'){
+                    if(value === 'deleteRuleOnly'){
+                        $('#wpil-autolink-rule-delete-de-autolink').val('1');
+                    }else{
+                        $('#wpil-autolink-rule-delete-de-autolink').val('0');
+                    }
+    
+                    if(!doingDelete){
+                        deleteSelectedRules();
+                    }
+                }
+            });
         }else if(selected === 'bulk-create'){
             showBulkAutolinkInterface();
         }else if(selected === 'refresh-selected'){
@@ -737,19 +769,46 @@
     }
 
     function wpil_keyword_delete() {
-        if (confirm("Are you sure you want to delete this keyword?")) {
-            $(this).parents('tr').find('.wpil-autolink-rule-select-checkbox').prop('checked', true);
+        var clicked = $(this);
 
-            if(!doingDelete){
-                deleteSelectedRules();
+        var wrapper = document.createElement('div');
+        $(wrapper).append('<strong>You are about to delete an Autolinking Rule</strong><br><br>Do you want to remove the rule, but <strong>leave the links in the content?</strong><br><br>Or do you want to <strong>remove the links too?</strong>');
+
+        wpil_swal({
+            content: wrapper,
+            icon: "info",
+            buttons: {
+                deleteRuleAndLinks: "Delete Rule And Links",
+                deleteRuleOnly: "Just Delete Rule",
+                cancel: true,
+            },
+        })
+        .then((value) => {
+            if(value === 'deleteRuleOnly' || value === 'deleteRuleAndLinks'){
+                if(value === 'deleteRuleOnly'){
+                    $('#wpil-autolink-rule-delete-de-autolink').val('1');
+                }else{
+                    $('#wpil-autolink-rule-delete-de-autolink').val('0');
+                }
+
+                var parentRow = $(clicked).parents('tr');
+                parentRow.find('.wpil-autolink-rule-select-checkbox').prop('checked', true);
+
+                if(!doingDelete){
+                    deleteSelectedRules(parentRow);
+                }
             }
-        }
+        });
     }
 
     var refireWaiter;
     var doingDelete = false;
-    function deleteSelectedRules(){
-        var deleteRules = $('.column-checkbox .wpil-autolink-rule-select-checkbox:checked');
+    function deleteSelectedRules(parentRow = false){
+        if(parentRow){
+            var deleteRules = parentRow.find('.wpil-autolink-rule-select-checkbox:checked');
+        }else{
+            var deleteRules = $('.column-checkbox .wpil-autolink-rule-select-checkbox:checked');
+        }
 
         // if there are rules to delete
         if(deleteRules.length > 0){
@@ -770,22 +829,27 @@
 
             $.post(ajaxurl, {
                 action: 'wpil_keyword_delete',
-                id: ids
+                id: ids,
+                de_autolink: $('#wpil-autolink-rule-delete-de-autolink').val()
             }, function(response){
-                if(response && response.deleted.length > 0){
+                if(!isJSON(response)){
+                    response = extractAndValidateJSON(response, ['deleted', 'deleted_links']);
+                }
+
+                if(response && response.deleted && response.deleted.length > 0){
                     for(var i in response.deleted){
                         var row = $('.wpil-autolink-rule-select-checkbox[data-id="'+ response.deleted[i] +'"]').parents('tr');
                         if(row.length){
                             row.fadeOut(300, function(){
                                 clearTimeout(refireWaiter);
                                 jQuery(this).remove(); 
-                                refireWaiter = setTimeout(deleteSelectedRules, 100);
+                                refireWaiter = setTimeout(deleteSelectedRules, 100, parentRow);
                             });
                         }
                     }
                 }else if(response && response.deleted_links > 0){
                     // if we've deleted links, but not whole rules, go around again
-                    deleteSelectedRules();
+                    deleteSelectedRules(parentRow);
                 }else if(response && response.deleted.length < 1){
                     // if no links were deleted, re-enable the table
                     enableAutolinkTable();
@@ -794,6 +858,7 @@
             });
         }else{
             enableAutolinkTable();
+            flushObjectCache();
             doingDelete = false;
         }
     }
@@ -856,6 +921,11 @@
                 },
                 success: function(response){
                     console.log(response);
+
+                    if(!isJSON(response)){
+                        response = extractAndValidateJSON(response, ['keyword_id', 'last_keyword', 'keyword_total', 'total', 'loop']);
+                    }
+
                     // if we have data
                     if(response.keyword_id && typeof response.keyword_id === 'object' && Object.keys(response.keyword_id).length > 0){
                         // get a list of the current ids
@@ -959,6 +1029,10 @@
                 success: function(response){
                     console.log(response);
 
+                    if(!isJSON(response)){
+                        response = extractAndValidateJSON(response, ['error', 'filename', 'nicename']);
+                    }
+
                     if (response.error) {
                         wpil_swal(response.error.title, response.error.text, 'error');
                         return;
@@ -1044,6 +1118,7 @@
             link: link,
             wpil_keywords_add_same_link: $('#wpil_keywords_add_same_link').prop('checked') ? 1 : 0,
             wpil_keywords_link_once: $('#wpil_keywords_link_once').prop('checked') ? 1 : 0,
+            wpil_keywords_restrict_to_live: $('#wpil_keywords_restrict_to_live').prop('checked') ? 1 : 0,
             wpil_keywords_limit_inserts: limitInserts,
             wpil_keywords_select_links: $('#wpil_keywords_select_links').prop('checked') ? 1 : 0,
             wpil_keywords_set_priority: setPriority,
@@ -1105,6 +1180,7 @@
         var params = {
             wpil_keywords_add_same_link: form.find('input[type="checkbox"][name="wpil_keywords_add_same_link"]').prop('checked') ? 1 : 0,
             wpil_keywords_link_once: form.find('input[type="checkbox"][name="wpil_keywords_link_once"]').prop('checked') ? 1 : 0,
+            wpil_keywords_restrict_to_live: form.find('input[type="checkbox"][name="wpil_keywords_restrict_to_live"]').prop('checked') ? 1 : 0,
             wpil_keywords_limit_inserts: limitInserts,
             wpil_keywords_select_links: form.find('input[type="checkbox"][name="wpil_keywords_select_links"]').prop('checked') ? 1 : 0,
             wpil_keywords_restrict_date: restrictedToDate,
@@ -1177,6 +1253,10 @@
                 wpil_swal({"title": "Error", "content": wrapper, "icon": "error"}).then(wpil_keyword_process(keyword_id, keyword, link));
             },
             success: function(response){
+                if(!isJSON(response)){
+                    response = extractAndValidateJSON(response, ['error', 'progress', 'finish', 'keyword_id', 'total']);
+                }
+
                 if (response.error) {
                     wpil_swal(response.error.title, response.error.text, 'error');
                     return;
@@ -1217,6 +1297,10 @@
                 wpil_swal({"title": "Error", "content": wrapper, "icon": "error"}).then(wpil_keyword_reset_process(1, 1));
             },
             success: function(response){
+                if(!isJSON(response)){
+                    response = extractAndValidateJSON(response, ['error', 'ready', 'finish', 'keyword_id', 'total', 'count']);
+                }
+
                 if (response.error) {
                     wpil_swal(response.error.title, response.error.text, 'error');
                     return;
@@ -1273,6 +1357,10 @@
                 parentCell.find('.wpil-collapsible-wrapper').css({'display': 'block'});
             },
             success: function(response){
+                if(!isJSON(response)){
+                    response = extractAndValidateJSON(response, ['error', 'success']);
+                }
+
                 if (response.error) {
                     wpil_swal(response.error.title, response.error.text, 'error');
 
@@ -1325,6 +1413,24 @@
             }, 250);
         }
     }
+
+	/**
+	 * Makes a call to the object cache flusher.
+	 * Only works on pages that have the nonce defined
+	 */
+	function flushObjectCache(){
+		var nonce = $('#wpil-object-cache-flush-nonce').val();
+		if(!nonce || nonce.length < 1){
+			return;
+		}
+
+		$.post(ajaxurl, {
+			action: 'wpil_flush_object_cache',
+			nonce: nonce,
+		}, function (response) {
+			console.log('flush!');
+		});
+	}
 
     /**
      * Checks to see if a value is "empty"
@@ -1400,6 +1506,10 @@
                 item_count: current,
 			},
 			success: function(response){
+                if(!isJSON(response)){
+                    response = extractAndValidateJSON(response, ['error', 'info', 'success']);
+                }
+
                 // if there was an error
                 if(response.error){
                     // output the error message

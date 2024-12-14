@@ -98,16 +98,6 @@
             }
         });
     }
-/* // TODO: DELETE IN 2.2.8 if no one misses it
-    setInterval(function(){
-        $.post(ajaxurl, {
-            action: 'wpil_report_reload',
-        }, function(response){
-            if (response == 'yes') {
-                location.reload();
-            }
-        });
-    }, 5000);*/
 
     /**
      * Checks to see if the clicked dropdown has all of its data.
@@ -142,17 +132,21 @@
 
         // start calling for the remaining links
         $.ajax({
-			type: 'POST',
-			url: ajaxurl,
-			data: {
-				action: 'get_link_report_dropdown_data',
+            type: 'POST',
+            url: ajaxurl,
+            data: {
+                action: 'get_link_report_dropdown_data',
                 dropdown_type: type,
                 post_id: postId,
                 post_type: postType,
                 nonce: nonce,
                 item_count: current,
-			},
-			success: function(response){
+            },
+            success: function(response){
+                if(!isJSON(response)){
+                    response = extractAndValidateJSON(response, ['error', 'info', 'success']);
+                }
+
                 // if there was an error
                 if(response.error){
                     // output the error message
@@ -183,11 +177,11 @@
                     // and exit
                     return;
                 }
-			},
+            },
             error: function(jqXHR, textStatus, errorThrown){
                 console.log({jqXHR, textStatus, errorThrown});
             }
-		});
+        });
     }
 
 

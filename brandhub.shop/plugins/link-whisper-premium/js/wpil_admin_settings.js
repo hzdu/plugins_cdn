@@ -163,6 +163,761 @@
         });
     });
 
+    /** Related Posts Settings **/
+    $(document).on('change', '[name^=wpil_related_post]', updateRelatedPostSettingsWait);
+    $(document).on('click', '.wpil-related-posts-clear-colorpicker, .wpil-related-posts-clear-number', updateRelatedPostSettingsWait);
+
+    var relatedPostSettingWait = false;
+    function updateRelatedPostSettingsWait(){
+        clearTimeout(relatedPostSettingWait);
+        setTimeout(updateRelatedPostPreviewSettings, 10);
+    }
+
+    function updateRelatedPostPreviewSettings(){
+        var targetPage = $('#wpil-related-posts-preview-button').data('wpil-preview-url'),
+            settings = $('[name^=wpil_related_post]').not(':disabled'),
+            query = {},
+            thickbox = 'TB_iframe=true&width=1200&height=800',
+            id = '#link-whisper-related-posts-widget',
+            nonce = $('input[name="wpil_related_post_preview_nonce"]').val();
+
+        settings.each(function(index, element){
+            var setting = $(element),
+                name = element.name,
+                value;
+            if( setting.is('input') && 
+                !setting.is('[type="number"]') && 
+                !setting.is('[type="text"]') &&
+                !setting.is('[type="color"]') &&
+                !setting.is('[type="hidden"]') &&
+                !setting.is('[type="range"]')
+            ){
+                var checked = $('[name="' + name + '"]:checked').val();
+                if(checked !== undefined){
+                    value = checked;
+                }else{
+                    value = '0';
+                }
+            }else{
+                value = setting.val();
+            }
+            query[name] = value;
+        });
+
+        if(undefined !== query['wpil_related_posts_widget_text[description]']){
+            query['wpil_related_posts_widget_text[description]'] = btoa(query['wpil_related_posts_widget_text[description]']);
+        }
+
+        query = new URLSearchParams(query).toString();
+
+        targetPage = (targetPage + '?' + query + '&nonce=' + nonce + '&' + thickbox);
+
+        $('#wpil-related-posts-preview-button').attr('href', targetPage);
+    }
+
+    $(document).on('change', 'input[name="wpil_activate_related_posts"]', toggleRelatedPostSettingSection);
+    function toggleRelatedPostSettingSection(){
+        if($(this).is(':checked')){
+            $('.wpil-related-posts-settings.wpil-setting-row:not(.wpil-activate-related-posts-row):not(.wpil-related-posts-shortcode-row)').removeClass('hide-setting'); 
+            if($('[name="wpil_related_posts_insert_method"]:checked').val() === 'shortcode'){
+                $('.wpil-related-posts-shortcode-row').removeClass('hide-setting');
+            }
+        }else{
+            $('.wpil-related-posts-settings.wpil-setting-row:not(.wpil-activate-related-posts-row)').addClass('hide-setting');
+        }
+    }
+
+    $(document).on('change', 'input[name="wpil_related_posts_insert_method"]', toggleRelatedPostInsertMethod);
+    function toggleRelatedPostInsertMethod(){
+        if($(this).val() === 'shortcode'){
+            $('.wpil-related-posts-shortcode-row').removeClass('hide-setting');
+        }else{
+            $('.wpil-related-posts-shortcode-row').addClass('hide-setting');
+        }
+    }
+
+    $(document).on('change', '[name="wpil_selected_ai_batch_processes[]"]', toggleAiSettings);
+    function toggleAiSettings(){
+        if($('[name="wpil_open_ai_api_key"]').val().length < 1){
+            return;
+        }
+
+        var toggle = $(this);
+        var classes = {
+            '4': '.wpil-create-post-embeddings-setting, .wpil-calculated-post-embeddings-setting',
+            '3': '.wpil-product-detecting-setting',
+            '5': '.wpil-keyword-detecting-setting, .wpil-keyword-assigning-setting',
+        };
+
+        if(toggle && classes[toggle.val()]){
+            if(toggle.is(':checked')){
+                $(classes[toggle.val()]).removeClass('hide-setting');
+            }else{
+                $(classes[toggle.val()]).addClass('hide-setting');
+            }
+        }
+
+        var hasSetting = false;
+        var hasChangedSettings = false;
+        $('[name="wpil_selected_ai_batch_processes[]"]').each(function(ind, element){
+            if($(element).is(':checked')){
+                hasSetting = true;
+            }
+
+            if(
+                $(element).is(':checked') && parseInt($(element).data('wpil-ai-process-saved-state')) === 0 ||
+                !$(element).is(':checked') && parseInt($(element).data('wpil-ai-process-saved-state')) === 1
+            ){
+                hasChangedSettings = true;
+            }
+        });
+
+        if(hasSetting){
+            $('.wpil-ai-any-setting').removeClass('hide-setting');
+        }else{
+            $('.wpil-ai-any-setting').addClass('hide-setting');
+        }
+
+        if(hasChangedSettings){
+            $('.wpil-live-download-ai-data.button-primary').css({'display': 'none'});
+            $('.wpil-live-download-ai-data-disabled').css({'display': 'inline-block'});
+        }else{
+            $('.wpil-live-download-ai-data.button-primary').css({'display': 'inline-block'});
+            $('.wpil-live-download-ai-data-disabled').css({'display': 'none'});
+        }
+
+    }
+    toggleAiSettings();
+
+    $(document).on('change', '.wpil-ai-version-selector', toggleDownloadOnAIMethodChange);
+    function toggleDownloadOnAIMethodChange(){
+        if($('[name="wpil_open_ai_api_key"]').val().length < 1){
+            return;
+        }
+
+        var hasChangedSettings = false;
+        $('.wpil-ai-version-selector').each(function(ind, element){
+            if(
+                $(element).val() !== $(element).data('wpil-ai-process-saved-state')
+            ){
+                hasChangedSettings = true;
+            }
+        });
+
+        if(hasChangedSettings){
+            $('.wpil-live-download-ai-data.button-primary').css({'display': 'none'});
+            $('.wpil-live-download-ai-data-disabled').css({'display': 'inline-block'});
+        }else{
+            $('.wpil-live-download-ai-data.button-primary').css({'display': 'inline-block'});
+            $('.wpil-live-download-ai-data-disabled').css({'display': 'none'});
+        }
+    }
+
+    $(document).on('click', '.wpil-live-download-ai-data', liveDownloadAIData);
+    function liveDownloadAIData(e){
+        e.preventDefault();
+        var button = this;
+
+        if($(button).hasClass('button-disabled')){
+            return;
+        }
+
+        var wrapper = document.createElement('div');
+        var message = "Please confirm that your OpenAI account has an active balance of $10 or more and you want to begin sending site data to OpenAI for processing.";
+            message += "<br><br>If you don't know your current balance, you can check the <br> <a href=\"https://platform.openai.com/settings/organization/billing/overview\" target=\"_blank\">OpenAI Billing Portal</a>";
+            message += "<br><br>While the processing is running, please do not start any other active processes unless your<br> <a href=\"https://platform.openai.com/settings/organization/limits\" target=\"_blank\">OpenAI Usage Tier is 2 or greater</a>.";
+        $(wrapper).append(message);
+
+        wpil_swal({
+            title: 'Please Confirm',
+            content: wrapper,
+            icon: 'info',
+            buttons: ['Cancel', 'Begin'],
+        }).then((begin) => {
+            if (begin) {
+                wpil_swal({
+                    title: 'Beginning Processing!',
+                    text: "The data process has begun! \n\n Please leave this tab with the Link Whisper Settings open. If you close it, the process will stop. \n\n (You can close this popup without stopping it)",
+                    icon: 'success'
+                }).then((after) => {
+                    if (after) {
+                        // hide the button
+                        $(button).css({'display': 'none'});
+                        // hide its tooltip
+                        $(button).siblings('div.wpil_help').css({'display': 'none'});
+                        // show the loading bars
+                        $('.wpil-ai-loading-progress-bars').css({'display': 'block'});
+                    }
+                });
+                // start the process
+                ajaxliveDownloadAIData(button);
+            }
+        });
+    }
+    $(document).on('click', '.wpil-ai-loading-background, #wpil-ai-loading-close', disableAIDownloadOverlay);
+    function disableAIDownloadOverlay(){
+        $('.wpil-ai-loading-wrapper').removeClass('wpil-is-popup');
+        $('.wpil-ai-loading-background').css({'display': 'none'});
+    }
+
+    var aiDownloadTimer = 0,
+        aiDownloadRetry = 0,
+        completionRetry = 0,
+        completeCount = 0,
+        rateLimitCount = 0,
+        lastStats = {};
+    function ajaxliveDownloadAIData(button, time = 0, lastPassUnchanged = false){
+        aiDownloadTimer = Math.floor(Date.now());
+        var nonce = $(button).data('nonce');
+        jQuery.ajax({
+            type: 'POST',
+            url: ajaxurl,
+            data: {
+                action: 'wpil_live_download_ai_data',
+                start_time: time,
+                last_pass_unchanged: (lastPassUnchanged) ? '1': '0',
+                nonce: nonce,
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                console.log('There has been an error during the download!');
+                console.log(aiDownloadRetry);
+                aiDownloadRetry += 1;
+
+                // if the scan has errored less than 5 times, try it again
+                if(aiDownloadRetry < 5){
+                    var wait = 5;
+                    if(jqXHR && jqXHR.status && jqXHR.status === 524){
+                        // if we probably had a CloudFlare error, wait longer
+                        wait *  120;
+                    }
+                    setTimeout(function(){
+                        ajaxliveDownloadAIData(button, time);
+                    }, wait * 1000);
+                    
+                }else{
+                    var wrapper = document.createElement('div');
+                    $(wrapper).append('<strong>' + textStatus + '</strong><br>' + errorThrown);
+                    $(wrapper).append(jqXHR.responseText);
+                    wpil_swal({"title": "Error", "content": wrapper, "icon": "error"});
+                    disableAIDownloadOverlay();
+                }
+            },
+            success: function(response){
+                aiDownloadRetry = 0;
+                console.log(response);
+                // if there was an error
+                if(response.error){
+                    var wrapper = document.createElement('div');
+                    $(wrapper).append(response.error.text);
+                    // output the error message
+                    wpil_swal({"title": response.error.title, "content": wrapper, "icon": "error"}).then(() => {
+                        location.reload();
+                    });
+                    disableAIDownloadOverlay();
+                    // and exit
+                    return;
+                }else if(response.continue){
+                    // update the loader text
+                    if(response.continue.data_total_processed){
+                        var changed = false;
+                        if(Object.keys(lastStats).length > 0){
+                            var newKeys = Object.keys(response.continue.data_total_processed),
+                                oldKeys = Object.keys(lastStats),
+                                diff = newKeys.map(function(a){return parseInt(a);}).filter(x => !oldKeys.map(function(b){return parseInt(b);}).includes(x)).concat(oldKeys.map(function(b){return parseInt(b);}).filter(x => !newKeys.map(function(a){return parseInt(a);}).includes(x)));
+                            if(false/*newKeys.length !== oldKeys.length || diff.length > 0*/){
+                                changed = true;
+                                completeCount = 0;
+                            }else{
+                                for(var i in response.continue.data_total_processed){
+                                    if(lastStats[i] && parseInt(lastStats[i]) !== parseInt(response.continue.data_total_processed[i])){
+                                        changed = true;
+                                    }
+                                }
+
+                                if(changed){
+                                    completeCount = 0;
+                                }else if(completeCount >= 3){
+                                    disableAIDownloadOverlay();
+                                    wpil_swal(response.continue.completion_messages.info.title, response.continue.completion_messages.info.text, 'info').then(() => {
+                                        location.reload();
+                                    });
+                                    return;
+                                }else if (response.continue.post_saving && response.continue.processed_embeddings < 1){
+                                    completeCount++;
+                                }
+                            }
+                        }else{
+                            changed = true;
+                        }
+                            
+                        lastStats = response.continue.data_total_processed;
+                        for(var i in response.continue.data_total_processed){
+                            if(-1 !== i.indexOf('summar')){
+                                var loader = $('.post-summarization-loader'),
+                                    loadingCompletion = $('.post-summarization-loading-completion .wpil-completed-count'),
+                                    newCompleted = parseInt(response.continue.data_total_processed[i]),
+                                    total = loader.data('wpil-total-count'),
+                                    percentCompleted = ((newCompleted/total) * 100).toFixed(0);
+
+                                loader.data('wpil-loading-completed', newCompleted);
+                                loader.find('.progress_count').css({'width': percentCompleted + '%'});
+                                loader.find('.progress_count').text(percentCompleted + '%');
+                                loadingCompletion.text(newCompleted);
+                            }
+
+                            if(-1 !== i.indexOf('product')){
+                                var loader = $('.product-detection-loader'),
+                                    loadingCompletion = $('.product-detection-loading-completion .wpil-completed-count'),
+                                    newCompleted = parseInt(response.continue.data_total_processed[i]),
+                                    total = loader.data('wpil-total-count'),
+                                    percentCompleted = ((newCompleted/total) * 100).toFixed(0);
+
+                                loader.data('wpil-loading-completed', newCompleted);
+                                loader.find('.progress_count').css({'width': percentCompleted + '%'});
+                                loader.find('.progress_count').text(percentCompleted + '%');
+                                loadingCompletion.text(newCompleted);
+                            }
+
+                            if(-1 !== i.indexOf('create-post-embeddings')){
+                                var loader = $('.content-analysis-loader'),
+                                    loadingCompletion = $('.content-analysis-loading-completion .wpil-completed-count'),
+                                    newCompleted = parseInt(response.continue.data_total_processed[i]),
+                                    total = loader.data('wpil-total-count'),
+                                    percentCompleted = ((newCompleted/total) * 100).toFixed(0);
+
+                                loader.data('wpil-loading-completed', newCompleted);
+                                loader.find('.progress_count').css({'width': percentCompleted + '%'});
+                                loader.find('.progress_count').text(percentCompleted + '%');
+                                loadingCompletion.text(newCompleted);
+                            }
+
+                            if(-1 !== i.indexOf('calculated-post-embeddings')){
+                                var loader = $('.content-calculation-loader'),
+                                    loadingCompletion = $('.content-calculation-loading-completion .wpil-completed-count'),
+                                    newCompleted = parseInt(response.continue.data_total_processed[i]),
+                                    total = loader.data('wpil-total-count'),
+                                    percentCompleted = ((newCompleted/total) * 100).toFixed(0);
+
+                                loader.data('wpil-loading-completed', newCompleted);
+                                loader.find('.progress_count').css({'width': percentCompleted + '%'});
+                                loader.find('.progress_count').text(percentCompleted + '%');
+                                loadingCompletion.text(newCompleted);
+                            }
+
+                            if(-1 !== i.indexOf('keyword-detecting')){
+                                var loader = $('.keyword-detection-loader'),
+                                    loadingCompletion = $('.keyword-detection-loading-completion .wpil-completed-count'),
+                                    newCompleted = parseInt(response.continue.data_total_processed[i]),
+                                    total = loader.data('wpil-total-count'),
+                                    percentCompleted = ((newCompleted/total) * 100).toFixed(0);
+
+                                loader.data('wpil-loading-completed', newCompleted);
+                                loader.find('.progress_count').css({'width': percentCompleted + '%'});
+                                loader.find('.progress_count').text(percentCompleted + '%');
+                                loadingCompletion.text(newCompleted);
+                            }
+
+                            if(-1 !== i.indexOf('keyword-assigning')){
+                                var loader = $('.keyword-assigning-loader'),
+                                    loadingCompletion = $('.keyword-assigning-loading-completion .wpil-completed-count'),
+                                    newCompleted = parseInt(response.continue.data_total_processed[i]),
+                                    total = loader.data('wpil-total-count'),
+                                    percentCompleted = ((newCompleted/total) * 100).toFixed(0);
+
+                                loader.data('wpil-loading-completed', newCompleted);
+                                loader.find('.progress_count').css({'width': percentCompleted + '%'});
+                                loader.find('.progress_count').text(percentCompleted + '%');
+                                loadingCompletion.text(newCompleted);
+                            }
+                        }
+                    }
+
+                    if(response.continue.estimated_cost){
+                        var cost = '$' + (response.continue.estimated_cost.toFixed(2));
+                        $('.ai-estimated-cost-section .ai-estimated-cost').text(cost);
+                    }
+
+                    if(response.continue.current_process){
+                        $('.ai-current-process-section .ai-current-process-text').text(response.continue.current_process);
+                    }
+                    
+                    if(!changed || response.continue.oai_completed){
+                        var offset = 0;
+                    }else{
+                        var offset = (aiDownloadTimer && (65000 - (Math.floor(Date.now()) - aiDownloadTimer)) > 0) ? (65000 - (Math.floor(Date.now()) - aiDownloadTimer) + 150): 0;
+                    }
+
+                    if(response.continue.is_rate_limited){
+                        rateLimitCount++;
+                        // if we've been rate limited for a while now
+                        if(rateLimitCount > 10 && response.continue.completion_messages.error){
+                            // tell the user about it and exit
+
+                            var wrapper = document.createElement('div');
+                            $(wrapper).append(response.continue.completion_messages.error.text);
+                            wpil_swal({"title": response.continue.completion_messages.error.title, "content": wrapper, "icon": "error"}).then(() => {
+                                location.reload();
+                            });
+                            disableAIDownloadOverlay();
+                            return;
+                        }
+                        // otherwise,
+                        offset += 60000; // wait an extra minute if we're rate limited
+                    }else{
+                        rateLimitCount = 0;
+                    }
+
+                    setTimeout(function(){
+                        ajaxliveDownloadAIData(button, response.continue.start_time, !changed);
+                    }, offset);
+
+                }else if(response.success){
+
+                    if(completionRetry < 2){
+                        if(response.success.oai_completed){
+                            var offset = 0;
+                        }else{
+                            var offset = (aiDownloadTimer && (65000 - (Math.floor(Date.now()) - aiDownloadTimer)) > 0) ? (65000 - (Math.floor(Date.now()) - aiDownloadTimer) + 150): 0;
+                        }
+                        setTimeout(function(){
+                            ajaxliveDownloadAIData(button, time);
+                        }, offset);
+                        completionRetry++;
+                        return;
+                    }
+
+                    disableAIDownloadOverlay();
+                    wpil_swal(response.success.title, response.success.text, 'success').then(() => {
+                        location.reload();
+                    });
+                }
+            }
+        });
+    }
+    $(document).on('click', '.wpil-clear-all-ai-data', clearAllAIData);
+    function clearAllAIData(e){
+        e.preventDefault();
+        var button = this;
+
+        if($(button).hasClass('button-disabled')){
+            return;
+        }
+
+        wpil_swal({
+            title: 'Please Confirm',
+            text: "Please confirm that you want to delete all of Link Whisper's AI generated data.",
+            icon: 'info',
+            buttons: ['Cancel', 'Delete Data'],
+        }).then((begin) => {
+            if (begin) {
+                // animate the button
+                $(button).addClass('wpil_button_is_active');
+                // and start the process
+                ajaxClearAIData(button);
+            }
+        });
+    }
+    function ajaxClearAIData(button){
+        var nonce = $(button).data('nonce');
+        jQuery.ajax({
+            type: 'POST',
+            url: ajaxurl,
+            data: {
+                action: 'wpil_clear_ai_data',
+                nonce: nonce,
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                var wrapper = document.createElement('div');
+                $(wrapper).append('<strong>' + textStatus + '</strong><br>');
+                $(wrapper).append(jqXHR.responseText);
+                wpil_swal({"title": "Error", "content": wrapper, "icon": "error"});
+            },
+            success: function(response){
+                console.log(response);
+                // if there was an error
+                if(response.error){
+                    // output the error message
+                    wpil_swal(response.error.title, response.error.text, 'error');
+                    // and exit
+                    return;
+                }else if(response.success){
+                    wpil_swal(response.success.title, response.success.text, 'success').then(() => {
+                        location.reload();
+                    });
+                }
+            },
+            complete: function(){
+                // in any case, deanimate the button
+                $(button).removeClass('wpil_button_is_active');
+            }
+        });
+    }
+
+    $(document).on('click', '.is-dismissible.wpil-ai-insufficient-quota-notice .notice-dismiss', function (){
+        jQuery.ajax({
+            type: 'POST',
+            url: ajaxurl,
+            data: {
+                action: 'wpil_ai_dismiss_credit_notice',
+            },
+        });
+    })
+
+    $(document).on('click', '.is-dismissible.wpil-ai-key-decoding-error-notice .notice-dismiss', function (){
+        jQuery.ajax({
+            type: 'POST',
+            url: ajaxurl,
+            data: {
+                action: 'wpil_ai_dismiss_api_key_decoding_error',
+            },
+        });
+    })
+
+    $(document).on('change', 'input[name="wpil_related_posts_use_ai_data"]', toggleUseAiDataRelatedPosts);
+    function toggleUseAiDataRelatedPosts(){
+        if($(this).is(':checked')){
+            $('.wpil-related-posts-ai-relatedtion-threshold-row').removeClass('hide-setting');
+        }else{
+            $('.wpil-related-posts-ai-relatedtion-threshold-row').addClass('hide-setting');
+        }
+    }
+    $(document).on('change', 'input[name="wpil_related_posts_ai_relation_threshold"]', function(){
+        var level = $(this).val();
+        $('.wpil-related-posts-embedding-relatedness-threshold').text((parseFloat((level) * 100).toPrecision(3)) + '%');
+    });
+
+    $(document).on('change', 'input[name="wpil_related_posts_hide_empty_widget"]', toggleHideEmptyRelatedPost);
+    function toggleHideEmptyRelatedPost(){
+        if(!$(this).is(':checked')){
+            $('.wpil-related-posts-hide-empty-widget-row').removeClass('hide-setting');
+        }else{
+            $('.wpil-related-posts-hide-empty-widget-row').addClass('hide-setting');
+        }
+    }
+
+    var thumbToggled = false;
+    function thumbIsToggled(){
+        var layout = jQuery('input[name="wpil_related_post_widget_layout"]:checked').val(),
+            toggled = $('input[name="wpil_related_posts_use_thumbnail"]').is(':checked');
+        
+        // if the thumbnail is already on
+        if(toggled){
+            thumbToggled = true;
+        }else if(undefined !== layout && false !== layout && '' !== layout){
+            layout = JSON.parse(layout);
+            if(layout.display && layout.display === 'row'){
+                // if the thumbnail has been turned off
+                thumbToggled = true;
+            }
+        }
+    }
+    thumbIsToggled();
+    
+    $(document).on('change', 'input[name="wpil_related_posts_use_thumbnail"]', toggleRelatedPostThumbnailSettings);
+    function toggleRelatedPostThumbnailSettings(){
+        var thumb = $('input[name="wpil_related_posts_use_thumbnail"]');
+        if(thumb.is(':checked')){
+            $('.wpil-related-posts-thumbnail-row').removeClass('hide-setting');
+        }else{
+            $('.wpil-related-posts-thumbnail-row').addClass('hide-setting');
+        }
+    }
+
+    $(document).on('change', '#wpil-related-posts-styling-type-toggle', toggleRelatedPostStylingSettings);
+    function toggleRelatedPostStylingSettings(){
+        if($(this).is(':checked')){
+            $('.wpil-related-posts-mobile-styling-container').removeClass('hide-setting');
+            $('.wpil-related-posts-full-styling-container').addClass('hide-setting');
+        }else{
+            $('.wpil-related-posts-mobile-styling-container').addClass('hide-setting');
+            $('.wpil-related-posts-full-styling-container').removeClass('hide-setting');
+        }
+
+        var sibling = $(this).parents('.expandable-area-container').find('.expandable-area'),
+            expandSize = (sibling.get(0).scrollHeight) - 35;
+        sibling.css({'height': expandSize + 'px'});
+    }
+
+    // update the thumbnail's use if the user is just casually changing the RP settings
+    $(document).on('change', 'input[name="wpil_related_post_widget_layout"]', changeThumbnailDisplay);
+    function changeThumbnailDisplay(){
+        var settingsOpen = ($('.wpil-related-posts-styling-controls').hasClass('expanded')),
+            thumbnail = $('input[name="wpil_related_posts_use_thumbnail"]'),
+            value = JSON.parse($(this).val());
+
+        if(!thumbToggled && !settingsOpen && undefined !== value && false !== value && '' !== value){
+            if(undefined !== value.display && value.display === 'column'){
+                if(thumbnail.is(':checked')){
+                    thumbnail.prop('checked', false).trigger('change');
+                }
+            }else if(undefined !== value.display && value.display === 'row'){
+                if(!thumbnail.is(':checked')){
+                    thumbnail.prop('checked', true).trigger('change');
+                }
+            }
+        }
+    }
+
+    $(document).on('click', '.wpil-generate-related-post-links', generateAutoSelectedRelatedLinks);
+    function generateAutoSelectedRelatedLinks(e){
+        e.preventDefault();
+        var button = this;
+
+        wpil_swal({
+            title: 'Please Confirm',
+            text: "Please confirm that you want to refresh all of the auto-selected Related Post Links. This will not change any of the Related Posts you've manually selected.",
+            icon: 'info',
+            buttons: ['Cancel', 'Refresh Links'],
+        }).then((refresh) => {
+            if (refresh) {
+                // hide the other refresh option
+                $('.wpil-generate-all-related-post-row').css({'display': 'none'});
+                // hide the button
+                $(button).css({'display': 'none'});
+                // show the loading bar
+                $('.wpil-generate-auto-related-post-row .related-post-loader').css({'display': 'block'});
+                // start the process
+                ajaxRefreshRelatedPostLinks(button, 'auto', true);
+            }
+        });
+    }
+
+    $(document).on('click', '.wpil-generate-all-related-post-links', generateAllRelatedLinks);
+    function generateAllRelatedLinks(e){
+        e.preventDefault();
+        var button = this;
+
+        wpil_swal({
+            title: 'Please Confirm',
+            text: "Please confirm that you want to refresh all Related Post Links. This includes the ones that have been manually selected.",
+            icon: 'info',
+            buttons: ['Cancel', 'Refresh Links'],
+        }).then((refresh) => {
+            if (refresh) {
+                // hide the other refresh option
+                $('.wpil-generate-auto-related-post-row').css({'display': 'none'});
+                // hide the button
+                $(button).css({'display': 'none'});
+                // show the loading bar
+                $('.wpil-generate-all-related-post-row .related-post-loader').css({'display': 'block'});
+                // start the process
+                ajaxRefreshRelatedPostLinks(button, 'all', true);
+            }
+        });
+    }
+
+    function ajaxRefreshRelatedPostLinks(button, context = 'all', initial = false, processed = 0, total = 0){
+        var nonce = $(button).data('nonce');
+        jQuery.ajax({
+            type: 'POST',
+            url: ajaxurl,
+            data: {
+                action: 'wpil_refresh_related_post_links',
+                context: context,
+                initial: initial,
+                total: total,
+                processed: processed,
+                nonce: nonce,
+            },
+            success: function(response){
+                console.log(response);
+
+                if(!isJSON(response)){
+                    response = extractAndValidateJSON(response, ['error', 'continue', 'success']);
+                }
+
+                // if there was an error
+                if(response.error){
+                    // output the error message
+                    wpil_swal(response.error.title, response.error.text, 'error');
+                    // and exit
+                    return;
+                }else if(response.continue){
+                    // update the loader text
+                    $('.related-post-loader:visible').find('.progress_count').html(response.message);
+                    ajaxRefreshRelatedPostLinks(button, context, false, response.processed, response.total);
+                }else if(response.success){
+                    $('.related-post-loader:visible').find('.progress_count').html(response.message);
+                    wpil_swal(response.success.title, response.success.text, 'success').then(() => {
+                        location.reload();
+                    });
+                }
+            }
+        });
+    }
+
+    $(document).on('input', '.wpil-related-post-number-selector', function(){
+        var parent = $(this).parents('li'),
+            clearButton = parent.find('.wpil-related-posts-clear-number:disabled'),
+            emptyInput = parent.find('.wpil-related-post-number-selector-empty').not(':disabled'),
+            val = $(this).val();
+        // consider this if we get complaints about numbers going too high. Currently, it causes weird snapping between the min and max when you move the mouse diagonally
+        //var val = ($(this).val() <= $(this).prop('max')) ? $(this).val(): $(this).prop('max');
+
+        parent.find('.wpil-related-post-number-selector').removeClass('clear').val(val);
+        if(clearButton.length > 0){
+            clearButton.prop('disabled', false);
+        }
+
+        if(emptyInput.length > 0){
+            emptyInput.prop('disabled', true);
+        }
+    });
+
+    $(document).on('change', '.wpil-related-posts-colorpicker', function(){
+        var parent = $(this).parents('li');
+        $(this).removeClass('clear');
+        parent.find('.wpil-related-posts-clear-colorpicker').prop('disabled', false); // enable the colorpicker
+        parent.find('.wpil-related-posts-colorpicker-empty').prop('disabled', true); // and disable the "empty" value
+    });
+
+    $(document).on('click', '.wpil-related-posts-clear-colorpicker', function(){
+        var parent = $(this).parents('li');
+        parent.find('input[type="color"]').val('0').attr('value', '0').addClass('clear'); // clear the colorpicker as best we can... There's no "empty" setting for HTML colorpickers, so we'll make it look like it's empty!
+        parent.find('.wpil-related-posts-colorpicker-empty').prop('disabled', false); // and enable the "empty" color value input that will override the colorpicker and give us a real empty value
+        $(this).prop('disabled', true);
+    });
+
+    $(document).on('click', '.wpil-related-posts-clear-number', function(){
+        // find the parent list item
+        var parent = $(this).parents('li');
+        // clear the number and range inputs
+        parent.find('input[type="number"].wpil-related-post-number-selector').val('').attr('value', '').addClass('clear');
+        parent.find('input[type="range"].wpil-related-post-number-selector').val('0').attr('value', '0').addClass('clear');
+        // enable the "empty" input
+        parent.find('.wpil-related-post-number-selector-empty').prop('disabled', false);
+        // disable the clear button
+        $(this).prop('disabled', true);
+    });
+
+    $(document).on('change', 'select[name="wpil_related_posts_widget_placement"]', toggleRelatedPostParagraphPlacement);
+    function toggleRelatedPostParagraphPlacement(){
+        var selected = $(this).val();
+        if(selected === 'paragraphs_from_bottom' || selected === 'paragraphs_from_top'){
+            $('[name="wpil_related_posts_widget_placement_paragraphs"]').removeClass('hide-setting');
+        }else{
+            $('[name="wpil_related_posts_widget_placement_paragraphs"]').addClass('hide-setting');
+        }
+    }
+
+    /** /Related Posts Settings **/
+
+	$(document).on('click', '.wpil_row_expand i, .wpil_row_expand .expandable-area-text', function(){
+        var parent = $(this).parents('.wpil_row_expand').first(),
+            grandParent = $(this).parents('.expandable-area-container').first(),
+            sibling = $(this).parents('.expandable-area-container').find('.expandable-area');
+        if(parent.hasClass('contracted')){
+            var  expandSize = (sibling.get(0).scrollHeight);
+            sibling.removeClass('contracted').addClass('expanded').css({'height': expandSize + 'px'});
+            parent.removeClass('contracted').addClass('expanded');
+            grandParent.removeClass('contracted').addClass('expanded');
+        }else if(parent.hasClass('expanded')){
+            sibling.removeClass('expanded').addClass('contracted').css({'height': sibling.data('wpil-contract-size')});
+            parent.removeClass('expanded').addClass('contracted');
+            grandParent.removeClass('expanded').addClass('contracted');
+        }
+	});
+
     $(document).on('change', 'input[name="wpil_link_external_sites"]', toggleSiteLinkingDisplay);
     function toggleSiteLinkingDisplay(){
         var input = $('input[name="wpil_link_external_sites"]');
@@ -197,6 +952,7 @@
             parent = button.parent(),
             nonce = button.data('nonce'),
             url = button.parents('.wpil-linked-site-input').find('[name="wpil_linked_site_url[]"]').val(),
+            encodedUrl = btoa(url),
             urlRegex = /^(http|https):\/\/(([a-zA-Z0-9$\-_.+!*'(),;:&=]|%[0-9a-fA-F]{2})+@)?(((25[0-5]|2[0-4][0-9]|[0-1][0-9][0-9]|[1-9][0-9]|[0-9])(\.(25[0-5]|2[0-4][0-9]|[0-1][0-9][0-9]|[1-9][0-9]|[0-9])){3})|localhost|([a-zA-Z0-9\-\u00C0-\u017F]+\.)+([a-zA-Z]{2,}))(:[0-9]+)?(\/(([a-zA-Z0-9$\-_.+!*'(),;:@&=]|%[0-9a-fA-F]{2})*(\/([a-zA-Z0-9$\-_.+!*'(),;:@&=]|%[0-9a-fA-F]{2})*)*)?(\?([a-zA-Z0-9$\-_.+!*'(),;:@&=\/?]|%[0-9a-fA-F]{2})*)?(\#([a-zA-Z0-9$\-_.+!*'(),;:@&=\/?]|%[0-9a-fA-F]{2})*)?)?$/,
             code = $('[name="wpil_link_external_sites_access_code"]:visible').val();
 
@@ -226,11 +982,17 @@
                     url: ajaxurl,
                     data: {
                         action: 'wpil_register_selected_site',
-                        url: url,
+                        register_url: url,
+                        encoded_register_url: encodedUrl,
                         nonce: nonce,
                     },
                     success: function(response){
                         console.log(response);
+
+                        if(!isJSON(response)){
+                            response = extractAndValidateJSON(response, ['error', 'info']);
+                        }
+
                         // if there was an error
                         if(response.error){
                             // output the error message
@@ -260,6 +1022,7 @@
             parent = button.parent(),
             nonce = button.data('nonce'),
             url = button.parents('.wpil-linked-site-input').find('[name="wpil_linked_site_url[]"]').val(),
+            encodedUrl = btoa(url),
             urlRegex = /^(http|https):\/\/(([a-zA-Z0-9$\-_.+!*'(),;:&=]|%[0-9a-fA-F]{2})+@)?(((25[0-5]|2[0-4][0-9]|[0-1][0-9][0-9]|[1-9][0-9]|[0-9])(\.(25[0-5]|2[0-4][0-9]|[0-1][0-9][0-9]|[1-9][0-9]|[0-9])){3})|localhost|([a-zA-Z0-9\-\u00C0-\u017F]+\.)+([a-zA-Z]{2,}))(:[0-9]+)?(\/(([a-zA-Z0-9$\-_.+!*'(),;:@&=]|%[0-9a-fA-F]{2})*(\/([a-zA-Z0-9$\-_.+!*'(),;:@&=]|%[0-9a-fA-F]{2})*)*)?(\?([a-zA-Z0-9$\-_.+!*'(),;:@&=\/?]|%[0-9a-fA-F]{2})*)?(\#([a-zA-Z0-9$\-_.+!*'(),;:@&=\/?]|%[0-9a-fA-F]{2})*)?)?$/;
             
         // if there's no url given
@@ -281,11 +1044,17 @@
             url: ajaxurl,
             data: {
                 action: 'wpil_link_selected_site',
-                url: url,
+                linking_url: url,
+                encoded_linking_url: encodedUrl,
                 nonce: nonce,
             },
             success: function(response){
                 console.log(response);
+
+                if(!isJSON(response)){
+                    response = extractAndValidateJSON(response, ['error', 'info', 'success']);
+                }
+
                 // if there was an error
                 if(response.error){
                     // output the error message
@@ -320,18 +1089,19 @@
         var button = $(this),
             parent = button.parents('.wpil-linked-site-input'),
             nonce = button.data('nonce'),
-            url = button.parents('.wpil-linked-site-input').find('[name="wpil_linked_site_url[]"]').val(),
+            process_url = button.parents('.wpil-linked-site-input').find('[name="wpil_linked_site_url[]"]').val(),
+            encoded_process_url = btoa(process_url),
             urlRegex = /^(http|https):\/\/(([a-zA-Z0-9$\-_.+!*'(),;:&=]|%[0-9a-fA-F]{2})+@)?(((25[0-5]|2[0-4][0-9]|[0-1][0-9][0-9]|[1-9][0-9]|[0-9])(\.(25[0-5]|2[0-4][0-9]|[0-1][0-9][0-9]|[1-9][0-9]|[0-9])){3})|localhost|([a-zA-Z0-9\-\u00C0-\u017F]+\.)+([a-zA-Z]{2,}))(:[0-9]+)?(\/(([a-zA-Z0-9$\-_.+!*'(),;:@&=]|%[0-9a-fA-F]{2})*(\/([a-zA-Z0-9$\-_.+!*'(),;:@&=]|%[0-9a-fA-F]{2})*)*)?(\?([a-zA-Z0-9$\-_.+!*'(),;:@&=\/?]|%[0-9a-fA-F]{2})*)?(\#([a-zA-Z0-9$\-_.+!*'(),;:@&=\/?]|%[0-9a-fA-F]{2})*)?)?$/;
             
         // if there's no url given
-        if(url.length < 1){
+        if(process_url.length < 1){
             // ask the user to add one
             wpil_swal('No Site Url', 'The site url field is empty, please reload the page and try again.', 'error');
             return;
         }
 
         // if the site url isn't properly formatted
-        if(!urlRegex.test(url)){
+        if(!urlRegex.test(process_url)){
             // throw an error
             wpil_swal('Format Error', 'The given url was not in the necessary format. Please reload the page and try again.', 'error');
             return;
@@ -345,11 +1115,17 @@
             url: ajaxurl,
             data: {
                 action: 'wpil_remove_linked_site',
-                url: url,
+                process_url: process_url,
+                encoded_process_url: encoded_process_url,
                 nonce: nonce,
             },
             success: function(response){
                 console.log(response);
+
+                if(!isJSON(response)){
+                    response = extractAndValidateJSON(response, ['error', 'info', 'success']);
+                }
+
                 // if there was an error
                 if(response.error){
                     // output the error message
@@ -382,18 +1158,19 @@
         var button = $(this),
             parent = button.parents('.wpil-linked-site-input'),
             nonce = button.data('nonce'),
-            url = button.parents('.wpil-linked-site-input').find('[name="wpil_linked_site_url[]"]').val(),
+            process_url = button.parents('.wpil-linked-site-input').find('[name="wpil_linked_site_url[]"]').val(),
+            encoded_process_url = btoa(process_url),
             urlRegex = /^(http|https):\/\/(([a-zA-Z0-9$\-_.+!*'(),;:&=]|%[0-9a-fA-F]{2})+@)?(((25[0-5]|2[0-4][0-9]|[0-1][0-9][0-9]|[1-9][0-9]|[0-9])(\.(25[0-5]|2[0-4][0-9]|[0-1][0-9][0-9]|[1-9][0-9]|[0-9])){3})|localhost|([a-zA-Z0-9\-\u00C0-\u017F]+\.)+([a-zA-Z]{2,}))(:[0-9]+)?(\/(([a-zA-Z0-9$\-_.+!*'(),;:@&=]|%[0-9a-fA-F]{2})*(\/([a-zA-Z0-9$\-_.+!*'(),;:@&=]|%[0-9a-fA-F]{2})*)*)?(\?([a-zA-Z0-9$\-_.+!*'(),;:@&=\/?]|%[0-9a-fA-F]{2})*)?(\#([a-zA-Z0-9$\-_.+!*'(),;:@&=\/?]|%[0-9a-fA-F]{2})*)?)?$/;
-            
+
         // if there's no url given
-        if(url.length < 1){
+        if(process_url.length < 1){
             // ask the user to add one
             wpil_swal('No Site Url', 'The site url field is empty, please reload the page and try again.', 'error');
             return;
         }
 
         // if the site url isn't properly formatted
-        if(!urlRegex.test(url)){
+        if(!urlRegex.test(process_url)){
             // throw an error
             wpil_swal('Format Error', 'The given url was not in the necessary format. Please reload the page and try again.', 'error');
             return;
@@ -407,11 +1184,17 @@
             url: ajaxurl,
             data: {
                 action: 'wpil_remove_registered_site',
-                url: url,
+                process_url: process_url,
+                encoded_process_url: encoded_process_url,
                 nonce: nonce,
             },
             success: function(response){
                 console.log(response);
+
+                if(!isJSON(response)){
+                    response = extractAndValidateJSON(response, ['error', 'info', 'success']);
+                }
+
                 // if there was an error
                 if(response.error){
                     // output the error message
@@ -476,7 +1259,8 @@
             url: ajaxurl,
             data: {
                 action: 'wpil_refresh_site_data',
-                url: url,
+                process_url: url,
+                encoded_process_url: btoa(url),
                 nonce: nonce,
                 page: page,
                 saved: saved,
@@ -485,6 +1269,11 @@
             },
             success: function(response){
                 console.log(response);
+
+                if(!isJSON(response)){
+                    response = extractAndValidateJSON(response, ['error', 'success', 'message', 'url', 'page', 'saved', 'total']);
+                }
+
                 // if there was an error
                 if(response.error){
                     // output the error message
@@ -530,12 +1319,18 @@
             url: ajaxurl,
             data: {
                 action: 'wpil_external_site_suggestion_toggle',
-                url: button.data('site-url'),
+                process_url: button.data('site-url'),
+                encoded_process_url: btoa(button.data('site-url')),
                 suggestions_enabled: suggestionsEnabled,
                 nonce: $(this).data('nonce')
             },
             success: function(response){
                 console.log(response);
+
+                if(!isJSON(response)){
+                    response = extractAndValidateJSON(response, ['error', 'info', 'success']);
+                }
+
                 // if there was an error
                 if(response.error){
                     // output the error message
@@ -637,6 +1432,14 @@
 //        $('.wpil-setting-row').removeClass('show-setting');
 //        $('.' + tabId).addClass('show-setting');
 
+        // set the url parameter
+        updateUrlParameter('tab', tabId.substring(5));
+
+        // set the content area's body class
+        $('#settings_page').removeClass (function (index, className) {
+            return (className.match (/(^|\s)wpil-\S+/g) || []).join(' ');
+        }).addClass(tabId);
+
         toggleLicenseSaving(tabId);
 
         // make sure that options that need to be toggled on to be seen stay hidden if not toggled
@@ -649,6 +1452,9 @@
         if($('input[type="radio"][name="wpil_add_icon_to_internal_link"]:checked').val() === 'never'){
             $('.wpil-internal-link-icon-settings').css({'display': 'none'});
         }
+        if(!$('input[type="checkbox"][name="wpil_selected_target_keyword_sources[]"][value="post-content"]').is(':checked')){
+            $('.wpil-post-content-keyword-container').css({'display': 'none'});
+        }
 
         // 
         if(tabId === 'wpil-domain-settings'){
@@ -656,7 +1462,80 @@
             showDomainExceptionFields();
         }
     });
-    
+    $(".wpil-setting-multiselect-search.term-search").select2({
+        multiple: true,
+        closeOnSelect: false,
+        ajax: {
+            url: ajaxurl,
+            dataType: 'json',
+            type: 'POST',
+            delay: 1250,
+            data: function(params){
+                return {
+                    action: 'wpil_term_search',
+                    search: params.term,
+                    select_type: $(this).data('wpil-multiselect-type'),
+                    nonce: $(this).data('wpil-multiselect-nonce')
+                };
+            },
+            processResults: function (data) {
+                if(!isJSON(data)){
+                    data = extractAndValidateJSON(data, ['error', 'id', 'text']);
+                }
+
+                if(data.error){
+                    // output the error message
+                    wpil_swal(data.error.title, data.error.text, 'error');
+                    // and exit
+                    return;
+                }
+                return {
+                  results: data
+                };  
+            },
+            cache: true,
+        },
+        minimumInputLength: 3,
+        placeholder: 'Search for a term to ignore'
+    });
+
+    $(".wpil-setting-multiselect-search.post-search").select2({
+        multiple: true,
+        closeOnSelect: false,
+        ajax: {
+            url: ajaxurl,
+            dataType: 'json',
+            type: 'POST',
+            delay: 1250,
+            data: function(params){
+                return {
+                    action: 'wpil_post_search',
+                    search: params.term,
+                    select_type: $(this).data('wpil-multiselect-type'),
+                    nonce: $(this).data('wpil-multiselect-nonce')
+                };
+            },
+            processResults: function (data) {
+                if(!isJSON(data)){
+                    data = extractAndValidateJSON(data, ['error', 'id', 'text']);
+                }
+
+                if(data.error){
+                    // output the error message
+                    wpil_swal(data.error.title, data.error.text, 'error');
+                    // and exit
+                    return;
+                }
+                return {
+                  results: data
+                };  
+            },
+            cache: true,
+        },
+        minimumInputLength: 3,
+        placeholder: 'Search for a post to ignore'
+    });
+
     /**
      * Enables license activating when the user is on the Licensing tab, 
      * and disables licensing activating when on the other settings tabs.
@@ -885,6 +1764,20 @@
         }
     }
 
+    $(document).on('change', 'input[name="wpil_selected_target_keyword_sources[]"][value="post-content"]', togglePostContentKeywordDisplay);
+    function togglePostContentKeywordDisplay(){
+        var input = $(this);
+
+        // if the site linking is toggled on
+        if(input.is(':checked')){
+            // show the setting inputs
+            $('.wpil-post-content-keyword-container').css({'display': 'block'});
+        }else{
+            // if it's toggled off, hide the inputs
+            $('.wpil-post-content-keyword-container').css({'display': 'none'});
+        }
+    }
+
     $(document).on('change', 'select[name="wpil_get_partial_titles"]', togglePartialTitleInputDisplay);
     function togglePartialTitleInputDisplay(){
         var basis = $(this).val();
@@ -943,6 +1836,21 @@
 		}
 		return parms;
 	}
+
+
+    /**
+     * Helper function that updates url parameters without reloading pages
+     **/
+    function updateUrlParameter(param, value) {
+        // Get the current URL
+        const url = new URL(window.location.href);
+    
+        // Set or update the parameter
+        url.searchParams.set(param, value);
+    
+        // Update the browser's URL without reloading the page
+        window.history.replaceState(null, '', url);
+    }
 
 /**
 *

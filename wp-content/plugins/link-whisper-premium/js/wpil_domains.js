@@ -31,6 +31,11 @@
             data: data,
             success: function(response){
                 console.log(response);
+
+                if(!isJSON(response)){
+                    response = extractAndValidateJSON(response, ['error', 'success']);
+                }
+
                 // if there was an error
                 if(response.error){
                     // output the error message
@@ -180,6 +185,10 @@
                 // stop the button animation
                 button.removeClass('wpil_button_is_active');
 
+                if(!isJSON(response)){
+                    response = extractAndValidateJSON(response, ['error', 'info', 'success']);
+                }
+
                 // if there was an error
                 if(response.error){
                     // output the error message
@@ -204,7 +213,29 @@
                 // 
                 if(response.success){
                     // output the notice message
-                    wpil_swal(response.success.title, response.success.text, 'success');
+                    if ((wpil_ajax.dismissed_popups && wpil_ajax.dismissed_popups['update_domain_attribute'] !== 1)) {
+                        var popupWrapper = document.createElement('div');
+                        $(popupWrapper).append(response.success.text + '<br><br> <input type="checkbox" id="wpil-perma-dismiss-popup" data-wpil-popup-name="update_domain_attribute"><span style="font-size: 12px;">(Don\'t show this again)</span>');
+                        wpil_swal({'title': response.success.title, content: popupWrapper, 'icon': 'success'}).then(() => {
+                            var checkbox = $('#wpil-perma-dismiss-popup');
+                            if(checkbox.is(':checked') && wpil_ajax.dismiss_popup_nonce){
+                                $.ajax({
+                                    type: 'POST',
+                                    url: ajaxurl,
+                                    data: {
+                                        action: 'wpil_dismiss_popup_notice',
+                                        popup_name: checkbox.data('wpil-popup-name'),
+                                        nonce: wpil_ajax.dismiss_popup_nonce,
+                                    },
+                                    complete: function (data) {
+                                        console.log('ignoring complete!');
+                                        wpil_ajax.dismissed_popups['update_domain_attribute'] = 1;
+                                    }
+                                })
+                            }
+                        });
+                    }
+
                     // update the buttons
                     if(undefined !== response.success.data){
                         button.data('saved-attrs', response.success.data);
@@ -266,6 +297,11 @@
                 search_type: searchType
 			},
 			success: function(response){
+
+                if(!isJSON(response)){
+                    response = extractAndValidateJSON(response, ['error', 'info', 'success']);
+                }
+
                 // if there was an error
                 if(response.error){
                     // output the error message

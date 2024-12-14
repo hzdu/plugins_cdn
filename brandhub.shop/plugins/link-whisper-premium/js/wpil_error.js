@@ -58,9 +58,14 @@
                 url: ajaxurl,
                 data: {links: links, action: 'wpil_delete_error_links'},
                 success: function (response) {
+                    if(!isJSON(response)){
+                        response = extractAndValidateJSON(response, ['error', 'success']);
+                    }
+
                     if (response.error) {
                         wpil_swal(response.error.title, response.error.text, 'error');
                     } else if (response.success) {
+                        flushObjectCache();
                         location.reload();
                     }
                 }
@@ -136,20 +141,53 @@
             data: data,
             success: function(response){
                 console.log(response);
+
+                if(!isJSON(response)){
+                    response = extractAndValidateJSON(response, ['error', 'success']);
+                }
+
                 // if there was an error
                 if(response.error){
                     // output the error message
                     wpil_swal(response.error.title, response.error.text, 'error');
                 }else if(response.success){
                     // if it was successful, output the succcess message
-                    wpil_swal(response.success.title, response.success.text, 'success').then(function(){
+                    if ((wpil_ajax.dismissed_popups && wpil_ajax.dismissed_popups['update_broken_link_url'] !== 1)) {
+                        var popupWrapper = document.createElement('div');
+                        $(popupWrapper).append(response.success.text + '<br><br> <input type="checkbox" id="wpil-perma-dismiss-popup" data-wpil-popup-name="update_broken_link_url"><span style="font-size: 12px;">(Don\'t show this again)</span>');
+                        wpil_swal({'title': response.success.title, content: popupWrapper, 'icon': 'success'}).then(() => {
+                            var checkbox = $('#wpil-perma-dismiss-popup');
+                            if(checkbox.is(':checked') && wpil_ajax.dismiss_popup_nonce){
+                                $.ajax({
+                                    type: 'POST',
+                                    url: ajaxurl,
+                                    data: {
+                                        action: 'wpil_dismiss_popup_notice',
+                                        popup_name: checkbox.data('wpil-popup-name'),
+                                        nonce: wpil_ajax.dismiss_popup_nonce,
+                                    },
+                                    complete: function (data) {
+                                        console.log('ignoring complete!');
+                                        wpil_ajax.dismissed_popups['update_broken_link_url'] = 1;
+                                    }
+                                });
+                            }
+
+                            // and remove the link from the table when the user closes the popup
+                            if (el.hasClass('wpil_edit_link')) {
+                                el.closest('tr').fadeOut(300);
+                            } else {
+                                el.closest('li').fadeOut(300);
+                            }
+                        });
+                    }else{
                         // and remove the link from the table when the user closes the popup
                         if (el.hasClass('wpil_edit_link')) {
                             el.closest('tr').fadeOut(300);
                         } else {
                             el.closest('li').fadeOut(300);
                         }
-                    });
+                    }
                 }
             }
         });
@@ -177,11 +215,11 @@
     function wpil_error_process()
     {
         jQuery.ajax({
-			type: 'POST',
-			url: ajaxurl,
-			data: {
-				action: 'wpil_error_process',
-			},
+            type: 'POST',
+            url: ajaxurl,
+            data: {
+                action: 'wpil_error_process',
+            },
             error: function (jqXHR, textStatus) {
                 globalErrorCount++;
 
@@ -190,12 +228,17 @@
                     return;
                 }
 
-				var wrapper = document.createElement('div');
-				$(wrapper).append('<strong>' + textStatus + '</strong><br>');
-				$(wrapper).append(jqXHR.responseText);
-				wpil_swal({"title": "Error", "content": wrapper, "icon": "error"}).then(wpil_report_next_step());
-			},
-			success: function(response){
+                var wrapper = document.createElement('div');
+                $(wrapper).append('<strong>' + textStatus + '</strong><br>');
+                $(wrapper).append(jqXHR.responseText);
+                wpil_swal({"title": "Error", "content": wrapper, "icon": "error"}).then(wpil_report_next_step());
+            },
+            success: function(response){
+
+                if(!isJSON(response)){
+                    response = extractAndValidateJSON(response, ['error', 'finish']);
+                }
+
                 // if there was an error
                 if(response.error){
                     wpil_swal(response.error.title, response.error.text, 'error');
@@ -216,7 +259,7 @@
                     wpil_error_process();
                 }
             }
-		});
+        });
     }
 
     //send request to reset data about broken links
@@ -231,6 +274,10 @@
             action: 'wpil_error_reset_data',
             nonce: nonce
         }, function(response){
+            if(!isJSON(response)){
+                response = extractAndValidateJSON(response, ['error', 'template']);
+            }
+            
             if (typeof response.error != 'undefined') {
                 wpil_swal(response.error.title, response.error.text, 'error');
                 return;
@@ -248,6 +295,11 @@
             get_status: 1
         }, function(response){
             console.log(response);
+
+            if(!isJSON(response)){
+                response = extractAndValidateJSON(response, ['percents', 'status']);
+            }
+
             $('.progress_count:first').css('width', response.percents + '%');
             $('.wpil-loading-status:first').text(response.status);
             wpil_error_process();
@@ -285,24 +337,42 @@
     /**
      * Helper function that parses urls to get their query vars.
      **/
-	function parseURLParams(url) {
-		var queryStart = url.indexOf("?") + 1,
-			queryEnd   = url.indexOf("#") + 1 || url.length + 1,
-			query = url.slice(queryStart, queryEnd - 1),
-			pairs = query.replace(/\+/g, " ").split("&"),
-			parms = {}, i, n, v, nv;
-	
-		if (query === url || query === "") return;
-	
-		for (i = 0; i < pairs.length; i++) {
-			nv = pairs[i].split("=", 2);
-			n = decodeURIComponent(nv[0]);
-			v = decodeURIComponent(nv[1]);
-	
-			if (!parms.hasOwnProperty(n)) parms[n] = [];
-			parms[n].push(nv.length === 2 ? v : null);
-		}
-		return parms;
-	}
+    function parseURLParams(url) {
+        var queryStart = url.indexOf("?") + 1,
+            queryEnd   = url.indexOf("#") + 1 || url.length + 1,
+            query = url.slice(queryStart, queryEnd - 1),
+            pairs = query.replace(/\+/g, " ").split("&"),
+            parms = {}, i, n, v, nv;
+    
+        if (query === url || query === "") return;
+    
+        for (i = 0; i < pairs.length; i++) {
+            nv = pairs[i].split("=", 2);
+            n = decodeURIComponent(nv[0]);
+            v = decodeURIComponent(nv[1]);
+    
+            if (!parms.hasOwnProperty(n)) parms[n] = [];
+            parms[n].push(nv.length === 2 ? v : null);
+        }
+        return parms;
+    }
+
+    /**
+     * Makes a call to the object cache flusher.
+     * Only works on pages that have the nonce defined
+     */
+    function flushObjectCache(){
+        var nonce = $('#wpil-object-cache-flush-nonce').val();
+        if(!nonce || nonce.length < 1){
+            return;
+        }
+
+        $.post(ajaxurl, {
+            action: 'wpil_flush_object_cache',
+            nonce: nonce,
+        }, function (response) {
+            console.log('flush!');
+        });
+    }
 
 })(jQuery);

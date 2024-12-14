@@ -77,11 +77,11 @@
     /**
      * Makes the call to clear the click data when the user clicks the button.
      **/
-     function clearClickData(e){
+    function clearClickData(e){
         e.preventDefault();
         var form = $(this);
         var nonce = form.find('[name="nonce"]').val();
-       
+    
         if(!nonce || form.attr('disabled')){
             return;
         }
@@ -102,23 +102,28 @@
         }
 
         jQuery.ajax({
-			type: 'POST',
-			url: ajaxurl,
-			data: {
-				action: 'wpil_clear_click_data',
+            type: 'POST',
+            url: ajaxurl,
+            data: {
+                action: 'wpil_clear_click_data',
                 clear_data: 1,
                 nonce: nonce,
-			},
+            },
             error: function (jqXHR, textStatus) {
-				var wrapper = document.createElement('div');
-				$(wrapper).append('<strong>' + textStatus + '</strong><br>');
-				$(wrapper).append(jqXHR.responseText);
-				wpil_swal({"title": "Error", "content": wrapper, "icon": "error"}).then(function(){
+                var wrapper = document.createElement('div');
+                $(wrapper).append('<strong>' + textStatus + '</strong><br>');
+                $(wrapper).append(jqXHR.responseText);
+                wpil_swal({"title": "Error", "content": wrapper, "icon": "error"}).then(function(){
                     form.attr('disabled', false);
                     form.find('button.button-primary').removeClass('wpil_button_is_active');
                 });
-			},
-			success: function(response){
+            },
+            success: function(response){
+
+                if(!isJSON(response)){
+                    response = extractAndValidateJSON(response, ['error', 'success']);
+                }
+
                 // if there was an error
                 if(response.error){
                     wpil_swal(response.error.title, response.error.text, 'error').then(function(){
@@ -137,8 +142,8 @@
                     });
                     return;
                 }
-			}
-		});
+            }
+        });
     }
 
     $(document).on('click', '.wpil_delete_click_data', deleteClickData);
@@ -183,6 +188,11 @@
                             });
                         },
                         success: function(response){
+
+                            if(!isJSON(response)){
+                                response = extractAndValidateJSON(response, ['error', 'success']);
+                            }
+
                             // if there was an error
                             if(response.error){
                                 wpil_swal(response.error.title, response.error.text, 'error');
@@ -329,6 +339,11 @@
                             });
                         },
                         success: function(response){
+
+                            if(!isJSON(response)){
+                                response = extractAndValidateJSON(response, ['error', 'success']);
+                            }
+
                             // if there was an error
                             if(response.error){
                                 wpil_swal(response.error.title, response.error.text, 'error');

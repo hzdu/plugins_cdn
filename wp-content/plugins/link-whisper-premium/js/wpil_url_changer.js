@@ -48,6 +48,10 @@
                 });
             },
             success: function(response){
+                if(!isJSON(response)){
+                    response = extractAndValidateJSON(response, ['error', 'ready', 'total', 'finish']);
+                }
+
                 if (response.error) {
                     wpil_swal(response.error.title, response.error.text, 'error');
                     return;
