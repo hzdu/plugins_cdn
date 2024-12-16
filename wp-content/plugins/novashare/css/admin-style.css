@@ -47,9 +47,9 @@
 }
 #novashare-logo {
   display: flex;
-  height: 30px; 
   margin: 10px auto;
   overflow: visible;
+  width: 100%;
 }
 #novashare-menu-toggle {
   display: none;
@@ -478,6 +478,9 @@
   margin: 0px;
   z-index: -1;
 }
+li.novashare-social-network-bluesky label.active {
+  background: #1185FE;
+}
 li.novashare-social-network-twitter label.active {
   background: #000;
 }
@@ -496,7 +499,7 @@ li.novashare-social-network-buffer label.active {
 li.novashare-social-network-reddit label.active {
   background: #ff4500;
 }
-i.novashare-social-network-hackernews label.active {
+li.novashare-social-network-hackernews label.active {
   background: #F0652F;
 }
 li.novashare-social-network-pocket label.active {
@@ -697,6 +700,7 @@ li.novashare-social-network-share label.active {
   }
   #novashare-logo {
     margin: 0px auto;
+    max-height: 30px;
   }
   #novashare-menu-toggle {
     display: flex;
