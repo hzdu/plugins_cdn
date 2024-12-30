@@ -1,7 +1,6 @@
-/*! elementor-pro - v3.21.0 - 15-04-2024 */
+/*! elementor-pro - v3.26.0 - 22-12-2024 */
 /******/ (() => { // webpackBootstrap
 /******/ 	"use strict";
-var __webpack_exports__ = {};
 /*!**************************************************************!*\
   !*** ../modules/screenshots/assets/js/preview/screenshot.js ***!
   \**************************************************************/
@@ -19,7 +18,6 @@ class Screenshot extends elementorModules.ViewModule {
       excluded_external_css_urls: ['https://kit-pro.fontawesome.com'],
       external_images_urls: ['https://i.ytimg.com' // Youtube images domain.
       ],
-
       timeout: 15000,
       // Wait until screenshot taken or fail in 15 secs.
       render_timeout: 5000,
@@ -344,7 +342,8 @@ class Screenshot extends elementorModules.ViewModule {
    * @param {boolean} success
    * @param {string}  imageUrl
    */
-  screenshotDone(success, imageUrl = null) {
+  screenshotDone(success) {
+    let imageUrl = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
     clearTimeout(this.timeoutTimer);
     this.timeoutTimer = null;
 
@@ -366,7 +365,8 @@ class Screenshot extends elementorModules.ViewModule {
    * @param {any}     message
    * @param {string?} timerMethod
    */
-  log(message, timerMethod = 'timeLog') {
+  log(message) {
+    let timerMethod = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'timeLog';
     if (!this.getSettings('isDebug')) {
       return;
     }

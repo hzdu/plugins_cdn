@@ -1,4 +1,4 @@
-/*! elementor-pro - v3.21.0 - 15-04-2024 */
+/*! elementor-pro - v3.26.0 - 22-12-2024 */
 "use strict";
 (self["webpackChunkelementor_pro"] = self["webpackChunkelementor_pro"] || []).push([["elements-handlers"],{
 
@@ -14,54 +14,62 @@ var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/inte
 var _frontend = _interopRequireDefault(__webpack_require__(/*! modules/animated-headline/assets/js/frontend/frontend */ "../modules/animated-headline/assets/js/frontend/frontend.js"));
 var _frontend2 = _interopRequireDefault(__webpack_require__(/*! modules/carousel/assets/js/frontend/frontend */ "../modules/carousel/assets/js/frontend/frontend.js"));
 var _frontend3 = _interopRequireDefault(__webpack_require__(/*! modules/countdown/assets/js/frontend/frontend */ "../modules/countdown/assets/js/frontend/frontend.js"));
-var _frontend4 = _interopRequireDefault(__webpack_require__(/*! modules/hotspot/assets/js/frontend/frontend */ "../modules/hotspot/assets/js/frontend/frontend.js"));
-var _frontend5 = _interopRequireDefault(__webpack_require__(/*! modules/forms/assets/js/frontend/frontend */ "../modules/forms/assets/js/frontend/frontend.js"));
-var _frontend6 = _interopRequireDefault(__webpack_require__(/*! modules/gallery/assets/js/frontend/frontend */ "../modules/gallery/assets/js/frontend/frontend.js"));
-var _frontend7 = _interopRequireDefault(__webpack_require__(/*! modules/lottie/assets/js/frontend/frontend */ "../modules/lottie/assets/js/frontend/frontend.js"));
-var _frontend8 = _interopRequireDefault(__webpack_require__(/*! modules/nav-menu/assets/js/frontend/frontend */ "../modules/nav-menu/assets/js/frontend/frontend.js"));
-var _frontend9 = _interopRequireDefault(__webpack_require__(/*! modules/popup/assets/js/frontend/frontend */ "../modules/popup/assets/js/frontend/frontend.js"));
-var _frontend10 = _interopRequireDefault(__webpack_require__(/*! modules/posts/assets/js/frontend/frontend */ "../modules/posts/assets/js/frontend/frontend.js"));
-var _frontend11 = _interopRequireDefault(__webpack_require__(/*! modules/share-buttons/assets/js/frontend/frontend */ "../modules/share-buttons/assets/js/frontend/frontend.js"));
-var _frontend12 = _interopRequireDefault(__webpack_require__(/*! modules/slides/assets/js/frontend/frontend */ "../modules/slides/assets/js/frontend/frontend.js"));
-var _frontend13 = _interopRequireDefault(__webpack_require__(/*! modules/social/assets/js/frontend/frontend */ "../modules/social/assets/js/frontend/frontend.js"));
-var _frontend14 = _interopRequireDefault(__webpack_require__(/*! modules/table-of-contents/assets/js/frontend/frontend */ "../modules/table-of-contents/assets/js/frontend/frontend.js"));
-var _frontend15 = _interopRequireDefault(__webpack_require__(/*! modules/theme-builder/assets/js/frontend/frontend */ "../modules/theme-builder/assets/js/frontend/frontend.js"));
-var _frontend16 = _interopRequireDefault(__webpack_require__(/*! modules/theme-elements/assets/js/frontend/frontend */ "../modules/theme-elements/assets/js/frontend/frontend.js"));
-var _frontend17 = _interopRequireDefault(__webpack_require__(/*! modules/woocommerce/assets/js/frontend/frontend */ "../modules/woocommerce/assets/js/frontend/frontend.js"));
-var _frontend18 = _interopRequireDefault(__webpack_require__(/*! modules/loop-builder/assets/js/frontend/frontend */ "../modules/loop-builder/assets/js/frontend/frontend.js"));
-var _frontend19 = _interopRequireDefault(__webpack_require__(/*! modules/mega-menu/assets/js/frontend/frontend */ "../modules/mega-menu/assets/js/frontend/frontend.js"));
-var _frontend20 = _interopRequireDefault(__webpack_require__(/*! modules/nested-carousel/assets/js/frontend/frontend */ "../modules/nested-carousel/assets/js/frontend/frontend.js"));
-var _frontend21 = _interopRequireDefault(__webpack_require__(/*! modules/loop-filter/assets/js/frontend/frontend */ "../modules/loop-filter/assets/js/frontend/frontend.js"));
+var _frontend4 = _interopRequireDefault(__webpack_require__(/*! modules/dynamic-tags/assets/js/frontend/frontend */ "../modules/dynamic-tags/assets/js/frontend/frontend.js"));
+var _frontend5 = _interopRequireDefault(__webpack_require__(/*! modules/hotspot/assets/js/frontend/frontend */ "../modules/hotspot/assets/js/frontend/frontend.js"));
+var _frontend6 = _interopRequireDefault(__webpack_require__(/*! modules/forms/assets/js/frontend/frontend */ "../modules/forms/assets/js/frontend/frontend.js"));
+var _frontend7 = _interopRequireDefault(__webpack_require__(/*! modules/gallery/assets/js/frontend/frontend */ "../modules/gallery/assets/js/frontend/frontend.js"));
+var _frontend8 = _interopRequireDefault(__webpack_require__(/*! modules/lottie/assets/js/frontend/frontend */ "../modules/lottie/assets/js/frontend/frontend.js"));
+var _frontend9 = _interopRequireDefault(__webpack_require__(/*! modules/nav-menu/assets/js/frontend/frontend */ "../modules/nav-menu/assets/js/frontend/frontend.js"));
+var _frontend10 = _interopRequireDefault(__webpack_require__(/*! modules/popup/assets/js/frontend/frontend */ "../modules/popup/assets/js/frontend/frontend.js"));
+var _frontend11 = _interopRequireDefault(__webpack_require__(/*! modules/posts/assets/js/frontend/frontend */ "../modules/posts/assets/js/frontend/frontend.js"));
+var _frontend12 = _interopRequireDefault(__webpack_require__(/*! modules/share-buttons/assets/js/frontend/frontend */ "../modules/share-buttons/assets/js/frontend/frontend.js"));
+var _frontend13 = _interopRequireDefault(__webpack_require__(/*! modules/slides/assets/js/frontend/frontend */ "../modules/slides/assets/js/frontend/frontend.js"));
+var _frontend14 = _interopRequireDefault(__webpack_require__(/*! modules/social/assets/js/frontend/frontend */ "../modules/social/assets/js/frontend/frontend.js"));
+var _frontend15 = _interopRequireDefault(__webpack_require__(/*! modules/table-of-contents/assets/js/frontend/frontend */ "../modules/table-of-contents/assets/js/frontend/frontend.js"));
+var _frontend16 = _interopRequireDefault(__webpack_require__(/*! modules/theme-builder/assets/js/frontend/frontend */ "../modules/theme-builder/assets/js/frontend/frontend.js"));
+var _frontend17 = _interopRequireDefault(__webpack_require__(/*! modules/theme-elements/assets/js/frontend/frontend */ "../modules/theme-elements/assets/js/frontend/frontend.js"));
+var _frontend18 = _interopRequireDefault(__webpack_require__(/*! modules/woocommerce/assets/js/frontend/frontend */ "../modules/woocommerce/assets/js/frontend/frontend.js"));
+var _frontend19 = _interopRequireDefault(__webpack_require__(/*! modules/loop-builder/assets/js/frontend/frontend */ "../modules/loop-builder/assets/js/frontend/frontend.js"));
+var _frontend20 = _interopRequireDefault(__webpack_require__(/*! modules/mega-menu/assets/js/frontend/frontend */ "../modules/mega-menu/assets/js/frontend/frontend.js"));
+var _frontend21 = _interopRequireDefault(__webpack_require__(/*! modules/nested-carousel/assets/js/frontend/frontend */ "../modules/nested-carousel/assets/js/frontend/frontend.js"));
+var _frontend22 = _interopRequireDefault(__webpack_require__(/*! modules/loop-filter/assets/js/frontend/frontend */ "../modules/loop-filter/assets/js/frontend/frontend.js"));
+var _frontend23 = _interopRequireDefault(__webpack_require__(/*! modules/off-canvas/assets/js/frontend/frontend */ "../modules/off-canvas/assets/js/frontend/frontend.js"));
+var _frontend24 = _interopRequireDefault(__webpack_require__(/*! modules/floating-buttons/assets/js/frontend/frontend */ "../modules/floating-buttons/assets/js/frontend/frontend.js"));
+var _frontend25 = _interopRequireDefault(__webpack_require__(/*! modules/search/assets/js/frontend/frontend */ "../modules/search/assets/js/frontend/frontend.js"));
 const extendDefaultHandlers = defaultHandlers => {
   const handlers = {
     animatedText: _frontend.default,
     carousel: _frontend2.default,
     countdown: _frontend3.default,
-    hotspot: _frontend4.default,
-    form: _frontend5.default,
-    gallery: _frontend6.default,
-    lottie: _frontend7.default,
-    nav_menu: _frontend8.default,
-    popup: _frontend9.default,
-    posts: _frontend10.default,
-    share_buttons: _frontend11.default,
-    slides: _frontend12.default,
-    social: _frontend13.default,
-    themeBuilder: _frontend15.default,
-    themeElements: _frontend16.default,
-    woocommerce: _frontend17.default,
-    tableOfContents: _frontend14.default,
-    loopBuilder: _frontend18.default,
-    megaMenu: _frontend19.default,
-    nestedCarousel: _frontend20.default,
-    taxonomyFilter: _frontend21.default
+    dynamicTags: _frontend4.default,
+    hotspot: _frontend5.default,
+    form: _frontend6.default,
+    gallery: _frontend7.default,
+    lottie: _frontend8.default,
+    nav_menu: _frontend9.default,
+    popup: _frontend10.default,
+    posts: _frontend11.default,
+    share_buttons: _frontend12.default,
+    slides: _frontend13.default,
+    social: _frontend14.default,
+    themeBuilder: _frontend16.default,
+    themeElements: _frontend17.default,
+    woocommerce: _frontend18.default,
+    tableOfContents: _frontend15.default,
+    loopBuilder: _frontend19.default,
+    megaMenu: _frontend20.default,
+    nestedCarousel: _frontend21.default,
+    taxonomyFilter: _frontend22.default,
+    offCanvas: _frontend23.default,
+    contactButtons: _frontend24.default,
+    search: _frontend25.default
   };
   return {
     ...defaultHandlers,
     ...handlers
   };
 };
-elementorProFrontend.on('elementor-pro/modules/init:before', () => {
+elementorProFrontend.on('elementor-pro/modules/init/before', () => {
   elementorFrontend.hooks.addFilter('elementor-pro/frontend/handlers', extendDefaultHandlers);
 });
 
@@ -99,6 +107,24 @@ exports["default"] = AjaxHelper;
 
 /***/ }),
 
+/***/ "../assets/dev/js/frontend/utils/focusable-element-selectors.js":
+/*!**********************************************************************!*\
+  !*** ../assets/dev/js/frontend/utils/focusable-element-selectors.js ***!
+  \**********************************************************************/
+/***/ ((__unused_webpack_module, exports) => {
+
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports.focusableElementSelectors = focusableElementSelectors;
+function focusableElementSelectors() {
+  return 'audio, button, canvas, details, iframe, input, select, summary, textarea, video, [accesskey], a[href], area[href], [tabindex]';
+}
+
+/***/ }),
+
 /***/ "../assets/dev/js/frontend/utils/icons/e-icons.js":
 /*!********************************************************!*\
   !*** ../assets/dev/js/frontend/utils/icons/e-icons.js ***!
@@ -133,17 +159,17 @@ const close = exports.close = {
 /*!********************************************************!*\
   !*** ../assets/dev/js/frontend/utils/icons/manager.js ***!
   \********************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+/***/ ((__unused_webpack_module, exports) => {
 
 
 
-var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
 Object.defineProperty(exports, "__esModule", ({
   value: true
 }));
 exports["default"] = void 0;
-var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "../node_modules/@babel/runtime/helpers/defineProperty.js"));
 class IconsManager {
+  static symbolsContainer;
+  static iconsUsageList = [];
   constructor(elementsPrefix) {
     this.prefix = `${elementsPrefix}-`;
     if (!IconsManager.symbolsContainer) {
@@ -184,8 +210,123 @@ class IconsManager {
   }
 }
 exports["default"] = IconsManager;
-(0, _defineProperty2.default)(IconsManager, "symbolsContainer", void 0);
-(0, _defineProperty2.default)(IconsManager, "iconsUsageList", []);
+
+/***/ }),
+
+/***/ "../assets/dev/js/frontend/utils/modal-keyboard-handler.js":
+/*!*****************************************************************!*\
+  !*** ../assets/dev/js/frontend/utils/modal-keyboard-handler.js ***!
+  \*****************************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var _focusableElementSelectors = __webpack_require__(/*! ./focusable-element-selectors */ "../assets/dev/js/frontend/utils/focusable-element-selectors.js");
+class ModalKeyboardHandler {
+  lastFocusableElement = null;
+  firstFocusableElement = null;
+  modalTriggerElement = null;
+  constructor(elementConfig) {
+    this.config = elementConfig;
+    this.changeFocusAfterAnimation = false;
+  }
+  onOpenModal() {
+    this.initializeElements();
+    this.setTriggerElement();
+    this.changeFocusAfterAnimation = 'popup' === this.config.modalType && !!this.config.hasEntranceAnimation;
+    if (!this.changeFocusAfterAnimation) {
+      this.changeFocus();
+    }
+    this.bindEvents();
+  }
+  onCloseModal() {
+    elementorFrontend.elements.$window.off('keydown', this.onKeyDownPressed.bind(this));
+    if (this.modalTriggerElement) {
+      this.setFocusToElement(this.modalTriggerElement);
+    }
+  }
+  bindEvents() {
+    elementorFrontend.elements.$window.on('keydown', this.onKeyDownPressed.bind(this));
+    if (this.changeFocusAfterAnimation) {
+      this.config.$modalElements.on('animationend animationcancel', this.changeFocus.bind(this));
+    }
+    if ('popup' === this.config.modalType) {
+      this.onPopupCloseEvent();
+    }
+  }
+  onPopupCloseEvent() {
+    elementorFrontend.elements.$window.on('elementor/popup/hide', this.onCloseModal.bind(this));
+  }
+  getFocusableElements() {
+    const selectorFocusedElements = 'popup' === this.config.modalType ? ':focusable' : (0, _focusableElementSelectors.focusableElementSelectors)();
+    return this.config.$modalElements.find(selectorFocusedElements);
+  }
+  initializeElements() {
+    const $focusableElements = this.getFocusableElements();
+    if (!$focusableElements.length) {
+      return;
+    }
+    this.lastFocusableElement = $focusableElements[$focusableElements.length - 1];
+    this.firstFocusableElement = $focusableElements[0];
+  }
+  setTriggerElement() {
+    const activeElement = elementorFrontend.elements.window.document.activeElement;
+    if (!!activeElement) {
+      this.modalTriggerElement = elementorFrontend.elements.window.document.activeElement;
+    } else {
+      this.modalTriggerElement = null;
+    }
+  }
+  changeFocus() {
+    if (!!this.firstFocusableElement) {
+      this.setFocusToElement(this.firstFocusableElement);
+    } else {
+      this.config.$elementWrapper.attr('tabindex', '0');
+      this.setFocusToElement(this.config.$elementWrapper[0]);
+    }
+  }
+  onKeyDownPressed(keyDownEvent) {
+    const TAB_KEY = 9;
+    const isShiftPressed = keyDownEvent.shiftKey;
+    const isTabPressed = 'Tab' === keyDownEvent.key || TAB_KEY === keyDownEvent.keyCode;
+    const isContentWrapperFocused = '0' === this.config.$elementWrapper.attr('tabindex');
+    if (isTabPressed && isContentWrapperFocused) {
+      keyDownEvent.preventDefault();
+    } else if (isTabPressed) {
+      this.onTabKeyPressed(isTabPressed, isShiftPressed, keyDownEvent);
+    }
+  }
+  onTabKeyPressed(isTabPressed, isShiftPressed, keyDownEvent) {
+    if (elementorFrontend.isEditMode()) {
+      this.initializeElements();
+    }
+    const activeElement = elementorFrontend.elements.window.document.activeElement;
+    if (isShiftPressed) {
+      const isFocusOnFirstElement = activeElement === this.firstFocusableElement;
+      if (isFocusOnFirstElement) {
+        this.setFocusToElement(this.lastFocusableElement);
+        keyDownEvent.preventDefault();
+      }
+    } else {
+      const isFocusOnLastElement = activeElement === this.lastFocusableElement;
+      if (isFocusOnLastElement) {
+        this.setFocusToElement(this.firstFocusableElement);
+        keyDownEvent.preventDefault();
+      }
+    }
+  }
+  setFocusToElement(element) {
+    const focusDelayToEnsureThatAllAnimationsHaveFinished = 100;
+    setTimeout(() => {
+      element?.focus();
+    }, focusDelayToEnsureThatAllAnimationsHaveFinished);
+  }
+}
+exports["default"] = ModalKeyboardHandler;
 
 /***/ }),
 
@@ -269,6 +410,60 @@ class _default extends elementorModules.Module {
   constructor() {
     super();
     elementorFrontend.elementsHandler.attachHandler('countdown', () => __webpack_require__.e(/*! import() | countdown */ "countdown").then(__webpack_require__.bind(__webpack_require__, /*! ./handlers/countdown */ "../modules/countdown/assets/js/frontend/handlers/countdown.js")));
+  }
+}
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ "../modules/dynamic-tags/assets/js/frontend/frontend.js":
+/*!**************************************************************!*\
+  !*** ../modules/dynamic-tags/assets/js/frontend/frontend.js ***!
+  \**************************************************************/
+/***/ ((__unused_webpack_module, exports) => {
+
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+class _default extends elementorModules.Module {
+  constructor() {
+    super();
+    elementorFrontend.on('components:init', () => this.onFrontendComponentsInit());
+  }
+  onFrontendComponentsInit() {
+    elementorFrontend.utils.urlActions.addAction('reload-page', () => document.location.reload());
+  }
+}
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ "../modules/floating-buttons/assets/js/frontend/frontend.js":
+/*!******************************************************************!*\
+  !*** ../modules/floating-buttons/assets/js/frontend/frontend.js ***!
+  \******************************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+class _default extends elementorModules.Module {
+  constructor() {
+    super();
+    if (elementorFrontend.config.experimentalFeatures.container) {
+      ['contact-buttons-var-1', 'contact-buttons-var-3', 'contact-buttons-var-4', 'contact-buttons-var-5', 'contact-buttons-var-6', 'contact-buttons-var-7', 'contact-buttons-var-8', 'contact-buttons-var-9'].forEach(handler => {
+        elementorFrontend.elementsHandler.attachHandler(handler, () => __webpack_require__.e(/*! import() | contact-buttons */ "contact-buttons").then(__webpack_require__.bind(__webpack_require__, /*! ./handlers/contact-buttons */ "../modules/floating-buttons/assets/js/frontend/handlers/contact-buttons.js")));
+      });
+      elementorFrontend.elementsHandler.attachHandler('contact-buttons-var-10', () => __webpack_require__.e(/*! import() | contact-buttons-var-10 */ "contact-buttons-var-10").then(__webpack_require__.bind(__webpack_require__, /*! ./handlers/contact-buttons-v10 */ "../modules/floating-buttons/assets/js/frontend/handlers/contact-buttons-v10.js")));
+      elementorFrontend.elementsHandler.attachHandler('floating-bars-var-2', () => Promise.all(/*! import() | floating-bars-var-2 */[__webpack_require__.e("modules_floating-buttons_assets_js_frontend_classes_floatin-bar-dom_js-modules_floating-butto-2c1e90"), __webpack_require__.e("floating-bars-var-2")]).then(__webpack_require__.bind(__webpack_require__, /*! ./handlers/floating-bars-v2 */ "../modules/floating-buttons/assets/js/frontend/handlers/floating-bars-v2.js")));
+      elementorFrontend.elementsHandler.attachHandler('floating-bars-var-3', () => Promise.all(/*! import() | floating-bars-var-3 */[__webpack_require__.e("modules_floating-buttons_assets_js_frontend_classes_floatin-bar-dom_js-modules_floating-butto-2c1e90"), __webpack_require__.e("floating-bars-var-3")]).then(__webpack_require__.bind(__webpack_require__, /*! ./handlers/floating-bars-v3 */ "../modules/floating-buttons/assets/js/frontend/handlers/floating-bars-v3.js")));
+    }
   }
 }
 exports["default"] = _default;
@@ -583,7 +778,7 @@ class BaseFilterFrontendModule extends elementorModules.Module {
     const widgetFilters = this.loopWidgetsStore.getConsolidatedFilters(widgetId),
       helpers = this.getFilterHelperAttributes(filterId);
     const data = {
-      post_id: elementorFrontend.config.post.id || this.getClosestDataElementorId(document.querySelector(`.elementor-element-${widgetId}`)),
+      post_id: this.getClosestDataElementorId(document.querySelector(`.elementor-element-${widgetId}`)) || elementorFrontend.config.post.id,
       widget_filters: widgetFilters,
       widget_id: widgetId,
       pagination_base_url: helpers.baseUrl
@@ -606,8 +801,8 @@ class BaseFilterFrontendModule extends elementorModules.Module {
    * @return {string} elementor id of parent
    */
   getClosestDataElementorId(element) {
-    const closestParent = element.closest('[data-elementor-id]');
-    return closestParent ? closestParent.getAttribute('data-elementor-id') : 0;
+    const closestParent = element?.closest('[data-elementor-id]');
+    return closestParent ? closestParent.getAttribute('data-elementor-id') : null;
   }
 
   /**
@@ -676,7 +871,7 @@ class BaseFilterFrontendModule extends elementorModules.Module {
         newWidgetContainer = this.createElementFromHTMLString(response.data);
       widget.replaceChild(newWidgetContainer, existingWidgetContainer);
       this.handleElementHandlers(newWidgetContainer);
-      if (elementorFrontend.config.experimentalFeatures.e_lazyload) {
+      if (ElementorProFrontendConfig.settings.lazy_load_background_images) {
         document.dispatchEvent(new Event('elementor/lazyload/observe'));
       }
       elementorFrontend.elementsHandler.runReadyTrigger(document.querySelector(`.elementor-element-${widgetId}`));
@@ -688,7 +883,6 @@ class BaseFilterFrontendModule extends elementorModules.Module {
 
     // TODO: Deal with pagination. Do we need to manually add the query string to the pagination links?
   }
-
   handleElementHandlers(newWidgetMarkup) {
     const loopItems = newWidgetMarkup.querySelectorAll('.e-loop-item');
     (0, _runElementHandlers.default)(loopItems);
@@ -999,6 +1193,48 @@ exports["default"] = _default;
 
 /***/ }),
 
+/***/ "../modules/off-canvas/assets/js/frontend/frontend.js":
+/*!************************************************************!*\
+  !*** ../modules/off-canvas/assets/js/frontend/frontend.js ***!
+  \************************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+class _default extends elementorModules.Module {
+  constructor() {
+    super();
+    elementorFrontend.elementsHandler.attachHandler('off-canvas', () => __webpack_require__.e(/*! import() | off-canvas */ "off-canvas").then(__webpack_require__.bind(__webpack_require__, /*! ./handlers/off-canvas */ "../modules/off-canvas/assets/js/frontend/handlers/off-canvas.js")));
+    elementorFrontend.on('components:init', () => this.onFrontendComponentsInit());
+  }
+  onFrontendComponentsInit() {
+    this.addUrlActions();
+  }
+  addUrlActions() {
+    elementorFrontend.utils.urlActions.addAction('off_canvas:open', settings => {
+      this.toggleOffCanvasDisplay(settings);
+    });
+    elementorFrontend.utils.urlActions.addAction('off_canvas:close', settings => {
+      this.toggleOffCanvasDisplay(settings);
+    });
+    elementorFrontend.utils.urlActions.addAction('off_canvas:toggle', settings => {
+      this.toggleOffCanvasDisplay(settings);
+    });
+  }
+  toggleOffCanvasDisplay(settings) {
+    window.dispatchEvent(new CustomEvent('elementor-pro/off-canvas/toggle-display-mode', {
+      detail: settings
+    }));
+  }
+}
+exports["default"] = _default;
+
+/***/ }),
+
 /***/ "../modules/popup/assets/js/frontend/document.js":
 /*!*******************************************************!*\
   !*** ../modules/popup/assets/js/frontend/document.js ***!
@@ -1015,9 +1251,11 @@ exports["default"] = void 0;
 var _triggers = _interopRequireDefault(__webpack_require__(/*! ./triggers */ "../modules/popup/assets/js/frontend/triggers.js"));
 var _timing = _interopRequireDefault(__webpack_require__(/*! ./timing */ "../modules/popup/assets/js/frontend/timing.js"));
 var _eIcons = __webpack_require__(/*! @elementor-pro/e-icons */ "../assets/dev/js/frontend/utils/icons/e-icons.js");
+var _modalKeyboardHandler = _interopRequireDefault(__webpack_require__(/*! elementor-pro/frontend/utils/modal-keyboard-handler */ "../assets/dev/js/frontend/utils/modal-keyboard-handler.js"));
 // Temporary solution, when core 3.5.0 will be the minimum version, is should be replaced with @elementor/e-icons.
 
 class _default extends elementorModules.frontend.Document {
+  keyboardHandler = null;
   bindEvents() {
     const openSelector = this.getDocumentSettings('open_selector');
     if (openSelector) {
@@ -1033,7 +1271,8 @@ class _default extends elementorModules.frontend.Document {
   initTriggers() {
     this.triggers = new _triggers.default(this.getDocumentSettings('triggers'), this);
   }
-  showModal(avoidMultiple, event) {
+  showModal(event) {
+    let avoidMultiple = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
     // eslint-disable-next-line @wordpress/no-unused-vars-before-return
     const settings = this.getDocumentSettings();
     if (!this.isEdit) {
@@ -1067,7 +1306,7 @@ class _default extends elementorModules.frontend.Document {
     }
     elementorProFrontend.modules.popup.popupPopped = true;
     if (!this.isEdit && settings.a11y_navigation) {
-      this.handleKeyboardA11y(event);
+      this.handleKeyboardA11y();
     }
   }
   setEntranceAnimation() {
@@ -1085,48 +1324,11 @@ class _default extends elementorModules.frontend.Document {
     $widgetContent.addClass(newAnimation);
     setTimeout(() => $widgetContent.removeClass(newAnimation), animationDuration * 1000);
   }
-  handleKeyboardA11y(event) {
-    const selectorFocusedElements = ':focusable';
-    const $focusableElements = this.getModal().getElements('widgetContent').find(selectorFocusedElements);
-    if (!$focusableElements.length) {
-      return;
+  handleKeyboardA11y() {
+    if (!this.keyboardHandler) {
+      this.keyboardHandler = new _modalKeyboardHandler.default(this.getKeyboardHandlingConfig());
     }
-    let lastButtonClicked = null;
-    if (event?.currentTarget) {
-      lastButtonClicked = event.currentTarget;
-    }
-    const lastFocusableElement = $focusableElements[$focusableElements.length - 1];
-    const firstFocusableElement = $focusableElements[0];
-    const onKeyDownPressed = keyDownEvent => {
-      const TAB_KEY = 9;
-      const isShiftPressed = keyDownEvent.shiftKey;
-      const isTabPressed = 'Tab' === keyDownEvent.key || TAB_KEY === keyDownEvent.keyCode;
-      if (!isTabPressed) {
-        return;
-      }
-      const activeElement = elementorFrontend.elements.window.document.activeElement;
-      if (isShiftPressed) {
-        const isFocusOnFirstElement = activeElement === firstFocusableElement;
-        if (isFocusOnFirstElement) {
-          lastFocusableElement.focus();
-          keyDownEvent.preventDefault();
-        }
-      } else {
-        const isFocusOnLastElement = activeElement === lastFocusableElement;
-        if (isFocusOnLastElement) {
-          firstFocusableElement.focus();
-          keyDownEvent.preventDefault();
-        }
-      }
-    };
-    firstFocusableElement.focus();
-    const $window = elementorFrontend.elements.$window;
-    $window.on('keydown', onKeyDownPressed).on('elementor/popup/hide', () => {
-      $window.off('keydown', onKeyDownPressed);
-      if (lastButtonClicked) {
-        lastButtonClicked.focus();
-      }
-    });
+    this.keyboardHandler.onOpenModal();
   }
   setExitAnimation() {
     const modal = this.getModal(),
@@ -1272,6 +1474,24 @@ class _default extends elementorModules.frontend.Document {
       this.setCloseButtonPosition();
     }
   }
+  getEntranceAnimationDuration() {
+    const settings = this.getDocumentSettings();
+    const entranceAnimation = settings?.entrance_animation;
+    if (!entranceAnimation || '' === entranceAnimation || 'none' === entranceAnimation) {
+      return 0;
+    }
+    const entranceAnimationDuration = settings?.entrance_animation_duration?.size;
+    return !!entranceAnimationDuration ? Number(entranceAnimationDuration) : 0;
+  }
+  getKeyboardHandlingConfig() {
+    return {
+      $modalElements: this.getModal().getElements('widgetContent'),
+      $elementWrapper: this.$element,
+      hasEntranceAnimation: 0 !== this.getEntranceAnimationDuration(),
+      modalType: 'popup',
+      modalId: this.$element.data('elementor-id')
+    };
+  }
 }
 exports["default"] = _default;
 
@@ -1297,9 +1517,12 @@ class _default extends elementorModules.Module {
     elementorFrontend.hooks.addAction('elementor/frontend/documents-manager/init-classes', this.addDocumentClass);
     elementorFrontend.elementsHandler.attachHandler('form', () => __webpack_require__.e(/*! import() | popup */ "popup").then(__webpack_require__.bind(__webpack_require__, /*! ./handlers/forms-action */ "../modules/popup/assets/js/frontend/handlers/forms-action.js")));
     elementorFrontend.on('components:init', () => this.onFrontendComponentsInit());
-    if (!elementorFrontend.isEditMode() && !elementorFrontend.isWPPreviewMode()) {
+    if (this.shouldSetViewsAndSessions()) {
       this.setViewsAndSessions();
     }
+  }
+  shouldSetViewsAndSessions() {
+    return !elementorFrontend.isEditMode() && !elementorFrontend.isWPPreviewMode() && ElementorProFrontendConfig.popup.hasPopUps;
   }
   addDocumentClass(documentsManager) {
     documentsManager.addDocumentClass('popup', _document.default);
@@ -1327,7 +1550,7 @@ class _default extends elementorModules.Module {
     if (settings.toggle && modal.isVisible()) {
       modal.hide();
     } else {
-      popup.showModal(null, event);
+      popup.showModal(event);
     }
   }
   closePopup(settings, event) {
@@ -1560,28 +1783,16 @@ exports["default"] = _default;
 /*!********************************************************************!*\
   !*** ../modules/popup/assets/js/frontend/timing/schedule-utils.js ***!
   \********************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+/***/ ((__unused_webpack_module, exports) => {
 
 
 
-var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
 Object.defineProperty(exports, "__esModule", ({
   value: true
 }));
 exports["default"] = void 0;
-var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "../node_modules/@babel/runtime/helpers/defineProperty.js"));
 class ScheduleUtils {
   constructor(args) {
-    (0, _defineProperty2.default)(this, "shouldDisplay", () => {
-      if (!this.settings.startDate && !this.settings.endDate) {
-        return true;
-      }
-      const now = this.getCurrentDateTime();
-      if ((!this.settings.startDate || now >= this.settings.startDate) && (!this.settings.endDate || now <= this.settings.endDate)) {
-        return true;
-      }
-      return false;
-    });
     this.settings = args.settings;
   }
   getCurrentDateTime() {
@@ -1591,6 +1802,16 @@ class ScheduleUtils {
     }
     return now;
   }
+  shouldDisplay = () => {
+    if (!this.settings.startDate && !this.settings.endDate) {
+      return true;
+    }
+    const now = this.getCurrentDateTime();
+    if ((!this.settings.startDate || now >= this.settings.startDate) && (!this.settings.endDate || now <= this.settings.endDate)) {
+      return true;
+    }
+    return false;
+  };
 }
 exports["default"] = ScheduleUtils;
 
@@ -1741,7 +1962,6 @@ class TimesUtils {
       // Week in seconds
       month: 2628288 // Month in seconds
     };
-
     return timeFrames[timeFrame];
   }
   setExpiration(name, value, timeFrame) {
@@ -1931,6 +2151,7 @@ var _scrollingTo = _interopRequireDefault(__webpack_require__(/*! ./triggers/scr
 var _click = _interopRequireDefault(__webpack_require__(/*! ./triggers/click */ "../modules/popup/assets/js/frontend/triggers/click.js"));
 var _inactivity = _interopRequireDefault(__webpack_require__(/*! ./triggers/inactivity */ "../modules/popup/assets/js/frontend/triggers/inactivity.js"));
 var _exitIntent = _interopRequireDefault(__webpack_require__(/*! ./triggers/exit-intent */ "../modules/popup/assets/js/frontend/triggers/exit-intent.js"));
+var _adblockDetection = _interopRequireDefault(__webpack_require__(/*! ./triggers/adblock-detection */ "../modules/popup/assets/js/frontend/triggers/adblock-detection.js"));
 class _default extends elementorModules.Module {
   constructor(settings, document) {
     super(settings);
@@ -1942,7 +2163,8 @@ class _default extends elementorModules.Module {
       scrolling_to: _scrollingTo.default,
       click: _click.default,
       inactivity: _inactivity.default,
-      exit_intent: _exitIntent.default
+      exit_intent: _exitIntent.default,
+      adblock_detection: _adblockDetection.default
     };
     this.runTriggers();
   }
@@ -1964,6 +2186,74 @@ class _default extends elementorModules.Module {
   onTriggerFired() {
     this.document.showModal(true);
     this.destroyTriggers();
+  }
+}
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ "../modules/popup/assets/js/frontend/triggers/adblock-detection.js":
+/*!*************************************************************************!*\
+  !*** ../modules/popup/assets/js/frontend/triggers/adblock-detection.js ***!
+  \*************************************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var _base = _interopRequireDefault(__webpack_require__(/*! ./base */ "../modules/popup/assets/js/frontend/triggers/base.js"));
+class _default extends _base.default {
+  getName() {
+    return 'adblock_detection';
+  }
+  generateRandomString() {
+    const chars = 'abcdefghijklmnopqrstuvwxyz0123456789';
+    let result = '';
+    for (let i = 0; i < 6; i++) {
+      const randomIndex = Math.floor(Math.random() * chars.length);
+      result += chars[randomIndex];
+    }
+    return result;
+  }
+  hasAdblock() {
+    const elementId = `elementor-adblock-detection-${this.generateRandomString()}`;
+    this.createEmptyAdBlockElement(elementId);
+    const tempAdBlockEle = document.querySelector(`#${elementId}`);
+    if (!tempAdBlockEle) {
+      return true;
+    }
+    const hasAdBlock = 'none' === window.getComputedStyle(tempAdBlockEle)?.display;
+    this.removeEmptyAdBlockElement(tempAdBlockEle);
+    return hasAdBlock;
+  }
+  createEmptyAdBlockElement(elementId) {
+    const tempAdDiv = document.createElement('div');
+    tempAdDiv.id = elementId;
+    tempAdDiv.className = 'ad-box';
+    tempAdDiv.style.position = 'fixed';
+    tempAdDiv.style.top = '0';
+    tempAdDiv.style.left = '0';
+    tempAdDiv.setAttribute('aria-hidden', 'true');
+    tempAdDiv.innerHTML = '&nbsp;';
+    document.body.appendChild(tempAdDiv);
+  }
+  removeEmptyAdBlockElement(tempAdBlockEle) {
+    tempAdBlockEle.remove();
+  }
+  run() {
+    this.timeout = setTimeout(() => {
+      const hasAdBlock = this.hasAdblock();
+      if (hasAdBlock) {
+        this.callback();
+      }
+    }, this.getTriggerSetting('delay') * 1000);
+  }
+  destroy() {
+    clearTimeout(this.timeout);
   }
 }
 exports["default"] = _default;
@@ -2172,11 +2462,23 @@ class _default extends _base.default {
     } catch (e) {
       return;
     }
-    this.waypointInstance = elementorFrontend.waypoint($targetElement, this.callback)[0];
+    if ($targetElement.length) {
+      this.setUpIntersectionObserver();
+      this.observer.observe($targetElement[0]);
+    }
+  }
+  setUpIntersectionObserver() {
+    this.observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          this.callback();
+        }
+      });
+    });
   }
   destroy() {
-    if (this.waypointInstance) {
-      this.waypointInstance.destroy();
+    if (this.observer) {
+      this.observer.disconnect();
     }
   }
 }
@@ -2257,6 +2559,28 @@ class _default extends elementorModules.Module {
     elementorFrontend.elementsHandler.attachHandler('posts', () => __webpack_require__.e(/*! import() | posts */ "posts").then(__webpack_require__.bind(__webpack_require__, /*! ./handlers/posts */ "../modules/posts/assets/js/frontend/handlers/posts.js")), 'full_content');
     elementorFrontend.elementsHandler.attachHandler('posts', () => __webpack_require__.e(/*! import() | posts */ "posts").then(__webpack_require__.bind(__webpack_require__, /*! ./handlers/cards */ "../modules/posts/assets/js/frontend/handlers/cards.js")), 'cards');
     elementorFrontend.elementsHandler.attachHandler('portfolio', () => __webpack_require__.e(/*! import() | portfolio */ "portfolio").then(__webpack_require__.bind(__webpack_require__, /*! ./handlers/portfolio */ "../modules/posts/assets/js/frontend/handlers/portfolio.js")));
+  }
+}
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ "../modules/search/assets/js/frontend/frontend.js":
+/*!********************************************************!*\
+  !*** ../modules/search/assets/js/frontend/frontend.js ***!
+  \********************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+class _default extends elementorModules.Module {
+  constructor() {
+    super();
+    elementorFrontend.elementsHandler.attachHandler('search', [() => __webpack_require__.e(/*! import() | search */ "search").then(__webpack_require__.bind(__webpack_require__, /*! ./handlers/search */ "../modules/search/assets/js/frontend/handlers/search.js")), () => __webpack_require__.e(/*! import() | search */ "search").then(__webpack_require__.bind(__webpack_require__, /*! ./handlers/search-keyboard-handler */ "../modules/search/assets/js/frontend/handlers/search-keyboard-handler.js"))]);
   }
 }
 exports["default"] = _default;
