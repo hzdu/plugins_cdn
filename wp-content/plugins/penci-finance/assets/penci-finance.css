@@ -1,0 +1,532 @@
+.penci-finance-list.style-1 .penci-fnlt-item {
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+}
+.penci-finance-list.style-1 .penci-fnlt-item-body {
+	text-align: right;
+}
+.penci-finance-list {
+	--gap: 15px;
+	column-gap: var(--gap);
+	row-gap: var(--gap);
+	display: flex;
+	flex-wrap: wrap;
+}
+.penci-finance-list.style-1 {
+	flex-direction: column;
+}
+.penci-finance-list.style-2 {
+	--col: 3;
+	flex-direction: row;
+}
+.penci-finance-list.style-2 .penci-fnlt-item {
+	width: 100%;
+	flex: 1 calc(100% / var(--col) - var(--gap));
+}
+.penci-finance-list.style-2 .penci-fnlt-item-body {
+	border-top: 1px solid var(--pcborder-cl);
+	margin-top: 20px;
+	padding-top: 20px;
+}
+.penci-fnlt-item {
+	padding: 20px;
+	background: var(--pcbg-cl);
+	border: 1px solid var(--pcborder-cl);
+}
+.penci-fnlt-name h4 {
+	font-size: 18px;
+	margin-bottom: 0;
+}
+.penci-fnlt-data {
+	font-size: 28px;
+	line-height: 1;
+	font-weight: var(--pchead-wei);
+	font-family: var(--pchead-font);
+}
+.penci-fnlt-change {
+	font-size: 14px;
+	color: var(--pcmeta-cl);
+}
+.penci-fnlt-item.up .penci-fnlt-change {
+	color: green;
+}
+.penci-fnlt-item.down .penci-fnlt-change {
+	color: red;
+}
+.penci-fnlt-item-head {
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: row;
+	column-gap: 10px;
+	align-items: center;
+}
+.penci-fnlt-item-head .penci-fnlt-logo {
+	max-width: 50px;
+	width: 50px;
+	height: 50px;
+}
+@media only screen and (max-width: 767px) {
+	.penci-fnlt-data {
+		font-size: 16px;
+	}
+	.penci-finance-list.style-2 .penci-fnlt-item-head .penci-fnlt-logo {
+		margin-bottom: 20px;
+	}
+	.penci-finance-list.style-2 .penci-fnlt-name h4 {
+		font-size: 16px;
+	}
+	.penci-finance-list.style-2 .penci-fnlt-subname {
+		font-size: 12px;
+	}
+	.penci-finance-list.style-1 .penci-fnlt-item {
+		padding: 10px;
+	}
+	.penci-finance-list.style-1 .penci-fnlt-item-head .penci-fnlt-logo {
+		width: 20px;
+		height: 20px;
+	}
+	.penci-finance-list.style-1 .penci-fnlt-item > div {
+		max-width: 50%;
+	}
+	.penci-finance-list.style-1 .penci-fnlt-item-head {
+		flex-wrap: nowrap;
+	}
+	.penci-finance-list.style-1 .penci-fnlt-item-head h4 {
+		font-size: 14px;
+	}
+	.penci-finance-list.style-1 .penci-fnlt-subname {
+		font-size: 12px;
+	}
+}
+.penci-fnlt-item-head .penci-fnlt-logo img {
+	width: 100%;
+	height: auto;
+}
+.penci-fnlt-subname span:not(:first-child):before {
+	content: "-";
+	display: inline-block;
+	margin: 0 3px;
+}
+.penci-finance-list.style-3 {
+	display: block;
+	overflow: hidden;
+}
+.penci-finance-list.style-3 .penci-fnlt-item {
+	display: inline-block;
+	border: 0;
+	padding: 0;
+	background-color: transparent;
+	white-space: nowrap;
+}
+.penci-finance-list.style-3 .penci-fnlt-item + .penci-fnlt-item {
+	margin-left: 30px;
+}
+.penci-finance-list.style-3 .penci-fnlt-item .penci-fnlt-item-wrap {
+	display: flex;
+	flex-wrap: nowrap;
+	flex-direction: row;
+	column-gap: 20px;
+	height: 100%;
+	align-items: center;
+}
+.penci-finance-list.style-3 .penci-fnlt-data,
+.penci-finance-list.style-3 .penci-fnlt-change,
+.penci-finance-list.style-3 .penci-fnlt-name h4 {
+	font-size: 14px;
+	font-family: var(--pcbody-font);
+	line-height: 1.4;
+}
+.penci-finance-list.style-3 .penci-fnlt-name h4 {
+	font-weight: bold;
+}
+.penci-finance-list.style-3 .penci-fnlt-item-body > div {
+	display: inline-block;
+}
+.penci-finance-list.style-3 .penci-fnlt-name div,
+.penci-finance-list.style-3 .penci-fnlt-name h4 {
+	display: inline-block;
+}
+.penci-finance-list.style-3 .penci-fnlt-item-head {
+	flex-wrap: nowrap;
+}
+.penci-finance-list.style-3 .penci-fnlt-item-head .penci-fnlt-logo {
+	width: 50px;
+}
+.penci-fncrypto-table {
+	width: 100%;
+}
+.penci_finance_crypto_widget
+	div.dt-container
+	div.dt-layout-row:not(.dt-layout-table),
+.elementor-widget-penci-finance-elementor-crypto
+	div.dt-container
+	div.dt-layout-row:not(.dt-layout-table) {
+	display: none;
+}
+.penci_finance_crypto_widget div.dt-container div.dt-layout-row,
+.elementor-widget-penci-finance-elementor-crypto
+	div.dt-container
+	div.dt-layout-row {
+	margin: 0;
+}
+.pcfic-name {
+	display: flex;
+	align-items: center;
+}
+.pcfic-name img {
+	width: 30px;
+	height: auto;
+	margin-right: 5px;
+}
+body.rtl .pcfic-name img {
+	margin-left: 5px;
+	margin-right: 0;
+}
+.pcfic-name .name {
+	font-weight: var(--pchead-wei);
+}
+.pcfic-name .symbol {
+	margin-left: 5px;
+	color: var(--pcmeta-cl);
+	text-transform: uppercase;
+}
+body.rtl .pcfic-name .symbol {
+	margin-left: 0;
+	margin-right: 5px;
+}
+.penci-fncrypto-table .dt-type-numeric {
+	color: var(--pcheading-cl);
+	font-weight: var(--pchead-wei);
+}
+.penci-fncrypto-table .dt-type-numeric.down {
+	color: #ea3943;
+}
+.penci-fncrypto-table .dt-type-numeric.up {
+	color: #16c784;
+}
+.penci-fncrypto-table .dt-type-numeric.down:before,
+.penci-fncrypto-table .dt-type-numeric.up:before {
+	content: "\f0d8";
+	font-family: "FontAwesome";
+	display: inline-block;
+}
+.penci-fncrypto-table .dt-type-numeric.down:before {
+	content: "\f0d7";
+}
+.penci-fncrypto-table-wrapper.pcct-style-1 table thead {
+	background: var(--pcaccent-cl);
+	color: #fff;
+}
+.penci-fncrypto-table-wrapper.pcct-style-1 table thead th,
+.penci-fncrypto-table-wrapper.pcct-style-1 table thead tr,
+.penci-fncrypto-table-wrapper.pcct-style-1 table thead span {
+	color: inherit;
+}
+.penci-fncrypto-table-wrapper.pcct-style-1 table thead th {
+	padding: 20px 10px;
+}
+.penci_finance_crypto_widget
+	.penci-fncrypto-table-wrapper.pcct-style-1
+	table
+	thead
+	th {
+	padding: 10px;
+}
+.penci_finance_crypto_widget table.dataTable thead > tr > th.dt-orderable-asc,
+.penci_finance_crypto_widget table.dataTable thead > tr > th.dt-orderable-desc,
+.penci_finance_crypto_widget table.dataTable thead > tr > th.dt-ordering-asc,
+.penci_finance_crypto_widget table.dataTable thead > tr > th.dt-ordering-desc,
+.penci_finance_crypto_widget table.dataTable thead > tr > td.dt-orderable-asc,
+.penci_finance_crypto_widget table.dataTable thead > tr > td.dt-orderable-desc,
+.penci_finance_crypto_widget table.dataTable thead > tr > td.dt-ordering-asc,
+.penci_finance_crypto_widget table.dataTable thead > tr > td.dt-ordering-desc {
+	padding-right: 30px;
+}
+body.rtl
+	.penci_finance_crypto_widget
+	table.dataTable
+	thead
+	> tr
+	> th.dt-orderable-asc,
+body.rtl
+	.penci_finance_crypto_widget
+	table.dataTable
+	thead
+	> tr
+	> th.dt-orderable-desc,
+body.rtl
+	.penci_finance_crypto_widget
+	table.dataTable
+	thead
+	> tr
+	> th.dt-ordering-asc,
+body.rtl
+	.penci_finance_crypto_widget
+	table.dataTable
+	thead
+	> tr
+	> th.dt-ordering-desc,
+body.rtl
+	.penci_finance_crypto_widget
+	table.dataTable
+	thead
+	> tr
+	> td.dt-orderable-asc,
+body.rtl
+	.penci_finance_crypto_widget
+	table.dataTable
+	thead
+	> tr
+	> td.dt-orderable-desc,
+body.rtl
+	.penci_finance_crypto_widget
+	table.dataTable
+	thead
+	> tr
+	> td.dt-ordering-asc,
+body.rtl
+	.penci_finance_crypto_widget
+	table.dataTable
+	thead
+	> tr
+	> td.dt-ordering-desc {
+	padding-right: 10px;
+	padding-left: 30px;
+}
+.penci-fncrypto-table-wrapper.pcct-style-1 table tbody tr:nth-child(2n) {
+	background: #f8f8f8;
+}
+.penci-fncrypto-table-wrapper.pcct-style-1 table tbody tr:hover {
+	background: #f1f1f1;
+}
+.penci-fncrypto-table-wrapper.pcct-style-1 .pcfic-name .name {
+	font-weight: var(--pchead-wei);
+}
+.penci-fncrypto-table-wrapper.pcct-style-3 {
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: row;
+	--col: 3;
+	--cgap: 30px;
+	--rgap: 30px;
+	row-gap: var(--rgap);
+	column-gap: var(--cgap);
+}
+@media only screen and (min-width: 768px) and (max-width: 1169px) {
+	.penci-fncrypto-table-wrapper.pcct-style-3 {
+		--col: 2;
+		--cgap: 10px;
+		--rgap: 10px;
+	}
+}
+@media only screen and (max-width: 767px) {
+	.penci-fncrypto-table-wrapper.pcct-style-3 {
+		--col: 1;
+		--cgap: 5px;
+		--rgap: 5px;
+	}
+}
+.penci_finance_crypto_widget .penci-fncrypto-table-wrapper.pcct-style-3 {
+	--col: 2;
+	--cgap: 5px;
+	--rgap: 5px;
+}
+.penci_finance_crypto_widget .penci-fncrypto-table-wrapper.pcct-style-3 .pcfic-name {
+	font-size: 13px;
+}
+.penci_finance_crypto_widget
+	.penci-fncrypto-table-wrapper.pcct-style-3
+	.pcfic-name
+	img {
+	width: 15px;
+}
+.penci-fncrypto-table-wrapper.pcct-style-3 .penci-fncrypto-item {
+	flex: 1 calc(100% / var(--col) - var(--cgap));
+	width: calc(100% / var(--col) - var(--cgap));
+}
+.penci-fncrypto-table-wrapper.pcct-style-3
+	.penci-fncrypto-item
+	.penci-fncrypto-content {
+	border: 1px solid var(--pcborder-cl);
+	padding: 15px 10px;
+	height: 100%;
+	position: relative;
+	background: var(--pcbg-cl);
+	border-radius: 5px;
+	box-shadow: 1px 0px 8px rgba(0, 0, 0, 0.1);
+}
+.penci-fncrypto-table-wrapper.pcct-style-3 .penci-fncrypto-item .pcfic-order {
+	position: absolute;
+	right: 10px;
+	top: 10px;
+	font-size: 32px;
+	font-family: var(--pchead-font);
+	opacity: 0.3;
+}
+.penci-fncrypto-item .pcfic-name {
+	margin-bottom: 15px;
+	border-bottom: 1px solid var(--pcborder-cl);
+	padding-bottom: 15px;
+}
+.penci-fncrypto-item .penci-fncrypto-label {
+	color: var(--pcmeta-cl);
+}
+.penci-fncrypto-item .penci-fncrypto-di {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+.penci-fncrypto-item .penci-fncrypto-di + .penci-fncrypto-di {
+	margin-top: 5px;
+}
+.pcfic-chart-container {
+	max-width: 120px;
+	height: 40px;
+}
+.penci-fncrypto-item .pcfic-chart-container {
+	max-width: 100%;
+	height: 80px;
+	margin-top: 20px;
+}
+.pcfic-chart {
+	--upbdcl: rgb(206, 22, 22);
+	--upbgcl: rgb(255, 137, 137);
+}
+.pcfic-total-down .pcfic-chart {
+	--upbdcl: rgb(206, 22, 22);
+	--upbgcl: rgb(255, 137, 137);
+}
+.pcfic-total-up .pcfic-chart {
+	--upbdcl: #0071a5;
+	--upbgcl: #4fb5e5;
+}
+.penci-fncrypto-table-wrapper.pcct-style-4 .penci-fncrypto-item {
+	display: inline-block;
+}
+.penci-fncrypto-table-wrapper.pcct-style-4 .penci-fncrypto-content {
+	display: flex;
+	flex-wrap: nowrap;
+	flex-direction: row;
+	column-gap: 20px;
+	align-items: center;
+	border: 0;
+	box-shadow: none;
+	padding: 0;
+}
+.penci-fncrypto-table-wrapper.pcct-style-4
+	.penci-fncrypto-item
+	.penci-fncrypto-di
+	+ .penci-fncrypto-di {
+	margin: 0;
+}
+.penci-fncrypto-table-wrapper.pcct-style-4 .penci-fncrypto-item .pcfic-name {
+	margin: 0;
+	padding: 0;
+	border: 0;
+}
+.penci-fncrypto-table-wrapper.pcct-style-4 .penci-fncrypto-label {
+	min-width: fit-content;
+}
+.penci-fncrypto-table-wrapper.pcct-style-4 .penci-fncrypto-label:after {
+	content: ":";
+	margin-right: 2px;
+}
+.penci-fncrypto-table-wrapper.pcct-style-4
+	.penci-fncrypto-item
+	.pcfic-chart-container {
+	margin-top: 0;
+	width: 100%;
+	max-width: 70px;
+	max-height: 40px;
+}
+.penci-fncrypto-table-wrapper.pcct-style-4 .penci-fncrypto-item .pcfic-order {
+	position: static;
+	width: 20px;
+	height: 20px;
+	line-height: 20px;
+	border-radius: 50%;
+	background: #000;
+	display: block;
+	opacity: 1;
+	min-width: 20px;
+	color: #fff;
+	text-align: center;
+	font-size: 10px;
+}
+.penci-fncrypto-table-wrapper.pcct-style-4 {
+	overflow: hidden;
+	width: 100%;
+}
+.penci-fncrypto-table-wrapper.pcct-style-4 .marquee3k-wrapper {
+	white-space: nowrap;
+}
+.penci-fncrypto-table-wrapper.pcct-style-4
+	.penci-fncrypto-item
+	+ .penci-fncrypto-item {
+	margin-left: 30px;
+}
+body.rtl
+	.penci-fncrypto-table-wrapper.pcct-style-4
+	.penci-fncrypto-item
+	+ .penci-fncrypto-item {
+	margin-left: 0;
+	margin-right: 30px;
+}
+.penci-fncrypto-table-wrapper.pcct-style-4 .penci-fncrypto-di.down:before,
+.penci-fncrypto-table-wrapper.pcct-style-4 .penci-fncrypto-di.up:before {
+	content: "\f0d8";
+	font-family: "FontAwesome";
+	display: inline-block;
+	color: #009100;
+	font-size: 26px;
+	margin-right: 5px;
+}
+.penci-fnlt-item.down .penci-fnlt-change:before,
+.penci-fnlt-item.up .penci-fnlt-change:before {
+	content: "\f0d8";
+	font-family: "FontAwesome";
+	display: inline-block;
+}
+.penci-fnlt-item.down .penci-fnlt-change:before {
+	content: "\f0d7";
+}
+body.rtl
+	.penci-fncrypto-table-wrapper.pcct-style-4
+	.penci-fncrypto-di.down:before,
+body.rtl
+	.penci-fncrypto-table-wrapper.pcct-style-4
+	.penci-fncrypto-di.up:before {
+	margin-left: 5px;
+	margin-right: 0;
+}
+.penci-fncrypto-table-wrapper.pcct-style-4 .penci-fncrypto-di.down:before {
+	content: "\f0d7";
+	color: #af1818;
+}
+.penci-fncrypto-table-wrapper.pcct-style-1,
+.penci-fncrypto-table-wrapper.pcct-style-2 {
+	overflow: auto;
+}
+.penci_finance_stock_widget .penci-fnlt-data {
+	font-size: 16px;
+}
+.penci_finance_stock_widget .penci-fnlt-name h4 {
+	font-size: 13px;
+}
+.penci_finance_stock_widget .penci-fnlt-item {
+	padding: 10px;
+}
+.penci_finance_stock_widget .penci-finance-list.style-2 .penci-fnlt-item-body {
+	margin-top: 10px;
+}
+.marquee3k-wrapper {
+	display: flex;
+	flex-wrap: nowrap;
+	align-content: center;
+}
+body.rtl .marquee3k {
+	direction: ltr;
+}

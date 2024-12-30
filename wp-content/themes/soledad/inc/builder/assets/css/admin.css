@@ -1,0 +1,30 @@
+.penci-builder-button {
+	display: inline-block;
+}
+.penci-builder-button .button {
+	background-color: var(--wp-admin-theme-color);
+	color: #fff;
+	padding: 6px 12px;
+	transition: 0.3s all ease-in-out;
+	font-weight: bold;
+}
+.penci-video-tutbtn .button{
+	background: #ff0000;
+	border-color: #ff0000;
+}
+.penci-builder-button .button:before {
+	content: "\f450";
+	font-family: dashicons, sans-serif;
+	display: inline-block;
+	vertical-align: middle;
+	margin-right: 5px;
+	font-size: 26px;
+	line-height: 0;
+	margin-top: -4px;
+}
+.penci-use-import-button.penci-builder-button .button:before {
+	content: "\f13b";
+}
+.penci-video-tutbtn.penci-builder-button .button:before {
+	content: "\f236";
+}

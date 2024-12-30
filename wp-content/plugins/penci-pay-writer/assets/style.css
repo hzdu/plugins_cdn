@@ -1,0 +1,83 @@
+.pencipwt-donation-widget {
+    padding: 25px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    background: var(--pcaccent-cl);
+}
+.pencipwt-donation-widget .pencipwt-donation-text-container,
+.pencipwt-donation-widget .pencipwt-donation-form-container {
+    flex: 1 1 auto;
+    align-self: center;
+}
+.pencipwt-donation-widget .pencipwt-donation-text-container .pencipwt-donation-title,
+.pencipwt-donation-widget .pencipwt-donation-text-container .pencipwt-donation-description {
+    color: #fff;
+    margin: 0;
+}
+.pencipwt-donation-widget .pencipwt-donation-text-container .pencipwt-donation-title {
+    font-weight: bold;
+}
+.pencipwt-donation-widget .pencipwt-donation-form-container {
+    justify-content: end;
+    display: flex;
+}
+.pencipwt-donation-widget .pencipwt-donation-submit {
+    background: #fff;
+    color: var(--pctext-cl);
+    display: inline-block;
+    padding: 0 30px;
+    line-height: 42px;
+    text-decoration: none !important;
+    font-family: var(--pchead-font);
+    transition: 0.3s ease-in-out;
+    text-transform: uppercase;
+    font-weight: var(--pchead-wei);
+    opacity: .7;
+}
+.pencipwt-donation-widget .pencipwt-donation-submit:hover {
+    opacity: 1;
+}
+.post-box-meta-single .pencipwt_meta_donation {
+    display: inline-block;
+}
+.post-box-meta-single .pencipwt_meta_donation a {
+    color: var(--pcheading-cl);
+    font-weight: bold;
+}
+.pencipwt-donation-submit.el {
+    display: inline-block;
+    padding: 0 25px;
+    line-height: 40px;
+    background: var(--pcaccent-cl);
+    color: #fff;
+    transition: all 0.3s;
+    opacity: .7;
+    text-decoration: none;
+}
+.pencipwt-donation-submit.el:hover {
+    opacity: 1;
+    text-decoration: none;
+}
+.pencipwt-donation-submit.el .pcbtn-ico {
+    margin-right: 5px;
+}
+body.rtl .pencipwt-donation-submit.el .pcbtn-ico {
+    margin-left: 5px;
+    margin-right: 0;
+}
+@media only screen and (max-width: 479px) {
+    .pencipwt-donation-widget .pencipwt-donation-text-container,
+    .pencipwt-donation-widget .pencipwt-donation-form-container {
+        flex: 100%;
+    }
+    .pencipwt-donation-widget .pencipwt-donation-form-container {
+        align-self: center;
+        justify-content: center;
+        margin-top: 15px;
+    }
+    .pencipwt-donation-widget .pencipwt-donation-text-container .pencipwt-donation-title,
+    .pencipwt-donation-widget .pencipwt-donation-text-container .pencipwt-donation-description{
+        text-align: center;
+    }
+}

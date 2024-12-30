@@ -1,0 +1,185 @@
+.pcliveblog-wrapper {
+    margin: 20px 0 30px;
+    clear: both;
+}
+.pcliveblog-wrapper-status {
+    clear: both;
+}
+.pcliveblog-wrapper .pcliveblog-wrapper-status {
+    padding: 10px 20px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-between;
+    background: var(--pcaccent-cl);
+    color: var(--pcbg-cl);
+    margin: 0 0 30px;
+}
+.pcliveblog-content.post-entry {
+    margin-bottom: 0;
+}
+.post-entry .pcliveblog-wrapper .pcliveblog-wrapper-status a,
+.pcliveblog-wrapper .pcliveblog-wrapper-status a {
+    color: var(--pcbg-cl);
+}
+.post-entry .pcliveblog-wrapper .pcliveblog-wrapper-status a:hover,
+.pcliveblog-wrapper .pcliveblog-wrapper-status a:hover {
+    text-decoration: none;
+}
+.pcliveblog-wrapper .pcliveblog-listing-item {
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--pcborder-cl);
+}
+.pcliveblog-listing-item .pcliveblog-date {
+    color: var(--pcmeta-cl);
+}
+.pcliveblog-listing-item .pcliveblog-title {
+    font-family: var(--pchead-font);
+    color: var(--pcheading-cl);
+    font-size: 18px;
+    font-weight: var(--pchead-wei);
+    margin-bottom: 10px;
+    line-height: 1.3;
+}
+.pcliveblog-content > p:last-child {
+  margin-bottom: 0;
+}
+.pcliveblog-item-share {
+    margin-top: 20px;
+    line-height: 1;
+}
+.pcliveblog-item-share .pclb-sitem,
+.post-entry .pcliveblog-item-share .pclb-sitem {
+    display: inline-block;
+    color: var(--pcmeta-cl);
+    vertical-align: middle;
+    font-size: 13px;
+}
+.pcliveblog-item-share a:hover,
+.post-entry .pcliveblog-item-share a:hover {
+    text-decoration: none;
+    color: var(--pcaccent-cl);
+}
+.pcliveblog-item-share .pclb-sitem:not(:last-child),
+.post-entry .pcliveblog-item-share .pclb-sitem:not(:last-child) {
+    margin-right: 10px;
+}
+body.rtl .pcliveblog-item-share .pclb-sitem:not(:last-child),
+body.rtl .post-entry .pcliveblog-item-share .pclb-sitem:not(:last-child) {
+    margin: 0 0 0 10px;
+}
+.pcliveblog-item-share a i,
+.post-entry .pcliveblog-item-share a i {
+    vertical-align: middle;
+    margin-right: 5px;
+}
+.pcliveblog-item-share a .penci-faicon.penciicon-x-twitter,
+.post-entry .pcliveblog-item-share a .penci-faicon.penciicon-x-twitter {
+    transform: translateY(-1px);
+}
+body.rtl .pcliveblog-item-share a i,
+body.rtl .post-entry .pcliveblog-item-share a i  {
+    margin: 0 0 0 5px;
+}
+.pcliveblog-wrapper-buttons {
+    margin-bottom: 30px;
+    display: flex;
+    flex-wrap: wrap;
+}
+.pcliveblog-wrapper-buttons a,
+.post-entry .pcliveblog-wrapper-buttons a {
+    font-family: var(--pchead-font);
+    display: inline-block;
+    padding: 10px 15px;
+    border: 1px solid var(--pcborder-cl);
+    color: var(--pcheading-cl);
+    font-weight: var(--pchead-wei);
+    line-height: 1;
+    min-width: 150px;
+    text-align: center;
+}
+.pcliveblog-wrapper-buttons a.active {
+    background: var(--pcborder-cl);
+}
+.pcliveblog-wrapper-buttons a:hover,
+.post-entry .pcliveblog-wrapper-buttons a:hover {
+    text-decoration: none;
+    border-color: var(--pcaccent-cl);
+    background-color: var(--pcaccent-cl);
+    color: var(--pcbg-cl);
+}
+.pcliveblog-notice-wrapper{
+    clear: both;
+}
+.pcliveblog-notice-wrapper h4{
+    font-size: 20px;
+}
+.pcliveblog-notice-wrapper h4:before {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--pcborder-cl);
+    content: '';
+    display: inline-block;
+    margin-right: 5px;
+}
+body.rtl .pcliveblog-notice-wrapper h4:before  {
+    margin: 0 0 0 5px;
+}
+.pcliveblog-notice-wrapper.enable h4:before {
+    background: #e80000 !important;
+    animation-name: pcliveblog-notice;
+    animation-iteration-count: infinite;
+    animation-duration: 1s;
+}
+@keyframes pcliveblog-notice {
+    0% {
+        opacity: 0.2
+    }
+    100% {
+        opacity: 1
+    }
+}
+.pclive-btn {
+  padding: 2px 6px 2px 15px;
+  color: #fff !important;
+  display: inline-block;
+  line-height: 12px !important;
+  vertical-align: baseline;
+  margin-right: 8px;
+  position: relative;
+  background: #e80000 !important;
+  border-radius: 2px;
+}
+body.rtl .pclive-btn,
+.pclive-btn.livelbaf {
+    margin: 0 0 0 8px;
+}
+body.rtl .pclive-btn.livelbaf {
+    margin: 0 8px 0 0;
+}
+.pclive-btn:after {
+  content: attr(data-title);
+  display: inline-block;
+  font-size: 10px !important;
+  line-height: inherit;
+  vertical-align: top;
+  color: #fff !important;
+  text-transform: uppercase;
+}
+.pclive-btn:before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  display: inline-block;
+  background: #fff !important;
+  position: absolute;
+  top: 50%;
+  left: 6px;
+  margin-top: -3px;
+  animation-name: pcliveblog-notice;
+    animation-iteration-count: infinite;
+    animation-duration: 1s;
+}

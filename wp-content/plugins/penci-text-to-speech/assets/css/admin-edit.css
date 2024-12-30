@@ -1,0 +1,61 @@
+.fixed .column-penci-text-to-speech {
+    width: 5.5em;
+    padding: 8px 0;
+}
+.fixed td.column-penci-text-to-speech {
+    padding: 8px 3px;
+}
+.column-penci-text-to-speech img {
+    height: 16px;
+    width: 16px;
+    margin-top: 2px;
+}
+.column-penci-text-to-speech a {
+    display: block;
+    outline: none;
+    width: 16px;
+    float: left;
+    margin-right: 12px;
+}
+.column-penci-text-to-speech a:focus {
+    box-shadow: none;
+}
+.column-penci-text-to-speech .mdp-custom-template {
+    cursor: default;
+    height: 16px;
+    margin-top: 1px;
+}
+.column-penci-text-to-speech .penci-texttospeech-download {
+    height: 16px;
+    margin-top: 3px;
+}
+.column-penci-text-to-speech .penci-texttospeech-error {
+    height: 16px;
+    background-image: url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB3aWR0aD0iMTBweCIgaGVpZ2h0PSIxMHB4IiB2aWV3Qm94PSIwIDAgMTAgMTAiIHZlcnNpb249IjEuMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+CiAgICA8IS0tIEdlbmVyYXRvcjogU2tldGNoIDU3LjEgKDgzMDg4KSAtIGh0dHBzOi8vc2tldGNoLmNvbSAtLT4KICAgIDx0aXRsZT5lcnJvcjwvdGl0bGU+CiAgICA8ZGVzYz5DcmVhdGVkIHdpdGggU2tldGNoLjwvZGVzYz4KICAgIDxnIGlkPSJQYWdlLTEiIHN0cm9rZT0ibm9uZSIgc3Ryb2tlLXdpZHRoPSIxIiBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPgogICAgICAgIDxnIGlkPSJBcnRib2FyZCIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTYyMC4wMDAwMDAsIC0xNjkuMDAwMDAwKSIgZmlsbD0iI0UxMjEyMSI+CiAgICAgICAgICAgIDxyZWN0IGlkPSJlcnJvciIgeD0iNjIwIiB5PSIxNjkiIHdpZHRoPSIxMCIgaGVpZ2h0PSIxMCIgcng9IjIiPjwvcmVjdD4KICAgICAgICA8L2c+CiAgICA8L2c+Cjwvc3ZnPg==");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: contain;
+    margin-top: 3px;
+}
+.column-penci-text-to-speech .is-busy i {
+    animation: penci-tts-loading 1.2s linear infinite;
+}
+.column-penci-text-to-speech .is-busy i:before {
+    content: "\f531";
+}
+@keyframes penci-tts-loading {
+    from {
+        transform: rotate(0);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+@media screen and (max-width: 782px) {
+    .wp-list-table tr:not(.inline-edit-row):not(.no-items) td.column-penci-text-to-speech::before {
+        text-align: left;
+    }
+    .column-penci-text-to-speech .penci-texttospeech-download {
+        background-position: left center;
+    }
+}

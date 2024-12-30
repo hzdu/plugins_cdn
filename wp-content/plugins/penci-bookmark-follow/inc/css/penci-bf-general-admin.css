@@ -1,0 +1,17 @@
+
+/* Widget page CSS */
+.wpwfp-desc{padding-left: 0 !important;}
+
+.toplevel_page_penci-bf-post{position: relative;}
+.penci-bf-menu-bubble{position: absolute;top: 9px;left: 133px;}
+#adminmenu .toplevel_page_penci-bf-post div.wp-menu-name{padding: 8px 10px 8px 0;}
+
+@media only screen and (max-width: 960px){
+	.auto-fold #adminmenu .toplevel_page_penci-bf-post{height: auto !important;}
+	.toplevel_page_penci-bf-post .wp-submenu-head{word-wrap: break-word;white-space: unset;padding-right: 20px !important;}
+	.toplevel_page_penci-bf-post .penci-bf-menu-bubble {position: absolute;top: 9px;right: 10px;left: auto;}
+}
+@media only screen and (max-width: 782px){
+	.penci-bf-menu-bubble {position: absolute;top: 15px;left: unset;right: 13px;}
+	.toplevel_page_penci-bf-post .penci-bf-menu-bubble{top: 14px;}
+}

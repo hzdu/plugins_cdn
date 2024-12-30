@@ -1,0 +1,328 @@
+#customize-controls .customize-pane-child .customize-info .customize-panel-description {
+    display: block;
+    color: #444;
+}
+
+#customize-controls .customize-pane-child .customize-info .customize-panel-description a {
+    text-decoration: underline;
+}
+
+.customize-control select,
+.select2-container--default .selection .select2-selection--single {
+    line-height: 27px;
+    position: relative;
+    height: 27px;
+    border: none;
+    border-radius: 0;
+    outline: none;
+    background-color: #fcfcff;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+.wp-customizer .select2-container--default .selection .select2-selection--multiple {
+    height: auto;
+    border: none;
+    border-radius: 0;
+    outline: none;
+    background-color: #fcfcff;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+.wp-customizer .select2-container--default .select2-selection--multiple .select2-selection__rendered {
+    width: 95%;
+}
+
+.wp-customizer .select2-container--default .select2-selection--multiple .select2-selection__clear {
+    position: absolute;
+    right: 0;
+}
+
+.wp-customizer .select2-container .select2-dropdown {
+    z-index: 900000;
+}
+
+/* ==========================================================================
+   Toggle Switch
+   ========================================================================== */
+.toggle-switch-control .customize-control-title {
+    display: inline-block;
+}
+
+.toggle-switch {
+    position: relative;
+    float: right;
+    width: 64px;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -webkit-user-select: none;
+}
+
+.toggle-switch .toggle-switch-checkbox {
+    display: none;
+}
+
+.toggle-switch .toggle-switch-label {
+    display: block;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+    cursor: pointer;
+    border: 2px solid #ddd;
+    border-radius: 20px;
+}
+
+.toggle-switch-inner {
+    display: block;
+    width: 200%;
+    margin-left: -100%;
+    transition: margin 0.3s ease-in 0s;
+}
+
+.toggle-switch-inner:before,
+.toggle-switch-inner:after {
+    font-family: Trebuchet, Arial, sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 22px;
+    display: block;
+    float: left;
+    box-sizing: border-box;
+    width: 50%;
+    height: 22px;
+    padding: 0;
+    color: white;
+}
+
+.toggle-switch-inner:before {
+    padding-left: 8px;
+    content: "ON";
+    color: #fff;
+    background-color: #2885bb;
+}
+
+.toggle-switch-inner:after {
+    padding-right: 8px;
+    content: "OFF";
+    text-align: right;
+    color: #999;
+    background-color: #eee;
+}
+
+.toggle-switch-switch {
+    position: absolute;
+    top: 0;
+    right: 38px;
+    bottom: 0;
+    display: block;
+    width: 16px;
+    margin: 3px;
+    transition: all 0.3s ease-in 0s;
+    border: 2px solid #ddd;
+    border-radius: 20px;
+    background-color: #fff;
+}
+
+.toggle-switch-checkbox:checked + .toggle-switch-label .toggle-switch-inner {
+    margin-left: 0;
+}
+
+.toggle-switch-checkbox:checked + .toggle-switch-label .toggle-switch-switch {
+    right: 0px;
+}
+
+/* ==========================================================================
+   Pill Checkboxes
+   ========================================================================== */
+.pill_checkbox_control .checkbox-label > input {
+    display: none;
+}
+
+.pill_checkbox_control .checkbox-label > .sortable-pill-title {
+    font-size: 1rem;
+    display: inline-block;
+    box-sizing: border-box;
+    margin-bottom: 5px;
+    padding: 5px 15px;
+    cursor: pointer;
+    border-radius: 20px;
+    background-color: #ddd;
+}
+
+.pill_checkbox_control .sortable .checkbox-label > .sortable-pill-title {
+    cursor: move;
+}
+
+.pill_checkbox_control .sortable.fullwidth_pills .checkbox-label > .sortable-pill-title {
+    cursor: pointer;
+}
+
+.pill_checkbox_control .checkbox-label > input:checked + .sortable-pill-title {
+    color: #fff;
+    background-color: #2084bd;
+}
+
+.pill_checkbox_control .checkbox-label > input:checked + .sortable-pill-title:before {
+    font-family: "dashicons";
+    font-size: 24px;
+    font-weight: normal;
+    font-style: normal;
+    font-variant: normal;
+    display: inline-block;
+    margin-left: -10px;
+    content: "\f147";
+    vertical-align: bottom;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+}
+
+.pill_checkbox_control .fullwidth_pills .checkbox-label > .sortable-pill-title {
+    width: 100%;
+    border-radius: 0;
+}
+
+.pill_checkbox_control .sortable.fullwidth_pills .checkbox-label > .sortable-pill-title {
+    width: 90%;
+}
+
+.pill-ui-state-highlight {
+    font-size: 1rem;
+    display: inline-block;
+    height: 16px;
+    margin-bottom: 5px;
+    padding: 5px 15px;
+    border: 1px dotted #2084bd;
+    border-radius: 20px;
+}
+
+.pill_checkbox_control .sortable_pills .pill-ui-state-highlight {
+    width: 50px;
+    border-radius: 20px;
+}
+
+.pill_checkbox_control .sortable_pills.fullwidth_pills .pill-ui-state-highlight {
+    width: 90%;
+    border-radius: 0;
+}
+
+.pill_checkbox_control .dashicons-sort {
+    margin: 5px 0 0 1px;
+    cursor: move;
+    color: #d4d4d4;
+}
+
+.pill_checkbox_control .dashicons-sort:hover {
+    color: #a7a7a7;
+}
+
+.pill_checkbox_control .sortable_pills.fullwidth_pills .ui-sortable-helper {
+    width: calc(100% - 25px) !important;
+}
+
+/* ==========================================================================
+   WPColorPicker Alpha Color Picker
+   ========================================================================== */
+.customize-control-wpcolorpicker-alpha-color .wp-color-result {
+    box-shadow: none;
+}
+
+.customize-control-wpcolorpicker-alpha-color .wp-picker-input-wrap input[type="text"].wp-color-picker {
+    float: left;
+    width: 195px !important;
+}
+
+.customize-control-wpcolorpicker-alpha-color .wp-color-result .wp-color-result-text {
+    border-left: none;
+}
+
+.customize-control-wpcolorpicker-alpha-color .iris-picker-inner .iris-slider,
+.customize-control-wpcolorpicker-alpha-color .iris-picker-inner .iris-alpha-slider,
+.customize-control-two-color-gradient .iris-picker-inner .iris-alpha-slider {
+    width: 17.6px !important;
+}
+
+/* ==========================================================================
+   Upsell Section
+   ========================================================================== */
+#customize-theme-controls #accordion-section-upsell_section {
+    display: block !important;
+}
+
+#customize-theme-controls .upsell-section-title {
+    font-size: 14px;
+    position: relative;
+    margin: 0;
+    padding: 0;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+    transition: 0s color ease-in-out, 0s background-color ease-in-out, 0s border-color ease-in-out;
+    border-right: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    border-left: 4px solid #fff;
+    border-left: 1px solid #ddd;
+}
+
+#customize-theme-controls .upsell-section-title::after {
+    font: normal 20px/1 dashicons;
+    position: absolute;
+    z-index: 1;
+    top: 12px;
+    right: 10px;
+    display: block;
+    content: "\f345";
+    text-decoration: none !important;
+    speak: none;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+#customize-theme-controls .upsell-section-title a {
+    line-height: 21px;
+    display: block;
+    padding: 12px 15px 15px;
+    text-decoration: none;
+}
+
+.tinymce-control textarea {
+    width: 100%;
+    padding: 10px;
+}
+.customize-control .box-model-wrapper span {
+    display: block;
+    margin: 0 0 10px;
+}
+.customize-control .box-model-wrapper .box-spacing-item,
+.penci-pm-control .button-group {
+    width: 24%;
+    margin-right: 1%;
+    display: inline-block;
+}
+
+.customize-control .box-model-wrapper .box-model + .box-model {
+    margin-top: 15px;
+}
+
+.customize-control .box-model-wrapper .box-spacing-item:last-child {
+    margin-right: 0;
+}
+
+.customize-control .box-model-wrapper .box-head {
+    padding: 5px 10px;
+    background: #444;
+    color: #fff;
+}
+
+.penci-pm-control .button-group .label {
+    font-size: 11px;
+    display: block;
+}
+.customize-control .iris-strip.iris-slider.iris-alpha-slider {
+    margin-left: 8px !important;
+}
+.customize-control-soledad-fw-color .wp-picker-container .color-alpha {
+    border-radius: 0 !important;
+    height: 28px !important;
+}

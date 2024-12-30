@@ -1,0 +1,199 @@
+.penci-post-package {
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -webkit-justify-content: center;
+    justify-content: center;
+    width: 100%;
+    margin: 0 auto 3em
+}
+.penci-post-package .package-item-wrapper {
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-direction: column;
+    flex-direction: column;
+    -webkit-align-items: stretch;
+    align-items: stretch;
+    -webkit-flex: 1;
+    flex: 1
+}
+.penci-post-package .package-item {
+    background: #fff;
+    text-align: center;
+    display: block;
+    padding: 0;
+    border: 1px solid #eee;
+    margin: 1.5em 0;
+    position: relative;
+    transition: .2s;
+}
+.penci-post-package .package-item > div {
+    padding: 20px
+}
+.penci-post-package .package-item > div:after {
+    content: "";
+    display: table;
+    clear: both
+}
+.penci-post-package .package-title h3 {
+    margin: .5em 0 0;
+    color: var(--pcheading-cl);
+    font-size: 24px;
+    font-weight: 500
+}
+.penci-post-package .package-price, .penci-post-package .package-title {
+    background: #f9f9f9;
+}
+.penci-post-package .package-item .package-price {
+    padding-bottom: 30px
+}
+.penci-post-package .package-price .price {
+    font-size: 42px;
+    display: inline-block
+}
+.penci-post-package .package-price .price del {
+    font-size: 60%;
+    opacity: .8;
+}
+.penci-post-package .package-price .price ins {
+    font-style: normal;
+    text-decoration: none;
+}
+.penci-post-package .woocommerce-Price-currencySymbol {
+    font-size: .5em;
+    vertical-align: super;
+    color: var(--pcheading-cl);
+    position: relative;
+    margin-left: -6px;
+    margin-right: 2px
+}
+.penci-post-package .package-item .package-list {
+    padding: 30px 20px 10px
+}
+.penci-post-package .package-list li {
+    list-style: none;
+    margin: .75em 0
+}
+.penci-post-package .package-item .package-button {
+    margin-top: auto;
+    padding: 30px
+}
+.penci-post-package .package-button .button {
+    width: 100%;
+    line-height: 1.8;
+    height: auto;
+    font-size: 16px;
+    padding: 12px 20px;
+    border-radius: 3px;
+    background: var(--pcaccent-cl);
+    color: #fff;
+    border: 0;
+    outline: 0;
+    font-weight: bold;
+    transition: .2s;
+}
+.penci-post-package .package-button .button:hover {
+    opacity: .7;
+}
+.penci-post-package .package-item.featured-package {
+    box-shadow: 0 0 25px rgba(0, 0, 0, .1);
+    margin: 0;
+    position: relative;
+    z-index: 1;
+    font-size: 1.15em
+}
+@media (min-width: 992px) {
+    .penci-post-package:hover .package-item {
+        opacity: .7;
+        box-shadow: none;
+        z-index: 1
+    }
+    .penci-post-package .package-item:hover {
+        opacity: 1;
+        cursor: pointer;
+        box-shadow: 0 0 25px rgba(0, 0, 0, .1);
+        z-index: 2
+    }
+    .penci-post-package.col_1 {
+        width: 40%;
+        min-width: 340px
+    }
+    .penci-post-package.col_1 .package-item {
+        width: 100%;
+        flex: none;
+        margin: 0 auto 2em
+    }
+    .penci-post-package.col_2 .package-item {
+        width: 50%;
+        margin: 1em
+    }
+    .penci-post-package.col_3 .package-item:not(:last-child), .penci-post-package.col_4 .package-item:not(:last-child), .penci-post-package.col_5 .package-item:not(:last-child) {
+        border-right-width: 0
+    }
+    .penci-post-package.col_5 .package-title h3 {
+        font-size: 22px;
+        margin-top: 5px
+    }
+    .penci-post-package.col_5 .package-price {
+        padding: 10px 20px 20px
+    }
+    .penci-post-package.col_5 .package-price .price {
+        font-size: 5em
+    }
+    .penci-post-package .featured-package .package-title h3 {
+        margin-top: 1em
+    }
+    .penci-post-package .package-item.featured-package .package-price {
+        padding-bottom: 3em
+    }
+    .penci-post-package.col_5 .package-item.featured-package .package-price {
+        padding-bottom: 30px
+    }
+}
+@media (max-width: 991px) {
+    .penci-post-package {
+        width: 100%;
+        margin-bottom: 0;
+        display: block
+    }
+    .penci-post-package .package-title h3 {
+        margin-top: 5px
+    }
+    .penci-post-package .package-item .package-list {
+        padding: 20px 20px 10px
+    }
+    .penci-post-package .package-item .package-button, .penci-post-package .package-item .package-price {
+        padding: 10px 30px 25px
+    }
+    .penci-post-package .package-item, .penci-post-package .package-item.featured-package {
+        width: 80%;
+        max-width: 340px;
+        margin: 0 auto 2em;
+        flex: none
+    }
+    .penci-post-package .package-item:not(:last-child) {
+        border-right-width: 1px
+    }
+    .penci-post-package .package-price .price {
+        font-size: 5em
+    }
+}
+@media (max-width: 480px) {
+    .penci-post-package .package-item, .penci-post-package .package-item.featured-package {
+        width: 90%;
+        max-width: none
+    }
+}
+.penci_post_action.deleted {
+    display: inline-block;
+    padding: 3px 7px;
+    border: 1px solid red;
+    color: red;
+    font-size: 12px;
+    transition: 0.3s all ease-in-out;
+}
+.penci_post_action.deleted:hover {
+    background: red;
+    color: #fff;
+}

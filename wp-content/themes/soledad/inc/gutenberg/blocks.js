@@ -1,0 +1,10 @@
+import './block/blockquote';
+import './block/recipe';
+import './block/recipe-index';
+import './block/review';
+import './block/portfolio';
+import './block/latest-posts';
+import './block/featured-boxes';
+import './block/featured-cat';
+import './block/popular-posts';
+import './wp-imports';

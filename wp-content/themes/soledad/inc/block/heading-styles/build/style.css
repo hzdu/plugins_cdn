@@ -1,0 +1,128 @@
+.pchead-e-block {
+    --pcborder-cl: #dedede;
+    --pcaccent-cl: #6eb48c;
+}
+.heading1-style-1 > h1,
+.heading2-style-1 > h2,
+.heading3-style-1 > h3,
+.heading4-style-1 > h4,
+.heading5-style-1 > h5,
+.heading1-style-2 > h1,
+.heading2-style-2 > h2,
+.heading3-style-2 > h3,
+.heading4-style-2 > h4,
+.heading5-style-2 > h5 {
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--pcborder-cl);
+    overflow: hidden;
+}
+.heading1-style-2 > h1,
+.heading2-style-2 > h2,
+.heading3-style-2 > h3,
+.heading4-style-2 > h4,
+.heading5-style-2 > h5 {
+    border-bottom-width: 0;
+    position: relative;
+}
+.heading1-style-2 > h1:before,
+.heading2-style-2 > h2:before,
+.heading3-style-2 > h3:before,
+.heading4-style-2 > h4:before,
+.heading5-style-2 > h5:before {
+    content: '';
+    width: 50px;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    z-index: 2;
+    background: var(--pcaccent-cl);
+    position: absolute;
+}
+.heading1-style-2 > h1:after,
+.heading2-style-2 > h2:after,
+.heading3-style-2 > h3:after,
+.heading4-style-2 > h4:after,
+.heading5-style-2 > h5:after {
+    content: '';
+    width: 100%;
+    height: 2px;
+    bottom: 0;
+    left: 20px;
+    z-index: 1;
+    background: var(--pcborder-cl);
+    position: absolute;
+}
+.heading1-style-3 > h1,
+.heading2-style-3 > h2,
+.heading3-style-3 > h3,
+.heading4-style-3 > h4,
+.heading5-style-3 > h5,
+.heading1-style-4 > h1,
+.heading2-style-4 > h2,
+.heading3-style-4 > h3,
+.heading4-style-4 > h4,
+.heading5-style-4 > h5 {
+    position: relative;
+    padding-left: 20px;
+}
+.heading1-style-3 > h1:before,
+.heading2-style-3 > h2:before,
+.heading3-style-3 > h3:before,
+.heading4-style-3 > h4:before,
+.heading5-style-3 > h5:before,
+.heading1-style-4 > h1:before,
+.heading2-style-4 > h2:before,
+.heading3-style-4 > h3:before,
+.heading4-style-4 > h4:before,
+.heading5-style-4 > h5:before {
+    width: 10px;
+    height: 100%;
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    background: var(--pcaccent-cl);
+}
+.heading1-style-4 > h1,
+.heading2-style-4 > h2,
+.heading3-style-4 > h3,
+.heading4-style-4 > h4,
+.heading5-style-4 > h5 {
+    padding: 10px 20px;
+    background: #f1f1f1;
+}
+.heading1-style-5 > h1,
+.heading2-style-5 > h2,
+.heading3-style-5 > h3,
+.heading4-style-5 > h4,
+.heading5-style-5 > h5 {
+    position: relative;
+    z-index: 1;
+}
+.heading1-style-5 > h1:before,
+.heading2-style-5 > h2:before,
+.heading3-style-5 > h3:before,
+.heading4-style-5 > h4:before,
+.heading5-style-5 > h5:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 200px;
+    height: 50%;
+    transform: skew(-25deg) translateX(0);
+    background: var(--pcaccent-cl);
+    z-index: -1;
+    opacity: 0.4;
+}
+.heading1-style-6 > h1,
+.heading2-style-6 > h2,
+.heading3-style-6 > h3,
+.heading4-style-6 > h4,
+.heading5-style-6 > h5 {
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    text-decoration-thickness: 4px;
+    text-decoration-color: var(--pcaccent-cl);
+}

@@ -1,0 +1,21 @@
+button[data-type="penci_speed_delete_cache"]:before,
+button[data-type="render_separate_css"]:before {
+	font: normal 20px/.5 dashicons;
+	speak: none;
+	display: inline-block;
+	padding: 0;
+	top: 9px;
+	left: -4px;
+	position: relative;
+	vertical-align: top;
+	content: "\f463";
+}
+button[data-type="render_separate_css"].loading:before,
+button[data-type="penci_speed_delete_cache"].loading:before {
+	animation: rotation 1s infinite linear;
+}
+button[data-type="render_separate_css"].success:before,
+button[data-type="penci_speed_delete_cache"].success:before {
+	content: "\f147";
+	color: #46b450;
+}

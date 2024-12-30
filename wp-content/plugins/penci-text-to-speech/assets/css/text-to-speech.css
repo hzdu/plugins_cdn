@@ -1,0 +1,714 @@
+body:not(.wp-admin) .penci-texttospeech-box.top-fixed,
+body:not(.wp-admin) .penci-texttospeech-box.bottom-fixed {
+    position: fixed;
+    left: 0;
+    margin: 0 !important;
+    max-width: 100% !important;
+    width: 100%;
+    z-index: 999999;
+}
+body:not(.wp-admin) .penci-texttospeech-box.top-fixed .wp-audio-shortcode,
+body:not(.wp-admin) .penci-texttospeech-box.bottom-fixed .wp-audio-shortcode {
+    max-width: 100% !important;
+}
+body:not(.wp-admin) .penci-texttospeech-box.top-fixed {
+    top: 0;
+}
+body:not(.wp-admin) .penci-texttospeech-box.bottom-fixed {
+    bottom: 0;
+}
+/**
+ * * Player Styles
+ * * ===================================================================== */
+.penci-texttospeech-box {
+    background: var(--pcaccent-cl);
+}
+.penci-texttospeech-box.style-1 {
+    border-radius: 10px;
+    height: 55px;
+}
+.penci-texttospeech-box.style-1 > div {
+    display: flex;
+}
+.penci-texttospeech-box.style-1:hover {
+    box-shadow: 0 0 10px #cccccc;
+    transition: 1s;
+}
+.penci-texttospeech-box.style-1 .mejs-container,
+.penci-texttospeech-box.style-1 .mejs-embed,
+.penci-texttospeech-box.style-1 .mejs-embed body {
+    background: inherit;
+    border-radius: 10px;
+    height: 54px;
+    box-shadow: none;
+}
+.penci-texttospeech-box.style-1 .mejs-controls {
+    background: inherit !important;
+    top: 7px;
+    padding: 0 12px;
+    display: flex;
+}
+.penci-texttospeech-box.style-1 .mejs-controls .mejs-button {
+    display: flex;
+    align-items: center;
+}
+.penci-texttospeech-box.style-1 .mejs-controls .mejs-button button {
+    background-color: var(--pcaccent-cl);
+    margin: 0 6px;
+}
+.penci-texttospeech-box.style-1 .mejs-controls .mejs-time-rail *,
+.penci-texttospeech-box.style-1 .mejs-controls .mejs-horizontal-volume-slider * {
+    border-radius: 10px;
+}
+.penci-texttospeech-box.style-1 .mejs-controls .mejs-time-loaded {
+    opacity: 0.25;
+}
+.penci-texttospeech-box.style-1 .mejs-controls .mejs-time-current {
+    background: white;
+}
+.penci-texttospeech-box.style-1 audio {
+    display: none;
+}
+.penci-texttospeech-box.style-1 * {
+    outline: none;
+}
+.penci-texttospeech-box.style-2 {
+    border-radius: 50px;
+    height: 55px;
+}
+.penci-texttospeech-box.style-2 > div {
+    display: flex;
+}
+.penci-texttospeech-box.style-2:hover {
+    box-shadow: 0 0 10px #cccccc;
+    transition: 1s;
+}
+.penci-texttospeech-box.style-2 .mejs-container,
+.penci-texttospeech-box.style-2 .mejs-embed,
+.penci-texttospeech-box.style-2 .mejs-embed body {
+    background: inherit;
+    border-radius: 5px;
+    height: 54px;
+}
+.penci-texttospeech-box.style-2 .mejs-controls {
+    background: inherit !important;
+    top: 7px;
+    padding: 0 12px;
+    display: flex;
+}
+.penci-texttospeech-box.style-2 .mejs-controls .mejs-button {
+    display: flex;
+    align-items: center;
+}
+.penci-texttospeech-box.style-2 .mejs-controls .mejs-button button {
+    background-color: var(--pcaccent-cl);
+    margin: 0 6px;
+}
+.penci-texttospeech-box.style-2 .mejs-controls .mejs-time-rail *,
+.penci-texttospeech-box.style-2 .mejs-controls .mejs-horizontal-volume-slider * {
+    border-radius: 2px;
+}
+.penci-texttospeech-box.style-2 .mejs-controls .mejs-time-loaded {
+    opacity: 0.25;
+}
+.penci-texttospeech-box.style-2 .mejs-controls .mejs-time-current {
+    background: white;
+}
+.penci-texttospeech-box.style-2 audio {
+    display: none;
+}
+.penci-texttospeech-box.style-2 * {
+    outline: none;
+}
+.penci-texttospeech-box.style-3 {
+    border-radius: 0;
+    height: 55px;
+}
+.penci-texttospeech-box.style-3 > div {
+    display: flex;
+}
+.penci-texttospeech-box.style-3:hover {
+    box-shadow: 0 0 10px #cccccc;
+    transition: 1s;
+}
+.penci-texttospeech-box.style-3 .mejs-container,
+.penci-texttospeech-box.style-3 .mejs-embed,
+.penci-texttospeech-box.style-3 .mejs-embed body {
+    background: inherit !important;
+    border-radius: 0;
+    height: 54px;
+}
+.penci-texttospeech-box.style-3 .mejs-controls {
+    background: inherit;
+    top: 7px;
+    padding: 0 12px;
+    display: flex;
+}
+.penci-texttospeech-box.style-3 .mejs-controls .mejs-button {
+    display: flex;
+    align-items: center;
+}
+.penci-texttospeech-box.style-3 .mejs-controls .mejs-button button {
+    background-color: var(--pcaccent-cl);
+    margin: 0 6px;
+}
+.penci-texttospeech-box.style-3 .mejs-controls .mejs-time-loaded {
+    opacity: 0.25;
+}
+.penci-texttospeech-box.style-3 .mejs-controls .mejs-time-current {
+    background: white;
+}
+.penci-texttospeech-box.style-3 audio {
+    display: none;
+}
+.penci-texttospeech-box.style-3 * {
+    outline: none;
+}
+.penci-texttospeech-box.style-3.style-4 {
+    background: transparent !important;
+}
+.penci-texttospeech-box.style-3.style-4 audio {
+    outline: none;
+}
+.penci-texttospeech-box.style-3.style-6 {
+    background: transparent !important;
+}
+.penci-texttospeech-box.style-3.style-6 audio {
+    outline: none;
+}
+.penci-texttospeech-box.style-5 {
+    background: transparent !important;
+    height: 55px;
+}
+.penci-texttospeech-box.style-5 .mejs-container {
+    background: none !important;
+    height: 55px;
+    min-height: 55px;
+    border-radius: 27px;
+    padding: 0;
+    margin: 0;
+    border: none;
+    box-shadow: none;
+}
+.penci-texttospeech-box.style-5 .mejs-container .mejs-inner .mejs-layers {
+    display: none;
+}
+.penci-texttospeech-box.style-5 .mejs-container .mejs-inner .mejs-controls {
+    background: #eff1f2;
+    height: 55px;
+    border-radius: 27px;
+    padding: 0;
+    margin: 0;
+    border: none;
+    box-shadow: none;
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+}
+.penci-texttospeech-box.style-5 .mejs-container .mejs-inner .mejs-controls .mejs-button {
+    width: 32px;
+    height: 32px;
+    border-radius: 16px;
+    padding: 0;
+    margin: 0 10px;
+    border: none;
+}
+.penci-texttospeech-box.style-5 .mejs-container .mejs-inner .mejs-controls .mejs-button.mejs-playpause-button {
+    margin-right: 5px;
+    order: 1;
+}
+.penci-texttospeech-box.style-5 .mejs-container .mejs-inner .mejs-controls .mejs-button.mejs-play > button, .penci-texttospeech-box.style-5 .mejs-container .mejs-inner .mejs-controls .mejs-button.mejs-replay > button {
+    background-image: url(../images/player/chrome/play.svg);
+}
+.penci-texttospeech-box.style-5 .mejs-container .mejs-inner .mejs-controls .mejs-button.mejs-pause > button {
+    background-image: url(../images/player/chrome/pause.svg);
+}
+.penci-texttospeech-box.style-5 .mejs-container .mejs-inner .mejs-controls .mejs-button.mejs-volume-button {
+    order: 6;
+    border-radius: 0 16px 16px 0;
+    margin-left: 0;
+}
+.penci-texttospeech-box.style-5 .mejs-container .mejs-inner .mejs-controls .mejs-button.mejs-mute > button {
+    background-image: url(../images/player/chrome/volume.svg);
+}
+.penci-texttospeech-box.style-5 .mejs-container .mejs-inner .mejs-controls .mejs-button.mejs-unmute > button {
+    background-image: url(../images/player/chrome/unmute.svg);
+}
+.penci-texttospeech-box.style-5 .mejs-container .mejs-inner .mejs-controls .mejs-button.mejs-more-button {
+    order: 7;
+    border-radius: 16px;
+    margin-left: -9px;
+}
+.penci-texttospeech-box.style-5 .mejs-container .mejs-inner .mejs-controls .mejs-button.mejs-more-button > button {
+    background-image: url(../images/player/chrome/more.svg);
+}
+.penci-texttospeech-box.style-5 .mejs-container .mejs-inner .mejs-controls .mejs-button > button {
+    margin: 0;
+    padding: 0;
+    background-position: center center;
+    background-size: 20px;
+    background-repeat: no-repeat;
+    background-color: transparent;
+    width: 32px;
+    height: 32px;
+}
+.penci-texttospeech-box.style-5 .mejs-container .mejs-inner .mejs-controls .mejs-button:hover {
+    background: #e3e5e6;
+}
+.penci-texttospeech-box.style-5 .mejs-container .mejs-inner .mejs-controls .mejs-time {
+    font-family: var(--pchead-font);
+    font-size: 14px;
+    color: #2b2b2b;
+    padding: 0;
+    margin: 0;
+    border: 0;
+    line-height: 14px;
+    height: 14px;
+}
+.penci-texttospeech-box.style-5 .mejs-container .mejs-inner .mejs-controls .mejs-time.mejs-currenttime-container {
+    order: 2;
+}
+.penci-texttospeech-box.style-5 .mejs-container .mejs-inner .mejs-controls .mejs-time.mejs-duration-container {
+    order: 3;
+}
+.penci-texttospeech-box.style-5 .mejs-container .mejs-inner .mejs-controls .mejs-time.mejs-duration-container:before {
+    font-family: var(--pchead-font);
+    font-size: 14px;
+    color: #2b2b2b;
+    content: "/";
+    margin: 0 4px;
+}
+.penci-texttospeech-box.style-5 .mejs-container .mejs-inner .mejs-controls .mejs-time-rail {
+    order: 4;
+    height: 12px;
+    border-radius: 4px;
+    padding: 0;
+    margin: 0 16px 0 16px;
+    border: none;
+    background: transparent;
+}
+.penci-texttospeech-box.style-5 .mejs-container .mejs-inner .mejs-controls .mejs-time-rail .mejs-time-total {
+    padding: 0;
+    margin: 0;
+    border: none;
+    box-shadow: none;
+    height: 4px;
+    border-radius: 10px;
+    top: 4px;
+    background: #b6b7b8;
+}
+.penci-texttospeech-box.style-5 .mejs-container .mejs-inner .mejs-controls .mejs-time-rail .mejs-time-total > * {
+    border-radius: 10px;
+    height: 4px;
+}
+.penci-texttospeech-box.style-5 .mejs-container .mejs-inner .mejs-controls .mejs-time-rail .mejs-time-total .mejs-time-buffering {
+    background: transparent;
+}
+.penci-texttospeech-box.style-5 .mejs-container .mejs-inner .mejs-controls .mejs-time-rail .mejs-time-total .mejs-time-loaded {
+    background: #767676;
+}
+.penci-texttospeech-box.style-5 .mejs-container .mejs-inner .mejs-controls .mejs-time-rail .mejs-time-total .mejs-time-current {
+    background: #090909;
+}
+.penci-texttospeech-box.style-5 .mejs-container .mejs-inner .mejs-controls .mejs-time-rail .mejs-time-total .mejs-time-handle {
+    width: 12px;
+    height: 12px;
+    border-radius: 6px;
+    background: #090909;
+    padding: 0;
+    margin: 0;
+    border: none;
+    box-shadow: none;
+    top: -4px;
+    opacity: 0;
+    transition: all 0.4s ease-in-out;
+}
+.penci-texttospeech-box.style-5 .mejs-container .mejs-inner .mejs-controls .mejs-time-rail .mejs-time-total .mejs-time-handle .mejs-time-handle-content {
+    display: none;
+}
+.penci-texttospeech-box.style-5 .mejs-container .mejs-inner .mejs-controls .mejs-time-rail .mejs-time-total .mejs-time-hovered {
+    width: 12px;
+    height: 12px;
+    border-radius: 6px;
+    background: red;
+    transform: scaleX(1) !important;
+    top: -4px;
+    display: none;
+}
+.penci-texttospeech-box.style-5 .mejs-container .mejs-inner .mejs-controls .mejs-time-rail .mejs-time-total .mejs-time-float {
+    display: none !important;
+    opacity: 0 !important;
+}
+.penci-texttospeech-box.style-5 .mejs-container .mejs-inner .mejs-controls .mejs-time-rail:hover .mejs-time-handle {
+    opacity: 1;
+    transition: all 0.4s ease-in-out;
+}
+.penci-texttospeech-box.style-5 .mejs-container .mejs-inner .mejs-controls .mejs-horizontal-volume-slider {
+    order: 5;
+    height: 32px;
+    width: 0;
+    border-radius: 16px 0 0 16px;
+    background: #e3e5e6;
+    padding: 0;
+    margin: 0;
+    border: none;
+    box-shadow: none;
+}
+.penci-texttospeech-box.style-5 .mejs-container .mejs-inner .mejs-controls .mejs-horizontal-volume-slider .mejs-horizontal-volume-total {
+    height: 4px;
+    background: #b6b7b8;
+    margin: 0 0 0 16px;
+    border-radius: 16px;
+    top: 14px;
+    display: none;
+}
+.penci-texttospeech-box.style-5 .mejs-container .mejs-inner .mejs-controls .mejs-horizontal-volume-slider .mejs-horizontal-volume-total .mejs-horizontal-volume-current {
+    height: 4px;
+    background: #545454;
+    border-radius: 16px;
+}
+.penci-texttospeech-box.style-5 .mejs-container .mejs-inner .mejs-controls .mejs-horizontal-volume-slider .mejs-horizontal-volume-total .mejs-horizontal-volume-handle {
+    height: 4px;
+    border-radius: 16px;
+}
+.penci-texttospeech-box.style-5 .mejs-container .mejs-inner .mejs-controls .mejs-more-menu {
+    position: absolute;
+    background: #dbdbdb;
+    color: #3c3c3c;
+    font-size: 12px;
+    border-radius: 8px;
+    line-height: 16px;
+    min-width: 200px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+    z-index: 999;
+    transform-origin: bottom right;
+    animation-name: mdp-scale-up;
+    animation-duration: 0.4s;
+    animation-fill-mode: both;
+}
+.penci-texttospeech-box.style-5 .mejs-container .mejs-inner .mejs-controls .mejs-more-menu a {
+    color: #3c3c3c;
+    text-decoration: none;
+    padding: 13px;
+    display: flex;
+    align-items: center;
+}
+.penci-texttospeech-box.style-5 .mejs-container .mejs-inner .mejs-controls .mejs-more-menu a:hover, .penci-texttospeech-box.style-5 .mejs-container .mejs-inner .mejs-controls .mejs-more-menu a:focus, .penci-texttospeech-box.style-5 .mejs-container .mejs-inner .mejs-controls .mejs-more-menu a:active {
+    text-decoration: none;
+}
+.penci-texttospeech-box.style-5 .mejs-container .mejs-inner .mejs-controls .mejs-more-menu a:before {
+    content: "";
+    background-image: url(../images/player/chrome/download.svg);
+    background-position: center center;
+    background-size: 20px;
+    background-repeat: no-repeat;
+    width: 20px;
+    height: 20px;
+    display: inline-flex;
+    margin-right: 9px;
+}
+.penci-texttospeech-box.style-6 {
+    background-color: transparent !important;
+    min-height: 40px;
+}
+.standard-post-special_wrapper .penci-texttospeech-wrapper.pc-ttp-s-style-4 {
+    padding-top: 40px;
+}
+.penci-texttospeech-wrapper.pc-ttp-s-style-6 {
+    min-height: 40px;
+}
+.penci-texttospeech-box.mejs-volume-show .mejs-container .mejs-inner .mejs-controls .mejs-horizontal-volume-slider {
+    animation-name: mdp-slide-in-right;
+    animation-duration: 0.2s;
+    animation-fill-mode: both;
+    display: block;
+}
+.penci-texttospeech-box.mejs-volume-show .mejs-container .mejs-inner .mejs-controls .mejs-horizontal-volume-slider .mejs-horizontal-volume-total {
+    display: block;
+}
+.penci-texttospeech-box.mejs-volume-show .mejs-container .mejs-inner .mejs-controls .mejs-button.mejs-volume-button {
+    background: #e3e5e6;
+}
+.penci-texttospeech-box.mejs-volume-hide .mejs-container .mejs-inner .mejs-controls .mejs-horizontal-volume-slider {
+    animation-name: mdp-slide-our-left;
+    animation-duration: 0.1s;
+}
+.penci-texttospeech-box.mejs-volume-hide .mejs-container .mejs-inner .mejs-controls .mejs-button.mejs-volume-button {
+    border-radius: 16px;
+    background: #e3e5e6;
+}
+@keyframes mdp-slide-in-right {
+    0% {
+        opacity: 0;
+        width: 0;
+        padding-left: 0;
+    }
+    25% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+        width: 66px;
+        padding-left: 16px;
+    }
+}
+@keyframes mdp-slide-our-left {
+    0% {
+        opacity: 1;
+        width: 66px;
+        padding-left: 16px;
+    }
+    25% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 0;
+        width: 0;
+        padding-left: 0;
+    }
+}
+@keyframes mdp-scale-up {
+    0% {
+        opacity: 0;
+        transform: scale(0);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+/* WPBakery player fix */
+#ajax-content-wrap .mejs-container {
+    background-color: transparent !important;
+}
+/* Download box */
+.penci-texttospeech-download-box {
+    padding-top: 0 !important;
+    margin-top: 10px !important;
+    font-size: 14px;
+}
+/* Speeds */
+.penci-texttospeech--speed {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 0.5em;
+    font-size: 16px;
+}
+.penci-texttospeech--speed button {
+    font-size: 0.95em;
+    transition: all 0.4s ease-in-out;
+    background: #EFF1F2;
+    text-decoration: none;
+    text-transform: none;
+}
+.penci-texttospeech--speed button:hover, .penci-texttospeech--speed button:focus {
+    transition: all 0.4s ease-in-out;
+    text-decoration: none;
+    color: white;
+}
+.penci-texttospeech--speed button.penci-texttospeech--speed-button {
+    padding: 1em 1.25em;
+    margin: 0.5em;
+    border: 0;
+    box-shadow: none;
+    outline: none;
+}
+.penci-texttospeech--speed button.penci-texttospeech--speed-button.active-speed {
+    color: #fff;
+}
+.penci-texttospeech--speed button.penci-texttospeech--speed-button:first-of-type {
+    margin-left: 0;
+}
+.penci-texttospeech--speed button.penci-texttospeech--speed-button:last-of-type {
+    margin-right: 0;
+}
+.penci-texttospeech--speed.style-1 button {
+    border-radius: 100px;
+}
+.penci-texttospeech--speed.style-2 button {
+    border-radius: 0.5em;
+}
+.penci-texttospeech--speed.style-3 button {
+    border-radius: 0;
+    margin-right: 0;
+    margin-left: 0;
+}
+.penci-texttospeech--speed.style-4 button {
+    border-radius: 0;
+    padding: 0.5em 1em;
+    color: #eee;
+    background-color: #222;
+}
+.penci-texttospeech--speed.style-6 button, .penci-texttospeech--speed.style-5 button {
+    border-radius: 0;
+    margin-right: 0;
+    margin-left: 0;
+    background: #EFF1F2;
+    color: #222;
+}
+.penci-texttospeech--speed.style-6 button:first-of-type, .penci-texttospeech--speed.style-5 button:first-of-type {
+    border-radius: 0.5em 0 0 0.5em;
+}
+.penci-texttospeech--speed.style-6 button:last-of-type, .penci-texttospeech--speed.style-5 button:last-of-type {
+    border-radius: 0 0.5em 0.5em 0;
+}
+.penci-texttospeech--speed.style-6 button:hover, .penci-texttospeech--speed.style-5 button:hover {
+    background: #222;
+    color: #EFF1F2;
+}
+.penci-texttospeech--speed.style-6 button.active-speed, .penci-texttospeech--speed.style-5 button.active-speed {
+    background: #222;
+    color: #EFF1F2;
+}
+.penci-texttospeech--speed .penci-texttospeech--speed-title p {
+    padding: 0;
+    margin: 0;
+}
+.penci-texttospeech-wrapper {
+    margin: 0 0 30px;
+}
+.penci-texttospeech-wrapper.pc-ttp-after-content {
+    margin: 30px 0;
+}
+.penci-texttospeech-wrapper.pc-ttp-after-title {
+    margin: 20px 0 0;
+}
+.penci-texttospeech-wrapper.pc-ttp-before-title {
+    margin: 0 0 20px;
+}
+.elementor-widget-pc-tts-elementor .penci-texttospeech-wrapper {
+    margin: 0;
+}
+.mejs__speed-button,
+.mejs-speed-button {
+    position: relative;
+    order: 4;
+    min-width: 50px;
+}
+.mejs-button.mejs__speed-button > button,
+.mejs-button.mejs-speed-button > button {
+    background: transparent;
+    color: #fff;
+    font-size: 12px;
+    line-height: normal;
+    margin: 11px 0 0;
+    width: 100%;
+}
+.penci-texttospeech-box.style-5 .mejs-button.mejs-speed-button > button {
+    color: var(--pcheading-cl);
+}
+.penci-texttospeech-box .mejs-controls {
+    z-index: 999;
+}
+.mejs__speed-selector,
+.mejs-speed-selector {
+    background: rgba(50, 50, 50, 0.9);
+    border: solid 1px transparent;
+    border-radius: 0;
+    height: auto;
+    left: 50%;
+    margin-left: -30px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    top: -100px;
+    visibility: hidden;
+    width: 60px;
+}
+.mejs__speed-selector,
+.mejs-speed-selector {
+    visibility: visible;
+}
+.penci-texttospeech-box .mejs__speed-selector-list,
+.penci-texttospeech-box .mejs-speed-selector-list {
+    display: block;
+    list-style-type: none !important;
+    margin: 0 !important;
+    overflow: hidden;
+    padding: 10px 0 2px !important;
+}
+.penci-texttospeech-box .mejs__speed-selector-list-item,
+.penci-texttospeech-box .mejs-speed-selector-list-item {
+    color: #fff;
+    display: block;
+    list-style-type: none !important;
+    margin: 0 0 8px;
+    overflow: hidden;
+    padding: 0 10px;
+    text-align: center;
+    line-height: 1;
+}
+.mejs__speed-selector-input,
+.mejs-speed-selector-input {
+    clear: both;
+    float: left;
+    left: -1000px;
+    margin: 3px 3px 0 5px;
+    position: absolute;
+}
+.mejs__speed-selector-label,
+.mejs-speed-selector-label {
+    color: white;
+    cursor: pointer;
+    float: left;
+    font-size: 11px;
+    line-height: 15px;
+    margin-left: 0;
+    padding: 0;
+    width: 100%;
+}
+.mejs__speed-selected,
+.mejs-speed-selected {
+    color: var(--pcaccent-cl);
+}
+.mejs__speed-selector,
+.mejs-speed-selector {
+    visibility: hidden;
+}
+.mejs__speed-button:hover .mejs__speed-selector,
+.mejs-speed-button:hover .mejs-speed-selector {
+    visibility: visible;
+}
+body {
+    --penci-tts-h: 55px;
+}
+body.penci-tts-top-fixed .penci_navbar_mobile.mobile-sticky,
+body.penci-tts-top-fixed .penci_header.penci_builder_sticky_header_desktop.sticky-apply,
+body.penci-tts-top-fixed .is-sticky #navigation {
+    transform: translateY(var(--penci-tts-h));
+}
+body.penci-tts-top-fixed .mejs-speed-selector {
+    top: 100% !important;
+}
+body.penci-tts-bottom-fixed .penci-go-to-top-floating.show-up {
+    transform: translateY(calc(var(--penci-tts-h) * -1));
+}
+body.penci-tts-top-fixed .wpadminbar {
+    top: 0 !important;
+}
+body.penci-tts-top-fixed.admin-bar .penci-texttospeech-box.top-fixed {
+    top: 32px;
+}
+@media only screen and (max-width: 960px) {
+    body.penci-tts-top-fixed.admin-bar .penci-texttospeech-box.top-fixed {
+        top: 46px;
+    }
+    body.penci-tts-top-fixed.admin-bar.pc-scrtop .penci-texttospeech-box.top-fixed {
+        top: 0;
+    }
+}
+@media only screen and (min-width: 961px) {
+    .penci-header-text-white .penci-texttospeech-download-box,
+    .penci-header-text-white .penci-texttospeech-download-box a {
+        color: white;
+    }
+}
+.penci-single-style-8 + .post-entry .penci-texttospeech-wrapper.pc-ttp-before-content,
+.header-standard + .post-entry .penci-texttospeech-wrapper.pc-ttp-before-content,
+.header-standard + .post-image + .post-entry .penci-texttospeech-wrapper.pc-ttp-before-content,
+.tags-share-box + .post-entry .penci-texttospeech-wrapper.pc-ttp-before-content,
+.header-standard + .tags-share-box + .post-entry .penci-texttospeech-wrapper.pc-ttp-before-content {
+    margin-top: 20px;
+}

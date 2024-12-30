@@ -1,0 +1,167 @@
+.penci-football-standing,
+.post-entry .penci-football-standing {
+	border: 0;
+	--rgap: 24px;
+}
+.widget .penci-football-standing {
+	width: 100%;
+}
+.penci-football-standing thead tr td {
+	font-size: 12px;
+	text-transform: uppercase;
+	color: var(--pcheading-cl);
+	font-weight: var(--pchead-wei);
+	background: #f1f1f1;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+.pcteam_club,
+.pcteam_points {
+	font-family: var(--pchead-font);
+	font-weight: var(--pchead-wei);
+	color: var(--pcheading-cl);
+}
+.pcteam_shortName {
+	vertical-align: middle;
+}
+.pcteam_club img {
+	max-width: 25px;
+	height: auto;
+	display: inline-block;
+	margin-right: 10px;
+	vertical-align: middle;
+}
+.penci-football-standing {
+	width: 100%;
+}
+.penci-football-standing th,
+.penci-football-standing td {
+	border-bottom: 1px solid var(--pcborder-cl);
+	border-color: var(--pcborder-cl);
+	padding-left: 12px;
+	padding-right: 12px;
+}
+.penci-football-standing .pcteam_meta {
+	padding-top: calc(var(--rgap) / 2);
+	padding-bottom: calc(var(--rgap) / 2);
+}
+.penci-football-standing-wrap {
+	width: 100%;
+	overflow: auto;
+}
+.penci-football-standing-wrap + .penci-football-standing-wrap {
+	margin-top: 30px;
+}
+.penci-football-standing-wrap .penci-football-ghead {
+	margin-bottom: 15px;
+}
+.widget .penci-football-standing-wrap .penci-football-ghead {
+	text-align: center;
+}
+.penci-football-matches {
+	display: flex;
+	flex-wrap: wrap;
+	row-gap: 10px;
+	justify-content: space-between;
+	--gap: 10px;
+	--col: 3;
+}
+.penci-football-match {
+	display: flex;
+	width: calc(100% / var(--col) - var(--gap));
+	align-items: center;
+	padding: 15px 10px;
+	border: 1px solid var(--pcborder-cl);
+	border-radius: 2px;
+}
+.widget .penci-football-match {
+	width: 100%;
+}
+.penci-football-match .pcfm-item {
+	width: 40%;
+	text-align: center;
+}
+.penci-football-match .penci-matche-time {
+	width: 20%;
+	text-align: center;
+	font-size: 12px;
+}
+.penci-football-match .pcfm-item img {
+	max-width: 30px;
+	height: auto;
+}
+.penci-football-match .pcfm-item-title {
+	font-size: 14px;
+	margin: 10px 0 0;
+}
+.penci-matche-score {
+	font-size: 22px;
+	width: 20%;
+	text-align: center;
+	font-weight: bold;
+}
+.penci-matche-score span {
+	display: inline-block;
+}
+.penci-matche-score span:first-child:after {
+	content: "-";
+	display: inline-block;
+	margin: 0 10px;
+}
+.penci-football-standing.style-2 .pcteam_club,
+.penci-football-standing.style-2 .pcteam_points {
+	background-color: aliceblue;
+}
+.penci-football-standing.style-2 tbody tr:first-child td {
+	background: #1f9b1f;
+	color: #fff;
+	border-color: #1f9b1f;
+}
+.penci-football-standing.style-2 tbody tr:nth-child(2) td {
+	background: #ffffa6;
+	border-color: #ffffa6;
+}
+.penci-football-standing.style-2 tbody tr:nth-child(3) td {
+	background: #ffdfdf;
+	border-color: #ffdfdf;
+}
+.penci-football-standing.style-2 thead tr td {
+	background: var(--pcaccent-cl);
+  	color: var(--pcbg-cl);
+}
+.widget .penci-football-standing td {
+	border-bottom: 1px solid var(--pcborder-cl);
+	padding-left: 10px;
+	padding-right: 10px;
+}
+.widget .penci-football-standing td:first-child {
+	max-width: 60px;
+}
+.widget .penci-football-standing tr:last-child td {
+	border-bottom: 0;
+}
+.pcspt-tb.multi-table {
+	display: flex;
+	flex-wrap: wrap;
+	--gap: 30px;
+	--col: 1;
+	gap: var(--gap);
+	justify-content: space-between;
+}
+.pcspt-tb.multi-table .penci-football-standing-wrap {
+	flex: 0 1 calc(100%/var(--col) - var(--gap));
+	margin-top: 0;
+	padding: 0;
+}
+.penci-football-standing .pcteam_meta.pcteam_club {
+	white-space: nowrap;
+}
+.widget .penci-football-standing td.pcteam_club {
+	min-width: 150px;
+}
+.widget .pcspt-tb.multi-table {
+	display: block;
+}
+.widget .pcspt-tb.multi-table .penci-football-standing-wrap + .penci-football-standing-wrap {
+	margin-top: 30px;
+}

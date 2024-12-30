@@ -1,0 +1,42 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "block/soledad",
+  "version": "1.0",
+  "title": "Penci Heading Title",
+  "category": "widgets",
+  "description": "Display heading title with various styles.",
+  "example": {},
+  "attributes": {
+    "headingTag": {
+      "type": "string"
+    },
+    "headingStyle": {
+      "type": "string"
+    },
+    "headingText": {
+      "type": "string"
+    },
+    "accentColor": {
+      "type": "string"
+    },
+    "borderColor": {
+      "type": "string"
+    }
+  },
+  "supports": {
+    "color": {
+      "background": false,
+      "text": true
+    },
+    "html": true,
+    "typography": {
+      "fontSize": true
+    }
+  },
+  "textdomain": "soledad",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./style.min.css",
+  "style": "file:./style.min.css",
+  "render": "file:./render.php"
+}

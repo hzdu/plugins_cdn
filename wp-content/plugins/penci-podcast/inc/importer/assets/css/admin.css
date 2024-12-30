@@ -1,0 +1,324 @@
+.pencipdc-importer .pencipdc_import_buttons_container {
+    display: flex;
+    align-content: center;
+    align-items: center
+}
+.pencipdc-importer .pencipdc_import_buttons_container > a {
+    margin: 0 0 0 5px
+}
+.pencipdc-importer .pencipdc_import_buttons_container > a:first-child {
+    margin: 0 0 0 auto;
+    min-width: 5rem;
+    text-align: center;
+}
+.pencipdc-importer > h1 {
+    display: flex;
+    align-content: flex-start
+}
+.pencipdc-importer > h1 > a {
+    margin: 0 0 0 auto
+}
+.pencipdc-importer .nav-tab-wrapper {
+    margin: 0 0 10px 0
+}
+.pencipdc-importer .wp-list-table td {
+    vertical-align: middle;
+}
+.pencipdc-importer .main-container-pencipdc {
+    padding: 20px 25px;
+    background: #fff;
+    border-radius: 5px;
+    display: flex;
+    align-items: flex-start;
+}
+.pencipdc-importer .upgrade-cta {
+    width: 340px;
+    max-width: 100%;
+    text-align: center;
+    background: #f0f0f1;
+    border-radius: 5px;
+    padding: 20px 40px;
+    border: 2px solid #2271b1;
+}
+.pencipdc-importer .upgrade-cta h3 {
+    display: block;
+}
+.pencipdc-importer .pencipdc_import_form {
+    width: 100%;
+}
+.pencipdc-importer .pencipdc_import_form > .pis-application-loader-progress-bar {
+    width: 100%;
+    max-width: 70%;
+    height: 82px;
+    margin: 65px auto;
+    background-color: #f7f7f7;
+    outline: 1px solid gainsboro;
+    box-shadow: 0 2px 6px rgb(0 0 0 / 20%);
+    position: relative;
+    border-radius: 5px;
+}
+.pencipdc-importer .pencipdc_import_form > .pis-application-loader-progress-bar > .pis-application-loader-progress-bar-background {
+    width: 1%;
+    height: 82px;
+    background-color: #72b7e0;
+    transition: width 0.3s cubic-bezier(0, .96, 0, .96);
+}
+.pencipdc-importer .pencipdc_import_form > .pis-application-loader-progress-bar > p {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin: 0;
+    max-width: 100%;
+}
+.pencipdc-importer .pencipdc_import_form > .pis-application-loader-progress-bar > .pis-application-loader-wrapper {
+    position: absolute;
+    top: 5px;
+    left: 20px;
+}
+.pencipdc-importer .pencipdc_import_form > .pis-application-loader-progress-bar > .pis-application-loader-wrapper div {
+    border-left-color: #fff !important;
+}
+.pencipdc-importer .pencipdc_import_form > .pencipdc_import_wrapper {
+    width: 70%;
+}
+.pencipdc-importer .pencipdc_import_form .pencipdc_import_field_row {
+    display: block;
+    margin: 0 0 20px 0;
+}
+.pencipdc-importer .pencipdc_import_form .pencipdc_import_field_row > label {
+    display: block;
+    font-size: 14px;
+    font-weight: 500;
+    margin: 0 0 4px 0;
+}
+.pencipdc-importer .pencipdc_import_form .pencipdc_import_field_row > select, .pencipdc-importer .pencipdc_import_form .pencipdc_import_field_row input:not([type="checkbox"]) {
+    max-width: 90%;
+    width: 30rem;
+}
+.pencipdc-importer .pencipdc_import_form .pencipdc_import_field_row.pencipdc_import_field_row-checkbox > label {
+    width: 100%;
+}
+.pencipdc-importer .pencipdc_import_form .pencipdc_import_field_row .pencipdc_import_field_description {
+    margin-top: 3px;
+    width: auto;
+}
+.pencipdc-importer .pencipdc_import_form .pencipdc_import_advanced_settings_container .pencipdc_import_advanced_settings_toggle {
+    cursor: pointer;
+    display: flex;
+    align-content: center;
+    align-items: center
+}
+.pencipdc-importer .pencipdc_import_form .pencipdc_import_advanced_settings_container .pencipdc_import_advanced_settings_toggle > i {
+    border: solid black;
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 3px;
+    margin: 0 10px;
+    transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg)
+}
+.pencipdc-importer .pencipdc_import_form .pencipdc_import_advanced_settings_container .pencipdc_import_advanced_settings_toggle.active > i {
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg)
+}
+.pencipdc-importer .pencipdc_import_form .pencipdc_import_advanced_settings_container .pencipdc_import_advanced_settings {
+    display: none
+}
+.pencipdc-importer .pencipdc_import_form .pencipdc_import_field_row.pencipdc_import_field_row-multiple_select {
+    align-content: flex-start;
+    align-items: flex-start
+}
+.pencipdc-importer .pencipdc_import_form .pencipdc_import_field_media_image_handler {
+    display: flex;
+    flex-direction: column
+}
+.pencipdc-importer .pencipdc_import_form .pencipdc_import_field_media_image_handler > img {
+    max-width: 300px;
+    margin: 0;
+    padding: 0
+}
+.pencipdc-importer .pencipdc_import_form .pencipdc_import_field_media_image_handler .button-primary {
+    margin: 0 auto 0 0
+}
+.pencipdc-importer .pencipdc_import_form .pencipdc_import_field_media_image_handler .button-secondary {
+    margin: 10px auto 0 0
+}
+.pencipdc-importer .pencipdc_import_form .pencipdc_import_advanced_settings > h3 {
+    font-size: 20px;
+    margin: 0 0 10px 0
+}
+.pencipdc-importer .pencipdc_import_form > .button.button-primary {
+    padding: 12px 36px;
+    height: auto;
+    line-height: 1.4285714;
+    font-size: 14px;
+    min-height: 46px;
+    white-space: normal;
+}
+@media screen and (max-width: 767px) {
+    .upgrade-cta {
+        display: none;
+    }
+    .pencipdc-importer .pencipdc_import_form {
+        width: 100%;
+    }
+    .pencipdc-importer .pencipdc_import_form .pencipdc_import_field_row {
+        flex-direction: column;
+        align-content: flex-start;
+        align-items: flex-start
+    }
+    .pencipdc-importer .pencipdc_import_form .pencipdc_import_field_row > label {
+        width: 100%;
+        margin: 0 0 10px 0
+    }
+    .pencipdc-importer .pencipdc_import_form .pencipdc_import_field_row > select, .pencipdc-importer .pencipdc_import_form .pencipdc_import_field_row input:not([type="checkbox"]) {
+        width: 100%;
+        max-width: 100%
+    }
+    .pencipdc-importer .pencipdc_import_form .pencipdc_import_field_row.pencipdc_import_field_row-checkbox {
+        margin: 0 0 10px 0
+    }
+    .pencipdc-importer .pencipdc_import_form .pencipdc_import_field_row .pencipdc_import_field_description {
+        margin: 10px 0 0 0;
+        width: 100%
+    }
+}
+.pencipdc-importer [data-pencipdc-import-notification] {
+    border: none;
+    padding: 20px;
+    display: block;
+    letter-spacing: 0;
+    position: relative;
+    text-decoration: none;
+    font-size: 16px;
+    margin: 10px 0;
+    font-weight: 500;
+    text-align: center;
+}
+.pencipdc-importer [data-pencipdc-import-notification] > p {
+    margin: 0;
+    padding: 0
+}
+.pencipdc-importer [data-pencipdc-import-notification] a {
+    margin: 0;
+    padding: 0;
+    border: none;
+    cursor: pointer;
+    text-decoration: underline
+}
+.pencipdc-importer [data-pencipdc-import-notification] a:hover {
+    border: none
+}
+.pencipdc-importer [data-pencipdc-import-notification]:after {
+    clear: both;
+    content: "";
+    display: block
+}
+.pencipdc-importer [data-pencipdc-import-notification][data-pencipdc-import-notification="danger"] {
+    color: #F44336;
+    background: rgba(244, 67, 54, 0.05)
+}
+.pencipdc-importer [data-pencipdc-import-notification][data-pencipdc-import-notification="danger"] a, .pencipdc-importer [data-pencipdc-import-notification][data-pencipdc-import-notification="danger"] span {
+    color: #F44336
+}
+.pencipdc-importer [data-pencipdc-import-notification][data-pencipdc-import-notification="success"] {
+    color: #2BBF16;
+    background: rgba(43, 191, 22, 0.05)
+}
+.pencipdc-importer [data-pencipdc-import-notification][data-pencipdc-import-notification="success"] a, .pencipdc-importer [data-pencipdc-import-notification][data-pencipdc-import-notification="success"] span {
+    color: #2BBF16
+}
+.pencipdc-importer [data-pencipdc-import-notification][data-pencipdc-import-notification="progress"] {
+    color: #72b7e0;
+    background: rgba(114, 183, 224, 0.05);
+}
+@keyframes pencipdc_importer_application_loader_rotate_kf {
+    0% {
+        transform: rotate(0deg)
+    }
+    50% {
+        transform: rotate(180deg)
+    }
+    100% {
+        transform: rotate(360deg)
+    }
+}
+.pencipdc-importer .pis-application-loader-wrapper {
+    box-sizing: border-box;
+    position: relative;
+    margin: 50px auto;
+    width: 150px;
+    height: 150px;
+    display: block;
+    overflow: hidden;
+    will-change: transform
+}
+.pencipdc-importer .pis-application-loader-wrapper div {
+    box-sizing: border-box;
+    will-change: transform;
+    height: 100%;
+    box-sizing: border-box
+}
+.pencipdc-importer .pis-application-loader-wrapper[data-pis-loader-type="mini"] {
+    margin: 5px auto;
+    width: 62px;
+    height: 62px;
+}
+.pencipdc-importer .pis-application-loader-wrapper[data-pis-loader-type="mini"], .pencipdc-importer .pis-application-loader-wrapper div {
+    border-radius: 50%;
+    padding: 8px;
+    border: 2px solid transparent;
+    animation: pencipdc_importer_application_loader_rotate_kf linear 3.5s infinite;
+    border-top-color: #2f61cc;
+    border-left-color: #72b7e0;
+    animation-timing-function: cubic-bezier(0.55, 0.38, 0.21, 0.88);
+    animation-duration: 3s
+}
+.pencipdc-importer .pis-application-loader-wrapper[data-pis-loader-type="mini"], .pencipdc-importer .pis-application-loader-wrapper[data-pis-loader-type="mini"] div {
+    padding: 2px
+}
+.pencipdc-importer .pis-application-loader-wrapper:hover, .pencipdc-importer .pis-application-loader-wrapper div:hover {
+    animation-play-state: paused
+}
+.pencipdc-importer .pencipdc_import_buttons_container .button-secondary.button-delete {
+    color: #d72b3f;
+    border-color: #d72b3f;
+}
+input#pci_pro_license_key {
+    margin-right: 1rem;
+}
+a.tagline-powered-by {
+    font-size: 13px;
+    font-style: italic;
+    display: block;
+    padding: 5px 0 0 0 !important;
+}
+.pencipdc-importer > [data-pencipdc-import-notification="info"] {
+    padding: 0;
+    margin: 25px 0;
+    text-align: left;
+}
+.upgrade-cta h2 {
+    margin: 0;
+}
+.upgrade-cta h5 {
+    margin: 8px 0 0 0;
+    font-size: 12px;
+    font-style: italic;
+}
+.upgrade-cta ul, .upgrade-pencipdc ul {
+    text-align: left;
+    list-style: disc;
+}
+.upgrade-pencipdc {
+    padding: 0 20px;
+}
+.pencipdc-importer .button.pencipdc_upgrade_cta {
+    padding: 12px 36px;
+    height: auto;
+    line-height: 1.4285714;
+    font-size: 14px;
+    min-height: 46px;
+    white-space: normal;
+}

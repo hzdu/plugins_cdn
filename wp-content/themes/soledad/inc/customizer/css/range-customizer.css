@@ -1,0 +1,143 @@
+.customize-control-pencidesign-custom-range-slider .penci-range-lable{
+	font-size: 13px;
+	font-weight: 600;
+	color: #555d66;
+	margin-bottom: 0;
+	margin-top: 16px;
+}
+.customize-control-pencidesign-custom-range-slider .pencidesign-range-slider {
+	position: relative;
+	width: calc(100% - 60px);
+	height: 6px;
+	background-color: rgba(0,0,0,.10);
+	cursor: pointer;
+	transition: background .5s;
+}
+.customize-control-pencidesign-custom-range-slider .has-unit .pencidesign-range-slider {
+	width: calc(100% - 90px);
+}
+.customize-control-pencidesign-custom-range-slider .penci_range_value.hide-value {
+	display: none;
+}
+.customize-control-pencidesign-custom-range-slider .penci_range_value.hide-value + .pencidesign-range-slider {
+	width: 100%;
+}
+.customize-control-pencidesign-custom-range-slider .pencidesign-range-slider .ui-slider-handle {
+	height: 16px;
+	width: 16px;
+	background-color: #2d9de6;
+	display: inline-block;
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%) translateX(-4px);
+	border-radius: 50%;
+	cursor: pointer;
+}
+.customize-control-pencidesign-custom-range-slider .wrapper {
+    display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+.customize-control-pencidesign-custom-range-slider .penci_range_value {
+	font-size: 14px;
+	padding: 0;
+	font-weight: 400;
+	width: 52px;
+	display: flex;
+}
+.customize-control-pencidesign-custom-range-slider .has-unit .penci_range_value {
+	width: 80px;
+}
+.customize-control-pencidesign-custom-range-slider .penci_range_value span.value {
+    font-size: 12px;
+    width: calc(100% - 2px);
+    text-align: center;
+    min-height: 30px;
+    background: #FFF;
+    line-height: 30px;
+    border: 1px solid #DDD;
+}
+.customize-control-pencidesign-custom-range-slider .has-unit .penci_range_value span.value {
+	width: calc(100% - 32px);
+	display: block;
+}
+.customize-control-pencidesign-custom-range-slider .penci_range_value .unit {
+    width: 29px;
+    text-align: center;
+    font-size: 12px;
+	line-height: 22px;
+	background: #fff;
+	border: 1px solid #ddd;
+	margin-left: 1px;
+	height: 24px;
+}
+.customize-control-pencidesign-custom-range-slider .pencidesign-range-slider-reset span {
+    font-size: 16px;
+    line-height: 22px;
+}
+.customize-control-pencidesign-custom-range-slider .penci_range_value input {
+    font-size: 12px;
+    padding: 0px;
+    text-align: center;
+	min-height: 24px;
+	height: auto;
+	border-radius: 0;
+	border-color: #ddd;
+}
+.customize-control-pencidesign-custom-range-slider .has-unit .penci_range_value input {
+    width: calc(100% - 30px);
+}
+.customize-control-pencidesign-custom-range-slider .penci-range-title-area .dashicons {
+	cursor: pointer;
+	font-size: 11px;
+	width: 20px;
+	height: 18px;
+	line-height: 20px;
+	color: #222;
+	text-align: center;
+	position: relative;
+	top: 2px;
+}
+.customize-control-pencidesign-custom-range-slider .penci-range-title-area .dashicons:hover {
+	background: #fafafa;
+}
+.customize-control-pencidesign-custom-range-slider .penci-range-title-area .dashicons.selected {
+	background: #fff;
+	color: #222;
+}
+.penci-range-title-area {
+    display: flex;
+}
+.penci-range-slider-controls {
+    margin-left: auto;
+	margin-bottom: 4px;
+}
+.customize-control-pencidesign-custom-range-slider .penci-device-controls > span:first-child:last-child {
+	display: none;
+}
+.customize-control-pencidesign-custom-range-slider .sub-description {
+	display: block;
+    font-style: italic;
+    line-height: 1.4;
+    margin: 2px 0 2px;
+}
+.customize-control-pencidesign-custom-range-slider .pencidesign-range-inner{
+	display: flex;
+    align-items: center;
+}
+.customize-control-pencidesign-custom-range-slider .penci-control-process{
+	width: 80px;
+	float: right;
+}
+.customize-control-pencidesign-custom-range-slider .penci-range-lableparent{
+	width: calc(100% - 82px);
+	padding-right: 5px;
+}
+.customize-control-pencidesign-custom-range-slider .penci-wider-width .penci-control-process{
+	width: 53px;
+	float: right;
+}
+.customize-control-pencidesign-custom-range-slider .penci-wider-width .penci-range-lableparent{
+	width: calc(100% - 55px);
+	padding-right: 5px;
+}

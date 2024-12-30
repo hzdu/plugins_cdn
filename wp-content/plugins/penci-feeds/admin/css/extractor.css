@@ -1,0 +1,27 @@
+.pcfds-div-selected, .pcfds-div-selected * {
+    outline: 5px solid rgb(51, 213, 120) !important;
+    background: rgb(51, 213, 120) !important;
+}
+
+.pcfds-div-hover, .pcfds-div-selected .pcfds-div-hover {
+    outline: 5px dashed red !important;
+    background: rgb(72, 185, 205) !important;
+}
+
+.pcfds-div-hover *, .pcfds-div-selected .pcfds-div-hover * {
+    outline: none !important;
+    background: rgb(72, 185, 205) !important;
+}
+
+.pcfds-div-selected .pcfds-div-ignore, .pcfds-div-selected .pcfds-div-ignore * {
+    outline: 5px solid rgb(205, 100, 78) !important;
+    background: rgb(205, 100, 78) !important;
+}
+
+.pcfds-div-hover.pcfds-div-ignore {
+    outline: 5px dashed rgb(72, 185, 205) !important;
+}
+
+.pcfds-div-hover.pcfds-div-ignore * {
+    outline: none !important;
+}

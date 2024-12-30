@@ -1,0 +1,428 @@
+/* = Penci Review
+----------------------------------------------------*/
+@font-face {
+    font-family: 'star';
+    src: url('../fonts/star.eot');
+    src: url('../fonts/star.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/star.woff') format('woff'),
+    url('../fonts/star.ttf') format('truetype'),
+    url('../fonts/star.svg#star') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+.wrapper-penci-review {
+    margin-bottom: 25px;
+    margin-top: 20px;
+    border: 1px solid #dedede;
+}
+.penci-review-container {
+    padding: 25px;
+}
+.penci-review-thumb {
+    float: left;
+    width: 80px;
+    margin-right: 20px;
+}
+.penci-review-thumb img {
+    max-width: 100%;
+    height: auto;
+}
+.penci-review-metas {
+    display: block;
+    overflow: hidden;
+}
+.penci-review-metas .penci-review-meta {
+    margin-right: 15px;
+    display: inline-block;
+    color: #888;
+    font-size: 13px;
+    line-height: 1.5;
+}
+.penci-review-metas .penci-review-meta i {
+    font-size: 14px;
+    margin-right: 4px;
+    color: #aaa;
+    font-style: normal;
+}
+.penci-review-metas .penci-review-btnbuy {
+    float: left;
+    font-size: 12px;
+    font-weight: 700;
+    margin-top: 4px;
+    border: 1px solid;
+    padding: 0 12px;
+    height: 28px;
+    line-height: 26px;
+    color: var(--pcaccent-cl);
+    -moz-transition: 0.25s;
+    -webkit-transition: 0.25s;
+    transition: 0.25s;
+}
+.penci-review-metas .penci-review-btnbuy:hover {
+    background: var(--pcaccent-cl);
+    color: #fff;
+    border-color: var(--pcaccent-cl);
+    text-decoration: none;
+}
+.penci-review-container.penci-review-count {
+    border-bottom: 1px solid #dedede;
+}
+.penci-review-container.penci-review-count h4 {
+    font-size: 20px;
+    margin: 0;
+}
+.penci-review-container.penci-review-count h4 span,
+.penci-review-container.penci-review-count h4 a {
+    font-family: inherit;
+    color: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+    letter-spacing: inherit;
+    text-decoration: none !important;
+}
+.penci-review-schemas,
+.penci-review-desc {
+    margin-top: 10px;
+}
+.post-entry .penci-review-desc p {
+    margin: 0;
+}
+.wrapper-penci-review .penci-review ul.penci-review-number {
+    padding: 0;
+    margin: 20px 0 0 0;
+    clear: both;
+    width: 100%;
+}
+.wrapper-penci-review .penci-review ul.penci-review-number li {
+    list-style: none;
+    margin-bottom: 18px;
+}
+.wrapper-penci-review .penci-review ul.penci-review-number li:last-child {
+    margin-bottom: 0;
+}
+.wrapper-penci-review .penci-review ul.penci-review-number li:before,
+.wrapper-penci-review .penci-review ul.penci-review-number li:after,
+ul.penci-review-number li .penci-review-text:before,
+ul.penci-review-number li .penci-review-text:after,
+.penci-review-row:before,
+.penci-review-row:after,
+.penci-review-point:before,
+.penci-review-point:after {
+    content: '';
+    display: table;
+}
+.penci-review-text {
+    font-weight: bold;
+}
+.penci-review-point {
+    font-size: inherit;
+    display: inline-block;
+}
+.penci-review-container.penci-review-point {
+    display: block;
+}
+.penci-review-score {
+    float: right;
+    font-size: inherit;
+}
+.penci-review-process {
+    display: block;
+    height: 13px;
+    background: #e6e6e6;
+    width: 100%;
+    margin-top: 5px;
+}
+.penci-review-process span {
+    display: block;
+    height: 13px;
+    width: 0;
+    background: var(--pcaccent-cl);
+}
+.penci-review-number.star-rating .penci-review-process {
+    height: auto;
+    background: transparent;
+    width: fit-content;
+    position: relative;
+}
+.penci-review-number.star-rating .penci-review-process:before,
+.penci-review-number.star-rating .penci-review-process span:before {
+    content: "SSSSS";
+    color: var(--pcborder-cl);
+    font-family: 'star';
+    letter-spacing: 0.05em;
+    font-size: 18px;
+}
+.penci-review-number.star-rating .penci-review-process span {
+    height: auto;
+    background: transparent;
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+.penci-review-number.star-rating .penci-review-process span:before {
+    color: #ffca00;
+}
+.penci-review-number.star-rating .penci-review-score {
+    display: none;
+}
+.penci-review-score-num.star-num-enable {
+    font-size: 28px;
+}
+.penci-review-score-num .pc-review-stars {
+    position: relative;
+    font-size: 28px;
+    display: inline-block;
+    vertical-align: top;
+}
+.penci-review-score-num .current-stars {
+    position: absolute;
+    top: 0;
+    left: 0;
+    color: #ffca00;
+    white-space: nowrap;
+    overflow: hidden;
+}
+body.rtl .penci-review-score-num .current-stars {
+    left: auto;
+    right: 0;
+}
+
+.wrapper-penci-review .penci-review ul.penci-review-number.star-rating li:before,
+.wrapper-penci-review .penci-review ul.penci-review-number.star-rating li:after {
+    display: none;
+}
+.wrapper-penci-review .penci-review ul.penci-review-number.star-rating li {
+    overflow: hidden;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0;
+    border-bottom: 1px dotted var(--pcborder-cl);
+}
+.wrapper-penci-review .penci-review ul.penci-review-number.star-rating li:last-child {
+    border-bottom: 0;
+}
+.penci-review-row {
+    display: inline-block;
+    width: calc(100% + 24px);
+    margin-left: -12px;
+    margin-right: -12px;
+    vertical-align: top;
+}
+.penci-review-stuff,
+.penci-review-average {
+    float: left;
+    display: inline-block;
+    width: 66.666%;
+    padding: 0 12px;
+}
+.penci-review-row.star-row-enable .penci-review-stuff {
+    margin-bottom: 20px;
+}
+.penci-review-row.star-row-enable .penci-review-stuff,
+.penci-review-row.star-row-enable .penci-review-average {
+    float: none;
+    width: 100%;
+}
+.penci-review-average {
+    width: 33.333%;
+}
+.penci-review-average.full-w {
+    width: 100%;
+    margin: 0 !important;
+}
+.penci-review-stuff .penci-review-good {
+    width: 50%;
+    float: left;
+    display: inline-block;
+    padding: 0 12px;
+}
+.penci-review-stuff .penci-review-row.full-w .penci-review-good {
+    width: 100%;
+}
+.penci-review-stuff .penci-review-good h5 {
+    font-size: 15px;
+    margin-bottom: 15px;
+}
+.penci-review .penci-review-good ul {
+    padding: 0 0 0 0;
+    margin: 0;
+}
+.penci-review .penci-review-good ul li {
+    list-style: none;
+    padding-left: 18px;
+    margin-bottom: 7px;
+}
+.penci-review .penci-review-good ul li:last-child {
+    margin-bottom: 0;
+}
+.penci-review .penci-review-good ul li:before {
+    content: "\f058";
+    color: #22b162;
+    position: absolute;
+    left: 0;
+    top: 5px;
+    font-family: FontAwesome;
+    font-size: 14px;
+    line-height: 1;
+    background: none !important;
+}
+.penci-fawesome-ver5 .penci-review .penci-review-good ul li:before {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+}
+.penci-review .penci-review-bad ul li:before {
+    content: "\f056";
+    color: #e03030;
+}
+.penci-review-score-total {
+    background: var(--pcaccent-cl);
+    color: #fff;
+    text-align: center;
+    padding: 16px 10px;
+    display: block;
+}
+.penci-review-score-total.only-score {
+    padding: 30px 10px;
+}
+.penci-review-score-num {
+    font-size: 56px;
+    font-family: 'Oswald', sans-serif;
+    line-height: 1;
+    font-weight: 400;
+}
+.penci-review-score-total span {
+    font-size: 12px;
+}
+.penci-piechart {
+    position: absolute;
+    display: inline-block;
+    vertical-align: top;
+    right: 20px;
+    top: 20px;
+    text-align: center;
+    width: 50px;
+    height: 50px;
+    z-index: 8;
+}
+body.rtl .penci-piechart {
+    right: auto;
+    left: 20px;
+}
+.penci-piechart.penci-piechart-small {
+    width: 34px;
+    height: 34px;
+    top: 7px;
+    right: 7px;
+}
+.penci-piechart.penci-piechart-small[data-size="28"] {
+    width: 28px;
+    height: 28px;
+}
+.penci-piechart.penci-piechart-small[data-size="28"] .penci-chart-text {
+    width: 28px;
+    height: 28px;
+    line-height: 28px;
+}
+.penci-chart-text {
+    width: 50px;
+    height: 50px;
+    font-size: 16px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    line-height: 50px;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 400;
+    color: #fff;
+}
+body.rtl .penci-chart-text {
+    left: auto;
+    right: 0;
+}
+.penci-piechart-small .penci-chart-text {
+    width: 34px;
+    height: 34px;
+    font-size: 12px;
+    line-height: 34px;
+}
+.penci-rv-sm-show.stars-rating {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    z-index: 9;
+    color: var(--pcborder-cl);
+    line-height: 1;
+}
+.penci-rv-sm-show.stars-rating.penci-stars-small{
+    top: 7px;
+    right: 7px;
+    left: auto;
+}
+.penci-rv-sm-show.stars-rating .star-progress {
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    font-size: 12px;
+    vertical-align: top;
+}
+.penci-rv-sm-show.stars-rating .normal-stars {
+    color: var(--pcborder-cl);
+}
+.penci-rv-sm-show.stars-rating .rate-stars {
+    position: absolute;
+    top: 0;
+    left: 0;
+    color: #ffca00;
+}
+body.rtl .penci-rv-sm-show.stars-rating .rate-stars {
+    left: auto;
+    right: 0;
+}
+.penci-rv-sm-show.stars-rating .star-progress:before {
+    content: "SSSSS";
+    display: inline-block;
+    font-family: 'star';
+}
+.penci-mega-post .penci-rv-sm-show.stars-rating {
+    right: 15px;
+    left: auto;
+}
+body.rtl .penci-mega-post .penci-rv-sm-show.stars-rating {
+    left: auto;
+    right: 10px;
+}
+@media only screen and (max-width: 767px) {
+    .penci-review-stuff, .penci-review-average,
+    .penci-review-stuff .penci-review-good {
+        width: 100%;
+    }
+    .penci-review-score-total,
+    .penci-review-stuff .penci-review-bad {
+        margin-top: 20px;
+    }
+    .penci-review-container.penci-review-count h4 {
+        font-size: 18px;
+    }
+}
+@media only screen and (max-width: 479px) {
+    .penci-review-thumb {
+        display: none;
+    }
+    .penci-review-metas .penci-review-meta {
+        display: block;
+        margin-bottom: 4px;
+    }
+}
+.penci-review-average .pc-review-stars .fa-star:before {
+    content: "S";
+    font-family: 'star';
+}
+body.rtl .penci-piechart.penci-piechart-small {
+    right: auto;
+    left: 7px;
+}

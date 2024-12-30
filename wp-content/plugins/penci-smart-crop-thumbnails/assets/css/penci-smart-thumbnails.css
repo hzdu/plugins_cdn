@@ -1,0 +1,169 @@
+.penci-st-focus-point {
+    position: relative;
+    display: inline-block;
+}
+
+.penci-st-focus-point,
+.penci-st-focus-point img {
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none;
+}
+
+.penci-st-focus-point-marker {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 99;
+}
+
+.penci-st-focus-point-marker:after {
+    background: url(../images/focus.png) center center no-repeat;
+    color: #000;
+    content: '';
+    width: 40px;
+    height: 40px;
+    display: inline-block;
+    cursor: -webkit-grabbing;
+    background-size: 100% 100%;
+}
+
+body.upload-php .penci-st-focus-point-marker:after {
+    width: 60px;
+    height: 60px;
+}
+
+.penci-st-focus-point .grid > div {
+    position: absolute;
+    width: 1px;
+    height: 100%;
+    top: 0;
+    opacity: 0.4;
+    left: 0;
+    background: #fff;
+}
+
+.penci-st-focus-point .grid > .x1 {
+    left: 33.3333%;
+}
+
+.penci-st-focus-point .grid > .x2 {
+    left: 66.66666%;
+}
+
+.penci-st-focus-point .grid > .y1,
+.penci-st-focus-point .grid > .y2 {
+    width: 100%;
+    height: 1px;
+    left: 0;
+    top: 33.33333%;
+}
+
+.penci-st-focus-point .grid > .y2 {
+    top: 66.66666%;
+}
+
+.attachment-actions .preview-images-btn,
+.wp_attachment_holder .preview-images-btn,
+.preview-thumbnails .preview-images-btn {
+    margin: 0 4px;
+}
+
+.attachment-actions + .penci-st-user-message {
+    margin-top: 10px;
+}
+
+.attachment-info {
+    position: relative;
+}
+
+.attachment-info .thumbnail {
+    padding: 0;
+    border: none;
+    box-shadow: none;
+    font-size: 0;
+}
+
+.attachment-info.attachment-info .thumbnail,
+.attachment-info.attachment-info .thumbnail img {
+    max-height: 100%;
+    max-width: 100%;
+    height: auto;
+}
+
+.attachment-info.attachment-info .thumbnail img {
+    width: 100%;
+}
+
+.attachment-info .thumbnail,
+.attachment-info .details {
+    float: none;
+    text-align: center;
+}
+
+#penci-st-thumb-selector .bssm-item {
+    width: auto;
+}
+
+#penci-st-thumb-selector .penci-st-item-container figure {
+    min-height: 10px;
+}
+
+#penci-st-thumb-selector .penci-st-item-container {
+    min-width: 10px;
+}
+
+.penci-st-user-message {
+    background: #ccc;
+    color: #fdfdfd;
+    padding: 3px 5px;
+    font-size: 11px;
+    text-align: center;
+    margin: 2px 0px;
+}
+
+.penci-st-user-message.success {
+    background: #46b450;
+    color: #fdfdfd;
+}
+
+body.upload-php .thumbnail.thumbnail-image {
+    position: relative;
+}
+
+body.upload-php .penci-st-user-message {
+    position: absolute;
+    left: 30px;
+    top: 20px;
+    z-index: 9;
+    max-width: 470px;
+}
+
+body.upload-php .thumbnail.thumbnail-image:before,
+body:not(.upload-php) .media-modal-content .attachment-info:before {
+    content: '';
+    background: url(../images/drag.png) center center no-repeat;
+    display: inline-block;
+    width: 110px;
+    height: 63px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 999;
+    pointer-events: none;
+    background-size: 110px auto;
+}
+
+body.upload-php .thumbnail.thumbnail-image:before {
+    width: 150px;
+    height: 78px;
+    background-size: 150px auto;
+}
+
+body:not(.block-editor-page) .attachment-info.attachment-info .thumbnail {
+    padding: 5px;
+    background: #fff;
+}

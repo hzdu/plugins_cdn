@@ -1,0 +1,66 @@
+.pcliveblog-events-wrapper {
+    padding: 20px;
+    border: 2px solid #f1f1f1;
+    border-radius: 2px;
+}
+.pcliveblog-events-wrapper .pcliveblog-event-field:last-child {
+    margin-top: 30px;
+}
+.button.pcliveblog-addnew {
+    color: #fff;
+    background: #000;
+    border-color: #000;
+}
+.live-events-listing {
+    max-height: 352px;
+    overflow: auto;
+}
+.live-events-listing-item {
+    padding: 0 0 15px;
+    margin: 0 0 15px;
+    border-bottom: 1px solid #ccc;
+    position: relative;
+}
+.live-events-listing-item .post-entry p:last-child {
+    margin: 0;
+}
+.live-events-listing-action {
+    position: absolute;
+    top: 0;
+    right: 0;
+    opacity: 0;
+}
+.live-events-listing-item:hover .live-events-listing-action {
+    opacity: 1;
+}
+.live-events-listing-action a:last-child {
+    margin-left: 10px;
+}
+.live-events-listing-item:last-child {
+    border: 0;
+}
+.pcliveblog-event-field .items:not(:last-child) {
+    margin-bottom: 20px;
+}
+.pcliveblog-event-field label {
+    display: block;
+    font-weight: bold;
+    margin: 0 0 10px;
+}
+.pcliveblog-event-field input[type="text"] {
+    width: 100%;
+    padding: 5px 10px;
+    max-width: 770px;
+}
+.pcliveblog-event-field p {
+    margin: 0 0 20px;
+}
+.live-events-new {
+    padding: 30px;
+    background: #f1f1f1;
+    border-radius: 5px;
+}
+.live-events-listing-ct.post-title span {
+    font-size: 18px;
+    font-weight: bold;
+}

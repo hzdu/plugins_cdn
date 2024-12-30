@@ -1,0 +1,131 @@
+.search-input {
+    display: block;
+    margin-bottom: 8px;
+}
+
+.customizer-search-section {
+    padding: 10px;
+}
+
+.customizer-search-input {
+    width: 77%
+}
+
+.customizer-search-section {
+    padding: 10px;
+}
+
+.customize-pane-parent {
+    overflow: inherit;
+}
+
+#customize-controls .customize-info .customize-search-toggle {
+    padding: 20px;
+}
+
+#customize-controls .customize-info .customize-search-toggle {
+    position: absolute;
+    right: 1px;
+    bottom: 4px;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    color: #555d66;
+    border: none;
+    background: transparent;
+    box-shadow: none;
+    -webkit-appearance: none;
+}
+
+#customize-controls .customize-info .customize-search-toggle:before {
+    padding: 4px;
+}
+
+#customize-controls .customize-info .customize-search-toggle:before {
+    position: absolute;
+    top: 5px;
+    left: 6px;
+}
+
+#accordion-section-customizer-search {
+    margin-bottom: 0;
+    padding: 12px 15px;
+    color: #555d66;
+    border-top: 1px solid #ddd;
+    background: #fff;
+}
+
+#accordion-section-customizer-search .accordion-section-title:after {
+    content: none;
+}
+
+.customizer-search-section {
+    padding: 0;
+}
+
+.search-not-found {
+    display: none;
+    visibility: hidden;
+    height: 0;
+    transition: height 0.3s ease-in-out;
+    opacity: 0;
+}
+
+.search-found {
+    visibility: visible;
+    height: 100%;
+    transition: height 0.3s ease-in-out;
+    opacity: 1;
+}
+
+#search-results .accordion-section {
+    line-height: 21px;
+    position: relative;
+    padding: 10px 10px 11px 14px;
+    border-right: none;
+    border-left: none;
+    background: #fff;
+}
+
+#search-results .accordion-section h3 {
+    margin: 0;
+    padding: 0;
+}
+
+#search-results .accordion-section:hover {
+    background: #f3f3f5;
+}
+
+.search-setting-path {
+    display: flex;
+    cursor: pointer;
+}
+
+#search-results .accordion-section:after {
+    font: normal 20px/1 dashicons;
+    display: block;
+    text-decoration: none !important;
+    speak: none;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+#search-results .accordion-section:after {
+    position: absolute;
+    z-index: 1;
+    top: calc(50% - 10px);
+    right: 10px;
+    content: "\f345";
+}
+
+#search-results .accordion-section h3:after {
+    content: none;
+}
+
+#search-results .accordion-section h3:hover {
+    background: inherit;
+}
+
+#customize-controls .hl {
+    background: #ffcd1724;
+}

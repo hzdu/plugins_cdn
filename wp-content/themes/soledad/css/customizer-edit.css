@@ -1,0 +1,95 @@
+.soledad-customizer-edit-link {
+    position: absolute;
+    float: left;
+    width: 1px; /* required to have a size to be focusable in Safari */
+    height: 1px;
+    padding: 0;
+    margin: -1px 0 0 -1px;
+    border: 0;
+    background: transparent;
+    color: transparent;
+    box-shadow: none;
+    outline: none;
+    z-index: 5;
+}
+.penci-builder-mobile-sidebar-nav .soledad-customizer-edit-link,
+.penci-builder-mobile-sidebar-nav .customize-partial-edit-shortcut,
+.penci-wrapper-data .post-entry li .soledad-customizer-edit-link,
+.elementor-element .soledad-customizer-edit-link {
+    display: none !important;
+}
+.soledad-customizer-edit-link button {
+    position: absolute;
+    left: -30px;
+    top: 2px;
+    color: #fff;
+    width: 30px;
+    height: 30px;
+    min-width: 30px;
+    min-height: 30px;
+    line-height: 1 !important;
+    font-size: 18px;
+    z-index: 5;
+    background: #3582c4 !important;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    box-shadow: 0 2px 1px rgba(60, 67, 74, 0.15);
+    text-align: center;
+    cursor: pointer;
+    box-sizing: border-box;
+    padding: 3px;
+    animation-fill-mode: both;
+    animation-duration: .4s;
+    text-shadow:
+            0 -1px 1px #135e96,
+            1px 0 1px #135e96,
+            0 1px 1px #135e96,
+            -1px 0 1px #135e96;
+}
+.soledad-customizer-edit-link button svg {
+    fill: #fff;
+    min-width: 20px;
+    min-height: 20px;
+    width: 20px;
+    height: 20px;
+    margin: auto;
+}
+.soledad-customizer-edit-link.footer-custom-link {
+    left: 50px !important;
+    cursor: pointer !important;
+    top: auto !important;
+}
+.soledad-customizer-edit-link.header-custom-link {
+    left: 50px;
+    top: 10px;
+    cursor: pointer !important;
+}
+#footer-section .soledad-customizer-edit-link,
+#sidebar .soledad-customizer-edit-link,
+body.single .soledad-customizer-edit-link,
+.penci-home-popular-posts .soledad-customizer-edit-link,
+#navigation .soledad-customizer-edit-link,
+#header .soledad-customizer-edit-link,
+.featuredsl-customizer .soledad-customizer-edit-link {
+    top: 0;
+    left: 60px;
+}
+.soledad-customizer-edit-link.widgets_edit {
+    top: 0;
+    right: 0;
+}
+.soledad-customizer-edit-link[data-section="penci_section_footer_widgets_section"],
+.soledad-customizer-edit-link[data-section="penci_section_standard_classic_section"],
+.soledad-customizer-edit-link[data-section="penci_section_other_layouts_section"] {
+    top: 0;
+    left: 60px;
+}
+.soledad-customizer-edit-link[data-section="pencidesign_logo_header_verticalnav_section"],
+.soledad-customizer-edit-link[data-section="penci_menu_hbg_section"],
+.penci-wrapper-posts-content .soledad-customizer-edit-link[data-section="penci_section_homepage_general_section"] {
+    top: 0;
+    right: 30px;
+}
+.penci-header-preview-layout .customize-partial-edit-shortcut {
+	display: none !important;
+}

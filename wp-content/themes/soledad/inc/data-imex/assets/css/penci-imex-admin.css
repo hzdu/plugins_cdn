@@ -1,0 +1,435 @@
+.penci-imex-body {
+	margin: 40px 15px 0
+}
+.penci-imex-body img {
+	max-width: 100%;
+	height: auto
+}
+.penci-imex-header {
+	margin-bottom: 30px;
+	padding: 20px;
+	background: #fff;
+	border-left-color: #46b450;
+	border-width: 0 0 0 4px;
+	border-style: solid;
+	box-shadow: 0 1px 1px rgba(0, 0, 0, .04)
+}
+.penci-imex-header h1 {
+	margin-top: 0
+}
+.penci-imex-header p {
+	margin-bottom: 0
+}
+.penci-imex-filter-tabs {
+	display: flex;
+	align-items: center;
+	background: #fff;
+	padding: 10px 20px;
+	margin-bottom: 20px;
+	margin-top: 20px;
+	box-shadow: 0 1px 1px rgba(0, 0, 0, .04);
+	border: 1px solid #e5e5e5;
+	justify-content: space-between;
+}
+.penci-imex-filter-tabs ul {
+	margin-top: 0;
+	margin-bottom: 0
+}
+.penci-imex-filter-tabs ul li {
+	font-size: 14px;
+	cursor: pointer;
+	font-weight: 600;
+	padding: 10px 20px
+}
+.penci-imex-filter-tabs ul li.penci-imex-filter-btn-active {
+	background: #dfdfdf;
+	border-radius: 5px
+}
+.penci-imex-count {
+	background: var(--wp-admin-theme-color);
+	display: inline-block;
+	padding: 2px 10px;
+	border-radius: 5px;
+	margin-left: 5px;
+	color: #fff;
+	font-size: 12px
+}
+.penci-imex-types {
+	display: flex
+}
+.penci-imex-types li {
+	margin: 0 5px;
+	padding: 5px
+}
+.penci-imex-form-file-import {
+	cursor: pointer;
+	padding: 8px 25px;
+	margin: 0;
+	border-radius: 3px;
+	background: #0085ba;
+	border-color: #0073aa #006799 #006799;
+	box-shadow: 0 1px 0 #006799;
+	color: #fff;
+	text-decoration: none;
+	text-shadow: 0 -1px 1px #006799, 1px 0 1px #006799, 0 1px 1px #006799, -1px 0 1px #006799
+}
+.penci-imex-form-file-import:focus, .penci-imex-form-file-import:hover {
+	background: #0073aa;
+	border-color: #006799
+}
+.penci-imex-filter-content {
+	background: #f8f8f8;
+	display: flex;
+	justify-content: center;
+}
+.penci-imex-filter-content.hidden {
+	display: none
+}
+.penci-imex-sidebar {
+	flex-basis: 250px;
+	min-width: 270px;
+	background: #f9f9f9;
+	color: #999;
+	padding-top: 30px;
+	border-right: 1px solid #ddd;
+	box-shadow: 10px 0 10px -3px rgba(0, 0, 0, .1)
+}
+.penci-imex-import-available-categories {
+	margin-top: 20px;
+	overflow-y: auto;
+	overflow-x: hidden;
+	max-height: calc(100% - 23px)
+}
+.penci-imex-import-available-categories h3 {
+	padding-left: 30px;
+	padding-right: 30px
+}
+.penci-imex-import-available-categories ul {
+	margin-top: 20px
+}
+.penci-imex-import-available-categories ul li {
+	cursor: pointer;
+	font-weight: 600;
+	font-size: 14px;
+	padding: 15px 30px;
+	position: relative;
+	z-index: 1;
+	margin: 0;
+	border-bottom: 1px solid #f1f1f1
+}
+.penci-imex-import-available-categories ul li:last-child {
+	border-bottom: 0;
+}
+.penci-imex-import-available-categories ul li:focus, .penci-imex-import-available-categories ul li:hover {
+	border-color: #f1f1f1;
+	color: #444;
+}
+.penci-imex-import-available-categories ul li span {
+	float: right
+}
+.penci-imex-import-available-categories ul li.penci-imex-filter-btn-active {
+	color: #444;
+	border-color: #f1f1f1;
+	background-color: #f1f1f1;
+}
+.penci-imex-import-available-categories ul li.penci-imex-filter-btn-active:focus, .penci-imex-import-available-categories ul li.penci-imex-filter-btn-active:hover {
+	border-color: #f1f1f1
+}
+.penci-imex-import-available-categories ul.penci-imex-import-fp-lists {
+	border-bottom: 1px solid #ddd;
+	text-align: center
+}
+.penci-imex-import-available-categories ul.penci-imex-import-fp-lists li.penci-imex-fp-filter {
+	display: inline-block;
+	border: 1px solid transparent;
+	margin-bottom: -2px;
+	padding: 10px 24px;
+	border-radius: 2px 2px 0 0
+}
+.penci-imex-import-available-categories ul.penci-imex-import-fp-lists li.penci-imex-fp-filter.penci-imex-filter-btn-active {
+	background: #fff;
+	border-width: 1px 1px 0 1px;
+	border-style: solid;
+	border-color: #ddd;
+	color: #444
+}
+.penci-imex-import-available-categories ul.penci-imex-import-fp-lists li.penci-imex-fp-filter.penci-imex-filter-btn-active::after {
+	display: none
+}
+.penci-imex-search-control {
+	width: 200px
+}
+.penci-imex-search-control .penci-imex-search-filter {
+	padding-left: 10px;
+	padding-right: 10px
+}
+.penci-imex-search-filter {
+	height: 36px;
+	width: 100%
+}
+.penci-imex-filter-content-wrapper {
+	flex-basis: 920px;
+	padding: 15px
+}
+.penci-imex-item-preview {
+	position: relative;
+	z-index: 1;
+	line-height: 0;
+	border-top-right-radius: 4px;
+	border-top-left-radius: 4px;
+	background: #fff
+}
+.penci-imex-item-preview .penci-imex-item-screenshot {
+	border-top-right-radius: 0;
+	border-top-left-radius: 0;
+	overflow: hidden
+}
+.penci-imex-item-preview .penci-imex-item-screenshot img {
+	max-width: 100%;
+	height: auto;
+}
+.penci-imex-item-preview .penci-imex-author-info {
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: 10px;
+	width: 100%;
+	z-index: 3;
+	margin: 0;
+	padding: 20px;
+	color: #fff;
+	font-size: 16px;
+	opacity: 0;
+	visibility: hidden;
+	transition: opacity .5s ease-in-out 0s, visibility .9s ease-in-out 0s
+}
+.penci-imex-item-preview .penci-imex-details {
+	position: absolute;
+	left: 0;
+	right: 0;
+	margin: 0 auto;
+	top: 50%;
+	width: 130px;
+	background: rgba(0, 0, 0, .8);
+	height: 40px;
+	line-height: 40px;
+	text-align: center;
+	z-index: 5;
+	font-size: 15px;
+	font-weight: 600;
+	color: #fff;
+	opacity: 0;
+	visibility: hidden;
+	transition: all .5s ease-in-out 0s;
+	transform: translateY(-50%)
+}
+.penci-imex-item-preview .penci-imex-premium-label {
+	position: absolute;
+	right: -10px;
+	top: 20px;
+	background: var(--wp-admin-theme-color);
+	display: block;
+	z-index: 3;
+	line-height: 16px;
+	padding: 10px 20px;
+	height: 16px;
+	font-weight: 600;
+	color: #fff
+}
+.penci-imex-item-preview .penci-imex-premium-label:before {
+	position: absolute;
+	left: -18px;
+	top: 0;
+	height: 0;
+	width: 0;
+	content: "";
+	border-top: 18px solid var(--wp-admin-theme-color);
+	border-left: 18px solid transparent;
+	border-bottom: 18px solid var(--wp-admin-theme-color)
+}
+.penci-imex-item-preview .penci-imex-premium-label:after {
+	position: absolute;
+	right: 0;
+	content: "";
+	bottom: -10px;
+	width: 0;
+	height: 0;
+	border-top: 10px solid var(--wp-admin-theme-color);
+	border-right: 10px solid transparent
+}
+.penci-imex-item {
+	display: block;
+	max-width: 100%;
+	margin: 15px 15px 40px;
+	box-shadow: 0 2px 15px -3px rgba(0, 0, 0, .2);
+	border: 1px solid transparent;
+	transition: 0.3s all ease-in-out;
+}
+.penci-imex-item:hover,
+.penci-imex-item.imported {
+	border-color: var(--wp-admin-theme-color);
+}
+.penci-imex-item.imported .theme-name:before {
+	content: "\f147";
+    font-family: 'dashicons', serif;
+    display: inline-block;
+    margin-right: 5px;
+    vertical-align: middle;
+    color: #00d140;
+    font-size: 20px;
+}
+.penci-imex-item.imported .theme-name:after {
+    content: "Imported";
+    float: right;
+    color: #00b738;
+}
+.penci-imex-item.imported .penci-import-button {
+	display: none;
+}
+@media (min-width: 1600px) {
+	.penci-imex-item {
+		max-width: 100%
+	}
+}
+.penci-imex-item:hover .penci-imex-author-info {
+	visibility: visible;
+	opacity: 1
+}
+.penci-imex-item:hover .penci-imex-details, .penci-imex-item:hover .penci-imex-item-footer-actions {
+	visibility: visible;
+	opacity: 1
+}
+.penci-imex-item-footer {
+    padding: 15px 20px;
+    background: #fff;
+    position: relative;
+    margin-bottom: 20px;
+}
+.penci-imex-item-footer .theme-name {
+	margin: 0;
+	white-space: nowrap;
+	width: 98%;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	line-height: 24px
+}
+.penci-imex-item-footer-actions {
+	position: absolute;
+	right: 0;
+	text-align: center;
+	z-index: 4;
+	top: 0;
+	height: calc(100% - 22px);
+	padding: 11px;
+	opacity: 0;
+	transition: all .1s ease-in-out;
+	visibility: hidden;
+}
+.penci-imex-item-footer-actions .button {
+	line-height: 32px;
+	height: 35px
+}
+.penci-imex-item-footer-actions .button .dashicons:not(.dashicons-update) {
+	width: 10px;
+	height: 10px;
+	font-size: 14px;
+	vertical-align: middle;
+	margin-right: 10px;
+	margin-top: -5px
+}
+.penci-imex-item-footer-actions .button .dashicons.penci-imex-update {
+	animation: dashicons-spin 1s linear infinite;
+	margin: 17px 0 0 10px;
+	width: auto;
+	height: auto;
+	font-size: 16px
+}
+.penci-imex-item-footer-actions .button .dashicons.dashicons-visibility {
+	font-size: 12px
+}
+.penci-imex-form {
+	padding: 20px;
+	background: #fff
+}
+.penci-imex-form .media-title {
+	margin-top: 0
+}
+.penci-imex-form .input-file {
+	padding: 30px 100px;
+	border: 1px dashed #cdcdcd;
+	margin: 30px 0;
+	border-radius: 5px;
+	background: #f8f8f8;
+	text-align: center;
+	clear: both
+}
+.penci-imex-item.penci-imex-action-importing .penci-imex-item-preview:after {
+	visibility: visible;
+	opacity: 1
+}
+.penci-imex-item.penci-imex-action-importing .penci-imex-author-info {
+	bottom: 10px
+}
+.penci-imex-item.penci-imex-action-importing .penci-imex-item-footer-actions {
+	top: 50%;
+	transform: translateY(-50%)
+}
+.penci-imex-item.penci-imex-action-importing .penci-imex-demo-import {
+	padding-right: 0
+}
+.penci-imex-item.penci-imex-action-importing .penci-imex-item-footer-actions {
+	opacity: 1;
+	visibility: visible
+}
+@keyframes dashicons-spin {
+	0% {
+		transform: translate3d(-50%, -50%, 0) rotate(0)
+	}
+	100% {
+		transform: translate3d(-50%, -50%, 0) rotate(360deg)
+	}
+}
+.penci-imex-filter-content-heading {
+	font-size: 24px;
+	text-align: center;
+}
+.penci-imex-filter-content-heading p {
+	margin-top: -10px;
+	margin-bottom: 30px;
+	font-size: 15px;
+}
+.input-text-wrap textarea {
+	width: 100%;
+	height: auto;
+	font-family: monospace;
+	font-size: 12px;
+}
+#TB_ajaxContent p.penci-import-result.show {
+	padding: 8px 15px;
+	background-color: #f1f1f1;
+	display: block;
+	margin: 20px 0 0;
+}
+#TB_ajaxContent p.penci-import-result.show.error {
+	background-color: indianred;
+	color: white;
+}
+#TB_ajaxContent p.penci-import-result.show.success {
+	background-color: var(--wp-admin-theme-color);
+	color: white;
+}
+.penci-imex-form h3,
+.penci-imex-form form {
+	text-align: center;
+}
+.penci-imex-form h3 {
+	font-size: 26px;
+	margin: 0;
+}
+.penci-imex-form p{
+	text-align: center;
+	font-size: 14px;
+}
+.penci-imex-form p a {
+    color: #ff0000;
+}

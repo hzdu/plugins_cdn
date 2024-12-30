@@ -1,0 +1,1 @@
+wp.customize.controlConstructor['soledad-fw-code'] = wp.customize.controlConstructor.code_editor;

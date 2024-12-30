@@ -1,0 +1,690 @@
+.penci_bl_followers_message .penci-bf-tooltip-inner {
+    display: inline-block;
+    margin-left: 4px;
+}
+.penci-bf-display-none {
+    display: none;
+}
+.message_stack_success,
+.message_stack_error {
+    padding: 6px 20px;
+    background-color: #ffa8a8 !important;
+    font-size: 16px;
+    font-weight: normal;
+    margin-bottom: 10px;
+}
+.message_stack_success {
+    background-color: #d3e69f !important;
+}
+@media only screen and (max-width: 380px) {
+    #penci_bl_unsubscribe_email, #penci_bl_unsubscribe_submit {
+        width: 100%;
+    }
+}
+.penci-bf-follow-btn-wrapper button:hover,
+.penci-bf-follow-btn-wrapper button {
+    padding: 0;
+    background: transparent;
+    line-height: inherit;
+    text-transform: none;
+    font-weight: inherit;
+    font-size: inherit;
+    color: var(--pcheading-cl);
+    font-family: inherit;
+}
+.penci-bf-unsubscribe-email-error {
+    display: none;
+}
+.penci-bf-btn {
+    font-weight: bold !important;
+}
+/************************************** Pagination CSS Start *****************************************/
+.penci-bf-paging {
+    margin-top: 30px;
+    text-align: center;
+}
+.penci-bf-paging .penci-bf-tablenav-pages {
+    display: block;
+}
+.penci-bf-paging .penci-bf-tablenav-pages a,
+.penci-bf-tablenav-pages span.current, .penci-bf-tablenav-pages span.disabled {
+    display: block;
+    padding: 11px 10px;
+    max-width: 400px;
+    margin: 0 auto;
+    border: 1px solid var(--pcborder-cl);
+    line-height: 1.4;
+    text-align: center;
+    transition: all .25s;
+    -webkit-transition: all .25s;
+    background: #fff;
+}
+.penci-bf-paging .penci-bf-tablenav-pages a:hover {
+    color: #fff;
+    background: var(--pcaccent-cl);
+    border-color: var(--pcaccent-cl);
+}
+.penci-bf-paging .penci-bf-tablenav-pages a.loading-posts i {
+    animation-name: pencirotate;
+    -o-animation-name: pencirotate;
+    -ms-animation-name: pencirotate;
+    -webkit-animation-name: pencirotate;
+    -moz-animation-name: pencirotate;
+    animation-duration: 0.8s;
+    -o-animation-duration: 0.8s;
+    -ms-animation-duration: 0.8s;
+    -webkit-animation-duration: 0.8s;
+    -moz-animation-duration: 0.8s;
+    animation-iteration-count: infinite;
+    -o-animation-iteration-count: infinite;
+    -ms-animation-iteration-count: infinite;
+    -webkit-animation-iteration-count: infinite;
+    -moz-animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    -o-animation-timing-function: linear;
+    -ms-animation-timing-function: linear;
+    -webkit-animation-timing-function: linear;
+    -moz-animation-timing-function: linear;
+}
+.penci-bf-paging .penci-bf-tablenav-pages a.loading-posts span.ajaxdot:after {
+    content: "...";
+    font-size: inherit;
+    color: inherit;
+    font-family: inherit;
+    font-weight: inherit;
+}
+/************************************** Pagination CSS End *****************************************/
+table.penci-bf-follow-post-table,
+table.penci-bf-follow-term-table,
+table.penci-bf-follow-author-table {
+    width: 100%;
+}
+tr.penci-bf-follow-post-row-head,
+tr.penci-bf-follow-post-row-foot,
+tr.penci-bf-follow-term-row-head,
+tr.penci-bf-follow-term-row-foot,
+tr.penci-bf-follow-author-row-head,
+tr.penci-bf-follow-author-row-foot {
+    background-color: var(--pcbg-cl);
+}
+
+@media only screen and (max-width: 767px ) {
+    tr.penci-bf-follow-post-row-head, tr.penci-bf-follow-post-row-foot, tr.penci-bf-follow-term-row-head, tr.penci-bf-follow-term-row-foot, tr.penci-bf-follow-author-row-head, tr.penci-bf-follow-author-row-foot {
+        font-size: 12px;
+    }
+}
+
+tr.penci-bf-follow-author-row-body td {
+    padding: 8px 10px;
+}
+tr.penci-bf-follow-author-row-body td img {
+    vertical-align: middle;
+}
+
+
+th.penci-bf-cb-posts input[type="checkbox"],
+th.penci-bf-cb-terms input[type="checkbox"],
+th.penci-bf-cb-author input[type="checkbox"] {
+    margin: 8px 0 0 9px;
+}
+tr th.penci-bf-cb-authors input[type="checkbox"],
+tr.penci-bf-follow-post-row-body td input[type="checkbox"],
+tr.penci-bf-follow-term-row-body td input[type="checkbox"],
+tr.penci-bf-follow-author-row-body td input[type="checkbox"] {
+    margin-left: 9px !important;
+}
+.penci-bf-follow-post-table th, .penci-bf-follow-term-table th, .penci-bf-follow-author-table th {
+    padding: 8px 0;
+}
+
+.penci-bf-follows .penci-bf-follow-author-table .penci-bf-picture img {
+    border-radius: 50%;
+}
+
+.penci-bf-follow-post-table td, .penci-bf-follow-term-table td,
+.penci-bf-follow-post-table th, .penci-bf-follow-term-table th,
+.penci-bf-follow-post-table th, .penci-bf-follow-author-table th {
+    vertical-align: middle;
+}
+.penci-bf-bulk-action-wrapper {
+    margin: 10px 0 30px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.penci-bf-bulk-action-wrapper .penci-bf-bulk-action {
+    max-width: 220px;
+}
+.penci-bf-bulk-action-wrapper .penci-bf-btn {
+    padding: 2px 15px;
+}
+.penci-bf-bulk-action-loader {
+    margin-left: 5px;
+    margin-top: 5px;
+}
+.penci-bf-no-record-message {
+    margin-top: 25px;
+    margin-bottom: 40px;
+    clear: both;
+    border: 1px solid var(--pcborder-cl);
+    padding: 12px 20px;
+    font-size: 15px;
+}
+.penci-bf-unsubscribe-table td {
+    border: none;
+}
+tr.penci-bf-follow-author-row-body td,
+tr.penci-bf-follow-term-row-body td,
+tr.penci-bf-follow-post-row-body td {
+    vertical-align: middle;
+}
+.wps_fmbp_common_vertical_align {
+    vertical-align: top;
+}
+.penci_bl_add_follower_error_second {
+    padding: 0 10px;
+}
+.followed_guest_user {
+    width: 23%;
+}
+.penci_bl_common_display_none_class {
+    display: none;
+}
+.penci-bf-follow-post-wrapper {
+    display: none;
+}
+.penci-bf-follow-term-wrapper,
+.penci-bf-follow-post-wrapper {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 99;
+}
+.penci-bf-follow-term-wrapper {
+    z-index: 999;
+}
+body.rtl .penci-bf-follow-term-wrapper,
+body.rtl .penci-bf-follow-post-wrapper {
+    right: auto;
+    left: 10px;
+}
+.penci-bf-follow-term-wrapper .pencibf-following-text,
+.penci-bf-follow-post-wrapper .pencibf-following-text {
+    font-size: 0;
+}
+.pcsb-meta .penci-bf-follow-post-wrapper .pencibf-following-text {
+    font-size: inherit;
+}
+.penci-bf-follow-term-wrapper .pencibf-following-text:before,
+.penci-bf-follow-post-wrapper .pencibf-following-text:before {
+    content: '\f02e';
+    font-family: 'FontAwesome';
+    font-size: 16px;
+    z-index: 10;
+    width: 32px;
+    height: 32px;
+    line-height: 32px;
+    border: 1px solid #fff;
+    color: #fff;
+    text-align: center;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background 0.3s, border 0.3s, opacity 0.3s;
+    background: rgba(0, 0, 0, 0.2);
+    vertical-align: top;
+    animation: unset;
+}
+.penci-bf-follow-term-wrapper .pencibf-following-text:hover:before,
+.penci-bf-follow-post-wrapper .pencibf-following-text:hover:before,
+.penci-bf-follow-term-wrapper .penci-bf-following-button .pencibf-following-text:before,
+.penci-bf-follow-post-wrapper .penci-bf-following-button .pencibf-following-text:before {
+    background-color: var(--pcaccent-cl);
+    border-color: var(--pcaccent-cl);
+    color: #fff;
+    cursor: pointer;
+}
+.penci-bf-follow-term-wrapper .pencibf-following-text:hover:before,
+.penci-bf-follow-post-wrapper .pencibf-following-text:hover:before {
+    opacity: 0.8;
+}
+.penci-bf-follow-term-wrapper.loading .pencibf-following-text:before,
+.penci-bf-follow-author-wrapper.loading .pencibf-following-text:before,
+.post-box-meta-single .penci-bf-follow-post-wrapper.loading .pencibf-following-text:before,
+.penci-bf-follow-post-wrapper.loading .pencibf-following-text:before {
+    font-family: inherit !important;
+    line-height: 0;
+    display: inline-block;
+    content: " " !important;
+    animation: lds-dual-ring 0.4s linear infinite;
+    vertical-align: top;
+    width: 32px;
+    height: 32px;
+    opacity: 1;
+    border: 1px solid #999;
+    border-top-color: rgb(153, 153, 153);
+    border-left-color: rgb(153, 153, 153);
+    border-top-color: rgb(153, 153, 153);
+    border-left-color: rgb(153, 153, 153);
+    border-left-color: #fff;
+    border-top-color: #fff;
+    border-radius: 50%;
+    background: transparent;
+}
+.item-related .penci-bf-follow-post-wrapper {
+    top: 10px;
+    right: 20px;
+}
+body.rtl .item-related .penci-bf-follow-post-wrapper  {
+    right: auto;
+    left: 20px;
+}
+.penci-bf-follow-term-wrapper.pcbf-size-small,
+.penci-bf-follow-post-wrapper.pcbf-size-small {
+    top: 5px;
+    right: 5px;
+}
+.penci-bf-follow-post-wrapper.pcbf-size-small.has-review + .penci-rv-sm-show {
+    top: auto;
+    bottom: 5px;
+}
+.penci-bf-follow-term-wrapper.pcbf-size-small .pencibf-following-text:before,
+.penci-bf-follow-post-wrapper.pcbf-size-small .pencibf-following-text:before {
+    width: 26px;
+    height: 26px;
+    line-height: 26px;
+    font-size: 14px;
+}
+.penci-bf-follow-term-wrapper.pcbf-size-small.loading .pencibf-following-text:before,
+.penci-bf-follow-post-wrapper.pcbf-size-small.loading .pencibf-following-text:before {
+    width: 26px;
+    height: 26px;
+}
+.post-box-meta-single .penci-bf-follow-post-wrapper.loading .pencibf-following-text:before {
+    width: 10px;
+    height: 10px;
+    margin: -3px 5px 0 0;
+    vertical-align: middle;
+}
+.penci-bf-follow-post-wrapper.has-review + .penci-rv-sm-show {
+    top: auto;
+    bottom: 15px;
+}
+.grid-overlay-meta .penci-bf-follow-post-wrapper.has-review + .penci-rv-sm-show {
+    bottom: 45px;
+}
+.penci-bf-follow-post-wrapper.pcbf-size-small.has-review + .penci-rv-sm-show {
+    bottom: 5px;
+    right: 5px;
+    top: auto;
+}
+body.rtl .penci-mega-thumbnail .penci-bf-follow-post-wrapper.pcbf-size-small.has-review + .penci-rv-sm-show {
+    right: auto;
+    left: 7px;
+}
+body.rtl .penci-mega-post .penci-bf-follow-post-wrapper {
+    right: auto;
+    left: 7px;
+}
+.post-entry .penci-bf-follow-post-table td,
+.post-entry .penci-bf-follow-post-table th,
+.post-entry .penci-bf-follow-post-table .penci-bf-follow-btn-wrapper button {
+    padding-left: 0;
+    padding-right: 0;
+    min-width: unset;
+}
+.post-entry .penci-bf-follow-author-table thead th,
+.post-entry .penci-bf-follow-author-table tfoot th,
+.post-entry .penci-bf-follow-author-table tbody td,
+.post-entry .penci-bf-follow-post-table thead th,
+.post-entry .penci-bf-follow-post-table tfoot th,
+.post-entry .penci-bf-follow-post-table tbody td {
+    padding-left: 20px;
+    padding-right: 20px;
+}
+.archive-box .pencibf-unfollowing-text,
+.archive-box .pencibf-following-text {
+    font-size: 12px;
+    vertical-align: middle;
+}
+.penci-owl-featured-area .item {
+    position: relative;
+}
+.post-box-meta-single .penci-bf-follow-post-wrapper {
+    position: static;
+}
+.post-box-meta-single .penci-bf-follow-post-wrapper .pencibf-following-text:before {
+    content: '\f02e';
+    font-family: 'FontAwesome';
+    display: inline-block;
+    margin: 0 5px 0 0;
+    padding: 0;
+    border: 0;
+    font-size: inherit;
+    line-height: inherit;
+    width: unset;
+    height: unset;
+    background: transparent;
+    color: inherit !important;
+    vertical-align: middle;
+}
+.post-box-meta-single .penci-bf-follow-post-wrapper .pencibf-following-text:hover:before,
+.post-box-meta-single .penci-bf-follow-post-wrapper .penci-bf-following-button .pencibf-following-text:before {
+    background: transparent;
+    color: inherit;
+}
+body.rtl .penci-bf-follow-author-wrapper .penci-bf-following-button .pencibf-following-text:before,
+body.rtl .post-box-meta-single .pencibf-following-text:before {
+    margin: 0 0 0 5px;
+    vertical-align: baseline;
+}
+body.rtl .penci-bf-follow-author-wrapper .penci-bf-following-button .pencibf-following-text:before {
+    float: right;
+}
+.penci-bf-follow-author-wrapper .penci-bf-following-button .pencibf-following-text:before,
+.post-box-meta-single .penci-bf-following-button .pencibf-following-text:before,
+.post-box-meta-single .pencibf-following .pencibf-following-text:before {
+    content: '\f00c';
+    font-family: 'FontAwesome';
+}
+.penci-bf-follow-author-wrapper .penci-bf-following-button .pencibf-following-text:before {
+    margin: 0 5px 0 0;
+}
+.penci-bf-follow-post-row-body .penci-bf-follow-post-wrapper.loading .pencibf-following-text:before,
+.penci-pf-post-imported button.loading:before,
+.penci-pf-author-imported button.loading:before,
+.penci-bf-follow-author-wrapper.loading .pencibf-following-text:before {
+    width: 8px;
+    height: 8px;
+    margin-right: 5px;
+    vertical-align: middle;
+}
+body.rtl .penci-bf-follow-post-row-body .penci-bf-follow-post-wrapper.loading .pencibf-following-text:before,
+body.rtl .penci-pf-post-imported button.loading:before,
+body.rtl .penci-pf-author-imported button.loading:before,
+body.rtl .penci-bf-follow-author-wrapper.loading .pencibf-following-text:before {
+    margin-right: 0;
+    margin-left: 5px;
+}
+body.rtl .post-box-meta-single .penci-bf-follow-post-wrapper.loading .pencibf-following-text:before {
+    margin: -3px 0 0 5px;
+}
+.penci-bf-follow-author-wrapper button,
+.penci-bf-follow-author-wrapper button:hover {
+    display: inline-block;
+    padding: 5px 10px;
+    border: 1px solid var(--pcaccent-cl);
+    color: var(--pcaccent-cl);
+    font-size: 12px;
+    line-height: 1;
+    transition: all 0.3s;
+    font-family: var(--pchead-font);
+    font-weight: var(--pchead-wei);
+}
+.penci-bf-follow-author-wrapper .penci-bf-following-button,
+.penci-bf-follow-author-wrapper button:hover {
+    background: var(--pcaccent-cl);
+    color: #fff;
+}
+.penci-pf-post-thumbnail img,
+.post-entry .penci-pf-post-thumbnail img {
+    max-width: 75px;
+    height: auto;
+}
+.penci-pf-saved-confirm {
+    padding: 30px;
+    border: 1px solid var(--pcborder-cl);
+    margin: 0 0 30px;
+    text-align: center;
+    background: #f1f1f1;
+}
+.penci-pf-saved-confirm .cancel {
+    background: #333;
+    color: #fff;
+}
+#penci-header-bookmark {
+    margin-left: 5px;
+}
+body.rtl #penci-header-bookmark {
+    margin-left: 0;
+    margin-right: 5px;
+    float: left;
+}
+.penci-bf-unsubscribe-table,
+.penci-bf-unsubscribe-table tr,
+.penci-bf-unsubscribe-table td {
+    border: 0 !important;
+}
+.penci-bf-unsubscribe-form {
+    max-width: 650px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.penci-bf-unsubscribe-table {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.penci-bf-email-field {
+    width: 75%;
+    padding-right: 15px;
+}
+body.rtl .penci-bf-email-field {
+    padding-right: 0;
+    padding-left: 15px;
+}
+.penci-bf-submit-field {
+    width: 25%;
+}
+.penci-bf-email-field input[type="text"],
+.penci-bf-submit-field .penci-bf-btn {
+    padding: 0 20px;
+    font-size: 16px;
+    line-height: 46px;
+}
+.penci-bf-submit-field .penci-bf-btn {
+    display: block;
+    width: 100%;
+    line-height: 48px;
+}
+.penci-bf-manage-follow-terms .pcsl-inner .pcsl-iteminer,
+.penci-bf-manage-follow-posts .pcsl-inner .pcsl-iteminer {
+    align-items: center;
+}
+.penci-bf-manage-follow-terms .pcsl-inner .pcsl-content,
+.penci-bf-manage-follow-posts .pcsl-inner .pcsl-content {
+    padding: 10px 10px 10px var(--pcsl-between);
+}
+.penci-bf-manage-follow-terms .pcsl-inner .pcsl-thumb {
+    width: 49%;
+}
+.penci-bf-manage-follow-terms .pcsl-inner .pcsl-content {
+    width: 51%;
+}
+body.rtl .penci-bf-manage-follow-posts .pcsl-inner .pcsl-content {
+    padding: 10px var(--pcsl-between) 10px 10px;
+}
+.penci-bf-manage-follow-terms .pcsl-itemin,
+.penci-bf-manage-follow-posts .pcsl-itemin {
+    border: 1px solid var(--pcborder-cl);
+}
+@media only screen and (max-width: 767px) {
+    .penci-bf-email-field,
+    .penci-bf-submit-field {
+        width: 100%;
+        padding: 0;
+    }
+    .penci-bf-submit-field {
+        margin-top: 20px;
+    }
+}
+.penci-bf-manage-follow-authors {
+    margin-top: 40px;
+}
+html body .jq-toast-wrap {
+    width: 370px;
+}
+html .jq-toast-single .pencpf-popup-mess {
+    overflow: hidden;
+    font-size: 13px;
+}
+html .jq-toast-single .pencpf-popup-mess a {
+    font-weight: inherit;
+    font-size: inherit;
+    border: 0;
+    padding: 0;
+}
+.jq-toast-wrap .pencpf-popup-mess-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    margin: -20px;
+    background: var(--pcbg-cl);
+}
+.jq-toast-wrap .pencpf-popup-mess-wrapper .pencpf-popup-thumb {
+    width: 100px;
+    height: 100px;
+    border: 0;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+}
+.jq-toast-wrap .pencpf-popup-mess-wrapper .pencpf-popup-ct-area {
+    width: calc(100% - 100px);
+    padding: 10px 15px;
+    color: var(--pctext-cl);
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+}
+body.rtl .jq-toast-wrap .pencpf-popup-mess-wrapper .pencpf-popup-ct-area {
+    text-align: right;
+}
+.jq-toast-wrap .pencpf-popup-mess-wrapper .pencpf-popup-ct-area .pencpf-popup-mess-title {
+    color: var(--pcaccent-cl);
+    font-family: var(--pchead-font);
+    font-weight: var(--pchead-wei);
+    font-size: 16px;
+    display: inline-block;
+    overflow: hidden;
+    max-width: 100%;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    margin-bottom: 6px;
+}
+html .jq-toast-wrap span.close-jq-toast-single {
+    font-size: 22px;
+    top: 8px;
+    opacity: 0.6;
+}
+.post-author .penci-bf-follow-author-wrapper {
+    margin-bottom: 15px;
+    margin-top: -5px;
+}
+.penci-bf-follow-author-table .penci-bf-picture {
+    width: 15%;
+}
+.penci-bf-follow-author-table .penci-bf-col-2 {
+    width: 25%;
+}
+.penci-bf-follow-author-table .penci-bf-col-action {
+    width: 40%;
+}
+.penci-bf-follow-term-table .penci-bf-follow-term-wrapper {
+    position: static;
+}
+@media only screen and (max-width: 767px) {
+    .penci-bf-follow-author-table-container {
+        overflow-x: auto;
+    }
+    .penci-bf-follow-author-table-container table {
+        min-width: 490px;
+    }
+    .penci-bf-follow-author-table .penci-bf-picture {
+        width: 10%;
+    }
+    .penci-bf-follow-author-table .penci-bf-col-2 {
+        width: 25%;
+    }
+    .penci-bf-follow-author-table .penci-bf-col-action {
+        width: 55%;
+    }
+    .penci-bf-follow-author-table .penci-bf-col-date {
+        min-width: 120px;
+    }
+    .post-entry .penci-bf-follow-author-table thead th, .post-entry .penci-bf-follow-author-table tfoot th, .post-entry .penci-bf-follow-author-table tbody td, .post-entry .penci-bf-follow-post-table thead th, .post-entry .penci-bf-follow-post-table tfoot th, .post-entry .penci-bf-follow-post-table tbody td {
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+}
+.penci-bf-term-page {
+    clear: both;
+    margin-top: 15px;
+}
+.post-entry .penci-bf-follow-term-table td,
+.post-entry .penci-bf-follow-term-table th {
+    padding-left: 20px;
+    padding-right: 20px;
+}
+body.rtl .penci-bf-follow-post-wrapper.pcbf-size-small {
+    right: auto;
+    left: 5px;
+}
+body.rtl .penci-bf-follow-post-wrapper.pcbf-size-small.has-review + .penci-rv-sm-show {
+    right: auto;
+    left: 5px;
+}
+body.rtl .close-jq-toast-single {
+    left: 7px;
+    right: auto;
+}
+.archive-box .penci-bf-follow-term-wrapper {
+    position: static;
+    margin: 15px 0 -10px;
+}
+.archive-box .penci-bf-follow-term-wrapper .pencibf-following-text:before {
+    width: auto;
+    height: auto;
+    border: 0;
+    background: transparent;
+    color: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    margin-right: 5px;
+    vertical-align: middle;
+}
+.archive-box .penci-bf-follow-term-wrapper.loading .pencibf-following-text:before {
+    width: 13px;
+    height: 13px;
+    border: 1px solid #999;
+    border-top-color: rgb(153, 153, 153);
+    border-left-color: rgb(153, 153, 153);
+    border-top-color: rgb(153, 153, 153);
+    border-left-color: rgb(153, 153, 153);
+    border-left-color: #fff;
+    border-top-color: #fff;
+}
+.archive-box .penci-bf-follow-term-wrapper button span{
+    display: inline-block;
+    padding: 5px 11px;
+    border: 1px solid var(--pcaccent-cl);
+    color: var(--pcaccent-cl);
+    font-size: 13px;
+    line-height: 1;
+    transition: all 0.3s;
+    font-family: var(--pchead-font);
+    font-weight: var(--pchead-wei);
+    text-transform: none;
+}
+.archive-box .penci-bf-follow-term-wrapper .penci-bf-following-button span,
+.archive-box .penci-bf-follow-term-wrapper button:hover span{
+    color: #fff;
+    background: var(--pcaccent-cl);
+}
+
+.archive-box .penci-bf-follow-term-wrapper .penci-bf-following-button .pencibf-following-text:before {
+    content: '\f00c';
+}
