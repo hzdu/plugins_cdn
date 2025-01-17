@@ -88,6 +88,12 @@ if (!String.prototype.trim) {
 
     let gtm_variables = {};
     let gtm_datalayername = "dynamicVariable";
+    var domain = '';
+    if(options.hasOwnProperty("track_cookie_for_subdomains") && options.track_cookie_for_subdomains) {
+        domain = getRootDomain(true);
+    }
+
+
 
     var loadTags = [];
 
@@ -952,11 +958,11 @@ if (!String.prototype.trim) {
 
                                     if (value !== undefined) {
                                         if (url_params.get(key) === value) {
-                                            Cookies.set('hide_tag_'+hide_info.pixel, true, { expires: new Date(expiresTimeInMilliseconds) });
+                                            Cookies.set('hide_tag_'+hide_info.pixel, true, { expires: new Date(expiresTimeInMilliseconds), path: '/' });
                                             break;
                                         }
                                     } else if (url_params.get(key) !== null) {
-                                        Cookies.set('hide_tag_'+hide_info.pixel, true, { expires: new Date(expiresTimeInMilliseconds) });
+                                        Cookies.set('hide_tag_'+hide_info.pixel, true, { expires: new Date(expiresTimeInMilliseconds), path: '/' });
                                         break;
                                     }
                                 }
@@ -1245,8 +1251,8 @@ if (!String.prototype.trim) {
                     let duration = options.last_visit_duration * 60000
                     var now = new Date();
                     now.setTime(now.getTime() + duration);
-                    Cookies.set('pys_session_limit', true,{ expires: now })
-                    Cookies.set('pys_start_session', true);
+                    Cookies.set('pys_session_limit', true,{ expires: now, path: '/',domain: domain })
+                    Cookies.set('pys_start_session', true,{ path: '/',domain: domain });
                     Utils.setHidePixelCookie();
                 }
                 if (options.gdpr.ajax_enabled && !options.gdpr.consent_magic_integration_enabled) {
@@ -1294,7 +1300,7 @@ if (!String.prototype.trim) {
                             if (res.data && res.data.pbid != false && options.send_external_id) {
                                 if(!(options.cookie.disabled_all_cookie || options.cookie.externalID_disabled_by_api)){
                                     var expires = parseInt(options.external_id_expire || 180);
-                                    Cookies.set('pbid', res.data.pbid, { expires: expires, path: '/' });
+                                    Cookies.set('pbid', res.data.pbid, { expires: expires,path: '/',domain: domain });
                                 }
 
                                 if(options.hasOwnProperty('facebook')) {
@@ -1323,7 +1329,7 @@ if (!String.prototype.trim) {
 
                         if(!options.cookie.disabled_first_visit_cookie)
                         {
-                            Cookies.set('pys_first_visit', true, { expires: expires });
+                            Cookies.set('pys_first_visit', true, { expires: expires, path: '/',domain: domain });
                         }
                         else {
                             Cookies.remove('pys_first_visit')
@@ -1331,7 +1337,7 @@ if (!String.prototype.trim) {
 
                         if(!options.cookie.disabled_trafficsource_cookie)
                         {
-                            Cookies.set('pysTrafficSource', getTrafficSource(), { expires: expires });
+                            Cookies.set('pysTrafficSource', getTrafficSource(), { expires: expires,path: '/',domain: domain });
                         }
                         else {
                             Cookies.remove('pysTrafficSource')
@@ -1339,7 +1345,7 @@ if (!String.prototype.trim) {
 
                         if(!options.cookie.disabled_landing_page_cookie)
                         {
-                            Cookies.set('pys_landing_page',landing,{ expires: expires });
+                            Cookies.set('pys_landing_page',landing,{ expires: expires,path: '/',domain: domain });
                         }
                         else {
                             Cookies.remove('pys_landing_page')
@@ -1349,7 +1355,7 @@ if (!String.prototype.trim) {
                         {
                             $.each(utmTerms, function (index, name) {
                                 if (queryVars.hasOwnProperty(name)) {
-                                    Cookies.set('pys_' + name, queryVars[name], { expires: expires });
+                                    Cookies.set('pys_' + name, queryVars[name], { expires: expires,path: '/',domain: domain });
                                 } else {
                                     Cookies.remove('pys_' + name)
                                 }
@@ -1365,7 +1371,7 @@ if (!String.prototype.trim) {
                         {
                             $.each(utmId,function(index,name) {
                                 if (queryVars.hasOwnProperty(name)) {
-                                    Cookies.set('pys_' + name, queryVars[name], { expires: expires });
+                                    Cookies.set('pys_' + name, queryVars[name], { expires: expires,path: '/',domain: domain });
                                 } else {
                                     Cookies.remove('pys_' + name)
                                 }
@@ -1383,7 +1389,7 @@ if (!String.prototype.trim) {
                     if(isNewSession && (!options.cookie.disabled_all_cookie)) {
                         if(!options.cookie.disabled_trafficsource_cookie)
                         {
-                            Cookies.set('last_pysTrafficSource', getTrafficSource(), { expires: expires });
+                            Cookies.set('last_pysTrafficSource', getTrafficSource(), { expires: expires,path: '/',domain: domain });
                         }
                         else {
                             Cookies.remove('last_pysTrafficSource')
@@ -1391,7 +1397,7 @@ if (!String.prototype.trim) {
 
                         if(!options.cookie.disabled_landing_page_cookie)
                         {
-                            Cookies.set('last_pys_landing_page',landing,{ expires: expires });
+                            Cookies.set('last_pys_landing_page',landing,{ expires: expires,path: '/',domain: domain });
                         }
                         else {
                             Cookies.remove('last_pys_landing_page')
@@ -1401,7 +1407,7 @@ if (!String.prototype.trim) {
                         {
                             $.each(utmTerms, function (index, name) {
                                 if (queryVars.hasOwnProperty(name)) {
-                                    Cookies.set('last_pys_' + name, queryVars[name], { expires: expires });
+                                    Cookies.set('last_pys_' + name, queryVars[name], { expires: expires,path: '/',domain: domain });
                                 } else {
                                     Cookies.remove('last_pys_' + name)
                                 }
@@ -1417,7 +1423,7 @@ if (!String.prototype.trim) {
                         {
                             $.each(utmId,function(index,name) {
                                 if (queryVars.hasOwnProperty(name)) {
-                                    Cookies.set('last_pys_' + name, queryVars[name], { expires: expires });
+                                    Cookies.set('last_pys_' + name, queryVars[name], { expires: expires,path: '/',domain: domain });
                                 } else {
                                     Cookies.remove('last_pys_' + name)
                                 }
@@ -1734,12 +1740,12 @@ if (!String.prototype.trim) {
                         var fireTime = event.timeWindow * 60*60*1000;
 
                         if( now - lastTimeFire > fireTime) {
-                            Cookies.set(cookieName,now, { expires: event.timeWindow / 24.0} );
+                            Cookies.set(cookieName,now, { expires: event.timeWindow / 24.0, path: '/'} );
                         } else {
                             return false;
                         }
                     } else {
-                        Cookies.set(cookieName,now, { expires: event.timeWindow / 24.0} );
+                        Cookies.set(cookieName,now, { expires: event.timeWindow / 24.0, path: '/'} );
                     }
                 }
                 return true
@@ -1817,7 +1823,7 @@ if (!String.prototype.trim) {
                 if(Cookies.get("pys_"+$eventName+"_order_id_"+pixel) == orderId) {
                     return false;
                 } else {
-                    Cookies.set("pys_"+$eventName+"_order_id_"+pixel, orderId, { expires: 1 });
+                    Cookies.set("pys_"+$eventName+"_order_id_"+pixel, orderId, { expires: 1,path: '/' });
                 }
                 return true;
             },
@@ -2488,10 +2494,10 @@ if (!String.prototype.trim) {
                 });
 
                 var dateTime = getDateTime();
-                var landing = getLandingPageValue();
-                var lastLanding = getLandingPageValue();
-                var trafic = getTrafficSourceValue();
-                var lastTrafic = getTrafficSourceValue();
+                var landing = Cookies.get('pys_landing_page');
+                var lastLanding = Cookies.get('last_pys_landing_page');
+                var trafic = Cookies.get('pysTrafficSource');
+                var lastTrafic = Cookies.get('last_pysTrafficSource');
 
                 var $form = null;
                 if($('body').hasClass('woocommerce-checkout')) {
@@ -2616,7 +2622,7 @@ if (!String.prototype.trim) {
                         data[ "lns" ] = data[ "lns" ].slice( 0, 2 );
                     }
 
-                    Cookies.set( 'pys_advanced_form_data', JSON.stringify( data ), { expires: 300 } );
+                    Cookies.set( 'pys_advanced_form_data', JSON.stringify( data ), { expires: 300,path: '/',domain: domain } );
                 } else {
                     Cookies.remove( 'pys_advanced_form_data' )
                 }
@@ -3090,12 +3096,20 @@ if (!String.prototype.trim) {
                             };
 
                             let delay = 0;
-                            Object.keys(sessionStorage).forEach((key) => {
-                                let value = sessionStorage.getItem(key);
-                                if ( key.startsWith( 'wc_fragments_' ) && event.e_id == 'woo_add_to_cart_on_button_click' ) {
-                                    delay = 2000;
+                            try {
+                                if (sessionStorage) {
+                                    Object.keys(sessionStorage)
+                                        .filter(key => key.startsWith('wc_fragments_'))
+                                        .forEach((key) => {
+                                            let value = sessionStorage.getItem(key);
+                                            if (event.e_id === 'woo_add_to_cart_on_button_click') {
+                                                delay = 2000;
+                                            }
+                                        });
                                 }
-                            });
+                            } catch (error) {
+                                console.error('sessionStorage is not accessible:', error);
+                            }
 
 
                             if(event.hasOwnProperty('woo_order')) {
@@ -3292,8 +3306,9 @@ if (!String.prototype.trim) {
 
             Utils.copyProperties(data, params);
             Utils.copyProperties(Utils.getRequestParams(), params);
-
             Utils.copyProperties(Utils.getRequestParams(), data);
+
+            params = Facebook.filterParams(params);
 
 
             if(options.facebook.serverApiEnabled) {
@@ -3340,12 +3355,20 @@ if (!String.prototype.trim) {
                         }
 
                         let delay = 0;
-                        Object.keys(sessionStorage).forEach((key) => {
-                            let value = sessionStorage.getItem(key);
-                            if ( key.startsWith( 'wc_fragments_' ) && event.e_id == 'woo_add_to_cart_on_button_click' ) {
-                                delay = 2000;
+                        try {
+                            if (sessionStorage) {
+                                Object.keys(sessionStorage)
+                                    .filter(key => key.startsWith('wc_fragments_'))
+                                    .forEach((key) => {
+                                        let value = sessionStorage.getItem(key);
+                                        if (event.e_id === 'woo_add_to_cart_on_button_click') {
+                                            delay = 2000;
+                                        }
+                                    });
                             }
-                        });
+                        } catch (error) {
+                            console.error('sessionStorage is not accessible:', error);
+                        }
 
                         if (event.e_id === "automatic_event_internal_link" || event.e_id === "automatic_event_outbound_link") {
                             delay = delay === 0 ? 500 : delay;
@@ -3410,7 +3433,7 @@ if (!String.prototype.trim) {
             initEventIdCookies: function (key) {
                 var ids = {};
                 ids[key] = pys_generate_token(36)
-                Cookies.set('pys_fb_event_id', JSON.stringify(ids));
+                Cookies.set('pys_fb_event_id', JSON.stringify(ids), {path: '/',domain: domain});
             },
 
             updateEventId:function(key) {
@@ -3420,7 +3443,7 @@ if (!String.prototype.trim) {
                 } else {
                     var data = JSON.parse(cooData);
                     data[key] = pys_generate_token(36);
-                    Cookies.set('pys_fb_event_id', JSON.stringify(data) );
+                    Cookies.set('pys_fb_event_id', JSON.stringify(data), {path: '/',domain: domain} );
                 }
             },
 
@@ -3435,6 +3458,26 @@ if (!String.prototype.trim) {
 
             disable: function () {
                 initialized = false;
+            },
+
+            filterParams: function (params) {
+                var filteredParams = {};
+
+                if (options.facebook.hasOwnProperty('enabled_medical') && options.facebook.enabled_medical && options.facebook.hasOwnProperty('do_not_track_medical_param')) {
+                    // Remove empty strings from the array
+                    options.facebook.do_not_track_medical_param = options.facebook.do_not_track_medical_param.filter(Boolean);
+                    for (const key in params) {
+                        if (Array.isArray(options.facebook.do_not_track_medical_param)) {
+                            if (!options.facebook.do_not_track_medical_param.includes(key)) {
+                                filteredParams[key] = params[key];
+                            }
+                        }
+                    }
+                }
+                else {
+                    Utils.copyProperties(params, filteredParams);
+                }
+                return filteredParams;
             },
 
             /**
@@ -3466,11 +3509,11 @@ if (!String.prototype.trim) {
                     document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
                 let expires = parseInt(options.cookie_duration);
                 if(!Cookies.get('_fbp')) {
-                    Cookies.set('_fbp',genereateFbp(),  { expires: expires });
+                    Cookies.set('_fbp',genereateFbp(),  { expires: expires,path: '/',domain: domain });
                 }
 
                 if(getUrlParameter('fbclid')) {
-                    Cookies.set('_fbc',genereateFbc(),  { expires: expires });
+                    Cookies.set('_fbc',genereateFbc(),  { expires: expires,path: '/',domain: domain });
                 }
                 var ids = options.facebook.pixelIds.filter(function (pixelId) {
                     return !Utils.hideMatchingPixel(pixelId, 'facebook');
@@ -4272,7 +4315,7 @@ if (!String.prototype.trim) {
                 }
                 const url = new URL(window.location.href);
                 select_prod_list.url = url.origin + url.pathname;
-                Cookies.set('select_prod_list', JSON.stringify(select_prod_list), { expires: 1 });
+                Cookies.set('select_prod_list', JSON.stringify(select_prod_list), { expires: 1,path: '/' });
                 this.fireEvent(event.name, event);
             },
 
@@ -5192,7 +5235,7 @@ if (!String.prototype.trim) {
                 }
                 const url = new URL(window.location.href);
                 select_prod_list.url = url.origin + url.pathname;
-                Cookies.set('select_prod_list', JSON.stringify(select_prod_list), { expires: 1 });
+                Cookies.set('select_prod_list', JSON.stringify(select_prod_list), { expires: 1,path: '/' });
                 this.fireEvent(event.name, event);
             },
 
@@ -5291,15 +5334,19 @@ if (!String.prototype.trim) {
 
         if($("#pys_late_event").length > 0) {
             var events =  JSON.parse($("#pys_late_event").attr("dir"));
-            for(var key in events) {
-                var event = {};
-                event[events[key].e_id] = [events[key]];
-                if(options.staticEvents.hasOwnProperty(key)) {
-                    Object.assign(options.staticEvents[key], event);
-                } else {
-                    options.staticEvents[key] = event;
+            for (var platform in events) {
+                if (events.hasOwnProperty(platform)) {
+                    var platformEvents = events[platform];
+                    platformEvents.forEach(function(event) {
+                        var eventData = {};
+                        eventData[event.e_id] = [event];
+                        if (options.staticEvents.hasOwnProperty(platform)) {
+                            Object.assign(options.staticEvents[platform], eventData);
+                        } else {
+                            options.staticEvents[platform] = eventData;
+                        }
+                    });
                 }
-
             }
         }
 
@@ -5905,7 +5952,7 @@ if (!String.prototype.trim) {
                     var $button = $(this);
                     var $prod_info = $button.siblings('.pys_list_name_productdata').data();
                     var product_id = $(this).data('product_id');
-                    Cookies.set('productlist', JSON.stringify($prod_info), { expires: 1 })
+                    Cookies.set('productlist', JSON.stringify($prod_info), { expires: 1,path: '/' })
                     var product_id = $(this).data('product_id');
                     if (typeof product_id !== 'undefined') {
                         Facebook.onWooAddToCartOnButtonEvent(product_id,$(this));
@@ -5927,7 +5974,7 @@ if (!String.prototype.trim) {
                     var $button = $(this);
                     var $prod_info = $button.siblings('.pys_list_name_productdata').data();
                     var product_id = $(this).data('product_id');
-                    Cookies.set('productlist', JSON.stringify($prod_info), { expires: 1 })
+                    Cookies.set('productlist', JSON.stringify($prod_info), { expires: 1,path: '/' })
                     if ($button.hasClass('disabled')) {
                         return;
                     }
@@ -5987,7 +6034,7 @@ if (!String.prototype.trim) {
                     var $button = $(this);
                     var $prod_info = $button.siblings('.pys_list_name_productdata').data();
                     var product_id = $(this).data('product_id');
-                    Cookies.set('productlist', JSON.stringify($prod_info), { expires: 1 })
+                    Cookies.set('productlist', JSON.stringify($prod_info), { expires: 1,path: '/' })
                 });
 
                 // Single Product
@@ -5997,7 +6044,7 @@ if (!String.prototype.trim) {
 
                     var $button = $(this);
                     var $prod_info = $button.siblings('.pys_list_name_productdata').data();
-                    Cookies.set('productlist', $prod_info, { expires: 1 })
+                    Cookies.set('productlist', $prod_info, { expires: 1,path: '/' })
                 });
             }
 
@@ -6128,7 +6175,7 @@ if (!String.prototype.trim) {
                         }
                         const url = new URL(window.location.href);
                         select_prod_list.url = url.origin + url.pathname;
-                        Cookies.set('select_prod_list', JSON.stringify(select_prod_list), { expires: 1 });
+                        Cookies.set('select_prod_list', JSON.stringify(select_prod_list), { expires: 1,path: '/' });
                     }
                 }
             });
@@ -6753,4 +6800,10 @@ function getCookieYes(key) {
             {}
         );
     return value;
+}
+
+function getRootDomain(useSubdomain = false) {
+    const hostname = window.location.hostname; // Get the current hostname
+    const rootDomain = tldjs.getDomain(hostname); // Use tldjs to extract the root domain
+    return rootDomain && (useSubdomain == true) ? '.' + rootDomain : hostname; // Add leading dot for cookies
 }

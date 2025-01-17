@@ -262,7 +262,6 @@ jQuery( document ).ready( function ( $ ) {
             panelNames.forEach( function ( panel ) {
                 let clonedTrigger = $( '#pys_add_event_trigger .' + panel + '_panel' ).clone( true ),
                     triggerId = group.attr( "data-trigger_id" );
-
                 switch ( panel ) {
                     case 'post_type':
                         $( '.trigger_post_type > select', clonedTrigger ).attr( {
@@ -371,6 +370,45 @@ jQuery( document ).ready( function ( $ ) {
                             for: 'pys_event_' + triggerId + '_email_link_disable_email_event'
                         } );
 
+                        break;
+                    case 'purchase':
+                        let transactionOnly = $( '.switcher_event_transaction_only_action', clonedTrigger );
+                        transactionOnly.find( 'input[type="hidden"]' ).attr( {
+                            name: 'pys[event][triggers][' + triggerId + '][purchase_transaction_only]',
+                        } );
+                        transactionOnly.find( 'input.custom-switch-input' ).attr( {
+                            name: 'pys[event][triggers][' + triggerId + '][purchase_transaction_only]',
+                            id: 'pys_event_' + triggerId + '_purchase_transaction_only'
+                        } );
+                        transactionOnly.find( 'label.custom-switch-btn' ).attr( {
+                            for: 'pys_event_' + triggerId + '_purchase_transaction_only'
+                        } );
+
+                        let transactionID = $( '.switcher_event_track_transaction_ID', clonedTrigger );
+                        transactionID.find( 'input[type="hidden"]' ).attr( {
+                            name: 'pys[event][triggers][' + triggerId + '][track_transaction_ID]',
+                        } );
+                        transactionID.find( 'input.custom-switch-input' ).attr( {
+                            name: 'pys[event][triggers][' + triggerId + '][track_transaction_ID]',
+                            id: 'pys_event_' + triggerId + '_track_transaction_ID'
+                        } );
+                        transactionID.find( 'label.custom-switch-btn' ).attr( {
+                            for: 'pys_event_' + triggerId + '_track_transaction_ID'
+                        } )
+
+                    case 'add_to_cart':
+                    case 'purchase':
+                        let trackValueAndCurrency = $( '.switcher_event_track_value_and_currency', clonedTrigger );
+                        trackValueAndCurrency.find( 'input[type="hidden"]' ).attr( {
+                            name: 'pys[event][triggers][' + triggerId + '][track_value_and_currency]',
+                        } );
+                        trackValueAndCurrency.find( 'input.custom-switch-input' ).attr( {
+                            name: 'pys[event][triggers][' + triggerId + '][track_value_and_currency]',
+                            id: 'pys_event_' + triggerId + '_track_value_and_currency'
+                        } );
+                        trackValueAndCurrency.find( 'label.custom-switch-btn' ).attr( {
+                            for: 'pys_event_' + triggerId + '_track_value_and_currency'
+                        } );
                         break;
                     case 'CF7':
                     case 'fluentform':
@@ -1047,7 +1085,23 @@ jQuery( document ).ready( function ( $ ) {
                     elementor_form.hide();
                     elementor_form_error.hide();
                 } else if(trigger_type == "home_page") {
-                    trigger.find( ".event-delay" ).css( "display", "flex" );
+                    trigger.find(".event-delay").css("display", "flex");
+                    url_filter.hide();
+                    post_type_error.hide();
+                    post_type.hide();
+                    embedded_video_view.hide();
+                    video_view_error.hide();
+                    elementor_form.hide();
+                    elementor_form_error.hide();
+                } else if(trigger_type == "add_to_cart") {
+                    url_filter.hide();
+                    post_type_error.hide();
+                    post_type.hide();
+                    embedded_video_view.hide();
+                    video_view_error.hide();
+                    elementor_form.hide();
+                    elementor_form_error.hide();
+                } else if(trigger_type == "purchase") {
                     url_filter.hide();
                     post_type_error.hide();
                     post_type.hide();
