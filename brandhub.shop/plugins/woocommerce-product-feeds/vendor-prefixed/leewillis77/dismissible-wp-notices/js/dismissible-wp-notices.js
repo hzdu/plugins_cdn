@@ -20,10 +20,10 @@ function ademti_dismissible_wp_notices_handle( elem, action ) {
 }
 
 jQuery( function () {
-	jQuery( '.ademti-dismiss' ).click( function ( e ) {
+	jQuery( '.ademti-dismiss' ).on( 'click', function ( e ) {
 		ademti_dismissible_wp_notices_handle( this, 'ademti_dismissible_wp_notices_dismiss' );
 	} );
-	jQuery( '.ademti-snooze' ).click( function ( e ) {
+	jQuery( '.ademti-snooze' ).on( 'click', function ( e ) {
 		ademti_dismissible_wp_notices_handle( this, 'ademti_dismissible_wp_notices_snooze' );
 	} );
 } );

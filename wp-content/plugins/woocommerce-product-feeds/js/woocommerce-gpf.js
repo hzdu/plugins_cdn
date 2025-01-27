@@ -92,3 +92,10 @@ jQuery(function () {
         woo_gpf_handle_media_actions(jQuery(this), 'woo_gpf_set_lifestyle_media', woo_gpf_sync_media_status);
     });
 });
+
+function woo_gpf_autocomplete( elementQuery, srcUrl ) {
+    jQuery( elementQuery ).autocomplete({
+        source: srcUrl,
+        delay: 400
+    });
+}
