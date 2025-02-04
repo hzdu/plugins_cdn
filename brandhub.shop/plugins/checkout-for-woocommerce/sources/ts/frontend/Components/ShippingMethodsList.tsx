@@ -3,6 +3,7 @@ import { Markup }                                              from 'interweave'
 import { useSelect }                                           from '@wordpress/data';
 import { ShippingPackageInterface, ShippingMethodInterface }   from '../../interfaces/ShippingPackageInterface';
 import DataStores                                              from '../DataStores';
+import cfwGetWPHooks                                           from '../../functions/cfwGetWPHooks';
 
 type ShippingProps = {
     packageCount: number,
@@ -24,12 +25,13 @@ const ShippingMethodsList: React.FC<ShippingProps> = (
     },
 ) => {
     const actions = useSelect( ( select: any ) => select( DataStores.cart_store_key ).getCartActions( null ), [] );
+    const alwaysDisplayPackageTitle = cfwGetWPHooks()?.applyFilters( 'cfw_js_always_display_package_title', false, { packageCount } );
 
     return (
         <div>
             {availableMethods.length > 0 ? (
                 <>
-                    {packageCount > 1 && <h4 className="cfw-shipping-package-title" dangerouslySetInnerHTML={ { __html: packageName } }></h4>}
+                    {( packageCount > 1 || alwaysDisplayPackageTitle ) && <h4 className="cfw-shipping-package-title" dangerouslySetInnerHTML={ { __html: packageName } }></h4>}
 
                     <ul id="shipping_method" className="cfw-shipping-methods-list">
                         {availableMethods.map( ( method ) => (

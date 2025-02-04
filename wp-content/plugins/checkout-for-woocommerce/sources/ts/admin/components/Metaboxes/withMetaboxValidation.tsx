@@ -27,6 +27,12 @@ const withMetaboxValidation = ( WrappedComponent, getValidationRules ) => ( prop
         const errors = {};
         let isValid = true;
 
+        if ( meta.cfw_new_bump_modal_open ) {
+            setFormErrors( {} );
+            setIsFormValid( true );
+            return;
+        }
+
         const validationRules = getValidationRules( meta );
 
         Object.keys( validationRules ).forEach( ( field ) => {

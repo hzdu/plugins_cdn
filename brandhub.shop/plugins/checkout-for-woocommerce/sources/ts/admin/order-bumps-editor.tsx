@@ -1,30 +1,57 @@
-import { registerPlugin }                                           from '@wordpress/plugins';
-import React                                                        from 'react';
-import { registerBlockType }                                        from '@wordpress/blocks';
-import { useEntityProp }                                            from '@wordpress/core-data';
-import apiFetch                                                     from '@wordpress/api-fetch';
-import { useState, useEffect }                                      from '@wordpress/element';
-import { useSelect }                                                from '@wordpress/data';
-import OrderBumpsDisplayConditions                                  from './Components/Metaboxes/OrderBumpsDisplayConditions';
-import OrderBumpsOfferPanel                                         from './Components/Metaboxes/OrderBumpsOfferPanel';
-import OrderBumpsActionsPanel                                       from './Components/Metaboxes/OrderBumpsActionsPanel';
-import OrderBump                                                    from '../components/OrderBump';
+import { registerPlugin }                                                                  from '@wordpress/plugins';
+import React                                                                               from 'react';
+import { registerBlockType }                                                               from '@wordpress/blocks';
+import { useEntityProp }                                                                   from '@wordpress/core-data';
+import apiFetch                                                                            from '@wordpress/api-fetch';
+import { useState, useEffect }                                                             from '@wordpress/element';
+import { useSelect }                                                                       from '@wordpress/data';
+import OrderBumpsDisplayConditions                                                         from './Components/Metaboxes/OrderBumpsDisplayConditions';
+import OrderBumpsOfferPanel                                                                from './Components/Metaboxes/OrderBumpsOfferPanel';
+import OrderBumpsActionsPanel                                                              from './Components/Metaboxes/OrderBumpsActionsPanel';
+import OrderBump                                                                           from '../components/OrderBump';
+import OrderBumpsDisplayLocation                                                           from './Components/Metaboxes/OrderBumpsDisplayLocation';
+import OrderBumpsOfferDiscountPanel                                                        from './Components/Metaboxes/OrderBumpsOfferDiscountPanel';
+import OrderBumpsOfferLanguagePanel                                                        from './Components/Metaboxes/OrderBumpsOfferLanguagePanel';
+import OrderBumpsGeneralPanel                                                              from './Components/Metaboxes/OrderBumpsGeneralPanel';
+import OrderBumpsSetupModal                                                                from './Components/Metaboxes/OrderBumpsSetupModal';
 
-declare const wp: any;
+registerPlugin( 'cfw-ob-setup-modal', {
+    render: OrderBumpsSetupModal,
+} );
+
+registerPlugin( 'cfw-ob-general-metabox', {
+    render: OrderBumpsGeneralPanel,
+    icon: 'info-outline',
+} );
 
 registerPlugin( 'cfw-ob-display-conditions-metabox', {
     render: OrderBumpsDisplayConditions,
-    icon: null,
+    icon: 'ellipsis',
+} );
+
+registerPlugin( 'cfw-ob-display-location-metabox', {
+    render: OrderBumpsDisplayLocation,
+    icon: 'location',
 } );
 
 registerPlugin( 'cfw-ob-offer-metabox', {
     render: OrderBumpsOfferPanel,
-    icon: null,
+    icon: 'awards',
+} );
+
+registerPlugin( 'cfw-ob-offer-discount-metabox', {
+    render: OrderBumpsOfferDiscountPanel,
+    icon: 'money-alt',
+} );
+
+registerPlugin( 'cfw-ob-offer-language-metabox', {
+    render: OrderBumpsOfferLanguagePanel,
+    icon: 'translation',
 } );
 
 registerPlugin( 'cfw-ob-actions-metabox', {
     render: OrderBumpsActionsPanel,
-    icon: null,
+    icon: 'controls-play',
 } );
 
 registerBlockType( 'cfw/order-bump-preview', {
@@ -32,6 +59,9 @@ registerBlockType( 'cfw/order-bump-preview', {
     icon: 'cart',
     category: 'widgets',
     attributes: {},
+    supports: {
+        multiple: false,
+    },
     edit: ( { attributes, setAttributes } ) => {
         const postType = useSelect(
             ( select: any ) => select( 'core/editor' ).getCurrentPostType(),

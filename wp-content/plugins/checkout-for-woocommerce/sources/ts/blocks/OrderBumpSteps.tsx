@@ -136,6 +136,10 @@ class OrderBumpSteps {
     }
 
     register() {
+        if ( ( window as any ).pagenow !== 'cfw_order_bumps' ) {
+            return;
+        }
+
         registerBlockType( metadata as any, this.settings );
     }
 }

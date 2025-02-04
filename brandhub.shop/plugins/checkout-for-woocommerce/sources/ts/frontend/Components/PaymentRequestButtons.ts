@@ -33,7 +33,7 @@ class PaymentRequestButtons {
     }
 
     showExpressButtons(): void {
-        this.expressButtonContainer.css( 'position', 'relative' ).css( 'visibility', 'visible' );
+        this.expressButtonContainer.css( 'position', 'relative' ).css( 'opacity', '100' ).css( 'pointer-events', 'auto' );
         this.expressButtonSeparator.show();
     }
 
@@ -50,7 +50,7 @@ class PaymentRequestButtons {
 
     hasButtons(): boolean {
         let hasButtons = false;
-        const potentialButtons = this.expressButtonContainer.children().not( 'h2, .blockUI, #wc-stripe-payment-request-button-separator' );
+        const potentialButtons = this.expressButtonContainer.children().not( 'h2, .blockUI, #wc-stripe-payment-request-button-separator, #wc-stripe-express-checkout-button-separator' );
 
         potentialButtons.each( ( index, element ) => {
             const elementId = jQuery( element ).attr( 'id' );

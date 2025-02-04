@@ -30,17 +30,6 @@
 
         @include media-breakpoint-up(lg) {
             padding: 0;
-
-            .cfw-trust-badges {
-                display: flex;
-                flex-direction: row;
-                justify-content: space-between;
-
-                .row {
-                    width: auto;
-                    flex: 1;
-                }
-            }
         }
     }
 
@@ -49,30 +38,9 @@
             color: var(--cfw-footer-text-color);
             background: var(--cfw-footer-background-color);
         }
-    }
 
-    .cfw-badge {
-        &:not(:first-child) {
-            margin-top: 1.5em;
-        }
-
-        h5 {
-            margin-top: 0;
-            margin-bottom: 0.8em;
-            font-size: 1.1em;
-        }
-
-        img {
-            max-width: 100%;
-            height: auto;
-        }
-
-        div {
-            padding-top: 1em;
-        }
-
-        div:last-child {
-            padding-left: 1.5em;
+        p {
+            text-align: left !important;
         }
     }
 }

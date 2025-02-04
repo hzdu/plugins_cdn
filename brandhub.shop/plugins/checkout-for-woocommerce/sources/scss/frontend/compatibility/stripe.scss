@@ -18,8 +18,10 @@
 
 }
 
-#cfw-payment-request-buttons #wc-stripe-payment-request-button-separator {
-    display: none !important;
+#cfw-payment-request-buttons {
+    #wc-stripe-payment-request-button-separator, #wc-stripe-express-checkout-button-separator {
+        display: none !important;
+    }
 }
 
 /**

@@ -10,6 +10,7 @@ interface CheckoutFormSettingsInterface {
     registration_style: string;
     user_matching: string;
     disable_auto_open_login_modal: boolean;
+    'wp_option/woocommerce_checkout_phone_field': string;
     enable_order_notes: boolean;
     enable_coupon_code_link: boolean;
     enable_discreet_address_1_fields: boolean;

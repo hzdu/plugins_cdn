@@ -31,12 +31,13 @@
         'div',
         'button',
         '#checkout_paypal_message',
-        '#wc-stripe-payment-request-wrapper'
+        '#wc-stripe-payment-request-wrapper',
     );
 
     // List of parent classes to exclude
     $excluded-parents: (
         '.wcpay-payment-request-wrapper',
+        '#wc-stripe-express-checkout-element',
     );
 
     @include apply-cfw-payment-request-button-styles-with-exclusions( $base-selectors, $excluded-parents );

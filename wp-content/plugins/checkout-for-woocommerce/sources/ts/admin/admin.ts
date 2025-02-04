@@ -53,7 +53,7 @@ cfwDomReady( () => {
             return;
         }
 
-        const licenseContentDiv = jQuery( '#1-activate-your-license_content' );
+        const licenseContentDiv = jQuery( '#step-1-activate-your-license_content' );
 
         licenseContentDiv.block( {
             message: null,

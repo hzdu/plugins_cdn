@@ -12,6 +12,7 @@ import cfwDangerouslyOutputTableRowAction      from '../../functions/cfwDangerou
 const CheckoutCartTable: React.FC = () => {
     const isEmpty = useSelect( ( select: any ) => select( DataStores.cart_store_key ).getCartIsEmpty( null ), [] );
     const items = useSelect( ( select: any ) => select( DataStores.cart_store_key ).getCartItems( null ), [] );
+    const shippingData = useSelect( ( select: any ) => select( DataStores.cart_store_key ).getShippingData( null ), [] );
     const staticActions = useSelect( ( select: any ) => select( DataStores.cart_store_key ).getCartStaticActions( null ), [] );
     const actions = useSelect( ( select: any ) => select( DataStores.cart_store_key ).getCartActions( null ), [] );
 
@@ -41,9 +42,9 @@ const CheckoutCartTable: React.FC = () => {
                 !isEmpty
                 && DataService.getSetting( 'enable_free_shipping_progress_bar' )
                 && DataService.getSetting( 'enable_free_shipping_progress_bar_at_checkout' )
-                && (
-                    <FreeShippingProgressBar/>
-                )
+                && shippingData?.length ? (
+                        <FreeShippingProgressBar/>
+                    ) : null
             }
             <table className="cfw-cart-table cfw-module">
                 <tbody>

@@ -63,6 +63,7 @@ const PromoFieldControl = ( { location = '' } ) => {
                 <div className="row cfw-promo-row cfw-input-wrap-row">
                     <div className="col-8">
                         <PromoFieldInput
+                            disabled={!isPromoVisible}
                             label={promoCodeLabel}
                             placeholder={promoCodePlaceholder}
                             value={promoCode}
@@ -72,6 +73,7 @@ const PromoFieldControl = ( { location = '' } ) => {
                     <div className="col-4">
                         <div className="cfw-input-wrap cfw-button-input">
                             <SecondaryButton
+                                disabled={!isPromoVisible}
                                 label={promoCodeButtonLabel}
                                 onClick={() => onClick( promoCode )}
                                 className={ promoCode.length ? 'cfw-secondary-btn-active' : 'cfw-secondary-btn-inactive'}

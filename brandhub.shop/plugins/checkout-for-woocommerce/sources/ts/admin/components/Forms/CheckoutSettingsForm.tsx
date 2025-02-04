@@ -12,6 +12,7 @@ import RadioGroupField                                        from '../Fields/Ra
 import TextField                                              from '../Fields/TextField';
 import MediumAlert                                            from '../MediumAlert';
 import SevereAlert                                            from '../SevereAlert';
+import SelectField                                            from '../Fields/SelectField';
 
 declare let cfw_google_address_autocomplete: any;
 
@@ -24,6 +25,7 @@ interface CheckoutFormSettingsInterface {
     registration_style: string;
     user_matching: string;
     disable_auto_open_login_modal: boolean;
+    'wp_option/woocommerce_checkout_phone_field': string;
     enable_order_notes: boolean;
     enable_coupon_code_link: boolean;
     enable_discreet_address_1_fields: boolean;
@@ -213,6 +215,27 @@ const CheckoutSettingsForm: React.FC<CheckoutSettingsFormPropsInterface> = ( pro
                             description='Control how different checkout fields appear.'
                             content={
                                 <>
+                                    <SelectField
+                                        name={'wp_option/woocommerce_checkout_phone_field'}
+                                        label={'Phone Field'}
+                                        description={'Determines whether the WooCommerce native phone field is enabled.'}
+                                        options={[
+                                            {
+                                                value: 'hidden',
+                                                label: 'Hidden',
+                                            },
+                                            {
+                                                value: 'optional',
+                                                label: 'Optional',
+                                            },
+                                            {
+                                                value: 'required',
+                                                label: 'Required',
+                                            },
+                                        ]}
+                                        searchTerm={searchTerm}
+                                    />
+
                                     <CheckboxField
                                         name="enable_order_notes"
                                         label="Enable Order Notes Field"
@@ -225,6 +248,7 @@ const CheckoutSettingsForm: React.FC<CheckoutSettingsFormPropsInterface> = ( pro
                                             <MediumAlert description={'Order Notes field is being controlled by a filter or a plugin.'} />
                                         )
                                     }
+
                                     <CheckboxField
                                         name="enable_coupon_code_link"
                                         label="Hide Coupon Code Field Behind Link"
@@ -241,7 +265,7 @@ const CheckoutSettingsForm: React.FC<CheckoutSettingsFormPropsInterface> = ( pro
 
                                     <CheckboxField
                                         name="enable_discreet_address_1_fields"
-                                        label="Enable Discreet House Number and Street Name Address Fields"
+                                        label="Enable Separate House Number and Street Name Address Fields"
                                         description='Values are combined into a single address_1 field based on country selected by customer.'
                                         searchTerm={searchTerm}
                                     />
@@ -249,8 +273,8 @@ const CheckoutSettingsForm: React.FC<CheckoutSettingsFormPropsInterface> = ( pro
                                         && (
                                             <RadioGroupField
                                                 name='discreet_address_1_fields_order'
-                                                label='Discreet Address Fields Display Order'
-                                                description='Choose how display discreet address 1 fields.'
+                                                label='Separate Address Fields Display Order'
+                                                description='Choose how display separate address 1 fields.'
                                                 nested={true}
                                                 options={[
                                                     {
@@ -270,7 +294,7 @@ const CheckoutSettingsForm: React.FC<CheckoutSettingsFormPropsInterface> = ( pro
                                     }
                                     {values.enable_discreet_address_1_fields && values.enable_address_autocomplete && (
                                         <SevereAlert
-                                            description='Discreet Address Fields is incompatible with Google Address Autocomplete. <a target="_blank" class="text-blue-600 underline" href="https://www.checkoutwc.com/documentation/google-address-autocomplete-and-discreet-house-number-and-street-name-address-fields/">Learn More</a>'
+                                            description='Separate Address Fields is incompatible with Google Address Autocomplete. <a target="_blank" class="text-blue-600 underline" href="https://www.checkoutwc.com/documentation/google-address-autocomplete-and-discreet-house-number-and-street-name-address-fields/">Learn More</a>'
                                         />
                                     )}
                                     <CheckboxField
@@ -445,7 +469,7 @@ const CheckoutSettingsForm: React.FC<CheckoutSettingsFormPropsInterface> = ( pro
                                     />
                                     {values.enable_discreet_address_1_fields && values.enable_address_autocomplete && (
                                         <SevereAlert
-                                            description='Google Address Autocomplete cannot be used with Discreet Address Fields. <a target="_blank" class="text-blue-600 underline" href="https://www.checkoutwc.com/documentation/google-address-autocomplete-and-discreet-house-number-and-street-name-address-fields/">Learn More</a>'
+                                            description='Google Address Autocomplete cannot be used with Separate Address Fields. <a target="_blank" class="text-blue-600 underline" href="https://www.checkoutwc.com/documentation/google-address-autocomplete-and-discreet-house-number-and-street-name-address-fields/">Learn More</a>'
                                         />
                                     )}
                                     <CheckboxField

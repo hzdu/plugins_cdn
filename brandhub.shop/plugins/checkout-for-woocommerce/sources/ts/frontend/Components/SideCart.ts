@@ -64,6 +64,7 @@ class SideCart {
 
         jQuery( document.body ).on( 'cfw_open_side_cart', SideCart.openCart.bind( this ) );
         jQuery( document.body ).on( 'click', '.cfw-side-cart-open-trigger, .added_to_cart', SideCart.openCart.bind( this ) );
+        jQuery( document.body ).on( 'keydown', '.cfw-side-cart-open-trigger', SideCart.maybeOpenCart.bind( this ) );
         jQuery( document.body ).on( 'click', '.menu-item a:has(.cfw-side-cart-open-trigger)', SideCart.openCart.bind( this ) );
         jQuery( document.body ).on( 'click', '.cfw-side-cart-close-trigger, .cfw-side-cart-close-btn, #cfw-side-cart-overlay', SideCart.closeCart.bind( this ) );
         jQuery( document.body ).on( 'added_to_cart', () => {
@@ -159,10 +160,30 @@ class SideCart {
         }, 850 );
     }
 
+    static maybeOpenCart( e?: KeyboardEvent ): void {
+        // open the cart if the user presses enter or space on the floating cart button due to us using an anchor tag with role="button"
+        if ( e.keyCode === 32 || e.keyCode === 13 ) {
+            e.preventDefault();
+
+            SideCart.openCart();
+        }
+    }
+
     static openCart( e?: Event ): void {
         if ( e ) {
             e.preventDefault();
         }
+
+        setTimeout( () => {
+            const checkoutBtn = jQuery( '.wc-proceed-to-checkout a' );
+
+            // Focus on the checkout button if it exists, otherwise focus on the close button (e.g. empty cart)
+            if ( checkoutBtn?.length ) {
+                checkoutBtn.trigger( 'focus' );
+            } else {
+                jQuery( '.cfw-side-cart-close-btn' ).trigger( 'focus' );
+            }
+        }, 500 );
 
         jQuery( 'body' ).addClass( 'cfw-side-cart-open' ).removeClass( 'cfw-side-cart-close' );
         jQuery( '.cfw-side-cart-floating-button' ).attr( 'aria-expanded', 'true' );

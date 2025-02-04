@@ -12,8 +12,16 @@ export default class GermanyAutocompleteStrategy extends AutocompleteStrategy {
     }
 
     public getAddress1(): string {
-        if ( this.userInputValue.includes( 'Deutsche Post Filiale' ) ) {
+        if ( this.userInputValue?.includes( 'Deutsche Post Filiale' ) ) {
             return this.userInputValue;
+        }
+
+        if ( this.formattedAddress?.includes( 'Packstation' ) ) {
+            // We need to extract the packstation number from the formatted address
+            const match = this.formattedAddress.match( /packstation.[0-9]+/i );
+            if (match !== null) {
+                return match[0]
+            }
         }
 
         return new Address1Strategy( this.components, this.formattedAddress, this.userInputValue ).getValue();

@@ -2,26 +2,49 @@
 	"$schema": "https://schemas.wp.org/trunk/block.json",
 	"name": "woocommerce/product-filter-active",
 	"version": "1.0.0",
-	"title": "Filter Options",
+	"title": "Active (Experimental)",
 	"description": "Display the currently active filters.",
 	"category": "woocommerce",
-	"keywords": [ "WooCommerce" ],
+	"keywords": [
+		"WooCommerce"
+	],
 	"textdomain": "woocommerce",
-	"apiVersion": 2,
-	"ancestor": [ "woocommerce/product-filter" ],
+	"apiVersion": 3,
+	"ancestor": [
+		"woocommerce/product-filters"
+	],
 	"supports": {
 		"interactivity": true,
-		"inserter": false,
-		"color": {
-			"text": true,
-			"background": false
+		"__experimentalBorder": {
+			"color": true,
+			"radius": true,
+			"style": true,
+			"width": true,
+			"__experimentalDefaultControls": {
+				"color": false,
+				"radius": false,
+				"style": false,
+				"width": false
+			}
+		},
+		"spacing": {
+			"margin": true,
+			"padding": true,
+			"blockGap": false,
+			"__experimentalDefaultControls": {
+				"margin": false,
+				"padding": false,
+				"blockGap": false
+			}
 		}
 	},
-	"usesContext": [ "queryId" ],
+	"usesContext": [
+		"filterParams"
+	],
 	"attributes": {
-		"displayStyle": {
-			"type": "string",
-			"default": "list"
+		"clearButton": {
+			"type": "boolean",
+			"default": false
 		}
 	}
 }

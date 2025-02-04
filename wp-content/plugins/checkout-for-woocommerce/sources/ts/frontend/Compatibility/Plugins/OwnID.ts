@@ -22,6 +22,10 @@ class OwnID extends Compatibility {
             return;
         }
 
+        if ( !jQuery( '#cfw_login_username' ).length ) {
+            return;
+        }
+
         let loginInfoTooltip = true;
 
         if ( this.params.loginVariant === 'ownid-auth-button' ) {
@@ -60,6 +64,10 @@ class OwnID extends Compatibility {
     maybeInitOrderPayOwnID(): void {
         // Check if ownid function exists
         if ( typeof ( <any>window ).ownid !== 'function' ) {
+            return;
+        }
+
+        if ( !jQuery( '#username' ).length ) {
             return;
         }
 

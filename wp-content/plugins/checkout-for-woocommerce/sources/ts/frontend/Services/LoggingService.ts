@@ -1,8 +1,23 @@
 import DataService from './DataService';
+import cfwAjax     from '../../functions/cfwAjax';
 
 class LoggingService {
-    static logError( message: string, object: unknown = null ): void {
-        LoggingService.log( `${message} ⚠️`, true, object );
+    static logError( message: string, extraData: unknown = null ): void {
+        LoggingService.log( `${message} ⚠️`, true, extraData );
+
+        cfwAjax( 'cfw_log_error', {
+            type: 'POST',
+            data: {
+                log_data: {
+                    message,
+                    ...( typeof extraData === 'object' && extraData !== null ? extraData : {
+                        extraData,
+                    } ),
+                },
+            },
+            dataType: 'json',
+            cache: false,
+        } );
     }
 
     static logNotice( message: string, object: unknown = null ): void {

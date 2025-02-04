@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const PromoFieldInput = ( { label, placeholder, value, setValue } ) => {
+const PromoFieldInput = ( { disabled = false, label, placeholder, value, setValue } ) => {
     const floatClass = value !== '' ? 'cfw-label-is-floated' : '';
     const [ id ] = useState( () => `component-${Math.random().toString( 16 ).slice( 2 )}` );
 
@@ -17,6 +17,7 @@ const PromoFieldInput = ( { label, placeholder, value, setValue } ) => {
             </label>
             <span className="woocommerce-input-wrapper">
                 <input
+                    disabled={disabled}
                     type="text"
                     className="input-text"
                     data-persist={'false'}

@@ -5,6 +5,7 @@ declare class SideCart {
     maybeOpenCartOrShakeButton(): void;
     static tryToGetDataFromLocalStorage(): void;
     shakeCartButton(): void;
+    static maybeOpenCart(e?: KeyboardEvent): void;
     static openCart(e?: Event): void;
     static closeCart(e?: Event): void;
     processCartUpdates(): void;

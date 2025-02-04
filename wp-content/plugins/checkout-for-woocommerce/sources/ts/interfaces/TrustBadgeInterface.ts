@@ -1,3 +1,5 @@
+import { RuleType } from '../admin/Components/Metaboxes/Fields/Rules/RuleField';
+
 interface TrustBadgeInterface {
     id: string;
     image: any; // Change the type based on your actual image type, e.g., string for a URL
@@ -6,6 +8,7 @@ interface TrustBadgeInterface {
     description: string;
     template: string;
     mode: string;
+    rules: RuleType[];
 }
 
 export default TrustBadgeInterface;

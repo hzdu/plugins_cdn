@@ -85,6 +85,7 @@ const completer: AutoCompleter = {
                         { match?.suggestionMatch }
                     </strong>
                     { match?.suggestionAfterMatch }
+                    { product.sku.length > 0 && <span className="woocommerce-search__result-sku">&nbsp;({ product.sku })</span> }
                 </span>
             </Fragment>
         );

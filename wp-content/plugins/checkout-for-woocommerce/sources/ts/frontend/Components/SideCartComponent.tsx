@@ -31,12 +31,12 @@ const SideCartComponent: React.FC = () => {
     return (
         <div id={'cfw-side-cart-form'} className={'checkoutwc'}>
             <div className={'cfw-side-cart-contents-header'}>
-                <span className="cfw-side-cart-close-btn" role="button" aria-label={__( 'Close Cart', 'checkout-wc' )}>
+                <button className="cfw-side-cart-close-btn" aria-label={__( 'Close Cart', 'checkout-wc' )}>
                     <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M17 8L21 12M21 12L17 16M21 12L3 12" stroke="#111827" strokeLinecap="round"
                             strokeLinejoin="round"/>
                     </svg>
-                </span>
+                </button>
 
                 <SideCartIcon />
 

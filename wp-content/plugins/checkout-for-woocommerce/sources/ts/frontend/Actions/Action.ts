@@ -1,5 +1,6 @@
 import DataService                      from '../Services/DataService';
 import LoggingService                   from '../Services/LoggingService';
+import cfwAjax                          from '../../functions/cfwAjax';
 
 /**
  * Base class for our ajax handling. Child classes will extend this and override the response function and implement their
@@ -100,7 +101,16 @@ abstract class Action {
      */
     error( xhr: any, textStatus: string, errorThrown: string ): void {
         if ( textStatus !== 'abort' ) {
-            LoggingService.logError( `${this.constructor.name} Error: ${errorThrown} (${textStatus}` );
+            const email = jQuery( '#billing_email' ).val().toString();
+
+            LoggingService.logError( `${this.id} Error: ${errorThrown} (${textStatus})`, {
+                action: this.id,
+                errorThrown,
+                textStatus,
+                responseText: xhr.responseText,
+                status: xhr.status,
+                sanitizedEmail: email.replace( /@.+/, '@***.***' ),
+            } );
         }
     }
 

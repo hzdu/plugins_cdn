@@ -34,7 +34,7 @@ class CompleteOrderService {
 
         // If all the payment stuff has finished any ajax calls, run the complete order.
         // eslint-disable-next-line max-len
-        if ( DataService.checkoutForm.triggerHandler( 'checkout_place_order', [ DataService.checkoutForm ] ) !== false && DataService.checkoutForm.triggerHandler( `checkout_place_order_${DataService.checkoutForm.find( 'input[name="payment_method"]:checked' ).val()}`, [ DataService.checkoutForm ] ) !== false ) {
+        if ( DataService.checkoutForm.triggerHandler( 'checkout_place_order', [ ( window as any ).wc_checkout_form ] ) !== false && DataService.checkoutForm.triggerHandler( `checkout_place_order_${DataService.checkoutForm.find( 'input[name="payment_method"]:checked' ).val()}`, [ ( window as any ).wc_checkout_form ] ) !== false ) {
             DataService.checkoutForm.addClass( 'processing' );
 
             cfwAddOverlay();

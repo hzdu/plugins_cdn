@@ -1,10 +1,14 @@
-import React, { ChangeEvent, MouseEvent }    from 'react';
-import GuaranteeBadge                        from '../../components/Badges/GuaranteeBadge';
-import ReviewBadge                           from '../../components/Badges/ReviewBadge';
-import TrustBadgeInterface                   from '../../interfaces/TrustBadgeInterface';
-import MediaLibraryButton                    from './MediaLibraryButton';
-import RichTextArea                          from './RichTextArea';
-import { cfw__ }                             from '../../functions/translationWrappers';
+import React, { ChangeEvent, MouseEvent, useState }       from 'react';
+import { Modal }                                          from 'react-responsive-modal';
+import { Button, Flex }                                   from '@wordpress/components';
+import GuaranteeBadge                                     from '../../components/Badges/GuaranteeBadge';
+import ReviewBadge                                        from '../../components/Badges/ReviewBadge';
+import TrustBadgeInterface                                from '../../interfaces/TrustBadgeInterface';
+import MediaLibraryButton                                 from './MediaLibraryButton';
+import RichTextArea                                       from './RichTextArea';
+import { cfw__ }                                          from '../../functions/translationWrappers';
+import RuleSet                                            from './Metaboxes/Fields/Rules/RuleSet';
+import { RuleType }                                       from './Metaboxes/Fields/Rules/RuleField';
 
 interface TrustBadgeRowProps {
     badge: TrustBadgeInterface;
@@ -14,6 +18,8 @@ interface TrustBadgeRowProps {
 }
 
 function TrustBadgeRow( { badge, setBadge, removeHandler, dragHandleProps }: TrustBadgeRowProps ): React.JSX.Element {
+    const [ isOpen, setIsOpen ] = useState( false );
+
     const setTitle = ( value: string ) => {
         const badgeCopy: TrustBadgeInterface = { ...badge };
         badgeCopy.title = value;
@@ -47,6 +53,12 @@ function TrustBadgeRow( { badge, setBadge, removeHandler, dragHandleProps }: Tru
     const setMode = ( value: string ) => {
         const badgeCopy: TrustBadgeInterface = { ...badge };
         badgeCopy.mode = value;
+        setBadge( badgeCopy );
+    };
+
+    const setRules = ( value: RuleType[] ) => {
+        const badgeCopy: TrustBadgeInterface = { ...badge };
+        badgeCopy.rules = value;
         setBadge( badgeCopy );
     };
 
@@ -106,7 +118,7 @@ function TrustBadgeRow( { badge, setBadge, removeHandler, dragHandleProps }: Tru
                     <div className="grow">
                         <label className="block text-sm font-medium leading-6 text-gray-900">
                             Image
-                            <MediaLibraryButton value={badge.image} setAttachment={setImage} />
+                            <MediaLibraryButton value={badge.image} setAttachment={setImage}/>
                         </label>
                         {badge.image && (
                             <a
@@ -125,9 +137,47 @@ function TrustBadgeRow( { badge, setBadge, removeHandler, dragHandleProps }: Tru
 
                 <div className="col-span-full">
                     <label className="block text-sm font-medium leading-6 text-gray-900">
-                    Description
+                        Description
                     </label>
-                    <RichTextArea value={badge.description} initialMode={badge.mode} onSelect={setDescription} onModeChange={setMode} id={badge.id}/>
+                    <RichTextArea value={badge.description} initialMode={badge.mode} onSelect={setDescription}
+                        onModeChange={setMode} id={badge.id}/>
+                </div>
+
+                <div className="col-span-full">
+                    <label className="block text-sm font-medium leading-6 text-gray-900">
+                        Display Conditions
+                    </label>
+
+                    <button
+                        type="button"
+                        className="rounded-md bg-white px-4 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
+                        onClick={() => setIsOpen( true )}
+                    >
+                        {cfw__( 'Manage Display Conditions' )}
+                    </button>
+
+                    <Modal
+                        open={isOpen}
+                        onClose={() => setIsOpen( false )}
+                        center={true}
+                        classNames={{
+                            root: 'cfw-modal-root',
+                            overlay: 'cfw-modal-overlay',
+                            modal: 'cfw-modal',
+                            modalContainer: 'cfw-modal-container',
+                        }}
+                        showCloseIcon={false}
+                    >
+                        <h1>Display Conditions</h1>
+                        <h3>Determine when this Trust Badge should be displayed.</h3>
+                        <RuleSet rules={badge.rules} onChange={setRules}/>
+
+                        <Flex justify="flex-end">
+                            <Button variant={'primary'} size={'default'} onClick={() => setIsOpen( false )}>
+                                Close
+                            </Button>
+                        </Flex>
+                    </Modal>
                 </div>
             </div>
             <div className="grow h-full flex justify-center items-center">
