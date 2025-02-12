@@ -38,14 +38,10 @@
     $excluded-parents: (
         '.wcpay-payment-request-wrapper',
         '#wc-stripe-express-checkout-element',
+        '#wc-ppcp-express-button',
     );
 
     @include apply-cfw-payment-request-button-styles-with-exclusions( $base-selectors, $excluded-parents );
-
-    // we need to make sure our min-height set above doesn't impact PayPal SDK
-    div#smart-menu, div#installments-modal {
-        min-height: unset;
-    }
 
     // Don't add this to the mixin because it needs
     // to be a direct descendant rule and limited to divs for now

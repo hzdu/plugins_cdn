@@ -1,6 +1,6 @@
 {
     "name": "checkout-for-woocommerce",
-    "version": "10.0.3",
+    "version": "10.0.6",
     "description": "### Development installation instructions",
     "scripts": {
         "build_dev": "./bin/build-dev.sh",
@@ -18,7 +18,7 @@
         "build": "wp-scripts build",
         "start": "cross-env NODE_ENV=development wp-scripts start",
         "start_and_analyze": "cross-env NODE_ENV=development WP_BUNDLE_ANALYZER=true wp-scripts start",
-        "build_and_zip": "cross-env NODE_ENV=production wp-scripts build --config webpack.prod.js",
+        "build_production": "cross-env NODE_ENV=production wp-scripts build --config webpack.prod.js",
         "preinstall": "npx only-allow pnpm",
         "generate-documentation": "./bin/generate-documentation.sh",
         "generate-action-documentation": "./vendor/bin/wp-documentor parse . --ignore-vcs-ignored --prefix=cfw --prefix=checkoutwc --type=actions --exclude=vendor --exclude=vendor-prefixed --exclude=dist --exclude=node_modules --exclude=build --format=markdown --output=docs/actions.md",

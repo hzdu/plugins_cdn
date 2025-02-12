@@ -68,12 +68,6 @@ frontendConfig.plugins.push(
                 `rm -rf ${productionDir} && mkdir -p ${productionDir}`,
             ],
         },
-        onAfterDone: {
-            scripts: [
-                // eslint-disable-next-line max-len
-                `npx cpy --parents '.' '!./dist' '!./tests' '!./cypress' '!./bin' '!./assets' '!./**/node_modules' '!./**/phpunit' '!./strauss.phar' '!./cypress.env.json' '!./cypress.overrides.json' ${outPath} && cd ${productionDir} && zip --recurse-paths ${zipName} ./checkout-for-woocommerce`,
-            ],
-        },
     } ),
 );
 
