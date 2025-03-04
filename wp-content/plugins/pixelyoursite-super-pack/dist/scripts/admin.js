@@ -71,6 +71,11 @@ jQuery(document).ready(function ($) {
     $body.on('change','.pixel_info .is_fire_edd'  ,function () {
         updatePixelData($(this).parents('.pixel_info'),'is_fire_edd',this.checked)
     })
+
+    $body.on('change','.pixel_info .logic_conditional_track'  ,function () {
+        console.log(this.value)
+        updatePixelData($(this).parents('.pixel_info'),'logic_conditional_track',this.value)
+    })
     $body.on('click', '.remove-conditions-row', function () {
         let pixelBlock = $(this).closest('.pixel_info');
         $(this).closest('.pixel_conditions').remove();
@@ -185,6 +190,9 @@ jQuery(document).ready(function ($) {
 
         $('#pixel_facebook_hide_conditions_'+count).pysselect2({placeholder: $('#pixel_facebook_hide_conditions_'+count).data("placeholder"), tags: true});
 
+        $row.find('#facebook_logic_conditional_track').attr('id','facebook_logic_conditional_track_'+count)
+        $row.find("label[for='facebook_logic_conditional_track']").attr('for','facebook_logic_conditional_track_'+count)
+
         $row.find('#pixel_facebook_hide_url_conditions').attr('id','pixel_facebook_hide_url_conditions_'+count)
 
         $('#pixel_facebook_hide_url_conditions_'+count).pysselect2({placeholder: $('#pixel_facebook_hide_url_conditions_'+count).data("placeholder"), tags: true});
@@ -214,6 +222,10 @@ jQuery(document).ready(function ($) {
         $row.find('#pixel_ga_hide_conditions').attr('id','pixel_ga_hide_conditions_'+count)
 
         $('#pixel_ga_hide_conditions_'+count).pysselect2({placeholder: $('#pixel_ga_hide_conditions_'+count).data("placeholder"), tags: true});
+
+        $row.find('#ga_logic_conditional_track').attr('id','ga_logic_conditional_track_'+count)
+        $row.find("label[for='ga_logic_conditional_track']").attr('for','ga_logic_conditional_track_'+count)
+
 
         $row.find('#pixel_ga_hide_url_conditions').attr('id','pixel_ga_hide_url_conditions_'+count)
 
@@ -261,6 +273,9 @@ jQuery(document).ready(function ($) {
         $row.find('#pixel_ads_hide_url_conditions').attr('id','pixel_ads_hide_url_conditions_'+count)
 
         $('#pixel_ads_hide_url_conditions_'+count).pysselect2({placeholder: $('#pixel_ads_hide_url_conditions_'+count).data("placeholder"), tags: true});
+
+        $row.find('#ads_logic_conditional_track').attr('id','ads_logic_conditional_track_'+count)
+        $row.find("label[for='ads_logic_conditional_track']").attr('for','ads_logic_conditional_track_'+count)
 
         updatePixelInputValue($row)
 
