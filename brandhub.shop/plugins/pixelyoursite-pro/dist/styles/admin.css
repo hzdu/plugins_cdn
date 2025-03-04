@@ -6,17 +6,6 @@
   font-weight: normal;
   font-style: normal;
 }
-/*!
- *  Font Awesome 4.7.0 by @davegandy - http://fontawesome.io - @fontawesome
- *  License - http://fontawesome.io/license (Font: SIL OFL 1.1, CSS: MIT License)
- */
-@font-face {
-  font-family: FontAwesome;
-  src: url(../fonts/fontawesome-webfont.eot?v=4.7.0);
-  src: url(../fonts/fontawesome-webfont.eot?#iefix&v=4.7.0) format("embedded-opentype"), url(../fonts/fontawesome-webfont.woff2?v=4.7.0) format("woff2"), url(../fonts/fontawesome-webfont.woff?v=4.7.0) format("woff"), url(../fonts/fontawesome-webfont.ttf?v=4.7.0) format("truetype"), url(../fonts/fontawesome-webfont.svg?v=4.7.0#fontawesomeregular) format("svg");
-  font-weight: 400;
-  font-style: normal;
-}
 @keyframes fa-spin {
   0% {
     transform: rotate(0deg);
@@ -2227,6 +2216,26 @@
 }
 #pys .custom-file-input.is-invalid:focus {
   box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25);
+}
+#pys .card-conditions .form-inline .custom-control {
+  width: auto;
+}
+#pys .card-conditions .condition_group {
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  margin: 1.25rem;
+  padding: 2rem 1rem;
+  border-radius: 0.25rem;
+  background: #F8F8F8;
+  position: relative;
+}
+#pys .card-conditions .condition_group .pys_remove_condition {
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+  z-index: 100;
+}
+#pys .card-conditions .condition_group .pys_remove_condition .remove-row {
+  border: 1px solid rgba(0, 0, 0, 0.125);
 }
 #pys .form-inline {
   display: -ms-flexbox;
@@ -5022,13 +5031,16 @@
 #pys p#custom-param-message {
   margin-top: 15px;
 }
-#pys .pys_triggers_wrapper .trigger_group {
+#pys .pys_triggers_wrapper .trigger_group, #pys .pys_triggers_wrapper .condition_group {
   border: 1px solid rgba(0, 0, 0, 0.125);
   margin: 1.25rem;
   padding: 2rem 1rem;
   border-radius: 0.25rem;
   background: #F8F8F8;
   position: relative;
+}
+#pys .pys_triggers_wrapper .trigger_group .event-delay input[type=number], #pys .pys_triggers_wrapper .condition_group .event-delay input[type=number] {
+  max-width: 50px !important;
 }
 #pys .pys_triggers_wrapper .pys_remove_trigger {
   position: absolute;

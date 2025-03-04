@@ -218,6 +218,76 @@ jQuery( document ).ready( function ( $ ) {
         }
     }
 
+    function cloneEventCondition() {
+        let cloned = $( '#pys_add_event_condition .condition_group' ).clone( true ),
+            conditionWrapper = $( '.pys_conditions_wrapper' ),
+            conditionGroup = $( '.pys_conditions_wrapper .condition_group' ),
+            conditionId = 0;
+
+        if ( conditionGroup.length > 0 ) {
+            conditionId = parseInt( $( conditionGroup[ conditionGroup.length - 1 ] ).attr( "data-condition_id" ) ) + 1;
+        }
+        $( '.pys_event_condition_type', cloned ).attr( {
+            name: 'pys[event][conditions][' + conditionId + '][condition_type]',
+            id: 'pys_event_' + conditionId + '_condition_type',
+            value: 'url_filters'
+        } );
+
+
+        cloned.attr( 'data-condition_id', conditionId );
+        cloned.css( 'display', 'block' );
+
+        conditionWrapper.append( cloned );
+        $( '.pys_event_condition_type', cloned ).trigger( 'change' );
+    }
+
+    function checkConditionTypeAvailability( group, triggerPanel ) {
+        let panelAvailability = group.find( '.' + triggerPanel + '_panel' );
+        group.find( '.event_conditions_panel' ).hide();
+        if ( panelAvailability.length === 0 ) {
+            let clonedCondition = $( '#pys_add_event_condition .' + triggerPanel + '_panel' ).clone( true ),
+            conditionId = group.attr( "data-condition_id" );
+            switch ( triggerPanel ) {
+                case 'url_filters':
+                case 'url_parameters':
+                case 'landing_page':
+                case 'source':
+                    $( 'select', clonedCondition ).attr( {
+                        name: 'pys[event][conditions][' + conditionId + '][' + triggerPanel + '][condition_rule]',
+                        id: 'pys_event_' + conditionId + '_'+ triggerPanel + '_condition_rule'
+                    } );
+                    $( 'input[type="text"]', clonedCondition ).attr( {
+                        name: 'pys[event][conditions][' + conditionId + '][' + triggerPanel + '][condition_value]',
+                        id: 'pys_event_' + conditionId + '_'+ triggerPanel + '_condition_value'
+                    } );
+                    break;
+                case 'device' :
+                    $( '.custom-radio input[type="radio"]', clonedCondition ).attr( {
+                        name: 'pys[event][conditions][' + conditionId + '][device]',
+                        id: 'pys_event_' + conditionId + '_device'
+                    } );
+                    break;
+                case 'user_role':
+                    $( 'select', clonedCondition ).attr( {
+                        name: 'pys[event][conditions][' + conditionId + '][user_role][]',
+                        id: 'pys_event_' + conditionId + '_user_role'
+                    } );
+                    $( 'input[type="hidden"]', clonedCondition ).attr( {
+                        name: 'pys[event][conditions][' + conditionId + '][user_role][]',
+                    } );
+                    break;
+            }
+
+            clonedCondition.show();
+            let inserted = group.append(clonedCondition);
+            $( '.pys-role-pysselect2', inserted ).each( function ( index, item ) {
+                $(this).pysselect2()
+            });
+        } else {
+            panelAvailability.show();
+        }
+    }
+
     function cloneEventTrigger() {
         let cloned = $( '#pys_add_event_trigger .trigger_group' ).clone( true ),
             triggerWrapper = $( '.pys_triggers_wrapper' ),
@@ -557,6 +627,16 @@ jQuery( document ).ready( function ( $ ) {
         showRelevantEventTriggerPanel();
     } );
 
+    $('.pys_conditions_wrapper .pys-role-pysselect2').each( function ( index, value ) {
+        $(this).pysselect2();
+    } );
+    $( ".pys_event_condition_type" ).on( 'change', function () {
+        let conditionGroup = $( this ).closest( '.condition_group' ),
+            panel = $( this ).val();
+        console.log( panel );
+        checkConditionTypeAvailability( conditionGroup, panel );
+    } );
+
     $( ".add-event-trigger" ).on( 'click', function () {
         var triggerPanel = $( this ).closest( ".event_triggers_panel" ),
             triggerType = triggerPanel.data( "trigger_type" );
@@ -674,7 +754,16 @@ jQuery( document ).ready( function ( $ ) {
         cloneEventTrigger();
     } );
 
+    $( '#pys-add-condition .add-condition' ).on( 'click', function ( e ) {
+        e.preventDefault();
+        cloneEventCondition();
+    } );
+
     //check for empty triggers
+    if ( $( '.pys_conditions_wrapper .condition_group' ).length === 0 ) {
+        $( '#pys-add-condition .add-condition' ).trigger( 'click' );
+    }
+
     if ( $( '.pys_triggers_wrapper .trigger_group' ).length === 0 ) {
         $( '#pys-add-trigger .add-trigger' ).trigger( 'click' );
     }
@@ -1586,6 +1675,10 @@ jQuery( document ).ready( function ( $ ) {
     //Remove trigger
     $( document ).on( 'click', '.pys_triggers_wrapper .remove-row', function () {
         $( this ).closest( '.trigger_group' ).remove();
+    } )
+
+    $( document ).on( 'click', '.pys_conditions_wrapper .remove-row', function () {
+        $( this ).closest( '.condition_group' ).remove();
     } )
 
     const inputWrapperList = document.getElementsByClassName('input-number-wrapper');
