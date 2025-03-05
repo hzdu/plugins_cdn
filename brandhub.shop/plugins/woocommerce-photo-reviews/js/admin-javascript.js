@@ -88,6 +88,31 @@ jQuery(document).ready(function ($) {
         /**
          * End get download key
          */
+        let wcpr_condition_hide = $('.wcpr_condition_hide');
+        if(wcpr_condition_hide.length > 0){
+            wcpr_condition_hide.each(function (index, element) {
+                let t = $(element),
+                    field_condition_id = t.attr('data-field_condition_id'),
+                    show_value = t.attr('data-show_value');
+                if(field_condition_id.length > 0){
+                    let field_condition_selector = $('#'+field_condition_id);
+
+                    if(field_condition_selector.val() == show_value){
+                        t.addClass('wcpr-hidden-items');
+                    }else{
+                        t.removeClass('wcpr-hidden-items');
+                    }
+
+                    field_condition_selector.on('change', function(){
+                        if ($(this).val() == show_value) {
+                            t.removeClass('wcpr-hidden-items');
+                        } else {
+                            t.addClass('wcpr-hidden-items');
+                        }
+                    }).trigger('change');
+                }
+            });
+        }
     }
     $(document).on('submit', '.vi-ui.form', function () {
         let error = false, form = $(this);
@@ -170,7 +195,7 @@ jQuery(document).ready(function ($) {
         $('input[name="verified_badge"]').val($(this).data('class_name'));
     });
     $(document).on('change','[name=reviews_display]', function () {
-        if (jQuery(this).val() === '1'){
+        if (jQuery(this).val() === '1'||jQuery(this).val() === '3'||jQuery(this).val() === '4'){
             $('.masonry-options').removeClass('wcpr-hidden-items');
             $('.default-options').addClass('wcpr-hidden-items');
         }else {

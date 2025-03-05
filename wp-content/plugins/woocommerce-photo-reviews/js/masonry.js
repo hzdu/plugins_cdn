@@ -12,13 +12,30 @@ jQuery(document).ready(function ($) {
 
 
     function triggerReviewClick() {
-        $(document).on('click', '.wcpr-grid-item', function () {
+        $(document).on('click', '.wcpr-grid-item,.wcpr-grid-style-item,.wcpr-grid-layout-2-style-item,.wcpr-list-style-item,.wcpr-list-layout-2-style-item', function () {
             let i;
             // if (woocommerce_photo_reviews_params.masonry_popup ==='image'){
             //     slides = $('.wcpr-grid-item .reviews-images-container');
             //     i = slides.index($(this).find('.reviews-images-container'));
             // }else{
-            slides = $('.wcpr-grid-item');
+            switch (woocommerce_photo_reviews_params.display) {
+                case "3":
+                    slides = $('.wcpr-grid-style-item');
+                    break;
+                case "4":
+                    slides = $('.wcpr-grid-layout-2-style-item');
+                    break;
+                case "5":
+                    slides = $('.wcpr-list-style-item');
+                    break;
+                case "6":
+                    slides = $('.wcpr-list-layout-2-style-item');
+                    break;
+                default:
+                    slides = $('.wcpr-grid-item');
+                    break;
+            }
+
             i = slides.index($(this));
             // }
             if (i >= 0) {
@@ -278,7 +295,7 @@ function wcpr_resize_masonry_items(force_resize = false) {
 
 function wcpr_resize_masonry_item(item) {
     item = jQuery(item);
-    let item_img, img_height = 0, item_width, colums = parseInt(jQuery('.wcpr-grid').data('wcpr_columns') || 3);
+    let item_img, img_height = 0, item_width, colums = parseInt(jQuery('.wcpr-grid.wcpr-masonry-style').data('wcpr_columns') || 3);
     if (item.find('.reviews-images-wrap-right .reviews-images').length) {
         item_img = item.find('.reviews-images-wrap-right .reviews-images');
         img_height = item_img.outerHeight();
@@ -287,20 +304,20 @@ function wcpr_resize_masonry_item(item) {
             let img_width = parseFloat(item_img.attr('width') || 0),
                 img_height_t = parseFloat(item_img.attr('height') || 0);
             if (item_width === 0) {
-                item_width = ((jQuery('.wcpr-grid').outerWidth() ? jQuery('.wcpr-grid').outerWidth() : (jQuery('#reviews').outerWidth() ? jQuery('#reviews').outerWidth() : (jQuery('.woocommerce-Tabs-panel').outerWidth() ? jQuery('.woocommerce-Tabs-panel').outerWidth() : 200))) - ((colums - 1) * 20)) / colums;
+                item_width = ((jQuery('.wcpr-grid.wcpr-masonry-style').outerWidth() ? jQuery('.wcpr-grid.wcpr-masonry-style').outerWidth() : (jQuery('#reviews').outerWidth() ? jQuery('#reviews').outerWidth() : (jQuery('.woocommerce-Tabs-panel').outerWidth() ? jQuery('.woocommerce-Tabs-panel').outerWidth() : 200))) - ((colums - 1) * 20)) / colums;
             }
             img_height = img_height_t !== 0 ? Math.round((item_width / img_width) * img_height_t) : item_width;
         }
     }
-    let row_height = 1,// parseInt(jQuery('.wcpr-grid').css('grid-auto-rows')),
-        row_gap = 20;//parseInt(jQuery('.wcpr-grid').css('grid-row-gap'));
+    let row_height = 1,// parseInt(jQuery('.wcpr-grid.wcpr-masonry-style').css('grid-auto-rows')),
+        row_gap = 20;//parseInt(jQuery('.wcpr-grid.wcpr-masonry-style').css('grid-row-gap'));
     let item_height = item.find('.wcpr-content').outerHeight(),
         item_content_height = item.find('.review-content-container').outerHeight();
     if (item_content_height === 0) {
         if (!item_width) {
             item_width = item.find('.wcpr-content').outerWidth();
             if (item_width === 0) {
-                item_width = ((jQuery('.wcpr-grid').outerWidth() ? jQuery('.wcpr-grid').outerWidth() : (jQuery('#reviews').outerWidth() ? jQuery('#reviews').outerWidth() : (jQuery('.woocommerce-Tabs-panel').outerWidth() ? jQuery('.woocommerce-Tabs-panel').outerWidth() : 200))) - ((colums - 1) * 20)) / colums;
+                item_width = ((jQuery('.wcpr-grid.wcpr-masonry-style').outerWidth() ? jQuery('.wcpr-grid.wcpr-masonry-style').outerWidth() : (jQuery('#reviews').outerWidth() ? jQuery('#reviews').outerWidth() : (jQuery('.woocommerce-Tabs-panel').outerWidth() ? jQuery('.woocommerce-Tabs-panel').outerWidth() : 200))) - ((colums - 1) * 20)) / colums;
             }
         }
         jQuery('body').append('<div class="review-content-container-temp" style="width: ' + item_width + 'px; visibility: hidden; ">' + item.find('.review-content-container').html() + '</div>');
