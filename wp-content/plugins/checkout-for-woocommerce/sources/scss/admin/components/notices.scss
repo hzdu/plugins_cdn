@@ -67,11 +67,12 @@ div[id^="pressmodo-notice-"] {
     }
 
     .notice, div.updated, div.error {
-        &:nth-child(2) {
-            margin-top: 20px; // pad the top of the first one
-        }
         margin-bottom: 15px;
         margin-left: 40px;
         margin-right: 40px;
+        
+        &:nth-child(2) {
+            margin-top: 20px; // pad the top of the first one
+        }
     }
 }

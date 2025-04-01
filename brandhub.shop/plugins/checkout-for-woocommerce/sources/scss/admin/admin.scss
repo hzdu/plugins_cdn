@@ -1,3 +1,8 @@
+@config '../../../tailwind.admin.config.js';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 @import "components/admin-page-header";
 @import "components/notices"; 
 @import "components/data-tooltip";
@@ -6,6 +11,21 @@
 @import '../frontend/components/order-bump';
 @import '~react-responsive-modal/styles.css';
 @import '../frontend/components/modals';
+
+.cfw-tw {
+    input[type="checkbox"]:checked::before {
+        content: '';
+    }
+
+    input[type="radio"]:checked::before {
+        background-color: unset;
+    }
+
+    table {
+        border-collapse:separate;
+        border-spacing:1.25rem;
+    }
+}
 
 .cfw-order-bumps {
     @import '../frontend/grid';
@@ -297,23 +317,6 @@ label.error {
     60% { transform: translate(-15px); }
     80% { transform: translate(8px); }
     100% { transform: translate(0px); }
-}
-
-.cfw-tw {
-    @import './tailwind';
-
-    input[type="checkbox"]:checked::before {
-        content: '';
-    }
-
-    input[type="radio"]:checked::before {
-        background-color: unset;
-    }
-
-    table {
-        border-collapse:separate;
-        border-spacing:1.25rem;
-    }
 }
 
 .cfw-theme-browser .theme {

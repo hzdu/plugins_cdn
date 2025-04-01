@@ -1,3 +1,8 @@
+@config '../../../tailwind.frontend.config.js';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 // Custom fonts
 @import "custom-fonts";
 
@@ -59,12 +64,6 @@ $slick-loader-path: "../images/";
 @import "components/order-bump";
 
 #cfw-side-cart {
-    /*rtl:begin:ignore*/
-    /* These are copied because Slick uses .parent & selectors that cause issues when imported */
-    @import "components/slick";
-    @import "components/slick-theme";
-    /*rtl:end:ignore*/
-
     font-size: 16px;
     box-sizing: border-box;
     position: fixed;
@@ -85,6 +84,12 @@ $slick-loader-path: "../images/";
     word-break: normal;
     line-height: 1;
     visibility: hidden;
+    
+    /*rtl:begin:ignore*/
+    /* These are copied because Slick uses .parent & selectors that cause issues when imported */
+    @import "components/slick";
+    @import "components/slick-theme";
+    /*rtl:end:ignore*/
 
     @import "variables";
     @import "custom-properties";

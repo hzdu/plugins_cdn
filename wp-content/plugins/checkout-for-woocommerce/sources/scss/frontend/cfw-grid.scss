@@ -1,4 +1,6 @@
 .cfw-grid {
+    // Include patch for Bootstrap before importing grid
+    @import "patch-bootstrap";
     // Bootstrap 5.0 Grid
     @import "grid";
 }

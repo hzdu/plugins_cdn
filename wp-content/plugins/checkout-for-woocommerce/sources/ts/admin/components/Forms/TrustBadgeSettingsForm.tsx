@@ -77,8 +77,10 @@ const TrustBadgeSettingsForm: React.FC<TrustBadgeSettingsFormPropsInterface> = (
                                         label="Enable Trust Badges"
                                         description="Enable trust badges on CheckoutWC templates. Uncheck to hide badges."
                                         searchTerm={searchTerm}
+                                        disabled={props.plan.plan_level < 1}
                                     />
-                                    { values.enable_trust_badges
+
+                                    { props.plan.plan_level >= 1 && values.enable_trust_badges
                                         && (
                                             <>
                                                 <RadioGroupField
@@ -104,7 +106,7 @@ const TrustBadgeSettingsForm: React.FC<TrustBadgeSettingsFormPropsInterface> = (
                             }
                         />
 
-                        { values.enable_trust_badges
+                        { props.plan.plan_level >= 1 && values.enable_trust_badges
                             && (
                                 <AdminPageSection
                                     title='Trust Badges'

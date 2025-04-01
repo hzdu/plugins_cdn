@@ -1,8 +1,11 @@
+@config '../../../tailwind.admin.config.js';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 @import "~modaal/dist/css/modaal.min.css";
 
 .cfw-tw {
-    @import './tailwind';
-
     input[type="checkbox"]:checked::before {
         content: '';
     }

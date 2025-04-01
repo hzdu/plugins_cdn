@@ -9,8 +9,8 @@ import CheckboxGroupField                                   from '../Fields/Chec
 import NumberField                                          from '../Fields/NumberField';
 import TextField                                            from '../Fields/TextField';
 import SecondaryButton                                      from '../SecondaryButton';
-import UpgradeRequiredNotice                                from '../UpgradeRequiredNotice';
 import ToggleCheckboxField                                  from '../Fields/ToggleCheckboxField';
+import LockedFieldWrapper                                   from '../LockedFieldWrapper';
 
 interface ACRSettingsInterface {
     enable_acr: boolean;
@@ -30,6 +30,7 @@ interface ACRFormWooCommerceSettingsInterface {
 
 interface ACRFormParamsInterface {
     pre_content: string;
+    post_content: string;
     clear_cart_data_url: string;
 }
 
@@ -66,34 +67,34 @@ const ACRSettingsForm: React.FC<ACRSettingsFormPropsInterface> = ( props ) => {
                             description='Configure Abandoned Cart Recovery settings.'
                             content={
                                 <>
-                                    <ToggleCheckboxField
-                                        name="enable_acr"
-                                        label="Enable Abandoned Cart Tracking"
-                                        description='Enable Abandoned Cart Recovery feature.'
-                                        disabled={!props.plan.has_premium_plan}
-                                        searchTerm={searchTerm}
-                                    />
+                                    <LockedFieldWrapper plan={props.plan} slug={'order-review-step-one-page-checkout'} locked={props.plan.plan_level < 2} requiredPlans={props.plan.labels.required_list[ 2 ]}>
+                                        <ToggleCheckboxField
+                                            name="enable_acr"
+                                            label="Enable Abandoned Cart Tracking"
+                                            description='Enable Abandoned Cart Recovery feature.'
+                                            disabled={props.plan.plan_level < 2}
+                                            searchTerm={searchTerm}
+                                        />
 
-                                    {values.enable_acr
-                                        && (
-                                            <NumberField
-                                                name='acr_abandoned_time'
-                                                label='Cart Is Abandoned After X Minutes'
-                                                description='The number of minutes after which a cart is considered abandoned.'
-                                                searchTerm={searchTerm}
-                                            />
-                                        )
-                                    }
-
-                                    {!props.plan.has_premium_plan && ( <UpgradeRequiredNotice requiredPlans={props.plan.premium_plans} /> )}
+                                        {props.plan.plan_level >= 2 && values.enable_acr
+                                            && (
+                                                <NumberField
+                                                    name='acr_abandoned_time'
+                                                    label='Cart Is Abandoned After X Minutes'
+                                                    description='The number of minutes after which a cart is considered abandoned.'
+                                                    searchTerm={searchTerm}
+                                                />
+                                            )
+                                        }
+                                    </LockedFieldWrapper>
 
                                     <Slot name="CheckoutWC.Admin.Pages.ACR.Options" />
                                 </>
                             }
-                            pre_content={props.params.pre_content}
+                            post_content={props.params.post_content}
                         />
 
-                        {props.plan.has_premium_plan && values.enable_acr
+                        {props.plan.plan_level >= 2 && values.enable_acr
                             && (
                                 <>
                                     <AdminPageSection
@@ -105,7 +106,6 @@ const ACRSettingsForm: React.FC<ACRSettingsFormPropsInterface> = ( props ) => {
                                                     name="acr_simulate_only"
                                                     label="Disable Email Sending"
                                                     description='Do not actually send any emails but allow carts to be tracked even if there are no emails configured.'
-                                                    disabled={!props.plan.has_premium_plan}
                                                     searchTerm={searchTerm}
                                                 />
 

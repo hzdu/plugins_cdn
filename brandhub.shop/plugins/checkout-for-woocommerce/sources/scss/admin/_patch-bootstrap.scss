@@ -1,0 +1,12 @@
+// Patch for Bootstrap 5.3.1 deprecation warnings with Sass
+// This silences the abs() percentage warning
+@use "sass:math";
+
+// Define this function before Bootstrap is imported
+@function abs($value) {
+  @if type-of($value) == 'percentage' {
+    @return math.abs($value);
+  } @else {
+    @return math.abs($value);
+  }
+}

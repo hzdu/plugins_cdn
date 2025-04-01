@@ -1,3 +1,8 @@
+@config '../../../tailwind.frontend.config.js';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 // Resets
 @import "~normalize.css/normalize.css";
 @import "components/template-loader-resets";
@@ -59,6 +64,8 @@
 // Thank you page specific styles
 #cfw.context-thank-you {
     .title {
+        margin-bottom: 2em;
+        
         .cfw-checkmark {
             width: 48px;
             height: 48px;
@@ -71,8 +78,6 @@
             margin-top: 0;
             margin-bottom: 0.5em;
         }
-
-        margin-bottom: 2em;
     }
 
     section {

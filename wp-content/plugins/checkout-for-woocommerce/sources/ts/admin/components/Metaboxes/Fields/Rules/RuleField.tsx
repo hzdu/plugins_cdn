@@ -11,6 +11,7 @@ import { Field, SubField, fields }    from './fields';
 import ProductsAndVariationsCompleter from '../../ProductsAndVariationsCompleter';
 import SelectWithLabel                from '../../../SelectWithLabel';
 import ProductTagCompleter            from '../../ProductTagCompleter';
+import UserRoleCompleter              from '../../../UserRoleCompleter';
 
 export interface RuleType {
     fieldKey: string;
@@ -23,6 +24,61 @@ interface RuleFieldProps {
     rule: RuleType;
     onChange: ( updatedRule: RuleType ) => void;
 }
+
+interface LockedRuleFieldProps {
+    children: React.ReactNode;
+    fieldKey: string;
+    requiredPlanLevel: number;
+}
+
+export const LockedRuleField: React.FC<LockedRuleFieldProps> = ( { children, fieldKey, requiredPlanLevel } ) => {
+    // Get plan level and label information from global script data
+    const planLevel = ( window as any ).cfwOrderBumpsData?.plan_level || 0;
+    const requiredPlansLabel = ( window as any ).cfwOrderBumpsData?.labels?.required_list?.[ requiredPlanLevel ] || '';
+
+    // Check if field is locked based on plan level
+    const isLocked = planLevel < requiredPlanLevel;
+
+    // Generate the upgrade URL based on plan level
+    const upgradeUrl = planLevel === 0
+        ? 'https://www.checkoutwc.com/lite-upgrade/?utm_campaign=liteplugin&utm_medium=admin-page-rules&utm_source=WordPress&utm_content=Unlock+with+Premium'
+        : 'https://www.checkoutwc.com/documentation/upgrading-your-license/';
+
+    if ( !isLocked ) {
+        return <>{children}</>;
+    }
+
+    // Render locked UI for small space
+    return (
+        <div className="cfw-locked-field-wrapper cfw-tw">
+            <div className="relative">
+                {/* Disable interactions with opacity & pointer-events */}
+                <div className="opacity-50 pointer-events-none">
+                    {children}
+                </div>
+                {/* Overlay with upgrade button */}
+                <div className="absolute inset-0 bg-white/95 shadow-md ring-1 ring-black ring-opacity-5 flex flex-col items-center justify-center z-10 rounded p-2">
+                    <div className="flex flex-col gap-2 items-center justify-center">
+                        <a
+                            href={upgradeUrl}
+                            className="bg-blue-600 hover:bg-blue-700 text-white text-xs font-medium py-2 px-4 rounded shadow hover:text-white"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            {planLevel > 0 ? 'Upgrade License' : 'Unlock Premium'}
+                        </a>
+                        <div className="flex items-center gap-1">
+                            <span
+                                className="text-[13px] italic text-center"
+                                dangerouslySetInnerHTML={{ __html: `A ${requiredPlansLabel} plan is required to access this rule type.` }}
+                            ></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+};
 
 const RuleField: React.FC<RuleFieldProps> = ( { rule, onChange } ) => {
     const field = fields.find( ( f ) => f.key === rule.fieldKey ) || ( {} as Field );
@@ -140,11 +196,132 @@ const RuleField: React.FC<RuleFieldProps> = ( { rule, onChange } ) => {
         } );
     };
 
+    // Conditional rendering for userRole field
+    const renderRuleFieldContent = ( valueType: string, valueTypeVariant: string, subField: SubField, fieldName: string, index: number, subFieldValue: any ) => {
+        const onChangeSubField = ( value: any ) => {
+            handleSubFieldChange( fieldName, value, subField );
+        };
+
+        const countryOptions = Object.entries( getSetting( 'countries', {} ) ).map(
+            ( [ code, name ] ) => ( {
+                label: name as string,
+                value: code,
+            } ),
+        );
+
+        switch ( valueType ) {
+            case 'select':
+                return (
+                    <SelectControl
+                        key={index}
+                        value={subFieldValue}
+                        options={subField.options}
+                        onChange={onChangeSubField}
+                    />
+                );
+            case 'number':
+                return (
+                    <NumberControl
+                        key={index}
+                        value={subFieldValue}
+                        onChange={onChangeSubField}
+                    />
+                );
+            case 'date':
+                return (
+                    <DateTimePicker
+                        key={index}
+                        currentDate={subFieldValue}
+                        onChange={onChangeSubField}
+                    />
+                );
+            case 'productsSelect':
+                return (
+                    <SelectWithLabel
+                        key={index}
+                        type="custom"
+                        autocompleter={ProductsAndVariationsCompleter}
+                        placeholder={subField.placeholder || 'Search for products'}
+                        multiple={true}
+                        selected={subFieldValue}
+                        onChange={onChangeSubField}
+                    />
+                );
+            case 'termsSelect':
+                if ( valueTypeVariant === 'product_cat' ) {
+                    return (
+                        <SelectWithLabel
+                            key={index}
+                            type="categories"
+                            placeholder={subField.placeholder || 'Search for categories'}
+                            multiple={true}
+                            selected={subFieldValue}
+                            onChange={onChangeSubField}
+                        />
+                    );
+                }
+
+                if ( valueTypeVariant === 'product_tag' ) {
+                    return (
+                        <SelectWithLabel
+                            key={index}
+                            type="custom"
+                            autocompleter={ProductTagCompleter}
+                            placeholder={subField.placeholder || 'Search for product tags'}
+                            multiple={true}
+                            selected={subFieldValue}
+                            onChange={onChangeSubField}
+                        />
+                    );
+                }
+                return null;
+            case 'text':
+                return (
+                    <TextControl
+                        key={index}
+                        help={subField.help || ''}
+                        value={subFieldValue}
+                        placeholder={subField.placeholder || ''}
+                        onChange={onChangeSubField}
+                    />
+                );
+            case 'countries':
+                return (
+                    <Select
+                        isMulti={true}
+                        key={index}
+                        value={subFieldValue}
+                        options={countryOptions}
+                        placeholder={subField.placeholder || 'Search for countries...'}
+                        onChange={onChangeSubField}
+                    />
+                );
+            case 'userRoles':
+                return (
+                    <SelectWithLabel
+                        key={index}
+                        type="custom"
+                        autocompleter={UserRoleCompleter}
+                        placeholder={subField.placeholder || 'Search for user roles...'}
+                        multiple={true}
+                        selected={subFieldValue}
+                        onChange={onChangeSubField}
+                        description={'Use Guest for non-logged in users.'}
+                    />
+                );
+            default:
+                return null;
+        }
+    };
+
     return (
         <div className="rule-fields">
             <SelectControl
                 value={rule.fieldKey}
-                options={fields.map( ( f ) => ( { label: f.label, value: f.key } ) )}
+                options={fields.map( ( f ) => ( {
+                    label: typeof f.label === 'function' ? f.label() : f.label,
+                    value: f.key,
+                } ) )}
                 onChange={handleFieldKeyChange}
             />
             {field.fields
@@ -180,107 +357,16 @@ const RuleField: React.FC<RuleFieldProps> = ( { rule, onChange } ) => {
                         } );
                     }
 
-                    const onChangeSubField = ( value: any ) => {
-                        handleSubFieldChange( fieldName, value, subField );
-                    };
-
-                    const countryOptions = Object.entries( getSetting( 'countries', {} ) ).map(
-                        ( [ code, name ] ) => ( {
-                            label: name as string,
-                            value: code,
-                        } ),
-                    );
-
-                    switch ( valueType ) {
-                        case 'select':
-                            return (
-                                <SelectControl
-                                    key={index}
-                                    value={subFieldValue}
-                                    options={subField.options}
-                                    onChange={onChangeSubField}
-                                />
-                            );
-                        case 'number':
-                            return (
-                                <NumberControl
-                                    key={index}
-                                    value={subFieldValue}
-                                    onChange={onChangeSubField}
-                                />
-                            );
-                        case 'date':
-                            return (
-                                <DateTimePicker
-                                    key={index}
-                                    currentDate={subFieldValue}
-                                    onChange={onChangeSubField}
-                                />
-                            );
-                        case 'productsSelect':
-                            return (
-                                <SelectWithLabel
-                                    key={index}
-                                    type="custom"
-                                    autocompleter={ProductsAndVariationsCompleter}
-                                    placeholder={subField.placeholder || 'Search for products'}
-                                    multiple={true}
-                                    selected={subFieldValue}
-                                    onChange={onChangeSubField}
-                                />
-                            );
-                        case 'termsSelect':
-                            if ( valueTypeVariant === 'product_cat' ) {
-                                return (
-                                    <SelectWithLabel
-                                        key={index}
-                                        type="categories"
-                                        placeholder={subField.placeholder || 'Search for categories'}
-                                        multiple={true}
-                                        selected={subFieldValue}
-                                        onChange={onChangeSubField}
-                                    />
-                                );
-                            }
-
-                            if ( valueTypeVariant === 'product_tag' ) {
-                                return (
-                                    <SelectWithLabel
-                                        key={index}
-                                        type="custom"
-                                        autocompleter={ProductTagCompleter}
-                                        placeholder={subField.placeholder || 'Search for product tags'}
-                                        multiple={true}
-                                        selected={subFieldValue}
-                                        onChange={onChangeSubField}
-                                    />
-                                );
-                            }
-                            return null;
-                        case 'text':
-                            return (
-                                <TextControl
-                                    key={index}
-                                    help={subField.help || ''}
-                                    value={subFieldValue}
-                                    placeholder={subField.placeholder || ''}
-                                    onChange={onChangeSubField}
-                                />
-                            );
-                        case 'countries':
-                            return (
-                                <Select
-                                    isMulti={true}
-                                    key={index}
-                                    value={subFieldValue}
-                                    options={countryOptions}
-                                    placeholder={subField.placeholder || 'Search for countries...'}
-                                    onChange={onChangeSubField}
-                                />
-                            );
-                        default:
-                            return null;
+                    // Special handling for userRole field
+                    if ( rule.fieldKey === 'userRole' && valueType === 'userRoles' ) {
+                        return (
+                            <LockedRuleField key={index} fieldKey="userRole" requiredPlanLevel={3}>
+                                {renderRuleFieldContent( valueType, valueTypeVariant, subField, fieldName, index, subFieldValue )}
+                            </LockedRuleField>
+                        );
                     }
+
+                    return renderRuleFieldContent( valueType, valueTypeVariant, subField, fieldName, index, subFieldValue );
                 } )}
         </div>
     );

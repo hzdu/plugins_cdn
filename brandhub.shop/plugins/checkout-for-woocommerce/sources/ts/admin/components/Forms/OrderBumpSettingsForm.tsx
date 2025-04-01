@@ -5,8 +5,8 @@ import SettingsFormContainerPropsInterface                  from '../../../inter
 import SettingsFormPropsPlanInterface                       from '../../../interfaces/SettingsFormPropsPlanInterface';
 import AdminPageSection                                     from '../AdminPageSection';
 import NumberField                                          from '../Fields/NumberField';
-import UpgradeRequiredNotice                                from '../UpgradeRequiredNotice';
 import ToggleCheckboxField                                  from '../Fields/ToggleCheckboxField';
+import LockedFieldWrapper                                   from '../LockedFieldWrapper';
 
 interface OrderBumpsSettingsInterface {
     enable_order_bumps: boolean;
@@ -45,14 +45,17 @@ const OrderBumpsSettingsForm: React.FC<OrderBumpsSettingsFormPropsInterface> = (
                             description='Configure Order Bump settings.'
                             content={
                                 <>
-                                    <ToggleCheckboxField
-                                        name="enable_order_bumps"
-                                        label="Enable Order Bumps"
-                                        description='Allow Order Bumps to be displayed.'
-                                        disabled={!props.plan.has_premium_plan}
-                                        searchTerm={searchTerm}
-                                    />
-                                    {values.enable_order_bumps && props.plan.has_premium_plan
+                                    <LockedFieldWrapper plan={props.plan} slug={'order-review-step-one-page-checkout'} locked={props.plan.plan_level < 2} requiredPlans={props.plan.labels.required_list[ 2 ]}>
+                                        <ToggleCheckboxField
+                                            name="enable_order_bumps"
+                                            label="Enable Order Bumps"
+                                            description='Allow Order Bumps to be displayed.'
+                                            disabled={props.plan.plan_level < 2}
+                                            searchTerm={searchTerm}
+                                        />
+                                    </LockedFieldWrapper>
+
+                                    {props.plan.plan_level >= 2 && values.enable_order_bumps
                                         && (
                                             <>
                                                 <NumberField
@@ -70,8 +73,6 @@ const OrderBumpsSettingsForm: React.FC<OrderBumpsSettingsFormPropsInterface> = (
                                             </>
                                         )
                                     }
-
-                                    {!props.plan.has_premium_plan && ( <UpgradeRequiredNotice requiredPlans={props.plan.premium_plans} /> ) }
 
                                     <Slot name="CheckoutWC.Admin.Pages.OrderBumps.Options" />
                                 </>

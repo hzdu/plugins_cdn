@@ -7,6 +7,7 @@ import AdminPageSection                                     from '../AdminPageSe
 import CheckboxField                                        from '../Fields/CheckboxField';
 import RadioGroupField                                      from '../Fields/RadioGroupField';
 import StorePolicyRepeater                                  from '../StorePolicyRepeater';
+import LockedFieldWrapper                                   from '../LockedFieldWrapper';
 
 interface GlobalOptionsFormSettingsInterface {
     show_cart_item_discount: boolean;
@@ -110,9 +111,13 @@ const WooCommercePagesGlobalOptionsSettingsForm: React.FC<GlobalOptionsSettingsF
                             description='Store Policies are displayed as links in the footer of the checkout, order pay, and thank you pages. Clicking them displays the policy in a modal window.'
                             content={
                                 <>
-                                    <StorePolicyRepeater
-                                        name={'store_policies'}
-                                    />
+                                    <LockedFieldWrapper plan={props.plan} slug={'store-policies'} locked={props.plan.plan_level < 1} requiredPlans={props.plan.labels.required_list[ 1 ]}>
+                                        <StorePolicyRepeater
+                                            name={'store_policies'}
+                                            locked={props.plan.plan_level < 1}
+                                        />
+                                    </LockedFieldWrapper>
+
                                     <Slot name="CheckoutWC.Admin.Pages.GlobalOptions.StorePolicies" />
                                 </>
                             }

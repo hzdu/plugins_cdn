@@ -43,7 +43,7 @@ const IntegrationsSettingsForm: React.FC<IntegrationsSettingsFormPropsInterface>
             >
                 { ( props ) => (
                     <form className={'space-y-6 transition-all'} style={{ filter: isLoading ? 'blur(2px)' : 'none' }} onSubmit={props.handleSubmit}>
-                        <AdminPageSection
+                        {containerProps.plan.plan_level > 0 && ( <AdminPageSection
                             title='Google API'
                             description='Used for the maps embed on the thank you page as well as Google Address Autocomplete.'
                             content={
@@ -58,7 +58,7 @@ const IntegrationsSettingsForm: React.FC<IntegrationsSettingsFormPropsInterface>
                                     <Slot name="CheckoutWC.Admin.Pages.Integrations.Google" />
                                 </>
                             }
-                        />
+                        /> )}
 
                         { containerProps.integrations.length > 0
                             && (

@@ -1,6 +1,8 @@
 interface SettingsFormPropsPlanInterface {
-    plan_id: any;
-    has_premium_plan: boolean;
-    premium_plans: string;
+    plan_id: number | null;
+    plan_level: number;
+    labels: {
+        required_list: Record<number, string>;
+    };
 }
 export default SettingsFormPropsPlanInterface;

@@ -9,9 +9,9 @@ import CheckboxField                                        from '../Fields/Chec
 import CheckboxGroupField                                   from '../Fields/CheckboxGroupField';
 import TextField                                            from '../Fields/TextField';
 import SecondaryButton                                      from '../SecondaryButton';
-import UpgradeRequiredNotice                                from '../UpgradeRequiredNotice';
 import ToggleCheckboxField                                  from '../Fields/ToggleCheckboxField';
 import MediumAlert                                          from '../MediumAlert';
+import LockedFieldWrapper                                   from '../LockedFieldWrapper';
 
 interface LocalPickupSettingsInterface {
     enable_pickup: boolean;
@@ -62,14 +62,17 @@ const LocalPickupSettingsForm: React.FC<LocalPickupSettingsFormPropsInterface> =
                             description='Control local pickup options.'
                             content={
                                 <>
-                                    <ToggleCheckboxField
-                                        name="enable_pickup"
-                                        label="Enable Local Pickup"
-                                        description='Provide customer with the option to choose their delivery method. Choosing pickup bypasses the shipping address.'
-                                        disabled={!props.plan.has_premium_plan}
-                                        searchTerm={searchTerm}
-                                    />
-                                    {props.plan.has_premium_plan && values.enable_pickup
+                                    <LockedFieldWrapper plan={props.plan} slug={'order-review-step-one-page-checkout'} locked={props.plan.plan_level < 2} requiredPlans={props.plan.labels.required_list[ 2 ]}>
+                                        <ToggleCheckboxField
+                                            name="enable_pickup"
+                                            label="Enable Local Pickup"
+                                            description='Provide customer with the option to choose their delivery method. Choosing pickup bypasses the shipping address.'
+                                            disabled={props.plan.plan_level < 2}
+                                            searchTerm={searchTerm}
+                                        />
+                                    </LockedFieldWrapper>
+
+                                    {props.plan.plan_level >= 2 && values.enable_pickup
                                         && (
                                             <>
                                                 <CheckboxField
@@ -158,8 +161,6 @@ const LocalPickupSettingsForm: React.FC<LocalPickupSettingsFormPropsInterface> =
                                             </>
                                         )
                                     }
-
-                                    {!props.plan.has_premium_plan && ( <UpgradeRequiredNotice requiredPlans={props.plan.premium_plans} /> )}
                                 </>
                             }
                         />

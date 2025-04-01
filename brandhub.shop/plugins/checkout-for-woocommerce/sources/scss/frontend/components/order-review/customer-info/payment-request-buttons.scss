@@ -39,9 +39,16 @@
         '.wcpay-payment-request-wrapper',
         '#wc-stripe-express-checkout-element',
         '#wc-ppcp-express-button',
+        '.wcpay-express-checkout-wrapper',
     );
 
     @include apply-cfw-payment-request-button-styles-with-exclusions( $base-selectors, $excluded-parents );
+
+    // Fix for Payment Plugins PayPal
+    // Ticket: https://secure.helpscout.net/conversation/2869298814/19843?viewId=8485151
+    div#smart-menu, div#installments-modal {
+        min-height: unset;
+    }
 
     // Don't add this to the mixin because it needs
     // to be a direct descendant rule and limited to divs for now

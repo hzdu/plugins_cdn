@@ -14,16 +14,18 @@
 }
 
 // Hide empty buttons
-.wcpay-payment-request-wrapper div:not(:has(p, div, button)) {
+.wcpay-payment-request-wrapper div:not(:has(p, div, button)),
+.wcpay-express-checkout-wrapper div:not(:has(p, div, button)) {
     display: none;
 }
 
 // Hide payment request buttons container if there are no visible buttons
-.wcpay-payment-request-wrapper:not(:has(> div > * )) {
+.wcpay-payment-request-wrapper:not(:has(> div > * )),
+.wcpay-express-checkout-wrapper:not(:has(> div > * )) {
     display: none;
 }
 
-#cfw-payment-request-buttons > div.wcpay-payment-request-wrapper {
+#cfw-payment-request-buttons > div.wcpay-payment-request-wrapper, #cfw-payment-request-buttons > div.wcpay-express-checkout-wrapper {
     display: flex;
     width: fit-content;
 

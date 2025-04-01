@@ -1,5 +1,7 @@
 import React from 'react';
-declare const SelectWithLabel: ({ ...baseProps }: {
-    [x: string]: any;
-}) => React.JSX.Element;
+interface SelectWithLabelProps {
+    description?: string;
+    [key: string]: any;
+}
+declare const SelectWithLabel: ({ description, ...baseProps }: SelectWithLabelProps) => React.JSX.Element;
 export default SelectWithLabel;

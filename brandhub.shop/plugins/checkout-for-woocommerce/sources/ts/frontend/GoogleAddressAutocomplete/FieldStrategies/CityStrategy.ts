@@ -8,6 +8,7 @@ export default class CityStrategy {
             'sublocality_level_1',
             'locality',
             'postal_town',
+            'neighborhood',
             'administrative_area_level_2',
             'administrative_area_level_3',
         ];

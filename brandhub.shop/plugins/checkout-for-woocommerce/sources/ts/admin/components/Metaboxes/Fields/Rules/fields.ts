@@ -1,7 +1,7 @@
 // Define interfaces
 export interface Field {
     key: string;
-    label: string;
+    label: string | (() => string);
     help?: string;
     group: string;
     fields: SubField[];
@@ -77,6 +77,7 @@ const SELECT_CATEGORY_PLACEHOLDER = 'Select Product Category…';
 const SELECT_TAG_PLACEHOLDER = 'Select Product Tag…';
 const SELECT_PRODUCT_PLACEHOLDER = 'Select Product…';
 const SELECT_INVENTORY_STATUS_PLACEHOLDER = 'Select Inventory Status…';
+const SELECT_USER_ROLE_PLACEHOLDER = 'Select User Role…';
 
 export const fields: Field[] = [
     // Cart fields
@@ -655,6 +656,30 @@ export const fields: Field[] = [
             {
                 type: 'valueField',
                 valueType: 'countries',
+            },
+        ],
+    },
+    {
+        key: 'userRole',
+        // Get the plan level and determine if we should show the Pro+ label
+        get label() {
+            const planLevel = (window as any).cfwOrderBumpsData?.plan_level || 0;
+            return planLevel >= 3 ? 'User Role' : 'User Role (Pro+)';
+        },
+        help: 'Check if the current user has a specific role',
+        group: 'customer',
+        hasSimplifiedLayout: true,
+        fields: [
+            {
+                type: 'operatorField',
+                valueType: 'select',
+                options: CONTAINS_OPERATORS,
+                placeholder: OPERATOR_PLACEHOLDER,
+            },
+            {
+                type: 'valueField',
+                valueType: 'userRoles',
+                placeholder: SELECT_USER_ROLE_PLACEHOLDER,
             },
         ],
     },

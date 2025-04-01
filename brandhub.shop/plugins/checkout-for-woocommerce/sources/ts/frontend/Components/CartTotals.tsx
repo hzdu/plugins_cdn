@@ -1,6 +1,5 @@
 import React                                  from 'react';
 import { Markup }                             from 'interweave';
-import ReactHtmlParser                        from 'react-html-parser';
 import { useSelect }                          from '@wordpress/data';
 import DataStores                             from '../DataStores';
 import { CartCoupon, CartTotalsData }         from '../../interfaces/CartTotalInterface';

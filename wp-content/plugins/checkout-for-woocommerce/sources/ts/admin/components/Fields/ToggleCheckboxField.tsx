@@ -7,7 +7,7 @@ function classNames( ...classes ) {
     return classes.filter( Boolean ).join( ' ' );
 }
 
-const ToggleCheckboxField = ( { name, label, description, disabled = false, ...props } ) => {
+const ToggleCheckboxField = ( { name, label, description, disabled = false } ) => {
     const [ , , helpers ] = useField( name );
     return (
 

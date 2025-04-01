@@ -7,8 +7,8 @@ import SettingsFormPropsPlanInterface                       from '../../../inter
 import AdminPageSection                                     from '../AdminPageSection';
 import CheckboxField                                        from '../Fields/CheckboxField';
 import CheckboxGroupField                                   from '../Fields/CheckboxGroupField';
-import UpgradeRequiredNotice                                from '../UpgradeRequiredNotice';
 import ToggleCheckboxField                                  from '../Fields/ToggleCheckboxField';
+import LockedFieldWrapper                                   from '../LockedFieldWrapper';
 
 interface ThankYouSettingsInterface {
     enable_thank_you_page: boolean;
@@ -53,15 +53,16 @@ const ThankYouSettingsForm: React.FC<ThankYouSettingsFormPropsInterface> = ( pro
                             description='Control the Order Received / Thank You endpoint.'
                             content={
                                 <>
-                                    <ToggleCheckboxField
-                                        name="enable_thank_you_page"
-                                        label="Enable Thank You Page Template"
-                                        description='Enable thank you page / order received template.'
-                                        disabled={!props.plan.has_premium_plan}
-                                        searchTerm={searchTerm}
-                                    />
+                                    <LockedFieldWrapper plan={props.plan} slug={'thank-you-page'} locked={props.plan.plan_level < 2} requiredPlans={props.plan.labels.required_list[ 2 ]}>
+                                        <ToggleCheckboxField
+                                            name="enable_thank_you_page"
+                                            label="Enable Thank You Page Template"
+                                            description='Enable thank you page / order received template.'
+                                            disabled={props.plan.plan_level < 2}
+                                            searchTerm={searchTerm}
+                                        />
 
-                                    {props.plan.has_premium_plan && values.enable_thank_you_page
+                                        {props.plan.plan_level >= 2 && values.enable_thank_you_page
                                         && (
                                             <>
                                                 <CheckboxField
@@ -85,9 +86,9 @@ const ThankYouSettingsForm: React.FC<ThankYouSettingsFormPropsInterface> = ( pro
                                                 />
                                             </>
                                         )
-                                    }
+                                        }
 
-                                    {!props.plan.has_premium_plan && ( <UpgradeRequiredNotice requiredPlans={props.plan.premium_plans} /> )}
+                                    </LockedFieldWrapper>
 
                                     <Slot name="CheckoutWC.Admin.Pages.ThankYou.Options" />
                                 </>

@@ -1,6 +1,6 @@
 import React       from 'react';
 
-const AdminPageSection = ( { title, description, content, pre_content = '' } ) => (
+const AdminPageSection = ( { title, description, content, pre_content = '', post_content = '' } ) => (
     <div>
         <div className="md:grid md:grid-cols-3 md:gap-6">
             <div className="md:col-span-1">
@@ -20,6 +20,7 @@ const AdminPageSection = ( { title, description, content, pre_content = '' } ) =
                         {content}
                     </div>
                 </div>
+                <div className={'mt-6'} dangerouslySetInnerHTML={{ __html: post_content }}></div>
             </div>
         </div>
     </div>

@@ -13,8 +13,7 @@ import TextField                                              from '../Fields/Te
 import MediumAlert                                            from '../MediumAlert';
 import SevereAlert                                            from '../SevereAlert';
 import SelectField                                            from '../Fields/SelectField';
-
-declare let cfw_google_address_autocomplete: any;
+import LockedFieldWrapper                                     from '../LockedFieldWrapper';
 
 interface CheckoutFormSettingsInterface {
     disable_express_checkout: boolean;
@@ -123,18 +122,25 @@ const CheckoutSettingsForm: React.FC<CheckoutSettingsFormPropsInterface> = ( pro
                                         description='Disable to hide the shipping method step. Useful if you only have one shipping option for all orders.'
                                         searchTerm={searchTerm}
                                     />
-                                    <CheckboxField
-                                        name="enable_order_review_step"
-                                        label="Enable Order Review Step"
-                                        description='Adds a review step after payment information before finalizing order. Useful for jurisdictions which require additional confirmation before order submission. (Cannot be used with One Page Checkout)'
-                                        searchTerm={searchTerm}
-                                    />
-                                    <CheckboxField
-                                        name="enable_one_page_checkout"
-                                        label="Enable One Page Checkout"
-                                        description='Show all checkout steps on  one page. Useful for digital stores. (Cannot be used with Order Review Step)'
-                                        searchTerm={searchTerm}
-                                    />
+
+                                    <LockedFieldWrapper plan={props.plan} slug={'order-review-step-one-page-checkout'} locked={props.plan.plan_level < 1} requiredPlans={props.plan.labels.required_list[ 1 ]}>
+                                        <CheckboxField
+                                            name="enable_order_review_step"
+                                            label="Enable Order Review Step"
+                                            description='Adds a review step after payment information before finalizing order. Useful for jurisdictions which require additional confirmation before order submission. (Cannot be used with One Page Checkout)'
+                                            searchTerm={searchTerm}
+                                            disabled={props.plan.plan_level < 1}
+                                        />
+
+                                        <CheckboxField
+                                            name="enable_one_page_checkout"
+                                            label="Enable One Page Checkout"
+                                            description='Show all checkout steps on  one page. Useful for digital stores. (Cannot be used with Order Review Step)'
+                                            searchTerm={searchTerm}
+                                            disabled={props.plan.plan_level < 1}
+                                        />
+                                    </LockedFieldWrapper>
+
                                     <Slot name="CheckoutWC.Admin.Pages.Checkout.Steps" />
                                 </>
                             }
@@ -144,12 +150,15 @@ const CheckoutSettingsForm: React.FC<CheckoutSettingsFormPropsInterface> = ( pro
                             description='Control shipping options.'
                             content={
                                 <>
-                                    <CheckboxField
-                                        name="auto_select_free_shipping_method"
-                                        label="Auto Select Free Shipping Method (if available)"
-                                        description='WooCommerce has a habit of not selecting the free shipping method if it is setup to be conditionally enabled. This option auto-selects the free shipping on page load.'
-                                        searchTerm={searchTerm}
-                                    />
+                                    <LockedFieldWrapper plan={props.plan} slug={'auto-select-free-shipping'} locked={props.plan.plan_level < 1} requiredPlans={props.plan.labels.required_list[ 1 ]}>
+                                        <CheckboxField
+                                            name="auto_select_free_shipping_method"
+                                            label="Auto Select Free Shipping Method (if available)"
+                                            description='WooCommerce has a habit of not selecting the free shipping method if it is setup to be conditionally enabled. This option auto-selects the free shipping on page load.'
+                                            searchTerm={searchTerm}
+                                            disabled={props.plan.plan_level < 1}
+                                        />
+                                    </LockedFieldWrapper>
 
                                     <Slot name="CheckoutWC.Admin.Pages.Checkout.ShippingOptions" />
                                 </>
@@ -186,24 +195,27 @@ const CheckoutSettingsForm: React.FC<CheckoutSettingsFormPropsInterface> = ( pro
                                         searchTerm={searchTerm}
                                     />
 
-                                    <RadioGroupField
-                                        name='user_matching'
-                                        label='User Matching'
-                                        description='Choose how to handle guest orders and accounts.'
-                                        options={[
-                                            {
-                                                value: 'enabled',
-                                                label: 'Enabled (Recommended)',
-                                                description: 'Automatically matches guest orders to user accounts on new purchase as well as on registration of a new user. (Recommended)',
-                                            },
-                                            {
-                                                value: 'woocommerce',
-                                                label: 'WooCommerce Default',
-                                                description: 'Guest orders will not be linked to matching accounts.',
-                                            },
-                                        ]}
-                                        searchTerm={searchTerm}
-                                    />
+                                    <LockedFieldWrapper plan={props.plan} slug={'user-matching'} locked={props.plan.plan_level < 1} requiredPlans={props.plan.labels.required_list[ 1 ]}>
+                                        <RadioGroupField
+                                            name='user_matching'
+                                            label='User Matching'
+                                            description='Choose how to handle guest orders and accounts.'
+                                            disabled={props.plan.plan_level < 1}
+                                            options={[
+                                                {
+                                                    value: 'enabled',
+                                                    label: 'Enabled (Recommended)',
+                                                    description: 'Automatically matches guest orders to user accounts on new purchase as well as on registration of a new user. (Recommended)',
+                                                },
+                                                {
+                                                    value: 'woocommerce',
+                                                    label: 'WooCommerce Default',
+                                                    description: 'Guest orders will not be linked to matching accounts.',
+                                                },
+                                            ]}
+                                            searchTerm={searchTerm}
+                                        />
+                                    </LockedFieldWrapper>
 
                                     <Slot name="CheckoutWC.Admin.Pages.Checkout.LoginRegistration" />
                                 </>
@@ -257,19 +269,29 @@ const CheckoutSettingsForm: React.FC<CheckoutSettingsFormPropsInterface> = ( pro
                                     />
 
                                     <CheckboxField
+                                        name="hide_optional_address_fields_behind_link"
+                                        label="Hide Optional Address Fields Behind Links"
+                                        description='Recommended to increase conversions. Example link text: Add Company (optional)'
+                                        searchTerm={searchTerm}
+                                    />
+
+                                    <CheckboxField
                                         name="disable_domain_autocomplete"
                                         label="Disable Email Domain Autocomplete"
                                         description='Disable email domain autocomplete.'
                                         searchTerm={searchTerm}
                                     />
 
-                                    <CheckboxField
-                                        name="enable_discreet_address_1_fields"
-                                        label="Enable Separate House Number and Street Name Address Fields"
-                                        description='Values are combined into a single address_1 field based on country selected by customer.'
-                                        searchTerm={searchTerm}
-                                    />
-                                    {values.enable_discreet_address_1_fields
+                                    <LockedFieldWrapper plan={props.plan} slug={'field-options'} locked={props.plan.plan_level < 1} requiredPlans={props.plan.labels.required_list[ 1 ]}>
+                                        <CheckboxField
+                                            name="enable_discreet_address_1_fields"
+                                            label="Enable Separate House Number and Street Name Address Fields"
+                                            description='Values are combined into a single address_1 field based on country selected by customer.'
+                                            searchTerm={searchTerm}
+                                            disabled={props.plan.plan_level < 1}
+                                        />
+
+                                        {props.plan.plan_level >= 1 && values.enable_discreet_address_1_fields
                                         && (
                                             <RadioGroupField
                                                 name='discreet_address_1_fields_order'
@@ -291,31 +313,31 @@ const CheckoutSettingsForm: React.FC<CheckoutSettingsFormPropsInterface> = ( pro
                                                 searchTerm={searchTerm}
                                             />
                                         )
-                                    }
-                                    {values.enable_discreet_address_1_fields && values.enable_address_autocomplete && (
-                                        <SevereAlert
-                                            description='Separate Address Fields is incompatible with Google Address Autocomplete. <a target="_blank" class="text-blue-600 underline" href="https://www.checkoutwc.com/documentation/google-address-autocomplete-and-discreet-house-number-and-street-name-address-fields/">Learn More</a>'
+                                        }
+
+                                        {values.enable_discreet_address_1_fields && values.enable_address_autocomplete && (
+                                            <SevereAlert
+                                                description='Separate Address Fields is incompatible with Google Address Autocomplete. <a target="_blank" class="text-blue-600 underline" href="https://www.checkoutwc.com/documentation/google-address-autocomplete-and-discreet-house-number-and-street-name-address-fields/">Learn More</a>'
+                                            />
+                                        )}
+
+                                        <CheckboxField
+                                            name="use_fullname_field"
+                                            label="Enable Full Name Field"
+                                            description='Enable to replace first and last name fields with a single full name field.'
+                                            searchTerm={searchTerm}
+                                            disabled={props.plan.plan_level < 1}
                                         />
-                                    )}
-                                    <CheckboxField
-                                        name="hide_optional_address_fields_behind_link"
-                                        label="Hide Optional Address Fields Behind Links"
-                                        description='Recommended to increase conversions. Example link text: Add Company (optional)'
-                                        searchTerm={searchTerm}
-                                    />
-                                    <CheckboxField
-                                        name="use_fullname_field"
-                                        label="Enable Full Name Field"
-                                        description='Enable to replace first and last name fields with a single full name field.'
-                                        searchTerm={searchTerm}
-                                    />
-                                    <CheckboxField
-                                        name="enable_highlighted_countries"
-                                        label="Enable Highlighted Countries"
-                                        description='Promote selected countries to the top of the countries list in country dropdowns.'
-                                        searchTerm={searchTerm}
-                                    />
-                                    {values.enable_highlighted_countries
+
+                                        <CheckboxField
+                                            name="enable_highlighted_countries"
+                                            label="Enable Highlighted Countries"
+                                            description='Promote selected countries to the top of the countries list in country dropdowns.'
+                                            searchTerm={searchTerm}
+                                            disabled={props.plan.plan_level < 1}
+                                        />
+
+                                        {props.plan.plan_level >= 1 && values.enable_highlighted_countries
                                         && (
                                             <CountriesMultiselectField
                                                 name='highlighted_countries'
@@ -327,14 +349,17 @@ const CheckoutSettingsForm: React.FC<CheckoutSettingsFormPropsInterface> = ( pro
                                                 searchTerm={searchTerm}
                                             />
                                         )
-                                    }
-                                    <CheckboxField
-                                        name="enable_international_phone_field"
-                                        label="Enable International Phone Field"
-                                        description='Validate phone number entry based on selected country. Replaces phone field placeholder with example phone number. Stores phone number according to International Phone Format.'
-                                        searchTerm={searchTerm}
-                                    />
-                                    {values.enable_international_phone_field
+                                        }
+
+                                        <CheckboxField
+                                            name="enable_international_phone_field"
+                                            label="Enable International Phone Field"
+                                            description='Validate phone number entry based on selected country. Replaces phone field placeholder with example phone number. Stores phone number according to International Phone Format.'
+                                            searchTerm={searchTerm}
+                                            disabled={props.plan.plan_level < 1}
+                                        />
+
+                                        {props.plan.plan_level >= 1 && values.enable_international_phone_field
                                         && (
                                             <RadioGroupField
                                                 name='international_phone_field_standard'
@@ -371,7 +396,8 @@ const CheckoutSettingsForm: React.FC<CheckoutSettingsFormPropsInterface> = ( pro
                                                 searchTerm={searchTerm}
                                             />
                                         )
-                                    }
+                                        }
+                                    </LockedFieldWrapper>
                                     <Slot name="CheckoutWC.Admin.Pages.Checkout.FieldOptions" />
                                 </>
                             }
@@ -461,24 +487,30 @@ const CheckoutSettingsForm: React.FC<CheckoutSettingsFormPropsInterface> = ( pro
                             description='Control some mobile only checkout behaviors.'
                             content={
                                 <>
-                                    <CheckboxField
-                                        name="enable_address_autocomplete"
-                                        label="Enable Google Address Autocomplete"
-                                        description={sprintf( 'Enable or disable Google Address Autocomplete feature. <a href="%s" class="text-blue-600 underline">%s</a>', cfw_google_address_autocomplete.google_api_key_settings_page_url, 'Requires Google API key.' )}
-                                        searchTerm={searchTerm}
-                                    />
-                                    {values.enable_discreet_address_1_fields && values.enable_address_autocomplete && (
-                                        <SevereAlert
-                                            description='Google Address Autocomplete cannot be used with Separate Address Fields. <a target="_blank" class="text-blue-600 underline" href="https://www.checkoutwc.com/documentation/google-address-autocomplete-and-discreet-house-number-and-street-name-address-fields/">Learn More</a>'
+                                    <LockedFieldWrapper plan={props.plan} slug={'address-complete-and-validation'} locked={props.plan.plan_level < 1} requiredPlans={props.plan.labels.required_list[ 1 ]}>
+                                        <CheckboxField
+                                            name="enable_address_autocomplete"
+                                            label="Enable Google Address Autocomplete"
+                                            description={sprintf( 'Enable or disable Google Address Autocomplete feature. <a href="%s" class="text-blue-600 underline">%s</a>', ( window as any )?.cfw_google_address_autocomplete?.google_api_key_settings_page_url ?? '', 'Requires Google API key.' )}
+                                            searchTerm={searchTerm}
+                                            disabled={props.plan.plan_level < 1}
                                         />
-                                    )}
-                                    <CheckboxField
-                                        name="enable_fetchify_address_autocomplete"
-                                        label="Enable Fetchify Address Autocomplete"
-                                        description={'Enable or disable Fetchify address autocomplete feature. <a href="https://fetchify.com" class="text-blue-600 underline" target="_blank">Requires Fetchify access token.</a>'}
-                                        searchTerm={searchTerm}
-                                    />
-                                    {values.enable_fetchify_address_autocomplete
+
+                                        {props.plan.plan_level >= 1 && values.enable_discreet_address_1_fields && values.enable_address_autocomplete && (
+                                            <SevereAlert
+                                                description='Google Address Autocomplete cannot be used with Separate Address Fields. <a target="_blank" class="text-blue-600 underline" href="https://www.checkoutwc.com/documentation/google-address-autocomplete-and-discreet-house-number-and-street-name-address-fields/">Learn More</a>'
+                                            />
+                                        )}
+
+                                        <CheckboxField
+                                            name="enable_fetchify_address_autocomplete"
+                                            label="Enable Fetchify Address Autocomplete"
+                                            description={'Enable or disable Fetchify address autocomplete feature. <a href="https://fetchify.com" class="text-blue-600 underline" target="_blank">Requires Fetchify access token.</a>'}
+                                            searchTerm={searchTerm}
+                                            disabled={props.plan.plan_level < 1}
+                                        />
+
+                                        {props.plan.plan_level >= 1 && values.enable_fetchify_address_autocomplete
                                         && (
                                             <TextField
                                                 name='fetchify_access_token'
@@ -488,25 +520,26 @@ const CheckoutSettingsForm: React.FC<CheckoutSettingsFormPropsInterface> = ( pro
                                                 searchTerm={searchTerm}
                                             />
                                         )
-                                    }
+                                        }
 
-                                    {
-                                        values.enable_fetchify_address_autocomplete && values.enable_address_autocomplete
+                                        {
+                                            values.enable_fetchify_address_autocomplete && values.enable_address_autocomplete
                                         && (
                                             <SevereAlert
                                                 description='You can only use one address autocomplete service at a time. Please disable one of the services.'
                                             />
                                         )
-                                    }
+                                        }
 
-                                    <CheckboxField
-                                        name="enable_smartystreets_integration"
-                                        label="Enable Smarty Address Validation"
-                                        description={'Validates shipping address with Smarty.com and provides alternative, corrected addresses for incorrect or incomplete addresses.'}
-                                        searchTerm={searchTerm}
-                                    />
+                                        <CheckboxField
+                                            name="enable_smartystreets_integration"
+                                            label="Enable Smarty Address Validation"
+                                            description={'Validates shipping address with Smarty.com and provides alternative, corrected addresses for incorrect or incomplete addresses.'}
+                                            searchTerm={searchTerm}
+                                            disabled={props.plan.plan_level < 1}
+                                        />
 
-                                    {values.enable_smartystreets_integration
+                                        {props.plan.plan_level >= 1 && values.enable_smartystreets_integration
                                         && (
                                             <>
                                                 <TextField
@@ -525,7 +558,8 @@ const CheckoutSettingsForm: React.FC<CheckoutSettingsFormPropsInterface> = ( pro
                                                 />
                                             </>
                                         )
-                                    }
+                                        }
+                                    </LockedFieldWrapper>
 
                                     <Slot name="CheckoutWC.Admin.Pages.Checkout.AddressCompletionValidation" />
                                 </>
@@ -536,39 +570,44 @@ const CheckoutSettingsForm: React.FC<CheckoutSettingsFormPropsInterface> = ( pro
                             description={'Configure the Cart Summary on the checkout page.'}
                             content={
                                 <>
-                                    <CheckboxField
-                                        name="enable_cart_editing"
-                                        label="Enable Cart Editing At Checkout"
-                                        description='Enable or disable Cart Editing. Allows customer to remove or adjust quantity of cart items at checkout.'
-                                        searchTerm={searchTerm}
-                                    />
-                                    {values.enable_cart_editing
-                                        && (
-                                            <>
-                                                <CheckboxField
-                                                    name="allow_checkout_cart_item_variation_changes"
-                                                    label="Allow Variation Changes"
-                                                    description='Displays an edit link under cart items that allows customers to change which variation is selected in the cart.'
-                                                    nested={true}
-                                                    searchTerm={searchTerm}
-                                                />
-                                                <CheckboxField
-                                                    name="show_item_remove_button"
-                                                    label="Show Item Remove Button"
-                                                    description='When hovering over an item, show a button (X) to remove the item.'
-                                                    nested={true}
-                                                    searchTerm={searchTerm}
-                                                />
-                                                <TextField
-                                                    name="cart_edit_empty_cart_redirect"
-                                                    label="Cart Editing Empty Cart Redirect"
-                                                    description='URL to redirect to when customer empties cart from checkout page. If left blank, customer will be redirected to the cart page.'
-                                                    nested={true}
-                                                    searchTerm={searchTerm}
-                                                />
-                                            </>
-                                        )
-                                    }
+                                    <LockedFieldWrapper plan={props.plan} slug={'cart-editing-at-checkout'} locked={props.plan.plan_level < 1} requiredPlans={props.plan.labels.required_list[ 1 ]}>
+                                        <CheckboxField
+                                            name="enable_cart_editing"
+                                            label="Enable Cart Editing At Checkout"
+                                            description='Enable or disable Cart Editing. Allows customer to remove or adjust quantity of cart items at checkout.'
+                                            searchTerm={searchTerm}
+                                            disabled={props.plan.plan_level < 1}
+                                        />
+
+                                        {props.plan.plan_level >= 1 && values.enable_cart_editing
+                                            && (
+                                                <>
+                                                    <CheckboxField
+                                                        name="allow_checkout_cart_item_variation_changes"
+                                                        label="Allow Variation Changes"
+                                                        description='Displays an edit link under cart items that allows customers to change which variation is selected in the cart.'
+                                                        nested={true}
+                                                        searchTerm={searchTerm}
+                                                    />
+                                                    <CheckboxField
+                                                        name="show_item_remove_button"
+                                                        label="Show Item Remove Button"
+                                                        description='When hovering over an item, show a button (X) to remove the item.'
+                                                        nested={true}
+                                                        searchTerm={searchTerm}
+                                                    />
+                                                    <TextField
+                                                        name="cart_edit_empty_cart_redirect"
+                                                        label="Cart Editing Empty Cart Redirect"
+                                                        description='URL to redirect to when customer empties cart from checkout page. If left blank, customer will be redirected to the cart page.'
+                                                        nested={true}
+                                                        searchTerm={searchTerm}
+                                                    />
+                                                </>
+                                            )
+                                        }
+                                    </LockedFieldWrapper>
+
                                     <CheckboxField
                                         name="enable_sticky_cart_summary"
                                         label="Enable Sticky Cart Summary"
@@ -632,12 +671,16 @@ const CheckoutSettingsForm: React.FC<CheckoutSettingsFormPropsInterface> = ( pro
                             description='Enable CheckoutWC template for the Order Pay / Customer Payment Page endpoint.'
                             content={
                                 <>
-                                    <CheckboxField
-                                        name="enable_order_pay"
-                                        label="Enable Order Pay Page"
-                                        description={'Use CheckoutWC templates for Order Pay page.'}
-                                        searchTerm={searchTerm}
-                                    />
+                                    <LockedFieldWrapper plan={props.plan} slug={'order-pay'} locked={props.plan.plan_level < 1} requiredPlans={props.plan.labels.required_list[ 1 ]}>
+                                        <CheckboxField
+                                            name="enable_order_pay"
+                                            label="Enable Order Pay Page"
+                                            description={'Use CheckoutWC templates for Order Pay page.'}
+                                            searchTerm={searchTerm}
+                                            disabled={props.plan.plan_level < 1}
+                                        />
+                                    </LockedFieldWrapper>
+
                                     <Slot name="CheckoutWC.Admin.Pages.Checkout.OrderPay" />
                                 </>
                             }

@@ -12,7 +12,8 @@ import NumberField                                          from '../Fields/Numb
 import TextField                                            from '../Fields/TextField';
 import ToggleCheckboxField                                  from '../Fields/ToggleCheckboxField';
 import WPMediaUploadButton                                  from '../Fields/WPMediaUploadButton';
-import UpgradeRequiredNotice                                from '../UpgradeRequiredNotice';
+import LockedFieldWrapper                                   from '../LockedFieldWrapper';
+import SevereAlert                                          from '../SevereAlert';
 
 interface SideCartSettingsInterface {
     enable_side_cart: boolean;
@@ -88,22 +89,22 @@ const SideCartSettingsForm: React.FC<SideCartSettingsFormPropsInterface> = ( pro
                             description='Configure the Side Cart.'
                             content={
                                 <>
-                                    <ToggleCheckboxField
-                                        name='enable_side_cart'
-                                        label='Enable Side Cart'
-                                        description='Replace your cart page with a beautiful side cart that slides in from the right when items are added to the cart.'
-                                        disabled={!props.plan.has_premium_plan}
-                                        searchTerm={searchTerm}
-                                    />
-
-                                    {!props.plan.has_premium_plan && ( <UpgradeRequiredNotice requiredPlans={props.plan.premium_plans} /> ) }
+                                    <LockedFieldWrapper plan={props.plan} slug={'side-cart'} locked={props.plan.plan_level < 2} requiredPlans={props.plan.labels.required_list[ 2 ]}>
+                                        <ToggleCheckboxField
+                                            name='enable_side_cart'
+                                            label='Enable Side Cart'
+                                            description='Replace your cart page with a beautiful side cart that slides in from the right when items are added to the cart.'
+                                            disabled={props.plan.plan_level < 2}
+                                            searchTerm={searchTerm}
+                                        />
+                                    </LockedFieldWrapper>
 
                                     <Slot name="CheckoutWC.Admin.Pages.SideCart.Options" />
                                 </>
                             }
                         />
 
-                        {values.enable_side_cart && props.plan.has_premium_plan
+                        {props.plan.plan_level >= 2 && values.enable_side_cart
                             && (
                                 <>
                                     <AdminPageSection
@@ -258,6 +259,12 @@ const SideCartSettingsForm: React.FC<SideCartSettingsFormPropsInterface> = ( pro
                                                                 searchTerm={searchTerm}
                                                             />
 
+                                                            {values.side_cart_amount_remaining_message && !values.side_cart_amount_remaining_message.includes( '%s' ) && (
+                                                                <SevereAlert
+                                                                    description='Please ensure your amount remaining message includes the %s placeholder which is replaced with amount remaining when displayed to customers.'
+                                                                />
+                                                            )}
+
                                                             <TextField
                                                                 name='side_cart_free_shipping_message'
                                                                 label='Free Shipping Message'
@@ -295,7 +302,7 @@ const SideCartSettingsForm: React.FC<SideCartSettingsFormPropsInterface> = ( pro
                                         }
                                     />
 
-                                    {values.enable_side_cart && props.plan.has_premium_plan
+                                    {props.plan.plan_level >= 2 && values.enable_side_cart
                                         && (
                                             <AdminPageSection
                                                 title='Options'

@@ -17,6 +17,7 @@ interface ACRFormWooCommerceSettingsInterface {
 }
 interface ACRFormParamsInterface {
     pre_content: string;
+    post_content: string;
     clear_cart_data_url: string;
 }
 interface ACRSettingsFormPropsInterface extends SettingsFormContainerPropsInterface {

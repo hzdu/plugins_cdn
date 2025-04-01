@@ -1,6 +1,6 @@
 export interface Field {
     key: string;
-    label: string;
+    label: string | (() => string);
     help?: string;
     group: string;
     fields: SubField[];

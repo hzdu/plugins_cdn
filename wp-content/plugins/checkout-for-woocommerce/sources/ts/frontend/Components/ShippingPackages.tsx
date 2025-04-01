@@ -32,6 +32,8 @@ const ShippingPackages: React.FC = () => {
 
     return (
         <>
+            {ReactHtmlParser( staticActions?.cfw_before_shipping_method_heading )}
+
             <h3 className="cfw-shipping-methods-heading">
                 <Markup content={DataService.getMessage( 'shipping_methods_heading' )} noWrap={true} />
             </h3>
@@ -40,7 +42,7 @@ const ShippingPackages: React.FC = () => {
 
             {actions?.woocommerce_review_order_before_shipping.length > 0 && (
                 <table id="cfw-before-shipping">
-                    <tbody dangerouslySetInnerHTML={ { __html: actions?.woocommerce_review_order_before_shipping.length }}></tbody>
+                    <tbody dangerouslySetInnerHTML={ { __html: actions?.woocommerce_review_order_before_shipping }}></tbody>
                 </table>
             )}
 

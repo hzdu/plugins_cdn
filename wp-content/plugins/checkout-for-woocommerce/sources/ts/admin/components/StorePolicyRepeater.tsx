@@ -3,10 +3,17 @@ import { useField }                                                      from 'f
 import React, { useEffect }                                              from 'react';
 import StorePolicy                                                       from './StorePolicy';
 
-const StorePolicyRepeater = ( { name } ) => {
+const StorePolicyRepeater = ( { name, locked = false } ) => {
     const [ field, , helpers ] = useField( name );
 
-    const rows = field.value;
+    // If locked, use a sample row
+    const rows = !locked ? field.value : [
+        {
+            title: 'Policy Title',
+            page: null,
+            id: 'policy-0',
+        },
+    ];
 
     const setRows = ( newRows: any[] ) => {
         helpers.setValue( newRows );

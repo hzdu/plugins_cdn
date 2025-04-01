@@ -84,11 +84,10 @@ const completer: AutoCompleter = {
     // This is slightly different than Gutenberg's Autocomplete; we don't support different methods
     // of replace/insertion, so we can just return the value.
     getOptionCompletion( tag ) {
-        const value = {
+        return {
             key: tag.id,
             label: tag.name,
         };
-        return value;
     },
 };
 
