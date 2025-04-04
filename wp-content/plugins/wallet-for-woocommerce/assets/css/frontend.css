@@ -1,0 +1,594 @@
+.wal-hide{
+	display:none;
+}
+
+.wal-show{
+	display:block;
+}
+
+.wal-credit-amount{
+	color: #008000;
+}
+
+.wal-debit-amount{
+	color: #FF0000;
+}
+/* Chrome, Safari, Edge, Opera */
+.wal-number-field::-webkit-outer-spin-button,
+.wal-number-field::-webkit-inner-spin-button {
+	-webkit-appearance: none !important;
+	margin: 0 !important;
+}
+
+.wal-topup-form-actions .wal-number-field::-webkit-outer-spin-button,
+.wal-topup-form-actions .wal-number-field::-webkit-inner-spin-button {
+	-webkit-appearance: button !important;
+}
+
+/* Firefox */
+.wal-number-field {
+	-moz-appearance: textfield !important;
+}
+
+.wal-topup-form-actions .wal-number-field{
+	-moz-appearance: none !important;
+}
+
+
+/* Myaccount page wallet balace table design */
+
+.wal-myaccount-wallet-details-wrapper {
+	float: left;
+	display: block;
+	width: 100%;
+}
+
+.wal-myaccount-wallet-details-wrapper .wal-myaccount-wallet-details-content {
+	float: left;
+	display: block;
+	width: 100%;
+}
+
+.wal-myaccount-wallet-details-content h2 {
+	color: #000;
+	font-size: 30px !important;
+	font-weight: normal;
+}
+
+.wal-myaccount-wallet-details-content h2 label {
+	display: inline-block;
+}
+
+table.wal-myaccount-wallet-details-table {
+	float: left;
+	margin-bottom: 10px;
+	width: 100%;
+	border-collapse: collapse;
+
+}
+
+table.wal-myaccount-wallet-details-table tr:nth-child(even){
+	background: #fbfbfb !important;
+}
+
+table.wal-myaccount-wallet-details-table tr td {
+	padding: 10px;
+	border: none;
+	text-align: left;
+}
+
+table.wal-myaccount-wallet-details-table tr td:first-child {
+	width: 50%;
+	color: #000;
+	background: #fbfbfb !important;
+}
+
+.wal-myaccount-wallet-details-wrapper p.wal-myaccount-wallet-dashboard-view-link {
+	color: #666;
+	font-size: 16px;
+	font-weight: normal;
+}
+
+p.wal-myaccount-wallet-dashboard-view-link a {
+	color: #00f;
+	text-decoration: underline;
+}
+
+/* Profile design */
+
+.wal-dshboard-profile-wrapper {
+	float: left;
+	display: block;
+	width: 100%;
+	background: #f7f7f7;
+	border-bottom: 1px solid #eee;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+}
+
+.wal-dshboard-profile-wrapper .wal-dashboard-profile-image,
+.wal-dshboard-profile-wrapper .wal-dashboard-profile-data {
+	float: left;
+	display: block;
+}
+
+.wal-dshboard-profile-wrapper .wal-dashboard-profile-status {
+	float: right;
+	display: block;
+}
+
+.wal-dshboard-profile-wrapper .wal-dashboard-profile-image {
+	margin-right: 15px;
+	padding: 10px 5px 10px 10px;
+}
+
+.wal-dshboard-profile-wrapper .wal-dashboard-profile-image img {
+	width: 128px;
+	height: auto;
+	border-radius: 5px;
+}
+
+.wal-dshboard-profile-wrapper .wal-dashboard-profile-data,
+.wal-dshboard-profile-wrapper .wal-dashboard-profile-status {
+	padding: 10px 10px 10px 5px;
+}
+
+.wal-dshboard-profile-wrapper .wal-dashboard-profile-data p {
+	display: block;
+	padding: 0;
+	margin: 0 0 10px 0;
+	font-size: 16px;
+}
+
+.wal-dshboard-profile-wrapper .wal-dashboard-profile-data p label {
+	display: inline-block;
+	color: #000;
+	font-weight:bold;
+	font-size: 16px;
+}
+
+.wal-dshboard-profile-wrapper .wal-dashboard-profile-data p span {
+	display: inline-block;
+	margin-left: 3px;
+	color: #959595;
+	font-weight: normal;
+}
+
+.wal-dshboard-profile-wrapper .wal_active_status,
+.wal-dshboard-profile-wrapper .wal_inactive_status,
+.wal-dshboard-profile-wrapper .wal_expired_status {
+	display: block;
+	float: left;
+	padding: 10px;
+	border-radius: 5px;
+	font-size: 16px;
+	background: #fff;
+}
+
+.wal-dshboard-profile-wrapper .wal_active_status {
+	color: #000;
+	border: 1px solid #00cc99;
+	box-shadow: 0 0 3px #00cc99 inset;
+}
+
+.wal-dshboard-profile-wrapper .wal_inactive_status {
+	color: #000;
+	border: 1px solid #666699;
+	box-shadow: 0 0 3px #666699 inset;
+}
+
+.wal-dshboard-profile-wrapper .wal_expired_status {
+	color: #000;
+	border: 1px solid #ff0000;
+	box-shadow: 0 0 3px #ff0000 inset;
+}
+
+/* Dashboard style */
+
+.wal-dashboard-wrapper {
+	margin-bottom: 20px;
+}
+
+.wal-dashboard-wrapper,
+.wal-dshboard-menu-wrapper,
+.wal-dashboard-menu-content,
+.wal-dashboard-menus {
+	float: left;
+	width: 100%;
+}
+
+.wal-dashboard-menus ul {
+	float: left;
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	background: #f7f7f7;
+}
+
+.wal-dashboard-menus ul li {
+	display: inline-block;
+	list-style: none;
+}
+
+.wal-dashboard-menus ul li a {
+	float:left;
+	margin: 0;
+	padding: 10px 15px;
+	background: none;
+	border: none;
+	text-decoration: none !important;
+}
+
+.wal-dashboard-menus ul li a span {
+	margin-right: 5px;
+}
+
+.wal-dashboard-menus ul li .wal-active {
+	background: none;
+	border-bottom: none;
+	font-weight: bold;
+}
+
+/* submenu design */
+
+.wal-dashboard-menus ul li ul {
+	position: absolute;
+	display: none;
+}
+
+.wal-dashboard-menus ul li:hover {
+	position: relative;
+}
+
+.wal-dashboard-menus ul li:hover ul {
+	display: block;
+	margin: 0px;
+	padding: 0px;
+	width: 200px;
+	top: 40px;
+	left: 0;
+	background: #f7f7f7;
+	z-index: 99;
+}
+
+.wal-dashboard-menus ul li:hover ul li a {
+	display: block;
+	padding: 5px 10px;
+	outline: none;
+	background: none;
+
+}
+
+.wal-dashboard-menus ul li:hover ul li a:hover{
+	color: #000;
+}
+
+.wal-dashboard-menu-content {
+	border-left: 2px solid #f7f7f7;
+	border-bottom: 2px solid #f7f7f7;
+	border-right: 2px solid #f7f7f7;
+	background: #fdfdfd;
+}
+
+.wal-dashboard-menu-content .wal-dashboard-content-wrapper {
+	padding: 15px;
+}
+
+.wal_status_label {
+	padding: 10px;
+	color: #fff;
+	border-radius: 2px;
+}
+
+.wal_active_status {
+	background: #00cc99;
+}
+
+.wal_inactive_status {
+	background: #666699;
+}
+
+.wal_expired_status {
+	background: #ff0000;
+}
+
+/* dashboard table */
+
+.wal-frontend-table {
+	width: 100%;
+	margin: 0;
+	padding: 0;
+	border-collapse: collapse;
+}
+
+.wal-frontend-table thead {
+	background: #f7f7f7;
+}
+
+.wal-frontend-table thead th {
+	padding: 15px;
+	color: #333;
+	background: #f7f7f7;
+	border: none;
+	text-transform: capitalize;
+	font-size: 16px;
+	text-align: left;
+	vertical-align: middle;
+	word-break: break-all;
+}
+
+.wal-frontend-table tbody tr:nth-child(2n) {
+	background: #fafafa;
+}
+
+.wal-frontend-table tbody td {
+	padding: 15px;
+	color: #666;
+	background: none;
+	border: none;
+	font-size: 14px;
+	text-align: left;
+	vertical-align: middle;
+	word-break: break-all;
+}
+
+.wal-frontend-table tfoot {
+	border: none;
+	box-shadow: none;
+}
+
+.wal-frontend-table tfoot td {
+	padding-right: 0;
+	background: none;
+	border: none;
+}
+
+.wal-frontend-table tfoot nav {
+	float: none;
+	padding: 0;
+	margin-bottom: 0;
+	border: 0;
+	clear: none;
+	text-align: center;
+}
+
+.wal-frontend-table tfoot nav ul {
+	margin: 0;
+	list-style: none;
+	border: none !important;
+}
+
+.wal-frontend-table tfoot nav ul li {
+	display: inline-block;
+	margin: 0;
+}
+
+.wal-frontend-table tfoot nav ul li span {
+	display: inline-block;
+	padding: 10px;
+	margin-right: 3px;
+	color: #43454b;
+	background: #f7f7f7;
+	border: none;
+	text-decoration: none;
+	cursor:pointer;
+}
+
+/* Overview design */
+
+.wal-dashboard-overview-content-wrapper,
+.wal-dashboard-overview-content {
+	float: left;
+	width: 100%
+}
+
+.wal-dashboard-overview-data {
+	float: left;
+	margin-right: 1.5%;
+	margin-bottom: 1.5%;
+	width: 31.5%;
+	max-height: 300px;
+	min-height: 150px;
+	overflow-y: auto;
+	background: #fff;
+	border: 1px solid #e2e4e7;
+	box-shadow: 0 0 3px #e2e4e7 inset;
+}
+
+.wal-dashboard-overview-data p {
+	margin: 15px 0;
+	padding: 0;
+	text-align: center;
+}
+
+.wal-dashboard-overview-data p label {
+	display: block;
+	margin: 0;
+	padding: 0;
+	color: #666;
+	font-size: 22px;
+}
+
+.wal-dashboard-overview-data p span {
+	margin: 0;
+	padding: 0;
+	color: #000;
+	font-weight: bold;
+	font-size: 28px;
+}
+
+/* Status button design */
+
+.wal_transfered_status,
+.wal_received_status,
+.wal_request_received_status,
+.wal_requested_status ,
+.wal_request_declined_status,
+.wal_cancelled_status,
+.wal_request_cancel_status ,
+.wal_approved_status,
+.wal-user-withdrawal-cancelled-reason{
+	display: inline-flex;
+	margin: -.25em 0;
+	max-width: 100%;
+	border-radius: 4px;
+	border-bottom: 1px solid rgba(0,0,0,.05);
+	cursor: inherit !important;
+	white-space: nowrap;
+}
+
+.wal_request_received_status,
+.wal_requested_status {
+	color: #94660c;
+	background: #f8dda7;
+}
+
+.wal_transfered_status,
+.wal_received_status {
+	color: #5b841b;
+	background: #c6e1c6;
+}
+
+.wal_cancelled_status,
+.wal_request_cancel_status {
+	color: #761919;
+	background: #eba3a3;
+}
+
+.wal_request_declined_status {
+	color: #777777;
+	background: #e5e5e5;
+}
+
+.wal_approved_status{
+	color: #ffffff;
+	background: #1d85b5;
+}
+
+.wal_pending_status{
+	color: #000000;
+	background: #ffff00;
+}
+
+.wal-wallet-withdrawal-cancelled-reason{
+	margin-left:5px;
+	color: #0f4762;
+	background: #7abed2;
+	text-decoration: underline !important;
+}
+
+.wal-user-withdrawal-cancelled-reason{
+	margin-left: 10px;
+	color: #00f;
+	border:1px solid #00f;
+	background:#fff;
+	cursor:pointer !important;
+}
+.wal-user-withdrawal-cancelled-reason:hover{
+	background:#00f;
+	color:#fff;
+}
+
+.wal-withdrawal-cancelled-reason-head{
+	font-size:16px;
+}
+
+.wal-user-withdrawal-cancelled-reason-wrapper h1{
+	font-size: 24px;
+	font-weight: normal;
+	padding-bottom: 10px;
+	border-bottom: 1px dashed #000;
+}
+
+.wal-dashboard-content-wrapper tfoot nav {
+	float: none;
+	border: 0;
+	clear: none;
+	padding: 0;
+	margin-bottom: 0;
+}
+
+.wal-dashboard-content-wrapper tfoot nav ul {   
+	margin: 0;
+	list-style: none;
+	border: none !important;
+}
+
+.wal-dashboard-content-wrapper tfoot nav ul li {
+	display: inline-block;
+	margin-left: 3px;
+}
+
+.wal-dashboard-content-wrapper tfoot nav ul li span {
+	margin: 0;
+	padding: 0;
+}
+
+.wal-dashboard-content-wrapper tfoot nav ul li a {
+	display: inline-block;
+	padding: 10px;
+	margin: 0;
+	background: #fafafa;
+	border: none;
+	color: #43454b;
+	text-decoration: none;
+	border: 1px solid #ccc;
+}
+
+.wal-dashboard-content-wrapper tfoot nav ul li .current {
+	background: #ccc;
+	border: none;
+}
+.wal-dashboard-content-wrapper thead tr th {
+	background: #ccc;
+	border: none;
+}
+
+.wal-dashboard-content-wrapper tfoot nav ul li .current a,
+.wal-dashboard-content-wrapper tfoot nav ul li a:hover {
+	background: #ccc;
+	border: none;
+	color: #000;
+}
+
+@media only screen and (max-width: 768px) {
+
+	.wal-dshboard-profile-wrapper .wal-dashboard-profile-image,
+	.wal-dshboard-profile-wrapper .wal-dashboard-profile-data,
+	.wal-dshboard-profile-wrapper .wal-dashboard-profile-status {
+		float: left;
+		display: block;
+		width: 95%;
+		padding: 10px;
+	}
+	.wal-frontend-table {
+		border: 1px solid #f1f1f1;
+	}
+
+	.wal-frontend-table tbody tr {
+		display: block;
+	}
+
+	.wal-frontend-table thead {
+		display: none;
+	}
+
+	.wal-frontend-table tr td {
+		display: block;
+		border-right: 0;
+		border-bottom: 1px solid #f1f1f1;
+		text-align: right !important;
+	}
+
+	.wal-frontend-table tr td::before {
+		float: left;
+		content: attr(data-title) ": ";
+		font-weight: 700;
+	}
+
+	.wal-dashboard-overview-data {
+		margin-right: 0%;
+		margin-bottom: 4%;
+		width: 100%;
+	}
+}
