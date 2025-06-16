@@ -16,7 +16,7 @@
 }
 
 #message-purchased.bottom_right {
-    left: auto !important;
+    left: auto;
     right: 20px !important;
 }
 
@@ -28,21 +28,23 @@
 }
 
 #message-purchased.top_left {
-    left: auto !important;
     top: 20px !important;
     bottom: auto !important;
 }
 
 #message-purchased img {
-    width: auto;
-    max-width: 96px;
-    height: auto;
-    max-height: 100px;
     border-radius: 0;
     transform: translateZ(0);
 }
 
-#message-purchased p {
+#message-purchased .wn-notification-image {
+    width: 100%;
+    max-height: 102%;
+    object-fit:cover;
+}
+
+/*#message-purchased p {*/
+#message-purchased .wn-notification-message-container {
     float: left;
     font-size: 13px;
     line-height: 20px;
@@ -54,6 +56,7 @@
 #message-purchased.wn-product-without-image .wn-notification-message-container {
     padding: 20px 0 20px 20px;
 }
+
 
 #message-purchased.wn-product-with-image {
     max-width: 500px;
@@ -70,10 +73,13 @@
     justify-content: flex-start;
     align-items: center;
     width: auto;
-    height: 100%;
     text-align: center;
+    min-width: 102px;
+    max-width: 102px;
 }
-@media screen and (max-width: 600px){
+
+#message-purchased .wn-notification-image
+@media screen and (max-width: 600px) {
     #message-purchased .wn-notification-image-wrapper {
         width: 96px;
         max-width: 96px;
@@ -83,7 +89,8 @@
     }
 }
 
-#message-purchased p.wn-notification-message-container {
+/*#message-purchased p.wn-notification-message-container {*/
+#message-purchased .wn-notification-message-container {
     overflow: hidden;
     max-width: 400px;
     line-height: 1.8;
@@ -92,10 +99,14 @@
     flex-wrap: wrap;
     padding-top: 10px;
     padding-bottom: 10px;
+    white-space: nowrap;
 }
 
-#message-purchased p a,
-#message-purchased p .wn-popup-product-title {
+/*#message-purchased p a,*/
+/*#message-purchased p .wn-popup-product-title {*/
+#message-purchased .wn-notification-message-container a,
+#message-purchased .wn-notification-message-container .wn-popup-product-title {
+    text-decoration: none;
     color: #000;
     display: block;
     font-size: 14px;
@@ -108,11 +119,13 @@
     white-space: nowrap;
 }
 
-#message-purchased p a:hover {
+/*#message-purchased p a:hover {*/
+#message-purchased .wn-notification-message-container a:hover {
     color: #000;
 }
 
-#message-purchased p small {
+/*#message-purchased p small {*/
+#message-purchased .wn-notification-message-container small {
     display: block;
     font-size: 10px;
     margin: 0;
@@ -123,7 +136,7 @@
     padding-right: 20px !important;
 }
 
-#message-purchased.img-right .message-purchase-main {
+#message-purchased.img-right .message-purchase-main, .rtl #message-purchased.img-right .message-purchase-main {
     padding: 0;
 }
 
@@ -133,22 +146,35 @@
 }
 
 #message-purchased #notify-close {
+    box-sizing: content-box;
     cursor: pointer;
     position: absolute;
-    right: 10px;
-    top: 10px;
-    width: 22px;
-    height: 22px;
+    padding: 2px;
     border: none;
     overflow: hidden;
     display: flex;
     opacity: 1;
     transition: opacity 200ms;
+    border-radius: 50%;
+    width: 16px;
+    height: 16px;
+    line-height: 16px;
+    right: -10px;
+    top: -10px;
+    z-index: 1;
+}
+
+#message-purchased #notify-close.classic {
+    right: -26px;
+    top: -16px;
+    width: 22px;
+    height: 22px;
+    line-height: 22px;
+    background: unset !important;
 }
 
 #message-purchased #notify-close:before {
-    content: "\f101";
-    font-family: VI_WN_ICON_CLOSE;
+    content: "\2715";
     font-size: 14px;
     margin: 0;
     padding: 0;
@@ -156,15 +182,35 @@
     height: 100%;
     text-align: center;
 }
+#message-purchased #notify-close.classic:before {
+    font-size: 20px;
+}
 
 #message-purchased #notify-close:hover {
-    opacity: .6;
+    opacity: .8;
 }
 
-#message-purchased.img-right #notify-close {
-    right: -20px !important;
-    top: -20px !important;
+#message-purchased.wn-rounded-corner .wn-notification-message-container .wn-notification-atc {
+    right: 30px;
 }
+
+.rtl #message-purchased.wn-rounded-corner .wn-notification-message-container .wn-notification-atc {
+    left: 30px;
+}
+
+#message-purchased.wn-rounded-corner #notify-close.classic {
+    right: -15px;
+    top: -10px;
+}
+
+#message-purchased.img-right .wn-notification-message-container .wn-notification-atc {
+    right: 105px;
+}
+
+.rtl #message-purchased.img-right .wn-notification-message-container .wn-notification-atc {
+    left: 105px;
+}
+
 
 body #message-purchased.wn-background-template-type-2 {
     max-width: 515px;
@@ -177,12 +223,12 @@ body #message-purchased.wn-background-template-type-2 {
         left: 10px !important;
         right: 10px !important;
         top: auto !important;
+        margin: 0 auto;
     }
 
     body #message-purchased.wn-extended {
         bottom: 10px !important;
         box-sizing: border-box;
-        margin: 0 auto;
         top: auto !important;
     }
 
@@ -190,41 +236,43 @@ body #message-purchased.wn-background-template-type-2 {
         width: unset !important;
     }
 
-    #message-purchased.bottom_right {
-        right: 0 !important;
+    #message-purchased.bottom_right, #message-purchased.top_right {
+        left: 10px !important;
+        right: 10px !important;
     }
 
-    #message-purchased.top_right {
-        right: 0 !important;
+    body #message-purchased.top_left, body #message-purchased.top_right {
+        top: 10px !important;
+        bottom: auto !important;
     }
 
-    #message-purchased p {
+    #message-purchased .wn-notification-message-container {
         font-size: 11px;
     }
 
-    #message-purchased.wn-product-with-image p {
+    #message-purchased.wn-product-with-image .wn-notification-message-container {
         width: 70%;
     }
 
-    #message-purchased p a {
+    #message-purchased .wn-notification-message-container a {
         font-size: 13px;
     }
 
-    #message-purchased p small {
+    #message-purchased .wn-notification-message-container small {
         margin-bottom: 0;
     }
 
-    #message-purchased p.wn-notification-message-container {
+    #message-purchased .wn-notification-message-container {
         padding-top: 0;
         padding-bottom: 0;
     }
 
-    #message-purchased.wn-extended p.wn-notification-message-container {
+    #message-purchased.wn-extended .wn-notification-message-container {
         width: auto;
     }
 
-    #message-purchased.wn-extended.wn-product-with-image p.wn-notification-message-container {
-        max-width: 250px;
+    #message-purchased.wn-extended.wn-product-with-image .wn-notification-message-container {
+        max-width: 220px;
     }
 
     #message-purchased.img-right #notify-close {
@@ -239,6 +287,7 @@ body #message-purchased.wn-background-template-type-2 {
 #message-purchased a {
     color: #0f0f0f;
 }
+
 
 @keyframes nFadeIn {
     0% {
@@ -1606,12 +1655,14 @@ body #message-purchased.wn-background-template-type-2 {
 
 /*rounded corner*/
 #message-purchased .message-purchase-main {
-    padding: 0 35px 0 0;
+    overflow: hidden;
+    box-sizing: border-box;
+    padding: 0 30px 0 0;
     display: flex;
     box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.4);
     position: relative;
     width: 100%;
-    height: 100%;
+    height: 96px;
 }
 
 #message-purchased.wn-rounded-corner .message-purchase-main {
@@ -1623,20 +1674,17 @@ body #message-purchased.wn-background-template-type-2 {
     border-radius: 50px !important;
 }
 
-#message-purchased.wn-rounded-corner #notify-close {
-    right: -6px !important;
-    top: -6px !important;
-}
-
 /*RTL*/
-.rtl #message-purchased p,
-#message-purchased.wn-rtl p {
+/*.rtl #message-purchased p,*/
+/*#message-purchased.wn-rtl p {*/
+.rtl #message-purchased .wn-notification-message-container,
+#message-purchased.wn-rtl .wn-notification-message-container {
     float: right;
 }
 
 .rtl #message-purchased .message-purchase-main,
 #message-purchased.wn-rtl .message-purchase-main {
-    padding: 0 0 0 35px;
+    padding: 0 0 0 30px;
     text-align: right;
 }
 
@@ -1650,20 +1698,237 @@ body #message-purchased.wn-background-template-type-2 {
     float: right;
 }
 
-.rtl #message-purchased #notify-close,
-#message-purchased.wn-rtl #notify-close {
+.rtl #message-purchased #notify-close.classic,
+#message-purchased.wn-rtl #notify-close.classic {
     right: unset !important;
-    left: 10px;
+    left: -26px;
+}
+.rtl #message-purchased #notify-close.default,
+#message-purchased.wn-rtl #notify-close.default {
+    right: unset !important;
+    left: -10px;
 }
 
-.rtl #message-purchased.wn-extended #notify-close,
-#message-purchased.wn-rtl.wn-extended #notify-close {
+.rtl #message-purchased.wn-extended.default #notify-close,
+#message-purchased.wn-rtl.wn-extended.default #notify-close {
     right: unset !important;
-    left: 10px;
+    left: -10px;
 }
+
+.rtl #message-purchased.wn-extended.classic #notify-close,
+#message-purchased.wn-rtl.wn-extended.classic #notify-close {
+    right: unset !important;
+    left: -26px;
+}
+
 
 .rtl #message-purchased.wn-rounded-corner #notify-close,
 #message-purchased.wn-rtl.wn-rounded-corner #notify-close {
     right: unset !important;
     left: -6px;
+}
+
+
+#message-purchased .wn-notification-message-container .wn-notification-atc {
+    box-sizing: border-box;
+    position: absolute;
+    color: inherit;
+    width: auto;
+    max-width: 150px;
+    height: 20px;
+    font-size: 10px;
+    right: 10px;
+    bottom: 10px;
+    display: flex;
+    align-items: center;
+    background-color: currentColor;
+    border-radius: 25px;
+    padding: 2px 3px;
+    cursor: pointer;
+    transition: 0.2s;
+    user-select: none;
+
+}
+
+.rtl #message-purchased .wn-notification-message-container .wn-notification-atc {
+    right: unset;
+    left: 10px;
+}
+
+.wn-notification-atc.wn-notification-loading::before {
+    content: "";
+    position: absolute;
+    border-width: 8px;
+    border-style: solid;
+    border-radius: 50%;
+    border-color: currentColor currentColor currentColor transparent;
+    filter: invert();
+    left: 2px;
+    top: 2px;
+    animation: wn-circle 1s linear infinite;
+    z-index: 1;
+}
+
+.rtl .wn-notification-atc.wn-notification-loading::before {
+    left: unset;
+    right: 2px;
+}
+
+.wn-notification-atc.wn-notification-loading::after {
+    content: "";
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    background-color: currentColor;
+    border-radius: 50%;
+    top: 3px;
+    left: 3px;
+    z-index: 2;
+}
+
+.rtl .wn-notification-atc.wn-notification-loading::after {
+    left: unset;
+    right: 3px;
+}
+
+.wn-notification-atc.wn-notification-loading i {
+    visibility: hidden;
+}
+
+@keyframes wn-circle {
+    from {
+        transform: rotate(0);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+#message-purchased .wn-notification-message-container .wn-notification-atc:hover {
+    filter: invert(1);
+}
+
+#message-purchased .wn-notification-message-container .wn-notification-atc > i {
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    height: 16px;
+    width: 16px;
+    border-radius: 50%;
+    margin-right: 2px;
+    background-color: currentColor;
+    filter: invert();
+}
+
+.rtl #message-purchased .wn-notification-message-container .wn-notification-atc > i {
+    margin-right: unset;
+    margin-left: 2px;
+}
+
+#message-purchased .wn-notification-message-container .wn-notification-atc > i img {
+    filter: invert();
+    mix-blend-mode: difference;
+    max-width: 16px !important;
+}
+
+#message-purchased .message-purchase-main .wn-notification-message-container .wn-notification-atc > a {
+    color: inherit;
+    width: fit-content;
+    filter: invert();
+    /*text-shadow: 0 0 currentColor;*/
+    font-weight: 700;
+    font-size: 10px;
+    background: initial;
+    border: 0;
+    height: 100%;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    text-transform: math-auto;
+}
+#message-purchased .message-purchase-main .wn-notification-message-container .wn-notification-atc > a:before,
+#message-purchased .message-purchase-main .wn-notification-message-container .wn-notification-atc > a:after {
+    display: none;
+}
+#message-purchased .message-purchase-main .wn-notification-message-container .wn-notification-atc .added_to_cart {
+    display: none;
+}
+
+.wn-notification-warning-wrap {
+    max-width: calc(100% - 40px);
+    min-width: 250px;
+    height: auto;
+    min-height: 60px;
+    max-height: 200px;
+    padding: 5px 10px;
+    position: fixed;
+    z-index: 9999999999;
+    left: 50%;
+    bottom: 20px;
+    background: #111;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    color: #fff;
+    text-align: center;
+    animation-fill-mode: both;
+    transform: translate(-50%, 0);
+}
+.wn-notification-warning-wrap a, .wn-notification-warning-wrap .wc-forward {
+    display: none !important;
+}
+.wn-notification-warning-wrap *::before,
+.wn-notification-warning-wrap *::after {
+    display: none !important;
+}
+.wn-notification-warning-wrap * {
+    background: transparent !important;
+    color: inherit !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    border: unset !important;
+    list-style: none !important;
+}
+.wn-notification-warning-wrap.wn-notification-warning-wrap-open {
+    animation-duration: 1s;
+    animation-name: vi-wn-warning-slide_in_up;
+}
+
+@keyframes vi-wn-warning-slide_in_up {
+    from {
+        transform: translate3d(-50%, 100%, 0);
+        visibility: visible;
+    }
+    to {
+        transform: translate3d(-50%, 0, 0);
+    }
+}
+
+.wn-notification-warning-wrap.wn-notification-warning-wrap-close {
+    animation-duration: 1s;
+    animation-name: vi-wn-warning-slide_out_down;
+}
+
+@keyframes vi-wn-warning-slide_out_down {
+    from {
+        transform: translate3d(-50%, 0, 0);
+        opacity: 1;
+    }
+    to {
+        visibility: hidden;
+        transform: translate3d(-50%, 100%, 0);
+        opacity: 0;
+    }
+}
+
+#message-purchased .wn-notification-image-wrapper {
+    vertical-align: middle;
+    box-sizing: border-box;
+}
+.wn-notification-wrap_select{
+    display:flex;
+}
+.wn-notification-wrap_select .dropdown{
+    width: 100%;
 }
